@@ -58,14 +58,13 @@ export const DmMapsIncludeTarget = new Juke.Target({
 });
 
 export const DmTarget = new Juke.Target({
-  parameters: [DefineParameter],
+  parameters: [DefineParameter, WarningParameter],
   dependsOn: ({ get }) => [
     get(DefineParameter).includes('ALL_MAPS') && DmMapsIncludeTarget,
   ],
   inputs: [
     '_maps/map_files/generic/**',
     'code/**',
-    'goon/**',
     'html/**',
     'icons/**',
     'interface/**',
@@ -84,7 +83,7 @@ export const DmTarget = new Juke.Target({
 });
 
 export const DmTestTarget = new Juke.Target({
-  parameters: [DefineParameter],
+  parameters: [DefineParameter, WarningParameter],
   dependsOn: ({ get }) => [
     get(DefineParameter).includes('ALL_MAPS') && DmMapsIncludeTarget,
   ],
@@ -137,7 +136,12 @@ export const TgFontTarget = new Juke.Target({
     'tgui/packages/tgfont/dist/tgfont.eot',
     'tgui/packages/tgfont/dist/tgfont.woff2',
   ],
-  executes: () => yarn('tgfont:build'),
+  executes: async () => {
+    await yarn('tgfont:build');
+    fs.copyFileSync('tgui/packages/tgfont/dist/tgfont.css', 'tgui/packages/tgfont/static/tgfont.css');
+    fs.copyFileSync('tgui/packages/tgfont/dist/tgfont.eot', 'tgui/packages/tgfont/static/tgfont.eot');
+    fs.copyFileSync('tgui/packages/tgfont/dist/tgfont.woff2', 'tgui/packages/tgfont/static/tgfont.woff2');
+  }
 });
 
 export const TguiTarget = new Juke.Target({
@@ -153,6 +157,8 @@ export const TguiTarget = new Juke.Target({
     'tgui/public/tgui.bundle.js',
     'tgui/public/tgui-panel.bundle.css',
     'tgui/public/tgui-panel.bundle.js',
+    'tgui/public/tgui-say.bundle.css',
+    'tgui/public/tgui-say.bundle.js',
   ],
   executes: () => yarn('tgui:build'),
 });
@@ -161,6 +167,11 @@ export const TguiEslintTarget = new Juke.Target({
   parameters: [CiParameter],
   dependsOn: [YarnTarget],
   executes: ({ get }) => yarn('tgui:lint', !get(CiParameter) && '--fix'),
+});
+
+export const TguiPrettierTarget = new Juke.Target({
+  dependsOn: [YarnTarget],
+  executes: () => yarn('tgui:prettier'),
 });
 
 export const TguiSonarTarget = new Juke.Target({
@@ -180,7 +191,7 @@ export const TguiTestTarget = new Juke.Target({
 });
 
 export const TguiLintTarget = new Juke.Target({
-  dependsOn: [YarnTarget, TguiEslintTarget, TguiTscTarget],
+  dependsOn: [YarnTarget, TguiPrettierTarget, TguiEslintTarget, TguiTscTarget],
 });
 
 export const TguiDevTarget = new Juke.Target({

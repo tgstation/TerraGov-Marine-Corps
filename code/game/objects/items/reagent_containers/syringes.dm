@@ -9,9 +9,12 @@
 	name = "syringe"
 	desc = "A syringe."
 	icon = 'icons/obj/items/syringe.dmi'
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/equipment/medical_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/equipment/medical_right.dmi',
+	)
 	item_state = "syringe_0"
 	icon_state = "0"
-	materials = list(/datum/material/glass = 150)
 	init_reagent_flags = AMOUNT_SKILLCHECK
 	amount_per_transfer_from_this = 5
 	possible_transfer_amounts = null //list(5,10,15)
@@ -65,8 +68,8 @@
 	if (user.a_intent == INTENT_HARM && ismob(target) && isliving(user))
 		var/mob/M = target
 		var/mob/living/L = user
-		if(M != L && M.stat != DEAD && M.a_intent != INTENT_HELP && !M.incapacitated() && M.skills.getRating("cqc") >= SKILL_CQC_MP)
-			L.Paralyze(60)
+		if(M != L && M.stat != DEAD && M.a_intent != INTENT_HELP && !M.incapacitated() && M.skills.getRating(SKILL_CQC) >= SKILL_CQC_MP)
+			L.Paralyze(6 SECONDS)
 			log_combat(M, L, "blocked", addition="using their cqc skill (syringe injection)")
 			M.visible_message(span_danger("[M]'s reflexes kick in and knock [L] to the ground before they could use \the [src]'!"), \
 				span_warning("You knock [L] to the ground before they could inject you!"), null, 5)
@@ -76,7 +79,7 @@
 		syringestab(target, user)
 		return
 
-	var/injection_time = max(0.5 SECONDS, 5 SECONDS - 1 SECONDS * user.skills.getRating("medical"))
+	var/injection_time = max(0.5 SECONDS, 5 SECONDS - 1 SECONDS * user.skills.getRating(SKILL_MEDICAL))
 
 	switch(mode)
 		if(SYRINGE_DRAW)
@@ -238,7 +241,7 @@
 		if((user != target) && !H.check_shields(COMBAT_TOUCH_ATTACK, 14, "melee"))
 			return
 
-		if (target != user && prob(target.getarmor(target_zone, "melee")))
+		if (target != user && !prob(target.modify_by_armor(100, MELEE, penetration, target_zone)))
 			visible_message(span_danger("[user] tries to stab [target] in \the [hit_area] with [src], but the attack is deflected by armor!"))
 			user.temporarilyRemoveItemFromInventory(src)
 			qdel(src)
@@ -265,9 +268,6 @@
 /obj/item/reagent_containers/syringe/ld50_syringe
 	name = "Lethal Injection Syringe"
 	desc = "A syringe used for lethal injections."
-	icon = 'icons/obj/items/syringe.dmi'
-	item_state = "syringe_0"
-	icon_state = "0"
 	amount_per_transfer_from_this = 50
 	possible_transfer_amounts = null //list(5,10,15)
 	volume = 50
@@ -333,22 +333,6 @@
 					mode = SYRINGE_DRAW
 					update_icon()
 
-
-/obj/item/reagent_containers/syringe/ld50_syringe/update_icon()
-	var/rounded_vol = round(reagents.total_volume,50)
-	if(ismob(loc))
-		var/mode_t
-		switch(mode)
-			if (SYRINGE_DRAW)
-				mode_t = "d"
-			if (SYRINGE_INJECT)
-				mode_t = "i"
-		icon_state = "[mode_t][rounded_vol]"
-	else
-		icon_state = "[rounded_vol]"
-	item_state = "syringe_[rounded_vol]"
-
-
 ////////////////////////////////////////////////////////////////////////////////
 /// Syringes. END
 ////////////////////////////////////////////////////////////////////////////////
@@ -360,7 +344,7 @@
 	desc = "Contains inaprovaline - used to stabilize patients."
 	list_reagents = list(/datum/reagent/medicine/inaprovaline = 15)
 
-/obj/item/reagent_containers/syringe/inaprovaline/Initialize()
+/obj/item/reagent_containers/syringe/inaprovaline/Initialize(mapload)
 	. = ..()
 	mode = SYRINGE_INJECT
 	update_icon()
@@ -370,7 +354,7 @@
 	desc = "Contains anti-toxins."
 	list_reagents = list(/datum/reagent/medicine/dylovene = 15)
 
-/obj/item/reagent_containers/syringe/dylovene/Initialize()
+/obj/item/reagent_containers/syringe/dylovene/Initialize(mapload)
 	. = ..()
 	mode = SYRINGE_INJECT
 	update_icon()
@@ -380,7 +364,7 @@
 	desc = "Contains antiviral agents. Can also be used to treat infected wounds."
 	list_reagents = list(/datum/reagent/medicine/spaceacillin = 15)
 
-/obj/item/reagent_containers/syringe/antiviral/Initialize()
+/obj/item/reagent_containers/syringe/antiviral/Initialize(mapload)
 	. = ..()
 	mode = SYRINGE_INJECT
 	update_icon()
@@ -390,7 +374,7 @@
 	desc = "Contains aggressive drugs meant for torture."
 	list_reagents = list(/datum/reagent/space_drugs = 5, /datum/reagent/toxin/mindbreaker = 5, /datum/reagent/cryptobiolin = 5)
 
-/obj/item/reagent_containers/syringe/drugs/Initialize()
+/obj/item/reagent_containers/syringe/drugs/Initialize(mapload)
 	. = ..()
 	mode = SYRINGE_INJECT
 	update_icon()
@@ -398,7 +382,7 @@
 /obj/item/reagent_containers/syringe/ld50_syringe/choral
 	list_reagents = list(/datum/reagent/toxin/chloralhydrate = 50)
 
-/obj/item/reagent_containers/syringe/ld50_syringe/choral/Initialize()
+/obj/item/reagent_containers/syringe/ld50_syringe/choral/Initialize(mapload)
 	. = ..()
 	mode = SYRINGE_INJECT
 	update_icon()
@@ -408,7 +392,7 @@
 	desc = "Contains inaprovaline & dylovene."
 	list_reagents = list(/datum/reagent/medicine/inaprovaline = 7, /datum/reagent/medicine/dylovene = 8)
 
-/obj/item/reagent_containers/syringe/mixed/Initialize()
+/obj/item/reagent_containers/syringe/mixed/Initialize(mapload)
 	. = ..()
 	mode = SYRINGE_INJECT
 	update_icon()

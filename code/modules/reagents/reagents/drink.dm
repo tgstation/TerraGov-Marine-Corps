@@ -477,7 +477,6 @@
 	L.adjustFireLoss(-0.5, 0)
 	L.adjustToxLoss(-0.5, 0)
 	L.adjustOxyLoss(-0.5, 0)
-	L.AdjustConfused(-10 SECONDS)
 	return ..()
 
 /datum/reagent/consumable/drink/atomicbomb
@@ -489,15 +488,15 @@
 
 /datum/reagent/consumable/drink/atomicbomb/on_mob_life(mob/living/L, metabolism)
 	L.set_drugginess(50)
-	L.AdjustConfused(40)
-	L.slurring += 2
+	L.AdjustConfused(4 SECONDS)
+	L.adjust_timed_status_effect(2 SECONDS, /datum/status_effect/speech/slurring/drunk)
 	switch(current_cycle)
 		if(40 to 49)
 			L.adjustDrowsyness(2)
 		if(51 to 200)
-			L.Sleeping(60)
+			L.Sleeping(6 SECONDS)
 		if(201 to INFINITY)
-			L.Sleeping(60)
+			L.Sleeping(6 SECONDS)
 			L.adjustToxLoss(2)
 	return ..()
 
@@ -511,11 +510,11 @@
 /datum/reagent/consumable/drink/gargle_blaster/on_mob_life(mob/living/L, metabolism)
 	switch(current_cycle)
 		if(15 to 45)
-			L.slurring += 2
+			L.adjust_timed_status_effect(2 SECONDS, /datum/status_effect/speech/slurring/drunk)
 			L.jitter(2)
 		if(46 to 65)
-			L.AdjustConfused(40)
-			L.slurring += 2
+			L.AdjustConfused(4 SECONDS)
+			L.adjust_timed_status_effect(2 SECONDS, /datum/status_effect/speech/slurring/drunk)
 			L.jitter(3)
 		if(66 to 199)
 			L.set_drugginess(50)
@@ -526,13 +525,13 @@
 				L.Sleeping(16 SECONDS)
 		if(200 to INFINITY)
 			L.set_drugginess(50)
-			L.AdjustConfused(40)
-			L.slurring += 2
+			L.AdjustConfused(4 SECONDS)
+			L.adjust_timed_status_effect(2 SECONDS, /datum/status_effect/speech/slurring/drunk)
 			L.adjustToxLoss(2)
 			L.jitter(5)
 			if(prob(10))
 				L.vomit()
-			L.Sleeping(60)
+			L.Sleeping(6 SECONDS)
 	return ..()
 
 /datum/reagent/consumable/drink/neurotoxin
@@ -544,16 +543,16 @@
 	trait_flags = BRADYCARDICS
 
 /datum/reagent/consumable/drink/neurotoxin/on_mob_life(mob/living/L, metabolism)
-	L.Paralyze(60)
+	L.Paralyze(6 SECONDS)
 	switch(current_cycle)
 		if(15 to 35)
-			L.stuttering += 2
+			L.adjust_timed_status_effect(2 SECONDS, /datum/status_effect/speech/stutter)
 		if(36 to 55)
-			L.stuttering +=2
-			L.AdjustConfused(40)
+			L.adjust_timed_status_effect(2 SECONDS, /datum/status_effect/speech/stutter)
+			L.AdjustConfused(4 SECONDS)
 		if(56 to 200)
-			L.stuttering +=2
-			L.AdjustConfused(40)
+			L.adjust_timed_status_effect(2 SECONDS, /datum/status_effect/speech/stutter)
+			L.AdjustConfused(4 SECONDS)
 			L.set_drugginess(30)
 		if(201 to INFINITY)
 			L.set_drugginess(30)
@@ -567,7 +566,7 @@
 	taste_description = "giving peace a chance"
 
 /datum/reagent/consumable/drink/hippies_delight/on_mob_life(mob/living/L, metabolism)
-	L.slurring = max(L.slurring, 2)
+	L.set_timed_status_effect(2 SECONDS, /datum/status_effect/speech/slurring/drunk, only_if_higher = TRUE)
 	switch(current_cycle)
 		if(1 to 5)
 			L.dizzy(10)
@@ -587,7 +586,7 @@
 			if(prob(30))
 				L.emote(pick("twitch","giggle"))
 		if(201 to INFINITY)
-			L.stuttering = 1
+			L.adjust_timed_status_effect(1 SECONDS, /datum/status_effect/speech/stutter)
 			L.jitter(60)
 			L.dizzy(60)
 			L.set_drugginess(75)

@@ -13,7 +13,7 @@
 			M.do_attack_animation(src, ATTACK_EFFECT_PUNCH)
 			visible_message(span_danger("[S] [S.attacktext] [src]!"), null, null, 5)
 			var/damage = S.melee_damage
-			apply_damage(damage, BRUTE)
+			apply_damage(damage, BRUTE, blocked = MELEE)
 			UPDATEHEALTH(src)
 			log_combat(S, src, "attacked")
 
@@ -64,7 +64,7 @@
 			H.do_attack_animation(src, ATTACK_EFFECT_YELLOWPUNCH)
 			playsound(loc, attack.attack_sound, 25, TRUE)
 			visible_message(span_danger("[H] [pick(attack.attack_verb)]ed [src]!"), null, null, 5)
-			apply_damage(melee_damage + attack.damage, BRUTE, "chest", soft_armor.getRating("melee"), updating_health = TRUE)
+			apply_damage(melee_damage + attack.damage, BRUTE, blocked = MELEE, updating_health = TRUE)
 
 
 //Hot hot Aliens on Aliens action.
@@ -128,4 +128,4 @@
 
 			X.do_attack_animation(src, ATTACK_EFFECT_REDSLASH)
 			playsound(loc, "alien_claw_flesh", 25, 1)
-			apply_damage(damage, BRUTE, updating_health = TRUE)
+			apply_damage(damage, BRUTE, blocked = MELEE, updating_health = TRUE)

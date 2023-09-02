@@ -48,15 +48,15 @@
 	desc = "an advanced peice of espionage equipment in the shape of a pocket protector. it has a built in 360 degree camera for all your nefarious needs. Microphone not included."
 
 	var/obj/item/clothing/glasses/regular/spy/linked_glasses
-	var/obj/screen/map_view/cam_screen
+	var/atom/movable/screen/map_view/cam_screen
 	var/list/cam_plane_masters
 	// Ranges higher than one can be used to see through walls.
 	var/cam_range = 1
 	var/datum/movement_detector/tracker
 
-/obj/item/spy_bug/Initialize()
+/obj/item/spy_bug/Initialize(mapload)
 	. = ..()
-	tracker = new /datum/movement_detector(src, CALLBACK(src, .proc/update_view))
+	tracker = new /datum/movement_detector(src, CALLBACK(src, PROC_REF(update_view)))
 
 	cam_screen = new
 	cam_screen.name = "screen"
@@ -69,8 +69,8 @@
 	// NOT apply to map popups. If there's ever a way to make planesmasters
 	// omnipresent, then this wouldn't be needed.
 	cam_plane_masters = list()
-	for(var/plane in subtypesof(/obj/screen/plane_master) - /obj/screen/plane_master/blackness)
-		var/obj/screen/plane_master/instance = new plane()
+	for(var/plane in subtypesof(/atom/movable/screen/plane_master) - /atom/movable/screen/plane_master/blackness)
+		var/atom/movable/screen/plane_master/instance = new plane()
 		instance.assigned_map = "spypopup_map"
 		if(instance.blend_mode_override)
 			instance.blend_mode = instance.blend_mode_override

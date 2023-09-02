@@ -28,6 +28,10 @@ SUBSYSTEM_DEF(tgui)
 
 /datum/controller/subsystem/tgui/PreInit()
 	basehtml = file2text('tgui/public/tgui.html')
+	// Inject inline polyfills
+	var/polyfill = file2text('tgui/public/tgui-polyfill.min.js')
+	polyfill = "<script>\n[polyfill]\n</script>"
+	basehtml = replacetextEx(basehtml, "<!-- tgui:inline-polyfill -->", polyfill)
 
 /datum/controller/subsystem/tgui/Shutdown()
 	close_all_uis()
@@ -41,8 +45,8 @@ SUBSYSTEM_DEF(tgui)
 		src.current_run = open_uis.Copy()
 	// Cache for sanic speed (lists are references anyways)
 	var/list/current_run = src.current_run
-	while(current_run.len)
-		var/datum/tgui/ui = current_run[current_run.len]
+	while(length(current_run))
+		var/datum/tgui/ui = current_run[length(current_run)]
 		current_run.len--
 		// TODO: Move user/src_object check to process()
 		if(ui?.user && ui.src_object)

@@ -2,11 +2,15 @@
 	name = "Tracking Beacon"
 	desc = "A beacon used by a teleporter."
 	icon_state = "beacon"
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/equipment/tools_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/equipment/tools_right.dmi',
+	)
 	item_state = "signaler"
 	var/code = "electronic"
 
 
-/obj/item/radio/beacon/Initialize()
+/obj/item/radio/beacon/Initialize(mapload)
 	. = ..()
 	GLOB.beacon_list += src
 
@@ -23,9 +27,3 @@
 		src.code = t
 	if (!( src.code ))
 		src.code = "beacon"
-
-
-
-/obj/item/radio/beacon/bacon //Probably a better way of doing this, I'm lazy.
-	proc/digest_delay()
-		QDEL_IN(src, 1 MINUTES)

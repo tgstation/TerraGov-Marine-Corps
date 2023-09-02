@@ -3,9 +3,13 @@
 	desc = "A rechargable electrochemical power cell."
 	icon = 'icons/obj/power.dmi'
 	icon_state = "cell"
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/equipment/tools_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/equipment/tools_right.dmi',
+	)
 	item_state = "cell"
-	force = 5.0
-	throwforce = 5.0
+	force = 5
+	throwforce = 5
 	throw_speed = 3
 	throw_range = 5
 	w_class = WEIGHT_CLASS_SMALL
@@ -19,7 +23,6 @@
 	var/charge_delay = 0 // How long it takes for the cell to start recharging after last use
 	///used to track what set of overlays to use to display charge level
 	var/charge_overlay = "cell"
-	materials = list(/datum/material/metal = 700, /datum/material/glass = 50)
 
 /obj/item/cell/suicide_act(mob/user)
 	user.visible_message(span_danger("[user] is licking the electrodes of the [src.name]! It looks like [user.p_theyre()] trying to commit suicide."))
@@ -29,33 +32,29 @@
 	name = "\improper Nanotrasen brand rechargable AA battery"
 	desc = "You can't top the plasma top." //TOTALLY TRADEMARK INFRINGEMENT
 	maxcharge = 500
-	materials = list(/datum/material/metal = 700, /datum/material/glass = 40)
 
-/obj/item/cell/crap/empty/Initialize()
+/obj/item/cell/crap/empty/Initialize(mapload)
 	. = ..()
 	charge = 0
 
 /obj/item/cell/secborg
 	name = "security borg rechargable D battery"
 	maxcharge = 600	//600 max charge / 100 charge per shot = six shots
-	materials = list(/datum/material/metal = 700, /datum/material/glass = 40)
 
-/obj/item/cell/secborg/empty/Initialize()
+/obj/item/cell/secborg/empty/Initialize(mapload)
 	. = ..()
 	charge = 0
 
 /obj/item/cell/apc
 	name = "heavy-duty power cell"
 	maxcharge = 5000
-	materials = list(/datum/material/metal = 700, /datum/material/glass = 50)
 
 /obj/item/cell/high
 	name = "high-capacity power cell"
 	icon_state = "hcell"
 	maxcharge = 10000
-	materials = list(/datum/material/metal = 700, /datum/material/glass = 60)
 
-/obj/item/cell/high/empty/Initialize()
+/obj/item/cell/high/empty/Initialize(mapload)
 	. = ..()
 	charge = 0
 
@@ -63,9 +62,8 @@
 	name = "super-capacity power cell"
 	icon_state = "scell"
 	maxcharge = 20000
-	materials = list(/datum/material/metal = 700, /datum/material/glass = 70)
 
-/obj/item/cell/super/empty/Initialize()
+/obj/item/cell/super/empty/Initialize(mapload)
 	. = ..()
 	charge = 0
 
@@ -73,9 +71,8 @@
 	name = "hyper-capacity power cell"
 	icon_state = "hpcell"
 	maxcharge = 30000
-	materials = list(/datum/material/metal = 700, /datum/material/glass = 80)
 
-/obj/item/cell/hyper/empty/Initialize()
+/obj/item/cell/hyper/empty/Initialize(mapload)
 	. = ..()
 	charge = 0
 
@@ -83,9 +80,9 @@
 	name = "infinite-capacity power cell!"
 	icon_state = "icell"
 	maxcharge = 30000
-	materials = list(/datum/material/metal = 700, /datum/material/glass = 80)
-	use()
-		return 1
+
+/obj/item/cell/infinite/use()
+	return TRUE
 
 /obj/item/cell/potato
 	name = "potato battery"
@@ -98,7 +95,7 @@
 
 /obj/item/cell/rtg/small
 	name = "recharger cell"
-	desc = "This is a miniature radioisotope generator that can fit into plasma cutters or APC's, but not laser-based weapory. The needed shielding lowers the maximum capacity significantly."
+	desc = "This is a miniature radioisotope generator that can fit into APC's, but not laser-based weapory. The needed shielding lowers the maximum capacity significantly."
 	icon = 'icons/obj/items/stock_parts.dmi'
 	icon_state = "capacitor"
 	item_state = "capacitor"
@@ -107,9 +104,17 @@
 	charge_amount = 25
 	charge_delay = 2 SECONDS //One hit on a resin thingy every 8 seconds, or one actual wall every 80 seconds.
 
+/obj/item/cell/rtg/plasma_cutter
+	name = "plasma cutter cell"
+	desc = "You shouldn't be seeing this"
+	maxcharge = 7500
+	self_recharge = TRUE
+	charge_amount = 25
+	charge_delay = 2 SECONDS //One hit on a resin thingy every 8 seconds, or one actual wall every 80 seconds.
+
 /obj/item/cell/rtg/large
 	name = "large recharger cell"
-	desc = "This is a radioisotope generator that can fit into plasma cutters or APC's, but not laser-based weapory. It is too hot to be easily stored and cannot be handcharged."
+	desc = "This is a radioisotope generator that can fit into APC's, but not laser-based weapory. It is too hot to be easily stored and cannot be handcharged."
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "trashmelt"
 	item_state = "trashmelt"
@@ -118,3 +123,24 @@
 	self_recharge = TRUE
 	charge_amount = 50
 	charge_delay = 2 SECONDS //One hit on a resin thingy every 4 seconds, or one actual wall every 40 seconds.
+
+/obj/item/cell/mecha
+	name = "small radiotope cell"
+	desc = "A large twisting piece of metal that acts as the power core of a mecha. You probably shouldn't lick it, despite the blue glow."
+	icon = 'icons/obj/stationobjs.dmi'
+	icon_state = "trashmelt"
+	item_state = "trashmelt"
+	w_class = WEIGHT_CLASS_HUGE
+	self_recharge = TRUE
+	maxcharge = 1000
+	charge_amount = 30
+
+/obj/item/cell/mecha/medium
+	name = "medium radiotope cell"
+	maxcharge = 1250
+	charge_amount = 40
+
+/obj/item/cell/mecha/large
+	name = "large radiotope cell"
+	maxcharge = 1500
+	charge_amount = 50

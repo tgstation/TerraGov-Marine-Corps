@@ -30,13 +30,6 @@
 	desc = "It's a very smart uniform with a special pocket for tip."
 	icon_state = "waiter"
 
-/obj/item/clothing/under/rank/mailman
-	name = "mailman's jumpsuit"
-	desc = "<i>'Special delivery!'</i>"
-	icon_state = "mailman"
-	item_state = "b_suit"
-	adjustment_variants = list()
-
 /obj/item/clothing/under/rank/prisoner
 	name = "prison jumpsuit"
 	desc = "It's standardised Nanotrasen prisoner-wear. Its suit sensors are stuck in the \"Fully On\" position."
@@ -106,7 +99,7 @@
 	gas_transfer_coefficient = 0.01
 	permeability_coefficient = 0.01
 	flags_armor_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
-	soft_armor = list("melee" = 100, "bullet" = 100, "laser" = 100, "energy" = 100, "bomb" = 100, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 100)
+	soft_armor = list(MELEE = 100, BULLET = 100, LASER = 100, ENERGY = 100, BOMB = 100, BIO = 100, FIRE = 100, ACID = 100)
 	flags_cold_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	min_cold_protection_temperature = SPACE_SUIT_MIN_COLD_PROTECTION_TEMPERATURE
 	siemens_coefficient = 0
@@ -147,6 +140,12 @@
 	desc = "A black suit and red tie. Very formal."
 	icon_state = "black_suit"
 	item_state = "bl_suit"
+
+/obj/item/clothing/under/suit_jacket/detective
+	icon_state = "detective"
+
+/obj/item/clothing/under/suit_jacket/detective/alt
+	icon_state = "greydet"
 
 /obj/item/clothing/under/suit_jacket/really_black
 	name = "executive suit"
@@ -363,7 +362,7 @@
 	desc = "A tan suit with a yellow tie. Smart, but casual."
 	icon_state = "tan_suit"
 
-/obj/item/clothing/under/serviceoveralls
+/obj/item/clothing/under/marine/serviceoveralls
 	name = "Workman outfit"
 	desc = "The very image of a working man. Not that you're probably doing work."
 	icon_state = "mechanic_s"
@@ -375,7 +374,7 @@
 	item_state = "pilot_spec"
 	resistance_flags = UNACIDABLE
 	flags_armor_protection = CHEST|GROIN|LEGS|ARMS
-	soft_armor = list("melee" = 70, "bullet" = 70, "laser" = 70, "energy" = 70, "bomb" = 70, "bio" = 70, "rad" = 70, "fire" = 70, "acid" = 70)
+	soft_armor = list(MELEE = 70, BULLET = 70, LASER = 70, ENERGY = 70, BOMB = 70, BIO = 70, FIRE = 70, ACID = 70)
 	flags_cold_protection = CHEST|GROIN|LEGS|ARMS
 	min_cold_protection_temperature = SPACE_SUIT_MIN_COLD_PROTECTION_TEMPERATURE
 	siemens_coefficient = 0

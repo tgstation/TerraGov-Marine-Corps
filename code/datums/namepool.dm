@@ -1,4 +1,5 @@
 GLOBAL_LIST_EMPTY_TYPED(namepool, /datum/namepool)
+GLOBAL_LIST_EMPTY_TYPED(operation_namepool, /datum/operation_namepool)
 
 /datum/namepool
 	var/firstname_male_pool = "names/first_male"
@@ -13,6 +14,8 @@ GLOBAL_LIST_EMPTY_TYPED(namepool, /datum/namepool)
 		. = pick(SSstrings.get_list_from_file(firstname_male_pool))
 	else
 		. = pick(SSstrings.get_list_from_file(firstname_female_pool))
+	if(!lastname_pool)
+		return
 
 	. += " " + pick(SSstrings.get_list_from_file(lastname_pool))
 
@@ -35,6 +38,11 @@ GLOBAL_LIST_EMPTY_TYPED(namepool, /datum/namepool)
 	firstname_male_pool = "names/moth_first"
 	firstname_female_pool = "names/moth_first"
 	lastname_pool = "names/moth_last"
+
+/datum/namepool/synth
+	firstname_male_pool = "names/male_synth"
+	firstname_female_pool = "names/female_synth"
+	lastname_pool = ""
 
 /datum/namepool/sectoid/get_random_name()
 	return "Sectoid [rand(1,9)]X[ascii2text(rand(65, 87))]" //65 to 87 is (uppercase) A to W
@@ -64,3 +72,18 @@ GLOBAL_LIST_EMPTY_TYPED(namepool, /datum/namepool)
 /datum/namepool/robotic/get_random_name(gender = MALE)
 	. = pick(SSstrings.get_list_from_file(firstname_female_pool))
 	. += "-[rand(1,999)]" //pathfinder-738 or such
+
+/datum/operation_namepool
+	///The first word in operation name
+	var/list/operation_titles = "names/operation_title"
+	///The second word in operation name
+	var/list/operation_prefixes = "names/operation_prefix"
+	///The third word in operation name
+	var/list/operation_postfixes = "names/operation_postfix"
+
+
+/datum/operation_namepool/proc/get_random_name()
+	var/operation_name = pick(SSstrings.get_list_from_file(operation_titles))
+	operation_name += " [pick(SSstrings.get_list_from_file(operation_prefixes))]"
+	operation_name += "-[pick(SSstrings.get_list_from_file(operation_postfixes))]"
+	return uppertext(operation_name)

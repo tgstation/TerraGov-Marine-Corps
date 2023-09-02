@@ -2,8 +2,11 @@
 /obj/item/clothing/glasses
 	name = "glasses"
 	icon = 'icons/obj/clothing/glasses.dmi'
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/clothing/glasses_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/clothing/glasses_right.dmi',
+	)
 	w_class = WEIGHT_CLASS_SMALL
-	sprite_sheets = list("Vox" = 'icons/mob/species/vox/eyes.dmi')
 	var/prescription = FALSE
 	var/toggleable = FALSE
 	active = TRUE
@@ -11,7 +14,7 @@
 	flags_equip_slot = ITEM_SLOT_EYES
 	flags_armor_protection = EYES
 	var/deactive_state = "degoggles"
-	var/vision_flags = 0
+	var/vision_flags = NONE
 	var/darkness_view = 2 //Base human is 2
 	var/invis_view = SEE_INVISIBLE_LIVING
 	var/invis_override = 0 //Override to allow glasses to set higher than normal see_invis
@@ -78,14 +81,20 @@
 		qdel(I)
 		qdel(src)
 		user.put_in_hands(P)
+	else if(istype(I, /obj/item/clothing/glasses/meson))
+		var/obj/item/clothing/glasses/meson/eyepatch/P = new
+		to_chat(user, span_notice("You fasten the meson projector to the inside of the eyepatch."))
+		qdel(I)
+		qdel(src)
+		user.put_in_hands(P)
 
 		update_icon(user)
+
 
 /obj/item/clothing/glasses/monocle
 	name = "monocle"
 	desc = "Such a dapper eyepiece!"
 	icon_state = "monocle"
-	item_state = "headset" // lol
 	flags_armor_protection = NONE
 
 /obj/item/clothing/glasses/material
@@ -141,9 +150,10 @@
 	desc = "Standard issue TGMC goggles. Mostly used to decorate one's helmet."
 	icon_state = "mgoggles"
 	item_state = "mgoggles"
-	soft_armor = list("melee" = 40, "bullet" = 40, "laser" = 0, "energy" = 15, "bomb" = 35, "bio" = 10, "rad" = 10, "fire" = 30, "acid" = 30)
+	soft_armor = list(MELEE = 40, BULLET = 40, LASER = 0, ENERGY = 15, BOMB = 35, BIO = 10, FIRE = 30, ACID = 30)
 	flags_equip_slot = ITEM_SLOT_EYES|ITEM_SLOT_MASK
 	goggles = TRUE
+	w_class = WEIGHT_CLASS_TINY
 
 
 /obj/item/clothing/glasses/mgoggles/prescription
@@ -164,6 +174,19 @@
 		else
 			var/obj/item/clothing/glasses/hud/medgoggles/S = new
 			to_chat(user, span_notice("You fasten the medical hud projector to the inside of the goggles."))
+			qdel(I)
+			qdel(src)
+			user.put_in_hands(S)
+	else if(istype(I, /obj/item/clothing/glasses/meson))
+		if(prescription)
+			var/obj/item/clothing/glasses/meson/enggoggles/prescription/P = new
+			to_chat(user, span_notice("You fasten the optical meson scanner to the inside of the goggles."))
+			qdel(I)
+			qdel(src)
+			user.put_in_hands(P)
+		else
+			var/obj/item/clothing/glasses/meson/enggoggles/S = new
+			to_chat(user, span_notice("You fasten the optical meson scanner to the inside of the goggles."))
 			qdel(I)
 			qdel(src)
 			user.put_in_hands(S)
@@ -194,7 +217,7 @@
 	flags_inv_hide = HIDEEYES
 	eye_protection = 2
 
-/obj/item/clothing/glasses/welding/Initialize()
+/obj/item/clothing/glasses/welding/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/clothing_tint, TINT_5, TRUE)
 
@@ -252,7 +275,7 @@
 	icon_state = "rwelding-g"
 	item_state = "rwelding-g"
 
-/obj/item/clothing/glasses/welding/superior/Initialize()
+/obj/item/clothing/glasses/welding/superior/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/clothing_tint, TINT_4)
 
@@ -265,7 +288,7 @@
 	item_state = "sunglasses"
 	eye_protection = 1
 
-/obj/item/clothing/glasses/sunglasses/Initialize()
+/obj/item/clothing/glasses/sunglasses/Initialize(mapload)
 	. = ..()
 	if(eye_protection)
 		AddComponent(/datum/component/clothing_tint, TINT_3)
@@ -277,7 +300,7 @@
 	item_state = "blindfold"
 	eye_protection = 2
 
-/obj/item/clothing/glasses/sunglasses/blindfold/Initialize()
+/obj/item/clothing/glasses/sunglasses/blindfold/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/clothing_tint, TINT_BLIND)
 
@@ -297,6 +320,24 @@
 /obj/item/clothing/glasses/sunglasses/fake
 	desc = "A pair of designer sunglasses. Doesn't seem like it'll block flashes."
 	eye_protection = 0
+
+/obj/item/clothing/glasses/sunglasses/fake/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if(istype(I, /obj/item/clothing/glasses/hud/health))
+		var/obj/item/clothing/glasses/hud/medsunglasses/P = new
+		to_chat(user, span_notice("You fasten the medical hud projector to the inside of the glasses."))
+		qdel(I)
+		qdel(src)
+		user.put_in_hands(P)
+	else if(istype(I, /obj/item/clothing/glasses/meson))
+		var/obj/item/clothing/glasses/meson/sunglasses/P = new
+		to_chat(user, span_notice("You fasten the optical meson scaner to the inside of the glasses."))
+		qdel(I)
+		qdel(src)
+		user.put_in_hands(P)
+
+		update_icon(user)
 
 /obj/item/clothing/glasses/sunglasses/fake/prescription
 	name = "prescription sunglasses"
@@ -319,7 +360,7 @@
 	vision_flags = SEE_TURFS|SEE_MOBS|SEE_OBJS
 	lighting_alpha = LIGHTING_PLANE_ALPHA_INVISIBLE
 
-/obj/item/clothing/glasses/sunglasses/sa/Initialize()
+/obj/item/clothing/glasses/sunglasses/sa/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/clothing_tint, TINT_NONE)
 

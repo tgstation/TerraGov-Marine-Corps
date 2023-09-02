@@ -22,7 +22,7 @@
 	user.visible_message(span_suicide("[user] is putting the live [name] in [user.p_their()] mouth! It looks like [user.p_theyre()] trying to commit suicide."))
 	return (FIRELOSS)
 
-/obj/item/weapon/baton/Initialize()
+/obj/item/weapon/baton/Initialize(mapload)
 	. = ..()
 	bcell = new/obj/item/cell/high(src)
 	update_icon()
@@ -110,10 +110,10 @@
 	update_icon()
 
 /obj/item/weapon/baton/attack_self(mob/user)
-	if(has_user_lock && user.skills.getRating("police") < SKILL_POLICE_MP)
+	if(has_user_lock && user.skills.getRating(SKILL_POLICE) < SKILL_POLICE_MP)
 		to_chat(user, span_warning("You don't seem to know how to use [src]..."))
 		return
-	if(bcell && bcell.charge > hitcost)
+	if(bcell?.charge > hitcost)
 		status = !status
 		to_chat(user, span_notice("[src] is now [status ? "on" : "off"]."))
 		playsound(loc, "sparks", 25, 1, 6)
@@ -130,20 +130,20 @@
 	if(M.status_flags & INCORPOREAL || user.status_flags & INCORPOREAL) //Incorporeal beings cannot attack or be attacked
 		return
 
-	if(has_user_lock && user.skills.getRating("police") < SKILL_POLICE_MP)
+	if(has_user_lock && user.skills.getRating(SKILL_POLICE) < SKILL_POLICE_MP)
 		to_chat(user, span_warning("You don't seem to know how to use [src]..."))
 		return
 
-	var/agony = agonyforce
-	var/stun = stunforce
+	var/agony_applied = agonyforce
+	var/stun_applied = stunforce
 	var/mob/living/L = M
 
 	var/target_zone = check_zone(user.zone_selected)
 	if(user.a_intent == INTENT_HARM)
 		if (!..())	//item/attack() does it's own messaging and logs
 			return 0	// item/attack() will return 1 if they hit, 0 if they missed.
-		agony *= 0.5	//whacking someone causes a much poorer contact than prodding them.
-		stun *= 0.5
+		agony_applied *= 0.5	//whacking someone causes a much poorer contact than prodding them.
+		stun_applied *= 0.5
 		//we can't really extract the actual hit zone from ..(), unfortunately. Just act like they attacked the area they intended to.
 	else
 		//copied from human_defense.dm - human defence code should really be refactored some time.
@@ -173,8 +173,8 @@
 
 	//stun effects
 	if(!HAS_TRAIT(L, TRAIT_BATONIMMUNE))
-		L.stun_effect_act(stun, agony, target_zone)
-		L.ParalyzeNoChain(80)
+		L.apply_effects(stun = stun_applied, stutter = agony_applied * 0.1, eyeblur = agony_applied * 0.1, agony = agony_applied)
+		L.ParalyzeNoChain(8 SECONDS)
 
 	playsound(loc, 'sound/weapons/egloves.ogg', 25, 1, 6)
 	log_combat(user, L, "stunned", src)

@@ -67,7 +67,7 @@
 	if(finished)
 		return
 
-	if(elements.len < 8) //Someone broke it
+	if(length(elements) < 8) //Someone broke it
 		qdel(src)
 
 	//Check if everything is in place
@@ -108,9 +108,9 @@
 		current_ordering += E.id
 
 	var/swap_tally = 0
-	for(var/i in 1 to current_ordering.len)
+	for(var/i in 1 to length(current_ordering))
 		var/checked_value = current_ordering[i]
-		for(var/j in i to current_ordering.len)
+		for(var/j in i to length(current_ordering))
 			if(current_ordering[j] < checked_value)
 				swap_tally++
 
@@ -295,7 +295,7 @@
 
 //Some armor so it's harder to kill someone by mistake.
 /obj/structure/puzzle_element/prison
-	soft_armor = list("melee" = 50, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = 50, "bio" = 50, "rad" = 50, "fire" = 50, "acid" = 50)
+	soft_armor = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 50, FIRE = 50, ACID = 50)
 
 /obj/structure/puzzle_element/prison/relaymove(mob/living/user, direction)
 	return

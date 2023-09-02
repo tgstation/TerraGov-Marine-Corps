@@ -21,7 +21,7 @@
 	},
 /area/bigredv2/outside/se)
 "N" = (
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "T" = (
 /obj/effect/landmark/weed_node,

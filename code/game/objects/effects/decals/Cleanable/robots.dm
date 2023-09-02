@@ -16,7 +16,7 @@
 	spawn (0)
 		var/direction = pick(directions)
 		for (var/i = 0, i < pick(1, 200; 2, 150; 3, 50; 4), i++)
-			sleep(3)
+			sleep(0.3 SECONDS)
 			if (i > 0)
 				if (prob(40))
 					var/obj/effect/decal/cleanable/blood/oil/streak = new(src.loc)
@@ -44,6 +44,9 @@
 
 /obj/effect/decal/cleanable/blood/oil/dry()
 	return
+
+/obj/effect/decal/cleanable/blood/oil/armorblood
+	icon_state = "armorblood"
 
 /obj/effect/decal/cleanable/blood/oil/streak
 	random_icon_states = list("mgibbl1", "mgibbl2", "mgibbl3", "mgibbl4", "mgibbl5")

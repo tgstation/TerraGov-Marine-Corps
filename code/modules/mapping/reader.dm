@@ -101,24 +101,24 @@
 			gridSet.gridLines = gridLines
 
 			var/leadingBlanks = 0
-			while(leadingBlanks < gridLines.len && gridLines[++leadingBlanks] == "")
+			while(leadingBlanks < length(gridLines) && gridLines[++leadingBlanks] == "")
 			if(leadingBlanks > 1)
 				gridLines.Cut(1, leadingBlanks) // Remove all leading blank lines.
 
-			if(!gridLines.len) // Skip it if only blank lines exist.
+			if(!length(gridLines)) // Skip it if only blank lines exist.
 				continue
 
 			gridSets += gridSet
 
-			if(gridLines.len && gridLines[gridLines.len] == "")
-				gridLines.Cut(gridLines.len) // Remove only one blank line at the end.
+			if(length(gridLines) && gridLines[length(gridLines)] == "")
+				gridLines.Cut(length(gridLines)) // Remove only one blank line at the end.
 
 			bounds[MAP_MINY] = min(bounds[MAP_MINY], clamp(gridSet.ycrd, y_lower, y_upper))
-			gridSet.ycrd += gridLines.len - 1 // Start at the top and work down
+			gridSet.ycrd += length(gridLines) - 1 // Start at the top and work down
 			bounds[MAP_MAXY] = max(bounds[MAP_MAXY], clamp(gridSet.ycrd, y_lower, y_upper))
 
 			var/maxx = gridSet.xcrd
-			if(gridLines.len) //Not an empty map
+			if(length(gridLines)) //Not an empty map
 				maxx = max(maxx, gridSet.xcrd + length(gridLines[1]) / key_len - 1)
 
 			bounds[MAP_MAXX] = clamp(max(bounds[MAP_MAXX], maxx), x_lower, x_upper)
@@ -144,12 +144,16 @@
 	var/list/bounds
 	src.bounds = bounds = list(1.#INF, 1.#INF, 1.#INF, -1.#INF, -1.#INF, -1.#INF)
 
-	for(var/I in gridSets)
-		var/datum/grid_set/gset = I
+	//used for sending the maxx and maxy expanded global signals at the end of this proc
+	var/has_expanded_world_maxx = FALSE
+	var/has_expanded_world_maxy = FALSE
+
+	for(var/datum/grid_set/gset as anything in gridSets)
 		var/ycrd = gset.ycrd + y_offset - 1
 		var/zcrd = gset.zcrd + z_offset - 1
 		if(!cropMap && ycrd > world.maxy)
 			world.maxy = ycrd // Expand Y here.  X is expanded in the loop below
+			has_expanded_world_maxy = TRUE
 		var/zexpansion = zcrd > world.maxz
 		if(zexpansion)
 			if(cropMap)
@@ -175,6 +179,7 @@
 							break
 						else
 							world.maxx = xcrd
+							has_expanded_world_maxx = TRUE
 
 					if(xcrd >= 1)
 						var/model_key = copytext(line, tpos, tpos + key_len)
@@ -203,10 +208,12 @@
 		CHECK_TICK
 
 	if(!no_changeturf)
-		for(var/t in block(locate(bounds[MAP_MINX], bounds[MAP_MINY], bounds[MAP_MINZ]), locate(bounds[MAP_MAXX], bounds[MAP_MAXY], bounds[MAP_MAXZ])))
-			var/turf/T = t
+		for(var/turf/T as anything in block(locate(bounds[MAP_MINX], bounds[MAP_MINY], bounds[MAP_MINZ]), locate(bounds[MAP_MAXX], bounds[MAP_MAXY], bounds[MAP_MAXZ])))
 			//we do this after we load everything in. if we don't; we'll have weird atmos bugs regarding atmos adjacent turfs
 			T.AfterChange(CHANGETURF_IGNORE_AIR)
+
+	if(has_expanded_world_maxx || has_expanded_world_maxy)
+		SEND_GLOBAL_SIGNAL(COMSIG_GLOB_EXPANDED_WORLD_BOUNDS, has_expanded_world_maxx, has_expanded_world_maxy)
 
 	#ifdef TESTING
 	if(turfsSkipped)
@@ -256,8 +263,8 @@
 			if(variables_start)//if there's any variable
 				full_def = copytext(full_def, variables_start + length(full_def[variables_start]), -length(copytext_char(full_def, -1))) //removing the last '}'
 				fields = readlist(full_def, ";")
-				if(fields.len)
-					if(!trim(fields[fields.len]))
+				if(length(fields))
+					if(!trim(fields[length(fields)]))
 						--fields.len
 					for(var/I in fields)
 						var/value = fields[I]
@@ -281,8 +288,8 @@
 		// We can skip calling this proc every time we see XXX
 		if(no_changeturf \
 			&& !(.[SPACE_KEY]) \
-			&& members.len == 2 \
-			&& members_attributes.len == 2 \
+			&& length(members) == 2 \
+			&& length(members_attributes) == 2 \
 			&& length(members_attributes[1]) == 0 \
 			&& length(members_attributes[2]) == 0 \
 			&& (world.area in members) \
@@ -305,7 +312,7 @@
 
 	//The next part of the code assumes there's ALWAYS an /area AND a /turf on a given tile
 	//first instance the /area and remove it from the members list
-	index = members.len
+	index = length(members)
 	if(members[index] != /area/template_noop)
 		var/atype = members[index]
 		GLOB._preloader.setup(members_attributes[index], atype)//preloader for assigning  set variables on atom creation
@@ -337,7 +344,7 @@
 	if(T)
 		//if others /turf are presents, simulates the underlays piling effect
 		index = first_turf_index + 1
-		while(index <= members.len - 1) // Last item is an /area
+		while(index <= length(members) - 1) // Last item is an /area
 			var/underlay = T.appearance
 			T = instance_atom(members[index], members_attributes[index], crds,no_changeturf, placeOnTop, delete)//instance new turf
 			T.underlays += underlay

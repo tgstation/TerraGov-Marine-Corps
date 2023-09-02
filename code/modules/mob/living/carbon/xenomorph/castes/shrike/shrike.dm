@@ -2,8 +2,9 @@
 	caste_base_type = /mob/living/carbon/xenomorph/shrike
 	name = "Shrike"
 	desc = "A large, lanky alien creature. It seems psychically unstable."
-	icon = 'icons/Xeno/2x2_Xenos.dmi'
+	icon = 'icons/Xeno/castes/shrike.dmi'
 	icon_state = "Shrike Walking"
+	bubble_icon = "alienroyal"
 	attacktext = "bites"
 	attack_sound = null
 	friendly = "nuzzles"

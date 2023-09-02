@@ -1,23 +1,32 @@
 /obj/effect/acid_hole
 	name = "hole"
 	desc = "What could have done this? Something agile enough could probably climb through."
-	icon = 'icons/effects/new_acid.dmi'
-	icon_state = "hole_0"
+	icon = 'icons/obj/smooth_objects/acid-hole.dmi'
+	icon_state = "acid-hole-0"
+	smoothing_flags = SMOOTH_BITMASK
+	smoothing_groups = list(SMOOTH_GROUP_ACID_HOLE)
+	canSmoothWith = list( //smooths with everything a regular wall does, so as to keep orientation consistent
+		SMOOTH_GROUP_SURVIVAL_TITANIUM_WALLS,
+		SMOOTH_GROUP_AIRLOCK,
+		SMOOTH_GROUP_WINDOW_FRAME,
+		SMOOTH_GROUP_WINDOW_FULLTILE,
+	)
+	base_icon_state = "acid-hole"
 	anchored = TRUE
 	resistance_flags = RESIST_ALL
 	layer = LOWER_ITEM_LAYER
 	var/turf/closed/wall/holed_wall
 
-/obj/effect/acid_hole/Initialize()
+/obj/effect/acid_hole/Initialize(mapload)
 	. = ..()
 	if(iswallturf(loc))
 		var/turf/closed/wall/W = loc
 		W.acided_hole = src
 		holed_wall = W
 		holed_wall.opacity = FALSE
-		if(W.junctiontype & (NORTH|SOUTH))
+		if(W.smoothing_junction & (NORTH_JUNCTION|SOUTH_JUNCTION))
 			setDir(EAST)
-		if(W.junctiontype & (EAST|WEST))
+		if(W.smoothing_junction & (EAST_JUNCTION|WEST_JUNCTION))
 			setDir(SOUTH)
 
 
@@ -34,9 +43,9 @@
 
 
 /obj/effect/acid_hole/MouseDrop_T(mob/M, mob/user)
-	if (!holed_wall)
+	. = ..()
+	if(!holed_wall)
 		return
-
 	if(M == user && isxeno(user))
 		use_wall_hole(user)
 

@@ -8,6 +8,7 @@
 	name = "telecommunication server"
 	icon_state = "comm_server"
 	desc = "A machine used to store data and network statistics."
+	telecomms_type = /obj/machinery/telecomms/server
 	density = TRUE
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 15
@@ -65,7 +66,7 @@
 	network = "tcommsat"
 
 
-/obj/machinery/telecomms/server/presets/Initialize()
+/obj/machinery/telecomms/server/presets/Initialize(mapload)
 	. = ..()
 	name = id
 
@@ -123,58 +124,46 @@
 	freq_listening = list(FREQ_CAS)
 	autolinkers = list("firesupport")
 
-/obj/machinery/telecomms/server/presets/medical/rebel
-	id = "Medical Server rebel"
-	freq_listening = list(FREQ_MEDICAL_REBEL)
-	autolinkers = list("medical_rebel")
+//SOM
+/obj/machinery/telecomms/server/presets/medical/som
+	id = "Medical Server som"
+	freq_listening = list(FREQ_MEDICAL_SOM)
+	autolinkers = list("medical_som")
+
+/obj/machinery/telecomms/server/presets/zulu
+	id = "Zulu"
+	freq_listening = list(FREQ_ZULU)
+	autolinkers = list("zulu")
 
 
-/obj/machinery/telecomms/server/presets/requisitions/rebel
-	id = "Requisitions Server rebel"
-	freq_listening = list(FREQ_REQUISITIONS_REBEL)
-	autolinkers = list("requisitions_rebel")
+/obj/machinery/telecomms/server/presets/yankee
+	id = "Yankee"
+	freq_listening = list(FREQ_YANKEE)
+	autolinkers = list("yankee")
 
 
-/obj/machinery/telecomms/server/presets/alpha/rebel
-	id = "Alpha Server rebel"
-	freq_listening = list(FREQ_ALPHA_REBEL)
-	autolinkers = list("alpha_rebel")
+/obj/machinery/telecomms/server/presets/xray
+	id = "Xray"
+	freq_listening = list(FREQ_XRAY)
+	autolinkers = list("xray")
 
 
-/obj/machinery/telecomms/server/presets/bravo/rebel
-	id = "Bravo Server rebel"
-	freq_listening = list(FREQ_BRAVO_REBEL)
-	autolinkers = list("bravo_rebel")
+/obj/machinery/telecomms/server/presets/whiskey
+	id = "Whiskey"
+	freq_listening = list(FREQ_WHISKEY)
+	autolinkers = list("whiskey")
 
 
-/obj/machinery/telecomms/server/presets/charlie/rebel
-	id = "Charlie Server rebel"
-	freq_listening = list(FREQ_CHARLIE_REBEL)
-	autolinkers = list("charlie_rebel")
+/obj/machinery/telecomms/server/presets/command/som
+	id = "Command Server som"
+	freq_listening = list(FREQ_COMMAND_SOM)
+	autolinkers = list("command_som")
 
 
-/obj/machinery/telecomms/server/presets/delta/rebel
-	id = "Delta Server rebel"
-	freq_listening = list(FREQ_DELTA_REBEL)
-	autolinkers = list("delta_rebel")
-
-
-/obj/machinery/telecomms/server/presets/command/rebel
-	id = "Command Server rebel"
-	freq_listening = list(FREQ_COMMAND_REBEL)
-	autolinkers = list("command_rebel")
-
-
-/obj/machinery/telecomms/server/presets/engineering/rebel
-	id = "Engineering Server rebel"
-	freq_listening = list(FREQ_ENGINEERING_REBEL)
-	autolinkers = list("engineering_rebel")
-
-
-/obj/machinery/telecomms/server/presets/cas/rebel
-	id = "Fire Support Server rebel"
-	freq_listening = list(FREQ_CAS_REBEL)
-	autolinkers = list("firesupport_rebel")
+/obj/machinery/telecomms/server/presets/engineering/som
+	id = "Engineering Server som"
+	freq_listening = list(FREQ_ENGINEERING_SOM)
+	autolinkers = list("engineering_som")
 
 
 /obj/machinery/telecomms/server/presets/common
@@ -189,13 +178,13 @@
 	freq_listening = list(FREQ_COMMON, FREQ_PMC, FREQ_COLONIST, FREQ_USL, FREQ_DEATHSQUAD, FREQ_IMPERIAL, FREQ_SOM, FREQ_SECTOID, FREQ_ECHO)
 	autolinkers = list("common", "ert")
 
-/obj/machinery/telecomms/server/presets/common/rebel
-	id = "Common Server rebel"
-	freq_listening = list(FREQ_COMMON_REBEL, FREQ_PMC, FREQ_COLONIST, FREQ_USL, FREQ_DEATHSQUAD, FREQ_IMPERIAL, FREQ_SOM, FREQ_SECTOID, FREQ_ECHO)
-	autolinkers = list("common_rebel", "ert")
+/obj/machinery/telecomms/server/presets/common/som
+	id = "Common Server som"
+	freq_listening = list(FREQ_SOM)
+	autolinkers = list("common_som")
 
 //Common and other radio frequencies for people to freely use
-/obj/machinery/telecomms/server/presets/common/Initialize()
+/obj/machinery/telecomms/server/presets/common/Initialize(mapload)
 	. = ..()
 	for(var/i = MIN_FREQ, i <= MAX_FREQ, i += 2)
 		freq_listening |= i

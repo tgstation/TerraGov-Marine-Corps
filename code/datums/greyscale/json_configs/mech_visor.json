@@ -1,0 +1,22 @@
+{
+	"": [
+		{
+			"type": "icon_state",
+			"icon_state": "visor_1",
+			"blend_mode": "overlay",
+			"color_ids": [ 1 ]
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "visor_2",
+			"blend_mode": "overlay",
+			"color_ids": [ 2 ]
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "visor_3",
+			"blend_mode": "overlay",
+			"color_ids": [ 3 ]
+		}
+	]
+}

@@ -12,7 +12,7 @@
 	//Simple variable to prevent me from doing attack_hand in both this and the child computer
 	var/zone = "This computer is working on a wireless range, the range is currently limited to 25 meters."
 
-/obj/machinery/computer/area_atmos/Initialize()
+/obj/machinery/computer/area_atmos/Initialize(mapload)
 	. = ..()
 	scanscrubbers()
 
@@ -118,44 +118,44 @@
 /obj/machinery/computer/area_atmos/area
 	zone = "This computer is working in a wired network limited to this area."
 
-	validscrubber( var/obj/machinery/portable_atmospherics/scrubber/huge/scrubber as obj )
-		if(!isobj(scrubber))
-			return 0
+/obj/machinery/computer/area_atmos/area/validscrubber(obj/machinery/portable_atmospherics/scrubber/huge/scrubber)
+	if(!isobj(scrubber))
+		return 0
 
-		/*
-		wow this is stupid, someone help me
-		*/
-		var/turf/T_src = get_turf(src)
-		if(!T_src.loc) return 0
-		var/area/A_src = T_src.loc
+	/*
+	wow this is stupid, someone help me
+	*/
+	var/turf/T_src = get_turf(src)
+	if(!T_src.loc) return 0
+	var/area/A_src = T_src.loc
 
-		var/turf/T_scrub = get_turf(scrubber)
-		if(!T_scrub.loc) return 0
-		var/area/A_scrub = T_scrub.loc
+	var/turf/T_scrub = get_turf(scrubber)
+	if(!T_scrub.loc) return 0
+	var/area/A_scrub = T_scrub.loc
 
-		if(A_scrub != A_src)
-			return 0
+	if(A_scrub != A_src)
+		return 0
 
-		return 1
+	return 1
 
-	scanscrubbers()
-		connectedscrubbers = new()
+/obj/machinery/computer/area_atmos/area/scanscrubbers()
+	connectedscrubbers = new()
 
-		var/found = 0
+	var/found = 0
 
-		var/turf/T = get_turf(src)
-		if(!T.loc) return
-		var/area/A = T.loc
-		for(var/obj/machinery/portable_atmospherics/scrubber/huge/scrubber in GLOB.machines )
-			var/turf/T2 = get_turf(scrubber)
-			if(T2 && T2.loc)
-				var/area/A2 = T2.loc
-				if(istype(A2) && A2 == A )
-					connectedscrubbers += scrubber
-					found = 1
+	var/turf/T = get_turf(src)
+	if(!T.loc) return
+	var/area/A = T.loc
+	for(var/obj/machinery/portable_atmospherics/scrubber/huge/scrubber in GLOB.machines )
+		var/turf/T2 = get_turf(scrubber)
+		if(T2?.loc)
+			var/area/A2 = T2.loc
+			if(istype(A2) && A2 == A )
+				connectedscrubbers += scrubber
+				found = 1
 
 
-		if(!found)
-			status = "ERROR: No scrubber found!"
+	if(!found)
+		status = "ERROR: No scrubber found!"
 
-		src.updateUsrDialog()
+	src.updateUsrDialog()

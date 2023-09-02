@@ -3,11 +3,14 @@
 	desc = "A hand-held emergency light."
 	icon = 'icons/obj/lighting.dmi'
 	icon_state = "flashlight"
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/equipment/lights_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/equipment/lights_right.dmi',
+	)
 	item_state = "flashlight"
 	w_class = WEIGHT_CLASS_SMALL
 	flags_atom = CONDUCT
 	flags_equip_slot = ITEM_SLOT_BELT
-	materials = list(/datum/material/metal = 50, /datum/material/glass = 20)
 	actions_types = list(/datum/action/item_action)
 	light_range = 5
 	light_power = 3 //luminosity when on
@@ -17,7 +20,7 @@
 	///If this flashlight affected by nightfall
 	var/nightfall_immune = FALSE
 
-/obj/item/flashlight/Initialize()
+/obj/item/flashlight/Initialize(mapload)
 	. = ..()
 	GLOB.nightfall_toggleable_lights += src
 
@@ -44,7 +47,7 @@
 	X.do_attack_animation(src, ATTACK_EFFECT_CLAW)
 	to_chat(X, span_warning("We disable the metal thing's lights.") )
 
-/obj/item/flashlight/update_icon()
+/obj/item/flashlight/update_icon_state()
 	. = ..()
 	if(light_on)
 		icon_state = "[initial(icon_state)]-on"
@@ -179,74 +182,6 @@
 	X.visible_message(span_danger("\The [X] smashes [src]!"), \
 	span_danger("We smash [src]!"), null, 5)
 	deconstruct(FALSE)
-
-// FLARES
-
-/obj/item/flashlight/flare
-	name = "flare"
-	desc = "A NT standard emergency flare. There are instructions on the side, it reads 'pull cord, make light'."
-	w_class = WEIGHT_CLASS_SMALL
-	light_power = 6 //As bright as a flashlight, but more disposable. Doesn't burn forever though
-	icon_state = "flare"
-	item_state = "flare"
-	actions = list()	//just pull it manually, neckbeard.
-	raillight_compatible = FALSE
-	activation_sound = 'sound/items/flare.ogg'
-	nightfall_immune = TRUE
-	var/fuel = 0
-	var/on_damage = 7
-
-/obj/item/flashlight/flare/Initialize()
-	. = ..()
-	fuel = rand(800, 1000) // Sorry for changing this so much but I keep under-estimating how long X number of ticks last in seconds.
-
-/obj/item/flashlight/flare/turn_light(mob/user = null, toggle_on , cooldown = 1 SECONDS, sparks = FALSE, forced = FALSE, atom/originated_turf = null, distance_max = 0)
-	. = ..()
-	if(. != CHECKS_PASSED)
-		return
-	if(toggle_on)
-		return
-	fuel = 0 //Flares are one way; if you turn them off, you're snuffing them out.
-	heat = 0
-	force = initial(force)
-	damtype = initial(damtype)
-	icon_state = "[initial(icon_state)]-empty"
-
-/obj/item/flashlight/flare/attack_alien(mob/living/carbon/xenomorph/X, isrightclick)
-	return
-
-/obj/item/flashlight/flare/proc/turn_off()
-	turn_light(null, FALSE, 0, FALSE, TRUE)
-
-/obj/item/flashlight/flare/attack_self(mob/user)
-
-	// Usual checks
-	if(!fuel)
-		to_chat(user, span_notice("It's out of fuel."))
-		return
-	if(light_on)
-		return
-
-	. = ..()
-	// All good, turn it on.
-	if(.)
-		user.visible_message(span_notice("[user] activates the flare."), span_notice("You pull the cord on the flare, activating it!"))
-		force = on_damage
-		heat = 1500
-		damtype = BURN
-		addtimer(CALLBACK(src, .proc/turn_off), fuel)
-		if(iscarbon(user))
-			var/mob/living/carbon/C = usr
-			C.toggle_throw_mode()
-
-/obj/item/flashlight/flare/on/Initialize()
-	. = ..()
-	light_on = TRUE
-	heat = 1500
-	turn_light(null, TRUE)
-	force = on_damage
-	damtype = BURN
-	addtimer(CALLBACK(src, .proc/turn_off), fuel)
 
 /obj/item/flashlight/slime
 	gender = PLURAL

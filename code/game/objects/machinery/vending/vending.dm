@@ -2,6 +2,12 @@
 #define CAT_HIDDEN 1
 #define CAT_COIN 2
 
+#define VENDING_RESTOCK_IDLE 0
+#define VENDING_RESTOCK_DENY 1
+#define VENDING_RESTOCK_RECHARGE 2
+#define VENDING_RESTOCK_ACCEPT 3
+#define VENDING_RESTOCK_ACCEPT_RECHARGE 4
+
 #define MAKE_VENDING_RECORD_DATA(record) list(\
 		"product_name" = record.product_name,\
 		"product_color" = record.display_color,\
@@ -54,21 +60,25 @@
 	icon_state = "generic"
 	anchored = TRUE
 	density = TRUE
-	coverage = 70
+	coverage = 80
+	soft_armor = list(MELEE = 0, BULLET = 30, LASER = 30, ENERGY = 30, BOMB = 0, BIO = 100, FIRE = 0, ACID = 0)
 	layer = BELOW_OBJ_LAYER
 
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 10
 	active_power_usage = 100
-	interaction_flags = INTERACT_MACHINE_TGUI
+	interaction_flags = INTERACT_MACHINE_TGUI|INTERACT_POWERLOADER_PICKUP_ALLOWED
 	wrenchable = TRUE
+	voice_filter = "alimiter=0.9,acompressor=threshold=0.2:ratio=20:attack=10:release=50:makeup=2,highpass=f=1000"
 
 	///Whether this vendor is active or not.
 	var/active = TRUE
 	///If the vendor is ready to vend.
 	var/vend_ready = TRUE
 	///How long it takes to vend an item, vend_ready is false during that.
-	var/vend_delay = 10
+	var/vend_delay = 0
+	///Vending flags to determine the behaviour of the machine
+	var/vending_flags = NONE
 	/// A /datum/vending_product instance of what we're paying for right now.
 	var/datum/vending_product/currently_vending = null
 	///If this vendor uses a global list for items.
@@ -165,7 +175,14 @@
 /obj/machinery/vending/Initialize(mapload, ...)
 	. = ..()
 	wires = new /datum/wires/vending(src)
-	slogan_list = text2list(product_slogans, ";")
+
+	if(SStts.tts_enabled)
+		var/static/vendor_voice_by_type = list()
+		if(!vendor_voice_by_type[type])
+			vendor_voice_by_type[type] = pick(SStts.available_speakers)
+		voice = vendor_voice_by_type[type]
+
+	slogan_list = splittext(product_slogans, ";")
 
 	// So not all machines speak at the exact same time.
 	// The first time this machine says something will be at slogantime + this random value,
@@ -193,6 +210,11 @@
 	. = ..()
 	power_change()
 
+/obj/machinery/vending/examine(mob/user)
+	. = ..()
+	if(vending_flags & VENDING_RECHARGER)
+		. += "Internal battery charge: <b>[machine_current_charge]</b>/<b>[machine_max_charge]</b>"
+
 
 /obj/machinery/vending/Destroy()
 	QDEL_NULL(wires)
@@ -203,8 +225,9 @@
 		if(EXPLODE_DEVASTATE)
 			qdel(src)
 		if(EXPLODE_HEAVY)
-			if(prob(50))
-				qdel(src)
+			take_damage(rand(150, 250), BRUTE, BOMB)
+		if(EXPLODE_LIGHT)
+			take_damage(rand(75, 125), BRUTE, BOMB)
 
 /**
  * Builds shared vendors inventory
@@ -264,10 +287,6 @@
 	if(X.status_flags & INCORPOREAL)
 		return FALSE
 
-	if(tipped_level)
-		to_chat(X, span_warning("There's no reason to bother with that old piece of trash."))
-		return FALSE
-
 	if(X.a_intent == INTENT_HARM)
 		X.do_attack_animation(src, ATTACK_EFFECT_SMASH)
 		if(prob(X.xeno_caste.melee_damage))
@@ -281,6 +300,10 @@
 			span_danger("We slash \the [src]!"), null, 5)
 			playsound(loc, 'sound/effects/metalhit.ogg', 25, 1)
 		return TRUE
+
+	if(tipped_level)
+		to_chat(X, span_warning("There's no reason to bother with that old piece of trash."))
+		return FALSE
 
 	X.visible_message(span_warning("\The [X] begins to lean against \the [src]."), \
 	span_warning("You begin to lean against \the [src]."), null, 5)
@@ -299,17 +322,21 @@
 
 /obj/machinery/vending/proc/tip_over()
 	var/matrix/A = matrix()
-	tipped_level = 2
-	density = FALSE
 	A.Turn(90)
 	transform = A
 
+	tipped_level = 2
+	allow_pass_flags |= (PASS_LOW_STRUCTURE|PASS_MOB)
+	coverage = 50
+
 /obj/machinery/vending/proc/flip_back()
 	icon_state = initial(icon_state)
-	tipped_level = 0
-	density = TRUE
 	var/matrix/A = matrix()
 	transform = A
+
+	tipped_level = 0
+	allow_pass_flags &= ~(PASS_LOW_STRUCTURE|PASS_MOB)
+	coverage = initial(coverage)
 
 /obj/machinery/vending/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -361,8 +388,7 @@
 			var/turf/current_turf = get_turf(src)
 			if(current_turf && density)
 				current_turf.flags_atom &= ~AI_BLOCKED
-
-	else if(istype(I, /obj/item))
+	else if(isitem(I))
 		var/obj/item/to_stock = I
 		stock(to_stock, user)
 
@@ -496,6 +522,14 @@
 	.["extended"] = extended_inventory
 	.["isshared"] = isshared
 
+	var/ui_theme
+	switch(faction)
+		if(FACTION_SOM)
+			ui_theme = "som"
+		else
+			ui_theme = "main"
+	.["ui_theme"] = ui_theme
+
 /obj/machinery/vending/ui_act(action, list/params)
 	. = ..()
 	if(.)
@@ -521,6 +555,10 @@
 				currently_vending = R
 			. = TRUE
 
+		if("vacuum")
+			stock_vacuum(usr)
+			. = TRUE
+
 		if("cancel_buying")
 			currently_vending = null
 			. = TRUE
@@ -540,11 +578,6 @@
 		flick(icon_deny, src)
 		return
 
-	if(SSticker.mode?.flags_round_type & MODE_HUMAN_ONLY && is_type_in_typecache(R.product_path, GLOB.hvh_restricted_items_list))
-		to_chat(user, span_warning("This item is banned by the Space Geneva Convention."))
-		flick(icon_deny, src)
-		return
-
 	if(R.category == CAT_HIDDEN && !extended_inventory)
 		return
 
@@ -557,15 +590,9 @@
 			src.last_reply = world.time
 
 	var/obj/item/new_item = release_item(R, vend_delay)
-	if(faction)
-		if(ismodulararmorarmorpiece(new_item))
-			var/obj/item/armor_module/armor/armorpiece = new_item
-			armorpiece.limit_colorable_colors(faction)
-		if(ismodularhelmet(new_item))
-			var/obj/item/clothing/head/modular/helmet = new_item
-			helmet.limit_colorable_colors(faction)
+
 	if(istype(new_item))
-		user.put_in_any_hand_if_possible(new_item, warning = FALSE)
+		new_item.on_vend(user, faction, fill_container = TRUE)
 	vend_ready = 1
 	updateUsrDialog()
 
@@ -585,6 +612,7 @@
 		else
 			return
 	SSblackbox.record_feedback("tally", "vendored", 1, R.product_name)
+	addtimer(CALLBACK(src, PROC_REF(stock_vacuum)), 2.5 MINUTES, TIMER_UNIQUE | TIMER_OVERRIDE) // We clean up some time after the last item has been vended.
 	if(vending_sound)
 		playsound(src, vending_sound, 25, 0)
 	else
@@ -596,7 +624,7 @@
 
 
 /obj/machinery/vending/MouseDrop_T(atom/movable/A, mob/user)
-
+	. = ..()
 	if(machine_stat & (BROKEN|NOPOWER))
 		return
 
@@ -610,58 +638,147 @@
 		var/obj/item/I = A
 		stock(I, user)
 
-/obj/machinery/vending/proc/stock(obj/item/item_to_stock, mob/user, recharge = FALSE)
-	if(!powered(power_channel) && machine_current_charge < active_power_usage)
-		return
-	if(icon_vend)
-		flick(icon_vend, src) //Show the vending animation if needed
-	//More accurate comparison between absolute paths.
-	for(var/datum/vending_product/R AS in product_records + hidden_records + coin_records)
-		if(item_to_stock.type != R.product_path || istype(item_to_stock, /obj/item/storage)) //Nice try, specialists/engis
-			continue
-		if(istype(item_to_stock, /obj/item/weapon/gun))
-			var/obj/item/weapon/gun/G = item_to_stock
-			if(G.rounds)
-				to_chat(user, span_warning("[G] is still loaded. Unload it before you can restock it."))
-				return
-			for(var/obj/item/attachable/A in G.contents) //Search for attachments on the gun. This is the easier method
-				if((A.flags_attach_features & ATTACH_REMOVABLE) && !(is_type_in_list(A, G.starting_attachment_types))) //There are attachments that are default and others that can't be removed
-					to_chat(user, span_warning("[G] has non-standard attachments equipped. Detach them before you can restock it."))
-					return
+/**
+ * Tries to restock "item_to_stock" into the vending machine again after some checks.
+ * show_feedback states whether or not to display any messages to the player, display the vending flicker animation as well as sound effects when recharging a cell.
+ * Returns TRUE if item has been restocked, FALSE otherwise..
+ */
+/obj/machinery/vending/proc/stock(obj/item/item_to_stock, mob/user, show_feedback = TRUE)
+	/// The found record matching the item_to_stock in the vending_records lists
+	var/datum/vending_product/record = FALSE
+	/// In case of a cell, the amount of charge required to fully charge said cell
+	var/recharge_amount = 0
 
-		else if(istype(item_to_stock, /obj/item/ammo_magazine))
+	if(!powered(power_channel) && machine_current_charge < active_power_usage)
+		display_message_and_visuals(user, show_feedback, "Vendor is unresponsive!", VENDING_RESTOCK_IDLE)
+		return FALSE
+
+	for(var/datum/vending_product/R AS in product_records + hidden_records + coin_records)
+		if(item_to_stock.type != R.product_path)
+			continue
+		record = R
+
+	if(!record) //Item isn't listed in the vending records.
+		display_message_and_visuals(user, show_feedback, "[item_to_stock] doesn't belong here!", VENDING_RESTOCK_DENY)
+		return FALSE
+
+	//More accurate comparison between absolute paths.
+	if(isstorage(item_to_stock)) //Nice try, specialists/engis
+		display_message_and_visuals(user, show_feedback, "Can't restock containers!", VENDING_RESTOCK_DENY)
+		return FALSE
+
+	else if(isgrenade(item_to_stock))
+		var/obj/item/explosive/grenade/grenade = item_to_stock
+		if(grenade.active) //Machine ain't gonna save you from your dumb decisions now
+			display_message_and_visuals(user, show_feedback, "You panic and erratically fumble around!", VENDING_RESTOCK_DENY)
+			return FALSE
+
+	else if(record.amount >= 0) //Item is finite so we are more strict on its condition
+
+		if(isammomagazine(item_to_stock))
 			var/obj/item/ammo_magazine/A = item_to_stock
 			if(A.current_rounds < A.max_rounds)
-				to_chat(user, span_warning("[A] isn't full. Fill it before you can restock it."))
-				return
-		else if(istype(item_to_stock, /obj/item/cell))
+				display_message_and_visuals(user, show_feedback, "Magazine isn't full!", VENDING_RESTOCK_DENY)
+				return FALSE
+
+		if(iscell(item_to_stock))
 			var/obj/item/cell/cell = item_to_stock
+
 			if(cell.charge < cell.maxcharge)
-				to_chat(user, span_warning("\The [cell] isn't full. You must recharge it before you can restock it."))
-				return
-		else if(isitemstack(item_to_stock))
+
+				if(vending_flags & VENDING_RECHARGER) // Item is finite and not full. Time to try to recharge
+					recharge_amount = cell.maxcharge - cell.charge
+
+					if(machine_current_charge == 0)
+						display_message_and_visuals(user, show_feedback, "No power!", VENDING_RESTOCK_DENY)
+						return FALSE
+
+					else if(machine_current_charge < recharge_amount) // Not enough but some charge remaining so partially recharge cell and move on
+						cell.give(machine_current_charge)
+						machine_current_charge = 0
+						cell.update_icon()
+						display_message_and_visuals(user, show_feedback, "Cell charged partially! [round(cell.percent())]%.", VENDING_RESTOCK_RECHARGE)
+						playsound(loc, 'sound/machines/hydraulics_1.ogg', 25, 0, 1)
+						return FALSE
+
+				else
+					display_message_and_visuals(user, show_feedback, "Cell isn't at full charge!", VENDING_RESTOCK_DENY)
+					return FALSE
+
+		if(isitemstack(item_to_stock))
 			var/obj/item/stack/stack = item_to_stock
 			if(stack.amount != initial(stack.amount))
-				to_chat(user, span_warning("[stack] has been partially used. You must replace the missing amount before you can restock it."))
-				return
+				display_message_and_visuals(user, show_feedback, "[stack] has been partially used. Refill it!", VENDING_RESTOCK_DENY)
+				return FALSE
 
-		if(item_to_stock.loc == user) //Inside the mob's inventory
-			if(item_to_stock.flags_item & WIELDED)
-				item_to_stock.unwield(user)
-			user.temporarilyRemoveItemFromInventory(item_to_stock)
+		if(isreagentcontainer(item_to_stock))
+			var/obj/item/reagent_containers/reagent_container = item_to_stock
+			if(!reagent_container.free_refills && !reagent_container.has_initial_reagents())
+				display_message_and_visuals(user, show_feedback, "\The [reagent_container] is missing some of its reagents!", VENDING_RESTOCK_DENY)
+				return FALSE
 
-		if(istype(item_to_stock.loc, /obj/item/storage)) //inside a storage item
-			var/obj/item/storage/S = item_to_stock.loc
-			S.remove_from_storage(item_to_stock, user.loc, user)
+	// At this point the item is guaranteed to be accepted into the vending machine
 
-		qdel(item_to_stock)
-		if(!recharge)
-			user.visible_message(span_notice("[user] stocks [src] with \a [R.product_name]."),
-			span_notice("You stock [src] with \a [R.product_name]."))
-		if(R.amount >= 0) //R negative means infinite item, no need to restock
-			R.amount++
-		updateUsrDialog()
-		return //We found our item, no reason to go on.
+	if(item_to_stock.loc == user) //Inside the mob's inventory
+		if(item_to_stock.flags_item & WIELDED)
+			item_to_stock.unwield(user)
+		user.transferItemToLoc(item_to_stock, src)
+
+	if(istype(item_to_stock.loc, /obj/item/storage)) //inside a storage item
+		var/obj/item/storage/S = item_to_stock.loc
+		S.remove_from_storage(item_to_stock, user.loc, user)
+
+	if(vending_flags & VENDING_RECHARGER && recharge_amount)
+		machine_current_charge -= recharge_amount
+		display_message_and_visuals(user, show_feedback, "Restocked and recharged", VENDING_RESTOCK_ACCEPT_RECHARGE)
+	else
+		display_message_and_visuals(user, show_feedback, "Restocked", VENDING_RESTOCK_ACCEPT)
+
+	qdel(item_to_stock)
+
+	if(record.amount >= 0) //R negative means infinite item, no need to restock
+		record.amount++
+
+	updateUsrDialog()
+	return TRUE //Item restocked, no reason to go on.
+
+/// Vending machine tries to restock all of the loose item on it's location onto itself.
+/obj/machinery/vending/proc/stock_vacuum(mob/user)
+	var/stocked = FALSE
+
+	for(var/obj/item/I in loc)
+		stocked = stock(I, null, FALSE) ? TRUE : stocked
+
+	stocked ? display_message_and_visuals(user, TRUE, "Automatically restocked all items from outlet.", VENDING_RESTOCK_ACCEPT) : null
+
+	update_icon()
+
+/**
+ * Displays a balloon alert to the user if enable is true
+ * state determines what the vending machine will do other than display a simple balloon message
+ */
+/obj/machinery/vending/proc/display_message_and_visuals(mob/user, enable = TRUE, message, state = VENDING_RESTOCK_ACCEPT)
+	if(!enable)
+		return
+	message && user ? balloon_alert(user, message) : null
+	switch(state)
+		if(VENDING_RESTOCK_DENY)
+			update_icon()
+			if(icon_deny)
+				flick(icon_deny, src)
+		if(VENDING_RESTOCK_RECHARGE)
+			update_icon()
+			playsound(loc, 'sound/machines/hydraulics_1.ogg', 25, 0, 1)
+		if(VENDING_RESTOCK_ACCEPT)
+			update_icon()
+			if(icon_vend)
+				flick(icon_vend, src)
+		if(VENDING_RESTOCK_ACCEPT_RECHARGE)
+			update_icon()
+			if(icon_vend)
+				flick(icon_vend, src)
+			playsound(loc, 'sound/machines/hydraulics_1.ogg', 25, 0, 1)
+
 
 /obj/machinery/vending/process()
 	if(machine_stat & (BROKEN|NOPOWER))
@@ -674,7 +791,7 @@
 		seconds_electrified--
 
 	//Pitch to the people!  Really sell it!
-	if(((last_slogan + slogan_delay) <= world.time) && (slogan_list.len > 0) && (!shut_up) && prob(5))
+	if(((last_slogan + slogan_delay) <= world.time) && (length(slogan_list) > 0) && (!shut_up) && prob(5))
 		var/slogan = pick(slogan_list)
 		speak(slogan)
 		last_slogan = world.time
@@ -741,7 +858,19 @@
 	. = TRUE
 
 
-/obj/machinery/vending/take_damage(dam)
-	if(density && dam >= knockdown_threshold)
+/obj/machinery/vending/take_damage(damage_amount, damage_type = BRUTE, damage_flag = "", effects = TRUE, attack_dir, armour_penetration = 0)
+	if(density && damage_amount >= knockdown_threshold)
 		tip_over()
 	return ..()
+
+#undef CAT_NORMAL
+#undef CAT_HIDDEN
+#undef CAT_COIN
+
+#undef VENDING_RESTOCK_IDLE
+#undef VENDING_RESTOCK_DENY
+#undef VENDING_RESTOCK_RECHARGE
+#undef VENDING_RESTOCK_ACCEPT
+#undef VENDING_RESTOCK_ACCEPT_RECHARGE
+
+#undef MAKE_VENDING_RECORD_DATA

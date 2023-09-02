@@ -26,7 +26,7 @@
 	if(ismob(target) && target.reagents && reagents.total_volume)
 		user.visible_message(span_warning(" \The [target] has been smothered with \the [src] by \the [user]!"), span_warning(" You smother \the [target] with \the [src]!"), "You hear some struggling and muffled cries of surprise")
 		src.reagents.reaction(target, TOUCH)
-		addtimer(CALLBACK(reagents, /datum/reagents.proc/clear_reagents), 5)
+		addtimer(CALLBACK(reagents, TYPE_PROC_REF(/datum/reagents, clear_reagents)), 5)
 		return
 	return ..()
 

@@ -1,16 +1,19 @@
 
 /obj/item/clothing/under
-	icon = 'icons/obj/clothing/uniforms.dmi'
+	icon = 'icons/obj/clothing/uniforms/uniforms.dmi'
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/clothing/uniforms_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/clothing/uniforms_right.dmi',
+	)
 	name = "under"
 	flags_armor_protection = CHEST|GROIN|LEGS|ARMS
 	flags_cold_protection = CHEST|GROIN|LEGS|ARMS
 	flags_heat_protection = CHEST|GROIN|LEGS|ARMS
 	permeability_coefficient = 0.90
 	flags_equip_slot = ITEM_SLOT_ICLOTHING
-	soft_armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
+	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
 	w_class = WEIGHT_CLASS_BULKY
 	blood_sprite_state = "uniformblood"
-	sprite_sheets = list("Vox" = 'icons/mob/species/vox/uniform.dmi')
 	var/has_sensor = 1//For the crew computer 2 = unable to change mode
 	var/sensor_mode = 3
 		/*
@@ -24,19 +27,18 @@
 		/obj/item/armor_module/storage/uniform/black_vest,
 		/obj/item/armor_module/storage/uniform/brown_vest,
 		/obj/item/armor_module/storage/uniform/white_vest,
-		/obj/item/armor_module/storage/uniform/white_vest/surgery,
-		/obj/item/armor_module/storage/uniform/white_vest/medic,
-		/obj/item/armor_module/storage/uniform/knifeharness,
+		/obj/item/armor_module/storage/uniform/surgery_webbing,
 		/obj/item/armor_module/storage/uniform/holster,
 		/obj/item/armor_module/storage/uniform/holster/armpit,
 		/obj/item/armor_module/storage/uniform/holster/waist,
 		/obj/item/armor_module/storage/uniform/holster/freelancer,
 		/obj/item/armor_module/storage/uniform/holster/vp,
+		/obj/item/armor_module/storage/uniform/holster/highpower,
+		/obj/item/armor_module/storage/uniform/holster/deathsquad,
 		/obj/item/armor_module/armor/badge,
 		/obj/item/armor_module/armor/cape,
-		/obj/item/armor_module/armor/cape/half,
-		/obj/item/armor_module/armor/cape/short,
-		/obj/item/armor_module/armor/cape/scarf,
+		/obj/item/armor_module/armor/cape/kama,
+		/obj/item/armor_module/module/pt_belt,
 		/obj/item/clothing/tie,
 		/obj/item/clothing/tie/blue,
 		/obj/item/clothing/tie/red,
@@ -70,14 +72,16 @@
 		ATTACHMENT_SLOT_UNIFORM_TIE,
 		ATTACHMENT_SLOT_BADGE,
 		ATTACHMENT_SLOT_CAPE,
+		ATTACHMENT_SLOT_KAMA,
+		ATTACHMENT_SLOT_BELT,
 	)
 	///Typepath list of uniform variants.
 	var/list/adjustment_variants = list(
 		"Down" = "_d",
 	)
-	var/current_variant
+	var/adjustment_variant
 
-/obj/item/clothing/under/Initialize()
+/obj/item/clothing/under/Initialize(mapload)
 	. = ..()
 	attachments_allowed = string_list(attachments_allowed)
 
@@ -86,9 +90,10 @@
 		var/mob/M = src.loc
 		M.update_inv_w_uniform()
 
+
 /obj/item/clothing/under/get_worn_icon_state(slot_name, inhands)
 	. = ..()
-	. += current_variant
+	. += adjustment_variant
 
 /obj/item/clothing/under/attackby(obj/item/I, mob/user, params)
 	if(!ishuman(user))
@@ -139,6 +144,14 @@
 			. += "Its vital tracker appears to be enabled."
 		if(3)
 			. += "Its vital tracker and tracking beacon appear to be enabled."
+
+//we only want to quick equip from actual 'holster' type webbings
+/obj/item/clothing/under/do_quick_equip(mob/user)
+	for(var/attachment_slot in attachments_by_slot)
+		if(istype(attachments_by_slot[attachment_slot], /obj/item/armor_module/storage/uniform/holster))
+			var/obj/item/armor_module/storage/storage_attachment = attachments_by_slot[attachment_slot]
+			return storage_attachment.storage.do_quick_equip(user)
+	return src
 
 /obj/item/clothing/under/proc/set_sensors(mob/living/user)
 	if (!istype(user))
@@ -204,7 +217,7 @@
 		to_chat(usr, span_warning("You cannot roll down the uniform!"))
 		return
 	var/variant = null
-	if(!current_variant || length(adjustment_variants) > 1)
+	if(!adjustment_variant || length(adjustment_variants) > 1)
 		if(length(adjustment_variants) == 1)
 			variant = adjustment_variants[1]
 		else
@@ -212,8 +225,8 @@
 			selection_list += adjustment_variants
 			variant = tgui_input_list(usr, "Select Variant", "Variants", selection_list)
 	if(variant)
-		current_variant = adjustment_variants[variant]
+		adjustment_variant = adjustment_variants[variant]
 	else
-		current_variant = null
+		adjustment_variant = null
 	update_icon()
 	update_clothing_icon()

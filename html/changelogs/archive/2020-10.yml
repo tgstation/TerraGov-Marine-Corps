@@ -147,10 +147,10 @@
   - bugfix: PoS pipenet now provides air to more rooms, and had missing pipes fixed
   - imageadd: OB/Railgun sprite empty space removed
   Pariah919:
-  - rscadd: Added new M412 series of rifles.
+  - rscadd: Added new PR-412 series of rifles.
   - rscdel: Removed old Pulse rifles fix:Some indentation issues that the HPR had
-  - balance: M412 has 5% more damage than the AR, M412L1 (the HPR) has slightly better
-      fire delay. M412 families stat is in general consistent with the normal AR family.
+  - balance: PR-412 has 5% more damage than the AR, PR-412L1 (the HPR) has slightly better
+      fire delay. PR-412 families stat is in general consistent with the normal AR family.
   XSlayer300:
   - spellcheck: Fixed a few typos relating to pain and xeno acid.
 2020-10-18:

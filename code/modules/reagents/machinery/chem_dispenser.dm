@@ -18,6 +18,7 @@
 	var/amount = 30
 	var/recharge_amount = 30
 	var/recharge_counter = 0
+	var/mutable_appearance/beaker_overlay
 
 	///Reagent amounts that are dispenced
 	var/static/list/possible_transfer_amounts = list(1,5,10,15,20,30,40,60,120)
@@ -63,11 +64,11 @@
 	///If TRUE, we'll clear a recipe we click on instead of dispensing it
 	var/clearing_recipe = FALSE
 
-/obj/machinery/chem_dispenser/Initialize()
+/obj/machinery/chem_dispenser/Initialize(mapload)
 	. = ..()
-	dispensable_reagents = sortList(dispensable_reagents, /proc/cmp_reagents_asc)
+	dispensable_reagents = sortList(dispensable_reagents, GLOBAL_PROC_REF(cmp_reagents_asc))
 	if(emagged_reagents)
-		emagged_reagents = sortList(emagged_reagents, /proc/cmp_reagents_asc)
+		emagged_reagents = sortList(emagged_reagents, GLOBAL_PROC_REF(cmp_reagents_asc))
 
 	cell = new /obj/item/cell/hyper
 	start_processing()
@@ -92,6 +93,12 @@
 		recharge_counter = 0
 		return
 	recharge_counter++
+
+/obj/machinery/chem_dispenser/proc/display_beaker()
+	var/mutable_appearance/b_o = beaker_overlay || mutable_appearance(icon, "disp_beaker")
+	b_o.pixel_y = -3
+	b_o.pixel_x = rand(-8, 8)
+	return b_o
 
 /obj/machinery/chem_dispenser/ex_act(severity)
 	switch(severity)
@@ -120,13 +127,17 @@
 	// I dont care about the type of tool, if it triggers multitool act its good enough.
 	hackedcheck = !hackedcheck
 	if(hackedcheck)
-		to_chat(user, emagged_message[1])
+		balloon_alert(user, emagged_message[1])
 		dispensable_reagents += emagged_reagents
 	else
-		to_chat(user, emagged_message[2])
+		balloon_alert(user, emagged_message[2])
 		dispensable_reagents -= emagged_reagents
 
 /obj/machinery/chem_dispenser/ui_interact(mob/user, datum/tgui/ui)
+	if(needs_medical_training && ishuman(usr) && user.skills.getRating(SKILL_MEDICAL) < SKILL_MEDICAL_PRACTICED)
+		balloon_alert(user, "You don't know how to use this")
+		return
+
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "ChemDispenser", name)
@@ -145,7 +156,7 @@
 
 	var/list/beakerContents = list()
 	var/beakerCurrentVolume = 0
-	if(beaker && beaker.reagents && beaker.reagents.reagent_list.len)
+	if(beaker?.reagents && length(beaker.reagents.reagent_list))
 		for(var/datum/reagent/R in beaker.reagents.reagent_list)
 			beakerContents += list(list("name" = R.name, "volume" = R.volume))	 // list in a list because Byond merges the first list...
 			beakerCurrentVolume += R.volume
@@ -175,15 +186,6 @@
 	if(.)
 		return
 
-	if(needs_medical_training && ishuman(usr))
-		var/mob/living/carbon/human/user = usr
-		if(!user.skills.getRating("medical"))
-			if(user.do_actions)
-				return
-			to_chat(user, span_notice("You start fiddling with \the [src]..."))
-			if(!do_after(user, SKILL_TASK_EASY, TRUE, src, BUSY_ICON_UNSKILLED))
-				return
-
 	switch(action)
 		if("amount")
 			if(!is_operational() || QDELETED(beaker))
@@ -209,6 +211,10 @@
 						return
 					R.add_reagent(reagent, actual)
 
+					overlays.Cut()
+					update_icon()
+
+					playsound(src.loc, 'sound/machines/reagent_dispense.ogg', 25, 1)
 					work_animation()
 			else
 				recording_recipe[reagent_name] += amount
@@ -288,8 +294,7 @@
 				for(var/reagent in recording_recipe)
 					var/reagent_id = GLOB.name2reagent[reagent]
 					if(!dispensable_reagents.Find(reagent_id))
-						visible_message(span_warning("[src] buzzes."), span_hear("You hear a faint buzz."))
-						to_chat(usr, span_danger("[src] cannot find <b>[reagent]</b>!"))
+						balloon_alert_to_viewers("[src] buzzes")
 						playsound(src, 'sound/machines/buzz-two.ogg', 50, TRUE)
 						return
 				usr.client.prefs.chem_macros[name] = recording_recipe
@@ -319,48 +324,51 @@
 
 	if(isreagentcontainer(I))
 		if(beaker)
-			to_chat(user, "Something is already loaded into the machine.")
+			balloon_alert(user, "Something already loaded")
 			return
 
 		for(var/datum/reagent/X in I.reagents.reagent_list)
 			if(X.medbayblacklist)
-				to_chat(user, span_warning("The chemical dispenser's automatic safety features beep softly, they must have detected a harmful substance in the beaker."))
+				balloon_alert(user, "Harmful substance in beaker")
 				return
 
 		if(I.is_open_container())
 			if(!user.transferItemToLoc(I, src))
 				return
 
-			beaker =  I
-			to_chat(user, "You set [I] on the machine.")
+			beaker = I
+			balloon_alert(user, "Sets [I] on the machine")
+			update_icon()
 			updateUsrDialog()
 			return
 
 		if(istype(I, /obj/item/reagent_containers/glass))
-			to_chat(user, "Take the lid off [I] first.")
+			balloon_alert(user, "Take the lid off")
 			return
 
-		to_chat(user, "The machine can't dispense into that.")
+		balloon_alert(user, "Can't use this")
 		return
 
 	if(istype(I, /obj/item/cell))
 		if(!CHECK_BITFIELD(machine_stat, PANEL_OPEN))
-			to_chat(user, span_notice("[src]'s battery panel is closed!"))
+			balloon_alert(user, "Battery panel is closed")
 			return
 		if(cell)
-			to_chat(user, span_notice("[src] already has a battery installed!"))
+			balloon_alert(user, "Already has a power cell")
 			return
 		if(!user.transferItemToLoc(I, src))
 			return
 		cell = I
-		to_chat(user, span_notice("You install \the [cell]."))
+		balloon_alert(user, "Inserts")
+		overlays.Cut()
 		start_processing()
 		update_icon()
 		return
 
 /obj/machinery/chem_dispenser/screwdriver_act(mob/living/user, obj/item/I)
 	TOGGLE_BITFIELD(machine_stat, PANEL_OPEN)
-	to_chat(user, span_notice("You [CHECK_BITFIELD(machine_stat, PANEL_OPEN) ? "open" : "close"] the battery compartment."))
+	overlays.Cut()
+	balloon_alert_to_viewers("[CHECK_BITFIELD(machine_stat, PANEL_OPEN) ? "opens" : "closes"] the battery compartment")
 	update_icon()
 	return TRUE
 
@@ -369,19 +377,31 @@
 		return FALSE
 	cell.forceMove(loc)
 	cell = null
-	to_chat(user, span_notice("You pry out the dispenser's battery."))
+	balloon_alert_to_viewers("pries out battery.")
 	stop_processing()
+	overlays.Cut()
 	update_icon()
 	return TRUE
 
 /obj/machinery/chem_dispenser/update_overlays()
 	. = ..()
+	if(beaker)
+		beaker_overlay = display_beaker()
+		. += beaker_overlay
+
 	if(!CHECK_BITFIELD(machine_stat, PANEL_OPEN))
 		return
 	if(cell)
 		. += image(icon, "[initial(icon_state)]_open")
 	else
 		. += image(icon, "[initial(icon_state)]_nobat")
+
+/obj/machinery/chem_dispenser/update_icon_state()
+	if(machine_stat & NOPOWER)
+		icon_state = "dispenser_nopower"
+		return
+	else
+		icon_state = "dispenser"
 
 /obj/machinery/chem_dispenser/soda
 	icon_state = "soda_dispenser"
@@ -419,6 +439,25 @@
 	)
 	needs_medical_training = FALSE
 
+/obj/machinery/chem_dispenser/soda/display_beaker()
+	var/mutable_appearance/b_o = beaker_overlay || mutable_appearance(icon, "disp_beaker")
+	switch(dir)
+		if(NORTH)
+			b_o.pixel_y = 7
+			b_o.pixel_x = rand(-9, 9)
+		if(EAST)
+			b_o.pixel_x = 4
+			b_o.pixel_y = rand(-5, 7)
+		if(WEST)
+			b_o.pixel_x = -5
+			b_o.pixel_y = rand(-5, 7)
+		else//SOUTH
+			b_o.pixel_y = -7
+			b_o.pixel_x = rand(-9, 9)
+	return b_o
+
+/obj/machinery/chem_dispenser/soda/update_icon_state()
+	return
 
 /obj/machinery/chem_dispenser/beer
 	icon_state = "booze_dispenser"
@@ -460,12 +499,32 @@
 	)
 	needs_medical_training = FALSE
 
+/obj/machinery/chem_dispenser/beer/display_beaker()
+	var/mutable_appearance/b_o = beaker_overlay || mutable_appearance(icon, "disp_beaker")
+	switch(dir)
+		if(NORTH)
+			b_o.pixel_y = 7
+			b_o.pixel_x = rand(-9, 9)
+		if(EAST)
+			b_o.pixel_x = 4
+			b_o.pixel_y = rand(-5, 7)
+		if(WEST)
+			b_o.pixel_x = -5
+			b_o.pixel_y = rand(-5, 7)
+		else//SOUTH
+			b_o.pixel_y = -7
+			b_o.pixel_x = rand(-9, 9)
+	return b_o
+
+/obj/machinery/chem_dispenser/beer/update_icon_state()
+	return
+
 /obj/machinery/chem_dispenser/valhalla
 	needs_medical_training = FALSE
 	resistance_flags = INDESTRUCTIBLE
 	use_power = NO_POWER_USE
 
-/obj/machinery/chem_dispenser/valhalla/Initialize()
+/obj/machinery/chem_dispenser/valhalla/Initialize(mapload)
 	. = ..()
 	qdel(cell)
 	cell = new /obj/item/cell/infinite

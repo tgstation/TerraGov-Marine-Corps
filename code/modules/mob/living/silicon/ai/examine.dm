@@ -1,6 +1,6 @@
 /mob/living/silicon/ai/examine(mob/user)
 	SHOULD_CALL_PARENT(FALSE) // TODO ai and human examine dont send examine signal
-	var/msg = "<span class='info'>*---------*<br>"
+	var/msg = "<span class='info'><br>"
 	msg += "This is [icon2html(src, user)] <b>[src]</b>!<br>"
 
 	if(stat == DEAD)
@@ -26,6 +26,10 @@
 
 		msg += "</span>"
 
-	msg += "*---------*</span>"
+	msg += "</span>"
 
 	return list(msg)
+
+/mob/living/silicon/ai/get_examine_string(mob/user, thats)
+	return null
+

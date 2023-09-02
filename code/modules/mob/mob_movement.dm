@@ -1,11 +1,14 @@
 /mob/CanAllowThrough(atom/movable/mover, turf/target)
-	. = ..()
-	if(CHECK_BITFIELD(mover.flags_pass, PASSMOB))
+	if(mover.pass_flags & PASS_MOB)
 		return TRUE
-	if(ismob(mover) && CHECK_BITFIELD(mover.flags_pass, PASSMOB))
+	if(..())
 		return TRUE
-	return . || (!mover.density || !density || lying_angle) //Parent handles buckling - if someone's strapped to us it can pass.
-
+	if(lying_angle)
+		return TRUE
+	if(mover.throwing && !(allow_pass_flags & PASS_THROW))
+		return FALSE
+	if(!mover.density)
+		return TRUE
 
 /client/verb/swap_hand()
 	set hidden = 1
@@ -222,7 +225,7 @@
 
 
 /client/proc/check_has_body_select()
-	return mob?.hud_used?.zone_sel && istype(mob.hud_used.zone_sel, /obj/screen/zone_sel)
+	return mob?.hud_used?.zone_sel && istype(mob.hud_used.zone_sel, /atom/movable/screen/zone_sel)
 
 
 /client/verb/body_toggle_head()
@@ -241,7 +244,7 @@
 		else
 			next_in_line = BODY_ZONE_HEAD
 
-	var/obj/screen/zone_sel/selector = mob.hud_used.zone_sel
+	var/atom/movable/screen/zone_sel/selector = mob.hud_used.zone_sel
 	selector.set_selected_zone(next_in_line, mob)
 
 
@@ -259,7 +262,7 @@
 		else
 			next_in_line = BODY_ZONE_R_ARM
 
-	var/obj/screen/zone_sel/selector = mob.hud_used.zone_sel
+	var/atom/movable/screen/zone_sel/selector = mob.hud_used.zone_sel
 	selector.set_selected_zone(next_in_line, mob)
 
 
@@ -270,7 +273,7 @@
 	if(!check_has_body_select())
 		return
 
-	var/obj/screen/zone_sel/selector = mob.hud_used.zone_sel
+	var/atom/movable/screen/zone_sel/selector = mob.hud_used.zone_sel
 	selector.set_selected_zone(BODY_ZONE_CHEST, mob)
 
 
@@ -288,7 +291,7 @@
 		else
 			next_in_line = BODY_ZONE_L_ARM
 
-	var/obj/screen/zone_sel/selector = mob.hud_used.zone_sel
+	var/atom/movable/screen/zone_sel/selector = mob.hud_used.zone_sel
 	selector.set_selected_zone(next_in_line, mob)
 
 
@@ -306,7 +309,7 @@
 		else
 			next_in_line = BODY_ZONE_R_LEG
 
-	var/obj/screen/zone_sel/selector = mob.hud_used.zone_sel
+	var/atom/movable/screen/zone_sel/selector = mob.hud_used.zone_sel
 	selector.set_selected_zone(next_in_line, mob)
 
 
@@ -317,7 +320,7 @@
 	if(!check_has_body_select())
 		return
 
-	var/obj/screen/zone_sel/selector = mob.hud_used.zone_sel
+	var/atom/movable/screen/zone_sel/selector = mob.hud_used.zone_sel
 	selector.set_selected_zone(BODY_ZONE_PRECISE_GROIN, mob)
 
 
@@ -335,7 +338,7 @@
 		else
 			next_in_line = BODY_ZONE_L_LEG
 
-	var/obj/screen/zone_sel/selector = mob.hud_used.zone_sel
+	var/atom/movable/screen/zone_sel/selector = mob.hud_used.zone_sel
 	selector.set_selected_zone(next_in_line, mob)
 
 
@@ -353,7 +356,7 @@
 	SEND_SIGNAL(src, COMSIG_MOB_TOGGLEMOVEINTENT, m_intent)
 
 	if(hud_used?.static_inventory)
-		for(var/obj/screen/mov_intent/selector in hud_used.static_inventory)
+		for(var/atom/movable/screen/mov_intent/selector in hud_used.static_inventory)
 			selector.update_icon(src)
 
 	return TRUE

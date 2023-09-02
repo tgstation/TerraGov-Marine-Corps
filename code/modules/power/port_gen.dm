@@ -15,7 +15,7 @@
 	var/base_icon = "portgen0"
 	var/datum/looping_sound/generator/soundloop
 
-/obj/machinery/power/port_gen/Initialize()
+/obj/machinery/power/port_gen/Initialize(mapload)
 	. = ..()
 	soundloop = new(list(src), active)
 
@@ -90,7 +90,7 @@
 	power_gen = 15000
 	interaction_flags = INTERACT_MACHINE_TGUI
 
-/obj/machinery/power/port_gen/pacman/Initialize()
+/obj/machinery/power/port_gen/pacman/Initialize(mapload)
 	. = ..()
 	if(anchored)
 		connect_to_network()
@@ -101,9 +101,6 @@
 	component_parts += new /obj/item/stack/cable_coil(src)
 	component_parts += new /obj/item/stock_parts/capacitor(src)
 	RefreshParts()
-
-/obj/machinery/power/port_gen/pacman/Initialize()
-	. = ..()
 
 	var/obj/S = sheet_path
 	sheet_name = initial(S.name)
@@ -179,7 +176,7 @@
 		STOP_PROCESSING(SSmachines, src)
 
 /obj/machinery/power/port_gen/pacman/proc/overheat()
-	explosion(loc, 3, 6, small_animation = TRUE)
+	explosion(loc, 3, 6)
 
 /obj/machinery/power/port_gen/pacman/attackby(obj/item/O, mob/user, params)
 	if(istype(O, sheet_path))
@@ -241,7 +238,7 @@
 	data["power_output"] = DisplayPower(power_gen * power_output)
 	data["power_available"] = (powernet == null ? 0 : DisplayPower(avail()))
 	data["current_heat"] = current_heat
-	. =  data
+	. = data
 
 /obj/machinery/power/port_gen/pacman/ui_act(action, list/params)
 	. = ..()
@@ -277,7 +274,7 @@
 	time_per_sheet = 85
 
 /obj/machinery/power/port_gen/pacman/super/overheat()
-	explosion(loc, 4, small_animation = TRUE)
+	explosion(loc, 4)
 
 /obj/machinery/power/port_gen/pacman/mrs
 	name = "\improper M.R.S.P.A.C.M.A.N.-type portable generator"
@@ -289,12 +286,12 @@
 	time_per_sheet = 80
 
 /obj/machinery/power/port_gen/pacman/mrs/overheat()
-	explosion(loc, 4, small_animation = TRUE)
+	explosion(loc, 4)
 
 /obj/machinery/power/port_gen/pacman/mobile_power
 	name = "\improper A.D.V.P.A.C.M.A.N.-type portable generator"
 
-/obj/machinery/power/port_gen/pacman/mobile_power/Initialize()
+/obj/machinery/power/port_gen/pacman/mobile_power/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/mobile_power, active, 10)
 

@@ -29,7 +29,7 @@
 /datum/component/riding/creature/RegisterWithParent()
 	. = ..()
 	if(can_be_driven)
-		RegisterSignal(parent, COMSIG_RIDDEN_DRIVER_MOVE, .proc/driver_move) // this isn't needed on riding humans or cyborgs since the rider can't control them
+		RegisterSignal(parent, COMSIG_RIDDEN_DRIVER_MOVE, PROC_REF(driver_move)) // this isn't needed on riding humans or cyborgs since the rider can't control them
 
 /// Creatures need to be logged when being mounted
 /datum/component/riding/creature/proc/log_riding(mob/living/living_parent, mob/living/rider)
@@ -123,7 +123,7 @@
 
 /datum/component/riding/creature/human/RegisterWithParent()
 	. = ..()
-	RegisterSignal(parent, COMSIG_LIVING_SET_LYING_ANGLE, .proc/check_carrier_fall_over)
+	RegisterSignal(parent, COMSIG_LIVING_SET_LYING_ANGLE, PROC_REF(check_carrier_fall_over))
 
 /datum/component/riding/creature/human/log_riding(mob/living/living_parent, mob/living/rider)
 	if(!istype(living_parent) || !istype(rider))
@@ -158,7 +158,7 @@
 
 /datum/component/riding/creature/human/handle_vehicle_layer(dir)
 	var/atom/movable/AM = parent
-	if(!AM.buckled_mobs || !AM.buckled_mobs.len)
+	if(!AM.buckled_mobs || !length(AM.buckled_mobs))
 		AM.layer = MOB_LAYER
 		return
 
@@ -229,6 +229,7 @@
 	. = ..()
 	set_riding_offsets(RIDING_OFFSET_ALL, list(TEXT_NORTH = list(-10, -3), TEXT_SOUTH = list(-11, 6), TEXT_EAST = list(-21, 4), TEXT_WEST = list(4, 4)))
 	set_riding_offsets(/mob/living/carbon/xenomorph/runner, list(TEXT_NORTH = list(-16, 9), TEXT_SOUTH = list(-16, 17), TEXT_EAST = list(-21, 7), TEXT_WEST = list(-6, 7)))
+	set_riding_offsets(/mob/living/carbon/xenomorph/larva, list(TEXT_NORTH = list(3, 6), TEXT_SOUTH = list(0, 16), TEXT_EAST = list(-2, 10), TEXT_WEST = list(0, 10)))
 	set_vehicle_dir_layer(SOUTH, ABOVE_MOB_LAYER)
 	set_vehicle_dir_layer(NORTH, ABOVE_LYING_MOB_LAYER)
 	set_vehicle_dir_layer(EAST, ABOVE_LYING_MOB_LAYER)
@@ -240,7 +241,7 @@
 
 /datum/component/riding/creature/crusher/RegisterWithParent()
 	. = ..()
-	RegisterSignal(parent, COMSIG_LIVING_SET_LYING_ANGLE, .proc/check_carrier_fall_over)
+	RegisterSignal(parent, COMSIG_LIVING_SET_LYING_ANGLE, PROC_REF(check_carrier_fall_over))
 
 /datum/component/riding/creature/crusher/log_riding(mob/living/living_parent, mob/living/rider)
 	if(!istype(living_parent) || !istype(rider))
@@ -273,3 +274,42 @@
 		. = riding_offsets["[mob_type]"]
 	else if(riding_offsets["[RIDING_OFFSET_ALL]"])
 		. = riding_offsets["[RIDING_OFFSET_ALL]"]
+
+/datum/component/riding/creature/widow
+	can_be_driven = FALSE
+
+/datum/component/riding/creature/widow/handle_specials()
+	. = ..()
+	set_riding_offsets(1, list(TEXT_NORTH = list(-16, 9), TEXT_SOUTH = list(-16, 17), TEXT_EAST = list(-21, 7), TEXT_WEST = list(-6, 7)))
+	set_riding_offsets(2, list(TEXT_NORTH = list(16, 16), TEXT_SOUTH = list(16, 17), TEXT_EAST = list(21, 7), TEXT_WEST = list(6, 7)))
+	set_riding_offsets(3, list(TEXT_NORTH = list(8, 8), TEXT_SOUTH = list(-8, 21), TEXT_EAST = list(14, 11), TEXT_WEST = list(0, 2)))
+	set_riding_offsets(4, list(TEXT_NORTH = list(-8, 16), TEXT_SOUTH = list(-16, 13), TEXT_EAST = list(-21, 2), TEXT_WEST = list(6, 11)))
+	set_riding_offsets(5, list(TEXT_NORTH = list(8, 8), TEXT_SOUTH = list(8, 12), TEXT_EAST = list(21, 2), TEXT_WEST = list(-6, 11)))
+	set_vehicle_dir_layer(SOUTH, ABOVE_MOB_LAYER)
+	set_vehicle_dir_layer(NORTH, ABOVE_LYING_MOB_LAYER)
+	set_vehicle_dir_layer(EAST, ABOVE_LYING_MOB_LAYER)
+	set_vehicle_dir_layer(WEST, ABOVE_LYING_MOB_LAYER)
+
+/datum/component/riding/creature/widow/Initialize(mob/living/riding_mob, force = FALSE, check_loc, lying_buckle, hands_needed, target_hands_needed, silent)
+	. = ..()
+	riding_mob.density = FALSE
+
+// If we call parent here , we get registered for COMSIG_MOVABLE_BUMP, and when we do bump, there will be a bad index runtime
+/datum/component/riding/creature/widow/RegisterWithParent()
+	RegisterSignal(parent, COMSIG_ATOM_DIR_CHANGE, PROC_REF(vehicle_turned))
+	RegisterSignal(parent, COMSIG_MOVABLE_UNBUCKLE, PROC_REF(vehicle_mob_unbuckle))
+	RegisterSignal(parent, COMSIG_MOVABLE_MOVED, PROC_REF(vehicle_moved))
+	RegisterSignal(parent, COMSIG_XENOMORPH_ATTACK_LIVING, PROC_REF(check_widow_attack))
+
+/datum/component/riding/creature/widow/vehicle_mob_unbuckle(datum/source, mob/living/former_rider, force = FALSE)
+	unequip_buckle_inhands(parent)
+	former_rider.density = initial(former_rider.density)
+	REMOVE_TRAIT(former_rider, TRAIT_IMMOBILE, WIDOW_ABILITY_TRAIT)
+	return ..()
+
+/// If the widow gets knocked over, force the riding rounys off and see if someone got hurt
+/datum/component/riding/creature/widow/proc/check_widow_attack(mob/living/carbon/xenomorph/widow/carrying_widow)
+	SIGNAL_HANDLER
+	for(var/mob/living/rider AS in carrying_widow.buckled_mobs)
+		carrying_widow.unbuckle_mob(rider)
+		REMOVE_TRAIT(rider, TRAIT_IMMOBILE, WIDOW_ABILITY_TRAIT)

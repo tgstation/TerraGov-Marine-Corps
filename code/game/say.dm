@@ -10,16 +10,13 @@ GLOBAL_LIST_INIT(freqtospan, list(
 	"[FREQ_ENGINEERING]" = "engradio",
 	"[FREQ_MEDICAL]" = "medradio",
 	"[FREQ_REQUISITIONS]" = "supradio",
-	"[FREQ_ALPHA_REBEL]" = "alpharadio",
-	"[FREQ_BRAVO_REBEL]" = "bravoradio",
-	"[FREQ_CHARLIE_REBEL]" = "charlieradio",
-	"[FREQ_DELTA_REBEL]" = "deltaradio",
-	"[FREQ_COMMAND_REBEL]" = "comradio",
-	"[FREQ_AI_REBEL]" = "airadio",
-	"[FREQ_CAS_REBEL]" = "casradio",
-	"[FREQ_ENGINEERING_REBEL]" = "engradio",
-	"[FREQ_MEDICAL_REBEL]" = "medradio",
-	"[FREQ_REQUISITIONS_REBEL]" = "supradio"
+	"[FREQ_ZULU]" = "zuluradio",
+	"[FREQ_YANKEE]" = "yankeeradio",
+	"[FREQ_XRAY]" = "xrayradio",
+	"[FREQ_WHISKEY]" = "whiskeyradio",
+	"[FREQ_COMMAND_SOM]" = "comradio",
+	"[FREQ_ENGINEERING_SOM]" = "engradio",
+	"[FREQ_MEDICAL_SOM]" = "medradio",
 	))
 
 
@@ -39,19 +36,42 @@ GLOBAL_LIST_INIT(freqtospan, list(
 
 
 /atom/movable/proc/Hear(message, atom/movable/speaker, message_language, raw_message, radio_freq, list/spans, message_mode)
+	SHOULD_CALL_PARENT(TRUE)
 	SEND_SIGNAL(src, COMSIG_MOVABLE_HEAR, message, speaker, message_language, raw_message, radio_freq, spans, message_mode)
+	return TRUE
 
 
 /atom/movable/proc/can_speak()
 	return TRUE
 
 
-/atom/movable/proc/send_speech(message, range = 7, obj/source = src, bubble_type, list/spans, datum/language/message_language, message_mode)
-	var/rendered = compose_message(src, message_language, message, , spans, message_mode)
-	for(var/_AM in get_hearers_in_view(range, source))
-		var/atom/movable/AM = _AM
-		AM.Hear(rendered, src, message_language, message, , spans, message_mode)
+/atom/movable/proc/send_speech(message, range = 7, obj/source = src, bubble_type, list/spans, datum/language/message_language, list/message_mods = list(), tts_message, list/tts_filter)
+	var/found_client = FALSE
+	var/rendered = compose_message(src, message_language, message, , spans, message_mods)
+	var/list/listeners = get_hearers_in_view(range, source)
+	var/list/listened = list()
+	for(var/atom/movable/hearing_movable as anything in listeners)
+		if(!hearing_movable)//theoretically this should use as anything because it shouldnt be able to get nulls but there are reports that it does.
+			stack_trace("somehow theres a null returned from get_hearers_in_view() in send_speech!")
+			continue
+		if(hearing_movable.Hear(rendered, src, message_language, message, , spans, message_mods))
+			listened += hearing_movable
+		if(!found_client && length(hearing_movable.client_mobs_in_contents))
+			found_client = TRUE
 
+	var/tts_message_to_use = tts_message
+	if(!tts_message_to_use)
+		tts_message_to_use = message
+
+	var/list/filter = list()
+	if(length(voice_filter) > 0)
+		filter += voice_filter
+
+	if(length(tts_filter) > 0)
+		filter += tts_filter.Join(",")
+
+	if(voice && found_client)
+		INVOKE_ASYNC(SStts, TYPE_PROC_REF(/datum/controller/subsystem/tts, queue_tts_message), src, html_decode(tts_message_to_use), message_language, voice, filter.Join(","), listened, message_range = range, pitch = pitch, silicon = tts_silicon_voice_effect)
 
 #define CMSG_FREQPART compose_freq(speaker, radio_freq)
 #define CMSG_JOBPART compose_job(speaker, message_language, raw_message, radio_freq)
@@ -99,13 +119,14 @@ GLOBAL_LIST_INIT(freqtospan, list(
 
 		var/paygrade = H.get_paygrade()
 		if(paygrade)
-			return "[paygrade]"	//Attempt to read off the id before defaulting to job
+			return "[paygrade] "	//Attempt to read off the id before defaulting to job
 
 		var/datum/job/J = H.job
 		if(!istype(J))
 			return ""
 
-		return "[get_paygrades(J.paygrade, TRUE, gender)] "
+		paygrade = get_paygrades(J.paygrade, TRUE, gender)
+		return paygrade ? "[paygrade] " : ""
 	else if(istype(speaker, /atom/movable/virtualspeaker))
 		var/atom/movable/virtualspeaker/VT = speaker
 		if(!ishuman(VT.source))
@@ -113,13 +134,14 @@ GLOBAL_LIST_INIT(freqtospan, list(
 		var/mob/living/carbon/human/H = VT.source
 		var/paygrade = H.get_paygrade()
 		if(paygrade)
-			return "[paygrade]"	//Attempt to read off the id before defaulting to job
+			return "[paygrade] "	//Attempt to read off the id before defaulting to job
 
 		var/datum/job/J = H.job
 		if(!istype(J))
 			return ""
 
-		return "[get_paygrades(J.paygrade, TRUE, gender)] "
+		paygrade = get_paygrades(J.paygrade, TRUE, gender)
+		return paygrade ? "[paygrade] " : ""
 	else
 		return ""
 
@@ -216,22 +238,6 @@ GLOBAL_LIST_INIT(freqtospan, list(
 	else if (ending == "!")
 		return "2"
 	return "0"
-
-
-
-/// Returns a list of hearers in view(view_radius) from source (ignoring luminosity). uses important_recursive_contents[RECURSIVE_CONTENTS_HEARING_SENSITIVE]
-/proc/get_hearers_in_view(view_radius, atom/source)
-	var/turf/center_turf = get_turf(source)
-	. = list()
-	if(!center_turf)
-		return
-	var/lum = center_turf.luminosity
-	center_turf.luminosity = 6 // This is the maximum luminosity
-	for(var/atom/movable/movable in view(view_radius, center_turf))
-		var/list/recursive_contents = LAZYACCESS(movable.important_recursive_contents, RECURSIVE_CONTENTS_HEARING_SENSITIVE)
-		if(recursive_contents)
-			. += recursive_contents
-	center_turf.luminosity = lum
 
 /atom/movable/proc/GetVoice()
 	return "[src]"	//Returns the atom's name, prepended with 'The' if it's not a proper noun

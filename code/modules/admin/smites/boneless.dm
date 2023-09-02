@@ -15,4 +15,4 @@
 		if(limb_to_break.limb_status & (LIMB_BROKEN | LIMB_DESTROYED | LIMB_AMPUTATED))
 			continue
 		timer += 2 SECONDS
-		addtimer(CALLBACK(limb_to_break, /datum/limb.proc/fracture), timer)
+		addtimer(CALLBACK(limb_to_break, TYPE_PROC_REF(/datum/limb, fracture)), timer)

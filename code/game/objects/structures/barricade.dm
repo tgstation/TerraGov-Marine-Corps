@@ -5,12 +5,14 @@
 	climbable = TRUE
 	anchored = TRUE
 	density = TRUE
-	throwpass = TRUE //You can throw objects over this, despite its density.//This comment is a lie, throwpass is for projectiles apparently
 	layer = BELOW_OBJ_LAYER
 	flags_atom = ON_BORDER
 	resistance_flags = XENO_DAMAGEABLE
+	allow_pass_flags = PASS_DEFENSIVE_STRUCTURE|PASSABLE|PASS_WALKOVER
 	climb_delay = 20 //Leaping a barricade is universally much faster than clumsily climbing on a table or rack
+	interaction_flags = INTERACT_CHECK_INCAPACITATED
 	max_integrity = 100
+	flags_barrier = HANDLE_BARRIER_CHANCE
 	///The type of stack the barricade dropped when disassembled if any.
 	var/stack_type
 	///The amount of stack dropped when disassembled at full health
@@ -18,8 +20,6 @@
 	///to specify a non-zero amount of stack to drop when destroyed
 	var/destroyed_stack_amount = 0
 	var/base_acid_damage = 2
-	///Whether things can be thrown over
-	var/allow_thrown_objs = TRUE
 	var/barricade_type = "barricade" //"metal", "plasteel", etc.
 	///Whether this barricade has damaged states
 	var/can_change_dmg_state = TRUE
@@ -29,13 +29,13 @@
 	var/can_wire = FALSE
 	///is this barriade wired?
 	var/is_wired = FALSE
-	flags_barrier = HANDLE_BARRIER_CHANCE
 
-/obj/structure/barricade/Initialize()
+/obj/structure/barricade/Initialize(mapload)
 	. = ..()
 	update_icon()
 	var/static/list/connections = list(
-		COMSIG_ATOM_EXIT = .proc/on_try_exit
+		COMSIG_ATOM_EXIT = PROC_REF(on_try_exit),
+		COMSIG_OBJ_TRY_ALLOW_THROUGH = PROC_REF(can_climb_over),
 	)
 	AddElement(/datum/element/connect_loc, connections)
 
@@ -56,60 +56,21 @@
 		if(-INFINITY to 25)
 			. += span_warning("It's crumbling apart, just a few more blows will tear it apart.")
 
+/obj/structure/barricade/on_try_exit(datum/source, atom/movable/mover, direction, list/knownblockers)
+	. = ..()
 
-/obj/structure/barricade/proc/on_try_exit(datum/source, atom/movable/O, direction, list/knownblockers)
-	SIGNAL_HANDLER
-	if(CHECK_BITFIELD(O.flags_pass, PASSSMALLSTRUCT))
-		return NONE
-
-	if(O.throwing)
-		if(is_wired && iscarbon(O)) //Leaping mob against barbed wire fails
-			if(direction & dir)
-				knownblockers += src
-				return COMPONENT_ATOM_BLOCK_EXIT
-		if(!allow_thrown_objs && !istype(O, /obj/projectile))
-			if(direction & dir)
-				knownblockers += src
-				return COMPONENT_ATOM_BLOCK_EXIT
-		return NONE
-	if(!density || !(flags_atom & ON_BORDER) || !(direction & dir) || (O.status_flags & INCORPOREAL))
-		return NONE
-	knownblockers += src
-	return COMPONENT_ATOM_BLOCK_EXIT
+	if(mover?.throwing && !CHECK_MULTIPLE_BITFIELDS(mover?.pass_flags, HOVERING) && density && is_wired && iscarbon(mover) && (direction & dir))
+		knownblockers += src
+		return COMPONENT_ATOM_BLOCK_EXIT
 
 /obj/structure/barricade/CanAllowThrough(atom/movable/mover, turf/target)
-	. = ..()
-	if(closed)
-		return TRUE
-
-	if(CHECK_BITFIELD(mover.flags_pass, PASSSMALLSTRUCT))
-		return TRUE
-
-	if(mover?.throwing)
-		if(is_wired && iscarbon(mover)) //Leaping mob against barbed wire fails
-			if(get_dir(loc, target) & dir)
-				return FALSE
-		if(!allow_thrown_objs && !istype(mover, /obj/projectile))
-			if(get_dir(loc, target) & dir)
-				return FALSE
-		return TRUE
-
-	if(istype(mover, /obj/vehicle/multitile))
-		visible_message(span_danger("[mover] drives over and destroys [src]!"))
-		deconstruct(FALSE)
-		return FALSE
-
-	if((mover.flags_atom & ON_BORDER) && get_dir(loc, target) & dir)
-		return FALSE
-
-	var/obj/structure/S = locate(/obj/structure) in get_turf(mover)
-	if(S?.climbable && !(S.flags_atom & ON_BORDER) && climbable && isliving(mover)) //Climbable objects allow you to universally climb over others
-		return TRUE
-
 	if(get_dir(loc, target) & dir)
-		return FALSE
-	else
-		return TRUE
+		if(!CHECK_MULTIPLE_BITFIELDS(mover?.pass_flags, HOVERING) && is_wired && density && ismob(mover))
+			return FALSE
+		if(istype(mover, /obj/effect/xenomorph)) //cades stop xeno effects like acid spray
+			return FALSE
+
+	return ..()
 
 /obj/structure/barricade/attack_animal(mob/user)
 	return attack_alien(user)
@@ -119,11 +80,9 @@
 		return FALSE
 
 	if(is_wired)
-		X.visible_message(span_danger("The barbed wire slices into [X]!"),
-		span_danger("The barbed wire slices into us!"), null, 5)
-		X.apply_damage(10, updating_health = TRUE)
+		balloon_alert(X, "Wire slices into us")
+		X.apply_damage(10, blocked = MELEE , sharp = TRUE, updating_health = TRUE)
 
-	SEND_SIGNAL(X, COMSIG_XENOMORPH_ATTACK_BARRICADE)
 	return ..()
 
 /obj/structure/barricade/attackby(obj/item/I, mob/user, params)
@@ -131,25 +90,22 @@
 
 	for(var/obj/effect/xenomorph/acid/A in loc)
 		if(A.acid_t == src)
-			to_chat(user, "You can't get near that, it's melting!")
+			balloon_alert(user, "Can't, it's melting")
 			return
 
-	if(istype(I, /obj/item/stack/barbed_wire))
-		var/obj/item/stack/barbed_wire/B = I
-		if(!can_wire)
-			return
+	if(!istype(I, /obj/item/stack/barbed_wire) || !can_wire)
+		return
 
-		user.visible_message(span_notice("[user] starts setting up [I] on [src]."),
-		span_notice("You start setting up [I] on [src]."))
-		if(!do_after(user, 20, TRUE, src, BUSY_ICON_BUILD) || !can_wire)
-			return
+	var/obj/item/stack/barbed_wire/B = I
 
-		playsound(loc, 'sound/effects/barbed_wire_movement.ogg', 25, 1)
-		user.visible_message(span_notice("[user] sets up [I] on [src]."),
-		span_notice("You set up [I] on [src]."))
+	balloon_alert_to_viewers("Setting up wire...")
+	if(!do_after(user, 2 SECONDS, TRUE, src, BUSY_ICON_BUILD) || !can_wire)
+		return
 
-		B.use(1)
-		wire()
+	playsound(loc, 'sound/effects/barbed_wire_movement.ogg', 25, 1)
+
+	B.use(1)
+	wire()
 
 
 /obj/structure/barricade/proc/wire()
@@ -160,18 +116,16 @@
 	update_icon()
 
 /obj/structure/barricade/wirecutter_act(mob/living/user, obj/item/I)
-	if(!is_wired || user.do_actions)
+	if(!is_wired || LAZYACCESS(user.do_actions, src))
 		return FALSE
 
-	user.visible_message(span_notice("[user] begin removing the barbed wire on [src]."),
-	span_notice("You begin removing the barbed wire on [src]."))
+	balloon_alert_to_viewers("Removing wire...")
 
 	if(!do_after(user, 2 SECONDS, TRUE, src, BUSY_ICON_BUILD))
 		return TRUE
 
 	playsound(loc, 'sound/items/wirecutter.ogg', 25, TRUE)
-	user.visible_message(span_notice("[user] removes the barbed wire on [src]."),
-	span_notice("You remove the barbed wire on [src]."))
+	balloon_alert_to_viewers("Removes the barbed wire")
 	modify_max_integrity(max_integrity - 50)
 	can_wire = TRUE
 	is_wired = FALSE
@@ -197,20 +151,21 @@
 /obj/structure/barricade/ex_act(severity)
 	switch(severity)
 		if(EXPLODE_DEVASTATE)
-			visible_message(span_danger("[src] is blown apart!"))
 			deconstruct(FALSE)
 			return
 		if(EXPLODE_HEAVY)
-			take_damage(rand(33, 66))
+			take_damage(rand(33, 66), BRUTE, BOMB)
 		if(EXPLODE_LIGHT)
-			take_damage(rand(10, 33))
+			take_damage(rand(10, 33), BRUTE, BOMB)
+		if(EXPLODE_WEAK)
+			take_damage(10, BRUTE, BOMB)
 	update_icon()
 
 /obj/structure/barricade/setDir(newdir)
 	. = ..()
 	update_icon()
 
-/obj/structure/barricade/update_icon()
+/obj/structure/barricade/update_icon_state()
 	. = ..()
 	var/damage_state
 	var/percentage = (obj_integrity / max_integrity) * 100
@@ -258,7 +213,7 @@
 	if(!.)
 		return
 	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_XENO_ACID))
-		take_damage(base_acid_damage * S.strength)
+		take_damage(base_acid_damage * S.strength, BURN, ACID)
 
 
 /obj/structure/barricade/verb/rotate()
@@ -267,7 +222,7 @@
 	set src in oview(1)
 
 	if(anchored)
-		to_chat(usr, span_warning("It is fastened to the floor, you can't rotate it!"))
+		balloon_alert(usr, "It's fastened to the floor")
 		return FALSE
 
 	setDir(turn(dir, 90))
@@ -278,7 +233,7 @@
 	set src in oview(1)
 
 	if(anchored)
-		to_chat(usr, span_warning("It is fastened to the floor, you can't rotate it!"))
+		balloon_alert(usr, "It's fastened to the floor")
 		return FALSE
 
 	setDir(turn(dir, 270))
@@ -286,7 +241,7 @@
 
 /obj/structure/barricade/attack_hand_alternate(mob/living/user)
 	if(anchored)
-		to_chat(user, span_warning("It is fastened to the floor, you can't rotate it!"))
+		balloon_alert(usr, "It's fastened to the floor")
 		return FALSE
 
 	setDir(turn(dir, 270))
@@ -315,34 +270,35 @@
 
 	for(var/obj/effect/xenomorph/acid/A in loc)
 		if(A.acid_t == src)
-			to_chat(user, "You can't get near that, it's melting!")
+			balloon_alert(user, "It's melting!")
 			return
 
 	//Removing the barricades
-	if(istype(I, /obj/item/tool/shovel) && user.a_intent != INTENT_HARM)
-		var/obj/item/tool/shovel/ET = I
+	if(!istype(I, /obj/item/tool/shovel) || user.a_intent == INTENT_HARM)
+		return
+	var/obj/item/tool/shovel/ET = I
 
-		if(ET.folded)
-			return
+	if(ET.folded)
+		return
 
-		if(user.do_actions)
-			to_chat(user, span_warning(" You are already shoveling!"))
-			return
+	if(LAZYACCESS(user.do_actions, src))
+		balloon_alert(user, "Already shoveling")
+		return
 
-		user.visible_message("[user] starts clearing out \the [src].", "You start removing \the [src].")
+	user.visible_message("[user] starts clearing out \the [src].", "You start removing \the [src].")
 
-		if(!do_after(user, ET.shovelspeed, TRUE, src, BUSY_ICON_BUILD))
-			return
+	if(!do_after(user, ET.shovelspeed, TRUE, src, BUSY_ICON_BUILD))
+		return
 
-		if(!ET.folded)
-			user.visible_message(span_notice(" \The [user] removes \the [src]."))
-			var/deconstructed = TRUE
-			for(var/obj/effect/xenomorph/acid/A in loc)
-				if(A.acid_t != src)
-					continue
-				deconstructed = FALSE
-				break
-			deconstruct(deconstructed)
+	if(ET.folded)
+		return
+	var/deconstructed = TRUE
+	for(var/obj/effect/xenomorph/acid/A in loc)
+		if(A.acid_t != src)
+			continue
+		deconstructed = FALSE
+		break
+	deconstruct(deconstructed)
 
 /*----------------------*/
 // GUARD RAIL
@@ -354,13 +310,11 @@
 	icon_state = "railing_0"
 	coverage = 25
 	max_integrity = 150
-	soft_armor = list("melee" = 0, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = 15, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 10)
-	climbable = FALSE
+	soft_armor = list(MELEE = 0, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 15, BIO = 100, FIRE = 100, ACID = 10)
 	stack_type = /obj/item/stack/rods
 	destroyed_stack_amount = 3
 	hit_sound = "sound/effects/metalhit.ogg"
 	barricade_type = "railing"
-	allow_thrown_objs = FALSE
 	can_wire = FALSE
 
 /obj/structure/barricade/guardrail/update_icon()
@@ -378,8 +332,6 @@
 	icon_state = "wooden"
 	max_integrity = 100
 	layer = OBJ_LAYER
-	climbable = FALSE
-	throwpass = FALSE
 	stack_type = /obj/item/stack/sheet/wood
 	stack_amount = 5
 	destroyed_stack_amount = 3
@@ -388,33 +340,41 @@
 	barricade_type = "wooden"
 	can_wire = FALSE
 
+/obj/structure/barricade/wooden/add_debris_element()
+	AddElement(/datum/element/debris, DEBRIS_WOOD, -10, 5)
+
 /obj/structure/barricade/wooden/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
 	for(var/obj/effect/xenomorph/acid/A in loc)
 		if(A.acid_t == src)
-			to_chat(user, "You can't get near that, it's melting!")
+			balloon_alert(user, "It's melting!")
 			return
 
-	if(istype(I, /obj/item/stack/sheet/wood))
-		var/obj/item/stack/sheet/wood/D = I
-		if(obj_integrity >= max_integrity)
-			return
+	if(!istype(I, /obj/item/stack/sheet/wood))
+		return
+	var/obj/item/stack/sheet/wood/D = I
+	if(obj_integrity >= max_integrity)
+		return
 
-		if(D.get_amount() < 1)
-			to_chat(user, span_warning("You need one plank of wood to repair [src]."))
-			return
+	if(D.get_amount() < 1)
+		balloon_alert(user, "You need more wood")
+		return
 
-		visible_message(span_notice("[user] begins to repair [src]."))
+	if(LAZYACCESS(user.do_actions, src))
+		return
 
-		if(!do_after(user,20, TRUE, src, BUSY_ICON_FRIENDLY) || obj_integrity >= max_integrity)
-			return
+	balloon_alert_to_viewers("Repairing...")
 
-		if(!D.use(1))
-			return
+	if(!do_after(user, 2 SECONDS, TRUE, src, BUSY_ICON_FRIENDLY) || obj_integrity >= max_integrity)
+		return
 
-		repair_damage(max_integrity)
-		visible_message(span_notice("[user] repairs [src]."))
+	if(!D.use(1))
+		return
+
+	repair_damage(max_integrity)
+	balloon_alert_to_viewers("Repaired")
+	update_icon()
 
 
 /*----------------------*/
@@ -436,7 +396,7 @@
 	desc = "A sturdy and easily assembled barricade made of metal plates, often used for quick fortifications. Use a blowtorch to repair."
 	icon_state = "metal_0"
 	max_integrity = 200
-	soft_armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 100, "rad" = 0, "fire" = 80, "acid" = 40)
+	soft_armor = list(MELEE = 0, BULLET = 30, LASER = 30, ENERGY = 30, BOMB = 0, BIO = 100, FIRE = 80, ACID = 40)
 	coverage = 128
 	stack_type = /obj/item/stack/sheet/metal
 	stack_amount = 4
@@ -448,6 +408,9 @@
 	var/build_state = BARRICADE_METAL_FIRM
 	///The type of upgrade and corresponding overlay we have attached
 	var/barricade_upgrade_type
+
+/obj/structure/barricade/metal/add_debris_element()
+	AddElement(/datum/element/debris, DEBRIS_SPARKS, -15, 8, 1)
 
 /obj/structure/barricade/metal/update_overlays()
 	. = ..()
@@ -475,52 +438,58 @@
 /obj/structure/barricade/metal/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(istype(I, /obj/item/stack/sheet/metal))
-		var/obj/item/stack/sheet/metal/metal_sheets = I
-		if(obj_integrity > max_integrity * 0.3)
-			return attempt_barricade_upgrade(I, user, params)
+	if(!istype(I, /obj/item/stack/sheet/metal))
+		return
 
-		if(metal_sheets.get_amount() < 2)
-			to_chat(user, span_warning("You need two metal sheets to repair the base of [src]."))
-			return FALSE
+	var/obj/item/stack/sheet/metal/metal_sheets = I
+	if(obj_integrity >= max_integrity * 0.3)
+		return attempt_barricade_upgrade(I, user, params)
 
-		visible_message(span_notice("[user] begins to repair the base of [src]."))
+	if(metal_sheets.get_amount() < 2)
+		balloon_alert(user, "You need at least 2 metal")
+		return FALSE
 
-		if(!do_after(user, 2 SECONDS, TRUE, src, BUSY_ICON_FRIENDLY) || obj_integrity >= max_integrity)
-			return FALSE
+	if(LAZYACCESS(user.do_actions, src))
+		return
 
-		if(!metal_sheets.use(2))
-			return FALSE
+	balloon_alert_to_viewers("Repairing base...")
 
-		repair_damage(max_integrity * 0.3)
-		visible_message(span_notice("[user] repairs the base of [src]."))
+	if(!do_after(user, 2 SECONDS, TRUE, src, BUSY_ICON_FRIENDLY) || obj_integrity >= max_integrity * 0.3)
+		return FALSE
 
+	if(!metal_sheets.use(2))
+		return FALSE
+
+	repair_damage(max_integrity * 0.3)
+	balloon_alert_to_viewers("Base repaired")
+	update_icon()
 
 
 /obj/structure/barricade/metal/proc/attempt_barricade_upgrade(obj/item/stack/sheet/metal/metal_sheets, mob/user, params)
 	if(barricade_upgrade_type)
-		to_chat(user, span_warning("[src] is already upgraded."))
+		balloon_alert(user, "Already upgraded")
 		return FALSE
 	if(obj_integrity < max_integrity)
-		to_chat(user, span_warning("You need [src] to be at full health before you can upgrade it."))
+		balloon_alert(user, "It needs to be at full health")
 		return FALSE
 
 	if(metal_sheets.get_amount() < CADE_UPGRADE_REQUIRED_SHEETS)
-		to_chat(user, span_warning("You need at least [CADE_UPGRADE_REQUIRED_SHEETS] metal sheets to repair the base of [src]."))
+		balloon_alert(user, "You need at least [CADE_UPGRADE_REQUIRED_SHEETS] metal to upgrade")
 		return FALSE
 
 	var/static/list/cade_types = list(CADE_TYPE_BOMB = image(icon = 'icons/Marine/barricades.dmi', icon_state = "explosive_obj"), CADE_TYPE_MELEE = image(icon = 'icons/Marine/barricades.dmi', icon_state = "brute_obj"), CADE_TYPE_ACID = image(icon = 'icons/Marine/barricades.dmi', icon_state = "burn_obj"))
 	var/choice = show_radial_menu(user, src, cade_types, require_near = TRUE, tooltips = TRUE)
 
-	if(user.skills.getRating("construction") < SKILL_CONSTRUCTION_METAL)
-		user.visible_message(span_notice("[user] fumbles around figuring out how to attach armor plates to [src]."),
-		span_notice("You fumble around figuring out how to attach armor plates on [src]."))
-		var/fumbling_time = 2 SECONDS * ( SKILL_CONSTRUCTION_METAL - user.skills.getRating("construction") )
+	if(!choice)
+		return
+
+	if(user.skills.getRating(SKILL_CONSTRUCTION) < SKILL_CONSTRUCTION_METAL)
+		balloon_alert_to_viewers("fumbles")
+		var/fumbling_time = 2 SECONDS * ( SKILL_CONSTRUCTION_METAL - user.skills.getRating(SKILL_CONSTRUCTION) )
 		if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 			return FALSE
 
-	user.visible_message(span_notice("[user] begins attaching [choice] to [src]."),
-		span_notice("You begin attaching [choice] to [src]."))
+	balloon_alert_to_viewers("attaching [choice]")
 	if(!do_after(user, 2 SECONDS, TRUE, src, BUSY_ICON_BUILD))
 		return FALSE
 
@@ -531,14 +500,14 @@
 		if(CADE_TYPE_BOMB)
 			soft_armor = soft_armor.modifyRating(bomb = 50)
 		if(CADE_TYPE_MELEE)
-			soft_armor = soft_armor.modifyRating(melee = 30, bullet = 30)
+			soft_armor = soft_armor.modifyRating(melee = 30, bullet = 30, laser = 30, energy = 30)
 		if(CADE_TYPE_ACID)
-			soft_armor = soft_armor.modifyRating(bio = 0, acid = 20)
+			soft_armor = soft_armor.modifyRating(acid = 20)
+			resistance_flags |= UNACIDABLE
 
 	barricade_upgrade_type = choice
 
-	user.visible_message(span_notice("[user] attaches [choice] to [src]."),
-		span_notice("You attach [choice] to [src]."))
+	balloon_alert_to_viewers("[choice] attached")
 
 	playsound(loc, 'sound/items/screwdriver.ogg', 25, TRUE)
 	update_icon()
@@ -557,65 +526,18 @@
 	. += span_info("It is [barricade_upgrade_type ? "upgraded with [barricade_upgrade_type]" : "not upgraded"].")
 
 /obj/structure/barricade/metal/welder_act(mob/living/user, obj/item/I)
-	if(user.do_actions)
-		return FALSE
-
-	var/obj/item/tool/weldingtool/WT = I
-
-	if(!WT.isOn())
-		return FALSE
-
-	for(var/obj/effect/xenomorph/acid/A in loc)
-		if(A.acid_t == src)
-			to_chat(user, "You can't get near that, it's melting!")
-			return TRUE
-
-	if(obj_integrity <= max_integrity * 0.3)
-		to_chat(user, span_warning("[src] has sustained too much structural damage and needs more metal plates to be repaired."))
-		return TRUE
-
-	if(obj_integrity == max_integrity)
-		to_chat(user, span_warning("[src] doesn't need repairs."))
-		return TRUE
-
-	if(user.skills.getRating("engineer") < SKILL_ENGINEER_METAL)
-		user.visible_message(span_notice("[user] fumbles around figuring out how to repair [src]."),
-		span_notice("You fumble around figuring out how to repair [src]."))
-		var/fumbling_time = 5 SECONDS * ( SKILL_ENGINEER_METAL - user.skills.getRating("engineer") )
-		if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_BUILD))
-			return TRUE
-
-	user.visible_message(span_notice("[user] begins repairing damage to [src]."),
-	span_notice("You begin repairing the damage to [src]."))
-	playsound(loc, 'sound/items/welder2.ogg', 25, TRUE)
-
-	if(!do_after(user, 5 SECONDS, TRUE, src, BUSY_ICON_FRIENDLY))
-		return TRUE
-
-	if(obj_integrity <= max_integrity * 0.3 || obj_integrity == max_integrity)
-		return TRUE
-
-	if(!WT.remove_fuel(2, user))
-		to_chat(user, span_warning("Not enough fuel to finish the task."))
-		return TRUE
-
-	user.visible_message(span_notice("[user] repairs some damage on [src]."),
-	span_notice("You repair [src]."))
-	repair_damage(150)
-	update_icon()
-	playsound(loc, 'sound/items/welder2.ogg', 25, TRUE)
-	return TRUE
+	. = welder_repair_act(user, I, 85, 2.5 SECONDS, 0.3, SKILL_ENGINEER_METAL, 1)
+	if(. == BELOW_INTEGRITY_THRESHOLD)
+		balloon_alert(user, "Too damaged. Use metal sheets.")
 
 
 /obj/structure/barricade/metal/screwdriver_act(mob/living/user, obj/item/I)
-	if(user.do_actions)
+	if(LAZYACCESS(user.do_actions, src))
 		return FALSE
 	switch(build_state)
 		if(BARRICADE_METAL_ANCHORED) //Protection panel removed step. Screwdriver to put the panel back, wrench to unsecure the anchor bolts
-			if(user.skills.getRating("construction") < SKILL_CONSTRUCTION_METAL)
-				user.visible_message(span_notice("[user] fumbles around figuring out how to assemble [src]."),
-				span_notice("You fumble around figuring out how to assemble [src]."))
-				var/fumbling_time = 1 SECONDS * ( SKILL_CONSTRUCTION_METAL - user.skills.getRating("construction") )
+			if(user.skills.getRating(SKILL_CONSTRUCTION) < SKILL_CONSTRUCTION_METAL)
+				var/fumbling_time = 1 SECONDS * ( SKILL_CONSTRUCTION_METAL - user.skills.getRating(SKILL_CONSTRUCTION) )
 				if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 					return TRUE
 
@@ -623,16 +545,13 @@
 			if(!do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_BUILD))
 				return TRUE
 
-			user.visible_message(span_notice("[user] set [src]'s protection panel back."),
-			span_notice("You set [src]'s protection panel back."))
+			balloon_alert_to_viewers("bolt protection panel replaced")
 			build_state = BARRICADE_METAL_FIRM
 			return TRUE
 
 		if(BARRICADE_METAL_FIRM) //Fully constructed step. Use screwdriver to remove the protection panels to reveal the bolts
-			if(user.skills.getRating("construction") < SKILL_CONSTRUCTION_METAL)
-				user.visible_message(span_notice("[user] fumbles around figuring out how to disassemble [src]."),
-				span_notice("You fumble around figuring out how to disassemble [src]."))
-				var/fumbling_time = 1 SECONDS * ( SKILL_CONSTRUCTION_METAL - user.skills.getRating("construction") )
+			if(user.skills.getRating(SKILL_CONSTRUCTION) < SKILL_CONSTRUCTION_METAL)
+				var/fumbling_time = 1 SECONDS * ( SKILL_CONSTRUCTION_METAL - user.skills.getRating(SKILL_CONSTRUCTION) )
 				if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 					return TRUE
 
@@ -641,21 +560,18 @@
 			if(!do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_BUILD))
 				return TRUE
 
-			user.visible_message(span_notice("[user] removes [src]'s protection panel."),
-			span_notice("You remove [src]'s protection panels, exposing the anchor bolts."))
+			balloon_alert_to_viewers("bolt protection panel removed")
 			build_state = BARRICADE_METAL_ANCHORED
 			return TRUE
 
 
 /obj/structure/barricade/metal/wrench_act(mob/living/user, obj/item/I)
-	if(user.do_actions)
+	if(LAZYACCESS(user.do_actions, src))
 		return FALSE
 	switch(build_state)
 		if(BARRICADE_METAL_ANCHORED) //Protection panel removed step. Screwdriver to put the panel back, wrench to unsecure the anchor bolts
-			if(user.skills.getRating("construction") < SKILL_CONSTRUCTION_METAL)
-				user.visible_message(span_notice("[user] fumbles around figuring out how to disassemble [src]."),
-				span_notice("You fumble around figuring out how to disassemble [src]."))
-				var/fumbling_time = 1 SECONDS * ( SKILL_CONSTRUCTION_METAL - user.skills.getRating("construction") )
+			if(user.skills.getRating(SKILL_CONSTRUCTION) < SKILL_CONSTRUCTION_METAL)
+				var/fumbling_time = 1 SECONDS * ( SKILL_CONSTRUCTION_METAL - user.skills.getRating(SKILL_CONSTRUCTION) )
 				if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 					return TRUE
 
@@ -663,8 +579,7 @@
 			if(!do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_BUILD))
 				return TRUE
 
-			user.visible_message(span_notice("[user] loosens [src]'s anchor bolts."),
-			span_notice("You loosen [src]'s anchor bolts."))
+			balloon_alert_to_viewers("anchor bolts loosened")
 			build_state = BARRICADE_METAL_LOOSE
 			anchored = FALSE
 			modify_max_integrity(initial(max_integrity) * 0.5)
@@ -675,32 +590,29 @@
 
 			var/turf/mystery_turf = get_turf(src)
 			if(!isopenturf(mystery_turf))
-				to_chat(user, span_warning("We can't anchor the barricade here!"))
+				balloon_alert(user, "can't anchor here")
 				return TRUE
 
 			var/turf/open/T = mystery_turf
 			if(!T.allow_construction) //We shouldn't be able to anchor in areas we're not supposed to build; loophole closed.
-				to_chat(user, span_warning("We can't anchor the barricade here!"))
+				balloon_alert(user, "can't anchor here")
 				return TRUE
 
-			if(user.skills.getRating("construction") < SKILL_CONSTRUCTION_METAL)
-				user.visible_message(span_notice("[user] fumbles around figuring out how to assemble [src]."),
-				span_notice("You fumble around figuring out how to assemble [src]."))
-				var/fumbling_time = 1 SECONDS * ( SKILL_CONSTRUCTION_METAL - user.skills.getRating("construction") )
+			if(user.skills.getRating(SKILL_CONSTRUCTION) < SKILL_CONSTRUCTION_METAL)
+				var/fumbling_time = 1 SECONDS * ( SKILL_CONSTRUCTION_METAL - user.skills.getRating(SKILL_CONSTRUCTION) )
 				if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 					return TRUE
 
 			for(var/obj/structure/barricade/B in loc)
 				if(B != src && B.dir == dir)
-					to_chat(user, span_warning("There's already a barricade here."))
+					balloon_alert(user, "already barricade here")
 					return TRUE
 
 			playsound(loc, 'sound/items/ratchet.ogg', 25, TRUE)
 			if(!do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_BUILD))
 				return TRUE
 
-			user.visible_message(span_notice("[user] secures [src]'s anchor bolts."),
-			span_notice("You secure [src]'s anchor bolts."))
+			balloon_alert_to_viewers("anchor bolts secured")
 			build_state = BARRICADE_METAL_ANCHORED
 			anchored = TRUE
 			modify_max_integrity(initial(max_integrity))
@@ -709,19 +621,16 @@
 
 
 /obj/structure/barricade/metal/crowbar_act(mob/living/user, obj/item/I)
-	if(user.do_actions)
+	if(LAZYACCESS(user.do_actions, src))
 		return FALSE
 	switch(build_state)
 		if(BARRICADE_METAL_LOOSE) //Anchor bolts loosened step. Apply crowbar to unseat the panel and take apart the whole thing. Apply wrench to resecure anchor bolts
-			if(user.skills.getRating("construction") < SKILL_CONSTRUCTION_METAL)
-				user.visible_message(span_notice("[user] fumbles around figuring out how to disassemble [src]."),
-				span_notice("You fumble around figuring out how to disassemble [src]."))
-				var/fumbling_time = 5 SECONDS * ( SKILL_CONSTRUCTION_METAL - user.skills.getRating("construction") )
+			if(user.skills.getRating(SKILL_CONSTRUCTION) < SKILL_CONSTRUCTION_METAL)
+				var/fumbling_time = 5 SECONDS * ( SKILL_CONSTRUCTION_METAL - user.skills.getRating(SKILL_CONSTRUCTION) )
 				if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 					return TRUE
 
-			user.visible_message(span_notice("[user] starts unseating [src]'s panels."),
-			span_notice("You start unseating [src]'s panels."))
+			balloon_alert_to_viewers("disassembling")
 
 			playsound(loc, 'sound/items/crowbar.ogg', 25, 1)
 			if(!do_after(user, 5 SECONDS, TRUE, src, BUSY_ICON_BUILD))
@@ -741,34 +650,31 @@
 		if(BARRICADE_METAL_FIRM)
 
 			if(!barricade_upgrade_type) //Check to see if we actually have upgrades to remove.
-				to_chat(user, span_warning("This barricade has no upgrades to remove!"))
+				balloon_alert(user, "no upgrades to remove")
 				return TRUE
 
-			if(user.skills.getRating("construction") < SKILL_CONSTRUCTION_METAL)
-				user.visible_message(span_notice("[user] fumbles around figuring out how to disassemble [src]'s armor plates."),
-				span_notice("You fumble around figuring out how to disassemble [src]'s armor plates.."))
-				var/fumbling_time = 5 SECONDS * ( SKILL_CONSTRUCTION_METAL - user.skills.getRating("construction") )
+			if(user.skills.getRating(SKILL_CONSTRUCTION) < SKILL_CONSTRUCTION_METAL)
+				var/fumbling_time = 5 SECONDS * ( SKILL_CONSTRUCTION_METAL - user.skills.getRating(SKILL_CONSTRUCTION) )
 				if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 					return TRUE
 
-			user.visible_message(span_notice("[user] starts disassembling [src]'s armor plates."),
-			span_notice("You start disassembling [src]'s armor plates."))
+			balloon_alert_to_viewers("removing armor plates")
 
 			playsound(loc, 'sound/items/crowbar.ogg', 25, 1)
 			if(!do_after(user, 5 SECONDS, TRUE, src, BUSY_ICON_BUILD))
 				return TRUE
 
-			user.visible_message(span_notice("[user] takes [src]'s armor plates apart."),
-			span_notice("You take [src]'s armor plates apart."))
+			balloon_alert_to_viewers("removed armor plates")
 			playsound(loc, 'sound/items/deconstruct.ogg', 25, 1)
 
 			switch(barricade_upgrade_type)
 				if(CADE_TYPE_BOMB)
 					soft_armor = soft_armor.modifyRating(bomb = -50)
 				if(CADE_TYPE_MELEE)
-					soft_armor = soft_armor.modifyRating(melee = -30, bullet = -30)
+					soft_armor = soft_armor.modifyRating(melee = -30, bullet = -30, laser = -30, energy = -30)
 				if(CADE_TYPE_ACID)
-					soft_armor = soft_armor.modifyRating(bio = 0, acid = -20)
+					soft_armor = soft_armor.modifyRating(acid = -20)
+					resistance_flags &= ~UNACIDABLE
 
 			new /obj/item/stack/sheet/metal(loc, CADE_UPGRADE_REQUIRED_SHEETS)
 			barricade_upgrade_type = null
@@ -779,11 +685,13 @@
 /obj/structure/barricade/metal/ex_act(severity)
 	switch(severity)
 		if(EXPLODE_DEVASTATE)
-			take_damage(rand(400, 600))
+			take_damage(rand(400, 600), BRUTE, BOMB)
 		if(EXPLODE_HEAVY)
-			take_damage(rand(150, 350))
+			take_damage(rand(150, 350), BRUTE, BOMB)
 		if(EXPLODE_LIGHT)
-			take_damage(rand(50, 100))
+			take_damage(rand(50, 100), BRUTE, BOMB)
+		if(EXPLODE_WEAK)
+			take_damage(rand(25, 50), BRUTE, BOMB)
 
 	update_icon()
 
@@ -805,7 +713,7 @@
 	desc = "A very sturdy barricade made out of plasteel panels, the pinnacle of strongpoints. Use a blowtorch to repair. Can be flipped down to create a path."
 	icon_state = "plasteel_closed_0"
 	max_integrity = 500
-	soft_armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 100, "rad" = 0, "fire" = 80, "acid" = 40)
+	soft_armor = list(MELEE = 0, BULLET = 30, LASER = 30, ENERGY = 30, BOMB = 0, BIO = 100, FIRE = 80, ACID = 40)
 	coverage = 128
 	stack_type = /obj/item/stack/sheet/plasteel
 	stack_amount = 5
@@ -816,13 +724,15 @@
 	closed = TRUE
 	can_wire = TRUE
 	climbable = TRUE
-
 	///What state is our barricade in for construction steps?
 	var/build_state = BARRICADE_PLASTEEL_FIRM
 	var/busy = FALSE //Standard busy check
 	///ehther we react with other cades next to us ie when opening or so
 	var/linked = FALSE
 	COOLDOWN_DECLARE(tool_cooldown) //Delay to apply tools to prevent spamming
+
+/obj/structure/barricade/plasteel/add_debris_element()
+	AddElement(/datum/element/debris, DEBRIS_SPARKS, -15, 8, 1)
 
 /obj/structure/barricade/plasteel/handle_barrier_chance(mob/living/M)
 	if(closed)
@@ -841,188 +751,167 @@
 		if(BARRICADE_PLASTEEL_LOOSE)
 			. += span_info("The protection panel has been removed and the anchor bolts loosened. It's ready to be taken apart.")
 
+/obj/structure/barricade/plasteel/welder_act(mob/living/user, obj/item/I)
+	. = welder_repair_act(user, I, 85, 2.5 SECONDS, 0.3, SKILL_ENGINEER_PLASTEEL, 1)
+	if(. == BELOW_INTEGRITY_THRESHOLD)
+		balloon_alert(user, "Too damaged. Use plasteel sheets.")
+
+/obj/structure/barricade/plasteel/screwdriver_act(mob/living/user, obj/item/I)
+	if(!isscrewdriver(I))
+		return
+
+	if(busy || !COOLDOWN_CHECK(src, tool_cooldown))
+		return
+
+	if(LAZYACCESS(user.do_actions, src))
+		return
+
+	COOLDOWN_START(src, tool_cooldown, 1 SECONDS)
+
+	switch(build_state)
+		if(BARRICADE_PLASTEEL_FIRM) //Fully constructed step. Use screwdriver to remove the protection panels to reveal the bolts
+			if(user.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_PLASTEEL)
+				var/fumbling_time = 1 SECONDS * ( SKILL_ENGINEER_PLASTEEL - user.skills.getRating(SKILL_ENGINEER) )
+				if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
+					return
+
+			for(var/obj/structure/barricade/B in loc)
+				if(B != src && B.dir == dir)
+					balloon_alert(user, "already a barricade here")
+					return
+
+			if(!do_after(user, 1, TRUE, src, BUSY_ICON_BUILD))
+				return
+
+			balloon_alert_to_viewers("bolt protection panel removed")
+			playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)
+			build_state = BARRICADE_PLASTEEL_ANCHORED
+		if(BARRICADE_PLASTEEL_ANCHORED) //Protection panel removed step. Screwdriver to put the panel back, wrench to unsecure the anchor bolts
+			if(user.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_PLASTEEL)
+				var/fumbling_time = 1 SECONDS * ( SKILL_ENGINEER_PLASTEEL - user.skills.getRating(SKILL_ENGINEER) )
+				if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
+					return
+			balloon_alert_to_viewers("bolt protection panel replaced")
+			playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)
+			build_state = BARRICADE_PLASTEEL_FIRM
+
+/obj/structure/barricade/plasteel/crowbar_act(mob/living/user, obj/item/I)
+	if(!iscrowbar(I))
+		return
+
+	if(busy || !COOLDOWN_CHECK(src, tool_cooldown))
+		return
+
+	if(LAZYACCESS(user.do_actions, src))
+		return
+
+	COOLDOWN_START(src, tool_cooldown, 1 SECONDS)
+
+	switch(build_state)
+		if(BARRICADE_PLASTEEL_FIRM)
+			balloon_alert_to_viewers("[linked ? "un" : "" ]linked")
+			linked = !linked
+			for(var/direction in GLOB.cardinals)
+				for(var/obj/structure/barricade/plasteel/cade in get_step(src, direction))
+					cade.update_icon()
+			update_icon()
+		if(BARRICADE_PLASTEEL_LOOSE) //Anchor bolts loosened step. Apply crowbar to unseat the panel and take apart the whole thing.
+			if(user.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_PLASTEEL)
+				var/fumbling_time = 5 SECONDS * ( SKILL_ENGINEER_PLASTEEL - user.skills.getRating(SKILL_ENGINEER) )
+				if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
+					return
+			balloon_alert_to_viewers("disassembling")
+			playsound(loc, 'sound/items/crowbar.ogg', 25, 1)
+			busy = TRUE
+
+			if(!do_after(user, 50, TRUE, src, BUSY_ICON_BUILD))
+				busy = FALSE
+				return
+
+			busy = FALSE
+			user.visible_message(span_notice("[user] takes [src]'s panels apart."),
+			span_notice("You take [src]'s panels apart."))
+			playsound(loc, 'sound/items/deconstruct.ogg', 25, 1)
+			var/deconstructed = TRUE
+			for(var/obj/effect/xenomorph/acid/A in loc)
+				if(A.acid_t != src)
+					continue
+				deconstructed = FALSE
+				break
+			deconstruct(deconstructed)
+
+/obj/structure/barricade/plasteel/wrench_act(mob/living/user, obj/item/I)
+	if(!iswrench(I))
+		return
+
+	if(busy || !COOLDOWN_CHECK(src, tool_cooldown))
+		return
+
+	if(LAZYACCESS(user.do_actions, src))
+		return
+
+	COOLDOWN_START(src, tool_cooldown, 1 SECONDS)
+
+	switch(build_state)
+		if(BARRICADE_PLASTEEL_ANCHORED) //Protection panel removed step. Screwdriver to put the panel back, wrench to unsecure the anchor bolts
+			if(user.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_PLASTEEL)
+				var/fumbling_time = 1 SECONDS * ( SKILL_ENGINEER_PLASTEEL - user.skills.getRating(SKILL_ENGINEER) )
+				if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
+					return
+			balloon_alert_to_viewers("anchor bolts loosened")
+			playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
+			anchored = FALSE
+			modify_max_integrity(initial(max_integrity) * 0.5)
+			build_state = BARRICADE_PLASTEEL_LOOSE
+			update_icon() //unanchored changes layer
+		if(BARRICADE_PLASTEEL_LOOSE) //Anchor bolts loosened step. Apply crowbar to unseat the panel and take apart the whole thing. Apply wrench to rescure anchor bolts
+			var/turf/mystery_turf = get_turf(src)
+			if(!isopenturf(mystery_turf))
+				balloon_alert(user, "can't anchor here")
+				return
+
+			var/turf/open/T = mystery_turf
+			if(!T.allow_construction) //We shouldn't be able to anchor in areas we're not supposed to build; loophole closed.
+				balloon_alert(user, "can't anchor here")
+				return
+
+			if(user.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_PLASTEEL)
+				var/fumbling_time = 1 SECONDS * ( SKILL_ENGINEER_PLASTEEL - user.skills.getRating(SKILL_ENGINEER) )
+				if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
+					return
+			balloon_alert_to_viewers("secured bolts")
+			playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
+			anchored = TRUE
+			modify_max_integrity(initial(max_integrity))
+			build_state = BARRICADE_PLASTEEL_ANCHORED
+			update_icon() //unanchored changes layer
+
 /obj/structure/barricade/plasteel/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
 	if(istype(I, /obj/item/stack/sheet/plasteel))
 		var/obj/item/stack/sheet/plasteel/plasteel_sheets = I
-		if(obj_integrity > max_integrity * 0.3)
+		if(obj_integrity >= max_integrity * 0.3)
 			return
 
 		if(plasteel_sheets.get_amount() < 2)
-			to_chat(user, span_warning("You need two plasteel sheets to repair the base of [src]."))
+			balloon_alert(user, "You need at least 2 plasteel")
 			return
 
-		visible_message(span_notice("[user] begins to repair the base of [src]."))
+		if(LAZYACCESS(user.do_actions, src))
+			return
 
-		if(!do_after(user, 2 SECONDS, TRUE, src, BUSY_ICON_FRIENDLY) || obj_integrity >= max_integrity)
+		balloon_alert_to_viewers("Repairing base...")
+
+		if(!do_after(user, 2 SECONDS, TRUE, src, BUSY_ICON_FRIENDLY) || obj_integrity >= max_integrity * 0.3)
 			return
 
 		if(!plasteel_sheets.use(2))
 			return
 
 		repair_damage(max_integrity * 0.3)
-		visible_message(span_notice("[user] repairs the base of [src]."))
-		return
-
-	if(busy || !COOLDOWN_CHECK(src, tool_cooldown))
-		return
-
-	COOLDOWN_START(src, tool_cooldown, 1 SECONDS)
-
-	if(iswelder(I))
-		var/obj/item/tool/weldingtool/WT = I
-
-		if(user.skills.getRating("engineer") < SKILL_ENGINEER_PLASTEEL)
-			user.visible_message(span_notice("[user] fumbles around figuring out how to repair [src]."),
-			span_notice("You fumble around figuring out how to repair [src]."))
-			var/fumbling_time = 5 SECONDS * ( SKILL_ENGINEER_PLASTEEL - user.skills.getRating("engineer") )
-			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED, extra_checks = CALLBACK(WT, /obj/item/tool/weldingtool/proc/isOn)))
-				return
-
-		if(obj_integrity <= max_integrity * 0.3)
-			to_chat(user, span_warning("[src] has sustained too much structural damage and needs more plasteel plates to be repaired."))
-			return
-
-		if(obj_integrity == max_integrity)
-			to_chat(user, span_warning("[src] doesn't need repairs."))
-			return
-
-		if(!WT.remove_fuel(0, user))
-			return FALSE
-
-
-		user.visible_message(span_notice("[user] begins repairing damage to [src]."),
-		span_notice("You begin repairing the damage to [src]."))
-		playsound(loc, 'sound/items/welder2.ogg', 25, 1)
-		busy = TRUE
-
-		if(!do_after(user, 50, TRUE, src, BUSY_ICON_FRIENDLY))
-			busy = FALSE
-			return
-
-		busy = FALSE
-		user.visible_message(span_notice("[user] repairs some damage on [src]."),
-		span_notice("You repair [src]."))
-		repair_damage(150)
+		balloon_alert_to_viewers("Base repaired")
 		update_icon()
-		playsound(loc, 'sound/items/welder2.ogg', 25, 1)
-
-	if(user.do_actions) // you can only build one cade at once but repair multiple at once
-		return
-
-	switch(build_state)
-		if(BARRICADE_PLASTEEL_FIRM) //Fully constructed step. Use screwdriver to remove the protection panels to reveal the bolts
-			if(isscrewdriver(I))
-				if(user.skills.getRating("engineer") < SKILL_ENGINEER_PLASTEEL)
-					user.visible_message(span_notice("[user] fumbles around figuring out how to disassemble [src]."),
-					span_notice("You fumble around figuring out how to disassemble [src]."))
-					var/fumbling_time = 1 SECONDS * ( SKILL_ENGINEER_PLASTEEL - user.skills.getRating("engineer") )
-					if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
-						return
-
-				for(var/obj/structure/barricade/B in loc)
-					if(B != src && B.dir == dir)
-						to_chat(user, span_warning("There's already a barricade here."))
-						return
-
-				if(!do_after(user, 1, TRUE, src, BUSY_ICON_BUILD))
-					return
-
-				user.visible_message(span_notice("[user] removes [src]'s protection panel."),
-
-				span_notice("You remove [src]'s protection panels, exposing the anchor bolts."))
-				playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)
-				build_state = BARRICADE_PLASTEEL_ANCHORED
-			else if(iscrowbar(I))
-				user.visible_message(span_notice(" [user] [linked ? "un" : "" ]links [src]."), span_notice("You [linked ? "un" : "" ]link [src]."))
-				linked = !linked
-				for(var/direction in GLOB.cardinals)
-					for(var/obj/structure/barricade/plasteel/cade in get_step(src, direction))
-						cade.update_icon()
-				update_icon()
-		if(BARRICADE_PLASTEEL_ANCHORED) //Protection panel removed step. Screwdriver to put the panel back, wrench to unsecure the anchor bolts
-			if(isscrewdriver(I))
-				if(user.skills.getRating("engineer") < SKILL_ENGINEER_PLASTEEL)
-					user.visible_message(span_notice("[user] fumbles around figuring out how to assemble [src]."),
-					span_notice("You fumble around figuring out how to assemble [src]."))
-					var/fumbling_time = 1 SECONDS * ( SKILL_ENGINEER_PLASTEEL - user.skills.getRating("engineer") )
-					if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
-						return
-				user.visible_message(span_notice("[user] set [src]'s protection panel back."),
-				span_notice("You set [src]'s protection panel back."))
-				playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)
-				build_state = BARRICADE_PLASTEEL_FIRM
-
-			else if(iswrench(I))
-				if(user.skills.getRating("engineer") < SKILL_ENGINEER_PLASTEEL)
-					user.visible_message(span_notice("[user] fumbles around figuring out how to disassemble [src]."),
-					span_notice("You fumble around figuring out how to disassemble [src]."))
-					var/fumbling_time = 1 SECONDS * ( SKILL_ENGINEER_PLASTEEL - user.skills.getRating("engineer") )
-					if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
-						return
-				user.visible_message(span_notice("[user] loosens [src]'s anchor bolts."),
-				span_notice("You loosen [src]'s anchor bolts."))
-				playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
-				anchored = FALSE
-				modify_max_integrity(initial(max_integrity) * 0.5)
-				build_state = BARRICADE_PLASTEEL_LOOSE
-				update_icon() //unanchored changes layer
-		if(BARRICADE_PLASTEEL_LOOSE) //Anchor bolts loosened step. Apply crowbar to unseat the panel and take apart the whole thing. Apply wrench to rescure anchor bolts
-			if(iswrench(I))
-
-				var/turf/mystery_turf = get_turf(src)
-				if(!isopenturf(mystery_turf))
-					to_chat(user, span_warning("We can't anchor the barricade here!"))
-					return
-
-				var/turf/open/T = mystery_turf
-				if(!T.allow_construction) //We shouldn't be able to anchor in areas we're not supposed to build; loophole closed.
-					to_chat(user, span_warning("We can't anchor the barricade here!"))
-					return
-
-				if(user.skills.getRating("engineer") < SKILL_ENGINEER_PLASTEEL)
-					user.visible_message(span_notice("[user] fumbles around figuring out how to assemble [src]."),
-					span_notice("You fumble around figuring out how to assemble [src]."))
-					var/fumbling_time = 1 SECONDS * ( SKILL_ENGINEER_PLASTEEL - user.skills.getRating("engineer") )
-					if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
-						return
-				user.visible_message(span_notice("[user] secures [src]'s anchor bolts."),
-				span_notice("You secure [src]'s anchor bolts."))
-				playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
-				anchored = TRUE
-				modify_max_integrity(initial(max_integrity))
-				build_state = BARRICADE_PLASTEEL_ANCHORED
-				update_icon() //unanchored changes layer
-
-			else if(iscrowbar(I))
-				if(user.skills.getRating("engineer") < SKILL_ENGINEER_PLASTEEL)
-					user.visible_message(span_notice("[user] fumbles around figuring out how to disassemble [src]."),
-					span_notice("You fumble around figuring out how to disassemble [src]."))
-					var/fumbling_time = 5 SECONDS * ( SKILL_ENGINEER_PLASTEEL - user.skills.getRating("engineer") )
-					if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
-						return
-				user.visible_message(span_notice("[user] starts unseating [src]'s panels."),
-				span_notice("You start unseating [src]'s panels."))
-				playsound(loc, 'sound/items/crowbar.ogg', 25, 1)
-				busy = TRUE
-
-				if(!do_after(user, 50, TRUE, src, BUSY_ICON_BUILD))
-					busy = FALSE
-					return
-
-				busy = FALSE
-				user.visible_message(span_notice("[user] takes [src]'s panels apart."),
-				span_notice("You take [src]'s panels apart."))
-				playsound(loc, 'sound/items/deconstruct.ogg', 25, 1)
-				var/deconstructed = TRUE
-				for(var/obj/effect/xenomorph/acid/A in loc)
-					if(A.acid_t != src)
-						continue
-					deconstructed = FALSE
-					break
-				deconstruct(deconstructed)
-
 
 /obj/structure/barricade/plasteel/attack_hand(mob/living/user)
 	. = ..()
@@ -1031,7 +920,7 @@
 
 	toggle_open(null, user)
 
-/obj/structure/barricade/plasteel/proc/toggle_open(state, mob/living/user)
+/obj/structure/barricade/plasteel/proc/toggle_open(state, atom/user)
 	if(state == closed)
 		return
 	playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
@@ -1063,11 +952,13 @@
 /obj/structure/barricade/plasteel/ex_act(severity)
 	switch(severity)
 		if(EXPLODE_DEVASTATE)
-			take_damage(rand(450, 650))
+			take_damage(rand(450, 650), BRUTE, BOMB)
 		if(EXPLODE_HEAVY)
-			take_damage(rand(200, 400))
+			take_damage(rand(200, 400), BRUTE, BOMB)
 		if(EXPLODE_LIGHT)
-			take_damage(rand(50, 150))
+			take_damage(rand(50, 150), BRUTE, BOMB)
+		if(EXPLODE_WEAK)
+			take_damage(rand(25, 75), BRUTE, BOMB)
 
 	update_icon()
 
@@ -1084,7 +975,7 @@
 	desc = "A bunch of bags filled with sand, stacked into a small wall. Surprisingly sturdy, albeit labour intensive to set up. Trusted to do the job since 1914."
 	icon_state = "sandbag_0"
 	max_integrity = 300
-	soft_armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 100, "rad" = 0, "fire" = 80, "acid" = 40)
+	soft_armor = list(MELEE = 0, BULLET = 30, LASER = 30, ENERGY = 30, BOMB = 0, BIO = 100, FIRE = 80, ACID = 40)
 	coverage = 128
 	stack_type = /obj/item/stack/sandbags
 	hit_sound = "sound/weapons/genhit.ogg"
@@ -1106,43 +997,105 @@
 
 	for(var/obj/effect/xenomorph/acid/A in loc)
 		if(A.acid_t == src)
-			to_chat(user, "You can't get near that, it's melting!")
+			balloon_alert(user, "it's melting!")
 			return
 
 	if(istype(I, /obj/item/tool/shovel) && user.a_intent != INTENT_HARM)
 		var/obj/item/tool/shovel/ET = I
-		if(!ET.folded)
-			user.visible_message(span_notice("[user] starts disassembling [src]."),
-			span_notice("You start disassembling [src]."))
-			if(do_after(user, ET.shovelspeed, TRUE, src, BUSY_ICON_BUILD))
-				user.visible_message(span_notice("[user] disassembles [src]."),
-				span_notice("You disassemble [src]."))
-				var/deconstructed = TRUE
-				for(var/obj/effect/xenomorph/acid/A in loc)
-					if(A.acid_t != src)
-						continue
-					deconstructed = FALSE
-					break
-				deconstruct(deconstructed)
+		if(ET.folded)
+			return TRUE
+		balloon_alert_to_viewers("disassembling...")
+		if(!do_after(user, ET.shovelspeed, TRUE, src, BUSY_ICON_BUILD))
+			return TRUE
+		user.visible_message(span_notice("[user] disassembles [src]."),
+		span_notice("You disassemble [src]."))
+		var/deconstructed = TRUE
+		for(var/obj/effect/xenomorph/acid/A in loc)
+			if(A.acid_t != src)
+				continue
+			deconstructed = FALSE
+			break
+		deconstruct(deconstructed)
 		return TRUE
 
-	if(istype(I, /obj/item/stack/sandbags) )
+	if(istype(I, /obj/item/stack/sandbags))
 		if(obj_integrity == max_integrity)
-			to_chat(user, span_warning("[src] isn't in need of repairs!"))
+			balloon_alert(user, "Already repaired")
 			return
 		var/obj/item/stack/sandbags/D = I
 		if(D.get_amount() < 1)
-			to_chat(user, span_warning("You need a sandbag to repair [src]."))
+			balloon_alert(user, "Not enough sandbags")
 			return
-		visible_message(span_notice("[user] begins to replace [src]'s damaged sandbags..."))
+		balloon_alert_to_viewers("Replacing sandbags...")
 
-		if(!do_after(user, 30, TRUE, src, BUSY_ICON_BUILD) || obj_integrity >= max_integrity)
+		if(LAZYACCESS(user.do_actions, src))
+			return
+
+		if(!do_after(user, 3 SECONDS, TRUE, src, BUSY_ICON_BUILD) || obj_integrity >= max_integrity)
 			return
 
 		if(!D.use(1))
 			return
 
 		repair_damage(max_integrity * 0.2) //Each sandbag restores 20% of max health as 5 sandbags = 1 sandbag barricade.
-		user.visible_message(span_notice("[user] replaces a damaged sandbag, repairing [src]."),
-		span_notice("You replace a damaged sandbag, repairing it [src]."))
+		balloon_alert_to_viewers("Repaired")
 		update_icon()
+
+/obj/structure/barricade/metal/deployable
+	icon_state = "folding_0"
+	max_integrity = 300
+	coverage = 100
+	barricade_type = "folding"
+	can_wire = TRUE
+	is_wired = FALSE
+	soft_armor = list(MELEE = 35, BULLET = 30, LASER = 30, ENERGY = 30, BOMB = 25, BIO = 100, FIRE = 100, ACID = 30)
+	///Whether this item can be deployed or undeployed
+	var/flags_item = IS_DEPLOYABLE
+	///What it deploys into. typecast version of internal_item
+	var/obj/item/weapon/shield/riot/marine/deployable/internal_shield
+
+/obj/structure/barricade/metal/deployable/Initialize(mapload, _internal_item, deployer)
+	. = ..()
+	internal_shield = _internal_item
+
+	name = internal_shield.name
+	desc = internal_shield.desc
+	//if the shield is wired, it deploys wired
+	if (internal_shield.is_wired)
+		can_wire = FALSE
+		is_wired = TRUE
+
+/obj/structure/barricade/metal/deployable/get_internal_item()
+	return internal_shield
+
+/obj/structure/barricade/metal/deployable/clear_internal_item()
+	internal_shield = null
+
+///Dissassembles the device
+/obj/structure/barricade/metal/deployable/proc/disassemble(mob/user)
+	if(CHECK_BITFIELD(internal_shield.flags_item, DEPLOYED_NO_PICKUP))
+		balloon_alert(user, "cannot be disassembled")
+		return
+	SEND_SIGNAL(src, COMSIG_ITEM_UNDEPLOY, user)
+
+/obj/structure/barricade/metal/deployable/Destroy()
+	if(internal_shield)
+		QDEL_NULL(internal_shield)
+	return ..()
+
+/obj/structure/barricade/metal/deployable/MouseDrop(over_object, src_location, over_location)
+	if(!ishuman(usr))
+		return
+	var/mob/living/carbon/human/user = usr
+	if(over_object != user || !in_range(src, user) || user.incapacitated() || user.lying_angle)
+		return
+	disassemble(user)
+
+/obj/structure/barricade/metal/deployable/wire()
+	. = ..()
+	//makes the shield item wired as well
+	internal_shield.is_wired = TRUE
+	internal_shield.modify_max_integrity(max_integrity + 50)
+
+/obj/structure/barricade/metal/deployable/attempt_barricade_upgrade()
+	return //not upgradable

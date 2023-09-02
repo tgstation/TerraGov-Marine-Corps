@@ -9,6 +9,10 @@ LINEN BINS
 	desc = "A surprisingly soft linen bedsheet."
 	icon = 'icons/obj/items/items.dmi'
 	icon_state = "sheet"
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/items/civilian_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/items/civilian_right.dmi',
+	)
 	item_state = "bedsheet"
 	layer = MOB_LAYER
 	throwforce = 1
@@ -99,9 +103,12 @@ LINEN BINS
 
 /obj/structure/bedsheetbin/update_icon()
 	switch(amount)
-		if(0)				icon_state = "linenbin-empty"
-		if(1 to amount / 2)	icon_state = "linenbin-half"
-		else				icon_state = "linenbin-full"
+		if(0)
+			icon_state = "linenbin-empty"
+		if(1 to 10)
+			icon_state = "linenbin-half"
+		else
+			icon_state = "linenbin-full"
 
 
 /obj/structure/bedsheetbin/attackby(obj/item/I, mob/user, params)
@@ -109,6 +116,9 @@ LINEN BINS
 
 	if(istype(I, /obj/item/bedsheet))
 		if(!user.drop_held_item())
+			return
+		if(amount+1 > 20) //no more than 20 per bin
+			to_chat(user, span_notice("[src] is too full!"))
 			return
 
 		I.forceMove(src)
@@ -132,8 +142,8 @@ LINEN BINS
 		amount--
 
 		var/obj/item/bedsheet/B
-		if(sheets.len > 0)
-			B = sheets[sheets.len]
+		if(length(sheets) > 0)
+			B = sheets[length(sheets)]
 			sheets.Remove(B)
 
 		else

@@ -7,7 +7,7 @@
 	plane = BLACKNESS_PLANE
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	invisibility = INVISIBILITY_LIGHTING
-	minimap_color = MINIMAP_AREA
+	minimap_color = null
 
 	var/flags_alarm_state = NONE
 
@@ -59,6 +59,9 @@
 	var/min_ambience_cooldown = 40 SECONDS
 	///Used to decide what the maximum time between ambience is
 	var/max_ambience_cooldown = 120 SECONDS
+
+	///Boolean to limit the areas (subtypes included) that atoms in this area can smooth with. Used for shuttles.
+	var/area_limited_icon_smoothing = FALSE
 
 /area/New()
 	// This interacts with the map loader, so it needs to be set immediately
@@ -206,7 +209,7 @@
 	if(!(flags_alarm_state & ALARM_WARNING_FIRE))
 		flags_alarm_state |= ALARM_WARNING_FIRE
 		update_icon()
-		mouse_opacity = 0
+		mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 		for(var/obj/machinery/door/firedoor/D in all_fire_doors)
 			if(!D.blocked)
 				if(D.operating)
@@ -221,7 +224,7 @@
 /area/proc/firereset()
 	if(flags_alarm_state & ALARM_WARNING_FIRE)
 		flags_alarm_state &= ~ALARM_WARNING_FIRE
-		mouse_opacity = 0
+		mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 		update_icon()
 
 		for(var/obj/machinery/door/firedoor/D in all_fire_doors)
@@ -316,9 +319,3 @@
 
 /area/return_gas()
 	return gas_type
-
-///Set this area as a contested zone, that will monitors which faction controls it.
-/area/proc/set_to_contested()
-	if(SSminimaps.initialized)
-		stack_trace("An area was set as contested after SSminimap was initiliazed, it won't be colored")
-	minimap_color = MINIMAP_AREA_CONTESTED_ZONE

@@ -6,13 +6,13 @@
 	anchored = TRUE
 	opacity = TRUE
 	density = TRUE
-	throwpass = FALSE
+	allow_pass_flags = NONE
 	move_resist = MOVE_FORCE_VERY_STRONG
 	layer = DOOR_OPEN_LAYER
 	explosion_block = 2
 	resistance_flags = DROPSHIP_IMMUNE
 	minimap_color = MINIMAP_DOOR
-	soft_armor = list("melee" = 30, "bullet" = 30, "laser" = 20, "energy" = 20, "bomb" = 10, "bio" = 100, "rad" = 100, "fire" = 80, "acid" = 70)
+	soft_armor = list(MELEE = 30, BULLET = 30, LASER = 20, ENERGY = 20, BOMB = 10, BIO = 100, FIRE = 80, ACID = 70)
 	var/open_layer = DOOR_OPEN_LAYER
 	var/closed_layer = DOOR_CLOSED_LAYER
 	var/id
@@ -27,14 +27,14 @@
 	var/not_weldable = FALSE // stops people welding the door if true
 	var/openspeed = 10 //How many seconds does it take to open it? Default 1 second. Use only if you have long door opening animations
 	var/list/fillers
-	smoothing_behavior = CARDINAL_SMOOTHING
-	smoothing_groups = SMOOTH_GENERAL_STRUCTURES
+	//used for determining emergency access
+	var/emergency = FALSE
 
 	//Multi-tile doors
 	dir = EAST
 	var/width = 1
 
-/obj/machinery/door/Initialize()
+/obj/machinery/door/Initialize(mapload)
 	. = ..()
 	if(density)
 		layer = closed_layer
@@ -46,6 +46,9 @@
 		handle_multidoor()
 	var/turf/current_turf = get_turf(src)
 	current_turf.flags_atom &= ~ AI_BLOCKED
+
+	if(glass)
+		allow_pass_flags |= PASS_GLASS
 
 /obj/machinery/door/Destroy()
 	for(var/o in fillers)
@@ -80,16 +83,14 @@
 			bumpopen(M)
 		return
 
+	if(isuav(AM))
+		try_to_activate_door(AM)
+		return
+
 	if(isobj(AM))
 		var/obj/O = AM
 		for(var/m in O.buckled_mobs)
 			Bumped(m)
-
-
-/obj/machinery/door/CanAllowThrough(atom/movable/mover, turf/target)
-	. = ..()
-	if(istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSGLASS))
-		return !opacity
 
 /obj/machinery/door/proc/bumpopen(mob/user as mob)
 	if(operating)
@@ -99,7 +100,7 @@
 		user = null
 
 	if(density)
-		if(allowed(user))
+		if(allowed(user) || emergency)
 			open()
 		else
 			flick("door_deny", src)
@@ -111,15 +112,17 @@
 		return
 	return try_to_activate_door(user)
 
-/obj/machinery/door/proc/try_to_activate_door(mob/user)
+/obj/machinery/door/proc/try_to_activate_door(atom/user)
 	if(operating)
 		return
-	var/can_open
+	var/can_open = !Adjacent(user) || !requiresID() || ismob(user) && allowed(user)
 	if(!Adjacent(user))
 		can_open = TRUE
 	if(!requiresID())
 		can_open = TRUE
-	if(allowed(user))
+	if(ismob(user) && allowed(user))
+		can_open = TRUE
+	if(isuav(user))
 		can_open = TRUE
 	if(can_open)
 		if(density)
@@ -190,7 +193,7 @@
 	for(var/t in fillers)
 		var/obj/effect/opacifier/O = t
 		O.set_opacity(FALSE)
-	addtimer(CALLBACK(src, .proc/finish_open), openspeed)
+	addtimer(CALLBACK(src, PROC_REF(finish_open)), openspeed)
 	return TRUE
 
 /obj/machinery/door/proc/finish_open()
@@ -202,7 +205,7 @@
 		operating = FALSE
 
 	if(autoclose)
-		addtimer(CALLBACK(src, .proc/autoclose), normalspeed ? 150 + openspeed : 5)
+		addtimer(CALLBACK(src, PROC_REF(autoclose)), normalspeed ? 150 + openspeed : 5)
 
 /obj/machinery/door/proc/close()
 	if(density)
@@ -214,7 +217,7 @@
 	density = TRUE
 	layer = closed_layer
 	do_animate("closing")
-	addtimer(CALLBACK(src, .proc/finish_close), openspeed)
+	addtimer(CALLBACK(src, PROC_REF(finish_close)), openspeed)
 
 /obj/machinery/door/proc/finish_close()
 	update_icon()

@@ -2,7 +2,7 @@
 
 /datum/reagents
 	/// The reagents being held
-	var/list/datum/reagent/reagent_list = new/list()
+	var/list/datum/reagent/reagent_list = list()
 	/// Current volume of all the reagents
 	var/total_volume = 0
 	/// Max volume of this holder
@@ -16,7 +16,7 @@
 	/// see [/datum/reagents/proc/metabolize] for usage
 	var/addiction_tick = 1
 	/// currently addicted reagents
-	var/list/datum/reagent/addiction_list = new/list()
+	var/list/datum/reagent/addiction_list = list()
 	/// various flags, see code\__DEFINES\reagents.dm
 	var/reagent_flags
 
@@ -32,7 +32,7 @@
 		qdel(R)
 	cached_reagents.Cut()
 	cached_reagents = null
-	if(my_atom && my_atom.reagents == src)
+	if(my_atom?.reagents == src)
 		my_atom.reagents = null
 	my_atom = null
 	return ..()
@@ -64,17 +64,17 @@
 	var/list/cached_reagents = reagent_list
 	var/total_transfered = 0
 	var/current_list_element= 1
-	var/initial_list_length = cached_reagents.len //stored here because removing can cause some reagents to be deleted, ergo length change.
+	var/initial_list_length = length(cached_reagents) //stored here because removing can cause some reagents to be deleted, ergo length change.
 
-	current_list_element = rand(1, cached_reagents.len)
+	current_list_element = rand(1, length(cached_reagents))
 
 	while(total_transfered != amount)
 		if(total_transfered >= amount)
 			break
-		if(total_volume <= 0 || !cached_reagents.len)
+		if(total_volume <= 0 || !length(cached_reagents))
 			break
 
-		if(current_list_element > cached_reagents.len)
+		if(current_list_element > length(cached_reagents))
 			current_list_element = 1
 
 		var/datum/reagent/R = cached_reagents[current_list_element]
@@ -246,7 +246,7 @@
 			if(preserve_data)
 				trans_data = current_reagent.data
 			R.add_reagent(current_reagent.type, amount, trans_data, src.chem_temp)
-			remove_reagent(current_reagent.type, amount, 1)
+			remove_reagent(current_reagent.type, amount)
 			break
 
 	src.update_total()
@@ -282,21 +282,21 @@
 		if(L.reagent_check(R) != TRUE)
 			if(can_overdose)
 				if(R.overdose_threshold)
-					if(R.volume >= R.overdose_threshold && !R.overdosed)
+					if(R.volume > R.overdose_threshold && !R.overdosed)
 						R.overdosed = TRUE
 						need_mob_update += R.on_overdose_start(L, quirks)
 				if(R.overdose_crit_threshold)
-					if(R.volume >= R.overdose_crit_threshold && !R.overdosed_crit)
+					if(R.volume > R.overdose_crit_threshold && !R.overdosed_crit)
 						R.overdosed_crit = TRUE
 						need_mob_update += R.on_overdose_crit_start(L, quirks)
 				if(R.addiction_threshold)
-					if(R.volume >= R.addiction_threshold && !is_type_in_list(R, cached_addictions))
+					if(R.volume > R.addiction_threshold && !is_type_in_list(R, cached_addictions))
 						var/datum/reagent/new_reagent = new R.type()
 						cached_addictions.Add(new_reagent)
-				if(R.volume < R.overdose_threshold && R.overdosed && R.overdose_threshold)
+				if(R.volume <= R.overdose_threshold && R.overdosed && R.overdose_threshold)
 					R.overdosed = FALSE
 					need_mob_update += R.on_overdose_stop(L, quirks)
-				if(R.volume < R.overdose_crit_threshold && R.overdosed_crit && R.overdose_crit_threshold)
+				if(R.volume <= R.overdose_crit_threshold && R.overdosed_crit && R.overdose_crit_threshold)
 					R.overdosed_crit = FALSE
 				if(R.overdosed)
 					need_mob_update += R.overdose_process(L, quirks) //Small OD
@@ -368,10 +368,10 @@
 
 				var/datum/chemical_reaction/C = reaction
 				var/list/cached_required_reagents = C.required_reagents
-				var/total_required_reagents = cached_required_reagents.len
+				var/total_required_reagents = length(cached_required_reagents)
 				var/total_matching_reagents = 0
 				var/list/cached_required_catalysts = C.required_catalysts
-				var/total_required_catalysts = cached_required_catalysts.len
+				var/total_required_catalysts = length(cached_required_catalysts)
 				var/total_matching_catalysts= 0
 				var/matching_container = FALSE
 				var/matching_other = FALSE
@@ -412,7 +412,7 @@
 					possible_reactions += C
 
 
-		if(possible_reactions.len)
+		if(length(possible_reactions))
 			var/datum/chemical_reaction/selected_reaction = possible_reactions[1]
 			//select the reaction with the most extreme temperature requirements
 			for(var/V in possible_reactions)
@@ -430,7 +430,7 @@
 				multiplier = min(multiplier, round(get_reagent_amount(B) / cached_required_reagents[B]))
 
 			for(var/B in cached_required_reagents)
-				remove_reagent(B, (multiplier * cached_required_reagents[B]), safety = 1)
+				remove_reagent(B, (multiplier * cached_required_reagents[B]))
 
 			for(var/P in selected_reaction.results)
 				multiplier = max(multiplier, 1) //This shouldn't happen...
@@ -462,21 +462,21 @@
 			del_reagent(R.type)
 			update_total()
 
-/datum/reagents/proc/del_reagent(reagent)
-	var/list/cached_reagents = reagent_list
-	for(var/_reagent in cached_reagents)
-		var/datum/reagent/R = _reagent
-		if (R.type == reagent)
-			if(my_atom && isliving(my_atom))
-				var/mob/living/L = my_atom
-				R.on_mob_delete(L, L.get_reagent_tags())
-			qdel(R)
-			reagent_list -= R
-			update_total()
-			if(my_atom)
-				my_atom.on_reagent_change(DEL_REAGENT)
-	return 1
 
+///Remove a reagent datum with the type provided from this container. True if one is removed, false otherwise.
+/datum/reagents/proc/del_reagent(type_to_remove)
+	var/datum/reagent/reagent_to_remove = locate(type_to_remove) in reagent_list
+	if(!reagent_to_remove)
+		return FALSE
+	SEND_SIGNAL(src, COMSIG_REAGENT_DELETING, type_to_remove)
+	if(isliving(my_atom))
+		var/mob/living/L = my_atom
+		reagent_to_remove.on_mob_delete(L, L.get_reagent_tags())
+	reagent_list -= reagent_to_remove
+	qdel(reagent_to_remove)
+	update_total()
+	my_atom?.on_reagent_change(DEL_REAGENT)
+	return TRUE
 
 
 /datum/reagents/proc/update_total()
@@ -583,19 +583,19 @@
 	////
 
 	//add the reagent to the existing if it exists
-	for(var/A in cached_reagents)
-		var/datum/reagent/R = A
-		if (R.type == reagent)
-			R.volume += amount
-			update_total()
-			if(my_atom)
-				my_atom.on_reagent_change(ADD_REAGENT)
-			R.on_merge(data, amount)
-			if(!no_react)
-				handle_reactions()
-			return TRUE
+	var/datum/reagent/existing_reagent = locate(reagent) in cached_reagents
+	if(existing_reagent)
+		existing_reagent.volume += amount
+		update_total()
+		if(my_atom)
+			my_atom.on_reagent_change(ADD_REAGENT)
+		existing_reagent.on_merge(data, amount)
+		if(!no_react)
+			handle_reactions()
+		return TRUE
 
 	//otherwise make a new one
+	SEND_SIGNAL(src, COMSIG_NEW_REAGENT_ADD, reagent, amount)
 	var/datum/reagent/R = new D.type(data)
 	cached_reagents += R
 	R.holder = src
@@ -612,7 +612,6 @@
 		my_atom.on_reagent_change(ADD_REAGENT)
 	if(!no_react)
 		handle_reactions()
-	SEND_SIGNAL(src, COMSIG_NEW_REAGENT_ADD, reagent, amount)
 	return TRUE
 
 /datum/reagents/proc/add_reagent_list(list/list_reagents, list/data=null) //// Like add_reagent but you can enter a list. Format it like this: list(/datum/reagent/toxin = 10, /datum/reagent/consumable/ethanol/beer = 15)
@@ -620,7 +619,7 @@
 		var/amt = list_reagents[r_id]
 		add_reagent(r_id, amt, data)
 
-/datum/reagents/proc/remove_reagent(reagent, amount, safety)//Added a safety check for the trans_id_to
+/datum/reagents/proc/remove_reagent(reagent, amount)
 	if(isnull(amount))
 		amount = 0
 		CRASH("null amount passed to reagent code")
@@ -638,8 +637,6 @@
 			amount = clamp(amount, 0, R.volume) //P.S. Change it with the define when the other PR is merged.
 			R.volume -= amount
 			update_total()
-			if(!safety)//So it does not handle reactions when it need not to
-				handle_reactions()
 			if(my_atom)
 				my_atom.on_reagent_change(REM_REAGENT)
 			return TRUE
@@ -705,7 +702,7 @@
 		// We found a match, proceed to remove the reagent.	Keep looping, we might find other reagents of the same type.
 		if(matches)
 			// Have our other proc handle removement
-			has_removed_reagent = remove_reagent(R.type, amount, safety)
+			has_removed_reagent = remove_reagent(R.type, amount)
 
 	return has_removed_reagent
 

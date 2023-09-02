@@ -13,13 +13,13 @@
 GLOBAL_LIST_INIT(metal_recipes, list ( \
 	new/datum/stack_recipe("metal barricade", /obj/structure/barricade/metal, 4, time = 8 SECONDS, max_per_turf = STACK_RECIPE_ONE_DIRECTIONAL_PER_TILE, on_floor = TRUE, skill_req = SKILL_CONSTRUCTION_METAL), \
 	new/datum/stack_recipe("barbed wire", /obj/item/stack/barbed_wire, 2, 1, 20, time = 1 SECONDS, skill_req = SKILL_CONSTRUCTION_METAL), \
-	new/datum/stack_recipe("razor wire", /obj/item/stack/razorwire, 3, 1, 20, time = 5 SECONDS, skill_req = SKILL_CONSTRUCTION_METAL), \
+	new/datum/stack_recipe("razor wire", /obj/item/stack/razorwire, 4, 2, 20, time = 5 SECONDS, skill_req = SKILL_CONSTRUCTION_METAL), \
 	null, \
 	new/datum/stack_recipe("apc frame", /obj/item/frame/apc, 2), \
 	new/datum/stack_recipe("wall girder", /obj/structure/girder, 8, time = 10 SECONDS, max_per_turf = STACK_RECIPE_ONE_PER_TILE, on_floor = TRUE, skill_req = SKILL_CONSTRUCTION_ADVANCED), \
+	new/datum/stack_recipe("window frame", /obj/structure/window_frame, 4, time = 5 SECONDS, max_per_turf = STACK_RECIPE_ONE_PER_TILE, on_floor = TRUE, skill_req = SKILL_CONSTRUCTION_METAL), \
 	new/datum/stack_recipe("metal rod", /obj/item/stack/rods, 1, 4, 60), \
 	new/datum/stack_recipe("floor tile", /obj/item/stack/tile/plasteel, 1, 4, 20), \
-	new/datum/stack_recipe("grenade casing", /obj/item/explosive/grenade/chem_grenade), \
 	null, \
 	new/datum/stack_recipe("bed", /obj/structure/bed, 2, max_per_turf = STACK_RECIPE_ONE_PER_TILE, on_floor = TRUE), \
 	new/datum/stack_recipe("chair", /obj/structure/bed/chair, max_per_turf = STACK_RECIPE_ONE_PER_TILE, on_floor = TRUE), \
@@ -27,6 +27,9 @@ GLOBAL_LIST_INIT(metal_recipes, list ( \
 	new/datum/stack_recipe("office chair",/obj/structure/bed/chair/office/dark, 2, max_per_turf = STACK_RECIPE_ONE_PER_TILE, on_floor = TRUE), \
 	new/datum/stack_recipe("light fixture frame", /obj/item/frame/light_fixture, 2), \
 	new/datum/stack_recipe("small light fixture frame", /obj/item/frame/light_fixture/small, 1), \
+	new/datum/stack_recipe("table parts", /obj/item/frame/table, 1), \
+	new/datum/stack_recipe("reinforced table parts", /obj/item/frame/table/reinforced, 2), \
+	new/datum/stack_recipe("rack parts", /obj/item/frame/rack, 1), \
 	new/datum/stack_recipe_list("airlock assemblies", list( \
 		new/datum/stack_recipe("standard airlock assembly", /obj/structure/door_assembly, 4, time = 5 SECONDS, max_per_turf = STACK_RECIPE_ONE_PER_TILE, on_floor = TRUE, skill_req = SKILL_CONSTRUCTION_MASTER), \
 		new/datum/stack_recipe("command airlock assembly", /obj/structure/door_assembly/door_assembly_com, 4, time = 5 SECONDS, max_per_turf = STACK_RECIPE_ONE_PER_TILE, on_floor = TRUE, skill_req = SKILL_CONSTRUCTION_MASTER), \
@@ -47,16 +50,25 @@ GLOBAL_LIST_INIT(metal_recipes, list ( \
 	null, \
 	))
 
+
+GLOBAL_LIST_INIT(metal_radial_images, list(
+	"recipes" = image('icons/Marine/barricades.dmi', icon_state = "plus"),
+	"barricade" = image('icons/Marine/barricades.dmi', icon_state = "metal_0"),
+	"razorwire" = image('icons/obj/structures/barbedwire.dmi', icon_state = "barbedwire_assembly"),
+	"barbedwire" = image('icons/Marine/marine-items.dmi', icon_state = "barbed_wire")
+	))
+
 /obj/item/stack/sheet/metal
 	name = "metal"
 	desc = "Sheets made out of metal. It has been dubbed Metal Sheets."
 	singular_name = "metal sheet"
 	icon_state = "sheet-metal"
+	item_state = "sheet-metal"
 	flags_item = NOBLUDGEON
-	materials = list(/datum/material/metal = 4000)
-	throwforce = 14.0
+	throwforce = 14
 	flags_atom = CONDUCT
 	merge_type = /obj/item/stack/sheet/metal
+	number_of_extra_variants = 3
 
 
 /obj/item/stack/sheet/metal/small_stack
@@ -74,30 +86,47 @@ GLOBAL_LIST_INIT(metal_recipes, list ( \
 	. = ..()
 	recipes = GLOB.metal_recipes
 
+/obj/item/stack/sheet/metal/select_radial(mob/user)
+	if(user.get_active_held_item() != src)
+		return
+	if(!can_interact(user))
+		return TRUE
+
+	add_fingerprint(usr, "topic")
+
+	var/choice = show_radial_menu(user, src, GLOB.metal_radial_images, require_near = TRUE)
+
+	switch (choice)
+		if("recipes")
+			return TRUE
+		if("barricade")
+			create_object(user, new/datum/stack_recipe("metal barricade", /obj/structure/barricade/metal, 4, time = 8 SECONDS, max_per_turf = STACK_RECIPE_ONE_DIRECTIONAL_PER_TILE, on_floor = TRUE, skill_req = SKILL_CONSTRUCTION_METAL), 1)
+		if("barbedwire")
+			create_object(user, new/datum/stack_recipe("barbed wire", /obj/item/stack/barbed_wire, 2, 1, 20, time = 1 SECONDS, skill_req = SKILL_CONSTRUCTION_METAL), 1)
+		if("razorwire")
+			create_object(user, new/datum/stack_recipe("razor wire", /obj/item/stack/razorwire, 4, 2, 20, time = 5 SECONDS, skill_req = SKILL_CONSTRUCTION_METAL), 1)
+
+	return FALSE
+
 /*
 * Plasteel
 */
-GLOBAL_LIST_INIT(plasteel_recipes, list ( \
-	new/datum/stack_recipe("metal crate", /obj/structure/closet/crate, 5, time = 5 SECONDS, max_per_turf = STACK_RECIPE_ONE_PER_TILE), \
-	new/datum/stack_recipe("plasteel barricade", /obj/structure/barricade/plasteel, 5, time = 8 SECONDS, max_per_turf = STACK_RECIPE_ONE_DIRECTIONAL_PER_TILE, on_floor = TRUE, skill_req =  SKILL_CONSTRUCTION_PLASTEEL)
-	))
 
 /obj/item/stack/sheet/plasteel
 	name = "plasteel"
 	singular_name = "plasteel sheet"
 	desc = "This sheet is an alloy of iron and phoron."
 	icon_state = "sheet-plasteel"
-	item_state = "sheet-metal"
+	item_state = "sheet-plasteel"
 	flags_item = NOBLUDGEON
-	materials = list(/datum/material/metal = 7500)
-	throwforce = 15.0
+	throwforce = 15
 	flags_atom = CONDUCT
 	merge_type = /obj/item/stack/sheet/plasteel
+	number_of_extra_variants = 3
 
-
-/obj/item/stack/sheet/plasteel/Initialize(mapload, amount)
+/obj/item/stack/sheet/plasteel/attack_self(mob/user)
 	. = ..()
-	recipes = GLOB.plasteel_recipes
+	create_object(user, new/datum/stack_recipe("plasteel barricade", /obj/structure/barricade/plasteel, 5, time = 8 SECONDS, max_per_turf = STACK_RECIPE_ONE_DIRECTIONAL_PER_TILE, on_floor = TRUE, skill_req = SKILL_CONSTRUCTION_PLASTEEL), 1)
 
 
 /obj/item/stack/sheet/plasteel/small_stack
@@ -123,16 +152,30 @@ GLOBAL_LIST_INIT(wood_recipes, list ( \
 
 	new/datum/stack_recipe("wooden door", /obj/structure/mineral_door/wood, 10, time = 2 SECONDS, max_per_turf = STACK_RECIPE_ONE_PER_TILE, on_floor = TRUE), \
 	new/datum/stack_recipe("coffin", /obj/structure/closet/coffin, 5, time = 1.5 SECONDS, max_per_turf = STACK_RECIPE_ONE_PER_TILE, on_floor = TRUE), \
-	new/datum/stack_recipe("baseball bat", /obj/item/weapon/baseballbat, 10, time = 2 SECONDS, on_floor = TRUE) \
+	new/datum/stack_recipe("baseball bat", /obj/item/weapon/baseballbat, 10, time = 2 SECONDS, on_floor = TRUE), \
+	new/datum/stack_recipe("wooden crate", /obj/structure/largecrate/packed, 5, time = 2 SECONDS, on_floor = TRUE) \
 	))
+
+GLOBAL_LIST_INIT(wood_radial_images, list(
+	"recipes" = image('icons/Marine/barricades.dmi', icon_state = "plus"),
+	"barricade" = image('icons/Marine/barricades.dmi', icon_state = "wooden"),
+	"chair" = image('icons/obj/objects.dmi', icon_state = "wooden_chair"),
+	"tile" = image('icons/obj/stack_objects.dmi', icon_state = "tile-wood"),
+	"crate" = image('icons/obj/structures/crates.dmi', icon_state = "secure_crate")
+	))
+
 
 /obj/item/stack/sheet/wood
 	name = "wooden plank"
 	desc = "One can only guess that this is a bunch of wood."
 	singular_name = "wood plank"
 	icon_state = "sheet-wood"
+	item_state = "sheet-wood"
 	merge_type = /obj/item/stack/sheet/wood
+	number_of_extra_variants = 3
 
+/obj/item/stack/sheet/wood/five
+	amount = 5
 
 /obj/item/stack/sheet/wood/large_stack
 	amount = 50
@@ -147,6 +190,31 @@ GLOBAL_LIST_INIT(wood_recipes, list ( \
 /obj/item/stack/sheet/wood/Initialize(mapload, amount)
 	. = ..()
 	recipes = GLOB.wood_recipes
+
+/obj/item/stack/sheet/wood/select_radial(mob/user)
+	if(user.get_active_held_item() != src)
+		return
+	if(!can_interact(user))
+		return TRUE
+
+	add_fingerprint(usr, "topic")
+
+	var/choice = show_radial_menu(user, src, GLOB.wood_radial_images, require_near = TRUE)
+
+	switch (choice)
+		if("recipes")
+			return TRUE
+		if("barricade")
+			create_object(user, new/datum/stack_recipe("wooden barricade", /obj/structure/barricade/wooden, 5, time = 5 SECONDS, max_per_turf = STACK_RECIPE_ONE_DIRECTIONAL_PER_TILE, on_floor = TRUE), 1)
+		if("chair")
+			create_object(user, new/datum/stack_recipe("wooden chair", /obj/structure/bed/chair/wood/normal, 1, time = 1 SECONDS, max_per_turf = STACK_RECIPE_ONE_PER_TILE, on_floor = TRUE), 1)
+		if("tile")
+			create_object(user, new/datum/stack_recipe("wood floor tile", /obj/item/stack/tile/wood, 1, 4, 20), 1)
+		if("crate")
+			create_object(user, new/datum/stack_recipe("wooden crate", /obj/structure/largecrate/packed, 5, time = 2 SECONDS, on_floor = TRUE), 1)
+
+	return FALSE
+
 
 /*
 * Cloth
@@ -181,42 +249,39 @@ GLOBAL_LIST_INIT(cardboard_recipes, list ( \
 		)), \
 	null, \
 	new/datum/stack_recipe_list("pistol boxes",list( \
-		new/datum/stack_recipe("TP-14 mag box", /obj/item/storage/box/visual/magazine/compact/standard_pistol), \
-		new/datum/stack_recipe("TP-23 mag box", /obj/item/storage/box/visual/magazine/compact/standard_heavypistol), \
-		new/datum/stack_recipe("TP-44 mag box", /obj/item/storage/box/visual/magazine/compact/standard_revolver), \
-		new/datum/stack_recipe("TP-17 mag box", /obj/item/storage/box/visual/magazine/compact/standard_pocketpistol), \
+		new/datum/stack_recipe("P-14 mag box", /obj/item/storage/box/visual/magazine/compact/standard_pistol), \
+		new/datum/stack_recipe("P-23 mag box", /obj/item/storage/box/visual/magazine/compact/standard_heavypistol), \
+		new/datum/stack_recipe("R-44 mag box", /obj/item/storage/box/visual/magazine/compact/standard_revolver), \
+		new/datum/stack_recipe("P-17 mag box", /obj/item/storage/box/visual/magazine/compact/standard_pocketpistol), \
 		new/datum/stack_recipe("88M4 mag box", /obj/item/storage/box/visual/magazine/compact/vp70), \
 		new/datum/stack_recipe("Derringer packet box", /obj/item/storage/box/visual/magazine/compact/derringer), \
-		new/datum/stack_recipe("TX-8 plasma cell box", /obj/item/storage/box/visual/magazine/compact/plasma_pistol), \
+		new/datum/stack_recipe("PP-7 plasma cell box", /obj/item/storage/box/visual/magazine/compact/plasma_pistol), \
 		)), \
 	new/datum/stack_recipe_list("smg boxes",list( \
-		new/datum/stack_recipe("T-90 mag box", /obj/item/storage/box/visual/magazine/compact/standard_smg), \
-		new/datum/stack_recipe("T-19 mag box", /obj/item/storage/box/visual/magazine/compact/standard_machinepistol), \
-		new/datum/stack_recipe("PPSh drum mag box", /obj/item/storage/box/visual/magazine/compact/ppsh), \
+		new/datum/stack_recipe("SMG-90 mag box", /obj/item/storage/box/visual/magazine/compact/standard_smg), \
+		new/datum/stack_recipe("MP-19 mag box", /obj/item/storage/box/visual/magazine/compact/standard_machinepistol), \
 		new/datum/stack_recipe("Pepperball canister box", /obj/item/storage/box/visual/magazine/compact/pepperball), \
 		)), \
 	new/datum/stack_recipe_list("rifle boxes",list( \
-		new/datum/stack_recipe("T-12 mag box", /obj/item/storage/box/visual/magazine/compact/standard_assaultrifle), \
-		new/datum/stack_recipe("T-18 mag box", /obj/item/storage/box/visual/magazine/compact/standard_carbine), \
-		new/datum/stack_recipe("T-21 mag box", /obj/item/storage/box/visual/magazine/compact/standard_skirmishrifle), \
-		new/datum/stack_recipe("TX-11 mag box", /obj/item/storage/box/visual/magazine/compact/tx11), \
-		new/datum/stack_recipe("T-25 mag box", /obj/item/storage/box/visual/magazine/compact/standard_smartrifle), \
+		new/datum/stack_recipe("AR-12 mag box", /obj/item/storage/box/visual/magazine/compact/standard_assaultrifle), \
+		new/datum/stack_recipe("AR-18 mag box", /obj/item/storage/box/visual/magazine/compact/standard_carbine), \
+		new/datum/stack_recipe("AR-21 mag box", /obj/item/storage/box/visual/magazine/compact/standard_skirmishrifle), \
+		new/datum/stack_recipe("AR-11 mag box", /obj/item/storage/box/visual/magazine/compact/ar11), \
 		new/datum/stack_recipe("Martini Henry packet box", /obj/item/storage/box/visual/magazine/compact/martini), \
 		new/datum/stack_recipe("TE cell box", /obj/item/storage/box/visual/magazine/compact/lasrifle/marine), \
-		new/datum/stack_recipe("TX-15 mag box", /obj/item/storage/box/visual/magazine/compact/tx15), \
+		new/datum/stack_recipe("SH-15 mag box", /obj/item/storage/box/visual/magazine/compact/sh15), \
 		)), \
 	new/datum/stack_recipe_list("marksmen rifle boxes",list( \
-		new/datum/stack_recipe("T-37 mag box", /obj/item/storage/box/visual/magazine/compact/standard_dmr), \
-		new/datum/stack_recipe("T-64 mag box", /obj/item/storage/box/visual/magazine/compact/standard_br), \
-		new/datum/stack_recipe("TL-127 mag box", /obj/item/storage/box/visual/magazine/compact/chamberedrifle), \
+		new/datum/stack_recipe("DMR-37 mag box", /obj/item/storage/box/visual/magazine/compact/standard_dmr), \
+		new/datum/stack_recipe("BR-64 mag box", /obj/item/storage/box/visual/magazine/compact/standard_br), \
+		new/datum/stack_recipe("SR-127 mag box", /obj/item/storage/box/visual/magazine/compact/chamberedrifle), \
 		new/datum/stack_recipe("Mosin packet box", /obj/item/storage/box/visual/magazine/compact/mosin), \
 		)), \
 	new/datum/stack_recipe_list("machinegun boxes",list( \
-		new/datum/stack_recipe("T-42 drum mag box", /obj/item/storage/box/visual/magazine/compact/standard_lmg), \
-		new/datum/stack_recipe("T-60 mag box", /obj/item/storage/box/visual/magazine/compact/standard_gpmg), \
-		new/datum/stack_recipe("T-27 mag box", /obj/item/storage/box/visual/magazine/compact/standard_mmg), \
-		new/datum/stack_recipe("MG-08/495 drum box", /obj/item/storage/box/visual/magazine/compact/heavymachinegun), \
-		new/datum/stack_recipe("T-29 drum box", /obj/item/storage/box/visual/magazine/compact/standard_smartmachinegun), \
+		new/datum/stack_recipe("MG-42 drum mag box", /obj/item/storage/box/visual/magazine/compact/standard_lmg), \
+		new/datum/stack_recipe("MG-60 mag box", /obj/item/storage/box/visual/magazine/compact/standard_gpmg), \
+		new/datum/stack_recipe("MG-27 mag box", /obj/item/storage/box/visual/magazine/compact/standard_mmg), \
+		new/datum/stack_recipe("HMG-08 drum box", /obj/item/storage/box/visual/magazine/compact/heavymachinegun), \
 		)) \
 	))
 

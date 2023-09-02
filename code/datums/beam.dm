@@ -47,8 +47,8 @@
 	visuals.icon = icon
 	visuals.icon_state = icon_state
 	Draw()
-	RegisterSignal(origin, COMSIG_MOVABLE_MOVED, .proc/redrawing)
-	RegisterSignal(target, COMSIG_MOVABLE_MOVED, .proc/redrawing)
+	RegisterSignal(origin, COMSIG_MOVABLE_MOVED, PROC_REF(redrawing))
+	RegisterSignal(target, COMSIG_MOVABLE_MOVED, PROC_REF(redrawing))
 
 /**
  * Triggered by signals set up when the beam is set up. If it's still sane to create a beam, it removes the old beam, creates a new one. Otherwise it kills the beam.
@@ -59,6 +59,7 @@
  * direction: in what direction mover moved from.
  */
 /datum/beam/proc/redrawing(atom/movable/mover, atom/oldloc, direction)
+	SIGNAL_HANDLER_DOES_SLEEP
 	if(origin && target && get_dist(origin,target)<max_distance && origin.z == target.z)
 		QDEL_LIST(elements)
 		Draw()
@@ -157,7 +158,7 @@
  */
 /atom/proc/beam(atom/BeamTarget,icon_state="b_beam",icon='icons/effects/beam.dmi',time = INFINITY,maxdistance = INFINITY,beam_type=/obj/effect/ebeam)
 	var/datum/beam/newbeam = new(src,BeamTarget,icon,icon_state,time,maxdistance,beam_type)
-	INVOKE_ASYNC(newbeam, /datum/beam/.proc/Start)
+	INVOKE_ASYNC(newbeam, TYPE_PROC_REF(/datum/beam, Start))
 	return newbeam
 
 /proc/zap_beam(atom/source, zap_range, damage, list/blacklistmobs)
@@ -173,7 +174,7 @@
 		if(living in blacklistmobs)
 			continue
 		source.beam(living, icon_state="lightning[rand(1,12)]", time = 3, maxdistance = zap_range + 2)
-		if(living.xeno_caste.caste_flags & CASTE_CAN_BE_GIVEN_PLASMA) //need 1 second more than the actual effect time
+		if(living.xeno_caste.can_flags & CASTE_CAN_BE_GIVEN_PLASMA) //need 1 second more than the actual effect time
 			living.apply_status_effect(/datum/status_effect/noplasmaregen, 3 SECONDS)
 			living.apply_status_effect(/datum/status_effect/plasmadrain, 3 SECONDS)
 		living.add_slowdown(2)

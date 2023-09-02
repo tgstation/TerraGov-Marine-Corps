@@ -15,6 +15,7 @@
 /area/bigredv2/outside/office_complex)
 "aD" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/structure/cable,
 /turf/open/floor,
 /area/bigredv2/outside/office_complex)
 "aF" = (
@@ -53,7 +54,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/office_complex)
 "cD" = (
-/turf/open/floor/plating/ground/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand/autosmooth{
 	dir = 1
 	},
 /area/bigredv2/outside/e)
@@ -83,7 +84,7 @@
 /area/bigredv2/outside/e)
 "eU" = (
 /obj/structure/table,
-/obj/structure/paper_bin,
+/obj/effect/spawner/random/misc/paperbin,
 /turf/open/floor,
 /area/bigredv2/outside/office_complex)
 "eV" = (
@@ -136,7 +137,7 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/office_complex)
 "hp" = (
-/obj/item/analyzer,
+/obj/item/tool/analyzer,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/office_complex)
 "hZ" = (
@@ -157,7 +158,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/office_complex)
 "ie" = (
-/obj/structure/window/framed/colony,
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /turf/open/floor,
 /area/bigredv2/outside/office_complex)
 "if" = (
@@ -222,8 +223,7 @@
 /area/bigredv2/outside/e)
 "kz" = (
 /obj/structure/table,
-/obj/structure/flora/pottedplant{
-	icon_state = "plant-15";
+/obj/structure/flora/pottedplant/fifteen{
 	pixel_y = 10
 	},
 /turf/open/floor/grimy,
@@ -254,7 +254,7 @@
 /area/bigredv2/outside/office_complex)
 "lK" = (
 /obj/effect/landmark/weed_node,
-/turf/open/floor/plating/ground/mars/dirttosand,
+/turf/open/floor/plating/ground/mars/dirttosand/autosmooth,
 /area/bigredv2/outside/c)
 "lZ" = (
 /obj/effect/landmark/excavation_site_spawner,
@@ -343,6 +343,7 @@
 /area/bigredv2/outside/office_complex)
 "oU" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/structure/cable,
 /turf/open/floor/tile/white/warningstripe,
 /area/bigredv2/outside/office_complex)
 "pp" = (
@@ -377,6 +378,7 @@
 	dir = 10
 	},
 /obj/effect/landmark/weed_node,
+/obj/structure/cable,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/office_complex)
 "qu" = (
@@ -411,7 +413,7 @@
 /turf/open/floor/tile/whiteyellow/full,
 /area/bigredv2/outside/office_complex)
 "ra" = (
-/turf/open/floor/plating/ground/mars/dirttosand,
+/turf/open/floor/plating/ground/mars/dirttosand/autosmooth,
 /area/bigredv2/outside/c)
 "rb" = (
 /obj/structure/janitorialcart,
@@ -493,12 +495,12 @@
 /turf/open/floor,
 /area/bigredv2/outside/office_complex)
 "vR" = (
-/obj/effect/decal/mecha_wreckage/ripley/firefighter,
+/obj/mecha_wreckage/ripley/firefighter,
 /turf/open/floor/mech_bay_recharge_floor,
 /area/bigredv2/outside/office_complex)
 "vU" = (
 /obj/structure/table,
-/obj/effect/spawner/random/tech_supply,
+/obj/effect/spawner/random/engineering/tech_supply,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/office_complex)
 "vW" = (
@@ -507,11 +509,11 @@
 /area/bigredv2/outside/office_complex)
 "wh" = (
 /obj/structure/rack,
-/obj/effect/spawner/random/tech_supply,
+/obj/effect/spawner/random/engineering/tech_supply,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/office_complex)
 "wo" = (
-/obj/machinery/mecha_part_fabricator,
+/obj/structure/prop/mainship/research/mechafab,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/office_complex)
 "wr" = (
@@ -555,6 +557,7 @@
 /area/bigredv2/outside/office_complex)
 "yu" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/structure/cable,
 /turf/open/floor/tile/red/redtaupecorner{
 	dir = 4
 	},
@@ -589,7 +592,7 @@
 /area/bigredv2/outside/office_complex)
 "zx" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/item/folder/black,
+/obj/effect/spawner/random/misc/folder/nooffset,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/office_complex)
 "zI" = (
@@ -638,7 +641,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/office_complex)
 "BA" = (
-/obj/machinery/alarm{
+/obj/machinery/air_alarm{
 	dir = 4
 	},
 /turf/open/floor/tile/red/redtaupecorner{
@@ -708,6 +711,7 @@
 "Ep" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/landmark/weed_node,
+/obj/structure/cable,
 /turf/open/floor,
 /area/bigredv2/outside/office_complex)
 "EF" = (
@@ -757,6 +761,11 @@
 	},
 /turf/open/floor,
 /area/bigredv2/outside/office_complex)
+"HC" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable,
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/office_complex)
 "HG" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/ai_node,
@@ -800,8 +809,8 @@
 /area/bigredv2/outside/office_complex)
 "IL" = (
 /obj/structure/table,
-/obj/effect/spawner/random/tech_supply,
-/obj/effect/spawner/random/tech_supply,
+/obj/effect/spawner/random/engineering/tech_supply,
+/obj/effect/spawner/random/engineering/tech_supply,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/office_complex)
 "IO" = (
@@ -856,7 +865,7 @@
 /turf/open/floor/tile/whiteyellow/full,
 /area/bigredv2/outside/office_complex)
 "LE" = (
-/obj/machinery/autolathe,
+/obj/machinery/prop/autolathe,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/office_complex)
 "LH" = (
@@ -896,7 +905,7 @@
 /obj/structure/cable,
 /obj/effect/ai_node,
 /turf/open/floor,
-/area/bigredv2/outside/office_complex)
+/area/bigredv2/outside/e)
 "Nq" = (
 /turf/open/floor/marking/asteroidwarning{
 	dir = 9
@@ -904,7 +913,7 @@
 /area/bigredv2/outside/c)
 "NM" = (
 /obj/structure/table,
-/obj/item/multitool,
+/obj/item/tool/multitool,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/office_complex)
 "NT" = (
@@ -988,6 +997,7 @@
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
 	name = "\improper Robotics"
 	},
+/obj/structure/cable,
 /turf/open/floor,
 /area/bigredv2/outside/office_complex)
 "Rh" = (
@@ -1008,8 +1018,8 @@
 /area/bigredv2/outside/office_complex)
 "RR" = (
 /obj/structure/rack,
-/obj/effect/spawner/random/tech_supply,
-/obj/effect/spawner/random/tech_supply,
+/obj/effect/spawner/random/engineering/tech_supply,
+/obj/effect/spawner/random/engineering/tech_supply,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/office_complex)
 "RT" = (
@@ -1022,6 +1032,8 @@
 "SK" = (
 /obj/structure/table,
 /obj/item/reagent_containers/glass/beaker/sulphuric,
+/obj/structure/cable,
+/obj/machinery/power/apc,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/office_complex)
 "SY" = (
@@ -1032,7 +1044,7 @@
 /turf/open/floor/wood,
 /area/bigredv2/outside/office_complex)
 "Td" = (
-/obj/structure/window/framed/colony,
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /obj/machinery/door/poddoor/shutters/mainship{
 	id = "Office Complex 1";
 	name = "\improper Office Complex Shutters"
@@ -1040,7 +1052,7 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/office_complex)
 "Tz" = (
-/turf/open/floor/plating/ground/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand/autosmooth{
 	dir = 6
 	},
 /area/bigredv2/outside/c)
@@ -1118,6 +1130,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/decal/cleanable/dirt,
 /obj/item/folder/red,
+/obj/structure/cable,
 /turf/open/floor,
 /area/bigredv2/outside/office_complex)
 "Yt" = (
@@ -1143,7 +1156,7 @@
 /turf/open/floor/tile/red/redtaupecorner,
 /area/bigredv2/outside/office_complex)
 "Zt" = (
-/obj/structure/window/framed/colony,
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /obj/machinery/door/poddoor/shutters/mainship{
 	dir = 2;
 	id = "Office Complex 1";
@@ -1153,7 +1166,7 @@
 /area/bigredv2/outside/office_complex)
 "ZG" = (
 /obj/structure/table,
-/obj/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/office_complex)
 "ZR" = (
@@ -1358,7 +1371,7 @@ ov
 ov
 zJ
 ov
-Gq
+ov
 "}
 (9,1,1) = {"
 ra
@@ -1417,7 +1430,7 @@ Pq
 Pq
 ov
 SK
-wy
+HC
 qa
 oU
 aD

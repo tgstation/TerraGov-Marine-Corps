@@ -15,7 +15,7 @@ Mineral Sheets
 */
 
 GLOBAL_LIST_INIT(sandstone_recipes, list ( \
-	new/datum/stack_recipe("pile of dirt", /obj/machinery/portable_atmospherics/hydroponics/soil, 3, time = 1 SECONDS, max_per_turf = STACK_RECIPE_ONE_PER_TILE, on_floor = TRUE), \
+	new/datum/stack_recipe("pile of dirt", /obj/machinery/hydroponics/soil, 3, time = 1 SECONDS, max_per_turf = STACK_RECIPE_ONE_PER_TILE, on_floor = TRUE), \
 	new/datum/stack_recipe("sandstone door", /obj/structure/mineral_door/sandstone, 10, max_per_turf = STACK_RECIPE_ONE_PER_TILE, on_floor = TRUE), \
 	))
 
@@ -54,18 +54,18 @@ GLOBAL_LIST_INIT(iron_recipes, list ( \
 	))
 
 /obj/item/stack/sheet/mineral
-	force = 5.0
+	force = 5
 	throwforce = 5
 	w_class = WEIGHT_CLASS_NORMAL
 	throw_speed = 3
 	throw_range = 3
 
-/obj/item/stack/sheet/mineral/Initialize()
+/obj/item/stack/sheet/mineral/Initialize(mapload)
 	. = ..()
 	pixel_x = rand(-2, 2)
 	pixel_y = rand(-2, 2)
 
-obj/item/stack/sheet/mineral/iron
+/obj/item/stack/sheet/mineral/iron
 	name = "iron"
 	desc = "Iron is the most basic building material in space, a metal solid at room temperature, easy to shape and available in immense quantities."
 	singular_name = "iron sheet"
@@ -75,7 +75,7 @@ obj/item/stack/sheet/mineral/iron
 	perunit = 3750
 
 
-obj/item/stack/sheet/mineral/iron/Initialize()
+/obj/item/stack/sheet/mineral/iron/Initialize(mapload)
 	. = ..()
 	recipes = GLOB.iron_recipes
 
@@ -89,7 +89,7 @@ obj/item/stack/sheet/mineral/iron/Initialize()
 	sheettype = "sandstone"
 
 
-/obj/item/stack/sheet/mineral/sandstone/Initialize()
+/obj/item/stack/sheet/mineral/sandstone/Initialize(mapload)
 	. = ..()
 	recipes = GLOB.sandstone_recipes
 
@@ -102,7 +102,7 @@ obj/item/stack/sheet/mineral/iron/Initialize()
 	sheettype = "diamond"
 
 
-/obj/item/stack/sheet/mineral/diamond/Initialize()
+/obj/item/stack/sheet/mineral/diamond/Initialize(mapload)
 	. = ..()
 	recipes = GLOB.diamond_recipes
 
@@ -115,7 +115,7 @@ obj/item/stack/sheet/mineral/iron/Initialize()
 	sheettype = "uranium"
 
 
-/obj/item/stack/sheet/mineral/uranium/Initialize()
+/obj/item/stack/sheet/mineral/uranium/Initialize(mapload)
 	. = ..()
 	recipes = GLOB.uranium_recipes
 
@@ -145,7 +145,7 @@ obj/item/stack/sheet/mineral/iron/Initialize()
 	perunit = 2000
 
 
-/obj/item/stack/sheet/mineral/plastic/Initialize()
+/obj/item/stack/sheet/mineral/plastic/Initialize(mapload)
 	. = ..()
 	recipes = GLOB.plastic_recipes
 
@@ -166,7 +166,7 @@ obj/item/stack/sheet/mineral/iron/Initialize()
 	number_of_extra_variants = 2
 
 
-/obj/item/stack/sheet/mineral/gold/Initialize()
+/obj/item/stack/sheet/mineral/gold/Initialize(mapload)
 	. = ..()
 	recipes = GLOB.gold_recipes
 
@@ -180,7 +180,7 @@ obj/item/stack/sheet/mineral/iron/Initialize()
 	number_of_extra_variants = 2
 
 
-/obj/item/stack/sheet/mineral/silver/Initialize()
+/obj/item/stack/sheet/mineral/silver/Initialize(mapload)
 	. = ..()
 	recipes = GLOB.silver_recipes
 

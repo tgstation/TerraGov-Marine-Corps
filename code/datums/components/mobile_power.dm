@@ -20,14 +20,14 @@
 		src.size = size
 
 	find_machines_in_range()
-	RegisterSignal(SSdcs, COMSIG_GLOB_MACHINERY_ANCHORED_CHANGE, .proc/glob_anchor_changed)
+	RegisterSignal(SSdcs, COMSIG_GLOB_MACHINERY_ANCHORED_CHANGE, PROC_REF(glob_anchor_changed))
 
 	if(active)
 		activate()
 
-	RegisterSignal(parent, COMSIG_OBJ_SETANCHORED, .proc/parent_anchored)
-	RegisterSignal(parent, COMSIG_PORTGEN_POWER_TOGGLE, .proc/power_toggle)
-	RegisterSignal(parent, COMSIG_PORTGEN_PROCESS, .proc/parent_process)
+	RegisterSignal(parent, COMSIG_OBJ_SETANCHORED, PROC_REF(parent_anchored))
+	RegisterSignal(parent, COMSIG_PORTGEN_POWER_TOGGLE, PROC_REF(power_toggle))
+	RegisterSignal(parent, COMSIG_PORTGEN_PROCESS, PROC_REF(parent_process))
 
 /datum/component/mobile_power/Destroy(force, silent)
 	UnregisterSignal(SSdcs, COMSIG_GLOB_MACHINERY_ANCHORED_CHANGE)
@@ -82,10 +82,10 @@
 	if(get_dist(PG, machine) > size)
 		return
 	LAZYADD(machines_to_power, machine)
-	RegisterSignal(machine, COMSIG_OBJ_SETANCHORED, .proc/obj_anchor_changed)
+	RegisterSignal(machine, COMSIG_OBJ_SETANCHORED, PROC_REF(obj_anchor_changed))
 	if(active)
-		RegisterSignal(machine, COMSIG_MACHINERY_POWERED, .proc/powered)
-		RegisterSignal(machine, COMSIG_MACHINERY_USE_POWER, .proc/use_power)
+		RegisterSignal(machine, COMSIG_MACHINERY_POWERED, PROC_REF(powered))
+		RegisterSignal(machine, COMSIG_MACHINERY_USE_POWER, PROC_REF(use_power))
 
 /// Deal with one of our machines being unanchored
 /datum/component/mobile_power/proc/obj_anchor_changed(obj/source, anchorstate)
@@ -107,13 +107,13 @@
 		if(!M.anchored)
 			continue
 		LAZYADD(machines_to_power, M)
-		RegisterSignal(M, COMSIG_OBJ_SETANCHORED, .proc/obj_anchor_changed)
+		RegisterSignal(M, COMSIG_OBJ_SETANCHORED, PROC_REF(obj_anchor_changed))
 
 /// Enable power
 /datum/component/mobile_power/proc/activate()
 	for(var/obj/machinery/M AS in machines_to_power)
-		RegisterSignal(M, COMSIG_MACHINERY_POWERED, .proc/powered)
-		RegisterSignal(M, COMSIG_MACHINERY_USE_POWER, .proc/use_power)
+		RegisterSignal(M, COMSIG_MACHINERY_POWERED, PROC_REF(powered))
+		RegisterSignal(M, COMSIG_MACHINERY_USE_POWER, PROC_REF(use_power))
 
 /// Disable power
 /datum/component/mobile_power/proc/deactivate()

@@ -8,10 +8,11 @@
 	obj_flags = CAN_BE_HIT
 	var/base_state = "left"
 	max_integrity = 50
-	soft_armor = list("melee" = 20, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = 10, "bio" = 100, "rad" = 100, "fire" = 70, "acid" = 100)
+	soft_armor = list(MELEE = 20, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 10, BIO = 100, FIRE = 70, ACID = 100)
 	visible = FALSE
 	use_power = FALSE
 	flags_atom = ON_BORDER
+	allow_pass_flags = PASS_GLASS
 	opacity = FALSE
 	var/obj/item/circuitboard/airlock/electronics = null
 
@@ -22,25 +23,20 @@
 	base_state = "leftsecure"
 	max_integrity = 100
 
-
 /obj/machinery/door/window/Initialize(mapload, set_dir)
 	. = ..()
+	if(dir == NORTH)
+		add_overlay(image(icon, "rwindow_overlay", layer = WINDOW_LAYER))
+		layer = ABOVE_TABLE_LAYER
 	if(set_dir)
 		setDir(set_dir)
 	if(length(req_access))
 		icon_state = "[icon_state]"
 		base_state = icon_state
 	var/static/list/connections = list(
-		COMSIG_ATOM_EXIT = .proc/on_try_exit
+		COMSIG_ATOM_EXIT = PROC_REF(on_try_exit)
 	)
 	AddElement(/datum/element/connect_loc, connections)
-
-/obj/machinery/door/window/proc/on_try_exit(datum/source, atom/movable/mover, direction, list/moveblockers)
-	SIGNAL_HANDLER
-	if(!density || !(flags_atom & ON_BORDER) || !(direction & dir) || (mover.status_flags & INCORPOREAL))
-		return NONE
-	moveblockers += src
-	return COMPONENT_ATOM_BLOCK_EXIT
 
 /obj/machinery/door/window/Destroy()
 	density = FALSE
@@ -57,7 +53,7 @@
 /obj/machinery/door/window/proc/open_and_close()
 	open()
 	var/time_to_close = check_access(null) ? 5 SECONDS : 2 SECONDS
-	addtimer(CALLBACK(src, .proc/close), time_to_close)
+	addtimer(CALLBACK(src, PROC_REF(close)), time_to_close)
 
 /obj/machinery/door/window/Bumped(atom/movable/bumper)
 	if(operating || !density)
@@ -82,13 +78,6 @@
 	else
 		do_animate("deny")
 
-/obj/machinery/door/window/CanAllowThrough(atom/movable/mover, turf/target)
-	if(istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSGLASS))
-		return TRUE
-	if(get_dir(loc, target) & dir) //Make sure looking at appropriate border
-		return ..()
-	return TRUE
-
 /obj/machinery/door/window/open(forced = DOOR_NOT_FORCED)
 	if(operating)
 		return FALSE
@@ -101,7 +90,7 @@
 	icon_state = "[base_state]open"
 	do_animate("opening")
 	playsound(src, 'sound/machines/windowdoor.ogg', 25, 1)
-	addtimer(CALLBACK(src, .proc/finish_open), 1 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(finish_open)), 1 SECONDS)
 	return TRUE
 
 /obj/machinery/door/window/finish_open()
@@ -126,7 +115,7 @@
 
 	density = TRUE
 
-	addtimer(CALLBACK(src, .proc/finish_close), 1 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(finish_close)), 1 SECONDS)
 	return TRUE
 
 /obj/machinery/door/window/finish_close()
@@ -245,26 +234,14 @@
 	icon_state = "rightsecure"
 	base_state = "rightsecure"
 
-/obj/machinery/door/window/secure/bridge/rebel
-	req_access = list(ACCESS_MARINE_BRIDGE_REBEL)
-
-/obj/machinery/door/window/secure/bridge/rebel/right
-	icon_state = "rightsecure"
-	base_state = "rightsecure"
-
+/obj/machinery/door/window/secure/bridge/aidoor //special door with similar integrity to protective ai glass
+	max_integrity = 1200
 
 // Req Doors
 /obj/machinery/door/window/secure/req
 	req_one_access = list(ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_CARGO)
 
 /obj/machinery/door/window/secure/req/right
-	icon_state = "rightsecure"
-	base_state = "rightsecure"
-
-/obj/machinery/door/window/secure/req/rebel
-	req_one_access = list(ACCESS_MARINE_LOGISTICS_REBEL, ACCESS_MARINE_CARGO_REBEL)
-
-/obj/machinery/door/window/secure/req/rebel/right
 	icon_state = "rightsecure"
 	base_state = "rightsecure"
 
@@ -276,9 +253,6 @@
 	icon_state = "rightsecure"
 	base_state = "rightsecure"
 
-/obj/machinery/door/window/secure/engineering/rebel
-	req_access = list(ACCESS_MARINE_ENGINEERING_REBEL)
-
-/obj/machinery/door/window/secure/engineering/rebel/right
-	icon_state = "rightsecure"
-	base_state = "rightsecure"
+// Med Doors
+/obj/machinery/door/window/secure/medical
+	req_access = list(ACCESS_MARINE_CHEMISTRY)

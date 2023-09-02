@@ -20,13 +20,13 @@
 		dir = ndir
 	switch(dir)
 		if(NORTH)
-			pixel_y -= 32
+			pixel_y = -32
 		if(SOUTH)
-			pixel_y += 32
+			pixel_y = 32
 		if(EAST)
-			pixel_x -= 32
+			pixel_x = -32
 		if(WEST)
-			pixel_x += 32
+			pixel_x = 32
 
 /obj/structure/closet/walllocker/emerglocker //wall mounted emergency closet
 	name = "emergency locker"
@@ -59,7 +59,7 @@
 /obj/structure/closet/walllocker/hydrant/full // spawners
 
 /obj/structure/closet/walllocker/hydrant/full/PopulateContents()
-	new /obj/item/clothing/suit/fire/firefighter(src)
+	new /obj/item/clothing/suit/fire(src)
 	new /obj/item/clothing/mask/gas(src)
 	new /obj/item/flashlight(src)
 	new /obj/item/tank/oxygen/red(src)

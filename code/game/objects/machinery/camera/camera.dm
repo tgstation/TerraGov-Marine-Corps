@@ -2,7 +2,7 @@
 	name = "security camera"
 	desc = "It's used to monitor rooms."
 	icon = 'icons/obj/machines/monitors.dmi'
-	icon_state = "camera"
+	icon_state = "camera_icon"
 	use_power = ACTIVE_POWER_USE
 	idle_power_usage = 5
 	active_power_usage = 10
@@ -23,6 +23,7 @@
 
 /obj/machinery/camera/Initialize(mapload, newDir)
 	. = ..()
+	icon_state = "camera"
 
 	if(newDir)
 		setDir(newDir)
@@ -103,7 +104,7 @@
 				AI.last_paper_seen = "<HTML><HEAD><TITLE>[itemname]</TITLE></HEAD><BODY><TT>[info]</TT></BODY></HTML>"
 			else if(O.client && O.client.eye == src)
 				to_chat(O, "[U] holds \a [itemname] up to one of the cameras ...")
-				O << browse(text("<HTML><HEAD><TITLE>[]</TITLE></HEAD><BODY><TT>[]</TT></BODY></HTML>", itemname, info), text("window=[]", itemname))
+				O << browse("<HTML><HEAD><TITLE>[itemname]</TITLE></HEAD><BODY><TT>[info]</TT></BODY></HTML>", "window=[itemname]")
 
 
 /obj/machinery/camera/screwdriver_act(mob/living/user, obj/item/I)
@@ -284,14 +285,14 @@
 			if(cam == src)
 				return
 	if(on)
-		set_light(AI_CAMERA_LUMINOSITY)
+		set_light(AI_CAMERA_LUMINOSITY, AI_CAMERA_LUMINOSITY)
 	else
 		set_light(0)
 
 
 /obj/machinery/camera/get_remote_view_fullscreens(mob/user)
 	if(view_range == short_range) //unfocused
-		user.overlay_fullscreen("remote_view", /obj/screen/fullscreen/impaired, 2)
+		user.overlay_fullscreen("remote_view", /atom/movable/screen/fullscreen/impaired, 2)
 
 
 /obj/machinery/camera/update_remote_sight(mob/living/user)
@@ -306,8 +307,8 @@
 
 
 //This camera type automatically sets it's name to whatever the area that it's in is called.
-/obj/machinery/camera/autoname/Initialize()
-	. =  ..()
+/obj/machinery/camera/autoname/Initialize(mapload)
+	. = ..()
 	var/static/list/id_by_area = list()
 	var/area/A = get_area(src)
 	c_tag = "[A.name] #[++id_by_area[A]]"
@@ -316,9 +317,6 @@
 	name = "military-grade camera"
 	network = list("marinemainship")
 
-/obj/machinery/camera/autoname/mainship/rebelship
-	network = list("rebelmainship")
-
 //cameras installed inside the dropships, accessible via both cockpit monitor and ship camera computers
 /obj/machinery/camera/autoname/mainship/dropship_one
 	network = list("marinemainship", "dropship1")
@@ -326,9 +324,6 @@
 
 /obj/machinery/camera/autoname/mainship/dropship_two
 	network = list("marinemainship", "dropship2")
-
-/obj/machinery/camera/autoname/mainship/dropship_three
-	network = list("rebelmainship", "dropship3")
 
 /obj/machinery/camera/headset
 	name = "headset camera"

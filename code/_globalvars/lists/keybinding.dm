@@ -4,8 +4,10 @@
 		var/datum/keybinding/keybinding = KB
 		if(!initial(keybinding.keybind_signal))
 			continue
+
 		add_keybinding(new keybinding)
 	init_emote_keybinds()
+
 
 
 /// Adds an instanced keybinding to the global tracker
@@ -13,6 +15,7 @@
 	if(!instance.name)
 		return
 	GLOB.keybindings_by_name[instance.name] = instance
+	GLOB.keybindings_by_signal[instance.keybind_signal] = instance
 
 	// Hotkey
 	if(LAZYLEN(instance.hotkey_keys))

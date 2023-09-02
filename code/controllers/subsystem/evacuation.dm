@@ -6,7 +6,7 @@ SUBSYSTEM_DEF(evacuation)
 	var/pod_cooldown
 	var/evac_time
 	var/evac_status = EVACUATION_STATUS_STANDING_BY
-	///list of alarm lights that we activate with self detruct
+	///list of alarm lights that we activate during self destruct
 	var/list/alarm_lights = list()
 
 	var/obj/machinery/self_destruct/console/dest_master
@@ -37,7 +37,7 @@ SUBSYSTEM_DEF(evacuation)
 		return FALSE
 
 	dest_cooldown = SELF_DESTRUCT_ROD_STARTUP_TIME / length(dest_rods)
-	dest_master.desc = "The main operating panel for a self-destruct system. It requires very little user input, but the final safety mechanism is manually unlocked.\nAfter the initial start-up sequence, [dest_rods.len] control rods must be armed, followed by manually flipping the detonation switch."
+	dest_master.desc = "The main operating panel for a self-destruct system. It requires very little user input, but the final safety mechanism is manually unlocked.\nAfter the initial start-up sequence, [length(dest_rods)] control rods must be armed, followed by manually flipping the detonation switch."
 
 /datum/controller/subsystem/evacuation/fire()
 	process_evacuation()
@@ -195,7 +195,8 @@ SUBSYSTEM_DEF(evacuation)
 		var/mob/M = x
 		if(isobserver(M))
 			continue
-		shake_camera(M, 110, 4)
+		if(M.z == I.z)
+			shake_camera(M, 110, 4)
 
 	if(ship_intact)
 		Cinematic(CINEMATIC_SELFDESTRUCT_MISS, world)

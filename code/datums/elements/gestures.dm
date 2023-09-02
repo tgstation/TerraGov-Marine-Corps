@@ -1,5 +1,5 @@
 /datum/element/gesture
-	element_flags = ELEMENT_DETACH
+	element_flags = ELEMENT_DETACH_ON_HOST_DESTROY
 	var/turf/starting_mob_turf
 	var/turf/starting_turf
 
@@ -7,8 +7,8 @@
 	if(!isliving(target))
 		return ELEMENT_INCOMPATIBLE
 	. = ..()
-	RegisterSignal(target, COMSIG_MOB_MOUSEDOWN, .proc/start_gesture)
-	RegisterSignal(target, COMSIG_MOB_MOUSEUP, .proc/end_gesture)
+	RegisterSignal(target, COMSIG_MOB_MOUSEDOWN, PROC_REF(start_gesture))
+	RegisterSignal(target, COMSIG_MOB_MOUSEUP, PROC_REF(end_gesture))
 
 /datum/element/gesture/Detach(datum/source, force)
 	UnregisterSignal(source, list(

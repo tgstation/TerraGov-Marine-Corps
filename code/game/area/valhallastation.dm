@@ -8,7 +8,7 @@
 
 /area/centcom/valhalla/exterior
 	name = "Exterior Area"
-	icon_state = "lv-626"
+	icon_state = "transparent"
 
 /area/centcom/valhalla/aft
 	name = "Aft Maintenance"
@@ -268,6 +268,10 @@
 /area/centcom/valhalla/security/detectives_office
 	name = "Detective's Office"
 	icon_state = "detective"
+
+/area/centcom/valhalla/xenocave
+	name = "Xeno Cave"
+	icon_state = "north"
 
 ///////////WORK IN PROGRESS//////////
 

@@ -13,7 +13,7 @@ Configuration:
 
 Usage:
 - Define mouse event procs on your (probably HUD) object and simply call the show and hide procs respectively:
-	/obj/screen/hud
+	/atom/movable/screen/hud
 		MouseEntered(location, control, params)
 			usr.client.tooltip.show(params, title = src.name, content = src.desc)
 
@@ -91,7 +91,7 @@ Notes:
 
 /datum/tooltip/proc/hide()
 	if (queueHide)
-		addtimer(CALLBACK(src, .proc/do_hide), 1)
+		addtimer(CALLBACK(src, PROC_REF(do_hide)), 1)
 	else
 		do_hide()
 

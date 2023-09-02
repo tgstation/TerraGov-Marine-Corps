@@ -36,7 +36,7 @@ SUBSYSTEM_DEF(codex)
 		var/datum/codex_entry/entry = SScodex.entries_by_string[thing]
 		index_file[entry.display_name] = entry
 	index_file = sortTim(index_file, cmp=/proc/cmp_text_asc)
-	return ..()
+	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/codex/proc/get_codex_entry(datum/codex_entry/entry)
 	if(!initialized)

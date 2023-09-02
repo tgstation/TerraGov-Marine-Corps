@@ -1,48 +1,3 @@
-
-/*
-	run_armor_check(a,b)
-	args
-	a:def_zone - What part is getting hit, if null will check entire body
-	b:attack_flag - What type of attack, bullet, laser, energy, melee
-
-	Returns
-	The armour percentage which is deducted om the damage.
-*/
-/mob/living/proc/run_armor_check(def_zone = null, attack_flag = "melee")
-	return getarmor(def_zone, attack_flag)
-
-
-//if null is passed for def_zone, then this should return something appropriate for all zones (e.g. area effect damage)
-/mob/living/proc/getarmor(def_zone, type)
-	return 0
-
-//Handles the effects of "stun" weapons
-/**
-	stun_effect_act(stun_amount, agony_amount, def_zone)
-
-	Handle the effects of a "stun" weapon
-
-	Arguments
-		stun_amount {int} applied as Stun and Paralyze
-		def_zone {enum} which body part to target
-*/
-/mob/living/proc/stun_effect_act(stun_amount, agony_amount, def_zone)
-	if(status_flags & GODMODE)
-		return FALSE
-
-	flash_pain()
-
-	if(stun_amount)
-		Stun(stun_amount * 20) // TODO: replace these amounts in stun_effect_stun() calls
-		Paralyze(stun_amount * 20)
-		apply_effect(STUTTER, stun_amount)
-		apply_effect(EYE_BLUR, stun_amount)
-
-	if(agony_amount)
-		apply_effect(STUTTER, agony_amount/10)
-		apply_effect(EYE_BLUR, agony_amount/10)
-
-
 /mob/living/proc/electrocute_act(shock_damage, obj/source, siemens_coeff = 1.0)
 	return 0 //only carbon liveforms have this proc
 
@@ -53,57 +8,37 @@
 	..()
 
 //this proc handles being hit by a thrown atom
-/mob/living/hitby(atom/movable/AM as mob|obj,speed = 5)//Standardization and logging -Sieve
-	if(istype(AM,/obj/))
+/mob/living/hitby(atom/movable/AM, speed = 5)
+	if(isliving(AM))
+		var/mob/living/thrown_mob = AM
+		if(thrown_mob.mob_size >= mob_size)
+			apply_damage((thrown_mob.mob_size + 1 - mob_size) * speed, BRUTE, BODY_ZONE_CHEST, MELEE, updating_health = TRUE)
+		if(thrown_mob.mob_size <= mob_size)
+			thrown_mob.stop_throw()
+			thrown_mob.apply_damage(speed, BRUTE, BODY_ZONE_CHEST, MELEE, updating_health = TRUE)
+	else if(isobj(AM))
 		var/obj/O = AM
-		var/dtype = BRUTE
-		if(istype(O,/obj/item/weapon))
-			var/obj/item/weapon/W = O
-			dtype = W.damtype
-		var/throw_damage = O.throwforce*(speed/5)
-
-		var/miss_chance = 15
-		if (O.throw_source)
-			var/distance = get_dist(O.throw_source, loc)
-			miss_chance = min(15*(distance-2), 0)
-
-		if (prob(miss_chance))
-			visible_message(span_notice(" \The [O] misses [src] narrowly!"), null, null, 5)
-			return
-
-		src.visible_message(span_warning(" [src] has been hit by [O]."), null, null, 5)
-		var/armor = run_armor_check(null, "melee")
-
-		if(armor < 1)
-			apply_damage(max(0, throw_damage - (throw_damage * soft_armor.getRating("melee") * 0.01)), dtype, null, armor, is_sharp(O), has_edge(O), TRUE)
-
+		O.stop_throw()
+		apply_damage(O.throwforce*(speed * 0.2), O.damtype, BODY_ZONE_CHEST, MELEE, is_sharp(O), has_edge(O), TRUE, O.penetration)
 		if(O.item_fire_stacks)
 			fire_stacks += O.item_fire_stacks
-		if(CHECK_BITFIELD(O.resistance_flags, ON_FIRE))
 			IgniteMob()
 
-		O.set_throwing(FALSE) //it hit, so stop moving
+	visible_message(span_warning(" [src] has been hit by [AM]."), null, null, 5)
+	if(ismob(AM.thrower))
+		var/mob/M = AM.thrower
+		if(M.client)
+			log_combat(M, src, "hit", AM, "(thrown)")
 
-		if(ismob(O.thrower))
-			var/mob/M = O.thrower
-			var/client/assailant = M.client
-			if(assailant)
-				log_combat(M, src, "hit", O, "(thrown)")
-
-		// Begin BS12 momentum-transfer code.
-		if(O.throw_source && speed >= 15)
-			var/obj/item/W = O
-			var/momentum = speed/2
-			var/dir = get_dir(O.throw_source, src)
-
-			visible_message(span_warning(" [src] staggers under the impact!"),span_warning(" You stagger under the impact!"), null, 5)
-			src.throw_at(get_edge_target_turf(src,dir),1,momentum)
-
-			if(!W || !src) return
-
-			if(W.sharp && prob(W.embedding.embed_chance)) //Projectile is suitable for pinning.
-				//Handles embedding for non-humans and simple_animals.
-				W.embed_into(src)
+	if(speed < 15)
+		return
+	if(isitem(AM))
+		var/obj/item/W = AM
+		if(W.sharp && prob(W.embedding.embed_chance))
+			W.embed_into(src)
+	if(AM.throw_source)
+		visible_message(span_warning(" [src] staggers under the impact!"),span_warning(" You stagger under the impact!"), null, 5)
+		src.throw_at(get_edge_target_turf(src, get_dir(AM.throw_source, src)), 1, speed * 0.5)
 
 //This is called when the mob is thrown into a dense turf
 /mob/living/proc/turf_collision(turf/T, speed)
@@ -136,19 +71,21 @@
 		return FALSE
 	if(fire_stacks > 0 && !on_fire)
 		on_fire = TRUE
-		RegisterSignal(src, COMSIG_LIVING_DO_RESIST, .proc/resist_fire)
+		RegisterSignal(src, COMSIG_LIVING_DO_RESIST, PROC_REF(resist_fire))
 		to_chat(src, span_danger("You are on fire! Use Resist to put yourself out!"))
+		visible_message(span_danger("[src] bursts into flames!"), isxeno(src) ? span_xenodanger("You burst into flames!") : span_highdanger("You burst into flames!"))
 		update_fire()
+		SEND_SIGNAL(src, COMSIG_LIVING_IGNITED, fire_stacks)
 		return TRUE
 
 /mob/living/carbon/human/IgniteMob()
 	. = ..()
-	if(.)
+	if(on_fire == TRUE)
 		if(!stat && !(species.species_flags & NO_PAIN))
 			emote("scream")
 
 /mob/living/carbon/xenomorph/IgniteMob()
-	if(fire_resist_modifier <= -1)	//having high fire resist makes you immune
+	if(xeno_caste.caste_flags & CASTE_FIRE_IMMUNE)
 		return
 	. = ..()
 	if(!.)
@@ -192,8 +129,12 @@
 	return
 
 /mob/living/proc/adjust_fire_stacks(add_fire_stacks) //Adjusting the amount of fire_stacks we have on person
+	if(QDELETED(src))
+		return
 	if(status_flags & GODMODE) //Invulnerable mobs don't get fire stacks
 		return
+	if(add_fire_stacks > 0)	//Fire stack increases are affected by armor, end result rounded up.
+		add_fire_stacks = CEILING(modify_by_armor(add_fire_stacks, FIRE), 1)
 	fire_stacks = clamp(fire_stacks + add_fire_stacks, -20, 20)
 	if(on_fire && fire_stacks <= 0)
 		ExtinguishMob()
@@ -211,12 +152,28 @@
 	adjust_fire_stacks(rand(1,2))
 	IgniteMob()
 
+/mob/living/flamer_fire_act(burnlevel)
+	if(!burnlevel)
+		return
+	if(status_flags & (INCORPOREAL|GODMODE)) //Ignore incorporeal/invul targets
+		return
+	if(hard_armor.getRating(FIRE) >= 100)
+		to_chat(src, span_warning("You are untouched by the flames."))
+		return
+
+	take_overall_damage(rand(10, burnlevel), BURN, FIRE, updating_health = TRUE, max_limbs = 4)
+	to_chat(src, span_warning("You are burned!"))
+
+	if(pass_flags & PASS_FIRE) //Pass fire allow to cross fire without being ignited
+		return
+
+	adjust_fire_stacks(burnlevel)
+	IgniteMob()
 
 /mob/living/proc/resist_fire(datum/source)
 	SIGNAL_HANDLER
 	fire_stacks = max(fire_stacks - rand(3, 6), 0)
-	Paralyze(80)
-
+	Paralyze(3 SECONDS)
 	var/turf/T = get_turf(src)
 	if(istype(T, /turf/open/floor/plating/ground/snow))
 		visible_message(span_danger("[src] rolls in the snow, putting themselves out!"), \
@@ -243,6 +200,8 @@
 		if(CHECK_BITFIELD(S.smoke_traits, SMOKE_CAMO))
 			smokecloak_off()
 		return
+	if(status_flags & GODMODE)
+		return FALSE
 	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_XENO) && (stat == DEAD || isnestedhost(src)))
 		return FALSE
 	if(LAZYACCESS(smoke_delays, S.type) > world.time)
@@ -261,11 +220,19 @@
 		if(prob(25 * protection))
 			to_chat(src, span_danger("Your skin feels like it is melting away!"))
 		adjustFireLoss(S.strength * rand(20, 23) * protection)
+	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_XENO_TOXIC))
+		if(HAS_TRAIT(src, TRAIT_INTOXICATION_IMMUNE))
+			return
+		if(has_status_effect(STATUS_EFFECT_INTOXICATED))
+			var/datum/status_effect/stacking/intoxicated/debuff = has_status_effect(STATUS_EFFECT_INTOXICATED)
+			debuff.add_stacks(SENTINEL_TOXIC_GRENADE_STACKS_PER)
+		apply_status_effect(STATUS_EFFECT_INTOXICATED, SENTINEL_TOXIC_GRENADE_STACKS_PER)
+		adjustFireLoss(SENTINEL_TOXIC_GRENADE_GAS_DAMAGE * protection)
 	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_CHEM))
 		S.reagents?.reaction(src, TOUCH, S.fraction)
 	return protection
 
-/mob/living/proc/check_shields(attack_type, damage, damage_type = "melee", silent)
+/mob/living/proc/check_shields(attack_type, damage, damage_type = "melee", silent, penetration = 0)
 	if(!damage)
 		stack_trace("check_shields called without a damage value")
 		return 0
@@ -273,9 +240,23 @@
 	var/list/affecting_shields = list()
 	SEND_SIGNAL(src, COMSIG_LIVING_SHIELDCALL, affecting_shields, damage_type)
 	if(length(affecting_shields) > 1)
-		sortTim(affecting_shields, /proc/cmp_numeric_dsc, associative = TRUE)
+		sortTim(affecting_shields, GLOBAL_PROC_REF(cmp_numeric_dsc), associative = TRUE)
 	for(var/shield in affecting_shields)
 		var/datum/callback/shield_check = shield
-		. = shield_check.Invoke(attack_type, ., damage_type, silent)
+		. = shield_check.Invoke(attack_type, ., damage_type, silent, penetration)
 		if(!.)
 			break
+
+///Applies radiation effects to a mob
+/mob/living/proc/apply_radiation(rad_strength = 7, sound_level = null)
+	var/datum/looping_sound/geiger/geiger_counter = new(null, TRUE)
+	geiger_counter.severity = sound_level ? sound_level : clamp(round(rad_strength * 0.15, 1), 1, 4)
+	geiger_counter.start(src)
+
+	adjustCloneLoss(rad_strength)
+	adjustStaminaLoss(rad_strength * 7)
+	adjust_stagger(rad_strength SECONDS * 0.5)
+	add_slowdown(rad_strength * 0.5)
+	blur_eyes(rad_strength) //adds a visual indicator that you've just been irradiated
+	adjust_radiation(rad_strength * 20) //Radiation status effect, duration is in deciseconds
+	to_chat(src, span_warning("Your body tingles as you suddenly feel the strength drain from your body!"))

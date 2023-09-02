@@ -1,6 +1,6 @@
 /datum/element/attachment
 	element_flags = ELEMENT_BESPOKE
-	id_arg_index = 2
+	argument_hash_start_idx = 2
 	///Assoc list of the data required for attaching. It does not change and should not be edited anywhere but here.
 	var/list/attachment_data
 
@@ -33,7 +33,7 @@
 			EXTRA_VARS = extra_vars, //List of extra vars for other uses.
 		)
 
-	RegisterSignal(target, COMSIG_ITEM_IS_ATTACHING, .proc/on_attaching)
+	RegisterSignal(target, COMSIG_ITEM_IS_ATTACHING, PROC_REF(on_attaching))
 
 /datum/element/attachment/Detach(datum/source, force)
 	UnregisterSignal(source, COMSIG_ITEM_IS_ATTACHING)

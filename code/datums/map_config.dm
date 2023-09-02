@@ -21,6 +21,7 @@
 	var/space_empty_levels = 1
 	var/list/environment_traits = list()
 	var/armor_style = "default"
+	var/quickbuilds = 1000
 	var/list/gamemodes = list()
 
 	var/allow_custom_shuttles = TRUE
@@ -94,6 +95,7 @@
 	map_name = json["map_name"]
 	CHECK_EXISTS("map_path")
 	map_path = json["map_path"]
+	announce_text = json["announce_text"]
 
 	map_file = json["map_file"]
 	// "map_file": "BoxStation.dmm"
@@ -149,11 +151,11 @@
 
 	allow_custom_shuttles = json["allow_custom_shuttles"] != FALSE
 
-	if(json["announce_text"] && maptype == SHIP_MAP)
-		announce_text = replacetext(json["announce_text"], "###SHIPNAME###", map_name)
-
 	if(json["armor"])
 		armor_style = json["armor"]
+
+	if(json["quickbuilds"])
+		quickbuilds = json["quickbuilds"]
 
 	if(islist(json["environment_traits"]))
 		environment_traits = json["environment_traits"]

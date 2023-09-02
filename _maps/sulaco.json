@@ -1,6 +1,6 @@
 {
     "map_name": "Sulaco",
     "map_path": "map_files/Sulaco",
-    "map_file": "Sulaco.dmm",
+    "map_file": "TGS_Sulaco.dmm",
     "traits": [{"Marine Main Ship": true}]
 }

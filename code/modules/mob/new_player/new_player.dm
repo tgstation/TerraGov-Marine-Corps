@@ -1,5 +1,5 @@
 /mob/new_player
-	invisibility = INVISIBILITY_MAXIMUM
+	invisibility = INVISIBILITY_ABSTRACT
 	stat = DEAD
 	density = FALSE
 	canmove = FALSE
@@ -14,7 +14,7 @@
 	var/datum/job/saved_job
 
 
-/mob/new_player/Initialize()
+/mob/new_player/Initialize(mapload)
 	if(length(GLOB.newplayer_start))
 		var/turf/spawn_loc = get_turf(pick(GLOB.newplayer_start))
 		forceMove(spawn_loc)
@@ -69,24 +69,23 @@
 			return null
 		return output
 
-/mob/new_player/Stat()
+/mob/new_player/get_status_tab_items()
 	. = ..()
 
 	if(!SSticker)
 		return
 
-	if(statpanel("Status"))
-
-		if(SSticker.current_state == GAME_STATE_PREGAME)
-			stat("Time To Start:", "[SSticker.time_left > 0 ? SSticker.GetTimeLeft() : "(DELAYED)"]")
-			stat("Players: [length(GLOB.player_list)]", "Players Ready: [length(GLOB.ready_players)]")
-			for(var/i in GLOB.player_list)
-				if(isnewplayer(i))
-					var/mob/new_player/N = i
-					stat("[N.client?.holder?.fakekey ? N.client.holder.fakekey : N.key]", N.ready ? "Playing" : "")
-				else if(isobserver(i))
-					var/mob/dead/observer/O = i
-					stat("[O.client?.holder?.fakekey ? O.client.holder.fakekey : O.key]", "Observing")
+	if(SSticker.current_state == GAME_STATE_PREGAME)
+		. += "Time To Start: [SSticker.time_left > 0 ? SSticker.GetTimeLeft() : "(DELAYED)"]"
+		. += "Players: [length(GLOB.player_list)]"
+		. += "Players Ready: [length(GLOB.ready_players)]"
+		for(var/i in GLOB.player_list)
+			if(isnewplayer(i))
+				var/mob/new_player/N = i
+				. += "[N.client?.holder?.fakekey ? N.client.holder.fakekey : N.key][N.ready ? " Playing" : ""]"
+			else if(isobserver(i))
+				var/mob/dead/observer/O = i
+				. += "[O.client?.holder?.fakekey ? O.client.holder.fakekey : O.key] Observing"
 
 
 /mob/new_player/Topic(href, href_list[])
@@ -143,8 +142,8 @@
 			var/datum/job/job_datum = locate(href_list["job_selected"])
 			if(!isxenosjob(job_datum) && (SSmonitor.gamestate == SHUTTERS_CLOSED || (SSmonitor.gamestate == GROUNDSIDE && SSmonitor.current_state <= XENOS_LOSING)))
 				var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
-				if((xeno_job.total_positions-xeno_job.current_positions) > GLOB.alive_xeno_list.len * TOO_MUCH_BURROWED_PROPORTION)
-					if(tgui_alert(src, "There is a lack of xenos players on this round, unbalanced rounds are unfun for everyone. Are you sure you want to play as a marine? ", "Warning : the game is unbalanced", list("Yes", "No")) != "Yes")
+				if((xeno_job.total_positions-xeno_job.current_positions) > length(GLOB.alive_xeno_list_hive[XENO_HIVE_NORMAL]) * TOO_MUCH_BURROWED_PROPORTION)
+					if(tgui_alert(src, "There is a lack of xeno players on this round, unbalanced rounds are unfun for everyone. Are you sure you want to play as a marine? ", "Warning : the game is unbalanced", list("Yes", "No")) != "Yes")
 						return
 			if(!SSticker.mode.CanLateSpawn(src, job_datum)) // Try to assigns job to new player
 				return
@@ -287,12 +286,6 @@
 		. = ..()
 	return client.prefs.gender
 
-
-
-/mob/new_player/Hear()
-	return
-
-
 /mob/new_player/proc/create_character()
 	if(!assigned_role)
 		CRASH("create_character called for [key] without an assigned_role")
@@ -301,6 +294,7 @@
 	var/spawn_type = assigned_role.return_spawn_type(client.prefs)
 	var/mob/living/spawning_living = new spawn_type()
 	GLOB.joined_player_list += ckey
+	client.init_verbs()
 
 	spawning_living.on_spawn(src)
 
@@ -314,15 +308,15 @@
 	if(!is_banned_from(summoner.ckey, "Appearance") && summoner.client)
 		summoner.client.prefs.copy_to(src)
 	update_names_joined_list(real_name)
-	overlay_fullscreen_timer(0.5 SECONDS, 10, "roundstart1", /obj/screen/fullscreen/black)
-	overlay_fullscreen_timer(2 SECONDS, 20, "roundstart2", /obj/screen/fullscreen/spawning_in)
+	overlay_fullscreen_timer(0.5 SECONDS, 10, "roundstart1", /atom/movable/screen/fullscreen/black)
+	overlay_fullscreen_timer(2 SECONDS, 20, "roundstart2", /atom/movable/screen/fullscreen/spawning_in)
 
 /mob/living/silicon/ai/on_spawn(mob/new_player/summoner)
 	if(!is_banned_from(summoner.ckey, "Appearance") && summoner.client?.prefs?.ai_name)
 		fully_replace_character_name(real_name, summoner.client.prefs.ai_name)
 	update_names_joined_list(real_name)
-	overlay_fullscreen_timer(0.5 SECONDS, 10, "roundstart1", /obj/screen/fullscreen/black)
-	overlay_fullscreen_timer(2 SECONDS, 20, "roundstart2", /obj/screen/fullscreen/spawning_in)
+	overlay_fullscreen_timer(0.5 SECONDS, 10, "roundstart1", /atom/movable/screen/fullscreen/black)
+	overlay_fullscreen_timer(2 SECONDS, 20, "roundstart2", /atom/movable/screen/fullscreen/spawning_in)
 
 
 /mob/new_player/proc/transfer_character()
@@ -400,6 +394,7 @@
 	observer.name = observer.real_name
 
 	mind.transfer_to(observer, TRUE)
+	observer.client?.init_verbs()
 	qdel(src)
 
 ///Toggles the new players ready state

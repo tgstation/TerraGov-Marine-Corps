@@ -33,3 +33,7 @@
 #define STACK_RECIPE_ONE_DIRECTIONAL_PER_TILE 2
 
 #define MAXCOIL 30
+
+//The amount of materials you get from a sheet of mineral like iron/diamond/glass etc
+#define MINERAL_MATERIAL_AMOUNT 2000
+

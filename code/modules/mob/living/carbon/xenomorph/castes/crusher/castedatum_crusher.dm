@@ -29,10 +29,14 @@
 	deevolves_to = /mob/living/carbon/xenomorph/bull
 
 	// *** Flags *** //
-	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER|CASTE_CAN_BECOME_KING
+	can_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER
+	caste_traits = null
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 70, "bullet" = 60, "laser" = 60, "energy" = 60, "bomb" = 100, "bio" = 80, "rad" = 80, "fire" = 60, "acid" = 80)
+	soft_armor = list(MELEE = 70, BULLET = 60, LASER = 60, ENERGY = 60, BOMB = 100, BIO = 80, FIRE = 25, ACID = 80)
+
+	// *** Minimap Icon *** //
+	minimap_icon = "crusher"
 
 	// *** Crusher Abilities *** //
 	stomp_damage = 45
@@ -40,6 +44,7 @@
 
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
+		/datum/action/xeno_action/watch_xeno,
 		/datum/action/xeno_action/activable/psydrain,
 		/datum/action/xeno_action/activable/stomp,
 		/datum/action/xeno_action/ready_charge,
@@ -49,7 +54,7 @@
 /datum/xeno_caste/crusher/on_caste_applied(mob/xenomorph)
 	. = ..()
 	xenomorph.AddElement(/datum/element/ridable, /datum/component/riding/creature/crusher)
-	xenomorph.RegisterSignal(xenomorph, COMSIG_GRAB_SELF_ATTACK, /mob/living/carbon/xenomorph.proc/grabbed_self_attack)
+	xenomorph.RegisterSignal(xenomorph, COMSIG_GRAB_SELF_ATTACK, TYPE_PROC_REF(/mob/living/carbon/xenomorph, grabbed_self_attack))
 
 /datum/xeno_caste/crusher/on_caste_removed(mob/xenomorph)
 	. = ..()
@@ -81,7 +86,7 @@
 	upgrade_threshold = TIER_THREE_MATURE_THRESHOLD
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 75, "bullet" = 65, "laser" = 65, "energy" = 65, "bomb" = 100, "bio" = 90, "rad" = 90, "fire" = 65, "acid" = 90)
+	soft_armor = list(MELEE = 75, BULLET = 65, LASER = 65, ENERGY = 65, BOMB = 110, BIO = 90, FIRE = 30, ACID = 90)
 
 	// *** Abilities *** //
 	stomp_damage = 50
@@ -110,7 +115,7 @@
 	upgrade_threshold = TIER_THREE_ELDER_THRESHOLD
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 80, "bullet" = 70, "laser" = 70, "energy" = 70, "bomb" = 100, "bio" = 95, "rad" = 95, "fire" = 70, "acid" = 95)
+	soft_armor = list(MELEE = 80, BULLET = 70, LASER = 70, ENERGY = 70, BOMB = 120, BIO = 95, FIRE = 35, ACID = 95)
 
 	// *** Abilities *** //
 	stomp_damage = 55
@@ -139,7 +144,7 @@
 	upgrade_threshold = TIER_THREE_ANCIENT_THRESHOLD
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 90, "bullet" = 75, "laser" = 75, "energy" = 75, "bomb" = 100, "bio" = 100, "rad" = 100, "fire" = 75, "acid" = 100)
+	soft_armor = list(MELEE = 90, BULLET = 75, LASER = 75, ENERGY = 75, BOMB = 130, BIO = 100, FIRE = 40, ACID = 100)
 	// *** Abilities *** //
 	stomp_damage = 60
 	crest_toss_distance = 6
@@ -165,13 +170,14 @@
 	max_health = 400
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 90, "bullet" = 75, "laser" = 75, "energy" = 75, "bomb" = 100, "bio" = 100, "rad" = 100, "fire" = 75, "acid" = 100)
+	soft_armor = list(MELEE = 90, BULLET = 75, LASER = 75, ENERGY = 75, BOMB = 130, BIO = 100, FIRE = 40, ACID = 100)
 	// *** Abilities *** //
 	stomp_damage = 60
 	crest_toss_distance = 6
 
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
+		/datum/action/xeno_action/watch_xeno,
 		/datum/action/xeno_action/activable/psydrain,
 		/datum/action/xeno_action/activable/stomp,
 		/datum/action/xeno_action/ready_charge,

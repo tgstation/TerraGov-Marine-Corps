@@ -90,8 +90,8 @@
 	item_state = "hoe"
 	flags_atom = CONDUCT
 	flags_item = NOBLUDGEON
-	force = 5.0
-	throwforce = 7.0
+	force = 5
+	throwforce = 7
 	w_class = WEIGHT_CLASS_SMALL
 	attack_verb = list("slashed", "sliced", "cut", "clawed")
 
@@ -105,9 +105,9 @@
 	icon = 'icons/obj/items/weapons.dmi'
 	icon_state = "hatchet"
 	flags_atom = CONDUCT
-	force = 25.0
+	force = 25
 	w_class = WEIGHT_CLASS_SMALL
-	throwforce = 20.0
+	throwforce = 20
 	throw_speed = 4
 	throw_range = 4
 	sharp = IS_SHARP_ITEM_BIG
@@ -124,8 +124,8 @@
 	desc = "A sharp and curved blade on a long fibremetal handle, this tool makes it easy to reap what you sow."
 	icon = 'icons/obj/items/weapons.dmi'
 	icon_state = "scythe"
-	force = 13.0
-	throwforce = 5.0
+	force = 13
+	throwforce = 5
 	throw_speed = 1
 	throw_range = 3
 	w_class = WEIGHT_CLASS_BULKY

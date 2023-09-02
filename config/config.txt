@@ -28,6 +28,19 @@ ALLOW_SHUTDOWN
 ## Uncomment to have the changelog file automatically open when a user connects and hasn't seen the latest changelog
 #AGGRESSIVE_CHANGELOG
 
+## Link to a HTTP server that's been set up on a server. Docker-compose file can be found in tools/tts
+#TTS_HTTP_URL http://localhost:5002
+
+## Token that can be used to prevent misuse of your TTS server that you've set up.
+#TTS_HTTP_TOKEN coolio
+
+## The maximum number of concurrent tts http requests that can be made by the server at once.
+#TTS_MAX_CONCURRENT_REQUESTS 4
+
+## Add voices to the TTS voice blacklist.
+#TTS_VOICE_BLACKLIST Sans Undertale
+#TTS_VOICE_BLACKLIST Papyrus Undertale
+
 ## If you use /tg/station-server 3 and you want to allow the shutdown server verb,
 ##	the server needs to be able to tell tgs3 that the shutdown is not a crash.
 ## This should be the path to the TGCommandLine.exe program in your tgstation-server install.
@@ -72,6 +85,7 @@ LOG_ADMINCHAT
 LOG_ACCESS
 #LOG_ASSET
 LOG_GAME
+LOG_MINIMAP_DRAWING
 LOG_VOTE
 LOG_WHISPER
 LOG_EMOTE
@@ -79,6 +93,7 @@ LOG_ATTACK
 LOG_HREFS
 LOG_RUNTIME
 LOG_MANIFEST
+# LOG_MECHA
 
 ## Gameplay options
 
@@ -101,37 +116,8 @@ POPUP_ADMIN_PM
 ## Only enable this if you have youtube-dl installed!
 # INVOKE_YOUTUBEDL youtube-dl
 
-#Here are the lobby music configs.
-#index link startSecond endSecond
-
-#Space Hero
-LOBBY_MUSIC 1 https://youtu.be/fNdMC6_eUGk 1 180
-#Man of War, the good version
-LOBBY_MUSIC 2 https://youtu.be/EslVBQL3Zt8 1 180
-#Praise the lord and pass the ammunition
-LOBBY_MUSIC 3 https://youtu.be/uV9s1a6AZT0 1 180
-#Blood upon the risers
-LOBBY_MUSIC 4 https://youtu.be/vzrYgDnewSI 1 180
-#Dawson's Christian
-LOBBY_MUSIC 5 https://youtu.be/w34fSnJNP-4 1 180
-#Bomber
-LOBBY_MUSIC 6 https://youtu.be/OlkH687M4YM 1 180
-#Sam Jones
-LOBBY_MUSIC 7 https://youtu.be/-mO7vkdkJhg 1 180
-#Carry On Wayward Son
-LOBBY_MUSIC 8 https://youtu.be/2X_2IdybTV0 1 180
-#Pioneer's Song
-LOBBY_MUSIC 9 https://youtu.be/80VU36nKUZc 1 180
-#Pushin' The Speed Of Light
-LOBBY_MUSIC 10 https://youtu.be/ud6LiVJkwyA 1 180
-#Spilit of Motherwill
-LOBBY_MUSIC 11 https://youtu.be/uB2CFA2RyLE 1 180
-#Space camp song!
-LOBBY_MUSIC 12 https://youtu.be/guXqg_Bnl74 1 180
-#A New Age
-LOBBY_MUSIC 13 https://youtu.be/JUNROUfqJr0 1 180
-#I know the darkness from inside
-LOBBY_MUSIC 14 https://youtu.be/Zo60Lx5KXEI 1 180
+## End of round chat message
+# END_OF_ROUND_CHANNEL game-updates
 
 ## TOPIC RATE LIMITING
 ## This allows you to limit how many topic calls (clicking on an interface window) the client can do in any given game second and/or game minute.
@@ -170,6 +156,20 @@ NOTIFY_NEW_PLAYER_AGE 0
 
 ## Notify admins when a new byond account connects for the first x days after its creation. (-1 for never)
 NOTIFY_NEW_ACCOUNT_AGE 7
+
+##Note: all EXP tracking/restriction require database to be enabled.
+
+## Unhash this to track player playtime in the database.
+#USE_EXP_TRACKING
+
+## Allows admins to bypass job playtime requirements.
+#USE_EXP_RESTRICTIONS_ADMIN_BYPASS
+
+## Use XP restrictions for command roles
+#USE_EXP_RESTRICTIONS_COMMAND
+
+## Use playtime in hours restrictions for command
+#USE_EXP_RESTRICTIONS_COMMAND_HOURS
 
 ##Note: all population caps can be used with each other if desired.
 
@@ -212,7 +212,7 @@ IS_AUTOMATIC_BALANCE_ON
 ##  15x15 would be the standard square view. 21x15 is what goonstation uses for widescreen.
 ##  Setting this to something different from DEFAULT_VIEW_SQUARE will enable widescreen toggles
 ##	Do note that changing this value will affect the title screen. The title screen will have to be updated manually if this is changed.
-DEFAULT_VIEW 15x15
+DEFAULT_VIEW 19x15
 
 ##Default view size, in tiles. Should *always* be square.
 ## The alternative square viewport size if you're using a widescreen view size
@@ -225,5 +225,19 @@ DEFAULT_VIEW_SQUARE 15x15
 ## Once a typepath causes overrun from hard deletes this many times, stop hard deleting it on garbage collection failures. (set to 0 to disable)
 #HARD_DELETES_OVERRUN_LIMIT 0
 
-## Uncomment if you think xenos are struggling against marines
+## Uncomment if you think xenos are struggling against the marines
 #XENOS_ON_STRIKE
+
+AI_ANTI_STUCK_LAG_TIME_DILATION_THRESHOLD 20
+
+## Assets can opt-in to caching their results into `tmp`.
+## This is important, as preferences assets take upwards of 30 seconds (without sleeps) to collect.
+## The cache is assumed to be cleared by TGS recompiling, which deletes `tmp`.
+## This should be disabled (through `CACHE_ASSETS 0`) on development,
+## but enabled on production (the default).
+CACHE_ASSETS 0
+
+## If this is uncommented, we will save all associated spritesheet PNGs and CSS files to a folder in the round-specific logs folder.
+## Useful for developers to debug potential spritesheet issues to determine where the issue is cropping up (either in DM-side sprite generation or in the TGUI-side display of said spritesheet).
+## Will only seek to waste disk space if ran on production.
+#SAVE_SPRITESHEETS

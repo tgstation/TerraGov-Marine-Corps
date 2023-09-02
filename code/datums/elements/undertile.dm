@@ -1,7 +1,7 @@
 ///Add to an object if you want to be able to be hidden under tiles
 /datum/element/undertile
 	element_flags = ELEMENT_BESPOKE | COMPONENT_DUPE_HIGHLANDER
-	id_arg_index = 2
+	argument_hash_start_idx = 2
 
 	///the invisiblity trait applied, like TRAIT_T_RAY_VISIBLE
 	var/invisibility_trait
@@ -19,13 +19,13 @@
 	if(!ismovable(target))
 		return ELEMENT_INCOMPATIBLE
 
-	RegisterSignal(target, COMSIG_OBJ_HIDE, .proc/hide)
+	RegisterSignal(target, COMSIG_OBJ_HIDE, PROC_REF(hide))
 
 	src.invisibility_trait = invisibility_trait
 	src.invisibility_level = invisibility_level
-	src.tile_overlay 		= tile_overlay
-	src.use_alpha			= use_alpha
-	src.use_anchor			= use_anchor
+	src.tile_overlay = tile_overlay
+	src.use_alpha = use_alpha
+	src.use_anchor = use_anchor
 
 ///called when a tile has been covered or uncovered
 /datum/element/undertile/proc/hide(atom/movable/source, covered)

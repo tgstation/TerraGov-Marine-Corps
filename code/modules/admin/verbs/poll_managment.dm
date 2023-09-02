@@ -307,7 +307,7 @@
 			error_state += "Multiple choice poll was selected but no number of allowed options was provided."
 	if(submit_ready && poll.poll_type != POLLTYPE_TEXT && !length(poll.options))
 		error_state += "This poll type requires at least one option."
-	if(error_state.len)
+	if(length(error_state))
 		if(poll.edit_ready)
 			to_chat(usr, span_danger("Not all edits were applied because the following errors were present:\n[error_state.Join("\n")]"))
 		else
@@ -599,7 +599,7 @@
 				error_state += "Maximum value description was selected but not provided."
 		else
 			option.desc_max = null
-	if(error_state.len)
+	if(length(error_state))
 		if(new_option)
 			to_chat(usr, span_danger("Option not added because the following errors were present:\n[error_state.Join("\n")]"))
 			qdel(option)

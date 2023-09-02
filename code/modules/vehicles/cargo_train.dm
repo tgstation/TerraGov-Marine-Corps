@@ -35,7 +35,7 @@
 //-------------------------------------------
 // Standard procs
 //-------------------------------------------
-/obj/vehicle/train/cargo/engine/Initialize()
+/obj/vehicle/train/cargo/engine/Initialize(mapload)
 	. = ..()
 	cell = new /obj/item/cell/apc
 	key = new()

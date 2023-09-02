@@ -128,7 +128,7 @@ if grep -ni 'centcomm' code/**/*.dm; then
     echo "Misspelling(s) of CENTCOM detected in code, please remove the extra M(s)."
     st=1
 fi;
-if grep -ni '/obj/effect/alien/weeds/node' _maps/**/*.dmm; then
+if grep -ni '/obj/alien/weeds/node' _maps/**/*.dmm; then
     echo "Do not directly add weeds on maps, use landmarks."
     st=1
 fi;
@@ -156,6 +156,10 @@ if grep -ni 'nanotransen' _maps/**/*.dmm; then
     echo "Misspelling(s) of nanotrasen detected in maps, please remove the extra N(s)."
     st=1
 fi;
+if grep -ni 'icon_state' _maps/**/*.dmm; then
+    echo "Icon_state varedit(s) detected in maps, please make new type(s) instead of instancing icon_state(s)."
+    st=1
+fi;
 if ls _maps/*.json | grep -nP "[A-Z]"; then
     echo "Uppercase in a map json detected, these must be all lowercase."
 	st=1
@@ -169,5 +173,11 @@ do
         st=1
     fi
 done
+
+# Check for non-515 compatable .proc/ syntax
+if grep -P --exclude='__byond_version_compat.dm' '\.proc/' code/**/*.dm; then
+    echo "ERROR: Outdated proc reference use detected in code, please use proc reference helpers."
+    st=1
+fi;
 
 exit $st

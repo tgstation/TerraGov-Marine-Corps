@@ -55,7 +55,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	var/larva_position = 0
 
 
-/mob/dead/observer/Initialize()
+/mob/dead/observer/Initialize(mapload)
 	invisibility = GLOB.observer_default_invisibility
 
 	if(icon_state in GLOB.ghost_forms_with_directions_list)
@@ -101,8 +101,6 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	animate(src, pixel_y = 2, time = 10, loop = -1)
 
 	grant_all_languages()
-	RegisterSignal(src, COMSIG_MOVABLE_Z_CHANGED, .proc/observer_z_changed)
-	LAZYADD(GLOB.observers_by_zlevel["[z]"], src)
 
 	return ..()
 
@@ -118,16 +116,14 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 
 	QDEL_NULL(orbit_menu)
 	GLOB.observer_list -= src //"wait isnt this done in logout?" Yes it is but because this is clients thats unreliable so we do it again here
-
-	LAZYREMOVE(GLOB.observers_by_zlevel["[z]"], src)
-	UnregisterSignal(src, COMSIG_MOVABLE_Z_CHANGED)
+	SSmobs.dead_players_by_zlevel[z] -= src
 
 	return ..()
 
 /mob/dead/observer/proc/observer_z_changed(datum/source, old_z, new_z)
 	SIGNAL_HANDLER
-	LAZYREMOVE(GLOB.observers_by_zlevel["[old_z]"], src)
-	LAZYADD(GLOB.observers_by_zlevel["[new_z]"], src)
+	SSmobs.dead_players_by_zlevel[old_z] -= src
+	SSmobs.dead_players_by_zlevel[new_z] += src
 
 /mob/dead/observer/update_icon(new_form)
 	if(client) //We update our preferences in case they changed right before update_icon was called.
@@ -200,6 +196,11 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 			return
 		var/mob/dead/observer/ghost = usr
 
+		var/datum/hive_status/normal/HS = GLOB.hive_datums[XENO_HIVE_NORMAL]
+		if(LAZYFIND(HS.candidate, ghost))
+			to_chat(ghost, span_warning("You are already in the queue to become a Xenomorph."))
+			return
+
 		switch(tgui_alert(ghost, "What would you like to do?", "Burrowed larva source available", list("Join as Larva", "Cancel"), 0))
 			if("Join as Larva")
 				SSticker.mode.attempt_to_join_as_larva(ghost)
@@ -226,8 +227,8 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 
 	else if(href_list["track_silo_number"])
 		var/silo_number = href_list["track_silo_number"]
-		for(var/obj/structure/xeno/silo/resin_silo AS in GLOB.xeno_resin_silos)
-			if(resin_silo.associated_hive == GLOB.hive_datums[XENO_HIVE_NORMAL] && num2text(resin_silo.number_silo) == silo_number)
+		for(var/obj/structure/xeno/silo/resin_silo in GLOB.xeno_resin_silos_by_hive[XENO_HIVE_NORMAL])
+			if(num2text(resin_silo.number_silo) == silo_number)
 				var/mob/dead/observer/ghost = usr
 				ghost.abstract_move(resin_silo.loc)
 				break
@@ -238,7 +239,8 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	var/mob/dead/observer/ghost = new(src)
 	var/turf/T = get_turf(src)
 
-	animate(client, pixel_x = 0, pixel_y = 0)
+	if(client)
+		animate(client, pixel_x = 0, pixel_y = 0)
 
 	if(ishuman(src))
 		var/mob/living/carbon/human/H = src
@@ -264,6 +266,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	ghost.mind = mind
 	mind = null
 	ghost.key = key
+	ghost.client?.init_verbs()
 	ghost.mind?.current = ghost
 	ghost.faction = faction
 
@@ -287,8 +290,6 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	GLOB.key_to_time_of_death[ghost.key] = world.time
 	if(!aghosting && job?.job_flags & (JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE))//Only some jobs cost you your respawn timer.
 		GLOB.key_to_time_of_role_death[ghost.key] = world.time
-
-
 
 /mob/dead/observer/Move(atom/newloc, direct)
 	if(updatedir)
@@ -314,49 +315,29 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	return FALSE
 
 
-/mob/dead/observer/Stat()
+/mob/dead/observer/get_status_tab_items()
 	. = ..()
 
-	if(statpanel("Status"))
-		if(SSticker.current_state == GAME_STATE_PREGAME)
-			stat("Time To Start:", "[SSticker.time_left > 0 ? SSticker.GetTimeLeft() : "(DELAYED)"]")
-			stat("Players: [length(GLOB.player_list)]", "Players Ready: [length(GLOB.ready_players)]")
-			for(var/i in GLOB.player_list)
-				if(isnewplayer(i))
-					var/mob/new_player/N = i
-					stat("[N.client?.holder?.fakekey ? N.client.holder.fakekey : N.key]", N.ready ? "Playing" : "")
-				else if(isobserver(i))
-					var/mob/dead/observer/O = i
-					stat("[O.client?.holder?.fakekey ? O.client.holder.fakekey : O.key]", "Observing")
-		var/status_value = SSevacuation?.get_status_panel_eta()
-		if(status_value)
-			stat("Evacuation in:", status_value)
-		if(SSticker.mode)
-			var/rulerless_countdown = SSticker.mode.get_hivemind_collapse_countdown()
-			if(rulerless_countdown)
-				stat("<b>Orphan hivemind collapse timer:</b>", rulerless_countdown)
-			var/siloless_countdown = SSticker.mode.get_siloless_collapse_countdown()
-			if(siloless_countdown)
-				stat("<b>Silo less hive collapse timer:</b>", siloless_countdown)
-		if(GLOB.respawn_allowed)
-			status_value = (GLOB.key_to_time_of_role_death[key] + SSticker.mode?.respawn_time - world.time) * 0.1
-			if(status_value <= 0)
-				stat("Respawn timer:", "<b>READY</b>")
-			else
-				stat("Respawn timer:", "[(status_value / 60) % 60]:[add_leading(num2text(status_value % 60), 2, "0")]")
-			if(SSticker.mode?.flags_round_type & MODE_INFESTATION)
-				if(larva_position)
-					stat("Position in larva candidate queue: ", "[larva_position]")
-				var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
-				var/stored_larva = xeno_job.total_positions - xeno_job.current_positions
-				if(stored_larva)
-					stat("Burrowed larva:", stored_larva)
-		var/datum/game_mode/mode = SSticker.mode
-		if(mode?.flags_round_type & MODE_WIN_POINTS)
-			stat("Points needed to win:", mode.win_points_needed)
-			stat("Loyalists team points:", LAZYACCESS(mode.points_per_faction, FACTION_TERRAGOV) ? LAZYACCESS(mode.points_per_faction, FACTION_TERRAGOV) : 0)
-			stat("Rebels team points:", LAZYACCESS(mode.points_per_faction, FACTION_TERRAGOV_REBEL) ? LAZYACCESS(mode.points_per_faction, FACTION_TERRAGOV_REBEL) : 0)
-
+	if(SSticker.current_state == GAME_STATE_PREGAME)
+		. += "Time To Start: [SSticker.time_left > 0 ? SSticker.GetTimeLeft() : "(DELAYED)"]"
+		. += "Players: [length(GLOB.player_list)]"
+		. += "Players Ready: [length(GLOB.ready_players)]"
+		for(var/i in GLOB.player_list)
+			if(isnewplayer(i))
+				var/mob/new_player/N = i
+				. += "[N.client?.holder?.fakekey ? N.client.holder.fakekey : N.key][N.ready ? " Playing" : ""]"
+			else if(isobserver(i))
+				var/mob/dead/observer/O = i
+				. += "[O.client?.holder?.fakekey ? O.client.holder.fakekey : O.key] Observing"
+	var/status_value = SSevacuation?.get_status_panel_eta()
+	if(status_value)
+		. += "Evacuation in: [status_value]"
+	if(GLOB.respawn_allowed)
+		status_value = (GLOB.key_to_time_of_role_death[key] + SSticker.mode?.respawn_time - world.time) * 0.1
+		if(status_value <= 0)
+			. += "Respawn timer: READY"
+		else
+			. += "Respawn timer: [(status_value / 60) % 60]:[add_leading(num2text(status_value % 60), 2, "0")]"
 
 /mob/dead/observer/verb/reenter_corpse()
 	set category = "Ghost"
@@ -413,7 +394,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 			ghost_squadhud = !ghost_squadhud
 			H = GLOB.huds[DATA_HUD_SQUAD_TERRAGOV]
 			ghost_squadhud ? H.add_hud_to(src) : H.remove_hud_from(src)
-			H = GLOB.huds[DATA_HUD_SQUAD_REBEL]
+			H = GLOB.huds[DATA_HUD_SQUAD_SOM]
 			ghost_squadhud ? H.add_hud_to(src) : H.remove_hud_from(src)
 			client.prefs.ghost_hud ^= GHOST_HUD_SQUAD
 			client.prefs.save_preferences()
@@ -832,7 +813,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	target.observers |= src
 	target.hud_used.show_hud(target.hud_used.hud_version, src)
 	observetarget = target
-	RegisterSignal(observetarget, COMSIG_PARENT_QDELETING, .proc/clean_observetarget)
+	RegisterSignal(observetarget, COMSIG_QDELETING, PROC_REF(clean_observetarget))
 
 ///Signal handler to clean the observedtarget
 /mob/dead/observer/proc/clean_observetarget()
@@ -840,6 +821,8 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	if(observetarget?.observers)
 		observetarget.observers -= src
 		UNSETEMPTY(observetarget.observers)
+	if(observetarget)
+		UnregisterSignal(observetarget, COMSIG_QDELETING)
 	observetarget = null
 
 /mob/dead/observer/verb/dnr()
@@ -848,10 +831,14 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	set desc = "Noone will be able to revive you."
 
 	if(!isnull(can_reenter_corpse) && tgui_alert(usr, "Are you sure? You won't be able to get revived.", "Confirmation", list("Yes", "No")) == "Yes")
+		var/mob/living/carbon/human/human_current = can_reenter_corpse.resolve()
+		if(istype(human_current))
+			human_current.set_undefibbable()
+
 		can_reenter_corpse = null
 		to_chat(usr, span_notice("You can no longer be revived."))
-		mind.current.med_hud_set_status()
 		return
+
 	to_chat(usr, span_warning("You already can't be revived."))
 
 
@@ -883,22 +870,39 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 		to_chat(usr, span_boldnotice("You must be dead to use this!"))
 		return
 
-	var/datum/job/valhalla_job = tgui_input_list(usr, "You are about to embark to the ghastly walls of Valhalla. What job would you like to have?", "Join Valhalla", GLOB.jobs_fallen_all)
+	var/choice = tgui_input_list(usr, "You are about to embark to the ghastly walls of Valhalla. Xenomorph or Marine?", "Join Valhalla", list("Xenomorph", "Marine"))
+
+	if(!choice)
+		return
+
+	if(choice == "Xenomorph")
+		var/mob/living/carbon/xenomorph/xeno_choice = tgui_input_list(usr, "You are about to embark to the ghastly walls of Valhalla. What xenomorph would you like to have?", "Join Valhalla", GLOB.all_xeno_types)
+		if(!xeno_choice)
+			return
+		log_game("[key_name(usr)] has joined Valhalla as a Xenomorph.")
+		var/mob/living/carbon/xenomorph/new_xeno = new xeno_choice(pick(GLOB.spawns_by_job[/datum/job/fallen/xenomorph]))
+		new_xeno.transfer_to_hive(XENO_HIVE_FALLEN)
+		ADD_TRAIT(new_xeno, TRAIT_VALHALLA_XENO, VALHALLA_TRAIT)
+		var/datum/job/xallhala_job = SSjob.GetJobType(/datum/job/fallen/xenomorph)
+		new_xeno.apply_assigned_role_to_spawn(xallhala_job)
+		SSpoints.xeno_points_by_hive[XENO_HIVE_FALLEN] = 10000
+		mind.transfer_to(new_xeno, TRUE)
+		xallhala_job.after_spawn(new_xeno)
+		return
+
+	var/datum/job/valhalla_job = tgui_input_list(usr, "You are about to embark to the ghastly walls of Valhalla. What job would you like to have?", "Join Valhalla", GLOB.jobs_fallen_marine)
 	if(!valhalla_job)
 		return
-	var/mob/living/carbon/human/new_fallen = new(pick(GLOB.spawns_by_job[/datum/job/fallen]))
-	valhalla_job = SSjob.GetJobType(valhalla_job)
-	new_fallen.apply_assigned_role_to_spawn(valhalla_job)
-	if(valhalla_job.outfit)
-		new_fallen.delete_equipment(TRUE)
-		new_fallen.equipOutfit(valhalla_job.outfit, FALSE)
-		new_fallen.regenerate_icons()
 
-	log_game("[key_name(usr)] has joined Valhalla.")
+	valhalla_job = SSjob.GetJobType(valhalla_job)
+	var/spawn_type = valhalla_job.return_spawn_type(client.prefs)
+	var/mob/living/carbon/human/new_fallen = new spawn_type(pick(GLOB.spawns_by_job[/datum/job/fallen/marine]))
+
+	log_game("[key_name(usr)] has joined Valhalla as a Marine.")
+	client.prefs.copy_to(new_fallen)
+	new_fallen.apply_assigned_role_to_spawn(valhalla_job)
 	mind.transfer_to(new_fallen, TRUE)
 	valhalla_job.after_spawn(new_fallen)
-
-
 
 /mob/dead/observer/reset_perspective(atom/A)
 	clean_observetarget()
@@ -934,3 +938,8 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 			return
 
 	return ..()
+
+/mob/dead/observer/point_to(atom/pointed_atom)
+	if(!..())
+		return FALSE
+	visible_message(span_deadsay("[span_name("[src]")] points at [pointed_atom]."))

@@ -34,7 +34,7 @@
 	component_parts += new /obj/item/stock_parts/capacitor
 	component_parts += new /obj/item/stock_parts/capacitor
 
-/obj/machinery/power/smes/batteryrack/Initialize()
+/obj/machinery/power/smes/batteryrack/Initialize(mapload)
 	. = ..()
 	add_parts()
 	RefreshParts()
@@ -194,7 +194,7 @@
 					empulse(src.loc, 3, 8, 1)
 			if (overcharge_percent >= 150)
 				if (prob(1))
-					explosion(loc, 1, 2, 4, 5, small_animation = TRUE)
+					explosion(loc, 1, 2, 4, 0, 5)
 		if ((3.6e6+1) to INFINITY)
 			if (overcharge_percent >= 115)
 				if (prob(8))
@@ -206,7 +206,7 @@
 					empulse(src.loc, 4, 10, 1)
 			if (overcharge_percent >= 140)
 				if (prob(1))
-					explosion(loc, 2, 4, 6, 8, small_animation = TRUE)
+					explosion(loc, 2, 4, 6, 0, 8)
 		else //how the hell was this proc called for negative charge
 			charge = 0
 

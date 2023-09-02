@@ -4,6 +4,13 @@
 	skills_type = /datum/skills/skeleton
 	faction = FACTION_NEUTRAL
 
+/datum/outfit/job/skeleton/pre_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	. = ..()
+
+	H.set_species("Skeleton")
+
+	H.name = GLOB.namepool[/datum/namepool/skeleton].random_name(H)
+	H.real_name = H.name
 
 //Skeleton Man
 /datum/job/skeleton/basic
@@ -17,7 +24,6 @@
 
 	id = /obj/item/card/id
 	w_uniform = /obj/item/clothing/under/gladiator
-	wear_suit = /obj/item/clothing/suit/unathi/mantle
 	shoes = /obj/item/clothing/shoes/sandal
 	head = /obj/item/clothing/head/helmet/gladiator
 	belt = /obj/item/weapon/claymore
@@ -42,7 +48,6 @@
 
 	id = /obj/item/card/id
 	w_uniform = /obj/item/clothing/under/gladiator
-	wear_suit = /obj/item/clothing/suit/unathi/mantle
 	shoes = /obj/item/clothing/shoes/sandal
 	head = /obj/item/clothing/head/helmet/gladiator
 	belt = /obj/item/weapon/claymore

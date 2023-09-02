@@ -55,12 +55,6 @@
 	config_entry_value = 0
 	integer = FALSE
 
-/datum/config_entry/number/organ_health_multiplier
-	config_entry_value = 1
-
-/datum/config_entry/number/organ_regeneration_multiplier
-	config_entry_value = 1
-
 /datum/config_entry/flag/limbs_can_break
 
 /datum/config_entry/number/revive_grace_period
@@ -115,3 +109,15 @@
 	config_entry_value = 30 MINUTES
 	max_val = 30 MINUTES
 	min_val = 0
+
+/datum/config_entry/string/tts_http_url
+	protection = CONFIG_ENTRY_LOCKED
+
+/datum/config_entry/string/tts_http_token
+	protection = CONFIG_ENTRY_LOCKED|CONFIG_ENTRY_HIDDEN
+
+/datum/config_entry/number/tts_max_concurrent_requests
+	default = 4
+	min_val = 1
+
+/datum/config_entry/str_list/tts_voice_blacklist

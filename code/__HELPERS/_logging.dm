@@ -79,6 +79,14 @@
 	if(CONFIG_GET(flag/log_game))
 		WRITE_LOG(GLOB.world_game_log, "GAME: [text]")
 
+/proc/log_minimap_drawing(text)
+	LAZYADD(GLOB.game_log, "\[[stationTimestamp()]\] MINIMAP_DRAW: [text]")
+	if(CONFIG_GET(flag/log_minimap_drawing))
+		WRITE_LOG(GLOB.world_game_log, "MINIMAP_DRAW: [text]")
+
+/proc/log_mecha(text)
+	if (CONFIG_GET(flag/log_mecha))
+		WRITE_LOG(GLOB.world_mecha_log, "MECHA: [text]")
 
 /proc/log_access(text)
 	LAZYADD(GLOB.access_log, "\[[stationTimestamp()]\] ACCESS: [text]")
@@ -125,6 +133,10 @@
 	if(CONFIG_GET(flag/log_telecomms))
 		WRITE_LOG(GLOB.world_telecomms_log, "TCOMMS: [text]")
 
+/// Logging for speech indicators.
+/proc/log_speech_indicators(text)
+	if (CONFIG_GET(flag/log_speech_indicators))
+		WRITE_LOG(GLOB.world_speech_indicators_log, "SPEECH INDICATOR: [text]")
 
 /proc/log_ooc(text)
 	LAZYADD(GLOB.say_log, "\[[stationTimestamp()]\] OOC: [text]")
@@ -215,9 +227,12 @@
 	WRITE_LOG(GLOB.config_error_log, text)
 	SEND_TEXT(world.log, text)
 
+/proc/log_filter_raw(text)
+	WRITE_LOG(GLOB.filter_log, "FILTER: [text]")
 
 /proc/log_paper(text)
 	WRITE_LOG(GLOB.world_paper_log, "PAPER: [text]")
+
 
 /**
  * Appends a tgui-related log entry. All arguments are optional.

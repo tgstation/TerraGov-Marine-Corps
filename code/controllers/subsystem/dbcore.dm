@@ -24,7 +24,7 @@ SUBSYSTEM_DEF(dbcore)
 		if(2)
 			message_admins("Could not get schema version from database")
 
-	return ..()
+	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/dbcore/fire()
 	for(var/I in active_queries)
@@ -122,7 +122,8 @@ SUBSYSTEM_DEF(dbcore)
 	else
 		log_sql("Database is not enabled in configuration.")
 
-/datum/controller/subsystem/dbcore/proc/SetRoundID()
+/datum/controller/subsystem/dbcore/proc/InitializeRound()
+	CheckSchemaVersion()
 	if(!Connect())
 		return
 	var/datum/db_query/query_round_initialize = SSdbcore.NewQuery(
@@ -190,9 +191,9 @@ SUBSYSTEM_DEF(dbcore)
 	for (var/thing in querys)
 		var/datum/db_query/query = thing
 		if (warn)
-			INVOKE_ASYNC(query, /datum/db_query.proc/warn_execute)
+			INVOKE_ASYNC(query, TYPE_PROC_REF(/datum/db_query, warn_execute))
 		else
-			INVOKE_ASYNC(query, /datum/db_query.proc/Execute)
+			INVOKE_ASYNC(query, TYPE_PROC_REF(/datum/db_query, Execute))
 
 	for (var/thing in querys)
 		var/datum/db_query/query = thing
@@ -250,7 +251,7 @@ Delayed insert mode was removed in mysql 7 and only works with MyISAM type table
 			if (has_col)
 				query_parts += ", "
 			if (has_question_mark[column])
-				var/name = "p[arguments.len]"
+				var/name = "p[length(arguments)]"
 				query_parts += replacetext(columns[column], "?", ":[name]")
 				arguments[name] = row[column]
 			else
@@ -380,7 +381,7 @@ Delayed insert mode was removed in mysql 7 and only works with MyISAM type table
 /datum/db_query/proc/NextRow(async = TRUE)
 	Activity("NextRow")
 
-	if (rows && next_row_to_take <= rows.len)
+	if (rows && next_row_to_take <= length(rows))
 		item = rows[next_row_to_take]
 		next_row_to_take++
 		return !!item

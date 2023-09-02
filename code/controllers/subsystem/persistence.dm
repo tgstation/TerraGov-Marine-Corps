@@ -30,13 +30,10 @@ SUBSYSTEM_DEF(persistence)
 		/datum/season_datum/weapons/guns/rifle_seasonal_one,
 		/datum/season_datum/weapons/guns/pistol_seasonal_two,
 		/datum/season_datum/weapons/guns/rifle_seasonal_two,
-		/datum/season_datum/weapons/guns/pistol_seasonal_three,
 		/datum/season_datum/weapons/guns/rifle_seasonal_three,
-		/datum/season_datum/weapons/guns/pistol_seasonal_four,
 		/datum/season_datum/weapons/guns/copsandrobbers_seasonal,
-		/datum/season_datum/weapons/guns/smg_seasonal,
-		/datum/season_datum/weapons/guns/storm_seasonal,
-		/datum/season_datum/weapons/guns/shotgun_seasonal
+		/datum/season_datum/weapons/guns/shotgun_seasonal,
+		/datum/season_datum/weapons/guns/lever_seasonal,
 		)
 	)
 	///The saved list of custom outfits names
@@ -48,23 +45,29 @@ SUBSYSTEM_DEF(persistence)
 /datum/controller/subsystem/persistence/Initialize()
 	LoadSeasonalItems()
 	load_custom_loadouts_list()
-	load_last_civil_war_round_time()
-	return ..()
+	load_last_game_mode_round_time()
+	return SS_INIT_SUCCESS
 
 ///Stores data at the end of the round
 /datum/controller/subsystem/persistence/proc/CollectData()
 	save_custom_loadouts_list()
-	save_last_civil_war_round_time()
+	save_last_game_mode_round_time()
 	save_player_number()
 	return
 
-///Loads the last civil war round date
-/datum/controller/subsystem/persistence/proc/load_last_civil_war_round_time()
+///Loads the last gamemode's round date
+/datum/controller/subsystem/persistence/proc/load_last_game_mode_round_time()
 	var/json_file = file("data/last_modes_round_date.json")
 	if(!fexists(json_file))
 		last_modes_round_date = list()
 		return
 	last_modes_round_date = json_decode(file2text(json_file))
+
+///Save the date of the last gamemode's round
+/datum/controller/subsystem/persistence/proc/save_last_game_mode_round_time()
+	var/json_file = file("data/last_modes_round_date.json")
+	fdel(json_file)
+	WRITE_FILE(json_file, json_encode(last_modes_round_date))
 
 ///Loads the list of custom outfits names
 /datum/controller/subsystem/persistence/proc/load_custom_loadouts_list()
@@ -85,12 +88,6 @@ SUBSYSTEM_DEF(persistence)
 		return FALSE
 	var/datum/loadout/loadout = jatum_deserialize(loadout_json)
 	return loadout
-
-///Save the date of the last civil war round
-/datum/controller/subsystem/persistence/proc/save_last_civil_war_round_time()
-	var/json_file = file("data/last_modes_round_date.json")
-	fdel(json_file)
-	WRITE_FILE(json_file, json_encode(last_modes_round_date))
 
 ///Saves the list of custom outfits names
 /datum/controller/subsystem/persistence/proc/save_custom_loadouts_list()
@@ -195,49 +192,55 @@ SUBSYSTEM_DEF(persistence)
 	var/list/item_list = list()
 
 /datum/season_datum/weapons/guns/rifle_seasonal_one
-	name = "AK47 and M16"
-	description = "Rifle guns, previously at import"
+	name = "Old Earth"
+	description = "Ancient Earth guns. Antique and obsolete, but no less deadly"
 	item_list = list(
-		/obj/item/weapon/gun/rifle/mpi_km = -1,
-		/obj/item/ammo_magazine/rifle/mpi_km = -1,
-		/obj/item/weapon/gun/rifle/m16 = -1,
-		/obj/item/ammo_magazine/rifle/m16 = -1,
+		/obj/item/weapon/gun/rifle/mkh = -1,
+		/obj/item/ammo_magazine/rifle/mkh = -1,
+		/obj/item/weapon/gun/smg/ppsh = -1,
+		/obj/item/ammo_magazine/smg/ppsh = -1,
+		/obj/item/ammo_magazine/smg/ppsh/extended = -1,
+		/obj/item/weapon/gun/rifle/garand = -1,
+		/obj/item/ammo_magazine/rifle/garand = -1,
+		/obj/item/weapon/gun/pistol/m1911 = -1,
+		/obj/item/ammo_magazine/pistol/m1911 = -1,
 		)
 
 /datum/season_datum/weapons/guns/rifle_seasonal_two
-	name = "Pulse Rifles"
-	description = "A failed classic and it's eventual successor."
+	name = "Pulse Weapons"
+	description = "Top-of-the-line pulse rifles, and a machinecarbine."
 	item_list = list(
 		/obj/item/weapon/gun/rifle/m412 = -1,
 		/obj/item/ammo_magazine/rifle = -1,
 		/obj/item/weapon/gun/rifle/m41a = -1,
 		/obj/item/ammo_magazine/rifle/m41a = -1,
-		)
-
-/datum/season_datum/weapons/guns/rifle_seasonal_three
-	name = "Burst and CQC"
-	description = "A Machinecarbine and a burst fire heavy rifle."
-	item_list = list(
 		/obj/item/weapon/gun/rifle/type71/seasonal = -1,
 		/obj/item/ammo_magazine/rifle/type71 = -1,
+		/obj/item/ammo_magazine/packet/pwarsaw = -1,
 		/obj/item/weapon/gun/rifle/alf_machinecarbine = -1,
 		/obj/item/ammo_magazine/rifle/alf_machinecarbine = -1,
 		)
 
+/datum/season_datum/weapons/guns/rifle_seasonal_three
+	name = "Cold War"
+	description = "Hot guns from the Cold War"
+	item_list = list(
+		/obj/item/weapon/gun/rifle/mpi_km= -1,
+		/obj/item/ammo_magazine/rifle/mpi_km/plum = -1,
+		/obj/item/ammo_magazine/packet/pwarsaw = -1,
+		/obj/item/weapon/gun/rifle/m16 = -1,
+		/obj/item/ammo_magazine/rifle/m16 = -1,
+		/obj/item/ammo_magazine/packet/pnato = -1,
+		)
+
 /datum/season_datum/weapons/guns/pistol_seasonal_one
-	name = "Bouncy revolver and average revolver"
-	description = "A rather average revolver and it's far bouncier smaller cousin."
+	name = "High Noon"
+	description = "Revolvers? They are yours my friend. Bouncy, single-action, or with buckshot"
 	item_list = list(
 		/obj/item/weapon/gun/revolver/small = -1,
 		/obj/item/ammo_magazine/revolver/small = -1,
 		/obj/item/weapon/gun/revolver/single_action/m44 = -1,
 		/obj/item/ammo_magazine/revolver = -1,
-		)
-
-/datum/season_datum/weapons/guns/pistol_seasonal_four
-	name = "Judge and Nagant"
-	description = "More revolvers for the revolver mains."
-	item_list = list(
 		/obj/item/weapon/gun/revolver/judge = -1,
 		/obj/item/ammo_magazine/revolver/judge = -1,
 		/obj/item/ammo_magazine/revolver/judge/buckshot = -1,
@@ -246,61 +249,52 @@ SUBSYSTEM_DEF(persistence)
 		)
 
 /datum/season_datum/weapons/guns/pistol_seasonal_two
-	name = "G22 and a heavy pistol"
-	description = "More pistols for the pistol mains."
+	name = "G22 and high-power gats"
+	description = "Four pistols for the pistol mains."
 	item_list = list(
 		/obj/item/weapon/gun/pistol/g22 = -1,
 		/obj/item/ammo_magazine/pistol/g22 = -1,
-		/obj/item/weapon/gun/pistol/heavy = -1,
-		/obj/item/ammo_magazine/pistol/heavy = -1,
-		)
-
-/datum/season_datum/weapons/guns/pistol_seasonal_three
-	name = "High-power pistols"
-	description = "More pistols in the vendors, why not?"
-	item_list = list(
 		/obj/item/weapon/gun/pistol/vp78 = -1,
 		/obj/item/ammo_magazine/pistol/vp78 = -1,
+		/obj/item/weapon/gun/pistol/heavy = -1,
+		/obj/item/ammo_magazine/pistol/heavy = -1,
 		/obj/item/weapon/gun/pistol/highpower = -1,
 		/obj/item/ammo_magazine/pistol/highpower = -1,
 		)
 
 /datum/season_datum/weapons/guns/copsandrobbers_seasonal
-	name = "Cops and robbers"
-	description = "A Revolver and a classic SMG. Truly cops and robbers."
+	name = "SWAT and Terrorists"
+	description = "Four classic SMGs, and no one's favorite burst revolver."
 	item_list = list(
 		/obj/item/weapon/gun/smg/uzi = -1,
 		/obj/item/ammo_magazine/smg/uzi = -1,
+		/obj/item/weapon/gun/smg/m25 = -1,
+		/obj/item/ammo_magazine/smg/m25 = -1,
+		/obj/item/storage/holster/m25 = -1,
+		/obj/item/weapon/gun/smg/mp7 = -1,
+		/obj/item/ammo_magazine/smg/mp7 = -1,
+		/obj/item/weapon/gun/smg/skorpion = -1,
+		/obj/item/ammo_magazine/smg/skorpion = -1,
 		/obj/item/weapon/gun/revolver/cmb = -1,
 		/obj/item/ammo_magazine/revolver/cmb = -1,
 		)
 
-/datum/season_datum/weapons/guns/smg_seasonal
-	name = "SMGs"
-	description = "Two different SMGs. A classic and a new guy."
-	item_list = list(
-		/obj/item/weapon/gun/smg/m25 = -1,
-		/obj/item/ammo_magazine/smg/m25 = -1,
-		/obj/item/weapon/gun/smg/mp7 = -1,
-		/obj/item/ammo_magazine/smg/mp7 = -1,
-		)
-
-/datum/season_datum/weapons/guns/storm_seasonal
-	name = "Storm weapons"
-	description = "Two classics on opposite sides, both made for CQC."
-	item_list = list(
-		/obj/item/weapon/gun/rifle/mkh = -1,
-		/obj/item/ammo_magazine/rifle/mkh = -1,
-		/obj/item/weapon/gun/smg/ppsh = -1,
-		/obj/item/ammo_magazine/smg/ppsh = -1,
-		/obj/item/ammo_magazine/smg/ppsh/extended = -1,
-		)
-
 /datum/season_datum/weapons/guns/shotgun_seasonal
 	name = "Pumps"
-	description = "Two classic pump shotguns from older times."
+	description = "Three classic pump shotguns from older times."
 	item_list = list(
 		/obj/item/weapon/gun/shotgun/combat = -1,
+		/obj/item/weapon/gun/shotgun/pump = -1,
 		/obj/item/weapon/gun/shotgun/pump/cmb = -1,
 		)
 
+/datum/season_datum/weapons/guns/lever_seasonal
+	name = "Lever Actions"
+	description = "Try and win the modern west with these"
+	item_list = list(
+		/obj/item/weapon/gun/shotgun/pump/lever = -1,
+		/obj/item/weapon/gun/shotgun/pump/lever/mbx900 = -1,
+		/obj/item/ammo_magazine/shotgun/mbx900 = -1,
+		/obj/item/ammo_magazine/shotgun/mbx900/buckshot = -1,
+		/obj/item/ammo_magazine/shotgun/mbx900/tracking = -1,
+		)

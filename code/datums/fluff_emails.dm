@@ -88,3 +88,20 @@
 				</html>
 				"}
 
+
+
+/datum/fluff_email/mainship/robotoverclock
+	title = "RE: Combat Robot Improvements"
+	entry_text = {"<html>
+					So we used the schematics you sent us (how did you even get a hold of confidential Keiretsu schematics?) and I'll admit,
+					it certainly took us a while to properly "improve" a combat robot but the results are far worth it. They're much more
+					responsive now, though we had to be really careful the CL didn't learn we'd disabled its safety checks to achieve this.
+					Even better is the fact that we completely removed an emergency shutdown programmed to activate upon certain damage levels,
+					this means they fight harder and for longer until they're fully disabled.
+					<br>
+					<br>
+					I do have some concerns though, the combat robots have begun to develop... quirks? I think that their processors are
+					especially strained by the new software, I swear I even heard one of them cuss when I was running through its combat logs.
+					I've even heard rumors of the robots forming a secret religion praising a "Machine God", probably just bored squad marines though.
+				</html>
+				"}

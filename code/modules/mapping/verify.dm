@@ -21,19 +21,19 @@
 	if(!loadable)
 		html += "<p><b>Not loadable</b>: some tiles are missing their turfs or areas.</p>"
 
-	if(bad_paths.len)
+	if(length(bad_paths))
 		html += "<p>Bad paths: <ol>"
 		for(var/path in bad_paths)
 			var/list/keys = bad_paths[path]
-			html += "<li><tt>[path]</tt>: used in ([keys.len]): <tt>[keys.Join("</tt>, <tt>")]</tt>"
+			html += "<li><tt>[path]</tt>: used in ([length(keys)]): <tt>[keys.Join("</tt>, <tt>")]</tt>"
 		html += "</ol></p>"
 
-	if(bad_keys.len)
+	if(length(bad_keys))
 		html += "<p>Bad keys: <ul>"
 		for(var/key in bad_keys)
 			var/list/messages = bad_keys[key]
 			html += "<li><tt>[key]</tt>"
-			if(messages.len == 1)
+			if(length(messages) == 1)
 				html += ": [bad_keys[key][1]]"
 			else
 				html += "<ul><li>[messages.Join("</li><li>")]</li></ul>"
@@ -74,7 +74,7 @@
 
 		var/turfs = 0
 		var/areas = 0
-		for(var/i in 1 to members.len)
+		for(var/i in 1 to length(members))
 			var/atom/path = members[i]
 
 			turfs += ispath(path, /turf)
@@ -91,7 +91,7 @@
 			LAZYADD(report.bad_keys[key], "[areas] areas instead of 1")
 
 	// return the report
-	if(report.bad_paths.len || report.bad_keys.len || !report.loadable)
+	if(length(report.bad_paths) || length(report.bad_keys) || !report.loadable)
 		// keep the report around so it can be referenced later
 		report.tag = "mapreport_[++report.tag_number]"
 		report.crashed = FALSE

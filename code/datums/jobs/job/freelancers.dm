@@ -30,11 +30,11 @@
 	w_uniform = /obj/item/clothing/under/marine/veteran/freelancer
 	shoes = /obj/item/clothing/shoes/marine
 	wear_suit = /obj/item/clothing/suit/storage/faction/freelancer
-	gloves = /obj/item/clothing/gloves/marine/veteran/PMC
+	gloves = /obj/item/clothing/gloves/marine/veteran/pmc
 	head = /obj/item/clothing/head/frelancer
 	suit_store = /obj/item/weapon/gun/rifle/m16/freelancer
 	r_store = /obj/item/storage/pouch/shotgun
-	l_store = /obj/item/storage/pouch/firstaid/full
+	l_store = /obj/item/storage/pouch/medical_injectors/firstaid
 	back = /obj/item/storage/backpack/lightpack
 
 
@@ -153,17 +153,17 @@
 	jobtype = /datum/job/freelancer/medic
 
 	id = /obj/item/card/id/silver
-	belt = /obj/item/storage/belt/combatLifesaver
+	belt = /obj/item/storage/belt/lifesaver/full
 	ears = /obj/item/radio/headset/distress/dutch
 	mask = /obj/item/clothing/mask/rebreather/scarf/freelancer
 	w_uniform = /obj/item/clothing/under/marine/veteran/freelancer
 	shoes = /obj/item/clothing/shoes/marine
 	wear_suit = /obj/item/clothing/suit/storage/faction/freelancer/medic
-	gloves = /obj/item/clothing/gloves/marine/veteran/PMC
+	gloves = /obj/item/clothing/gloves/marine/veteran/pmc
 	head = /obj/item/clothing/head/frelancer
 	glasses = /obj/item/clothing/glasses/hud/health
 	suit_store = /obj/item/weapon/gun/rifle/famas/freelancermedic
-	r_store = /obj/item/storage/pouch/autoinjector/advanced/full
+	r_store = /obj/item/storage/pouch/medical_injectors/medic
 	l_store = /obj/item/storage/pouch/magazine/large
 	back = /obj/item/storage/backpack/lightpack
 
@@ -209,11 +209,11 @@
 	w_uniform = /obj/item/clothing/under/marine/veteran/freelancer/veteran
 	shoes = /obj/item/clothing/shoes/marine
 	wear_suit = /obj/item/clothing/suit/storage/faction/freelancer
-	gloves = /obj/item/clothing/gloves/marine/veteran/PMC
+	gloves = /obj/item/clothing/gloves/marine/veteran/pmc
 	head = /obj/item/clothing/head/frelancer
 	suit_store = /obj/item/weapon/gun/rifle/alf_machinecarbine/freelancer
 	r_store = /obj/item/storage/pouch/grenade
-	l_store = /obj/item/storage/pouch/firstaid/full
+	l_store = /obj/item/storage/pouch/medical_injectors/firstaid
 	back = /obj/item/storage/backpack/lightpack
 
 
@@ -292,8 +292,8 @@
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/m15, SLOT_IN_SUIT)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/m15, SLOT_IN_SUIT)
 
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/tx55, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/tx55, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_carbine, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_carbine, SLOT_IN_BELT)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/tx54, SLOT_IN_BELT)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/tx54, SLOT_IN_BELT)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/tx54/incendiary, SLOT_IN_BELT)
@@ -309,9 +309,9 @@
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/tx54/incendiary, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/tx54/incendiary, SLOT_IN_BACKPACK)
 
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/tx55, SLOT_IN_R_POUCH)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/tx55, SLOT_IN_R_POUCH)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/tx55, SLOT_IN_R_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_carbine, SLOT_IN_R_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_carbine, SLOT_IN_R_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_carbine, SLOT_IN_R_POUCH)
 
 	H.equip_to_slot_or_del(new /obj/item/weapon/combat_knife, SLOT_IN_BOOT)
 
@@ -339,12 +339,12 @@
 	w_uniform = /obj/item/clothing/under/marine/veteran/freelancer/veteran
 	shoes = /obj/item/clothing/shoes/marine
 	wear_suit = /obj/item/clothing/suit/storage/faction/freelancer/leader
-	gloves = /obj/item/clothing/gloves/marine/veteran/PMC
+	gloves = /obj/item/clothing/gloves/marine/veteran/pmc
 	head = /obj/item/clothing/head/frelancer/beret
 	glasses = /obj/item/clothing/glasses/hud/health
 	suit_store = /obj/item/weapon/gun/rifle/m16/freelancer
 	r_store = /obj/item/storage/pouch/shotgun
-	l_store = /obj/item/storage/pouch/firstaid/full
+	l_store = /obj/item/storage/pouch/medical_injectors/firstaid
 	back = /obj/item/storage/backpack/lightpack
 
 /datum/outfit/job/freelancer/leader/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
@@ -374,7 +374,7 @@
 	wear_suit = /obj/item/clothing/suit/storage/faction/freelancer/leader/two
 	suit_store = /obj/item/weapon/gun/rifle/tx11/freelancertwo
 	r_store = /obj/item/storage/pouch/grenade
-	l_store = /obj/item/storage/pouch/firstaid/full
+	l_store = /obj/item/storage/pouch/medical_injectors/firstaid
 	back = /obj/item/storage/backpack/lightpack
 
 /datum/outfit/job/freelancer/leader/one/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
@@ -406,8 +406,8 @@
 	r_store = /obj/item/storage/pouch/magazine/large
 
 /datum/outfit/job/freelancer/leader/two/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/tx55, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/tx55, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_carbine, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_carbine, SLOT_IN_BELT)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/tx54, SLOT_IN_BELT)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/tx54, SLOT_IN_BELT)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/tx54/incendiary, SLOT_IN_BELT)
@@ -419,13 +419,13 @@
 	H.equip_to_slot_or_del(new /obj/item/stack/sheet/metal/medium_stack, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/storage/box/m94, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/tool/crowbar/red, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/tx55, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/tx55, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_carbine, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_carbine, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70, SLOT_IN_BACKPACK)
 
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/tx55, SLOT_IN_R_POUCH)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/tx55, SLOT_IN_R_POUCH)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/tx55, SLOT_IN_R_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_carbine, SLOT_IN_R_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_carbine, SLOT_IN_R_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_carbine, SLOT_IN_R_POUCH)
 
 	H.equip_to_slot_or_del(new /obj/item/weapon/combat_knife, SLOT_IN_BOOT)

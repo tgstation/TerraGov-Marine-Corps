@@ -2,7 +2,6 @@
 	name = "Zombie"
 	name_plural = "Zombies"
 	icobase = 'icons/mob/human_races/r_husk.dmi'
-	deform = 'icons/mob/human_races/r_husk.dmi'
 	total_health = 125
 	species_flags = NO_BREATHE|NO_SCAN|NO_BLOOD|NO_POISON|NO_PAIN|NO_CHEM_METABOLIZATION|NO_STAMINA|HAS_UNDERWEAR|HEALTH_HUD_ALWAYS_DEAD|PARALYSE_RESISTANT
 	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
@@ -12,13 +11,13 @@
 	slowdown = 0.5
 	default_language_holder = /datum/language_holder/zombie
 	has_organ = list(
-		"heart" =    /datum/internal_organ/heart,
-		"lungs" =    /datum/internal_organ/lungs,
-		"liver" =    /datum/internal_organ/liver,
-		"kidneys" =  /datum/internal_organ/kidneys,
-		"brain" =    /datum/internal_organ/brain/zombie,
+		"heart" = /datum/internal_organ/heart,
+		"lungs" = /datum/internal_organ/lungs,
+		"liver" = /datum/internal_organ/liver,
+		"kidneys" = /datum/internal_organ/kidneys,
+		"brain" = /datum/internal_organ/brain/zombie,
 		"appendix" = /datum/internal_organ/appendix,
-		"eyes" =     /datum/internal_organ/eyes
+		"eyes" = /datum/internal_organ/eyes
 	)
 	///Sounds made randomly by the zombie
 	var/list/sounds = list('sound/hallucinations/growl1.ogg','sound/hallucinations/growl2.ogg','sound/hallucinations/growl3.ogg','sound/hallucinations/veryfar_noise.ogg','sound/hallucinations/wail.ogg')
@@ -87,7 +86,7 @@
 /datum/species/zombie/handle_death(mob/living/carbon/human/H)
 	SSmobs.stop_processing(H)
 	if(!H.on_fire && H.has_working_organs())
-		addtimer(CALLBACK(H, /mob/living/carbon/human.proc/revive_to_crit, TRUE, FALSE), revive_time)
+		addtimer(CALLBACK(H, TYPE_PROC_REF(/mob/living/carbon/human, revive_to_crit), TRUE, FALSE), revive_time)
 
 /datum/species/zombie/create_organs(mob/living/carbon/human/organless_human)
 	. = ..()
@@ -187,7 +186,7 @@
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_AI_MINION_RALLY, owner)
 	var/datum/action/set_agressivity/set_agressivity = owner.actions_by_path[/datum/action/set_agressivity]
 	if(set_agressivity)
-		SEND_SIGNAL(owner, ESCORTING_ATOM_BEHAVIOUR_CHANGED, set_agressivity.zombies_agressive) //New escorting ais should have the same behaviour as old one
+		SEND_SIGNAL(owner, COMSIG_ESCORTING_ATOM_BEHAVIOUR_CHANGED, set_agressivity.zombies_agressive) //New escorting ais should have the same behaviour as old one
 
 /datum/action/set_agressivity
 	name = "Set other zombie behavior"
@@ -197,10 +196,9 @@
 
 /datum/action/set_agressivity/action_activate()
 	zombies_agressive = !zombies_agressive
-	SEND_SIGNAL(owner, ESCORTING_ATOM_BEHAVIOUR_CHANGED, zombies_agressive)
+	SEND_SIGNAL(owner, COMSIG_ESCORTING_ATOM_BEHAVIOUR_CHANGED, zombies_agressive)
 	update_button_icon()
 
 /datum/action/set_agressivity/update_button_icon()
-	button.overlays.Cut()
-	button.overlays += image('icons/mob/actions.dmi', button, zombies_agressive ? "minion_agressive" : "minion_passive")
+	action_icon_state = zombies_agressive ? "minion_agressive" : "minion_passive"
 	return ..()

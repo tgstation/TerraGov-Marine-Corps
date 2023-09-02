@@ -1,7 +1,7 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "bv" = (
-/obj/structure/jungle/vines,
-/obj/structure/jungle/vines/heavy,
+/obj/structure/flora/jungle/vines,
+/obj/structure/flora/jungle/vines/heavy,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle9)
 "bA" = (
@@ -16,19 +16,17 @@
 /turf/open/floor/plating/ground/dirtgrassborder,
 /area/lv624/ground/compound/ne)
 "eM" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/closed/wall,
 /area/lv624/ground/compound/ne)
 "fl" = (
 /obj/structure/window_frame/colony/reinforced,
 /obj/item/shard,
-/obj/machinery/door/poddoor/mainship{
-	density = 0;
+/obj/machinery/door/poddoor/mainship/open{
 	dir = 2;
-	icon_state = "pdoor0";
 	id = "nexus_blast";
 	name = "\improper Nexus Blast Door";
-	opacity = 0
+	
 	},
 /turf/open/floor/plating,
 /area/lv624/lazarus/main_hall)
@@ -48,13 +46,13 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle7)
 "iQ" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/open/floor/plating/ground/dirtgrassborder{
 	dir = 4
 	},
 /area/lv624/ground/jungle9)
 "jL" = (
-/obj/structure/jungle/planttop1,
+/obj/structure/flora/jungle/planttop1,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle9)
 "kt" = (
@@ -81,7 +79,7 @@
 /turf/closed/gm/dense,
 /area/lv624/ground/compound/ne)
 "mC" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle7)
@@ -140,27 +138,25 @@
 /turf/open/ground/grass/grass2,
 /area/lv624/ground/jungle7)
 "rp" = (
-/obj/structure/jungle/plantbot1,
+/obj/structure/flora/jungle/plantbot1,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle9)
 "rv" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/open/floor/plating/ground/dirtgrassborder/corner{
 	dir = 8
 	},
 /area/lv624/ground/jungle9)
 "se" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle9)
 "sG" = (
-/obj/machinery/door/poddoor/mainship{
-	density = 0;
+/obj/machinery/door/poddoor/mainship/open{
 	dir = 2;
-	icon_state = "pdoor0";
 	id = "nexus_blast";
 	name = "\improper Nexus Blast Door";
-	opacity = 0
+	
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/tile/white,
@@ -177,7 +173,7 @@
 	},
 /area/lv624/ground/compound/ne)
 "uR" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/open/floor/plating/ground/dirtgrassborder/corner,
 /area/lv624/ground/jungle9)
 "uV" = (
@@ -190,18 +186,16 @@
 /area/lv624/ground/compound/ne)
 "wl" = (
 /obj/structure/window/framed/colony/reinforced,
-/obj/machinery/door/poddoor/mainship{
-	density = 0;
+/obj/machinery/door/poddoor/mainship/open{
 	dir = 2;
-	icon_state = "pdoor0";
 	id = "nexus_blast";
 	name = "\improper Nexus Blast Door";
-	opacity = 0
+	
 	},
 /turf/open/floor/plating,
 /area/lv624/lazarus/main_hall)
 "wn" = (
-/obj/structure/jungle/vines/heavy,
+/obj/structure/flora/jungle/vines/heavy,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle9)
 "wt" = (
@@ -218,7 +212,7 @@
 /turf/open/floor/plating/ground/dirtgrassborder,
 /area/lv624/ground/jungle9)
 "xI" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/open/ground/grass,
 /area/lv624/ground/compound/ne)
 "yb" = (
@@ -240,7 +234,7 @@
 	},
 /area/lv624/ground/jungle7)
 "zj" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle7)
 "Aw" = (
@@ -255,7 +249,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/compound/ne)
 "Dd" = (
-/obj/structure/jungle/vines/heavy,
+/obj/structure/flora/jungle/vines/heavy,
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirtgrassborder/corner{
 	dir = 1
@@ -268,35 +262,31 @@
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
 	name = "\improper Nexus Dome"
 	},
-/obj/machinery/door/poddoor/mainship{
-	density = 0;
+/obj/machinery/door/poddoor/mainship/open{
 	dir = 2;
-	icon_state = "pdoor0";
 	id = "nexus_blast";
 	name = "\improper Nexus Blast Door";
-	opacity = 0
+	
 	},
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/main_hall)
 "EN" = (
-/obj/machinery/door/poddoor/mainship{
-	density = 0;
+/obj/machinery/door/poddoor/mainship/open{
 	dir = 2;
-	icon_state = "pdoor0";
 	id = "nexus_blast";
 	name = "\improper Nexus Blast Door";
-	opacity = 0
+	
 	},
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/main_hall)
 "Fv" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/open/floor/plating/ground/dirtgrassborder{
 	dir = 8
 	},
 /area/lv624/ground/jungle9)
 "FF" = (
-/obj/structure/jungle/vines/heavy,
+/obj/structure/flora/jungle/vines/heavy,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle7)
 "GL" = (
@@ -304,7 +294,7 @@
 /turf/open/ground/grass,
 /area/lv624/ground/compound/ne)
 "HV" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/open/floor/plating/ground/dirtgrassborder/corner{
 	dir = 4
 	},
@@ -340,13 +330,13 @@
 /turf/closed/wall,
 /area/lv624/ground/jungle9)
 "Jy" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/open/floor/plating/ground/dirtgrassborder/corner{
 	dir = 1
 	},
 /area/lv624/ground/jungle9)
 "Kf" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/open/floor/plating/ground/dirtgrassborder/corner2{
 	dir = 8
 	},
@@ -373,7 +363,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle7)
 "Lp" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/open/floor/plating/ground/dirtgrassborder{
 	dir = 1
 	},
@@ -389,7 +379,7 @@
 	},
 /area/lv624/ground/compound/ne)
 "MK" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/open/floor/plating/ground/dirtgrassborder{
 	dir = 8
 	},
@@ -427,7 +417,7 @@
 	},
 /area/lv624/ground/jungle7)
 "PM" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/open/floor/plating/ground/dirtgrassborder/corner{
 	dir = 8
 	},
@@ -456,11 +446,11 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle7)
 "TU" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/open/floor/plating/ground/dirtgrassborder,
 /area/lv624/ground/jungle9)
 "Vd" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle7)
 "Vg" = (

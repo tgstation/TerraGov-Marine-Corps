@@ -94,7 +94,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 /datum/reagent/consumable/ethanol/kahlua/on_mob_life(mob/living/L, metabolism)
 	L.dizzy(-4)
 	L.adjustDrowsyness(-2)
-	L.AdjustSleeping(-60)
+	L.AdjustSleeping(-6 SECONDS)
 	L.jitter(5)
 	return ..()
 
@@ -111,6 +111,13 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	color = "#664300" // rgb: 102, 67, 0
 	boozepwr = 80
 	taste_description = "exquisite amber"
+
+/datum/reagent/consumable/ethanol/experimentalliquor
+	name = "Experimental Liquor"
+	description = "An experimental liquor made deep within a laboratory. A portent of bad times. Somehow, more potent than pure ethanol..."
+	color = "#000000" // rgb: 0, 0, 0
+	boozepwr = 300
+	taste_description = "imminent death"
 
 /datum/reagent/consumable/ethanol/sake
 	name = "Sake"
@@ -242,7 +249,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 			if(prob(1))
 				L.emote(pick("twitch","giggle"))
 		if(20 to 59)
-			L.stuttering = max(L.stuttering, 2)
+			L.set_timed_status_effect(4 SECONDS, /datum/status_effect/speech/stutter, only_if_higher = TRUE)
 			L.hallucination = max(L.hallucination, 10)
 			L.jitter(3)
 			L.dizzy(2)
@@ -250,7 +257,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 			if(prob(5))
 				L.emote(pick("twitch","giggle"))
 		if(60 to 119)
-			L.stuttering = max(L.stuttering, 2)
+			L.set_timed_status_effect(4 SECONDS, /datum/status_effect/speech/stutter, only_if_higher = TRUE)
 			L.hallucination = max(L.hallucination, 60)
 			L.jitter(4)
 			L.dizzy(4)
@@ -260,7 +267,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 			if(prob(30))
 				L.adjustToxLoss(0.5)
 		if(120 to 199)
-			L.stuttering = max(L.stuttering, 2)
+			L.set_timed_status_effect(4 SECONDS, /datum/status_effect/speech/stutter, only_if_higher = TRUE)
 			L.hallucination = max(L.hallucination, 60)
 			L.jitter(4)
 			L.dizzy(4)
@@ -276,7 +283,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 					if(istype(E))
 						E.take_damage(2)
 		if(200 to INFINITY)
-			L.stuttering += 1
+			L.set_timed_status_effect(5 SECONDS, /datum/status_effect/speech/stutter, only_if_higher = TRUE)
 			L.adjustToxLoss(1)
 			L.hallucination = max(L.hallucination, 60)
 			L.jitter(4)
@@ -288,7 +295,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 				if(istype(E))
 					if(H.species.species_flags ~! NO_PAIN)
 						to_chat(H, span_danger("You clutch for a moment as you feel a scorching pain covering your abdomen!"))
-						H.Stun(60)
+						H.Stun(6 SECONDS)
 					E.take_damage(20)
 	return ..()
 
@@ -428,7 +435,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	boozepwr = 90 //THE FIST OF THE LAW IS STRONG AND HARD
 
 /datum/reagent/consumable/ethanol/beepsky_smash/on_mob_life(mob/living/L, metabolism)
-	L.Stun(40)
+	L.Stun(4 SECONDS)
 	return ..()
 
 /datum/reagent/consumable/ethanol/irish_cream
@@ -727,15 +734,15 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	switch(current_cycle)
 		if(1 to 50)
 			L.dizzy(5)
-			L.stuttering += 2
+			L.adjust_timed_status_effect(2 SECONDS, /datum/status_effect/speech/stutter)
 		if(51 to 100)
 			L.dizzy(5)
-			L.stuttering += 5
+			L.adjust_timed_status_effect(10 SECONDS, /datum/status_effect/speech/stutter)
 			if(prob(20))
-				L.AdjustConfused(60)
+				L.AdjustConfused(6 SECONDS)
 		if(101 to INFINITY)
 			L.dizzy(6)
-			L.stuttering += 5
+			L.adjust_timed_status_effect(10 SECONDS, /datum/status_effect/speech/stutter)
 			if(prob(20))
 				L.AdjustConfused(10 SECONDS)
 	return ..()

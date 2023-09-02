@@ -1,10 +1,10 @@
 /*
 	USAGE:
 
-		var/datum/callback/C = new(object|null, /proc/type/path|"procstring", arg1, arg2, ... argn)
+		var/datum/callback/C = new(object|null, GLOBAL_PROC_REF(type/path|"procstring"), arg1, arg2, ... argn)
 		var/timerid = addtimer(C, time, timertype)
 		OR
-		var/timerid = addtimer(CALLBACK(object|null, /proc/type/path|procstring, arg1, arg2, ... argn), time, timertype)
+		var/timerid = addtimer(CALLBACK(object|null, GLOBAL_PROC_REF(type/path|procstring), arg1, arg2, ... argn), time, timertype)
 
 		Note: proc strings can only be given for datum proc calls, global procs must be proc paths
 		Also proc strings are strongly advised against because they don't compile error if the proc stops existing
@@ -20,25 +20,23 @@
 	PROC TYPEPATH SHORTCUTS (these operate on paths, not types, so to these shortcuts, datum is NOT a parent of atom, etc...)
 
 		global proc while in another global proc:
-			.procname
+			PROC_REF(procname)
 			Example:
-				CALLBACK(GLOBAL_PROC, .some_proc_here)
+				CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(some_proc_here))
 
 		proc defined on current(src) object (when in a /proc/ and not an override) OR overridden at src or any of it's parents:
-			.procname
+			PROC_REF(procname)
 			Example:
-				CALLBACK(src, .some_proc_here)
+				CALLBACK(src, PROC_REF(some_proc_here))
 
 
 		when the above doesn't apply:
-			.proc/procname
+			PROC_REF(procname)
 			Example:
-				CALLBACK(src, .proc/some_proc_here)
+				CALLBACK(src, PROC_REF(some_proc_here))
 
 		proc defined on a parent of a some type:
-			/some/type/.proc/some_proc_here
-
-
+			TYPE_PROC_REF(some_type, some_proc_here)
 
 		Other wise you will have to do the full typepath of the proc (/type/of/thing/proc/procname)
 
@@ -58,19 +56,6 @@
 		arguments = args.Copy(3)
 	if(usr)
 		user = WEAKREF(usr)
-
-/world/proc/ImmediateInvokeAsync(thingtocall, proctocall, ...)
-	set waitfor = FALSE
-
-	if (!thingtocall)
-		return
-
-	var/list/calling_arguments = length(args) > 2 ? args.Copy(3) : null
-
-	if (thingtocall == GLOBAL_PROC)
-		call(proctocall)(arglist(calling_arguments))
-	else
-		call(thingtocall, proctocall)(arglist(calling_arguments))
 
 /datum/callback/proc/Invoke(...)
 	if(!usr)

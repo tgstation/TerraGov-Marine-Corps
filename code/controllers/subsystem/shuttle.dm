@@ -47,9 +47,9 @@ SUBSYSTEM_DEF(shuttle)
 	/// safety to stop shuttles loading over each other
 	var/loading_shuttle = FALSE
 
-/datum/controller/subsystem/shuttle/Initialize(timeofday)
+/datum/controller/subsystem/shuttle/Initialize()
 	initial_load()
-	return ..()
+	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/shuttle/proc/initial_load()
 	for(var/s in stationary)
@@ -80,7 +80,7 @@ SUBSYSTEM_DEF(shuttle)
 				qdel(T, force=TRUE)
 
 	if(!SSmapping.clearing_reserved_turfs)
-		while(transit_requesters.len)
+		while(length(transit_requesters))
 			var/requester = popleft(transit_requesters)
 			var/success = generate_transit_dock(requester)
 			if(!success) // BACK OF THE QUEUE
@@ -275,6 +275,7 @@ SUBSYSTEM_DEF(shuttle)
 	return new_transit_dock
 
 /datum/controller/subsystem/shuttle/Recover()
+	initialized = SSshuttle.initialized
 	if (istype(SSshuttle.mobile))
 		mobile = SSshuttle.mobile
 	if (istype(SSshuttle.stationary))
@@ -314,7 +315,7 @@ SUBSYSTEM_DEF(shuttle)
 
 /datum/controller/subsystem/shuttle/proc/get_containing_shuttle(atom/A)
 	var/list/mobile_cache = mobile
-	for(var/i in 1 to mobile_cache.len)
+	for(var/i in 1 to length(mobile_cache))
 		var/obj/docking_port/port = mobile_cache[i]
 		if(port.is_in_shuttle_bounds(A))
 			return port
@@ -322,7 +323,7 @@ SUBSYSTEM_DEF(shuttle)
 /datum/controller/subsystem/shuttle/proc/get_containing_dock(atom/A)
 	. = list()
 	var/list/stationary_cache = stationary
-	for(var/i in 1 to stationary_cache.len)
+	for(var/i in 1 to length(stationary_cache))
 		var/obj/docking_port/port = stationary_cache[i]
 		if(port.is_in_shuttle_bounds(A))
 			. += port
@@ -330,7 +331,7 @@ SUBSYSTEM_DEF(shuttle)
 /datum/controller/subsystem/shuttle/proc/get_dock_overlap(x0, y0, x1, y1, z)
 	. = list()
 	var/list/stationary_cache = stationary
-	for(var/i in 1 to stationary_cache.len)
+	for(var/i in 1 to length(stationary_cache))
 		var/obj/docking_port/port = stationary_cache[i]
 		if(!port || port.z != z)
 			continue
@@ -338,7 +339,7 @@ SUBSYSTEM_DEF(shuttle)
 		var/list/overlap = get_overlap(x0, y0, x1, y1, bounds[1], bounds[2], bounds[3], bounds[4])
 		var/list/xs = overlap[1]
 		var/list/ys = overlap[2]
-		if(xs.len && ys.len)
+		if(length(xs) && length(ys))
 			.[port] = overlap
 
 /datum/controller/subsystem/shuttle/proc/update_hidden_docking_ports(list/remove_turfs, list/add_turfs)
@@ -356,7 +357,7 @@ SUBSYSTEM_DEF(shuttle)
 		for(var/V in add_turfs)
 			var/turf/T = V
 			var/image/I
-			if(remove_images.len)
+			if(length(remove_images))
 				//we can just reuse any images we are about to delete instead of making new ones
 				I = remove_images[1]
 				remove_images.Cut(1, 2)

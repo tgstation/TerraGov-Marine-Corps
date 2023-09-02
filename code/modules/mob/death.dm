@@ -34,16 +34,17 @@
 
 
 /mob/proc/death(gibbing, deathmessage = "seizes up and falls limp...", silent)
+	SHOULD_CALL_PARENT(TRUE)
 	if(stat == DEAD)
 		if(gibbing)
 			qdel(src)
 		return
 
+	set_stat(DEAD)
+
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_MOB_DEATH, src)
 	SEND_SIGNAL(src, COMSIG_MOB_DEATH, gibbing)
 	log_combat(src, src, "[deathmessage]")
-
-	set_stat(DEAD)
 
 	if(deathmessage && !silent && !gibbing)
 		visible_message("<b>\The [name]</b> [deathmessage]")
@@ -63,7 +64,7 @@
 	drop_r_hand()
 	drop_l_hand()
 
-	if(hud_used && hud_used.healths)
+	if(hud_used?.healths)
 		hud_used.healths.icon_state = "health7"
 
 	timeofdeath = world.time

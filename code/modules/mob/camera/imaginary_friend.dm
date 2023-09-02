@@ -28,6 +28,7 @@
 									/datum/job/spatial_agent/galaxy_red,
 									/datum/job/spatial_agent/galaxy_blue,
 									/datum/job/spatial_agent/xeno_suit,
+									/datum/job/spatial_agent/marine_officer,
 									)
 
 /mob/camera/imaginary_friend/Login()
@@ -134,7 +135,7 @@
 	med_squad_mobhud ? H.add_hud_to(src) : H.remove_hud_from(src)
 	H = GLOB.huds[DATA_HUD_SQUAD_TERRAGOV]
 	med_squad_mobhud ? H.add_hud_to(src) : H.remove_hud_from(src)
-	H = GLOB.huds[DATA_HUD_SQUAD_REBEL]
+	H = GLOB.huds[DATA_HUD_SQUAD_SOM]
 	med_squad_mobhud ? H.add_hud_to(src) : H.remove_hud_from(src)
 	to_chat(src, span_notice("You have [med_squad_mobhud ? "enabled" : "disabled"] the Human Status HUD."))
 
@@ -146,6 +147,9 @@
 		if(client.prefs.muted & MUTE_IC)
 			to_chat(src, "You cannot send IC messages (muted).")
 			return
+		if(is_banned_from(ckey, "IC"))
+			to_chat(src, span_warning("You are banned from IC chat."))
+			return
 
 		if(client.handle_spam_prevention(message, MUTE_IC))
 			return
@@ -154,6 +158,7 @@
 
 
 /mob/camera/imaginary_friend/Hear(message, atom/movable/speaker, datum/language/message_language, raw_message, radio_freq, list/spans, message_mode)
+	. = ..()
 	if(client?.prefs.chat_on_map && (client.prefs.see_chat_non_mob || ismob(speaker)))
 		create_chat_message(speaker, message_language, raw_message, spans, message_mode)
 	to_chat(src, compose_message(speaker, message_language, raw_message, radio_freq, spans, message_mode))
@@ -181,7 +186,7 @@
 	//speech bubble
 	var/mutable_appearance/MA = mutable_appearance('icons/mob/talk.dmi', src, "default[say_test(message)]", FLY_LAYER)
 	MA.appearance_flags = APPEARANCE_UI_IGNORE_ALPHA
-	INVOKE_ASYNC(GLOBAL_PROC, /proc/flick_overlay, MA, owner.client ? list(client, owner.client) : list(client), 3 SECONDS)
+	INVOKE_ASYNC(GLOBAL_PROC, GLOBAL_PROC_REF(flick_overlay), MA, owner.client ? list(client, owner.client) : list(client), 3 SECONDS)
 
 	for(var/i in GLOB.dead_mob_list)
 		var/mob/M = i
@@ -229,15 +234,6 @@
 /mob/camera/imaginary_friend/ghostize()
 	icon = human_image
 	return ..()
-
-
-/mob/camera/imaginary_friend/add_typing_indicator(emoting)
-	return
-
-
-/mob/camera/imaginary_friend/remove_typing_indicator(emoting)
-	return
-
 
 /datum/action/innate/imaginary_join
 	name = "Join"

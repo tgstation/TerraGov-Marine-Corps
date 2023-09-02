@@ -3,8 +3,8 @@
 	desc = "It's a one time use flag built into a telescoping pole ripe for planting."
 	icon = 'icons/obj/items/plantable_flag.dmi'
 	icon_state = "flag_collapsed"
-	force = 3.0
-	throwforce = 2.0
+	force = 3
+	throwforce = 2
 	throw_speed = 1
 	throw_range = 4
 	w_class = WEIGHT_CLASS_SMALL

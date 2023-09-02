@@ -70,7 +70,7 @@
   - expansion: Added 6 new locations the caves of icy caves and increased the middle
       of icy caves to be slightly more open for combat.
   novaepee:
-  - bugfix: T-29 Smart Machinegun unwelded mob sprites; it was reversed and had no
+  - bugfix: SG-29 Smart Machinegun unwelded mob sprites; it was reversed and had no
       back / north face sprite
 2022-02-07:
   BraveMole:

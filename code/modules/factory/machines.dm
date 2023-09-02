@@ -17,7 +17,7 @@
 	var/processiconstate = "heater"
 	COOLDOWN_DECLARE(process_cooldown)
 
-/obj/machinery/factory/Initialize()
+/obj/machinery/factory/Initialize(mapload)
 	. = ..()
 	add_overlay(image(icon, "direction_arrow"))
 
@@ -33,6 +33,7 @@
 /obj/machinery/factory/wrench_act(mob/living/user, obj/item/I)
 	anchored = !anchored
 	balloon_alert(user, "[anchored ? "" : "un"]anchored")
+	playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
 
 /obj/machinery/factory/screwdriver_act(mob/living/user, obj/item/I)
 	setDir(turn(dir, 90))
@@ -56,7 +57,7 @@
 	COOLDOWN_START(src, process_cooldown, cooldown_time)
 	if(processiconstate && icon_state != processiconstate)//avoid resetting the animation
 		icon_state = processiconstate
-	addtimer(CALLBACK(src, .proc/finish_process), cooldown_time)
+	addtimer(CALLBACK(src, PROC_REF(finish_process)), cooldown_time)
 
 ///Once the timer for processing is over this resets the machine and spits out the new result
 /obj/machinery/factory/proc/finish_process()
@@ -66,6 +67,7 @@
 		held_item.advance_stage()
 	if(!locate(held_item.type) in get_step(src, REVERSE_DIR(dir)))
 		icon_state = initial(icon_state)
+
 	held_item = null
 
 /obj/machinery/factory/heater
@@ -99,3 +101,24 @@
 	icon_state = "reconstructor_inactive"
 	processiconstate = "reconstructor"
 	process_type = FACTORY_MACHINE_CONSTRUCTOR
+
+/obj/machinery/factory/driller
+	name = "Industrial driller"
+	desc = "An industrial level driller"
+	icon_state = "driller_inactive"
+	processiconstate = "driller"
+	process_type = FACTORY_MACHINE_DRILLER
+
+/obj/machinery/factory/galvanizer
+	name = "Industrial galvanizer"
+	desc = "An industrial level galvanizer"
+	icon_state = "galvanizer_inactive"
+	processiconstate = "galvanizer"
+	process_type = FACTORY_MACHINE_GALVANIZER
+
+/obj/machinery/factory/compressor
+	name = "Industrial compressor"
+	desc = "An industrial level compressor"
+	icon_state = "compressor_inactive"
+	processiconstate = "compressor"
+	process_type = FACTORY_MACHINE_COMPRESSOR

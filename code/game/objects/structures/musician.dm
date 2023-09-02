@@ -24,8 +24,10 @@
 	density = TRUE
 	coverage = 20
 
+/obj/structure/device/piano/full
+	icon_state = "piano"
 
-/obj/structure/device/piano/Initialize()
+/obj/structure/device/piano/Initialize(mapload)
 	. = ..()
 	if(prob(50))
 		name = "space minimoog"

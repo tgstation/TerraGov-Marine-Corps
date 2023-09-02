@@ -9,16 +9,6 @@
 	desc = "The basic construction for cameras."
 	icon = 'icons/obj/machines/monitors.dmi'
 	icon_state = "cameracase"
-	materials = list(/datum/material/metal = 400, /datum/material/glass = 250)
-
-
-/obj/item/frame/camera/attackby(obj/item/I, mob/user, params)
-	. = ..()
-
-	if(iswrench(I))
-		new /obj/item/stack/sheet/metal(loc, 2)
-		qdel(src)
-
 
 /obj/item/frame/camera/proc/try_build(turf/wall, mob/user)
 	if(get_dist(wall, user) > 1)
@@ -30,10 +20,10 @@
 
 	var/turf/loc = get_turf(user)
 	if(!isfloorturf(loc))
-		to_chat(user, span_warning("[src] cannot be placed on this spot."))
+		loc.balloon_alert(user, "bad spot")
 		return
 
-	user.visible_message("[user] begins attaching [src] to the wall.", "You being attaching [src] to the wall.")
+	user.balloon_alert_to_viewers("attaching")
 	playsound(loc, 'sound/machines/click.ogg', 15, 1)
 	var/constrdir = REVERSE_DIR(user.dir)
 	var/constrloc = user.loc

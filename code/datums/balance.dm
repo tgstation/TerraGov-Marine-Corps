@@ -16,9 +16,9 @@ GLOBAL_DATUM_INIT(balance, /datum/balance, new())
 	for(var/faction in factions)
 		balance_values[faction] = 0
 
-	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_LOGIN, .proc/gain_points)
-	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_LOGOUT, .proc/lose_points)
-	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH, .proc/lose_points)
+	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_LOGIN, PROC_REF(gain_points))
+	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_LOGOUT, PROC_REF(lose_points))
+	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH, PROC_REF(lose_points))
 
 /datum/balance/proc/gain_points(datum/dcs, mob/source)
 	SIGNAL_HANDLER

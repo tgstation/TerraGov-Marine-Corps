@@ -1,6 +1,6 @@
 // points per minute
 #define DROPSHIP_POINT_RATE 18 * ((GLOB.current_orbit+3)/6)
-#define SUPPLY_POINT_RATE 2 * (GLOB.current_orbit/3)
+#define SUPPLY_POINT_RATE 20 * (GLOB.current_orbit/3)
 
 SUBSYSTEM_DEF(points)
 	name = "Points"
@@ -45,9 +45,9 @@ SUBSYSTEM_DEF(points)
 	approvedrequests = SSpoints.approvedrequests
 	request_shopping_cart = SSpoints.request_shopping_cart
 
-/datum/controller/subsystem/points/Initialize(timeofday)
+/datum/controller/subsystem/points/Initialize()
 	ordernum = rand(1, 9000)
-	return ..()
+	return SS_INIT_SUCCESS
 
 /// Prepare the global supply pack list at the gamemode start
 /datum/controller/subsystem/points/proc/prepare_supply_packs_list(is_human_req_only = FALSE)

@@ -47,15 +47,19 @@
 /obj/vehicle/sealed/proc/mob_try_enter(mob/M)
 	if(!istype(M))
 		return FALSE
-	if(occupant_amount() >= max_occupants)
-		return FALSE
-	if(do_after(M, get_enter_delay(M), src))
+	if(do_after(M, get_enter_delay(M), src, extra_checks = CALLBACK(src, PROC_REF(enter_checks), M)))
 		mob_enter(M)
 		return TRUE
 	return FALSE
 
+
+/// returns enter do_after delay for the given mob in ticks
 /obj/vehicle/sealed/proc/get_enter_delay(mob/M)
 	return enter_delay
+
+///Extra checks to perform during the do_after to enter the vehicle
+/obj/vehicle/sealed/proc/enter_checks(mob/M)
+	return occupant_amount() < max_occupants
 
 /obj/vehicle/sealed/proc/mob_enter(mob/M, silent = FALSE)
 	if(!istype(M))
@@ -121,7 +125,7 @@
 		mob_exit(i, null, randomstep)
 		if(iscarbon(i))
 			var/mob/living/carbon/Carbon = i
-			Carbon.Paralyze(40)
+			Carbon.Paralyze(4 SECONDS)
 
 /obj/vehicle/sealed/proc/dump_specific_mobs(flag, randomstep = TRUE)
 	for(var/i in occupants)
@@ -130,7 +134,7 @@
 		mob_exit(i, null, randomstep)
 		if(iscarbon(i))
 			var/mob/living/carbon/C = i
-			C.Paralyze(40)
+			C.Paralyze(4 SECONDS)
 
 
 /obj/vehicle/sealed/AllowDrop()

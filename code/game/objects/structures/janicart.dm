@@ -7,6 +7,8 @@
 	density = TRUE
 	drag_delay = 1
 	coverage = 20
+	resistance_flags = XENO_DAMAGEABLE
+	max_integrity = 100
 	//copypaste sorry
 	var/amount_per_transfer_from_this = 5 //shit I dunno, adding this so syringes stop runtime erroring. --NeoFite
 	var/obj/item/storage/bag/trash/mybag
@@ -17,7 +19,7 @@
 	var/signs = 0	//maximum capacity hardcoded below
 
 
-/obj/structure/janitorialcart/Initialize()
+/obj/structure/janitorialcart/Initialize(mapload)
 	. = ..()
 	mybucket = new(src)
 	update_icon()

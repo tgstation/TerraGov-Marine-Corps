@@ -11,12 +11,12 @@
 	var/scoreleft = 0
 	var/scoreright = 0
 
-/obj/machinery/scoreboard/Initialize()
+/obj/machinery/scoreboard/Initialize(mapload)
 	. = ..()
 	update_display()
 
 /obj/machinery/scoreboard/proc/update_display()
-	if(overlays.len)
+	if(length(overlays))
 		overlays.Cut()
 
 	var/score_state = "s[( round(scoreleft/10) > scoreleft/10 ? round(scoreleft/10)-1 : round(scoreleft/10) )]a"
@@ -75,7 +75,7 @@
 		if(X.id == id)
 			X.reset_scores()
 
-	sleep(50)
+	sleep(5 SECONDS)
 
 	icon_state = "launcherbtt"
 	active = 0

@@ -4,6 +4,10 @@
 #define AGE_MIN 18
 #define AGE_MAX 85
 
+#define BACK_NOTHING 1
+#define BACK_BACKPACK 2
+#define BACK_SATCHEL 3
+
 #define GET_RANDOM_JOB 0
 #define BE_OVERFLOW 1
 #define RETURN_TO_LOBBY 2
@@ -73,6 +77,8 @@
 
 #define RADIAL_MEDICAL (1<<0)
 #define MIDDLESHIFTCLICKING (1<<1)
+#define RADIAL_STACKS (1<<2)
+#define AUTO_INTERACT_DEPLOYABLES (1<<3)
 
 #define PARALLAX_INSANE -1 //for show offs
 #define PARALLAX_HIGH    0 //default.
@@ -94,7 +100,7 @@
 #define SCALING_METHOD_DISTORT "distort"
 #define SCALING_METHOD_BLUR "blur"
 
-#define TOGGLES_GAMEPLAY_DEFAULT (RADIAL_MEDICAL|MIDDLESHIFTCLICKING)
+#define TOGGLES_GAMEPLAY_DEFAULT (RADIAL_MEDICAL|MIDDLESHIFTCLICKING|RADIAL_STACKS|AUTO_INTERACT_DEPLOYABLES)
 
 #define CHARACTER_CUSTOMIZATION 1
 #define BACKGROUND_INFORMATION 2
@@ -104,26 +110,27 @@
 #define KEYBIND_SETTINGS 6
 
 #define CITIZENSHIP_CHOICES list(\
-	"TerraGov",\
-	"Limited Service (Colony)",\
-	"Green Card (Foreign)"\
-	)
-
-
-#define CORP_RELATIONS list(\
-	"Loyal",\
-	"Supportive",\
-	"Neutral",\
-	"Skeptical",\
-	"Opposed"\
+	"Earth Born",\
+	"Sol Born",\
+	"Colony Born"\
 	)
 
 
 #define RELIGION_CHOICES list(\
-	"Christianity (Protestant)",\
 	"Christianity (Catholic)",\
-	"Christianity (Orthodox)",\
-	"Christianity (Mormonism)",\
+	"Christianity (Protestant, Anglicanism)",\
+	"Christianity (Protestant, Baptist)",\
+	"Christianity (Protestant, Lutheranism)",\
+	"Christianity (Protestant, Calvinism)",\
+	"Christianity (Protestant, Methodism)",\
+	"Christianity (Protestant, Adventism)",\
+	"Christianity (Protestant, Pentecostalism)",\
+	"Christianity (Protestant, Other)",\
+	"Christianity (Eastern Orthodoxy)",\
+	"Christianity (Oriental Orthodoxy)",\
+	"Christianity (Non-trinitarian Restorationism, Mormonism)",\
+	"Christianity (Non-trinitarian Restorationism, Jehovah's Witnesses)",\
+	"Christianity (Non-trinitarian Restorationism, Oneness Pentecostalism)",\
 	"Christianity (Other)",\
 	"Judaism",\
 	"Islam (Shia)",\
@@ -132,12 +139,11 @@
 	"Hinduism",\
 	"Sikhism",\
 	"Shintoism",\
-	"Wiccanism",\
-	"Paganism (Wicca)",\
-	"Minor Religion",\
+	"Adherents of the Machine God",\
+	"Paganism",\
+	"Other Religion",\
 	"Atheism",\
-	"None",\
-	"Other"\
+	"None"\
 	)
 
 
@@ -146,6 +152,14 @@
 	"Bravo",\
 	"Charlie",\
 	"Delta",\
+	"None"\
+	)
+
+#define SELECTABLE_SQUADS_SOM list(\
+	"Zulu",\
+	"Yankee",\
+	"Xray",\
+	"Whiskey",\
 	"None"\
 	)
 
@@ -161,6 +175,19 @@
 	"Glass",\
 	"Minimalist",\
 	"Holo"\
+	)
+
+///The amount of quick equip slots there should have. If someone doesn't have this many slots, their prefs will reset to get the new ones.
+///This adds only the buttons, to make the hotkeys usable in-game you need to make a keybind for it.
+#define MAX_QUICK_EQUIP_SLOTS 5
+
+///The default Quick equip order list, adding/removing slots from this list will increase the amount of quick equip slots. Update the define above when
+#define QUICK_EQUIP_ORDER list(\
+	SLOT_S_STORE,\
+	SLOT_BELT,\
+	SLOT_IN_BOOT,\
+	SLOT_L_STORE,\
+	SLOT_R_STORE\
 	)
 
 #define BE_SPECIAL_FLAGS list(\

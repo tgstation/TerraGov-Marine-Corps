@@ -5,7 +5,13 @@
 
 /// Asserts that a condition is true
 /// If the condition is not true, fails the test
-#define TEST_ASSERT(assertion, reason) if (!(assertion)) { return Fail("Assertion failed: [reason || "No reason"]") }
+#define TEST_ASSERT(assertion, reason) if (!(assertion)) { return Fail("Assertion failed: [reason || "No reason"]", __FILE__, __LINE__) }
+
+/// Asserts that a parameter is not null
+#define TEST_ASSERT_NOTNULL(a, reason) if (isnull(a)) { return Fail("Expected non-null value: [reason || "No reason"]", __FILE__, __LINE__) }
+
+/// Asserts that a parameter is null
+#define TEST_ASSERT_NULL(a, reason) if (!isnull(a)) { return Fail("Expected null value but received [a]: [reason || "No reason"]", __FILE__, __LINE__) }
 
 /// Asserts that the two parameters passed are equal, fails otherwise
 /// Optionally allows an additional message in the case of a failure
@@ -37,10 +43,14 @@
 #define UNIT_TEST_FAILED 1
 #define UNIT_TEST_SKIPPED 2
 
+#include "apc_area_sanity.dm"
 #include "bespoke_id.dm"
 #include "binary_insert.dm"
+#include "chat_filter.dm"
 #include "component_tests.dm"
 #include "connect_loc.dm"
+#include "dcs_get_id_from_elements.dm"
+#include "implanting.dm"
 #include "initialize_sanity.dm"
 #include "keybinding_init.dm"
 #include "map_templates.dm"
@@ -54,9 +64,10 @@
 #include "weed_ability.dm"
 #include "weed_spread.dm"
 #include "xeno_logical_scaling.dm"
+#include "item_variant_test.dm"
 
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL
 #undef TEST_ASSERT_NOTEQUAL
-#undef TEST_FOCUS
+//#undef TEST_FOCUS
 #endif

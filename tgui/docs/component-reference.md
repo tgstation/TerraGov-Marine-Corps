@@ -76,8 +76,6 @@ to understand what this is about.
 - Lower case names are native browser events and should be used sparingly,
 for example when you need an explicit IE8 support. **DO NOT** use
 lowercase event handlers unless you really know what you are doing.
-- [Button](#button) component does not support the lowercase `onclick` event.
-Use the camel case `onClick` instead.
 
 ## `tgui/components`
 
@@ -214,6 +212,7 @@ Buttons allow users to take actions, and make choices, with a single click.
 - See inherited props: [Box](#box)
 - `fluid: boolean` - Fill all available horizontal space.
 - `icon: string` - Adds an icon to the button.
+- `iconPosition?: string` - Set to `'right'` to align the icon to the right of the children
 - `color: string` - Button color, as defined in `variables.scss`.
   - There is also a special color `transparent` - makes the button
   transparent and slightly dim when inactive.
@@ -229,6 +228,10 @@ the baseline alignment.
 over the button.
 - `children: any` - Content to render inside the button.
 - `onClick: function` - Called when element is clicked.
+- `verticalAlignContent: string` - Align content vertically using flex. Use lineHeight if the height is static.
+  - `top` - align content to the ceiling of the button box.
+  - `middle` - align content on the middle of the button box.
+  - `bottom` - align content on the ground of the button box.
 
 ### `Button.Checkbox`
 
@@ -360,15 +363,14 @@ and displays selected entry.
 
 - See inherited props: [Box](#box)
 - See inherited props: [Icon](#icon)
-- `options: string[]` - An array of strings which will be displayed in the
-dropdown when open
-- `selected: string` - Currently selected entry
-- `width: number` - Width of dropdown button and resulting menu
+- `options: string[] | DropdownEntry[]` - An array of strings which will be displayed in the
+dropdown when open. See Dropdown.tsx for more adcanced usage with DropdownEntry
+- `selected: any` - Currently selected entry
+- `width: string` - Width of dropdown button and resulting menu; css width value
 - `over: boolean` - Dropdown renders over instead of below
 - `color: string` - Color of dropdown button
 - `nochevron: boolean` - Whether or not the arrow on the right hand side of the dropdown button is visible
-- `noscroll: boolean` - Whether or not the dropdown menu should have a scroll bar
-- `displayText: string` - Text to always display in place of the selected text
+- `displayText: string | number | InfernoNode` - Text to always display in place of the selected text
 - `onClick: (e) => void` - Called when dropdown button is clicked
 - `onSelected: (value) => void` - Called when a value is picked from the list, `value` is the value that was picked
 
@@ -662,8 +664,20 @@ to perform some sort of action), there is a way to do that:
 
 **Props:**
 
+- `className: string` - Applies a CSS class to the element.
 - `label: string|InfernoNode` - Item label.
-- `color: string` - Sets the color of the text.
+- `labelWrap: boolean` - Lets the label wrap and makes it not take the minimum width.
+- `labelColor: string` - Sets the color of the label.
+- `color: string` - Sets the color of the content text.
+- `textAlign: string` - Align the content text.
+  - `left` (default)
+  - `center`
+  - `right`
+- `verticalAlign: string` - Align both the label and the content vertically.
+  - `baseline` (default)
+  - `top`
+  - `middle`
+  - `bottom`
 - `buttons: any` - Buttons to render aside the content.
 - `children: any` - Content of this labeled item.
 

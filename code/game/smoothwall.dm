@@ -3,7 +3,7 @@
 //I should really make the shuttle wall check run every time it's moved, but centcom uses unsimulated floors so !effort
 
 ///Base proc to trigger the smoothing system. It will behave according to the smoothing atom's system.
-/atom/proc/smooth_self()
+/* /atom/proc/smooth_self()
 	switch(smoothing_behavior)
 		if(CARDINAL_SMOOTHING)
 			relativewall()
@@ -90,22 +90,17 @@
 	icon_state = "[basestate][jun]_frame"
 	junction = jun
 
-/turf/closed/wall/handle_icon_junction(junction)
+/turf/closed/handle_icon_junction(junction)
 	icon_state = "[walltype][junction]"
 	junctiontype = junction
 
 /obj/structure/grille/mainship/handle_icon_junction(junction)
 	icon_state = "grille[junction]"
 
-
 /turf/open/floor/vault/relativewall()
 	return
 
 /turf/closed/wall/vault/relativewall()
-	return
-
-/turf/closed/shuttle/relativewall()
-	//TODO: Make something for this and make it work with shuttle rotations
 	return
 
 /turf/open/shuttle/relativewall()
@@ -244,6 +239,6 @@
 			if((object.smoothing_behavior != DIAGONAL_SMOOTHING) || !(smoothing_groups & object.smoothing_groups))
 				continue
 			object.smooth_self()
-
+*/
 
 

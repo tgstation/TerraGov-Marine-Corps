@@ -17,7 +17,7 @@
 	<b>Implant Details:</b><BR>
 	<b>Function:</b> Upon activation injects a custom chemical mix into the user.<BR>
 	<b>Current Chemical composition:</b>
-	[chems.len ? jointext(chems, ""): "None!"]
+	[length(chems) ? jointext(chems, ""): "None!"]
 	<b>Integrity:</b> Implant is [used ? "used" : "unused"]."}
 
 

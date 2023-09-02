@@ -50,7 +50,7 @@
 #define MAX_NODE_RANGE 15
 #define PATHFINDER_MAX_TRIES 200
 
-GLOBAL_LIST_EMPTY(allnodes)
+GLOBAL_LIST_EMPTY(all_nodes)
 
 ///A GLOB of all /datum/component/ai_controller that currently exist
 GLOBAL_LIST_EMPTY(ai_instances_active)

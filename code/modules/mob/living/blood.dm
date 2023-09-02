@@ -12,38 +12,29 @@
 		return
 
 	if(stat != DEAD && bodytemperature >= 170)	//Dead or cryosleep people do not pump the blood.
-
-
-
-		//Blood regeneration if there is some space
-		if(blood_volume < BLOOD_VOLUME_NORMAL)
-			blood_volume += 0.1 // regenerate blood VERY slowly
-
-		heart_multi = initial(heart_multi)
-
-		// Damaged heart virtually reduces the blood volume, as the blood isn't
-		// being pumped properly anymore.
-		if(species && species.has_organ["heart"])
-			var/datum/internal_organ/heart/heart = internal_organs_by_name["heart"]
-
-			if(!heart)
-				heart_multi *= 0.5 //you'd die in seconds but you can't remove internal organs even with varediting.
-
-			if(heart && reagents.get_reagent_amount(/datum/reagent/medicine/peridaxon) < 0.05 && heart.damage > 1)
-				if(heart.is_broken())
-					heart_multi *= 0.5
-					blood_volume = max(blood_volume - 1.3, 0)
-				else if(heart.is_bruised())
-					heart_multi *= 0.7
-					blood_volume = max(blood_volume - 0.5, 0)
-				else
-					heart_multi *= 0.9
-					blood_volume = max(blood_volume - 0.1, 0) //nulls regeneration
-
-
+		if(blood_volume > BLOOD_VOLUME_MAXIMUM) //Warning: contents under pressure.
+			var/spare_blood = blood_volume - ((BLOOD_VOLUME_MAXIMUM + BLOOD_VOLUME_NORMAL) / 2) //Knock you to the midpoint between max and normal to not spam.
+			if(drip(spare_blood))
+				var/bleed_range = 0
+				switch(spare_blood)
+					if(0 to 30) //20 is the functional minimum due to midpoint calc
+						to_chat(src, span_notice("Some spare blood leaks out of your nose."))
+					if(30 to 100)
+						to_chat(src, span_notice("Spare blood gushes out of your ears and mouth. Must've had too much."))
+						bleed_range = 1
+					if(100 to INFINITY)
+						visible_message(span_notice("Several jets of blood open up across [src]'s body and paint the surroundings red. How'd [p_they()] do that?"), \
+							span_notice("Several jets of blood open up across your body and paint your surroundings red. You feel like you aren't under as much pressure any more."))
+						bleed_range = 3
+				if(bleed_range)
+					for(var/turf/canvas in RANGE_TURFS(bleed_range, src))
+						add_splatter_floor(canvas)
+					for(var/mob/canvas in viewers(bleed_range, src))
+						canvas.add_blood(species.blood_color) //Splash zone
+					playsound(loc, 'sound/effects/splat.ogg', 25, TRUE, 7)
 
 	//Effects of bloodloss
-		switch(blood_volume * heart_multi)
+		switch(blood_volume)
 
 			if(BLOOD_VOLUME_OKAY to BLOOD_VOLUME_SAFE)
 				if(prob(1))
@@ -61,7 +52,7 @@
 				if(prob(10) && stat == UNCONSCIOUS)
 					adjustToxLoss(1)
 				if(prob(15))
-					Unconscious(rand(20,60))
+					Unconscious(rand(2 SECONDS,6 SECONDS))
 					var/word = pick("dizzy","woozy","faint")
 					to_chat(src, span_warning("You feel extremely [word]"))
 			if(BLOOD_VOLUME_SURVIVE to BLOOD_VOLUME_BAD)
@@ -74,13 +65,21 @@
 				death()
 
 
-		// Without enough blood you slowly go hungry.
-		if(blood_volume < BLOOD_VOLUME_SAFE)
-			switch(nutrition)
-				if(300 to INFINITY)
-					adjust_nutrition(-10)
-				if(200 to 300)
-					adjust_nutrition(-3)
+		// Blood regens using food, more food = more blood.
+		switch(blood_volume)
+			if(BLOOD_VOLUME_SAFE to BLOOD_VOLUME_NORMAL) //Passively regens blood very slowly from 90% to 100% without a tradeoff.
+				blood_volume += 0.1
+			if(BLOOD_VOLUME_SURVIVE to BLOOD_VOLUME_SAFE) //Regens blood from 60% ish to 90% using nutrition.
+				switch(nutrition)
+					if(NUTRITION_OVERFED to INFINITY)
+						adjust_nutrition(-10)
+						blood_volume += 1 // regenerate blood quickly.
+					if(NUTRITION_HUNGRY to NUTRITION_OVERFED)
+						adjust_nutrition(-5)
+						blood_volume += 0.5 // regenerate blood slowly.
+					if(0 to NUTRITION_HUNGRY)
+						adjust_nutrition(-1)
+						blood_volume += 0.1 // Regenerate blood VERY slowly.
 
 		//Bleeding out
 		var/blood_max = 0
@@ -88,10 +87,7 @@
 			var/datum/limb/temp = l
 			if(!(temp.limb_status & LIMB_BLEEDING) || temp.limb_status & LIMB_ROBOT)
 				continue
-			for(var/w in temp.wounds)
-				var/datum/wound/W = w
-				if(W.bleeding())
-					blood_max += (W.damage / 60)
+			blood_max += temp.brute_dam / 60
 			if (temp.surgery_open_stage)
 				blood_max += 0.6  //Yer stomach is cut open
 
@@ -114,6 +110,7 @@
 				add_splatter_floor(loc)
 			else
 				add_splatter_floor(loc, 1)
+		return TRUE
 
 /mob/living/carbon/human/drip(amt)
 	if(HAS_TRAIT(src, TRAIT_STASIS)) // stasis now stops bloodloss
@@ -188,7 +185,7 @@
 			if(b_id == "blood" && R.data && !(R.data["blood_type"] in get_safe_blood(blood_type)))
 				reagents.add_reagent(/datum/reagent/toxin, amount * 0.5)
 			else
-				blood_volume = min(blood_volume + round(amount, 0.1), BLOOD_VOLUME_MAXIMUM)
+				blood_volume += round(amount, 0.1)
 		else
 			reagents.add_reagent(R.type, amount, R.data)
 			reagents.update_total()
@@ -211,8 +208,7 @@
 
 	var/list/temp_chem = list()
 	for(var/datum/reagent/R in reagents.reagent_list)
-		temp_chem += R.type
-		temp_chem[R.type] = R.volume
+		temp_chem[R.name] = R.volume
 	data["trace_chem"] = list2params(temp_chem)
 
 	O.reagents.add_reagent(/datum/reagent/blood, amount, data)
@@ -223,7 +219,7 @@
 
 /mob/living/carbon/human/take_blood(obj/O, amount)
 
-	if(species && species.species_flags & NO_BLOOD)
+	if(species?.species_flags & NO_BLOOD)
 		return
 
 	. = ..()
@@ -359,11 +355,12 @@
 
 	// Find a blood decal or create a new one.
 	var/obj/effect/decal/cleanable/blood/B = locate() in T
-	if(!B)
-		B = new /obj/effect/decal/cleanable/blood/splatter(T)
-		if(b_color)
-			B.basecolor = b_color
-			B.color = b_color
+	if(B)
+		return
+	B = new /obj/effect/decal/cleanable/blood/splatter(T)
+	if(b_color)
+		B.basecolor = b_color
+		B.color = b_color
 
 
 /mob/living/carbon/human/add_splatter_floor(turf/T, small_drip, b_color)

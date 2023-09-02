@@ -16,7 +16,7 @@
 	blood_overlay_type = "armor"
 	flags_armor_protection = CHEST
 	allowed = list (/obj/item/weapon/gun)
-	siemens_coefficient = 3.0
+	siemens_coefficient = 3
 
 /obj/item/clothing/suit/redtag
 	name = "red laser tag armour"
@@ -26,7 +26,7 @@
 	blood_overlay_type = "armor"
 	flags_armor_protection = CHEST
 	allowed = list (/obj/item/weapon/gun)
-	siemens_coefficient = 3.0
+	siemens_coefficient = 3
 
 /*
 * Costume
@@ -47,7 +47,7 @@
 	flags_inv_hide = HIDEJUMPSUIT
 	flags_armor_protection = CHEST|GROIN|ARMS|LEGS
 	flags_item = SYNTH_RESTRICTED
-	soft_armor = list("melee" = 60, "bullet" = 90, "laser" = 60, "energy" = 20, "bomb" = 25, "bio" = 10, "rad" = 10, "fire" = 20, "acid" = 20)
+	soft_armor = list(MELEE = 60, BULLET = 90, LASER = 60, ENERGY = 20, BOMB = 25, BIO = 10, FIRE = 20, ACID = 20)
 
 
 /obj/item/clothing/suit/cyborg_suit
@@ -56,7 +56,6 @@
 	icon_state = "death"
 	item_state = "death"
 	flags_atom = CONDUCT
-	fire_resist = T0C+5200
 	flags_inv_hide = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
 
 /obj/item/clothing/suit/johnny_coat
@@ -134,7 +133,7 @@
 	item_state = "chickensuit"
 	flags_armor_protection = CHEST|ARMS|GROIN|LEGS|FEET
 	flags_inv_hide = HIDESHOES|HIDEJUMPSUIT
-	siemens_coefficient = 2.0
+	siemens_coefficient = 2
 
 
 /obj/item/clothing/suit/monkeysuit
@@ -144,7 +143,7 @@
 	item_state = "monkeysuit"
 	flags_armor_protection = CHEST|ARMS|GROIN|LEGS|FEET|HANDS
 	flags_inv_hide = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
-	siemens_coefficient = 2.0
+	siemens_coefficient = 2
 
 
 /obj/item/clothing/suit/holidaypriest
@@ -171,6 +170,13 @@
 	icon_state = "white_dress_jacket" //with thanks to Baystation12
 	item_state = "white_dress_jacket" //with thanks to Baystation12
 
+	allowed = list(
+		/obj/item/instrument,
+		/obj/item/storage/holster/blade,
+		/obj/item/weapon/claymore,
+		/obj/item/weapon/twohanded,
+	)
+
 
 /obj/item/clothing/suit/straight_jacket
 	name = "straight jacket"
@@ -178,7 +184,7 @@
 	icon_state = "straight_jacket"
 	item_state = "straight_jacket"
 	flags_armor_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
-	flags_inv_hide = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT|HIDETAIL
+	flags_inv_hide = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
 
 
 /obj/item/clothing/suit/straight_jacket/equipped(mob/living/carbon/user, slot)
@@ -188,7 +194,7 @@
 		if(user.handcuffed) //Keep the cuffs on.
 			user.drop_all_held_items()
 		user.update_action_buttons() //Certain action buttons will no longer be usable.
-		RegisterSignal(src, COMSIG_ITEM_DROPPED, .proc/on_removal)
+		RegisterSignal(src, COMSIG_ITEM_DROPPED, PROC_REF(on_removal))
 	return ..()
 
 
@@ -271,7 +277,7 @@
 	item_state = "xenos_helm"
 	flags_armor_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	flags_inv_hide = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
-	siemens_coefficient = 2.0
+	siemens_coefficient = 2
 //swimsuit
 /obj/item/clothing/under/swimsuit/
 	siemens_coefficient = 1
@@ -341,11 +347,12 @@
 /obj/item/clothing/suit/replica
 	name = "replica armor"
 	desc = "A replica of the armour of choice for colonial militia."
-	icon = 'icons/obj/clothing/cm_suits.dmi'
+	icon = 'icons/obj/clothing/suits/ert_suits.dmi'
 	item_icons = list(
-		slot_wear_suit_str = 'icons/mob/suit_1.dmi',
+		slot_wear_suit_str = 'icons/mob/clothing/suits/marine_armor.dmi',
 		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
-		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi')
+		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',
+	)
 	icon_state = "rebel_armor"
 	item_state = "rebel_armor"
 	flags_armor_protection = CHEST|GROIN|LEGS

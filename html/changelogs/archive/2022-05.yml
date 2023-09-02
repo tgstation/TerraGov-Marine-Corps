@@ -1,0 +1,538 @@
+2022-05-02:
+  Arctrooper8:
+  - bugfix: Fixed the pixels on vat humans too.
+  BraveMole:
+  - rscadd: 'Add wraith portals delete: Remove hyperposition delete: Remove wraith
+      phasing'
+  Lumipharon:
+  - rscadd: Added a few more jobs to EORD, such as SOM veterans and freelancer.
+  - bugfix: Added some missing description info to some SOM equipment, and added missing
+      SL skills to the SOM leader.
+  - bugfix: Fixed AR11 and PR412 fire sound
+  Pariah919:
+  - balance: MG08 is now moveable.
+  - refactor: Genercized Moveable Mounted gun code.
+  RipGrayson:
+  - balance: Shuffled Big Red nuclear generator computers.
+  - balance: Moved a single platinum miner.
+  Vondiech:
+  - balance: Marines can no longer shoot through door assemblies.
+  - balance: Xenos can now slash door assemblies.
+  - balance: Door assemblies now extremely fragile in combat.
+  novaepee:
+  - rscadd: Give researcher, MD, and CMO req radio access
+2022-05-03:
+  Arctrooper8:
+  - balance: The bioprinter has been overclocked with an NVIDIA TITAN V, and now prints
+      limbs at SUPER SPEED in HIGH FIDELITY!
+  - imageadd: People have realized that wearing your mask over your nose is more effective.
+  - qol: Removed the unmanned vehicles from Valhalla.
+  RipGrayson:
+  - balance: Shuffled the locations of nuke disk generators on LV624 to be less biased.
+  - bugfix: Removed some duplicate LZ shutters from corporate dome
+  - rscadd: Added a prop version of the tank for mappers.
+  - rscadd: Created a handful of new modular maps for Big Red.
+  - rscadd: Added a prop version of CM's APC for mappers.
+  - imageadd: Ported CM APC icons for mapper use.
+  novaepee:
+  - qol: Update Autodoc UI to make it easier on eyes to cllick on the correct procedure
+2022-05-05:
+  Arctrooper8:
+  - balance: Lab coats now have the same storage as a medical storage module.
+  - imageadd: New sprites for all lab coats
+  - imageadd: New researcher uniform and improved scrubs sprite.
+  RipGrayson:
+  - bugfix: The nuke generator on LV is no longer inside silo fog
+  - code_imp: Purged a large amount of icon varedits from most maps
+  Walarks:
+  - qol: add to the weeds menu an option to automatically use the ability when moving
+  goose4429:
+  - balance: OD and COD start when _over_ threshold
+2022-05-06:
+  Arctrooper8:
+  - bugfix: Synths no longer have organs that they cannot fix
+  - bugfix: Combat robots can now have their heads reattached.
+  - bugfix: You can now actually see synthetic/robotic heads on the ground for retrieval.
+  - bugfix: Head reattachment surgery no longer makes you bald.
+  Lumipharon:
+  - bugfix: Species specific death messages actually work.
+  - refactor: quick equip now actually draws from or stores into everything you'd
+      expect it to, and does so in a more sane order
+  Wayland-Smithy:
+  - bugfix: Fixed and improved end of round ghost reveal code.
+  novaepee:
+  - bugfix: Supply Drop Hatching Being Invisible
+  - rscadd: Add more lights around PoS medbay.
+  - rscdel: Remove rogue cameras in PoS
+  - rscadd: briefing in PoS. lel
+  - bugfix: 'PoS'' chem not being able to be accessible to corpsman. expansion: polish
+      up PoS'' morgue.'
+2022-05-07:
+  Lumipharon:
+  - rscadd: Add some spawners for mapper use for random guns to spawn with ammo they
+      actually use.
+  novaepee:
+  - bugfix: Fix APC wiring and symmetry in Minerva's req
+2022-05-08:
+  Arctrooper8:
+  - bugfix: Robot visors work again, children of the machine god rejoice!
+  BraveMole:
+  - server: Less lag from minions
+  - rscadd: New hunter ability, swap
+  - rscdel: Kill silence ability
+  Pariah919:
+  - balance: acid wells now extingush fire on any mob that steps on them.
+  - balance: Lemoline is considerably cheaper, and doctors get a 30 unit bottle in
+      their bag.
+  novaepee:
+  - bugfix: Fix PoS CL Office
+2022-05-09:
+  2whatever2:
+  - balance: Moved TAT & non-IFF HMG from weapons vendor to Engineering vendor (The
+      ones with mortar and howitzer.)
+  DeltaFire15:
+  - balance: Any machinery / structure on a tile now blocks deployable deployment,
+      as opposed to only dense ones.
+  - code_imp: Deployables checking for blocking objects are now less prone to being
+      bypassed during their do_after.
+  Pariah919:
+  - balance: Added two railgun rounds, HVAP and SAP, HVAP has medium damage/poor pen,
+      but shreds all armor. Normal Railgun rounds reach out to 14 tiles now, HVAP
+      to 21. APDS (Previously, just generic ammo) has 20 sunder from 90, but pens
+      ALL armor.
+  - spellcheck: Railgun rounds reflavored, Normal ammo is now called APDS, it only
+      has 2 knockback now.
+  - balance: Essential PC removed, early synth now builds faster but is worse at medical
+      than late synth.
+  - balance: AMR mostly reverted to pre david touch state, has 90 damage and 135 when
+      lased, pen down to 50, it slows down on hit again. Lase reverted to 1.5x. Sunder
+      returned.
+  QualityVan:
+  - rscadd: After applying a health kit to one limb, you'll start applying it to all
+      other damaged ones without using additional stacks.
+  RipGrayson:
+  - rscadd: Added seed extractors to PoS, Theseus, and Minerva.
+  Walarks:
+  - qol: adds a stat for produced req points through research to researcher console
+      and round-end, updates console UI
+  goose4429:
+  - rscadd: alkysine, imidazoline injectors
+  - balance: imi, alky, peri and acillin injectors in MarineMed
+  tyeagg:
+  - balance: expanded caves slightly
+  - balance: made lz2 more open
+  - balance: adds another flank to both lz's
+  - balance: moved fog locations
+  - balance: more gens
+  - bugfix: tadpole being able to land in northern caves
+  - rscadd: light uav to engi vendor for 50 points
+  - rscadd: muzzle flash when firing
+  - rscadd: allows unmanned vehicles to be dropped by supply pad
+  - balance: reduced light uav integrity to 150
+  - balance: reduced medium uav integrity to 200
+  - balance: reduced heavy uav integrity to 250
+  - balance: reduced battle droid integrity to 150
+  - balance: reduced light turret firerate delay to 1 ticks
+  - balance: reduced heavy turret firerate delay to 2 ticks
+  - balance: reduced battle droid firerate delay to 1.5 ticks
+  - balance: changed battle droid ammo type to overcharge laser
+  - balance: reduced light turret ammo cap to 150
+  - balance: reduced heavy turret ammo cap to 50
+  - balance: increased bullet armor to 85
+  - balance: reduced remote price to 1
+  - balance: reduced light turret ammo price to 3
+  - balance: reduced heavy turret ammo price to 3
+  - code_imp: fixed swapped comments
+  - bugfix: not being able to reload uav turret
+  - soundadd: engine sound for unmanned vehicle
+  - qol: changed light uav name to UV-L Iguana
+  - qol: changed medium uav name to UV-M Gecko
+  - qol: changed heavy uav name to UV-H Komodo
+2022-05-10:
+  TiviPlus:
+  - bugfix: vision will no longer be bugged when a deployable item is undeployed while
+      being used
+  Walarks:
+  - qol: xeno auto-weeding no longer places weeds when standing on weeds
+  - refactor: changes how a xeno being on weeds is determined, shouldn't affect gameplay
+  novaepee:
+  - rscadd: Expand PoS' briefing and make TGMC letters go underneath chair
+  - rscadd: another grinder for chem users to use in PoS
+  - rscadd: Move FC's office to give him more space and be next to CO.
+  - rscadd: Replace old FC's office into chapel.
+  - bugfix: space tiles in PoS' req attempt 2
+  - bugfix: rogue piping
+2022-05-11:
+  Wayland-Smithy:
+  - bugfix: Fixed hardhats not turning off on xeno slash like flashlights.
+  magatsuchi:
+  - bugfix: fixes not being able to suck-start a shotgun (suicide)
+2022-05-12:
+  KornFlaks:
+  - bugfix: Disguised Hunter now appears above objects (e.g. weeds) regardless of
+      what it is disguised as.
+  - qol: Added balloon alerts for xeno action checks.
+  - qol: Added balloon alerts for fulton interactions
+  - qol: Added balloon alerts for xeno structure interactions.
+  Lumipharon:
+  - bugfix: Turrets can no longer be removed from dropship turret modules
+  MrHorizons:
+  - spellcheck: The "SR-8" scout rifle is now the BR-8, as its description says.
+  - spellcheck: The SR-81 automatic sniper rifle has been designated as such, after
+  Pariah919:
+  - balance: vertical grips reduce your wield slowdown.
+  QualityVan:
+  - bugfix: Default attachments which have their own attachments (miniflamer's the
+      most common you'd notice) now spawn those attachments correctly
+  - bugfix: Broken lungs are worse than bruised lungs now.
+  - refactor: Limbs have damage themselves instead of separating it into wounds
+  - refactor: Internal bleeding doesn't count directly as damage on a limb.
+  crayonLover09:
+  - qol: Xeno firestacks displayed in game panel
+  goose4429:
+  - rscadd: New xeno minimap icons
+  - rscadd: Animated silo icon
+  hyper2snyper:
+  - rscadd: 'New Armor Module: The Arrowhead Energy Shield'
+  novaepee:
+  - soundadd: Decrease MG-27's firing sound by 9 db
+  - imageadd: dir sprites for ghost cat
+  - rscadd: additional sentry kit in the TerraGovTech Engineer System Vendor; now
+      engineers can acquire all four sentry kits in the vendor
+  - rscdel: sentry kit near FOB drone
+  - rscadd: green facepaint in PoS' prep
+  - rscdel: Theseus' metal and plasteel surplus near FOB drone
+  - rscdel: extra crowbars and screwdrivers in all prep if needed since we don't need
+      it to dissemable Jaegar
+2022-05-15:
+  'Arctrooper8 Code: MJP Sprites: Kuro':
+  - rscadd: SG-85 handheld gatling gun, an SG minigun with an absurd firerate at the
+      cost of low damage per bullet.
+  - rscdel: T-25 has truly been sent to the shadow realm this time (They will not
+      survive the Brazilians).
+  - balance: SG-29 now has a firerate of .2 instead of .25
+  KornFlaks:
+  - bugfix: Queen now retains the ability to command minions after maturing to Primo
+      status.
+  Lumipharon:
+  - bugfix: Fixed an old bug that would cause screen wide client crashes due to large
+      amounts of shooting
+  Pariah919:
+  - rscadd: Added new gun lore. Check the codex for cool reading.
+  - rscadd: New gun names, more nomenclature.
+  QualityVan:
+  - bugfix: You can see bleeding on human examine again.
+  - bugfix: You can't kit undamaged limbs
+  - bugfix: Robotic limbs are firmly incapable of bleeding.
+  RipGrayson:
+  - balance: The crashed ship area in LV is now weatherproof and underground
+  TiviPlus:
+  - code_imp: updated tgui
+  Walarks:
+  - qol: robot repair automatically starts repairing the next damaged limb
+  - bugfix: fixes xeno not having weeds when spawned/evo on weeds and not move
+  Wayland-Smithy:
+  - bugfix: Fixed call of the burrowed unintentional larva queue leaves.
+  tyeagg:
+  - balance: 'reduced hv 30mm ammo travel time to 3 seconds delete: removed landing
+      zone detector'
+  - balance: increased dropship points received from voucher to 150
+  - balance: laser beam gun price increased to 600
+  - balance: laser battery price reduced to 85
+  - balance: fatty rocket price decreased to 150
+2022-05-16:
+  Arctrooper8:
+  - rscdel: Unused baystation races and their codes it gone.
+  - rscdel: Unused deformed limb code is gone.
+  - qol: PO duty and spawn message have been updated
+  - bugfix: SG vendor now displays the proper name for the SG minigun
+  - soundadd: SG minigun now uses default minigun sound, ears of the world rejoice!
+  - sounddel: Removed minigun_sg since it is now unused and hurts everyone's ears
+  DeltaFire15:
+  - bugfix: Deployables should be less likely to have issues with turf blocking conditions
+      changing during deployment.
+  KornFlaks:
+  - balance: Xenos on help intent no longer extinguish their sworn enemies and instead
+      watches them burn.
+  QualityVan:
+  - bugfix: Restocking a back-mounted ammo (power packs, fuel tanks) will now properly
+      disconnect them from any loaded weapons.
+  - bugfix: Flamers won't stay connected to fuel tanks across time and space after
+      you do a tactical reload.
+  - bugfix: Revolvers won't sometimes jam after firing the first few bullets and opening
+      the chamber.
+  RipGrayson:
+  - qol: Mapper icons for cameras now have an indicator for which direction they move.
+  - bugfix: Fixed quite a few icons that were invisible due to improper icon_states.
+  - imageadd: Created a new icon for poster spawners.
+  - imageadd: Created a new icon for the death step_triggers outside of ships.
+  - imageadd: Created a new sprite for mapping gib spawners.
+  - imageadd: Ported the TG silo icon for use as a map prop.
+  Wayland-Smithy:
+  - balance: Flares only deal extra burn damage to things not already on fire. Normal
+      throw impact damage and fire stacks are unchanged.
+  - bugfix: Fixed phoron miners continuing to function after hijack.
+  breadhunt:
+  - qol: When swapping an attachment, the old attachment now goes into your hand instead
+      of on the floor
+  hyper2snyper:
+  - qol: Med Scanner is now TGUI.
+  - balance: Med Scanner now auto updates for Corpmen and has a remote distance of
+      3
+2022-05-17:
+  BraveMole:
+  - bugfix: Fix sandbag loadout exploit
+  KornFlaks:
+  - qol: Added balloon alerts for plasma cutter interactions.
+2022-05-18:
+  novaepee:
+  - bugfix: camera position in PoS
+  - rscadd: two tile wide maint halls around PoS
+  - rscadd: better hijack position when xenomorphs crash Alamo into PoS
+2022-05-19:
+  Arctrooper8:
+  - balance: SG minigun fires slower and does more damage
+  - bugfix: SG minigun is now consumer safe and no longer bullies low end devices
+  Lumipharon:
+  - bugfix: Fixed a couple of bugs that could let you stack turrets or MG's
+  Mechanelize:
+  - rscadd: Added a new marine outfit for Imaginary Friends
+  Walarks:
+  - balance: fixes harvester storing 60 instead of 30 of each reagent
+  - qol: updates harvester messages to runechat instead of chat
+  - bugfix: select reagent button icon no longer disappears sometimes when re-equipping
+      the weapon
+2022-05-20:
+  KornFlaks:
+  - qol: Defiler actions now have balloon alerts.
+2022-05-21:
+  Arctrooper8:
+  - rscadd: Added a lot more Christian Denominations
+  - rscadd: Adherents of the Machine God added 01010000 01110010 01100001 01101001
+      01110011 01100101 00100000 01001111 01101101 01101110 01101001 01110011 01110011
+      01101001 01100001 01101000
+  - rscadd: Paganism
+  - rscdel: removed Wiccanism and Pagan(Wicca)
+  - rscdel: Removed unused lore preference variables alongside broken Corporates relations
+  - bugfix: Synthetic type button now actually works instead of making you Western
+  KornFlaks:
+  - qol: Xeno pheromones selection are now done in a radial menu.
+  - bugfix: Xeno phermones keybindings now function at all times, even if the phero
+      selection is not active.
+  - qol: Xeno construction selection can now be done through radial menu. Left click
+      now opens radial selection (new). Right click cycles through constructions (old).
+  - bugfix: Throwing knives (and all other things thrown) now do damage!
+  - qol: Xeno weed type radial menu made smaller.
+  - rscadd: Queen hive message now displays on game map.
+  Lumipharon:
+  - rscadd: Added new lobby art
+  QualityVan:
+  - bugfix: New health scanners properly show whether a limb is kitted or not.
+  novaepee:
+  - bugfix: issue of anyone w/o ACCESS_MARINE_PREP can't get through 2x1 door
+  - bugfix: bolding on medical scanner for brain damage
+  - bugfix: delete a folder in TerraGov-Marine-Corps that contains a folder named
+      TerraGov-Marine-Corps
+  tyeagg:
+  - code_imp: railgun targeting changed from pick to rand
+  - balance: increased railgun spread
+  - balance: changed railgun to be explosive
+  - balance: increased railgun cooldown to 5 minutes
+  - balance: reduced time it takes to fire and land railgun
+  - rscadd: Orion Military Outpost
+  - imageadd: bunkbeds
+  - bugfix: broken vendor props not having density
+  - imageadd: 'tallgrass delete: slowdown from bushes'
+2022-05-22:
+  KornFlaks:
+  - qol: The actions that hiveminds can use while manifested no longer disappear but
+      instead are disabled.
+  Walarks:
+  - qol: psychic link's activation can be manually cancelled by activating the skill
+      again
+  - balance: psychic link has 15 instead of 10 range
+2022-05-23:
+  KornFlaks:
+  - refactor: Armor checks now correctly request target armor.
+  - qol: Runner actions now have balloon alerts.
+  - qol: Drones, Hivelords, and Queens now have balloon alerts for their abilities.
+  - rscadd: All xenos now have the ability to overwatch other xenos through the chat
+      (F) button.
+  Naaanii:
+  - balance: CSE now starts with one stack of metal, plasteel, sandbags and barbed
+      wire
+  - balance: CSE now starts with a welderpack instead of a satchel
+  RipGrayson:
+  - balance: Most shipside chairs and tables no longer drop metal on deconstruct
+  Sirsnek15:
+  - imageadd: Hello soldering tool!
+  Wayland-Smithy:
+  - bugfix: Fixed xeno hud perma fire stacks on dead.
+2022-05-25:
+  KornFlaks:
+  - qol: Resin jelly now has balloon alerts for application.
+  - bugfix: Resin jelly can no longer be used by multiple xenos at once.
+  - bugfix: Resin jelly is no longer applied twice as fast to self while in hand.
+  - bugfix: Resin jelly can no longer be applied to fireproof xenos.
+  - bugfix: Fixed an error appearing when a drone evolves to hivemind.
+  SplinterGP:
+  - bugfix: fixed a bug that caused the hunter invisibility ability not get to standing
+      still invisibility level due to it only attempting to do so when plasma was
+      regenerated.
+  Wayland-Smithy:
+  - qol: Xeno hivemind chat follow links are easier to click.
+  goose4429:
+  - rscdel: Hyperzine removed from everywhere
+  - code_imp: Injector code refactor
+  - code_imp: Imi, Alky injectors fix
+  - code_imp: med vendor code refactor
+  - rscadd: Dexaline injector
+  - rscadd: Case to med vendor, can hold 3 injectors (and nothing else)
+  - balance: Injectors have default 30u volume and 10u inject
+  - balance: Moved some pill bottles to med vendor
+  - balance: These pill bottles removed from MarineMed
+  - balance: Basic injectors are unlimited in MarineMed
+  - balance: Other injectors have greater number in MarineMed
+  - balance: Injectors and hyposprays have less delay on use
+  - balance: Added Imi and Alky to med belt
+2022-05-26:
+  Arctrooper8:
+  - balance: Laser sniper rifle now has an IFF mode that decreases in damage logarithmically
+      for every marine it passes through (try to get a clear shot!)
+  - bugfix: You can no longer force a mag harness unto the laser sniper rifle and
+      bug out the scope sprite
+  KornFlaks:
+  - bugfix: Wraith banish no longer inserts invisible wall if banished object is destroyed.
+2022-05-27:
+  Arctrooper8:
+  - balance: Due to disabled safety checks, Combat robots will no longer experience
+      crit.
+  DeltaFire15:
+  - code_imp: Refactored a bunch of fire-related things (DoT, fire stack additions,
+      some weapon special effects, Ignition) to care about percentile fire armor (aka
+      soft armor) instead of it not mattering in many cases.
+  - balance: Xenomorphs, when NOT on fire lose one fire stack per life tick, counteracting
+      the prospect of non-igniting events adding firestacks having too much of an
+      impact on subsequent ignitions, provided sufficient time inbetween.
+  - bugfix: Throwing resin jello as hivelord should be less likely to not have an
+      impact now, due to a previous possible race condition.
+  - balance: Flamethrower fire intensity has been increased by 30% to counteract armor
+      being taken into account. Other weaponry making use of incendiary effects unaffected.
+  KornFlaks:
+  - rscadd: Overwatch is now canceled if the watcher is damaged.
+  - refactor: Overwatch from chat now uses target reference instead of trying to match
+      nicknames. This should mean it should no longer fail to work if xeno names are
+      identical.
+  - rscdel: Queen can no longer select xenos to overwatch using control middle click.
+  - qol: Xeno Evolution UI now has the same theme as Hive Blessings.
+  - qol: Minor improvements to spacing and color in the Hive Blessings UI.
+  - qol: Hive upgrade button is now disabled if the hive has insufficient number of
+      points to purchase it.
+  - refactor: Larva evolution handing is now processed along the same functions as
+      all other xeno castes.
+  Lumipharon:
+  - rscadd: Projectile accuracy is impacted by the shooter moving or standing still
+      (even when wielding)
+  - rscadd: Projectile accuracy is impacted by how fast the target is moving, and
+      how large they are
+  - balance: Projectiles no longer have two chances to hit a target instead of one.
+      Low accuracy shots will now actually miss more in line with what you would expect
+  - balance: A balance pass has been made of guns and some attachments relating to
+      their accuracy
+  - bugfix: Fixed a variety of accuracy related bugs
+  - bugfix: Removed stat modifiers from non removable weapon stocks and added them
+      to their base gun stats
+  Pariah919:
+  - balance: You can extend and unextend the RL-72 one use RPG, which will make it
+      storeable when retracted, and fireable when extended.
+  RipGrayson:
+  - imageadd: Resprited pinpointers
+  - imageadd: Resprited Booze-O-Mat
+  - imageadd: Ported a fair number of fluff related icons from CM
+  - imageadd: Ported a single icon from Baystation
+  - imagedel: Removed old pinpointer sprites and icons that were replaced by CM versions
+2022-05-28:
+  Arctrooper8:
+  - rscdel: Removed PC emp act
+  - balance: PC cell size from 8500 to 7500
+  KornFlaks:
+  - bugfix: Larva now no longer need a hive ruler to evolve.
+  - bugfix: Xenos can now use chat overwatch while resting.
+  breadhunt:
+  - rscadd: Activated intel computers now show on minimap
+2022-05-29:
+  KornFlaks:
+  - balance: LZ, Colony, and Armored Floodlights have had their lighting power (inverse
+      dropoff) reduced. This means less lighting around the edges of floodlights but
+      will now appear more circular in lit area.
+  - balance: LZ and Colony Floodlights have had their lighting range improved to compensate
+      for increased dropoff in light.
+  - bugfix: Xenos in vents can now see the pipe network overlay.
+  - qol: Xeno theme reduced to Standard with Xeno watermark.
+  - rscdel: Removed images and CSS relating to previous xeno theme.
+  - refactor: Xeno evolution slots displayed in the hive status page now are the actual
+      number of slots.
+  Pariah919:
+  - balance: silo scaling is 2 from 2.5
+  QualityVan:
+  - bugfix: Arrowhead starts recharging again after taking damage
+  - balance: IB won't naturally get worse over time.
+  - balance: Quickclot won't stop IB from slowly increasing bruteloss on the limb
+      it's on. Bic+ina still will.
+  - balance: Bic OD won't slowly cure IB.
+  - bugfix: QCP will always remove internal bleeding so long as you have at least
+      5u injected and no purgatives. Every 5u injection will handle one instance of
+      IB.
+  - rscadd: New health scanner shows an alert if the patient has unscannable reagents
+      in them.
+  - rscadd: Extended nozzle for the standard flamer in the weapon vendor. Shoot fireballs
+      to ignite things from a distance! Up front damage is pretty lacking though.
+  - rscadd: Metal cades upgraded with caustic armor can't have xeno acid applied.
+  Sirsnek15:
+  - qol: Adds suit outer storage back to labcoats
+  goose4429:
+  - bugfix: Added missing equipment to Valhalla vendors
+2022-05-30:
+  Arctrooper8:
+  - rscadd: SG minigun now has ammo boxes which hold 1000 rounds each.
+  - balance: SG minigun is now perfect and nobody will ever have to balance it again.
+  - balance: SG ammo factory refills are now cheaper but produce less.
+  - balance: SG-29 drum now holds 250.
+  - balance: All night vision goggles now use LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE
+  - bugfix: You can no longer buy T-25 refills
+  KornFlaks:
+  - bugfix: Balloon alerts resulting from an action targeting the ground no longer
+      spams balloon alerts.
+  - bugfix: Floodlights, both LZ and Colony, now properly illuminate the area around
+      them.
+  - bugfix: Armored floodlight cell power calculation in its description was corrected.
+  Mechanelize:
+  - code_imp: Split xeno related flags containing "CAN" into a new category called
+      xeno_can_flags to bypass the 21 flag bitfield limit
+  QualityVan:
+  - code_imp: flamer_fire_act gets a new argument that, among other things, means
+      x-fuel is better than default at burning non-mob stuff.
+  - balance: Flamers chew through resin faster.
+  - balance: Miniflamers are weaker against mobs, but the same as before against resin.
+  breadhunt:
+  - qol: Metal, empty sandbags, plasteel and wood have icons based on how much stuff
+      is in the stack
+  - imageadd: Icons for that
+2022-05-31:
+  BraveMole:
+  - bugfix: Fix loadouts giving marine access to nanomed vendor
+  - bugfix: Fix inap, RR and neuraline working on dead bodies
+  Lewdcifer:
+  - balance: RL-152 no longer accepts mini scopes.
+  QualityVan:
+  - bugfix: You can open and close m44 revolvers.
+  - bugfix: Fixed a tiny bit of unreachable code in gorger transfusion failure messages
+  Wayland-Smithy:
+  - bugfix: Fixed hivemind mob perma rest on ghosting.
+  - bugfix: Fixed xeno structure selection out of bounds error.
+  breadhunt:
+  - bugfix: CIC orbital spotlights now work again.
+  - balance: Spotlight range 11 --> 15, about the same light level as combat floodlights
+  - qol: Balloon alerts to surgery actions
+  goose4429:
+  - bugfix: Warrior punch and jab respect mob armor

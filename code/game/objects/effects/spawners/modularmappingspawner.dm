@@ -68,6 +68,15 @@
 	spawner_height = 33
 	spawner_width = 80
 
+/obj/effect/spawner/modularmap/lv624/hydrobridge
+	mapid = "lvhydrobridge"
+	spawner_height = 10
+	spawner_width = 8
+
+/obj/effect/spawner/modularmap/lv624/southsandtemple
+	mapid = "lvsouthsandtemple"
+	spawner_height = 24
+	spawner_width = 22
 
 /************BIG RED******/
 /obj/effect/spawner/modularmap/bigred/operations //todo decrease y by one
@@ -224,6 +233,17 @@
 	mapid = "brlz1"
 	spawner_width = 85
 	spawner_height = 38
+
+/************OSCAR OUTPOST**********/
+/obj/effect/spawner/modularmap/oscaroutposttophalf
+	mapid = "oscartop"
+	spawner_width = 150
+	spawner_height = 153
+
+/obj/effect/spawner/modularmap/oscaroutpostbase
+	mapid = "oscarbase"
+	spawner_width = 79
+	spawner_height = 29
 
 /************EORG**********/
 /obj/effect/spawner/modularmap/admin/eorg

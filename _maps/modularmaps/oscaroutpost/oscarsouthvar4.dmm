@@ -1,0 +1,4598 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"ao" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/dirt,
+/area/oscar_outpost/village/abandonedbase)
+"aB" = (
+/obj/machinery/camera/autoname/mainship{
+	dir = 8
+	},
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"aM" = (
+/obj/structure/table/mainship,
+/obj/machinery/cic_maptable,
+/obj/structure/cable,
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"aU" = (
+/obj/structure/prop/brokenvendor/brokenmarinemedvendor,
+/obj/machinery/camera/autoname/mainship,
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"be" = (
+/obj/structure/prop/brokenvendor/engivend,
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"bF" = (
+/obj/structure/closet,
+/obj/effect/spawner/random/misc/cigar,
+/obj/item/tool/lighter,
+/obj/item/clothing/under/marine/veteran,
+/obj/machinery/light/small,
+/obj/effect/ai_node,
+/turf/open/floor/wood,
+/area/oscar_outpost/village/abandonedbase)
+"bI" = (
+/obj/effect/spawner/random/misc/structure/broken_ship_window,
+/obj/machinery/door/poddoor/mainship/indestructible{
+	dir = 2;
+	id = "zetalockdown"
+	},
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"bK" = (
+/obj/effect/ai_node,
+/turf/open/floor/tile/dark,
+/area/oscar_outpost/village/abandonedbase)
+"bQ" = (
+/obj/structure/rack,
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/effect/spawner/random/weaponry/explosive/plastiqueexplosive,
+/obj/effect/spawner/random/weaponry/explosive/plastiqueexplosive,
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"bT" = (
+/obj/structure/rack,
+/obj/item/attachable/bayonet,
+/obj/item/attachable/bayonet,
+/obj/item/attachable/bayonet,
+/obj/item/attachable/bayonet,
+/obj/item/attachable/bayonet,
+/obj/item/attachable/bayonet,
+/obj/item/attachable/bayonet,
+/obj/item/attachable/bayonet,
+/obj/item/attachable/bayonet,
+/obj/item/attachable/bayonet,
+/obj/item/attachable/bayonet,
+/obj/item/attachable/bayonet,
+/obj/item/attachable/bayonet,
+/obj/item/attachable/bayonet,
+/obj/item/attachable/bayonet,
+/obj/item/attachable/bayonet,
+/obj/item/attachable/bayonet,
+/obj/item/attachable/bayonet,
+/obj/item/attachable/bayonet,
+/obj/item/attachable/bayonet,
+/obj/item/attachable/bayonet,
+/obj/item/attachable/bayonet,
+/obj/item/attachable/bayonet,
+/obj/item/attachable/bayonet,
+/obj/item/attachable/bayonet,
+/obj/item/attachable/bayonet,
+/obj/item/attachable/bayonet,
+/obj/item/attachable/bayonet,
+/obj/item/attachable/bayonet,
+/obj/item/attachable/bayonet,
+/obj/item/attachable/bayonet,
+/obj/item/attachable/bayonet,
+/obj/item/attachable/bayonet,
+/obj/item/attachable/bayonet,
+/obj/item/attachable/bayonet,
+/obj/item/attachable/bayonet,
+/obj/item/attachable/bayonet,
+/obj/item/attachable/bayonet,
+/obj/item/attachable/bayonet,
+/obj/item/attachable/bayonet,
+/obj/item/attachable/bayonet,
+/obj/item/attachable/bayonet,
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"bW" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 8
+	},
+/obj/effect/spawner/random/misc/structure/chair_or_metal,
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"bY" = (
+/obj/machinery/atmospherics/pipe/simple/general/visible{
+	dir = 5
+	},
+/obj/machinery/vending/nanomed{
+	dir = 4
+	},
+/obj/effect/ai_node,
+/turf/open/floor/mainship/sterile/dark,
+/area/oscar_outpost/village/abandonedbase)
+"cb" = (
+/obj/item/ammo_magazine/pistol/holdout,
+/turf/open/floor/wood,
+/area/oscar_outpost/village/abandonedbase)
+"ce" = (
+/obj/effect/turf_decal/warning_stripes/smallstripevertical{
+	dir = 4
+	},
+/obj/effect/turf_decal/warning_stripes/smallstripevertical{
+	dir = 8
+	},
+/obj/effect/turf_decal/warning_stripes/box/arrow{
+	dir = 8
+	},
+/turf/open/floor/grayscale/edge/black{
+	dir = 8
+	},
+/area/oscar_outpost/village/abandonedbase)
+"cg" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/tile/dark,
+/area/oscar_outpost/village/abandonedbase)
+"cq" = (
+/obj/structure/prop/brokenvendor/brokenuniformvendor/specialist,
+/turf/open/floor/plating,
+/area/oscar_outpost/village/abandonedbase)
+"cv" = (
+/obj/structure/cable,
+/obj/effect/spawner/random/machinery/motorbike/west,
+/turf/open/floor/plating,
+/area/oscar_outpost/village/abandonedbase)
+"cB" = (
+/obj/structure/prop/tgbrokenvendor/sec,
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"cF" = (
+/obj/structure/window/framed/mainship,
+/obj/machinery/door/poddoor/mainship/indestructible{
+	id = "zetalockdown"
+	},
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"cV" = (
+/obj/machinery/door/airlock/mainship/generic,
+/obj/effect/mapping_helpers/airlock/locked,
+/turf/open/floor/wood,
+/area/oscar_outpost/village/abandonedbase)
+"db" = (
+/obj/structure/barricade/metal,
+/turf/open/floor/plating/ground/dirt,
+/area/oscar_outpost/village/abandonedbase)
+"di" = (
+/obj/structure/table/mainship,
+/obj/item/megaphone,
+/obj/machinery/camera/autoname/mainship{
+	dir = 8
+	},
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"do" = (
+/obj/effect/spawner/random/misc/structure/directional_window/east,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"ds" = (
+/obj/effect/spawner/random/engineering/metal,
+/turf/open/floor/plating,
+/area/oscar_outpost/village/abandonedbase)
+"dG" = (
+/obj/structure/closet,
+/obj/item/reagent_containers/food/drinks/bottle/vodka,
+/obj/item/reagent_containers/food/drinks/drinkingglass,
+/obj/item/clothing/under/marine/veteran,
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/effect/ai_node,
+/turf/open/floor/wood,
+/area/oscar_outpost/village/abandonedbase)
+"dH" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/blood/oil,
+/turf/open/floor/tile/dark,
+/area/oscar_outpost/village/abandonedbase)
+"dL" = (
+/obj/structure/window/reinforced{
+	dir = 4;
+	pixel_x = -2;
+	pixel_y = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 8;
+	layer = 3.3;
+	pixel_y = 4
+	},
+/obj/structure/bed,
+/obj/structure/bed{
+	pixel_y = 13
+	},
+/obj/item/bedsheet/rainbow{
+	pixel_y = 12
+	},
+/obj/item/bedsheet/rainbow{
+	layer = 3.4
+	},
+/obj/structure/sign/poster,
+/turf/open/floor/mainship/sterile/dark,
+/area/oscar_outpost/village/abandonedbase)
+"dO" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/closed/mineral/smooth,
+/area/oscar_outpost/outside/rock)
+"dQ" = (
+/obj/effect/landmark/corpsespawner/bridgeofficer/regular,
+/obj/effect/spawner/random/decal/blood,
+/obj/item/weapon/gun/pistol/holdout,
+/turf/open/floor/carpet,
+/area/oscar_outpost/village/abandonedbase)
+"dR" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 4
+	},
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"dX" = (
+/obj/structure/barricade/metal,
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/machinery/camera/autoname/mainship,
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"em" = (
+/obj/effect/landmark/corpsespawner/marine/engineer/regular,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"en" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/spawner/random/machinery/random_broken_computer/crewmonitor,
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"ey" = (
+/obj/structure/filingcabinet,
+/turf/open/floor/wood,
+/area/oscar_outpost/village/abandonedbase)
+"eB" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/ai_node,
+/turf/open/floor/tile/dark,
+/area/oscar_outpost/village/abandonedbase)
+"eL" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/plating/ground/dirt,
+/area/oscar_outpost/village/abandonedbase)
+"eR" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 4
+	},
+/obj/effect/landmark/corpsespawner/marine/regular,
+/obj/effect/spawner/random/misc/structure/chair_or_metal,
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"eS" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/dirt,
+/area/oscar_outpost/village/abandonedbase)
+"fa" = (
+/turf/open/floor/carpet,
+/area/oscar_outpost/village/abandonedbase)
+"fg" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"fi" = (
+/obj/effect/turf_decal/warning_stripes/thin,
+/obj/structure/cable,
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"fr" = (
+/obj/machinery/atmospherics/components/unary/thermomachine/freezer,
+/turf/open/floor/mainship/sterile/dark,
+/area/oscar_outpost/village/abandonedbase)
+"ft" = (
+/obj/machinery/door/poddoor/mainship/indestructible{
+	dir = 2;
+	id = "zetalockdown"
+	},
+/obj/effect/spawner/random/misc/structure/broken_ship_window,
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"fz" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/spawner/random/misc/shard,
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"fN" = (
+/obj/structure/prop/tgbrokenvendor/cigs,
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"fT" = (
+/obj/structure/table/mainship,
+/obj/item/phone,
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"fV" = (
+/obj/structure/rack,
+/obj/effect/spawner/random/engineering/structure/gascan,
+/turf/open/floor/tile/dark,
+/area/oscar_outpost/village/abandonedbase)
+"fX" = (
+/obj/structure/rack,
+/obj/effect/spawner/random/weaponry/explosive/grenade,
+/obj/effect/spawner/random/weaponry/explosive/grenade,
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"gd" = (
+/obj/structure/table/reinforced/prison,
+/obj/item/storage/belt/lifesaver/full,
+/obj/item/storage/belt/lifesaver/full{
+	pixel_y = 7
+	},
+/obj/item/storage/belt/lifesaver/full{
+	pixel_y = 14
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/machinery/camera/autoname/mainship,
+/turf/open/floor/mainship/sterile/dark,
+/area/oscar_outpost/village/abandonedbase)
+"gf" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating/scorched,
+/area/oscar_outpost/village/abandonedbase)
+"gi" = (
+/obj/machinery/optable,
+/turf/open/floor/mainship/sterile/dark,
+/area/oscar_outpost/village/abandonedbase)
+"gn" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/spawner/random/weaponry/explosive/grenade,
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"gz" = (
+/obj/structure/table/mainship,
+/obj/machinery/computer/camera_advanced/overwatch{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"gF" = (
+/obj/structure/filingcabinet,
+/obj/structure/cable,
+/obj/machinery/power/apc/drained,
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"gL" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/structure/rack,
+/obj/effect/spawner/random/engineering/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
+/obj/effect/spawner/random/engineering/tool,
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"gM" = (
+/obj/structure/cable,
+/obj/effect/spawner/random/decal/blood,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"gQ" = (
+/obj/machinery/camera/autoname/mainship{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/oscar_outpost/village/abandonedbase)
+"gU" = (
+/obj/effect/spawner/random/engineering/cable,
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"hf" = (
+/obj/structure/cable,
+/obj/effect/spawner/random/engineering/cable,
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"hn" = (
+/obj/structure/table/reinforced/prison,
+/obj/machinery/light,
+/obj/machinery/camera/autoname/mainship{
+	dir = 1
+	},
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"hr" = (
+/obj/structure/rack,
+/obj/effect/spawner/random/weaponry/explosive/grenade,
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"hx" = (
+/obj/effect/spawner/random/misc/structure/directional_window/east,
+/obj/effect/spawner/random/weaponry/explosive/grenade,
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"hI" = (
+/obj/structure/prop/brokenvendor/brokenuniformvendor,
+/turf/open/floor/mainship/sterile/dark,
+/area/oscar_outpost/village/abandonedbase)
+"hP" = (
+/obj/structure/sign/poster,
+/turf/open/floor/mainship/sterile/dark,
+/area/oscar_outpost/village/abandonedbase)
+"ic" = (
+/obj/structure/table/mainship,
+/obj/machinery/computer/camera_advanced/overwatch{
+	dir = 4
+	},
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"iH" = (
+/obj/structure/table/mainship,
+/obj/item/phone,
+/obj/effect/spawner/random/misc/structure/directional_window/east,
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"iK" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/landmark/corpsespawner/bridgeofficer/regular,
+/turf/open/floor/plating,
+/area/oscar_outpost/village/abandonedbase)
+"iN" = (
+/obj/structure/cable,
+/turf/open/floor/plating/scorched,
+/area/oscar_outpost/village/abandonedbase)
+"iQ" = (
+/obj/structure/bed,
+/obj/item/bedsheet/hop,
+/obj/effect/landmark/corpsespawner/marine/engineer/regular,
+/obj/effect/spawner/random/engineering/cable,
+/turf/open/floor/wood,
+/area/oscar_outpost/village/abandonedbase)
+"iT" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 8
+	},
+/turf/closed/mineral/smooth,
+/area/oscar_outpost/outside/rock)
+"jd" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating,
+/area/oscar_outpost/village/abandonedbase)
+"jj" = (
+/obj/structure/stairs/seamless{
+	dir = 1
+	},
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"jJ" = (
+/obj/structure/bed/chair/office/dark{
+	dir = 8
+	},
+/turf/open/floor/carpet,
+/area/oscar_outpost/village/abandonedbase)
+"jS" = (
+/obj/structure/sign/poster,
+/turf/closed/wall/mainship/outer,
+/area/oscar_outpost/village/abandonedbase)
+"kc" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"ko" = (
+/obj/structure/rack,
+/obj/effect/spawner/random/weaponry/explosive/plastiqueexplosive,
+/turf/open/floor/tile/dark,
+/area/oscar_outpost/village/abandonedbase)
+"ks" = (
+/obj/machinery/door/airlock/mainship/generic,
+/obj/structure/cable,
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"kF" = (
+/obj/effect/decal/cleanable/blood/oil,
+/turf/open/floor/tile/dark,
+/area/oscar_outpost/village/abandonedbase)
+"kI" = (
+/obj/structure/prop/brokenvendor/brokenweaponsrack,
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"kV" = (
+/obj/effect/ai_node,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"kW" = (
+/obj/structure/barricade/metal,
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"lk" = (
+/obj/structure/table/mainship,
+/obj/item/phone,
+/obj/effect/spawner/random/weaponry/explosive/plastiqueexplosive/multiple/four,
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"lo" = (
+/obj/structure/closet/secure_closet,
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"lx" = (
+/obj/structure/platform{
+	dir = 8
+	},
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"lA" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating,
+/area/oscar_outpost/village/abandonedbase)
+"lF" = (
+/obj/machinery/camera/autoname/mainship{
+	dir = 8
+	},
+/turf/open/floor/tile/dark,
+/area/oscar_outpost/village/abandonedbase)
+"lK" = (
+/obj/effect/turf_decal/warning_stripes/thin,
+/obj/effect/spawner/random/engineering/metal,
+/obj/structure/cable,
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"lM" = (
+/obj/structure/rack,
+/obj/item/clothing/head/helmet/marine/veteran,
+/obj/item/clothing/head/helmet/marine/veteran,
+/obj/item/clothing/head/helmet/marine/veteran,
+/obj/item/clothing/head/helmet/marine/veteran,
+/obj/item/clothing/head/helmet/marine/veteran,
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"lN" = (
+/obj/effect/turf_decal/warning_stripes/thin,
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/plating,
+/area/oscar_outpost/village/abandonedbase)
+"lO" = (
+/obj/effect/spawner/random/misc/structure/wood_barricade,
+/turf/open/floor/mainship/sterile/dark,
+/area/oscar_outpost/village/abandonedbase)
+"lU" = (
+/obj/structure/table/mainship,
+/obj/item/clothing/glasses/hud/health,
+/obj/effect/spawner/random/weaponry/gun,
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"lV" = (
+/obj/effect/spawner/random/misc/structure/broken_ship_window,
+/obj/machinery/door/poddoor/mainship/indestructible{
+	id = "zetalockdown"
+	},
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"lY" = (
+/obj/machinery/door/poddoor/shutters{
+	id = "garage"
+	},
+/turf/open/floor/tile/dark,
+/area/oscar_outpost)
+"me" = (
+/obj/structure/rack,
+/obj/effect/spawner/random/weaponry/explosive/plastiqueexplosive/multiple/four,
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"mf" = (
+/obj/machinery/door/airlock/mainship/generic{
+	dir = 1
+	},
+/obj/structure/cable,
+/obj/effect/mapping_helpers/airlock/locked,
+/turf/open/floor/plating,
+/area/oscar_outpost/village/abandonedbase)
+"mi" = (
+/obj/machinery/power/fusion_engine/preset,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/oscar_outpost/village/abandonedbase)
+"ml" = (
+/obj/structure/window/reinforced{
+	dir = 4;
+	pixel_x = -2;
+	pixel_y = 4
+	},
+/obj/machinery/vending/weapon,
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"mq" = (
+/obj/structure/table/mainship,
+/obj/machinery/door_control/old{
+	id = "UPPreq1";
+	name = "Req Line Shutters";
+	pixel_x = 7;
+	pixel_y = 1
+	},
+/obj/effect/spawner/random/misc/structure/directional_window,
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"mv" = (
+/obj/structure/rack,
+/obj/item/radio/headset/distress/commando,
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"mH" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 8
+	},
+/obj/structure/sign/poster,
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"mI" = (
+/obj/structure/rack,
+/obj/effect/spawner/random/weaponry/explosive/plastiqueexplosive,
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"mS" = (
+/obj/machinery/body_scanconsole{
+	dir = 8
+	},
+/turf/open/floor/mainship/sterile/dark,
+/area/oscar_outpost/village/abandonedbase)
+"nm" = (
+/obj/structure/window/reinforced{
+	dir = 4;
+	pixel_x = -2;
+	pixel_y = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 8;
+	layer = 3.3;
+	pixel_y = 4
+	},
+/obj/structure/bed,
+/obj/structure/bed{
+	pixel_y = 13
+	},
+/obj/item/bedsheet/rainbow{
+	pixel_y = 12
+	},
+/obj/item/bedsheet/rainbow{
+	layer = 3.4
+	},
+/turf/open/floor/mainship/sterile/dark,
+/area/oscar_outpost/village/abandonedbase)
+"nv" = (
+/obj/structure/filingcabinet,
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"nE" = (
+/obj/structure/table/mainship,
+/obj/item/megaphone,
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"nL" = (
+/obj/machinery/iv_drip,
+/obj/effect/spawner/random/misc/structure/wood_barricade,
+/turf/open/floor/mainship/sterile/dark,
+/area/oscar_outpost/village/abandonedbase)
+"nU" = (
+/obj/machinery/door/poddoor/mainship/indestructible{
+	dir = 2;
+	id = "UPPreq1"
+	},
+/obj/effect/spawner/random/misc/structure/broken_ship_window,
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"oh" = (
+/obj/structure/barricade/metal{
+	dir = 4
+	},
+/obj/effect/spawner/random/decal/blood,
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"or" = (
+/obj/structure/table/reinforced/prison,
+/obj/item/clothing/glasses/hud/health,
+/obj/item/clothing/glasses/hud/health,
+/obj/item/clothing/glasses/hud/health,
+/obj/item/clothing/glasses/hud/health,
+/obj/item/clothing/glasses/hud/health,
+/obj/item/clothing/glasses/hud/health,
+/obj/effect/spawner/random/medical/medbelt,
+/turf/open/floor/mainship/sterile/dark,
+/area/oscar_outpost/village/abandonedbase)
+"oS" = (
+/obj/structure/table/reinforced/prison,
+/obj/item/reagent_containers/spray/cleaner{
+	desc = "Someone has crossed out the Space from Space Cleaner and written in Surgery. 'Do not remove under punishment of death!!!' is scrawled on the back.";
+	name = "Surgery Cleaner"
+	},
+/obj/machinery/vending/nanomed{
+	dir = 4
+	},
+/obj/effect/spawner/random/weaponry/explosive/plastiqueexplosive,
+/turf/open/floor/mainship/sterile/dark,
+/area/oscar_outpost/village/abandonedbase)
+"oV" = (
+/obj/effect/spawner/random/weaponry/explosive/grenade/multiplefour,
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"oX" = (
+/obj/effect/turf_decal/warning_stripes/thin,
+/turf/open/floor/plating,
+/area/oscar_outpost/village/abandonedbase)
+"pk" = (
+/obj/structure/bed/chair/wood/wings,
+/turf/open/floor/carpet,
+/area/oscar_outpost/village/abandonedbase)
+"po" = (
+/obj/effect/spawner/random/misc/structure/chair_or_metal,
+/obj/effect/spawner/random/decal/blood,
+/turf/open/floor/plating,
+/area/oscar_outpost/village/abandonedbase)
+"pr" = (
+/obj/structure/rack,
+/obj/effect/spawner/random/engineering/structure/gascan,
+/obj/effect/spawner/random/engineering/structure/gascan,
+/turf/open/floor/tile/dark,
+/area/oscar_outpost/village/abandonedbase)
+"pv" = (
+/obj/structure/table/mainship,
+/obj/effect/spawner/random/weaponry/gun,
+/obj/structure/platform{
+	dir = 8
+	},
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"pw" = (
+/obj/structure/table/mainship,
+/obj/item/binoculars/tactical,
+/obj/item/binoculars/tactical,
+/obj/item/binoculars/tactical,
+/obj/item/binoculars/tactical,
+/obj/item/binoculars/tactical,
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"pz" = (
+/obj/machinery/bodyscanner{
+	dir = 8
+	},
+/turf/open/floor/mainship/sterile/dark,
+/area/oscar_outpost/village/abandonedbase)
+"pA" = (
+/obj/structure/barricade/plasteel{
+	dir = 4
+	},
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"pF" = (
+/obj/effect/spawner/random/misc/structure/directional_window/east,
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"pI" = (
+/obj/effect/turf_decal/warning_stripes/thin,
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/oscar_outpost/village/abandonedbase)
+"pP" = (
+/obj/structure/cable,
+/turf/open/floor/tile/dark,
+/area/oscar_outpost/village/abandonedbase)
+"pT" = (
+/obj/effect/turf_decal/warning_stripes/thin,
+/obj/effect/spawner/random/misc/structure/chair_or_metal,
+/turf/open/floor/plating,
+/area/oscar_outpost/village/abandonedbase)
+"pZ" = (
+/obj/structure/prop/brokenvendor/brokenmarinemedvendor,
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"qm" = (
+/obj/item/tool/pen,
+/obj/structure/table/mainship,
+/obj/effect/spawner/random/misc/structure/directional_window,
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"qu" = (
+/obj/machinery/door/airlock/mainship/generic,
+/turf/closed/mineral/smooth,
+/area/oscar_outpost/village/abandonedbase)
+"qB" = (
+/obj/effect/turf_decal/warning_stripes/thin,
+/obj/effect/spawner/random/weaponry/explosive/plastiqueexplosive,
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"qD" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/ai_node,
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"qF" = (
+/obj/structure/platform{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/oscar_outpost/village/abandonedbase)
+"rk" = (
+/obj/structure/window/framed/mainship,
+/obj/machinery/door/poddoor/mainship/indestructible{
+	dir = 2;
+	id = "zetalockdown"
+	},
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"rx" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/plating/scorched,
+/area/oscar_outpost/village/abandonedbase)
+"ry" = (
+/obj/effect/turf_decal/warning_stripes/thin,
+/obj/effect/spawner/random/decal/blood,
+/turf/open/floor/plating,
+/area/oscar_outpost/village/abandonedbase)
+"rG" = (
+/obj/structure/table/mainship,
+/obj/item/megaphone,
+/obj/structure/platform{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/oscar_outpost/village/abandonedbase)
+"rL" = (
+/obj/structure/table/fancywoodentable,
+/obj/machinery/faxmachine,
+/turf/open/floor/carpet,
+/area/oscar_outpost/village/abandonedbase)
+"sc" = (
+/obj/structure/bed/chair/office/dark,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"sD" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"sI" = (
+/obj/effect/landmark/corpsespawner/doctor/regular,
+/turf/open/floor/mainship/sterile/dark,
+/area/oscar_outpost/village/abandonedbase)
+"sT" = (
+/obj/structure/sign/poster{
+	pixel_x = -32
+	},
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"sZ" = (
+/obj/structure/flora/pottedplant{
+	layer = 3.1
+	},
+/obj/structure/platform{
+	dir = 4
+	},
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"th" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/oscar_outpost/village/abandonedbase)
+"tn" = (
+/obj/machinery/light,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/tile/dark,
+/area/oscar_outpost/village/abandonedbase)
+"tr" = (
+/obj/effect/spawner/random/machinery/motorbike/west,
+/turf/open/floor/plating,
+/area/oscar_outpost/village/abandonedbase)
+"tz" = (
+/obj/machinery/door/airlock/mainship/generic,
+/obj/effect/mapping_helpers/airlock/locked,
+/turf/open/floor/tile/dark,
+/area/oscar_outpost)
+"tI" = (
+/obj/structure/prop/brokenvendor/brokenmarinemedvendor,
+/turf/open/floor/mainship/sterile/dark,
+/area/oscar_outpost/village/abandonedbase)
+"tQ" = (
+/turf/open/floor/plating/scorched,
+/area/oscar_outpost/village/abandonedbase)
+"tR" = (
+/obj/structure/window/reinforced{
+	dir = 8;
+	layer = 3.3;
+	pixel_y = 4
+	},
+/obj/effect/spawner/random/machinery/machine_frame,
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"tW" = (
+/obj/machinery/light,
+/turf/open/floor/plating,
+/area/oscar_outpost/village/abandonedbase)
+"tY" = (
+/obj/structure/rack,
+/obj/effect/spawner/random/engineering/toolbox,
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"uf" = (
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"us" = (
+/obj/structure/coatrack,
+/obj/item/clothing/suit/storage/marine/riot{
+	pixel_x = -1;
+	pixel_y = 4
+	},
+/turf/open/floor/wood,
+/area/oscar_outpost/village/abandonedbase)
+"uv" = (
+/obj/structure/rack,
+/obj/item/clothing/under/marine/veteran/UPP,
+/obj/item/clothing/under/marine/veteran/UPP,
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"vm" = (
+/obj/structure/table/mainship,
+/obj/machinery/camera/autoname/mainship,
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"vq" = (
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/plating/scorched,
+/area/oscar_outpost/village/abandonedbase)
+"vF" = (
+/turf/open/floor/plating,
+/area/oscar_outpost/village/abandonedbase)
+"vJ" = (
+/obj/machinery/marine_selector/clothes/synth,
+/obj/machinery/light,
+/obj/effect/ai_node,
+/turf/open/floor/plating,
+/area/oscar_outpost/village/abandonedbase)
+"vR" = (
+/obj/structure/prop/brokenvendor/brokenuniformvendor/specialist,
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"vW" = (
+/obj/effect/turf_decal/warning_stripes/smallstripevertical{
+	pixel_x = -8
+	},
+/obj/effect/turf_decal/warning_stripes/smallstripevertical{
+	dir = 1;
+	pixel_x = -8
+	},
+/obj/effect/turf_decal/warning_stripes/box/arrow{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/grayscale/edge/black{
+	dir = 4
+	},
+/area/oscar_outpost/village/abandonedbase)
+"wq" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 8
+	},
+/obj/effect/ai_node,
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"wI" = (
+/obj/structure/table/fancywoodentable,
+/obj/effect/spawner/random/machinery/random_broken_computer/small/pc,
+/turf/open/floor/carpet,
+/area/oscar_outpost/village/abandonedbase)
+"wK" = (
+/obj/structure/barricade/metal{
+	dir = 4
+	},
+/obj/effect/spawner/random/engineering/cable,
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"wL" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 8
+	},
+/obj/effect/landmark/corpsespawner/marine/regular,
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"xd" = (
+/obj/effect/ai_node,
+/turf/open/floor/wood,
+/area/oscar_outpost/village/abandonedbase)
+"xx" = (
+/obj/effect/spawner/random/misc/structure/broken_ship_window,
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"xM" = (
+/obj/effect/turf_decal/warning_stripes/thin,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"ya" = (
+/obj/structure/window/reinforced{
+	dir = 8;
+	layer = 3.3;
+	pixel_y = 4
+	},
+/obj/structure/prop/brokenvendor/brokenuniformvendor,
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"yp" = (
+/obj/machinery/atmospherics/pipe/simple/general/visible{
+	dir = 9
+	},
+/obj/effect/spawner/random/decal/blood,
+/turf/open/floor/mainship/sterile/dark,
+/area/oscar_outpost/village/abandonedbase)
+"yy" = (
+/obj/machinery/door_control/old{
+	id = "UPPreq1";
+	name = "Req Line Shutters";
+	pixel_x = 7;
+	pixel_y = -2
+	},
+/obj/structure/table/mainship,
+/obj/machinery/line_nexter_control{
+	id = "UPPreqturn";
+	pixel_x = -6;
+	pixel_y = -2
+	},
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"yA" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/landmark/corpsespawner/bridgeofficer/regular,
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"yJ" = (
+/obj/structure/flora/pottedplant{
+	layer = 3.1
+	},
+/obj/structure/platform{
+	dir = 8
+	},
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"yN" = (
+/obj/machinery/door/poddoor/mainship/indestructible{
+	id = "zetalockdown"
+	},
+/turf/open/floor/plating,
+/area/oscar_outpost/village/abandonedbase)
+"za" = (
+/obj/machinery/atm{
+	name = "Automatic Teller Machine";
+	pixel_y = 30
+	},
+/obj/effect/landmark/corpsespawner/marine/engineer/regular,
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"zh" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"zi" = (
+/obj/structure/sign/poster,
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 4
+	},
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"zy" = (
+/obj/structure/window/reinforced{
+	dir = 4;
+	pixel_x = -2;
+	pixel_y = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 8;
+	layer = 3.3;
+	pixel_y = 4
+	},
+/obj/structure/bed,
+/obj/structure/bed{
+	pixel_y = 13
+	},
+/obj/item/bedsheet/rainbow{
+	pixel_y = 12
+	},
+/obj/item/bedsheet/rainbow{
+	layer = 3.4
+	},
+/obj/effect/spawner/random/weaponry/gun,
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"zW" = (
+/obj/structure/cable,
+/obj/effect/spawner/random/engineering/metal,
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"Ad" = (
+/obj/machinery/camera/autoname/mainship,
+/turf/open/floor/wood,
+/area/oscar_outpost/village/abandonedbase)
+"Ae" = (
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/plating,
+/area/oscar_outpost/village/abandonedbase)
+"Aj" = (
+/obj/structure/table/mainship,
+/obj/item/clothing/glasses/hud/health,
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"Aq" = (
+/obj/effect/decal/cleanable/glass,
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"Ax" = (
+/turf/open/floor/wood,
+/area/oscar_outpost/village/abandonedbase)
+"AI" = (
+/obj/structure/prop/brokenvendor/brokenuniformvendor/specialist,
+/turf/open/floor/mainship/sterile/dark,
+/area/oscar_outpost/village/abandonedbase)
+"AO" = (
+/obj/machinery/atmospherics/components/unary/tank/oxygen,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/mainship/sterile/dark,
+/area/oscar_outpost/village/abandonedbase)
+"AR" = (
+/obj/structure/rack,
+/obj/effect/spawner/random/misc/trash,
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"AT" = (
+/turf/open/floor/plating/ground/dirt,
+/area/oscar_outpost/outside/underground)
+"AV" = (
+/obj/machinery/power/fusion_engine/preset,
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/oscar_outpost/village/abandonedbase)
+"AW" = (
+/obj/structure/rack,
+/obj/effect/spawner/random/engineering/tool,
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"Ba" = (
+/obj/structure/rack,
+/obj/effect/spawner/random/engineering/toolbox,
+/obj/machinery/camera/autoname/mainship{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/oscar_outpost/village/abandonedbase)
+"Bg" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 4
+	},
+/obj/effect/spawner/random/misc/structure/chair_or_metal,
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"Bo" = (
+/obj/effect/spawner/random/machinery/machine_frame,
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"Bw" = (
+/obj/structure/table/mainship,
+/obj/item/clothing/glasses/hud/health,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"BA" = (
+/obj/structure/bookcase,
+/turf/open/floor/wood,
+/area/oscar_outpost/village/abandonedbase)
+"BC" = (
+/obj/effect/spawner/random/misc/structure/table_or_rack,
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"BF" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"BI" = (
+/obj/structure/table/reinforced/prison,
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/effect/spawner/random/weaponry/gun,
+/obj/machinery/camera/autoname/mainship,
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"Ce" = (
+/obj/machinery/door/airlock/mainship/generic{
+	dir = 1
+	},
+/obj/effect/mapping_helpers/airlock/locked,
+/turf/open/floor/wood,
+/area/oscar_outpost/village/abandonedbase)
+"Cv" = (
+/obj/effect/spawner/random/machinery/random_broken_computer/crewmonitor,
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"Cx" = (
+/obj/structure/rack,
+/obj/effect/spawner/random/weaponry/explosive/grenade/multiplefour,
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"CM" = (
+/obj/structure/window/reinforced{
+	dir = 4;
+	pixel_x = -2;
+	pixel_y = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 8;
+	layer = 3.3;
+	pixel_y = 4
+	},
+/obj/structure/bed,
+/obj/structure/bed{
+	pixel_y = 13
+	},
+/obj/item/bedsheet/rainbow{
+	pixel_y = 12
+	},
+/obj/item/bedsheet/rainbow{
+	layer = 3.4
+	},
+/turf/open/floor/plating,
+/area/oscar_outpost/village/abandonedbase)
+"Df" = (
+/obj/machinery/door/poddoor/mainship/indestructible{
+	id = "zetalockdown"
+	},
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"Dh" = (
+/obj/structure/cable,
+/obj/effect/spawner/random/misc/shard,
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"DO" = (
+/obj/effect/spawner/random/misc/structure/directional_window/east,
+/obj/structure/bed/chair/office/dark{
+	dir = 1
+	},
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"DR" = (
+/obj/structure/prop/tgbrokenvendor/engidrobe,
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"DY" = (
+/obj/structure/bed/chair/office/dark{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/oscar_outpost/village/abandonedbase)
+"Ed" = (
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/oscar_outpost/village/abandonedbase)
+"Ef" = (
+/obj/structure/cable,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"Ej" = (
+/obj/structure/table/fancywoodentable{
+	pixel_y = 5
+	},
+/obj/item/tool/pen,
+/turf/open/floor/carpet,
+/area/oscar_outpost/village/abandonedbase)
+"Ek" = (
+/obj/machinery/power/fusion_engine/preset,
+/turf/open/floor/plating,
+/area/oscar_outpost/village/abandonedbase)
+"Eq" = (
+/turf/closed/wall/mainship/outer,
+/area/oscar_outpost/village/abandonedbase)
+"EC" = (
+/obj/machinery/door/airlock/mainship/command{
+	name = "Kommando Preperation"
+	},
+/obj/machinery/door/poddoor/mainship/indestructible{
+	id = "zetalockdown"
+	},
+/obj/effect/mapping_helpers/airlock/locked,
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"EM" = (
+/obj/structure/rack,
+/obj/effect/spawner/random/misc/trash,
+/obj/effect/spawner/random/misc/trash,
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"EQ" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating,
+/area/oscar_outpost/village/abandonedbase)
+"Fg" = (
+/obj/effect/spawner/random/engineering/metal,
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"Fp" = (
+/obj/structure/table/mainship,
+/obj/machinery/faxmachine,
+/obj/structure/cable,
+/obj/effect/spawner/random/misc/structure/directional_window,
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"Fx" = (
+/turf/open/shuttle/elevator/grating,
+/area/oscar_outpost/village/abandonedbase)
+"FS" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 8
+	},
+/obj/machinery/camera/autoname/mainship{
+	dir = 8
+	},
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"FV" = (
+/obj/structure/cable,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/tile/dark,
+/area/oscar_outpost/village/abandonedbase)
+"Ga" = (
+/obj/structure/bed/chair/office/dark{
+	dir = 8
+	},
+/obj/effect/spawner/random/misc/structure/directional_window/east,
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"Gc" = (
+/obj/effect/turf_decal/warning_stripes/thin,
+/obj/effect/ai_node,
+/obj/structure/cable,
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"GN" = (
+/obj/machinery/camera/autoname/mainship,
+/obj/structure/prop/brokenvendor/brokenmarinemedvendor,
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"Hs" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/spawner/random/machinery/machine_frame,
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"Hy" = (
+/obj/structure/cable,
+/obj/effect/spawner/random/decal/blood,
+/obj/effect/landmark/corpsespawner/syndicatecommando/regular,
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"HG" = (
+/obj/structure/rack,
+/obj/item/radio/headset/distress/commando,
+/obj/item/radio/headset/distress/commando,
+/obj/item/radio/headset/distress/commando,
+/obj/item/radio/headset/distress/commando,
+/obj/item/radio/headset/distress/commando,
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/machinery/camera/autoname/mainship,
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"HK" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/spawner/random/engineering/structure/gascan,
+/turf/open/floor/tile/dark,
+/area/oscar_outpost/village/abandonedbase)
+"HL" = (
+/obj/machinery/vending/medical,
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"HO" = (
+/obj/effect/decal/cleanable/blood/oil,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/tile/dark,
+/area/oscar_outpost/village/abandonedbase)
+"HS" = (
+/obj/effect/spawner/random/misc/trash,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"HW" = (
+/obj/structure/bed/chair{
+	dir = 8
+	},
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"Il" = (
+/obj/structure/barricade/metal{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"Ix" = (
+/obj/structure/closet/secure_closet,
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/machinery/camera/autoname/mainship,
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"IF" = (
+/obj/effect/spawner/random/engineering/toolbox,
+/obj/effect/spawner/random/misc/structure/table_or_rack,
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"Jl" = (
+/obj/machinery/door/airlock/mainship/generic{
+	dir = 1
+	},
+/obj/structure/cable,
+/obj/machinery/door/poddoor/mainship/indestructible{
+	dir = 2;
+	id = "zetalockdown"
+	},
+/turf/closed/mineral/smooth,
+/area/oscar_outpost/village/abandonedbase)
+"Jp" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/tile/dark,
+/area/oscar_outpost/village/abandonedbase)
+"Jt" = (
+/obj/structure/rack,
+/obj/structure/sign/poster{
+	pixel_x = -32
+	},
+/obj/machinery/camera/autoname/mainship{
+	dir = 4
+	},
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"Jv" = (
+/obj/machinery/door/airlock/multi_tile/mainship/generic,
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"JX" = (
+/obj/machinery/door/airlock/mainship/generic{
+	dir = 1
+	},
+/obj/structure/cable,
+/obj/machinery/door/poddoor/mainship/indestructible{
+	dir = 2;
+	id = "zetalockdown"
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"Ki" = (
+/obj/structure/closet/crate,
+/turf/open/shuttle/elevator/grating,
+/area/oscar_outpost/village/abandonedbase)
+"Ku" = (
+/obj/effect/spawner/random/misc/structure/table_or_rack,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/spawner/random/weaponry/explosive/plastiqueexplosive,
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"KH" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 4
+	},
+/obj/machinery/light,
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"KJ" = (
+/obj/effect/spawner/random/decal/blood,
+/turf/open/floor/mainship/sterile/dark,
+/area/oscar_outpost/village/abandonedbase)
+"KL" = (
+/obj/structure/table/fancywoodentable,
+/obj/effect/spawner/random/machinery/random_broken_computer/small/pc{
+	dir = 4
+	},
+/turf/open/floor/carpet,
+/area/oscar_outpost/village/abandonedbase)
+"KN" = (
+/obj/structure/table/mainship,
+/obj/machinery/computer/camera_advanced/overwatch{
+	dir = 8
+	},
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"KY" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 8
+	},
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"Lb" = (
+/obj/structure/sign/poster,
+/obj/machinery/camera/autoname/mainship{
+	dir = 1
+	},
+/turf/open/floor/mainship/sterile/dark,
+/area/oscar_outpost/village/abandonedbase)
+"Li" = (
+/obj/machinery/atmospherics/pipe/manifold/general/visible,
+/turf/open/floor/mainship/sterile/dark,
+/area/oscar_outpost/village/abandonedbase)
+"LE" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/dirt,
+/area/oscar_outpost/outside/underground)
+"LG" = (
+/obj/structure/rack,
+/turf/open/floor/tile/dark,
+/area/oscar_outpost/village/abandonedbase)
+"LM" = (
+/obj/structure/table/reinforced/prison,
+/obj/machinery/light,
+/obj/machinery/camera/autoname/mainship{
+	dir = 1
+	},
+/obj/effect/spawner/random/weaponry/gun/rifles{
+	pixel_y = 11
+	},
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"LZ" = (
+/obj/effect/turf_decal/warning_stripes/smallstripevertical{
+	dir = 1;
+	pixel_x = -8
+	},
+/obj/effect/turf_decal/warning_stripes/smallstripevertical{
+	pixel_x = -8
+	},
+/obj/effect/turf_decal/warning_stripes/box/arrow{
+	dir = 4
+	},
+/turf/open/floor/grayscale/edge/black{
+	dir = 4
+	},
+/area/oscar_outpost/village/abandonedbase)
+"Mm" = (
+/obj/structure/window/reinforced{
+	dir = 4;
+	pixel_x = -2;
+	pixel_y = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 8;
+	layer = 3.3;
+	pixel_y = 4
+	},
+/obj/structure/bed,
+/obj/structure/bed{
+	pixel_y = 13
+	},
+/obj/item/bedsheet/rainbow{
+	pixel_y = 12
+	},
+/obj/item/bedsheet/rainbow{
+	layer = 3.4
+	},
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"Mv" = (
+/obj/machinery/door/window,
+/obj/machinery/door/window{
+	dir = 4
+	},
+/obj/structure/table/mainship,
+/obj/machinery/door/poddoor/mainship/indestructible{
+	id = "UPPreq1"
+	},
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"MJ" = (
+/obj/effect/spawner/random/weaponry/gun,
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"MY" = (
+/obj/structure/window/reinforced{
+	dir = 4;
+	pixel_x = -2;
+	pixel_y = 4
+	},
+/obj/structure/prop/brokenvendor/brokenweaponsrack,
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"Np" = (
+/obj/effect/spawner/random/medical/bloodpack,
+/turf/open/floor/mainship/sterile/dark,
+/area/oscar_outpost/village/abandonedbase)
+"Nt" = (
+/obj/structure/window/reinforced{
+	dir = 4;
+	pixel_x = -2;
+	pixel_y = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 8;
+	layer = 3.3;
+	pixel_y = 4
+	},
+/obj/structure/bed,
+/obj/structure/bed{
+	pixel_y = 13
+	},
+/obj/item/bedsheet/rainbow{
+	pixel_y = 12
+	},
+/obj/item/bedsheet/rainbow{
+	layer = 3.4
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"Nz" = (
+/obj/machinery/door/airlock/mainship/command{
+	name = "Supply"
+	},
+/obj/machinery/door/poddoor/shutters/mainship{
+	dir = 4;
+	id = "UPPreq2";
+	name = "Requsitions Lockdown"
+	},
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"NI" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/oscar_outpost/village/abandonedbase)
+"NL" = (
+/obj/structure/table/reinforced/prison,
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"Oc" = (
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/tile/dark,
+/area/oscar_outpost/village/abandonedbase)
+"Op" = (
+/obj/effect/turf_decal/warning_stripes/thin,
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"OP" = (
+/obj/structure/cable,
+/obj/effect/landmark/corpsespawner/marine/engineer/regular,
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"OR" = (
+/obj/effect/decal/cleanable/blood/oil,
+/turf/closed/mineral/smooth,
+/area/oscar_outpost/outside/rock)
+"OY" = (
+/obj/structure/bookcase,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/oscar_outpost/village/abandonedbase)
+"Pa" = (
+/obj/structure/bed,
+/obj/item/bedsheet/hop,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/oscar_outpost/village/abandonedbase)
+"Pj" = (
+/obj/effect/landmark/corpsespawner/syndicatecommando/regular,
+/obj/effect/spawner/random/decal/blood,
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"Pl" = (
+/obj/effect/spawner/random/misc/structure/broken_ship_window,
+/obj/machinery/door/poddoor/mainship/indestructible{
+	dir = 2;
+	id = "UPPreq1"
+	},
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"PH" = (
+/turf/open/floor/mainship/sterile/dark,
+/area/oscar_outpost/village/abandonedbase)
+"PU" = (
+/obj/effect/ai_node,
+/turf/open/floor/mainship/sterile/dark,
+/area/oscar_outpost/village/abandonedbase)
+"Qa" = (
+/obj/structure/table/mainship,
+/obj/item/flashlight/lamp,
+/obj/structure/platform{
+	dir = 5
+	},
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"Qj" = (
+/obj/structure/cable,
+/obj/effect/spawner/random/engineering/metal,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/ai_node,
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"Qz" = (
+/obj/structure/cable,
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"QG" = (
+/obj/structure/window/framed/mainship,
+/obj/machinery/door/poddoor/mainship/indestructible{
+	dir = 2;
+	id = "UPPreq1"
+	},
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"QX" = (
+/obj/effect/spawner/random/engineering/cable,
+/obj/machinery/camera/autoname/mainship{
+	dir = 1
+	},
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"Re" = (
+/turf/open/floor/plating/ground/dirt,
+/area/oscar_outpost/village/abandonedbase)
+"Rn" = (
+/obj/structure/table/fancywoodentable{
+	pixel_y = 5
+	},
+/obj/item/tool/pen,
+/obj/effect/spawner/random/weaponry/gun,
+/turf/open/floor/carpet,
+/area/oscar_outpost/village/abandonedbase)
+"Ry" = (
+/obj/effect/spawner/random/misc/structure/directional_window/east,
+/obj/effect/spawner/random/misc/shard,
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"RC" = (
+/obj/structure/rack,
+/obj/structure/sign/poster{
+	pixel_x = -32
+	},
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"RF" = (
+/turf/open/floor/tile/dark,
+/area/oscar_outpost/village/abandonedbase)
+"RK" = (
+/obj/structure/barricade/metal{
+	dir = 4
+	},
+/obj/structure/sign/poster{
+	pixel_y = -32
+	},
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"RN" = (
+/obj/effect/landmark/corpsespawner/marine/engineer/regular,
+/obj/effect/spawner/random/decal/blood,
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"Sq" = (
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"Sy" = (
+/obj/effect/ai_node,
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"SE" = (
+/obj/effect/spawner/random/machinery/cryo,
+/turf/open/floor/mainship/sterile/dark,
+/area/oscar_outpost/village/abandonedbase)
+"SJ" = (
+/obj/structure/closet,
+/obj/effect/spawner/random/misc/cigar,
+/obj/item/tool/lighter,
+/obj/item/clothing/under/marine/veteran,
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/effect/ai_node,
+/turf/open/floor/wood,
+/area/oscar_outpost/village/abandonedbase)
+"SR" = (
+/obj/machinery/camera/autoname/mainship{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/oscar_outpost/village/abandonedbase)
+"SX" = (
+/obj/machinery/door/airlock/mainship/generic{
+	dir = 1
+	},
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"Tg" = (
+/obj/structure/table/mainship,
+/obj/item/megaphone,
+/obj/effect/spawner/random/misc/structure/directional_window,
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"To" = (
+/obj/machinery/bodyscanner{
+	dir = 8
+	},
+/obj/structure/sign/poster,
+/turf/open/floor/mainship/sterile/dark,
+/area/oscar_outpost/village/abandonedbase)
+"Tp" = (
+/turf/closed/mineral/smooth/indestructible,
+/area/oscar_outpost/outside/rock)
+"TG" = (
+/obj/structure/bed,
+/obj/item/bedsheet/hop,
+/turf/open/floor/wood,
+/area/oscar_outpost/village/abandonedbase)
+"TJ" = (
+/obj/machinery/vending/boozeomat,
+/obj/machinery/camera/autoname/mainship,
+/turf/open/floor/wood,
+/area/oscar_outpost/village/abandonedbase)
+"TW" = (
+/obj/machinery/door_control{
+	dir = 4;
+	id = "garage"
+	},
+/turf/open/floor/tile/dark,
+/area/oscar_outpost/village/abandonedbase)
+"Ue" = (
+/obj/effect/spawner/random/misc/trash,
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"Ur" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/spawner/random/machinery/motorbike/west,
+/turf/open/floor/plating,
+/area/oscar_outpost/village/abandonedbase)
+"Uw" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/structure/prop/brokenvendor/engivend,
+/turf/open/floor/plating,
+/area/oscar_outpost/village/abandonedbase)
+"UH" = (
+/obj/structure/barricade/metal{
+	dir = 4
+	},
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"UY" = (
+/obj/machinery/camera/autoname/mainship{
+	dir = 1
+	},
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"Va" = (
+/obj/machinery/vending/MarineMed/Blood,
+/turf/open/floor/mainship/sterile/dark,
+/area/oscar_outpost/village/abandonedbase)
+"Vi" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/ai_node,
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"Vj" = (
+/obj/structure/rack,
+/obj/item/clothing/head/helmet/marine/veteran,
+/obj/item/clothing/head/helmet/marine/veteran,
+/obj/item/clothing/head/helmet/marine/veteran,
+/obj/item/clothing/head/helmet/marine/veteran,
+/obj/item/clothing/head/helmet/marine/veteran,
+/obj/item/clothing/head/helmet/marine/veteran,
+/obj/item/clothing/head/helmet/marine/veteran,
+/obj/item/clothing/head/helmet/marine/veteran,
+/obj/item/clothing/head/helmet/marine/veteran,
+/obj/item/clothing/head/helmet/marine/veteran,
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"Vl" = (
+/obj/effect/spawner/random/engineering/cable,
+/obj/item/explosive/grenade/incendiary,
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"Vv" = (
+/obj/machinery/vending/medical,
+/turf/open/floor/mainship/sterile/dark,
+/area/oscar_outpost/village/abandonedbase)
+"VF" = (
+/obj/structure/barricade/plasteel{
+	dir = 1
+	},
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"Wb" = (
+/obj/structure/table/reinforced/prison,
+/obj/effect/spawner/random/weaponry/gun/rifles{
+	pixel_y = 11
+	},
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"Wc" = (
+/obj/item/explosive/grenade/incendiary,
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"Wi" = (
+/obj/structure/rack,
+/obj/effect/spawner/random/engineering/structure/gascan,
+/obj/effect/spawner/random/engineering/structure/gascan,
+/obj/effect/spawner/random/engineering/structure/gascan,
+/turf/open/floor/tile/dark,
+/area/oscar_outpost/village/abandonedbase)
+"Wk" = (
+/obj/structure/closet,
+/obj/item/clothing/under/marine/veteran,
+/turf/open/floor/wood,
+/area/oscar_outpost/village/abandonedbase)
+"WA" = (
+/obj/structure/barricade/plasteel,
+/obj/structure/cable,
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"WM" = (
+/obj/structure/bed/chair/office/dark{
+	dir = 1
+	},
+/turf/open/floor/carpet,
+/area/oscar_outpost/village/abandonedbase)
+"Xc" = (
+/obj/structure/prop/brokenvendor/brokenuniformvendor/specialist,
+/obj/machinery/light,
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"Xd" = (
+/obj/structure/sign/poster,
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"Xn" = (
+/turf/closed/mineral/smooth,
+/area/oscar_outpost/outside/rock)
+"Xp" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"Xt" = (
+/obj/structure/sign/poster,
+/obj/machinery/camera/autoname/mainship{
+	dir = 1
+	},
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"Xv" = (
+/obj/structure/table/mainship,
+/obj/item/megaphone,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"Xz" = (
+/obj/effect/turf_decal/warning_stripes/thin,
+/obj/effect/landmark/corpsespawner/marine/regular,
+/obj/effect/spawner/random/misc/structure/chair_or_metal,
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"XD" = (
+/obj/structure/table/mainship,
+/obj/item/flashlight/lamp,
+/obj/effect/spawner/random/engineering/cable,
+/obj/structure/platform{
+	dir = 9
+	},
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"XI" = (
+/obj/structure/closet,
+/obj/item/reagent_containers/food/drinks/bottle/vodka,
+/obj/item/reagent_containers/food/drinks/drinkingglass,
+/obj/item/clothing/under/marine/veteran,
+/obj/machinery/light/small,
+/obj/effect/ai_node,
+/turf/open/floor/wood,
+/area/oscar_outpost/village/abandonedbase)
+"XP" = (
+/obj/item/reagent_containers/food/drinks/drinkingglass{
+	pixel_x = 9
+	},
+/obj/item/reagent_containers/food/drinks/drinkingglass{
+	pixel_x = -8
+	},
+/obj/item/reagent_containers/food/drinks/bottle/vodka,
+/obj/structure/table/fancywoodentable,
+/obj/machinery/light,
+/turf/open/floor/carpet,
+/area/oscar_outpost/village/abandonedbase)
+"XR" = (
+/obj/structure/rack,
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"XW" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 8
+	},
+/obj/machinery/light,
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"Yn" = (
+/obj/structure/platform{
+	dir = 4
+	},
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"Yp" = (
+/obj/effect/turf_decal/warning_stripes/thin,
+/obj/effect/spawner/random/misc/structure/chair_or_metal,
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"Yz" = (
+/obj/machinery/door/airlock/multi_tile/mainship/medidoor{
+	name = "Triage Center"
+	},
+/turf/open/floor/plating,
+/area/oscar_outpost/village/abandonedbase)
+"YA" = (
+/obj/structure/prop/brokenvendor/brokenweaponsrack,
+/turf/open/floor/mainship/sterile/dark,
+/area/oscar_outpost/village/abandonedbase)
+"YJ" = (
+/obj/structure/prop/brokenvendor/engivend,
+/turf/open/floor/plating,
+/area/oscar_outpost/village/abandonedbase)
+"YM" = (
+/obj/structure/window/framed/mainship,
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"YO" = (
+/obj/machinery/iv_drip,
+/turf/open/floor/mainship/sterile/dark,
+/area/oscar_outpost/village/abandonedbase)
+"YU" = (
+/obj/effect/spawner/random/misc/structure/chair_or_metal,
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"YX" = (
+/obj/structure/prop/brokenvendor/brokenuniformvendor,
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"Zd" = (
+/obj/effect/turf_decal/warning_stripes/smallstripevertical{
+	dir = 8
+	},
+/obj/effect/turf_decal/warning_stripes/smallstripevertical{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/grayscale/edge/black{
+	dir = 8
+	},
+/area/oscar_outpost/village/abandonedbase)
+"Zx" = (
+/obj/effect/turf_decal/warning_stripes/thin,
+/obj/machinery/camera/autoname/mainship,
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"Zz" = (
+/obj/machinery/camera/autoname/mainship{
+	dir = 8
+	},
+/turf/open/floor/plating/ground/dirt,
+/area/oscar_outpost/outside/underground)
+"ZG" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/prop/brokenvendor/brokenmarinemedvendor,
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+"ZW" = (
+/obj/structure/bed/chair/office/dark{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/grayscale/black,
+/area/oscar_outpost/village/abandonedbase)
+
+(1,1,1) = {"
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+AT
+AT
+AT
+AT
+AT
+AT
+AT
+AT
+AT
+AT
+AT
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+"}
+(2,1,1) = {"
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+AT
+AT
+AT
+AT
+AT
+AT
+AT
+AT
+AT
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+"}
+(3,1,1) = {"
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+AT
+AT
+LE
+AT
+AT
+AT
+AT
+LE
+AT
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+"}
+(4,1,1) = {"
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+AT
+AT
+AT
+AT
+AT
+AT
+AT
+AT
+AT
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+"}
+(5,1,1) = {"
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Eq
+Xn
+Xn
+AT
+AT
+AT
+AT
+AT
+Zz
+AT
+AT
+OR
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+"}
+(6,1,1) = {"
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Eq
+Eq
+Eq
+lY
+lY
+lY
+lY
+Eq
+Eq
+Eq
+tz
+Eq
+Eq
+Eq
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+"}
+(7,1,1) = {"
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Eq
+LG
+fV
+RF
+RF
+cg
+cg
+Wi
+ko
+TW
+RF
+RF
+pr
+dO
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+"}
+(8,1,1) = {"
+Xn
+Eq
+Eq
+qu
+Xn
+Eq
+Eq
+Eq
+RF
+cg
+cg
+RF
+RF
+cg
+RF
+RF
+RF
+cg
+RF
+cg
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+"}
+(9,1,1) = {"
+Xn
+Eq
+OY
+cb
+gQ
+Ax
+Ax
+Eq
+RF
+vF
+Ur
+tr
+lA
+tr
+lA
+tr
+vF
+tr
+vF
+lA
+RF
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+"}
+(10,1,1) = {"
+Xn
+Eq
+us
+Ax
+pk
+rL
+fa
+Eq
+RF
+RF
+RF
+RF
+RF
+kF
+RF
+RF
+HK
+eB
+RF
+bK
+cg
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+"}
+(11,1,1) = {"
+Xn
+Eq
+TJ
+xd
+dQ
+wI
+WM
+Eq
+RF
+Ur
+vF
+Ur
+vF
+vF
+tr
+vF
+Ur
+lA
+tr
+cv
+Oc
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+"}
+(12,1,1) = {"
+Xn
+Eq
+ey
+Ax
+pk
+Ej
+fa
+Eq
+RF
+HO
+RF
+RF
+lF
+Jp
+RF
+RF
+kF
+Jp
+RF
+pP
+RF
+Eq
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+"}
+(13,1,1) = {"
+Xn
+Eq
+Eq
+cV
+Eq
+Eq
+Eq
+Eq
+Eq
+Eq
+Eq
+Eq
+Eq
+Eq
+Eq
+Eq
+Eq
+Eq
+Eq
+ks
+cF
+Eq
+Eq
+Eq
+Eq
+Eq
+Eq
+Xn
+Xn
+"}
+(14,1,1) = {"
+Xn
+Eq
+Cv
+uf
+lU
+Tg
+uf
+xx
+Cv
+Xv
+KN
+Aj
+xx
+Cv
+Xv
+KN
+Aj
+Eq
+AW
+Ed
+vF
+Eq
+Mm
+uf
+Xn
+Xn
+Xn
+Xn
+Xn
+"}
+(15,1,1) = {"
+Xn
+Eq
+kc
+vF
+kc
+mq
+uf
+xx
+pF
+ce
+Ga
+iH
+xx
+pF
+Zd
+pF
+iH
+Eq
+zh
+Qz
+kc
+Eq
+Nt
+uf
+Xn
+Xn
+Xn
+Xn
+Xn
+"}
+(16,1,1) = {"
+Xn
+Eq
+nv
+uf
+sc
+qm
+uf
+kc
+kc
+gn
+lA
+uf
+iK
+fz
+gU
+uf
+kc
+xx
+kc
+Ef
+uf
+Eq
+pZ
+uf
+uf
+Xn
+Xn
+Xn
+Xn
+"}
+(17,1,1) = {"
+Xn
+Eq
+gF
+uf
+aM
+Fp
+Qz
+Sq
+Qz
+Ef
+DY
+uf
+Sy
+Qz
+Qz
+Qz
+Qz
+JX
+Ed
+Qj
+uf
+Eq
+HL
+uf
+Sy
+Xn
+Xn
+Xn
+Xn
+"}
+(18,1,1) = {"
+Xn
+Eq
+vm
+qD
+lA
+uf
+EQ
+kc
+Ry
+uf
+pF
+do
+uf
+hx
+kc
+DO
+do
+bI
+uf
+Ed
+uf
+Eq
+DR
+uf
+uf
+Xn
+Xn
+Xn
+Xn
+"}
+(19,1,1) = {"
+Xn
+Eq
+pw
+vF
+vF
+uf
+yA
+xx
+uf
+vW
+uf
+fT
+xx
+uf
+LZ
+ZW
+lk
+Eq
+tY
+Qz
+UY
+Eq
+Uw
+uf
+uf
+Xn
+Xn
+Xn
+Xn
+"}
+(20,1,1) = {"
+Xn
+Eq
+Bo
+kc
+lA
+kc
+kc
+xx
+en
+Bw
+gz
+di
+xx
+Cv
+Bw
+ic
+nE
+Eq
+zh
+Qz
+kc
+Eq
+cB
+aB
+uf
+uf
+Xn
+Xn
+Xn
+"}
+(21,1,1) = {"
+Xn
+Eq
+Mm
+uf
+vF
+gU
+uf
+Eq
+Eq
+Eq
+Eq
+Eq
+Eq
+Eq
+Eq
+cF
+lV
+Eq
+uf
+vF
+uf
+Eq
+Eq
+Eq
+EC
+Eq
+Eq
+Xn
+Xn
+"}
+(22,1,1) = {"
+Xn
+Eq
+uf
+qD
+kc
+uf
+vF
+uf
+uf
+uf
+Sy
+SX
+vF
+vJ
+Eq
+uf
+kW
+vF
+vF
+gM
+kc
+Eq
+IF
+Ba
+uf
+BC
+Eq
+Xn
+Xn
+"}
+(23,1,1) = {"
+Xn
+Eq
+Eq
+cV
+Eq
+Eq
+Eq
+Eq
+Eq
+Eq
+uf
+Eq
+Eq
+Eq
+Eq
+kW
+vF
+kW
+kc
+vq
+kc
+vF
+uf
+Aq
+kV
+kc
+Eq
+Xn
+Xn
+"}
+(24,1,1) = {"
+Xn
+Eq
+BA
+Xn
+Xn
+us
+Eq
+dG
+Ax
+Ce
+Sy
+Ax
+Ax
+bF
+Eq
+kW
+gU
+kW
+uf
+Ef
+uf
+Eq
+Ku
+vF
+vF
+BC
+Eq
+Xn
+Xn
+"}
+(25,1,1) = {"
+Xn
+Eq
+Wk
+Ax
+Ax
+Ax
+Eq
+TG
+SR
+Eq
+vF
+Eq
+Ad
+iQ
+Eq
+dX
+kW
+uf
+lA
+iN
+gn
+Eq
+Eq
+Eq
+Eq
+Eq
+Eq
+Xn
+Xn
+"}
+(26,1,1) = {"
+Xn
+Eq
+Pa
+Ax
+KL
+XP
+Eq
+Eq
+Eq
+Eq
+tW
+Eq
+Eq
+Eq
+Eq
+kW
+uf
+kW
+vF
+Ed
+uf
+Eq
+Aq
+kc
+uf
+ya
+Eq
+Xn
+Xn
+"}
+(27,1,1) = {"
+Xn
+Eq
+ey
+Ax
+jJ
+Rn
+Eq
+SJ
+Ax
+Ax
+EQ
+Ce
+Ax
+XI
+Eq
+uf
+oh
+wK
+tQ
+Sq
+kc
+uf
+vF
+uf
+EQ
+Xc
+Eq
+Xn
+Xn
+"}
+(28,1,1) = {"
+Xn
+Eq
+ey
+Ax
+fa
+rL
+Eq
+TG
+SR
+Eq
+vF
+Eq
+Ad
+TG
+Eq
+za
+vF
+uf
+uf
+Dh
+uf
+lA
+VF
+sD
+uf
+MY
+Eq
+Xn
+Xn
+"}
+(29,1,1) = {"
+Xn
+Eq
+Eq
+Eq
+Eq
+Eq
+Eq
+Eq
+Eq
+Xn
+Xn
+Eq
+Eq
+Eq
+Eq
+Mv
+xx
+Eq
+Xp
+uf
+uf
+Eq
+DR
+RN
+uf
+ya
+Eq
+Xn
+Xn
+"}
+(30,1,1) = {"
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Fx
+kc
+XR
+Xn
+Xn
+uf
+XR
+xx
+yy
+HW
+fN
+Eq
+Xn
+Qz
+uf
+xx
+be
+gU
+uf
+vR
+Eq
+Xn
+Xn
+"}
+(31,1,1) = {"
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Fx
+kc
+kc
+Xn
+Xn
+uf
+HS
+xx
+uf
+em
+uf
+nU
+kc
+gM
+uf
+xx
+be
+lA
+kc
+ml
+Eq
+Xn
+Xn
+"}
+(32,1,1) = {"
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Ki
+kc
+AR
+dO
+Xn
+Xn
+kc
+xx
+bT
+kc
+kc
+QG
+uf
+Sq
+QX
+Eq
+DR
+kc
+Sy
+ya
+Eq
+Xn
+Xn
+"}
+(33,1,1) = {"
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Ki
+uf
+uf
+qD
+Xn
+uf
+kc
+SX
+jd
+Sy
+lM
+Pl
+kc
+Qz
+kc
+Jv
+VF
+uf
+uf
+Xc
+Eq
+Xn
+Xn
+"}
+(34,1,1) = {"
+Xn
+Xn
+Xn
+Eq
+Eq
+Eq
+Eq
+Eq
+XR
+uf
+Ue
+uf
+XR
+Eq
+HG
+uf
+Vj
+QG
+UH
+zW
+pA
+uf
+uf
+vF
+uf
+kI
+Eq
+Xn
+Xn
+"}
+(35,1,1) = {"
+Xn
+Xn
+Xn
+Eq
+lo
+uf
+uf
+Eq
+XR
+vF
+fX
+kc
+uf
+YM
+XR
+vF
+Cx
+YM
+uf
+Ed
+uf
+Eq
+aU
+uf
+MJ
+Xn
+Xn
+Xn
+Xn
+"}
+(36,1,1) = {"
+Xn
+Xn
+Xn
+Eq
+Ix
+Sy
+uf
+SX
+uf
+Sy
+EM
+uf
+me
+xx
+uf
+kc
+uv
+xx
+uf
+Qz
+vF
+YM
+Bo
+uf
+kc
+Xn
+Xn
+Xn
+Xn
+"}
+(37,1,1) = {"
+Xn
+Xn
+Xn
+Eq
+zy
+uf
+uf
+Eq
+hr
+uf
+Cx
+uf
+XR
+YM
+mv
+uf
+XR
+Eq
+gL
+OP
+uf
+xx
+ZG
+uf
+uf
+Xn
+Xn
+Xn
+Xn
+"}
+(38,1,1) = {"
+Xn
+Eq
+Eq
+Eq
+Eq
+Eq
+Eq
+Eq
+Eq
+Eq
+Eq
+Eq
+Eq
+Eq
+Eq
+Nz
+Eq
+Eq
+AW
+Ef
+uf
+Eq
+pZ
+uf
+Sy
+YX
+Xn
+Xn
+Xn
+"}
+(39,1,1) = {"
+AT
+Re
+vF
+Fg
+eL
+uf
+ft
+uf
+tQ
+gf
+fg
+uf
+uf
+vF
+vF
+vF
+uf
+kW
+uf
+uf
+uf
+Jv
+uf
+uf
+uf
+Xc
+Eq
+Xn
+Xn
+"}
+(40,1,1) = {"
+AT
+Re
+ao
+Re
+Re
+vF
+SX
+Sy
+Pj
+Ed
+Qz
+kc
+hf
+Qz
+Qz
+Sq
+Ef
+WA
+uf
+Sy
+kc
+uf
+uf
+kc
+uf
+ml
+Eq
+Xn
+Xn
+"}
+(41,1,1) = {"
+Xn
+Eq
+vF
+db
+eS
+Re
+ft
+vF
+tQ
+Wc
+rx
+uf
+aB
+kc
+uf
+BF
+uf
+kW
+uf
+Ef
+uf
+Eq
+pZ
+vF
+uf
+tR
+Eq
+Xn
+Xn
+"}
+(42,1,1) = {"
+Xn
+Eq
+Eq
+Eq
+Eq
+Eq
+Eq
+vF
+Qz
+Eq
+Eq
+Eq
+Eq
+Eq
+Eq
+Eq
+Eq
+Eq
+Fg
+Il
+pA
+xx
+HL
+uf
+uf
+vR
+Eq
+Xn
+Xn
+"}
+(43,1,1) = {"
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Eq
+kc
+Qz
+rk
+Mm
+vF
+YX
+Eq
+YX
+uf
+Mm
+bI
+uf
+Qz
+vF
+xx
+kc
+uf
+vF
+MY
+Eq
+Xn
+Xn
+"}
+(44,1,1) = {"
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+zh
+Xn
+ft
+CM
+uf
+cq
+Eq
+vR
+uf
+Mm
+ft
+tQ
+iN
+UY
+Eq
+GN
+uf
+Sy
+ya
+Eq
+Xn
+Xn
+"}
+(45,1,1) = {"
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+uf
+Xn
+Xn
+vF
+uf
+kI
+Eq
+kI
+uf
+vF
+vF
+Vl
+Hy
+uf
+tQ
+VF
+uf
+kc
+Xc
+Eq
+Xn
+Xn
+"}
+(46,1,1) = {"
+Eq
+Eq
+Eq
+Eq
+Eq
+Eq
+Eq
+Sy
+Qz
+SX
+vF
+Sy
+hn
+Eq
+BI
+Sy
+uf
+oV
+vF
+Sq
+tQ
+uf
+VF
+kc
+uf
+ml
+Eq
+Xn
+Xn
+"}
+(47,1,1) = {"
+Eq
+RF
+RF
+cg
+RF
+cg
+Eq
+kc
+Qz
+Eq
+pZ
+YJ
+uf
+Eq
+be
+be
+DR
+Eq
+pA
+zW
+pA
+Eq
+Bo
+uf
+RN
+ya
+Eq
+Xn
+Xn
+"}
+(48,1,1) = {"
+Eq
+mi
+AV
+AV
+AV
+tn
+Eq
+NI
+Qz
+Eq
+Eq
+Eq
+Eq
+Eq
+Eq
+Eq
+Eq
+Eq
+uf
+Qz
+uf
+xx
+be
+uf
+sD
+vR
+Eq
+Xn
+Xn
+"}
+(49,1,1) = {"
+Eq
+RF
+dH
+RF
+FV
+RF
+Eq
+uf
+Qz
+Eq
+Wb
+Wb
+NL
+Eq
+Vv
+tI
+PH
+Eq
+uf
+Ef
+uf
+YM
+Hs
+uf
+vF
+ml
+Eq
+Xn
+Xn
+"}
+(50,1,1) = {"
+Eq
+Ek
+AV
+AV
+Ek
+bK
+mf
+Sq
+Ed
+vF
+vF
+Sy
+LM
+Eq
+gd
+PU
+PH
+SX
+kc
+Sq
+Fg
+Eq
+Bo
+uf
+uf
+ya
+Eq
+Xn
+Xn
+"}
+(51,1,1) = {"
+Eq
+RF
+RF
+RF
+RF
+dH
+Eq
+uf
+uf
+Xn
+uf
+uf
+YX
+Eq
+hI
+PH
+PH
+Eq
+NI
+Qz
+Sy
+uf
+uf
+vF
+Vi
+Xc
+Eq
+Xn
+Xn
+"}
+(52,1,1) = {"
+Eq
+Xn
+Xn
+dO
+cg
+bK
+Eq
+NI
+uf
+ft
+Mm
+vF
+vR
+Eq
+AI
+PH
+nm
+bI
+uf
+uf
+kc
+uf
+kc
+aB
+uf
+MY
+Eq
+Xn
+Xn
+"}
+(53,1,1) = {"
+Eq
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+uf
+ft
+Mm
+vF
+kI
+Eq
+YA
+PH
+dL
+Eq
+ds
+uf
+RK
+Eq
+Eq
+Eq
+Eq
+Eq
+Eq
+Xn
+Xn
+"}
+(54,1,1) = {"
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Eq
+Eq
+Eq
+Eq
+Eq
+Eq
+Eq
+Eq
+Eq
+Eq
+uf
+Qz
+Fg
+RC
+bQ
+Jt
+mI
+sT
+Eq
+Xn
+Xn
+"}
+(55,1,1) = {"
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Eq
+fr
+bY
+oS
+gi
+or
+Eq
+Op
+fi
+Op
+uf
+dR
+dR
+dR
+zi
+Eq
+Xn
+Xn
+"}
+(56,1,1) = {"
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Eq
+SE
+Li
+PH
+PH
+hP
+Eq
+xM
+fi
+Yp
+YU
+dR
+Bg
+dR
+KH
+Eq
+Xn
+Xn
+"}
+(57,1,1) = {"
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Eq
+AO
+yp
+tI
+PH
+sI
+Eq
+oX
+lN
+pT
+YU
+Bg
+Bg
+dR
+dR
+Eq
+Xn
+Xn
+"}
+(58,1,1) = {"
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Eq
+Va
+PH
+tI
+KJ
+Np
+Eq
+Op
+fi
+oX
+YU
+eR
+dR
+dR
+Xd
+Eq
+Xn
+Xn
+"}
+(59,1,1) = {"
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Eq
+YO
+PH
+Vv
+PH
+Lb
+Eq
+Zx
+fi
+ry
+vF
+vF
+uf
+jj
+lx
+Eq
+Xn
+Xn
+"}
+(60,1,1) = {"
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Eq
+PH
+Np
+Vv
+KJ
+lO
+Yz
+Op
+pI
+Op
+uf
+XD
+pv
+yJ
+vF
+Eq
+Xn
+Xn
+"}
+(61,1,1) = {"
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Eq
+Xn
+PU
+PH
+PH
+nL
+uf
+vF
+Sq
+uf
+Fg
+rG
+uf
+vF
+Xt
+Eq
+Xn
+Xn
+"}
+(62,1,1) = {"
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+PH
+pz
+To
+Eq
+Op
+fi
+qB
+uf
+Qa
+qF
+sZ
+uf
+Eq
+Xn
+Xn
+"}
+(63,1,1) = {"
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+mS
+mS
+Eq
+Op
+fi
+Op
+uf
+uf
+uf
+jj
+Yn
+Eq
+Xn
+Xn
+"}
+(64,1,1) = {"
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Eq
+Eq
+Eq
+Eq
+Op
+lK
+Yp
+uf
+bW
+th
+KY
+Xd
+Eq
+Xn
+Xn
+"}
+(65,1,1) = {"
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Eq
+xM
+fi
+Xz
+po
+bW
+th
+th
+XW
+Eq
+Xn
+Xn
+"}
+(66,1,1) = {"
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Eq
+Op
+fi
+Op
+YU
+bW
+bW
+wL
+KY
+Eq
+Xn
+Xn
+"}
+(67,1,1) = {"
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Eq
+Op
+Gc
+Op
+uf
+KY
+KY
+wq
+mH
+Eq
+Xn
+Xn
+"}
+(68,1,1) = {"
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Eq
+Xn
+Qz
+uf
+uf
+FS
+KY
+KY
+iT
+Eq
+Xn
+Xn
+"}
+(69,1,1) = {"
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Jl
+Qz
+Ae
+vF
+Eq
+Eq
+jS
+Eq
+Xn
+Eq
+Xn
+Xn
+"}
+(70,1,1) = {"
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Eq
+vF
+uf
+vF
+Xn
+Xn
+Xn
+Xn
+Xn
+Eq
+Xn
+Xn
+"}
+(71,1,1) = {"
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Eq
+Eq
+yN
+Df
+Df
+Xn
+Xn
+Xn
+Xn
+Eq
+Tp
+Tp
+"}
+(72,1,1) = {"
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Tp
+Tp
+"}
+(73,1,1) = {"
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Tp
+Tp
+"}
+(74,1,1) = {"
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Tp
+Tp
+"}
+(75,1,1) = {"
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Tp
+Tp
+"}
+(76,1,1) = {"
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Tp
+Tp
+"}
+(77,1,1) = {"
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Tp
+Tp
+"}
+(78,1,1) = {"
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Tp
+Tp
+"}
+(79,1,1) = {"
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Xn
+Tp
+Tp
+"}

@@ -9,14 +9,15 @@
 	///Excavation rewards datum that is used when excavation is performed
 	var/datum/excavation_rewards/rewards_typepath
 
-/obj/effect/landmark/excavation_site_spawner/Initialize()
+/obj/effect/landmark/excavation_site_spawner/Initialize(mapload)
 	. = ..()
 	SSexcavation.excavation_site_spawners += src
 
 ///Setup an excavation
 /obj/effect/landmark/excavation_site_spawner/proc/spawn_excavation_site()
 	rewards_typepath = pick(rewards_datums)
-	SSminimaps.add_marker(src, 2, hud_flags = MINIMAP_FLAG_EXCAVATION_ZONE, iconstate = initial(rewards_typepath.map_icon))
+	if(initial(rewards_typepath.map_icon))
+		SSminimaps.add_marker(src, MINIMAP_FLAG_EXCAVATION_ZONE, image('icons/UI_icons/map_blips.dmi', null, initial(rewards_typepath.map_icon)))
 
 ///Perform an excavation and revert the spawner to inactive state
 /obj/effect/landmark/excavation_site_spawner/proc/excavate_site()

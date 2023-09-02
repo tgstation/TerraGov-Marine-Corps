@@ -1,29 +1,23 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
-/turf/closed/shuttle/escapepod{
-	icon_state = "wall13"
+/turf/closed/shuttle/escapepod/cornerone{
+	dir = 1
 	},
 /area/shuttle/escape_pod)
 "b" = (
-/turf/closed/shuttle/escapepod{
-	icon_state = "wall1"
-	},
+/turf/closed/shuttle/escapepod/wallone,
 /area/shuttle/escape_pod)
 "c" = (
 /obj/machinery/computer/shuttle/escape_pod,
-/turf/closed/shuttle/escapepod{
-	icon_state = "wall2"
-	},
+/turf/closed/shuttle/escapepod/walltwo,
 /area/shuttle/escape_pod)
 "d" = (
-/turf/closed/shuttle/escapepod{
-	icon_state = "wall3"
+/turf/closed/shuttle/escapepod/cornerone{
+	dir = 4
 	},
 /area/shuttle/escape_pod)
 "e" = (
-/turf/closed/shuttle/escapepod{
-	icon_state = "wall12"
-	},
+/turf/closed/shuttle/escapepod/walltwelve,
 /area/shuttle/escape_pod)
 "f" = (
 /obj/machinery/cryopod/evacuation,
@@ -33,14 +27,12 @@
 /turf/open/shuttle/escapepod/zero,
 /area/shuttle/escape_pod)
 "h" = (
-/turf/closed/shuttle/escapepod{
-	icon_state = "wall4"
+/turf/closed/shuttle/escapepod/walltwo{
+	dir = 8
 	},
 /area/shuttle/escape_pod)
 "i" = (
-/turf/closed/shuttle/escapepod{
-	icon_state = "wall11"
-	},
+/turf/closed/shuttle/escapepod/walleleven,
 /area/shuttle/escape_pod)
 "j" = (
 /turf/open/shuttle/escapepod/plain,
@@ -51,39 +43,28 @@
 /turf/open/floor/plating,
 /area/shuttle/escape_pod)
 "l" = (
-/turf/open/shuttle/escapepod{
-	icon_state = "floor10"
-	},
+/turf/open/shuttle/escapepod/ten,
 /area/shuttle/escape_pod)
 "m" = (
-/turf/closed/shuttle/escapepod{
-	icon_state = "wall9"
+/turf/closed/shuttle/escapepod/cornerone{
+	dir = 8
 	},
 /area/shuttle/escape_pod)
 "n" = (
-/turf/closed/shuttle/escapepod{
-	icon_state = "wall7"
+/turf/closed/shuttle/escapepod/walltwo{
+	dir = 1
 	},
 /area/shuttle/escape_pod)
 "o" = (
-/turf/closed/shuttle/escapepod{
-	icon_state = "wall6"
-	},
+/turf/closed/shuttle/escapepod/cornerone,
 /area/shuttle/escape_pod)
 "p" = (
-/turf/closed/shuttle/escapepod{
-	icon_state = "wall10"
+/turf/closed/shuttle/escapepod/wallone{
+	dir = 4
 	},
 /area/shuttle/escape_pod)
 "q" = (
-/turf/closed/shuttle/escapepod{
-	icon_state = "wall5"
-	},
-/area/shuttle/escape_pod)
-"r" = (
-/turf/closed/shuttle/escapepod{
-	icon_state = "wall8"
-	},
+/turf/closed/shuttle/escapepod/wallfive,
 /area/shuttle/escape_pod)
 "s" = (
 /obj/machinery/cryopod/evacuation,
@@ -105,7 +86,7 @@ b
 f
 s
 f
-r
+n
 "}
 (3,1,1) = {"
 c

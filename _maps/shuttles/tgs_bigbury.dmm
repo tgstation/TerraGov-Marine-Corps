@@ -86,8 +86,7 @@
 /turf/open/floor/mainship/sterile,
 /area/shuttle/canterbury/medical)
 "ax" = (
-/obj/structure/bed/chair/dropship/passenger,
-/obj/effect/landmark/start/job/crash/medicalofficer,
+/obj/machinery/robotic_cradle,
 /turf/open/floor/mainship/sterile,
 /area/shuttle/canterbury/medical)
 "ay" = (
@@ -144,7 +143,7 @@
 /obj/structure/window/reinforced{
 	dir = 8
 	},
-/obj/machinery/vending/weapon,
+/obj/machinery/vending/weapon/crash,
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "aN" = (
@@ -161,13 +160,13 @@
 /obj/machinery/light/small{
 	dir = 4
 	},
+/obj/item/reagent_containers/glass/beaker/cryomix,
 /turf/open/floor/mainship/sterile,
 /area/shuttle/canterbury/medical)
 "aO" = (
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/obj/structure/window/reinforced,
 /obj/machinery/marine_selector/clothes,
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
@@ -180,7 +179,6 @@
 /area/shuttle/canterbury)
 "aR" = (
 /obj/structure/table/reinforced,
-/obj/item/pinpointer,
 /obj/item/tool/crowbar,
 /obj/item/radio,
 /obj/item/lightreplacer,
@@ -201,7 +199,7 @@
 /obj/structure/window/reinforced{
 	dir = 8
 	},
-/obj/machinery/vending/weapon,
+/obj/machinery/vending/weapon/crash,
 /obj/structure/window/reinforced{
 	dir = 1
 	},
@@ -226,7 +224,6 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/obj/structure/window/reinforced,
 /obj/machinery/marine_selector/clothes,
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
@@ -235,7 +232,7 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/shuttle/canterbury/medical)
 "aZ" = (
-/obj/machinery/vending/weapon,
+/obj/machinery/vending/weapon/crash,
 /obj/structure/window/reinforced{
 	dir = 4
 	},
@@ -262,8 +259,10 @@
 /area/shuttle/canterbury/medical)
 "be" = (
 /obj/structure/table/reinforced,
-/obj/item/storage/belt/combatLifesaver,
-/obj/item/storage/belt/medical,
+/obj/machinery/reagentgrinder{
+	pixel_x = -1;
+	pixel_y = 8
+	},
 /turf/open/floor/mainship/sterile/dark,
 /area/shuttle/canterbury/medical)
 "bg" = (
@@ -275,17 +274,15 @@
 /turf/open/floor/mainship/tcomms,
 /area/shuttle/canterbury)
 "bi" = (
+/obj/structure/barricade/plasteel{
+	dir = 8
+	},
 /obj/machinery/door_control{
 	id = "port_umbilical_outer";
 	name = "outer door-control";
 	pixel_y = 32
 	},
-/obj/machinery/door/poddoor/mainship{
-	id = "port_umbilical_outer";
-	name = "\improper Umbillical Airlock"
-	},
-/obj/machinery/door/poddoor/shutters/transit,
-/turf/open/floor/mainship/mono,
+/turf/open/floor/mainship/stripesquare,
 /area/shuttle/canterbury)
 "bj" = (
 /obj/structure/cable,
@@ -320,6 +317,10 @@
 	dir = 1
 	},
 /obj/structure/cable,
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 1
+	},
+/obj/effect/landmark/start/job/crash/medicalofficer,
 /turf/open/floor/mainship/sterile,
 /area/shuttle/canterbury/medical)
 "bp" = (
@@ -332,15 +333,15 @@
 "bq" = (
 /obj/structure/closet/secure_closet/engineering_personal,
 /obj/item/tool/weldpack,
-/obj/item/tool/extinguisher/mini,
+/obj/effect/spawner/random/engineering/extinguisher/miniweighted,
 /turf/open/floor/mainship/orange/full,
 /area/shuttle/canterbury)
 "br" = (
 /obj/structure/table/mainship,
-/obj/item/fuelCell/full,
-/obj/item/fuelCell/full,
-/obj/item/tool/extinguisher/mini,
-/obj/item/tool/extinguisher,
+/obj/item/fuel_cell/full,
+/obj/item/fuel_cell/full,
+/obj/effect/spawner/random/engineering/extinguisher/miniweighted,
+/obj/effect/spawner/random/engineering/extinguisher/regularweighted,
 /obj/item/t_scanner,
 /obj/item/storage/backpack/marine/engineerpack,
 /obj/item/storage/belt/utility/full,
@@ -401,17 +402,15 @@
 /turf/open/floor/mainship,
 /area/shuttle/canterbury)
 "bC" = (
+/obj/structure/barricade/plasteel{
+	dir = 4
+	},
 /obj/machinery/door_control{
 	id = "starboard_umbilical_outer";
 	name = "outer door-control";
 	pixel_y = 32
 	},
-/obj/machinery/door/poddoor/mainship{
-	id = "starboard_umbilical_outer";
-	name = "\improper Umbillical Airlock"
-	},
-/obj/machinery/door/poddoor/shutters/transit,
-/turf/open/floor/mainship/mono,
+/turf/open/floor/mainship/stripesquare,
 /area/shuttle/canterbury)
 "bD" = (
 /obj/structure/cable,
@@ -422,7 +421,7 @@
 /turf/open/floor/mainship/blue/full,
 /area/shuttle/canterbury/cic)
 "bG" = (
-/obj/machinery/vending/weapon,
+/obj/machinery/vending/weapon/crash,
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "bH" = (
@@ -469,9 +468,7 @@
 	},
 /area/shuttle/canterbury/cic)
 "bO" = (
-/obj/machinery/alarm{
-	dir = 1
-	},
+/obj/machinery/marine_selector/gear/commander,
 /turf/open/floor/mainship,
 /area/shuttle/canterbury/cic)
 "bP" = (
@@ -491,8 +488,7 @@
 /obj/structure/table/mainship,
 /obj/item/clipboard,
 /obj/item/tool/pen,
-/obj/structure/paper_bin,
-/obj/item/pinpointer,
+/obj/effect/spawner/random/misc/paperbin,
 /turf/open/floor/mainship/blue{
 	dir = 8
 	},
@@ -502,8 +498,8 @@
 /turf/open/floor/mainship,
 /area/shuttle/canterbury/cic)
 "bT" = (
-/obj/machinery/marine_selector/clothes/synth,
 /obj/machinery/light/small,
+/obj/machinery/marine_selector/clothes/commander,
 /turf/open/floor/mainship/blue{
 	dir = 8
 	},
@@ -545,7 +541,7 @@
 /obj/structure/window/reinforced{
 	dir = 8
 	},
-/obj/machinery/vending/weapon,
+/obj/machinery/vending/weapon/crash,
 /obj/structure/window/reinforced{
 	dir = 1
 	},
@@ -666,7 +662,7 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/obj/machinery/vending/weapon,
+/obj/machinery/vending/weapon/crash,
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "qh" = (
@@ -675,9 +671,6 @@
 /area/shuttle/canterbury)
 "ql" = (
 /obj/structure/rack,
-/obj/item/storage/box/sentry,
-/obj/item/storage/box/sentry,
-/obj/item/storage/box/sentry,
 /obj/item/tool/screwdriver,
 /obj/item/tool/wrench,
 /obj/item/storage/toolbox/mechanical,
@@ -709,18 +702,17 @@
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "sR" = (
-/obj/machinery/autolathe,
+/obj/machinery/marine_selector/clothes/synth,
 /turf/open/floor/mainship/cargo,
 /area/shuttle/canterbury)
 "te" = (
 /obj/structure/rack,
-/obj/machinery/alarm{
+/obj/machinery/air_alarm{
 	dir = 8
 	},
 /obj/item/stack/sheet/metal/large_stack,
 /obj/item/stack/sheet/metal/large_stack,
 /obj/item/stack/sheet/plasteel/medium_stack,
-/obj/item/pinpointer,
 /turf/open/floor/mainship/cargo,
 /area/shuttle/canterbury)
 "tP" = (
@@ -773,6 +765,9 @@
 	dir = 8
 	},
 /obj/machinery/iv_drip,
+/obj/structure/sink{
+	dir = 8
+	},
 /turf/open/floor/mainship/sterile/dark,
 /area/shuttle/canterbury/medical)
 "vW" = (
@@ -800,14 +795,6 @@
 /obj/effect/landmark/start/latejoin/crash,
 /turf/open/floor/mainship,
 /area/shuttle/canterbury)
-"ye" = (
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/machinery/marine_selector/clothes,
-/obj/structure/window/reinforced,
-/turf/open/floor/mainship/mono,
-/area/shuttle/canterbury)
 "yp" = (
 /obj/machinery/light{
 	dir = 8
@@ -825,6 +812,12 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
+"zk" = (
+/obj/machinery/air_alarm,
+/turf/open/floor/mainship/blue{
+	dir = 4
+	},
+/area/shuttle/canterbury/cic)
 "zy" = (
 /obj/structure/closet/crate/trashcart,
 /obj/item/storage/bag/trash,
@@ -863,7 +856,7 @@
 /turf/open/floor/mainship/red/full,
 /area/shuttle/canterbury)
 "Fl" = (
-/obj/machinery/loadout_vendor,
+/obj/machinery/loadout_vendor/crash,
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "FQ" = (
@@ -885,7 +878,6 @@
 	dir = 8
 	},
 /obj/machinery/marine_selector/clothes,
-/obj/structure/window/reinforced,
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "JM" = (
@@ -916,12 +908,11 @@
 /obj/item/facepaint/sniper,
 /obj/item/pizzabox/meat,
 /obj/item/binoculars,
-/obj/item/tool/extinguisher,
+/obj/effect/spawner/random/engineering/extinguisher/regularweighted,
 /obj/item/tool/shovel/etool,
-/obj/machinery/alarm{
+/obj/machinery/air_alarm{
 	dir = 4
 	},
-/obj/item/pinpointer,
 /turf/open/floor/mainship/cargo,
 /area/shuttle/canterbury)
 "KD" = (
@@ -933,7 +924,6 @@
 /area/shuttle/canterbury)
 "Mj" = (
 /obj/structure/rack,
-/obj/item/storage/box/tl102,
 /obj/item/storage/toolbox/electrical,
 /obj/item/tool/hand_labeler,
 /obj/item/stack/barbed_wire/full,
@@ -1067,7 +1057,7 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/obj/machinery/vending/weapon,
+/obj/machinery/vending/weapon/crash,
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "Wk" = (
@@ -1176,7 +1166,7 @@ al
 Mj
 Kk
 ab
-bi
+bU
 bU
 bU
 bU
@@ -1209,7 +1199,7 @@ al
 Ui
 Xp
 ab
-DH
+bi
 DH
 DH
 DH
@@ -1269,7 +1259,7 @@ Uo
 Uo
 al
 al
-uu
+zk
 bL
 al
 Rd
@@ -1369,7 +1359,7 @@ Uo
 ad
 ae
 MY
-bO
+bS
 al
 qh
 ac
@@ -1567,7 +1557,7 @@ Uo
 ad
 jo
 MY
-bS
+bO
 al
 BZ
 ac
@@ -1671,7 +1661,7 @@ al
 vW
 cR
 ab
-hc
+bC
 hc
 hc
 hc
@@ -1704,7 +1694,7 @@ al
 ql
 te
 ab
-bC
+bV
 bV
 bV
 bV
@@ -1715,7 +1705,7 @@ ow
 ab
 aM
 DI
-ye
+aQ
 bA
 cF
 DI

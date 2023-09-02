@@ -7,16 +7,22 @@
 	foldabletype = /obj/item/stool
 
 
-
 /obj/item/stool
 	name = "stool"
 	desc = "Uh-hoh, bar is heating up."
 	icon = 'icons/obj/objects.dmi'
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/weapons/melee_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/weapons/melee_right.dmi',
+	)
 	icon_state = "stool"
 	force = 15
 	throwforce = 12
 	w_class = WEIGHT_CLASS_HUGE
 	var/obj/structure/bed/stool/origin = null
+
+/obj/item/stool/alt
+	icon_state = "stool_alt"
 
 /obj/item/stool/proc/deploy(mob/user)
 
@@ -44,7 +50,7 @@
 		var/mob/living/T = M
 		if(istype(T) && !isxeno(T))
 			T.Paralyze(20 SECONDS)
-		T.apply_damage(20)
+		T.apply_damage(20, blocked = MELEE)
 		UPDATEHEALTH(T)
 		qdel(src)
 		return

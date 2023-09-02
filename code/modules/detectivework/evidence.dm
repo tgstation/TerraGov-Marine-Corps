@@ -49,7 +49,7 @@
 		to_chat(user, span_notice("[I] won't fit in [src]."))
 		return
 
-	if(contents.len)
+	if(length(contents))
 		to_chat(user, span_notice("[src] already has something inside it."))
 		return
 
@@ -76,7 +76,7 @@
 
 
 /obj/item/evidencebag/attack_self(mob/user as mob)
-	if(contents.len)
+	if(length(contents))
 		var/obj/item/I = contents[1]
 		user.visible_message("[user] takes [I] out of [src]", "You take [I] out of [src].",\
 		"You hear someone rustle around in a plastic bag, and remove something.")
@@ -108,7 +108,11 @@
 	desc = "Used to take fingerprints."
 	icon = 'icons/obj/items/card.dmi'
 	icon_state = "fingerprint0"
-	var/amount = 10.0
+	var/amount = 10
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/items/civilian_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/items/civilian_right.dmi',
+	)
 	item_state = "paper"
 	throwforce = 1
 	w_class = WEIGHT_CLASS_TINY
@@ -121,4 +125,8 @@
 	desc = "Apply finger print card."
 	icon = 'icons/obj/items/items.dmi'
 	icon_state = "fcardholder0"
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/items/civilian_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/items/civilian_right.dmi',
+	)
 	item_state = "clipboard"

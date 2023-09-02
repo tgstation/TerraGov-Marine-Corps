@@ -16,7 +16,7 @@
 	var/ai_detector_color = "#FF0000"
 
 
-/mob/camera/aiEye/Initialize()
+/mob/camera/aiEye/Initialize(mapload)
 	. = ..()
 	GLOB.aiEyes += src
 	setLoc(loc, TRUE)
@@ -28,7 +28,7 @@
 	var/icon_state_on = "ai_camera"
 	hud_possible = list(SQUAD_HUD_TERRAGOV)
 
-/mob/camera/aiEye/hud/Initialize()
+/mob/camera/aiEye/hud/Initialize(mapload)
 	. = ..()
 	prepare_huds()
 	var/datum/atom_hud/squad/squad_hud = GLOB.huds[DATA_HUD_SQUAD_TERRAGOV]
@@ -82,6 +82,13 @@
 	if(ai.master_multicam)
 		ai.master_multicam.refresh_view()
 	update_parallax_contents()
+
+/mob/camera/aiEye/abstract_move(atom/new_loc)
+	var/turf/old_turf = get_turf(src)
+	var/turf/new_turf = get_turf(new_loc)
+	if(old_turf?.z != new_turf?.z)
+		onTransitZ(old_turf?.z, new_turf?.z)
+	return ..()
 
 
 /mob/camera/aiEye/Move()
@@ -165,6 +172,7 @@
 	eyeobj.setLoc(loc)
 	eyeobj.name = "[name] (AI Eye)"
 	eyeobj.real_name = eyeobj.name
+	mini.override_locator(eyeobj)
 	set_eyeobj_visible(TRUE)
 
 

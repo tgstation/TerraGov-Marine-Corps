@@ -2,15 +2,15 @@
 	caste_base_type = /mob/living/carbon/xenomorph/larva
 	speak_emote = list("hisses")
 	icon_state = "Bloody Larva"
+	bubble_icon = "alien"
 
 	a_intent = INTENT_HELP //Forces help intent for all interactions.
 
-	amount_grown = 0
-	max_grown = 50
 	maxHealth = 35
 	health = 35
 	see_in_dark = 8
-	flags_pass = PASSTABLE | PASSMOB
+	allow_pass_flags = PASS_MOB|PASS_XENO
+	pass_flags = PASS_LOW_STRUCTURE|PASS_MOB|PASS_XENO
 	tier = XENO_TIER_ZERO  //Larva's don't count towards Pop limits
 	upgrade = XENO_UPGRADE_INVALID
 	gib_chance = 25
@@ -19,7 +19,11 @@
 		/mob/living/carbon/xenomorph/proc/vent_crawl,
 	)
 
-	var/base_icon_state = "Larva"
+	base_icon_state = "Larva"
+
+/mob/living/carbon/xenomorph/larva/Initialize(mapload)
+	. = ..()
+	ADD_TRAIT(src, TRAIT_SILENT_FOOTSTEPS, XENO_TRAIT)
 
 // ***************************************
 // *********** Mob overrides
@@ -27,29 +31,11 @@
 /mob/living/carbon/xenomorph/larva/a_intent_change()
 	return
 
-/mob/living/carbon/xenomorph/larva/start_pulling(atom/movable/AM, suppress_message = FALSE)
+/mob/living/carbon/xenomorph/larva/start_pulling(atom/movable/AM, force = move_force, suppress_message = FALSE)
 	return FALSE
 
 /mob/living/carbon/xenomorph/larva/pull_response(mob/puller)
 	return TRUE
-
-// ***************************************
-// *********** Life overrides
-// ***************************************
-/mob/living/carbon/xenomorph/larva/Stat()
-	. = ..()
-
-	if(statpanel("Game"))
-		stat("Progress:", "[amount_grown]/[max_grown]")
-
-
-//Larva Progression.. Most of this stuff is obsolete.
-/mob/living/carbon/xenomorph/larva/update_progression()
-	if(amount_grown < max_grown)
-		amount_grown++
-	if(!isnull(src.loc) && amount_grown < max_grown)
-		if(locate(/obj/effect/alien/weeds) in loc)
-			amount_grown++ //Double growth on weeds.
 
 // ***************************************
 // *********** Name
@@ -57,7 +43,7 @@
 /mob/living/carbon/xenomorph/larva/generate_name()
 	var/progress = "" //Naming convention, three different names
 
-	var/grown = (amount_grown / max_grown) * 100
+	var/grown = (evolution_stored / xeno_caste.evolution_threshold) * 100
 	switch(grown)
 		if(0 to 49) //We're still bloody
 			progress = "Bloody "
@@ -78,7 +64,7 @@
 	generate_name()
 
 	var/bloody = ""
-	var/grown = (amount_grown / max_grown) * 100
+	var/grown = (evolution_stored / xeno_caste.evolution_threshold) * 100
 	if(grown < 50)
 		bloody = "Bloody "
 
@@ -104,3 +90,8 @@
 	log_game("[key_name(src)] died as a Larva at [AREACOORD(src)].")
 	message_admins("[ADMIN_TPMONTY(src)] died as a Larva.")
 	return ..()
+
+/mob/living/carbon/xenomorph/larva/spec_evolution_boost()
+	if(!loc_weeds_type)
+		return 0
+	return 1

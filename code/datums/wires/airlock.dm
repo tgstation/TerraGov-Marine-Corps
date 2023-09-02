@@ -76,7 +76,7 @@
 				A.aiControlDisabled = 1
 			else if(A.aiControlDisabled == -1)
 				A.aiControlDisabled = 2
-			sleep(10)
+			sleep(1 SECONDS)
 			if(A)
 				if(A.aiControlDisabled == 1)
 					A.aiControlDisabled = 0

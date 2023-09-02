@@ -318,7 +318,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	var/list/preparsed = splittext(object,":")
 	var/path = preparsed[1]
 	var/amount = 1
-	if(preparsed.len > 1)
+	if(length(preparsed) > 1)
 		amount = clamp(text2num(preparsed[2]),1,ADMIN_SPAWN_CAP)
 
 	var/chosen = pick_closest_path(path)
@@ -432,6 +432,24 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 		log_admin("Database connection re-established!")
 		message_admins("Database connection re-established!")
 
+/// A debug verb to try and re-establish a connection with the TTS server and to refetch TTS voices.
+/// Since voices are cached beforehand, this is unlikely to update preferences.
+/client/proc/reestablish_tts_connection()
+	set category = "Debug"
+	set name = "Re-establish Connection To TTS"
+	set desc = "Re-establishes connection to the TTS server if possible"
+	if(!check_rights(R_DEBUG))
+		return
+
+	message_admins("[key_name_admin(usr)] attempted to re-establish connection to the TTS HTTP server.")
+	log_admin("[key_name(usr)] attempted to re-establish connection to the TTS HTTP server.")
+	var/success = SStts.establish_connection_to_tts()
+	if(!success)
+		message_admins("[key_name_admin(usr)] failed to re-established the connection to the TTS HTTP server.")
+		log_admin("[key_name(usr)] failed to re-established the connection to the TTS HTTP server.")
+		return
+	message_admins("[key_name_admin(usr)] successfully re-established the connection to the TTS HTTP server.")
+	log_admin("[key_name(usr)] successfully re-established the connection to the TTS HTTP server.")
 
 /datum/admins/proc/view_runtimes()
 	set category = "Debug"
@@ -637,7 +655,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 			turfs_by_dist[affected_turf] = 9999
 			affected_turf.maptext = "N (null)"
 
-	addtimer(CALLBACK(GLOBAL_PROC, .proc/wipe_color_and_text, wipe_colours), 10 SECONDS)
+	addtimer(CALLBACK(GLOBAL_PROC, PROC_REF(wipe_color_and_text), wipe_colours), 10 SECONDS)
 
 /datum/admins/proc/wipe_color_and_text(list/atom/wiping)
 	for(var/i in wiping)
@@ -678,3 +696,9 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	dellog += "</ol>"
 
 	usr << browse(dellog.Join(), "window=dellog")
+
+/client/proc/debugstatpanel()
+	set name = "Debug Stat Panel"
+	set category = "Debug"
+
+	src.stat_panel.send_message("create_debug")

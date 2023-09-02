@@ -2,12 +2,8 @@
 /obj/structure/table/holotable
 	name = "table"
 	desc = "A square piece of metal standing on four metal legs. It can not move."
-	icon_state = "table"
 	density = TRUE
 	anchored = TRUE
-	throwpass = 1	//You can throw objects over this, despite it's density.
-
-
 
 /obj/structure/table/holotable/attack_animal(mob/living/user as mob) //Removed code for larva since it doesn't work. Previous code is now a larva ability. /N
 	return attack_hand(user)
@@ -40,7 +36,9 @@
 /obj/structure/table/holotable/wood
 	name = "table"
 	desc = "A square piece of wood standing on four wooden legs. It can not move."
-	icon_state = "woodtable"
+	icon = 'icons/obj/smooth_objects/wood_table_reinforced.dmi'
+	base_icon_state = "wood_table_reinforced"
+	icon_state = "woodtable-0"
 	table_prefix = "wood"
 
 /obj/structure/holowindow
@@ -77,7 +75,6 @@
 	icon_state = "hoop"
 	anchored = TRUE
 	density = TRUE
-	throwpass = 1
 	var/side = ""
 	var/id = ""
 
@@ -109,7 +106,6 @@
 		visible_message(span_notice("[user] dunks [I] into the [src]!"))
 
 /obj/structure/holohoop/CanAllowThrough(atom/movable/mover, turf/target)
-	. = ..()
 	if(istype(mover,/obj/item) && mover.throwing)
 		var/obj/item/I = mover
 		if(prob(50))
@@ -121,6 +117,6 @@
 			visible_message(span_notice(" Swish! \the [I] lands in \the [src]."), 3)
 		else
 			visible_message(span_warning(" \the [I] bounces off of \the [src]'s rim!"), 3)
-		return 0
+		return FALSE
 	else
 		return ..()

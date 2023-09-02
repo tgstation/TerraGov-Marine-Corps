@@ -19,7 +19,7 @@ GLOBAL_LIST_EMPTY(gene_tag_masks)   // Gene obfuscation for delicious trial and 
 	var/list/gene_tags = list("products","consumption","environment","resistance","vigour","flowers")
 	var/list/used_masks = list()
 
-	while(gene_tags && gene_tags.len)
+	while(length(gene_tags))
 		var/gene_tag = pick(gene_tags)
 		var/gene_mask = "[num2hex(rand(0,255))]"
 
@@ -144,8 +144,6 @@ GLOBAL_LIST_EMPTY(gene_tag_masks)   // Gene obfuscation for delicious trial and 
 		list("seed-greengrapes",        "greengrape"),
 		list("seed-peanut",             "peanut"),
 		list("seed-cabbage",            "cabbage"),
-		list("seed-shand",              "shand"),
-		list("seed-mtear",              "mtear"),
 		list("seed-banana",             "banana"),
 		list("seed-corn",               "corn"),
 		list("seed-potato",             "potato"),
@@ -193,7 +191,6 @@ GLOBAL_LIST_EMPTY(gene_tag_masks)   // Gene obfuscation for delicious trial and 
 	if(additional_chems)
 		var/list/possible_chems = list(
 			/datum/reagent/medicine/bicaridine,
-			/datum/reagent/medicine/hyperzine,
 			/datum/reagent/medicine/cryoxadone,
 			/datum/reagent/blood,
 			/datum/reagent/water,
@@ -214,7 +211,6 @@ GLOBAL_LIST_EMPTY(gene_tag_masks)   // Gene obfuscation for delicious trial and 
 			/datum/reagent/medicine/synaptizine,
 			/datum/reagent/impedrezene,
 			/datum/reagent/medicine/hyronalin,
-			/datum/reagent/medicine/peridaxon,
 			/datum/reagent/toxin,
 			/datum/reagent/medicine/rezadone,
 			/datum/reagent/medicine/ethylredoxrazine,
@@ -224,7 +220,7 @@ GLOBAL_LIST_EMPTY(gene_tag_masks)   // Gene obfuscation for delicious trial and 
 			)
 
 		for(var/x=1;x<=additional_chems;x++)
-			if(!possible_chems.len)
+			if(!length(possible_chems))
 				break
 			var/new_chem = pick(possible_chems)
 			possible_chems -= new_chem
@@ -242,13 +238,13 @@ GLOBAL_LIST_EMPTY(gene_tag_masks)   // Gene obfuscation for delicious trial and 
 	else
 		requires_water = 0
 
-	ideal_heat =       rand(100,400)
-	heat_tolerance =   rand(10,30)
-	ideal_light =      rand(2,10)
-	light_tolerance =  rand(2,7)
+	ideal_heat = rand(100,400)
+	heat_tolerance = rand(10,30)
+	ideal_light = rand(2,10)
+	light_tolerance = rand(2,7)
 	toxins_tolerance = rand(2,7)
-	pest_tolerance =   rand(2,7)
-	weed_tolerance =   rand(2,7)
+	pest_tolerance = rand(2,7)
+	weed_tolerance = rand(2,7)
 	lowkpa_tolerance = rand(10,50)
 	highkpa_tolerance = rand(100,300)
 
@@ -285,7 +281,7 @@ GLOBAL_LIST_EMPTY(gene_tag_masks)   // Gene obfuscation for delicious trial and 
 
 //Returns a key corresponding to an entry in the global seed list.
 /datum/seed/proc/get_mutant_variant()
-	if(!mutants || !mutants.len || immutable > 0) return 0
+	if(!mutants || !length(mutants) || immutable > 0) return 0
 	return pick(mutants)
 
 //Mutates the plant overall (randomly).
@@ -304,40 +300,40 @@ GLOBAL_LIST_EMPTY(gene_tag_masks)   // Gene obfuscation for delicious trial and 
 				endurance = max(0,endurance-rand(10,20))
 				source_turf.visible_message(span_warning(" \The [display_name] withers rapidly!"))
 			if(1)
-				nutrient_consumption =      max(0,  min(5,   nutrient_consumption + rand(-(degree*0.1),(degree*0.1))))
-				water_consumption =         max(0,  min(50,  water_consumption    + rand(-degree,degree)))
+				nutrient_consumption = max(0,  min(5,   nutrient_consumption + rand(-(degree*0.1),(degree*0.1))))
+				water_consumption = max(0,  min(50,  water_consumption    + rand(-degree,degree)))
 			if(2)
-				ideal_heat =                max(70, min(800, ideal_heat           + (rand(-5,5)   * degree)))
-				heat_tolerance =            max(70, min(800, heat_tolerance       + (rand(-5,5)   * degree)))
-				lowkpa_tolerance =          max(0,  min(80,  lowkpa_tolerance     + (rand(-5,5)   * degree)))
-				highkpa_tolerance =         max(110, min(500,highkpa_tolerance    + (rand(-5,5)   * degree)))
+				ideal_heat = max(70, min(800, ideal_heat           + (rand(-5,5)   * degree)))
+				heat_tolerance = max(70, min(800, heat_tolerance       + (rand(-5,5)   * degree)))
+				lowkpa_tolerance = max(0,  min(80,  lowkpa_tolerance     + (rand(-5,5)   * degree)))
+				highkpa_tolerance = max(110, min(500,highkpa_tolerance    + (rand(-5,5)   * degree)))
 			if(3)
-				ideal_light =               max(0,  min(30,  ideal_light          + (rand(-1,1)   * degree)))
-				light_tolerance =           max(0,  min(10,  light_tolerance      + (rand(-2,2)   * degree)))
+				ideal_light = max(0,  min(30,  ideal_light          + (rand(-1,1)   * degree)))
+				light_tolerance = max(0,  min(10,  light_tolerance      + (rand(-2,2)   * degree)))
 			if(4)
-				toxins_tolerance =          max(0,  min(10,  weed_tolerance       + (rand(-2,2)   * degree)))
+				toxins_tolerance = max(0,  min(10,  weed_tolerance       + (rand(-2,2)   * degree)))
 			if(5)
-				weed_tolerance  =           max(0,  min(10,  weed_tolerance       + (rand(-2,2)   * degree)))
+				weed_tolerance = max(0,  min(10,  weed_tolerance       + (rand(-2,2)   * degree)))
 				if(prob(degree*5))
-					carnivorous =           max(0,  min(2,   carnivorous          + rand(-degree,degree)))
+					carnivorous = max(0,  min(2,   carnivorous          + rand(-degree,degree)))
 					if(carnivorous)
 						source_turf.visible_message(span_notice(" \The [display_name] shudders hungrily."))
 			if(6)
-				weed_tolerance  =           max(0,  min(10,  weed_tolerance       + (rand(-2,2)   * degree)))
+				weed_tolerance = max(0,  min(10,  weed_tolerance       + (rand(-2,2)   * degree)))
 				if(prob(degree*5))          parasite = !parasite
 
 			if(7)
-				lifespan =                  max(10, min(30,  lifespan             + (rand(-2,2)   * degree)))
-				if(yield != -1) yield =     max(0,  min(10,  yield                + (rand(-2,2)   * degree)))
+				lifespan = max(10, min(30,  lifespan             + (rand(-2,2)   * degree)))
+				if(yield != -1) yield = max(0,  min(10,  yield                + (rand(-2,2)   * degree)))
 			if(8)
-				endurance =                 max(10, min(100, endurance            + (rand(-5,5)   * degree)))
-				production =                max(1,  min(10,  production           + (rand(-1,1)   * degree)))
-				potency =                   max(0,  min(200, potency              + (rand(-20,20) * degree)))
+				endurance = max(10, min(100, endurance            + (rand(-5,5)   * degree)))
+				production = max(1,  min(10,  production           + (rand(-1,1)   * degree)))
+				potency = max(0,  min(200, potency              + (rand(-20,20) * degree)))
 				if(prob(degree*5))
-					spread =                max(0,  min(2,   spread               + rand(-1,1)))
+					spread = max(0,  min(2,   spread               + rand(-1,1)))
 					source_turf.visible_message(span_notice(" \The [display_name] spasms visibly, shifting in the tray."))
 			if(9)
-				maturation =                max(0,  min(30,  maturation      + (rand(-1,1)   * degree)))
+				maturation = max(0,  min(30,  maturation      + (rand(-1,1)   * degree)))
 				if(prob(degree*5))
 					harvest_repeat = !harvest_repeat
 			if(10)
@@ -372,11 +368,11 @@ GLOBAL_LIST_EMPTY(gene_tag_masks)   // Gene obfuscation for delicious trial and 
 		//Splicing products has some detrimental effects on yield and lifespan.
 		if("products")
 
-			if(gene.values.len < 6) return
+			if(length(gene.values) < 6) return
 
-			if(yield > 0)     yield =     max(1,round(yield*0.85))
+			if(yield > 0)     yield = max(1,round(yield*0.85))
 			if(endurance > 0) endurance = max(1,round(endurance*0.85))
-			if(lifespan > 0)  lifespan =  max(1,round(lifespan*0.85))
+			if(lifespan > 0)  lifespan = max(1,round(lifespan*0.85))
 
 			if(!products) products = list()
 			products |= gene.values[1]
@@ -392,7 +388,7 @@ GLOBAL_LIST_EMPTY(gene_tag_masks)   // Gene obfuscation for delicious trial and 
 					chems[rid] = gene_chem.Copy()
 					continue
 
-				for(var/i=1;i<=gene_chem.len;i++)
+				for(var/i=1;i<=length(gene_chem);i++)
 
 					if(isnull(gene_chem[i])) gene_chem[i] = 0
 
@@ -408,63 +404,63 @@ GLOBAL_LIST_EMPTY(gene_tag_masks)   // Gene obfuscation for delicious trial and 
 				for(var/gas in exude_gasses)
 					exude_gasses[gas] = max(1,round(exude_gasses[gas]*0.8))
 
-			alter_temp =           gene.values[4]
-			potency =              gene.values[5]
-			harvest_repeat =       gene.values[6]
+			alter_temp = gene.values[4]
+			potency = gene.values[5]
+			harvest_repeat = gene.values[6]
 
 		if("consumption")
 
-			if(gene.values.len < 7) return
+			if(length(gene.values) < 7) return
 
-			consume_gasses =       gene.values[1]
-			requires_nutrients =   gene.values[2]
+			consume_gasses = gene.values[1]
+			requires_nutrients = gene.values[2]
 			nutrient_consumption = gene.values[3]
-			requires_water =       gene.values[4]
-			water_consumption =    gene.values[5]
-			carnivorous =          gene.values[6]
-			parasite =             gene.values[7]
+			requires_water = gene.values[4]
+			water_consumption = gene.values[5]
+			carnivorous = gene.values[6]
+			parasite = gene.values[7]
 
 		if("environment")
 
-			if(gene.values.len < 6) return
+			if(length(gene.values) < 6) return
 
-			ideal_heat =           gene.values[1]
-			heat_tolerance =       gene.values[2]
-			ideal_light =          gene.values[3]
-			light_tolerance =      gene.values[4]
-			lowkpa_tolerance  =    gene.values[5]
-			highkpa_tolerance =    gene.values[6]
+			ideal_heat = gene.values[1]
+			heat_tolerance = gene.values[2]
+			ideal_light = gene.values[3]
+			light_tolerance = gene.values[4]
+			lowkpa_tolerance = gene.values[5]
+			highkpa_tolerance = gene.values[6]
 
 		if("resistance")
 
-			if(gene.values.len < 3) return
+			if(length(gene.values) < 3) return
 
-			toxins_tolerance =     gene.values[1]
-			pest_tolerance =       gene.values[2]
-			weed_tolerance =       gene.values[3]
+			toxins_tolerance = gene.values[1]
+			pest_tolerance = gene.values[2]
+			weed_tolerance = gene.values[3]
 
 		if("vigour")
 
-			if(gene.values.len < 6) return
+			if(length(gene.values) < 6) return
 
-			endurance =            gene.values[1]
-			yield =                gene.values[2]
-			lifespan =             gene.values[3]
-			spread =               gene.values[4]
-			maturation =           gene.values[5]
-			production =           gene.values[6]
+			endurance = gene.values[1]
+			yield = gene.values[2]
+			lifespan = gene.values[3]
+			spread = gene.values[4]
+			maturation = gene.values[5]
+			production = gene.values[6]
 
 		if("flowers")
 
-			if(gene.values.len < 7) return
+			if(length(gene.values) < 7) return
 
-			product_icon =         gene.values[1]
-			product_colour =       gene.values[2]
-			biolum =               gene.values[3]
-			biolum_colour =        gene.values[4]
-			flowers =              gene.values[5]
-			flower_icon =          gene.values[6]
-			flower_colour =        gene.values[7]
+			product_icon = gene.values[1]
+			product_colour = gene.values[2]
+			biolum = gene.values[3]
+			biolum_colour = gene.values[4]
+			flowers = gene.values[5]
+			flower_icon = gene.values[6]
+			flower_colour = gene.values[7]
 
 //Returns a list of the desired trait values.
 /datum/seed/proc/get_gene(genetype)
@@ -543,7 +539,7 @@ GLOBAL_LIST_EMPTY(gene_tag_masks)   // Gene obfuscation for delicious trial and 
 		return
 
 	var/got_product
-	if(!isnull(products) && products.len && yield > 0)
+	if(!isnull(products) && length(products) && yield > 0)
 		got_product = 1
 
 	if(!got_product && !harvest_sample)
@@ -553,7 +549,7 @@ GLOBAL_LIST_EMPTY(gene_tag_masks)   // Gene obfuscation for delicious trial and 
 
 		//This may be a new line. Update the global if it is.
 		if(name == "new line" || !(name in GLOB.seed_types))
-			uid = GLOB.seed_types.len + 1
+			uid = length(GLOB.seed_types) + 1
 			name = "[uid]"
 			GLOB.seed_types[name] = src
 
@@ -618,42 +614,42 @@ GLOBAL_LIST_EMPTY(gene_tag_masks)   // Gene obfuscation for delicious trial and 
 	if(consume_gasses) new_seed.consume_gasses = consume_gasses.Copy()
 	if(exude_gasses)   new_seed.exude_gasses = exude_gasses.Copy()
 
-	new_seed.seed_name =            "[(roundstart ? "[(modified ? "modified" : "mutant")] " : "")][seed_name]"
-	new_seed.display_name =         "[(roundstart ? "[(modified ? "modified" : "mutant")] " : "")][display_name]"
-	new_seed.seed_noun =            seed_noun
+	new_seed.seed_name = "[(roundstart ? "[(modified ? "modified" : "mutant")] " : "")][seed_name]"
+	new_seed.display_name = "[(roundstart ? "[(modified ? "modified" : "mutant")] " : "")][display_name]"
+	new_seed.seed_noun = seed_noun
 
-	new_seed.requires_nutrients =   requires_nutrients
+	new_seed.requires_nutrients = requires_nutrients
 	new_seed.nutrient_consumption = nutrient_consumption
-	new_seed.requires_water =       requires_water
-	new_seed.water_consumption =    water_consumption
-	new_seed.ideal_heat =           ideal_heat
-	new_seed.heat_tolerance =       heat_tolerance
-	new_seed.ideal_light =          ideal_light
-	new_seed.light_tolerance =      light_tolerance
-	new_seed.toxins_tolerance =     toxins_tolerance
-	new_seed.lowkpa_tolerance =     lowkpa_tolerance
-	new_seed.highkpa_tolerance =    highkpa_tolerance
-	new_seed.pest_tolerance =       pest_tolerance
-	new_seed.weed_tolerance =       weed_tolerance
-	new_seed.endurance =            endurance
-	new_seed.yield =                yield
-	new_seed.lifespan =             lifespan
-	new_seed.maturation =           maturation
-	new_seed.production =           production
-	new_seed.growth_stages =        growth_stages
-	new_seed.harvest_repeat =       harvest_repeat
-	new_seed.potency =              potency
-	new_seed.spread =               spread
-	new_seed.carnivorous =          carnivorous
-	new_seed.parasite =             parasite
-	new_seed.plant_icon =           plant_icon
-	new_seed.product_icon =         product_icon
-	new_seed.product_colour =       product_colour
-	new_seed.packet_icon =          packet_icon
-	new_seed.biolum =               biolum
-	new_seed.biolum_colour =        biolum_colour
-	new_seed.flowers =              flowers
-	new_seed.flower_icon =          flower_icon
+	new_seed.requires_water = requires_water
+	new_seed.water_consumption = water_consumption
+	new_seed.ideal_heat = ideal_heat
+	new_seed.heat_tolerance = heat_tolerance
+	new_seed.ideal_light = ideal_light
+	new_seed.light_tolerance = light_tolerance
+	new_seed.toxins_tolerance = toxins_tolerance
+	new_seed.lowkpa_tolerance = lowkpa_tolerance
+	new_seed.highkpa_tolerance = highkpa_tolerance
+	new_seed.pest_tolerance = pest_tolerance
+	new_seed.weed_tolerance = weed_tolerance
+	new_seed.endurance = endurance
+	new_seed.yield = yield
+	new_seed.lifespan = lifespan
+	new_seed.maturation = maturation
+	new_seed.production = production
+	new_seed.growth_stages = growth_stages
+	new_seed.harvest_repeat = harvest_repeat
+	new_seed.potency = potency
+	new_seed.spread = spread
+	new_seed.carnivorous = carnivorous
+	new_seed.parasite = parasite
+	new_seed.plant_icon = plant_icon
+	new_seed.product_icon = product_icon
+	new_seed.product_colour = product_colour
+	new_seed.packet_icon = packet_icon
+	new_seed.biolum = biolum
+	new_seed.biolum_colour = biolum_colour
+	new_seed.flowers = flowers
+	new_seed.flower_icon = flower_icon
 	new_seed.alter_temp = 			alter_temp
 
 	return new_seed
@@ -936,7 +932,7 @@ GLOBAL_LIST_EMPTY(gene_tag_masks)   // Gene obfuscation for delicious trial and 
 	mutants = null
 	packet_icon = "seed-ambrosiadeus"
 	plant_icon = "ambrosiadeus"
-	chems = list(/datum/reagent/consumable/nutriment = list(1), /datum/reagent/medicine/research/somolent = list(5,10), /datum/reagent/medicine/synaptizine = list(1,8,1), /datum/reagent/medicine/hyperzine = list(1,10,1), /datum/reagent/space_drugs = list(1,10))
+	chems = list(/datum/reagent/consumable/nutriment = list(1), /datum/reagent/medicine/research/somolent = list(5,10), /datum/reagent/medicine/synaptizine = list(1,8,1), /datum/reagent/medicine/hyronalin = list(1,10,1), /datum/reagent/space_drugs = list(1,10))
 
 //Mushrooms/varieties.
 /datum/seed/mushroom
@@ -1213,38 +1209,6 @@ GLOBAL_LIST_EMPTY(gene_tag_masks)   // Gene obfuscation for delicious trial and 
 	yield = 4
 	potency = 10
 	growth_stages = 1
-
-/datum/seed/shand
-	name = "shand"
-	seed_name = "S'randar's hand"
-	display_name = "S'randar's hand leaves"
-	packet_icon = "seed-shand"
-	products = list(/obj/item/stack/medical/heal_pack/gauze/tajaran)
-	plant_icon = "shand"
-	chems = list(/datum/reagent/medicine/bicaridine = list(0,10))
-
-	lifespan = 50
-	maturation = 3
-	production = 5
-	yield = 4
-	potency = 10
-	growth_stages = 3
-
-/datum/seed/mtear
-	name = "mtear"
-	seed_name = "Messa's tear"
-	display_name = "Messa's tear leaves"
-	packet_icon = "seed-mtear"
-	products = list(/obj/item/stack/medical/heal_pack/ointment/tajaran)
-	plant_icon = "mtear"
-	chems = list(/datum/reagent/consumable/honey = list(1,10), /datum/reagent/medicine/kelotane = list(3,5))
-
-	lifespan = 50
-	maturation = 3
-	production = 5
-	yield = 4
-	potency = 10
-	growth_stages = 3
 
 /datum/seed/banana
 	name = "banana"

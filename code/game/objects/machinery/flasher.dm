@@ -78,7 +78,7 @@
 			var/datum/internal_organ/eyes/E = H.internal_organs_by_name["eyes"]
 			if(E && (E.damage > E.min_bruised_damage && prob(E.damage + 50)))
 				H.flash_act()
-				E.damage += rand(1, 5)
+				E.take_damage(rand(1, 5))
 		else
 			L.flash_act()
 
@@ -142,9 +142,9 @@
 
 	for(var/obj/machinery/flasher/M in GLOB.machines)
 		if(M.id == id)
-			INVOKE_ASYNC(M, /obj/machinery/flasher.proc/flash)
+			INVOKE_ASYNC(M, TYPE_PROC_REF(/obj/machinery/flasher, flash))
 
-	sleep(50)
+	sleep(5 SECONDS)
 
 	icon_state = "launcherbtt"
 	active = 0

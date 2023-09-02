@@ -5,6 +5,7 @@ GLOBAL_LIST_INIT(exp_jobsmap, list(
 	EXP_TYPE_MEDICAL = list("titles" = GLOB.jobs_medical),
 	EXP_TYPE_MARINES = list("titles" = GLOB.jobs_marines),
 	EXP_TYPE_REQUISITIONS = list("titles" = GLOB.jobs_requisitions),
+	EXP_TYPE_SPECIAL = list("titles" = GLOB.jobs_xenos),
 ))
 
 GLOBAL_LIST_INIT(exp_specialmap, list(
@@ -33,7 +34,7 @@ GLOBAL_PROTECT(exp_specialmap)
 	var/current_positions = 0
 	var/max_positions = INFINITY //How many positions can be dynamically assigned.
 	var/job_points = 0 //Points assigned dynamically to open new positions.
-	var/job_points_needed  = INFINITY
+	var/job_points_needed = INFINITY
 
 	var/supervisors = ""
 	var/selection_color = "#ffffff"
@@ -74,6 +75,8 @@ GLOBAL_PROTECT(exp_specialmap)
 
 
 /datum/job/proc/after_spawn(mob/living/L, mob/M, latejoin = FALSE) //do actions on L but send messages to M as the key may not have been transferred_yet
+	if(isnull(L))
+		stack_trace("Job after_spawn was called without a valid target.")
 	if(!ishuman(L))
 		return
 	var/mob/living/carbon/human/H = L
@@ -204,13 +207,15 @@ GLOBAL_PROTECT(exp_specialmap)
 	current_positions += amount
 	for(var/index in jobworth)
 		var/datum/job/scaled_job = SSjob.GetJobType(index)
-		if(!(scaled_job in SSjob.active_joinable_occupations))
+		if(!(index in SSticker.mode.valid_job_types))
 			continue
 		if(isxenosjob(scaled_job))
 			if(respawn && (SSticker.mode?.flags_round_type & MODE_SILO_RESPAWN))
 				continue
 			GLOB.round_statistics.larva_from_marine_spawning += jobworth[index] / scaled_job.job_points_needed
 		scaled_job.add_job_points(jobworth[index])
+	var/datum/hive_status/normal_hive = GLOB.hive_datums[XENO_HIVE_NORMAL]
+	normal_hive.update_tier_limits()
 	return TRUE
 
 /datum/job/proc/free_job_positions(amount)
@@ -275,7 +280,8 @@ GLOBAL_PROTECT(exp_specialmap)
 	skills = getSkillsType(job.return_skills_type(player?.prefs))
 	faction = job.faction
 	job.announce(src)
-
+	GLOB.round_statistics.total_humans_created[faction]++
+	SSblackbox.record_feedback("tally", "round_statistics", 1, "total_humans_created[faction]")
 
 /mob/living/carbon/human/apply_assigned_role_to_spawn(datum/job/assigned_role, client/player, datum/squad/assigned_squad, admin_action = FALSE)
 	. = ..()
@@ -284,21 +290,15 @@ GLOBAL_PROTECT(exp_specialmap)
 	comm_title = job.comm_title
 	if(job.outfit)
 		var/id_type = job.outfit.id ? job.outfit.id : /obj/item/card/id
-		var/obj/item/card/id/id_card = new id_type
+		var/obj/item/card/id/id_card = new id_type(src)
 		if(wear_id)
 			if(!admin_action)
 				stack_trace("[src] had an ID when apply_outfit_to_spawn() ran")
 			QDEL_NULL(wear_id)
 		equip_to_slot_or_del(id_card, SLOT_WEAR_ID)
 		job.outfit.handle_id(src)
-		///if there is only one outfit, just equips it
-		if (!job.multiple_outfits)
-			job.outfit.equip(src)
-		///chooses an outfit from the list under the job
-		if (job.multiple_outfits)
-			var/datum/outfit/variant = pick(job.outfits)
-			variant = new variant
-			variant.equip(src)
+
+		equip_role_outfit(job)
 
 	if((job.job_flags & JOB_FLAG_ALLOWS_PREFS_GEAR) && player)
 		equip_preference_gear(player)
@@ -307,6 +307,23 @@ GLOBAL_PROTECT(exp_specialmap)
 		job.equip_spawning_squad(src, assigned_squad, player)
 
 	hud_set_job(faction)
+
+///finds and equips a valid outfit for a specified job and species
+/mob/living/carbon/human/proc/equip_role_outfit(datum/job/assigned_role)
+	if(!assigned_role.multiple_outfits)
+		assigned_role.outfit.equip(src)
+		return
+
+	var/list/valid_outfits = list()
+
+	for(var/datum/outfit/variant AS in assigned_role.outfits)
+		if(initial(variant.species) == src.species.species_type)
+			valid_outfits += variant
+
+	var/datum/outfit/chosen_variant = pick(valid_outfits)
+	chosen_variant = new chosen_variant
+	chosen_variant.equip(src)
+
 
 /datum/job/proc/equip_spawning_squad(mob/living/carbon/human/new_character, datum/squad/assigned_squad, client/player)
 	return

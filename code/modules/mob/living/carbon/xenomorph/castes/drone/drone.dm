@@ -2,8 +2,9 @@
 	caste_base_type = /mob/living/carbon/xenomorph/drone
 	name = "Drone"
 	desc = "An Alien Drone"
-	icon = 'icons/Xeno/48x48_Xenos.dmi'
+	icon = 'icons/Xeno/castes/drone.dmi'
 	icon_state = "Drone Walking"
+	bubble_icon = "alienleft"
 	health = 120
 	maxHealth = 120
 	plasma_stored = 350

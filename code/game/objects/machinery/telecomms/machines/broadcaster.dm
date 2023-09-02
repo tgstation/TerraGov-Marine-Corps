@@ -13,6 +13,7 @@ GLOBAL_VAR_INIT(message_delay, 0) // To make sure restarting the recentmessages 
 	name = "subspace broadcaster"
 	icon_state = "broadcaster"
 	desc = "A dish-shaped machine used to broadcast processed subspace signals."
+	telecomms_type = /obj/machinery/telecomms/broadcaster
 	density = TRUE
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 25
@@ -74,10 +75,10 @@ GLOBAL_VAR_INIT(message_delay, 0) // To make sure restarting the recentmessages 
 	network = "tcommsat"
 	autolinkers = list("broadcasterA")
 
-/obj/machinery/telecomms/broadcaster/preset_left/rebel
-	id = "Broadcaster A rebel"
+/obj/machinery/telecomms/broadcaster/preset_left/som
+	id = "Broadcaster A som"
 	network = "tcommsat"
-	autolinkers = list("broadcasterA_rebel")
+	autolinkers = list("broadcasterA_som")
 
 
 //--PRESET RIGHT--//

@@ -3,6 +3,7 @@
 	SEND_SIGNAL(src, COMSIG_MOB_LOGOUT)
 	SStgui.on_logout(src)
 	unset_machine()
+	remove_all_indicators()
 	if(interactee)
 		unset_interaction()
 	remove_typing_indicator()
@@ -14,4 +15,5 @@
 		for(var/foo in client.player_details.post_logout_callbacks)
 			var/datum/callback/CB = foo
 			CB.Invoke()
+		clear_important_client_contents(client)
 	return ..()

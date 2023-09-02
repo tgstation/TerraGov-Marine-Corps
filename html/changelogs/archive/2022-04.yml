@@ -7,7 +7,7 @@
       beret
   Lumipharon:
   - bugfix: fixes a 100% intentional April fool's prank
-  - rscadd: TX-54 ammo now uses greyscaling
+  - rscadd: GL-54 ammo now uses greyscaling
   - code_imp: Add support for greyscale projectiles and bullets
   Mrrpip:
   - rscadd: Added the marine riot helmet, with a poorly made orange paintjob.
@@ -345,3 +345,71 @@
       of bulky. It is now significantly easier to run it on the move, compared to
       its bigger cousin the howitzer. It has been slashed in price to cost less, 25
       points per mortar.
+2022-04-25:
+  Arctrooper8:
+  - balance: PC cell can no longer be removed but is now self recharging.
+  Pariah919:
+  - balance: T-26 antimat's scope can no longer be used on the move
+  novaepee:
+  - bugfix: Add two research consoles in Sulaco
+  tyeagg:
+  - rscadd: comms to tadpole
+2022-04-26:
+  MrHorizons:
+  - rscadd: Added an 8.6x70mm ammo box.
+  - bugfix: Fixed the 10x26.5mm ammo box sprite.
+  - code_imp: Fixed some inconsistencies with ammo boxes.
+2022-04-27:
+  Lumipharon:
+  - bugfix: Whole bunch of minor sprite fixed for eguns
+  - imageadd: PPSh now has a separate mob sprites for its drum and sickle magazines
+  - refactor: Refactor gun icon and item sprite code
+  - code_imp: Back and suitslot items render over head layers - guns will no longer
+      grow into the back of your skull when stored.
+  Wayland-Smithy:
+  - qol: The hotkey "Say" input can now be Canceled like "Me"
+2022-04-28:
+  BraveMole:
+  - qol: Guns' name letter now follow a nomenclature.
+  Lumipharon:
+  - imageadd: added overlays for most alternative magazine types, and updated their
+      icons.
+  Pariah919:
+  - balance: Pepperball can mount magharness, does 25 flat plasma drain, and has aim
+      mode.
+  goose4429:
+  - balance: T-26, Removed on-hit slowdown
+2022-04-29:
+  Arctrooper8:
+  - bugfix: remove some seemingly excess pixels that poked out from undergarments.
+  Lumipharon:
+  - balance: APCR TAT rounds no longer trigger light explosions, this reduces it's
+      damage from around 260 to 160.
+  - rscadd: APCR and APHE TAT are now slowed by anything they pierce, reducing the
+      total distance they can travel.
+  - bugfix: Fix a bug where APCR TAT rounds can explode multiple times.
+  - rscadd: 'Volkite weaponry, Martian ray guns for SOM use only expansion: Updates
+      SOM ERT with new weaponry, armour and loadouts. You better be sure before you
+      hit that distress beacon.'
+  - balance: Marine armour energy armour scales with weight class
+  - bugfix: fixed a few misc sprite issues
+  - bugfix: Mobs with 0 medical skill will no longer know how to operate defibs better
+      than those with basic medical training.
+  - bugfix: ANFO now actually works when under it's radius limit
+  TiviPlus:
+  - bugfix: tweezers and so will no longer remove implants
+  - bugfix: robot heads can be reattached as intended
+  breadhunt:
+  - soundadd: Steals CM's boxing KO sound. Thanks CM!
+  - rscadd: Boxing gloves now deal stamina damage. Hit someone enough and that will
+      KO them. Still deals brute damage like normal punches, so be careful.
+  novaepee:
+  - rscadd: more generators in PoS
+  - rscadd: maint hall in PoS' bow
+  - balance: PoS now has two cryotubes
+  - balance: 'PoS now has more surgical trays expansion: PoS''s req has been flip.
+      This is so that belt is closer to Alamo if anyone running req wants to deliver
+      it to Alamo. expansion: PoS'' bar increases. Also, boxing ring is near bar in
+      case if anyone wants to fight the old fashion way. expansion: PoS'' medbay has
+      been remapped for the greater good'
+  - rscadd: PoS's Condor landing zone has hazard tiles to indicate where it lands.

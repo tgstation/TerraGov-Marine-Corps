@@ -8,6 +8,7 @@
 #define JOB_DISPLAY_ORDER_EXECUTIVE_OFFICER 4
 #define JOB_DISPLAY_ORDER_STAFF_OFFICER 5
 #define JOB_DISPLAY_ORDER_PILOT_OFFICER 6
+#define JOB_DISPLAY_ORDER_MECH_PILOT 7
 #define JOB_DISPLAY_ORDER_CORPORATE_LIAISON 8
 #define JOB_DISPLAY_ORDER_SYNTHETIC 9
 #define JOB_DISPLAY_ORDER_AI 10
@@ -39,12 +40,15 @@
 #define JOB_FLAG_CAN_SEE_ORDERS (1<<12) //Able to see rally and CIC orders
 #define JOB_FLAG_ALWAYS_VISIBLE_ON_MINIMAP (1<<13) //Will appear on all minimaps, including squad minimaps
 #define JOB_FLAG_SHOW_OPEN_POSITIONS (1<<14) //You can only see how many positions are opened, and not how many positions are fullfilled
+/// Job has a TTS volume bonus
+#define JOB_FLAG_LOUDER_TTS (1<<15)
 
 #define CAPTAIN "Captain"
 #define EXECUTIVE_OFFICER "Executive Officer" //Currently disabled.
 #define FIELD_COMMANDER "Field Commander"
 #define STAFF_OFFICER "Staff Officer"
 #define PILOT_OFFICER "Pilot Officer"
+#define MECH_PILOT "Mech Pilot"
 #define REQUISITIONS_OFFICER "Requisitions Officer"
 #define CHIEF_SHIP_ENGINEER "Chief Ship Engineer"
 #define CHIEF_MEDICAL_OFFICER "Chief Medical Officer"
@@ -62,26 +66,12 @@
 #define SQUAD_VATGROWN "Squad VatGrown"
 #define SILICON_AI "AI"
 
-#define REBEL_CAPTAIN "Rebel Captain"
-#define REBEL_EXECUTIVE_OFFICER "Rebel Executive Officer" //Currently disabled.
-#define REBEL_FIELD_COMMANDER "Rebel Field Commander"
-#define REBEL_STAFF_OFFICER "Rebel Staff Officer"
-#define REBEL_PILOT_OFFICER "Rebel Pilot Officer"
-#define REBEL_REQUISITIONS_OFFICER "Rebel Requisitions Officer"
-#define REBEL_CHIEF_SHIP_ENGINEER "Rebel Chief Ship Engineer"
-#define REBEL_CHIEF_MEDICAL_OFFICER "Rebel Chief Medical Officer"
-#define REBEL_SYNTHETIC "Rebel Synthetic"
-#define REBEL_SHIP_TECH "Rebel Ship Technician"
-#define REBEL_MEDICAL_DOCTOR "Rebel Medical Doctor"
-#define REBEL_MEDICAL_RESEARCHER "Rebel Medical Researcher"
-#define REBEL_SQUAD_LEADER "Rebel Squad Leader"
-#define REBEL_SQUAD_SPECIALIST "Rebel Squad Specialist"
-#define REBEL_SQUAD_SMARTGUNNER "Rebel Squad Smartgunner"
-#define REBEL_SQUAD_CORPSMAN "Rebel Squad Corpsman"
-#define REBEL_SQUAD_ENGINEER "Rebel Squad Engineer"
-#define REBEL_SQUAD_MARINE "Rebel Squad Marine"
-#define REBEL_SQUAD_VATGROWN "Rebel Squad VatGrown"
-#define REBEL_SILICON_AI "Rebel AI"
+//SOM - very placeholder for now
+#define SOM_SQUAD_LEADER "SOM Squad Leader"
+#define SOM_SQUAD_CORPSMAN "SOM Squad Medic"
+#define SOM_SQUAD_ENGINEER "SOM Squad Engineer"
+#define SOM_SQUAD_VETERAN "SOM Squad Veteran"
+#define SOM_SQUAD_MARINE "SOM Squad Standard"
 
 #define JOB_CAT_COMMAND "Command"
 #define JOB_CAT_SILICON "Silicon"
@@ -95,22 +85,25 @@
 
 #define JOB_COMM_TITLE_SQUAD_LEADER "SL"
 
-GLOBAL_LIST_EMPTY(jobs_command)
-GLOBAL_LIST_INIT(jobs_officers, list(CAPTAIN, FIELD_COMMANDER, STAFF_OFFICER, PILOT_OFFICER, CORPORATE_LIAISON, SYNTHETIC, SILICON_AI))
-GLOBAL_LIST_INIT(jobs_support, list(PILOT_OFFICER, REQUISITIONS_OFFICER, SYNTHETIC, SILICON_AI))
-GLOBAL_LIST_INIT(jobs_engineering, list(CHIEF_SHIP_ENGINEER, SHIP_TECH))
-GLOBAL_LIST_INIT(jobs_requisitions, list(REQUISITIONS_OFFICER))
-GLOBAL_LIST_INIT(jobs_medical, list(CHIEF_MEDICAL_OFFICER, MEDICAL_DOCTOR, MEDICAL_RESEARCHER))
-GLOBAL_LIST_INIT(jobs_marines, list(SQUAD_LEADER, SQUAD_SMARTGUNNER, SQUAD_CORPSMAN, SQUAD_ENGINEER, SQUAD_MARINE))
-GLOBAL_LIST_INIT(jobs_regular_all, list(CAPTAIN, FIELD_COMMANDER, STAFF_OFFICER, PILOT_OFFICER, REQUISITIONS_OFFICER, CHIEF_SHIP_ENGINEER, \
-CHIEF_MEDICAL_OFFICER, SYNTHETIC, SILICON_AI, CORPORATE_LIAISON, SHIP_TECH, \
-MEDICAL_DOCTOR, MEDICAL_RESEARCHER, SQUAD_LEADER, SQUAD_SMARTGUNNER, SQUAD_CORPSMAN, SQUAD_ENGINEER, SQUAD_MARINE))
-GLOBAL_LIST_INIT(jobs_fallen_all, typecacheof(list(/datum/job/fallen)))
-
 #define ROLE_XENOMORPH "Xenomorph"
 #define ROLE_XENO_QUEEN "Xeno Queen"
 #define ROLE_ERT "Emergency Response Team"
 #define ROLE_VALHALLA "Valhalla"
+
+GLOBAL_LIST_EMPTY(jobs_command)
+GLOBAL_LIST_INIT(jobs_officers, list(CAPTAIN, FIELD_COMMANDER, STAFF_OFFICER, PILOT_OFFICER, MECH_PILOT, CORPORATE_LIAISON, SYNTHETIC, SILICON_AI))
+GLOBAL_LIST_INIT(jobs_support, list(PILOT_OFFICER, MECH_PILOT, REQUISITIONS_OFFICER, SYNTHETIC, SILICON_AI))
+GLOBAL_LIST_INIT(jobs_engineering, list(CHIEF_SHIP_ENGINEER, SHIP_TECH))
+GLOBAL_LIST_INIT(jobs_requisitions, list(REQUISITIONS_OFFICER))
+GLOBAL_LIST_INIT(jobs_medical, list(CHIEF_MEDICAL_OFFICER, MEDICAL_DOCTOR, MEDICAL_RESEARCHER))
+GLOBAL_LIST_INIT(jobs_marines, list(SQUAD_LEADER, SQUAD_SMARTGUNNER, SQUAD_CORPSMAN, SQUAD_ENGINEER, SQUAD_MARINE))
+GLOBAL_LIST_INIT(jobs_som, list(SOM_SQUAD_MARINE, SOM_SQUAD_VETERAN, SOM_SQUAD_ENGINEER, SOM_SQUAD_CORPSMAN, SOM_SQUAD_LEADER))
+GLOBAL_LIST_INIT(jobs_regular_all, list(CAPTAIN, FIELD_COMMANDER, STAFF_OFFICER, PILOT_OFFICER, MECH_PILOT, REQUISITIONS_OFFICER, CHIEF_SHIP_ENGINEER, \
+CHIEF_MEDICAL_OFFICER, SYNTHETIC, SILICON_AI, CORPORATE_LIAISON, SHIP_TECH, \
+MEDICAL_DOCTOR, MEDICAL_RESEARCHER, SQUAD_LEADER, SQUAD_SMARTGUNNER, SQUAD_CORPSMAN, SQUAD_ENGINEER, SQUAD_MARINE, \
+SOM_SQUAD_MARINE, SOM_SQUAD_VETERAN, SOM_SQUAD_ENGINEER, SOM_SQUAD_CORPSMAN, SOM_SQUAD_LEADER))
+GLOBAL_LIST_INIT(jobs_xenos, list(ROLE_XENOMORPH, ROLE_XENO_QUEEN))
+GLOBAL_LIST_INIT(jobs_fallen_marine, typecacheof(list(/datum/job/fallen/marine), TRUE))
 
 //Playtime tracking system, see jobs_exp.dm
 #define EXP_TYPE_LIVING "Living"
@@ -152,6 +145,9 @@ GLOBAL_LIST_INIT(jobs_fallen_all, typecacheof(list(/datum/job/fallen)))
 #define SMARTIE_POINTS_MEDIUM 2
 #define SMARTIE_POINTS_HIGH 3
 #define SYNTH_POINTS_REGULAR 1
+#define MECH_POINTS_REGULAR 1
+
+#define VETERAN_POINTS_REGULAR 1
 
 #define MARINE_SPAWN_ORIGIN "xenos from marine spawn"
 #define PSY_DRAIN_ORIGIN "xenos from psy drained bodies"
@@ -160,7 +156,11 @@ GLOBAL_LIST_INIT(jobs_fallen_all, typecacheof(list(/datum/job/fallen)))
 
 #define SQUAD_MAX_POSITIONS(total_positions) CEILING(total_positions / length(SSjob.active_squads), 1)
 
-/// How many points a marine can spend in job specific vendors
-#define MARINE_TOTAL_BUY_POINTS		45
+/// How many points a marine can spend in job specific vendors by default
+#define DEFAULT_TOTAL_BUY_POINTS 45
+/// How many points a medic can spend on pills
+#define MEDIC_TOTAL_BUY_POINTS 45
 /// How many points an engineer can spend
 #define ENGINEER_TOTAL_BUY_POINTS 75
+/// How many points the field commander can spend
+#define COMMANDER_TOTAL_BUY_POINTS 45

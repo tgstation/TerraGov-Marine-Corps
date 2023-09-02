@@ -1,6 +1,6 @@
 //Movable Screen Object
 //Not tied to the grid, places it's center where the cursor is
-/obj/screen/movable
+/atom/movable/screen/movable
 	var/snap2grid = FALSE
 	var/moved = FALSE
 	var/locked = FALSE
@@ -10,11 +10,11 @@
 
 //Snap Screen Object
 //Tied to the grid, snaps to the nearest turf
-/obj/screen/movable/snap
+/atom/movable/screen/movable/snap
 	snap2grid = TRUE
 
 
-/obj/screen/movable/MouseDrop(over_object, src_location, over_location, src_control, over_control, params)
+/atom/movable/screen/movable/MouseDrop(over_object, src_location, over_location, src_control, over_control, params)
 	if(locked) //no! I am locked! begone!
 		return
 	var/list/PM = params2list(params)

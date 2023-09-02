@@ -7,68 +7,75 @@
 /proc/get_limb_icon_name(datum/species/S, gender, limb_name, ethnicity)
 	if(S.name == "Human" || S.name == "Synthetic")
 		switch(limb_name)
-			if ("torso")
-				return "[ethnicity]_torso_[get_gender_name(gender)]"
-
-			if ("chest")
+			if ("torso", "chest")
 				return "[ethnicity]_torso_[get_gender_name(gender)]"
 
 			if ("head")
-				return "[ethnicity]_[limb_name]_[get_gender_name(gender)]"
+				return "[ethnicity]_head_[get_gender_name(gender)]"
 
 			if ("groin")
-				return "[ethnicity]_[limb_name]_[get_gender_name(gender)]"
+				return "[ethnicity]_groin_[get_gender_name(gender)]"
 
-			if ("r_arm")
-				return "[ethnicity]_right_arm"
+			if ("r_arm", "right arm")
+				return "[ethnicity]_right_arm_[get_gender_name(gender)]"
 
-			if ("right arm")
-				return "[ethnicity]_right_arm"
+			if ("l_arm", "left arm")
+				return "[ethnicity]_left_arm_[get_gender_name(gender)]"
 
-			if ("l_arm")
-				return "[ethnicity]_left_arm"
+			if ("r_leg", "right leg")
+				return "[ethnicity]_right_leg_[get_gender_name(gender)]"
 
-			if ("left arm")
-				return "[ethnicity]_left_arm"
+			if ("l_leg", "left leg")
+				return "[ethnicity]_left_leg_[get_gender_name(gender)]"
 
-			if ("r_leg")
-				return "[ethnicity]_right_leg"
+			if ("r_hand", "right hand")
+				return "[ethnicity]_right_hand_[get_gender_name(gender)]"
 
-			if ("right leg")
-				return "[ethnicity]_right_leg"
+			if ("l_hand", "left hand")
+				return "[ethnicity]_left_hand_[get_gender_name(gender)]"
 
-			if ("l_leg")
-				return "[ethnicity]_left_leg"
+			if ("r_foot", "right foot")
+				return "[ethnicity]_right_foot_[get_gender_name(gender)]"
 
-			if ("left leg")
-				return "[ethnicity]_left_leg"
-
-			if ("r_hand")
-				return "[ethnicity]_right_hand"
-
-			if ("right hand")
-				return "[ethnicity]_right_hand"
-
-			if ("l_hand")
-				return "[ethnicity]_left_hand"
-
-			if ("left hand")
-				return "[ethnicity]_left_hand"
-
-			if ("r_foot")
-				return "[ethnicity]_right_foot"
-
-			if ("right foot")
-				return "[ethnicity]_right_foot"
-
-			if ("l_foot")
-				return "[ethnicity]_left_foot"
-
-			if ("left foot")
-				return "[ethnicity]_left_foot"
+			if ("l_foot", "left foot")
+				return "[ethnicity]_left_foot_[get_gender_name(gender)]"
 
 			else
 				return null
+	else if(S.name == "Vatborn" || S.name == "Early Vat-Grown Human" || S.name == "Vat-Grown Human")
+		switch(limb_name)
+			if ("torso", "chest")
+				return "torso_[get_gender_name(gender)]"
+
+			if ("head")
+				return "head_[get_gender_name(gender)]"
+
+			if ("groin")
+				return "groin_[get_gender_name(gender)]"
+
+			if ("r_arm", "right arm")
+				return "right_arm_[get_gender_name(gender)]"
+
+			if ("l_arm", "left arm")
+				return "left_arm_[get_gender_name(gender)]"
+
+			if ("r_leg", "right leg")
+				return "right_leg_[get_gender_name(gender)]"
+
+			if ("l_leg", "left leg")
+				return "left_leg_[get_gender_name(gender)]"
+
+			if ("r_hand", "right hand")
+				return "right_hand_[get_gender_name(gender)]"
+
+			if ("l_hand", "left hand")
+				return "left_hand_[get_gender_name(gender)]"
+
+			if ("r_foot", "right foot")
+				return "right_foot_[get_gender_name(gender)]"
+
+			if ("l_foot", "left foot")
+				return "left_foot_[get_gender_name(gender)]"
 	else
 		switch(limb_name)
 			if ("torso")
@@ -78,9 +85,6 @@
 				return "[limb_name]_[get_gender_name(gender)]"
 
 			if ("head")
-				return "[limb_name]_[get_gender_name(gender)]"
-
-			if ("synthetic head")
 				return "head_[get_gender_name(gender)]"
 
 			if ("groin")
@@ -187,7 +191,7 @@
 /mob/living/carbon/human/has_eyes()
 	if(internal_organs_by_name["eyes"])
 		var/datum/internal_organ/eyes = internal_organs_by_name["eyes"]
-		if(eyes && istype(eyes) && !eyes.cut_away)
+		if(eyes && istype(eyes))
 			return 1
 	return 0
 
@@ -230,7 +234,7 @@
 	var/protection = (prot["head"] + prot["arms"] + prot["feet"] + prot["legs"] + prot["groin"] + prot["chest"] + prot["hands"])/7
 	return protection
 
-mob/living/carbon/human/get_standard_bodytemperature()
+/mob/living/carbon/human/get_standard_bodytemperature()
 	return species.body_temperature
 
 /mob/living/carbon/human/get_policy_keywords()

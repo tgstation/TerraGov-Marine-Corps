@@ -2,13 +2,13 @@
 	var/list/random_icon_states = list()
 	var/targeted_by = null			// Used so cleanbots can't claim a mess.
 
-/obj/effect/decal/cleanable/Initialize()
+/obj/effect/decal/cleanable/Initialize(mapload)
 	if (random_icon_states && length(src.random_icon_states) > 0)
 		src.icon_state = pick(src.random_icon_states)
 	return ..()
 
 /obj/effect/decal/cleanable/attackby(obj/item/I, mob/user, params)
-	var/obj/effect/alien/weeds/A = locate() in loc
+	var/obj/alien/weeds/A = locate() in loc
 	if(A)
 		return A.attackby(I, user, params)
 	else
@@ -20,7 +20,7 @@
 	var/loc_last_process
 
 
-/obj/effect/decal/cleanable/blood/splatter/animated/Initialize()
+/obj/effect/decal/cleanable/blood/splatter/animated/Initialize(mapload)
 	. = ..()
 	START_PROCESSING(SSobj, src)
 	loc_last_process = loc

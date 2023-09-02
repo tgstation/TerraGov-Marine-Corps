@@ -15,7 +15,7 @@
 	var/datum/player_details/player_details //these persist between logins/logouts during the same round.
 
 	//Preferences related
-	var/datum/preferences/prefs 	= null
+	var/datum/preferences/prefs = null
 	var/inprefs = FALSE
 	///remembers what our context menu setting is currently set to
 	var/shift_to_open_context_menu = TRUE
@@ -31,8 +31,8 @@
 	var/datum/click_intercept = null // Needs to implement InterceptClickOn(user,params,atom) proc
 	var/move_delay = 0
 	var/area = null
-	var/obj/screen/click_catcher/void = null
-	var/list/char_render_holders			//Should only be a key-value list of north/south/east/west = obj/screen.
+	var/atom/movable/screen/click_catcher/void = null
+	var/list/char_render_holders			//Should only be a key-value list of north/south/east/west = atom/movable/screen.
 	var/mouse_up_icon = null
 	var/mouse_down_icon = null
 	var/click_intercepted = FALSE //Check if current click was intercepted. Reset and return if TRUE. This is because there's no communication between Click(), MouseDown() and MouseUp().
@@ -50,6 +50,18 @@
 
 	/// datum wrapper for client view
 	var/datum/view_data/view_size
+
+	/// our current tab
+	var/stat_tab
+
+	/// list of all tabs
+	var/list/panel_tabs = list()
+	/// list of tabs containing spells and abilities
+	var/list/spell_tabs = list()
+	///A lazy list of atoms we've examined in the last RECENT_EXAMINE_MAX_WINDOW (default 2) seconds, so that we will call [/atom/proc/examine_more] instead of [/atom/proc/examine] on them when examining
+	var/list/recent_examines
+	///Our object window datum. It stores info about and handles behavior for the object tab
+	var/datum/object_window_info/obj_window
 
 	//Database related
 	var/player_age = -1	//Used to determine how old the account is - in days.
@@ -73,7 +85,7 @@
 
 	//screen_text vars
 	///lazylist of screen_texts for this client, first in this list is the one playing
-	var/list/obj/screen/text/screen_text/screen_texts
+	var/list/atom/movable/screen/text/screen_text/screen_texts
 
 	///Amount of keydowns in the last keysend checking interval
 	var/client_keysend_amount = 0
@@ -104,7 +116,7 @@
 	 * Assoc list with all the active maps - when a screen obj is added to
 	 * a map, it's put in here as well.
 	 *
-	 * Format: list(<mapname> = list(/obj/screen))
+	 * Format: list(<mapname> = list(/atom/movable/screen))
 	 */
 	var/list/screen_maps = list()
 
