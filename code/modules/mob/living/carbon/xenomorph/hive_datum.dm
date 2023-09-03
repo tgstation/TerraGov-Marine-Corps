@@ -685,7 +685,15 @@
 		to_chat(devolver, span_xenonotice("Cannot deevolve [target]."))
 		return
 
-	var/datum/xeno_caste/new_caste = GLOB.xeno_caste_datums[target.xeno_caste.deevolves_to][XENO_UPGRADE_ZERO]
+	var/datum/xeno_caste/new_caste = get_deevolve_caste(devolver, target)
+
+	if(!new_caste) //better than nothing
+		new_caste = GLOB.xeno_caste_datums[target.xeno_caste.deevolves_to][XENO_UPGRADE_ZERO]
+
+	for(var/forbid_info in hive_forbidencastes)
+		if(forbid_info["type_path"] == new_caste.caste_type_path && forbid_info["is_forbid"])
+			to_chat(devolver, span_xenonotice("We can't deevolve to forbided caste"))
+			return FALSE
 
 	var/reason = stripped_input(devolver, "Provide a reason for deevolving this xenomorph, [target]")
 	if(isnull(reason))
@@ -710,7 +718,11 @@
 	target.balloon_alert(target, "Forced deevolution")
 	to_chat(target, span_xenowarning("[devolver] deevolved us for the following reason: [reason]."))
 
-	target.do_evolve(new_caste.caste_type_path, new_caste.caste_name, TRUE)
+	var/is_full_evo = FALSE
+	if(new_caste.caste_type_path == /mob/living/carbon/xenomorph/larva)
+		is_full_evo = TRUE
+
+	target.do_evolve(new_caste.caste_type_path, new_caste.caste_name, TRUE, is_full_evo)
 
 	log_game("[key_name(devolver)] has deevolved [key_name(target)]. Reason: [reason]")
 	message_admins("[ADMIN_TPMONTY(devolver)] has deevolved [ADMIN_TPMONTY(target)]. Reason: [reason]")
@@ -718,6 +730,43 @@
 	GLOB.round_statistics.total_xenos_created-- //so an evolved xeno doesn't count as two.
 	SSblackbox.record_feedback("tally", "round_statistics", -1, "total_xenos_created")
 	qdel(target)
+
+/datum/hive_status/proc/get_deevolve_caste(mob/living/carbon/xenomorph/devolver, mob/living/carbon/xenomorph/target)
+	//copypaste from evolution.dm
+	var/tiers_to_pick_from
+	switch(target.tier)
+		if(XENO_TIER_ZERO, XENO_TIER_FOUR)
+			if(isxenoshrike(target))
+				tiers_to_pick_from = GLOB.xeno_types_tier_one
+			else
+				to_chat(devolver, span_warning("Xeno tier does not allow you to regress."))
+				return
+		if(XENO_TIER_ONE)
+			tiers_to_pick_from = list(/mob/living/carbon/xenomorph/larva)
+		if(XENO_TIER_TWO)
+			tiers_to_pick_from = GLOB.xeno_types_tier_one
+		if(XENO_TIER_THREE)
+			tiers_to_pick_from = GLOB.xeno_types_tier_two
+		else
+			CRASH("side_evolve() called without a valid tier")
+
+	var/list/castes_to_pick = list()
+	for(var/type in tiers_to_pick_from)
+		var/datum/xeno_caste/available_caste = GLOB.xeno_caste_datums[type][XENO_UPGRADE_BASETYPE]
+		castes_to_pick += available_caste.caste_name
+	var/castepick = tgui_input_list(devolver, "Сhoose the caste you want to deevolve into.", null, castes_to_pick)
+	if(!castepick) //Changed my mind
+		return
+
+	var/datum/xeno_caste/castedatum
+	for(var/type in tiers_to_pick_from)
+		var/datum/xeno_caste/available_caste = GLOB.xeno_caste_datums[type][XENO_UPGRADE_BASETYPE]
+		if(castepick != available_caste.caste_name)
+			continue
+		castedatum = available_caste
+		break
+
+	return castedatum
 
 /datum/hive_status/proc/attempt_banish(mob/living/carbon/xenomorph/user, mob/living/carbon/xenomorph/target)
 	if(target.is_ventcrawling)

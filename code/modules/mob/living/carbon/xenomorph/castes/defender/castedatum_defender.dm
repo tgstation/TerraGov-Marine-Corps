@@ -31,6 +31,7 @@
 		/mob/living/carbon/xenomorph/warrior,
 		/mob/living/carbon/xenomorph/bull,
 	)
+	deevolves_to = /mob/living/carbon/xenomorph/larva
 
 	// *** Flags *** //
 	caste_flags = CASTE_EVOLUTION_ALLOWED

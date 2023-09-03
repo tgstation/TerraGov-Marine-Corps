@@ -54,7 +54,7 @@
 	do_evolve(castetype, castepick, TRUE)
 
 ///Handles the evolution or devolution of the xenomorph
-/mob/living/carbon/xenomorph/proc/do_evolve(caste_type, forced_caste_name, regression = FALSE)
+/mob/living/carbon/xenomorph/proc/do_evolve(caste_type, forced_caste_name, regression = FALSE, full_evo = FALSE)
 	if(!generic_evolution_checks())
 		return
 
@@ -100,10 +100,10 @@
 		return
 
 	SStgui.close_user_uis(src) //Force close all UIs upon evolution.
-	finish_evolve(new_mob_type)
+	finish_evolve(new_mob_type, full_evo)
 
 ///Actually changes the xenomorph to another caste
-/mob/living/carbon/xenomorph/proc/finish_evolve(new_mob_type)
+/mob/living/carbon/xenomorph/proc/finish_evolve(new_mob_type, full_evo = FALSE)
 	var/mob/living/carbon/xenomorph/new_xeno = new new_mob_type(get_turf(src))
 
 	if(!istype(new_xeno))
@@ -115,6 +115,9 @@
 	new_xeno.upgrade_stored = upgrade_stored
 	while(new_xeno.upgrade_stored >= new_xeno.xeno_caste?.upgrade_threshold && new_xeno.upgrade_possible())
 		new_xeno.upgrade_xeno(new_xeno.upgrade_next(), TRUE)
+
+	if(full_evo)
+		new_xeno.evolution_stored = new_xeno.xeno_caste.evolution_threshold
 
 	SEND_SIGNAL(src, COMSIG_XENOMORPH_EVOLVED, new_xeno)
 

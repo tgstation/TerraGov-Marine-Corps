@@ -37,6 +37,7 @@
 		/mob/living/carbon/xenomorph/wraith,
 		/mob/living/carbon/xenomorph/panther,
 	)
+	deevolves_to = /mob/living/carbon/xenomorph/larva
 
 	// *** Flags *** //
 	caste_flags = CASTE_EVOLUTION_ALLOWED

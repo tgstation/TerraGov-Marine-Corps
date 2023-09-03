@@ -34,6 +34,7 @@
 		/mob/living/carbon/xenomorph/hivelord,
 		/mob/living/carbon/xenomorph/hivemind,
 	)
+	deevolves_to = /mob/living/carbon/xenomorph/larva
 
 	// *** Flags *** //
 	caste_flags = CASTE_EVOLUTION_ALLOWED|CASTE_IS_BUILDER

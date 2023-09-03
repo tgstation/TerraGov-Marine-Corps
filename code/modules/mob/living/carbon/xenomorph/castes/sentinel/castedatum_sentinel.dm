@@ -25,6 +25,7 @@
 	upgrade_threshold = TIER_ONE_YOUNG_THRESHOLD
 
 	evolves_to = list(/mob/living/carbon/xenomorph/spitter)
+	deevolves_to = /mob/living/carbon/xenomorph/larva
 
 	// *** Flags *** //
 	caste_flags = CASTE_EVOLUTION_ALLOWED
