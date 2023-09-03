@@ -3,6 +3,8 @@
 	config_tag = "Nuclear War"
 	silo_scaling = 2.50
 
+	flags_round_type = MODE_INFESTATION|MODE_LATE_OPENING_SHUTTER_TIMER|MODE_XENO_RULER|MODE_PSY_POINTS|MODE_PSY_POINTS_ADVANCED|MODE_DEAD_GRAB_FORBIDDEN|MODE_HIJACK_POSSIBLE|MODE_SILO_RESPAWN|MODE_SILOS_SPAWN_MINIONS|MODE_ALLOW_XENO_QUICKBUILD
+
 /datum/game_mode/infestation/distress/nuclear_war/post_setup()
 	. = ..()
 	for(var/i in GLOB.nuke_spawn_locs)
