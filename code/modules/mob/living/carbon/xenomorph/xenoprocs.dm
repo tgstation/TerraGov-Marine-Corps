@@ -564,3 +564,7 @@
 		return
 	set_light_range_power_color(range, power, color)
 	set_light_on(TRUE)
+
+/// Side effects of being sent to the end of round deathmatch zone
+/mob/living/carbon/xenomorph/proc/on_eord(turf/destination)
+	revive(TRUE)

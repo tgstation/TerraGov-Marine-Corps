@@ -293,7 +293,7 @@
 	owner.mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	owner.density = FALSE
 	owner.allow_pass_flags |= PASSABLE
-	// Here we prevent the xeno from moving or attacking or using abilities untill they unburrow by clicking the ability
+	// Here we prevent the xeno from moving or attacking or using abilities until they unburrow by clicking the ability
 	ADD_TRAIT(owner, TRAIT_IMMOBILE, ability_name)
 	ADD_TRAIT(owner, TRAIT_BURROWED, ability_name)
 	ADD_TRAIT(owner, TRAIT_HANDS_BLOCKED, ability_name)
@@ -336,6 +336,10 @@
 		X.balloon_alert(X, "No spiderlings")
 		return fail_activate()
 	var/list/mob/living/carbon/xenomorph/spiderling/remaining_spiderlings = create_spiderling_action.spiderlings.Copy()
+	// First make the spiderlings stop what they are doing and return to the widow
+	for(var/mob/spider in remaining_spiderlings)
+		var/datum/component/ai_controller/AI = spider.GetComponent(/datum/component/ai_controller)
+		AI?.ai_behavior.change_action(ESCORTING_ATOM, AI.ai_behavior.escorted_atom)
 	grab_spiderlings(remaining_spiderlings, attach_attempts)
 	succeed_activate()
 
