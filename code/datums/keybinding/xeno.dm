@@ -962,6 +962,13 @@
 	keybind_signal = COMSIG_XENOABILITY_CREATE_SPIDERLING
 	hotkey_keys = list("F")
 
+/datum/keybinding/xeno/create_spiderling_using_cc
+	name = "Birth Spiderling using Cannibalise charges"
+	full_name = "Widow: Birth Spiderling using Cannibalise charges"
+	description = "Give birth to a spiderling after a short charge-up if you have any Cannibalise charges available."
+	keybind_signal = COMSIG_XENOABILITY_CREATE_SPIDERLING_USING_CC
+	hotkey_keys = list("H")
+
 /datum/keybinding/xeno/attach_spiderlings
 	name = "Attach Spiderlings"
 	full_name = "Widow: Attach Spiderlings"

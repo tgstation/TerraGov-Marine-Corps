@@ -843,6 +843,7 @@
 #define COMSIG_XENOABILITY_BURROW "xenoability_burrow"
 #define COMSIG_XENOABILITY_LEASH_BALL "xenoability_leash_ball"
 #define COMSIG_XENOABILITY_CREATE_SPIDERLING "xenoability_create_spiderling"
+#define COMSIG_XENOABILITY_CREATE_SPIDERLING_USING_CC "xenoability_create_spiderling_using_cc"
 #define COMSIG_XENOABILITY_ATTACH_SPIDERLINGS "xenoability_attach_spiderlings"
 #define COMSIG_XENOABILITY_CANNIBALISE_SPIDERLING "xenoability_cannibalise_spiderling"
 #define COMSIG_XENOABILITY_WEB_HOOK "xenoability_web_hook"
