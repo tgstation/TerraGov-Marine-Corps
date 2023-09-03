@@ -1,0 +1,3 @@
+#define ROLE_XENO_HUGGER "Xeno Facehugger"
+
+GLOBAL_LIST_INIT(jobs_xenos, list(ROLE_XENOMORPH, ROLE_XENO_QUEEN, ROLE_XENO_HUGGER))

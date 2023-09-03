@@ -1,0 +1,1 @@
+#define MAX_FACEHUGGERS 5

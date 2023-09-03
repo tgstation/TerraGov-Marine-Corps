@@ -14,13 +14,14 @@
 	old_x = -8
 	old_y = -3
 
-	default_honor_value = 0
+	// default_honor_value = 0
 
 	tier = XENO_TIER_MINION
 	upgrade = XENO_UPGRADE_BASETYPE
 	mob_size = MOB_SIZE_SMALL
 	pull_speed = -2
-	flags_pass = PASSXENO | PASSTABLE | PASSMOB
+	allow_pass_flags = PASS_MOB|PASS_XENO
+	pass_flags = PASS_LOW_STRUCTURE
 	density = FALSE
 
 	inherent_verbs = list(
@@ -39,7 +40,7 @@
 /mob/living/carbon/xenomorph/facehugger/handle_living_health_updates()
 	. = ..()
 	//We lose health if we go off the weed
-	if(!loc_weeds_type && !is_ventcrawling && !(lying_angle || resting))
+	if(!loc_weeds_type && !is_ventcrawling && !(lying_angle || resting) && !(status_flags & GODMODE))
 		adjustBruteLoss(2, TRUE)
 		return
 
@@ -59,7 +60,10 @@
 	return TRUE
 
 /mob/living/carbon/xenomorph/facehugger/death_cry()
-	playsound(loc, 'sound/voice/alien_facehugger_dies.ogg', 25, 1)
+	return
+
+/mob/living/carbon/xenomorph/facehugger/get_liquid_slowdown()
+	return FACEHUGGER_WATER_SLOWDOWN
 
 ///Trying to attach facehagger to face. Returns true on success and false otherwise
 /mob/living/carbon/xenomorph/facehugger/proc/try_attach(mob/living/carbon/human/host)

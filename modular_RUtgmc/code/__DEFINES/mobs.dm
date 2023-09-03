@@ -3,3 +3,8 @@
 #define PANTHER_EVASION_PLASMADRAIN 3
 #define PANTHER_EVASION_LOW_PLASMADRAIN 1.5
 #define PANTHER_TEARING_TAIL_REAGENT_AMOUNT 10
+
+//slowdown defines for liquid turfs
+
+///Slowdown for favehuggers moving through liquid
+#define FACEHUGGER_WATER_SLOWDOWN 1.6
