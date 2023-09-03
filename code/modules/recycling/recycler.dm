@@ -7,7 +7,7 @@
 	anchored = TRUE
 	density = TRUE
 	//Pointing west because that's the only sprite we got
-	dir = 8
+	dir = NORTH
 
 /obj/machinery/recycler/update_icon()
 	icon_state = "grinder-o[(machine_stat & (BROKEN|NOPOWER)) ? "0":"1"]"
