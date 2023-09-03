@@ -18,11 +18,11 @@
 	savage_cooldown = 30 SECONDS
 
 	// *** Speed *** //
-	speed = -1.5
+	speed = -1.4
 
 	// *** Plasma *** //
 	plasma_max = 200
-	plasma_gain = 11
+	plasma_gain = 9
 
 	// *** Health *** //
 	max_health = 240
@@ -43,7 +43,7 @@
 	caste_traits = list(TRAIT_CAN_VENTCRAWL)
 
 	// *** Defense *** //
-	soft_armor = list(MELEE = 20, BULLET = 20, LASER = 20, ENERGY = 20, BOMB = 0, BIO = 5, FIRE = 19, ACID = 5)
+	soft_armor = list(MELEE = 20, BULLET = 15, LASER = 15, ENERGY = 15, BOMB = 0, BIO = 5, FIRE = 15, ACID = 5)
 
 	// *** Ranged Attack *** //
 	charge_type = CHARGE_TYPE_SMALL

@@ -12,14 +12,14 @@
 	melee_damage = 20
 
 	// *** Speed *** //
-	speed = -1.25
+	speed = -1.2
 
 	// *** Plasma *** //
-	plasma_max = 400
+	plasma_max = 350
 	plasma_gain = 25
 
 	// *** Health *** //
-	max_health = 260
+	max_health = 250
 
 	// *** Evolution *** //
 	evolution_threshold = 225
@@ -38,7 +38,7 @@
 	caste_traits = list(TRAIT_CAN_VENTCRAWL)
 
 	// *** Defense *** //
-	soft_armor = list(MELEE = 40, BULLET = 40, LASER = 20, ENERGY = 20, BOMB = 0, BIO = 20, FIRE = 30, ACID = 20)
+	soft_armor = list(MELEE = 35, BULLET = 35, LASER = 15, ENERGY = 15, BOMB = 0, BIO = 20, FIRE = 25, ACID = 20)
 
 	// *** Minimap Icon *** //
 	minimap_icon = "wraith"

@@ -13,20 +13,20 @@
 	melee_damage = 23
 
 	// *** Speed *** //
-	speed = -0.3
+	speed = -0.2
 
 	// *** Plasma *** //
-	plasma_max = 1200
-	plasma_gain = 70
+	plasma_max = 1100
+	plasma_gain = 60
 
 	// *** Health *** //
-	max_health = 500
+	max_health = 475
 
 	// *** Evolution *** //
 	upgrade_threshold = TIER_THREE_THRESHOLD
 	evolve_min_xenos = 8
 	maximum_active_caste = 1
-	death_evolution_delay = 5 MINUTES
+	death_evolution_delay = 7 MINUTES
 
 	// *** Flags *** //
 	caste_flags = CASTE_IS_INTELLIGENT|CASTE_IS_BUILDER|CASTE_STAGGER_RESISTANT|CASTE_LEADER_TYPE|CASTE_INSTANT_EVOLUTION
@@ -35,14 +35,14 @@
 	caste_traits = null
 
 	// *** Defense *** //
-	soft_armor = list(MELEE = 65, BULLET = 65, LASER = 65, ENERGY = 65, BOMB = 30, BIO = 60, FIRE = 60, ACID = 60)
+	soft_armor = list(MELEE = 60, BULLET = 60, LASER = 60, ENERGY = 60, BOMB = 30, BIO = 55, FIRE = 55, ACID = 55)
 
 	// *** Ranged Attack *** //
-	spit_delay = 1.1 SECONDS
+	spit_delay = 1.2 SECONDS
 	spit_types = list(/datum/ammo/xeno/sticky, /datum/ammo/xeno/acid/medium)
 
 	// *** Pheromones *** //
-	aura_strength = 5 //The Queen's aura is strong and stays so, and gets devastating late game. Climbs by 1 to 5
+	aura_strength = 4.5
 
 	// *** Queen Abilities *** //
 	queen_leader_limit = 4 //Amount of leaders allowed

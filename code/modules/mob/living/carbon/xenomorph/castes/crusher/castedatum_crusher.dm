@@ -21,7 +21,7 @@
 	plasma_gain = 30
 
 	// *** Health *** //
-	max_health = 400
+	max_health = 370
 
 	// *** Evolution *** //
 	upgrade_threshold = TIER_THREE_THRESHOLD
@@ -33,14 +33,14 @@
 	caste_traits = null
 
 	// *** Defense *** //
-	soft_armor = list(MELEE = 90, BULLET = 75, LASER = 75, ENERGY = 75, BOMB = 130, BIO = 100, FIRE = 40, ACID = 100)
+	soft_armor = list(MELEE = 80, BULLET = 70, LASER = 70, ENERGY = 70, BOMB = 120, BIO = 95, FIRE = 35, ACID = 95)
 
 	// *** Minimap Icon *** //
 	minimap_icon = "crusher"
 
 	// *** Crusher Abilities *** //
-	stomp_damage = 60
-	crest_toss_distance = 6
+	stomp_damage = 55
+	crest_toss_distance = 5
 
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,

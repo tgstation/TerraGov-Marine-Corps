@@ -20,10 +20,10 @@
 
 	// *** Plasma *** //
 	plasma_max = 1000
-	plasma_gain = 50
+	plasma_gain = 40
 
 	// *** Health *** //
-	max_health = 325
+	max_health = 300
 
 	// *** Evolution *** //
 	upgrade_threshold = TIER_THREE_THRESHOLD
@@ -38,10 +38,10 @@
 	can_flags =CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER
 
 	// *** Defense *** //
-	soft_armor = list(MELEE = 45, BULLET = 45, LASER = 45, ENERGY = 45, BOMB = 0, BIO = 35, FIRE = 45, ACID = 35)
+	soft_armor = list(MELEE = 45, BULLET = 45, LASER = 45 , ENERGY = 45, BOMB = 0, BIO = 35, FIRE = 45, ACID = 35)
 
 	// *** Ranged Attack *** //
-	spit_delay = 1 SECONDS
+	spit_delay = 2 SECONDS
 	spit_types = list(/datum/ammo/xeno/boiler_gas, /datum/ammo/xeno/boiler_gas/corrosive)
 
 	// *** Minimap Icon *** //
@@ -49,13 +49,13 @@
 
 	// *** Boiler Abilities *** //
 	max_ammo = 7
-	bomb_strength = 1.3 //Multiplier to the effectiveness of the boiler glob.
-	bomb_delay = 27 SECONDS
+	bomb_strength = 1.2 //Multiplier to the effectiveness of the boiler glob.
+	bomb_delay = 30 SECONDS
 
 	acid_spray_duration = 10 SECONDS
 	acid_spray_damage = 16
-	acid_spray_damage_on_hit = 35
-	acid_spray_structure_damage = 45
+	acid_spray_damage_on_hit = 43
+	acid_spray_structure_damage = 61
 
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
