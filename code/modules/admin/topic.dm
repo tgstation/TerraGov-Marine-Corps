@@ -398,6 +398,10 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 					newmob.forceMove(location)
 			if("larva")
 				newmob = M.change_mob_type(/mob/living/carbon/xenomorph/larva, location, null, delmob)
+			//RUTGNC EDIT - START
+			if("facehugger")
+				newmob = M.change_mob_type(/mob/living/carbon/xenomorph/facehugger, location, null, delmob)
+			//RUTGMC EDIT - END
 			if("defender")
 				newmob = M.change_mob_type(/mob/living/carbon/xenomorph/defender, location, null, delmob)
 			if("warrior")

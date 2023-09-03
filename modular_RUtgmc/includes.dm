@@ -20,6 +20,7 @@
 #include "code\game\objects\structures\signs.dm"
 #include "code\game\turfs\floor_types.dm"
 #include "code\game\turfs\wall_types.dm"
+#include "code\modules\admin\panels\player_panel.dm"
 #include "code\modules\ai\presets\xeno_presets.dm"
 #include "code\modules\atmospherics\machinery\components\unary_devices\vent_pump.dm"
 #include "code\modules\atmospherics\machinery\components\unary_devices\vent_scrubber.dm"

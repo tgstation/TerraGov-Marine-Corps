@@ -354,8 +354,8 @@
 	browser.set_content(dat)
 	browser.open()
 
-
-/datum/admins/proc/show_player_panel(mob/M in GLOB.mob_list)
+//RUTGMC EDIT: Moved to modular_RUtgmc\code\modules\admin\panels\player_panel.dm
+/*/datum/admins/proc/show_player_panel(mob/M in GLOB.mob_list)
 	set category = null
 	set name = "Show Player Panel"
 
@@ -525,3 +525,4 @@
 	var/datum/browser/browser = new(usr, "player_panel_[key_name(M)]", "<div align='center'>Player Panel [key_name(M)]</div>", 575, 555)
 	browser.set_content(body)
 	browser.open()
+	*/
