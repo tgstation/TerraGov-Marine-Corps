@@ -8,21 +8,21 @@
 	tier = XENO_TIER_THREE
 	upgrade = XENO_UPGRADE_BASETYPE
 	wound_type = "warlock"
-	melee_damage = 17
-	speed = -0.4
-	plasma_max = 1600
-	plasma_gain = 50
-	max_health = 350
+	melee_damage = 18
+	speed = -0.5
+	plasma_max = 1700
+	plasma_gain = 60
+	max_health = 375
 	upgrade_threshold = TIER_THREE_THRESHOLD
 	spit_types = list(/datum/ammo/energy/xeno/psy_blast)
 
 	deevolves_to = /mob/living/carbon/xenomorph/wraith
 	can_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER
 	caste_traits = null
-	soft_armor = list(MELEE = 40, BULLET = 40, LASER = 40, ENERGY = 40, BOMB = 4, BIO = 30, FIRE = 30, ACID = 30)
-	shield_strength = 550
-	crush_strength = 45
-	blast_strength = 40
+	soft_armor = list(MELEE = 40, BULLET = 40, LASER = 40, ENERGY = 40, BOMB = 10, BIO = 35, FIRE = 35, ACID = 35)
+	shield_strength = 650
+	crush_strength = 50
+	blast_strength = 45
 	minimap_icon = "warlock"
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,

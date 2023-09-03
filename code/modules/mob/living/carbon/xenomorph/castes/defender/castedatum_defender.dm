@@ -14,14 +14,14 @@
 	melee_damage = 21
 
 	// *** Speed *** //
-	speed = -0.5
+	speed = -0.6
 
 	// *** Plasma *** //
-	plasma_max = 190
-	plasma_gain = 14
+	plasma_max = 200
+	plasma_gain = 15
 
 	// *** Health *** //
-	max_health = 300
+	max_health = 320
 
 	// *** Evolution *** //
 	evolution_threshold = 100
@@ -38,7 +38,7 @@
 	caste_traits = null
 
 	// *** Defense *** //
-	soft_armor = list(MELEE = 35, BULLET = 35, LASER = 30, ENERGY = 30, BOMB = 20, BIO = 30, FIRE = 35, ACID = 30)
+	soft_armor = list(MELEE = 40, BULLET = 40, LASER = 40, ENERGY = 40, BOMB = 20, BIO = 30, FIRE = 40, ACID = 30)
 
 	// *** Ranged Attack *** //
 	charge_type = CHARGE_TYPE_LARGE

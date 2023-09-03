@@ -17,7 +17,7 @@
 	attack_delay = 7
 
 	// *** Speed *** //
-	speed = -1.3
+	speed = -1.4
 	weeds_speed_mod = -0.1
 
 	// *** Plasma *** //
@@ -25,7 +25,7 @@
 	plasma_gain = 18
 
 	// *** Health *** //
-	max_health = 270
+	max_health = 290
 
 	// *** Evolution *** //
 	evolution_threshold = 225
@@ -40,11 +40,11 @@
 	caste_traits = list(TRAIT_CAN_VENTCRAWL)
 
 	// *** Defense *** //
-	soft_armor = list(MELEE = 50, BULLET = 25, LASER = 25, ENERGY = 25, BOMB = 0, BIO = 20, FIRE = 25, ACID = 20)
+	soft_armor = list(MELEE = 55, BULLET = 30, LASER = 30, ENERGY = 30, BOMB = 0, BIO = 20, FIRE = 30, ACID = 20)
 
 	// *** Ranged Attack *** //
 	charge_type = CHARGE_TYPE_MEDIUM
-	pounce_delay = 11.0 SECONDS
+	pounce_delay = 10.0 SECONDS
 
 	// *** Stealth ***
 	stealth_break_threshold = 15

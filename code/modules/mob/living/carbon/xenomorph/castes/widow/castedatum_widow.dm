@@ -10,17 +10,17 @@
 	wound_type = "widow"
 
 	// *** Melee Attacks *** //
-	melee_damage = 16
+	melee_damage = 18
 
 	// *** Speed *** //
-	speed = -0.4
+	speed = -0.5
 
 	// *** Plasma *** //
-	plasma_max = 575
-	plasma_gain = 50
+	plasma_max = 600
+	plasma_gain = 55
 
 	// *** Health *** //
-	max_health = 400
+	max_health = 450
 
 	// *** Evolution *** //
 	upgrade_threshold = TIER_THREE_THRESHOLD
@@ -33,13 +33,13 @@
 	caste_traits = null
 
 	// *** Defense *** //
-	soft_armor = list(MELEE = 25, BULLET = 25, LASER = 25, ENERGY = 25, BOMB = 15, BIO = 10, FIRE = 10, ACID = 10)
+	soft_armor = list(MELEE = 30, BULLET = 30, LASER = 30, ENERGY = 30, BOMB = 15, BIO = 10, FIRE = 15, ACID = 10)
 
 	// *** Minimap Icon *** //
 	minimap_icon = "widow"
 
 	// *** Widow Abilities *** //
-	max_spiderlings = 4
+	max_spiderlings = 5
 
 	// *** Abilities *** ///
 	actions = list(

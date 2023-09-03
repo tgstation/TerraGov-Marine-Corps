@@ -12,14 +12,14 @@
 	melee_damage = 23
 
 	// *** Speed *** //
-	speed = -0.45
+	speed = -0.5
 
 	// *** Plasma *** //
-	plasma_max = 115
-	plasma_gain = 11
+	plasma_max = 120
+	plasma_gain = 12
 
 	// *** Health *** //
-	max_health = 330
+	max_health = 350
 
 	// *** Evolution *** //
 	evolution_threshold = 225
@@ -34,7 +34,7 @@
 	caste_traits = null
 
 	// *** Defense *** //
-	soft_armor = list(MELEE = 40, BULLET = 50, LASER = 50, ENERGY = 40, BOMB = 20, BIO = 40, FIRE = 50, ACID = 40)
+	soft_armor = list(MELEE = 40, BULLET = 55, LASER = 55, ENERGY = 40, BOMB = 20, BIO = 50, FIRE = 55, ACID = 50)
 
 	// *** Minimap Icon *** //
 	minimap_icon = "warrior"

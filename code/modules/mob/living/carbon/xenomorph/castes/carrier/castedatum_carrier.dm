@@ -14,14 +14,14 @@
 	melee_damage = 20
 
 	// *** Speed *** //
-	speed = -0.2
+	speed = -0.3
 
 	// *** Plasma *** //
-	plasma_max = 700
-	plasma_gain = 30
+	plasma_max = 800
+	plasma_gain = 38
 
 	// *** Health *** //
-	max_health = 300
+	max_health = 325
 
 	// *** Evolution *** //
 	evolution_threshold = 225
@@ -38,17 +38,17 @@
 	caste_traits = null
 
 	// *** Defense *** //
-	soft_armor = list(MELEE = 25, BULLET = 25, LASER = 25, ENERGY = 25, BOMB = 0, BIO = 10, FIRE = 25, ACID = 10)
+	soft_armor = list(MELEE = 15, BULLET = 15, LASER = 15, ENERGY = 15, BOMB = 0, BIO = 5, FIRE = 15, ACID = 5)
 
 	// *** Pheromones *** //
-	aura_strength = 2.3
+	aura_strength = 2.5
 
 	// *** Minimap Icon *** //
 	minimap_icon = "carrier"
 
 	// *** Carrier Abilities *** //
-	huggers_max = 6
-	hugger_delay = 2 SECONDS
+	huggers_max = 7
+	hugger_delay = 1.5 SECONDS
 
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,

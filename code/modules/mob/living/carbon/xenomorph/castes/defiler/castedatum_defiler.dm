@@ -14,14 +14,14 @@
 	melee_damage = 26
 
 	// *** Speed *** //
-	speed = -0.9
+	speed = -1
 
 	// *** Plasma *** //
-	plasma_max = 550
-	plasma_gain = 30
+	plasma_max = 575
+	plasma_gain = 35
 
 	// *** Health *** //
-	max_health = 350
+	max_health = 375
 
 	// *** Evolution *** //
 	upgrade_threshold = TIER_THREE_THRESHOLD
@@ -35,7 +35,7 @@
 	caste_traits = list(TRAIT_CAN_VENTCRAWL)
 
 	// *** Defense *** //
-	soft_armor = list(MELEE = 40, BULLET = 40, LASER = 40, ENERGY = 40, BOMB = 0, BIO = 40, FIRE = 35, ACID = 40)
+	soft_armor = list(MELEE = 45, BULLET = 45, LASER = 45, ENERGY = 45, BOMB = 0, BIO = 40, FIRE = 40, ACID = 40)
 
 	// *** Minimap Icon *** //
 	minimap_icon = "defiler"
@@ -66,7 +66,7 @@
 	)
 
 	// *** Pheromones *** //
-	aura_strength = 2.1
+	aura_strength = 2.6 //It's .1 better than a carrier.
 
 /datum/xeno_caste/defiler/normal
 	upgrade = XENO_UPGRADE_NORMAL

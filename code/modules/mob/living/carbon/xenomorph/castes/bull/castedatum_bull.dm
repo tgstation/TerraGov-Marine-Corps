@@ -12,14 +12,14 @@
 	melee_damage = 21
 
 	// *** Speed *** //
-	speed = -0.7
+	speed = -0.8
 
 	// *** Plasma *** //
-	plasma_max = 260 //High plasma is need for charging
-	plasma_gain = 16
+	plasma_max = 270 //High plasma is need for charging
+	plasma_gain = 18
 
 	// *** Health *** //
-	max_health = 300
+	max_health = 325
 
 	// *** Evolution *** //
 	evolution_threshold = 225
@@ -39,7 +39,7 @@
 	caste_traits = null
 
 	// *** Defense *** //
-	soft_armor = list(MELEE = 35, BULLET = 45, LASER = 35, ENERGY = 35, BOMB = 0, BIO = 30, FIRE = 45, ACID = 30)
+	soft_armor = list(MELEE = 40, BULLET = 50, LASER = 40, ENERGY = 40, BOMB = 0, BIO = 35, FIRE = 50, ACID = 35)
 
 	// *** Minimap Icon *** //
 	minimap_icon = "bull"

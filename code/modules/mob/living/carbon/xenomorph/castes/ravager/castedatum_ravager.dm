@@ -13,16 +13,16 @@
 	attack_delay = 7
 
 	// *** Speed *** //
-	speed = -0.9
+	speed = -1
 
 	// *** Plasma *** //
-	plasma_max = 750
+	plasma_max = 800
 	plasma_gain = 15
-	plasma_regen_limit = 0.6
+	plasma_regen_limit = 0.5
 	plasma_icon_state = "fury"
 
 	// *** Health *** //
-	max_health = 330
+	max_health = 350
 
 	// *** Evolution *** //
 	upgrade_threshold = TIER_THREE_THRESHOLD
@@ -35,7 +35,7 @@
 	caste_traits = null
 
 	// *** Defense *** //
-	soft_armor = list(MELEE = 45, BULLET = 50, LASER = 45, ENERGY = 45, BOMB = 10, BIO = 40, FIRE = 65, ACID = 40)
+	soft_armor = list(MELEE = 50, BULLET = 55, LASER = 50, ENERGY = 50, BOMB = 10, BIO = 40, FIRE = 70, ACID = 40)
 
 	// *** Ranged Attack *** //
 	charge_type = CHARGE_TYPE_LARGE
