@@ -5075,9 +5075,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 9
 	},
-/obj/structure/platform_decoration{
-	dir = 8
-	},
 /turf/open/floor/mainship/mono,
 /area/mainship/living/tankerbunks)
 "oK" = (
@@ -7328,14 +7325,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/living/grunt_rnr)
-"vF" = (
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 8
-	},
-/obj/structure/platform_decoration,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/turf/open/floor/mainship/mono,
-/area/mainship/living/tankerbunks)
 "vG" = (
 /obj/machinery/disposal,
 /obj/structure/disposalpipe/trunk{
@@ -12412,16 +12401,6 @@
 	dir = 5
 	},
 /area/mainship/engineering/port_atmos)
-"Kp" = (
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 8
-	},
-/obj/structure/platform_decoration{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/turf/open/floor/mainship/mono,
-/area/mainship/living/tankerbunks)
 "Kr" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -12996,7 +12975,6 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/structure/platform_decoration,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/tankerbunks)
 "LZ" = (
@@ -26048,8 +26026,8 @@ pB
 mA
 ck
 LY
-Kp
-vF
+LY
+LY
 oJ
 Rl
 mA
