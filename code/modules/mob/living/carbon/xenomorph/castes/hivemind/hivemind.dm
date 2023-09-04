@@ -331,6 +331,7 @@
 		RegisterSignal(turfs, COMSIG_ATOM_ENTERED, PROC_REF(hivemind_proxy_alert))
 
 /obj/structure/xeno/hivemindcore/Destroy()
+	GLOB.hive_datums[hivenumber].hivemindcores -= src
 	var/mob/living/carbon/xenomorph/hivemind/our_parent = get_parent()
 	if(isnull(our_parent))
 		return ..()
@@ -342,7 +343,6 @@
 	our_parent.ghostize()
 	if(!QDELETED(our_parent))
 		qdel(our_parent)
-	GLOB.hive_datums[hivenumber].hivemindcores -= src
 	return ..()
 
 //hivemind cores
