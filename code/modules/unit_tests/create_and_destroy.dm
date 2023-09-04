@@ -14,10 +14,15 @@ GLOBAL_VAR_INIT(running_create_and_destroy, FALSE)
 		/mob/dview,
 		///Base type doesn't have a seed type
 		/obj/item/seeds,
+		///Base type doesn't have a list of stuff to spawn
 		/obj/effect/spawner/random_set,
+		///Base type doesn't have a list of weapons to spawn
 		/obj/effect/landmark/weapon_spawn,
+		///Base type that is missing a lot of stuff needed, let's just not
 		/mob/living/carbon/xenomorph,
+		///Base type doesn't have any variations in it's variation list
 		/turf/closed/wall/variable,
+		///Base type with no disk type
 		/obj/machinery/computer/nuke_disk_generator,
 	)
 	//This turf existing is an error in and of itself
@@ -31,8 +36,9 @@ GLOBAL_VAR_INIT(running_create_and_destroy, FALSE)
 	ignore += typesof(/obj/docking_port)
 	//Needs a linked mecha
 	ignore += typesof(/obj/effect/skyfall_landingzone)
-	//These have various issues (like needing a gun type to be inside them)
+	//These shouldn't be spawned directly, rather they should be spawned through their weapon item counterparts
 	ignore += typesof(/obj/machinery/deployable/mounted)
+	//Various temporary effects that aren't meant to be spawned
 	ignore += typesof(/obj/effect/overlay/temp)
 	ignore += typesof(/obj/effect/abstract/particle_holder)
 	ignore += typesof(/obj/effect/spawner/modularmap)
@@ -40,8 +46,9 @@ GLOBAL_VAR_INIT(running_create_and_destroy, FALSE)
 	ignore += typesof(/obj/effect/mapping_helpers)
 	ignore += typesof(/obj/effect/temp_visual)
 	ignore += typesof(/obj/effect/landmark)
-	ignore += typesof(/atom/movable/screen)
 	ignore += typesof(/obj/effect/baseturf_helper)
+	//Screen objects don't play nicely when spawned manually.
+	ignore += typesof(/atom/movable/screen)
 
 	var/list/cached_contents = spawn_at.contents.Copy()
 	var/original_turf_type = spawn_at.type
