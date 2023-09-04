@@ -52,7 +52,7 @@
 	full_name = "Recycle xenomorph"
 	description = "Recycles a fellow dead xenomorph"
 	keybind_signal = COMSIG_XENOABILITY_RECYCLE
-	hotkey_keys = list("`")
+	hotkey_keys = list("ShiftE")
 
 /datum/keybinding/xeno/place_acid_well
 	name = "place_acid_well"
@@ -121,7 +121,7 @@
 	full_name = "Ozelomelyn Sting"
 	description = "A channeled melee attack that injects the target with Ozelomelyn over a few seconds, purging chemicals and dealing minor toxin damage to a moderate cap while inside them."
 	keybind_signal = COMSIG_XENOABILITY_OZELOMELYN_STING
-	hotkey_keys = list("`")
+	hotkey_keys = list("ShiftE")
 
 /datum/keybinding/xeno/transfer_plasma
 	name = "transfer_plasma"
@@ -175,7 +175,7 @@
 	full_name = "Lay Egg"
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_LAY_EGG
-	hotkey_keys = list("\\")
+	hotkey_keys = list("ShiftQ")
 
 /datum/keybinding/xeno/call_of_the_burrowed
 	name = "call_of_the_burrowed"
@@ -550,7 +550,7 @@
 	full_name = "Hivelord: Build Tunnel"
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_BUILD_TUNNEL
-	hotkey_keys = list("\\")
+	hotkey_keys = list("ShiftQ")
 
 /datum/keybinding/xeno/place_jelly_pod
 	name = "place_jelly_pod"
