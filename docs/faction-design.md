@@ -46,6 +46,8 @@ Xenos can persistently identify themselves through a simple phrase or word, e.g.
 
 #### TG Marines
 
+Marines have a variety of different roles, broadly categorised as infantry, engineers, medical staff, command and pilots. The vast majority of infantry are Marines, who are aided by Squad Leaders who are able to use useful AOE buffs.
+
 **Strengths**
 - Better suited to defend areas thanks to barricades, razorfoam, automated turrets, machine gun emplacements, Close Air Support and Orbital Strikes. Their defensive structures especially are far superior to xeno equivalents.
 - Excels in corridors as it means less directions they can be attacked from, and a better chance of getting shots on-target.
@@ -54,17 +56,18 @@ Xenos can persistently identify themselves through a simple phrase or word, e.g.
 - Tadpoles and Drop Pods give marines a lot of powerful mobility. It can be used to sneakily reach strategic objectives, or to transport/evacuate/reinforce areas as needed.
 - Short-term resource management (i.e. ammo inside weaponry) for most marines isn't a concern as they only need 5-10 seconds to reload generally after every few minute or two in combat.
 	- Xenos on the other hand have to constantly manage their resources carefully to be effective (e.g. plasma for most, spiderlings for Widows, rage for Ravagers, blood for Gorgers, etc). This often leads to needing a 2:1 ratio or higher of downtime compared to combat.
-- Healing is generally quick, and can be interrupted to rejoin combat quickly.
-	- Xenos on the other hand have to rest for long periods to heal usually, and it takes a few seconds to unrest which means they can be attacked by marines before being able to get up.
+- Healing is generally quick, can be interrupted to rejoin combat quickly and can be done solo for most injuries.
+	- Xenos on the other hand have to rest for long periods to heal usually and it takes a few seconds to unrest which means they can be attacked by marines before being able to get up. It's also dependent on weeds being available (especially rest weeds) created by Drone tree castes and healing is slow without recovery pheromones.
 - Well-suited to siege areas thanks to Orbital Strikes, Close Air Support, explosives and incendiary weaponry.
 	- Xenos on the other hand have difficulty sieging unless there are large areas infront for Boiler's Bombard and Crusher's Charge.
 - Less dependent on unique roles staying alive. Only a few medics, engineers and a pilot are needed, the rest being marines can work just fine.
 	- Xenos on the other hand are dependent on a variety of castes staying alive. Drone tree for construction, Sentinel tree for ranged/sieging capabilities, Runner and Defender trees for close quarters combat, plus Rulers for pheromones and evolution.
 - Less dependent on individual player skill. As there are much more marines than xenos, unless they sabotage the group then skilled players can average out the less skilled ones.
 	- Xenos on the other hand depend on skilled players as there are much less of them, and it's especially needed for the Ruler roles.
-- Greater benefit for getting kills. Xeno corpses when recovered can be converted into req points for top-tier equipment, and killing particular castes can totally disrupt xenos' ability to function well as a team (see "dependence on unique roles staying alive").
+- Greater benefit for getting kills. Xeno corpses when recovered can be converted into req points for top-tier equipment, killing particular castes can totally disrupt xenos' ability to function well as a team (see "dependence on unique roles staying alive") and it neuters the xeno's snowball mechanic (maturity and evolution are reset).
 	- Xenos on the other hand gain psy points for purchasing beneficial structures and Primordial evolution, however xenos have to accumulate a lot more corpses for this.
-
+- Easier to respec if needed. Marines can pick up a new weapon, get equipment sent down or briefly head shipside to swap to a whole new set of equipment.
+	- Xenos have to devolve one or more tiers then wait to evolve one or more tiers, which takes a lot of time.
 
 #### Similarities
 
@@ -80,14 +83,21 @@ The round is divided into 2 phases: prep phase and combat phase. The swap of the
 
 #### Xenomorphs
 
+**Prep Phase**
 
-**Phases**
+Drone tree castes focus on construction, in particular mazing around disks (if the gamemode is Nuclear War), chokepoints, near Landing Zones and at their resin silo. Non-Drone tree castes focus on destroying obstacles that are beneficial to marines (e.g. windows) and ones which can hamper movement or mazing (e.g. window frames, boxes etc). Castes with the Corrosive Acid ability also melt walls to allow better hit-and-run attacks from multiple angles, and to prevent being cornered into a dead end.
 
-During the combat phase xenos’ main activity is combat. All roles should directly or indirectly be able to fight in this phase.
+**Combat Phase**
 
-During the prep phase there needs to be some form of entertainment (Survs are excluded as a bad idea). Temp fix: xenos may swap castes on a long timer.
+Everyone with the ability to emit pheromones does so, and the Queen selects leaders to emit their pheromones too. Most Drone tree castes keep the battlefield weeded and build wall cover as their first priorities, as well as keeping the team healed and plasma
 
 #### TG Marines
+
+**Prep Phase**
+
+Marines obtain all the equipment they're going to keep on their body, whatever else they're going to bring with them, and anything else that they want to bring on the Alamo or Tadpole.
+
+**Combat Phase**
 
 TBA
 
@@ -187,6 +197,7 @@ As there are a lot more players in this faction (around ~3x the amount of player
 
 #### Xenomorphs
 
+- During the combat phase all roles should directly or indirectly be able to fight in this phase.
 - During the prep phase there needs to be some form of entertainment (Survs are excluded as a bad idea). Temp fix: xenos may swap castes on a long timer.
 
 ### Respawning and progression
