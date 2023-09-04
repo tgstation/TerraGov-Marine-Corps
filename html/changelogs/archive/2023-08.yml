@@ -412,3 +412,11 @@
   novaepee, OrcaOrca the spriter:
   - rscadd: Add Hotaru armor, another Japanese-Inspired Armor! find it in the style
       line tab!
+2023-08-31:
+  Blundir:
+  - bugfix: fixed order action icon being missing
+  - imageadd: updated hunter invis, pounce, leader assign, vote action icons.
+  QualityVan:
+  - bugfix: Oze sting cooldown ending doesn't tell you that you can neuro sting again
+  Xander3359:
+  - rscadd: Bench press is a great way to lose weight
