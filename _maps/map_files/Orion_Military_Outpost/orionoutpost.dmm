@@ -220,6 +220,12 @@
 	dir = 1
 	},
 /area/orion_outpost/ground/outpostcent)
+"bq" = (
+/obj/machinery/landinglight/lz1{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/orion_outpost/surface/landing_pad_external)
 "br" = (
 /obj/structure/table/mainship,
 /obj/item/weapon/gun/pistol/vp78,
@@ -352,6 +358,12 @@
 	},
 /turf/open/floor/plating,
 /area/orion_outpost/surface/building/tadpolepad)
+"bW" = (
+/obj/machinery/landinglight/lz2{
+	dir = 8
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/orion_outpost/surface/landing_pad2_external)
 "bX" = (
 /obj/machinery/newscaster,
 /turf/closed/wall/mainship/gray,
@@ -983,6 +995,10 @@
 /obj/effect/ai_node,
 /turf/open/ground/grass/weedable/patch/grassyellow,
 /area/orion_outpost/ground/outposts)
+"fj" = (
+/obj/machinery/landinglight/lz1,
+/turf/open/floor/plating/ground/concrete,
+/area/orion_outpost/surface/landing_pad_external)
 "fm" = (
 /obj/structure/cable,
 /obj/machinery/power/apc/drained,
@@ -1309,6 +1325,12 @@
 "gT" = (
 /turf/closed/shuttle/dropship_regular/interior_wall,
 /area/orion_outpost/surface/building/crashedufo)
+"gU" = (
+/obj/machinery/landinglight/lz2{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/orion_outpost/surface/landing_pad2_external)
 "gX" = (
 /obj/structure/platform{
 	dir = 10
@@ -2663,6 +2685,7 @@
 	id = "TGMC_24";
 	name = "TGMC exit point 24"
 	},
+/obj/machinery/landinglight/lz2,
 /turf/open/floor/plating/ground/concrete,
 /area/orion_outpost/surface/landing_pad2_external)
 "nR" = (
@@ -4427,6 +4450,7 @@
 /area/orion_outpost/surface/building/dorms)
 "wH" = (
 /obj/effect/landmark/dropship_start_location,
+/obj/machinery/landinglight/lz1,
 /turf/open/floor/plating/ground/concrete,
 /area/orion_outpost/surface/landing_pad_external)
 "wI" = (
@@ -4567,6 +4591,12 @@
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/ground/grass/weedable/patch/grassyellow,
 /area/orion_outpost/ground/outpostsw)
+"xr" = (
+/obj/machinery/landinglight/lz2{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/orion_outpost/surface/landing_pad2_external)
 "xt" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/concrete,
@@ -5998,6 +6028,10 @@
 /obj/effect/ai_node,
 /turf/open/floor/mainship/mono,
 /area/orion_outpost/surface/building/canteen)
+"EJ" = (
+/obj/machinery/landinglight/lz2,
+/turf/open/floor/plating/ground/concrete,
+/area/orion_outpost/surface/landing_pad2_external)
 "EL" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave/darker,
@@ -6305,6 +6339,12 @@
 	dir = 6
 	},
 /area/orion_outpost/surface/landing_pad)
+"GB" = (
+/obj/machinery/landinglight/lz1{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/orion_outpost/surface/landing_pad_external)
 "GC" = (
 /obj/structure/prop/brokenvendor/brokenspecialistvendor/leader,
 /turf/open/floor/mainship/green{
@@ -7851,6 +7891,12 @@
 /obj/structure/cable,
 /turf/open/floor/prison,
 /area/orion_outpost/surface/building/engineering)
+"Om" = (
+/obj/machinery/landinglight/lz1{
+	dir = 8
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/orion_outpost/surface/landing_pad_external)
 "On" = (
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/plating/ground/concrete,
@@ -11602,27 +11648,27 @@ WO
 WO
 eW
 Bf
-eW
-eW
-eW
-eW
-eW
-eW
-eW
-eW
-eW
-eW
-eW
-eW
-eW
-eW
-eW
-eW
-eW
-eW
-eW
-eW
-eW
+xr
+xr
+xr
+xr
+xr
+xr
+xr
+xr
+xr
+xr
+xr
+xr
+xr
+xr
+xr
+xr
+xr
+xr
+xr
+xr
+xr
 Bf
 eW
 WO
@@ -11733,7 +11779,7 @@ Kp
 WO
 WO
 eW
-eW
+EJ
 Qv
 Gx
 Gx
@@ -11755,7 +11801,7 @@ Gx
 Gx
 Gx
 km
-eW
+gU
 eW
 WO
 rp
@@ -11865,7 +11911,7 @@ Kp
 WO
 WO
 eW
-eW
+EJ
 IH
 ft
 rS
@@ -11887,7 +11933,7 @@ ft
 rS
 ft
 jF
-eW
+gU
 eW
 WO
 rp
@@ -12019,7 +12065,7 @@ ft
 ft
 ft
 jF
-eW
+gU
 eW
 zI
 Df
@@ -12129,7 +12175,7 @@ Kp
 WO
 WO
 eW
-eW
+EJ
 IH
 ft
 ft
@@ -12151,7 +12197,7 @@ ft
 ft
 ft
 jF
-eW
+gU
 eW
 zI
 Df
@@ -12261,7 +12307,7 @@ Kp
 WO
 WO
 eW
-eW
+EJ
 IH
 ft
 ft
@@ -12283,7 +12329,7 @@ ft
 ft
 ft
 jF
-eW
+gU
 eW
 sK
 Ix
@@ -12393,7 +12439,7 @@ Kp
 WO
 WO
 eW
-eW
+EJ
 IH
 ft
 ft
@@ -12415,7 +12461,7 @@ ft
 ft
 ft
 jF
-eW
+gU
 eW
 Zj
 gA
@@ -12525,7 +12571,7 @@ Kp
 WO
 WO
 eW
-eW
+EJ
 IH
 ft
 ft
@@ -12547,7 +12593,7 @@ ft
 ft
 ft
 jF
-eW
+gU
 Zj
 sw
 tJ
@@ -12657,7 +12703,7 @@ Kp
 WO
 WO
 eW
-eW
+EJ
 IH
 ft
 ft
@@ -12679,7 +12725,7 @@ ft
 ft
 ft
 jF
-eW
+gU
 eW
 zI
 Df
@@ -12789,7 +12835,7 @@ Kp
 WO
 WO
 eW
-eW
+EJ
 IH
 ft
 ft
@@ -12811,7 +12857,7 @@ ft
 ft
 ft
 jF
-eW
+gU
 eW
 zI
 Df
@@ -12921,7 +12967,7 @@ Kp
 WO
 WO
 eW
-eW
+EJ
 IH
 ft
 rS
@@ -12943,7 +12989,7 @@ ft
 rS
 ft
 jF
-eW
+gU
 eW
 zI
 Df
@@ -13053,7 +13099,7 @@ Kp
 WO
 WO
 eW
-eW
+EJ
 zh
 fL
 fL
@@ -13075,7 +13121,7 @@ fL
 fL
 fL
 Hd
-eW
+gU
 eW
 WO
 rp
@@ -13135,27 +13181,27 @@ UR
 UR
 NN
 od
-NN
-NN
-NN
-NN
-NN
-NN
-NN
-NN
-NN
-NN
-NN
-NN
-NN
-NN
-NN
-NN
-NN
-NN
-NN
-NN
-NN
+GB
+GB
+GB
+GB
+GB
+GB
+GB
+GB
+GB
+GB
+GB
+GB
+GB
+GB
+GB
+GB
+GB
+GB
+GB
+GB
+GB
 od
 NN
 UR
@@ -13186,27 +13232,27 @@ WO
 WO
 RY
 Bf
-eW
-eW
-eW
-eW
-eW
-eW
-eW
-eW
-eW
-eW
-eW
-eW
-eW
-eW
-eW
-eW
-eW
-eW
-eW
-eW
-eW
+bW
+bW
+bW
+bW
+bW
+bW
+bW
+bW
+bW
+bW
+bW
+bW
+bW
+bW
+bW
+bW
+bW
+bW
+bW
+bW
+bW
 Bf
 eW
 WO
@@ -13266,7 +13312,7 @@ UR
 UR
 UR
 NN
-NN
+fj
 OR
 bl
 bl
@@ -13288,7 +13334,7 @@ bl
 bl
 bl
 RC
-NN
+bq
 NN
 UR
 Gs
@@ -13398,7 +13444,7 @@ UR
 UR
 UR
 NN
-NN
+fj
 GQ
 gg
 SA
@@ -13420,7 +13466,7 @@ gg
 SA
 gg
 OK
-NN
+bq
 NN
 UR
 UR
@@ -13530,7 +13576,7 @@ UR
 UR
 UR
 NN
-NN
+fj
 GQ
 gg
 gg
@@ -13552,7 +13598,7 @@ gg
 gg
 gg
 OK
-NN
+bq
 NN
 UR
 UR
@@ -13662,7 +13708,7 @@ Cu
 Cu
 Cu
 NN
-NN
+fj
 GQ
 gg
 gg
@@ -13684,7 +13730,7 @@ gg
 gg
 gg
 OK
-NN
+bq
 NN
 UR
 UR
@@ -13794,7 +13840,7 @@ BD
 BD
 BD
 tp
-NN
+fj
 GQ
 gg
 gg
@@ -13816,7 +13862,7 @@ gg
 gg
 gg
 OK
-NN
+bq
 WD
 UR
 EL
@@ -13948,7 +13994,7 @@ gg
 gg
 gg
 OK
-NN
+bq
 NN
 UR
 UR
@@ -14058,7 +14104,7 @@ UR
 UR
 UR
 BD
-NN
+fj
 GQ
 gg
 gg
@@ -14080,7 +14126,7 @@ gg
 gg
 gg
 OK
-NN
+bq
 NN
 UR
 UR
@@ -14190,7 +14236,7 @@ Gs
 UR
 UR
 BD
-NN
+fj
 GQ
 gg
 gg
@@ -14212,7 +14258,7 @@ gg
 gg
 gg
 OK
-NN
+bq
 NN
 UR
 Gs
@@ -14322,7 +14368,7 @@ Gs
 Gs
 UR
 BD
-NN
+fj
 GQ
 gg
 gg
@@ -14344,7 +14390,7 @@ gg
 gg
 gg
 OK
-NN
+bq
 NN
 UR
 Gs
@@ -14454,7 +14500,7 @@ Gs
 Gs
 UR
 BD
-NN
+fj
 GQ
 gg
 SA
@@ -14476,7 +14522,7 @@ gg
 SA
 gg
 OK
-NN
+bq
 NN
 UR
 Gs
@@ -14586,7 +14632,7 @@ Gs
 Gs
 RJ
 BD
-NN
+fj
 Vk
 ZS
 ZS
@@ -14608,7 +14654,7 @@ ZS
 ZS
 ZS
 GA
-NN
+bq
 NN
 UR
 Gs
@@ -14719,27 +14765,27 @@ Gs
 SF
 BD
 od
-NN
-NN
-NN
-NN
-NN
-NN
-NN
-NN
-NN
-NN
-NN
-NN
-NN
-NN
-NN
-NN
-NN
-NN
-NN
-NN
-NN
+Om
+Om
+Om
+Om
+Om
+Om
+Om
+Om
+Om
+Om
+Om
+Om
+Om
+Om
+Om
+Om
+Om
+Om
+Om
+Om
+Om
 od
 NN
 UR
