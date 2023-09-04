@@ -45,9 +45,9 @@
 	callback_fire = _callback_fire
 
 /datum/component/automatedfire/autofire/Destroy(force, silent)
-	QDEL_NULL(callback_fire)
-	QDEL_NULL(callback_reset_fire)
-	QDEL_NULL(callback_bursting)
+	callback_fire = null
+	callback_reset_fire = null
+	callback_bursting = null
 	return ..()
 
 ///Setter for fire mode
