@@ -15,6 +15,7 @@
 		return FALSE
 
 	var/mob/living/carbon/xenomorph/facehugger/new_hugger = new(get_turf(src))
+	new_hugger.transfer_to_hive(hivenumber)
 	huggers--
 	new_hugger.transfer_mob(user)
 	return TRUE

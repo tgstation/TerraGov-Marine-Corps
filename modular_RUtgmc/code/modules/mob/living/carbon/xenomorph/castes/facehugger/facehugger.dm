@@ -33,9 +33,6 @@
 // ***************************************
 // *********** Mob overrides
 // ***************************************
-/mob/living/carbon/xenomorph/facehugger/Initialize(mapload)
-	. = ..()
-	GLOB.hive_datums[hivenumber].facehuggers += src
 
 /mob/living/carbon/xenomorph/facehugger/handle_living_health_updates()
 	. = ..()

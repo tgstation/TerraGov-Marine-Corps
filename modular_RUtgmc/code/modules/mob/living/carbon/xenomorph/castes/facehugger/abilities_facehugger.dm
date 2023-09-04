@@ -15,7 +15,7 @@
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_POUNCE,
 	)
 	use_state_flags = XACT_USE_BUCKLED
-	///How far can we pounce.
+	///How far can we leap.
 	var/range = 6
 	///For how long will we stun the victim
 	var/victim_paralyze_time = 1 SECONDS
@@ -55,6 +55,7 @@
 	caster.visible_message(span_danger("[caster] leaps on [M]!"),
 					span_xenodanger("We leap on [M]!"), null, 5)
 
+	caster.forceMove(get_turf(M))
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		if(get_dist(start_turf, H) <= HUG_RANGE) //Check whether we hugged the target or just knocked it down

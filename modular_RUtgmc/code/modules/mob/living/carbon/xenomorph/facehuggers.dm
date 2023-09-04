@@ -1,6 +1,7 @@
 ///Time it takes to impregnate someone
 #define IMPREGNATION_TIME 10 SECONDS
 
+//TODO: Remove the dependence of playable huggers on old-AI huggers
 /obj/item/clothing/mask/facehugger/Attach(mob/living/carbon/M, can_catch = TRUE)
 
 	set_throwing(FALSE)

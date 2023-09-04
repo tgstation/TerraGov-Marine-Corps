@@ -30,6 +30,7 @@
 	flick("egg opening", src)
 
 	var/mob/living/carbon/xenomorph/facehugger/new_hugger = new(loc)
+	new_hugger.transfer_to_hive(hivenumber)
 	hugger_type = null
 	addtimer(CALLBACK(new_hugger, TYPE_PROC_REF(/mob/living, transfer_mob), user), 1 SECONDS)
 	return TRUE
