@@ -3,6 +3,72 @@
 /turf/open/space/basic,
 /area/space)
 "d" = (
+/obj/structure/barricade/plasteel{
+	dir = 8
+	},
+/obj/structure/barricade/plasteel,
+/obj/structure/barricade/plasteel{
+	dir = 1
+	},
+/turf/open/floor/mainship/mono,
+/area/shuttle/minidropship)
+"p" = (
+/obj/structure/barricade/plasteel{
+	dir = 4
+	},
+/obj/structure/barricade/plasteel{
+	dir = 1
+	},
+/obj/structure/barricade/plasteel,
+/turf/open/floor/mainship/mono,
+/area/shuttle/minidropship)
+"q" = (
+/obj/structure/window/framed/mainship/canterbury/dropship/reinforced,
+/turf/open/floor/mainship/mono,
+/area/shuttle/minidropship)
+"r" = (
+/obj/structure/dropship_piece/tadpole/engine{
+	dir = 1;
+	pixel_x = 23;
+	pixel_y = -14
+	},
+/obj/structure/barricade/plasteel{
+	dir = 4
+	},
+/obj/machinery/light,
+/turf/open/floor/mainship/mono,
+/area/shuttle/minidropship)
+"s" = (
+/obj/structure/dropship_piece/tadpole/rearleft{
+	dir = 1
+	},
+/turf/template_noop,
+/area/shuttle/minidropship)
+"v" = (
+/obj/structure/barricade/plasteel{
+	dir = 8
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/mainship/mono,
+/area/shuttle/minidropship)
+"x" = (
+/obj/structure/dropship_piece/tadpole/rearright{
+	dir = 1
+	},
+/turf/template_noop,
+/area/shuttle/minidropship)
+"y" = (
+/turf/closed/wall/mainship/outer/canterbury,
+/area/space)
+"A" = (
+/obj/effect/attach_point/crew_weapon/minidropship{
+	pixel_x = -21
+	},
+/turf/open/floor/mainship/mono,
+/area/shuttle/minidropship)
+"B" = (
 /obj/structure/dropship_piece/two/weapon/leftleft{
 	dir = 1;
 	pixel_y = 32
@@ -18,43 +84,65 @@
 	dir = 1
 	},
 /area/shuttle/minidropship)
-"p" = (
+"E" = (
+/obj/docking_port/mobile/marine_dropship/minidropship,
+/obj/structure/bed/chair/dropship/pilot{
+	dir = 1
+	},
+/turf/open/floor/mainship/mono,
+/area/shuttle/minidropship)
+"H" = (
+/obj/structure/dropship_piece/tadpole/engine{
+	dir = 1;
+	pixel_x = -24;
+	pixel_y = -14
+	},
 /obj/structure/barricade/plasteel{
 	dir = 8
 	},
-/obj/structure/barricade/plasteel,
-/obj/structure/barricade/plasteel{
-	dir = 1
-	},
+/obj/machinery/light,
 /turf/open/floor/mainship/mono,
 /area/shuttle/minidropship)
-"q" = (
-/obj/machinery/computer/camera_advanced/shuttle_docker/minidropship,
-/turf/open/floor/plating/plating_catwalk,
-/area/shuttle/minidropship)
-"r" = (
-/obj/structure/dropship_piece/tadpole/rearright{
-	dir = 1
-	},
-/turf/template_noop,
-/area/shuttle/minidropship)
-"s" = (
+"I" = (
 /obj/structure/barricade/plasteel{
 	dir = 4
 	},
-/obj/structure/barricade/plasteel{
+/obj/machinery/light{
 	dir = 1
 	},
-/obj/structure/barricade/plasteel,
 /turf/open/floor/mainship/mono,
 /area/shuttle/minidropship)
-"v" = (
-/obj/effect/attach_point/crew_weapon/minidropship{
-	pixel_x = -21
+"N" = (
+/obj/machinery/telecomms/relay/preset/telecomms/onboard,
+/turf/closed/wall/mainship/outer/canterbury,
+/area/space)
+"Q" = (
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 1
 	},
 /turf/open/floor/mainship/mono,
 /area/shuttle/minidropship)
-"x" = (
+"R" = (
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 1
+	},
+/obj/machinery/vending/nanomed/tadpolemed{
+	dir = 4;
+	pixel_x = -15
+	},
+/turf/open/floor/mainship/mono,
+/area/shuttle/minidropship)
+"T" = (
+/obj/effect/attach_point/crew_weapon/minidropship{
+	pixel_x = 23
+	},
+/turf/open/floor/mainship/mono,
+/area/shuttle/minidropship)
+"U" = (
+/obj/machinery/computer/camera_advanced/shuttle_docker/minidropship,
+/turf/open/floor/plating/plating_catwalk,
+/area/shuttle/minidropship)
+"V" = (
 /obj/structure/dropship_piece/two/weapon/rightright{
 	dir = 1;
 	pixel_y = 32
@@ -70,96 +158,8 @@
 	dir = 1
 	},
 /area/shuttle/minidropship)
-"y" = (
-/turf/closed/wall/mainship/outer/canterbury,
-/area/space)
-"A" = (
-/obj/structure/dropship_piece/tadpole/engine{
-	dir = 1;
-	pixel_x = -24;
-	pixel_y = -14
-	},
-/obj/structure/barricade/plasteel{
-	dir = 8
-	},
-/obj/machinery/light,
-/turf/open/floor/mainship/mono,
-/area/shuttle/minidropship)
-"B" = (
-/obj/structure/barricade/plasteel{
-	dir = 8
-	},
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/floor/mainship/mono,
-/area/shuttle/minidropship)
-"E" = (
-/obj/docking_port/mobile/marine_dropship/minidropship,
-/obj/structure/bed/chair/dropship/passenger{
-	dir = 1
-	},
-/turf/open/floor/mainship/mono,
-/area/shuttle/minidropship)
-"H" = (
-/obj/structure/dropship_piece/tadpole/rearleft{
-	dir = 1
-	},
-/turf/template_noop,
-/area/shuttle/minidropship)
-"I" = (
-/obj/effect/attach_point/crew_weapon/minidropship{
-	pixel_x = 23
-	},
-/turf/open/floor/mainship/mono,
-/area/shuttle/minidropship)
-"N" = (
-/obj/structure/window/framed/mainship/canterbury/dropship/reinforced,
-/turf/open/floor/mainship/mono,
-/area/shuttle/minidropship)
-"Q" = (
-/obj/structure/bed/chair/dropship/passenger{
-	dir = 1
-	},
-/obj/machinery/vending/nanomed/tadpolemed{
-	dir = 4;
-	pixel_x = -15
-	},
-/turf/open/floor/mainship/mono,
-/area/space)
-"R" = (
-/obj/machinery/telecomms/relay/preset/telecomms/onboard,
-/turf/closed/wall/mainship/outer/canterbury,
-/area/space)
-"T" = (
-/obj/structure/dropship_piece/tadpole/engine{
-	dir = 1;
-	pixel_x = 23;
-	pixel_y = -14
-	},
-/obj/structure/barricade/plasteel{
-	dir = 4
-	},
-/obj/machinery/light,
-/turf/open/floor/mainship/mono,
-/area/shuttle/minidropship)
-"U" = (
-/obj/docking_port/mobile/marine_dropship/minidropship,
-/obj/structure/bed/chair/dropship/pilot{
-	dir = 1
-	},
-/turf/open/floor/mainship/mono,
-/area/shuttle/minidropship)
-"V" = (
-/obj/structure/barricade/plasteel{
-	dir = 4
-	},
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/floor/mainship/mono,
-/area/shuttle/minidropship)
 "Z" = (
+/obj/docking_port/mobile/marine_dropship/minidropship,
 /obj/structure/bed/chair/dropship/passenger{
 	dir = 1
 	},
@@ -170,8 +170,7 @@
 a
 a
 a
-p
-a
+d
 a
 a
 a
@@ -180,36 +179,33 @@ a
 "}
 (2,1,1) = {"
 a
-d
 B
 v
 A
 H
-a
+s
 a
 a
 y
 "}
 (3,1,1) = {"
-N
 q
 U
 E
 Z
 Q
 R
-y
+N
 y
 y
 "}
 (4,1,1) = {"
 a
-x
 V
 I
 T
 r
-a
+x
 a
 a
 y
@@ -218,8 +214,7 @@ y
 a
 a
 a
-s
-a
+p
 a
 a
 a
