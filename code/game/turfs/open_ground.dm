@@ -23,10 +23,13 @@
 	return
 
 /turf/open/ground/grass/beach
-	icon_state = "grassbeach"
+	icon_state = "grassbeach_edge"
 
 /turf/open/ground/grass/beach/corner
-	icon_state = "gbcorner"
+	icon_state = "grassbeach_corner"
+
+/turf/open/ground/grass/beach/corner2
+	icon_state = "grassbeach_corner2"
 
 /turf/open/ground/coast
 	name = "coastline"

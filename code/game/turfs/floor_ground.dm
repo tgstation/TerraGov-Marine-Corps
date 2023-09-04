@@ -62,7 +62,6 @@
 	shoefootstep = FOOTSTEP_SAND
 	barefootstep = FOOTSTEP_SAND
 	mediumxenofootstep = FOOTSTEP_SAND
-	minimap_color = MINIMAP_DIRT
 	smoothing_groups = list(SMOOTH_GROUP_JUNGLE_FLOOR)
 
 /turf/open/floor/plating/ground/dirtgrassborder/corner
@@ -74,7 +73,6 @@
 /turf/open/floor/plating/ground/dirt2
 	name = "dirt"
 	icon_state = "dirt"
-	minimap_color = MINIMAP_DIRT
 
 /turf/open/floor/plating/ground/dirtgrassborder2
 	name = "grass"
@@ -82,7 +80,6 @@
 	shoefootstep = FOOTSTEP_SAND
 	barefootstep = FOOTSTEP_SAND
 	mediumxenofootstep = FOOTSTEP_SAND
-	minimap_color = MINIMAP_DIRT
 	smoothing_groups = list(SMOOTH_GROUP_JUNGLE_FLOOR)
 
 /turf/open/floor/plating/ground/dirtgrassborder2/corner
@@ -107,7 +104,7 @@
 		SMOOTH_GROUP_WINDOW_FRAME,
 	)
 
-/turf/open/floor/plating/ground/dirtgrassborder/autosmooth //jungle to sand
+/turf/open/floor/plating/ground/dirtgrassborder/autosmooth
 	icon = 'icons/turf/floors/jungle-border.dmi'
 	icon_state = "jungle-border-icon"
 	base_icon_state = "jungle-border"

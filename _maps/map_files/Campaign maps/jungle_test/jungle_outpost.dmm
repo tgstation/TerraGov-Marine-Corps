@@ -55,7 +55,7 @@
 /area/campaign/jungle_outpost/ground/jungle1)
 "au" = (
 /obj/structure/flora/tree/jungle,
-/turf/open/liquid/water/river/autosmooth,
+/turf/open/liquid/water/river,
 /area/campaign/jungle_outpost/ground/jungle1)
 "aD" = (
 /obj/machinery/vending/coffee,
@@ -66,6 +66,10 @@
 /turf/open/floor/plating/ground/dirtgrassborder2/corner2{
 	dir = 8
 	},
+/area/campaign/jungle_outpost/ground/jungle1)
+"aG" = (
+/obj/structure/flora/pottedplant/ten,
+/turf/open/floor/wood/variable/wide,
 /area/campaign/jungle_outpost/ground/jungle1)
 "aI" = (
 /obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
@@ -85,8 +89,8 @@
 "aQ" = (
 /obj/structure/catwalk,
 /obj/structure/platform,
-/turf/open/ground/coast{
-	dir = 10
+/turf/open/ground/grass/beach/corner2{
+	dir = 4
 	},
 /area/campaign/jungle_outpost/ground/jungle1)
 "aS" = (
@@ -99,6 +103,10 @@
 /turf/open/floor/tile/brown{
 	dir = 8
 	},
+/area/campaign/jungle_outpost/ground/jungle1)
+"aY" = (
+/obj/structure/flora/tree/jungle,
+/turf/open/ground/grass/beach/corner2,
 /area/campaign/jungle_outpost/ground/jungle1)
 "aZ" = (
 /turf/open/floor/tile/blue/taupeblue{
@@ -227,6 +235,12 @@
 	},
 /turf/open/floor/wood,
 /area/campaign/jungle_outpost/ground/jungle1)
+"cw" = (
+/obj/structure/flora/grass/tallgrass/autosmooth,
+/turf/open/ground/grass/beach{
+	dir = 4
+	},
+/area/campaign/jungle_outpost/ground/jungle1)
 "cx" = (
 /obj/machinery/door/window/secure{
 	dir = 2
@@ -293,6 +307,10 @@
 /area/campaign/jungle_outpost/ground/jungle1)
 "dm" = (
 /turf/open/floor/plating,
+/area/campaign/jungle_outpost/ground/jungle1)
+"do" = (
+/obj/structure/flora/jungle/grass/thin,
+/turf/open/liquid/water,
 /area/campaign/jungle_outpost/ground/jungle1)
 "dq" = (
 /obj/structure/cargo_container/red{
@@ -410,6 +428,10 @@
 	},
 /turf/open/floor/freezer,
 /area/campaign/jungle_outpost/ground/jungle1)
+"ex" = (
+/obj/structure/rock/variable/jungle/big,
+/turf/open/floor/plating/ground/dirtgrassborder2/corner,
+/area/campaign/jungle_outpost/ground/jungle1)
 "ey" = (
 /obj/structure/stairs/seamless/edge_vert,
 /turf/open/ground/grass/weedable,
@@ -419,8 +441,14 @@
 /obj/structure/platform{
 	dir = 4
 	},
-/turf/open/ground/coast{
+/turf/open/ground/grass/beach{
 	dir = 8
+	},
+/area/campaign/jungle_outpost/ground/jungle1)
+"eD" = (
+/obj/structure/rock/variable/jungle/big,
+/turf/open/floor/plating/ground/dirtgrassborder2/corner2{
+	dir = 4
 	},
 /area/campaign/jungle_outpost/ground/jungle1)
 "eG" = (
@@ -478,13 +506,19 @@
 /area/campaign/jungle_outpost/ground/jungle1)
 "fb" = (
 /obj/structure/flora/jungle/grass,
-/turf/open/liquid/water/river/autosmooth,
+/turf/open/liquid/water/river,
 /area/campaign/jungle_outpost/ground/jungle1)
 "fd" = (
 /obj/structure/table/woodentable,
 /obj/item/tool/lighter/zippo,
 /obj/item/storage/fancy/cigarettes/lady_finger,
 /turf/open/floor/wood,
+/area/campaign/jungle_outpost/ground/jungle1)
+"ff" = (
+/obj/structure/flora/jungle/grass/thin,
+/turf/open/ground/grass/beach/corner2{
+	dir = 4
+	},
 /area/campaign/jungle_outpost/ground/jungle1)
 "fi" = (
 /obj/effect/spawner/random/misc/structure/closet/electrical,
@@ -520,6 +554,12 @@
 "fy" = (
 /obj/machinery/hydroponics,
 /turf/open/floor/tile/hydro,
+/area/campaign/jungle_outpost/ground/jungle1)
+"fA" = (
+/obj/structure/flora/jungle/grass/thin,
+/turf/open/ground/grass/beach{
+	dir = 8
+	},
 /area/campaign/jungle_outpost/ground/jungle1)
 "fB" = (
 /obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
@@ -604,7 +644,7 @@
 /area/campaign/jungle_outpost/ground/jungle1)
 "gr" = (
 /obj/structure/flora/grass/tallgrass/autosmooth,
-/turf/open/liquid/water/river/autosmooth,
+/turf/open/liquid/water/river,
 /area/campaign/jungle_outpost/ground/jungle1)
 "gs" = (
 /obj/structure/platform{
@@ -670,6 +710,12 @@
 /obj/structure/table,
 /turf/open/floor/tile/hydro,
 /area/campaign/jungle_outpost/ground/jungle1)
+"gM" = (
+/obj/structure/rock/variable/jungle,
+/turf/open/ground/grass/beach{
+	dir = 8
+	},
+/area/campaign/jungle_outpost/ground/jungle1)
 "gN" = (
 /obj/machinery/door/airlock/mainship/command/free_access,
 /turf/open/floor/wood/alt_four,
@@ -689,6 +735,12 @@
 	dir = 1
 	},
 /area/campaign/jungle_outpost/ground/jungle1)
+"gZ" = (
+/obj/structure/rock/variable/jungle,
+/turf/open/ground/grass/beach/corner2{
+	dir = 8
+	},
+/area/campaign/jungle_outpost/ground/jungle1)
 "ha" = (
 /turf/open/floor/tile/blue/taupeblue{
 	dir = 6
@@ -704,6 +756,12 @@
 /obj/effect/spawner/random/misc/structure/supplycrate/normalweighted,
 /turf/open/floor/tile/purple/whitepurple{
 	dir = 6
+	},
+/area/campaign/jungle_outpost/ground/jungle1)
+"hd" = (
+/obj/structure/flora/jungle/bush,
+/turf/open/ground/grass/beach{
+	dir = 4
 	},
 /area/campaign/jungle_outpost/ground/jungle1)
 "hj" = (
@@ -809,13 +867,17 @@
 	},
 /turf/open/floor/plating/ground/concrete,
 /area/campaign/jungle_outpost/ground/jungle1)
+"hY" = (
+/obj/structure/flora/jungle/large_bush,
+/turf/open/ground/grass/beach/corner2,
+/area/campaign/jungle_outpost/ground/jungle1)
 "id" = (
 /obj/structure/catwalk,
 /obj/structure/platform{
 	dir = 1
 	},
-/turf/open/ground/coast{
-	dir = 10
+/turf/open/ground/grass/beach/corner2{
+	dir = 4
 	},
 /area/campaign/jungle_outpost/ground/jungle1)
 "ih" = (
@@ -825,8 +887,8 @@
 /turf/open/floor/tile/white,
 /area/campaign/jungle_outpost/ground/jungle1)
 "im" = (
-/turf/open/ground/coast{
-	dir = 9
+/turf/open/ground/grass/beach/corner2{
+	dir = 1
 	},
 /area/campaign/jungle_outpost/ground/jungle1)
 "in" = (
@@ -880,6 +942,10 @@
 "iH" = (
 /turf/open/floor/tile/dark,
 /area/campaign/jungle_outpost/ground/jungle1)
+"iL" = (
+/obj/structure/flora/grass/tallgrass/autosmooth,
+/turf/open/ground/grass/beach,
+/area/campaign/jungle_outpost/ground/jungle1)
 "iM" = (
 /obj/structure/flora/jungle/grass/thin,
 /turf/open/floor/plating/ground/dirtgrassborder2/corner{
@@ -928,13 +994,17 @@
 "jd" = (
 /turf/open/floor/tile/barber,
 /area/campaign/jungle_outpost/ground/jungle1)
+"jg" = (
+/obj/structure/flora/jungle/large_bush,
+/turf/open/ground/grass/beach,
+/area/campaign/jungle_outpost/ground/jungle1)
 "jk" = (
 /obj/structure/catwalk,
 /obj/structure/platform{
 	dir = 8
 	},
-/turf/open/ground/coast{
-	dir = 10
+/turf/open/ground/grass/beach/corner2{
+	dir = 4
 	},
 /area/campaign/jungle_outpost/ground/jungle1)
 "jq" = (
@@ -979,6 +1049,12 @@
 "jI" = (
 /turf/open/floor/tile/brown,
 /area/campaign/jungle_outpost/ground/jungle1)
+"jK" = (
+/obj/structure/rock/variable/jungle,
+/turf/open/ground/grass/beach{
+	dir = 4
+	},
+/area/campaign/jungle_outpost/ground/jungle1)
 "jL" = (
 /obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /obj/structure/platform{
@@ -1010,7 +1086,7 @@
 	},
 /area/campaign/jungle_outpost/ground/jungle1)
 "jV" = (
-/turf/open/ground/coast/corner{
+/turf/open/ground/grass/beach/corner{
 	dir = 4
 	},
 /area/campaign/jungle_outpost/ground/jungle1)
@@ -1077,11 +1153,21 @@
 	dir = 6
 	},
 /area/campaign/jungle_outpost/ground/jungle1)
+"kI" = (
+/obj/structure/mine_structure/wooden/support_wall,
+/turf/open/floor/plating/ground/dirt2,
+/area/campaign/jungle_outpost/ground/jungle1)
 "kK" = (
 /turf/open/floor/tile/blue/taupebluecorner,
 /area/campaign/jungle_outpost/ground/jungle1)
 "kM" = (
 /turf/open/floor/tile/neutral,
+/area/campaign/jungle_outpost/ground/jungle1)
+"kN" = (
+/obj/structure/flora/grass/tallgrass/autosmooth,
+/turf/open/ground/grass/beach/corner2{
+	dir = 1
+	},
 /area/campaign/jungle_outpost/ground/jungle1)
 "kP" = (
 /obj/structure/platform_decoration{
@@ -1100,6 +1186,10 @@
 	dir = 1
 	},
 /turf/open/floor/tile/white,
+/area/campaign/jungle_outpost/ground/jungle1)
+"kZ" = (
+/obj/structure/flora/jungle/bush,
+/turf/open/ground/grass/beach,
 /area/campaign/jungle_outpost/ground/jungle1)
 "la" = (
 /obj/structure/bookcase,
@@ -1170,7 +1260,7 @@
 /obj/structure/platform{
 	dir = 4
 	},
-/turf/open/ground/coast/corner,
+/turf/open/ground/grass/beach/corner,
 /area/campaign/jungle_outpost/ground/jungle1)
 "lC" = (
 /turf/open/floor/tile/neutral{
@@ -1194,7 +1284,7 @@
 "lG" = (
 /obj/structure/catwalk,
 /obj/structure/platform,
-/turf/open/ground/coast/corner{
+/turf/open/ground/grass/beach/corner{
 	dir = 4
 	},
 /area/campaign/jungle_outpost/ground/jungle1)
@@ -1233,6 +1323,12 @@
 /obj/structure/rock/variable/jungle_large,
 /turf/open/liquid/water/river/autosmooth,
 /area/campaign/jungle_outpost/ground/jungle1)
+"mj" = (
+/obj/structure/flora/jungle/grass,
+/turf/open/floor/plating/ground/dirtgrassborder2{
+	dir = 4
+	},
+/area/campaign/jungle_outpost/ground/jungle1)
 "mq" = (
 /obj/structure/cargo_container/horizontal{
 	dir = 2
@@ -1251,12 +1347,24 @@
 /obj/effect/spawner/random/misc/structure/closet/welding,
 /turf/open/floor/tile/dark,
 /area/campaign/jungle_outpost/ground/jungle1)
+"mH" = (
+/obj/structure/flora/jungle/large_bush,
+/turf/open/ground/grass/beach/corner2{
+	dir = 1
+	},
+/area/campaign/jungle_outpost/ground/jungle1)
 "mI" = (
 /turf/open/floor/plating/dmg1,
 /area/campaign/jungle_outpost/ground/jungle1)
 "mJ" = (
 /obj/effect/spawner/random/misc/structure/girder,
 /turf/open/floor/plating,
+/area/campaign/jungle_outpost/ground/jungle1)
+"mP" = (
+/obj/structure/cargo_container/red{
+	dir = 4
+	},
+/turf/open/floor,
 /area/campaign/jungle_outpost/ground/jungle1)
 "mS" = (
 /obj/structure/closet/secure_closet/hydroponics,
@@ -1321,11 +1429,23 @@
 	dir = 8
 	},
 /area/campaign/jungle_outpost/ground/jungle1)
+"nv" = (
+/obj/structure/closet/cabinet,
+/obj/item/weapon/claymore/mercsword/machete/alt,
+/obj/item/weapon/karambit/fade,
+/turf/open/floor/wood/variable/wide,
+/area/campaign/jungle_outpost/ground/jungle1)
 "nB" = (
 /obj/structure/table/reinforced,
 /obj/machinery/computer/atmos_alert,
 /turf/open/floor/tile/blue/taupeblue{
 	dir = 10
+	},
+/area/campaign/jungle_outpost/ground/jungle1)
+"nC" = (
+/obj/structure/flora/jungle/grass/thin,
+/turf/open/ground/grass/beach/corner2{
+	dir = 8
 	},
 /area/campaign/jungle_outpost/ground/jungle1)
 "nE" = (
@@ -1368,11 +1488,9 @@
 /obj/structure/bed/chair/sofa/right,
 /turf/open/floor/wood/alt_four,
 /area/campaign/jungle_outpost/ground/jungle1)
-"nR" = (
-/obj/structure/stairs/seamless/platform{
-	dir = 1
-	},
-/turf/open/ground/grass/weedable,
+"nU" = (
+/obj/structure/cargo_container/green,
+/turf/open/floor,
 /area/campaign/jungle_outpost/ground/jungle1)
 "nX" = (
 /obj/structure/table/reinforced,
@@ -1395,11 +1513,19 @@
 /obj/structure/table/fancywoodentable,
 /turf/open/floor/carpet,
 /area/campaign/jungle_outpost/ground/jungle1)
+"of" = (
+/obj/structure/mine_structure/wooden/support_wall/beams,
+/turf/open/floor/plating/ground/dirt,
+/area/campaign/jungle_outpost/ground/jungle1)
 "og" = (
 /obj/machinery/vending/medical,
 /turf/open/floor/tile/blue/whiteblue{
 	dir = 8
 	},
+/area/campaign/jungle_outpost/ground/jungle1)
+"oj" = (
+/obj/structure/reagent_dispensers/watertank,
+/turf/open/floor,
 /area/campaign/jungle_outpost/ground/jungle1)
 "oo" = (
 /turf/open/floor/tile/red/full,
@@ -1493,6 +1619,10 @@
 	},
 /turf/open/floor/plating/ground/concrete,
 /area/campaign/jungle_outpost/ground/jungle1)
+"pp" = (
+/obj/structure/flora/grass/tallgrass/autosmooth,
+/turf/open/ground/grass/beach/corner2,
+/area/campaign/jungle_outpost/ground/jungle1)
 "pq" = (
 /obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /obj/structure/platform{
@@ -1556,6 +1686,11 @@
 /obj/item/book/manual/atmospipes,
 /turf/open/floor/tile/dark,
 /area/campaign/jungle_outpost/ground/jungle1)
+"pQ" = (
+/obj/structure/catwalk,
+/obj/structure/platform,
+/turf/open/ground/grass/beach/corner2,
+/area/campaign/jungle_outpost/ground/jungle1)
 "pT" = (
 /obj/structure/table/reinforced,
 /obj/machinery/computer/skills,
@@ -1573,6 +1708,10 @@
 /obj/structure/window/framed/colony/reinforced,
 /turf/open/floor/tile/white,
 /area/campaign/jungle_outpost/ground/jungle1)
+"qe" = (
+/obj/structure/flora/grass/tallgrass/autosmooth,
+/turf/open/ground/grass/beach/corner,
+/area/campaign/jungle_outpost/ground/jungle1)
 "qn" = (
 /obj/structure/table,
 /obj/item/tool/hatchet{
@@ -1582,6 +1721,12 @@
 /obj/item/tool/analyzer/plant_analyzer,
 /obj/effect/spawner/random/weaponry/melee,
 /turf/open/floor/tile/hydro,
+/area/campaign/jungle_outpost/ground/jungle1)
+"qq" = (
+/obj/structure/flora/jungle/large_bush,
+/turf/open/ground/grass/beach/corner{
+	dir = 8
+	},
 /area/campaign/jungle_outpost/ground/jungle1)
 "qr" = (
 /obj/structure/prop/mainship/telecomms/bus,
@@ -1600,6 +1745,13 @@
 /turf/open/floor/tile/purple/whitepurple{
 	dir = 8
 	},
+/area/campaign/jungle_outpost/ground/jungle1)
+"qx" = (
+/obj/structure/catwalk,
+/obj/structure/platform{
+	dir = 1
+	},
+/turf/open/ground/grass/beach,
 /area/campaign/jungle_outpost/ground/jungle1)
 "qA" = (
 /obj/structure/bed/chair/sofa/right,
@@ -1646,13 +1798,6 @@
 "qL" = (
 /obj/structure/flora/jungle/grass/thin,
 /turf/open/floor/plating/ground/dirtgrassborder2/corner,
-/area/campaign/jungle_outpost/ground/jungle1)
-"qO" = (
-/obj/structure/catwalk,
-/obj/structure/platform{
-	dir = 1
-	},
-/turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
 /area/campaign/jungle_outpost/ground/jungle1)
 "qP" = (
 /turf/open/floor/tile/brown{
@@ -1752,6 +1897,12 @@
 	},
 /turf/closed/wall/r_wall,
 /area/campaign/jungle_outpost/ground/jungle1)
+"rw" = (
+/obj/structure/flora/jungle/bush,
+/turf/open/ground/grass/beach/corner{
+	dir = 1
+	},
+/area/campaign/jungle_outpost/ground/jungle1)
 "rx" = (
 /obj/structure/largecrate/random/case/small,
 /turf/open/floor/tile/purple/whitepurple{
@@ -1767,6 +1918,18 @@
 "rD" = (
 /turf/open/floor/wood/alt_seven,
 /area/campaign/jungle_outpost/ground/jungle1)
+"rI" = (
+/obj/structure/flora/jungle/grass/thin,
+/turf/open/ground/grass/beach/corner{
+	dir = 8
+	},
+/area/campaign/jungle_outpost/ground/jungle1)
+"rK" = (
+/obj/structure/flora/jungle/grass/thin,
+/turf/open/ground/grass/beach{
+	dir = 1
+	},
+/area/campaign/jungle_outpost/ground/jungle1)
 "rM" = (
 /turf/open/floor/tile/blue/taupebluecorner{
 	dir = 1
@@ -1778,6 +1941,12 @@
 	dir = 4
 	},
 /turf/open/floor/mainship/mono,
+/area/campaign/jungle_outpost/ground/jungle1)
+"rO" = (
+/obj/structure/flora/jungle/large_bush,
+/turf/open/ground/grass/beach{
+	dir = 8
+	},
 /area/campaign/jungle_outpost/ground/jungle1)
 "rP" = (
 /obj/machinery/door/airlock/mainship/generic/glass,
@@ -1808,6 +1977,12 @@
 /obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /turf/open/floor/tile/dark/gray,
 /area/campaign/jungle_outpost/ground/jungle1)
+"rW" = (
+/obj/structure/flora/grass/tallgrass/autosmooth,
+/turf/open/ground/grass/beach/corner{
+	dir = 1
+	},
+/area/campaign/jungle_outpost/ground/jungle1)
 "rZ" = (
 /obj/structure/reagent_dispensers/fueltank/xfuel,
 /turf/open/floor/tile/purple/whitepurplecorner{
@@ -1825,6 +2000,12 @@
 /obj/structure/platform,
 /turf/open/floor,
 /area/campaign/jungle_outpost/ground/jungle1)
+"se" = (
+/obj/structure/rock/variable/jungle/big,
+/turf/open/floor/plating/ground/dirtgrassborder2/corner2{
+	dir = 1
+	},
+/area/campaign/jungle_outpost/ground/jungle1)
 "sh" = (
 /obj/structure/flora/tree/jungle,
 /obj/structure/platform_decoration{
@@ -1838,12 +2019,6 @@
 /area/campaign/jungle_outpost/ground/jungle1)
 "sk" = (
 /obj/structure/flora/jungle/bush,
-/turf/open/ground/grass/weedable,
-/area/campaign/jungle_outpost/ground/jungle1)
-"sp" = (
-/obj/structure/stairs/seamless/platform{
-	dir = 8
-	},
 /turf/open/ground/grass/weedable,
 /area/campaign/jungle_outpost/ground/jungle1)
 "su" = (
@@ -1885,6 +2060,12 @@
 /obj/structure/rack,
 /turf/open/floor/tile/blue/taupeblue{
 	dir = 10
+	},
+/area/campaign/jungle_outpost/ground/jungle1)
+"sH" = (
+/obj/structure/flora/grass/tallgrass/autosmooth,
+/turf/open/ground/grass/beach{
+	dir = 8
 	},
 /area/campaign/jungle_outpost/ground/jungle1)
 "sI" = (
@@ -1951,7 +2132,7 @@
 "td" = (
 /obj/structure/catwalk,
 /obj/structure/platform,
-/turf/open/ground/coast/corner{
+/turf/open/ground/grass/beach/corner{
 	dir = 1
 	},
 /area/campaign/jungle_outpost/ground/jungle1)
@@ -1982,6 +2163,10 @@
 /obj/structure/catwalk,
 /obj/structure/catwalk,
 /turf/open/liquid/water/river/autosmooth,
+/area/campaign/jungle_outpost/ground/jungle1)
+"tv" = (
+/obj/structure/reagent_dispensers/watertank,
+/turf/open/floor/plating/ground/concrete,
 /area/campaign/jungle_outpost/ground/jungle1)
 "tz" = (
 /obj/machinery/vending/dinnerware,
@@ -2089,6 +2274,12 @@
 	dir = 1
 	},
 /area/campaign/jungle_outpost/ground/jungle1)
+"uh" = (
+/obj/structure/flora/jungle/grass/thin,
+/turf/open/ground/grass/beach{
+	dir = 4
+	},
+/area/campaign/jungle_outpost/ground/jungle1)
 "ui" = (
 /obj/structure/cargo_container,
 /obj/effect/turf_decal/grassdecal,
@@ -2119,11 +2310,6 @@
 	},
 /turf/open/liquid/water/river,
 /area/campaign/jungle_outpost/ground/jungle1)
-"uy" = (
-/turf/open/floor/plating/ground/dirtgrassborder/corner2{
-	dir = 4
-	},
-/area/campaign/jungle_outpost/ground/jungle1)
 "uz" = (
 /turf/open/floor/tile/red/redtaupe{
 	dir = 5
@@ -2151,6 +2337,10 @@
 	dir = 4
 	},
 /turf/open/floor,
+/area/campaign/jungle_outpost/ground/jungle1)
+"vg" = (
+/obj/structure/catwalk,
+/turf/open/liquid/water,
 /area/campaign/jungle_outpost/ground/jungle1)
 "vi" = (
 /turf/open/floor/tile/green/greentaupecorner{
@@ -2185,6 +2375,11 @@
 	dir = 4
 	},
 /area/campaign/jungle_outpost/ground/jungle1)
+"vr" = (
+/obj/structure/flora/grass/tallgrass/autosmooth,
+/obj/structure/flora/grass/tallgrass/autosmooth,
+/turf/open/ground/grass/weedable,
+/area/campaign/jungle_outpost/ground/jungle1)
 "vs" = (
 /obj/structure/rock/variable/jungle,
 /turf/open/floor/plating/ground/dirtgrassborder2,
@@ -2210,7 +2405,7 @@
 /obj/structure/platform{
 	dir = 1
 	},
-/turf/open/ground/coast/corner{
+/turf/open/ground/grass/beach/corner{
 	dir = 1
 	},
 /area/campaign/jungle_outpost/ground/jungle1)
@@ -2221,6 +2416,13 @@
 /turf/open/floor/tile/green/greentaupe{
 	dir = 10
 	},
+/area/campaign/jungle_outpost/ground/jungle1)
+"vK" = (
+/obj/structure/closet/secure_closet/freezer/fridge,
+/obj/item/reagent_containers/food/snacks/frozen/sundae,
+/obj/item/reagent_containers/food/snacks/carpmeat,
+/obj/item/reagent_containers/food/snacks/carpmeat,
+/turf/open/floor/wood/variable/wide,
 /area/campaign/jungle_outpost/ground/jungle1)
 "vM" = (
 /obj/effect/landmark/patrol_point{
@@ -2309,7 +2511,7 @@
 /obj/structure/platform{
 	dir = 8
 	},
-/turf/open/ground/coast{
+/turf/open/ground/grass/beach{
 	dir = 8
 	},
 /area/campaign/jungle_outpost/ground/jungle1)
@@ -2398,6 +2600,11 @@
 /obj/machinery/door/window/secure,
 /turf/open/floor,
 /area/campaign/jungle_outpost/ground/jungle1)
+"xp" = (
+/obj/structure/table/rusticwoodentable,
+/obj/item/reagent_containers/food/snacks/soup/boiledrice,
+/turf/open/floor/wood/variable/wide,
+/area/campaign/jungle_outpost/ground/jungle1)
 "xq" = (
 /obj/structure/powerloader_wreckage,
 /obj/effect/turf_decal/warning_stripes,
@@ -2409,6 +2616,12 @@
 	dir = 8
 	},
 /turf/open/floor/tile/dark/gray,
+/area/campaign/jungle_outpost/ground/jungle1)
+"xv" = (
+/obj/structure/flora/jungle/grass/thin,
+/turf/open/ground/grass/beach/corner{
+	dir = 1
+	},
 /area/campaign/jungle_outpost/ground/jungle1)
 "xx" = (
 /obj/structure/table/mainship/nometal,
@@ -2545,6 +2758,12 @@
 	dir = 10
 	},
 /area/campaign/jungle_outpost/ground/jungle1)
+"yU" = (
+/obj/structure/flora/tree/jungle/small,
+/turf/open/ground/grass/beach{
+	dir = 1
+	},
+/area/campaign/jungle_outpost/ground/jungle1)
 "yV" = (
 /obj/structure/prop/vehicle/crane{
 	dir = 4
@@ -2643,7 +2862,9 @@
 /area/campaign/jungle_outpost/ground/jungle1)
 "zy" = (
 /obj/structure/platform_decoration,
-/turf/open/ground/grass/weedable,
+/turf/open/floor/plating/ground/dirtgrassborder2/corner{
+	dir = 8
+	},
 /area/campaign/jungle_outpost/ground/jungle1)
 "zB" = (
 /obj/structure/closet/secure_closet/medical3/colony,
@@ -2659,7 +2880,7 @@
 /obj/structure/platform{
 	dir = 4
 	},
-/turf/open/ground/coast/corner{
+/turf/open/ground/grass/beach/corner{
 	dir = 1
 	},
 /area/campaign/jungle_outpost/ground/jungle1)
@@ -2750,11 +2971,6 @@
 	dir = 1
 	},
 /turf/open/floor/tile/red/redtaupe,
-/area/campaign/jungle_outpost/ground/jungle1)
-"AC" = (
-/turf/open/floor/plating/ground/dirtgrassborder/corner{
-	dir = 1
-	},
 /area/campaign/jungle_outpost/ground/jungle1)
 "AD" = (
 /obj/structure/catwalk,
@@ -2850,7 +3066,7 @@
 /turf/open/floor/plating/ground/concrete,
 /area/campaign/jungle_outpost/ground/jungle1)
 "Br" = (
-/turf/open/ground/coast/corner,
+/turf/open/ground/grass/beach/corner,
 /area/campaign/jungle_outpost/ground/jungle1)
 "Bs" = (
 /obj/structure/filingcabinet/filingcabinet,
@@ -2867,9 +3083,7 @@
 	},
 /area/campaign/jungle_outpost/ground/jungle1)
 "BB" = (
-/turf/open/ground/coast{
-	dir = 6
-	},
+/turf/open/ground/grass/beach/corner2,
 /area/campaign/jungle_outpost/ground/jungle1)
 "BG" = (
 /obj/structure/stairs/edge,
@@ -2948,6 +3162,18 @@
 	},
 /turf/closed/wall/r_wall,
 /area/campaign/jungle_outpost/ground/jungle1)
+"Ce" = (
+/obj/effect/turf_decal/lvsanddecal{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/dirt2,
+/area/campaign/jungle_outpost/ground/jungle1)
+"Cf" = (
+/obj/structure/flora/jungle/grass/thin,
+/turf/open/ground/grass/beach/corner{
+	dir = 4
+	},
+/area/campaign/jungle_outpost/ground/jungle1)
 "Cg" = (
 /obj/structure/table/reinforced,
 /obj/item/reagent_containers/spray/surgery,
@@ -2961,6 +3187,10 @@
 	dir = 5
 	},
 /area/campaign/jungle_outpost/ground/jungle1)
+"Cj" = (
+/obj/structure/flora/jungle/grass/thin,
+/turf/open/liquid/water/river,
+/area/campaign/jungle_outpost/ground/jungle1)
 "Ck" = (
 /obj/structure/table/reinforced,
 /obj/item/t_scanner,
@@ -2969,6 +3199,12 @@
 "Cp" = (
 /obj/structure/flora/tree/jungle,
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
+/area/campaign/jungle_outpost/ground/jungle1)
+"Cq" = (
+/obj/structure/flora/grass/tallgrass/autosmooth,
+/turf/open/ground/grass/beach/corner{
+	dir = 4
+	},
 /area/campaign/jungle_outpost/ground/jungle1)
 "Cu" = (
 /obj/structure/flora/jungle/grass/thin,
@@ -2989,6 +3225,20 @@
 /obj/structure/table/mainship,
 /obj/machinery/griddle,
 /turf/open/floor/tile/barber,
+/area/campaign/jungle_outpost/ground/jungle1)
+"CC" = (
+/obj/structure/flora/jungle/grass,
+/turf/open/ground/grass/beach/corner,
+/area/campaign/jungle_outpost/ground/jungle1)
+"CD" = (
+/obj/structure/catwalk,
+/turf/open/ground/grass/beach{
+	dir = 4
+	},
+/area/campaign/jungle_outpost/ground/jungle1)
+"CE" = (
+/obj/structure/bed,
+/turf/open/floor/wood/variable/wide,
 /area/campaign/jungle_outpost/ground/jungle1)
 "CG" = (
 /turf/open/floor/plating/ground/dirtgrassborder2,
@@ -3052,6 +3302,18 @@
 /obj/structure/table/mainship,
 /turf/open/floor/tile/neutral/full,
 /area/campaign/jungle_outpost/ground/jungle1)
+"Dr" = (
+/obj/structure/flora/jungle/bush,
+/turf/open/ground/grass/beach/corner2{
+	dir = 1
+	},
+/area/campaign/jungle_outpost/ground/jungle1)
+"Ds" = (
+/obj/structure/cargo_container/green{
+	dir = 4
+	},
+/turf/open/floor,
+/area/campaign/jungle_outpost/ground/jungle1)
 "Dv" = (
 /obj/structure/flora/jungle/grass/thin,
 /turf/open/floor/plating/ground/dirtgrassborder2{
@@ -3078,6 +3340,12 @@
 	},
 /turf/open/floor/wood/alt_four,
 /area/campaign/jungle_outpost/ground/jungle1)
+"DD" = (
+/obj/structure/flora/jungle/grass/thin,
+/turf/open/floor/plating/ground/dirtgrassborder2/corner2{
+	dir = 8
+	},
+/area/campaign/jungle_outpost/ground/jungle1)
 "DF" = (
 /obj/machinery/door/airlock/mainship/research/glass,
 /turf/open/floor/tile/white,
@@ -3087,8 +3355,13 @@
 /obj/structure/rock/variable/jungle,
 /turf/open/floor/plating/ground/dirtgrassborder2,
 /area/campaign/jungle_outpost/ground/jungle1)
+"DM" = (
+/obj/structure/catwalk,
+/obj/structure/platform,
+/turf/open/ground/grass/beach/corner,
+/area/campaign/jungle_outpost/ground/jungle1)
 "DN" = (
-/turf/open/ground/coast{
+/turf/open/ground/grass/beach{
 	dir = 8
 	},
 /area/campaign/jungle_outpost/ground/jungle1)
@@ -3102,6 +3375,14 @@
 "DU" = (
 /obj/structure/largecrate/random/barrel/green,
 /turf/open/floor/plating/ground/concrete,
+/area/campaign/jungle_outpost/ground/jungle1)
+"Eb" = (
+/obj/structure/stairs/seamless/edge{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/dirtgrassborder2{
+	dir = 4
+	},
 /area/campaign/jungle_outpost/ground/jungle1)
 "Ed" = (
 /obj/structure/filingcabinet/security,
@@ -3124,11 +3405,6 @@
 "Eo" = (
 /turf/open/floor/tile/blue/whiteblue{
 	dir = 9
-	},
-/area/campaign/jungle_outpost/ground/jungle1)
-"Es" = (
-/turf/open/floor/plating/ground/dirtgrassborder{
-	dir = 8
 	},
 /area/campaign/jungle_outpost/ground/jungle1)
 "Et" = (
@@ -3189,8 +3465,8 @@
 /turf/open/floor/wood,
 /area/campaign/jungle_outpost/ground/jungle1)
 "Fi" = (
-/turf/open/ground/coast{
-	dir = 10
+/turf/open/ground/grass/beach/corner2{
+	dir = 4
 	},
 /area/campaign/jungle_outpost/ground/jungle1)
 "Fj" = (
@@ -3240,6 +3516,10 @@
 	},
 /turf/open/ground/grass/weedable,
 /area/campaign/jungle_outpost/ground/jungle1)
+"FZ" = (
+/obj/structure/flora/grass/tallgrass/autosmooth,
+/turf/open/floor/plating/ground/dirt,
+/area/campaign/jungle_outpost/ground/jungle1)
 "Ga" = (
 /turf/open/floor/tile/green/greentaupe{
 	dir = 1
@@ -3251,6 +3531,12 @@
 /area/campaign/jungle_outpost/ground/jungle1)
 "Gd" = (
 /turf/closed/gm/dense,
+/area/campaign/jungle_outpost/ground/jungle1)
+"Gf" = (
+/obj/structure/stairs/seamless{
+	dir = 1
+	},
+/turf/open/floor/tile/red/redtaupe,
 /area/campaign/jungle_outpost/ground/jungle1)
 "Gi" = (
 /obj/machinery/vending/coffee,
@@ -3321,6 +3607,12 @@
 	dir = 1
 	},
 /area/campaign/jungle_outpost/ground/jungle1)
+"GF" = (
+/obj/structure/cargo_container/red{
+	dir = 1
+	},
+/turf/open/floor,
+/area/campaign/jungle_outpost/ground/jungle1)
 "GI" = (
 /turf/open/floor/plating/ground/dirtgrassborder2/corner,
 /area/campaign/jungle_outpost/ground/jungle1)
@@ -3328,6 +3620,12 @@
 /obj/machinery/vending/cigarette,
 /turf/open/floor/tile/red/redtaupe{
 	dir = 4
+	},
+/area/campaign/jungle_outpost/ground/jungle1)
+"GO" = (
+/obj/structure/flora/grass/tallgrass/autosmooth,
+/turf/open/ground/grass/beach{
+	dir = 1
 	},
 /area/campaign/jungle_outpost/ground/jungle1)
 "GQ" = (
@@ -3398,7 +3696,7 @@
 /turf/open/floor/tile/dark/gray,
 /area/campaign/jungle_outpost/ground/jungle1)
 "HF" = (
-/turf/open/ground/coast/corner{
+/turf/open/ground/grass/beach/corner{
 	dir = 1
 	},
 /area/campaign/jungle_outpost/ground/jungle1)
@@ -3515,6 +3813,10 @@
 /obj/structure/flora/grass/tallgrass/autosmooth,
 /turf/open/ground/grass/weedable,
 /area/campaign/jungle_outpost/ground/jungle1)
+"IM" = (
+/obj/structure/flora/jungle/grass/thin,
+/turf/open/ground/grass/beach/corner,
+/area/campaign/jungle_outpost/ground/jungle1)
 "IQ" = (
 /obj/structure/bed/bunkbed,
 /turf/open/floor/tile/green/greentaupe{
@@ -3561,14 +3863,9 @@
 /obj/structure/prop/mainship/protolathe,
 /turf/open/floor,
 /area/campaign/jungle_outpost/ground/jungle1)
-"Ju" = (
-/obj/structure/catwalk,
-/obj/structure/platform{
-	dir = 4
-	},
-/turf/open/floor/plating/ground/dirtgrassborder/corner2{
-	dir = 4
-	},
+"Jy" = (
+/obj/structure/flora/tree/jungle/small,
+/turf/open/floor/plating/ground/dirtgrassborder2/corner2,
 /area/campaign/jungle_outpost/ground/jungle1)
 "Jz" = (
 /obj/structure/prop/vehicle/van{
@@ -3610,7 +3907,7 @@
 /obj/structure/platform{
 	dir = 1
 	},
-/turf/open/ground/coast/corner{
+/turf/open/ground/grass/beach/corner{
 	dir = 4
 	},
 /area/campaign/jungle_outpost/ground/jungle1)
@@ -3625,8 +3922,8 @@
 /obj/structure/platform{
 	dir = 4
 	},
-/turf/open/ground/coast{
-	dir = 10
+/turf/open/ground/grass/beach/corner2{
+	dir = 4
 	},
 /area/campaign/jungle_outpost/ground/jungle1)
 "Kf" = (
@@ -3651,6 +3948,10 @@
 	name = "TGMC exit point 14"
 	},
 /turf/open/ground/grass/weedable,
+/area/campaign/jungle_outpost/ground/jungle1)
+"Kl" = (
+/obj/structure/rock/variable/jungle,
+/turf/open/ground/grass/beach/corner2,
 /area/campaign/jungle_outpost/ground/jungle1)
 "Kn" = (
 /obj/structure/flora/jungle/grass/thin,
@@ -3705,6 +4006,12 @@
 	dir = 5
 	},
 /area/campaign/jungle_outpost/ground/jungle1)
+"KG" = (
+/obj/structure/bed/chair/sofa/left{
+	dir = 8
+	},
+/turf/open/floor/wood/variable/wide,
+/area/campaign/jungle_outpost/ground/jungle1)
 "KH" = (
 /obj/structure/closet/secure_closet/security,
 /turf/open/floor/tile/red/redtaupe{
@@ -3721,6 +4028,9 @@
 /turf/open/floor/tile/blue/taupeblue{
 	dir = 1
 	},
+/area/campaign/jungle_outpost/ground/jungle1)
+"KM" = (
+/turf/open/floor/wood/variable/wide,
 /area/campaign/jungle_outpost/ground/jungle1)
 "KO" = (
 /obj/structure/table/reinforced,
@@ -3740,14 +4050,6 @@
 /area/campaign/jungle_outpost/ground/jungle1)
 "KX" = (
 /turf/open/liquid/water,
-/area/campaign/jungle_outpost/ground/jungle1)
-"KY" = (
-/obj/structure/catwalk,
-/obj/structure/catwalk,
-/obj/structure/platform{
-	dir = 4
-	},
-/turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
 /area/campaign/jungle_outpost/ground/jungle1)
 "Lb" = (
 /obj/structure/table/reinforced,
@@ -3772,6 +4074,10 @@
 /obj/machinery/door/airlock/mainship/generic,
 /turf/open/floor/freezer,
 /area/campaign/jungle_outpost/ground/jungle1)
+"Lj" = (
+/obj/structure/flora/jungle/grass,
+/turf/open/ground/grass/beach,
+/area/campaign/jungle_outpost/ground/jungle1)
 "Ll" = (
 /obj/structure/bookcase,
 /turf/open/floor/wood/alt_four,
@@ -3788,7 +4094,7 @@
 /area/campaign/jungle_outpost/ground/jungle1)
 "Lw" = (
 /obj/structure/flora/jungle/bush,
-/turf/open/liquid/water/river/autosmooth,
+/turf/open/liquid/water/river,
 /area/campaign/jungle_outpost/ground/jungle1)
 "Lx" = (
 /turf/open/floor/plating/ground/dirtgrassborder2{
@@ -3808,6 +4114,12 @@
 "LE" = (
 /turf/open/floor/plating/ground/dirtgrassborder2/corner2{
 	dir = 8
+	},
+/area/campaign/jungle_outpost/ground/jungle1)
+"LI" = (
+/obj/structure/rock/variable/jungle/big,
+/turf/open/ground/grass/beach{
+	dir = 4
 	},
 /area/campaign/jungle_outpost/ground/jungle1)
 "LJ" = (
@@ -3903,7 +4215,7 @@
 /turf/open/floor/tile/barber,
 /area/campaign/jungle_outpost/ground/jungle1)
 "MA" = (
-/turf/open/ground/coast/corner{
+/turf/open/ground/grass/beach/corner{
 	dir = 8
 	},
 /area/campaign/jungle_outpost/ground/jungle1)
@@ -3913,9 +4225,15 @@
 	},
 /turf/open/floor/plating/ground/concrete,
 /area/campaign/jungle_outpost/ground/jungle1)
+"MM" = (
+/obj/structure/cargo_container/green{
+	dir = 1
+	},
+/turf/open/floor,
+/area/campaign/jungle_outpost/ground/jungle1)
 "MN" = (
 /obj/structure/rock/variable/jungle/big,
-/turf/open/liquid/water/river/autosmooth,
+/turf/open/liquid/water/river,
 /area/campaign/jungle_outpost/ground/jungle1)
 "MO" = (
 /obj/structure/prop/mainship/research/tdoppler,
@@ -3949,9 +4267,12 @@
 	},
 /turf/open/floor/tile/white,
 /area/campaign/jungle_outpost/ground/jungle1)
-"Ng" = (
-/obj/structure/flora/jungle/grass/thin,
-/turf/open/liquid/water/river/autosmooth,
+"Nh" = (
+/obj/structure/catwalk,
+/obj/structure/platform{
+	dir = 1
+	},
+/turf/open/ground/grass/beach/corner,
 /area/campaign/jungle_outpost/ground/jungle1)
 "Nn" = (
 /obj/structure/reagent_dispensers/fueltank,
@@ -4074,14 +4395,6 @@
 /obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /turf/open/floor/tile/hydro,
 /area/campaign/jungle_outpost/ground/jungle1)
-"OA" = (
-/obj/structure/catwalk,
-/obj/structure/catwalk,
-/obj/structure/platform{
-	dir = 8
-	},
-/turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
-/area/campaign/jungle_outpost/ground/jungle1)
 "OB" = (
 /obj/structure/flora/grass/tallgrass/autosmooth,
 /turf/open/floor/plating/ground/dirtgrassborder2/corner{
@@ -4107,6 +4420,12 @@
 	dir = 9
 	},
 /area/campaign/jungle_outpost/ground/jungle1)
+"OQ" = (
+/obj/structure/bed/chair/sofa/right{
+	dir = 8
+	},
+/turf/open/floor/wood/variable/wide,
+/area/campaign/jungle_outpost/ground/jungle1)
 "OR" = (
 /obj/structure/platform{
 	dir = 5
@@ -4117,18 +4436,28 @@
 /obj/effect/spawner/random/misc/structure/closet/tool,
 /turf/open/floor/tile/dark,
 /area/campaign/jungle_outpost/ground/jungle1)
+"Pd" = (
+/obj/structure/reagent_dispensers/fueltank/barrel,
+/turf/open/floor,
+/area/campaign/jungle_outpost/ground/jungle1)
 "Pg" = (
 /obj/structure/catwalk,
 /obj/structure/platform{
 	dir = 1
 	},
-/turf/open/ground/coast{
-	dir = 9
+/turf/open/ground/grass/beach/corner2{
+	dir = 1
 	},
 /area/campaign/jungle_outpost/ground/jungle1)
 "Ph" = (
 /obj/structure/table,
 /turf/open/floor/tile/blue/whiteblue{
+	dir = 4
+	},
+/area/campaign/jungle_outpost/ground/jungle1)
+"Pi" = (
+/obj/structure/flora/jungle/bush,
+/turf/open/floor/plating/ground/dirtgrassborder2{
 	dir = 4
 	},
 /area/campaign/jungle_outpost/ground/jungle1)
@@ -4146,6 +4475,10 @@
 /obj/structure/catwalk,
 /obj/structure/platform,
 /turf/open/ground/grass/weedable,
+/area/campaign/jungle_outpost/ground/jungle1)
+"PC" = (
+/obj/structure/flora/jungle/large_bush,
+/turf/open/floor/plating/ground/dirtgrassborder2/corner2,
 /area/campaign/jungle_outpost/ground/jungle1)
 "PH" = (
 /obj/structure/closet/secure_closet/chemical/colony,
@@ -4179,7 +4512,7 @@
 	},
 /area/campaign/jungle_outpost/ground/jungle1)
 "PP" = (
-/turf/open/ground/coast,
+/turf/open/ground/grass/beach,
 /area/campaign/jungle_outpost/ground/jungle1)
 "PR" = (
 /obj/structure/stairs/seamless/platform_vert{
@@ -4199,9 +4532,15 @@
 /obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /turf/open/floor,
 /area/campaign/jungle_outpost/ground/jungle1)
+"PZ" = (
+/obj/structure/flora/jungle/bush,
+/turf/open/floor/plating/ground/dirtgrassborder2/corner2{
+	dir = 4
+	},
+/area/campaign/jungle_outpost/ground/jungle1)
 "Qd" = (
 /obj/structure/flora/jungle/large_bush,
-/turf/open/liquid/water/river/autosmooth,
+/turf/open/liquid/water/river,
 /area/campaign/jungle_outpost/ground/jungle1)
 "Qi" = (
 /obj/structure/table/reinforced,
@@ -4264,6 +4603,11 @@
 "QC" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic,
 /turf/open/floor/tile/dark/gray,
+/area/campaign/jungle_outpost/ground/jungle1)
+"QD" = (
+/obj/structure/table/rusticwoodentable,
+/obj/item/reagent_containers/food/snacks/pizzapasta/beefnoodle,
+/turf/open/floor/wood/variable/wide,
 /area/campaign/jungle_outpost/ground/jungle1)
 "QE" = (
 /obj/machinery/door/airlock/mainship/generic{
@@ -4329,7 +4673,11 @@
 /obj/structure/platform_decoration{
 	dir = 8
 	},
-/turf/open/ground/grass/weedable,
+/turf/open/floor/plating/ground/dirtgrassborder2/corner,
+/area/campaign/jungle_outpost/ground/jungle1)
+"Rq" = (
+/obj/structure/catwalk,
+/turf/open/floor/plating/ground/dirt2,
 /area/campaign/jungle_outpost/ground/jungle1)
 "Rr" = (
 /obj/effect/turf_decal/lvsanddecal{
@@ -4370,6 +4718,14 @@
 /obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /obj/structure/platform,
 /turf/open/floor/tile/dark,
+/area/campaign/jungle_outpost/ground/jungle1)
+"RH" = (
+/obj/structure/closet/cabinet,
+/obj/item/stack/sheet/wood/large_stack,
+/obj/item/grown/log,
+/obj/item/reagent_containers/food/drinks/bottle/specialwhiskey,
+/obj/item/storage/box/drinkingglasses,
+/turf/open/floor/wood/variable/wide,
 /area/campaign/jungle_outpost/ground/jungle1)
 "RI" = (
 /turf/open/floor/tile/red/redtaupecorner{
@@ -4430,14 +4786,13 @@
 /obj/effect/spawner/random/misc/structure/flavorvending/engivend,
 /turf/open/floor/tile/dark,
 /area/campaign/jungle_outpost/ground/jungle1)
+"Sj" = (
+/obj/structure/prop/mainship/chimney,
+/turf/open/floor/wood/variable/wide,
+/area/campaign/jungle_outpost/ground/jungle1)
 "Sl" = (
 /obj/structure/largecrate/random/case/double,
 /turf/open/floor/tile/white,
-/area/campaign/jungle_outpost/ground/jungle1)
-"So" = (
-/turf/open/ground/coast{
-	dir = 4
-	},
 /area/campaign/jungle_outpost/ground/jungle1)
 "St" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic,
@@ -4505,6 +4860,12 @@
 	dir = 6
 	},
 /area/campaign/jungle_outpost/ground/jungle1)
+"SN" = (
+/obj/structure/flora/jungle/large_bush,
+/turf/open/floor/plating/ground/dirtgrassborder2/corner2{
+	dir = 1
+	},
+/area/campaign/jungle_outpost/ground/jungle1)
 "SO" = (
 /turf/open/floor/tile/green/greentaupe{
 	dir = 4
@@ -4525,6 +4886,12 @@
 	dir = 8
 	},
 /turf/open/liquid/water/river,
+/area/campaign/jungle_outpost/ground/jungle1)
+"SZ" = (
+/obj/structure/bed/chair/wood/wings{
+	dir = 4
+	},
+/turf/open/floor/wood/variable/wide,
 /area/campaign/jungle_outpost/ground/jungle1)
 "Td" = (
 /obj/structure/closet/secure_closet/guncabinet/nt_lab,
@@ -4701,7 +5068,9 @@
 /obj/structure/stairs/railstairs_vert{
 	dir = 1
 	},
-/turf/open/ground/grass/weedable,
+/turf/open/floor/plating/ground/dirtgrassborder2{
+	dir = 1
+	},
 /area/campaign/jungle_outpost/ground/jungle1)
 "Uz" = (
 /obj/structure/table/reinforced,
@@ -4716,11 +5085,17 @@
 	dir = 8
 	},
 /area/campaign/jungle_outpost/ground/jungle1)
+"UD" = (
+/obj/structure/flora/jungle/bush,
+/turf/open/ground/grass/beach/corner{
+	dir = 8
+	},
+/area/campaign/jungle_outpost/ground/jungle1)
 "UE" = (
 /obj/structure/stairs/railstairs_vert{
 	dir = 4
 	},
-/turf/open/ground/grass/weedable,
+/turf/open/floor/plating/ground/dirtgrassborder2,
 /area/campaign/jungle_outpost/ground/jungle1)
 "UF" = (
 /obj/structure/bed/chair/sofa/left{
@@ -4734,6 +5109,14 @@
 "UI" = (
 /obj/structure/prop/vehicle/truck,
 /turf/open/floor/plating/ground/concrete,
+/area/campaign/jungle_outpost/ground/jungle1)
+"UL" = (
+/obj/structure/stairs/seamless/edge{
+	dir = 8
+	},
+/turf/open/floor/plating/ground/dirtgrassborder2{
+	dir = 4
+	},
 /area/campaign/jungle_outpost/ground/jungle1)
 "UP" = (
 /obj/structure/table/reinforced,
@@ -4767,6 +5150,10 @@
 	dir = 6
 	},
 /area/campaign/jungle_outpost/ground/jungle1)
+"Vg" = (
+/obj/structure/flora/jungle/grass/thin,
+/turf/open/floor/plating/ground/dirt2,
+/area/campaign/jungle_outpost/ground/jungle1)
 "Vh" = (
 /obj/machinery/vending/nanomed,
 /turf/open/floor/tile/blue/whiteblue{
@@ -4795,6 +5182,12 @@
 	},
 /turf/open/floor/tile/white,
 /area/campaign/jungle_outpost/ground/jungle1)
+"Vn" = (
+/obj/structure/flora/jungle/grass,
+/turf/open/ground/grass/beach/corner{
+	dir = 1
+	},
+/area/campaign/jungle_outpost/ground/jungle1)
 "Vp" = (
 /obj/structure/table/reinforced,
 /turf/open/floor/tile/white,
@@ -4808,6 +5201,10 @@
 "Vu" = (
 /obj/structure/flora/grass/tallgrass/autosmooth,
 /turf/open/floor/plating/ground/dirtgrassborder2,
+/area/campaign/jungle_outpost/ground/jungle1)
+"Vw" = (
+/obj/structure/flora/jungle/grass/thin,
+/turf/open/ground/grass/beach,
 /area/campaign/jungle_outpost/ground/jungle1)
 "Vx" = (
 /obj/structure/closet/crate/internals,
@@ -4886,7 +5283,7 @@
 /area/campaign/jungle_outpost/ground/jungle1)
 "Wb" = (
 /obj/structure/flora/tree/jungle/small,
-/turf/open/liquid/water/river/autosmooth,
+/turf/open/liquid/water/river,
 /area/campaign/jungle_outpost/ground/jungle1)
 "Wc" = (
 /obj/structure/bed/chair/office/light{
@@ -4923,6 +5320,12 @@
 "Wl" = (
 /obj/structure/bed/chair/sofa/corner,
 /turf/open/floor/tile/white,
+/area/campaign/jungle_outpost/ground/jungle1)
+"Wo" = (
+/obj/structure/flora/tree/jungle,
+/turf/open/floor/plating/ground/dirtgrassborder2/corner{
+	dir = 1
+	},
 /area/campaign/jungle_outpost/ground/jungle1)
 "Wp" = (
 /obj/structure/filingcabinet/security,
@@ -4975,7 +5378,7 @@
 /area/campaign/jungle_outpost/ground/jungle1)
 "WD" = (
 /obj/structure/catwalk,
-/turf/open/ground/coast/corner{
+/turf/open/ground/grass/beach/corner{
 	dir = 1
 	},
 /area/campaign/jungle_outpost/ground/jungle1)
@@ -5001,7 +5404,7 @@
 /turf/open/floor/tile/white,
 /area/campaign/jungle_outpost/ground/jungle1)
 "WP" = (
-/turf/open/ground/coast{
+/turf/open/ground/grass/beach{
 	dir = 1
 	},
 /area/campaign/jungle_outpost/ground/jungle1)
@@ -5031,6 +5434,10 @@
 "Xd" = (
 /obj/effect/spawner/random/misc/structure/flavorvending/snackweighted,
 /turf/open/floor/tile/dark,
+/area/campaign/jungle_outpost/ground/jungle1)
+"Xf" = (
+/obj/structure/bed/chair/wood/wings,
+/turf/open/floor/carpet,
 /area/campaign/jungle_outpost/ground/jungle1)
 "Xg" = (
 /turf/open/floor/tile/red/redtaupe{
@@ -5079,8 +5486,14 @@
 /turf/open/floor/tile/dark,
 /area/campaign/jungle_outpost/ground/jungle1)
 "XE" = (
-/turf/open/ground/coast{
-	dir = 5
+/turf/open/ground/grass/beach/corner2{
+	dir = 8
+	},
+/area/campaign/jungle_outpost/ground/jungle1)
+"XF" = (
+/obj/structure/rock/variable/jungle/big,
+/turf/open/ground/grass/beach{
+	dir = 8
 	},
 /area/campaign/jungle_outpost/ground/jungle1)
 "XH" = (
@@ -5165,6 +5578,24 @@
 	},
 /turf/open/floor,
 /area/campaign/jungle_outpost/ground/jungle1)
+"Yh" = (
+/obj/structure/cargo_container/red{
+	dir = 8
+	},
+/turf/open/floor,
+/area/campaign/jungle_outpost/ground/jungle1)
+"Yi" = (
+/obj/structure/flora/jungle/large_bush,
+/turf/open/ground/grass/beach/corner{
+	dir = 1
+	},
+/area/campaign/jungle_outpost/ground/jungle1)
+"Yl" = (
+/obj/structure/flora/jungle/large_bush,
+/turf/open/ground/grass/beach/corner2{
+	dir = 4
+	},
+/area/campaign/jungle_outpost/ground/jungle1)
 "Ym" = (
 /obj/machinery/power/monitor{
 	name = "Main Power Grid Monitoring"
@@ -5193,6 +5624,12 @@
 "Yt" = (
 /obj/machinery/science/centrifuge,
 /turf/open/floor/tile/white,
+/area/campaign/jungle_outpost/ground/jungle1)
+"Yv" = (
+/obj/structure/flora/jungle/bush,
+/turf/open/floor/plating/ground/dirtgrassborder2/corner2{
+	dir = 8
+	},
 /area/campaign/jungle_outpost/ground/jungle1)
 "Yx" = (
 /obj/structure/cargo_container{
@@ -5226,7 +5663,7 @@
 "Zc" = (
 /obj/structure/catwalk,
 /obj/structure/catwalk,
-/turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
+/turf/open/floor/plating/ground/dirt2,
 /area/campaign/jungle_outpost/ground/jungle1)
 "Zf" = (
 /obj/structure/table/reinforced,
@@ -5292,6 +5729,11 @@
 /area/campaign/jungle_outpost/ground/jungle1)
 "ZE" = (
 /turf/open/floor/tile/purple/whitepurple,
+/area/campaign/jungle_outpost/ground/jungle1)
+"ZH" = (
+/turf/open/ground/grass/beach{
+	dir = 4
+	},
 /area/campaign/jungle_outpost/ground/jungle1)
 "ZI" = (
 /obj/machinery/vending/cigarette/colony,
@@ -11645,7 +12087,7 @@ re
 Oz
 io
 gF
-OL
+EX
 EX
 Gl
 Gd
@@ -11796,9 +12238,9 @@ pr
 io
 eG
 KX
-WP
-OL
-OL
+XE
+ZH
+MA
 Gd
 Gd
 Gd
@@ -11948,9 +12390,9 @@ eG
 KX
 KX
 KX
-XE
-So
-MA
+KX
+KX
+WP
 Gd
 Gd
 Gd
@@ -12245,18 +12687,18 @@ sk
 EX
 CG
 TJ
-qO
+bV
 WD
 aQ
 im
 jV
-OL
-Tv
+EX
+Wx
 HF
 Fi
 im
 jV
-OL
+EX
 EX
 Ft
 CG
@@ -12397,18 +12839,18 @@ Gl
 qL
 JL
 TJ
-qO
-KS
+bV
+am
 td
 jV
-OL
-OL
-OL
-OL
+EX
+EX
+EX
+EX
 HF
 jV
-OL
-to
+EX
+up
 GI
 Lx
 JL
@@ -12550,16 +12992,16 @@ CG
 QL
 Dp
 bV
-KS
-SH
-to
-OL
+am
+Pv
+up
+EX
 Ft
 EX
-OL
-OL
-OL
-tK
+EX
+EX
+EX
+Ft
 GI
 JL
 Ih
@@ -12967,11 +13409,11 @@ Je
 Je
 Je
 OL
-EX
+Ft
 EX
 Gd
 Gd
-EX
+RL
 EX
 xP
 ub
@@ -13122,7 +13564,7 @@ OL
 OL
 EX
 EX
-EX
+Ft
 EX
 EX
 EX
@@ -13282,7 +13724,7 @@ EX
 Wx
 EX
 EX
-EX
+Ft
 EX
 EX
 EX
@@ -13425,17 +13867,17 @@ Je
 Je
 Je
 Je
+to
 OL
-OL
+EX
+Ft
 EX
 EX
 EX
 EX
 EX
 EX
-EX
-EX
-EX
+Ft
 EX
 Of
 RX
@@ -13730,14 +14172,14 @@ Je
 Je
 Je
 Je
-OL
+pJ
 Lx
 Qo
-GI
+ex
 Lx
 Lx
 Lx
-JL
+PC
 vZ
 rQ
 Mg
@@ -13885,9 +14327,9 @@ We
 KS
 vZ
 LE
-JL
+Jy
 vZ
-vZ
+Vg
 vZ
 vZ
 vZ
@@ -14190,7 +14632,7 @@ am
 vZ
 vZ
 vZ
-QL
+SN
 IF
 uI
 vZ
@@ -14339,14 +14781,14 @@ Je
 Je
 OL
 Ua
-uI
+PZ
 vZ
 vZ
 TJ
-EX
+Ft
 CG
 vZ
-QL
+se
 Dp
 oR
 DT
@@ -14643,7 +15085,7 @@ Je
 OL
 EX
 EX
-CG
+Yr
 vZ
 vZ
 TJ
@@ -14667,7 +15109,7 @@ xM
 WN
 DT
 NU
-EX
+sk
 GI
 TY
 Qo
@@ -14792,7 +15234,7 @@ Je
 Je
 Je
 Je
-OL
+to
 EX
 EX
 Ua
@@ -14802,12 +15244,12 @@ Dp
 EX
 EX
 CG
-LE
+DD
 Lx
 Lx
 Lx
-Lx
-Lx
+Pi
+eh
 Lx
 Rj
 cm
@@ -14945,7 +15387,7 @@ Je
 Je
 Je
 OL
-EX
+sk
 pj
 Ic
 Mg
@@ -15246,7 +15688,7 @@ Je
 Je
 Je
 Je
-OL
+tK
 EX
 EX
 zk
@@ -15264,7 +15706,7 @@ aM
 Yz
 EX
 EX
-CG
+Yn
 TJ
 EX
 JR
@@ -15275,8 +15717,8 @@ pr
 pr
 pr
 NU
-OL
-OL
+ZH
+MA
 Ua
 uI
 vn
@@ -15399,7 +15841,7 @@ Je
 Je
 Je
 OL
-EX
+sk
 EX
 zk
 TN
@@ -15427,9 +15869,9 @@ gm
 gm
 Gp
 NU
-Je
-OL
-OL
+KX
+XE
+MA
 CG
 vn
 Oa
@@ -15566,9 +16008,9 @@ GD
 Gz
 SP
 Yz
+up
 EX
-EX
-CG
+Yr
 TJ
 EX
 JR
@@ -15579,9 +16021,9 @@ us
 xx
 GQ
 NU
-Je
-Je
-OL
+KX
+KX
+WP
 CG
 JR
 ZO
@@ -15731,9 +16173,9 @@ ub
 ub
 ub
 eG
-Je
-Je
-OL
+KX
+KX
+WP
 CG
 JR
 pr
@@ -15854,7 +16296,7 @@ Je
 Je
 OL
 EX
-EX
+Ft
 cm
 cm
 zk
@@ -15877,15 +16319,15 @@ TJ
 EX
 EX
 EX
+Ft
 EX
-EX
-OL
-Je
-Je
-Je
-Je
-OL
-OL
+PP
+KX
+KX
+KX
+KX
+Dr
+jV
 CG
 JR
 eg
@@ -16005,7 +16447,7 @@ Je
 Je
 Je
 OL
-EX
+Ft
 EX
 cm
 cm
@@ -16022,21 +16464,21 @@ GD
 Gz
 SP
 Yz
-EX
-EX
+cm
+RL
 CG
-LE
+Yv
 Lx
 Lx
 Lx
 Qo
 EX
-OL
-OL
-Je
-Je
-OL
-OL
+HF
+Fi
+KX
+KX
+mH
+Cf
 EX
 CG
 vn
@@ -16174,8 +16616,8 @@ Mg
 Mg
 SP
 Yz
-EX
-EX
+cm
+cm
 Ua
 IF
 IF
@@ -16184,10 +16626,10 @@ uI
 LE
 Lx
 Lx
-OL
-OL
-OL
-OL
+HF
+DN
+DN
+jV
 EX
 EX
 CG
@@ -16326,13 +16768,13 @@ Na
 Mg
 ha
 Yz
+cm
+cm
+cm
 EX
 EX
 EX
-EX
-EX
-EX
-Ua
+Wo
 IF
 IF
 uI
@@ -16406,7 +16848,7 @@ zi
 yg
 IR
 Oq
-zi
+tv
 zi
 zi
 zi
@@ -16490,7 +16932,7 @@ Cd
 Ua
 IF
 IF
-uI
+eD
 vZ
 QL
 IF
@@ -16641,7 +17083,7 @@ Fg
 Yz
 EX
 EX
-EX
+Gl
 CG
 vZ
 TJ
@@ -16792,7 +17234,7 @@ qQ
 ZK
 qG
 EX
-EX
+up
 EX
 CG
 vZ
@@ -17061,7 +17503,7 @@ Je
 Je
 Je
 OL
-OL
+oE
 OL
 EX
 zk
@@ -17095,14 +17537,14 @@ wo
 qQ
 ls
 qG
-EX
+Ft
 EX
 CG
 vZ
 vZ
 TJ
 EX
-EX
+sk
 JR
 LS
 fG
@@ -17213,8 +17655,8 @@ Je
 Je
 Je
 OL
-EX
-EX
+cm
+cm
 EX
 zk
 nQ
@@ -17247,14 +17689,14 @@ Yo
 qQ
 qQ
 Yz
-EX
-EX
+Gl
+sk
 pr
 Vc
 kR
 pr
 EX
-EX
+RL
 JR
 Lg
 pr
@@ -17364,9 +17806,9 @@ Je
 Je
 Je
 OL
-OL
-EX
-EX
+Cw
+cm
+cm
 EX
 zk
 VE
@@ -17515,10 +17957,10 @@ Je
 Je
 Je
 Je
-OL
-EX
-EX
-EX
+Cw
+IK
+cm
+cm
 EX
 zk
 pr
@@ -17588,13 +18030,13 @@ kM
 ou
 cm
 cm
-cm
-EX
-Gl
-Ft
-EX
-EX
-GI
+xH
+Lx
+mj
+eh
+Lx
+Lx
+Lx
 JL
 TJ
 Gd
@@ -17667,10 +18109,10 @@ Je
 Je
 Je
 OL
-OL
-EX
-EX
-EX
+Cw
+cm
+cm
+cm
 EX
 zk
 tT
@@ -17740,13 +18182,13 @@ kM
 NU
 xH
 eh
-Qo
-EX
-Ft
-EX
-EX
-EX
-Ua
+JL
+QL
+Dv
+IF
+IF
+IF
+IF
 Ky
 Gd
 Gd
@@ -17820,9 +18262,9 @@ Je
 Je
 OL
 EX
-EX
-EX
-EX
+cm
+cm
+Ou
 EX
 zk
 HV
@@ -17892,7 +18334,7 @@ ZL
 QC
 Hy
 vZ
-LE
+vZ
 Gd
 Gd
 Cy
@@ -17969,7 +18411,7 @@ Je
 Je
 Je
 OL
-OL
+pJ
 OL
 EX
 EX
@@ -18120,14 +18562,14 @@ Je
 Je
 Je
 Je
-OL
+Tv
+EX
+EX
+Ft
 EX
 EX
 EX
-EX
-EX
-EX
-EX
+Ft
 zk
 HV
 ua
@@ -18274,8 +18716,8 @@ Je
 OL
 OL
 EX
-EX
-EX
+cm
+cm
 EX
 EX
 EX
@@ -18314,8 +18756,8 @@ Yz
 EX
 EX
 pr
-nR
-sp
+dM
+tI
 pr
 EX
 EX
@@ -18425,13 +18867,13 @@ Je
 OL
 OL
 EX
+cm
+vr
+cm
 EX
 EX
 EX
-EX
-EX
-EX
-EX
+fa
 zk
 Sx
 Wc
@@ -18464,11 +18906,11 @@ Mg
 SP
 qG
 EX
-EX
-EX
-EX
-EX
-EX
+fa
+CG
+vZ
+vZ
+TJ
 EX
 EX
 JR
@@ -18488,7 +18930,7 @@ Ba
 NU
 EX
 CG
-IF
+QL
 Dp
 cm
 wv
@@ -18573,12 +19015,12 @@ Je
 Je
 Je
 Je
+oE
 OL
-OL
 EX
-EX
-EX
-EX
+cm
+cm
+cm
 EX
 EX
 EX
@@ -18615,14 +19057,14 @@ Mg
 Mg
 SP
 qG
+Ft
 EX
+CG
+vZ
+vZ
+TJ
 EX
-EX
-EX
-EX
-EX
-EX
-EX
+fa
 xP
 Nv
 Nv
@@ -18727,12 +19169,12 @@ OL
 OL
 OL
 EX
+cm
+cm
+cm
 EX
 EX
-EX
-EX
-EX
-EX
+fa
 EX
 EX
 EX
@@ -18767,32 +19209,32 @@ Mg
 Mg
 SP
 qG
+Gl
+Ft
+Zq
+vZ
+QL
+lD
 EX
 EX
 EX
 EX
-EX
-EX
-EX
-EX
-EX
-OL
 PP
 KX
 Oo
 iX
 WP
-OL
-OL
+EX
+EX
 Gd
 Gd
 Gd
 Gd
 up
-OL
-OL
-OL
-OL
+EX
+EX
+Ua
+Dp
 RL
 Ft
 zk
@@ -18880,14 +19322,14 @@ EX
 EX
 EX
 EX
-EX
-EX
+Ft
+Gl
 EX
 Gd
 Gd
 EX
 EX
-EX
+Ft
 zk
 pr
 fX
@@ -18921,30 +19363,30 @@ ha
 Yz
 Wx
 EX
+CG
+QL
+Dp
 EX
 EX
 EX
 EX
 EX
-EX
-EX
-OL
 HF
 DN
 id
 iX
 XE
 MA
-OL
-tK
+EX
+Ft
 Gd
 Gd
 Gl
-OL
-OL
+EX
+EX
 Br
 MA
-OL
+EX
 EX
 EX
 zk
@@ -19033,11 +19475,11 @@ EX
 EX
 EX
 EX
-EX
-EX
+Ft
+sk
 Gd
 Gd
-EX
+Ft
 EX
 EX
 zk
@@ -19072,31 +19514,31 @@ rv
 rv
 SE
 EX
-EX
-EX
-EX
+GI
+JL
+TJ
 Gd
 Gd
 Ou
 EX
+up
 EX
-OL
-OL
-OL
+EX
+EX
 vz
 aQ
 KX
 XE
 MA
-OL
-pJ
-tK
-OL
-OL
+EX
+sk
+Ft
+fa
+EX
 Br
 BB
 WP
-OL
+EX
 Ft
 sk
 zk
@@ -19179,18 +19621,18 @@ xS
 Gd
 EX
 EX
+Ou
 EX
 EX
-EX
-EX
-EX
+fa
+RL
 EX
 EX
 Gd
 Gd
 Gd
 Gd
-EX
+sk
 EX
 zk
 HV
@@ -19216,39 +19658,39 @@ wo
 Yz
 EX
 EX
+Ft
 EX
 EX
 EX
 EX
 EX
-EX
-EX
-EX
-EX
-EX
-EX
+Ft
+GI
+JL
+QL
+Dp
 Gd
 Gd
 Gd
+Gl
 EX
 EX
+Ft
 EX
-EX
-OL
-qO
+bV
 td
 Fi
 KX
 XE
 MA
-OL
-OL
+Ou
+EX
 Br
-So
+ZH
 BB
 KX
 WP
-Tv
+Wx
 Gl
 fa
 zk
@@ -19331,11 +19773,11 @@ xS
 Gd
 EX
 EX
+Ft
 EX
 EX
-EX
-EX
-EX
+RL
+Ft
 EX
 EX
 Gd
@@ -19367,17 +19809,17 @@ qQ
 fd
 Yz
 EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
+fa
+GI
+Lx
+Lx
+Lx
+Lx
+eh
+Pi
+JL
+QL
+Dp
 EX
 cm
 Gd
@@ -19385,16 +19827,16 @@ Gd
 Gd
 EX
 EX
+fa
 EX
-EX
-qO
-SH
-HF
-DN
-Fi
+bV
+Pv
+Lj
+KX
+KX
 XE
-So
-So
+ZH
+ZH
 BB
 KX
 KX
@@ -19481,6 +19923,7 @@ xS
 (94,1,1) = {"
 xS
 Gd
+sk
 EX
 EX
 EX
@@ -19488,8 +19931,7 @@ EX
 EX
 EX
 EX
-EX
-EX
+Ft
 Gd
 Gd
 Gd
@@ -19518,17 +19960,17 @@ wn
 qQ
 hU
 Yz
-Ou
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
+lp
+GI
+JL
+QL
+IF
+IF
+IF
+IF
+IF
+IF
+Dp
 cm
 cm
 cm
@@ -19540,10 +19982,10 @@ EX
 EX
 EX
 bV
-SH
-OL
-OL
-PP
+Pv
+HF
+gM
+Fi
 KX
 KX
 KX
@@ -19633,7 +20075,7 @@ xS
 (95,1,1) = {"
 xS
 Gd
-EX
+Ft
 EX
 EX
 EX
@@ -19670,17 +20112,17 @@ pr
 pr
 pr
 Yz
-EX
-EX
-EX
-EX
+Ft
+CG
+QL
+Dp
 cm
 cm
 tQ
 EX
 EX
-EX
-EX
+Gl
+fa
 tQ
 cm
 cm
@@ -19693,8 +20135,8 @@ EX
 EX
 bV
 Pv
+Ou
 EX
-OL
 PP
 KX
 KX
@@ -19785,19 +20227,19 @@ xS
 (96,1,1) = {"
 xS
 Gd
+fa
 EX
 EX
-EX
-EX
-EX
-EX
+cm
+cm
+cm
 EX
 EX
 EX
 EX
 Gd
 Gd
-EX
+Ou
 EX
 EX
 zk
@@ -19823,8 +20265,8 @@ qQ
 wo
 Yz
 EX
-EX
-EX
+CG
+rt
 EX
 cm
 tQ
@@ -19836,18 +20278,18 @@ tQ
 tQ
 tQ
 cm
+Ft
 EX
 EX
 EX
-EX
-EX
+Ft
 EX
 EX
 bV
 Pv
 EX
-OL
-PP
+EX
+jg
 KX
 KX
 KX
@@ -19940,10 +20382,10 @@ Gd
 EX
 EX
 EX
-EX
-EX
-EX
-EX
+Gl
+cm
+cm
+cm
 EX
 EX
 EX
@@ -19975,8 +20417,8 @@ qQ
 wo
 Yz
 EX
-EX
-EX
+CG
+gW
 cm
 cm
 tQ
@@ -19989,8 +20431,8 @@ fK
 tQ
 cm
 tQ
-EX
-EX
+Gl
+Ft
 EX
 Of
 Vq
@@ -20094,9 +20536,9 @@ EX
 Gd
 Gd
 Gd
-EX
-EX
-EX
+cm
+cm
+up
 EX
 EX
 EX
@@ -20127,8 +20569,8 @@ qQ
 hU
 Yz
 EX
-EX
-EX
+CG
+TJ
 cm
 tQ
 tQ
@@ -20141,7 +20583,7 @@ Vi
 tQ
 tQ
 tQ
-EX
+fa
 EX
 EX
 xP
@@ -20242,12 +20684,12 @@ xS
 xS
 Gd
 EX
-EX
+sk
 Gd
 Gd
 Gd
 Gd
-EX
+Wx
 EX
 EX
 EX
@@ -20279,8 +20721,8 @@ pr
 pr
 Yz
 EX
-EX
-EX
+CG
+gW
 tQ
 tQ
 nm
@@ -20289,7 +20731,7 @@ Mg
 Mg
 Mg
 Mg
-Vi
+da
 tQ
 oo
 tQ
@@ -20393,7 +20835,7 @@ xS
 (100,1,1) = {"
 xS
 Gd
-EX
+Ft
 Gd
 Gd
 Gd
@@ -20406,7 +20848,7 @@ EX
 EX
 EX
 EX
-EX
+Ft
 Gd
 zk
 EO
@@ -20431,9 +20873,9 @@ lf
 Lm
 Yz
 EX
-EX
-EX
-EX
+vs
+TJ
+Gl
 tQ
 XA
 Mg
@@ -20441,14 +20883,14 @@ Mg
 Mg
 Mg
 Mg
-da
+Gf
 He
 Rt
 ox
 bw
 bw
-OA
-OA
+bw
+bw
 Mg
 Mg
 Mg
@@ -20545,19 +20987,19 @@ xS
 (101,1,1) = {"
 xS
 Gd
-EX
+Gl
 Gd
 Gd
 Gd
 Gd
+Gl
+Ft
 EX
 EX
 EX
 EX
 EX
-EX
-EX
-EX
+fa
 Gd
 Gd
 OR
@@ -20582,10 +21024,10 @@ rv
 rv
 rv
 SE
-EX
-EX
-EX
-EX
+GI
+JL
+TJ
+sk
 tQ
 XA
 Mg
@@ -20593,13 +21035,13 @@ Mg
 Mg
 Mg
 Mg
-Ar
+Gf
 Mg
 IC
 oo
 Mt
-KY
-KY
+Mt
+Mt
 lB
 Mg
 Mg
@@ -20607,7 +21049,7 @@ Mg
 Mg
 Mg
 Mg
-Ju
+hr
 zG
 ez
 Ke
@@ -20701,15 +21143,15 @@ Gd
 Gd
 Gd
 Gd
+sk
+Ft
 EX
 EX
 EX
+Ft
 EX
 EX
-EX
-EX
-EX
-EX
+Ft
 Gd
 Gd
 Gd
@@ -20722,21 +21164,21 @@ ey
 Mg
 Mg
 Mg
-rS
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
+Hy
+vZ
+vZ
+LE
+Lx
+Lx
+Lx
+Lx
+Lx
+Lx
+Lx
+Lx
+JL
+Ih
+Dp
 tQ
 tQ
 uz
@@ -20745,12 +21187,12 @@ Mg
 Mg
 Mg
 Mg
-Vi
+Ar
 tQ
 qR
 tQ
 EX
-OL
+up
 Br
 BB
 gs
@@ -20759,10 +21201,10 @@ Mg
 Mg
 Mg
 pI
-AC
-Es
-uy
-HF
+EX
+EX
+EX
+rw
 DN
 gs
 Mg
@@ -20851,13 +21293,13 @@ xS
 Gd
 Gd
 Gd
+Gl
+Ft
 EX
 EX
 EX
 EX
-EX
-EX
-EX
+Ft
 EX
 EX
 EX
@@ -20865,7 +21307,7 @@ Gd
 Gd
 Gd
 Gd
-EX
+sk
 EX
 EX
 EX
@@ -20874,22 +21316,22 @@ Wf
 Mg
 Mg
 Mg
-VI
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
+hn
+vZ
+lZ
+IF
+IF
+IF
+IF
+IF
+IF
+IF
+IF
+IF
+uI
+LE
+Qo
+fa
 tQ
 tQ
 XA
@@ -20901,8 +21343,8 @@ Vi
 tQ
 tQ
 tQ
-OL
-OL
+EX
+EX
 PP
 Of
 Mg
@@ -20912,10 +21354,10 @@ Mg
 wF
 Mg
 Vq
+cm
 EX
-AC
-Es
-Es
+EX
+EX
 oR
 wF
 tQ
@@ -21003,9 +21445,9 @@ xS
 Gd
 Gd
 Gd
+Wx
 EX
-EX
-EX
+fa
 EX
 EX
 EX
@@ -21016,16 +21458,19 @@ EX
 Gd
 Gd
 Gd
+Gl
+Ft
 EX
 EX
 EX
 EX
-EX
-EX
-EX
+Ft
 bV
 am
 Pv
+pM
+IF
+lD
 EX
 EX
 EX
@@ -21033,16 +21478,13 @@ EX
 EX
 EX
 EX
+Ft
+fa
+Ua
+uI
+TJ
 EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
+Ou
 tQ
 KD
 BQ
@@ -21051,9 +21493,9 @@ HT
 VB
 gl
 tQ
-EX
+cm
 tQ
-OL
+cm
 Br
 BB
 xP
@@ -21061,13 +21503,13 @@ eG
 KX
 Pg
 lG
-OL
+EX
 xP
 eG
+cm
+cm
 EX
-EX
-EX
-EX
+Ft
 EX
 EX
 OR
@@ -21087,7 +21529,7 @@ MO
 qT
 EX
 OL
-OL
+pJ
 Je
 Je
 Je
@@ -21167,18 +21609,18 @@ EX
 EX
 EX
 EX
+Ft
+Ft
 EX
 EX
-EX
-EX
-EX
-EX
+fa
+Ft
 EX
 EX
 bV
 am
 Pv
-EX
+Ft
 EX
 EX
 EX
@@ -21186,15 +21628,15 @@ EX
 EX
 Ou
 EX
-EX
-EX
+Ft
+sk
 Gd
 Gd
+cm
+CG
+TJ
 EX
-EX
-EX
-EX
-EX
+Gl
 tQ
 tQ
 tQ
@@ -21203,27 +21645,27 @@ tQ
 tQ
 tQ
 tQ
-EX
-EX
-OL
+cm
+cm
+cm
 HF
 Fi
 KX
 KX
 im
 JU
-SH
-OL
+Pv
+Ft
+Gl
+cm
+cm
+cm
+EX
+Ou
+Gl
 EX
 EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
+Ft
 Gd
 Gd
 Gd
@@ -21239,7 +21681,7 @@ ZE
 qT
 EX
 EX
-OL
+tK
 Je
 Je
 Je
@@ -21321,9 +21763,9 @@ EX
 EX
 EX
 EX
-EX
+Ft
 RL
-EX
+sk
 EX
 EX
 EX
@@ -21337,44 +21779,44 @@ EX
 Gd
 Gd
 Gd
-EX
-EX
+Gl
+Ft
 Gd
 Gd
 Gd
+cm
+CG
+LE
+Qo
 EX
-EX
-EX
-EX
-EX
-EX
+sk
 tQ
-EX
-EX
-EX
-EX
+Wx
+PP
+KX
+KX
 tQ
+fa
+cm
+cm
 EX
 EX
-EX
-OL
-OL
-HF
-Fi
+xv
+Yl
 im
 jV
-qO
-SH
+bV
+Pv
+EX
+Wx
 EX
 EX
 EX
 EX
+sk
 EX
 EX
-EX
-EX
-EX
-EX
+Ft
 Gd
 Gd
 Gd
@@ -21466,16 +21908,16 @@ EX
 EX
 EX
 cm
-cm
-cm
-cm
-sk
+qe
+cw
+cw
+UD
 EX
 EX
 EX
 EX
-EX
-EX
+Gl
+Ft
 EX
 EX
 EX
@@ -21483,8 +21925,8 @@ bV
 am
 Pv
 EX
-EX
-EX
+Ft
+Ft
 EX
 Gd
 Gd
@@ -21493,39 +21935,39 @@ Gd
 Gd
 Gd
 Gd
+cm
+cm
+Ua
+uI
+LE
+Lx
+Lx
+Qo
+EX
+xv
+DN
+fA
+jV
 EX
 EX
 EX
 EX
 EX
 EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-OL
-OL
 HF
 jV
-OL
-qO
+EX
+bV
 Pv
 EX
 EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
+GI
+Lx
+Lx
+Lx
+Lx
+Lx
+Qo
 Gd
 Gd
 Gd
@@ -21544,7 +21986,7 @@ Yz
 EX
 EX
 EX
-OL
+Tv
 Je
 Je
 Je
@@ -21617,11 +22059,11 @@ EX
 EX
 EX
 EX
-cm
-cm
+qe
+pp
 gr
-Je
-EX
+Bb
+WP
 Ft
 Ft
 EX
@@ -21629,20 +22071,31 @@ EX
 EX
 EX
 EX
-EX
+Ft
 EX
 bV
 am
-Pv
-EX
-EX
-EX
-EX
+DM
+ZH
+LI
+ZH
+MA
 Gd
 Gd
 Gd
 Gd
 Gd
+Gl
+cm
+cm
+EX
+Ft
+Ua
+IF
+IF
+uI
+TJ
+up
 EX
 EX
 EX
@@ -21651,38 +22104,27 @@ EX
 EX
 EX
 EX
+RL
 EX
 EX
+Ft
 EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-OL
-OL
-OL
-OL
 bV
 Pv
+Ft
 EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
+CG
+QL
+IF
+IF
+IF
+uI
+LE
+Lx
+Lx
+Lx
+Lx
+Lx
 OR
 tQ
 pX
@@ -21769,11 +22211,11 @@ EX
 EX
 EX
 EX
-EX
-Je
+PP
+Bb
 au
-Je
-EX
+Bb
+WP
 Gl
 Gd
 Gd
@@ -21783,22 +22225,35 @@ cm
 EX
 EX
 EX
-bV
-am
-Pv
+Nh
+CD
+pQ
+KX
+KX
+KX
+XE
+uh
+jK
+UD
+EX
+Ft
+Ft
 EX
 EX
 EX
 EX
+Wx
+Ft
+Ft
+CG
+TJ
 EX
 EX
 EX
-EX
-EX
-EX
-EX
-EX
-EX
+cm
+cm
+cm
+cm
 EX
 Wx
 EX
@@ -21806,36 +22261,23 @@ EX
 EX
 EX
 EX
-EX
-EX
-cm
-cm
-cm
-cm
-EX
-EX
-EX
-EX
-EX
-EX
-EX
 bV
 Pv
 EX
 EX
+Zq
+TJ
 EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-ey
+cm
+cm
+qs
+Qn
+IF
+IF
+IF
+PZ
+vZ
+rQ
 Mg
 Mg
 Mg
@@ -21846,8 +22288,8 @@ Mg
 Mg
 rS
 EX
-EX
-EX
+Gl
+Ft
 EX
 OL
 Je
@@ -21893,14 +22335,14 @@ Je
 Je
 Je
 Je
-Je
 Gd
-BZ
-Je
-Je
-Je
-Je
-Je
+Gd
+OL
+OL
+Gd
+Gd
+Gd
+OL
 Je
 Je
 Je
@@ -21921,11 +22363,11 @@ EX
 EX
 EX
 EX
-EX
-Je
-Je
-EX
-EX
+PP
+Bb
+Bb
+im
+jV
 sk
 Gd
 Gd
@@ -21935,9 +22377,16 @@ cm
 cm
 EX
 EX
-bV
-am
-Pv
+qx
+vg
+iX
+KX
+KX
+KX
+KX
+KX
+do
+WP
 EX
 EX
 EX
@@ -21948,15 +22397,8 @@ EX
 EX
 EX
 EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
+CG
+Bl
 EX
 Gd
 Gd
@@ -21966,28 +22408,28 @@ cm
 cm
 EX
 EX
-EX
-EX
-EX
+GI
+Lx
+Pi
 zy
 EX
 bV
 Pv
 EX
 Rp
+JL
+TJ
 EX
-EX
-EX
-EX
+cm
 Gd
 Gd
-EX
-EX
-EX
-EX
-EX
-EX
-Wf
+cm
+cm
+cm
+GI
+JL
+vZ
+uc
 wF
 wF
 wF
@@ -22045,15 +22487,15 @@ Je
 Je
 Je
 Je
-Je
 Gd
 Gd
-BZ
 Gd
-BZ
-Je
-Je
-Je
+Gd
+Gd
+Gd
+Gd
+Gd
+Cp
 Je
 Je
 Je
@@ -22065,18 +22507,18 @@ xS
 (111,1,1) = {"
 xS
 Gd
+Br
+ZH
+ZH
+qq
 EX
 EX
 EX
 EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
+HF
+DN
+DN
+jV
 EX
 EX
 Gd
@@ -22107,51 +22549,51 @@ Ic
 Ic
 Ic
 Nx
-EX
-EX
+CG
+TJ
 Gd
 Gd
 Gd
 Gd
 cm
 cm
-EX
-EX
-EX
-EX
-EX
-EX
+GI
+Lx
+Lx
+Jy
+vZ
+vZ
 Ux
 Ic
 Mg
 Mg
 Ic
 UE
+vZ
+TJ
 EX
-EX
-EX
-EX
+Ft
 Gd
 Gd
 Gd
 Gd
-EX
-EX
-EX
-EX
-EX
+cm
+CG
+QL
+IF
+Dp
 EX
 EX
 EX
 bV
 Pv
+Wx
 EX
 EX
 EX
 EX
 EX
-EX
-EX
+sk
 Gd
 EX
 OL
@@ -22200,13 +22642,13 @@ Je
 Je
 Gd
 Gd
+CE
+CE
+KM
+vK
 Gd
 Gd
-BZ
-BZ
-Je
-Je
-Je
+Gd
 Je
 Je
 Je
@@ -22217,10 +22659,10 @@ xS
 (112,1,1) = {"
 xS
 Gd
-Ft
-Je
-Je
-EX
+Vw
+Bb
+Bb
+WP
 EX
 EX
 Gd
@@ -22259,46 +22701,46 @@ Mg
 Mg
 Mg
 pI
-EX
-EX
+CG
+TJ
 Gd
 Gd
 Gd
 Ou
 cm
 EX
-EX
-EX
-EX
-EX
-EX
-EX
+CG
+QL
+IF
+IF
+IF
+IF
 za
 ee
 iH
 zb
 ee
 Cd
+IF
+Dp
 EX
 EX
 EX
-EX
-EX
-EX
+up
 Gd
 Gd
-EX
-EX
-EX
-EX
+GI
+JL
+TJ
+Wx
 Gd
-EX
+Ft
 EX
 EX
 bV
 Pv
 EX
-EX
+RL
 EX
 EX
 EX
@@ -22350,15 +22792,15 @@ Je
 Je
 Je
 Je
-BZ
+Tv
+Gd
+Sj
+RZ
+RZ
+SZ
 Gd
 Gd
 Gd
-Gd
-BZ
-BZ
-Je
-Je
 Je
 Je
 Je
@@ -22369,11 +22811,11 @@ xS
 (113,1,1) = {"
 xS
 Gd
-sk
-Je
-Je
-Je
-EX
+kZ
+Bb
+Bb
+nC
+MA
 EX
 Gd
 Gd
@@ -22386,7 +22828,7 @@ EX
 Ft
 Gd
 Gd
-EX
+Gl
 Ft
 EX
 EX
@@ -22407,20 +22849,20 @@ Mg
 Mg
 Mg
 Mg
-Mg
+nU
 Mg
 Mg
 pI
-EX
-EX
+CG
+LE
 Gd
 Gd
 EX
 EX
 EX
 EX
-EX
-EX
+CG
+TJ
 za
 dO
 dO
@@ -22434,32 +22876,32 @@ tQ
 dO
 dO
 Cd
+sk
 EX
 EX
 EX
 EX
-EX
-EX
-EX
-EX
+CG
+QL
+Dp
 Gd
 Gd
 Gd
-EX
+sk
 EX
 bV
 Pv
 EX
 EX
-EX
+fa
 EX
 EX
 EX
 Gd
 Gd
-EX
-EX
-OL
+Gl
+Ft
+oE
 Je
 Je
 Je
@@ -22502,15 +22944,15 @@ Je
 Je
 Je
 Je
-Je
-BZ
-BZ
+OL
 Gd
+KM
+RZ
+RZ
+QD
 Gd
-Gd
+Tv
 BZ
-BZ
-Je
 Je
 Je
 Je
@@ -22521,11 +22963,11 @@ xS
 (114,1,1) = {"
 xS
 Gd
-Gl
-fa
-Je
-Je
-EX
+Vn
+Yl
+Bb
+Bb
+WP
 EX
 fa
 Gd
@@ -22559,20 +23001,20 @@ Mg
 Mg
 Mg
 Mg
-Mg
+MM
 Mg
 Mg
 pI
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
+CG
+vZ
+LE
+Lx
+Lx
+Lx
+Lx
+Lx
+JL
+TJ
 zk
 iH
 iH
@@ -22586,30 +23028,30 @@ UP
 tS
 tS
 RF
+Gl
+Ft
 EX
 EX
-EX
-EX
-EX
-EX
-EX
+Ft
+CG
+TJ
 Gd
 Gd
 Gd
 Gd
-EX
+Ft
 EX
 bV
 Pv
 EX
-EX
-EX
+sk
+Ft
 EX
 EX
 Gd
 Gd
 Gd
-EX
+Ft
 EX
 OL
 Je
@@ -22654,14 +23096,14 @@ Je
 Je
 Je
 Je
-Je
-Je
-Je
-BZ
 Gd
 Gd
+nv
+RZ
+Xf
+xp
 Gd
-BZ
+OL
 BZ
 BZ
 Je
@@ -22674,10 +23116,10 @@ xS
 xS
 Gd
 Ft
-Ft
+Vw
 MN
-Je
-EX
+Bb
+rK
 EX
 Ft
 cm
@@ -22711,20 +23153,20 @@ Mg
 Mg
 Mg
 Mg
+MM
 Mg
 Mg
 Mg
-Mg
-rS
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
+Hy
+vZ
+SN
+IF
+IF
+IF
+IF
+Dv
+dx
+Dp
 zk
 VM
 iH
@@ -22738,29 +23180,29 @@ nn
 iH
 fW
 RF
-EX
-EX
+Ft
+Ft
 Gd
 Gd
-EX
-EX
-EX
+sk
+CG
+TJ
 Gd
 Gd
 Gd
-EX
+Gl
 EX
 EX
 bV
 Pv
 EX
 EX
-EX
-EX
+Ft
+up
 Gd
 Gd
 Gd
-EX
+Cy
 EX
 EX
 OL
@@ -22806,16 +23248,16 @@ Je
 Je
 Je
 Je
-Je
-Je
-Je
+Gd
+Gd
+RH
+RZ
+RZ
+aG
+Gd
+Cw
 BZ
-Gd
-Gd
 BZ
-BZ
-BZ
-Je
 Je
 Je
 Je
@@ -22826,10 +23268,10 @@ xS
 xS
 Gd
 EX
-EX
-EX
-EX
-EX
+HF
+DN
+DN
+jV
 EX
 EX
 cm
@@ -22842,7 +23284,7 @@ EX
 EX
 EX
 EX
-EX
+Ft
 EX
 EX
 zs
@@ -22854,6 +23296,8 @@ Mg
 Mg
 rn
 Mg
+oj
+oj
 Mg
 Mg
 Mg
@@ -22861,15 +23305,13 @@ Mg
 Mg
 Mg
 Mg
+Ds
 Mg
 Mg
 Mg
-Mg
-Mg
-Mg
-VI
-EX
-EX
+hn
+vZ
+gW
 EX
 EX
 EX
@@ -22895,14 +23337,14 @@ EX
 Gd
 Gd
 Gd
-EX
-EX
-EX
+CG
+LE
+Lx
 Gd
 Gd
-EX
-EX
-EX
+eh
+Lx
+Qo
 bV
 Pv
 EX
@@ -22958,16 +23400,16 @@ Je
 Je
 Je
 Je
-Je
-Je
-Je
-Je
+Gd
+Gd
+Gd
+OQ
+KG
+KM
+Gd
+FZ
 BZ
 BZ
-BZ
-BZ
-Je
-Je
 Je
 Je
 Je
@@ -22991,7 +23433,7 @@ cm
 Gd
 Gd
 fa
-EX
+Ft
 EX
 EX
 fa
@@ -23019,9 +23461,9 @@ Mg
 Mg
 Mg
 pI
-EX
-EX
-EX
+Ua
+IF
+Dp
 EX
 za
 wv
@@ -23047,13 +23489,13 @@ Gd
 Gd
 EX
 EX
-EX
-EX
-EX
-EX
-EX
-EX
-zs
+CG
+vZ
+vZ
+vZ
+vZ
+vZ
+sI
 Ic
 Mg
 Mg
@@ -23065,8 +23507,8 @@ EX
 EX
 EX
 EX
-EX
-EX
+up
+Ft
 EX
 OL
 Je
@@ -23111,15 +23553,15 @@ Je
 Je
 Je
 Je
-Je
-Je
-Je
-Je
+Cp
+Gd
+Gd
+Gd
+kI
+Ce
+of
+Gd
 BZ
-BZ
-Je
-Je
-Je
 Je
 Je
 Je
@@ -23143,8 +23585,8 @@ cm
 Gd
 Gd
 Gd
-sk
-EX
+hd
+MA
 EX
 EX
 EX
@@ -23162,7 +23604,7 @@ zi
 zi
 zi
 HO
-Mg
+Pd
 Mg
 Mg
 Mg
@@ -23172,8 +23614,8 @@ Mg
 Mg
 pI
 Wx
-EX
-EX
+Gl
+Ft
 EX
 zk
 iS
@@ -23195,12 +23637,12 @@ zn
 sP
 iH
 RF
-EX
-EX
-EX
-EX
-EX
-EX
+GI
+Lx
+Lx
+Lx
+JL
+QL
 za
 wv
 wv
@@ -23260,17 +23702,17 @@ EX
 EX
 OL
 OL
-OL
 Je
 Je
 Je
 Je
 Je
-Je
-Je
-Je
-Je
-Je
+Gd
+Gd
+Gd
+Gd
+Gd
+Gd
 Je
 Je
 Je
@@ -23295,8 +23737,8 @@ cm
 cm
 Gd
 Gd
-Je
-EX
+Bb
+WP
 EX
 EX
 EX
@@ -23314,17 +23756,17 @@ zi
 zi
 zi
 HO
+Pd
 Mg
 Mg
 Mg
 Mg
-Mg
-Mg
+Yh
 Mg
 Mg
 pI
 EX
-EX
+sk
 EX
 EX
 zk
@@ -23347,12 +23789,12 @@ iH
 iH
 iH
 CJ
-SF
-EX
-EX
-EX
-EX
-EX
+wh
+vZ
+QL
+IF
+IF
+Dp
 zk
 nm
 jB
@@ -23374,7 +23816,7 @@ EX
 EX
 OL
 OL
-OL
+Cp
 Je
 Je
 Je
@@ -23411,17 +23853,17 @@ EX
 EX
 EX
 EX
-EX
+OL
 OL
 Je
 Je
 Je
 Je
 Je
-Je
-Je
-Je
-Je
+OL
+Gd
+Gd
+Gd
 Je
 Je
 Je
@@ -23447,8 +23889,8 @@ EX
 EX
 Gd
 Gd
-Je
-EX
+Bb
+WP
 EX
 EX
 EX
@@ -23471,14 +23913,14 @@ Mg
 Mg
 Mg
 Mg
-Mg
+GF
 Mg
 Mg
 pI
 EX
 EX
 EX
-EX
+Ft
 zk
 tS
 bs
@@ -23499,9 +23941,9 @@ iH
 iH
 Ww
 RF
-EX
-EX
-EX
+Ua
+IF
+Dp
 EX
 EX
 EX
@@ -23525,7 +23967,7 @@ EX
 EX
 EX
 EX
-EX
+Ft
 OL
 Je
 Je
@@ -23565,7 +24007,6 @@ EX
 EX
 EX
 OL
-OL
 Je
 Je
 Je
@@ -23573,7 +24014,8 @@ Je
 Je
 Je
 Je
-Je
+Gd
+Gd
 Je
 Je
 Je
@@ -23599,8 +24041,8 @@ EX
 Gd
 Gd
 fb
-Je
-cm
+Bb
+GO
 cm
 RL
 EX
@@ -23623,13 +24065,13 @@ Mg
 Mg
 Mg
 Mg
-Mg
+GF
 Mg
 Mg
 pI
 EX
 EX
-EX
+lp
 EX
 zk
 tQ
@@ -23677,7 +24119,7 @@ EX
 EX
 Gd
 Gd
-EX
+Gl
 OL
 Je
 Je
@@ -23717,7 +24159,6 @@ EX
 EX
 EX
 OL
-OL
 Je
 Je
 Je
@@ -23727,8 +24168,9 @@ Je
 Je
 Je
 Je
-OL
-OL
+Je
+Je
+Je
 Je
 Je
 Je
@@ -23750,9 +24192,9 @@ EX
 fa
 Gd
 Gd
-Je
-EX
-cm
+Bb
+im
+Cq
 cm
 cm
 EX
@@ -23775,7 +24217,7 @@ Mg
 Mg
 Mg
 Mg
-Mg
+mP
 Mg
 Mg
 pI
@@ -23802,9 +24244,9 @@ iH
 iH
 iH
 Yz
+Ou
 EX
-EX
-EX
+Ft
 EX
 zk
 WR
@@ -23825,11 +24267,11 @@ uz
 Xg
 KJ
 Yz
-EX
+fa
 EX
 Gd
 Gd
-EX
+Ft
 OL
 Je
 Je
@@ -23869,19 +24311,19 @@ EX
 EX
 EX
 OL
-Je
-Je
-Je
-Je
-Je
-Je
-Je
-Je
 OL
-OL
-OL
-OL
-OL
+Je
+Je
+Je
+Je
+Je
+Je
+Je
+Je
+Je
+Je
+Je
+Je
 Je
 Je
 xS
@@ -23902,8 +24344,8 @@ EX
 EX
 Gd
 Gd
-EX
-EX
+DN
+jV
 cm
 cm
 cm
@@ -23957,7 +24399,7 @@ Yz
 EX
 EX
 EX
-EX
+sk
 zk
 Mg
 Mg
@@ -23977,9 +24419,9 @@ pr
 pr
 pr
 Yz
+Ft
 EX
-EX
-EX
+sk
 Gd
 Gd
 OL
@@ -24020,21 +24462,21 @@ EX
 EX
 EX
 EX
-Gd
+OL
+OL
 Je
 Je
 Je
 Je
 Je
-Gd
+Je
+Je
+Je
+Je
 OL
 OL
-OL
-EX
-EX
-EX
-OL
-OL
+Je
+Je
 Je
 xS
 "}
@@ -24172,21 +24614,21 @@ EX
 EX
 EX
 EX
-Gd
-Gd
-Je
-Je
-Gd
-Gd
-Gd
-EX
-EX
-EX
-EX
-EX
-EX
-EX
 OL
+Je
+Je
+Je
+Je
+Je
+Je
+Je
+Je
+OL
+OL
+OL
+OL
+OL
+Je
 Je
 xS
 "}
@@ -24259,7 +24701,7 @@ eK
 eK
 RF
 EX
-EX
+Gl
 EX
 EX
 zk
@@ -24281,11 +24723,11 @@ gB
 Jd
 KH
 Yz
-EX
+Ft
 EX
 Gd
 Gd
-EX
+sk
 EX
 EX
 OL
@@ -24324,22 +24766,22 @@ EX
 EX
 EX
 EX
-EX
 Gd
+Je
+Je
+Je
+Je
+Je
 Gd
-Gd
-Gd
-Gd
-EX
-EX
-EX
-EX
-EX
+OL
+OL
+OL
 EX
 EX
 EX
 OL
-Gd
+OL
+Je
 xS
 "}
 (126,1,1) = {"
@@ -24389,8 +24831,8 @@ Mg
 pI
 EX
 EX
-EX
-EX
+sk
+Ft
 zk
 iH
 iH
@@ -24433,7 +24875,7 @@ pr
 pr
 pr
 Yz
-EX
+Gl
 EX
 EX
 Gd
@@ -24476,8 +24918,10 @@ EX
 EX
 EX
 EX
-EX
-EX
+Gd
+Gd
+Je
+Je
 Gd
 Gd
 Gd
@@ -24488,10 +24932,8 @@ EX
 EX
 EX
 EX
-EX
-EX
-Gd
-Gd
+OL
+Je
 xS
 "}
 (127,1,1) = {"
@@ -24505,8 +24947,8 @@ Gd
 Gd
 Gd
 lp
-EX
-EX
+Br
+ZH
 Gd
 Gd
 Gd
@@ -24541,8 +24983,8 @@ wF
 Yg
 EX
 Wx
-EX
-EX
+CC
+ZH
 zk
 iH
 iH
@@ -24561,10 +25003,10 @@ EX
 EX
 EX
 EX
+sk
 EX
-EX
-EX
-EX
+fa
+RL
 EX
 zk
 Mg
@@ -24590,7 +25032,7 @@ EX
 Gd
 Gd
 Gd
-EX
+Gl
 EX
 OL
 Je
@@ -24629,20 +25071,20 @@ EX
 EX
 EX
 EX
-EX
 Gd
 Gd
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
 Gd
 Gd
+Gd
+EX
+EX
+EX
+EX
+EX
+EX
+EX
+EX
+OL
 Gd
 xS
 "}
@@ -24657,8 +25099,8 @@ Gd
 Gd
 Gd
 Gd
-EX
-Je
+PP
+Bb
 Gd
 Gd
 Gd
@@ -24691,10 +25133,10 @@ EX
 EX
 EX
 EX
-EX
-EX
-EX
-EX
+Br
+ZH
+hY
+Bb
 zk
 NN
 iH
@@ -24715,8 +25157,8 @@ EX
 EX
 EX
 EX
-EX
-EX
+RL
+Gl
 EX
 zk
 Xp
@@ -24738,11 +25180,11 @@ Mg
 Vi
 Yz
 EX
-EX
+fa
 Gd
 Gd
-EX
-EX
+up
+Ft
 OL
 OL
 Je
@@ -24792,8 +25234,8 @@ EX
 EX
 EX
 EX
-Gd
-Gd
+EX
+EX
 Gd
 Gd
 xS
@@ -24809,9 +25251,9 @@ Gd
 Gd
 Gd
 Gd
-EX
+PP
 fb
-Je
+Bb
 Gd
 Gd
 Gd
@@ -24843,10 +25285,10 @@ cm
 cm
 EX
 EX
-EX
-EX
-EX
-EX
+PP
+Bb
+Bb
+Bb
 zk
 tQ
 zr
@@ -24863,8 +25305,8 @@ Yz
 Gd
 EX
 EX
-EX
-EX
+up
+Ft
 EX
 EX
 EX
@@ -24893,9 +25335,9 @@ EX
 EX
 Gd
 Gd
-EX
+Ft
 OL
-OL
+pJ
 Je
 Je
 Je
@@ -24944,7 +25386,7 @@ EX
 EX
 EX
 EX
-Gd
+EX
 Gd
 Gd
 Gd
@@ -24961,10 +25403,10 @@ Gd
 Gd
 sk
 Ft
-EX
-Je
-Je
-Je
+PP
+Bb
+Bb
+Bb
 Gd
 Gd
 Gd
@@ -24988,17 +25430,17 @@ ri
 WY
 EX
 EX
-EX
+sk
 EX
 cm
 cm
 cm
 cm
 EX
-EX
-EX
-EX
-EX
+PP
+Bb
+Bb
+Bb
 OR
 rv
 rv
@@ -25018,7 +25460,7 @@ EX
 EX
 EX
 EX
-EX
+Ft
 EX
 EX
 EX
@@ -25086,7 +25528,8 @@ EX
 EX
 EX
 EX
-EX
+Gd
+Gd
 Gd
 EX
 EX
@@ -25095,7 +25538,6 @@ EX
 EX
 EX
 EX
-Gd
 Gd
 Gd
 Gd
@@ -25113,11 +25555,11 @@ sk
 Ft
 EX
 EX
-EX
-EX
-EX
-Je
-Je
+HF
+DN
+Fi
+Bb
+Bb
 Gd
 Gd
 Gd
@@ -25127,14 +25569,14 @@ EX
 EX
 EX
 sk
-EX
-Je
-Je
-Je
-Je
-Je
-Je
-EX
+PP
+Bb
+Bb
+Bb
+Bb
+Bb
+Bb
+WP
 EX
 EX
 EX
@@ -25147,12 +25589,12 @@ cm
 cm
 cm
 EX
-EX
-EX
-EX
-EX
-EX
-EX
+HF
+Fi
+Bb
+Cj
+Bb
+WP
 EX
 wL
 EX
@@ -25166,6 +25608,7 @@ Gd
 Gd
 Gd
 Gd
+Gl
 EX
 EX
 EX
@@ -25173,25 +25616,24 @@ EX
 EX
 EX
 EX
+up
+EX
+EX
+EX
+EX
+Ou
 EX
 EX
 EX
 EX
 EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-lw
-ps
-EX
+Ft
+sk
+fa
+GI
+UL
+Eb
+tC
 EX
 EX
 EX
@@ -25238,16 +25680,16 @@ EX
 EX
 EX
 EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
 Gd
 Gd
-Gd
+EX
+EX
+EX
+EX
+EX
+EX
+EX
+EX
 Gd
 Gd
 Gd
@@ -25267,9 +25709,9 @@ EX
 cm
 cm
 Gd
-EX
-EX
-EX
+HF
+DN
+DN
 Gd
 Gd
 Gd
@@ -25279,14 +25721,14 @@ EX
 EX
 EX
 EX
-EX
-EX
-Je
-Je
-Je
-Je
-EX
-EX
+HF
+Fi
+Bb
+Bb
+Bb
+Bb
+im
+jV
 EX
 Ft
 EX
@@ -25300,11 +25742,11 @@ EX
 EX
 EX
 EX
-EX
-RL
-EX
-EX
-EX
+HF
+XF
+DN
+DN
+jV
 EX
 EX
 EX
@@ -25317,14 +25759,15 @@ Gd
 Gd
 Gd
 Gd
-EX
-EX
+fa
+sk
 EX
 EX
 EX
 Gd
 Gd
 EX
+Ft
 EX
 EX
 EX
@@ -25333,17 +25776,16 @@ EX
 EX
 EX
 EX
+Ft
 EX
 EX
 EX
+Ft
 EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
+LJ
+vZ
+vZ
+TJ
 EX
 EX
 EX
@@ -25391,14 +25833,14 @@ EX
 EX
 EX
 EX
-EX
-EX
-EX
-EX
-EX
-EX
 Gd
-Gd
+EX
+EX
+EX
+EX
+EX
+EX
+EX
 Gd
 Gd
 Gd
@@ -25432,12 +25874,12 @@ Wx
 cm
 cm
 cm
-EX
-EX
-EX
-EX
-EX
-EX
+HF
+DN
+DN
+DN
+DN
+jV
 EX
 EX
 EX
@@ -25462,7 +25904,7 @@ EX
 EX
 EX
 EX
-EX
+Wx
 cm
 cm
 cm
@@ -25485,23 +25927,23 @@ EX
 EX
 EX
 EX
+sk
+Gl
+Ft
+EX
+EX
+EX
+EX
+CG
+vZ
+vZ
+TJ
 EX
 EX
 EX
 EX
 EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-OL
+Cp
 Je
 Je
 Je
@@ -25549,9 +25991,9 @@ EX
 EX
 EX
 EX
-EX
 Gd
-EX
+Gd
+Gd
 Gd
 Gd
 Gd
@@ -25566,8 +26008,8 @@ Gl
 EX
 EX
 EX
-cm
-cm
+qe
+cw
 cm
 Gd
 Gd
@@ -25590,7 +26032,7 @@ EX
 EX
 EX
 EX
-EX
+sk
 EX
 EX
 Ft
@@ -25599,7 +26041,7 @@ EX
 EX
 RL
 EX
-EX
+Ft
 EX
 EX
 EX
@@ -25607,6 +26049,7 @@ EX
 Ou
 EX
 cm
+sk
 EX
 EX
 EX
@@ -25625,8 +26068,7 @@ EX
 EX
 EX
 EX
-EX
-EX
+sk
 Gd
 Gd
 Gd
@@ -25636,18 +26078,18 @@ EX
 OL
 OL
 OL
-OL
+oE
 OL
 Gd
 Gd
 Gd
+Tv
 OL
 OL
-OL
-EX
-EX
-EX
-EX
+CG
+vZ
+vZ
+Bl
 EX
 EX
 EX
@@ -25701,10 +26143,10 @@ EX
 EX
 EX
 EX
-EX
-EX
-EX
-EX
+Gd
+Gd
+Gd
+Gd
 Gd
 Gd
 Gd
@@ -25717,8 +26159,8 @@ Gd
 Ft
 EX
 EX
-EX
-cm
+Br
+pp
 Lw
 Gd
 Gd
@@ -25746,13 +26188,13 @@ EX
 EX
 EX
 EX
-EX
-EX
-EX
-EX
+Br
+ZH
+ZH
+MA
 up
 EX
-EX
+Gl
 EX
 sk
 Gd
@@ -25778,7 +26220,7 @@ EX
 EX
 EX
 EX
-EX
+Gl
 Gd
 Gd
 Gd
@@ -25796,10 +26238,10 @@ Je
 Je
 Je
 OL
-EX
-EX
-EX
-EX
+CG
+vZ
+QL
+Dp
 EX
 OL
 OL
@@ -25854,9 +26296,9 @@ EX
 EX
 EX
 EX
+Gd
 EX
-EX
-EX
+Gd
 Gd
 Gd
 Gd
@@ -25868,10 +26310,10 @@ Gd
 Gd
 EX
 EX
-EX
-Ou
-Je
-Je
+Br
+aY
+Bb
+Bb
 Gd
 Gd
 Gd
@@ -25897,12 +26339,12 @@ EX
 cm
 cm
 EX
-EX
-EX
-Je
-Je
-EX
-EX
+Br
+BB
+Bb
+Bb
+XE
+MA
 EX
 EX
 EX
@@ -25925,17 +26367,17 @@ EX
 EX
 EX
 EX
+Ft
 EX
 EX
 EX
-EX
-EX
+fa
 Gd
 Gd
 Gd
+Gl
 EX
-EX
-OL
+oE
 OL
 OL
 Je
@@ -25950,10 +26392,10 @@ Je
 OL
 KS
 Zc
-KS
+Rq
+pJ
 OL
-OL
-OL
+tK
 Je
 Je
 Je
@@ -26020,10 +26462,10 @@ Gd
 Gl
 Ft
 EX
-EX
-Je
-Je
-Je
+PP
+Bb
+Bb
+Bb
 Gd
 Gd
 Gd
@@ -26049,13 +26491,13 @@ Gd
 Gd
 cm
 cm
-cm
+iL
 gr
-Je
-Je
-Je
-EX
-EX
+Bb
+Bb
+Bb
+XE
+MA
 EX
 EX
 EX
@@ -26076,17 +26518,17 @@ Gd
 Ou
 EX
 EX
+up
 EX
 EX
 EX
-EX
-EX
+sk
 Gd
 Gd
 EX
 OL
 OL
-OL
+pJ
 OL
 Je
 Je
@@ -26161,7 +26603,7 @@ EX
 EX
 EX
 EX
-EX
+Gd
 Gd
 Gd
 xS
@@ -26172,10 +26614,10 @@ Gd
 RL
 EX
 EX
-EX
+PP
 Lw
-Je
-Je
+Bb
+Bb
 Wb
 Gd
 Gd
@@ -26187,11 +26629,11 @@ sk
 EX
 EX
 EX
-EX
-EX
-EX
-EX
-EX
+Br
+ZH
+ZH
+ZH
+MA
 EX
 sk
 Ft
@@ -26206,8 +26648,8 @@ Gd
 Gd
 Gd
 fb
-Je
-Ft
+Bb
+rK
 EX
 EX
 EX
@@ -26218,7 +26660,7 @@ Gd
 Gd
 Gd
 Gd
-EX
+fa
 EX
 EX
 EX
@@ -26226,8 +26668,8 @@ Gd
 Gd
 Gd
 Gd
-EX
-EX
+sk
+Ft
 EX
 EX
 EX
@@ -26313,20 +26755,20 @@ EX
 EX
 EX
 EX
-EX
-EX
+Gd
+Gd
 Gd
 xS
 "}
 (139,1,1) = {"
 xS
 Gd
-Ft
-EX
-EX
-EX
-EX
-Je
+uh
+ZH
+MA
+HF
+Fi
+Bb
 Gd
 Gd
 Gd
@@ -26338,13 +26780,13 @@ cm
 cm
 EX
 Wx
-Ft
-EX
-Je
-Je
-Je
-EX
-Ft
+IM
+BB
+Bb
+Bb
+Bb
+XE
+rI
 EX
 EX
 cm
@@ -26466,19 +26908,19 @@ EX
 EX
 EX
 EX
-EX
+Gd
 Gd
 xS
 "}
 (140,1,1) = {"
 xS
 Gd
-Ng
-Je
-up
-EX
-EX
-Je
+Cj
+Bb
+gZ
+MA
+PP
+Bb
 Gd
 Gd
 Gd
@@ -26493,10 +26935,10 @@ Gd
 Gd
 fb
 Lw
-Je
-Je
-Je
-EX
+Bb
+Bb
+gr
+GO
 up
 EX
 EX
@@ -26533,13 +26975,13 @@ Gd
 Gd
 Gd
 Gd
-EX
+fa
 EX
 EX
 EX
 EX
 OL
-OL
+oE
 Je
 Je
 Je
@@ -26626,11 +27068,11 @@ xS
 xS
 Gd
 Qd
-Je
-Je
-EX
-EX
-fa
+Bb
+Bb
+WP
+HF
+rO
 Gd
 Gd
 Gd
@@ -26653,11 +27095,11 @@ Gd
 fa
 EX
 EX
-EX
-EX
-Ft
-EX
-EX
+Br
+ZH
+uh
+ZH
+MA
 cm
 cm
 cm
@@ -26667,18 +27109,18 @@ Gd
 Gl
 Ft
 EX
+Br
+ZH
+ZH
+ZH
+MA
 EX
 EX
 EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
+Br
+ZH
+ZH
+MA
 EX
 EX
 Gd
@@ -26777,11 +27219,11 @@ xS
 (142,1,1) = {"
 xS
 Gd
-Je
-Je
-Je
+Bb
+Bb
+Bb
+WP
 EX
-EX
 Gd
 Gd
 Gd
@@ -26791,8 +27233,8 @@ Gd
 Gd
 Gd
 Gd
-Je
-Wx
+Bb
+yU
 Ft
 Gd
 Gd
@@ -26805,11 +27247,11 @@ Gd
 Gd
 Gl
 EX
-EX
-Je
-Je
-Je
-EX
+PP
+Bb
+Bb
+Bb
+WP
 EX
 up
 cm
@@ -26819,18 +27261,18 @@ sk
 EX
 EX
 EX
-Ft
-Je
-Je
-Je
+Vw
+Bb
+Bb
+Bb
+XE
+MA
 EX
-EX
-EX
-EX
-up
-Je
-Je
-EX
+Br
+Kl
+Bb
+Bb
+WP
 EX
 EX
 EX
@@ -26929,10 +27371,10 @@ xS
 (143,1,1) = {"
 xS
 Gd
-Je
-Je
-EX
-Ft
+Bb
+Bb
+im
+Cf
 Gd
 Gd
 Gd
@@ -26944,7 +27386,7 @@ Gd
 Gd
 Gd
 fb
-Ft
+rK
 EX
 cm
 Gd
@@ -26957,8 +27399,8 @@ Gd
 Gd
 Ou
 Ft
-EX
-Je
+PP
+Bb
 Qd
 Gd
 Gd
@@ -26975,14 +27417,14 @@ Gd
 Gd
 Gd
 fb
-Je
+Bb
+WP
 EX
-EX
-EX
-Je
-Je
-Je
-EX
+PP
+Bb
+Bb
+Bb
+WP
 EX
 EX
 EX
@@ -27081,9 +27523,9 @@ xS
 (144,1,1) = {"
 xS
 Gd
-fa
-EX
-EX
+rO
+DN
+jV
 EX
 Gd
 Gd
@@ -27092,11 +27534,11 @@ Gd
 Gd
 Gd
 Qd
-Je
-Je
-Je
-Je
-EX
+Bb
+Bb
+Bb
+Bb
+WP
 Ft
 cm
 cm
@@ -27109,9 +27551,9 @@ Gd
 Gd
 Gd
 EX
-EX
-EX
-Je
+HF
+Fi
+Bb
 Gd
 Gd
 Gd
@@ -27130,11 +27572,11 @@ Gd
 Gd
 Gd
 EX
-EX
-Je
-Je
-EX
-EX
+PP
+Bb
+Bb
+im
+jV
 EX
 EX
 EX
@@ -27242,13 +27684,13 @@ Gd
 Gd
 Wb
 fb
-Ng
-Je
-Je
-Je
-EX
-EX
-EX
+Cj
+Bb
+Bb
+Bb
+im
+DN
+jV
 Ft
 sk
 EX
@@ -27262,9 +27704,9 @@ Gd
 Gd
 fa
 EX
-EX
-Je
-Je
+PP
+Bb
+Bb
 Gd
 Gd
 Ou
@@ -27282,10 +27724,10 @@ Gd
 Gd
 Gd
 EX
-EX
-EX
-EX
-EX
+HF
+DN
+DN
+jV
 EX
 Ou
 EX
@@ -27390,15 +27832,15 @@ EX
 EX
 Zh
 up
-EX
-Je
-Je
-Je
-Je
-Je
-EX
-EX
-EX
+PP
+Bb
+Bb
+Bb
+Bb
+Bb
+im
+DN
+jV
 EX
 EX
 EX
@@ -27407,15 +27849,15 @@ EX
 EX
 EX
 EX
+Br
+ZH
+ZH
+ZH
+MA
 EX
 EX
-EX
-EX
-EX
-EX
-EX
-EX
-EX
+HF
+Fi
 fb
 Gd
 Gd
@@ -27432,7 +27874,7 @@ Gd
 Gl
 Gd
 Gd
-EX
+fa
 EX
 EX
 EX
@@ -27542,13 +27984,13 @@ EX
 Ft
 EX
 EX
-EX
-EX
-Ft
-Je
+HF
+DN
+ff
+Bb
 gr
-cm
-cm
+kN
+Cq
 Ft
 Ft
 fa
@@ -27558,16 +28000,16 @@ Gd
 Ou
 fa
 EX
-Ft
-EX
-Je
-Je
-Je
-EX
-EX
+IM
+BB
+Bb
+Bb
+Bb
+XE
+MA
 sk
 cm
-cm
+rW
 Gd
 Gd
 Gd
@@ -27594,7 +28036,7 @@ Gd
 Gd
 Gd
 Gd
-EX
+fa
 EX
 cm
 EX
@@ -27696,10 +28138,10 @@ sk
 yL
 Ft
 Ft
-fa
-cm
-cm
-cm
+Yi
+sH
+sH
+Cq
 cm
 cm
 sk
@@ -27710,13 +28152,13 @@ Gd
 Gd
 Gd
 Gd
-Gl
-Je
-Je
+Lj
+Bb
+Bb
 Lw
 fb
-Je
-EX
+Bb
+WP
 cm
 cm
 Gd
