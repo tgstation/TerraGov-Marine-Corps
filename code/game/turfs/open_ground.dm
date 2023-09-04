@@ -34,6 +34,7 @@
 	shoefootstep = FOOTSTEP_SAND
 	barefootstep = FOOTSTEP_SAND
 	mediumxenofootstep = FOOTSTEP_SAND
+	minimap_color = MINIMAP_WATER
 	smoothing_groups = list(
 		SMOOTH_GROUP_RIVER,
 	)

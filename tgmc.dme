@@ -585,6 +585,7 @@
 #include "code\game\area\vaporprocessing.dm"
 #include "code\game\area\whiskeyoutpost.dm"
 #include "code\game\area\areas\shuttles.dm"
+#include "code\game\area\campaign_maps\jungle_outpost.dm"
 #include "code\game\mecha\mech_bay.dm"
 #include "code\game\mecha\mecha_parts.dm"
 #include "code\game\mecha\mecha_wreckage.dm"
