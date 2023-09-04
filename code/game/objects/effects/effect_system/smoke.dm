@@ -54,7 +54,6 @@
 	if(lifetime && CHECK_BITFIELD(smoke_traits, SMOKE_CAMO))
 		apply_smoke_effect(get_turf(src))
 		LAZYCLEARLIST(cloud?.smoked_mobs)
-		INVOKE_ASYNC(src, PROC_REF(fade_out))
 	if(CHECK_BITFIELD(smoke_traits, SMOKE_CHEM) && LAZYLEN(cloud?.smoked_mobs)) //so the whole cloud won't stop working somehow
 		var/obj/effect/particle_effect/smoke/neighbor = pick(cloud.smokes - src)
 		neighbor.chemical_effect()
@@ -65,18 +64,6 @@
 		if(cloud.single_use && !LAZYLEN(cloud.smokes))
 			qdel(cloud)
 	return ..()
-
-/obj/effect/particle_effect/smoke/proc/fade_out(frames = 16)
-	if(alpha == 0) //Handle already transparent case
-		return
-	if(frames == 0)
-		frames = 1 //We will just assume that by 0 frames, the coder meant "during one frame".
-	var/step = alpha / frames
-	for(var/i in 1 to frames)
-		alpha -= step
-		if(alpha < 160)
-			set_opacity(FALSE) //if we were blocking view, we aren't now because we're fading out
-		stoplag()
 
 /obj/effect/particle_effect/smoke/process()
 	lifetime--
