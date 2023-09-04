@@ -45,15 +45,16 @@
 
 	var/mob/living/carbon/xenomorph/facehugger/caster = owner
 
+	caster.visible_message(span_danger("[caster] leaps on [M]!"),
+				span_xenodanger("We leap on [M]!"), null, 5)
+	playsound(caster.loc, 'sound/voice/alien_roar_larva3.ogg', 25, TRUE) //TODO: I NEED ACTUAL HUGGERS SOUND DAMMED
+
 	if(ishuman(M) && (M.dir in reverse_nearby_direction(caster.dir)))
 		var/mob/living/carbon/human/H = M
 		if(!H.check_shields(COMBAT_TOUCH_ATTACK, 30, "melee"))
 			caster.Paralyze(6 SECONDS)
 			caster.set_throwing(FALSE) //Reset throwing manually.
 			return COMPONENT_KEEP_THROWING
-
-	caster.visible_message(span_danger("[caster] leaps on [M]!"),
-					span_xenodanger("We leap on [M]!"), null, 5)
 
 	caster.forceMove(get_turf(M))
 	if(ishuman(M))
@@ -66,8 +67,6 @@
 
 			if(freeze_on_hit_time)
 				caster.Immobilize(freeze_on_hit_time)
-
-	playsound(caster.loc, 'sound/voice/alien_roar_larva3.ogg', 25, TRUE)
 
 	pounce_complete()
 

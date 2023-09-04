@@ -2,6 +2,10 @@
 	///The number of huggers the carrier reserves against observer possession.
 	var/huggers_reserved = 0
 
+/mob/living/carbon/xenomorph/carrier/get_status_tab_items()
+	. = ..()
+	. += "Reserved Huggers: [huggers_reserved] / [xeno_caste.huggers_max]"
+
 //Observers can become playable facehuggers by clicking on the carrier
 /mob/living/carbon/xenomorph/carrier/attack_ghost(mob/dead/observer/user)
 	. = ..()

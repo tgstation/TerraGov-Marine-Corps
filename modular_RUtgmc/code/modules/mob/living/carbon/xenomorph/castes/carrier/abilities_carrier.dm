@@ -6,9 +6,6 @@
 	name = "Set Hugger Reserve"
 	action_icon_state = "hugger_set"
 	desc = "Set the number of huggers you want to preserve from the observers' possession."
-	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_XENOABILITY_CHOOSE_HUGGER,
-	)
 	use_state_flags = XACT_USE_LYING
 
 /datum/action/xeno_action/set_hugger_reserve/give_action(mob/living/L)
