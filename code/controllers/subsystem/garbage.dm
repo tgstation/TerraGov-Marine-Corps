@@ -253,7 +253,7 @@ SUBSYSTEM_DEF(garbage)
 		HardDelete(D)
 		return
 	var/queue_time = world.time
-	var/refid = "\ref[D]"
+	var/refid = text_ref(D)
 
 	if (D.gc_destroyed <= 0)
 		D.gc_destroyed = queue_time
@@ -266,7 +266,7 @@ SUBSYSTEM_DEF(garbage)
 	++delslasttick
 	++totaldels
 	var/type = D.type
-	var/refID = "\ref[D]"
+	var/refID = text_ref(D)
 
 	var/tick_usage = TICK_USAGE
 	del(D)
@@ -381,7 +381,7 @@ SUBSYSTEM_DEF(garbage)
 				D.find_references() //This breaks ci. Consider it insurance against somehow pring reftracking on accident
 			if (QDEL_HINT_IFFAIL_FINDREFERENCE) //qdel will, if REFERENCE_TRACKING is enabled and the object fails to collect, display all references to this object.
 				SSgarbage.Queue(D)
-				SSgarbage.reference_find_on_fail["\ref[D]"] = TRUE
+				SSgarbage.reference_find_on_fail[text_ref(D)] = TRUE
 			#endif
 			else
 				#ifdef TESTING

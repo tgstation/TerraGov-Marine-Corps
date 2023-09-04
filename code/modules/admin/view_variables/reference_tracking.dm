@@ -151,7 +151,7 @@
 	thing_to_del.qdel_and_find_ref_if_fail(force)
 
 /datum/proc/qdel_and_find_ref_if_fail(force = FALSE)
-	SSgarbage.reference_find_on_fail["\ref[src]"] = TRUE
+	SSgarbage.reference_find_on_fail[text_ref(src)] = TRUE
 	qdel(src, force)
 
 #endif

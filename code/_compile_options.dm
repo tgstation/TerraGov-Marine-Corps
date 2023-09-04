@@ -32,6 +32,10 @@
 // We do not ship byond-tracy. Build it yourself here: https://github.com/mafemergency/byond-tracy/
 // #define USE_BYOND_TRACY
 
+// If defined, we will compile with FULL timer debug info, rather then a limited scope
+// Be warned, this increases timer creation cost by 5x
+// #define TIMER_DEBUG
+
 #ifndef PRELOAD_RSC				//set to:
 #define PRELOAD_RSC 1			//	0 to allow using external resources or on-demand behaviour;
 #endif							//	1 to use the default behaviour;
@@ -82,6 +86,8 @@
 #define REFERENCE_TRACKING_DEBUG
 #define FIND_REF_NO_CHECK_TICK
 #define GC_FAILURE_HARD_LOOKUP
+//Test at full capacity, the extra cost doesn't matter
+#define TIMER_DEBUG
 #endif
 
 #ifdef TGS
