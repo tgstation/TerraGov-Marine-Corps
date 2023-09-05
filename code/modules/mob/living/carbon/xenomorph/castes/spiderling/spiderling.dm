@@ -18,10 +18,12 @@
 
 /mob/living/carbon/xenomorph/spiderling/Initialize(mapload, mob/living/carbon/xenomorph/spidermother)
 	. = ..()
-	if(!spidermother)
-		return
-	AddComponent(/datum/component/ai_controller, /datum/ai_behavior/spiderling, spidermother)
-	transfer_to_hive(spidermother.get_xeno_hivenumber())
+	if(spidermother)
+		AddComponent(/datum/component/ai_controller, /datum/ai_behavior/spiderling, spidermother)
+		transfer_to_hive(spidermother.get_xeno_hivenumber())
+	else
+		AddComponent(/datum/component/ai_controller, /datum/ai_behavior/xeno)
+
 
 /mob/living/carbon/xenomorph/spiderling/on_death()
 	///We QDEL them as cleanup and preventing them from being sold
