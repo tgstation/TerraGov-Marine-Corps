@@ -26986,11 +26986,6 @@
 	},
 /turf/open/floor/wood,
 /area/prison/residential/south)
-"bHd" = (
-/obj/structure/lattice,
-/obj/structure/lattice,
-/turf/open/space/sea,
-/area/space)
 "bHe" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -28770,12 +28765,6 @@
 	},
 /turf/open/floor/wood,
 /area/prison/residential/south)
-"bMV" = (
-/obj/structure/lattice,
-/obj/structure/monorail,
-/obj/structure/lattice,
-/turf/open/space/sea,
-/area/space)
 "bMW" = (
 /obj/machinery/light{
 	dir = 8
@@ -32737,15 +32726,6 @@
 /obj/item/flashlight/lamp,
 /turf/open/floor/carpet,
 /area/prison/security/head)
-"caU" = (
-/obj/structure/monorail,
-/obj/structure/lattice,
-/obj/machinery/door/poddoor/shutters/mainship{
-	dir = 2;
-	name = "Monorail Passage Door"
-	},
-/turf/closed/wall/r_wall/prison_unmeltable,
-/area/prison/maintenance/residential/access/south)
 "caV" = (
 /obj/structure/table/reinforced,
 /obj/machinery/computer/security{
@@ -42913,11 +42893,6 @@
 	},
 /turf/open/floor/prison,
 /area/prison/research/secret)
-"jAs" = (
-/obj/structure/lattice,
-/obj/structure/lattice,
-/turf/open/liquid/water/river,
-/area/prison/maintenance/residential/nw)
 "jAv" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -47745,10 +47720,6 @@
 	dir = 8
 	},
 /area/prison/cellblock/mediumsec/west)
-"vtZ" = (
-/obj/structure/lattice,
-/turf/closed/mineral/smooth/indestructible,
-/area/space)
 "vuH" = (
 /obj/effect/spawner/random/engineering/toolbox,
 /obj/structure/table/reinforced,
@@ -56209,7 +56180,7 @@ wBR
 axG
 oUh
 aFX
-jAs
+uZP
 iqK
 aRT
 tTf
@@ -61589,7 +61560,7 @@ aab
 aab
 aab
 aab
-bHd
+adO
 adO
 axI
 biv
@@ -64494,8 +64465,8 @@ bWK
 aSR
 bZD
 bSk
-bHd
-bHd
+adO
+adO
 adO
 adO
 aab
@@ -64750,9 +64721,9 @@ bVz
 bWL
 bUm
 bZE
-caU
-bMV
-bMV
+bVz
+btd
+btd
 btd
 btd
 bDE
@@ -64990,7 +64961,7 @@ adO
 adO
 adO
 adO
-bHd
+adO
 adO
 adO
 aab
@@ -65008,8 +64979,8 @@ bWK
 bUl
 bZD
 bVy
-bHd
-bHd
+adO
+adO
 adO
 adO
 aab
@@ -78676,15 +78647,15 @@ cyw
 cyw
 cyw
 cyw
-vtZ
-vtZ
+bWl
+bWl
 adO
 adO
 adO
 adO
 adO
 adO
-bHd
+adO
 ccz
 aab
 aab
@@ -78934,7 +78905,7 @@ czd
 cun
 cyw
 cyw
-vtZ
+bWl
 bWl
 aab
 aab
@@ -87165,7 +87136,7 @@ adO
 adO
 adO
 adO
-bHd
+adO
 ccz
 aab
 aab
@@ -109976,7 +109947,7 @@ bDj
 adM
 adO
 adO
-bHd
+adO
 adO
 adO
 aab

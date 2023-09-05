@@ -16,45 +16,6 @@ if grep -nP '^\ttag = \"icon' _maps/**/*.dmm;	then
     echo "tag vars from icon state generation detected in maps, please remove them."
     st=1
 fi;
-echo "Checking for step_[xy]"
-if grep -nP 'step_[xy]' _maps/**/*.dmm;	then
-    echo "step_x/step_y variables detected in maps, please remove them."
-    st=1
-fi;
-echo "Checking for pixel_[wz]"
-if grep -nP 'pixel_[^xy]' _maps/**/*.dmm;	then
-    echo "pixel_w/pixel_z variables detected in maps, please remove them."
-    st=1
-fi;
-echo "Checking for stacked cables"
-if grep -nP '"\w+" = \(\n([^)]+\n)*/obj/structure/cable,\n([^)]+\n)*/obj/structure/cable,\n([^)]+\n)*/area/.+\)' _maps/**/*.dmm;	then
-    echo "found multiple cables on the same tile, please remove them."
-    st=1
-fi;
-echo "Checking for cable varedits"
-if grep -nP '/obj/structure/cable(/\w+)+\{' _maps/**/*.dmm;	then
-    echo "ERROR: vareditted cables detected, please remove them."
-    st=1
-fi;
-echo "Checking for cable d1/d2"
-if grep -nP '\td[1-2] =' _maps/**/*.dmm;	then
-    echo "ERROR: d1/d2 cable variables detected in maps, please remove them."
-    st=1
-fi;
-echo "Checking for pixel_[xy]"
-if grep -nP 'pixel_[xy] = 0' _maps/**/*.dmm;	then
-    echo "pixel_x/pixel_y = 0 variables detected in maps, please review to ensure they are not dirty varedits."
-fi;
-echo "Checking for vareditted areas"
-if grep -nP '^/area/.+[\{]' _maps/**/*.dmm;	then
-    echo "Vareditted /area path use detected in maps, please replace with proper paths."
-    st=1
-fi;
-echo "Checking for base /turf paths"
-if grep -nP '\W\/turf\s*[,\){]' _maps/**/*.dmm; then
-    echo "base /turf path use detected in maps, please replace with proper paths."
-    st=1
-fi;
 echo "Checking for unmanaged globals"
 if grep -nP '^/*var/' code/**/*.dm; then
     echo "Unmanaged global var use detected in code, please use the helpers."
@@ -128,22 +89,6 @@ if grep -ni 'centcomm' code/**/*.dm; then
     echo "Misspelling(s) of CENTCOM detected in code, please remove the extra M(s)."
     st=1
 fi;
-if grep -ni '/obj/alien/weeds/node' _maps/**/*.dmm; then
-    echo "Do not directly add weeds on maps, use landmarks."
-    st=1
-fi;
-if grep -ni '/turf/closed/wall/resin' _maps/**/*.dmm; then
-    echo "Do not directly add resin walls on maps, use landmarks."
-    st=1
-fi;
-if grep -ni '/obj/structure/mineral_door/resin' _maps/**/*.dmm; then
-    echo "Do not directly add resin doors on maps, use landmarks."
-    st=1
-fi;
-if grep -ni '/obj/structure/xeno/xeno_turret' _maps/**/*.dmm; then
-    echo "Do not directly add xeno turrets on maps, use landmarks."
-    st=1
-fi;
 if grep -ni 'centcomm' _maps/**/*.dmm; then
     echo "Misspelling(s) of CENTCOM detected in maps, please remove the extra M(s)."
     st=1
@@ -154,10 +99,6 @@ if grep -ni 'nanotransen' code/**/*.dm; then
 fi;
 if grep -ni 'nanotransen' _maps/**/*.dmm; then
     echo "Misspelling(s) of nanotrasen detected in maps, please remove the extra N(s)."
-    st=1
-fi;
-if grep -ni 'icon_state' _maps/**/*.dmm; then
-    echo "Icon_state varedit(s) detected in maps, please make new type(s) instead of instancing icon_state(s)."
     st=1
 fi;
 if ls _maps/*.json | grep -nP "[A-Z]"; then

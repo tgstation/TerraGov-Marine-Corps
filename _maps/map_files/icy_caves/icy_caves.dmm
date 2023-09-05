@@ -5746,7 +5746,6 @@
 /area/icy_caves/outpost/dorms)
 "DH" = (
 /obj/structure/cable,
-/obj/structure/cable,
 /turf/closed/mineral/smooth/bluefrostwall,
 /area/icy_caves/caves/rock)
 "DJ" = (
@@ -8144,11 +8143,6 @@
 /area/icy_caves/outpost/refinery)
 "Px" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/floor/tile/dark,
-/area/icy_caves/caves/northwestmonorail)
-"Py" = (
-/obj/structure/cable,
-/obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northwestmonorail)
 "Pz" = (
@@ -12104,7 +12098,7 @@ qI
 qI
 ms
 Cl
-Py
+Cl
 Tq
 Ts
 Ts

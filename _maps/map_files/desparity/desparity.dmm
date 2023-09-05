@@ -7390,12 +7390,6 @@
 	dir = 9
 	},
 /area/lv624/lazarus/sleep_male)
-"LC" = (
-/obj/structure/table,
-/obj/structure/table,
-/obj/item/stack/sheet/metal/small_stack,
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/jungle7)
 "LE" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/dirt,
@@ -14555,7 +14549,7 @@ Rw
 Yp
 Rw
 CU
-LC
+Gz
 Rw
 EH
 Kg

@@ -394,3 +394,29 @@
   - qol: Change the adjustment_variants "Down" to "Rolled Sleeves", "Half" to "No
       Sleeves", and "Rolled" to "No Top" for players that want to know how to change
       their uniform.
+2023-08-29:
+  Lumipharon:
+  - bugfix: Xenos can throw mobs past xenos once again
+  - bugfix: Fixed an issue with throwing mobs past warriors specifically
+  yyzsong:
+  - rscadd: More toys in valhalla!
+  - rscdel: Vali weapons and MMG no longer in valhalla req vendor (why were they ever)
+      (still in the gun vendor dont worry)
+2023-08-30:
+  Barnet2:
+  - bugfix: Fixed Sulaco Drop Pod bay having space tiles in it.
+  Lumipharon:
+  - bugfix: fixed grass and inner cave sprites
+  lbnesquik:
+  - rscadd: Medical armor storage can now hold more things relevant to corpsmen duties
+  novaepee, OrcaOrca the spriter:
+  - rscadd: Add Hotaru armor, another Japanese-Inspired Armor! find it in the style
+      line tab!
+2023-08-31:
+  Blundir:
+  - bugfix: fixed order action icon being missing
+  - imageadd: updated hunter invis, pounce, leader assign, vote action icons.
+  QualityVan:
+  - bugfix: Oze sting cooldown ending doesn't tell you that you can neuro sting again
+  Xander3359:
+  - rscadd: Bench press is a great way to lose weight

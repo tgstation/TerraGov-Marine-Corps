@@ -100,6 +100,9 @@
 /datum/greyscale_config/armor_mk1/kabuto
 	icon_file = 'icons/mob/modular/mark_one/kabuto.dmi'
 
+/datum/greyscale_config/armor_mk1/hotaru
+	icon_file = 'icons/mob/modular/mark_one/hotaru.dmi'
+
 //Mark 2
 
 /datum/greyscale_config/armor_mk2
@@ -135,6 +138,9 @@
 
 /datum/greyscale_config/armor_mk2/trooper
 	icon_file = 'icons/mob/modular/mark_two/trooper.dmi'
+
+/datum/greyscale_config/armor_mk2/hotaru
+	icon_file = 'icons/mob/modular/mark_two/hotaru.dmi'
 
 /datum/greyscale_config/xenonaut
 	icon_file = 'icons/mob/modular/xenonauten.dmi'
