@@ -192,6 +192,7 @@
 	pixel_x = 25;
 	pixel_y = 8
 	},
+/obj/item/stack/barbed_wire/full,
 /turf/open/floor/carpet/side{
 	dir = 4
 	},
