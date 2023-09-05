@@ -145,6 +145,7 @@
 	name = "\improper Container storage"
 	icon_state = "container_yard"
 	outside = TRUE
+	ceiling = CEILING_NONE
 
 /area/campaign/jungle_outpost/outpost/science
 	name = "\improper Research Lab"
@@ -164,6 +165,7 @@
 	icon_state = "landing_pad_ext"
 	minimap_color = MINIMAP_AREA_LZ
 	outside = TRUE
+	ceiling = CEILING_NONE
 
 /area/campaign/jungle_outpost/outpost/landing/storage
 	name = "\improper Landing pad storage"

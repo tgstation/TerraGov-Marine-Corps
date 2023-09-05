@@ -67,6 +67,9 @@
 /area/campaign/jungle_outpost/outpost/security)
 "ap" = (
 /obj/structure/table/reinforced,
+/obj/effect/spawner/random/engineering/computercircuit,
+/obj/effect/spawner/random/engineering/tech_supply,
+/obj/effect/spawner/random/engineering/tech_supply,
 /turf/open/floor/tile/purple/whitepurple{
 	dir = 10
 	},
@@ -77,6 +80,15 @@
 	dir = 10
 	},
 /area/campaign/jungle_outpost/outpost/science)
+"as" = (
+/obj/machinery/power/smes/buildable/empty{
+	dir = 1
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/tile/dark,
+/area/campaign/jungle_outpost/outpost/engineering)
 "au" = (
 /obj/structure/flora/tree/jungle,
 /turf/open/liquid/water/river,
@@ -127,6 +139,10 @@
 /obj/structure/flora/jungle/large_bush,
 /turf/open/floor/plating/ground/dirtgrassborder2,
 /area/campaign/jungle_outpost/ground/jungle)
+"aL" = (
+/obj/structure/extinguisher_cabinet/mini,
+/turf/open/floor/tile/white,
+/area/campaign/jungle_outpost/outpost/medbay/lobby)
 "aM" = (
 /turf/open/floor/tile/blue/taupeblue{
 	dir = 10
@@ -138,6 +154,14 @@
 	dir = 1
 	},
 /area/campaign/jungle_outpost/ground/jungle/south_west)
+"aO" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/tile/neutral{
+	dir = 1
+	},
+/area/campaign/jungle_outpost/outpost/living/canteen)
 "aQ" = (
 /obj/structure/catwalk,
 /obj/structure/platform,
@@ -148,6 +172,9 @@
 "aS" = (
 /obj/machinery/vending/nanomed{
 	dir = 4
+	},
+/obj/machinery/light{
+	dir = 8
 	},
 /turf/open/floor/tile/white,
 /area/campaign/jungle_outpost/outpost/medbay/lobby)
@@ -210,6 +237,7 @@
 /turf/open/ground/grass/weedable,
 /area/campaign/jungle_outpost/ground/jungle/north)
 "bk" = (
+/obj/structure/closet/secure_closet/scientist,
 /turf/open/floor/tile/purple/whitepurple{
 	dir = 6
 	},
@@ -278,6 +306,14 @@
 	},
 /turf/closed/wall,
 /area/campaign/jungle_outpost/outpost/req/depot)
+"bD" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 8
+	},
+/area/campaign/jungle_outpost/outpost/medbay)
 "bE" = (
 /turf/open/ground/grass/weedable,
 /area/campaign/jungle_outpost/ground/jungle/west)
@@ -291,6 +327,14 @@
 	},
 /turf/open/floor/plating/ground/concrete,
 /area/campaign/jungle_outpost/outpost/landing)
+"bH" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/tile/green/greentaupe{
+	dir = 1
+	},
+/area/campaign/jungle_outpost/outpost/living)
 "bJ" = (
 /turf/open/floor/tile/blue/whitebluecorner{
 	dir = 4
@@ -389,6 +433,9 @@
 /area/campaign/jungle_outpost/ground/jungle)
 "cf" = (
 /obj/structure/closet,
+/obj/machinery/light{
+	dir = 4
+	},
 /turf/open/floor/tile/red/redtaupe{
 	dir = 5
 	},
@@ -439,6 +486,12 @@
 	},
 /turf/open/floor/wood,
 /area/campaign/jungle_outpost/outpost/command)
+"cr" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/campaign/jungle_outpost/outpost/command)
 "cs" = (
 /obj/structure/platform{
 	dir = 8
@@ -476,6 +529,9 @@
 /area/campaign/jungle_outpost/outpost/medbay)
 "cA" = (
 /obj/structure/closet/wardrobe/toxins_white,
+/obj/machinery/light{
+	dir = 8
+	},
 /turf/open/floor/tile/purple/whitepurple{
 	dir = 8
 	},
@@ -526,6 +582,9 @@
 /area/campaign/jungle_outpost/ground/jungle)
 "cV" = (
 /obj/structure/janitorialcart,
+/obj/machinery/light{
+	dir = 1
+	},
 /turf/open/floor/freezer,
 /area/campaign/jungle_outpost/outpost/living)
 "cW" = (
@@ -548,6 +607,10 @@
 /obj/structure/stairs/seamless/edge_vert,
 /turf/open/floor/tile/red/redtaupe,
 /area/campaign/jungle_outpost/outpost/security/vault)
+"dc" = (
+/obj/machinery/light,
+/turf/open/floor/freezer,
+/area/campaign/jungle_outpost/outpost/living/kitchen)
 "dd" = (
 /obj/machinery/vending/snack,
 /turf/open/floor/tile/green/greentaupe,
@@ -639,6 +702,12 @@
 	},
 /turf/open/floor/freezer,
 /area/campaign/jungle_outpost/outpost/living)
+"dF" = (
+/obj/effect/spawner/random/engineering/structure/atmospherics_portable,
+/turf/open/floor/tile/purple/whitepurple{
+	dir = 4
+	},
+/area/campaign/jungle_outpost/outpost/science/south)
 "dG" = (
 /obj/machinery/prop/computer/rdconsole,
 /turf/open/floor/tile/purple/whitepurple{
@@ -697,6 +766,13 @@
 "dQ" = (
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
 /area/campaign/jungle_outpost/ground/jungle/north_west)
+"dR" = (
+/obj/effect/spawner/random/misc/structure/supplycrate,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/campaign/jungle_outpost/outpost/req/depot)
 "dS" = (
 /obj/structure/flora/grass/tallgrass/autosmooth,
 /obj/structure/flora/jungle/grass,
@@ -833,6 +909,11 @@
 	dir = 4
 	},
 /area/campaign/jungle_outpost/ground/jungle)
+"eF" = (
+/obj/structure/table/reinforced,
+/obj/effect/spawner/random/engineering/engibelt,
+/turf/open/floor/tile/white,
+/area/campaign/jungle_outpost/outpost/science/south)
 "eG" = (
 /obj/structure/platform{
 	dir = 6
@@ -864,6 +945,7 @@
 /turf/open/floor/plating/ground/dirtgrassborder2,
 /area/campaign/jungle_outpost/ground/jungle/south_east)
 "eN" = (
+/obj/structure/closet/toolcloset,
 /turf/open/floor/tile/brown{
 	dir = 6
 	},
@@ -873,6 +955,9 @@
 /turf/open/floor/tile/dark,
 /area/campaign/jungle_outpost/outpost/engineering)
 "eP" = (
+/obj/machinery/light{
+	dir = 4
+	},
 /turf/open/floor/tile/neutral{
 	dir = 4
 	},
@@ -880,9 +965,18 @@
 "eR" = (
 /turf/open/floor,
 /area/campaign/jungle_outpost/outpost/science)
+"eS" = (
+/obj/effect/spawner/random/engineering/structure/powergenerator,
+/turf/open/floor/tile/purple/whitepurple{
+	dir = 4
+	},
+/area/campaign/jungle_outpost/outpost/science/south)
 "eT" = (
 /obj/structure/bed/chair/sofa/left{
 	dir = 4
+	},
+/obj/machinery/light{
+	dir = 8
 	},
 /turf/open/floor/tile/green/greentaupe{
 	dir = 8
@@ -976,6 +1070,7 @@
 /obj/structure/rack,
 /obj/effect/spawner/random/engineering/tool,
 /obj/effect/spawner/random/engineering/tool,
+/obj/machinery/vending/nanomed,
 /turf/open/floor/tile/dark,
 /area/campaign/jungle_outpost/outpost/engineering)
 "fp" = (
@@ -1010,6 +1105,12 @@
 /obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /turf/open/floor/tile/dark/gray,
 /area/campaign/jungle_outpost/outpost/living/canteen)
+"fx" = (
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
+/turf/open/floor/tile/neutral{
+	dir = 4
+	},
+/area/campaign/jungle_outpost/outpost/living)
 "fy" = (
 /obj/machinery/hydroponics,
 /turf/open/floor/tile/hydro,
@@ -1086,12 +1187,34 @@
 /obj/structure/flora/tree/jungle/small,
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
 /area/campaign/jungle_outpost/ground/jungle/west)
+"fS" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/tile/dark,
+/area/campaign/jungle_outpost/outpost/engineering)
 "fT" = (
 /obj/structure/filingcabinet,
+/obj/machinery/light,
 /turf/open/floor/tile/red/redtaupe{
 	dir = 10
 	},
 /area/campaign/jungle_outpost/outpost/security)
+"fU" = (
+/obj/structure/reagent_dispensers/wallmounted/peppertank,
+/turf/open/floor/tile/red/redtaupe{
+	dir = 1
+	},
+/area/campaign/jungle_outpost/outpost/security)
+"fV" = (
+/obj/structure/table/reinforced,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/tile/blue/taupeblue{
+	dir = 1
+	},
+/area/campaign/jungle_outpost/outpost/command)
 "fW" = (
 /obj/structure/closet/secure_closet/engineering_personal,
 /turf/open/floor/tile/dark,
@@ -1100,6 +1223,12 @@
 /obj/machinery/door/airlock/mainship/command/free_access,
 /turf/open/floor,
 /area/campaign/jungle_outpost/outpost/command)
+"fZ" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/freezer,
+/area/campaign/jungle_outpost/outpost/living/bathroom)
 "ga" = (
 /obj/structure/flora/grass/tallgrass/autosmooth,
 /turf/open/floor/plating/ground/dirt2,
@@ -1118,6 +1247,18 @@
 	},
 /turf/open/floor,
 /area/campaign/jungle_outpost/outpost/command)
+"gd" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/campaign/jungle_outpost/outpost/req/depot)
+"ge" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/wood/alt_seven,
+/area/campaign/jungle_outpost/outpost/science/office)
 "gf" = (
 /obj/structure/platform,
 /turf/closed/wall,
@@ -1138,6 +1279,11 @@
 /obj/structure/flora/grass/tallgrass/autosmooth,
 /turf/open/ground/grass/weedable,
 /area/campaign/jungle_outpost/ground/jungle/north)
+"gk" = (
+/obj/structure/table/reinforced,
+/obj/effect/spawner/random/engineering/bomb_supply,
+/turf/open/floor/tile/white,
+/area/campaign/jungle_outpost/outpost/science/south)
 "gl" = (
 /obj/structure/rack,
 /obj/item/clothing/head/helmet,
@@ -1179,6 +1325,14 @@
 	},
 /turf/open/floor,
 /area/campaign/jungle_outpost/outpost/science)
+"gt" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/tile/green/greentaupe{
+	dir = 4
+	},
+/area/campaign/jungle_outpost/outpost/living)
 "gu" = (
 /turf/open/floor/plating/ground/concrete/lines{
 	dir = 8
@@ -1188,6 +1342,9 @@
 /obj/structure/table,
 /obj/item/clothing/suit/apron,
 /obj/item/clothing/gloves/botanic_leather,
+/obj/machinery/light{
+	dir = 8
+	},
 /turf/open/floor/tile/hydro,
 /area/campaign/jungle_outpost/outpost/living/hydro)
 "gw" = (
@@ -1199,6 +1356,7 @@
 /area/campaign/jungle_outpost/outpost/living)
 "gz" = (
 /obj/structure/table/reinforced,
+/obj/effect/spawner/random/engineering/extinguisher,
 /turf/open/floor/tile/purple/whitepurple,
 /area/campaign/jungle_outpost/outpost/science/south)
 "gB" = (
@@ -1224,6 +1382,12 @@
 	},
 /turf/open/floor/tile/hydro,
 /area/campaign/jungle_outpost/outpost/living/hydro)
+"gG" = (
+/obj/machinery/light,
+/turf/open/floor/tile/red/redtaupe{
+	dir = 10
+	},
+/area/campaign/jungle_outpost/outpost/security)
 "gH" = (
 /obj/structure/flora/tree/jungle,
 /obj/structure/flora/jungle/grass/thin,
@@ -1274,6 +1438,14 @@
 	},
 /turf/closed/wall,
 /area/campaign/jungle_outpost/outpost/medbay)
+"gU" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/tile/purple/whitepurple{
+	dir = 1
+	},
+/area/campaign/jungle_outpost/outpost/science/south)
 "gW" = (
 /obj/structure/flora/jungle/grass/thin,
 /turf/open/floor/plating/ground/dirtgrassborder2{
@@ -1322,6 +1494,19 @@
 /obj/structure/flora/jungle/grass,
 /turf/open/ground/grass/weedable,
 /area/campaign/jungle_outpost/ground/jungle/north_east)
+"hg" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor,
+/area/campaign/jungle_outpost/outpost/security)
+"hh" = (
+/obj/structure/prop/mainship/telecomms/bus,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/tile/dark,
+/area/campaign/jungle_outpost/outpost/command)
 "hi" = (
 /turf/open/floor/plating/ground/dirtgrassborder2/corner,
 /area/campaign/jungle_outpost/ground/jungle/north_east)
@@ -1340,6 +1525,12 @@
 	},
 /turf/closed/wall,
 /area/campaign/jungle_outpost/outpost/living/hydro)
+"hm" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/tile/dark,
+/area/campaign/jungle_outpost/outpost/engineering)
 "hn" = (
 /obj/structure/stairs/seamless/edge_vert{
 	dir = 4
@@ -1355,6 +1546,12 @@
 	dir = 10
 	},
 /area/campaign/jungle_outpost/outpost/medbay)
+"hq" = (
+/obj/structure/closet/firecloset,
+/turf/open/floor/tile/purple/whitepurple{
+	dir = 5
+	},
+/area/campaign/jungle_outpost/outpost/science/south)
 "hr" = (
 /obj/structure/catwalk,
 /obj/structure/platform{
@@ -1362,6 +1559,12 @@
 	},
 /turf/open/ground/grass/weedable,
 /area/campaign/jungle_outpost/ground/jungle)
+"hs" = (
+/obj/structure/table/reinforced,
+/obj/effect/spawner/random/engineering/assemblies,
+/obj/effect/spawner/random/engineering/radio,
+/turf/open/floor/tile/white,
+/area/campaign/jungle_outpost/outpost/science/south)
 "ht" = (
 /turf/closed/mineral/smooth/indestructible,
 /area/campaign/jungle_outpost/ground/jungle/east)
@@ -1439,6 +1642,12 @@
 	},
 /turf/open/floor,
 /area/campaign/jungle_outpost/outpost/security)
+"hP" = (
+/obj/structure/table/reinforced,
+/obj/effect/spawner/random/engineering/mineral,
+/obj/effect/spawner/random/engineering/cable,
+/turf/open/floor/tile/white,
+/area/campaign/jungle_outpost/outpost/science/south)
 "hQ" = (
 /turf/open/floor/tile/blue/taupeblue{
 	dir = 5
@@ -1448,6 +1657,15 @@
 /obj/structure/prop/vehicle/crane/destructible,
 /turf/open/floor/iron/smooth,
 /area/campaign/jungle_outpost/ground/river/west)
+"hT" = (
+/obj/structure/closet/toolcloset,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/tile/red/redtaupe{
+	dir = 1
+	},
+/area/campaign/jungle_outpost/outpost/command)
 "hU" = (
 /obj/structure/bed,
 /turf/open/floor/wood,
@@ -1474,6 +1692,13 @@
 /obj/structure/flora/jungle/large_bush,
 /turf/open/ground/grass/beach/corner2,
 /area/campaign/jungle_outpost/ground/jungle/east)
+"hZ" = (
+/obj/structure/table/reinforced,
+/obj/effect/spawner/random/engineering/bomb_supply,
+/obj/effect/spawner/random/engineering/bomb_supply,
+/obj/effect/spawner/random/engineering/powercell,
+/turf/open/floor/tile/white,
+/area/campaign/jungle_outpost/outpost/science/south)
 "ib" = (
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
 /area/campaign/jungle_outpost/ground/jungle/north)
@@ -1500,8 +1725,8 @@
 	},
 /area/campaign/jungle_outpost/ground/jungle/west)
 "ih" = (
-/obj/machinery/door/airlock/multi_tile/research{
-	dir = 2
+/obj/machinery/door/airlock/multi_tile/mainship/research{
+	dir = 1
 	},
 /turf/open/floor/tile/white,
 /area/campaign/jungle_outpost/outpost/science/south)
@@ -1563,6 +1788,12 @@
 	dir = 8
 	},
 /area/campaign/jungle_outpost/ground/jungle/east)
+"ix" = (
+/obj/machinery/vending/nanomed,
+/turf/open/floor/tile/brown{
+	dir = 1
+	},
+/area/campaign/jungle_outpost/outpost/req/depot)
 "iy" = (
 /turf/open/floor/tile/red/redtaupe{
 	dir = 9
@@ -1578,6 +1809,14 @@
 	dir = 5
 	},
 /area/campaign/jungle_outpost/outpost/command)
+"iC" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/tile/red/redtaupe{
+	dir = 8
+	},
+/area/campaign/jungle_outpost/outpost/security)
 "iD" = (
 /turf/open/floor/tile/brown{
 	dir = 4
@@ -1611,6 +1850,9 @@
 /area/campaign/jungle_outpost/ground/jungle/south_east)
 "iN" = (
 /obj/structure/bookcase,
+/obj/machinery/light{
+	dir = 4
+	},
 /turf/open/floor/tile/dark,
 /area/campaign/jungle_outpost/outpost/engineering)
 "iO" = (
@@ -1661,6 +1903,14 @@
 "jd" = (
 /turf/open/floor/tile/barber,
 /area/campaign/jungle_outpost/outpost/living/kitchen)
+"je" = (
+/obj/structure/closet/fireaxecabinet{
+	pixel_y = 31
+	},
+/turf/open/floor/tile/blue/taupeblue{
+	dir = 1
+	},
+/area/campaign/jungle_outpost/outpost/command)
 "jf" = (
 /turf/open/floor/plating/ground/concrete,
 /area/campaign/jungle_outpost/outpost/landing)
@@ -1689,6 +1939,10 @@
 /obj/structure/flora/tree/jungle/small,
 /turf/open/ground/grass/weedable,
 /area/campaign/jungle_outpost/ground/jungle/north)
+"jn" = (
+/obj/machinery/light,
+/turf/open/floor/tile/white,
+/area/campaign/jungle_outpost/outpost/medbay/lobby)
 "jo" = (
 /obj/structure/platform{
 	dir = 6
@@ -1726,6 +1980,12 @@
 	dir = 4
 	},
 /area/campaign/jungle_outpost/outpost/medbay/chemistry)
+"jA" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor,
+/area/campaign/jungle_outpost/outpost/outer/southwest)
 "jB" = (
 /turf/open/floor/tile/red/redtaupe{
 	dir = 8
@@ -1836,6 +2096,13 @@
 	},
 /turf/open/floor/plating/ground/concrete,
 /area/campaign/jungle_outpost/outpost/req/depot)
+"kd" = (
+/obj/structure/table/reinforced,
+/obj/effect/spawner/random/engineering/powercell,
+/turf/open/floor/tile/purple/whitepurple{
+	dir = 8
+	},
+/area/campaign/jungle_outpost/outpost/science/south)
 "ke" = (
 /obj/machinery/door/airlock/mainship/security{
 	dir = 1
@@ -1865,6 +2132,14 @@
 	dir = 1
 	},
 /area/campaign/jungle_outpost/outpost/science)
+"km" = (
+/obj/structure/rack,
+/obj/effect/spawner/random/engineering/engibelt,
+/obj/effect/spawner/random/engineering/engibelt,
+/turf/open/floor/tile/red/redtaupe{
+	dir = 8
+	},
+/area/campaign/jungle_outpost/outpost/security/vault)
 "kn" = (
 /obj/structure/table/mainship/nometal,
 /obj/item/storage/box/syringes{
@@ -1911,6 +2186,9 @@
 /area/campaign/jungle_outpost/outpost/req/depot)
 "kz" = (
 /obj/structure/closet/secure_closet/brig,
+/obj/machinery/light{
+	dir = 4
+	},
 /turf/open/floor/tile/red/redtaupe{
 	dir = 6
 	},
@@ -1972,9 +2250,7 @@
 /turf/open/ground/grass/weedable,
 /area/campaign/jungle_outpost/ground/jungle/west)
 "kR" = (
-/obj/structure/stairs/seamless/platform{
-	dir = 4
-	},
+/obj/structure/stairs/seamless/edge,
 /turf/open/ground/grass/weedable,
 /area/campaign/jungle_outpost/ground/jungle)
 "kS" = (
@@ -1993,6 +2269,12 @@
 	},
 /turf/open/floor/tile/white,
 /area/campaign/jungle_outpost/outpost/medbay/lobby)
+"kY" = (
+/obj/machinery/vending/nanomed,
+/turf/open/floor/tile/blue/taupeblue{
+	dir = 1
+	},
+/area/campaign/jungle_outpost/outpost/command)
 "kZ" = (
 /obj/structure/flora/jungle/bush,
 /turf/open/ground/grass/beach,
@@ -2020,6 +2302,16 @@
 	dir = 8
 	},
 /area/campaign/jungle_outpost/ground/jungle)
+"le" = (
+/obj/structure/table/reinforced,
+/obj/effect/spawner/random/engineering/insulatedgloves,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/tile/purple/whitepurple{
+	dir = 8
+	},
+/area/campaign/jungle_outpost/outpost/science/south)
 "lf" = (
 /obj/structure/sink/bathroom{
 	dir = 8
@@ -2044,6 +2336,14 @@
 	},
 /turf/open/floor/wood,
 /area/campaign/jungle_outpost/outpost/command)
+"li" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/tile/purple/whitepurple{
+	dir = 1
+	},
+/area/campaign/jungle_outpost/outpost/science)
 "lk" = (
 /obj/structure/bed/chair{
 	dir = 8
@@ -2180,6 +2480,12 @@
 /obj/structure/catwalk,
 /turf/open/liquid/water/river/autosmooth,
 /area/campaign/jungle_outpost/ground/river/east)
+"lO" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/carpet,
+/area/campaign/jungle_outpost/outpost/command/captain)
 "lQ" = (
 /obj/structure/flora/jungle/bush,
 /obj/effect/landmark/patrol_point{
@@ -2261,6 +2567,14 @@
 	dir = 4
 	},
 /area/campaign/jungle_outpost/ground/jungle)
+"ml" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/tile/blue/taupeblue{
+	dir = 8
+	},
+/area/campaign/jungle_outpost/outpost/command)
 "mm" = (
 /obj/structure/flora/jungle/grass,
 /turf/open/floor/plating/ground/dirtgrassborder2{
@@ -2292,6 +2606,12 @@
 	},
 /turf/closed/wall,
 /area/campaign/jungle_outpost/outpost/medbay/lobby)
+"mu" = (
+/obj/structure/flora/grass/tallgrass/autosmooth,
+/turf/open/floor/plating/ground/dirtgrassborder2/corner{
+	dir = 1
+	},
+/area/campaign/jungle_outpost/ground/jungle/south_east)
 "my" = (
 /obj/structure/platform{
 	dir = 8
@@ -2356,6 +2676,7 @@
 /area/campaign/jungle_outpost/ground/jungle/east)
 "mU" = (
 /obj/structure/table/reinforced,
+/obj/effect/spawner/random/engineering/engibelt,
 /turf/open/floor/tile/brown{
 	dir = 1
 	},
@@ -2371,13 +2692,7 @@
 /turf/closed/wall,
 /area/campaign/jungle_outpost/ground/jungle)
 "mX" = (
-/obj/machinery/door/airlock/multi_tile/research,
-/turf/open/floor/tile/white,
-/area/campaign/jungle_outpost/outpost/science/south)
-"mY" = (
-/obj/machinery/door/airlock/multi_tile/research{
-	dir = 1
-	},
+/obj/machinery/door/airlock/multi_tile/mainship/research,
 /turf/open/floor/tile/white,
 /area/campaign/jungle_outpost/outpost/science/south)
 "mZ" = (
@@ -2419,6 +2734,9 @@
 /area/campaign/jungle_outpost/outpost/engineering)
 "no" = (
 /obj/structure/closet/l3closet/security,
+/obj/machinery/light{
+	dir = 4
+	},
 /turf/open/floor/tile/red/redtaupe{
 	dir = 5
 	},
@@ -2523,6 +2841,7 @@
 /obj/item/clothing/suit/armor/bulletproof,
 /obj/item/clothing/suit/armor/bulletproof,
 /obj/item/clothing/suit/armor/bulletproof,
+/obj/machinery/light,
 /turf/open/floor/tile/red/redtaupe,
 /area/campaign/jungle_outpost/outpost/command)
 "nO" = (
@@ -2651,12 +2970,29 @@
 /obj/structure/flora/jungle/large_bush,
 /turf/open/floor/plating/ground/dirtgrassborder2,
 /area/campaign/jungle_outpost/ground/jungle/north_east)
+"oA" = (
+/obj/machinery/vending/nanomed{
+	dir = 4
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/tile/red/redtaupe{
+	dir = 8
+	},
+/area/campaign/jungle_outpost/outpost/security)
 "oB" = (
 /obj/structure/platform{
 	dir = 1
 	},
 /turf/closed/wall,
 /area/campaign/jungle_outpost/outpost/req/depot)
+"oD" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/tile/neutral/full,
+/area/campaign/jungle_outpost/outpost/living/canteen)
 "oE" = (
 /obj/structure/flora/jungle/large_bush,
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
@@ -2710,6 +3046,9 @@
 /area/campaign/jungle_outpost/outpost/outer/southwest)
 "oQ" = (
 /obj/machinery/vending/snack,
+/obj/machinery/light{
+	dir = 8
+	},
 /turf/open/floor/tile/white,
 /area/campaign/jungle_outpost/outpost/medbay/lobby)
 "oR" = (
@@ -2735,8 +3074,8 @@
 	},
 /area/campaign/jungle_outpost/ground/jungle/west)
 "oW" = (
-/obj/structure/stairs/seamless/platform{
-	dir = 1
+/obj/structure/stairs/seamless/edge{
+	dir = 8
 	},
 /turf/open/floor/plating/ground/dirtgrassborder2{
 	dir = 4
@@ -2762,6 +3101,14 @@
 "pc" = (
 /turf/open/floor/plating/ground/dirt,
 /area/campaign/jungle_outpost/ground/jungle/south_east)
+"pe" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/tile/red/redtaupe{
+	dir = 1
+	},
+/area/campaign/jungle_outpost/outpost/security)
 "pf" = (
 /obj/structure/prop/mainship/telecomms/broadcaster,
 /turf/open/floor/tile/dark,
@@ -2769,6 +3116,10 @@
 "ph" = (
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
 /area/campaign/jungle_outpost/ground/jungle/west)
+"pi" = (
+/obj/effect/spawner/random/engineering/structure/gascan,
+/turf/open/floor/tile/white,
+/area/campaign/jungle_outpost/outpost/science/south)
 "pj" = (
 /obj/structure/platform{
 	dir = 9
@@ -2803,6 +3154,11 @@
 "pr" = (
 /turf/closed/wall,
 /area/campaign/jungle_outpost/outpost/req/depot)
+"pt" = (
+/obj/effect/turf_decal/grassdecal,
+/obj/structure/flora/jungle/grass/thin,
+/turf/open/floor/plating/ground/concrete,
+/area/campaign/jungle_outpost/outpost/req/containers)
 "pu" = (
 /obj/structure/table/reinforced,
 /turf/open/floor/tile/red/redtaupe{
@@ -2875,6 +3231,7 @@
 "pN" = (
 /obj/structure/bookcase,
 /obj/item/book/manual/atmospipes,
+/obj/machinery/light,
 /turf/open/floor/tile/dark,
 /area/campaign/jungle_outpost/outpost/engineering)
 "pP" = (
@@ -2897,6 +3254,9 @@
 "pT" = (
 /obj/structure/table/reinforced,
 /obj/machinery/computer/skills,
+/obj/machinery/light{
+	dir = 1
+	},
 /turf/open/floor/tile/blue/taupeblue{
 	dir = 1
 	},
@@ -3002,6 +3362,9 @@
 /obj/structure/table/reinforced,
 /obj/effect/spawner/random/engineering/toolbox,
 /obj/effect/spawner/random/engineering/tool,
+/obj/machinery/light{
+	dir = 8
+	},
 /turf/open/floor/tile/purple/whitepurple{
 	dir = 8
 	},
@@ -3048,6 +3411,9 @@
 /obj/effect/spawner/random/engineering/tech_supply,
 /obj/effect/spawner/random/engineering/radio,
 /obj/effect/spawner/random/engineering/tool,
+/obj/machinery/light{
+	dir = 4
+	},
 /turf/open/floor/tile/purple/whitepurple{
 	dir = 4
 	},
@@ -3076,6 +3442,7 @@
 	},
 /area/campaign/jungle_outpost/ground/jungle)
 "qP" = (
+/obj/structure/closet/firecloset,
 /turf/open/floor/tile/brown{
 	dir = 4
 	},
@@ -3086,6 +3453,9 @@
 "qR" = (
 /obj/structure/computerframe{
 	anchored = 1
+	},
+/obj/machinery/light{
+	dir = 4
 	},
 /turf/open/floor/tile/red/full,
 /area/campaign/jungle_outpost/outpost/security/vault)
@@ -3112,6 +3482,11 @@
 /obj/machinery/body_scanconsole,
 /turf/open/floor/tile/white,
 /area/campaign/jungle_outpost/outpost/medbay)
+"qW" = (
+/obj/structure/table/reinforced,
+/obj/machinery/light,
+/turf/open/floor/tile/blue/taupeblue,
+/area/campaign/jungle_outpost/outpost/command)
 "ra" = (
 /obj/structure/platform{
 	dir = 4
@@ -3125,6 +3500,21 @@
 	},
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
 /area/campaign/jungle_outpost/ground/jungle/south_east)
+"rc" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/tile/blue/taupeblue{
+	dir = 1
+	},
+/area/campaign/jungle_outpost/outpost/command)
+"rd" = (
+/obj/effect/turf_decal/grassdecal{
+	dir = 1
+	},
+/obj/structure/flora/jungle/grass/thin,
+/turf/open/floor/plating/ground/concrete,
+/area/campaign/jungle_outpost/outpost/req/containers)
 "re" = (
 /obj/structure/closet/crate/hydroponics,
 /obj/item/tool/plantspray/pests,
@@ -3251,9 +3641,19 @@
 	},
 /turf/closed/wall,
 /area/campaign/jungle_outpost/outpost/living)
+"rC" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor,
+/area/campaign/jungle_outpost/outpost/outer/southwest)
 "rD" = (
 /turf/open/floor/wood/alt_seven,
 /area/campaign/jungle_outpost/outpost/science/office)
+"rE" = (
+/obj/machinery/light,
+/turf/open/floor/tile/blue/taupeblue,
+/area/campaign/jungle_outpost/outpost/command)
 "rG" = (
 /obj/structure/flora/jungle/grass/thin,
 /turf/open/floor/plating/ground/dirtgrassborder2{
@@ -3367,6 +3767,13 @@
 	},
 /turf/open/floor/iron/smooth,
 /area/campaign/jungle_outpost/ground/jungle/south)
+"sc" = (
+/obj/machinery/hydroponics,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/tile/hydro,
+/area/campaign/jungle_outpost/outpost/living/hydro)
 "sd" = (
 /obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /obj/structure/platform,
@@ -3378,6 +3785,14 @@
 	dir = 1
 	},
 /area/campaign/jungle_outpost/ground/jungle)
+"sf" = (
+/obj/structure/extinguisher_cabinet/mini{
+	dir = 4
+	},
+/turf/open/floor/tile/red/redtaupe{
+	dir = 8
+	},
+/area/campaign/jungle_outpost/outpost/security)
 "sg" = (
 /turf/open/floor/plating/ground/dirtgrassborder2/corner2,
 /area/campaign/jungle_outpost/ground/jungle/west)
@@ -3487,6 +3902,7 @@
 /area/campaign/jungle_outpost/ground/jungle)
 "sF" = (
 /obj/structure/rack,
+/obj/machinery/light,
 /turf/open/floor/tile/blue/taupeblue{
 	dir = 10
 	},
@@ -3552,10 +3968,13 @@
 /area/campaign/jungle_outpost/outpost/command/captain)
 "sR" = (
 /obj/machinery/optable,
+/obj/machinery/light{
+	dir = 8
+	},
 /turf/open/floor/tile/blue/whitebluefull,
 /area/campaign/jungle_outpost/outpost/medbay)
 "sU" = (
-/obj/machinery/door/airlock/multi_tile/research{
+/obj/machinery/door/airlock/multi_tile/mainship/research{
 	dir = 1
 	},
 /turf/open/floor/tile/white,
@@ -3576,6 +3995,12 @@
 /obj/structure/rock/variable/jungle/big,
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
 /area/campaign/jungle_outpost/ground/jungle/south)
+"sY" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/freezer,
+/area/campaign/jungle_outpost/outpost/command)
 "ta" = (
 /obj/structure/bed/chair/comfy/beige{
 	dir = 4
@@ -3809,11 +4234,6 @@
 	dir = 4
 	},
 /area/campaign/jungle_outpost/ground/jungle/north_east)
-"ui" = (
-/obj/structure/cargo_container,
-/obj/effect/turf_decal/grassdecal,
-/turf/open/floor/plating/ground/concrete,
-/area/campaign/jungle_outpost/outpost/req/containers)
 "uj" = (
 /turf/closed/mineral/smooth/indestructible,
 /area/campaign/jungle_outpost/ground/jungle/west)
@@ -3827,8 +4247,18 @@
 "um" = (
 /obj/item/staff/broom,
 /obj/item/stool,
+/obj/machinery/light{
+	dir = 1
+	},
 /turf/open/floor/mainship/mono,
 /area/campaign/jungle_outpost/outpost/medbay)
+"un" = (
+/obj/structure/table,
+/obj/effect/spawner/random/medical/health_analyzer,
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 4
+	},
+/area/campaign/jungle_outpost/outpost/medbay/lobby)
 "uo" = (
 /turf/open/ground/grass/beach{
 	dir = 4
@@ -4022,6 +4452,10 @@
 /obj/structure/rock/variable/jungle,
 /turf/open/floor/plating/ground/dirtgrassborder2,
 /area/campaign/jungle_outpost/ground/jungle/south_west)
+"vt" = (
+/obj/machinery/light,
+/turf/open/floor/tile/red/redtaupe,
+/area/campaign/jungle_outpost/outpost/security)
 "vu" = (
 /obj/structure/flora/jungle/bush,
 /turf/open/floor/plating/ground/dirtgrassborder2/corner{
@@ -4050,6 +4484,11 @@
 	dir = 1
 	},
 /area/campaign/jungle_outpost/ground/jungle)
+"vA" = (
+/obj/effect/spawner/random/misc/structure/closet/welding,
+/obj/machinery/light,
+/turf/open/floor/tile/dark,
+/area/campaign/jungle_outpost/outpost/engineering)
 "vB" = (
 /obj/structure/platform{
 	dir = 9
@@ -4170,6 +4609,9 @@
 /area/campaign/jungle_outpost/ground/jungle)
 "wj" = (
 /obj/structure/closet/radiation,
+/obj/machinery/light{
+	dir = 4
+	},
 /turf/open/floor/tile/dark,
 /area/campaign/jungle_outpost/outpost/engineering)
 "wk" = (
@@ -4385,6 +4827,12 @@
 	dir = 4
 	},
 /area/campaign/jungle_outpost/outpost/security/vault)
+"xl" = (
+/obj/structure/extinguisher_cabinet/mini,
+/turf/open/floor/tile/blue/taupeblue{
+	dir = 1
+	},
+/area/campaign/jungle_outpost/outpost/command)
 "xm" = (
 /obj/structure/flora/jungle/grass/thin,
 /turf/open/floor/plating/ground/dirtgrassborder2{
@@ -4411,6 +4859,9 @@
 "xq" = (
 /obj/structure/powerloader_wreckage,
 /obj/effect/turf_decal/warning_stripes,
+/obj/machinery/light{
+	dir = 8
+	},
 /turf/open/floor/plating/ground/concrete,
 /area/campaign/jungle_outpost/outpost/req/depot)
 "xr" = (
@@ -4462,6 +4913,9 @@
 "xA" = (
 /obj/structure/table/reinforced,
 /obj/item/storage/surgical_tray,
+/obj/machinery/light{
+	dir = 4
+	},
 /turf/open/floor/tile/blue/whitebluefull,
 /area/campaign/jungle_outpost/outpost/medbay)
 "xB" = (
@@ -4539,6 +4993,14 @@
 "xS" = (
 /turf/closed/mineral/smooth/indestructible,
 /area/campaign/jungle_outpost/ground/jungle/south_west)
+"xT" = (
+/obj/structure/extinguisher_cabinet/mini{
+	dir = 1
+	},
+/turf/open/floor/tile/green/greentaupe{
+	dir = 10
+	},
+/area/campaign/jungle_outpost/outpost/living)
 "xU" = (
 /obj/structure/flora/jungle/grass/thin,
 /turf/open/floor/plating/ground/dirtgrassborder2{
@@ -4553,6 +5015,9 @@
 /area/campaign/jungle_outpost/ground/jungle/north)
 "xX" = (
 /obj/structure/reagent_dispensers/water_cooler,
+/obj/machinery/light{
+	dir = 4
+	},
 /turf/open/floor/tile/white,
 /area/campaign/jungle_outpost/outpost/medbay)
 "xY" = (
@@ -4600,8 +5065,12 @@
 /obj/structure/bed/chair/sofa,
 /turf/open/floor/wood,
 /area/campaign/jungle_outpost/outpost/command)
+"yj" = (
+/obj/machinery/door/airlock/multi_tile/mainship/generic,
+/turf/open/floor/tile/dark/gray,
+/area/campaign/jungle_outpost/outpost/living)
 "yl" = (
-/obj/machinery/door/airlock/multi_tile/research,
+/obj/machinery/door/airlock/multi_tile/mainship/research,
 /turf/open/floor/tile/white,
 /area/campaign/jungle_outpost/outpost/science)
 "ym" = (
@@ -4616,6 +5085,13 @@
 "yp" = (
 /turf/open/floor,
 /area/campaign/jungle_outpost/outpost/living)
+"yq" = (
+/obj/effect/turf_decal/grassdecal{
+	dir = 1
+	},
+/obj/structure/flora/jungle/large_bush,
+/turf/open/floor/plating/ground/concrete,
+/area/campaign/jungle_outpost/outpost/req/containers)
 "yr" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 1
@@ -4717,6 +5193,13 @@
 	},
 /turf/open/floor/freezer,
 /area/campaign/jungle_outpost/outpost/command/captain)
+"yP" = (
+/obj/machinery/hydroponics,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/tile/hydro,
+/area/campaign/jungle_outpost/outpost/living/hydro)
 "yR" = (
 /obj/structure/largecrate/supply/floodlights,
 /turf/open/floor/plating/ground/concrete,
@@ -4778,6 +5261,10 @@
 	dir = 6
 	},
 /area/campaign/jungle_outpost/outpost/living)
+"zg" = (
+/obj/machinery/light,
+/turf/open/floor/tile/hydro,
+/area/campaign/jungle_outpost/outpost/living/hydro)
 "zh" = (
 /obj/machinery/chem_dispenser,
 /turf/open/floor/tile/blue/whiteblue{
@@ -4799,6 +5286,12 @@
 	},
 /turf/closed/wall/r_wall,
 /area/campaign/jungle_outpost/outpost/science)
+"zl" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/tile/dark,
+/area/campaign/jungle_outpost/outpost/engineering)
 "zn" = (
 /obj/structure/table/reinforced,
 /obj/item/radio/survivor,
@@ -4814,10 +5307,14 @@
 /obj/machinery/processor{
 	pixel_y = 5
 	},
+/obj/machinery/light,
 /turf/open/floor/tile/barber,
 /area/campaign/jungle_outpost/outpost/living/kitchen)
 "zq" = (
 /obj/structure/flora/pottedplant/six,
+/obj/machinery/light{
+	dir = 1
+	},
 /turf/open/floor/tile/blue/taupeblue{
 	dir = 1
 	},
@@ -4866,6 +5363,15 @@
 	dir = 8
 	},
 /area/campaign/jungle_outpost/ground/jungle)
+"zz" = (
+/obj/structure/extinguisher_cabinet/mini,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/tile/green/greentaupe{
+	dir = 1
+	},
+/area/campaign/jungle_outpost/outpost/living)
 "zA" = (
 /obj/structure/flora/jungle/grass/thin,
 /turf/open/floor/plating/ground/dirtgrassborder2/corner{
@@ -4878,6 +5384,13 @@
 	dir = 1
 	},
 /area/campaign/jungle_outpost/outpost/medbay)
+"zC" = (
+/obj/structure/closet/secure_closet/hydroponics,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/tile/hydro,
+/area/campaign/jungle_outpost/outpost/living/hydro)
 "zD" = (
 /turf/open/floor/tile/green/greentaupecorner,
 /area/campaign/jungle_outpost/outpost/living)
@@ -4930,6 +5443,7 @@
 /area/campaign/jungle_outpost/outpost/command)
 "zO" = (
 /obj/structure/table/reinforced,
+/obj/effect/spawner/random/engineering/engibelt,
 /turf/open/floor/tile/red/redtaupe,
 /area/campaign/jungle_outpost/outpost/command)
 "zS" = (
@@ -5030,6 +5544,7 @@
 /obj/effect/spawner/random/engineering/tool,
 /obj/effect/spawner/random/engineering/tech_supply,
 /obj/effect/spawner/random/engineering/powercell,
+/obj/effect/spawner/random/engineering/engibelt,
 /turf/open/floor/tile/brown{
 	dir = 8
 	},
@@ -5071,6 +5586,11 @@
 	},
 /turf/open/floor/tile/red/redtaupe,
 /area/campaign/jungle_outpost/outpost/security)
+"AB" = (
+/obj/structure/table,
+/obj/machinery/light,
+/turf/open/floor/freezer,
+/area/campaign/jungle_outpost/outpost/living)
 "AD" = (
 /obj/structure/catwalk,
 /obj/structure/platform{
@@ -5103,6 +5623,7 @@
 /turf/open/ground/grass/weedable,
 /area/campaign/jungle_outpost/ground/jungle/north_west)
 "AJ" = (
+/obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/tile/neutral{
 	dir = 4
 	},
@@ -5138,6 +5659,13 @@
 	dir = 1
 	},
 /area/campaign/jungle_outpost/ground/jungle/north)
+"AQ" = (
+/obj/structure/bed/chair/sofa{
+	dir = 1
+	},
+/obj/machinery/light,
+/turf/open/floor/tile/white,
+/area/campaign/jungle_outpost/outpost/medbay)
 "AR" = (
 /obj/structure/platform,
 /obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
@@ -5265,6 +5793,12 @@
 	dir = 4
 	},
 /area/campaign/jungle_outpost/outpost/medbay)
+"Bv" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor,
+/area/campaign/jungle_outpost/outpost/living)
 "Bw" = (
 /obj/structure/platform_decoration{
 	dir = 9
@@ -5393,6 +5927,12 @@
 "Cb" = (
 /turf/open/floor/tile/dark/gray,
 /area/campaign/jungle_outpost/outpost/medbay/lobby)
+"Cc" = (
+/obj/structure/extinguisher_cabinet/mini,
+/turf/open/floor/tile/blue/taupeblue{
+	dir = 5
+	},
+/area/campaign/jungle_outpost/outpost/command)
 "Cd" = (
 /obj/structure/platform{
 	dir = 10
@@ -5475,6 +6015,14 @@
 /obj/structure/flora/grass/tallgrass/autosmooth,
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
 /area/campaign/jungle_outpost/ground/jungle/south)
+"Cx" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/tile/purple/whitepurple{
+	dir = 4
+	},
+/area/campaign/jungle_outpost/outpost/science)
 "Cy" = (
 /obj/structure/flora/tree/jungle,
 /obj/structure/flora/jungle/grass,
@@ -5518,6 +6066,15 @@
 	},
 /turf/open/floor/tile/dark,
 /area/campaign/jungle_outpost/outpost/engineering)
+"CK" = (
+/obj/structure/table/reinforced,
+/obj/effect/spawner/random/engineering/bomb_supply,
+/obj/effect/spawner/random/engineering/bomb_supply,
+/obj/effect/spawner/random/engineering/cable,
+/turf/open/floor/tile/purple/whitepurple{
+	dir = 8
+	},
+/area/campaign/jungle_outpost/outpost/science/south)
 "CL" = (
 /obj/structure/catwalk,
 /obj/structure/platform{
@@ -5574,6 +6131,9 @@
 /area/campaign/jungle_outpost/outpost/security)
 "CZ" = (
 /obj/structure/reagent_dispensers/water_cooler,
+/obj/machinery/light{
+	dir = 4
+	},
 /turf/open/floor/tile/white,
 /area/campaign/jungle_outpost/outpost/medbay/lobby)
 "Da" = (
@@ -5600,6 +6160,10 @@
 /obj/structure/platform,
 /turf/open/ground/grass/weedable,
 /area/campaign/jungle_outpost/ground/jungle/north)
+"De" = (
+/obj/machinery/light,
+/turf/open/floor/tile/dark,
+/area/campaign/jungle_outpost/outpost/engineering)
 "Df" = (
 /obj/structure/prop/mainship/sensor_computer3,
 /turf/open/floor/tile/purple/whitepurple{
@@ -5621,6 +6185,10 @@
 /turf/open/floor/tile/blue/whiteblue{
 	dir = 8
 	},
+/area/campaign/jungle_outpost/outpost/medbay/lobby)
+"Dk" = (
+/obj/machinery/light,
+/turf/open/floor/tile/dark/gray,
 /area/campaign/jungle_outpost/outpost/medbay/lobby)
 "Dl" = (
 /turf/open/floor/plating/scorched,
@@ -5756,6 +6324,14 @@
 /obj/structure/largecrate/random/barrel/green,
 /turf/open/floor/plating/ground/concrete,
 /area/campaign/jungle_outpost/outpost/req/depot)
+"DV" = (
+/obj/structure/closet/fireaxecabinet{
+	pixel_y = 31
+	},
+/turf/open/floor/tile/purple/whitepurple{
+	dir = 1
+	},
+/area/campaign/jungle_outpost/outpost/science/south)
 "DX" = (
 /obj/structure/platform{
 	dir = 6
@@ -5781,6 +6357,9 @@
 /area/campaign/jungle_outpost/outpost/command)
 "Ed" = (
 /obj/structure/filingcabinet/security,
+/obj/machinery/light{
+	dir = 1
+	},
 /turf/open/floor/tile/blue/taupeblue{
 	dir = 1
 	},
@@ -5792,6 +6371,10 @@
 "Eh" = (
 /turf/open/ground/grass/beach/corner2,
 /area/campaign/jungle_outpost/ground/jungle/north_east)
+"Ei" = (
+/obj/machinery/light,
+/turf/open/floor,
+/area/campaign/jungle_outpost/outpost/outer/west)
 "Ej" = (
 /obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /obj/structure/platform{
@@ -5802,6 +6385,15 @@
 "El" = (
 /turf/open/floor/plating/ground/dirt2,
 /area/campaign/jungle_outpost/ground/jungle/north_east)
+"Em" = (
+/obj/machinery/iv_drip,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 4
+	},
+/area/campaign/jungle_outpost/outpost/medbay)
 "En" = (
 /obj/structure/bookcase/manuals/research_and_development,
 /obj/item/book/manual/engineering_construction,
@@ -5858,6 +6450,9 @@
 "EA" = (
 /obj/structure/table/woodentable,
 /obj/item/camera,
+/obj/machinery/light{
+	dir = 1
+	},
 /turf/open/floor/wood,
 /area/campaign/jungle_outpost/outpost/command)
 "ED" = (
@@ -5873,6 +6468,12 @@
 /obj/structure/platform,
 /turf/open/floor/tile/hydro,
 /area/campaign/jungle_outpost/outpost/living/hydro)
+"EI" = (
+/obj/structure/prop/mainship/research/tdoppler,
+/turf/open/floor/tile/purple/whitepurple{
+	dir = 5
+	},
+/area/campaign/jungle_outpost/outpost/science/south)
 "EJ" = (
 /turf/open/floor/tile/neutral{
 	dir = 4
@@ -5883,6 +6484,10 @@
 	dir = 5
 	},
 /area/campaign/jungle_outpost/outpost/security/vault)
+"EM" = (
+/obj/machinery/light,
+/turf/open/floor,
+/area/campaign/jungle_outpost/outpost/outer/southwest)
 "EN" = (
 /obj/structure/largecrate/supply/explosives,
 /turf/open/floor/plating/ground/concrete,
@@ -5940,6 +6545,12 @@
 /obj/machinery/computer/security/wooden_tv,
 /turf/open/floor/carpet,
 /area/campaign/jungle_outpost/outpost/command/captain)
+"Fb" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor,
+/area/campaign/jungle_outpost/outpost/outer/west)
 "Fd" = (
 /obj/structure/flora/jungle/bush,
 /turf/open/ground/grass/weedable,
@@ -5947,6 +6558,10 @@
 "Fe" = (
 /turf/open/ground/grass/weedable,
 /area/campaign/jungle_outpost/ground/jungle/north_west)
+"Ff" = (
+/obj/structure/flora/grass/tallgrass/autosmooth,
+/turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
+/area/campaign/jungle_outpost/ground/jungle/east)
 "Fg" = (
 /obj/machinery/vending/boozeomat,
 /turf/open/floor/wood,
@@ -5958,6 +6573,10 @@
 /area/campaign/jungle_outpost/ground/jungle)
 "Fj" = (
 /obj/structure/table,
+/obj/effect/spawner/random/medical/firstaid,
+/obj/machinery/light{
+	dir = 1
+	},
 /turf/open/floor/tile/blue/whiteblue{
 	dir = 9
 	},
@@ -5966,8 +6585,8 @@
 /turf/open/floor,
 /area/campaign/jungle_outpost/outpost/medbay/lobby)
 "Fn" = (
-/obj/structure/stairs/seamless/platform{
-	dir = 8
+/obj/structure/stairs/seamless/edge{
+	dir = 1
 	},
 /turf/open/floor/plating/ground/dirtgrassborder2{
 	dir = 4
@@ -6100,6 +6719,14 @@
 	dir = 4
 	},
 /area/campaign/jungle_outpost/ground/jungle/south_east)
+"FY" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/tile/red/redtaupe{
+	dir = 1
+	},
+/area/campaign/jungle_outpost/outpost/security/vault)
 "FZ" = (
 /obj/structure/flora/grass/tallgrass/autosmooth,
 /turf/open/floor/plating/ground/dirt,
@@ -6152,6 +6779,14 @@
 	dir = 10
 	},
 /area/campaign/jungle_outpost/outpost/medbay/chemistry)
+"Gq" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 8
+	},
+/area/campaign/jungle_outpost/outpost/medbay/chemistry)
 "Gt" = (
 /obj/structure/rack,
 /turf/open/floor/tile/blue/taupeblue{
@@ -6160,6 +6795,9 @@
 /area/campaign/jungle_outpost/outpost/command)
 "Gu" = (
 /obj/structure/bed/chair/sofa/corner,
+/obj/machinery/light{
+	dir = 4
+	},
 /turf/open/floor/wood,
 /area/campaign/jungle_outpost/outpost/command)
 "Gv" = (
@@ -6192,6 +6830,14 @@
 	dir = 8
 	},
 /area/campaign/jungle_outpost/outpost/medbay)
+"GB" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/tile/green/greentaupe{
+	dir = 8
+	},
+/area/campaign/jungle_outpost/outpost/living)
 "GD" = (
 /obj/structure/table/woodentable,
 /turf/open/floor,
@@ -6262,6 +6908,12 @@
 	},
 /turf/open/liquid/water/river/autosmooth,
 /area/campaign/jungle_outpost/ground/river/east)
+"GV" = (
+/obj/structure/closet/firecloset,
+/turf/open/floor/tile/brown{
+	dir = 4
+	},
+/area/campaign/jungle_outpost/outpost/req)
 "GW" = (
 /obj/structure/flora/jungle/large_bush,
 /turf/open/ground/grass/weedable,
@@ -6298,6 +6950,11 @@
 	dir = 6
 	},
 /area/campaign/jungle_outpost/outpost/medbay/lobby)
+"Hh" = (
+/obj/structure/table/woodentable,
+/obj/machinery/light,
+/turf/open/floor/wood,
+/area/campaign/jungle_outpost/outpost/command)
 "Hk" = (
 /obj/structure/platform{
 	dir = 9
@@ -6355,6 +7012,12 @@
 	},
 /turf/open/floor/plating/ground/dirtgrassborder2,
 /area/campaign/jungle_outpost/ground/jungle)
+"Hz" = (
+/obj/machinery/vending/nanomed,
+/turf/open/floor/tile/green/greentaupe{
+	dir = 1
+	},
+/area/campaign/jungle_outpost/outpost/living)
 "HA" = (
 /turf/open/floor/plating/ground/dirtgrassborder2/corner{
 	dir = 8
@@ -6376,6 +7039,12 @@
 	},
 /turf/open/liquid/water/river,
 /area/campaign/jungle_outpost/ground/river/east)
+"HE" = (
+/obj/structure/flora/grass/tallgrass/autosmooth,
+/turf/open/floor/plating/ground/dirtgrassborder2/corner2{
+	dir = 4
+	},
+/area/campaign/jungle_outpost/ground/jungle/south_east)
 "HF" = (
 /turf/open/ground/grass/beach/corner{
 	dir = 1
@@ -6386,6 +7055,10 @@
 	dir = 4
 	},
 /area/campaign/jungle_outpost/ground/jungle/north_east)
+"HH" = (
+/obj/machinery/light,
+/turf/open/floor/freezer,
+/area/campaign/jungle_outpost/outpost/living/bathroom)
 "HI" = (
 /turf/open/floor/plating/ground/dirtgrassborder2/corner2,
 /area/campaign/jungle_outpost/ground/jungle/north)
@@ -6408,6 +7081,12 @@
 /obj/effect/spawner/random/food_or_drink/cheesewedge,
 /turf/open/floor/tile/barber,
 /area/campaign/jungle_outpost/outpost/living/kitchen)
+"HQ" = (
+/obj/structure/closet/firecloset,
+/turf/open/floor/tile/purple/whitepurple{
+	dir = 1
+	},
+/area/campaign/jungle_outpost/outpost/science/south)
 "HR" = (
 /obj/structure/stairs/seamless/edge{
 	dir = 4
@@ -6495,6 +7174,12 @@
 	},
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
 /area/campaign/jungle_outpost/ground/jungle/north)
+"In" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/tile/neutral/full,
+/area/campaign/jungle_outpost/outpost/living/canteen)
 "Io" = (
 /obj/structure/window/reinforced/tinted,
 /obj/structure/bed/chair/comfy{
@@ -6504,6 +7189,12 @@
 	dir = 4
 	},
 /area/campaign/jungle_outpost/outpost/medbay)
+"Ip" = (
+/obj/structure/closet/toolcloset,
+/turf/open/floor/tile/purple/whitepurple{
+	dir = 1
+	},
+/area/campaign/jungle_outpost/outpost/science/south)
 "Iq" = (
 /obj/structure/bookcase/manuals/research_and_development,
 /obj/item/book/manual/research_and_development,
@@ -6528,6 +7219,16 @@
 	},
 /turf/open/floor/tile/white,
 /area/campaign/jungle_outpost/outpost/science/south)
+"Ix" = (
+/obj/structure/closet/secure_closet/scientist,
+/obj/machinery/light,
+/turf/open/floor/tile/purple/whitepurple,
+/area/campaign/jungle_outpost/outpost/science/south)
+"Iy" = (
+/obj/structure/bed/roller,
+/obj/machinery/light,
+/turf/open/floor/tile/blue/whiteblue,
+/area/campaign/jungle_outpost/outpost/medbay)
 "Iz" = (
 /obj/structure/table/mainship,
 /obj/item/tool/kitchen/tray,
@@ -6603,7 +7304,6 @@
 /area/campaign/jungle_outpost/outpost/command)
 "IW" = (
 /obj/structure/cargo_container/hd,
-/obj/effect/turf_decal/grassdecal,
 /turf/open/floor/plating/ground/concrete,
 /area/campaign/jungle_outpost/outpost/req/containers)
 "IZ" = (
@@ -6629,6 +7329,10 @@
 "Je" = (
 /turf/open/liquid/water/river/autosmooth,
 /area/campaign/jungle_outpost/ground/river/lake)
+"Jf" = (
+/obj/structure/prop/mainship/protolathe,
+/turf/open/floor/tile/white,
+/area/campaign/jungle_outpost/outpost/science/south)
 "Jg" = (
 /obj/structure/bed/chair/comfy/beige{
 	dir = 8
@@ -6666,6 +7370,11 @@
 	dir = 1
 	},
 /area/campaign/jungle_outpost/ground/jungle)
+"Jp" = (
+/obj/machinery/hydroponics,
+/obj/machinery/light,
+/turf/open/floor/tile/hydro,
+/area/campaign/jungle_outpost/outpost/living/hydro)
 "Jq" = (
 /obj/structure/flora/jungle/grass/thin,
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
@@ -6673,10 +7382,6 @@
 "Jr" = (
 /turf/open/ground/grass/beach,
 /area/campaign/jungle_outpost/ground/jungle/north_east)
-"Jt" = (
-/obj/structure/prop/mainship/protolathe,
-/turf/open/floor,
-/area/campaign/jungle_outpost/outpost/science)
 "Ju" = (
 /obj/structure/closet/secure_closet/quartermaster,
 /obj/item/storage/holster/blade/machete/full,
@@ -6706,6 +7411,10 @@
 	},
 /turf/open/floor/plating/ground/concrete,
 /area/campaign/jungle_outpost/outpost/req/depot)
+"JA" = (
+/obj/machinery/door/airlock/multi_tile/mainship/comdoor/free_access,
+/turf/open/floor/tile/dark/gray,
+/area/campaign/jungle_outpost/outpost/command)
 "JB" = (
 /turf/open/floor/tile/brown{
 	dir = 9
@@ -6782,6 +7491,10 @@
 /obj/structure/platform,
 /turf/closed/wall,
 /area/campaign/jungle_outpost/outpost/living/bathroom)
+"Kd" = (
+/obj/structure/closet/secure_closet/scientist,
+/turf/open/floor/tile/purple/whitepurple,
+/area/campaign/jungle_outpost/outpost/science/south)
 "Ke" = (
 /obj/structure/catwalk,
 /obj/structure/platform{
@@ -7003,6 +7716,12 @@
 /obj/structure/stairs/seamless/platform_vert/water,
 /turf/open/liquid/water,
 /area/campaign/jungle_outpost/outpost/science)
+"Le" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/tile/hydro,
+/area/campaign/jungle_outpost/outpost/living/hydro)
 "Lf" = (
 /obj/structure/sink/kitchen{
 	dir = 1
@@ -7041,6 +7760,7 @@
 /obj/structure/toilet{
 	dir = 1
 	},
+/obj/machinery/light,
 /turf/open/floor/freezer,
 /area/campaign/jungle_outpost/outpost/command)
 "Ln" = (
@@ -7119,6 +7839,12 @@
 	dir = 8
 	},
 /area/campaign/jungle_outpost/ground/jungle/south_west)
+"LF" = (
+/obj/machinery/light,
+/turf/open/floor/tile/red/redtaupe{
+	dir = 6
+	},
+/area/campaign/jungle_outpost/outpost/security)
 "LG" = (
 /obj/structure/flora/jungle/grass,
 /turf/open/ground/grass/weedable,
@@ -7149,10 +7875,23 @@
 "LS" = (
 /turf/open/floor/freezer,
 /area/campaign/jungle_outpost/outpost/living/kitchen)
+"LT" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor,
+/area/campaign/jungle_outpost/outpost/outer/southwest)
 "LU" = (
 /obj/structure/flora/jungle/grass/thin,
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
 /area/campaign/jungle_outpost/ground/jungle/north_west)
+"LV" = (
+/obj/machinery/hydroponics,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/tile/hydro,
+/area/campaign/jungle_outpost/outpost/living/hydro)
 "LW" = (
 /obj/machinery/door/airlock/mainship/engineering/free_access{
 	name = "\improper Engineering Dome"
@@ -7194,6 +7933,14 @@
 /obj/effect/spawner/random/misc/structure/supplycrate,
 /turf/open/floor,
 /area/campaign/jungle_outpost/outpost/landing/storage)
+"Mj" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 4
+	},
+/area/campaign/jungle_outpost/outpost/medbay/chemistry)
 "Mk" = (
 /obj/effect/landmark/patrol_point{
 	id = "TGMC_24";
@@ -7201,6 +7948,12 @@
 	},
 /turf/open/ground/grass/weedable,
 /area/campaign/jungle_outpost/ground/jungle/north_west)
+"Ml" = (
+/obj/structure/closet/firecloset,
+/turf/open/floor/tile/purple/whitepurple{
+	dir = 8
+	},
+/area/campaign/jungle_outpost/outpost/science)
 "Mn" = (
 /obj/effect/spawner/random/engineering/structure/tank/fuelweighted,
 /turf/open/floor,
@@ -7309,6 +8062,9 @@
 /area/campaign/jungle_outpost/outpost/science)
 "MP" = (
 /obj/structure/table/mainship,
+/obj/structure/extinguisher_cabinet/mini{
+	dir = 4
+	},
 /turf/open/floor/tile/barber,
 /area/campaign/jungle_outpost/outpost/living/kitchen)
 "MR" = (
@@ -7368,8 +8124,17 @@
 /obj/structure/sign/greencross{
 	dir = 8
 	},
+/obj/machinery/light{
+	dir = 8
+	},
 /turf/open/floor/tile/white,
 /area/campaign/jungle_outpost/outpost/medbay/lobby)
+"Ng" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor,
+/area/campaign/jungle_outpost/outpost/security)
 "Nh" = (
 /obj/structure/catwalk,
 /obj/structure/platform{
@@ -7396,6 +8161,9 @@
 /area/campaign/jungle_outpost/ground/jungle/north)
 "Nn" = (
 /obj/structure/reagent_dispensers/fueltank,
+/obj/machinery/light{
+	dir = 4
+	},
 /turf/open/floor/tile/dark,
 /area/campaign/jungle_outpost/outpost/engineering)
 "No" = (
@@ -7420,6 +8188,7 @@
 /turf/open/floor/freezer,
 /area/campaign/jungle_outpost/outpost/living)
 "Nu" = (
+/obj/machinery/light,
 /turf/open/floor/tile/red/redtaupe,
 /area/campaign/jungle_outpost/outpost/security/vault)
 "Nv" = (
@@ -7473,8 +8242,15 @@
 "NK" = (
 /turf/open/floor/plating/ground/dirtgrassborder2,
 /area/campaign/jungle_outpost/ground/jungle)
+"NL" = (
+/obj/machinery/light,
+/turf/open/floor/tile/blue/taupeblue{
+	dir = 10
+	},
+/area/campaign/jungle_outpost/outpost/command)
 "NM" = (
 /obj/machinery/body_scanconsole,
+/obj/machinery/light,
 /turf/open/floor/tile/blue/whiteblue,
 /area/campaign/jungle_outpost/outpost/medbay)
 "NN" = (
@@ -7495,15 +8271,38 @@
 	dir = 4
 	},
 /area/campaign/jungle_outpost/outpost/security)
+"NR" = (
+/obj/structure/table,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 1
+	},
+/area/campaign/jungle_outpost/outpost/medbay)
 "NS" = (
 /obj/structure/cargo_container/hd_blue{
 	dir = 1
 	},
 /turf/open/floor/plating/ground/concrete,
 /area/campaign/jungle_outpost/outpost/req/containers)
+"NT" = (
+/obj/structure/table/reinforced,
+/obj/effect/spawner/random/engineering/tool,
+/turf/open/floor/tile/white,
+/area/campaign/jungle_outpost/outpost/science/south)
 "NU" = (
 /obj/structure/platform,
 /turf/closed/wall,
+/area/campaign/jungle_outpost/outpost/science/south)
+"NW" = (
+/obj/machinery/light,
+/turf/open/floor/tile/neutral,
+/area/campaign/jungle_outpost/outpost/living/canteen)
+"NZ" = (
+/obj/structure/table/reinforced,
+/obj/effect/spawner/random/engineering/structure/handheld_lighting,
+/turf/open/floor/tile/purple/whitepurple,
 /area/campaign/jungle_outpost/outpost/science/south)
 "Oa" = (
 /obj/structure/bed/bunkbed,
@@ -7583,6 +8382,12 @@
 	},
 /turf/open/liquid/water,
 /area/campaign/jungle_outpost/ground/jungle)
+"Op" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/campaign/jungle_outpost/outpost/req/depot)
 "Oq" = (
 /obj/structure/largecrate/random/case,
 /turf/open/floor/plating/ground/concrete,
@@ -7599,6 +8404,12 @@
 /obj/structure/rock/variable/jungle,
 /turf/open/ground/grass/weedable,
 /area/campaign/jungle_outpost/ground/jungle/north)
+"Ow" = (
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
+/turf/open/floor/tile/neutral{
+	dir = 8
+	},
+/area/campaign/jungle_outpost/outpost/living)
 "Ox" = (
 /obj/structure/flora/tree/jungle/small,
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
@@ -7606,6 +8417,9 @@
 "Oy" = (
 /obj/structure/table/woodentable,
 /obj/item/binoculars,
+/obj/machinery/light{
+	dir = 1
+	},
 /turf/open/floor/wood,
 /area/campaign/jungle_outpost/outpost/command)
 "Oz" = (
@@ -7701,6 +8515,12 @@
 	},
 /turf/open/ground/grass/weedable,
 /area/campaign/jungle_outpost/ground/jungle)
+"OX" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor,
+/area/campaign/jungle_outpost/outpost/outer/west)
 "OY" = (
 /obj/structure/flora/grass/tallgrass/autosmooth,
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
@@ -7771,6 +8591,12 @@
 	},
 /turf/open/floor/tile/hydro,
 /area/campaign/jungle_outpost/outpost/living/hydro)
+"Pq" = (
+/obj/effect/spawner/random/engineering/structure/tank/fuelweighted,
+/turf/open/floor/tile/purple/whitepurple{
+	dir = 1
+	},
+/area/campaign/jungle_outpost/outpost/science/south)
 "Pr" = (
 /turf/open/floor/plating/ground/dirtgrassborder2/corner2{
 	dir = 4
@@ -7814,6 +8640,11 @@
 	dir = 1
 	},
 /area/campaign/jungle_outpost/ground/jungle/east)
+"PF" = (
+/obj/structure/rack,
+/obj/effect/spawner/random/engineering/engibelt,
+/turf/open/floor/tile/dark,
+/area/campaign/jungle_outpost/outpost/engineering)
 "PG" = (
 /obj/structure/flora/jungle/grass,
 /turf/open/ground/grass/weedable,
@@ -7982,6 +8813,10 @@
 	dir = 8
 	},
 /area/campaign/jungle_outpost/outpost/medbay)
+"Qy" = (
+/obj/machinery/light,
+/turf/open/floor/tile/neutral/full,
+/area/campaign/jungle_outpost/outpost/living/canteen)
 "Qz" = (
 /obj/structure/platform{
 	dir = 5
@@ -8037,6 +8872,10 @@
 /obj/structure/flora/tree/jungle/small,
 /turf/open/ground/grass/weedable,
 /area/campaign/jungle_outpost/ground/jungle/south_east)
+"QP" = (
+/obj/machinery/light,
+/turf/open/floor/tile/purple/whitepurple,
+/area/campaign/jungle_outpost/outpost/science/south)
 "QR" = (
 /turf/closed/wall,
 /area/campaign/jungle_outpost/outpost/living)
@@ -8128,6 +8967,15 @@
 	dir = 4
 	},
 /area/campaign/jungle_outpost/ground/jungle/west)
+"Rm" = (
+/obj/effect/spawner/random/engineering/extinguisher,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/tile/purple/whitepurple{
+	dir = 1
+	},
+/area/campaign/jungle_outpost/outpost/science/south)
 "Rn" = (
 /obj/structure/rock/variable/jungle,
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
@@ -8253,6 +9101,9 @@
 /area/campaign/jungle_outpost/outpost/living/bathroom)
 "RR" = (
 /obj/machinery/computer/atmoscontrol,
+/obj/machinery/light{
+	dir = 1
+	},
 /turf/open/floor/tile/blue/taupeblue{
 	dir = 1
 	},
@@ -8365,6 +9216,9 @@
 	},
 /area/campaign/jungle_outpost/outpost/security/vault)
 "Sw" = (
+/obj/machinery/light{
+	dir = 8
+	},
 /turf/open/floor/tile/neutral{
 	dir = 8
 	},
@@ -8377,6 +9231,9 @@
 /area/campaign/jungle_outpost/outpost/command)
 "Sy" = (
 /obj/structure/sign/pharmacy{
+	dir = 4
+	},
+/obj/machinery/light{
 	dir = 4
 	},
 /turf/open/floor/tile/white,
@@ -8417,10 +9274,17 @@
 /obj/structure/platform,
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
 /area/campaign/jungle_outpost/ground/jungle/north_west)
+"SL" = (
+/obj/machinery/light,
+/turf/open/floor/tile/green/greentaupe,
+/area/campaign/jungle_outpost/outpost/living)
 "SM" = (
 /obj/structure/rack,
 /obj/item/weapon/shield/riot,
 /obj/item/weapon/shield/riot,
+/obj/machinery/light{
+	dir = 4
+	},
 /turf/open/floor/tile/red/redtaupe{
 	dir = 6
 	},
@@ -8496,6 +9360,9 @@
 /obj/structure/table/fancywoodentable,
 /obj/item/reagent_containers/food/drinks/bottle/whiskey,
 /obj/item/reagent_containers/food/drinks/drinkingglass,
+/obj/machinery/light{
+	dir = 4
+	},
 /turf/open/floor/wood/alt_four,
 /area/campaign/jungle_outpost/outpost/command/captain)
 "Tf" = (
@@ -8567,7 +9434,6 @@
 /obj/structure/cargo_container/hd{
 	dir = 4
 	},
-/obj/effect/turf_decal/grassdecal,
 /turf/open/floor/plating/ground/concrete,
 /area/campaign/jungle_outpost/outpost/req/containers)
 "TB" = (
@@ -8623,6 +9489,7 @@
 	},
 /area/campaign/jungle_outpost/ground/jungle/east)
 "TS" = (
+/obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/tile/neutral{
 	dir = 8
 	},
@@ -8643,6 +9510,23 @@
 	dir = 4
 	},
 /area/campaign/jungle_outpost/outpost/req)
+"TW" = (
+/obj/structure/bed/chair{
+	dir = 8
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/tile/white,
+/area/campaign/jungle_outpost/outpost/medbay/lobby)
+"TX" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/tile/neutral{
+	dir = 4
+	},
+/area/campaign/jungle_outpost/outpost/living)
 "TY" = (
 /obj/structure/stairs/edge{
 	dir = 4
@@ -8651,6 +9535,12 @@
 	dir = 4
 	},
 /area/campaign/jungle_outpost/ground/jungle)
+"TZ" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/tile/red/full,
+/area/campaign/jungle_outpost/outpost/security/vault)
 "Ua" = (
 /turf/open/floor/plating/ground/dirtgrassborder2/corner{
 	dir = 1
@@ -8733,6 +9623,10 @@
 	dir = 4
 	},
 /area/campaign/jungle_outpost/ground/jungle)
+"Ut" = (
+/obj/effect/spawner/random/engineering/toolbox,
+/turf/open/floor/tile/white,
+/area/campaign/jungle_outpost/outpost/science/south)
 "Uu" = (
 /obj/structure/rock/variable/jungle/big,
 /turf/open/ground/grass/weedable,
@@ -8868,7 +9762,9 @@
 /turf/open/liquid/water/river,
 /area/campaign/jungle_outpost/ground/jungle/east)
 "Vc" = (
-/obj/structure/stairs/seamless/platform,
+/obj/structure/stairs/seamless/edge{
+	dir = 4
+	},
 /turf/open/ground/grass/weedable,
 /area/campaign/jungle_outpost/ground/jungle)
 "Vd" = (
@@ -8930,6 +9826,9 @@
 /area/campaign/jungle_outpost/ground/jungle/north_east)
 "Vp" = (
 /obj/structure/table/reinforced,
+/obj/effect/spawner/random/engineering/powercell,
+/obj/effect/spawner/random/engineering/structure/handheld_lighting,
+/obj/effect/spawner/random/engineering/tool,
 /turf/open/floor/tile/white,
 /area/campaign/jungle_outpost/outpost/science/south)
 "Vq" = (
@@ -8946,14 +9845,29 @@
 /obj/structure/flora/grass/tallgrass/autosmooth,
 /turf/open/floor/plating/ground/dirtgrassborder2,
 /area/campaign/jungle_outpost/ground/jungle)
+"Vv" = (
+/obj/structure/flora/grass/tallgrass/autosmooth,
+/turf/open/floor/plating/ground/dirtgrassborder2{
+	dir = 8
+	},
+/area/campaign/jungle_outpost/ground/jungle/south_east)
 "Vw" = (
 /obj/structure/flora/jungle/grass/thin,
 /turf/open/ground/grass/beach,
 /area/campaign/jungle_outpost/ground/jungle/east)
 "Vx" = (
 /obj/structure/closet/crate/internals,
+/obj/machinery/light,
 /turf/open/floor/tile/purple/whitepurple,
 /area/campaign/jungle_outpost/outpost/science/south)
+"Vy" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/tile/blue/taupeblue{
+	dir = 4
+	},
+/area/campaign/jungle_outpost/outpost/command)
 "Vz" = (
 /obj/machinery/grill/unwrenched,
 /turf/open/floor,
@@ -8967,6 +9881,13 @@
 	dir = 4
 	},
 /area/campaign/jungle_outpost/outpost/security/vault)
+"VC" = (
+/obj/effect/spawner/random/misc/structure/supplycrate,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/tile/dark,
+/area/campaign/jungle_outpost/outpost/engineering)
 "VD" = (
 /obj/structure/platform{
 	dir = 8
@@ -8978,6 +9899,13 @@
 /obj/structure/bed/chair/sofa/corner,
 /turf/open/floor/wood/alt_four,
 /area/campaign/jungle_outpost/outpost/command/captain)
+"VF" = (
+/obj/structure/table/reinforced,
+/obj/effect/spawner/random/engineering/computercircuit,
+/turf/open/floor/tile/purple/whitepurple{
+	dir = 8
+	},
+/area/campaign/jungle_outpost/outpost/science/south)
 "VG" = (
 /obj/structure/flora/grass/tallgrass/autosmooth,
 /turf/open/liquid/water/river/autosmooth,
@@ -9025,6 +9953,12 @@
 /obj/machinery/sleeper,
 /turf/open/floor/tile/white,
 /area/campaign/jungle_outpost/outpost/medbay)
+"VU" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/freezer,
+/area/campaign/jungle_outpost/outpost/living/bathroom)
 "VV" = (
 /turf/open/liquid/water/river,
 /area/campaign/jungle_outpost/ground/river/north)
@@ -9126,6 +10060,7 @@
 /obj/machinery/door/window{
 	dir = 1
 	},
+/obj/machinery/light,
 /turf/open/floor/freezer,
 /area/campaign/jungle_outpost/outpost/command/captain)
 "Ws" = (
@@ -9238,6 +10173,12 @@
 	dir = 1
 	},
 /area/campaign/jungle_outpost/ground/jungle)
+"WQ" = (
+/obj/structure/extinguisher_cabinet/mini,
+/turf/open/floor/tile/green/greentaupe{
+	dir = 1
+	},
+/area/campaign/jungle_outpost/outpost/living)
 "WR" = (
 /obj/structure/toilet,
 /turf/open/floor,
@@ -9288,6 +10229,14 @@
 /obj/effect/spawner/random/misc/structure/flavorvending/snackweighted,
 /turf/open/floor/tile/dark,
 /area/campaign/jungle_outpost/outpost/engineering)
+"Xe" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/tile/purple/whitepurple{
+	dir = 4
+	},
+/area/campaign/jungle_outpost/outpost/science/south)
 "Xf" = (
 /obj/structure/bed/chair/wood/wings,
 /turf/open/floor/carpet,
@@ -9301,17 +10250,41 @@
 /obj/machinery/robotic_cradle,
 /turf/open/floor/tile/purple/whitepurple,
 /area/campaign/jungle_outpost/outpost/science)
+"Xi" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/tile/blue/taupeblue{
+	dir = 10
+	},
+/area/campaign/jungle_outpost/outpost/command)
 "Xj" = (
 /obj/structure/flora/grass/tallgrass/autosmooth,
 /turf/open/floor/plating/ground/dirtgrassborder2/corner{
 	dir = 1
 	},
 /area/campaign/jungle_outpost/ground/jungle/north)
+"Xl" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/tile/green/greentaupe{
+	dir = 9
+	},
+/area/campaign/jungle_outpost/outpost/living)
+"Xm" = (
+/obj/structure/extinguisher_cabinet/mini,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/tile/purple/whitepurple{
+	dir = 1
+	},
+/area/campaign/jungle_outpost/outpost/science)
 "Xn" = (
 /obj/structure/cargo_container/hd{
 	dir = 1
 	},
-/obj/effect/turf_decal/grassdecal,
 /turf/open/floor/plating/ground/concrete,
 /area/campaign/jungle_outpost/outpost/req/containers)
 "Xo" = (
@@ -9335,6 +10308,15 @@
 	dir = 8
 	},
 /area/campaign/jungle_outpost/ground/jungle/east)
+"Xt" = (
+/obj/machinery/vending/nanomed,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/tile/purple/whitepurple{
+	dir = 1
+	},
+/area/campaign/jungle_outpost/outpost/science/south)
 "Xv" = (
 /obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /turf/open/floor,
@@ -9373,6 +10355,7 @@
 /area/campaign/jungle_outpost/ground/jungle)
 "XD" = (
 /obj/structure/prop/mainship/telecomms/receiver,
+/obj/machinery/light,
 /turf/open/floor/tile/dark,
 /area/campaign/jungle_outpost/outpost/command)
 "XE" = (
@@ -9399,6 +10382,13 @@
 /turf/open/floor/tile/purple/whitepurple{
 	dir = 8
 	},
+/area/campaign/jungle_outpost/outpost/science/south)
+"XK" = (
+/obj/structure/table/reinforced,
+/obj/effect/spawner/random/engineering/bomb_supply,
+/obj/effect/spawner/random/engineering/bomb_supply,
+/obj/effect/spawner/random/engineering/tool,
+/turf/open/floor/tile/white,
 /area/campaign/jungle_outpost/outpost/science/south)
 "XL" = (
 /obj/structure/table/fancywoodentable,
@@ -9444,6 +10434,14 @@
 	dir = 6
 	},
 /area/campaign/jungle_outpost/outpost/science)
+"XU" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/tile/neutral{
+	dir = 8
+	},
+/area/campaign/jungle_outpost/outpost/living)
 "XV" = (
 /obj/structure/flora/jungle/grass/thin,
 /turf/open/ground/grass/weedable,
@@ -9457,13 +10455,6 @@
 	},
 /turf/open/floor/tile/hydro,
 /area/campaign/jungle_outpost/outpost/living/hydro)
-"XY" = (
-/obj/structure/cargo_container{
-	dir = 4
-	},
-/obj/effect/turf_decal/grassdecal,
-/turf/open/floor/plating/ground/concrete,
-/area/campaign/jungle_outpost/outpost/req/containers)
 "Yb" = (
 /obj/effect/spawner/random/misc/structure/supplycrate,
 /turf/open/floor/tile/hydro,
@@ -9526,6 +10517,7 @@
 "Yq" = (
 /obj/structure/table/reinforced,
 /obj/machinery/computer3/laptop,
+/obj/machinery/light,
 /turf/open/floor/tile/blue/taupeblue,
 /area/campaign/jungle_outpost/outpost/command)
 "Yr" = (
@@ -9551,13 +10543,6 @@
 "Yw" = (
 /turf/open/floor/plating/ground/dirtgrassborder2/corner2,
 /area/campaign/jungle_outpost/ground/jungle/north_east)
-"Yx" = (
-/obj/structure/cargo_container{
-	dir = 1
-	},
-/obj/effect/turf_decal/grassdecal,
-/turf/open/floor/plating/ground/concrete,
-/area/campaign/jungle_outpost/outpost/req/containers)
 "Yz" = (
 /obj/structure/platform,
 /turf/closed/wall/r_wall,
@@ -9580,6 +10565,7 @@
 /area/campaign/jungle_outpost/ground/jungle/north)
 "YL" = (
 /obj/machinery/computer/mech_bay_power_console,
+/obj/machinery/light,
 /turf/open/floor/tile/dark,
 /area/campaign/jungle_outpost/outpost/science)
 "YM" = (
@@ -9602,6 +10588,17 @@
 	},
 /turf/open/floor,
 /area/campaign/jungle_outpost/outpost/landing/storage)
+"YQ" = (
+/obj/structure/bed/chair/wheelchair{
+	dir = 8
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 4
+	},
+/area/campaign/jungle_outpost/outpost/medbay)
 "YR" = (
 /obj/structure/bed/bunkbed,
 /turf/open/floor,
@@ -9634,6 +10631,15 @@
 /obj/structure/flora/jungle/large_bush,
 /turf/open/ground/grass/weedable,
 /area/campaign/jungle_outpost/ground/jungle/east)
+"Za" = (
+/obj/effect/spawner/random/misc/structure/supplycrate/normalweighted,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/tile/purple/whitepurple{
+	dir = 4
+	},
+/area/campaign/jungle_outpost/outpost/science/south)
 "Zc" = (
 /obj/structure/catwalk,
 /obj/structure/catwalk,
@@ -9646,6 +10652,9 @@
 /obj/structure/table/reinforced,
 /obj/item/circuitboard/mecha/durand/peripherals,
 /obj/effect/spawner/random/engineering/computercircuit,
+/obj/machinery/light{
+	dir = 8
+	},
 /turf/open/floor/tile/purple/whitepurple{
 	dir = 8
 	},
@@ -9676,6 +10685,10 @@
 /turf/open/floor/plating/ground/dirtgrassborder2,
 /area/campaign/jungle_outpost/ground/jungle/south_west)
 "Zr" = (
+/obj/machinery/vending/coffee,
+/obj/machinery/light{
+	dir = 1
+	},
 /turf/open/floor/tile/brown{
 	dir = 1
 	},
@@ -9704,11 +10717,20 @@
 /obj/structure/sign/greencross{
 	dir = 1
 	},
+/obj/machinery/light{
+	dir = 1
+	},
 /turf/open/floor/tile/dark/gray,
 /area/campaign/jungle_outpost/outpost/medbay/lobby)
 "Zy" = (
 /turf/closed/mineral/smooth/indestructible,
 /area/campaign/jungle_outpost/ground/jungle/north)
+"ZA" = (
+/obj/structure/flora/grass/tallgrass/autosmooth,
+/turf/open/floor/plating/ground/dirtgrassborder2{
+	dir = 8
+	},
+/area/campaign/jungle_outpost/ground/jungle/east)
 "ZB" = (
 /obj/effect/landmark/patrol_point{
 	id = "SOM_13";
@@ -9773,6 +10795,9 @@
 /area/campaign/jungle_outpost/outpost/living)
 "ZP" = (
 /obj/machinery/vending/tool,
+/obj/machinery/light{
+	dir = 1
+	},
 /turf/open/floor/tile/purple/whitepurple{
 	dir = 1
 	},
@@ -9788,6 +10813,9 @@
 /area/campaign/jungle_outpost/ground/jungle/west)
 "ZU" = (
 /obj/effect/spawner/random/engineering/structure/tank/fuelweighted,
+/obj/machinery/light{
+	dir = 4
+	},
 /turf/open/floor/tile/dark,
 /area/campaign/jungle_outpost/outpost/engineering)
 "ZW" = (
@@ -10124,8 +11152,8 @@ Fe
 Fe
 Fe
 Lt
-Fe
-Fe
+BV
+BV
 mc
 Lt
 Fe
@@ -10141,8 +11169,8 @@ BV
 Fe
 Fe
 Fe
-Fe
-dQ
+BV
+BV
 bl
 bl
 bl
@@ -10294,8 +11322,8 @@ Fe
 ka
 Fe
 Fe
-Fe
-dQ
+BV
+BV
 dQ
 bl
 bl
@@ -11107,7 +12135,7 @@ lI
 XN
 XN
 XN
-XN
+OX
 lI
 tq
 bE
@@ -11558,9 +12586,9 @@ vn
 XN
 XN
 XN
-XN
+Ei
 lI
-XN
+Fb
 XN
 XN
 XN
@@ -11707,7 +12735,7 @@ ZS
 ct
 Cl
 dw
-XN
+Fb
 XN
 XN
 XN
@@ -11867,7 +12895,7 @@ lI
 XN
 XN
 XN
-XN
+OX
 XN
 AL
 Fd
@@ -12092,10 +13120,10 @@ Fe
 RS
 Ui
 RS
-Fe
-Fe
-Fe
-Fe
+BV
+BV
+BV
+BV
 Fe
 Fe
 Fe
@@ -12245,8 +13273,8 @@ OP
 Ui
 RS
 lu
-Fe
-Fe
+BV
+BV
 Lt
 mc
 MS
@@ -12270,8 +13298,8 @@ BV
 BV
 Fe
 Fe
-Fe
-Fe
+BV
+BV
 lu
 Fe
 Fe
@@ -12318,9 +13346,9 @@ dw
 XN
 XN
 XN
-XN
+Ei
 lI
-XN
+Fb
 XN
 XN
 XN
@@ -12421,9 +13449,9 @@ BV
 BV
 Fe
 Fe
-Fe
-Fe
-Fe
+BV
+BV
+BV
 Fe
 bi
 Fe
@@ -12573,9 +13601,9 @@ Fe
 Fe
 Lt
 Fe
-Fe
-Fe
-Fe
+BV
+BV
+BV
 Fe
 Fe
 Fe
@@ -12726,8 +13754,8 @@ Lt
 Fe
 Fe
 MS
-Fe
-Fe
+BV
+BV
 Fe
 Fe
 BV
@@ -12802,7 +13830,7 @@ Mg
 Mg
 Mg
 Mg
-Mg
+EM
 pL
 pL
 pL
@@ -12957,7 +13985,7 @@ Mg
 Mg
 RA
 Mg
-Mg
+rC
 Mg
 Tx
 Xz
@@ -13104,7 +14132,7 @@ Mg
 Mg
 Mg
 Mg
-Mg
+jA
 Mg
 Mg
 Mg
@@ -13301,7 +14329,7 @@ xS
 ST
 BV
 BV
-Fe
+MH
 Fe
 mc
 Fe
@@ -13411,7 +14439,7 @@ aI
 pL
 pL
 Mg
-Mg
+rC
 Mg
 Mg
 Mg
@@ -13453,7 +14481,7 @@ xS
 ST
 BV
 BV
-Fe
+MH
 MS
 Fe
 Fe
@@ -13465,7 +14493,7 @@ BV
 BV
 BV
 BV
-Fe
+BV
 Fe
 ka
 Fe
@@ -13557,7 +14585,7 @@ Xz
 PY
 Mg
 Mg
-Mg
+EM
 pL
 Mg
 Mg
@@ -13605,7 +14633,7 @@ xS
 ST
 BV
 BV
-BV
+MH
 BV
 Fe
 Lt
@@ -13616,8 +14644,8 @@ RS
 BV
 BV
 Fe
-Fe
-Fe
+BV
+BV
 Lt
 Fe
 mc
@@ -13756,10 +14784,10 @@ xS
 (27,1,1) = {"
 ST
 BV
-Fe
+MH
+MH
 BV
 BV
-Fe
 Fe
 Fe
 RS
@@ -13863,7 +14891,7 @@ oP
 pL
 pL
 pL
-Mg
+LT
 Mg
 Mg
 Mg
@@ -13908,8 +14936,8 @@ xS
 (28,1,1) = {"
 ST
 BV
-Fe
-Fe
+MH
+MH
 BV
 BV
 BV
@@ -14576,12 +15604,12 @@ fy
 fy
 Po
 ij
-fy
+yP
 Po
 XX
 wZ
 Po
-fy
+LV
 fy
 fy
 EG
@@ -14726,7 +15754,7 @@ Oz
 fy
 fy
 fy
-Po
+zg
 ij
 ij
 Po
@@ -14887,7 +15915,7 @@ gv
 Po
 fy
 fy
-fy
+sc
 Yb
 et
 wO
@@ -15495,7 +16523,7 @@ fy
 Po
 fy
 fy
-fy
+Jp
 ij
 Qs
 mD
@@ -15790,7 +16818,7 @@ vL
 Oz
 Po
 Po
-Po
+zg
 ij
 fN
 Po
@@ -16082,7 +17110,7 @@ oe
 oe
 UG
 vb
-QK
+NR
 oe
 UG
 de
@@ -16096,10 +17124,10 @@ io
 Oz
 in
 ij
+Le
 Po
 Po
-Po
-mS
+zC
 re
 Oz
 io
@@ -16219,7 +17247,7 @@ AN
 mn
 oe
 ZJ
-FK
+AQ
 vb
 ab
 dj
@@ -16528,7 +17556,7 @@ oe
 oe
 zt
 yz
-Bh
+bD
 oe
 vb
 vb
@@ -16682,14 +17710,14 @@ de
 dX
 oe
 oe
-Bh
+bD
 Ti
 cK
 Ti
 Bh
 bW
 yz
-Bh
+bD
 bW
 oe
 UG
@@ -16948,7 +17976,7 @@ xS
 (48,1,1) = {"
 ST
 BV
-Fe
+BV
 Fe
 RS
 RS
@@ -17100,7 +18128,7 @@ xS
 (49,1,1) = {"
 ST
 BV
-Fe
+BV
 Fe
 RS
 Ui
@@ -17286,11 +18314,11 @@ xA
 Ez
 de
 yu
-nq
+Em
 Io
 nq
 Io
-aj
+YQ
 aj
 lT
 BR
@@ -17586,10 +18614,10 @@ mD
 mD
 mD
 mD
-mD
-mD
-mD
-mD
+dn
+dn
+dn
+dn
 mD
 mD
 mD
@@ -17602,7 +18630,7 @@ ya
 EF
 dX
 oe
-du
+Iy
 tu
 OW
 KY
@@ -17739,8 +18767,8 @@ mD
 mD
 mD
 dV
-mD
-mD
+dn
+dn
 KY
 mD
 mD
@@ -17895,12 +18923,12 @@ mD
 mD
 mD
 KY
-mD
+qd
 Lz
 cs
 HZ
 lb
-Ph
+un
 Ph
 Hg
 HZ
@@ -17918,14 +18946,14 @@ tp
 tg
 AS
 Nr
-Nr
+AB
 QR
 yp
 or
 yp
-Bc
+xT
 QR
-cP
+Xl
 QY
 or
 IQ
@@ -18075,7 +19103,7 @@ dB
 yp
 yp
 yp
-gy
+SL
 QR
 Ga
 YR
@@ -18222,7 +19250,7 @@ tp
 tg
 AS
 Nr
-Nr
+AB
 QR
 Ga
 yp
@@ -18535,7 +19563,7 @@ gy
 QR
 QJ
 jM
-SO
+gt
 zf
 DK
 wO
@@ -18668,14 +19696,14 @@ ya
 ya
 ya
 ya
-ya
+jn
 HZ
 Zx
 Cb
 Cb
-Cb
+Dk
 QR
-Ga
+bH
 yp
 yp
 yp
@@ -18683,7 +19711,7 @@ yp
 yp
 yp
 yp
-gy
+SL
 QR
 QR
 QR
@@ -18810,7 +19838,7 @@ tf
 WF
 xc
 lk
-lk
+TW
 lk
 lk
 lk
@@ -18839,7 +19867,7 @@ yI
 or
 or
 or
-or
+GB
 Bc
 gf
 NK
@@ -18959,7 +19987,7 @@ XC
 fQ
 kH
 mD
-mD
+VP
 ux
 ms
 ms
@@ -18967,7 +19995,7 @@ ms
 ms
 ms
 HZ
-ya
+aL
 ya
 Sy
 ya
@@ -18983,7 +20011,7 @@ QJ
 SO
 vj
 ZW
-SO
+gt
 SO
 SO
 vi
@@ -19286,11 +20314,11 @@ tp
 eg
 or
 QY
-or
+GB
 QY
 Bc
 QR
-Ga
+bH
 yp
 yp
 gy
@@ -19313,7 +20341,7 @@ EQ
 EQ
 iD
 iD
-iD
+GV
 st
 FS
 uH
@@ -19492,18 +20520,18 @@ ZL
 rV
 zi
 zi
+gd
 zi
 zi
 zi
 zi
 zi
+gd
 zi
 zi
 zi
 zi
-zi
-zi
-zi
+gd
 zi
 zi
 pr
@@ -19577,7 +20605,7 @@ dn
 LD
 Ru
 jy
-jy
+Mj
 gI
 kn
 lg
@@ -19610,14 +20638,14 @@ CO
 eL
 dn
 wx
+oD
 Xb
 Xb
 Xb
 Xb
 Xb
 Xb
-Xb
-Xb
+Qy
 LM
 wr
 mD
@@ -19713,7 +20741,7 @@ zY
 aZ
 Hb
 Hb
-aM
+Xi
 IV
 tT
 aZ
@@ -19796,7 +20824,7 @@ ZL
 ky
 Hd
 zi
-zi
+Op
 zi
 zi
 zi
@@ -19807,7 +20835,7 @@ zi
 zi
 zi
 zi
-zi
+Op
 zi
 Gw
 pr
@@ -19825,8 +20853,8 @@ WV
 EX
 EX
 EX
-EX
-EX
+nI
+nI
 EX
 EX
 EX
@@ -19871,7 +20899,7 @@ HV
 Gz
 Zw
 Gz
-SP
+rE
 ND
 mD
 mD
@@ -19882,7 +20910,7 @@ LD
 ON
 gm
 gm
-gm
+Gq
 gm
 Gp
 mL
@@ -19976,9 +21004,9 @@ nI
 EX
 EX
 EX
-EX
-EX
-EX
+nI
+nI
+nI
 Ou
 EX
 EX
@@ -20046,11 +21074,11 @@ tp
 ZO
 SO
 jM
-SO
+gt
 jM
 eW
 QR
-Ga
+WQ
 yp
 yp
 Ha
@@ -20094,7 +21122,7 @@ OE
 OE
 OL
 oB
-Zr
+ix
 ZL
 jI
 TO
@@ -20128,8 +21156,8 @@ EX
 EX
 EX
 EX
-EX
-EX
+nI
+nI
 EX
 EX
 EX
@@ -20202,7 +21230,7 @@ QR
 QR
 QR
 QR
-Ga
+bH
 yp
 yp
 gy
@@ -20350,11 +21378,11 @@ tp
 eg
 or
 QY
-or
+GB
 QY
 Bc
 QR
-Ga
+Hz
 yp
 yp
 gy
@@ -20627,11 +21655,11 @@ HV
 Hb
 SP
 IV
-HV
+rc
 Hb
 Hb
 Hb
-SP
+rE
 ND
 dn
 dn
@@ -20742,7 +21770,7 @@ EX
 EX
 EX
 EX
-EX
+nI
 wI
 "}
 (73,1,1) = {"
@@ -20777,7 +21805,7 @@ yT
 IV
 HV
 Hb
-SP
+rE
 IV
 hQ
 Hb
@@ -20860,18 +21888,18 @@ RN
 pr
 sJ
 sJ
-sJ
+dR
 zi
 yg
 IR
 Oq
 tv
+gd
 zi
 zi
 zi
 zi
-zi
-zi
+gd
 RY
 DU
 pr
@@ -20893,7 +21921,7 @@ WV
 EX
 EX
 EX
-EX
+ea
 LG
 wI
 "}
@@ -20978,11 +22006,11 @@ Ms
 Hk
 Fo
 NA
+oD
 Xb
 Xb
 Xb
-Xb
-Xb
+Qy
 Ji
 Mw
 Ji
@@ -21046,7 +22074,7 @@ LG
 ea
 EX
 EX
-EX
+ea
 wI
 "}
 (75,1,1) = {"
@@ -21075,11 +22103,11 @@ wk
 cd
 yO
 Uv
-QM
+hT
 Hb
 nN
 IV
-HV
+xl
 Hb
 HJ
 aZ
@@ -21091,7 +22119,7 @@ aZ
 aZ
 aZ
 aZ
-aM
+NL
 IV
 lh
 pS
@@ -21110,11 +22138,11 @@ tp
 ZO
 SO
 jM
-SO
+gt
 jM
 eW
 QR
-Ga
+zz
 yp
 tV
 LA
@@ -21163,8 +22191,9 @@ EX
 EX
 ea
 LG
-sk
-Gb
+pt
+cJ
+cJ
 cJ
 cJ
 cJ
@@ -21176,7 +22205,6 @@ cJ
 cJ
 cJ
 nd
-EX
 ea
 sk
 ea
@@ -21198,7 +22226,7 @@ nI
 EX
 EX
 EX
-EX
+RN
 wI
 "}
 (76,1,1) = {"
@@ -21273,7 +22301,7 @@ RC
 yp
 yp
 yp
-bX
+XU
 bX
 DZ
 bX
@@ -21315,8 +22343,8 @@ EX
 EX
 EX
 ea
-EX
-ui
+Gb
+Bp
 cJ
 qE
 qD
@@ -21327,8 +22355,8 @@ mA
 cJ
 cJ
 cJ
+cJ
 nd
-EX
 WV
 EX
 EX
@@ -21349,8 +22377,8 @@ nI
 nI
 EX
 EX
-EX
-EX
+RN
+RN
 wI
 "}
 (77,1,1) = {"
@@ -21374,10 +22402,10 @@ bA
 Bg
 pb
 cd
-Vf
+lO
 Vf
 ta
-Vf
+lO
 Uv
 Ci
 Hb
@@ -21387,12 +22415,12 @@ HV
 Hb
 kK
 Na
-Na
+Vy
 Hb
 Na
 Na
 Na
-Na
+Vy
 iW
 Hb
 SP
@@ -21444,7 +22472,7 @@ jd
 rq
 ja
 XR
-LS
+dc
 rS
 lA
 xw
@@ -21467,8 +22495,8 @@ EX
 EX
 EX
 EX
-EX
-Yx
+Gb
+nK
 cJ
 pn
 dq
@@ -21476,6 +22504,7 @@ wt
 cJ
 cJ
 hF
+cJ
 cJ
 cJ
 cJ
@@ -21487,7 +22516,6 @@ EX
 EX
 EX
 EX
-EX
 nI
 nI
 nI
@@ -21501,8 +22529,8 @@ EX
 EX
 EX
 EX
-EX
-EX
+RN
+RN
 wI
 "}
 (78,1,1) = {"
@@ -21537,7 +22565,7 @@ IV
 IV
 HV
 Hb
-SP
+rE
 IV
 IV
 zx
@@ -21566,7 +22594,7 @@ tp
 AS
 fG
 QR
-Ga
+bH
 yp
 yp
 yp
@@ -21577,7 +22605,7 @@ yp
 yp
 yp
 yp
-Ig
+TX
 Ig
 DZ
 Ig
@@ -21619,8 +22647,8 @@ ea
 EX
 EX
 EX
-EX
-Yx
+Gb
+nK
 cJ
 tN
 dq
@@ -21631,8 +22659,8 @@ JJ
 cJ
 cJ
 BJ
-nd
-EX
+cJ
+rd
 EX
 ea
 EX
@@ -21654,7 +22682,7 @@ EX
 Ou
 EX
 up
-EX
+nI
 wI
 "}
 (79,1,1) = {"
@@ -21685,7 +22713,7 @@ Vf
 Uv
 tT
 Hb
-aZ
+ml
 aZ
 rM
 Hb
@@ -21704,15 +22732,15 @@ Xv
 Gu
 Yo
 qQ
-qQ
+cr
 ND
 BH
-eL
 QR
+vu
 Vc
 kR
+tf
 QR
-mD
 nF
 tp
 JG
@@ -21725,7 +22753,7 @@ SO
 SO
 SO
 SO
-SO
+gt
 SO
 yp
 eW
@@ -21740,7 +22768,7 @@ Xb
 Xb
 Xb
 Xb
-Xb
+In
 Xb
 tz
 nH
@@ -21771,8 +22799,8 @@ EX
 ea
 jP
 EX
-EX
-XY
+Gb
+lx
 cJ
 cJ
 dq
@@ -21783,8 +22811,8 @@ cJ
 cJ
 cJ
 NS
-nd
-ea
+cJ
+yq
 EX
 EX
 EX
@@ -21806,7 +22834,7 @@ EX
 EX
 EX
 EX
-EX
+nI
 wI
 "}
 (80,1,1) = {"
@@ -21859,15 +22887,15 @@ cq
 IV
 xC
 uA
-uA
 QR
+uA
 DZ
 yx
-QR
-uA
 uA
 QR
-yp
+uA
+QR
+Bv
 or
 or
 EY
@@ -21923,7 +22951,6 @@ nI
 LG
 nI
 ea
-EX
 Gb
 cJ
 cJ
@@ -21934,9 +22961,10 @@ cJ
 cJ
 cJ
 cJ
+cJ
 Hv
+cJ
 nd
-jP
 EX
 ea
 EX
@@ -21991,7 +23019,7 @@ HV
 Hb
 kK
 Na
-Na
+Vy
 Hb
 ha
 IV
@@ -21999,26 +23027,26 @@ Ht
 Hb
 Hb
 Hb
-Rw
+qW
 IV
 HV
 Hb
 HJ
 aZ
-aZ
+ml
 aZ
 aZ
 aZ
 TS
 bX
-bX
+XU
 bX
 DZ
 DZ
 bX
+XU
 bX
-bX
-bX
+Ow
 yp
 yp
 yp
@@ -22075,7 +23103,6 @@ nI
 nI
 nI
 EX
-EX
 Gb
 cJ
 cJ
@@ -22087,8 +23114,9 @@ cJ
 cJ
 cJ
 cJ
+cJ
+cJ
 nd
-EX
 EX
 EX
 ea
@@ -22133,10 +23161,10 @@ YK
 bA
 xK
 tT
-aZ
+ml
 aZ
 Hb
-aZ
+ml
 nB
 IV
 HV
@@ -22153,7 +23181,7 @@ Hb
 Gz
 Rw
 IV
-HV
+kY
 Hb
 Hb
 Hb
@@ -22161,7 +23189,7 @@ Hb
 Hb
 Hb
 Hb
-Wj
+JA
 DZ
 DZ
 DZ
@@ -22170,7 +23198,7 @@ DZ
 DZ
 DZ
 DZ
-DZ
+yj
 yp
 yp
 yp
@@ -22178,7 +23206,7 @@ yp
 yp
 dd
 Jw
-oY
+fZ
 oY
 oY
 oY
@@ -22193,9 +23221,9 @@ UJ
 ld
 CO
 wx
-lC
+aO
 lH
-kM
+NW
 LM
 ii
 uK
@@ -22227,8 +23255,8 @@ nI
 LG
 EX
 EX
-EX
 Gb
+cJ
 cJ
 MK
 BN
@@ -22239,8 +23267,8 @@ cJ
 cJ
 Bp
 cJ
-nd
-EX
+cJ
+rd
 EX
 ea
 sk
@@ -22248,8 +23276,8 @@ nI
 nI
 nI
 nI
-EX
-EX
+RN
+RN
 EX
 EX
 EX
@@ -22299,14 +23327,14 @@ Oj
 PA
 NC
 IV
-HV
+je
 Hb
 Hb
 Hb
 QI
 IV
-hQ
-Na
+Cc
+Vy
 Na
 Na
 iW
@@ -22379,7 +23407,7 @@ EX
 EX
 EX
 EX
-EX
+Gb
 IW
 cJ
 cJ
@@ -22391,17 +23419,17 @@ cJ
 cJ
 nK
 cJ
-nd
-EX
+cJ
+rd
 nI
 nI
 nI
 nI
 nI
 sk
-EX
-EX
-EX
+RN
+RN
+RN
 EX
 EX
 sk
@@ -22436,7 +23464,7 @@ bA
 bA
 bA
 xK
-HV
+xl
 ua
 QV
 Hb
@@ -22445,7 +23473,7 @@ Hb
 Wu
 Hb
 Hb
-SP
+rE
 IV
 pf
 PA
@@ -22467,14 +23495,14 @@ Hb
 kK
 AJ
 Ig
-Ig
+TX
 Ig
 DZ
 DZ
 Ig
+TX
 Ig
-Ig
-Ig
+fx
 yp
 yp
 yp
@@ -22487,7 +23515,7 @@ RP
 RP
 RP
 oY
-oY
+HH
 Kc
 dn
 mD
@@ -22531,7 +23559,7 @@ WV
 EX
 EX
 ea
-EX
+Gb
 Xn
 cJ
 cJ
@@ -22543,8 +23571,8 @@ cJ
 cJ
 lx
 cJ
+cJ
 nd
-ea
 nI
 nI
 nI
@@ -22599,7 +23627,7 @@ Hb
 Hb
 SP
 IV
-qr
+hh
 PA
 oG
 IV
@@ -22616,15 +23644,15 @@ IV
 SU
 Hb
 Hb
-SP
+rE
 xC
 fB
-fB
 QR
+fB
 DZ
 yx
-QR
 fB
+QR
 fB
 QR
 Ga
@@ -22649,9 +23677,9 @@ Jo
 cX
 Pb
 wx
-lC
+aO
 lH
-kM
+NW
 LM
 vu
 cX
@@ -22683,7 +23711,7 @@ RL
 EX
 EX
 jP
-EX
+Gb
 Ty
 cJ
 cJ
@@ -22695,8 +23723,8 @@ cJ
 cJ
 cJ
 cJ
+cJ
 nd
-ea
 sk
 nI
 nI
@@ -22759,7 +23787,7 @@ vl
 Na
 Na
 Na
-Na
+Vy
 Na
 Na
 Hb
@@ -22771,20 +23799,20 @@ Hb
 SP
 ND
 qk
-mD
 QR
+wO
 oW
 Fn
+CO
 QR
-mD
 VP
 tp
-Ga
+bH
 yp
 yp
 yp
 yp
-gy
+SL
 Jw
 vV
 vV
@@ -22835,8 +23863,8 @@ EX
 EX
 EX
 EX
-EX
 Gb
+cJ
 cJ
 hb
 gw
@@ -22847,8 +23875,8 @@ cJ
 dJ
 AM
 AM
+AM
 Ae
-EX
 jP
 nI
 nI
@@ -22892,11 +23920,11 @@ bA
 bA
 yF
 xK
-Sx
+fV
 Wc
 Hb
 Hb
-SP
+rE
 IV
 IV
 HV
@@ -22941,7 +23969,7 @@ Jw
 ep
 ep
 ep
-oY
+VU
 Ba
 Ba
 Kc
@@ -23054,20 +24082,20 @@ tT
 rM
 Hb
 HJ
+ml
+aZ
+aZ
+aZ
+ml
 aZ
 aZ
 aZ
 aZ
-aZ
-aZ
-aZ
-aZ
-aZ
-aZ
+ml
 aZ
 aZ
 Hb
-aZ
+ml
 aZ
 rM
 Hb
@@ -23241,8 +24269,8 @@ ks
 Oo
 iX
 rL
-mD
-mD
+dn
+dn
 UJ
 UJ
 UJ
@@ -23360,20 +24388,20 @@ kK
 Na
 Na
 Na
-Na
+Vy
 Na
 iW
 kK
+Vy
+Na
+Na
+Na
+Vy
 Na
 Na
 Na
 Na
-Na
-Na
-Na
-Na
-Na
-Na
+Vy
 Na
 Na
 ha
@@ -23394,8 +24422,8 @@ id
 iX
 XE
 MA
-mD
-KY
+dn
+dn
 UJ
 UJ
 Qc
@@ -23443,8 +24471,8 @@ No
 RX
 RX
 Bt
-AW
-DO
+Rm
+pi
 DO
 DO
 DO
@@ -23584,18 +24612,18 @@ OE
 JR
 TB
 Ws
-kp
+VF
 kp
 Ws
 XJ
-kp
+le
 Ws
 ip
-kp
+kd
 sz
 uT
 DT
-AW
+Pq
 DO
 DO
 DO
@@ -23666,12 +24694,12 @@ EA
 qQ
 wn
 IV
-HV
+xl
 SP
 IV
 hH
 qQ
-wo
+Hh
 ND
 qk
 mD
@@ -23734,13 +24762,13 @@ OE
 NG
 GU
 JR
-AW
+DV
 DO
 IS
-Vp
+NT
 DO
 oK
-Vp
+gk
 IS
 DO
 lM
@@ -23763,9 +24791,9 @@ sk
 ea
 EX
 EX
-OL
-OL
-OL
+Cw
+Cw
+nI
 EX
 EX
 EX
@@ -23915,10 +24943,10 @@ EX
 EX
 EX
 OL
-OL
-Je
-OL
-EX
+Cw
+zF
+nI
+nI
 EX
 EX
 jP
@@ -24013,7 +25041,7 @@ tQ
 su
 jG
 cA
-FQ
+Ml
 FQ
 Ub
 bB
@@ -24025,7 +25053,7 @@ bB
 yl
 eR
 eR
-Jt
+eR
 eR
 JI
 JI
@@ -24067,10 +25095,10 @@ EX
 EX
 OL
 OL
-Je
-Je
-OL
-OL
+zF
+zF
+nI
+nI
 EX
 Ou
 EX
@@ -24116,14 +25144,14 @@ Yq
 IV
 HV
 Hb
-SP
+rE
 IV
 IV
 IV
 IV
 IV
-HV
-SP
+kY
+rE
 IV
 IV
 IV
@@ -24208,7 +25236,7 @@ DO
 DO
 DO
 DO
-DO
+Ut
 Su
 jC
 MY
@@ -24220,9 +25248,9 @@ Ze
 JX
 Je
 Je
-Je
-Je
-OL
+zF
+zF
+Cw
 EX
 EX
 EX
@@ -24279,7 +25307,7 @@ SP
 IV
 hH
 qQ
-wo
+Hh
 ND
 mD
 NK
@@ -24321,7 +25349,7 @@ Tm
 Fx
 Fx
 Fx
-Fx
+Cx
 bB
 bB
 Fx
@@ -24345,21 +25373,21 @@ DT
 dI
 DO
 DO
+Xe
 zH
 zH
 zH
 zH
 zH
-zH
-zH
+Xe
 DO
 DO
 Bt
-dI
+hq
 zH
-zH
-zH
-zj
+dF
+eS
+Za
 zj
 zj
 hc
@@ -24443,7 +25471,7 @@ Sv
 sK
 dg
 dg
-dg
+km
 fK
 sa
 dn
@@ -24466,7 +25494,7 @@ KX
 gs
 eR
 tQ
-Do
+li
 bB
 bB
 YH
@@ -24505,7 +25533,7 @@ DT
 DT
 Bt
 DO
-mY
+ih
 Bt
 Bt
 ub
@@ -24591,7 +25619,7 @@ kH
 dn
 sa
 sa
-Lp
+FY
 qj
 qj
 qj
@@ -24723,15 +25751,15 @@ Hb
 SP
 IV
 Hb
-Na
+Vy
 Hb
 IV
 IV
 IV
 IV
 IV
-HV
-SP
+xl
+rE
 IV
 IV
 IV
@@ -24750,7 +25778,7 @@ qj
 qj
 da
 sa
-oo
+TZ
 sa
 mD
 mD
@@ -24870,7 +25898,7 @@ MG
 xK
 EO
 nc
-Na
+Vy
 Na
 Ve
 xC
@@ -24880,7 +25908,7 @@ fX
 xC
 KA
 ym
-ym
+sY
 QE
 Hb
 Hb
@@ -24959,10 +25987,10 @@ AW
 DO
 bF
 bF
+Jf
 DO
 DO
-DO
-ZE
+QP
 NU
 Ze
 fF
@@ -25240,7 +26268,7 @@ bB
 Yt
 Di
 BM
-AN
+OY
 OE
 OE
 OE
@@ -25259,7 +26287,7 @@ rD
 Jg
 rD
 LN
-AW
+Xt
 DO
 DO
 DO
@@ -25351,7 +26379,7 @@ CO
 sy
 sa
 sa
-Lp
+FY
 qj
 qj
 qj
@@ -25380,10 +26408,10 @@ wF
 tQ
 IB
 Ql
-Fx
+Cx
 XT
 tQ
-Do
+Xm
 bB
 IH
 bm
@@ -25392,8 +26420,8 @@ bB
 bB
 YH
 BM
-AN
-AN
+OY
+OY
 OE
 OE
 OE
@@ -25407,7 +26435,7 @@ OE
 OE
 Pz
 Wa
-rD
+ge
 rD
 ll
 LN
@@ -25420,7 +26448,7 @@ DO
 DO
 Yc
 sz
-kp
+CK
 ap
 NU
 Ze
@@ -25544,8 +26572,8 @@ bB
 si
 MO
 qT
-mD
-AN
+dn
+OY
 UQ
 OE
 OE
@@ -25696,7 +26724,7 @@ bB
 bB
 YH
 qT
-mD
+dn
 mD
 Vk
 OE
@@ -25718,14 +26746,14 @@ Ze
 Ze
 Uh
 JR
-AW
+gU
 DO
 DO
 DO
 DO
 DO
 DO
-gz
+NZ
 NU
 Ze
 Ze
@@ -25873,7 +26901,7 @@ JR
 Df
 DO
 DO
-Vp
+hs
 Vp
 DO
 DO
@@ -25993,7 +27021,7 @@ mD
 zk
 Wg
 Fx
-Fx
+Cx
 bB
 bB
 qH
@@ -26025,8 +27053,8 @@ JR
 en
 DO
 DO
-Vp
-Vp
+hZ
+hP
 DO
 DO
 ZE
@@ -26177,8 +27205,8 @@ JR
 ug
 DO
 DO
-Vp
-Vp
+eF
+XK
 DO
 DO
 ZE
@@ -26308,8 +27336,8 @@ xw
 ru
 uK
 CO
-AN
-OE
+OY
+EV
 OE
 OE
 OE
@@ -26326,14 +27354,14 @@ vQ
 Ze
 Ze
 JR
-AW
+HQ
 DO
 DO
 DO
 DO
 DO
 DO
-ZE
+Ix
 NU
 Ze
 Ze
@@ -26459,10 +27487,10 @@ hn
 xw
 xw
 Jo
-tf
-AN
-AN
-OE
+Ur
+OY
+OY
+EV
 OE
 OE
 OE
@@ -26478,14 +27506,14 @@ Ze
 Ze
 Kk
 JR
-AW
+Ip
 DO
 DO
 DO
 DO
 DO
 DO
-ZE
+Kd
 NU
 Ze
 Ze
@@ -26612,9 +27640,9 @@ nP
 nP
 mO
 CT
-TF
-nw
-OE
+mi
+Ff
+EV
 OE
 OE
 OE
@@ -26630,7 +27658,7 @@ RE
 Ze
 Ze
 JR
-dI
+EI
 zH
 zH
 zH
@@ -26765,7 +27793,7 @@ TF
 CT
 CT
 CT
-nw
+Ff
 nw
 OE
 OE
@@ -26787,7 +27815,7 @@ Iv
 Iv
 ub
 DO
-mY
+ih
 ub
 ub
 eG
@@ -26885,7 +27913,7 @@ dO
 dO
 dO
 BF
-cM
+PF
 iH
 iH
 pN
@@ -27035,7 +28063,7 @@ yD
 Up
 iH
 iH
-iH
+De
 BF
 fo
 iH
@@ -27342,7 +28370,7 @@ iH
 VM
 BF
 mB
-iH
+fS
 iH
 iH
 cM
@@ -27636,15 +28664,15 @@ XV
 TF
 Up
 iS
+zl
 iH
-iH
-iH
+zl
 eO
 BF
 iH
 iH
 iH
-iH
+zl
 iH
 iH
 iH
@@ -27815,13 +28843,13 @@ br
 lv
 nm
 jB
-jB
-jB
+iC
+sf
 jB
 oO
 oO
 jB
-jB
+oA
 nE
 Qb
 nm
@@ -27955,7 +28983,7 @@ iN
 iH
 Se
 iH
-iH
+fS
 Ww
 RF
 Ct
@@ -28117,7 +29145,7 @@ za
 wv
 wv
 Tk
-XA
+pe
 sL
 TL
 GN
@@ -28247,13 +29275,13 @@ iH
 iH
 iH
 iH
-iH
+zl
 iH
 cc
 BF
 mb
 iH
-iH
+De
 BF
 PM
 qS
@@ -28277,12 +29305,12 @@ ys
 xn
 ys
 Qb
-XA
+pe
 Vi
 Qb
 uz
 Xg
-KJ
+LF
 Yz
 YZ
 TF
@@ -28401,7 +29429,7 @@ iH
 iH
 iH
 iH
-mB
+vA
 BF
 nX
 iH
@@ -28418,7 +29446,7 @@ iz
 yD
 zu
 lv
-oO
+hg
 oO
 cx
 oO
@@ -28555,7 +29583,7 @@ VM
 iH
 mB
 BF
-zr
+VC
 iH
 iH
 CJ
@@ -28568,7 +29596,7 @@ RF
 Ct
 WE
 br
-TF
+mi
 lv
 Xp
 oO
@@ -28586,7 +29614,7 @@ oO
 ke
 oO
 jB
-nE
+gG
 Yz
 TF
 TF
@@ -28712,26 +29740,26 @@ iH
 zr
 BF
 Ym
-iH
+fS
 eK
-eK
+as
 eK
 RF
 Ct
 oH
 TF
-TF
+mi
 lv
 Tk
 Tk
 Tk
-XA
+pe
 Vi
 ys
 cf
 Xg
 oO
-oO
+Ng
 Tp
 oO
 Vi
@@ -28851,7 +29879,7 @@ TF
 zu
 XV
 Up
-iH
+hm
 iH
 VM
 iH
@@ -28872,7 +29900,7 @@ Np
 Ct
 yD
 TF
-TF
+mi
 lv
 WR
 vY
@@ -28885,7 +29913,7 @@ Tk
 kw
 Tk
 Tk
-XA
+fU
 Vi
 Qb
 Qb
@@ -29008,7 +30036,7 @@ iH
 VM
 iH
 VM
-iH
+De
 BF
 zr
 iH
@@ -29024,9 +30052,9 @@ zu
 Ct
 sM
 Vr
-TF
+mi
 lv
-oO
+hg
 oO
 cx
 oO
@@ -29189,12 +30217,12 @@ oO
 oO
 Vi
 Tk
-XA
+pe
 oO
 oO
 oO
 oO
-Vi
+vt
 Yz
 TF
 YZ
@@ -30233,8 +31261,8 @@ nP
 nP
 nP
 nP
-nP
-nP
+ZA
+ZA
 br
 TF
 Mp
@@ -30385,8 +31413,8 @@ TF
 TF
 TF
 XV
-TF
-TF
+mi
+mi
 TF
 YZ
 CT
@@ -30537,8 +31565,8 @@ TF
 TF
 mT
 TF
-TF
-TF
+mi
+mi
 zu
 CT
 CT
@@ -30690,7 +31718,7 @@ XV
 TF
 TF
 TF
-TF
+mi
 CT
 CT
 CT
@@ -31646,9 +32674,9 @@ eM
 oJ
 IF
 IF
-IF
-IF
-Pr
+Vv
+Vv
+HE
 JY
 VH
 VH
@@ -31800,7 +32828,7 @@ Ze
 Uu
 OT
 OT
-Qh
+mu
 IF
 ZM
 IF
@@ -32116,9 +33144,9 @@ Ze
 Ze
 Ze
 Kk
-Ze
-Ze
-Ze
+ss
+ss
+ss
 Ze
 Ze
 Ze
