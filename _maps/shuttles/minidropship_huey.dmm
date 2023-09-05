@@ -120,6 +120,7 @@
 /obj/structure/bed/chair/dropship/passenger{
 	dir = 1
 	},
+/obj/docking_port/mobile/marine_dropship/minidropship,
 /turf/open/floor/mainship/mono,
 /area/shuttle/minidropship)
 "R" = (
