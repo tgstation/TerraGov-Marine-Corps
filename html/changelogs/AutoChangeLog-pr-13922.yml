@@ -1,7 +1,0 @@
-author: "Victor239"
-delete-after: True
-changes:
-  - bugfix: "\"Hivemind: Change Form\" keybinding now available."
-  - rscadd: "\"Carrier: Build Hugger Turret\" and \"Widow: Birth Spiderling using Cannibalise charges\" keybindings now available."
-  - rscadd: "Almost all xeno abilities now have default keybinds."
-  - refactor: "A few existing xeno default keybinds were changed to prevent conflicts."
