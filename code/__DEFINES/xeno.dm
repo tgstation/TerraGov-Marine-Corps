@@ -32,7 +32,7 @@
 #define DEFILER_OZELOMELYN "Ozelomelyn"
 
 //Baneling specific reagent define
-#define BANELING_ACID "Sulphuric Acid"
+#define BANELING_ACID "Sulphuric acid"
 #define BANELING_ACID_ICON "spray_acid"
 
 #define TRAP_HUGGER "hugger"
