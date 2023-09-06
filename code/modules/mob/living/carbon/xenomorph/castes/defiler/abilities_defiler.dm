@@ -384,6 +384,8 @@
 
 /datum/action/xeno_action/select_reagent/proc/select_reagent_radial()
 	//List of toxin images
+	// This is cursed, don't copy this code its the WRONG way to do this.
+	// TODO: generate this from GLOB.defiler_toxin_type_list
 	var/static/list/defiler_toxin_images_list = list(
 			DEFILER_NEUROTOXIN = image('icons/Xeno/actions.dmi', icon_state = DEFILER_NEUROTOXIN),
 			DEFILER_HEMODILE = image('icons/Xeno/actions.dmi', icon_state = DEFILER_HEMODILE),
