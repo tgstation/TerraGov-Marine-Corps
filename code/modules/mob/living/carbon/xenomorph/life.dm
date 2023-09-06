@@ -77,10 +77,10 @@
 	var/sunder_recov = xeno_caste.sunder_recover * -0.5 //Baseline
 
 	if(resting) //Resting doubles sunder recovery
-		sunder_recov *= 2
+		sunder_recov *= 5
 
 	if(ispath(loc_weeds_type, /obj/alien/weeds/resting)) //Resting weeds double sunder recovery
-		sunder_recov *= 2
+		sunder_recov *= 5
 
 	if(recovery_aura)
 		sunder_recov *= 1 + recovery_aura * 0.1 //10% bonus per rank of recovery aura
