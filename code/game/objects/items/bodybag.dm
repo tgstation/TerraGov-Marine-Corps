@@ -424,7 +424,6 @@
 		anchored = TRUE
 		playsound(loc,'sound/effects/cloak_scout_on.ogg', 15, 1) //stealth mode engaged!
 		animate(src, alpha = 13, time = 3 SECONDS) //Fade out gradually.
-		bodybag_occupant.alpha = 0
 		RegisterSignals(bodybag_occupant, list(COMSIG_MOB_DEATH, COMSIG_PREQDELETED), PROC_REF(on_bodybag_occupant_death))
 
 
@@ -436,7 +435,6 @@
 		animate(src) //Cancel the fade out if still ongoing.
 	if(bodybag_occupant)
 		UnregisterSignal(bodybag_occupant, list(COMSIG_MOB_DEATH, COMSIG_PREQDELETED))
-		bodybag_occupant.alpha = initial(bodybag_occupant.alpha)
 	return ..()
 
 
