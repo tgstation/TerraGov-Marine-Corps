@@ -1,7 +1,7 @@
 /datum/action/observer_action/find_facehugger_spawn
 	name = "Spawn as Facehugger"
 	action_icon = 'modular_RUtgmc/icons/Xeno/actions.dmi'
-	action_icon_state = "hugger_search"
+	action_icon_state = "hugger_set"
 
 /datum/action/observer_action/find_facehugger_spawn/action_activate()
 	var/mob/dead/observer/dead_owner = owner
