@@ -34,7 +34,7 @@
 	///Total number of objectives at round start
 	var/objectives_total = 3
 	///number of targets to capture for a minor victory
-	var/min_capture_amount = 3 //placeholder number
+	var/min_capture_amount = 10 //placeholder number
 	///How many objectives currently remaining
 	var/objectives_remaining = 0
 	///How many objects extracted by each team

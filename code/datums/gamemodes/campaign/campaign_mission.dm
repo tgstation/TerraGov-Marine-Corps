@@ -26,8 +26,8 @@
 	var/datum/game_mode/hvh/campaign/mode
 	///The victory conditions for this mission, for display purposes
 	var/list/objective_description = list(
-		"starting_faction" = "starting faction objectives here",
-		"hostile_faction" = "hostile faction objectives here",
+		"starting_faction" = "Loading mission objectives",
+		"hostile_faction" = "Loading mission objectives",
 	)
 	///Detailed mission description
 	var/list/mission_brief = list(
@@ -111,12 +111,13 @@
 	op_name_starting = GLOB.operation_namepool[/datum/operation_namepool].get_random_name()
 	op_name_hostile = GLOB.operation_namepool[/datum/operation_namepool].get_random_name()
 
-	load_objective_description()
+	load_mission_brief() //late loaded so we can ref the specific factions etc
 
 ///Sets up the mission once it has been selected
 /datum/campaign_mission/proc/load_mission()
 	play_selection_intro()
 	load_map()
+	addtimer(CALLBACK(src, TYPE_PROC_REF(/datum/campaign_mission, load_objective_description)), 5 SECONDS) //will be called before the map is entirely loaded otherwise, but this is cringe
 	addtimer(CALLBACK(src, TYPE_PROC_REF(/datum/campaign_mission, start_mission)), 2 MINUTES)
 
 /datum/campaign_mission/Destroy(force, ...)
@@ -134,6 +135,10 @@
 	var/datum/space_level/new_level = load_new_z_level(map_file, map_name)
 	mode.set_lighting(new_level.z_value)
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_CAMPAIGN_MISSION_LOADED, new_level.z_value)
+
+///Generates the mission brief for the mission if it needs to be late loaded
+/datum/campaign_mission/proc/load_mission_brief()
+	return
 
 ///Generates the objective description for the mission if it needs to be late loaded
 /datum/campaign_mission/proc/load_objective_description()

@@ -33,8 +33,7 @@
 	)
 	return ..()
 
-/datum/campaign_mission/destroy_mission/load_objective_description()
-	. = ..()
+/datum/campaign_mission/destroy_mission/load_mission_brief()
 	mission_brief = list(
 		"starting_faction" = "A [hostile_faction] fire support position has been identified in this area. This key location provides fire support to [hostile_faction] forces across the region. <br>\
 		By destroying this outpost we can silence their guns and greatly weaken the enemy's forces. \

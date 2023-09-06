@@ -35,7 +35,7 @@
 	)
 	. = ..()
 
-/datum/campaign_mission/tdm/mech_wars/load_objective_description()
+/datum/campaign_mission/tdm/mech_wars/load_mission_brief()
 	. = ..()
 	mission_brief = list(
 		"starting_faction" = "[hostile_faction] mechanised forces have been identified staging in this region, in advance of a suspected strike against our lines. <br>\
