@@ -182,29 +182,20 @@
 	name = "phoron crate"
 	desc = "A crate packed full of valuable phoron, ready to claim."
 	icon_state = "orebox_phoron"
-	///Reference to the balloon vis obj effect
-	var/atom/movable/vis_obj/fulton_balloon/balloon
-	///Vis copy of the object when it is fultoned
-	var/obj/effect/fulton_extraction_holder/holder_obj
-
-/obj/structure/campaign_objective/capture_objective/fultonable/Initialize(mapload)
-	. = ..()
-	balloon = new()
-	holder_obj = new()
 
 /obj/structure/campaign_objective/capture_objective/fultonable/do_capture(mob/living/user)
 	. = ..()
+	var/obj/effect/fulton_extraction_holder/holder_obj = new(loc)
+	var/atom/movable/vis_obj/fulton_balloon/balloon = new()
 	holder_obj.appearance = appearance
-	holder_obj.forceMove(loc)
 	if(anchored)
 		anchored = FALSE
-	moveToNullspace()
-	balloon.icon_state = initial(balloon.icon_state)
 	holder_obj.vis_contents += balloon
 
 	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(playsound), get_turf(holder_obj), 'sound/items/fultext_deploy.ogg', 50, TRUE), 0.4 SECONDS)
 	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(playsound), get_turf(holder_obj), 'sound/items/fultext_launch.ogg', 50, TRUE), 7.4 SECONDS)
-	addtimer(CALLBACK(src, PROC_REF(cleanup_extraction)), 8 SECONDS)
+	QDEL_IN(holder_obj, 8 SECONDS)
+	QDEL_IN(balloon, 8 SECONDS)
 
 	flick("fulton_expand", balloon)
 	balloon.icon_state = "fulton_balloon"
@@ -219,13 +210,6 @@
 	user.visible_message(span_notice("[user] finishes attaching the fulton to [src] and activates it."),\
 	span_notice("You attach a fulton to [src] and activate it."), null, 5)
 	qdel(src)
-
-///Cleans up after fulton is complete
-/obj/structure/campaign_objective/capture_objective/fultonable/proc/cleanup_extraction()
-	holder_obj.moveToNullspace()
-	holder_obj.pixel_z = initial(pixel_z)
-	holder_obj.vis_contents -= balloon
-	balloon.icon_state = initial(balloon.icon_state)
 
 /obj/effect/landmark/campaign_objective/asat_system
 	name = "ASAT objective"
