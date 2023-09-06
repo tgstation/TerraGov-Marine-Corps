@@ -383,6 +383,14 @@
 	name = "Medical Surgical Hallway"
 	icon_state = "medical"
 
+/area/mainship/medical/morgue
+	name = "Morgue"
+	icon_state = "medical"
+
+/area/mainship/medical/cmo_office
+	name = "CMO's Office"
+	icon_state = "medical"
+
 /area/mainship/squads
 	minimap_color = MINIMAP_AREA_PREP
 
