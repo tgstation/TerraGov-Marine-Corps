@@ -26,3 +26,10 @@
   - refactor: A few existing xeno default keybinds were changed to prevent conflicts.
   forestbbbbbbb:
   - bugfix: Fix TTS preview voice being always robotic
+2023-09-06:
+  Barnet2:
+  - rscadd: Adds barbed wire to the Standard, Bar and Umbilical tadpole.
+  henriquekill9576:
+  - rscadd: Added an actual recipe for medical nanites
+  lbnesquik:
+  - bugfix: fixed some recyclers not working properly.
