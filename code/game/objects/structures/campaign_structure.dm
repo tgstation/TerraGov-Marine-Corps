@@ -1,3 +1,25 @@
+//effects are placed on maps but only generate objectives for applicable missions, so maps can be valid for multiple missions if desired.
+
+/obj/effect/landmark/campaign_objective
+	name = "GENERIC CAMPAIGN STRUCTURE"
+	desc = "THIS SHOULDN'T BE VISIBLE"
+	icon = 'icons/obj/structures/campaign_structures.dmi'
+	///Missions that trigger this landmark to spawn an objective
+	var/list/mission_types
+	///Objective spawned by this landmark
+	var/obj/structure/campaign_objective/objective_type
+
+/obj/effect/landmark/campaign_objective/Initialize(mapload)
+	. = ..()
+	var/datum/game_mode/hvh/campaign/mode = SSticker.mode
+	if(!istype(mode))
+		return
+	var/datum/campaign_mission/current_mission = mode.current_mission
+	if(current_mission.type in mission_types)
+		new objective_type(loc)
+	qdel(src)
+
+
 /obj/structure/campaign_objective
 	name = "GENERIC CAMPAIGN STRUCTURE"
 	desc = "THIS SHOULDN'T BE VISIBLE"
@@ -12,6 +34,7 @@
 /obj/structure/campaign_objective/Initialize(mapload)
 	. = ..()
 	GLOB.campaign_objectives += src
+	SSminimaps.add_marker(src, MINIMAP_FLAG_ALL, image('icons/UI_icons/map_blips.dmi', null, "campaign_objective"))
 
 /obj/structure/campaign_objective/destruction_objective
 	name = "GENERIC CAMPAIGN DESTRUCTION OBJECTIVE"
@@ -25,6 +48,14 @@
 /obj/structure/campaign_objective/destruction_objective/proc/disable()
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_CAMPAIGN_OBJECTIVE_DESTROYED, src)
 	GLOB.campaign_objectives -= src
+	//SSminimaps.remove_marker(src)
+
+/obj/effect/landmark/campaign_objective/howitzer_objective
+	name = "howitzer objective"
+	icon = 'icons/Marine/howitzer.dmi'
+	icon_state = "howitzer_deployed"
+	mission_types = list(/datum/campaign_mission/destroy_mission/fire_support_raid)
+	objective_type = /obj/structure/campaign_objective/destruction_objective/howitzer
 
 /obj/structure/campaign_objective/destruction_objective/howitzer
 	name = "\improper TA-100Y howitzer"
@@ -32,6 +63,15 @@
 	icon = 'icons/Marine/howitzer.dmi'
 	icon_state = "howitzer_deployed"
 	pixel_x = -16
+
+/obj/effect/landmark/campaign_objective/bluespace_core
+	name = "Bluespace Core objective"
+	icon = 'icons/obj/machines/bluespacedrive.dmi'
+	icon_state = "bsd_core"
+	pixel_y = -18
+	pixel_x = -16
+	mission_types = list(/datum/campaign_mission/destroy_mission/teleporter_raid)
+	objective_type = /obj/structure/campaign_objective/destruction_objective/bluespace_core
 
 #define BLUESPACE_CORE_OK "bluespace_core_ok"
 #define BLUESPACE_CORE_UNSTABLE "bluespace_core_unstable"
@@ -131,6 +171,13 @@
 	owning_faction = user.faction
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_CAMPAIGN_CAPTURE_OBJECTIVE_CAPTURED, src, user)
 
+/obj/effect/landmark/campaign_objective/phoron_crate
+	name = "Phoron crate objective"
+	icon = 'icons/obj/structures/campaign_structures.dmi'
+	icon_state = "orebox_phoron"
+	mission_types = list(/datum/campaign_mission/capture_mission)
+	objective_type = /obj/structure/campaign_objective/capture_objective/fultonable
+
 /obj/structure/campaign_objective/capture_objective/fultonable
 	name = "phoron crate"
 	desc = "A crate packed full of valuable phoron, ready to claim."
@@ -179,6 +226,11 @@
 	holder_obj.pixel_z = initial(pixel_z)
 	holder_obj.vis_contents -= balloon
 	balloon.icon_state = initial(balloon.icon_state)
+
+/obj/effect/landmark/campaign_objective/asat_system
+	name = "ASAT objective"
+	mission_types = list(/datum/campaign_mission/capture_mission/asat)
+	objective_type = /obj/structure/campaign_objective/capture_objective/fultonable/asat_system
 
 /obj/structure/campaign_objective/capture_objective/fultonable/asat_system
 	name = "\improper T-4000 ASAT system"
