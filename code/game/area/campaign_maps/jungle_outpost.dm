@@ -146,6 +146,7 @@
 	icon_state = "container_yard"
 	outside = TRUE
 	ceiling = CEILING_NONE
+	always_unpowered = TRUE
 
 /area/campaign/jungle_outpost/outpost/science
 	name = "\improper Research Lab"
@@ -166,6 +167,7 @@
 	minimap_color = MINIMAP_AREA_LZ
 	outside = TRUE
 	ceiling = CEILING_NONE
+	always_unpowered = TRUE
 
 /area/campaign/jungle_outpost/outpost/landing/storage
 	name = "\improper Landing pad storage"
@@ -182,3 +184,4 @@
 /area/campaign/jungle_outpost/outpost/outer/hermit
 	name = "\improper Hermit's home"
 	icon_state = "green"
+	always_unpowered = TRUE
