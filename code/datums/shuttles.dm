@@ -130,6 +130,7 @@
 	suffix = "_big"
 	description = "Tadpole-01, the old model barely in service for TGMC, replaced by the newer Tadpole-03. Much like an APC, is pretty armored. Very lacking in firing angle."
 	display_name = "Tadpole Carrier Model"
+	admin_enable = FALSE
 
 /datum/map_template/shuttle/minidropship/food
 	suffix = "_food"
@@ -141,6 +142,7 @@
 	suffix = "_factorio"
 	description = "A Tadpole model for hauling, engineering and general maintenance. Patented by Nakamura Engineering, and is a rather reliable way to transport goods."
 	display_name = "Tadpole NK-Haul Model"
+	admin_enable = FALSE
 
 /datum/map_template/shuttle/minidropship/mobile_bar
 	suffix =	"_mobile_bar"
@@ -152,11 +154,13 @@
 	suffix = "_combat_tad"
 	description = "A Tadpole model modified to have three weapon hardpoints instead of just one, the majority of the other standard features had to be scrapped to fit all three of them on."
 	display_name = "Tadpole Combat Model"
+	admin_enable = FALSE
 
 /datum/map_template/shuttle/minidropship/umbilical
 	suffix =	"_umbilical"
 	description = "A high-point orbital shuttle with a tactical umbilical airlock for insertion of ground troops."
 	display_name = "Tadpole Umbilical Model"
+	admin_enable = FALSE
 
 /datum/map_template/shuttle/escape_pod
 	shuttle_id = SHUTTLE_ESCAPE_POD
@@ -174,7 +178,7 @@
 	shuttle_id = SHUTTLE_DISTRESS_UPP
 	name = "Distress UPP"
 
-/datum/map_template/shuttle/small_ert/ufo 
+/datum/map_template/shuttle/small_ert/ufo
 	shuttle_id = SHUTTLE_DISTRESS_UFO
 	name = "Small UFO"
 
