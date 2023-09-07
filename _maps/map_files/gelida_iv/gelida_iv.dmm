@@ -1916,8 +1916,8 @@
 /turf/open/floor/wood,
 /area/gelida/indoors/b_block/bar)
 "blP" = (
-/obj/structure/stairs/seamless{
-	dir = 4
+/obj/structure/stairs/seamless/platform{
+	dir = 8
 	},
 /obj/machinery/light{
 	dir = 8
@@ -4963,9 +4963,6 @@
 /turf/open/shuttle/dropship/floor,
 /area/gelida/landing_zone_forecon/UD6_Tornado)
 "dqk" = (
-/obj/structure/stairs/seamless{
-	dir = 4
-	},
 /obj/machinery/light{
 	dir = 8
 	},
@@ -6347,12 +6344,6 @@
 	},
 /turf/open/floor/tile/dark2,
 /area/gelida/indoors/c_block/mining)
-"egV" = (
-/obj/structure/platform{
-	dir = 5
-	},
-/turf/closed/wall,
-/area/gelida/indoors/b_block/bridge)
 "ehe" = (
 /obj/machinery/light{
 	dir = 1
@@ -7441,9 +7432,6 @@
 /area/gelida/outdoors/colony_streets/north_west_street)
 "eRT" = (
 /obj/structure/stairs/seamless{
-	dir = 5
-	},
-/obj/structure/stairs/seamless{
 	dir = 4
 	},
 /turf/open/floor/plating,
@@ -8108,7 +8096,7 @@
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/gelida/landing_zone_2)
 "fpt" = (
-/obj/machinery/conveyor/inverted{
+/obj/machinery/conveyor{
 	dir = 8
 	},
 /turf/open/floor/plating,
@@ -12084,7 +12072,6 @@
 	dir = 10
 	},
 /obj/structure/cable,
-/obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/gelida/indoors/a_block/admin)
 "iff" = (
@@ -12549,7 +12536,7 @@
 /area/gelida/indoors/b_block/hydro)
 "iuN" = (
 /obj/structure/plasticflaps,
-/obj/machinery/conveyor/inverted{
+/obj/machinery/conveyor{
 	dir = 8
 	},
 /turf/open/floor/plating,
@@ -14013,11 +14000,6 @@
 /obj/effect/spawner/random/machinery/disposal,
 /turf/open/floor/prison/whitegreenfull2,
 /area/gelida/indoors/b_block/hydro)
-"jxp" = (
-/obj/structure/cable,
-/obj/structure/cable,
-/turf/open/floor/plating/ground/ice,
-/area/gelida/caves/central_caves/garbledradio)
 "jxv" = (
 /obj/structure/rack/nometal,
 /obj/item/reagent_containers/spray/cleaner{
@@ -14228,7 +14210,6 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 10
 	},
-/obj/structure/cable,
 /obj/structure/cable,
 /obj/effect/ai_node,
 /turf/open/floor/prison,
@@ -19426,7 +19407,6 @@
 "neY" = (
 /obj/effect/decal/cleanable/blood/drip,
 /obj/structure/cable,
-/obj/structure/cable,
 /turf/open/floor/tile/yellow/patch,
 /area/gelida/indoors/a_block/corpo)
 "nfh" = (
@@ -20158,7 +20138,6 @@
 /area/gelida/indoors/a_block/dorm_north)
 "nFV" = (
 /obj/structure/cable,
-/obj/structure/cable,
 /obj/effect/ai_node,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /obj/machinery/light,
@@ -20768,7 +20747,6 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 5
 	},
-/obj/structure/cable,
 /obj/structure/cable,
 /obj/effect/ai_node,
 /turf/open/floor/prison/blue{
@@ -24618,11 +24596,6 @@
 /obj/effect/spawner/random/decal/blood,
 /turf/open/floor/prison,
 /area/gelida/indoors/c_block/cargo)
-"qAk" = (
-/obj/structure/cable,
-/obj/structure/cable,
-/turf/open/floor/plating/ground/ice,
-/area/gelida/caves/central_caves)
 "qBt" = (
 /obj/effect/spawner/random/machinery/disposal,
 /turf/open/floor/prison/kitchen,
@@ -32824,7 +32797,6 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 6
 	},
-/obj/structure/cable,
 /obj/structure/cable,
 /obj/effect/spawner/random/decal/blood,
 /turf/open/floor/plating/plating_catwalk/prison,
@@ -50091,7 +50063,7 @@ xIt
 qzH
 qzH
 qzH
-qAk
+qzH
 xIt
 xIt
 xIt
@@ -54788,7 +54760,7 @@ qvJ
 tPt
 gpF
 tPt
-jxp
+tPt
 xIt
 xIt
 tJs
@@ -57374,7 +57346,7 @@ dqk
 sdy
 chr
 blP
-egV
+vJl
 jTv
 cxg
 xUp

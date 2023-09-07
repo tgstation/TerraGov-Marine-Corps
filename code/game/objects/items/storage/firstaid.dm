@@ -10,11 +10,13 @@
 /obj/item/storage/firstaid
 	name = "first-aid kit"
 	desc = "It's an emergency medical kit for those serious boo-boos."
+	icon = 'icons/obj/items/storage/firstaid.dmi'
 	item_icons = list(
 		slot_l_hand_str = 'icons/mob/inhands/equipment/medkits_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/equipment/medkits_right.dmi',
 	)
 	icon_state = "firstaid"
+	use_sound = 'sound/effects/toolbox.ogg'
 	w_class = WEIGHT_CLASS_BULKY
 	throw_speed = 2
 	throw_range = 8
@@ -24,22 +26,19 @@
 	)
 	var/empty = FALSE //whether the kit starts empty
 	var/icon_full //icon state to use when kit is full
-	var/possible_icons_full
 
 /obj/item/storage/firstaid/Initialize(mapload, ...)
 	. = ..()
-	if(possible_icons_full)
-		icon_state = pick(possible_icons_full)
 	icon_full = icon_state
 	if(empty)
-		icon_state = "kit_empty"
+		icon_state = icon_state += "_empty"
 	else
 		fill_firstaid_kit()
 
 
 /obj/item/storage/firstaid/update_icon()
 	if(!length(contents))
-		icon_state = "kit_empty"
+		icon_state = icon_state += "_empty"
 	else
 		icon_state = icon_full
 
@@ -52,9 +51,8 @@
 /obj/item/storage/firstaid/fire
 	name = "fire first-aid kit"
 	desc = "It's an emergency medical kit for when the toxins lab <i>-spontaneously-</i> burns down."
-	icon_state = "ointment"
-	item_state = "firstaid-ointment"
-	possible_icons_full = list("ointment","firefirstaid")
+	icon_state = "firefirstaid"
+	item_state = "firefirstaid"
 
 /obj/item/storage/firstaid/fire/fill_firstaid_kit()
 	new /obj/item/healthanalyzer(src)
@@ -68,6 +66,7 @@
 
 /obj/item/storage/firstaid/regular
 	icon_state = "firstaid"
+	item_state = "firstaid"
 
 /obj/item/storage/firstaid/regular/fill_firstaid_kit()
 	new /obj/item/healthanalyzer(src)
@@ -82,9 +81,8 @@
 /obj/item/storage/firstaid/toxin
 	name = "toxin first aid"
 	desc = "Used to treat when you have a high amount of toxins in your body."
-	icon_state = "antitoxin"
-	item_state = "firstaid-toxin"
-	possible_icons_full = list("antitoxin","antitoxfirstaid","antitoxfirstaid2","antitoxfirstaid3")
+	icon_state = "antitoxfirstaid"
+	item_state = "antitoxfirstaid"
 
 /obj/item/storage/firstaid/toxin/fill_firstaid_kit()
 	new /obj/item/healthanalyzer(src)
@@ -98,8 +96,8 @@
 /obj/item/storage/firstaid/o2
 	name = "oxygen deprivation first aid"
 	desc = "A box full of oxygen goodies."
-	icon_state = "o2"
-	item_state = "firstaid-o2"
+	icon_state = "o2firstaid"
+	item_state = "o2firstaid"
 
 /obj/item/storage/firstaid/o2/fill_firstaid_kit()
 	new /obj/item/healthanalyzer(src)
@@ -115,7 +113,7 @@
 	name = "advanced first-aid kit"
 	desc = "Contains advanced medical treatments."
 	icon_state = "advfirstaid"
-	item_state = "firstaid-advanced"
+	item_state = "advfirstaid"
 
 /obj/item/storage/firstaid/adv/fill_firstaid_kit()
 	new /obj/item/healthanalyzer(src)
@@ -131,7 +129,7 @@
 	name = "radiation first-aid kit"
 	desc = "Contains treatment for radiation exposure"
 	icon_state = "purplefirstaid"
-	item_state = "firstaid-rad"
+	item_state = "purplefirstaid"
 
 /obj/item/storage/firstaid/rad/fill_firstaid_kit()
 	new /obj/item/healthanalyzer(src)

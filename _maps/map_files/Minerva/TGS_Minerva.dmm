@@ -4467,7 +4467,6 @@
 /turf/closed/wall/mainship/white,
 /area/mainship/medical/operating_room_two)
 "nf" = (
-/obj/structure/lattice,
 /turf/closed/shuttle/ert/engines/right{
 	dir = 1
 	},
@@ -8905,7 +8904,6 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/general)
 "zX" = (
-/obj/structure/lattice,
 /turf/closed/shuttle/ert/engines/left{
 	dir = 1
 	},
@@ -12088,12 +12086,11 @@
 "Jr" = (
 /obj/structure/table/mainship/nometal,
 /obj/machinery/reagentgrinder,
-/obj/item/stack/sheet/mineral/phoron{
-	amount = 5;
-	pixel_x = 3;
-	pixel_y = 3
-	},
 /obj/item/reagent_containers/glass/beaker/large,
+/obj/item/stack/sheet/mineral/phoron,
+/obj/item/stack/sheet/mineral/phoron,
+/obj/item/stack/sheet/mineral/phoron,
+/obj/item/stack/sheet/mineral/phoron,
 /turf/open/floor/mainship/sterile/purple/side{
 	dir = 4
 	},

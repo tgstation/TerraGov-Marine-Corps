@@ -1185,11 +1185,6 @@
 	},
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/marshal_office)
-"EJ" = (
-/obj/structure/cable,
-/obj/structure/cable,
-/turf/closed/wall/r_wall,
-/area/bigredv2/outside/space_port)
 "EM" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -2307,7 +2302,7 @@ mL
 mL
 mL
 mL
-EJ
+HD
 St
 Lg
 Lg
@@ -2347,7 +2342,7 @@ mL
 mL
 mL
 mL
-EJ
+HD
 fH
 fH
 fH

@@ -65,8 +65,12 @@
 					if(!isnull(GLOB.datacore.general))
 						for(var/datum/data/record/R in sortRecord(GLOB.datacore.general, sortBy, order))
 							for(var/datum/data/record/E in GLOB.datacore.security)
+<<<<<<< HEAD
 							var/background
 							dat += "<tr style=[background]><td><A href='?src=[text_ref(src)];choice=Browse Record;d_rec=[text_ref(R)]'>[R.fields["name"]]</a></td>"
+=======
+							dat += "<tr style='background-color:#00FF7F;'><td><A href='?src=\ref[src];choice=Browse Record;d_rec=\ref[R]'>[R.fields["name"]]</a></td>"
+>>>>>>> caf16e5acc45c01fd76027de1690766868004470
 							dat += "<td>[R.fields["id"]]</td>"
 							dat += "<td>[R.fields["rank"]]</td>"
 							dat += "<td>[R.fields["fingerprint"]]</td>"
@@ -120,9 +124,7 @@
 							if(istype(Perp[i+1],/datum/data/record/))
 								var/datum/data/record/E = Perp[i+1]
 								crimstat = E.fields["criminal"]
-							var/background
-							background = "'background-color:#00FF7F;'"
-							dat += "<tr style=[background]><td><A href='?src=[text_ref(src)];choice=Browse Record;d_rec=[text_ref(R)]'>[R.fields["name"]]</a></td>"
+							dat += "<tr style='background-color:#00FF7F;'><td><A href='?src=[text_ref(src)];choice=Browse Record;d_rec=[text_ref(R)]'>[R.fields["name"]]</a></td>"
 							dat += "<td>[R.fields["id"]]</td>"
 							dat += "<td>[R.fields["rank"]]</td>"
 							dat += "<td>[R.fields["fingerprint"]]</td>"

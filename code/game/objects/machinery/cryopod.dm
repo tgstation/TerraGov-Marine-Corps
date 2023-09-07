@@ -84,6 +84,9 @@
 	orient_right = TRUE
 	icon_state = "cryo_rear-r"
 
+/obj/structure/cryofeed/middle
+	icon_state = "cryo_rear-m"
+
 /obj/structure/cryofeed/Initialize(mapload)
 	. = ..()
 	if(orient_right)

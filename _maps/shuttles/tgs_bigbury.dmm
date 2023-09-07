@@ -309,7 +309,6 @@
 "bn" = (
 /obj/machinery/door/airlock/mainship/engineering/free_access,
 /obj/structure/cable,
-/obj/structure/cable,
 /turf/open/floor/mainship/orange/full,
 /area/shuttle/canterbury)
 "bo" = (

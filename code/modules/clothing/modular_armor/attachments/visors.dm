@@ -97,6 +97,11 @@
 	desc = "The visor attachment of the Jaeger modular helmets. This one is designed for the Kabuto class of helmet."
 	icon_state = "kabuto_visor"
 
+/obj/item/armor_module/armor/visor/marine/hotaru
+	name = "\improper Style Pattern Hotaru visor"
+	desc = "The visor attachment of the Jaeger modular helmets. This one is designed for the Hotaru class of helmet."
+	icon_state = "hotaru_visor"
+
 /obj/item/armor_module/armor/visor/marine/eva
 	name = "\improper Jaeger Pattern EVA visor"
 	desc = "The visor attachment of the Jaeger modular helmets. This one is designed for the EVA class of helmet."

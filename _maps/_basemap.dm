@@ -22,6 +22,7 @@
 		#include "map_files\deltastation\deltastation.dmm"
 		#include "map_files\desparity\desparity.dmm"
 		#include "map_files\Lawanka_Outpost\LawankaOutpost.dmm"
+		#include "map_files\slumbridge\slumbridge.dmm"
 		#ifdef CIBUILDING
 			#include "templates.dm"
 		#endif

@@ -74,11 +74,6 @@
 /obj/effect/spawner/random/misc/handcuffs,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/marshal_office)
-"bs" = (
-/obj/structure/cable,
-/obj/structure/cable,
-/turf/closed/wall/r_wall,
-/area/bigredv2/outside/space_port)
 "bB" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/sand,
@@ -2299,7 +2294,7 @@ ws
 ws
 ws
 ws
-bs
+vp
 fB
 Ue
 Ue
@@ -2339,7 +2334,7 @@ ws
 ws
 ws
 ws
-bs
+vp
 cH
 cH
 cH

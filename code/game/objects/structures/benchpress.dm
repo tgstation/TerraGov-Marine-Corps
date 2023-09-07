@@ -127,6 +127,11 @@
 		ADD_TRAIT(user, TRAIT_WORKED_OUT, WEIGHTBENCH_TRAIT)
 		addtimer(CALLBACK(src, PROC_REF(undo_buff), WEAKREF(user)), 15 MINUTES)
 	var/finishmessage = pick("You feel stronger!","You feel like you're the boss of this gym!","You feel robust!","The challenge is real!")
+	var/mob/living/carbon/bencher = user
+	if(bencher.nutrition >= NUTRITION_OVERFED)
+		var/weight_to_lose = NUTRITION_OVERFED - bencher.nutrition
+		bencher.adjust_nutrition(weight_to_lose)
+		finishmessage = pick("You no longer feel overweight.","You clothes are no longer too tight.","YOU BECOME LESS FAT!")
 	to_chat(user, finishmessage)
 
 ///proc to undo the cqc buff granted by the bench

@@ -80,12 +80,6 @@
 	var/mob/living/victim = source
 	victim.do_resist_grab()
 
-
-/mob/living/carbon/xenomorph/warrior/hitby(atom/movable/AM, speed = 5)
-	if(ishuman(AM))
-		return
-	..()
-
 // ***************************************
 // *********** Primordial procs
 // ***************************************

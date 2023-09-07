@@ -2518,17 +2518,6 @@
 	},
 /turf/open/floor/plating,
 /area/oscar_outpost/village/abandonedbase)
-"Jl" = (
-/obj/machinery/door/airlock/mainship/generic{
-	dir = 1
-	},
-/obj/structure/cable,
-/obj/machinery/door/poddoor/mainship/indestructible{
-	dir = 2;
-	id = "zetalockdown"
-	},
-/turf/closed/mineral/smooth,
-/area/oscar_outpost/village/abandonedbase)
 "Jp" = (
 /obj/machinery/light{
 	dir = 4
@@ -5756,7 +5745,7 @@ Xn
 Xn
 Xn
 Xn
-Jl
+JX
 Qz
 Ae
 vF
