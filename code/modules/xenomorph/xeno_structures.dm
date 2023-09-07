@@ -305,7 +305,7 @@ TUNNEL
 	resistance_flags = UNACIDABLE|BANISH_IMMUNE
 	layer = RESIN_STRUCTURE_LAYER
 
-	max_integrity = 140
+	max_integrity = 1500
 
 	hud_possible = list(XENO_TACTICAL_HUD)
 	xeno_structure_flags = IGNORE_WEED_REMOVAL
@@ -363,11 +363,11 @@ TUNNEL
 /obj/structure/xeno/tunnel/ex_act(severity)
 	switch(severity)
 		if(EXPLODE_DEVASTATE)
-			take_damage(210)
+			take_damage(1500)
 		if(EXPLODE_HEAVY)
-			take_damage(140)
+			take_damage(750)
 		if(EXPLODE_LIGHT)
-			take_damage(70)
+			take_damage(300)
 
 /obj/structure/xeno/tunnel/attackby(obj/item/I, mob/user, params)
 	if(!isxeno(user))
