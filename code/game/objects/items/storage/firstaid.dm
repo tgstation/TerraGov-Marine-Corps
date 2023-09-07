@@ -425,7 +425,7 @@
 
 /obj/item/storage/pill_bottle/peridaxonplus
 	name = "peridaxon plus pill bottle"
-	desc = "contains pills that heal organ and brain damage. Causes cloneloss. !DO NOT USE IN ACTIVE COMBAT!"
+	desc = "Contains pills that heal organ and brain damage. Causes cloneloss. !DO NOT USE IN ACTIVE COMBAT!"
 	pill_type_to_fill = /obj/item/reagent_containers/pill/peridaxonplus
 	greyscale_colors = "#460091#fffff"
 	description_overlay = "Pe+"
