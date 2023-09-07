@@ -96,6 +96,9 @@
 /obj/item/reagent_containers/glass/beaker/large,
 /obj/item/stack/sheet/mineral/phoron,
 /obj/item/reagent_containers/dropper,
+/obj/item/stack/sheet/mineral/phoron,
+/obj/item/stack/sheet/mineral/phoron,
+/obj/item/stack/sheet/mineral/phoron,
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 1
 	},
@@ -8086,6 +8089,7 @@
 /obj/item/stack/sheet/mineral/phoron,
 /obj/machinery/vending/nanomed,
 /obj/item/mass_spectrometer,
+/obj/item/stack/sheet/mineral/phoron,
 /turf/open/floor/prison/whitegreen/full,
 /area/sulaco/research)
 "aSu" = (
@@ -26925,6 +26929,8 @@
 	dir = 8
 	},
 /obj/effect/spawner/random/medical/beaker/bluespace,
+/obj/item/stack/sheet/mineral/phoron,
+/obj/item/stack/sheet/mineral/phoron,
 /turf/open/floor/prison/whitegreen/full,
 /area/sulaco/research)
 "xEH" = (
