@@ -26386,7 +26386,6 @@
 /obj/structure/table,
 /obj/item/reagent_containers/spray/cleaner,
 /obj/item/storage/firstaid/rad,
-/obj/item/reagent_containers/pill/alkysine,
 /turf/open/floor/tile/bar,
 /area/slumbridge/medical/storage)
 "tsp" = (

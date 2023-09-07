@@ -2648,9 +2648,6 @@
 	pixel_y = 10
 	},
 /obj/effect/spawner/random/medical/pillbottle,
-/obj/item/storage/pill_bottle/alkysine{
-	pixel_x = -8
-	},
 /obj/item/storage/pill_bottle/spaceacillin{
 	pixel_x = 8;
 	pixel_y = 8
@@ -7198,10 +7195,6 @@
 /turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost/outside/east)
 "RO" = (
-/obj/item/storage/pill_bottle/alkysine,
-/obj/item/storage/pill_bottle/alkysine{
-	pixel_y = 10
-	},
 /obj/item/storage/pill_bottle/imidazoline{
 	pixel_x = -5
 	},

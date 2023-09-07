@@ -2596,10 +2596,6 @@
 /turf/open/floor/tile/dark,
 /area/oscar_outpost/base)
 "rF" = (
-/obj/item/storage/pill_bottle/alkysine,
-/obj/item/storage/pill_bottle/alkysine{
-	pixel_y = 10
-	},
 /obj/item/storage/pill_bottle/imidazoline{
 	pixel_x = -5
 	},
