@@ -36821,8 +36821,8 @@
 /area/prison/security/armory/riot)
 "cnv" = (
 /obj/structure/rack,
-/obj/item/storage/box/flashbangs,
-/obj/item/storage/box/flashbangs,
+/obj/effect/spawner/random/weaponry/explosive/grenade/multiplefour,
+/obj/effect/spawner/random/weaponry/explosive/grenade/multiplefour,
 /turf/open/floor/prison,
 /area/prison/security/armory/riot)
 "cnw" = (

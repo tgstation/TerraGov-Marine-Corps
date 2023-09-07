@@ -6694,8 +6694,8 @@
 /area/icy_caves/caves/northwestmonorail/hallway)
 "Ik" = (
 /obj/structure/table,
-/obj/item/storage/box/flashbangs,
-/obj/item/storage/box/flashbangs,
+/obj/effect/spawner/random/weaponry/explosive/grenade/multiplefour,
+/obj/effect/spawner/random/weaponry/explosive/grenade/multiplefour,
 /turf/open/floor/tile/dark/red2{
 	dir = 8
 	},
@@ -7281,7 +7281,7 @@
 /area/icy_caves/caves/alienstuff)
 "Lh" = (
 /obj/structure/rack,
-/obj/item/storage/box/flashbangs,
+/obj/effect/spawner/random/weaponry/explosive/grenade/multiplefour,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/security)
 "Lj" = (
