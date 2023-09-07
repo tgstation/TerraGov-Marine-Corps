@@ -270,6 +270,7 @@
 			xeno_debuff.overlays += intoxicated_image
 
 	hud_list[XENO_DEBUFF_HUD] = xeno_debuff
+	var/obj/item/radio/headset/mainship/headset = wear_ear
 
 	if(species.species_flags & IS_SYNTHETIC)
 		simple_status_hud.icon_state = ""
@@ -280,11 +281,34 @@
 				var/mob/dead/observer/G = get_ghost(FALSE, TRUE)
 				if(!G)
 					status_hud.icon_state = "hudsynthdnr"
+					if(istype(wear_ear, /obj/item/radio/headset/mainship))
+						headset.set_undefibbable_on_minimap()
 				else
 					status_hud.icon_state = "hudsynthdead"
+					if(istype(wear_ear, /obj/item/radio/headset/mainship))
+						headset.set_dead_on_minimap()
 			return
 		infection_hud.icon_state = "hudsynth" //Xenos can feel synths are not human.
-		return TRUE
+		return
+
+	if(species.species_flags & ROBOTIC_LIMBS)
+		simple_status_hud.icon_state = ""
+		if(stat != DEAD)
+			status_hud.icon_state = "hudrobot"
+		else
+			if(!client) //роботы бесконечно дефибаббл
+				var/mob/dead/observer/G = get_ghost(FALSE, TRUE)
+				if(!G)
+					status_hud.icon_state = "hudrobotdnr"
+					if(istype(wear_ear, /obj/item/radio/headset/mainship))
+						headset.set_undefibbable_on_minimap()
+				else
+					status_hud.icon_state = "hudrobotdead"
+					if(istype(wear_ear, /obj/item/radio/headset/mainship))
+						headset.set_dead_on_minimap()
+			return
+		infection_hud.icon_state = "hudrobot"
+		return
 
 	if(species.species_flags & HEALTH_HUD_ALWAYS_DEAD)
 		status_hud.icon_state = "huddead"
@@ -305,36 +329,42 @@
 			infection_hud.icon_state = ""
 	else
 		infection_hud.icon_state = ""
-	if(species.species_flags & ROBOTIC_LIMBS)
-		simple_status_hud.icon_state = ""
-		infection_hud.icon_state = "hudrobot"
 
 	switch(stat)
 		if(DEAD)
 			simple_status_hud.icon_state = ""
-			infection_hud.icon_state = "huddead"
+			infection_hud.icon_state = "huddeaddefib4"
+			if(istype(wear_ear, /obj/item/radio/headset/mainship))
+				headset.set_undefibbable_on_minimap()
 			if(!HAS_TRAIT(src, TRAIT_PSY_DRAINED))
 				infection_hud.icon_state = "psy_drain"
 			if(HAS_TRAIT(src, TRAIT_UNDEFIBBABLE ))
 				hud_list[HEART_STATUS_HUD].icon_state = "still_heart"
-				status_hud.icon_state = "huddead"
+				status_hud.icon_state = "huddeaddefib4"
+				if(istype(wear_ear, /obj/item/radio/headset/mainship))
+					headset.set_undefibbable_on_minimap()
 				return TRUE
 			if(!client)
 				var/mob/dead/observer/ghost = get_ghost()
 				if(!ghost?.can_reenter_corpse)
 					status_hud.icon_state = "huddeaddefib4"
 					if(istype(wear_ear, /obj/item/radio/headset/mainship))
-						var/obj/item/radio/headset/mainship/headset = wear_ear
 						headset.set_undefibbable_on_minimap()
 					return TRUE
 			var/stage
 			switch(dead_ticks)
 				if(0 to 0.4 * TIME_BEFORE_DNR)
 					stage = 1
+					if(istype(wear_ear, /obj/item/radio/headset/mainship))
+						headset.set_dead_on_minimap()
 				if(0.4 * TIME_BEFORE_DNR to 0.8 * TIME_BEFORE_DNR)
 					stage = 2
+					if(istype(wear_ear, /obj/item/radio/headset/mainship))
+						headset.set_dead_on_minimap()
 				if(0.8 * TIME_BEFORE_DNR to INFINITY)
 					stage = 3
+					if(istype(wear_ear, /obj/item/radio/headset/mainship))
+						headset.set_dead_on_minimap()
 			status_hud.icon_state = "huddeaddefib[stage]"
 			return TRUE
 		if(UNCONSCIOUS)
@@ -367,15 +397,9 @@
 				status_hud.icon_state = "hud_con_stagger"
 				return TRUE
 			else
-				if(species.species_flags & ROBOTIC_LIMBS)
-					simple_status_hud.icon_state = ""
-					status_hud.icon_state = "hudrobot"
-					return TRUE
-				else
-					simple_status_hud.icon_state = ""
-					status_hud.icon_state = "hudhealthy"
-					return TRUE
-
+				simple_status_hud.icon_state = ""
+				status_hud.icon_state = "hudhealthy"
+				return TRUE
 #define HEALTH_RATIO_PAIN_HUD 1
 #define PAIN_RATIO_PAIN_HUD 0.25
 #define STAMINA_RATIO_PAIN_HUD 0.25
