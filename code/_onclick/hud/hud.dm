@@ -19,6 +19,9 @@
 	var/atom/movable/screen/action_intent
 	var/atom/movable/screen/move_intent
 	var/atom/movable/screen/alien_plasma_display
+	var/atom/movable/screen/alien_evolve_display
+	var/atom/movable/screen/alien_mature_display
+	var/atom/movable/screen/alien_sunder_display
 	var/atom/movable/screen/locate_leader
 	var/atom/movable/screen/SL_locator
 
@@ -100,6 +103,8 @@
 	move_intent = null
 	alien_plasma_display = null
 	locate_leader = null
+	alien_evolve_display = null
+	alien_mature_display = null
 
 	module_store_icon = null
 

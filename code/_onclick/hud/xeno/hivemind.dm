@@ -15,5 +15,6 @@
 	infodisplay += healths
 
 	locate_leader = new /atom/movable/screen/alien/queen_locator()
+	locate_leader.icon = 'icons/mob/screen/alien_better.dmi'
 	locate_leader.alpha = ui_alpha
 	infodisplay += locate_leader

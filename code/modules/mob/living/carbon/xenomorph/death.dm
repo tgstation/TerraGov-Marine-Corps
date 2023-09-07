@@ -33,6 +33,10 @@
 			hud_used.staminas.icon_state = "staminaloss200"
 		if(hud_used.alien_plasma_display)
 			hud_used.alien_plasma_display.icon_state = "power_display_0"
+		if(hud_used.alien_evolve_display)
+			hud_used.alien_evolve_display.icon_state = "evolve0"
+		if(hud_used.alien_mature_display)
+			hud_used.alien_mature_display.icon_state = "mature0"
 	update_icons()
 
 	death_cry()

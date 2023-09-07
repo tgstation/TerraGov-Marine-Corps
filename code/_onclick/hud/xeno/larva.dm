@@ -16,6 +16,11 @@
 	healths.alpha = ui_alpha
 	infodisplay += healths
 
+	alien_evolve_display = new /atom/movable/screen/alien/evolvehud()
+	alien_evolve_display.alpha = ui_alpha
+	infodisplay += alien_evolve_display
+
 	locate_leader = new /atom/movable/screen/alien/queen_locator()
+	locate_leader.icon = 'icons/mob/screen/alien_better.dmi'
 	locate_leader.alpha = ui_alpha
 	infodisplay += locate_leader
