@@ -33,3 +33,11 @@
   - rscadd: Added an actual recipe for medical nanites
   lbnesquik:
   - bugfix: fixed some recyclers not working properly.
+2023-09-07:
+  Sirsnek15:
+  - imageadd: lowered the combat facemask sprite below the eyes
+  XSlayer300:
+  - soundadd: Added 20 male *warcry variations.
+  - soundadd: Added 10 female *warcry variations.
+  ivanmixo:
+  - code_imp: Fixed some weird code opendream pointed out
