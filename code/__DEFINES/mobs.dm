@@ -8,7 +8,7 @@
 
 
 //Pain or shock reduction for different reagents
-#define PAIN_REDUCTION_VERY_LIGHT -5 //alkysine
+#define PAIN_REDUCTION_VERY_LIGHT -5
 #define PAIN_REDUCTION_LIGHT -15 //inaprovaline
 #define PAIN_REDUCTION_MEDIUM -25 //synaptizine
 #define PAIN_REDUCTION_HEAVY -35 //paracetamol

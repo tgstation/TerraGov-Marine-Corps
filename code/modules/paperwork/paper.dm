@@ -509,7 +509,6 @@ then, for every time you included a field, increment fields. */
 	<b>Quick-clot</b> = Stops (but does not heal) internal bleeding. Mildly regenerates blood.<BR>
 	<b>Hypervene</b> = Purges ALL reagents present in the body. Useful for dealing with overdoses.<BR>
 	<b>Imidazoline</b> = Heals eye damage.<BR>
-	<b>Alkysine</b> = Heals brain damage.<BR>
 	<b>Inaprovaline</b> = Prevents oxygen damage. At >15u, will give a massive heal to marines in critical condition, most of the time enough to bring them up to their feet.<BR>"}
 
 /obj/item/paper/tutorial/mechanics

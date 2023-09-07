@@ -423,14 +423,12 @@
 	greyscale_colors = "#5972FD#ffffff"
 	description_overlay = "Dx"
 
-/obj/item/storage/pill_bottle/alkysine
-	name = "alkysine pill bottle"
-	desc = "Contains pills that heal brain damage."
-	icon_state = "pill_canistercomplete"
-	pill_type_to_fill = /obj/item/reagent_containers/pill/alkysine
-	greyscale_config = /datum/greyscale_config/pillbottlebubble
-	greyscale_colors = "#0292AC#ffffff"
-	description_overlay = "Al"
+/obj/item/storage/pill_bottle/peridaxonplus
+	name = "peridaxon plus pill bottle"
+	desc = "contains pills that heal organ and brain damage. Causes cloneloss. !DO NOT USE IN ACTIVE COMBAT!"
+	pill_type_to_fill = /obj/item/reagent_containers/pill/peridaxonplus
+	greyscale_colors = "#460091#fffff"
+	description_overlay = "Pe+"
 
 /obj/item/storage/pill_bottle/imidazoline
 	name = "imidazoline pill bottle"

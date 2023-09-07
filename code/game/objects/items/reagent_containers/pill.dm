@@ -204,10 +204,10 @@
 	list_reagents = list(/datum/reagent/medicine/imidazoline = 10)
 	pill_id = 17
 
-/obj/item/reagent_containers/pill/alkysine
-	pill_desc = "An Alkysine pill. Heals brain damage."
-	list_reagents = list(/datum/reagent/medicine/alkysine = 10)
-	pill_id = 18
+/obj/item/reagent_containers/pill/peridaxonplus
+	pill_desc = "An Peridaxon Plus pill. Heals organ damage at the cost of cloneloss."
+	list_reagents = list(/datum/reagent/medicine/peridaxon_plus = 1, /datum/reagent/medicine/hyronalin = 2)
+	pill_id = 10
 
 /obj/item/reagent_containers/pill/bicaridine
 	pill_desc = "A bicaridine pill. Heals brute damage."

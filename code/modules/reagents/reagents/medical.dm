@@ -604,26 +604,6 @@
 	L.apply_damages(effect_str, 2*effect_str, effect_str)
 	L.adjustBrainLoss(2*effect_str, TRUE)
 
-/datum/reagent/medicine/alkysine
-	name = "Alkysine"
-	description = "Alkysine is a drug used to lessen the damage to neurological tissue after a catastrophic injury. Can heal brain tissue."
-	color = "#0292AC"
-	custom_metabolism = REAGENTS_METABOLISM * 0.25
-	overdose_threshold = REAGENTS_OVERDOSE
-	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
-	scannable = TRUE
-
-/datum/reagent/medicine/alkysine/on_mob_life(mob/living/L, metabolism)
-	L.reagent_shock_modifier += PAIN_REDUCTION_VERY_LIGHT
-	L.adjustBrainLoss(-1.5*effect_str)
-	return ..()
-
-/datum/reagent/medicine/alkysine/overdose_process(mob/living/L, metabolism)
-	L.apply_damage(effect_str, TOX)
-
-/datum/reagent/medicine/alkysine/overdose_crit_process(mob/living/L, metabolism)
-	L.apply_damages(0, effect_str, effect_str)
-
 /datum/reagent/medicine/imidazoline
 	name = "Imidazoline"
 	description = "Heals eye damage"
@@ -970,6 +950,7 @@
 		L.adjustOxyLoss(-effect_str)
 		L.heal_limb_damage(effect_str,effect_str)
 		L.adjustToxLoss(-effect_str)
+		L.adjustBrainLoss(-effect_str)
 	return ..()
 
 /datum/reagent/medicine/clonexadone
@@ -986,6 +967,7 @@
 		L.adjustOxyLoss(-3*effect_str)
 		L.heal_limb_damage(3*effect_str,3*effect_str)
 		L.adjustToxLoss(-3*effect_str)
+		L.adjustBrainLoss(-3*effect_str)
 
 	return ..()
 

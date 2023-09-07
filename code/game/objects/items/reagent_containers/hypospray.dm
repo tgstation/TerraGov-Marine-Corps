@@ -612,11 +612,10 @@
 	description_overlay = "Sp"
 
 /obj/item/reagent_containers/hypospray/advanced/imialky
-	name = "big imialky hypospray"
-	desc = "A hypospray loaded with a mixture of imidazoline and alkysine. Chemicals that will heal the brain and eyes."
+	name = "big imi hypospray"
+	desc = "A hypospray loaded with imidazoline. Chemical that will heal the eyes."
 	list_reagents = list(
-		/datum/reagent/medicine/imidazoline = 30,
-		/datum/reagent/medicine/alkysine = 30,
+		/datum/reagent/medicine/imidazoline = 60,
 	)
 	description_overlay = "Im"
 

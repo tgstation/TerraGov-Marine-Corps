@@ -196,7 +196,6 @@
 	icon_state = "random_medicine"
 	spawn_loot_chance = 50
 	loot = list(
-		/obj/item/storage/pill_bottle/alkysine = 30,
 		/obj/item/storage/pill_bottle/imidazoline = 10,
 		/obj/item/storage/pill_bottle/bicaridine = 30,
 		/obj/item/storage/pill_bottle/kelotane = 30,

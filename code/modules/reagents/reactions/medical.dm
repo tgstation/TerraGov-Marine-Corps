@@ -9,11 +9,6 @@
 	required_reagents = list(/datum/reagent/medicine/inaprovaline = 1, /datum/reagent/medicine/dylovene = 1)
 	mob_react = FALSE
 
-/datum/chemical_reaction/alkysine
-	name = "Alkysine"
-	results = list(/datum/reagent/medicine/alkysine = 2)
-	required_reagents = list(/datum/reagent/chlorine = 1, /datum/reagent/nitrogen = 1, /datum/reagent/medicine/dylovene = 1)
-
 /datum/chemical_reaction/dexalin
 	name = "Dexalin"
 	results = list(/datum/reagent/medicine/dexalin = 1)

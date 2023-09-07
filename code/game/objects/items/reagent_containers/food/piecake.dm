@@ -66,7 +66,7 @@
 	desc = "A squishy cake-thing."
 	icon_state = "braincake"
 	slice_path = /obj/item/reagent_containers/food/snacks/pastries/braincakeslice
-	list_reagents = list(/datum/reagent/consumable/nutriment = 25, /datum/reagent/medicine/alkysine = 10)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 25)
 	filling_color = "#E6AEDB"
 	tastes = list("cake" = 5, "sweetness" = 2, "brains" = 1)
 
