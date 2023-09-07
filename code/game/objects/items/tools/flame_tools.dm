@@ -97,6 +97,10 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	desc = "A simple match stick, used for lighting fine smokables."
 	icon = 'icons/obj/items/cigarettes.dmi'
 	icon_state = "match_unlit"
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/equipment/smoking_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/equipment/smoking_right.dmi',
+	)
 	light_system = MOVABLE_LIGHT
 	light_range = 2
 	light_power = 0.6
@@ -170,7 +174,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	var/transquantity = 1
 	flags_armor_protection = NONE
 
-/obj/item/clothing/mask/cigarette/Initialize()
+/obj/item/clothing/mask/cigarette/Initialize(mapload)
 	. = ..()
 	create_reagents(chem_volume, INJECTABLE|NO_REACT, list_reagents) // making the cigarrete a chemical holder with a maximum volume of 30
 
@@ -188,8 +192,8 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		if(Z.heat)
 			light(span_rose("With a flick of [user.p_their()] wrist, [user] lights their [name] with [W]."))
 
-	else if(istype(W, /obj/item/flashlight/flare))
-		var/obj/item/flashlight/flare/FL = W
+	else if(istype(W, /obj/item/explosive/grenade/flare/civilian))
+		var/obj/item/explosive/grenade/flare/civilian/FL = W
 		if(FL.heat)
 			light(span_notice("[user] lights [user.p_their()] [name] with [W]."))
 
@@ -312,7 +316,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		die()
 		return
 
-	if(reagents && reagents.total_volume)	//	check if it has any reagents at all
+	if(reagents?.total_volume)	//	check if it has any reagents at all
 		if(iscarbon(loc) && (src == loc:wear_mask)) // if it's in the human/monkey mouth, transfer reagents to the mob //TODO WHAT BAYCODER USED A : UNIRONICALLY
 			if(ishuman(loc))
 				var/mob/living/carbon/human/H = loc
@@ -525,6 +529,10 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	desc = "A cheap-as-free lighter."
 	icon = 'icons/obj/items/items.dmi'
 	icon_state = "lighter-g"
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/equipment/smoking_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/equipment/smoking_right.dmi',
+	)
 	item_state = "lighter-g"
 	var/icon_on = "lighter-g-on"
 	var/icon_off = "lighter-g"
@@ -547,7 +555,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	icon_on = "zippoon"
 	icon_off = "zippo"
 
-/obj/item/tool/lighter/random/Initialize()
+/obj/item/tool/lighter/random/Initialize(mapload)
 	. = ..()
 	clr = pick("r","c","y","g")
 	icon_on = "lighter-[clr]-on"

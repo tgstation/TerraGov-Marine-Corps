@@ -3,6 +3,10 @@
 	gender = PLURAL
 	icon = 'icons/obj/items/paper.dmi'
 	icon_state = "paper"
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/items/civilian_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/items/civilian_right.dmi',
+	)
 	item_state = "paper"
 	w_class = WEIGHT_CLASS_TINY
 	throw_range = 2
@@ -179,7 +183,7 @@
 
 	var/n_name = stripped_input(usr, "What would you like to label the bundle?", "Bundle Labelling")
 	if((loc == usr && usr.stat == 0))
-		name = "[(n_name ? text("[n_name]") : "paper")]"
+		name = "[(n_name ? "[n_name]" : "paper")]"
 
 /obj/item/paper_bundle/verb/remove_all()
 	set name = "Loose bundle"
@@ -193,7 +197,7 @@
 	qdel(src)
 
 /obj/item/paper_bundle/update_icon()
-	if(contents.len)
+	if(length(contents))
 		var/obj/item/I = contents[1]
 		icon_state = I.icon_state
 		overlays = I.overlays
@@ -216,7 +220,7 @@
 			photo = 1
 			overlays += IMG
 	if(i>1)
-		desc =  "[i] papers clipped to each other."
+		desc = "[i] papers clipped to each other."
 	else
 		desc = "A single sheet of paper."
 	if(photo)

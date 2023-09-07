@@ -12,7 +12,7 @@
 	var/turf/listeningTo
 	var/hearing_range = 3
 
-/obj/item/assembly/infra/Initialize()
+/obj/item/assembly/infra/Initialize(mapload)
 	. = ..()
 	beams = list()
 	START_PROCESSING(SSobj, src)
@@ -21,7 +21,7 @@
 		ROTATION_ALTCLICK | ROTATION_CLOCKWISE | ROTATION_COUNTERCLOCKWISE | ROTATION_FLIP | ROTATION_VERBS,\
 		null,\
 		null,\
-		CALLBACK(src,.proc/after_rotation)\
+		CALLBACK(src,PROC_REF(after_rotation))\
 		)
 
 /obj/item/assembly/infra/proc/after_rotation()
@@ -134,7 +134,7 @@
 	. = ..()
 	setDir(t)
 
-/obj/item/assembly/infra/throw_at(atom/target, range, speed, mob/thrower, spin=1, diagonals_first = 0, datum/callback/callback, force)
+/obj/item/assembly/infra/throw_at(atom/target, range, speed, thrower, spin, flying = FALSE, targetted_throw = TRUE)
 	. = ..()
 	olddir = dir
 
@@ -156,14 +156,14 @@
 		if(ismob(CHM))
 			var/mob/LM = CHM
 			LM.playsound_local(get_turf(src), 'sound/machines/triple_beep.ogg', ASSEMBLY_BEEP_VOLUME, TRUE)
-	next_activate =  world.time + 30
+	next_activate = world.time + 30
 
 /obj/item/assembly/infra/proc/switchListener(turf/newloc)
 	if(listeningTo == newloc)
 		return
 	if(listeningTo)
 		UnregisterSignal(listeningTo, COMSIG_ATOM_EXITED)
-	RegisterSignal(newloc, COMSIG_ATOM_EXITED, .proc/check_exit)
+	RegisterSignal(newloc, COMSIG_ATOM_EXITED, PROC_REF(check_exit))
 	listeningTo = newloc
 
 /obj/item/assembly/infra/proc/check_exit(datum/source, atom/movable/offender, direction)
@@ -178,7 +178,7 @@
 			return
 	return refreshBeam()
 
-/obj/item/assembly/signaler/can_interact(mob/user)
+/obj/item/assembly/infra/can_interact(mob/user)
 	. = ..()
 	if(!.)
 		return FALSE
@@ -231,12 +231,12 @@
 	var/obj/item/assembly/infra/master
 	anchored = TRUE
 	density = FALSE
-	flags_pass = PASSTABLE|PASSGLASS|PASSGRILLE
+	allow_pass_flags = PASS_LOW_STRUCTURE|PASS_GLASS|PASS_GRILLE
 
-/obj/effect/beam/i_beam/Initialize()
+/obj/effect/beam/i_beam/Initialize(mapload)
 	. = ..()
 	var/static/list/connections = list(
-		COMSIG_ATOM_ENTERED = .proc/on_cross,
+		COMSIG_ATOM_ENTERED = PROC_REF(on_cross),
 	)
 
 /obj/effect/beam/i_beam/proc/on_cross(datum/source, atom/movable/AM, oldloc, oldlocs)

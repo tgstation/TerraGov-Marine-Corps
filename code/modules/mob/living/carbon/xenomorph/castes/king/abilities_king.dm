@@ -57,9 +57,9 @@
 	REMOVE_TRAIT(owner, TRAIT_STAGGER_RESISTANT, XENO_TRAIT)
 	ADD_TRAIT(owner, TRAIT_IMMOBILE, PETRIFY_ABILITY_TRAIT)
 
-	if(!do_after(owner, PETRIFY_WINDUP_TIME, FALSE, owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, .proc/can_use_action, FALSE, XACT_USE_BUSY)))
+	if(!do_after(owner, PETRIFY_WINDUP_TIME, FALSE, owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(can_use_action), FALSE, XACT_USE_BUSY)))
 		flick("eye_closing", eye)
-		addtimer(CALLBACK(src, .proc/remove_eye, eye), 7, TIMER_CLIENT_TIME)
+		addtimer(CALLBACK(src, PROC_REF(remove_eye), eye), 7, TIMER_CLIENT_TIME)
 		finish_charging()
 		add_cooldown(10 SECONDS)
 		return fail_activate()
@@ -92,12 +92,12 @@
 
 	if(!length(humans))
 		flick("eye_closing", eye)
-		addtimer(CALLBACK(src, .proc/remove_eye, eye), 7, TIMER_CLIENT_TIME)
+		addtimer(CALLBACK(src, PROC_REF(remove_eye), eye), 7, TIMER_CLIENT_TIME)
 		return
 
-	addtimer(CALLBACK(src, .proc/remove_eye, eye), 10, TIMER_CLIENT_TIME)
+	addtimer(CALLBACK(src, PROC_REF(remove_eye), eye), 10, TIMER_CLIENT_TIME)
 	flick("eye_explode", eye)
-	addtimer(CALLBACK(src, .proc/end_effects, humans), PETRIFY_DURATION)
+	addtimer(CALLBACK(src, PROC_REF(end_effects), humans), PETRIFY_DURATION)
 	add_cooldown()
 	succeed_activate()
 
@@ -195,6 +195,8 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_SHATTERING_ROAR,
 	)
+	/// Tracks victims to make sure we only hit them once
+	var/list/victims_hit = list()
 
 /datum/action/xeno_action/activable/shattering_roar/use_ability(atom/target)
 	if(!target)
@@ -208,7 +210,7 @@
 	REMOVE_TRAIT(owner, TRAIT_STAGGER_RESISTANT, XENO_TRAIT) //Vulnerable while charging up
 	ADD_TRAIT(owner, TRAIT_IMMOBILE, SHATTERING_ROAR_ABILITY_TRAIT)
 
-	if(!do_after(owner, SHATTERING_ROAR_CHARGE_TIME, TRUE, owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, .proc/can_use_action, FALSE, XACT_USE_BUSY)))
+	if(!do_after(owner, SHATTERING_ROAR_CHARGE_TIME, TRUE, owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(can_use_action), FALSE, XACT_USE_BUSY)))
 		owner.balloon_alert(owner, "interrupted!")
 		finish_charging()
 		add_cooldown(10 SECONDS)
@@ -232,33 +234,37 @@
 ///Carries out the attack iteratively based on distance from source
 /datum/action/xeno_action/activable/shattering_roar/proc/execute_attack(iteration, list/turf/turfs_to_attack, range, target, turf/source)
 	if(iteration > range)
+		victims_hit.Cut()
 		return
 
 	for(var/turf/turf AS in turfs_to_attack)
-		if(get_dist(turf, source) == iteration)
+		if(get_dist(turf, source) == iteration || get_dist(turf, source) == iteration - 1)
 			attack_turf(turf, LERP(1, 0.3, iteration / SHATTERING_ROAR_RANGE))
 
 	iteration++
-	addtimer(CALLBACK(src, .proc/execute_attack, iteration, turfs_to_attack, range, target, source), SHATTERING_ROAR_SPEED)
+	addtimer(CALLBACK(src, PROC_REF(execute_attack), iteration, turfs_to_attack, range, target, source), SHATTERING_ROAR_SPEED)
 
 ///Applies attack effects to everything relevant on a given turf
 /datum/action/xeno_action/activable/shattering_roar/proc/attack_turf(turf/turf_victim, severity)
 	new /obj/effect/temp_visual/shattering_roar(turf_victim)
 	for(var/victim in turf_victim)
+		if(victim in victims_hit)
+			continue
+		victims_hit += victim
 		if(iscarbon(victim))
 			var/mob/living/carbon/carbon_victim = victim
 			if(carbon_victim.stat == DEAD || isxeno(carbon_victim))
 				continue
 			carbon_victim.apply_damage(SHATTERING_ROAR_DAMAGE * severity, BRUTE, blocked = MELEE)
 			carbon_victim.apply_damage(SHATTERING_ROAR_DAMAGE * severity, STAMINA)
-			carbon_victim.adjust_stagger(6 * severity)
+			carbon_victim.adjust_stagger(6 SECONDS * severity)
 			carbon_victim.add_slowdown(6 * severity)
 			shake_camera(carbon_victim, 3 * severity, 3 * severity)
-			carbon_victim.apply_effect(0.5, WEAKEN)
+			carbon_victim.apply_effect(1 SECONDS, WEAKEN)
 			to_chat(carbon_victim, "You are smashed to the ground!")
 		else if(ismecha(victim))
 			var/obj/vehicle/sealed/mecha/mecha_victim = victim
-			mecha_victim.take_damage(SHATTERING_ROAR_DAMAGE * 5 * severity, MELEE)
+			mecha_victim.take_damage(SHATTERING_ROAR_DAMAGE * 5 * severity, BRUTE, MELEE)
 		else if(istype(victim, /obj/structure/window))
 			var/obj/structure/window/window_victim = victim
 			if(window_victim.damageable)
@@ -279,7 +285,7 @@
 	icon = 'icons/effects/effects.dmi'
 	duration = 4
 
-/obj/effect/temp_visual/shattering_roar/Initialize()
+/obj/effect/temp_visual/shattering_roar/Initialize(mapload)
 	. = ..()
 	flick("smash", src)
 
@@ -319,7 +325,7 @@
 	. = ..()
 	sound_loop = new
 
-/obj/effect/ebeam/zeroform/Initialize()
+/obj/effect/ebeam/zeroform/Initialize(mapload)
 	. = ..()
 	alpha = 0
 	animate(src, alpha = 255, time = ZEROFORM_CHARGE_TIME)
@@ -364,7 +370,7 @@
 	REMOVE_TRAIT(owner, TRAIT_STAGGER_RESISTANT, XENO_TRAIT)
 	ADD_TRAIT(owner, TRAIT_IMMOBILE, ZERO_FORM_BEAM_ABILITY_TRAIT)
 
-	if(!do_after(owner, ZEROFORM_CHARGE_TIME, FALSE, owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, .proc/can_use_action, FALSE, XACT_USE_BUSY)))
+	if(!do_after(owner, ZEROFORM_CHARGE_TIME, FALSE, owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(can_use_action), FALSE, XACT_USE_BUSY)))
 		QDEL_NULL(beam)
 		QDEL_NULL(particles)
 		targets = null
@@ -374,7 +380,7 @@
 
 	REMOVE_TRAIT(owner, TRAIT_IMMOBILE, ZERO_FORM_BEAM_ABILITY_TRAIT)
 	sound_loop.start(owner)
-	RegisterSignal(owner, list(COMSIG_MOVABLE_MOVED, COMSIG_ATOM_DIR_CHANGE), .proc/stop_beaming)
+	RegisterSignals(owner, list(COMSIG_MOVABLE_MOVED, COMSIG_ATOM_DIR_CHANGE), PROC_REF(stop_beaming))
 	var/mob/living/carbon/xenomorph/king/king_owner = owner
 	if(istype(king_owner))
 		king_owner.icon_state = "King Screeching"
@@ -398,7 +404,7 @@
 			else if(ismecha(victim))
 				var/obj/vehicle/sealed/mecha/mech_victim = victim
 				mech_victim.take_damage(75, BURN, ENERGY, armour_penetration = 60)
-	timer_ref = addtimer(CALLBACK(src, .proc/execute_attack), ZEROFORM_TICK_RATE, TIMER_STOPPABLE)
+	timer_ref = addtimer(CALLBACK(src, PROC_REF(execute_attack)), ZEROFORM_TICK_RATE, TIMER_STOPPABLE)
 
 ///ends and cleans up beam
 /datum/action/xeno_action/zero_form_beam/proc/stop_beaming()
@@ -485,6 +491,8 @@
 	xeno_message("King: \The [owner] has begun a psychic summon in <b>[get_area(owner)]</b>!", hivenumber = X.hivenumber)
 	var/list/allxenos = X.hive.get_all_xenos()
 	for(var/mob/living/carbon/xenomorph/sister AS in allxenos)
+		if(sister.z != owner.z)
+			continue
 		sister.add_filter("summonoutline", 2, outline_filter(1, COLOR_VIOLET))
 
 	if(!do_after(X, 10 SECONDS, FALSE, X, BUSY_ICON_HOSTILE))
@@ -494,10 +502,14 @@
 		return fail_activate()
 
 	allxenos = X.hive.get_all_xenos() //refresh the list to account for any changes during the channel
+	var/sisters_teleported = 0
 	for(var/mob/living/carbon/xenomorph/sister AS in allxenos)
 		sister.remove_filter("summonoutline")
-		sister.forceMove(get_turf(X))
-	log_game("[key_name(owner)] has summoned hive ([length(allxenos)] Xenos) in [AREACOORD(owner)]")
+		if(sister.z == owner.z)
+			sister.forceMove(get_turf(X))
+			sisters_teleported ++
+
+	log_game("[key_name(owner)] has summoned hive ([sisters_teleported] Xenos) in [AREACOORD(owner)]")
 	X.emote("roar")
 
 	add_cooldown()

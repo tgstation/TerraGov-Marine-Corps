@@ -116,7 +116,7 @@ GLOBAL_VAR_INIT(global_unique_id, 1)
 
 #define NULL_CLIENT_BUG_CHECK 1
 #ifdef NULL_CLIENT_BUG_CHECK
-#define CHECK_NULL_CLIENT(X) if(QDELETED(X) { return; }
+#define CHECK_NULL_CLIENT(X) if(QDELETED(X)) { return; }
 #else
 #define CHECK_NULL_CLIENT(X) X
 #endif
@@ -138,5 +138,3 @@ GLOBAL_VAR_INIT(global_unique_id, 1)
 
 //Actually better performant than reverse_direction()
 #define REVERSE_DIR(dir) ( ((dir & 85) << 1) | ((dir & 170) >> 1) )
-
-GLOBAL_VAR_INIT(geothermal_generator_ammount, 0)

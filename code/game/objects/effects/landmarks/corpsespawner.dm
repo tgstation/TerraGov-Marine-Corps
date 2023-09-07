@@ -38,7 +38,7 @@
 	var/corpseidaccess = null //This is for access. See access.dm for which jobs give what access. Use CAPTAIN if you want it to be all access.
 	var/corpseidicon = null //For setting it to be a gold, silver, centcom etc ID
 
-/obj/effect/landmark/corpsespawner/Initialize()
+/obj/effect/landmark/corpsespawner/Initialize(mapload)
 	. = ..()
 	GLOB.corpse_landmarks_list += src
 
@@ -295,7 +295,7 @@
 	corpseback = /obj/item/storage/backpack/industrial
 	corpseshoes = /obj/item/clothing/shoes/orange
 	corpsebelt = /obj/item/storage/belt/utility/full
-	corpsegloves = /obj/item/clothing/gloves/yellow
+	corpsegloves = /obj/item/clothing/gloves/insulated
 	corpsehelmet = /obj/item/clothing/head/hardhat
 	corpseid = 1
 	corpseidjob = "Station Engineer"
@@ -393,7 +393,7 @@
 	corpseshoes = /obj/item/clothing/shoes/jackboots
 	corpsesuit = /obj/item/clothing/suit/armor/vest/security
 	corpseback = /obj/item/storage/backpack/satchel
-	corpsebelt = /obj/item/storage/belt/gun/pistol/m4a3/vp70
+	corpsebelt = /obj/item/storage/holster/belt/pistol/m4a3/vp70
 	corpsegloves = /obj/item/clothing/gloves/marine/veteran/pmc
 	corpsehelmet = /obj/item/clothing/head/helmet/marine/veteran/pmc
 	corpsemask = /obj/item/clothing/mask/gas/pmc/damaged
@@ -518,7 +518,7 @@
 	corpsesuit = /obj/item/clothing/suit/modular/xenonauten/light
 	corpseback = /obj/item/storage/backpack/corpsman
 	corpsemask = /obj/item/clothing/mask/gas
-	corpsehelmet = /obj/item/clothing/head/helmet/marine/corpsman
+	corpsehelmet = /obj/item/clothing/head/modular/m10x
 	corpsegloves = /obj/item/clothing/gloves/latex
 	corpseshoes = /obj/item/clothing/shoes/marine
 	corpsepocket1 = /obj/item/tweezers
@@ -537,7 +537,7 @@
 	corpsemask = /obj/item/clothing/mask/gas
 	corpseglasses = /obj/item/clothing/glasses/welding
 	corpsehelmet = /obj/item/clothing/head/soft/grey
-	corpsegloves = /obj/item/clothing/gloves/fyellow
+	corpsegloves = /obj/item/clothing/gloves/yellow
 	corpseshoes = /obj/item/clothing/shoes/black
 	corpsepocket1 = /obj/item/tool/soap/nanotrasen
 	corpsepocket2 = /obj/item/tool/lighter/zippo

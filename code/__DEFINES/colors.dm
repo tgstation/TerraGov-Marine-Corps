@@ -22,6 +22,7 @@
 #define COLOR_ALMOST_BLACK "#333333"
 #define COLOR_BLACK "#000000"
 #define COLOR_HALF_TRANSPARENT_BLACK "#0000007A"
+#define COLOR_TRANSPARENT_SHADOW "#03020781"
 
 #define COLOR_RED "#FF0000"
 #define COLOR_MOSTLY_PURE_RED "#FF3300"
@@ -175,3 +176,12 @@ Important note: colors can end up significantly different from the basic html pi
 #define LIGHT_COLOR_TUNGSTEN "#FAE1AF"
 /// Barely visible cyan-ish hue, as the doctor prescribed. rgb(240, 250, 250)
 #define LIGHT_COLOR_HALOGEN "#F0FAFA"
+
+//Ammo and grenade colors
+#define COLOR_AMMO_AIRBURST "#2272eb"
+#define COLOR_AMMO_INCENDIARY "#fa7923"
+#define COLOR_AMMO_TACTICAL_SMOKE "#2F7B00"
+#define COLOR_AMMO_SMOKE "#0F98BD"
+#define COLOR_AMMO_TANGLEFOOT "#AA1FDC"
+#define COLOR_AMMO_RAZORBURN "#FBF236"
+#define COLOR_AMMO_HIGH_EXPLOSIVE "#b02323"

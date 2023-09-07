@@ -2,11 +2,24 @@
 	target_distance = 3 //We attack only nearby
 	base_action = ESCORTING_ATOM
 	is_offered_on_creation = FALSE
+	/// How close a human has to be in order for illusions to react
+	var/illusion_react_range = 5
 
 /datum/ai_behavior/xeno/illusion/New(loc, parent_to_assign, escorted_atom)
 	if(!escorted_atom)
 		base_action = MOVING_TO_NODE
 	..()
+
+/// We want a separate look_for_new_state in order to make illusions behave as we wish
+/datum/ai_behavior/xeno/illusion/look_for_new_state()
+	switch(current_action)
+		if(ESCORTING_ATOM)
+			for(var/mob/living/carbon/human/victim in view(illusion_react_range, mob_parent))
+				if(victim.stat == DEAD)
+					continue
+				attack_target(src, victim)
+				set_escorted_atom(src, victim)
+				return
 
 /datum/ai_behavior/xeno/illusion/attack_target(datum/soure, atom/attacked)
 	if(!attacked)
@@ -35,7 +48,7 @@
 	appearance = original_mob.appearance
 	desc = original_mob.desc
 	name = original_mob.name
-	RegisterSignal(original_mob, list(COMSIG_PARENT_QDELETING, COMSIG_MOB_DEATH), .proc/destroy_illusion)
+	RegisterSignals(original_mob, list(COMSIG_QDELETING, COMSIG_MOB_DEATH), PROC_REF(destroy_illusion))
 	QDEL_IN(src, life_time)
 
 ///Delete this illusion when the original xeno is ded
@@ -51,7 +64,7 @@
 	remove_filter("illusion_hit")
 	deltimer(timer_effect)
 	add_filter("illusion_hit", 2, ripple_filter(10, 5))
-	timer_effect = addtimer(CALLBACK(src, .proc/remove_hit_filter), 0.5 SECONDS)
+	timer_effect = addtimer(CALLBACK(src, PROC_REF(remove_hit_filter)), 0.5 SECONDS, TIMER_STOPPABLE)
 	return FALSE
 
 /mob/illusion/xeno/Initialize(mapload, mob/living/carbon/xenomorph/original_mob, atom/escorted_atom, life_time)

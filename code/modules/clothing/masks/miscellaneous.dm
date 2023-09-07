@@ -124,7 +124,7 @@
 	flags_armor_protection = HEAD|FACE
 	flags_inventory = COVERMOUTH
 	w_class = WEIGHT_CLASS_SMALL
-	siemens_coefficient = 3.0
+	siemens_coefficient = 3
 
 /obj/item/clothing/mask/luchador/tecnicos
 	name = "Tecnicos Mask"

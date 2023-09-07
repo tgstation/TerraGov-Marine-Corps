@@ -4,12 +4,13 @@
 	icon = 'icons/mob/human.dmi'
 	icon_state = "body_m_s"
 	blocks_emissive = EMISSIVE_BLOCK_UNIQUE
-	hud_possible = list(HEALTH_HUD, STATUS_HUD_SIMPLE, STATUS_HUD, XENO_EMBRYO_HUD, XENO_REAGENT_HUD, WANTED_HUD, SQUAD_HUD_TERRAGOV, SQUAD_HUD_REBEL, SQUAD_HUD_SOM, ORDER_HUD, PAIN_HUD, XENO_DEBUFF_HUD, HEART_STATUS_HUD)
+	hud_possible = list(HEALTH_HUD, STATUS_HUD_SIMPLE, STATUS_HUD, XENO_EMBRYO_HUD, XENO_REAGENT_HUD, WANTED_HUD, SQUAD_HUD_TERRAGOV, SQUAD_HUD_SOM, ORDER_HUD, PAIN_HUD, XENO_DEBUFF_HUD, HEART_STATUS_HUD)
 	health_threshold_crit = -50
 	melee_damage = 5
 	m_intent = MOVE_INTENT_WALK
 	buckle_flags = CAN_BE_BUCKLED|CAN_BUCKLE
 	resistance_flags = XENO_DAMAGEABLE|PORTAL_IMMUNE
+	appearance_flags = KEEP_TOGETHER|TILE_BOUND|PIXEL_SCALE|LONG_GLIDE
 
 	hud_type = /datum/hud/human
 
@@ -54,7 +55,6 @@
 
 	var/underwear = 1	//Which underwear the player wants
 	var/undershirt = 0	//Which undershirt the player wants.
-	var/backpack = 2		//Which backpack type the player has chosen. Nothing, Satchel or Backpack.
 
 	// General information
 	var/citizenship = ""
@@ -98,6 +98,8 @@
 
 	var/list/limbs = list()
 	var/list/internal_organs_by_name = list() // so internal organs have less ickiness too
+	///How much dirt the mob's accumulated. Harmless by itself, but can trigger issues with open wounds or surgery.
+	var/germ_level = 0
 
 	///Auras we can create, used for the order choice UI.
 	var/static/list/command_aura_allowed = list(AURA_HUMAN_MOVE, AURA_HUMAN_HOLD, AURA_HUMAN_FOCUS)

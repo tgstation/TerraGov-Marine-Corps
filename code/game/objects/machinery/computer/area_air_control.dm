@@ -12,7 +12,7 @@
 	//Simple variable to prevent me from doing attack_hand in both this and the child computer
 	var/zone = "This computer is working on a wireless range, the range is currently limited to 25 meters."
 
-/obj/machinery/computer/area_atmos/Initialize()
+/obj/machinery/computer/area_atmos/Initialize(mapload)
 	. = ..()
 	scanscrubbers()
 
@@ -148,7 +148,7 @@
 	var/area/A = T.loc
 	for(var/obj/machinery/portable_atmospherics/scrubber/huge/scrubber in GLOB.machines )
 		var/turf/T2 = get_turf(scrubber)
-		if(T2 && T2.loc)
+		if(T2?.loc)
 			var/area/A2 = T2.loc
 			if(istype(A2) && A2 == A )
 				connectedscrubbers += scrubber

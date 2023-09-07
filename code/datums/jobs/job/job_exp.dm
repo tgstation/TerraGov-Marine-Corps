@@ -242,7 +242,7 @@ GLOBAL_PROTECT(exp_to_update)
 			"ckey" = ckey,
 			"minutes" = jvalue)))
 		prefs.exp[jtype] += jvalue
-	addtimer(CALLBACK(GLOBAL_PROC, /proc/update_exp_db), 20, TIMER_OVERRIDE|TIMER_UNIQUE)
+	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(update_exp_db)), 20, TIMER_OVERRIDE|TIMER_UNIQUE)
 
 
 /proc/queen_age_check(client/C)

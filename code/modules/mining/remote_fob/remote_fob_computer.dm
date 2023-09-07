@@ -7,7 +7,7 @@
 	icon = 'icons/Marine/remotefob.dmi'
 	icon_state = "fobpc"
 	interaction_flags = INTERACT_MACHINE_DEFAULT
-	req_one_access = list(ACCESS_MARINE_REMOTEBUILD, ACCESS_MARINE_CE, ACCESS_MARINE_ENGINEERING)
+	req_one_access = list(ACCESS_MARINE_REMOTEBUILD, ACCESS_MARINE_CE, ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_LEADER)
 	resistance_flags = RESIST_ALL
 	networks = FALSE
 	off_action = new/datum/action/innate/camera_off/remote_fob
@@ -19,22 +19,20 @@
 	var/datum/action/innate/remote_fob/plast_cade/plast_cade
 	var/plasteel_remaining = 100
 	var/datum/action/innate/remote_fob/toggle_wiring/toggle_wiring //whether or not new barricades will be wired
-	var/do_wiring = FALSE
-	var/datum/action/innate/remote_fob/sentry/sentry
-	var/sentry_remaining = 0
+	var/do_wiring = TRUE
 	var/datum/action/innate/remote_fob/eject_metal_action/eject_metal_action
 	var/datum/action/innate/remote_fob/eject_plasteel_action/eject_plasteel_action
 
-/obj/machinery/computer/camera_advanced/remote_fob/Initialize()
+/obj/machinery/computer/camera_advanced/remote_fob/Initialize(mapload)
 	. = ..()
 	metal_cade = new()
 	plast_cade = new()
 	toggle_wiring = new()
-	sentry = new()
+	/*sentry = new()*/
 	eject_metal_action = new()
 	eject_plasteel_action = new()
 
-	RegisterSignal(SSdcs, COMSIG_GLOB_DROPSHIP_TRANSIT, .proc/disable_drone_creation)
+	RegisterSignal(SSdcs, COMSIG_GLOB_DROPSHIP_TRANSIT, PROC_REF(disable_drone_creation))
 
 /obj/machinery/computer/camera_advanced/remote_fob/proc/disable_drone_creation()
 	SIGNAL_HANDLER
@@ -49,7 +47,7 @@
 	QDEL_NULL(metal_cade)
 	QDEL_NULL(plast_cade)
 	QDEL_NULL(toggle_wiring)
-	QDEL_NULL(sentry)
+	/*QDEL_NULL(sentry)*/
 	QDEL_NULL(eject_metal_action)
 	QDEL_NULL(eject_plasteel_action)
 
@@ -61,7 +59,6 @@
 	var/list/details = list()
 	details +="It has [metal_remaining] sheets of metal remaining.</br>"
 	details +="It has [plasteel_remaining] sheets of plasteel remaining.</br>"
-	details +="It has [sentry_remaining] sentries ready for placement.</br>"
 	. += details.Join(" ")
 
 /obj/machinery/computer/camera_advanced/remote_fob/give_eye_control(mob/user)
@@ -163,11 +160,6 @@
 		toggle_wiring.give_action(user)
 		actions += toggle_wiring
 
-	if(sentry)
-		sentry.target = src
-		sentry.give_action(user)
-		actions += sentry
-
 	if(eject_metal_action)
 		eject_metal_action.target = src
 		eject_metal_action.give_action(user)
@@ -178,7 +170,7 @@
 		eject_plasteel_action.give_action(user)
 		actions += eject_plasteel_action
 
-	RegisterSignal(user, COMSIG_MOB_CLICKON, .proc/on_controller_click)
+	RegisterSignal(user, COMSIG_MOB_CLICKON, PROC_REF(on_controller_click))
 
 	eyeobj.invisibility = 0
 

@@ -25,10 +25,10 @@ Stepping directly on the mine will also blow it up
 	/// Tripwire holds reference to the tripwire obj that is used to trigger an explosion
 	var/obj/effect/mine_tripwire/tripwire
 
-/obj/item/explosive/mine/Initialize()
+/obj/item/explosive/mine/Initialize(mapload)
 	. = ..()
 	var/static/list/connections = list(
-		COMSIG_ATOM_ENTERED = .proc/on_cross,
+		COMSIG_ATOM_ENTERED = PROC_REF(on_cross),
 	)
 	AddElement(/datum/element/connect_loc, connections)
 
@@ -44,17 +44,17 @@ Stepping directly on the mine will also blow it up
 /obj/item/explosive/mine/ex_act()
 	. = ..()
 	if(!QDELETED(src))
-		INVOKE_ASYNC(src, .proc/trigger_explosion)
+		INVOKE_ASYNC(src, PROC_REF(trigger_explosion))
 
 /// Any emp effects mines will trigger their explosion
 /obj/item/explosive/mine/emp_act()
 	. = ..()
-	INVOKE_ASYNC(src, .proc/trigger_explosion)
+	INVOKE_ASYNC(src, PROC_REF(trigger_explosion))
 
 /// Flamer fire will cause mines to trigger their explosion
 /obj/item/explosive/mine/flamer_fire_act(burnlevel)
 	. = ..()
-	INVOKE_ASYNC(src, .proc/trigger_explosion)
+	INVOKE_ASYNC(src, PROC_REF(trigger_explosion))
 
 /// attack_self is used to arm the mine
 /obj/item/explosive/mine/attack_self(mob/living/user)
@@ -68,10 +68,7 @@ Stepping directly on the mine will also blow it up
 
 	if(armed)
 		return
-
-	user.visible_message(span_notice("[user] starts deploying [src]."), \
-	span_notice("You start deploying [src]."))
-	if(!do_after(user, 40, TRUE, src, BUSY_ICON_HOSTILE))
+	if(!do_after(user, 10, TRUE, src, BUSY_ICON_HOSTILE))
 		user.visible_message(span_notice("[user] stops deploying [src]."), \
 	span_notice("You stop deploying \the [src]."))
 		return
@@ -121,7 +118,7 @@ Stepping directly on the mine will also blow it up
 /obj/item/explosive/mine/proc/on_cross(datum/source, atom/movable/A, oldloc, oldlocs)
 	if(!isliving(A))
 		return
-	if(CHECK_MULTIPLE_BITFIELDS(A.flags_pass, HOVERING))
+	if(CHECK_MULTIPLE_BITFIELDS(A.pass_flags, HOVERING))
 		return
 	var/mob/living/L = A
 	if(L.lying_angle) ///so dragged corpses don't trigger mines.
@@ -142,7 +139,7 @@ Stepping directly on the mine will also blow it up
 	span_danger("You hear a click."))
 
 	playsound(loc, 'sound/weapons/mine_tripped.ogg', 25, 1)
-	INVOKE_ASYNC(src, .proc/trigger_explosion)
+	INVOKE_ASYNC(src, PROC_REF(trigger_explosion))
 	return TRUE
 
 /// Alien attacks trigger the explosive to instantly detonate
@@ -157,7 +154,7 @@ Stepping directly on the mine will also blow it up
 	X.visible_message(span_danger("[X] has slashed [src]!"), \
 	span_danger("We slash [src]!"))
 	playsound(loc, 'sound/weapons/slice.ogg', 25, 1)
-	INVOKE_ASYNC(src, .proc/trigger_explosion)
+	INVOKE_ASYNC(src, PROC_REF(trigger_explosion))
 
 /// Trigger an actual explosion and delete the mine.
 /obj/item/explosive/mine/proc/trigger_explosion()
@@ -177,10 +174,10 @@ Stepping directly on the mine will also blow it up
 	resistance_flags = UNACIDABLE
 	var/obj/item/explosive/mine/linked_mine
 
-/obj/effect/mine_tripwire/Initialize()
+/obj/effect/mine_tripwire/Initialize(mapload)
 	. = ..()
 	var/static/list/connections = list(
-		COMSIG_ATOM_ENTERED = .proc/on_cross,
+		COMSIG_ATOM_ENTERED = PROC_REF(on_cross),
 	)
 	AddElement(/datum/element/connect_loc, connections)
 
@@ -189,24 +186,27 @@ Stepping directly on the mine will also blow it up
 	return ..()
 
 /// When crossed the tripwire triggers the linked mine
-/obj/effect/mine_tripwire/proc/on_cross(datum/source, atom/A, oldloc, oldlocs)
+/obj/effect/mine_tripwire/proc/on_cross(datum/source, atom/movable/AM, oldloc, oldlocs)
 	SIGNAL_HANDLER
+	if(!istype(AM))
+		return
+
 	if(!linked_mine)
 		qdel(src)
 		return
 
-	if(CHECK_MULTIPLE_BITFIELDS(A.flags_pass, HOVERING))
+	if(CHECK_MULTIPLE_BITFIELDS(AM.pass_flags, HOVERING))
 		return
 
 	if(linked_mine.triggered) //Mine is already set to go off
 		return
 
-	if(linked_mine && isliving(A))
-		var/mob/living/unlucky_person = A
+	if(linked_mine && isliving(AM))
+		var/mob/living/unlucky_person = AM
 		// Don't trigger for dead people
 		if(unlucky_person.stat == DEAD)
 			return
-		linked_mine.trip_mine(A)
+		linked_mine.trip_mine(AM)
 
 /// PMC specific mine, with IFF for PMC units
 /obj/item/explosive/mine/pmc

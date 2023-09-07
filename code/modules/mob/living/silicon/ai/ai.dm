@@ -1,4 +1,5 @@
 #define MAX_COMMAND_MESSAGE_LGTH 300
+#define AI_PING_RADIUS 30
 
 ///This elevator serves me alone. I have complete control over this entire level. With cameras as my eyes and nodes as my hands, I rule here, insect.
 /mob/living/silicon/ai
@@ -56,6 +57,15 @@
 	///Linked artillery for remote targeting.
 	var/obj/machinery/deployable/mortar/linked_artillery
 
+	///Reference to the AIs minimap.
+	var/datum/action/minimap/ai/mini
+
+	///used for cooldown when AI pings the location of a xeno or xeno structure
+	COOLDOWN_DECLARE(last_pinged_marines)
+
+	///stores the last time the AI manually scanned the planet. we don't do cooldown_declare because we need the world time for our game panel
+	var/last_ai_bioscan
+
 
 /mob/living/silicon/ai/Initialize(mapload, ...)
 	. = ..()
@@ -72,6 +82,11 @@
 	laws += "Protect: Protect the personnel of your assigned vessel, and all other TerraGov personnel to the best of your abilities, with priority as according to their rank and role."
 	laws += "Preserve: Do not allow unauthorized personnel to tamper with your equipment."
 
+	var/list/iconstates = GLOB.ai_core_display_screens
+	icon_state = resolve_ai_icon(pick(iconstates))
+
+	mini = new
+	mini.give_action(src)
 	create_eye()
 
 	if(!job)
@@ -84,19 +99,26 @@
 	var/datum/atom_hud/H = GLOB.huds[DATA_HUD_SQUAD_TERRAGOV]
 	H.add_hud_to(src)
 
-	RegisterSignal(src, COMSIG_MOB_CLICK_ALT, .proc/send_order)
-	RegisterSignal(src, COMSIG_ORDER_SELECTED, .proc/set_order)
+	RegisterSignal(src, COMSIG_MOB_CLICK_ALT, PROC_REF(send_order))
+	RegisterSignal(src, COMSIG_ORDER_SELECTED, PROC_REF(set_order))
 
-	RegisterSignal(SSdcs, COMSIG_GLOB_OB_LASER_CREATED, .proc/receive_laser_ob)
-	RegisterSignal(SSdcs, COMSIG_GLOB_CAS_LASER_CREATED, .proc/receive_laser_cas)
-	RegisterSignal(SSdcs, COMSIG_GLOB_SHUTTLE_TAKEOFF, .proc/shuttle_takeoff_notification)
+	///register the various signals we need for alerts
+	RegisterSignal(SSdcs, COMSIG_GLOB_OB_LASER_CREATED, PROC_REF(receive_laser_ob))
+	RegisterSignal(SSdcs, COMSIG_GLOB_CAS_LASER_CREATED, PROC_REF(receive_laser_cas))
+	RegisterSignal(SSdcs, COMSIG_GLOB_RAILGUN_LASER_CREATED, PROC_REF(receive_laser_railgun))
+	RegisterSignal(SSdcs, COMSIG_GLOB_SHUTTLE_TAKEOFF, PROC_REF(shuttle_takeoff_notification))
+	RegisterSignal(SSdcs, COMSIG_GLOB_DROPSHIP_CONTROLS_CORRUPTED, PROC_REF(receive_lockdown_warning))
+	RegisterSignal(SSdcs, COMSIG_GLOB_MINI_DROPSHIP_DESTROYED, PROC_REF(receive_tad_warning))
+	RegisterSignal(SSdcs, COMSIG_GLOB_DISK_GENERATED, PROC_REF(show_disk_complete))
+	RegisterSignal(SSdcs, COMSIG_GLOB_NUKE_START, PROC_REF(show_nuke_start))
+	RegisterSignal(SSdcs, COMSIG_GLOB_CLONE_PRODUCED, PROC_REF(show_fresh_clone))
+	RegisterSignal(SSdcs, COMSIG_GLOB_HOLOPAD_AI_CALLED, PROC_REF(ping_ai))
 
 	var/datum/action/innate/order/attack_order/send_attack_order = new
 	var/datum/action/innate/order/defend_order/send_defend_order = new
 	var/datum/action/innate/order/retreat_order/send_retreat_order = new
 	var/datum/action/innate/order/rally_order/send_rally_order = new
 	var/datum/action/control_vehicle/control = new
-	var/datum/action/minimap/ai/mini = new
 	var/datum/action/innate/squad_message/squad_message = new
 	send_attack_order.target = src
 	send_attack_order.give_action(src)
@@ -108,7 +130,6 @@
 	send_rally_order.give_action(src)
 	control.give_action(src)
 	squad_message.give_action(src)
-	mini.give_action(src)
 
 /mob/living/silicon/ai/Destroy()
 	GLOB.ai_list -= src
@@ -119,7 +140,15 @@
 
 	UnregisterSignal(SSdcs, COMSIG_GLOB_OB_LASER_CREATED)
 	UnregisterSignal(SSdcs, COMSIG_GLOB_CAS_LASER_CREATED)
+	UnregisterSignal(SSdcs, COMSIG_GLOB_RAILGUN_LASER_CREATED)
 	UnregisterSignal(SSdcs, COMSIG_GLOB_SHUTTLE_TAKEOFF)
+	UnregisterSignal(SSdcs, COMSIG_GLOB_DROPSHIP_CONTROLS_CORRUPTED)
+	UnregisterSignal(SSdcs, COMSIG_GLOB_MINI_DROPSHIP_DESTROYED)
+	UnregisterSignal(SSdcs, COMSIG_GLOB_DISK_GENERATED)
+	UnregisterSignal(SSdcs, COMSIG_GLOB_NUKE_START)
+	UnregisterSignal(SSdcs, COMSIG_GLOB_CLONE_PRODUCED)
+	UnregisterSignal(SSdcs, COMSIG_GLOB_HOLOPAD_AI_CALLED)
+	QDEL_NULL(mini)
 	return ..()
 
 ///Print order visual to all marines squad hud and give them an arrow to follow the waypoint
@@ -134,18 +163,6 @@
 /mob/living/silicon/ai/proc/set_order(datum/source, datum/action/innate/order/order)
 	SIGNAL_HANDLER
 	current_order = order
-
-
-///Receive fire support laser notifications
-/mob/living/silicon/ai/proc/receive_laser_ob(datum/source, obj/effect/overlay/temp/laser_target/OB/incoming_laser)
-	SIGNAL_HANDLER
-	to_chat(src, span_notice("Orbital Bombardment laser detected. Target: [AREACOORD_NO_Z(incoming_laser)]"))
-	playsound_local(src, 'sound/effects/binoctarget.ogg', 15)
-
-/mob/living/silicon/ai/proc/receive_laser_cas(datum/source, obj/effect/overlay/temp/laser_target/cas/incoming_laser)
-	SIGNAL_HANDLER
-	to_chat(src, span_notice("CAS laser detected. Target: [AREACOORD_NO_Z(incoming_laser)]"))
-	playsound_local(src, 'sound/effects/binoctarget.ogg', 15)
 
 ///This gives the stupid computer a notification whenever the dropship takes off. Crutch for a supercomputer.
 /mob/living/silicon/ai/proc/shuttle_takeoff_notification(datum/source, shuttleId, D)
@@ -339,32 +356,40 @@
 	lighting_alpha = initial(lighting_alpha) // yes you really have to change both the eye and the ai vars
 
 
-/mob/living/silicon/ai/Stat()
+/mob/living/silicon/ai/get_status_tab_items()
 	. = ..()
 
-	if(statpanel("Game"))
+	if(stat != CONSCIOUS)
+		. += "System status: Nonfunctional"
+		return
 
-		if(stat != CONSCIOUS)
-			stat("System status:", "Nonfunctional")
-			return
+	. += "System integrity: [(health + 100) / 2]%"
+	. += ""
+	. += "- Operation information -"
+	. += "Current orbit: [GLOB.current_orbit]"
 
-		stat("System integrity:", "[(health + 100) / 2]%")
-		stat("<BR>- Operation information - <BR>")
-		stat("Current orbit:", "[GLOB.current_orbit]")
+	if(!GLOB.marine_main_ship?.orbital_cannon?.chambered_tray)
+		. += "Orbital bombardment status: No ammo chambered in the cannon."
+	else
+		. += "Orbital bombardment warhead: [GLOB.marine_main_ship.orbital_cannon.tray.warhead.name] Detected"
 
-		if(!GLOB.marine_main_ship?.orbital_cannon?.chambered_tray)
-			stat("<b>Orbital bombardment status:</b>", "<font color='red'>No ammo chambered in the cannon.</font><br>")
+	. += "Current supply points: [round(SSpoints.supply_points[FACTION_TERRAGOV])]"
+
+	. += "Current dropship points: [round(SSpoints.dropship_points)]"
+
+	. += "Current alert level: [GLOB.marine_main_ship.get_security_level()]"
+
+	. += "Number of living marines: [SSticker.mode.count_humans_and_xenos()[1]]"
+
+	if(GLOB.marine_main_ship?.rail_gun?.last_firing_ai + COOLDOWN_RAILGUN_FIRE > world.time)
+		. += "Railgun status: Cooling down, next fire in [(GLOB.marine_main_ship?.rail_gun?.last_firing_ai + COOLDOWN_RAILGUN_FIRE - world.time)/10] seconds."
+	else
+		. += "Railgun status: Railgun is ready to fire."
+
+		if(last_ai_bioscan + COOLDOWN_AI_BIOSCAN > world.time)
+			stat("AI bioscan status:", "Instruments recalibrating, next scan in [(last_ai_bioscan  + COOLDOWN_AI_BIOSCAN - world.time)/10] seconds.") //about 10 minutes
 		else
-			stat("Orbital bombardment warhead:", "[GLOB.marine_main_ship.orbital_cannon.tray.warhead.name] Detected<BR>")
-
-		stat("Current supply points:", "[round(SSpoints.supply_points[FACTION_TERRAGOV])]")
-
-		stat("Current dropship points:", "[round(SSpoints.dropship_points)]")
-
-		stat("Current alert level:", "[GLOB.marine_main_ship.get_security_level()]")
-
-		stat("Number of living marines:", "[SSticker.mode.count_humans_and_xenos()[1]]")
-
+			stat("AI bioscan status:", "Instruments are ready to scan the planet.")
 
 /mob/living/silicon/ai/fully_replace_character_name(oldname, newname)
 	. = ..()
@@ -394,20 +419,21 @@
 
 /mob/living/silicon/ai/set_remote_control(atom/movable/controlled)
 	if(controlled)
+		mini.override_locator(controlled)
 		reset_perspective(controlled, FALSE)
 	else
-		eyeobj.forceMove(remote_control)
+		eyeobj.forceMove(get_turf(remote_control))
+		mini.override_locator(eyeobj)
 		reset_perspective()
 	remote_control = controlled
 
 ///Called for associating the AI with artillery
 /mob/living/silicon/ai/proc/associate_artillery(mortar)
 	if(linked_artillery)
-		UnregisterSignal(linked_artillery, COMSIG_PARENT_QDELETING)
-		linked_artillery = null
-		return FALSE
+		UnregisterSignal(linked_artillery, COMSIG_QDELETING)
+		linked_artillery.unset_targeter()
 	linked_artillery = mortar
-	RegisterSignal(linked_artillery, COMSIG_PARENT_QDELETING, .proc/clean_artillery_refs)
+	RegisterSignal(linked_artillery, COMSIG_QDELETING, PROC_REF(clean_artillery_refs))
 	return TRUE
 
 ///Proc called when linked_mortar is deleted.
@@ -450,7 +476,7 @@
 /// Signal handler to clear vehicle and stop remote control
 /datum/action/control_vehicle/proc/clear_vehicle()
 	SIGNAL_HANDLER
-	UnregisterSignal(vehicle, COMSIG_PARENT_QDELETING)
+	UnregisterSignal(vehicle, COMSIG_QDELETING)
 	vehicle.on_unlink()
 	vehicle = null
 	var/mob/living/silicon/ai/ai = owner
@@ -461,7 +487,7 @@
 
 /datum/action/control_vehicle/proc/link_with_vehicle(obj/vehicle/unmanned/_vehicle)
 	vehicle = _vehicle
-	RegisterSignal(vehicle, COMSIG_PARENT_QDELETING, .proc/clear_vehicle)
+	RegisterSignal(vehicle, COMSIG_QDELETING, PROC_REF(clear_vehicle))
 	vehicle.on_link()
 	owner.AddComponent(/datum/component/remote_control, vehicle, vehicle.turret_type, vehicle.can_interact)
 	SEND_SIGNAL(owner, COMSIG_REMOTECONTROL_TOGGLE, owner)
@@ -488,9 +514,12 @@
 	var/text = stripped_input(owner, "Maximum message length [MAX_COMMAND_MESSAGE_LGTH]", "Send message to squad", max_length = MAX_COMMAND_MESSAGE_LGTH)
 	if(!text)
 		return
-	if(CHAT_FILTER_CHECK(text))
+	var/filter_result = CAN_BYPASS_FILTER(owner) ? null : is_ic_filtered(text)
+	if(filter_result)
 		to_chat(owner, span_warning("That message contained a word prohibited in IC chat! Consider reviewing the server rules.\n<span replaceRegex='show_filtered_ic_chat'>\"[text]\"</span>"))
 		SSblackbox.record_feedback(FEEDBACK_TALLY, "ic_blocked_words", 1, lowertext(config.ic_filter_regex.match))
+		REPORT_CHAT_FILTER_TO_USER(src, filter_result)
+		log_filter("IC", text, filter_result)
 		return
 	if(!can_use_action())
 		return
@@ -501,3 +530,47 @@
 	for(var/mob/living/carbon/human/human AS in GLOB.alive_human_list)
 		if(human.faction == owner.faction)
 			human.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:center valign='top'><u>ORDERS UPDATED:</u></span><br>" + text, /atom/movable/screen/text/screen_text/command_order)
+
+
+///takes an atom A and sends an alert, coordinate and for the atom to eligible marine forces if cooldown is over
+/mob/living/silicon/ai/proc/ai_ping(atom/A, cooldown = COOLDOWN_AI_PING_NORMAL)
+	///list of mobs to send the notification to
+	var/list/receivers = (GLOB.alive_human_list)
+	if(is_mainship_level(A.z)) //if our target is shipside, we always use the lowest cooldown between pings
+		cooldown = COOLDOWN_AI_PING_EXTRA_LOW
+	if(!COOLDOWN_CHECK(src, last_pinged_marines)) //delay between alerts, both for balance and to prevent chat spam from overeager AIs
+		to_chat(src, span_alert("You must wait before issuing an alert again"))
+		return
+	COOLDOWN_START(src, last_pinged_marines, cooldown)
+	to_chat(src, span_alert("<b>You issue an alert for [A.name] to all living personnel.</b>"))
+	for(var/mob/M in receivers)
+		if(M.z != A.z || M.stat == DEAD)
+			continue
+		var/newdistance = get_dist(A, M)
+		var/generaldirection = "north"
+		if(istype(A, /obj/effect/xenomorph/acid)) //special check for acid
+			var/obj/effect/xenomorph/acid/pingedacid = A
+			playsound(M, 'sound/machines/beepalert.ogg', 25)
+			to_chat(M, span_alert("AI telemetry indicates that the <b>[pingedacid.acid_t]</b> which is <b>[newdistance]</b> units away at: [AREACOORD_NO_Z(A)] is <b> being melted</b>! by [pingedacid.name]!"))
+			return
+		if(newdistance <= AI_PING_RADIUS && newdistance != 0)
+			///time for calculations
+
+			///divide our range into SW, NW, SE and NE for the purposes of identification
+			///we subtract the receivers X/Y value from the target atoms X/Y value, once for x coords and one for y coords
+			///by checking whether the result is positive or negative, we can tell the general direction the target atom is in
+			if(A.x - M.x <= 0 && A.y - M.y <= 0) //southwest
+				generaldirection = pick("southwest","south","west") ///to avoid upsetting balance we give very general directions
+			else if(A.x - M.x <= 0 && A.y - M.y >= 0) //northwest
+				generaldirection = pick("northwest","north","west")
+			else if(A.x - M.x >= 0 && A.y - M.y <= 0) //southeast
+				generaldirection = pick("southeast","south","east")
+			else if(A.x - M.x >= 0 && A.y - M.y >= 0) //northeast
+				generaldirection = pick("northeast","north","east")
+
+			playsound(M, 'sound/machines/beepalert.ogg', 25)
+			to_chat(M, span_alert("<b>ALERT! The ship AI has detected Hostile/Unknown: [A.name] at: [AREACOORD_NO_Z(A)].</b>"))
+			to_chat(M, span_alert("AI telemetry indicates that <b>[A.name]</b> is <b>[newdistance]</b> units away to the <b>[generaldirection]</b>."))
+		else //if the receiver is outside AI_PING_RADIUS, give them a name and coords
+			playsound(M, 'sound/machines/twobeep.ogg', 20)
+			to_chat(M, span_notice("<b>ALERT! The ship AI has detected Hostile/Unknown: [A.name] at: [AREACOORD_NO_Z(A)].</b>"))

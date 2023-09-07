@@ -1,6 +1,10 @@
 // Surgery Tools
 /obj/item/tool/surgery
 	icon = 'icons/obj/items/surgery_tools.dmi'
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/equipment/surgery_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/equipment/surgery_right.dmi',
+	)
 	attack_speed = 11 //Used to be 4 which made them attack insanely fast.
 
 /obj/item/tool/surgery/retractor
@@ -32,7 +36,7 @@
 	icon_state = "drill"
 	hitsound = 'sound/weapons/circsawhit.ogg'
 	flags_atom = CONDUCT
-	force = 15.0
+	force = 15
 	w_class = WEIGHT_CLASS_SMALL
 	attack_verb = list("drilled")
 
@@ -45,11 +49,11 @@
 	desc = "Cut, cut, and once more cut."
 	icon_state = "scalpel"
 	flags_atom = CONDUCT
-	force = 10.0
+	force = 10
 	sharp = IS_SHARP_ITEM_ACCURATE
 	edge = 1
 	w_class = WEIGHT_CLASS_TINY
-	throwforce = 5.0
+	throwforce = 5
 	throw_speed = 3
 	throw_range = 5
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
@@ -68,7 +72,7 @@
 	desc = "A scalpel augmented with a directed laser, for more precise cutting without blood entering the field.  This one looks to be the pinnacle of precision energy cutlery!"
 	icon_state = "scalpel_laser3_on"
 	damtype = BURN
-	force = 15.0
+	force = 15
 
 /obj/item/tool/surgery/scalpel/manager
 	name = "incision management system"
@@ -82,12 +86,12 @@
 /obj/item/tool/surgery/circular_saw
 	name = "circular saw"
 	desc = "For heavy duty cutting."
-	icon_state = "saw3"
+	icon_state = "saw"
 	hitsound = 'sound/weapons/circsawhit.ogg'
 	flags_atom = CONDUCT
-	force = 15.0
+	force = 15
 	w_class = WEIGHT_CLASS_SMALL
-	throwforce = 9.0
+	throwforce = 9
 	throw_speed = 3
 	throw_range = 5
 	attack_verb = list("attacked", "slashed", "sawed", "cut")
@@ -100,21 +104,21 @@
 	icon_state = "bone-gel"
 	force = 0
 	w_class = WEIGHT_CLASS_SMALL
-	throwforce = 1.0
+	throwforce = 1
 
 /obj/item/tool/surgery/FixOVein
 	name = "FixOVein"
 	icon_state = "fixovein"
 	force = 0
-	throwforce = 1.0
+	throwforce = 1
 	w_class = WEIGHT_CLASS_SMALL
 	var/usage_amount = 10
 
 /obj/item/tool/surgery/bonesetter
 	name = "bone setter"
-	icon_state = "bone setter"
-	force = 8.0
-	throwforce = 9.0
+	icon_state = "bonesetter"
+	force = 8
+	throwforce = 9
 	throw_speed = 3
 	throw_range = 5
 	w_class = WEIGHT_CLASS_SMALL

@@ -7,9 +7,10 @@ SUBSYSTEM_DEF(npcpool)
 	var/list/currentrun = list()
 
 
-/datum/controller/subsystem/npcpool/stat_entry()
+/datum/controller/subsystem/npcpool/stat_entry(msg)
 	var/list/activelist = GLOB.simple_animals[AI_ON]
-	..("NPCS:[length(activelist)]")
+	msg = "NPCS:[length(activelist)]"
+	return ..()
 
 
 /datum/controller/subsystem/npcpool/fire(resumed = FALSE)
@@ -20,8 +21,8 @@ SUBSYSTEM_DEF(npcpool)
 	//cache for sanic speed (lists are references anyways)
 	var/list/currentrun = src.currentrun
 
-	while(currentrun.len)
-		var/mob/living/simple_animal/SA = currentrun[currentrun.len]
+	while(length(currentrun))
+		var/mob/living/simple_animal/SA = currentrun[length(currentrun)]
 		--currentrun.len
 
 		if(!SA.ckey && !SA.notransform)

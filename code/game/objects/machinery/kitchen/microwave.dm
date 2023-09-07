@@ -25,7 +25,7 @@
 *   Initialising
 ********************/
 
-/obj/machinery/microwave/Initialize()
+/obj/machinery/microwave/Initialize(mapload)
 	. = ..()
 	create_reagents(100, OPENCONTAINER)
 	if (!available_recipes)
@@ -40,7 +40,7 @@
 			for (var/reagent in recipe.reagents)
 				acceptable_reagents |= reagent
 			if (recipe.items)
-				max_n_of_items = max(max_n_of_items,recipe.items.len)
+				max_n_of_items = max(max_n_of_items,length(recipe.items))
 
 /*******************
 *   Item Adding
@@ -50,47 +50,41 @@
 	. = ..()
 
 	if(broken == 2 && isscrewdriver(I))
-		user.visible_message( span_notice("[user] starts to fix part of the microwave."), \
-			span_notice("You start to fix part of the microwave."))
+		balloon_alert_to_viewers("starts to fix the microwave")
 
 		if(!do_after(user,20, TRUE, src, BUSY_ICON_BUILD))
 			return TRUE
 
-		user.visible_message(span_notice("[user] fixes part of the microwave."), \
-			span_notice("You have fixed part of the microwave."))
+		balloon_alert_to_viewers("fixes part of the microwave")
 		broken = 1
 
 	else if(broken == 1 && iswrench(I))
-		user.visible_message(span_notice("[user] starts to fix part of the microwave."), \
-			span_notice("You start to fix part of the microwave."))
+		balloon_alert_to_viewers("starts to fix part of the microwave")
 
 		if(!do_after(user,20, TRUE, src, BUSY_ICON_BUILD))
 			return TRUE
 
-		user.visible_message( span_notice("[user] fixes the microwave."), \
-			span_notice("You have fixed the microwave."))
+		balloon_alert_to_viewers("fixes the microwave")
 		icon_state = "mw"
 		broken = 0
 		dirty = 0
 		ENABLE_BITFIELD(reagents.reagent_flags, OPENCONTAINER)
 
 	else if(broken > 2)
-		to_chat(user, span_warning("It's broken!"))
+		balloon_alert(user, "Cannot, broken")
 		return TRUE
 
 	else if(dirty == 100)
 		if(!istype(I, /obj/item/reagent_containers/spray/cleaner))
-			to_chat(user, span_warning("It's dirty!"))
+			balloon_alert(user, "Very dirty")
 			return TRUE
 
-		user.visible_message(span_notice("[user] starts to clean \the [src]."), \
-			span_notice("You start to clean \the [src]."))
+		balloon_alert_to_viewers("starts cleaning [src]")
 
 		if(!do_after(user,20, TRUE, src, BUSY_ICON_BUILD))
 			return TRUE
 
-		user.visible_message(span_notice("[user] has cleaned \the [src]."), \
-			span_notice("You have cleaned \the [src]."))
+		balloon_alert_to_viewers("cleans the [src]")
 		dirty = 0
 		broken = 0
 		icon_state = "mw"
@@ -98,20 +92,18 @@
 
 	else if(is_type_in_list(I, acceptable_items))
 		if(length(contents) >= max_n_of_items)
-			to_chat(user, span_warning("This [src] is full of ingredients, you cannot put more."))
+			balloon_alert(user, "Cannot, it's full")
 			return TRUE
 
 		if(istype(I, /obj/item/stack) && I:get_amount() > 1) // This is bad, but I can't think of how to change it
 			var/obj/item/stack/S = I
 			new S.type(src)
 			S.use(1)
-			user.visible_message(span_notice("[user] has added one of [I] to \the [src]."), \
-				span_notice("You add one of [I] to \the [src]."))
+			balloon_alert_to_viewers("[user] adds [I] to the [src]")
 
 		else if(user.drop_held_item())
 			I.forceMove(src)
-			user.visible_message(span_notice("[user] has added \the [I] to \the [src]."), \
-				span_notice("You add \the [I] to \the [src]."))
+			balloon_alert_to_viewers("[user] has added [I] to the [src]")
 
 	else if(istype(I,/obj/item/reagent_containers/glass) || \
 			istype(I,/obj/item/reagent_containers/food/drinks) || \
@@ -123,7 +115,7 @@
 		for(var/i in I.reagents.reagent_list)
 			var/datum/reagent/R = i
 			if(!(R.type in acceptable_reagents))
-				to_chat(user, span_warning("Your [I] contains components unsuitable for cookery."))
+				balloon_alert(user, "Cannot, incompatible material for cooking")
 				return TRUE
 
 		return FALSE
@@ -132,7 +124,7 @@
 		return TRUE
 
 	else
-		to_chat(user, span_warning("You have no idea what you can cook with this [I]."))
+		balloon_alert(user, "Can't cook anything with this")
 
 	return TRUE
 
@@ -196,7 +188,7 @@
 				display_name = "Coldsauce"
 			dat += {"<B>[display_name]:</B> [R.volume] unit\s<BR>"}
 
-		if (items_counts.len==0 && reagents.reagent_list.len==0)
+		if (length(items_counts) == 0 && length(reagents.reagent_list) == 0)
 			dat = {"<B>The microwave is empty</B><BR>"}
 		else
 			dat = {"<b>Ingredients:</b><br>[dat]"}
@@ -290,17 +282,19 @@
 	return 0
 
 /obj/machinery/microwave/proc/start()
-	src.visible_message(span_notice(" The microwave turns on."), span_notice(" You hear a microwave."))
+	src.balloon_alert_to_viewers("Turns on")
 	src.operating = 1
 	src.icon_state = "mw1"
 	src.updateUsrDialog()
 
 /obj/machinery/microwave/proc/abort()
+	src.balloon_alert_to_viewers("Turns off")
 	src.operating = 0 // Turn it off again aferwards
 	src.icon_state = "mw"
 	src.updateUsrDialog()
 
 /obj/machinery/microwave/proc/stop()
+	src.balloon_alert_to_viewers("Turns off")
 	playsound(src.loc, 'sound/machines/ding.ogg', 25, 1)
 	src.operating = 0 // Turn it off again aferwards
 	src.icon_state = "mw"
@@ -312,7 +306,7 @@
 	if (src.reagents.total_volume)
 		src.dirty++
 	src.reagents.clear_reagents()
-	to_chat(usr, span_notice("You dispose of the microwave contents."))
+	balloon_alert(src, "Dumps the microwave contents")
 	src.updateUsrDialog()
 
 /obj/machinery/microwave/proc/muck_start()

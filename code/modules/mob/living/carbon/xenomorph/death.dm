@@ -11,6 +11,7 @@
 
 /mob/living/carbon/xenomorph/on_death()
 	GLOB.alive_xeno_list -= src
+	LAZYREMOVE(GLOB.alive_xeno_list_hive[hivenumber], src)
 	GLOB.dead_xeno_list += src
 
 	QDEL_NULL(current_aura)
@@ -60,9 +61,6 @@
 					SSmonitor.stats.ancient_T3--
 				if(XENO_TIER_FOUR)
 					SSmonitor.stats.ancient_T4--
-
-	if(GetComponent(/datum/component/ai_controller))
-		gib()
 
 	eject_victim()
 

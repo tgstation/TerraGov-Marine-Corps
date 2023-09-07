@@ -18,6 +18,10 @@ REAGENT SCANNER
 	flags_atom = CONDUCT
 	flags_equip_slot = ITEM_SLOT_BELT
 	w_class = WEIGHT_CLASS_SMALL
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/equipment/engineering_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/equipment/engineering_right.dmi',
+	)
 	item_state = "electronic"
 
 
@@ -59,7 +63,11 @@ REAGENT SCANNER
 /obj/item/healthanalyzer
 	name = "\improper HF2 health analyzer"
 	icon_state = "health"
-	item_state = "analyzer"
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/equipment/medical_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/equipment/medical_right.dmi',
+	)
+	item_state = "healthanalyzer"
 	desc = "A hand-held body scanner able to distinguish vital signs of the subject. The front panel is able to provide the basic readout of the subject's status."
 	flags_atom = CONDUCT
 	flags_equip_slot = ITEM_SLOT_BELT
@@ -80,21 +88,35 @@ REAGENT SCANNER
 
 /obj/item/healthanalyzer/attack(mob/living/carbon/M, mob/living/user)
 	. = ..()
+	analyze_vitals(M, user)
+
+/obj/item/healthanalyzer/attack_alternate(mob/living/carbon/M, mob/living/user)
+	. = ..()
+	analyze_vitals(M, user, TRUE)
+
+///Health scans a target. M is the thing being scanned, user is the person doing the scanning, show_patient will show the UI to the scanee when TRUE.
+/obj/item/healthanalyzer/proc/analyze_vitals(mob/living/carbon/M, mob/living/user, show_patient)
 	if(user.skills.getRating(SKILL_MEDICAL) < skill_threshold)
 		to_chat(user, span_warning("You start fumbling around with [src]..."))
 		if(!do_mob(user, M, max(SKILL_TASK_AVERAGE - (1 SECONDS * user.skills.getRating(SKILL_MEDICAL)), 0), BUSY_ICON_UNSKILLED))
 			return
 	playsound(src.loc, 'sound/items/healthanalyzer.ogg', 50)
-	if(CHECK_BITFIELD(M.species.species_flags, NO_SCAN))
-		to_chat(user, span_warning("Error: Cannot read vitals!"))
+	if(!iscarbon(M))
+		balloon_alert(user, "Cannot scan")
 		return
 	if(isxeno(M))
-		to_chat(user, span_warning("[src] can't make sense of this creature!"))
+		balloon_alert(user, "Unknown entity")
 		return
-	to_chat(user, span_notice("[user] has analyzed [M]'s vitals."))
+	if(M.species.species_flags & NO_SCAN)
+		balloon_alert(user, "Not Organic")
+		return
 	patient = M
 	current_user = user
-	ui_interact(user)
+	if(show_patient)
+		balloon_alert_to_viewers("Showed healthscan", vision_distance = 4)
+		ui_interact(M)
+	else
+		ui_interact(user)
 	update_static_data(user)
 	if(user.skills.getRating(SKILL_MEDICAL) < upper_skill_threshold)
 		return
@@ -142,7 +164,7 @@ REAGENT SCANNER
 		"blood_type" = patient.blood_type,
 		"blood_amount" = patient.blood_volume,
 
-		"hugged" = (locate(/obj/item/alien_embryo) in patient)
+		"hugged" = !!(patient.status_flags & XENO_HOST)
 	)
 	data["has_unknown_chemicals"] = FALSE
 	var/list/chemicals_lists = list()
@@ -158,6 +180,7 @@ REAGENT SCANNER
 		)
 	data["has_chemicals"] = length(patient.reagents.reagent_list)
 	data["chemicals_lists"] = chemicals_lists
+	data["species"] = patient.species.species_flags & ROBOTIC_LIMBS ? "robot" : "human"
 
 	var/list/limb_data_lists = list()
 	if(ishuman(patient))
@@ -250,7 +273,69 @@ REAGENT SCANNER
 	desc = "A body scanner able to distinguish vital signs of the subject. This model has been integrated into another object, and is simpler to use."
 	skill_threshold = SKILL_MEDICAL_UNTRAINED
 
-/obj/item/analyzer
+/obj/item/healthanalyzer/gloves
+	name = "\improper HF2 Medical Gloves"
+	desc = "Advanced medical gloves, these include a built-in analyzer to quickly scan patients."
+	icon_state = "medscan_gloves"
+	item_state = "medscan_gloves"
+	flags_equip_slot = ITEM_SLOT_GLOVES
+	w_class = WEIGHT_CLASS_SMALL
+	icon = 'icons/obj/clothing/gloves.dmi'
+	item_state_worn = TRUE
+	siemens_coefficient = 0.50
+	blood_sprite_state = "bloodyhands"
+	flags_armor_protection = HANDS
+	flags_equip_slot = ITEM_SLOT_GLOVES
+	attack_verb = "scans"
+	soft_armor = list(MELEE = 25, BULLET = 15, LASER = 10, ENERGY = 15, BOMB = 15, BIO = 5, FIRE = 15, ACID = 15)
+	flags_cold_protection = HANDS
+	flags_heat_protection = HANDS
+	min_cold_protection_temperature = GLOVES_MIN_COLD_PROTECTION_TEMPERATURE
+	max_heat_protection_temperature = GLOVES_MAX_HEAT_PROTECTION_TEMPERATURE
+
+/obj/item/healthanalyzer/gloves/equipped(mob/living/carbon/human/user, slot)
+	. = ..()
+	if(user.gloves == src)
+		RegisterSignal(user, COMSIG_HUMAN_MELEE_UNARMED_ATTACK, PROC_REF(on_unarmed_attack))
+		RegisterSignal(user, COMSIG_HUMAN_MELEE_UNARMED_ATTACK_ALTERNATE, PROC_REF(on_unarmed_attack_alternate))
+
+	else
+		UnregisterSignal(user, COMSIG_HUMAN_MELEE_UNARMED_ATTACK)
+
+/obj/item/healthanalyzer/gloves/unequipped(mob/living/carbon/human/user, slot)
+	. = ..()
+	UnregisterSignal(user, COMSIG_HUMAN_MELEE_UNARMED_ATTACK) //Unregisters in the case of getting delimbed
+	UnregisterSignal(user, COMSIG_HUMAN_MELEE_UNARMED_ATTACK_ALTERNATE) //Unregisters in the case of getting delimbed
+
+
+//when you are wearing these gloves, this will call the normal attack code to health scan the target
+/obj/item/healthanalyzer/gloves/proc/on_unarmed_attack(mob/living/carbon/human/user, mob/living/carbon/human/target)
+	if(user.a_intent != INTENT_HELP)
+		return
+	if(istype(user) && istype(target))
+		analyze_vitals(target, user)
+
+///Used for right click and showing the patient their scan
+/obj/item/healthanalyzer/gloves/proc/on_unarmed_attack_alternate(mob/living/carbon/human/user, mob/living/carbon/human/target)
+	if(user.a_intent != INTENT_HELP)
+		return
+	if(istype(user) && istype(target))
+		analyze_vitals(target, user, TRUE)
+
+/obj/item/healthanalyzer/gloves/attack(mob/living/carbon/M, mob/living/user)
+	. = ..()
+	if(user.a_intent != INTENT_HELP)
+		return
+	analyze_vitals(M, user)
+
+/obj/item/healthanalyzer/gloves/attack_alternate(mob/living/carbon/M, mob/living/user)
+	. = ..()
+	if(user.a_intent != INTENT_HELP)
+		return
+	analyze_vitals(M, user, TRUE)
+
+
+/obj/item/tool/analyzer
 	desc = "A hand-held environmental scanner which reports current gas levels."
 	name = "analyzer"
 	icon_state = "atmos"
@@ -263,7 +348,7 @@ REAGENT SCANNER
 	throw_range = 20
 
 
-/obj/item/analyzer/attack_self(mob/user as mob)
+/obj/item/tool/analyzer/attack_self(mob/user as mob)
 	..()
 	var/turf/T = get_turf(user)
 	if(!T)
@@ -388,7 +473,7 @@ REAGENT SCANNER
 	if (crit_fail)
 		to_chat(user, span_warning("This device has critically failed and is no longer functional!"))
 		return
-	if(!O.reagents || !O.reagents.reagent_list.len)
+	if(!O.reagents || !length(O.reagents.reagent_list))
 		to_chat(user, span_notice("No chemical agents found in [O]"))
 		return
 	var/dat = ""

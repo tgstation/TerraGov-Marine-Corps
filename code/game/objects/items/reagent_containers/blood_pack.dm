@@ -8,7 +8,7 @@
 	var/blood_type
 
 
-/obj/item/reagent_containers/blood/Initialize()
+/obj/item/reagent_containers/blood/Initialize(mapload)
 	. = ..()
 	if(blood_type)
 		name = "BloodPack [blood_type]"

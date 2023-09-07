@@ -4,6 +4,10 @@
 	gender = PLURAL
 	icon = 'icons/obj/det.dmi'
 	icon_state = "detpack_off"
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/weapons/explosives_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/weapons/explosives_right.dmi',
+		)
 	item_state = "plasticx"
 	flags_item = NOBLUDGEON
 	w_class = WEIGHT_CLASS_SMALL
@@ -22,7 +26,7 @@
 	var/datum/radio_frequency/radio_connection
 
 
-/obj/item/detpack/Initialize()
+/obj/item/detpack/Initialize(mapload)
 	. = ..()
 	set_frequency(frequency)
 
@@ -145,12 +149,12 @@
 		armed = TRUE
 		//bombtick()
 		log_explosion("[key_name(usr)] triggered [src] explosion at [AREACOORD(loc)].")
-		detonation_pending = addtimer(CALLBACK(src, .proc/do_detonate), timer SECONDS, TIMER_STOPPABLE)
+		detonation_pending = addtimer(CALLBACK(src, PROC_REF(do_detonate)), timer SECONDS, TIMER_STOPPABLE)
 		if(timer > 10)
-			sound_timer = addtimer(CALLBACK(src, .proc/do_play_sound_normal), 1 SECONDS, TIMER_LOOP|TIMER_STOPPABLE)
-			addtimer(CALLBACK(src, .proc/change_to_loud_sound), timer-10)
+			sound_timer = addtimer(CALLBACK(src, PROC_REF(do_play_sound_normal)), 1 SECONDS, TIMER_LOOP|TIMER_STOPPABLE)
+			addtimer(CALLBACK(src, PROC_REF(change_to_loud_sound)), timer-10)
 		else
-			sound_timer = addtimer(CALLBACK(src, .proc/do_play_sound_loud), 1 SECONDS, TIMER_LOOP|TIMER_STOPPABLE)
+			sound_timer = addtimer(CALLBACK(src, PROC_REF(do_play_sound_loud)), 1 SECONDS, TIMER_LOOP|TIMER_STOPPABLE)
 		update_icon()
 	else
 		armed = FALSE
@@ -292,7 +296,7 @@
 /obj/item/detpack/proc/change_to_loud_sound()
 	if(sound_timer)
 		deltimer(sound_timer)
-		sound_timer = addtimer(CALLBACK(src, .proc/do_play_sound_loud), 1 SECONDS, TIMER_LOOP|TIMER_STOPPABLE)
+		sound_timer = addtimer(CALLBACK(src, PROC_REF(do_play_sound_loud)), 1 SECONDS, TIMER_LOOP|TIMER_STOPPABLE)
 
 /obj/item/detpack/proc/do_play_sound_normal()
 	timer--
@@ -337,9 +341,9 @@
 	playsound(src.loc, 'sound/weapons/ring.ogg', 200, FALSE)
 	boom = TRUE
 	if(det_mode == TRUE) //If we're on demolition mode, big boom.
-		explosion(plant_target, 3, 5, 6, 6)
+		explosion(plant_target, 3, 5, 6, 0, 6)
 	else //if we're not, focused boom.
-		explosion(plant_target, 2, 2, 3, 3, throw_range = FALSE)
+		explosion(plant_target, 2, 2, 3, 0, 3, throw_range = FALSE)
 	if(plant_target)
 		if(isobj(plant_target))
 			plant_target = null

@@ -11,7 +11,7 @@
 	var/access_code = 0
 	var/datum/money_account/linked_account
 
-/obj/item/eftpos/Initialize()
+/obj/item/eftpos/Initialize(mapload)
 	. = ..()
 	machine_id = "EFTPOS #[GLOB.num_financial_terminals++]"
 	access_code = rand(1111,111111)

@@ -11,7 +11,7 @@
 	var/l_hacking = 0
 	var/open = 0
 	w_class = WEIGHT_CLASS_NORMAL
-	max_w_class = 2
+	max_w_class = WEIGHT_CLASS_SMALL
 	max_storage_space = 14
 
 /obj/item/storage/secure/examine(mob/user)
@@ -34,17 +34,17 @@
 	var/message = "Code"
 
 	if(!l_set && !l_setshort)
-		dat += text("<p>\n<b>5-DIGIT PASSCODE NOT SET.<br>ENTER NEW PASSCODE.</b>")
+		dat += "<p>\n<b>5-DIGIT PASSCODE NOT SET.<br>ENTER NEW PASSCODE.</b>"
 
 	if(l_setshort)
-		dat += text("<p>\n<font color=red><b>ALERT: MEMORY SYSTEM ERROR - 6040 201</b></font>")
+		dat += "<p>\n<font color=red><b>ALERT: MEMORY SYSTEM ERROR - 6040 201</b></font>"
 
 	message = "[code]"
 
 	if(!locked)
 		message = "*****"
 
-	dat += text("<HR>\n>[]<BR>\n<A href='?src=\ref[];type=1'>1</A>-<A href='?src=\ref[];type=2'>2</A>-<A href='?src=\ref[];type=3'>3</A><BR>\n<A href='?src=\ref[];type=4'>4</A>-<A href='?src=\ref[];type=5'>5</A>-<A href='?src=\ref[];type=6'>6</A><BR>\n<A href='?src=\ref[];type=7'>7</A>-<A href='?src=\ref[];type=8'>8</A>-<A href='?src=\ref[];type=9'>9</A><BR>\n<A href='?src=\ref[];type=R'>R</A>-<A href='?src=\ref[];type=0'>0</A>-<A href='?src=\ref[];type=E'>E</A><BR>\n</TT>", message, src, src, src, src, src, src, src, src, src, src, src, src)
+	dat += "<HR>\n>[message]<BR>\n<A href='?src=\ref[src];type=1'>1</A>-<A href='?src=\ref[src];type=2'>2</A>-<A href='?src=\ref[src];type=3'>3</A><BR>\n<A href='?src=\ref[src];type=4'>4</A>-<A href='?src=\ref[src];type=5'>5</A>-<A href='?src=\ref[src];type=6'>6</A><BR>\n<A href='?src=\ref[src];type=7'>7</A>-<A href='?src=\ref[src];type=8'>8</A>-<A href='?src=\ref[src];type=9'>9</A><BR>\n<A href='?src=\ref[src];type=R'>R</A>-<A href='?src=\ref[src];type=0'>0</A>-<A href='?src=\ref[src];type=E'>E</A><BR>\n</TT>"
 
 
 	var/datum/browser/popup = new(user, "caselock", "<div align='center'>[src]</div>")
@@ -121,15 +121,19 @@
 	name = "secure briefcase"
 	icon = 'icons/obj/items/storage/storage.dmi'
 	icon_state = "secure"
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/items/containers_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/items/containers_right.dmi',
+	)
 	item_state = "sec-case"
 	desc = "A large briefcase with a digital locking system."
-	force = 8.0
+	force = 8
 	throw_speed = 1
 	throw_range = 4
 	w_class = WEIGHT_CLASS_BULKY
 
 
-/obj/item/storage/secure/briefcase/Initialize()
+/obj/item/storage/secure/briefcase/Initialize(mapload)
 	. = ..()
 	new /obj/item/paper(src)
 	new /obj/item/tool/pen(src)
@@ -162,9 +166,9 @@
 	icon_locking = "safeb"
 	icon_sparking = "safespark"
 	flags_atom = CONDUCT
-	force = 8.0
-	w_class = 8.0
-	max_w_class = 8
+	force = 8
+	w_class = WEIGHT_CLASS_GIGANTIC
+	max_w_class = WEIGHT_CLASS_GIGANTIC
 	anchored = TRUE
 	density = FALSE
 	cant_hold = list(/obj/item/storage/secure/briefcase)

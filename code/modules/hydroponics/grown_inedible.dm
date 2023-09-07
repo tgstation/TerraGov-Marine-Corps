@@ -8,7 +8,7 @@
 	var/plantname
 	var/potency = 1
 
-/obj/item/grown/Initialize()
+/obj/item/grown/Initialize(mapload)
 	. = ..()
 
 	var/datum/reagents/R = new/datum/reagents(50)
@@ -28,7 +28,7 @@
 			for(var/rid in S.chems)
 				var/list/reagent_data = S.chems[rid]
 				var/rtotal = reagent_data[1]
-				if(reagent_data.len > 1 && potency > 0)
+				if(length(reagent_data) > 1 && potency > 0)
 					rtotal += round(potency/reagent_data[2])
 				reagents.add_reagent(rid,max(1,rtotal))
 
@@ -95,7 +95,7 @@
 
 	var/potency_divisior = 5
 
-/obj/item/grown/nettle/Initialize()
+/obj/item/grown/nettle/Initialize(mapload)
 	. = ..()
 	force = round(5 + potency / potency_divisior)
 
@@ -156,8 +156,8 @@
 
 		M.adjust_blurriness(force/7)
 		if(prob(20))
-			M.Unconscious(force/6 *20)
-			M.Paralyze(force/15 *20)
+			M.Unconscious(force/3 SECONDS)
+			M.Paralyze(force/7.5 SECONDS)
 		M.drop_held_item()
 
 /obj/item/corncob

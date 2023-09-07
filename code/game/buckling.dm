@@ -23,9 +23,9 @@
 	if(!(buckling_mob.buckle_flags & CAN_BE_BUCKLED) && !force)
 		if(!silent)
 			if(buckling_mob == usr)
-				to_chat(buckling_mob, span_warning("You are unable to buckle yourself to [src]!"))
+				balloon_alert_to_viewers("can't buckle")
 			else
-				to_chat(usr, span_warning("You are unable to buckle [buckling_mob] to [src]!"))
+				balloon_alert_to_viewers("can't buckle [buckling_mob] to [src]")
 		return FALSE
 
 	// This signal will check if the mob is mounting this atom to ride it. There are 3 possibilities for how this goes
@@ -62,7 +62,7 @@
 	buckling_mob.throw_alert("buckled", /atom/movable/screen/alert/restrained/buckled)
 	post_buckle_mob(buckling_mob, silent)
 
-	RegisterSignal(buckling_mob, COMSIG_LIVING_DO_RESIST, .proc/resisted_against)
+	RegisterSignal(buckling_mob, COMSIG_LIVING_DO_RESIST, PROC_REF(resisted_against))
 	SEND_SIGNAL(src, COMSIG_MOVABLE_BUCKLE, buckling_mob, force, check_loc, lying_buckle, hands_needed, target_hands_needed, silent)
 	return TRUE
 

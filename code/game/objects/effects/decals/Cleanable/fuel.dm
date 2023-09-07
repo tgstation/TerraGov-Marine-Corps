@@ -9,21 +9,21 @@
 	var/amount = 1 //Basically moles.
 	var/spread_fail_chance = 75 //percent
 	///Used for the fire_lvl of the resulting fire
-	var/fire_lvl
+	var/fire_lvl = 15
 	///Used for the burn_lvl of the resulting fire
-	var/burn_lvl
+	var/burn_lvl = 15
 	var/f_color = "red"
 
 
 /obj/effect/decal/cleanable/liquid_fuel/Initialize(mapload, amt = 1, logs = TRUE, newDir)
 	. = ..()
 	var/static/list/connections = list(
-		COMSIG_ATOM_ENTERED = .proc/on_cross,
+		COMSIG_ATOM_ENTERED = PROC_REF(on_cross),
 	)
 	AddElement(/datum/element/connect_loc, connections)
 	amount = amt
-	burn_lvl = rand(0, 25)
-	fire_lvl = rand(5,30)
+	burn_lvl += rand(-15, 15)
+	fire_lvl += rand(-10, 20)
 	if(newDir)
 		setDir(newDir)
 	return INITIALIZE_HINT_LATELOAD
@@ -37,7 +37,7 @@
 		amount += other.amount
 		qdel(other)
 	fuel_spread()
-	RegisterSignal(loc, COMSIG_TURF_THROW_ENDED_HERE, .proc/ignite_check_wrapper)
+	RegisterSignal(loc, COMSIG_TURF_THROW_ENDED_HERE, PROC_REF(ignite_check_wrapper))
 
 ///called when someonething moves over the fuel
 /obj/effect/decal/cleanable/liquid_fuel/proc/on_cross(datum/source, atom/movable/AM, oldloc, oldlocs)
@@ -94,12 +94,12 @@
 /obj/effect/decal/cleanable/liquid_fuel/proc/ignite_fuel(igniter)
 	if(igniter)
 		visible_message(span_warning("[igniter] ignites the spilled fuel!"))
-	new /obj/flamer_fire(loc, fire_lvl, burn_lvl, f_color)
 	var/turf/S = get_turf(src)
+	S.ignite(fire_lvl, burn_lvl, f_color)
 	for(var/D in CARDINAL_DIRS)
 		var/turf/T = get_step(S, D)
 		for(var/obj/effect/decal/cleanable/liquid_fuel/other in T)
-			INVOKE_NEXT_TICK(other, .proc/ignite_fuel)	//Spread effect
+			INVOKE_NEXT_TICK(other, PROC_REF(ignite_fuel))	//Spread effect
 	qdel(src)
 
 ///Ignites when something hot enters our loc, either via crossed or signal wrapper
@@ -124,3 +124,8 @@
 /obj/effect/decal/cleanable/liquid_fuel/flamethrower_fuel
 	icon_state = "mustard"
 	spread_fail_chance = 0 //percent
+
+/obj/effect/decal/cleanable/liquid_fuel/xfuel
+	fire_lvl = 25
+	burn_lvl = 25
+	f_color = "blue"

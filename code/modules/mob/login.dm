@@ -1,8 +1,8 @@
 /mob/Login()
 	if(!client) //Yes, this can happen. Thanks BYOND.
 		return
-	ip_address	= client.address
-	computer_id	= client.computer_id
+	ip_address = client.address
+	computer_id = client.computer_id
 	GLOB.player_list |= src
 	log_message("[src] has logged in.", LOG_OOC)
 	world.update_status()
@@ -65,3 +65,4 @@
 	log_mob_tag("\[[tag]\] NEW OWNER: [key_name(src)]")
 	SEND_SIGNAL(src, COMSIG_MOB_LOGIN)
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_MOB_LOGIN, src)
+	client.init_verbs()

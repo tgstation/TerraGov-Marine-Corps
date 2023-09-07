@@ -22,6 +22,7 @@
 
 /datum/action/observer_action/show_hivestatus
 	name = "Show Hive status"
+	action_icon = 'icons/Xeno/actions.dmi'
 	action_icon_state = "watch_xeno"
 
 
@@ -48,6 +49,11 @@
 
 /datum/action/observer_action/take_ssd_mob/action_activate()
 	var/mob/dead/observer/dead_owner = owner
+
+	if(!GLOB.ssd_posses_allowed)
+		to_chat(owner, span_warning("Taking over SSD mobs is currently disabled."))
+		return
+
 	if(GLOB.key_to_time_of_death[owner.key] + TIME_BEFORE_TAKING_BODY > world.time && !dead_owner.started_as_observer)
 		to_chat(owner, span_warning("You died too recently to be able to take a new mob."))
 		return
@@ -56,13 +62,9 @@
 	for(var/mob/living/ssd_mob AS in GLOB.ssd_living_mobs)
 		if(is_centcom_level(ssd_mob.z) || ssd_mob.afk_status == MOB_RECENTLY_DISCONNECTED)
 			continue
-		if(isxeno(ssd_mob))
-			var/mob/living/carbon/xenomorph/potential_minion = ssd_mob
-			if((potential_minion.xeno_caste.caste_flags & CASTE_IS_A_MINION) && !potential_minion.hive.purchases.upgrades_by_name[GHOSTS_CAN_TAKE_MINIONS].times_bought)
-				continue
 		free_ssd_mobs += ssd_mob
 
-	if(!free_ssd_mobs.len)
+	if(!length(free_ssd_mobs))
 		to_chat(owner, span_warning("There aren't any SSD mobs."))
 		return FALSE
 

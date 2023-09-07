@@ -23,6 +23,7 @@
 	name = "Magmoor Central Fissure"
 	ceiling = CEILING_DEEP_UNDERGROUND
 	flags_area = NO_DROPPOD
+	always_unpowered = TRUE
 
 //Caves
 
@@ -30,6 +31,7 @@
 	ceiling = CEILING_DEEP_UNDERGROUND
 	ambience = list('sound/ambience/ambicave.ogg', 'sound/ambience/ambilava1.ogg', 'sound/ambience/ambilava2.ogg', 'sound/ambience/ambilava3.ogg')
 	minimap_color = MINIMAP_AREA_CAVES
+	always_unpowered = TRUE
 
 /area/magmoor/cave/central
 	name = "Central Caves"
@@ -82,6 +84,7 @@
 	icon_state = "central"
 	outside = TRUE
 	ambience = list('sound/ambience/ambilava1.ogg', 'sound/ambience/ambilava2.ogg', 'sound/ambience/ambilava3.ogg')
+	always_unpowered = TRUE
 
 /area/magmoor/compound/north
 	name = "North Magmoor Compound"
@@ -177,11 +180,13 @@
 	name = "Thermal Reactors"
 	ceiling = CEILING_DEEP_UNDERGROUND_METAL
 	icon_state = "lava_power"
+	minimap_color = MINIMAP_AREA_ENGI_CAVE
 
 /area/magmoor/engi/power
 	name = "Power Management Centre"
 	ceiling = CEILING_DEEP_UNDERGROUND_METAL
 	icon_state = "lava_power"
+	minimap_color = MINIMAP_AREA_ENGI_CAVE
 
 /area/magmoor/engi/storage
 	name = "Engineering Lobby & Storage"
@@ -223,7 +228,7 @@
 
 /area/magmoor/civilian
 	ceiling = CEILING_METAL
-	minimap_color = MINIMAP_AREA_COLONY
+	minimap_color = MINIMAP_AREA_LIVING
 
 /area/magmoor/civilian/cook
 	name = "Kitchen"
@@ -289,6 +294,7 @@
 	name = "Southern Arrivals Hallway"
 	icon_state = "lava_civ"
 	ceiling = CEILING_GLASS
+	minimap_color = MINIMAP_AREA_COLONY
 
 /area/magmoor/civilian/arrival/east
 	name = "Eastern Arrivals Hallway"
@@ -300,6 +306,7 @@
 	icon_state = "lava_research"
 	ceiling = CEILING_DEEP_UNDERGROUND_METAL
 	ambience = list('sound/ambience/ambitech.ogg', 'sound/ambience/ambitech2.ogg')
+	minimap_color = MINIMAP_AREA_RESEARCH_CAVE
 
 /area/magmoor/research/containment
 	name = "Research Materials & Containment"
@@ -332,6 +339,7 @@
 //Cargo
 /area/magmoor/cargo
 	ceiling = CEILING_METAL
+	minimap_color = MINIMAP_AREA_REQ
 
 /area/magmoor/cargo/processing
 	name = "Cargo Processing East"
@@ -364,6 +372,7 @@
 	icon_state = "lava_civ_garden"
 	ceiling = CEILING_GLASS
 	outside = TRUE
+	minimap_color = MINIMAP_AREA_LIVING
 
 /area/magmoor/hydroponics/north
 	name = "Hydropnics North"
@@ -374,6 +383,7 @@
 //Command
 /area/magmoor/command
 	ceiling = CEILING_METAL
+	minimap_color = MINIMAP_AREA_COMMAND
 
 /area/magmoor/command/lobby
 	name = "North Command Lobby"
@@ -404,6 +414,7 @@
 	name = "Mining Equipment & Break Room"
 	icon_state = "lava_mining"
 	ceiling = CEILING_DEEP_UNDERGROUND_METAL
+	minimap_color = MINIMAP_AREA_REQ_CAVE
 
 /area/magmoor/mining/garage
 	name = "Mining Garage & Storage"

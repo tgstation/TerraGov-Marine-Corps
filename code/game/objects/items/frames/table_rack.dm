@@ -11,6 +11,10 @@
 	gender = PLURAL
 	icon = 'icons/obj/items/items.dmi'
 	icon_state = "table_parts"
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/equipment/engineering_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/equipment/engineering_right.dmi',
+	)
 	item_state = "table_parts"
 	flags_atom = CONDUCT
 	attack_verb = list("slammed", "bashed", "battered", "bludgeoned", "thrashed", "whacked")
@@ -139,6 +143,10 @@
 	name = "rack parts"
 	desc = "A kit for a storage rack with multiple metal shelves. Relatively cheap, useful for mass storage. Some assembly required."
 	icon = 'icons/obj/items/items.dmi'
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/equipment/engineering_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/equipment/engineering_right.dmi',
+	)
 	icon_state = "rack_parts"
 	flags_atom = CONDUCT
 

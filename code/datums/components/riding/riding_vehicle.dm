@@ -7,7 +7,7 @@
 
 /datum/component/riding/vehicle/RegisterWithParent()
 	. = ..()
-	RegisterSignal(parent, COMSIG_RIDDEN_DRIVER_MOVE, .proc/driver_move)
+	RegisterSignal(parent, COMSIG_RIDDEN_DRIVER_MOVE, PROC_REF(driver_move))
 
 /datum/component/riding/vehicle/driver_move(atom/movable/movable_parent, mob/living/user, direction)
 	if(!COOLDOWN_CHECK(src, vehicle_move_cooldown))

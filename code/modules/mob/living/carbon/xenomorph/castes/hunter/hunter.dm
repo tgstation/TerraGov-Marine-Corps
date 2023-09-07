@@ -2,7 +2,7 @@
 	caste_base_type = /mob/living/carbon/xenomorph/hunter
 	name = "Hunter"
 	desc = "A beefy, fast alien with sharp claws."
-	icon = 'icons/Xeno/48x48_Xenos.dmi'
+	icon = 'icons/Xeno/castes/hunter.dmi'
 	icon_state = "Hunter Running"
 	bubble_icon = "alien"
 	health = 150
@@ -13,6 +13,10 @@
 	inherent_verbs = list(
 		/mob/living/carbon/xenomorph/proc/vent_crawl,
 	)
+
+/mob/living/carbon/xenomorph/hunter/Initialize(mapload)
+	. = ..()
+	ADD_TRAIT(src, TRAIT_SILENT_FOOTSTEPS, XENO_TRAIT)
 
 /mob/living/carbon/xenomorph/hunter/apply_alpha_channel(image/I)
 	I.alpha = src.alpha

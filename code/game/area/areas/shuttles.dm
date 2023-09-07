@@ -11,7 +11,7 @@
 	// Loading the same shuttle map at a different time will produce distinct area instances.
 	unique = FALSE
 
-///area/shuttle/Initialize()
+///area/shuttle/Initialize(mapload)
 //	if(!canSmoothWithAreas)
 //		canSmoothWithAreas = type
 //	. = ..()
@@ -72,6 +72,7 @@
 
 /area/shuttle/escape_pod
 	name = "Escape Pod"
+	minimap_color = MINIMAP_AREA_ESCAPE
 
 /area/shuttle/custom
 	name = "Custom player shuttle"

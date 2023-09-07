@@ -51,7 +51,7 @@
 /area/lv624/lazarus/comms)
 "g" = (
 /obj/structure/table,
-/obj/item/multitool,
+/obj/item/tool/multitool,
 /turf/open/floor/tile/brown{
 	dir = 9
 	},
@@ -250,7 +250,7 @@
 /turf/closed/wall/r_wall,
 /area/lv624/lazarus/comms)
 "J" = (
-/obj/item/multitool,
+/obj/item/tool/multitool,
 /obj/structure/rack,
 /turf/open/floor/tile/brown{
 	dir = 9

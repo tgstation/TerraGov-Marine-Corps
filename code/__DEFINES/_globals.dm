@@ -20,11 +20,11 @@
 #define GLOBAL_PROTECT(X)
 #endif
 
-//Standard BYOND global, do not use
-#define GLOBAL_REAL_VAR(X) var/global/##X
+/// Standard BYOND global, seriously do not use without an earthshakingly good reason
+#define GLOBAL_REAL_VAR(X) var/global/##X;
 
-//Standard typed BYOND global, do not use
-#define GLOBAL_REAL(X, Typepath) var/global##Typepath/##X
+/// Standard typed BYOND global, seriously do not use without an earthshakingly good reason
+#define GLOBAL_REAL(X, Typepath) var/global##Typepath/##X;
 
 //Defines a global var on the controller, do not use
 #define GLOBAL_RAW(X) /datum/controller/global_vars/var/global##X
@@ -58,20 +58,3 @@
 
 //Create an typed null global
 #define GLOBAL_DATUM(X, Typepath) GLOBAL_RAW(Typepath/##X); GLOBAL_UNMANAGED(X)
-
-// So we want to have compile time guarantees these procs exist on local type, unfortunately 515 killed the .proc/procname syntax so we have to use nameof()
-#if DM_VERSION < 515
-/// Call by name proc reference, checks if the proc exists on this type or as a global proc
-#define PROC_REF(X) (.proc/##X)
-/// Call by name proc reference, checks if the proc exists on given type or as a global proc
-#define TYPE_PROC_REF(TYPE, X) (##TYPE.proc/##X)
-/// Call by name proc reference, checks if the proc is existing global proc
-#define GLOBAL_PROC_REF(X) (/proc/##X)
-#else
-/// Call by name proc reference, checks if the proc exists on this type or as a global proc
-#define PROC_REF(X) (nameof(.proc/##X))
-/// Call by name proc reference, checks if the proc exists on given type or as a global proc
-#define TYPE_PROC_REF(TYPE, X) (nameof(##TYPE.proc/##X))
-/// Call by name proc reference, checks if the proc is existing global proc
-#define GLOBAL_PROC_REF(X) (/proc/##X)
-#endif

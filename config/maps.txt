@@ -17,10 +17,6 @@ map lv624
 	minplayers 25
 endmap
 
-map desertdam
-	minplayers 90
-endmap
-
 map bigred_v2
 	minplayers 25
 endmap
@@ -65,4 +61,16 @@ endmap
 
 map deltastation
 	minplayers 60
+endmap
+
+map desparity
+	maxplayers 30
+endmap
+
+map lawanka
+minplayers 60
+endmap
+
+map slumbridge
+  minplayers 35
 endmap

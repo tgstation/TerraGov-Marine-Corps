@@ -35,10 +35,10 @@
 	var/faction = FACTION_TERRAGOV
 
 
-/obj/machinery/computer/intel_computer/Initialize()
+/obj/machinery/computer/intel_computer/Initialize(mapload)
 	. = ..()
 	GLOB.intel_computers += src
-	RegisterSignal(SSdcs, COMSIG_GLOB_DROPSHIP_HIJACKED, .proc/disable_on_hijack)
+	RegisterSignal(SSdcs, COMSIG_GLOB_DROPSHIP_HIJACKED, PROC_REF(disable_on_hijack))
 
 /obj/machinery/computer/intel_computer/process()
 	. = ..()

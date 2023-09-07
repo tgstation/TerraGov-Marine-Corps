@@ -142,7 +142,7 @@
 
 	for(var/obj/machinery/flasher/M in GLOB.machines)
 		if(M.id == id)
-			INVOKE_ASYNC(M, /obj/machinery/flasher.proc/flash)
+			INVOKE_ASYNC(M, TYPE_PROC_REF(/obj/machinery/flasher, flash))
 
 	sleep(5 SECONDS)
 

@@ -18,9 +18,9 @@
 	///Time to undeploy
 	var/undeploy_time = 1 SECONDS
 
-/obj/item/deployable_vehicle/Initialize()
+/obj/item/deployable_vehicle/Initialize(mapload)
 	. = ..()
-	AddElement(/datum/element/deployable_item, deployable_item, deploy_time, undeploy_time)
+	AddComponent(/datum/component/deployable_item, deployable_item, deploy_time, undeploy_time)
 
 /obj/vehicle/unmanned/deployable
 	name = "UV-L Iguana"

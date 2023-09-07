@@ -101,6 +101,11 @@
 				SSexplosions.lowMovAtom += flat_equipment
 			if(trackers)
 				SSexplosions.lowMovAtom += trackers
+		if(EXPLODE_WEAK)
+			if(flat_equipment)
+				SSexplosions.weakMovAtom += flat_equipment
+			if(trackers)
+				SSexplosions.weakMovAtom += trackers
 
 /obj/vehicle/sealed/mecha/handle_atom_del(atom/A)
 	if(A in occupants) //todo does not work and in wrong file
@@ -117,7 +122,7 @@
 
 	if(!equipment_disabled && LAZYLEN(occupants)) //prevent spamming this message with back-to-back EMPs
 		to_chat(occupants, span_warning("Error -- Connection to equipment control unit has been lost."))
-	addtimer(CALLBACK(src, /obj/vehicle/sealed/mecha.proc/restore_equipment), 3 SECONDS, TIMER_UNIQUE | TIMER_OVERRIDE)
+	addtimer(CALLBACK(src, TYPE_PROC_REF(/obj/vehicle/sealed/mecha, restore_equipment)), 3 SECONDS, TIMER_UNIQUE | TIMER_OVERRIDE)
 	equipment_disabled = TRUE
 	set_mouse_pointer()
 

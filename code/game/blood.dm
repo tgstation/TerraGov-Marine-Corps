@@ -50,8 +50,14 @@
 /obj/item/proc/generate_blood_overlay()
 	if(!blood_overlay)
 		var/icon/I = new /icon(icon, icon_state)
-		I.Blend(new /icon('icons/effects/blood.dmi', rgb(255,255,255)),ICON_ADD) //fills the icon_state with white (except where it's transparent)
-		I.Blend(new /icon('icons/effects/blood.dmi', "itemblood"),ICON_MULTIPLY) //adds blood and the remaining white areas become transparant
+
+		if((inhand_x_dimension > 32) || (inhand_y_dimension > 32))
+			I.Blend(new /icon('icons/effects/64x64.dmi', rgb(255,255,255)),ICON_ADD) //fills the icon_state with white (except where it's transparent)
+			I.Blend(new /icon('icons/effects/64x64.dmi', "itemblood"),ICON_MULTIPLY) //adds blood and the remaining white areas become transparant
+		else
+			I.Blend(new /icon('icons/effects/blood.dmi', rgb(255,255,255)),ICON_ADD)
+			I.Blend(new /icon('icons/effects/blood.dmi', "itemblood"),ICON_MULTIPLY)
+
 		blood_overlay = image(I)
 
 		blood_overlay.color = blood_color
@@ -84,7 +90,6 @@
 
 
 /atom/proc/clean_blood()
-	germ_level = 0
 	blood_color = null
 	return 1
 
@@ -104,7 +109,6 @@
 	if(gloves)
 		if(gloves.clean_blood())
 			update_inv_gloves()
-		gloves.germ_level = 0
 	else
 		blood_color = null
 		bloody_hands = 0

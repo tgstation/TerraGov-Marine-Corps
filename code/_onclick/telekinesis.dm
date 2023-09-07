@@ -14,7 +14,7 @@
 
 /*
 To add TK to a living mob, just make it register this proc on ranged attacks and enable the TK flag:
-	RegisterSignal(src, COMSIG_MOB_ATTACK_RANGED, .proc/on_ranged_attack_tk)
+	RegisterSignal(src, COMSIG_MOB_ATTACK_RANGED, PROC_REF(on_ranged_attack_tk))
 	ENABLE_BITFIELD(status_flags, TK_USER)
 Redefine as needed.
 */
@@ -93,7 +93,7 @@ Redefine as needed.
 	var/mob/living/carbon/tk_user = null
 
 
-/obj/item/tk_grab/Initialize()
+/obj/item/tk_grab/Initialize(mapload)
 	. = ..()
 	START_PROCESSING(SSfastprocess, src)
 

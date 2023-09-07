@@ -61,14 +61,14 @@
 	var/stored_metal_max = 2000
 
 
-/obj/machinery/autodoc/Initialize()
+/obj/machinery/autodoc/Initialize(mapload)
 	. = ..()
-	RegisterSignal(src, COMSIG_MOVABLE_SHUTTLE_CRUSH, .proc/shuttle_crush)
+	RegisterSignal(src, COMSIG_MOVABLE_SHUTTLE_CRUSH, PROC_REF(shuttle_crush))
 
 
 /obj/machinery/autodoc/Destroy()
 	forceeject = TRUE
-	INVOKE_ASYNC(src, .proc/do_eject)
+	INVOKE_ASYNC(src, PROC_REF(do_eject))
 	if(connected)
 		connected.connected = null
 		connected = null
@@ -216,7 +216,7 @@
 	var/surgery_list = list()
 	for(var/datum/limb/L in M.limbs)
 		if(L)
-			if(L.wounds.len)
+			if(length(L.wounds))
 				surgery_list += create_autodoc_surgery(L,LIMB_SURGERY,ADSURGERY_INTERNAL)
 
 			var/organdamagesurgery = 0
@@ -245,7 +245,7 @@
 			if(L.limb_status & LIMB_NECROTIZED)
 				surgery_list += create_autodoc_surgery(L,LIMB_SURGERY,ADSURGERY_NECRO)
 			var/skip_embryo_check = FALSE
-			if(L.implants.len)
+			if(length(L.implants))
 				for(var/I in L.implants)
 					if(!is_type_in_list(I,GLOB.known_implants))
 						surgery_list += create_autodoc_surgery(L,LIMB_SURGERY,ADSURGERY_SHRAPNEL)
@@ -304,7 +304,7 @@
 	else
 		surgery_todo_list = N.fields["autodoc_manual"]
 
-	if(!surgery_todo_list.len)
+	if(!length(surgery_todo_list))
 		visible_message("[src] buzzes, no surgical procedures were queued.")
 		return
 
@@ -328,7 +328,7 @@
 			surgery_todo_list -= A
 
 	var/currentsurgery = 1
-	while(surgery_todo_list.len > 0)
+	while(length(surgery_todo_list) > 0)
 		if(!surgery)
 			break
 		sleep(-1)
@@ -551,7 +551,7 @@
 										A.forceMove(occupant.loc)
 										occupant.status_flags &= ~XENO_HOST
 									qdel(A)
-						if(S.limb_ref.implants.len)
+						if(length(S.limb_ref.implants))
 							for(var/obj/item/I in S.limb_ref.implants)
 								if(!surgery)
 									break
@@ -734,34 +734,34 @@
 			return
 	go_out()
 
-/obj/machinery/autodoc/proc/move_inside_wrapper(mob/living/dropped, mob/dragger)
-	if(dragger.incapacitated() || !ishuman(dragger))
+/obj/machinery/autodoc/proc/move_inside_wrapper(mob/living/target, mob/user)
+	if(!ishuman(target) || !ishuman(user) || user.incapacitated(TRUE))
 		return
 
 	if(occupant)
-		to_chat(dragger, span_notice("[src] is already occupied!"))
+		to_chat(user, span_notice("[src] is already occupied!"))
 		return
 
 	if(machine_stat & (NOPOWER|BROKEN))
-		to_chat(dragger, span_notice("[src] is non-functional!"))
+		to_chat(user, span_notice("[src] is non-functional!"))
 		return
 
-	if(dragger.skills.getRating(SKILL_SURGERY) < SKILL_SURGERY_TRAINED && !event)
-		dropped.visible_message(span_notice("[dropped] fumbles around figuring out how to get into \the [src]."),
+	if(user.skills.getRating(SKILL_SURGERY) < SKILL_SURGERY_TRAINED && !event)
+		target.visible_message(span_notice("[target] fumbles around figuring out how to get into \the [src]."),
 		span_notice("You fumble around figuring out how to get into \the [src]."))
-		var/fumbling_time = max(0 , SKILL_TASK_TOUGH - ( SKILL_TASK_EASY * dragger.skills.getRating(SKILL_SURGERY) ))// 8 secs non-trained, 5 amateur
-		if(!do_after(dropped, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
+		var/fumbling_time = max(0 , SKILL_TASK_TOUGH - ( SKILL_TASK_EASY * user.skills.getRating(SKILL_SURGERY) ))// 8 secs non-trained, 5 amateur
+		if(!do_after(target, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 			return
 
-	dropped.visible_message(span_notice("[dropped] starts climbing into \the [src]."),
+	target.visible_message(span_notice("[target] starts climbing into \the [src]."),
 	span_notice("You start climbing into \the [src]."))
-	if(do_after(dropped, 1 SECONDS, FALSE, src, BUSY_ICON_GENERIC))
+	if(do_after(target, 1 SECONDS, FALSE, src, BUSY_ICON_GENERIC))
 		if(occupant)
-			to_chat(dragger, span_notice("[src] is already occupied!"))
+			to_chat(user, span_notice("[src] is already occupied!"))
 			return
-		dropped.stop_pulling()
-		dropped.forceMove(src)
-		occupant = dropped
+		target.stop_pulling()
+		target.forceMove(src)
+		occupant = target
 		icon_state = "autodoc_closed"
 		var/implants = list(/obj/item/implant/neurostim)
 		var/mob/living/carbon/human/H = occupant
@@ -772,7 +772,7 @@
 			qdel(O)
 		if(automaticmode)
 			say("Automatic mode engaged, initialising procedures.")
-			addtimer(CALLBACK(src, .proc/auto_start), 5 SECONDS)
+			addtimer(CALLBACK(src, PROC_REF(auto_start)), 5 SECONDS)
 
 ///Callback to start auto mode on someone entering
 /obj/machinery/autodoc/proc/auto_start()
@@ -787,8 +787,7 @@
 
 
 /obj/machinery/autodoc/MouseDrop_T(mob/M, mob/user)
-	if(!isliving(M) || !ishuman(user))
-		return
+	. = ..()
 	move_inside_wrapper(M, user)
 
 /obj/machinery/autodoc/verb/move_inside()
@@ -921,7 +920,7 @@
 
 	if(automaticmode)
 		say("Automatic mode engaged, initialising procedures.")
-		addtimer(CALLBACK(src, .proc/auto_start), 5 SECONDS)
+		addtimer(CALLBACK(src, PROC_REF(auto_start)), 5 SECONDS)
 
 
 /////////////////////////////////////////////////////////////
@@ -944,7 +943,7 @@
 	var/obj/item/reagent_containers/blood/OMinus/blood_pack
 
 
-/obj/machinery/autodoc_console/Initialize()
+/obj/machinery/autodoc_console/Initialize(mapload)
 	. = ..()
 	connected = locate(/obj/machinery/autodoc, get_step(src, WEST))
 	if(connected)
@@ -1028,13 +1027,13 @@
 			operating = "Not in surgery"
 		if(1)
 			operating = "<font color='#b54646'><B>SURGERY IN PROGRESS: MANUAL EJECTION ONLY TO BE ATTEMPTED BY TRAINED OPERATORS!</B></FONT>"
-	dat += text("[]\tHealth %: [] ([])</FONT><BR>", (connected.occupant.health > 50 ? "<font color='#487553'>" : "<font color='#b54646'>"), round(connected.occupant.health), t1)
+	dat += "[connected.occupant.health > 50 ? "<font color='#487553'>" : "<font color='#b54646'>"]\tHealth %: [round(connected.occupant.health)] ([t1])</FONT><BR>"
 	var/pulse = connected.occupant.handle_pulse()
-	dat += text("[]\t-Pulse, bpm: []</FONT><BR>", (pulse == PULSE_NONE || pulse == PULSE_THREADY ? "<font color='#b54646'>" : "<font color='#487553'>"), connected.occupant.get_pulse(GETPULSE_TOOL))
-	dat += text("[]\t-Brute Damage %: []</FONT><BR>", (connected.occupant.getBruteLoss() < 60 ? "<font color='#487553'>" : "<font color='#b54646'>"), connected.occupant.getBruteLoss())
-	dat += text("[]\t-Respiratory Damage %: []</FONT><BR>", (connected.occupant.getOxyLoss() < 60 ? "<font color='#487553'>" : "<font color='#b54646'>"), connected.occupant.getOxyLoss())
-	dat += text("[]\t-Toxin Content %: []</FONT><BR>", (connected.occupant.getToxLoss() < 60 ? "<font color='#487553'>" : "<font color='#b54646'>"), connected.occupant.getToxLoss())
-	dat += text("[]\t-Burn Severity %: []</FONT><BR>", (connected.occupant.getFireLoss() < 60 ? "<font color='#487553'>" : "<font color='#b54646'>"), connected.occupant.getFireLoss())
+	dat += "[pulse == PULSE_NONE || pulse == PULSE_THREADY ? "<font color='#b54646'>" : "<font color='#487553'>"]\t-Pulse, bpm: [connected.occupant.get_pulse(GETPULSE_TOOL)]</FONT><BR>"
+	dat += "[connected.occupant.getBruteLoss() < 60 ? "<font color='#487553'>" : "<font color='#b54646'>"]\t-Brute Damage %: [connected.occupant.getBruteLoss()]</FONT><BR>"
+	dat += "[connected.occupant.getOxyLoss() < 60 ? "<font color='#487553'>" : "<font color='#b54646'>"]\t-Respiratory Damage %: [connected.occupant.getOxyLoss()]</FONT><BR>"
+	dat += "[connected.occupant.getToxLoss() < 60 ? "<font color='#487553'>" : "<font color='#b54646'>"]\t-Toxin Content %: [connected.occupant.getToxLoss()]</FONT><BR>"
+	dat += "[connected.occupant.getFireLoss() < 60 ? "<font color='#487553'>" : "<font color='#b54646'>"]\t-Burn Severity %: [connected.occupant.getFireLoss()]</FONT><BR>"
 
 	dat += "<hr> Surgery Queue:<br>"
 
@@ -1229,7 +1228,7 @@
 		if(href_list["internal"])
 			for(var/i in connected.occupant.limbs)
 				var/datum/limb/L = i
-				if(L.wounds.len)
+				if(length(L.wounds))
 					N.fields["autodoc_manual"] += create_autodoc_surgery(L,LIMB_SURGERY,ADSURGERY_INTERNAL)
 					needed++
 			if(!needed)

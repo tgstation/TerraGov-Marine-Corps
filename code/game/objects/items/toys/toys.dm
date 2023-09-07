@@ -17,6 +17,10 @@
 
 /obj/item/toy
 	icon = 'icons/obj/items/toy.dmi'
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/items/toys_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/items/toys_right.dmi',
+	)
 	throw_speed = 4
 	throw_range = 20
 	force = 0
@@ -36,7 +40,7 @@
 	icon_state = "waterballoon-e"
 	item_state = "balloon-empty"
 
-/obj/item/toy/balloon/Initialize()
+/obj/item/toy/balloon/Initialize(mapload)
 	. = ..()
 	var/datum/reagents/R = new/datum/reagents(10)
 	reagents = R
@@ -115,6 +119,10 @@
 	desc = "Blink.  Blink.  Blink. Ages 8 and up."
 	icon = 'icons/obj/items/radio.dmi'
 	icon_state = "beacon"
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/equipment/tools_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/equipment/tools_right.dmi',
+	)
 	item_state = "signaler"
 
 /*
@@ -158,10 +166,10 @@
 	icon_state = "snappop"
 	w_class = WEIGHT_CLASS_TINY
 
-/obj/item/toy/snappop/Initialize()
+/obj/item/toy/snappop/Initialize(mapload)
 	. = ..()
 	var/static/list/connections = list(
-		COMSIG_ATOM_ENTERED = .proc/on_cross,
+		COMSIG_ATOM_ENTERED = PROC_REF(on_cross),
 	)
 	AddElement(/datum/element/connect_loc, connections)
 
@@ -204,7 +212,7 @@
 	var/empty = 0
 	flags
 
-/obj/item/toy/waterflower/Initialize()
+/obj/item/toy/waterflower/Initialize(mapload)
 	. = ..()
 	var/datum/reagents/R = new/datum/reagents(10)
 	reagents = R
@@ -359,7 +367,6 @@
 	density = FALSE
 	anchored = FALSE
 	w_class = WEIGHT_CLASS_SMALL
-	force = 0.0
 	throw_speed = 1
 	throw_range = 20
 
@@ -377,7 +384,7 @@
 	var/sides = 6
 	attack_verb = list("diced")
 
-/obj/item/toy/dice/Initialize()
+/obj/item/toy/dice/Initialize(mapload)
 	. = ..()
 	icon_state = "[name][rand(sides)]"
 
@@ -414,7 +421,7 @@
 	attack_verb = list("HONKED")
 
 
-/obj/item/toy/bikehorn/Initialize()
+/obj/item/toy/bikehorn/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/squeak, 'sound/items/bikehorn.ogg', 50)
 
@@ -432,7 +439,7 @@
 							span_notice("You hug [src]. Dawwww... "))
 		last_hug_time = world.time + 50 //5 second cooldown
 
-/obj/item/toy/plush/Initialize()
+/obj/item/toy/plush/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/squeak, 'sound/items/dollsqueak.ogg', 50)
 
@@ -520,6 +527,16 @@
 	item_state = "rounyplush"
 	attack_verb = list("slashes", "bites", "pounces")
 
+/obj/item/toy/plush/gnome
+	name = "gnome"
+	desc = "A mythological creature that guarded Terra's garden. You wonder why it is here."
+	icon_state = "gnome"
+	item_state = "gnome"
+	attack_verb = list("kickes", "punches", "pounces")
+
+/obj/item/toy/plush/gnome/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/squeak, 'sound/items/gnome.ogg', 50)
 
 /obj/item/toy/beach_ball/basketball
 	name = "basketball"
@@ -569,7 +586,6 @@
 
 
 /obj/structure/hoop/CanAllowThrough(atom/movable/mover, turf/target)
-	. = ..()
 	if(istype(mover,/obj/item) && mover.throwing)
 		var/obj/item/I = mover
 		if(prob(50))

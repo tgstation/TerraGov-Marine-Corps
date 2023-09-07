@@ -8,7 +8,7 @@
 	anchored = TRUE
 	density = FALSE
 	layer = RIPPLE_LAYER
-	mouse_opacity = MOUSE_OPACITY_ICON
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	alpha = 0
 
 /obj/effect/abstract/ripple/Initialize(mapload, time_left)

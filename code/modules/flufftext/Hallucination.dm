@@ -79,7 +79,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 	var/mob/living/carbon/target = null
 
 /obj/effect/hallucination/simple
-	icon = 'icons/Xeno/2x2_Xenos.dmi'
+	icon = 'icons/Xeno/castes/runner.dmi'
 	icon_state = "Runner Walking"
 	var/px = 0
 	var/py = 0
@@ -134,7 +134,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 /obj/effect/hallucination/simple/xeno
 	name = "Mature Runner"
 	desc = "A small red alien that looks like it could run fairly quickly..."
-	icon = 'icons/Xeno/2x2_Xenos.dmi'
+	icon = 'icons/Xeno/castes/runner.dmi'
 	icon_state = "Runner Walking"
 
 /obj/effect/hallucination/simple/xeno/Initialize(mapload, mob/living/carbon/T)

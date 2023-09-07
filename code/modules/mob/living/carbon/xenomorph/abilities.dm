@@ -83,7 +83,7 @@
 	return succeed_activate(SSmonitor.gamestate == SHUTTERS_CLOSED ? plasma_cost/2 : plasma_cost)
 
 /datum/action/xeno_action/activable/plant_weeds/alternate_action_activate()
-	INVOKE_ASYNC(src, .proc/choose_weed)
+	INVOKE_ASYNC(src, PROC_REF(choose_weed))
 	return COMSIG_KB_ACTIVATED
 
 ///Chose which weed will be planted by the xeno owner or toggle automatic weeding
@@ -110,8 +110,8 @@
 		auto_weeding = FALSE
 		to_chat(owner, span_xenonotice("We will no longer automatically plant weeds."))
 		return
-	RegisterSignal(owner, COMSIG_MOVABLE_MOVED, .proc/weed_on_move)
-	RegisterSignal(owner, COMSIG_MOB_DEATH, .proc/toggle_auto_weeding)
+	RegisterSignal(owner, COMSIG_MOVABLE_MOVED, PROC_REF(weed_on_move))
+	RegisterSignal(owner, COMSIG_MOB_DEATH, PROC_REF(toggle_auto_weeding))
 	auto_weeding = TRUE
 	to_chat(owner, span_xenonotice("We will now automatically plant weeds."))
 
@@ -131,7 +131,7 @@
 	if(auto_weeding)
 		if(!visual_references[VREF_IMAGE_ONTOP])
 			// below maptext , above selected frames
-			visual_references[VREF_IMAGE_ONTOP] = image('icons/mob/actions.dmi', icon_state = "repeating", layer = ACTION_LAYER_IMAGE_ONTOP)
+			visual_references[VREF_IMAGE_ONTOP] = image('icons/Xeno/actions.dmi', icon_state = "repeating", layer = ACTION_LAYER_IMAGE_ONTOP)
 			button.add_overlay(visual_references[VREF_IMAGE_ONTOP])
 	else if(visual_references[VREF_IMAGE_ONTOP])
 		button.cut_overlay(visual_references[VREF_IMAGE_ONTOP])
@@ -198,7 +198,9 @@
 /// Helper for handling the start of mouse-down and to begin the drag-building
 /datum/action/xeno_action/activable/secrete_resin/proc/start_resin_drag(mob/user, atom/object, turf/location, control, params)
 	SIGNAL_HANDLER
-	if(toggled)
+
+	var/list/modifiers = params2list(params)
+	if(toggled && !(modifiers[BUTTON] == LEFT_CLICK))
 		dragging = TRUE
 		preshutter_build_resin(get_turf(object))
 
@@ -217,37 +219,37 @@
 /// Extra handling for adding the action for draggin functionality (for instant building)
 /datum/action/xeno_action/activable/secrete_resin/give_action(mob/living/L)
 	. = ..()
-	if(!(CHECK_BITFIELD(SSticker.mode.flags_round_type, MODE_ALLOW_XENO_QUICKBUILD) && SSresinshaping.active))
+	if(!(CHECK_BITFIELD(SSticker?.mode.flags_round_type, MODE_ALLOW_XENO_QUICKBUILD) && SSresinshaping.active))
 		return
 
 	var/mutable_appearance/build_maptext = mutable_appearance(icon = null,icon_state = null, layer = ACTION_LAYER_MAPTEXT)
 	build_maptext.pixel_x = 12
 	build_maptext.pixel_y = -5
-	build_maptext.maptext = MAPTEXT(SSresinshaping.get_building_points(owner))
+	build_maptext.maptext = MAPTEXT(SSresinshaping.quickbuild_points_by_hive[owner.get_xeno_hivenumber()])
 	visual_references[VREF_MUTABLE_BUILDING_COUNTER] = build_maptext
 
-	RegisterSignal(owner, COMSIG_MOB_MOUSEDOWN, .proc/start_resin_drag)
-	RegisterSignal(owner, COMSIG_MOB_MOUSEDRAG, .proc/preshutter_resin_drag)
-	RegisterSignal(owner, COMSIG_MOB_MOUSEUP, .proc/stop_resin_drag)
-	RegisterSignal(SSdcs, list(COMSIG_GLOB_OPEN_SHUTTERS_EARLY, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE,COMSIG_GLOB_OPEN_TIMED_SHUTTERS_XENO_HIVEMIND,COMSIG_GLOB_TADPOLE_LAUNCHED,COMSIG_GLOB_DROPPOD_LANDED), .proc/end_resin_drag)
+	RegisterSignal(owner, COMSIG_MOB_MOUSEDOWN, PROC_REF(start_resin_drag))
+	RegisterSignal(owner, COMSIG_MOB_MOUSEDRAG, PROC_REF(preshutter_resin_drag))
+	RegisterSignal(owner, COMSIG_MOB_MOUSEUP, PROC_REF(stop_resin_drag))
+	RegisterSignals(SSdcs, list(COMSIG_GLOB_OPEN_SHUTTERS_EARLY, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE,COMSIG_GLOB_OPEN_TIMED_SHUTTERS_XENO_HIVEMIND,COMSIG_GLOB_TADPOLE_LAUNCHED,COMSIG_GLOB_DROPPOD_LANDED), PROC_REF(end_resin_drag))
 
 /// Extra handling to remove the stuff needed for dragging
 /datum/action/xeno_action/activable/secrete_resin/remove_action(mob/living/carbon/xenomorph/X)
-	. = ..()
 	if(!CHECK_BITFIELD(SSticker.mode.flags_round_type, MODE_ALLOW_XENO_QUICKBUILD))
-		return
+		return ..()
 	UnregisterSignal(owner, list(COMSIG_MOB_MOUSEDRAG, COMSIG_MOB_MOUSEUP, COMSIG_MOB_MOUSEDOWN))
 	UnregisterSignal(SSdcs, list(COMSIG_GLOB_OPEN_SHUTTERS_EARLY, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE,COMSIG_GLOB_OPEN_TIMED_SHUTTERS_XENO_HIVEMIND,COMSIG_GLOB_TADPOLE_LAUNCHED,COMSIG_GLOB_DROPPOD_LANDED))
-
+	update_button_icon() //reason for the double return ..() here is owner gets unassigned in one of the parent procs, so we can't call parent before unregistering signals here
+	return ..()
 
 /datum/action/xeno_action/activable/secrete_resin/update_button_icon()
 	var/mob/living/carbon/xenomorph/X = owner
 	var/atom/A = X.selected_resin
 	action_icon_state = initial(A.name)
-	if(SSmonitor.gamestate == SHUTTERS_CLOSED && CHECK_BITFIELD(SSticker.mode.flags_round_type, MODE_ALLOW_XENO_QUICKBUILD))
+	if(SSmonitor.gamestate == SHUTTERS_CLOSED && CHECK_BITFIELD(SSticker.mode.flags_round_type, MODE_ALLOW_XENO_QUICKBUILD) && SSresinshaping.active)
 		button.cut_overlay(visual_references[VREF_MUTABLE_BUILDING_COUNTER])
 		var/mutable_appearance/number = visual_references[VREF_MUTABLE_BUILDING_COUNTER]
-		number.maptext = MAPTEXT("[SSresinshaping.get_building_points(owner)]")
+		number.maptext = MAPTEXT("[SSresinshaping.quickbuild_points_by_hive[owner.get_xeno_hivenumber()]]")
 		visual_references[VREF_MUTABLE_BUILDING_COUNTER] = number
 		button.add_overlay(visual_references[VREF_MUTABLE_BUILDING_COUNTER])
 	else if(visual_references[VREF_MUTABLE_BUILDING_COUNTER])
@@ -286,7 +288,7 @@
 
 /datum/action/xeno_action/activable/secrete_resin/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/xowner = owner
-	if(SSmonitor.gamestate == SHUTTERS_CLOSED && CHECK_BITFIELD(SSticker.mode.flags_round_type, MODE_ALLOW_XENO_QUICKBUILD))
+	if(SSmonitor.gamestate == SHUTTERS_CLOSED && CHECK_BITFIELD(SSticker.mode.flags_round_type, MODE_ALLOW_XENO_QUICKBUILD) && SSresinshaping.active)
 		preshutter_build_resin(A)
 	else if(get_dist(owner, A) > xowner.xeno_caste.resin_max_range) //Maximum range is defined in the castedatum with resin_max_range, defaults to 0
 		build_resin(get_turf(owner))
@@ -308,8 +310,8 @@
 
 /// A version of build_resin with the plasma drain and distance checks removed.
 /datum/action/xeno_action/activable/secrete_resin/proc/preshutter_build_resin(turf/T)
-	if(!SSresinshaping.get_building_points(owner))
-		owner.balloon_alert(owner, "You have used all your quick-build points! Wait until the marines have landed!")
+	if(!SSresinshaping.quickbuild_points_by_hive[owner.get_xeno_hivenumber()])
+		owner.balloon_alert(owner, "The hive has ran out of quickbuilding points! Wait until more sisters awaken or the marines land!")
 		return
 	var/mob/living/carbon/xenomorph/X = owner
 	switch(is_valid_for_resin_structure(T, X.selected_resin == /obj/structure/mineral_door/resin))
@@ -345,7 +347,7 @@
 	else
 		new_resin = new X.selected_resin(T)
 	if(new_resin)
-		SSresinshaping.increment_build_counter(owner)
+		SSresinshaping.quickbuild_points_by_hive[owner.get_xeno_hivenumber()]--
 
 
 /datum/action/xeno_action/activable/secrete_resin/proc/preshutter_resin_drag(datum/source, atom/src_object, atom/over_object, turf/src_location, turf/over_location, src_control, over_control, params)
@@ -557,7 +559,7 @@
 
 	target.beam(X,"drain_life", time = 1 SECONDS, maxdistance = 10) //visual SFX
 	target.add_filter("transfer_plasma_outline", 3, outline_filter(1, COLOR_STRONG_MAGENTA))
-	addtimer(CALLBACK(target, /atom.proc/remove_filter, "transfer_plasma_outline"), 1 SECONDS) //Failsafe blur removal
+	addtimer(CALLBACK(target, TYPE_PROC_REF(/atom, remove_filter), "transfer_plasma_outline"), 1 SECONDS) //Failsafe blur removal
 
 	var/amount = plasma_transfer_amount
 	if(X.plasma_stored < plasma_transfer_amount)
@@ -583,7 +585,7 @@
 	desc = "Cover an object with acid to slowly melt it. Takes a few seconds."
 	ability_name = "corrosive acid"
 	plasma_cost = 100
-	var/acid_type = /obj/effect/xenomorph/acid
+	var/obj/effect/xenomorph/acid/acid_type = /obj/effect/xenomorph/acid
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_CORROSIVE_ACID,
 	)
@@ -595,133 +597,39 @@
 		return FALSE
 	if(!owner.Adjacent(A))
 		if(!silent)
-			to_chat(owner, span_warning("\The [A] is too far away."))
+			owner.balloon_alert(owner, "[A] is too far away")
 		return FALSE
-	if(isobj(A))
-		var/obj/O = A
-		if(CHECK_BITFIELD(O.resistance_flags, RESIST_ALL))
-			if(!silent)
-				to_chat(owner, span_warning("We cannot dissolve \the [O]."))
-			return FALSE
-		if(O.acid_check(acid_type))
-			if(!silent)
-				to_chat(owner, span_warning("This object is already subject to a more or equally powerful acid."))
-			return FALSE
-		if(istype(O, /obj/structure/window_frame))
-			var/obj/structure/window_frame/WF = O
-			if(WF.reinforced && acid_type != /obj/effect/xenomorph/acid/strong)
-				if(!silent)
-					to_chat(owner, span_warning("This [WF.name] is too tough to be melted by our weak acid."))
-				return FALSE
-	else if(isturf(A))
-		var/turf/T = A
-		if(T.acid_check(acid_type))
-			if(!silent)
-				to_chat(owner, span_warning("This object is already subject to a more or equally powerful acid."))
-			return FALSE
-		if(iswallturf(T))
-			var/turf/closed/wall/wall_target = T
-			if(wall_target.acided_hole)
-				if(!silent)
-					to_chat(owner, span_warning("[wall_target] is already weakened."))
-				return FALSE
-
-/obj/proc/acid_check(obj/effect/xenomorph/acid/new_acid)
-	if(!new_acid)
-		return TRUE
-	if(!current_acid)
+	if(ismob(A))
+		if(!silent)
+			owner.balloon_alert(owner, "We can't melt [A]")
 		return FALSE
-
-	if(initial(new_acid.acid_strength) > current_acid.acid_strength)
+	if(A.resistance_flags & UNACIDABLE || !A.dissolvability(initial(acid_type.acid_strength)))
+		if(!silent)
+			owner.balloon_alert(owner, "We cannot dissolve [A]")
 		return FALSE
-	return TRUE
-
-/turf/proc/acid_check(obj/effect/xenomorph/acid/new_acid)
-	if(!new_acid)
-		return TRUE
-	if(!current_acid)
+	if(!A.should_apply_acid(initial(acid_type.acid_strength)) || initial(acid_type.acid_strength) <= A.current_acid?.acid_strength)
+		if(!silent)
+			owner.balloon_alert(owner, "[A] is already subject to a more or equally powerful acid")
 		return FALSE
-
-	if(initial(new_acid.acid_strength) > current_acid.acid_strength)
-		return FALSE
-	return TRUE
 
 /datum/action/xeno_action/activable/corrosive_acid/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/X = owner
-
-	X.face_atom(A)
-
-	var/wait_time = 10
-
-	var/turf/T
-	var/obj/O
-
-	if(isobj(A))
-		O = A
-		if(O.density || istype(O, /obj/structure))
-			wait_time = 40 //dense objects are big, so takes longer to melt.
-
-	else if(isturf(A))
-		T = A
-		var/dissolvability = T.can_be_dissolved()
-		switch(dissolvability)
-			if(0)
-				to_chat(X, span_warning("We cannot dissolve \the [T]."))
-				return fail_activate()
-			if(1)
-				wait_time = 50
-			if(2)
-				if(acid_type != /obj/effect/xenomorph/acid/strong)
-					to_chat(X, span_warning("This [T.name] is too tough to be melted by our weak acid."))
-					return fail_activate()
-				wait_time = 100
-			else
-				return fail_activate()
-		to_chat(X, span_xenowarning("We begin generating enough acid to melt through \the [T]."))
-	else
-		to_chat(X, span_warning("We cannot dissolve \the [A]."))
+	if(!A.dissolvability(initial(acid_type.acid_strength)))
 		return fail_activate()
 
-	if(!do_after(X, wait_time, TRUE, A, BUSY_ICON_HOSTILE))
+	X.face_atom(A)
+	to_chat(X, span_xenowarning("We begin generating enough acid to melt through the [A]"))
+
+	if(!do_after(X, A.get_acid_delay(), TRUE, A, BUSY_ICON_HOSTILE))
 		return fail_activate()
 
 	if(!can_use_ability(A, TRUE))
-		return
-
-	var/obj/effect/xenomorph/acid/newacid = new acid_type(get_turf(A), A)
-
-	succeed_activate()
-
-	if(istype(A, /obj/vehicle/multitile/root/cm_armored))
-		var/obj/vehicle/multitile/root/cm_armored/R = A
-		R.take_damage_type( (1 * newacid.acid_strength) * 20, "acid", X)
-		X.visible_message(span_xenowarning("\The [X] vomits globs of vile stuff at \the [R]. It sizzles under the bubbling mess of acid!"), \
-			span_xenowarning("We vomit globs of vile stuff at \the [R]. It sizzles under the bubbling mess of acid!"), null, 5)
-		playsound(X.loc, "sound/bullets/acid_impact1.ogg", 25)
-		QDEL_IN(newacid, 20)
-		return TRUE
-
-	if(isturf(A))
-		newacid.icon_state += "_wall"
-		if(T.current_acid)
-			acid_progress_transfer(newacid, null, T)
-		T.set_current_acid(newacid)
-
-	else if(istype(A, /obj/structure) || istype(A, /obj/machinery)) //Always appears above machinery
-		newacid.layer = A.layer + 0.1
-		if(O.current_acid)
-			acid_progress_transfer(newacid, O)
-		O.current_acid = newacid
-
-	else if(istype(O)) //If not, appear on the floor or on an item
-		if(O.current_acid)
-			acid_progress_transfer(newacid, O)
-		newacid.layer = LOWER_ITEM_LAYER //below any item, above BELOW_OBJ_LAYER (smartfridge)
-		O.current_acid = newacid
-	else
 		return fail_activate()
 
-	newacid.name = newacid.name + " (on [A.name])" //Identify what the acid is on
+	QDEL_NULL(A.current_acid)
+	A.current_acid = new acid_type(get_turf(A), A, A.dissolvability(initial(acid_type.acid_strength)))
+
+	succeed_activate()
 
 	if(!isturf(A))
 		log_combat(X, A, "spat on", addition="with corrosive acid")
@@ -814,7 +722,7 @@
 
 /datum/action/xeno_action/activable/xeno_spit/give_action(mob/living/L)
 	. = ..()
-	owner.AddComponent(/datum/component/automatedfire/autofire, get_cooldown(), _fire_mode = GUN_FIREMODE_AUTOMATIC,  _callback_reset_fire = CALLBACK(src, .proc/reset_fire), _callback_fire = CALLBACK(src, .proc/fire))
+	owner.AddComponent(/datum/component/automatedfire/autofire, get_cooldown(), _fire_mode = GUN_FIREMODE_AUTOMATIC,  _callback_reset_fire = CALLBACK(src, PROC_REF(reset_fire)), _callback_fire = CALLBACK(src, PROC_REF(fire)))
 
 /datum/action/xeno_action/activable/xeno_spit/remove_action(mob/living/L)
 	qdel(owner.GetComponent(/datum/component/automatedfire/autofire))
@@ -828,13 +736,13 @@
 /datum/action/xeno_action/activable/xeno_spit/action_activate()
 	var/mob/living/carbon/xenomorph/X = owner
 	if(X.selected_ability != src)
-		RegisterSignal(X, COMSIG_MOB_MOUSEDRAG, .proc/change_target)
-		RegisterSignal(X, COMSIG_MOB_MOUSEUP, .proc/stop_fire)
-		RegisterSignal(X, COMSIG_MOB_MOUSEDOWN, .proc/start_fire)
+		RegisterSignal(X, COMSIG_MOB_MOUSEDRAG, PROC_REF(change_target))
+		RegisterSignal(X, COMSIG_MOB_MOUSEUP, PROC_REF(stop_fire))
+		RegisterSignal(X, COMSIG_MOB_MOUSEDOWN, PROC_REF(start_fire))
 		return ..()
-	for(var/i in 1 to X.xeno_caste.spit_types.len)
+	for(var/i in 1 to length(X.xeno_caste.spit_types))
 		if(X.ammo == GLOB.ammo_list[X.xeno_caste.spit_types[i]])
-			if(i == X.xeno_caste.spit_types.len)
+			if(i == length(X.xeno_caste.spit_types))
 				X.ammo = GLOB.ammo_list[X.xeno_caste.spit_types[1]]
 				break
 			X.ammo = GLOB.ammo_list[X.xeno_caste.spit_types[i+1]]
@@ -887,8 +795,6 @@
 	set_target(get_turf_on_clickcatcher(object, xeno, params))
 	if(!current_target)
 		return
-	xeno.visible_message(span_xenowarning("\The [xeno] spits at \the [current_target]!"), \
-	span_xenowarning("We spit at \the [current_target]!") )
 
 	SEND_SIGNAL(owner, COMSIG_XENO_FIRE)
 	xeno?.client?.mouse_pointer_icon = 'icons/effects/xeno_target.dmi'
@@ -929,10 +835,10 @@
 	if(object == current_target || object == owner)
 		return
 	if(current_target)
-		UnregisterSignal(current_target, COMSIG_PARENT_QDELETING)
+		UnregisterSignal(current_target, COMSIG_QDELETING)
 	current_target = object
 	if(current_target)
-		RegisterSignal(current_target, COMSIG_PARENT_QDELETING, .proc/clean_target)
+		RegisterSignal(current_target, COMSIG_QDELETING, PROC_REF(clean_target))
 
 ///Cleans the current target in case of Hardel
 /datum/action/xeno_action/activable/xeno_spit/proc/clean_target()
@@ -975,9 +881,11 @@
 	if(X.layer != XENO_HIDING_LAYER)
 		X.layer = XENO_HIDING_LAYER
 		to_chat(X, span_notice("We are now hiding."))
+		button.add_overlay(mutable_appearance('icons/Xeno/actions.dmi', "selected_purple_frame", ACTION_LAYER_ACTION_ICON_STATE, FLOAT_PLANE))
 	else
 		X.layer = MOB_LAYER
 		to_chat(X, span_notice("We have stopped hiding."))
+		button.cut_overlay(mutable_appearance('icons/Xeno/actions.dmi', "selected_purple_frame", ACTION_LAYER_ACTION_ICON_STATE, FLOAT_PLANE))
 
 
 //Neurotox Sting
@@ -1019,7 +927,7 @@
 
 /datum/action/xeno_action/activable/neurotox_sting/on_cooldown_finish()
 	playsound(owner.loc, 'sound/voice/alien_drool1.ogg', 50, 1)
-	to_chat(owner, span_xenodanger("We feel our neurotoxin glands refill. We can use our Neurotoxin Sting again."))
+	to_chat(owner, span_xenodanger("We feel our toxic glands refill. We can use our [ability_name] again."))
 	return ..()
 
 /datum/action/xeno_action/activable/neurotox_sting/use_ability(atom/A)
@@ -1122,7 +1030,7 @@
 	owner.visible_message(span_xenonotice("[owner] starts planting an egg."), \
 		span_xenonotice("We start planting an egg."), null, 5)
 
-	if(!do_after(owner, 2.5 SECONDS, TRUE, current_turf, BUSY_ICON_BUILD, extra_checks = CALLBACK(current_turf, /turf/proc/check_alien_construction, owner)))
+	if(!do_after(owner, 2.5 SECONDS, TRUE, current_turf, BUSY_ICON_BUILD, extra_checks = CALLBACK(current_turf, TYPE_PROC_REF(/turf, check_alien_construction), owner)))
 		return fail_activate()
 
 	if(!xeno.loc_weeds_type)
@@ -1166,56 +1074,42 @@
 
 /datum/action/xeno_action/rally_minion
 	name = "Rally Minions"
-	action_icon_state = "rally_minions"
-	desc = "Rallies the minions around you, asking them to follow you if they don't have a leader already. 60 second cooldown."
+	action_icon_state = "minion_agressive"
+	desc = "Rallies the minions around you, asking them to follow you if they don't have a leader already. Rightclick to change minion behaviour."
 	ability_name = "rally minions"
 	plasma_cost = 0
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_RALLY_MINION,
+		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_MINION_BEHAVIOUR,
 	)
 	keybind_flags = XACT_KEYBIND_USE_ABILITY
 	cooldown_timer = 10 SECONDS
 	use_state_flags = XACT_USE_LYING|XACT_USE_BUCKLED
+	///If minions should be agressive
+	var/minions_agressive = TRUE
+
+/datum/action/xeno_action/rally_minion/update_button_icon()
+	action_icon_state = minions_agressive ? "minion_agressive" : "minion_passive"
+	return ..()
 
 /datum/action/xeno_action/rally_minion/action_activate()
 	succeed_activate()
 	add_cooldown()
 	owner.emote("roar")
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_AI_MINION_RALLY, owner)
-	var/mob/living/carbon/xenomorph/xenoowner = owner
-	var/datum/action/xeno_action/set_agressivity/set_agressivity = xenoowner.actions_by_path[/datum/action/xeno_action/set_agressivity]
-	if(set_agressivity)
-		SEND_SIGNAL(owner, COMSIG_ESCORTING_ATOM_BEHAVIOUR_CHANGED, set_agressivity.minions_agressive) //New escorting ais should have the same behaviour as old one
+	SEND_SIGNAL(owner, COMSIG_ESCORTING_ATOM_BEHAVIOUR_CHANGED, minions_agressive) //New escorting ais should have the same behaviour as old one
 
-/datum/action/xeno_action/set_agressivity
-	name = "Set minions behavior"
-	action_icon_state = "minion_agressive"
-	desc = "Order the minions escorting you to be either agressive or passive."
-	ability_name = "set_agressivity"
-	plasma_cost = 0
-	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_XENOABILITY_MINION_BEHAVIOUR,
-	)
-	keybind_flags = XACT_KEYBIND_USE_ABILITY
-	use_state_flags = XACT_USE_LYING|XACT_USE_BUCKLED
-	///If minions should be agressive
-	var/minions_agressive = TRUE
-
-/datum/action/xeno_action/set_agressivity/action_activate()
+/datum/action/xeno_action/rally_minion/alternate_action_activate()
 	minions_agressive = !minions_agressive
 	SEND_SIGNAL(owner, COMSIG_ESCORTING_ATOM_BEHAVIOUR_CHANGED, minions_agressive)
 	update_button_icon()
-
-/datum/action/xeno_action/set_agressivity/update_button_icon()
-	action_icon_state = minions_agressive ? "minion_agressive" : "minion_passive"
-	return ..()
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 
 /mob/living/carbon/xenomorph/proc/add_abilities()
 	for(var/action_path in xeno_caste.actions)
 		var/datum/action/xeno_action/action = new action_path()
-		if(SSticker.mode?.flags_xeno_abilities & action.gamemode_flags)
+		if(!SSticker.mode || SSticker.mode.flags_xeno_abilities & action.gamemode_flags)
 			action.give_action(src)
 
 
@@ -1237,7 +1131,7 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_HEADBITE,
 	)
-	gamemode_flags = ABILITY_DISTRESS
+	gamemode_flags = ABILITY_NUCLEARWAR
 	plasma_cost = 100
 	///How much larva points it gives (8 points for one larva in distress)
 	var/larva_point_reward = 1
@@ -1279,7 +1173,7 @@
 	span_danger("We slowly drain \the [victim]'s life force!"), null, 20)
 	var/channel = SSsounds.random_available_channel()
 	playsound(X, 'sound/magic/nightfall.ogg', 40, channel = channel)
-	if(!do_after(X, 5 SECONDS, FALSE, victim, BUSY_ICON_DANGER, extra_checks = CALLBACK(X, /mob.proc/break_do_after_checks, list("health" = X.health))))
+	if(!do_after(X, 5 SECONDS, FALSE, victim, BUSY_ICON_DANGER, extra_checks = CALLBACK(X, TYPE_PROC_REF(/mob, break_do_after_checks), list("health" = X.health))))
 		X.visible_message(span_xenowarning("\The [X] retracts its inner jaw."), \
 		span_danger("We retract our inner jaw."), null, 20)
 		X.stop_sound_channel(channel)
@@ -1332,7 +1226,7 @@
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_REGURGITATE,
 	)
 	plasma_cost = 100
-	gamemode_flags = ABILITY_DISTRESS
+	gamemode_flags = ABILITY_NUCLEARWAR
 	///In how much time the cocoon will be ejected
 	var/cocoon_production_time = 3 SECONDS
 
@@ -1384,7 +1278,7 @@
 	var/mob/living/carbon/human/victim = A
 	var/channel = SSsounds.random_available_channel()
 	playsound(X, 'sound/vore/struggle.ogg', 40, channel = channel)
-	if(!do_after(X, 7 SECONDS, FALSE, victim, BUSY_ICON_DANGER, extra_checks = CALLBACK(owner, /mob.proc/break_do_after_checks, list("health" = X.health))))
+	if(!do_after(X, 7 SECONDS, FALSE, victim, BUSY_ICON_DANGER, extra_checks = CALLBACK(owner, TYPE_PROC_REF(/mob, break_do_after_checks), list("health" = X.health))))
 		to_chat(owner, span_warning("We stop devouring \the [victim]. They probably tasted gross anyways."))
 		X.stop_sound_channel(channel)
 		return fail_activate()
@@ -1421,6 +1315,9 @@
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_BLESSINGSMENU,
 	)
 	use_state_flags = XACT_USE_LYING|XACT_USE_CRESTED|XACT_USE_AGILITY
+
+/datum/action/xeno_action/blessing_menu/should_show()
+	return FALSE // Blessings meni now done through hive status UI!
 
 /datum/action/xeno_action/blessing_menu/action_activate()
 	var/mob/living/carbon/xenomorph/X = owner

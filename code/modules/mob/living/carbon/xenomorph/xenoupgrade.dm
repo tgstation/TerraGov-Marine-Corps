@@ -579,3 +579,18 @@
 
 //----WARLOCK END----//
 //============//
+//----BANELING START----//
+/mob/living/carbon/xenomorph/baneling/mature
+	upgrade = XENO_UPGRADE_ONE
+
+/mob/living/carbon/xenomorph/baneling/elder
+	upgrade = XENO_UPGRADE_TWO
+
+/mob/living/carbon/xenomorph/baneling/ancient
+	upgrade = XENO_UPGRADE_THREE
+
+/mob/living/carbon/xenomorph/baneling/primordial
+	upgrade = XENO_UPGRADE_FOUR
+
+//----BANELING END----//
+//============//

@@ -8,6 +8,10 @@
 	gender = PLURAL
 	icon = 'icons/obj/items/paper.dmi'
 	icon_state = "paper"
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/items/civilian_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/items/civilian_right.dmi',
+	)
 	item_state = "paper"
 	w_class = WEIGHT_CLASS_TINY
 	throw_range = 1
@@ -33,7 +37,7 @@
 
 //lipstick wiping is in code/game/objects/items/weapons/cosmetics.dm!
 
-/obj/item/paper/Initialize()
+/obj/item/paper/Initialize(mapload)
 	. = ..()
 	pixel_y = rand(-8, 8)
 	pixel_x = rand(-9, 9)
@@ -58,6 +62,8 @@
 /obj/item/paper/examine(mob/user)
 	. = ..()
 	if(in_range(user, src) || isobserver(user)) //You need to be next to the paper in order to read it.
+		var/datum/asset/paper_asset = get_asset_datum(/datum/asset/simple/paper)
+		paper_asset.send(user)
 		if(!(isobserver(user) || ishuman(user) || issilicon(user)))
 			// Show scrambled paper if they aren't a ghost, human, or silicone.
 			usr << browse("<HTML><HEAD><TITLE>[name]</TITLE></HEAD><BODY>[stars(info)][stamps]</BODY></HTML>", "window=[name]")
@@ -76,7 +82,7 @@
 
 	var/n_name = stripped_input(usr, "What would you like to label the paper?", "Paper Labelling")
 	if((loc == usr && usr.stat == 0))
-		name = "[(n_name ? text("[n_name]") : "paper")]"
+		name = "[(n_name ? "[n_name]" : "paper")]"
 
 
 
@@ -243,7 +249,7 @@
 
 	if(href_list["write"])
 		var/id = href_list["write"]
-		var/t =  stripped_multiline_input(usr, "Enter what you want to write:", "Write", "", MAX_MESSAGE_LEN)
+		var/t = stripped_multiline_input(usr, "Enter what you want to write:", "Write", "", MAX_MESSAGE_LEN)
 		log_paper("[key_name(usr)] wrote: [t]")
 
 		var/obj/item/i = usr.get_active_held_item() // Check to see if he still got that darn pen, also check if he's using a crayon or pen.
@@ -388,7 +394,7 @@ then, for every time you included a field, increment fields. */
 /obj/item/paper/photograph
 	name = "photo"
 	icon_state = "photo"
-	var/photo_id = 0.0
+	var/photo_id = 0
 	item_state = "paper"
 
 /obj/item/paper/sop

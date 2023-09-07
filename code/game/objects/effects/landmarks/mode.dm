@@ -6,7 +6,7 @@
 	icon_state = "fog_spawn"
 
 
-/obj/effect/landmark/lv624/fog_blocker/Initialize()
+/obj/effect/landmark/lv624/fog_blocker/Initialize(mapload)
 	. = ..()
 	store_location()
 	flags_atom |= INITIALIZED

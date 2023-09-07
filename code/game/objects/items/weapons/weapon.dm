@@ -3,6 +3,10 @@
 /obj/item/weapon
 	name = "weapon"
 	icon = 'icons/obj/items/weapons.dmi'
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/weapons/melee_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/weapons/melee_right.dmi',
+	)
 	hitsound = "swing_hit"
 	var/caliber = "missing from codex" //codex
 	var/load_method = null //codex, defines are below.

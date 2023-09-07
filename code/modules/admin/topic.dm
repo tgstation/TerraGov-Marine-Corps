@@ -126,7 +126,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 				dat += "<center><b>0 bans detected for [ckey]</b></center>"
 			else
 				bans = json_decode(response["body"])
-				dat += "<center><b>[bans.len] ban\s detected for [ckey]</b></center>"
+				dat += "<center><b>[length(bans)] ban\s detected for [ckey]</b></center>"
 				for(var/list/ban in bans)
 					dat += "<b>Server: </b> [sanitize(ban["sourceName"])]<br>"
 					dat += "<b>RP Level: </b> [sanitize(ban["sourceRoleplayLevel"])]<br>"
@@ -269,8 +269,8 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 			if("getxenos")
 				log_admin("[key_name(usr)] mass-teleported all Xenos.")
 				message_admins("[ADMIN_TPMONTY(usr)] mass-teleported all Xenos.")
-				to_chat(GLOB.alive_xeno_list, span_highdanger("[key_name_admin(usr, FALSE)] mass-teleported all xenos."))
-				for(var/i in GLOB.alive_xeno_list)
+				to_chat(GLOB.alive_xeno_list_hive[XENO_HIVE_NORMAL], span_highdanger("[key_name_admin(usr, FALSE)] mass-teleported all xenos."))
+				for(var/i in GLOB.alive_xeno_list_hive[XENO_HIVE_NORMAL])
 					var/mob/M = i
 					M.forceMove(T)
 			if("getall")
@@ -404,6 +404,8 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 				newmob = M.change_mob_type(/mob/living/carbon/xenomorph/warrior, location, null, delmob)
 			if("runner")
 				newmob = M.change_mob_type(/mob/living/carbon/xenomorph/runner, location, null, delmob)
+			if("baneling")
+				newmob = M.change_mob_type(/mob/living/carbon/xenomorph/baneling, location, null, delmob)
 			if("drone")
 				newmob = M.change_mob_type(/mob/living/carbon/xenomorph/drone, location, null, delmob)
 			if("sentinel")
@@ -465,7 +467,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 			if("moth")
 				newmob = M.change_mob_type(/mob/living/carbon/human/species/moth, location, null, delmob, "Moth")
 			if("zombie")
-				newmob =  M.change_mob_type(/mob/living/carbon/human/species/zombie, location, null, delmob, "Zombie")
+				newmob = M.change_mob_type(/mob/living/carbon/human/species/zombie, location, null, delmob, "Zombie")
 			if("ai")
 				newmob = M.change_mob_type(/mob/living/silicon/ai, location, null, delmob)
 
@@ -2068,7 +2070,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 						squad_to_insert_into = pick(SSjob.active_squads[J.faction])
 				H.apply_assigned_role_to_spawn(J, H.client, squad_to_insert_into, admin_action = TRUE)
 				if(href_list["doequip"])
-					H.set_equipment(J.title)
+					H.equip_role_outfit(J)
 					addition = ", equipping them"
 			if("skills")
 				var/list/skilltypes = subtypesof(/datum/skills)

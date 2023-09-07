@@ -5,13 +5,29 @@
 	name = "\improper TGMC uniform"
 	desc = "A standard-issue, kevlar-weaved, hazmat-tested, EMF-augmented marine uniform. You suspect it's not as robust-proof as advertised."
 	siemens_coefficient = 0.9
+	icon = 'icons/obj/clothing/uniforms/marine_uniforms.dmi'
 	icon_state = "marine_jumpsuit"
+	item_icons = list(
+		slot_w_uniform_str = 'icons/mob/clothing/uniforms/marine_uniforms.dmi',
+		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
+		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',
+	)
 	has_sensor = 2
 	adjustment_variants = list(
-		"Down" = "_d",
-		"Half" = "_h",
-		"Rolled" = "_r",
+		"Rolled Sleeves" = "_d",
+		"No Sleeves" = "_h",
+		"No Top" = "_r",
 	)
+
+/obj/item/clothing/under/marine/hyperscale
+	name = "\improper 8E Chameleon TGMC uniform"
+	desc = "A standard-issue, kevlar-weaved, hazmat-tested, EMF-augmented marine uniform BUT colorable with a facepaint! You suspect it's not as robust-proof as advertised."
+	icon_state = "hyperscale_marine_jumpsuit"
+	item_state = "hyperscale_marine_jumpsuit"
+	greyscale_colors = ARMOR_PALETTE_BLACK
+	greyscale_config = /datum/greyscale_config/marine_uniform
+	colorable_colors = ARMOR_PALETTES_LIST
+	colorable_allowed = ICON_STATE_VARIANTS_ALLOWED|PRESET_COLORS_ALLOWED
 
 /obj/item/clothing/under/marine/black_vest
 	starting_attachments = list(/obj/item/armor_module/storage/uniform/black_vest)
@@ -22,7 +38,7 @@
 	desc = "A standard issued TGMC turtleneck colored blue."
 	icon_state = "delta_merc"
 	adjustment_variants = list(
-		"Down" = "_d",
+		"Rolled Sleeves" = "_d",
 	)
 
 /obj/item/clothing/under/marine/squad/neck/delta
@@ -33,7 +49,7 @@
 /obj/item/clothing/under/marine/squad/neck/charile
 	name = "\improper TGMC Charile turtleneck"
 	desc = "A standard issued TGMC turtleneck colored purple, you're reminded of how proper squad cohesion can make or break a mission."
-	icon_state = "charile_merc"
+	icon_state = "charlie_merc"
 
 /obj/item/clothing/under/marine/squad/neck/bravo
 	name = "\improper TGMC Bravo turtleneck"
@@ -83,20 +99,6 @@
 	adjustment_variants = list()
 	has_sensor = 2
 	flags_item_map_variant = null
-
-
-/obj/item/clothing/under/marine/sniper
-	name = "\improper TGMC sniper snow uniform"
-	icon_state = "s_marine_sniper"
-	item_state = "s_marine_sniper"
-	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
-	adjustment_variants = list()
-
-/obj/item/clothing/under/marine/tanker
-	name = "\improper TGMC tanker uniform"
-	icon_state = "marine_tanker"
-	adjustment_variants = list()
-	flags_item_map_variant = (ITEM_ICE_VARIANT|ITEM_ICE_PROTECTION)
 
 /obj/item/clothing/under/marine/mp
 	name = "military police uniform"
@@ -168,16 +170,17 @@
 	icon_state = "WO_jumpsuit"
 	item_state = "WO_jumpsuit"
 
-
-/obj/item/clothing/under/marine/officer/technical
-	name = "technical officer uniform"
-	icon_state = "johnny"
-
 /obj/item/clothing/under/marine/officer/logistics
 	name = "marine officer uniform"
 	desc = "A standard-issue, kevlar-weaved, hazmat-tested, EMF-augmented uniform worn by logistics officers of the TGMC. Do the corps proud."
 	icon_state = "BO_jumpsuit"
 	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT)
+
+/obj/item/clothing/under/marine/officer/ro_suit
+	name = "requisition officer suit"
+	desc = "A nicely-fitting, kevlar-weaved, hazmat-tested, EMF-augmented requisition officer suit. You suspect it's not as robust-proof as advertised."
+	icon_state = "RO_jumpsuit"
+	adjustment_variants = list()
 
 /obj/item/clothing/under/marine/officer/pilot
 	name = "pilot officer flightsuit"
@@ -188,12 +191,6 @@
 	adjustment_variants = list(
 		"Half" = "_h",
 	)
-
-/obj/item/clothing/under/marine/officer/tanker
-	name = "tank crewman officer uniform"
-	desc = "A standard-issue, kevlar-weaved, hazmat-tested, EMF-augmented fatigues worth of a tankman. Do the corps proud."
-	icon_state = "marine_tanker"
-	flags_item_map_variant = (ITEM_ICE_VARIANT)
 
 /obj/item/clothing/under/marine/officer/mech
 	name = "mech pilot uniform"
@@ -244,7 +241,7 @@
 	desc = "A set of formal, yet comfy, clothing worn by scholars and researchers alike."
 	icon_state = "research_jumpsuit"
 
-/obj/item/clothing/under/whites
+/obj/item/clothing/under/marine/whites
 	name = "\improper TGMC white dress uniform"
 	desc = "A standard-issue TerraGov Marine Corps white dress uniform. The starch in the fabric chafes a small amount but it pales in comparison to the pride you feel when you first put it on during graduation from boot camp. Doesn't seem to fit perfectly around the waist though."
 	siemens_coefficient = 0.9
@@ -252,7 +249,7 @@
 	item_state = "marine_whites" //with thanks to Manezinho
 	adjustment_variants = list()
 
-/obj/item/clothing/under/service
+/obj/item/clothing/under/marine/service
 	name = "\improper TGMC service uniform"
 	desc = "A standard-issue TerraGov Marine Corps dress uniform. Sometimes, you hate wearing this since you remember wearing this to Infantry School and have to wear this when meeting a commissioned officer. This is what you wear when you are not deployed and are working in an office. Doesn't seem to fit perfectly around the waist."
 	siemens_coefficient = 0.9
@@ -268,20 +265,32 @@
 	name = "\improper Imperial uniform"
 	desc = "This uniform is given out to pretty much every soldier in the Imperium."
 	adjustment_variants = list() // don't disrespect the EMPEROR!
+	icon = 'icons/obj/clothing/uniforms/ert_uniforms.dmi'
 	icon_state = "guardjumpsuit"
+	item_icons = list(
+		slot_w_uniform_str = 'icons/mob/clothing/uniforms/ert_uniforms.dmi',
+		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
+		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',
+	)
 	item_state = "guardjumpsuit"
 	soft_armor = list(MELEE = 10, BULLET = 10, LASER = 10, ENERGY = 10, BOMB = 10, BIO = 10, FIRE = 10, ACID = 10)
 
-/obj/item/clothing/under/marine/veteran
-	adjustment_variants = list()
-
-/obj/item/clothing/under/marine/commissar
+/obj/item/clothing/under/marine/imperial/commissar
 	name = "\improper commissar uniform"
 	desc = "A commissars noble uniform."
 	adjustment_variants = list() // don't disrespect the EMPEROR!
 	icon_state = "commissar_uniform"
 	item_state = "commissar_uniform"
 	soft_armor = list(MELEE = 10, BULLET = 10, LASER = 10, ENERGY = 10, BOMB = 10, BIO = 10, FIRE = 10, ACID = 10)
+
+/obj/item/clothing/under/marine/veteran //none of these are actual used by marines
+	icon = 'icons/obj/clothing/uniforms/ert_uniforms.dmi'
+	item_icons = list(
+		slot_w_uniform_str = 'icons/mob/clothing/uniforms/ert_uniforms.dmi',
+		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
+		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',
+	)
+	adjustment_variants = list()
 
 /obj/item/clothing/under/marine/veteran/pmc
 	name = "\improper PMC fatigues"
@@ -308,14 +317,7 @@
 	icon_state = "commando_jumpsuit"
 	soft_armor = list(MELEE = 10, BULLET = 10, LASER = 10, ENERGY = 20, BOMB = 10, BIO = 10, FIRE = 20, ACID = 20)
 	has_sensor = 0
-
-/obj/item/clothing/under/marine/veteran/wolves
-	name = "\improper Steel Wolves uniform"
-	desc = "A uniform worn by Steel Wolves mercenaries in the service of Mother Russia. Smells a little like an actual bear."
-	icon_state = "wolf_jumpsuit"
-	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
-	has_sensor = 0
-
+	starting_attachments = list(/obj/item/armor_module/storage/uniform/holster/deathsquad)
 
 /obj/item/clothing/under/marine/veteran/UPP
 	name = "\improper USL fatigues"
@@ -340,22 +342,6 @@
 
 /obj/item/clothing/under/marine/veteran/freelancer/veteran
 	starting_attachments = list(/obj/item/armor_module/storage/uniform/holster/vp)
-
-
-//Dutch
-
-/obj/item/clothing/under/marine/veteran/dutch
-	name = "\improper Dutch's Dozen uniform"
-	desc = "A comfortable uniform worn by the Dutch's Dozen mercenaries. It's seen some definite wear and tear, but is still in good condition."
-	flags_armor_protection = CHEST|GROIN|LEGS
-	flags_cold_protection = CHEST|GROIN|LEGS
-	flags_heat_protection = CHEST|GROIN|LEGS
-	icon_state = "dutch_jumpsuit"
-	has_sensor = 0
-
-
-/obj/item/clothing/under/marine/veteran/dutch/ranger
-	icon_state = "dutch_jumpsuit2"
 
 /*===========================HELGHAST - MERCENARY================================*/
 
@@ -437,12 +423,6 @@
 	desc = "A formal white undersuit."
 	adjustment_variants = list()
 
-/obj/item/clothing/under/rank/ro_suit
-	name = "requisition officer suit"
-	desc = "A nicely-fitting, kevlar-weaved, hazmat-tested, EMF-augmented requisition officer suit. You suspect it's not as robust-proof as advertised."
-	icon_state = "RO_jumpsuit"
-	adjustment_variants = list()
-
 /obj/item/clothing/under/rank/synthetic
 	name = "\improper TGMC Support Uniform"
 	desc = "A simple uniform made for Synthetic crewmembers."
@@ -452,7 +432,13 @@
 /obj/item/clothing/under/som
 	name = "\improper SoM uniform"
 	desc = "The standard uniform of SOM military personnel. Its design shows a clear lineage from mining uniforms used in the old mining colonies."
+	icon = 'icons/obj/clothing/uniforms/ert_uniforms.dmi'
 	icon_state = "som_uniform"
+	item_icons = list(
+		slot_w_uniform_str = 'icons/mob/clothing/uniforms/ert_uniforms.dmi',
+		slot_l_hand_str = 'icons/mob/inhands/clothing/uniforms_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/clothing/uniforms_right.dmi',
+	)
 	item_state = "som_uniform"
 	has_sensor = FALSE
 
@@ -490,7 +476,13 @@
 /obj/item/clothing/under/icc
 	name = "\improper Modelle/30 uniform"
 	desc = "The standard uniform of ICC military personnel. The design is clearly dual purpose, meant to be both a combat uniform and one fit for daily tasks abord ships."
+	icon = 'icons/obj/clothing/uniforms/ert_uniforms.dmi'
 	icon_state = "icc"
+	item_icons = list(
+		slot_w_uniform_str = 'icons/mob/clothing/uniforms/ert_uniforms.dmi',
+		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
+		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',
+	)
 	item_state = "icc"
 	has_sensor = FALSE
 
@@ -512,8 +504,8 @@
 	adjustment_variants = list()
 	species_exception = list(/datum/species/robot)
 
-/obj/item/clothing/under/marine/robotic/mob_can_equip(mob/M, slot, warning, override_nodrop)
+/obj/item/clothing/under/marine/robotic/mob_can_equip(mob/user, slot, warning = TRUE, override_nodrop = FALSE, bitslot = FALSE)
 	. = ..()
-	if(!isrobot(M))
-		to_chat(M, span_warning("You can't equip this as it requires mounting screws on your body!"))
+	if(!isrobot(user))
+		to_chat(user, span_warning("You can't equip this as it requires mounting screws on your body!"))
 		return FALSE

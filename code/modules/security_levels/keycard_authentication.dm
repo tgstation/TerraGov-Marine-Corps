@@ -131,7 +131,7 @@
 			continue
 		KA.reset()
 		KA.receive_request(src)
-	addtimer(CALLBACK(src, .proc/finish_confirm), confirm_delay)
+	addtimer(CALLBACK(src, PROC_REF(finish_confirm)), confirm_delay)
 
 /obj/machinery/keycard_auth/proc/finish_confirm()
 	if(confirmed)
@@ -148,7 +148,7 @@
 	busy = FALSE
 	active = TRUE
 	icon_state = "auth_on"
-	addtimer(CALLBACK(src, .proc/confirm), confirm_delay)
+	addtimer(CALLBACK(src, PROC_REF(confirm)), confirm_delay)
 
 /obj/machinery/keycard_auth/proc/confirm()
 	event_source = null
@@ -166,6 +166,6 @@
 			GLOB.marine_main_ship.revoke_maint_all_access()
 
 /obj/machinery/door/airlock/allowed(mob/M)
-	if(is_mainship_level(z) && GLOB.marine_main_ship.maint_all_access && src.check_access_list(list(ACCESS_MARINE_ENGINEERING)))
+	if(is_mainship_level(z) && GLOB.marine_main_ship.maint_all_access && (ACCESS_MARINE_ENGINEERING in req_access+req_one_access))
 		return TRUE
 	return ..(M)

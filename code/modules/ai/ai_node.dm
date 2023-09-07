@@ -25,7 +25,7 @@
 		IDENTIFIER_ZOMBIE = list(NODE_LAST_VISITED = 0),
 		)
 
-/obj/effect/ai_node/Initialize()
+/obj/effect/ai_node/Initialize(mapload)
 	..()
 	GLOB.all_nodes += src
 	unique_id = id_counter++

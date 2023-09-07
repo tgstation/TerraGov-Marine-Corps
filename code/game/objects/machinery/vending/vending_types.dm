@@ -33,6 +33,7 @@
 	icon_state = "boozeomat"        //////////////18 drink entities below, plus the glasses, in case someone wants to edit the number of bottles
 	icon_deny = "boozeomat-deny"
 	icon_vend = "boozeomat-vend"
+	product_slogans = "I hope nobody asks me for a bloody cup o' tea...;Alcohol is humanity's friend. Would you abandon a friend?;Quite delighted to serve you!;Is nobody thirsty on this station?Drink up!;Booze is good for you!;Alcohol is humanity's best friend.;Quite delighted to serve you!;Care for a nice, cold beer?;Nothing cures you like booze!;Have a sip!;Have a drink!;Have a beer!;Beer is good for you!;Only the finest alcohol!;Best quality booze since 2053!;Award-winning wine!;Maximum alcohol!;Man loves beer.;A toast for progress!"
 	products = list(
 		/obj/item/reagent_containers/food/drinks/bottle/gin = -1,
 		/obj/item/reagent_containers/food/drinks/bottle/whiskey = -1,
@@ -65,8 +66,6 @@
 		/obj/item/reagent_containers/food/drinks/tea = -1,
 	)
 	idle_power_usage = 211
-	//product_slogans = "I hope nobody asks me for a bloody cup o' tea...;Alcohol is humanity's friend. Would you abandon a friend?;Quite delighted to serve you!;Is nobody thirsty on this station?"
-	//product_ads = "Drink up!;Booze is good for you!;Alcohol is humanity's best friend.;Quite delighted to serve you!;Care for a nice, cold beer?;Nothing cures you like booze!;Have a sip!;Have a drink!;Have a beer!;Beer is good for you!;Only the finest alcohol!;Best quality booze since 2053!;Award-winning wine!;Maximum alcohol!;Man loves beer.;A toast for progress!"
 
 /obj/machinery/vending/assist
 	product_ads = "Only the finest!;Have some tools.;The most robust equipment.;The finest gear in space!"
@@ -102,12 +101,11 @@
 	name = "Hot Foods Machine"
 	desc = "A vending machine full of ready to cook meals, mhmmmm taste the nutritional goodness!"
 	product_slogans = "Kepler Crisps! Try a snack that's out of this world!;Eat an EAT!;Eat a Nanotrasen brand packaged hamburger.;Eat a Nanotrasen brand packaged hot dog.;Eat a Nanotrasen brand packaged burrito.;"
-	product_ads = "Kepler Crisps! Try a snack that's out of this world!;Eat an EAT!"
 	icon_state = "snack"
 	icon_vend = "snack-vend"
 	icon_deny = "snack-deny"
 	products = list(
-		/obj/item/reagent_containers/food/snacks/packaged_burger = -1,
+		/obj/item/reagent_containers/food/snacks/burger/packaged_burger = -1,
 		/obj/item/reagent_containers/food/snacks/packaged_burrito = -1,
 		/obj/item/reagent_containers/food/snacks/packaged_hdogs = -1,
 		/obj/item/reagent_containers/food/snacks/kepler_crisps = -1,
@@ -123,7 +121,6 @@
 	desc = "A softdrink vendor provided by Souto Soda Company, Havana."
 	icon_state = "Cola_Machine"
 	product_slogans = "Souto Soda: Have a Souto and be taken away to a tropical paradise!;Souto Classic. You can't beat that tangerine goodness!;Souto Cherry. The sweet flavor of a cool winter morning!;Souto Lime. For that sweet and sour flavor that you know and love!;Souto Grape. There's nothing better than a grape soda.;Nanotrasen Fruit Beer. Nothing came from that lawsuit!;Nanotrasen Spring Water. It came from a spring!"
-	product_ads = "Souto Classic. You can't beat that tangerine goodness!;Souto Cherry. The sweet flavor of a cool winter morning!;Souto Lime. For that sweet and sour flavor that you know and love!;Souto Grape. There's nothing better than a grape soda.;Nanotrasen Fruit Beer. Nothing came from that lawsuit!;Nanotrasen Spring Water. It came from a spring!"
 	icon_deny = "Cola_Machine-deny"
 	icon_vend = "Cola_Machine-vend"
 	products = list(
@@ -162,6 +159,23 @@
 	//product_ads = "Go save some lives!;The best stuff for your medbay.;Only the finest tools.;Natural chemicals!;This stuff saves lives.;Don't you want some?;Ping!"
 	req_access = list(ACCESS_MARINE_MEDBAY, ACCESS_MARINE_CHEMISTRY) //only doctors and researchers can access these
 	products = list(
+		"Pill Bottle" = list(
+			/obj/item/storage/pill_bottle/bicaridine = 15,
+			/obj/item/storage/pill_bottle/kelotane = 15,
+			/obj/item/storage/pill_bottle/tramadol = 15,
+			/obj/item/storage/pill_bottle/tricordrazine = 15,
+			/obj/item/storage/pill_bottle/dylovene = 15,
+			/obj/item/storage/pill_bottle/inaprovaline = 15,
+			/obj/item/storage/pill_bottle/isotonic = 15,
+			/obj/item/storage/pill_bottle/paracetamol = 6,
+			/obj/item/storage/pill_bottle/dexalin = 6,
+			/obj/item/storage/pill_bottle/spaceacillin = 6,
+			/obj/item/storage/pill_bottle/alkysine = 6,
+			/obj/item/storage/pill_bottle/imidazoline = 6,
+			/obj/item/storage/pill_bottle/quickclot = 6,
+			/obj/item/storage/pill_bottle/hypervene = 6,
+			/obj/item/storage/pill_bottle/russian_red = 6,
+		),
 		"Hypospray" = list (
 			/obj/item/reagent_containers/hypospray/autoinjector/dexalinplus = 10,
 			/obj/item/reagent_containers/hypospray/autoinjector/sleeptoxin = 10,
@@ -184,32 +198,25 @@
 			/obj/item/reagent_containers/glass/bottle/sleeptoxin = 6,
 			/obj/item/reagent_containers/glass/bottle/polyhexanide = 6,
 		),
-		"Pill Bottle" = list(
-			/obj/item/storage/pill_bottle/bicaridine = 15,
-			/obj/item/storage/pill_bottle/kelotane = 15,
-			/obj/item/storage/pill_bottle/tramadol = 15,
-			/obj/item/storage/pill_bottle/tricordrazine = 15,
-			/obj/item/storage/pill_bottle/dylovene = 15,
-			/obj/item/storage/pill_bottle/inaprovaline = 15,
-			/obj/item/storage/pill_bottle/isotonic = 15,
-			/obj/item/storage/pill_bottle/paracetamol = 6,
-			/obj/item/storage/pill_bottle/dexalin = 6,
-			/obj/item/storage/pill_bottle/spaceacillin = 6,
-			/obj/item/storage/pill_bottle/alkysine = 6,
-			/obj/item/storage/pill_bottle/imidazoline = 6,
-			/obj/item/storage/pill_bottle/quickclot = 6,
-			/obj/item/storage/pill_bottle/hypervene = 6,
-			/obj/item/storage/pill_bottle/russian_red = 6,
+		"Chemistry Equipment" = list(
+			/obj/item/reagent_containers/syringe = -1,
+			/obj/item/reagent_containers/glass/beaker = -1,
+			/obj/item/reagent_containers/glass/beaker/large = -1,
+			/obj/item/reagent_containers/glass/beaker/vial = -1,
+			/obj/item/storage/reagent_tank = 5,
+			/obj/item/storage/reagent_tank/bicaridine = 1,
+			/obj/item/storage/reagent_tank/kelotane = 1,
+			/obj/item/storage/reagent_tank/tramadol = 1,
+			/obj/item/storage/reagent_tank/tricordrazine = 1,
+			/obj/item/storage/reagent_tank/bktt = 1,
 		),
 		"Misc" = list(
 			/obj/item/tool/research/xeno_analyzer = -1,
 			/obj/item/tool/research/excavation_tool = -1,
 			/obj/item/storage/pouch/surgery = -1,
 			/obj/item/armor_module/storage/uniform/surgery_webbing = -1,
-			/obj/item/reagent_containers/syringe = -1,
-			/obj/item/reagent_containers/glass/beaker = -1,
-			/obj/item/reagent_containers/glass/beaker/large = -1,
-			/obj/item/reagent_containers/glass/beaker/vial = -1,
+			/obj/item/reagent_containers/spray/surgery = -1,
+			/obj/item/tool/soap = 3,
 			/obj/item/clothing/glasses/hud/health = 6,
 			/obj/item/roller = 6,
 		),
@@ -220,27 +227,20 @@
 	isshared = TRUE
 	wrenchable = FALSE
 
-
-/obj/machinery/vending/medical/rebel
-	req_access = list(ACCESS_MARINE_MEDBAY_REBEL, ACCESS_MARINE_CHEMISTRY_REBEL)
-	isshared = TRUE
-	wrenchable = FALSE
-
-
 /obj/machinery/vending/medical/valhalla
 	use_power = NO_POWER_USE
 	req_access = list()
 	resistance_flags = INDESTRUCTIBLE
 	products = list(
 		"Hypospray" = list (
-			/obj/item/reagent_containers/hypospray/autoinjector/dexalinplus = 10,
-			/obj/item/reagent_containers/hypospray/autoinjector/sleeptoxin = 10,
-			/obj/item/reagent_containers/hypospray/advanced = 5,
-			/obj/item/reagent_containers/hypospray/advanced/bicaridine = 5,
-			/obj/item/reagent_containers/hypospray/advanced/kelotane = 5,
-			/obj/item/reagent_containers/hypospray/advanced/tramadol = 5,
-			/obj/item/reagent_containers/hypospray/advanced/tricordrazine = 5,
-			/obj/item/reagent_containers/hypospray/advanced/dylovene = 5,
+			/obj/item/reagent_containers/hypospray/autoinjector/dexalinplus = -1,
+			/obj/item/reagent_containers/hypospray/autoinjector/sleeptoxin = -1,
+			/obj/item/reagent_containers/hypospray/advanced = -1,
+			/obj/item/reagent_containers/hypospray/advanced/bicaridine = -1,
+			/obj/item/reagent_containers/hypospray/advanced/kelotane = -1,
+			/obj/item/reagent_containers/hypospray/advanced/tramadol = -1,
+			/obj/item/reagent_containers/hypospray/advanced/tricordrazine = -1,
+			/obj/item/reagent_containers/hypospray/advanced/dylovene = -1,
 		),
 		"Reagent Bottle" = list(
 			/obj/item/reagent_containers/glass/bottle/bicaridine = -1,
@@ -265,6 +265,8 @@
 			/obj/item/storage/pill_bottle/tricordrazine = -1,
 			/obj/item/storage/pill_bottle/dylovene = -1,
 			/obj/item/storage/pill_bottle/inaprovaline = -1,
+			/obj/item/storage/pill_bottle/isotonic = -1,
+			/obj/item/storage/pill_bottle/paracetamol = -1,
 			/obj/item/storage/pill_bottle/dexalin = -1,
 			/obj/item/storage/pill_bottle/spaceacillin = -1,
 			/obj/item/storage/pill_bottle/alkysine = -1,
@@ -297,7 +299,7 @@
 			/obj/item/reagent_containers/hypospray/autoinjector/rezadone = -1,
 			/obj/item/reagent_containers/hypospray/autoinjector/virilyth = -1,
 			/obj/item/reagent_containers/hypospray/autoinjector/roulettium = -1,
-			/obj/item/reagent_containers/glass/bottle/toxin = 1,
+			/obj/item/reagent_containers/glass/bottle/toxin = -1,
 		),
 	)
 
@@ -355,8 +357,8 @@
 			pixel_x = 21
 
 /obj/machinery/vending/nanomed/tadpolemed
-	name = "Flight surgeron medical equipment dispenser"
-	desc = "Dedicated for the surgeron with wings, this humble box contains a lot for its size."
+	name = "Flight surgeon medical equipment dispenser"
+	desc = "Dedicated for the surgeon with wings, this humble box contains a lot for its size."
 	products = list(
 		"Autoinjectors" = list(
 			/obj/item/reagent_containers/hypospray/autoinjector/sleeptoxin = 2,
@@ -540,8 +542,8 @@
 	icon_vend = "engivend-vend"
 	icon_deny = "engivend-deny"
 	products = list(
-		/obj/item/multitool = -1,
-		/obj/item/analyzer = -1,
+		/obj/item/tool/multitool = -1,
+		/obj/item/tool/analyzer = -1,
 		/obj/item/t_scanner = -1,
 		/obj/item/circuitboard/apc = -1,
 		/obj/item/circuitboard/airlock = -1,
@@ -549,6 +551,7 @@
 		/obj/item/clothing/head/hardhat = 4,
 		/obj/item/clothing/head/welding = 4,
 		/obj/item/clothing/glasses/welding = 4,
+		/obj/item/radio = -1,
 		/obj/item/taperecorder = -1,
 		/obj/item/assembly/igniter = -1,
 		/obj/item/assembly/signaler = -1,
@@ -564,6 +567,9 @@
 
 /obj/machinery/vending/engivend/nopower
 	use_power = NO_POWER_USE
+
+/obj/machinery/vending/engivend/nopower/valhalla
+	resistance_flags = INDESTRUCTIBLE
 
 //This one's from bay12
 /obj/machinery/vending/robotics

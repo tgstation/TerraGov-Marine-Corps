@@ -10,7 +10,7 @@
 	max_rounds = 300
 	default_ammo = /datum/ammo/bullet/machinegun
 	reload_delay = 5 SECONDS
-	icon_state_mini = "mag_tl102"
+	icon_state_mini = "mag_hmg"
 
 ///This is the one that comes in the mapbound and dropship mounted version of the HSG-102, it has a stupid amount of ammo. Even more than the ammo counter can display.
 /obj/item/ammo_magazine/tl102/hsg_nest
@@ -23,6 +23,7 @@
 	flags_equip_slot = ITEM_SLOT_BACK|ITEM_SLOT_BELT
 	icon = 'icons/Marine/marine-hmg.dmi'
 	icon_state = "mg08_mag"
+	icon_state_mini = "mag_drum_big_green"
 	flags_magazine = NONE
 	caliber = CALIBER_10X28
 	max_rounds = 500
@@ -35,6 +36,7 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	flags_equip_slot = ITEM_SLOT_BELT
 	icon_state = "mg08_mag_small"
+	icon_state_mini = "mag_hmg"
 	max_rounds = 250
 	reload_delay = 5 SECONDS
 
@@ -44,9 +46,10 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	icon = 'icons/Marine/marine-mmg.dmi'
 	icon_state = "mag"
+	icon_state_mini = "mag_drum_big_armygreen"
 	flags_magazine = NONE
 	caliber = CALIBER_10x27_CASELESS
-	max_rounds = 100
+	max_rounds = 150
 	default_ammo = /datum/ammo/bullet/rifle/heavy
 	reload_delay = 1 SECONDS
 
@@ -74,6 +77,25 @@
 	icon_state = "ags_mag_incend"
 	default_ammo = /datum/ammo/ags_shrapnel/incendiary
 
+/obj/item/ammo_magazine/standard_agls/flare
+	name = "AGLS-37 Flare magazine (40mm Caseless)"
+	desc = "A box holding 30 40mm caseless Flare grenades for the AGLS-37 automatic grenade launcher."
+	icon_state = "ags_mag_flare"
+	default_ammo = /datum/ammo/grenade_container/ags_grenade/flare
+
+/obj/item/ammo_magazine/standard_agls/cloak
+	name = "AGLS-37 Cloak magazine (40mm Caseless)"
+	desc = "A box holding 30 40mm caseless Cloak grenades for the AGLS-37 automatic grenade launcher."
+	icon_state = "ags_mag_cloak"
+	default_ammo = /datum/ammo/grenade_container/ags_grenade/cloak
+
+/obj/item/ammo_magazine/standard_agls/tanglefoot
+	name = "AGLS-37 Tanglefoot magazine (40mm Caseless)"
+	desc = "A box holding 30 40mm caseless Tanglefoot grenades for the AGLS-37 automatic grenade launcher."
+	icon_state = "ags_mag_pgas"
+	default_ammo = /datum/ammo/grenade_container/ags_grenade/tanglefoot
+
+
 /obj/item/ammo_magazine/standard_atgun
 	name = "AT-36 AP-HE shell (37mm Shell)"
 	desc = "A 37mm shell for light anti tank guns. Will penetrate walls and fortifications, before hitting a target and exploding, has less payload and punch than usual rounds."
@@ -81,10 +103,6 @@
 	icon = 'icons/Marine/marine-atgun.dmi'
 	icon_state = "tat36_shell"
 	item_state = "tat36"
-	item_icons = list(
-		slot_l_hand_str = 'icons/mob/items_lefthand_0.dmi',
-		slot_r_hand_str = 'icons/mob/items_righthand_0.dmi',
-		)
 	flags_magazine = MAGAZINE_REFUND_IN_CHAMBER
 	caliber = CALIBER_37MM
 	max_rounds = 1
@@ -133,20 +151,20 @@
 
 /obj/item/ammo_magazine/auto_cannon
 	name = "autocannon high-velocity magazine(20mm)"
-	desc = "A box of 80 high-velocity 20mm rounds for the ATR-22 mounted autocannon. Will pierce people and cover"
+	desc = "A box of 100 high-velocity 20mm rounds for the ATR-22 mounted autocannon. Will pierce people and cover."
 	w_class = WEIGHT_CLASS_NORMAL
 	icon = 'icons/Marine/marine-ac.dmi'
 	icon_state = "ac_mag"
 	item_state = "ac"
 	flags_magazine = NONE
 	caliber = CALIBER_20
-	max_rounds = 80
+	max_rounds = 100
 	default_ammo = /datum/ammo/bullet/auto_cannon
 	reload_delay = 4 SECONDS
 
 /obj/item/ammo_magazine/auto_cannon/flak
 	name = "autocannon smart-detonating magazine(20mm)"
-	desc = "A box of 80 smart-detonating 20mm rounds for the ATR-22 mounted autocannon. Will pierce cover, but detonate on hitting a target"
+	desc = "A box of 80 smart-detonating 20mm rounds for the ATR-22 mounted autocannon. Will detonate upon hitting a target."
 	icon_state = "ac_mag_flak"
 	item_state = "ac_flak"
 	default_ammo = /datum/ammo/bullet/auto_cannon/flak
@@ -169,10 +187,6 @@
 	icon = 'icons/Marine/marine-hmg.dmi'
 	icon_state = "75shell"
 	item_state = "75shell"
-	item_icons = list(
-		slot_l_hand_str = 'icons/mob/items_lefthand_0.dmi',
-		slot_r_hand_str = 'icons/mob/items_righthand_0.dmi',
-		)
 	flags_magazine = MAGAZINE_REFUND_IN_CHAMBER
 	caliber = CALIBER_75MM
 	max_rounds = 1

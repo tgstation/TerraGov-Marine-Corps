@@ -7,10 +7,10 @@
 	invisibility = INVISIBILITY_MAXIMUM // nope cant see this shit
 	anchored = TRUE
 
-/obj/effect/step_trigger/Initialize()
+/obj/effect/step_trigger/Initialize(mapload)
 	. = ..()
 	var/static/list/connections = list(
-		COMSIG_ATOM_ENTERED = .proc/on_cross,
+		COMSIG_ATOM_ENTERED = PROC_REF(on_cross),
 	)
 	AddElement(/datum/element/connect_loc, connections)
 
@@ -23,7 +23,7 @@
 		return
 	if(isobserver(H) && !affect_ghosts)
 		return
-	INVOKE_ASYNC(src, .proc/Trigger, H)
+	INVOKE_ASYNC(src, PROC_REF(Trigger), H)
 
 
 
@@ -125,7 +125,7 @@
 			if(3)
 				sleep(animation_teleport_spooky_out(A))
 
-		if(A && A.loc)
+		if(A?.loc)
 			A.x = teleport_x
 			A.y = teleport_y
 			A.z = teleport_z

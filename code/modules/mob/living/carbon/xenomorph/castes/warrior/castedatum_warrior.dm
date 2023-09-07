@@ -145,7 +145,7 @@
 
 /datum/xeno_caste/warrior/primordial
 	upgrade_name = "Primordial"
-	caste_desc = "A champion of the hive, methodically shatters its opponents with punches rather slashes."
+	caste_desc = "A champion of the hive, methodically shatters its opponents with punches rather than slashes."
 	primordial_message = "Our rhythm is unmatched and our strikes lethal, no single foe can stand against us."
 	upgrade = XENO_UPGRADE_FOUR
 

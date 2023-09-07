@@ -5,6 +5,10 @@
 /obj/item/stack/medical
 	name = "medical pack"
 	singular_name = "medical pack"
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/equipment/medical_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/equipment/medical_right.dmi',
+	)
 	amount = 10
 	max_amount = 10
 	w_class = WEIGHT_CLASS_SMALL
@@ -76,7 +80,7 @@
 	var/list/patient_limbs = patient.limbs.Copy()
 	patient_limbs -= affecting
 	while(affecting)
-		if(!do_mob(user, patient, SKILL_TASK_VERY_EASY / (unskilled_penalty ** 2), BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL, extra_checks = CALLBACK(src, .proc/can_affect_limb, affecting)))
+		if(!do_mob(user, patient, SKILL_TASK_VERY_EASY / (unskilled_penalty ** 2), BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL, extra_checks = CALLBACK(src, PROC_REF(can_affect_limb), affecting)))
 			patient.balloon_alert(user, "Stopped tending")
 			return
 		var/affected = heal_limb(affecting, unskilled_penalty)
@@ -225,6 +229,7 @@
 
 /obj/item/stack/medical/splint
 	name = "medical splints"
+	desc = "Used to stabilize broken bones."
 	singular_name = "medical splint"
 	icon_state = "splint"
 	amount = 5

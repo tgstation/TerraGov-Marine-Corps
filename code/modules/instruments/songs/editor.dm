@@ -35,7 +35,7 @@
 
 	dat += instrument_status_ui()
 
-	if(lines.len > 0)
+	if(length(lines) > 0)
 		dat += "<H3>Playback</H3>"
 		if(!playing)
 			dat += "<A href='?src=[REF(src)];play=1'>Play</A> [span_linkon("Stop")]<BR><BR>"
@@ -94,7 +94,7 @@
 	set waitfor = FALSE
 	//split into lines
 	lines = splittext(text, "\n")
-	if(lines.len)
+	if(length(lines))
 		var/bpm_string = "BPM: "
 		if(findtext(lines[1], bpm_string, 1, length(bpm_string) + 1))
 			var/divisor = text2num(copytext(lines[1], length(bpm_string) + 1)) || 120 // default
@@ -102,7 +102,7 @@
 			lines.Cut(1, 2)
 		else
 			tempo = sanitize_tempo(5) // default 120 BPM
-		if(lines.len > MUSIC_MAXLINES)
+		if(length(lines) > MUSIC_MAXLINES)
 			to_chat(usr, "Too many lines!")
 			lines.Cut(MUSIC_MAXLINES + 1)
 		var/linenum = 1
@@ -133,7 +133,7 @@
 	else if(href_list["import"])
 		var/t = ""
 		do
-			t = html_encode(input(usr, "Please paste the entire song, formatted:", text("[]", name), t)  as message)
+			t = html_encode(input(usr, "Please paste the entire song, formatted:", "[name]", t)  as message)
 			if(!in_range(parent, usr))
 				return
 
@@ -163,13 +163,13 @@
 		tempo = sanitize_tempo(tempo + text2num(href_list["tempo"]))
 
 	else if(href_list["play"])
-		INVOKE_ASYNC(src, .proc/start_playing, usr)
+		INVOKE_ASYNC(src, PROC_REF(start_playing), usr)
 
 	else if(href_list["newline"])
 		var/newline = html_encode(input("Enter your line: ", parent.name) as text|null)
 		if(!newline || !in_range(parent, usr))
 			return
-		if(lines.len > MUSIC_MAXLINES)
+		if(length(lines) > MUSIC_MAXLINES)
 			return
 		if(length(newline) > MUSIC_MAXLINECHARS)
 			newline = copytext(newline, 1, MUSIC_MAXLINECHARS)
@@ -177,7 +177,7 @@
 
 	else if(href_list["deleteline"])
 		var/num = round(text2num(href_list["deleteline"]))
-		if(num > lines.len || num < 1)
+		if(num > length(lines) || num < 1)
 			return
 		lines.Cut(num, num+1)
 
@@ -186,7 +186,7 @@
 		var/content = stripped_input(usr, "Enter your line: ", parent.name, lines[num], MUSIC_MAXLINECHARS)
 		if(!content || !in_range(parent, usr))
 			return
-		if(num > lines.len || num < 1)
+		if(num > length(lines) || num < 1)
 			return
 		lines[num] = content
 

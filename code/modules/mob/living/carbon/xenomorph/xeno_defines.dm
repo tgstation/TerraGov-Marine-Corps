@@ -147,8 +147,6 @@
 	var/bomb_strength = 0
 	///Delay between firing the bombard ability for boilers
 	var/bomb_delay = 0
-	///Used to reduce cooldown for the boiler
-	var/ammo_multiplier = 0
 
 	// *** Carrier Abilities *** //
 	///maximum amount of huggers a carrier can carry at one time.
@@ -233,10 +231,6 @@
 	var/vent_exit_speed = XENO_DEFAULT_VENT_EXIT_TIME
 	///Whether the caste enters and crawls through vents silently
 	var/silent_vent_crawl = FALSE
-	///how much water slows down this caste
-	var/water_slowdown = 1.3
-	///how much snow slows down this caste
-	var/snow_slowdown = 0.25
 	// The amount of xenos that must be alive in the hive for this caste to be able to evolve
 	var/evolve_min_xenos = 0
 	// How many of this caste may be alive at once
@@ -248,7 +242,7 @@
 		ADD_TRAIT(xenomorph, trait, XENO_TRAIT)
 	xenomorph.AddComponent(/datum/component/bump_attack)
 	if(can_flags & CASTE_CAN_RIDE_CRUSHER)
-		xenomorph.RegisterSignal(xenomorph, COMSIG_GRAB_SELF_ATTACK, /mob/living/carbon/xenomorph.proc/grabbed_self_attack)
+		xenomorph.RegisterSignal(xenomorph, COMSIG_GRAB_SELF_ATTACK, TYPE_PROC_REF(/mob/living/carbon/xenomorph, grabbed_self_attack))
 
 /datum/xeno_caste/proc/on_caste_removed(mob/xenomorph)
 	var/datum/component/bump_attack = xenomorph.GetComponent(/datum/component/bump_attack)
@@ -261,7 +255,7 @@
 /mob/living/carbon/xenomorph
 	name = "Drone"
 	desc = "What the hell is THAT?"
-	icon = 'icons/Xeno/1x1_Xenos.dmi'
+	icon = 'icons/Xeno/castes/larva.dmi'
 	icon_state = "Drone Walking"
 	speak_emote = list("hisses")
 	melee_damage = 5 //Arbitrary damage value
@@ -286,6 +280,7 @@
 	buckle_flags = NONE
 	faction = FACTION_XENO
 	initial_language_holder = /datum/language_holder/xeno
+	voice_filter = @{"[0:a] asplit [out0][out2]; [out0] asetrate=%SAMPLE_RATE%*0.8,aresample=%SAMPLE_RATE%,atempo=1/0.8,aformat=channel_layouts=mono [p0]; [out2] asetrate=%SAMPLE_RATE%*1.2,aresample=%SAMPLE_RATE%,atempo=1/1.2,aformat=channel_layouts=mono[p2]; [p0][0][p2] amix=inputs=3"}
 	gib_chance = 5
 	light_system = MOVABLE_LIGHT
 
@@ -319,7 +314,6 @@
 	var/upgrade = XENO_UPGRADE_INVALID
 	///sunder affects armour values and does a % removal before dmg is applied. 50 sunder == 50% effective armour values
 	var/sunder = 0
-	var/fire_resist_modifier = 0
 
 	var/obj/structure/xeno/tunnel/start_dig = null
 	///The ammo datum for our spit projectiles. We're born with this, it changes sometimes.
@@ -400,6 +394,10 @@
 	// Defender vars
 	var/fortify = 0
 	var/crest_defense = 0
+
+	// Baneling vars
+	/// Respawn charges, each charge makes respawn take 30 seconds. Maximum of 2 charges. If there is no charge the respawn takes 120 seconds.
+	var/stored_charge = 0
 
 	//Runner vars
 	var/savage = FALSE

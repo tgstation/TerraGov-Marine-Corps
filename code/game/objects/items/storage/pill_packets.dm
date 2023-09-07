@@ -20,7 +20,7 @@
 	. = ..()
 	if(!.)
 		return
-	if(!contents.len && !QDELETED(src))
+	if(!length(contents) && !QDELETED(src))
 		var/turf/T = get_turf(src)
 		new trash_item(T)
 		qdel(src)
@@ -29,7 +29,7 @@
 
 /obj/item/storage/pill_bottle/packet/update_overlays()
 	. = ..()
-	var/image/overlay = image('icons/obj/items/chemistry.dmi', src, "packet_canister[contents.len]")
+	var/image/overlay = image('icons/obj/items/chemistry.dmi', src, "packet_canister[length(contents)]")
 	overlay.color = pip_color
 	. += overlay
 

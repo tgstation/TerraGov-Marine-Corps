@@ -34,7 +34,7 @@ log transactions
 	var/view_screen = NO_SCREEN
 	var/datum/effect_system/spark_spread/spark_system
 
-/obj/machinery/atm/Initialize()
+/obj/machinery/atm/Initialize(mapload)
 	. = ..()
 	machine_id = "RT #[GLOB.num_financial_terminals++]"
 	spark_system = new /datum/effect_system/spark_spread

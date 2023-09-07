@@ -8,35 +8,50 @@
 	name = "nuke disk generator"
 	desc = "Used to generate the correct auth discs for the nuke."
 	icon_state = "nuke_red"
+	interaction_flags = INTERACT_MACHINE_TGUI
 	circuit = /obj/item/circuitboard/computer/nuke_disk_generator
 
 	resistance_flags = INDESTRUCTIBLE|UNACIDABLE
 
-	var/generate_time = 1.5 MINUTES // time for the machine to generate the disc
-	var/segment_time = 15 SECONDS // time to start the hack
-	var/printing_time = 15 SECONDS // time to print a disk
+	///Time needed for the machine to generate the disc
+	var/segment_time = 1.5 MINUTES
+	///Time to start a segment
+	var/start_time = 15 SECONDS
+	///Time to print a disk
+	var/printing_time = 15 SECONDS
 
-	var/total_segments = 5 // total number of times the hack is required
-	var/completed_segments = 0 // what segment we are on, (once this hits total, disk is printed)
+	///Total number of times the hack is required
+	var/total_segments = 5
+	///What segment we are on, (once this hits total, disk is printed)
+	var/completed_segments = 0
+	///The current ID of the timer running
 	var/current_timer
+	///Overall seconds elapsed
+	var/seconds_elapsed = 0
 
-	var/reprintable = FALSE // once the disk is printed, reprinting is enabled
-	var/printing = FALSE // check if someone is printing already
+	///Check if someone is printing already
+	var/busy = FALSE
+	///Is a segment currently running?
+	var/running = FALSE
 
+	///The type of disk we're printing
 	var/disk_type
-	var/obj/item/disk/nuclear/disk
 
 	var/list/technobabble = list(
 		"Booting up terminal-  -Terminal running",
 		"Establishing link to offsite mainframe- Link established",
 		"WARNING, DIRECTORY CORRUPTED, running search algorithms- nuke_fission_timing.exe found",
 		"Invalid credentials, upgrading permissions through TGMC military override- Permissions upgraded, nuke_fission_timing.exe available",
-		"Downloading nuke_fission_timing.exe to removable storage- nuke_fission_timing.exe downloaded to floppy disk, have a nice day"
+		"Downloading nuke_fission_timing.exe to removable storage- nuke_fission_timing.exe downloaded to floppy disk, getting ready to print",
+		"Program downloaded to disk. Have a nice day."
 	)
 	///For designating minimap color icon
 	var/disk_color
 
-/obj/machinery/computer/nuke_disk_generator/Initialize()
+	///The flavor message that shows up in the UI upon segment completion
+	var/message = "error"
+
+/obj/machinery/computer/nuke_disk_generator/Initialize(mapload)
 	. = ..()
 	update_minimap_icon()
 
@@ -45,7 +60,7 @@
 		return INITIALIZE_HINT_QDEL
 
 	GLOB.nuke_disk_generators += src
-	RegisterSignal(SSdcs, COMSIG_GLOB_DROPSHIP_HIJACKED, .proc/set_broken)
+	RegisterSignal(SSdcs, COMSIG_GLOB_DROPSHIP_HIJACKED, PROC_REF(set_broken))
 
 /obj/machinery/computer/nuke_disk_generator/Destroy()
 	GLOB.nuke_disk_generators -= src
@@ -55,113 +70,120 @@
 /obj/machinery/computer/nuke_disk_generator/process()
 	. = ..()
 	if(. || !current_timer)
+		if(running)
+			seconds_elapsed += 2
 		return
 
+	seconds_elapsed = (segment_time/10) * completed_segments
+	running = FALSE
 	deltimer(current_timer)
 	current_timer = null
 	update_minimap_icon()
 	visible_message("<b>[src]</b> shuts down as it loses power. Any running programs will now exit")
-	return PROCESS_KILL
 
 
 /obj/machinery/computer/nuke_disk_generator/attackby(obj/item/I, mob/living/user, params)
 	return attack_hand(user)
 
 
-/obj/machinery/computer/nuke_disk_generator/interact(mob/user)
-	. = ..()
-	if(.)
-		return
-	var/dat = ""
-	dat += "<div align='center'><a href='?src=[REF(src)];generate=1'>Run Program</a></div>"
-	dat += "<br/>"
-	dat += "<hr/>"
-	dat += "<div align='center'><h2>Status</h2></div>"
+/obj/machinery/computer/nuke_disk_generator/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "NukeDiskGenerator")
+		ui.open()
 
-	var/message = "Error"
+
+/obj/machinery/computer/nuke_disk_generator/ui_data(mob/user)
+	var/list/data = list()
+
 	if(completed_segments >= total_segments)
 		message = "Disk generated. Run program to print."
 	else if(current_timer)
-		message = "Program running"
-	else if(completed_segments == 0)
-		message = "Idle"
+		message = "Program running."
+	else if(!completed_segments)
+		message = "Idle."
 	else if(completed_segments < total_segments)
-		message = "Restart required. Please rerun the program"
-	else
-		message = "Unknown"
+		message = "Restart required. Please re-run the program."
 
-	var/progress = round((completed_segments / total_segments) * 100)
+	data["message"] = message
 
-	dat += "<br/><span><b>Progress</b>: [progress]%</span>"
-	dat += "<br/><span><b>Time left</b>: [current_timer ? round(timeleft(current_timer) * 0.1, 2) : 0.0]</span>"
-	dat += "<br/><span><b>Message</b>: [message]</span>"
+	data["progress"] = seconds_elapsed * 10 / (segment_time * total_segments) //*10 because we need to convert to deciseconds
 
-	var/flair = ""
-	for(var/i in 1 to completed_segments)
-		flair += "[technobabble[i]]<br />"
+	data["time_left"] = current_timer ? round(timeleft(current_timer) * 0.1, 2) : "You shouldn't be seeing this, yell at coders."
 
-	dat += "<br /><br /><span style='font-family: monospace, monospace;'>[flair]</span>"
+	data["flavor_text"] = technobabble[completed_segments + 1]
 
-	var/datum/browser/popup = new(user, "computer", "<div align='center'>Nuke Disk Generator</div>")
-	popup.set_content(dat)
-	popup.open()
+	data["completed"] = (completed_segments == total_segments)
 
-/obj/machinery/computer/nuke_disk_generator/Topic(href, href_list)
+	data["running"] = running
+
+	data["segment_time"] = segment_time
+
+	data["color"] = disk_color
+
+	data["segment_number"] = total_segments
+
+	return data
+
+
+/obj/machinery/computer/nuke_disk_generator/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
 	. = ..()
 	if(.)
 		return
-
-	if(href_list["generate"])
-		if(printing || current_timer)
-			to_chat(usr, span_warning("A program is already running."))
-			return
-		if(reprintable)
-			printing = TRUE
-			addtimer(VARSET_CALLBACK(src, printing, FALSE), printing_time)
-
-			usr.visible_message("[usr] started a program to regenerate a nuclear disk code.", "You started a program to generate a nuclear disk code.")
-			if(!do_after(usr, printing_time, TRUE, src, BUSY_ICON_GENERIC, null, null, CALLBACK(src, /datum.proc/process)))
+	switch(action)
+		if("run_program")
+			if(busy || current_timer)
+				to_chat(usr, span_warning("A program is already running."))
 				return
 
-			print_disc()
-			return
+			if(completed_segments == total_segments) //If we're done, there's no need to run a segment again
+				busy = TRUE
 
-		printing = TRUE
-		addtimer(VARSET_CALLBACK(src, printing, FALSE), segment_time)
+				usr.visible_message("[usr] started a program to generate a new copy of the program.", "You started a program to generate a new copy of the program.")
+				if(!do_after(usr, printing_time, TRUE, src, BUSY_ICON_GENERIC, null, null, CALLBACK(src, TYPE_PROC_REF(/datum, process))))
+					busy = FALSE
+					return
 
-		usr.visible_message("[usr] started a program to generate a nuclear disk code.", "You started a program to generate a nuclear disk code.")
-		if(!do_after(usr, segment_time, TRUE, src, BUSY_ICON_GENERIC, null, null, CALLBACK(src, /datum.proc/process)))
-			return
+				new disk_type(get_turf(src))
+				visible_message(span_notice("[src] beeps as it finishes printing the disc."))
+				SEND_GLOBAL_SIGNAL(COMSIG_GLOB_DISK_GENERATED, src)
+				busy = FALSE
+				return
 
-		current_timer = addtimer(CALLBACK(src, .proc/complete_segment), generate_time, TIMER_STOPPABLE)
-		update_minimap_icon()
+			busy = TRUE
 
-	updateUsrDialog()
+			usr.visible_message("[usr] started a program to generate a nuclear disk code.", "You started a program to generate a nuclear disk code.")
+			if(!do_after(usr, start_time, TRUE, src, BUSY_ICON_GENERIC, null, null, CALLBACK(src, TYPE_PROC_REF(/datum, process))))
+				busy = FALSE
+				return
 
+			busy = FALSE
+
+			current_timer = addtimer(CALLBACK(src, PROC_REF(complete_segment)), segment_time, TIMER_STOPPABLE)
+			update_minimap_icon()
+			running = TRUE
+
+/obj/machinery/computer/nuke_disk_generator/ui_state(mob/user)
+	return GLOB.human_adjacent_state
 
 /obj/machinery/computer/nuke_disk_generator/proc/complete_segment()
 	playsound(src, 'sound/machines/ping.ogg', 25, 1)
+	deltimer(current_timer)
 	current_timer = null
 	completed_segments = min(completed_segments + 1, total_segments)
 	update_minimap_icon()
+	running = FALSE
 
 	if(completed_segments == total_segments)
-		reprintable = TRUE
 		visible_message(span_notice("[src] beeps as it ready to print."))
 		return
 
-	visible_message(span_notice("[src] beeps as it program requires attention."))
-
-
-/obj/machinery/computer/nuke_disk_generator/proc/print_disc()
-	disk = new disk_type(loc)
-	visible_message(span_notice("[src] beeps as it finishes printing the disc."))
-	reprintable = TRUE
+	visible_message(span_notice("[src] beeps as it's program requires attention."))
 
 ///Change minimap icon if its on or off
 /obj/machinery/computer/nuke_disk_generator/proc/update_minimap_icon()
 	SSminimaps.remove_marker(src)
-	SSminimaps.add_marker(src, z, MINIMAP_FLAG_ALL, "[disk_color]_disk[current_timer ? "_on" : "_off"]", 'icons/UI_icons/map_blips_large.dmi')
+	SSminimaps.add_marker(src, MINIMAP_FLAG_ALL, image('icons/UI_icons/map_blips_large.dmi', null, "[disk_color]_disk[current_timer ? "_on" : "_off"]"))
 
 /obj/machinery/computer/nuke_disk_generator/red
 	name = "red nuke disk generator"
@@ -179,3 +201,25 @@
 	icon_state = "nuke_blue"
 	disk_type = /obj/item/disk/nuclear/blue
 	disk_color = "blue"
+
+//list of disk gens we want to spawn for nuke related gamemodes. Could just use subtypes, but using a list in case more gen related stuff is added in the future
+GLOBAL_LIST_INIT(nuke_disk_generator_types, list(/obj/machinery/computer/nuke_disk_generator/red, /obj/machinery/computer/nuke_disk_generator/green, /obj/machinery/computer/nuke_disk_generator/blue))
+
+/obj/structure/nuke_disk_candidate
+	icon = 'icons/obj/machines/computer.dmi'
+	icon_state = "nuke_rand"
+	name = "computer"
+	desc = "Some dusty old computer. Looks non-functional"
+	density = TRUE
+	anchored = TRUE
+	resistance_flags = RESIST_ALL
+
+//Randomised spawn points for nuke disk generators
+/obj/structure/nuke_disk_candidate/Initialize(mapload)
+	. = ..()
+	GLOB.nuke_disk_spawn_locs += src
+	icon_state = "tank0"
+
+/obj/structure/nuke_disk_candidate/Destroy()
+	GLOB.nuke_disk_spawn_locs -= src
+	return ..()

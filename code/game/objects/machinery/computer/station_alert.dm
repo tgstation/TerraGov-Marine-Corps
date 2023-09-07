@@ -7,7 +7,7 @@
 	var/alarms = list("Fire"=list(), "Atmosphere"=list(), "Power"=list())
 
 
-/obj/machinery/computer/station_alert/Initialize()
+/obj/machinery/computer/station_alert/Initialize(mapload)
 	. = ..()
 	GLOB.alert_consoles += src
 
@@ -25,9 +25,9 @@
 
 	var/dat
 	for (var/cat in src.alarms)
-		dat += text("<B>[]</B><BR>\n", cat)
+		dat += "<B>[cat]</B><BR>\n"
 		var/list/L = src.alarms[cat]
-		if (L.len)
+		if (length(L))
 			for (var/alarm in L)
 				var/list/alm = L[alarm]
 				var/area/A = alm[1]
@@ -35,8 +35,8 @@
 				dat += "<NOBR>"
 				dat += "&bull; "
 				dat += "[A.name]"
-				if (sources.len > 1)
-					dat += text(" - [] sources", sources.len)
+				if (length(sources) > 1)
+					dat += " - [length(sources)] sources"
 				dat += "</NOBR><BR>\n"
 		else
 			dat += "-- All Systems Nominal<BR>\n"
@@ -62,7 +62,7 @@
 	var/list/CL = null
 	if (O && istype(O, /list))
 		CL = O
-		if (CL.len == 1)
+		if (length(CL) == 1)
 			C = CL[1]
 	else if (O && istype(O, /obj/machinery/camera))
 		C = O
@@ -78,10 +78,10 @@
 	for (var/I in L)
 		if (I == A.name)
 			var/list/alarm = L[I]
-			var/list/srcs  = alarm[3]
+			var/list/srcs = alarm[3]
 			if (origin in srcs)
 				srcs -= origin
-			if (srcs.len == 0)
+			if (length(srcs) == 0)
 				cleared = 1
 				L -= I
 	return !cleared
@@ -97,7 +97,7 @@
 	var/active_alarms = 0
 	for (var/cat in src.alarms)
 		var/list/L = src.alarms[cat]
-		if(L.len) active_alarms = 1
+		if(length(L)) active_alarms = 1
 	if(active_alarms)
 		icon_state = "atmos2"
 	else

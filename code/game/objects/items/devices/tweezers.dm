@@ -6,6 +6,6 @@
 	flags_item = NOBLUDGEON
 	w_class = WEIGHT_CLASS_SMALL
 
-/obj/item/tweezers/Initialize()
+/obj/item/tweezers/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/shrapnel_removal, 10 SECONDS)

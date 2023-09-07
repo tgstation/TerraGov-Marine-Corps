@@ -117,7 +117,7 @@
 
 /datum/objective_item/steal/insuls
 	name = "the insulated gloves."
-	targetitem = /obj/item/clothing/gloves/yellow
+	targetitem = /obj/item/clothing/gloves/insulated
 	difficulty = 10
 
 /datum/objective_item/steal/teleporterkit

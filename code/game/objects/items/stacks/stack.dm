@@ -32,7 +32,7 @@
 	update_weight()
 	update_icon()
 	var/static/list/connections = list(
-		COMSIG_ATOM_ENTERED = .proc/on_cross,
+		COMSIG_ATOM_ENTERED = PROC_REF(on_cross),
 	)
 	AddElement(/datum/element/connect_loc, connections)
 
@@ -139,9 +139,9 @@
 				title += "[R.title]"
 			title += " ([R.req_amount] [singular_name]\s)"
 			if(can_build)
-				t1 += text("<A href='?src=[REF(src)];sublist=[recipes_sublist];make=[i];multiplier=1'>[title]</A>  ")
+				t1 += "<A href='?src=[REF(src)];sublist=[recipes_sublist];make=[i];multiplier=1'>[title]</A>  "
 			else
-				t1 += text("[]", title)
+				t1 += "[title]"
 				continue
 			if(R.max_res_amount > 1 && max_multiplier > 1)
 				max_multiplier = min(max_multiplier, round(R.max_res_amount/R.res_amount))
@@ -218,6 +218,7 @@
 		O = new R.result_type(get_turf(user))
 	if(O)
 		O.setDir(user.dir)
+		O.color = color
 	use(R.req_amount * multiplier)
 
 	if(QDELETED(O))
@@ -373,7 +374,7 @@
 
 /// Proc for special actions and radial menus on subtypes. Returning FALSE cancels the recipe menu for a stack.
 /obj/item/stack/proc/select_radial(mob/user)
-	return
+	return TRUE
 
 /*
 * Recipe datum

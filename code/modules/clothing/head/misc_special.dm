@@ -28,7 +28,7 @@
 	eye_protection = 2
 	var/hug_memory = 0 //Variable to hold the "memory" of how many anti-hugs remain.  Because people were abusing the fuck out of it.
 
-/obj/item/clothing/head/welding/Initialize()
+/obj/item/clothing/head/welding/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/clothing_tint, TINT_5)
 
@@ -89,7 +89,7 @@
 	desc = "It's tasty looking!"
 	icon_state = "cake0"
 	flags_inventory = COVEREYES
-	var/onfire = 0.0
+	var/onfire = 0
 	var/status = 0
 	var/processing = 0 //I dont think this is used anywhere.
 	flags_armor_protection = EYES

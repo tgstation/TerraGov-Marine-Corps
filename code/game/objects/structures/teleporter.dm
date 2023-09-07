@@ -26,9 +26,9 @@
 		. += "It is not linked to any other teleporter."
 
 
-/obj/machinery/deployable/teleporter/Initialize()
+/obj/machinery/deployable/teleporter/Initialize(mapload)
 	. = ..()
-	SSminimaps.add_marker(src, z, MINIMAP_FLAG_MARINE, "teleporter")
+	SSminimaps.add_marker(src, MINIMAP_FLAG_MARINE, image('icons/UI_icons/map_blips.dmi', null, "teleporter"))
 
 
 /obj/machinery/deployable/teleporter/attack_hand(mob/living/user)
@@ -72,7 +72,7 @@
 		if(is_type_in_list(thing, teleportable_types) && !thing.anchored)
 			teleporting += thing
 
-	if(!teleporting.len)
+	if(!length(teleporting))
 		to_chat(user, span_warning("No teleportable content was detected on [src]!"))
 		return
 
@@ -92,6 +92,12 @@
 	deployed_linked_teleporter.update_icon()
 	for(var/atom/movable/thing_to_teleport AS in teleporting)
 		thing_to_teleport.forceMove(get_turf(deployed_linked_teleporter))
+
+/obj/machinery/deployable/teleporter/attack_ghost(mob/dead/observer/user)
+	var/obj/item/teleporter_kit/kit = internal_item
+	if(!istype(kit) || !kit.linked_teleporter)
+		return
+	user.forceMove(get_turf(kit.linked_teleporter))
 
 /obj/machinery/deployable/teleporter/crowbar_act(mob/living/user, obj/item/I)
 	. = ..()
@@ -159,9 +165,9 @@
 	///References to the number of the teleporter.
 	var/self_tele_tag
 
-/obj/item/teleporter_kit/Initialize()
+/obj/item/teleporter_kit/Initialize(mapload)
 	. = ..()
-	AddElement(/datum/element/deployable_item, /obj/machinery/deployable/teleporter, 2 SECONDS)
+	AddComponent(/datum/component/deployable_item, /obj/machinery/deployable/teleporter, 2 SECONDS)
 	cell = new /obj/item/cell/high(src)
 	tele_tag++
 	self_tele_tag = tele_tag
@@ -174,7 +180,6 @@
 		linked_teleporter = null
 	QDEL_NULL(cell)
 	return ..()
-
 
 ///Link the two teleporters
 /obj/item/teleporter_kit/proc/set_linked_teleporter(obj/item/teleporter_kit/link_teleport)
@@ -207,11 +212,16 @@
 /obj/item/teleporter_kit/attack_self(mob/user)
 	do_unique_action(user)
 
+/obj/item/teleporter_kit/attack_ghost(mob/dead/observer/user)
+	if(!linked_teleporter)
+		return
+	user.forceMove(get_turf(linked_teleporter))
+
 /obj/effect/teleporter_linker
 	name = "\improper ASRS bluespace teleporters"
 	desc = "Two bluespace telepads for moving personnel and equipment across small distances to another prelinked teleporter."
 
-/obj/effect/teleporter_linker/Initialize()
+/obj/effect/teleporter_linker/Initialize(mapload)
 	. = ..()
 	var/obj/item/teleporter_kit/teleporter_a = new(loc)
 	var/obj/item/teleporter_kit/teleporter_b = new(loc)

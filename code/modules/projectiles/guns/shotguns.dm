@@ -1,6 +1,6 @@
 /obj/item/weapon/gun/shotgun
 	w_class = WEIGHT_CLASS_BULKY
-	force = 14.0
+	force = 14
 	caliber = CALIBER_12G //codex
 	max_chamber_items = 8 //codex
 	load_method = SINGLE_CASING //codex
@@ -78,12 +78,13 @@
 	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "t39"
 	item_state = "t39"
-	fire_sound = 'sound/weapons/guns/fire/shotgun_automatic.ogg'
-	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY
+	fire_sound = 'sound/weapons/guns/fire/tgmc/kinetic/gun_sh39.ogg'
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
 	default_ammo_type = /datum/ammo/bullet/shotgun/buckshot
 	attachable_allowed = list(
 		/obj/item/attachable/bayonet,
 		/obj/item/attachable/bayonetknife,
+		/obj/item/attachable/bayonetknife/som,
 		/obj/item/attachable/reddot,
 		/obj/item/attachable/verticalgrip,
 		/obj/item/attachable/angledgrip,
@@ -101,14 +102,14 @@
 	starting_attachment_types = list(/obj/item/attachable/stock/t39stock)
 
 	fire_delay = 14 //one shot every 1.4 seconds.
-	accuracy_mult = 1.20
+	accuracy_mult = 1.05
 	accuracy_mult_unwielded = 0.65
 	scatter = 3
 	scatter_unwielded = 12
 	damage_mult = 0.7  //30% less damage. Faster firerate.
-	recoil = 0 //It has a stock on the sprite.
-	recoil_unwielded = 2
-	wield_delay = 1 SECONDS
+	recoil = 2
+	recoil_unwielded = 4
+	wield_delay = 0.8 SECONDS
 	akimbo_additional_delay = 0.9
 
 /obj/item/weapon/gun/shotgun/combat/masterkey
@@ -130,7 +131,7 @@
 	pixel_shift_x = 14
 	pixel_shift_y = 18
 
-	wield_delay_mod	= 0.2 SECONDS
+	wield_delay_mod = 0.2 SECONDS
 
 //-------------------------------------------------------
 //DOUBLE SHOTTY
@@ -143,7 +144,7 @@
 	item_state = "dshotgun"
 	max_chamber_items = 2 //codex
 	default_ammo_type = /datum/ammo/bullet/shotgun/buckshot
-	fire_sound = 'sound/weapons/guns/fire/shotgun_heavy.ogg'
+	fire_sound = 'sound/weapons/guns/fire/tgmc/kinetic/gun_sh34.ogg'
 	reload_sound = 'sound/weapons/guns/interact/shotgun_db_insert.ogg'
 	cocked_sound = null //We don't want this.
 	attachable_allowed = list(
@@ -194,15 +195,15 @@
 	item_state = "ts34"
 	max_chamber_items = 2 //codex
 	default_ammo_type = /datum/ammo/bullet/shotgun/buckshot
-	fire_sound = 'sound/weapons/guns/fire/shotgun_heavy.ogg'
+	fire_sound = 'sound/weapons/guns/fire/tgmc/kinetic/gun_sh34.ogg'
 	hand_reload_sound = 'sound/weapons/guns/interact/shotgun_db_insert.ogg'
 	cocked_sound = null //We don't want this.
 	attachable_allowed = list(
 		/obj/item/attachable/bayonet,
 		/obj/item/attachable/bayonetknife,
+		/obj/item/attachable/bayonetknife/som,
 		/obj/item/attachable/verticalgrip,
 		/obj/item/attachable/reddot,
-		/obj/item/attachable/gyro,
 		/obj/item/attachable/flashlight,
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/scope,
@@ -213,11 +214,11 @@
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 17,"rail_x" = 15, "rail_y" = 19, "under_x" = 21, "under_y" = 13, "stock_x" = 13, "stock_y" = 16)
 
-	fire_delay = 5
+	fire_delay = 0.65 SECONDS
 	burst_amount = 1
 	scatter = 3
 	scatter_unwielded = 10
-	recoil = 2
+	recoil = 1
 	recoil_unwielded = 4
 
 
@@ -240,6 +241,7 @@
 	attachable_allowed = list(
 		/obj/item/attachable/bayonet,
 		/obj/item/attachable/bayonetknife,
+		/obj/item/attachable/bayonetknife/som,
 		/obj/item/attachable/reddot,
 		/obj/item/attachable/verticalgrip,
 		/obj/item/attachable/angledgrip,
@@ -374,7 +376,8 @@
 	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "mosin"
 	item_state = "mosin"
-	fire_sound = 'sound/weapons/guns/fire/mosin.ogg'
+	fire_sound = 'sound/weapons/guns/fire/tgmc/kinetic/gun_mosin.ogg'
+	fire_rattle = 'sound/weapons/guns/fire/tgmc/kinetic/gun_mosin_low.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/sniper_empty.ogg'
 	reload_sound = 'sound/weapons/guns/interact/mosin_reload.ogg'
 	caliber = CALIBER_762X54 //codex
@@ -434,7 +437,7 @@
 
 /obj/item/weapon/gun/shotgun/double/martini
 	name = "\improper Martini Henry lever action rifle"
-	desc = "A lever action with room for a single round of .557/440 ball. Perfect for any kind of hunt, be it elephant or xeno."
+	desc = "A lever action with room for a single round of .557/440 ball. Perfect for any kind of hunt, be it elephant or xeno with how quick to the draw it is."
 	flags_equip_slot = ITEM_SLOT_BACK
 	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "martini"
@@ -446,13 +449,14 @@
 	ammo_datum_type = /datum/ammo/bullet/sniper/martini
 	default_ammo_type = /datum/ammo/bullet/sniper/martini
 	gun_skill_category = SKILL_RIFLES
-	fire_sound = 'sound/weapons/guns/fire/martini.ogg'
+	fire_sound = 'sound/weapons/guns/fire/tgmc/kinetic/gun_martinihenry.ogg'
 	reload_sound = 'sound/weapons/guns/interact/martini_reload.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/martini_cocked.ogg'
 	opened_sound = 'sound/weapons/guns/interact/martini_open.ogg'
 	attachable_allowed = list(
 		/obj/item/attachable/bayonet,
 		/obj/item/attachable/bayonetknife,
+		/obj/item/attachable/bayonetknife/som,
 		/obj/item/attachable/reddot,
 		/obj/item/attachable/flashlight,
 		/obj/item/attachable/magnetic_harness,
@@ -465,6 +469,10 @@
 
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
 	attachable_offset = list("muzzle_x" = 45, "muzzle_y" = 23,"rail_x" = 17, "rail_y" = 25, "under_x" = 19, "under_y" = 14, "stock_x" = 15, "stock_y" = 12)
+	actions_types = list(/datum/action/item_action/aim_mode)
+	aim_slowdown = 0.35
+	aim_time = 0.5 SECONDS
+
 
 	fire_delay = 1 SECONDS
 
@@ -484,7 +492,7 @@
 // Derringer
 
 /obj/item/weapon/gun/shotgun/double/derringer
-	name = "R-2395 Derringer"
+	name = "\improper R-2395 Derringer"
 	desc = "The R-2395 Derringer has been a classic for centuries. This latest iteration combines plasma propulsion powder with the classic design to make an assasination weapon that will leave little to chance."
 	icon_state = "derringer"
 	item_state = "tp17"
@@ -509,7 +517,7 @@
 	aim_slowdown = 0
 	wield_delay = 0.5 SECONDS
 
-/obj/item/weapon/gun/shotgun/double/derringer/Initialize()
+/obj/item/weapon/gun/shotgun/double/derringer/Initialize(mapload)
 	. = ..()
 	if(round(rand(1, 10), 1) != 1)
 		return
@@ -560,12 +568,12 @@
 // Leicester Rifle. The gun that won the west.
 
 /obj/item/weapon/gun/shotgun/pump/lever/repeater
-	name = "Leicester Repeater"
+	name = "\improper Leicester Repeater"
 	desc = "The gun that won the west or so they say. But space is a very different kind of frontier all together, chambered for .45-70 Governemnt."
 	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "leicrepeater"
 	item_state = "leicrepeater"
-	fire_sound = 'sound/weapons/guns/fire/leveraction.ogg'//I like how this one sounds.
+	fire_sound = 'sound/weapons/guns/fire/tgmc/kinetic/gun_repeater.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/sniper_empty.ogg'
 	reload_sound = 'sound/weapons/guns/interact/mosin_reload.ogg'
 	caliber = CALIBER_4570 //codex
@@ -656,11 +664,12 @@
 	item_state = "t35"
 	cock_animation = "t35_pump"
 	default_ammo_type = /datum/ammo/bullet/shotgun/buckshot
-	fire_sound = 'sound/weapons/guns/fire/t35.ogg'
+	fire_sound = 'sound/weapons/guns/fire/tgmc/kinetic/gun_sh35.ogg'
 	max_chamber_items = 8
 	attachable_allowed = list(
 		/obj/item/attachable/bayonet,
 		/obj/item/attachable/bayonetknife,
+		/obj/item/attachable/bayonetknife/som,
 		/obj/item/attachable/reddot,
 		/obj/item/attachable/verticalgrip,
 		/obj/item/attachable/angledgrip,
@@ -767,6 +776,7 @@
 	attachable_allowed = list(
 		/obj/item/attachable/bayonet,
 		/obj/item/attachable/bayonetknife,
+		/obj/item/attachable/bayonetknife/som,
 		/obj/item/attachable/compensator,
 		/obj/item/attachable/flashlight,
 		/obj/item/attachable/magnetic_harness,
@@ -818,7 +828,7 @@
 //-------------------------------------------------------
 //Inbuilt launcher for the V-31
 /obj/item/weapon/gun/shotgun/micro_grenade
-	name = "VA-61 micro rail launcher"
+	name = "\improper VA-61 micro rail launcher"
 	desc = "An in-built railgun designed to fire so called 'micro grenades'. By using railgun technology, the projectile does not need any propellant, helping greatly increase usable space for the payload."
 	icon = 'icons/Marine/marine-weapons.dmi'
 	icon_state = "va61"

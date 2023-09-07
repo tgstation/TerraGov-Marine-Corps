@@ -11,7 +11,7 @@
 	///The linked exit point
 	var/obj/effect/landmark/patrol_point/linked_point = null
 
-/obj/structure/patrol_point/Initialize()
+/obj/structure/patrol_point/Initialize(mapload)
 	..()
 
 	return INITIALIZE_HINT_LATELOAD
@@ -25,7 +25,7 @@
 	for(var/obj/effect/landmark/patrol_point/exit_point AS in GLOB.patrol_point_list)
 		if(exit_point.id == id)
 			linked_point = exit_point
-			RegisterSignal(linked_point, COMSIG_PARENT_QDELETING, .proc/delete_link)
+			RegisterSignal(linked_point, COMSIG_QDELETING, PROC_REF(delete_link))
 			return
 
 ///Removes the linked patrol exist point
@@ -78,7 +78,7 @@
 ///Temporarily applies godmode to prevent spawn camping
 /obj/structure/patrol_point/proc/add_spawn_protection(mob/user)
 	user.status_flags |= GODMODE
-	addtimer(CALLBACK(src, .proc/remove_spawn_protection, user), 10 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(remove_spawn_protection), user), 10 SECONDS)
 
 ///Removes spawn protection godmode
 /obj/structure/patrol_point/proc/remove_spawn_protection(mob/user)
@@ -93,7 +93,7 @@
 	resistance_flags = RESIST_ALL
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
-/atom/movable/effect/rappel_rope/Initialize()
+/atom/movable/effect/rappel_rope/Initialize(mapload)
 	. = ..()
 	playsound(loc, 'sound/effects/rappel.ogg', 50, TRUE, falloff = 2)
 	playsound(loc, 'sound/effects/tadpolehovering.ogg', 100, TRUE, falloff = 2.5)
@@ -102,7 +102,7 @@
 
 /atom/movable/effect/rappel_rope/proc/ropeanimation()
 	flick("rope_deploy", src)
-	addtimer(CALLBACK(src, .proc/ropeanimation_stop), 2 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(ropeanimation_stop)), 2 SECONDS)
 
 /atom/movable/effect/rappel_rope/proc/ropeanimation_stop()
 	flick("rope_up", src)

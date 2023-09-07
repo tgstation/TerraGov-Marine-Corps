@@ -17,7 +17,7 @@
 	var/label_text = ""
 
 
-/obj/item/reagent_containers/glass/Initialize()
+/obj/item/reagent_containers/glass/Initialize(mapload)
 	. = ..()
 	base_name = name
 
@@ -93,7 +93,7 @@
 
 			visible_message(span_warning("[target] has been splashed with something by [user]!"))
 			reagents.reaction(target, TOUCH)
-			addtimer(CALLBACK(reagents, /datum/reagents.proc/clear_reagents), 5)
+			addtimer(CALLBACK(reagents, TYPE_PROC_REF(/datum/reagents, clear_reagents)), 5)
 			return
 
 
@@ -101,7 +101,7 @@
 			to_chat(user, span_notice("You splash the solution onto [target]."))
 			playsound(target, 'sound/effects/slosh.ogg', 25, 1)
 			reagents.reaction(target, TOUCH)
-			addtimer(CALLBACK(reagents, /datum/reagents.proc/clear_reagents), 5)
+			addtimer(CALLBACK(reagents, TYPE_PROC_REF(/datum/reagents, clear_reagents)), 5)
 			return
 
 /obj/item/reagent_containers/glass/attackby(obj/item/I, mob/user, params)
@@ -209,7 +209,7 @@
 	list_reagents = list(/datum/reagent/medicine/cryoxadone = 30)
 
 
-/obj/item/reagent_containers/glass/beaker/cryoxadone/Initialize()
+/obj/item/reagent_containers/glass/beaker/cryoxadone/Initialize(mapload)
 	. = ..()
 	update_icon()
 
@@ -218,7 +218,7 @@
 	list_reagents = list(/datum/reagent/medicine/cryoxadone = 10, /datum/reagent/medicine/clonexadone = 10, /datum/reagent/medicine/saline_glucose = 5, /datum/reagent/medicine/tricordrazine = 10, /datum/reagent/medicine/quickclot = 5, /datum/reagent/medicine/dexalinplus = 5, /datum/reagent/medicine/spaceacillin = 5, /datum/reagent/medicine/bihexajuline = 5)
 
 
-/obj/item/reagent_containers/glass/beaker/cryomix/Initialize()
+/obj/item/reagent_containers/glass/beaker/cryomix/Initialize(mapload)
 	. = ..()
 	update_icon()
 
@@ -227,7 +227,7 @@
 	list_reagents = list(/datum/reagent/toxin/acid = 60)
 
 
-/obj/item/reagent_containers/glass/beaker/sulphuric/Initialize()
+/obj/item/reagent_containers/glass/beaker/sulphuric/Initialize(mapload)
 	. = ..()
 	update_icon()
 
@@ -237,6 +237,10 @@
 	name = "bucket"
 	icon = 'icons/obj/janitor.dmi'
 	icon_state = "bucket"
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/items/janitor_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/items/janitor_right.dmi',
+	)
 	item_state = "bucket"
 	w_class = WEIGHT_CLASS_NORMAL
 	amount_per_transfer_from_this = 20

@@ -9,8 +9,8 @@
 	icon_state = "pickaxe"
 	flags_atom = CONDUCT
 	flags_equip_slot = ITEM_SLOT_BELT
-	force = 15.0
-	throwforce = 4.0
+	force = 15
+	throwforce = 4
 	item_state = "pickaxe"
 	w_class = WEIGHT_CLASS_BULKY
 	var/digspeed = 40 //moving the delay to an item var so R&D can make improved picks. --NEO
@@ -35,7 +35,7 @@
 /obj/item/tool/pickaxe/drill
 	name = "mining drill" // Can dig sand as well!
 	icon_state = "handdrill"
-	item_state = "jackhammer"
+	item_state = "drill"
 	digspeed = 30
 	desc = "Yours is the drill that will pierce through the rock walls."
 	drill_verb = "drilling"
@@ -85,7 +85,7 @@
 	item_state = "plasmacutter"
 	w_class = WEIGHT_CLASS_BULKY
 	flags_equip_slot = ITEM_SLOT_BELT|ITEM_SLOT_BACK
-	force = 70.0
+	force = 70
 	damtype = BURN
 	digspeed = 20 //Can slice though normal walls, all girders, or be used in reinforced wall deconstruction
 	desc = "A tool that cuts with deadly hot plasma. You could use it to cut limbs off of xenos! Or, you know, cut apart walls or mine through stone. Eye protection strongly recommended."
@@ -102,7 +102,7 @@
 	var/obj/item/cell/rtg/large/cell //The plasma cutter cell is unremovable and recharges over time
 	tool_behaviour = TOOL_WELD_CUTTER
 
-/obj/item/tool/pickaxe/plasmacutter/Initialize()
+/obj/item/tool/pickaxe/plasmacutter/Initialize(mapload)
 	. = ..()
 	cell = new /obj/item/cell/rtg/plasma_cutter()
 
@@ -169,7 +169,7 @@
 		if(custom_string)
 			to_chat(user, span_notice(custom_string))
 		else
-			to_chat(user, span_notice("You start cutting apart the [name] with [src]."))
+			balloon_alert(user, "Starts cutting apart")
 	return TRUE
 
 /obj/item/tool/pickaxe/plasmacutter/proc/cut_apart(mob/user, name = "", atom/source, charge_amount = PLASMACUTTER_BASE_COST, custom_string)
@@ -185,7 +185,7 @@
 	if(custom_string)
 		to_chat(user, span_notice(custom_string))
 	else
-		to_chat(user, span_notice("You cut apart the [name] with [src]."))
+		balloon_alert(user, "Cuts apart")
 
 /obj/item/tool/pickaxe/plasmacutter/proc/debris(location, metal = 0, rods = 0, wood = 0, wires = 0, shards = 0, plasteel = 0)
 	if(metal)
@@ -276,12 +276,12 @@
 		var/turf/open/floor/plating/ground/snow/ST = T
 		if(!ST.slayer)
 			return
-		if(!start_cut(user, target.name, target, PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD, span_notice("You start melting the [target.name] with [src].")))
+		if(!start_cut(user, target.name, target, 0, span_notice("You start melting the [target.name] with [src].")))
 			return
 		playsound(user.loc, 'sound/items/welder.ogg', 25, 1)
 		if(!do_after(user, calc_delay(user) * PLASMACUTTER_VLOW_MOD, TRUE, T, BUSY_ICON_BUILD))
 			return
-		if(!cell.charge >= PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD || !powered)
+		if(!powered)
 			fizzle_message(user)
 			return
 		if(!turfdirt == DIRT_TYPE_SNOW)
@@ -290,7 +290,7 @@
 			return
 		ST.slayer = max(0 , ST.slayer - dirt_amt_per_dig)
 		ST.update_icon(1,0)
-		cut_apart(user, target.name, target, PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD, "You melt the snow with [src]. ") //costs 25% normal
+		cut_apart(user, target.name, target, 0, "You melt the snow with [src]. ") //costs nothing
 
 
 

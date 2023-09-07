@@ -165,7 +165,7 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 	var/turf/buildloc = get_step(buyer, building_loc)
 
 	var/atom/built = new building_type(buildloc, buyer.hivenumber)
-	to_chat(buyer, span_notice("We build \a [built] for [psypoint_cost] psy points."))
+	to_chat(buyer, span_notice("We build [built] for [psypoint_cost] psy points."))
 	log_game("[buyer] has built \a [built] in [AREACOORD(buildloc)], spending [psypoint_cost] psy points in the process")
 	xeno_message("[buyer] has built \a [built] at [get_area(buildloc)]!", "xenoannounce", 5, buyer.hivenumber)
 	return ..()
@@ -175,7 +175,7 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 	desc = "Constructs a silo that generates xeno larvas over time. Requires open space and time to place."
 	psypoint_cost = SILO_PRICE
 	icon = "larvasilo"
-	flags_upgrade = ABILITY_DISTRESS
+	flags_upgrade = ABILITY_NUCLEARWAR
 	building_type = /obj/structure/xeno/silo
 
 /datum/hive_upgrade/building/silo/can_buy(mob/living/carbon/xenomorph/buyer, silent = TRUE)
@@ -192,17 +192,18 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 			to_chat(buyer, span_xenowarning("You cannot build in a dense location!"))
 		return FALSE
 
-	for(var/obj/structure/xeno/silo/silo AS in GLOB.xeno_resin_silos)
-		if(get_dist(silo, buyer) < 15)
-			to_chat(buyer, span_xenowarning("Another silo is too close!"))
-			return FALSE
+	for(var/hive in GLOB.xeno_resin_silos_by_hive)
+		for(var/silo in hive)
+			if(get_dist(silo, buyer) < 15)
+				to_chat(buyer, span_xenowarning("Another silo is too close!"))
+				return FALSE
 
 /datum/hive_upgrade/building/evotower
 	name = "Evolution Tower"
 	desc = "Constructs a tower that increases the rate of evolution point generation by 1.25 times per tower."
 	psypoint_cost = 300
 	icon = "evotower"
-	flags_upgrade = ABILITY_DISTRESS
+	flags_upgrade = ABILITY_NUCLEARWAR
 	building_type = /obj/structure/xeno/evotower
 
 /datum/hive_upgrade/building/maturitytower
@@ -210,7 +211,7 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 	desc = "Constructs a tower that increases the rate of maturity point generation by 1.2 times per tower."
 	psypoint_cost = 300
 	icon = "maturitytower"
-	flags_upgrade = ABILITY_DISTRESS
+	flags_upgrade = ABILITY_NUCLEARWAR
 	building_type = /obj/structure/xeno/maturitytower
 
 /datum/hive_upgrade/building/pherotower
@@ -218,7 +219,7 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 	desc = "Constructs a tower that emanates a selectable type of pheromone."
 	psypoint_cost = 150
 	icon = "pherotower"
-	flags_upgrade = ABILITY_DISTRESS
+	flags_upgrade = ABILITY_NUCLEARWAR
 	building_type = /obj/structure/xeno/pherotower
 	building_loc = 0 //This results in spawning the structure under the user.
 	building_time = 5 SECONDS
@@ -228,7 +229,7 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 	desc = "Constructs a spawner that generates ai xenos over time"
 	psypoint_cost = 600
 	icon = "spawner"
-	flags_upgrade = ABILITY_DISTRESS
+	flags_upgrade = ABILITY_NUCLEARWAR
 	building_type = /obj/structure/xeno/spawner
 
 /datum/hive_upgrade/defence
@@ -239,7 +240,7 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 	desc = "Places a acid spitting resin turret under you. Must be at least 6 tiles away from other turrets, not near fog and on a weeded area."
 	icon = "acidturret"
 	psypoint_cost = XENO_TURRET_PRICE
-	flags_gamemode = ABILITY_DISTRESS
+	flags_gamemode = ABILITY_NUCLEARWAR
 	///How long to build one turret
 	var/build_time = 10 SECONDS
 	///What type of turret is built
@@ -267,7 +268,7 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 	if(!T.check_alien_construction(buyer, silent = silent, planned_building = /obj/structure/xeno/xeno_turret) || !T.check_disallow_alien_fortification(buyer))
 		return FALSE
 
-	for(var/obj/structure/xeno/xeno_turret/turret AS in GLOB.xeno_resin_turrets)
+	for(var/obj/structure/xeno/xeno_turret/turret AS in GLOB.xeno_resin_turrets_by_hive[blocker.hivenumber])
 		if(get_dist(turret, buyer) < 6)
 			if(!silent)
 				to_chat(buyer, span_xenowarning("Another turret is too close!"))
@@ -300,21 +301,13 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 /datum/hive_upgrade/xenos
 	category = "Xenos"
 
-/datum/hive_upgrade/xenos/smart_minions
-	name = GHOSTS_CAN_TAKE_MINIONS
-	desc = "Allow ghosts to take control of minions"
-	icon = "smartminions"
-	flags_gamemode = ABILITY_DISTRESS
-	flags_upgrade = UPGRADE_FLAG_ONETIME|UPGRADE_FLAG_MESSAGE_HIVE
-	psypoint_cost = 500
-
 /datum/hive_upgrade/primordial
 	category = "Xenos"
 	flags_upgrade = UPGRADE_FLAG_ONETIME|UPGRADE_FLAG_MESSAGE_HIVE
 
 /datum/hive_upgrade/primordial/can_buy(mob/living/carbon/xenomorph/buyer, silent = TRUE)
 	. = ..()
-	if(!isxenoqueen(buyer) && !isxenoshrike(buyer))
+	if(!isxenoqueen(buyer) && !isxenoshrike(buyer) && !isxenoking(buyer))
 		if(!silent)
 			to_chat(buyer, span_xenonotice("You must be a ruler to buy this!"))
 		return FALSE

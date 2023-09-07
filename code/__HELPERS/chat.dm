@@ -57,7 +57,7 @@ In TGS3 it will always be sent to all connected designated game chats.
 		if(channel_tag in applicable_tags)
 			channels_to_use += channel
 
-	if(channels_to_use.len)
+	if(length(channels_to_use))
 		world.TgsChatBroadcast(message, channels_to_use)
 
 /**

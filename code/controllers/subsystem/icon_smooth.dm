@@ -10,27 +10,6 @@ SUBSYSTEM_DEF(icon_smooth)
 	var/list/smooth_queue = list()
 	var/list/deferred = list()
 
-/datum/controller/subsystem/icon_smooth/fire()
-	var/list/cached = smooth_queue
-	while(length(cached))
-		var/atom/smoothing_atom = cached[length(cached)]
-		cached.len--
-		if(QDELETED(smoothing_atom) || !(smoothing_atom.smoothing_flags & SMOOTH_QUEUED))
-			continue
-		if(smoothing_atom.flags_atom & INITIALIZED)
-			smoothing_atom.smooth_icon()
-		else
-			deferred += smoothing_atom
-		if (MC_TICK_CHECK)
-			return
-
-	if (!cached.len)
-		if (deferred.len)
-			smooth_queue = deferred
-			deferred = cached
-		else
-			can_fire = FALSE
-
 /datum/controller/subsystem/icon_smooth/Initialize()
 	smooth_zlevel(1, TRUE)
 	smooth_zlevel(2, TRUE)
@@ -54,7 +33,28 @@ SUBSYSTEM_DEF(icon_smooth)
 		if(!isturf(movable_item.loc))
 			continue
 
-	return ..()
+	return SS_INIT_SUCCESS
+
+/datum/controller/subsystem/icon_smooth/fire()
+	var/list/cached = smooth_queue
+	while(length(cached))
+		var/atom/smoothing_atom = cached[length(cached)]
+		cached.len--
+		if(QDELETED(smoothing_atom) || !(smoothing_atom.smoothing_flags & SMOOTH_QUEUED))
+			continue
+		if(smoothing_atom.flags_atom & INITIALIZED)
+			smoothing_atom.smooth_icon()
+		else
+			deferred += smoothing_atom
+		if (MC_TICK_CHECK)
+			return
+
+	if (!length(cached))
+		if (length(deferred))
+			smooth_queue = deferred
+			deferred = cached
+		else
+			can_fire = FALSE
 
 
 /datum/controller/subsystem/icon_smooth/proc/add_to_queue(atom/thing)

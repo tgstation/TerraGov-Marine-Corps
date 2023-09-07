@@ -6,8 +6,8 @@
 	. = ..()
 	if(!ismob(target))
 		return ELEMENT_INCOMPATIBLE
-	RegisterSignal(target, COMSIG_MOB_KEYBINDINGS_UPDATED, .proc/on_keybinding_change)
-	RegisterSignal(target, COMSIG_MOB_LOGIN, .proc/on_client_change)
+	RegisterSignal(target, COMSIG_MOB_KEYBINDINGS_UPDATED, PROC_REF(on_keybinding_change))
+	RegisterSignal(target, COMSIG_MOB_LOGIN, PROC_REF(on_client_change))
 
 /datum/element/keybinding_update/Detach(datum/source, force)
 	UnregisterSignal(source, COMSIG_MOB_KEYBINDINGS_UPDATED)

@@ -8,19 +8,26 @@
 	layer = TABLE_LAYER
 	anchored = TRUE
 	resistance_flags = UNACIDABLE
+	allow_pass_flags = PASS_LOW_STRUCTURE|PASSABLE|PASS_WALKOVER
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 1
 	active_power_usage = 5
 	var/mob/living/carbon/human/victim = null
-	var/strapped = 0.0
+	var/strapped = 0
 	buckle_flags = CAN_BUCKLE
 	buckle_lying = 90
 	var/obj/item/tank/anesthetic/anes_tank
 
 	var/obj/machinery/computer/operating/computer = null
 
-/obj/machinery/optable/Initialize()
+/obj/machinery/optable/Initialize(mapload)
 	. = ..()
+
+	var/static/list/connections = list(
+		COMSIG_OBJ_TRY_ALLOW_THROUGH = PROC_REF(can_climb_over),
+	)
+	AddElement(/datum/element/connect_loc, connections)
+
 	return INITIALIZE_HINT_LATELOAD
 
 
@@ -57,6 +64,7 @@
 	if(anes_tank)
 		user.put_in_active_hand(anes_tank)
 		to_chat(user, span_notice("You remove \the [anes_tank] from \the [src]."))
+		playsound(loc, 'sound/effects/air_release.ogg', 25, 1)
 		anes_tank = null
 
 
@@ -93,7 +101,7 @@
 		return FALSE
 	buckling_human.visible_message("[span_notice("[user] fits the mask over [buckling_human]'s face and turns on the anesthetic.")]'")
 	to_chat(buckling_human, span_information("You begin to feel sleepy."))
-	addtimer(CALLBACK(src, .proc/knock_out_buckled, buckling_human), rand(2 SECONDS, 4 SECONDS))
+	addtimer(CALLBACK(src, PROC_REF(knock_out_buckled), buckling_human), rand(2 SECONDS, 4 SECONDS))
 	buckling_human.setDir(SOUTH)
 	return ..()
 
@@ -118,20 +126,12 @@
 	var/obj/item/anesthetic_mask = buckled_human.wear_mask
 	buckled_human.dropItemToGround(anesthetic_mask)
 	qdel(anesthetic_mask)
-	addtimer(CALLBACK(src, .proc/remove_knockout, buckled_mob), rand(2 SECONDS, 4 SECONDS))
+	addtimer(CALLBACK(src, PROC_REF(remove_knockout), buckled_mob), rand(2 SECONDS, 4 SECONDS))
 	return ..()
 
 ///Wakes the buckled mob back up after they're released
 /obj/machinery/optable/proc/remove_knockout(mob/living/buckled_mob)
 	REMOVE_TRAIT(buckled_mob, TRAIT_KNOCKEDOUT, OPTABLE_TRAIT)
-
-/obj/machinery/optable/CanAllowThrough(atom/movable/mover, turf/target)
-	. = ..()
-	if(istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSTABLE))
-		return 1
-	else
-		return 0
-
 
 /obj/machinery/optable/MouseDrop_T(atom/A, mob/user)
 

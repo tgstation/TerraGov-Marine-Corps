@@ -1,5 +1,5 @@
 /mob/living/carbon/human/proc/handle_pulse()
-	if(species && species.species_flags & NO_BLOOD)
+	if(species?.species_flags & NO_BLOOD)
 		return PULSE_NONE //No blood, no pulse.
 
 	if(stat == DEAD)

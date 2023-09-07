@@ -29,7 +29,7 @@
 	spawn_dir = EAST
 	var/list/spawn_hardpoints = list()
 
-/obj/effect/multitile_spawner/cm_armored/tank/Initialize()
+/obj/effect/multitile_spawner/cm_armored/tank/Initialize(mapload)
 	. = ..()
 	return INITIALIZE_HINT_QDEL
 
@@ -89,7 +89,7 @@
 		return
 
 	to_chat(usr, span_notice("You start getting into the other seat."))
-	addtimer(CALLBACK(src, .proc/seat_switched, wannabe_trucker, usr), 3 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(seat_switched), wannabe_trucker, usr), 3 SECONDS)
 
 /obj/vehicle/multitile/root/cm_armored/tank/proc/seat_switched(wannabe_trucker, mob/living/user)
 
@@ -135,7 +135,7 @@
 	if(!isliving(occupant))
 		return
 	var/mob/living/L = occupant
-	L.Paralyze(80)
+	L.Paralyze(8 SECONDS)
 
 //Two seats, gunner and driver
 //Must have the skills to do so
@@ -204,7 +204,7 @@
 
 	to_chat(M, span_notice("You start climbing out of [src]."))
 
-	addtimer(CALLBACK(src, .proc/exit_tank, M), 5 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(exit_tank), M), 5 SECONDS)
 
 /obj/vehicle/multitile/root/cm_armored/tank/proc/exit_tank(mob/M, forced = FALSE, silent = FALSE)
 	if(!forced)

@@ -31,6 +31,7 @@ GLOBAL_DATUM_INIT(round_statistics, /datum/round_statistics, new)
 	var/list/total_projectile_hits = list()
 	var/total_bullet_hits_on_marines = 0
 	var/total_bullet_hits_on_xenos = 0
+	var/workout_counts = list()
 	var/total_larva_burst = 0
 	var/trap_holes = 0
 	var/boiler_acid_smokes = 0
@@ -78,6 +79,9 @@ GLOBAL_DATUM_INIT(round_statistics, /datum/round_statistics, new)
 	var/wraith_phase_shifts = 0
 	var/wraith_blinks = 0
 	var/wraith_banishes = 0
+	var/bull_crush_hit = 0
+	var/bull_gore_hit = 0
+	var/bull_headbutt_hit = 0
 	var/ravager_endures = 0
 	var/hunter_marks = 0
 	var/hunter_silence_targets = 0

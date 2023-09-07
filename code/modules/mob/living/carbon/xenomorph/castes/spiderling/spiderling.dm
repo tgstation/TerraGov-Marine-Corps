@@ -12,7 +12,8 @@
 	tier = XENO_TIER_MINION
 	upgrade = XENO_UPGRADE_BASETYPE
 	pull_speed = -2
-	flags_pass = PASSXENO | PASSTABLE
+	allow_pass_flags = PASS_XENO
+	pass_flags = PASS_XENO|PASS_LOW_STRUCTURE
 	density = FALSE
 
 /mob/living/carbon/xenomorph/spiderling/Initialize(mapload, mob/living/carbon/xenomorph/spidermother)
@@ -36,31 +37,31 @@
 /datum/ai_behavior/spiderling/New(loc, parent_to_assign, escorted_atom, can_heal = FALSE)
 	. = ..()
 	default_escorted_atom = WEAKREF(escorted_atom)
-	RegisterSignal(escorted_atom, COMSIG_XENOMORPH_ATTACK_LIVING, .proc/go_to_target)
-	RegisterSignal(escorted_atom, COMSIG_XENOMORPH_ATTACK_OBJ, .proc/go_to_obj_target)
-	RegisterSignal(escorted_atom, COMSIG_MOB_DEATH, .proc/spiderling_rage)
-	RegisterSignal(escorted_atom, COMSIG_LIVING_DO_RESIST, .proc/parent_resist)
-	RegisterSignal(escorted_atom, COMSIG_XENOMORPH_RESIN_JELLY_APPLIED, .proc/apply_spiderling_jelly)
-	RegisterSignal(escorted_atom, list(COMSIG_XENOMORPH_REST, COMSIG_XENOMORPH_UNREST), .proc/toggle_rest)
-	RegisterSignal(escorted_atom, COMSIG_SPIDERLING_MARK, .proc/decide_mark)
+	RegisterSignal(escorted_atom, COMSIG_XENOMORPH_ATTACK_LIVING, PROC_REF(go_to_target))
+	RegisterSignal(escorted_atom, COMSIG_XENOMORPH_ATTACK_OBJ, PROC_REF(go_to_obj_target))
+	RegisterSignal(escorted_atom, COMSIG_MOB_DEATH, PROC_REF(spiderling_rage))
+	RegisterSignal(escorted_atom, COMSIG_LIVING_DO_RESIST, PROC_REF(parent_resist))
+	RegisterSignal(escorted_atom, COMSIG_XENOMORPH_RESIN_JELLY_APPLIED, PROC_REF(apply_spiderling_jelly))
+	RegisterSignals(escorted_atom, list(COMSIG_XENOMORPH_REST, COMSIG_XENOMORPH_UNREST), PROC_REF(toggle_rest))
+	RegisterSignal(escorted_atom, COMSIG_SPIDERLING_MARK, PROC_REF(decide_mark))
 
 /// Decides what to do when widow uses spiderling mark ability
 /datum/ai_behavior/spiderling/proc/decide_mark(source, atom/A)
 	SIGNAL_HANDLER
 	if(!A)
 		only_set_escorted_atom()
-		UnregisterSignal(atom_to_walk_to, list(COMSIG_MOB_DEATH, COMSIG_PARENT_QDELETING))
+		UnregisterSignal(atom_to_walk_to, list(COMSIG_MOB_DEATH, COMSIG_QDELETING))
 		atom_to_walk_to = null
 		return
 	if(atom_to_walk_to == A)
 		return
 	escorted_atom = null
 	if(ishuman(A))
-		INVOKE_ASYNC(src, .proc/triggered_spiderling_rage, source, A)
+		INVOKE_ASYNC(src, PROC_REF(triggered_spiderling_rage), source, A)
 		return
 	if(isobj(A))
 		var/obj/obj_target = A
-		RegisterSignal(obj_target, COMSIG_PARENT_QDELETING, .proc/only_set_escorted_atom)
+		RegisterSignal(obj_target, COMSIG_QDELETING, PROC_REF(only_set_escorted_atom))
 		go_to_obj_target(source, A)
 		return
 
@@ -113,16 +114,16 @@
 /// Check so that we dont keep attacking our target beyond it's death
 /datum/ai_behavior/spiderling/register_action_signals(action_type)
 	if(action_type == MOVING_TO_ATOM)
-		RegisterSignal(mob_parent, COMSIG_STATE_MAINTAINED_DISTANCE, .proc/attack_target)
+		RegisterSignal(mob_parent, COMSIG_STATE_MAINTAINED_DISTANCE, PROC_REF(attack_target))
 		if(!isobj(atom_to_walk_to))
-			RegisterSignal(atom_to_walk_to, list(COMSIG_MOB_DEATH, COMSIG_PARENT_QDELETING), .proc/look_for_new_state)
+			RegisterSignals(atom_to_walk_to, list(COMSIG_MOB_DEATH, COMSIG_QDELETING), PROC_REF(look_for_new_state))
 	return ..()
 
 /datum/ai_behavior/spiderling/unregister_action_signals(action_type)
 	if(action_type == MOVING_TO_ATOM)
 		UnregisterSignal(mob_parent, COMSIG_STATE_MAINTAINED_DISTANCE)
 		if(!isnull(atom_to_walk_to))
-			UnregisterSignal(atom_to_walk_to, list(COMSIG_MOB_DEATH, COMSIG_PARENT_QDELETING))
+			UnregisterSignal(atom_to_walk_to, list(COMSIG_MOB_DEATH, COMSIG_QDELETING))
 	return ..()
 
 /// This happens when the spiderlings mother dies, they move faster and will attack any nearby marines
@@ -138,14 +139,14 @@
 		return
 	x.emote("roar")
 	change_action(MOVING_TO_ATOM, pick(possible_victims))
-	addtimer(CALLBACK(src, .proc/kill_parent), 10 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(kill_parent)), 10 SECONDS)
 
 /// Makes the spiderling roar and then kill themselves after some time
 /datum/ai_behavior/spiderling/proc/triggered_spiderling_rage(mob/M, mob/victim)
 	var/mob/living/carbon/xenomorph/spiderling/x = mob_parent
 	change_action(MOVING_TO_ATOM, victim)
 	x.emote("roar")
-	addtimer(CALLBACK(src, .proc/kill_parent), 15 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(kill_parent)), 15 SECONDS)
 
 ///This kills the spiderling
 /datum/ai_behavior/spiderling/proc/kill_parent()

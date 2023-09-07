@@ -24,13 +24,13 @@ GLOBAL_LIST_INIT(string_equip_flags, list("suit slot" = ITEM_SLOT_OCLOTHING,
 /obj/item/clothing/get_antag_info()
 	var/list/entries = SScodex.retrieve_entries_for_string(name)
 	var/datum/codex_entry/general_entry = LAZYACCESS(entries, 1)
-	if(general_entry && general_entry.antag_text)
+	if(general_entry?.antag_text)
 		return general_entry.antag_text
 
 /obj/item/clothing/get_lore_info()
 	var/list/entries = SScodex.retrieve_entries_for_string(name)
 	var/datum/codex_entry/general_entry = LAZYACCESS(entries, 1)
-	if(general_entry && general_entry.lore_text)
+	if(general_entry?.lore_text)
 		return general_entry.lore_text
 
 /obj/item/clothing/get_mechanics_info()
@@ -38,7 +38,7 @@ GLOBAL_LIST_INIT(string_equip_flags, list("suit slot" = ITEM_SLOT_OCLOTHING,
 
 	var/list/entries = SScodex.retrieve_entries_for_string(name)
 	var/datum/codex_entry/general_entry = LAZYACCESS(entries, 1)
-	if(general_entry && general_entry.mechanics_text)
+	if(general_entry?.mechanics_text)
 		armor_strings += general_entry.mechanics_text + "<br>"
 
 	var/mechanics_signal = SEND_SIGNAL(src, COMSIG_CLOTHING_MECHANICS_INFO)
@@ -97,10 +97,10 @@ GLOBAL_LIST_INIT(string_equip_flags, list("suit slot" = ITEM_SLOT_OCLOTHING,
 		if(flags_equip_slot & GLOB.string_equip_flags[name])
 			slots += name
 
-	if(covers.len)
+	if(length(covers))
 		armor_strings += "<br>It covers the [english_list(covers)]."
 
-	if(slots.len)
+	if(length(slots))
 		armor_strings += "It can be worn on your [english_list(slots)]."
 
 	if(allowed)
@@ -118,18 +118,6 @@ GLOBAL_LIST_INIT(string_equip_flags, list("suit slot" = ITEM_SLOT_OCLOTHING,
 	if(length(storage.bypass_w_limit))
 		. += "<br><br><U>You can also carry the following special items in this</U>:"
 		for(var/X in storage.bypass_w_limit)
-			var/obj/B = X
-			. += "<br>[initial(B.name)]"
-
-/obj/item/clothing/suit/storage/get_mechanics_info()
-	. = ..()
-	if(!pockets)
-		return
-	. += "<br><br>This item has an internal inventory of [pockets.storage_slots] slots."
-	. += "<br>It can carry weight [pockets.max_w_class] things or lighter."
-	if(length(pockets.bypass_w_limit))
-		. += "<br><U>You can also carry the following special items in this internal inventory</U>:"
-		for(var/X in pockets.bypass_w_limit)
 			var/obj/B = X
 			. += "<br>[initial(B.name)]"
 

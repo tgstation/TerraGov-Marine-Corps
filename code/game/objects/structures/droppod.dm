@@ -1,7 +1,7 @@
 #define DROPPOD_READY 1
 #define DROPPOD_ACTIVE 2
 #define DROPPOD_LANDED 3
-GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transit, /turf/open/space, /turf/open/ground/empty, /turf/open/beach/sea, /turf/open/lavaland/lava))) // Don't drop at these tiles.
+GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transit, /turf/open/space, /turf/open/ground/empty, /turf/open/liquid/lava))) // Don't drop at these tiles.
 
 ///Time drop pod spends in the transit z, mostly for visual flavor
 #define DROPPOD_TRANSIT_TIME 10 SECONDS
@@ -18,6 +18,7 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 	anchored = TRUE
 	layer = ABOVE_OBJ_LAYER
 	resistance_flags = XENO_DAMAGEABLE
+	interaction_flags = INTERACT_OBJ_DEFAULT|INTERACT_POWERLOADER_PICKUP_ALLOWED_BYPASS_ANCHOR
 	soft_armor = list(MELEE = 50, BULLET = 70, LASER = 70, ENERGY = 100, BOMB = 70, BIO = 100, FIRE = 0, ACID = 0)
 	max_integrity = 50
 	flags_atom = PREVENT_CONTENTS_EXPLOSION
@@ -41,22 +42,34 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 	///after the pod finishes it's travelhow long it spends falling
 	var/falltime = 0.6 SECONDS
 
-/obj/structure/droppod/Initialize()
+/obj/structure/droppod/Initialize(mapload)
 	. = ..()
 	interaction_actions = list()
 	interaction_actions += new /datum/action/innate/set_drop_target(src)
 	interaction_actions += new /datum/action/innate/launch_droppod(src)
-	RegisterSignal(SSdcs, COMSIG_GLOB_DROPSHIP_HIJACKED, .proc/disable_launching)
-	RegisterSignal(SSdcs, list(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_XENO_HIVEMIND, COMSIG_GLOB_OPEN_SHUTTERS_EARLY, COMSIG_GLOB_TADPOLE_LAUNCHED), .proc/allow_drop)
+	RegisterSignal(SSdcs, COMSIG_GLOB_DROPSHIP_HIJACKED, PROC_REF(disable_launching))
+	RegisterSignals(SSdcs, list(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_XENO_HIVEMIND, COMSIG_GLOB_OPEN_SHUTTERS_EARLY, COMSIG_GLOB_TADPOLE_LAUNCHED), PROC_REF(allow_drop))
 	GLOB.droppod_list += src
 	update_icon()
+	if((!locate(/obj/structure/drop_pod_launcher) in get_turf(src)) && mapload)
+		stack_trace("Droppod [REF(src)] was created without a drop pod launcher under it at [x],[y],[z]")
+		return INITIALIZE_HINT_QDEL
 
 /obj/structure/droppod/Destroy()
-	for(var/atom/movable/ejectee AS in contents) // dump them out, just in case no mobs det deleted
+	for(var/atom/movable/ejectee AS in buckled_mobs) // dump them out, just in case no mobs get deleted
+		ejectee.forceMove(loc)
+	//because we get put in the contents at some point, and don't want to get deleted if the pod gets shot out during that time
+	for(var/atom/movable/ejectee AS in contents)
 		ejectee.forceMove(loc)
 	QDEL_NULL(reserved_area)
 	QDEL_LIST(interaction_actions)
 	GLOB.droppod_list -= src // todo should be active pods only for iterative checks
+	return ..()
+
+
+/obj/structure/droppod/attack_powerloader(mob/living/user, obj/item/powerloader_clamp/attached_clamp)
+	for(var/atom/movable/ejectee AS in buckled_mobs) // dump them out, just in case no mobs get deleted
+		ejectee.forceMove(loc)
 	return ..()
 
 ///Disables launching upon dropship hijack
@@ -88,6 +101,7 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 		if(!silent)
 			balloon_alert(buckling_mob, "Already used")
 		return FALSE
+	setDir(SOUTH) //this is dirty but supply elevator still tehnically being a shuttle forced my hand TODO: undirty this
 	. = ..()
 	if(!.)
 		return
@@ -153,11 +167,18 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 		to_chat(user, span_notice("Unable to launch, the ship has not yet reached the combat area."))
 		return
 	#endif
+
+	if(!locate(/obj/structure/drop_pod_launcher) in get_turf(src))
+		to_chat(user, span_notice("Error. Cannot launch [name] without a droppod launcher."))
+		return
+
 	if(!launch_allowed)
 		to_chat(user, span_notice("Error. Ship calibration unavailable. Please %#&ç:*"))
 		return
+
 	if(drop_state != DROPPOD_READY)
 		return
+
 	if(!checklanding(user))
 		return
 
@@ -175,7 +196,7 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 	update_icon()
 	playsound(src, 'sound/effects/escape_pod_launch.ogg', 70)
 	playsound(src, 'sound/effects/droppod_launch.ogg', 70)
-	addtimer(CALLBACK(src, .proc/finish_drop, user), DROPPOD_TRANSIT_TIME)
+	addtimer(CALLBACK(src, PROC_REF(finish_drop), user), DROPPOD_TRANSIT_TIME)
 	forceMove(pick(reserved_area.reserved_turfs))
 	new /area/arrival(loc)	//adds a safezone so we dont suffocate on the way down, cleaned up with reserved turfs
 
@@ -204,15 +225,15 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_DROPPOD_LANDED, targetturf)
 	pixel_y = 500
 	animate(src, pixel_y = initial(pixel_y), time = falltime, easing = LINEAR_EASING)
-	addtimer(CALLBACK(src, .proc/dodrop, targetturf, user), falltime)
+	addtimer(CALLBACK(src, PROC_REF(dodrop), targetturf, user), falltime)
 
 ///Do the stuff when it "hits the ground"
 /obj/structure/droppod/proc/dodrop(turf/targetturf, mob/user)
 	deadchat_broadcast(" has landed at [get_area(targetturf)]!", src, user)
-	explosion(targetturf,-1,-1,2,-1)
+	explosion(targetturf,-1,-1,2,-1,-1)
 	playsound(targetturf, 'sound/effects/droppod_impact.ogg', 100)
 	QDEL_NULL(reserved_area)
-	addtimer(CALLBACK(src, .proc/completedrop, user), 7) //dramatic effect
+	addtimer(CALLBACK(src, PROC_REF(completedrop), user), 7) //dramatic effect
 
 ///completes landing a little delayed for a dramatic effect
 /obj/structure/droppod/proc/completedrop(mob/user)
@@ -228,19 +249,17 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 	icon_state = "leaderpod"
 
 /obj/structure/droppod/leader/buckle_mob(mob/living/buckling_mob, force, check_loc, lying_buckle, hands_needed, target_hands_needed, silent)
-	. = ..()
-	if(!.)
-		return
-	if(buckling_mob.skills.getRating(SKILL_LEADERSHIP) < SKILL_LEAD_EXPERT)
+	if(buckling_mob.skills.getRating(SKILL_LEADERSHIP) < SKILL_LEAD_TRAINED)
 		balloon_alert(buckling_mob, "Can't use that!") // basically squad lead+ cant touch this
 		return FALSE
+	return ..()
 
 /obj/structure/droppod/leader/set_target(new_x, new_y)
 	. = ..()
 	if(!.)
 		return
 	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_DROPPOD_TARGETTING))
-		addtimer(CALLBACK(src, /atom.proc/balloon_alert, buckled_mobs[1], "Target Assignment cooldown"), 7)
+		addtimer(CALLBACK(src, TYPE_PROC_REF(/atom, balloon_alert), buckled_mobs[1], "Target Assignment cooldown"), 7)
 		return
 	// this isnt the cheapest thing in the world so lets not let players spam it
 	TIMER_COOLDOWN_START(src, COOLDOWN_DROPPOD_TARGETTING, 10 SECONDS)
@@ -258,7 +277,7 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 		if(!checklanding(null, attemptdrop))
 			block -= attemptdrop
 	if(length(block) <= 10)
-		addtimer(CALLBACK(src, /atom.proc/balloon_alert, buckled_mobs[1], "Target Assignment failed"), 7)
+		addtimer(CALLBACK(src, TYPE_PROC_REF(/atom, balloon_alert), buckled_mobs[1], "Target Assignment failed"), 7)
 		return
 
 	for(var/obj/structure/droppod/pod in GLOB.droppod_list)
@@ -291,7 +310,7 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 		for(var/mob/dropper AS in pod.buckled_mobs)
 			dropper.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:center valign='top'><u>DROP UPDATED:</u></span><br>COMMENCING MASS DEPLOYMENT", /atom/movable/screen/text/screen_text/command_order)
 		var/predroptime = rand(4 SECONDS, 5 SECONDS) //Randomize it a bit so its staggered
-		addtimer(CALLBACK(pod, /obj/structure/droppod/.proc/launchpod, pod.buckled_mobs[1], TRUE), predroptime)
+		addtimer(CALLBACK(pod, TYPE_PROC_REF(/obj/structure/droppod, launchpod), pod.buckled_mobs[1], TRUE), predroptime)
 
 
 /datum/action/innate/launch_droppod
@@ -308,28 +327,55 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 	name = "Set drop pod target"
 	action_icon = 'icons/mecha/actions_mecha.dmi'
 	action_icon_state = "mech_zoom_on"
+	///Locks activating this action again while choosing to prevent signal shenanigan runtimes.
+	var/choosing = FALSE
+
+/datum/action/innate/set_drop_target/can_use_action()
+	if(choosing)
+		return FALSE
+	return ..()
 
 /datum/action/innate/set_drop_target/Activate()
 	. = ..()
 	//yes this is hardcoded bite me
 	var/atom/movable/screen/minimap/map = SSminimaps.fetch_minimap_object(2, MINIMAP_FLAG_MARINE)
 	owner.client.screen += map
+	choosing = TRUE
 	var/list/polled_coords = map.get_coords_from_click(owner)
 	if(!polled_coords)
+		owner.client?.screen -= map
+		choosing = FALSE
 		return
 	owner.client?.screen -= map
+	choosing = FALSE
 	var/obj/structure/droppod/pod = target
 	pod.set_target(polled_coords[1], polled_coords[2])
 
-/obj/structure/dropprop	//Just a prop for now but if the pods are someday made movable make a requirement to have these on the turf
+/datum/action/innate/set_drop_target/remove_action(mob/M)
+	if(choosing)
+		var/atom/movable/screen/minimap/map = SSminimaps.fetch_minimap_object(2, MINIMAP_FLAG_MARINE)
+		owner.client?.screen -= map
+		map.UnregisterSignal(owner, COMSIG_MOB_CLICKON)
+		choosing = FALSE
+	return ..()
+
+/obj/structure/drop_pod_launcher
 	name = "Zeus pod launch bay"
 	desc = "A hatch in the ground wih support for a Zeus drop pod launch."
 	icon = 'icons/obj/structures/droppod.dmi'
 	icon_state = "launch_bay"
 	density = FALSE
-	anchored = TRUE
-	layer = ABOVE_TURF_LAYER
 	resistance_flags = INDESTRUCTIBLE
+
+/obj/structure/drop_pod_launcher/attack_powerloader(mob/living/user, obj/item/powerloader_clamp/attached_clamp)
+	if(!istype(attached_clamp.loaded, /obj/structure/droppod))
+		return ..()
+	user.visible_message(span_notice("[user] drops [attached_clamp.loaded] onto [src] and it clicks into place!"),
+	span_notice("You drop [attached_clamp.loaded] onto [src] and it clicks into place!"))
+	attached_clamp.loaded.forceMove(get_turf(src))
+	attached_clamp.loaded = null
+	playsound(src, 'sound/machines/hydraulics_1.ogg', 40, 1)
+	attached_clamp.update_icon()
 
 #undef DROPPOD_READY
 #undef DROPPOD_ACTIVE

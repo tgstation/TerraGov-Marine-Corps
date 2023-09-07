@@ -20,7 +20,7 @@
 /obj/machinery/power/monitor/grid
 	name = "Main Power Grid Monitoring"
 
-/obj/machinery/power/monitor/Initialize()
+/obj/machinery/power/monitor/Initialize(mapload)
 	. = ..()
 	var/obj/structure/cable/attached = null
 	var/turf/T = loc
@@ -53,7 +53,7 @@
 
 		t += "<FONT SIZE=-1>"
 
-		if(L.len > 0)
+		if(length(L) > 0)
 			var/total_demand = 0
 			t += "Area                           Eqp./Lgt./Env.  Load   Cell<HR>"
 

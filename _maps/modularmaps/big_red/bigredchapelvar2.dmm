@@ -1,6 +1,6 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "bh" = (
-/obj/structure/window/framed/colony,
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /obj/machinery/door/poddoor/shutters/mainship{
 	id = "Chapel";
 	name = "\improper Chapel Shutters"
@@ -83,9 +83,10 @@
 	},
 /area/bigredv2/outside/chapel)
 "pS" = (
-/turf/open/floor/stairs/rampbottom{
+/obj/structure/stairs/edge{
 	dir = 1
 	},
+/turf/open/floor/tile/dark,
 /area/bigredv2/outside/chapel)
 "qq" = (
 /obj/structure/bed/chair/wood/wings{
@@ -100,7 +101,7 @@
 	dir = 4
 	},
 /obj/effect/decal/cleanable/blood/six{
-	dir = 4;
+	dir = 4
 	},
 /turf/open/floor/grayscale/darkred,
 /area/bigredv2/outside/chapel)
@@ -149,7 +150,7 @@
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
 /obj/structure/cable,
 /obj/effect/decal/cleanable/blood/six{
-	dir = 4;
+	dir = 4
 	},
 /turf/open/floor/grayscale/darkred,
 /area/bigredv2/outside/chapel)
@@ -212,7 +213,7 @@
 /turf/open/floor/tile/darkish,
 /area/bigredv2/outside/chapel)
 "Cl" = (
-/obj/machinery/alarm{
+/obj/machinery/air_alarm{
 	dir = 1
 	},
 /obj/effect/landmark/weed_node,
@@ -220,7 +221,8 @@
 /area/bigredv2/outside/chapel)
 "CO" = (
 /obj/effect/landmark/weed_node,
-/turf/open/floor/stairs/rampbottom,
+/obj/structure/stairs/edge,
+/turf/open/floor/tile/dark,
 /area/bigredv2/outside/chapel)
 "De" = (
 /obj/structure/cable,
@@ -229,8 +231,8 @@
 /area/bigredv2/outside/chapel)
 "Dk" = (
 /obj/structure/table/woodentable,
-/obj/effect/spawner/random/ammo,
-/obj/effect/spawner/random/ammo,
+/obj/effect/spawner/random/weaponry/ammo,
+/obj/effect/spawner/random/weaponry/ammo,
 /turf/open/floor/tile/darkish,
 /area/bigredv2/outside/chapel)
 "Ei" = (
@@ -276,7 +278,7 @@
 	},
 /area/bigredv2/outside/chapel)
 "Oe" = (
-/obj/structure/window/framed/colony,
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /obj/machinery/door/poddoor/shutters/mainship{
 	dir = 2;
 	id = "Chapel";
@@ -306,7 +308,7 @@
 /obj/effect/landmark/weed_node,
 /obj/effect/ai_node,
 /obj/effect/decal/cleanable/blood/six{
-	dir = 1;
+	dir = 1
 	},
 /turf/open/floor/grayscale/darkred,
 /area/bigredv2/outside/chapel)
@@ -350,7 +352,7 @@
 /area/bigredv2/outside/chapel)
 "VS" = (
 /obj/effect/decal/cleanable/blood/six{
-	dir = 1;
+	dir = 1
 	},
 /turf/open/floor/tile/chapel{
 	dir = 8
@@ -367,7 +369,7 @@
 /area/bigredv2/outside/chapel)
 "XR" = (
 /obj/effect/decal/cleanable/blood/six{
-	dir = 1;
+	dir = 1
 	},
 /turf/open/floor/tile/chapel{
 	dir = 1

@@ -14,7 +14,7 @@
 	var/mob/living/silicon/ai/ai = list()
 	var/last_tick //used to delay the powercheck
 
-/obj/item/radio/intercom/Initialize()
+/obj/item/radio/intercom/Initialize(mapload)
 	. = ..()
 	switch(dir)
 		if(NORTH)
@@ -60,9 +60,9 @@
 
 /obj/item/radio/intercom/Hear(message, atom/movable/speaker, message_langs, raw_message, radio_freq, list/spans, message_mode)
 	if(message_mode == MODE_INTERCOM)
-		return  // Avoid hearing the same thing twice
+		return FALSE // Avoid hearing the same thing twice
 	if(!anyai && !(speaker in ai))
-		return
+		return FALSE
 	return ..()
 
 

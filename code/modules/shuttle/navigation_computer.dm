@@ -30,7 +30,7 @@
 	/// Vertical offset from the console of the origin tile when using it
 	var/y_offset = 0
 	/// Turfs that can be landed on
-	var/list/whitelist_turfs = list(/turf/open/ground, /turf/open/floor)
+	var/list/whitelist_turfs = list(/turf/open/ground, /turf/open/floor, /turf/open/liquid/water)
 	/// Are we able to see hidden ports when using the console
 	var/see_hidden = FALSE
 	/// Delay of the place_action
@@ -89,7 +89,7 @@
 	return
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/give_actions(mob/living/user)
-	if(jumpto_ports.len)
+	if(length(jumpto_ports))
 		jump_action = new /datum/action/innate/camera_jump/shuttle_docker
 	..()
 	if(rotate_action)
@@ -230,7 +230,7 @@
 	var/mob/camera/aiEye/remote/shuttle_docker/the_eye = eyeobj
 	var/list/image_cache = the_eye.placement_images
 	the_eye.setDir(turn(the_eye.dir, -90))
-	for(var/i in 1 to image_cache.len)
+	for(var/i in 1 to length(image_cache))
 		var/image/pic = image_cache[i]
 		var/list/coords = image_cache[pic]
 		var/Tmp = coords[1]
@@ -248,7 +248,7 @@
 		return
 	var/mob/camera/aiEye/remote/shuttle_docker/the_eye = eyeobj
 	var/list/image_cache = the_eye.placement_images
-	for(var/i in 1 to image_cache.len)
+	for(var/i in 1 to length(image_cache))
 		var/image/I = image_cache[i]
 		var/list/coords = image_cache[I]
 		var/turf/T = locate(next_turf.x + coords[1], next_turf.y + coords[2], next_turf.z)
@@ -274,7 +274,7 @@
 	var/list/bounds = shuttle_port.return_coords(the_eye.x - x_offset, the_eye.y - y_offset, the_eye.dir)
 	var/list/overlappers = SSshuttle.get_dock_overlap(bounds[1], bounds[2], bounds[3], bounds[4], the_eye.z)
 	var/list/image_cache = the_eye.placement_images
-	for(var/i in 1 to image_cache.len)
+	for(var/i in 1 to length(image_cache))
 		var/image/I = image_cache[i]
 		var/list/coords = image_cache[I]
 		var/turf/T = locate(eyeturf.x + coords[1], eyeturf.y + coords[2], eyeturf.z)
@@ -296,7 +296,7 @@
 	if(!T || T.x <= 10 || T.y <= 10 || T.x >= world.maxx - 10 || T.y >= world.maxy - 10)
 		return SHUTTLE_DOCKER_BLOCKED
 	var/area/turf_area = get_area(T)
-	if(turf_area.ceiling >= CEILING_DEEP_UNDERGROUND)
+	if(turf_area.ceiling >= CEILING_UNDERGROUND)
 		return SHUTTLE_DOCKER_BLOCKED
 	// If it's one of our shuttle areas assume it's ok to be there
 	if(shuttle_port.shuttle_areas[T.loc])
@@ -319,7 +319,7 @@
 			return SHUTTLE_DOCKER_BLOCKED
 
 	// Checking for overlapping dock boundaries
-	for(var/i in 1 to overlappers.len)
+	for(var/i in 1 to length(overlappers))
 		var/obj/docking_port/port = overlappers[i]
 		if(port == my_port)
 			continue
@@ -426,10 +426,10 @@
 			stack_trace("SSshuttle.stationary have null entry!")
 			continue
 		var/obj/docking_port/stationary/S = V
-		if(console.z_lock.len && !(S.z in console.z_lock))
+		if(length(console.z_lock) && !(S.z in console.z_lock))
 			continue
 		if(console.jumpto_ports[S.id])
-			L["([L.len])[S.name]"] = S
+			L["([length(L)])[S.name]"] = S
 
 	playsound(console, 'sound/machines/terminal_prompt.ogg', 25, FALSE)
 	var/selected = input("Choose location to jump to", "Locations", null) as null|anything in sortList(L)

@@ -55,7 +55,7 @@
 
 	pulsed()
 
-	addtimer(CALLBACK(src, /atom/movable/.proc/update_icon), 1.5 SECONDS)
+	addtimer(CALLBACK(src, TYPE_PROC_REF(/atom/movable, update_icon)), 1.5 SECONDS)
 
 
 /obj/machinery/button/proc/pulsed()
@@ -116,7 +116,7 @@
 	icon_state = "shutterctrl"
 	use_power = NO_POWER_USE
 	resistance_flags = RESIST_ALL
-	req_one_access = list(ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_DROPSHIP_REBEL)
+	req_one_access = list(ACCESS_MARINE_DROPSHIP)
 	/// Has the shutters alarm been played?
 	var/alarm_played = FALSE
 
@@ -128,6 +128,11 @@
 /obj/machinery/button/door/open_only/landing_zone/attack_hand(mob/living/user)
 	if((machine_stat & (NOPOWER|BROKEN)))
 		return
+	#ifndef TESTING
+	if(world.time < SSticker.round_start_time + SSticker.mode.deploy_time_lock)
+		to_chat(user, span_notice("The containment shutters can't open yet!"))
+		return
+	#endif
 	if(!allowed(user))
 		to_chat(user, span_danger("Access Denied"))
 		flick("[initial(icon_state)]-denied", src)
@@ -140,8 +145,8 @@
 
 	alarm_played = TRUE
 	playsound_z(z, 'sound/effects/shutters_alarm.ogg', 15) // woop woop, shutters opening.
-	addtimer(CALLBACK(src, /atom/movable/.proc/update_icon), 1.5 SECONDS)
-	addtimer(CALLBACK(src, .proc/pulsed), 185)
+	addtimer(CALLBACK(src, TYPE_PROC_REF(/atom/movable, update_icon)), 1.5 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(pulsed)), 185)
 
 /obj/machinery/button/door/open_only/landing_zone/pulsed()
 	. = ..()
@@ -237,7 +242,7 @@
 	visible_message("Remain calm, someone will be with you shortly.")
 
 	active = TRUE
-	addtimer(CALLBACK(src, .proc/icon_update_check), 10 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(icon_update_check)), 10 SECONDS)
 
 /obj/machinery/medical_help_button/proc/icon_update_check()
 	active = FALSE
@@ -268,6 +273,9 @@
 	if(!xeno_wanted)
 		return
 	QDEL_NULL(linked)
+	if(!get_turf(GLOB.valhalla_button_spawn_landmark[link]))
+		to_chat(user, span_warning("An error occured, yell at the coders."))
+		CRASH("Valhalla button linked with an improper landmark: button ID: [link].")
 	linked = new xeno_wanted(get_turf(GLOB.valhalla_button_spawn_landmark[link]))
 
 /obj/machinery/button/valhalla/xeno_button
@@ -292,6 +300,9 @@
 		return
 
 	QDEL_NULL(linked)
+	if(!get_turf(GLOB.valhalla_button_spawn_landmark[link]))
+		to_chat(X, span_warning("An error occured, yell at the coders."))
+		CRASH("Valhalla button linked with an improper landmark: button ID: [link].")
 	linked = new /mob/living/carbon/human(get_turf(GLOB.valhalla_button_spawn_landmark[link]))
 	if(selected_outfit == "Naked" || !selected_outfit)
 		return

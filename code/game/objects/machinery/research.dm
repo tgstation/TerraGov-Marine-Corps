@@ -74,7 +74,7 @@
 		),
 	)
 
-/obj/machinery/researchcomp/Initialize()
+/obj/machinery/researchcomp/Initialize(mapload)
 	. = ..()
 	construct_insertable_resources_desc()
 
@@ -183,7 +183,7 @@
 /obj/machinery/researchcomp/proc/start_research(mob/living/user, research_time)
 	icon_state = "chamber_active_loaded"
 	researching = TRUE
-	addtimer(CALLBACK(src, .proc/finish_research), research_time)
+	addtimer(CALLBACK(src, PROC_REF(finish_research)), research_time)
 
 ///Handles the research process completing
 /obj/machinery/researchcomp/proc/finish_research()
@@ -252,7 +252,7 @@
 	icon = 'icons/obj/alien_autopsy.dmi'
 	icon_state = "sample_0"
 
-/obj/item/research_resource/xeno/Initialize()
+/obj/item/research_resource/xeno/Initialize(mapload)
 	. = ..()
 	icon_state = "sample_[rand(0, 11)]"
 

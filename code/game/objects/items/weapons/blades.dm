@@ -32,7 +32,7 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 
-/obj/item/weapon/claymore/Initialize()
+/obj/item/weapon/claymore/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/scalping)
 
@@ -50,19 +50,18 @@
 	force = 60
 	attack_speed = 12
 	w_class = WEIGHT_CLASS_BULKY
-	flags_item = DRAINS_XENO
 
 	var/codex_info = {"<b>Reagent info:</b><BR>
-	Bicaridine - heal your target for 10 brute. Usable on both dead and living targets.<BR>
-	Kelotane - produce a cone of flames<BR>
-	Tramadol - slow your target for 2 seconds<BR>
+	Bicaridine - heals somebody else for 12.5 brute, or when used on yourself heal 6 brute and 30 stamina<BR>
+	Kelotane - set your target and any adjacent mobs aflame<BR>
+	Tramadol - slow your target for 1 second and deal 60% more armor-piercing damage<BR>
 	<BR>
 	<b>Tips:</b><BR>
 	> Needs to be connected to the Vali system to collect green blood. You can connect it though the Vali system's configurations menu.<BR>
-	> Filled by liquid reagent containers. Emptied by using an empty liquid reagent container.<BR>
-	> Toggle unique action (SPACE by default) to load a single-use of the reagent effect after the blade has been filled up."}
+	> Filled by liquid reagent containers. Emptied by using an empty liquid reagent container. Can also be filled by pills.<BR>
+	> Press your unique action key (SPACE by default) to load a single-use of the reagent effect after the blade has been filled up."}
 
-/obj/item/weapon/claymore/harvester/Initialize()
+/obj/item/weapon/claymore/harvester/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/harvester)
 
@@ -100,6 +99,10 @@
 	attack_speed = 12
 	w_class = WEIGHT_CLASS_BULKY
 
+/obj/item/weapon/claymore/mercsword/machete/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/strappable)
+
 /obj/item/weapon/claymore/mercsword/machete/equipped(mob/user, slot)
 	. = ..()
 	toggle_item_bump_attack(user, TRUE)
@@ -107,6 +110,11 @@
 /obj/item/weapon/claymore/mercsword/machete/dropped(mob/user)
 	. = ..()
 	toggle_item_bump_attack(user, FALSE)
+
+/obj/item/weapon/claymore/mercsword/machete/alt
+	name = "machete"
+	desc = "A nice looking machete. Great for clearing out jungle or brush on outlying colonies. Found commonly in the hands of scouts and trackers, but difficult to carry with the usual kit."
+	icon_state = "machete_alt"
 
 //FC's sword.
 
@@ -118,14 +126,6 @@
 	force = 75
 	attack_speed = 12
 	w_class = WEIGHT_CLASS_BULKY
-
-/obj/item/weapon/claymore/mercsword/machete/equipped(mob/user, slot)
-	. = ..()
-	toggle_item_bump_attack(user, TRUE)
-
-/obj/item/weapon/claymore/mercsword/machete/dropped(mob/user)
-	. = ..()
-	toggle_item_bump_attack(user, FALSE)
 
 /obj/item/weapon/claymore/mercsword/commissar_sword
 	name = "\improper commissars sword"
@@ -210,7 +210,7 @@
 		F.loc = get_turf(src)
 	qdel(src) //Delete da old knife
 
-/obj/item/weapon/combat_knife/Initialize()
+/obj/item/weapon/combat_knife/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/scalping)
 
@@ -220,38 +220,36 @@
 							span_danger("[user] is slitting [user.p_their()] stomach open with the [name]! It looks like [user.p_theyre()] trying to commit seppuku.")))
 	return (BRUTELOSS)
 
-/obj/item/weapon/combat_knife/vali_knife
+/obj/item/weapon/combat_knife/harvester
 	name = "\improper HP-S Harvester knife"
 	desc = "TerraGov Marine Corps' experimental High Point-Singularity 'Harvester' knife. An advanced version of the HP-S Harvester blade, shrunken down to the size of the standard issue boot knife. It trades the harvester blades size and power for a smaller form, with the side effect of a miniscule chemical storage, yet it still keeps its ability to apply debilitating effects to its targets. Activate after loading to prime a single use of an effect. It also harvests substances from alien lifeforms it strikes when connected to the Vali system."
 	icon_state = "vali_knife_icon"
 	item_state = "vali_knife"
 	force = 25
 	throwforce = 15
-	flags_item = DRAINS_XENO
-
 	var/codex_info = {"<b>Reagent info:</b><BR>
-	Bicaridine - heal your target for 10 brute. Usable on both dead and living targets.<BR>
-	Kelotane - produce a cone of flames<BR>
-	Tramadol - slow your target for 2 seconds<BR>
+	Bicaridine - heals somebody else for 12.5 brute, or when used on yourself heal 6 brute and 30 stamina<BR>
+	Kelotane - set your target and any adjacent mobs aflame<BR>
+	Tramadol - slow your target for 1 second and deal 60% more armor-piercing damage<BR>
 	<BR>
 	<b>Tips:</b><BR>
 	> Needs to be connected to the Vali system to collect green blood. You can connect it though the Vali system's configurations menu.<BR>
-	> Filled by liquid reagent containers. Emptied by using an empty liquid reagent container.<BR>
-	> Toggle unique action (SPACE by default) to load a single-use of the reagent effect after the blade has been filled up."}
+	> Filled by liquid reagent containers. Emptied by using an empty liquid reagent container. Can also be filled by pills.<BR>
+	> Press your unique action key (SPACE by default) to load a single-use of the reagent effect after the blade has been filled up."}
 
-/obj/item/weapon/combat_knife/vali_knife/Initialize()
+/obj/item/weapon/combat_knife/harvester/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/harvester, 5)
 
-/obj/item/weapon/combat_knife/vali_knife/equipped(mob/user, slot)
+/obj/item/weapon/combat_knife/harvester/equipped(mob/user, slot)
 	. = ..()
 	toggle_item_bump_attack(user, FALSE)
 
-/obj/item/weapon/combat_knife/vali_knife/dropped(mob/user)
+/obj/item/weapon/combat_knife/harvester/dropped(mob/user)
 	. = ..()
 	toggle_item_bump_attack(user, FALSE)
 
-/obj/item/weapon/combat_knife/vali_knife/get_mechanics_info()
+/obj/item/weapon/combat_knife/harvester/get_mechanics_info()
 	. = ..()
 	. += jointext(codex_info, "<br>")
 
@@ -336,8 +334,8 @@
 
 /obj/item/stack/throwing_knife/Initialize(mapload, new_amount)
 	. = ..()
-	RegisterSignal(src, COMSIG_MOVABLE_POST_THROW, .proc/post_throw)
-	AddComponent(/datum/component/automatedfire/autofire, throw_delay, _fire_mode = GUN_FIREMODE_AUTOMATIC, _callback_reset_fire = CALLBACK(src, .proc/stop_fire), _callback_fire = CALLBACK(src, .proc/throw_knife))
+	RegisterSignal(src, COMSIG_MOVABLE_POST_THROW, PROC_REF(post_throw))
+	AddComponent(/datum/component/automatedfire/autofire, throw_delay, _fire_mode = GUN_FIREMODE_AUTOMATIC, _callback_reset_fire = CALLBACK(src, PROC_REF(stop_fire)), _callback_fire = CALLBACK(src, PROC_REF(throw_knife)))
 
 /obj/item/stack/throwing_knife/update_icon()
 	. = ..()
@@ -349,9 +347,9 @@
 	if(user.get_active_held_item() != src && user.get_inactive_held_item() != src)
 		return
 	living_user = user
-	RegisterSignal(user, COMSIG_MOB_MOUSEDRAG, .proc/change_target)
-	RegisterSignal(user, COMSIG_MOB_MOUSEUP, .proc/stop_fire)
-	RegisterSignal(user, COMSIG_MOB_MOUSEDOWN, .proc/start_fire)
+	RegisterSignal(user, COMSIG_MOB_MOUSEDRAG, PROC_REF(change_target))
+	RegisterSignal(user, COMSIG_MOB_MOUSEUP, PROC_REF(stop_fire))
+	RegisterSignal(user, COMSIG_MOB_MOUSEDOWN, PROC_REF(start_fire))
 
 /obj/item/stack/throwing_knife/unequipped(mob/unequipper, slot)
 	. = ..()
@@ -430,14 +428,14 @@
 	if(object == current_target || object == living_user)
 		return
 	if(current_target)
-		UnregisterSignal(current_target, COMSIG_PARENT_QDELETING)
+		UnregisterSignal(current_target, COMSIG_QDELETING)
 	current_target = object
 
 /obj/item/weapon/chainsword
 	name = "chainsword"
 	desc = "chainsword thing"
 	icon = 'icons/obj/items/weapons.dmi'
-	icon_state = "chainswordoff"
+	icon_state = "chainsword"
 	attack_verb = list("gored", "slashed", "cut")
 	force = 10
 	throwforce = 5
@@ -447,8 +445,8 @@
 	. = ..()
 	if(!on)
 		on = !on
-		icon_state = "chainswordon"
-		force = 40
+		icon_state = "[initial(icon_state)]_on"
+		force = 80
 		throwforce = 30
 	else
 		on = !on
@@ -463,3 +461,8 @@
 /obj/item/weapon/chainsword/suicide_act(mob/user)
 	user.visible_message(span_danger("[user] is falling on the [src.name]! It looks like [user.p_theyre()] trying to commit suicide."))
 	return(BRUTELOSS)
+
+/obj/item/weapon/chainsword/civilian
+	name = "chainsaw"
+	desc = "A chainsaw. Good for turning big things into little things."
+	icon_state = "chainsaw"

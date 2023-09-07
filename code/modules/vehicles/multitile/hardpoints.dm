@@ -12,7 +12,7 @@ Currently only has the tank hardpoints
 	icon_state = "tires" //Placeholder
 
 	max_integrity = 100
-	w_class = 15
+	w_class = WEIGHT_CLASS_GIGANTIC
 
 	var/obj/item/ammo_magazine/tank/ammo
 	//If we use ammo, put it here
@@ -31,7 +31,7 @@ Currently only has the tank hardpoints
 	var/max_clips = 1 //1 so they can reload their backups and actually reload once
 	var/buyable = TRUE
 
-/obj/item/hardpoint/Initialize()
+/obj/item/hardpoint/Initialize(mapload)
 	. = ..()
 	if(starter_ammo)
 		ammo = new starter_ammo
@@ -589,13 +589,13 @@ Currently only has the tank hardpoints
 	owner.misc_ratios["supp_acc"] = 1.67
 
 /obj/item/hardpoint/support/weapons_sensor/remove_buff()
-	owner.misc_ratios["prim_cool"] = 1.0
-	owner.misc_ratios["secd_cool"] = 1.0
-	owner.misc_ratios["supp_cool"] = 1.0
+	owner.misc_ratios["prim_cool"] = 1
+	owner.misc_ratios["secd_cool"] = 1
+	owner.misc_ratios["supp_cool"] = 1
 
-	owner.misc_ratios["prim_acc"] = 1.0
-	owner.misc_ratios["secd_acc"] = 1.0
-	owner.misc_ratios["supp_acc"] = 1.0
+	owner.misc_ratios["prim_acc"] = 1
+	owner.misc_ratios["secd_acc"] = 1
+	owner.misc_ratios["supp_acc"] = 1
 
 /obj/item/hardpoint/support/overdrive_enhancer
 	name = "Overdrive Enhancer"
@@ -618,8 +618,8 @@ Currently only has the tank hardpoints
 	if(M)
 		to_chat(M, span_danger("You hit the nitros! RRRRRRRMMMM!!"))
 	playsound(M, 'sound/mecha/hydraulic.ogg', 60, 1, vary = 0)
-	addtimer(CALLBACK(src, .proc/boost_off), TANK_OVERDRIVE_BOOST_DURATION)
-	addtimer(CALLBACK(src, .proc/boost_ready_notice), TANK_OVERDRIVE_BOOST_COOLDOWN)
+	addtimer(CALLBACK(src, PROC_REF(boost_off)), TANK_OVERDRIVE_BOOST_DURATION)
+	addtimer(CALLBACK(src, PROC_REF(boost_ready_notice)), TANK_OVERDRIVE_BOOST_COOLDOWN)
 
 /obj/item/hardpoint/support/overdrive_enhancer/remove_buff()
 	var/obj/vehicle/multitile/root/cm_armored/tank/C = owner
@@ -631,7 +631,7 @@ Currently only has the tank hardpoints
 	C.verbs += /obj/vehicle/multitile/root/cm_armored/tank/verb/overdrive_multitile
 
 /obj/item/hardpoint/support/overdrive_enhancer/proc/boost_off()
-	owner.misc_ratios["move"] = 1.0
+	owner.misc_ratios["move"] = 1
 
 /obj/item/hardpoint/support/overdrive_enhancer/proc/boost_ready_notice()
 	var/obj/vehicle/multitile/root/cm_armored/tank/C = owner
@@ -769,10 +769,10 @@ Currently only has the tank hardpoints
 	owner.dmg_multipliers["all"] = 0.9
 
 /obj/item/hardpoint/armor/ballistic/remove_buff()
-	owner.dmg_multipliers["bullet"] = 1.0
-	owner.dmg_multipliers["slash"] = 1.0
-	owner.dmg_multipliers["blunt"] = 1.0
-	owner.dmg_multipliers["all"] = 1.0
+	owner.dmg_multipliers["bullet"] = 1
+	owner.dmg_multipliers["slash"] = 1
+	owner.dmg_multipliers["blunt"] = 1
+	owner.dmg_multipliers["all"] = 1
 
 /obj/item/hardpoint/armor/caustic
 	name = "Caustic Armor"
@@ -793,10 +793,10 @@ Currently only has the tank hardpoints
 	owner.dmg_multipliers["all"] = 0.9
 
 /obj/item/hardpoint/armor/caustic/remove_buff()
-	owner.dmg_multipliers["acid"] = 1.0
-	owner.dmg_multipliers["slash"] = 1.0
-	owner.dmg_multipliers["blunt"] = 1.0
-	owner.dmg_multipliers["all"] = 1.0
+	owner.dmg_multipliers["acid"] = 1
+	owner.dmg_multipliers["slash"] = 1
+	owner.dmg_multipliers["blunt"] = 1
+	owner.dmg_multipliers["all"] = 1
 
 /obj/item/hardpoint/armor/concussive
 	name = "Concussive Armor"
@@ -817,10 +817,10 @@ Currently only has the tank hardpoints
 	owner.dmg_multipliers["all"] = 0.9
 
 /obj/item/hardpoint/armor/concussive/remove_buff()
-	owner.dmg_multipliers["blunt"] = 1.0
-	owner.dmg_multipliers["explosive"] = 1.0
-	owner.dmg_multipliers["ballistic"] = 1.0
-	owner.dmg_multipliers["all"] = 1.0
+	owner.dmg_multipliers["blunt"] = 1
+	owner.dmg_multipliers["explosive"] = 1
+	owner.dmg_multipliers["ballistic"] = 1
+	owner.dmg_multipliers["all"] = 1
 
 /obj/item/hardpoint/armor/paladin
 	name = "Paladin Armor"
@@ -841,10 +841,10 @@ Currently only has the tank hardpoints
 	owner.dmg_multipliers["all"] = 0.9
 
 /obj/item/hardpoint/armor/paladin/remove_buff()
-	owner.dmg_multipliers["explosive"] = 1.0
-	owner.dmg_multipliers["blunt"] = 1.0
-	owner.dmg_multipliers["slash"] = 1.0
-	owner.dmg_multipliers["all"] = 1.0
+	owner.dmg_multipliers["explosive"] = 1
+	owner.dmg_multipliers["blunt"] = 1
+	owner.dmg_multipliers["slash"] = 1
+	owner.dmg_multipliers["all"] = 1
 
 /obj/item/hardpoint/armor/snowplow
 	name = "Snowplow"
@@ -910,7 +910,7 @@ Currently only has the tank hardpoints
 
 //Special ammo magazines for hardpoint modules. Some aren't here since you can use normal magazines on them
 /obj/item/ammo_magazine/tank
-	flags_magazine = 0 //No refilling
+	flags_magazine = NONE //No refilling
 	var/point_cost = 0
 
 /obj/item/ammo_magazine/tank/ltb_cannon
@@ -918,7 +918,7 @@ Currently only has the tank hardpoints
 	desc = "A primary armament cannon magazine"
 	caliber = CALIBER_86 //Making this unique on purpose
 	icon_state = "ltbcannon_4"
-	w_class = 15 //Heavy fucker
+	w_class = WEIGHT_CLASS_GIGANTIC
 	default_ammo = /datum/ammo/rocket/ltb
 	max_rounds = 4
 	point_cost = 50
@@ -932,7 +932,7 @@ Currently only has the tank hardpoints
 	desc = "A primary armament minigun magazine"
 	caliber = CALIBER_762X51 //Correlates to miniguns
 	icon_state = "painless"
-	w_class = 10
+	w_class = WEIGHT_CLASS_GIGANTIC
 	default_ammo = /datum/ammo/bullet/minigun
 	max_rounds = 500
 	point_cost = 25
@@ -944,7 +944,7 @@ Currently only has the tank hardpoints
 	desc = "A secondary armament flamethrower magazine"
 	caliber = CALIBER_FUEL_THICK //correlates to flamer mags
 	icon_state = "flametank_large"
-	w_class = 12
+	w_class = WEIGHT_CLASS_GIGANTIC
 	default_ammo = /datum/ammo/flamethrower/tank_flamer
 	max_rounds = 120
 	point_cost = 50
@@ -956,7 +956,7 @@ Currently only has the tank hardpoints
 	desc = "A secondary armament rocket magazine"
 	caliber = CALIBER_84MM //correlates to any rocket mags
 	icon_state = "quad_rocket"
-	w_class = 10
+	w_class = WEIGHT_CLASS_GIGANTIC
 	default_ammo = /datum/ammo/rocket/ap //Fun fact, AP rockets seem to be a straight downgrade from normal rockets. Maybe I'm missing something...
 	max_rounds = 5
 	point_cost = 100
@@ -966,7 +966,7 @@ Currently only has the tank hardpoints
 	desc = "A secondary armament grenade magazine"
 	caliber = CALIBER_40MM
 	icon_state = "glauncher_2"
-	w_class = 9
+	w_class = WEIGHT_CLASS_GIGANTIC
 	default_ammo = /datum/ammo/grenade_container
 	max_rounds = 10
 	point_cost = 25
@@ -986,7 +986,7 @@ Currently only has the tank hardpoints
 	desc = "A support armament grenade magazine"
 	caliber = CALIBER_40MM
 	icon_state = "slauncher_1"
-	w_class = 12
+	w_class = WEIGHT_CLASS_GIGANTIC
 	default_ammo = /datum/ammo/grenade_container/smoke
 	max_rounds = 6
 	point_cost = 5

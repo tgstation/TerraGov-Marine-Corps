@@ -77,8 +77,8 @@
 /area/bigredv2/outside/virology)
 "eS" = (
 /obj/structure/rack,
-/obj/effect/spawner/random/tool,
-/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/engineering/tool,
+/obj/effect/spawner/random/engineering/tool,
 /turf/open/floor/plating,
 /area/bigredv2/outside/nw)
 "fw" = (
@@ -237,8 +237,8 @@
 "pq" = (
 /obj/effect/landmark/weed_node,
 /obj/structure/rack,
-/obj/effect/spawner/random/tool,
-/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/engineering/tool,
+/obj/effect/spawner/random/engineering/tool,
 /turf/open/floor/plating,
 /area/bigredv2/outside/nw)
 "pY" = (
@@ -550,6 +550,11 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/cave/rock,
 /area/bigredv2/caves/west)
+"Je" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/bigredv2/outside/nw)
 "Js" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/sand,
@@ -644,8 +649,8 @@
 /area/bigredv2/outside/nw)
 "ME" = (
 /obj/structure/rack/nometal,
-/obj/effect/spawner/random/tool,
-/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/engineering/tool,
+/obj/effect/spawner/random/engineering/tool,
 /turf/open/floor/plating,
 /area/bigredv2/outside/nw)
 "MZ" = (
@@ -673,6 +678,12 @@
 	},
 /obj/structure/cable,
 /obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating,
+/area/bigredv2/outside/nw)
+"Pa" = (
+/obj/effect/ai_node,
+/obj/structure/cable,
+/obj/machinery/power/apc/drained,
 /turf/open/floor/plating,
 /area/bigredv2/outside/nw)
 "Pp" = (
@@ -802,9 +813,9 @@
 	dir = 1
 	},
 /obj/structure/rack/nometal,
-/obj/effect/spawner/random/tool,
-/obj/effect/spawner/random/tool,
-/obj/effect/spawner/random/gun/sidearms,
+/obj/effect/spawner/random/engineering/tool,
+/obj/effect/spawner/random/engineering/tool,
+/obj/effect/spawner/random/weaponry/gun/sidearms,
 /turf/open/floor/plating,
 /area/bigredv2/outside/nw)
 "Xo" = (
@@ -1805,9 +1816,9 @@ yS
 sz
 EM
 kH
-Bu
-sS
-sS
+Pa
+Je
+Je
 TR
 sY
 sY

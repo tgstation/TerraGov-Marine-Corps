@@ -15,6 +15,11 @@
 	name = "card"
 	desc = "Does card things."
 	icon = 'icons/obj/items/card.dmi'
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/equipment/id_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/equipment/id_right.dmi',
+	)
+	item_state = "card-id"
 	item_state_worn = TRUE
 	w_class = WEIGHT_CLASS_TINY
 	var/associated_account_number = 0
@@ -28,7 +33,6 @@
 	var/function = "storage"
 	var/data = "null"
 	var/special = null
-	item_state = "card-id"
 
 /obj/item/card/data/verb/label(t as text)
 	set name = "Label Disk"
@@ -36,14 +40,13 @@
 	set src in usr
 
 	if (t)
-		name = text("data disk- '[]'", t)
+		name = "data disk- '[t]'"
 	else
 		name = "data disk"
 
 /obj/item/card/data/clown
 	name = "\proper the coordinates to clown planet"
 	icon_state = "data"
-	item_state = "card-id"
 	layer = OBJ_LAYER
 	level = 2
 	desc = "This card contains coordinates to the fabled Clown Planet. Handle with care."
@@ -58,14 +61,12 @@
 	desc = "It's a card with a magnetic strip attached to some circuitry. It looks too busted to be used for anything but salvage."
 	name = "broken cryptographic sequencer"
 	icon_state = "emag"
-	item_state = "card-id"
 
 
 /obj/item/card/emag
 	desc = "It's a card with a magnetic strip attached to some circuitry."
 	name = "cryptographic sequencer"
 	icon_state = "emag"
-	item_state = "card-id"
 	flags_item = NOBLUDGEON
 
 
@@ -73,7 +74,6 @@
 	name = "identification card"
 	desc = "A card used to provide ID and determine access to a large array of machinery."
 	icon_state = "id"
-	item_state = "card-id"
 	var/access = list()
 	var/registered_name = "Unknown" // The name registered_name on the card
 	flags_equip_slot = ITEM_SLOT_ID
@@ -99,7 +99,7 @@
 	var/iff_signal = NONE
 
 
-/obj/item/card/id/Initialize()
+/obj/item/card/id/Initialize(mapload)
 	. = ..()
 	marine_buy_choices = GLOB.marine_selector_cats.Copy() //by default you can buy the whole list
 	if(!ishuman(loc))
@@ -271,12 +271,18 @@
 		CAT_MEDSUP = MEDIC_TOTAL_BUY_POINTS,
 	)
 
+/obj/item/card/id/dogtag/fc
+	marine_points = list(
+		CAT_FCSUP = COMMANDER_TOTAL_BUY_POINTS,
+	)
+
 /obj/item/card/id/dogtag/full
 	marine_points = list(
 		CAT_SGSUP = DEFAULT_TOTAL_BUY_POINTS,
 		CAT_ENGSUP = ENGINEER_TOTAL_BUY_POINTS,
 		CAT_LEDSUP = DEFAULT_TOTAL_BUY_POINTS,
 		CAT_MEDSUP = MEDIC_TOTAL_BUY_POINTS,
+		CAT_FCSUP = COMMANDER_TOTAL_BUY_POINTS,
 	)
 
 /obj/item/card/id/dogtag/som
@@ -284,7 +290,7 @@
 	desc = "Used by the Sons of Mars."
 	icon_state = "dogtag_som"
 	item_state = "dogtag_som"
-	iff_signal = SON_OF_MARS_IFF
+	iff_signal = SOM_IFF
 
 
 /obj/item/card/id/dogtag/examine(mob/user)
@@ -318,8 +324,8 @@
 
 /obj/item/dogtag/examine(mob/user)
 	. = ..()
-	if(ishuman(user) && fallen_names && fallen_names.len)
-		if(fallen_names.len == 1)
+	if(ishuman(user) && fallen_names && length(fallen_names))
+		if(length(fallen_names) == 1)
 			to_chat(user, span_notice("It reads: \"[fallen_names[1]] - [fallen_assignements[1]]\"."))
 		else
 			var/msg = "<span class='notice'> It reads: "

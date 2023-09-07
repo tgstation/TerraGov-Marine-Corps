@@ -23,7 +23,7 @@
 
 
 
-/obj/machinery/suit_storage_unit/Initialize()
+/obj/machinery/suit_storage_unit/Initialize(mapload)
 	. = ..()
 	if(starting_suit_type)
 		inserted_suit = new starting_suit_type(src)

@@ -28,7 +28,7 @@ would spawn and follow the beaker, even if it is carried or thrown.
 		number = min(n, 10)
 		cardinals = c
 		setup = TRUE
-		INVOKE_ASYNC(src, .proc/start)
+		INVOKE_ASYNC(src, PROC_REF(start))
 
 		if(self_delete)
 			QDEL_IN(src, self_delete)
@@ -46,7 +46,7 @@ would spawn and follow the beaker, even if it is carried or thrown.
 
 /datum/effect_system/proc/start()
 	for(var/i in 1 to number)
-		INVOKE_ASYNC(src, .proc/spawn_particle)
+		INVOKE_ASYNC(src, PROC_REF(spawn_particle))
 
 /datum/effect_system/proc/spawn_particle()
 	return
@@ -110,7 +110,7 @@ steam.start() -- spawns the effect
 	light_range = 1
 	light_color = COLOR_VERY_SOFT_YELLOW
 
-/obj/effect/particle_effect/sparks/Initialize()
+/obj/effect/particle_effect/sparks/Initialize(mapload)
 	. = ..()
 	playsound(src.loc, "sparks", 25, 1)
 	QDEL_IN(src, 10 SECONDS)
@@ -152,7 +152,7 @@ steam.start() -- spawns the effect
 		processing = TRUE
 	if(processing)
 		processing = FALSE
-		INVOKE_ASYNC(src, .proc/spawn_particle)
+		INVOKE_ASYNC(src, PROC_REF(spawn_particle))
 
 /datum/effect_system/trail/proc/stop()
 	processing = FALSE
@@ -181,7 +181,7 @@ steam.start() -- spawns the effect
 			I.icon_state = "blank"
 			QDEL_IN(I, 2 SECONDS)
 
-	addtimer(CALLBACK(src, .proc/start, TRUE), 0.2 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(start), TRUE), 0.2 SECONDS)
 
 /////////////////////////////////////////////
 //////// Attach a steam trail to an object (eg. a reacting beaker) that will follow it
@@ -194,9 +194,9 @@ steam.start() -- spawns the effect
 		number++
 		oldposition = get_turf(holder)
 		I.setDir(holder.dir)
-		addtimer(CALLBACK(src, .proc/decay, I), 1 SECONDS)
+		addtimer(CALLBACK(src, PROC_REF(decay), I), 1 SECONDS)
 
-	addtimer(CALLBACK(src, .proc/start, TRUE), 0.2 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(start), TRUE), 0.2 SECONDS)
 
 /datum/effect_system/trail/steam_trail_follow/proc/decay(obj/effect/particle_effect/steam/I)
 	qdel(I)

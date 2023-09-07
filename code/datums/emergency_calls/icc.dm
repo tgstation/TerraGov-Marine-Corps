@@ -49,6 +49,6 @@
 		return
 
 
-	var/datum/job/J = SSjob.GetJobType(/datum/job/icc)
+	var/datum/job/J = SSjob.GetJobType(/datum/job/icc/standard)
 	H.apply_assigned_role_to_spawn(J)
 	to_chat(H, "<p style='font-size:1.5em'><span class='notice'>You are a trained member of the ICCN, you have been assigned to this squad directed to investigate the TGMC distress signal sent nearby. Don't let you and your team's guard down!</notice></p>")

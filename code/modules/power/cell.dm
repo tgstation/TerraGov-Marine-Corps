@@ -2,7 +2,7 @@
 // charge from 0 to 100%
 // fits in APC to provide backup power
 
-/obj/item/cell/Initialize()
+/obj/item/cell/Initialize(mapload)
 	. = ..()
 	charge = maxcharge
 	if(self_recharge)
@@ -181,7 +181,7 @@
 	var/light_impact_range = clamp(round(sqrt(charge) * 0.15), 0, 4)
 	var/flash_range = clamp(round(sqrt(charge) * 0.15), -1, 4)
 
-	explosion(T, devastation_range, heavy_impact_range, light_impact_range, flash_range, small_animation = TRUE)
+	explosion(T, devastation_range, heavy_impact_range, light_impact_range, 0, flash_range)
 
 	QDEL_IN(src, 1)
 
@@ -214,6 +214,9 @@
 			if (prob(25))
 				qdel(src)
 				return
+			if (prob(25))
+				corrupt()
+		if(EXPLODE_WEAK)
 			if (prob(25))
 				corrupt()
 

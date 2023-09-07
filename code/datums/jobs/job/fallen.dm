@@ -1,17 +1,40 @@
 /datum/job/fallen/after_spawn(mob/living/new_mob, mob/M, latejoin)
-	RegisterSignal(new_mob, list(COMSIG_MOB_DEATH, COMSIG_MOB_LOGOUT), .proc/delete_mob)
-	to_chat(new_mob, span_danger("This is a place for everyone to experiment and RP. Standard rules applies here. Do not blow up the vendors, do not grief,\
+	RegisterSignals(new_mob, list(COMSIG_MOB_DEATH, COMSIG_MOB_LOGOUT), PROC_REF(delete_mob))
+	to_chat(new_mob, span_danger("This is a place for everyone to experiment and RP. Standard rules applies here. Do not blow up the vendors, do not grief, \
 	do not try to lag the server with explosions. Alternatively, don't fill the xeno asteroid with walls or other structures."))
+
+/datum/job/fallen/return_spawn_type(datum/preferences/prefs)
+	switch(prefs?.species)
+		if("Combat Robot")
+			switch(prefs?.robot_type)
+				if("Basic")
+					return /mob/living/carbon/human/species/robot
+				if("Hammerhead")
+					return /mob/living/carbon/human/species/robot/alpharii
+				if("Chilvaris")
+					return /mob/living/carbon/human/species/robot/charlit
+				if("Ratcher")
+					return /mob/living/carbon/human/species/robot/deltad
+				if("Sterling")
+					return /mob/living/carbon/human/species/robot/bravada
+		if("Vatborn")
+			return /mob/living/carbon/human/species/vatborn
+		else
+			return /mob/living/carbon/human
 
 ///Delete the mob when you log out or when it's dead
 /datum/job/fallen/proc/delete_mob(mob/living/source)
 	SIGNAL_HANDLER
+	if(QDELING(source))
+		return
 	source.visible_message(span_danger("[source] suddenly disappears!"))
 	qdel(source)
 
 /datum/job/fallen/marine
 	title = SQUAD_MARINE
 	outfit = /datum/outfit/job/marine/standard
+
+/datum/job/fallen/marine/standard
 
 /datum/job/fallen/marine/engineer
 	title = SQUAD_ENGINEER
@@ -37,6 +60,34 @@
 	title = MECH_PILOT
 	skills_type = /datum/skills/mech_pilot
 	outfit = /datum/outfit/job/command/mech_pilot
+
+/datum/job/fallen/marine/fieldcommander
+	title = FIELD_COMMANDER
+	skills_type = /datum/skills/fo
+	outfit = /datum/outfit/job/command/fieldcommander
+	multiple_outfits = TRUE
+	outfits = list(
+		/datum/outfit/job/command/fieldcommander,
+		/datum/outfit/job/command/fieldcommander/robot,
+	)
+
+/datum/job/fallen/marine/synthetic
+	title = SYNTHETIC
+	skills_type = /datum/skills/synthetic
+	outfit = /datum/outfit/job/civilian/synthetic
+
+/datum/job/fallen/marine/synthetic/get_special_name(client/preference_source)
+	return preference_source.prefs.synthetic_name
+
+/datum/job/fallen/marine/synthetic/return_spawn_type(datum/preferences/prefs)
+	if(prefs?.synthetic_type == "Early Synthetic")
+		return /mob/living/carbon/human/species/early_synthetic
+	return /mob/living/carbon/human/species/synthetic
+
+/datum/job/fallen/marine/synthetic/return_skills_type(datum/preferences/prefs)
+	if(prefs?.synthetic_type == "Early Synthetic")
+		return /datum/skills/early_synthetic
+	return ..()
 
 /datum/job/fallen/xenomorph
 	title = ROLE_XENOMORPH

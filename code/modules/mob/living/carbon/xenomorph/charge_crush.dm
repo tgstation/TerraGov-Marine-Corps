@@ -65,8 +65,8 @@
 /datum/action/xeno_action/ready_charge/proc/charge_on(verbose = TRUE)
 	var/mob/living/carbon/xenomorph/charger = owner
 	charge_ability_on = TRUE
-	RegisterSignal(charger, COMSIG_MOVABLE_MOVED, .proc/update_charging)
-	RegisterSignal(charger, COMSIG_ATOM_DIR_CHANGE, .proc/on_dir_change)
+	RegisterSignal(charger, COMSIG_MOVABLE_MOVED, PROC_REF(update_charging))
+	RegisterSignal(charger, COMSIG_ATOM_DIR_CHANGE, PROC_REF(on_dir_change))
 	set_toggle(TRUE)
 	if(verbose)
 		to_chat(charger, span_xenonotice("We will charge when moving, now."))
@@ -89,7 +89,10 @@
 	var/mob/living/carbon/xenomorph/charger = owner
 	if(charger.is_charging == CHARGE_OFF)
 		return
-	if(!old_dir || !new_dir || old_dir == new_dir || agile_charge) //Check for null direction from help shuffle signals
+	if(!old_dir || !new_dir || old_dir == new_dir) //Check for null direction from help shuffle signals
+		return
+	if(agile_charge)
+		speed_down(8)
 		return
 	do_stop_momentum()
 
@@ -123,7 +126,7 @@
 
 /datum/action/xeno_action/ready_charge/proc/do_start_crushing()
 	var/mob/living/carbon/xenomorph/charger = owner
-	RegisterSignal(charger, list(COMSIG_MOVABLE_PREBUMP_TURF, COMSIG_MOVABLE_PREBUMP_MOVABLE, COMSIG_MOVABLE_PREBUMP_EXIT_MOVABLE), .proc/do_crush)
+	RegisterSignals(charger, list(COMSIG_MOVABLE_PREBUMP_TURF, COMSIG_MOVABLE_PREBUMP_MOVABLE, COMSIG_MOVABLE_PREBUMP_EXIT_MOVABLE), PROC_REF(do_crush))
 	charger.is_charging = CHARGE_ON
 	charger.update_icons()
 
@@ -298,7 +301,7 @@
 			return precrush2signal(crushed_obj.post_crush_act(charger, src))
 		playsound(crushed_obj.loc, "punch", 25, 1)
 		var/crushed_behavior = crushed_obj.crushed_special_behavior()
-		crushed_obj.take_damage(precrush, BRUTE, "melee")
+		crushed_obj.take_damage(precrush, BRUTE, MELEE)
 		if(QDELETED(crushed_obj))
 			charger.visible_message(span_danger("[charger] crushes [preserved_name]!"),
 			span_xenodanger("We crush [preserved_name]!"))
@@ -338,7 +341,7 @@
 
 /datum/action/xeno_action/ready_charge/bull_charge/give_action(mob/living/L)
 	. = ..()
-	RegisterSignal(L, COMSIG_XENOACTION_TOGGLECHARGETYPE, .proc/toggle_charge_type)
+	RegisterSignal(L, COMSIG_XENOACTION_TOGGLECHARGETYPE, PROC_REF(toggle_charge_type))
 
 
 /datum/action/xeno_action/ready_charge/bull_charge/remove_action(mob/living/L)
@@ -510,7 +513,8 @@
 /obj/structure/mineral_door/post_crush_act(mob/living/carbon/xenomorph/charger, datum/action/xeno_action/ready_charge/charge_datum)
 	if(!anchored)
 		return ..()
-	TryToSwitchState(charger)
+	if(!open)
+		toggle_state(charger)
 	if(density)
 		return PRECRUSH_STOPPED
 	charger.visible_message(span_danger("[charger] slams [src] open!"),
@@ -548,9 +552,9 @@
 
 	switch(charge_datum.charge_type)
 		if(CHARGE_CRUSH)
-			Paralyze(CHARGE_SPEED(charge_datum) * 20)
+			Paralyze(CHARGE_SPEED(charge_datum) * 2 SECONDS)
 		if(CHARGE_BULL_HEADBUTT)
-			Paralyze(CHARGE_SPEED(charge_datum) * 25)
+			Paralyze(CHARGE_SPEED(charge_datum) * 2.5 SECONDS)
 
 	if(anchored)
 		charge_datum.do_stop_momentum(FALSE)
@@ -576,6 +580,8 @@
 			charger.visible_message(span_danger("[charger] rams [src]!"),
 			span_xenodanger("We ram [src]!"))
 			charge_datum.speed_down(1) //Lose one turf worth of speed.
+			GLOB.round_statistics.bull_crush_hit++
+			SSblackbox.record_feedback("tally", "round_statistics", 1, "bull_crush_hit")
 			return PRECRUSH_PLOWED
 
 		if(CHARGE_BULL_GORE)
@@ -588,6 +594,9 @@
 					throw_at(destination, 1, 1, charger, FALSE)
 				charger.visible_message(span_danger("[charger] gores [src]!"),
 					span_xenowarning("We gore [src] and skid to a halt!"))
+				GLOB.round_statistics.bull_gore_hit++
+				SSblackbox.record_feedback("tally", "round_statistics", 1, "bull_gore_hit")
+
 
 		if(CHARGE_BULL_HEADBUTT)
 			var/fling_dir = charger.a_intent == INTENT_HARM ? charger.dir : REVERSE_DIR(charger.dir)
@@ -605,6 +614,8 @@
 
 			charger.visible_message(span_danger("[charger] rams into [src] and flings [p_them()] away!"),
 				span_xenowarning("We ram into [src] and skid to a halt!"))
+			GLOB.round_statistics.bull_headbutt_hit++
+			SSblackbox.record_feedback("tally", "round_statistics", 1, "bull_headbutt_hit")
 
 	charge_datum.do_stop_momentum(FALSE)
 	return PRECRUSH_STOPPED

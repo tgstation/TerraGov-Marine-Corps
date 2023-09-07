@@ -172,17 +172,24 @@
 /area/ice_colony/exterior/underground/caves/ice_nw
 	name = "North Western Ice Caves"
 	icon_state = "icecave_nw"
+	ceiling = CEILING_UNDERGROUND
 
 /area/ice_colony/exterior/underground/caves/ice_se
 	name = "South Eastern Ice Caves"
 	icon_state = "icecave_se"
+	ceiling = CEILING_UNDERGROUND
 
 /area/ice_colony/exterior/underground/caves/ice_w
 	name = "Western Ice Caves"
 	icon_state = "icecave_w"
+	ceiling = CEILING_UNDERGROUND
 
 /area/ice_colony/exterior/underground/caves/open
 	icon_state = "explored"
+
+/area/ice_colony/exterior/underground/caves/open/garbledradio
+	icon_state = "explored"
+	ceiling = CEILING_UNDERGROUND
 
 /area/ice_colony/exterior/underground/caves/dig
 	icon_state = "mining_living"
@@ -212,6 +219,7 @@
 /area/ice_colony/surface/bar
 	name = "Anti-Freeze"
 	icon_state = "bar"
+	minimap_color = MINIMAP_AREA_LIVING
 
 /area/ice_colony/surface/bar/bar
 	name = "Anti-Freeze Bar"
@@ -289,6 +297,7 @@
 /area/ice_colony/surface/dorms
 	name = "Dormitories"
 	icon_state = "Sleep"
+	minimap_color = MINIMAP_AREA_LIVING
 
 /area/ice_colony/surface/dorms/canteen
 	name = "Dormitories Canteen"
@@ -334,15 +343,16 @@
 /area/ice_colony/surface/excavation
 	name = "Excavation Outpost"
 	icon_state = "mining_outpost"
+	minimap_color = MINIMAP_AREA_REQ
 
 /area/ice_colony/surface/excavationbarracks
 	name = "Excavation Barracks"
 	icon_state = "mining_outpost"
+	minimap_color = MINIMAP_AREA_REQ
 
 /area/ice_colony/surface/excavation/storage
 	name = "Excavation Outpost External Storage"
 	icon_state = "mining_storage"
-	minimap_color = MINIMAP_AREA_ENGI
 
 /*
 * Surface - Garage
@@ -372,7 +382,7 @@
 /area/ice_colony/surface/hangar
 	name = "Aerodrome Hangar"
 	icon_state = "hangar"
-	minimap_color = MINIMAP_AREA_SEC
+	minimap_color = MINIMAP_AREA_ESCAPE
 
 /area/ice_colony/surface/hangar/hallway
 	name = "Aerodrome Hangar Hallway"
@@ -388,7 +398,7 @@
 /area/ice_colony/surface/hangar/checkpoint
 	name = "Aerodrome Hangar Security Checkpoint"
 	icon_state = "security"
-	minimap_color = MINIMAP_AREA_SEC_CAVE
+	minimap_color = MINIMAP_AREA_SEC
 
 /*
 * Surface - Hydroponics
@@ -398,6 +408,7 @@
 	name = "Ice Colony Hydroponics"
 	icon_state = "hydro"
 	ceiling = CEILING_GLASS
+	minimap_color = MINIMAP_AREA_LIVING
 
 /area/ice_colony/surface/hydroponics/lobby
 	name = "Hydroponics Relaxation Module"
@@ -418,6 +429,7 @@
 /area/ice_colony/surface/mining
 	name = "Mining Outpost"
 	icon_state = "mining_production"
+	minimap_color = MINIMAP_AREA_REQ
 
 /*
 * Surface - Power
@@ -473,6 +485,7 @@
 /area/ice_colony/surface/storage_unit/research
 	name = "Storage Unit Research"
 	icon_state = "storage"
+	minimap_color = MINIMAP_AREA_RESEARCH
 
 /area/ice_colony/surface/storage_unit/telecomms
 	name = "Storage Unit T-Comms"
@@ -510,6 +523,7 @@
 /area/ice_colony/underground/crew
 	name = "Underground Crew Area"
 	icon_state = "crew_quarters"
+	minimap_color = MINIMAP_AREA_LIVING_CAVE
 
 /area/ice_colony/underground/crew/dorm_l
 	name = "West Dormitory"
@@ -537,16 +551,22 @@
 /area/ice_colony/underground/crew/bball
 	name = "Underground Sports Center"
 
+/area/ice_colony/underground/crew/bball/garbledradio
+	ceiling = CEILING_UNDERGROUND
+
 /area/ice_colony/underground/crew/chapel
 	name = "Underground Chapel"
+	ceiling = CEILING_UNDERGROUND
 
 /area/ice_colony/underground/crew/library
 	name = "Underground Library"
 	icon_state = "library"
+	ceiling = CEILING_UNDERGROUND
 
 /area/ice_colony/underground/crew/morgue
 	name = "Underground Morgue"
 	icon_state = "morgue"
+	ceiling = CEILING_UNDERGROUND
 
 /*
 * Underground - Colony Administration
@@ -582,6 +602,7 @@
 	name = "Underground Engineering"
 	icon_state = "engine_hallway"
 	minimap_color = MINIMAP_AREA_ENGI_CAVE
+	ceiling = CEILING_UNDERGROUND
 
 /area/ice_colony/underground/engineering/locker
 	name = "Underground Engineering Locker Room"
@@ -591,6 +612,7 @@
 /area/ice_colony/underground/engineering/substation
 	name = "Underground Power Substation"
 	icon_state = "substation"
+	ceiling = CEILING_UNDERGROUND
 
 /*
 * Underground - Hallways
@@ -603,9 +625,15 @@
 /area/ice_colony/underground/hallway/north_west
 	name = "Underground Hallway NW"
 
+/area/ice_colony/underground/hallway/north_west/garbledradio
+	ceiling = CEILING_UNDERGROUND
+
 /area/ice_colony/underground/hallway/south_east
 	name = "Underground Hallway SE"
 	icon_state = "hallF"
+
+/area/ice_colony/underground/hallway/south_east/garbledradio
+	ceiling = CEILING_UNDERGROUND
 
 /*
 * Underground - Maintenance
@@ -630,6 +658,9 @@
 	name = "Underground Engineering Maintenance"
 	icon_state = "maint_engineering"
 
+/area/ice_colony/underground/maintenance/engineering/garbledradio
+	ceiling = CEILING_UNDERGROUND
+
 /area/ice_colony/underground/maintenance/research
 	name = "Underground Research Maintenance"
 	icon_state = "maint_research_port"
@@ -645,6 +676,7 @@
 /area/ice_colony/underground/maintenance/north
 	name = "Underground Northern Maintenance"
 	icon_state = "asmaint"
+	ceiling = CEILING_UNDERGROUND
 
 /*
 * Underground - Medbay
@@ -658,9 +690,16 @@
 /area/ice_colony/underground/medical/lobby
 	name = "Underground Medical Laboratory Lobby"
 
+/area/ice_colony/underground/medical/lobby/garbledradio
+	name = "Underground Medical Laboratory Lobby"
+	ceiling = CEILING_UNDERGROUND
+
 /area/ice_colony/underground/medical/hallway
 	name = "Underground Medical Laboratory Hallway"
 	icon_state = "medbay2"
+
+/area/ice_colony/underground/medical/hallway/garbledradio
+	ceiling = CEILING_UNDERGROUND
 
 /area/ice_colony/underground/medical/storage
 	name = "Underground Medical Laboratory Storage"
@@ -670,9 +709,13 @@
 	name = "Underground Medical Laboratory Treatment"
 	icon_state = "medbay3"
 
+/area/ice_colony/underground/medical/treatment/garbledradio
+	ceiling = CEILING_UNDERGROUND
+
 /area/ice_colony/underground/medical/or
 	name = "Underground Medical Laboratory Operating Room"
 	icon_state = "surgery"
+	ceiling = CEILING_UNDERGROUND
 
 /*
 * Underground - Reception
@@ -686,6 +729,7 @@
 	name = "Underground Reception Northern Security Checkpoint"
 	icon_state = "security"
 	minimap_color = MINIMAP_AREA_SEC_CAVE
+	ceiling = CEILING_UNDERGROUND
 
 /area/ice_colony/underground/reception/checkpoint_south
 	name = "Underground Reception Southern Security Checkpoint"
@@ -707,6 +751,7 @@
 /area/ice_colony/underground/requesition
 	name = "Underground Requesitions"
 	icon_state = "quart"
+	minimap_color = MINIMAP_AREA_REQ_CAVE
 
 /area/ice_colony/underground/requesition/lobby
 	name = "Underground Requesitions Lobby"
@@ -789,6 +834,7 @@
 
 /area/ice_colony/underground/responsehangar
 	name = "Colony Response Team Hangar"
+	minimap_color = MINIMAP_AREA_SHIP
 
 /area/ice_colony/underground/westroadtunnel
 	name = "West Road Tunnel"

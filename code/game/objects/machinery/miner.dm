@@ -12,7 +12,8 @@
 
 #define PHORON_CRATE_SELL_AMOUNT 150
 #define PLATINUM_CRATE_SELL_AMOUNT 300
-
+#define PHORON_DROPSHIP_BONUS_AMOUNT 15
+#define PLATINUM_DROPSHIP_BONUS_AMOUNT 30
 ///Resource generator that produces a certain material that can be repaired by marines and attacked by xenos, Intended as an objective for marines to play towards to get more req gear
 /obj/machinery/miner
 	name = "\improper Nanotrasen phoron Mining Well"
@@ -23,7 +24,8 @@
 	anchored = TRUE
 	coverage = 30
 	layer = ABOVE_MOB_LAYER
-	resistance_flags = INDESTRUCTIBLE | DROPSHIP_IMMUNE
+	resistance_flags = RESIST_ALL | DROPSHIP_IMMUNE
+	allow_pass_flags = PASS_PROJECTILE|PASS_AIR
 	///How many sheets of material we have stored
 	var/stored_mineral = 0
 	///Current status of the miner
@@ -34,6 +36,8 @@
 	var/required_ticks = 70  //make one crate every 140 seconds
 	///The mineral type that's produced
 	var/mineral_value = PHORON_CRATE_SELL_AMOUNT
+	///Applies the actual bonus points for the dropship for each sale
+	var/dropship_bonus = PHORON_DROPSHIP_BONUS_AMOUNT
 	///Health for the miner we use because changing obj_integrity is apparently bad
 	var/miner_integrity = 100
 	///Max health of the miner
@@ -47,16 +51,27 @@
 	miner_status = MINER_DESTROYED
 	icon_state = "mining_drill_error"
 
+/obj/machinery/miner/damaged/init_marker()
+	return //Marker will be set by itself once processing pauses when it detects this miner is broke.
+
 /obj/machinery/miner/damaged/platinum
 	name = "\improper Nanotrasen platinum Mining Well"
 	desc = "A Nanotrasen platinum drill with an internal export module. Produces even more valuable materials than it's phoron counterpart"
 	mineral_value = PLATINUM_CRATE_SELL_AMOUNT
-
-/obj/machinery/miner/Initialize()
+	dropship_bonus = PLATINUM_DROPSHIP_BONUS_AMOUNT
+/obj/machinery/miner/Initialize(mapload)
 	. = ..()
-	SSminimaps.add_marker(src, z, hud_flags = MINIMAP_FLAG_ALL, iconstate = "miner_[mineral_value >= PLATINUM_CRATE_SELL_AMOUNT ? "platinum" : "phoron"]_off")
+	init_marker()
 	start_processing()
-	RegisterSignal(SSdcs, COMSIG_GLOB_DROPSHIP_HIJACKED, .proc/disable_on_hijack)
+	RegisterSignal(SSdcs, COMSIG_GLOB_DROPSHIP_HIJACKED, PROC_REF(disable_on_hijack))
+
+/**
+ * This proc is called during Initialize() and should be used to initially setup the minimap marker of a functional miner.
+ * * For a miner starting broken, it should be overridden and immediately return instead, as broken miners will automatically set their minimap marker during their first process()
+ **/
+/obj/machinery/miner/proc/init_marker()
+	var/marker_icon = "miner_[mineral_value >= PLATINUM_CRATE_SELL_AMOUNT ? "platinum" : "phoron"]_on"
+	SSminimaps.add_marker(src, MINIMAP_FLAG_ALL, image('icons/UI_icons/map_blips.dmi', null, marker_icon))
 
 /obj/machinery/miner/update_icon()
 	switch(miner_status)
@@ -97,6 +112,7 @@
 		if(MINER_AUTOMATED)
 			if(stored_mineral)
 				SSpoints.supply_points[faction] += mineral_value * stored_mineral
+				SSpoints.dropship_points += dropship_bonus * stored_mineral
 				GLOB.round_statistics.points_from_mining += mineral_value * stored_mineral
 				do_sparks(5, TRUE, src)
 				playsound(loc,'sound/effects/phasein.ogg', 50, FALSE)
@@ -145,7 +161,6 @@
 				required_ticks = initial(required_ticks)
 			if(MINER_AUTOMATED)
 				upgrade = new /obj/item/minerupgrade/automatic
-				stop_processing()
 		upgrade.forceMove(user.loc)
 		miner_upgrade_type = null
 		update_icon()
@@ -257,6 +272,7 @@
 		return
 
 	SSpoints.supply_points[faction] += mineral_value * stored_mineral
+	SSpoints.dropship_points += dropship_bonus * stored_mineral
 	GLOB.round_statistics.points_from_mining += mineral_value * stored_mineral
 	do_sparks(5, TRUE, src)
 	playsound(loc,'sound/effects/phasein.ogg', 50, FALSE)
@@ -268,7 +284,8 @@
 	if(miner_status != MINER_RUNNING || mineral_value == 0)
 		stop_processing()
 		SSminimaps.remove_marker(src)
-		SSminimaps.add_marker(src, z, hud_flags = MINIMAP_FLAG_ALL, iconstate = "miner_[mineral_value >= PLATINUM_CRATE_SELL_AMOUNT ? "platinum" : "phoron"]_off")
+		var/marker_icon = "miner_[mineral_value >= PLATINUM_CRATE_SELL_AMOUNT ? "platinum" : "phoron"]_off"
+		SSminimaps.add_marker(src, MINIMAP_FLAG_ALL, image('icons/UI_icons/map_blips.dmi', null, marker_icon))
 		return
 	if(add_tick >= required_ticks)
 		if(miner_upgrade_type == MINER_AUTOMATED)
@@ -276,6 +293,7 @@
 				if(!isopenturf(get_step(loc, direction))) //Must be open on one side to operate
 					continue
 				SSpoints.supply_points[faction] += mineral_value
+				SSpoints.dropship_points += dropship_bonus
 				GLOB.round_statistics.points_from_mining += mineral_value
 				do_sparks(5, TRUE, src)
 				playsound(loc,'sound/effects/phasein.ogg', 50, FALSE)
@@ -300,7 +318,9 @@
 		span_notice("We can't slash through [src]'s reinforced plating!"))
 		return
 	while(miner_status != MINER_DESTROYED)
-		if(!do_after(X, 3 SECONDS, TRUE, src, BUSY_ICON_DANGER, BUSY_ICON_HOSTILE))
+		if(X.do_actions)
+			return balloon_alert(X, "busy")
+		if(!do_after(X, 1.5 SECONDS, TRUE, src, BUSY_ICON_DANGER, BUSY_ICON_HOSTILE))
 			return
 		X.do_attack_animation(src, ATTACK_EFFECT_CLAW)
 		X.visible_message(span_danger("[X] slashes \the [src]!"), \
@@ -324,7 +344,8 @@
 		if(100 to INFINITY)
 			start_processing()
 			SSminimaps.remove_marker(src)
-			SSminimaps.add_marker(src, z, hud_flags = MINIMAP_FLAG_ALL, iconstate = "miner_[mineral_value >= PLATINUM_CRATE_SELL_AMOUNT ? "platinum" : "phoron"]_on")
+			var/marker_icon = "miner_[mineral_value >= PLATINUM_CRATE_SELL_AMOUNT ? "platinum" : "phoron"]_on"
+			SSminimaps.add_marker(src, MINIMAP_FLAG_ALL, image('icons/UI_icons/map_blips.dmi', null, marker_icon))
 			miner_status = MINER_RUNNING
 	update_icon()
 

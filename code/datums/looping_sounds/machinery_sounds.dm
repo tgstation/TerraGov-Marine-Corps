@@ -48,3 +48,8 @@
 	mid_length = 6
 	end_sound = 'sound/mecha/overload_stop.ogg'
 	volume = 40
+
+/datum/looping_sound/benchpress_creak
+	mid_sounds = list('sound/machines/creak.ogg'=1)
+	mid_length = 8
+	volume = 60

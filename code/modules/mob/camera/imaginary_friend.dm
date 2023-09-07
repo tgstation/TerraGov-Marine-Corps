@@ -135,8 +135,6 @@
 	med_squad_mobhud ? H.add_hud_to(src) : H.remove_hud_from(src)
 	H = GLOB.huds[DATA_HUD_SQUAD_TERRAGOV]
 	med_squad_mobhud ? H.add_hud_to(src) : H.remove_hud_from(src)
-	H = GLOB.huds[DATA_HUD_SQUAD_REBEL]
-	med_squad_mobhud ? H.add_hud_to(src) : H.remove_hud_from(src)
 	H = GLOB.huds[DATA_HUD_SQUAD_SOM]
 	med_squad_mobhud ? H.add_hud_to(src) : H.remove_hud_from(src)
 	to_chat(src, span_notice("You have [med_squad_mobhud ? "enabled" : "disabled"] the Human Status HUD."))
@@ -148,6 +146,9 @@
 	if(client)
 		if(client.prefs.muted & MUTE_IC)
 			to_chat(src, "You cannot send IC messages (muted).")
+			return
+		if(is_banned_from(ckey, "IC"))
+			to_chat(src, span_warning("You are banned from IC chat."))
 			return
 
 		if(client.handle_spam_prevention(message, MUTE_IC))
@@ -185,7 +186,7 @@
 	//speech bubble
 	var/mutable_appearance/MA = mutable_appearance('icons/mob/talk.dmi', src, "default[say_test(message)]", FLY_LAYER)
 	MA.appearance_flags = APPEARANCE_UI_IGNORE_ALPHA
-	INVOKE_ASYNC(GLOBAL_PROC, /proc/flick_overlay, MA, owner.client ? list(client, owner.client) : list(client), 3 SECONDS)
+	INVOKE_ASYNC(GLOBAL_PROC, GLOBAL_PROC_REF(flick_overlay), MA, owner.client ? list(client, owner.client) : list(client), 3 SECONDS)
 
 	for(var/i in GLOB.dead_mob_list)
 		var/mob/M = i

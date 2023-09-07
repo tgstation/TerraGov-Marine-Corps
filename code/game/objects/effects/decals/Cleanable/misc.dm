@@ -21,7 +21,7 @@
 	qdel(src)
 	return TRUE
 
-/obj/effect/decal/cleanable/greenglow/Initialize()
+/obj/effect/decal/cleanable/greenglow/Initialize(mapload)
 	. = ..()
 	QDEL_IN(src, 2 MINUTES)
 

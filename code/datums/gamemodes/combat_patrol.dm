@@ -1,7 +1,7 @@
 /datum/game_mode/combat_patrol
 	name = "Combat Patrol"
 	config_tag = "Combat Patrol"
-	flags_round_type = MODE_LATE_OPENING_SHUTTER_TIMER|MODE_TWO_HUMAN_FACTIONS|MODE_HUMAN_ONLY|MODE_TWO_HUMAN_FACTIONS
+	flags_round_type = MODE_LATE_OPENING_SHUTTER_TIMER|MODE_TWO_HUMAN_FACTIONS|MODE_HUMAN_ONLY
 	shutters_drop_time = 3 MINUTES
 	flags_xeno_abilities = ABILITY_CRASH
 	time_between_round = 0 HOURS
@@ -17,6 +17,9 @@
 		/datum/job/som/squad/engineer = 4,
 		/datum/job/som/squad/medic = 8,
 		/datum/job/som/squad/standard = -1,
+	)
+	job_points_needed_by_job_type = list(
+		/datum/job/som/squad/veteran = 5, //Every 5 non vets join, a new vet slot opens
 	)
 	whitelist_ship_maps = list(MAP_COMBAT_PATROL_BASE)
 	blacklist_ship_maps = null
@@ -50,17 +53,9 @@
 			if(CEILING_DEEP_UNDERGROUND to CEILING_DEEP_UNDERGROUND_METAL)
 				area_to_lit.set_base_lighting(COLOR_WHITE, 50)
 
-/datum/game_mode/combat_patrol/scale_roles()
-	. = ..()
-	if(!.)
-		return
-	var/datum/job/scaled_job = SSjob.GetJobType(/datum/job/som/squad/veteran)
-	scaled_job.job_points_needed  = 5 //Every 5 non vets join, a new vet slot opens
-
 /datum/game_mode/combat_patrol/announce()
 	to_chat(world, "<b>The current game mode is - Combat Patrol!</b>")
 	to_chat(world, "<b>The TGMC and SOM both lay claim to this planet. Across contested areas, small combat patrols frequently clash in their bid to enforce their respective claims. Seek and destroy any hostiles you encounter, good hunting!</b>")
-	to_chat(world, "<b>WIP, report bugs on the github!</b>")
 
 //sets TGMC and SOM squads
 /datum/game_mode/combat_patrol/set_valid_squads()
@@ -84,9 +79,9 @@
 	. = ..()
 	//Starts the round timer when the game starts proper
 	var/datum/game_mode/combat_patrol/D = SSticker.mode
-	addtimer(CALLBACK(D, /datum/game_mode/combat_patrol.proc/set_game_timer), SSticker.round_start_time + shutters_drop_time + game_timer_delay) //game cannot end until at least 5 minutes after shutter drop
-	addtimer(CALLBACK(D, /datum/game_mode/combat_patrol.proc/respawn_wave), SSticker.round_start_time + shutters_drop_time) //starts wave respawn on shutter drop and begins timer
-	addtimer(CALLBACK(D, /datum/game_mode/combat_patrol.proc/intro_sequence), SSticker.round_start_time + shutters_drop_time - 10 SECONDS) //starts intro sequence 10 seconds before shutter drop
+	addtimer(CALLBACK(D, TYPE_PROC_REF(/datum/game_mode/combat_patrol, set_game_timer)), SSticker.round_start_time + shutters_drop_time + game_timer_delay) //game cannot end until at least 5 minutes after shutter drop
+	addtimer(CALLBACK(D, TYPE_PROC_REF(/datum/game_mode/combat_patrol, respawn_wave)), SSticker.round_start_time + shutters_drop_time) //starts wave respawn on shutter drop and begins timer
+	addtimer(CALLBACK(D, TYPE_PROC_REF(/datum/game_mode/combat_patrol, intro_sequence)), SSticker.round_start_time + shutters_drop_time - 10 SECONDS) //starts intro sequence 10 seconds before shutter drop
 	TIMER_COOLDOWN_START(src, COOLDOWN_BIOSCAN, SSticker.round_start_time + shutters_drop_time + bioscan_interval)
 
 ///plays the intro sequence
@@ -108,7 +103,7 @@
 	if(D.game_timer)
 		return
 
-	D.game_timer = addtimer(CALLBACK(D, /datum/game_mode/combat_patrol.proc/set_game_end), max_game_time, TIMER_STOPPABLE)
+	D.game_timer = addtimer(CALLBACK(D, TYPE_PROC_REF(/datum/game_mode/combat_patrol, set_game_end)), max_game_time, TIMER_STOPPABLE)
 
 /datum/game_mode/combat_patrol/game_end_countdown()
 	if(!game_timer)
@@ -195,7 +190,7 @@ Sensors indicate [num_som_delta || "no"] unknown lifeform signature[num_som_delt
 ///Allows all the dead to respawn together
 /datum/game_mode/combat_patrol/proc/respawn_wave()
 	var/datum/game_mode/combat_patrol/D = SSticker.mode
-	D.wave_timer = addtimer(CALLBACK(D, /datum/game_mode/combat_patrol.proc/respawn_wave), wave_timer_length, TIMER_STOPPABLE)
+	D.wave_timer = addtimer(CALLBACK(D, TYPE_PROC_REF(/datum/game_mode/combat_patrol, respawn_wave)), wave_timer_length, TIMER_STOPPABLE)
 
 	for(var/i in GLOB.observer_list)
 		var/mob/dead/observer/M = i

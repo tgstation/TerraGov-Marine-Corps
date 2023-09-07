@@ -18,10 +18,6 @@
 	if(rulerless_countdown)
 		dat += "<b>Orphan hivemind collapse in [rulerless_countdown] seconds.</b><br>"
 
-	var/siloless_countdown = SSticker.mode.get_siloless_collapse_countdown()
-	if(siloless_countdown)
-		dat += "<b>Orphan hivemind collapse in [siloless_countdown] seconds.</b><br>"
-
 	dat += "<b>Evacuation:</b> "
 	switch(SSevacuation.evac_status)
 		if(EVACUATION_STATUS_STANDING_BY)
@@ -73,7 +69,7 @@
 
 
 	dat += "<table cellspacing=5><tr><td><B>Aliens</B></td><td></td><td></td></tr>"
-	for(var/i in GLOB.alive_xeno_list)
+	for(var/i in GLOB.alive_xeno_list_hive[XENO_HIVE_NORMAL])
 		var/mob/living/carbon/xenomorph/X = i
 		dat += "<tr><td><a href='?priv_msg=[REF(X)]'>[X.real_name]</a>[X.client ? "" : " <i>(logged out)</i>"]</td>"
 		dat += "<td>[get_area(get_turf(X))]</td>"

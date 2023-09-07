@@ -7,7 +7,7 @@
 	layer = BELOW_OBJ_LAYER
 	density = TRUE
 	anchored = TRUE
-	flags_pass = PASSAIR
+	allow_pass_flags = PASS_AIR
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 5
 	active_power_usage = 100
@@ -24,7 +24,7 @@
 	var/locked = 0
 	var/visible_contents = TRUE
 
-/obj/machinery/smartfridge/Initialize()
+/obj/machinery/smartfridge/Initialize(mapload)
 	. = ..()
 	create_reagents(100, NO_REACT)
 
@@ -94,7 +94,7 @@
 			if(!accept_check(G))
 				continue
 
-			if(contents.len >= max_n_of_items)
+			if(length(contents) >= max_n_of_items)
 				to_chat(user, span_notice("\The [src] is full."))
 				return TRUE
 

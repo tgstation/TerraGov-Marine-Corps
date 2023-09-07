@@ -20,7 +20,7 @@
 	var/m_intent = MOVE_INTENT_RUN
 	var/in_throw_mode = FALSE
 	/// Whether or not the mob can hit themselves.
-	var/do_self_harm = TRUE
+	var/do_self_harm = FALSE
 	var/notransform = FALSE
 	///The list of people observing this mob.
 	var/list/observers
@@ -40,7 +40,7 @@
 	var/list/movespeed_modification
 	///The calculated mob speed slowdown based on the modifiers list.
 	var/cached_multiplicative_slowdown
-	var/next_click	= 0
+	var/next_click = 0
 	var/next_move = 0
 	///Amount added during the next movement_delay(), then is reset.
 	var/next_move_slowdown = 0

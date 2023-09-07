@@ -25,7 +25,7 @@
 	return (FIRELOSS)
 
 
-/obj/item/defibrillator/Initialize()
+/obj/item/defibrillator/Initialize(mapload)
 	. = ..()
 	sparks = new
 	sparks.set_up(5, 0, src)
@@ -37,7 +37,7 @@
 /obj/item/defibrillator/Destroy()
 	QDEL_NULL(sparks)
 	if(dcell)
-		UnregisterSignal(dcell, COMSIG_PARENT_QDELETING)
+		UnregisterSignal(dcell, COMSIG_QDELETING)
 		QDEL_NULL(dcell)
 	return ..()
 
@@ -113,10 +113,10 @@
 ///Wrapper to guarantee powercells are properly nulled and avoid hard deletes.
 /obj/item/defibrillator/proc/set_dcell(obj/item/cell/new_cell)
 	if(dcell)
-		UnregisterSignal(dcell, COMSIG_PARENT_QDELETING)
+		UnregisterSignal(dcell, COMSIG_QDELETING)
 	dcell = new_cell
 	if(dcell)
-		RegisterSignal(dcell, COMSIG_PARENT_QDELETING, .proc/on_cell_deletion)
+		RegisterSignal(dcell, COMSIG_QDELETING, PROC_REF(on_cell_deletion))
 
 
 ///Called by the deletion of the referenced powercell.
@@ -124,7 +124,6 @@
 	SIGNAL_HANDLER
 	stack_trace("Powercell deleted while powering the defib, this isn't supposed to happen normally.")
 	set_dcell(null)
-
 
 /mob/living/proc/get_ghost()
 	if(client) //Let's call up the correct ghost!
@@ -140,7 +139,6 @@
 			return ghost
 	return null
 
-
 /mob/living/carbon/human/proc/has_working_organs()
 	var/datum/internal_organ/heart/heart = internal_organs_by_name["heart"]
 
@@ -150,6 +148,10 @@
 	return TRUE
 
 /obj/item/defibrillator/attack(mob/living/carbon/human/H, mob/living/carbon/human/user)
+	defibrillate(H,user)
+
+///Split proc that actually does the defibrillation. Separated to be used more easily by medical gloves
+/obj/item/defibrillator/proc/defibrillate(mob/living/carbon/human/H, mob/living/carbon/human/user)
 	if(user.do_actions) //Currently deffibing
 		return
 
@@ -198,8 +200,8 @@
 		return
 
 	var/mob/dead/observer/G = H.get_ghost()
-	if(istype(G))
-		notify_ghost(G, "<font size=3>Someone is trying to revive your body. Return to it if you want to be resurrected!</font>", ghost_sound = 'sound/effects/gladosmarinerevive.ogg', enter_text = "Enter", enter_link = "reentercorpse=1", source = H, action = NOTIFY_JUMP)
+	if(G)
+		G.reenter_corpse()
 	else if(!H.client)
 		//We couldn't find a suitable ghost, this means the person is not returning
 		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Patient has a DNR."))
@@ -232,7 +234,7 @@
 	if(!issynth(H) && !isrobot(H) && heart && prob(25))
 		heart.take_damage(5) //Allow the defibrillator to possibly worsen heart damage. Still rare enough to just be the "clone damage" of the defib
 
-	if((HAS_TRAIT(H, TRAIT_UNDEFIBBABLE ) && !issynth(H)) || H.suiciding) //synthetic species have no expiration date
+	if(HAS_TRAIT(H, TRAIT_UNDEFIBBABLE) || H.suiciding)
 		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Patient's brain has decayed too much. No remedy possible."))
 		return
 
@@ -266,23 +268,25 @@
 	//At this point, the defibrillator is ready to work
 	if(HAS_TRAIT(H, TRAIT_IMMEDIATE_DEFIB)) // this trait ignores user skill for the heal amount
 		H.setOxyLoss(0)
+		H.updatehealth()
 
+		var/heal_target = H.get_death_threshold() - H.health + 1
 		var/all_loss = H.getBruteLoss() + H.getFireLoss() + H.getToxLoss()
-		var/heal_target = abs(H.health - H.get_death_threshold()) + 1
-		var/brute_ratio = H.getBruteLoss() / all_loss
-		var/burn_ratio = H.getFireLoss() / all_loss
-		var/tox_ratio = H.getToxLoss() / all_loss
-		if(tox_ratio)
-			H.adjustToxLoss(-(tox_ratio * heal_target))
-		H.heal_overall_damage(brute_ratio*heal_target, burn_ratio*heal_target, TRUE, TRUE) // explicitly also heals robit parts
+		if(all_loss && (heal_target > 0))
+			var/brute_ratio = H.getBruteLoss() / all_loss
+			var/burn_ratio = H.getFireLoss() / all_loss
+			var/tox_ratio = H.getToxLoss() / all_loss
+			if(tox_ratio)
+				H.adjustToxLoss(-(tox_ratio * heal_target))
+			H.heal_overall_damage(brute_ratio*heal_target, burn_ratio*heal_target, TRUE) // explicitly also heals robit parts
 
 	else if(!issynth(H)) // TODO make me a trait :)
 		H.adjustBruteLoss(-defib_heal_amt)
 		H.adjustFireLoss(-defib_heal_amt)
 		H.adjustToxLoss(-defib_heal_amt)
 		H.setOxyLoss(0)
-		H.updatehealth() //Needed for the check to register properly
 
+	H.updatehealth() //Make sure health is up to date since it's a purely derived value
 	if(H.health <= H.get_death_threshold())
 		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Defibrillation failed. Vital signs are too weak, repair damage and try again."))
 		playsound(get_turf(src), 'sound/items/defib_failed.ogg', 35, 0)
@@ -297,7 +301,7 @@
 	H.reload_fullscreens()
 	H.flash_act()
 	H.apply_effect(10, EYE_BLUR)
-	H.apply_effect(10, PARALYZE)
+	H.apply_effect(20 SECONDS, PARALYZE)
 	H.handle_regular_hud_updates()
 	H.updatehealth() //One more time, so it doesn't show the target as dead on HUDs
 	H.dead_ticks = 0 //We reset the DNR time
@@ -344,14 +348,20 @@
 /obj/item/defibrillator/gloves/equipped(mob/living/carbon/human/user, slot)
 	. = ..()
 	if(user.gloves == src)
-		RegisterSignal(user, COMSIG_HUMAN_MELEE_UNARMED_ATTACK, .proc/on_unarmed_attack)
+		RegisterSignal(user, COMSIG_HUMAN_MELEE_UNARMED_ATTACK, PROC_REF(on_unarmed_attack))
 	else
 		UnregisterSignal(user, COMSIG_HUMAN_MELEE_UNARMED_ATTACK)
 
+/obj/item/defibrillator/gloves/unequipped(mob/living/carbon/human/user, slot)
+	. = ..()
+	UnregisterSignal(user, COMSIG_HUMAN_MELEE_UNARMED_ATTACK) //Unregisters in the case of getting delimbed
+
 //when you are wearing these gloves, this will call the normal attack code to begin defibing the target
 /obj/item/defibrillator/gloves/proc/on_unarmed_attack(mob/living/carbon/human/user, mob/living/carbon/human/target)
+	if(user.a_intent != INTENT_HELP)
+		return
 	if(istype(user) && istype(target))
-		attack(target,user)
+		defibrillate(target, user)
 
 /obj/item/defibrillator/gloves/update_icon_state()
 	return

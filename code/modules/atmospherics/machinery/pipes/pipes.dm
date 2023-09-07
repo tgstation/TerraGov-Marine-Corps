@@ -12,7 +12,7 @@
 	. = ..()
 	add_atom_colour(pipe_color, FIXED_COLOUR_PRIORITY)
 
-/obj/machinery/atmospherics/pipe/Initialize()
+/obj/machinery/atmospherics/pipe/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/undertile, TRAIT_T_RAY_VISIBLE)
 

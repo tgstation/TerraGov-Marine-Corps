@@ -3,7 +3,7 @@
 // ***************************************
 /datum/action/xeno_action/activable/charge
 	name = "Eviscerating Charge"
-	action_icon_state = "charge"
+	action_icon_state = "pounce"
 	desc = "Charge up to 4 tiles and viciously attack your target."
 	ability_name = "charge"
 	cooldown_timer = 20 SECONDS
@@ -18,14 +18,13 @@
 
 /datum/action/xeno_action/activable/charge/proc/obj_hit(datum/source, obj/target, speed)
 	SIGNAL_HANDLER
-	var/mob/living/carbon/xenomorph/ravager/X = owner
-	if(istype(target, /obj/structure/table) || istype(target, /obj/structure/rack))
+	if(istype(target, /obj/structure/table))
 		var/obj/structure/S = target
-		X.visible_message(span_danger("[X] plows straight through [S]!"), null, null, 5)
+		owner.visible_message(span_danger("[owner] plows straight through [S]!"), null, null, 5)
 		S.deconstruct(FALSE) //We want to continue moving, so we do not reset throwing.
 		return //stay registered
-	else
-		target.hitby(X, speed) //This resets throwing.
+
+	target.hitby(owner, speed) //This resets throwing.
 	charge_complete()
 
 /datum/action/xeno_action/activable/charge/proc/mob_hit(datum/source, mob/M)
@@ -51,9 +50,9 @@
 /datum/action/xeno_action/activable/charge/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/ravager/X = owner
 
-	RegisterSignal(X, COMSIG_XENO_OBJ_THROW_HIT, .proc/obj_hit)
-	RegisterSignal(X, COMSIG_MOVABLE_POST_THROW, .proc/charge_complete)
-	RegisterSignal(X, COMSIG_XENO_LIVING_THROW_HIT, .proc/mob_hit)
+	RegisterSignal(X, COMSIG_XENO_OBJ_THROW_HIT, PROC_REF(obj_hit))
+	RegisterSignal(X, COMSIG_MOVABLE_POST_THROW, PROC_REF(charge_complete))
+	RegisterSignal(X, COMSIG_XENO_LIVING_THROW_HIT, PROC_REF(mob_hit))
 
 	X.visible_message(span_danger("[X] charges towards \the [A]!"), \
 	span_danger("We charge towards \the [A]!") )
@@ -212,15 +211,15 @@
 	var/mob/living/carbon/xenomorph/ravager/X = owner
 
 	X.emote("roar")
-	X.visible_message(span_danger("\The skin on the [X] begins to glow!"), \
+	X.visible_message(span_danger("[X]'s skin begins to glow!"), \
 	span_xenowarning("We feel the plasma coursing through our veins!"))
 
 	X.endure = TRUE
 
 	X.add_filter("ravager_endure_outline", 4, outline_filter(1, COLOR_PURPLE)) //Set our cool aura; also confirmation we have the buff
 
-	endure_duration = addtimer(CALLBACK(src, .proc/endure_warning), RAVAGER_ENDURE_DURATION * RAVAGER_ENDURE_DURATION_WARNING, TIMER_UNIQUE|TIMER_STOPPABLE|TIMER_OVERRIDE) //Warn the ravager when the duration is about to expire.
-	endure_warning_duration = addtimer(CALLBACK(src, .proc/endure_deactivate), RAVAGER_ENDURE_DURATION, TIMER_UNIQUE|TIMER_STOPPABLE|TIMER_OVERRIDE)
+	endure_duration = addtimer(CALLBACK(src, PROC_REF(endure_warning)), RAVAGER_ENDURE_DURATION * RAVAGER_ENDURE_DURATION_WARNING, TIMER_UNIQUE|TIMER_STOPPABLE|TIMER_OVERRIDE) //Warn the ravager when the duration is about to expire.
+	endure_warning_duration = addtimer(CALLBACK(src, PROC_REF(endure_deactivate)), RAVAGER_ENDURE_DURATION, TIMER_UNIQUE|TIMER_STOPPABLE|TIMER_OVERRIDE)
 
 	X.set_stagger(0) //Remove stagger
 	X.set_slowdown(0) //Remove slowdown
@@ -228,7 +227,8 @@
 	ADD_TRAIT(X, TRAIT_STAGGERIMMUNE, ENDURE_TRAIT) //Can now endure impacts/damages that would make lesser xenos flinch
 	ADD_TRAIT(X, TRAIT_SLOWDOWNIMMUNE, ENDURE_TRAIT) //Can now endure slowdown
 
-	RegisterSignal(X, COMSIG_XENOMORPH_TAKING_DAMAGE, .proc/damage_taken) //Warns us if our health is critically low
+	RegisterSignal(X, COMSIG_XENOMORPH_BRUTE_DAMAGE, PROC_REF(damage_taken)) //Warns us if our health is critically low
+	RegisterSignal(X, COMSIG_XENOMORPH_BURN_DAMAGE, PROC_REF(damage_taken))
 
 	succeed_activate()
 	add_cooldown()
@@ -238,17 +238,23 @@
 
 ///Warns the player when Endure is about to end
 /datum/action/xeno_action/endure/proc/endure_warning()
+	if(QDELETED(owner))
+		return
 	to_chat(owner,span_highdanger("We feel the plasma draining from our veins... [ability_name] will last for only [timeleft(endure_duration) * 0.1] more seconds!"))
 	owner.playsound_local(owner, 'sound/voice/hiss4.ogg', 50, 0, 1)
 
 ///Turns off the Endure buff
 /datum/action/xeno_action/endure/proc/endure_deactivate()
+	if(QDELETED(owner))
+		return
 	var/mob/living/carbon/xenomorph/X = owner
 
-	UnregisterSignal(X, COMSIG_XENOMORPH_TAKING_DAMAGE)
+	UnregisterSignal(X, COMSIG_XENOMORPH_BRUTE_DAMAGE)
+	UnregisterSignal(X, COMSIG_XENOMORPH_BURN_DAMAGE)
 
 	X.do_jitter_animation(1000)
 	X.endure = FALSE
+	X.clear_fullscreen("endure", 0.7 SECONDS)
 	X.remove_filter("ravager_endure_outline")
 	if(X.health < X.get_crit_threshold()) //If we have less health than our death threshold, but more than our Endure death threshold, set our HP to just a hair above insta dying
 		var/total_damage = X.getFireLoss() + X.getBruteLoss()
@@ -272,6 +278,10 @@
 	SIGNAL_HANDLER
 	if(X.health < 0)
 		to_chat(X, "<span class='xenohighdanger' style='color: red;'>We are critically wounded! We can only withstand [(RAVAGER_ENDURE_HP_LIMIT-X.health) * -1] more damage before we perish!</span>")
+		X.overlay_fullscreen("endure", /atom/movable/screen/fullscreen/bloodlust)
+	else
+		X.clear_fullscreen("endure", 0.7 SECONDS)
+
 
 
 /datum/action/xeno_action/endure/ai_should_start_consider()
@@ -359,29 +369,28 @@
 			charge.clear_cooldown() //Reset charge cooldown
 		if(ravage)
 			ravage.clear_cooldown() //Reset ravage cooldown
-		RegisterSignal(X, COMSIG_XENOMORPH_ATTACK_LIVING, .proc/drain_slash)
+		RegisterSignal(X, COMSIG_XENOMORPH_ATTACK_LIVING, PROC_REF(drain_slash))
 
-	for(var/turf/affected_tiles AS in RANGE_TURFS(rage_power_radius, X.loc))
-		affected_tiles.Shake(4, 4, 1 SECONDS) //SFX
+	for(var/turf/affected_tiles AS in RANGE_TURFS(rage_power_radius / 2, X.loc))
+		affected_tiles.Shake(duration = 1 SECONDS) //SFX
 
-	for(var/mob/living/L AS in GLOB.mob_living_list) //Roar that applies cool SFX
-		if(L.stat == DEAD || !L.hud_used || (get_dist(L, X) > rage_power_radius)) //We don't care about the dead
+	for(var/mob/living/affected_mob in cheap_get_humans_near(X, rage_power_radius) + cheap_get_xenos_near(X, rage_power_radius)) //Roar that applies cool SFX
+		if(affected_mob.stat) //We don't care about the dead/unconsious
 			continue
 
-		shake_camera(L, 1 SECONDS, 1)
-		L.Shake(4, 4, 1 SECONDS) //SFX
+		shake_camera(affected_mob, 1 SECONDS, 1)
+		affected_mob.Shake(duration = 1 SECONDS) //SFX
 
 		if(rage_power >= RAVAGER_RAGE_SUPER_RAGE_THRESHOLD) //If we're super pissed it's time to get crazy
+			var/atom/movable/screen/plane_master/floor/OT = affected_mob.hud_used.plane_masters["[FLOOR_PLANE]"]
+			var/atom/movable/screen/plane_master/game_world/GW = affected_mob.hud_used.plane_masters["[GAME_PLANE]"]
 
-			var/atom/movable/screen/plane_master/floor/OT = L.hud_used.plane_masters["[FLOOR_PLANE]"]
-			var/atom/movable/screen/plane_master/game_world/GW = L.hud_used.plane_masters["[GAME_PLANE]"]
-
-			addtimer(CALLBACK(OT, /atom.proc/remove_filter, "rage_outcry"), 1 SECONDS)
+			addtimer(CALLBACK(OT, TYPE_PROC_REF(/atom, remove_filter), "rage_outcry"), 1 SECONDS)
 			GW.add_filter("rage_outcry", 2, radial_blur_filter(0.07))
 			animate(GW.get_filter("rage_outcry"), size = 0.12, time = 5, loop = -1)
 			OT.add_filter("rage_outcry", 2, radial_blur_filter(0.07))
 			animate(OT.get_filter("rage_outcry"), size = 0.12, time = 5, loop = -1)
-			addtimer(CALLBACK(GW, /atom.proc/remove_filter, "rage_outcry"), 1 SECONDS)
+			addtimer(CALLBACK(GW, TYPE_PROC_REF(/atom, remove_filter), "rage_outcry"), 1 SECONDS)
 
 	X.add_filter("ravager_rage_outline", 5, outline_filter(1.5, COLOR_RED)) //Set our cool aura; also confirmation we have the buff
 
@@ -400,8 +409,8 @@
 	ADD_TRAIT(X, TRAIT_SLOWDOWNIMMUNE, RAGE_TRAIT)
 	ADD_TRAIT(X, TRAIT_STAGGERIMMUNE, RAGE_TRAIT)
 
-	addtimer(CALLBACK(src, .proc/rage_warning, bonus_duration), (RAVAGER_RAGE_DURATION + bonus_duration) * RAVAGER_RAGE_WARNING) //Warn the ravager when rage is about to expire.
-	addtimer(CALLBACK(src, .proc/rage_deactivate), (RAVAGER_RAGE_DURATION + bonus_duration))
+	addtimer(CALLBACK(src, PROC_REF(rage_warning), bonus_duration), (RAVAGER_RAGE_DURATION + bonus_duration) * RAVAGER_RAGE_WARNING) //Warn the ravager when rage is about to expire.
+	addtimer(CALLBACK(src, PROC_REF(rage_deactivate)), (RAVAGER_RAGE_DURATION + bonus_duration))
 
 	succeed_activate()
 	add_cooldown()
@@ -411,11 +420,13 @@
 
 ///Warns the user when his rage is about to end.
 /datum/action/xeno_action/rage/proc/rage_warning(bonus_duration = 0)
+	if(QDELETED(owner))
+		return
 	to_chat(owner,span_highdanger("Our rage begins to subside... [ability_name] will only last for only [(RAVAGER_RAGE_DURATION + bonus_duration) * (1-RAVAGER_RAGE_WARNING) * 0.1] more seconds!"))
 	owner.playsound_local(owner, 'sound/voice/hiss4.ogg', 50, 0, 1)
 
 ///Warns the user when his rage is about to end.
-/datum/action/xeno_action/rage/proc/drain_slash(datum/source, mob/living/target, damage, list/damage_mod, armor_pen)
+/datum/action/xeno_action/rage/proc/drain_slash(datum/source, mob/living/target, damage, list/damage_mod, list/armor_mod)
 	SIGNAL_HANDLER
 	var/mob/living/rager = owner
 	var/brute_damage = rager.getBruteLoss()
@@ -437,13 +448,14 @@
 		var/new_duration = min(RAVAGER_ENDURE_DURATION, (timeleft(endure_ability.endure_duration) + RAVAGER_RAGE_ENDURE_INCREASE_PER_SLASH)) //Increment Endure duration by 2 seconds per slash
 		deltimer(endure_ability.endure_duration) //Reset timers
 		deltimer(endure_ability.endure_warning_duration)
-		endure_ability.endure_duration = addtimer(CALLBACK(endure_ability, /datum/action/xeno_action/endure.proc/endure_deactivate), new_duration, TIMER_UNIQUE|TIMER_STOPPABLE|TIMER_OVERRIDE) //Reset Endure timers if active
+		endure_ability.endure_duration = addtimer(CALLBACK(endure_ability, TYPE_PROC_REF(/datum/action/xeno_action/endure, endure_deactivate)), new_duration, TIMER_UNIQUE|TIMER_STOPPABLE|TIMER_OVERRIDE) //Reset Endure timers if active
 		if(new_duration > 3 SECONDS) //Check timing
-			endure_ability.endure_warning_duration = addtimer(CALLBACK(endure_ability, /datum/action/xeno_action/endure.proc/endure_warning), new_duration - 3 SECONDS, TIMER_UNIQUE|TIMER_STOPPABLE|TIMER_OVERRIDE) //Reset Endure timers if active
+			endure_ability.endure_warning_duration = addtimer(CALLBACK(endure_ability, TYPE_PROC_REF(/datum/action/xeno_action/endure, endure_warning)), new_duration - 3 SECONDS, TIMER_UNIQUE|TIMER_STOPPABLE|TIMER_OVERRIDE) //Reset Endure timers if active
 
 ///Called when we want to end the Rage effect
 /datum/action/xeno_action/rage/proc/rage_deactivate()
-
+	if(QDELETED(owner))
+		return
 	var/mob/living/carbon/xenomorph/X = owner
 
 	X.do_jitter_animation(1000)
@@ -519,7 +531,7 @@
 	. = ..()
 	var/mob/living/carbon/xenomorph/xeno = L
 	xeno.vampirism = TRUE
-	RegisterSignal(L, COMSIG_XENOMORPH_ATTACK_LIVING, .proc/on_slash)
+	RegisterSignal(L, COMSIG_XENOMORPH_ATTACK_LIVING, PROC_REF(on_slash))
 
 /datum/action/xeno_action/vampirism/remove_action(mob/living/L)
 	. = ..()
@@ -530,13 +542,13 @@
 	var/mob/living/carbon/xenomorph/xeno = owner
 	xeno.vampirism = !xeno.vampirism
 	if(xeno.vampirism)
-		RegisterSignal(xeno, COMSIG_XENOMORPH_ATTACK_LIVING, .proc/on_slash)
+		RegisterSignal(xeno, COMSIG_XENOMORPH_ATTACK_LIVING, PROC_REF(on_slash))
 	else
 		UnregisterSignal(xeno, COMSIG_XENOMORPH_ATTACK_LIVING)
 	to_chat(xeno, span_xenonotice("You will now[xeno.vampirism ? "" : " no longer"] heal from attacking"))
 
 ///Adds the slashed mob to tracked damage mobs
-/datum/action/xeno_action/vampirism/proc/on_slash(datum/source, mob/living/target, damage, list/damage_mod, armor_pen)
+/datum/action/xeno_action/vampirism/proc/on_slash(datum/source, mob/living/target, damage, list/damage_mod, list/armor_mod)
 	SIGNAL_HANDLER
 	if(target.stat == DEAD)
 		return

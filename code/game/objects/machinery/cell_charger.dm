@@ -5,6 +5,7 @@
 	icon_state = "ccharger0"
 	anchored = TRUE
 	use_power = IDLE_POWER_USE
+	wrenchable = TRUE
 	idle_power_usage = 5
 	active_power_usage = 40000	//40 kW. (this the power drawn when charging)
 	power_channel = EQUIP

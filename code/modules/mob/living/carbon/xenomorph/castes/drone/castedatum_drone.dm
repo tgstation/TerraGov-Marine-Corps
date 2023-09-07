@@ -8,6 +8,9 @@
 	tier = XENO_TIER_ONE
 	upgrade = XENO_UPGRADE_BASETYPE
 
+	gib_anim = "gibbed-a-small-corpse"
+	gib_flick = "gibbed-a-small"
+
 	// *** Melee Attacks *** //
 	melee_damage = 16
 
@@ -67,6 +70,7 @@
 		/datum/action/xeno_action/pheromones/emit_recovery,
 		/datum/action/xeno_action/pheromones/emit_warding,
 		/datum/action/xeno_action/pheromones/emit_frenzy,
+		/datum/action/xeno_action/activable/recycle,
 	)
 
 /datum/xeno_caste/drone/young
@@ -109,7 +113,7 @@
 	melee_damage = 18
 
 	// *** Speed *** //
-	speed = -1.0
+	speed = -1
 
 	// *** Plasma *** //
 	plasma_max = 900
@@ -201,4 +205,5 @@
 		/datum/action/xeno_action/pheromones/emit_recovery,
 		/datum/action/xeno_action/pheromones/emit_warding,
 		/datum/action/xeno_action/pheromones/emit_frenzy,
+		/datum/action/xeno_action/activable/recycle,
 	)

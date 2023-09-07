@@ -3,6 +3,10 @@
 	name = "Circuit board"
 	icon = 'icons/obj/items/circuitboards.dmi'
 	icon_state = "id_mod"
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/equipment/engineering_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/equipment/engineering_right.dmi',
+	)
 	item_state = "electronic"
 	flags_atom = CONDUCT
 	var/build_path = null
@@ -22,16 +26,8 @@
 	return 0
 
 
-
 /obj/item/circuitboard/aicore
 	name = "Circuit board (AI Core)"
-
-
-/obj/item/circuitboard/airalarm
-	name = "air alarm electronics"
-	icon_state = "door_electronics"
-	desc = "Looks like a circuit. Probably is."
-
 
 
 /obj/item/circuitboard/firealarm
@@ -54,6 +50,7 @@
 
 /obj/item/circuitboard/airlock
 	name = "airlock electronics"
+	desc = "Required in the construction of an airlock."
 	icon_state = "door_electronics"
 	req_access = list(ACCESS_CIVILIAN_ENGINEERING)
 	var/list/conf_access = null
@@ -87,7 +84,7 @@
 		for (var/acc in accesses)
 			var/aname = get_access_desc(acc)
 
-			if (!conf_access || !conf_access.len || !(acc in conf_access))
+			if (!conf_access || !length(conf_access) || !(acc in conf_access))
 				t1 += "<a href='?src=\ref[src];access=[acc]'>[aname]</a><br>"
 			else if(one_access)
 				t1 += "<a style='color: green' href='?src=\ref[src];access=[acc]'>[aname]</a><br>"
@@ -142,7 +139,7 @@
 			conf_access += req
 		else
 			conf_access -= req
-			if (!conf_access.len)
+			if (!length(conf_access))
 				conf_access = null
 
 

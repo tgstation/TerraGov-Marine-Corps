@@ -9,6 +9,7 @@ SUBSYSTEM_DEF(excavation)
 	init_order = INIT_ORDER_EXCAVATION
 	flags = SS_BACKGROUND | SS_NO_INIT
 	wait = 5 MINUTES
+	//todo fix this being default priority, make it something super low
 
 	///Landmarks that can spawn excavation sites
 	var/list/excavation_site_spawners = list()
@@ -18,9 +19,9 @@ SUBSYSTEM_DEF(excavation)
 	var/excavations_count = 0
 
 /datum/controller/subsystem/excavation/fire()
-	if(excavation_site_spawners.len <= 0)
+	if(length(excavation_site_spawners) <= 0)
 		return
-	var/spawn_count = min(MAX_ACTIVE_EXCAVATIONS - excavations_count, excavation_site_spawners.len)
+	var/spawn_count = min(MAX_ACTIVE_EXCAVATIONS - excavations_count, length(excavation_site_spawners))
 	for(var/i in 0 to spawn_count - 1)
 		spawnExcavation()
 

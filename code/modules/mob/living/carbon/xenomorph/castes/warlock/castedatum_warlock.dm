@@ -32,9 +32,6 @@
 		/datum/action/xeno_action/psychic_whisper,
 	)
 
-	water_slowdown = 0
-	snow_slowdown = 0
-
 /datum/xeno_caste/warlock/young
 	upgrade_name = "Young"
 	upgrade = XENO_UPGRADE_ZERO

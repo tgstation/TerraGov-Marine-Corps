@@ -37,6 +37,7 @@
 	scatter = -2
 	scatter_unwielded = 4
 	akimbo_additional_delay = 0.9
+	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
 
 	placed_overlay_iconstate = "pistol"
 
@@ -50,7 +51,7 @@
 	item_state = "tp14"
 	caliber = CALIBER_9X19 //codex
 	max_shells = 21 //codex
-	fire_sound = 'sound/weapons/guns/fire/tp14.ogg'
+	fire_sound = 'sound/weapons/guns/fire/tgmc/kinetic/gun_p14.ogg'
 	reload_sound = 'sound/weapons/guns/interact/tp14_reload.ogg'
 	default_ammo_type = /obj/item/ammo_magazine/pistol/standard_pistol
 	allowed_ammo_types = list(/obj/item/ammo_magazine/pistol/standard_pistol)
@@ -95,7 +96,7 @@
 
 	muzzleflash_iconstate = "muzzle_flash_laser"
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_ENERGY|GUN_AMMO_COUNTER|GUN_IS_ATTACHMENT
-	reciever_flags = AMMO_RECIEVER_MAGAZINES|AMMO_RECIEVER_AUTO_EJECT|AMMO_RECIEVER_DO_NOT_EJECT_HANDFULS
+	reciever_flags = AMMO_RECIEVER_MAGAZINES|AMMO_RECIEVER_AUTO_EJECT|AMMO_RECIEVER_DO_NOT_EJECT_HANDFULS|AMMO_RECIEVER_CYCLE_ONLY_BEFORE_FIRE
 	actions_types = list()
 	wield_delay = 0.5 SECONDS
 	muzzle_flash_color = COLOR_GREEN
@@ -111,7 +112,7 @@
 	pixel_shift_x = 10
 	pixel_shift_y = 19
 
-	wield_delay_mod	= 0.2 SECONDS
+	wield_delay_mod = 0.2 SECONDS
 
 	placed_overlay_iconstate = "tx7"
 
@@ -171,7 +172,7 @@
 	item_state = "tp23"
 	caliber = CALIBER_45ACP //codex
 	max_shells = 14 //codex
-	fire_sound = 'sound/weapons/guns/fire/tp23.ogg'
+	fire_sound = 'sound/weapons/guns/fire/tgmc/kinetic/gun_p23.ogg'
 	unload_sound = 'sound/weapons/guns/interact/colt_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/colt_reload.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/colt_cocked.ogg'
@@ -197,6 +198,7 @@
 	accuracy_mult_unwielded = 0.95
 	recoil = -2
 	recoil_unwielded = -2
+	lower_akimbo_accuracy = 2
 
 /obj/item/weapon/gun/pistol/standard_heavypistol/suppressed
 	starting_attachment_types = list(/obj/item/attachable/suppressor, /obj/item/attachable/flashlight) //Tacticool
@@ -223,13 +225,13 @@
 	default_ammo_type = /obj/item/ammo_magazine/pistol/m1911
 	allowed_ammo_types = list(/obj/item/ammo_magazine/pistol/m1911)
 	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 21,"rail_x" = 17, "rail_y" = 22, "under_x" = 21, "under_y" = 15, "stock_x" = 21, "stock_y" = 17)
-	reciever_flags = AMMO_RECIEVER_MAGAZINES
+	reciever_flags = AMMO_RECIEVER_MAGAZINES|AMMO_RECIEVER_AUTO_EJECT_LOCKED
 	fire_delay = 0.2 SECONDS
 	accuracy_mult = 1.05
 	accuracy_mult_unwielded = 0.85
 	damage_mult = 1.15
 	recoil = -2
-	recoil_unwielded = -1
+	lower_akimbo_accuracy = 2
 
 /obj/item/weapon/gun/pistol/m1911/custom
 	name = "\improper P-1911A1 custom pistol"
@@ -428,7 +430,7 @@
 	fire_animation = "tp17_fire"
 	caliber = CALIBER_380ACP //codex
 	max_shells = 8 //codex
-	fire_sound = 'sound/weapons/guns/fire/tp17.ogg'
+	fire_sound = 'sound/weapons/guns/fire/tgmc/kinetic/gun_p17.ogg'
 	default_ammo_type = /obj/item/ammo_magazine/pistol/standard_pocketpistol
 	allowed_ammo_types = list(/obj/item/ammo_magazine/pistol/standard_pocketpistol)
 	w_class = WEIGHT_CLASS_TINY
@@ -484,13 +486,13 @@
 //VP70
 
 /obj/item/weapon/gun/pistol/vp70
-	name = "\improper 88 Mod 4 combat pistol"
+	name = "\improper MK88 Mod 4 combat pistol"
 	desc = "An uncommon automatic handgun used for self defense, based on the original VP70 more than a century ago. Fires 9mm armor piercing rounds and is capable of 3-round burst or automatic fire."
 	icon_state = "88m4"
 	item_state = "88m4"
 	caliber = CALIBER_9X19 //codex
 	max_shells = 18 //codex
-	fire_sound = 'sound/weapons/guns/fire/vp70.ogg'
+	fire_sound = 'sound/weapons/guns/fire/tgmc/kinetic/gun_88mod4.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/vp70_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/vp70_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/vp70_reload.ogg'
@@ -523,6 +525,8 @@
 	aim_slowdown = 0.2
 	scatter = 0
 	scatter_unwielded = 6
+	lower_akimbo_accuracy = 2
+	akimbo_additional_delay = 2
 
 /obj/item/weapon/gun/pistol/vp70/tactical
 	starting_attachment_types = list(/obj/item/attachable/reddot, /obj/item/attachable/lasersight, /obj/item/attachable/compensator)
@@ -636,6 +640,32 @@ It is a modified Beretta 93R, and can fire three round burst or single fire. Whe
 	recoil_unwielded = 3
 
 //-------------------------------------------------------
+// PL-5 ICC Duty Pistol
+
+/obj/item/weapon/gun/pistol/icc_dpistol
+	name = "\improper PL-5B2 duty pistol"
+	desc = "The PL-5 is a true and tested ICCAF handgun, used for a very long time with minimal changes to the core design, best used at close quarters with its higher than usual magazine size for its caliber. It is chambered in .45 ACP."
+	icon_state = "pl5"
+	item_state = "pl5"
+	icon = 'icons/Marine/gun64.dmi'
+	caliber = CALIBER_45ACP //codex
+	max_shells = 18 //codex
+	fire_sound = 'sound/weapons/guns/fire/colt.ogg'
+	unload_sound = 'sound/weapons/guns/interact/colt_unload.ogg'
+	reload_sound = 'sound/weapons/guns/interact/colt_reload.ogg'
+	cocked_sound = 'sound/weapons/guns/interact/colt_cocked.ogg'
+	default_ammo_type = /obj/item/ammo_magazine/pistol/icc_dpistol
+	allowed_ammo_types = list(/obj/item/ammo_magazine/pistol/icc_dpistol)
+	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 21,"rail_x" = 17, "rail_y" = 22, "under_x" = 21, "under_y" = 15, "stock_x" = 21, "stock_y" = 17)
+	reciever_flags = AMMO_RECIEVER_MAGAZINES
+	fire_delay = 0.2 SECONDS
+	accuracy_mult = 1.1
+	accuracy_mult_unwielded = 0.75
+	damage_falloff_mult = 1.25
+	recoil = -2
+	recoil_unwielded = -1
+
+//-------------------------------------------------------
 //The first rule of monkey pistol is we don't talk about monkey pistol.
 
 /obj/item/weapon/gun/pistol/chimp
@@ -663,7 +693,7 @@ It is a modified Beretta 93R, and can fire three round burst or single fire. Whe
 
 /obj/item/weapon/gun/pistol/knife
 	name = "\improper M6 'Eclipse Raider' ballistic knife"
-	desc = "The back issue survival knife issued to a few TerraGov Marine Corps soldiers. There are a surprisingly large amount of attachment points on this... knife."
+	desc = "The back issue survival knife issued to a few TerraGov Marine Corps marines. There are a surprisingly large amount of attachment points on this... knife."
 	icon = 'icons/obj/items/weapons.dmi'
 	icon_state = "elite_knife"
 	reload_sound = 'sound/weapons/flipblade.ogg'
@@ -702,12 +732,12 @@ It is a modified Beretta 93R, and can fire three round burst or single fire. Whe
 // Smart pistol, based on Calico M-950
 /obj/item/weapon/gun/pistol/smart_pistol
 	name = "\improper SP-13 smart pistol"
-	desc = "The SP-13 is a latest solution for personal officer defence produced by Terran Armories. A cutting-edge miniaturization technology allows mounting of smartgun IFF system on the pistol, albeit at high manufactoring cost. Unique design feature high-capacity mag on top of the barrel, with integrated sight. As with all smartgun systems, requires special training."
+	desc = "The SP-13 is a IFF-capable sidearm used by the TerraGov Marine Corps. A cutting-edge miniaturization technology allows mounting of a KTLD IFF system on the pistol, albeit at high manufactoring cost and the usual specialized training required to use such a pistol. Unique design feature high-capacity mag on top of the barrel, with integrated sight."
 	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "sp13"
 	item_state = "sp13"
 	caliber = CALIBER_9X19 //codex
-	max_shells = 25 //codex
+	max_shells = 30 //codex
 	fire_sound = 'sound/weapons/guns/fire/tp14.ogg' //same bullets, same sound
 	reload_sound = 'sound/weapons/guns/interact/tp14_reload.ogg'
 	default_ammo_type = /obj/item/ammo_magazine/pistol/standard_pistol/smart_pistol
@@ -723,8 +753,10 @@ It is a modified Beretta 93R, and can fire three round burst or single fire. Whe
 		/obj/item/attachable/lace,
 	)
 
-	flags_gun_features = GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY|GUN_IFF
+	flags_gun_features = GUN_AMMO_COUNTER|GUN_IFF
 	gun_skill_category = SKILL_SMARTGUN
+	actions_types = list() // Inherits aimmode, but has IFF so..
+	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_SEMIAUTO)
 
 	attachable_offset = list("muzzle_x" = 29, "muzzle_y" = 20,"rail_x" = 13, "rail_y" = 23, "under_x" = 19, "under_y" = 13, "stock_x" = 21, "stock_y" = 17)
 
@@ -734,6 +766,6 @@ It is a modified Beretta 93R, and can fire three round burst or single fire. Whe
 	accuracy_mult = 1.2
 	accuracy_mult_unwielded = 0.85
 	scatter = 3
-	scatter_unwielded = 5
+	scatter_unwielded = 7
 	recoil = -2
-	recoil_unwielded = -2
+	recoil_unwielded = 2

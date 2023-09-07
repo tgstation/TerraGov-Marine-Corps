@@ -11,7 +11,7 @@
 	explosion_block = 6
 	smoothing_groups = list(SMOOTH_GROUP_SHUTTERS)
 
-/obj/machinery/door/poddoor/Initialize()
+/obj/machinery/door/poddoor/Initialize(mapload)
 	. = ..()
 	var/turf/current_turf = get_turf(src)
 	if(anchored && current_turf && density)
@@ -207,10 +207,6 @@
 	name = "\improper Combat Information Center Blast Door"
 	id = "cic_lockdown"
 
-/obj/machinery/door/poddoor/mainship/open/cic/rebel
-	name = "\improper Combat Information Center Blast Door"
-	id = "cic_lockdown_rebel"
-
 /obj/machinery/door/poddoor/mainship/hangar
 	name = "\improper Hangar Lockdown"
 	id = "hangar_lockdown"
@@ -248,8 +244,8 @@
 	resistance_flags = DROPSHIP_IMMUNE|RESIST_ALL
 
 
-/obj/machinery/door/poddoor/timed_late/Initialize()
-	RegisterSignal(SSdcs, list(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_CRASH), .proc/open)
+/obj/machinery/door/poddoor/timed_late/Initialize(mapload)
+	RegisterSignals(SSdcs, list(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_CRASH), PROC_REF(open))
 	return ..()
 
 
@@ -276,7 +272,9 @@
 
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone
 	id = "landing_zone"
+	smoothing_groups = null
 
 
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2
 	id = "landing_zone_2"
+	smoothing_groups = null

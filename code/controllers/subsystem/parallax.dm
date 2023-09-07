@@ -1,7 +1,7 @@
 SUBSYSTEM_DEF(parallax)
 	name = "Parallax"
 	wait = 2
-	flags = SS_POST_FIRE_TIMING | SS_BACKGROUND
+	flags = SS_POST_FIRE_TIMING | SS_BACKGROUND | SS_NO_INIT
 	priority = FIRE_PRIORITY_PARALLAX
 	runlevels = RUNLEVEL_LOBBY | RUNLEVELS_DEFAULT
 	var/list/currentrun
@@ -29,7 +29,7 @@ SUBSYSTEM_DEF(parallax)
 	var/list/currentrun = src.currentrun
 
 	while(length(currentrun))
-		var/client/processing_client = currentrun[currentrun.len]
+		var/client/processing_client = currentrun[length(currentrun)]
 		currentrun.len--
 		if(QDELETED(processing_client) || !processing_client.eye)
 			if (MC_TICK_CHECK)

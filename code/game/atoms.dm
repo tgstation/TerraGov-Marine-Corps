@@ -11,18 +11,14 @@
 	var/blood_color
 	var/list/blood_DNA
 
-	///Flags to indicate whether this atom can bypass certain things, or if certain things can bypass this atom
-	var/flags_pass = NONE
+	///Things can move past this atom if they have the corrosponding flag
+	var/allow_pass_flags = NONE
 
 	var/resistance_flags = PROJECTILE_IMMUNE
-
-	var/germ_level = GERM_LEVEL_AMBIENT // The higher the germ level, the more germ on the atom.
 
 	///If non-null, overrides a/an/some in all cases
 	var/article
 
-	///overlays that should remain on top and not normally removed when using cut_overlay functions, like c4.
-	var/list/priority_overlays
 	///a very temporary list of overlays to remove
 	var/list/remove_overlays
 	///a very temporary list of overlays to add
@@ -31,10 +27,11 @@
 	///Lazy assoc list for managing filters attached to us
 	var/list/filter_data
 
-	var/list/display_icons // related to do_after/do_mob overlays, I can't get my hopes high.
+	///Related to do_after/do_mob overlays, I can't get my hopes high.
+	var/list/display_icons
 
-	var/list/atom_colours	 //used to store the different colors on an atom
-							//its inherent color, the colored paint applied on it, special color effect etc...
+	///used to store the different colors on an atom. its inherent color, the colored paint applied on it, special color effect etc...
+	var/list/atom_colours
 
 	///This atom's HUD (med/sec, etc) images. Associative list.
 	var/list/image/hud_list
@@ -42,7 +39,8 @@
 	///How much does this atom block the explosion's shock wave.
 	var/explosion_block = 0
 
-	var/list/managed_overlays //overlays managed by update_overlays() to prevent removing overlays that weren't added by the same proc
+	///overlays managed by update_overlays() to prevent removing overlays that weren't added by the same proc
+	var/list/managed_overlays
 
 	var/datum/component/orbiter/orbiters
 	var/datum/proximity_monitor/proximity_monitor
@@ -118,6 +116,9 @@
 	///The color this atom will be if we choose to draw it on the minimap
 	var/minimap_color = MINIMAP_SOLID
 
+	///The acid currently on this atom
+	var/obj/effect/xenomorph/acid/current_acid = null
+
 /*
 We actually care what this returns, since it can return different directives.
 Not specifically here, but in other variations of this. As a general safety,
@@ -132,7 +133,6 @@ directive is properly returned.
 	orbiters = null // The component is attached to us normaly and will be deleted elsewhere
 
 	LAZYCLEARLIST(overlays)
-	LAZYCLEARLIST(priority_overlays)
 
 	QDEL_NULL(light)
 
@@ -168,8 +168,19 @@ directive is properly returned.
 	if(loc)
 		return loc.return_gas()
 
+///returns if we can melt an object, but also the speed at which it happens. 1 just means we melt it. 0,5 means we need a higher strength acid. higher than 1 just makes it melt faster
+/atom/proc/dissolvability(acid_strength)
+	return 1
 
+//returns how long it takes to apply acid on this atom
+/atom/proc/get_acid_delay()
+	return 1 SECONDS
 
+///returns if we are able to apply acid to the atom, also checks if there is already a stronger acid on this atom
+/atom/proc/should_apply_acid(acid_strength)
+	if(!current_acid)
+		return TRUE
+	return acid_strength >= current_acid.acid_strength
 
 /atom/proc/on_reagent_change()
 	return
@@ -244,7 +255,7 @@ directive is properly returned.
 				pass |= istype(A, type)
 			if(!pass)
 				continue
-		if(A.contents.len)
+		if(length(A.contents))
 			found += A.search_contents_for(path,filter_path)
 	return found
 
@@ -261,7 +272,7 @@ directive is properly returned.
 	face_atom(examinify)
 	var/list/result = examinify.examine(src) // if a tree is examined but no client is there to see it, did the tree ever really exist?
 
-	if(result.len)
+	if(length(result))
 		for(var/i in 1 to (length(result) - 1))
 			result[i] += "\n"
 
@@ -340,7 +351,7 @@ directive is properly returned.
 			else
 				. += span_notice("\The [src] is full!")
 
-	SEND_SIGNAL(src, COMSIG_PARENT_EXAMINE, user, .)
+	SEND_SIGNAL(src, COMSIG_ATOM_EXAMINE, user, .)
 
 
 /// Updates the icon of the atom
@@ -424,9 +435,9 @@ directive is properly returned.
 	return
 
 
-/atom/proc/hitby(atom/movable/AM)
+/atom/proc/hitby(atom/movable/AM, speed = 5)
 	if(density)
-		AM.set_throwing(FALSE)
+		AM.stop_throw()
 
 
 /atom/proc/GenerateTag()
@@ -574,7 +585,7 @@ Proc for attack log creation, because really why not
 ///Sorts our filters by priority and reapplies them
 /atom/proc/update_filters()
 	filters = null
-	filter_data = sortTim(filter_data, /proc/cmp_filter_data_priority, TRUE)
+	filter_data = sortTim(filter_data, GLOBAL_PROC_REF(cmp_filter_data_priority), TRUE)
 	for(var/f in filter_data)
 		var/list/data = filter_data[f]
 		var/list/arguments = data.Copy()
@@ -641,12 +652,12 @@ Proc for attack log creation, because really why not
 	Adds an instance of colour_type to the atom's atom_colours list
 */
 /atom/proc/add_atom_colour(coloration, colour_priority)
-	if(!atom_colours || !atom_colours.len)
+	if(!atom_colours || !length(atom_colours))
 		atom_colours = list()
 		atom_colours.len = COLOUR_PRIORITY_AMOUNT //four priority levels currently.
 	if(!coloration)
 		return
-	if(colour_priority > atom_colours.len)
+	if(colour_priority > length(atom_colours))
 		return
 	atom_colours[colour_priority] = coloration
 	update_atom_colour()
@@ -659,7 +670,7 @@ Proc for attack log creation, because really why not
 	if(!atom_colours)
 		atom_colours = list()
 		atom_colours.len = COLOUR_PRIORITY_AMOUNT //four priority levels currently.
-	if(colour_priority > atom_colours.len)
+	if(colour_priority > length(atom_colours))
 		return
 	if(coloration && atom_colours[colour_priority] != coloration)
 		return //if we don't have the expected color (for a specific priority) to remove, do nothing
@@ -679,7 +690,7 @@ Proc for attack log creation, because really why not
 	for(var/C in atom_colours)
 		if(islist(C))
 			var/list/L = C
-			if(L.len)
+			if(length(L))
 				color = L
 				return
 		else if(C)
@@ -755,7 +766,7 @@ Proc for attack log creation, because really why not
 
 
 ///called if Initialize returns INITIALIZE_HINT_LATELOAD
-/atom/proc/LateInitialize(mapload)
+/atom/proc/LateInitialize()
 	set waitfor = FALSE
 
 
@@ -827,7 +838,7 @@ Proc for attack log creation, because really why not
 	return FALSE
 
 /atom/proc/multitool_check_buffer(user, obj/item/I, silent = FALSE)
-	if(!istype(I, /obj/item/multitool))
+	if(!istype(I, /obj/item/tool/multitool))
 		if(user && !silent)
 			to_chat(user, span_warning("[I] has no data buffer!"))
 		return FALSE
@@ -911,6 +922,32 @@ Proc for attack log creation, because really why not
 
 
 /atom/Topic(href, href_list)
+	if(usr?.client)
+		var/client/usr_client = usr.client
+		var/list/paramslist = list()
+
+		if(href_list["statpanel_item_click"])
+			switch(href_list["statpanel_item_click"])
+				if("left")
+					paramslist[LEFT_CLICK] = "1"
+				if("right")
+					paramslist[RIGHT_CLICK] = "1"
+				if("middle")
+					paramslist[MIDDLE_CLICK] = "1"
+				else
+					return
+
+			if(href_list["statpanel_item_shiftclick"])
+				paramslist[SHIFT_CLICK] = "1"
+			if(href_list["statpanel_item_ctrlclick"])
+				paramslist[CTRL_CLICK] = "1"
+			if(href_list["statpanel_item_altclick"])
+				paramslist[ALT_CLICK] = "1"
+
+			var/mouseparams = list2params(paramslist)
+			usr_client.Click(src, loc, null, mouseparams)
+			. = TRUE
+
 	. = ..()
 	if(.)
 		return
@@ -936,12 +973,12 @@ Proc for attack log creation, because really why not
 /atom/proc/specialclick(mob/living/carbon/user)
 	return
 
-
-//Consolidating HUD infrastructure
 /atom/proc/prepare_huds()
 	hud_list = new
 	for(var/hud in hud_possible) //Providing huds.
-		hud_list[hud] = image('icons/mob/hud.dmi', src, "")
+		var/image/new_hud = image('icons/mob/hud.dmi', src, "")
+		new_hud.appearance_flags = KEEP_APART
+		hud_list[hud] = new_hud
 
 /**
  * If this object has lights, turn it on/off.
@@ -962,7 +999,7 @@ Proc for attack log creation, because really why not
 	if(toggle_on == light_on)
 		return NO_LIGHT_STATE_CHANGE
 	if(light_again && !toggle_on) //Is true when turn light is called by nightfall and the light is already on
-		addtimer(CALLBACK(src, .proc/reset_light), cooldown + 1)
+		addtimer(CALLBACK(src, PROC_REF(reset_light)), cooldown + 1)
 	if(sparks && light_on)
 		var/datum/effect_system/spark_spread/spark_system = new
 		spark_system.set_up(5, 0, src)
@@ -1000,3 +1037,7 @@ Proc for attack log creation, because really why not
 
 /atom/proc/can_slip()
 	return TRUE
+
+///Adds the debris element for projectile impacts
+/atom/proc/add_debris_element()
+	AddElement(/datum/element/debris, null, -15, 8, 0.7)

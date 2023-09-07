@@ -49,6 +49,22 @@
 		to_chat(src, span_warning("You have been banned from OOC."))
 		return
 
+	var/list/filter_result = is_ooc_filtered(msg)
+	if(!CAN_BYPASS_FILTER(usr) && filter_result)
+		REPORT_CHAT_FILTER_TO_USER(usr, filter_result)
+		log_filter("OOC", msg, filter_result)
+		return
+
+	// Protect filter bypassers from themselves.
+	// Demote hard filter results to soft filter results if necessary due to the danger of accidentally speaking in OOC.
+	var/list/soft_filter_result = filter_result || is_soft_ooc_filtered(msg)
+
+	if(soft_filter_result)
+		if(tgui_alert(usr,"Your message contains \"[soft_filter_result[CHAT_FILTER_INDEX_WORD]]\". \"[soft_filter_result[CHAT_FILTER_INDEX_REASON]]\", Are you sure you want to say it?", "Soft Blocked Word", list("Yes", "No")) != "Yes")
+			return
+		message_admins("[ADMIN_LOOKUPFLW(usr)] has passed the soft filter for \"[soft_filter_result[CHAT_FILTER_INDEX_WORD]]\" they may be using a disallowed term. Message: \"[msg]\"")
+		log_admin_private("[key_name(usr)] has passed the soft filter for \"[soft_filter_result[CHAT_FILTER_INDEX_WORD]]\" they may be using a disallowed term. Message: \"[msg]\"")
+
 	mob.log_talk(msg, LOG_OOC)
 
 	var/display_colour
@@ -166,6 +182,22 @@
 			message_admins("[ADMIN_TPMONTY(usr)] has attempted to advertise in OOC: [msg]")
 			return
 
+	var/list/filter_result = is_ooc_filtered(msg)
+	if(!CAN_BYPASS_FILTER(usr) && filter_result)
+		REPORT_CHAT_FILTER_TO_USER(usr, filter_result)
+		log_filter("XOOC", msg, filter_result)
+		return
+
+	// Protect filter bypassers from themselves.
+	// Demote hard filter results to soft filter results if necessary due to the danger of accidentally speaking in OOC.
+	var/list/soft_filter_result = filter_result || is_soft_ooc_filtered(msg)
+
+	if(soft_filter_result)
+		if(tgui_alert(usr,"Your message contains \"[soft_filter_result[CHAT_FILTER_INDEX_WORD]]\". \"[soft_filter_result[CHAT_FILTER_INDEX_REASON]]\", Are you sure you want to say it?", "Soft Blocked Word", list("Yes", "No")) != "Yes")
+			return
+		message_admins("[ADMIN_LOOKUPFLW(usr)] has passed the soft filter for \"[soft_filter_result[CHAT_FILTER_INDEX_WORD]]\" they may be using a disallowed term. Message: \"[msg]\"")
+		log_admin_private("[key_name(usr)] has passed the soft filter for \"[soft_filter_result[CHAT_FILTER_INDEX_WORD]]\" they may be using a disallowed term. Message: \"[msg]\"")
+
 	if(is_banned_from(ckey, "OOC"))
 		to_chat(src, span_warning("You have been banned from OOC."))
 		return
@@ -264,6 +296,22 @@
 		to_chat(src, span_warning("You have been banned from OOC."))
 		return
 
+	var/list/filter_result = is_ooc_filtered(msg)
+	if(!CAN_BYPASS_FILTER(usr) && filter_result)
+		REPORT_CHAT_FILTER_TO_USER(usr, filter_result)
+		log_filter("MOOC", msg, filter_result)
+		return
+
+	// Protect filter bypassers from themselves.
+	// Demote hard filter results to soft filter results if necessary due to the danger of accidentally speaking in OOC.
+	var/list/soft_filter_result = filter_result || is_soft_ooc_filtered(msg)
+
+	if(soft_filter_result)
+		if(tgui_alert(usr,"Your message contains \"[soft_filter_result[CHAT_FILTER_INDEX_WORD]]\". \"[soft_filter_result[CHAT_FILTER_INDEX_REASON]]\", Are you sure you want to say it?", "Soft Blocked Word", list("Yes", "No")) != "Yes")
+			return
+		message_admins("[ADMIN_LOOKUPFLW(usr)] has passed the soft filter for \"[soft_filter_result[CHAT_FILTER_INDEX_WORD]]\" they may be using a disallowed term. Message: \"[msg]\"")
+		log_admin_private("[key_name(usr)] has passed the soft filter for \"[soft_filter_result[CHAT_FILTER_INDEX_WORD]]\" they may be using a disallowed term. Message: \"[msg]\"")
+
 	mob.log_talk(msg, LOG_MOOC)
 
 	// Send chat message to non-admins
@@ -351,6 +399,22 @@
 			log_admin_private("[key_name(usr)] has attempted to advertise in LOOC: [msg]")
 			message_admins("[ADMIN_TPMONTY(usr)] has attempted to advertise in LOOC: [msg]")
 			return
+
+	var/list/filter_result = is_ooc_filtered(msg)
+	if(!CAN_BYPASS_FILTER(usr) && filter_result)
+		REPORT_CHAT_FILTER_TO_USER(usr, filter_result)
+		log_filter("LOOC", msg, filter_result)
+		return
+
+	// Protect filter bypassers from themselves.
+	// Demote hard filter results to soft filter results if necessary due to the danger of accidentally speaking in OOC.
+	var/list/soft_filter_result = filter_result || is_soft_ooc_filtered(msg)
+
+	if(soft_filter_result)
+		if(tgui_alert(usr,"Your message contains \"[soft_filter_result[CHAT_FILTER_INDEX_WORD]]\". \"[soft_filter_result[CHAT_FILTER_INDEX_REASON]]\", Are you sure you want to say it?", "Soft Blocked Word", list("Yes", "No")) != "Yes")
+			return
+		message_admins("[ADMIN_LOOKUPFLW(usr)] has passed the soft filter for \"[soft_filter_result[CHAT_FILTER_INDEX_WORD]]\" they may be using a disallowed term. Message: \"[msg]\"")
+		log_admin_private("[key_name(usr)] has passed the soft filter for \"[soft_filter_result[CHAT_FILTER_INDEX_WORD]]\" they may be using a disallowed term. Message: \"[msg]\"")
 
 	if(is_banned_from(ckey, "LOOC"))
 		to_chat(src, span_warning("You have been banned from LOOC."))
@@ -519,3 +583,9 @@
 	set name = "Ping"
 	set category = "OOC"
 	winset(src, null, "command=.display_ping+[world.time + world.tick_lag * TICK_USAGE_REAL / 100]")
+
+/client/verb/fix_stat_panel()
+	set name = "Fix Stat Panel"
+	set hidden = TRUE
+
+	init_verbs()

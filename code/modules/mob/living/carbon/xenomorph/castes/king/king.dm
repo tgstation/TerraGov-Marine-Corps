@@ -2,7 +2,7 @@
 	caste_base_type = /mob/living/carbon/xenomorph/king
 	name = "King"
 	desc = "A primordial creature, evolved to smash the hardiest of defences and hunt the hardiest of prey."
-	icon = 'icons/Xeno/2x2_Xenos.dmi'
+	icon = 'icons/Xeno/castes/king.dmi'
 	icon_state = "King Walking"
 	attacktext = "bites"
 	attack_sound = null
@@ -17,10 +17,14 @@
 	tier = XENO_TIER_FOUR //King, like queen, doesn't count towards population limit.
 	upgrade = XENO_UPGRADE_ZERO
 	bubble_icon = "alienroyal"
+	inherent_verbs = list(
+		/mob/living/carbon/xenomorph/proc/hijack,
+	)
 
 /mob/living/carbon/xenomorph/king/Initialize(mapload)
 	. = ..()
 	SSmonitor.stats.king++
+	playsound(loc, 'sound/voice/xenos_roaring.ogg', 75, 0)
 
 /mob/living/carbon/xenomorph/king/generate_name()
 	switch(upgrade)

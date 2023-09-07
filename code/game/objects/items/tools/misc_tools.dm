@@ -75,6 +75,10 @@
 	name = "pen"
 	icon = 'icons/obj/items/paper.dmi'
 	icon_state = "pen"
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/items/civilian_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/items/civilian_right.dmi',
+	)
 	item_state = "pen"
 	flags_equip_slot = ITEM_SLOT_BELT|ITEM_SLOT_EARS
 	w_class = WEIGHT_CLASS_TINY
@@ -116,7 +120,7 @@
 	flags_equip_slot = ITEM_SLOT_BELT
 
 
-/obj/item/tool/pen/sleepypen/Initialize()
+/obj/item/tool/pen/sleepypen/Initialize(mapload)
 	. = ..()
 	create_reagents(30, OPENCONTAINER, list("chloralhydrate" = 22))
 
@@ -149,7 +153,7 @@
 
 
 
-/obj/item/tool/pen/paralysis/Initialize()
+/obj/item/tool/pen/paralysis/Initialize(mapload)
 	. = ..()
 	create_reagents(50, OPENCONTAINER, list(/datum/reagent/toxin/huskpowder = 10, /datum/reagent/cryptobiolin = 15))
 
@@ -161,6 +165,10 @@
 	desc = "A rubber stamp for stamping important documents."
 	icon = 'icons/obj/items/paper.dmi'
 	icon_state = "stamp-qm"
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/items/civilian_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/items/civilian_right.dmi',
+	)
 	item_state = "stamp"
 	w_class = WEIGHT_CLASS_TINY
 	throw_speed = 7

@@ -117,7 +117,7 @@
 	req_access = list(ACCESS_MARINE_DROPSHIP)
 	opacity = FALSE
 
-/obj/machinery/computer/dropship_weapons/dropship1/Initialize()
+/obj/machinery/computer/dropship_weapons/dropship1/Initialize(mapload)
 	. = ..()
 	shuttle_tag = SHUTTLE_ALAMO
 
@@ -125,15 +125,6 @@
 	name = "\improper 'Normandy' weapons controls"
 	req_access = list(ACCESS_MARINE_DROPSHIP)
 
-/obj/machinery/computer/dropship_weapons/dropship2/Initialize()
+/obj/machinery/computer/dropship_weapons/dropship2/Initialize(mapload)
 	. = ..()
 	shuttle_tag = SHUTTLE_NORMANDY
-
-/obj/machinery/computer/dropship_weapons/dropship3
-	name = "\improper 'Triumpg' weapons controls"
-	req_access = list(ACCESS_MARINE_DROPSHIP_REBEL)
-
-/obj/machinery/computer/dropship_weapons/dropship3/Initialize()
-	. = ..()
-	shuttle_tag = SHUTTLE_TRIUMPH
-

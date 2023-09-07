@@ -77,7 +77,8 @@
 	icon_state = "grenade_sticky"
 	item_state = "grenade_sticky"
 	det_time = 5 SECONDS
-	light_impact_range = 3
+	light_impact_range = 2
+	weak_impact_range = 3
 	///Current atom this grenade is attached to, used to remove the overlay.
 	var/atom/stuck_to
 	///Current image overlay applied to stuck_to, used to remove the overlay after detonation.
@@ -86,7 +87,7 @@
 /obj/item/explosive/grenade/sticky/throw_impact(atom/hit_atom, speed)
 	. = ..()
 	if(!active || stuck_to || isturf(hit_atom))
-		return
+		return TRUE
 	var/image/stuck_overlay = image(icon, hit_atom, initial(icon_state) + "_stuck")
 	stuck_overlay.pixel_x = rand(-5, 5)
 	stuck_overlay.pixel_y = rand(-7, 7)
@@ -94,11 +95,10 @@
 	forceMove(hit_atom)
 	saved_overlay = stuck_overlay
 	stuck_to = hit_atom
-	RegisterSignal(stuck_to, COMSIG_PARENT_QDELETING, .proc/clean_refs)
+	RegisterSignal(stuck_to, COMSIG_QDELETING, PROC_REF(clean_refs))
 
 /obj/item/explosive/grenade/sticky/prime()
 	if(stuck_to)
-		stuck_to.cut_overlay(saved_overlay)
 		clean_refs()
 	return ..()
 
@@ -107,10 +107,85 @@
 
 ///Cleans references to prevent hard deletes.
 /obj/item/explosive/grenade/sticky/proc/clean_refs()
+	stuck_to.cut_overlay(saved_overlay)
 	SIGNAL_HANDLER
-	UnregisterSignal(stuck_to, COMSIG_PARENT_QDELETING)
+	UnregisterSignal(stuck_to, COMSIG_QDELETING)
 	stuck_to = null
 	saved_overlay = null
+
+/obj/item/explosive/grenade/sticky/trailblazer
+	name = "\improper M45 Trailblazer grenade"
+	desc = "Capsule based grenade that sticks to sufficiently hard surfaces, causing a trail of air combustable gel to form. It is set to detonate in 5 seconds."
+	icon_state = "grenade_sticky_fire"
+	item_state = "grenade_sticky_fire"
+	det_time = 5 SECONDS
+
+/obj/item/explosive/grenade/sticky/trailblazer/prime()
+	flame_radius(0.5, get_turf(src))
+	playsound(loc, "incendiary_explosion", 35)
+	if(stuck_to)
+		clean_refs()
+	qdel(src)
+
+/obj/item/explosive/grenade/sticky/trailblazer/throw_impact(atom/hit_atom, speed)
+	. = ..()
+	if(.)
+		return
+	RegisterSignal(stuck_to, COMSIG_MOVABLE_MOVED, PROC_REF(make_fire))
+	var/turf/T = get_turf(src)
+	T.ignite(25, 25)
+
+///causes fire tiles underneath target when stuck_to
+/obj/item/explosive/grenade/sticky/trailblazer/proc/make_fire(datum/source, old_loc, movement_dir, forced, old_locs)
+	SIGNAL_HANDLER
+	var/turf/T = get_turf(src)
+	T.ignite(25, 25)
+
+/obj/item/explosive/grenade/sticky/trailblazer/clean_refs()
+	stuck_to.cut_overlay(saved_overlay)
+	UnregisterSignal(stuck_to, COMSIG_MOVABLE_MOVED)
+	return ..()
+
+/obj/item/explosive/grenade/sticky/cloaker
+	name = "\improper M45 Cloaker grenade"
+	desc = "Capsule based grenade that sticks to sufficiently hard surfaces, causing a trail of air combustable gel to form. This one creates cloaking smoke! It is set to detonate in 5 seconds."
+	icon_state = "grenade_sticky_cloak"
+	item_state = "grenade_sticky_cloak"
+	det_time = 5 SECONDS
+	light_impact_range = 1
+	/// smoke type created when the grenade is primed
+	var/datum/effect_system/smoke_spread/smoketype = /datum/effect_system/smoke_spread/tactical
+	///radius this smoke grenade will encompass
+	var/smokeradius = 1
+	///The duration of the smoke
+	var/smoke_duration = 8
+
+/obj/item/explosive/grenade/sticky/cloaker/prime()
+	var/datum/effect_system/smoke_spread/smoke = new smoketype()
+	playsound(loc, 'sound/effects/smoke_bomb.ogg', 35)
+	smoke.set_up(smokeradius, loc, smoke_duration)
+	smoke.start()
+	if(stuck_to)
+		clean_refs()
+	qdel(src)
+
+/obj/item/explosive/grenade/sticky/cloaker/throw_impact(atom/hit_atom, speed)
+	. = ..()
+	if(.)
+		return
+	RegisterSignal(stuck_to, COMSIG_MOVABLE_MOVED, PROC_REF(make_smoke))
+
+///causes fire tiles underneath target when stuck_to
+/obj/item/explosive/grenade/sticky/cloaker/proc/make_smoke(datum/source, old_loc, movement_dir, forced, old_locs)
+	SIGNAL_HANDLER
+	var/datum/effect_system/smoke_spread/smoke = new smoketype()
+	smoke.set_up(smokeradius, loc, smoke_duration)
+	smoke.start()
+
+/obj/item/explosive/grenade/sticky/cloaker/clean_refs()
+	stuck_to.cut_overlay(saved_overlay)
+	UnregisterSignal(stuck_to, COMSIG_MOVABLE_MOVED)
+	return ..()
 
 /obj/item/explosive/grenade/incendiary
 	name = "\improper M40 HIDP incendiary grenade"
@@ -136,7 +211,7 @@
 	fire_stacks = rand(burn_damage*(0.5-int_var),burn_damage*(0.5+int_var) ) + rand(burn_damage*(0.5-int_var),burn_damage*(0.5+int_var) )
 	burn_damage = rand(burn_damage*(0.5-int_var),burn_damage*(0.5+int_var) ) + rand(burn_damage*(0.5-int_var),burn_damage*(0.5+int_var) )
 
-	for(var/t in filled_turfs(epicenter, radius, "circle"))
+	for(var/t in filled_turfs(epicenter, radius, "circle", air_pass = TRUE))
 		var/turf/turf_to_flame = t
 		turf_to_flame.ignite(rand(burn_intensity*(0.5-int_var), burn_intensity*(0.5+int_var)) + rand(burn_intensity*(0.5-int_var), burn_intensity*(0.5+int_var)), rand(burn_duration*(0.5-int_var), burn_duration*(0.5-int_var)) + rand(burn_duration*(0.5-int_var), burn_duration*(0.5-int_var)), colour, burn_damage, fire_stacks)
 
@@ -153,7 +228,7 @@
 	item_state = "molotov"
 	arm_sound = 'sound/items/welder2.ogg'
 
-/obj/item/explosive/grenade/incendiary/molotov/Initialize()
+/obj/item/explosive/grenade/incendiary/molotov/Initialize(mapload)
 	. = ..()
 	det_time = rand(1 SECONDS, 4 SECONDS)//Adds some risk to using this thing.
 
@@ -170,7 +245,8 @@
 	icon_state = "ags_grenade"
 	item_state = "ags_grenade"
 	det_time = 2 SECONDS
-	light_impact_range = 3
+	light_impact_range = 2
+	weak_impact_range = 4
 
 
 /obj/item/explosive/grenade/smokebomb
@@ -210,6 +286,7 @@
 	desc = "A smoke grenade containing a concentrated neurotoxin developed by Nanotrasen, supposedly derived from xenomorphs. Banned in some sectors as a chemical weapon, but classed as a less lethal riot control tool by the TGMC."
 	icon_state = "grenade_neuro"
 	item_state = "grenade_neuro"
+	hud_state = "grenade_neuro"
 	det_time = 4 SECONDS
 	dangerous = TRUE
 	smoketype = /datum/effect_system/smoke_spread/xeno/neuro/medium
@@ -220,6 +297,7 @@
 	desc = "A grenade set to release a cloud of extremely acidic smoke developed by Nanotrasen, supposedly derived from xenomorphs. Has a shiny acid resistant shell. Its use is considered a warcrime under several treaties, none of which Terra Gov is a signatory to."
 	icon_state = "grenade_acid"
 	item_state = "grenade_acid"
+	hud_state = "grenade_acid"
 	det_time = 4 SECONDS
 	dangerous = TRUE
 	smoketype = /datum/effect_system/smoke_spread/xeno/acid
@@ -230,6 +308,7 @@
 	desc = "A smoke grenade containing a nerve agent that can debilitate victims with severe pain, while purging common painkillers. Employed heavily by the SOM."
 	icon_state = "grenade_nerve"
 	item_state = "grenade_nerve"
+	hud_state = "grenade_nerve"
 	det_time = 4 SECONDS
 	dangerous = TRUE
 	smoketype = /datum/effect_system/smoke_spread/satrapine
@@ -244,15 +323,29 @@
 	icon_state_mini = "grenade_green"
 	smoketype = /datum/effect_system/smoke_spread/tactical
 
+/obj/item/explosive/grenade/smokebomb/cloak/ags
+	name = "\improper AGLS-37 SCDP smoke grenade"
+	desc = "A small tiny smart grenade, it is about to blow up in your face, unless you found it inert. Otherwise a pretty normal grenade, other than it is somehow in a primeable state."
+	icon_state = "ags_cloak"
+	smokeradius = 4
+
 /obj/item/explosive/grenade/smokebomb/drain
 	name = "\improper M40-T smoke grenade"
 	desc = "The M40-T is a small, but powerful Tanglefoot grenade, designed to remove plasma with minimal side effects. Based off the same platform as the M40 HEDP. It is set to detonate in 6 seconds."
 	icon_state = "grenade_pgas"
 	item_state = "grenade_pgas"
+	hud_state = "grenade_drain"
 	det_time = 6 SECONDS
 	icon_state_mini = "grenade_blue"
 	dangerous = TRUE
 	smoketype = /datum/effect_system/smoke_spread/plasmaloss
+
+/obj/item/explosive/grenade/smokebomb/drain/agls
+	name = "\improper AGLS-T smoke grenade"
+	desc = "A small tiny smart grenade, it is about to blow up in your face, unless you found it inert. Otherwise a pretty normal grenade, other than it is somehow in a primeable state."
+	icon_state = "ags_pgas"
+	det_time = 3 SECONDS
+	smokeradius = 4
 
 /obj/item/explosive/grenade/phosphorus
 	name = "\improper M40 HPDP grenade"
@@ -264,7 +357,7 @@
 	var/datum/effect_system/smoke_spread/phosphorus/smoke
 	icon_state_mini = "grenade_cyan"
 
-/obj/item/explosive/grenade/phosphorus/Initialize()
+/obj/item/explosive/grenade/phosphorus/Initialize(mapload)
 	. = ..()
 	smoke = new(src)
 
@@ -322,7 +415,10 @@
 	var/lower_fuel_limit = 800
 	var/upper_fuel_limit = 1000
 
-/obj/item/explosive/grenade/flare/Initialize()
+/obj/item/explosive/grenade/flare/dissolvability(acid_strength)
+	return 2
+
+/obj/item/explosive/grenade/flare/Initialize(mapload)
 	. = ..()
 	fuel = rand(lower_fuel_limit, upper_fuel_limit) // Sorry for changing this so much but I keep under-estimating how long X number of ticks last in seconds.
 
@@ -384,7 +480,7 @@
 	if(!active)
 		turn_on(user)
 
-/obj/item/explosive/grenade/flare/on/Initialize()
+/obj/item/explosive/grenade/flare/on/Initialize(mapload)
 	. = ..()
 	active = TRUE
 	heat = 1500
@@ -426,6 +522,12 @@
 		qdel(N)
 		turn_off()
 
+/obj/item/explosive/grenade/flare/civilian
+	name = "flare"
+	desc = "A NT standard emergency flare. There are instructions on the side, it reads 'pull cord, make light'."
+	icon_state = "flare"
+	item_state = "flare"
+
 /obj/item/explosive/grenade/flare/cas
 	name = "\improper M50 CFDP signal flare"
 	desc = "A TGMC signal flare utilizing the standard DP canister chassis. Capable of being loaded in any grenade launcher, or thrown by hand. When activated, provides a target for CAS pilots."
@@ -447,14 +549,14 @@
 	if(!istype(TU))
 		return
 	if(is_ground_level(TU.z))
-		target = new(src, name, user_squad)//da lazer is stored in the grenade
+		target = new(src, null, name, user_squad)//da lazer is stored in the grenade
 
 /obj/item/explosive/grenade/flare/cas/process()
 	. = ..()
 	var/turf/TU = get_turf(src)
 	if(is_ground_level(TU.z))
 		if(!target && active)
-			target = new(src, name, user_squad)
+			target = new(src, null, name, user_squad)
 
 /obj/item/explosive/grenade/flare/cas/turn_off()
 	QDEL_NULL(target)

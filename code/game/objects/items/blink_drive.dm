@@ -35,7 +35,7 @@
 	. = ..()
 	equipped_user = user
 	if(slot == SLOT_BACK)
-		RegisterSignal(user, COMSIG_MOB_CLICK_ALT_RIGHT, .proc/can_use)
+		RegisterSignal(user, COMSIG_MOB_CLICK_ALT_RIGHT, PROC_REF(can_use))
 		var/datum/action/item_action/toggle/action = new(src)
 		action.give_action(user)
 
@@ -53,10 +53,10 @@
 		action.set_toggle(FALSE)
 		UnregisterSignal(user, COMSIG_ITEM_EXCLUSIVE_TOGGLE)
 	else
-		RegisterSignal(user, COMSIG_MOB_MIDDLE_CLICK, .proc/can_use)
+		RegisterSignal(user, COMSIG_MOB_MIDDLE_CLICK, PROC_REF(can_use))
 		action.set_toggle(TRUE)
 		SEND_SIGNAL(user, COMSIG_ITEM_EXCLUSIVE_TOGGLE, user)
-		RegisterSignal(user, COMSIG_ITEM_EXCLUSIVE_TOGGLE, .proc/unselect)
+		RegisterSignal(user, COMSIG_ITEM_EXCLUSIVE_TOGGLE, PROC_REF(unselect))
 	selected = !selected
 
 ///Signal handler for making it impossible to use middleclick to use the blink drive
@@ -88,7 +88,7 @@
 		human_user.balloon_alert(human_user, "no charge")
 		playsound(src, 'sound/items/blink_empty.ogg', 25, 1)
 		return
-	INVOKE_ASYNC(src, .proc/teleport, A, human_user)
+	INVOKE_ASYNC(src, PROC_REF(teleport), A, human_user)
 
 ///Handles the actual teleportation
 /obj/item/blink_drive/proc/teleport(atom/A, mob/user)
@@ -139,7 +139,7 @@
 	COOLDOWN_START(src, blink_stability_cooldown, 1 SECONDS)
 	charges --
 	deltimer(charge_timer)
-	charge_timer = addtimer(CALLBACK(src, .proc/recharge), BLINK_DRIVE_CHARGE_TIME * 2, TIMER_STOPPABLE)
+	charge_timer = addtimer(CALLBACK(src, PROC_REF(recharge)), BLINK_DRIVE_CHARGE_TIME * 2, TIMER_STOPPABLE)
 	update_icon()
 
 ///Recharges the drive, and sets another timer if not maxed out
@@ -147,7 +147,7 @@
 	charges ++
 	playsound(src, 'sound/items/blink_recharge.ogg', 25, 1)
 	if(charges < BLINK_DRIVE_MAX_CHARGES)
-		charge_timer = addtimer(CALLBACK(src, .proc/recharge), BLINK_DRIVE_CHARGE_TIME, TIMER_STOPPABLE)
+		charge_timer = addtimer(CALLBACK(src, PROC_REF(recharge)), BLINK_DRIVE_CHARGE_TIME, TIMER_STOPPABLE)
 	else
 		charge_timer = null
 	update_icon()
@@ -159,10 +159,39 @@
 	new /obj/effect/temp_visual/blink_drive(get_turf(teleporter))
 
 	for(var/mob/living/living_target in range(1, teleporter))
-		living_target.adjust_stagger(1)
+		living_target.adjust_stagger(1 SECONDS)
 		living_target.add_slowdown(1)
 		to_chat(living_target, span_warning("You feel nauseous as reality warps around you!"))
 
-#undef BLINK_DRIVE_RANGE
-#undef BLINK_DRIVE_MAX_CHARGES
-#undef BLINK_DRIVE_CHARGE_TIME
+//codex stuff
+/obj/item/blink_drive/get_mechanics_info()
+	. = ..()
+	var/list/traits = list()
+
+	traits += "The 'blink drive', properly known as a Bluespace Displacement Drive, is a cutting edge SOM device designed for use by their elite infantry.<br>\
+		It allows the user to travel very short distances through bluespace, which had previously been considering impossible to do without near certain risk of death \
+		due to the inherent instability associated with such bluespace drives of this size. <br> <br>\
+		While the blink drive appears to be the most accurate bluespace drive of this size yet seen, there are still dramatic risks associated with its use. <br> \
+		Multiple reported instances of user displacing themselves into solid walls or other obstacles resulting in their instant death testifies to the enduring risks of such technology.<br>\
+		The SOM however, appear to have no shortage of volunteers ready to accept such risks in the name of their cause. <br>"
+
+	traits += "<U>Range:</U><br>The blink drive can teleport the user up to [BLINK_DRIVE_RANGE] tiles away, by middle clicking with the drive active. Line of Sight is not required to teleport.<br>"
+
+	traits += "<U>Instability:</U><br>The blink drive is inherently unstable, and pushing it to its limits results in instability.<br> \
+	Instability results in the user potentially teleporting to a tile near, but not exactly where they intended. <br>\
+	There are three causes of instability, each level of instability means you can end up one tile away from where you click, up to a maximum of 3 tiles away.<br> \
+	1. Distance: Teleporting more than [BLINK_DRIVE_RANGE - 2] tiles away <br> \
+	2. Visibility: Teleporting to a tile you cannot directly see <br> \
+	3. Rapid use: Using the drive less than one second after its last use <br>"
+
+	traits += "<U>Risks:</U><br>Teleporting into a solid turf such as a wall will <U>instantly gib the user</U>.<br>\
+	Great caution is advised when using the drive near solid turfs, especially when factoring in instability.<br>"
+
+	traits += "<U>Charging:</U><br>The blink drive can store up to three charges, and recharges one every [BLINK_DRIVE_CHARGE_TIME * 0.1] seconds. It cannot recharge while in use.<br>"
+
+	traits += "<U>AOE effect:</U><br>When the drive is used, any mob (including the user) in a small area of effect suffers from a very brief period of stagger and slowdown.<br>\
+	This applies both to the users initial location as well as their exit location.<br>"
+
+	traits += "<U>Shared use:</U><br>If the user has grabbed another mob when activating the drive, the grabbed mob will be teleported with them.<br>"
+
+	. += jointext(traits, "<br>")

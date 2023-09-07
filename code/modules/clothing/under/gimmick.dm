@@ -97,7 +97,7 @@
 /obj/item/clothing/gloves/gimmick/robocop
 	name = "metal hands"
 	desc = "The cold, unfeeling hands of the law."
-	icon_state = "robocop_gloves"
+	icon_state = "black"
 	flags_atom = CONDUCT
 	soft_armor = list(MELEE = 87, BULLET = 87, LASER = 87, ENERGY = 87, BOMB = 87, BIO = 50, FIRE = 87, ACID = 87)
 

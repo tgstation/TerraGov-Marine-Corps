@@ -76,7 +76,7 @@
 	///how wide of a cone the flamethrower produces on wide mode.
 	var/cone_angle = 55
 
-/obj/item/weapon/gun/flamer/Initialize()
+/obj/item/weapon/gun/flamer/Initialize(mapload)
 	. = ..()
 	if(!rounds)
 		return
@@ -192,7 +192,7 @@
 	if(!burn_list(turfs_to_ignite))
 		return
 	iteration++
-	addtimer(CALLBACK(src, .proc/recursive_flame_straight, iteration, turfs_to_ignite, path_to_target, range, current_target, walls_penetrated), flame_spread_time)
+	addtimer(CALLBACK(src, PROC_REF(recursive_flame_straight), iteration, turfs_to_ignite, path_to_target, range, current_target, walls_penetrated), flame_spread_time)
 
 ///Flames recursively a cone.
 /obj/item/weapon/gun/flamer/proc/recursive_flame_cone(iteration, list/turf/turfs_to_ignite, dir_to_target, range, current_target, turf/flame_source, walls_penetrated_wide)
@@ -220,7 +220,7 @@
 
 	burn_list(turfs_by_iteration)
 	iteration++
-	addtimer(CALLBACK(src, .proc/recursive_flame_cone, iteration, turfs_to_ignite, dir_to_target, range, current_target, flame_source, walls_penetrated_wide), flame_spread_time)
+	addtimer(CALLBACK(src, PROC_REF(recursive_flame_cone), iteration, turfs_to_ignite, dir_to_target, range, current_target, flame_source, walls_penetrated_wide), flame_spread_time)
 
 ///Checks and lights the turfs in turfs_to_burn
 /obj/item/weapon/gun/flamer/proc/burn_list(list/turf/turfs_to_burn)
@@ -246,12 +246,9 @@
 /obj/item/weapon/gun/flamer/proc/flame_turf(turf/turf_to_ignite, mob/living/user, burn_time, burn_level, fire_color = "red", direction = NORTH)
 	turf_to_ignite.ignite(burn_time, burn_level, fire_color)
 
-	var/fire_mod
 	for(var/mob/living/mob_caught in turf_to_ignite) //Deal bonus damage if someone's caught directly in initial stream
 		if(mob_caught.stat == DEAD)
 			continue
-
-		fire_mod = mob_caught.get_fire_resist()
 
 		if(isxeno(mob_caught))
 			var/mob/living/carbon/xenomorph/xeno_caught = mob_caught
@@ -269,10 +266,7 @@
 				else
 					log_combat(user, human_caught, "flamed", src)
 
-			if(human_caught.hard_armor.getRating(FIRE) >= 100)
-				continue
-
-		mob_caught.take_overall_damage(rand(burn_level, (burn_level * mob_flame_damage_mod)) * fire_mod, BURN, updating_health = TRUE, max_limbs = 4) // Make it so its the amount of heat or twice it for the initial blast.
+		mob_caught.take_overall_damage(rand(burn_level, (burn_level * mob_flame_damage_mod)), BURN, FIRE, updating_health = TRUE, max_limbs = 4) // Make it so its the amount of heat or twice it for the initial blast.
 		mob_caught.adjust_fire_stacks(rand(5, (burn_level * mob_flame_damage_mod)))
 		mob_caught.IgniteMob()
 
@@ -313,6 +307,28 @@
 /obj/item/weapon/gun/flamer/som/mag_harness
 	starting_attachment_types = list(/obj/item/attachable/flamer_nozzle/wide, /obj/item/attachable/magnetic_harness)
 
+//dedicated engineer pyro kit flamer
+/obj/item/weapon/gun/flamer/big_flamer/marinestandard/engineer
+	name = "\improper FL-86 incinerator unit"
+	desc = "The FL-86 is a more light weight incinerator unit designed specifically to fit into its accompanying engineers bag. Can only be used with magazine fuel tanks however."
+	default_ammo_type = /obj/item/ammo_magazine/flamer_tank/large
+	allowed_ammo_types = list(
+		/obj/item/ammo_magazine/flamer_tank,
+		/obj/item/ammo_magazine/flamer_tank/large,
+		/obj/item/ammo_magazine/flamer_tank/large/X,
+	)
+	attachable_allowed = list(
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/motiondetector,
+		/obj/item/attachable/buildasentry,
+		/obj/item/attachable/stock/t84stock,
+		/obj/item/attachable/flamer_nozzle,
+		/obj/item/attachable/flamer_nozzle/wide,
+		/obj/item/attachable/flamer_nozzle/long,
+	)
+	starting_attachment_types = list(/obj/item/attachable/flamer_nozzle, /obj/item/attachable/stock/t84stock)
+
 /obj/item/weapon/gun/flamer/mini_flamer
 	name = "mini flamethrower"
 	desc = "A weapon-mounted refillable flamethrower attachment.\nIt is designed for short bursts."
@@ -344,7 +360,7 @@
 	burn_level_mod = 0.6
 	flame_max_range = 4
 
-	wield_delay_mod	= 0.2 SECONDS
+	wield_delay_mod = 0.2 SECONDS
 
 /obj/item/weapon/gun/flamer/mini_flamer/unremovable
 	flags_attach_features = NONE
@@ -366,6 +382,7 @@
 		/obj/item/attachable/stock/t84stock,
 		/obj/item/attachable/flamer_nozzle,
 		/obj/item/attachable/flamer_nozzle/wide,
+		/obj/item/attachable/flamer_nozzle/wide/red,
 		/obj/item/attachable/flamer_nozzle/long,
 		/obj/item/weapon/gun/flamer/hydro_cannon,
 	)
@@ -377,7 +394,7 @@
 	if(gun_user?.skills.getRating(SKILL_FIREARMS) < 0)
 		switch(windup_checked)
 			if(WEAPON_WINDUP_NOT_CHECKED)
-				INVOKE_ASYNC(src, .proc/do_windup)
+				INVOKE_ASYNC(src, PROC_REF(do_windup))
 				return
 			if(WEAPON_WINDUP_CHECKING)
 				return
@@ -400,6 +417,16 @@
 		/obj/item/attachable/magnetic_harness,
 	)
 
+/obj/item/weapon/gun/flamer/big_flamer/marinestandard/deathsquad
+	allowed_ammo_types = list(/obj/item/ammo_magazine/flamer_tank/large/X/deathsquad)
+	default_ammo_type = /obj/item/ammo_magazine/flamer_tank/large/X/deathsquad
+	starting_attachment_types = list(
+		/obj/item/attachable/flamer_nozzle/wide/red,
+		/obj/item/attachable/stock/t84stock,
+		/obj/item/weapon/gun/flamer/hydro_cannon,
+		/obj/item/attachable/magnetic_harness,
+	)
+
 /turf/proc/ignite(fire_lvl, burn_lvl, f_color, fire_stacks = 0, fire_damage = 0)
 	//extinguish any flame present
 	var/obj/flamer_fire/old_fire = locate(/obj/flamer_fire) in src
@@ -410,7 +437,7 @@
 		return
 
 	new /obj/flamer_fire(src, fire_lvl, burn_lvl, f_color, fire_stacks, fire_damage)
-	for(var/obj/structure/jungle/vines/vines in src)
+	for(var/obj/structure/flora/jungle/vines/vines in src)
 		QDEL_NULL(vines)
 
 /turf/open/floor/plating/ground/snow/ignite(fire_lvl, burn_lvl, f_color, fire_stacks = 0, fire_damage = 0)
@@ -474,7 +501,7 @@ GLOBAL_LIST_EMPTY(flamer_particles)
 	START_PROCESSING(SSobj, src)
 
 	var/static/list/connections = list(
-		COMSIG_ATOM_ENTERED = .proc/on_cross,
+		COMSIG_ATOM_ENTERED = PROC_REF(on_cross),
 	)
 	AddElement(/datum/element/connect_loc, connections)
 

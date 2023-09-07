@@ -18,10 +18,11 @@
 
 	dat += "<b>List of Hive Tunnels:</b><BR>"
 
-	for(var/obj/structure/xeno/tunnel/T AS in GLOB.xeno_tunnels)
-		if(user.issamexenohive(T))
-			var/distance = get_dist(user, T)
-			dat += "<b>[T.name]</b> located at: <b><font color=green>([T.tunnel_desc][distance > 0 ? " <b>Distance: [distance])</b>" : ""]</b></font><BR>"
+	for(var/hive AS in GLOB.xeno_tunnels_by_hive)
+		for(var/obj/structure/xeno/tunnel/T in GLOB.xeno_tunnels_by_hive[hive])
+			if(user.issamexenohive(T))
+				var/distance = get_dist(user, T)
+				dat += "<b>[T.name]</b> located at: <b><font color=green>([T.tunnel_desc][distance > 0 ? " <b>Distance: [distance])</b>" : ""]</b></font><BR>"
 
 	var/datum/browser/popup = new(user, "tunnelstatus", "<div align='center'>Tunnel List</div>", 600, 600)
 	popup.set_content(dat)
@@ -64,8 +65,8 @@
 
 	if(href_list["track_silo_number"])
 		var/silo_number = href_list["track_silo_number"]
-		for(var/obj/structure/xeno/silo/resin_silo AS in GLOB.xeno_resin_silos)
-			if(resin_silo.associated_hive == hive && num2text(resin_silo.number_silo) == silo_number)
+		for(var/obj/structure/xeno/silo/resin_silo AS in GLOB.xeno_resin_silos_by_hive[hivenumber])
+			if(num2text(resin_silo.number_silo) == silo_number)
 				set_tracked(resin_silo)
 				to_chat(usr,span_notice(" You will now track [resin_silo.name]"))
 				break
@@ -97,30 +98,27 @@
 
 //Adds stuff to your "Status" pane -- Specific castes can have their own, like carrier hugger count
 //Those are dealt with in their caste files.
-/mob/living/carbon/xenomorph/Stat()
+/mob/living/carbon/xenomorph/get_status_tab_items()
 	. = ..()
 
-	if(!statpanel("Game"))
-		return
-
 	if(!(xeno_caste.caste_flags & CASTE_EVOLUTION_ALLOWED))
-		stat("Evolve Progress:", "(FINISHED)")
+		. += "Evolve Progress: (FINISHED)"
 	else if(!hive.check_ruler())
-		stat("Evolve Progress:", "(HALTED - NO RULER)")
+		. += "Evolve Progress: (HALTED - NO RULER)"
 	else
-		stat("Evolve Progress:", "[evolution_stored]/[xeno_caste.evolution_threshold]")
+		. += "Evolve Progress: [evolution_stored]/[xeno_caste.evolution_threshold]"
 
 	if(upgrade_possible())
-		stat("Upgrade Progress:", "[upgrade_stored]/[xeno_caste.upgrade_threshold]")
+		. += "Upgrade Progress: [upgrade_stored]/[xeno_caste.upgrade_threshold]"
 	else //Upgrade process finished or impossible
-		stat("Upgrade Progress:", "(FINISHED)")
+		. += "Upgrade Progress: (FINISHED)"
 
-	stat("Health:", "[overheal ? "[overheal] + ": ""][health]/[maxHealth]") //Changes with balance scalar, can't just use the caste
+	. += "Health: [overheal ? "[overheal] + ": ""][health]/[maxHealth]" //Changes with balance scalar, can't just use the caste
 
 	if(xeno_caste.plasma_max > 0)
-		stat("Plasma:", "[plasma_stored]/[xeno_caste.plasma_max]")
+		. += "Plasma: [plasma_stored]/[xeno_caste.plasma_max]"
 
-	stat("Sunder:", "[100-sunder]% armor left")
+	. += "Sunder: [100-sunder]% armor left"
 
 	//Very weak <= 1.0, weak <= 2.0, no modifier 2-3, strong <= 3.5, very strong <= 4.5
 	var/msg_holder = ""
@@ -136,7 +134,7 @@
 				msg_holder = "Strong"
 			if(4.0 to INFINITY)
 				msg_holder = "Very strong"
-		stat("[AURA_XENO_FRENZY] pheromone strength:", msg_holder)
+		. += "[AURA_XENO_FRENZY] pheromone strength: [msg_holder]"
 	if(warding_aura)
 		switch(warding_aura)
 			if(-INFINITY to 1.0)
@@ -149,7 +147,7 @@
 				msg_holder = "Strong"
 			if(4.0 to INFINITY)
 				msg_holder = "Very strong"
-		stat("[AURA_XENO_WARDING] pheromone strength:", msg_holder)
+		. += "[AURA_XENO_WARDING] pheromone strength: [msg_holder]"
 	if(recovery_aura)
 		switch(recovery_aura)
 			if(-INFINITY to 1.0)
@@ -162,15 +160,7 @@
 				msg_holder = "Strong"
 			if(4.0 to INFINITY)
 				msg_holder = "Very strong"
-		stat("[AURA_XENO_RECOVERY] pheromone strength:", msg_holder)
-
-	if(hivenumber == XENO_HIVE_NORMAL)
-		var/hivemind_countdown = SSticker.mode?.get_hivemind_collapse_countdown()
-		if(hivemind_countdown)
-			stat("<b>Orphan hivemind collapse timer:</b>", hivemind_countdown)
-		var/siloless_countdown = SSticker.mode?.get_siloless_collapse_countdown()
-		if(siloless_countdown)
-			stat("<b>Orphan hivemind collapse timer:</b>", siloless_countdown)
+		. += "[AURA_XENO_RECOVERY] pheromone strength: [msg_holder]"
 
 //A simple handler for checking your state. Used in pretty much all the procs.
 /mob/living/carbon/xenomorph/proc/check_state()
@@ -201,13 +191,12 @@
 /mob/living/carbon/xenomorph/proc/remove_inherent_verbs()
 	if(inherent_verbs)
 		for(var/verb_path in inherent_verbs)
-			verbs -= verb_path
+			remove_verb(verbs, verb_path)
 
 //Add all your inherent caste verbs and procs. Used in evolution.
 /mob/living/carbon/xenomorph/proc/add_inherent_verbs()
 	if(inherent_verbs)
-		for(var/verb_path in inherent_verbs)
-			verbs |= verb_path
+		add_verb(src, inherent_verbs)
 
 
 //Adds or removes a delay to movement based on your caste. If speed = 0 then it shouldn't do much.
@@ -237,8 +226,6 @@
 
 
 /mob/living/carbon/xenomorph/proc/update_evolving()
-	if(!client || !ckey) // stop evolve progress for ssd/ghosted xenos
-		return
 	if(evolution_stored >= xeno_caste.evolution_threshold || !(xeno_caste.caste_flags & CASTE_EVOLUTION_ALLOWED) || HAS_TRAIT(src, TRAIT_VALHALLA_XENO))
 		return
 	if(!hive.check_ruler() && caste_base_type != /mob/living/carbon/xenomorph/larva) // Larva can evolve without leaders at round start.
@@ -250,13 +237,12 @@
 	var/evolution_points = 1 + (FLOOR(stored_larva / 3, 1)) + hive.get_evolution_boost() + spec_evolution_boost()
 	evolution_stored = min(evolution_stored + evolution_points, xeno_caste.evolution_threshold)
 
+	if(!client || !ckey)
+		return
+
 	if(evolution_stored == xeno_caste.evolution_threshold)
 		to_chat(src, span_xenodanger("Our carapace crackles and our tendons strengthen. We are ready to evolve!"))
 		SEND_SOUND(src, sound('sound/effects/xeno_evolveready.ogg'))
-
-
-/mob/living/carbon/xenomorph/show_inv(mob/user)
-	return
 
 
 //This deals with "throwing" xenos -- ravagers, hunters, and runners in particular. Everyone else defaults to normal
@@ -271,10 +257,8 @@
 
 	if(isobj(hit_atom)) //Deal with smacking into dense objects. This overwrites normal throw code.
 		var/obj/O = hit_atom
-		if(!O.density)
-			return FALSE//Not a dense object? Doesn't matter then, pass over it.
-		if(!O.anchored)
-			step(O, dir) //Not anchored? Knock the object back a bit. Ie. canisters.
+		if(!O.anchored && !isxeno(src))
+			step(O, dir)
 		SEND_SIGNAL(src, COMSIG_XENO_OBJ_THROW_HIT, O, speed)
 		return TRUE
 
@@ -376,10 +360,10 @@
 /mob/living/carbon/xenomorph/proc/update_spits(skip_ammo_choice = FALSE)
 	if(!ammo && length(xeno_caste.spit_types))
 		ammo = GLOB.ammo_list[xeno_caste.spit_types[1]]
-	if(!ammo || !xeno_caste.spit_types || !xeno_caste.spit_types.len) //Only update xenos with ammo and spit types.
+	if(!ammo || !xeno_caste.spit_types || !length(xeno_caste.spit_types)) //Only update xenos with ammo and spit types.
 		return
 	if(!skip_ammo_choice)
-		for(var/i in 1 to xeno_caste.spit_types.len)
+		for(var/i in 1 to length(xeno_caste.spit_types))
 			var/datum/ammo/A = GLOB.ammo_list[xeno_caste.spit_types[i]]
 			if(ammo.icon_state == A.icon_state)
 				ammo = A
@@ -399,15 +383,15 @@
 /obj/structure/acid_spray_act(mob/living/carbon/xenomorph/X)
 	if(!is_type_in_typecache(src, GLOB.acid_spray_hit))
 		return TRUE // normal density flag
-	take_damage(X.xeno_caste.acid_spray_structure_damage, "acid", "acid")
+	take_damage(X.xeno_caste.acid_spray_structure_damage, BURN, ACID)
 	return TRUE // normal density flag
 
 /obj/structure/razorwire/acid_spray_act(mob/living/carbon/xenomorph/X)
-	. = ..()
+	take_damage(2 * X.xeno_caste.acid_spray_structure_damage, BURN, ACID)
 	return FALSE // not normal density flag
 
 /obj/vehicle/multitile/root/cm_armored/acid_spray_act(mob/living/carbon/xenomorph/X)
-	take_damage_type(X.xeno_caste.acid_spray_structure_damage, "acid", src)
+	take_damage_type(X.xeno_caste.acid_spray_structure_damage, ACID, src)
 	healthcheck()
 	return TRUE
 
@@ -425,7 +409,7 @@
 		SSblackbox.record_feedback("tally", "round_statistics", 1, "praetorian_spray_direct_hits")
 
 	var/damage = X.xeno_caste.acid_spray_damage_on_hit
-	INVOKE_ASYNC(src, .proc/apply_acid_spray_damage, damage)
+	INVOKE_ASYNC(src, PROC_REF(apply_acid_spray_damage), damage)
 	to_chat(src, span_xenodanger("\The [X] showers you in corrosive acid!"))
 
 /mob/living/carbon/proc/apply_acid_spray_damage(damage)
@@ -434,7 +418,7 @@
 /mob/living/carbon/human/apply_acid_spray_damage(damage)
 	take_overall_damage(damage, BURN, ACID, updating_health = TRUE)
 	emote("scream")
-	Paralyze(20)
+	Paralyze(2 SECONDS)
 
 /mob/living/carbon/xenomorph/acid_spray_act(mob/living/carbon/xenomorph/X)
 	ExtinguishMob()
@@ -479,7 +463,7 @@
 	playsound(C, "alien_drool", 15, TRUE)
 	do
 		face_atom(C)
-		if(stagger)
+		if(IsStaggered())
 			return FALSE
 		do_attack_animation(C)
 		C.reagents.add_reagent(toxin, transfer_amount)
@@ -499,7 +483,7 @@
 	return FALSE
 
 /mob/living/carbon/xenomorph/proc/setup_verbs()
-	verbs += /mob/living/proc/lay_down
+	add_verb(src, /mob/living/proc/lay_down)
 
 /mob/living/carbon/xenomorph/hivemind/setup_verbs()
 	return
@@ -520,17 +504,12 @@
 	. = ..()
 	if(.)
 		return
-	return (sunder * -0.01) + 1
+	return 1 - (sunder * 0.01)
 
 /mob/living/carbon/xenomorph/adjust_stagger(amount)
 	if(is_charging >= CHARGE_ON) //If we're charging we don't accumulate more stagger stacks.
 		return FALSE
 	return ..()
-
-/mob/living/carbon/xenomorph/add_slowdown(amount)
-	if(is_charging >= CHARGE_ON) //If we're charging we're immune to slowdown.
-		return
-	adjust_slowdown(amount * XENO_SLOWDOWN_REGEN)
 
 ///Eject the mob inside our belly, and putting it in a cocoon if needed
 /mob/living/carbon/xenomorph/proc/eject_victim(make_cocoon = FALSE, turf/eject_location = loc)
@@ -550,12 +529,12 @@
 ///Set the var tracked to to_track
 /mob/living/carbon/xenomorph/proc/set_tracked(atom/to_track)
 	if(tracked)
-		UnregisterSignal(tracked, COMSIG_PARENT_QDELETING)
+		UnregisterSignal(tracked, COMSIG_QDELETING)
 		if (tracked == to_track)
 			clean_tracked()
 			return
 	tracked = to_track
-	RegisterSignal(tracked, COMSIG_PARENT_QDELETING, .proc/clean_tracked)
+	RegisterSignal(tracked, COMSIG_QDELETING, PROC_REF(clean_tracked))
 
 ///Signal handler to null tracked
 /mob/living/carbon/xenomorph/proc/clean_tracked(atom/to_track)
@@ -573,10 +552,10 @@
 		return
 
 	SSminimaps.remove_marker(src)
+	var/image/blip = image('icons/UI_icons/map_blips.dmi', null, xeno_caste.minimap_icon)
 	if(makeleader)
-		SSminimaps.add_marker(src, z, MINIMAP_FLAG_XENO, xeno_caste.minimap_icon, overlay_iconstates=list(xeno_caste.minimap_leadered_overlay))
-	else
-		SSminimaps.add_marker(src, z, MINIMAP_FLAG_XENO, xeno_caste.minimap_icon)
+		blip.overlays += image('icons/UI_icons/map_blips.dmi', null, xeno_caste.minimap_leadered_overlay)
+	SSminimaps.add_marker(src, MINIMAP_FLAG_XENO, blip)
 
 ///updates the xeno's glow, based on the ability being used
 /mob/living/carbon/xenomorph/proc/update_glow(range, power, color)

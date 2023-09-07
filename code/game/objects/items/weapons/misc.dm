@@ -14,14 +14,25 @@
 	user.visible_message(span_danger("[user] is strangling [p_them()]self with the [src.name]! It looks like [user.p_theyre()] trying to commit suicide."))
 	return (OXYLOSS)
 
+/obj/item/weapon/cane
+	name = "cane"
+	desc = "A cane used by a true gentlemen. Or a clown."
+	icon = 'icons/obj/items/weapons.dmi'
+	icon_state = "cane"
+	item_state = "cane"
+	flags_atom = CONDUCT
+	force = 5
+	throwforce = 7
+	w_class = WEIGHT_CLASS_SMALL
+	attack_verb = list("bludgeoned", "whacked", "disciplined", "thrashed")
 
 /obj/item/weapon/broken_bottle
 	name = "Broken Bottle"
 	desc = "A bottle with a sharp broken bottom."
 	icon = 'icons/obj/items/drinks.dmi'
 	icon_state = "broken_bottle"
-	force = 9.0
-	throwforce = 5.0
+	force = 9
+	throwforce = 5
 	throw_speed = 3
 	throw_range = 5
 	item_state = "broken_beer"
@@ -46,7 +57,7 @@
 	///the higher the power level the harder it hits
 	var/setting = 1
 
-/obj/item/weapon/powerfist/Initialize()
+/obj/item/weapon/powerfist/Initialize(mapload)
 	. = ..()
 	update_icon()
 
@@ -133,6 +144,9 @@
 		return ..()
 	if(!istype(I, /obj/item/cell/lasgun))
 		to_chat(user, span_warning("The powerfist only accepts lasgun cells!"))
+		return
+	if(I.w_class >= WEIGHT_CLASS_BULKY)
+		to_chat(user, span_warning("Too big to fit!"))
 		return
 	if(cell)
 		unload(user)

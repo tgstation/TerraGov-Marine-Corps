@@ -27,7 +27,7 @@
 	..()
 
 /datum/surgery_step/implant_removal/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
-	if(affected.implants.len)
+	if(length(affected.implants))
 
 		var/obj/item/implantfound = affected.implants[1]
 		user.visible_message(span_notice("[user] takes something out of incision on [target]'s [affected.display_name] with \the [tool]."), \
@@ -53,7 +53,7 @@
 	span_warning("Your hand slips, scraping tissue inside [target]'s [affected.display_name] with \the [tool]!"))
 	target.balloon_alert_to_viewers("Slipped!")
 	affected.createwound(CUT, 20)
-	if(affected.implants.len)
+	if(length(affected.implants))
 		var/fail_prob = 10
 		fail_prob += 100 - tool_quality(tool)
 		if(prob(fail_prob))
@@ -62,6 +62,6 @@
 				var/obj/item/implant/imp = I
 				user.visible_message(span_warning("Something beeps inside [target]'s [affected.display_name]!"))
 				playsound(imp.loc, 'sound/items/countdown.ogg', 25, 1)
-				addtimer(CALLBACK(imp, /obj/item/implant.proc/activate), 25)
+				addtimer(CALLBACK(imp, TYPE_PROC_REF(/obj/item/implant, activate)), 25)
 	target.updatehealth()
 	affected.update_wounds()

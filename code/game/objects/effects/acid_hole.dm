@@ -17,7 +17,7 @@
 	layer = LOWER_ITEM_LAYER
 	var/turf/closed/wall/holed_wall
 
-/obj/effect/acid_hole/Initialize()
+/obj/effect/acid_hole/Initialize(mapload)
 	. = ..()
 	if(iswallturf(loc))
 		var/turf/closed/wall/W = loc
@@ -43,9 +43,9 @@
 
 
 /obj/effect/acid_hole/MouseDrop_T(mob/M, mob/user)
-	if (!holed_wall)
+	. = ..()
+	if(!holed_wall)
 		return
-
 	if(M == user && isxeno(user))
 		use_wall_hole(user)
 

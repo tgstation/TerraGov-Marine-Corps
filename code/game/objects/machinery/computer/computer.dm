@@ -14,7 +14,7 @@
 	///they don't provide good cover
 	coverage = 15
 
-/obj/machinery/computer/Initialize()
+/obj/machinery/computer/Initialize(mapload)
 	. = ..()
 	start_processing()
 	return INITIALIZE_HINT_LATELOAD
@@ -35,7 +35,7 @@
 		. += span_warning("It is currently disabled, and can be fixed with a welder.")
 
 	if(machine_stat & BROKEN)
-		. += span_warning("It is broken and needs to be rebuilt.")
+		. += span_warning("It is broken.")
 
 /obj/machinery/computer/process()
 	if(machine_stat & (NOPOWER|BROKEN|DISABLED))
@@ -67,6 +67,11 @@
 				for(var/x in verbs)
 					verbs -= x
 				set_broken()
+		if(EXPLODE_WEAK)
+			if (prob(15))
+				for(var/x in verbs)
+					verbs -= x
+				set_broken()
 
 
 /obj/machinery/computer/bullet_act(obj/projectile/Proj)
@@ -79,18 +84,13 @@
 		..()
 		return 1
 
-/obj/machinery/computer/update_icon()
-	..()
-	icon_state = initial(icon_state)
-
-	// Broken
+/obj/machinery/computer/update_icon_state()
 	if(machine_stat & (BROKEN|DISABLED))
-		icon_state += "b"
-
-	// Powered
+		icon_state = "[initial(icon_state)]b"
 	else if(machine_stat & NOPOWER)
+		icon_state = "[initial(icon_state)]0"
+	else
 		icon_state = initial(icon_state)
-		icon_state += "0"
 
 /obj/machinery/computer/proc/set_broken()
 	machine_stat |= BROKEN
@@ -213,4 +213,4 @@
 
 	X.do_attack_animation(src, ATTACK_EFFECT_DISARM2) //SFX
 	playsound(loc, pick('sound/effects/bang.ogg','sound/effects/metal_crash.ogg','sound/effects/meteorimpact.ogg'), 25, 1) //SFX
-	Shake(4, 4, 2 SECONDS)
+	Shake(duration = 0.5 SECONDS)

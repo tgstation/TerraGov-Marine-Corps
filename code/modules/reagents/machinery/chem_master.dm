@@ -40,7 +40,7 @@
 	)
 
 
-/obj/machinery/chem_master/Initialize()
+/obj/machinery/chem_master/Initialize(mapload)
 	. = ..()
 	var/datum/reagents/R = new/datum/reagents(240)
 	reagents = R
@@ -68,28 +68,28 @@
 	if(istype(I,/obj/item/reagent_containers) && I.is_open_container())
 		for(var/datum/reagent/X in I.reagents.reagent_list)
 			if(X.medbayblacklist)
-				to_chat(user, span_warning("The chem master's automatic safety features beep softly, they must have detected a harmful substance in the beaker."))
+				balloon_alert(user, "Harmful substance detected")
 				return
 		if(beaker)
-			to_chat(user, span_warning("A beaker is already loaded into the machine."))
+			balloon_alert(user, "Beaker already loaded")
 			return
 		user.transferItemToLoc(I, src)
 		beaker = I
-		to_chat(user, span_notice("You add the beaker to the machine!"))
+		balloon_alert(user, "Adds beaker")
 		updateUsrDialog()
 		icon_state = "mixer1"
 
 	else if(istype(I,/obj/item/reagent_containers/glass))
-		to_chat(user, span_warning("Take off the lid first."))
+		balloon_alert(user, "Take off the lid first.")
 
 	else if(istype(I, /obj/item/storage/pill_bottle))
 		if(loaded_pill_bottle)
-			to_chat(user, span_warning("A pill bottle is already loaded into the machine."))
+			balloon_alert(user, "Pill bottle already loaded")
 			return
 
 		loaded_pill_bottle = I
 		user.transferItemToLoc(I, src)
-		to_chat(user, span_notice("You add the pill bottle into the dispenser slot!"))
+		balloon_alert(user, "Adds pill bottle into dispenser")
 		updateUsrDialog()
 
 /obj/machinery/chem_master/proc/transfer_chemicals(obj/dest, obj/source, amount, reagent_id)
@@ -203,7 +203,7 @@
 		else if (href_list["createpillbottle"])
 			if(!condi)
 				if(loaded_pill_bottle)
-					to_chat(user, span_warning("A pill bottle is already loaded into the machine."))
+					balloon_alert(user, "Pill bottle already loaded")
 					return
 				var/bottle_label = reject_bad_text(tgui_input_text(user, "Label:", "Enter desired bottle label", encode = FALSE))
 				var/obj/item/storage/pill_bottle/I = new/obj/item/storage/pill_bottle
@@ -211,7 +211,7 @@
 				if(bottle_label)
 					I.name = "[bottle_label] pill bottle"
 				loaded_pill_bottle = I
-				to_chat(user, span_notice("The Chemmaster 3000 sets a pill bottle into the dispenser slot."))
+				balloon_alert(user, "The chemmaster dispenses a pill bottle into its slot")
 				updateUsrDialog()
 
 		else if (href_list["createpill"] || href_list["createpill_multiple"])
@@ -247,7 +247,7 @@
 				P.icon_state = "pill"+pillsprite
 				reagents.trans_to(P,amount_per_pill)
 				if(loaded_pill_bottle)
-					if(loaded_pill_bottle.contents.len < loaded_pill_bottle.max_storage_space)
+					if(length(loaded_pill_bottle.contents) < loaded_pill_bottle.max_storage_space)
 						loaded_pill_bottle.handle_item_insertion(P, TRUE)
 						updateUsrDialog()
 
@@ -361,13 +361,13 @@
 	if(!beaker)
 		dat = "Please insert beaker.<BR>"
 		if(loaded_pill_bottle)
-			dat += "<A href='?src=\ref[src];ejectp=1'>Eject Pill Bottle \[[loaded_pill_bottle.contents.len]/[loaded_pill_bottle.max_storage_space]\]</A><BR><BR>"
+			dat += "<A href='?src=\ref[src];ejectp=1'>Eject Pill Bottle \[[length(loaded_pill_bottle.contents)]/[loaded_pill_bottle.max_storage_space]\]</A><BR><BR>"
 		else
 			dat += "No pill bottle inserted.<BR><BR>"
 	else
 		dat += "<A href='?src=\ref[src];eject=1'>Eject beaker and Clear Buffer</A><BR>"
 		if(loaded_pill_bottle)
-			dat += "<A href='?src=\ref[src];ejectp=1'>Eject Pill Bottle \[[loaded_pill_bottle.contents.len]/[loaded_pill_bottle.max_storage_space]\]</A><BR><BR>"
+			dat += "<A href='?src=\ref[src];ejectp=1'>Eject Pill Bottle \[[length(loaded_pill_bottle.contents)]/[loaded_pill_bottle.max_storage_space]\]</A><BR><BR>"
 		else
 			dat += "No pill bottle inserted.<BR><BR>"
 		if(!beaker.reagents.total_volume)
@@ -422,6 +422,9 @@
 
 /obj/machinery/chem_master/nopower
 	use_power = NO_POWER_USE
+
+/obj/machinery/chem_master/nopower/valhalla
+	resistance_flags = INDESTRUCTIBLE
 
 /obj/machinery/chem_master/condimaster/nopower
 	use_power = NO_POWER_USE

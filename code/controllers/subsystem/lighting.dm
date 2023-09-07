@@ -17,24 +17,25 @@ SUBSYSTEM_DEF(lighting)
 
 	var/static/list/mask_queue = list() //! List of hybrid lighting sources queued for update.
 
-/datum/controller/subsystem/lighting/Initialize(timeofday)
+/datum/controller/subsystem/lighting/Initialize()
 	started = TRUE
 	if(!initialized)
 		//Handle static lightnig
 		create_all_lighting_objects()
 	fire(FALSE, TRUE)
+	return SS_INIT_SUCCESS
+
+
+/datum/controller/subsystem/lighting/stat_entry(msg)
+	msg = "ShCalcs:[total_shadow_calculations]|SourcQ:[length(static_sources_queue)]|CcornQ:[length(corners_queue)]|ObjQ:[length(objects_queue)]|HybrQ:[length(mask_queue)]"
 	return ..()
-
-
-/datum/controller/subsystem/lighting/stat_entry()
-	. = ..("ShCalcs:[total_shadow_calculations]|SourcQ:[static_sources_queue.len]|CcornQ:[corners_queue.len]|ObjQ:[objects_queue.len]|HybrQ:[mask_queue.len]")
 
 /datum/controller/subsystem/lighting/fire(resumed, init_tick_checks)
 	MC_SPLIT_TICK_INIT(3)
 	if(!init_tick_checks)
 		MC_SPLIT_TICK
 	var/updators_num = 0
-	for(updators_num in 1 to static_sources_queue.len)
+	for(updators_num in 1 to length(static_sources_queue))
 		var/datum/static_light_source/L = static_sources_queue[updators_num]
 
 		L.update_corners()
@@ -50,7 +51,7 @@ SUBSYSTEM_DEF(lighting)
 	if(!init_tick_checks)
 		MC_SPLIT_TICK
 
-	for(updators_num in 1 to corners_queue.len)
+	for(updators_num in 1 to length(corners_queue))
 		var/datum/static_lighting_corner/C = corners_queue[updators_num]
 
 		C.needs_update = FALSE //update_objects() can call qdel if the corner is storing no data
@@ -65,7 +66,7 @@ SUBSYSTEM_DEF(lighting)
 	if(!init_tick_checks)
 		MC_SPLIT_TICK
 
-	for(updators_num in 1 to objects_queue.len)
+	for(updators_num in 1 to length(objects_queue))
 		var/datum/static_lighting_object/O = objects_queue[updators_num]
 
 		if (QDELETED(O))
@@ -82,7 +83,7 @@ SUBSYSTEM_DEF(lighting)
 	if(!init_tick_checks)
 		MC_SPLIT_TICK
 
-	for(updators_num in 1 to mask_queue.len)
+	for(updators_num in 1 to length(mask_queue))
 		var/atom/movable/lighting_mask/mask_to_update = mask_queue[updators_num]
 
 		mask_to_update.calculate_lighting_shadows()

@@ -142,7 +142,3 @@
 		return
 	return ..()
 
-
-/obj/machinery/computer/shuttle/connect_to_shuttle(obj/docking_port/mobile/port, obj/docking_port/stationary/dock, idnum, override=FALSE)
-	if(port && (shuttleId == initial(shuttleId) || override))
-		shuttleId = port.id

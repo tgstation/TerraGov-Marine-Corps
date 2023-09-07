@@ -3,7 +3,7 @@
 	access = ALL_ANTAGONIST_ACCESS
 	minimal_access = ALL_ANTAGONIST_ACCESS
 	skills_type = /datum/skills/special_forces_standard
-
+	faction = FACTION_SPECFORCE
 
 //Special forces Standard
 /datum/job/special_forces/standard
@@ -53,7 +53,7 @@
 	H.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/tool/crowbar/red, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/storage/box/m94, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/sliceable/meatbread, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/sliceable/sandwiches/meatbread, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/stack/medical/splint, SLOT_IN_BACKPACK)
@@ -83,7 +83,7 @@
 	shoes = /obj/item/clothing/shoes/combat
 	wear_suit = /obj/item/clothing/suit/armor/bulletproof
 	gloves = /obj/item/clothing/gloves/marine/veteran/pmc
-	head = /obj/item/clothing/head/helmet/marine/tech
+	head = /obj/item/clothing/head/modular/m10x
 	suit_store = /obj/item/weapon/gun/smg/m25/elite/suppressed/breacher
 	r_store = /obj/item/storage/pouch/medical_injectors/firstaid
 	l_store = /obj/item/storage/pouch/medkit/firstaid
@@ -163,7 +163,7 @@
 
 	H.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/tool/crowbar/red, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/sliceable/meatbread, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/sliceable/sandwiches/meatbread, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/tool/weldingtool/largetank, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/tool/wrench, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/box11x35mm, SLOT_IN_BACKPACK)

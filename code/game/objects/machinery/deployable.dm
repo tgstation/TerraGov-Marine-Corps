@@ -2,13 +2,13 @@
 	flags_atom = PREVENT_CONTENTS_EXPLOSION
 	hud_possible = list(MACHINE_HEALTH_HUD)
 	obj_flags = CAN_BE_HIT
-	flags_pass = PASSAIR
+	allow_pass_flags = PASS_AIR
 	///Since /obj/machinery/deployable aquires its sprites from an item and are set in New(), initial(icon_state) would return null. This var exists as a substitute.
 	var/default_icon_state
 	///Item that is deployed to create src.
 	var/obj/item/internal_item
 
-/obj/machinery/deployable/Initialize(mapload, _internal_item, deployer)
+/obj/machinery/deployable/Initialize(mapload, _internal_item, mob/deployer)
 	. = ..()
 	internal_item = _internal_item
 
@@ -23,15 +23,12 @@
 	hard_armor = internal_item.hard_armor
 
 	prepare_huds()
-	for(var/datum/atom_hud/squad/sentry_status_hud in GLOB.huds) //Add to the squad HUD
-		sentry_status_hud.add_to_hud(src)
+	if(istype(deployer))
+		var/datum/atom_hud/sentry_status_hud = GLOB.huds[GLOB.faction_to_data_hud[deployer.faction]] //we find the faction squad hud
+		if(sentry_status_hud)
+			sentry_status_hud.add_to_hud(src)
 
 	update_icon()
-
-/obj/machinery/deployable/Destroy()
-	for(var/datum/atom_hud/squad/sentry_status_hud in GLOB.huds) //Add to the squad HUD
-		sentry_status_hud.remove_from_hud(src)
-	return ..()
 
 /obj/machinery/deployable/get_internal_item()
 	return internal_item
@@ -66,10 +63,6 @@
 	operator?.unset_interaction()
 	return ..()
 
-/obj/machinery/deployable/examine(mob/user)
-	. = ..()
-	. += internal_item.examine(user)
-
 /obj/machinery/deployable/MouseDrop(over_object, src_location, over_location)
 	if(!ishuman(usr))
 		return
@@ -98,3 +91,5 @@
 			take_damage(200, damage_flag = BOMB, effects = TRUE)
 		if(EXPLODE_LIGHT)
 			take_damage(100, damage_flag = BOMB, effects = TRUE)
+		if(EXPLODE_WEAK)
+			take_damage(50, damage_flag = BOMB, effects = TRUE)

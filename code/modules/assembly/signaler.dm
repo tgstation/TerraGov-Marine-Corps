@@ -12,7 +12,7 @@
 	var/datum/radio_frequency/radio_connection
 	var/hearing_range = 1
 
-/obj/item/assembly/signaler/Initialize()
+/obj/item/assembly/signaler/Initialize(mapload)
 	. = ..()
 	set_frequency(frequency)
 
@@ -88,7 +88,7 @@ Code:
 			to_chat(usr, span_warning("[src] is still recharging..."))
 			return
 		TIMER_COOLDOWN_START(src, COOLDOWN_SIGNALLER_SEND, 1 SECONDS)
-		INVOKE_ASYNC(src, .proc/signal)
+		INVOKE_ASYNC(src, PROC_REF(signal))
 
 	updateUsrDialog()
 

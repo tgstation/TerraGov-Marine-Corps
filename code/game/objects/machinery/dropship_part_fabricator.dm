@@ -10,6 +10,7 @@
 	idle_power_usage = 20
 	icon = 'icons/obj/machines/drone_fab.dmi'
 	icon_state = "drone_fab_idle"
+	resistance_flags = RESIST_ALL
 	/// List of everything in queue
 	var/list/queue = list()
 	/// Whether the fabricator is currently printing something or not
@@ -77,7 +78,7 @@
 	busy = TRUE
 	update_icon()
 
-	addtimer(CALLBACK(src, .proc/do_build_dropship_part, part_type), 10 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(do_build_dropship_part), part_type), 10 SECONDS)
 
 /// Gets the cost of the product we want to make
 /obj/machinery/dropship_part_fabricator/proc/get_cost(build_type)
@@ -104,7 +105,7 @@
 
 /// Processes next item in queue, if queue has not finished already
 /obj/machinery/dropship_part_fabricator/proc/next_queue()
-	if(queue.len > 0) //Cont n inue queue
+	if(length(queue) > 0) //Cont n inue queue
 		var/part_to_build = queue[1]
 		queue.Remove(part_to_build)
 		build_dropship_part(part_to_build)
@@ -142,12 +143,3 @@
 
 		build_dropship_part(build_type)
 		return
-
-/obj/machinery/dropship_part_fabricator/attackby(obj/item/H, mob/user, params)
-	. = ..()
-	if(!istype(H, /obj/item/dropship_points_voucher))
-		return
-	var/obj/item/dropship_points_voucher/voucher = H
-	to_chat(user, span_notice("You add [voucher.extra_points] dropship points to \the [src]."))
-	SSpoints.dropship_points += voucher.extra_points
-	qdel(H)

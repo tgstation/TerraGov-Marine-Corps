@@ -13,7 +13,7 @@
 */
 
 /obj/item/storage/fancy
-	icon = 'icons/obj/items/food.dmi'
+	icon = 'icons/obj/items/food/food.dmi'
 	icon_state = "donutbox6"
 	name = "donut box"
 	var/icon_type = "donut"
@@ -53,7 +53,7 @@
 */
 
 /obj/item/storage/fancy/egg_box
-	icon = 'icons/obj/items/food.dmi'
+	icon = 'icons/obj/items/food/packaged.dmi'
 	icon_state = "eggbox"
 	icon_type = "egg"
 	name = "egg box"
@@ -93,7 +93,7 @@
 	icon_type = "crayon"
 	can_hold = list(/obj/item/toy/crayon)
 
-/obj/item/storage/fancy/crayons/Initialize()
+/obj/item/storage/fancy/crayons/Initialize(mapload)
 	. = ..()
 	new /obj/item/toy/crayon/red(src)
 	new /obj/item/toy/crayon/orange(src)
@@ -146,13 +146,13 @@
 		new /obj/item/clothing/mask/cigarette(src)
 
 /obj/item/storage/fancy/cigarettes/update_icon_state()
-	icon_state = "[initial(icon_state)][contents.len]"
+	icon_state = "[initial(icon_state)][length(contents)]"
 
 /obj/item/storage/fancy/cigarettes/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
 	if(!istype(M, /mob))
 		return
 
-	if(M == user && user.zone_selected == "mouth" && contents.len > 0 && !user.wear_mask)
+	if(M == user && user.zone_selected == "mouth" && length(contents) > 0 && !user.wear_mask)
 		var/obj/item/clothing/mask/cigarette/C = locate() in src
 		if(C)
 			remove_from_storage(C, get_turf(user), user)
@@ -196,7 +196,7 @@
 	new /obj/item/tool/lighter(src)
 
 /obj/item/storage/fancy/chemrettes/update_icon_state()
-	icon_state = "[initial(icon_state)][contents.len]"
+	icon_state = "[initial(icon_state)][length(contents)]"
 
 /obj/item/storage/fancy/cigarettes/dromedaryco
 	name = "\improper Nanotrasen Gold packet"
@@ -238,14 +238,14 @@
 	icon_type = "cigar"
 
 /obj/item/storage/fancy/cigar/update_icon_state()
-	icon_state = "[initial(icon_state)][contents.len]"
+	icon_state = "[initial(icon_state)][length(contents)]"
 
 
 /obj/item/storage/fancy/cigar/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
 	if(!istype(M, /mob))
 		return
 
-	if(M == user && user.zone_selected == "mouth" && contents.len > 0 && !user.wear_mask)
+	if(M == user && user.zone_selected == "mouth" && length(contents) > 0 && !user.wear_mask)
 		var/obj/item/clothing/mask/cigarette/cigar/C = locate() in src
 		if(C)
 			remove_from_storage(C, get_turf(user), user)
@@ -277,7 +277,7 @@
 	icon = 'icons/obj/items/storage/vialbox.dmi'
 	icon_state = "vialbox0"
 	item_state = "syringe_kit"
-	max_w_class = 3
+	max_w_class = WEIGHT_CLASS_NORMAL
 	can_hold = list(/obj/item/reagent_containers/glass/beaker/vial)
 	max_storage_space = 14 //The sum of the w_classes of all the items in this storage item.
 	storage_slots = 6

@@ -37,17 +37,11 @@
 
 	var/mob/living/carbon/occupant
 
-/obj/machinery/atmospherics/components/unary/cryo_cell/Initialize()
+/obj/machinery/atmospherics/components/unary/cryo_cell/Initialize(mapload)
 	. = ..()
 	initialize_directions = dir
 	beaker = new /obj/item/reagent_containers/glass/beaker/cryomix
 	radio = new(src)
-
-
-/obj/machinery/atmospherics/components/unary/cryo_cell/Destroy()
-	QDEL_NULL(radio)
-	return ..()
-
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/proc/process_occupant()
 	if(!occupant)
@@ -137,7 +131,7 @@
 		occupant_overlay.pixel_y--
 	add_overlay(occupant_overlay)
 	add_overlay("cover-on")
-	addtimer(CALLBACK(src, .proc/run_anim, anim_up, occupant_overlay), 7, TIMER_UNIQUE)
+	addtimer(CALLBACK(src, PROC_REF(run_anim), anim_up, occupant_overlay), 7, TIMER_UNIQUE)
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/proc/go_out(auto_eject = null, dead = null)
 	if(!( occupant ))
@@ -231,7 +225,7 @@
 			to_chat(user, span_warning("That's too big to fit!"))
 			return
 
-		beaker =  I
+		beaker = I
 
 
 		var/reagentnames = ""
@@ -389,7 +383,7 @@
 
 	data["isBeakerLoaded"] = beaker ? TRUE : FALSE
 	var/beakerContents = list()
-	if(beaker && beaker.reagents && beaker.reagents.reagent_list.len)
+	if(beaker?.reagents && length(beaker.reagents.reagent_list))
 		for(var/datum/reagent/R in beaker.reagents.reagent_list)
 			beakerContents += list(list("name" = R.name, "volume" = R.volume))
 	data["beakerContents"] = beakerContents

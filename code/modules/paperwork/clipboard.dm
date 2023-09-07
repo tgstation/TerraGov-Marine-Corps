@@ -2,6 +2,10 @@
 	name = "clipboard"
 	icon = 'icons/obj/items/paper.dmi'
 	icon_state = "clipboard"
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/items/civilian_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/items/civilian_right.dmi',
+	)
 	item_state = "clipboard"
 	w_class = WEIGHT_CLASS_SMALL
 	throw_speed = 3
@@ -10,7 +14,7 @@
 	var/obj/item/toppaper	//The topmost piece of paper.
 	flags_equip_slot = ITEM_SLOT_BELT
 
-/obj/item/clipboard/Initialize()
+/obj/item/clipboard/Initialize(mapload)
 	. = ..()
 	update_icon()
 

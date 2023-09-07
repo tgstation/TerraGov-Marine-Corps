@@ -43,7 +43,7 @@
 		launch_status = EARLY_LAUNCHED
 	else
 		launch_status = ENDGAME_LAUNCHED
-	addtimer(CALLBACK(src, .proc/do_launch), ignitionTime, TIMER_UNIQUE)
+	addtimer(CALLBACK(src, PROC_REF(do_launch)), ignitionTime, TIMER_UNIQUE)
 
 /obj/docking_port/mobile/escape_pod/proc/prep_for_launch()
 	open_all_doors()
@@ -51,7 +51,7 @@
 
 /obj/docking_port/mobile/escape_pod/proc/open_all_doors()
 	for(var/obj/machinery/door/airlock/evacuation/D in doors)
-		INVOKE_ASYNC(D, /obj/machinery/door/airlock/evacuation/.proc/force_open)
+		INVOKE_ASYNC(D, TYPE_PROC_REF(/obj/machinery/door/airlock/evacuation, force_open))
 
 /obj/docking_port/mobile/escape_pod/proc/unprep_for_launch()
 	// dont close the door it might trap someone inside
@@ -60,7 +60,7 @@
 
 /obj/docking_port/mobile/escape_pod/proc/close_all_doors()
 	for(var/obj/machinery/door/airlock/evacuation/D in doors)
-		INVOKE_ASYNC(D, /obj/machinery/door/airlock/evacuation/.proc/force_close)
+		INVOKE_ASYNC(D, TYPE_PROC_REF(/obj/machinery/door/airlock/evacuation, force_close))
 
 /obj/docking_port/mobile/escape_pod/proc/do_launch()
 	if(!can_launch)
@@ -159,7 +159,8 @@
 
 /obj/machinery/cryopod/evacuation/climb_in(mob/living/carbon/user, mob/helper)
 	. = ..()
-	user.ghostize(FALSE)
+	if(.)
+		user.ghostize(FALSE)
 
 /obj/machinery/door/airlock/evacuation
 	name = "\improper Evacuation Airlock"

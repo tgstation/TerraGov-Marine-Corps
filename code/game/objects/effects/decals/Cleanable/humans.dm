@@ -16,10 +16,10 @@
 	var/drying_timer
 
 
-/obj/effect/decal/cleanable/blood/Initialize()
+/obj/effect/decal/cleanable/blood/Initialize(mapload)
 	. = ..()
 	var/static/list/connections = list(
-		COMSIG_ATOM_ENTERED = .proc/on_cross,
+		COMSIG_ATOM_ENTERED = PROC_REF(on_cross),
 	)
 	AddElement(/datum/element/connect_loc, connections)
 	update_icon()
@@ -38,7 +38,7 @@
 	. = ..()
 	if(QDELETED(src))
 		CRASH("[type] already deleted on LateInitialize. Loc: ([x], [y], [z])")
-	drying_timer = addtimer(CALLBACK(src, .proc/dry), DRYING_TIME * (amount + 1), TIMER_STOPPABLE)
+	drying_timer = addtimer(CALLBACK(src, PROC_REF(dry)), DRYING_TIME * (amount + 1), TIMER_STOPPABLE)
 
 
 /obj/effect/decal/cleanable/blood/Destroy()
@@ -57,7 +57,7 @@
 		return
 	if(amount < 1)
 		return
-	if(CHECK_MULTIPLE_BITFIELDS(perp.flags_pass, HOVERING))
+	if(CHECK_MULTIPLE_BITFIELDS(perp.pass_flags, HOVERING))
 		return
 
 	var/datum/limb/foot/l_foot = perp.get_limb("l_foot")
@@ -130,6 +130,7 @@
 	name = "tracking fluid"
 	desc = "Tracking fluid from a tracking round."
 	basecolor = "#00FFFF"
+	layer = TRACKING_FLUID_LAYER
 
 /obj/effect/decal/cleanable/blood/drip/tracking_fluid/dry()
 	name = "dried [name]"
@@ -145,7 +146,7 @@
 	amount = 0
 	var/message
 
-/obj/effect/decal/cleanable/blood/writing/Initialize()
+/obj/effect/decal/cleanable/blood/writing/Initialize(mapload)
 	. = ..()
 	if(length(random_icon_states))
 		for(var/obj/effect/decal/cleanable/blood/writing/W in loc)
@@ -227,7 +228,7 @@
 	random_icon_states = list("mucus")
 	var/dry=0 // Keeps the lag down
 
-/obj/effect/decal/cleanable/mucus/Initialize()
+/obj/effect/decal/cleanable/mucus/Initialize(mapload)
 	. = ..()
 	addtimer(VARSET_CALLBACK(src, dry, TRUE), DRYING_TIME * 2)
 

@@ -40,7 +40,7 @@
 /obj/machinery/computer/communications/bee
 	machine_stat = BROKEN
 
-/obj/machinery/computer/communications/bee/Initialize()
+/obj/machinery/computer/communications/bee/Initialize(mapload)
 	. = ..()
 	update_icon()
 
@@ -105,9 +105,12 @@
 				if(!input || !(usr in view(1,src)) || authenticated != 2 || world.time < cooldown_message + COOLDOWN_COMM_MESSAGE)
 					return FALSE
 
-				if(CHAT_FILTER_CHECK(input))
+				var/filter_result = CAN_BYPASS_FILTER(usr) ? null : is_ic_filtered(input)
+				if(filter_result)
 					to_chat(usr, span_warning("That announcement contained a word prohibited in IC chat! Consider reviewing the server rules.\n<span replaceRegex='show_filtered_ic_chat'>\"[input]\"</span>"))
 					SSblackbox.record_feedback(FEEDBACK_TALLY, "ic_blocked_words", 1, lowertext(config.ic_filter_regex.match))
+					REPORT_CHAT_FILTER_TO_USER(src, filter_result)
+					log_filter("IC", input, filter_result)
 					return FALSE
 
 				if(NON_ASCII_CHECK(input))
@@ -259,7 +262,7 @@
 			if(authenticated)
 				if(currmsg)
 					var/title = messagetitle[currmsg]
-					var/text  = messagetext[currmsg]
+					var/text = messagetext[currmsg]
 					messagetitle.Remove(title)
 					messagetext.Remove(text)
 					if(currmsg == aicurrmsg)
@@ -369,7 +372,7 @@
 
 		if(STATE_MESSAGELIST)
 			dat += "Messages:"
-			for(var/i = 1; i<=messagetitle.len; i++)
+			for(var/i = 1; length(i<=messagetitle); i++)
 				dat += "<BR><A HREF='?src=\ref[src];operation=viewmessage;message-num=[i]'>[messagetitle[i]]</A>"
 
 		if(STATE_VIEWMESSAGE)

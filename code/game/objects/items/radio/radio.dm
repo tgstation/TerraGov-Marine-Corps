@@ -2,7 +2,11 @@
 	icon = 'icons/obj/items/radio.dmi'
 	name = "station bounced radio"
 	icon_state = "walkietalkie"
-	item_state = "walkietalkie"
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/equipment/tools_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/equipment/tools_right.dmi',
+	)
+	item_state = "radio"
 
 	flags_atom = CONDUCT
 	flags_equip_slot = ITEM_SLOT_BELT
@@ -160,7 +164,7 @@
 		set_frequency(new_frequency)
 
 	else if(href_list["talk"])
-		broadcasting = text2num(href_list["talk"])
+		set_broadcasting(text2num(href_list["talk"]))
 
 	else if(href_list["listen"])
 		var/chan_name = href_list["ch_name"]
@@ -235,7 +239,7 @@
 		spans = list(talking_movable.speech_span)
 	if(!language)
 		language = talking_movable.get_default_language()
-	INVOKE_ASYNC(src, .proc/talk_into_impl, talking_movable, message, channel, spans.Copy(), language, message_mods)
+	INVOKE_ASYNC(src, PROC_REF(talk_into_impl), talking_movable, message, channel, spans.Copy(), language, message_mods)
 	return ITALICS | REDUCE_RANGE
 
 
@@ -287,6 +291,13 @@
 		signal.broadcast()
 		return
 
+	var/area/A = get_area(src)
+	if(!isnull(A))
+		if(A.ceiling >= CEILING_DEEP_UNDERGROUND)
+			return
+		if(A.ceiling >= CEILING_UNDERGROUND)
+			signal.data["compression"] += rand(20, 40)
+
 	// All non-independent radios make an attempt to use the subspace system first
 	signal.send_to_receivers()
 
@@ -296,7 +307,7 @@
 
 	// Non-subspace radios will check in a couple of seconds, and if the signal
 	// was never received, send a mundane broadcast (no headsets).
-	addtimer(CALLBACK(src, .proc/backup_transmission, signal), 20)
+	addtimer(CALLBACK(src, PROC_REF(backup_transmission), signal), 20)
 
 
 /obj/item/radio/proc/backup_transmission(datum/signal/subspace/vocal/signal)
@@ -314,7 +325,7 @@
 /obj/item/radio/Hear(message, atom/movable/speaker, message_language, raw_message, radio_freq, list/spans, message_mode)
 	. = ..()
 	if(radio_freq || !broadcasting || get_dist(src, speaker) > canhear_range)
-		return
+		return FALSE
 
 	if(message_mode == MODE_WHISPER || message_mode == MODE_WHISPER_CRIT)
 		// radios don't pick up whispers very well
@@ -322,9 +333,9 @@
 	else if(ismob(speaker) && loc == speaker)
 		var/mob/M = speaker
 		if(M.l_hand == src && message_mode != MODE_L_HAND)
-			return
+			return FALSE
 		else if(M.r_hand == src && message_mode != MODE_R_HAND)
-			return
+			return FALSE
 
 	talk_into(speaker, raw_message, , spans, language = message_language)
 
@@ -334,6 +345,9 @@
 	if(!(RADIO_NO_Z_LEVEL_RESTRICTION in levels))
 		var/turf/position = get_turf(src)
 		if(!position || !(position.z in levels))
+			return FALSE
+		var/area/A = get_area(src)
+		if(A?.ceiling >= CEILING_DEEP_UNDERGROUND)
 			return FALSE
 
 	// allow checks: are we listening on that frequency?
@@ -382,7 +396,7 @@
 		secure_radio_connections[ch_name] = add_radio(src, GLOB.radiochannels[ch_name])
 
 
-/obj/item/radio/off/Initialize()
+/obj/item/radio/off/Initialize(mapload)
 	. = ..()
 	set_listening(FALSE)
 

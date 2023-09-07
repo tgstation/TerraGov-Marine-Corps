@@ -19,7 +19,7 @@
 								"recognizer",
 								"voice sensor")
 
-/obj/item/assembly/voice/Initialize()
+/obj/item/assembly/voice/Initialize(mapload)
 	. = ..()
 	become_hearing_sensitive()
 
@@ -30,13 +30,13 @@
 /obj/item/assembly/voice/Hear(message, atom/movable/speaker, message_language, raw_message, radio_freq, list/spans, message_mode)
 	. = ..()
 	if(speaker == src)
-		return
+		return FALSE
 
 	if(listening && !radio_freq)
 		record_speech(speaker, raw_message, message_language)
 	else
 		if(check_activation(speaker, raw_message))
-			addtimer(CALLBACK(src, .proc/pulse, 0), 10)
+			addtimer(CALLBACK(src, PROC_REF(pulse), 0), 10)
 
 /obj/item/assembly/voice/proc/record_speech(atom/movable/speaker, raw_message, datum/language/message_language)
 	switch(mode)
@@ -54,7 +54,7 @@
 			say("Your voice pattern is saved.", message_language)
 		if(VOICE_SENSOR_MODE)
 			if(length(raw_message))
-				addtimer(CALLBACK(src, .proc/pulse, 0), 10)
+				addtimer(CALLBACK(src, PROC_REF(pulse), 0), 10)
 
 /obj/item/assembly/voice/proc/check_activation(atom/movable/speaker, raw_message)
 	. = FALSE

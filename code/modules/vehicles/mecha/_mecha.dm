@@ -80,8 +80,6 @@
 	var/internal_tank_valve = ONE_ATMOSPHERE
 	///The internal air tank obj of the mech
 	var/obj/machinery/portable_atmospherics/canister/air/internal_tank
-	///Internal air mix datum
-	var/datum/gas_mixture/cabin_air
 	///The connected air port, if we have one
 	var/obj/machinery/atmospherics/components/unary/portables_connector/connected_port
 
@@ -155,9 +153,6 @@
 	var/datum/effect_system/smoke_spread/bad/smoke_system = new
 
 	////Action vars
-	///Ref to any active thrusters we might have
-	var/obj/item/mecha_parts/mecha_equipment/thrusters/active_thrusters
-
 	///Bool for energy shield on/off
 	var/defense_mode = FALSE
 
@@ -204,7 +199,7 @@
 	ui_view = new(null, src)
 	if(enclosed)
 		internal_tank = new (src)
-	RegisterSignal(src, COMSIG_MOVABLE_MOVED, .proc/play_stepsound)
+	RegisterSignal(src, COMSIG_MOVABLE_MOVED, PROC_REF(play_stepsound))
 
 	spark_system.set_up(2, 0, src)
 	spark_system.attach(src)
@@ -524,12 +519,12 @@
 	if(!Adjacent(target) && (selected.range & MECHA_RANGED))
 		if(SEND_SIGNAL(src, COMSIG_MECHA_EQUIPMENT_CLICK, livinguser, target) & COMPONENT_CANCEL_EQUIPMENT_CLICK)
 			return
-		INVOKE_ASYNC(selected, /obj/item/mecha_parts/mecha_equipment.proc/action, user, target, modifiers)
+		INVOKE_ASYNC(selected, TYPE_PROC_REF(/obj/item/mecha_parts/mecha_equipment, action), user, target, modifiers)
 		return
 	if((selected.range & MECHA_MELEE) && Adjacent(target))
 		if(SEND_SIGNAL(src, COMSIG_MECHA_EQUIPMENT_CLICK, livinguser, target) & COMPONENT_CANCEL_EQUIPMENT_CLICK)
 			return
-		INVOKE_ASYNC(selected, /obj/item/mecha_parts/mecha_equipment.proc/action, user, target, modifiers)
+		INVOKE_ASYNC(selected, TYPE_PROC_REF(/obj/item/mecha_parts/mecha_equipment, action), user, target, modifiers)
 		return
 	if(!(livinguser in return_controllers_with_flag(VEHICLE_CONTROL_MELEE)))
 		to_chat(livinguser, span_warning("You're in the wrong seat to interact with your hands."))
@@ -564,7 +559,7 @@
 	for(var/mob/M in speech_bubble_recipients)
 		if(M.client)
 			speech_bubble_recipients.Add(M.client)
-	INVOKE_ASYNC(GLOBAL_PROC, /proc/flick_overlay, image('icons/mob/talk.dmi', src, "machine[say_test(speech_args[SPEECH_MESSAGE])]",MOB_LAYER+1), speech_bubble_recipients, 30)
+	INVOKE_ASYNC(GLOBAL_PROC, GLOBAL_PROC_REF(flick_overlay), image('icons/mob/talk.dmi', src, "machine[say_test(speech_args[SPEECH_MESSAGE])]",MOB_LAYER+1), speech_bubble_recipients, 30)
 
 
 /////////////////////////

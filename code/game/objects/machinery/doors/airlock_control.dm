@@ -23,7 +23,7 @@
 	if(id_tag != signal.data["tag"] || !signal.data["command"]) return
 
 	cur_command = signal.data["command"]
-	INVOKE_ASYNC(src, .proc/execute_current_command)
+	INVOKE_ASYNC(src, PROC_REF(execute_current_command))
 
 /obj/machinery/door/airlock/proc/execute_current_command()
 	if(operating)
@@ -111,10 +111,19 @@
 		radio_connection = SSradio.add_object(src, frequency, RADIO_AIRLOCK)
 
 
-/obj/machinery/door/airlock/Initialize()
+/obj/machinery/door/airlock/Initialize(mapload)
 	. = ..()
 	if(frequency)
 		set_frequency(frequency)
+
+	wires = new /datum/wires/airlock(src)
+
+	if(closeOtherId != null)
+		for(var/obj/machinery/door/airlock/A in GLOB.machines)
+			if(A.closeOtherId == src.closeOtherId && A != src)
+				src.closeOther = A
+				break
+
 	update_icon()
 
 /obj/machinery/airlock_sensor
@@ -183,7 +192,7 @@
 	frequency = new_frequency
 	radio_connection = SSradio.add_object(src, frequency, RADIO_AIRLOCK)
 
-/obj/machinery/airlock_sensor/Initialize()
+/obj/machinery/airlock_sensor/Initialize(mapload)
 	. = ..()
 	set_frequency(frequency)
 	start_processing()
@@ -249,7 +258,7 @@
 	radio_connection = SSradio.add_object(src, frequency, RADIO_AIRLOCK)
 
 
-/obj/machinery/access_button/Initialize()
+/obj/machinery/access_button/Initialize(mapload)
 	. = ..()
 	set_frequency(frequency)
 

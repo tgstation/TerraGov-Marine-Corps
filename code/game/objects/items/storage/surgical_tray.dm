@@ -27,7 +27,7 @@
 	new /obj/item/stack/nanopaste(src)
 
 /obj/item/storage/surgical_tray/update_icon_state()
-	if(!contents.len)
+	if(!length(contents))
 		icon_state = "surgical_tray_e"
 	else
 		icon_state = "surgical_tray"

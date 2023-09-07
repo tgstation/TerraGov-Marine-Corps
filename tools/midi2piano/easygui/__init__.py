@@ -178,11 +178,11 @@ def dq(s):
 rootWindowPosition = "+300+200"
 
 PROPORTIONAL_FONT_FAMILY = ("MS", "Sans", "Serif")
-MONOSPACE_FONT_FAMILY    = ("Courier")
+MONOSPACE_FONT_FAMILY = ("Courier")
 
-PROPORTIONAL_FONT_SIZE  = 10
-MONOSPACE_FONT_SIZE     =  9  #a little smaller, because it it more legible at a smaller size
-TEXT_ENTRY_FONT_SIZE    = 12  # a little larger makes it easier to see
+PROPORTIONAL_FONT_SIZE = 10
+MONOSPACE_FONT_SIZE = 9  #a little smaller, because it it more legible at a smaller size
+TEXT_ENTRY_FONT_SIZE = 12  # a little larger makes it easier to see
 
 #STANDARD_SELECTION_EVENTS = ["Return", "Button-1"]
 STANDARD_SELECTION_EVENTS = ["Return", "Button-1", "space"]
@@ -439,7 +439,7 @@ def integerbox(msg=""
     , lowerbound=0
     , upperbound=99
     , image = None
-    , root  = None
+    , root = None
     , **invalidKeywordArguments
     ):
     """
@@ -668,7 +668,7 @@ def __multfillablebox(msg="Fill in values for the fields."
     lastWidgetIndex = len(fields) - 1
 
     for widgetIndex in range(len(fields)):
-        argFieldName  = fields[widgetIndex]
+        argFieldName = fields[widgetIndex]
         argFieldValue = values[widgetIndex]
         entryFrame = Frame(master=boxRoot)
         entryFrame.pack(side=TOP, fill=BOTH)
@@ -706,7 +706,7 @@ def __multfillablebox(msg="Fill in values for the fields."
     okButton.pack(expand=1, side=LEFT, padx='3m', pady='3m', ipadx='2m', ipady='1m')
 
     # for the commandButton, bind activation events to the activation event handler
-    commandButton  = okButton
+    commandButton = okButton
     handler = __multenterboxGetText
     for selectionEvent in STANDARD_SELECTION_EVENTS:
         commandButton.bind("<%s>" % selectionEvent, handler)
@@ -718,7 +718,7 @@ def __multfillablebox(msg="Fill in values for the fields."
     cancelButton.pack(expand=1, side=RIGHT, padx='3m', pady='3m', ipadx='2m', ipady='1m')
 
     # for the commandButton, bind activation events to the activation event handler
-    commandButton  = cancelButton
+    commandButton = cancelButton
     handler = __multenterboxCancel
     for selectionEvent in STANDARD_SELECTION_EVENTS:
         commandButton.bind("<%s>" % selectionEvent, handler)
@@ -819,7 +819,7 @@ def __fillablebox(msg
     if title == None: title == ""
     if default == None: default = ""
     __enterboxDefaultText = default
-    __enterboxText        = __enterboxDefaultText
+    __enterboxText = __enterboxDefaultText
 
     if root:
         root.withdraw()
@@ -911,7 +911,7 @@ def __fillablebox(msg
     okButton.pack(expand=1, side=LEFT, padx='3m', pady='3m', ipadx='2m', ipady='1m')
 
     # for the commandButton, bind activation events to the activation event handler
-    commandButton  = okButton
+    commandButton = okButton
     handler = __enterboxGetText
     for selectionEvent in STANDARD_SELECTION_EVENTS:
         commandButton.bind("<%s>" % selectionEvent, handler)
@@ -923,7 +923,7 @@ def __fillablebox(msg
     cancelButton.pack(expand=1, side=RIGHT, padx='3m', pady='3m', ipadx='2m', ipady='1m')
 
     # for the commandButton, bind activation events to the activation event handler
-    commandButton  = cancelButton
+    commandButton = cancelButton
     handler = __enterboxCancel
     for selectionEvent in STANDARD_SELECTION_EVENTS:
         commandButton.bind("<%s>" % selectionEvent, handler)
@@ -1055,12 +1055,12 @@ def __choicebox(msg
 
     boxRoot = Tk()
     boxRoot.protocol('WM_DELETE_WINDOW', denyWindowManagerClose )
-    screen_width  = boxRoot.winfo_screenwidth()
+    screen_width = boxRoot.winfo_screenwidth()
     screen_height = boxRoot.winfo_screenheight()
-    root_width    = int((screen_width * 0.8))
-    root_height   = int((screen_height * 0.5))
-    root_xpos     = int((screen_width * 0.1))
-    root_ypos     = int((screen_height * 0.05))
+    root_width = int((screen_width * 0.8))
+    root_height = int((screen_height * 0.5))
+    root_xpos = int((screen_width * 0.1))
+    root_ypos = int((screen_height * 0.05))
 
     boxRoot.title(title)
     boxRoot.iconname('Dialog')
@@ -1154,7 +1154,7 @@ def __choicebox(msg
         okButton.pack(expand=NO, side=TOP,  padx='2m', pady='1m', ipady="1m", ipadx="2m")
 
         # for the commandButton, bind activation events to the activation event handler
-        commandButton  = okButton
+        commandButton = okButton
         handler = __choiceboxGetChoice
         for selectionEvent in STANDARD_SELECTION_EVENTS:
             commandButton.bind("<%s>" % selectionEvent, handler)
@@ -1172,7 +1172,7 @@ def __choicebox(msg
     cancelButton.pack(expand=NO, side=BOTTOM, padx='2m', pady='1m', ipady="1m", ipadx="2m")
 
     # for the commandButton, bind activation events to the activation event handler
-    commandButton  = cancelButton
+    commandButton = cancelButton
     handler = __choiceboxCancel
     for selectionEvent in STANDARD_SELECTION_EVENTS:
         commandButton.bind("<%s>" % selectionEvent, handler)
@@ -1471,7 +1471,7 @@ def textbox(msg=""
     okButton.pack(expand=NO, side=TOP,  padx='2m', pady='1m', ipady="1m", ipadx="2m")
 
     # for the commandButton, bind activation events to the activation event handler
-    commandButton  = okButton
+    commandButton = okButton
     handler = __textboxOK
     for selectionEvent in ["Return","Button-1","Escape"]:
         commandButton.bind("<%s>" % selectionEvent, handler)
@@ -1576,7 +1576,7 @@ class FileTypeObject:
                 raise AssertionError('Invalid filemask.\n'
                 +'List contains less than 2 members: "%s"' % filemask)
             else:
-                self.name  = filemask[-1]
+                self.name = filemask[-1]
                 self.masks = list(filemask[:-1] )
         else:
             raise AssertionError('Invalid filemask: "%s"' % filemask)
@@ -1754,7 +1754,7 @@ def filesavebox(msg=None
 def fileboxSetup(default,filetypes):
     if not default: default = os.path.join(".","*")
     initialdir, initialfile = os.path.split(default)
-    if not initialdir : initialdir  = "."
+    if not initialdir : initialdir = "."
     if not initialfile: initialfile = "*"
     initialbase, initialext = os.path.splitext(initialfile)
     initialFileTypeObject = FileTypeObject(initialfile)
@@ -1843,7 +1843,7 @@ def __put_buttons_in_buttonframe(choices):
             i = 1
 
         # for the commandButton, bind activation events to the activation event handler
-        commandButton  = tempButton
+        commandButton = tempButton
         handler = __buttonEvent
         for selectionEvent in STANDARD_SELECTION_EVENTS:
             commandButton.bind("<%s>" % selectionEvent, handler)
@@ -1891,14 +1891,14 @@ class Settings(EgStore):
 settingsFile = "myApp_settings.txt"
 settings = Settings(settingsFile)
 
-user    = "obama_barak"
-server  = "whitehouse1"
+user = "obama_barak"
+server = "whitehouse1"
 settings.userId = user
 settings.targetServer = server
 settings.store()    # persist the settings
 
 # run code that gets a new value for userId, and persist the settings
-user    = "biden_joe"
+user = "biden_joe"
 settings.userId = user
 settings.store()
 
@@ -2130,7 +2130,7 @@ def egdemo():
 
         elif reply[0] == "indexbox":
             title = reply[0]
-            msg   =  "Demo of " + reply[0]
+            msg = "Demo of " + reply[0]
             choices = ["Choice1", "Choice2", "Choice3", "Choice4"]
             reply = indexbox(msg, title, choices)
             writeln("Reply was: %s" % repr(reply))
@@ -2257,7 +2257,7 @@ for someItem in myListOfStuff:
 
 def _demo_buttonbox_with_image():
 
-    msg   = "Do you like this picture?\nIt is "
+    msg = "Do you like this picture?\nIt is "
     choices = ["Yes","No","No opinion"]
 
     for image in [
@@ -2299,7 +2299,7 @@ def _demo_diropenbox():
 
 
 def _demo_fileopenbox():
-    msg  = "Python files"
+    msg = "Python files"
     title = "Open files"
     default="*.py"
     f = fileopenbox(msg,title,default=default)

@@ -57,13 +57,7 @@ SUBSYSTEM_DEF(garbage)
 
 
 /datum/controller/subsystem/garbage/PreInit()
-	queues = new(GC_QUEUE_COUNT)
-	pass_counts = new(GC_QUEUE_COUNT)
-	fail_counts = new(GC_QUEUE_COUNT)
-	for(var/i in 1 to GC_QUEUE_COUNT)
-		queues[i] = list()
-		pass_counts[i] = 0
-		fail_counts[i] = 0
+	InitQueues()
 
 /datum/controller/subsystem/garbage/stat_entry(msg)
 	var/list/counts = list()
@@ -83,7 +77,7 @@ SUBSYSTEM_DEF(garbage)
 		msg += "TGR:[round((totalgcs/(totaldels+totalgcs))*100, 0.01)]%"
 	msg += " P:[pass_counts.Join(",")]"
 	msg += "|F:[fail_counts.Join(",")]"
-	..(msg)
+	return ..()
 
 /datum/controller/subsystem/garbage/Shutdown()
 	//Adds the del() log to the qdel log file
@@ -133,7 +127,15 @@ SUBSYSTEM_DEF(garbage)
 				break
 
 
-
+/datum/controller/subsystem/garbage/proc/InitQueues()
+	if (isnull(queues)) // Only init the queues if they don't already exist, prevents overriding of recovered lists
+		queues = new(GC_QUEUE_COUNT)
+		pass_counts = new(GC_QUEUE_COUNT)
+		fail_counts = new(GC_QUEUE_COUNT)
+		for(var/i in 1 to GC_QUEUE_COUNT)
+			queues[i] = list()
+			pass_counts[i] = 0
+			fail_counts[i] = 0
 
 /datum/controller/subsystem/garbage/proc/HandleQueue(level = GC_QUEUE_FILTER)
 	if (level == GC_QUEUE_FILTER)
@@ -155,17 +157,19 @@ SUBSYSTEM_DEF(garbage)
 	//Normally this isn't expensive, but the gc queue can grow to 40k items, and that gets costly/causes overrun.
 	for (var/i in 1 to length(queue))
 		var/list/L = queue[i]
-		if (length(L) < 2)
+		if (length(L) < GC_QUEUE_ITEM_INDEX_COUNT)
 			count++
 			if (MC_TICK_CHECK)
 				return
 			continue
 
-		var/GCd_at_time = L[1]
-		if(GCd_at_time > cut_off_time)
+		var/queued_at_time = L[GC_QUEUE_ITEM_QUEUE_TIME]
+		if(queued_at_time > cut_off_time)
 			break // Everything else is newer, skip them
 		count++
-		var/refID = L[2]
+		var/GCd_at_time = L[GC_QUEUE_ITEM_GCD_DESTROYED]
+
+		var/refID = L[GC_QUEUE_ITEM_REF]
 		var/datum/D
 		D = locate(refID)
 
@@ -191,11 +195,11 @@ SUBSYSTEM_DEF(garbage)
 			if (GC_QUEUE_CHECK)
 				#ifdef REFERENCE_TRACKING
 				if(reference_find_on_fail[refID])
-					INVOKE_ASYNC(D, /datum/proc/find_references)
+					INVOKE_ASYNC(D, TYPE_PROC_REF(/datum,find_references))
 					ref_searching = TRUE
 				#ifdef GC_FAILURE_HARD_LOOKUP
 				else
-					INVOKE_ASYNC(D, /datum/proc/find_references)
+					INVOKE_ASYNC(D, TYPE_PROC_REF(/datum,find_references))
 					ref_searching = TRUE
 				#endif
 				reference_find_on_fail -= refID
@@ -244,13 +248,14 @@ SUBSYSTEM_DEF(garbage)
 	if (level > GC_QUEUE_COUNT)
 		HardDelete(D)
 		return
-	var/gctime = world.time
+	var/queue_time = world.time
 	var/refid = "\ref[D]"
 
-	D.gc_destroyed = gctime
+	if (D.gc_destroyed <= 0)
+		D.gc_destroyed = queue_time
 	var/list/queue = queues[level]
 
-	queue[++queue.len] = list(gctime, refid) // not += for byond reasons
+	queue[++queue.len] = list(queue_time, refid, D.gc_destroyed) // not += for byond reasons
 
 //this is mainly to separate things profile wise.
 /datum/controller/subsystem/garbage/proc/HardDelete(datum/D)
@@ -288,8 +293,9 @@ SUBSYSTEM_DEF(garbage)
 			I.qdel_flags |= QDEL_ITEM_SUSPENDED_FOR_LAG
 
 /datum/controller/subsystem/garbage/Recover()
+	InitQueues() //We first need to create the queues before recovering data
 	if (istype(SSgarbage.queues))
-		for (var/i in 1 to SSgarbage.queues.len)
+		for (var/i in 1 to length(SSgarbage.queues))
 			queues[i] |= SSgarbage.queues[i]
 
 /// Qdel Item: Holds statistics on each type that passes thru qdel
@@ -325,12 +331,12 @@ SUBSYSTEM_DEF(garbage)
 	I.qdels++
 
 	if(isnull(D.gc_destroyed))
-		if (SEND_SIGNAL(D, COMSIG_PARENT_PREQDELETED, force)) // Give the components a chance to prevent their parent from being deleted
+		if (SEND_SIGNAL(D, COMSIG_PREQDELETED, force)) // Give the components a chance to prevent their parent from being deleted
 			return
 		D.gc_destroyed = GC_CURRENTLY_BEING_QDELETED
 		var/start_time = world.time
 		var/start_tick = world.tick_usage
-		SEND_SIGNAL(D, COMSIG_PARENT_QDELETING, force) // Let the (remaining) components know about the result of Destroy
+		SEND_SIGNAL(D, COMSIG_QDELETING, force) // Let the (remaining) components know about the result of Destroy
 		var/hint = D.Destroy(arglist(args.Copy(2))) // Let our friend know they're about to get fucked up.
 		if(world.time != start_time)
 			I.slept_destroy++

@@ -128,7 +128,7 @@
 
 /datum/outfit/job/clf/standard/fanatic
 	head = /obj/item/clothing/head/headband/rambo
-	wear_suit = /obj/item/clothing/suit/storage/marine/harness/boomvest
+	wear_suit = /obj/item/clothing/suit/storage/marine/boomvest
 	belt = /obj/item/weapon/gun/shotgun/double/sawn
 	suit_store = /obj/item/weapon/gun/smg/skorpion/mag_harness
 
@@ -226,7 +226,7 @@
 
 /datum/outfit/job/clf/medic/uzi
 	suit_store = /obj/item/weapon/gun/smg/uzi/mag_harness
-	r_store = /obj/item/storage/pouch/flare
+	r_store = /obj/item/storage/holster/flarepouch
 
 /datum/outfit/job/clf/medic/uzi/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -248,7 +248,7 @@
 
 /datum/outfit/job/clf/medic/skorpion
 	suit_store = /obj/item/weapon/gun/smg/skorpion/mag_harness
-	r_store = /obj/item/storage/pouch/flare
+	r_store = /obj/item/storage/holster/flarepouch
 
 /datum/outfit/job/clf/medic/skorpion/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()

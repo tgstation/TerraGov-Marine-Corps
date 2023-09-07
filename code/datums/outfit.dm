@@ -26,6 +26,8 @@
 	var/accessory = null
 
 	var/can_be_admin_equipped = TRUE // Set to FALSE if your outfit requires runtime parameters
+	///the species this outfit is designed for
+	var/species = SPECIES_HUMAN
 
 
 /datum/outfit/proc/pre_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
@@ -100,6 +102,11 @@
 		if(internals_slot)
 			H.internal = H.get_item_by_slot(internals_slot)
 			H.update_action_buttons()
+
+	if(implants && implants.len)
+		for(var/implant_type in implants)
+			var/obj/item/implant/implanter = new implant_type(H)
+			implanter.implant(H)
 
 	H.update_body()
 	return TRUE

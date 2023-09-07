@@ -15,6 +15,7 @@
 #define XACT_IGNORE_SELECTED_ABILITY (1 << 14) // bypass the check of the selected ability
 #define XACT_DO_AFTER_ATTACK (1 << 15) //Let the xeno attack the object and perform the ability.
 #define XACT_USE_BURROWED (1 << 16) // ignore being burrowed
+#define XACT_USE_ROOTED (1 << 17) // ignore being currently rooted
 
 #define XABB_TURF_TARGET (1 << 0) // ability targets turfs
 #define XABB_MOB_TARGET (1 << 1) // ability targets mobs
@@ -23,5 +24,5 @@
 
 
 #define ABILITY_CRASH (1<<0)
-#define ABILITY_DISTRESS (1<<1)
-#define ABILITY_ALL_GAMEMODE (ABILITY_CRASH|ABILITY_DISTRESS)
+#define ABILITY_NUCLEARWAR (1<<1)
+#define ABILITY_ALL_GAMEMODE (ABILITY_CRASH|ABILITY_NUCLEARWAR)

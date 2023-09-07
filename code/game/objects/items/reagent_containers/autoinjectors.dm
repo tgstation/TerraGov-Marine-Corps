@@ -23,7 +23,7 @@
 
 /obj/item/reagent_containers/hypospray/autoinjector/examine(mob/user)
 	. = ..()
-	if(reagents && reagents.reagent_list.len)
+	if(length(reagents.reagent_list))
 		. += span_notice("It is currently loaded.")
 	else
 		. += span_notice("It is spent.")
@@ -259,12 +259,13 @@
 	desc = "An autoinjector loaded with a single use of Russian Red. Restores a significant amount of stamina and heals a large amount of damage, but causes slight permanent damage."
 	icon_state = "Redwood"
 	amount_per_transfer_from_this = 15
-	volume = 15
+	volume = 30
 	list_reagents = list(
-		/datum/reagent/medicine/russian_red = 10,
-		/datum/reagent/medicine/ryetalyn = 5,
+		/datum/reagent/medicine/russian_red = 20,
+		/datum/reagent/medicine/oxycodone = 10,
 	)
 	description_overlay = "Rr"
+	free_refills = FALSE
 
 /obj/item/reagent_containers/hypospray/autoinjector/polyhexanide
 	name = "polyhexanide autoinjector"
@@ -308,6 +309,7 @@
 	amount_per_transfer_from_this = 1
 	volume = 1
 	list_reagents = list(/datum/reagent/medicine/research/medicalnanites = 1)
+	free_refills = FALSE
 
 /obj/item/reagent_containers/hypospray/autoinjector/pain //made for debugging
 	name = "liquid pain autoinjector"
@@ -317,3 +319,20 @@
 	volume = 100
 
 	list_reagents = list(/datum/reagent/toxin/pain = 100)
+/obj/item/reagent_containers/hypospray/autoinjector/spacedrugs //CL goodie
+	name = "space drugs autoinjector"
+	desc = "An auto-injector loaded with sweet, sweet space drugs... Hard to get as a marine."
+	icon_state = "autoinjector-1"
+	amount_per_transfer_from_this = 25
+	volume = 25
+
+	list_reagents = list(/datum/reagent/space_drugs = 25)
+/obj/item/reagent_containers/hypospray/autoinjector/mindbreaker //made for debugging
+	name = "mindbreaker toxin autoinjector"
+	desc = "An auto-injector loaded with the hardest, deadliest drug around. May cure PTSD. May cause it."
+	icon_state = "Toxic"
+	amount_per_transfer_from_this = 30
+	volume = 30
+
+	list_reagents = list(/datum/reagent/toxin/mindbreaker = 50)
+

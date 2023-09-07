@@ -14,8 +14,6 @@
 	level = 1
 	layer = ATMOS_DEVICE_LAYER
 	flags_atom = SHUTTLE_IMMUNE
-
-	var/id_tag = null
 	var/scrubbing = SCRUBBING //0 = siphoning, 1 = scrubbing
 
 	var/filter_types = list()///datum/gas/carbon_dioxide)
@@ -24,12 +22,6 @@
 	var/list/turf/adjacent_turfs = list()
 
 	pipe_state = "scrubber"
-
-/obj/machinery/atmospherics/components/unary/vent_scrubber/New()
-	. = ..()
-	if(!id_tag)
-		id_tag = assign_uid_vents()
-
 
 /obj/machinery/atmospherics/components/unary/vent_scrubber/auto_use_power()
 	if(!on || welded || !is_operational() || !powered(power_channel))
@@ -43,7 +35,7 @@
 		amount = active_power_usage
 
 	if(widenet)
-		amount += amount * (adjacent_turfs.len * (adjacent_turfs.len / 2))
+		amount += amount * (length(adjacent_turfs) * (length(adjacent_turfs) / 2))
 	use_power(amount, power_channel)
 	return TRUE
 
@@ -97,7 +89,7 @@
 			span_notice("You start welding [src] with [WT]."))
 			add_overlay(GLOB.welding_sparks)
 			playsound(loc, 'sound/items/weldingtool_weld.ogg', 25)
-			if(do_after(user, 50, TRUE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(WT, /obj/item/tool/weldingtool/proc/isOn)) && WT.remove_fuel(1, user))
+			if(do_after(user, 50, TRUE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(WT, TYPE_PROC_REF(/obj/item/tool/weldingtool, isOn))) && WT.remove_fuel(1, user))
 				playsound(get_turf(src), 'sound/items/welder2.ogg', 25, 1)
 				if(!welded)
 					user.visible_message(span_notice("[user] welds [src] shut."), \

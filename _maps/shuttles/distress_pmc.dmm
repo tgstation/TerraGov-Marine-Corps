@@ -35,7 +35,7 @@
 /obj/structure/rack,
 /obj/effect/landmark/distress_item,
 /obj/item/storage/toolbox/mechanical,
-/obj/item/multitool,
+/obj/item/tool/multitool,
 /turf/open/shuttle/dropship/floor,
 /area/shuttle/ert/pmc)
 "k" = (
@@ -183,8 +183,10 @@
 "N" = (
 /turf/closed/shuttle/dropship_white/engine_corner,
 /area/shuttle/ert/pmc)
-"O" = (
-/turf/closed/shuttle/ert/engines/right,
+"P" = (
+/turf/closed/shuttle/ert/engines/right/two{
+	dir = 1
+	},
 /area/shuttle/ert/pmc)
 "Q" = (
 /turf/closed/shuttle/dropship_white/backhatch,
@@ -199,12 +201,9 @@
 	dir = 4
 	},
 /area/shuttle/ert/pmc)
-"T" = (
-/turf/closed/shuttle/ert/engines/left,
-/area/shuttle/ert/pmc)
 "U" = (
-/turf/closed/shuttle/ert/engines/right{
-	dir = 4
+/turf/closed/shuttle/ert/engines/right/three{
+	dir = 1
 	},
 /area/shuttle/ert/pmc)
 "V" = (
@@ -218,8 +217,13 @@
 	},
 /area/shuttle/ert/pmc)
 "X" = (
-/turf/closed/shuttle/ert/engines/left{
-	dir = 4
+/turf/closed/shuttle/ert/engines/left/three{
+	dir = 1
+	},
+/area/shuttle/ert/pmc)
+"Y" = (
+/turf/closed/shuttle/ert/engines/left/two{
+	dir = 1
 	},
 /area/shuttle/ert/pmc)
 
@@ -235,8 +239,8 @@ p
 F
 K
 X
+Y
 V
-T
 "}
 (2,1,1) = {"
 a
@@ -325,6 +329,6 @@ p
 J
 N
 U
+P
 W
-O
 "}

@@ -17,13 +17,13 @@
 
 	//"Name" = list(location, matter, metal, time, isorganic)
 	var/list/products = list(
-		"biotic left arm (100 - Matter)" =  list(/obj/item/robot_parts/biotic/l_arm,  LIMB_MATTER_AMOUNT, 0, LIMB_PRINTING_TIME),
+		"biotic left arm (100 - Matter)" = list(/obj/item/robot_parts/biotic/l_arm,  LIMB_MATTER_AMOUNT, 0, LIMB_PRINTING_TIME),
 		"biotic right arm (100 - Matter)" = list(/obj/item/robot_parts/biotic/r_arm,  LIMB_MATTER_AMOUNT, 0, LIMB_PRINTING_TIME),
-		"biotic left leg (100 - Matter)" =  list(/obj/item/robot_parts/biotic/l_leg,  LIMB_MATTER_AMOUNT, 0, LIMB_PRINTING_TIME),
+		"biotic left leg (100 - Matter)" = list(/obj/item/robot_parts/biotic/l_leg,  LIMB_MATTER_AMOUNT, 0, LIMB_PRINTING_TIME),
 		"biotic right leg (100 - Matter)" = list(/obj/item/robot_parts/biotic/r_leg,  LIMB_MATTER_AMOUNT, 0, LIMB_PRINTING_TIME),
-		"synthetic left arm (125 - Metal)" =  list(/obj/item/robot_parts/l_arm,  0, LIMB_METAL_AMOUNT, LIMB_PRINTING_TIME),
+		"synthetic left arm (125 - Metal)" = list(/obj/item/robot_parts/l_arm,  0, LIMB_METAL_AMOUNT, LIMB_PRINTING_TIME),
 		"synthetic right arm (125 - Metal)" = list(/obj/item/robot_parts/r_arm,  0, LIMB_METAL_AMOUNT, LIMB_PRINTING_TIME),
-		"synthetic left leg (125 - Metal)" =  list(/obj/item/robot_parts/l_leg,  0, LIMB_METAL_AMOUNT, LIMB_PRINTING_TIME),
+		"synthetic left leg (125 - Metal)" = list(/obj/item/robot_parts/l_leg,  0, LIMB_METAL_AMOUNT, LIMB_PRINTING_TIME),
 		"synthetic right leg (125 - Metal)" = list(/obj/item/robot_parts/r_leg,  0, LIMB_METAL_AMOUNT, LIMB_PRINTING_TIME)
 		)
 

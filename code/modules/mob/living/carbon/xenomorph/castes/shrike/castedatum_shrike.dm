@@ -33,9 +33,9 @@
 	deevolves_to = /mob/living/carbon/xenomorph/drone
 
 	// *** Flags *** //
-	caste_flags = CASTE_IS_INTELLIGENT|CASTE_IS_STRONG|CASTE_IS_BUILDER|CASTE_INSTANT_EVOLUTION|CASTE_EVOLUTION_ALLOWED
+	caste_flags = CASTE_IS_INTELLIGENT|CASTE_IS_STRONG|CASTE_IS_BUILDER|CASTE_INSTANT_EVOLUTION|CASTE_EVOLUTION_ALLOWED|CASTE_LEADER_TYPE
 	can_hold_eggs = CAN_HOLD_TWO_HANDS
-	can_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_HOLD_FACEHUGGERS|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER|CASTE_CAN_CORRUPT_GENERATOR|CASTE_LEADER_TYPE
+	can_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_HOLD_FACEHUGGERS|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER|CASTE_CAN_CORRUPT_GENERATOR
 	caste_traits = null
 
 	// *** Defense *** //
@@ -61,6 +61,7 @@
 		/datum/action/xeno_action/place_acidwell,
 		/datum/action/xeno_action/activable/corrosive_acid,
 		/datum/action/xeno_action/activable/psychic_cure,
+		/datum/action/xeno_action/activable/transfer_plasma/drone,
 		/datum/action/xeno_action/psychic_whisper,
 		/datum/action/xeno_action/activable/psychic_fling,
 		/datum/action/xeno_action/activable/unrelenting_force,
@@ -68,9 +69,9 @@
 		/datum/action/xeno_action/pheromones/emit_recovery,
 		/datum/action/xeno_action/pheromones/emit_warding,
 		/datum/action/xeno_action/pheromones/emit_frenzy,
+		/datum/action/xeno_action/hive_message,
 		/datum/action/xeno_action/rally_hive,
 		/datum/action/xeno_action/rally_minion,
-		/datum/action/xeno_action/set_agressivity,
 		/datum/action/xeno_action/blessing_menu,
 	)
 
@@ -197,6 +198,7 @@
 		/datum/action/xeno_action/place_acidwell,
 		/datum/action/xeno_action/activable/corrosive_acid,
 		/datum/action/xeno_action/activable/psychic_cure,
+		/datum/action/xeno_action/activable/transfer_plasma/drone,
 		/datum/action/xeno_action/psychic_whisper,
 		/datum/action/xeno_action/activable/psychic_fling,
 		/datum/action/xeno_action/activable/unrelenting_force,
@@ -204,9 +206,9 @@
 		/datum/action/xeno_action/pheromones/emit_recovery,
 		/datum/action/xeno_action/pheromones/emit_warding,
 		/datum/action/xeno_action/pheromones/emit_frenzy,
+		/datum/action/xeno_action/hive_message,
 		/datum/action/xeno_action/rally_hive,
 		/datum/action/xeno_action/rally_minion,
-		/datum/action/xeno_action/set_agressivity,
 		/datum/action/xeno_action/blessing_menu,
-		/datum/action/xeno_action/activable/gravity_grenade,
+		/datum/action/xeno_action/activable/psychic_vortex,
 	)

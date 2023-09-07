@@ -103,6 +103,8 @@
 #define SMOOTH_GROUP_SHUTTERS S_OBJ(26)
 
 #define SMOOTH_GROUP_LATTICE  S_OBJ(30)
+#define SMOOTH_GROUP_FENCE  S_OBJ(31)
+#define SMOOTH_GROUP_GIRDER  S_OBJ(32)
 
 #define SMOOTH_GROUP_AIRLOCK  S_OBJ(40)							///obj/structure/lattice
 #define SMOOTH_GROUP_GRILLE  S_OBJ(41)
@@ -116,6 +118,7 @@
 #define SMOOTH_GROUP_BRONZE_TABLES S_OBJ(53)			///obj/structure/table/bronze
 #define SMOOTH_GROUP_ABDUCTOR_TABLES S_OBJ(54)			///obj/structure/table/abductor
 #define SMOOTH_GROUP_GLASS_TABLES S_OBJ(55)				///obj/structure/table/glass
+#define SMOOTH_GROUP_TABLES_GENERAL S_OBJ(56)
 
 #define SMOOTH_GROUP_ALIEN_NEST S_OBJ(59)				///obj/structure/bed/nest
 #define SMOOTH_GROUP_ALIEN_RESIN S_OBJ(60)				///obj/structure/alien/resin
