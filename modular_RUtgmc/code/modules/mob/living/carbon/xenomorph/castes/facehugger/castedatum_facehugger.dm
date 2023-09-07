@@ -34,7 +34,7 @@
 	// *** Minimap Icon *** //
 	minimap_icon = "facehugger"
 
-	//*** Ranged Attack *** //
+	// *** Ranged Attack *** //
 	charge_type = CHARGE_TYPE_SMALL
 
 	actions = list(
@@ -49,6 +49,3 @@
 	vent_exit_speed = LARVA_VENT_CRAWL_TIME
 	silent_vent_crawl = TRUE
 
-	// *** Caste Overrides *** //
-	water_slowdown = 1.6
-	snow_slowdown = 0.5
