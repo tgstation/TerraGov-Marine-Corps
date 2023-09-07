@@ -191,12 +191,15 @@
 
 /obj/item/weapon/knife/shiv/plasma
 	icon_state = "plasmashiv"
+	desc = "A makeshift plasma glass shiv."
 
 /obj/item/weapon/knife/shiv/titanium
 	icon_state = "titaniumshiv"
+	desc = "A makeshift titanium shiv."
 
 /obj/item/weapon/knife/shiv/plastitanium
 	icon_state = "plastitaniumshiv"
+	desc = "A makeshift plastitanium glass shiv."
 
 /obj/item/weapon/combat_knife
 	name = "\improper M5 survival knife"
