@@ -177,27 +177,23 @@
 	return ..()
 
 
-/obj/item/weapon/knife/shiv
+/obj/item/tool/kitchen/knife/shiv
 	name = "glass shiv"
 	icon = 'icons/obj/items/weapons.dmi'
 	icon_state = "shiv"
 	desc = "A makeshift glass shiv."
-	force = 11
-	throwforce = 12
-	w_class = WEIGHT_CLASS_SMALL
-	sharp = IS_SHARP_ITEM_ACCURATE
 	attack_verb = list("shanked", "shived")
 	hitsound = 'sound/weapons/slash.ogg'
 
-/obj/item/weapon/knife/shiv/plasma
+/obj/item/tool/kitchen/knife/shiv/plasma
 	icon_state = "plasmashiv"
 	desc = "A makeshift plasma glass shiv."
 
-/obj/item/weapon/knife/shiv/titanium
+/obj/item/tool/kitchen/knife/shiv/titanium
 	icon_state = "titaniumshiv"
 	desc = "A makeshift titanium shiv."
 
-/obj/item/weapon/knife/shiv/plastitanium
+/obj/item/tool/kitchen/knife/shiv/plastitanium
 	icon_state = "plastitaniumshiv"
 	desc = "A makeshift plastitanium glass shiv."
 

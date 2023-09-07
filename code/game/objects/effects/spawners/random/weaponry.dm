@@ -123,10 +123,10 @@
 	spawn_loot_chance = 5
 	spawn_random_offset = TRUE
 	loot = list(
-		/obj/item/weapon/knife/shiv = 80,
-		/obj/item/weapon/knife/shiv/plasma = 12,
-		/obj/item/weapon/knife/shiv/titanium = 5,
-		/obj/item/weapon/knife/shiv/plastitanium = 3,
+		/obj/item/tool/kitchen/knife/shiv = 80,
+		/obj/item/tool/kitchen/knife/shiv/plasma = 12,
+		/obj/item/tool/kitchen/knife/shiv/titanium = 5,
+		/obj/item/tool/kitchen/knife/shiv/plastitanium = 3,
 	)
 
 ///BALLISTIC WEAPON AMMO///
