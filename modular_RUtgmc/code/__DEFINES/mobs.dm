@@ -1,3 +1,7 @@
+//Boiler defines
+#define BOILER_GAS_DELAY 0.5 SECONDS
+#define BOILER_DUMP_SPEED -1.5
+
 //Panther defines
 #define PANTHER_EVASION_COOLDOWN 2.5 SECONDS // how close a nearby human has to be in order to be targeted
 #define PANTHER_EVASION_PLASMADRAIN 3

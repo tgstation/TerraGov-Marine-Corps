@@ -274,6 +274,14 @@
 	keybind_signal = COMSIG_XENOABILITY_BOMBARD
 	hotkey_keys = list("R")
 
+//RUTGMC EDIT BEGIN
+/datum/keybinding/xeno/dump_acid
+	name = "dump_acid"
+	full_name = "Boiler: Dump Acid"
+	description = ""
+	keybind_signal = COMSIG_XENOABILITY_DUMP_ACID
+//RUTGMC EDIT END
+
 /datum/keybinding/xeno/plow_charge
 	name = "plow_charge"
 	full_name = "Bull: Plow Charge"
