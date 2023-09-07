@@ -117,6 +117,18 @@
 		/obj/item/weapon/twohanded/fireaxe,
 	)
 
+/obj/effect/spawner/random/weaponry/shiv
+	name = "Random shiv spawner"
+	icon_state = "random_shiv"
+	spawn_loot_chance = 5
+	spawn_random_offset = TRUE
+	loot = list(
+		/obj/item/weapon/knife/shiv = 80,
+		/obj/item/weapon/knife/shiv/plasma = 12,
+		/obj/item/weapon/knife/shiv/titanium = 5,
+		/obj/item/weapon/knife/shiv/plastitanium = 3,
+	)
+
 ///BALLISTIC WEAPON AMMO///
 
 ///random ammunition

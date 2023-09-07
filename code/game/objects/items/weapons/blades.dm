@@ -176,6 +176,28 @@
 	playsound(loc, 'sound/weapons/bladeslice.ogg', 25, 1)
 	return ..()
 
+
+/obj/item/weapon/knife/shiv
+	name = "glass shiv"
+	icon = 'icons/obj/items/weapons.dmi'
+	icon_state = "shiv"
+	desc = "A makeshift glass shiv."
+	force = 11
+	throwforce = 12
+	w_class = WEIGHT_CLASS_SMALL
+	sharp = IS_SHARP_ITEM_ACCURATE
+	attack_verb = list("shanked", "shived")
+	hitsound = 'sound/weapons/slash.ogg'
+
+/obj/item/weapon/knife/shiv/plasma
+	icon_state = "plasmashiv"
+
+/obj/item/weapon/knife/shiv/titanium
+	icon_state = "titaniumshiv"
+
+/obj/item/weapon/knife/shiv/plastitanium
+	icon_state = "plastitaniumshiv"
+
 /obj/item/weapon/combat_knife
 	name = "\improper M5 survival knife"
 	icon = 'icons/obj/items/weapons.dmi'
@@ -192,7 +214,6 @@
 	attack_speed = 8
 	hitsound = 'sound/weapons/slash.ogg'
 	attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
-
 
 /obj/item/weapon/combat_knife/attackby(obj/item/I, mob/user)
 	if(!istype(I,/obj/item/stack/cable_coil))
