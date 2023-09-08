@@ -145,7 +145,6 @@ GLOBAL_LIST_INIT(leader_gear_listed_products, list(
 		/obj/item/ammo_magazine/rifle/tx54 = list(CAT_LEDSUP, "GL-54 Flak Magazine for AR-55/GL-54", 5, "black"),
 		/obj/item/ammo_magazine/rifle/tx54/smoke = list(CAT_LEDSUP, "GL-54 tactical smoke Magazine for AR-55/GL-54", 3, "black"),
 		/obj/item/ammo_magazine/rifle/tx54/smoke/tangle = list(CAT_LEDSUP, "GL-54 Tanglefoot Magazine for AR-55/GL-54", 12, "black"),
-		/obj/item/ammo_magazine/rifle/tx54/razor = list(CAT_LEDSUP, "GL-54 Razorburn Magazine for AR-55/GL-54", 20, "black"),
 		/obj/item/storage/firstaid/adv = list(CAT_LEDSUP, "Advanced firstaid kit", 10, "orange"),
 		/obj/item/reagent_containers/hypospray/autoinjector/synaptizine = list(CAT_LEDSUP, "Injector (Synaptizine)", 10, "black"),
 		/obj/item/reagent_containers/hypospray/autoinjector/combat_advanced = list(CAT_LEDSUP, "Injector (Advanced)", 15, "orange"),

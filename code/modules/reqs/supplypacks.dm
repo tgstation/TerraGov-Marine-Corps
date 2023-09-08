@@ -347,11 +347,6 @@ WEAPONS
 	contains = list(/obj/item/ammo_magazine/rifle/tx54/smoke/tangle)
 	cost = 48
 
-/datum/supply_packs/weapons/tx54_razor
-	name = "GL-54 razorburn grenade magazine"
-	contains = list(/obj/item/ammo_magazine/rifle/tx54/razor)
-	cost = 96
-
 /datum/supply_packs/weapons/tx54_he
 	name = "GL-54 HE grenade magazine"
 	contains = list(/obj/item/ammo_magazine/rifle/tx54/he)
