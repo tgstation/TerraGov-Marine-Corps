@@ -3818,6 +3818,7 @@
 /area/prison/cellblock/maxsec/south)
 "anj" = (
 /obj/effect/decal/cleanable/blood/splatter,
+/obj/effect/spawner/random/weaponry/shiv,
 /turf/open/floor/prison/plate,
 /area/prison/cellblock/maxsec/south)
 "ank" = (
@@ -16397,6 +16398,7 @@
 	dir = 4
 	},
 /obj/effect/decal/cleanable/blood,
+/obj/effect/spawner/random/weaponry/shiv,
 /turf/open/floor/prison/plate,
 /area/prison/cellblock/lowsec/ne)
 "aZn" = (
@@ -20914,7 +20916,6 @@
 /area/prison/cellblock/vip)
 "bnp" = (
 /obj/effect/decal/cleanable/blood,
-/obj/effect/spawner/random/weaponry/shiv,
 /turf/open/floor/prison,
 /area/prison/security/checkpoint/vip)
 "bnq" = (
@@ -37975,13 +37976,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/prison/yellow/corner,
 /area/prison/cellblock/mediumsec/south)
-"csc" = (
-/obj/structure/sink{
-	dir = 4
-	},
-/obj/effect/spawner/random/weaponry/shiv,
-/turf/open/floor/prison/plate,
-/area/prison/cellblock/highsec/north/south)
 "csd" = (
 /obj/machinery/disposal/deliveryChute{
 	dir = 1
@@ -40418,11 +40412,6 @@
 /obj/effect/spawner/random/food_or_drink/kitchenknife/butcherweighted,
 /turf/open/floor/prison,
 /area/prison/research/secret/dissection)
-"dAb" = (
-/obj/structure/bed,
-/obj/effect/spawner/random/weaponry/shiv,
-/turf/open/floor/prison/plate,
-/area/prison/cellblock/lowsec/nw)
 "dAe" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 2
@@ -40702,6 +40691,11 @@
 	dir = 4
 	},
 /area/prison/cellblock/highsec/south/south)
+"ens" = (
+/obj/structure/bed,
+/obj/effect/spawner/random/weaponry/shiv,
+/turf/open/floor/prison/plate,
+/area/prison/cellblock/highsec/north/north)
 "ent" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -41226,11 +41220,6 @@
 	dir = 5
 	},
 /area/prison/hangar/main)
-"fGq" = (
-/obj/structure/bed,
-/obj/effect/spawner/random/weaponry/shiv,
-/turf/open/floor/prison/plate,
-/area/prison/cellblock/lowsec/se)
 "fGC" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -41454,6 +41443,11 @@
 /obj/structure/barricade/wooden,
 /turf/open/floor/plating,
 /area/prison/maintenance/hangar_barracks)
+"gpm" = (
+/obj/structure/bed,
+/obj/effect/spawner/random/weaponry/shiv,
+/turf/open/floor/prison/plate,
+/area/prison/cellblock/highsec/south/north)
 "grr" = (
 /obj/machinery/light/small{
 	dir = 1
@@ -41639,20 +41633,15 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/prison/hallway/east)
+"gLk" = (
+/obj/structure/bed,
+/obj/effect/spawner/random/weaponry/shiv,
+/turf/open/floor/prison/plate,
+/area/prison/cellblock/mediumsec/south)
 "gMf" = (
 /obj/effect/landmark/xeno_silo_spawn,
 /turf/open/floor/plating,
 /area/prison/cellblock/mediumsec/south)
-"gMP" = (
-/obj/structure/toilet{
-	dir = 8;
-	pixel_x = -4
-	},
-/obj/effect/spawner/random/weaponry/shiv,
-/turf/open/floor/prison/cellstripe{
-	dir = 4
-	},
-/area/prison/cellblock/lowsec/sw)
 "gMU" = (
 /obj/structure/disposalpipe/segment/corner{
 	dir = 4
@@ -41667,6 +41656,15 @@
 /obj/effect/ai_node,
 /turf/open/floor/prison/bright_clean,
 /area/prison/hallway/central)
+"gOM" = (
+/obj/structure/toilet{
+	dir = 4
+	},
+/obj/effect/spawner/random/weaponry/shiv,
+/turf/open/floor/prison/cellstripe{
+	dir = 8
+	},
+/area/prison/cellblock/mediumsec/north)
 "gPc" = (
 /obj/effect/landmark/start/job/survivor,
 /turf/open/floor/plating,
@@ -41788,6 +41786,10 @@
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/prison/hallway/east)
+"hgT" = (
+/obj/effect/spawner/random/weaponry/shiv,
+/turf/open/floor/prison/marked,
+/area/prison/hallway/east)
 "hhR" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -41889,11 +41891,6 @@
 	dir = 8
 	},
 /area/prison/cellblock/protective)
-"hyz" = (
-/obj/structure/bed,
-/obj/effect/spawner/random/weaponry/shiv,
-/turf/open/floor/prison/plate,
-/area/prison/cellblock/mediumsec/west)
 "hyA" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -41995,6 +41992,12 @@
 /obj/item/ammo_casing,
 /turf/open/floor/plating,
 /area/prison/pirate)
+"hMs" = (
+/obj/structure/bed,
+/obj/effect/decal/cleanable/blood,
+/obj/effect/spawner/random/weaponry/shiv,
+/turf/open/floor/prison/plate,
+/area/prison/cellblock/lowsec/sw)
 "hMx" = (
 /obj/machinery/door_control{
 	id = "biological_testing_2";
@@ -42244,6 +42247,10 @@
 	},
 /turf/open/floor/prison/darkyellow/full,
 /area/prison/hangar_storage/main)
+"iom" = (
+/obj/effect/spawner/random/weaponry/shiv,
+/turf/open/floor/prison/bright_clean,
+/area/prison/holding/holding2)
 "iqy" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 2
@@ -43139,10 +43146,6 @@
 /obj/effect/landmark/start/job/xenomorph,
 /turf/open/floor/plating,
 /area/prison/research/secret/biolab)
-"kwx" = (
-/obj/effect/spawner/random/weaponry/shiv,
-/turf/open/floor/prison/sterilewhite,
-/area/prison/cellblock/mediumsec/north)
 "kxc" = (
 /obj/structure/stairs/seamless{
 	dir = 1
@@ -43203,11 +43206,6 @@
 "kGQ" = (
 /turf/open/floor/prison,
 /area/prison/recreation/highsec/n)
-"kHh" = (
-/obj/structure/bed,
-/obj/effect/spawner/random/weaponry/shiv,
-/turf/open/floor/prison/plate,
-/area/prison/cellblock/highsec/north/north)
 "kHP" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
@@ -43694,10 +43692,6 @@
 	},
 /turf/open/floor/plating,
 /area/prison/maintenance/residential/sw)
-"mcC" = (
-/obj/effect/spawner/random/weaponry/shiv,
-/turf/open/floor/prison/plate,
-/area/prison/cellblock/mediumsec/east)
 "mex" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
@@ -44071,11 +44065,6 @@
 	},
 /turf/open/floor/prison/red,
 /area/prison/cellblock/highsec/north/south)
-"mWs" = (
-/obj/structure/bed,
-/obj/effect/spawner/random/weaponry/shiv,
-/turf/open/floor/prison/plate,
-/area/prison/cellblock/highsec/south/north)
 "mWI" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison/bright_clean,
@@ -44153,6 +44142,13 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison/sterilewhite,
 /area/prison/residential/north)
+"ncR" = (
+/obj/structure/toilet{
+	dir = 1
+	},
+/obj/effect/spawner/random/weaponry/shiv,
+/turf/open/floor/prison/cellstripe,
+/area/prison/cellblock/lowsec/ne)
 "ndE" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison/darkpurple/corner{
@@ -44669,6 +44665,11 @@
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/prison/plate,
 /area/prison/cellblock/mediumsec/south)
+"ojQ" = (
+/obj/structure/bed,
+/obj/effect/spawner/random/weaponry/shiv,
+/turf/open/floor/prison/plate,
+/area/prison/cellblock/mediumsec/north)
 "okw" = (
 /turf/open/floor/wood,
 /area/prison/library)
@@ -45376,11 +45377,6 @@
 	dir = 8
 	},
 /area/prison/cellblock/mediumsec/south)
-"qew" = (
-/obj/structure/bed,
-/obj/effect/spawner/random/weaponry/shiv,
-/turf/open/floor/prison/plate,
-/area/prison/cellblock/mediumsec/east)
 "qeF" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -45701,6 +45697,12 @@
 	dir = 1
 	},
 /area/prison/cellblock/highsec/south/south)
+"qSn" = (
+/obj/effect/spawner/random/weaponry/shiv,
+/turf/open/floor/prison/cellstripe{
+	dir = 4
+	},
+/area/prison/cellblock/mediumsec/east)
 "qST" = (
 /obj/structure/window/reinforced,
 /obj/effect/landmark/start/job/survivor,
@@ -46185,6 +46187,11 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/wood/broken,
 /area/prison/library)
+"rTG" = (
+/obj/structure/bed,
+/obj/effect/spawner/random/weaponry/shiv,
+/turf/open/floor/prison/plate,
+/area/prison/cellblock/highsec/south/south)
 "rUk" = (
 /turf/open/floor/prison/darkbrown/full,
 /area/prison/parole/main)
@@ -46350,6 +46357,19 @@
 "spw" = (
 /turf/open/floor/plating,
 /area/prison/cellblock/highsec/south/south)
+"sqb" = (
+/obj/machinery/shower{
+	dir = 1
+	},
+/obj/machinery/door/window{
+	dir = 1
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/effect/spawner/random/weaponry/shiv,
+/turf/open/floor/prison/kitchen,
+/area/prison/cellblock/maxsec/south)
 "sqF" = (
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 1
@@ -46819,6 +46839,11 @@
 /obj/structure/sign/safety/hazard,
 /turf/closed/wall/r_wall/prison,
 /area/prison/hangar/main)
+"tsQ" = (
+/obj/structure/bed,
+/obj/effect/spawner/random/weaponry/shiv,
+/turf/open/floor/prison/plate,
+/area/prison/cellblock/mediumsec/west)
 "ttr" = (
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/prison/bright_clean,
@@ -47038,6 +47063,15 @@
 	dir = 1
 	},
 /area/prison/cellblock/mediumsec/east)
+"tZe" = (
+/obj/structure/toilet{
+	dir = 4
+	},
+/obj/effect/spawner/random/weaponry/shiv,
+/turf/open/floor/prison/cellstripe{
+	dir = 8
+	},
+/area/prison/cellblock/highsec/north/north)
 "tZs" = (
 /turf/open/floor/prison,
 /area/prison/storage/medsec)
@@ -47286,15 +47320,6 @@
 	dir = 1
 	},
 /area/prison/cellblock/mediumsec/north)
-"uHE" = (
-/obj/structure/toilet{
-	dir = 4
-	},
-/obj/effect/spawner/random/weaponry/shiv,
-/turf/open/floor/prison/cellstripe{
-	dir = 8
-	},
-/area/prison/cellblock/mediumsec/north)
 "uHL" = (
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 8
@@ -47304,19 +47329,6 @@
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/plating,
 /area/prison/pirate)
-"uJx" = (
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/obj/machinery/shower{
-	dir = 1
-	},
-/obj/machinery/door/window{
-	dir = 1
-	},
-/obj/effect/spawner/random/weaponry/shiv,
-/turf/open/floor/prison/kitchen,
-/area/prison/cellblock/maxsec/north)
 "uKB" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison/sterilewhite,
@@ -47619,6 +47631,17 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison/bright_clean,
 /area/prison/hallway/central)
+"vyQ" = (
+/obj/structure/window/reinforced,
+/obj/machinery/shower{
+	dir = 8
+	},
+/obj/machinery/door/window/right{
+	dir = 8
+	},
+/obj/effect/spawner/random/weaponry/shiv,
+/turf/open/floor/prison/kitchen,
+/area/prison/cellblock/maxsec/south)
 "vAB" = (
 /obj/effect/attach_point/weapon/dropship1,
 /turf/open/floor/plating,
@@ -48121,11 +48144,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/prison/hallway/entrance)
-"wIG" = (
-/obj/structure/bed,
-/obj/effect/spawner/random/weaponry/shiv,
-/turf/open/floor/prison,
-/area/prison/cellblock/vip)
 "wJg" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison/red{
@@ -48222,17 +48240,6 @@
 	dir = 8
 	},
 /area/prison/cellblock/highsec/north/north)
-"wTf" = (
-/obj/structure/window/reinforced,
-/obj/machinery/shower{
-	dir = 8
-	},
-/obj/machinery/door/window/right{
-	dir = 8
-	},
-/obj/effect/spawner/random/weaponry/shiv,
-/turf/open/floor/prison/kitchen,
-/area/prison/cellblock/maxsec/south)
 "wUH" = (
 /obj/effect/landmark/patrol_point{
 	id = "TGMC_13";
@@ -48380,15 +48387,13 @@
 	},
 /turf/open/floor/plating,
 /area/prison/pirate)
-"xsT" = (
-/obj/structure/toilet{
-	dir = 4
+"xtg" = (
+/obj/machinery/light/small{
+	dir = 1
 	},
 /obj/effect/spawner/random/weaponry/shiv,
-/turf/open/floor/prison/cellstripe{
-	dir = 8
-	},
-/area/prison/cellblock/highsec/north/north)
+/turf/open/floor/plating/plating_catwalk/prison,
+/area/prison/cellblock/lowsec/se)
 "xtT" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison/yellow,
@@ -48730,6 +48735,10 @@
 	dir = 4
 	},
 /area/prison/hangar/main)
+"yke" = (
+/obj/effect/spawner/random/weaponry/shiv,
+/turf/open/floor/prison/plate,
+/area/prison/cellblock/highsec/south/north)
 "ykY" = (
 /obj/structure/toilet{
 	dir = 4
@@ -67342,7 +67351,7 @@ aor
 apl
 aos
 aor
-kHh
+ens
 aos
 axJ
 azm
@@ -67664,7 +67673,7 @@ byx
 bwA
 bvA
 byx
-bwA
+yke
 bvA
 byx
 bwA
@@ -68873,7 +68882,7 @@ anA
 aoo
 apk
 aor
-aoo
+tZe
 apk
 aor
 asa
@@ -69143,7 +69152,7 @@ aor
 apC
 apk
 apk
-xsT
+aoo
 aor
 awC
 aAe
@@ -69455,7 +69464,7 @@ bxo
 bwA
 bvA
 oiP
-bvC
+gpm
 bvA
 oiP
 bvC
@@ -69907,7 +69916,7 @@ aor
 arZ
 sxa
 aor
-kHh
+apl
 aos
 aor
 apl
@@ -70220,7 +70229,7 @@ niT
 bti
 btC
 bdN
-mWs
+bvC
 bwE
 bxq
 bCA
@@ -72260,7 +72269,7 @@ bxR
 bda
 bdN
 bff
-wIG
+bgE
 niT
 biY
 bkd
@@ -72744,7 +72753,7 @@ aNP
 avU
 ayv
 app
-apl
+ens
 aBg
 aCp
 aDU
@@ -73056,7 +73065,7 @@ nFz
 bCA
 bCg
 bDG
-mWs
+bvC
 bvA
 bHk
 bGf
@@ -73276,7 +73285,7 @@ alx
 aPc
 fUv
 aCl
-csc
+aGh
 aGb
 aQZ
 aEV
@@ -73506,7 +73515,7 @@ asg
 asT
 atv
 aqN
-kHh
+apl
 app
 avp
 avU
@@ -75157,7 +75166,7 @@ cuk
 kLq
 gPp
 cqK
-hyz
+cqI
 cdI
 cqK
 cqI
@@ -76424,7 +76433,7 @@ cba
 cnO
 ciy
 cmc
-bZS
+rTG
 bYC
 bZS
 oTH
@@ -76957,7 +76966,7 @@ cuJ
 cvy
 cqK
 cuJ
-tpL
+cvy
 cqK
 cuJ
 cvy
@@ -77473,7 +77482,7 @@ cqK
 cqI
 cqJ
 cqK
-cqI
+tsQ
 cqJ
 cqK
 cqI
@@ -77871,7 +77880,7 @@ amf
 akK
 amf
 amy
-ane
+sqb
 akK
 aoC
 amy
@@ -78356,7 +78365,7 @@ add
 add
 afd
 afx
-uJx
+afU
 add
 afd
 afx
@@ -80285,7 +80294,7 @@ ccV
 caq
 bQF
 ccV
-caq
+ojQ
 bQF
 ccV
 caq
@@ -80823,7 +80832,7 @@ cun
 cuL
 ccB
 cun
-cuL
+gLk
 ccB
 cun
 cxR
@@ -81018,7 +81027,7 @@ bql
 btN
 buO
 bql
-gMP
+btN
 buO
 bql
 buC
@@ -82748,7 +82757,7 @@ amf
 amE
 ane
 akK
-aoC
+vyQ
 amE
 amf
 akK
@@ -82756,7 +82765,7 @@ amf
 amE
 ane
 akK
-wTf
+aoC
 amE
 amf
 xhO
@@ -84075,7 +84084,7 @@ aUy
 aTH
 aWN
 aPA
-dAb
+aNX
 bak
 hyt
 hyt
@@ -84102,7 +84111,7 @@ hyt
 hyt
 hyt
 bqp
-buR
+hMs
 bxP
 bBk
 bJb
@@ -84388,7 +84397,7 @@ ccV
 ceb
 cfo
 cgv
-kwx
+cfo
 cfp
 ccV
 caj
@@ -86956,7 +86965,7 @@ cao
 cbz
 ccV
 cao
-cbz
+gOM
 ccV
 cao
 cbz
@@ -86968,7 +86977,7 @@ cao
 cbz
 ccV
 cpm
-uHE
+cbz
 ccV
 cao
 cbz
@@ -88007,7 +88016,7 @@ cpU
 cpV
 ccJ
 cpU
-qew
+cpV
 ccJ
 cpU
 cpV
@@ -88521,7 +88530,7 @@ cpU
 cvf
 cvH
 cpU
-cvf
+qSn
 cvH
 cpU
 cvf
@@ -88951,7 +88960,7 @@ vSz
 gWy
 aNZ
 aPE
-aQW
+ncR
 aSk
 aTv
 aUI
@@ -89251,7 +89260,7 @@ bFA
 bJC
 bHG
 bIV
-fGq
+bsK
 myW
 vSz
 bRS
@@ -89751,7 +89760,7 @@ blQ
 bsK
 bqs
 blQ
-fGq
+bsK
 bqs
 blQ
 bsK
@@ -90007,7 +90016,7 @@ brl
 brU
 brl
 bqs
-btS
+xtg
 brl
 bqs
 btS
@@ -92632,7 +92641,7 @@ cqf
 cuA
 cpU
 cve
-mcC
+cqO
 cpU
 cqf
 cqO
@@ -94909,7 +94918,7 @@ bIZ
 bIZ
 bLm
 bMa
-bIZ
+iom
 bNF
 bOH
 bQi
@@ -102613,7 +102622,7 @@ bCU
 oAY
 oAY
 bGD
-bHR
+hgT
 bHR
 mCn
 hYR
