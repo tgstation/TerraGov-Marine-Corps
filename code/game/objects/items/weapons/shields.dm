@@ -181,7 +181,6 @@
 /obj/item/weapon/shield/energy/set_shield()
 	AddComponent(/datum/component/shield, SHIELD_TOGGLE|SHIELD_PURE_BLOCKING)
 
-
 /obj/item/weapon/shield/energy/attack_self(mob/living/user)
 	toggle_active()
 	icon_state = "eshield[active]"
