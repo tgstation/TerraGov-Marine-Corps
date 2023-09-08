@@ -297,9 +297,19 @@
 	name = "elite autoinjector"
 	desc = "An elite auto-injector loaded with a strong and versatile combination of chemicals, healing most types of damage. Issued almost excusively to the infamous Nanotrasen deathsquads"
 	icon_state = "autoinjector-7"
+	volume = 60
+	amount_per_transfer_from_this = 30
 	list_reagents = list(
-		/datum/reagent/medicine/russian_red = 15,
-		/datum/reagent/medicine/rezadone = 15,
+		/datum/reagent/medicine/russian_red = 20,
+		/datum/reagent/medicine/rezadone = 6,
+		/datum/reagent/medicine/neuraline = 8,
+		/datum/reagent/medicine/hyronalin = 4,
+		/datum/reagent/consumable/drink/doctor_delight = 2,
+		/datum/reagent/consumable/drink/limejuice = 4,
+		/datum/reagent/consumable/drink/tea = 4,
+		/datum/reagent/consumable/drink/coffee/cafe_latte = 4,
+		/datum/reagent/consumable/drink/tomatojuice = 4,
+		/datum/reagent/consumable/drink/milk = 4,
 	)
 
 /obj/item/reagent_containers/hypospray/autoinjector/medicalnanites
