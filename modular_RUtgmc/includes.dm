@@ -52,3 +52,5 @@
 #include "code\modules\mob\living\carbon\human\life\handle_regular_hud_updates.dm"
 #include "code\_onclick\hud\screen_objects\screen_objects.dm"
 //				end					//
+#include "code\controllers\subsystem\points.dm"
+#include "code\modules\reqs\supply.dm"
