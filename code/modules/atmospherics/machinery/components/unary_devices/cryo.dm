@@ -59,7 +59,7 @@
 		occupant.adjustOxyLoss(-1)
 	if (occupant.getToxLoss())
 		occupant.adjustToxLoss(-1)
-	occupant.heal_limb_damage(1, 1, updating_health = TRUE)
+	occupant.heal_overall_damage(1, 1, updating_health = TRUE)
 	var/has_cryo = occupant.reagents.get_reagent_amount(/datum/reagent/medicine/cryoxadone) >= 1
 	var/has_clonexa = occupant.reagents.get_reagent_amount(/datum/reagent/medicine/clonexadone) >= 1
 	var/has_cryo_medicine = has_cryo || has_clonexa

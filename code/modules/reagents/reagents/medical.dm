@@ -96,7 +96,7 @@
 
 /datum/reagent/medicine/paracetamol/on_mob_life(mob/living/L, metabolism)
 	L.reagent_pain_modifier += PAIN_REDUCTION_HEAVY
-	L.heal_limb_damage(0.2*effect_str, 0.2*effect_str)
+	L.heal_overall_damage(0.2*effect_str, 0.2*effect_str)
 	L.adjustToxLoss(-0.1*effect_str)
 	L.adjustStaminaLoss(-effect_str)
 	return ..()
@@ -231,14 +231,14 @@
 
 /datum/reagent/medicine/kelotane/on_mob_life(mob/living/L, metabolism)
 	var/target_temp = L.get_standard_bodytemperature()
-	L.heal_limb_damage(0, effect_str)
+	L.heal_overall_damage(0, effect_str)
 	if(L.bodytemperature > target_temp)
 		L.adjust_bodytemperature(-2.5*TEMPERATURE_DAMAGE_COEFFICIENT*effect_str, target_temp)
 	if(volume > 10)
 		L.reagent_pain_modifier -= PAIN_REDUCTION_VERY_LIGHT
 	if(volume > 20)
 		L.reagent_pain_modifier -= PAIN_REDUCTION_LIGHT
-		L.heal_limb_damage(0, 0.5*effect_str)
+		L.heal_overall_damage(0, 0.5*effect_str)
 	return ..()
 
 /datum/reagent/medicine/kelotane/overdose_process(mob/living/L, metabolism)
@@ -259,14 +259,14 @@
 
 /datum/reagent/medicine/dermaline/on_mob_life(mob/living/L, metabolism)
 	var/target_temp = L.get_standard_bodytemperature()
-	L.heal_limb_damage(0, 2*effect_str)
+	L.heal_overall_damage(0, 2*effect_str)
 	if(L.bodytemperature > target_temp)
 		L.adjust_bodytemperature(-5*TEMPERATURE_DAMAGE_COEFFICIENT*effect_str, target_temp)
 	if(volume > 5)
 		L.reagent_pain_modifier -= PAIN_REDUCTION_LIGHT
 	if(volume > 10)
 		L.reagent_pain_modifier -= PAIN_REDUCTION_LIGHT
-		L.heal_limb_damage(0, 1.5*effect_str)
+		L.heal_overall_damage(0, 1.5*effect_str)
 	return ..()
 
 /datum/reagent/medicine/dermaline/overdose_process(mob/living/L, metabolism)
@@ -349,7 +349,7 @@
 
 	L.adjustOxyLoss(-0.5*effect_str)
 	L.adjustToxLoss(-0.4*effect_str)
-	L.heal_limb_damage(0.8*effect_str, 0.8*effect_str)
+	L.heal_overall_damage(0.8*effect_str, 0.8*effect_str)
 	if(volume > 10)
 		L.reagent_pain_modifier -= PAIN_REDUCTION_VERY_LIGHT
 	if(volume > 20)
@@ -413,7 +413,7 @@
 	L.reagents.remove_all_type(/datum/reagent/toxin, 2.5*effect_str, 0, 1)
 	L.setCloneLoss(0)
 	L.setOxyLoss(0)
-	L.heal_limb_damage(5, 5)
+	L.heal_overall_damage(5, 5)
 	L.adjustToxLoss(-5)
 	L.hallucination = 0
 	L.setBrainLoss(0)
@@ -515,7 +515,7 @@
 	L.AdjustParalyzed(-2 SECONDS)
 	L.AdjustSleeping(-4 SECONDS)
 	L.adjustStaminaLoss(-30*effect_str)
-	L.heal_limb_damage(7.5*effect_str, 7.5*effect_str)
+	L.heal_overall_damage(7.5*effect_str, 7.5*effect_str)
 	L.adjustToxLoss(3.75*effect_str)
 	if(iscarbon(L))
 		var/mob/living/carbon/C = L
@@ -589,7 +589,7 @@
 		TIMER_COOLDOWN_START(L, name, 300 SECONDS)
 
 /datum/reagent/medicine/russian_red/on_mob_life(mob/living/L, metabolism)
-	L.heal_limb_damage(10*effect_str, 10*effect_str)
+	L.heal_overall_damage(10*effect_str, 10*effect_str)
 	L.adjustToxLoss(-2.5*effect_str)
 	L.adjustCloneLoss(effect_str)
 	if(iscarbon(L))
@@ -688,12 +688,12 @@
 	scannable = TRUE
 
 /datum/reagent/medicine/bicaridine/on_mob_life(mob/living/L, metabolism)
-	L.heal_limb_damage(effect_str, 0)
+	L.heal_overall_damage(effect_str, 0)
 	if(volume > 10)
 		L.reagent_pain_modifier -= PAIN_REDUCTION_VERY_LIGHT
 	if(volume > 20)
 		L.reagent_pain_modifier -= PAIN_REDUCTION_LIGHT
-		L.heal_limb_damage(0.5*effect_str, 0)
+		L.heal_overall_damage(0.5*effect_str, 0)
 	return ..()
 
 
@@ -714,12 +714,12 @@
 	purge_rate = 0.2
 
 /datum/reagent/medicine/meralyne/on_mob_life(mob/living/L, metabolism)
-	L.heal_limb_damage(2*effect_str, 0)
+	L.heal_overall_damage(2*effect_str, 0)
 	if(volume > 5)
 		L.reagent_pain_modifier -= PAIN_REDUCTION_LIGHT
 	if(volume > 10)
 		L.reagent_pain_modifier -= PAIN_REDUCTION_LIGHT
-		L.heal_limb_damage(1.5*effect_str, 0)
+		L.heal_overall_damage(1.5*effect_str, 0)
 	return ..()
 
 
@@ -968,7 +968,7 @@
 	if(L.bodytemperature < 170)
 		L.adjustCloneLoss(-effect_str)
 		L.adjustOxyLoss(-effect_str)
-		L.heal_limb_damage(effect_str,effect_str)
+		L.heal_overall_damage(effect_str,effect_str)
 		L.adjustToxLoss(-effect_str)
 	return ..()
 
@@ -984,7 +984,7 @@
 	if(L.bodytemperature < 170)
 		L.adjustCloneLoss(-3*effect_str)
 		L.adjustOxyLoss(-3*effect_str)
-		L.heal_limb_damage(3*effect_str,3*effect_str)
+		L.heal_overall_damage(3*effect_str,3*effect_str)
 		L.adjustToxLoss(-3*effect_str)
 
 	return ..()
@@ -1003,10 +1003,10 @@
 	switch(current_cycle)
 		if(1 to 15)
 			L.adjustCloneLoss(-effect_str)
-			L.heal_limb_damage(effect_str,effect_str)
+			L.heal_overall_damage(effect_str,effect_str)
 		if(16 to 35)
 			L.adjustCloneLoss(-2*effect_str)
-			L.heal_limb_damage(2*effect_str,effect_str)
+			L.heal_overall_damage(2*effect_str,effect_str)
 
 			L.status_flags &= ~DISFIGURED
 			if(ishuman(L))
@@ -1158,7 +1158,7 @@
 /datum/reagent/medicine/roulettium/on_mob_life(mob/living/L, metabolism)
 	L.reagent_shock_modifier += PAIN_REDUCTION_VERY_HEAVY * 4
 	L.adjustToxLoss(-30*effect_str)
-	L.heal_limb_damage(30*effect_str, 30*effect_str)
+	L.heal_overall_damage(30*effect_str, 30*effect_str)
 	L.adjustStaminaLoss(-30*effect_str)
 	L.AdjustStun(-10 SECONDS)
 	if(prob(5))
@@ -1257,14 +1257,14 @@
 	switch(current_cycle)
 		if(1 to 24)
 			if(L.stat == UNCONSCIOUS)
-				L.heal_limb_damage(0.4*current_cycle*effect_str, 0.4*current_cycle*effect_str)
+				L.heal_overall_damage(0.4*current_cycle*effect_str, 0.4*current_cycle*effect_str)
 			if(prob(20) && L.stat != UNCONSCIOUS)
 				to_chat(L, span_notice("You feel as though you should be sleeping for the medicine to work."))
 		if(25)
 			to_chat(L, span_notice("You feel very sleepy all of a sudden."))
 		if(26 to INFINITY)
 			if(L.stat == UNCONSCIOUS)
-				L.heal_limb_damage(10*effect_str, 10*effect_str)
+				L.heal_overall_damage(10*effect_str, 10*effect_str)
 				L.adjustCloneLoss(-0.2*effect_str-(0.02*(L.maxHealth - L.health)))
 				holder.remove_reagent(/datum/reagent/medicine/research/somolent, 0.6)
 			if(prob(50) && L.stat != UNCONSCIOUS)
@@ -1306,14 +1306,14 @@
 				L.reagents.add_reagent(/datum/reagent/medicine/research/medicalnanites, 0.1)
 
 			if (volume > 5 && L.getBruteLoss(organic_only = TRUE))
-				L.heal_limb_damage(2*effect_str, 0)
+				L.heal_overall_damage(2*effect_str, 0)
 				L.adjustToxLoss(0.1*effect_str)
 				holder.remove_reagent(/datum/reagent/medicine/research/medicalnanites, 0.5)
 				if(prob(40))
 					to_chat(L, span_notice("Your cuts and bruises begin to scab over rapidly!"))
 
 			if (volume > 5 && L.getFireLoss(organic_only = TRUE))
-				L.heal_limb_damage(0, 2*effect_str)
+				L.heal_overall_damage(0, 2*effect_str)
 				L.adjustToxLoss(0.1*effect_str)
 				holder.remove_reagent(/datum/reagent/medicine/research/medicalnanites, 0.5)
 				if(prob(40))
