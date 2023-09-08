@@ -2,7 +2,7 @@
 	caste_base_type = /mob/living/carbon/xenomorph/hivelord
 	name = "Hivelord"
 	desc = "A huge ass xeno covered in weeds! Oh shit!"
-	icon = 'icons/Xeno/2x2_Xenos.dmi'
+	icon = 'icons/Xeno/castes/hivelord.dmi'
 	icon_state = "Hivelord Walking"
 	bubble_icon = "alienroyal"
 	health = 250
@@ -24,8 +24,6 @@
 	update_spits()
 
 
-/mob/living/carbon/xenomorph/hivelord/Stat()
+/mob/living/carbon/xenomorph/hivelord/get_status_tab_items()
 	. = ..()
-
-	if(statpanel("Game"))
-		stat("Active Tunnel Sets:", "[LAZYLEN(tunnels)] / [HIVELORD_TUNNEL_SET_LIMIT]")
+	. += "Active Tunnel Sets: [LAZYLEN(tunnels)] / [HIVELORD_TUNNEL_SET_LIMIT]"

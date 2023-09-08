@@ -31,6 +31,10 @@
 #define DEFILER_TRANSVITOX "Transvitox"
 #define DEFILER_OZELOMELYN "Ozelomelyn"
 
+//Baneling specific reagent define
+#define BANELING_ACID "Sulphuric acid"
+#define BANELING_ACID_ICON "spray_acid"
+
 #define TRAP_HUGGER "hugger"
 #define TRAP_SMOKE_NEURO "neurotoxin gas"
 #define TRAP_SMOKE_ACID "acid gas"
@@ -59,17 +63,17 @@ GLOBAL_LIST_INIT(weed_prob_list, list(
 
 //List of weed images
 GLOBAL_LIST_INIT(weed_images_list, list(
-		WEED = image('icons/mob/actions.dmi', icon_state = WEED),
-		STICKY_WEED = image('icons/mob/actions.dmi', icon_state = STICKY_WEED),
-		RESTING_WEED = image('icons/mob/actions.dmi', icon_state = RESTING_WEED),
-		AUTOMATIC_WEEDING = image('icons/mob/actions.dmi', icon_state = AUTOMATIC_WEEDING)
+		WEED = image('icons/Xeno/actions.dmi', icon_state = WEED),
+		STICKY_WEED = image('icons/Xeno/actions.dmi', icon_state = STICKY_WEED),
+		RESTING_WEED = image('icons/Xeno/actions.dmi', icon_state = RESTING_WEED),
+		AUTOMATIC_WEEDING = image('icons/Xeno/actions.dmi', icon_state = AUTOMATIC_WEEDING)
 		))
 
 //List of pheromone images
 GLOBAL_LIST_INIT(pheromone_images_list, list(
-		AURA_XENO_RECOVERY = image('icons/mob/actions.dmi', icon_state = AURA_XENO_RECOVERY),
-		AURA_XENO_WARDING = image('icons/mob/actions.dmi', icon_state = AURA_XENO_WARDING),
-		AURA_XENO_FRENZY = image('icons/mob/actions.dmi', icon_state = AURA_XENO_FRENZY),
+		AURA_XENO_RECOVERY = image('icons/Xeno/actions.dmi', icon_state = AURA_XENO_RECOVERY),
+		AURA_XENO_WARDING = image('icons/Xeno/actions.dmi', icon_state = AURA_XENO_WARDING),
+		AURA_XENO_FRENZY = image('icons/Xeno/actions.dmi', icon_state = AURA_XENO_FRENZY),
 		))
 
 //List of Defiler toxin types available for selection
@@ -90,6 +94,15 @@ GLOBAL_LIST_INIT(defiler_toxins_typecache_list, typecacheof(list(
 		/datum/status_effect/stacking/intoxicated,
 		)))
 
+//List of Baneling chemical types available for selection
+GLOBAL_LIST_INIT(baneling_chem_type_list, list(
+		/datum/reagent/toxin/xeno_ozelomelyn,
+		/datum/reagent/toxin/xeno_hemodile,
+		/datum/reagent/toxin/xeno_transvitox,
+		/datum/reagent/toxin/xeno_neurotoxin,
+		/datum/reagent/toxin/acid,
+		))
+
 //List of plant types
 GLOBAL_LIST_INIT(plant_type_list, list(
 		/obj/structure/xeno/plant/heal_fruit,
@@ -108,9 +121,9 @@ GLOBAL_LIST_INIT(plant_images_list, list(
 
 //List of resin structure images
 GLOBAL_LIST_INIT(resin_images_list, list(
-		RESIN_WALL = image('icons/mob/actions.dmi', icon_state = RESIN_WALL),
-		STICKY_RESIN = image('icons/mob/actions.dmi', icon_state = STICKY_RESIN),
-		RESIN_DOOR = image('icons/mob/actions.dmi', icon_state = RESIN_DOOR)
+		RESIN_WALL = image('icons/Xeno/actions.dmi', icon_state = RESIN_WALL),
+		STICKY_RESIN = image('icons/Xeno/actions.dmi', icon_state = STICKY_RESIN),
+		RESIN_DOOR = image('icons/Xeno/actions.dmi', icon_state = RESIN_DOOR)
 		))
 
 //xeno upgrade flags

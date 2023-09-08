@@ -166,10 +166,10 @@
 ///Wrapper to guarantee powercells are properly nulled and avoid hard deletes.
 /obj/machinery/power/apc/proc/set_cell(obj/item/cell/new_cell)
 	if(cell)
-		UnregisterSignal(cell, COMSIG_PARENT_QDELETING)
+		UnregisterSignal(cell, COMSIG_QDELETING)
 	cell = new_cell
 	if(cell)
-		RegisterSignal(cell, COMSIG_PARENT_QDELETING, PROC_REF(on_cell_deletion))
+		RegisterSignal(cell, COMSIG_QDELETING, PROC_REF(on_cell_deletion))
 
 
 ///Called by the deletion of the referenced powercell.
@@ -998,20 +998,27 @@
 		if(EXPLODE_DEVASTATE)
 			cell?.ex_act(1) //More lags woohoo
 			qdel(src)
+			return
 		if(EXPLODE_HEAVY)
 			if(prob(50))
 				return
 			set_broken()
 			if(!cell || prob(50))
 				return
-			cell.ex_act(2)
 		if(EXPLODE_LIGHT)
 			if(prob(75))
 				return
 			set_broken()
 			if(!cell || prob(75))
 				return
-			cell.ex_act(3)
+		if(EXPLODE_WEAK)
+			if(prob(80))
+				return
+			set_broken()
+			if(!cell || prob(85))
+				return
+
+	cell.ex_act(severity)
 
 
 /obj/machinery/power/apc/proc/set_broken()

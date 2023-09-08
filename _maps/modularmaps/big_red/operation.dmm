@@ -73,7 +73,7 @@
 	},
 /area/bigredv2/outside/admin_building)
 "dX" = (
-/obj/machinery/computer/communications,
+/obj/effect/spawner/random/machinery/random_broken_computer/small/comms,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/admin_building)
 "ee" = (
@@ -454,9 +454,10 @@
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/admin_building)
 "tx" = (
-/turf/open/floor/stairs/rampbottom{
+/obj/structure/stairs/edge{
 	dir = 1
 	},
+/turf/open/floor/tile/dark,
 /area/bigredv2/outside/admin_building)
 "ty" = (
 /obj/structure/table,
@@ -621,9 +622,10 @@
 "xS" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable,
-/turf/open/floor/stairs/rampbottom{
+/obj/structure/stairs/edge{
 	dir = 1
 	},
+/turf/open/floor/tile/dark,
 /area/bigredv2/outside/admin_building)
 "xT" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -995,7 +997,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/admin_building)
 "IT" = (
-/obj/machinery/computer/communications,
+/obj/effect/spawner/random/machinery/random_broken_computer/small/comms,
 /obj/structure/table,
 /turf/open/floor/tile/dark/blue2{
 	dir = 6

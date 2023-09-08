@@ -18,9 +18,9 @@
 	var/gc_destroyed
 
 	/// Active timers with this datum as the target
-	var/list/active_timers
+	var/list/_active_timers
 	/// Status traits attached to this datum. associative list of the form: list(trait name (string) = list(source1, source2, source3,...))
-	var/list/status_traits
+	var/list/_status_traits
 
 	var/hidden_from_codex = FALSE //set to TRUE if you want something to be hidden.
 	var/interaction_flags = NONE //Defined at the datum level since some can be interacted with.
@@ -28,17 +28,17 @@
 	/**
 	  * Components attached to this datum
 	  *
-	  * Lazy associated list in the structure of `type:component/list of components`
+	  * Lazy associated list in the structure of `type -> component/list of components`
 	  */
-	var/list/datum_components
+	var/list/_datum_components
 	/**
 	  * Any datum registered to receive signals from this datum is in this list
 	  *
-	  * Lazy associated list in the structure of `signal:registree/list of registrees`
+	  * Lazy associated list in the structure of `signal -> registree/list of registrees`
 	  */
-	var/list/comp_lookup
-	/// Lazy associated list in the structure of `signals:proctype` that are run when the datum receives that signal
-	var/list/list/datum/callback/signal_procs
+	var/list/_listen_lookup
+	/// Lazy associated list in the structure of `target -> list(signal -> proctype)` that are run when the datum receives that signal
+	var/list/list/_signal_procs
 
 	/// Datum level flags
 	var/datum_flags = NONE
@@ -91,8 +91,8 @@
 
 	cooldowns = null
 
-	var/list/timers = active_timers
-	active_timers = null
+	var/list/timers = _active_timers
+	_active_timers = null
 	for(var/datum/timedevent/timer as anything in timers)
 		if(timer.spent && !(timer.flags & TIMER_DELETE_ME))
 			continue
@@ -100,7 +100,7 @@
 
 	//BEGIN: ECS SHIT
 
-	var/list/dc = datum_components
+	var/list/dc = _datum_components
 	if(dc)
 		var/all_components = dc[/datum/component]
 		if(length(all_components))
@@ -117,7 +117,7 @@
 
 
 /datum/proc/clear_signal_refs()
-	var/list/lookup = comp_lookup
+	var/list/lookup = _listen_lookup
 	if(lookup)
 		for(var/sig in lookup)
 			var/list/comps = lookup[sig]
@@ -127,10 +127,10 @@
 			else
 				var/datum/component/comp = comps
 				comp.UnregisterSignal(src, sig)
-		comp_lookup = lookup = null
+		_listen_lookup = lookup = null
 
-	for(var/target in signal_procs)
-		UnregisterSignal(target, signal_procs[target])
+	for(var/target in _signal_procs)
+		UnregisterSignal(target, _signal_procs[target])
 
 #ifdef DATUMVAR_DEBUGGING_MODE
 /datum/proc/save_vars()

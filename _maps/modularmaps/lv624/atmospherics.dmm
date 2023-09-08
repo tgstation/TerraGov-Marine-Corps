@@ -101,7 +101,7 @@
 /area/lv624/lazarus/atmos)
 "iF" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1,
-/obj/machinery/alarm{
+/obj/machinery/air_alarm{
 	dir = 4
 	},
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -111,14 +111,6 @@
 /area/lv624/lazarus/atmos)
 "iN" = (
 /turf/closed/wall,
-/area/lv624/lazarus/atmos)
-"jW" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/obj/structure/cable,
-/obj/structure/cable,
-/turf/open/floor/tile/dark,
 /area/lv624/lazarus/atmos)
 "kc" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -334,7 +326,7 @@
 /area/lv624/lazarus/atmos)
 "CJ" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1,
-/obj/machinery/alarm{
+/obj/machinery/air_alarm{
 	dir = 8
 	},
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -409,7 +401,6 @@
 	},
 /area/lv624/lazarus/atmos)
 "Hy" = (
-/obj/structure/cable,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold4w/supply/hidden/layer1,
 /obj/effect/ai_node,
@@ -599,7 +590,7 @@
 	},
 /area/lv624/lazarus/atmos)
 "WZ" = (
-/obj/machinery/alarm,
+/obj/machinery/air_alarm,
 /turf/open/floor/tile/dark/brown2,
 /area/lv624/lazarus/atmos)
 "Xp" = (
@@ -708,7 +699,7 @@ NM
 iN
 iN
 Kw
-jW
+CS
 RH
 iN
 iN

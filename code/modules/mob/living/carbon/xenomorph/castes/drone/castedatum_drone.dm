@@ -8,6 +8,9 @@
 	tier = XENO_TIER_ONE
 	upgrade = XENO_UPGRADE_BASETYPE
 
+	gib_anim = "gibbed-a-small-corpse"
+	gib_flick = "gibbed-a-small"
+
 	// *** Melee Attacks *** //
 	melee_damage = 16
 

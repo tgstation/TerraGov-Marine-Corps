@@ -529,7 +529,7 @@
 
 	addtimer(CALLBACK(src, PROC_REF(on_cloak)), 1)
 	RegisterSignal(M, COMSIG_HUMAN_DAMAGE_TAKEN, PROC_REF(damage_taken))
-	RegisterSignal(M, list(
+	RegisterSignals(M, list(
 		COMSIG_MOB_GUN_FIRED,
 		COMSIG_MOB_GUN_AUTOFIRED,
 		COMSIG_MOB_ATTACHMENT_FIRED,

@@ -34,6 +34,8 @@
 			take_damage(140, BRUTE, BOMB)
 		if(EXPLODE_LIGHT)
 			take_damage(70, BRUTE, BOMB)
+		if(EXPLODE_WEAK)
+			take_damage(35, BRUTE, BOMB)
 
 /obj/structure/xeno/attack_hand(mob/living/user)
 	balloon_alert(user, "You only scrape at it")
@@ -97,6 +99,8 @@
 			take_damage(200, BRUTE, BOMB)
 		if(EXPLODE_LIGHT)
 			take_damage(100, BRUTE, BOMB)
+		if(EXPLODE_WEAK)
+			take_damage(50, BRUTE, BOMB)
 
 /obj/structure/xeno/trap/update_icon_state()
 	switch(trap_type)
@@ -271,7 +275,7 @@ TUNNEL
 /obj/structure/xeno/tunnel
 	name = "tunnel"
 	desc = "A tunnel entrance. Looks like it was dug by some kind of clawed beast."
-	icon = 'icons/Xeno/effects.dmi'
+	icon = 'icons/Xeno/Effects.dmi'
 	icon_state = "hole"
 
 	density = FALSE
@@ -335,15 +339,6 @@ TUNNEL
 	visible_message(span_danger("[src] suddenly collapses!") )
 	return ..()
 
-/obj/structure/xeno/tunnel/ex_act(severity)
-	switch(severity)
-		if(EXPLODE_DEVASTATE)
-			take_damage(210, BRUTE, BOMB)
-		if(EXPLODE_HEAVY)
-			take_damage(140, BRUTE, BOMB)
-		if(EXPLODE_LIGHT)
-			take_damage(70, BRUTE, BOMB)
-
 /obj/structure/xeno/tunnel/attackby(obj/item/I, mob/user, params)
 	if(!isxeno(user))
 		return ..()
@@ -371,6 +366,33 @@ TUNNEL
 
 /obj/structure/xeno/tunnel/attack_larva(mob/living/carbon/xenomorph/larva/L) //So larvas can actually use tunnels
 	attack_alien(L)
+
+/obj/structure/xeno/tunnel/attack_ghost(mob/dead/observer/user)
+	. = ..()
+
+	var/list/obj/destinations = GLOB.xeno_tunnels_by_hive[hivenumber]
+	var/obj/structure/xeno/tunnel/targettunnel
+	if(LAZYLEN(destinations) > 2)
+		var/list/tunnel_assoc = list()
+		for(var/obj/D in destinations)
+			tunnel_assoc["X:[D.x], Y:[D.y] - \[[get_area(D)]\]"] = D
+		destinations = list()
+		for(var/d in tunnel_assoc)
+			destinations += d
+		var/input = tgui_input_list(user ,"Choose a tunnel to teleport to:" ,"Ghost Tunnel teleport" ,destinations ,null, 0)
+		if(!input)
+			return
+		targettunnel = tunnel_assoc[input]
+		if(!input)
+			return
+	else
+		//There are only 2 tunnels. Pick the other one.
+		for(var/P in destinations)
+			if(P != src)
+				targettunnel = P
+	if(!targettunnel || QDELETED(targettunnel) || !targettunnel.loc)
+		return
+	user.forceMove(get_turf(targettunnel))
 
 ///Here we pick a tunnel to go to, then travel to that tunnel and peep out, confirming whether or not we want to emerge or go to another tunnel.
 /obj/structure/xeno/tunnel/proc/pick_a_tunnel(mob/living/carbon/xenomorph/M)
@@ -415,7 +437,7 @@ TUNNEL
 		balloon_alert(M, "Tunnel ended unexpectedly")
 		return
 	M.forceMove(targettunnel)
-	var/double_check = tgui_alert(M, "Emerge here?", "Tunnel: [targettunnel]", list("Yes","Pick another tunnel"))
+	var/double_check = tgui_alert(M, "Emerge here?", "Tunnel: [targettunnel]", list("Yes","Pick another tunnel"), 0)
 	if(M.loc != targettunnel) //double check that we're still in the tunnel in the event it gets destroyed while we still have the interface open
 		return
 	if(double_check == "Pick another tunnel")
@@ -456,7 +478,7 @@ TUNNEL
 /obj/structure/xeno/acidwell/Initialize(mapload, _creator)
 	. = ..()
 	creator = _creator
-	RegisterSignal(creator, COMSIG_PARENT_QDELETING, PROC_REF(clear_creator))
+	RegisterSignal(creator, COMSIG_QDELETING, PROC_REF(clear_creator))
 	update_icon()
 	var/static/list/connections = list(
 		COMSIG_ATOM_ENTERED = PROC_REF(on_cross),
@@ -504,15 +526,6 @@ TUNNEL
 	. = ..()
 	icon_state = "well[charges]"
 	set_light(charges , charges / 2, LIGHT_COLOR_GREEN)
-
-/obj/structure/xeno/acidwell/ex_act(severity)
-	switch(severity)
-		if(EXPLODE_DEVASTATE)
-			take_damage(210, BRUTE, BOMB)
-		if(EXPLODE_HEAVY)
-			take_damage(140, BRUTE, BOMB)
-		if(EXPLODE_LIGHT)
-			take_damage(70, BRUTE, BOMB)
 
 /obj/structure/xeno/acidwell/flamer_fire_act(burnlevel) //Removes a charge of acid, but fire is extinguished
 	acid_well_fire_interaction()
@@ -667,15 +680,6 @@ TUNNEL
 	STOP_PROCESSING(SSslowprocess, src)
 	return ..()
 
-/obj/structure/xeno/resin_jelly_pod/ex_act(severity)
-	switch(severity)
-		if(EXPLODE_DEVASTATE)
-			take_damage(210, BRUTE, BOMB)
-		if(EXPLODE_HEAVY)
-			take_damage(140, BRUTE, BOMB)
-		if(EXPLODE_LIGHT)
-			take_damage(70, BRUTE, BOMB)
-
 /obj/structure/xeno/resin_jelly_pod/examine(mob/user, distance, infix, suffix)
 	. = ..()
 	if(isxeno(user))
@@ -758,10 +762,9 @@ TUNNEL
 	if(!locate(/obj/alien/weeds) in center_turf)
 		new /obj/alien/weeds/node(center_turf)
 	if(GLOB.hive_datums[hivenumber])
-		RegisterSignal(GLOB.hive_datums[hivenumber], list(COMSIG_HIVE_XENO_MOTHER_PRE_CHECK, COMSIG_HIVE_XENO_MOTHER_CHECK), PROC_REF(is_burrowed_larva_host))
+		RegisterSignals(GLOB.hive_datums[hivenumber], list(COMSIG_HIVE_XENO_MOTHER_PRE_CHECK, COMSIG_HIVE_XENO_MOTHER_CHECK), PROC_REF(is_burrowed_larva_host))
 		if(length(GLOB.xeno_resin_silos_by_hive[hivenumber]) == 1)
 			GLOB.hive_datums[hivenumber].give_larva_to_next_in_queue()
-		SSticker.mode.update_silo_death_timer(GLOB.hive_datums[hivenumber])
 	var/turf/tunnel_turf = get_step(center_turf, NORTH)
 	if(tunnel_turf.can_dig_xeno_tunnel())
 		var/obj/structure/xeno/tunnel/newt = new(tunnel_turf, hivenumber)
@@ -772,7 +775,6 @@ TUNNEL
 	if(GLOB.hive_datums[hivenumber])
 		UnregisterSignal(GLOB.hive_datums[hivenumber], list(COMSIG_HIVE_XENO_MOTHER_PRE_CHECK, COMSIG_HIVE_XENO_MOTHER_CHECK))
 		GLOB.hive_datums[hivenumber].xeno_message("A resin silo has been destroyed at [AREACOORD_NO_Z(src)]!", "xenoannounce", 5, FALSE,src.loc, 'sound/voice/alien_help2.ogg',FALSE , null, /atom/movable/screen/arrow/silo_damaged_arrow)
-		INVOKE_NEXT_TICK(SSticker.mode, TYPE_PROC_REF(/datum/game_mode, update_silo_death_timer), GLOB.hive_datums[hivenumber]) // checks all silos next tick after this one is gone
 		notify_ghosts("\ A resin silo has been destroyed at [AREACOORD_NO_Z(src)]!", source = get_turf(src), action = NOTIFY_JUMP)
 		playsound(loc,'sound/effects/alien_egg_burst.ogg', 75)
 	return ..()
@@ -1024,12 +1026,12 @@ TUNNEL
 /obj/structure/xeno/xeno_turret/proc/set_hostile(_hostile)
 	if(hostile != _hostile)
 		hostile = _hostile
-		RegisterSignal(hostile, COMSIG_PARENT_QDELETING, PROC_REF(unset_hostile))
+		RegisterSignal(hostile, COMSIG_QDELETING, PROC_REF(unset_hostile))
 
 ///Setter for last_hostile with hard del in mind
 /obj/structure/xeno/xeno_turret/proc/set_last_hostile(_last_hostile)
 	if(last_hostile)
-		UnregisterSignal(last_hostile, COMSIG_PARENT_QDELETING)
+		UnregisterSignal(last_hostile, COMSIG_QDELETING)
 	last_hostile = _last_hostile
 
 ///Look for the closest human in range and in light of sight. If no human is in range, will look for xenos of other hives
@@ -1161,6 +1163,8 @@ TUNNEL
 			take_damage(500, BRUTE, BOMB)
 		if(EXPLODE_LIGHT)
 			take_damage(300, BRUTE, BOMB)
+		if(EXPLODE_WEAK)
+			take_damage(100, BRUTE, BOMB)
 
 /obj/structure/xeno/maturitytower
 	name = "Maturity tower"
@@ -1186,10 +1190,14 @@ TUNNEL
 
 /obj/structure/xeno/maturitytower/ex_act(severity)
 	switch(severity)
-		if(EXPLODE_HEAVY, EXPLODE_DEVASTATE)
+		if(EXPLODE_DEVASTATE)
+			take_damage(700, BRUTE, BOMB)
+		if(EXPLODE_HEAVY)
 			take_damage(500, BRUTE, BOMB)
 		if(EXPLODE_LIGHT)
 			take_damage(300, BRUTE, BOMB)
+		if(EXPLODE_WEAK)
+			take_damage(100, BRUTE, BOMB)
 
 /obj/structure/xeno/pherotower
 	name = "Pheromone tower"
@@ -1220,10 +1228,14 @@ TUNNEL
 
 /obj/structure/xeno/pherotower/ex_act(severity)
 	switch(severity)
-		if(EXPLODE_HEAVY, EXPLODE_DEVASTATE)
+		if(EXPLODE_DEVASTATE)
+			take_damage(700, BRUTE, BOMB)
+		if(EXPLODE_HEAVY)
 			take_damage(500, BRUTE, BOMB)
 		if(EXPLODE_LIGHT)
 			take_damage(300, BRUTE, BOMB)
+		if(EXPLODE_WEAK)
+			take_damage(100, BRUTE, BOMB)
 
 /obj/structure/xeno/pherotower/Destroy()
 	GLOB.hive_datums[hivenumber].pherotowers -= src
@@ -1358,12 +1370,12 @@ TUNNEL
 	X.transfer_to_hive(hivenumber)
 	linked_minions = squad
 	if(hivenumber == XENO_HIVE_FALLEN) //snowflake so valhalla isnt filled with minions after you're done
-		RegisterSignal(src, COMSIG_PARENT_QDELETING, PROC_REF(kill_linked_minions))
+		RegisterSignal(src, COMSIG_QDELETING, PROC_REF(kill_linked_minions))
 
 /obj/structure/xeno/spawner/proc/kill_linked_minions()
 	for(var/mob/living/carbon/xenomorph/linked in linked_minions)
 		linked.death(TRUE)
-	UnregisterSignal(src, COMSIG_PARENT_QDELETING)
+	UnregisterSignal(src, COMSIG_QDELETING)
 
 ///Those structures need time to grow and are supposed to be extremely weak healh-wise
 /obj/structure/xeno/plant
@@ -1480,7 +1492,7 @@ TUNNEL
 		to_chat(user, span_warning("[src] bursts, releasing a strong gust of pressurised gas!"))
 		if(ishuman(user))
 			var/mob/living/carbon/human/H = user
-			H.adjust_stagger(3)
+			H.adjust_stagger(3 SECONDS)
 			H.apply_damage(30, BRUTE, "chest", BOMB)
 		qdel(src)
 		return TRUE

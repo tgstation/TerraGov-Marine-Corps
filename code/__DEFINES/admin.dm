@@ -8,7 +8,7 @@
 #define MUTE_DEADCHAT (1<<4)
 #define MUTE_LOOC (1<<5)
 #define MUTE_TTS (1<<6)
-#define MUTE_ALL (1<<7)-1
+#define MUTE_ALL (~0)
 
 //Some constants for DB_Ban
 #define BANTYPE_PERMA 1
@@ -84,6 +84,9 @@
 #define SPAM_TRIGGER_AUTOMUTE 10	//Number of messages required per the time period before the spam-prevention will automute you
 #define SPAM_TRIGGER_WEIGHT_WARNING 2.5 //The weight required per the time period before the spam-prevention will warn you
 #define SPAM_TRIGGER_WEIGHT_AUTOMUTE 4 //The weight required per the time period before the spam-prevention will automute you
+
+#define MESSAGE_FLAG_ADMIN (1<<0) //! Spam filter info that this message is admin-related and shouldn't count towards admin spam limit (not needed currently due to admins bypassing it but eh!)
+#define MESSAGE_FLAG_MENTOR (1<<1) //! Spam filter info that this message is mentor-related and shouldn't count towards a mentor's spam limit.
 
 #define MAX_LENGTH_REQ_REASON 250
 

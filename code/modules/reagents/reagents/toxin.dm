@@ -98,7 +98,7 @@
 /datum/reagent/toxin/cyanide/on_mob_life(mob/living/L, metabolism)
 	L.adjustOxyLoss(2*effect_str)
 	if(current_cycle > 10)
-		L.Sleeping(40)
+		L.Sleeping(4 SECONDS)
 	return ..()
 
 /datum/reagent/toxin/minttoxin
@@ -194,8 +194,8 @@
 		qdel(O)
 	else if(istype(O,/obj/effect/plantsegment))
 		if(prob(50)) qdel(O) //Kills kudzu too.
-	else if(istype(O,/obj/machinery/portable_atmospherics/hydroponics))
-		var/obj/machinery/portable_atmospherics/hydroponics/tray = O
+	else if(istype(O,/obj/machinery/hydroponics))
+		var/obj/machinery/hydroponics/tray = O
 
 		if(tray.seed)
 			tray.health -= rand(30,50)

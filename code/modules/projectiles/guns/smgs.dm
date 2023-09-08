@@ -34,6 +34,7 @@
 	desc = "The MP-19 is the TerraGov Marine Corps standard-issue machine pistol. It's known for it's low recoil and scatter when used one handed. It's usually carried by specialized troops who do not have the space to carry a much larger gun like medics and engineers. It uses 10x20mm caseless rounds."
 	icon_state = "t19"
 	item_state = "t19"
+	fire_sound = 'sound/weapons/guns/fire/tgmc/kinetic/gun_mp19.ogg'
 	caliber = CALIBER_10X20_CASELESS //codex
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
 	max_shells = 30 //codex
@@ -98,7 +99,7 @@
 /obj/item/weapon/gun/smg/standard_smg
 	name = "\improper SMG-90 submachinegun"
 	desc = "The SMG-90 is the TerraGov Marine Corps standard issue SMG. Its known for it's compact size and ease of use inside the field. It's usually carried by troops who want a lightweight firearm to rush with. It uses 10x20mm caseless rounds."
-	fire_sound = 'sound/weapons/guns/fire/t90.ogg'
+	fire_sound = 'sound/weapons/guns/fire/tgmc/kinetic/gun_smg90.ogg'
 	icon_state = "t90"
 	item_state = "t90"
 	caliber = CALIBER_10X20_CASELESS //codex
@@ -375,15 +376,20 @@
 		/obj/item/attachable/stock/ppsh,
 	)
 
-	fire_delay = 0.15 SECONDS
-	burst_amount = 6
+	fire_delay = 0.1 SECONDS
+	burst_amount = 1
 	accuracy_mult = 1.05
 	accuracy_mult_unwielded = 0.8
-	scatter = 5
-	scatter_unwielded = 15
-	aim_slowdown = 0.3
-	wield_delay = 0.35 SECONDS
+	akimbo_additional_delay = 0.5
 
+	min_scatter = 2
+	min_scatter_unwielded = 3
+	max_scatter = 15
+	max_scatter_unwielded = 25
+	scatter_increase = 2
+	scatter_increase_unwielded = 8
+	scatter_decay = 0.5
+	scatter_decay_unwielded = 0.1
 
 //-------------------------------------------------------
 //GENERIC UZI //Based on the uzi submachinegun, of course.

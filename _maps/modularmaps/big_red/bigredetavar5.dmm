@@ -57,7 +57,7 @@
 /area/bigredv2/outside/general_offices)
 "cy" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/alarm{
+/obj/machinery/air_alarm{
 	dir = 4
 	},
 /turf/open/floor/tile/dark,
@@ -339,7 +339,7 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/general_offices)
 "oh" = (
-/obj/machinery/portable_atmospherics/hydroponics,
+/obj/machinery/hydroponics,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/green/whitegreenfull,
 /area/bigredv2/outside/hydroponics)
@@ -433,7 +433,7 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/bar)
 "rH" = (
-/obj/machinery/portable_atmospherics/hydroponics,
+/obj/machinery/hydroponics,
 /turf/open/floor/tile/green/whitegreenfull,
 /area/bigredv2/outside/hydroponics)
 "rN" = (

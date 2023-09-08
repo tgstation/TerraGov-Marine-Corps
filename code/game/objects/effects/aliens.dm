@@ -5,7 +5,7 @@
 /obj/effect/xenomorph
 	name = "alien thing"
 	desc = "You shouldn't be seeing this."
-	icon = 'icons/Xeno/effects.dmi'
+	icon = 'icons/Xeno/Effects.dmi'
 	layer = FLY_LAYER
 
 /obj/effect/xenomorph/splatter
@@ -41,7 +41,7 @@
 	anchored = TRUE
 	layer = ABOVE_OBJ_LAYER
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
-	allow_pass_flags = PASS_LOW_STRUCTURE|PASS_MOB|PASS_GRILLE
+	pass_flags = PASS_LOW_STRUCTURE|PASS_MOB|PASS_GRILLE|PASS_AIR
 	var/slow_amt = 0.8
 	var/duration = 10 SECONDS
 	var/acid_damage = XENO_DEFAULT_ACID_PUDDLE_DAMAGE
@@ -54,7 +54,7 @@
 	QDEL_IN(src, duration + rand(0, 2 SECONDS))
 	acid_damage = damage
 	xeno_owner = _xeno_owner
-	RegisterSignal(xeno_owner, COMSIG_PARENT_QDELETING, PROC_REF(clean_mob_owner))
+	RegisterSignal(xeno_owner, COMSIG_QDELETING, PROC_REF(clean_mob_owner))
 	RegisterSignal(loc, COMSIG_ATOM_ENTERED, PROC_REF(atom_enter_turf))
 	TIMER_COOLDOWN_START(src, COOLDOWN_PARALYSE_ACID, 5)
 
@@ -75,7 +75,7 @@
 
 /// Set xeno_owner to null to avoid hard del
 /obj/effect/xenomorph/spray/proc/clean_mob_owner()
-	UnregisterSignal(xeno_owner, COMSIG_PARENT_QDELETING)
+	UnregisterSignal(xeno_owner, COMSIG_QDELETING)
 	xeno_owner = null
 
 /// Signal handler to burn and maybe stun the human entering the acid spray
@@ -208,7 +208,7 @@
 /obj/effect/xenomorph/warp_shadow
 	name = "warp shadow"
 	desc = "A strange rift in space and time. You probably shouldn't touch this."
-	icon = 'icons/Xeno/2x2_Xenos.dmi'
+	icon = 'icons/Xeno/castes/wraith.dmi'
 	icon_state = "Wraith Walking"
 	color = COLOR_BLACK
 	alpha = 128 //Translucent

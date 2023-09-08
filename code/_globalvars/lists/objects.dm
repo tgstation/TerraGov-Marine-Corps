@@ -1,5 +1,14 @@
 GLOBAL_LIST_EMPTY(cable_list)					    //Index for all cables, so that powernets don't have to look through the entire world all the time
-GLOBAL_LIST_EMPTY(ammo_list)						//List of all ammo types. Used by guns to tell the projectile how to act.
+GLOBAL_LIST_INIT(ammo_list, init_ammo_list())						//List of all ammo types. Used by guns to tell the projectile how to act.
+
+/proc/init_ammo_list()
+	. = list()
+	// Our ammo stuff is initialized here.
+	var/blacklist = list(/datum/ammo/energy, /datum/ammo/bullet/shotgun, /datum/ammo/xeno)
+	for(var/t in subtypesof(/datum/ammo) - blacklist)
+		var/datum/ammo/A = new t
+		.[A.type] = A
+
 GLOBAL_LIST_EMPTY(marine_turrets)
 
 GLOBAL_LIST_EMPTY(droppod_list)
@@ -29,10 +38,17 @@ GLOBAL_LIST_EMPTY(nuke_disk_spawn_locs)				///list of spawn locations for nuke d
 GLOBAL_LIST_EMPTY(nuke_disk_list)					//list of all /obj/item/disk/nuclear
 GLOBAL_LIST_EMPTY(nightfall_toggleable_lights)		//list of all atoms which light can be shut down
 GLOBAL_LIST_EMPTY(main_overwatch_consoles)			//list of all main overwatch consoles
-
+GLOBAL_LIST_EMPTY(landing_lights)
 
 GLOBAL_LIST_EMPTY(chemical_reactions_list)				///list of all /datum/chemical_reaction datums index by reactants, Used during chemical reactions
 GLOBAL_LIST_EMPTY(chemical_reagents_list)				///list of all /datum/reagent datums instances indexed by reagent typepath. Used by chemistry stuff
+GLOBAL_LIST_INIT(randomized_pill_icons, init_pill_icons())
+
+/proc/init_pill_icons()
+	. = list()
+	for(var/i in 1 to 21)
+		. += "pill[i]"
+	shuffle(.)
 
 GLOBAL_LIST_EMPTY(apcs_list)							//list of all Area Power Controller machines, separate from machines for powernet speeeeeeed.
 
@@ -46,6 +62,8 @@ GLOBAL_LIST_EMPTY(xeno_resin_silo_turfs)
 GLOBAL_LIST_EMPTY(xeno_weed_node_turfs)
 GLOBAL_LIST_EMPTY(xeno_resin_door_turfs)
 GLOBAL_LIST_EMPTY(xeno_resin_wall_turfs)
+GLOBAL_LIST_EMPTY(xeno_tunnel_spawn_turfs)
+GLOBAL_LIST_EMPTY(xeno_jelly_pod_turfs)
 GLOBAL_LIST_EMPTY(xeno_resin_silos_by_hive)
 GLOBAL_LIST_EMPTY(xeno_resin_turrets_by_hive)
 GLOBAL_LIST_EMPTY(xeno_spawners_by_hive)

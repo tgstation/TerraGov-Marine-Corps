@@ -45,6 +45,9 @@
 		/obj/item/weapon/karambit,
 		/obj/item/weapon/karambit/fade,
 		/obj/item/weapon/karambit/case_hardened,
+		/obj/item/storage/briefcase/standard_magnum/gold,
+		/obj/item/storage/briefcase/standard_magnum/silver,
+		/obj/item/storage/briefcase/standard_magnum/nickle,
 	)
 	rare_list = list(
 		/obj/vehicle/unmanned,
@@ -396,44 +399,43 @@
 	item_state = "lootbox"
 
 	legendary_list = list(
-		/obj/item/storage/box/loot/operator_pack,
-		/obj/item/storage/box/loot/heavy_pack,
-		/obj/item/storage/box/loot/b18classic_pack,
-		/obj/item/storage/box/loot/sadarclassic_pack,
+		/obj/item/storage/box/crate/loot/operator_pack,
+		/obj/item/storage/box/crate/loot/heavy_pack,
+		/obj/item/storage/box/crate/loot/b18classic_pack,
+		/obj/item/storage/box/crate/loot/sadarclassic_pack,
 	)
 	rare_list = list(
-		/obj/item/storage/box/loot/tl102_pack,
-		/obj/item/storage/box/loot/mortar_pack,
+		/obj/item/storage/box/crate/loot/tl102_pack,
+		/obj/item/storage/box/crate/loot/mortar_pack,
 		/obj/structure/closet/crate/loot/howitzer_pack,
-		/obj/item/storage/box/loot/sentry_pack,
-		/obj/item/storage/box/loot/agl_pack,
+		/obj/item/storage/box/crate/loot/sentry_pack,
+		/obj/item/storage/box/crate/loot/agl_pack,
 	)
 	uncommon_list = list(
-		/obj/item/storage/box/loot/materials_pack,
-		/obj/item/storage/box/loot/railgun_pack,
-		/obj/item/storage/box/loot/scoutrifle_pack,
-		/obj/item/storage/box/loot/recoilless_pack,
+		/obj/item/storage/box/crate/loot/materials_pack,
+		/obj/item/storage/box/crate/loot/railgun_pack,
+		/obj/item/storage/box/crate/loot/scoutrifle_pack,
+		/obj/item/storage/box/crate/loot/recoilless_pack,
 	)
 	common_list = list(
-		/obj/item/storage/box/loot/autosniper_pack,
-		/obj/item/storage/box/loot/thermobaric_pack,
-		/obj/item/storage/box/loot/tesla_pack,
-		/obj/item/storage/box/loot/tx54_pack,
+		/obj/item/storage/box/crate/loot/autosniper_pack,
+		/obj/item/storage/box/crate/loot/thermobaric_pack,
+		/obj/item/storage/box/crate/loot/tesla_pack,
+		/obj/item/storage/box/crate/loot/tx54_pack,
 	)
 
 // Boxes the lootbox uses.
 
-/obj/item/storage/box/loot
+/obj/item/storage/box/crate/loot
 	name = "\improper generic equipment"
 	desc = "A large case containing some kind of equipment. Drag this sprite into you to open it up!\nNOTE: You cannot put items back inside this case."
-	icon = 'icons/Marine/marine-weapons.dmi'
 	icon_state = "smartgun_case"
 	w_class = WEIGHT_CLASS_HUGE
 	storage_slots = 21
 	can_hold = list() // Holds absolutely nothing after you take it out.
-	foldable = null
+	//foldable = null
 
-/obj/item/storage/box/loot/Initialize(mapload)
+/obj/item/storage/box/crate/loot/Initialize(mapload)
 	. = ..()
 	new /obj/item/weapon/banhammer(src)
 
@@ -453,7 +455,7 @@
 
 // Common
 
-/obj/item/storage/box/loot/autosniper_pack/Initialize(mapload)
+/obj/item/storage/box/crate/loot/autosniper_pack/Initialize(mapload)
 	. = ..()
 	new /obj/item/weapon/gun/rifle/standard_autosniper(src)
 	new /obj/item/weapon/gun/rifle/standard_autosniper(src)
@@ -469,7 +471,7 @@
 	new /obj/item/ammo_magazine/rifle/autosniper(src)
 	new /obj/item/ammo_magazine/rifle/autosniper(src) //180 total and common, fine considering 3 autos is really strong.
 
-/obj/item/storage/box/loot/thermobaric_pack/Initialize(mapload)
+/obj/item/storage/box/crate/loot/thermobaric_pack/Initialize(mapload)
 	. = ..()
 	new /obj/item/weapon/gun/launcher/rocket/m57a4/t57(src)
 	new /obj/item/weapon/gun/launcher/rocket/m57a4/t57(src)
@@ -485,13 +487,13 @@
 	new /obj/item/ammo_magazine/rocket/m57a4(src)
 	new /obj/item/ammo_magazine/rocket/m57a4(src) // three launchers and 10 arrays. Common. 200.
 
-/obj/item/storage/box/loot/tesla_pack/Initialize(mapload)
+/obj/item/storage/box/crate/loot/tesla_pack/Initialize(mapload)
 	. = ..()
 	new /obj/item/weapon/gun/energy/lasgun/lasrifle/tesla(src)
 	new /obj/item/weapon/gun/energy/lasgun/lasrifle/tesla(src)
 	new /obj/item/weapon/gun/energy/lasgun/lasrifle/tesla(src) // 180 and nothing else. Have fun.
 
-/obj/item/storage/box/loot/tx54_pack/Initialize(mapload)
+/obj/item/storage/box/crate/loot/tx54_pack/Initialize(mapload)
 	. = ..()
 	new /obj/item/weapon/gun/rifle/tx54(src)
 	new /obj/item/weapon/gun/rifle/tx54(src)
@@ -511,7 +513,7 @@
 
 // Uncommon
 
-/obj/item/storage/box/loot/materials_pack/Initialize(mapload)
+/obj/item/storage/box/crate/loot/materials_pack/Initialize(mapload)
 	. = ..()
 	new /obj/item/stack/sheet/plasteel/large_stack(src)
 	new /obj/item/stack/sheet/plasteel/large_stack(src)
@@ -524,7 +526,7 @@
 	new /obj/item/stack/sandbags_empty/full(src)
 	new /obj/item/stack/sandbags_empty/full(src)
 
-/obj/item/storage/box/loot/recoilless_pack/Initialize(mapload)
+/obj/item/storage/box/crate/loot/recoilless_pack/Initialize(mapload)
 	. = ..()
 	new /obj/item/storage/holster/backholster/rpg/full(src)
 	new /obj/item/storage/holster/backholster/rpg/full(src)
@@ -536,7 +538,7 @@
 	new /obj/item/ammo_magazine/rocket/recoilless/heat(src)
 	new /obj/item/ammo_magazine/rocket/recoilless/heat(src)
 
-/obj/item/storage/box/loot/railgun_pack/Initialize(mapload)
+/obj/item/storage/box/crate/loot/railgun_pack/Initialize(mapload)
 	. = ..()
 	new /obj/item/weapon/gun/rifle/railgun(src)
 	new /obj/item/weapon/gun/rifle/railgun(src)
@@ -554,7 +556,7 @@
 	new /obj/item/ammo_magazine/railgun(src)
 	new /obj/item/ammo_magazine/railgun(src)
 
-/obj/item/storage/box/loot/scoutrifle_pack/Initialize(mapload)
+/obj/item/storage/box/crate/loot/scoutrifle_pack/Initialize(mapload)
 	. = ..()
 	new /obj/item/weapon/gun/rifle/tx8(src)
 	new /obj/item/weapon/gun/rifle/tx8(src)
@@ -573,7 +575,7 @@
 
 // Rares
 
-/obj/item/storage/box/loot/mortar_pack/Initialize(mapload)
+/obj/item/storage/box/crate/loot/mortar_pack/Initialize(mapload)
 	. = ..()
 	new /obj/item/mortar_kit(src)
 	new /obj/item/mortar_kit(src)
@@ -598,12 +600,12 @@
 	new /obj/item/mortal_shell/howitzer/white_phos(src)
 	new /obj/item/mortal_shell/howitzer/white_phos(src)
 
-/obj/item/storage/box/loot/tl102_pack/Initialize(mapload)
+/obj/item/storage/box/crate/loot/tl102_pack/Initialize(mapload)
 	. = ..()
 	new /obj/item/storage/box/tl102(src)
 	new /obj/item/storage/box/tl102(src)
 
-/obj/item/storage/box/loot/agl_pack/Initialize(mapload)
+/obj/item/storage/box/crate/loot/agl_pack/Initialize(mapload)
 	. = ..()
 	new /obj/item/weapon/gun/standard_agls(src)
 	new /obj/item/ammo_magazine/standard_agls(src)
@@ -615,16 +617,16 @@
 	new /obj/item/ammo_magazine/standard_agls/fragmentation(src)
 	new /obj/item/ammo_magazine/standard_agls/fragmentation(src)
 
-/obj/item/storage/box/loot/sentry_pack/Initialize(mapload)
+/obj/item/storage/box/crate/loot/sentry_pack/Initialize(mapload)
 	. = ..()
-	new /obj/item/storage/box/sentry(src)
-	new /obj/item/storage/box/sentry(src)
-	new /obj/item/storage/box/sentry(src)
-	new /obj/item/storage/box/minisentry(src)
+	new /obj/item/storage/box/crate/sentry(src)
+	new /obj/item/storage/box/crate/sentry(src)
+	new /obj/item/storage/box/crate/sentry(src)
+	new /obj/item/storage/box/crate/minisentry(src)
 
 // Legendaries
 
-/obj/item/storage/box/loot/operator_pack/Initialize(mapload)
+/obj/item/storage/box/crate/loot/operator_pack/Initialize(mapload)
 	. = ..()
 	new /obj/item/weapon/gun/rifle/m412/elite
 	new /obj/item/ammo_magazine/rifle
@@ -633,7 +635,7 @@
 	new /obj/item/ammo_magazine/rifle
 	new /obj/item/clothing/glasses/night/tx8
 
-/obj/item/storage/box/loot/b18classic_pack/Initialize(mapload)
+/obj/item/storage/box/crate/loot/b18classic_pack/Initialize(mapload)
 	. = ..()
 	new /obj/item/clothing/suit/storage/marine/specialist(src)
 	new /obj/item/clothing/head/helmet/marine/specialist(src)
@@ -642,7 +644,7 @@
 	new /obj/item/ammo_magazine/minigun_powerpack(src)
 	new /obj/item/ammo_magazine/minigun_powerpack(src)
 
-/obj/item/storage/box/loot/heavy_pack/Initialize(mapload)
+/obj/item/storage/box/crate/loot/heavy_pack/Initialize(mapload)
 	. = ..()
 	new /obj/item/weapon/gun/minigun(src)
 	new /obj/item/weapon/gun/minigun(src)
@@ -651,7 +653,7 @@
 	new /obj/item/armor_module/module/tyr_extra_armor(src)
 	new /obj/item/armor_module/module/tyr_extra_armor(src)
 
-/obj/item/storage/box/loot/sadarclassic_pack/Initialize(mapload)
+/obj/item/storage/box/crate/loot/sadarclassic_pack/Initialize(mapload)
 	. = ..()
 	new /obj/item/weapon/gun/launcher/rocket/sadar(src)
 	new /obj/item/storage/backpack/marine/satchel/scout_cloak/scout(src)

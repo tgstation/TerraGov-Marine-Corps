@@ -53,11 +53,11 @@
 ///Set the trunk of the disposal
 /obj/machinery/disposal/proc/set_trunk(obj/future_trunk)
 	if(trunk)
-		UnregisterSignal(trunk, COMSIG_PARENT_QDELETING)
+		UnregisterSignal(trunk, COMSIG_QDELETING)
 	trunk = null
 	if(future_trunk)
 		trunk = future_trunk
-		RegisterSignal(trunk, COMSIG_PARENT_QDELETING, PROC_REF(clean_trunk))
+		RegisterSignal(trunk, COMSIG_QDELETING, PROC_REF(clean_trunk))
 
 ///Signal handler to clean trunk to prevent harddel
 /obj/machinery/disposal/proc/clean_trunk()
@@ -197,7 +197,7 @@
 	user.forceMove(loc)
 	if(isliving(user))
 		var/mob/living/L = user
-		L.Stun(40)
+		L.Stun(4 SECONDS)
 	if(!user.lying_angle)
 		user.visible_message("<span class='warning'>[user] suddenly climbs out of [src]!",
 		"<span class='warning'>You climb out of [src] and get your bearings!")
@@ -284,7 +284,7 @@
 				"<span class='warning'>You get pushed out of [src] and get your bearings!")
 			if(isliving(M))
 				var/mob/living/L = M
-				L.Stun(40)
+				L.Stun(4 SECONDS)
 	update()
 
 //Pipe affected by explosion
@@ -1165,11 +1165,11 @@
 ///Set the linked atom
 /obj/structure/disposalpipe/trunk/proc/set_linked(obj/to_link)
 	if(linked)
-		UnregisterSignal(linked, COMSIG_PARENT_QDELETING)
+		UnregisterSignal(linked, COMSIG_QDELETING)
 	linked = null
 	if(to_link)
 		linked = to_link
-		RegisterSignal(linked, COMSIG_PARENT_QDELETING, PROC_REF(clean_linked))
+		RegisterSignal(linked, COMSIG_QDELETING, PROC_REF(clean_linked))
 
 ///Signal handler to clean linked from harddeling
 /obj/structure/disposalpipe/trunk/proc/clean_linked()

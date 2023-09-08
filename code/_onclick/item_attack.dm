@@ -49,7 +49,7 @@
 /atom/proc/attackby(obj/item/I, mob/user, params)
 	SIGNAL_HANDLER_DOES_SLEEP
 	add_fingerprint(user, "attackby", I)
-	if(SEND_SIGNAL(src, COMSIG_PARENT_ATTACKBY, I, user, params) & COMPONENT_NO_AFTERATTACK)
+	if(SEND_SIGNAL(src, COMSIG_ATOM_ATTACKBY, I, user, params) & COMPONENT_NO_AFTERATTACK)
 		return TRUE
 	return FALSE
 
@@ -109,7 +109,7 @@
 	playsound(attached_clamp.linked_powerloader, 'sound/machines/hydraulics_2.ogg', 40, 1)
 	attached_clamp.update_icon()
 	user.visible_message(span_notice("[user] grabs [attached_clamp.loaded] with [attached_clamp]."),
-	span_notice("You grab [attached_clamp.loaded] with [src]."))
+	span_notice("You grab [attached_clamp.loaded] with [attached_clamp]."))
 
 /mob/living/attacked_by(obj/item/I, mob/living/user, def_zone)
 
@@ -286,7 +286,7 @@
 
 /atom/proc/attackby_alternate(obj/item/I, mob/user, params)
 	add_fingerprint(user, "attackby_alternate", I)
-	if(SEND_SIGNAL(src, COMSIG_PARENT_ATTACKBY_ALTERNATE, I, user, params) & COMPONENT_NO_AFTERATTACK)
+	if(SEND_SIGNAL(src, COMSIG_ATOM_ATTACKBY_ALTERNATE, I, user, params) & COMPONENT_NO_AFTERATTACK)
 		return TRUE
 	return FALSE
 

@@ -18,7 +18,6 @@
 	layer = ATMOS_DEVICE_LAYER
 	flags_atom = SHUTTLE_IMMUNE
 
-	var/id_tag = null
 	var/pump_direction = RELEASING
 
 	var/pressure_checks = EXT_BOUND
@@ -32,18 +31,6 @@
 	var/radio_filter_in
 
 	pipe_state = "uvent"
-
-/obj/machinery/atmospherics/components/unary/vent_pump/New()
-	. = ..()
-	if(!id_tag)
-		id_tag = assign_uid_vents()
-
-/obj/machinery/atmospherics/components/unary/vent_pump/Destroy()
-	var/area/A = get_area(src)
-	if (A)
-		A.air_vent_names -= id_tag
-		A.air_vent_info -= id_tag
-	return ..()
 
 /obj/machinery/atmospherics/components/unary/vent_pump/update_icon_nopipes()
 	cut_overlays()

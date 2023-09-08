@@ -116,8 +116,6 @@
 	icon_state = "holster"
 	storage = /obj/item/storage/internal/holster
 
-/obj/item/armor_module/storage/uniform/holster/freelancer
-
 /obj/item/armor_module/storage/uniform/holster/freelancer/Initialize(mapload)
 	. = ..()
 	new /obj/item/weapon/gun/pistol/g22(storage)
@@ -138,6 +136,13 @@
 	new /obj/item/ammo_magazine/pistol/highpower(storage)
 	new /obj/item/ammo_magazine/pistol/highpower(storage)
 	new /obj/item/ammo_magazine/pistol/highpower(storage)
+
+/obj/item/armor_module/storage/uniform/holster/deathsquad/Initialize(mapload)
+	. = ..()
+	new /obj/item/ammo_magazine/revolver/mateba(storage)
+	new /obj/item/ammo_magazine/revolver/mateba(storage)
+	new /obj/item/ammo_magazine/revolver/mateba(storage)
+	new /obj/item/weapon/gun/revolver/mateba(storage)
 
 /obj/item/storage/internal/holster
 	storage_slots = 4

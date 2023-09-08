@@ -66,6 +66,9 @@
 		if(EXPLODE_LIGHT)
 			if(prob(50))
 				deflate(TRUE)
+		if(EXPLODE_WEAK)
+			if(prob(20))
+				deflate(TRUE)
 
 
 /obj/structure/inflatable/attackby(obj/item/I, mob/user, params)

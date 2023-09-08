@@ -20,7 +20,7 @@
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/ne)
 "aV" = (
-/turf/open/floor/wood/variable/damaged/standard,
+/turf/open/floor/wood/broken,
 /area/bigredv2/outside/general_offices)
 "bd" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
@@ -162,6 +162,11 @@
 /obj/effect/spawner/gibspawner/human,
 /turf/open/floor/plating/dmg1,
 /area/bigredv2/outside/general_offices)
+"gy" = (
+/obj/structure/cable,
+/obj/machinery/power/apc/drained,
+/turf/open/floor/plating/dmg3,
+/area/bigredv2/outside/general_offices)
 "gK" = (
 /turf/closed/wall,
 /area/bigredv2/outside/dorms)
@@ -270,7 +275,7 @@
 /area/bigredv2/outside/general_offices)
 "lt" = (
 /obj/effect/spawner/gibspawner/human,
-/turf/open/floor/wood/variable/damaged/standard,
+/turf/open/floor/wood/broken,
 /area/bigredv2/outside/general_offices)
 "mc" = (
 /turf/closed/shuttle/dropship2/walltwo,
@@ -298,7 +303,7 @@
 /area/bigredv2/outside/general_offices)
 "nj" = (
 /obj/structure/bed,
-/turf/open/floor/wood/variable/damaged/standard,
+/turf/open/floor/wood/broken,
 /area/bigredv2/outside/general_offices)
 "nr" = (
 /obj/effect/ai_node,
@@ -318,7 +323,7 @@
 /area/bigredv2/caves/northeast/garbledradio)
 "oH" = (
 /obj/item/stack/sheet/wood,
-/turf/open/floor/wood/variable/damaged/standard,
+/turf/open/floor/wood/broken,
 /area/bigredv2/outside/general_offices)
 "oI" = (
 /obj/effect/decal/cleanable/blood/six{
@@ -429,7 +434,7 @@
 /area/bigredv2/outside/bar)
 "sV" = (
 /obj/structure/table,
-/turf/open/floor/wood/variable/damaged/standard,
+/turf/open/floor/wood/broken,
 /area/bigredv2/outside/general_offices)
 "tf" = (
 /turf/closed/shuttle/dropship2/cornersalt,
@@ -458,6 +463,11 @@
 	},
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/ne)
+"vo" = (
+/obj/item/stack/rods,
+/obj/structure/cable,
+/turf/open/floor/plating/dmg3,
+/area/bigredv2/outside/general_offices)
 "vK" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating/ground/mars/random/sand,
@@ -551,7 +561,7 @@
 /turf/open/floor/plating/scorched,
 /area/bigredv2/outside/general_offices)
 "Ap" = (
-/obj/machinery/portable_atmospherics/hydroponics,
+/obj/machinery/hydroponics,
 /turf/open/floor/tile/green/whitegreenfull,
 /area/bigredv2/outside/hydroponics)
 "AE" = (
@@ -763,7 +773,12 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/turf/open/floor/wood/variable/damaged/standard,
+/turf/open/floor/wood/broken,
+/area/bigredv2/outside/general_offices)
+"LV" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable,
+/turf/open/floor/plating/dmg1,
 /area/bigredv2/outside/general_offices)
 "Mi" = (
 /turf/closed/shuttle/dropship2/corners{
@@ -1488,9 +1503,9 @@ Ap
 bl
 SC
 RJ
-DU
-er
-DG
+gy
+LV
+vo
 Hh
 Hh
 TF

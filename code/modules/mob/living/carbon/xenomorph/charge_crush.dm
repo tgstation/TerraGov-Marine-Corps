@@ -89,7 +89,10 @@
 	var/mob/living/carbon/xenomorph/charger = owner
 	if(charger.is_charging == CHARGE_OFF)
 		return
-	if(!old_dir || !new_dir || old_dir == new_dir || agile_charge) //Check for null direction from help shuffle signals
+	if(!old_dir || !new_dir || old_dir == new_dir) //Check for null direction from help shuffle signals
+		return
+	if(agile_charge)
+		speed_down(8)
 		return
 	do_stop_momentum()
 
@@ -123,7 +126,7 @@
 
 /datum/action/xeno_action/ready_charge/proc/do_start_crushing()
 	var/mob/living/carbon/xenomorph/charger = owner
-	RegisterSignal(charger, list(COMSIG_MOVABLE_PREBUMP_TURF, COMSIG_MOVABLE_PREBUMP_MOVABLE, COMSIG_MOVABLE_PREBUMP_EXIT_MOVABLE), PROC_REF(do_crush))
+	RegisterSignals(charger, list(COMSIG_MOVABLE_PREBUMP_TURF, COMSIG_MOVABLE_PREBUMP_MOVABLE, COMSIG_MOVABLE_PREBUMP_EXIT_MOVABLE), PROC_REF(do_crush))
 	charger.is_charging = CHARGE_ON
 	charger.update_icons()
 
@@ -549,9 +552,9 @@
 
 	switch(charge_datum.charge_type)
 		if(CHARGE_CRUSH)
-			Paralyze(CHARGE_SPEED(charge_datum) * 20)
+			Paralyze(CHARGE_SPEED(charge_datum) * 2 SECONDS)
 		if(CHARGE_BULL_HEADBUTT)
-			Paralyze(CHARGE_SPEED(charge_datum) * 25)
+			Paralyze(CHARGE_SPEED(charge_datum) * 2.5 SECONDS)
 
 	if(anchored)
 		charge_datum.do_stop_momentum(FALSE)

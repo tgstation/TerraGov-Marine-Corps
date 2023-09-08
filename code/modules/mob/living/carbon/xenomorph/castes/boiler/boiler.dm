@@ -2,7 +2,7 @@
 	caste_base_type = /mob/living/carbon/xenomorph/boiler
 	name = "Boiler"
 	desc = "A huge, grotesque xenomorph covered in glowing, oozing acid slime."
-	icon = 'icons/Xeno/2x2_Xenos.dmi'
+	icon = 'icons/Xeno/castes/boiler.dmi'
 	icon_state = "Boiler Walking"
 	bubble_icon = "alienroyal"
 	health = 200
@@ -49,7 +49,7 @@
 	update_boiler_glow()
 	RegisterSignal(src, COMSIG_XENOMORPH_GIBBING, PROC_REF(gib_explode))
 	RegisterSignal(src, COMSIG_MOB_STAT_CHANGED, PROC_REF(on_stat_change))
-	RegisterSignal(src, list(COMSIG_LIVING_STATUS_STUN,
+	RegisterSignals(src, list(COMSIG_LIVING_STATUS_STUN,
 		COMSIG_LIVING_STATUS_KNOCKDOWN,
 		COMSIG_LIVING_STATUS_PARALYZE,
 		COMSIG_LIVING_STATUS_IMMOBILIZE,

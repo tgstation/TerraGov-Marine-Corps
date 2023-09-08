@@ -459,13 +459,12 @@
 		COMSIG_KB_GUN_SAFETY,
 		COMSIG_KB_UNIQUEACTION,
 		COMSIG_KB_AUTOEJECT,
-		COMSIG_PARENT_QDELETING,
+		COMSIG_QDELETING,
 		COMSIG_RANGED_ACCURACY_MOD_CHANGED,
 		COMSIG_RANGED_SCATTER_MOD_CHANGED,
 		COMSIG_MOB_SKILLS_CHANGED,
 		COMSIG_MOB_SHOCK_STAGE_CHANGED,
-		COMSIG_HUMAN_MARKSMAN_AURA_CHANGED,
-		COMSIG_LIVING_STAGGER_CHANGED,))
+		COMSIG_HUMAN_MARKSMAN_AURA_CHANGED))
 		gun_user.client?.mouse_pointer_icon = initial(gun_user.client.mouse_pointer_icon)
 		SEND_SIGNAL(gun_user, COMSIG_GUN_USER_UNSET)
 		gun_user.hud_used.remove_ammo_hud(src)
@@ -481,12 +480,11 @@
 		return
 	gun_user = user
 	setup_bullet_accuracy()
-	RegisterSignal(gun_user, list(COMSIG_RANGED_ACCURACY_MOD_CHANGED,
+	RegisterSignals(gun_user, list(COMSIG_RANGED_ACCURACY_MOD_CHANGED,
 		COMSIG_RANGED_SCATTER_MOD_CHANGED,
 		COMSIG_MOB_SKILLS_CHANGED,
 		COMSIG_MOB_SHOCK_STAGE_CHANGED,
-		COMSIG_HUMAN_MARKSMAN_AURA_CHANGED,
-		COMSIG_LIVING_STAGGER_CHANGED), PROC_REF(setup_bullet_accuracy))
+		COMSIG_HUMAN_MARKSMAN_AURA_CHANGED), PROC_REF(setup_bullet_accuracy))
 	SEND_SIGNAL(gun_user, COMSIG_GUN_USER_SET, src)
 	if(flags_gun_features & GUN_AMMO_COUNTER)
 		gun_user.hud_used.add_ammo_hud(src, get_ammo_list(), get_display_ammo_count())
@@ -501,8 +499,8 @@
 		RegisterSignal(gun_user, COMSIG_MOB_MOUSEDRAG, PROC_REF(change_target))
 	else
 		RegisterSignal(gun_user, COMSIG_KB_UNIQUEACTION, PROC_REF(unique_action))
-	RegisterSignal(gun_user, COMSIG_PARENT_QDELETING, PROC_REF(clean_gun_user))
-	RegisterSignal(gun_user, list(COMSIG_MOB_MOUSEUP, COMSIG_ITEM_ZOOM, COMSIG_ITEM_UNZOOM), PROC_REF(stop_fire))
+	RegisterSignal(gun_user, COMSIG_QDELETING, PROC_REF(clean_gun_user))
+	RegisterSignals(gun_user, list(COMSIG_MOB_MOUSEUP, COMSIG_ITEM_ZOOM, COMSIG_ITEM_UNZOOM), PROC_REF(stop_fire))
 	RegisterSignal(gun_user, COMSIG_KB_RAILATTACHMENT, PROC_REF(activate_rail_attachment))
 	RegisterSignal(gun_user, COMSIG_KB_UNDERRAILATTACHMENT, PROC_REF(activate_underrail_attachment))
 	RegisterSignal(gun_user, COMSIG_KB_UNLOADGUN, PROC_REF(unload_gun))
@@ -743,13 +741,13 @@
 ///Set the target and take care of hard delete
 /obj/item/weapon/gun/proc/set_target(atom/object)
 	active_attachable?.set_target(object)
-	if(object == target || object == gun_user)
+	if(object == target || (gun_user && object == gun_user))
 		return
 	if(target)
-		UnregisterSignal(target, COMSIG_PARENT_QDELETING)
+		UnregisterSignal(target, COMSIG_QDELETING)
 	target = object
 	if(target)
-		RegisterSignal(target, COMSIG_PARENT_QDELETING, PROC_REF(clean_target))
+		RegisterSignal(target, COMSIG_QDELETING, PROC_REF(clean_target))
 
 ///Set the target to it's turf, so we keep shooting even when it was qdeled
 /obj/item/weapon/gun/proc/clean_target()
@@ -784,6 +782,7 @@
 		ADD_TRAIT(src, TRAIT_GUN_BURST_FIRING, GUN_TRAIT)
 		return
 	REMOVE_TRAIT(src, TRAIT_GUN_BURST_FIRING, GUN_TRAIT)
+	shots_fired = 0 //autofire component won't reset this when autobursting otherwise
 
 ///Update the target if you draged your mouse
 /obj/item/weapon/gun/proc/change_target(datum/source, atom/src_object, atom/over_object, turf/src_location, turf/over_location, src_control, over_control, params)
@@ -838,7 +837,8 @@
 
 	last_fired = world.time
 	SEND_SIGNAL(src, COMSIG_MOB_GUN_FIRED, target, src)
-	SEND_SIGNAL(gun_user, COMSIG_MOB_GUN_FIRE, src)
+	if(gun_user)
+		SEND_SIGNAL(gun_user, COMSIG_MOB_GUN_FIRE, src)
 
 	if(!max_chamber_items)
 		in_chamber = null
@@ -1715,7 +1715,7 @@
 	if(gun_firemode == GUN_FIREMODE_BURSTFIRE)
 		delay += extra_delay
 
-	if(world.time >= delay && SEND_SIGNAL(user, COMSIG_MOB_GUN_COOLDOWN, src))
+	if(world.time >= delay && (!user || SEND_SIGNAL(user, COMSIG_MOB_GUN_COOLDOWN, src)))
 		return FALSE
 
 	if(world.time % 3 && !user?.client?.prefs.mute_self_combat_messages)
@@ -1797,9 +1797,6 @@
 			var/mob/living/living_user = gun_user
 			gun_accuracy_mod += living_user.ranged_accuracy_mod
 			gun_scatter += living_user.ranged_scatter_mod
-
-			if(living_user.stagger)
-				gun_scatter += 5
 
 		if(ishuman(gun_user))
 			var/mob/living/carbon/human/shooter_human = gun_user

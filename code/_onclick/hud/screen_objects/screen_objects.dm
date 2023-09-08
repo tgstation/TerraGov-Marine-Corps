@@ -639,14 +639,14 @@
 	tracker = tracker_input
 	target = target_input
 	tracker.client.screen += src
-	RegisterSignal(tracker, COMSIG_PARENT_QDELETING, PROC_REF(kill_arrow))
-	RegisterSignal(target, COMSIG_PARENT_QDELETING, PROC_REF(kill_arrow))
+	RegisterSignal(tracker, COMSIG_QDELETING, PROC_REF(kill_arrow))
+	RegisterSignal(target, COMSIG_QDELETING, PROC_REF(kill_arrow))
 	process() //Ping immediately after parameters have been set
 
 ///Stop the arrow to avoid runtime and hard del
 /atom/movable/screen/arrow/proc/kill_arrow()
 	SIGNAL_HANDLER
-	if(tracker.client)
+	if(tracker?.client)
 		tracker.client.screen -= src
 	deltimer(del_timer)
 	qdel(src)

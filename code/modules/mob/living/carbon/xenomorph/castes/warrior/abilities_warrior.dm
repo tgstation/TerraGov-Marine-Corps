@@ -123,7 +123,7 @@
 	X.add_filter("warrior_lunge", 2, gauss_blur_filter(3))
 	lunge_target = A
 
-	RegisterSignal(lunge_target, COMSIG_PARENT_QDELETING, PROC_REF(clean_lunge_target))
+	RegisterSignal(lunge_target, COMSIG_QDELETING, PROC_REF(clean_lunge_target))
 	RegisterSignal(X, COMSIG_MOVABLE_MOVED, PROC_REF(check_if_lunge_possible))
 	RegisterSignal(X, COMSIG_MOVABLE_POST_THROW, PROC_REF(clean_lunge_target))
 	if(lunge_target.Adjacent(X)) //They're already in range, neck grab without lunging.
@@ -154,7 +154,7 @@
 /// Null lunge target and reset throw vars
 /datum/action/xeno_action/activable/lunge/proc/clean_lunge_target()
 	SIGNAL_HANDLER
-	UnregisterSignal(lunge_target, COMSIG_PARENT_QDELETING)
+	UnregisterSignal(lunge_target, COMSIG_QDELETING)
 	UnregisterSignal(owner, COMSIG_MOVABLE_POST_THROW)
 	lunge_target = null
 	UnregisterSignal(owner, COMSIG_MOVABLE_MOVED)
@@ -326,7 +326,7 @@
 				stagger_slow_stacks = 0
 				stun_duration = 0
 
-		victim.adjust_stagger(stagger_slow_stacks)
+		victim.adjust_stagger(stagger_slow_stacks SECONDS)
 		victim.add_slowdown(stagger_slow_stacks)
 		victim.adjust_blurriness(stagger_slow_stacks) //Cosmetic eye blur SFX
 		victim.ParalyzeNoChain(stun_duration)
@@ -539,7 +539,7 @@
 	X.do_attack_animation(src, ATTACK_EFFECT_YELLOWPUNCH)
 	X.do_attack_animation(src, ATTACK_EFFECT_DISARM2)
 
-	adjust_stagger(stagger_stacks)
+	adjust_stagger(stagger_stacks SECONDS)
 	add_slowdown(slowdown_stacks)
 	adjust_blurriness(slowdown_stacks) //Cosmetic eye blur SFX
 
@@ -582,7 +582,7 @@
 
 	if(!target.punch_act(X, damage, target_zone, push = FALSE, punch_description = "precise", stagger_stacks = 3, slowdown_stacks = 6))
 		return fail_activate()
-	if(X.empower())
+	if(X.empower() && ishuman(target))
 		target.blind_eyes(3)
 		target.blur_eyes(6)
 		to_chat(target, span_highdanger("The concussion from the [X]'s blow blinds us!"))

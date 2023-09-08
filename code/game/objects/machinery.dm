@@ -136,6 +136,8 @@
 			if(!prob(25))
 				return
 			qdel(src)
+		if(EXPLODE_WEAK)
+			return
 
 
 /obj/machinery/proc/power_change()

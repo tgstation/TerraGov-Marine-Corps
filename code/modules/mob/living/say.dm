@@ -235,20 +235,14 @@ GLOBAL_LIST_INIT(department_radio_keys_som, list(
 	if(eavesdropping_modes[message_mode])
 		eavesdrop_range = EAVESDROP_EXTRA_RANGE
 	var/list/listening = get_hearers_in_view(message_range+eavesdrop_range, source)
-	var/list/the_dead = list()
-	for(var/_M in GLOB.player_list)
-		var/mob/player_mob = _M
-		if(player_mob.stat != DEAD) //not dead, not important
+	var/turf/src_turf = get_turf(src)
+	for(var/mob/player_mob AS in SSmobs.dead_players_by_zlevel[src_turf.z])
+		if(!client || isnull(player_mob)) //client is so that ghosts don't have to listen to mice
 			continue
-		if(!player_mob.client || !client) //client is so that ghosts don't have to listen to mice
-			continue
-		if(player_mob.z != z || get_dist(player_mob, src) > 7) //they're out of range of normal hearing
-			if(!(player_mob.client.prefs.toggles_chat & CHAT_GHOSTEARS))
+		if(get_dist(player_mob, src) > 7) //they're out of range of normal hearing
+			if(!(player_mob?.client?.prefs.toggles_chat & CHAT_GHOSTEARS))
 				continue
-		if((istype(player_mob.remote_control, /mob/camera/aiEye) || isAI(player_mob)) && !GLOB.cameranet.checkTurfVis(src))
-			continue // AI can't hear what they can't see
 		listening |= player_mob
-		the_dead[player_mob] = TRUE
 
 	var/eavesdropping
 	var/eavesrendered
@@ -263,15 +257,15 @@ GLOBAL_LIST_INIT(department_radio_keys_som, list(
 			stack_trace("somehow theres a null returned from get_hearers_in_view() in send_speech!")
 			continue
 		var/heard
-		if(eavesdrop_range && get_dist(source, listening_movable) > eavesdrop_range && !(the_dead[listening_movable]))
+		if(eavesdrop_range && get_dist(source, listening_movable) > eavesdrop_range && !isobserver(listening_movable))
 			heard = listening_movable.Hear(eavesrendered, src, message_language, eavesdropping, null, spans, message_mode)
 		else
 			heard = listening_movable.Hear(rendered, src, message_language, message_raw, null, spans, message_mode)
-		if(heard)
+		if(heard && !isobserver(listening_movable)) // observers excluded cus we dont want tts to trigger on them(tts handles that)
 			listened += listening_movable
 	//Note, TG has a found_client var they use, piggybacking on unrelated say popups and runechat code
 	//we dont do that since it'd probably be much more expensive to loop over listeners instead of just doing
-	if(voice && !(client?.prefs.muted & MUTE_TTS))
+	if(voice && !(client?.prefs.muted & MUTE_TTS) && !is_banned_from(ckey, "TTS"))
 		var/tts_message_to_use = tts_message
 		if(!tts_message_to_use)
 			tts_message_to_use = message_raw
@@ -283,7 +277,7 @@ GLOBAL_LIST_INIT(department_radio_keys_som, list(
 		if(length(tts_filter) > 0)
 			filter += tts_filter.Join(",")
 
-		INVOKE_ASYNC(SStts, TYPE_PROC_REF(/datum/controller/subsystem/tts, queue_tts_message), src, html_decode(tts_message_to_use), message_language, voice, filter.Join(","), listened, FALSE, message_range, (job?.job_flags & JOB_FLAG_LOUDER_TTS) ? 20 : 0)
+		INVOKE_ASYNC(SStts, TYPE_PROC_REF(/datum/controller/subsystem/tts, queue_tts_message), src, html_decode(tts_message_to_use), message_language, voice, filter.Join(","), listened, FALSE, message_range, (job?.job_flags & JOB_FLAG_LOUDER_TTS) ? 20 : 0, pitch = pitch, silicon = tts_silicon_voice_effect)
 
 /mob/living/GetVoice()
 	return name
@@ -406,6 +400,9 @@ GLOBAL_LIST_INIT(department_radio_keys_som, list(
 		if(client.prefs.muted & MUTE_IC)
 			to_chat(src, span_danger("You cannot speak in IC (muted)."))
 			return FALSE
+		if(is_banned_from(ckey, "IC"))
+			to_chat(src, span_warning("You are banned from IC chat."))
+			return
 		if(!ignore_spam && client.handle_spam_prevention(message, MUTE_IC))
 			return FALSE
 

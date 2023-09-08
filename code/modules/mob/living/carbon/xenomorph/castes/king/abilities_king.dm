@@ -257,10 +257,10 @@
 				continue
 			carbon_victim.apply_damage(SHATTERING_ROAR_DAMAGE * severity, BRUTE, blocked = MELEE)
 			carbon_victim.apply_damage(SHATTERING_ROAR_DAMAGE * severity, STAMINA)
-			carbon_victim.adjust_stagger(6 * severity)
+			carbon_victim.adjust_stagger(6 SECONDS * severity)
 			carbon_victim.add_slowdown(6 * severity)
 			shake_camera(carbon_victim, 3 * severity, 3 * severity)
-			carbon_victim.apply_effect(0.5, WEAKEN)
+			carbon_victim.apply_effect(1 SECONDS, WEAKEN)
 			to_chat(carbon_victim, "You are smashed to the ground!")
 		else if(ismecha(victim))
 			var/obj/vehicle/sealed/mecha/mecha_victim = victim
@@ -380,7 +380,7 @@
 
 	REMOVE_TRAIT(owner, TRAIT_IMMOBILE, ZERO_FORM_BEAM_ABILITY_TRAIT)
 	sound_loop.start(owner)
-	RegisterSignal(owner, list(COMSIG_MOVABLE_MOVED, COMSIG_ATOM_DIR_CHANGE), PROC_REF(stop_beaming))
+	RegisterSignals(owner, list(COMSIG_MOVABLE_MOVED, COMSIG_ATOM_DIR_CHANGE), PROC_REF(stop_beaming))
 	var/mob/living/carbon/xenomorph/king/king_owner = owner
 	if(istype(king_owner))
 		king_owner.icon_state = "King Screeching"

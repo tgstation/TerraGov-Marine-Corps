@@ -252,7 +252,7 @@
 /turf/open/floor/wood,
 /area/bigredv2/outside/library)
 "FH" = (
-/obj/machinery/alarm{
+/obj/machinery/air_alarm{
 	dir = 4
 	},
 /turf/open/floor/wood,

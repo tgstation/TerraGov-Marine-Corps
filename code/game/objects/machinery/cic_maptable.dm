@@ -52,3 +52,79 @@
 
 /obj/machinery/cic_maptable/som_maptable
 	allowed_flags = MINIMAP_FLAG_MARINE_SOM
+
+/obj/machinery/cic_maptable_big
+	name = "map table"
+	desc = "A table that displays a map of the current target location that also allows drawing onto it"
+	interaction_flags = INTERACT_MACHINE_DEFAULT
+	use_power = IDLE_POWER_USE
+	density = TRUE
+	idle_power_usage = 2
+	icon = 'icons/Marine/mainship_props96.dmi'
+	icon_state = "maptable"
+	layer = ABOVE_OBJ_LAYER
+	pixel_x = -16
+	pixel_y = -14
+	coverage = 75
+	allow_pass_flags = PASS_LOW_STRUCTURE|PASSABLE
+	/// List of references to the tools we will be using to shape what the map looks like
+	var/list/atom/movable/screen/drawing_tools = list(
+		/atom/movable/screen/minimap_tool/draw_tool/red,
+		/atom/movable/screen/minimap_tool/draw_tool/yellow,
+		/atom/movable/screen/minimap_tool/draw_tool/purple,
+		/atom/movable/screen/minimap_tool/draw_tool/blue,
+		/atom/movable/screen/minimap_tool/draw_tool/erase,
+		/atom/movable/screen/minimap_tool/label,
+		/atom/movable/screen/minimap_tool/clear,
+	)
+	/// the Zlevel that this tablet will be allowed to edit
+	var/editing_z = 2
+	/// The minimap flag we will be allowing to edit
+	var/minimap_flag = MINIMAP_FLAG_MARINE
+	///minimap obj ref that we will display to users
+	var/atom/movable/screen/minimap/map
+
+/obj/machinery/cic_maptable_big/Initialize(mapload)
+	. = ..()
+	var/static/list/connections = list(
+		COMSIG_OBJ_TRY_ALLOW_THROUGH = PROC_REF(can_climb_over),
+	)
+	AddElement(/datum/element/connect_loc, connections)
+	var/list/atom/movable/screen/actions = list()
+	for(var/path in drawing_tools)
+		actions += new path(null, editing_z, minimap_flag)
+	drawing_tools = actions
+
+/obj/machinery/cic_maptable_big/Destroy()
+	. = ..()
+	QDEL_LIST(drawing_tools)
+
+/obj/machinery/cic_maptable_big/examine(mob/user)
+	. = ..()
+	. += span_warning("Note that abuse may result in a command role ban.")
+
+/obj/machinery/cic_maptable_big/interact(mob/user)
+	. = ..()
+	if(.)
+		return
+	if(!user.client)
+		return
+	if(user.skills.getRating(SKILL_LEADERSHIP) < SKILL_LEAD_EXPERT)
+		user.balloon_alert(user, "Can't use that!")
+		return
+	if(is_banned_from(user.client.ckey, GLOB.roles_allowed_minimap_draw))
+		to_chat(user, span_boldwarning("You have been banned from a command role. You may not use [src] until the ban has been lifted."))
+		return
+	if(!map)
+		map = SSminimaps.fetch_minimap_object(editing_z, minimap_flag)
+	user.client.screen += map
+	user.client.screen += drawing_tools
+
+///Handles closing the map, including removing all on-screen indicators and similar
+/obj/machinery/cic_maptable_big/on_unset_interaction(mob/user)
+	. = ..()
+	user.client.screen -= map
+	user.client.screen -= drawing_tools
+	user.client.mouse_pointer_icon = null
+	for(var/atom/movable/screen/minimap_tool/tool AS in drawing_tools)
+		tool.UnregisterSignal(user, list(COMSIG_MOB_MOUSEDOWN, COMSIG_MOB_MOUSEUP))

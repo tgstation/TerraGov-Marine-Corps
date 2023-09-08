@@ -25,7 +25,7 @@
 	if(!use(1))
 		return
 	playsound(T, 'sound/weapons/genhit.ogg', 25, 1)
-	T.ChangeTurf(turf_type, list(/turf/open/floor/plating))
+	T.PlaceOnTop(turf_type)
 
 /obj/item/stack/tile/plasteel
 	force = 6
@@ -34,22 +34,6 @@
 	throw_range = 6
 	flags_atom = CONDUCT
 	turf_type = /turf/open/floor
-
-/obj/item/stack/tile/plasteel/welder_act(mob/living/user, obj/item/I)
-	. = ..()
-	if(!use(4))
-		balloon_alert(user, "Need 4 tiles")
-		return
-
-	var/obj/item/tool/weldingtool/welder = I
-	if(!(welder.use(1)))
-		to_chat(user, span_warning("You need more welding fuel to complete this task."))
-		return
-
-	welder.eyecheck(user)
-	to_chat(user, span_warning("You turn the floor plates back into a metal sheet."))
-	playsound(src, 'sound/items/welder.ogg', 25, 1)
-	new /obj/item/stack/sheet/metal(get_turf(src))
 
 ///Creates plating, used for space turfs only
 /obj/item/stack/tile/plasteel/proc/build(turf/space_turf)

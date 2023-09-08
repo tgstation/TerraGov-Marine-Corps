@@ -17,10 +17,12 @@
 		return //Attached guns and guns being dual wielded aren't taken into account.
 	next_fire_time = world.time + fired_gun.fire_delay
 
-/// Checks if the cooldown of the gun we previously fired is up. 
+/// Checks if the cooldown of the gun we previously fired is up.
 /datum/component/anti_juggling/proc/check_cooldown(datum/source, obj/item/weapon/gun/cool_gun)
 	SIGNAL_HANDLER
 
+	if(cool_gun.master_gun)
+		return TRUE
 	if(world.time < next_fire_time)
 		return FALSE
 	return TRUE

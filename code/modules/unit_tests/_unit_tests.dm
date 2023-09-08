@@ -43,12 +43,14 @@
 #define UNIT_TEST_FAILED 1
 #define UNIT_TEST_SKIPPED 2
 
+#include "apc_area_sanity.dm"
 #include "bespoke_id.dm"
 #include "binary_insert.dm"
 #include "chat_filter.dm"
 #include "component_tests.dm"
 #include "connect_loc.dm"
 #include "dcs_get_id_from_elements.dm"
+#include "implanting.dm"
 #include "initialize_sanity.dm"
 #include "keybinding_init.dm"
 #include "map_templates.dm"
@@ -62,6 +64,7 @@
 #include "weed_ability.dm"
 #include "weed_spread.dm"
 #include "xeno_logical_scaling.dm"
+#include "item_variant_test.dm"
 
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL

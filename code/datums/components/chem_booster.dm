@@ -111,14 +111,14 @@
 
 /datum/component/chem_booster/RegisterWithParent()
 	. = ..()
-	RegisterSignal(parent, COMSIG_PARENT_EXAMINE, PROC_REF(examine))
-	RegisterSignal(parent, list(COMSIG_ITEM_EQUIPPED_NOT_IN_SLOT, COMSIG_ITEM_DROPPED), PROC_REF(dropped))
+	RegisterSignal(parent, COMSIG_ATOM_EXAMINE, PROC_REF(examine))
+	RegisterSignals(parent, list(COMSIG_ITEM_EQUIPPED_NOT_IN_SLOT, COMSIG_ITEM_DROPPED), PROC_REF(dropped))
 	RegisterSignal(parent, COMSIG_ITEM_EQUIPPED_TO_SLOT, PROC_REF(equipped))
 
 /datum/component/chem_booster/UnregisterFromParent()
 	. = ..()
 	UnregisterSignal(parent, list(
-		COMSIG_PARENT_EXAMINE,
+		COMSIG_ATOM_EXAMINE,
 		COMSIG_ITEM_EQUIPPED_NOT_IN_SLOT,
 		COMSIG_ITEM_DROPPED,
 		COMSIG_ITEM_EQUIPPED_TO_SLOT))
@@ -183,6 +183,9 @@
 	if(resource_storage_current < resource_drain_amount)
 		to_chat(wearer, span_warning("Insufficient green blood to maintain operation."))
 		on_off()
+		var/datum/action/chem_booster/power/power_action = wearer.actions_by_path[/datum/action/chem_booster/power]
+		power_action.update_onoff_icon()
+		return
 	update_resource(-resource_drain_amount)
 
 	wearer.adjustToxLoss(-tox_heal*boost_amount)
@@ -363,7 +366,7 @@
 	connected_weapon = weapon_to_connect
 	ENABLE_BITFIELD(connected_weapon.flags_item, NODROP)
 	RegisterSignal(connected_weapon, COMSIG_ITEM_ATTACK, PROC_REF(drain_resource))
-	RegisterSignal(connected_weapon, list(COMSIG_ITEM_EQUIPPED_NOT_IN_SLOT, COMSIG_ITEM_DROPPED), PROC_REF(vali_connect))
+	RegisterSignals(connected_weapon, list(COMSIG_ITEM_EQUIPPED_NOT_IN_SLOT, COMSIG_ITEM_DROPPED), PROC_REF(vali_connect))
 	return TRUE
 
 ///Handles resource collection and is ativated when attacking with a weapon.
@@ -496,6 +499,10 @@
 	if(!.)
 		return
 
+	update_onoff_icon()
+
+///Update icon based on the suit
+/datum/action/chem_booster/power/proc/update_onoff_icon()
 	var/datum/component/chem_booster/target_component = target
 	if(target_component.boost_on)
 		action_icon_state = "cboost_on"

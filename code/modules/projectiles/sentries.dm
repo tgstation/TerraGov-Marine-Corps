@@ -370,7 +370,7 @@
 			continue
 		potential_targets += nearby_human
 	for (var/mob/living/carbon/xenomorph/nearby_xeno AS in cheap_get_xenos_near(src, range))
-		if(nearby_xeno.stat == DEAD || HAS_TRAIT(nearby_xeno, TRAIT_TURRET_HIDDEN) || CHECK_BITFIELD(nearby_xeno.status_flags, INCORPOREAL)) //So wraiths wont be shot at when in phase shift
+		if(nearby_xeno.stat == DEAD || HAS_TRAIT(nearby_xeno, TRAIT_TURRET_HIDDEN) || CHECK_BITFIELD(nearby_xeno.status_flags, INCORPOREAL) || CHECK_BITFIELD(nearby_xeno.xeno_iff_check(), iff_signal)) //So wraiths wont be shot at when in phase shift
 			continue
 		potential_targets += nearby_xeno
 	return potential_targets.len
@@ -419,9 +419,20 @@
 ///Checks the path to the target for obstructions. Returns TRUE if the path is clear, FALSE if not.
 /obj/machinery/deployable/mounted/sentry/proc/check_target_path(mob/living/target)
 	var/list/turf/path = getline(src, target)
+	var/turf/starting_turf = get_turf(src)
+	var/turf/target_turf = path[length(path)-1]
 	path -= get_turf(src)
 	if(!length(path))
 		return FALSE
+
+	var/old_turf_dir_to_us = get_dir(starting_turf, target_turf)
+	if(ISDIAGONALDIR(old_turf_dir_to_us))
+		for(var/i in 0 to 2)
+			var/between_turf = get_step(target_turf, turn(old_turf_dir_to_us, i == 1 ? 45 : -45))
+			if(can_see_through(starting_turf, between_turf))
+				break
+			if(i==2)
+				return FALSE
 	for(var/turf/T AS in path)
 		var/obj/effect/particle_effect/smoke/smoke = locate() in T
 		if(smoke?.opacity)

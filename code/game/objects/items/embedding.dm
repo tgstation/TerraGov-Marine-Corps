@@ -3,7 +3,7 @@
 		return FALSE
 	embedded_into = target
 	RegisterSignal(embedded_into, COMSIG_MOVABLE_MOVED, PROC_REF(embedded_on_carrier_move))
-	RegisterSignal(src, list(COMSIG_ITEM_DROPPED, COMSIG_MOVABLE_MOVED), PROC_REF(embedded_on_move))
+	RegisterSignals(src, list(COMSIG_ITEM_DROPPED, COMSIG_MOVABLE_MOVED), PROC_REF(embedded_on_move))
 	return TRUE
 
 
@@ -37,7 +37,7 @@
 		yankable_embedded = TRUE
 		break
 	if(!yankable_embedded)
-		verbs -= /mob/living/proc/yank_out_object
+		remove_verb(src, /mob/living/proc/yank_out_object)
 
 
 /mob/living/carbon/human/unembed_item(obj/item/embedding)
@@ -52,7 +52,7 @@
 		yankable_embedded = TRUE
 		break
 	if(!yankable_embedded)
-		verbs -= /mob/living/proc/yank_out_object
+		remove_verb(src, /mob/living/proc/yank_out_object)
 
 
 /datum/limb/proc/unembed(obj/item/embedding)
@@ -88,7 +88,7 @@
 		owner.visible_message(span_danger("\The [embedding] sticks in the wound!"))
 	implants += embedding
 	if(embedding.embedding.embedded_flags & EMBEDDED_CAN_BE_YANKED_OUT)
-		owner.verbs += /mob/living/proc/yank_out_object
+		add_verb(owner, /mob/living/proc/yank_out_object)
 	embedding.add_mob_blood(owner)
 	embedding.forceMove(owner)
 	embedding.RegisterSignal(src, COMSIG_LIMB_DESTROYED, TYPE_PROC_REF(/obj/item, embedded_on_limb_destruction))

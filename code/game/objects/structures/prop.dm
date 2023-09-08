@@ -51,6 +51,9 @@
 		if(EXPLODE_LIGHT)
 			if (prob(25))
 				set_broken()
+		if(EXPLODE_WEAK)
+			if (prob(15))
+				set_broken()
 
 
 /obj/machinery/prop/mainship/computer/proc/set_broken()
@@ -112,6 +115,12 @@
 	density = TRUE
 	resistance_flags = RESIST_ALL
 
+/obj/structure/prop/mainship/holobarrier/passthrough
+	name = "\improper pressure-sealed holobarrier"
+	icon = 'icons/effects/effects.dmi'
+	icon_state = "shield-blue"
+	density = FALSE
+
 /obj/structure/prop/mainship/deadai
 	name = "\improper deactivated AI"
 	desc = "A standard silicon unit assigned to manage the research duties of NT stations. This one is completely deactivated."
@@ -170,6 +179,18 @@
 	icon = 'icons/obj/machines/computer.dmi'
 	desc = "Oversees all research"
 	icon_state = "rdcomp"
+
+/obj/machinery/prop/computer/communications
+	name = "communications console"
+	desc = "This can be used for various important functions."
+	icon_state = "comm"
+	icon = 'icons/obj/machines/computer.dmi'
+
+/obj/machinery/prop/computer/crew
+	name = "Crew monitoring computer"
+	desc = "Used to monitor active health sensors built into most of the crew's uniforms."
+	icon_state = "crew"
+	icon = 'icons/obj/machines/computer.dmi'
 
 /obj/machinery/prop/r_n_d/server/alt
 	name = "Alternate R&D Server"
@@ -1520,10 +1541,20 @@
 	icon_state = "planter_box_soil"
 	layer = BELOW_OBJ_LAYER
 
+/obj/structure/prop/mainship/gelida/planterboxsoil/nondense
+	density = FALSE
+	name = "catwalk"
+	desc = "A floor you can walk on. This one comes with gaps to see the space underneath."
+
 /obj/structure/prop/mainship/gelida/planterboxsoilgrid
 	icon = 'icons/Marine/mainship_props.dmi'
 	icon_state = "soil_grid"
 	layer = BELOW_OBJ_LAYER
+
+/obj/structure/prop/mainship/gelida/planterboxsoilgrid/nondense
+	density = FALSE
+	name = "catwalk"
+	desc = "A floor you can walk on. This one comes with gaps to see the space underneath."
 
 /obj/structure/prop/mainship/gelida/propserver
 	name = "colony research server"

@@ -280,6 +280,7 @@
 /datum/surgery_step/generic/repair
 	allowed_tools = list(
 		/obj/item/tool/surgery/suture = 100,
+		/obj/item/stack/cable_coil = 75,
 		/obj/item/shard = 20,
 	)
 	open_step = 0

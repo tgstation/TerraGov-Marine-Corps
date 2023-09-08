@@ -86,8 +86,7 @@
 /turf/open/floor/mainship/sterile,
 /area/shuttle/canterbury/medical)
 "ax" = (
-/obj/structure/bed/chair/dropship/passenger,
-/obj/effect/landmark/start/job/crash/medicalofficer,
+/obj/machinery/robotic_cradle,
 /turf/open/floor/mainship/sterile,
 /area/shuttle/canterbury/medical)
 "ay" = (
@@ -180,7 +179,6 @@
 /area/shuttle/canterbury)
 "aR" = (
 /obj/structure/table/reinforced,
-/obj/item/pinpointer,
 /obj/item/tool/crowbar,
 /obj/item/radio,
 /obj/item/lightreplacer,
@@ -311,7 +309,6 @@
 "bn" = (
 /obj/machinery/door/airlock/mainship/engineering/free_access,
 /obj/structure/cable,
-/obj/structure/cable,
 /turf/open/floor/mainship/orange/full,
 /area/shuttle/canterbury)
 "bo" = (
@@ -319,6 +316,10 @@
 	dir = 1
 	},
 /obj/structure/cable,
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 1
+	},
+/obj/effect/landmark/start/job/crash/medicalofficer,
 /turf/open/floor/mainship/sterile,
 /area/shuttle/canterbury/medical)
 "bp" = (
@@ -487,7 +488,6 @@
 /obj/item/clipboard,
 /obj/item/tool/pen,
 /obj/effect/spawner/random/misc/paperbin,
-/obj/item/pinpointer,
 /turf/open/floor/mainship/blue{
 	dir = 8
 	},
@@ -706,13 +706,12 @@
 /area/shuttle/canterbury)
 "te" = (
 /obj/structure/rack,
-/obj/machinery/alarm{
+/obj/machinery/air_alarm{
 	dir = 8
 	},
 /obj/item/stack/sheet/metal/large_stack,
 /obj/item/stack/sheet/metal/large_stack,
 /obj/item/stack/sheet/plasteel/medium_stack,
-/obj/item/pinpointer,
 /turf/open/floor/mainship/cargo,
 /area/shuttle/canterbury)
 "tP" = (
@@ -813,7 +812,7 @@
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "zk" = (
-/obj/machinery/alarm,
+/obj/machinery/air_alarm,
 /turf/open/floor/mainship/blue{
 	dir = 4
 	},
@@ -856,7 +855,7 @@
 /turf/open/floor/mainship/red/full,
 /area/shuttle/canterbury)
 "Fl" = (
-/obj/machinery/loadout_vendor,
+/obj/machinery/loadout_vendor/crash,
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "FQ" = (
@@ -910,10 +909,9 @@
 /obj/item/binoculars,
 /obj/effect/spawner/random/engineering/extinguisher/regularweighted,
 /obj/item/tool/shovel/etool,
-/obj/machinery/alarm{
+/obj/machinery/air_alarm{
 	dir = 4
 	},
-/obj/item/pinpointer,
 /turf/open/floor/mainship/cargo,
 /area/shuttle/canterbury)
 "KD" = (

@@ -80,8 +80,6 @@
 	var/internal_tank_valve = ONE_ATMOSPHERE
 	///The internal air tank obj of the mech
 	var/obj/machinery/portable_atmospherics/canister/air/internal_tank
-	///Internal air mix datum
-	var/datum/gas_mixture/cabin_air
 	///The connected air port, if we have one
 	var/obj/machinery/atmospherics/components/unary/portables_connector/connected_port
 
