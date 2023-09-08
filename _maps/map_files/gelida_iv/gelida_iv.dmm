@@ -17882,7 +17882,7 @@
 /area/gelida/indoors/a_block/admin)
 "mfj" = (
 /obj/structure/table/mainship,
-/obj/item/storage/box/flashbangs{
+/obj/effect/spawner/random/weaponry/explosive/grenade/multiplefour{
 	pixel_x = 7;
 	pixel_y = 2
 	},
@@ -26154,7 +26154,7 @@
 /area/gelida/outdoors/colony_streets/central_streets)
 "ryK" = (
 /obj/structure/table/mainship,
-/obj/item/storage/box/flashbangs{
+/obj/effect/spawner/random/weaponry/explosive/grenade/multiplefour{
 	pixel_x = -5;
 	pixel_y = 5
 	},

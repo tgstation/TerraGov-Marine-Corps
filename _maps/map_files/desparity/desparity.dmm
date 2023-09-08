@@ -2635,7 +2635,7 @@
 	pixel_x = 5;
 	pixel_y = 5
 	},
-/obj/item/storage/box/flashbangs,
+/obj/effect/spawner/random/weaponry/explosive/grenade/multiplefour,
 /obj/item/storage/box/zipcuffs{
 	pixel_x = -5;
 	pixel_y = -4

@@ -233,6 +233,7 @@
 	)
 /obj/effect/spawner/random/weaponry/explosive/grenade/multiplefour
 	icon_state = "random_grenade_multiple_four"
+	spawn_random_offset = TRUE
 	spawn_loot_chance = 75
 	spawn_loot_count = 4
 
