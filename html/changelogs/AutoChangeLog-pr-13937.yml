@@ -1,0 +1,4 @@
+author: "novaepee"
+delete-after: True
+changes:
+  - bugfix: "fix lego hotaru so that you can actually put it on exoskeleton"
