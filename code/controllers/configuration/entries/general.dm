@@ -412,7 +412,7 @@ This maintains a list of ip addresses that are able to bypass topic filtering.
 	config_entry_value = 30 SECONDS
 
 /datum/config_entry/flag/is_automatic_balance_on
-	config_entry_value = TRUE
+	config_entry_value = FALSE
 
 /datum/config_entry/number/hard_deletes_overrun_threshold
 	integer = FALSE
