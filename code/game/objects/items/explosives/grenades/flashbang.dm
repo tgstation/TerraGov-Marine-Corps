@@ -46,6 +46,11 @@
 				ear_safety += 2
 			if(istype(H.head, /obj/item/clothing/head/helmet/riot))
 				ear_safety += 2
+			if(istype(H.head, /obj/item/clothing/head/helmet/marine/veteran/pmc/commando))
+				ear_safety += INFINITY
+				inner_range = null
+				outer_range = null
+				max_range = null
 
 	if(get_dist(M, T) <= inner_range)
 		inner_effect(T, M, ear_safety)
