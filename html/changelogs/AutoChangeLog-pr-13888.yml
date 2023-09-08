@@ -1,4 +1,0 @@
-author: "DeltaFire15"
-delete-after: True
-changes:
-  - rscadd: "Xenomorph IFF tags, which allow xenomorphs to be recognized as friendly by things with a compatible IFF signal."
