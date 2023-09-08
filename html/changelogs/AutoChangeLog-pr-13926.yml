@@ -1,0 +1,4 @@
+author: "Looking4bros"
+delete-after: True
+changes:
+  - balance: "Chem healing on some chemicals is now overall instead of per limb"
