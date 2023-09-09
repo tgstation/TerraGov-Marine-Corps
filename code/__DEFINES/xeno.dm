@@ -119,12 +119,14 @@ GLOBAL_LIST_INIT(plant_images_list, list(
 		STEALTH_PLANT = image('icons/Xeno/plants.dmi', icon_state = "stealth_plant")
 		))
 
+//RUTGMC EDIT BEGIN - Moved to modular_RUtgmc\code\__DEFINES\xeno.dm
 //List of resin structure images
-GLOBAL_LIST_INIT(resin_images_list, list(
+/*GLOBAL_LIST_INIT(resin_images_list, list(
 		RESIN_WALL = image('icons/Xeno/actions.dmi', icon_state = RESIN_WALL),
 		STICKY_RESIN = image('icons/Xeno/actions.dmi', icon_state = STICKY_RESIN),
 		RESIN_DOOR = image('icons/Xeno/actions.dmi', icon_state = RESIN_DOOR)
 		))
+*/ //RUTGMC EDIT END
 
 //xeno upgrade flags
 ///Message the hive when we buy this upgrade
