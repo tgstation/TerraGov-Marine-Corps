@@ -5,6 +5,7 @@
 #include "code\__DEFINES\mode.dm"
 #include "code\__DEFINES\xeno.dm"
 #include "code\__DEFINES\dsc\signals.dm"
+#include "code\__DEFINES\calibers.dm"
 #include "code\_globalvars\lists\flavor_misc.dm"
 #include "code\_globalvars\lists\mobs.dm"
 #include "code\_globalvars\lists\objects.dm"
@@ -76,4 +77,3 @@
 #include "code\modules\projectiles\guns\revolvers.dm"
 #include "code\modules\projectiles\guns\rifles.dm"
 #include "code\modules\projectiles\guns\smgs.dm"
-#include "code\__DEFINES\calibers.dm"
