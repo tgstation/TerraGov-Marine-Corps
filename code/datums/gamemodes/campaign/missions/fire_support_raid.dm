@@ -43,13 +43,22 @@
 		Loss of these fire support installations will significantly weaken our forces across this region.",
 	)
 
-//setup some rewards here...
 /datum/campaign_mission/destroy_mission/fire_support_raid/apply_major_victory()
 	. = ..()
-	//todo: new reward applied to hostile faction that disabled fire support for X missions
+	var/datum/faction_stats/hostile_team = mode.stat_list[hostile_faction]
+	if(hostile_faction = FACTION_TERRAGOV)
+		hostile_team.add_reward(/datum/campaign_reward/reward_disabler/tgmc_mortar/long)
+	else if(hostile_faction = FACTION_SOM)
+		hostile_team.add_reward(/datum/campaign_reward/reward_disabler/som_mortar/long)
+
 
 /datum/campaign_mission/destroy_mission/fire_support_raid/apply_minor_victory()
 	. = ..()
+	var/datum/faction_stats/hostile_team = mode.stat_list[hostile_faction]
+	if(hostile_faction = FACTION_TERRAGOV)
+		hostile_team.add_reward(/datum/campaign_reward/reward_disabler/tgmc_mortar)
+	else if(hostile_faction = FACTION_SOM)
+		hostile_team.add_reward(/datum/campaign_reward/reward_disabler/som_mortar)
 
 /datum/campaign_mission/destroy_mission/fire_support_raid/apply_minor_loss()
 	. = ..()

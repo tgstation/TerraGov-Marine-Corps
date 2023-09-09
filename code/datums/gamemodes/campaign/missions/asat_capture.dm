@@ -71,9 +71,14 @@
 //todo
 /datum/campaign_mission/capture_mission/asat/apply_major_victory()
 	. = ..()
+	var/datum/faction_stats/som_team = mode.stat_list[starting_faction]
+	som_team.add_reward(/datum/campaign_reward/droppod_disable)
+	som_team.add_reward(/datum/campaign_reward/bonus_job/icc)
 
 /datum/campaign_mission/capture_mission/asat/apply_minor_victory()
 	. = ..()
+	var/datum/faction_stats/som_team = mode.stat_list[starting_faction]
+	som_team.add_reward(/datum/campaign_reward/droppod_disable)
 
 /datum/campaign_mission/capture_mission/asat/apply_minor_loss()
 	. = ..()

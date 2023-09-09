@@ -470,6 +470,8 @@
 	types_disabled = list(/datum/campaign_reward/fire_support/mortar)
 	override_flags = MISSION_DISALLOW_FIRESUPPORT
 
+/datum/campaign_reward/reward_disabler/tgmc_mortar/long
+	uses = 3
 /datum/campaign_reward/reward_disabler/som_mortar
 	name = "Mortar support disabled"
 	desc = "Mortar fire support temporarily disabled."
@@ -477,6 +479,8 @@
 	types_disabled = list(/datum/campaign_reward/fire_support/som_mortar)
 	override_flags = MISSION_DISALLOW_FIRESUPPORT
 
+/datum/campaign_reward/reward_disabler/som_mortar/long
+	uses = 3
 /datum/campaign_reward/reward_disabler/drop_pods
 	name = "Drop pods disabled"
 	desc = "Drop pod access temporarily disabled."
