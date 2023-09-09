@@ -51,3 +51,13 @@
   - config: Reverted random addition to gitignore
   tyeagg:
   - bugfix: landing lights now work
+2023-09-09:
+  Blundir:
+  - imageadd: new devour action icon, updated action icon for defiler
+  Looking4bros:
+  - balance: Chem healing on some chemicals is now overall instead of per limb
+  RipGrayson:
+  - balance: Removed all the flashbang boxes from the ground.
+  - rscadd: Added shivs to Prison
+  novaepee:
+  - bugfix: fix lego hotaru so that you can actually put it on exoskeleton
