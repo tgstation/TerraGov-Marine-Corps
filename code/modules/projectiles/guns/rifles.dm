@@ -326,7 +326,6 @@
 	burst_amount = 3
 	burst_delay = 0.10 SECONDS
 	extra_delay = 0.25 SECONDS
-	accuracy_mult = 0.9
 	scatter = 0
 
 /obj/item/weapon/gun/rifle/standard_br/standard
