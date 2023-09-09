@@ -1,8 +1,11 @@
 ///Time it takes to impregnate someone
 #define IMPREGNATION_TIME 10 SECONDS
 
+/obj/item/clothing/mask/facehugger
+	impact_time = 1.25 SECONDS
+
 //TODO: Remove the dependence of playable huggers on old-AI huggers
-/obj/item/clothing/mask/facehugger/Attach(mob/living/carbon/M, can_catch = TRUE)
+/obj/item/clothing/mask/facehugger/proc/Attach(mob/living/carbon/M, can_catch = TRUE)
 
 	set_throwing(FALSE)
 	leaping = FALSE
@@ -104,5 +107,27 @@
 	. = ..()
 	if(isxenofacehugger(source))
 		qdel(src)
+
+/////////////////////////////
+// SUBTYPES
+/////////////////////////////
+
+/obj/item/clothing/mask/facehugger/combat/neuro
+	impact_time = 0.5 SECONDS
+	activate_time = 1 SECONDS
+	jump_cooldown = 1 SECONDS
+	proximity_time = 0.25 SECONDS
+
+/obj/item/clothing/mask/facehugger/combat/acid
+	impact_time = 0.5 SECONDS
+	activate_time = 1 SECONDS
+	jump_cooldown = 1 SECONDS
+	proximity_time = 0.25 SECONDS
+
+/obj/item/clothing/mask/facehugger/combat/resin
+	impact_time = 0.5 SECONDS
+	activate_time = 1 SECONDS
+	jump_cooldown = 1 SECONDS
+	proximity_time = 0.25 SECONDS
 
 #undef IMPREGNATION_TIME
