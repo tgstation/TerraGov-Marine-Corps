@@ -278,7 +278,6 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 	update_button_icon()
 	add_cooldown()
 
-
 /datum/action/xeno_action/activable/bombard/alternate_action_activate()
 	INVOKE_ASYNC(src, PROC_REF(root))
 	return COMSIG_KB_ACTIVATED
@@ -292,6 +291,10 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 			return
 		owner.balloon_alert(owner, "Unrooted!")
 		set_rooted(FALSE)
+		return
+
+	if(HAS_TRAIT_FROM(owner, TRAIT_FLOORED, RESTING_TRAIT))
+		owner.balloon_alert(owner, "Cannot while lying down!")
 		return
 
 	owner.balloon_alert_to_viewers("Rooting into place...")
