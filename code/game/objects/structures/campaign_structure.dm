@@ -172,7 +172,7 @@
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_CAMPAIGN_CAPTURE_OBJECTIVE_CAPTURED, src, user)
 
 /obj/effect/landmark/campaign_objective/phoron_crate
-	name = "Phoron crate objective"
+	name = "phoron crate objective"
 	icon = 'icons/obj/structures/campaign_structures.dmi'
 	icon_state = "orebox_phoron"
 	mission_types = list(/datum/campaign_mission/capture_mission)

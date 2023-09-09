@@ -84,7 +84,7 @@
 		message_admins("Mission finished: [MISSION_OUTCOME_MINOR_LOSS]")
 		outcome = MISSION_OUTCOME_MINOR_LOSS
 	else
-		message_admins("Mission finished: [MISSION_OUTCOME_DRAW]") //everyone died at the same time, no one wins
+		message_admins("Mission finished: [MISSION_OUTCOME_DRAW]")
 		outcome = MISSION_OUTCOME_DRAW
 	return TRUE
 
@@ -92,16 +92,25 @@
 //todo: add some logic to modify rewards based on crates captured
 /datum/campaign_mission/capture_mission/apply_major_victory()
 	. = ..()
+	objective_reward_bonus()
 
 /datum/campaign_mission/capture_mission/apply_minor_victory()
 	. = ..()
+	objective_reward_bonus()
 
 /datum/campaign_mission/capture_mission/apply_minor_loss()
 	. = ..()
+	objective_reward_bonus()
 
 /datum/campaign_mission/capture_mission/apply_major_loss()
 	. = ..()
+	objective_reward_bonus()
 
+/datum/campaign_mission/capture_mission/apply_draw()
+	. = ..()
+	objective_reward_bonus()
+
+///Handles the effect of an objective being claimed
 /datum/campaign_mission/capture_mission/proc/objective_extracted(datum/source, obj/structure/campaign_objective/capture_objective/fultonable/objective, mob/living/user)
 	SIGNAL_HANDLER
 	var/capturing_team
@@ -118,3 +127,12 @@
 
 	map_text_broadcast(capturing_team, "[objective] secured, well done. [objectives_remaining] left in play!", "Objective extracted")
 	map_text_broadcast(losing_team, "We've lost a [objective], secure the remaining [objectives_remaining] objectives!", "Objective lost")
+
+///The addition rewards for capturing objectives, regardless of outcome
+/datum/campaign_mission/capture_mission/proc/objective_reward_bonus()
+	var/starting_team_bonus = capture_count["starting_faction"] * 5
+	var/hostile_team_bonus = capture_count["hostile_faction"] * 5 //todo: maybe a lower reward for the home team here, its supposed to be their supplies after all...
+
+	modify_attrition_points(starting_team_bonus, hostile_team_bonus)
+	map_text_broadcast(starting_faction, "[starting_team_bonus] bonus attrition points awarded for the capture of [capture_count["starting_faction"]] objectives", "Bonus reward")
+	map_text_broadcast(hostile_faction, "[hostile_team_bonus] bonus attrition points awarded for the capture of [capture_count["hostile_faction"]] objectives", "Bonus reward")
