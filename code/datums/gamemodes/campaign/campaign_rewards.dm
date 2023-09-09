@@ -13,6 +13,8 @@
 #define REWARD_PASSIVE_EFFECT (1<<3)
 ///Can't activate unless mission is starting or started
 #define REWARD_ACTIVE_MISSION_ONLY (1<<4)
+///Temporarily unusable
+#define REWARD_DISABLED (1<<5)
 
 /datum/campaign_reward
 	///Name of this reward
@@ -43,7 +45,7 @@
 ///Triggers any active effects of this reward
 /datum/campaign_reward/proc/activated_effect() //this shit should probably be in some checker proc for sanity
 	SHOULD_CALL_PARENT(TRUE)
-	if((reward_flags & REWARD_CONSUMED) || uses <= 0)
+	if((reward_flags & REWARD_CONSUMED) || reward_flags & REWARD_DISABLED || uses <= 0)
 		return FALSE
 
 	if(reward_flags & REWARD_ACTIVE_MISSION_ONLY)
@@ -403,3 +405,87 @@
 		FIRESUPPORT_TYPE_SMOKE_MORTAR_SOM = 2,
 		FIRESUPPORT_TYPE_SATRAPINE_SMOKE_MORTAR = 2,
 	)
+
+//This is a malus effect, some other active disabling ability may belong to the team doing the disabling
+/datum/campaign_reward/reward_disabler
+	name = "REWARD_DISABLER"
+	desc = "base type of disabler, you shouldn't see this."
+	detailed_desc = "Why can you see this? Report on github."
+	uses = 2
+	reward_flags = REWARD_IMMEDIATE_EFFECT
+	///The types of rewards disabled
+	var/list/types_disabled
+	///Any mission flags that will override this disabler
+	var/override_flags = NONE
+	///Rewards currently disabled. Recorded to reenable later
+	var/list/types_currently_disabled = list()
+
+/datum/campaign_reward/reward_disabler/activated_effect()
+	var/datum/game_mode/hvh/campaign/mode = SSticker.mode
+	var/datum/campaign_mission/current_mission = mode.current_mission
+	if(current_mission.mission_flags & override_flags) //already disabled, don't need this
+		return
+
+	. = ..()
+	if(!.)
+		return
+
+	for(var/datum/campaign_reward/reward_type AS in faction.faction_rewards)
+		if(reward_type.type in types_disabled)
+			reward_type.reward_flags |= REWARD_DISABLED
+			types_currently_disabled += reward_type
+
+	RegisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_MISSION_ENDED, PROC_REF(reenable_rewards))
+	if(!uses)
+		UnregisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_MISSION_LOADED)
+
+/datum/campaign_reward/reward_disabler/immediate_effect()
+	RegisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_MISSION_LOADED, PROC_REF(activated_effect))
+
+///Re-enabled any disabled rewards
+/datum/campaign_reward/reward_disabler/proc/reenable_rewards()
+	for(var/datum/campaign_reward/reward_type AS in types_currently_disabled)
+		reward_type.reward_flags &= ~REWARD_DISABLED
+	types_currently_disabled.Cut()
+	UnregisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_MISSION_ENDED)
+
+/datum/campaign_reward/reward_disabler/tgmc_cas
+	name = "CAS disabled"
+	desc = "CAS fire support temporarily disabled."
+	detailed_desc = "Hostile actions have resulted in the temporary loss of our access to close air support"
+	types_disabled = list(/datum/campaign_reward/fire_support)
+	override_flags = MISSION_DISALLOW_FIRESUPPORT
+
+/datum/campaign_reward/reward_disabler/som_cas
+	name = "CAS disabled"
+	desc = "CAS fire support temporarily disabled."
+	detailed_desc = "Hostile actions have resulted in the temporary loss of our access to close air support"
+	types_disabled = list(/datum/campaign_reward/fire_support/som_cas)
+	override_flags = MISSION_DISALLOW_FIRESUPPORT
+
+/datum/campaign_reward/reward_disabler/tgmc_mortar
+	name = "Mortar support disabled"
+	desc = "Mortar fire support temporarily disabled."
+	detailed_desc = "Hostile actions have resulted in the temporary loss of our access to mortar fire support"
+	types_disabled = list(/datum/campaign_reward/fire_support/mortar)
+	override_flags = MISSION_DISALLOW_FIRESUPPORT
+
+/datum/campaign_reward/reward_disabler/som_mortar
+	name = "Mortar support disabled"
+	desc = "Mortar fire support temporarily disabled."
+	detailed_desc = "Hostile actions have resulted in the temporary loss of our access to mortar fire support"
+	types_disabled = list(/datum/campaign_reward/fire_support/som_mortar)
+	override_flags = MISSION_DISALLOW_FIRESUPPORT
+
+/datum/campaign_reward/reward_disabler/drop_pods
+	name = "Drop pods disabled"
+	desc = "Drop pod access temporarily disabled."
+	detailed_desc = "Hostile actions have resulted in the temporary loss of our access to drop pod deployment"
+	types_disabled = list(/datum/campaign_reward/droppod_enabled)
+	override_flags = MISSION_DISALLOW_DROPPODS
+
+/datum/campaign_reward/reward_disabler/drop_pods
+	name = "Teleporter disabled"
+	desc = "Teleporter temporarily disabled."
+	detailed_desc = "Hostile actions have resulted in the temporary loss of our access to teleporter deployment"
+	types_disabled = list(/datum/campaign_reward/teleporter_enabled)
