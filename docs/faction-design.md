@@ -49,7 +49,7 @@ Xenos can persistently identify themselves through a simple phrase or word, e.g.
 Marines have a variety of different roles, broadly categorised as infantry, engineers, medical staff, command and pilots. The vast majority of infantry are Marines, who are aided by Squad Leaders who are able to use useful AOE buffs.
 
 **Strengths**
-- Better suited to defend areas thanks to barricades, razorfoam, automated turrets, machine gun emplacements, Close Air Support and Orbital Strikes. Their defensive structures especially are far superior to xeno equivalents.
+- Better suited to defend areas thanks to barricades, razorfoam, automated turrets, machine gun emplacements, mortars and railguns. Their defensive structures especially are far superior to xeno equivalents.
 - Excels in corridors as it means less directions they can be attacked from, and a better chance of getting shots on-target.
 - Very strong in ranged combat as they have guns.
 - If their dead bodies can be recovered, they can be revived.
@@ -58,7 +58,7 @@ Marines have a variety of different roles, broadly categorised as infantry, engi
 	- Xenos on the other hand have to constantly manage their resources carefully to be effective (e.g. plasma for most, spiderlings for Widows, rage for Ravagers, blood for Gorgers, etc). This often leads to needing a 2:1 ratio or higher of downtime compared to combat.
 - Healing is generally quick, can be interrupted to rejoin combat quickly and can be done solo for most injuries.
 	- Xenos on the other hand have to rest for long periods to heal usually and it takes a few seconds to unrest which means they can be attacked by marines before being able to get up. It's also dependent on weeds being available (especially rest weeds) created by Drone tree castes and healing is slow without recovery pheromones.
-- Well-suited to siege areas thanks to Orbital Strikes, Close Air Support, explosives and incendiary weaponry.
+- Well-suited to siege areas thanks to Orbital Strikes, Close Air Support, plasma cutters, explosives and incendiary weaponry. Can clear large areas in one shot, or quickly delete any single tile in less than a second.
 	- Xenos on the other hand have difficulty sieging unless there are large areas infront for Boiler's Bombard and Crusher's Charge.
 - Less dependent on unique roles staying alive. Only a few medics, engineers and a pilot are needed, the rest being marines can work just fine.
 	- Xenos on the other hand are dependent on a variety of castes staying alive. Drone tree for construction, Sentinel tree for ranged/sieging capabilities, Runner and Defender trees for close quarters combat, plus Rulers for pheromones and evolution.
@@ -69,7 +69,7 @@ Marines have a variety of different roles, broadly categorised as infantry, engi
 - Easier to respec if needed. Marines can pick up a new weapon, get equipment sent down or briefly head shipside to swap to a whole new set of equipment.
 	- Xenos on the other hand  to devolve one or more tiers then wait to evolve one or more tiers, which takes a lot of time.
 - On Nuclear War: Marines losing control of their most important map area (FOB) is not too impactful as they also have a Tadpole for moving troops and can call an ERT for example.
- - Xenos on the other hand must defend their resin silo using their relatively weaker defensive structures, and losing it can make it very difficult to comeback from. It's so impactful that it's often the primary win condition, rather than collecting all nuke disks and using the nuclear bomb.
+	- Xenos on the other hand must defend their resin silo using their relatively weaker defensive structures, and losing it can make it very difficult to comeback from. It's so impactful that it's often the primary win condition, rather than collecting all nuke disks and using the nuclear bomb.
 
 #### Similarities
 
