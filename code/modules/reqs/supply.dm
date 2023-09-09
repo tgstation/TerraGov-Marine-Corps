@@ -670,6 +670,12 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 	beacon_datum = new /datum/supply_beacon(user.name, user.loc, user.faction, 4 MINUTES)
 	RegisterSignal(beacon_datum, COMSIG_PARENT_QDELETING, PROC_REF(clean_beacon_datum))
 	user.show_message(span_notice("The [src] beeps and states, \"Your current coordinates were registered by the supply console. LONGITUDE [location.x]. LATITUDE [location.y]. Area ID: [get_area(src)]\""), EMOTE_AUDIBLE, span_notice("The [src] vibrates but you can not hear it!"))
+	addtimer(CALLBACK(src, PROC_REF(update_beacon_location)), 5 SECONDS)
+
+/obj/item/storage/backpack/marine/radiopack/proc/update_beacon_location()
+	if(beacon_datum)
+		beacon_datum.drop_location = get_turf(src)
+		addtimer(CALLBACK(src, PROC_REF(update_beacon_location), beacon_datum), 5 SECONDS)
 
 /// Signal handler to nullify beacon datum
 /obj/item/storage/backpack/marine/radiopack/proc/clean_beacon_datum()

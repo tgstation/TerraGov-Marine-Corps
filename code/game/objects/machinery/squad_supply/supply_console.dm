@@ -7,7 +7,7 @@
 	interaction_flags = INTERACT_MACHINE_TGUI
 	circuit = /obj/item/circuitboard/computer/supplydrop
 	///Time between two supply drops
-	var/launch_cooldown = 30 SECONDS
+	var/launch_cooldown = 5 SECONDS
 	///The beacon we will send the supplies
 	var/datum/supply_beacon/supply_beacon = null
 	///The linked supply pad of this console
@@ -153,7 +153,7 @@
 		C.anchored = TRUE //to avoid accidental pushes
 	playsound(supply_pad.loc, 'sound/effects/bamf.ogg', 50, TRUE)
 	visible_message("[icon2html(supply_beacon, viewers(supply_beacon))] [span_boldnotice("The [supply_pad.name] begins to beep!")]")
-	addtimer(CALLBACK(src, PROC_REF(fire_supplydrop), supplies, x_offset, y_offset), 10 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(fire_supplydrop), supplies, x_offset, y_offset), 1 SECONDS)
 
 ///Make the supplies teleport
 /obj/machinery/computer/supplydrop_console/proc/fire_supplydrop(list/supplies, x_offset, y_offset)
