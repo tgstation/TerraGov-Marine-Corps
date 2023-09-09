@@ -201,7 +201,7 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 				to_chat(buyer, span_xenowarning("Another silo is too close!"))
 				return FALSE
 
-	if(length(GLOB.xeno_resin_silos_by_hive[buyer.hivenumber]) > 0)
+	if(length(GLOB.xeno_resin_silos_by_hive[buyer.hivenumber]) >= 1)
 		if(!silent)
 			to_chat(buyer, span_xenowarning("Hive cannot support more than 1 active silo!"))
 		return FALSE
@@ -225,12 +225,18 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 /datum/hive_upgrade/building/pherotower
 	name = "Pheromone Tower"
 	desc = "Constructs a tower that emanates a selectable type of pheromone."
-	psypoint_cost = 100
+	psypoint_cost = 200
 	icon = "pherotower"
 	flags_upgrade = ABILITY_DISTRESS
 	building_type = /obj/structure/xeno/pherotower
 	building_loc = 0 //This results in spawning the structure under the user.
 	building_time = 5 SECONDS
+
+/datum/hive_upgrade/building/pherotower/can_buy(mob/living/carbon/xenomorph/buyer, silent)
+	. = ..()
+	if(length(GLOB.hive_datums[buyer.hivenumber].pherotowers) >= 3)
+		to_chat(buyer, span_xenowarning("Hive cannot support more than 3 active pheromone towers!"))
+		return FALSE
 
 /datum/hive_upgrade/building/spawner
 	name = "Spawner"
