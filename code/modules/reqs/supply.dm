@@ -503,6 +503,11 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 			var/list/shopping_cart = get_shopping_cart(ui.user)
 			shopping_cart.Cut()
 			. = TRUE
+		// RUTGMC EDIT BEGIN
+		if("buypersonal")
+			SSpoints.buy_using_psp(ui.user)
+			. = TRUE
+		// RUTGMC EDIT END
 
 /datum/supply_ui/requests
 	tgui_name = "CargoRequest"
