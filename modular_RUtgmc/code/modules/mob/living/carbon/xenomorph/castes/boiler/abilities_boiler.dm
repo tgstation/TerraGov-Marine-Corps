@@ -31,11 +31,9 @@
 	caster.visible_message(span_xenodanger("[caster] emits an acid!"),
 	span_xenodanger("You dump your acid, disabling your offensive abilities to escape!"))
 
+	var/datum/action/xeno_action/activable/bombard/bombard_action = caster.actions_by_path[/datum/action/xeno_action/activable/bombard]
 	if(HAS_TRAIT_FROM(caster, TRAIT_IMMOBILE, BOILER_ROOTED_TRAIT))
-		REMOVE_TRAIT(caster, TRAIT_IMMOBILE, BOILER_ROOTED_TRAIT)
-		if(caster.client)
-			caster.client.mouse_pointer_icon = initial(caster.client.mouse_pointer_icon)
-		caster.anchored = FALSE
+		bombard_action.set_rooted(FALSE)
 
 	dispense_gas()
 
