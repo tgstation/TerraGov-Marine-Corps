@@ -67,7 +67,9 @@ Marines have a variety of different roles, broadly categorised as infantry, engi
 - Greater benefit for getting kills. Xeno corpses when recovered can be converted into req points for top-tier equipment, killing particular castes can totally disrupt xenos' ability to function well as a team (see "dependence on unique roles staying alive") and it neuters the xeno's snowball mechanic (maturity and evolution are reset).
 	- Xenos on the other hand gain psy points for purchasing beneficial structures and Primordial evolution, however xenos have to accumulate a lot more corpses for this.
 - Easier to respec if needed. Marines can pick up a new weapon, get equipment sent down or briefly head shipside to swap to a whole new set of equipment.
-	- Xenos have to devolve one or more tiers then wait to evolve one or more tiers, which takes a lot of time.
+	- Xenos on the other hand  to devolve one or more tiers then wait to evolve one or more tiers, which takes a lot of time.
+- On Nuclear War: Marines losing control of their most important map area (FOB) is not too impactful as they also have a Tadpole for moving troops and can call an ERT for example.
+ - Xenos on the other hand must defend their resin silo using their relatively weaker defensive structures, and losing it can make it very difficult to comeback from. It's so impactful that it's often the primary win condition, rather than collecting all nuke disks and using the nuclear bomb.
 
 #### Similarities
 
