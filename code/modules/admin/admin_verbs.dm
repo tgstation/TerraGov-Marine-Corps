@@ -683,6 +683,55 @@
 	message_admins("[ADMIN_TPMONTY(usr)] teleported [ADMIN_TPMONTY(M)] to [ADMIN_VERBOSEJMP(T)].")
 
 
+/datum/admins/proc/add_foreign_legion()
+	set category = "Admin"
+	set name = "Add Foreign Legion Member"
+
+	if(!check_rights(R_ADMIN))
+		return
+
+	var/ckey = tgui_input_list(usr, "Select player ckey", "Hail Foreign Legion!", GLOB.clients)
+	if(!ckey) // shitcode mess for "special" circumstances
+		ckey = ckey(tgui_input_text(usr, "Maybe you write on your own?", "Hail Foreign Legion!"))
+		if(!ckey)
+			return FALSE
+
+	var/role = tgui_input_list(usr, "Select role for [ckey]", "Hail Foreign Legion!", FOREIGN_LEGION_RANKS)
+	if(!role)
+		return FALSE
+
+	role = foreign_legion_ranks_ordered[role]
+	var/datum/db_query/wl = SSdbcore.NewQuery("INSERT INTO [format_table_name("foreign_legion")] (ckey, role) VALUES (:ckey, :role)", list("ckey" = ckey, "role" = role))
+	wl.Execute()
+	qdel(wl)
+
+
+/datum/admins/proc/remove_foreign_legion()
+	set category = "Admin"
+	set name = "Remove Foreign Legion Member"
+
+	if(!check_rights(R_ADMIN))
+		return
+
+	var/list/potential_to_remove = list()
+	var/datum/db_query/wl = SSdbcore.NewQuery("SELECT ckey FROM [format_table_name("foreign_legion")]")
+	if(!wl.warn_execute())
+		qdel(wl)
+		return FALSE
+	while(wl.NextRow())
+		potential_to_remove += wl.item[1]
+	qdel(wl)
+	if(!length(potential_to_remove))
+		return FALSE
+
+	var/player_to_remove = tgui_input_list(usr, "Select which one yankee will be annihilated", "Hail Foreign Legion!", potential_to_remove)
+	if(!player_to_remove)
+		return FALSE
+
+	wl = SSdbcore.NewQuery("DELETE FROM [format_table_name("foreign_legion")] WHERE ckey = :ckey", list("ckey" = player_to_remove))
+	wl.Execute()
+	qdel(wl)
+
 /datum/admins/proc/jump_area(area/A in GLOB.sorted_areas)
 	set category = null
 	set name = "Jump to Area"

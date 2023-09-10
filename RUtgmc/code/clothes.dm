@@ -36,6 +36,12 @@
 	icon_state = "charlie_merc"
 	item_state = "charlie_merc"
 
+/obj/item/clothing/under/marine/ru/black/foreign
+	name = "Foreign Legion turtleneck"
+	desc = "Tacticool looking, squad issued uniform. This one belongs to the Foreign Legion, smells like fast food."
+	icon_state = "foreign_merc"
+	item_state = "foreign_merc"
+
 /obj/item/clothing/under/marine/ru/slav
 	name = "Old slavic uniform"
 	desc = "This is some sports suit. Oh wait, this is slavic military uniform."
@@ -229,3 +235,7 @@
 	icon_state = "charlie_black_beret"
 	desc = "Black stylish beret with TGMC marine squad insignia. This one belongs to the Charlie Squad."
 
+/obj/item/clothing/head/tgmcberet/squad/black/foreign
+	name = "\improper Foreign Legion black beret"
+	icon_state = "foreign_black_beret"
+	desc = "Black stylish beret with TGMC marine squad insignia. This one belongs to the Foreign Legion."

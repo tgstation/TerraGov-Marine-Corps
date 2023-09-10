@@ -107,6 +107,10 @@
 	icon_state = "marine_spawn_delta_late"
 	squad = DELTA_SQUAD
 
+/obj/effect/landmark/start/latejoin_squad/foreign
+	icon_state = "marine_spawn_foreign_late"
+	squad = FOREIGN_SQUAD
+
 
 /obj/effect/landmark/thunderdome/one
 	icon_state = "tdome_t1"

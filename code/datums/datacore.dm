@@ -87,7 +87,7 @@ GLOBAL_DATUM_INIT(datacore, /datum/datacore, new)
 			even = !even
 	if(length_char(mar) > 0)
 		dat += "<tr><th colspan=3>Marine Personnel</th></tr>"
-		for(var/j in list("Alpha","Bravo","Charlie", "Delta"))
+		for(var/j in list(RADIO_CHANNEL_ALPHA,RADIO_CHANNEL_BRAVO,RADIO_CHANNEL_CHARLIE, RADIO_CHANNEL_DELTA, RADIO_CHANNEL_FOREIGN))
 			if(length_char(squads[j]))
 				dat += "<tr><th colspan=3>[j]</th></tr>"
 			for(var/name in mar)

@@ -149,10 +149,11 @@
 
 
 #define SELECTABLE_SQUADS list(\
-	"Alpha",\
-	"Bravo",\
-	"Charlie",\
-	"Delta",\
+	RADIO_CHANNEL_ALPHA,\
+	RADIO_CHANNEL_BRAVO,\
+	RADIO_CHANNEL_CHARLIE,\
+	RADIO_CHANNEL_DELTA,\
+	RADIO_CHANNEL_FOREIGN,\
 	"None"\
 	)
 

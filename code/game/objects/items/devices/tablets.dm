@@ -34,22 +34,26 @@
 			if(/datum/job/terragov/squad/leader)
 				if(squad)
 					switch(squad.name)
-						if("Alpha")
+						if(RADIO_CHANNEL_ALPHA)
 							dat += " alpha"
 							network = list("alpha")
 							req_access = list(ACCESS_MARINE_LEADER, ACCESS_MARINE_ALPHA)
-						if("Bravo")
+						if(RADIO_CHANNEL_BRAVO)
 							dat += " bravo"
 							network = list("bravo")
 							req_access = list(ACCESS_MARINE_LEADER, ACCESS_MARINE_BRAVO)
-						if("Charlie")
+						if(RADIO_CHANNEL_CHARLIE)
 							dat += " charlie"
 							network = list("charlie")
 							req_access = list(ACCESS_MARINE_LEADER, ACCESS_MARINE_CHARLIE)
-						if("Delta")
+						if(RADIO_CHANNEL_DELTA)
 							dat += " delta"
 							network = list("delta")
 							req_access = list(ACCESS_MARINE_LEADER, ACCESS_MARINE_DELTA)
+						if(RADIO_CHANNEL_FOREIGN)
+							dat += " foreign"
+							network = list("foreign")
+							req_access = list(ACCESS_MARINE_LEADER, ACCESS_MARINE_FOREIGN)
 				dat += " squad leader's"
 			if(/datum/job/terragov/command/captain)
 				dat += " captain's"
@@ -237,6 +241,11 @@
 	name = "delta hud tablet"
 	network = list("delta")
 	req_access = list(ACCESS_MARINE_LEADER, ACCESS_MARINE_DELTA)
+
+/obj/item/hud_tablet/foreign
+	name = "foreign hud tablet"
+	network = list("foreign")
+	req_access = list(ACCESS_MARINE_LEADER, ACCESS_MARINE_FOREIGN)
 
 /obj/item/hud_tablet/leadership
 	name = "captain's hud tablet"

@@ -269,6 +269,31 @@
 	req_access = list(ACCESS_MARINE_SMARTPREP, ACCESS_MARINE_DELTA)
 	req_one_access = null
 
+/obj/machinery/door/airlock/multi_tile/mainship/marine/foreign
+	name = "\improper Foreign Legion Preparations"
+	icon = 'icons/obj/doors/mainship/2x1prepdoor_delta.dmi'
+	req_one_access = list(ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_FOREIGN)
+
+/obj/machinery/door/airlock/multi_tile/mainship/marine/foreign/sl
+	name = "\improper Foreign Legion Leader Preparations"
+	req_access = list(ACCESS_MARINE_LEADER, ACCESS_MARINE_FOREIGN)
+	req_one_access = null
+
+/obj/machinery/door/airlock/multi_tile/mainship/marine/foreign/engineer
+	name = "\improper Foreign Legion Engineer Preparations"
+	req_access = list(ACCESS_MARINE_ENGPREP, ACCESS_MARINE_FOREIGN)
+	req_one_access = null
+
+/obj/machinery/door/airlock/multi_tile/mainship/marine/foreign/medic
+	name = "\improper Foreign Legion Medic Preparations"
+	req_access = list(ACCESS_MARINE_MEDPREP, ACCESS_MARINE_FOREIGN)
+	req_one_access = null
+
+/obj/machinery/door/airlock/multi_tile/mainship/marine/foreign/smart
+	name = "\improper Foreign Legion Smartgunner Preparations"
+	req_access = list(ACCESS_MARINE_SMARTPREP, ACCESS_MARINE_FOREIGN)
+	req_one_access = null
+
 //MEDICAL
 /obj/machinery/door/airlock/multi_tile/mainship/generic/personal
 	name = "\improper Airlock"

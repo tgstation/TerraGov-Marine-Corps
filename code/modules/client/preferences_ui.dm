@@ -167,7 +167,7 @@
 					"slot" = gearset.slot,
 				)
 		if(JOB_PREFERENCES)
-			.["squads"] = SELECTABLE_SQUADS
+			.["squads"] = get_selectable_squads()
 			.["squads_som"] = SELECTABLE_SQUADS_SOM
 			.["jobs"] = list()
 			for(var/datum/job/job AS in SSjob.joinable_occupations)
@@ -489,7 +489,7 @@
 
 		if("squad")
 			var/new_squad = params["newValue"]
-			if(!(new_squad in SELECTABLE_SQUADS))
+			if(!(new_squad in get_selectable_squads()))
 				return
 			preferred_squad = new_squad
 

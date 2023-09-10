@@ -15,7 +15,7 @@
 		human_spawn.set_nutrition(250)
 	if(!human_spawn.assigned_squad)
 		CRASH("after_spawn called for a marine without an assigned_squad")
-	to_chat(M, {"\nYou have been assigned to: <b><font size=3 color=[human_spawn.assigned_squad.color]>[lowertext(human_spawn.assigned_squad.name)] squad</font></b>.
+	to_chat(M, {"\nYou have been assigned to: <b><font size=3 color=[human_spawn.assigned_squad.color]>[lowertext(human_spawn.assigned_squad.name)] [lowertext(human_spawn.assigned_squad.additional_name)]</font></b>.
 Make your way to the cafeteria for some post-cryosleep chow, and then get equipped in your squad's prep room."})
 
 /datum/job/terragov/squad/proc/spawn_by_squads(squad)

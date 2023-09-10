@@ -24,7 +24,7 @@
 	var/obj/docking_port/mobile/crashmode/shuttle
 
 	// Round start info
-	var/starting_squad = "Alpha"
+	var/starting_squad = RADIO_CHANNEL_ALPHA
 	///How long between two larva check
 	var/larva_check_interval = 2 MINUTES
 	///Last time larva balance was checked

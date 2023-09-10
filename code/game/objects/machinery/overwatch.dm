@@ -167,7 +167,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 				if(!current_squad) //No squad has been set yet. Pick one.
 					dat += "<br>Current Squad: <A href='?src=\ref[src];operation=pick_squad'>----------</A><BR>"
 				else
-					dat += "<br><b>[current_squad.name] Squad</A></b>   "
+					dat += "<br><b>[current_squad.name] [current_squad.additional_name]</A></b>   "
 					dat += "<A href='?src=\ref[src];operation=message'>\[Message Squad\]</a><br><br>"
 					dat += "----------------------<BR><BR>"
 					if(current_squad.squad_leader)
@@ -260,6 +260,9 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 		if("monitordelta_squad")
 			state = OW_MONITOR
 			current_squad = get_squad_by_id(DELTA_SQUAD)
+		if("monitorforeign_squad")
+			state = OW_MONITOR
+			current_squad = get_squad_by_id(FOREIGN_SQUAD)
 		if("change_operator")
 			if(operator != usr)
 				if(current_squad)
@@ -431,7 +434,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 		switch(state)
 			if(OW_MAIN)
 				for(var/datum/squad/S AS in watchable_squads)
-					dat += "<b>[S.name] Squad</b> <a href='?src=\ref[src];operation=message;current_squad=\ref[S]'>\[Message Squad\]</a><br>"
+					dat += "<b>[S.name] [S.additional_name]</b> <a href='?src=\ref[src];operation=message;current_squad=\ref[S]'>\[Message Squad\]</a><br>"
 					if(S.squad_leader)
 						dat += "<b>Leader:</b> <a href='?src=\ref[src];operation=use_cam;cam_target=\ref[S.squad_leader]'>[S.squad_leader.name]</a> "
 						dat += "<a href='?src=\ref[src];operation=sl_message;current_squad=\ref[S]'>\[MSG\]</a><br>"
@@ -441,7 +444,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 						dat += "<b>Squad Overwatch:</b> [S.overwatch_officer.name]<br>"
 					else
 						dat += "<b>Squad Overwatch:</b> <font color=red>NONE</font><br>"
-					dat += "<A href='?src=\ref[src];operation=monitor[S.id]'>[S.name] Squad Monitor</a><br>"
+					dat += "<A href='?src=\ref[src];operation=monitor[S.id]'>[S.name] [current_squad.additional_name] Monitor</a><br>"
 				dat += "----------------------<br>"
 				dat += "<b>Orbital Bombardment Control</b><br>"
 				dat += "<b>Current Cannon Status:</b> "
@@ -497,7 +500,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 		switch(state)
 			if(OW_MAIN)
 				for(var/datum/squad/S AS in watchable_squads)
-					dat += "<b>[S.name] Squad</b> <a href='?src=\ref[src];operation=message;current_squad=\ref[S]'>\[Message Squad\]</a><br>"
+					dat += "<b>[S.name] [S.additional_name]</b> <a href='?src=\ref[src];operation=message;current_squad=\ref[S]'>\[Message Squad\]</a><br>"
 					if(S.squad_leader)
 						dat += "<b>Leader:</b> <a href='?src=\ref[src];operation=use_cam;cam_target=\ref[S.squad_leader]'>[S.squad_leader.name]</a> "
 						dat += "<a href='?src=\ref[src];operation=sl_message;current_squad=\ref[S]'>\[MSG\]</a><br>"
@@ -507,7 +510,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 						dat += "<b>Squad Overwatch:</b> [S.overwatch_officer.name]<br>"
 					else
 						dat += "<b>Squad Overwatch:</b> <font color=red>NONE</font><br>"
-					dat += "<A href='?src=\ref[src];operation=monitor[S.id]'>[S.name] Squad Monitor</a><br>"
+					dat += "<A href='?src=\ref[src];operation=monitor[S.id]'>[S.name] [S.additional_name] Monitor</a><br>"
 			if(OW_MONITOR)//Info screen.
 				dat += get_squad_info()
 

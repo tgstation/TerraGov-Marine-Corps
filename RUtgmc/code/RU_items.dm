@@ -45,10 +45,12 @@ SUBSYSTEM_DEF(ru_items)
 		/obj/item/clothing/head/tgmcberet/squad/black/bravo = -1,
 		/obj/item/clothing/head/tgmcberet/squad/black/delta = -1,
 		/obj/item/clothing/head/tgmcberet/squad/black/charlie = -1,
+		/obj/item/clothing/head/tgmcberet/squad/black/foreign = -1,
 		/obj/item/clothing/under/marine/ru/black = -1,
 		/obj/item/clothing/under/marine/ru/black/bravo = -1,
 		/obj/item/clothing/under/marine/ru/black/delta = -1,
 		/obj/item/clothing/under/marine/ru/black/charlie = -1,
+		/obj/item/clothing/under/marine/ru/black/foreign = -1,
 		/obj/item/clothing/glasses/ru/orange = 1,
 		/obj/item/storage/backpack/marine/scav = -1,
 		/obj/item/clothing/under/marine/ru/slav = -1,
@@ -585,6 +587,10 @@ SUBSYSTEM_DEF(ru_items)
 	name = "\improper Delta squad headband"
 	icon_state = "dsquadhb"
 
+/obj/item/clothing/head/squadhb/fl
+	name = "\improper Foreign Legion headband"
+	icon_state = "flsquadhb"
+
 /obj/item/clothing/head/tgmcberet/squad
 	name = "\improper Charlie squad beret"
 	icon_state = "csberet"
@@ -607,6 +613,11 @@ SUBSYSTEM_DEF(ru_items)
 	name = "\improper Bravo Squad beret"
 	desc = "Military beret with TGMC marine squad insignia. This one belongs to the Bravo Squad."
 	icon_state = "bsberet"
+
+/obj/item/clothing/head/tgmcberet/squad/foreign
+	name = "\improper Foreign Legion beret"
+	desc = "Military beret with TGMC marine squad insignia. This one belongs to the Foreign Legion."
+	icon_state = "flsberet"
 
 /obj/item/clothing/head/tgmcberet/commando
 	name = "\improper Marines Commando beret"

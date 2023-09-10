@@ -246,3 +246,12 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 	job_preferences[job.title] = level
 	return TRUE
+
+
+/datum/preferences/proc/get_selectable_squads()
+	var/list/squads_access = SELECTABLE_SQUADS
+	var/datum/db_query/wl = SSdbcore.NewQuery("SELECT role FROM [format_table_name("foreign_legion")] WHERE ckey = :ckey", list("ckey" = parent.ckey))
+	if(!wl.warn_execute() || !wl.NextRow())
+		qdel(wl)
+		squads_access -= RADIO_CHANNEL_FOREIGN
+	return squads_access

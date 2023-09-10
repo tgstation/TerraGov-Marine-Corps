@@ -439,7 +439,7 @@
 				if(selected) //Now we have a proper squad. Change their ID to it.
 					modify.assignment = "[selected.name] [modify.rank]" //Change the assignment - "Alpha Squad Marine"
 					modify.access += selected.access //Add their new squad access (if anything) to their ID.
-					to_chat(usr, "[selected.name] Squad added to card.")
+					to_chat(usr, "[selected.name] [selected.additional_name] added to card.")
 				else
 					to_chat(usr, "No squad selected.")
 				modify.name = "[modify.registered_name]'s ID Card ([modify.assignment])" //Reset our ID name.

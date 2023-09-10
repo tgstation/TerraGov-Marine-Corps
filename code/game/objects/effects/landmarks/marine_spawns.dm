@@ -36,6 +36,10 @@
 	squad = DELTA_SQUAD
 	icon_state = "marine_spawn_delta"
 
+/obj/effect/landmark/start/squad/squadmarine/foreign
+	squad = FOREIGN_SQUAD
+	icon_state = "marine_spawn_foreign"
+
 /obj/effect/landmark/start/squad/squadengineer
 	icon_state = "engi_spawn"
 	title = SQUAD_ENGINEER
@@ -55,6 +59,10 @@
 /obj/effect/landmark/start/squad/squadengineer/delta
 	squad = DELTA_SQUAD
 	icon_state = "engi_spawn_delta"
+
+/obj/effect/landmark/start/squad/squadengineer/foreign
+	squad = FOREIGN_SQUAD
+	icon_state = "engi_spawn_foreign"
 
 /obj/effect/landmark/start/squad/squadcorpsman
 	icon_state = "medic_spawn"
@@ -76,6 +84,10 @@
 	squad = DELTA_SQUAD
 	icon_state = "medic_spawn_delta"
 
+/obj/effect/landmark/start/squad/squadcorpsman/foreign
+	squad = FOREIGN_SQUAD
+	icon_state = "medic_spawn_foreign"
+
 /obj/effect/landmark/start/squad/squadsmartgunner
 	icon_state = "smartgunner_spawn"
 	title = SQUAD_SMARTGUNNER
@@ -96,6 +108,10 @@
 	squad = DELTA_SQUAD
 	icon_state = "smartgunner_spawn_delta"
 
+/obj/effect/landmark/start/squad/squadsmartgunner/foreign
+	squad = FOREIGN_SQUAD
+	icon_state = "smartgunner_spawn_foreign"
+
 /obj/effect/landmark/start/squad/squadleader
 	icon_state = "leader_spawn"
 	title = SQUAD_LEADER
@@ -115,6 +131,10 @@
 /obj/effect/landmark/start/squad/squadleader/delta
 	squad = DELTA_SQUAD
 	icon_state = "leader_spawn_delta"
+
+/obj/effect/landmark/start/squad/squadleader/foreign
+	squad = FOREIGN_SQUAD
+	icon_state = "leader_spawn_foreign"
 
 /obj/effect/landmark/start/job/captain
 	icon_state = "CAP"

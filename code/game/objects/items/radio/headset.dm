@@ -645,6 +645,35 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	name = "marine delta corpsman radio headset"
 	keyslot2 = /obj/item/encryptionkey/med
 
+
+
+/obj/item/radio/headset/mainship/marine/foreign
+	name = "marine foreign radio headset"
+	icon_state = "headset_marine_foreign"
+	frequency = FREQ_FOREIGN
+	minimap_type = /datum/action/minimap/marine
+
+/obj/item/radio/headset/mainship/marine/foreign/LateInitialize()
+	. = ..()
+	camera.network += list("foreign")
+
+
+/obj/item/radio/headset/mainship/marine/foreign/lead
+	name = "marine foreign leader radio headset"
+	keyslot2 = /obj/item/encryptionkey/squadlead
+	use_command = TRUE
+	command = TRUE
+
+
+/obj/item/radio/headset/mainship/marine/foreign/engi
+	name = "marine foreign engineer radio headset"
+	keyslot2 = /obj/item/encryptionkey/engi
+
+
+/obj/item/radio/headset/mainship/marine/foreign/med
+	name = "marine foreign corpsman radio headset"
+	keyslot2 = /obj/item/encryptionkey/med
+
 /obj/item/radio/headset/mainship/marine/generic
 	name = "marine generic radio headset"
 	icon_state = "headset_marine_generic"
@@ -762,6 +791,28 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 
 /obj/item/radio/headset/mainship/marine/rebel/delta/med
 	name = "marine delta corpsman radio headset"
+	keyslot2 = /obj/item/encryptionkey/med/rebel
+
+
+/obj/item/radio/headset/mainship/marine/foreign/LateInitialize()
+	. = ..()
+	camera.network += list("foreign_rebel")
+
+
+/obj/item/radio/headset/mainship/marine/rebel/foreign/lead
+	name = "marine foreign leader radio headset"
+	keyslot2 = /obj/item/encryptionkey/squadlead/rebel
+	use_command = TRUE
+	command = TRUE
+
+
+/obj/item/radio/headset/mainship/marine/rebel/foreign/engi
+	name = "marine foreign engineer radio headset"
+	keyslot2 = /obj/item/encryptionkey/engi/rebel
+
+
+/obj/item/radio/headset/mainship/marine/rebel/foreign/med
+	name = "marine foreign corpsman radio headset"
 	keyslot2 = /obj/item/encryptionkey/med/rebel
 
 /obj/item/radio/headset/mainship/marine/rebel/generic

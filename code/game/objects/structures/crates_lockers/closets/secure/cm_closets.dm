@@ -82,6 +82,17 @@
 	new /obj/item/clothing/gloves/marine(src)
 
 
+/obj/structure/closet/secure_closet/marine/standard/foreign
+	name = "foreign equipment locker"
+	req_access = list(ACCESS_MARINE_PREP, ACCESS_MARINE_FOREIGN)
+	closet_squad = "foreign"
+
+/obj/structure/closet/secure_closet/marine/standard/foreign/PopulateContents()
+	. = ..()
+	new /obj/item/radio/headset/mainship/marine/foreign(src)
+	new /obj/item/clothing/gloves/marine(src)
+
+
 // MARINE LEADER
 
 /obj/structure/closet/secure_closet/marine/leader/PopulateContents()
@@ -132,6 +143,16 @@
 	. = ..()
 	new /obj/item/clothing/gloves/marine(src)
 	new /obj/item/radio/headset/mainship/marine/delta/lead(src)
+
+/obj/structure/closet/secure_closet/marine/leader/foreign
+	name = "foreign leader equipment locker"
+	req_access = list(ACCESS_MARINE_PREP, ACCESS_MARINE_FOREIGN, ACCESS_MARINE_LEADER)
+	closet_squad = "foreign"
+
+/obj/structure/closet/secure_closet/marine/leader/foreign/PopulateContents()
+	. = ..()
+	new /obj/item/clothing/gloves/marine(src)
+	new /obj/item/radio/headset/mainship/marine/foreign/lead(src)
 
 
 
@@ -187,6 +208,15 @@
 /obj/structure/closet/secure_closet/marine/engi/delta/PopulateContents()
 	. = ..()
 	new /obj/item/radio/headset/mainship/marine/delta/engi(src)
+
+/obj/structure/closet/secure_closet/marine/engi/foreign
+	name = "foreign engineer equipment locker"
+	req_access = list(ACCESS_MARINE_PREP, ACCESS_MARINE_FOREIGN, ACCESS_MARINE_ENGPREP)
+	closet_squad = "foreign"
+
+/obj/structure/closet/secure_closet/marine/engi/foreign/PopulateContents()
+	. = ..()
+	new /obj/item/radio/headset/mainship/marine/foreign/engi(src)
 
 
 
@@ -248,6 +278,17 @@
 	. = ..()
 	new /obj/item/clothing/gloves/marine(src)
 	new /obj/item/radio/headset/mainship/marine/delta/med(src)
+
+
+/obj/structure/closet/secure_closet/marine/medic/foreign
+	name = "foreign medic equipment locker"
+	req_access = list(ACCESS_MARINE_PREP, ACCESS_MARINE_FOREIGN, ACCESS_MARINE_MEDPREP)
+	closet_squad = "foreign"
+
+/obj/structure/closet/secure_closet/marine/medic/foreign/PopulateContents()
+	. = ..()
+	new /obj/item/clothing/gloves/marine(src)
+	new /obj/item/radio/headset/mainship/marine/foreign/med(src)
 
 
 

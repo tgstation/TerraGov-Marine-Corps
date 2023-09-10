@@ -281,6 +281,8 @@ GLOBAL_PROTECT(admin_verbs_default)
 	/datum/admins/proc/jump,
 	/datum/admins/proc/get_mob,
 	/datum/admins/proc/send_mob,
+	/datum/admins/proc/add_foreign_legion,
+	/datum/admins/proc/remove_foreign_legion,
 	/datum/admins/proc/jump_area,
 	/datum/admins/proc/jump_coord,
 	/datum/admins/proc/jump_mob,

@@ -310,6 +310,14 @@ CREATE TABLE IF NOT EXISTS `stickyban` (
   PRIMARY KEY (`ckey`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+-- Data exporting was unselected.
+-- Dumping structure for table feedback.foreign_legion
+CREATE TABLE IF NOT EXISTS `foreign_legion` (
+  `ckey` varchar(32) NOT NULL,
+  `role` int(11) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`ckey`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
 --
 -- Table structure for table `stickyban_matched_ckey`
 --

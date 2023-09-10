@@ -401,6 +401,10 @@
 	name = "Squad Delta Preparation"
 	icon_state = "delta"
 
+/area/mainship/squads/foreign
+	name = "Squad Foreign Preparation"
+	icon_state = "foreign"
+
 /area/mainship/squads/general
 	name = "Common Squads Preparation"
 	icon_state = "req"
