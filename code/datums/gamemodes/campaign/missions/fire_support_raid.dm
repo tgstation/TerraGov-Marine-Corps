@@ -46,18 +46,18 @@
 /datum/campaign_mission/destroy_mission/fire_support_raid/apply_major_victory()
 	. = ..()
 	var/datum/faction_stats/hostile_team = mode.stat_list[hostile_faction]
-	if(hostile_faction = FACTION_TERRAGOV)
+	if(hostile_faction == FACTION_TERRAGOV)
 		hostile_team.add_reward(/datum/campaign_reward/reward_disabler/tgmc_mortar/long)
-	else if(hostile_faction = FACTION_SOM)
+	else if(hostile_faction == FACTION_SOM)
 		hostile_team.add_reward(/datum/campaign_reward/reward_disabler/som_mortar/long)
 
 
 /datum/campaign_mission/destroy_mission/fire_support_raid/apply_minor_victory()
 	. = ..()
 	var/datum/faction_stats/hostile_team = mode.stat_list[hostile_faction]
-	if(hostile_faction = FACTION_TERRAGOV)
+	if(hostile_faction == FACTION_TERRAGOV)
 		hostile_team.add_reward(/datum/campaign_reward/reward_disabler/tgmc_mortar)
-	else if(hostile_faction = FACTION_SOM)
+	else if(hostile_faction == FACTION_SOM)
 		hostile_team.add_reward(/datum/campaign_reward/reward_disabler/som_mortar)
 
 /datum/campaign_mission/destroy_mission/fire_support_raid/apply_minor_loss()
