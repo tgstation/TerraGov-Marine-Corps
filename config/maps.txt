@@ -73,3 +73,7 @@ endmap
 map lawanka
 minplayers 60
 endmap
+
+map slumbridge
+  minplayers 35
+endmap

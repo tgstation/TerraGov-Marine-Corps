@@ -8,6 +8,15 @@
 	width = 11
 	height = 21
 
+/obj/docking_port/stationary/marine_dropship/Initialize()
+	. = ..()
+	return INITIALIZE_HINT_LATELOAD
+
+/obj/docking_port/stationary/marine_dropship/LateInitialize()
+	for(var/obj/machinery/landinglight/light AS in GLOB.landing_lights)
+		if(light.id == id)
+			light.linked_port = src
+
 /obj/docking_port/stationary/marine_dropship/on_crash()
 	for(var/obj/machinery/power/apc/A AS in GLOB.apcs_list) //break APCs
 		if(!is_mainship_level(A.z))
@@ -236,7 +245,9 @@
 		if(cycle_timer)
 			deltimer(cycle_timer)
 		cycle_timer = addtimer(CALLBACK(src, PROC_REF(prepare_going_to_previous_destination)), rechargeTime + time_between_cycle SECONDS - 20 SECONDS, TIMER_STOPPABLE)
-
+	for(var/obj/machinery/landinglight/light AS in GLOB.landing_lights)
+		if(light.linked_port == destination)
+			light.turn_off()
 	return ..()
 
 ///Announce that the dropship will departure soon
@@ -310,6 +321,9 @@
 	. = ..()
 	if(hijack_state == HIJACK_STATE_CRASHING)
 		priority_announce("DROPSHIP ON COLLISION COURSE. CRASH IMMINENT.", "EMERGENCY", sound = 'sound/AI/dropship_emergency.ogg')
+	for(var/obj/machinery/landinglight/light AS in GLOB.landing_lights)
+		if(light.linked_port == destination)
+			light.turn_on()
 
 
 /obj/docking_port/mobile/marine_dropship/getStatusText()

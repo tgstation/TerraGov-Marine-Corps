@@ -1320,7 +1320,7 @@
 /turf/open/floor/prison,
 /area/gelida/outdoors/colony_streets/north_west_street)
 "aUl" = (
-/obj/machinery/landinglight/ds1{
+/obj/machinery/landinglight/lz1{
 	dir = 1
 	},
 /turf/open/floor/prison/darkbrown/full,
@@ -5805,7 +5805,7 @@
 	},
 /area/gelida/indoors/a_block/dorm_north)
 "dTA" = (
-/obj/machinery/landinglight/ds1{
+/obj/machinery/landinglight/lz1{
 	dir = 4
 	},
 /turf/open/floor/prison/whitegreenfull2,
@@ -6795,8 +6795,8 @@
 /turf/open/floor/prison/whitegreen/full,
 /area/gelida/indoors/a_block/medical)
 "exV" = (
-/obj/machinery/landinglight/ds1,
 /obj/effect/ai_node,
+/obj/machinery/landinglight/lz1,
 /turf/open/floor/prison,
 /area/gelida/landing_zone_2)
 "eyF" = (
@@ -8230,7 +8230,7 @@
 /turf/closed/wall,
 /area/gelida/indoors/b_block/bridge)
 "fvt" = (
-/obj/machinery/landinglight/ds1{
+/obj/machinery/landinglight/lz1{
 	dir = 4
 	},
 /turf/open/floor/prison,
@@ -9555,7 +9555,7 @@
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/gelida/indoors/a_block/bridges/corpo)
 "guX" = (
-/obj/machinery/landinglight/ds1,
+/obj/machinery/landinglight/lz1,
 /turf/open/floor/prison/darkbrown/full,
 /area/gelida/landing_zone_1)
 "gve" = (
@@ -9676,8 +9676,8 @@
 	},
 /area/gelida/indoors/a_block/dorms)
 "gys" = (
-/obj/machinery/landinglight/ds1,
 /obj/structure/cable,
+/obj/machinery/landinglight/lz1,
 /turf/open/floor/prison,
 /area/gelida/landing_zone_1)
 "gyz" = (
@@ -10851,11 +10851,11 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/edge/regular,
 /area/gelida/outdoors/colony_streets/central_streets)
 "hmF" = (
-/obj/machinery/landinglight/ds1{
-	dir = 4
-	},
 /obj/structure/cable,
 /obj/effect/ai_node,
+/obj/machinery/landinglight/lz1{
+	dir = 4
+	},
 /turf/open/floor/prison,
 /area/gelida/landing_zone_1)
 "hnn" = (
@@ -13459,7 +13459,7 @@
 /turf/open/floor/mainship/stripesquare,
 /area/gelida/indoors/lone_buildings/storage_blocks)
 "jcm" = (
-/obj/machinery/landinglight/ds1,
+/obj/machinery/landinglight/lz1,
 /turf/open/floor/prison,
 /area/gelida/landing_zone_1)
 "jcs" = (
@@ -13499,7 +13499,7 @@
 /turf/open/floor/prison/darkred/full,
 /area/gelida/outdoors/colony_streets/north_street)
 "jdO" = (
-/obj/machinery/landinglight/ds1{
+/obj/machinery/landinglight/lz1{
 	dir = 8
 	},
 /turf/open/floor/prison/darkbrown/full,
@@ -16654,10 +16654,10 @@
 /turf/open/floor/plating/ground/ice,
 /area/gelida/caves/east_caves)
 "lnU" = (
-/obj/machinery/landinglight/ds1{
+/obj/effect/ai_node,
+/obj/machinery/landinglight/lz1{
 	dir = 1
 	},
-/obj/effect/ai_node,
 /turf/open/floor/prison,
 /area/gelida/landing_zone_2)
 "loy" = (
@@ -17731,10 +17731,10 @@
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/gelida/indoors/c_block/bridge)
 "lZJ" = (
-/obj/machinery/landinglight/ds1{
+/obj/structure/cable,
+/obj/machinery/landinglight/lz1{
 	dir = 4
 	},
-/obj/structure/cable,
 /turf/open/floor/prison,
 /area/gelida/landing_zone_1)
 "lZK" = (
@@ -17882,7 +17882,7 @@
 /area/gelida/indoors/a_block/admin)
 "mfj" = (
 /obj/structure/table/mainship,
-/obj/item/storage/box/flashbangs{
+/obj/effect/spawner/random/weaponry/explosive/grenade/multiplefour{
 	pixel_x = 7;
 	pixel_y = 2
 	},
@@ -18293,9 +18293,9 @@
 /turf/open/floor/mainship/black/full,
 /area/gelida/landing_zone_2)
 "mqR" = (
-/obj/machinery/landinglight/ds1,
 /obj/structure/cable,
 /obj/effect/ai_node,
+/obj/machinery/landinglight/lz1,
 /turf/open/floor/prison,
 /area/gelida/landing_zone_1)
 "mqX" = (
@@ -20030,7 +20030,7 @@
 /turf/open/floor/plating,
 /area/gelida/indoors/a_block/security)
 "nBT" = (
-/obj/machinery/landinglight/ds1{
+/obj/machinery/landinglight/lz1{
 	dir = 1
 	},
 /turf/open/floor/prison/whitegreenfull2,
@@ -20054,8 +20054,8 @@
 /turf/open/floor/plating,
 /area/gelida/indoors/a_block/security)
 "nDu" = (
-/obj/machinery/landinglight/ds1,
 /obj/structure/cable,
+/obj/machinery/landinglight/lz1,
 /turf/open/floor/prison/darkbrown/full,
 /area/gelida/landing_zone_1)
 "nDy" = (
@@ -21837,7 +21837,7 @@
 	},
 /area/gelida/indoors/a_block/hallway)
 "oLu" = (
-/obj/machinery/landinglight/ds1{
+/obj/machinery/landinglight/lz1{
 	dir = 4
 	},
 /turf/open/floor/prison,
@@ -22061,7 +22061,7 @@
 	},
 /area/gelida/outdoors/colony_streets/north_east_street)
 "oTb" = (
-/obj/machinery/landinglight/ds1,
+/obj/machinery/landinglight/lz1,
 /turf/open/floor/prison/whitegreenfull2,
 /area/gelida/landing_zone_2)
 "oTs" = (
@@ -23454,10 +23454,10 @@
 /turf/closed/shuttle/dropship2/enginethree,
 /area/gelida/landing_zone_forecon/UD6_Tornado)
 "pLD" = (
-/obj/machinery/landinglight/ds1{
+/obj/item/tool/crowbar,
+/obj/machinery/landinglight/lz1{
 	dir = 8
 	},
-/obj/item/tool/crowbar,
 /turf/open/floor/prison,
 /area/gelida/landing_zone_1)
 "pLJ" = (
@@ -23720,7 +23720,7 @@
 	},
 /area/gelida/outdoors/colony_streets/north_west_street)
 "pUt" = (
-/obj/machinery/landinglight/ds1{
+/obj/machinery/landinglight/lz1{
 	dir = 1
 	},
 /turf/open/floor/prison,
@@ -24507,7 +24507,7 @@
 /turf/open/floor/plating/ground/ice,
 /area/gelida/caves/west_caves/garbledradio)
 "qxM" = (
-/obj/machinery/landinglight/ds1{
+/obj/machinery/landinglight/lz1{
 	dir = 4
 	},
 /turf/open/floor/prison/darkbrown/full,
@@ -26154,7 +26154,7 @@
 /area/gelida/outdoors/colony_streets/central_streets)
 "ryK" = (
 /obj/structure/table/mainship,
-/obj/item/storage/box/flashbangs{
+/obj/effect/spawner/random/weaponry/explosive/grenade/multiplefour{
 	pixel_x = -5;
 	pixel_y = 5
 	},
@@ -26998,7 +26998,7 @@
 /turf/open/floor/prison,
 /area/gelida/landing_zone_1)
 "sgl" = (
-/obj/machinery/landinglight/ds1{
+/obj/machinery/landinglight/lz1{
 	dir = 8
 	},
 /turf/open/floor/prison,
@@ -30184,7 +30184,7 @@
 /turf/open/floor/prison,
 /area/gelida/cavestructuretwo)
 "urz" = (
-/obj/machinery/landinglight/ds1,
+/obj/machinery/landinglight/lz1,
 /turf/open/floor/prison,
 /area/gelida/landing_zone_2)
 "urM" = (
@@ -31055,10 +31055,10 @@
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/gelida/indoors/a_block/security)
 "uXB" = (
-/obj/machinery/landinglight/ds1{
+/obj/structure/cable,
+/obj/machinery/landinglight/lz1{
 	dir = 4
 	},
-/obj/structure/cable,
 /turf/open/floor/prison/darkbrown/full,
 /area/gelida/landing_zone_1)
 "uXX" = (
@@ -31487,7 +31487,7 @@
 	},
 /area/gelida/landing_zone_forecon/landing_zone_4)
 "vnD" = (
-/obj/machinery/landinglight/ds1{
+/obj/machinery/landinglight/lz1{
 	dir = 8
 	},
 /turf/open/floor/prison,
@@ -33489,7 +33489,7 @@
 	},
 /area/gelida/indoors/a_block/dorms)
 "wLl" = (
-/obj/machinery/landinglight/ds1{
+/obj/machinery/landinglight/lz1{
 	dir = 1
 	},
 /turf/open/floor/prison,
@@ -34470,7 +34470,7 @@
 /turf/open/floor/prison/sterilewhite,
 /area/gelida/indoors/a_block/medical)
 "xAT" = (
-/obj/machinery/landinglight/ds1{
+/obj/machinery/landinglight/lz1{
 	dir = 8
 	},
 /turf/open/floor/prison/whitegreenfull2,
@@ -35496,10 +35496,10 @@
 /turf/open/floor/prison,
 /area/gelida/indoors/c_block/cargo)
 "yhb" = (
-/obj/machinery/landinglight/ds1{
+/obj/effect/ai_node,
+/obj/machinery/landinglight/lz1{
 	dir = 8
 	},
-/obj/effect/ai_node,
 /turf/open/floor/prison,
 /area/gelida/landing_zone_2)
 "yhg" = (
