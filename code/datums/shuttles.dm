@@ -157,11 +157,13 @@
 	suffix =	"_compact"
 	description = "A marine's worst nightmare. This tad sacrifices space for manuverability, has everything a normal standerd tad has accept a fire extinguisher"
 	display_name = "Tadpole Compact Model"
+	admin_enable = FALSE
 
 /datum/map_template/shuttle/minidropship/pirate
 	suffix =	"_pirate"
 	description = "Ahoy, matey! this here ship be the finest ship o' the stars. She 'as six cannons, an' six functional gun ports. Do be careful, as it 'as No sentry guns an' will be in the doldrums without a proper crew!"
 	display_name = "Tadpole Pirate Model"
+	admin_enable = FALSE
 
 /datum/map_template/shuttle/minidropship/huey
 	suffix =	"_huey"
