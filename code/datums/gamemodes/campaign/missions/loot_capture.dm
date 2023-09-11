@@ -89,8 +89,6 @@
 		outcome = MISSION_OUTCOME_DRAW
 	return TRUE
 
-
-//todo: add some logic to modify rewards based on crates captured
 /datum/campaign_mission/capture_mission/apply_major_victory()
 	. = ..()
 	objective_reward_bonus()

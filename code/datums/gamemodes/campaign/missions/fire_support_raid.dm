@@ -1,6 +1,6 @@
-//disabling some of the enemy's firesupport options. Maybe don't need this parent one considering the destroy mission parent...
+//disabling some of the enemy's firesupport options
 /datum/campaign_mission/destroy_mission/fire_support_raid
-	name = "Fire support raid" //update generic
+	name = "Fire support raid"
 	map_name = "Lunar base BD-832"
 	map_file = '_maps/map_files/Campaign maps/jungle_test/jungle_outpost.dmm'
 	objectives_total = 5
@@ -50,7 +50,6 @@
 		hostile_team.add_reward(/datum/campaign_reward/reward_disabler/tgmc_mortar/long)
 	else if(hostile_faction == FACTION_SOM)
 		hostile_team.add_reward(/datum/campaign_reward/reward_disabler/som_mortar/long)
-
 
 /datum/campaign_mission/destroy_mission/fire_support_raid/apply_minor_victory()
 	. = ..()

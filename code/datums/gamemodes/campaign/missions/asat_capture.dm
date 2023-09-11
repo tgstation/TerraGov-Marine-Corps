@@ -1,5 +1,5 @@
 //ASAT capture mission
-/datum/campaign_mission/capture_mission/asat/asat
+/datum/campaign_mission/capture_mission/asat
 	name = "ASAT capture"
 	map_name = "Orion Outpost"
 	map_file = '_maps/map_files/Campaign maps/jungle_test/jungle_outpost.dmm'
@@ -67,8 +67,6 @@
 
 	return TRUE
 
-
-//todo
 /datum/campaign_mission/capture_mission/asat/apply_major_victory()
 	. = ..()
 	var/datum/faction_stats/som_team = mode.stat_list[starting_faction]
