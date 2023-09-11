@@ -10403,6 +10403,7 @@
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
 	dir = 4
 	},
+/obj/machinery/computer/squad_selector,
 /turf/open/floor/prison/green/full,
 /area/sulaco/marine)
 "cyq" = (
@@ -15334,6 +15335,10 @@
 	dir = 1
 	},
 /area/sulaco/medbay)
+"iOD" = (
+/obj/machinery/computer/squad_selector,
+/turf/open/floor/prison,
+/area/sulaco/marine)
 "iPn" = (
 /obj/structure/window/reinforced{
 	dir = 8
@@ -20476,6 +20481,10 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/prison/whitegreen/corner,
 /area/sulaco/medbay/storage)
+"ppY" = (
+/obj/machinery/computer/squad_manager,
+/turf/open/floor/prison,
+/area/sulaco/marine)
 "ptg" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/prison/plate,
@@ -47438,7 +47447,7 @@ uwG
 aJy
 jUJ
 aMp
-xJd
+ppY
 cAK
 kqp
 kNc
@@ -48221,7 +48230,7 @@ oSV
 xJd
 wYX
 aLk
-mAk
+iOD
 aLf
 ueG
 wVR

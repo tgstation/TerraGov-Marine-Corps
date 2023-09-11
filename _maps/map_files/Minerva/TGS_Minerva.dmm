@@ -3040,6 +3040,13 @@
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/hangar)
+"iz" = (
+/obj/machinery/light/mainship{
+	dir = 8
+	},
+/obj/machinery/computer/squad_selector,
+/turf/open/floor/mainship/floor,
+/area/mainship/squads/general)
 "iA" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 1
@@ -3626,6 +3633,13 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/living/evacuation)
+"ke" = (
+/obj/machinery/light/mainship{
+	dir = 4
+	},
+/obj/machinery/computer/squad_manager,
+/turf/open/floor/mainship/floor,
+/area/mainship/squads/general)
 "kf" = (
 /obj/effect/turf_decal/siding,
 /turf/open/floor/mainship/terragov/north,
@@ -28271,7 +28285,7 @@ uq
 sX
 sr
 ta
-uq
+iz
 yG
 tc
 tc
@@ -28279,7 +28293,7 @@ tc
 tc
 tc
 uk
-uq
+iz
 ta
 sr
 IB
@@ -29345,7 +29359,7 @@ qh
 rr
 sr
 tf
-ux
+ke
 tf
 sr
 ta
