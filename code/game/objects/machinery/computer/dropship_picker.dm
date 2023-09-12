@@ -68,7 +68,6 @@
 		"_compact" = 'icons/ui_icons/dropshippicker/_compact.png',
 		"_pirate" = 'icons/ui_icons/dropshippicker/_pirate.png',
 		"_huey" = 'icons/ui_icons/dropshippicker/_huey.png',
-		"_mortar" = 'icons/ui_icons/dropshippicker/_mortar.png',
 	)
 
 /obj/machinery/computer/dropship_picker/ui_act(action, list/params, datum/tgui/ui)
