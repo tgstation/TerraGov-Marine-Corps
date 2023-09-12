@@ -431,8 +431,8 @@
 	return ..()
 
 /datum/effect_system/smoke_spread/chem
-	/// Evil evil hack so we have something to "hold" our reagents
-	var/atom/movable/chem_holder/chemholder
+	///The holder for this reagent
+	var/atom/movable/chemholder
 	smoke_type = /obj/effect/particle_effect/smoke/chem
 
 /datum/effect_system/smoke_spread/chem/New()
