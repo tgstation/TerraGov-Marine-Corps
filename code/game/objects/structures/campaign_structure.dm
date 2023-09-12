@@ -212,12 +212,17 @@
 	qdel(src)
 
 /obj/effect/landmark/campaign_objective/asat_system
-	name = "ASAT objective"
+	name = "ASAT system"
+	icon = 'icons/obj/structures/campaign_structures.dmi'
+	icon_state = "asat"
 	mission_types = list(/datum/campaign_mission/capture_mission/asat)
 	objective_type = /obj/structure/campaign_objective/capture_objective/fultonable/asat_system
 
 /obj/structure/campaign_objective/capture_objective/fultonable/asat_system
 	name = "\improper T-4000 ASAT system"
+	icon = 'icons/obj/structures/campaign_structures.dmi'
+	icon_state = "asat"
 	desc = "A sophisticated surface to space missile system designed for attacking orbiting satellites or spacecraft."
 	capture_time = 12 SECONDS
 	capture_flags = CAPTURE_OBJECTIVE_RECAPTURABLE
+	owning_faction = FACTION_TERRAGOV //this could have a coded solution, but the mission is tgmc specific

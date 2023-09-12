@@ -1502,6 +1502,10 @@
 /obj/effect/spawner/random/engineering/extinguisher,
 /turf/open/floor/tile/purple/whitepurple,
 /area/campaign/jungle_outpost/outpost/science/south)
+"gA" = (
+/obj/effect/landmark/campaign_objective/asat_system,
+/turf/open/floor,
+/area/campaign/jungle_outpost/ground/jungle)
 "gB" = (
 /obj/structure/closet/secure_closet/security,
 /turf/open/floor/tile/red/redtaupe{
@@ -4877,6 +4881,10 @@
 	},
 /turf/open/floor,
 /area/campaign/jungle_outpost/outpost/outer/west)
+"vo" = (
+/obj/effect/landmark/campaign_objective/asat_system,
+/turf/open/floor/plating/ground/concrete,
+/area/campaign/jungle_outpost/outpost/req/containers)
 "vq" = (
 /obj/structure/table/reinforced,
 /obj/item/healthanalyzer,
@@ -5228,6 +5236,11 @@
 	dir = 8
 	},
 /area/campaign/jungle_outpost/ground/jungle/east)
+"wT" = (
+/obj/structure/flora/jungle/grass/thin,
+/obj/effect/landmark/campaign_objective/asat_system,
+/turf/open/ground/grass/weedable,
+/area/campaign/jungle_outpost/ground/jungle/west)
 "wU" = (
 /obj/structure/cargo_container/horizontal{
 	dir = 4
@@ -8563,6 +8576,12 @@
 	dir = 1
 	},
 /area/campaign/jungle_outpost/outpost/security/vault)
+"Lr" = (
+/obj/effect/landmark/campaign_objective/asat_system,
+/turf/open/floor/plating/ground/dirtgrassborder2/corner{
+	dir = 1
+	},
+/area/campaign/jungle_outpost/ground/jungle)
 "Lt" = (
 /obj/structure/flora/jungle/grass/thin,
 /turf/open/ground/grass/weedable,
@@ -11845,6 +11864,12 @@
 	dir = 4
 	},
 /area/campaign/jungle_outpost/ground/jungle/north)
+"ZG" = (
+/obj/effect/landmark/campaign_objective/asat_system,
+/turf/open/floor/plating/ground/dirtgrassborder2/corner2{
+	dir = 4
+	},
+/area/campaign/jungle_outpost/ground/jungle)
 "ZH" = (
 /turf/open/ground/grass/beach{
 	dir = 4
@@ -13221,7 +13246,7 @@ FL
 Cl
 bE
 Sa
-il
+wT
 bE
 bE
 kS
@@ -20777,7 +20802,7 @@ xw
 xw
 ML
 cX
-fQ
+ZG
 xw
 xw
 qM
@@ -22034,7 +22059,7 @@ mD
 UJ
 UJ
 UJ
-XC
+Lr
 mm
 fQ
 xU
@@ -24516,7 +24541,7 @@ cJ
 cJ
 cJ
 nK
-cJ
+vo
 cJ
 rd
 nI
@@ -27036,7 +27061,7 @@ bw
 bw
 fl
 fl
-fl
+gA
 ay
 fl
 fl
