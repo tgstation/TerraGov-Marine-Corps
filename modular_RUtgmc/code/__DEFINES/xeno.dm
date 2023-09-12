@@ -1,8 +1,7 @@
 //Resin defines
 #define ALIEN_NEST "alien nest"
-
-//Defiler light acid
-#define DEFILER_ACID "Acid"
+#define GROWTH_WALL "growth wall"
+#define GROWTH_DOOR "growth door"
 
 //Panther tearing tail reagents
 #define PANTHER_NEUROTOXIN "Neurotoxin"

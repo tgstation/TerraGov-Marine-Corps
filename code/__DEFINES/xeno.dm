@@ -30,6 +30,7 @@
 #define DEFILER_HEMODILE "Hemodile"
 #define DEFILER_TRANSVITOX "Transvitox"
 #define DEFILER_OZELOMELYN "Ozelomelyn"
+#define DEFILER_ACID "Sulphuric acid" //RUTGMC EDIT ADDITION
 
 //Baneling specific reagent define
 #define BANELING_ACID "Sulphuric acid"
@@ -82,6 +83,7 @@ GLOBAL_LIST_INIT(defiler_toxin_type_list, list(
 		/datum/reagent/toxin/xeno_hemodile,
 		/datum/reagent/toxin/xeno_transvitox,
 		/datum/reagent/toxin/xeno_neurotoxin,
+		/datum/reagent/toxin/acid, //RUTGMC EDIT ADDITION
 		))
 
 //List of toxins improving defile's damage
@@ -91,6 +93,7 @@ GLOBAL_LIST_INIT(defiler_toxins_typecache_list, typecacheof(list(
 		/datum/reagent/toxin/xeno_transvitox,
 		/datum/reagent/toxin/xeno_neurotoxin,
 		/datum/reagent/toxin/xeno_sanguinal,
+		/datum/reagent/toxin/acid, //RUTGMC EDIT ADDITION
 		/datum/status_effect/stacking/intoxicated,
 		)))
 

@@ -6,6 +6,11 @@
 	plasma_cost = 20
 	var/pantherplasmaheal = 45
 
+/datum/action/xeno_action/activable/pounce/panther/mob_hit(datum/source, mob/living/M)
+	. = ..()
+	var/mob/living/carbon/xenomorph/X = owner
+	X.plasma_stored += pantherplasmaheal
+
 ///////////////////////////////////
 // ***************************************
 // *********** Tearing tail
@@ -171,15 +176,15 @@
 	playsound(lunge_target,'sound/weapons/alien_claw_block.ogg', 75, 1)
 
 	X.do_attack_animation(lunge_target, ATTACK_EFFECT_DISARM2)
-	lunge_target.ParalyzeNoChain(1 SECONDS)
-	lunge_target.throw_at(X, fling_distance, 1, X) //go under us
+	X.plasma_stored += 50 //reward for our smart little panther
 
 	if(isxeno(lunge_target))
 		var/mob/living/carbon/xenomorph/x_lunge_target = lunge_target
 		if(X.issamexenohive(x_lunge_target)) //We don't fuck up friendlies
 			return
 
-	X.plasma_stored += 50 //reward for our smart little panther
+	lunge_target.ParalyzeNoChain(1 SECONDS)
+	lunge_target.throw_at(X, fling_distance, 1, X) //go under us
 
 
 ///////////////////////////////////
@@ -490,11 +495,11 @@
 /datum/action/xeno_action/select_reagent/panther/select_reagent_radial()
 	//List of toxin images
 	var/static/list/panther_toxin_images_list = list(
-			PANTHER_NEUROTOXIN = image('icons/mob/actions.dmi', icon_state = PANTHER_NEUROTOXIN),
-			PANTHER_HEMODILE = image('icons/mob/actions.dmi', icon_state = PANTHER_HEMODILE),
-			PANTHER_TRANSVITOX = image('icons/mob/actions.dmi', icon_state = PANTHER_TRANSVITOX),
-			PANTHER_OZELOMELYN = image('icons/mob/actions.dmi', icon_state = PANTHER_OZELOMELYN),
-			PANTHER_SANGUINAL = image('icons/mob/actions.dmi', icon_state = PANTHER_SANGUINAL),
+			PANTHER_NEUROTOXIN = image('modular_RUtgmc/icons/Xeno/actions.dmi', icon_state = PANTHER_NEUROTOXIN),
+			PANTHER_HEMODILE = image('modular_RUtgmc/icons/Xeno/actions.dmi', icon_state = PANTHER_HEMODILE),
+			PANTHER_TRANSVITOX = image('modular_RUtgmc/icons/Xeno/actions.dmi', icon_state = PANTHER_TRANSVITOX),
+			PANTHER_OZELOMELYN = image('modular_RUtgmc/icons/Xeno/actions.dmi', icon_state = PANTHER_OZELOMELYN),
+			PANTHER_SANGUINAL = image('modular_RUtgmc/icons/Xeno/actions.dmi', icon_state = PANTHER_SANGUINAL),
 			)
 	var/toxin_choice = show_radial_menu(owner, owner, panther_toxin_images_list, radius = 48)
 	if(!toxin_choice)
