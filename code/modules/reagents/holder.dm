@@ -26,13 +26,10 @@
 	reagent_flags = new_flags
 
 /datum/reagents/Destroy()
-	var/list/cached_reagents = reagent_list
-	for(var/reagent in cached_reagents)
-		var/datum/reagent/R = reagent
-		qdel(R)
-	cached_reagents.Cut()
-	cached_reagents = null
-	if(my_atom?.reagents == src)
+	for(var/datum/reagent/reagent AS in reagent_list)
+		qdel(reagent)
+	reagent_list = null
+	if(my_atom && my_atom.reagents == src)
 		my_atom.reagents = null
 	my_atom = null
 	return ..()
