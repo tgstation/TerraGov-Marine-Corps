@@ -798,7 +798,7 @@
 	else
 		R = new /datum/reagents(1000)
 	reagents = R
-	R.my_atom = src
+	R.my_atom = WEAKREF(src)
 
 	species.create_organs(src)
 

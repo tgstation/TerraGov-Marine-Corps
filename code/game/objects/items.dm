@@ -1056,7 +1056,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 			if(!W)
 				return
 			W.reagents = R
-			R.my_atom = W
+			R.my_atom = WEAKREF(W)
 			if(!W || !src)
 				return
 			reagents.trans_to(W,1)

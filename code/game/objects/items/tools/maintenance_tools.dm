@@ -366,7 +366,7 @@
 	. = ..()
 	var/datum/reagents/R = new/datum/reagents(max_fuel) //Lotsa refills
 	reagents = R
-	R.my_atom = src
+	R.my_atom = WEAKREF(src)
 	R.add_reagent(/datum/reagent/fuel, max_fuel)
 
 /obj/item/tool/weldpack/attackby(obj/item/I, mob/user, params)
