@@ -404,7 +404,7 @@
 			return TRUE
 	return FALSE
 
-GLOBAL_LIST_EMPTY(custom_squad_radio_freqs)
+GLOBAL_LIST_EMPTY_TYPED(custom_squad_radio_freqs, /datum/squad)
 ///initializes a new custom squad. all args mandatory
 /proc/create_squad(squad_name, squad_color, mob/living/carbon/human/creator)
 	//Create the squad
