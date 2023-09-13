@@ -82,7 +82,8 @@
 	if(!.)
 		return FALSE
 
-	if(get_dist_euclide_square(A, owner) > 20)
+	//if(get_dist_euclide_square(A, owner) > 20) //ORIGINAL
+	if(get_dist_euclide_square(A, owner) > 36) //RUTGMC EDIT CHANGE
 		if(!silent)
 			to_chat(owner, span_xenonotice("You are too far!"))
 		return FALSE
@@ -497,7 +498,8 @@
 /mob/living/punch_act(mob/living/carbon/xenomorph/warrior/X, damage, target_zone, push = TRUE, punch_description = "powerful", stagger_stacks = 3, slowdown_stacks = 3)
 	. = ..()
 	if(pulledby == X) //If we're being grappled by the Warrior punching us, it's gonna do extra damage and debuffs; combolicious
-		damage *= 1.5
+		//damage *= 1.5 //ORIGINAL
+		damage *= 1.5 //RUTGMC EDIT CHANGE
 		slowdown_stacks *= 2
 		stagger_stacks *= 2
 		ParalyzeNoChain(0.5 SECONDS)
