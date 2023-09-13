@@ -77,6 +77,13 @@ OPERATIONS
 	cost = 200
 	available_against_xeno_only = TRUE
 
+/datum/supply_packs/operations/xeno_iff_tag
+	name = "Xenomorph IFF tag crate" //Intended for corrupted or friendly rounies as rounds sometimes turn out. Avoid abuse or I'll have to admin-only it, which is no fun!
+	notes = "Contains an IFF tag used to mark a xenomorph as friendly to IFF systems. Warning: Nanotrasen is not responsible for incidents related to attaching this to hostile entities."
+	contains = list(/obj/item/xeno_iff_tag)
+	access = ACCESS_MARINE_BRIDGE //Better be safe.
+	cost = 130
+
 /datum/supply_packs/operations/deployable_camera
 	name = "3 Deployable Cameras"
 	contains = list(
@@ -1581,6 +1588,16 @@ Imports
 /datum/supply_packs/imports/m25/ammo
 	name = "SMG-25 SMG Ammo"
 	contains = list(/obj/item/ammo_magazine/smg/m25)
+	cost = 3
+
+/datum/supply_packs/imports/alf
+	name = "ALF-51B Kauser machinecarbine"
+	contains = list(/obj/item/weapon/gun/rifle/alf_machinecarbine)
+	cost = 50
+
+/datum/supply_packs/imports/alf/ammo
+	name = "ALF-51B Kauser machinecarbine Ammo"
+	contains = list(/obj/item/ammo_magazine/rifle/alf_machinecarbine)
 	cost = 3
 
 /datum/supply_packs/imports/skorpion

@@ -3,7 +3,7 @@
 // ***************************************
 /datum/action/xeno_action/stealth
 	name = "Toggle Stealth"
-	action_icon_state = "stealth_on"
+	action_icon_state = "hunter_invisibility"
 	desc = "Become harder to see, almost invisible if you stand still, and ready a sneak attack. Uses plasma to move."
 	ability_name = "stealth"
 	plasma_cost = 10
@@ -207,6 +207,7 @@
 
 /datum/action/xeno_action/stealth/disguise
 	name = "Disguise"
+	action_icon_state = "xenohide"
 	desc = "Disguise yourself as the enemy. Uses plasma to move. Select your disguise with Hunter's Mark."
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TOGGLE_DISGUISE,

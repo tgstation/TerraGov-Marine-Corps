@@ -2,7 +2,7 @@
 	caste_base_type = /mob/living/carbon/xenomorph/crusher
 	name = "Crusher"
 	desc = "A huge alien with an enormous armored head crest."
-	icon = 'icons/Xeno/2x2_Xenos.dmi'
+	icon = 'icons/Xeno/castes/crusher.dmi'
 	icon_state = "Crusher Walking"
 	bubble_icon = "alienleft"
 	health = 300
