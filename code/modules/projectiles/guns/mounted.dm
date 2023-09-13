@@ -462,6 +462,7 @@
 	accuracy_mult = 1
 	burst_amount = 1
 	fire_delay = 1.35 SECONDS
+	aim_slowdown = 2
 	deploy_time = 1 SECONDS // Meant to be used by ERT's
 	undeploy_time = 0.25 SECONDS
 	movement_acc_penalty_mult = 20 // Good luck hitting on the move, bruv
