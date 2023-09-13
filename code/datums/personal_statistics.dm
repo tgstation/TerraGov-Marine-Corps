@@ -206,10 +206,10 @@ GLOBAL_LIST_EMPTY(personal_statistics_list)
 		support_stats += "Slashed [apcs_slashed] APC\s."
 
 	if(artillery_fired)
-		support_stats += "<br>Fired [artillery_fired] artillery shell\s."
+		support_stats += "Fired [artillery_fired] artillery shell\s."
 
 	if(req_points_used)
-		support_stats += "<br>Used [req_points_used] requisition point\s."
+		support_stats += "Used [req_points_used] requisition point\s."
 
 	if(drained)
 		support_stats += "Drained [drained] host\s."
