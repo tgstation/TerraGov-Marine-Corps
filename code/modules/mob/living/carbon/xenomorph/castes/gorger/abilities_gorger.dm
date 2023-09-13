@@ -6,7 +6,7 @@
 /////////////////////////////////
 /datum/action/xeno_action/activable/devour
 	name = "Devour"
-	action_icon_state = "regurgitate"
+	action_icon_state = "abduct"
 	desc = "Devour your victim to be able to carry it faster."
 	use_state_flags = XACT_USE_STAGGERED|XACT_USE_FORTIFIED|XACT_USE_CRESTED //can't use while staggered, defender fortified or crest down
 	plasma_cost = 0
