@@ -697,9 +697,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	. = ..()
 	if(!.)
 		return FALSE
-	if(gun_user.client && istype(chamber_items[1], /obj/item/ammo_magazine/rocket/sadar/wp))
-		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[gun_user.ckey]
-		personal_statistics.war_crimes++
+	gun_user?.record_war_crime()
 
 /obj/item/weapon/gun/launcher/rocket/sadar/valhalla
 	obj_flags = NONE
@@ -735,9 +733,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	. = ..()
 	if(!.)
 		return FALSE
-	if(gun_user.client)
-		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[gun_user.ckey]
-		personal_statistics.war_crimes++
+	gun_user?.record_war_crime()
 
 /obj/item/weapon/gun/launcher/rocket/m57a4/deathsquad
 	attachable_allowed = list(
@@ -905,9 +901,8 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	. = ..()
 	if(!.)
 		return FALSE
-	if(gun_user.client && istype(in_chamber, /obj/item/ammo_magazine/rocket/som/thermobaric || /obj/item/ammo_magazine/rocket/som/rad || /obj/item/ammo_magazine/rocket/som/incendiary))
-		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[gun_user.ckey]
-		personal_statistics.war_crimes++
+	if(istype(in_chamber, /obj/item/ammo_magazine/rocket/som/thermobaric || /obj/item/ammo_magazine/rocket/som/rad || /obj/item/ammo_magazine/rocket/som/incendiary))
+		gun_user?.record_war_crime()
 
 /obj/item/weapon/gun/launcher/rocket/som/rad
 	default_ammo_type = /obj/item/ammo_magazine/rocket/som/rad
@@ -947,9 +942,8 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	. = ..()
 	if(!.)
 		return FALSE
-	if(gun_user.client && istype(in_chamber, /obj/item/ammo_magazine/rocket/icc/thermobaric))
-		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[gun_user.ckey]
-		personal_statistics.war_crimes++
+	if(istype(in_chamber, /obj/item/ammo_magazine/rocket/icc/thermobaric))
+		gun_user?.record_war_crime()
 
 //-------------------------------------------------------
 //RG-220 Railgun

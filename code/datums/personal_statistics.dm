@@ -103,6 +103,7 @@ GLOBAL_LIST_EMPTY(personal_statistics_list)
 	var/weights_lifted = 0
 	var/sippies = 0
 	var/war_crimes = 0
+	var/tactical_unalives = 0	//Someone should add a way to determine if you died to a grenade in your hand and add it to this
 
 ///Calculated from the chemicals_ingested list, returns a string: "[chemical name], [amount] units"
 /datum/personal_statistics/proc/get_most_ingested_chemical()
@@ -253,6 +254,8 @@ GLOBAL_LIST_EMPTY(personal_statistics_list)
 		misc_stats += "You put your mouth on the communal drinking fountain [sippies] time\s."
 	if(war_crimes)
 		misc_stats += "You have committed [war_crimes] war crime\s."
+	if(tactical_unalives)
+		misc_stats += "You strategically ended your life [tactical_unalives] time\s."
 
 	if(LAZYLEN(misc_stats))
 		stats += "<hr>"
@@ -539,4 +542,18 @@ The alternative is scattering them everywhere under their respective objects whi
 		return FALSE
 	var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[ckey]
 	personal_statistics.structures_built++
+	return TRUE
+
+/mob/proc/record_war_crime()
+	if(!ckey)
+		return FALSE
+	var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[ckey]
+	personal_statistics.war_crimes++
+	return TRUE
+
+/mob/proc/record_tactical_unalive()
+	if(!ckey)
+		return FALSE
+	var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[ckey]
+	personal_statistics.tactical_unalives++
 	return TRUE

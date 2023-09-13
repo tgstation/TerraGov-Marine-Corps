@@ -547,8 +547,7 @@
 	. = ..()
 	if(!.)
 		return FALSE
-	if(gun_user.client && istype(in_chamber, /obj/item/ammo_magazine/standard_agls/incendiary))
-		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[gun_user.ckey]
-		personal_statistics.war_crimes++
+	if(istype(in_chamber, /obj/item/ammo_magazine/standard_agls/incendiary))
+		gun_user?.record_war_crime()
 
 

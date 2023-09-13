@@ -318,9 +318,7 @@
 	. = ..()
 	if(!.)
 		return FALSE
-	if(user.client)
-		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[user.ckey]
-		personal_statistics.war_crimes++
+	user?.record_war_crime()
 
 /obj/item/explosive/grenade/smokebomb/cloak
 	name = "\improper M40-2 SCDP smoke grenade"
@@ -385,9 +383,7 @@
 	. = ..()
 	if(!.)
 		return FALSE
-	if(user.client)
-		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[user.ckey]
-		personal_statistics.war_crimes++
+	user?.record_war_crime()
 
 /obj/item/explosive/grenade/phosphorus/upp
 	name = "\improper Type 8 WP grenade"
