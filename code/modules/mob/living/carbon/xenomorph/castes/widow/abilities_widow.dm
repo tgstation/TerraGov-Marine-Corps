@@ -269,7 +269,7 @@
 		INVOKE_ASYNC(src, PROC_REF(xeno_burrow_doafter))
 		return
 	UnregisterSignal(X, COMSIG_XENOMORPH_TAKING_DAMAGE)
-	ADD_TRAIT(X, TRAIT_NON_FLAMMABLE, WIDOW_ABILITY_TRAIT)
+	ADD_TRAIT(X, TRAIT_NON_FLAMMABLE, ability_name)
 	X.soft_armor = X.soft_armor.modifyRating(fire = 100)
 	X.hard_armor = X.hard_armor.modifyRating(fire = 100)
 	X.mouse_opacity = initial(X.mouse_opacity)
@@ -277,7 +277,7 @@
 	X.allow_pass_flags &= ~PASSABLE
 	REMOVE_TRAIT(X, TRAIT_IMMOBILE, WIDOW_ABILITY_TRAIT)
 	REMOVE_TRAIT(X, TRAIT_BURROWED, WIDOW_ABILITY_TRAIT)
-	REMOVE_TRAIT(X, TRAIT_HANDS_BLOCKED, WIDOW_ABILITY_TRAIT)
+	REMOVE_TRAIT(X, TRAIT_HANDS_BLOCKED, ability_name)
 	X.update_icons()
 	add_cooldown()
 	owner.unbuckle_all_mobs(TRUE)
