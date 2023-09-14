@@ -146,7 +146,7 @@
 		kill_parent()
 		return
 	// Makes the spiderlings roar at slightly different times so they don't stack their roars
-	addtimer(CALLBACK(x, TYPE_PROC_REF(/mob, emote), "roar"), rand(50, 200)  MILLISECONDS)
+	addtimer(CALLBACK(x, TYPE_PROC_REF(/mob, emote), "roar"), rand(1, 4))
 	change_action(MOVING_TO_ATOM, pick(possible_victims))
 	addtimer(CALLBACK(src, PROC_REF(kill_parent)), 10 SECONDS)
 
@@ -154,7 +154,7 @@
 /datum/ai_behavior/spiderling/proc/triggered_spiderling_rage(mob/M, mob/victim)
 	var/mob/living/carbon/xenomorph/spiderling/x = mob_parent
 	change_action(MOVING_TO_ATOM, victim)
-	addtimer(CALLBACK(x, TYPE_PROC_REF(/mob, emote), "roar"), rand(50, 200) MILLISECONDS)
+	addtimer(CALLBACK(x, TYPE_PROC_REF(/mob, emote), "roar"), rand(1, 4))
 	addtimer(CALLBACK(src, PROC_REF(kill_parent)), 15 SECONDS)
 
 ///This kills the spiderling
