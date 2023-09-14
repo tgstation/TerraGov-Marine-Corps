@@ -153,12 +153,6 @@
 	description = "A Tadpole model modified to have three weapon hardpoints instead of just one, the majority of the other standard features had to be scrapped to fit all three of them on."
 	display_name = "Tadpole Combat Model"
 
-/datum/map_template/shuttle/minidropship/Compact
-	suffix =	"_compact"
-	description = "A marine's worst nightmare. This tad sacrifices space for manuverability, has everything a normal standerd tad has accept a fire extinguisher"
-	display_name = "Tadpole Compact Model"
-	admin_enable = FALSE
-
 /datum/map_template/shuttle/minidropship/pirate
 	suffix =	"_pirate"
 	description = "Ahoy, matey! this here ship be the finest ship o' the stars. She 'as six cannons, an' six functional gun ports. Do be careful, as it 'as No sentry guns an' will be in the doldrums without a proper crew!"
@@ -169,11 +163,6 @@
 	suffix =	"_huey"
 	description = "A classic old Earth helecopter desigine retrofitted for space flight, mainly used to scare Colonial Liberation Front members."
 	display_name = "Tadpole Old Earth Model"
-
-/datum/map_template/shuttle/minidropship/mortar
-	suffix = "_mortar"
-	description = "A NK-Haul Tadpole variant specificly modifed for raining large quantitys of death on your enemies, or for firework shows."
-	display_name = "Tadpole NK-Haul Mortar Conversion Model"
 
 /datum/map_template/shuttle/minidropship/umbilical
 	suffix =	"_umbilical"
