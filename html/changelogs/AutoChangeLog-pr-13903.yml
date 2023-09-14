@@ -1,0 +1,5 @@
+author: "Wisemonster"
+delete-after: True
+changes:
+  - qol: "The dropship fabricator has had it's items separated into more distinct categories."
+  - code_imp: "Repathed dropship/condor equipment, dropship/condor weapons, and condor ammo."
