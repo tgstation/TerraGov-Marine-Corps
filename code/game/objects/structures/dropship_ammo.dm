@@ -499,7 +499,7 @@
 	desc = "A pack of explosive laser guided mini rockets. Moving this will require some sort of lifter."
 	icon_state = "minirocket"
 	icon = 'icons/Marine/mainship_props.dmi'
-	equipment_type = /obj/structure/obj/structure/dropship_equipment/cas/weapon/minirocket_pod
+	equipment_type = /obj/structure/dropship_equipment/cas/weapon/minirocket_pod
 	ammo_count = 6
 	max_ammo_count = 6
 	ammo_name = "minirocket"
