@@ -179,7 +179,7 @@
 	ammo_datum_type = /datum/ammo/bullet/turret/gauss
 	sentry_iff_signal = TGMC_LOYALIST_IFF
 	flags_item = IS_DEPLOYABLE|TWOHANDED|DEPLOY_ON_INITIALIZE|DEPLOYED_NO_PICKUP
-	var/obj/structure/dropship_equipment/sentry_holder/deployment_system
+	var/obj/structure/dropship_equipment/shuttle/sentry_holder/deployment_system
 	turret_flags = TURRET_HAS_CAMERA|TURRET_IMMOBILE
 	density = FALSE
 
