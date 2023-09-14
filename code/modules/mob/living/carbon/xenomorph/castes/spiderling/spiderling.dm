@@ -168,18 +168,19 @@
 	var/mob/living/carbon/xenomorph/spiderling/spiderling_parent = mob_parent
 	spiderling_parent.do_resist()
 
-/// rest and unrest when widow does
+/// rest when widow does
 /datum/ai_behavior/spiderling/proc/start_resting(mob/source)
 	SIGNAL_HANDLER
 	var/mob/living/living = mob_parent
 	living.set_resting(TRUE)
 
+/// stop resting when widow does, plus unbuckle all mobs so the widow won't get stuck
 /datum/ai_behavior/spiderling/proc/stop_resting(mob/source)
 	SIGNAL_HANDLER
 	var/mob/living/living = mob_parent
 	living.set_resting(FALSE)
 	source.unbuckle_all_mobs()
-
+/// Signal handler to make the spiderling jump when widow does
 /datum/ai_behavior/spiderling/proc/do_jump()
 	SIGNAL_HANDLER
 	SEND_SIGNAL(mob_parent, COMSIG_KB_LIVING_JUMP)
