@@ -1,8 +1,9 @@
 //RUTGMC EDIT CHANGE BEGIN
 //#define NEST_RESIST_TIME 2.5 SECONDS //ORIGINAL
+//#define NEST_UNBUCKLED_COOLDOWN 5 SECONDS
 #define NEST_RESIST_TIME 80 SECONDS //RUTGMC EDIT
+#define NEST_UNBUCKLED_COOLDOWN 15 SECONDS
 //RUTGMC EDIT CHANGE END
-#define NEST_UNBUCKLED_COOLDOWN 5 SECONDS
 
 ///Alium nests. Essentially beds with an unbuckle delay that only aliums can buckle mobs to.
 /obj/structure/bed/nest

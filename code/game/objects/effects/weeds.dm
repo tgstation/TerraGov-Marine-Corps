@@ -292,7 +292,7 @@
 /obj/alien/weeds/node/update_overlays()
 	. = ..()
 	overlays.Cut()
-	overlays += node_icon + "[rand(0,5)]"
+	overlays += node_icon + "[round(MODULUS(x + y, 12) / 2)]"//"[rand(0,5)]"
 
 //Sticky weed node
 /obj/alien/weeds/node/sticky

@@ -17,6 +17,8 @@
 #include "code\datums\jobs\squads.dm"
 #include "code\datums\jobs\job\xenomorph.dm"
 #include "code\datums\status_effects\xeno_buffs.dm"
+#include "code\game\atoms.dm"
+#include "code\game\objects\effects\weeds.dm"
 #include "code\game\objects\items\robot\robot_parts.dm"
 #include "code\game\objects\machinery\doors\airlock.dm"
 #include "code\game\objects\structures\ladders.dm"

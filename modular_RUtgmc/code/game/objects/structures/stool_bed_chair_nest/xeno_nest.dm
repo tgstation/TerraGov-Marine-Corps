@@ -30,7 +30,7 @@
 
 /obj/structure/bed/nest/post_buckle_mob(mob/living/buckling_mob)
 	. = ..()
-	//buckling_mob.reagents.add_reagent(/datum/reagent/medicine/xenojelly, 15)
+	buckling_mob.reagents.add_reagent(/datum/reagent/medicine/xenojelly, 15)
 
 /obj/structure/bed/nest/post_unbuckle_mob(mob/living/buckled_mob)
 	. = ..()
