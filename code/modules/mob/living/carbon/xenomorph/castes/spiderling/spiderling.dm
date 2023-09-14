@@ -180,10 +180,12 @@
 	var/mob/living/living = mob_parent
 	living.set_resting(FALSE)
 	source.unbuckle_all_mobs()
+
 /// Signal handler to make the spiderling jump when widow does
 /datum/ai_behavior/spiderling/proc/do_jump()
 	SIGNAL_HANDLER
-	SEND_SIGNAL(mob_parent, COMSIG_KB_LIVING_JUMP)
+	var/datum/component/jump/jumpy_spider = mob_parent.GetComponent(/datum/component/jump)
+	jumpy_spider.do_jump(mob_parent)
 
 /// Signal handler to apply resin jelly to the spiderling whenever widow gets it
 /datum/ai_behavior/spiderling/proc/apply_spiderling_jelly()
