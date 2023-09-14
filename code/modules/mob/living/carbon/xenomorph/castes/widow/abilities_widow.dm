@@ -324,10 +324,7 @@
 
 /datum/action/xeno_action/attach_spiderlings/action_activate()
 	. = ..()
-	if(owner.buckled_mobs)
-		/// yeet off all spiderlings if we are carrying any
-		owner.unbuckle_all_mobs(TRUE)
-		return
+	owner.unbuckle_all_mobs(TRUE)
 	var/mob/living/carbon/xenomorph/widow/X = owner
 	var/datum/action/xeno_action/create_spiderling/create_spiderling_action = X.actions_by_path[/datum/action/xeno_action/create_spiderling]
 	if(!(length(create_spiderling_action.spiderlings)))
