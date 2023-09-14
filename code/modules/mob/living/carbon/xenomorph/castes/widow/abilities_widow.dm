@@ -277,7 +277,7 @@
 	X.allow_pass_flags &= ~PASSABLE
 	REMOVE_TRAIT(X, TRAIT_IMMOBILE, WIDOW_ABILITY_TRAIT)
 	REMOVE_TRAIT(X, TRAIT_BURROWED, WIDOW_ABILITY_TRAIT)
-	REMOVE_TRAIT(X, TRAIT_HANDS_BLOCKED, ability_name)
+	REMOVE_TRAIT(X, TRAIT_HANDS_BLOCKED, WIDOW_ABILITY_TRAIT)
 	X.update_icons()
 	add_cooldown()
 	owner.unbuckle_all_mobs(TRUE)
@@ -299,7 +299,7 @@
 	var/mob/living/carbon/xenomorph/X = owner
 	X.soft_armor = X.soft_armor.modifyRating(fire = -100)
 	X.hard_armor = X.hard_armor.modifyRating(fire = -100)
-	REMOVE_TRAIT(X, TRAIT_NON_FLAMMABLE, WIDOW_ABILITY_TRAIT)
+	REMOVE_TRAIT(X, TRAIT_NON_FLAMMABLE, ability_name)
 	// Update here without waiting for life
 	X.update_icons()
 	RegisterSignal(X, COMSIG_XENOMORPH_TAKING_DAMAGE, PROC_REF(xeno_burrow))
