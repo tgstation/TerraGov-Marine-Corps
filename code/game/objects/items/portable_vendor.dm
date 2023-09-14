@@ -213,7 +213,7 @@
 		list("Mindbreaker Toxin Autoinjector", 30, /obj/item/reagent_containers/hypospray/autoinjector/mindbreaker, "white", "Drugs for people whose PTSD have permanently scarred them."),
 		list("Roulettium Autoinjector", 30, /obj/item/reagent_containers/hypospray/autoinjector/roulettium, "white", "Drugs for people who really, really miss gambling. Enough for their life." ),
 		list("NT-06 Experimental Liquor", 40, /obj/item/reagent_containers/food/drinks/bottle/experimentalliquor, "white", "An experimental liquor we cooked up in the lab a few years back. Composed of ██████."),
-		list("Elite Autoinjector", 50, /obj/item/reagent_containers/hypospray/autoinjector/elite, "white", "A combat injector 'supposedly' used by our 'Deathsquads'. Don't give it out unless they have something to give in return."),
+		list("Elite Autoinjector", 51, /obj/item/reagent_containers/hypospray/autoinjector/elite, "white", "A combat injector 'supposedly' used by our 'Deathsquads'. Don't give it out unless they have something to give in return."),
 		list("De Void of Soul", 51, /obj/item/clothing/under/liaison_suit/galaxy_blue, "white", "The latest in ultrafashion. for those with a cool demeanor."),
 		list("Pulsar Gonne", 51, /obj/item/clothing/under/liaison_suit/galaxy_red, "white", "The latest in ultrafashion. for those with a fiery temper.")
 	)
