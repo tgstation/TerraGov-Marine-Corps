@@ -1105,6 +1105,9 @@
 	id = "SOM_13";
 	name = "SOM exit point 13"
 	},
+/obj/machinery/landinglight/lz1{
+	dir = 1
+	},
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/LZ1)
 "fS" = (
@@ -1404,7 +1407,7 @@
 /turf/open/floor/plating,
 /area/icy_caves/outpost/mining/west)
 "ih" = (
-/obj/machinery/landinglight/ds1/delaytwo,
+/obj/machinery/landinglight/lz2,
 /turf/open/floor/plating,
 /area/icy_caves/outpost/LZ2)
 "ii" = (
@@ -1626,18 +1629,6 @@
 /obj/effect/turf_decal/warning_stripes,
 /turf/open/floor/mech_bay_recharge_floor,
 /area/icy_caves/outpost/LZ2)
-"ju" = (
-/obj/machinery/landinglight/ds1/delayone,
-/turf/open/floor/plating,
-/area/icy_caves/outpost/LZ2)
-"jv" = (
-/obj/machinery/landinglight/ds1,
-/turf/open/floor/plating,
-/area/icy_caves/outpost/LZ2)
-"jw" = (
-/obj/machinery/landinglight/ds1/delaythree,
-/turf/open/floor/plating,
-/area/icy_caves/outpost/LZ2)
 "jy" = (
 /obj/structure/cable,
 /obj/effect/decal/cleanable/blood,
@@ -1675,18 +1666,6 @@
 /obj/machinery/computer/shuttle/shuttle_control/dropship,
 /turf/open/floor/plating/ground/snow,
 /area/lv624/lazarus/console)
-"jH" = (
-/obj/machinery/landinglight/ds1/delaythree{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/icy_caves/outpost/LZ2)
-"jJ" = (
-/obj/machinery/landinglight/ds1/delayone{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/icy_caves/outpost/LZ2)
 "jL" = (
 /turf/open/floor/mainship_hull/dir{
 	dir = 8
@@ -1714,12 +1693,6 @@
 /obj/effect/decal/cleanable/blood/xeno,
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/west)
-"jQ" = (
-/obj/machinery/landinglight/ds1{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/icy_caves/outpost/LZ2)
 "jR" = (
 /obj/machinery/camera/autoname/lz_camera,
 /turf/open/floor/plating,
@@ -1728,12 +1701,6 @@
 /obj/machinery/miner/damaged,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/icy_caves/outpost/outside/center)
-"jT" = (
-/obj/machinery/landinglight/ds1{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/icy_caves/outpost/LZ2)
 "jU" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -1768,18 +1735,6 @@
 "ka" = (
 /obj/machinery/door/airlock/multi_tile/mainship/research,
 /turf/open/floor/tile/dark,
-/area/icy_caves/outpost/LZ2)
-"kb" = (
-/obj/machinery/landinglight/ds1/delayone{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/icy_caves/outpost/LZ2)
-"kc" = (
-/obj/machinery/landinglight/ds1/delaythree{
-	dir = 8
-	},
-/turf/open/floor/plating,
 /area/icy_caves/outpost/LZ2)
 "kd" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -1854,13 +1809,13 @@
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/LZ2)
 "kA" = (
-/obj/machinery/landinglight/ds1/delaytwo{
+/obj/machinery/landinglight/lz2{
 	dir = 4
 	},
 /turf/open/floor/plating,
 /area/icy_caves/outpost/LZ2)
 "kB" = (
-/obj/machinery/landinglight/ds1/delaytwo{
+/obj/machinery/landinglight/lz2{
 	dir = 8
 	},
 /turf/open/floor/plating,
@@ -2563,7 +2518,7 @@
 /turf/open/floor/cult,
 /area/icy_caves/caves/chapel)
 "oy" = (
-/obj/machinery/landinglight/ds1/delaythree{
+/obj/machinery/landinglight/lz2{
 	dir = 1
 	},
 /turf/open/floor/plating,
@@ -2574,24 +2529,6 @@
 	dir = 9
 	},
 /area/icy_caves/caves/alienstuff)
-"oA" = (
-/obj/machinery/landinglight/ds1{
-	dir = 1
-	},
-/turf/open/floor/plating,
-/area/icy_caves/outpost/LZ2)
-"oD" = (
-/obj/machinery/landinglight/ds1/delayone{
-	dir = 1
-	},
-/turf/open/floor/plating,
-/area/icy_caves/outpost/LZ2)
-"oE" = (
-/obj/machinery/landinglight/ds1/delaytwo{
-	dir = 1
-	},
-/turf/open/floor/plating,
-/area/icy_caves/outpost/LZ2)
 "oG" = (
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/cult,
@@ -2810,6 +2747,20 @@
 	},
 /turf/open/floor/cult,
 /area/icy_caves/caves/alienstuff)
+"pH" = (
+/obj/machinery/landinglight/lz1{
+	dir = 1
+	},
+/turf/open/floor/tile/dark,
+/area/icy_caves/outpost/LZ1)
+"pI" = (
+/obj/machinery/floodlight/landing,
+/obj/effect/turf_decal/warning_stripes,
+/obj/machinery/landinglight/lz2{
+	dir = 8
+	},
+/turf/open/floor/mech_bay_recharge_floor,
+/area/icy_caves/outpost/LZ2)
 "pK" = (
 /obj/effect/spawner/random/engineering/pickaxe,
 /turf/open/floor/plating/ground/ice,
@@ -4815,12 +4766,12 @@
 /turf/open/floor/plating/mainship,
 /area/icy_caves/caves/northwestmonorail/hallway)
 "zf" = (
-/obj/machinery/landinglight/ds1/delaytwo{
-	dir = 4
-	},
 /obj/effect/landmark/patrol_point{
 	id = "SOM_14";
 	name = "SOM exit point 14"
+	},
+/obj/machinery/landinglight/lz1{
+	dir = 4
 	},
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/LZ1)
@@ -4941,7 +4892,7 @@
 /turf/closed/shuttle/dropship2/corners,
 /area/icy_caves/caves/northwestmonorail)
 "zM" = (
-/obj/machinery/landinglight/ds1/delaytwo,
+/obj/machinery/landinglight/lz1,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/LZ1)
 "zN" = (
@@ -4968,8 +4919,8 @@
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/south)
 "zS" = (
-/obj/machinery/landinglight/ds1/delaytwo,
 /obj/machinery/floodlight/landing,
+/obj/machinery/landinglight/lz1,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/LZ1)
 "zT" = (
@@ -6418,12 +6369,6 @@
 	},
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/east)
-"GU" = (
-/obj/machinery/landinglight/ds1/delayone{
-	dir = 8
-	},
-/turf/open/floor/tile/dark,
-/area/icy_caves/outpost/LZ1)
 "GV" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -6694,8 +6639,8 @@
 /area/icy_caves/caves/northwestmonorail/hallway)
 "Ik" = (
 /obj/structure/table,
-/obj/item/storage/box/flashbangs,
-/obj/item/storage/box/flashbangs,
+/obj/effect/spawner/random/weaponry/explosive/grenade/multiplefour,
+/obj/effect/spawner/random/weaponry/explosive/grenade/multiplefour,
 /turf/open/floor/tile/dark/red2{
 	dir = 8
 	},
@@ -7281,7 +7226,7 @@
 /area/icy_caves/caves/alienstuff)
 "Lh" = (
 /obj/structure/rack,
-/obj/item/storage/box/flashbangs,
+/obj/effect/spawner/random/weaponry/explosive/grenade/multiplefour,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/security)
 "Lj" = (
@@ -7424,12 +7369,6 @@
 	dir = 4
 	},
 /area/icy_caves/outpost/garage)
-"LL" = (
-/obj/machinery/landinglight/ds1/delaytwo{
-	dir = 4
-	},
-/turf/open/floor/tile/dark,
-/area/icy_caves/outpost/LZ1)
 "LO" = (
 /obj/effect/spawner/random/engineering/structure/tank/fuelweighted,
 /turf/open/floor/plating,
@@ -7619,7 +7558,7 @@
 /turf/closed/mineral/smooth/darkfrostwall/indestructible,
 /area/lv624/lazarus/console)
 "MO" = (
-/obj/machinery/landinglight/ds1/delaytwo{
+/obj/machinery/landinglight/lz1{
 	dir = 8
 	},
 /turf/open/floor/tile/dark,
@@ -8669,6 +8608,14 @@
 	dir = 6
 	},
 /area/icy_caves/outpost/security)
+"Sl" = (
+/obj/machinery/floodlight/landing,
+/obj/effect/turf_decal/warning_stripes,
+/obj/machinery/landinglight/lz2{
+	dir = 4
+	},
+/turf/open/floor/mech_bay_recharge_floor,
+/area/icy_caves/outpost/LZ2)
 "Sm" = (
 /obj/structure/closet/crate/medical,
 /obj/item/stack/nanopaste,
@@ -8903,12 +8850,6 @@
 /obj/machinery/miner/damaged,
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/south)
-"TI" = (
-/obj/machinery/landinglight/ds1/delaythree{
-	dir = 8
-	},
-/turf/open/floor/tile/dark,
-/area/icy_caves/outpost/LZ1)
 "TL" = (
 /obj/structure/cargo_container/gorg{
 	dir = 4
@@ -8988,12 +8929,6 @@
 	},
 /turf/open/floor/plating,
 /area/icy_caves/outpost/garage)
-"Ud" = (
-/obj/machinery/landinglight/ds1/delayone{
-	dir = 4
-	},
-/turf/open/floor/tile/dark,
-/area/icy_caves/outpost/LZ1)
 "Uf" = (
 /obj/machinery/light{
 	dir = 8
@@ -9289,12 +9224,6 @@
 /obj/structure/xenoautopsy/tank,
 /turf/open/shuttle/dropship/seven,
 /area/icy_caves/caves/northwestmonorail)
-"VJ" = (
-/obj/machinery/landinglight/ds1{
-	dir = 8
-	},
-/turf/open/floor/tile/dark,
-/area/icy_caves/outpost/LZ1)
 "VK" = (
 /obj/machinery/light{
 	dir = 8
@@ -9540,7 +9469,7 @@
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/outside/center)
 "WT" = (
-/obj/machinery/landinglight/ds1{
+/obj/machinery/landinglight/lz1{
 	dir = 4
 	},
 /turf/open/floor/tile/dark,
@@ -9664,22 +9593,16 @@
 	},
 /area/icy_caves/caves/weapon_vault)
 "Xq" = (
-/obj/machinery/landinglight/ds1/delayone{
+/obj/effect/ai_node,
+/obj/machinery/landinglight/lz1{
 	dir = 4
 	},
-/obj/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/LZ1)
 "Xr" = (
 /obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/plating/dmg3,
 /area/icy_caves/caves/crashed_ship)
-"Xs" = (
-/obj/machinery/landinglight/ds1/delaythree{
-	dir = 4
-	},
-/turf/open/floor/tile/dark,
-/area/icy_caves/outpost/LZ1)
 "Xt" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 8
@@ -9854,10 +9777,10 @@
 	},
 /area/icy_caves/outpost/medbay)
 "Yj" = (
-/obj/machinery/landinglight/ds1/delaytwo{
+/obj/machinery/floodlight/landing,
+/obj/machinery/landinglight/lz1{
 	dir = 4
 	},
-/obj/machinery/floodlight/landing,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/LZ1)
 "Yk" = (
@@ -9897,10 +9820,6 @@
 	},
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/outside)
-"Yw" = (
-/obj/machinery/landinglight/ds1/delaytwo,
-/turf/open/floor/plating,
-/area/icy_caves/outpost/LZ1)
 "Yx" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
 	dir = 2
@@ -10138,7 +10057,7 @@
 /area/icy_caves/caves/south)
 "ZK" = (
 /obj/machinery/floodlight/landing,
-/obj/machinery/landinglight/ds1/delaytwo{
+/obj/machinery/landinglight/lz1{
 	dir = 8
 	},
 /turf/open/floor/tile/dark,
@@ -10951,24 +10870,24 @@ ZP
 ZP
 wL
 uw
-Xs
-Xs
 WT
-Ud
-LL
-Xs
 WT
-Ud
-LL
-Xs
-Ud
-Ud
+WT
+WT
+WT
+WT
+WT
+WT
+WT
+WT
+WT
+WT
 zf
-Xs
+WT
 WT
 Xq
-LL
-Xs
+WT
+WT
 WT
 Xq
 Yj
@@ -11127,8 +11046,8 @@ Yn
 Yn
 Yn
 JY
-Yw
-uw
+Yn
+pH
 fS
 ZP
 Ww
@@ -11283,8 +11202,8 @@ Yn
 Yn
 Yn
 Yn
-Yw
-uw
+Yn
+pH
 uw
 ZP
 Ww
@@ -11439,8 +11358,8 @@ Yn
 Yn
 Yn
 Yn
-Yw
-uw
+Yn
+pH
 uw
 ZP
 Ww
@@ -11595,8 +11514,8 @@ Yn
 Yn
 Yn
 Yn
-Yw
-uw
+Yn
+pH
 uw
 ZP
 Ww
@@ -11751,8 +11670,8 @@ Yn
 Yn
 Yn
 Yn
-Yw
-uw
+Yn
+pH
 uw
 ZP
 Ww
@@ -11907,8 +11826,8 @@ Yn
 Yn
 Yn
 Yn
-Yw
-uw
+Yn
+pH
 uw
 ZP
 Ww
@@ -12063,8 +11982,8 @@ Yn
 Yn
 Yn
 Yn
-Yw
-uw
+Yn
+pH
 uw
 ZP
 Ww
@@ -12219,8 +12138,8 @@ Yn
 Yn
 Yn
 Yn
-Yw
-uw
+Yn
+pH
 uw
 ZP
 Ww
@@ -12375,8 +12294,8 @@ Yn
 Yn
 Yn
 Yn
-Yw
-uw
+Yn
+pH
 uw
 ZP
 Ww
@@ -12531,7 +12450,7 @@ Yn
 Yn
 Yn
 Yn
-Yw
+Yn
 fP
 uw
 ZP
@@ -12687,8 +12606,8 @@ Yn
 Yn
 Yn
 JY
-Yw
-uw
+Yn
+pH
 uw
 ZP
 Ww
@@ -12823,23 +12742,23 @@ Uu
 bU
 uw
 uw
-TI
 MO
-GU
-VJ
-TI
 MO
-GU
-TI
-TI
 MO
-GU
-VJ
-TI
 MO
-GU
-VJ
-TI
+MO
+MO
+MO
+MO
+MO
+MO
+MO
+MO
+MO
+MO
+MO
+MO
+MO
 MO
 MO
 MO
@@ -31510,26 +31429,26 @@ ZP
 oP
 wa
 jt
-jH
-jH
-jQ
-kb
 kA
-jH
-jQ
-kb
 kA
-jH
-jt
-kb
 kA
-jH
-jQ
-kb
 kA
-jH
-jQ
-kb
+kA
+kA
+kA
+kA
+kA
+kA
+Sl
+kA
+kA
+kA
+kA
+kA
+kA
+kA
+kA
+kA
 kA
 jt
 oP
@@ -31821,7 +31740,7 @@ Xo
 ZP
 oP
 wa
-ju
+ih
 tL
 tL
 tL
@@ -31843,7 +31762,7 @@ tL
 tL
 tL
 tL
-oA
+oy
 wa
 nI
 Yf
@@ -31977,7 +31896,7 @@ Xo
 ZP
 oP
 wa
-jv
+ih
 tL
 tL
 tL
@@ -31999,7 +31918,7 @@ tL
 tL
 tL
 tL
-oD
+oy
 wa
 oP
 Yf
@@ -32133,7 +32052,7 @@ Xo
 ZP
 oP
 wa
-jw
+ih
 tL
 tL
 tL
@@ -32155,7 +32074,7 @@ tL
 tL
 tL
 tL
-oE
+oy
 wa
 oP
 Yf
@@ -32445,7 +32364,7 @@ Xo
 ZP
 oP
 wa
-ju
+ih
 tL
 tL
 tL
@@ -32467,7 +32386,7 @@ tL
 tL
 tL
 tL
-oA
+oy
 wa
 oP
 Yf
@@ -32601,7 +32520,7 @@ Xo
 ZP
 oP
 wa
-jv
+ih
 tL
 tL
 tL
@@ -32623,7 +32542,7 @@ tL
 tL
 tL
 tL
-oD
+oy
 wa
 Hz
 Yf
@@ -32757,7 +32676,7 @@ Xo
 ZP
 oP
 wa
-jw
+ih
 tL
 tL
 tL
@@ -32779,7 +32698,7 @@ tL
 tL
 tL
 tL
-oE
+oy
 wa
 oP
 Yf
@@ -33069,7 +32988,7 @@ Xo
 ZP
 oP
 wa
-ju
+ih
 tL
 tL
 tL
@@ -33091,7 +33010,7 @@ tL
 tL
 tL
 tL
-oA
+oy
 wa
 oP
 Yf
@@ -33225,7 +33144,7 @@ Xo
 ZP
 oP
 wa
-jv
+ih
 tL
 tL
 jR
@@ -33247,7 +33166,7 @@ tL
 tL
 jR
 tL
-oD
+oy
 oP
 oP
 Yf
@@ -33382,26 +33301,26 @@ ZP
 oP
 wa
 jt
-jJ
-jJ
-jT
-kc
 kB
-jJ
-jT
-kc
 kB
-jJ
-jt
-kc
 kB
-jJ
-jT
-kc
 kB
-jJ
-jT
-kc
+kB
+kB
+kB
+kB
+kB
+kB
+pI
+kB
+kB
+kB
+kB
+kB
+kB
+kB
+kB
+kB
 kB
 jt
 oP

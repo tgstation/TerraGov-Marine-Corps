@@ -1300,9 +1300,9 @@
 	placed_overlay_iconstate = "smartgun"
 
 /obj/item/weapon/gun/rifle/standard_spottingrifle
-	name = "SR-153 spotting rifle"
-	desc = "An underslung spotting rifle, generally found ontop of another gun.."
-	icon_state = "sr153"
+	name = "SG-153 spotting rifle"
+	desc = "An underslung spotting rifle, generally found ontop of another gun."
+	icon_state = "sg153"
 	icon = 'icons/Marine/gun64.dmi'
 	fire_sound =  'sound/weapons/guns/fire/spottingrifle.ogg'
 	caliber = CALIBER_12x7

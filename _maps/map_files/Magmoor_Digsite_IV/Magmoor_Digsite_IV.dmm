@@ -63,7 +63,7 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/machinery/landinglight/ds1{
+/obj/machinery/landinglight/lz2{
 	dir = 4
 	},
 /turf/open/floor/mainship/mono,
@@ -296,12 +296,6 @@
 /turf/open/floor/mainship/black{
 	dir = 1
 	},
-/area/magmoor/landing/two)
-"akC" = (
-/obj/machinery/landinglight/ds2{
-	dir = 8
-	},
-/turf/open/floor/plating/plating_catwalk,
 /area/magmoor/landing/two)
 "akM" = (
 /obj/item/ammo_casing,
@@ -646,7 +640,7 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/machinery/landinglight/ds1{
+/obj/machinery/landinglight/lz1{
 	dir = 4
 	},
 /turf/open/floor/mainship/mono,
@@ -898,11 +892,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/concrete,
 /area/magmoor/compound)
-"aEH" = (
-/obj/machinery/landinglight/ds1/delaythree,
-/obj/effect/ai_node,
-/turf/open/floor/mainship/black,
-/area/magmoor/landing)
 "aEP" = (
 /obj/structure/table/mainship,
 /obj/item/pizzabox/meat{
@@ -1501,10 +1490,10 @@
 	},
 /area/magmoor/civilian/clean)
 "bbm" = (
-/obj/machinery/landinglight/ds1{
+/obj/effect/ai_node,
+/obj/machinery/landinglight/lz1{
 	dir = 4
 	},
-/obj/effect/ai_node,
 /turf/open/floor/mainship/black{
 	dir = 4
 	},
@@ -1591,14 +1580,6 @@
 	dir = 6
 	},
 /area/magmoor/engi)
-"bdl" = (
-/obj/machinery/landinglight/ds1/delaythree{
-	dir = 4
-	},
-/turf/open/floor/mainship/cargo/arrow{
-	dir = 4
-	},
-/area/magmoor/landing)
 "bdn" = (
 /obj/structure/table/mainship,
 /obj/item/cell/high/empty,
@@ -1977,7 +1958,7 @@
 /turf/open/floor/wood,
 /area/magmoor/command/conference)
 "bqm" = (
-/obj/machinery/landinglight/ds2/delayone{
+/obj/machinery/landinglight/lz2{
 	dir = 8
 	},
 /turf/open/floor/plating/plating_catwalk,
@@ -2266,11 +2247,11 @@
 /turf/open/floor/mainship/mono,
 /area/magmoor/civilian/arrival/east)
 "bBP" = (
-/obj/machinery/landinglight/ds2/delayone{
-	dir = 4
-	},
 /obj/machinery/floodlight/landing{
 	name = "Spotlight"
+	},
+/obj/machinery/landinglight/lz2{
+	dir = 4
 	},
 /turf/open/floor/mainship/floor,
 /area/magmoor/landing/two)
@@ -2522,10 +2503,10 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/machinery/landinglight/ds1/delaythree{
+/obj/effect/ai_node,
+/obj/machinery/landinglight/lz1{
 	dir = 4
 	},
-/obj/effect/ai_node,
 /turf/open/floor/mainship/mono,
 /area/magmoor/landing)
 "bKU" = (
@@ -2641,7 +2622,7 @@
 	},
 /area/magmoor/command/commandroom)
 "bNF" = (
-/obj/machinery/landinglight/ds1{
+/obj/machinery/landinglight/lz1{
 	dir = 4
 	},
 /turf/open/floor/mainship/cargo/arrow{
@@ -3251,10 +3232,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/wood,
 /area/magmoor/command/conference)
-"cky" = (
-/obj/machinery/landinglight/ds1,
-/turf/open/floor/mainship/black,
-/area/magmoor/landing)
 "clE" = (
 /turf/open/floor/mainship/orange/corner,
 /area/magmoor/engi/storage)
@@ -5158,7 +5135,7 @@
 /turf/open/ground/grass,
 /area/magmoor/civilian/arrival)
 "dCI" = (
-/obj/machinery/landinglight/ds2{
+/obj/machinery/landinglight/lz2{
 	dir = 1
 	},
 /turf/open/floor/mainship/cargo/arrow{
@@ -5324,10 +5301,10 @@
 /turf/open/floor/plating/mainship,
 /area/magmoor/engi)
 "dId" = (
-/obj/machinery/landinglight/ds2/delaythree{
+/obj/effect/ai_node,
+/obj/machinery/landinglight/lz2{
 	dir = 4
 	},
-/obj/effect/ai_node,
 /turf/open/floor/mainship/floor,
 /area/magmoor/landing/two)
 "dIn" = (
@@ -6318,10 +6295,10 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/machinery/landinglight/ds1/delaythree{
+/obj/effect/ai_node,
+/obj/machinery/landinglight/lz2{
 	dir = 4
 	},
-/obj/effect/ai_node,
 /turf/open/floor/mainship/mono,
 /area/magmoor/landing/two)
 "ewq" = (
@@ -6968,11 +6945,11 @@
 /turf/open/floor/plating/ground/concrete,
 /area/magmoor/civilian/jani)
 "ePV" = (
-/obj/machinery/landinglight/ds2/delayone{
-	dir = 8
-	},
 /obj/machinery/floodlight/landing{
 	name = "Spotlight"
+	},
+/obj/machinery/landinglight/lz2{
+	dir = 8
 	},
 /turf/open/floor/mainship/floor,
 /area/magmoor/landing/two)
@@ -7308,11 +7285,11 @@
 	},
 /area/magmoor/civilian/arrival)
 "fdo" = (
-/obj/machinery/landinglight/ds1/delayone{
-	dir = 4
-	},
 /obj/machinery/floodlight/landing{
 	name = "Spotlight"
+	},
+/obj/machinery/landinglight/lz1{
+	dir = 4
 	},
 /turf/open/floor/mainship/black{
 	dir = 4
@@ -8180,12 +8157,6 @@
 	},
 /turf/open/floor/mainship/sterile/dark,
 /area/magmoor/medical/surgery)
-"fJY" = (
-/obj/machinery/landinglight/ds2{
-	dir = 8
-	},
-/turf/open/floor/mainship/floor,
-/area/magmoor/landing/two)
 "fKn" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber{
 	dir = 4;
@@ -8408,7 +8379,7 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/magmoor/research/containment)
 "fSv" = (
-/obj/machinery/landinglight/ds2/delaythree{
+/obj/machinery/landinglight/lz2{
 	dir = 8
 	},
 /turf/open/floor/mainship/cargo/arrow{
@@ -8733,7 +8704,7 @@
 /turf/open/floor/freezer,
 /area/magmoor/civilian/bar)
 "gfo" = (
-/obj/machinery/landinglight/ds2{
+/obj/machinery/landinglight/lz2{
 	dir = 1
 	},
 /turf/open/floor/mainship/mono,
@@ -9277,12 +9248,6 @@
 	dir = 6
 	},
 /area/magmoor/command/lobby/east)
-"gzq" = (
-/obj/machinery/landinglight/ds2/delaytwo{
-	dir = 1
-	},
-/turf/open/floor/mainship/mono,
-/area/magmoor/landing/two)
 "gzB" = (
 /obj/structure/flora/pottedplant/twentytwo,
 /obj/machinery/light,
@@ -9611,14 +9576,6 @@
 	},
 /turf/open/floor/plating,
 /area/magmoor/compound/east)
-"gLH" = (
-/obj/machinery/landinglight/ds1/delaytwo{
-	dir = 4
-	},
-/turf/open/floor/mainship/black{
-	dir = 4
-	},
-/area/magmoor/landing)
 "gLI" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 10
@@ -9769,10 +9726,10 @@
 /turf/open/floor/plating/ground/concrete/lines,
 /area/magmoor/cave/west)
 "gTz" = (
-/obj/machinery/landinglight/ds2{
+/obj/effect/ai_node,
+/obj/machinery/landinglight/lz2{
 	dir = 4
 	},
-/obj/effect/ai_node,
 /turf/open/floor/mainship/cargo/arrow{
 	dir = 4
 	},
@@ -9799,7 +9756,7 @@
 	},
 /area/magmoor/security/infocenter)
 "gUT" = (
-/obj/machinery/landinglight/ds2/delaythree{
+/obj/machinery/landinglight/lz2{
 	dir = 4
 	},
 /turf/open/floor/mainship/floor,
@@ -9977,7 +9934,7 @@
 /turf/open/floor/wood,
 /area/magmoor/civilian/basket)
 "heH" = (
-/obj/machinery/landinglight/ds1{
+/obj/machinery/landinglight/lz1{
 	dir = 1
 	},
 /turf/open/floor/mainship/black{
@@ -10058,10 +10015,10 @@
 	},
 /area/magmoor/cargo/storage/secure/south)
 "hjx" = (
-/obj/machinery/landinglight/ds1/delaythree{
+/obj/effect/ai_node,
+/obj/machinery/landinglight/lz1{
 	dir = 8
 	},
-/obj/effect/ai_node,
 /turf/open/floor/mainship/mono,
 /area/magmoor/landing)
 "hjA" = (
@@ -10082,12 +10039,6 @@
 	dir = 1
 	},
 /area/magmoor/research/rnd/lobby)
-"hjI" = (
-/obj/machinery/landinglight/ds2{
-	dir = 4
-	},
-/turf/open/floor/mainship/floor,
-/area/magmoor/landing/two)
 "hjW" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
@@ -10283,7 +10234,7 @@
 "hsa" = (
 /obj/effect/turf_decal/warning_stripes/thin,
 /obj/structure/prop/mainship/hangar_stencil,
-/obj/machinery/landinglight/ds1/delaytwo{
+/obj/machinery/landinglight/lz1{
 	dir = 8
 	},
 /turf/open/floor/mainship/mono,
@@ -10814,12 +10765,6 @@
 /obj/structure/cable,
 /turf/open/floor/wood,
 /area/magmoor/command/office/main)
-"hOT" = (
-/obj/machinery/landinglight/ds2/delayone{
-	dir = 1
-	},
-/turf/open/floor/mainship/mono,
-/area/magmoor/landing/two)
 "hPj" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -10889,12 +10834,6 @@
 "hRp" = (
 /turf/open/floor/mainship/sterile/dark,
 /area/magmoor/medical/treatment)
-"hSB" = (
-/obj/machinery/landinglight/ds2/delaytwo{
-	dir = 8
-	},
-/turf/open/floor/mainship/floor,
-/area/magmoor/landing/two)
 "hSE" = (
 /obj/effect/landmark/xeno_silo_spawn,
 /obj/effect/landmark/weed_node,
@@ -11602,10 +11541,10 @@
 /turf/open/floor/tile/white,
 /area/magmoor/civilian/pool)
 "isX" = (
-/obj/machinery/landinglight/ds1/delaytwo{
+/obj/effect/ai_node,
+/obj/machinery/landinglight/lz1{
 	dir = 8
 	},
-/obj/effect/ai_node,
 /turf/open/floor/mainship/black{
 	dir = 8
 	},
@@ -11998,12 +11937,6 @@
 	dir = 4
 	},
 /area/magmoor/medical/patient)
-"iHs" = (
-/obj/machinery/landinglight/ds1{
-	dir = 8
-	},
-/turf/open/floor/plating/plating_catwalk,
-/area/magmoor/landing)
 "iHz" = (
 /obj/structure/rack,
 /obj/item/storage/box/disks,
@@ -12083,7 +12016,7 @@
 /turf/open/floor/plating/ground/mars/random/dirt,
 /area/magmoor/compound/north)
 "iLB" = (
-/obj/machinery/landinglight/ds1/delaythree{
+/obj/machinery/landinglight/lz1{
 	dir = 8
 	},
 /turf/open/floor/mainship/black{
@@ -12811,14 +12744,6 @@
 	dir = 4
 	},
 /area/magmoor/medical/treatment)
-"jmK" = (
-/obj/machinery/landinglight/ds1/delaytwo{
-	dir = 1
-	},
-/turf/open/floor/mainship/black{
-	dir = 1
-	},
-/area/magmoor/landing)
 "jmX" = (
 /obj/effect/ai_node,
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
@@ -12834,7 +12759,7 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/machinery/landinglight/ds1/delaythree{
+/obj/machinery/landinglight/lz2{
 	dir = 4
 	},
 /turf/open/floor/mainship/mono,
@@ -13166,12 +13091,6 @@
 	},
 /turf/open/floor/tile/purple,
 /area/magmoor/civilian/jani)
-"jyz" = (
-/obj/machinery/landinglight/ds1/delaytwo{
-	dir = 4
-	},
-/turf/open/floor/plating/plating_catwalk,
-/area/magmoor/landing)
 "jyA" = (
 /turf/open/floor/plating/ground/mars/dirttosand{
 	dir = 9
@@ -13345,7 +13264,7 @@
 	},
 /area/magmoor/civilian/dorms)
 "jET" = (
-/obj/machinery/landinglight/ds1/delayone,
+/obj/machinery/landinglight/lz1,
 /turf/open/floor/mainship/black,
 /area/magmoor/landing)
 "jEV" = (
@@ -13825,12 +13744,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/tile/white,
 /area/magmoor/civilian/pool)
-"jVd" = (
-/obj/machinery/landinglight/ds2/delaytwo{
-	dir = 8
-	},
-/turf/open/floor/plating/plating_catwalk,
-/area/magmoor/landing/two)
 "jVh" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -14206,14 +14119,8 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/floor,
 /area/magmoor/hydroponics/north)
-"kiT" = (
-/obj/machinery/landinglight/ds1/delaytwo{
-	dir = 8
-	},
-/turf/open/floor/plating/plating_catwalk,
-/area/magmoor/landing)
 "kjh" = (
-/obj/machinery/landinglight/ds2/delaythree{
+/obj/machinery/landinglight/lz2{
 	dir = 8
 	},
 /turf/open/floor/mainship/floor,
@@ -14755,7 +14662,7 @@
 	},
 /area/magmoor/hydroponics/north)
 "kDT" = (
-/obj/machinery/landinglight/ds2/delayone{
+/obj/machinery/landinglight/lz2{
 	dir = 4
 	},
 /turf/open/floor/plating/plating_catwalk,
@@ -14992,7 +14899,7 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
-/obj/machinery/landinglight/ds1/delaytwo{
+/obj/machinery/landinglight/lz2{
 	dir = 8
 	},
 /turf/open/floor/mainship/mono,
@@ -15149,7 +15056,7 @@
 /turf/open/floor/mainship/mono,
 /area/magmoor/civilian/arrival/east)
 "kRR" = (
-/obj/machinery/landinglight/ds2/delayone,
+/obj/machinery/landinglight/lz2,
 /turf/open/floor/mainship/mono,
 /area/magmoor/landing/two)
 "kRT" = (
@@ -15388,11 +15295,11 @@
 /area/magmoor/cave/rock)
 "lbB" = (
 /obj/structure/rack,
-/obj/item/storage/box/flashbangs{
+/obj/effect/spawner/random/weaponry/explosive/grenade/multiplefour{
 	pixel_x = 3;
 	pixel_y = -2
 	},
-/obj/item/storage/box/flashbangs,
+/obj/effect/spawner/random/weaponry/explosive/grenade/multiplefour,
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
@@ -15452,10 +15359,6 @@
 	dir = 4
 	},
 /area/magmoor/civilian/dorms)
-"ldw" = (
-/obj/machinery/landinglight/ds1/delaythree,
-/turf/open/floor/mainship/black,
-/area/magmoor/landing)
 "ldF" = (
 /obj/structure/closet/secure_closet/personal,
 /obj/structure/window/reinforced/tinted{
@@ -16094,7 +15997,7 @@
 /turf/open/floor/mainship/mono,
 /area/magmoor/civilian/rnr)
 "lDy" = (
-/obj/machinery/landinglight/ds1/delaythree{
+/obj/machinery/landinglight/lz1{
 	dir = 4
 	},
 /turf/open/floor/mainship/black{
@@ -17153,10 +17056,6 @@
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/magmoor/engi/thermal)
-"mub" = (
-/obj/machinery/landinglight/ds1/delaytwo,
-/turf/open/floor/mainship/black,
-/area/magmoor/landing)
 "muc" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
@@ -17183,7 +17082,7 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/magmoor/medical/treatment)
 "mvn" = (
-/obj/machinery/landinglight/ds1/delaythree{
+/obj/machinery/landinglight/lz1{
 	dir = 8
 	},
 /turf/open/floor/mainship/mono,
@@ -17565,12 +17464,6 @@
 /obj/item/reagent_containers/food/snacks/soup/bloodsoup,
 /turf/open/floor/wood,
 /area/magmoor/civilian/bar)
-"mMj" = (
-/obj/machinery/landinglight/ds2/delayone{
-	dir = 8
-	},
-/turf/open/floor/mainship/floor,
-/area/magmoor/landing/two)
 "mMu" = (
 /obj/effect/ai_node,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -18054,12 +17947,6 @@
 	},
 /turf/open/floor/mainship/floor,
 /area/magmoor/civilian/arrival/east)
-"ncs" = (
-/obj/machinery/landinglight/ds1{
-	dir = 4
-	},
-/turf/open/floor/plating/plating_catwalk,
-/area/magmoor/landing)
 "ncw" = (
 /obj/structure/rack,
 /obj/item/explosive/plastique,
@@ -18565,12 +18452,6 @@
 /obj/structure/cable,
 /turf/open/floor/plating/mainship,
 /area/magmoor/mining/garage)
-"nwT" = (
-/obj/machinery/landinglight/ds2/delaytwo{
-	dir = 4
-	},
-/turf/open/floor/mainship/floor,
-/area/magmoor/landing/two)
 "nwW" = (
 /obj/structure/plasticflaps,
 /turf/open/floor/plating,
@@ -18977,10 +18858,10 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/machinery/landinglight/ds1{
+/obj/effect/ai_node,
+/obj/machinery/landinglight/lz1{
 	dir = 8
 	},
-/obj/effect/ai_node,
 /turf/open/floor/mainship/mono,
 /area/magmoor/landing)
 "nRZ" = (
@@ -19248,7 +19129,7 @@
 	},
 /area/magmoor/engi)
 "ocf" = (
-/obj/machinery/landinglight/ds1/delayone{
+/obj/machinery/landinglight/lz1{
 	dir = 4
 	},
 /turf/open/floor/plating/plating_catwalk,
@@ -20028,10 +19909,10 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
-/obj/machinery/landinglight/ds1/delaythree{
+/obj/effect/ai_node,
+/obj/machinery/landinglight/lz2{
 	dir = 8
 	},
-/obj/effect/ai_node,
 /turf/open/floor/mainship/mono,
 /area/magmoor/landing/two)
 "oEk" = (
@@ -20166,10 +20047,6 @@
 /obj/structure/cable,
 /turf/open/floor/plating/mainship,
 /area/magmoor/mining/garage)
-"oJl" = (
-/obj/machinery/landinglight/ds2/delaythree,
-/turf/open/floor/mainship/mono,
-/area/magmoor/landing/two)
 "oJz" = (
 /obj/structure/closet/secure_closet/miner,
 /turf/open/floor/mainship/emerald{
@@ -22139,10 +22016,6 @@
 /obj/structure/cargo_container/ch_red,
 /turf/open/floor/mainship/floor,
 /area/magmoor/landing/two)
-"qar" = (
-/obj/machinery/landinglight/ds2/delaytwo,
-/turf/open/floor/mainship/mono,
-/area/magmoor/landing/two)
 "qav" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 5
@@ -22226,14 +22099,6 @@
 	dir = 10
 	},
 /area/magmoor/civilian/mosque)
-"qdK" = (
-/obj/machinery/landinglight/ds1/delaythree{
-	dir = 8
-	},
-/turf/open/floor/mainship/cargo/arrow{
-	dir = 8
-	},
-/area/magmoor/landing)
 "qej" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -23613,11 +23478,6 @@
 /obj/structure/largecrate/random,
 /turf/open/floor/plating,
 /area/magmoor/cargo/processing/south)
-"rgg" = (
-/obj/machinery/landinglight/ds1,
-/obj/effect/ai_node,
-/turf/open/floor/mainship/black,
-/area/magmoor/landing)
 "rgm" = (
 /turf/open/floor/plating/ground/mars/random/dirt,
 /area/magmoor/compound/southwest)
@@ -23934,8 +23794,8 @@
 /turf/open/floor/wood,
 /area/magmoor/command/conference)
 "rtV" = (
-/obj/machinery/landinglight/ds1/delaytwo,
 /obj/effect/ai_node,
+/obj/machinery/landinglight/lz1,
 /turf/open/floor/mainship/black,
 /area/magmoor/landing)
 "rtZ" = (
@@ -24177,12 +24037,6 @@
 	dir = 10
 	},
 /area/magmoor/civilian/cryostasis)
-"rDk" = (
-/obj/machinery/landinglight/ds2/delaythree{
-	dir = 1
-	},
-/turf/open/floor/mainship/mono,
-/area/magmoor/landing/two)
 "rDp" = (
 /obj/structure/flora/pottedplant/twentyone,
 /turf/open/floor/mainship/emerald{
@@ -24303,14 +24157,6 @@
 	},
 /turf/open/floor/mainship/sterile/white,
 /area/magmoor/medical/surgery)
-"rIz" = (
-/obj/machinery/landinglight/ds2/delaytwo{
-	dir = 1
-	},
-/turf/open/floor/mainship/cargo/arrow{
-	dir = 1
-	},
-/area/magmoor/landing/two)
 "rIR" = (
 /obj/machinery/mining/brace/active{
 	dir = 8
@@ -24742,12 +24588,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/mainship/sterile/corner,
 /area/magmoor/medical/patient)
-"rZO" = (
-/obj/machinery/landinglight/ds2/delayone{
-	dir = 4
-	},
-/turf/open/floor/mainship/floor,
-/area/magmoor/landing/two)
 "sac" = (
 /obj/structure/window/framed/colony,
 /turf/open/floor/plating,
@@ -24974,12 +24814,6 @@
 /obj/structure/closet/crate/secure,
 /turf/open/floor/mainship/cargo,
 /area/magmoor/landing)
-"sjg" = (
-/obj/machinery/landinglight/ds2/delaytwo{
-	dir = 4
-	},
-/turf/open/floor/plating/plating_catwalk,
-/area/magmoor/landing/two)
 "sji" = (
 /obj/machinery/air_alarm{
 	dir = 4
@@ -25702,14 +25536,6 @@
 /obj/effect/decal/cleanable/blood/splatter,
 /turf/open/floor/mainship/mono,
 /area/magmoor/cargo/processing/south)
-"sJh" = (
-/obj/machinery/landinglight/ds1/delayone{
-	dir = 8
-	},
-/turf/open/floor/mainship/black{
-	dir = 8
-	},
-/area/magmoor/landing)
 "sKb" = (
 /obj/structure/table/woodentable,
 /obj/item/storage/bag/plants,
@@ -25752,14 +25578,6 @@
 	dir = 4
 	},
 /area/magmoor/engi)
-"sLK" = (
-/obj/machinery/landinglight/ds1/delayone{
-	dir = 1
-	},
-/turf/open/floor/mainship/black{
-	dir = 1
-	},
-/area/magmoor/landing)
 "sMJ" = (
 /turf/open/floor/plating/ground/concrete/edge{
 	dir = 8
@@ -25833,10 +25651,10 @@
 /turf/open/floor/wood,
 /area/magmoor/command/office/main)
 "sPp" = (
-/obj/machinery/landinglight/ds2/delaytwo{
+/obj/effect/ai_node,
+/obj/machinery/landinglight/lz2{
 	dir = 8
 	},
-/obj/effect/ai_node,
 /turf/open/floor/mainship/cargo/arrow{
 	dir = 8
 	},
@@ -26314,7 +26132,7 @@
 /turf/open/floor/wood,
 /area/magmoor/civilian/basket)
 "thQ" = (
-/obj/machinery/landinglight/ds1/delaytwo{
+/obj/machinery/landinglight/lz1{
 	dir = 8
 	},
 /turf/open/floor/mainship/cargo/arrow{
@@ -26440,7 +26258,7 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
-/obj/machinery/landinglight/ds1{
+/obj/machinery/landinglight/lz2{
 	dir = 8
 	},
 /turf/open/floor/mainship/mono,
@@ -26623,14 +26441,6 @@
 /obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/cult,
 /area/magmoor/cave/northeast)
-"ttB" = (
-/obj/machinery/landinglight/ds1{
-	dir = 8
-	},
-/turf/open/floor/mainship/black{
-	dir = 8
-	},
-/area/magmoor/landing)
 "ttJ" = (
 /obj/structure/rock/basalt/pile/alt3,
 /turf/open/floor/cult,
@@ -26715,7 +26525,7 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
-/obj/machinery/landinglight/ds1/delaythree{
+/obj/machinery/landinglight/lz2{
 	dir = 8
 	},
 /turf/open/floor/mainship/mono,
@@ -27467,12 +27277,6 @@
 /obj/structure/lattice,
 /turf/open/lavaland/basalt/dirt/autosmoothing,
 /area/magmoor/compound/south)
-"tZU" = (
-/obj/machinery/landinglight/ds2{
-	dir = 4
-	},
-/turf/open/floor/plating/plating_catwalk,
-/area/magmoor/landing/two)
 "tZW" = (
 /obj/structure/window/reinforced,
 /obj/effect/decal/cleanable/blood/gibs/robot/up,
@@ -27575,10 +27379,10 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/machinery/landinglight/ds1{
+/obj/effect/ai_node,
+/obj/machinery/landinglight/lz1{
 	dir = 4
 	},
-/obj/effect/ai_node,
 /turf/open/floor/mainship/mono,
 /area/magmoor/landing)
 "ucD" = (
@@ -27712,7 +27516,7 @@
 /turf/open/floor/plating/ground/mars/random/dirt,
 /area/magmoor/compound/northeast)
 "ugp" = (
-/obj/machinery/landinglight/ds2/delaythree{
+/obj/machinery/landinglight/lz2{
 	dir = 4
 	},
 /turf/open/floor/mainship/cargo/arrow{
@@ -27823,7 +27627,7 @@
 /turf/open/floor/tile/dark2,
 /area/magmoor/medical/morgue)
 "ujr" = (
-/obj/machinery/landinglight/ds1/delayone{
+/obj/machinery/landinglight/lz1{
 	dir = 8
 	},
 /turf/open/floor/plating/plating_catwalk,
@@ -28475,7 +28279,7 @@
 	},
 /area/magmoor/compound/east)
 "uFX" = (
-/obj/machinery/landinglight/ds1{
+/obj/machinery/landinglight/lz1{
 	dir = 1
 	},
 /turf/open/floor/mainship/cargo/arrow{
@@ -29869,16 +29673,6 @@
 /obj/item/clothing/mask/rebreather,
 /turf/open/floor/plating/mainship,
 /area/magmoor/mining/garage)
-"vNg" = (
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 4
-	},
-/obj/machinery/landinglight/ds1{
-	dir = 4
-	},
-/obj/effect/ai_node,
-/turf/open/floor/mainship/mono,
-/area/magmoor/landing/two)
 "vNi" = (
 /obj/effect/turf_decal/sandedge/corner2{
 	dir = 1
@@ -30429,10 +30223,10 @@
 /turf/open/liquid/lava/autosmoothing,
 /area/magmoor/compound/north)
 "weS" = (
-/obj/machinery/landinglight/ds2/delaythree{
+/obj/effect/ai_node,
+/obj/machinery/landinglight/lz2{
 	dir = 8
 	},
-/obj/effect/ai_node,
 /turf/open/floor/mainship/floor,
 /area/magmoor/landing/two)
 "wfb" = (
@@ -30691,10 +30485,6 @@
 /obj/effect/landmark/start/job/survivor,
 /turf/open/floor/tile/blue/taupebluecorner,
 /area/magmoor/civilian/dorms)
-"wqv" = (
-/obj/machinery/landinglight/ds2,
-/turf/open/floor/mainship/mono,
-/area/magmoor/landing/two)
 "wqD" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 10
@@ -30730,8 +30520,8 @@
 	},
 /area/magmoor/medical/treatment)
 "wrZ" = (
-/obj/machinery/landinglight/ds2/delaytwo,
 /obj/effect/ai_node,
+/obj/machinery/landinglight/lz2,
 /turf/open/floor/mainship/mono,
 /area/magmoor/landing/two)
 "wsf" = (
@@ -32080,11 +31870,11 @@
 /turf/open/floor/plating/ground/concrete/lines,
 /area/magmoor/compound)
 "xmC" = (
-/obj/machinery/landinglight/ds1/delayone{
-	dir = 8
-	},
 /obj/machinery/floodlight/landing{
 	name = "Spotlight"
+	},
+/obj/machinery/landinglight/lz1{
+	dir = 8
 	},
 /turf/open/floor/mainship/black{
 	dir = 8
@@ -32275,7 +32065,7 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/machinery/landinglight/ds1/delaythree{
+/obj/machinery/landinglight/lz1{
 	dir = 4
 	},
 /turf/open/floor/mainship/mono,
@@ -32723,14 +32513,6 @@
 	dir = 10
 	},
 /area/magmoor/civilian/arrival)
-"xFJ" = (
-/obj/machinery/landinglight/ds1/delaythree{
-	dir = 1
-	},
-/turf/open/floor/mainship/black{
-	dir = 1
-	},
-/area/magmoor/landing)
 "xFK" = (
 /obj/structure/closet/emcloset,
 /turf/open/floor/tile/blue/whiteblue{
@@ -33448,14 +33230,6 @@
 	dir = 1
 	},
 /area/magmoor/command/commandroom)
-"yfl" = (
-/obj/machinery/landinglight/ds1/delaytwo{
-	dir = 1
-	},
-/turf/open/floor/mainship/cargo/arrow{
-	dir = 1
-	},
-/area/magmoor/landing)
 "yfO" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
@@ -33527,14 +33301,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/magmoor/engi/power)
-"yhH" = (
-/obj/machinery/landinglight/ds1/delayone{
-	dir = 4
-	},
-/turf/open/floor/mainship/black{
-	dir = 4
-	},
-/area/magmoor/landing)
 "yhV" = (
 /turf/open/floor/plating/ground/concrete/lines,
 /area/magmoor/landing)
@@ -43632,21 +43398,21 @@ ffA
 ucp
 axo
 ocf
-jyz
+ocf
 lDy
 bbm
-yhH
-gLH
-bdl
+lDy
+lDy
+bNF
 bNF
 fdo
-gLH
+lDy
 lDy
 bbm
-yhH
-gLH
 lDy
-ncs
+lDy
+lDy
+ocf
 ocf
 bKR
 xrO
@@ -44116,7 +43882,7 @@ nlP
 gsk
 nlP
 kbE
-sLK
+heH
 dTv
 qIT
 nlP
@@ -44327,7 +44093,7 @@ rpg
 dTv
 dTv
 dTv
-cky
+jET
 dzo
 nlP
 nlP
@@ -44349,7 +44115,7 @@ nlP
 nlP
 nlP
 kbE
-jmK
+heH
 dTv
 qIT
 nlP
@@ -44560,7 +44326,7 @@ sWm
 dTv
 dTv
 dTv
-aEH
+rtV
 dzo
 nlP
 nlP
@@ -44582,7 +44348,7 @@ nlP
 nlP
 nlP
 kbE
-xFJ
+heH
 dTv
 qIT
 nlP
@@ -44793,7 +44559,7 @@ bss
 gAb
 ntN
 dTv
-mub
+jET
 dzo
 nlP
 nlP
@@ -45048,7 +44814,7 @@ nlP
 nlP
 nlP
 kbE
-sLK
+heH
 dTv
 qIT
 nlP
@@ -45259,7 +45025,7 @@ bss
 hkL
 moJ
 dTv
-cky
+jET
 dzo
 nlP
 nlP
@@ -45281,7 +45047,7 @@ nlP
 nlP
 nlP
 kbE
-yfl
+uFX
 ubz
 qIT
 nlP
@@ -45492,7 +45258,7 @@ rpg
 dTv
 dTv
 dTv
-ldw
+jET
 dzo
 nlP
 nlP
@@ -45514,7 +45280,7 @@ nlP
 nlP
 nlP
 kbE
-xFJ
+heH
 dTv
 qIT
 nlP
@@ -45980,7 +45746,7 @@ nlP
 gsk
 nlP
 kbE
-sLK
+heH
 dTv
 qIT
 nlP
@@ -46191,7 +45957,7 @@ ydh
 dTv
 dTv
 dTv
-rgg
+rtV
 aDt
 kJa
 kJa
@@ -46213,7 +45979,7 @@ kJa
 kJa
 kJa
 xlN
-jmK
+heH
 dTv
 qIT
 nlP
@@ -46428,21 +46194,21 @@ rtK
 hjx
 hsa
 ujr
-iHs
+ujr
 iLB
 isX
-sJh
-ttB
-qdK
+iLB
+iLB
+thQ
 thQ
 xmC
-ttB
+iLB
 iLB
 isX
-sJh
-ttB
 iLB
-kiT
+iLB
+iLB
+ujr
 ujr
 nRJ
 mvn
@@ -71065,24 +70831,24 @@ ogT
 ogT
 hvH
 ncy
-vNg
+ewi
 acI
 kDT
-sjg
+kDT
 dId
-hjI
-rZO
-nwT
+gUT
+gUT
+gUT
 ugp
 gTz
 bBP
-nwT
-dId
-hjI
-rZO
-nwT
 gUT
-tZU
+dId
+gUT
+gUT
+gUT
+gUT
+kDT
 kDT
 jmZ
 ewi
@@ -71552,7 +71318,7 @@ ogT
 kqp
 ogT
 foV
-hOT
+gfo
 dwT
 cOr
 sht
@@ -71763,7 +71529,7 @@ did
 did
 did
 wHI
-wqv
+kRR
 afM
 ogT
 ogT
@@ -71785,7 +71551,7 @@ ogT
 ogT
 ogT
 foV
-gzq
+gfo
 dwT
 cOr
 sht
@@ -71996,7 +71762,7 @@ ogT
 ogT
 ogT
 hvH
-oJl
+kRR
 afM
 ogT
 ogT
@@ -72018,7 +71784,7 @@ ogT
 ogT
 ogT
 foV
-rDk
+gfo
 dwT
 cOr
 kwY
@@ -72229,7 +71995,7 @@ pPJ
 ogT
 ogT
 hvH
-qar
+kRR
 afM
 ogT
 ogT
@@ -72484,7 +72250,7 @@ ogT
 ogT
 ogT
 foV
-hOT
+gfo
 dwT
 cOr
 sht
@@ -72695,7 +72461,7 @@ yjg
 yjg
 yjg
 idM
-wqv
+kRR
 afM
 ogT
 ogT
@@ -72717,7 +72483,7 @@ ogT
 ogT
 ogT
 foV
-rIz
+dCI
 aeE
 cOr
 sht
@@ -72928,7 +72694,7 @@ did
 did
 did
 rHw
-oJl
+kRR
 afM
 ogT
 ogT
@@ -72950,7 +72716,7 @@ ogT
 ogT
 ogT
 foV
-rDk
+gfo
 dwT
 cOr
 vWt
@@ -73161,7 +72927,7 @@ ogT
 ogT
 ogT
 hvH
-qar
+kRR
 afM
 ogT
 ogT
@@ -73416,7 +73182,7 @@ ogT
 kqp
 ogT
 foV
-hOT
+gfo
 dwT
 cOr
 sht
@@ -73627,7 +73393,7 @@ ogT
 ogT
 ogT
 hvH
-wqv
+kRR
 bHh
 ixr
 ixr
@@ -73649,7 +73415,7 @@ ixr
 ixr
 ixr
 uYr
-gzq
+gfo
 dwT
 cOr
 sht
@@ -73864,21 +73630,21 @@ oif
 tyi
 kNv
 bqm
-akC
+bqm
 weS
-hSB
-mMj
-fJY
+kjh
+kjh
+kjh
 fSv
 sPp
 ePV
-fJY
-weS
-hSB
-mMj
-fJY
 kjh
-jVd
+weS
+kjh
+kjh
+kjh
+kjh
+bqm
 bqm
 tlp
 oEi
