@@ -29,6 +29,11 @@ GLOBAL_LIST_INIT(all_xeno_types, list(
 	/mob/living/carbon/xenomorph/hunter/elder,
 	/mob/living/carbon/xenomorph/hunter/ancient,
 	/mob/living/carbon/xenomorph/hunter/primordial,
+	/mob/living/carbon/xenomorph/panther,
+	/mob/living/carbon/xenomorph/panther/mature,
+	/mob/living/carbon/xenomorph/panther/elder,
+	/mob/living/carbon/xenomorph/panther/ancient,
+	/mob/living/carbon/xenomorph/panther/primordial,
 	/mob/living/carbon/xenomorph/warrior,
 	/mob/living/carbon/xenomorph/warrior/mature,
 	/mob/living/carbon/xenomorph/warrior/elder,
@@ -119,4 +124,14 @@ GLOBAL_LIST_INIT(all_xeno_types, list(
 	/mob/living/carbon/xenomorph/scorpion,
 	/mob/living/carbon/xenomorph/facehugger,
 	/mob/living/carbon/xenomorph/spiderling,
+	))
+
+GLOBAL_LIST_INIT(xeno_types_tier_two, list(/mob/living/carbon/xenomorph/hunter, /mob/living/carbon/xenomorph/panther, /mob/living/carbon/xenomorph/warrior, /mob/living/carbon/xenomorph/spitter, /mob/living/carbon/xenomorph/hivelord, /mob/living/carbon/xenomorph/carrier, /mob/living/carbon/xenomorph/bull, /mob/living/carbon/xenomorph/wraith))
+
+GLOBAL_LIST_INIT(forbid_excepts, list(
+	/mob/living/carbon/xenomorph/king,
+	/mob/living/carbon/xenomorph/queen,
+	/mob/living/carbon/xenomorph/shrike,
+	/mob/living/carbon/xenomorph/larva,
+	/mob/living/carbon/xenomorph/drone,
 	))

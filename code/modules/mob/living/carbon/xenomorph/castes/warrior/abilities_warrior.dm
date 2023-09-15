@@ -499,7 +499,7 @@
 	. = ..()
 	if(pulledby == X) //If we're being grappled by the Warrior punching us, it's gonna do extra damage and debuffs; combolicious
 		//damage *= 1.5 //ORIGINAL
-		damage *= 1.5 //RUTGMC EDIT CHANGE
+		damage *= 2 //RUTGMC EDIT CHANGE
 		slowdown_stacks *= 2
 		stagger_stacks *= 2
 		ParalyzeNoChain(0.5 SECONDS)

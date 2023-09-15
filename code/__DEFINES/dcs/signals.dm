@@ -729,7 +729,6 @@
 #define COMSIG_XENOABILITY_CREATE_BOMB "xenoability_create_bomb"
 #define COMSIG_XENOABILITY_ROOT "xenoability_root"
 #define COMSIG_XENOABILITY_BOMBARD "xenoability_bombard"
-#define COMSIG_XENOABILITY_DUMP_ACID "xenoability_dump_acid" //RUTGMC EDIT
 
 #define COMSIG_XENOABILITY_THROW_HUGGER "xenoability_throw_hugger"
 #define COMSIG_XENOABILITY_CALL_YOUNGER "xenoability_call_younger"
@@ -800,7 +799,6 @@
 #define COMSIG_XENOABILITY_UNRELENTING_FORCE "xenoability_unrelenting_force"
 #define COMSIG_XENOABILITY_UNRELENTING_FORCE_SELECT "xenoability_unrelenting_force_select"
 #define COMSIG_XENOABILITY_PSYCHIC_VORTEX "xenoability_psychic_vortex"
-#define COMSIG_XENOABILITY_PSYCHIC_GRAB "xenoability_psychic_grab" //RUTGMC EDIT
 
 #define COMSIG_XENOABILITY_RAVAGER_CHARGE "xenoability_ravager_charge"
 #define COMSIG_XENOABILITY_RAVAGE "xenoability_ravage"

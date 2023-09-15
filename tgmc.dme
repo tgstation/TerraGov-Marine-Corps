@@ -135,6 +135,7 @@
 #include "code\__DEFINES\dcs\signals.dm"
 #include "code\__DEFINES\dcs\signals\signals_mind.dm"
 #include "code\__DEFINES\dcs\signals\signals_subsystem.dm"
+#include "modular_RUtgmc\defines_includes.dm"
 #include "code\__HELPERS\_lists.dm"
 #include "code\__HELPERS\_logging.dm"
 #include "code\__HELPERS\_string_lists.dm"

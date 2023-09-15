@@ -58,3 +58,15 @@
 			if(!larva_autoburst_countdown)
 				var/mob/living/carbon/xenomorph/larva/L = locate() in affected_mob
 				L?.initiate_burst(affected_mob)
+
+/mob/living/carbon/xenomorph/larva/initiate_burst(mob/living/carbon/victim)
+	. = ..()
+	var/nestburst_message = pick("You feel hive's psychic power getting stronger, after host [victim.name] gave birth on a nest!", "You feel hive's psychic power getting stronger, after breeding host [victim.name] on a nest!")
+	if(CHECK_BITFIELD(victim.restrained_flags, RESTRAINED_XENO_NEST))
+		if(victim.job == null)
+			SSpoints.add_psy_points(hivenumber, 10)
+		else if(victim.job.type == /datum/job/survivor/rambo)
+			SSpoints.add_psy_points(hivenumber, 50)
+		else
+			SSpoints.add_psy_points(hivenumber, 200)
+		xeno_message(nestburst_message, "xenoannounce", 5, hivenumber)

@@ -30,7 +30,6 @@
 #define DEFILER_HEMODILE "Hemodile"
 #define DEFILER_TRANSVITOX "Transvitox"
 #define DEFILER_OZELOMELYN "Ozelomelyn"
-#define DEFILER_ACID "Sulphuric acid" //RUTGMC EDIT ADDITION
 
 //Baneling specific reagent define
 #define BANELING_ACID "Sulphuric acid"

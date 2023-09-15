@@ -225,7 +225,8 @@
 		if("Deevolve")
 			if(!isxenoqueen(usr)) // Queen only. No boys allowed.
 				return
-			attempt_deevolve(usr, xeno_target)
+			//attempt_deevolve(usr, xeno_target) //ORIGINAL
+			attempt_punishment(usr, xeno_target) //RUTGMC EDIT CHANGE
 		if("Leader")
 			if(!isxenoqueen(usr)) // Queen only. No boys allowed.
 				return
@@ -270,6 +271,11 @@
 			if(!isxeno(usr))
 				return
 			TOGGLE_BITFIELD(xeno_target.status_toggle_flags, HIVE_STATUS_SHOW_STRUCTURES)
+		//RUTGMC EDIT ADDITIONAL
+		if("Forbid")
+			if(!isxenoqueen(usr))  // Queen only.
+				return
+			toggle_forbit(usr, params["forbidcaste"] + 1); // +1 array offset
 
 /// Returns the string location of the xeno
 /datum/hive_status/proc/get_xeno_location(atom/xeno)
