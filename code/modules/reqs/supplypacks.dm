@@ -77,6 +77,13 @@ OPERATIONS
 	cost = 200
 	available_against_xeno_only = TRUE
 
+/datum/supply_packs/operations/xeno_iff_tag
+	name = "Xenomorph IFF tag crate" //Intended for corrupted or friendly rounies as rounds sometimes turn out. Avoid abuse or I'll have to admin-only it, which is no fun!
+	notes = "Contains an IFF tag used to mark a xenomorph as friendly to IFF systems. Warning: Nanotrasen is not responsible for incidents related to attaching this to hostile entities."
+	contains = list(/obj/item/xeno_iff_tag)
+	access = ACCESS_MARINE_BRIDGE //Better be safe.
+	cost = 130
+
 /datum/supply_packs/operations/deployable_camera
 	name = "3 Deployable Cameras"
 	contains = list(
@@ -1904,22 +1911,22 @@ VEHICLES
 
 /datum/supply_packs/vehicles/mounted_hsg
 	name = "Mounted HSG"
-	contains = list(/obj/structure/dropship_equipment/weapon_holder/machinegun)
+	contains = list(/obj/structure/dropship_equipment/shuttle/weapon_holder/machinegun)
 	cost = 500
 
 /datum/supply_packs/vehicles/minigun_nest
 	name = "Mounted Minigun"
-	contains = list(/obj/structure/dropship_equipment/weapon_holder/minigun)
+	contains = list(/obj/structure/dropship_equipment/shuttle/weapon_holder/minigun)
 	cost = 750
 
 /datum/supply_packs/vehicles/mounted_heavy_laser
 	name = "Mounted Heavy Laser"
-	contains = list(/obj/structure/dropship_equipment/weapon_holder/heavylaser)
+	contains = list(/obj/structure/dropship_equipment/shuttle/weapon_holder/heavylaser)
 	cost = 900
 
 /datum/supply_packs/vehicles/mounted_rr
 	name = "Mounted Heavy Recoilless Rifle"
-	contains = list(/obj/structure/dropship_equipment/weapon_holder/heavy_rr)
+	contains = list(/obj/structure/dropship_equipment/shuttle/weapon_holder/heavy_rr)
 	cost = 1800
 
 /datum/supply_packs/vehicles/hsg_ammo

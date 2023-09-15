@@ -41,3 +41,38 @@
   - soundadd: Added 10 female *warcry variations.
   ivanmixo:
   - code_imp: Fixed some weird code opendream pointed out
+2023-09-08:
+  DeltaFire15:
+  - rscadd: Xenomorph IFF tags, which allow xenomorphs to be recognized as friendly
+      by things with a compatible IFF signal.
+  Xander3359:
+  - rscadd: Marines now have access to unlimited derringers.
+  ivanmixo:
+  - config: Reverted random addition to gitignore
+  tyeagg:
+  - bugfix: landing lights now work
+2023-09-09:
+  Blundir:
+  - imageadd: new devour action icon, updated action icon for defiler
+  Looking4bros:
+  - balance: Chem healing on some chemicals is now overall instead of per limb
+  RipGrayson:
+  - balance: Removed all the flashbang boxes from the ground.
+  - rscadd: Added shivs to Prison
+  novaepee:
+  - bugfix: fix lego hotaru so that you can actually put it on exoskeleton
+2023-09-13:
+  forestbbbbbbb:
+  - bugfix: Fix some space turfs
+2023-09-15:
+  AzonStarfall:
+  - bugfix: Changes the prefix of the SR-153 to SG-153.
+  Barnet2:
+  - bugfix: PO timelock should work now.
+  Blundir:
+  - bugfix: fixed helmet items not being visible when you insert them
+  - imageadd: added a lot new sprites for helmet items + resprited some old ones
+  Wisemonster:
+  - qol: The dropship fabricator has had it's items separated into more distinct categories.
+  - code_imp: Repathed dropship/condor equipment, dropship/condor weapons, and condor
+      ammo.
