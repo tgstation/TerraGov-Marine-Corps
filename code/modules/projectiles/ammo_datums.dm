@@ -422,10 +422,10 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	hud_state = "pistol_superheavy"
 	damage = 45
 	penetration = 15
-	sundering = 3.5
+	sundering = 3
 
 /datum/ammo/bullet/pistol/superheavy/on_hit_mob(mob/M,obj/projectile/P)
-	staggerstun(M, P, stagger = 2 SECONDS, slowdown = 1)
+	staggerstun(M, P, stagger = 2 SECONDS, slowdown = 0.5, knockback = 1)
 
 /datum/ammo/bullet/pistol/superheavy/derringer
 	handful_amount = 2
