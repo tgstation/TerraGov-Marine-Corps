@@ -423,6 +423,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 45
 	penetration = 15
 	sundering = 3
+	damage_falloff = 0.75
 
 /datum/ammo/bullet/pistol/superheavy/on_hit_mob(mob/M,obj/projectile/P)
 	staggerstun(M, P, stagger = 2 SECONDS, slowdown = 0.5, knockback = 1)
