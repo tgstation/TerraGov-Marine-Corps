@@ -414,7 +414,7 @@ directive is properly returned.
 /atom/proc/relaymove(mob/living/user, direct)
 	if(COOLDOWN_CHECK(src, buckle_message_cooldown))
 		COOLDOWN_START(src, buckle_message_cooldown, 2.5 SECONDS)
-		balloon_alert(user, "can't move while buckled!")
+		balloon_alert(user, "Can't move while buckled!")
 	return
 
 /**
