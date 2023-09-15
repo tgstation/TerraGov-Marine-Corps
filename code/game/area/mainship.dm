@@ -146,6 +146,11 @@
 	icon_state = "hangar"
 	minimap_color = MINIMAP_AREA_LZ
 
+/area/mainship/hallways/hangar/flight_control
+	name = "Flight Control"
+	icon_state = "hangar"
+	minimap_color = MINIMAP_AREA_COMMAND
+
 
 /area/mainship/living/tankerbunks
 	name = "Vehicle Crew Bunks"
@@ -208,6 +213,18 @@
 /area/mainship/hallways/starboard_hallway
 	name = "Hallway Starboard"
 	icon_state = "starboard"
+
+
+/area/mainship/hallways/port_ert
+	name = "Port ERT Hangar"
+	icon_state = "hangar"
+	minimap_color = MINIMAP_AREA_LZ
+
+
+/area/mainship/hallways/starboard_ert
+	name = "Starboard ERT Hangar"
+	icon_state = "hangar"
+	minimap_color = MINIMAP_AREA_LZ
 
 
 /area/mainship/hull
