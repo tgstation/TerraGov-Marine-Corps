@@ -289,6 +289,13 @@
 	standing.pixel_y = visorless_offset_y
 	return standing
 
+/obj/item/clothing/head/modular/on_pocket_insertion()
+	. = ..()
+	update_clothing_icon()
+
+/obj/item/clothing/head/modular/on_pocket_removal()
+	. = ..()
+	update_clothing_icon()
 
 /obj/item/clothing/head/modular/get_mechanics_info()
 	. = ..()
