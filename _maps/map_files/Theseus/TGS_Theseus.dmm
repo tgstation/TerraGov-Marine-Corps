@@ -4909,7 +4909,7 @@
 /obj/machinery/light/mainship{
 	dir = 4
 	},
-/obj/machinery/vending/armor_supply,
+/obj/machinery/vending/cargo_supply,
 /turf/open/floor/mainship/floor,
 /area/mainship/squads/req)
 "byi" = (
@@ -5482,6 +5482,9 @@
 /obj/item/tool/hand_labeler,
 /obj/effect/spawner/random/engineering/wood,
 /obj/machinery/camera/autoname/mainship{
+	dir = 8
+	},
+/obj/machinery/firealarm{
 	dir = 8
 	},
 /turf/open/floor/mainship/floor,
@@ -13770,10 +13773,10 @@
 /obj/machinery/light/mainship{
 	dir = 4
 	},
-/obj/machinery/vending/cargo_supply,
 /obj/machinery/camera/autoname/mainship{
 	dir = 8
 	},
+/obj/machinery/vending/uniform_supply,
 /turf/open/floor/mainship/floor,
 /area/mainship/squads/req)
 "mzG" = (
@@ -17263,9 +17266,14 @@
 	},
 /area/mainship/living/tankerbunks)
 "sic" = (
-/obj/machinery/firealarm{
-	dir = 8
-	},
+/obj/item/reagent_containers/spray/cleaner,
+/obj/item/reagent_containers/spray/cleaner,
+/obj/item/tool/extinguisher,
+/obj/item/tool/extinguisher/mini,
+/obj/structure/rack,
+/obj/item/flashlight,
+/obj/item/flashlight,
+/obj/item/lightreplacer,
 /turf/open/floor/mainship/floor,
 /area/mainship/squads/req)
 "sim" = (
@@ -64125,8 +64133,8 @@ bnF
 rZT
 dop
 iWe
-iiq
-fTB
+iWe
+iWe
 iWe
 eRq
 eBv
@@ -64381,9 +64389,9 @@ biu
 bnF
 bpz
 brn
-iWe
-adT
-adU
+fTB
+bsY
+bsY
 iWe
 gzg
 vby
@@ -64638,9 +64646,9 @@ biu
 bnF
 oiS
 xZq
-iWe
-bsY
-bsY
+iiq
+adT
+adU
 iWe
 gzg
 vby
@@ -65157,9 +65165,9 @@ bGk
 avZ
 gaR
 byh
-bzq
-bKU
 otD
+bKU
+aat
 mzi
 may
 jnG
