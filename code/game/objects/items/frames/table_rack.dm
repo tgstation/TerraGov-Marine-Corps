@@ -21,8 +21,9 @@
 /obj/item/frame/table/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
+	var/turf/Turf = get_turf(src)
 	if(iswrench(I) && deconstruct_type)
-		new deconstruct_type(loc)
+		new deconstruct_type(Turf)
 		qdel(src)
 
 	else if(istype(I, /obj/item/stack/rods))
@@ -31,7 +32,7 @@
 			to_chat(user, span_warning("You need at least four rods to reinforce [src]."))
 			return
 
-		new /obj/item/frame/table/reinforced(loc)
+		new /obj/item/frame/table/reinforced(Turf)
 		to_chat(user, span_notice("You reinforce [src]."))
 		user.temporarilyRemoveItemFromInventory(src)
 		qdel(src)
@@ -43,8 +44,8 @@
 			to_chat(user, span_warning("You need at least two wood sheets to swap the metal parts of [src]."))
 			return
 
-		new /obj/item/frame/table/wood(loc)
-		new /obj/item/stack/sheet/metal(loc)
+		new /obj/item/frame/table/wood(Turf)
+		new /obj/item/stack/sheet/metal(Turf)
 		to_chat(user, span_notice("You replace the metal parts of [src]."))
 		user.temporarilyRemoveItemFromInventory(src)
 		qdel(src)
@@ -61,8 +62,18 @@
 	user.drop_held_item()
 	qdel(src)
 
-/obj/item/frame/table/nometal
+
+/*
+* Mainship Table Parts
+*/
+
+/obj/item/frame/table/mainship
+	name = "ship table parts"
+	table_type = /obj/structure/table/mainship
+
+/obj/item/frame/table/mainship/nometal
 	deconstruct_type = null
+	table_type = /obj/structure/table/mainship/nometal
 
 /*
 * Reinforced Table Parts

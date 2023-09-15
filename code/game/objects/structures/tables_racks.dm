@@ -24,10 +24,6 @@
 	var/flip_cooldown = 0 //If flip cooldown exists, don't allow flipping or putting back. This carries a WORLD.TIME value
 	max_integrity = 40
 
-/obj/structure/table/mainship/nometal
-	parts = /obj/item/frame/table/nometal
-	dropmetal = FALSE
-
 /obj/structure/table/deconstruct(disassembled)
 	if(disassembled)
 		new parts(loc)
@@ -469,6 +465,19 @@
 	if(!flipped)
 		flip(dir, TRUE)
 
+/*
+* Main Ship tables
+*/
+
+/obj/structure/table/mainship
+	name = "ship table"
+	icon_state = "shiptable"
+	parts = /obj/item/frame/table/mainship
+	table_prefix = "ship"
+
+/obj/structure/table/mainship/nometal
+	parts = /obj/item/frame/table/mainship/nometal
+	dropmetal = FALSE
 
 /*
 * Wooden tables
@@ -596,17 +605,10 @@
 	table_status = TABLE_STATUS_FIRM
 	return TRUE
 
-
 /obj/structure/table/reinforced/prison
 	desc = "A square metal surface resting on four legs. This one has side panels, making it useful as a desk, but impossible to flip."
 	icon_state = "prisontable"
 	table_prefix = "prison"
-
-/obj/structure/table/mainship
-	icon_state = "shiptable"
-	table_prefix = "ship"
-
-
 /*
 * Racks
 */
