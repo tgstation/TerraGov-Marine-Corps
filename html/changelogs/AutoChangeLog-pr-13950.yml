@@ -1,5 +1,0 @@
-author: "Blundir"
-delete-after: True
-changes:
-  - bugfix: "fixed helmet items not being visible when you insert them"
-  - imageadd: "added a lot new sprites for helmet items + resprited some old ones"
