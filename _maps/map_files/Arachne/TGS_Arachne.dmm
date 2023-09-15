@@ -6142,10 +6142,10 @@
 /turf/open/floor/mainship_hull,
 /area/space)
 "fki" = (
-/obj/structure/ship_ammo/heavygun,
 /obj/machinery/camera/autoname/mainship{
 	dir = 1
 	},
+/obj/structure/ship_ammo/heavygun,
 /turf/open/floor/mainship/cargo,
 /area/mainship/hallways/hangar)
 "fkN" = (
@@ -8974,12 +8974,6 @@
 	dir = 1
 	},
 /area/mainship/hallways/port_ert)
-"hCo" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/turf/open/floor/mainship/red{
-	dir = 4
-	},
-/area/mainship/hallways/hangar)
 "hCq" = (
 /obj/structure/table/mainship/nometal,
 /obj/machinery/computer/shuttle/shuttle_control/dropship,
@@ -18304,8 +18298,8 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/port_hull)
 "oYF" = (
-/obj/structure/ship_ammo/minirocket/illumination,
 /obj/machinery/light/mainship,
+/obj/structure/ship_ammo/minirocket/illumination,
 /turf/open/floor/mainship/cargo,
 /area/mainship/hallways/hangar)
 "oYS" = (
@@ -23086,8 +23080,8 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/lower_medical)
 "tcz" = (
-/obj/structure/ship_ammo/minirocket,
 /obj/machinery/light/mainship,
+/obj/structure/ship_ammo/minirocket,
 /turf/open/floor/mainship/cargo,
 /area/mainship/hallways/hangar)
 "tcP" = (
@@ -38726,7 +38720,7 @@ eju
 wPp
 twS
 hIO
-hCo
+kAs
 cZF
 mMV
 lqe
