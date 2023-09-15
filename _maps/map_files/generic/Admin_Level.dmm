@@ -3195,7 +3195,7 @@
 /area/centcom/valhalla/engine/break_room)
 "dTC" = (
 /obj/machinery/smartfridge/nopower,
-/turf/open/space/basic,
+/turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla/hydroponics)
 "dTJ" = (
 /obj/structure/closet/crate,
@@ -9059,7 +9059,7 @@
 	pixel_y = 3
 	},
 /obj/item/storage/box/handcuffs,
-/obj/item/storage/box/flashbangs{
+/obj/effect/spawner/random/weaponry/explosive/grenade/multiplefour{
 	pixel_x = -3;
 	pixel_y = -3
 	},
@@ -13108,7 +13108,7 @@
 /area/centcom/valhalla/medical/medbay)
 "ruB" = (
 /obj/machinery/smartfridge/chemistry/nopower,
-/turf/open/space/basic,
+/turf/open/floor/tile/white,
 /area/centcom/valhalla/medical/chemistry)
 "rvz" = (
 /obj/machinery/door/firedoor,

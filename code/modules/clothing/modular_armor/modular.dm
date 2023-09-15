@@ -97,6 +97,10 @@
 		/obj/item/armor_module/armor/legs/marine/kabuto,
 		/obj/item/armor_module/armor/arms/marine/kabuto,
 
+		/obj/item/armor_module/armor/chest/marine/hotaru,
+		/obj/item/armor_module/armor/legs/marine/hotaru,
+		/obj/item/armor_module/armor/arms/marine/hotaru,
+
 		/obj/item/armor_module/module/better_shoulder_lamp,
 		/obj/item/armor_module/module/valkyrie_autodoc,
 		/obj/item/armor_module/module/fire_proof,
@@ -285,6 +289,13 @@
 	standing.pixel_y = visorless_offset_y
 	return standing
 
+/obj/item/clothing/head/modular/on_pocket_insertion()
+	. = ..()
+	update_clothing_icon()
+
+/obj/item/clothing/head/modular/on_pocket_removal()
+	. = ..()
+	update_clothing_icon()
 
 /obj/item/clothing/head/modular/get_mechanics_info()
 	. = ..()

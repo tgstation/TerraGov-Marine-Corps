@@ -1693,7 +1693,7 @@
 /turf/open/ground/grass/weedable,
 /area/lawankaoutpost/colony/operations_hall)
 "bwI" = (
-/obj/machinery/landinglight/ds1/delaytwo,
+/obj/machinery/landinglight/lz1,
 /turf/open/floor/plating,
 /area/shuttle/drop1/lz1)
 "bwJ" = (
@@ -2451,12 +2451,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/ground/grass/weedable,
 /area/lawankaoutpost/outside/northeast)
-"ccG" = (
-/obj/machinery/landinglight/ds1/delaythree{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/shuttle/drop1/lz1)
 "ccO" = (
 /obj/effect/landmark/corpsespawner/colonist/burst,
 /turf/open/floor/cult,
@@ -2725,6 +2719,14 @@
 /obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor,
 /area/lawankaoutpost/colony/biologics)
+"cmG" = (
+/obj/machinery/floodlight/landing,
+/obj/effect/turf_decal/warning_stripes,
+/obj/machinery/landinglight/lz2{
+	dir = 8
+	},
+/turf/open/floor/mech_bay_recharge_floor,
+/area/shuttle/drop2/lz2)
 "cmM" = (
 /obj/effect/decal/cleanable/blood/oil,
 /turf/open/floor/tile/dark,
@@ -2864,12 +2866,6 @@
 	dir = 8
 	},
 /area/lawankaoutpost/colony/operations_storage)
-"csY" = (
-/obj/machinery/landinglight/ds1/delaythree{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/shuttle/drop2/lz2)
 "ctd" = (
 /obj/structure/table,
 /obj/effect/spawner/random/medical/beaker/largeweighted,
@@ -2973,12 +2969,6 @@
 	},
 /turf/open/ground/grass/weedable,
 /area/lawankaoutpost/outside/central)
-"cAk" = (
-/obj/machinery/landinglight/ds1/delaythree{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/shuttle/drop1/lz1)
 "cAs" = (
 /obj/structure/table/woodentable,
 /obj/item/book,
@@ -4439,10 +4429,6 @@
 	dir = 1
 	},
 /area/lawankaoutpost/colony/northdorms)
-"dPx" = (
-/obj/machinery/landinglight/ds1/delayone,
-/turf/open/floor/plating,
-/area/shuttle/drop1/lz1)
 "dPz" = (
 /obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/tile/white,
@@ -4742,10 +4728,6 @@
 	dir = 1
 	},
 /area/lawankaoutpost/colony/recdorms)
-"edN" = (
-/obj/machinery/landinglight/ds1,
-/turf/open/floor/plating,
-/area/shuttle/drop2/lz2)
 "edQ" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 8
@@ -6299,7 +6281,7 @@
 /turf/open/ground/grass/weedable,
 /area/lawankaoutpost/outside/north)
 "fsf" = (
-/obj/machinery/landinglight/ds1/delaytwo{
+/obj/machinery/landinglight/lz2{
 	dir = 4
 	},
 /turf/open/floor/plating,
@@ -6365,12 +6347,6 @@
 	},
 /turf/open/floor,
 /area/lawankaoutpost/colony/landingzoneone)
-"fuJ" = (
-/obj/machinery/landinglight/ds1/delayone{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/shuttle/drop1/lz1)
 "fuQ" = (
 /turf/open/floor/tile/dark/brown2{
 	dir = 1
@@ -6813,12 +6789,6 @@
 	dir = 8
 	},
 /area/lawankaoutpost/caves/nanotrasen_lab)
-"fKe" = (
-/obj/machinery/landinglight/ds1{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/shuttle/drop2/lz2)
 "fKu" = (
 /obj/machinery/disposal,
 /turf/open/floor/tile/dark/blue2{
@@ -7130,6 +7100,14 @@
 	},
 /turf/open/floor/tile/purple/whitepurple,
 /area/lawankaoutpost/colony/medbay)
+"fWr" = (
+/obj/machinery/floodlight/landing,
+/obj/effect/turf_decal/warning_stripes,
+/obj/machinery/landinglight/lz1{
+	dir = 8
+	},
+/turf/open/floor/mech_bay_recharge_floor,
+/area/shuttle/drop1/lz1)
 "fWA" = (
 /obj/machinery/door/airlock/multi_tile/ice{
 	name = "Cargo Hold"
@@ -7577,12 +7555,6 @@
 	},
 /turf/open/ground/grass/weedable,
 /area/lawankaoutpost/caves/nanotrasen_lab)
-"gmM" = (
-/obj/machinery/landinglight/ds1/delayone{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/shuttle/drop1/lz1)
 "gmV" = (
 /obj/machinery/disposal,
 /obj/machinery/light,
@@ -7886,12 +7858,6 @@
 /obj/structure/flora/jungle/vines,
 /turf/open/ground/grass/weedable,
 /area/lawankaoutpost/outside/southeast)
-"gCP" = (
-/obj/machinery/landinglight/ds1{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/shuttle/drop1/lz1)
 "gCQ" = (
 /obj/effect/ai_node,
 /turf/open/floor/tile/red/whitered{
@@ -8454,12 +8420,6 @@
 	},
 /turf/open/ground/grass/weedable,
 /area/lawankaoutpost/outside/southeast)
-"hew" = (
-/obj/machinery/landinglight/ds1/delaytwo{
-	dir = 1
-	},
-/turf/open/floor/plating,
-/area/shuttle/drop2/lz2)
 "hfc" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -8624,7 +8584,7 @@
 /turf/open/floor/tile/dark2,
 /area/lawankaoutpost/colony/marshalls)
 "hnb" = (
-/obj/machinery/landinglight/ds1/delaythree{
+/obj/machinery/landinglight/lz1{
 	dir = 1
 	},
 /turf/open/floor/plating,
@@ -9862,10 +9822,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt,
 /area/lawankaoutpost/outside/southeast)
-"iua" = (
-/obj/machinery/landinglight/ds1/delaythree,
-/turf/open/floor/plating,
-/area/shuttle/drop2/lz2)
 "ivx" = (
 /obj/structure/flora/ausbushes/grassybush{
 	pixel_x = -6;
@@ -10513,6 +10469,14 @@
 	},
 /turf/open/floor/tile/green/full,
 /area/lawankaoutpost/colony/hydroponics)
+"iXd" = (
+/obj/machinery/floodlight/landing,
+/obj/effect/turf_decal/warning_stripes,
+/obj/machinery/landinglight/lz1{
+	dir = 4
+	},
+/turf/open/floor/mech_bay_recharge_floor,
+/area/shuttle/drop1/lz1)
 "iXk" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -10573,12 +10537,6 @@
 	},
 /turf/open/floor/tile/dark,
 /area/lawankaoutpost/caves/nanotrasen_lab)
-"iZh" = (
-/obj/machinery/landinglight/ds1/delayone{
-	dir = 1
-	},
-/turf/open/floor/plating,
-/area/shuttle/drop1/lz1)
 "iZl" = (
 /obj/structure/flora/jungle/planttop1,
 /turf/open/ground/grass/weedable,
@@ -11331,10 +11289,6 @@
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
 /turf/open/floor/tile/white,
 /area/lawankaoutpost/colony/medbay)
-"jEC" = (
-/obj/machinery/landinglight/ds1/delayone,
-/turf/open/floor/plating,
-/area/shuttle/drop2/lz2)
 "jEU" = (
 /obj/structure/window/reinforced{
 	dir = 8
@@ -11946,7 +11900,7 @@
 	},
 /area/lawankaoutpost/colony/hydroponics)
 "kjH" = (
-/obj/machinery/landinglight/ds1/delaytwo{
+/obj/machinery/landinglight/lz1{
 	dir = 4
 	},
 /turf/open/floor/plating,
@@ -12455,12 +12409,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/purple/taupepurple/corner,
 /area/lawankaoutpost/colony/biologics)
-"kGc" = (
-/obj/machinery/landinglight/ds1/delayone{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/shuttle/drop2/lz2)
 "kGf" = (
 /obj/structure/table,
 /obj/machinery/faxmachine/research,
@@ -14525,12 +14473,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor,
 /area/lawankaoutpost/colony/northdorms)
-"mqW" = (
-/obj/machinery/landinglight/ds1/delayone{
-	dir = 1
-	},
-/turf/open/floor/plating,
-/area/shuttle/drop2/lz2)
 "mra" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/item/ammo_casing/bullet,
@@ -15019,7 +14961,7 @@
 /turf/open/floor/tile/green/whitegreenfull,
 /area/lawankaoutpost/colony/chapel)
 "mLf" = (
-/obj/machinery/landinglight/ds1/delaytwo{
+/obj/machinery/landinglight/lz1{
 	dir = 8
 	},
 /turf/open/floor/plating,
@@ -15192,6 +15134,14 @@
 "mTl" = (
 /turf/open/floor/plating,
 /area/lawankaoutpost/colony/medbay)
+"mTD" = (
+/obj/machinery/floodlight/landing,
+/obj/effect/turf_decal/warning_stripes,
+/obj/machinery/landinglight/lz2{
+	dir = 4
+	},
+/turf/open/floor/mech_bay_recharge_floor,
+/area/shuttle/drop2/lz2)
 "mUm" = (
 /obj/structure/curtain/shower,
 /turf/open/floor/freezer,
@@ -15424,10 +15374,6 @@
 	dir = 1
 	},
 /area/lawankaoutpost/colony/southdorms)
-"ndt" = (
-/obj/machinery/landinglight/ds1/delaythree,
-/turf/open/floor/plating,
-/area/shuttle/drop1/lz1)
 "ndW" = (
 /obj/effect/ai_node,
 /turf/open/floor/tile/lightred/full,
@@ -16268,12 +16214,6 @@
 	dir = 8
 	},
 /area/lawankaoutpost/colony/recdorms)
-"nJO" = (
-/obj/machinery/landinglight/ds1{
-	dir = 1
-	},
-/turf/open/floor/plating,
-/area/shuttle/drop1/lz1)
 "nJP" = (
 /obj/structure/sink{
 	dir = 4
@@ -16395,12 +16335,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/blue/whitebluefull,
 /area/lawankaoutpost/caves/nanotrasen_lab)
-"nOv" = (
-/obj/machinery/landinglight/ds1/delaythree{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/shuttle/drop2/lz2)
 "nOE" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -17742,12 +17676,6 @@
 	dir = 1
 	},
 /area/lawankaoutpost/colony/cargo)
-"oTJ" = (
-/obj/machinery/landinglight/ds1{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/shuttle/drop2/lz2)
 "oTL" = (
 /turf/open/floor/tile/dark/brown2{
 	dir = 1
@@ -18180,10 +18108,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/lawankaoutpost/colony/operations_storage)
-"pmM" = (
-/obj/machinery/landinglight/ds1,
-/turf/open/floor/plating,
-/area/shuttle/drop1/lz1)
 "pmR" = (
 /obj/structure/rack,
 /obj/effect/spawner/random/engineering/cable,
@@ -20908,7 +20832,7 @@
 	},
 /area/shuttle/drop2/lz2)
 "rxV" = (
-/obj/machinery/landinglight/ds1/delaythree{
+/obj/machinery/landinglight/lz2{
 	dir = 1
 	},
 /turf/open/floor/plating,
@@ -22477,10 +22401,10 @@
 /turf/open/floor/tile/white,
 /area/lawankaoutpost/colony/medbay)
 "sOO" = (
-/obj/machinery/landinglight/ds1/delayone{
+/obj/effect/ai_node,
+/obj/machinery/landinglight/lz1{
 	dir = 8
 	},
-/obj/effect/ai_node,
 /turf/open/floor/plating,
 /area/shuttle/drop1/lz1)
 "sOZ" = (
@@ -23009,12 +22933,6 @@
 	dir = 1
 	},
 /area/lawankaoutpost/colony/operations_hall)
-"tly" = (
-/obj/machinery/landinglight/ds1{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/shuttle/drop1/lz1)
 "tme" = (
 /obj/item/ammo_casing/cartridge{
 	dir = 8
@@ -25389,10 +25307,10 @@
 	},
 /area/lawankaoutpost/colony/northdorms)
 "vjJ" = (
-/obj/machinery/landinglight/ds1/delayone{
+/obj/effect/ai_node,
+/obj/machinery/landinglight/lz2{
 	dir = 8
 	},
-/obj/effect/ai_node,
 /turf/open/floor/plating,
 /area/shuttle/drop2/lz2)
 "vjW" = (
@@ -26757,12 +26675,6 @@
 	dir = 8
 	},
 /area/lawankaoutpost/colony/operations_hall)
-"wmo" = (
-/obj/machinery/landinglight/ds1{
-	dir = 1
-	},
-/turf/open/floor/plating,
-/area/shuttle/drop2/lz2)
 "wmt" = (
 /turf/open/floor/tile/dark/red2,
 /area/lawankaoutpost/colony/marshalls)
@@ -26993,12 +26905,6 @@
 /obj/machinery/vending/snack,
 /turf/open/floor/wood/variable,
 /area/lawankaoutpost/caves/nanotrasen_lab)
-"wwW" = (
-/obj/machinery/landinglight/ds1/delaytwo{
-	dir = 1
-	},
-/turf/open/floor/plating,
-/area/shuttle/drop1/lz1)
 "wxf" = (
 /obj/effect/landmark/weed_node,
 /obj/effect/ai_node,
@@ -27880,7 +27786,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lawankaoutpost/outside/northwest)
 "xiR" = (
-/obj/machinery/landinglight/ds1/delaytwo,
+/obj/machinery/landinglight/lz2,
 /turf/open/floor/plating,
 /area/shuttle/drop2/lz2)
 "xiS" = (
@@ -28030,14 +27936,8 @@
 /turf/open/floor,
 /area/lawankaoutpost/colony/biologics)
 "xqa" = (
-/obj/machinery/landinglight/ds1/delaytwo{
+/obj/machinery/landinglight/lz2{
 	dir = 8
-	},
-/turf/open/floor/plating,
-/area/shuttle/drop2/lz2)
-"xqd" = (
-/obj/machinery/landinglight/ds1/delayone{
-	dir = 4
 	},
 /turf/open/floor/plating,
 /area/shuttle/drop2/lz2)
@@ -72811,26 +72711,26 @@ lpx
 nFU
 nFU
 lIU
-cAk
-cAk
-gCP
-gmM
 kjH
-cAk
-gCP
-gmM
 kjH
-cAk
-lIU
-gmM
 kjH
-cAk
-gCP
-gmM
 kjH
-cAk
-gCP
-gmM
+kjH
+kjH
+kjH
+kjH
+kjH
+kjH
+iXd
+kjH
+kjH
+kjH
+kjH
+kjH
+kjH
+kjH
+kjH
+kjH
 kjH
 lIU
 vcw
@@ -72985,26 +72885,26 @@ wEk
 wEk
 wEk
 lTw
-nOv
-nOv
-oTJ
-xqd
 fsf
-nOv
-oTJ
-xqd
 fsf
-nOv
-lTw
-xqd
 fsf
-nOv
-oTJ
-xqd
 fsf
-nOv
-oTJ
-xqd
+fsf
+fsf
+fsf
+fsf
+fsf
+fsf
+mTD
+fsf
+fsf
+fsf
+fsf
+fsf
+fsf
+fsf
+fsf
+fsf
 fsf
 lTw
 wEk
@@ -73244,7 +73144,7 @@ sFy
 lpx
 nFU
 nFU
-dPx
+bwI
 vON
 jts
 pxc
@@ -73266,7 +73166,7 @@ jts
 pxc
 jts
 rMX
-nJO
+hnb
 xgn
 tGw
 bpw
@@ -73418,7 +73318,7 @@ wEk
 wEk
 wEk
 wEk
-jEC
+xiR
 ojM
 jsZ
 prl
@@ -73440,7 +73340,7 @@ jsZ
 prl
 jsZ
 pIE
-wmo
+rxV
 wEk
 xHR
 wEk
@@ -73461,7 +73361,7 @@ sFy
 lpx
 nFU
 nFU
-pmM
+bwI
 vON
 jts
 jts
@@ -73483,7 +73383,7 @@ jts
 jts
 jts
 rMX
-iZh
+hnb
 nFU
 nFU
 wcJ
@@ -73635,7 +73535,7 @@ wEk
 wEk
 wEk
 wEk
-edN
+xiR
 ojM
 jsZ
 jsZ
@@ -73657,7 +73557,7 @@ jsZ
 jsZ
 jsZ
 pIE
-mqW
+rxV
 wEk
 xHR
 wEk
@@ -73678,7 +73578,7 @@ sFy
 lpx
 nFU
 nFU
-ndt
+bwI
 vON
 jts
 jts
@@ -73700,7 +73600,7 @@ jts
 jts
 jts
 rMX
-wwW
+hnb
 nFU
 nFU
 nFU
@@ -73852,7 +73752,7 @@ wEk
 wEk
 wEk
 wEk
-iua
+xiR
 ojM
 jsZ
 jsZ
@@ -73874,7 +73774,7 @@ jsZ
 jsZ
 jsZ
 pIE
-hew
+rxV
 wEk
 xHR
 wEk
@@ -74112,7 +74012,7 @@ sFy
 lpx
 nFU
 wcJ
-dPx
+bwI
 vON
 jts
 jts
@@ -74134,7 +74034,7 @@ jts
 jts
 jts
 rMX
-nJO
+hnb
 nFU
 nFU
 nFU
@@ -74286,7 +74186,7 @@ wEk
 wEk
 wEk
 wEk
-jEC
+xiR
 ojM
 jsZ
 jsZ
@@ -74308,7 +74208,7 @@ jsZ
 jsZ
 jsZ
 pIE
-wmo
+rxV
 wEk
 gtw
 wEk
@@ -74329,7 +74229,7 @@ sFy
 lpx
 nFU
 nFU
-pmM
+bwI
 vON
 jts
 jts
@@ -74351,7 +74251,7 @@ jts
 jts
 jts
 rMX
-iZh
+hnb
 nFU
 nFU
 aEZ
@@ -74503,7 +74403,7 @@ wEk
 wEk
 wEk
 wEk
-edN
+xiR
 ojM
 jsZ
 jsZ
@@ -74525,7 +74425,7 @@ jsZ
 jsZ
 jsZ
 pIE
-mqW
+rxV
 wEk
 xHR
 oUf
@@ -74546,7 +74446,7 @@ sFy
 lpx
 nFU
 nFU
-ndt
+bwI
 vON
 jts
 jts
@@ -74568,7 +74468,7 @@ jts
 jts
 jts
 rMX
-wwW
+hnb
 nFU
 nFU
 nFU
@@ -74720,7 +74620,7 @@ lXg
 wEk
 wEk
 wEk
-iua
+xiR
 ojM
 jsZ
 jsZ
@@ -74742,7 +74642,7 @@ jsZ
 jsZ
 jsZ
 pIE
-hew
+rxV
 wEk
 xHR
 wEk
@@ -74980,7 +74880,7 @@ sFy
 lpx
 nFU
 nFU
-dPx
+bwI
 vON
 jts
 pxc
@@ -75002,7 +74902,7 @@ jts
 pxc
 jts
 rMX
-nJO
+hnb
 vcw
 ikH
 lMH
@@ -75154,7 +75054,7 @@ jjN
 sDW
 mSj
 wEk
-jEC
+xiR
 ojM
 jsZ
 prl
@@ -75176,7 +75076,7 @@ jsZ
 prl
 jsZ
 pIE
-wmo
+rxV
 wEk
 gtw
 wEk
@@ -75197,7 +75097,7 @@ sFy
 lpx
 hah
 nFU
-pmM
+bwI
 fnU
 ugt
 ugt
@@ -75219,7 +75119,7 @@ ugt
 ugt
 ugt
 mLO
-iZh
+hnb
 rqE
 nFU
 abJ
@@ -75371,7 +75271,7 @@ qip
 wEk
 ciA
 wEk
-edN
+xiR
 vis
 fxF
 fxF
@@ -75393,7 +75293,7 @@ fxF
 fxF
 fxF
 ulD
-mqW
+rxV
 wEk
 xHR
 wEk
@@ -75415,26 +75315,26 @@ lpx
 nFU
 nFU
 lIU
-fuJ
-fuJ
-tly
-ccG
 mLf
-fuJ
-tly
-ccG
+mLf
+mLf
+mLf
+mLf
+mLf
+mLf
+mLf
 mLf
 sOO
-lIU
-ccG
+fWr
 mLf
-fuJ
-tly
-ccG
 mLf
-fuJ
-tly
-ccG
+mLf
+mLf
+mLf
+mLf
+mLf
+mLf
+mLf
 mLf
 lIU
 xgn
@@ -75589,26 +75489,26 @@ cWF
 pNG
 wEk
 lTw
-kGc
-kGc
-fKe
-csY
 xqa
-kGc
-fKe
-csY
+xqa
+xqa
+xqa
+xqa
+xqa
+xqa
+xqa
 xqa
 vjJ
-lTw
-csY
+cmG
 xqa
-kGc
-fKe
-csY
 xqa
-kGc
-fKe
-csY
+xqa
+xqa
+xqa
+xqa
+xqa
+xqa
+xqa
 xqa
 lTw
 wEk
