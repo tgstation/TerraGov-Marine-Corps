@@ -91,7 +91,7 @@
 //----------------------------------------------//
 // ERT DRONE START
 
-/mob/living/carbon/xenomorph/drone/Corrputed //Corrupted
+/mob/living/carbon/xenomorph/drone/Corrupted //Corrupted
 	hivenumber = XENO_HIVE_CORRUPTED
 
 /mob/living/carbon/xenomorph/drone/Alpha
