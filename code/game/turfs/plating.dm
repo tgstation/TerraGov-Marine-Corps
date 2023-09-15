@@ -48,6 +48,12 @@
 	icon_state = "plating"
 	name = "airless plating"
 
+/turf/open/floor/plating/fake_space
+	icon = 'icons/turf/space.dmi'
+	name = "\proper shielded space"
+	icon_state = "0"
+	plane = PLANE_SPACE
+
 /turf/open/floor/plating/icefloor
 	icon_state = "plating"
 	name = "ice colony plating"

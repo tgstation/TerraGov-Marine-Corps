@@ -1,0 +1,78 @@
+2023-09-01:
+  Barnet2:
+  - bugfix: Fixed PoS CAS ammo storage not having a button to open it.
+  Zar000:
+  - bugfix: fixed baneling being unable to use acid and fixed looping death animation
+  forestbbbbbbb:
+  - admin: Added missing flags to VV
+2023-09-02:
+  Barnet2:
+  - balance: Surgery time is no longer random on an operating tables specifically,
+      always being the minimum for the doctor's skill
+  Victor239:
+  - rscadd: Added some default keybinds for Drone, Queen and multi-caste abilities
+  - refactor: Reordered xeno keybindings so it's now in alphabetical caste order
+2023-09-03:
+  Barnet2:
+  - balance: Each shipside chemistry now has 4 pieces of phoron per stack.
+  chizzy376:
+  - rscadd: Added a new map, Slumbridge.
+2023-09-05:
+  Victor239:
+  - bugfix: '"Hivemind: Change Form" keybinding now available.'
+  - rscadd: '"Carrier: Build Hugger Turret" and "Widow: Birth Spiderling using Cannibalise
+      charges" keybindings now available.'
+  - rscadd: Almost all xeno abilities now have default keybinds.
+  - refactor: A few existing xeno default keybinds were changed to prevent conflicts.
+  forestbbbbbbb:
+  - bugfix: Fix TTS preview voice being always robotic
+2023-09-06:
+  Barnet2:
+  - rscadd: Adds barbed wire to the Standard, Bar and Umbilical tadpole.
+  henriquekill9576:
+  - rscadd: Added an actual recipe for medical nanites
+  lbnesquik:
+  - bugfix: fixed some recyclers not working properly.
+2023-09-07:
+  Sirsnek15:
+  - imageadd: lowered the combat facemask sprite below the eyes
+  XSlayer300:
+  - soundadd: Added 20 male *warcry variations.
+  - soundadd: Added 10 female *warcry variations.
+  ivanmixo:
+  - code_imp: Fixed some weird code opendream pointed out
+2023-09-08:
+  DeltaFire15:
+  - rscadd: Xenomorph IFF tags, which allow xenomorphs to be recognized as friendly
+      by things with a compatible IFF signal.
+  Xander3359:
+  - rscadd: Marines now have access to unlimited derringers.
+  ivanmixo:
+  - config: Reverted random addition to gitignore
+  tyeagg:
+  - bugfix: landing lights now work
+2023-09-09:
+  Blundir:
+  - imageadd: new devour action icon, updated action icon for defiler
+  Looking4bros:
+  - balance: Chem healing on some chemicals is now overall instead of per limb
+  RipGrayson:
+  - balance: Removed all the flashbang boxes from the ground.
+  - rscadd: Added shivs to Prison
+  novaepee:
+  - bugfix: fix lego hotaru so that you can actually put it on exoskeleton
+2023-09-13:
+  forestbbbbbbb:
+  - bugfix: Fix some space turfs
+2023-09-15:
+  AzonStarfall:
+  - bugfix: Changes the prefix of the SR-153 to SG-153.
+  Barnet2:
+  - bugfix: PO timelock should work now.
+  Blundir:
+  - bugfix: fixed helmet items not being visible when you insert them
+  - imageadd: added a lot new sprites for helmet items + resprited some old ones
+  Wisemonster:
+  - qol: The dropship fabricator has had it's items separated into more distinct categories.
+  - code_imp: Repathed dropship/condor equipment, dropship/condor weapons, and condor
+      ammo.

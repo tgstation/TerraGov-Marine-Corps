@@ -31,7 +31,7 @@
 	///How much fuel we can hold maximum
 	var/fuel_max = 40
 	///Our currently selected weapon we will fire
-	var/obj/structure/dropship_equipment/weapon/active_weapon
+	var/obj/structure/dropship_equipment/cas/weapon/active_weapon
 	///Minimap for the pilot to know where the marines have ran off to
 	var/datum/action/minimap/marine/external/cas_mini
 
@@ -259,7 +259,7 @@
 	var/element_nbr = 1
 	.["all_weapons"] = list()
 	for(var/i in equipments)
-		var/obj/structure/dropship_equipment/weapon/weapon = i
+		var/obj/structure/dropship_equipment/cas/weapon/weapon = i
 		.["all_weapons"] += list(list("name"= sanitize(copytext(weapon.name,1,MAX_MESSAGE_LEN)), "ammo" = weapon?.ammo_equipped?.ammo_count, "eqp_tag" = element_nbr))
 		if(weapon == active_weapon)
 			.["active_weapon_tag"] = element_nbr
