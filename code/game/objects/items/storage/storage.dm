@@ -718,29 +718,21 @@
 	for(var/mob/M in content_watchers)
 		hide_from(M)
 	if(boxes)
-		qdel(boxes)
-		boxes = null
+		QDEL_NULL(boxes)
 	if(storage_start)
-		qdel(storage_start)
-		storage_start = null
+		QDEL_NULL(storage_start)
 	if(storage_continue)
-		qdel(storage_continue)
-		storage_continue = null
+		QDEL_NULL(storage_continue)
 	if(storage_end)
-		qdel(storage_end)
-		storage_end = null
+		QDEL_NULL(storage_end)
 	if(stored_start)
-		qdel(stored_start)
-		stored_start = null
-	if(src.stored_continue)
-		qdel(src.stored_continue)
-		src.stored_continue = null
+		QDEL_NULL(stored_start)
+	if(stored_continue)
+		QDEL_NULL(stored_continue)
 	if(stored_end)
-		qdel(stored_end)
-		stored_end = null
+		QDEL_NULL(stored_end)
 	if(closer)
-		qdel(closer)
-		closer = null
+		QDEL_NULL(closer)
 	. = ..()
 
 /obj/item/storage/emp_act(severity)

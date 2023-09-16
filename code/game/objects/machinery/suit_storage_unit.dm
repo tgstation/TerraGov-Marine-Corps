@@ -95,23 +95,23 @@
 
 		dat += "<font color='black'>Helmet storage compartment: <B>[inserted_helmet ? inserted_helmet.name : "</font><font color ='grey'>No helmet detected."]</B></font><BR>"
 		if(inserted_helmet && isopen)
-			dat += "<A href='?src=\ref[src];dispense_helmet=1'>Dispense helmet</A><BR>"
+			dat += "<A href='?src=[text_ref(src)];dispense_helmet=1'>Dispense helmet</A><BR>"
 
 		dat += "<font color='black'>Suit storage compartment: <B>[inserted_suit ? inserted_suit.name : "</font><font color ='grey'>No exosuit detected."]</B></font><BR>"
 		if(inserted_suit && isopen)
-			dat += "<A href='?src=\ref[src];dispense_suit=1'>Dispense suit</A><BR>"
+			dat += "<A href='?src=[text_ref(src)];dispense_suit=1'>Dispense suit</A><BR>"
 
 		dat += "<font color='black'>Breathmask storage compartment: <B>[inserted_mask ? inserted_mask.name : "</font><font color ='grey'>No breathmask detected."]</B></font><BR>"
 		if(inserted_mask  && isopen)
-			dat += "<A href='?src=\ref[src];dispense_mask=1'>Dispense mask</A><BR>"
+			dat += "<A href='?src=[text_ref(src)];dispense_mask=1'>Dispense mask</A><BR>"
 
 		dat += "<font color='black'>Tank storage compartment: <B>[inserted_tank ? inserted_tank.name : "</font><font color ='grey'>No tank detected."]</B></font><BR>"
 		if(inserted_tank  && isopen)
-			dat += "<A href='?src=\ref[src];dispense_tank=1'>Dispense tank</A><BR>"
+			dat += "<A href='?src=[text_ref(src)];dispense_tank=1'>Dispense tank</A><BR>"
 
-		dat+= "<HR><font color='black'>Unit is: [isopen ? "Open" : "Closed"] - <A href='?src=\ref[src];toggle_open=1'>[isopen ? "Close" : "Open"] Unit</A></font><BR>"
+		dat+= "<HR><font color='black'>Unit is: [isopen ? "Open" : "Closed"] - <A href='?src=[text_ref(src)];toggle_open=1'>[isopen ? "Close" : "Open"] Unit</A></font><BR>"
 
-		dat += "<A href='?src=\ref[src];start_UV=1'>Start Disinfection cycle</A><BR>"
+		dat += "<A href='?src=[text_ref(src)];start_UV=1'>Start Disinfection cycle</A><BR>"
 
 	var/datum/browser/popup = new(user, "suit_storage_unit", "<div align='center'>Suit storage unit</div>", 400, 500)
 	popup.set_content(dat)

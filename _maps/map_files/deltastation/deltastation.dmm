@@ -14306,7 +14306,7 @@
 /area/deltastation/engineering/hallway)
 "cYD" = (
 /obj/machinery/smartfridge,
-/turf/open/space/basic,
+/turf/open/floor/iron,
 /area/deltastation/service/kitchen)
 "cYE" = (
 /obj/effect/spawner/random/misc/structure/girder,
@@ -59047,7 +59047,7 @@
 /area/deltastation/maintenance/disposal/incinerator)
 "lZA" = (
 /obj/machinery/smartfridge/chemistry,
-/turf/open/space/basic,
+/turf/open/floor/iron/white,
 /area/deltastation/medical/pharmacy)
 "lZF" = (
 /obj/effect/ai_node,
@@ -87548,10 +87548,6 @@
 /obj/effect/turf_decal/warning_stripes/box,
 /turf/open/floor/iron,
 /area/deltastation/maintenance/port/fore)
-"rOc" = (
-/obj/machinery/smartfridge,
-/turf/open/space/basic,
-/area/deltastation/service/hydroponics)
 "rOn" = (
 /obj/structure/table/reinforced,
 /obj/effect/spawner/random/engineering/engibelt,
@@ -153401,7 +153397,7 @@ xli
 gqm
 keZ
 keZ
-rOc
+fzS
 oxT
 osP
 obo

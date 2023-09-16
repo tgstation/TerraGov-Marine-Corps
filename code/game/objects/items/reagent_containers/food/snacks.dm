@@ -19,7 +19,7 @@
 	if(reagents)
 		qdel(reagents)
 	reagents = new (max_vol, new_flags)
-	reagents.my_atom = src
+	reagents.my_atom = WEAKREF(src)
 	for(var/rid in init_reagents)
 		var/amount = list_reagents[rid]
 		if(rid == /datum/reagent/consumable/nutriment)

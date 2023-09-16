@@ -341,14 +341,14 @@
 	fill_type = /obj/item/ammo_magazine/rifle/ap
 	fill_number = 3
 
-/obj/item/storage/pouch/magazine/drum //Deprecated from old DS loadout, maybe consider reworking it before giving it to anyone else -Xander
+/obj/item/storage/pouch/magazine/drum
 	name = "drum magazine pouch"
-	desc = "It can contain one drum magazine."
+	desc = "It can contain four drum magazines."
 	icon_state = "large_ammo_drum"
-	sprite_slots = 1
-	storage_slots = 1
+	storage_slots = 4
+	sprite_slots = null
 	can_hold = list(
-		/obj/item/ammo_magazine/standard_smartmachinegun,
+		/obj/item/ammo_magazine/,
 	)
 
 

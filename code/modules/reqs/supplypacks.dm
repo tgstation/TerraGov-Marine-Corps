@@ -628,32 +628,32 @@ WEAPONS
 	cost = 35
 
 /datum/supply_packs/weapons/spotting_rifle_ammo
-	name = "SR-153 spotting rifle ammo"
+	name = "SG-153 spotting rifle ammo"
 	contains = list(/obj/item/ammo_magazine/rifle/standard_spottingrifle)
 	cost = 15
 
 /datum/supply_packs/weapons/spotting_rifle_ammo/highimpact
-	name = "SR-153 high impact spotting rifle ammo"
+	name = "SG-153 high impact spotting rifle ammo"
 	contains = list(/obj/item/ammo_magazine/rifle/standard_spottingrifle/highimpact)
 
 /datum/supply_packs/weapons/spotting_rifle_ammo/heavyrubber
-	name = "SR-153 heavy rubber spotting rifle ammo"
+	name = "SG-153 heavy rubber spotting rifle ammo"
 	contains = list(/obj/item/ammo_magazine/rifle/standard_spottingrifle/heavyrubber)
 
 /datum/supply_packs/weapons/spotting_rifle_ammo/plasmaloss
-	name = "SR-153 tanglefoot spotting rifle ammo"
+	name = "SG-153 tanglefoot spotting rifle ammo"
 	contains = list(/obj/item/ammo_magazine/rifle/standard_spottingrifle/plasmaloss)
 
 /datum/supply_packs/weapons/spotting_rifle_ammo/tungsten
-	name = "SR-153 tungsten spotting rifle ammo"
+	name = "SG-153 tungsten spotting rifle ammo"
 	contains = list(/obj/item/ammo_magazine/rifle/standard_spottingrifle/tungsten)
 
 /datum/supply_packs/weapons/spotting_rifle_ammo/flak
-	name = "SR-153 flak spotting rifle ammo"
+	name = "SG-153 flak spotting rifle ammo"
 	contains = list(/obj/item/ammo_magazine/rifle/standard_spottingrifle/flak)
 
 /datum/supply_packs/weapons/spotting_rifle_ammo/incendiary
-	name = "SR-153 incendiary spotting rifle ammo"
+	name = "SG-153 incendiary spotting rifle ammo"
 	contains = list(/obj/item/ammo_magazine/rifle/standard_spottingrifle/incendiary)
 
 /datum/supply_packs/weapons/flamethrower
@@ -1911,22 +1911,22 @@ VEHICLES
 
 /datum/supply_packs/vehicles/mounted_hsg
 	name = "Mounted HSG"
-	contains = list(/obj/structure/dropship_equipment/weapon_holder/machinegun)
+	contains = list(/obj/structure/dropship_equipment/shuttle/weapon_holder/machinegun)
 	cost = 500
 
 /datum/supply_packs/vehicles/minigun_nest
 	name = "Mounted Minigun"
-	contains = list(/obj/structure/dropship_equipment/weapon_holder/minigun)
+	contains = list(/obj/structure/dropship_equipment/shuttle/weapon_holder/minigun)
 	cost = 750
 
 /datum/supply_packs/vehicles/mounted_heavy_laser
 	name = "Mounted Heavy Laser"
-	contains = list(/obj/structure/dropship_equipment/weapon_holder/heavylaser)
+	contains = list(/obj/structure/dropship_equipment/shuttle/weapon_holder/heavylaser)
 	cost = 900
 
 /datum/supply_packs/vehicles/mounted_rr
 	name = "Mounted Heavy Recoilless Rifle"
-	contains = list(/obj/structure/dropship_equipment/weapon_holder/heavy_rr)
+	contains = list(/obj/structure/dropship_equipment/shuttle/weapon_holder/heavy_rr)
 	cost = 1800
 
 /datum/supply_packs/vehicles/hsg_ammo

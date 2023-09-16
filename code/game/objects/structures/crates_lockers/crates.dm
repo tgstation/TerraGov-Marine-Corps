@@ -34,7 +34,7 @@
 		return
 
 	if(climbable)
-		structure_shaken()
+		INVOKE_ASYNC(src, PROC_REF(structure_shaken))
 		climbable = FALSE //Open crate is not a surface that works when climbing around
 
 /obj/structure/closet/crate/close()

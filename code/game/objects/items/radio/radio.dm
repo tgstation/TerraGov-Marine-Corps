@@ -114,8 +114,8 @@
 	var/dat
 
 
-	dat += "Microphone: [broadcasting ? "<A href='byond://?src=\ref[src];talk=0'>Engaged</A>" : "<A href='byond://?src=\ref[src];talk=1'>Disengaged</A>"]<BR>"
-	dat += "Speaker: [listening ? "<A href='byond://?src=\ref[src];listen=0'>Engaged</A>" : "<A href='byond://?src=\ref[src];listen=1'>Disengaged</A>"]<BR>"
+	dat += "Microphone: [broadcasting ? "<A href='byond://?src=[text_ref(src)];talk=0'>Engaged</A>" : "<A href='byond://?src=[text_ref(src)];talk=1'>Disengaged</A>"]<BR>"
+	dat += "Speaker: [listening ? "<A href='byond://?src=[text_ref(src)];listen=0'>Engaged</A>" : "<A href='byond://?src=[text_ref(src)];listen=1'>Disengaged</A>"]<BR>"
 	dat += "Frequency: [format_frequency(frequency)]"
 
 	for(var/ch_name in channels)
@@ -130,7 +130,7 @@
 	var/list = !!(chan_stat & FREQ_LISTENING) != 0
 	return {"
 			<B>[chan_name]</B><br>
-			Speaker: <A href='byond://?src=\ref[src];ch_name=[chan_name];listen=[!list]'>[list ? "Engaged" : "Disengaged"]</A><BR>
+			Speaker: <A href='byond://?src=[text_ref(src)];ch_name=[chan_name];listen=[!list]'>[list ? "Engaged" : "Disengaged"]</A><BR>
 			"}
 
 

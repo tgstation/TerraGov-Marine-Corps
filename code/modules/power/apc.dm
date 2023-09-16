@@ -120,6 +120,19 @@
 
 	. = ..()
 
+	var/area/A = get_area(src)
+
+	//If area isn't specified use current
+	if(isarea(A) && areastring == null)
+		area = A
+		name = "\improper [area.name] APC"
+	else
+		area = get_area_name(areastring)
+		name = "\improper [area.name] APC"
+
+	update_icon()
+	update() //areas should be lit on startup
+
 	if(mapload)
 		has_electronics = APC_ELECTRONICS_SECURED
 
@@ -129,17 +142,7 @@
 			cell.charge = start_charge * cell.maxcharge / 100.0 //Convert percentage to actual value
 			cell.update_icon()
 
-		var/area/A = get_area(src)
-
-		//If area isn't specified use current
-		if(isarea(A) && areastring == null)
-			area = A
-			name = "\improper [area.name] APC"
-		else
-			area = get_area_name(areastring)
-			name = "\improper [area.name] APC"
-
-		update_icon()
+		
 		make_terminal()
 
 		update() //areas should be lit on startup

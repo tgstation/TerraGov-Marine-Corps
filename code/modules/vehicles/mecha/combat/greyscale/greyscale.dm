@@ -46,6 +46,7 @@
 	holder_left.layer = layer+0.001
 	holder_right = new(src, /particles/mecha_smoke)
 	holder_right.layer = layer+0.001
+	. = ..()
 
 	. = ..()
 
@@ -72,6 +73,8 @@
 
 /obj/vehicle/sealed/mecha/combat/greyscale/update_icon()
 	. = ..()
+	if(QDELING(src))
+		return
 	var/broken_percent = obj_integrity/max_integrity
 	var/inverted_percent = 1-broken_percent
 	holder_left.particles.spawning = 3 * inverted_percent
