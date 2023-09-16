@@ -24,6 +24,7 @@
 		/datum/job/terragov/squad/standard = -1
 	)
 	enable_fun_tads = TRUE
+	xenorespawn_time = 1 MINUTES
 
 /datum/game_mode/extended/announce()
 	to_chat(world, "<b>The current game mode is - Extended Role-Playing!</b>")

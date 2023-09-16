@@ -939,6 +939,16 @@ to_chat will check for valid clients itself already so no need to double check f
 	if((xeno_job.total_positions - xeno_job.current_positions) < 0)
 		return FALSE
 
+	if(XENODEATHTIME_CHECK(xeno_candidate))
+		if(!check_other_rights(xeno_candidate.client, R_ADMIN, FALSE))
+			XENODEATHTIME_MESSAGE(xeno_candidate)
+			return FALSE
+		if(tgui_alert(xeno_candidate, "You wouldn't normally qualify for this respawn. Are you sure you want to bypass it with your admin powers?", "Bypass Respawn", list("Yes", "No")) != "Yes")
+			XENODEATHTIME_MESSAGE(xeno_candidate)
+			return FALSE
+		log_admin("[key_name(xeno_candidate)] used his admin power to bypass respawn before his timer was over")
+		message_admins("[key_name(xeno_candidate)] used his admin power to bypass respawn before his timer was over")
+
 	var/list/possible_mothers = list()
 	var/list/possible_silos = list()
 	SEND_SIGNAL(src, COMSIG_HIVE_XENO_MOTHER_PRE_CHECK, possible_mothers, possible_silos) //List variable passed by reference, and hopefully populated.
@@ -1134,12 +1144,21 @@ to_chat will check for valid clients itself already so no need to double check f
 		return
 	var/mob/dead/observer/observer_in_queue
 	while(stored_larva > 0 && LAZYLEN(candidate))
-		observer_in_queue = LAZYACCESS(candidate, 1)
+		for(var/i in 1 to LAZYLEN(candidate))
+			observer_in_queue = LAZYACCESS(candidate, i)
+			if(!XENODEATHTIME_CHECK(observer_in_queue))
+				break
+			observer_in_queue = null //Deathtimer still running
+
+		if(!observer_in_queue) //No valid candidates in the queue
+			break
+
 		LAZYREMOVE(candidate, observer_in_queue)
 		UnregisterSignal(observer_in_queue, COMSIG_QDELETING)
 		if(try_to_give_larva(observer_in_queue))
 			stored_larva--
 			slot_really_taken++
+
 	if(slot_occupied - slot_really_taken > 0)
 		xeno_job.free_job_positions(slot_occupied - slot_really_taken)
 	for(var/i in 1 to LAZYLEN(candidate))

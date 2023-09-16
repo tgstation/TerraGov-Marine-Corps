@@ -23,6 +23,9 @@
 	if(is_zoomed)
 		zoom_out()
 
+	if(tier != XENO_TIER_MINION)
+		GLOB.key_to_time_of_xeno_death[key] = world.time
+
 	SSminimaps.remove_marker(src)
 	set_light_on(FALSE)
 

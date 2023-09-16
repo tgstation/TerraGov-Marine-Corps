@@ -20,6 +20,7 @@
 		/datum/job/terragov/squad/engineer = 5,
 		/datum/job/xenomorph = CRASH_LARVA_POINTS_NEEDED,
 	)
+	xenorespawn_time = 3 MINUTES
 
 	// Round end conditions
 	var/shuttle_landed = FALSE
