@@ -190,7 +190,10 @@
 
 /obj/alien/weeds/weedwall/update_icon_state()
 	var/turf/closed/wall/W = loc
-	icon_state = W.junctiontype ? "weedwall[W.junctiontype]" : initial(icon_state)
+	if(!istype(W))
+		icon_state = initial(icon_state)
+	else
+		icon_state = W.junctiontype ? "weedwall[W.junctiontype]" : initial(icon_state)
 	icon_state += color_variant
 
 // =================

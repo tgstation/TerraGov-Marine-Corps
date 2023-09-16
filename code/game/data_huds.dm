@@ -515,9 +515,6 @@
 			if(queen_chosen_lead)
 				var/image/I = image('icons/mob/hud.dmi',src, "hudxenoleader")
 				holder.overlays += I
-		if(upgrade_as_number() > 0) // theres only icons for 1 2 3, not for -1
-			var/image/J = image('icons/mob/hud.dmi',src, "hudxenoupgrade[upgrade_as_number()]")
-			holder.overlays += J
 	hud_list[QUEEN_OVERWATCH_HUD] = holder
 
 
@@ -643,11 +640,11 @@
 
 	if(!holder)
 		return
-	var/obj/item/weapon/gun/gun = internal_item
-	if(!gun.rounds)
+	var/obj/item/weapon/gun/internal_gun = internal_item.resolve()
+	if(!internal_gun?.rounds)
 		holder.icon_state = "plasma0"
 		return
-	var/amount = gun.max_rounds ? round(gun.rounds * 100 / gun.max_rounds, 10) : 0
+	var/amount = internal_gun.max_rounds ? round(internal_gun.rounds * 100 / internal_gun.max_rounds, 10) : 0
 	holder.icon_state = "plasma[amount]"
 
 ///Makes unmanned vehicle ammo visible

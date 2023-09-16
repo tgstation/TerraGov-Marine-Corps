@@ -13,7 +13,10 @@
 	. = ..()
 	create_reagents(max_volume, container_flags)
 	playsound(src, 'sound/machines/disposalflush.ogg', 50)
-	default_icon_state = initial(internal_item.icon_state)	//For adding overlays, otherwise the game fetches sprites that don't exist
+	var/obj/item/_internal_item = get_internal_item()
+	if(!internal_item)
+		return
+	default_icon_state = initial(_internal_item.icon_state)	//For adding overlays, otherwise the game fetches sprites that don't exist
 
 //Using examine() because deployable descriptions are overwritten by the internal object's description
 /obj/machinery/deployable/reagent_tank/examine(mob/user)
@@ -60,8 +63,8 @@
 	. = ..()
 	if(user.a_intent == INTENT_GRAB)
 		return drink_from_nozzle(user)
-	var/obj/item/storage/internal_bag = internal_item
-	internal_bag.open(user)
+	var/obj/item/storage/internal_bag = get_internal_item()
+	internal_bag?.open(user)
 
 /obj/machinery/deployable/reagent_tank/attack_alien(mob/living/carbon/xenomorph/X, damage_amount, damage_type, damage_flag, effects, armor_penetration, isrightclick)
 	if(X.a_intent != INTENT_HARM)
@@ -106,8 +109,8 @@
 
 /obj/machinery/deployable/reagent_tank/disassemble(mob/user)
 	. = ..()
-	var/obj/item/storage/internal_bag = internal_item
-	for(var/mob/watching in internal_bag.content_watchers)
+	var/obj/item/storage/internal_bag = get_internal_item()
+	for(var/mob/watching in internal_bag?.content_watchers)
 		internal_bag.close(watching)
 	playsound(src, 'sound/machines/elevator_openclose.ogg', 50)
 

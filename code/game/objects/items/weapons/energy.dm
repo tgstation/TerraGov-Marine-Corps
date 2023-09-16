@@ -68,6 +68,7 @@
 		sword_color = pick("red","blue","green","purple")
 	AddComponent(/datum/component/shield, SHIELD_TOGGLE|SHIELD_PURE_BLOCKING, shield_cover = list(MELEE = 35, BULLET = 20, LASER = 20, ENERGY = 20, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0))
 	AddComponent(/datum/component/stun_mitigation, shield_cover = list(MELEE = 40, BULLET = 40, LASER = 40, ENERGY = 40, BOMB = 40, BIO = 40, FIRE = 40, ACID = 40))
+	AddElement(/datum/element/strappable)
 
 /obj/item/weapon/energy/sword/attack_self(mob/living/user)
 	switch_state(src, user)
@@ -119,6 +120,10 @@
 
 /obj/item/weapon/energy/sword/blue
 	sword_color = "blue"
+
+/obj/item/weapon/energy/sword/deathsquad
+	sword_color = "blue"
+	active_force = 55
 
 /obj/item/weapon/energy/sword/som
 	icon_state = "som_sword"

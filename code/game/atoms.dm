@@ -119,6 +119,9 @@
 	///The acid currently on this atom
 	var/obj/effect/xenomorph/acid/current_acid = null
 
+	///Cooldown for telling someone they're buckled
+	COOLDOWN_DECLARE(buckle_message_cooldown)
+
 /*
 We actually care what this returns, since it can return different directives.
 Not specifically here, but in other variations of this. As a general safety,
@@ -128,7 +131,7 @@ directive is properly returned.
 //===========================================================================
 /atom/Destroy()
 	if(reagents)
-		qdel(reagents)
+		QDEL_NULL(reagents)
 
 	orbiters = null // The component is attached to us normaly and will be deleted elsewhere
 
@@ -408,7 +411,10 @@ directive is properly returned.
 
 // called by mobs when e.g. having the atom as their machine, pulledby, loc (AKA mob being inside the atom) or buckled var set.
 // see code/modules/mob/mob_movement.dm for more.
-/atom/proc/relaymove()
+/atom/proc/relaymove(mob/living/user, direct)
+	if(COOLDOWN_CHECK(src, buckle_message_cooldown))
+		COOLDOWN_START(src, buckle_message_cooldown, 2.5 SECONDS)
+		balloon_alert(user, "Can't move while buckled!")
 	return
 
 /**

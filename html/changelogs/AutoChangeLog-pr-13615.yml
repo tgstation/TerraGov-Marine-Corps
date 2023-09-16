@@ -1,0 +1,6 @@
+author: "Barnet2"
+delete-after: True
+changes:
+  - rscadd: "Adds Psychic Relays, increase xenos slots. Removes slot increase from evo towers. Starting psy down to 1400"
+  - rscdel: "Removes maturity towers"
+  - balance: "Removes the maturity system, keeps it for primos. Xenos now start at ancient stats."

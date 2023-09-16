@@ -2240,7 +2240,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 					return
 
 				X.upgrade_xeno(change)
-				if(change != XENO_UPGRADE_ZERO)
+				if(change != XENO_UPGRADE_NORMAL)
 					var/datum/xeno_caste/previous_maturity = GLOB.xeno_caste_datums[X.caste_base_type][X.upgrade_prev()]
 					X.upgrade_stored = previous_maturity.upgrade_threshold
 

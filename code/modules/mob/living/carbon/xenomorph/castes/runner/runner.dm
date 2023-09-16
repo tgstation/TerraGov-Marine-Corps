@@ -10,7 +10,7 @@
 	plasma_stored = 50
 	pass_flags = PASS_LOW_STRUCTURE
 	tier = XENO_TIER_ONE
-	upgrade = XENO_UPGRADE_ZERO
+	upgrade = XENO_UPGRADE_NORMAL
 	pixel_x = -16  //Needed for 2x2
 	old_x = -16
 	inherent_verbs = list(
