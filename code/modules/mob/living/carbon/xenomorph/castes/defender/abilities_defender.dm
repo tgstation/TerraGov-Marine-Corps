@@ -48,7 +48,7 @@
 				affecting = H.get_limb("chest") //Gotta have a torso?!
 			H.apply_damage(damage, BRUTE, affecting, MELEE)
 			H.apply_damage(damage, STAMINA, updating_health = TRUE)
-			H.Paralyze(5) //trip and go
+			H.Paralyze(0.5 SECONDS) //trip and go
 		GLOB.round_statistics.defender_tail_sweep_hits++
 		SSblackbox.record_feedback("tally", "round_statistics", 1, "defender_tail_sweep_hits")
 		shake_camera(H, 2, 1)
@@ -87,7 +87,7 @@
 // ***************************************
 /datum/action/xeno_action/activable/forward_charge
 	name = "Forward Charge"
-	action_icon_state = "charge"
+	action_icon_state = "pounce"
 	desc = "Charge up to 4 tiles and knockdown any targets in our way."
 	ability_name = "charge"
 	cooldown_timer = 10 SECONDS
@@ -113,13 +113,12 @@
 
 /datum/action/xeno_action/activable/forward_charge/proc/obj_hit(datum/source, obj/target, speed)
 	SIGNAL_HANDLER
-	var/mob/living/carbon/xenomorph/X = owner
-	if(istype(target, /obj/structure/table) || istype(target, /obj/structure/rack))
+	if(istype(target, /obj/structure/table))
 		var/obj/structure/S = target
-		X.visible_message(span_danger("[X] plows straight through [S]!"), null, null, 5)
+		owner.visible_message(span_danger("[owner] plows straight through [S]!"), null, null, 5)
 		S.deconstruct(FALSE) //We want to continue moving, so we do not reset throwing.
 		return // stay registered
-	target.hitby(X, speed) //This resets throwing.
+	target.hitby(owner, speed) //This resets throwing.
 	charge_complete()
 
 /datum/action/xeno_action/activable/forward_charge/can_use_ability(atom/A, silent = FALSE, override_flags)
@@ -451,7 +450,7 @@
 			affecting = slapped.get_limb("chest")
 		slapped.apply_damage(damage, BRUTE, affecting, MELEE)
 		slapped.apply_damage(damage, STAMINA, updating_health = TRUE)
-		slapped.Paralyze(3)
+		slapped.Paralyze(0.3 SECONDS)
 		shake_camera(slapped, 2, 1)
 
 		to_chat(slapped, span_xenowarning("We are struck by \the [X]'s flying tail!"))

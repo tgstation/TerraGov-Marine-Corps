@@ -137,11 +137,11 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/mute_xeno_health_alert_messages = TRUE
 
 	///whether the user wants to hear tts
-	var/sound_tts = TRUE
+	var/sound_tts = TTS_SOUND_ENABLED
 	///What tts voice should be used
 	var/tts_voice = "Male 01"
-	///whether to use animal crossing style blblblbl
-	var/sound_tts_blips = FALSE
+	///how much to pitch the tts voice up and down
+	var/tts_pitch = 0
 	///Volume to use for tts
 	var/volume_tts = 100
 
@@ -168,6 +168,11 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/scaling_method = SCALING_METHOD_NORMAL
 	///If the game is in fullscreen mode
 	var/fullscreen_mode = FALSE
+
+	///Whether or not the MC tab of the Stat Panel refreshes fast. This is expensive so make sure you need it.
+	var/fast_mc_refresh = FALSE
+	///When enabled, will split the 'Admin' panel into several tabs.
+	var/split_admin_tabs = TRUE
 
 	/// New TGUI Preference preview
 	var/map_name = "player_pref_map"

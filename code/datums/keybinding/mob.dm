@@ -200,9 +200,6 @@
 /datum/keybinding/mob/examine/proc/examinate(datum/source, atom/A, params)
 	SIGNAL_HANDLER
 	var/mob/user = source
-	if(!user.client || !(user.client.eye == user || user.client.eye == user.loc))
-		UnregisterSignal(user, list(COMSIG_MOB_CLICKON, COMSIG_OBSERVER_CLICKON))
-		return
 	user.examinate(A)
 	return COMSIG_MOB_CLICK_HANDLED
 
@@ -336,6 +333,7 @@
 	full_name = "Toggle self harm"
 	description = "Toggle being able to hit yourself"
 	keybind_signal = COMSIG_KB_SELFHARM
+	hotkey_keys = list("0")
 
 /datum/keybinding/mob/toggle_self_harm/down(client/user)
 	. = ..()

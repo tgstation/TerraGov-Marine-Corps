@@ -51,6 +51,9 @@
 		if(EXPLODE_LIGHT)
 			if (prob(25))
 				set_broken()
+		if(EXPLODE_WEAK)
+			if (prob(15))
+				set_broken()
 
 
 /obj/machinery/prop/mainship/computer/proc/set_broken()
@@ -111,6 +114,12 @@
 	icon_state = "holosign_engi"
 	density = TRUE
 	resistance_flags = RESIST_ALL
+
+/obj/structure/prop/mainship/holobarrier/passthrough
+	name = "\improper pressure-sealed holobarrier"
+	icon = 'icons/effects/effects.dmi'
+	icon_state = "shield-blue"
+	density = FALSE
 
 /obj/structure/prop/mainship/deadai
 	name = "\improper deactivated AI"
@@ -1532,10 +1541,20 @@
 	icon_state = "planter_box_soil"
 	layer = BELOW_OBJ_LAYER
 
+/obj/structure/prop/mainship/gelida/planterboxsoil/nondense
+	density = FALSE
+	name = "catwalk"
+	desc = "A floor you can walk on. This one comes with gaps to see the space underneath."
+
 /obj/structure/prop/mainship/gelida/planterboxsoilgrid
 	icon = 'icons/Marine/mainship_props.dmi'
 	icon_state = "soil_grid"
 	layer = BELOW_OBJ_LAYER
+
+/obj/structure/prop/mainship/gelida/planterboxsoilgrid/nondense
+	density = FALSE
+	name = "catwalk"
+	desc = "A floor you can walk on. This one comes with gaps to see the space underneath."
 
 /obj/structure/prop/mainship/gelida/propserver
 	name = "colony research server"

@@ -28,8 +28,14 @@ const ParallaxNumToString = (integer) => {
 
 export const GameSettings = (props, context) => {
   const { act, data } = useBackend<GameSettingData>(context);
-  const { ui_style_color, scaling_method, pixel_size, parallax, quick_equip } =
-    data;
+  const {
+    ui_style_color,
+    scaling_method,
+    pixel_size,
+    parallax,
+    quick_equip,
+    is_admin,
+  } = data;
   return (
     <Section title="Game Settings">
       <Grid>
@@ -57,23 +63,14 @@ export const GameSettings = (props, context) => {
                 leftLabel={'Muted'}
                 rightLabel={'Enabled'}
               />
-              <ToggleFieldPreference
+              <SelectFieldPreference
                 label="Play Text-to-Speech"
                 value="sound_tts"
                 action="sound_tts"
-                leftLabel={'Enabled'}
-                rightLabel={'Disabled'}
               />
               <TextFieldPreference
                 label="Text to speech volume"
                 value="volume_tts"
-              />
-              <ToggleFieldPreference
-                label="Use Blips instead of text to speech"
-                value="sound_tts_blips"
-                action="sound_tts_blips"
-                leftLabel={'Enabled'}
-                rightLabel={'Disabled'}
               />
               <ToggleFieldPreference
                 label="Fullscreen mode"
@@ -292,6 +289,30 @@ export const GameSettings = (props, context) => {
           </Section>
         </Grid.Column>
       </Grid>
+      {is_admin && (
+        <Grid>
+          <Grid.Column>
+            <Section title="Administration (admin only)">
+              <LabeledList>
+                <ToggleFieldPreference
+                  label="Fast MC Refresh"
+                  value="fast_mc_refresh"
+                  action="fast_mc_refresh"
+                  leftLabel={'Enabled'}
+                  rightLabel={'Disabled'}
+                />
+                <ToggleFieldPreference
+                  label="Split admin tabs"
+                  value="split_admin_tabs"
+                  action="split_admin_tabs"
+                  leftLabel={'Enabled'}
+                  rightLabel={'Disabled'}
+                />
+              </LabeledList>
+            </Section>
+          </Grid.Column>
+        </Grid>
+      )}
     </Section>
   );
 };

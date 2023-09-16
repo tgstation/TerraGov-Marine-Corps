@@ -51,6 +51,18 @@
 	/// datum wrapper for client view
 	var/datum/view_data/view_size
 
+	/// our current tab
+	var/stat_tab
+
+	/// list of all tabs
+	var/list/panel_tabs = list()
+	/// list of tabs containing spells and abilities
+	var/list/spell_tabs = list()
+	///A lazy list of atoms we've examined in the last RECENT_EXAMINE_MAX_WINDOW (default 2) seconds, so that we will call [/atom/proc/examine_more] instead of [/atom/proc/examine] on them when examining
+	var/list/recent_examines
+	///Our object window datum. It stores info about and handles behavior for the object tab
+	var/datum/object_window_info/obj_window
+
 	//Database related
 	var/player_age = -1	//Used to determine how old the account is - in days.
 	var/player_join_date = null //Date that this account was first seen in the server

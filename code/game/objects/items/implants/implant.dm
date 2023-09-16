@@ -70,13 +70,16 @@
 	forceMove(target)
 	implant_owner = target
 	implanted = TRUE
-	var/datum/limb/affected = target.get_limb(user.zone_selected)
+	var/limb_targeting = (user ? user.zone_selected : BODY_ZONE_CHEST)
+	var/datum/limb/affected = target.get_limb(limb_targeting)
+	if(!affected)
+		CRASH("[src] implanted into [target] [user ? "by [user]" : ""] but had no limb, despite being set to implant in [limb_targeting].")
 	affected.implants += src
 	part = affected
 	if(flags_implant & ACTIVATE_ON_HEAR)
 		RegisterSignal(src, COMSIG_MOVABLE_HEAR, PROC_REF(on_hear))
 	activation_action?.give_action(target)
-	embed_into(target, user.zone_selected, TRUE)
+	embed_into(target, limb_targeting, TRUE)
 	return TRUE
 
 /obj/item/implant/unembed_ourself()
@@ -85,14 +88,16 @@
 
 /obj/item/implant/proc/unimplant()
 	SHOULD_CALL_PARENT(TRUE)
-	forceMove(get_turf(implant_owner))
+	if(!implanted)
+		return FALSE
 	activation_action?.remove_action(implant_owner)
 	if(flags_implant & ACTIVATE_ON_HEAR)
 		UnregisterSignal(src, COMSIG_MOVABLE_HEAR)
-	implant_owner = null
 	implanted = FALSE
 	part.implants -= src
 	part = null
+	forceMove(get_turf(implant_owner))
+	implant_owner = null
 
 ///Returns info about a implant concerning its usage and such
 /obj/item/implant/proc/get_data()

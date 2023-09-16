@@ -37,6 +37,10 @@ ALLOW_SHUTDOWN
 ## The maximum number of concurrent tts http requests that can be made by the server at once.
 #TTS_MAX_CONCURRENT_REQUESTS 4
 
+## Add voices to the TTS voice blacklist.
+#TTS_VOICE_BLACKLIST Sans Undertale
+#TTS_VOICE_BLACKLIST Papyrus Undertale
+
 ## If you use /tg/station-server 3 and you want to allow the shutdown server verb,
 ##	the server needs to be able to tell tgs3 that the shutdown is not a crash.
 ## This should be the path to the TGCommandLine.exe program in your tgstation-server install.
@@ -153,6 +157,20 @@ NOTIFY_NEW_PLAYER_AGE 0
 ## Notify admins when a new byond account connects for the first x days after its creation. (-1 for never)
 NOTIFY_NEW_ACCOUNT_AGE 7
 
+##Note: all EXP tracking/restriction require database to be enabled.
+
+## Unhash this to track player playtime in the database.
+#USE_EXP_TRACKING
+
+## Allows admins to bypass job playtime requirements.
+#USE_EXP_RESTRICTIONS_ADMIN_BYPASS
+
+## Use XP restrictions for command roles
+#USE_EXP_RESTRICTIONS_COMMAND
+
+## Use playtime in hours restrictions for command
+#USE_EXP_RESTRICTIONS_COMMAND_HOURS
+
 ##Note: all population caps can be used with each other if desired.
 
 ## Uncomment for 'soft' population caps, players will be warned while joining if the living crew exceeds the listed number.
@@ -211,3 +229,15 @@ DEFAULT_VIEW_SQUARE 15x15
 #XENOS_ON_STRIKE
 
 AI_ANTI_STUCK_LAG_TIME_DILATION_THRESHOLD 20
+
+## Assets can opt-in to caching their results into `tmp`.
+## This is important, as preferences assets take upwards of 30 seconds (without sleeps) to collect.
+## The cache is assumed to be cleared by TGS recompiling, which deletes `tmp`.
+## This should be disabled (through `CACHE_ASSETS 0`) on development,
+## but enabled on production (the default).
+CACHE_ASSETS 0
+
+## If this is uncommented, we will save all associated spritesheet PNGs and CSS files to a folder in the round-specific logs folder.
+## Useful for developers to debug potential spritesheet issues to determine where the issue is cropping up (either in DM-side sprite generation or in the TGUI-side display of said spritesheet).
+## Will only seek to waste disk space if ran on production.
+#SAVE_SPRITESHEETS

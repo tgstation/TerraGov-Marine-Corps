@@ -230,7 +230,7 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 ///Do the stuff when it "hits the ground"
 /obj/structure/droppod/proc/dodrop(turf/targetturf, mob/user)
 	deadchat_broadcast(" has landed at [get_area(targetturf)]!", src, user)
-	explosion(targetturf,-1,-1,2,-1)
+	explosion(targetturf,-1,-1,2,-1,-1)
 	playsound(targetturf, 'sound/effects/droppod_impact.ogg', 100)
 	QDEL_NULL(reserved_area)
 	addtimer(CALLBACK(src, PROC_REF(completedrop), user), 7) //dramatic effect
@@ -249,12 +249,10 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 	icon_state = "leaderpod"
 
 /obj/structure/droppod/leader/buckle_mob(mob/living/buckling_mob, force, check_loc, lying_buckle, hands_needed, target_hands_needed, silent)
-	. = ..()
-	if(!.)
-		return
-	if(buckling_mob.skills.getRating(SKILL_LEADERSHIP) < SKILL_LEAD_EXPERT)
+	if(buckling_mob.skills.getRating(SKILL_LEADERSHIP) < SKILL_LEAD_TRAINED)
 		balloon_alert(buckling_mob, "Can't use that!") // basically squad lead+ cant touch this
 		return FALSE
+	return ..()
 
 /obj/structure/droppod/leader/set_target(new_x, new_y)
 	. = ..()

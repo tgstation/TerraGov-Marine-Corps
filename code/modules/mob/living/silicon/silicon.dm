@@ -86,12 +86,7 @@
 	to_chat(src, span_warning("Warning: Electromagnetic pulse detected."))
 	return ..()
 
-
-/mob/living/silicon/stun_effect_act(stun_amount, agony_amount, def_zone)
-	return
-
-
-/mob/living/silicon/apply_effect(effect = 0, effecttype = STUN, blocked = 0, updating_health = FALSE)
+/mob/living/silicon/apply_effect(effect = 0, effecttype = STUN, updating_health = FALSE)
 	return FALSE
 
 
@@ -162,24 +157,21 @@
 
 /mob/living/silicon/ex_act(severity)
 	flash_act()
-
+	if(stat == DEAD)
+		return
 	switch(severity)
 		if(EXPLODE_DEVASTATE)
-			if(stat == DEAD)
-				return
 			adjustBruteLoss(100)
 			adjustFireLoss(100)
 			if(!anchored)
 				gib()
 		if(EXPLODE_HEAVY)
-			if(stat == DEAD)
-				return
 			adjustBruteLoss(60)
 			adjustFireLoss(60)
 		if(EXPLODE_LIGHT)
-			if(stat == DEAD)
-				return
 			adjustBruteLoss(30)
+		if(EXPLODE_WEAK)
+			adjustBruteLoss(15)
 
 	UPDATEHEALTH(src)
 

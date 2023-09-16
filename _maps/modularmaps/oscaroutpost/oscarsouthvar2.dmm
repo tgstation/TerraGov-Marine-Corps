@@ -1,6 +1,6 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "aa" = (
-/obj/item/storage/box/m42c_system,
+/obj/item/storage/box/crate/m42c_system,
 /obj/effect/landmark/corpsespawner/marine/regular,
 /turf/open/floor/plating,
 /area/oscar_outpost/village/abandonedbase)
@@ -1544,7 +1544,7 @@
 /turf/open/floor/plating/scorched,
 /area/oscar_outpost/village/abandonedbase)
 "tR" = (
-/obj/item/storage/box/m42c_system,
+/obj/item/storage/box/crate/m42c_system,
 /turf/open/shuttle/elevator/grating,
 /area/oscar_outpost/village/abandonedbase)
 "tW" = (
@@ -2517,17 +2517,6 @@
 	id = "zetalockdown"
 	},
 /turf/open/floor/plating,
-/area/oscar_outpost/village/abandonedbase)
-"Jl" = (
-/obj/machinery/door/airlock/mainship/generic{
-	dir = 1
-	},
-/obj/structure/cable,
-/obj/machinery/door/poddoor/mainship/indestructible{
-	dir = 2;
-	id = "zetalockdown"
-	},
-/turf/closed/mineral/smooth,
 /area/oscar_outpost/village/abandonedbase)
 "Jp" = (
 /obj/machinery/light{
@@ -5756,7 +5745,7 @@ Xn
 Xn
 Xn
 Xn
-Jl
+JX
 Qz
 Ae
 vF

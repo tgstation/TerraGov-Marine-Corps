@@ -483,6 +483,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	flags_equip_slot = ITEM_SLOT_BACK|ITEM_SLOT_BELT
 	max_shells = 100 //codex
 	caliber = CALIBER_PEPPERBALL
+	fire_sound = "gun_fb12" // idk why i called it "fb-12", ah too late now
 	default_ammo_type = /obj/item/ammo_magazine/rifle/pepperball
 	allowed_ammo_types = list(/obj/item/ammo_magazine/rifle/pepperball)
 	force = 30 // two shots weeds as it has no bayonet
@@ -590,6 +591,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_WIELDED_STABLE_FIRING_ONLY|GUN_AMMO_COUNTER
 	reciever_flags = AMMO_RECIEVER_MAGAZINES|AMMO_RECIEVER_AUTO_EJECT|AMMO_RECIEVER_AUTO_EJECT_LOCKED
 	gun_skill_category = SKILL_FIREARMS
+	fire_sound = 'sound/weapons/guns/fire/launcher.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/launcher_empty.ogg'
 	reload_sound = 'sound/weapons/guns/interact/launcher_reload.ogg'
 	unload_sound = 'sound/weapons/guns/interact/launcher_reload.ogg'
@@ -622,7 +624,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 		if(victim.lying_angle || victim.stat == DEAD) //Have to be standing up to get the fun stuff
 			continue
 		victim.adjustBruteLoss(15) //The shockwave hurts, quite a bit. It can knock unarmored targets unconscious in real life
-		victim.Paralyze(60) //For good measure
+		victim.Paralyze(6 SECONDS) //For good measure
 		victim.emote("pain")
 		victim.throw_at(get_step(backblast_loc, thrown_dir), 1, 2)
 
@@ -720,6 +722,14 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	accuracy_mult = 0.8
 
 	placed_overlay_iconstate = "thermo"
+
+/obj/item/weapon/gun/launcher/rocket/m57a4/deathsquad
+	attachable_allowed = list(
+		/obj/item/attachable/buildasentry,
+		/obj/item/attachable/shoulder_mount,
+		/obj/item/attachable/magnetic_harness,
+	)
+	starting_attachment_types = list(/obj/item/attachable/magnetic_harness)
 
 /obj/item/weapon/gun/launcher/rocket/m57a4/t57
 	name = "\improper RL-57 quad thermobaric launcher"

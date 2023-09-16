@@ -74,11 +74,6 @@
 /obj/effect/spawner/random/misc/handcuffs,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/marshal_office)
-"bs" = (
-/obj/structure/cable,
-/obj/structure/cable,
-/turf/closed/wall/r_wall,
-/area/bigredv2/outside/space_port)
 "bB" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/sand,
@@ -178,15 +173,6 @@
 /obj/structure/cable,
 /turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
-"ek" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/landinglight/ds1/delaytwo{
-	dir = 8
-	},
-/turf/open/floor/marking/asteroidwarning{
-	dir = 8
-	},
-/area/bigredv2/outside/space_port)
 "eB" = (
 /obj/structure/cargo_container/red{
 	dir = 4
@@ -218,7 +204,7 @@
 /area/bigredv2/outside/space_port)
 "fw" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/landinglight/ds1/delayone{
+/obj/machinery/landinglight/lz1{
 	dir = 8
 	},
 /turf/open/floor/marking/asteroidwarning{
@@ -246,10 +232,10 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/northwest)
 "fT" = (
-/obj/machinery/landinglight/ds1/delaythree{
+/obj/effect/ai_node,
+/obj/machinery/landinglight/lz1{
 	dir = 1
 	},
-/obj/effect/ai_node,
 /turf/open/floor/marking/asteroidwarning{
 	dir = 1
 	},
@@ -355,7 +341,7 @@
 	},
 /area/bigredv2/outside/marshal_office)
 "io" = (
-/obj/machinery/landinglight/ds1/delaythree{
+/obj/machinery/landinglight/lz1{
 	dir = 8
 	},
 /turf/open/floor/marking/asteroidwarning{
@@ -377,14 +363,6 @@
 "iH" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/warning,
-/area/bigredv2/outside/space_port)
-"iK" = (
-/obj/machinery/landinglight/ds1{
-	dir = 8
-	},
-/turf/open/floor/marking/asteroidwarning{
-	dir = 8
-	},
 /area/bigredv2/outside/space_port)
 "iP" = (
 /obj/machinery/camera/autoname/lz_camera,
@@ -416,10 +394,6 @@
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/open/floor/plating,
 /area/bigredv2/outside/marshal_office)
-"jC" = (
-/obj/machinery/landinglight/ds1,
-/turf/open/floor/marking/asteroidwarning,
-/area/bigredv2/outside/space_port)
 "jD" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 1;
@@ -474,36 +448,12 @@
 	dir = 6
 	},
 /area/bigredv2/outside/nw)
-"le" = (
-/obj/machinery/landinglight/ds1/delayone{
-	dir = 4
-	},
-/turf/open/floor/marking/asteroidwarning{
-	dir = 4
-	},
-/area/bigredv2/outside/space_port)
 "lz" = (
 /turf/closed/wall,
-/area/bigredv2/outside/space_port)
-"lN" = (
-/obj/machinery/landinglight/ds1{
-	dir = 4
-	},
-/turf/open/floor/marking/asteroidwarning{
-	dir = 4
-	},
 /area/bigredv2/outside/space_port)
 "lP" = (
 /turf/closed/wall,
 /area/bigredv2/outside/telecomm)
-"lR" = (
-/obj/machinery/landinglight/ds1/delaytwo{
-	dir = 8
-	},
-/turf/open/floor/marking/asteroidwarning{
-	dir = 8
-	},
-/area/bigredv2/outside/space_port)
 "mc" = (
 /obj/machinery/door/airlock/mainship/medical/glass/free_access{
 	dir = 1;
@@ -545,10 +495,6 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable,
 /turf/open/floor/asteroidfloor,
-/area/bigredv2/outside/space_port)
-"mN" = (
-/obj/machinery/landinglight/ds1/delayone,
-/turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/space_port)
 "mU" = (
 /obj/machinery/power/apc/drained{
@@ -631,7 +577,7 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/northwest)
 "ph" = (
-/obj/machinery/landinglight/ds1/delaytwo,
+/obj/machinery/landinglight/lz1,
 /turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/space_port)
 "pl" = (
@@ -653,14 +599,6 @@
 	},
 /turf/open/floor/tile/red/redtaupecorner,
 /area/bigredv2/outside/marshal_office)
-"qj" = (
-/obj/machinery/landinglight/ds1/delayone{
-	dir = 8
-	},
-/turf/open/floor/marking/asteroidwarning{
-	dir = 8
-	},
-/area/bigredv2/outside/space_port)
 "ql" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark,
@@ -720,10 +658,10 @@
 /turf/open/floor,
 /area/bigredv2/outside/marshal_office)
 "rt" = (
-/obj/machinery/landinglight/ds1/delaytwo{
+/obj/effect/ai_node,
+/obj/machinery/landinglight/lz1{
 	dir = 4
 	},
-/obj/effect/ai_node,
 /turf/open/floor/marking/asteroidwarning{
 	dir = 4
 	},
@@ -1015,14 +953,6 @@
 /obj/machinery/light,
 /turf/open/floor/plating,
 /area/bigredv2/outside/space_port)
-"zP" = (
-/obj/machinery/landinglight/ds1/delaytwo{
-	dir = 4
-	},
-/turf/open/floor/marking/asteroidwarning{
-	dir = 4
-	},
-/area/bigredv2/outside/space_port)
 "Ag" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 5
@@ -1128,14 +1058,6 @@
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
-"Dd" = (
-/obj/machinery/landinglight/ds1/delaytwo{
-	dir = 1
-	},
-/turf/open/floor/marking/asteroidwarning{
-	dir = 1
-	},
-/area/bigredv2/outside/space_port)
 "Do" = (
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/tile/dark,
@@ -1145,14 +1067,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/marshal_office)
-"Dy" = (
-/obj/machinery/landinglight/ds1/delayone{
-	dir = 1
-	},
-/turf/open/floor/marking/asteroidwarning{
-	dir = 1
-	},
-/area/bigredv2/outside/space_port)
 "DA" = (
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/nw)
@@ -1246,7 +1160,7 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/space_port)
 "GM" = (
-/obj/machinery/landinglight/ds1{
+/obj/machinery/landinglight/lz1{
 	dir = 1
 	},
 /turf/open/floor/marking/asteroidwarning{
@@ -1292,17 +1206,13 @@
 /turf/open/floor/plating/ground/mars/random/cave/rock,
 /area/bigredv2/caves/northwest)
 "Il" = (
-/obj/machinery/landinglight/ds1/delayone{
+/obj/effect/ai_node,
+/obj/machinery/landinglight/lz1{
 	dir = 8
 	},
-/obj/effect/ai_node,
 /turf/open/floor/marking/asteroidwarning{
 	dir = 8
 	},
-/area/bigredv2/outside/space_port)
-"In" = (
-/obj/machinery/landinglight/ds1/delaythree,
-/turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/space_port)
 "Ir" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
@@ -1364,14 +1274,6 @@
 "Jp" = (
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/telecomm)
-"Jr" = (
-/obj/machinery/landinglight/ds1/delaythree{
-	dir = 1
-	},
-/turf/open/floor/marking/asteroidwarning{
-	dir = 1
-	},
-/area/bigredv2/outside/space_port)
 "Jv" = (
 /obj/machinery/light,
 /turf/open/floor/tile/red/redtaupecorner,
@@ -1431,7 +1333,7 @@
 /turf/open/floor/freezer,
 /area/bigredv2/outside/marshal_office)
 "Lf" = (
-/obj/machinery/landinglight/ds1/delaythree{
+/obj/machinery/landinglight/lz1{
 	dir = 4
 	},
 /turf/open/floor/marking/asteroidwarning{
@@ -1991,15 +1893,6 @@
 	dir = 4
 	},
 /area/bigredv2/outside/space_port)
-"ZS" = (
-/obj/machinery/landinglight/ds1{
-	dir = 8
-	},
-/obj/effect/ai_node,
-/turf/open/floor/marking/asteroidwarning{
-	dir = 8
-	},
-/area/bigredv2/outside/space_port)
 "ZU" = (
 /obj/machinery/recharge_station,
 /turf/open/floor/tile/dark,
@@ -2299,7 +2192,7 @@ ws
 ws
 ws
 ws
-bs
+vp
 fB
 Ue
 Ue
@@ -2339,7 +2232,7 @@ ws
 ws
 ws
 ws
-bs
+vp
 cH
 cH
 cH
@@ -2656,25 +2549,25 @@ kz
 po
 Ah
 Lf
-lN
-le
-zP
 Lf
-lN
-le
+Lf
+Lf
+Lf
+Lf
+Lf
 rt
 Lf
-lN
-le
+Lf
+Lf
 rt
 Lf
-lN
-le
-zP
 Lf
-lN
-le
-zP
+Lf
+Lf
+Lf
+Lf
+Lf
+Lf
 Lf
 Ah
 po
@@ -2734,7 +2627,7 @@ ws
 PX
 kz
 po
-mN
+ph
 Nr
 Qk
 cz
@@ -2756,7 +2649,7 @@ Qk
 cz
 Qk
 Hw
-Dy
+GM
 Vd
 Vd
 Vd
@@ -2774,7 +2667,7 @@ ws
 PX
 kz
 po
-jC
+ph
 Nr
 Qk
 Qk
@@ -2796,7 +2689,7 @@ Qk
 Qk
 Qk
 Hw
-Dd
+GM
 Vd
 Vd
 Vd
@@ -2814,7 +2707,7 @@ ws
 PX
 kz
 po
-In
+ph
 Nr
 Qk
 Qk
@@ -2894,7 +2787,7 @@ ws
 PX
 kz
 xu
-mN
+ph
 Nr
 Qk
 Qk
@@ -2916,7 +2809,7 @@ Qk
 Qk
 Qk
 Hw
-Dy
+GM
 Vd
 Vd
 Vd
@@ -2934,7 +2827,7 @@ ws
 PX
 kz
 po
-jC
+ph
 Nr
 Qk
 Qk
@@ -2956,7 +2849,7 @@ Qk
 Qk
 Qk
 Hw
-Dd
+GM
 Vd
 EM
 Vd
@@ -2974,7 +2867,7 @@ ws
 PX
 kz
 po
-In
+ph
 Nr
 Qk
 Qk
@@ -2996,7 +2889,7 @@ Qk
 Qk
 Qk
 Hw
-Jr
+GM
 Vd
 Vd
 Vd
@@ -3054,7 +2947,7 @@ ws
 PX
 kz
 ns
-mN
+ph
 Nr
 Qk
 cz
@@ -3076,7 +2969,7 @@ Qk
 cz
 Qk
 Hw
-Dy
+GM
 Vd
 Vd
 Vd
@@ -3094,7 +2987,7 @@ ws
 PX
 kz
 po
-jC
+ph
 qI
 TR
 TR
@@ -3116,7 +3009,7 @@ TR
 TR
 TR
 wu
-Dd
+GM
 cE
 ai
 gB
@@ -3136,25 +3029,25 @@ kz
 po
 Ah
 io
-lR
-qj
-iK
 io
-ek
+io
+io
+io
 fw
-ZS
-io
-lR
-qj
-iK
-io
-lR
+fw
 Il
-iK
 io
-lR
-qj
-iK
+io
+io
+io
+io
+io
+Il
+io
+io
+io
+io
+io
 io
 Ah
 po

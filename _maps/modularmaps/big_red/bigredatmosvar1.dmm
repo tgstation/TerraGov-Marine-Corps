@@ -130,6 +130,10 @@
 	dir = 1
 	},
 /area/bigredv2/outside/s)
+"mm" = (
+/obj/effect/landmark/xeno_tunnel_spawn,
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/bigredv2/outside/se)
 "mv" = (
 /obj/structure/cable,
 /obj/effect/decal/cleanable/dirt,
@@ -998,7 +1002,7 @@ WO
 "}
 (17,1,1) = {"
 GX
-ik
+mm
 ia
 ik
 Hp

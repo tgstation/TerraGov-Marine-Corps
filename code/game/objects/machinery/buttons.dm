@@ -128,6 +128,11 @@
 /obj/machinery/button/door/open_only/landing_zone/attack_hand(mob/living/user)
 	if((machine_stat & (NOPOWER|BROKEN)))
 		return
+	#ifndef TESTING
+	if(world.time < SSticker.round_start_time + SSticker.mode.deploy_time_lock)
+		to_chat(user, span_notice("The containment shutters can't open yet!"))
+		return
+	#endif
 	if(!allowed(user))
 		to_chat(user, span_danger("Access Denied"))
 		flick("[initial(icon_state)]-denied", src)

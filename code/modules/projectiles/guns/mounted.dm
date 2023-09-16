@@ -354,7 +354,8 @@
 	force = 40
 	aim_slowdown = 1.2
 	wield_delay = 2 SECONDS
-	fire_sound = 'sound/weapons/guns/fire/t27.ogg'
+	fire_sound = 'sound/weapons/guns/fire/tgmc/kinetic/gun_mg27.ogg'
+	fire_rattle = 'sound/weapons/guns/fire/tgmc/kinetic/gun_mg27_low.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/T42_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/T42_reload.ogg'
@@ -372,7 +373,6 @@
 		/obj/item/attachable/bayonet,
 		/obj/item/attachable/bayonetknife,
 		/obj/item/attachable/bayonetknife/som,
-		/obj/item/attachable/scope/marine,
 		/obj/item/attachable/scope/mini,
 		/obj/item/attachable/scope/unremovable/mmg,
 		/obj/item/attachable/stock/t27,
@@ -492,7 +492,9 @@
 		if(EXPLODE_HEAVY)
 			take_damage(rand(150, 200), BRUTE, BOMB)
 		if(EXPLODE_LIGHT)
-			take_damage(rand(10, 50), BRUTE, BOMB)
+			take_damage(rand(50, 100), BRUTE, BOMB)
+		if(EXPLODE_WEAK)
+			take_damage(rand(25, 50), BRUTE, BOMB)
 
 //AGLS-37, or Automatic Grenade Launching System 37, a fully automatic mounted grenade launcher that fires fragmentation and HE shells, can't be turned.
 
