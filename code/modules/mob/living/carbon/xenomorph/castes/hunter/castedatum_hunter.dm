@@ -43,7 +43,6 @@
 	soft_armor = list(MELEE = 40, BULLET = 15, LASER = 15, ENERGY = 15, BOMB = 0, BIO = 10, FIRE = 15, ACID = 10)
 
 	// *** Ranged Attack *** //
-	charge_type = CHARGE_TYPE_MEDIUM
 	pounce_delay = 15 SECONDS
 
 	// *** Stealth ***

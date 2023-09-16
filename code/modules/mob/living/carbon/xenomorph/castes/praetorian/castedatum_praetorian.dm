@@ -201,9 +201,6 @@
 	// *** Pheromones *** //
 	aura_strength = 4.5
 
-	// *** Ranged Attack *** //
-	charge_type = CHARGE_TYPE_LARGE
-
 	// *** Abilities *** //
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
