@@ -1046,26 +1046,6 @@
 	keybind_signal = COMSIG_XENOABILITY_TIMESTOP
 	hotkey_keys = list("V")
 
-/datum/keybinding/xeno/trigger_psychic_shield
-	name = "Trigger Psychic Shield"
-	full_name = "Warlock: Trigger Psychic Shield"
-	description = "Triggers the Psychic Shield ability without selecting it."
-	keybind_signal = COMSIG_XENOABILITY_TRIGGER_PSYCHIC_SHIELD
-
-/datum/keybinding/xeno/psychic_blast
-	name = "Psychic Blast"
-	full_name = "Warlock: Psychic Blast"
-	description = "Fire a lightly-damaging AOE psychic beam which knocks back enemies after a short charge-up."
-	keybind_signal = COMSIG_XENOABILITY_PSYCHIC_BLAST
-	hotkey_keys = list("R")
-
-/datum/keybinding/xeno/psychic_crush
-	name = "Psychic Crush"
-	full_name = "Warlock: Psychic Crush"
-	description = "Channel an expanding AOE crush effect, activating it again pre-maturely crushes enemies over an area."
-	keybind_signal = COMSIG_XENOABILITY_PSYCHIC_CRUSH
-	hotkey_keys = list("Q")
-
 /datum/keybinding/xeno/flay
 	name = "Flay"
 	full_name = "Puppeteer: Flay"
