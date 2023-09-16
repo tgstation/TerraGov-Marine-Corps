@@ -370,9 +370,9 @@
 	current_mission_data["hostile_faction"] = current_mission.hostile_faction
 	current_mission_data["winning_faction"] = current_mission.winning_faction
 	current_mission_data["outcome"] = current_mission.outcome
-	current_mission_data["objective_description"] = faction == current_mission.starting_faction ? current_mission.starting_faction_objective_description : current_mission.hostile_faction_objective_description
-	current_mission_data["mission_brief"] = faction == current_mission.starting_faction ? current_mission.starting_faction_mission_brief : current_mission.hostile_faction_mission_brief
-	current_mission_data["mission_rewards"] = faction == current_mission.starting_faction ? current_mission.starting_faction_additional_rewards : current_mission.hostile_faction_additional_rewards
+	current_mission_data["objective_description"] = (faction == current_mission.starting_faction ? current_mission.starting_faction_objective_description : current_mission.hostile_faction_objective_description)
+	current_mission_data["mission_brief"] = (faction == current_mission.starting_faction ? current_mission.starting_faction_mission_brief : current_mission.hostile_faction_mission_brief)
+	current_mission_data["mission_rewards"] = (faction == current_mission.starting_faction ? current_mission.starting_faction_additional_rewards : current_mission.hostile_faction_additional_rewards)
 	data["current_mission"] = current_mission_data
 
 	var/list/potential_missions_data = list()
@@ -384,7 +384,7 @@
 		mission_data["objective_description"] = potential_mission.starting_faction_objective_description
 		mission_data["mission_brief"] = potential_mission.starting_faction_mission_brief
 		mission_data["mission_rewards"] = potential_mission.starting_faction_additional_rewards
-		potential_missions_data += list(list(mission_data))
+		potential_missions_data += list(mission_data)
 	data["potential_missions"] = potential_missions_data
 
 	var/list/finished_missions_data = list()
@@ -396,21 +396,22 @@
 		mission_data["hostile_faction"] = finished_mission.hostile_faction
 		mission_data["winning_faction"] = finished_mission.winning_faction
 		mission_data["outcome"] = finished_mission.outcome
-		mission_data["objective_description"] = faction == finished_mission.starting_faction ? finished_mission.starting_faction_objective_description : finished_mission.hostile_faction_objective_description
-		mission_data["mission_brief"] = faction == finished_mission.starting_faction ? finished_mission.starting_faction_mission_brief : finished_mission.hostile_faction_mission_brief
-		mission_data["mission_rewards"] = faction == finished_mission.starting_faction ? finished_mission.starting_faction_additional_rewards : finished_mission.hostile_faction_additional_rewards
-		finished_missions_data += list(list(mission_data))
+		mission_data["objective_description"] = (faction == finished_mission.starting_faction ? finished_mission.starting_faction_objective_description : finished_mission.hostile_faction_objective_description)
+		mission_data["mission_brief"] = (faction == finished_mission.starting_faction ? finished_mission.starting_faction_mission_brief : finished_mission.hostile_faction_mission_brief)
+		mission_data["mission_rewards"] = (faction == finished_mission.starting_faction ? finished_mission.starting_faction_additional_rewards : finished_mission.hostile_faction_additional_rewards)
+		finished_missions_data += list(mission_data)
 	data["finished_missions"] = finished_missions_data
 
 	var/list/faction_rewards_data = list()
 	for(var/datum/campaign_reward/reward AS in team.faction_rewards)
 		var/list/reward_data = list() //each relevant bit of info regarding the reward is added to the list. Many more to come
 		reward_data["name"] = reward.name
+		reward_data["type"] = "[reward.type]"
 		reward_data["desc"] = reward.desc
 		reward_data["detailed_desc"] = reward.detailed_desc
 		reward_data["uses_remaining"] = reward.uses
 		reward_data["uses_original"] = initial(reward.uses)
-		faction_rewards_data += list(list(reward_data))
+		faction_rewards_data += list(reward_data)
 	data["faction_rewards_data"] = faction_rewards_data
 
 	//simple ones

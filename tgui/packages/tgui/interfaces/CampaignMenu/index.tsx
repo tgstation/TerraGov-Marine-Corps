@@ -1,5 +1,6 @@
 import { useBackend, useLocalState } from '../../backend';
 import { Window } from '../../layouts';
+import { Modal, Tabs, Button, Stack, Section } from '../../components';
 import { CampaignOverview } from './CampaignOverview';
 import { CampaignMissions } from './CampaignMissions';
 import { CampaignAssets } from './CampaignAssets';
@@ -10,23 +11,24 @@ const TAB_ASSETS = 'Assets';
 
 const CampaignTabs = [TAB_OVERVIEW, TAB_MISSIONS, TAB_ASSETS];
 
-type MissionData = {
-  typepath: string;
+export type MissionData = {
+  typepath?: string;
   name: string;
 
   map_name: string;
-  starting_faction: string;
-  hostile_faction: string;
-  winning_faction: string;
-  outcome: string;
+  starting_faction?: string;
+  hostile_faction?: string;
+  winning_faction?: string;
+  outcome?: string;
 
   objective_description: string;
   mission_brief: string;
-  mission_rewards: string[];
+  mission_rewards: string;
 };
 
-type FactionReward = {
+export type FactionReward = {
   name: string;
+  type: string;
   desc: string;
   detailed_desc: string;
   uses_remaining: number;
@@ -43,21 +45,94 @@ export type CampaignData = {
   faction_rewards_data: FactionReward[];
   active_attrition_points: number;
   total_attrition_points: number;
-  faction_leader: string;
+  faction_leader?: string;
   victory_points: number;
   faction: string;
 };
 
 export const CampaignMenu = (props, context) => {
-  const { data } = useBackend<CampaignData>(context);
+  const { act, data } = useBackend<CampaignData>(context);
   const [selectedTab, setSelectedTab] = useLocalState(
     context,
     'selectedTab',
     TAB_OVERVIEW
   );
+
+  const [selectedAsset, setSelectedAsset] = useLocalState<FactionReward | null>(
+    context,
+    'selectedAsset',
+    null
+  );
+  const [selectedNewMission, setSelectedNewMission] =
+    useLocalState<MissionData | null>(context, 'selectedNewMission', null);
+
   return (
-    <Window theme={data.ui_theme}>
+    <Window
+      theme={data.ui_theme}
+      title={data.faction + ' Mission Control'}
+      width={650}
+      height={430}>
       <Window.Content>
+        {selectedAsset ? (
+          <Modal width="500px">
+            <Section
+              textAlign="center"
+              title={'Purchase ' + selectedAsset.name + '?'}>
+              <Stack justify="space-around">
+                <Stack.Item>
+                  <Button
+                    onClick={() =>
+                      act('activate_reward', {
+                        selected_reward: selectedAsset.type,
+                      })
+                    }
+                    icon={'check'}
+                    color="green">
+                    Yes
+                  </Button>
+                </Stack.Item>
+                <Stack.Item>
+                  <Button
+                    onClick={() => setSelectedAsset(null)}
+                    icon={'times'}
+                    color="red">
+                    No
+                  </Button>
+                </Stack.Item>
+              </Stack>
+            </Section>
+          </Modal>
+        ) : null}
+        {selectedNewMission ? (
+          <Modal width="500px">
+            <Section
+              textAlign="center"
+              title={'Select ' + selectedNewMission.name + '?'}>
+              <Stack justify="space-around">
+                <Stack.Item>
+                  <Button
+                    onClick={() =>
+                      act('set_next_mission', {
+                        new_mission: selectedNewMission.typepath,
+                      })
+                    }
+                    icon={'check'}
+                    color="green">
+                    Yes
+                  </Button>
+                </Stack.Item>
+                <Stack.Item>
+                  <Button
+                    onClick={() => setSelectedNewMission(null)}
+                    icon={'times'}
+                    color="red">
+                    No
+                  </Button>
+                </Stack.Item>
+              </Stack>
+            </Section>
+          </Modal>
+        ) : null}
         <Tabs fluid>
           {CampaignTabs.map((tabname) => {
             return (
@@ -90,5 +165,7 @@ const CampaignContent = (props, context) => {
       return <CampaignMissions />;
     case TAB_ASSETS:
       return <CampaignAssets />;
+    default:
+      return null;
   }
 };
