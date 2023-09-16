@@ -9,23 +9,24 @@
 	wound_type = "hivelord" //used to match appropriate wound overlays
 
 	// *** Melee Attacks *** //
-	melee_damage = 17
+	melee_damage = 20
 
 	// *** Speed *** //
-	speed = 0.4
+	speed = 0.1
 
 	// *** Plasma *** //
-	plasma_max = 1600
-	plasma_gain = 50
+	plasma_max = 2400
+	plasma_gain = 65
 	plasma_regen_limit = 0.5
 	plasma_icon_state = "hivelord_plasma"
 
 	// *** Health *** //
-	max_health = 300
+	max_health = 350
+
 
 	// *** Evolution *** //
-	evolution_threshold = 180
-	upgrade_threshold = TIER_TWO_YOUNG_THRESHOLD
+	evolution_threshold = 225
+	upgrade_threshold = TIER_TWO_THRESHOLD
 
 	deevolves_to = /mob/living/carbon/xenomorph/drone
 
@@ -38,14 +39,14 @@
 	caste_traits = null
 
 	// *** Defense *** //
-	soft_armor = list(MELEE = 15, BULLET = 15, LASER = 15, ENERGY = 15, BOMB = 0, BIO = 10, FIRE = 15, ACID = 10)
+	soft_armor = list(MELEE = 30, BULLET = 30, LASER = 30, ENERGY = 30, BOMB = 0, BIO = 20, FIRE = 30, ACID = 20)
 
 	// *** Ranged Attack *** //
 	spit_delay = 1.3 SECONDS
 	spit_types = list(/datum/ammo/xeno/sticky)
 
 	// *** Pheromones *** //
-	aura_strength = 2 //Hivelord's aura is not extremely strong, but better than Drones.
+	aura_strength = 3 //Hivelord's aura is not extremely strong, but better than Drones.
 
 	// *** Minimap Icon *** //
 	minimap_icon = "hivelord"
@@ -78,131 +79,14 @@
 		/datum/action/xeno_action/activable/recycle,
 	)
 
-/datum/xeno_caste/hivelord/young
-	upgrade_name = "Young"
-
-	upgrade = XENO_UPGRADE_ZERO
-
-/datum/xeno_caste/hivelord/mature
-	upgrade_name = "Mature"
-	caste_desc = "A builder of REALLY BIG hives. It looks a little more dangerous."
-	upgrade = XENO_UPGRADE_ONE
-
-	// *** Speed *** //
-	speed = 0.3
-
-	// *** Plasma *** //
-	plasma_max = 1800
-	plasma_gain = 60
-
-	// *** Health *** //
-	max_health = 325
-
-	// *** Evolution *** //
-	upgrade_threshold = TIER_TWO_MATURE_THRESHOLD
-
-	// *** Defense *** //
-	soft_armor = list(MELEE = 20, BULLET = 20, LASER = 20, ENERGY = 20, BOMB = 0, BIO = 15, FIRE = 20, ACID = 15)
-
-	// *** Ranged Attack *** //
-	spit_delay = 1.3 SECONDS
-	spit_types = list(/datum/ammo/xeno/sticky)
-
-	// *** Pheromones *** //
-	aura_strength = 2.5
-
-/datum/xeno_caste/hivelord/elder
-	upgrade_name = "Elder"
-	caste_desc = "A builder of REALLY BIG hives. It looks pretty strong."
-	upgrade = XENO_UPGRADE_TWO
-
-	// *** Melee Attacks *** //
-	melee_damage = 20
-
-	// *** Speed *** //
-	speed = 0.2
-
-	// *** Plasma *** //
-	plasma_max = 2000
-	plasma_gain = 63
-
-	// *** Health *** //
-	max_health = 340
-
-	// *** Evolution *** //
-	upgrade_threshold = TIER_TWO_ELDER_THRESHOLD
-
-	// *** Defense *** //
-	soft_armor = list(MELEE = 25, BULLET = 25, LASER = 25, ENERGY = 25, BOMB = 0, BIO = 18, FIRE = 25, ACID = 18)
-
-	// *** Ranged Attack *** //
-	spit_delay = 1.3 SECONDS
-	spit_types = list(/datum/ammo/xeno/sticky)
-
-	// *** Pheromones *** //
-	aura_strength = 2.8
-
-/datum/xeno_caste/hivelord/ancient
-	upgrade_name = "Ancient"
-	caste_desc = "An extreme construction machine. It seems to be building walls..."
-	ancient_message = "You are the builder of walls. Ensure that the marines are the ones who pay for them."
-	upgrade = XENO_UPGRADE_THREE
-
-	// *** Melee Attacks *** //
-	melee_damage = 20
-
-	// *** Speed *** //
-	speed = 0.1
-
-	// *** Plasma *** //
-	plasma_max = 2400
-	plasma_gain = 65
-
-	// *** Health *** //
-	max_health = 350
-
-	// *** Evolution *** //
-	upgrade_threshold = TIER_TWO_ANCIENT_THRESHOLD
-
-	// *** Defense *** //
-	soft_armor = list(MELEE = 30, BULLET = 30, LASER = 30, ENERGY = 30, BOMB = 0, BIO = 20, FIRE = 30, ACID = 20)
-
-	// *** Ranged Attack *** //
-	spit_delay = 1.3 SECONDS
-	spit_types = list(/datum/ammo/xeno/sticky)
-
-	// *** Pheromones *** //
-	aura_strength = 3
-
+/datum/xeno_caste/hivelord/normal
+	upgrade = XENO_UPGRADE_NORMAL
 
 /datum/xeno_caste/hivelord/primordial
 	upgrade_name = "Primordial"
 	caste_desc = "Ultimate builder of the hive. It seems twitchy and is constantly building something"
 	primordial_message = "We are the master architect of the hive. Let the world be covered in resin."
-	upgrade = XENO_UPGRADE_FOUR
-
-	// *** Melee Attacks *** //
-	melee_damage = 20
-
-	// *** Speed *** //
-	speed = 0.1
-
-	// *** Plasma *** //
-	plasma_max = 2400
-	plasma_gain = 65
-
-	// *** Health *** //
-	max_health = 350
-
-	// *** Defense *** //
-	soft_armor = list(MELEE = 30, BULLET = 30, LASER = 30, ENERGY = 30, BOMB = 0, BIO = 20, FIRE = 30, ACID = 20)
-
-	// *** Ranged Attack *** //
-	spit_delay = 1.3 SECONDS
-	spit_types = list(/datum/ammo/xeno/sticky)
-
-	// *** Pheromones *** //
-	aura_strength = 3
+	upgrade = XENO_UPGRADE_PRIMO
 
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,

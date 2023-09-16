@@ -457,6 +457,11 @@
 	coverage = 85 //has a shield
 	anchor_time = 1 SECONDS
 
+/obj/machinery/deployable/mounted/moveable/atgun/Destroy()
+	if(sponson)
+		QDEL_NULL(sponson)
+	return ..()
+
 /obj/item/storage/internal/ammo_rack
 	storage_slots = 10
 	max_storage_space = 40
@@ -468,8 +473,8 @@
 	sponson = new sponson(src)
 
 /obj/machinery/deployable/mounted/moveable/atgun/attackby(obj/item/I, mob/user, params)
-	var/obj/item/weapon/gun/standard_atgun/internal_gun = internal_item
-	if(user.interactee == src && (I.type in internal_gun.allowed_ammo_types))
+	var/obj/item/weapon/gun/standard_atgun/internal_gun = get_internal_item()
+	if(user.interactee == src && (I.type in internal_gun?.allowed_ammo_types))
 		balloon_alert(user, "Busy manning!")
 		return
 

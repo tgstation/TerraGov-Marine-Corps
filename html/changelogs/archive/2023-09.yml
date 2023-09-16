@@ -76,3 +76,12 @@
   - qol: The dropship fabricator has had it's items separated into more distinct categories.
   - code_imp: Repathed dropship/condor equipment, dropship/condor weapons, and condor
       ammo.
+2023-09-16:
+  Looking4bros:
+  - balance: More Deathsquad updating.
+  - balance: Energy sword (which is issued to SOM as well) is now strapable. (shield
+      is not issued to anyone else)
+  Pariah919:
+  - rscdel: surplus clothing
+  forestbbbbbbb:
+  - rscadd: Add a balloon alert for moving while buckled

@@ -1,0 +1,5 @@
+author: "ivanmixo"
+delete-after: True
+changes:
+  - bugfix: "Fixed tarping before eord making you invisible"
+  - refactor: "Made lockers not use signals where they aren't necessary. Should help with signals not unregistering properly in some cases"

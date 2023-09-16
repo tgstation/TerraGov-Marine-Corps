@@ -30,7 +30,7 @@
 		activation_action = new(src, src)
 	if(allow_reagents)
 		reagents = new /datum/reagents(MAX_IMPLANT_REAGENTS)
-		reagents.my_atom = src
+		reagents.my_atom = WEAKREF(src)
 	if(!allowed_limbs)
 		allowed_limbs = GLOB.human_body_parts
 
