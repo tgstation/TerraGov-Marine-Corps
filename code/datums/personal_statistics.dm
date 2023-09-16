@@ -398,22 +398,22 @@ The alternative is scattering them everywhere under their respective objects whi
 	return TRUE
 
 ///Tally up the corresponding weapon used by the pilot into their /datum/personal_statistics
-/obj/docking_port/mobile/marine_dropship/casplane/proc/record_cas_activity(obj/structure/dropship_equipment/weapon/weapon)
+/obj/docking_port/mobile/marine_dropship/casplane/proc/record_cas_activity(obj/structure/dropship_equipment/cas/weapon/weapon)
 	if(!chair.occupant.ckey)
 		return FALSE
 
 	var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[chair.occupant.ckey]
 	//Increment variable based on weapon type
 	switch(weapon.type)
-		if(/obj/structure/dropship_equipment/weapon/heavygun)
+		if(/obj/structure/dropship_equipment/cas/weapon/heavygun)
 			personal_statistics.cas_cannon_shots++
-		if(/obj/structure/dropship_equipment/weapon/heavygun/radial_cas)
+		if(/obj/structure/dropship_equipment/cas/weapon/heavygun/radial_cas)
 			personal_statistics.cas_cannon_shots++
-		if(/obj/structure/dropship_equipment/weapon/laser_beam_gun)
+		if(/obj/structure/dropship_equipment/cas/weapon/laser_beam_gun)
 			personal_statistics.cas_laser_shots++
-		if(/obj/structure/dropship_equipment/weapon/minirocket_pod)
+		if(/obj/structure/dropship_equipment/cas/weapon/minirocket_pod)
 			personal_statistics.cas_minirockets_fired++
-		if(/obj/structure/dropship_equipment/weapon/rocket_pod)
+		if(/obj/structure/dropship_equipment/cas/weapon/rocket_pod)
 			personal_statistics.cas_rockets_fired++
 	return TRUE
 
