@@ -66,10 +66,10 @@
 		paper_asset.send(user)
 		if(!(isobserver(user) || ishuman(user) || issilicon(user)))
 			// Show scrambled paper if they aren't a ghost, human, or silicone.
-			usr << browse("<HTML><HEAD><TITLE>[name]</TITLE></HEAD><BODY>[stars(info)][stamps]</BODY></HTML>", "window=[name]")
+			usr << browse("<html><meta charset='UTF-8'><HEAD><TITLE>[name]</TITLE></HEAD><BODY>[stars(info)][stamps]</BODY></HTML>", "window=[name]")
 			onclose(user, "[name]")
 		else
-			user << browse("<HTML><HEAD><TITLE>[name]</TITLE></HEAD><BODY>[info][stamps]</BODY></HTML>", "window=[name]")
+			user << browse("<html><meta charset='UTF-8'><HEAD><TITLE>[name]</TITLE></HEAD><BODY>[info][stamps]</BODY></HTML>", "window=[name]")
 			onclose(user, "[name]")
 	else
 		. += span_notice("It is too far away to read.")
@@ -93,11 +93,11 @@
 	else //cyborg or AI not seeing through a camera
 		dist = get_dist(src, user)
 	if(dist < 2)
-		usr << browse("<HTML><HEAD><TITLE>[name]</TITLE></HEAD><BODY>[info][stamps]</BODY></HTML>", "window=[name]")
+		usr << browse("<html><meta charset='UTF-8'><HEAD><TITLE>[name]</TITLE></HEAD><BODY>[info][stamps]</BODY></HTML>", "window=[name]")
 		onclose(usr, "[name]")
 	else
 		//Show scrambled paper
-		usr << browse("<HTML><HEAD><TITLE>[name]</TITLE></HEAD><BODY>[stars(info)][stamps]</BODY></HTML>", "window=[name]")
+		usr << browse("<html><meta charset='UTF-8'><HEAD><TITLE>[name]</TITLE></HEAD><BODY>[stars(info)][stamps]</BODY></HTML>", "window=[name]")
 		onclose(usr, "[name]")
 
 
@@ -194,7 +194,7 @@
 
 
 /obj/item/paper/proc/openhelp(mob/user as mob)
-	user << browse({"<HTML><HEAD><TITLE>Pen Help</TITLE></HEAD>
+	user << browse({"<html><meta charset='UTF-8'><HEAD><TITLE>Pen Help</TITLE></HEAD>
 	<BODY>
 		<b><center>Crayon&Pen commands</center></b><br>
 		<br>
@@ -273,7 +273,7 @@
 			info += t // Oh, he wants to edit to the end of the file, let him.
 			updateinfolinks()
 
-		usr << browse("<HTML><HEAD><TITLE>[name]</TITLE></HEAD><BODY>[info_links][stamps]</BODY></HTML>", "window=[name]") // Update the window
+		usr << browse("<html><meta charset='UTF-8'><HEAD><TITLE>[name]</TITLE></HEAD><BODY>[info_links][stamps]</BODY></HTML>", "window=[name]") // Update the window
 
 		playsound(loc, pick('sound/items/write1.ogg','sound/items/write2.ogg'), 15, 1)
 
@@ -304,7 +304,7 @@
 		user.put_in_hands(B)
 
 	else if(istype(I, /obj/item/tool/pen) || istype(I, /obj/item/toy/crayon))
-		user << browse("<HTML><HEAD><TITLE>[name]</TITLE></HEAD><BODY>[info_links][stamps]</BODY></HTML>", "window=[name]")
+		user << browse("<html><meta charset='UTF-8'><HEAD><TITLE>[name]</TITLE></HEAD><BODY>[info_links][stamps]</BODY></HTML>", "window=[name]")
 
 	else if(istype(I, /obj/item/tool/stamp))
 		if((!in_range(src, user) && loc != user && !(istype(loc, /obj/item/clipboard)) && loc.loc != user && user.get_active_held_item() != I))

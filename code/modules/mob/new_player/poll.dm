@@ -250,7 +250,7 @@
 	//otherwise just shuffle the options
 	else
 		prepared_options = shuffle(poll.options)
-	var/list/output = list({"<html><head><meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	var/list/output = list({"<html><meta charset='UTF-8'><head><meta http-equiv="X-UA-Compatible" content="IE=edge" />
 	<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>
 	<script src="[SSassets.transport.get_asset_url("jquery.min.js")]"></script>
 	<script src="[SSassets.transport.get_asset_url("jquery-ui.custom-core-widgit-mouse-sortable-min.js")]"></script>

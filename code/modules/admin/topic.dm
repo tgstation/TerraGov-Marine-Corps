@@ -858,7 +858,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		if(!F)
 			return
 
-		var/dat = "<html><head><title>Fax Message: [F.title]</title></head>"
+		var/dat = "<html><meta charset='UTF-8'><head><title>Fax Message: [F.title]</title></head>"
 		dat += "<body>[F.message]</body></html>"
 
 		usr << browse(dat, "window=fax")
