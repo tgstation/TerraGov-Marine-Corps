@@ -575,7 +575,7 @@
 	S.start()
 
 /obj/structure/ship_ammo/cas/minirocket/illumination
-	name = "illumination rocket-launched flare stack"
+	name = "illumination rocket flare stack"
 	desc = "A pack of laser guided mini rockets, each loaded with a payload of white-star illuminant and a parachute, while extremely ineffective at damaging the enemy, it is very effective at lighting the battlefield so marines can damage the enemy. Moving this will require some sort of lifter."
 	icon_state = "minirocket_ilm"
 	point_cost = 25 // Not a real rocket, so its cheap
