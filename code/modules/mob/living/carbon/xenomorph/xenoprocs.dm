@@ -250,10 +250,8 @@
 /mob/living/carbon/xenomorph/throw_impact(atom/hit_atom, speed)
 	set waitfor = FALSE
 
-	// TODO: remove charge_type check
-	if(!xeno_caste.charge_type || stat || (!throwing && usedPounce)) //No charge type, unconscious or dead, or not throwing but used pounce.
-		..() //Do the parent instead.
-		return FALSE
+	if(stat || !usedPounce)
+		return ..()
 
 	if(isobj(hit_atom)) //Deal with smacking into dense objects. This overwrites normal throw code.
 		var/obj/O = hit_atom
@@ -267,7 +265,7 @@
 			return FALSE
 		stop_throw() //Resert throwing since something was hit.
 		return TRUE
-	stop_throw() //Resert throwing since something was hit.
+
 	return ..() //Do the parent otherwise, for turfs.
 
 /mob/living/carbon/xenomorph/proc/toggle_nightvision(new_lighting_alpha)
