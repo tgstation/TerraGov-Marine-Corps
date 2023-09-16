@@ -64,3 +64,24 @@
 2023-09-13:
   forestbbbbbbb:
   - bugfix: Fix some space turfs
+2023-09-15:
+  AzonStarfall:
+  - bugfix: Changes the prefix of the SR-153 to SG-153.
+  Barnet2:
+  - bugfix: PO timelock should work now.
+  Blundir:
+  - bugfix: fixed helmet items not being visible when you insert them
+  - imageadd: added a lot new sprites for helmet items + resprited some old ones
+  Wisemonster:
+  - qol: The dropship fabricator has had it's items separated into more distinct categories.
+  - code_imp: Repathed dropship/condor equipment, dropship/condor weapons, and condor
+      ammo.
+2023-09-16:
+  Looking4bros:
+  - balance: More Deathsquad updating.
+  - balance: Energy sword (which is issued to SOM as well) is now strapable. (shield
+      is not issued to anyone else)
+  Pariah919:
+  - rscdel: surplus clothing
+  forestbbbbbbb:
+  - rscadd: Add a balloon alert for moving while buckled
