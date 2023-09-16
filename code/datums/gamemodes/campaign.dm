@@ -338,7 +338,7 @@
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(ui)
 		return
-	ui = new(user, src, "CampaignUI") //whats the name?
+	ui = new(user, src, "CampaignMenu")
 	ui.open()
 
 /obj/machinery/tgui_test/ui_state(mob/user)
@@ -378,13 +378,13 @@
 	var/list/potential_missions_data = list()
 	for(var/datum/campaign_mission/potential_mission AS in team.potential_missions)
 		var/list/mission_data = list() //each relevant bit of info regarding the mission is added to the list. Many more to come
-		mission_data["typepath"] = potential_mission.type
+		mission_data["typepath"] = "[potential_mission.type]"
 		mission_data["name"] = potential_mission.name
 		mission_data["map_name"] = potential_mission.map_name
 		mission_data["objective_description"] = potential_mission.objective_description["starting_faction"]
 		mission_data["mission_brief"] = potential_mission.mission_brief["starting_faction"]
 		mission_data["mission_rewards"] = potential_mission.additional_rewards["starting_faction"]
-		potential_missions_data += list(mission_data)
+		potential_missions_data += list(list(mission_data))
 	data["potential_missions"] = potential_missions_data
 
 	var/list/finished_missions_data = list()
@@ -399,7 +399,7 @@
 		mission_data["objective_description"] = finished_mission.objective_description[faction == finished_mission.starting_faction ? "starting_faction" : "hostile_faction"]
 		mission_data["mission_brief"] = finished_mission.mission_brief[faction == finished_mission.starting_faction ? "starting_faction" : "hostile_faction"]
 		mission_data["mission_rewards"] = finished_mission.additional_rewards[faction == finished_mission.starting_faction ? "starting_faction" : "hostile_faction"]
-		finished_missions_data += list(mission_data)
+		finished_missions_data += list(list(mission_data))
 	data["finished_missions"] = finished_missions_data
 
 	var/list/faction_rewards_data = list()
@@ -410,7 +410,7 @@
 		reward_data["detailed_desc"] = reward.detailed_desc
 		reward_data["uses_remaining"] = reward.uses
 		reward_data["uses_original"] = initial(reward.uses)
-		faction_rewards_data += list(reward_data)
+		faction_rewards_data += list(list(reward_data))
 	data["faction_rewards_data"] = faction_rewards_data
 
 	//simple ones
@@ -438,13 +438,29 @@
 
 	switch(action)
 		if("set_attrition_points")
-			team.total_attrition_points -= params["attrition_points"]
-			team.active_attrition_points = params["attrition_points"] //unused points are lost
+			var/val_to_set = params["attrition_points"]
+			if(!isnum(val_to_set))
+				return
+			team.total_attrition_points -= val_to_set
+			team.active_attrition_points = val_to_set //unused points are lost
+			return TRUE
 
 		if("set_next_mission")
-			var/datum/campaign_mission/choice = team.potential_missions[text2path(params["new_mission"])] //locate or something maybe?
+			var/new_mission = text2path(params["new_mission"])
+			if(!new_mission)
+				return
+			if(!potential_missions[new_mission])
+				return
+			var/datum/campaign_mission/choice = team.potential_missions[new_mission] //locate or something maybe?
 			current_mode.load_new_mission(choice)
+			return TRUE
 
 		if("activate_reward")
-			var/datum/campaign_reward/choice = team.faction_rewards[text2path(params["selected_reward"])] //locate or something maybe?
+			var/new_mission = text2path(params["selected_reward"])
+			if(!selected_reward)
+				return
+			if(!faction_rewards[selected_reward])
+				return
+			var/datum/campaign_reward/choice = team.faction_rewards[selected_reward] //locate or something maybe?
 			choice.activated_effect()
+			return TRUE
