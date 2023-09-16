@@ -1,5 +1,5 @@
 import { useBackend } from '../backend';
-import { Box, Button, ProgressBar, NoticeBox, Stack } from '../components';
+import { Button, ProgressBar, NoticeBox, Stack } from '../components';
 import { KEY_DOWN, KEY_ENTER, KEY_LEFT, KEY_RIGHT, KEY_SPACE, KEY_UP, KEY_W, KEY_D, KEY_S, KEY_A, KEY_1, KEY_2, KEY_3, KEY_4, KEY_5, KEY_6 } from '../../common/keycodes';
 import { Window } from '../layouts';
 
