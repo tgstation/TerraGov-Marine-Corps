@@ -19,28 +19,22 @@
 		MISSION_OUTCOME_MAJOR_LOSS = list(5, 20),
 	)
 
-	mission_brief = list(
-		"starting_faction" = "A TGMC ASAT battery has been detected in this location. It forms part if their space defense grid across the planet and so is a valuable installation to them. <br>\
+	starting_faction_mission_brief = "A TGMC ASAT battery has been detected in this location. It forms part if their space defense grid across the planet and so is a valuable installation to them. <br>\
 		Although the destruction of this site is unlikely to weaken their space defenses appreciably, \
 		the capture of these weapons would provide us with a unique opportunity to bypass parts of their own ship defenses. <br>\
-		Capture as many of the weapons as possible so we can put them to proper use.",
-		"hostile_faction" = "SOM forces are moving towards one our our ASAT installations in this location. \
+		Capture as many of the weapons as possible so we can put them to proper use."
+	hostile_faction_mission_brief = "SOM forces are moving towards one our our ASAT installations in this location. \
 		The loss of this installation would weaken our space defense grid which currently guarantees our orbital superiority. <br>\
-		Protect the ASAT weapons at all costs. Do not allow them to be destroyed or to fall into enemy hands.",
-	)
+		Protect the ASAT weapons at all costs. Do not allow them to be destroyed or to fall into enemy hands."
+	starting_faction_additional_rewards = "Additional ICC support, ability to counteract TGMC drop pod usage"
+	hostile_faction_additional_rewards = "Preserve the ability to use drop pods uncontested"
 
-	additional_rewards = list(
-		"starting_faction" = "Additional ICC support, ability to counteract TGMC drop pod usage",
-		"hostile_faction" = "Preserve the ability to use drop pods uncontested",
-	)
 	min_capture_amount = 3
 
 
 /datum/campaign_mission/capture_mission/asat/load_objective_description()
-	objective_description = list(
-		"starting_faction" = "Major Victory:Capture all [objectives_total] ASAT systems.[min_capture_amount ? " Minor Victory: Capture at least [min_capture_amount] ASAT systems." : ""]",
-		"hostile_faction" = "Major Victory:Prevent the capture of all [objectives_total] ASAT systems.[min_capture_amount ? " Minor Victory: Prevent the capture of atleast [min_capture_amount] ASAT systems." : ""]",
-	)
+	starting_faction_objective_description = "Major Victory:Capture all [objectives_total] ASAT systems.[min_capture_amount ? " Minor Victory: Capture at least [min_capture_amount] ASAT systems." : ""]"
+	hostile_faction_objective_description = "Major Victory:Prevent the capture of all [objectives_total] ASAT systems.[min_capture_amount ? " Minor Victory: Prevent the capture of atleast [min_capture_amount] ASAT systems." : ""]"
 
 /datum/campaign_mission/capture_mission/asat/check_mission_progress()
 	if(outcome)

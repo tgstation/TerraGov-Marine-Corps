@@ -4,10 +4,8 @@
 	map_name = "Orion Outpost"
 	//map_file = '_maps/map_files/Orion_Military_Outpost/orionoutpost.dmm' //testing new map
 	map_file = '_maps/map_files/Campaign maps/jungle_test/jungle_outpost.dmm'
-	objective_description = list(
-		"starting_faction" = "Major Victory: Wipe out all hostiles in the area of operation. Minor Victory: Eliminate more hostiles than you lose.",
-		"hostile_faction" = "Major Victory: Wipe out all hostiles in the area of operation. Minor Victory: Eliminate more hostiles than you lose.",
-	)
+	starting_faction_objective_description = "Major Victory: Wipe out all hostiles in the area of operation. Minor Victory: Eliminate more hostiles than you lose."
+	hostile_faction_objective_description = "Major Victory: Wipe out all hostiles in the area of operation. Minor Victory: Eliminate more hostiles than you lose."
 	max_game_time = 20 MINUTES
 	victory_point_rewards = list(
 		MISSION_OUTCOME_MAJOR_VICTORY = list(3, 0),
@@ -24,20 +22,15 @@
 		MISSION_OUTCOME_MAJOR_LOSS = list(5, 20),
 	)
 
-	mission_brief = list(
-		"starting_faction" = "Hostile forces have been attempting to expand the territory under their control in this area. <br>\
+	starting_faction_mission_brief = "Hostile forces have been attempting to expand the territory under their control in this area. <br>\
 		Although this territory is of limited direct strategic value, \
 		to prevent them from establishing a permanent presence in the area command has ordered your battalion to execute force recon patrols to locate and eliminate any hostile presence. <br>\
-		Eliminate all hostiles you come across while preserving your own forces. Good hunting.",
-		"hostile_faction" = "Intelligence indicates that hostile forces are massing for a coordinated push to dislodge us from territory where we are aiming to establish a permanent presence. <br>\
+		Eliminate all hostiles you come across while preserving your own forces. Good hunting."
+	hostile_faction_mission_brief = "Intelligence indicates that hostile forces are massing for a coordinated push to dislodge us from territory where we are aiming to establish a permanent presence. <br>\
 		Your battalion has been issued orders to regroup and counter attack the enemy push before they can make any progress, and kill their ambitions in this region. <br>\
-		Eliminate all hostiles you come across while preserving your own forces. Good hunting.",
-	)
-
-	additional_rewards = list(
-		"starting_faction" = "If the enemy force is wiped out entirely, additional supplies can be diverted to your battalion.",
-		"hostile_faction" = "If the enemy force is wiped out entirely, additional supplies can be diverted to your battalion.",
-	)
+		Eliminate all hostiles you come across while preserving your own forces. Good hunting."
+	starting_faction_additional_rewards = "If the enemy force is wiped out entirely, additional supplies can be diverted to your battalion."
+	hostile_faction_additional_rewards = "If the enemy force is wiped out entirely, additional supplies can be diverted to your battalion."
 
 /datum/campaign_mission/tdm/play_start_intro()
 	intro_message = list(

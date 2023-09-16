@@ -24,16 +24,18 @@
 	var/outcome
 	///The current gamemode. Var as its referred to often
 	var/datum/game_mode/hvh/campaign/mode
-	///The victory conditions for this mission, for display purposes
-	var/list/objective_description = list(
-		"starting_faction" = "Loading mission objectives",
-		"hostile_faction" = "Loading mission objectives",
-	)
-	///Detailed mission description
-	var/list/mission_brief = list(
-		"starting_faction" = "starting faction mission brief here",
-		"hostile_faction" = "hostile faction mission brief here",
-	)
+	///The victory conditions for this mission for the starting faction, for display purposes
+	var/starting_faction_objective_description = "Loading mission objectives"
+	///The victory conditions for this mission for the hostile faction, for display purposes
+	var/hostile_faction_objective_description = "Loading mission objectives"
+	///Detailed mission description for the starting faction
+	var/starting_faction_mission_brief = "starting faction mission brief here"
+	///Detailed mission description for the hostile faction
+	var/hostile_faction_mission_brief = "hostile faction mission brief here"
+	///Any additional rewards for the starting faction, for display purposes
+	var/starting_faction_additional_rewards = "starting faction mission rewards here"
+	///Any additional rewards for the hostile faction, for display purposes
+	var/hostile_faction_additional_rewards = "hostile faction mission rewards here"
 	///Victory point rewards for the mission type
 	var/list/victory_point_rewards = list(
 		MISSION_OUTCOME_MAJOR_VICTORY = list(0, 0),
@@ -49,11 +51,6 @@
 		MISSION_OUTCOME_DRAW = list(0, 0),
 		MISSION_OUTCOME_MINOR_LOSS = list(0, 0),
 		MISSION_OUTCOME_MAJOR_LOSS = list(0, 0),
-	)
-	///Any additional reward flags, for display purposes
-	var/additional_rewards = list(
-		"starting_faction" = "starting faction mission rewards here",
-		"hostile_faction" = "hostile faction mission rewards here",
 	)
 	/// Timer used to calculate how long till mission ends
 	var/game_timer

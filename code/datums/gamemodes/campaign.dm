@@ -124,12 +124,12 @@
 		items += "Mission time remaining: [current_mission.mission_end_countdown()]"
 
 	if(source.faction == current_mission.starting_faction)
-		items += "[current_mission.starting_faction] mission objectives: [current_mission.objective_description["starting_faction"]]"
+		items += "[current_mission.starting_faction] mission objectives: [current_mission.starting_faction_objective_description]"
 	else if(source.faction == current_mission.hostile_faction)
-		items += "[current_mission.hostile_faction] mission objectives: [current_mission.objective_description["hostile_faction"]]"
+		items += "[current_mission.hostile_faction] mission objectives: [current_mission.hostile_faction_objective_description]"
 	else if(source.faction == FACTION_NEUTRAL)
-		items += "[current_mission.starting_faction] Mission objectives:> [current_mission.objective_description["starting_faction"]]"
-		items += "[current_mission.hostile_faction] Mission objectives: [current_mission.objective_description["hostile_faction"]]"
+		items += "[current_mission.starting_faction] Mission objectives:> [current_mission.starting_faction_objective_description]"
+		items += "[current_mission.hostile_faction] Mission objectives: [current_mission.hostile_faction_objective_description]"
 
 ///sets up the newly selected mission
 /datum/game_mode/hvh/campaign/proc/load_new_mission(datum/campaign_mission/new_mission)
@@ -370,9 +370,9 @@
 	current_mission_data["hostile_faction"] = current_mission.hostile_faction
 	current_mission_data["winning_faction"] = current_mission.winning_faction
 	current_mission_data["outcome"] = current_mission.outcome
-	current_mission_data["objective_description"] = current_mission.objective_description[faction == current_mission.starting_faction ? "starting_faction" : "hostile_faction"]
-	current_mission_data["mission_brief"] = current_mission.mission_brief[faction == current_mission.starting_faction ? "starting_faction" : "hostile_faction"]
-	current_mission_data["mission_rewards"] = current_mission.additional_rewards[faction == current_mission.starting_faction ? "starting_faction" : "hostile_faction"]
+	current_mission_data["objective_description"] = faction == current_mission.starting_faction ? current_mission.starting_faction_objective_description : current_mission.hostile_faction_objective_description
+	current_mission_data["mission_brief"] = faction == current_mission.starting_faction ? current_mission.starting_faction_mission_brief : current_mission.hostile_faction_mission_brief
+	current_mission_data["mission_rewards"] = faction == current_mission.starting_faction ? current_mission.starting_faction_additional_rewards : current_mission.hostile_faction_additional_rewards
 	data["current_mission"] = current_mission_data
 
 	var/list/potential_missions_data = list()
@@ -381,9 +381,9 @@
 		mission_data["typepath"] = "[potential_mission.type]"
 		mission_data["name"] = potential_mission.name
 		mission_data["map_name"] = potential_mission.map_name
-		mission_data["objective_description"] = potential_mission.objective_description["starting_faction"]
-		mission_data["mission_brief"] = potential_mission.mission_brief["starting_faction"]
-		mission_data["mission_rewards"] = potential_mission.additional_rewards["starting_faction"]
+		mission_data["objective_description"] = potential_mission.starting_faction_objective_description
+		mission_data["mission_brief"] = potential_mission.starting_faction_mission_brief
+		mission_data["mission_rewards"] = potential_mission.starting_faction_additional_rewards
 		potential_missions_data += list(list(mission_data))
 	data["potential_missions"] = potential_missions_data
 
@@ -396,9 +396,9 @@
 		mission_data["hostile_faction"] = finished_mission.hostile_faction
 		mission_data["winning_faction"] = finished_mission.winning_faction
 		mission_data["outcome"] = finished_mission.outcome
-		mission_data["objective_description"] = finished_mission.objective_description[faction == finished_mission.starting_faction ? "starting_faction" : "hostile_faction"]
-		mission_data["mission_brief"] = finished_mission.mission_brief[faction == finished_mission.starting_faction ? "starting_faction" : "hostile_faction"]
-		mission_data["mission_rewards"] = finished_mission.additional_rewards[faction == finished_mission.starting_faction ? "starting_faction" : "hostile_faction"]
+		mission_data["objective_description"] = faction == finished_mission.starting_faction ? finished_mission.starting_faction_objective_description : finished_mission.hostile_faction_objective_description
+		mission_data["mission_brief"] = faction == finished_mission.starting_faction ? finished_mission.starting_faction_mission_brief : finished_mission.hostile_faction_mission_brief
+		mission_data["mission_rewards"] = faction == finished_mission.starting_faction ? finished_mission.starting_faction_additional_rewards : finished_mission.hostile_faction_additional_rewards
 		finished_missions_data += list(list(mission_data))
 	data["finished_missions"] = finished_missions_data
 
@@ -449,7 +449,7 @@
 			var/new_mission = text2path(params["new_mission"])
 			if(!new_mission)
 				return
-			if(!potential_missions[new_mission])
+			if(!team.potential_missions[new_mission])
 				return
 			var/datum/campaign_mission/choice = team.potential_missions[new_mission] //locate or something maybe?
 			current_mode.load_new_mission(choice)
@@ -459,7 +459,7 @@
 			var/selected_reward = text2path(params["selected_reward"])
 			if(!selected_reward)
 				return
-			if(!faction_rewards[selected_reward])
+			if(!team.faction_rewards[selected_reward])
 				return
 			var/datum/campaign_reward/choice = team.faction_rewards[selected_reward] //locate or something maybe?
 			choice.activated_effect()

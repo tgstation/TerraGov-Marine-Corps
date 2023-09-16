@@ -20,18 +20,13 @@
 		MISSION_OUTCOME_MAJOR_LOSS = list(5, 20),
 	)
 
-	mission_brief = list(
-		"starting_faction" = "Hostile forces have been building a stock pile of valuable phoron in this location. <br>\
+	starting_faction_mission_brief = "Hostile forces have been building a stock pile of valuable phoron in this location. <br>\
 		Before they have the chance to ship it out, your forces are being sent to intercept and liberate these supplies to hamper the enemy's war effort. <br>\
-		Hostile forces will likely be aiming to evacuate as much phoron out of the ao as well. Get to the phoron first and fulton out as much as you can.",
-		"hostile_faction" = "Enemy forces are moving to steal a stockpile of valuable phoron. <br>\
-		Send in your forces to fulton out the phoron as quickly as possible, before they can get to it first.",
-	)
-
-	additional_rewards = list(
-		"starting_faction" = "Additional supplies for every phoron crate captured",
-		"hostile_faction" = "Additional supplies for every phoron crate captured",
-	)
+		Hostile forces will likely be aiming to evacuate as much phoron out of the ao as well. Get to the phoron first and fulton out as much as you can."
+	hostile_faction_mission_brief = "Enemy forces are moving to steal a stockpile of valuable phoron. <br>\
+		Send in your forces to fulton out the phoron as quickly as possible, before they can get to it first."
+	starting_faction_additional_rewards = "Additional supplies for every phoron crate captured"
+	hostile_faction_additional_rewards = "Additional supplies for every phoron crate captured"
 	///Total number of objectives at round start
 	var/objectives_total = 3
 	///number of targets to capture for a minor victory
@@ -53,10 +48,8 @@
 		CRASH("Destroy mission loaded with no objectives to extract!")
 
 /datum/campaign_mission/capture_mission/load_objective_description()
-	objective_description = list(
-		"starting_faction" = "Major Victory:Capture all [objectives_total] targets.[min_capture_amount ? " Minor Victory: Capture at least [min_capture_amount] targets." : ""]",
-		"hostile_faction" = "Major Victory:Capture all [objectives_total] targets.[min_capture_amount ? " Minor Victory: Capture at least [min_capture_amount] targets." : ""]",
-	)
+	starting_faction_objective_description = "Major Victory:Capture all [objectives_total] targets.[min_capture_amount ? " Minor Victory: Capture at least [min_capture_amount] targets." : ""]"
+	hostile_faction_objective_description = "Major Victory:Capture all [objectives_total] targets.[min_capture_amount ? " Minor Victory: Capture at least [min_capture_amount] targets." : ""]"
 
 /datum/campaign_mission/capture_mission/end_mission()
 	UnregisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_CAPTURE_OBJECTIVE_CAPTURED)

@@ -3,10 +3,8 @@
 	name = "Mech war"
 	map_name = "Orion Outpost"
 	map_file = '_maps/map_files/Campaign maps/jungle_test/jungle_outpost.dmm'
-	objective_description = list(
-		"starting_faction" = "Major Victory: Wipe out all hostiles in the area of operation. Minor Victory: Eliminate more hostiles than you lose.",
-		"hostile_faction" = "Major Victory: Wipe out all hostiles in the area of operation. Minor Victory: Eliminate more hostiles than you lose.",
-	)
+	starting_faction_objective_description = null
+	hostile_faction_objective_description = null
 	max_game_time = 20 MINUTES
 	victory_point_rewards = list(
 		MISSION_OUTCOME_MAJOR_VICTORY = list(3, 0),
@@ -23,10 +21,8 @@
 		MISSION_OUTCOME_MAJOR_LOSS = list(5, 20),
 	)
 
-	additional_rewards = list(
-		"starting_faction" = "Mechanised units will be allocated to your battalion.",
-		"hostile_faction" = "Mechanised units will be allocated to your battalion.",
-	)
+	starting_faction_additional_rewards = "Mechanised units will be allocated to your battalion."
+	hostile_faction_additional_rewards = "Mechanised units will be allocated to your battalion."
 
 /datum/campaign_mission/tdm/mech_wars/play_start_intro()
 	intro_message = list(
@@ -37,14 +33,12 @@
 
 /datum/campaign_mission/tdm/mech_wars/load_mission_brief()
 	. = ..()
-	mission_brief = list(
-		"starting_faction" = "[hostile_faction] mechanised forces have been identified staging in this region, in advance of a suspected strike against our lines. <br>\
+	starting_faction_mission_brief = "[hostile_faction] mechanised forces have been identified staging in this region, in advance of a suspected strike against our lines. <br>\
 		A heavy mechanised force of our own has been authorised for deployment to crush their forces before they can strike. \
-		Unleash the full power of our mechanised units and crush all enemy forces in the ao while preserving your own forces. Good hunting",
-		"hostile_faction" = "A large [starting_faction] mechanised force has been detected enroute towards one of our staging points in this region. <br>\
+		Unleash the full power of our mechanised units and crush all enemy forces in the ao while preserving your own forces. Good hunting"
+	hostile_faction_mission_brief = "A large [starting_faction] mechanised force has been detected enroute towards one of our staging points in this region. <br>\
 		Our mechanised forces here are vital to our future plans. The enemy assault has given us a unique opportunity to destroy a significant portion of their mechanised forces with a swift counter attack. <br>\
-		Eliminate all hostiles you come across while preserving your own forces. Good hunting.",
-	)
+		Eliminate all hostiles you come across while preserving your own forces. Good hunting."
 
 /datum/campaign_mission/tdm/mech_wars/load_mission()
 	. = ..()
