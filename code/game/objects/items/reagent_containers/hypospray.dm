@@ -223,19 +223,19 @@
 		return
 
 	var/dat = {"
-	<B><A href='?src=\ref[src];autolabeler=1'>Activate Autolabeler</A></B><BR>
+	<B><A href='?src=[text_ref(src)];autolabeler=1'>Activate Autolabeler</A></B><BR>
 	<B>Current Label:</B> [label]<BR>
 	<BR>
-	<B><A href='?src=\ref[src];overlayer=1'>Activate Tagger</A></B><BR>
+	<B><A href='?src=[text_ref(src)];overlayer=1'>Activate Tagger</A></B><BR>
 	<B>Current Tag:</B> [description_overlay]<BR>
 	<BR>
-	<B><A href='byond://?src=\ref[src];inject_mode=1'>Toggle Mode (Toggles between injecting and draining):</B><BR>
+	<B><A href='byond://?src=[text_ref(src)];inject_mode=1'>Toggle Mode (Toggles between injecting and draining):</B><BR>
 	<B>Current Mode:</B> [inject_mode ? "Inject" : "Draw"]</A><BR>
 	<BR>
-	<B><A href='byond://?src=\ref[src];set_transfer=1'>Set Transfer Amount (Change amount drained/injected per use):</A></B><BR>
+	<B><A href='byond://?src=[text_ref(src)];set_transfer=1'>Set Transfer Amount (Change amount drained/injected per use):</A></B><BR>
 	<B>Current Transfer Amount [amount_per_transfer_from_this]</B><BR>
 	<BR>
-	<B><A href='byond://?src=\ref[src];flush=1'>Flush Hypospray (Empties the hypospray of all contents):</A></B><BR>
+	<B><A href='byond://?src=[text_ref(src)];flush=1'>Flush Hypospray (Empties the hypospray of all contents):</A></B><BR>
 	<BR>"}
 
 	var/datum/browser/popup = new(user, "hypospray")
@@ -248,22 +248,22 @@
 	if(.)
 		return
 	var/dat = {"
-	<B><A href='?src=\ref[src];autolabeler=1'>Activate Autolabeler</A></B><BR>
+	<B><A href='?src=[text_ref(src)];autolabeler=1'>Activate Autolabeler</A></B><BR>
 	<B>Current Label:</B> [label]<BR>
 	<BR>
-	<B><A href='?src=\ref[src];overlayer=1'>Activate Tagger</A></B><BR>
+	<B><A href='?src=[text_ref(src)];overlayer=1'>Activate Tagger</A></B><BR>
 	<B>Current Tag:</B> [description_overlay]<BR>
 	<BR>
-	<B><A href='byond://?src=\ref[src];inject_mode=1'>Toggle Mode:</A></B><BR>
+	<B><A href='byond://?src=[text_ref(src)];inject_mode=1'>Toggle Mode:</A></B><BR>
 	<B>Current Mode:</B> [inject_mode ? "Inject" : "Draw"]<BR>
 	<BR>
-	<B><A href='byond://?src=\ref[src];set_transfer=1'>Set Transfer Amount:</A></B><BR>
+	<B><A href='byond://?src=[text_ref(src)];set_transfer=1'>Set Transfer Amount:</A></B><BR>
 	<B>Current Transfer Amount:</B> [amount_per_transfer_from_this]<BR>
 	<BR>
-	<B><A href='byond://?src=\ref[src];displayreagents=1'>Display Reagent Content:</A></B><BR>
+	<B><A href='byond://?src=[text_ref(src)];displayreagents=1'>Display Reagent Content:</A></B><BR>
 	<BR>
 	<BR>
-	<B><A href='byond://?src=\ref[src];flush=1'>Flush Hypospray (Empties the hypospray of all contents):</A></B><BR>
+	<B><A href='byond://?src=[text_ref(src)];flush=1'>Flush Hypospray (Empties the hypospray of all contents):</A></B><BR>
 	<BR>"}
 
 	var/datum/browser/popup = new(user, "hypospray")

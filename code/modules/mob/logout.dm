@@ -11,9 +11,5 @@
 	log_message("[key_name(src)] has left mob [src]([type]).", LOG_OOC)
 	if(s_active)
 		s_active.hide_from(src)
-	if(client)
-		for(var/foo in client.player_details.post_logout_callbacks)
-			var/datum/callback/CB = foo
-			CB.Invoke()
-		clear_important_client_contents(client)
+	become_uncliented()
 	return ..()

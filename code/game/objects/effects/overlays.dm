@@ -305,8 +305,9 @@
 
 /obj/effect/overlay/temp/gib_animation/Initialize(mapload, effect_duration, mob/source_mob, gib_icon)
 	. = ..()
-	pixel_x = source_mob.pixel_x
-	pixel_y = source_mob.pixel_y
+	if(source_mob)
+		pixel_x = source_mob.pixel_x
+		pixel_y = source_mob.pixel_y
 	icon_state = gib_icon
 
 /obj/effect/overlay/temp/gib_animation/ex_act(severity)

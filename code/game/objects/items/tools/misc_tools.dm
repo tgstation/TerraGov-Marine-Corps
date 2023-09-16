@@ -122,7 +122,7 @@
 
 /obj/item/tool/pen/sleepypen/Initialize(mapload)
 	. = ..()
-	create_reagents(30, OPENCONTAINER, list("chloralhydrate" = 22))
+	create_reagents(30, OPENCONTAINER, list(/datum/reagent/toxin/chloralhydrate = 22))
 
 
 /obj/item/tool/pen/sleepypen/attack(mob/M as mob, mob/user as mob)

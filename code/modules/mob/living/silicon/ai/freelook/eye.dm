@@ -41,8 +41,10 @@
 	holder.icon_state = icon_state_on
 	hud_list[hud_type] = holder
 
-///
-
+/mob/camera/aiEye/hud/Destroy()
+	var/datum/atom_hud/squad/squad_hud = GLOB.huds[DATA_HUD_SQUAD_TERRAGOV]
+	squad_hud.remove_from_hud(src)
+	return ..()
 
 /mob/camera/aiEye/proc/get_visible_turfs()
 	if(!isturf(loc))

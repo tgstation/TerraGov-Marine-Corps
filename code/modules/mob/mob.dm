@@ -8,7 +8,6 @@
 	if(length(observers))
 		for(var/mob/dead/observes AS in observers)
 			observes.reset_perspective(null)
-	clear_client_in_contents() //Gotta do this here as well as Logout, since client will be null by the time it gets there, cause of that ghostize
 	ghostize()
 	clear_fullscreens()
 	if(mind)
@@ -16,6 +15,9 @@
 		mind = null
 	if(hud_used)
 		QDEL_NULL(hud_used)
+	if(s_active)
+		s_active.hide_from(src)
+	unset_machine()
 	for(var/a in actions)
 		var/datum/action/action_to_remove = a
 		action_to_remove.remove_action(src)
@@ -214,7 +216,7 @@
  * unset redraw_mob to prevent the mob from being redrawn at the end.
  */
 /mob/proc/equip_to_slot_if_possible(obj/item/W, slot, ignore_delay = TRUE, del_on_fail = FALSE, warning = TRUE, redraw_mob = TRUE, permanent = FALSE, override_nodrop = FALSE)
-	if(!istype(W))
+	if(!istype(W) || QDELETED(W)) //This qdeleted is to prevent stupid behavior with things that qdel during init, like say stacks
 		return FALSE
 	if(!W.mob_can_equip(src, slot, warning, override_nodrop))
 		if(del_on_fail)
@@ -690,6 +692,9 @@
 /mob/proc/update_joined_player_list(newname, oldname)
 	if(newname == oldname)
 		return
+	if(!istext(newname) && !isnull(newname))
+		stack_trace("[src] attempted to change its name from [oldname] to the non string value [newname]")
+		return FALSE
 	if(oldname)
 		GLOB.joined_player_list -= oldname
 	if(newname)
@@ -779,11 +784,22 @@
 	stat = new_stat
 	SEND_SIGNAL(src, COMSIG_MOB_STAT_CHANGED, ., new_stat)
 
-///clears the client mob in our client_mobs_in_contents list
-/mob/proc/clear_client_in_contents()
-	if(client?.movingmob)
-		LAZYREMOVE(client.movingmob.client_mobs_in_contents, src)
-		client.movingmob = null
+/// Cleanup proc that's called when a mob loses a client, either through client destroy or logout
+/// Logout happens post client del, so we can't just copypaste this there. This keeps things clean and consistent
+/mob/proc/become_uncliented()
+	if(!canon_client)
+		return
+
+	for(var/foo in canon_client.player_details.post_logout_callbacks)
+		var/datum/callback/CB = foo
+		CB.Invoke()
+
+	if(canon_client?.movingmob)
+		LAZYREMOVE(canon_client.movingmob.client_mobs_in_contents, src)
+		canon_client.movingmob = null
+
+	clear_important_client_contents()
+	canon_client = null
 
 /mob/onTransitZ(old_z, new_z)
 	. = ..()

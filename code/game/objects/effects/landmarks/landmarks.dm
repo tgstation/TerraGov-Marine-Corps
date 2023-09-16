@@ -52,6 +52,9 @@
 /obj/effect/landmark/newplayer_start/New() //This can't be Initialize() or players will start in a wrong loc at roundstart.
 	GLOB.newplayer_start += src
 
+/obj/effect/landmark/newplayer_start/Destroy()
+	GLOB.newplayer_start -= src
+	return ..()
 
 /obj/effect/landmark/start/latejoin
 	icon_state = "latejoin"
