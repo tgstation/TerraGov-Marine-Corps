@@ -18,6 +18,7 @@ SUBSYSTEM_DEF(persistence)
 	///Stores how long each season should last
 	var/list/seasons_durations = list(
 		SEASONAL_GUNS = 24 HOURS,
+		SEASONAL_HEAVY = 24 HOURS,
 	)
 	///Stores the current season for each season group
 	var/list/season_progress = list()
@@ -34,7 +35,12 @@ SUBSYSTEM_DEF(persistence)
 		/datum/season_datum/weapons/guns/copsandrobbers_seasonal,
 		/datum/season_datum/weapons/guns/shotgun_seasonal,
 		/datum/season_datum/weapons/guns/lever_seasonal,
-		)
+		),
+		SEASONAL_HEAVY = list(
+		/datum/season_datum/weapons/guns/heavy_defualt,
+		/datum/season_datum/weapons/guns/heavy_ff,
+		/datum/season_datum/weapons/guns/heavy_autorail,
+		),
 	)
 	///The saved list of custom outfits names
 	var/list/custom_loadouts = list()
@@ -298,3 +304,42 @@ SUBSYSTEM_DEF(persistence)
 		/obj/item/ammo_magazine/shotgun/mbx900/buckshot = -1,
 		/obj/item/ammo_magazine/shotgun/mbx900/tracking = -1,
 		)
+
+// Heavy Weapons Seasonals //
+
+/datum/season_datum/weapons/guns/heavy_defualt
+	name = "Deafault Heavy Weapons"
+	description = "The generic set of roundstart TGMC heavy weapons, TAT and RR."
+	item_list = list(
+			/obj/structure/largecrate/supply/weapons/standard_atgun = 1,
+			/obj/item/storage/holster/backholster/rpg/full = 2,
+			/obj/item/ammo_magazine/rocket/recoilless = 4,
+			/obj/item/ammo_magazine/rocket/recoilless/light = 4,
+			/obj/item/ammo_magazine/rocket/recoilless/heat = 16,
+			/obj/item/ammo_magazine/rocket/recoilless/cloak = 16,
+			/obj/item/ammo_magazine/rocket/recoilless/smoke = 16,
+			/obj/item/ammo_magazine/rocket/recoilless/plasmaloss = 16,
+		)
+
+/datum/season_datum/weapons/guns/heavy_ff
+	name = "Fire and Forget Heavy Weapons"
+	description = "TAT, Thermobarics and Disposables for roundstart loadouts."
+	item_list = list(
+			/obj/structure/largecrate/supply/weapons/standard_atgun = 1,
+			/obj/item/weapon/gun/launcher/rocket/m57a4/t57 = 2,
+			/obj/item/ammo_magazine/rocket/m57a4 = 6,
+			/obj/item/weapon/gun/launcher/rocket/oneuse = 8,
+		)
+
+/datum/season_datum/weapons/guns/heavy_autorail
+	name = "Wall and Armor Shredder Weapons"
+	description = "Flak gun and Railgun for roundstart loadouts."
+	item_list = list(
+			/obj/item/weapon/gun/standard_auto_cannon = 1,
+			/obj/item/ammo_magazine/auto_cannon = 3,
+			/obj/item/ammo_magazine/auto_cannon/flak = 3,
+			/obj/item/weapon/gun/rifle/railgun = 2,
+			/obj/item/ammo_magazine/railgun = 10,
+			/obj/item/ammo_magazine/railgun/smart = 6,
+		)
+
