@@ -514,6 +514,7 @@
 	scatter = 0
 	scatter_unwielded = 0
 	recoil = 0
+	recoil_unwielded = 0
 	aim_slowdown = 0
 	wield_delay = 0.1 SECONDS
 
