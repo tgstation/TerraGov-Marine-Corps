@@ -456,7 +456,7 @@
 			return TRUE
 
 		if("activate_reward")
-			var/new_mission = text2path(params["selected_reward"])
+			var/selected_reward = text2path(params["selected_reward"])
 			if(!selected_reward)
 				return
 			if(!faction_rewards[selected_reward])
