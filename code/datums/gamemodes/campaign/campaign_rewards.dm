@@ -473,6 +473,7 @@
 
 /datum/campaign_reward/reward_disabler/tgmc_mortar/long
 	uses = 3
+
 /datum/campaign_reward/reward_disabler/som_mortar
 	name = "Mortar support disabled"
 	desc = "Mortar fire support temporarily disabled."
@@ -482,6 +483,7 @@
 
 /datum/campaign_reward/reward_disabler/som_mortar/long
 	uses = 3
+
 /datum/campaign_reward/reward_disabler/drop_pods
 	name = "Drop pods disabled"
 	desc = "Drop pod access temporarily disabled."
