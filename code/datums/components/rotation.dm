@@ -95,9 +95,9 @@
 	return ..()
 
 /datum/component/simple_rotation/Destroy()
-	QDEL_NULL(can_user_rotate)
-	QDEL_NULL(can_be_rotated)
-	QDEL_NULL(after_rotation)
+	can_user_rotate = null
+	can_be_rotated = null
+	after_rotation = null
 	return ..()
 
 

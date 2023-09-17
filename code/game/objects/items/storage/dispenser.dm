@@ -72,11 +72,12 @@
 
 /obj/machinery/deployable/dispenser/attack_hand(mob/living/user)
 	. = ..()
-	var/obj/item/storage/internal_bag = internal_item
-	internal_bag.attack_hand(user)
+	var/obj/item/storage/internal_bag = get_internal_item()
+	internal_bag?.attack_hand(user)
 
 /obj/machinery/deployable/dispenser/attackby(obj/item/I, mob/user, params)
-	if(internal_item.attackby(I, user, params))
+	var/obj/item/internal_bag = get_internal_item()
+	if(internal_bag?.attackby(I, user, params))
 		return
 	return ..()
 
@@ -102,8 +103,8 @@
 	addtimer(CALLBACK(src, PROC_REF(disassemble), user), 4 SECONDS)
 
 /obj/machinery/deployable/dispenser/disassemble(mob/user)
-	var/obj/item/storage/internal_bag = internal_item
-	for(var/mob/watching in internal_bag.content_watchers)
+	var/obj/item/storage/internal_bag = get_internal_item()
+	for(var/mob/watching in internal_bag?.content_watchers)
 		internal_bag.close(watching)
 	return ..()
 

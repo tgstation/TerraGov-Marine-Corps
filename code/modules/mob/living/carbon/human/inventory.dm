@@ -273,6 +273,8 @@
 	W.layer = ABOVE_HUD_LAYER
 	W.plane = ABOVE_HUD_PLANE
 
+	W.forceMove(src)
+
 	var/obj/item/selected_slot //the item in the specific slot we're trying to insert into, if applicable
 
 	switch(slot)

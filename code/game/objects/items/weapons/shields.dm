@@ -174,6 +174,10 @@
 	attack_verb = list("shoved", "bashed")
 	var/on_force = 10
 
+/obj/item/weapon/shield/energy/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/strappable)
+
 /obj/item/weapon/shield/energy/set_shield()
 	AddComponent(/datum/component/shield, SHIELD_TOGGLE|SHIELD_PURE_BLOCKING)
 

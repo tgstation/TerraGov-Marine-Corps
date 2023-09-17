@@ -76,3 +76,29 @@
   - qol: The dropship fabricator has had it's items separated into more distinct categories.
   - code_imp: Repathed dropship/condor equipment, dropship/condor weapons, and condor
       ammo.
+2023-09-16:
+  Looking4bros:
+  - balance: More Deathsquad updating.
+  - balance: Energy sword (which is issued to SOM as well) is now strapable. (shield
+      is not issued to anyone else)
+  Pariah919:
+  - rscdel: surplus clothing
+  forestbbbbbbb:
+  - rscadd: Add a balloon alert for moving while buckled
+2023-09-17:
+  AzonStarfall:
+  - bugfix: Fixes references to SR-153 in the requisitions list and loadout files.
+  Barnet2:
+  - balance: Added a xeno respawn timer on xeno death and ghosting, does not apply
+      if you took a minion
+  - rscadd: Adds Psychic Relays, increase xenos slots. Removes slot increase from
+      evo towers. Starting psy down to 1400
+  - rscdel: Removes maturity towers
+  - balance: Removes the maturity system, keeps it for primos. Xenos now start at
+      ancient stats.
+  ivanmixo:
+  - bugfix: Fixed tarping before eord making you invisible
+  - refactor: Made lockers not use signals where they aren't necessary. Should help
+      with signals not unregistering properly in some cases
+  - code_imp: Ported tg's del the world unit test and brought our reference tracker
+      and garbage collector mostly up to date. Also squashed a lot of harddels.
