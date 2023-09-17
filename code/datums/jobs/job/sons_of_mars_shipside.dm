@@ -19,7 +19,6 @@
 	selection_color = "#ccccff"
 	total_positions = 1
 	skills_type = /datum/skills/captain
-	//access = ALL_MARINE_ACCESS
 	minimal_access = ALL_MARINE_ACCESS
 	display_order = JOB_DISPLAY_ORDER_CAPTAIN
 	outfit = /datum/outfit/job/som/command/general
@@ -165,7 +164,7 @@ Make the SOM proud!"}) //update
 		<b>Difficulty</b>: Medium<br /><br />
 		<b>You answer to the</b> Captain<br /><br />
 		<b>Unlock Requirement</b>: Starting Role<br /><br />
-		<b>Gamemode Availability</b>: Distress<br /><br /><br />
+		<b>Gamemode Availability</b>: Campaign<br /><br /><br />
 		<b>Duty</b>: Take charge of one of the four squads, be their eyes and ears providing intel and additional shipside support via Orbital Bombardments.
 	"}
 
@@ -226,7 +225,7 @@ You are in charge of logistics and the overwatch system. You are also in line to
 		<b>Difficulty</b>: Medium<br /><br />
 		<b>You answer to the</b> acting Command Staff<br /><br />
 		<b>Unlock Requirement</b>: Starting Role<br /><br />
-		<b>Gamemode Availability</b>: Distress<br /><br /><br />
+		<b>Gamemode Availability</b>: Campaign<br /><br /><br />
 		<b>Duty</b>: Choose between the Condor, a modular attack aircraft that provides close air support with a variety of weapons ranging from the inbuilt gatling to wing mounted rockets; or the Tadpole, a versatile dropship capable of fulfilling roles ranging from ambulance to mobile bunker.
 	"}
 	minimap_icon = "pilot"
@@ -295,7 +294,7 @@ Though you are a warrant officer, your authority is limited to the dropship and 
 		<b>Difficulty</b>:Very Hard<br /><br />
 		<b>You answer to the</b> acting Command Staff<br /><br />
 		<b>Unlock Requirement</b>: Starting Role<br /><br />
-		<b>Gamemode Availability</b>: Distress<br /><br /><br />
+		<b>Gamemode Availability</b>: Campaign<br /><br /><br />
 		<b>Duty</b>: Act as the spearhead of the operation
 	"}
 	minimap_icon = "mech_pilot"
@@ -365,7 +364,7 @@ You can serve your Division in a variety of roles, so choose carefully."})
 		<b>Difficulty</b>: Hard<br /><br />
 		<b>You answer to the</b> acting Command Staff<br /><br />
 		<b>Unlock Requirement</b>: Starting Role<br /><br />
-		<b>Gamemode Availability</b>: Distress<br /><br /><br />
+		<b>Gamemode Availability</b>: Campaign<br /><br /><br />
 		<b>Duty</b>: Supervise the engineers and technicians on duty. Overview the ship’s engine. Teach what’s right and what’s wrong about engineering, cut corners and find places in any FOB that can easily be destroyed.
 	"}
 	minimap_icon = "cse"
@@ -426,7 +425,7 @@ You are also next in the chain of command, should the bridge crew fall in the li
 	comm_title = "TECH"
 	paygrade = "SOM_E2"
 	total_positions = 5
-	supervisors = "the chief ship engineer and the requisitions officer"
+	supervisors = "the chief station engineer and the requisitions officer"
 	access = list(ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_PREP, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_CARGO, ACCESS_CIVILIAN_ENGINEERING)
 	minimal_access = list(ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_PREP, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_CARGO, ACCESS_CIVILIAN_ENGINEERING)
 	skills_type = /datum/skills/st
@@ -437,7 +436,7 @@ You are also next in the chain of command, should the bridge crew fall in the li
 		<b>Difficulty</b>: Medium<br /><br />
 		<b>You answer to the</b> Chief Ship Engineer<br /><br />
 		<b>Unlock Requirement</b>: Starting Role<br /><br />
-		<b>Gamemode Availability</b>: Distress<br /><br /><br />
+		<b>Gamemode Availability</b>: Campaign<br /><br /><br />
 		<b>Duty</b>: Maintain the ship, be in charge of the engines. Be the secondary engineer to a forward operating base, prepare the shipside defenses if needed. Help the Pilot Officer in preparing the dropship.
 	"}
 	minimap_icon = "st"
@@ -464,7 +463,7 @@ You are also next in the chain of command, should the bridge crew fall in the li
 
 /datum/job/som/engineering/tech/radio_help_message(mob/M)
 	. = ..()
-	to_chat(M, {"Your job is to make sure the ship is operational, you should firstly focus on manning the
+	to_chat(M, {"Your job is to make sure the base is operational, you should firstly focus on manning the
 requisitions line and later on to be ready to send supplies for marines who are groundside."})
 
 
@@ -487,7 +486,7 @@ requisitions line and later on to be ready to send supplies for marines who are 
 /datum/job/som/requisitions
 	job_category = JOB_CAT_REQUISITIONS
 	selection_color = "#BAAFD9"
-	supervisors = "the acting captain"
+	supervisors = "the acting commander"
 	exp_type_department = EXP_TYPE_REQUISITIONS
 
 
@@ -511,8 +510,8 @@ requisitions line and later on to be ready to send supplies for marines who are 
 		<b>Difficulty</b>: Medium<br /><br />
 		<b>You answer to the</b> acting Command Staff<br /><br />
 		<b>Unlock Requirement</b>: Starting Role<br /><br />
-		<b>Gamemode Availability</b>: Distress<br /><br /><br />
-		Requisition supplies to the battlefield. Ensure that the marines are reparing miners for more points. Supply the marines with deluxe equipment to ensure success.
+		<b>Gamemode Availability</b>: Campaign<br /><br /><br />
+		Supply the SOM with deluxe equipment to ensure success.
 	"}
 	minimap_icon = "requisition"
 
@@ -538,9 +537,9 @@ requisitions line and later on to be ready to send supplies for marines who are 
 
 /datum/job/som/requisitions/officer/radio_help_message(mob/M)
 	. = ..()
-	to_chat(M, {"Your job is to dispense supplies to the marines, including weapon attachments.
+	to_chat(M, {"Your job is to dispense supplies to the SOM.
 While you may request paperwork for supplies, do not go out of your way to screw with marines, unless you want to get deposed.
-A happy ship is a well-functioning ship."})
+A happy base is a well-functioning base."})
 
 
 /datum/outfit/job/requisitions/officer
@@ -570,7 +569,7 @@ A happy ship is a well-functioning ship."})
 	comm_title = "CMO"
 	paygrade = "CHO"
 	total_positions = 1
-	supervisors = "the acting captain"
+	supervisors = "the acting commander"
 	selection_color = "#99FF99"
 	access = list(ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_CMO, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_RESEARCH, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_CHEMISTRY)
 	minimal_access = list(ACCESS_MARINE_CMO, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_RESEARCH, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_CHEMISTRY, ACCESS_MARINE_CARGO, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS)
@@ -584,16 +583,16 @@ A happy ship is a well-functioning ship."})
 		<b>Difficulty</b>: Hard<br /><br />
 		<b>You answer to the</b> acting Command Staff<br /><br />
 		<b>Unlock Requirement</b>: Starting Role<br /><br />
-		<b>Gamemode Availability</b>: Crash, Distress<br /><br /><br />
+		<b>Gamemode Availability</b>: Campaign<br /><br /><br />
 		<b>Duty</b>: Communicate and lead your fellow medical staff (if available), supervise the medical department. Coordinate and teach fellow medical staff and corpsmen what they’re doing for treating an injury. Be the sole doctor in the Canterbury.
 	"}
 	minimap_icon = "chief_medical"
 
 /datum/job/som/medical/professor/radio_help_message(mob/M)
 	. = ..()
-	to_chat(M, {"You are the chief medical officer aboard the [SSmapping.configs[SHIP_MAP].map_name] and supervisor to the medical department.
+	to_chat(M, {"You are the chief medical officer stationed behind the frontlines and supervisor to the medical department.
 You have final authority over the medical department, medications, and treatments.
-Make sure that the doctors and nurses are doing their jobs and keeping the marines healthy and strong."})
+Make sure that the doctors and nurses are doing their jobs and keeping the SOM healthy and strong."})
 
 /datum/job/som/medical/professor/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
 	. = ..()
@@ -648,7 +647,7 @@ Make sure that the doctors and nurses are doing their jobs and keeping the marin
 		<b>Difficulty</b>: Medium<br /><br />
 		<b>You answer to the</b> Chief Medical Officer<br /><br />
 		<b>Unlock Requirement</b>: Starting Role<br /><br />
-		<b>Gamemode Availability</b>: Distress<br /><br /><br />
+		<b>Gamemode Availability</b>: Campaign<br /><br /><br />
 		<b>Duty</b>: Tend severely wounded patients to your aid in the form of surgery, repair broken bones and damaged organs, fix internal bleeding and prevent the birth of a xenomorph larva. Develop superior healing medicines.
 	"}
 	minimap_icon = "medical"
@@ -669,8 +668,8 @@ Make sure that the doctors and nurses are doing their jobs and keeping the marin
 
 /datum/job/som/medical/medicalofficer/radio_help_message(mob/M)
 	. = ..()
-	to_chat(M, {"You are a doctor stationed aboard the [SSmapping.configs[SHIP_MAP].map_name].
-You are tasked with keeping the marines healthy and strong, usually in the form of surgery.
+	to_chat(M, {"You are a SOM medical doctor stationed behind the frontlines.
+You are tasked with keeping the SOM healthy and strong, usually in the form of surgery.
 You are also an expert when it comes to medication and treatment. If you do not know what you are doing, <b>mentorhelp</b> so a mentor can assist you."})
 
 
@@ -699,25 +698,21 @@ You are also an expert when it comes to medication and treatment. If you do not 
 	job_category = JOB_CAT_CIVILIAN
 	selection_color = "#ffeedd"
 
-//Medical Officer
 /datum/job/som/civilian/chef
 	title = SOM_CHEF
 	comm_title = "CHEF"
 	paygrade = "SOM_E1"
-	total_positions = 6
-	supervisors = "The General"
-	//access = list(ACCESS_MARINE_MEDBAY, ACCESS_MARINE_CHEMISTRY)
-	//minimal_access = list(ACCESS_MARINE_MEDBAY, ACCESS_MARINE_CHEMISTRY, ACCESS_MARINE_CARGO, ACCESS_MARINE_DROPSHIP)
-	//skills_type = /datum/skills/doctor
+	total_positions = 2
+	supervisors = "the acting commander"
 	display_order = JOB_DISPLAY_ORDER_DOCTOR
 	outfit = /datum/outfit/job/civilian/chef
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_PROVIDES_SQUAD_HUD
 	html_description = {"
 		<b>Difficulty</b>: Medium<br /><br />
-		<b>You answer to the</b> Chief Medical Officer<br /><br />
+		<b>You answer to the</b> acting SOM commander<br /><br />
 		<b>Unlock Requirement</b>: Starting Role<br /><br />
-		<b>Gamemode Availability</b>: Distress<br /><br /><br />
-		<b>Duty</b>: Tend severely wounded patients to your aid in the form of surgery, repair broken bones and damaged organs, fix internal bleeding and prevent the birth of a xenomorph larva. Develop superior healing medicines.
+		<b>Gamemode Availability</b>: Campaign<br /><br /><br />
+		<b>Duty</b>: Keep the SOM well fed and happy. Fight for your team if things get desperate.
 	"}
 	minimap_icon = "medical"
 
@@ -737,8 +732,8 @@ You are also an expert when it comes to medication and treatment. If you do not 
 
 /datum/job/som/civilian/chef/radio_help_message(mob/M)
 	. = ..()
-	to_chat(M, {"You are a chef stationed aboard the [SSmapping.configs[SHIP_MAP].map_name].
-You are tasked with keeping the marines well fed and happy, usually in the form of delicious food.
+	to_chat(M, {"You are a chef stationed behind the frontlines.
+You are tasked with keeping the SOM well fed and happy, usually in the form of delicious food.
 You are also an expert when it comes to botany and hydroponics. If you do not know what you are doing, <b>mentorhelp</b> so a mentor can assist you."})
 
 
