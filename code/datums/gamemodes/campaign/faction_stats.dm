@@ -22,11 +22,14 @@
 /datum/faction_stats/New(new_faction)
 	. = ..()
 	faction = new_faction
-	add_reward(/datum/campaign_reward/equipment/mech_heavy) //testuse
-	add_reward(/datum/campaign_reward/bonus_job/colonial_militia) //testuse
-	add_reward(/datum/campaign_reward/teleporter_charges) //testuse
-	add_reward(/datum/campaign_reward/droppod_refresh) //testuse
-	add_reward(/datum/campaign_reward/fire_support) //testuse
+	//some testuse rewards
+	add_reward(/datum/campaign_reward/equipment/mech_heavy)
+	add_reward(/datum/campaign_reward/bonus_job/colonial_militia)
+	add_reward(/datum/campaign_reward/teleporter_charges)
+	add_reward(/datum/campaign_reward/droppod_refresh)
+	add_reward(/datum/campaign_reward/fire_support)
+	add_reward(/datum/campaign_reward/teleporter_enabled)
+	add_reward(/datum/campaign_reward/droppod_enabled)
 
 	load_default_missions()
 
@@ -38,7 +41,7 @@
 
 ///Adds a mission to the potential mission pool
 /datum/faction_stats/proc/add_new_mission(datum/campaign_mission/new_mission)
-	potential_missions += new new_mission(faction)
+	potential_missions[new_mission] = new new_mission(faction)
 
 ///Returns the faction's leader, selecting one if none is available
 /datum/faction_stats/proc/get_selector()
@@ -74,4 +77,9 @@
 
 ///Adds a new reward to the faction for use
 /datum/faction_stats/proc/add_reward(datum/campaign_reward/new_reward)
-	faction_rewards += new new_reward(src) //todo: add some logic for adding uses to existing rewards if applicable (see how this looks with the ui first, may or may not be desired)
+	if(faction_rewards[new_reward]) //todo: should passive/instant rewards reproc? probably
+		var/datum/campaign_reward/existing_reward = faction_rewards[new_reward]
+		existing_reward.uses += initial(existing_reward.uses)
+		existing_reward.reward_flags &= ~REWARD_CONSUMED
+	else
+		faction_rewards[new_reward] = new new_reward(src)

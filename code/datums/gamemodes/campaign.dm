@@ -163,7 +163,7 @@
 		qdel(exit_point) //purge all existing links, cutting off the current ground map. Start point links are auto severed, and will reconnect to new points when a new map is loaded and upon use.
 
 	//add a delay probably
-	select_next_mission(stat_list[current_mission.winning_faction].get_selector()) //winning team chooses new mission
+	//select_next_mission(stat_list[current_mission.winning_faction].get_selector()) //winning team chooses new mission
 
 ///////////////////////////respawn stuff/////////
 
@@ -376,7 +376,8 @@
 	data["current_mission"] = current_mission_data
 
 	var/list/potential_missions_data = list()
-	for(var/datum/campaign_mission/potential_mission AS in team.potential_missions)
+	for(var/i in team.potential_missions)
+		var/datum/campaign_mission/potential_mission = team.potential_missions[i]
 		var/list/mission_data = list() //each relevant bit of info regarding the mission is added to the list. Many more to come
 		mission_data["typepath"] = "[potential_mission.type]"
 		mission_data["name"] = potential_mission.name
@@ -403,7 +404,8 @@
 	data["finished_missions"] = finished_missions_data
 
 	var/list/faction_rewards_data = list()
-	for(var/datum/campaign_reward/reward AS in team.faction_rewards)
+	for(var/i in team.faction_rewards)
+		var/datum/campaign_reward/reward = team.faction_rewards[i]
 		var/list/reward_data = list() //each relevant bit of info regarding the reward is added to the list. Many more to come
 		reward_data["name"] = reward.name
 		reward_data["type"] = "[reward.type]"
@@ -452,8 +454,9 @@
 				return
 			if(!team.potential_missions[new_mission])
 				return
-			var/datum/campaign_mission/choice = team.potential_missions[new_mission] //locate or something maybe?
+			var/datum/campaign_mission/choice = team.potential_missions[new_mission]
 			current_mode.load_new_mission(choice)
+			team.potential_missions -= new_mission
 			return TRUE
 
 		if("activate_reward")
@@ -462,6 +465,6 @@
 				return
 			if(!team.faction_rewards[selected_reward])
 				return
-			var/datum/campaign_reward/choice = team.faction_rewards[selected_reward] //locate or something maybe?
+			var/datum/campaign_reward/choice = team.faction_rewards[selected_reward]
 			choice.activated_effect()
 			return TRUE

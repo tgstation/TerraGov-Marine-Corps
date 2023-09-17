@@ -48,8 +48,6 @@
 	holder_right.layer = layer+0.001
 	. = ..()
 
-	. = ..()
-
 	for(var/key in limbs)
 		if(!limbs[key])
 			continue
