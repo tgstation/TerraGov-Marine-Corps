@@ -310,7 +310,7 @@ SUBSYSTEM_DEF(persistence)
 // Heavy Weapons Seasonals //
 
 /datum/season_datum/weapons/guns/heavy_defualt
-	name = "Deafault Heavy Weapons"
+	name = "Default Heavy Weapons"
 	description = "The generic set of roundstart TGMC heavy weapons, TAT and RR."
 	item_list = list(
 		/obj/structure/largecrate/supply/weapons/standard_atgun = 1,
@@ -321,7 +321,7 @@ SUBSYSTEM_DEF(persistence)
 		/obj/item/ammo_magazine/rocket/recoilless/cloak = 16,
 		/obj/item/ammo_magazine/rocket/recoilless/smoke = 16,
 		/obj/item/ammo_magazine/rocket/recoilless/plasmaloss = 16,
-		)
+	)
 
 /datum/season_datum/weapons/guns/heavy_ff
 	name = "Fire and Forget Heavy Weapons"
@@ -331,7 +331,7 @@ SUBSYSTEM_DEF(persistence)
 		/obj/item/weapon/gun/launcher/rocket/m57a4/t57 = 2,
 		/obj/item/ammo_magazine/rocket/m57a4 = 6,
 		/obj/item/weapon/gun/launcher/rocket/oneuse = 8,
-		)
+	)
 
 /datum/season_datum/weapons/guns/heavy_autorail
 	name = "Wall and Armor Shredder Weapons"
@@ -343,7 +343,7 @@ SUBSYSTEM_DEF(persistence)
 		/obj/item/weapon/gun/rifle/railgun = 2,
 		/obj/item/ammo_magazine/railgun = 10,
 		/obj/item/ammo_magazine/railgun/smart = 6,
-		)
+	)
 
 /datum/season_datum/weapons/guns/heavy_shock
 	name = "Shock Weapons"
@@ -359,6 +359,4 @@ SUBSYSTEM_DEF(persistence)
 		/obj/item/mortar_kit/mlrs = 2,
 		/obj/item/storage/box/mlrs_rockets = 8,
 		/obj/item/storage/box/mlrs_rockets_gas = 4,
-		)
-
-
+	)
