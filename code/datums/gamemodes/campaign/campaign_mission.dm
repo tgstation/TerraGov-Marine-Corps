@@ -184,13 +184,14 @@
 ///Mission end wrap up
 /datum/campaign_mission/proc/end_mission()
 	SHOULD_CALL_PARENT(TRUE)
-	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_CAMPAIGN_MISSION_ENDED)
 	QDEL_LIST(GLOB.campaign_objectives) //clean up objectives for any future missions
+	QDEL_LIST(GLOB.patrol_point_list) //purge all existing links, cutting off the current ground map. Start point links are auto severed, and will reconnect to new points when a new map is loaded and upon use.
 	STOP_PROCESSING(SSslowprocess, src)
 	mission_state = MISSION_STATE_FINISHED
 	apply_outcome() //figure out where best to put this
 	play_outro()
-	mode.end_current_mission()
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_CLOSE_CAMPAIGN_SHUTTERS)
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_CAMPAIGN_MISSION_ENDED, winning_faction)
 
 ///Intro when the mission is selected
 /datum/campaign_mission/proc/play_selection_intro()

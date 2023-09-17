@@ -1,4 +1,8 @@
 //stats/points/etc recorded by faction
+#define MISSION_SELECTION_ALLOWED  (1<<0)
+
+#define AFTER_MISSION_LEADER_DELAY 1 MINUTES
+
 /datum/faction_stats
 	interaction_flags = INTERACT_UI_INTERACT
 	///The faction associated with these stats
@@ -19,6 +23,8 @@
 	var/list/datum/campaign_mission/finished_missions = list()
 	///List of all rewards the faction has earnt this campaign
 	var/list/datum/campaign_reward/faction_rewards = list()
+	///Any special behavior flags for the faction
+	var/stats_flags = NONE
 
 /datum/faction_stats/New(new_faction)
 	. = ..()
@@ -34,6 +40,7 @@
 	add_reward(/datum/campaign_reward/droppod_enabled)
 
 	load_default_missions()
+	RegisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_MISSION_ENDED, PROC_REF(mission_end))
 
 /datum/faction_stats/Destroy(force, ...)
 	GLOB.faction_stats_datums -= faction
@@ -89,6 +96,21 @@
 		existing_reward.reward_flags &= ~REWARD_CONSUMED
 	else
 		faction_rewards[new_reward] = new new_reward(src)
+
+///handles post mission wrap up for the faction
+/datum/faction_stats/proc/mission_end(datum/source, winning_faction)
+	SIGNAL_HANDLER
+	if(faction == winning_faction)
+		stats_flags |= MISSION_SELECTION_ALLOWED
+	else
+		stats_flags &= ~MISSION_SELECTION_ALLOWED
+
+	total_attrition_points += round(length(GLOB.clients) * 0.5 * attrition_gain_multiplier)
+	for(var/mob/living/carbon/human/human_mob AS in GLOB.alive_human_list_faction[faction])
+		human_mob.revive(TRUE)
+		human_mob.forceMove(pick(GLOB.spawns_by_job[human_mob.job.type]))
+
+	addtimer(CALLBACK(src, PROC_REF(get_selector)), AFTER_MISSION_LEADER_DELAY) //if the leader died, we load a new one after a minute to give respawns some time
 
 //UI stuff//
 
@@ -221,6 +243,9 @@
 			var/datum/campaign_mission/choice = potential_missions[new_mission]
 			if(current_mode.current_mission?.mission_state != MISSION_STATE_FINISHED)
 				to_chat(user, "<span class='warning'>Current mission still ongoing!")
+				return
+			if(!(stats_flags & MISSION_SELECTION_ALLOWED))
+				to_chat(user, "<span class='warning'>The opposing side has the initiative, win a mission to regain it.")
 				return
 			current_mode.load_new_mission(choice)
 			potential_missions -= new_mission

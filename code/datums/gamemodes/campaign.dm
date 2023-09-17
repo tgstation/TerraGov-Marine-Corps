@@ -97,18 +97,6 @@
 	log_game("[round_finished]\nGame mode: [name]\nRound time: [duration2text()]\nEnd round player population: [length(GLOB.clients)]\nTotal TGMC spawned: [GLOB.round_statistics.total_humans_created[FACTION_TERRAGOV]]\nTotal SOM spawned: [GLOB.round_statistics.total_humans_created[FACTION_SOM]]")
 	to_chat(world, span_round_body("Thus ends the story of the brave men and women of both the TGMC and SOM, and their struggle on [SSmapping.configs[GROUND_MAP].map_name]."))
 
-///selects the next mission to be played
-/datum/game_mode/hvh/campaign/proc/select_next_mission(mob/selector) //basic placeholder
-	var/list/mission_choices = list()
-	for(var/datum/campaign_mission/mission_option AS in stat_list[selector.faction].potential_missions)
-		mission_choices[mission_option] = mission_option.name
-	var/choice = tgui_input_list(selector, "What course of action would you like to take?", "Mission selection", mission_choices, timeout = 2 MINUTES)
-	if(!choice)
-		choice = pick(mission_choices) //placeholder pick
-
-	//probably have some time limit on the choice, so need some logic for that
-	load_new_mission(choice)
-
 /datum/game_mode/hvh/campaign/get_status_tab_items(datum/dcs, mob/source, list/items)
 	. = ..()
 	if(!istype(current_mission))
@@ -135,24 +123,6 @@
 	current_mission = new_mission
 	current_mission.load_mission()
 	TIMER_COOLDOWN_START(src, COOLDOWN_BIOSCAN, bioscan_interval)
-
-///ends the current mission and cleans up
-/datum/game_mode/hvh/campaign/proc/end_current_mission()
-	if(check_finished()) //check if the game should end
-		return
-	send_global_signal(COMSIG_GLOB_CLOSE_CAMPAIGN_SHUTTERS)
-
-	for(var/faction in factions)
-		stat_list[faction].total_attrition_points += round(length(GLOB.clients) * 0.5 * stat_list[faction].attrition_gain_multiplier)
-		for(var/mob/living/carbon/human/human_mob AS in GLOB.alive_human_list_faction[faction]) //forcemove everyone by faction back to their spawn points, to clear out the z-level
-			human_mob.revive(TRUE)
-			human_mob.forceMove(pick(GLOB.spawns_by_job[human_mob.job.type]))
-
-	for(var/obj/effect/landmark/patrol_point/exit_point AS in GLOB.patrol_point_list)
-		qdel(exit_point) //purge all existing links, cutting off the current ground map. Start point links are auto severed, and will reconnect to new points when a new map is loaded and upon use.
-
-	//add a delay probably
-	//select_next_mission(stat_list[current_mission.winning_faction].get_selector()) //winning team chooses new mission
 
 ///////////////////////////respawn stuff/////////
 
