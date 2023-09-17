@@ -221,7 +221,7 @@
 
 	seasonal_items = list(
 		SEASONAL_GUNS = "Seasonal",
-		SEASONAL_HEAVY = "Rotational Heavy Weapons",
+		SEASONAL_HEAVY = "Operational Weapons",
 	)
 
 /obj/machinery/vending/weapon/crash

@@ -9,6 +9,7 @@
 
 //Season names
 #define SEASONAL_GUNS "seasonal_guns"
+#define SEASONAL_HEAVY "seasonal_heavy"
 
 SUBSYSTEM_DEF(persistence)
 	name = "Persistence"
