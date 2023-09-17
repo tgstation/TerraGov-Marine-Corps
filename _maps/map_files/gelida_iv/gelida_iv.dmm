@@ -12908,7 +12908,7 @@
 	pixel_x = -2;
 	pixel_y = -3
 	},
-/obj/item/facepaint/black,
+/obj/item/customizekit/black,
 /turf/open/floor/carpet,
 /area/gelida/indoors/a_block/executive)
 "iJc" = (

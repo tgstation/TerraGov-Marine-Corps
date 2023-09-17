@@ -493,10 +493,10 @@
 	. = ..()
 	if(.)
 		return
-	if(!istype(I, /obj/item/facepaint) || isnull(greyscale_config))
+	if(!istype(I, /obj/item/customizekit) || isnull(greyscale_config))
 		return
 
-	var/obj/item/facepaint/paint = I
+	var/obj/item/customizekit/paint = I
 	if(paint.uses < 1)
 		to_chat(user, span_warning("\the [paint] is out of color!"))
 		return

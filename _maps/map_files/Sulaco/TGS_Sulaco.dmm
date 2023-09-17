@@ -13533,7 +13533,7 @@
 "gKQ" = (
 /obj/structure/table/mainship/nometal,
 /obj/item/explosive/grenade/flare/civilian,
-/obj/item/facepaint/brown,
+/obj/item/customizekit/brown,
 /turf/open/floor/prison/sterilewhite,
 /area/sulaco/cryosleep)
 "gLa" = (
@@ -17870,7 +17870,7 @@
 	dir = 4
 	},
 /obj/structure/table/mainship/nometal,
-/obj/item/facepaint/green,
+/obj/item/customizekit/green,
 /turf/open/floor/prison/sterilewhite,
 /area/sulaco/cryosleep)
 "mdt" = (

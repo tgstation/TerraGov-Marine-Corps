@@ -3858,9 +3858,9 @@
 /turf/open/floor/mainship/cargo,
 /area/mainship/squads/general)
 "eMJ" = (
-/obj/item/facepaint/green,
-/obj/item/facepaint/green,
-/obj/item/facepaint/green,
+/obj/item/customizekit/green,
+/obj/item/customizekit/green,
+/obj/item/customizekit/green,
 /obj/item/tool/hand_labeler,
 /obj/item/tool/hand_labeler,
 /obj/item/tool/hand_labeler,
@@ -9398,7 +9398,7 @@
 	pixel_y = 3
 	},
 /obj/item/tool/hand_labeler,
-/obj/item/facepaint/green,
+/obj/item/customizekit/green,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "lTt" = (
@@ -9621,7 +9621,7 @@
 "mgE" = (
 /obj/structure/rack,
 /obj/item/pizzabox/meat,
-/obj/item/facepaint/green,
+/obj/item/customizekit/green,
 /turf/open/floor/mainship/green{
 	dir = 4
 	},
@@ -11469,10 +11469,10 @@
 	},
 /area/mainship/medical/operating_room_two)
 "oCN" = (
-/obj/item/facepaint/green,
-/obj/item/facepaint/green,
-/obj/item/facepaint/green,
-/obj/item/facepaint/green,
+/obj/item/customizekit/green,
+/obj/item/customizekit/green,
+/obj/item/customizekit/green,
+/obj/item/customizekit/green,
 /obj/item/tool/hand_labeler,
 /obj/item/tool/hand_labeler,
 /obj/item/tool/hand_labeler,
@@ -15972,7 +15972,7 @@
 "udi" = (
 /obj/structure/table/reinforced,
 /obj/item/tool/hand_labeler,
-/obj/item/facepaint/green,
+/obj/item/customizekit/green,
 /turf/open/floor/mainship/black{
 	dir = 10
 	},

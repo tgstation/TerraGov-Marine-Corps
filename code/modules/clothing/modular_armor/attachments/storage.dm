@@ -63,7 +63,7 @@
 ///Inserts I into storage when parent is attacked by I.
 /obj/item/armor_module/storage/proc/insert_item(datum/source, obj/item/I, mob/user)
 	SIGNAL_HANDLER
-	if(istype(I, /obj/item/facepaint) || istype(I, /obj/item/armor_module))
+	if(istype(I, /obj/item/customizekit) || istype(I, /obj/item/armor_module))
 		return
 	if(parent.loc != user)
 		return

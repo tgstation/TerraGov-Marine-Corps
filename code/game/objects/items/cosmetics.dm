@@ -1,36 +1,37 @@
-/obj/item/facepaint
+/obj/item/customizekit
 	gender = PLURAL
-	name = "facepaint"
-	desc = "Paint, for your face. Who woulda thought?."
+	name = "customization kit"
+	desc = "A kit designed for customizing various pieces of armor and clothing. Comes with facepaint!"
 	icon = 'icons/obj/items/items.dmi'
 	icon_state = "camo"
 	var/colour = "green"
 	w_class = WEIGHT_CLASS_TINY
 	var/uses = 100
 
-/obj/item/facepaint/green
-	name = "green facepaint"
+/obj/item/customizekit/green
+	name = "green customization kit"
 	colour = "green"
 	icon_state = "green_camo"
 
 
-/obj/item/facepaint/brown
-	name = "brown facepaint"
+/obj/item/customizekit/brown
+	name = "brown customization kit"
 	colour = "brown"
 	icon_state = "brown_camo"
 
-/obj/item/facepaint/black
-	name = "black facepaint"
+/obj/item/customizekit/black
+	name = "black customization kit"
 	colour = "black"
 	icon_state = "black_camo"
 
-/obj/item/facepaint/sniper
-	name = "Fullbody paint"
+/obj/item/customizekit/sniper
+	name = "Fullbody customization kit"
+	desc = "A kit designed for customizing various pieces of armor and clothing. Comes with fullbody paint!"
 	colour = "full"
 	icon_state = "full_camo"
 
 
-/obj/item/facepaint/attack(mob/M as mob, mob/user as mob)
+/obj/item/customizekit/attack(mob/M as mob, mob/user as mob)
 	if(!ismob(M)) return
 
 	if(ishuman(M))
@@ -52,7 +53,7 @@
 	to_chat(user, span_warning("Foiled!"))
 
 
-/obj/item/facepaint/proc/paint_face(mob/living/carbon/human/H, mob/user)
+/obj/item/customizekit/proc/paint_face(mob/living/carbon/human/H, mob/user)
 	if(!H || !user) return //In case they're passed as null.
 	user.visible_message(span_notice("[user] carefully applies [src] on [H]'s face."), \
 						span_notice("You apply [src]."))

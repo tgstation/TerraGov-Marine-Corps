@@ -221,7 +221,7 @@
 	user.update_inv_w_uniform()
 
 
-/obj/item/armor_module/armor/cape/color_item(obj/item/facepaint/paint, mob/user)
+/obj/item/armor_module/armor/cape/color_item(obj/item/customizekit/paint, mob/user)
 	var/old_variant = current_variant
 	. = ..()
 	if(old_variant == current_variant)

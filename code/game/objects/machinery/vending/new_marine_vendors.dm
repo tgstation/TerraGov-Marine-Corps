@@ -579,7 +579,7 @@
 		/obj/item/clothing/shoes/marine/full,
 		/obj/item/clothing/gloves/marine,
 		/obj/item/storage/box/MRE,
-		/obj/item/facepaint/green,
+		/obj/item/customizekit/green,
 		/obj/item/paper/tutorial/medical,
 		/obj/item/paper/tutorial/mechanics,
 	)
@@ -598,7 +598,7 @@
 		/obj/item/clothing/shoes/marine/full,
 		/obj/item/clothing/gloves/marine,
 		/obj/item/storage/box/MRE,
-		/obj/item/facepaint/green,
+		/obj/item/customizekit/green,
 	)
 
 /obj/effect/vendor_bundle/basic_squadleader
@@ -615,7 +615,7 @@
 		/obj/item/clothing/shoes/marine/full,
 		/obj/item/clothing/gloves/marine,
 		/obj/item/storage/box/MRE,
-		/obj/item/facepaint/green,
+		/obj/item/customizekit/green,
 	)
 
 /obj/effect/vendor_bundle/basic_medic
@@ -632,7 +632,7 @@
 		/obj/item/clothing/shoes/marine/full,
 		/obj/item/clothing/gloves/marine,
 		/obj/item/storage/box/MRE,
-		/obj/item/facepaint/green,
+		/obj/item/customizekit/green,
 	)
 
 /obj/effect/vendor_bundle/basic_engineer
@@ -647,7 +647,7 @@
 		/obj/item/clothing/under/marine/jaeger,
 		/obj/item/clothing/shoes/marine/full,
 		/obj/item/storage/box/MRE,
-		/obj/item/facepaint/green,
+		/obj/item/customizekit/green,
 	)
 
 /obj/effect/vendor_bundle/basic_commander
@@ -662,7 +662,7 @@
 		/obj/item/clothing/under/marine/jaeger,
 		/obj/item/clothing/shoes/marine/full,
 		/obj/item/storage/box/MRE,
-		/obj/item/facepaint/green,
+		/obj/item/customizekit/green,
 	)
 
 /obj/effect/vendor_bundle/medic

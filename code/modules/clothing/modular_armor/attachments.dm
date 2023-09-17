@@ -165,7 +165,7 @@
 	UnregisterSignal(parent, list(COMSIG_ATOM_EXAMINE, COMSIG_ITEM_SECONDARY_COLOR))
 	return ..()
 
-/obj/item/armor_module/armor/color_item(obj/item/facepaint/paint, mob/user)
+/obj/item/armor_module/armor/color_item(obj/item/customizekit/paint, mob/user)
 	. = ..()
 	parent?.update_icon()
 
