@@ -1,7 +1,7 @@
 //Loot capture mission
 /datum/campaign_mission/capture_mission
 	name = "Capture mission"
-	map_name = "Orion Outpost"
+	map_name = "Jungle outpost SR-422"
 	map_file = '_maps/map_files/Campaign maps/jungle_test/jungle_outpost.dmm'
 	max_game_time = 20 MINUTES
 	mission_flags = MISSION_DISALLOW_DROPPODS

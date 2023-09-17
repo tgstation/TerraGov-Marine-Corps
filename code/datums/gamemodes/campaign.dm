@@ -109,8 +109,6 @@
 	//probably have some time limit on the choice, so need some logic for that
 	load_new_mission(choice)
 
-	select_attrition_points() //both teams choose the number of lads to commit
-
 /datum/game_mode/hvh/campaign/get_status_tab_items(datum/dcs, mob/source, list/items)
 	. = ..()
 	if(!istype(current_mission))
@@ -137,16 +135,6 @@
 	current_mission = new_mission
 	current_mission.load_mission()
 	TIMER_COOLDOWN_START(src, COOLDOWN_BIOSCAN, bioscan_interval)
-
-///each faction chooses how many attrition points to use for the upcoming mission - PLACEHOLDER UNTIL INTERFACE
-/datum/game_mode/hvh/campaign/proc/select_attrition_points() //placeholder basic
-	for(var/i in stat_list) //note to self: does the input mean this gets delayed for one team until the other chooses?
-		var/datum/faction_stats/team = stat_list[i]
-		var/choice = tgui_input_number(team.get_selector(), "How much manpower would you like to dedicate to this mission?", "Attrition Point selection", 0, team.total_attrition_points, 0, 60 SECONDS)
-		if(!choice)
-			choice = 0
-		team.total_attrition_points -= choice
-		team.active_attrition_points = choice //unused points are lost
 
 ///ends the current mission and cleans up
 /datum/game_mode/hvh/campaign/proc/end_current_mission()

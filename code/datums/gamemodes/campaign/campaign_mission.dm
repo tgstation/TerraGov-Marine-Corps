@@ -230,6 +230,10 @@
 	modify_attrition_points(attrition_point_rewards[outcome][1], attrition_point_rewards[outcome][2])
 	apply_victory_points(victory_point_rewards[outcome][1], victory_point_rewards[outcome][2])
 
+	//reset attrition points - unused points are lost
+	mode.stat_list[starting_faction].active_attrition_points = 0
+	mode.stat_list[hostile_faction].active_attrition_points = 0
+
 ///Apply outcomes for major win
 /datum/campaign_mission/proc/apply_major_victory()
 	winning_faction = starting_faction

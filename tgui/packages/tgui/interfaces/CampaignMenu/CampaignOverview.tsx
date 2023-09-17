@@ -1,6 +1,6 @@
 import { CampaignData } from './index';
 import { useBackend } from '../../backend';
-import { LabeledList, Section } from '../../components';
+import { LabeledList, Button, Section } from '../../components';
 
 export const CampaignOverview = (props, context) => {
   const { act, data } = useBackend<CampaignData>(context);
@@ -26,6 +26,9 @@ export const CampaignOverview = (props, context) => {
           </LabeledList.Item>
           <LabeledList.Item label="Current Attrition">
             {active_attrition_points}
+            <Button onClick={() => act('set_attrition_points')} icon={'check'}>
+              Set Attrition points
+            </Button>
           </LabeledList.Item>
         </LabeledList>
       </Section>
