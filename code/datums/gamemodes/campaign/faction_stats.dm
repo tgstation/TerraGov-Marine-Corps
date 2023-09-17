@@ -1,5 +1,6 @@
 //stats/points/etc recorded by faction
 /datum/faction_stats
+	interaction_flags = INTERACT_UI_INTERACT
 	///The faction associated with these stats
 	var/faction
 	///The decision maker for this leader
@@ -22,6 +23,7 @@
 /datum/faction_stats/New(new_faction)
 	. = ..()
 	faction = new_faction
+	GLOB.faction_stats_datums[faction] = src
 	//some testuse rewards
 	add_reward(/datum/campaign_reward/equipment/mech_heavy)
 	add_reward(/datum/campaign_reward/bonus_job/colonial_militia)
@@ -32,6 +34,10 @@
 	add_reward(/datum/campaign_reward/droppod_enabled)
 
 	load_default_missions()
+
+/datum/faction_stats/Destroy(force, ...)
+	GLOB.faction_stats_datums -= faction
+	return ..()
 
 ///The default available missions for this faction
 /datum/faction_stats/proc/load_default_missions()
@@ -83,3 +89,151 @@
 		existing_reward.reward_flags &= ~REWARD_CONSUMED
 	else
 		faction_rewards[new_reward] = new new_reward(src)
+
+//UI stuff//
+
+/datum/faction_stats/ui_interact(mob/living/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(ui)
+		return
+	ui = new(user, src, "CampaignMenu")
+	ui.open()
+
+/datum/faction_stats/ui_state(mob/user)
+	return GLOB.conscious_state
+
+/datum/faction_stats/ui_data(mob/living/user)
+	. = ..()
+	var/datum/game_mode/hvh/campaign/current_mode = SSticker.mode
+	if(!istype(current_mode))
+		CRASH("campaign_mission loaded without campaign game mode")
+
+	var/list/data = list()
+	var/ui_theme
+	switch(faction)
+		if(FACTION_SOM)
+			ui_theme = "som"
+		else
+			ui_theme = "ntos"
+	data["ui_theme"] = ui_theme
+
+	//complex ones
+	var/list/current_mission_data = list()
+	var/datum/campaign_mission/current_mission = current_mode.current_mission
+	current_mission_data["name"] = current_mission.name
+	current_mission_data["map_name"] = current_mission.map_name
+	current_mission_data["starting_faction"] = current_mission.starting_faction
+	current_mission_data["hostile_faction"] = current_mission.hostile_faction
+	current_mission_data["winning_faction"] = current_mission.winning_faction
+	current_mission_data["outcome"] = current_mission.outcome
+	current_mission_data["objective_description"] = (faction == current_mission.starting_faction ? current_mission.starting_faction_objective_description : current_mission.hostile_faction_objective_description)
+	current_mission_data["mission_brief"] = (faction == current_mission.starting_faction ? current_mission.starting_faction_mission_brief : current_mission.hostile_faction_mission_brief)
+	current_mission_data["mission_rewards"] = (faction == current_mission.starting_faction ? current_mission.starting_faction_additional_rewards : current_mission.hostile_faction_additional_rewards)
+	data["current_mission"] = current_mission_data
+
+	var/list/potential_missions_data = list()
+	for(var/i in potential_missions)
+		var/datum/campaign_mission/potential_mission = potential_missions[i]
+		var/list/mission_data = list() //each relevant bit of info regarding the mission is added to the list. Many more to come
+		mission_data["typepath"] = "[potential_mission.type]"
+		mission_data["name"] = potential_mission.name
+		mission_data["map_name"] = potential_mission.map_name
+		mission_data["objective_description"] = potential_mission.starting_faction_objective_description
+		mission_data["mission_brief"] = potential_mission.starting_faction_mission_brief
+		mission_data["mission_rewards"] = potential_mission.starting_faction_additional_rewards
+		potential_missions_data += list(mission_data)
+	data["potential_missions"] = potential_missions_data
+
+	var/list/finished_missions_data = list()
+	for(var/datum/campaign_mission/finished_mission AS in finished_missions)
+		var/list/mission_data = list() //each relevant bit of info regarding the mission is added to the list. Many more to come
+		mission_data["name"] = finished_mission.name
+		mission_data["map_name"] = finished_mission.map_name
+		mission_data["starting_faction"] = finished_mission.starting_faction
+		mission_data["hostile_faction"] = finished_mission.hostile_faction
+		mission_data["winning_faction"] = finished_mission.winning_faction
+		mission_data["outcome"] = finished_mission.outcome
+		mission_data["objective_description"] = (faction == finished_mission.starting_faction ? finished_mission.starting_faction_objective_description : finished_mission.hostile_faction_objective_description)
+		mission_data["mission_brief"] = (faction == finished_mission.starting_faction ? finished_mission.starting_faction_mission_brief : finished_mission.hostile_faction_mission_brief)
+		mission_data["mission_rewards"] = (faction == finished_mission.starting_faction ? finished_mission.starting_faction_additional_rewards : finished_mission.hostile_faction_additional_rewards)
+		finished_missions_data += list(mission_data)
+	data["finished_missions"] = finished_missions_data
+
+	var/list/faction_rewards_data = list()
+	for(var/i in faction_rewards)
+		var/datum/campaign_reward/reward = faction_rewards[i]
+		var/list/reward_data = list() //each relevant bit of info regarding the reward is added to the list. Many more to come
+		reward_data["name"] = reward.name
+		reward_data["type"] = "[reward.type]"
+		reward_data["desc"] = reward.desc
+		reward_data["detailed_desc"] = reward.detailed_desc
+		reward_data["uses_remaining"] = reward.uses
+		reward_data["uses_original"] = initial(reward.uses)
+		faction_rewards_data += list(reward_data)
+	data["faction_rewards_data"] = faction_rewards_data
+
+	//simple ones
+	data["active_attrition_points"] = active_attrition_points
+	data["total_attrition_points"] = total_attrition_points
+	data["faction_leader"] = faction_leader
+	data["victory_points"] = victory_points
+	data["faction"] = faction
+
+	return data
+
+/datum/faction_stats/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
+	. = ..()
+	if(.)
+		return
+
+	var/datum/game_mode/hvh/campaign/current_mode = SSticker.mode
+	if(!istype(current_mode))
+		CRASH("campaign_mission loaded without campaign game mode")
+
+	var/mob/user = usr
+	if(user != faction_leader)
+		to_chat(user, "<span class='warning'>Only your faction's commander can do this.")
+		return
+
+	switch(action)
+		if("set_attrition_points")
+			var/val_to_set = params["attrition_points"]
+			if(!isnum(val_to_set))
+				return
+			if(current_mode.current_mission?.mission_state != MISSION_STATE_NEW)
+				to_chat(user, "<span class='warning'>Current mission already ongoing, unable to assign more personnel at this time.")
+				return
+			total_attrition_points -= val_to_set
+			active_attrition_points = val_to_set //unused points are lost
+			for(var/mob/living/carbon/human/faction_member AS in GLOB.alive_human_list_faction[faction])
+				faction_member.playsound_local(null, "sound/effects/CIC_order.ogg", 10, 1)
+				to_chat(faction_member, "<span class='warning'>[user] has assigned [val_to_set] attrition points for the next mission.")
+			return TRUE
+
+		if("set_next_mission")
+			var/new_mission = text2path(params["new_mission"])
+			if(!new_mission)
+				return
+			if(!potential_missions[new_mission])
+				return
+			var/datum/campaign_mission/choice = potential_missions[new_mission]
+			if(current_mode.current_mission?.mission_state != MISSION_STATE_FINISHED)
+				to_chat(user, "<span class='warning'>Current mission still ongoing!")
+				return
+			current_mode.load_new_mission(choice)
+			potential_missions -= new_mission
+			return TRUE
+
+		if("activate_reward")
+			var/selected_reward = text2path(params["selected_reward"])
+			if(!selected_reward)
+				return
+			if(!faction_rewards[selected_reward])
+				return
+			var/datum/campaign_reward/choice = faction_rewards[selected_reward]
+			if(!choice.activated_effect())
+				return
+			for(var/mob/living/carbon/human/faction_member AS in GLOB.alive_human_list_faction[faction])
+				faction_member.playsound_local(null, "sound/effects/CIC_order.ogg", 10, 1)
+				to_chat(faction_member, "<span class='warning'>[user] has activated the [choice.name] campaign asset.")
+			return TRUE
