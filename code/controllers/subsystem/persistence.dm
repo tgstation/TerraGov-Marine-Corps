@@ -18,7 +18,7 @@ SUBSYSTEM_DEF(persistence)
 	///Stores how long each season should last
 	var/list/seasons_durations = list(
 		SEASONAL_GUNS = 24 HOURS,
-		SEASONAL_HEAVY = 24 HOURS,
+		SEASONAL_HEAVY = 8 HOURS,
 	)
 	///Stores the current season for each season group
 	var/list/season_progress = list()
@@ -40,6 +40,7 @@ SUBSYSTEM_DEF(persistence)
 		/datum/season_datum/weapons/guns/heavy_defualt,
 		/datum/season_datum/weapons/guns/heavy_ff,
 		/datum/season_datum/weapons/guns/heavy_autorail,
+		/datum/season_datum/weapons/guns/heavy_shock,
 		),
 	)
 	///The saved list of custom outfits names
@@ -323,7 +324,7 @@ SUBSYSTEM_DEF(persistence)
 
 /datum/season_datum/weapons/guns/heavy_ff
 	name = "Fire and Forget Heavy Weapons"
-	description = "TAT, Thermobarics and Disposables for roundstart loadouts."
+	description = "TAT, Thermobarics and Disposables for roundstart vendors."
 	item_list = list(
 			/obj/structure/largecrate/supply/weapons/standard_atgun = 1,
 			/obj/item/weapon/gun/launcher/rocket/m57a4/t57 = 2,
@@ -333,7 +334,7 @@ SUBSYSTEM_DEF(persistence)
 
 /datum/season_datum/weapons/guns/heavy_autorail
 	name = "Wall and Armor Shredder Weapons"
-	description = "Flak gun and Railgun for roundstart loadouts."
+	description = "Flak gun and Railgun for roundstart vendors."
 	item_list = list(
 			/obj/item/weapon/gun/standard_auto_cannon = 1,
 			/obj/item/ammo_magazine/auto_cannon = 3,
@@ -342,4 +343,21 @@ SUBSYSTEM_DEF(persistence)
 			/obj/item/ammo_magazine/railgun = 10,
 			/obj/item/ammo_magazine/railgun/smart = 6,
 		)
+
+/datum/season_datum/weapons/guns/heavy_shock
+	name = "Shock Weapons"
+	description = "RR and MLRS for roundstart vendors."
+	item_list = list(
+			/obj/item/storage/holster/backholster/rpg/full = 2,
+			/obj/item/ammo_magazine/rocket/recoilless = 4,
+			/obj/item/ammo_magazine/rocket/recoilless/light = 4,
+			/obj/item/ammo_magazine/rocket/recoilless/heat = 16,
+			/obj/item/ammo_magazine/rocket/recoilless/cloak = 16,
+			/obj/item/ammo_magazine/rocket/recoilless/smoke = 16,
+			/obj/item/ammo_magazine/rocket/recoilless/plasmaloss = 16,
+			/obj/item/mortar_kit/mlrs = 2,
+			/obj/item/storage/box/mlrs_rockets = 8,
+			/obj/item/storage/box/mlrs_rockets_gas = 4,
+		)
+
 
