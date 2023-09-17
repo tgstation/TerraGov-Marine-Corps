@@ -60,8 +60,6 @@
 				to_chat(user, span_warning("This doesn't seem to go anywhere."))
 			return
 
-	new /atom/movable/effect/rappel_rope(linked_point.loc)
-
 	if(obj_mover)
 		obj_mover.forceMove(linked_point.loc)
 	else if(user) //this is mainly configured under the assumption that we only have both an obj and a user if its a manned mech going through
@@ -69,6 +67,8 @@
 		span_notice("You walk through the [src]."))
 		user.trainteleport(linked_point.loc)
 		add_spawn_protection(user)
+
+	new /atom/movable/effect/rappel_rope(linked_point.loc)
 
 	if(!user)
 		return
