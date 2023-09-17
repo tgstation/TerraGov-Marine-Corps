@@ -19,7 +19,10 @@
 		MISSION_OUTCOME_MINOR_LOSS = list(10, 15),
 		MISSION_OUTCOME_MAJOR_LOSS = list(5, 20),
 	)
-
+	intro_message = list(
+		"starting_faction" = "Locate and extract all phoron crates in ao before the enemy does.",
+		"hostile_faction" = "Locate and extract all phoron crates in ao before the enemy does.",
+	)
 	starting_faction_mission_brief = "Hostile forces have been building a stock pile of valuable phoron in this location. <br>\
 		Before they have the chance to ship it out, your forces are being sent to intercept and liberate these supplies to hamper the enemy's war effort. <br>\
 		Hostile forces will likely be aiming to evacuate as much phoron out of the ao as well. Get to the phoron first and fulton out as much as you can."
