@@ -313,52 +313,52 @@ SUBSYSTEM_DEF(persistence)
 	name = "Deafault Heavy Weapons"
 	description = "The generic set of roundstart TGMC heavy weapons, TAT and RR."
 	item_list = list(
-			/obj/structure/largecrate/supply/weapons/standard_atgun = 1,
-			/obj/item/storage/holster/backholster/rpg/full = 2,
-			/obj/item/ammo_magazine/rocket/recoilless = 4,
-			/obj/item/ammo_magazine/rocket/recoilless/light = 4,
-			/obj/item/ammo_magazine/rocket/recoilless/heat = 16,
-			/obj/item/ammo_magazine/rocket/recoilless/cloak = 16,
-			/obj/item/ammo_magazine/rocket/recoilless/smoke = 16,
-			/obj/item/ammo_magazine/rocket/recoilless/plasmaloss = 16,
+		/obj/structure/largecrate/supply/weapons/standard_atgun = 1,
+		/obj/item/storage/holster/backholster/rpg/full = 2,
+		/obj/item/ammo_magazine/rocket/recoilless = 4,
+		/obj/item/ammo_magazine/rocket/recoilless/light = 4,
+		/obj/item/ammo_magazine/rocket/recoilless/heat = 16,
+		/obj/item/ammo_magazine/rocket/recoilless/cloak = 16,
+		/obj/item/ammo_magazine/rocket/recoilless/smoke = 16,
+		/obj/item/ammo_magazine/rocket/recoilless/plasmaloss = 16,
 		)
 
 /datum/season_datum/weapons/guns/heavy_ff
 	name = "Fire and Forget Heavy Weapons"
 	description = "TAT, Thermobarics and Disposables for roundstart vendors."
 	item_list = list(
-			/obj/structure/largecrate/supply/weapons/standard_atgun = 1,
-			/obj/item/weapon/gun/launcher/rocket/m57a4/t57 = 2,
-			/obj/item/ammo_magazine/rocket/m57a4 = 6,
-			/obj/item/weapon/gun/launcher/rocket/oneuse = 8,
+		/obj/structure/largecrate/supply/weapons/standard_atgun = 1,
+		/obj/item/weapon/gun/launcher/rocket/m57a4/t57 = 2,
+		/obj/item/ammo_magazine/rocket/m57a4 = 6,
+		/obj/item/weapon/gun/launcher/rocket/oneuse = 8,
 		)
 
 /datum/season_datum/weapons/guns/heavy_autorail
 	name = "Wall and Armor Shredder Weapons"
 	description = "Flak gun and Railgun for roundstart vendors."
 	item_list = list(
-			/obj/item/weapon/gun/standard_auto_cannon = 1,
-			/obj/item/ammo_magazine/auto_cannon = 3,
-			/obj/item/ammo_magazine/auto_cannon/flak = 3,
-			/obj/item/weapon/gun/rifle/railgun = 2,
-			/obj/item/ammo_magazine/railgun = 10,
-			/obj/item/ammo_magazine/railgun/smart = 6,
+		/obj/item/weapon/gun/standard_auto_cannon = 1,
+		/obj/item/ammo_magazine/auto_cannon = 3,
+		/obj/item/ammo_magazine/auto_cannon/flak = 3,
+		/obj/item/weapon/gun/rifle/railgun = 2,
+		/obj/item/ammo_magazine/railgun = 10,
+		/obj/item/ammo_magazine/railgun/smart = 6,
 		)
 
 /datum/season_datum/weapons/guns/heavy_shock
 	name = "Shock Weapons"
 	description = "RR and MLRS for roundstart vendors."
 	item_list = list(
-			/obj/item/storage/holster/backholster/rpg/full = 2,
-			/obj/item/ammo_magazine/rocket/recoilless = 4,
-			/obj/item/ammo_magazine/rocket/recoilless/light = 4,
-			/obj/item/ammo_magazine/rocket/recoilless/heat = 16,
-			/obj/item/ammo_magazine/rocket/recoilless/cloak = 16,
-			/obj/item/ammo_magazine/rocket/recoilless/smoke = 16,
-			/obj/item/ammo_magazine/rocket/recoilless/plasmaloss = 16,
-			/obj/item/mortar_kit/mlrs = 2,
-			/obj/item/storage/box/mlrs_rockets = 8,
-			/obj/item/storage/box/mlrs_rockets_gas = 4,
+		/obj/item/storage/holster/backholster/rpg/full = 2,
+		/obj/item/ammo_magazine/rocket/recoilless = 4,
+		/obj/item/ammo_magazine/rocket/recoilless/light = 4,
+		/obj/item/ammo_magazine/rocket/recoilless/heat = 16,
+		/obj/item/ammo_magazine/rocket/recoilless/cloak = 16,
+		/obj/item/ammo_magazine/rocket/recoilless/smoke = 16,
+		/obj/item/ammo_magazine/rocket/recoilless/plasmaloss = 16,
+		/obj/item/mortar_kit/mlrs = 2,
+		/obj/item/storage/box/mlrs_rockets = 8,
+		/obj/item/storage/box/mlrs_rockets_gas = 4,
 		)
 
 
