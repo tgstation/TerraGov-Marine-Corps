@@ -279,7 +279,8 @@
 			return
 		friendly_teleporter = teleporter
 		break
-
+	if(!friendly_teleporter)
+		CRASH("no teleporter found")
 	. = ..()
 	if(!.)
 		return

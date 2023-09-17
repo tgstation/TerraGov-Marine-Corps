@@ -437,6 +437,7 @@
 	var/datum/faction_stats/team = current_mode.stat_list[faction]
 	var/mob/user = usr
 	if(user != team.faction_leader)
+		to_chat(user, "<span class='warning'>Only your faction's commander can do this.")
 		return
 
 	switch(action)
@@ -444,8 +445,14 @@
 			var/val_to_set = params["attrition_points"]
 			if(!isnum(val_to_set))
 				return
+			if(current_mode.current_mission?.mission_state != MISSION_STATE_NEW)
+				to_chat(user, "<span class='warning'>Current mission already ongoing, unable to assign more personnel at this time.")
+				return
 			team.total_attrition_points -= val_to_set
 			team.active_attrition_points = val_to_set //unused points are lost
+			for(var/mob/living/carbon/human/faction_member AS in GLOB.alive_human_list_faction[faction])
+				faction_member.playsound_local(null, "sound/effects/CIC_order.ogg", 10, 1)
+				to_chat(faction_member, "<span class='warning'>[user] has assigned [val_to_set] attrition points for the next mission.")
 			return TRUE
 
 		if("set_next_mission")
@@ -455,6 +462,9 @@
 			if(!team.potential_missions[new_mission])
 				return
 			var/datum/campaign_mission/choice = team.potential_missions[new_mission]
+			if(current_mode.current_mission?.mission_state != MISSION_STATE_FINISHED)
+				to_chat(user, "<span class='warning'>Current mission still ongoing!")
+				return
 			current_mode.load_new_mission(choice)
 			team.potential_missions -= new_mission
 			return TRUE
@@ -466,5 +476,9 @@
 			if(!team.faction_rewards[selected_reward])
 				return
 			var/datum/campaign_reward/choice = team.faction_rewards[selected_reward]
-			choice.activated_effect()
+			if(!choice.activated_effect())
+				return
+			for(var/mob/living/carbon/human/faction_member AS in GLOB.alive_human_list_faction[faction])
+				faction_member.playsound_local(null, "sound/effects/CIC_order.ogg", 10, 1)
+				to_chat(faction_member, "<span class='warning'>[user] has activated the [choice.name] campaign asset.")
 			return TRUE
