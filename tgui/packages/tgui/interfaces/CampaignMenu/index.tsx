@@ -77,7 +77,7 @@ export const CampaignMenu = (props, context) => {
           <Modal width="500px">
             <Section
               textAlign="center"
-              title={'Purchase ' + selectedAsset.name + '?'}>
+              title={'Activate ' + selectedAsset.name + '?'}>
               <Stack justify="space-around">
                 <Stack.Item>
                   <Button

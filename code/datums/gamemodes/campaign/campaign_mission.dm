@@ -196,6 +196,8 @@
 /datum/campaign_mission/proc/play_selection_intro()
 	to_chat(world, span_round_header("|[name]|"))
 	to_chat(world, span_round_body("Next mission selected by [starting_faction] as [name] on the battlefield of [map_name]."))
+	for(var/mob/player AS in GLOB.player_list)
+		player.playsound_local(null, 'sound/ambience/votestart.ogg', 10, 1)
 
 ///Intro when the mission is started
 /datum/campaign_mission/proc/play_start_intro()

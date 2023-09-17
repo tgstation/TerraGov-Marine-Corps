@@ -55,7 +55,7 @@ export const CampaignAssets = (props, context) => {
             <Button
               onClick={() => setSelectedAsset(selectedReward)}
               icon={'check'}>
-              Purchase
+              Activate
             </Button>
           }>
           <LabeledList>

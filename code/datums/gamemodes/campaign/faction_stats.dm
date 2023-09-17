@@ -208,7 +208,7 @@
 			total_attrition_points -= choice
 			active_attrition_points = choice
 			for(var/mob/living/carbon/human/faction_member AS in GLOB.alive_human_list_faction[faction])
-				faction_member.playsound_local(null, "sound/effects/CIC_order.ogg", 10, 1)
+				faction_member.playsound_local(null, 'sound/effects/CIC_order.ogg', 30, 1)
 				to_chat(faction_member, "<span class='warning'>[faction_leader] has assigned [choice] attrition points for the next mission.")
 			return TRUE
 
@@ -236,6 +236,6 @@
 			if(!choice.activated_effect())
 				return
 			for(var/mob/living/carbon/human/faction_member AS in GLOB.alive_human_list_faction[faction])
-				faction_member.playsound_local(null, "sound/effects/CIC_order.ogg", 10, 1)
+				faction_member.playsound_local(null, 'sound/effects/CIC_order.ogg', 30, 1)
 				to_chat(faction_member, "<span class='warning'>[user] has activated the [choice.name] campaign asset.")
 			return TRUE
