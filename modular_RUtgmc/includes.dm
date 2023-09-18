@@ -3,6 +3,7 @@
 #include "code\_globalvars\lists\objects.dm"
 #include "code\_onclick\xeno.dm"
 #include "code\_onclick\hud\screen_objects\menu_text_objects.dm"
+#include "code\_onclick\hud\xeno\xeno.dm"
 #include "code\datums\actions\observer_action.dm"
 #include "code\datums\actions\xeno_action.dm"
 #include "code\datums\jobs\squads.dm"
