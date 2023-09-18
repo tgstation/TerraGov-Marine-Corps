@@ -66,8 +66,8 @@
 
 	process_growth()
 
-
-/obj/item/alien_embryo/proc/process_growth()
+//RUTGMC EDIT BEGIN - Moved to modular_RUtgmc\code\modules\mob\living\carbon\xenomorph\embryo.dm
+/*/obj/item/alien_embryo/proc/process_growth()
 
 	if(stage <= 4)
 		counter += 2.5 //Free burst time in ~7/8 min.
@@ -120,6 +120,7 @@
 			if(!larva_autoburst_countdown)
 				var/mob/living/carbon/xenomorph/larva/L = locate() in affected_mob
 				L?.initiate_burst(affected_mob)
+*/ //RUTGMC EDIT END
 
 
 //We look for a candidate. If found, we spawn the candidate as a larva.

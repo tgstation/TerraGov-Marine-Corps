@@ -4,7 +4,8 @@
 
 	do_resist()
 
-
+//RUTGMC EDIT BEGIN - Moved to modular_RUtgmc\code\modules\mob\living\living_verbs.dm
+/*
 /mob/living/proc/lay_down()
 	set name = "Rest"
 	set category = "IC"
@@ -27,6 +28,7 @@
 		set_resting(FALSE, FALSE)
 	else
 		to_chat(src, span_notice("You fail to get up."))
+*/ // RUTGMC EDIT END
 
 /mob/living/proc/set_resting(rest, silent = TRUE)
 	if(status_flags & INCORPOREAL)

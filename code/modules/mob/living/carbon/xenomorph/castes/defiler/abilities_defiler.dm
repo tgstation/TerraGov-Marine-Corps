@@ -238,6 +238,8 @@
 				emitted_gas = new /datum/effect_system/smoke_spread/xeno/transvitox(defiler_owner)
 			if(/datum/reagent/toxin/xeno_ozelomelyn)
 				emitted_gas = new /datum/effect_system/smoke_spread/xeno/ozelomelyn(defiler_owner)
+			if(/datum/reagent/toxin/acid) //RUTGMC EDIT ADDITION
+				emitted_gas = new /datum/effect_system/smoke_spread/xeno/acid/light(defiler_owner)
 
 	if(defiler_owner.IsStaggered()) //If we got staggered, return
 		to_chat(defiler_owner, span_xenowarning("We try to emit toxins but are staggered!"))
@@ -275,6 +277,8 @@
 			particle_holder = new(owner, /particles/xeno_smoke/transvitox)
 		if(/datum/reagent/toxin/xeno_ozelomelyn)
 			particle_holder = new(owner, /particles/xeno_smoke/ozelomelyn)
+		if(/datum/reagent/toxin/acid) //RUTGMC EDIT ADDITION
+			particle_holder = new(owner, /particles/xeno_smoke/acid_light)
 	particle_holder.pixel_x = 16
 	particle_holder.pixel_y = 16
 
@@ -335,6 +339,9 @@
 			newegg.gas_type = /datum/effect_system/smoke_spread/xeno/hemodile
 		if(/datum/reagent/toxin/xeno_transvitox)
 			newegg.gas_type = /datum/effect_system/smoke_spread/xeno/transvitox
+		if(/datum/reagent/toxin/acid) //RUTGMC EDIT ADDITION
+			newegg.gas_type = /datum/effect_system/smoke_spread/xeno/acid/light
+	newegg.update_icon_state() //RUTGMC EDIT ADDITION
 	qdel(alien_egg)
 
 	GLOB.round_statistics.defiler_inject_egg_neurogas++
@@ -391,6 +398,7 @@
 			DEFILER_HEMODILE = image('icons/Xeno/actions.dmi', icon_state = DEFILER_HEMODILE),
 			DEFILER_TRANSVITOX = image('icons/Xeno/actions.dmi', icon_state = DEFILER_TRANSVITOX),
 			DEFILER_OZELOMELYN = image('icons/Xeno/actions.dmi', icon_state = DEFILER_OZELOMELYN),
+			DEFILER_ACID = image('modular_RUtgmc/icons/Xeno/actions.dmi', icon_state = DEFILER_ACID),
 			)
 	var/toxin_choice = show_radial_menu(owner, owner, defiler_toxin_images_list, radius = 48)
 	if(!toxin_choice)
@@ -504,6 +512,8 @@
 			particle_holder = new(owner, /particles/xeno_slash/transvitox)
 		if(/datum/reagent/toxin/xeno_ozelomelyn)
 			particle_holder = new(owner, /particles/xeno_slash/ozelomelyn)
+		if(/datum/reagent/toxin/acid) //RUTGMC EDIT ADDITION
+			particle_holder = new(owner, /particles/xeno_slash/transvitox)
 	particle_holder.pixel_x = 16
 	particle_holder.pixel_y = 12
 

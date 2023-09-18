@@ -19,3 +19,11 @@
 		if(INTENT_HARM, INTENT_DISARM)
 			return attack_alien_harm(F)
 	return FALSE
+
+/mob/living/carbon/human/attack_alien_harm(mob/living/carbon/xenomorph/X, dam_bonus, set_location, random_location, no_head, no_crit, force_intent)
+	if(isnestedhost(src) && stat != DEAD) //No more memeing nested and infected hosts
+		to_chat(X, span_xenodanger("We reconsider our mean-spirited bullying of the pregnant, secured host."))
+		return FALSE
+
+	return ..()
+

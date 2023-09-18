@@ -186,7 +186,8 @@
 	///Bonus size for certain gasses
 	var/gas_size_bonus = 0
 
-/obj/alien/egg/gas/burst(via_damage)
+//RUTGMC EDIT BEGIN - Moved to modular_RUtgmc\code\modules\mob\living\carbon\xenomorph\egg.dm
+/*/obj/alien/egg/gas/burst(via_damage)
 	. = ..()
 	if(!.)
 		return
@@ -203,6 +204,7 @@
 	var/datum/effect_system/smoke_spread/xeno/NS = new gas_type(src)
 	NS.set_up(spread, get_turf(src))
 	NS.start()
+*/ //RUTGMC EDIT END
 
 /obj/alien/egg/gas/attack_alien(mob/living/carbon/xenomorph/xenomorph, damage_amount = xenomorph.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
 	if(maturity_stage > stage_ready_to_burst)

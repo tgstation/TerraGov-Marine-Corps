@@ -398,10 +398,6 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 					newmob.forceMove(location)
 			if("larva")
 				newmob = M.change_mob_type(/mob/living/carbon/xenomorph/larva, location, null, delmob)
-			//RUTGNC EDIT BEGIN
-			if("facehugger")
-				newmob = M.change_mob_type(/mob/living/carbon/xenomorph/facehugger, location, null, delmob)
-			//RUTGMC EDIT END
 			if("defender")
 				newmob = M.change_mob_type(/mob/living/carbon/xenomorph/defender, location, null, delmob)
 			if("warrior")
@@ -474,6 +470,12 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 				newmob = M.change_mob_type(/mob/living/carbon/human/species/zombie, location, null, delmob, "Zombie")
 			if("ai")
 				newmob = M.change_mob_type(/mob/living/silicon/ai, location, null, delmob)
+			//RUTGNC EDIT BEGIN
+			if("facehugger")
+				newmob = M.change_mob_type(/mob/living/carbon/xenomorph/facehugger, location, null, delmob)
+			if("panther")
+				newmob = M.change_mob_type(/mob/living/carbon/xenomorph/panther, location, null, delmob)
+			//RUTGMC EDIT END
 
 		C.holder.show_player_panel(newmob)
 
@@ -858,7 +860,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		if(!F)
 			return
 
-		var/dat = "<html><head><title>Fax Message: [F.title]</title></head>"
+		var/dat = "<html><meta charset='UTF-8'><head><title>Fax Message: [F.title]</title></head>"
 		dat += "<body>[F.message]</body></html>"
 
 		usr << browse(dat, "window=fax")
@@ -2315,3 +2317,19 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		var/logtext = "[key_name(usr)] has cancelled an OB with the timerid [timerid_to_cancel]"
 		message_admins(logtext)
 		log_admin(logtext)
+
+	else if(href_list["adminunbanish"])
+		if(!check_rights(R_ADMIN))
+			return
+		var/mob/living/carbon/xenomorph/target = locate(href_list["target"])
+		if(!HAS_TRAIT(target, TRAIT_BANISHED))
+			to_chat(usr, span_warning("Target already is unbanished."))
+			return
+		if(alert("Are you sure you want to unbanish [target]?",,"Yes","No") != "Yes")
+			return
+		var/reason = stripped_input(src.owner, "Provide a reason for unbunish this xenomorph, [target]", default = "I will not allow meaningless death in my hive!")
+		REMOVE_TRAIT(target, TRAIT_BANISHED, TRAIT_BANISHED)
+		target.hud_set_banished()
+		xeno_message("QUEEN MOTHER BANISHMENT", "xenobanishtitleannonce", 5, target.hivenumber, sound= sound(get_sfx("queen"), channel = CHANNEL_ANNOUNCEMENTS))
+		xeno_message("By Queen Mother's will, [target] has been unbanished!\n[reason]", "xenobanishannonce", 5, target.hivenumber)
+		message_admins("[src.owner] has unbanish [ADMIN_TPMONTY(target)]. Reason: [reason ? "[reason]" : "no reason"]")

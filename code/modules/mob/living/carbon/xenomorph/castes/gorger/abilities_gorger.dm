@@ -183,7 +183,8 @@
 	///Used to keep track of the target's previous health for extra_health_check()
 	var/target_health
 
-/datum/action/xeno_action/activable/transfusion/can_use_ability(atom/target, silent = FALSE, override_flags) //it is set up to only return true on specific xeno or human targets
+//RUTGMC EDIT BEGIN - Moved to modular_RUtgmc\code\modules\mob\living\carbon\xenomorph\castes\gorger\abilities_gorger.dm
+/*/datum/action/xeno_action/activable/transfusion/can_use_ability(atom/target, silent = FALSE, override_flags) //it is set up to only return true on specific xeno or human targets
 	. = ..()
 	if(!.)
 		return
@@ -208,7 +209,8 @@
 	target_health = target_xeno.health
 	if(!do_mob(owner, target_xeno, 1 SECONDS, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL, ignore_flags = IGNORE_TARGET_LOC_CHANGE, extra_checks = CALLBACK(src, PROC_REF(extra_health_check), target_xeno)))
 		return FALSE
-	return TRUE
+	return TRUE */
+//RUTGMC EDIT END
 
 ///An extra check for the do_mob in can_use_ability. If the target isn't immobile and has lost health, the ability is cancelled. The ability is also cancelled if the target is knocked into crit DURING the do_mob.
 /datum/action/xeno_action/activable/transfusion/proc/extra_health_check(mob/living/target)
@@ -323,14 +325,14 @@
 		if(!silent)
 			to_chat(owner, span_notice("It is beyond our reach, we must be close and our way must be clear."))
 		return FALSE
-	if(HAS_TRAIT(owner, TRAIT_PSY_LINKED))
+	/*if(HAS_TRAIT(owner, TRAIT_PSY_LINKED)) //RUTGMC EDIT REMOVAL BEGIN
 		if(!silent)
 			to_chat(owner, span_notice("You are already linked to a xenomorph."))
 		return FALSE
 	if(HAS_TRAIT(target, TRAIT_PSY_LINKED))
 		if(!silent)
 			to_chat(owner, span_notice("[target] is already linked to a xenomorph."))
-		return FALSE
+		return FALSE*/ //RUTGMC EDIT REMOVAL END
 	return TRUE
 
 /datum/action/xeno_action/activable/psychic_link/use_ability(atom/target)
@@ -349,14 +351,16 @@
 	RegisterSignal(psychic_link, COMSIG_XENO_PSYCHIC_LINK_REMOVED, PROC_REF(status_removed))
 	target.balloon_alert(owner_xeno, "link successul")
 	owner_xeno.balloon_alert(target, "linked to [owner_xeno]")
-	if(!owner_xeno.resting)
+	//RUTGMC EDIT REMOVAL BEGIN
+	/*if(!owner_xeno.resting)
 		owner_xeno.set_resting(TRUE, TRUE)
-	RegisterSignal(owner_xeno, COMSIG_XENOMORPH_UNREST, PROC_REF(cancel_psychic_link))
+	RegisterSignal(owner_xeno, COMSIG_XENOMORPH_UNREST, PROC_REF(cancel_psychic_link)) */
+	//RUTGMC EDIT REMOVAL END
 	succeed_activate()
 
 ///Removes the status effect on unrest
 /datum/action/xeno_action/activable/psychic_link/proc/cancel_psychic_link(datum/source)
-	SIGNAL_HANDLER
+	//SIGNAL_HANDLER //RUTGMC EDIT REMOVAL
 	var/mob/living/carbon/xenomorph/owner_xeno = owner
 	owner_xeno.remove_status_effect(STATUS_EFFECT_XENO_PSYCHIC_LINK)
 
@@ -364,7 +368,7 @@
 /datum/action/xeno_action/activable/psychic_link/proc/status_removed(datum/source)
 	SIGNAL_HANDLER
 	UnregisterSignal(source, COMSIG_XENO_PSYCHIC_LINK_REMOVED)
-	UnregisterSignal(owner, COMSIG_XENOMORPH_UNREST)
+	//UnregisterSignal(owner, COMSIG_XENOMORPH_UNREST) //RUTGMC EDIT REMOVAL
 	add_cooldown()
 
 ///Clears up things used for the linking

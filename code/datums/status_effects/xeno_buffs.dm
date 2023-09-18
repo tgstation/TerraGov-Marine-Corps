@@ -499,7 +499,8 @@
 ///Calculates the effectiveness of parts of the status based on plasma of owner
 #define CALC_PLASMA_MOD(xeno) \
 	(clamp(1 - xeno.plasma_stored / owner_xeno.xeno_caste.plasma_max, 0.2, 0.8) + 0.2)
-#define HIGN_THRESHOLD 0.6
+//#define HIGN_THRESHOLD 0.6 //ORIGINAL
+#define HIGN_THRESHOLD 0.8 //RUTGMC CHANGE
 #define KNOCKDOWN_DURATION 1 SECONDS
 
 // ***************************************
@@ -571,6 +572,7 @@
 
 		if(do_after(owner_xeno, KNOCKDOWN_DURATION, FALSE, target, ignore_turf_checks = FALSE))
 			owner_xeno.gain_plasma(plasma_gain_on_hit)
+			target.blood_volume = max(target.blood_volume - 30, 0) //RUTGMC EDIT
 
 	if(owner_xeno.has_status_effect(STATUS_EFFECT_XENO_FEAST))
 		for(var/mob/living/carbon/xenomorph/target_xeno AS in cheap_get_xenos_near(owner_xeno, 4))
@@ -582,6 +584,7 @@
 			to_chat(target_xeno, span_notice("You feel your wounds being restored by [owner_xeno]'s pheromones."))
 
 	owner_xeno.remove_status_effect(STATUS_EFFECT_XENO_CARNAGE)
+
 
 #undef CALC_PLASMA_MOD
 #undef HIGN_THRESHOLD

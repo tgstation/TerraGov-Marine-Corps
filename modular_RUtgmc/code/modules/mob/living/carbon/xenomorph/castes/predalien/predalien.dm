@@ -12,7 +12,7 @@
 	mob_size = MOB_SIZE_BIG
 
 	tier = XENO_TIER_FOUR
-	upgrade = XENO_UPGRADE_ZERO
+	upgrade = XENO_UPGRADE_NORMAL
 
 	var/max_bonus_life_kills = 10
 	var/butcher_time = 6 SECONDS

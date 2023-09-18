@@ -461,7 +461,8 @@
 /////////////////////////////
 // ATTACHING AND IMPREGNATION
 //////////////////////////////
-/obj/item/clothing/mask/facehugger/proc/Attach(mob/living/carbon/M)
+//RUTGMC EDIT BEGIN - Moved to modular_RUtgmc\code\modules\mob\living\carbon\xenomorph\facehuggers.dm
+/*/obj/item/clothing/mask/facehugger/proc/Attach(mob/living/carbon/M)
 
 	set_throwing(FALSE)
 	leaping = FALSE
@@ -538,6 +539,7 @@
 
 	M.equip_to_slot(src, SLOT_WEAR_MASK)
 	return TRUE
+*/ //RUTGMC EDIT END
 
 /obj/item/clothing/mask/facehugger/equipped(mob/living/user, slot)
 	. = ..()

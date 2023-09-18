@@ -1,3 +1,15 @@
+/obj/structure/xeno/silo
+	icon = 'modular_RUtgmc/icons/Xeno/resin_silo.dmi'
+
+/obj/structure/xeno/acidwell
+	icon = 'modular_RUtgmc/icons/Xeno/acid_pool.dmi'
+
+/obj/structure/xeno/pherotower
+	icon = 'modular_RUtgmc/icons/Xeno/1x1building.dmi'
+
+/obj/structure/xeno/plant
+	icon = 'modular_RUtgmc/icons/Xeno/plants.dmi'
+
 //Sentient facehugger can get in the trap
 /obj/structure/xeno/trap/attack_facehugger(mob/living/carbon/xenomorph/facehugger/F, isrightclick = FALSE)
 	. = ..()
