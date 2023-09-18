@@ -577,6 +577,7 @@
 #define COMSIG_XENOMORPH_ATTACK_OBJ "xenomorph_attack_obj"
 #define COMSIG_XENOMORPH_ATTACK_LIVING "xenomorph_attack_living"
 	#define COMSIG_XENOMORPH_BONUS_APPLIED (1<<0)
+#define COMSIG_XENOMORPH_ATTACK_XENOMORPH "xenomorph_attack_xenomorph"
 
 #define COMSIG_XENOMORPH_ATTACK_HUMAN "xenomorph_attack_human"
 #define COMSIG_XENOMORPH_DISARM_HUMAN "xenomorph_disarm_human"
