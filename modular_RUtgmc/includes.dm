@@ -58,6 +58,7 @@
 #include "code\modules\mob\living\carbon\xenomorph\castes\hivelord\abilities_hivelord.dm"
 #include "code\modules\mob\living\carbon\xenomorph\castes\hivemind\abilities_hivemind.dm"
 #include "code\modules\mob\living\carbon\xenomorph\castes\hivemind\castedatum_hivemind.dm"
+#include "code\modules\mob\living\carbon\xenomorph\castes\hivemind\hivemind.dm"
 #include "code\modules\mob\living\carbon\xenomorph\castes\hunter\castedatum_hunter.dm"
 #include "code\modules\mob\living\carbon\xenomorph\castes\king\castedatum_king.dm"
 #include "code\modules\mob\living\carbon\xenomorph\castes\panther\castedatum_panther.dm"

@@ -31,3 +31,8 @@
 	interactee?.check_eye(src)
 
 	return TRUE
+
+/mob/living/carbon/xenomorph/updatehealth()
+	. = ..()
+
+	handle_regular_hud_updates()
