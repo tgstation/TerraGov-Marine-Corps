@@ -21,23 +21,23 @@ GLOBAL_LIST_INIT(campaign_default_assets, list(
 		/datum/campaign_reward/teleporter_enabled,
 	),
 ))
-///The potential mission pool by faction
+///The weighted potential mission pool by faction
 GLOBAL_LIST_INIT(campaign_mission_pool, list(
 	FACTION_TERRAGOV = list(
-		/datum/campaign_mission/tdm,
-		/datum/campaign_mission/tdm/lv624,
-		/datum/campaign_mission/tdm/desparity,
-		/datum/campaign_mission/destroy_mission/fire_support_raid,
-		/datum/campaign_mission/capture_mission,
-		/datum/campaign_mission/tdm/mech_wars,
+		/datum/campaign_mission/tdm = 10,
+		/datum/campaign_mission/tdm/lv624= 10,
+		/datum/campaign_mission/tdm/desparity= 10,
+		/datum/campaign_mission/destroy_mission/fire_support_raid= 10,
+		/datum/campaign_mission/capture_mission= 10,
+		/datum/campaign_mission/tdm/mech_wars= 10,
 	),
 	FACTION_SOM = list(
-		/datum/campaign_mission/tdm,
-		/datum/campaign_mission/tdm/lv624,
-		/datum/campaign_mission/tdm/desparity,
-		/datum/campaign_mission/destroy_mission/fire_support_raid,
-		/datum/campaign_mission/capture_mission,
-		/datum/campaign_mission/tdm/mech_wars,
+		/datum/campaign_mission/tdm = 10,
+		/datum/campaign_mission/tdm/lv624= 10,
+		/datum/campaign_mission/tdm/desparity= 10,
+		/datum/campaign_mission/destroy_mission/fire_support_raid= 10,
+		/datum/campaign_mission/capture_mission= 10,
+		/datum/campaign_mission/tdm/mech_wars= 10,
 	),
 ))
 
@@ -82,7 +82,7 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 /datum/faction_stats/proc/generate_new_mission()
 	if(length(available_missions) >= CAMPAIGN_STANDARD_MISSION_QUANTITY)
 		return
-	var/datum/campaign_mission/selected_mission = pick(GLOB.campaign_mission_pool[faction])
+	var/datum/campaign_mission/selected_mission = pickweight(GLOB.campaign_mission_pool[faction])
 	add_new_mission(selected_mission)
 	GLOB.campaign_mission_pool[faction] -= selected_mission
 
