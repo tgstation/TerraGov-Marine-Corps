@@ -114,6 +114,9 @@
 /obj/item/ammo_magazine/rifle/tx54/smoke/tangle/get_additional_codex_info()
 	. += "20mm tanglefoor smoke grenades release a number of piercing sub munitions when they detonate. Submunitions release smoke on turfs crossed, creating a smokescreen of plasma draining Tanglefoot gas.<br>"
 
+/obj/item/ammo_magazine/rifle/tx54/razor/get_additional_codex_info()
+	. += "20mm razorburn grenades release a number of piercing sub munitions when they detonate. Submunitions release razorburn foam on turfs crossed, creating areas of razorwire after a short delay.<br>"
+
 /obj/item/ammo_magazine/smg/som/rad/get_additional_codex_info()
 	. += "Contains radioactive ammunition. Has a chance to irradiate mobs on hit, scaling with bio armour.<br>"
 

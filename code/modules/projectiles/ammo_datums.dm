@@ -1571,6 +1571,15 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	handful_greyscale_colors = COLOR_AMMO_TANGLEFOOT
 	projectile_greyscale_colors = COLOR_AMMO_TANGLEFOOT
 
+/datum/ammo/tx54/razor
+	name = "20mm razorburn grenade"
+	hud_state = "grenade_razor"
+	bonus_projectiles_type = /datum/ammo/bullet/tx54_spread/razor
+	bonus_projectiles_scatter = 50
+	bonus_projectile_quantity = 3
+	handful_greyscale_colors = COLOR_AMMO_RAZORBURN
+	projectile_greyscale_colors = COLOR_AMMO_RAZORBURN
+
 /datum/ammo/tx54/he
 	name = "20mm HE grenade"
 	hud_state = "grenade_he"
@@ -1660,6 +1669,38 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/bullet/tx54_spread/smoke/tangle
 	trail_spread_system = /datum/effect_system/smoke_spread/plasmaloss
+
+/datum/ammo/bullet/tx54_spread/razor
+	name = "chemical bomblet"
+	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_PASS_THROUGH_MOB|AMMO_LEAVE_TURF
+	max_range = 4
+	damage = 5
+	penetration = 0
+	sundering = 0
+	///The foam type loaded in this ammo
+	var/datum/effect_system/foam_spread/chemical_payload
+	///The reagent content of the projectile
+	var/datum/reagents/reagent_list
+
+/datum/ammo/bullet/tx54_spread/razor/New()
+	. = ..()
+
+	chemical_payload = new
+	reagent_list = new
+	reagent_list.add_reagent(/datum/reagent/foaming_agent = 1)
+	reagent_list.add_reagent(/datum/reagent/toxin/nanites = 7)
+
+/datum/ammo/bullet/tx54_spread/razor/Destroy()
+	if(chemical_payload)
+		QDEL_NULL(chemical_payload)
+	return ..()
+
+/datum/ammo/bullet/tx54_spread/razor/on_hit_mob(mob/M, obj/projectile/proj)
+	return
+
+/datum/ammo/bullet/tx54_spread/razor/on_leave_turf(turf/T, atom/firer, obj/projectile/proj)
+	chemical_payload.set_up(0, T, reagent_list, RAZOR_FOAM)
+	chemical_payload.start()
 
 /datum/ammo/tx54/mech
 	name = "30mm fragmentation grenade"
