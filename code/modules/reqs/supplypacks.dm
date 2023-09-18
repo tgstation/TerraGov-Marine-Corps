@@ -1813,7 +1813,7 @@ Imports
 
 /datum/supply_packs/imports/kriss/ammo
 	name = "V-21 SMG Magazines"
-	contains = list(obj/item/ammo_magazine/smg/som)
+	contains = list(/obj/item/ammo_magazine/smg/som)
 	cost = 3
 /datum/supply_packs/imports/strawhat
 	name = "Straw hat"
