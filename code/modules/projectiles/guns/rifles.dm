@@ -1768,7 +1768,7 @@
 		/obj/item/attachable/shoulder_mount,
 	)
 
-	flags_gun_features = GUN_AMMO_COUNTER|GUN_WIELDED_STABLE_FIRING_ONLY|GUN_WIELDED_FIRING_ONLY
+	flags_gun_features = GUN_AMMO_COUNTER|GUN_WIELDED_STABLE_FIRING_ONLY|GUN_WIELDED_FIRING_ONLY|GUN_SMOKE_PARTICLES
 	starting_attachment_types = list(/obj/item/attachable/scope/optical)
 	default_ammo_type = null
 	allowed_ammo_types = list(
@@ -1800,7 +1800,7 @@
 	icon_state = "tx55gl"
 	placed_overlay_iconstate = "tx55gl"
 	attachable_allowed = list()
-	flags_gun_features = GUN_AMMO_COUNTER|GUN_IS_ATTACHMENT|GUN_ATTACHMENT_FIRE_ONLY|GUN_WIELDED_STABLE_FIRING_ONLY|GUN_WIELDED_FIRING_ONLY
+	flags_gun_features = GUN_AMMO_COUNTER|GUN_IS_ATTACHMENT|GUN_ATTACHMENT_FIRE_ONLY|GUN_WIELDED_STABLE_FIRING_ONLY|GUN_WIELDED_FIRING_ONLY|GUN_SMOKE_PARTICLES
 	flags_attach_features = NONE
 	slot = ATTACHMENT_SLOT_STOCK
 	default_ammo_type = /obj/item/ammo_magazine/rifle/tx54
