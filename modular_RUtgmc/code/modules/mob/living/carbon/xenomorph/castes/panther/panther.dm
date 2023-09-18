@@ -9,7 +9,7 @@
 	plasma_stored = 10
 	pass_flags = PASS_LOW_STRUCTURE
 	tier = XENO_TIER_TWO
-	upgrade = XENO_UPGRADE_ZERO
+	upgrade = XENO_UPGRADE_NORMAL
 	pixel_x = -16
 	old_x = -16
 	bubble_icon = "alien"

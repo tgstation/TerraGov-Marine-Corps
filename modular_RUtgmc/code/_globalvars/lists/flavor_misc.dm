@@ -20,6 +20,7 @@ GLOBAL_LIST_INIT(playable_icons, list(
 	"larva",
 	"mech_pilot",
 	"medical",
+	"panther",
 	"pilot",
 	"praetorian",
 	"private",

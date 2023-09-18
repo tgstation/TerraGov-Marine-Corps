@@ -10,8 +10,6 @@
 
 	caste_flags = CASTE_INNATE_HEALING|CASTE_INNATE_PLASMA_REGEN
 
-	charge_type = CHARGE_TYPE_SMALL
-
 	// *** Melee Attacks *** //
 	melee_damage = 35
 

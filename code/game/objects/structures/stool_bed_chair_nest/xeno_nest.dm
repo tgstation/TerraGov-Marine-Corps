@@ -1,5 +1,9 @@
-#define NEST_RESIST_TIME 2.5 SECONDS
-#define NEST_UNBUCKLED_COOLDOWN 5 SECONDS
+//RUTGMC EDIT CHANGE BEGIN
+//#define NEST_RESIST_TIME 2.5 SECONDS //ORIGINAL
+//#define NEST_UNBUCKLED_COOLDOWN 5 SECONDS
+#define NEST_RESIST_TIME 80 SECONDS //RUTGMC EDIT
+#define NEST_UNBUCKLED_COOLDOWN 15 SECONDS
+//RUTGMC EDIT CHANGE END
 
 ///Alium nests. Essentially beds with an unbuckle delay that only aliums can buckle mobs to.
 /obj/structure/bed/nest
@@ -26,11 +30,13 @@
 		to_chat(user, span_notice("You place [M] on [src]."))
 		M.forceMove(loc)
 
-
+//RUTGMC EDIT BEGIN - Moved to modular_RUtgmc\code\game\objects\structures\stool_bed_chair_nest\xeno_nest.dm
+/*
 /obj/structure/bed/nest/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
 	if(X.a_intent != INTENT_HARM)
 		return attack_hand(X)
 	return ..()
+*/ //RUTGMC EDIT END
 
 
 /obj/structure/bed/nest/user_buckle_mob(mob/living/buckling_mob, mob/user, check_loc = TRUE, silent)
@@ -47,9 +53,11 @@
 		if(TIMER_COOLDOWN_CHECK(H, COOLDOWN_NEST))
 			to_chat(user, span_warning("[H] was recently unbuckled. Wait a bit."))
 			return FALSE
-		if(!H.lying_angle)
+		//RUTGMC EDIT REMOVAL BEGIN
+		/*if(!H.lying_angle)
 			to_chat(user, span_warning("[H] is resisting, ground [H.p_them()]."))
-			return FALSE
+			return FALSE */
+		//RUTGMC EDIT END
 
 	user.visible_message(span_warning("[user] pins [buckling_mob] into [src], preparing the securing resin."),
 	span_warning("[user] pins [buckling_mob] into [src], preparing the securing resin."))
@@ -61,9 +69,11 @@
 	if(LAZYLEN(buckled_mobs))
 		to_chat(user, span_warning("There's already someone in [src]."))
 		return FALSE
-	if(ishuman(buckling_mob) && !buckling_mob.lying_angle) //Improperly stunned Marines won't be nested
+	//RUTGMC EDIT REMOVAL BEGIN
+	/*if(ishuman(buckling_mob) && !buckling_mob.lying_angle) //Improperly stunned Marines won't be nested
 		to_chat(user, span_warning("[buckling_mob] is resisting, ground [buckling_mob.p_them()]."))
-		return FALSE
+		return FALSE */
+	//RUTGMC EDIT END
 
 	buckling_mob.visible_message(span_xenonotice("[user] secretes a thick, vile resin, securing [buckling_mob] into [src]!"),
 		span_xenonotice("[user] drenches you in a foul-smelling resin, trapping you in [src]!"),
@@ -82,7 +92,7 @@
 			span_notice("\The [user] pulls you free from \the [src]."),
 			span_notice("You hear squelching."))
 		playsound(loc, "alien_resin_move", 50)
-		TIMER_COOLDOWN_START(user, COOLDOWN_NEST, NEST_UNBUCKLED_COOLDOWN)
+		//TIMER_COOLDOWN_START(user, COOLDOWN_NEST, NEST_UNBUCKLED_COOLDOWN) //RUTGMC EDIT REMOVAL
 		silent = TRUE
 		return ..()
 

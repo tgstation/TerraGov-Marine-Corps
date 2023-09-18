@@ -50,3 +50,49 @@
 	F.ghostize()
 	F.death(deathmessage = "get inside the egg", silent = TRUE)
 	qdel(F)
+
+/obj/alien/egg/gas
+	desc = "It looks like a suspiciously weird egg"
+	name = "gas egg"
+	icon = 'modular_RUtgmc/icons/Xeno/Effects.dmi'
+	icon_state = "egg_gas"
+
+/obj/alien/egg/gas/update_icon_state()
+	. = ..()
+	if(maturity_stage > stage_ready_to_burst)
+		return
+	switch(gas_type)
+		if(/datum/effect_system/smoke_spread/xeno/neuro/medium)
+			icon_state = "egg_gas_n2"
+		if(/datum/effect_system/smoke_spread/xeno/ozelomelyn)
+			icon_state = "egg_gas_o2"
+		if(/datum/effect_system/smoke_spread/xeno/hemodile)
+			icon_state = "egg_gas_h2"
+		if(/datum/effect_system/smoke_spread/xeno/transvitox)
+			icon_state = "egg_gas_t2"
+		if(/datum/effect_system/smoke_spread/xeno/acid/light)
+			icon_state = "egg_gas_a2"
+	if(hivenumber != XENO_HIVE_NORMAL && GLOB.hive_datums[hivenumber])
+		var/datum/hive_status/hive = GLOB.hive_datums[hivenumber]
+		color = hive.color
+		return
+	color = null
+
+/obj/alien/egg/gas/burst(via_damage)
+	. = ..()
+	if(!.)
+		return
+	var/spread = EGG_GAS_DEFAULT_SPREAD
+	if(via_damage) // More violent destruction, more gas.
+		playsound(loc, "sound/effects/alien_egg_burst.ogg", 30)
+		flick("egg gas exploding", src)
+		spread = EGG_GAS_KILL_SPREAD
+	else
+		playsound(src.loc, "sound/effects/alien_egg_move.ogg", 25)
+		flick("egg gas opening", src)
+	spread += gas_size_bonus
+
+	var/datum/effect_system/smoke_spread/xeno/NS = new gas_type(src)
+	NS.set_up(spread, get_turf(src))
+	NS.start()
+

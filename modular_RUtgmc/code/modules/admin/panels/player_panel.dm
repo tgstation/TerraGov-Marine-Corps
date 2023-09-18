@@ -120,6 +120,7 @@
 		<a href='?src=[ref];transform=defender;mob=[REF(M)]'>Defender</a> |
 		<br> Alien Tier 2:
 		<a href='?src=[ref];transform=hunter;mob=[REF(M)]'>Hunter</a> |
+		<a href='?src=[ref];transform=panther;mob=[REF(M)]'>Panther</a> |
 		<a href='?src=[ref];transform=bull;mob=[REF(M)]'>Bull</a> |
 		<a href='?src=[ref];transform=warrior;mob=[REF(M)]'>Warrior</a> |
 		<a href='?src=[ref];transform=spitter;mob=[REF(M)]'>Spitter</a> |

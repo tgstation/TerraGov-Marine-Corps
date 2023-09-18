@@ -34,7 +34,10 @@
 		if(distance == 0) //If we're on top of our victim, give him the full impact
 			GLOB.round_statistics.crusher_stomp_victims++
 			SSblackbox.record_feedback("tally", "round_statistics", 1, "crusher_stomp_victims")
-			M.take_overall_damage(damage, BRUTE, MELEE, updating_health = TRUE, max_limbs = 3)
+			//RUTGMC EDIT CHANGE BEGIN
+			//M.take_overall_damage(damage, BRUTE, MELEE, updating_health = TRUE, max_limbs = 3) // ORIGINAL
+			M.take_overall_damage(damage, BRUTE, MELEE, updating_health = TRUE, penetration = 100, max_limbs = 3) //RUTGMC CHANGE
+			//RUTGMC EDIT END
 			M.Paralyze(3 SECONDS)
 			to_chat(M, span_highdanger("You are stomped on by [X]!"))
 			shake_camera(M, 3, 3)

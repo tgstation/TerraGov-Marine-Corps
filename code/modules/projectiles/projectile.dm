@@ -808,7 +808,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 		return FALSE
 	return ..()
 
-
+/* //RUTGMC EDIT BEGIN - Moved to modular_RUtgmc\code\modules\projectiles\projectile.dm
 /mob/living/carbon/xenomorph/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
 	if(CHECK_BITFIELD(xeno_iff_check(), proj.iff_signal))
 		return FALSE
@@ -819,7 +819,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	if(proj.ammo.flags_ammo_behavior & AMMO_SKIPS_ALIENS)
 		return FALSE
 	return ..()
-
+*/ //RUTGMC EDIT END
 
 /obj/projectile/proc/play_damage_effect(mob/M)
 	if(ammo.sound_hit) playsound(M, ammo.sound_hit, 50, 1)

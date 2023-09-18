@@ -1,0 +1,3 @@
+//ids
+
+#define MOVESPEED_ID_BOILER_DUMP "BOILER_DUMP"

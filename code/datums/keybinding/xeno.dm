@@ -274,6 +274,14 @@
 	keybind_signal = COMSIG_XENOABILITY_BOMBARD
 	hotkey_keys = list("R")
 
+//RUTGMC EDIT BEGIN
+/datum/keybinding/xeno/dump_acid
+	name = "dump_acid"
+	full_name = "Boiler: Dump Acid"
+	description = ""
+	keybind_signal = COMSIG_XENOABILITY_DUMP_ACID
+//RUTGMC EDIT END
+
 /datum/keybinding/xeno/plow_charge
 	name = "plow_charge"
 	full_name = "Bull: Plow Charge"
@@ -682,6 +690,20 @@
 	description = "Summons all xenos in a hive to the caller's location, uses all plasma to activate."
 	keybind_signal = COMSIG_XENOABILITY_HIVE_SUMMON
 
+//RUTGMC EDIT ADDITION BEGIN
+/datum/keybinding/xeno/tearing_tail
+	name = "Tearing Tail"
+	full_name = "Panther: Tearing Tail"
+	description = "Hit all adjacent units around you, poisoning them toxin for their mind."
+	keybind_signal = COMSIG_XENOABILITY_TEARING_TAIL
+
+/datum/keybinding/xeno/adrenaline_jump
+	name = "Adrenaline Jump"
+	full_name = "Panther: Adrenaline Jump"
+	description = "Jump from some distance to target, knocking them down."
+	keybind_signal = COMSIG_XENOABILITY_ADRENALINE_JUMP
+//RUTGMC EDIT END
+
 /datum/keybinding/xeno/acid_dash
 	name = "acid_dash"
 	full_name = "Praetorian: Acid Dash"
@@ -851,12 +873,23 @@
 	keybind_signal = COMSIG_XENOABILITY_PSYCHIC_CURE
 	hotkey_keys = list("F")
 
+//RUTGMC EDIT BEGIN
+/*
 /datum/keybinding/xeno/psychic_storm
 	name = "gravnade"
 	full_name = "Shrike: Psychic Vortex"
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_PSYCHIC_VORTEX
 	hotkey_keys = list("X")
+*/
+
+/datum/keybinding/xeno/psychic_grab
+	name = "psychic_grab"
+	full_name = "Shrike: Psychic Grab"
+	description = ""
+	keybind_signal = COMSIG_XENOABILITY_PSYCHIC_GRAB
+	hotkey_keys = list("X")
+//RUTGMC EDIT END
 
 /datum/keybinding/xeno/scatter_spit
 	name = "scatter_spit"
