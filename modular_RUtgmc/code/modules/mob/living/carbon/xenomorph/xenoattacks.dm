@@ -26,6 +26,23 @@
 			X.visible_message(span_notice("\The [X] caresses \the [src] with its scythe-like arm."), \
 			span_notice("We caress \the [src] with our scythe-like arm."), null, 5)
 
+		if(INTENT_DISARM)
+			X.do_attack_animation(src, ATTACK_EFFECT_DISARM)
+			playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, 1, 7)
+			if(!issamexenohive(X))
+				return FALSE
+
+			if(X.tier != XENO_TIER_FOUR && !X.queen_chosen_lead)
+				return FALSE
+
+			if((isxenoqueen(src) || queen_chosen_lead) && !isxenoqueen(X))
+				return FALSE
+
+			X.visible_message("\The [X] shoves \the [src] out of her way!", \
+				span_warning("You shove \the [src] out of your way!"), null, 5)
+			apply_effect(0.2 SECONDS, WEAKEN)
+			return TRUE
+
 		if(INTENT_GRAB)
 			if(anchored)
 				return FALSE
@@ -35,7 +52,7 @@
 			span_warning("We grab \the [src]!"), null, 5)
 			playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, 1, 7)
 
-		if(INTENT_HARM, INTENT_DISARM)//Can't slash other xenos for now. SORRY  // You can now! --spookydonut
+		if(INTENT_HARM)//Can't slash other xenos for now. SORRY  // You can now! --spookydonut
 			if(issamexenohive(X) && !HAS_TRAIT(src, TRAIT_BANISHED))
 				X.do_attack_animation(src)
 				X.visible_message(span_warning("\The [X] nibbles \the [src]."), \

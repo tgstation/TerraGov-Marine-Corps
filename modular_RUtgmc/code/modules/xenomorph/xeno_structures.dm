@@ -1,3 +1,6 @@
+/obj/structure/xeno/silo
+	icon = 'modular_RUtgmc/icons/Xeno/resin_silo.dmi'
+
 //Sentient facehugger can get in the trap
 /obj/structure/xeno/trap/attack_facehugger(mob/living/carbon/xenomorph/facehugger/F, isrightclick = FALSE)
 	. = ..()
