@@ -61,7 +61,8 @@ GLOBAL_LIST_INIT(weed_prob_list, list(
 		/obj/alien/weeds/node/resting = 10,
 		))
 
-//List of weed images
+//RUTGMC EDIT BEGIN - Moved to modular_RUtgmc\code\__DEFINES\xeno.dm
+/* //List of weed images
 GLOBAL_LIST_INIT(weed_images_list, list(
 		WEED = image('icons/Xeno/actions.dmi', icon_state = WEED),
 		STICKY_WEED = image('icons/Xeno/actions.dmi', icon_state = STICKY_WEED),
@@ -75,6 +76,7 @@ GLOBAL_LIST_INIT(pheromone_images_list, list(
 		AURA_XENO_WARDING = image('icons/Xeno/actions.dmi', icon_state = AURA_XENO_WARDING),
 		AURA_XENO_FRENZY = image('icons/Xeno/actions.dmi', icon_state = AURA_XENO_FRENZY),
 		))
+*/ //RUTGMC EDIT END
 
 //List of Defiler toxin types available for selection
 GLOBAL_LIST_INIT(defiler_toxin_type_list, list(
@@ -113,7 +115,8 @@ GLOBAL_LIST_INIT(plant_type_list, list(
 		/obj/structure/xeno/plant/stealth_plant
 		))
 
-//List of plant images
+//RUTGMC EDIT BEGIN - Moved to modular_RUtgmc\code\__DEFINES\xeno.dm
+/* //List of plant images
 GLOBAL_LIST_INIT(plant_images_list, list(
 		HEAL_PLANT = image('icons/Xeno/plants.dmi', icon_state = "heal_fruit"),
 		ARMOR_PLANT = image('icons/Xeno/plants.dmi', icon_state = "armor_fruit"),
@@ -123,7 +126,7 @@ GLOBAL_LIST_INIT(plant_images_list, list(
 
 //RUTGMC EDIT BEGIN - Moved to modular_RUtgmc\code\__DEFINES\xeno.dm
 //List of resin structure images
-/*GLOBAL_LIST_INIT(resin_images_list, list(
+GLOBAL_LIST_INIT(resin_images_list, list(
 		RESIN_WALL = image('icons/Xeno/actions.dmi', icon_state = RESIN_WALL),
 		STICKY_RESIN = image('icons/Xeno/actions.dmi', icon_state = STICKY_RESIN),
 		RESIN_DOOR = image('icons/Xeno/actions.dmi', icon_state = RESIN_DOOR)

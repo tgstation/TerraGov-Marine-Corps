@@ -1,6 +1,10 @@
 /obj/alien
 	icon = 'modular_RUtgmc/icons/Xeno/Effects.dmi'
 
+//Resin Doors
+/obj/structure/mineral_door/resin
+	icon = 'modular_RUtgmc/icons/obj/smooth_objects/resin-door.dmi'
+
 /obj/alien/resin/resin_growth
 	name = GROWTH_WALL
 	desc = "Some sort of resin growth. Looks incredibly fragile"

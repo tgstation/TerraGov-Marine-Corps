@@ -6,10 +6,8 @@
 	upgrade = XENO_UPGRADE_BASETYPE
 	wound_type = "Predalien"
 
-	charge_type = CHARGE_TYPE_LARGE
-
 	// *** Melee Attacks *** //
-	melee_damage = 40
+	melee_damage = 60
 
 	// *** Speed *** //
 	speed = -0.8
@@ -24,7 +22,7 @@
 	max_health = 650
 
 	// *** Evolution *** //
-	upgrade_threshold = TIER_THREE_YOUNG_THRESHOLD
+	upgrade_threshold = TIER_THREE_THRESHOLD
 
 	// *** Minimap Icon *** //
 	minimap_icon = "predalien"
@@ -41,46 +39,10 @@
 	)
 
 
-/datum/xeno_caste/predalien/young
-	upgrade_name = "Young"
-	upgrade = XENO_UPGRADE_ZERO
-
-	// *** Melee Attacks *** //
-	melee_damage = 45
-
-/datum/xeno_caste/predalien/mature
-	upgrade_name = "Mature"
-	upgrade = XENO_UPGRADE_ONE
-
-	// *** Melee Attacks *** //
-	melee_damage = 50
-
-	// *** Evolution *** //
-	upgrade_threshold = TIER_THREE_MATURE_THRESHOLD
-
-/datum/xeno_caste/predalien/elder
-	upgrade_name = "Elder"
-	upgrade = XENO_UPGRADE_TWO
-
-	// *** Melee Attacks *** //
-	melee_damage = 55
-
-	// *** Evolution *** //
-	upgrade_threshold = TIER_THREE_ELDER_THRESHOLD
-
-/datum/xeno_caste/predalien/ancient
-	upgrade_name = "Ancient"
-	upgrade = XENO_UPGRADE_THREE
-
-	// *** Melee Attacks *** //
-	melee_damage = 60
-
-	// *** Evolution *** //
-	upgrade_threshold = TIER_THREE_ANCIENT_THRESHOLD
+/datum/xeno_caste/predalien/normal
+	upgrade = XENO_UPGRADE_NORMAL
 
 /datum/xeno_caste/predalien/primordial
 	upgrade_name = "Primordial"
-	upgrade = XENO_UPGRADE_FOUR
+	upgrade = XENO_UPGRADE_PRIMO
 
-	// *** Melee Attacks *** //
-	melee_damage = 65

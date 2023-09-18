@@ -126,7 +126,7 @@
 	var/datum/xeno_caste/new_caste = get_deevolve_caste(devolver, target)
 
 	if(!new_caste) //better than nothing
-		new_caste = GLOB.xeno_caste_datums[target.xeno_caste.deevolves_to][XENO_UPGRADE_ZERO]
+		new_caste = GLOB.xeno_caste_datums[target.xeno_caste.deevolves_to][XENO_UPGRADE_NORMAL]
 
 	for(var/forbid_info in hive_forbiden_castes)
 		if(forbid_info["type_path"] == new_caste.caste_type_path && forbid_info["is_forbid"])
@@ -156,11 +156,7 @@
 	target.balloon_alert(target, "Forced deevolution")
 	to_chat(target, span_xenowarning("[devolver] deevolved us for the following reason: [reason]."))
 
-	var/is_full_evo = FALSE
-	if(new_caste.caste_type_path == /mob/living/carbon/xenomorph/larva)
-		is_full_evo = TRUE
-
-	target.do_evolve(new_caste.caste_type_path, new_caste.caste_name, TRUE, is_full_evo)
+	target.do_evolve(new_caste.caste_type_path, new_caste.caste_name, TRUE)
 
 	log_game("[key_name(devolver)] has deevolved [key_name(target)]. Reason: [reason]")
 	message_admins("[ADMIN_TPMONTY(devolver)] has deevolved [ADMIN_TPMONTY(target)]. Reason: [reason]")
