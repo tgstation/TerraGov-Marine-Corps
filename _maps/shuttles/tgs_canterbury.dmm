@@ -126,7 +126,7 @@
 	pixel_y = 8
 	},
 /obj/item/binoculars,
-/obj/item/customizekit/sniper,
+/obj/item/facepaint/sniper,
 /obj/machinery/air_alarm,
 /obj/machinery/door_control{
 	dir = 4;
@@ -271,7 +271,7 @@
 /obj/item/clothing/suit/storage/hazardvest,
 /obj/item/clothing/suit/storage/hazardvest,
 /obj/structure/table/mainship,
-/obj/item/customizekit/black,
+/obj/item/facepaint/black,
 /turf/open/floor/mainship/orange/full,
 /area/shuttle/canterbury)
 "aV" = (

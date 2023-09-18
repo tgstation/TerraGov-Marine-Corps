@@ -347,7 +347,7 @@
 /obj/item/flashlight,
 /obj/item/clothing/suit/storage/hazardvest,
 /obj/item/clothing/suit/storage/hazardvest,
-/obj/item/customizekit/black,
+/obj/item/facepaint/black,
 /obj/item/stack/sheet/glass{
 	amount = 50;
 	pixel_x = 3;
@@ -904,7 +904,7 @@
 /area/shuttle/canterbury)
 "Kk" = (
 /obj/structure/rack,
-/obj/item/customizekit/sniper,
+/obj/item/facepaint/sniper,
 /obj/item/pizzabox/meat,
 /obj/item/binoculars,
 /obj/effect/spawner/random/engineering/extinguisher/regularweighted,

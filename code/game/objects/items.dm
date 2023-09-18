@@ -280,7 +280,7 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 /obj/item/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(istype(I, /obj/item/customizekit) && colorable_allowed != NONE)
+	if(istype(I, /obj/item/facepaint) && colorable_allowed != NONE)
 		color_item(I, user)
 		return
 
@@ -321,7 +321,7 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 	. = ..()
 	if(.)
 		return
-	if(!istype(I, /obj/item/customizekit))
+	if(!istype(I, /obj/item/facepaint))
 		return
 	alternate_color_item(I, user)
 
@@ -1390,7 +1390,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 	return FALSE
 
 ///Colors the item or selects variants.
-/obj/item/proc/color_item(obj/item/customizekit/paint, mob/user)
+/obj/item/proc/color_item(obj/item/facepaint/paint, mob/user)
 
 	if(paint.uses < 1)
 		balloon_alert(user, "\the [paint] is out of color!")
@@ -1449,7 +1449,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 	update_greyscale()
 
 ///Is called when the item is alternate attacked by paint. Handles coloring any secondary colors that are registered to COMSIG_ITEM_SECONDARY_COLOR
-/obj/item/proc/alternate_color_item(obj/item/customizekit/paint, mob/user)
+/obj/item/proc/alternate_color_item(obj/item/facepaint/paint, mob/user)
 	var/list/obj/item/secondaries = list()
 	SEND_SIGNAL(src, COMSIG_ITEM_SECONDARY_COLOR, user, secondaries)
 	if(!length(secondaries))

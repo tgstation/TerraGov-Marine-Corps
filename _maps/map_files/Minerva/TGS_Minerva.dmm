@@ -8023,7 +8023,7 @@
 /area/mainship/living/evacuation)
 "xb" = (
 /obj/structure/table/reinforced,
-/obj/item/customizekit/green,
+/obj/item/facepaint/green,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/briefing)
 "xc" = (
@@ -12769,9 +12769,9 @@
 /area/mainship/squads/general)
 "KQ" = (
 /obj/structure/table/mainship/nometal,
-/obj/item/customizekit/green,
-/obj/item/customizekit/brown,
-/obj/item/customizekit/black,
+/obj/item/facepaint/green,
+/obj/item/facepaint/brown,
+/obj/item/facepaint/black,
 /obj/machinery/light/mainship{
 	dir = 4
 	},
@@ -16451,7 +16451,7 @@
 "VA" = (
 /obj/structure/table/reinforced,
 /obj/item/tool/hand_labeler,
-/obj/item/customizekit/green,
+/obj/item/facepaint/green,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/tankerbunks)
 "VB" = (

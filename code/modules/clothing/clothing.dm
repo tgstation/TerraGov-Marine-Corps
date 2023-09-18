@@ -103,11 +103,11 @@
 		bloodsies.color = blood_color
 		standing.add_overlay(bloodsies)
 
-/obj/item/clothing/color_item(obj/item/customizekit/paint, mob/user)
+/obj/item/clothing/color_item(obj/item/facepaint/paint, mob/user)
 	.=..()
 	update_clothing_icon()
 
-/obj/item/clothing/alternate_color_item(obj/item/customizekit/paint, mob/user)
+/obj/item/clothing/alternate_color_item(obj/item/facepaint/paint, mob/user)
 	. = ..()
 	update_clothing_icon()
 

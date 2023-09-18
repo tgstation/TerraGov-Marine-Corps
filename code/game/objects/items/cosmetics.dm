@@ -1,4 +1,4 @@
-/obj/item/customizekit
+/obj/item/facepaint
 	gender = PLURAL
 	name = "customization kit"
 	desc = "A kit designed for customizing various pieces of armor and clothing. Comes with facepaint!"
@@ -8,30 +8,30 @@
 	w_class = WEIGHT_CLASS_TINY
 	var/uses = 100
 
-/obj/item/customizekit/green
+/obj/item/facepaint/green
 	name = "green customization kit"
 	colour = "green"
 	icon_state = "green_camo"
 
 
-/obj/item/customizekit/brown
+/obj/item/facepaint/brown
 	name = "brown customization kit"
 	colour = "brown"
 	icon_state = "brown_camo"
 
-/obj/item/customizekit/black
+/obj/item/facepaint/black
 	name = "black customization kit"
 	colour = "black"
 	icon_state = "black_camo"
 
-/obj/item/customizekit/sniper
+/obj/item/facepaint/sniper
 	name = "Fullbody customization kit"
 	desc = "A kit designed for customizing various pieces of armor and clothing. Comes with fullbody paint!"
 	colour = "full"
 	icon_state = "full_camo"
 
 
-/obj/item/customizekit/attack(mob/M as mob, mob/user as mob)
+/obj/item/facepaint/attack(mob/M as mob, mob/user as mob)
 	if(!ismob(M)) return
 
 	if(ishuman(M))
@@ -53,7 +53,7 @@
 	to_chat(user, span_warning("Foiled!"))
 
 
-/obj/item/customizekit/proc/paint_face(mob/living/carbon/human/H, mob/user)
+/obj/item/facepaint/proc/paint_face(mob/living/carbon/human/H, mob/user)
 	if(!H || !user) return //In case they're passed as null.
 	user.visible_message(span_notice("[user] carefully applies [src] on [H]'s face."), \
 						span_notice("You apply [src]."))

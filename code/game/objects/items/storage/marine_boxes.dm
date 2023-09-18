@@ -139,6 +139,6 @@
 		new /obj/item/storage/backpack/marine/satchel(src)
 		new /obj/item/bodybag/tarp/snow(src)
 	else
-		new /obj/item/customizekit/sniper(src)
+		new /obj/item/facepaint/sniper(src)
 		new /obj/item/storage/backpack/marine/smock(src)
 		new /obj/item/bodybag/tarp(src)
