@@ -61,9 +61,6 @@
 	primordial_message = "Nothing can escape our toxic cloud!"
 	upgrade = XENO_UPGRADE_PRIMO
 
-	// *** Ranged Attack *** //
-	charge_type = CHARGE_TYPE_MEDIUM
-
 	// *** Abilities *** ///
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,

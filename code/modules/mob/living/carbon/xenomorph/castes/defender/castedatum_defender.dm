@@ -40,9 +40,6 @@
 	// *** Defense *** //
 	soft_armor = list(MELEE = 40, BULLET = 40, LASER = 40, ENERGY = 40, BOMB = 20, BIO = 30, FIRE = 40, ACID = 30)
 
-	// *** Ranged Attack *** //
-	charge_type = CHARGE_TYPE_LARGE
-
 	// *** Minimap Icon *** //
 	minimap_icon = "defender"
 
