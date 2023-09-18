@@ -52,6 +52,9 @@
 
 ///When a mob passes over the turf where the trap is deployed
 /obj/structure/spiketrap/proc/on_cross(datum/source, atom/movable/victim, oldloc, oldlocs)
+	SIGNAL_HANDLER
+	if((victim.status_flags & INCORPOREAL || victim.status_flags & GODMODE))
+		return
 	if(!isliving(victim))
 		return
 	if(CHECK_MULTIPLE_BITFIELDS(victim.pass_flags, HOVERING))
@@ -59,20 +62,22 @@
 	var/mob/living/draggedmob = victim
 	if(draggedmob.lying_angle) //so dragged corpses don't die from being dragged through a spike field.
 		return
-	apply_damage(victim)
+	INVOKE_ASYNC(src, PROC_REF(activate_trap), victim)
 
 ///Actually taking slowdown and damage from the trap
-/obj/structure/spiketrap/proc/apply_damage(mob/living/victim)
+/obj/structure/spiketrap/proc/activate_trap(mob/living/victim)
 	victim.apply_status_effect(/datum/status_effect/incapacitating/harvester_slowdown, 3) //Moving through spikes slows you down
+	playsound(src, 'sound/weapons/bladeslice.ogg', 50)
 	if(isxeno(victim))
 		victim.apply_damage(spike_damage * 3, BRUTE, updating_health = TRUE)
+		return
 
 	var/mob/living/carbon/human/target = victim
 	if(target.get_limb(BODY_ZONE_PRECISE_L_FOOT) || target.get_limb(BODY_ZONE_PRECISE_R_FOOT))
 		for(var/limb_to_hit in list(BODY_ZONE_PRECISE_L_FOOT, BODY_ZONE_PRECISE_R_FOOT))
 			target.apply_damage(spike_damage, BRUTE, limb_to_hit, updating_health = TRUE)
 
-	playsound(src, 'sound/weapons/bladeslice.ogg', 50)
+
 
 /obj/item/stack/speartrap //A deployable spear trap, causes damage to anyone who walks into it
 	name = "Spear trap assembly"
@@ -86,14 +91,14 @@
 	attack_verb = list("hit", "whacked", "sliced")
 	max_amount = 20
 	merge_type = /obj/item/stack/speartrap
+	///Used for the health of the spear
+	max_integrity = 200
 	///The item this deploys into
 	var/deployable_item = /obj/structure/speartrap
 	///Time to deploy
 	var/deploy_time = 1 SECONDS
 	///Time to undeploy
 	var/undeploy_time = 1 SECONDS
-	///Used for the health of the spear
-	max_integrity = 200
 
 /obj/item/stack/speartrap/Initialize(mapload, new_amount)
 	. = ..()
@@ -129,14 +134,17 @@
 
 ///When a mob bumps into the speartrap
 /obj/structure/speartrap/proc/on_bump(datum/source, atom/movable/victim, oldloc, oldlocs)
+	SIGNAL_HANDLER
+	if((victim.status_flags & INCORPOREAL || victim.status_flags & GODMODE))
+		return
 	if(!isliving(victim))
 		return
 
 	if(get_dir(src, victim) == dir)
-		apply_damage(victim)
+		INVOKE_ASYNC(src, PROC_REF(activate_trap), victim)
 
 ///Actually taking stun and damage from the trap
-/obj/structure/speartrap/proc/apply_damage(mob/living/victim)
+/obj/structure/speartrap/proc/activate_trap(mob/living/victim)
 	if(isxeno(victim))
 		victim.apply_damage(trap_damage * 5, BRUTE, updating_health = TRUE)
 
