@@ -1,7 +1,25 @@
 //stats/points/etc recorded by faction
 #define MISSION_SELECTION_ALLOWED  (1<<0)
-
+///How long after a mission ends a new leader is picked
 #define AFTER_MISSION_LEADER_DELAY 1 MINUTES
+
+///Default assets a faction starts with
+GLOBAL_LIST_INIT(campaign_default_assets, list(
+	FACTION_TERRAGOV = list(
+		/datum/campaign_reward/equipment/mech_heavy,
+		/datum/campaign_reward/bonus_job/freelancer,
+		/datum/campaign_reward/fire_support,
+		/datum/campaign_reward/droppod_refresh,
+		/datum/campaign_reward/droppod_enabled,
+	),
+	FACTION_SOM = list(
+		/datum/campaign_reward/equipment/mech_heavy,
+		/datum/campaign_reward/bonus_job/colonial_militia,
+		/datum/campaign_reward/fire_support/som_cas,
+		/datum/campaign_reward/teleporter_charges,
+		/datum/campaign_reward/teleporter_enabled,
+	),
+))
 
 /datum/faction_stats
 	interaction_flags = INTERACT_UI_INTERACT
@@ -30,15 +48,8 @@
 	. = ..()
 	faction = new_faction
 	GLOB.faction_stats_datums[faction] = src
-	//some testuse rewards
-	add_reward(/datum/campaign_reward/equipment/mech_heavy)
-	add_reward(/datum/campaign_reward/bonus_job/colonial_militia)
-	add_reward(/datum/campaign_reward/teleporter_charges)
-	add_reward(/datum/campaign_reward/droppod_refresh)
-	add_reward(/datum/campaign_reward/fire_support)
-	add_reward(/datum/campaign_reward/teleporter_enabled)
-	add_reward(/datum/campaign_reward/droppod_enabled)
-
+	for(var/asset in GLOB.campaign_default_assets[faction])
+		add_reward(asset)
 	load_default_missions()
 	RegisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_MISSION_ENDED, PROC_REF(mission_end))
 
