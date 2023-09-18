@@ -335,7 +335,7 @@
 		if(!(medical_record.fields["last_scan_time"]))
 			. += "<span class = 'deptradio'>No scan report on record</span>"
 		else
-			. += "<span class = 'deptradio'><a href='?src=\ref[src];scanreport=1'>Scan from [medical_record.fields["last_scan_time"]]</a></span>"
+			. += "<span class = 'deptradio'><a href='?src=[text_ref(src)];scanreport=1'>Scan from [medical_record.fields["last_scan_time"]]</a></span>"
 		break
 
 

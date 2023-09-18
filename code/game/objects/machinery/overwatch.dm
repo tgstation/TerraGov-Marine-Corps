@@ -198,40 +198,40 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	watchable_squads = SSjob.active_squads[faction]
 	var/dat
 	if(!operator)
-		dat += "<BR><B>Operator:</b> <A href='?src=\ref[src];operation=change_operator'>----------</A><BR>"
+		dat += "<BR><B>Operator:</b> <A href='?src=[text_ref(src)];operation=change_operator'>----------</A><BR>"
 	else
-		dat += "<BR><B>Operator:</b> <A href='?src=\ref[src];operation=change_operator'>[operator.name]</A><BR>"
-		dat += "   <A href='?src=\ref[src];operation=logout'>{Stop Overwatch}</A><BR>"
+		dat += "<BR><B>Operator:</b> <A href='?src=[text_ref(src)];operation=change_operator'>[operator.name]</A><BR>"
+		dat += "   <A href='?src=[text_ref(src)];operation=logout'>{Stop Overwatch}</A><BR>"
 		dat += "----------------------<br>"
 		switch(state)
 			if(OW_MAIN)
 				if(!current_squad) //No squad has been set yet. Pick one.
-					dat += "<br>Current Squad: <A href='?src=\ref[src];operation=pick_squad'>----------</A><BR>"
+					dat += "<br>Current Squad: <A href='?src=[text_ref(src)];operation=pick_squad'>----------</A><BR>"
 				else
 					dat += "<br><b>[current_squad.name] Squad</A></b>   "
-					dat += "<A href='?src=\ref[src];operation=message'>\[Message Squad\]</a><br><br>"
+					dat += "<A href='?src=[text_ref(src)];operation=message'>\[Message Squad\]</a><br><br>"
 					dat += "----------------------<BR><BR>"
 					if(current_squad.squad_leader)
-						dat += "<B>Squad Leader:</B> <A href='?src=\ref[src];operation=use_cam;cam_target=\ref[current_squad.squad_leader]'>[current_squad.squad_leader.name]</a> "
-						dat += "<A href='?src=\ref[src];operation=sl_message'>\[MSG\]</a> "
-						dat += "<A href='?src=\ref[src];operation=change_lead'>\[CHANGE SQUAD LEADER\]</a><BR><BR>"
+						dat += "<B>Squad Leader:</B> <A href='?src=[text_ref(src)];operation=use_cam;cam_target=\ref[current_squad.squad_leader]'>[current_squad.squad_leader.name]</a> "
+						dat += "<A href='?src=[text_ref(src)];operation=sl_message'>\[MSG\]</a> "
+						dat += "<A href='?src=[text_ref(src)];operation=change_lead'>\[CHANGE SQUAD LEADER\]</a><BR><BR>"
 					else
-						dat += "<B>Squad Leader:</B> <font color=red>NONE</font> <A href='?src=\ref[src];operation=change_lead'>\[ASSIGN SQUAD LEADER\]</a><BR><BR>"
+						dat += "<B>Squad Leader:</B> <font color=red>NONE</font> <A href='?src=[text_ref(src)];operation=change_lead'>\[ASSIGN SQUAD LEADER\]</a><BR><BR>"
 
 					dat += "<B>Primary Objective:</B> "
 					if(current_squad.primary_objective)
-						dat += "[current_squad.primary_objective] <a href='?src=\ref[src];operation=set_primary'>\[Set\]</a><br>"
+						dat += "[current_squad.primary_objective] <a href='?src=[text_ref(src)];operation=set_primary'>\[Set\]</a><br>"
 					else
-						dat += "<b><font color=red>NONE!</font></b> <a href='?src=\ref[src];operation=set_primary'>\[Set\]</a><br>"
+						dat += "<b><font color=red>NONE!</font></b> <a href='?src=[text_ref(src)];operation=set_primary'>\[Set\]</a><br>"
 					dat += "<b>Secondary Objective:</b> "
 					if(current_squad.secondary_objective)
-						dat += "[current_squad.secondary_objective] <a href='?src=\ref[src];operation=set_secondary'>\[Set\]</a><br>"
+						dat += "[current_squad.secondary_objective] <a href='?src=[text_ref(src)];operation=set_secondary'>\[Set\]</a><br>"
 					else
-						dat += "<b><font color=red>NONE!</font></b> <a href='?src=\ref[src];operation=set_secondary'>\[Set\]</a><br>"
+						dat += "<b><font color=red>NONE!</font></b> <a href='?src=[text_ref(src)];operation=set_secondary'>\[Set\]</a><br>"
 					dat += "<br>"
-					dat += "<A href='?src=\ref[src];operation=insubordination'>Report a marine for insubordination</a><BR>"
-					dat += "<A href='?src=\ref[src];operation=squad_transfer'>Transfer a marine to another squad</a><BR><BR>"
-					dat += "<a href='?src=\ref[src];operation=monitor'>Squad Monitor</a><br>"
+					dat += "<A href='?src=[text_ref(src)];operation=insubordination'>Report a marine for insubordination</a><BR>"
+					dat += "<A href='?src=[text_ref(src)];operation=squad_transfer'>Transfer a marine to another squad</a><BR><BR>"
+					dat += "<a href='?src=[text_ref(src)];operation=monitor'>Squad Monitor</a><br>"
 					dat += "----------------------<br>"
 					dat += "<b>Rail Gun Control</b><br>"
 					dat += "<b>Current Rail Gun Status:</b> "
@@ -258,9 +258,9 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 						selected_target = null
 					else
 						dat += "<font color='green'>[selected_target]</font><br>"
-					dat += "<A href='?src=\ref[src];operation=shootrailgun'>\[FIRE!\]</a><br>"
+					dat += "<A href='?src=[text_ref(src)];operation=shootrailgun'>\[FIRE!\]</a><br>"
 					dat += "----------------------<br>"
-					dat += "<br><br><a href='?src=\ref[src];operation=refresh'>{Refresh}</a>"
+					dat += "<br><br><a href='?src=[text_ref(src)];operation=refresh'>{Refresh}</a>"
 			if(OW_MONITOR)//Info screen.
 				dat += get_squad_info()
 
@@ -482,25 +482,25 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 
 	var/dat
 	if(!operator)
-		dat += "<B>Main Operator:</b> <A href='?src=\ref[src];operation=change_main_operator'>----------</A><BR>"
+		dat += "<B>Main Operator:</b> <A href='?src=[text_ref(src)];operation=change_main_operator'>----------</A><BR>"
 	else
-		dat += "<B>Main Operator:</b> <A href='?src=\ref[src];operation=change_main_operator'>[operator.name]</A><BR>"
-		dat += "   <A href='?src=\ref[src];operation=logout_main'>{Stop Overwatch}</A><BR>"
+		dat += "<B>Main Operator:</b> <A href='?src=[text_ref(src)];operation=change_main_operator'>[operator.name]</A><BR>"
+		dat += "   <A href='?src=[text_ref(src)];operation=logout_main'>{Stop Overwatch}</A><BR>"
 		dat += "----------------------<br>"
 		switch(state)
 			if(OW_MAIN)
 				for(var/datum/squad/S AS in watchable_squads)
-					dat += "<b>[S.name] Squad</b> <a href='?src=\ref[src];operation=message;current_squad=\ref[S]'>\[Message Squad\]</a><br>"
+					dat += "<b>[S.name] Squad</b> <a href='?src=[text_ref(src)];operation=message;current_squad=[text_ref(S)]'>\[Message Squad\]</a><br>"
 					if(S.squad_leader)
-						dat += "<b>Leader:</b> <a href='?src=\ref[src];operation=use_cam;cam_target=\ref[S.squad_leader]'>[S.squad_leader.name]</a> "
-						dat += "<a href='?src=\ref[src];operation=sl_message;current_squad=\ref[S]'>\[MSG\]</a><br>"
+						dat += "<b>Leader:</b> <a href='?src=[text_ref(src)];operation=use_cam;cam_target=\ref[S.squad_leader]'>[S.squad_leader.name]</a> "
+						dat += "<a href='?src=[text_ref(src)];operation=sl_message;current_squad=[text_ref(S)]'>\[MSG\]</a><br>"
 					else
 						dat += "<b>Leader:</b> <font color=red>NONE</font><br>"
 					if(S.overwatch_officer)
 						dat += "<b>Squad Overwatch:</b> [S.overwatch_officer.name]<br>"
 					else
 						dat += "<b>Squad Overwatch:</b> <font color=red>NONE</font><br>"
-					dat += "<A href='?src=\ref[src];operation=monitor[S.id]'>[S.name] Squad Monitor</a><br>"
+					dat += "<A href='?src=[text_ref(src)];operation=monitor[S.id]'>[S.name] Squad Monitor</a><br>"
 				dat += "----------------------<br>"
 				dat += "<b>Orbital Bombardment Control</b><br>"
 				dat += "<b>Current Cannon Status:</b> "
@@ -524,9 +524,9 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 					selected_target = null
 				else
 					dat += "<font color='green'>[selected_target.name]</font><br>"
-				dat += "<A href='?src=\ref[src];operation=dropbomb'>\[FIRE!\]</a><br>"
+				dat += "<A href='?src=[text_ref(src)];operation=dropbomb'>\[FIRE!\]</a><br>"
 				dat += "----------------------<BR>"
-				dat += "<A href='?src=\ref[src];operation=refresh'>{Refresh}</a>"
+				dat += "<A href='?src=[text_ref(src)];operation=refresh'>{Refresh}</a>"
 			if(OW_MONITOR)//Info screen.
 				dat += get_squad_info()
 
@@ -542,25 +542,25 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 
 	var/dat
 	if(!operator)
-		dat += "<B>Main Operator:</b> <A href='?src=\ref[src];operation=change_main_operator'>----------</A><BR>"
+		dat += "<B>Main Operator:</b> <A href='?src=[text_ref(src)];operation=change_main_operator'>----------</A><BR>"
 	else
-		dat += "<B>Main Operator:</b> <A href='?src=\ref[src];operation=change_main_operator'>[operator.name]</A><BR>"
-		dat += "   <A href='?src=\ref[src];operation=logout_main'>{Stop Overwatch}</A><BR>"
+		dat += "<B>Main Operator:</b> <A href='?src=[text_ref(src)];operation=change_main_operator'>[operator.name]</A><BR>"
+		dat += "   <A href='?src=[text_ref(src)];operation=logout_main'>{Stop Overwatch}</A><BR>"
 		dat += "----------------------<br>"
 		switch(state)
 			if(OW_MAIN)
 				for(var/datum/squad/S AS in watchable_squads)
-					dat += "<b>[S.name] Squad</b> <a href='?src=\ref[src];operation=message;current_squad=\ref[S]'>\[Message Squad\]</a><br>"
+					dat += "<b>[S.name] Squad</b> <a href='?src=[text_ref(src)];operation=message;current_squad=[text_ref(S)]'>\[Message Squad\]</a><br>"
 					if(S.squad_leader)
-						dat += "<b>Leader:</b> <a href='?src=\ref[src];operation=use_cam;cam_target=\ref[S.squad_leader]'>[S.squad_leader.name]</a> "
-						dat += "<a href='?src=\ref[src];operation=sl_message;current_squad=\ref[S]'>\[MSG\]</a><br>"
+						dat += "<b>Leader:</b> <a href='?src=[text_ref(src)];operation=use_cam;cam_target=\ref[S.squad_leader]'>[S.squad_leader.name]</a> "
+						dat += "<a href='?src=[text_ref(src)];operation=sl_message;current_squad=[text_ref(S)]'>\[MSG\]</a><br>"
 					else
 						dat += "<b>Leader:</b> <font color=red>NONE</font><br>"
 					if(S.overwatch_officer)
 						dat += "<b>Squad Overwatch:</b> [S.overwatch_officer.name]<br>"
 					else
 						dat += "<b>Squad Overwatch:</b> <font color=red>NONE</font><br>"
-					dat += "<A href='?src=\ref[src];operation=monitor[S.id]'>[S.name] Squad Monitor</a><br>"
+					dat += "<A href='?src=[text_ref(src)];operation=monitor[S.id]'>[S.name] Squad Monitor</a><br>"
 			if(OW_MONITOR)//Info screen.
 				dat += get_squad_info()
 
@@ -1101,22 +1101,22 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 			if(CONSCIOUS)
 				mob_state = "Conscious"
 				living_count++
-				conscious_text += "<tr><td><A href='?src=\ref[src];operation=use_cam;cam_target=\ref[H]'>[mob_name]</a></td><td>[role][act_sl]</td><td>[mob_state]</td><td>[area_name]</td><td>[dist]</td></tr>"
+				conscious_text += "<tr><td><A href='?src=[text_ref(src)];operation=use_cam;cam_target=[text_ref(H)]'>[mob_name]</a></td><td>[role][act_sl]</td><td>[mob_state]</td><td>[area_name]</td><td>[dist]</td></tr>"
 			if(UNCONSCIOUS)
 				mob_state = "<b>Unconscious</b>"
 				living_count++
-				unconscious_text += "<tr><td><A href='?src=\ref[src];operation=use_cam;cam_target=\ref[H]'>[mob_name]</a></td><td>[role][act_sl]</td><td>[mob_state]</td><td>[area_name]</td><td>[dist]</td></tr>"
+				unconscious_text += "<tr><td><A href='?src=[text_ref(src)];operation=use_cam;cam_target=[text_ref(H)]'>[mob_name]</a></td><td>[role][act_sl]</td><td>[mob_state]</td><td>[area_name]</td><td>[dist]</td></tr>"
 			if(DEAD)
 				if(dead_hidden)
 					continue
 				mob_state = "<font color='red'>DEAD</font>"
-				dead_text += "<tr><td><A href='?src=\ref[src];operation=use_cam;cam_target=\ref[H]'>[mob_name]</a></td><td>[role][act_sl]</td><td>[mob_state]</td><td>[area_name]</td><td>[dist]</td></tr>"
+				dead_text += "<tr><td><A href='?src=[text_ref(src)];operation=use_cam;cam_target=[text_ref(H)]'>[mob_name]</a></td><td>[role][act_sl]</td><td>[mob_state]</td><td>[area_name]</td><td>[dist]</td></tr>"
 		if((!H.key || !H.client) && H.stat != DEAD)
 			mob_state += " (SSD)"
 		var/obj/item/card/id/ID = H.wear_id
 		if(ID?.assigned_fireteam)
 			fteam = " \[[ID.assigned_fireteam]\]"
-		var/marine_infos = "<tr><td><A href='?src=\ref[src];operation=use_cam;cam_target=\ref[H]'>[mob_name]</a></td><td>[role][act_sl][fteam]</td><td>[mob_state]</td><td>[area_name]</td><td>[dist]</td></tr>"
+		var/marine_infos = "<tr><td><A href='?src=[text_ref(src)];operation=use_cam;cam_target=[text_ref(H)]'>[mob_name]</a></td><td>[role][act_sl][fteam]</td><td>[mob_state]</td><td>[area_name]</td><td>[dist]</td></tr>"
 		switch(role)
 			if(SQUAD_LEADER)
 				leader_text += marine_infos
@@ -1170,11 +1170,11 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 /obj/machinery/computer/camera_advanced/overwatch/proc/get_squad_info_ending()
 	var/dat = ""
 	dat += "----------------------<br>"
-	dat += "<A href='?src=\ref[src];operation=refresh'>{Refresh}</a><br>"
-	dat += "<A href='?src=\ref[src];operation=change_sort'>{Change Sorting Method}</a><br>"
-	dat += "<A href='?src=\ref[src];operation=hide_dead'>{[dead_hidden ? "Show Dead Marines" : "Hide Dead Marines" ]}</a><br>"
-	dat += "<A href='?src=\ref[src];operation=choose_z'>{Change Locations Ignored}</a><br>"
-	dat += "<br><A href='?src=\ref[src];operation=back'>{Back}</a>"
+	dat += "<A href='?src=[text_ref(src)];operation=refresh'>{Refresh}</a><br>"
+	dat += "<A href='?src=[text_ref(src)];operation=change_sort'>{Change Sorting Method}</a><br>"
+	dat += "<A href='?src=[text_ref(src)];operation=hide_dead'>{[dead_hidden ? "Show Dead Marines" : "Hide Dead Marines" ]}</a><br>"
+	dat += "<A href='?src=[text_ref(src)];operation=choose_z'>{Change Locations Ignored}</a><br>"
+	dat += "<br><A href='?src=[text_ref(src)];operation=back'>{Back}</a>"
 	return dat
 
 ///Print order visual to all marines squad hud and give them an arrow to follow the waypoint

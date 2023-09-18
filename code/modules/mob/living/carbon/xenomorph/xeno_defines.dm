@@ -7,12 +7,11 @@
 
 	var/caste_type_path = null
 
-	var/ancient_message = ""
 	///primordial message that is shown when a caste becomes primordial
 	var/primordial_message = ""
 
 	var/tier = XENO_TIER_ZERO
-	var/upgrade = XENO_UPGRADE_ZERO
+	var/upgrade = XENO_UPGRADE_NORMAL
 	///used to match appropriate wound overlays
 	var/wound_type = "alien"
 	var/language = "Xenomorph"
@@ -314,8 +313,6 @@
 	var/upgrade = XENO_UPGRADE_INVALID
 	///sunder affects armour values and does a % removal before dmg is applied. 50 sunder == 50% effective armour values
 	var/sunder = 0
-
-	var/obj/structure/xeno/tunnel/start_dig = null
 	///The ammo datum for our spit projectiles. We're born with this, it changes sometimes.
 	var/datum/ammo/xeno/ammo = null
 

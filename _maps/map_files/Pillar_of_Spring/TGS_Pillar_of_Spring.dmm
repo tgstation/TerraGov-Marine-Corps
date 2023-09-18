@@ -1932,7 +1932,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
 "ctR" = (
-/obj/structure/dropship_equipment/sentry_holder,
+/obj/structure/dropship_equipment/shuttle/sentry_holder,
 /turf/open/floor/mainship/orange{
 	dir = 4
 	},
@@ -4592,7 +4592,7 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
-/obj/structure/ship_ammo/rocket/widowmaker,
+/obj/structure/ship_ammo/cas/rocket/widowmaker,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "fJI" = (
@@ -5336,7 +5336,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/lower_hull)
 "gPw" = (
-/obj/structure/ship_ammo/rocket/keeper,
+/obj/structure/ship_ammo/cas/rocket/keeper,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "gPQ" = (
@@ -5618,7 +5618,7 @@
 /turf/closed/wall/mainship,
 /area/mainship/squads/req)
 "hhh" = (
-/obj/structure/dropship_equipment/weapon/rocket_pod,
+/obj/structure/dropship_equipment/cas/weapon/rocket_pod,
 /turf/open/floor/mainship/floor,
 /area/mainship/hallways/hangar)
 "hhR" = (
@@ -5650,7 +5650,7 @@
 /turf/open/floor/mainship/office,
 /area/mainship/hallways/hangar)
 "hiO" = (
-/obj/structure/ship_ammo/minirocket,
+/obj/structure/ship_ammo/cas/minirocket,
 /obj/machinery/light/mainship{
 	dir = 1
 	},
@@ -6162,7 +6162,7 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
-/obj/structure/ship_ammo/rocket/banshee,
+/obj/structure/ship_ammo/cas/rocket/banshee,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/hangar)
 "hSQ" = (
@@ -7066,7 +7066,7 @@
 /turf/open/floor/wood,
 /area/mainship/living/commandbunks)
 "jaz" = (
-/obj/structure/dropship_equipment/weapon/minirocket_pod,
+/obj/structure/dropship_equipment/cas/weapon/minirocket_pod,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "jaA" = (
@@ -7746,7 +7746,7 @@
 "kdC" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/structure/dropship_equipment/operatingtable,
+/obj/structure/dropship_equipment/shuttle/operatingtable,
 /turf/open/floor/mainship/office,
 /area/mainship/hallways/hangar)
 "kdF" = (
@@ -8517,7 +8517,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/lower_hull)
 "kZz" = (
-/obj/structure/ship_ammo/minirocket/illumination,
+/obj/structure/ship_ammo/cas/minirocket/illumination,
 /turf/open/floor/mainship/cargo,
 /area/mainship/hallways/hangar)
 "lal" = (
@@ -8603,7 +8603,7 @@
 /turf/open/floor/mainship/orange,
 /area/mainship/engineering/engineering_workshop)
 "leF" = (
-/obj/structure/ship_ammo/minirocket,
+/obj/structure/ship_ammo/cas/minirocket,
 /turf/open/floor/mainship/cargo,
 /area/mainship/hallways/hangar)
 "leW" = (
@@ -9089,7 +9089,7 @@
 /turf/open/floor/wood,
 /area/mainship/living/chapel)
 "lET" = (
-/obj/structure/ship_ammo/rocket/keeper,
+/obj/structure/ship_ammo/cas/rocket/keeper,
 /turf/open/floor/mainship/floor,
 /area/mainship/hallways/hangar)
 "lFg" = (
@@ -9940,7 +9940,7 @@
 /turf/open/floor/mainship/office,
 /area/mainship/hallways/hangar)
 "mEj" = (
-/obj/structure/ship_ammo/heavygun,
+/obj/structure/ship_ammo/cas/heavygun,
 /turf/open/floor/mainship/cargo,
 /area/mainship/hallways/hangar)
 "mEk" = (
@@ -9965,7 +9965,7 @@
 /turf/open/floor/cult,
 /area/medical/morgue)
 "mHa" = (
-/obj/structure/dropship_equipment/weapon/heavygun,
+/obj/structure/dropship_equipment/cas/weapon/heavygun,
 /obj/machinery/camera/autoname/mainship{
 	dir = 1
 	},
@@ -11352,7 +11352,7 @@
 /turf/closed/wall/mainship,
 /area/mainship/living/briefing)
 "osb" = (
-/obj/structure/dropship_equipment/sentry_holder,
+/obj/structure/dropship_equipment/shuttle/sentry_holder,
 /turf/open/floor/mainship/orange{
 	dir = 8
 	},
@@ -12002,7 +12002,7 @@
 "phr" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/structure/dropship_equipment/weapon_holder/machinegun,
+/obj/structure/dropship_equipment/shuttle/weapon_holder/machinegun,
 /turf/open/floor/mainship/office,
 /area/mainship/hallways/hangar)
 "pid" = (
@@ -12171,7 +12171,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/aft_hallway)
 "ptb" = (
-/obj/structure/dropship_equipment/weapon/heavygun,
+/obj/structure/dropship_equipment/cas/weapon/heavygun,
 /turf/open/floor/mainship/floor,
 /area/mainship/hallways/hangar)
 "puR" = (
@@ -12679,7 +12679,7 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
-/obj/structure/ship_ammo/rocket/banshee,
+/obj/structure/ship_ammo/cas/rocket/banshee,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "pWo" = (
@@ -13288,7 +13288,7 @@
 /turf/open/floor/wood,
 /area/mainship/living/numbertwobunks)
 "qKp" = (
-/obj/structure/ship_ammo/heavygun,
+/obj/structure/ship_ammo/cas/heavygun,
 /obj/effect/decal/cleanable/blood/writing{
 	desc = "It looks like a writing in blood. It says, 'We live as we dream, alone.'";
 	dir = 4
@@ -14159,7 +14159,7 @@
 /turf/closed/wall/mainship/white,
 /area/medical/morgue)
 "rSQ" = (
-/obj/structure/dropship_equipment/flare_launcher,
+/obj/structure/dropship_equipment/shuttle/flare_launcher,
 /turf/open/floor/mainship/orange{
 	dir = 4
 	},
@@ -16408,7 +16408,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/port_hallway)
 "uDq" = (
-/obj/structure/ship_ammo/minirocket/illumination,
+/obj/structure/ship_ammo/cas/minirocket/illumination,
 /obj/machinery/light/mainship{
 	dir = 1
 	},
@@ -17741,7 +17741,7 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
-/obj/structure/ship_ammo/rocket/widowmaker,
+/obj/structure/ship_ammo/cas/rocket/widowmaker,
 /turf/open/floor/mainship/floor,
 /area/mainship/hallways/hangar)
 "wtq" = (
@@ -18555,7 +18555,7 @@
 	},
 /area/mainship/living/briefing)
 "xtm" = (
-/obj/structure/dropship_equipment/flare_launcher,
+/obj/structure/dropship_equipment/shuttle/flare_launcher,
 /turf/open/floor/mainship/orange{
 	dir = 8
 	},
@@ -19149,7 +19149,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/living/briefing)
 "yao" = (
-/obj/structure/dropship_equipment/weapon/minirocket_pod,
+/obj/structure/dropship_equipment/cas/weapon/minirocket_pod,
 /turf/open/floor/mainship/floor,
 /area/mainship/hallways/hangar)
 "yaw" = (

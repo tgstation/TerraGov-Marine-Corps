@@ -15,7 +15,7 @@
 	mob_size = MOB_SIZE_BIG
 	drag_delay = 6
 	tier = XENO_TIER_FOUR //King, like queen, doesn't count towards population limit.
-	upgrade = XENO_UPGRADE_ZERO
+	upgrade = XENO_UPGRADE_NORMAL
 	bubble_icon = "alienroyal"
 	inherent_verbs = list(
 		/mob/living/carbon/xenomorph/proc/hijack,
@@ -28,15 +28,9 @@
 
 /mob/living/carbon/xenomorph/king/generate_name()
 	switch(upgrade)
-		if(XENO_UPGRADE_ZERO)
-			name = "[hive.prefix]King ([nicknumber])"	 //Young
-		if(XENO_UPGRADE_ONE)
-			name = "[hive.prefix]Elder King ([nicknumber])"	 //Mature
-		if(XENO_UPGRADE_TWO)
-			name = "[hive.prefix]Elder Emperor ([nicknumber])"	 //Elder
-		if(XENO_UPGRADE_THREE)
-			name = "[hive.prefix]Ancient Emperor ([nicknumber])" //Ancient
-		if(XENO_UPGRADE_FOUR)
+		if(XENO_UPGRADE_NORMAL)
+			name = "[hive.prefix]Emperor ([nicknumber])"	 //Normal
+		if(XENO_UPGRADE_PRIMO)
 			name = "[hive.prefix]Primordial Emperor ([nicknumber])"
 
 	real_name = name

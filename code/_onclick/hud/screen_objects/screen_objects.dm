@@ -627,7 +627,7 @@
 	///The target which the arrow points to
 	var/atom/target
 	///The duration of the effect
-	var/duration
+	var/duration = 1
 	///holder for the deletation timer
 	var/del_timer
 

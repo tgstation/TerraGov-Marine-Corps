@@ -190,6 +190,8 @@
 
 /obj/effect/xeno/shield/Initialize(mapload, creator)
 	. = ..()
+	if(!creator)
+		return INITIALIZE_HINT_QDEL
 	owner = creator
 	dir = owner.dir
 	max_integrity = owner.xeno_caste.shield_strength
