@@ -4,20 +4,20 @@ import { LabeledList, Button, Stack, Section } from '../../components';
 
 export const CampaignMissions = (props, context) => {
   const { act, data } = useBackend<CampaignData>(context);
-  const { potential_missions } = data;
+  const { available_missions } = data;
   const [selectedNewMission, setSelectedNewMission] =
     useLocalState<MissionData | null>(context, 'selectedNewMission', null);
   const [selectedMission, setSelectedMission] = useLocalState(
     context,
     'selectedMission',
-    potential_missions[0]
+    available_missions[0]
   );
 
   return (
     <Stack>
       <Stack.Item>
         <Stack vertical>
-          {potential_missions.map((mission) => (
+          {available_missions.map((mission) => (
             <Stack.Item key={mission.name}>
               <Button
                 width={'120px'}

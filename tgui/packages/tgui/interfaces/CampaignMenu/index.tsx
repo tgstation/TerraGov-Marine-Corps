@@ -39,7 +39,7 @@ export type CampaignData = {
   ui_theme: string;
 
   current_mission: MissionData;
-  potential_missions: MissionData[];
+  available_missions: MissionData[];
   finished_missions: MissionData[];
 
   faction_rewards_data: FactionReward[];

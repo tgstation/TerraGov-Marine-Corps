@@ -56,7 +56,7 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 	///Multiplier on the passive attrition point gain for this faction
 	var/attrition_gain_multiplier = 1
 	///Future missions this faction can currently choose from
-	var/list/datum/campaign_mission/potential_missions = list()
+	var/list/datum/campaign_mission/available_missions = list()
 	///Missions this faction has succesfully completed
 	var/list/datum/campaign_mission/finished_missions = list()
 	///List of all rewards the faction has earnt this campaign
@@ -80,15 +80,15 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 
 ///Randomly adds a new mission to the available pool
 /datum/faction_stats/proc/generate_new_mission()
-	if(length(potential_missions) >= CAMPAIGN_STANDARD_MISSION_QUANTITY)
+	if(length(available_missions) >= CAMPAIGN_STANDARD_MISSION_QUANTITY)
 		return
 	var/datum/campaign_mission/selected_mission = pick(GLOB.campaign_mission_pool[faction])
 	add_new_mission(selected_mission)
 	GLOB.campaign_mission_pool[faction] -= selected_mission
 
-///Adds a mission to the potential mission pool
+///Adds a mission to the available mission pool
 /datum/faction_stats/proc/add_new_mission(datum/campaign_mission/new_mission)
-	potential_missions[new_mission] = new new_mission(faction)
+	available_missions[new_mission] = new new_mission(faction)
 
 ///Returns the faction's leader, selecting one if none is available
 /datum/faction_stats/proc/get_selector()
@@ -187,9 +187,9 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 	current_mission_data["mission_rewards"] = (faction == current_mission.starting_faction ? current_mission.starting_faction_additional_rewards : current_mission.hostile_faction_additional_rewards)
 	data["current_mission"] = current_mission_data
 
-	var/list/potential_missions_data = list()
-	for(var/i in potential_missions)
-		var/datum/campaign_mission/potential_mission = potential_missions[i]
+	var/list/available_missions_data = list()
+	for(var/i in available_missions)
+		var/datum/campaign_mission/potential_mission = available_missions[i]
 		var/list/mission_data = list() //each relevant bit of info regarding the mission is added to the list. Many more to come
 		mission_data["typepath"] = "[potential_mission.type]"
 		mission_data["name"] = potential_mission.name
@@ -197,8 +197,8 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 		mission_data["objective_description"] = potential_mission.starting_faction_objective_description
 		mission_data["mission_brief"] = potential_mission.starting_faction_mission_brief
 		mission_data["mission_rewards"] = potential_mission.starting_faction_additional_rewards
-		potential_missions_data += list(mission_data)
-	data["potential_missions"] = potential_missions_data
+		available_missions_data += list(mission_data)
+	data["available_missions"] = available_missions_data
 
 	var/list/finished_missions_data = list()
 	for(var/datum/campaign_mission/finished_mission AS in finished_missions)
@@ -272,9 +272,9 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 			var/new_mission = text2path(params["new_mission"])
 			if(!new_mission)
 				return
-			if(!potential_missions[new_mission])
+			if(!available_missions[new_mission])
 				return
-			var/datum/campaign_mission/choice = potential_missions[new_mission]
+			var/datum/campaign_mission/choice = available_missions[new_mission]
 			if(current_mode.current_mission?.mission_state != MISSION_STATE_FINISHED)
 				to_chat(user, "<span class='warning'>Current mission still ongoing!")
 				return
@@ -282,7 +282,7 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 				to_chat(user, "<span class='warning'>The opposing side has the initiative, win a mission to regain it.")
 				return
 			current_mode.load_new_mission(choice)
-			potential_missions -= new_mission
+			available_missions -= new_mission
 			return TRUE
 
 		if("activate_reward")
