@@ -2,7 +2,8 @@
 #define MISSION_SELECTION_ALLOWED  (1<<0)
 ///How long after a mission ends a new leader is picked
 #define AFTER_MISSION_LEADER_DELAY 1 MINUTES
-
+///Standard amount of missions for a faction to have
+#define CAMPAIGN_STANDARD_MISSION_QUANTITY 3
 ///Default assets a faction starts with
 GLOBAL_LIST_INIT(campaign_default_assets, list(
 	FACTION_TERRAGOV = list(
@@ -18,6 +19,25 @@ GLOBAL_LIST_INIT(campaign_default_assets, list(
 		/datum/campaign_reward/fire_support/som_cas,
 		/datum/campaign_reward/teleporter_charges,
 		/datum/campaign_reward/teleporter_enabled,
+	),
+))
+///The potential mission pool by faction
+GLOBAL_LIST_INIT(campaign_mission_pool, list(
+	FACTION_TERRAGOV = list(
+		/datum/campaign_mission/tdm,
+		/datum/campaign_mission/tdm/lv624,
+		/datum/campaign_mission/tdm/desparity,
+		/datum/campaign_mission/destroy_mission/fire_support_raid,
+		/datum/campaign_mission/capture_mission,
+		/datum/campaign_mission/tdm/mech_wars,
+	),
+	FACTION_SOM = list(
+		/datum/campaign_mission/tdm,
+		/datum/campaign_mission/tdm/lv624,
+		/datum/campaign_mission/tdm/desparity,
+		/datum/campaign_mission/destroy_mission/fire_support_raid,
+		/datum/campaign_mission/capture_mission,
+		/datum/campaign_mission/tdm/mech_wars,
 	),
 ))
 
@@ -50,18 +70,21 @@ GLOBAL_LIST_INIT(campaign_default_assets, list(
 	GLOB.faction_stats_datums[faction] = src
 	for(var/asset in GLOB.campaign_default_assets[faction])
 		add_reward(asset)
-	load_default_missions()
+	for(var/i = 1 to CAMPAIGN_STANDARD_MISSION_QUANTITY)
+		generate_new_mission()
 	RegisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_MISSION_ENDED, PROC_REF(mission_end))
 
 /datum/faction_stats/Destroy(force, ...)
 	GLOB.faction_stats_datums -= faction
 	return ..()
 
-///The default available missions for this faction
-/datum/faction_stats/proc/load_default_missions()
-	var/list/default_missions = list(/datum/campaign_mission/tdm, /datum/campaign_mission/tdm/lv624, /datum/campaign_mission/tdm/desparity) //placeholders todo: make this a var or something so it can be modified by faction
-	for(var/new_mission in default_missions)
-		add_new_mission(new_mission)
+///Randomly adds a new mission to the available pool
+/datum/faction_stats/proc/generate_new_mission()
+	if(length(potential_missions) >= CAMPAIGN_STANDARD_MISSION_QUANTITY)
+		return
+	var/datum/campaign_mission/selected_mission = pick(GLOB.campaign_mission_pool[faction])
+	add_new_mission(selected_mission)
+	GLOB.campaign_mission_pool[faction] -= selected_mission
 
 ///Adds a mission to the potential mission pool
 /datum/faction_stats/proc/add_new_mission(datum/campaign_mission/new_mission)
