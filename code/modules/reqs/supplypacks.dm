@@ -1806,6 +1806,15 @@ Imports
 	contains = list(/obj/item/ammo_magazine/pistol/m1911)
 	cost = 3
 
+/datum/supply_packs/imports/kriss
+	name = "V-21 SMG"
+	contains = list(/obj/item/weapon/gun/smg/som)
+	cost = 50
+
+/datum/supply_packs/imports/kriss/ammo
+	name = "V-21 SMG Magazines"
+	contains = list(obj/item/ammo_magazine/smg/som)
+	cost = 3
 /datum/supply_packs/imports/strawhat
 	name = "Straw hat"
 	contains = list(/obj/item/clothing/head/strawhat)
