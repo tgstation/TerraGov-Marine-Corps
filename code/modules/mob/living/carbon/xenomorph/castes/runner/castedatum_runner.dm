@@ -46,7 +46,6 @@
 	soft_armor = list(MELEE = 20, BULLET = 20, LASER = 20, ENERGY = 20, BOMB = 0, BIO = 5, FIRE = 19, ACID = 5)
 
 	// *** Ranged Attack *** //
-	charge_type = CHARGE_TYPE_SMALL
 	pounce_delay = 13 SECONDS
 
 	// *** Minimap Icon *** //

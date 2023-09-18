@@ -1,4 +1,0 @@
-author: "Barnet2"
-delete-after: True
-changes:
-  - balance: "Added a xeno respawn timer on xeno death and ghosting, does not apply if you took a minion"

@@ -105,8 +105,6 @@
 	///list of datum projectile types the xeno can use.
 	var/list/spit_types
 
-	///numerical type of charge for a xenomorph caste
-	var/charge_type = 0
 	///amount of time between pounce ability uses
 	var/pounce_delay = 4 SECONDS
 

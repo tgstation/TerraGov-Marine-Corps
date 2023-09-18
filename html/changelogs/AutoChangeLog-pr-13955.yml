@@ -1,4 +1,0 @@
-author: "AzonStarfall"
-delete-after: True
-changes:
-  - bugfix: "Fixes references to SR-153 in the requisitions list and loadout files."

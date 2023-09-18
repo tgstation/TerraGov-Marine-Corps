@@ -1,4 +1,0 @@
-author: "ivanmixo"
-delete-after: True
-changes:
-  - code_imp: "Ported tg's del the world unit test and brought our reference tracker and garbage collector mostly up to date. Also squashed a lot of harddels."

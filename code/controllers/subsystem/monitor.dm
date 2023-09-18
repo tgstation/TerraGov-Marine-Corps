@@ -2,7 +2,7 @@ SUBSYSTEM_DEF(monitor)
 	name = "Monitor"
 	init_order = INIT_ORDER_MONITOR
 	runlevels = RUNLEVEL_GAME
-	wait = 5 MINUTES
+	wait = 3 MINUTES
 	can_fire = TRUE
 	///The current state
 	var/current_state = STATE_BALANCED
