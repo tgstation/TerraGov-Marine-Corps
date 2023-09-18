@@ -1,5 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - bugfix: "fixed jetpacks not working over razorwire"
-  - bugfix: "fixed certain xenos getting stuck on objects after being thrown in certain situations"

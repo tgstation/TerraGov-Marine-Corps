@@ -102,3 +102,10 @@
       with signals not unregistering properly in some cases
   - code_imp: Ported tg's del the world unit test and brought our reference tracker
       and garbage collector mostly up to date. Also squashed a lot of harddels.
+2023-09-18:
+  AzonStarfall:
+  - qol: Adjusted Theseus requisitions to be more ergonomic.
+  Lumipharon:
+  - bugfix: fixed jetpacks not working over razorwire
+  - bugfix: fixed certain xenos getting stuck on objects after being thrown in certain
+      situations
