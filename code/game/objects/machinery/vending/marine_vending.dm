@@ -1409,6 +1409,10 @@
 			/obj/item/explosive/grenade/smokebomb/neuro = -1,
 			/obj/item/explosive/grenade/smokebomb/acid = -1,
 			/obj/item/explosive/grenade/smokebomb/satrapine = -1,
+			/obj/item/weapon/gun/rifle/m412l1_hpr = -1,
+			/obj/item/ammo_magazine/m412l1_hpr = -1,
+			/obj/item/weapon/gun/rifle/famas = -1,
+			/obj/item/ammo_magazine/rifle/famas = -1,
 		),
 		"Mounted" = list(
 			/obj/item/weapon/gun/standard_auto_cannon = -1,
