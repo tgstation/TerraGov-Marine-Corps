@@ -222,7 +222,7 @@ The Grenade Launchers
 	fire_sound = 'sound/weapons/guns/fire/flare.ogg'
 	fire_sound = 'sound/weapons/guns/fire/flare.ogg'
 	w_class = WEIGHT_CLASS_SMALL
-	flags_gun_features = NONE|GUN_SMOKE_PARTICLES
+	flags_gun_features = NONE
 	gun_skill_category = SKILL_PISTOLS
 	fire_delay = 0.5 SECONDS
 	default_ammo_type = /obj/item/explosive/grenade/flare
