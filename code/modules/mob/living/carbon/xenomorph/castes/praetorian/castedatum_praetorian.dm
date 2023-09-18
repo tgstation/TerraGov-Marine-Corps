@@ -73,9 +73,6 @@
 	upgrade = XENO_UPGRADE_PRIMO
 	primordial_message = "The strongest of acids flows through our veins, let's reduce them to dust."
 
-// *** Ranged Attack *** //
-	charge_type = CHARGE_TYPE_LARGE
-
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/watch_xeno,

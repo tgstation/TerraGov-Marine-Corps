@@ -208,7 +208,7 @@
 
 
 /obj/structure/razorwire/CanAllowThrough(atom/movable/mover, turf/target)
-	if(mover.throwing && ismob(mover))
+	if(mover.throwing && ismob(mover) && !(mover.pass_flags & PASS_DEFENSIVE_STRUCTURE))
 		return FALSE
 
 	return ..()
