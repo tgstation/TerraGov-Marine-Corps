@@ -5,7 +5,7 @@
 	if(!check_rights(R_BAN))
 		return
 
-	var/dat = {"<html>
+	var/dat = {"<html><meta charset='UTF-8'>
 
 		<head>
 			<script type='text/javascript'>
