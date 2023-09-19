@@ -2,7 +2,7 @@ SUBSYSTEM_DEF(monitor)
 	name = "Monitor"
 	init_order = INIT_ORDER_MONITOR
 	runlevels = RUNLEVEL_GAME
-	wait = 5 MINUTES
+	wait = 3 MINUTES
 	can_fire = TRUE
 	///The current state
 	var/current_state = STATE_BALANCED
@@ -35,12 +35,12 @@ SUBSYSTEM_DEF(monitor)
 
 /datum/monitor_statistics
 	var/king = 0
-	var/ancient_T4 = 0
-	var/elder_T4 = 0
-	var/ancient_T3 = 0
-	var/elder_T3 = 0
-	var/ancient_T2 = 0
-	var/elder_T2 = 0
+	var/primo_T4 = 0
+	var/normal_T4 = 0
+	var/primo_T3 = 0
+	var/normal_T3 = 0
+	var/primo_T2 = 0
+	var/normal_T2 = 0
 	var/list/miniguns_in_use = list()
 	var/list/sadar_in_use = list()
 	var/list/b18_in_use = list()
@@ -105,13 +105,12 @@ SUBSYSTEM_DEF(monitor)
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
 	switch(gamestate)
 		if(GROUNDSIDE)
-			. += stats.ancient_T2 * ANCIENT_T2_WEIGHT
-			. += stats.ancient_T3 * ANCIENT_T3_WEIGHT
-			. += stats.elder_T2 * ELDER_T2_WEIGHT
-			. += stats.elder_T3 * ELDER_T3_WEIGHT
-			. += stats.ancient_T4 * ANCIENT_T4_WEIGHT
-			. += stats.elder_T4 * ELDER_T4_WEIGHT
-			. += stats.king * KING_WEIGHT
+			. += stats.primo_T2 * PRIMO_T2_WEIGHT
+			. += stats.primo_T3 * PRIMO_T3_WEIGHT
+			. += stats.normal_T2 * NORMAL_T2_WEIGHT
+			. += stats.normal_T3 * NORMAL_T3_WEIGHT
+			. += stats.primo_T4 * PRIMO_T4_WEIGHT
+			. += stats.normal_T4 * NORMAL_T4_WEIGHT
 			. += human_on_ground * HUMAN_LIFE_ON_GROUND_WEIGHT
 			. += (length(GLOB.alive_human_list_faction[FACTION_TERRAGOV]) - human_on_ground) * HUMAN_LIFE_ON_SHIP_WEIGHT
 			. += length(GLOB.alive_xeno_list_hive[XENO_HIVE_NORMAL]) * XENOS_LIFE_WEIGHT

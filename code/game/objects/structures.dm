@@ -26,6 +26,8 @@
 				return
 		if(EXPLODE_LIGHT)
 			return
+		if(EXPLODE_WEAK)
+			return
 
 /obj/structure/Initialize(mapload)
 	. = ..()
@@ -189,3 +191,13 @@
 
 /obj/structure/get_acid_delay()
 	return 4 SECONDS
+
+///overrides the turf's normal footstep sound
+/obj/structure/proc/footstep_override(atom/movable/source, list/footstep_overrides)
+	SIGNAL_HANDLER
+	return //override as required with the specific footstep sound
+
+///returns that src is covering its turf. Used to prevent turf interactions such as water
+/obj/structure/proc/turf_cover_check(atom/movable/source)
+	SIGNAL_HANDLER
+	return TRUE

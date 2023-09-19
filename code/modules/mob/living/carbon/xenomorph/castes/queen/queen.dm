@@ -2,7 +2,7 @@
 	caste_base_type = /mob/living/carbon/xenomorph/queen
 	name = "Queen"
 	desc = "A huge, looming alien creature. The biggest and the baddest."
-	icon = 'icons/Xeno/2x2_Xenos.dmi'
+	icon = 'icons/Xeno/castes/queen.dmi'
 	icon_state = "Queen Walking"
 	attacktext = "bites"
 	attack_sound = null
@@ -15,7 +15,7 @@
 	mob_size = MOB_SIZE_BIG
 	drag_delay = 6 //pulling a big dead xeno is hard
 	tier = XENO_TIER_FOUR //Queen doesn't count towards population limit.
-	upgrade = XENO_UPGRADE_ZERO
+	upgrade = XENO_UPGRADE_NORMAL
 	bubble_icon = "alienroyal"
 
 	var/breathing_counter = 0
@@ -31,15 +31,6 @@
 	. = ..()
 	hive.RegisterSignal(src, COMSIG_HIVE_XENO_DEATH, TYPE_PROC_REF(/datum/hive_status, on_queen_death))
 	playsound(loc, 'sound/voice/alien_queen_command.ogg', 75, 0)
-
-
-// ***************************************
-// *********** Life overrides
-// ***************************************
-/mob/living/carbon/xenomorph/queen/handle_decay()
-	if(prob(20+abs(3*upgrade_as_number())))
-		use_plasma(min(rand(1,2), plasma_stored))
-
 
 // ***************************************
 // *********** Mob overrides
@@ -82,15 +73,9 @@
 // ***************************************
 /mob/living/carbon/xenomorph/queen/generate_name()
 	switch(upgrade)
-		if(XENO_UPGRADE_ZERO)
-			name = "[hive.prefix]Queen ([nicknumber])"			 //Young
-		if(XENO_UPGRADE_ONE)
-			name = "[hive.prefix]Elder Queen ([nicknumber])"	 //Mature
-		if(XENO_UPGRADE_TWO)
-			name = "[hive.prefix]Elder Empress ([nicknumber])"	 //Elder
-		if(XENO_UPGRADE_THREE)
-			name = "[hive.prefix]Ancient Empress ([nicknumber])" //Ancient
-		if(XENO_UPGRADE_FOUR)
+		if(XENO_UPGRADE_NORMAL)
+			name = "[hive.prefix]Empress ([nicknumber])"			 //Normal
+		if(XENO_UPGRADE_PRIMO)
 			name = "[hive.prefix]Primordial Empress ([nicknumber])"
 
 	real_name = name

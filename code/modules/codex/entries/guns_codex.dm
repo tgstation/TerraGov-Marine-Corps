@@ -119,7 +119,7 @@
 	fire_modes += "<br><U>Fire modes</U>:<br>"
 
 	for(var/num AS in mode_list)
-		var/datum/lasrifle/base/mode = mode_list[num]
+		var/datum/lasrifle/mode = mode_list[num]
 		fire_modes += "<U>[num]</U>: [initial(mode.description)]"
 
 	. += jointext(fire_modes, "<br>")

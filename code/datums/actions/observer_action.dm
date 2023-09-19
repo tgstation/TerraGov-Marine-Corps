@@ -22,6 +22,7 @@
 
 /datum/action/observer_action/show_hivestatus
 	name = "Show Hive status"
+	action_icon = 'icons/Xeno/actions.dmi'
 	action_icon_state = "watch_xeno"
 
 
@@ -74,6 +75,12 @@
 	if(new_mob.stat == DEAD)
 		to_chat(owner, span_warning("You cannot join if the mob is dead."))
 		return FALSE
+
+	if(isxeno(new_mob))
+		var/mob/living/carbon/xenomorph/ssd_xeno = new_mob
+		if(ssd_xeno.tier != XENO_TIER_MINION && XENODEATHTIME_CHECK(owner))
+			XENODEATHTIME_MESSAGE(owner)
+			return
 
 	if(HAS_TRAIT(new_mob, TRAIT_POSSESSING))
 		to_chat(owner, span_warning("That mob is currently possessing a different mob."))

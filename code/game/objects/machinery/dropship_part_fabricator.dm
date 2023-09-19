@@ -32,23 +32,31 @@
 		return
 	var/dat
 	dat += "<h4>Points Available: [SSpoints.dropship_points]</h4>"
-	dat += "<a href='byond://?src=\ref[src];choice=clear'>CLEAR PRINT QUEUE</a><br>"
+	dat += "<a href='byond://?src=[text_ref(src)];choice=clear'>CLEAR PRINT QUEUE</a><br>"
+
+	dat += "<h3>Condor Equipment:</h3>"
+	for(var/build_type in typesof(/obj/structure/dropship_equipment/cas))
+		var/obj/structure/dropship_equipment/cas/DEC = build_type
+		var/build_name = initial(DEC.name)
+		var/build_cost = initial(DEC.point_cost)
+		if(build_cost)
+			dat += "<a href='byond://?src=[text_ref(src)];choice=[build_type]'>[build_name] ([build_cost])</a><br>"
 
 	dat += "<h3>Dropship Equipment:</h3>"
-	for(var/build_type in typesof(/obj/structure/dropship_equipment))
-		var/obj/structure/dropship_equipment/DE = build_type
-		var/build_name = initial(DE.name)
-		var/build_cost = initial(DE.point_cost)
+	for(var/build_type in typesof(/obj/structure/dropship_equipment/shuttle))
+		var/obj/structure/dropship_equipment/shuttle/DES = build_type
+		var/build_name = initial(DES.name)
+		var/build_cost = initial(DES.point_cost)
 		if(build_cost)
 			dat += "<a href='byond://?src=\ref[src];choice=[build_type]'>[build_name] ([build_cost])</a><br>"
 
-	dat += "<h3>Dropship Ammo:</h3>"
-	for(var/build_type in typesof(/obj/structure/ship_ammo))
-		var/obj/structure/ship_ammo/SA = build_type
-		var/build_name = initial(SA.name)
-		var/build_cost = initial(SA.point_cost)
+	dat += "<h3>Condor Ammo:</h3>"
+	for(var/build_type in typesof(/obj/structure/ship_ammo/cas))
+		var/obj/structure/ship_ammo/cas/SAC = build_type
+		var/build_name = initial(SAC.name)
+		var/build_cost = initial(SAC.point_cost)
 		if(build_cost)
-			dat += "<a href='byond://?src=\ref[src];choice=[build_type]'>[build_name] ([build_cost])</a><br>"
+			dat += "<a href='byond://?src=[text_ref(src)];choice=[build_type]'>[build_name] ([build_cost])</a><br>"
 
 	dat += "<h3>Current Print Queue:</h3>"
 	for(var/item_to_print in queue)

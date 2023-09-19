@@ -230,7 +230,7 @@
 /obj/structure/xeno/evotower/AIMiddleClick(mob/living/silicon/ai/user)
 	user.ai_ping(src, COOLDOWN_AI_PING_EXTRA_LOW)
 
-/obj/structure/xeno/maturitytower/AIMiddleClick(mob/living/silicon/ai/user)
+/obj/structure/xeno/psychictower/AIMiddleClick(mob/living/silicon/ai/user)
 	user.ai_ping(src, COOLDOWN_AI_PING_EXTRA_LOW)
 
 /obj/structure/xeno/pherotower/AIMiddleClick(mob/living/silicon/ai/user)

@@ -202,11 +202,13 @@
 			take_damage(rand(33, 66), BRUTE, BOMB)
 		if(EXPLODE_LIGHT)
 			take_damage(rand(10, 33), BRUTE, BOMB)
+		if(EXPLODE_WEAK)
+			take_damage(10, BRUTE, BOMB)
 	update_icon()
 
 
 /obj/structure/razorwire/CanAllowThrough(atom/movable/mover, turf/target)
-	if(mover.throwing && ismob(mover))
+	if(mover.throwing && ismob(mover) && !(mover.pass_flags & PASS_DEFENSIVE_STRUCTURE))
 		return FALSE
 
 	return ..()

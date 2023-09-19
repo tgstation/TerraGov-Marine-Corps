@@ -84,7 +84,7 @@
 		if(!M.can_inject(user, TRUE, user.zone_selected, TRUE))
 			return
 		if(M != user && M.stat != DEAD && M.a_intent != INTENT_HELP && !M.incapacitated() && M.skills.getRating(SKILL_CQC) >= SKILL_CQC_MP)
-			user.Paralyze(60)
+			user.Paralyze(6 SECONDS)
 			log_combat(M, user, "blocked", addition="using their cqc skill (hypospray injection)")
 			M.visible_message(span_danger("[M]'s reflexes kick in and knock [user] to the ground before they could use \the [src]'!"), \
 				span_warning("You knock [user] to the ground before they could inject you!"), null, 5)
@@ -223,19 +223,19 @@
 		return
 
 	var/dat = {"
-	<B><A href='?src=\ref[src];autolabeler=1'>Activate Autolabeler</A></B><BR>
+	<B><A href='?src=[text_ref(src)];autolabeler=1'>Activate Autolabeler</A></B><BR>
 	<B>Current Label:</B> [label]<BR>
 	<BR>
-	<B><A href='?src=\ref[src];overlayer=1'>Activate Tagger</A></B><BR>
+	<B><A href='?src=[text_ref(src)];overlayer=1'>Activate Tagger</A></B><BR>
 	<B>Current Tag:</B> [description_overlay]<BR>
 	<BR>
-	<B><A href='byond://?src=\ref[src];inject_mode=1'>Toggle Mode (Toggles between injecting and draining):</B><BR>
+	<B><A href='byond://?src=[text_ref(src)];inject_mode=1'>Toggle Mode (Toggles between injecting and draining):</B><BR>
 	<B>Current Mode:</B> [inject_mode ? "Inject" : "Draw"]</A><BR>
 	<BR>
-	<B><A href='byond://?src=\ref[src];set_transfer=1'>Set Transfer Amount (Change amount drained/injected per use):</A></B><BR>
+	<B><A href='byond://?src=[text_ref(src)];set_transfer=1'>Set Transfer Amount (Change amount drained/injected per use):</A></B><BR>
 	<B>Current Transfer Amount [amount_per_transfer_from_this]</B><BR>
 	<BR>
-	<B><A href='byond://?src=\ref[src];flush=1'>Flush Hypospray (Empties the hypospray of all contents):</A></B><BR>
+	<B><A href='byond://?src=[text_ref(src)];flush=1'>Flush Hypospray (Empties the hypospray of all contents):</A></B><BR>
 	<BR>"}
 
 	var/datum/browser/popup = new(user, "hypospray")
@@ -248,22 +248,22 @@
 	if(.)
 		return
 	var/dat = {"
-	<B><A href='?src=\ref[src];autolabeler=1'>Activate Autolabeler</A></B><BR>
+	<B><A href='?src=[text_ref(src)];autolabeler=1'>Activate Autolabeler</A></B><BR>
 	<B>Current Label:</B> [label]<BR>
 	<BR>
-	<B><A href='?src=\ref[src];overlayer=1'>Activate Tagger</A></B><BR>
+	<B><A href='?src=[text_ref(src)];overlayer=1'>Activate Tagger</A></B><BR>
 	<B>Current Tag:</B> [description_overlay]<BR>
 	<BR>
-	<B><A href='byond://?src=\ref[src];inject_mode=1'>Toggle Mode:</A></B><BR>
+	<B><A href='byond://?src=[text_ref(src)];inject_mode=1'>Toggle Mode:</A></B><BR>
 	<B>Current Mode:</B> [inject_mode ? "Inject" : "Draw"]<BR>
 	<BR>
-	<B><A href='byond://?src=\ref[src];set_transfer=1'>Set Transfer Amount:</A></B><BR>
+	<B><A href='byond://?src=[text_ref(src)];set_transfer=1'>Set Transfer Amount:</A></B><BR>
 	<B>Current Transfer Amount:</B> [amount_per_transfer_from_this]<BR>
 	<BR>
-	<B><A href='byond://?src=\ref[src];displayreagents=1'>Display Reagent Content:</A></B><BR>
+	<B><A href='byond://?src=[text_ref(src)];displayreagents=1'>Display Reagent Content:</A></B><BR>
 	<BR>
 	<BR>
-	<B><A href='byond://?src=\ref[src];flush=1'>Flush Hypospray (Empties the hypospray of all contents):</A></B><BR>
+	<B><A href='byond://?src=[text_ref(src)];flush=1'>Flush Hypospray (Empties the hypospray of all contents):</A></B><BR>
 	<BR>"}
 
 	var/datum/browser/popup = new(user, "hypospray")

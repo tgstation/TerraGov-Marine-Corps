@@ -14,10 +14,10 @@ GLOBAL_LIST_INIT(boiler_glob_list, list(
 
 ///List of glob action button images, used for radial selection.
 GLOBAL_LIST_INIT(boiler_glob_image_list, list(
-		BOILER_GLOB_NEURO = image('icons/mob/actions.dmi', icon_state = BOILER_GLOB_NEURO),
-		BOILER_GLOB_ACID = image('icons/mob/actions.dmi', icon_state = BOILER_GLOB_ACID),
-		BOILER_GLOB_NEURO_LANCE = image('icons/mob/actions.dmi', icon_state = BOILER_GLOB_NEURO_LANCE),
-		BOILER_GLOB_ACID_LANCE = image('icons/mob/actions.dmi', icon_state = BOILER_GLOB_ACID_LANCE),
+		BOILER_GLOB_NEURO = image('icons/Xeno/actions.dmi', icon_state = BOILER_GLOB_NEURO),
+		BOILER_GLOB_ACID = image('icons/Xeno/actions.dmi', icon_state = BOILER_GLOB_ACID),
+		BOILER_GLOB_NEURO_LANCE = image('icons/Xeno/actions.dmi', icon_state = BOILER_GLOB_NEURO_LANCE),
+		BOILER_GLOB_ACID_LANCE = image('icons/Xeno/actions.dmi', icon_state = BOILER_GLOB_ACID_LANCE),
 		))
 
 

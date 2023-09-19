@@ -120,6 +120,19 @@
 
 	. = ..()
 
+	var/area/A = get_area(src)
+
+	//If area isn't specified use current
+	if(isarea(A) && areastring == null)
+		area = A
+		name = "\improper [area.name] APC"
+	else
+		area = get_area_name(areastring)
+		name = "\improper [area.name] APC"
+
+	update_icon()
+	update() //areas should be lit on startup
+
 	if(mapload)
 		has_electronics = APC_ELECTRONICS_SECURED
 
@@ -129,17 +142,7 @@
 			cell.charge = start_charge * cell.maxcharge / 100.0 //Convert percentage to actual value
 			cell.update_icon()
 
-		var/area/A = get_area(src)
-
-		//If area isn't specified use current
-		if(isarea(A) && areastring == null)
-			area = A
-			name = "\improper [area.name] APC"
-		else
-			area = get_area_name(areastring)
-			name = "\improper [area.name] APC"
-
-		update_icon()
+		
 		make_terminal()
 
 		update() //areas should be lit on startup
@@ -998,20 +1001,27 @@
 		if(EXPLODE_DEVASTATE)
 			cell?.ex_act(1) //More lags woohoo
 			qdel(src)
+			return
 		if(EXPLODE_HEAVY)
 			if(prob(50))
 				return
 			set_broken()
 			if(!cell || prob(50))
 				return
-			cell.ex_act(2)
 		if(EXPLODE_LIGHT)
 			if(prob(75))
 				return
 			set_broken()
 			if(!cell || prob(75))
 				return
-			cell.ex_act(3)
+		if(EXPLODE_WEAK)
+			if(prob(80))
+				return
+			set_broken()
+			if(!cell || prob(85))
+				return
+
+	cell.ex_act(severity)
 
 
 /obj/machinery/power/apc/proc/set_broken()

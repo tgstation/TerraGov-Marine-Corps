@@ -32,37 +32,33 @@
 
 //flags_atom
 
-#define NOINTERACT (1<<0)		// You can't interact with it, at all. Useful when doing certain animations.
-#define CONDUCT (1<<1)		// conducts electricity (metal etc.)
-#define ON_BORDER (1<<2)		// 'border object'. item has priority to check when entering or leaving
-#define NOBLOODY (1<<3)		// Don't want a blood overlay on this one.
-#define DIRLOCK (1<<4)		// movable atom won't change direction when Moving()ing. Useful for items that have several dir states.
-#define INITIALIZED (1<<5)  	//Whether /atom/Initialize() has already run for the object
-#define NODECONSTRUCT (1<<6)
-#define PREVENT_CLICK_UNDER (1<<7)		//Prevent clicking things below it on the same turf
-#define CRITICAL_ATOM (1<<8)		//Use when this shouldn't be obscured by large icons.
+#define UNUSED_RESERVATION_TURF_1 (1<<0)
+#define AI_BLOCKED (1<<1) //Prevent ai from going onto this turf
+#define NOINTERACT (1<<2)		// You can't interact with it, at all. Useful when doing certain animations.
+#define CONDUCT (1<<3)		// conducts electricity (metal etc.)
+#define ON_BORDER (1<<4)		// 'border object'. item has priority to check when entering or leaving
+#define NOBLOODY (1<<5)		// Don't want a blood overlay on this one.
+#define DIRLOCK (1<<6)		// movable atom won't change direction when Moving()ing. Useful for items that have several dir states.
+#define INITIALIZED (1<<7)  	//Whether /atom/Initialize() has already run for the object
+#define NODECONSTRUCT (1<<8)
+#define PREVENT_CLICK_UNDER (1<<9)		//Prevent clicking things below it on the same turf
+#define CRITICAL_ATOM (1<<10)		//Use when this shouldn't be obscured by large icons.
 ///Does not cascade explosions to its contents.
-#define PREVENT_CONTENTS_EXPLOSION (1<<9)
+#define PREVENT_CONTENTS_EXPLOSION (1<<11)
 /// was this spawned by an admin? used for stat tracking stuff.
-#define ADMIN_SPAWNED (1<<10)
+#define ADMIN_SPAWNED (1<<12)
 /// Can this atom be bumped attack
-#define BUMP_ATTACKABLE (1<<11)
+#define BUMP_ATTACKABLE (1<<13)
 ///This atom will not be qdeled when a shuttle lands on it; it will just move onto the shuttle tile. It will stay on the ground when the shuttle takes off
-#define SHUTTLE_IMMUNE (1<<12)
+#define SHUTTLE_IMMUNE (1<<14)
 /// Should we use the initial icon for display? Mostly used by overlay only objects
-#define HTML_USE_INITAL_ICON_1 (1<<13)
-
-//turf-only flags
-#define AI_BLOCKED (1<<0) //Prevent ai from going onto this turf
-#define UNUSED_RESERVATION_TURF_1 (1<<1)
-/// If a turf can be made dirty at roundstart. This is also used in areas.
-#define CAN_BE_DIRTY_1 (1<<2)
+#define HTML_USE_INITAL_ICON_1 (1<<15)
 
 //==========================================================================================
 
 //flags_barrier
-#define HANDLE_BARRIER_CHANCE 1
-#define HANDLE_BARRIER_BLOCK 2
+#define HANDLE_BARRIER_CHANCE (1<<0)
+#define HANDLE_BARRIER_BLOCK (1<<1)
 
 
 //bitflags that were previously under flags_atom, these only apply to items.

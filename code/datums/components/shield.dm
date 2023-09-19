@@ -61,9 +61,8 @@
 	soft_armor = null
 	hard_armor = null
 	cover = null
-	QDEL_NULL(intercept_damage_cb)
-	if(transfer_damage_cb)
-		QDEL_NULL(transfer_damage_cb)
+	intercept_damage_cb = null
+	transfer_damage_cb = null
 	return ..()
 
 /datum/component/shield/proc/setup_callbacks(shield_flags)
@@ -158,7 +157,7 @@
 
 	if(iscarbon(affected))
 		var/mob/living/carbon/C = affected
-		if(C.stagger) //Lesser penalty to shield cover for being staggered.
+		if(C.IsStaggered()) //Lesser penalty to shield cover for being staggered.
 			status_cover_modifier *= 0.75
 
 	switch(attack_type)

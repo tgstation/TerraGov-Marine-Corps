@@ -457,6 +457,11 @@
 	coverage = 85 //has a shield
 	anchor_time = 1 SECONDS
 
+/obj/machinery/deployable/mounted/moveable/atgun/Destroy()
+	if(sponson)
+		QDEL_NULL(sponson)
+	return ..()
+
 /obj/item/storage/internal/ammo_rack
 	storage_slots = 10
 	max_storage_space = 40
@@ -468,8 +473,8 @@
 	sponson = new sponson(src)
 
 /obj/machinery/deployable/mounted/moveable/atgun/attackby(obj/item/I, mob/user, params)
-	var/obj/item/weapon/gun/standard_atgun/internal_gun = internal_item
-	if(user.interactee == src && (I.type in internal_gun.allowed_ammo_types))
+	var/obj/item/weapon/gun/standard_atgun/internal_gun = get_internal_item()
+	if(user.interactee == src && (I.type in internal_gun?.allowed_ammo_types))
 		balloon_alert(user, "Busy manning!")
 		return
 
@@ -493,7 +498,9 @@
 		if(EXPLODE_HEAVY)
 			take_damage(rand(150, 200), BRUTE, BOMB)
 		if(EXPLODE_LIGHT)
-			take_damage(rand(10, 50), BRUTE, BOMB)
+			take_damage(rand(50, 100), BRUTE, BOMB)
+		if(EXPLODE_WEAK)
+			take_damage(rand(25, 50), BRUTE, BOMB)
 
 //AGLS-37, or Automatic Grenade Launching System 37, a fully automatic mounted grenade launcher that fires fragmentation and HE shells, can't be turned.
 

@@ -97,6 +97,7 @@
 			data["alternate_option"] = alternate_option
 			data["special_occupation"] = be_special
 		if(GAME_SETTINGS)
+			data["is_admin"] = user.client?.holder ? TRUE : FALSE
 			data["ui_style_color"] = ui_style_color
 			data["ui_style"] = ui_style
 			data["ui_style_alpha"] = ui_style_alpha
@@ -122,6 +123,7 @@
 			data["widescreenpref"] = widescreenpref
 			data["radialmedicalpref"] = !!(toggles_gameplay & RADIAL_MEDICAL)
 			data["radialstackspref"] = !!(toggles_gameplay & RADIAL_STACKS)
+			data["radiallasersgunpref"] = !!(toggles_gameplay & RADIAL_LASERGUNS)
 			data["autointeractdeployablespref"] = !!(toggles_gameplay & AUTO_INTERACT_DEPLOYABLES)
 			data["scaling_method"] = scaling_method
 			data["pixel_size"] = pixel_size
@@ -130,6 +132,8 @@
 			data["quick_equip"] = list()
 			for(var/quick_equip_slots in quick_equip)
 				data["quick_equip"] += slot_flag_to_fluff(quick_equip_slots)
+			data["fast_mc_refresh"] = fast_mc_refresh
+			data["split_admin_tabs"] = split_admin_tabs
 		if(KEYBIND_SETTINGS)
 			data["is_admin"] = user.client?.holder ? TRUE : FALSE
 			data["key_bindings"] = list()
@@ -156,12 +160,12 @@
 				"underwear" = list(
 					"male" = GLOB.underwear_m,
 					"female" = GLOB.underwear_f,
-					"plural" = GLOB.underwear_n
+					"plural" = GLOB.underwear_f + GLOB.underwear_m,
 				),
 				"undershirt" = list(
 					"male" = GLOB.undershirt_m,
 					"female" = GLOB.undershirt_f,
-					"plural" = GLOB.undershirt_n
+					"plural" = GLOB.undershirt_m + GLOB.undershirt_f,
 				),
 				"backpack" = GLOB.backpacklist,
 				)
@@ -339,13 +343,10 @@
 
 		if("underwear")
 			var/list/underwear_options
-			switch(gender)
-				if(MALE)
-					underwear_options = GLOB.underwear_m
-				if(FEMALE)
-					underwear_options = GLOB.underwear_f
-				else
-					underwear_options = GLOB.underwear_n
+			if(gender == MALE)
+				underwear_options = GLOB.underwear_m
+			else
+				underwear_options = GLOB.underwear_f
 
 			var/new_underwear = underwear_options.Find(params["newValue"])
 			if(!new_underwear)
@@ -527,14 +528,14 @@
 			if(TIMER_COOLDOWN_CHECK(user, COOLDOWN_TRY_TTS))
 				return
 			TIMER_COOLDOWN_START(ui.user, COOLDOWN_TRY_TTS, 0.5 SECONDS)
-			INVOKE_ASYNC(SStts, TYPE_PROC_REF(/datum/controller/subsystem/tts, queue_tts_message), ui.user.client, "Hello, this is my voice.", speaker = choice, local = TRUE, silicon = isrobot(GLOB.all_species[species]), pitch = tts_pitch)
+			INVOKE_ASYNC(SStts, TYPE_PROC_REF(/datum/controller/subsystem/tts, queue_tts_message), ui.user.client, "Hello, this is my voice.", speaker = choice, local = TRUE, silicon = isrobot(GLOB.all_species[species]) ? TRUE : "", pitch = tts_pitch)
 
 		if("tts_pitch")
 			tts_pitch = clamp(text2num(params["newValue"]), -12, 12)
 			if(TIMER_COOLDOWN_CHECK(user, COOLDOWN_TRY_TTS))
 				return
 			TIMER_COOLDOWN_START(ui.user, COOLDOWN_TRY_TTS, 0.5 SECONDS)
-			INVOKE_ASYNC(SStts, TYPE_PROC_REF(/datum/controller/subsystem/tts, queue_tts_message), ui.user.client, "Hello, this is my voice.", speaker = tts_voice, local = TRUE, silicon = isrobot(GLOB.all_species[species]), pitch = tts_pitch)
+			INVOKE_ASYNC(SStts, TYPE_PROC_REF(/datum/controller/subsystem/tts, queue_tts_message), ui.user.client, "Hello, this is my voice.", speaker = tts_voice, local = TRUE, silicon = isrobot(GLOB.all_species[species]) ? TRUE : "", pitch = tts_pitch)
 
 		if("squad")
 			var/new_squad = params["newValue"]
@@ -773,6 +774,9 @@
 		if("radialmedicalpref")
 			toggles_gameplay ^= RADIAL_MEDICAL
 
+		if("radiallasersgunpref")
+			toggles_gameplay ^= RADIAL_LASERGUNS
+
 		if("radialstackspref")
 			toggles_gameplay ^= RADIAL_STACKS
 
@@ -810,6 +814,12 @@
 
 		if("unique_action_use_active_hand")
 			unique_action_use_active_hand = !unique_action_use_active_hand
+
+		if("fast_mc_refresh")
+			fast_mc_refresh = !fast_mc_refresh
+
+		if("split_admin_tabs")
+			split_admin_tabs = !split_admin_tabs
 
 		else //  Handle the unhandled cases
 			return

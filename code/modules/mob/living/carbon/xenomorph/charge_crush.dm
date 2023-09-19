@@ -373,7 +373,7 @@
 
 /datum/action/xeno_action/ready_charge/bull_charge/on_xeno_upgrade()
 	var/mob/living/carbon/xenomorph/X = owner
-	agile_charge = (X.upgrade == XENO_UPGRADE_FOUR)
+	agile_charge = (X.upgrade == XENO_UPGRADE_PRIMO)
 
 /datum/action/xeno_action/ready_charge/queen_charge
 	action_icon_state = "queen_ready_charge"
@@ -552,9 +552,9 @@
 
 	switch(charge_datum.charge_type)
 		if(CHARGE_CRUSH)
-			Paralyze(CHARGE_SPEED(charge_datum) * 20)
+			Paralyze(CHARGE_SPEED(charge_datum) * 2 SECONDS)
 		if(CHARGE_BULL_HEADBUTT)
-			Paralyze(CHARGE_SPEED(charge_datum) * 25)
+			Paralyze(CHARGE_SPEED(charge_datum) * 2.5 SECONDS)
 
 	if(anchored)
 		charge_datum.do_stop_momentum(FALSE)

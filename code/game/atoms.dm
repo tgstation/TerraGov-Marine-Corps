@@ -119,6 +119,9 @@
 	///The acid currently on this atom
 	var/obj/effect/xenomorph/acid/current_acid = null
 
+	///Cooldown for telling someone they're buckled
+	COOLDOWN_DECLARE(buckle_message_cooldown)
+
 /*
 We actually care what this returns, since it can return different directives.
 Not specifically here, but in other variations of this. As a general safety,
@@ -128,7 +131,7 @@ directive is properly returned.
 //===========================================================================
 /atom/Destroy()
 	if(reagents)
-		qdel(reagents)
+		QDEL_NULL(reagents)
 
 	orbiters = null // The component is attached to us normaly and will be deleted elsewhere
 
@@ -408,7 +411,10 @@ directive is properly returned.
 
 // called by mobs when e.g. having the atom as their machine, pulledby, loc (AKA mob being inside the atom) or buckled var set.
 // see code/modules/mob/mob_movement.dm for more.
-/atom/proc/relaymove()
+/atom/proc/relaymove(mob/living/user, direct)
+	if(COOLDOWN_CHECK(src, buckle_message_cooldown))
+		COOLDOWN_START(src, buckle_message_cooldown, 2.5 SECONDS)
+		balloon_alert(user, "Can't move while buckled!")
 	return
 
 /**
@@ -435,7 +441,7 @@ directive is properly returned.
 	return
 
 
-/atom/proc/hitby(atom/movable/AM)
+/atom/proc/hitby(atom/movable/AM, speed = 5)
 	if(density)
 		AM.stop_throw()
 
@@ -922,6 +928,32 @@ Proc for attack log creation, because really why not
 
 
 /atom/Topic(href, href_list)
+	if(usr?.client)
+		var/client/usr_client = usr.client
+		var/list/paramslist = list()
+
+		if(href_list["statpanel_item_click"])
+			switch(href_list["statpanel_item_click"])
+				if("left")
+					paramslist[LEFT_CLICK] = "1"
+				if("right")
+					paramslist[RIGHT_CLICK] = "1"
+				if("middle")
+					paramslist[MIDDLE_CLICK] = "1"
+				else
+					return
+
+			if(href_list["statpanel_item_shiftclick"])
+				paramslist[SHIFT_CLICK] = "1"
+			if(href_list["statpanel_item_ctrlclick"])
+				paramslist[CTRL_CLICK] = "1"
+			if(href_list["statpanel_item_altclick"])
+				paramslist[ALT_CLICK] = "1"
+
+			var/mouseparams = list2params(paramslist)
+			usr_client.Click(src, loc, null, mouseparams)
+			. = TRUE
+
 	. = ..()
 	if(.)
 		return

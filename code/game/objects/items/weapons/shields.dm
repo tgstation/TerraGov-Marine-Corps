@@ -174,6 +174,10 @@
 	attack_verb = list("shoved", "bashed")
 	var/on_force = 10
 
+/obj/item/weapon/shield/energy/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/strappable)
+
 /obj/item/weapon/shield/energy/set_shield()
 	AddComponent(/datum/component/shield, SHIELD_TOGGLE|SHIELD_PURE_BLOCKING)
 
@@ -187,7 +191,7 @@
 		to_chat(user, span_notice("[src] is now active."))
 	else
 		force = initial(force)
-		w_class = WEIGHT_CLASS_TINY
+		w_class = WEIGHT_CLASS_SMALL
 		playsound(user, 'sound/weapons/saberoff.ogg', 25, TRUE)
 		to_chat(user, span_notice("[src] can now be concealed."))
 	add_fingerprint(user, "turned [active ? "on" : "off"]")

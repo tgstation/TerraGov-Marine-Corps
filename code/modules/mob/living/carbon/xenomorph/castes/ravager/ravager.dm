@@ -2,7 +2,7 @@
 	caste_base_type = /mob/living/carbon/xenomorph/ravager
 	name = "Ravager"
 	desc = "A huge, nasty red alien with enormous scythed claws."
-	icon = 'icons/Xeno/2x2_Xenos.dmi'
+	icon = 'icons/Xeno/castes/ravager.dmi'
 	icon_state = "Ravager Walking"
 	health = 250
 	maxHealth = 250
@@ -10,7 +10,7 @@
 	mob_size = MOB_SIZE_BIG
 	drag_delay = 6 //pulling a big dead xeno is hard
 	tier = XENO_TIER_THREE
-	upgrade = XENO_UPGRADE_ZERO
+	upgrade = XENO_UPGRADE_NORMAL
 	pixel_x = -16
 	old_x = -16
 	bubble_icon = "alienroyal"

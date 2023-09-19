@@ -88,7 +88,7 @@
 		return
 	awaiting_update = FALSE
 	//we moved to nullspace meanwhile dont bother
-	if(!attached_atom.loc)
+	if(!attached_atom?.loc)
 		return
 
 	//Incremement the global counter for shadow calculations

@@ -627,7 +627,7 @@
 	///The target which the arrow points to
 	var/atom/target
 	///The duration of the effect
-	var/duration
+	var/duration = 1
 	///holder for the deletation timer
 	var/del_timer
 
@@ -646,7 +646,7 @@
 ///Stop the arrow to avoid runtime and hard del
 /atom/movable/screen/arrow/proc/kill_arrow()
 	SIGNAL_HANDLER
-	if(tracker.client)
+	if(tracker?.client)
 		tracker.client.screen -= src
 	deltimer(del_timer)
 	qdel(src)
