@@ -20,6 +20,7 @@
 		/datum/job/terragov/squad/engineer = 5,
 		/datum/job/xenomorph = CRASH_LARVA_POINTS_NEEDED,
 	)
+	xenorespawn_time = 3 MINUTES
 
 	// Round end conditions
 	var/shuttle_landed = FALSE
@@ -108,10 +109,6 @@
 			var/mob/living/carbon/xenomorph/X = i
 			X.upgrade_stored = X.xeno_caste.upgrade_threshold
 
-	var/datum/hive_status/normal/HN = GLOB.hive_datums[XENO_HIVE_NORMAL]
-	if(HN)
-		RegisterSignal(HN, COMSIG_XENOMORPH_POSTEVOLVING, PROC_REF(on_xeno_evolve))
-
 
 /datum/game_mode/infestation/crash/announce()
 	to_chat(world, span_round_header("The current map is - [SSmapping.configs[GROUND_MAP].map_name]!"))
@@ -179,12 +176,6 @@
 	var/num_humans = living_player_list[1]
 	if(!num_humans) // no humans left on planet to try and restart it.
 		addtimer(VARSET_CALLBACK(src, marines_evac, CRASH_EVAC_COMPLETED), 10 SECONDS)
-
-/datum/game_mode/infestation/crash/proc/on_xeno_evolve(datum/source, mob/living/carbon/xenomorph/new_xeno)
-	SIGNAL_HANDLER
-	switch(new_xeno.tier)
-		if(XENO_TIER_ONE)
-			new_xeno.upgrade_stored = max(new_xeno.upgrade_stored, TIER_ONE_MATURE_THRESHOLD)
 
 /datum/game_mode/infestation/crash/can_summon_dropship(mob/user)
 	to_chat(src, span_warning("This power doesn't work in this gamemode."))

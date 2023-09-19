@@ -7,12 +7,11 @@
 
 	var/caste_type_path = null
 
-	var/ancient_message = ""
 	///primordial message that is shown when a caste becomes primordial
 	var/primordial_message = ""
 
 	var/tier = XENO_TIER_ZERO
-	var/upgrade = XENO_UPGRADE_ZERO
+	var/upgrade = XENO_UPGRADE_NORMAL
 	///used to match appropriate wound overlays
 	var/wound_type = "alien"
 	var/language = "Xenomorph"
@@ -106,8 +105,6 @@
 	///list of datum projectile types the xeno can use.
 	var/list/spit_types
 
-	///numerical type of charge for a xenomorph caste
-	var/charge_type = 0
 	///amount of time between pounce ability uses
 	var/pounce_delay = 4 SECONDS
 
