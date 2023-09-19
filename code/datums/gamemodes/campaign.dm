@@ -27,7 +27,7 @@
 
 /datum/game_mode/hvh/campaign/announce()
 	to_chat(world, "<b>The current game mode is - Campaign!</b>")
-	to_chat(world, "<b>The fringe world of Palmaria is undergoing significant upheaval, with large portions of the population threatening to succeed from TerraGov. With the population on the brink of civil wave,\
+	to_chat(world, "<b>The fringe world of Palmaria is undergoing significant upheaval, with large portions of the population threatening to succeed from TerraGov. With the population on the brink of civil war,\
 	both TerraGov Marine Corp forces and the Sons of Mars are looking to intervene.")
 	to_chat(world, "<b>Fight for your faction across the planet, the campaign for Palmaria starts now!</b>")
 	to_chat(world, "<b>WIP, report bugs on the github!</b>")
@@ -42,7 +42,7 @@
 	. = ..()
 	for(var/obj/effect/landmark/patrol_point/exit_point AS in GLOB.patrol_point_list) //som 'ship' map is now ground, but this ensures we clean up exit points if this changes in the future
 		qdel(exit_point)
-	load_new_mission(new /datum/campaign_mission/tdm(factions[1])) //this is the 'roundstart' mission
+	load_new_mission(new /datum/campaign_mission/capture_mission(factions[1])) //this is the 'roundstart' mission
 
 	for(var/i in stat_list)
 		var/datum/faction_stats/selected_faction = stat_list[i]

@@ -32,6 +32,7 @@ require only minor tweaks.
 #define ZTRAIT_SNOWSTORM "weather_snowstorm"
 #define ZTRAIT_ASHSTORM "weather_ashstorm"
 #define ZTRAIT_ACIDRAIN "weather_acidrain"
+#define ZTRAIT_RAIN "weather_rain"
 #define ZTRAIT_SANDSTORM "weather_sandstorm"
 
 // number - bombcap is multiplied by this before being applied to bombs

@@ -3,6 +3,7 @@
 	name = "Capture mission"
 	map_name = "Jungle outpost SR-422"
 	map_file = '_maps/map_files/Campaign maps/jungle_test/jungle_outpost.dmm'
+	map_traits = list(ZTRAIT_AWAY = TRUE, ZTRAIT_RAIN = TRUE)
 	max_game_time = 20 MINUTES
 	mission_flags = MISSION_DISALLOW_DROPPODS
 	victory_point_rewards = list(
@@ -20,8 +21,8 @@
 		MISSION_OUTCOME_MAJOR_LOSS = list(5, 20),
 	)
 	intro_message = list(
-		"starting_faction" = "Locate and extract all phoron crates in ao before the enemy does.",
-		"hostile_faction" = "Locate and extract all phoron crates in ao before the enemy does.",
+		"starting_faction" = "Locate and extract all phoron crates in the ao before the enemy does.",
+		"hostile_faction" = "Locate and extract all phoron crates in the ao before the enemy does.",
 	)
 	starting_faction_mission_brief = "Hostile forces have been building a stock pile of valuable phoron in this location. <br>\
 		Before they have the chance to ship it out, your forces are being sent to intercept and liberate these supplies to hamper the enemy's war effort. <br>\

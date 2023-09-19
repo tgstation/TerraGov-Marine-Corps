@@ -64,6 +64,7 @@
 	//initialize things that are normally initialized after map load
 	parsed.initTemplateBounds()
 	SSmodularmapping.load_modular_maps() //must be run after initTemplateBounds so markers have an actual loc
+	SSweather.load_late_z(level.z_value)
 	SSair.setup_atmos_machinery()
 	SSair.setup_pipenets()
 	SSlighting.create_lighting_objects_for_z(level.z_value)
