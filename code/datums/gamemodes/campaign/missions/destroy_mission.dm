@@ -59,6 +59,14 @@
 	starting_faction_objective_description = "Major Victory:Destroy all [objectives_total] targets.[min_destruction_amount ? "<br> Minor Victory: Destroy at least [min_destruction_amount] targets." : ""]"
 	hostile_faction_objective_description = "Major Victory: Protect all [objectives_total] assets from destruction.[min_destruction_amount ? "<br> Minor Victory: Protect at least [objectives_total - min_destruction_amount + 1] assets." : ""]"
 
+/datum/campaign_mission/destroy_mission/get_status_tab_items(mob/source, list/items)
+	. = ..()
+
+	items += "Objectives destroyed: [objectives_destroyed]"
+	items += ""
+	items += "Objectives remaining: [objectives_total - objectives_destroyed]"
+	items += ""
+
 /datum/campaign_mission/destroy_mission/end_mission()
 	UnregisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_OBJECTIVE_DESTROYED)
 	return ..()
