@@ -3,7 +3,7 @@
 //Keyword rifles. They are subtype of rifles, but still contained here as a specialist weapon.
 
 /obj/item/ammo_magazine/sniper
-	name = "\improper SR-26 magazine (10x28mm)"
+	name = "\improper T-26 magazine (10x28mm)"
 	desc = "A magazine of antimaterial rifle ammo."
 	caliber = CALIBER_10X28
 	icon_state = "t26"
@@ -15,14 +15,14 @@
 
 
 /obj/item/ammo_magazine/sniper/incendiary
-	name = "\improper SR-26 incendiary magazine (10x28mm)"
+	name = "\improper T-26 incendiary magazine (10x28mm)"
 	default_ammo = /datum/ammo/bullet/sniper/incendiary
 	icon_state = "t26_inc"
 	icon_state_mini = "mag_sniper_red"
 	bonus_overlay = "t26_incend"
 
 /obj/item/ammo_magazine/sniper/flak
-	name = "\improper SR-26 flak magazine (10x28mm)"
+	name = "\improper T-26 flak magazine (10x28mm)"
 	default_ammo = /datum/ammo/bullet/sniper/flak
 	icon_state = "t26_flak"
 	icon_state_mini = "mag_sniper_blue"
@@ -31,7 +31,7 @@
 //SR-42 magazine
 
 /obj/item/ammo_magazine/sniper/elite
-	name = "\improper SR-42 marksman magazine (10x99mm)"
+	name = "\improper M42C marksman magazine (10x99mm)"
 	default_ammo = /datum/ammo/bullet/sniper/elite
 	caliber = CALIBER_10X99
 	icon_state = "m42c"
@@ -56,7 +56,7 @@
 
 /obj/item/ammo_magazine/rifle/tx8
 	name = "\improper high velocity magazine (10x28mm)"
-	desc = "A magazine of overpressuered high velocity rounds for use in the BR-8 battle rifle. The BR-8 battle rifle is the only gun that can chamber these rounds."
+	desc = "A magazine of overpressuered high velocity rounds for use in the TX-8 battle rifle. The TX-8 battle rifle is the only gun that can chamber these rounds."
 	icon_state = "tx8"
 	caliber = CALIBER_10X28_CASELESS
 	default_ammo = /datum/ammo/bullet/rifle/tx8
@@ -65,7 +65,7 @@
 
 /obj/item/ammo_magazine/rifle/tx8/incendiary
 	name = "\improper high velocity incendiary magazine (10x28mm)"
-	desc = "A magazine of overpressuered high velocity incendiary rounds for use in the BR-8 battle rifle. The BR-8 battle rifle is the only gun that can chamber these rounds."
+	desc = "A magazine of overpressuered high velocity incendiary rounds for use in the TX-8 battle rifle. The TX-8 battle rifle is the only gun that can chamber these rounds."
 	caliber = CALIBER_10X28_CASELESS
 	icon_state = "tx8_incend"
 	default_ammo = /datum/ammo/bullet/rifle/tx8/incendiary
@@ -74,7 +74,7 @@
 
 /obj/item/ammo_magazine/rifle/tx8/impact
 	name = "\improper high velocity impact magazine (10x28mm)"
-	desc = "A magazine of overpressuered high velocity impact rounds for use in the BR-8 battle rifle. The BR-8 battle rifle is the only gun that can chamber these rounds."
+	desc = "A magazine of overpressuered high velocity impact rounds for use in the TX-8 battle rifle. The TX-8 battle rifle is the only gun that can chamber these rounds."
 	icon_state = "tx8_impact"
 	default_ammo = /datum/ammo/bullet/rifle/tx8/impact
 	icon_state_mini = "mag_rifle_big_blue"
@@ -121,7 +121,7 @@
 
 /obj/item/ammo_magazine/rocket/sadar
 	name = "\improper 84mm 'L-G' high-explosive rocket"
-	desc = "A warhead for the RL-152 rocket launcher. Carries a bogstandard HE warhead that explodes. Due to being laser-guided, it will hit exactly where you aim, however the payload is smaller due to the internal space required for this.  When empty, use this frame to deconstruct it."
+	desc = "A warhead for the T-152 rocket launcher. Carries a bogstandard HE warhead that explodes. Due to being laser-guided, it will hit exactly where you aim, however the payload is smaller due to the internal space required for this.  When empty, use this frame to deconstruct it."
 	caliber = CALIBER_84MM
 	icon_state = "rocket_he"
 	w_class = WEIGHT_CLASS_NORMAL
@@ -132,7 +132,7 @@
 
 /obj/item/ammo_magazine/rocket/sadar/unguided
 	name = "\improper 84mm 'Unguided' high-explosive rocket"
-	desc = "A warhead for the RL-152 rocket launcher. Carries a bogstandard HE warhead that explodes. It is entirely unguided, and thus 'Dumb', this allows for a larger payload, and a skilled operator can hit longer ranged hits that a laser-guided rocket could not reach at all.  When empty, use this frame to deconstruct it."
+	desc = "A warhead for the T-152 rocket launcher. Carries a bogstandard HE warhead that explodes. It is entirely unguided, and thus 'Dumb', this allows for a larger payload, and a skilled operator can hit longer ranged hits that a laser-guided rocket could not reach at all.  When empty, use this frame to deconstruct it."
 	icon_state = "rocket_he_unguided"
 	default_ammo = /datum/ammo/rocket/he/unguided
 
@@ -161,7 +161,7 @@
 
 /obj/item/ammo_magazine/rocket/recoilless
 	name = "\improper 67mm high-explosive shell"
-	desc = "A high explosive shell for the RL-160 recoilless rifle. Causes a heavy explosion over a small area. Requires specialized storage to carry."
+	desc = "A high explosive shell for the T-160 recoilless rifle. Causes a heavy explosion over a small area. Requires specialized storage to carry."
 	caliber = CALIBER_67MM
 	icon_state = "shell"
 	w_class = WEIGHT_CLASS_BULKY
@@ -171,39 +171,39 @@
 
 /obj/item/ammo_magazine/rocket/recoilless/light
 	name = "\improper 67mm light-explosive shell"
-	desc = "A light explosive shell for the RL-160 recoilless rifle. Causes a light explosion over a large area. Can go farther than other shells of its type due to the light payload. Requires specialized storage to carry."
+	desc = "A light explosive shell for the T-160 recoilless rifle. Causes a light explosion over a large area. Can go farther than other shells of its type due to the light payload. Requires specialized storage to carry."
 	icon_state = "shell_le"
 	default_ammo = /datum/ammo/rocket/recoilless/light
 	reload_delay = 10
 
 /obj/item/ammo_magazine/rocket/recoilless/low_impact
 	name = "\improper 67mm light-explosive shell"
-	desc = "A light explosive shell for the RL-160 recoilless rifle. Causes a light explosion over a large area but low impact damage. Can go farther than other shells of its type due to the light payload. Requires specialized storage to carry."
+	desc = "A light explosive shell for the T-160 recoilless rifle. Causes a light explosion over a large area but low impact damage. Can go farther than other shells of its type due to the light payload. Requires specialized storage to carry."
 	icon_state = "shell_le"
 	default_ammo = /datum/ammo/rocket/recoilless/low_impact
 	reload_delay = 10
 
 /obj/item/ammo_magazine/rocket/recoilless/heat
 	name = "\improper 67mm HEAT shell"
-	desc = "A high explosive-anti tank shell for the RL-160 recoilless rifle. Fires a penetrating shot with no explosion. It will do moderate damage to all types of enemies, but does not sunder their armor. Requires specialized storage to carry."
+	desc = "A high explosive-anti tank shell for the T-160 recoilless rifle. Fires a penetrating shot with no explosion. It will do moderate damage to all types of enemies, but does not sunder their armor. Requires specialized storage to carry."
 	icon_state = "shell_heat"
 	default_ammo = /datum/ammo/rocket/recoilless/heat
 
 /obj/item/ammo_magazine/rocket/recoilless/smoke
 	name = "\improper 67mm Chemical (Smoke) shell"
-	desc = "A chemical shell for the RL-160 recoilless rifle. Fires a low velocity shell for close quarters application of chemical gas, friendlies will be able to easily dodge it due to low velocity. This warhead contains thick concealing smoke. Requires specialized storage to carry."
+	desc = "A chemical shell for the T-160 recoilless rifle. Fires a low velocity shell for close quarters application of chemical gas, friendlies will be able to easily dodge it due to low velocity. This warhead contains thick concealing smoke. Requires specialized storage to carry."
 	icon_state = "shell_smoke"
 	default_ammo = /datum/ammo/rocket/recoilless/chemical
 
 /obj/item/ammo_magazine/rocket/recoilless/cloak
 	name = "\improper 67mm Chemical (Cloak) shell"
-	desc = "A chemical shell for the RL-160 recoilless rifle. Fires a low velocity shell for close quarters application of chemical gas, friendlies will be able to easily dodge it due to low velocity. This warhead contains advanced cloaking smoke. Requires specialized storage to carry."
+	desc = "A chemical shell for the T-160 recoilless rifle. Fires a low velocity shell for close quarters application of chemical gas, friendlies will be able to easily dodge it due to low velocity. This warhead contains advanced cloaking smoke. Requires specialized storage to carry."
 	icon_state = "shell_cloak"
 	default_ammo = /datum/ammo/rocket/recoilless/chemical/cloak
 
 /obj/item/ammo_magazine/rocket/recoilless/plasmaloss
 	name = "\improper 67mm Chemical (Tanglefoot) shell"
-	desc = "A chemical shell for the RL-160 recoilless rifle. Fires a low velocity shell for close quarters application of chemical gas, friendlies will be able to easily dodge it due to low velocity. This warhead contains plasma-draining Tanglefoot smoke. Requires specialized storage to carry."
+	desc = "A chemical shell for the T-160 recoilless rifle. Fires a low velocity shell for close quarters application of chemical gas, friendlies will be able to easily dodge it due to low velocity. This warhead contains plasma-draining Tanglefoot smoke. Requires specialized storage to carry."
 	icon_state = "shell_tanglefoot"
 	default_ammo = /datum/ammo/rocket/recoilless/chemical/plasmaloss
 
@@ -235,7 +235,7 @@
 
 /obj/item/ammo_magazine/rocket/m57a4
 	name = "\improper 84mm thermobaric rocket array"
-	desc = "A thermobaric rocket tube for a RL-57 quad launcher. Activate in hand to receive some metal when it's used up. The Rockets don't do much damage on a direct hit, but the fire effect is strong.."
+	desc = "A thermobaric rocket tube for a T-57 quad launcher. Activate in hand to receive some metal when it's used up. The Rockets don't do much damage on a direct hit, but the fire effect is strong.."
 	caliber = CALIBER_ROCKETARRAY
 	icon_state = "quad_rocket"
 	max_rounds = 4
@@ -244,7 +244,7 @@
 
 /obj/item/ammo_magazine/rocket/m57a4/ds
 	name = "\improper 84mm thermobaric rocket array"
-	desc = "A thermobaric rocket tube for a RL-57 quad launcher. Activate in hand to receive some metal when it's used up. Has huge red markings..."
+	desc = "A thermobaric rocket tube for a M-57E quad launcher. Activate in hand to receive some metal when it's used up. Has huge red markings..."
 	caliber = CALIBER_ROCKETARRAY
 	icon_state = "quad_rocket"
 	max_rounds = 4
@@ -252,7 +252,7 @@
 	reload_delay = 2 SECONDS
 
 /obj/item/ammo_magazine/internal/launcher/rocket/m57a4
-	desc = "The internal tube of an RL-57 thermobaric launcher."
+	desc = "The internal tube of an M-57E thermobaric launcher."
 	caliber = CALIBER_ROCKETARRAY
 	default_ammo = /datum/ammo/rocket/wp/quad
 	max_rounds = 4
@@ -384,8 +384,8 @@
 	w_class = WEIGHT_CLASS_SMALL
 
 /obj/item/ammo_magazine/minigun_powerpack
-	name = "\improper MG-100 Vindicator powerpack"
-	desc = "A heavy reinforced backpack with support equipment, power cells, and spare rounds for the MG-100 Minigun System.\nClick the icon in the top left to reload your M56."
+	name = "\improper T-100 Vindicator powerpack"
+	desc = "A heavy reinforced backpack with support equipment, power cells, and spare rounds for the T-100 Minigun System.\nClick the icon in the top left to reload your M56."
 	icon = 'icons/obj/items/storage/storage.dmi'
 	icon_state = "powerpack"
 	flags_atom = CONDUCT
@@ -410,7 +410,7 @@
 	flags_item_map_variant = null
 
 /obj/item/ammo_magazine/minigun_powerpack/smartgun
-	name = "\improper SG-85 powerpack"
+	name = "\improper T-85 powerpack"
 	desc = "A reinforced backpack heavy with the IFF altered ammunition, onboard micro generator, and extensive cooling system which enables the SG-85 gatling gun to operate. \nUse the SG-85 on the backpack itself to connect them."
 	icon_state = "powerpacksg"
 	flags_magazine = MAGAZINE_WORN|MAGAZINE_REFILLABLE

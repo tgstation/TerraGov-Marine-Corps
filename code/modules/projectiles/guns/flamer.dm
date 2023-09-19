@@ -274,8 +274,8 @@
 		to_chat(mob_caught, isxeno(mob_caught) ? span_xenodanger(burn_message) : span_highdanger(burn_message))
 
 /obj/item/weapon/gun/flamer/big_flamer
-	name = "\improper FL-240 incinerator unit"
-	desc = "The FL-240 has proven to be one of the most effective weapons at clearing out soft-targets. This is a weapon to be feared and respected as it is quite deadly."
+	name = "\improper M-240 incinerator unit"
+	desc = "The M-240 has proven to be one of the most effective weapons at clearing out soft-targets. This is a weapon to be feared and respected as it is quite deadly."
 	icon_state = "m240"
 	item_state = "m240"
 
@@ -309,8 +309,8 @@
 
 //dedicated engineer pyro kit flamer
 /obj/item/weapon/gun/flamer/big_flamer/marinestandard/engineer
-	name = "\improper FL-86 incinerator unit"
-	desc = "The FL-86 is a more light weight incinerator unit designed specifically to fit into its accompanying engineers bag. Can only be used with magazine fuel tanks however."
+	name = "\improper TL-86 incinerator unit"
+	desc = "The TL-86 is a more light weight incinerator unit designed specifically to fit into its accompanying engineers bag. Can only be used with magazine fuel tanks however."
 	default_ammo_type = /obj/item/ammo_magazine/flamer_tank/large
 	allowed_ammo_types = list(
 		/obj/item/ammo_magazine/flamer_tank,
@@ -367,8 +367,8 @@
 
 
 /obj/item/weapon/gun/flamer/big_flamer/marinestandard
-	name = "\improper FL-84 flamethrower"
-	desc = "The FL-84 flamethrower is the current standard issue flamethrower of the TGMC, and is used for area control and urban combat. Use unique action to use hydro cannon"
+	name = "\improper TL-84 flamethrower"
+	desc = "The TL-84 flamethrower is the current standard issue flamethrower of the TGMC, and is used for area control and urban combat. Use unique action to use hydro cannon"
 	default_ammo_type = /obj/item/ammo_magazine/flamer_tank/large
 	icon_state = "tl84"
 	item_state = "tl84"

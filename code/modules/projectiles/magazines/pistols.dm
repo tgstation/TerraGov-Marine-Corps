@@ -3,7 +3,7 @@
 //M4A3 PISTOL
 
 /obj/item/ammo_magazine/pistol/standard_pistol
-	name = "\improper P-14 magazine (9mm)"
+	name = "\improper TP-14 magazine (9mm)"
 	desc = "A pistol magazine."
 	caliber = CALIBER_9X19
 	icon_state = "tp14"
@@ -15,8 +15,8 @@
 //-------------------------------------------------------
 //PP-7 Plasma Pistol
 /obj/item/ammo_magazine/pistol/plasma_pistol
-	name = "\improper PP-7 plasma cell"
-	desc = "An energy cell for the PP-7 plasma pistol."
+	name = "\improper TX-7 plasma cell"
+	desc = "An energy cell for the TX-7 plasma pistol."
 	caliber = CALIBER_PLASMA
 	icon_state = "tx7"
 	max_rounds = 10
@@ -66,7 +66,7 @@
 //P-1911
 
 /obj/item/ammo_magazine/pistol/m1911
-	name = "\improper P-1911 magazine (.45)"
+	name = "\improper M1911 magazine (.45)"
 	default_ammo = /datum/ammo/bullet/pistol/heavy
 	caliber = CALIBER_45ACP
 	icon_state = "1911"
@@ -79,7 +79,7 @@
 //P-23
 
 /obj/item/ammo_magazine/pistol/standard_heavypistol
-	name = "\improper P-23 magazine (.45)"
+	name = "\improper TP-23 magazine (.45)"
 	default_ammo = /datum/ammo/bullet/pistol/heavy
 	caliber = CALIBER_45ACP
 	icon_state = ".45"
@@ -91,7 +91,7 @@
 //Beretta 92FS, the gun McClane carries around in Die Hard. Very similar to the service pistol, all around.
 
 /obj/item/ammo_magazine/pistol/g22
-	name = "\improper P-22 magazine (9mm)"
+	name = "\improper G22 magazine (9mm)"
 	caliber = CALIBER_9X19
 	icon_state = "g22"
 	icon_state_mini = "mag_pistol_normal"
@@ -155,8 +155,8 @@
 //P-17.
 
 /obj/item/ammo_magazine/pistol/standard_pocketpistol
-	name = "\improper P-17 pocket pistol AP magazine (.380)"
-	desc = "A surprisingly small magazine used by the P-17 pistol holding .380 ACP bullets."
+	name = "\improper TP-17 pocket pistol AP magazine (.380)"
+	desc = "A surprisingly small magazine used by the TP-17 pistol holding .380 ACP bullets."
 	default_ammo = /datum/ammo/bullet/pistol/tiny/ap
 	caliber = CALIBER_380ACP
 	icon_state = "tp17"
@@ -256,7 +256,7 @@
 
 //SP-13 (Calico)
 /obj/item/ammo_magazine/pistol/standard_pistol/smart_pistol
-	name = "\improper SP-13 magazine (9mm AP)"
+	name = "\improper TX-13 magazine (9mm AP)"
 	caliber = CALIBER_9X19
 	icon_state = "tx13"
 	icon_state_mini = "mag_pistol_tube"

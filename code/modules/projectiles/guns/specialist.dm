@@ -24,8 +24,8 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 //Pow! Headshot
 
 /obj/item/weapon/gun/rifle/sniper/antimaterial
-	name = "\improper SR-26 scoped rifle"
-	desc = "The SR-26 is an IFF capable sniper rifle which is mostly used by long range marksmen. It excels in long-range combat situations and support sniping. It has a laser designator installed, and the scope itself has IFF integrated into it. Uses specialized 10x28 caseless rounds made to work with the guns odd IFF-scope system.  \nIt has an integrated Target Marker and a Laser Targeting system.\n\"Peace Through Superior Firepower\"."
+	name = "\improper T-26 scoped rifle"
+	desc = "The T-26 is an IFF capable sniper rifle which is mostly used by long range marksmen. It excels in long-range combat situations and support sniping. It has a laser designator installed, and the scope itself has IFF integrated into it. Uses specialized 10x28 caseless rounds made to work with the guns odd IFF-scope system.  \nIt has an integrated Target Marker and a Laser Targeting system.\n\"Peace Through Superior Firepower\"."
 	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "t26"
 	item_state = "t26"
@@ -229,7 +229,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 
 
 /obj/item/weapon/gun/rifle/sniper/elite
-	name = "\improper SR-42 anti-tank sniper rifle"
+	name = "\improper M-42C anti-tank sniper rifle"
 	desc = "A high end mag-rail heavy sniper rifle from Nanotrasen chambered in the heaviest ammo available, 10x99mm Caseless."
 	icon_state = "m42c"
 	item_state = "m42c"
@@ -266,7 +266,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 //SVD //Based on the Dragunov sniper rifle.
 
 /obj/item/weapon/gun/rifle/sniper/svd
-	name = "\improper SR-33 Dragunov sniper rifle"
+	name = "\improper SVD-33 Dragunov sniper rifle"
 	desc = "A semiautomatic sniper rifle, famed for it's marksmanship, and is built from the ground up for it. Fires 7.62x54mmR rounds."
 	icon = 'icons/Marine/gun64.dmi'
 	item_icons = list(
@@ -317,8 +317,8 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 //Based off the XM-8. BR-8 rifle
 
 /obj/item/weapon/gun/rifle/tx8
-	name = "\improper BR-8 scout rifle"
-	desc ="The BR-8 is a light specialized scout rifle, mostly used by light infantry and scouts. It's designed to be useable at all ranges by being very adaptable to different situations due to the ability to use different ammo types. Has IFF.  Takes specialized overpressured 10x28mm rounds."
+	name = "\improper TX-8 scout rifle"
+	desc ="The TX-8 is a light specialized scout rifle, mostly used by light infantry and scouts. It's designed to be useable at all ranges by being very adaptable to different situations due to the ability to use different ammo types. Has IFF.  Takes specialized overpressured 10x28mm rounds."
 	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "tx8"
 	item_state = "tx8"
@@ -385,7 +385,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 // MINIGUN
 
 /obj/item/weapon/gun/minigun
-	name = "\improper MG-100 Vindicator Minigun"
+	name = "\improper T-100 Vindicator Minigun"
 	desc = "A six barreled rotary machine gun, The ultimate in man-portable firepower, capable of laying down high velocity armor piercing rounds this thing will no doubt pack a punch.. If you don't kill all your friends with it, you can use the stablizing system of the Powerpack to fire aimed fire, but you'll move incredibly slowly."
 	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "minigun"
@@ -443,8 +443,8 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 // SG minigun
 
 /obj/item/weapon/gun/minigun/smart_minigun
-	name = "\improper SG-85 smart handheld gatling gun"
-	desc = "A true monster of providing supportive suppresing fire, the SG-85 is the TGMC's IFF-capable minigun for heavy fire support duty. Boasting a higher firerate than any other handheld weapon. It is chambered in 10x26 caseless."
+	name = "\improper T-85 smart handheld gatling gun"
+	desc = "A true monster of providing supportive suppresing fire, the T-85 is the TGMC's IFF-capable minigun for heavy fire support duty. Boasting a higher firerate than any other handheld weapon. It is chambered in 10x26 caseless."
 	icon_state = "minigun_sg"
 	item_state = "minigun_sg"
 	fire_animation = "minigun_sg_fire"
@@ -472,10 +472,10 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 // PEPPERBALL GUN
 
 //-------------------------------------------------------
-//PB-12
+//TLLL-12
 
 /obj/item/weapon/gun/rifle/pepperball
-	name = "\improper PB-12 pepperball gun"
+	name = "\improper TLLL-12 pepperball gun"
 	desc = "The PB-12 is ostensibly riot control device used by the TGMC in spiffy colors, working through a SAN ball that sends a short acting neutralizing chemical to knock out it's target, or weaken them. Guranteed to work on just about everything. Uses SAN Ball Holders as magazines."
 	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "pepperball"
@@ -525,7 +525,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 
 /obj/item/weapon/gun/rifle/pepperball/pepperball_mini
 	name = "mini pepperball gun"
-	desc = "An attachable version of the PB-12 pepperball gun. It has a smaller magazine size and has a slower rate of fire."
+	desc = "An attachable version of the TLLL-12 pepperball gun. It has a smaller magazine size and has a slower rate of fire."
 	icon_state = "pepperball_mini"
 	slot = ATTACHMENT_SLOT_UNDER
 	max_shells = 20
@@ -633,8 +633,8 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 //RL-152 RPG
 
 /obj/item/weapon/gun/launcher/rocket/sadar
-	name = "\improper RL-152 sadar rocket launcher"
-	desc = "The RL-152 is the primary anti-armor weapon of the TGMC. Used to take out light-tanks and enemy structures, the RL-152 rocket launcher is a dangerous weapon with a variety of combat uses. Uses a variety of 84mm rockets."
+	name = "\improper T-152 sadar rocket launcher"
+	desc = "The T-152 is the primary anti-armor weapon of the TGMC. Used to take out light-tanks and enemy structures, the RL-152 rocket launcher is a dangerous weapon with a variety of combat uses. Uses a variety of 84mm rockets."
 	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "sadar"
 	item_state = "sadar"
@@ -700,8 +700,8 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 //M5 RPG'S MEAN FUCKING COUSIN
 
 /obj/item/weapon/gun/launcher/rocket/m57a4
-	name = "\improper RL-57A quad thermobaric launcher"
-	desc = "The RL-57A is posssibly the most destructive man-portable weapon ever made. It is a 4-barreled missile launcher capable of burst-firing 4 thermobaric missiles. Enough said."
+	name = "\improper M-57E quad thermobaric launcher"
+	desc = "The M-57E is posssibly the most destructive man-portable weapon ever made. It is a 4-barreled missile launcher capable of burst-firing 4 thermobaric missiles. Enough said."
 	icon_state = "m57a4"
 	item_state = "m57a4"
 	max_shells = 4 //codex
@@ -732,8 +732,8 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	starting_attachment_types = list(/obj/item/attachable/magnetic_harness)
 
 /obj/item/weapon/gun/launcher/rocket/m57a4/t57
-	name = "\improper RL-57 quad thermobaric launcher"
-	desc = "The RL-57 is posssibly the most awful man portable weapon. It is a 4-barreled missile launcher capable of burst-firing 4 thermobaric missiles with nearly no force to the rocket. Enough said."
+	name = "\improper T-57 quad thermobaric launcher"
+	desc = "The T-57 is posssibly the most awful man portable weapon. It is a 4-barreled missile launcher capable of burst-firing 4 thermobaric missiles with nearly no force to the rocket. Enough said."
 	icon_state = "t57"
 	item_state = "t57"
 	default_ammo_type = /obj/item/ammo_magazine/rocket/m57a4
@@ -744,8 +744,8 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 //RL-160 Recoilless Rifle. Its effectively an RPG codewise.
 
 /obj/item/weapon/gun/launcher/rocket/recoillessrifle
-	name = "\improper RL-160 recoilless rifle"
-	desc = "The RL-160 recoilless rifle is a long range explosive ordanance device used by the TGMC used to fire explosive shells at far distances. Uses a variety of 67mm shells designed for various purposes."
+	name = "\improper T-160 recoilless rifle"
+	desc = "The T-160 recoilless rifle is a long range explosive ordanance device used by the TGMC used to fire explosive shells at far distances. Uses a variety of 67mm shells designed for various purposes."
 	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "t160"
 	item_state = "t160"
@@ -791,7 +791,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 //Disposable RPG
 
 /obj/item/weapon/gun/launcher/rocket/oneuse
-	name = "\improper RL-72 disposable rocket launcher"
+	name = "\improper T-72 disposable rocket launcher"
 	desc = "This is the premier disposable rocket launcher used throughout the galaxy, it cannot be reloaded or unloaded on the field. This one fires an 84mm explosive rocket. Spacebar to shorten or extend it to make it storeable or fireable, respectively."
 	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "t72"
@@ -920,11 +920,11 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	movement_acc_penalty_mult = 5 //You shouldn't fire this on the move
 
 //-------------------------------------------------------
-//RG-220 Railgun
+//TX-220 Railgun
 
 /obj/item/weapon/gun/rifle/railgun
-	name = "\improper RG-220 railgun"
-	desc = "The RG-220 is a specialized heavy duty railgun made to shred through hard armor to allow for follow up attacks. Uses specialized canisters to reload."
+	name = "\improper TX-220 railgun"
+	desc = "The TX-220 is a specialized heavy duty railgun made to shred through hard armor to allow for follow up attacks. Uses specialized canisters to reload."
 	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "railgun"
 	item_state = "railgun"

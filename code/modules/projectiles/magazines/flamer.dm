@@ -59,7 +59,7 @@
 
 /obj/item/ammo_magazine/flamer_tank/large	// Extra thicc tank
 	name = "large flamerthrower tank"
-	desc = "A large fuel tank of ultra thick napthal, a sticky combustable liquid chemical, for use in the FL-84 flamethrower."
+	desc = "A large fuel tank of ultra thick napthal, a sticky combustable liquid chemical, for use in the TL-84 flamethrower."
 	icon_state = "flametank_large"
 	max_rounds = 75
 	current_rounds = 75
@@ -77,7 +77,7 @@
 
 /obj/item/ammo_magazine/flamer_tank/large/X
 	name = "large flamethrower tank (X)"
-	desc = "A large fuel tank of ultra thick napthal Fuel type X, a sticky combustable liquid chemical that burns extremely hot, for use in the FL-84 flamethrower. Handle with care."
+	desc = "A large fuel tank of ultra thick napthal Fuel type X, a sticky combustable liquid chemical that burns extremely hot, for use in the TL-84 flamethrower. Handle with care."
 	icon_state = "flametank_large_blue"
 	default_ammo = /datum/ammo/flamethrower/blue
 	icon_state_mini = "tank_blue"
@@ -92,7 +92,7 @@
 
 /obj/item/ammo_magazine/flamer_tank/backtank
 	name = "back fuel tank"
-	desc = "A specialized fuel tank for use with the FL-84 flamethrower and FL-240 incinerator unit."
+	desc = "A specialized fuel tank for use with the TL-84 flamethrower and M-240 incinerator unit."
 	icon_state = "flamethrower_tank"
 	flags_equip_slot = ITEM_SLOT_BACK
 	w_class = WEIGHT_CLASS_BULKY
@@ -107,14 +107,14 @@
 
 /obj/item/ammo_magazine/flamer_tank/backtank/X
 	name = "back fuel tank (X)"
-	desc = "A specialized fuel tank of ultra thick napthal type X for use with the FL-84 flamethrower and FL-240 incinerator unit."
+	desc = "A specialized fuel tank of ultra thick napthal type X for use with the TL-84 flamethrower and M-240 incinerator unit."
 	icon_state = "x_flamethrower_tank"
 	default_ammo = /datum/ammo/flamethrower/blue
 	dispenser_type = /obj/structure/reagent_dispensers/fueltank/xfuel
 
 /obj/item/ammo_magazine/flamer_tank/water
 	name = "pressurized water tank"
-	desc = "A cannister of water for use with the FL-84's underslung extinguisher. Can be refilled by hand."
+	desc = "A cannister of water for use with the TL-84's underslung extinguisher. Can be refilled by hand."
 	icon_state = "watertank"
 	max_rounds = 200
 	current_rounds = 200

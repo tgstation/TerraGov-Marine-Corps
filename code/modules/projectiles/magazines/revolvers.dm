@@ -2,7 +2,7 @@
 //external magazines
 
 /obj/item/ammo_magazine/revolver
-	name = "\improper R-44 magnum speed loader (.44)"
+	name = "\improper M-44 magnum speed loader (.44)"
 	desc = "A revolver speed loader."
 	default_ammo = /datum/ammo/bullet/revolver
 	flags_equip_slot = NONE
@@ -13,21 +13,21 @@
 	max_rounds = 6
 
 /obj/item/ammo_magazine/revolver/marksman
-	name = "\improper R-44 marksman speed loader (.44)"
+	name = "\improper M-44 marksman speed loader (.44)"
 	default_ammo = /datum/ammo/bullet/revolver/marksman
 	caliber = CALIBER_44
 	icon_state = "m_m44"
 	icon_state_mini = "mag_revolver_bronze_red"
 
 /obj/item/ammo_magazine/revolver/heavy
-	name = "\improper R-44 PW-MX speed loader (.44)"
+	name = "\improper M-44 PW-MX speed loader (.44)"
 	default_ammo = /datum/ammo/bullet/revolver/heavy
 	caliber = CALIBER_44
 	icon_state = "h_m44"
 	icon_state_mini = "mag_revolver_bronze_purple"
 
 /obj/item/ammo_magazine/revolver/standard_revolver
-	name = "\improper R-44 magnum speed loader (.44)"
+	name = "\improper TP-44 magnum speed loader (.44)"
 	desc = "A revolver speed loader."
 	default_ammo = /datum/ammo/bullet/revolver/tp44
 	flags_equip_slot = NONE

@@ -5,7 +5,7 @@
 //M41A PULSE RIFLE AMMUNITION
 
 /obj/item/ammo_magazine/rifle/
-	name = "\improper PR-412 magazine (10x24mm)"
+	name = "\improper M412 magazine (10x24mm)"
 	desc = "A 10mm assault rifle magazine."
 	caliber = CALIBER_10X24_CASELESS
 	icon_state = "m412"
@@ -15,7 +15,7 @@
 	max_rounds = 40
 
 /obj/item/ammo_magazine/rifle/extended
-	name = "\improper PR-412 extended magazine (10x24mm)"
+	name = "\improper M412 extended magazine (10x24mm)"
 	desc = "A 10mm assault extended rifle magazine."
 	icon_state = "m412_ext"
 	icon_state_mini = "mag_rifle_big_yellow"
@@ -23,7 +23,7 @@
 	bonus_overlay = "m412_ex"
 
 /obj/item/ammo_magazine/rifle/incendiary
-	name = "\improper PR-412 incendiary magazine (10x24mm)"
+	name = "\improper M412 incendiary magazine (10x24mm)"
 	desc = "A 10mm assault rifle magazine."
 	icon_state = "m412_incendiary"
 	icon_state_mini = "mag_rifle_big_red"
@@ -31,7 +31,7 @@
 	bonus_overlay = "m412_incend"
 
 /obj/item/ammo_magazine/rifle/ap
-	name = "\improper PR-412 AP magazine (10x24mm)"
+	name = "\improper M412 AP magazine (10x24mm)"
 	desc = "A 10mm armor piercing magazine."
 	icon_state = "m412_ap"
 	icon_state_mini = "mag_rifle_big_green"
@@ -42,7 +42,7 @@
 //T18 Carbine
 
 /obj/item/ammo_magazine/rifle/standard_carbine
-	name = "\improper AR-18 magazine (10x24mm)"
+	name = "\improper T-18 magazine (10x24mm)"
 	desc = "A 10mm carbine magazine."
 	caliber = CALIBER_10X24_CASELESS
 	icon_state = "t18"
@@ -55,7 +55,7 @@
 //T12 Assault Rifle
 
 /obj/item/ammo_magazine/rifle/standard_assaultrifle
-	name = "\improper AR-12 magazine (10x24mm)"
+	name = "\improper T-12 magazine (10x24mm)"
 	desc = "A 10mm assault rifle magazine."
 	caliber = CALIBER_10X24_CASELESS
 	icon_state = "t12"
@@ -68,7 +68,7 @@
 //T37 DMR
 
 /obj/item/ammo_magazine/rifle/standard_dmr
-	name = "\improper DMR-37 magazine (10x27mm)"
+	name = "\improper T-37 magazine (10x27mm)"
 	desc = "A 10mm DMR magazine."
 	caliber = CALIBER_10x27_CASELESS
 	icon_state = "t37"
@@ -81,7 +81,7 @@
 //T64 BR
 
 /obj/item/ammo_magazine/rifle/standard_br
-	name = "\improper BR-64 magazine (10x26.5mm)"
+	name = "\improper T-64 magazine (10x26.5mm)"
 	desc = "A 10mm battle rifle magazine."
 	caliber = CALIBER_10x265_CASELESS
 	icon_state = "t64"
@@ -94,8 +94,8 @@
 //M41A TRUE AND ORIGINAL
 
 /obj/item/ammo_magazine/rifle/m41a
-	name = "\improper PR-11 magazine (10x24mm)"
-	desc = "A semi-rectangular box of rounds for the PR-11 Pulse Rifle."
+	name = "\improper HK-11 magazine (10x24mm)"
+	desc = "A semi-rectangular box of rounds for the HK-11 Pulse Rifle."
 	icon_state = "m41a"
 	icon_state_mini = "mag_rifle_big_light"
 	max_rounds = 95
@@ -202,8 +202,8 @@
 //MG-42 Light Machine Gun
 
 /obj/item/ammo_magazine/standard_lmg
-	name = "\improper MG-42 drum magazine (10x24mm)"
-	desc = "A drum magazine for the MG-42 light machine gun."
+	name = "\improper T-42 drum magazine (10x24mm)"
+	desc = "A drum magazine for the T-42 light machine gun."
 	icon_state = "t42"
 	icon_state_mini = "mag_drum"
 	caliber = CALIBER_10X24_CASELESS
@@ -215,8 +215,8 @@
 //MG-60 General Purpose Machine Gun
 
 /obj/item/ammo_magazine/standard_gpmg
-	name = "\improper MG-60 GPMG box magazine (10x26mm)"
-	desc = "A belt box for the MG-60 general purpose machinegun."
+	name = "\improper T-60 GPMG box magazine (10x26mm)"
+	desc = "A belt box for the T-60 general purpose machinegun."
 	icon_state = "t60"
 	icon_state_mini = "mag_gpmg"
 	caliber = CALIBER_10x26_CASELESS
@@ -229,8 +229,8 @@
 //PR-412L1 HEAVY PULSE RIFLE
 
 /obj/item/ammo_magazine/m412l1_hpr
-	name = "\improper PR-412L1 box magazine (10x24mm)"
-	desc = "A semi-rectangular box of rounds for the PR-412L1 heavy pulse rifle."
+	name = "\improper M412L1 box magazine (10x24mm)"
+	desc = "A semi-rectangular box of rounds for the M412L1 heavy pulse rifle."
 	icon_state = "m412l1"
 	icon_state_mini = "mag_box"
 	caliber = CALIBER_10X24_CASELESS
@@ -253,8 +253,8 @@
 //TX-16 AUTOMATIC SHOTGUN
 
 /obj/item/ammo_magazine/rifle/tx15_flechette
-	name = "\improper SH-15 flechette magazine (16 gauge)"
-	desc = "A magazine of 16 gauge flechette rounds, for the SH-15."
+	name = "\improper TX-15 flechette magazine (16 gauge)"
+	desc = "A magazine of 16 gauge flechette rounds, for the TX-15."
 	caliber = CALIBER_16G
 	icon_state = "tx15_flechette"
 	icon_state_mini = "mag_tx15_flechette"
@@ -263,8 +263,8 @@
 	bonus_overlay = "tx15_flech"
 
 /obj/item/ammo_magazine/rifle/tx15_slug
-	name = "\improper SH-15 slug magazine (16 gauge)"
-	desc = "A magazine of 16 gauge slugs, for the SH-15."
+	name = "\improper TX-15 slug magazine (16 gauge)"
+	desc = "A magazine of 16 gauge slugs, for the TX-15."
 	caliber = CALIBER_16G
 	icon_state = "tx15_slug"
 	icon_state_mini = "mag_tx15_slug"
@@ -276,7 +276,7 @@
 //SMARTMACHINEGUN AMMUNITION
 
 /obj/item/ammo_magazine/standard_smartmachinegun
-	name = "\improper SG-29 drum magazine"
+	name = "\improper T-29 drum magazine"
 	desc = "A wide drum magazine carefully filled to capacity with 10x26mm specialized smart rounds."
 	caliber = CALIBER_10x26_CASELESS
 	icon_state = "sg29"
@@ -290,7 +290,7 @@
 //SMART TARGET RIFLE AMMUNITION
 
 /obj/item/ammo_magazine/rifle/standard_smarttargetrifle
-	name = "\improper SG-62 magazine (10x27mm HV)"
+	name = "\improper T-62 magazine (10x27mm HV)"
 	desc = "A magazine filled with 10x27mm specialized smart rounds."
 	caliber = CALIBER_10x27_CASELESS
 	icon_state = "sg62"
@@ -303,7 +303,7 @@
 //SPOTTING RIFLE AMMUNITION
 
 /obj/item/ammo_magazine/rifle/standard_spottingrifle
-	name = "\improper SG-153 magazine (12x7mm)"
+	name = "\improper TL-153 magazine (12x7mm)"
 	desc = "A magazine filled with 12x7mm lethal smart rounds, these will do nothing other than pack a big punch."
 	caliber = CALIBER_12x7
 	icon_state = "sg153"
@@ -313,37 +313,37 @@
 	icon_state_mini = "mag_sg29"
 
 /obj/item/ammo_magazine/rifle/standard_spottingrifle/highimpact
-	name = "\improper SG-153 high impact magazine (12x7mm)"
+	name = "\improper TL-153 high impact magazine (12x7mm)"
 	desc = "A magazine filled with 12x7mm high impact smart rounds, these will likely stagger and slow anything they hit."
 	icon_state = "sg153_hi"
 	default_ammo = /datum/ammo/bullet/spottingrifle/highimpact
 
 /obj/item/ammo_magazine/rifle/standard_spottingrifle/heavyrubber
-	name = "\improper SG-153 heavy rubber magazine (12x7mm)"
+	name = "\improper TL-153 heavy rubber magazine (12x7mm)"
 	desc = "A magazine filled with 12x7mm heavy rubber smart rounds, these will likely stun and displace anything they hit."
 	icon_state = "sg153_hr"
 	default_ammo = /datum/ammo/bullet/spottingrifle/heavyrubber
 
 /obj/item/ammo_magazine/rifle/standard_spottingrifle/plasmaloss
-	name = "\improper SG-153 tanglefoot magazine (12x7mm)"
+	name = "\improper TL-153 tanglefoot magazine (12x7mm)"
 	desc = "A magazine filled with 12x7mm smart rounds tipped with 'Tanglefoot' poison, these rounds will drain the energy out of targets they hit."
 	icon_state = "sg153_hr"
 	default_ammo = /datum/ammo/bullet/spottingrifle/plasmaloss
 
 /obj/item/ammo_magazine/rifle/standard_spottingrifle/tungsten
-	name = "\improper SG-153 tungsten magazine (12x7mm)"
+	name = "\improper TL-153 tungsten magazine (12x7mm)"
 	desc = "A magazine filled with 12x7mm tungsten smart rounds, these rounds will massively knock back any target it hits."
 	icon_state = "sg153_tg"
 	default_ammo = /datum/ammo/bullet/spottingrifle/tungsten
 
 /obj/item/ammo_magazine/rifle/standard_spottingrifle/incendiary
-	name = "\improper SG-153 incendiary magazine (12x7mm)"
+	name = "\improper TL-153 incendiary magazine (12x7mm)"
 	desc = "A magazine filled with 12x7mm incendiary smart rounds, these rounds will set alight anything they hit."
 	icon_state = "sg153_ic"
 	default_ammo = /datum/ammo/bullet/spottingrifle/incendiary
 
 /obj/item/ammo_magazine/rifle/standard_spottingrifle/flak
-	name = "\improper SG-153 flak magazine (12x7mm)"
+	name = "\improper TL-153 flak magazine (12x7mm)"
 	desc = "A magazine filled with 12x7mm flak smart rounds, these rounds will airburst on contact with an organic target, causing damage in a small area near the target."
 	icon_state = "sg153_fl"
 	default_ammo = /datum/ammo/bullet/spottingrifle/flak
@@ -364,8 +364,8 @@
 //-------------------------------------------------------
 //Marine magazine sniper, or the SR-127.
 /obj/item/ammo_magazine/rifle/chamberedrifle
-	name = "SR-127 bolt action rifle magazine"
-	desc = "A box magazine filled with 8.6x70mm rifle rounds for the SR-127."
+	name = "TL-127 bolt action rifle magazine"
+	desc = "A box magazine filled with 8.6x70mm rifle rounds for the TL-127."
 	caliber = CALIBER_86X70
 	icon_state = "tl127"
 	icon_state_mini = "mag_rifle_big"
@@ -374,8 +374,8 @@
 	bonus_overlay = "tl127_mag"
 
 /obj/item/ammo_magazine/rifle/chamberedrifle/flak
-	name = "SR-127 bolt action rifle flak magazine"
-	desc = "A box magazine filled with 8.6x70mm rifle flak rounds for the SR-127."
+	name = "TL-127 bolt action rifle flak magazine"
+	desc = "A box magazine filled with 8.6x70mm rifle flak rounds for the TL-127."
 	icon_state = "tl127_flak"
 	icon_state_mini = "mag_sniper_blue"
 	default_ammo = /datum/ammo/bullet/sniper/pfc/flak
@@ -384,8 +384,8 @@
 //-------------------------------------------------------
 //Marine magazine automatic sniper, or the SR-81.
 /obj/item/ammo_magazine/rifle/autosniper
-	name = "\improper SR-81 automatic sniper rifle magazine"
-	desc = "A box magazine filled with low pressure 8.6x70mm rifle rounds for the SR-81."
+	name = "\improper T-81 automatic sniper rifle magazine"
+	desc = "A box magazine filled with low pressure 8.6x70mm rifle rounds for the T-81."
 	caliber = CALIBER_86X70
 	icon_state = "t81"
 	icon_state_mini = "mag_rifle_greyblue"
@@ -395,8 +395,8 @@
 //-------------------------------------------------------
 //G-11, AR-11
 /obj/item/ammo_magazine/rifle/tx11
-	name = "\improper AR-11 combat rifle magazine"
-	desc = "A magazine filled with 4.92×34mm rifle rounds for the AR-11."
+	name = "\improper TX-11 combat rifle magazine"
+	desc = "A magazine filled with 4.92×34mm rifle rounds for the TX-11."
 	caliber = CALIBER_492X34_CASELESS
 	icon_state = "tx11"
 	icon_state_mini = "mag_tx11"
@@ -406,8 +406,8 @@
 //-------------------------------------------------------
 //AR-21
 /obj/item/ammo_magazine/rifle/standard_skirmishrifle
-	name = "\improper AR-21 skirmish rifle magazine"
-	desc = "A magazine filled with 10x25mm rifle rounds for the AR-21."
+	name = "\improper T-21 skirmish rifle magazine"
+	desc = "A magazine filled with 10x25mm rifle rounds for the T-21."
 	caliber = CALIBER_10X25_CASELESS
 	icon_state = "t21"
 	icon_state_mini = "mag_rifle"
@@ -443,7 +443,7 @@
 //GL-54
 /obj/item/ammo_magazine/rifle/tx54
 	name = "\improper 20mm airburst grenade magazine"
-	desc = "A 20mm magazine loaded with airburst grenades. For use with the GL-54 or AR-55."
+	desc = "A 20mm magazine loaded with airburst grenades. For use with the TX-54 or TX-55."
 	caliber = CALIBER_20MM
 	icon_state = "tx54_airburst"
 	icon_state_mini = "mag_sniper_blue"
@@ -455,7 +455,7 @@
 
 /obj/item/ammo_magazine/rifle/tx54/he
 	name = "\improper 20mm HE grenade magazine"
-	desc = "A 20mm magazine loaded with HE grenades. For use with the GL-54 or AR-55."
+	desc = "A 20mm magazine loaded with HE grenades. For use with the TX-54 or TX-55."
 	default_ammo = /datum/ammo/tx54/he
 	icon_state = "tx54_airburst"
 	icon_state_mini = "mag_sniper_red"
@@ -463,7 +463,7 @@
 
 /obj/item/ammo_magazine/rifle/tx54/incendiary
 	name = "\improper 20mm incendiary grenade magazine"
-	desc = "A 20mm magazine loaded with incendiary grenades. For use with the GL-54 or AR-55."
+	desc = "A 20mm magazine loaded with incendiary grenades. For use with the TX-54 or TX-55."
 	default_ammo = /datum/ammo/tx54/incendiary
 	icon_state = "tx54_airburst"
 	icon_state_mini = "mag_sniper_orange"
@@ -471,7 +471,7 @@
 
 /obj/item/ammo_magazine/rifle/tx54/smoke
 	name = "\improper 20mm tactical smoke grenade magazine"
-	desc = "A 20mm magazine loaded with tactical smoke grenades. For use with the GL-54 or AR-55."
+	desc = "A 20mm magazine loaded with tactical smoke grenades. For use with the TX-54 or TX-55."
 	default_ammo = /datum/ammo/tx54/smoke
 	icon_state = "tx54_airburst"
 	icon_state_mini = "mag_sniper_green"
@@ -479,7 +479,7 @@
 
 /obj/item/ammo_magazine/rifle/tx54/smoke/dense
 	name = "\improper 20mm smoke grenade magazine"
-	desc = "A 20mm magazine loaded with smoke grenades. For use with the GL-54 or AR-55."
+	desc = "A 20mm magazine loaded with smoke grenades. For use with the TX-54 or TX-55."
 	default_ammo = /datum/ammo/tx54/smoke/dense
 	icon_state = "tx54_airburst"
 	icon_state_mini = "mag_sniper_cyan"
@@ -487,7 +487,7 @@
 
 /obj/item/ammo_magazine/rifle/tx54/smoke/tangle
 	name = "\improper 20mm tanglefoot grenade magazine"
-	desc = "A 20mm magazine loaded with tanglefoot grenades. For use with the GL-54 or AR-55."
+	desc = "A 20mm magazine loaded with tanglefoot grenades. For use with the TX-54 or TX-55."
 	default_ammo = /datum/ammo/tx54/smoke/tangle
 	icon_state = "tx54_airburst"
 	icon_state_mini = "mag_sniper_purple"
@@ -495,7 +495,7 @@
 
 /obj/item/ammo_magazine/rifle/tx54/razor
 	name = "\improper 20mm razorburn grenade magazine"
-	desc = "A 20mm magazine loaded with razorburn grenades. For use with the GL-54 or AR-55."
+	desc = "A 20mm magazine loaded with razorburn grenades. For use with the TX-54 or TX-55."
 	default_ammo = /datum/ammo/tx54/razor
 	icon_state = "tx54_airburst"
 	icon_state_mini = "mag_sniper_yellow"

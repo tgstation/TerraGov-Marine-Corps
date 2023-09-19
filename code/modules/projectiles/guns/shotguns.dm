@@ -37,7 +37,7 @@
 //TACTICAL SHOTGUN
 
 /obj/item/weapon/gun/shotgun/combat
-	name = "\improper SH-221 tactical shotgun"
+	name = "\improper MK-221 tactical shotgun"
 	desc = "The Nanotrasen SH-221 Shotgun, a quick-firing semi-automatic shotgun based on the centuries old Benelli M4 shotgun. Only issued to the TGMC in small numbers."
 	flags_equip_slot = ITEM_SLOT_BACK
 	icon_state = "mk221"
@@ -68,10 +68,10 @@
 
 
 //-------------------------------------------------------
-//SH-39 semi automatic shotgun. Used by marines.
+//T-39 semi automatic shotgun. Used by marines.
 
 /obj/item/weapon/gun/shotgun/combat/standardmarine
-	name = "\improper SH-39 combat shotgun"
+	name = "\improper T-39 combat shotgun"
 	desc = "The Terran Armories SH-39 combat shotgun is a semi automatic shotgun used by breachers and pointmen within the TGMC squads. Uses 12 gauge shells."
 	force = 20 //Has a stock already
 	flags_equip_slot = ITEM_SLOT_BACK
@@ -188,7 +188,7 @@
 //MARINE DOUBLE SHOTTY
 
 /obj/item/weapon/gun/shotgun/double/marine
-	name = "\improper SH-34 double barrel shotgun"
+	name = "\improper TS-34 double barrel shotgun"
 	desc = "A double barreled shotgun of archaic, but sturdy design used by the TGMC. Due to reports of barrel bursting, the abiility to fire both barrels has been disabled. Uses 12 gauge shells, but can only hold 2 at a time."
 	flags_equip_slot = ITEM_SLOT_BACK
 	icon_state = "ts34"
@@ -274,7 +274,7 @@
 //-------------------------------------------------------
 //A shotgun, how quaint.
 /obj/item/weapon/gun/shotgun/pump/cmb
-	name = "\improper SH-12 Paladin pump shotgun"
+	name = "\improper Paladin-12 pump shotgun"
 	desc = "A nine-round pump action shotgun. A shotgun used for hunting, home defence and police work, many versions of it exist and are used by just about anyone."
 	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "pal12"
@@ -654,9 +654,9 @@
 	cock_delay = 0.2 SECONDS
 
 //------------------------------------------------------
-//SH-35 Pump shotgun
+//T-35 Pump shotgun
 /obj/item/weapon/gun/shotgun/pump/t35
-	name = "\improper SH-35 pump shotgun"
+	name = "\improper T-35 pump shotgun"
 	desc = "The Terran Armories SH-35 is the shotgun used by the TerraGov Marine Corps. It's used as a close quarters tool when someone wants something more suited for close range than most people, or as an odd sidearm on your back for emergencies. Uses 12 gauge shells.\n<b>Requires a pump, which is the Unique Action key.</b>"
 	flags_equip_slot = ITEM_SLOT_BACK
 	icon = 'icons/Marine/gun64.dmi'
