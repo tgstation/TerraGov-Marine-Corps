@@ -109,3 +109,17 @@
   - bugfix: fixed jetpacks not working over razorwire
   - bugfix: fixed certain xenos getting stuck on objects after being thrown in certain
       situations
+2023-09-19:
+  Barnet2:
+  - balance: Autobalance check now occurs every 3 minutes instead of every 5
+  - rscadd: Added chemical dropper to the NanotrasenMed Plus
+  Blundir:
+  - imagedel: removed tons of unused stuff
+  DeltaFire15:
+  - balance: Marines no longer have access to razor airburst grenades
+  Victor239:
+  - rscdel: King no longer has additional special autobalance weight.
+  ivanmixo:
+  - qol: Adds a pref to disable radial menu for laser weapons
+  yyzsong:
+  - rscadd: Adds the FAMAS and M412L1 HPR to valhalla. Go play with 'em.
