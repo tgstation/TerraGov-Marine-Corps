@@ -54,6 +54,16 @@
 	starting_faction_objective_description = "Major Victory:Capture all [objectives_total] targets.[min_capture_amount ? "<br> Minor Victory: Capture at least [min_capture_amount] targets." : ""]"
 	hostile_faction_objective_description = "Major Victory:Capture all [objectives_total] targets.[min_capture_amount ? "<br> Minor Victory: Capture at least [min_capture_amount] targets." : ""]"
 
+/datum/campaign_mission/capture_mission/get_status_tab_items(mob/source, list/items)
+	. = ..()
+
+	items += "[starting_faction] objectives captured: [capture_count["starting_faction"]]"
+	items += "[hostile_faction] objectives captured: [capture_count["hostile_faction"]]"
+	items += ""
+	items += "Objectives remaining: [objectives_remaining]"
+	items += ""
+
+
 /datum/campaign_mission/capture_mission/end_mission()
 	UnregisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_CAPTURE_OBJECTIVE_CAPTURED)
 	return ..()
