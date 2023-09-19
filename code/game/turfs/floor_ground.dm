@@ -73,6 +73,9 @@
 /turf/open/floor/plating/ground/dirt2
 	name = "dirt"
 	icon_state = "dirt"
+	shoefootstep = FOOTSTEP_SAND
+	barefootstep = FOOTSTEP_SAND
+	mediumxenofootstep = FOOTSTEP_SAND
 	minimap_color = MINIMAP_DIRT
 
 /turf/open/floor/plating/ground/dirtgrassborder2
