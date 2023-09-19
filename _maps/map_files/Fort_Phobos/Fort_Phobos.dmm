@@ -503,7 +503,7 @@
 /turf/open/floor/tile/dark,
 /area/mainship/patrol_base/som)
 "hp" = (
-/obj/structure/ship_ammo/rocket/widowmaker,
+/obj/structure/ship_ammo/cas/rocket/widowmaker,
 /turf/open/floor/mainship/red{
 	dir = 1
 	},
@@ -764,6 +764,11 @@
 /obj/structure/prop/mainship/doorblocker/patrol_base/wide_right{
 	dir = 8
 	},
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/patrol_base/som)
+"mt" = (
+/obj/effect/landmark/reward_spawn_location/som,
+/obj/effect/turf_decal/warning_stripes/box/empty,
 /turf/open/floor/plating/ground/concrete,
 /area/mainship/patrol_base/som)
 "mB" = (
@@ -1097,7 +1102,7 @@
 /turf/open/floor/mainship,
 /area/mainship/patrol_base/som)
 "rB" = (
-/obj/structure/ship_ammo/rocket/widowmaker,
+/obj/structure/ship_ammo/cas/rocket/widowmaker,
 /turf/open/floor/plating/ground/concrete,
 /area/mainship/patrol_base/som)
 "rC" = (
@@ -1148,7 +1153,7 @@
 	},
 /area/mainship/patrol_base/som/hanger)
 "rX" = (
-/obj/structure/ship_ammo/rocket/fatty,
+/obj/structure/ship_ammo/cas/rocket/fatty,
 /turf/open/floor/plating/ground/concrete,
 /area/mainship/patrol_base/som)
 "sc" = (
@@ -1255,7 +1260,7 @@
 /turf/open/floor/mainship_hull,
 /area/mainship/patrol_base/som/hanger)
 "tV" = (
-/obj/structure/ship_ammo/rocket/fatty,
+/obj/structure/ship_ammo/cas/rocket/fatty,
 /turf/open/floor/mainship/red{
 	dir = 1
 	},
@@ -2167,7 +2172,7 @@
 	},
 /area/mainship/patrol_base/som/hanger)
 "Gd" = (
-/obj/structure/ship_ammo/heavygun/highvelocity,
+/obj/structure/ship_ammo/cas/heavygun/highvelocity,
 /turf/open/floor/mainship/red{
 	dir = 1
 	},
@@ -2203,7 +2208,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/patrol_base/som/hanger)
 "GJ" = (
-/obj/structure/ship_ammo/rocket/napalm,
+/obj/structure/ship_ammo/cas/rocket/napalm,
 /turf/open/floor/mainship/red{
 	dir = 1
 	},
@@ -2577,7 +2582,7 @@
 	},
 /area/mainship/patrol_base/som)
 "Mv" = (
-/obj/structure/ship_ammo/heavygun/highvelocity,
+/obj/structure/ship_ammo/cas/heavygun/highvelocity,
 /turf/open/floor/plating/ground/concrete,
 /area/mainship/patrol_base/som)
 "Mx" = (
@@ -2651,7 +2656,7 @@
 /turf/open/floor/mainship_hull,
 /area/mainship/patrol_base/som)
 "Nr" = (
-/obj/structure/ship_ammo/rocket/napalm,
+/obj/structure/ship_ammo/cas/rocket/napalm,
 /turf/open/floor/plating/ground/concrete,
 /area/mainship/patrol_base/som)
 "Nt" = (
@@ -3463,7 +3468,7 @@
 /turf/open/shuttle/elevator/grating,
 /area/mainship/patrol_base/som/hanger)
 "YO" = (
-/obj/structure/ship_ammo/rocket/widowmaker,
+/obj/structure/ship_ammo/cas/rocket/widowmaker,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/patrol_base/som)
 "YS" = (
@@ -3504,7 +3509,7 @@
 /turf/open/floor/plating/ground/concrete,
 /area/mainship/patrol_base/som)
 "Zs" = (
-/obj/structure/ship_ammo/heavygun/highvelocity,
+/obj/structure/ship_ammo/cas/heavygun/highvelocity,
 /turf/open/floor/mainship_hull/gray,
 /area/mainship/patrol_base/som)
 "Zy" = (
@@ -9588,7 +9593,7 @@ sx
 sx
 sx
 LF
-Aw
+mt
 BG
 nQ
 nQ
@@ -9710,7 +9715,7 @@ sx
 sx
 sx
 LF
-Aw
+mt
 BG
 nQ
 nQ
@@ -10320,7 +10325,7 @@ sB
 sB
 sB
 ve
-Aw
+mt
 BG
 nQ
 nQ
@@ -10442,7 +10447,7 @@ oA
 oA
 oA
 ac
-Aw
+mt
 BG
 nQ
 nQ
@@ -11052,7 +11057,7 @@ To
 To
 To
 LF
-Aw
+mt
 BG
 nQ
 nQ
@@ -11174,7 +11179,7 @@ To
 To
 To
 LF
-Aw
+mt
 BG
 nQ
 nQ

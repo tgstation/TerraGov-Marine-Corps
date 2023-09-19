@@ -42,6 +42,8 @@ GLOBAL_LIST_EMPTY(main_overwatch_consoles)			//list of all main overwatch consol
 GLOBAL_LIST_EMPTY(campaign_objectives)
 ///List of all mech spawners in campaign mode
 GLOBAL_LIST_EMPTY(campaign_mech_spawners)
+///Locations for rewards to spawn by faction
+GLOBAL_LIST_EMPTY(campaign_reward_spawners)
 ///List of all teleporter arrays
 GLOBAL_LIST_EMPTY(teleporter_arrays)
 ///List of all droppod bays

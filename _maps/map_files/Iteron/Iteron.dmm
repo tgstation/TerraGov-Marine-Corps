@@ -1645,6 +1645,8 @@
 	},
 /area/mainship/patrol_base/prep)
 "yD" = (
+/obj/effect/landmark/reward_spawn_location,
+/obj/effect/turf_decal/warning_stripes/box/empty,
 /turf/open/floor/mainship/black{
 	dir = 5
 	},
@@ -2024,6 +2026,12 @@
 /obj/machinery/door/poddoor/campaign,
 /turf/open/floor/mainship/mono,
 /area/mainship/patrol_base/hanger)
+"Ef" = (
+/obj/machinery/light,
+/obj/effect/landmark/reward_spawn_location,
+/obj/effect/turf_decal/warning_stripes/box/empty,
+/turf/open/floor/mainship/black,
+/area/mainship/patrol_base/prep)
 "Er" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on,
 /turf/open/floor/mainship/mono,
@@ -2788,6 +2796,8 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/patrol_base/prep)
 "OD" = (
+/obj/effect/landmark/reward_spawn_location,
+/obj/effect/turf_decal/warning_stripes/box/empty,
 /turf/open/floor/mainship/black{
 	dir = 6
 	},
@@ -2805,13 +2815,13 @@
 /turf/open/floor/mainship/blue/full,
 /area/mainship/patrol_base)
 "OP" = (
-/obj/structure/ship_ammo/minirocket,
+/obj/structure/ship_ammo/cas/minirocket,
 /turf/open/floor/mainship/orange{
 	dir = 8
 	},
 /area/mainship/patrol_base)
 "OX" = (
-/obj/structure/ship_ammo/minirocket,
+/obj/structure/ship_ammo/cas/minirocket,
 /turf/open/floor/prison/plate,
 /area/mainship/patrol_base)
 "Pa" = (
@@ -2936,7 +2946,7 @@
 /turf/open/floor/prison/plate,
 /area/mainship/patrol_base/hanger)
 "RJ" = (
-/obj/structure/ship_ammo/minirocket,
+/obj/structure/ship_ammo/cas/minirocket,
 /obj/machinery/light{
 	dir = 8
 	},
@@ -3012,6 +3022,16 @@
 	dir = 6
 	},
 /area/mainship/patrol_base/command)
+"Sn" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/effect/landmark/reward_spawn_location,
+/obj/effect/turf_decal/warning_stripes/box/empty,
+/turf/open/floor/mainship/black{
+	dir = 1
+	},
+/area/mainship/patrol_base/prep)
 "Sq" = (
 /obj/structure/table/reinforced,
 /obj/machinery/computer/operating,
@@ -3132,13 +3152,13 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/patrol_base/hanger)
 "UG" = (
-/obj/structure/ship_ammo/rocket/napalm,
+/obj/structure/ship_ammo/cas/rocket/napalm,
 /turf/open/floor/mainship/orange{
 	dir = 8
 	},
 /area/mainship/patrol_base)
 "UL" = (
-/obj/structure/ship_ammo/rocket/widowmaker,
+/obj/structure/ship_ammo/cas/rocket/widowmaker,
 /turf/open/floor/prison/plate,
 /area/mainship/patrol_base)
 "UM" = (
@@ -3420,7 +3440,7 @@
 /turf/closed/shuttle/dropship2/rearcorner/alt,
 /area/mainship/patrol_base/hanger)
 "YB" = (
-/obj/structure/ship_ammo/rocket/banshee,
+/obj/structure/ship_ammo/cas/rocket/banshee,
 /obj/machinery/light{
 	dir = 8
 	},
@@ -3461,7 +3481,7 @@
 /turf/open/floor/plating,
 /area/mainship/patrol_base/hanger)
 "Zf" = (
-/obj/structure/ship_ammo/rocket/banshee,
+/obj/structure/ship_ammo/cas/rocket/banshee,
 /turf/open/floor/mainship/orange{
 	dir = 10
 	},
@@ -3470,7 +3490,7 @@
 /turf/open/floor/mainship/orange,
 /area/mainship/patrol_base)
 "Zr" = (
-/obj/structure/ship_ammo/rocket/widowmaker,
+/obj/structure/ship_ammo/cas/rocket/widowmaker,
 /turf/open/floor/mainship/orange,
 /area/mainship/patrol_base)
 "Zx" = (
@@ -31023,13 +31043,13 @@ eK
 eK
 eK
 eK
-yC
+Sn
 AF
 kP
 yg
 kP
 AF
-KW
+Ef
 eK
 eK
 eK

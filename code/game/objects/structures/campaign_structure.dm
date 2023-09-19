@@ -1,5 +1,4 @@
 //effects are placed on maps but only generate objectives for applicable missions, so maps can be valid for multiple missions if desired.
-
 /obj/effect/landmark/campaign_objective
 	name = "GENERIC CAMPAIGN STRUCTURE"
 	desc = "THIS SHOULDN'T BE VISIBLE"

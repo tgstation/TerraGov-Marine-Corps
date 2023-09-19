@@ -91,6 +91,16 @@
 	var/op_name_starting
 	///Operation name for hostile faction
 	var/op_name_hostile
+	///Possible rewards for a major victory, used by Generate_rewards()
+	var/list/major_victory_reward_table = list()
+	///Possible rewards for a minor victory, used by Generate_rewards()
+	var/list/minor_victory_reward_table = list()
+	///Possible rewards for a minor loss, used by Generate_rewards()
+	var/list/minor_loss_reward_table = list()
+	///Possible rewards for a major loss, used by Generate_rewards()
+	var/list/major_loss_reward_table = list()
+	///Possible rewards for a draw, used by Generate_rewards()
+	var/list/draw_reward_table = list()
 
 /datum/campaign_mission/New(initiating_faction)
 	. = ..()
@@ -110,13 +120,6 @@
 
 	load_mission_brief() //late loaded so we can ref the specific factions etc
 
-///Sets up the mission once it has been selected
-/datum/campaign_mission/proc/load_mission()
-	play_selection_intro()
-	load_map()
-	addtimer(CALLBACK(src, TYPE_PROC_REF(/datum/campaign_mission, load_objective_description)), 5 SECONDS) //will be called before the map is entirely loaded otherwise, but this is cringe
-	addtimer(CALLBACK(src, TYPE_PROC_REF(/datum/campaign_mission, start_mission)), 2 MINUTES)
-
 /datum/campaign_mission/Destroy(force, ...)
 	STOP_PROCESSING(SSslowprocess, src)
 	return ..()
@@ -126,6 +129,13 @@
 		return
 	end_mission()
 	return PROCESS_KILL
+
+///Sets up the mission once it has been selected
+/datum/campaign_mission/proc/load_mission()
+	play_selection_intro()
+	load_map()
+	addtimer(CALLBACK(src, TYPE_PROC_REF(/datum/campaign_mission, load_objective_description)), 5 SECONDS) //will be called before the map is entirely loaded otherwise, but this is cringe
+	addtimer(CALLBACK(src, TYPE_PROC_REF(/datum/campaign_mission, start_mission)), 2 MINUTES)
 
 ///Generates a new z level for the mission
 /datum/campaign_mission/proc/load_map()
@@ -140,6 +150,28 @@
 ///Generates the objective description for the mission if it needs to be late loaded
 /datum/campaign_mission/proc/load_objective_description()
 	return
+
+///Generates mission rewards, if there is variability involved
+/datum/campaign_mission/proc/Generate_rewards(reward_amount = 1, faction)
+	if(!faction)
+		return
+
+	var/reward_table
+	switch(outcome)
+		if(MISSION_OUTCOME_MAJOR_VICTORY)
+			reward_table = major_victory_reward_table
+		if(MISSION_OUTCOME_MINOR_VICTORY)
+			reward_table = minor_victory_reward_table
+		if(MISSION_OUTCOME_MINOR_LOSS)
+			reward_table = minor_loss_reward_table
+		if(MISSION_OUTCOME_MAJOR_LOSS)
+			reward_table = major_loss_reward_table
+		if(MISSION_OUTCOME_DRAW)
+			reward_table = draw_reward_table
+
+	for(var/i = 1 to reward_amount)
+		var/obj/reward = pickweight(reward_table)
+		new reward(get_turf(pick(GLOB.campaign_reward_spawners[faction])))
 
 ///Checks mission end criteria, and ends the mission if met
 /datum/campaign_mission/proc/check_mission_progress()
