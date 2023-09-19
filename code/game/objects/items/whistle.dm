@@ -45,7 +45,7 @@
 /obj/item/hailer
 	name = "hailer"
 	desc = "Used by obese officers to save their breath for running."
-	icon = 'icons/assemblies/new_assemblies.dmi'
+	icon = 'icons/obj/assemblies/new_assemblies.dmi'
 	icon_state = "voice"
 	item_state = "flashbang"	//looks exactly like a flash (and nothing like a flashbang)
 	w_class = WEIGHT_CLASS_TINY
