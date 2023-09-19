@@ -145,6 +145,9 @@
 /obj/machinery/door/poddoor/shutters/mainship/open/checkpoint/south
 	id = "southcheckpoint"
 
+/obj/machinery/door/poddoor/shutters/mainship/open/medical
+	name = "Medbay Lockdown Shutters"
+	id = "medbay_lockdown"
 
 /obj/machinery/door/poddoor/shutters/mainship/open/indestructible
 	resistance_flags = RESIST_ALL|DROPSHIP_IMMUNE
