@@ -1,5 +1,6 @@
 /obj/item/stack/sheet
 	name = "sheet"
+	icon = 'icons/obj/items/bedsheets.dmi'
 	item_icons = list(
 		slot_l_hand_str = 'icons/mob/inhands/items/stacks_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/items/stacks_right.dmi',

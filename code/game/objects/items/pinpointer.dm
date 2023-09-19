@@ -1,5 +1,6 @@
 /obj/item/pinpointer
 	name = "Xeno structure pinpointer"
+	icon = 'icons/Marine/marine-navigation.dmi'
 	icon_state = "pinoff"
 	flags_atom = CONDUCT
 	flags_equip_slot = ITEM_SLOT_BELT

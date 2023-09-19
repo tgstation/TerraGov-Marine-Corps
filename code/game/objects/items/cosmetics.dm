@@ -2,7 +2,7 @@
 	gender = PLURAL
 	name = "facepaint"
 	desc = "Paint, for your face. Who woulda thought?."
-	icon = 'icons/obj/items/items.dmi'
+	icon = 'icons/obj/items/cosmetics.dmi'
 	icon_state = "camo"
 	var/colour = "green"
 	w_class = WEIGHT_CLASS_TINY

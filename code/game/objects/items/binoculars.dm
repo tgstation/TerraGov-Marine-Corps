@@ -1,7 +1,7 @@
 /obj/item/binoculars
-
 	name = "binoculars"
 	desc = "A pair of binoculars."
+	icon = 'icons/Marine/marine-navigation.dmi'
 	icon_state = "binoculars"
 
 	flags_atom = CONDUCT
