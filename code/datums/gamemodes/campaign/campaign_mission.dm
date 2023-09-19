@@ -153,6 +153,23 @@
 /datum/campaign_mission/proc/load_objective_description()
 	return
 
+///Generates status tab info for the mission
+/datum/campaign_mission/proc/get_status_tab_items(mob/source, list/items)
+	items += "Mission: [name]"
+	items += "Area of operation: [map_name]"
+
+	if(max_time_reached)
+		items += "Mission status: Mission complete"
+	else if(game_timer)
+		items += "Mission time remaining: [mission_end_countdown()]"
+
+	if(source.faction == starting_faction || source.faction == FACTION_NEUTRAL)
+		items += "[starting_faction] mission objectives:"
+		items += splittext(starting_faction_objective_description, "<br>")
+	if(source.faction == hostile_faction || source.faction == FACTION_NEUTRAL)
+		items += "[hostile_faction] mission objectives:"
+		items += splittext(hostile_faction_objective_description, "<br>")
+
 ///Generates mission rewards, if there is variability involved
 /datum/campaign_mission/proc/Generate_rewards(reward_amount = 1, faction)
 	if(!faction)

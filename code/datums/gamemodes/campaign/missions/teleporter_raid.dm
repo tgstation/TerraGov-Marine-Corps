@@ -12,7 +12,7 @@
 			"hostile_faction" = "Bluespace core destroyed, mission failed. All forces retreat!",
 		),
 	)
-	starting_faction_objective_description = "Major Victory: Destroy the SOM Bluespace core"
+	starting_faction_objective_description = "Major Victory: Destroy the SOM Bluespace core at all costs"
 	hostile_faction_objective_description = "Major Victory: Protect the Bluespace core at all costs"
 	max_game_time = 20 MINUTES
 	victory_point_rewards = list(

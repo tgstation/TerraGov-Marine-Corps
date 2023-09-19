@@ -27,7 +27,9 @@
 
 /datum/game_mode/hvh/campaign/announce()
 	to_chat(world, "<b>The current game mode is - Campaign!</b>")
-	to_chat(world, "<b>The TGMC and SOM both lay claim to this planet. Across contested areas, small combat patrols frequently clash in their bid to enforce their respective claims. Seek and destroy any hostiles you encounter, good hunting!</b>")
+	to_chat(world, "<b>The fringe world of Palmaria is undergoing significant upheaval, with large portions of the population threatening to succeed from TerraGov. With the population on the brink of civil wave,\
+	both TerraGov Marine Corp forces and the Sons of Mars are looking to intervene.")
+	to_chat(world, "<b>Fight for your faction across the planet, the campaign for Palmaria starts now!</b>")
 	to_chat(world, "<b>WIP, report bugs on the github!</b>")
 
 /datum/game_mode/hvh/campaign/pre_setup()
@@ -54,19 +56,19 @@
 	attempt_attrition_respawn(respawnee)
 
 /datum/game_mode/hvh/campaign/intro_sequence() //update this, new fluff message etc etc, make it faction generic
-	var/op_name_tgmc = GLOB.operation_namepool[/datum/operation_namepool].get_random_name()
-	var/op_name_som = GLOB.operation_namepool[/datum/operation_namepool].get_random_name()
+	var/op_name_faction_one = GLOB.operation_namepool[/datum/operation_namepool].get_random_name()
+	var/op_name_faction_two = GLOB.operation_namepool[/datum/operation_namepool].get_random_name()
 	for(var/mob/living/carbon/human/human AS in GLOB.alive_human_list)
 		if(human.faction == factions[1])
-			human.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>[op_name_tgmc]</u></span><br>" + "campaign intro here<br>" + "[GAME_YEAR]-[time2text(world.realtime, "MM-DD")] [stationTimestamp("hh:mm")]<br>" + "Territorial Defense Force Platoon<br>" + "[human.job.title], [human]<br>", /atom/movable/screen/text/screen_text/picture/tdf)
+			human.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>[op_name_faction_one]</u></span><br>" + "Fight to restore peace and order across the planet, and check the SOM threat.<br>" + "[GAME_YEAR]-[time2text(world.realtime, "MM-DD")] [stationTimestamp("hh:mm")]<br>" + "Territorial Defense Force Platoon<br>" + "[human.job.title], [human]<br>", /atom/movable/screen/text/screen_text/picture/tdf)
 		else if(human.faction == factions[2]) //assuming only 2 factions
-			human.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>[op_name_som]</u></span><br>" + "campaign intro here<br>" + "[GAME_YEAR]-[time2text(world.realtime, "MM-DD")] [stationTimestamp("hh:mm")]<br>" + "Shokk Infantry Platoon<br>" + "[human.job.title], [human]<br>", /atom/movable/screen/text/screen_text/picture/shokk)
+			human.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>[op_name_faction_two]</u></span><br>" + "Fight to liberate the people of Palmaria from the yoke of TerraGov oppression!<br>" + "[GAME_YEAR]-[time2text(world.realtime, "MM-DD")] [stationTimestamp("hh:mm")]<br>" + "Shokk Infantry Platoon<br>" + "[human.job.title], [human]<br>", /atom/movable/screen/text/screen_text/picture/shokk)
 
 /datum/game_mode/hvh/campaign/process()
 	if(round_finished)
 		return PROCESS_KILL
 
-	if(!istype(current_mission))  //runtimes as process happens before post_setup, probably need a better method
+	if(!current_mission)
 		return
 	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_BIOSCAN) || bioscan_interval == 0 || current_mission.mission_state != MISSION_STATE_ACTIVE)
 		return
@@ -93,28 +95,14 @@
 	. = ..()
 	to_chat(world, span_round_header("|[round_finished]|"))
 	log_game("[round_finished]\nGame mode: [name]\nRound time: [duration2text()]\nEnd round player population: [length(GLOB.clients)]\nTotal TGMC spawned: [GLOB.round_statistics.total_humans_created[FACTION_TERRAGOV]]\nTotal SOM spawned: [GLOB.round_statistics.total_humans_created[FACTION_SOM]]")
-	to_chat(world, span_round_body("Thus ends the story of the brave men and women of both the TGMC and SOM, and their struggle on [SSmapping.configs[GROUND_MAP].map_name]."))
+	to_chat(world, span_round_body("Thus ends the story of the brave men and women of both the TGMC and SOM, and their struggle on Palmaria."))
 
 /datum/game_mode/hvh/campaign/get_status_tab_items(datum/dcs, mob/source, list/items)
 	. = ..()
-	if(!istype(current_mission))
+	if(!current_mission)
 		return
 
-	items += "Mission: [current_mission.name]"
-	items += "Area of operation: [current_mission.map_name]"
-
-	if(current_mission.max_time_reached)
-		items += "Mission status: Mission complete"
-	else if(current_mission.game_timer)
-		items += "Mission time remaining: [current_mission.mission_end_countdown()]"
-
-	if(source.faction == current_mission.starting_faction)
-		items += "[current_mission.starting_faction] mission objectives: [current_mission.starting_faction_objective_description]"
-	else if(source.faction == current_mission.hostile_faction)
-		items += "[current_mission.hostile_faction] mission objectives: [current_mission.hostile_faction_objective_description]"
-	else if(source.faction == FACTION_NEUTRAL)
-		items += "[current_mission.starting_faction] Mission objectives:> [current_mission.starting_faction_objective_description]"
-		items += "[current_mission.hostile_faction] Mission objectives: [current_mission.hostile_faction_objective_description]"
+	current_mission.get_status_tab_items(source, items)
 
 ///sets up the newly selected mission
 /datum/game_mode/hvh/campaign/proc/load_new_mission(datum/campaign_mission/new_mission)
@@ -122,7 +110,7 @@
 	current_mission.load_mission()
 	TIMER_COOLDOWN_START(src, COOLDOWN_BIOSCAN, bioscan_interval)
 
-///////////////////////////respawn stuff/////////
+//respawn stuff, this is all kinda gross and should be revisited later
 
 ///respawns the player if attrition points are available
 /datum/game_mode/hvh/campaign/proc/attempt_attrition_respawn(mob/candidate)
@@ -229,7 +217,7 @@
 	LateSpawn(ready_candidate)
 	return TRUE
 
-///A (probably) placeholder proc to check which jobs are valid, to add to the job selector menu
+///Check which jobs are valid, to add to the job selector menu
 /datum/game_mode/hvh/campaign/proc/IsJobAvailable(mob/candidate, datum/job/job, faction)
 	if(!job)
 		return FALSE

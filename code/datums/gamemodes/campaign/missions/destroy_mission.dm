@@ -56,8 +56,8 @@
 		CRASH("Destroy mission loaded with no objectives to destroy!")
 
 /datum/campaign_mission/destroy_mission/load_objective_description()
-	starting_faction_objective_description = "Major Victory:Destroy all [objectives_total] targets.[min_destruction_amount ? " Minor Victory: Destroy at least [min_destruction_amount] targets." : ""]"
-	hostile_faction_objective_description = "Major Victory: Protect all [objectives_total] assets from destruction.[min_destruction_amount ? " Minor Victory: Protect at least [objectives_total - min_destruction_amount + 1] assets." : ""]"
+	starting_faction_objective_description = "Major Victory:Destroy all [objectives_total] targets.[min_destruction_amount ? "<br> Minor Victory: Destroy at least [min_destruction_amount] targets." : ""]"
+	hostile_faction_objective_description = "Major Victory: Protect all [objectives_total] assets from destruction.[min_destruction_amount ? "<br> Minor Victory: Protect at least [objectives_total - min_destruction_amount + 1] assets." : ""]"
 
 /datum/campaign_mission/destroy_mission/end_mission()
 	UnregisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_OBJECTIVE_DESTROYED)

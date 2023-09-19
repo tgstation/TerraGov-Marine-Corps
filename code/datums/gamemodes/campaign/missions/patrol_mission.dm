@@ -4,8 +4,8 @@
 	map_name = "Orion Outpost"
 	//map_file = '_maps/map_files/Orion_Military_Outpost/orionoutpost.dmm' //testing new map
 	map_file = '_maps/map_files/Campaign maps/jungle_test/jungle_outpost.dmm'
-	starting_faction_objective_description = "Major Victory: Wipe out all hostiles in the area of operation. Minor Victory: Eliminate more hostiles than you lose."
-	hostile_faction_objective_description = "Major Victory: Wipe out all hostiles in the area of operation. Minor Victory: Eliminate more hostiles than you lose."
+	starting_faction_objective_description = "Major Victory: Wipe out all hostiles in the area of operation.<br> Minor Victory: Eliminate more hostiles than you lose."
+	hostile_faction_objective_description = "Major Victory: Wipe out all hostiles in the area of operation.<br> Minor Victory: Eliminate more hostiles than you lose."
 	max_game_time = 20 MINUTES
 	victory_point_rewards = list(
 		MISSION_OUTCOME_MAJOR_VICTORY = list(3, 0),
