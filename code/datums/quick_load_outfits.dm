@@ -123,8 +123,8 @@
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/dylovene, SLOT_IN_SUIT)
 
 /datum/outfit/quick/tgmc/marine/standard_assaultrifle
-	name = "AR-12 rifleman"
-	desc = "The classic line rifleman. Equipped with an AR-12 assault rifle with UGL, heavy armor, and plenty of grenades and ammunition. A solid all-rounder."
+	name = "T-12 rifleman"
+	desc = "The classic line rifleman. Equipped with an T-12 assault rifle with UGL, heavy armor, and plenty of grenades and ammunition. A solid all-rounder."
 
 	suit_store = /obj/item/weapon/gun/rifle/standard_assaultrifle/rifleman
 	belt = /obj/item/storage/belt/marine/t12
@@ -166,8 +166,8 @@
 	H.equip_to_slot_or_del(new /obj/item/tool/extinguisher/mini, SLOT_IN_ACCESSORY)
 
 /datum/outfit/quick/tgmc/marine/standard_carbine
-	name = "AR-18 Rifleman"
-	desc = "The modern line rifleman. Equipped with an AR-18 carbine with UGL, heavy armor, and plenty of grenades and ammunition. Boasts better mobility and damage output than the AR-12, but suffers with a smaller magazine and worse performance at longer ranges."
+	name = "T-18 Rifleman"
+	desc = "The modern line rifleman. Equipped with an T-18 carbine with UGL, heavy armor, and plenty of grenades and ammunition. Boasts better mobility and damage output than the T-12, but suffers with a smaller magazine and worse performance at longer ranges."
 
 	suit_store = /obj/item/weapon/gun/rifle/standard_carbine/standard
 	belt = /obj/item/storage/belt/marine/t18
@@ -188,8 +188,8 @@
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/incendiary, SLOT_IN_ACCESSORY)
 
 /datum/outfit/quick/tgmc/marine/combat_rifle
-	name = "AR-11 Rifleman"
-	desc = "The old rifleman. Equipped with an AR-11 combat rifle with heavy armor, and plenty of grenades and ammunition. Has a large capacity with deadly damage output at all ranges, but lacks many attachment options of more modern weapons and somewhat more cumbersome to handle."
+	name = "TX-11 Rifleman"
+	desc = "The old rifleman. Equipped with an TX-11 combat rifle with heavy armor, and plenty of grenades and ammunition. Has a large capacity with deadly damage output at all ranges, but lacks many attachment options of more modern weapons and somewhat more cumbersome to handle."
 
 	suit_store = /obj/item/weapon/gun/rifle/tx11/standard
 	belt = /obj/item/storage/belt/marine/combat_rifle
@@ -210,8 +210,8 @@
 	H.equip_to_slot_or_del(new /obj/item/tool/extinguisher/mini, SLOT_IN_ACCESSORY)
 
 /datum/outfit/quick/tgmc/marine/standard_battlerifle
-	name = "BR-64 Rifleman"
-	desc = "Heavier firepower for the discerning rifleman. Equipped with an BR-64 battle rifle with UGL, heavy armor, and plenty of grenades and ammunition. Higher damage and penetration, at the cost of a more bulky weapon."
+	name = "T-64 Rifleman"
+	desc = "Heavier firepower for the discerning rifleman. Equipped with an T-64 battle rifle with UGL, heavy armor, and plenty of grenades and ammunition. Higher damage and penetration, at the cost of a more bulky weapon."
 
 	suit_store = /obj/item/weapon/gun/rifle/standard_br/standard
 	belt = /obj/item/storage/belt/marine/standard_battlerifle
@@ -232,8 +232,8 @@
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/incendiary, SLOT_IN_ACCESSORY)
 
 /datum/outfit/quick/tgmc/marine/standard_skirmishrifle
-	name = "AR-21 Rifleman"
-	desc = "Better stopping power at the cost of lower rate of fire. Equipped with an AR-21 skirmish rifle with UGL, heavy armor, and plenty of grenades and ammunition. Rewards good aim with its heavy rounds."
+	name = "T-21 Rifleman"
+	desc = "Better stopping power at the cost of lower rate of fire. Equipped with an T-21 skirmish rifle with UGL, heavy armor, and plenty of grenades and ammunition. Rewards good aim with its heavy rounds."
 
 	suit_store = /obj/item/weapon/gun/rifle/standard_skirmishrifle/standard
 	belt = /obj/item/storage/belt/marine/standard_skirmishrifle
@@ -365,7 +365,7 @@
 
 /datum/outfit/quick/tgmc/marine/pyro
 	name = "FL-84 Flamethrower Operator"
-	desc = "For burning enemies, and sometimes friends. Equipped with an FL-84 flamethrower and wide nozzle, SMG-25 secondary weapon, heavy armor upgraded with a 'Surt' fireproof module, and a backtank of fuel. Can burn down large areas extremely quickly both to flush out the enemy and to cover flanks. Is very slow however, ineffective at long range, and can expend all available fuel quickly if used excessively."
+	desc = "For burning enemies, and sometimes friends. Equipped with an FL-84 flamethrower and wide nozzle, MR-25 secondary weapon, heavy armor upgraded with a 'Surt' fireproof module, and a backtank of fuel. Can burn down large areas extremely quickly both to flush out the enemy and to cover flanks. Is very slow however, ineffective at long range, and can expend all available fuel quickly if used excessively."
 
 	wear_suit = /obj/item/clothing/suit/modular/xenonauten/heavy/surt
 	mask = /obj/item/clothing/mask/gas/tactical
@@ -385,8 +385,8 @@
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/packet/p10x20mm, SLOT_IN_ACCESSORY)
 
 /datum/outfit/quick/tgmc/marine/standard_shotgun
-	name = "SH-35 Scout"
-	desc = "For getting too close for comfort. Equipped with a SH-35 shotgun with buckshot and flechette rounds, a MP-19 sidearm, a good amount of grenades and light armor with a cutting edge 'svallin' shield module. Provides for excellent mobility and devestating close range firepower, but will falter against sustained firepower."
+	name = "T-35 Scout"
+	desc = "For getting too close for comfort. Equipped with a T-35 shotgun with buckshot and flechette rounds, a TP-19 sidearm, a good amount of grenades and light armor with a cutting edge 'svallin' shield module. Provides for excellent mobility and devestating close range firepower, but will falter against sustained firepower."
 
 	belt = /obj/item/storage/belt/shotgun
 	wear_suit = /obj/item/clothing/suit/modular/xenonauten/light/shield
@@ -435,8 +435,8 @@
 	H.equip_to_slot_or_del(new /obj/item/binoculars, SLOT_IN_ACCESSORY)
 
 /datum/outfit/quick/tgmc/marine/light_carbine
-	name = "AR-18 Scout"
-	desc = "High damage and high speed. Equipped with an AR-18 carbine with UGL, light armor with a cutting edge 'svallin' shield module, and plenty of grenades and ammunition. Great mobility and damage output, but low magazine capacity and weak armor without the shield active means this loadout is best suited to hit and run tactics."
+	name = "T-18 Scout"
+	desc = "High damage and high speed. Equipped with an T-18 carbine with UGL, light armor with a cutting edge 'svallin' shield module, and plenty of grenades and ammunition. Great mobility and damage output, but low magazine capacity and weak armor without the shield active means this loadout is best suited to hit and run tactics."
 
 	wear_suit = /obj/item/clothing/suit/modular/xenonauten/light/shield
 	suit_store = /obj/item/weapon/gun/rifle/standard_carbine/scout
@@ -458,8 +458,8 @@
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/standard_heavypistol, SLOT_IN_ACCESSORY)
 
 /datum/outfit/quick/tgmc/marine/shield_tank
-	name = "SMG-25 Guardian"
-	desc = "Professional bullet catcher. Equipped with an SMG-25 submachine gun, a TL-172 defensive shield and heavy armor reinforced with a 'Tyr' module. Designed to absorb as much incoming damage as possible to protect your squishier comrades, however your mobility and damage output are notably diminished. Also of note: the excellent thermal mass of the TL-172 means it is unusually effective against the SOM's volkite weaponry."
+	name = "MR-25 Guardian"
+	desc = "Professional bullet catcher. Equipped with an MR-25 submachine gun, a TL-172 defensive shield and heavy armor reinforced with a 'Tyr' module. Designed to absorb as much incoming damage as possible to protect your squishier comrades, however your mobility and damage output are notably diminished. Also of note: the excellent thermal mass of the TL-172 means it is unusually effective against the SOM's volkite weaponry."
 
 	head = /obj/item/clothing/head/modular/m10x/tyr
 	glasses = /obj/item/clothing/glasses/welding
@@ -486,7 +486,7 @@
 
 /datum/outfit/quick/tgmc/marine/machete
 	name = "Assault Marine"
-	desc = "This doesn't look standard issue... Equipped with a SMG-25 submachine gun, machete and jetpack, along with light armor upgraded with a 'svallin' shield module. It's not clear why this is here, nevertheless it has excellent mobility, and would likely be devastating against anyone you manage to actually reach."
+	desc = "This doesn't look standard issue... Equipped with a MR-25 submachine gun, machete and jetpack, along with light armor upgraded with a 'svallin' shield module. It's not clear why this is here, nevertheless it has excellent mobility, and would likely be devastating against anyone you manage to actually reach."
 
 	wear_suit = /obj/item/clothing/suit/modular/xenonauten/light/shield
 	back = /obj/item/jetpack_marine
@@ -558,7 +558,7 @@
 
 /datum/outfit/quick/tgmc/engineer/rrengineer
 	name = "Rocket Specialist"
-	desc = "Bringing the big guns. Equipped with a AR-18 carbine and RL-160 along with the standard engineer kit. Excellent against groups of enemy infantry or light armor, but only has limited ammunition."
+	desc = "Bringing the big guns. Equipped with a T-18 carbine and T-160 along with the standard engineer kit. Excellent against groups of enemy infantry or light armor, but only has limited ammunition."
 	quantity = 2
 
 	suit_store = /obj/item/weapon/gun/rifle/standard_carbine/engineer
@@ -576,7 +576,7 @@
 
 /datum/outfit/quick/tgmc/engineer/sentry
 	name = "Sentry Technician"
-	desc = "Firing more guns than you have hands. Equipped with a AR-12 assault rifle with miniflamer, and two minisentries along with the standard engineer kit. Allows the user to quickly setup strong points and lock areas down, with some sensible placement."
+	desc = "Firing more guns than you have hands. Equipped with a T-12 assault rifle with miniflamer, and two minisentries along with the standard engineer kit. Allows the user to quickly setup strong points and lock areas down, with some sensible placement."
 
 	suit_store = /obj/item/weapon/gun/rifle/standard_assaultrifle/engineer
 	belt = /obj/item/storage/belt/marine/t12
@@ -598,7 +598,7 @@
 
 /datum/outfit/quick/tgmc/engineer/demolition
 	name = "Demolition Specialist"
-	desc = "Boom boom, shake the room. Equipped with a SH-15 auto shotgun and UGL and an impressive array of mines, detpacks and grenades, along with the standard engineer kit. Excellent for blasting through any obstacle, and mining areas to restrict enemy movement."
+	desc = "Boom boom, shake the room. Equipped with a TX-15 auto shotgun and UGL and an impressive array of mines, detpacks and grenades, along with the standard engineer kit. Excellent for blasting through any obstacle, and mining areas to restrict enemy movement."
 
 	suit_store = /obj/item/weapon/gun/rifle/standard_autoshotgun/engineer
 	back = /obj/item/storage/backpack/marine/tech
@@ -659,8 +659,8 @@
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/neuraline, SLOT_IN_HEAD)
 
 /datum/outfit/quick/tgmc/corpsman/standard_medic
-	name = "AR-12 Corpsman"
-	desc = "Keeping everone else in the fight. Armed with an AR-12 assault rifle with underbarrel grenade launcher, an impressive array of tools for healing your team, and a 'Mimir' biological protection module to allow you to continue operating in hazardous environments. With medivacs out of the question, you are the only thing standing between your buddies and an early grave."
+	name = "T-12 Corpsman"
+	desc = "Keeping everone else in the fight. Armed with an T-12 assault rifle with underbarrel grenade launcher, an impressive array of tools for healing your team, and a 'Mimir' biological protection module to allow you to continue operating in hazardous environments. With medivacs out of the question, you are the only thing standing between your buddies and an early grave."
 
 	suit_store = /obj/item/weapon/gun/rifle/standard_assaultrifle/medic
 
@@ -684,8 +684,8 @@
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_assaultrifle, SLOT_IN_R_POUCH)
 
 /datum/outfit/quick/tgmc/corpsman/standard_smg
-	name = "SMG-90 Corpsman"
-	desc = "Keeping everone else in the fight. Armed with an SMG-90 submachine gun to maintain good mobility, an impressive array of tools for healing your team, and a 'Mimir' biological protection module to allow you to continue operating in hazardous environments. With medivacs out of the question, you are the only thing standing between your buddies and an early grave."
+	name = "T-90 Corpsman"
+	desc = "Keeping everone else in the fight. Armed with an T-90 submachine gun to maintain good mobility, an impressive array of tools for healing your team, and a 'Mimir' biological protection module to allow you to continue operating in hazardous environments. With medivacs out of the question, you are the only thing standing between your buddies and an early grave."
 
 	suit_store = /obj/item/weapon/gun/smg/standard_smg/tactical
 
@@ -711,8 +711,8 @@
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/standard_smg, SLOT_IN_R_POUCH)
 
 /datum/outfit/quick/tgmc/corpsman/standard_skirmishrifle
-	name = "AR-21 Corpsman"
-	desc = "Keeping everone else in the fight. Armed with an AR-21 skirmish rifle with underbarrel grenade launcher, an impressive array of tools for healing your team, and a 'Mimir' biological protection module to allow you to continue operating in hazardous environments. With medivacs out of the question, you are the only thing standing between your buddies and an early grave."
+	name = "T-21 Corpsman"
+	desc = "Keeping everone else in the fight. Armed with an T-21 skirmish rifle with underbarrel grenade launcher, an impressive array of tools for healing your team, and a 'Mimir' biological protection module to allow you to continue operating in hazardous environments. With medivacs out of the question, you are the only thing standing between your buddies and an early grave."
 
 	suit_store = /obj/item/weapon/gun/rifle/standard_skirmishrifle/standard
 
@@ -736,8 +736,8 @@
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_skirmishrifle, SLOT_IN_R_POUCH)
 
 /datum/outfit/quick/tgmc/corpsman/auto_shotgun
-	name = "SH-15 Corpsman"
-	desc = "Keeping everone else in the fight. Armed with a SH-15 auto shotgun with underbarrel grenade launcher, an impressive array of tools for healing your team, and a 'Mimir' biological protection module to allow you to continue operating in hazardous environments. With medivacs out of the question, you are the only thing standing between your buddies and an early grave."
+	name = "TX-15 Corpsman"
+	desc = "Keeping everone else in the fight. Armed with a TX-15 auto shotgun with underbarrel grenade launcher, an impressive array of tools for healing your team, and a 'Mimir' biological protection module to allow you to continue operating in hazardous environments. With medivacs out of the question, you are the only thing standing between your buddies and an early grave."
 
 	suit_store = /obj/item/weapon/gun/rifle/standard_autoshotgun/engineer
 
@@ -865,7 +865,7 @@
 
 /datum/outfit/quick/tgmc/smartgunner/minigun_sg
 	name = "SG85 Smart Machinegunner"
-	desc = "More bullets than sense. Equipped with an SG-85 smart gatling gun, an MP-19 sidearm, heavy armor upgraded with a 'Tyr' extra armor mdule and a whole lot of bullets. For when you want to unleash a firehose of firepower. Try not to run out of ammo."
+	desc = "More bullets than sense. Equipped with an SG-85 smart gatling gun, an TP-19 sidearm, heavy armor upgraded with a 'Tyr' extra armor mdule and a whole lot of bullets. For when you want to unleash a firehose of firepower. Try not to run out of ammo."
 
 	belt = /obj/item/storage/belt/sparepouch
 	suit_store = /obj/item/weapon/gun/minigun/smart_minigun/motion_detector
@@ -914,8 +914,8 @@
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/dylovene, SLOT_IN_SUIT)
 
 /datum/outfit/quick/tgmc/leader/standard_assaultrifle
-	name = "AR-12 Patrol Leader"
-	desc = "Gives the orders. Equipped with an AR-12 assault rifle with UGL, plenty of grenades, some support kit such as deployable cameras, as well as heavy armor with a 'valkyrie' autodoc module. You can provide excellent support to your squad thanks to your kit and order shouting talents."
+	name = "T-12 Patrol Leader"
+	desc = "Gives the orders. Equipped with an T-12 assault rifle with UGL, plenty of grenades, some support kit such as deployable cameras, as well as heavy armor with a 'valkyrie' autodoc module. You can provide excellent support to your squad thanks to your kit and order shouting talents."
 
 	suit_store = /obj/item/weapon/gun/rifle/standard_assaultrifle/rifleman
 	belt = /obj/item/storage/belt/marine/t12
@@ -942,8 +942,8 @@
 	H.equip_to_slot_or_del(new /obj/item/binoculars/tactical/range, SLOT_IN_ACCESSORY)
 
 /datum/outfit/quick/tgmc/leader/standard_carbine
-	name = "AR-18 Patrol Leader"
-	desc = "Gives the orders. Equipped with an AR-18 carbine with plasma pistol attachment, plenty of grenades, as well as heavy armor with a 'valkyrie' autodoc module. You can provide excellent support to your squad thanks to your kit and order shouting talents, while unleashing excellent damage at medium range."
+	name = "T-18 Patrol Leader"
+	desc = "Gives the orders. Equipped with an T-18 carbine with plasma pistol attachment, plenty of grenades, as well as heavy armor with a 'valkyrie' autodoc module. You can provide excellent support to your squad thanks to your kit and order shouting talents, while unleashing excellent damage at medium range."
 
 	suit_store = /obj/item/weapon/gun/rifle/standard_carbine/plasma_pistol
 	belt = /obj/item/storage/belt/marine/t18
@@ -970,8 +970,8 @@
 	H.equip_to_slot_or_del(new /obj/item/binoculars/tactical/range, SLOT_IN_ACCESSORY)
 
 /datum/outfit/quick/tgmc/leader/combat_rifle
-	name = "AR-11 Patrol Leader"
-	desc = "Gives the orders. Equipped with an AR-11 combat rifle, plenty of grenades, as well as heavy armor with a 'valkyrie' autodoc module. You can provide excellent support to your squad thanks to your kit and order shouting talents, with excellent damage at all ranges."
+	name = "TX-11 Patrol Leader"
+	desc = "Gives the orders. Equipped with an TX-11 combat rifle, plenty of grenades, as well as heavy armor with a 'valkyrie' autodoc module. You can provide excellent support to your squad thanks to your kit and order shouting talents, with excellent damage at all ranges."
 
 	suit_store = /obj/item/weapon/gun/rifle/tx11/standard
 	belt = /obj/item/storage/belt/marine/combat_rifle
@@ -998,8 +998,8 @@
 	H.equip_to_slot_or_del(new /obj/item/binoculars/tactical/range, SLOT_IN_ACCESSORY)
 
 /datum/outfit/quick/tgmc/leader/standard_battlerifle
-	name = "BR-64 Patrol Leader"
-	desc = "Gives the orders. Equipped with an BR-64 battle rifle with UGL, plenty of grenades, as well as heavy armor with a 'valkyrie' autodoc module. The battle rifle offers improved damage and penetration compared to more common rifles, but still retains a grenade launcher that the AR-11 lacks."
+	name = "T-64 Patrol Leader"
+	desc = "Gives the orders. Equipped with an T-64 battle rifle with UGL, plenty of grenades, as well as heavy armor with a 'valkyrie' autodoc module. The battle rifle offers improved damage and penetration compared to more common rifles, but still retains a grenade launcher that the TX-11 lacks."
 
 	suit_store = /obj/item/weapon/gun/rifle/standard_br/standard
 	belt = /obj/item/storage/belt/marine/standard_battlerifle
@@ -1025,8 +1025,8 @@
 	H.equip_to_slot_or_del(new /obj/item/binoculars/tactical/range, SLOT_IN_ACCESSORY)
 
 /datum/outfit/quick/tgmc/leader/auto_shotgun
-	name = "SH-15 Patrol Leader"
-	desc = "Gives the orders. Equipped with an SH-15 auto shotgun, plenty of grenades, as well as heavy armor with a 'valkyrie' autodoc module. You can provide excellent support to your squad thanks to your kit and order shouting talents, with strong damage and control."
+	name = "TX-15 Patrol Leader"
+	desc = "Gives the orders. Equipped with an TX-15 auto shotgun, plenty of grenades, as well as heavy armor with a 'valkyrie' autodoc module. You can provide excellent support to your squad thanks to your kit and order shouting talents, with strong damage and control."
 
 	suit_store = /obj/item/weapon/gun/rifle/standard_autoshotgun/plasma_pistol
 	belt = /obj/item/storage/belt/marine/auto_shotgun
@@ -1081,8 +1081,8 @@
 	H.equip_to_slot_or_del(new /obj/item/binoculars/tactical/range, SLOT_IN_ACCESSORY)
 
 /datum/outfit/quick/tgmc/leader/oicw
-	name = "AR-55 Patrol Leader"
-	desc = "Gives the orders. Equipped with an AR-55 OICW with plenty of grenades for its integrated grenade launcher, some support kit such as deployable cameras, as well as heavy armor with a 'valkyrie' autodoc module. You can provide excellent support to your squad thanks to your kit and order shouting talents."
+	name = "TX-55 Patrol Leader"
+	desc = "Gives the orders. Equipped with an TX-55 OICW with plenty of grenades for its integrated grenade launcher, some support kit such as deployable cameras, as well as heavy armor with a 'valkyrie' autodoc module. You can provide excellent support to your squad thanks to your kit and order shouting talents."
 	quantity = 2
 
 	suit_store = /obj/item/weapon/gun/rifle/tx55/combat_patrol

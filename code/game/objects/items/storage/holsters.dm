@@ -421,8 +421,8 @@
 	INVOKE_ASYNC(src, PROC_REF(handle_item_insertion), new_item)
 
 /obj/item/storage/holster/t35
-	name = "\improper L44 SH-35 scabbard"
-	desc = "A large leather holster allowing the storage of an SH-35 Shotgun. It contains harnesses that allow it to be secured to the back for easy storage."
+	name = "\improper L44 T-35 scabbard"
+	desc = "A large leather holster allowing the storage of an T-35 Shotgun. It contains harnesses that allow it to be secured to the back for easy storage."
 	icon_state = "t35_holster"
 	holsterable_allowed = list(/obj/item/weapon/gun/shotgun/pump/t35)
 	can_hold = list(
@@ -452,8 +452,8 @@
 	INVOKE_ASYNC(src, PROC_REF(handle_item_insertion), new_item)
 
 /obj/item/storage/holster/t19
-	name = "\improper M276 pattern MP-19 holster rig"
-	desc = "The M276 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips. This version is designed for the MP-19 SMG, and features a larger frame to support the gun. Due to its unorthodox design, it isn't a very common sight, and is only specially issued."
+	name = "\improper M276 pattern TP-19 holster rig"
+	desc = "The M276 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips. This version is designed for the TP-19 SMG, and features a larger frame to support the gun. Due to its unorthodox design, it isn't a very common sight, and is only specially issued."
 	icon_state = "t19_holster"
 	icon = 'icons/obj/clothing/belts.dmi'
 	flags_equip_slot = ITEM_SLOT_BELT
@@ -774,8 +774,8 @@
 	INVOKE_ASYNC(src, PROC_REF(handle_item_insertion), new_gun)
 
 /obj/item/storage/holster/belt/ts34
-	name = "\improper M276 pattern SH-34 shotgun holster rig"
-	desc = "A purpose built belt-holster assembly that holds a SH-34 shotgun and one shell box or 2 handfuls."
+	name = "\improper M276 pattern TS-34 shotgun holster rig"
+	desc = "A purpose built belt-holster assembly that holds a TS-34 shotgun and one shell box or 2 handfuls."
 	icon_state = "ts34_holster"
 	max_w_class = WEIGHT_CLASS_BULKY //So it can hold the shotgun.
 	w_class = WEIGHT_CLASS_BULKY

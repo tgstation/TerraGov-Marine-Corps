@@ -1,7 +1,7 @@
 ///box for storage of ammo and gun
 /obj/item/storage/box/tl102
 	name = "\improper TL-102 crate"
-	desc = "A large and rusted metal case. It has not seen much use. Written in faded letters on its top, it says, \"This is a HSG-102 heavy smartgun\". There are many other warning labels atop that are too faded to read."
+	desc = "A large and rusted metal case. It has not seen much use. Written in faded letters on its top, it says, \"This is a TL-102 heavy smartgun\". There are many other warning labels atop that are too faded to read."
 	icon = 'icons/Marine/marine-hmg.dmi'
 	icon_state = "crate"
 	w_class = WEIGHT_CLASS_HUGE
@@ -16,10 +16,10 @@
 	new /obj/item/weapon/gun/tl102(src) //gun itself
 	new /obj/item/ammo_magazine/tl102(src) //ammo for the gun
 
-///HSG-102, now with full auto. It is not a superclass of deployed guns, however there are a few varients.
+///TL-102, now with full auto. It is not a superclass of deployed guns, however there are a few varients.
 /obj/item/weapon/gun/tl102
 	name = "\improper TL-102 mounted heavy smartgun"
-	desc = "The HSG-102 heavy machinegun, it's too heavy to be wielded or operated without the tripod. IFF capable. No extra work required, just deploy it with Ctrl-Click. Can be repaired with a blowtorch once deployed."
+	desc = "The TL-102 heavy machinegun, it's too heavy to be wielded or operated without the tripod. IFF capable. No extra work required, just deploy it with Ctrl-Click. Can be repaired with a blowtorch once deployed."
 
 	w_class = WEIGHT_CLASS_HUGE
 	flags_equip_slot = ITEM_SLOT_BACK
@@ -68,7 +68,7 @@
 ///Unmovable ship mounted version.
 /obj/item/weapon/gun/tl102/hsg_nest
 	name = "\improper TL-102 heavy smartgun nest"
-	desc = "A HSG-102 heavy smartgun mounted upon a small reinforced post with sandbags to provide a small machinegun nest for all your defense purpose needs.</span>"
+	desc = "A TL-102 heavy smartgun mounted upon a small reinforced post with sandbags to provide a small machinegun nest for all your defense purpose needs.</span>"
 	icon = 'icons/Marine/marine-hmg.dmi'
 	icon_state = "entrenched"
 
@@ -275,7 +275,7 @@
 	max_integrity = 600
 	soft_armor = list(MELEE = 0, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 100, FIRE = 0, ACID = 0)
 
-///This is my meme version, the first version of the HSG-102 to have auto-fire, revel in its presence.
+///This is my meme version, the first version of the TL-102 to have auto-fire, revel in its presence.
 /obj/item/weapon/gun/tl102/death
 	name = "\improper \"Death incarnate\" heavy machine gun"
 	desc = "It looks like a regular TL-102, however glowing archaeic writing glows faintly on its sides and top. It beckons for blood."
@@ -409,7 +409,7 @@
 	starting_attachment_types = list(/obj/item/attachable/stock/t27, /obj/item/attachable/scope/unremovable/mmg, /obj/item/attachable/heavy_barrel)
 
 //-------------------------------------------------------
-//AT-36 Anti Tank Gun
+//TAT-36 Anti Tank Gun
 
 /obj/item/weapon/gun/standard_atgun
 	name = "\improper TAT-36 anti tank gun"

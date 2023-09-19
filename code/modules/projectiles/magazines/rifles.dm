@@ -199,7 +199,7 @@
 	max_rounds = 24
 
 //-------------------------------------------------------
-//MG-42 Light Machine Gun
+//T-42 Light Machine Gun
 
 /obj/item/ammo_magazine/standard_lmg
 	name = "\improper T-42 drum magazine (10x24mm)"
@@ -226,7 +226,7 @@
 	reload_delay = 3 SECONDS
 
 //-------------------------------------------------------
-//PR-412L1 HEAVY PULSE RIFLE
+//M412L1 HEAVY PULSE RIFLE
 
 /obj/item/ammo_magazine/m412l1_hpr
 	name = "\improper M412L1 box magazine (10x24mm)"
@@ -362,7 +362,7 @@
 	max_rounds = 20
 
 //-------------------------------------------------------
-//Marine magazine sniper, or the SR-127.
+//Marine magazine sniper, or the TL-127.
 /obj/item/ammo_magazine/rifle/chamberedrifle
 	name = "TL-127 bolt action rifle magazine"
 	desc = "A box magazine filled with 8.6x70mm rifle rounds for the TL-127."
@@ -382,7 +382,7 @@
 	bonus_overlay = "tl127_flak"
 
 //-------------------------------------------------------
-//Marine magazine automatic sniper, or the SR-81.
+//Marine magazine automatic sniper, or the T-81.
 /obj/item/ammo_magazine/rifle/autosniper
 	name = "\improper T-81 automatic sniper rifle magazine"
 	desc = "A box magazine filled with low pressure 8.6x70mm rifle rounds for the T-81."
@@ -393,7 +393,7 @@
 	max_rounds = 20
 
 //-------------------------------------------------------
-//G-11, AR-11
+//G-11, TX-11
 /obj/item/ammo_magazine/rifle/tx11
 	name = "\improper TX-11 combat rifle magazine"
 	desc = "A magazine filled with 4.92×34mm rifle rounds for the TX-11."
@@ -404,7 +404,7 @@
 	max_rounds = 70
 
 //-------------------------------------------------------
-//AR-21
+//T-21
 /obj/item/ammo_magazine/rifle/standard_skirmishrifle
 	name = "\improper T-21 skirmish rifle magazine"
 	desc = "A magazine filled with 10x25mm rifle rounds for the T-21."
@@ -440,7 +440,7 @@
 	max_rounds = 30
 
 //-------------------------------------------------------
-//GL-54
+//TX-54
 /obj/item/ammo_magazine/rifle/tx54
 	name = "\improper 20mm airburst grenade magazine"
 	desc = "A 20mm magazine loaded with airburst grenades. For use with the TX-54 or TX-55."

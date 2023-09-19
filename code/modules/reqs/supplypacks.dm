@@ -193,12 +193,12 @@ WEAPONS
 
 
 /datum/supply_packs/weapons/m56d_emplacement
-	name = "HSG-102 Mounted Heavy Smartgun"
+	name = "TL-102 Mounted Heavy Smartgun"
 	contains = list(/obj/item/storage/box/tl102)
 	cost = 600
 
 /datum/supply_packs/weapons/m56d
-	name = "HSG-102 mounted heavy smartgun ammo"
+	name = "TL-102 mounted heavy smartgun ammo"
 	contains = list(/obj/item/ammo_magazine/tl102)
 	cost = 30
 
@@ -263,12 +263,12 @@ WEAPONS
 	cost = 55
 
 /datum/supply_packs/weapons/antitankgun
-	name = "AT-36 Anti Tank Gun"
+	name = "TAT-36 Anti Tank Gun"
 	contains = list(/obj/item/weapon/gun/standard_atgun)
 	cost = 800
 
 /datum/supply_packs/weapons/antitankgunammo
-	name = "AT-36 AP-HE Shell (x3)"
+	name = "TAT-36 AP-HE Shell (x3)"
 	contains = list(
 		/obj/item/ammo_magazine/standard_atgun,
 		/obj/item/ammo_magazine/standard_atgun,
@@ -277,7 +277,7 @@ WEAPONS
 	cost = 20
 
 /datum/supply_packs/weapons/antitankgunammo/apcr
-	name = "AT-36 APCR Shell (x3)"
+	name = "TAT-36 APCR Shell (x3)"
 	contains = list(
 		/obj/item/ammo_magazine/standard_atgun/apcr,
 		/obj/item/ammo_magazine/standard_atgun/apcr,
@@ -286,7 +286,7 @@ WEAPONS
 	cost = 20
 
 /datum/supply_packs/weapons/antitankgunammo/he
-	name = "AT-36 HE Shell (x3)"
+	name = "TAT-36 HE Shell (x3)"
 	contains = list(
 		/obj/item/ammo_magazine/standard_atgun/he,
 		/obj/item/ammo_magazine/standard_atgun/he,
@@ -295,7 +295,7 @@ WEAPONS
 	cost = 20
 
 /datum/supply_packs/weapons/antitankgunammo/beehive
-	name = "AT-36 Beehive Shell (x3)"
+	name = "TAT-36 Beehive Shell (x3)"
 	contains = list(
 		/obj/item/ammo_magazine/standard_atgun/beehive,
 		/obj/item/ammo_magazine/standard_atgun/beehive,
@@ -304,7 +304,7 @@ WEAPONS
 	cost = 20
 
 /datum/supply_packs/weapons/antitankgunammo/incendiary
-	name = "AT-36 Napalm Shell (x3)"
+	name = "TAT-36 Napalm Shell (x3)"
 	contains = list(
 		/obj/item/ammo_magazine/standard_atgun/incend,
 		/obj/item/ammo_magazine/standard_atgun/incend,
@@ -578,17 +578,17 @@ WEAPONS
 	cost = 100
 
 /datum/supply_packs/weapons/hmg
-	name = "HMG-08 heavy machinegun"
+	name = "MG-08/495 heavy machinegun"
 	contains = list(/obj/item/weapon/gun/heavymachinegun)
 	cost = 400
 
 /datum/supply_packs/weapons/hmg_ammo
-	name = "HMG-08 heavy machinegun ammo (500 rounds)"
+	name = "MG-08/495 heavy machinegun ammo (500 rounds)"
 	contains = list(/obj/item/ammo_magazine/heavymachinegun)
 	cost = 70
 
 /datum/supply_packs/weapons/hmg_ammo_small
-	name = "HMG-08 heavy machinegun ammo (250 rounds)"
+	name = "MG-08/495 heavy machinegun ammo (250 rounds)"
 	contains = list(/obj/item/ammo_magazine/heavymachinegun/small)
 	cost = 40
 
@@ -1526,32 +1526,32 @@ Imports
 	containertype = /obj/structure/closet/crate/weapon
 
 /datum/supply_packs/imports/m41a
-	name = "PR-11 Pulse Rifle"
+	name = "HK-11 Pulse Rifle"
 	contains = list(/obj/item/weapon/gun/rifle/m41a)
 	cost = 50
 
 /datum/supply_packs/imports/m41a/ammo
-	name = "PR-11 Pulse Rifle Ammo"
+	name = "HK-11 Pulse Rifle Ammo"
 	contains = list(/obj/item/ammo_magazine/rifle/m41a)
 	cost = 3
 
 /datum/supply_packs/imports/m412
-	name = "PR-412 Pulse Rifle"
+	name = "M412 Pulse Rifle"
 	contains = list(/obj/item/weapon/gun/rifle/m412)
 	cost = 50
 
 /datum/supply_packs/imports/m41a2/ammo
-	name = "PR-412 Pulse Rifle Ammo"
+	name = "M412 Pulse Rifle Ammo"
 	contains = list(/obj/item/ammo_magazine/rifle)
 	cost = 3
 
 /datum/supply_packs/imports/m412l1
-	name = "PR-412L1 Heavy Pulse Rifle"
+	name = "M412L1 Heavy Pulse Rifle"
 	contains = list(/obj/item/weapon/gun/rifle/m412l1_hpr)
 	cost = 150
 
 /datum/supply_packs/imports/m412l1/ammo
-	name = "PR-412L1 Heavy Pulse Rifle Ammo"
+	name = "M412L1 Heavy Pulse Rifle Ammo"
 	contains = list(/obj/item/ammo_magazine/m412l1_hpr)
 	cost = 25
 
@@ -1566,22 +1566,22 @@ Imports
 	cost = 3
 
 /datum/supply_packs/imports/mp7
-	name = "SMG-27 SMG"
+	name = "MP-27 SMG"
 	contains = list(/obj/item/weapon/gun/smg/mp7)
 	cost = 50
 
 /datum/supply_packs/imports/mp7/ammo
-	name = "SMG-27 SMG Ammo"
+	name = "MP-27 SMG Ammo"
 	contains = list(/obj/item/ammo_magazine/smg/mp7)
 	cost = 3
 
 /datum/supply_packs/imports/m25
-	name = "SMG-25 SMG"
+	name = "MR-25 SMG"
 	contains = list(/obj/item/weapon/gun/smg/m25)
 	cost = 50
 
 /datum/supply_packs/imports/m25/ammo
-	name = "SMG-25 SMG Ammo"
+	name = "MR-25 SMG Ammo"
 	contains = list(/obj/item/ammo_magazine/smg/m25)
 	cost = 3
 
@@ -1606,12 +1606,12 @@ Imports
 	cost = 3
 
 /datum/supply_packs/imports/uzi
-	name = "SMG-2 Uzi SMG"
+	name = "MP-2 Uzi SMG"
 	contains = list(/obj/item/weapon/gun/smg/uzi)
 	cost = 50
 
 /datum/supply_packs/imports/uzi/ammo
-	name = "SMG-2 Uzi SMG Ammo"
+	name = "MP-2 Uzi SMG Ammo"
 	contains = list(/obj/item/ammo_magazine/smg/uzi)
 	cost = 3
 
@@ -2072,7 +2072,7 @@ FACTORY
 	cost = 250
 
 /datum/supply_packs/factory/autosniper_magazine_refill
-	name = "SR-81 IFF Auto Sniper magazine assembly refill"
+	name = "T-81 IFF Auto Sniper magazine assembly refill"
 	contains = list(/obj/item/factory_refill/auto_sniper_magazine_refill)
 	cost = 400
 

@@ -1,7 +1,7 @@
 2023-07-01:
   Pariah919:
-  - balance: SMG-25 can now fit underbarreled guns.
-  - balance: SMG-25 and its elite version now have higher akimbo maluses, and have
+  - balance: MR-25 can now fit underbarreled guns.
+  - balance: MR-25 and its elite version now have higher akimbo maluses, and have
       less damage falloff over distance.
   ivanmixo:
   - bugfix: Fixes various ghostize runtimes
@@ -327,7 +327,7 @@
   Mrrpip:
   - rscadd: 16G ammo boxes have arrived, now you'll get to use more shotgun in your
       autoshotgun!
-  - imageadd: The SH-15 slug mag is now green.
+  - imageadd: The TX-15 slug mag is now green.
   TiviPlus:
   - rscadd: Added Bulwark ability to queen
   - rscadd: Xenos have tts now

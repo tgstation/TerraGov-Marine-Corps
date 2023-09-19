@@ -64,7 +64,7 @@
   - bugfix: fixed flamers not igniting tiles with border objects like barricades or
       windoors in suitable cases
   - refactor: refactored some flamer and cone code
-  - balance: Improved GL-54 airburst stagger and slow slightly, removed it entirely
+  - balance: Improved TX-54 airburst stagger and slow slightly, removed it entirely
       from incendiary
   Pariah919:
   - rscadd: Added 3 new chemical shells to RR (Smoke/HEAT/CloakSmoke/Tanglefoot).
@@ -296,7 +296,7 @@
   Lumipharon:
   - bugfix: medical item description text will no longer spill into the next storage
       slot
-  - balance: Increased MP-19 akimbo penalties
+  - balance: Increased TP-19 akimbo penalties
   tyeagg:
   - qol: bigger minimap icons for disks and orders
   - imageadd: big minimap icons
@@ -315,7 +315,7 @@
   hyper2snyper:
   - rscadd: 'The newly sprited primaries are now colorable with facepaint. Included:
       AR12, AR18, SMG90, P14, SH35, LMG42'
-  - rscadd: Support for colorable attachments, SH-35 stock now colorable like the
+  - rscadd: Support for colorable attachments, T-35 stock now colorable like the
       gun itself.
 2022-09-28:
   Jalopkomit18:
@@ -343,7 +343,7 @@
   - qol: added seperate keybinds for disguise and stealth
 2022-09-29:
   hyper2snyper:
-  - rscadd: Hyperscales the SG-29 and AR-21
+  - rscadd: Hyperscales the SG-29 and T-21
   - rscadd: Hyperscales both the Vertical and Angled grip attachments.
 2022-09-30:
   DeltaFire15:
@@ -356,5 +356,5 @@
   - spellcheck: 'MPs have a unique spawn in blurb. tweak: MPs have Squad Engineer/Medic
       rank scaling. (E3->E4->E5)'
   maikilangiolo:
-  - rscadd: added holsters for the mp19 and smg-25
+  - rscadd: added holsters for the mp19 and MR-25
   - balance: engineering storage module can fit filled sandbags

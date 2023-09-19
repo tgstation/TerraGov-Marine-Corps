@@ -7,7 +7,7 @@
       beret
   Lumipharon:
   - bugfix: fixes a 100% intentional April fool's prank
-  - rscadd: GL-54 ammo now uses greyscaling
+  - rscadd: TX-54 ammo now uses greyscaling
   - code_imp: Add support for greyscale projectiles and bullets
   Mrrpip:
   - rscadd: Added the marine riot helmet, with a poorly made orange paintjob.

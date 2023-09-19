@@ -72,7 +72,7 @@
 
 /obj/item/weapon/gun/shotgun/combat/standardmarine
 	name = "\improper T-39 combat shotgun"
-	desc = "The Terran Armories SH-39 combat shotgun is a semi automatic shotgun used by breachers and pointmen within the TGMC squads. Uses 12 gauge shells."
+	desc = "The Terran Armories T-39 combat shotgun is a semi automatic shotgun used by breachers and pointmen within the TGMC squads. Uses 12 gauge shells."
 	force = 20 //Has a stock already
 	flags_equip_slot = ITEM_SLOT_BACK
 	icon = 'icons/Marine/gun64.dmi'
@@ -657,7 +657,7 @@
 //T-35 Pump shotgun
 /obj/item/weapon/gun/shotgun/pump/t35
 	name = "\improper T-35 pump shotgun"
-	desc = "The Terran Armories SH-35 is the shotgun used by the TerraGov Marine Corps. It's used as a close quarters tool when someone wants something more suited for close range than most people, or as an odd sidearm on your back for emergencies. Uses 12 gauge shells.\n<b>Requires a pump, which is the Unique Action key.</b>"
+	desc = "The Terran Armories T-35 is the shotgun used by the TerraGov Marine Corps. It's used as a close quarters tool when someone wants something more suited for close range than most people, or as an odd sidearm on your back for emergencies. Uses 12 gauge shells.\n<b>Requires a pump, which is the Unique Action key.</b>"
 	flags_equip_slot = ITEM_SLOT_BACK
 	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "t35"

@@ -716,7 +716,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 /obj/item/attachable/scope/optical
 	name = "T-49 Optical imaging scope"
 	icon_state = "imagerscope"
-	desc = "A rail-mounted scope designed for the AR-55 and GL-54. Features low light optical imaging capabilities and assists with precision aiming. Allows zoom by activating the attachment."
+	desc = "A rail-mounted scope designed for the TX-55 and TX-54. Features low light optical imaging capabilities and assists with precision aiming. Allows zoom by activating the attachment."
 	has_nightvision = TRUE
 	aim_speed_mod = 0.3
 	wield_delay_mod = 0.2 SECONDS
@@ -753,11 +753,11 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	icon_state = "tl127_scope"
 	aim_speed_mod = 0
 	wield_delay_mod = 0
-	desc = "A rail mounted zoom sight scope specialized for the SR-127 sniper rifle. Allows zoom by activating the attachment."
+	desc = "A rail mounted zoom sight scope specialized for the TL-127 sniper rifle. Allows zoom by activating the attachment."
 
 /obj/item/attachable/scope/unremovable/heavymachinegun
-	name = "HMG-08 long range ironsights"
-	desc = "An unremovable set of long range ironsights for an HMG-08 machinegun."
+	name = "MG-08/495 long range ironsights"
+	desc = "An unremovable set of long range ironsights for an MG-08/495 machinegun."
 	icon_state = "sniperscope_invisible"
 	zoom_viewsize = 0
 	zoom_tile_offset = 5
@@ -774,14 +774,14 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	zoom_viewsize = 0
 
 /obj/item/attachable/scope/unremovable/standard_atgun
-	name = "AT-36 long range scope"
+	name = "TAT-36 long range scope"
 	desc = "An unremovable set of long range scopes, very complex to properly range. Requires time to aim.."
 	icon_state = "sniperscope_invisible"
 	scope_delay = 2 SECONDS
 	zoom_tile_offset = 7
 
 /obj/item/attachable/scope/unremovable/tl102
-	name = "HSG-102 smart sight"
+	name = "TL-102 smart sight"
 	desc = "An unremovable smart sight built for use with the tl102, it does nearly all the aiming work for the gun's integrated IFF systems."
 	icon_state = "sniperscope_invisible"
 	zoom_viewsize = 0
@@ -890,7 +890,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	variants_by_parent_type = list(/obj/item/weapon/gun/rifle/som = "")
 
 /obj/item/attachable/scope/mini/tx11
-	name = "AR-11 mini rail scope"
+	name = "TX-11 mini rail scope"
 	icon_state = "tx11scope"
 
 /obj/item/attachable/scope/antimaterial
@@ -913,7 +913,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	flags_attach_features = ATTACH_ACTIVATION
 
 /obj/item/attachable/scope/mini/dmr
-	name = "DMR-37 mini rail scope"
+	name = "T-37 mini rail scope"
 	icon_state = "t37"
 
 
@@ -976,8 +976,8 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	pixel_shift_y = 13
 
 /obj/item/attachable/stock/tx15
-	name = "\improper SH-15 stock"
-	desc = "The standard stock for the SH-15. Cannot be removed."
+	name = "\improper TX-15 stock"
+	desc = "The standard stock for the TX-15. Cannot be removed."
 	icon_state = "tx15stock"
 	pixel_shift_x = 32
 	pixel_shift_y = 13
@@ -1011,8 +1011,8 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	pixel_shift_y = 10
 
 /obj/item/attachable/stock/tl127stock
-	name = "\improper SR-127 stock"
-	desc = "A irremovable SR-127 sniper rifle stock."
+	name = "\improper TL-127 stock"
+	desc = "A irremovable TL-127 sniper rifle stock."
 	icon_state = "tl127stock"
 	pixel_shift_x = 32
 	pixel_shift_y = 13
@@ -1046,8 +1046,8 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	pixel_shift_y = 13
 
 /obj/item/attachable/stock/t39stock
-	name = "\improper SH-39 stock"
-	desc = "A specialized stock for the SH-39."
+	name = "\improper T-39 stock"
+	desc = "A specialized stock for the T-39."
 	icon_state = "t39stock"
 	pixel_shift_x = 32
 	pixel_shift_y = 13
@@ -1080,11 +1080,11 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	pixel_shift_y = 13
 
 /obj/item/attachable/stock/m41a
-	name = "PR-11 stock"
+	name = "HK-11 stock"
 	icon_state = "m41a"
 
 /obj/item/attachable/stock/tx11
-	name = "AR-11 stock"
+	name = "TX-11 stock"
 	icon_state = "tx11stock"
 
 /obj/item/attachable/stock/som_mg_stock
@@ -1095,29 +1095,29 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	pixel_shift_y = 0
 
 /obj/item/attachable/stock/t18stock
-	name = "\improper AR-18 stock"
-	desc = "A specialized stock for the AR-18."
+	name = "\improper T-18 stock"
+	desc = "A specialized stock for the T-18."
 	icon_state = "t18stock"
 	pixel_shift_x = 32
 	pixel_shift_y = 13
 
 /obj/item/attachable/stock/t12stock
-	name = "\improper AR-12 stock"
-	desc = "A specialized stock for the AR-12."
+	name = "\improper T-12 stock"
+	desc = "A specialized stock for the T-12."
 	icon_state = "t12stock"
 	pixel_shift_x = 32
 	pixel_shift_y = 13
 
 /obj/item/attachable/stock/t42stock
-	name = "\improper MG-42 stock"
-	desc = "A specialized stock for the MG-42."
+	name = "\improper T-42 stock"
+	desc = "A specialized stock for the T-42."
 	icon_state = "t42stock"
 	pixel_shift_x = 32
 	pixel_shift_y = 13
 
 /obj/item/attachable/stock/t64stock
-	name = "\improper BR-64 stock"
-	desc = "A specialized stock for the BR-64."
+	name = "\improper T-64 stock"
+	desc = "A specialized stock for the T-64."
 	icon_state = "t64stock"
 
 //You can remove the stock on the Magnum. So it has stats and is removeable.
@@ -1332,8 +1332,8 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	accuracy_unwielded_mod = -0.1
 
 /obj/item/attachable/foldable/t19stock
-	name = "\improper MP-19 machinepistol stock"
-	desc = "A submachinegun stock distributed in small numbers to TGMC forces. Compatible with the MP-19, this stock reduces recoil and improves accuracy, but at a reduction to handling and agility. Seemingly a bit more effective in a brawl."
+	name = "\improper TP-19 machinepistol stock"
+	desc = "A submachinegun stock distributed in small numbers to TGMC forces. Compatible with the TP-19, this stock reduces recoil and improves accuracy, but at a reduction to handling and agility. Seemingly a bit more effective in a brawl."
 	flags_attach_features = ATTACH_ACTIVATION
 	wield_delay_mod = 0.1 SECONDS
 	melee_mod = 5
@@ -1373,8 +1373,8 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	scatter_unwielded_mod = 4
 
 /obj/item/attachable/foldable/t35stock
-	name = "\improper SH-35 stock"
-	desc = "A non-standard heavy stock for the SH-35 shotgun. Less quick and more cumbersome than the standard issue stakeout, but reduces recoil and improves accuracy. Allegedly makes a pretty good club in a fight too."
+	name = "\improper T-35 stock"
+	desc = "A non-standard heavy stock for the T-35 shotgun. Less quick and more cumbersome than the standard issue stakeout, but reduces recoil and improves accuracy. Allegedly makes a pretty good club in a fight too."
 	icon = 'icons/Marine/attachments_64.dmi'
 	icon_state = "t35stock"
 	flags_attach_features = ATTACH_ACTIVATION

@@ -84,7 +84,7 @@
   - rscadd: Marine combat boots is now actually black
   - rscadd: adds brown marine combat boots
   Lumipharon:
-  - balance: 'HvH: SH-35 and V-51 loadouts no longer have tac sensors'
+  - balance: 'HvH: T-35 and V-51 loadouts no longer have tac sensors'
   - balance: 'HvH: Removed the damage malus from the V-51B burst shotgun'
   - balance: 'HvH: Improved damage falloff for volkite weapons slightly'
   - balance: 'HvH: MG-27 scope cannot be removed'
@@ -101,8 +101,8 @@
   - balance: Reduced MG-60 damage to 25 from 27.5, and reduced magazine capacity to
       200 from 250
   Pariah919:
-  - balance: MG-42 now has AR-12 burst fire. As in completely the same.
-  - balance: MG-42 now has BFA and tactical sensor.
+  - balance: T-42 now has T-12 burst fire. As in completely the same.
+  - balance: T-42 now has BFA and tactical sensor.
   - balance: Both Marine and DS Thermobarics have a 10 second reload time.
   Xander3359:
   - qol: You can hold click to throw knives at a constant rate.
@@ -312,7 +312,7 @@
   - balance: PMC ERT updates slightly with better loadouts, mainly for more ammunition
       and grenades
   - balance: VP78 burst fire is no longer just a worse version of semi auto
-  - balance: ' PR-412E no longer has a pointless burstfire mode'
+  - balance: ' M412E no longer has a pointless burstfire mode'
   - bugfix: fixed quick equip not working for some items obtained from loadout vendors
   - qol: SADAR and RPG rounds now have ammo specific projectile sprites
   - imageadd: Updated SADAR sprites

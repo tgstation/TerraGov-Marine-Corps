@@ -125,9 +125,9 @@
   - bugfix: fixes incorrect morgue sprite when something is inside of it
   - bugfix: fixed db holster using error placeholder sprite in some situations
   'Code: Lumi, Sprites: Ocelot & Lumi':
-  - rscadd: Added folding stocks for the MP-19, SH_35 and Skorpion
-  - rscadd: BR-64 comes with a custom UGL. No actual balance change
-  - balance: MP-19 now has fuller auto instead of burst fire, improving the performance
+  - rscadd: Added folding stocks for the TP-19, SH_35 and Skorpion
+  - rscadd: T-64 comes with a custom UGL. No actual balance change
+  - balance: TP-19 now has fuller auto instead of burst fire, improving the performance
       of a single gun but nerfing akimbo
   - bugfix: fixed a couple of minor gun bugs
   - imageadd: Resprited a variety of guns and attachments
@@ -281,7 +281,7 @@
       into a single item and merged into the Style line. Its webbing variant can be
       accessed by using green facepaint.
   Lumipharon:
-  - rscadd: Added BR-64 loadouts to HvH
+  - rscadd: Added T-64 loadouts to HvH
   - balance: 'HvH: All loadouts now have advanced combat injectors instead of combat
       injectors'
   - balance: 'HvH: Buffed the V-41 damage and added slowdown on hit'
@@ -301,7 +301,7 @@
   - bugfix: fixed a timer bug with sensor towers.
   - bugfix: eswords no longer block almost all incoming damage
   - bugfix: fixed a bug with King's summon
-  - bugfix: fixed a minor MG-42 sprite issue
+  - bugfix: fixed a minor T-42 sprite issue
   RipGrayson:
   - bugfix: Removed some misplaced hull windows on Big Red.
   - bugfix: Fixed an oversight with podding on Chigusa.

@@ -157,7 +157,7 @@
 	default_ammo = /datum/ammo/rocket/wp/unguided
 
 //-------------------------------------------------------
-//RL-160 recoilless rifle
+//T-160 recoilless rifle
 
 /obj/item/ammo_magazine/rocket/recoilless
 	name = "\improper 67mm high-explosive shell"

@@ -27,7 +27,7 @@
 	movement_acc_penalty_mult = 3
 
 //-------------------------------------------------------
-// MP-19 Machinepistol. It fits here more.
+// TP-19 Machinepistol. It fits here more.
 
 /obj/item/weapon/gun/smg/standard_machinepistol
 	name = "\improper T-19 machinepistol"
@@ -257,7 +257,7 @@
 	starting_attachment_types = list(/obj/item/attachable/suppressor, /obj/item/attachable/magnetic_harness, /obj/item/attachable/gyro)
 
 //-------------------------------------------------------
-//SMG-27, based on the grease gun
+//MP-27, based on the grease gun
 
 /obj/item/weapon/gun/smg/mp7
 	name = "\improper MP-27 submachinegun"
@@ -395,7 +395,7 @@
 //GENERIC UZI //Based on the uzi submachinegun, of course.
 
 /obj/item/weapon/gun/smg/uzi
-	name = "\improper SMG-2 submachinegun"
+	name = "\improper MP-2 submachinegun"
 	desc = "A cheap, reliable design and manufacture make this ubiquitous submachinegun useful despite the age. Put the fire selector to full auto for maximum firepower. Use two if you really want to go ham."
 	icon_state = "uzi"
 	item_state = "uzi"

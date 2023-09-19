@@ -226,7 +226,7 @@
 	lore_text = "The K23 itself was designed at first for military use as 12 gauge pump-action shotguns were starting to pick up steam \
 	again due to advancements in ammunition made them much more effective at breaking doors and simple masterkey shotguns were starting \
 	to fall out of favor due to the preference of grenade launchers or other grips started to phase them out. <br><br>\
-	Eventually trials were made for a new shotgun and the K23 eventually won them out and was adopted as the SH-35. It was \
+	Eventually trials were made for a new shotgun and the K23 eventually won them out and was adopted as the T-35. It was \
 	officially adopted as a door breaching tool but was incredibly effective at close quarters and shipside combat because \
 	advancements in  ammunition allowed shotguns to punch through common ballistic armor, making it a popular option for close quarters situations."
 
@@ -254,9 +254,9 @@
 /datum/codex_entry/standard_assaultrifle
 	associated_paths = list(/obj/item/weapon/gun/rifle/standard_assaultrifle)
 	lore_text = "The Keckler and Hoch M-12 was created out of an order for a robust rifle using a caseless round, after the ergonomic and costly disaster of the 'Rifle of the future' Project. \
-	Ironically, the M-12 submitted by the very group that made the national disaster that the AR-11 (originally designated the M-11) ended up winning out all the tests. \
+	Ironically, the M-12 submitted by the very group that made the national disaster that the TX-11 (originally designated the M-11) ended up winning out all the tests. \
 	It was designed to be simple to use, disassemble and basically survive every condition, however due to reports of barrel melting from the high use of polymers. It ended up being heavier than its ilk to compensate.\
-	After wining all the tests, it was accepted and christened the 'AR-12' in service. Aside from issues with barrel overheating, which later models fixed. It is known for reliability across the Marine Corps and the wider galaxy.\
+	After wining all the tests, it was accepted and christened the 'T-12' in service. Aside from issues with barrel overheating, which later models fixed. It is known for reliability across the Marine Corps and the wider galaxy.\
 	Most would say the simple blend of a good magazine size, ergonomics and adaptablitty elevate this weapon above the rest."
 
 /datum/codex_entry/standard_carbine
@@ -265,7 +265,7 @@
 	The Carbine variant, known as the 'ALF-51' focused on creating a small, compact package that could fire a rifle-sized round while still retaining good accuracy and shot placement.\
 	Originally, it was meant to fire in burst-fire only, future production variants turned to feature full-auto after it showed that in testing, it would improve troop morale and confidence in the versatility in the rifle.\
 	The entire ALF-series ended up being panic bought in mass by specialized troops in the Marine Corps, generally Peacekeeper sections or Air Assault sections, it eventually spread by osmosis in popularity.\
-	Eventually, they ended up becoming standard issue and a formal contract was signed, the Carbine was christened the 'AR-18'.\
+	Eventually, they ended up becoming standard issue and a formal contract was signed, the Carbine was christened the 'T-18'.\
 	Most would say its particularly compact appreance and performance, combined with good burst-fire capablity are its edge in combat. Watch your ammo, though."
 
 /datum/codex_entry/standard_lmg
@@ -274,7 +274,7 @@
 	The Machinegun variant, known as the 'ALF-22' focused on creating a versatile package consisting of a light squad support weapon, with a focus on mobility and accurate fire over pure magazine size.\
 	It ended up with a drum magazine, elongated heavy barrel for sustained firing, its overall shape being of a common rifle generally assists it in being easy to pickup and use, and can mount more underbarrel attachments compared to its peers in its class.\
 	The entire ALF-series ended up being panic bought in mass by specialized troops in the Marine Corps, generally Peacekeeper sections or Air Assault sections, it eventually spread by osmosis in popularity.\
-	Eventually, they ended up becoming standard issue and a formal contract was signed, the Machinegun was christened the 'MG-42'.\
+	Eventually, they ended up becoming standard issue and a formal contract was signed, the Machinegun was christened the 'T-42'.\
 	Most would say the large magazine capacity combined with ease of use and ability to lay down fire with good frontline potential is the main advantage of this weapon. You will still be one the slower people in your group, however."
 
 /datum/codex_entry/standard_skirmishrifle
@@ -283,7 +283,7 @@
 	The 'Skirmish' Rifle variant, known as the 'ALF-6' focused on creating a fullpower rifle, light and with a good blend of mobility, firerate and firepower.\
 	The rifle ended up being the rifle to truly kick off the ALF series, becoming famous for being a great blend of firepower, mobility and ease of use, however the system was known for tearing rounds like it was nothing.\
 	The entire ALF-series ended up being panic bought in mass by specialized troops in the Marine Corps, generally Peacekeeper sections or Air Assault sections, it eventually spread by osmosis in popularity.\
-	Eventually, they ended up becoming standard issue and a formal contract was signed, the Rifle was christened the 'AR-21'.\
+	Eventually, they ended up becoming standard issue and a formal contract was signed, the Rifle was christened the 'T-21'.\
 	Most would say it earned its term of a 'Skirmish' rifle due to use in constant skirmishes by frontline troops, due to a low magazine size, but good overall mobility combined with firepower. Watch your magazine count and put the hurt downrange."
 
 /datum/codex_entry/standard_tx11
@@ -292,7 +292,7 @@
 	The M-11 was created to be the ultimate weapon, being able to lay down fire like an MG with a high capacity, amazing burst fire capability, specialized scope for long range damage, it was tested and destroyed the competition.\
 	It did amazing in field tests, and was effectively the best rifle overall. Most concerns were ergonomical, however it was pushed aside for a need of a new rifle, and money was already spent in making the entire thing, so getting a new competition would be too bothersome.\
 	Eventually however, these ergonomic failures lead to constant troop complaints due to the unergonomic nature of the rifle, troops who swore by it loved it, troops who hated it called it a useless brick.\
-	Eventually pushback got so large that a new bid was quickly placed within less than a decade, and the M-11, by now christened the 'AR-11', was considered a failure and mothballed.\
+	Eventually pushback got so large that a new bid was quickly placed within less than a decade, and the M-11, by now christened the 'TX-11', was considered a failure and mothballed.\
 	However, some have been pulled out of long term storage, and recent spottings have shown modernizations such as removal of the side magazines, an overall more ergonomic shape with less brick-like features, and a larger magazine.\
 	Most would say that the unusually large magazine capacity, amazing burst fire capability allows for an interesting use of a support weapon. But its bulky and unusual shape leading a low amount of attachments can hamper it in combat."
 
@@ -329,4 +329,4 @@
 	It's generally used inside it's belt holster or slung on your back as a secondary firearm for use in situations where you have a \
 	larger gun and would prefer a more CQC able weapon. It also has a rather large magazine capacity due to the small caliber size and caseless ammunition. <br><br>\
 	The MD-65 was adopted as a program to allow specialized units like medics and engineers to carry a smaller firearm to maximize \
-	weight and storage capacity. However it slowly spread in popularity to light infantry and scout units. It was named SMG-90 upon adoption."
+	weight and storage capacity. However it slowly spread in popularity to light infantry and scout units. It was named T-90 upon adoption."

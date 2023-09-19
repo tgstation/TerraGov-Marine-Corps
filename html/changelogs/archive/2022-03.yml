@@ -287,7 +287,7 @@
       defib warble.'
   Lumipharon:
   - bugfix: Boiler gas cloud no longer scales in size past Ancient
-  - rscadd: 'Adds the GL-54, a magazine fed grenade launcher utilising 20mm airbursting
+  - rscadd: 'Adds the TX-54, a magazine fed grenade launcher utilising 20mm airbursting
       grenades remove: Impact grenades are no longer available roundstart'
   - bugfix: grenades fired from weapons no longer always point north mid flight
   RipGrayson:

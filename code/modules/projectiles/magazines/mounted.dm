@@ -1,7 +1,7 @@
-///Default ammo for the HSG-102.
+///Default ammo for the TL-102.
 /obj/item/ammo_magazine/tl102
 	name = "TL-102 drum magazine (10x30mm Caseless)"
-	desc = "A box of 300, 10x30mm caseless tungsten rounds for the HSG-102 mounted heavy smartgun."
+	desc = "A box of 300, 10x30mm caseless tungsten rounds for the TL-102 mounted heavy smartgun."
 	w_class = WEIGHT_CLASS_NORMAL
 	icon = 'icons/Marine/marine-hmg.dmi'
 	icon_state = "mag"
@@ -12,7 +12,7 @@
 	reload_delay = 5 SECONDS
 	icon_state_mini = "mag_hmg"
 
-///This is the one that comes in the mapbound and dropship mounted version of the HSG-102, it has a stupid amount of ammo. Even more than the ammo counter can display.
+///This is the one that comes in the mapbound and dropship mounted version of the TL-102, it has a stupid amount of ammo. Even more than the ammo counter can display.
 /obj/item/ammo_magazine/tl102/hsg_nest
 	max_rounds = 500
 
@@ -139,7 +139,7 @@
 
 /obj/item/ammo_magazine/heavy_minigun
 	name = "TL-2005 box magazine (7.62x51mm)"
-	desc = "A box of 1000 rounds for the T-2005 mounted minigun."
+	desc = "A box of 1000 rounds for the TL-2005 mounted minigun."
 	w_class = WEIGHT_CLASS_BULKY
 	icon = 'icons/obj/items/ammo.dmi'
 	icon_state = "minigun"

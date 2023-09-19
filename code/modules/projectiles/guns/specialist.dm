@@ -741,7 +741,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 
 
 //-------------------------------------------------------
-//RL-160 Recoilless Rifle. Its effectively an RPG codewise.
+//T-160 Recoilless Rifle. Its effectively an RPG codewise.
 
 /obj/item/weapon/gun/launcher/rocket/recoillessrifle
 	name = "\improper T-160 recoilless rifle"

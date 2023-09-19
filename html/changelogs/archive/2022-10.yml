@@ -51,7 +51,7 @@
   - rscadd: Seasonal round tips
   - rscadd: Isotonic pills
   Aquilar:
-  - bugfix: adjusts the positioning of the attachments on the BR-64, AR-18 and PR-11
+  - bugfix: adjusts the positioning of the attachments on the T-64, T-18 and HK-11
   Lewdcifer:
   - imageadd: Added particle visuals to Defiler's Reagent Slash and Emit Neurogas
       abilities.
@@ -65,7 +65,7 @@
   - code_imp: cleaned up a bit of flashbang code
   - rscadd: The SOM have begun domestic food production to replace imported UPP rations
   hyper2snyper:
-  - bugfix: Fixes the right hand mob state for the AR-21 and SG-29
+  - bugfix: Fixes the right hand mob state for the T-21 and SG-29
   lbnesquik:
   - rscadd: Expanded Prison West LZ2 by 1 tile west
 2022-10-08:
@@ -87,7 +87,7 @@
   - rscadd: Added Radiation effects for use by the SOM. War crimes have never been
       so easy!
   - bugfix: Fixed a couple of minor gun ammo bugs
-  - balance: Very slightly increased burst extra delay on the AR-11
+  - balance: Very slightly increased burst extra delay on the TX-11
   TiviPlus:
   - bugfix: Ammo HUDs will now always blink when you are out of ammo instead of only
       the bottommost one
@@ -157,7 +157,7 @@
   - bugfix: Mechs are no longer immortal
   - balance: Some mech guns nerfed
   Losenis:
-  - balance: SR-127 can now fit barrel charger
+  - balance: TL-127 can now fit barrel charger
   tyeagg:
   - imageadd: minimap icons for st, cl ,mo ,cmo, uavs, supply beacons, asrs pads,
       teleporter pads, sentries, spawners, phero tower and xeno turrets
@@ -345,7 +345,7 @@
   - bugfix: fixed C4 being hearable way too far.
 2022-10-27:
   Lumipharon:
-  - bugfix: fixed the MG-42 mob sprites and various other minor gun mob sprite issues
+  - bugfix: fixed the T-42 mob sprites and various other minor gun mob sprite issues
   - bugfix: fixed another minor vote bug
   Zar000:
   - balance: xenos dont pay back for roundstart slots

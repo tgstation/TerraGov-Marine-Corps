@@ -697,8 +697,8 @@
 // -Pistol-
 
 /obj/item/storage/box/visual/magazine/compact/standard_pistol
-	name = "P-14 magazine box"
-	desc = "A box specifically designed to hold a large amount of P-14 magazines."
+	name = "TP-14 magazine box"
+	desc = "A box specifically designed to hold a large amount of TP-14 magazines."
 	closed_overlay = "mag_box_small_overlay_p14"
 	can_hold = list(
 		/obj/item/ammo_magazine/pistol/standard_pistol,
@@ -784,8 +784,8 @@
 // -SMG-
 
 /obj/item/storage/box/visual/magazine/compact/standard_smg
-	name = "SMG-90 magazine box"
-	desc = "A box specifically designed to hold a large amount of SMG-90 magazines."
+	name = "T-90 magazine box"
+	desc = "A box specifically designed to hold a large amount of T-90 magazines."
 	closed_overlay = "mag_box_small_overlay_smg90"
 	can_hold = list(
 		/obj/item/ammo_magazine/smg/standard_smg,
@@ -796,8 +796,8 @@
 	spawn_type = /obj/item/ammo_magazine/smg/standard_smg
 
 /obj/item/storage/box/visual/magazine/compact/standard_machinepistol
-	name = "MP-19 magazine box"
-	desc = "A box specifically designed to hold a large amount of MP-19 magazines."
+	name = "TP-19 magazine box"
+	desc = "A box specifically designed to hold a large amount of TP-19 magazines."
 	closed_overlay = "mag_box_small_overlay_mp19"
 	can_hold = list(
 		/obj/item/ammo_magazine/smg/standard_machinepistol,
@@ -823,8 +823,8 @@
 // -Rifle-
 
 /obj/item/storage/box/visual/magazine/compact/standard_assaultrifle
-	name = "AR-12 magazine box"
-	desc = "A box specifically designed to hold a large amount of AR-12 magazines."
+	name = "T-12 magazine box"
+	desc = "A box specifically designed to hold a large amount of T-12 magazines."
 	storage_slots = 30
 	closed_overlay = "mag_box_small_overlay_ar12"
 	can_hold = list(
@@ -836,8 +836,8 @@
 	spawn_type = /obj/item/ammo_magazine/rifle/standard_assaultrifle
 
 /obj/item/storage/box/visual/magazine/compact/standard_carbine
-	name = "AR-18 magazine box"
-	desc = "A box specifically designed to hold a large amount of AR-18 magazines."
+	name = "T-18 magazine box"
+	desc = "A box specifically designed to hold a large amount of T-18 magazines."
 	storage_slots = 30
 	closed_overlay = "mag_box_small_overlay_ar18"
 	can_hold = list(
@@ -849,8 +849,8 @@
 	spawn_type = /obj/item/ammo_magazine/rifle/standard_carbine
 
 /obj/item/storage/box/visual/magazine/compact/standard_skirmishrifle
-	name = "AR-21 magazine box"
-	desc = "A box specifically designed to hold a large amount of AR-21 magazines."
+	name = "T-21 magazine box"
+	desc = "A box specifically designed to hold a large amount of T-21 magazines."
 	storage_slots = 30
 	closed_overlay = "mag_box_small_overlay_ar21"
 	can_hold = list(
@@ -862,8 +862,8 @@
 	spawn_type = /obj/item/ammo_magazine/rifle/standard_skirmishrifle
 
 /obj/item/storage/box/visual/magazine/compact/ar11
-	name = "AR-11 magazine box"
-	desc = "A box specifically designed to hold a large amount of AR-11 magazines."
+	name = "TX-11 magazine box"
+	desc = "A box specifically designed to hold a large amount of TX-11 magazines."
 	storage_slots = 30
 	closed_overlay = "mag_box_small_overlay_ar11"
 	can_hold = list(
@@ -888,8 +888,8 @@
 	spawn_type = /obj/item/ammo_magazine/rifle/martini
 
 /obj/item/storage/box/visual/magazine/compact/sh15
-	name = "SH-15 magazine box"
-	desc = "A box specifically designed to hold a large amount of SH-15 magazines."
+	name = "TX-15 magazine box"
+	desc = "A box specifically designed to hold a large amount of TX-15 magazines."
 	storage_slots = 30
 	closed_overlay = "mag_box_small_overlay_sh15"
 	can_hold = list(
@@ -898,7 +898,7 @@
 	)
 
 /obj/item/storage/box/visual/magazine/compact/sh15/flechette
-	name = "SH-15 flechette magazine box"
+	name = "TX-15 flechette magazine box"
 	closed_overlay = "mag_box_small_overlay_sh15_flechette"
 
 /obj/item/storage/box/visual/magazine/compact/sh15/flechette/full
@@ -906,7 +906,7 @@
 	spawn_type = /obj/item/ammo_magazine/rifle/tx15_flechette
 
 /obj/item/storage/box/visual/magazine/compact/sh15/slug
-	name = "SH-15 slug magazine box"
+	name = "TX-15 slug magazine box"
 	closed_overlay = "mag_box_small_overlay_sh15_slug"
 
 /obj/item/storage/box/visual/magazine/compact/sh15/slug/full
@@ -963,8 +963,8 @@
 // -Marksmen-
 
 /obj/item/storage/box/visual/magazine/compact/standard_dmr
-	name = "DMR-37 magazine box"
-	desc = "A box specifically designed to hold a large amount of DMR-37 magazines."
+	name = "T-37 magazine box"
+	desc = "A box specifically designed to hold a large amount of T-37 magazines."
 	storage_slots = 30
 	closed_overlay = "mag_box_small_overlay_dmr37"
 	can_hold = list(
@@ -976,8 +976,8 @@
 	spawn_type = /obj/item/ammo_magazine/rifle/standard_dmr
 
 /obj/item/storage/box/visual/magazine/compact/standard_br
-	name = "BR-64 magazine box"
-	desc = "A box specifically designed to hold a large amount of BR-64 magazines."
+	name = "T-64 magazine box"
+	desc = "A box specifically designed to hold a large amount of T-64 magazines."
 	storage_slots = 30
 	closed_overlay = "mag_box_small_overlay_br64"
 	can_hold = list(
@@ -989,8 +989,8 @@
 	spawn_type = /obj/item/ammo_magazine/rifle/standard_br
 
 /obj/item/storage/box/visual/magazine/compact/chamberedrifle
-	name = "SR-127 magazine box"
-	desc = "A box specifically designed to hold a large amount of SR-127 magazines."
+	name = "TL-127 magazine box"
+	desc = "A box specifically designed to hold a large amount of TL-127 magazines."
 	storage_slots = 30
 	closed_overlay = "mag_box_small_overlay_sr127"
 	can_hold = list(
@@ -1022,8 +1022,8 @@
 // -Machinegun-
 
 /obj/item/storage/box/visual/magazine/compact/standard_lmg
-	name = "MG-42 drum magazine box"
-	desc = "A box specifically designed to hold a large amount of MG-42 drum magazines."
+	name = "T-42 drum magazine box"
+	desc = "A box specifically designed to hold a large amount of T-42 drum magazines."
 	storage_slots = 30
 	closed_overlay = "mag_box_small_overlay_mg42"
 	can_hold = list(
@@ -1062,8 +1062,8 @@
 
 
 /obj/item/storage/box/visual/magazine/compact/heavymachinegun
-	name = "HMG-08 drum box"
-	desc = "A box specifically designed to hold a large amount of HMG-08 drum."
+	name = "MG-08/495 drum box"
+	desc = "A box specifically designed to hold a large amount of MG-08/495 drum."
 	storage_slots = 30
 	closed_overlay = "mag_box_small_overlay_mg08"
 	can_hold = list(

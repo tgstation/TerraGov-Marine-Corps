@@ -102,23 +102,23 @@
 	icon_state = "chest"
 
 /obj/structure/largecrate/supply/weapons/standard_carbine
-	name = "\improper AR-18 Carbine weapons chest (x10)"
-	desc = "A weapons chest containing ten AR-18 Carbines."
+	name = "\improper T-18 Carbine weapons chest (x10)"
+	desc = "A weapons chest containing ten T-18 Carbines."
 	supplies = list(/obj/item/weapon/gun/rifle/standard_carbine = 10)
 
 /obj/structure/largecrate/supply/weapons/shotgun
-	name = "\improper SH-35 pump action shotgun weapons chest (x10)"
-	desc = "A weapons chest containing ten SH-35 pump shotguns."
+	name = "\improper T-35 pump action shotgun weapons chest (x10)"
+	desc = "A weapons chest containing ten T-35 pump shotguns."
 	supplies = list(/obj/item/weapon/gun/shotgun/pump/t35 = 10)
 
 /obj/structure/largecrate/supply/weapons/standard_smg
-	name = "\improper SMG-90 sub machinegun weapons chest (x8)"
-	desc = "A weapons chest containing eight SMG-90 submachine guns."
+	name = "\improper T-90 sub machinegun weapons chest (x8)"
+	desc = "A weapons chest containing eight T-90 submachine guns."
 	supplies = list(/obj/item/weapon/gun/smg/standard_smg = 8)
 
 /obj/structure/largecrate/supply/weapons/pistols
 	name = "sidearm weapons chest (x20)"
-	desc = "A weapons chest containing eight R-44 revolvers, and twelve P-14 service pistols."
+	desc = "A weapons chest containing eight R-44 revolvers, and twelve TP-14 service pistols."
 	supplies = list(/obj/item/weapon/gun/revolver/standard_revolver = 6, /obj/item/weapon/gun/pistol/standard_pistol = 12)
 
 /obj/structure/largecrate/supply/weapons/flamers
@@ -127,8 +127,8 @@
 	supplies = list(/obj/item/weapon/gun/flamer/big_flamer = 4)
 
 /obj/structure/largecrate/supply/weapons/hpr
-	name = "\improper MG-42 LMG weapons chest (x2)"
-	desc = "A weapons chest containing two MG-42 LMG."
+	name = "\improper T-42 LMG weapons chest (x2)"
+	desc = "A weapons chest containing two T-42 LMG."
 	supplies = list(/obj/item/weapon/gun/rifle/standard_lmg = 2)
 
 /obj/structure/largecrate/supply/weapons/sentries
@@ -137,13 +137,13 @@
 	supplies = list(/obj/item/storage/box/crate/sentry = 2)
 
 /obj/structure/largecrate/supply/weapons/standard_hmg
-	name = "\improper HSG-102 mounted heavy smartgun chest (x2)"
-	desc = "A supply crate containing two boxed HSG-102 mounted heavy smartguns."
+	name = "\improper TL-102 mounted heavy smartgun chest (x2)"
+	desc = "A supply crate containing two boxed TL-102 mounted heavy smartguns."
 	supplies = list(/obj/item/storage/box/tl102 = 2)
 
 /obj/structure/largecrate/supply/weapons/standard_atgun
-	name = "\improper AT-36 anti tank gun and ammo chest (x1, x10)"
-	desc = "A supply crate containing a AT-36 and a full set of ammo to load into the sponson."
+	name = "\improper TAT-36 anti tank gun and ammo chest (x1, x10)"
+	desc = "A supply crate containing a TAT-36 and a full set of ammo to load into the sponson."
 	supplies = list(
 		/obj/item/weapon/gun/standard_atgun = 1,
 		/obj/item/ammo_magazine/standard_atgun = 4,
@@ -156,13 +156,13 @@
 	icon_state = "case"
 
 /obj/structure/largecrate/supply/ammo/m41a
-	name = "\improper PR-412 magazine case (x20)"
-	desc = "An ammunition case containing 20 PR-412 magazines."
+	name = "\improper M412 magazine case (x20)"
+	desc = "An ammunition case containing 20 M412 magazines."
 	supplies = list(/obj/item/ammo_magazine/rifle = 20)
 
 /obj/structure/largecrate/supply/ammo/m41a_box
-	name = "\improper PR-412 ammunition box case (x4)"
-	desc = "An ammunition case containing four PR-412 600 round boxes of ammunition."
+	name = "\improper M412 ammunition box case (x4)"
+	desc = "An ammunition case containing four M412 600 round boxes of ammunition."
 	supplies = list(/obj/item/big_ammo_box = 4)
 
 /obj/structure/largecrate/supply/ammo/shotgun
@@ -171,8 +171,8 @@
 	supplies = list(/obj/item/ammo_magazine/shotgun = 8, /obj/item/ammo_magazine/shotgun/buckshot = 8, /obj/item/ammo_magazine/shotgun/flechette = 8)
 
 /obj/structure/largecrate/supply/ammo/standard_smg
-	name = "\improper SMG-90 magazine case (x16)"
-	desc = "An ammunition case containing sixteen SMG-90 magazines."
+	name = "\improper T-90 magazine case (x16)"
+	desc = "An ammunition case containing sixteen T-90 magazines."
 	supplies = list(/obj/item/ammo_magazine/smg/standard_smg = 16)
 
 /obj/structure/largecrate/supply/ammo/pistol
@@ -186,8 +186,8 @@
 	supplies = list(/obj/item/ammo_magazine/sentry = 6)
 
 /obj/structure/largecrate/supply/ammo/standard_hmg
-	name = "\improper HSG-102 ammunition box case (x6)"
-	desc = "An ammunition case containing six HSG-102 ammunition boxes."
+	name = "\improper TL-102 ammunition box case (x6)"
+	desc = "An ammunition case containing six TL-102 ammunition boxes."
 	supplies = list(/obj/item/ammo_magazine/tl102 = 6)
 
 /obj/structure/largecrate/supply/ammo/standard_ammo

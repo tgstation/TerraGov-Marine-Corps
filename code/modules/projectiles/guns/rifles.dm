@@ -183,7 +183,7 @@
 	starting_attachment_types = list(/obj/item/attachable/stock/t12stock, /obj/item/attachable/magnetic_harness, /obj/item/attachable/extended_barrel, /obj/item/weapon/gun/grenade_launcher/underslung)
 
 //-------------------------------------------------------
-//DMR-37 DMR
+//T-37 DMR
 
 /obj/item/weapon/gun/rifle/standard_dmr
 	name = "\improper T-37 SCA designated marksman rifle"
@@ -265,7 +265,7 @@
 
 /obj/item/weapon/gun/rifle/standard_br
 	name = "\improper T-64 SCA battle rifle"
-	desc = "The San Cristo Arms BR-64 is the TerraGov Marine Corps main battle rifle. It is known for its consistent ability to perform well at most ranges, and medium range stopping power with bursts. It is mostly used by people who prefer a bigger round than the average. Uses 10x26.5smm caseless caliber."
+	desc = "The San Cristo Arms T-64 is the TerraGov Marine Corps main battle rifle. It is known for its consistent ability to perform well at most ranges, and medium range stopping power with bursts. It is mostly used by people who prefer a bigger round than the average. Uses 10x26.5smm caseless caliber."
 	icon_state = "t64"
 	item_state = "t64"
 	icon = 'icons/Marine/gun64.dmi'
