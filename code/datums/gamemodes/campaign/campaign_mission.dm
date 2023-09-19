@@ -5,6 +5,8 @@
 	var/map_name
 	///path of map for this mission
 	var/map_file
+	///map_traits, defaults to ZTRAIT_AWAY
+	var/list/map_traits = list(ZTRAIT_AWAY = TRUE)
 	///Optional elay for each faction to be able to deploy
 	var/list/shutter_open_delay = list(
 		"starting_faction" = 0,
@@ -139,7 +141,7 @@
 
 ///Generates a new z level for the mission
 /datum/campaign_mission/proc/load_map()
-	var/datum/space_level/new_level = load_new_z_level(map_file, map_name)
+	var/datum/space_level/new_level = load_new_z_level(map_file, map_name, TRUE, map_traits)
 	mode.set_lighting(new_level.z_value)
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_CAMPAIGN_MISSION_LOADED, new_level.z_value)
 

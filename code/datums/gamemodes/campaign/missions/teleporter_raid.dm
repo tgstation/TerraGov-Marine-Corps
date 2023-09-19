@@ -3,6 +3,7 @@
 	name = "Teleporter control raid"
 	map_name = "Lunar base BD-832"
 	map_file = '_maps/map_files/Campaign maps/jungle_test/jungle_outpost.dmm'
+	map_traits = list(ZTRAIT_AWAY = TRUE, ZTRAIT_GRAVITY = 0.4) //moon gravity
 	objectives_total = 1
 	min_destruction_amount = 0
 	objective_destruction_messages = list(
