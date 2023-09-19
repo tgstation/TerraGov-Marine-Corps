@@ -72,9 +72,9 @@
 	)
 	attachable_offset = list("muzzle_x" = 0, "muzzle_y" = 0,"rail_x" = 0, "rail_y" = 0, "under_x" = 19, "under_y" = 13, "stock_x" = -19, "stock_y" = 0)
 	windup_delay = 0.8 SECONDS
-	//windup_sound = 'sound/weapons/guns/fire/t500_start.ogg'
-	//fire_sound = 'sound/weapons/guns/fire/t500.ogg'
-	//dry_fire_sound = 'sound/weapons/guns/fire/t500_empty.ogg'
+	windup_sound = 'modular_RUtgmc/sound/weapons/guns/fire/t500_start.ogg'
+	fire_sound = 'modular_RUtgmc/sound/weapons/guns/fire/t500.ogg'
+	dry_fire_sound = 'modular_RUtgmc/sound/weapons/guns/fire/t500_empty.ogg'
 	fire_animation = "t500_fire"
 	fire_delay = 0.8 SECONDS
 	akimbo_additional_delay = 0.6

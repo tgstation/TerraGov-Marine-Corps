@@ -12,9 +12,9 @@
 							span_notice("You press [src]. Oink! "))
 		last_hug_time = world.time + 50 //5 second cooldown
 
-// /obj/item/toy/plush/pig/Initialize()
-// 	. = ..()
-// 	AddComponent(/datum/component/squeak, 'sound/items/khryu.ogg', 50)
+/obj/item/toy/plush/pig/Initialize()
+	. = ..()
+	AddComponent(/datum/component/squeak, 'modular_RUtgmc/sound/items/khryu.ogg', 50)
 
 /obj/structure/bed/namaz
 	name = "Prayer rug"
