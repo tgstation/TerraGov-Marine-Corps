@@ -136,7 +136,6 @@
 	if(ismob(source))
 		var/mob/mob_source = source
 		if(!item.canStrip(user, mob_source))
-			user.balloon_alert(user, "[item] is stuck!")
 			return FALSE
 
 	return TRUE
@@ -278,6 +277,8 @@
 
 /// A utility function for `/datum/strippable_item`s to finish unequipping an item from a mob.
 /datum/strippable_item/proc/finish_unequip_mob(obj/item/item, mob/source, mob/user)
+	if(item.special_stripped_behavior(user, source))
+		return FALSE
 	if(!source.dropItemToGround(item))
 		return FALSE
 
