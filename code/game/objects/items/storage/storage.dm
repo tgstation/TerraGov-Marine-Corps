@@ -836,6 +836,7 @@
 
 
 /obj/item/storage/AltClick(mob/user)
+	. = ..()
 	attempt_draw_object(user)
 
 /obj/item/storage/AltRightClick(mob/user)
@@ -843,6 +844,9 @@
 		open(user)
 
 /obj/item/storage/attack_hand_alternate(mob/living/user)
+	. = ..()
+	if(.)
+		return
 	attempt_draw_object(user)
 
 ///attempts to get the first possible object from this container
@@ -857,6 +861,7 @@
 	drawn_item.attack_hand(user)
 
 /obj/item/storage/proc/PopulateContents()
+	return
 
 /obj/item/storage/update_icon_state()
 	if(!sprite_slots)
