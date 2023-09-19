@@ -849,15 +849,25 @@
 		return
 	attempt_draw_object(user)
 
-///attempts to get the first possible object from this container
-/obj/item/storage/proc/attempt_draw_object(mob/living/user)
+/obj/item/storage/CtrlClick(mob/living/user)
+	. = ..()
+	attempt_draw_object(user, TRUE)
+
+/**
+ * Attempts to get the first possible object from this container
+ * 
+ * Arguments:
+ * * mob/living/user - The mob attempting to draw from this container
+ * * start_from_left - Determines if we should draw the leftmost or rightmost object out of the contents. FALSE by default.
+ */
+/obj/item/storage/proc/attempt_draw_object(mob/living/user, start_from_left = FALSE)
 	if(!ishuman(user) || user.incapacitated() || isturf(loc))
 		return
 	if(!length(contents))
 		return balloon_alert(user, "Empty")
 	if(user.get_active_held_item())
 		return //User is already holding something.
-	var/obj/item/drawn_item = contents[length(contents)]
+	var/obj/item/drawn_item = start_from_left ? contents[1] : contents[length(contents)]
 	drawn_item.attack_hand(user)
 
 /obj/item/storage/proc/PopulateContents()
