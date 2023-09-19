@@ -1,4 +1,0 @@
-author: "yyzsong"
-delete-after: True
-changes:
-  - rscadd: "Adds the FAMAS and M412L1 HPR to valhalla. Go play with 'em."
