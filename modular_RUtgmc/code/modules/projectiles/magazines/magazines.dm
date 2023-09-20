@@ -1,14 +1,16 @@
 /obj/item/ammo_magazine/revolver/rifle
 	name = "\improper M1855 speed loader (.44LS)"
 	desc = "A speed loader for the M1855, with special design to make it possible to speedload a rifle. Longer version of .44 Magnum, with uranium-neodimium core."
+	icon = 'modular_RUtgmc/icons/obj/items/ammo.dmi'
+	icon_state = "44LS"
 	default_ammo = /datum/ammo/bullet/revolver/rifle
 	caliber = CALIBER_44LS
 	max_rounds = 8
-	icon_state = "44LS"
 
 /obj/item/ammo_magazine/packet/long_special
 	name = "box of .44 Long Special"
 	desc = "A box containing 40 rounds of .44 Long Special."
+	icon = 'modular_RUtgmc/icons/obj/items/ammo.dmi'
 	icon_state = "44LSbox"
 	default_ammo = /datum/ammo/bullet/revolver/rifle
 	caliber = CALIBER_44LS
@@ -20,6 +22,7 @@
 	name = "\improper T-25 magazine (10x26mm)"
 	desc = "A 10mm assault rifle magazine."
 	caliber = CALIBER_10x26_CASELESS
+	icon = 'modular_RUtgmc/icons/obj/items/ammo.dmi'
 	icon_state = "T25"
 	w_class = WEIGHT_CLASS_NORMAL
 	default_ammo = /datum/ammo/bullet/rifle/T25
@@ -29,6 +32,7 @@
 /obj/item/ammo_magazine/packet/T25_rifle
 	name = "box of 10x26mm high-pressure"
 	desc = "A box containing 300 rounds of 10x26mm 'HP' caseless tuned for a smartgun."
+	icon = 'modular_RUtgmc/icons/obj/items/ammo.dmi'
 	icon_state = "box_t25"
 	default_ammo = /datum/ammo/bullet/rifle/T25
 	caliber = CALIBER_10x26_CASELESS
@@ -56,6 +60,7 @@
 
 /obj/item/ammo_magazine/revolver/t500
 	name = "\improper R-500 speed loader (.500)"
+	icon = 'modular_RUtgmc/icons/obj/items/ammo.dmi'
 	icon_state = "t500"
 	desc = "A R-500 BF revolver speed loader."
 	default_ammo = /datum/ammo/bullet/revolver/t500
@@ -66,6 +71,7 @@
 
 /obj/item/ammo_magazine/packet/t500
 	name = "packet of .500 Nigro Express"
+	icon = 'modular_RUtgmc/icons/obj/items/ammo.dmi'
 	icon_state = "boxt500"
 	default_ammo = /datum/ammo/bullet/revolver/t500
 	caliber = CALIBER_500

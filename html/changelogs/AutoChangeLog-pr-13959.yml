@@ -1,4 +1,0 @@
-author: "Barnet2"
-delete-after: True
-changes:
-  - balance: "Autobalance check now occurs every 3 minutes instead of every 5"
