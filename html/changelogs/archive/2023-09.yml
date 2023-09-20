@@ -123,3 +123,14 @@
   - qol: Adds a pref to disable radial menu for laser weapons
   yyzsong:
   - rscadd: Adds the FAMAS and M412L1 HPR to valhalla. Go play with 'em.
+2023-09-20:
+  AzonStarfall:
+  - rscadd: Added the TGS Arachne, a replacement for the TGS Minerva
+  - config: Added the TGS Arachne in config
+  - config: Disabled the TGS Minerva in config
+  Pariah919:
+  - balance: Superheavy pistols like the Deagle and Hipower have significantly less
+      fire delay, deal a bit less sunder, deal halved slowdown and have better handling.
+  Wisemonster:
+  - rscadd: Renamed face paints to customization kits and updated their description
+      to reflect their armor/clothing changing properties.
