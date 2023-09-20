@@ -254,6 +254,11 @@
 		strafelist -= strafed
 		strafed.ex_act(EXPLODE_LIGHT)
 		new /obj/effect/temp_visual/heavyimpact(strafed)
+		for(var/atom/movable/AM AS in strafed)
+			if(QDELETED(AM))
+				continue
+			//This may seem a bit wacky as we're exploding the turf's content twice, but doing it another way would be even more wacky because of how hard it is to modify explosion damage without adding a whole other explosion type
+			AM.ex_act(EXPLODE_LIGHT) 
 
 	if(length(strafelist))
 		addtimer(CALLBACK(src, PROC_REF(strafe_turfs), strafelist), 2)
