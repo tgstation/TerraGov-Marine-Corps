@@ -34,7 +34,6 @@ SUBSYSTEM_DEF(monitor)
 	var/maximum_connected_players_count = 0
 
 /datum/monitor_statistics
-	var/king = 0
 	var/primo_T4 = 0
 	var/normal_T4 = 0
 	var/primo_T3 = 0
