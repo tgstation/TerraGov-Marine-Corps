@@ -92,7 +92,7 @@
 	desc = "Three sets of B18 power armor."
 	detailed_desc = "Your battalion has been assigned a number of B18 power armor sets, available at your request. B18 is TGMC's premier infantry armor, providing superior protection, mobility and an advanced automedical system."
 	uses = 3
-	cost = 12
+	cost = 15
 	equipment_to_spawn = list(
 		/obj/item/clothing/head/helmet/marine/specialist,
 		/obj/item/clothing/gloves/marine/specialist,
@@ -104,10 +104,33 @@
 	desc = "Five sets of Gorgon power armor."
 	detailed_desc = "Your battalion has been assigned a number of Gorgon power armor sets, available at your request. Gorgon armor is the SOM's elite infantry armor, providing superior protection and an automedical system without significantly compromising on speed."
 	uses = 5
-	cost = 8
+	cost = 10
 	equipment_to_spawn = list(
 		/obj/item/clothing/head/modular/som/leader,
 		/obj/item/clothing/suit/modular/som/heavy/leader/valk,
+	)
+
+/datum/campaign_reward/equipment/medkit_basic
+	name = "Standard medical supplies"
+	desc = "A small number of medkits."
+	detailed_desc = "A number of medkits with some basic medical supplies."
+	uses = 3
+	cost = 2
+	equipment_to_spawn = list(
+		/obj/effect/supply_drop/medical_basic,
+	)
+
+/datum/campaign_reward/equipment/materials_pack
+	name = "Standard construction supplies"
+	desc = "Metal, plasteel and sandbags."
+	detailed_desc = "A significant quantity of metal, plasteel and sandbags. Perfect for fortifying a defensive position"
+	uses = 1
+	cost = 4
+	equipment_to_spawn = list(
+		/obj/item/storage/box/crate/loot/materials_pack,
+		/obj/item/tool/shovel/etool,
+		/obj/item/tool/shovel/etool,
+		/obj/item/tool/shovel/etool,
 	)
 
 /datum/campaign_reward/equipment/mech_heavy
