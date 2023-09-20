@@ -2142,7 +2142,7 @@
 /area/campaign/jungle_outpost/ground/jungle/north_west)
 "ja" = (
 /obj/machinery/smartfridge,
-/turf/closed/wall,
+/turf/open/floor/freezer,
 /area/campaign/jungle_outpost/outpost/living/kitchen)
 "jb" = (
 /obj/structure/table/reinforced,
