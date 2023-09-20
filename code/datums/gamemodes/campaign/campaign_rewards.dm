@@ -82,8 +82,8 @@
 	if(!.)
 		return
 
-	playsound(spawn_location,'sound/effects/phasein.ogg', 80, FALSE)
 	var/turf/spawn_location = get_turf(pick(GLOB.campaign_reward_spawners[faction]))
+	playsound(spawn_location,'sound/effects/phasein.ogg', 80, FALSE)
 	for(var/obj/object AS in equipment_to_spawn)
 		new object(spawn_location)
 

@@ -25,7 +25,6 @@
 	density = TRUE
 	anchored = TRUE
 	allow_pass_flags = PASSABLE
-	//resistance_flags = RESIST_ALL
 	destroy_sound = 'sound/effects/meteorimpact.ogg'
 
 	icon = 'icons/obj/structures/campaign_structures.dmi'
@@ -35,19 +34,18 @@
 	GLOB.campaign_objectives += src
 	SSminimaps.add_marker(src, MINIMAP_FLAG_ALL, image('icons/UI_icons/map_blips.dmi', null, "campaign_objective"))
 
-/obj/structure/campaign_objective/destruction_objective
-	name = "GENERIC CAMPAIGN DESTRUCTION OBJECTIVE"
-	soft_armor = list(MELEE = 200, BULLET = 200, LASER = 200, ENERGY = 200, BOMB = 200, BIO = 200, FIRE = 200, ACID = 200) //require c4 normally
-
-/obj/structure/campaign_objective/destruction_objective/Destroy()
+/obj/structure/campaign_objective/Destroy()
 	disable()
 	return ..()
 
 ///Handles the objective being destroyed, disabled or otherwise completed
-/obj/structure/campaign_objective/destruction_objective/proc/disable()
+/obj/structure/campaign_objective/proc/disable()
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_CAMPAIGN_OBJECTIVE_DESTROYED, src)
 	GLOB.campaign_objectives -= src
-	//SSminimaps.remove_marker(src)
+
+/obj/structure/campaign_objective/destruction_objective
+	name = "GENERIC CAMPAIGN DESTRUCTION OBJECTIVE"
+	soft_armor = list(MELEE = 200, BULLET = 200, LASER = 200, ENERGY = 200, BOMB = 200, BIO = 200, FIRE = 200, ACID = 200) //require c4 normally
 
 /obj/effect/landmark/campaign_objective/howitzer_objective
 	name = "howitzer objective"
