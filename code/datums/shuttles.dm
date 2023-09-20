@@ -159,8 +159,19 @@
 	display_name = "Tadpole Pirate Model"
 	admin_enable = FALSE
 
+/datum/map_template/shuttle/minidropship/pirate2
+	suffix =	"_pirate2"
+	description = "Ahoy, matey! this here ship be the finest ship o' the stars. She 'as six cannons, an' six functional gun ports. Do be careful, as it 'as No sentry guns an' will be in the doldrums without a proper crew!"
+	display_name = "Tadpole Pirate Model"
+	admin_enable = FALSE
+
 /datum/map_template/shuttle/minidropship/huey
 	suffix =	"_huey"
+	description = "A classic old Earth helecopter desigine retrofitted for space flight, mainly used to scare Colonial Liberation Front members."
+	display_name = "Tadpole Old Earth Model"
+
+/datum/map_template/shuttle/minidropship/huey2
+	suffix =	"_huey2"
 	description = "A classic old Earth helecopter desigine retrofitted for space flight, mainly used to scare Colonial Liberation Front members."
 	display_name = "Tadpole Old Earth Model"
 

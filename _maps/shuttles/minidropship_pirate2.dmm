@@ -1,0 +1,383 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/open/space/basic,
+/area/space)
+"b" = (
+/obj/machinery/computer/camera_advanced/shuttle_docker/minidropship,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/wood/variable/wide,
+/area/space)
+"e" = (
+/obj/structure/barricade/plasteel{
+	dir = 8
+	},
+/turf/open/floor/wood/variable/wide,
+/area/space)
+"f" = (
+/obj/machinery/door/poddoor/mainship/open{
+	id = "Gun_Port_3";
+	name = "Gun Port 3"
+	},
+/turf/open/floor/wood/variable/wide,
+/area/space)
+"i" = (
+/obj/machinery/camera/autoname/mainship/dropship_two{
+	dir = 4;
+	pixel_x = -12
+	},
+/turf/open/floor/wood/variable/wide,
+/area/space)
+"j" = (
+/obj/structure/window/framed/mainship/canterbury/dropship/reinforced,
+/turf/open/floor/mainship/mono,
+/area/space)
+"k" = (
+/obj/structure/closet/cabinet,
+/obj/item/clothing/head/pirate,
+/obj/item/clothing/head/pirate,
+/obj/item/clothing/head/pirate,
+/obj/item/clothing/under/pirate,
+/obj/item/clothing/under/pirate,
+/obj/item/clothing/under/pirate,
+/obj/item/clothing/under/pirate,
+/obj/item/clothing/under/pirate,
+/obj/item/clothing/under/pirate,
+/obj/item/clothing/under/pirate,
+/obj/item/clothing/under/pirate,
+/obj/item/clothing/suit/pirate,
+/obj/item/clothing/suit/pirate,
+/obj/item/clothing/suit/pirate,
+/obj/item/clothing/suit/pirate,
+/obj/item/clothing/suit/pirate,
+/obj/item/clothing/suit/pirate,
+/obj/item/clothing/suit/pirate,
+/obj/item/clothing/glasses/meson/eyepatch,
+/obj/item/clothing/glasses/meson/eyepatch,
+/obj/item/clothing/glasses/hud/medpatch,
+/obj/item/clothing/glasses/hud/medpatch,
+/obj/item/clothing/glasses/eyepatch,
+/obj/item/clothing/glasses/eyepatch,
+/obj/item/clothing/glasses/eyepatch,
+/obj/item/clothing/head/bandanna/red,
+/obj/item/clothing/head/bandanna/red,
+/obj/item/clothing/head/bandanna/red,
+/obj/item/clothing/head/bandanna/red,
+/obj/item/clothing/head/bandanna/red,
+/obj/item/clothing/head/bandanna/red,
+/obj/item/clothing/head/bandanna/red,
+/obj/item/clothing/head/bandanna/red,
+/obj/item/weapon/harpoon,
+/obj/item/weapon/harpoon,
+/obj/item/weapon/harpoon,
+/obj/item/weapon/harpoon,
+/obj/item/clothing/glasses/eyepatch,
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/item/weapon/energy/sword/pirate,
+/obj/item/weapon/energy/sword/pirate,
+/obj/item/weapon/energy/sword/pirate,
+/obj/item/weapon/energy/sword/pirate,
+/obj/item/weapon/energy/sword/pirate,
+/obj/item/weapon/energy/sword/pirate,
+/obj/item/weapon/energy/sword/pirate,
+/obj/item/weapon/energy/sword/pirate,
+/obj/item/weapon/energy/sword/pirate,
+/obj/item/weapon/energy/sword/pirate,
+/turf/open/floor/wood/variable/wide,
+/area/space)
+"l" = (
+/obj/structure/closet/cabinet,
+/obj/item/ammo_magazine/heavy_rr,
+/obj/item/ammo_magazine/heavy_rr,
+/obj/item/ammo_magazine/heavy_rr,
+/obj/item/ammo_magazine/heavy_rr,
+/obj/item/ammo_magazine/heavy_rr,
+/obj/item/ammo_magazine/heavy_rr,
+/obj/item/ammo_magazine/heavy_rr,
+/obj/item/ammo_magazine/heavy_rr,
+/obj/item/ammo_magazine/heavy_rr,
+/obj/item/ammo_magazine/heavy_rr,
+/obj/item/ammo_magazine/heavy_rr,
+/obj/item/ammo_magazine/heavy_rr,
+/obj/item/ammo_magazine/heavy_rr,
+/obj/item/ammo_magazine/heavy_rr,
+/obj/item/ammo_magazine/heavy_rr,
+/obj/item/ammo_magazine/heavy_rr,
+/obj/item/ammo_magazine/heavy_rr,
+/obj/item/ammo_magazine/heavy_rr,
+/obj/item/ammo_magazine/heavy_rr,
+/obj/item/ammo_magazine/heavy_rr,
+/obj/item/ammo_magazine/heavy_rr,
+/obj/item/ammo_magazine/heavy_rr,
+/obj/item/ammo_magazine/heavy_rr,
+/obj/item/ammo_magazine/heavy_rr,
+/obj/item/ammo_magazine/heavy_rr,
+/obj/item/ammo_magazine/heavy_rr,
+/obj/item/ammo_magazine/heavy_rr,
+/obj/item/ammo_magazine/heavy_rr,
+/obj/item/ammo_magazine/heavy_rr,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/wood/variable/wide,
+/area/space)
+"n" = (
+/obj/machinery/door_control{
+	dir = 4;
+	id = "Gun_Port_2";
+	name = "Gun Port 2";
+	pixel_x = -17;
+	pixel_y = 13
+	},
+/obj/machinery/door_control{
+	dir = 4;
+	id = "Gun_Port_1";
+	name = "Gun Port 1";
+	pixel_x = -17;
+	pixel_y = -10
+	},
+/turf/open/floor/wood/variable/wide,
+/area/space)
+"s" = (
+/obj/machinery/door/poddoor/mainship/open{
+	id = "Gun_Port_4";
+	name = "Gun Port 4"
+	},
+/turf/open/floor/wood/variable/wide,
+/area/space)
+"t" = (
+/obj/machinery/door/poddoor/mainship/open{
+	name = "Door 1"
+	},
+/turf/open/floor/wood/variable/wide,
+/area/space)
+"u" = (
+/turf/open/floor/wood/variable/wide,
+/area/space)
+"v" = (
+/obj/machinery/door/poddoor/mainship/open{
+	id = "Gun Port 6";
+	name = "Gun Port 6"
+	},
+/turf/open/floor/wood/variable/wide,
+/area/space)
+"w" = (
+/obj/structure/shipmast,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/wood/variable/wide,
+/area/space)
+"x" = (
+/obj/machinery/camera/autoname/mainship/dropship_two{
+	dir = 4;
+	pixel_x = -14
+	},
+/turf/open/floor/wood/variable/wide,
+/area/space)
+"z" = (
+/obj/machinery/door_control{
+	dir = 4;
+	pixel_x = -14;
+	pixel_y = -3
+	},
+/mob/living/simple_animal/parrot/Poly,
+/turf/open/floor/wood/variable/wide,
+/area/space)
+"B" = (
+/obj/machinery/door/poddoor/mainship/open{
+	name = "Door 2"
+	},
+/turf/open/floor/wood/variable/wide,
+/area/space)
+"D" = (
+/obj/structure/barricade/plasteel,
+/turf/open/floor/wood/variable/wide,
+/area/space)
+"E" = (
+/obj/machinery/door_control{
+	dir = 8;
+	id = "Gun_Port_5";
+	name = "Gun Port 5";
+	pixel_x = 17;
+	pixel_y = 11
+	},
+/obj/machinery/door_control{
+	dir = 8;
+	id = "Gun_Port_6";
+	name = "Gun Port 6";
+	pixel_x = 17;
+	pixel_y = -9
+	},
+/obj/docking_port/mobile/marine_dropship/minidropship,
+/turf/open/floor/wood/variable/wide,
+/area/space)
+"F" = (
+/turf/closed/wall/mainship/outer/canterbury,
+/area/space)
+"G" = (
+/obj/machinery/cic_maptable,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/wood/variable/wide,
+/area/space)
+"K" = (
+/obj/machinery/telecomms/relay/preset/telecomms/onboard,
+/turf/closed/wall/mainship/outer/canterbury,
+/area/space)
+"L" = (
+/obj/machinery/door/poddoor/mainship/open{
+	name = "Door 5"
+	},
+/turf/open/floor/wood/variable/wide,
+/area/space)
+"N" = (
+/obj/effect/attach_point/crew_weapon/minidropship,
+/obj/item/weapon/gun/launcher/rocket/heavy_rr{
+	dir = 4
+	},
+/turf/open/floor/wood/variable/wide,
+/area/space)
+"U" = (
+/obj/effect/attach_point/crew_weapon/minidropship,
+/obj/item/weapon/gun/launcher/rocket/heavy_rr{
+	dir = 8
+	},
+/turf/open/floor/wood/variable/wide,
+/area/space)
+"V" = (
+/obj/machinery/door_control{
+	dir = 8;
+	id = "Gun_Port_4";
+	name = "Gun_Port_4";
+	pixel_x = 17;
+	pixel_y = -3
+	},
+/turf/open/floor/wood/variable/wide,
+/area/space)
+"Y" = (
+/turf/closed/wall/wood,
+/area/space)
+"Z" = (
+/obj/structure/barricade/plasteel{
+	dir = 4
+	},
+/turf/open/floor/wood/variable/wide,
+/area/space)
+
+(1,1,1) = {"
+a
+a
+Y
+f
+Y
+B
+Y
+t
+Y
+Y
+a
+a
+"}
+(2,1,1) = {"
+a
+Y
+F
+u
+F
+u
+F
+u
+F
+F
+e
+F
+"}
+(3,1,1) = {"
+Y
+F
+F
+U
+F
+U
+F
+U
+F
+k
+u
+D
+"}
+(4,1,1) = {"
+j
+G
+z
+u
+i
+u
+n
+u
+x
+u
+u
+D
+"}
+(5,1,1) = {"
+j
+b
+V
+u
+w
+u
+E
+u
+w
+u
+u
+D
+"}
+(6,1,1) = {"
+Y
+F
+F
+N
+F
+N
+F
+N
+F
+l
+u
+D
+"}
+(7,1,1) = {"
+a
+Y
+F
+u
+F
+u
+F
+u
+K
+F
+Z
+F
+"}
+(8,1,1) = {"
+a
+a
+Y
+s
+Y
+L
+Y
+v
+Y
+Y
+a
+a
+"}

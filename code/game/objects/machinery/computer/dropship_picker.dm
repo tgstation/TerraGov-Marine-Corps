@@ -66,7 +66,9 @@
 		"_mobile_bar" = 'icons/ui_icons/dropshippicker/_mobile_bar.png',
 		"_umbilical" = 'icons/ui_icons/dropshippicker/_umbilical.png',
 		"_pirate" = 'icons/ui_icons/dropshippicker/_pirate.png',
-		"_huey" = 'icons/ui_icons/dropshippicker/_huey.png',
+		"_pirate2" = 'icons/ui_icons/dropshippicker/_pirate2.png',
+		"_huey" = 'icons/ui_icons/dropshippicker/_huey2.png',
+		"_huey2" = 'icons/ui_icons/dropshippicker/_huey.png',
 	)
 
 /obj/machinery/computer/dropship_picker/ui_act(action, list/params, datum/tgui/ui)
