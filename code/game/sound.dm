@@ -279,6 +279,12 @@ A good representation is: 'byond applies a volume reduction to the sound every X
 			S = pick('sound/effects/alien_resin_move1.ogg','sound/effects/alien_resin_move2.ogg')
 		if("alien_talk")
 			S = pick('sound/voice/alien_talk.ogg','sound/voice/alien_talk2.ogg','sound/voice/alien_talk3.ogg')
+//RUTGMC edit start - custom talk sounds
+		if("larva_talk")
+			S = pick('modular_RUtgmc/sound/voice/larva_talk1.ogg','modular_RUtgmc/sound/voice/larva_talk2.ogg','modular_RUtgmc/sound/voice/larva_talk3.ogg', 'modular_RUtgmc/sound/voice/larva_talk4.ogg')
+		if("predalien_talk")
+			S = pick('modular_RUtgmc/sound/voice/predalien_click1.ogg','modular_RUtgmc/sound/voice/predalien_click2.ogg','modular_RUtgmc/sound/voice/predalien_click3.ogg')
+//RUTGMC edit end
 		if("alien_growl")
 			S = pick('sound/voice/alien_growl1.ogg','sound/voice/alien_growl2.ogg','sound/voice/alien_growl3.ogg','sound/voice/alien_growl4.ogg')
 		if("alien_hiss")

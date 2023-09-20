@@ -280,6 +280,8 @@
 	full_name = "Boiler: Dump Acid"
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_DUMP_ACID
+	hotkey_keys = list("Q")
+
 //RUTGMC EDIT END
 
 /datum/keybinding/xeno/plow_charge
@@ -696,12 +698,22 @@
 	full_name = "Panther: Tearing Tail"
 	description = "Hit all adjacent units around you, poisoning them toxin for their mind."
 	keybind_signal = COMSIG_XENOABILITY_TEARING_TAIL
+	hotkey_keys = list("R")
 
 /datum/keybinding/xeno/adrenaline_jump
 	name = "Adrenaline Jump"
 	full_name = "Panther: Adrenaline Jump"
 	description = "Jump from some distance to target, knocking them down."
 	keybind_signal = COMSIG_XENOABILITY_ADRENALINE_JUMP
+	hotkey_keys = list("F")
+
+/datum/keybinding/xeno/evasive_maneuvers
+	name = "Toggle evasive maneuvers"
+	full_name = "Panther: Evasive Maneuvers"
+	description = "Toggle evasive action, forcing non-friendly projectiles that would hit you to miss."
+	keybind_signal = COMSIG_XENOABILITY_EVASIVE_MANEUVERS
+	hotkey_keys = list("Q")
+
 //RUTGMC EDIT END
 
 /datum/keybinding/xeno/acid_dash
