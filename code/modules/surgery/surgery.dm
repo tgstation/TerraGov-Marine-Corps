@@ -72,6 +72,7 @@ GLOBAL_LIST_INIT(surgery_steps, init_surgery())
 
 //Does stuff to end the step, which is normally print a message + do whatever this step changes
 /datum/surgery_step/proc/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
+	record_surgical_operation(user)
 	return
 
 //Stuff that happens when the step fails

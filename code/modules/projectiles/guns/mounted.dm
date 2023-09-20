@@ -548,5 +548,11 @@
 	max_integrity = 300
 	soft_armor = list(MELEE = 0, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 100, FIRE = 0, ACID = 20)
 
+/obj/item/weapon/gun/standard_agls/do_fire(obj/object_to_fire)
+	. = ..()
+	if(!.)
+		return FALSE
+	if(istype(in_chamber, /obj/item/ammo_magazine/standard_agls/incendiary))
+		gun_user?.record_war_crime()
 
 

@@ -103,6 +103,9 @@ SUBSYSTEM_DEF(points)
 	LAZYADDASSOCSIMPLE(shoppinglist[O.faction], "[O.id]", O)
 	if(GLOB.directory[O.orderer])
 		to_chat(GLOB.directory[O.orderer], span_notice("Your request [O.id] has been approved!"))
+	if(GLOB.personal_statistics_list[O.orderer_ckey])
+		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[O.orderer_ckey]
+		personal_statistics.req_points_used += cost
 
 /datum/controller/subsystem/points/proc/deny_request(datum/supply_order/O)
 	requestlist -= "[O.id]"

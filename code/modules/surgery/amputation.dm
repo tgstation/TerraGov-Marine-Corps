@@ -36,6 +36,7 @@
 	target.balloon_alert_to_viewers("Success")
 	affected.droplimb(1)
 	target.updatehealth()
+	return ..()
 
 /datum/surgery_step/generic/cut_limb/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
 	user.visible_message(span_warning("[user]'s hand slips, sawing through the bone in [target]'s [affected.display_name] with \the [tool]!"), \

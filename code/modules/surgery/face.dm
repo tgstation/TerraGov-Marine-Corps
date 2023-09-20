@@ -40,6 +40,7 @@
 	span_notice("You have cut open [target]'s face and neck with \the [tool]."),)
 	target.balloon_alert_to_viewers("Success")
 	affected.face_surgery_stage = 1
+	return ..()
 
 /datum/surgery_step/face/cut_face/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/head/affected)
 	user.visible_message(span_warning("[user]'s hand slips, slicing [target]'s throat wth \the [tool]!") , \
@@ -73,6 +74,7 @@
 	span_notice("You mend [target]'s vocal cords with \the [tool]."))
 	target.balloon_alert_to_viewers("Success")
 	affected.face_surgery_stage = 2
+	return ..()
 
 /datum/surgery_step/face/mend_vocal/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/head/affected)
 	user.visible_message(span_warning("[user]'s hand slips, clamping [target]'s trachea shut for a moment with \the [tool]!"), \
@@ -104,6 +106,7 @@
 	span_notice("You pull the skin on [target]'s face back in place with \the [tool]."))
 	target.balloon_alert_to_viewers("Success")
 	affected.face_surgery_stage = 3
+	return ..()
 
 /datum/surgery_step/face/fix_face/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/head/affected)
 	user.visible_message(span_warning("[user]'s hand slips, tearing skin on [target]'s face with \the [tool]!"), \
@@ -139,6 +142,7 @@
 	affected.disfigured = 0
 	affected.owner.name = affected.owner.get_visible_name()
 	affected.face_surgery_stage = 0
+	return ..()
 
 /datum/surgery_step/face/cauterize/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/head/affected)
 	user.visible_message(span_warning("[user]'s hand slips, leaving a small burn on [target]'s face with \the [tool]!"), \
