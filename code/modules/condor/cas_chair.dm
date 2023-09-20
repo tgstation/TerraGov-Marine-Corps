@@ -192,6 +192,11 @@
 				owner.turn_on_engines()
 			if(PLANE_STATE_PREPARED)
 				owner.turn_off_engines()
+	if(action == "eject")
+		if(owner.state != PLANE_STATE_ACTIVATED)
+			return
+		resisted_against()
+		ui.close()
 
 	if(owner.state == PLANE_STATE_ACTIVATED)
 		return
@@ -219,9 +224,6 @@
 		if("change_weapon")
 			var/selection = text2num(params["selection"])
 			owner.active_weapon = owner.equipments[selection]
-		if("deselect")
-			owner.active_weapon = null
-			. = TRUE
 		if("cycle_attackdir")
 			if(params["newdir"] == null)
 				owner.attackdir = turn(owner.attackdir, 90)
