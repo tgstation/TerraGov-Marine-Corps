@@ -34,6 +34,11 @@
 	///sound when impact starts
 	var/start_sound = 'sound/effects/casplane_flyby.ogg'
 
+/datum/fire_support/New()
+	. = ..()
+	if(uses > 0)
+		disable()
+
 ///Enables the firesupport option
 /datum/fire_support/proc/enable_firesupport(additional_uses)
 	uses += additional_uses

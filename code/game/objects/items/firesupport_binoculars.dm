@@ -195,15 +195,6 @@
 		FIRESUPPORT_TYPE_ACID_SMOKE_MORTAR,
 	)
 
-/obj/item/binoculars/fire_support/campaign/mortar
-	faction = FACTION_TERRAGOV
-	mode_list = list(
-		FIRESUPPORT_TYPE_HE_MORTAR,
-		FIRESUPPORT_TYPE_INCENDIARY_MORTAR,
-		FIRESUPPORT_TYPE_SMOKE_MORTAR,
-		FIRESUPPORT_TYPE_ACID_SMOKE_MORTAR,
-	)
-
 /obj/item/binoculars/fire_support/campaign/som
 	faction = FACTION_SOM
 	mode_list = list(
