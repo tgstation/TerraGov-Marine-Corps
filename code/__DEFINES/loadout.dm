@@ -120,6 +120,9 @@ GLOBAL_LIST_INIT(medic_gear_listed_products, list(
 		/obj/item/healthanalyzer/gloves = list(CAT_MEDSUP, "Health scanner gloves", 2, "black"),
 		/obj/item/defibrillator/gloves = list(CAT_MEDSUP, "Advanced medical gloves", 5, "black"),
 		/obj/effect/vendor_bundle/stretcher = list(CAT_MEDSUP, "Medivac Stretcher", 45, "black"),
+		//RUTGMC EDIT ADDITION  BEGIN - SOLDERING_TOOL
+		/obj/item/tool/surgery/solderingtool = list(CAT_MEDSUP, "Soldering tool", 2, "black"),
+		//RUTGMC EDIT ADDITION  END
 	))
 
 GLOBAL_LIST_INIT(leader_gear_listed_products, list(
