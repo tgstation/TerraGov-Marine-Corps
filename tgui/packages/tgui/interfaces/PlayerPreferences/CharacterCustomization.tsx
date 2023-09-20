@@ -200,12 +200,6 @@ export const CharacterCustomization = (props, context) => {
                 value={'religion'}
                 action={'religion'}
               />
-              <SelectFieldPreference
-                label={'TTS voice'}
-                value={'tts_voice'}
-                action={'tts_voice'}
-              />
-              <TextFieldPreference label={'TTS pitch'} value={'tts_pitch'} />
             </LabeledList>
           </Flex.Item>
         </Flex>

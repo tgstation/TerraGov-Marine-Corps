@@ -1,0 +1,6 @@
+author: "AzonStarfall"
+delete-after: True
+changes:
+  - rscadd: "Added the TGS Arachne, a replacement for the TGS Minerva"
+  - config: "Added the TGS Arachne in config"
+  - config: "Disabled the TGS Minerva in config"
