@@ -1,7 +1,11 @@
 /obj/item/tool/surgery/solderingtool
 	name = "soldering tool"
 	desc = "A hand tool to fix combat robot's trauma. You do not need welding goggles for this."
-	icon = 'icons/obj/items/surgery_tools.dmi'
+	icon = 'modular_RUtgmc/icons/obj/items/surgery_tools.dmi'
+	item_icons = list(
+		slot_l_hand_str = 'modular_RUtgmc/icons/mob/inhands/equipment/surgery_left.dmi',
+		slot_r_hand_str = 'modular_RUtgmc/icons/mob/inhands/equipment/surgery_right.dmi',
+	)
 	icon_state = "solderingtool"
 	w_class = WEIGHT_CLASS_SMALL
 
