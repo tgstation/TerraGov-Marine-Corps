@@ -109,6 +109,9 @@
 	salve_healing(target)
 	succeed_activate()
 	add_cooldown()
+	if(owner.client)
+		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[owner.ckey]
+		personal_statistics.heals++
 
 /// Heals the target and gives them a regenerative buff, if applicable.
 /datum/action/xeno_action/activable/psychic_cure/acidic_salve/proc/salve_healing(mob/living/carbon/xenomorph/target)
