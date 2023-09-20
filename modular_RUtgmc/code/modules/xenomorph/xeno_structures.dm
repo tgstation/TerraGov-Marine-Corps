@@ -1,11 +1,22 @@
 /obj/structure/xeno/silo
 	icon = 'modular_RUtgmc/icons/Xeno/resin_silo.dmi'
 
+/obj/structure/xeno/silo/crash
+	resistance_flags = UNACIDABLE | DROPSHIP_IMMUNE | PLASMACUTTER_IMMUNE | INDESTRUCTIBLE
+
 /obj/structure/xeno/acidwell
 	icon = 'modular_RUtgmc/icons/Xeno/acid_pool.dmi'
 
 /obj/structure/xeno/pherotower
 	icon = 'modular_RUtgmc/icons/Xeno/1x1building.dmi'
+
+/obj/structure/xeno/pherotower/crash
+	name = "Recovery tower"
+	resistance_flags = RESIST_ALL
+	xeno_structure_flags = IGNORE_WEED_REMOVAL | CRITICAL_STRUCTURE
+
+/obj/structure/xeno/pherotower/crash/attack_alien(isrightclick = FALSE)
+	return
 
 /obj/structure/xeno/plant
 	icon = 'modular_RUtgmc/icons/Xeno/plants.dmi'

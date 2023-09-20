@@ -39,6 +39,7 @@
 #include "code\modules\mob\living\carbon\xenomorph\evolution.dm"
 #include "code\modules\mob\living\carbon\xenomorph\facehuggers.dm"
 #include "code\modules\mob\living\carbon\xenomorph\hive_datum.dm"
+#include "code\modules\mob\living\carbon\xenomorph\hive_upgrades.dm"
 #include "code\modules\mob\living\carbon\xenomorph\xeno_defines.dm"
 #include "code\modules\mob\living\carbon\xenomorph\xenoattacks.dm"
 #include "code\modules\mob\living\carbon\xenomorph\xenoupgrade.dm"
