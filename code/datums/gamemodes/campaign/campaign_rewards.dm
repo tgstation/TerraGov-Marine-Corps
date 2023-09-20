@@ -407,7 +407,7 @@
 	fire_support_types = list(
 		FIRESUPPORT_TYPE_VOLKITE = 3,
 		FIRESUPPORT_TYPE_INCEND_ROCKETS = 2,
-		FIRESUPPORT_TYPE_RAD_MISSILE = 2
+		FIRESUPPORT_TYPE_RAD_MISSILE = 2,
 	)
 
 /datum/campaign_reward/fire_support/mortar
