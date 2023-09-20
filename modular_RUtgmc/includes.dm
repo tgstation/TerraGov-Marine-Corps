@@ -21,6 +21,7 @@
 #include "code\game\objects\structures\xeno.dm"
 #include "code\game\objects\structures\stool_bed_chair_nest\xeno_nest.dm"
 #include "code\game\objects\machinery\vending\marine_vending.dm"
+#include "code\modules\reagents\machinery\chem_dispenser.dm"
 #include "code\game\turfs\floor_types.dm"
 #include "code\game\turfs\wall_types.dm"
 #include "code\game\turfs\walls\resin.dm"
