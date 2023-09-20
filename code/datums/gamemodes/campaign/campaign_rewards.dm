@@ -82,7 +82,7 @@
 	if(!.)
 		return
 
-	var/turf/spawn_location = get_turf(pick(GLOB.campaign_reward_spawners[faction]))
+	var/turf/spawn_location = get_turf(pick(GLOB.campaign_reward_spawners[faction.faction]))
 	playsound(spawn_location,'sound/effects/phasein.ogg', 80, FALSE)
 	for(var/obj/object AS in equipment_to_spawn)
 		new object(spawn_location)
@@ -114,8 +114,8 @@
 	name = "Medical supplies"
 	desc = "A small number of medkits."
 	detailed_desc = "A number of medkits with some basic medical supplies."
-	uses = 3
-	cost = 2
+	uses = 2
+	cost = 1
 	equipment_to_spawn = list(
 		/obj/effect/supply_drop/medical_basic,
 	)
