@@ -26,6 +26,8 @@ export const CampaignOverview = (props, context) => {
           </LabeledList.Item>
           <LabeledList.Item label="Current Attrition">
             {active_attrition_points}
+          </LabeledList.Item>
+          <LabeledList.Item>
             <Button onClick={() => act('set_attrition_points')} icon={'check'}>
               Set Attrition points
             </Button>
