@@ -111,7 +111,7 @@
 	)
 
 /datum/campaign_reward/equipment/medkit_basic
-	name = "Standard medical supplies"
+	name = "Medical supplies"
 	desc = "A small number of medkits."
 	detailed_desc = "A number of medkits with some basic medical supplies."
 	uses = 3
@@ -121,7 +121,7 @@
 	)
 
 /datum/campaign_reward/equipment/materials_pack
-	name = "Standard construction supplies"
+	name = "Construction supplies"
 	desc = "Metal, plasteel and sandbags."
 	detailed_desc = "A significant quantity of metal, plasteel and sandbags. Perfect for fortifying a defensive position"
 	uses = 1
