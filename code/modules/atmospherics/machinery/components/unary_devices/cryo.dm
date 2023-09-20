@@ -151,6 +151,7 @@
 			if(dead)
 				reason = "<b>Reason for release:</b> Patient death."
 			radio.talk_into(src, "Patient [occupant] has been automatically released from [src] at: [get_area(occupant)]. [reason]", RADIO_CHANNEL_MEDICAL)
+	occupant.record_time_in_cryo()
 	occupant = null
 	update_icon()
 
@@ -304,6 +305,7 @@
 	if(M.health > -100 && (M.health < 0 || M.IsSleeping()))
 		to_chat(M, span_boldnotice("You feel a cold liquid surround you. Your skin starts to freeze up."))
 	occupant = M
+	occupant.time_entered_cryo = world.time
 	update_icon()
 	return TRUE
 

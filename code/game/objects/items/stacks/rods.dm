@@ -53,7 +53,7 @@
 	if (locate(/obj/structure/grille, usr.loc))
 		for(var/obj/structure/grille/G in usr.loc)
 			if (G.obj_integrity <= G.integrity_failure)
-				G.repair_damage(10)
+				G.repair_damage(10, user)
 				G.density = TRUE
 				G.icon_state = "grille"
 				use(1)

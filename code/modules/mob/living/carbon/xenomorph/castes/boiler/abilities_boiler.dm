@@ -273,6 +273,7 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 		GLOB.round_statistics.boiler_neuro_smokes++
 		SSblackbox.record_feedback("tally", "round_statistics", 1, "boiler_neuro_smokes")
 		boiler_owner.neuro_ammo--
+	owner.record_war_crime()
 
 	boiler_owner.update_boiler_glow()
 	update_button_icon()
