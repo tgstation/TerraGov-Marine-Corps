@@ -4,14 +4,22 @@ import { Modal, Tabs, Button, Stack, Section } from '../../components';
 import { CampaignOverview } from './CampaignOverview';
 import { CampaignMissions } from './CampaignMissions';
 import { CampaignAssets } from './CampaignAssets';
+import { CampaignPurchase } from './CampaignPurchase';
 
 const TAB_OVERVIEW = 'Overview';
 const TAB_MISSIONS = 'Missions';
 const TAB_ASSETS = 'Assets';
+const TAB_PURCHASABLE_ASSETS = 'Purchase Assets';
 
-const CampaignTabs = [TAB_OVERVIEW, TAB_MISSIONS, TAB_ASSETS];
+const CampaignTabs = [
+  TAB_OVERVIEW,
+  TAB_MISSIONS,
+  TAB_ASSETS,
+  TAB_PURCHASABLE_ASSETS,
+];
 
 export type MissionData = {
+  faction_rewards_data;
   typepath?: string;
   name: string;
 
@@ -33,6 +41,7 @@ export type FactionReward = {
   detailed_desc: string;
   uses_remaining: number;
   uses_original: number;
+  cost: number;
 };
 
 export type CampaignData = {
@@ -43,6 +52,7 @@ export type CampaignData = {
   finished_missions: MissionData[];
 
   faction_rewards_data: FactionReward[];
+  purchasable_rewards_data: FactionReward[];
   active_attrition_points: number;
   total_attrition_points: number;
   faction_leader?: string;
@@ -63,6 +73,8 @@ export const CampaignMenu = (props, context) => {
     'selectedAsset',
     null
   );
+  const [purchasedAsset, setPurchasedAsset] =
+    useLocalState<FactionReward | null>(context, 'purchasedAsset', null);
   const [selectedNewMission, setSelectedNewMission] =
     useLocalState<MissionData | null>(context, 'selectedNewMission', null);
 
@@ -94,6 +106,36 @@ export const CampaignMenu = (props, context) => {
                 <Stack.Item>
                   <Button
                     onClick={() => setSelectedAsset(null)}
+                    icon={'times'}
+                    color="red">
+                    No
+                  </Button>
+                </Stack.Item>
+              </Stack>
+            </Section>
+          </Modal>
+        ) : null}
+        {purchasedAsset ? (
+          <Modal width="500px">
+            <Section
+              textAlign="center"
+              title={'Purchase ' + purchasedAsset.name + '?'}>
+              <Stack justify="space-around">
+                <Stack.Item>
+                  <Button
+                    onClick={() =>
+                      act('purchase_reward', {
+                        purchased_reward: purchasedAsset.type,
+                      })
+                    }
+                    icon={'check'}
+                    color="green">
+                    Yes
+                  </Button>
+                </Stack.Item>
+                <Stack.Item>
+                  <Button
+                    onClick={() => setPurchasedAsset(null)}
                     icon={'times'}
                     color="red">
                     No
@@ -165,6 +207,8 @@ const CampaignContent = (props, context) => {
       return <CampaignMissions />;
     case TAB_ASSETS:
       return <CampaignAssets />;
+    case TAB_PURCHASABLE_ASSETS:
+      return <CampaignPurchase />;
     default:
       return null;
   }

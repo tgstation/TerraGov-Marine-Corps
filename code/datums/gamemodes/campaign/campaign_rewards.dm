@@ -29,6 +29,8 @@
 	var/reward_flags = REWARD_ACTIVATED_EFFECT
 	///Number of times this can be used
 	var/uses = 1
+	///Cost in attrition points if this reward is purchased
+	var/cost = 1
 
 /datum/campaign_reward/New(datum/faction_stats/winning_faction)
 	. = ..()
@@ -92,6 +94,7 @@
 	desc = "Three sets of B18 power armor."
 	detailed_desc = "Your battalion has been assigned a number of B18 power armor sets, available at your request. B18 is TGMC's premier infantry armor, providing superior protection, mobility and an advanced automedical system."
 	uses = 3
+	cost = 12
 	equipment_to_spawn = list(
 		/obj/item/clothing/head/helmet/marine/specialist,
 		/obj/item/clothing/gloves/marine/specialist,
@@ -103,6 +106,7 @@
 	desc = "Five sets of Gorgon power armor."
 	detailed_desc = "Your battalion has been assigned a number of Gorgon power armor sets, available at your request. Gorgon armor is the SOM's elite infantry armor, providing superior protection and an automedical system without significantly compromising on speed."
 	uses = 5
+	cost = 8
 	equipment_to_spawn = list(
 		/obj/item/clothing/head/modular/som/leader,
 		/obj/item/clothing/suit/modular/som/heavy/leader/valk,
@@ -249,6 +253,7 @@
 	desc = "+2 uses of the Teleporter Array"
 	detailed_desc = "Central command have allocated the battalion with two additional uses of the Teleporter Array. Its extremely costly to run and demand is high across the conflict zone, so make them count."
 	uses = 3
+	cost = 6
 
 /datum/campaign_reward/teleporter_charges/activated_effect()
 	. = ..()
@@ -267,6 +272,7 @@
 	desc = "Enables the use of the Teleporter Array for the current or next mission"
 	detailed_desc = "Established a link between our Teleporter Array and its master Bluespace drive, allowing its operation during the current or next mission."
 	uses = 2
+	cost = 5
 	reward_flags = REWARD_ACTIVATED_EFFECT|REWARD_ACTIVE_MISSION_ONLY
 
 /datum/campaign_reward/teleporter_enabled/activated_effect()
@@ -293,6 +299,7 @@
 	desc = "replace all used drop pods"
 	detailed_desc = "Replace all drop pods that have been previously deployed with refurbished units or ones from fleet storage, ready for immediate use."
 	uses = 1
+	cost = 10
 
 /datum/campaign_reward/droppod_refresh/activated_effect()
 	. = ..()
@@ -309,6 +316,7 @@
 	desc = "Enables the use of drop pods for the current or next mission"
 	detailed_desc = "Repositions the ship to allow for orbital drop pod insertion during the current or next mission."
 	uses = 3
+	cost = 9
 	reward_flags = REWARD_ACTIVATED_EFFECT|REWARD_ACTIVE_MISSION_ONLY
 
 /datum/campaign_reward/droppod_enabled/activated_effect()
@@ -352,6 +360,7 @@
 	desc = "Close Air Support is deployed to support this mission."
 	detailed_desc = "A limited number of Close Air Support attack runs are available via tactical binoculars for this mission. Excellent for disrupting dug in enemy positions."
 	uses = 1
+	cost = 10
 	reward_flags = REWARD_ACTIVATED_EFFECT|REWARD_ACTIVE_MISSION_ONLY
 	var/list/fire_support_types = list(
 		FIRESUPPORT_TYPE_GUN = 4,
@@ -392,6 +401,7 @@
 	)
 
 /datum/campaign_reward/fire_support/mortar
+	cost = 6
 	fire_support_types = list(
 		FIRESUPPORT_TYPE_HE_MORTAR = 6,
 		FIRESUPPORT_TYPE_INCENDIARY_MORTAR = 3,
@@ -400,6 +410,7 @@
 	)
 
 /datum/campaign_reward/fire_support/som_mortar
+	cost = 6
 	fire_support_types = list(
 		FIRESUPPORT_TYPE_HE_MORTAR_SOM = 6,
 		FIRESUPPORT_TYPE_INCENDIARY_MORTAR_SOM = 3,

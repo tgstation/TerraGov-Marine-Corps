@@ -15,6 +15,23 @@ GLOBAL_LIST_INIT(campaign_default_assets, list(
 		/datum/campaign_reward/teleporter_enabled,
 	),
 ))
+///Default assets a faction can purchase
+GLOBAL_LIST_INIT(campaign_default_purchasable_assets, list(
+	FACTION_TERRAGOV = list(
+		/datum/campaign_reward/fire_support,
+		/datum/campaign_reward/fire_support/mortar,
+		/datum/campaign_reward/droppod_refresh,
+		/datum/campaign_reward/droppod_enabled,
+		/datum/campaign_reward/equipment/power_armor,
+	),
+	FACTION_SOM = list(
+		/datum/campaign_reward/fire_support/som_cas,
+		/datum/campaign_reward/fire_support/som_mortar,
+		/datum/campaign_reward/teleporter_charges,
+		/datum/campaign_reward/teleporter_enabled,
+		/datum/campaign_reward/equipment/gorgon_armor,
+	),
+))
 ///The weighted potential mission pool by faction
 GLOBAL_LIST_INIT(campaign_mission_pool, list(
 	FACTION_TERRAGOV = list(
@@ -55,6 +72,8 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 	var/list/datum/campaign_mission/finished_missions = list()
 	///List of all rewards the faction has earnt this campaign
 	var/list/datum/campaign_reward/faction_rewards = list()
+	///List of all rewards the faction can currently purchase
+	var/list/datum/campaign_reward/purchasable_rewards = list(/datum/campaign_reward/equipment/power_armor, /datum/campaign_reward/equipment/gorgon_armor)
 	///Any special behavior flags for the faction
 	var/stats_flags = NONE
 
@@ -222,6 +241,19 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 		faction_rewards_data += list(reward_data)
 	data["faction_rewards_data"] = faction_rewards_data
 
+	var/list/purchasable_rewards_data = list()
+	for(var/datum/campaign_reward/reward AS in purchasable_rewards)
+		var/list/reward_data = list()
+		reward_data["name"] = initial(reward.name)
+		reward_data["type"] = initial(reward)
+		reward_data["desc"] = initial(reward.desc)
+		reward_data["detailed_desc"] = initial(reward.detailed_desc)
+		reward_data["uses_remaining"] = initial(reward.uses)
+		reward_data["uses_original"] = initial(reward.uses)
+		reward_data["cost"] = initial(reward.cost)
+		purchasable_rewards_data += list(reward_data)
+	data["purchasable_rewards_data"] = purchasable_rewards_data
+
 	//simple ones
 	data["active_attrition_points"] = active_attrition_points
 	data["total_attrition_points"] = total_attrition_points
@@ -291,4 +323,20 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 			for(var/mob/living/carbon/human/faction_member AS in GLOB.alive_human_list_faction[faction])
 				faction_member.playsound_local(null, 'sound/effects/CIC_order.ogg', 30, 1)
 				to_chat(faction_member, "<span class='warning'>[user] has activated the [choice.name] campaign asset.")
+			return TRUE
+
+		if("purchase_reward")
+			var/datum/campaign_reward/selected_reward = text2path(params["purchased_reward"])
+			if(!selected_reward)
+				return
+			if(!(selected_reward in purchasable_rewards))
+				return
+			if(initial(selected_reward.cost) > total_attrition_points)
+				to_chat(user, "<span class='warning'>[initial(selected_reward.cost) - total_attrition_points] more attrition points required.")
+				return
+			add_reward(selected_reward)
+			total_attrition_points -= initial(selected_reward.cost)
+			for(var/mob/living/carbon/human/faction_member AS in GLOB.alive_human_list_faction[faction])
+				faction_member.playsound_local(null, 'sound/effects/CIC_order.ogg', 30, 1)
+				to_chat(faction_member, "<span class='warning'>[user] has purchased the [initial(selected_reward.name)] campaign asset.")
 			return TRUE
