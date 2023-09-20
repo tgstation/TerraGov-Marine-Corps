@@ -99,7 +99,7 @@
 	//RUTGMC EDIT ADDITION  BEGIN - SOLDERING_TOOL
 	if(isrobot(H))
 		H.equip_to_slot_or_del(new /obj/item/tool/surgery/solderingtool, SLOT_IN_BACKPACK)
-	//RUTGMC EDIT ADDITION  BEGIN - SOLDERING_TOOL
+	//RUTGMC EDIT ADDITION  END
 
 	post_equip(H, visualsOnly)
 
