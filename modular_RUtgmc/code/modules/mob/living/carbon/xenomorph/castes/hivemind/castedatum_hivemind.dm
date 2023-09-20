@@ -13,7 +13,6 @@
 		/datum/action/xeno_action/place_acidwell/hivemind,
 		/datum/action/xeno_action/place_jelly_pod/hivemind,
 		/datum/action/xeno_action/sow/hivemind,
-		/datum/action/xeno_action/blessing_menu/hivemind,
 		/datum/action/xeno_action/psy_gain/hivemind,
 		/datum/action/xeno_action/activable/psychic_cure/hivemind,
 		/datum/action/xeno_action/activable/transfer_plasma/hivemind,

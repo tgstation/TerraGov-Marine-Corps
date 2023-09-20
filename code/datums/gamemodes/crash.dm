@@ -77,8 +77,14 @@
 /datum/game_mode/infestation/crash/post_setup()
 	. = ..()
 	for(var/i in GLOB.xeno_resin_silo_turfs)
+		//RUTGMC EDIT BEGIN
+		/* //ORIGINAL
 		new /obj/structure/xeno/silo(i)
 		new /obj/structure/xeno/pherotower(i)
+		*/
+		new /obj/structure/xeno/silo/crash(i)
+		new /obj/structure/xeno/pherotower/crash(i)
+		//RUTGMC EDIT END
 
 	for(var/obj/effect/landmark/corpsespawner/corpse AS in GLOB.corpse_landmarks_list)
 		corpse.create_mob()
