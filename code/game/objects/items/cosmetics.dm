@@ -1,7 +1,7 @@
 /obj/item/facepaint
 	gender = PLURAL
-	name = "facepaint"
-	desc = "Paint, for your face. Who woulda thought?."
+	name = "customization kit"
+	desc = "A kit designed for customizing various pieces of armor and clothing. Comes with facepaint!"
 	icon = 'icons/obj/items/items.dmi'
 	icon_state = "camo"
 	var/colour = "green"
@@ -9,23 +9,24 @@
 	var/uses = 100
 
 /obj/item/facepaint/green
-	name = "green facepaint"
+	name = "green customization kit"
 	colour = "green"
 	icon_state = "green_camo"
 
 
 /obj/item/facepaint/brown
-	name = "brown facepaint"
+	name = "brown customization kit"
 	colour = "brown"
 	icon_state = "brown_camo"
 
 /obj/item/facepaint/black
-	name = "black facepaint"
+	name = "black customization kit"
 	colour = "black"
 	icon_state = "black_camo"
 
 /obj/item/facepaint/sniper
-	name = "Fullbody paint"
+	name = "Fullbody customization kit"
+	desc = "A kit designed for customizing various pieces of armor and clothing. Comes with fullbody paint!"
 	colour = "full"
 	icon_state = "full_camo"
 

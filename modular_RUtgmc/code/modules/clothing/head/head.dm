@@ -120,12 +120,11 @@
 	desc = "Ancient pilot kit of scarf that protects neck from cold wind and headband that protects face from sweat"
 	icon = 'modular_RUtgmc/icons/obj/clothing/headwear/hats.dmi'
 	item_icons = list(
-		slot_head_str = 'modular_RUtgmc/icons/mob/clothing/headwear/marine_hats.dmi')
+		slot_head_str = 'modular_RUtgmc/icons/mob/clothing/headwear/head_0.dmi')
 	icon_state = "Banzai"
 	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
 	w_class = WEIGHT_CLASS_SMALL
 
-	var/list/armor_overlays
 	actions_types = list(/datum/action/item_action/toggle)
 	flags_armor_features = ARMOR_LAMP_OVERLAY|ARMOR_NO_DECAP
 	flags_item = SYNTH_RESTRICTED
@@ -135,7 +134,7 @@
 	if(TIMER_COOLDOWN_CHECK(user, "Banzai"))
 		user.balloon_alert(user, "You used that emote too recently")
 		return
-	TIMER_COOLDOWN_START(user, "Banzai", 7200 SECONDS)
+	TIMER_COOLDOWN_START(user, "Banzai", 60 SECONDS)
 	if(user.gender == FEMALE)
 		user.balloon_alert(user, "Women can't use that")
 	else

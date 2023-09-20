@@ -16,11 +16,6 @@ GLOBAL_LIST_INIT(hivemind_resin_images_list, list(
 		return FALSE
 	return ..()
 
-/datum/action/xeno_action/blessing_menu/hivemind/can_use_action(silent = FALSE, override_flags, selecting = FALSE)
-	if (owner.status_flags & INCORPOREAL)
-		return FALSE
-	return ..()
-
 /datum/action/xeno_action/place_acidwell/hivemind/can_use_action(silent = FALSE, override_flags, selecting = FALSE)
 	if (owner.status_flags & INCORPOREAL)
 		return FALSE
