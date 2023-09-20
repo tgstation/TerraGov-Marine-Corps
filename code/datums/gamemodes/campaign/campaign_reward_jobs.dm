@@ -443,10 +443,12 @@ What you lack in equipment and military training you make up in bravery and conv
 /datum/job/freelancer/standard/campaign_bonus
 	faction = FACTION_TERRAGOV
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
+	job_cost = 0
 
 /datum/job/freelancer/medic/campaign_bonus
 	faction = FACTION_TERRAGOV
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
+	job_cost = 0
 
 /datum/job/freelancer/grenadier/campaign_bonus
 	faction = FACTION_TERRAGOV
@@ -455,6 +457,7 @@ What you lack in equipment and military training you make up in bravery and conv
 		/datum/outfit/job/freelancer/grenadier,
 		/datum/outfit/job/freelancer/grenadier/one,
 	)
+	job_cost = 0
 
 /datum/job/freelancer/leader/campaign_bonus
 	faction = FACTION_TERRAGOV
@@ -463,34 +466,159 @@ What you lack in equipment and military training you make up in bravery and conv
 		/datum/outfit/job/freelancer/leader,
 		/datum/outfit/job/freelancer/leader/one,
 	)
+	job_cost = 0
 
 //PMC
 /datum/job/pmc/standard/campaign_bonus
 	faction = FACTION_TERRAGOV
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
+	job_cost = 0
 
 /datum/job/pmc/gunner/campaign_bonus
 	faction = FACTION_TERRAGOV
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
+	job_cost = 0
 
 /datum/job/pmc/leader/campaign_bonus
 	faction = FACTION_TERRAGOV
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
+	job_cost = 0
 
 //ICC
 /datum/job/icc/standard/campaign_bonus
 	faction = FACTION_SOM
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
+	job_cost = 0
 
 /datum/job/icc/guard/campaign_bonus
 	faction = FACTION_SOM
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
+	job_cost = 0
 
 /datum/job/icc/medic/campaign_bonus
 	faction = FACTION_SOM
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
 	multiple_outfits = FALSE
+	job_cost = 0
 
 /datum/job/icc/leader/campaign_bonus
 	faction = FACTION_SOM
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
+	job_cost = 0
+
+//TGMC combat robots
+/datum/job/terragov/squad/standard/campaign_robot
+	title = SQUAD_ROBOT
+	outfit = /datum/outfit/job/tgmc/campaign_robot
+	multiple_outfits = TRUE
+	outfits = list(
+		/datum/outfit/job/tgmc/campaign_robot/machine_gunner,
+		/datum/outfit/job/tgmc/campaign_robot/guardian,
+		/datum/outfit/job/tgmc/campaign_robot/jetpack,
+	)
+	job_cost = 0
+
+/datum/job/terragov/squad/standard/campaign_robot/radio_help_message(mob/M)
+	. = ..()
+	to_chat(M, {"\nYou are a cold, unfeeling machine built for war, controlled by TGMC.
+Your metal body is immune to pain and chemical warfare, and resistant against fire and radiation, although you lack the mobility of your human counterparts.
+Fight for TGMC, and attempt to achieve all objectives given to you."})
+
+/datum/outfit/job/tgmc/campaign_robot
+	name = "Combat robot"
+	jobtype = /datum/job/terragov/squad/standard/campaign_robot
+
+	id = /obj/item/card/id/silver
+	ears = /obj/item/radio/headset/mainship
+	w_uniform = /obj/item/clothing/under/marine/robotic/webbing
+	wear_suit = /obj/item/clothing/suit/modular/robot/heavy/tyr
+	head = /obj/item/clothing/head/modular/robot/heavy/tyr
+	r_store = /obj/item/storage/pouch/pistol
+	l_store = /obj/item/storage/pouch/grenade/combat_patrol
+	back = /obj/item/storage/backpack/marine/satchel
+
+	belt = /obj/item/storage/belt/marine/te_cells
+	suit_store = /obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_carbine/gyro
+
+/datum/outfit/job/tgmc/campaign_robot/pre_equip(mob/living/carbon/human/H, visualsOnly)
+	. = ..()
+	H.set_species("Combat Robot")
+
+/datum/outfit/job/tgmc/campaign_robot/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	. = ..()
+	H.equip_to_slot_or_del(new /obj/item/tool/crowbar, SLOT_IN_SUIT)
+	H.equip_to_slot_or_del(new /obj/item/tool/weldingtool, SLOT_IN_SUIT)
+	H.equip_to_slot_or_del(new /obj/item/stack/cable_coil, SLOT_IN_SUIT)
+	H.equip_to_slot_or_del(new /obj/item/stack/sandbags/large_stack, SLOT_IN_SUIT)
+	H.equip_to_slot_or_del(new /obj/item/tool/shovel/etool, SLOT_IN_SUIT)
+
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/inaprovaline, SLOT_IN_HEAD)
+	H.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_HEAD)
+
+/datum/outfit/job/tgmc/campaign_robot/machine_gunner
+	r_store = /obj/item/storage/pouch/pistol
+	belt = /obj/item/storage/belt/sparepouch
+	suit_store = /obj/item/weapon/gun/rifle/standard_gpmg/machinegunner
+
+/datum/outfit/job/tgmc/campaign_robot/machine_gunner/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	. = ..()
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/standard_gpmg, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/standard_gpmg, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/standard_gpmg, SLOT_IN_BELT)
+
+	H.equip_to_slot_or_del(new /obj/item/tool/extinguisher/mini, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70, SLOT_IN_ACCESSORY)
+
+	H.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/vp70/tactical(H), SLOT_IN_R_POUCH)
+
+	H.equip_to_slot_or_del(new /obj/item/tool/weldingtool, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/stack/cable_coil, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/standard_gpmg, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/standard_gpmg, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/standard_gpmg, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70, SLOT_IN_BACKPACK)
+
+/datum/outfit/job/tgmc/campaign_robot/guardian
+	r_store = /obj/item/storage/pouch/pistol
+	belt = /obj/item/storage/belt/marine/te_cells
+	suit_store = /obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_carbine/gyro
+	r_hand = /obj/item/weapon/shield/riot/marine
+
+/datum/outfit/job/tgmc/campaign_robot/guardian/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	. = ..()
+	H.equip_to_slot_or_del(new /obj/item/tool/extinguisher/mini, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70, SLOT_IN_ACCESSORY)
+
+	H.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/vp70/tactical(H), SLOT_IN_R_POUCH)
+
+	H.equip_to_slot_or_del(new /obj/item/tool/weldingtool, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/stack/cable_coil, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/lasrifle, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/lasrifle, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/lasrifle, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70, SLOT_IN_BACKPACK)
+
+/datum/outfit/job/tgmc/campaign_robot/jetpack
+	wear_suit = /obj/item/clothing/suit/modular/robot/heavy/shield
+	r_store = /obj/item/storage/pouch/magazine/large
+	belt = /obj/item/storage/belt/marine/te_cells
+	suit_store = /obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_carbine/mag_harness
+	r_hand = /obj/item/jetpack_marine
+
+/datum/outfit/job/tgmc/campaign_robot/jetpack/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	. = ..()
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/sticky, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/sticky, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/incendiary, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_ACCESSORY)
+
+	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/lasrifle, SLOT_IN_R_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/lasrifle, SLOT_IN_R_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/lasrifle, SLOT_IN_R_POUCH)

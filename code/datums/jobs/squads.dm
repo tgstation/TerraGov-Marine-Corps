@@ -10,7 +10,9 @@
 		SQUAD_ENGINEER = 0,
 		SQUAD_CORPSMAN = 0,
 		SQUAD_SMARTGUNNER = 0,
-		SQUAD_LEADER = 0)
+		SQUAD_LEADER = 0,
+		SQUAD_ROBOT = 0, //for campaign
+	)
 	var/max_positions = list(
 		SQUAD_MARINE = -1,
 		SQUAD_LEADER = 1)

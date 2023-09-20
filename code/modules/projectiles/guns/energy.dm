@@ -663,7 +663,23 @@
 	)
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_carbine/scout
-	starting_attachment_types = list(/obj/item/attachable/reddot, /obj/item/weapon/gun/grenade_launcher/underslung,)
+	starting_attachment_types = list(
+		/obj/item/attachable/reddot,
+		/obj/item/weapon/gun/grenade_launcher/underslung,
+	)
+
+/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_carbine/mag_harness
+	starting_attachment_types = list(
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/weapon/gun/grenade_launcher/underslung,
+		/obj/item/attachable/bayonet,
+	)
+
+/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_carbine/gyro
+	starting_attachment_types = list(
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/gyro,
+	)
 
 /datum/lasrifle/energy_carbine_mode/auto_burst
 	rounds_per_shot = 12

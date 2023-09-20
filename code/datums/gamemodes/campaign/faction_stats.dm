@@ -23,6 +23,7 @@ GLOBAL_LIST_INIT(campaign_default_purchasable_assets, list(
 		/datum/campaign_reward/droppod_refresh,
 		/datum/campaign_reward/droppod_enabled,
 		/datum/campaign_reward/equipment/power_armor,
+		/datum/campaign_reward/bonus_job/combat_robots,
 	),
 	FACTION_SOM = list(
 		/datum/campaign_reward/fire_support/som_cas,
@@ -73,7 +74,7 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 	///List of all rewards the faction has earnt this campaign
 	var/list/datum/campaign_reward/faction_rewards = list()
 	///List of all rewards the faction can currently purchase
-	var/list/datum/campaign_reward/purchasable_rewards = list(/datum/campaign_reward/equipment/power_armor, /datum/campaign_reward/equipment/gorgon_armor)
+	var/list/datum/campaign_reward/purchasable_rewards = list()
 	///Any special behavior flags for the faction
 	var/stats_flags = NONE
 
@@ -83,6 +84,8 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 	GLOB.faction_stats_datums[faction] = src
 	for(var/asset in GLOB.campaign_default_assets[faction])
 		add_reward(asset)
+	for(var/asset in GLOB.campaign_default_purchasable_assets[faction])
+		purchasable_rewards += asset
 	for(var/i = 1 to CAMPAIGN_STANDARD_MISSION_QUANTITY)
 		generate_new_mission()
 	RegisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_MISSION_ENDED, PROC_REF(mission_end))

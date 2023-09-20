@@ -197,6 +197,16 @@
 		/datum/job/pmc/standard/campaign_bonus = 4,
 	)
 
+/datum/campaign_reward/bonus_job/combat_robots
+	name = "Combat robots"
+	desc = "A shipment of combat robots to bolster your forces"
+	detailed_desc = "A four combat robot job slots are opened at no attrition cost. \
+	Combat robots are tough to kill, being immune to pain and chemicals, and resist both fire and radiation. They suffer from low mobility however."
+	cost = 6
+	bonus_job_list = list(
+		/datum/job/terragov/squad/standard/campaign_robot = 4,
+	)
+
 //Parent for all passive attrition modifiers
 /datum/campaign_reward/attrition_modifier
 	reward_flags = REWARD_PASSIVE_EFFECT
