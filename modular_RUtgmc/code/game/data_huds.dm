@@ -3,7 +3,6 @@
 	var/image/infection_hud = hud_list[XENO_EMBRYO_HUD] //State of the xeno embryo.
 	var/image/simple_status_hud = hud_list[STATUS_HUD_SIMPLE] //Status for the naked eye.
 	var/image/xeno_reagent = hud_list[XENO_REAGENT_HUD] // Displays active xeno reagents
-	var/image/xeno_debuff = hud_list[XENO_DEBUFF_HUD] //Displays active xeno specific debuffs
 	var/static/image/medicalnanites_high_image = image('icons/mob/hud.dmi', icon_state = "nanites")
 	var/static/image/medicalnanites_medium_image = image('icons/mob/hud.dmi', icon_state = "nanites_medium")
 	var/static/image/medicalnanites_low_image = image('icons/mob/hud.dmi', icon_state = "nanites_low")
@@ -23,6 +22,7 @@
 		if(stat != DEAD)
 			status_hud.icon_state = "hudsynth"
 		else
+			infection_hud.icon_state = "hudsynthdnr"
 			if(!client)
 				var/mob/dead/observer/G = get_ghost(FALSE, TRUE)
 				if(!G)
@@ -42,8 +42,11 @@
 		if(stat != DEAD)
 			status_hud.icon_state = "hudrobot"
 		else
-			if(!client) //роботы бесконечно дефибаббл
+			infection_hud.icon_state = "hudrobotdnr"
+			if(!client)
 				var/mob/dead/observer/G = get_ghost(FALSE, TRUE)
+				if(!HAS_TRAIT(src, TRAIT_PSY_DRAINED))
+					infection_hud.icon_state = "psy_drain"
 				if(!G)
 					status_hud.icon_state = "hudrobotdnr"
 					if(istype(wear_ear, /obj/item/radio/headset/mainship))
