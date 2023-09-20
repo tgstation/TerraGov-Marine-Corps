@@ -26,10 +26,6 @@ endmap
 map sulaco
 endmap
 
-map minerva
-	disabled
-endmap
-
 map arachne
 endmap
 
