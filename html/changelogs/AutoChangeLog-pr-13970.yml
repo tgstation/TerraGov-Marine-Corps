@@ -1,4 +1,0 @@
-author: "Wisemonster"
-delete-after: True
-changes:
-  - rscadd: "Renamed face paints to customization kits and updated their description to reflect their armor/clothing changing properties."
