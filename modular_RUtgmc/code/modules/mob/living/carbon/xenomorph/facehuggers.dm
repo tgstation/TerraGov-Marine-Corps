@@ -4,6 +4,13 @@
 /obj/item/clothing/mask/facehugger
 	impact_time = 1.25 SECONDS
 
+/obj/item/clothing/mask/facehugger/attack_hand(mob/living/user)
+	if(isxeno(user))
+		var/mob/living/carbon/xenomorph/X = user
+		if(X.agility || X.fortify)
+			return FALSE
+	return ..()
+
 //TODO: Remove the dependence of playable huggers on old-AI huggers
 /obj/item/clothing/mask/facehugger/proc/Attach(mob/living/carbon/M, can_catch = TRUE)
 
