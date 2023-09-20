@@ -82,10 +82,8 @@
 	if(!.)
 		return
 
-	var/turf/spawn_location = get_turf(faction.faction_leader)  //placeholder spawn location
-
 	playsound(spawn_location,'sound/effects/phasein.ogg', 80, FALSE)
-
+	var/turf/spawn_location = get_turf(pick(GLOB.campaign_reward_spawners[faction]))
 	for(var/obj/object AS in equipment_to_spawn)
 		new object(spawn_location)
 
