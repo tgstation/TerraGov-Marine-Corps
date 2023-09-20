@@ -848,6 +848,7 @@
 		return FALSE
 	return ..()
 
+
 /mob/living/carbon/human/smokecloak_on()
 	var/obj/item/storage/backpack/marine/satchel/scout_cloak/S = back
 	if(istype(S) && S.camo_active)
