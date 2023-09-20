@@ -32,11 +32,11 @@
 	return ..()
 
 /datum/campaign_mission/destroy_mission/load_mission_brief()
-	starting_faction_mission_brief = "A [hostile_faction] fire support position has been identified in this area. This key location provides fire support to [hostile_faction] forces across the region. <br>\
+	starting_faction_mission_brief = "A [hostile_faction] fire support position has been identified in this area. This key location provides fire support to [hostile_faction] forces across the region. \
 		By destroying this outpost we can silence their guns and greatly weaken the enemy's forces. \
 		Move quickly and destroy all fire support installations before they have time to react."
-	hostile_faction_mission_brief = "[starting_faction] forces have been detected moving against our fire support installation in this area. <br>\
-		Repel the enemy and protect the installations until reinforcements can arrive. <br>\
+	hostile_faction_mission_brief = "[starting_faction] forces have been detected moving against our fire support installation in this area. \
+		Repel the enemy and protect the installations until reinforcements can arrive. \
 		Loss of these fire support installations will significantly weaken our forces across this region."
 
 /datum/campaign_mission/destroy_mission/fire_support_raid/apply_major_victory()

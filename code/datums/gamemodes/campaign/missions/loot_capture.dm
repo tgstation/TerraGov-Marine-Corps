@@ -24,10 +24,10 @@
 		"starting_faction" = "Locate and extract all phoron crates in the ao before the enemy does.",
 		"hostile_faction" = "Locate and extract all phoron crates in the ao before the enemy does.",
 	)
-	starting_faction_mission_brief = "Hostile forces have been building a stock pile of valuable phoron in this location. <br>\
-		Before they have the chance to ship it out, your forces are being sent to intercept and liberate these supplies to hamper the enemy's war effort. <br>\
+	starting_faction_mission_brief = "Hostile forces have been building a stock pile of valuable phoron in this location. \
+		Before they have the chance to ship it out, your forces are being sent to intercept and liberate these supplies to hamper the enemy's war effort. \
 		Hostile forces will likely be aiming to evacuate as much phoron out of the ao as well. Get to the phoron first and fulton out as much as you can."
-	hostile_faction_mission_brief = "Enemy forces are moving to steal a stockpile of valuable phoron. <br>\
+	hostile_faction_mission_brief = "Enemy forces are moving to steal a stockpile of valuable phoron. \
 		Send in your forces to fulton out the phoron as quickly as possible, before they can get to it first."
 	starting_faction_additional_rewards = "Additional supplies for every phoron crate captured"
 	hostile_faction_additional_rewards = "Additional supplies for every phoron crate captured"
@@ -52,8 +52,8 @@
 		CRASH("Destroy mission loaded with no objectives to extract!")
 
 /datum/campaign_mission/capture_mission/load_objective_description()
-	starting_faction_objective_description = "Major Victory:Capture all [objectives_total] targets.[min_capture_amount ? "<br> Minor Victory: Capture at least [min_capture_amount] targets." : ""]"
-	hostile_faction_objective_description = "Major Victory:Capture all [objectives_total] targets.[min_capture_amount ? "<br> Minor Victory: Capture at least [min_capture_amount] targets." : ""]"
+	starting_faction_objective_description = "Major Victory:Capture all [objectives_total] targets.[min_capture_amount ? " Minor Victory: Capture at least [min_capture_amount] targets." : ""]"
+	hostile_faction_objective_description = "Major Victory:Capture all [objectives_total] targets.[min_capture_amount ? " Minor Victory: Capture at least [min_capture_amount] targets." : ""]"
 
 /datum/campaign_mission/capture_mission/get_status_tab_items(mob/source, list/items)
 	. = ..()

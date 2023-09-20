@@ -168,11 +168,11 @@
 
 	if(source.faction == starting_faction || source.faction == FACTION_NEUTRAL)
 		items += "[starting_faction] mission objectives:"
-		items += splittext(starting_faction_objective_description, "<br>")
+		items += splittext(starting_faction_objective_description, ".")
 		items += ""
 	if(source.faction == hostile_faction || source.faction == FACTION_NEUTRAL)
 		items += "[hostile_faction] mission objectives:"
-		items += splittext(hostile_faction_objective_description, "<br>")
+		items += splittext(hostile_faction_objective_description, ".")
 		items += ""
 
 ///Generates mission rewards, if there is variability involved
