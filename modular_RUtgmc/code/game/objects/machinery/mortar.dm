@@ -9,8 +9,8 @@
 
 /obj/machinery/deployable/mortar/knee
 	offset_per_turfs = 12
-	//fire_sound = 'sound/weapons/guns/fire/kneemortar_fire.ogg'
-	//fall_sound = 'sound/weapons/guns/misc/kneemortar_whistle.ogg'
+	fire_sound = 'modular_RUtgmc/sound/weapons/guns/fire/kneemortar_fire.ogg'
+	fall_sound = 'modular_RUtgmc/sound/weapons/guns/misc/kneemortar_whistle.ogg'
 	minimum_range = 5
 	allowed_shells = list(
 		/obj/item/mortal_shell/knee,
