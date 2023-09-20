@@ -1,5 +1,5 @@
 /obj/item/stack/spiketrap //A deployable spike trap, causes damage to anyone who steps over it
-	name = "Spike trap assembly"
+	name = "spike trap assembly"
 	desc = "An assortment of piercing spikes."
 	icon = 'icons/Marine/traps.dmi'
 	icon_state = "spiketrap"
@@ -23,12 +23,12 @@
 	AddComponent(/datum/component/deployable_item, deployable_item, deploy_time, undeploy_time)
 
 /obj/structure/spiketrap ///The actual deployed trap
-	name = "Spike trap assembly"
+	name = "spike trap assembly"
 	desc = "An assortment of piercing spikes."
 	icon = 'icons/Marine/traps.dmi'
 	icon_state = "spiketrap"
 	resistance_flags = XENO_DAMAGEABLE
-	density = TRUE
+	density = FALSE
 	allow_pass_flags = PASS_MOB
 	max_integrity = 200
 	///How much damage the spikes do when you step on them
@@ -80,7 +80,7 @@
 
 
 /obj/item/stack/speartrap //A deployable spear trap, causes damage to anyone who walks into it
-	name = "Spear trap assembly"
+	name = "spear trap assembly"
 	desc = "An deployable wall of spears."
 	icon = 'icons/Marine/trap_spear.dmi'
 	icon_state = "speartrap"
@@ -105,18 +105,18 @@
 	AddComponent(/datum/component/deployable_item, deployable_item, deploy_time, undeploy_time)
 
 /obj/structure/speartrap ///The actual deployed trap
-	name = "Deployed Spear"
-	desc = "A very pointy stick, dont walk into it... please."
+	name = "deployed Spear"
+	desc = "A spear rigged to pierce through anyone unfortunate to step on it."
 	icon = 'icons/Marine/trap_spear.dmi'
 	icon_state = "speartrap"
 	pixel_x = -13
 	pixel_y = -9 //Don't touch the offsets unless you intend on respriting these
 	resistance_flags = XENO_DAMAGEABLE
-	density = TRUE
-	///How much damage the spear does when you walk into it
-	var/trap_damage = 15
+	density = FALSE
 	///Used for the health of the spear
 	max_integrity = 200
+	///How much damage the spear does when you walk into it
+	var/trap_damage = 15
 
 /obj/structure/speartrap/Initialize(mapload)
 	. = ..()
