@@ -409,6 +409,9 @@
 	)
 
 /datum/campaign_reward/fire_support/mortar
+	name = "Mortar support"
+	desc = "Mortar teams are activated to provide firesupport for this mission."
+	detailed_desc = "A limited number of mortar strikes are available via tactical binoculars for this mission. Excellent for disrupting dug in enemy positions."
 	cost = 6
 	fire_support_types = list(
 		FIRESUPPORT_TYPE_HE_MORTAR = 6,
@@ -418,6 +421,9 @@
 	)
 
 /datum/campaign_reward/fire_support/som_mortar
+	name = "Mortar support"
+	desc = "Mortar teams are activated to provide firesupport for this mission."
+	detailed_desc = "A limited number of mortar strikes are available via tactical binoculars for this mission. Excellent for disrupting dug in enemy positions."
 	cost = 6
 	fire_support_types = list(
 		FIRESUPPORT_TYPE_HE_MORTAR_SOM = 6,
