@@ -84,6 +84,7 @@
 			return FALSE
 		if(is_xeno)
 			visible_message(span_alert("[user] sips from [src]'s nozzle. Adorable."))
+		record_sippies(5, reagents.reagent_list, user)
 		playsound(user.loc,'sound/items/drink.ogg', 25, 2)
 		reagents.reaction(user, INGEST)
 		reagents.trans_to(user, 5)

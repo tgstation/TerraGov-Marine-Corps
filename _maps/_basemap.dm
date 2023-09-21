@@ -17,7 +17,7 @@
 		#include "map_files\Research_Outpost\Research_Outpost.dmm"
 		#include "map_files\Magmoor_Digsite_IV\Magmoor_Digsite_IV.dmm"
 		#include "map_files\Orion_Military_Outpost\orionoutpost.dmm"
-		#include "map_files\Minerva\TGS_Minerva.dmm"
+		#include "map_files\Arachne\TGS_Arachne.dmm"
 		#include "map_files\gelida_iv\gelida_iv.dmm"
 		#include "map_files\deltastation\deltastation.dmm"
 		#include "map_files\desparity\desparity.dmm"

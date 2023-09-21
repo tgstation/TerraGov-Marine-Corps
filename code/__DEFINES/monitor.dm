@@ -35,7 +35,6 @@
 #define PRIMO_T3_WEIGHT -100
 #define NORMAL_T4_WEIGHT -80
 #define PRIMO_T4_WEIGHT -120
-#define KING_WEIGHT -200 //king is also counted as a T4
 #define SPAWNING_POOL_WEIGHT -100
 
 //The weight of each statistics in the state calculator before shutters drop

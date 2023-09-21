@@ -211,6 +211,7 @@
 		to_chat(X, span_xenowarning("We try to emit toxins but are staggered!"))
 		return fail_activate()
 
+	owner.record_war_crime()
 	GLOB.round_statistics.defiler_neurogas_uses++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "defiler_neurogas_uses")
 
@@ -337,6 +338,7 @@
 			newegg.gas_type = /datum/effect_system/smoke_spread/xeno/transvitox
 	qdel(alien_egg)
 
+	owner.record_war_crime()
 	GLOB.round_statistics.defiler_inject_egg_neurogas++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "defiler_inject_egg_neurogas")
 

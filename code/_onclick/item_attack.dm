@@ -143,6 +143,7 @@
 
 	UPDATEHEALTH(src)
 
+	record_melee_damage(user, power)
 	log_combat(user, src, "attacked", I, "(INTENT: [uppertext(user.a_intent)]) (DAMTYE: [uppertext(I.damtype)]) (RAW DMG: [power])")
 	if(power && !user.mind?.bypass_ff && !mind?.bypass_ff && user.faction == faction)
 		var/turf/T = get_turf(src)
@@ -368,6 +369,7 @@
 
 	UPDATEHEALTH(src)
 
+	record_melee_damage(user, power)
 	log_combat(user, src, "attacked", I, "(INTENT: [uppertext(user.a_intent)]) (DAMTYE: [uppertext(I.damtype)]) (RAW DMG: [power])")
 	if(power && !user.mind?.bypass_ff && !mind?.bypass_ff && user.faction == faction)
 		var/turf/T = get_turf(src)
