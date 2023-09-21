@@ -7,7 +7,11 @@
 	var/map_file
 	///map_traits, defaults to ZTRAIT_AWAY
 	var/list/map_traits = list(ZTRAIT_AWAY = TRUE)
-	///Optional elay for each faction to be able to deploy
+	///Lightings colours for the map. Typically all the same for consistancy, but not required
+	var/list/map_light_colours = list(COLOR_WHITE, COLOR_WHITE, COLOR_WHITE, COLOR_WHITE)
+	///Light levels for the map
+	var/list/map_light_levels = list(200, 100, 75, 50)
+	///Optional delay for each faction to be able to deploy, typically used in attacker/defender missions
 	var/list/shutter_open_delay = list(
 		"starting_faction" = 0,
 		"hostile_faction" = 0,
@@ -142,7 +146,8 @@
 ///Generates a new z level for the mission
 /datum/campaign_mission/proc/load_map()
 	var/datum/space_level/new_level = load_new_z_level(map_file, map_name, TRUE, map_traits)
-	mode.set_lighting(new_level.z_value)
+	set_z_lighting(new_level.z_value, map_light_colours[1], map_light_levels[1], map_light_colours[2], map_light_levels[2], map_light_colours[3], map_light_levels[3], map_light_colours[4], map_light_levels[4])
+
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_CAMPAIGN_MISSION_LOADED, new_level.z_value)
 
 ///Generates the mission brief for the mission if it needs to be late loaded

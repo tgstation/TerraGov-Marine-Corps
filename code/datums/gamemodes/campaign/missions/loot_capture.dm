@@ -4,6 +4,7 @@
 	map_name = "Jungle outpost SR-422"
 	map_file = '_maps/map_files/Campaign maps/jungle_test/jungle_outpost.dmm'
 	map_traits = list(ZTRAIT_AWAY = TRUE, ZTRAIT_RAIN = TRUE)
+	map_light_colours = list(LIGHT_COLOR_PALE_GREEN, LIGHT_COLOR_PALE_GREEN, LIGHT_COLOR_PALE_GREEN, LIGHT_COLOR_PALE_GREEN)
 	max_game_time = 20 MINUTES
 	mission_flags = MISSION_DISALLOW_DROPPODS
 	victory_point_rewards = list(
