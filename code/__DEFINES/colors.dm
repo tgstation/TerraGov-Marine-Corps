@@ -108,6 +108,7 @@
 #define COLOR_ASSEMBLY_BLUE "#38559E"
 #define COLOR_ASSEMBLY_PURPLE "#6F6192"
 
+/*RUTGMC edit - pill packet color redefine
 //Color dedfines used by pill packets
 #define COLOR_PACKET_BICARIDINE "#FF0000"
 #define COLOR_PACKET_KELOTANE "#FFFF00"
@@ -119,6 +120,7 @@
 #define COLOR_PACKET_LEPORAZINE "#0066FF"
 #define COLOR_PACKET_RUSSIAN_RED "#3d0000"
 #define COLOR_PACKET_RYETALYN "#AC6D32"
+*/
 
 /*
 Some defines to generalise colours used in lighting.

@@ -4,6 +4,7 @@
 #include "jobs.dm"
 #include "mobs.dm"
 #include "mode.dm"
+#include "modular_armor.dm"
 #include "movespeed_modification.dm"
 #include "traits.dm"
 #include "xeno.dm"
