@@ -147,3 +147,8 @@
 	contains = list(/obj/item/mortal_shell/knee, /obj/item/mortal_shell/knee)
 	cost = 5
 	available_against_xeno_only = TRUE
+
+/datum/supply_packs/armor/imager_goggle
+	name = "Optical Imager Goggles"
+	contains = list(/obj/item/clothing/glasses/night/imager_goggles)
+	cost = 50
