@@ -72,6 +72,7 @@
 	INVOKE_ASYNC(storage, TYPE_PROC_REF(/atom, attackby), I, user)
 	return COMPONENT_NO_AFTERATTACK
 
+///We draw from the item's storage
 /obj/item/armor_module/storage/proc/draw_from_storage(datum/source, mob/user)
 	SIGNAL_HANDLER
 	if(parent.loc != user)
@@ -79,6 +80,8 @@
 	INVOKE_ASYNC(storage, TYPE_PROC_REF(/obj/item/storage/internal, attempt_draw_object), user)
 	return COMPONENT_NO_ATTACK_HAND
 
+
+///We draw the leftmost item from the item's storage
 /obj/item/armor_module/storage/proc/left_draw_from_storage(datum/source, mob/user)
 	SIGNAL_HANDLER
 	if(parent.loc != user)

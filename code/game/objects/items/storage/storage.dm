@@ -858,7 +858,7 @@
  * 
  * Arguments:
  * * mob/living/user - The mob attempting to draw from this container
- * * start_from_left - Determines if we should draw the leftmost or rightmost object out of the contents. FALSE by default.
+ * * start_from_left - If true we draw the leftmost object instead of the rightmost. FALSE by default.
  */
 /obj/item/storage/proc/attempt_draw_object(mob/living/user, start_from_left = FALSE)
 	if(!ishuman(user) || user.incapacitated() || isturf(loc))
