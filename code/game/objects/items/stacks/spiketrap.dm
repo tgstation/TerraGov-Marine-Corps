@@ -1,6 +1,6 @@
 /obj/item/stack/spiketrap //A deployable spike trap, causes damage to anyone who steps over it
 	name = "spike trap assembly"
-	desc = "An assortment of piercing spikes."
+	desc = "An assortment of sharp, metal spikes that stabs any unfortunate sole (or soul) that steps on it."
 	icon = 'icons/Marine/traps.dmi'
 	icon_state = "spiketrap"
 	flags_item = NOBLUDGEON
@@ -24,15 +24,14 @@
 
 /obj/structure/spiketrap ///The actual deployed trap
 	name = "spike trap assembly"
-	desc = "An assortment of piercing spikes."
+	desc = "An assortment of sharp, metal spikes that stabs any unfortunate sole (or soul) that steps on it."
 	icon = 'icons/Marine/traps.dmi'
 	icon_state = "spiketrap"
 	resistance_flags = XENO_DAMAGEABLE
 	density = FALSE
-	allow_pass_flags = PASS_MOB
 	max_integrity = 200
 	///How much damage the spikes do when you step on them
-	var/spike_damage = 10
+	var/spike_damage = 6
 
 /obj/structure/spiketrap/Initialize(mapload)
 	. = ..()
@@ -46,7 +45,7 @@
 	if(X.status_flags & INCORPOREAL)
 		return FALSE
 
-	X.apply_damage(spike_damage*1.5, blocked = MELEE, updating_health = TRUE) //About a third as damaging as actually entering
+	X.apply_damage(spike_damage*5, blocked = MELEE, updating_health = TRUE)
 	update_icon()
 	return ..()
 
@@ -69,13 +68,13 @@
 	victim.apply_status_effect(/datum/status_effect/incapacitating/harvester_slowdown, 3) //Moving through spikes slows you down
 	playsound(src, 'sound/weapons/bladeslice.ogg', 50)
 	if(isxeno(victim))
-		victim.apply_damage(spike_damage * 3, BRUTE, updating_health = TRUE)
+		victim.apply_damage(spike_damage*10 , BRUTE, updating_health = TRUE)
 		return
 
 	var/mob/living/carbon/human/target = victim
 	if(target.get_limb(BODY_ZONE_PRECISE_L_FOOT) || target.get_limb(BODY_ZONE_PRECISE_R_FOOT))
 		for(var/limb_to_hit in list(BODY_ZONE_PRECISE_L_FOOT, BODY_ZONE_PRECISE_R_FOOT))
-			target.apply_damage(spike_damage, BRUTE, limb_to_hit, updating_health = TRUE)
+			target.apply_damage(spike_damage, BRUTE, limb_to_hit, MELEE, updating_health = TRUE)
 
 
 
@@ -112,7 +111,8 @@
 	pixel_x = -13
 	pixel_y = -9 //Don't touch the offsets unless you intend on respriting these
 	resistance_flags = XENO_DAMAGEABLE
-	density = FALSE
+	density = TRUE
+	allow_pass_flags = PASS_DEFENSIVE_STRUCTURE|PASS_GRILLE|PASSABLE
 	///Used for the health of the spear
 	max_integrity = 200
 	///How much damage the spear does when you walk into it
