@@ -3292,7 +3292,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	penetration = 5
 	shell_speed = 1.5
 	flags_ammo_behavior = AMMO_ENERGY|AMMO_INCENDIARY|AMMO_EXPLOSIVE
-	bullet_color = COLOR_VIBRANT_LIME
+	bullet_color = LIGHT_COLOR_ELECTRIC_GREEN
 
 	///Fire burn time
 	var/heat = 12

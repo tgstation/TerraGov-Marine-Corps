@@ -486,7 +486,6 @@ GLOBAL_LIST_EMPTY(flamer_particles)
 	light_on = TRUE
 	light_range = 3
 	light_power = 3
-	light_color = LIGHT_COLOR_LAVA
 	///Tracks how much "fire" there is. Basically the timer of how long the fire burns
 	var/firelevel = 12
 	///Tracks how HOT the fire is. This is basically the heat level of the fire and determines the temperature
@@ -497,6 +496,7 @@ GLOBAL_LIST_EMPTY(flamer_particles)
 /obj/flamer_fire/Initialize(mapload, fire_lvl, burn_lvl, f_color, fire_stacks = 0, fire_damage = 0)
 	. = ..()
 	set_fire(fire_lvl, burn_lvl, f_color, fire_stacks, fire_damage)
+	updateicon()
 
 	START_PROCESSING(SSobj, src)
 
@@ -550,15 +550,15 @@ GLOBAL_LIST_EMPTY(flamer_particles)
 		C.take_overall_damage(fire_damage, BURN, FIRE, updating_health = TRUE)
 
 /obj/flamer_fire/proc/updateicon()
-	var/light_color = "LIGHT_COLOR_LAVA"
+	var/light_color = "LIGHT_COLOR_FLAME"
 	var/light_intensity = 3
 	switch(flame_color)
 		if("red")
-			light_color = LIGHT_COLOR_LAVA
+			light_color = LIGHT_COLOR_FLAME
 		if("blue")
-			light_color = LIGHT_COLOR_CYAN
+			light_color = LIGHT_COLOR_BLUE_FLAME
 		if("green")
-			light_color = LIGHT_COLOR_GREEN
+			light_color = LIGHT_COLOR_ELECTRIC_GREEN
 	switch(firelevel)
 		if(1 to 9)
 			icon_state = "[flame_color]_1"
