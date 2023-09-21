@@ -510,7 +510,7 @@
 	ammo_name = "minirocket"
 	travelling_time = 2 SECONDS
 	transferable_ammo = TRUE
-	point_cost = 150
+	point_cost = 175
 	ammo_type = CAS_MINI_ROCKET
 	devastating_explosion_range = 0
 	heavy_explosion_range = 2
