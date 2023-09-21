@@ -47,8 +47,22 @@
 		current_aura.strength = xeno_caste.aura_strength
 
 	switch(upgrade)
-		//PURCHASED UPGRADE
+		if(XENO_UPGRADE_NORMAL)
+			switch(tier)
+				if(XENO_TIER_TWO)
+					SSmonitor.stats.normal_T2++
+				if(XENO_TIER_THREE)
+					SSmonitor.stats.normal_T3++
+				if(XENO_TIER_FOUR)
+					SSmonitor.stats.normal_T4++
 		if(XENO_UPGRADE_PRIMO)
+			switch(tier)
+				if(XENO_TIER_TWO)
+					SSmonitor.stats.primo_T2++
+				if(XENO_TIER_THREE)
+					SSmonitor.stats.primo_T3++
+				if(XENO_TIER_FOUR)
+					SSmonitor.stats.primo_T4++
 			if(!silent)
 				to_chat(src, span_xenoannounce(xeno_caste.primordial_message))
 

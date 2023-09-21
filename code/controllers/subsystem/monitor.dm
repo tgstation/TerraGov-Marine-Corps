@@ -34,7 +34,6 @@ SUBSYSTEM_DEF(monitor)
 	var/maximum_connected_players_count = 0
 
 /datum/monitor_statistics
-	var/king = 0
 	var/primo_T4 = 0
 	var/normal_T4 = 0
 	var/primo_T3 = 0
@@ -111,7 +110,6 @@ SUBSYSTEM_DEF(monitor)
 			. += stats.normal_T3 * NORMAL_T3_WEIGHT
 			. += stats.primo_T4 * PRIMO_T4_WEIGHT
 			. += stats.normal_T4 * NORMAL_T4_WEIGHT
-			. += stats.king * KING_WEIGHT
 			. += human_on_ground * HUMAN_LIFE_ON_GROUND_WEIGHT
 			. += (length(GLOB.alive_human_list_faction[FACTION_TERRAGOV]) - human_on_ground) * HUMAN_LIFE_ON_SHIP_WEIGHT
 			. += length(GLOB.alive_xeno_list_hive[XENO_HIVE_NORMAL]) * XENOS_LIFE_WEIGHT

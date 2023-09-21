@@ -11,15 +11,3 @@
 		X.upgrade_xeno(X.upgrade_next())
 
 	sleep(1 SECONDS)
-
-	for(var/i in xenos)
-		var/mob/living/carbon/xenomorph/X = i
-		X.upgrade_xeno(X.upgrade_next())
-
-	sleep(1 SECONDS)
-
-	for(var/i in xenos)
-		var/mob/living/carbon/xenomorph/X = i
-		X.upgrade_xeno(X.upgrade_next())
-
-	sleep(1 SECONDS)
