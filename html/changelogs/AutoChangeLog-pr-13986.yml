@@ -1,0 +1,4 @@
+author: "Wisemonster"
+delete-after: True
+changes:
+  - spellcheck: "Removed \"Jaeger\" from req module buy orders' names, adds \"armor\" and \"set\" to module orders that are chest piece only or a set."

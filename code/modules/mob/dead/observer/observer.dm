@@ -296,7 +296,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	if(!. || can_reenter_corpse || aghosting)
 		return
 	var/mob/ghost = .
-	if(tier != XENO_TIER_MINION)
+	if(tier != XENO_TIER_MINION && hivenumber == XENO_HIVE_NORMAL)
 		GLOB.key_to_time_of_xeno_death[ghost.key] = world.time //If you ghost as a xeno that is not a minion, sets respawn timer
 
 

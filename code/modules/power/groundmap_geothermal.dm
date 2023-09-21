@@ -161,6 +161,7 @@ GLOBAL_VAR_INIT(generators_on_ground, 0)
 			return
 		corrupt(X.hivenumber)
 		to_chat(X, span_notice("You have corrupted [src]"))
+		record_generator_sabotages(X)
 		return
 	if(buildstate)
 		return
@@ -169,6 +170,7 @@ GLOBAL_VAR_INIT(generators_on_ground, 0)
 	X.visible_message(span_danger("\The [X] slashes at \the [src], tearing at it's components!"),
 		span_danger("We start slashing at \the [src], tearing at it's components!"))
 	fail_rate += 5 // 5% fail rate every attack
+	record_generator_sabotages(X)
 
 /obj/machinery/power/geothermal/attack_hand(mob/living/carbon/user)
 	interact_hand(user)
@@ -271,6 +273,7 @@ GLOBAL_VAR_INIT(generators_on_ground, 0)
 	span_notice("You weld [src]'s internal damage."))
 	cut_overlay(GLOB.welding_sparks)
 	update_icon()
+	record_generator_repairs(user)
 	return TRUE
 
 /obj/machinery/power/geothermal/wirecutter_act(mob/living/user, obj/item/I)
@@ -294,6 +297,7 @@ GLOBAL_VAR_INIT(generators_on_ground, 0)
 	user.visible_message(span_notice("[user] secures [src]'s wiring."),
 	span_notice("You secure [src]'s wiring."))
 	update_icon()
+	record_generator_repairs(user)
 	return TRUE
 
 /obj/machinery/power/geothermal/wrench_act(mob/living/user, obj/item/I)
@@ -318,6 +322,7 @@ GLOBAL_VAR_INIT(generators_on_ground, 0)
 	user.visible_message(span_notice("[user] repairs [src]'s tubing and plating."),
 	span_notice("You repair [src]'s tubing and plating."))
 	update_icon()
+	record_generator_repairs(user)
 	return TRUE
 
 /obj/machinery/power/geothermal/proc/corrupt(hivenumber)

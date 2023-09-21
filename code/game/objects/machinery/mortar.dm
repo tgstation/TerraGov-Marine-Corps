@@ -387,13 +387,24 @@
 		amount_to_fire = length(chamber_items)
 	for(var/turf/spread_turf in RANGE_TURFS(firing_spread, target))
 		turf_list += spread_turf
+	//Probably easier to declare and update a counter than it is to keep accessing a client and datum multiple times
+	var/shells_fired = 0
+	var/war_crimes_counter = 0
 	for(var/i = 1 to amount_to_fire)
 		var/turf/impact_turf = pick(turf_list)
 		in_chamber = chamber_items[next_chamber_position]
 		addtimer(CALLBACK(src, PROC_REF(begin_fire), impact_turf, in_chamber), fire_delay * i)
 		next_chamber_position--
 		chamber_items -= in_chamber
+		if(istype(in_chamber, /obj/item/mortal_shell/howitzer/white_phos || /obj/item/mortal_shell/rocket/mlrs/gas))
+			war_crimes_counter++
+		shells_fired++
 		QDEL_NULL(in_chamber)
+	if(user.client)
+		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[user.ckey]
+		personal_statistics.artillery_fired += shells_fired
+		if(war_crimes_counter)
+			personal_statistics.war_crimes += war_crimes_counter
 	return ..()
 
 // Artillery cameras. Together with the artillery impact hud tablet, shows a live feed of imapcts.

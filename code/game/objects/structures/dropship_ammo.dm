@@ -254,6 +254,11 @@
 		strafelist -= strafed
 		strafed.ex_act(EXPLODE_LIGHT)
 		new /obj/effect/temp_visual/heavyimpact(strafed)
+		for(var/atom/movable/AM AS in strafed)
+			if(QDELETED(AM))
+				continue
+			//This may seem a bit wacky as we're exploding the turf's content twice, but doing it another way would be even more wacky because of how hard it is to modify explosion damage without adding a whole other explosion type
+			AM.ex_act(EXPLODE_LIGHT) 
 
 	if(length(strafelist))
 		addtimer(CALLBACK(src, PROC_REF(strafe_turfs), strafelist), 2)
@@ -575,7 +580,7 @@
 	S.start()
 
 /obj/structure/ship_ammo/cas/minirocket/illumination
-	name = "illumination rocket-launched flare stack"
+	name = "illumination rocket flare stack"
 	desc = "A pack of laser guided mini rockets, each loaded with a payload of white-star illuminant and a parachute, while extremely ineffective at damaging the enemy, it is very effective at lighting the battlefield so marines can damage the enemy. Moving this will require some sort of lifter."
 	icon_state = "minirocket_ilm"
 	point_cost = 25 // Not a real rocket, so its cheap

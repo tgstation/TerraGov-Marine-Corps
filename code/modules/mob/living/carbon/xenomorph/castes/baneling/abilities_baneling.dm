@@ -26,6 +26,7 @@
 	. = ..()
 	var/mob/living/carbon/xenomorph/X = owner
 	handle_smoke(ability = TRUE)
+	X.record_tactical_unalive()
 	X.death(FALSE)
 
 /// This proc defines, and sets up and then lastly starts the smoke, if ability is false we divide range by 4.
@@ -46,6 +47,8 @@
 	smoke.set_up(smoke_range, owner_T, BANELING_SMOKE_DURATION)
 	playsound(owner_T, 'sound/effects/blobattack.ogg', 25)
 	smoke.start()
+
+	X.record_war_crime()
 
 // ***************************************
 // *********** Reagent Selection
@@ -158,5 +161,6 @@
 	UnregisterSignal(X, list(COMSIG_XENO_OBJ_THROW_HIT, COMSIG_XENO_LIVING_THROW_HIT, COMSIG_MOVABLE_POST_THROW))
 	var/datum/action/xeno_action/baneling_explode/explode_action = X.actions_by_path[/datum/action/xeno_action/baneling_explode]
 	explode_action.handle_smoke(ability = TRUE)
+	X.record_tactical_unalive()
 	X.death(FALSE)
 
