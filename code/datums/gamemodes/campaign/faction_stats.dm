@@ -248,6 +248,7 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 		reward_data["detailed_desc"] = reward.detailed_desc
 		reward_data["uses_remaining"] = reward.uses
 		reward_data["uses_original"] = initial(reward.uses)
+		reward_data["icon"] = initial(reward.ui_icon)
 		faction_rewards_data += list(reward_data)
 	data["faction_rewards_data"] = faction_rewards_data
 
@@ -261,6 +262,7 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 		reward_data["uses_remaining"] = initial(reward.uses)
 		reward_data["uses_original"] = initial(reward.uses)
 		reward_data["cost"] = initial(reward.cost)
+		reward_data["icon"] = initial(reward.ui_icon)
 		purchasable_rewards_data += list(reward_data)
 	data["purchasable_rewards_data"] = purchasable_rewards_data
 
@@ -270,6 +272,7 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 	data["faction_leader"] = faction_leader
 	data["victory_points"] = victory_points
 	data["faction"] = faction
+	data["icons"] = GLOB.campaign_icons
 
 	return data
 

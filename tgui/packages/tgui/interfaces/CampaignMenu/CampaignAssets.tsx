@@ -1,4 +1,4 @@
-import { CampaignData, FactionReward } from './index';
+import { CampaignData, FactionReward, AssetIcon } from './index';
 import { useBackend, useLocalState } from '../../backend';
 import { LabeledList, Button, Stack, Section } from '../../components';
 
@@ -42,6 +42,7 @@ export const CampaignAssets = (props, context) => {
                         ? 'red'
                         : 'grey'
                 }>
+                {!!reward.icon && <AssetIcon icon={reward.icon} />}
                 {reward.name}
               </Button>
             </Stack.Item>

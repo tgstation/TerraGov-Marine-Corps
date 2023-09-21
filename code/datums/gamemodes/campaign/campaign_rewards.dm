@@ -32,6 +32,8 @@
 	///Cost in attrition points if this reward is purchased
 	var/cost = 1
 
+	var/ui_icon = "test"
+
 /datum/campaign_reward/New(datum/faction_stats/winning_faction)
 	. = ..()
 	faction = winning_faction
@@ -93,6 +95,7 @@
 	detailed_desc = "Your battalion has been assigned a number of B18 power armor sets, available at your request. B18 is TGMC's premier infantry armor, providing superior protection, mobility and an advanced automedical system."
 	uses = 3
 	cost = 15
+	ui_icon = "armor"
 	equipment_to_spawn = list(
 		/obj/item/clothing/head/helmet/marine/specialist,
 		/obj/item/clothing/gloves/marine/specialist,
@@ -105,6 +108,7 @@
 	detailed_desc = "Your battalion has been assigned a number of Gorgon power armor sets, available at your request. Gorgon armor is the SOM's elite infantry armor, providing superior protection and an automedical system without significantly compromising on speed."
 	uses = 5
 	cost = 10
+	ui_icon = "armor"
 	equipment_to_spawn = list(
 		/obj/item/clothing/head/modular/som/leader,
 		/obj/item/clothing/suit/modular/som/heavy/leader/valk,
@@ -392,6 +396,7 @@
 	detailed_desc = "A limited number of Close Air Support attack runs are available via tactical binoculars for this mission. Excellent for disrupting dug in enemy positions."
 	uses = 1
 	cost = 10
+	ui_icon = "cas"
 	reward_flags = REWARD_ACTIVATED_EFFECT|REWARD_ACTIVE_MISSION_ONLY
 	var/list/fire_support_types = list(
 		FIRESUPPORT_TYPE_GUN = 4,

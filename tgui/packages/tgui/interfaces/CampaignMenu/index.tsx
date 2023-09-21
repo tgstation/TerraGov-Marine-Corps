@@ -1,6 +1,6 @@
 import { useBackend, useLocalState } from '../../backend';
 import { Window } from '../../layouts';
-import { Modal, Tabs, Button, Stack, Section } from '../../components';
+import { Box, Modal, Tabs, Button, Stack, Section } from '../../components';
 import { CampaignOverview } from './CampaignOverview';
 import { CampaignMissions } from './CampaignMissions';
 import { CampaignAssets } from './CampaignAssets';
@@ -42,6 +42,7 @@ export type FactionReward = {
   uses_remaining: number;
   uses_original: number;
   cost: number;
+  icon?: string;
 };
 
 export type CampaignData = {
@@ -58,6 +59,7 @@ export type CampaignData = {
   faction_leader?: string;
   victory_points: number;
   faction: string;
+  icons?: string[];
 };
 
 export const CampaignMenu = (props, context) => {
@@ -212,4 +214,26 @@ const CampaignContent = (props, context) => {
     default:
       return null;
   }
+};
+
+/** Generates a small icon for buttons based on ICONMAP */
+export const AssetIcon = (props: { icon: FactionReward['icon'] }, context) => {
+  const { data } = useBackend<CampaignData>(context);
+  const { icons = [] } = data;
+  const { icon } = props;
+  if (!icon || !icons[icon]) {
+    return null;
+  }
+
+  return (
+    <Box
+      as="img"
+      mr={1.5}
+      src={`data:image/jpeg;base64,${icons[icon]}`}
+      style={{
+        transform: 'scale(1) translatey(3px)',
+        '-ms-interpolation-mode': 'nearest-neighbor',
+      }}
+    />
+  );
 };

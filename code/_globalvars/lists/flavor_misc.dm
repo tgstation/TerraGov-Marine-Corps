@@ -137,9 +137,21 @@ GLOBAL_LIST_INIT(playable_squad_icons, list(
 	"smartgunner",
 ))
 
+GLOBAL_LIST_INIT(campaign_icon_types, list(
+	"armor",
+	"test",
+	"cas"
+))
 GLOBAL_LIST_INIT(minimap_icons, init_minimap_icons())
 
 /proc/init_minimap_icons()
 	. = list()
 	for(var/icon_state in GLOB.playable_icons)
 		.[icon_state] = icon2base64(icon('icons/UI_icons/map_blips.dmi', icon_state, frame = 1))
+
+GLOBAL_LIST_INIT(campaign_icons, init_campaign_icons())
+
+/proc/init_campaign_icons()
+	. = list()
+	for(var/icon_state in GLOB.campaign_icon_types)
+		.[icon_state] = icon2base64(icon('icons/UI_icons/campaign_icons.dmi', icon_state, frame = 1))
