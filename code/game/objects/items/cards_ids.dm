@@ -250,6 +250,12 @@
 	iff_signal = TGMC_LOYALIST_IFF
 	var/dogtag_taken = FALSE
 
+/obj/item/card/id/dogtag/update_icon_state()
+	if(dogtag_taken)
+		icon_state = initial(icon_state) + "_taken"
+		return
+	icon = initial(icon_state)
+
 /obj/item/card/id/dogtag/canStrip(mob/stripper, mob/owner)
 	. = ..()
 	if(!.)
@@ -264,9 +270,10 @@
 /obj/item/card/id/dogtag/special_stripped_behavior(mob/stripper, mob/owner)
 	if(dogtag_taken)
 		return
-	to_chat(stripper, span_notice("You take [owner]'s information tag, leaving the ID tag"))
+	stripper.balloon_alert(stripper, "Took info tag")
+	to_chat(stripper, span_notice("You take [owner]'s information tag, leaving the ID tag."))
 	dogtag_taken = TRUE
-	icon_state = "dogtag_taken"
+	update_icon()
 	var/obj/item/dogtag/info_tag = new()
 	info_tag.fallen_names = list(registered_name)
 	info_tag.fallen_assignments = list(assignment)
