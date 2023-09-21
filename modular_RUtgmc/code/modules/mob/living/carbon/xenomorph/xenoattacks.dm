@@ -40,7 +40,7 @@
 
 			X.visible_message("\The [X] shoves \the [src] out of her way!", \
 				span_warning("You shove \the [src] out of your way!"), null, 5)
-			apply_effect(0.2 SECONDS, WEAKEN)
+			apply_effect(1 SECONDS, WEAKEN)
 			return TRUE
 
 		if(INTENT_GRAB)

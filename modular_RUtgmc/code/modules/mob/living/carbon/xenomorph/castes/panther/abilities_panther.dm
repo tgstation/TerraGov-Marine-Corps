@@ -309,7 +309,7 @@
 	succeed_activate()
 
 
-	RegisterSignal(R, list(COMSIG_LIVING_STATUS_STUN,
+	RegisterSignals(R, list(COMSIG_LIVING_STATUS_STUN,
 		COMSIG_LIVING_STATUS_KNOCKDOWN,
 		COMSIG_LIVING_STATUS_PARALYZE,
 		COMSIG_LIVING_STATUS_IMMOBILIZE,
@@ -322,8 +322,7 @@
 	RegisterSignal(R, COMSIG_XENO_PROJECTILE_HIT, PROC_REF(evasion_dodge)) //This is where we actually check to see if we dodge the projectile.
 	RegisterSignal(R, COMSIG_ATOM_BULLET_ACT, PROC_REF(evasion_flamer_hit)) //Register status effects and fire which impact evasion.
 	RegisterSignal(R, COMSIG_LIVING_PRE_THROW_IMPACT, PROC_REF(evasion_throw_dodge)) //Register status effects and fire which impact evasion.
-
-	RegisterSignal(owner, list(COMSIG_LIVING_ADD_VENTCRAWL), PROC_REF(evasion_deactivate))
+	RegisterSignal(R, COMSIG_LIVING_ADD_VENTCRAWL, PROC_REF(evasion_deactivate))
 
 	set_toggle(TRUE)
 	evade_active = TRUE //evasion is currently active
@@ -494,6 +493,8 @@
 
 /datum/action/xeno_action/select_reagent/panther/select_reagent_radial()
 	//List of toxin images
+	// This is cursed, don't copy this code its the WRONG way to do this.
+	// TODO: generate this from GLOB.panther_toxin_type_list (or wait while offtgmc reworks the defiler code and then copy it )
 	var/static/list/panther_toxin_images_list = list(
 			PANTHER_NEUROTOXIN = image('modular_RUtgmc/icons/Xeno/actions.dmi', icon_state = PANTHER_NEUROTOXIN),
 			PANTHER_HEMODILE = image('modular_RUtgmc/icons/Xeno/actions.dmi', icon_state = PANTHER_HEMODILE),

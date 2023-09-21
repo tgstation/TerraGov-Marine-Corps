@@ -83,3 +83,15 @@
 	damage = 25
 	penetration = 25
 	sundering = 3.5
+
+/*
+//================================================
+					Xeno Spits
+//================================================
+*/
+
+/datum/ammo/xeno/toxin/heavy //Praetorian
+	spit_cost = 200
+	damage = 80
+	reagent_transfer_amount = 18
+	smoke_range = 1
