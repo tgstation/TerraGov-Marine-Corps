@@ -379,10 +379,10 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	icon_state = "anticigoff"
 	item_state = "anticigoff"
 	icon_on = "anticigon"
-	smoketime = 30
-	chem_volume = 60
-	transquantity = 2 // one of each for the whole duration
-	list_reagents = list(/datum/reagent/medicine/ryetalyn = 30, /datum/reagent/water = 30)  //some water so it purges the rye too
+	smoketime = 31
+	chem_volume = 6
+	transquantity = 0.2
+	list_reagents = list(/datum/reagent/medicine/ryetalyn = 3, /datum/reagent/serotrotium = 3)
 
 /obj/item/clothing/mask/cigarette/emergency
 	name = "Red Comrade"
@@ -390,7 +390,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	icon_state = "rrcigoff"
 	item_state = "rrcigoff"
 	icon_on = "rrcigon"
-	smoketime = 10
+	smoketime = 11
 	transquantity = 1
 	list_reagents = list(/datum/reagent/medicine/russian_red = 10)  //same ammount as a pill
 
@@ -400,9 +400,9 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	icon_state = "bicacigoff"
 	item_state = "bicacigoff"
 	icon_on = "bicacigon"
-	smoketime = 30
-	transquantity = 5 // one of each for the whole duration
-	list_reagents = list(/datum/reagent/medicine/bicaridine = 15)
+	smoketime = 31
+	transquantity = 0.3
+	list_reagents = list(/datum/reagent/medicine/bicaridine = 9)
 
 /obj/item/clothing/mask/cigarette/kelo
 	name = "lemon flavored cigarette"
@@ -410,9 +410,9 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	icon_state = "kelocigoff"
 	item_state = "kelocigoff"
 	icon_on = "kelocigon"
-	smoketime = 30
-	transquantity = 5 // one of each for the whole duration
-	list_reagents = list(/datum/reagent/medicine/kelotane = 15)
+	smoketime = 31
+	transquantity = 0.3
+	list_reagents = list(/datum/reagent/medicine/kelotane = 9)
 
 /obj/item/clothing/mask/cigarette/tram
 	name = "poppy flavored cigarette"
@@ -420,7 +420,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	icon_state = "tramcigoff"
 	item_state = "tramcigoff"
 	icon_on = "tramcigon"
-	smoketime = 15  //so half a minute
+	smoketime = 16  //so half a minute
 	chem_volume = 60
 	transquantity = 2 // one of each for the whole duration
 	list_reagents = list(/datum/reagent/medicine/tramadol = 30, /datum/reagent/water = 30)
