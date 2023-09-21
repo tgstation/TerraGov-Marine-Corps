@@ -1,5 +1,0 @@
-author: "AzonStarfall"
-delete-after: True
-changes:
-  - rscdel: "Removed TGS Minerva"
-  - config: "Removed Minerva from the config"
