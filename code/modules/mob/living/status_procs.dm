@@ -499,11 +499,6 @@
 	if(absorb_stun(amount, ignore_canstun))
 		return
 
-	//RUTGMC EDIT ADDITION  BEGIN - ARTEMIS_RUTGMC
-	if(SEND_SIGNAL(src, COMSIG_LIVING_UPDATE_PLANE_BLUR) & COMPONENT_CANCEL_BLUR)
-		return
-	//RUTGMC EDIT ADDITION  END
-
 	var/datum/status_effect/incapacitating/confused/current_confused = IsConfused()
 	if(current_confused)
 		current_confused.duration = max(world.time + amount, current_confused.duration)
@@ -528,11 +523,6 @@
 	if(absorb_stun(amount, ignore_canstun))
 		return
 
-	//RUTGMC EDIT ADDITION  BEGIN - ARTEMIS_RUTGMC
-	if(SEND_SIGNAL(src, COMSIG_LIVING_UPDATE_PLANE_BLUR) & COMPONENT_CANCEL_BLUR)
-		return
-	//RUTGMC EDIT ADDITION  END
-
 	if(current_confused)
 		current_confused.duration = world.time + amount
 	else
@@ -550,11 +540,6 @@
 		return
 	if(absorb_stun(amount, ignore_canstun))
 		return
-
-	//RUTGMC EDIT ADDITION  BEGIN - ARTEMIS_RUTGMC
-	if(SEND_SIGNAL(src, COMSIG_LIVING_UPDATE_PLANE_BLUR) & COMPONENT_CANCEL_BLUR)
-		return
-	//RUTGMC EDIT ADDITION  END
 
 	var/datum/status_effect/incapacitating/confused/current_confused = IsConfused()
 	if(current_confused)
