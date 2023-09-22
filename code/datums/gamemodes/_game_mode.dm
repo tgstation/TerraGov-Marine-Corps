@@ -362,7 +362,40 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 	else
 		return ""
 
+/datum/game_mode/proc/announce_leaders()
 
+	var/list/parts = list()
+	///used to hold victory or loss message for marines
+	var/marinestring
+	///used to hold victory or loss message for xenos
+	var/xenostring
+
+	var/datum/hive_status/normal/HN = GLOB.hive_datums[XENO_HIVE_NORMAL]
+
+	if(round_finished == MODE_INFESTATION_X_MAJOR)
+		xenostring = "The Xenomorphs were brilliantly guided to victory by "
+		marinestring = "The marines were led into defeat by "
+	if(round_finished == MODE_INFESTATION_X_MINOR)
+		xenostring = "Xenomorph forces achieved a minor victory by following the lead of "
+		marinestring = "The marines suffered an operation defeat under the command of "
+	if(round_finished == MODE_INFESTATION_M_MAJOR)
+		xenostring = "The Xenomorphs were handicapped by the leadership of "
+		marinestring = "Marine forces triumped under the brilliant leadership of "
+	if(round_finished == MODE_INFESTATION_M_MINOR)
+		xenostring = "The alien forces were beaten back and suffered a minor defeat under the leadership of "
+		marinestring = "Marine forces achieved an operational victory under the leadership of "
+
+	if(length(GLOB.alive_human_list_faction[FACTION_TERRAGOV]))
+		for(var/mob/living/carbon/human/H in GLOB.alive_human_list_faction[FACTION_TERRAGOV])
+			if(ismarinecaptainjob(H.job))
+				parts += span_bold("[marinestring] captain <b>[H]</b>")
+	if(HN.living_xeno_ruler)
+		parts += span_bold("[xenostring] <b>[HN.living_xeno_ruler]</b>")
+
+	if(length(parts))
+		return "<div class='panel stationborder'>[parts.Join("<br>")]</div>"
+	else
+		return ""
 
 /datum/game_mode/proc/announce_round_stats()
 	var/list/parts = list({"[span_round_body("The end of round statistics are:")]<br>
@@ -697,14 +730,17 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 /datum/game_mode/proc/build_roundend_report()
 	var/list/parts = list()
 
-	parts += antag_report()
-
-	parts += announce_round_stats()
-	parts += announce_xenomorphs()
-	CHECK_TICK
+	parts += announce_leaders()
 
 	//Medals
 	parts += announce_medal_awards()
+
+	parts += antag_report()
+
+	parts += announce_memorial()
+
+	parts += announce_round_stats()
+	CHECK_TICK
 
 	list_clear_nulls(parts)
 
@@ -740,27 +776,41 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 	parts += span_round_header("<span class='body' style=font-size:20px;text-align:center valign='top'>Round Complete:[round_finished]</span>")
 	if(M.mind && !isnewplayer(M))
 		if(M.stat != DEAD && !isbrain(M))
-			if(ishuman(M))
-				var/turf/current_turf = get_turf(M)
-				if(!is_mainship_level(current_turf.z) && (round_finished == MODE_INFESTATION_X_MINOR))
-					parts += "<div class='panel stationborder'>"
-					parts += "<span class='marooned'>You managed to survive, but were marooned on [SSmapping.configs[GROUND_MAP].map_name]...</span>"
-				else if(!is_mainship_level(current_turf.z) && (round_finished == MODE_INFESTATION_X_MAJOR))
-					parts += "<div class='panel stationborder'>"
-					parts += "<span class='marooned'>You managed to survive, but were marooned on [SSmapping.configs[GROUND_MAP].map_name]...</span>"
-				else
-					parts += "<div class='panel greenborder'>"
-					parts += span_greentext("You managed to survive the events on [SSmapping.configs[GROUND_MAP].map_name] as [M.real_name].")
-			else
-				parts += "<div class='panel greenborder'>"
-				parts += span_greentext("You managed to survive the events on [SSmapping.configs[GROUND_MAP].map_name] as [M.real_name].")
+			var/turf/current_turf = get_turf(M)
+			if(is_centcom_level(current_turf.z))
+				parts += "<div class='panel stationborder'>"
+				parts += "<span class='marooned'>As the battle raged on, you left the realm for the afterlife, abandoning the events on [SSmapping.configs[GROUND_MAP].map_name].</span>"
 
-		else
-			parts += "<div class='panel redborder'>"
-			parts += span_redtext("You did not survive the events on [SSmapping.configs[GROUND_MAP].map_name]...")
+			else if(ishuman(M))
+				if(round_finished == MODE_INFESTATION_X_MINOR || round_finished == MODE_INFESTATION_X_MAJOR)
+					parts += "<div class='panel redborder'>"
+					parts += span_redtext("The marines failed to contain the Xenomorph menace on [SSmapping.configs[GROUND_MAP].map_name]...<br>")
+					if(!is_mainship_level(current_turf.z))
+						parts += "<div class='panel stationborder'>"
+						parts += "<span class='marooned'> You managed to survive the carnage, but were marooned on [SSmapping.configs[GROUND_MAP].map_name].</span>"
+					else
+						parts += span_redtext("You managed to survive the carnage as [M.real_name].")
+				else if(round_finished == MODE_INFESTATION_M_MINOR || round_finished == MODE_INFESTATION_M_MAJOR)
+					parts += "<div class='panel greenborder'>"
+					parts += span_greentext("The marines successfully contained the Xenomorph menace on [SSmapping.configs[GROUND_MAP].map_name]...<br>")
+					parts += span_greentext("You survived the operation as [M.real_name].")
+
+			else if(isxeno(M))
+				if(round_finished == MODE_INFESTATION_X_MINOR || round_finished == MODE_INFESTATION_X_MAJOR)
+					parts += "<div class='panel greenborder'>"
+					parts += span_greentext("The Queen Mother has led us to victory against the tallhosts on [SSmapping.configs[GROUND_MAP].map_name]...")
+				else if(round_finished == MODE_INFESTATION_M_MINOR || round_finished == MODE_INFESTATION_M_MAJOR)
+					parts += "<div class='panel redborder'>"
+					parts += span_redtext("The cruel tallhosts have destroyed our hive on [SSmapping.configs[GROUND_MAP].map_name]...<br>")
+					parts += span_redtext("You managed to survive their assault as [M.real_name].")
+
 		if(GLOB.personal_statistics_list[C.ckey])
 			var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[C.ckey]
 			parts += personal_statistics.compose_report()
+
+		if(M.stat == DEAD || isbrain(M))
+			parts += "<div class='panel redborder'>"
+			parts += span_redtext(" you did not survive the events on [SSmapping.configs[GROUND_MAP].map_name]...")
 	else
 		parts += "<div class='panel stationborder'>"
 	parts += "<br>"
@@ -774,7 +824,6 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 	parts += "<div class='panel stationborder'>"
 	parts += "</div>"
 	parts += GLOB.common_report
-
 	var/content = parts.Join()
 	//Log the rendered HTML in the round log directory
 	fdel(roundend_file)
@@ -802,13 +851,17 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 /client/proc/roundend_report_file()
 	return "data/[ckey].html"
 
-/datum/game_mode/proc/announce_xenomorphs()
+/datum/game_mode/proc/announce_memorial()
+
 	var/list/parts = list()
-	var/datum/hive_status/normal/HN = GLOB.hive_datums[XENO_HIVE_NORMAL]
-	if(!HN.living_xeno_ruler)
+
+	if(!length(GLOB.fallen_marines))
 		return
 
-	parts += span_round_body("The surviving xenomorph ruler was:<br>[HN.living_xeno_ruler.key] as [span_boldnotice("[HN.living_xeno_ruler]")]")
+	parts += "In memory of:"
+	for(var/mob/living/carbon/human/fallenmarine in GLOB.fallen_marines)
+		parts += "<b>[fallenmarine.real_name], [fallenmarine.job.title]</b>"
+	parts += "Who bravely died combating the Xenomorph menace during the operation."
 
 	if(length(parts))
 		return "<div class='panel stationborder'>[parts.Join("<br>")]</div>"
