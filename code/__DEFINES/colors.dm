@@ -178,6 +178,10 @@ Important note: colors can end up significantly different from the basic html pi
 #define LIGHT_COLOR_TUNGSTEN "#FAE1AF"
 /// Barely visible cyan-ish hue, as the doctor prescribed. rgb(240, 250, 250)
 #define LIGHT_COLOR_HALOGEN "#F0FAFA"
+/// More bright and rich in color compared to lava. rgb(248, 136, 24)
+#define LIGHT_COLOR_FLAME "#F88818"
+/// Rich and bright blue. rgb(0, 183, 255)
+#define LIGHT_COLOR_BLUE_FLAME "#00b8ff"
 
 //Ammo and grenade colors
 #define COLOR_AMMO_AIRBURST "#2272eb"

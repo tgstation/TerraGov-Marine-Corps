@@ -134,3 +134,28 @@
   Wisemonster:
   - rscadd: Renamed face paints to customization kits and updated their description
       to reflect their armor/clothing changing properties.
+2023-09-21:
+  AzonStarfall:
+  - qol: Made some quality of life adjustments to the genetic escape shuttles.
+  - rscdel: Removed TGS Minerva
+  - config: Removed Minerva from the config
+  - bugfix: Changed title of SG-153 magazines
+  Barnet2:
+  - bugfix: Xeno queue should (hopefully) work as intended now
+  - bugfix: If you ghost as a Valhalla xeno, your xeno respawn timer shouldn't reset
+  Pariah919:
+  - balance: Derringer has better gun handling statistics and deals stagger on hit
+      again,
+  TiviPlus:
+  - qol: Redid the CAS plane UI
+  Wisemonster:
+  - spellcheck: Removed "Jaeger" from req module buy orders' names, adds "armor" and
+      "set" to module orders that are chest piece only or a set.
+  XElectricX:
+  - rscadd: Individual player statistics that are displayed at the end of the round.
+  - code_imp: Refactor requisitions sell code to be neater and have a separate proc
+      for getting the value of sold objects.
+  forestbbbbbbb:
+  - bugfix: Fix xeno spawns not counting towards autobalance
+  ivanmixo:
+  - balance: Gau hits twice again
