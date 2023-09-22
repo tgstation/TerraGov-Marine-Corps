@@ -1,0 +1,7 @@
+author: "dopamiin0"
+delete-after: True
+changes:
+  - rscadd: "The dropship fabricator will now receive points whenever anything is exported, equal to 5% of the exported item's value."
+  - balance: "Low orbit now only generates 6 points a minute for CAS. High orbit now generates 30."
+  - balance: "The prices of almost all items in the dropship fabricator have been increased."
+  - balance: "Minirockets now only take 2 seconds to impact on medium orbit, but have an even smaller explosion radius."
