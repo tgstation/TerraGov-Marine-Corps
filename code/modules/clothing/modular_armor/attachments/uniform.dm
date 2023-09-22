@@ -22,6 +22,9 @@
 		/obj/item/ammo_magazine/smg,
 		/obj/item/ammo_magazine/sniper,
 		/obj/item/cell/lasgun,
+		//RUTGMC EDIT ADDITION  BEGIN - SOLDERING_TOOL
+		/obj/item/tool/surgery/solderingtool,
+		//RUTGMC EDIT ADDITION  END
 	)
 	cant_hold = list(
 		/obj/item/stack/razorwire,
@@ -79,6 +82,9 @@
 		/obj/item/bodybag,
 		/obj/item/roller,
 		/obj/item/whistle,
+		//RUTGMC EDIT ADDITION  BEGIN - SOLDERING_TOOL
+		/obj/item/tool/surgery/solderingtool,
+		//RUTGMC EDIT ADDITION  END
 	)
 
 /obj/item/armor_module/storage/uniform/surgery_webbing
