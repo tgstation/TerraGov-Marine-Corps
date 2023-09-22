@@ -282,6 +282,7 @@
 
 	if(ismob(firer) && !recursivity)
 		var/mob/mob_firer = firer
+		record_projectile_fire(mob_firer)
 		GLOB.round_statistics.total_projectiles_fired[mob_firer.faction]++
 		SSblackbox.record_feedback("tally", "round_statistics", 1, "total_projectiles_fired[mob_firer.faction]")
 		if(ammo.bonus_projectiles_amount)
@@ -887,6 +888,9 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	if(proj.ammo.flags_ammo_behavior & AMMO_SUNDERING)
 		adjust_sunder(proj.sundering)
 
+	if(stat != DEAD && ismob(proj.firer))
+		record_projectile_damage(proj.firer, damage)	//Tally up whoever the shooter was
+
 	if(damage)
 		var/shrapnel_roll = do_shrapnel_roll(proj, damage)
 		if(shrapnel_roll)
@@ -944,9 +948,12 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	else
 		dir_angle = angle
 
-	//If we have the the right kind of ammo, we can fire several projectiles at once.
-	if(ammo.bonus_projectiles_amount && !recursivity) //Recursivity check in case the bonus projectiles have bonus projectiles of their own. Let's not loop infinitely.
-		ammo.fire_bonus_projectiles(src, shooter, source, range, speed, dir_angle)
+	if(!recursivity)	//Recursivity check in case the bonus projectiles have bonus projectiles of their own. Let's not loop infinitely.
+		record_projectile_fire(shooter)
+
+		//If we have the the right kind of ammo, we can fire several projectiles at once.
+		if(ammo.bonus_projectiles_amount)
+			ammo.fire_bonus_projectiles(src, shooter, source, range, speed, dir_angle)
 
 	if(shooter.Adjacent(target) && ismob(target))
 		var/mob/mob_to_hit = target

@@ -57,6 +57,7 @@
 			/obj/item/armor_module/module/artemis = -1,
 			/obj/item/armor_module/module/tyr_head = -1,
 			/obj/item/armor_module/module/antenna = -1,
+			/obj/item/armor_module/module/motion_detector = -1,
 			/obj/item/armor_module/module/mimir_environment_protection/mark1 = -1,
 			/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet/mark1 = -1,
 			/obj/item/armor_module/module/tyr_extra_armor/mark1 = -1,
@@ -114,7 +115,6 @@
 		"Standard" = list(
 			/obj/item/clothing/under/marine/robotic = -1,
 			/obj/item/clothing/under/marine = -1,
-			/obj/item/clothing/under/marine/hyperscale = -1,
 			/obj/item/clothing/under/marine/camo = -1,
 			/obj/item/clothing/under/marine/camo/desert = -1,
 			/obj/item/clothing/under/marine/camo/snow = -1,

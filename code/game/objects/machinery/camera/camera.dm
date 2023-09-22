@@ -122,7 +122,7 @@
 	if(!CHECK_BITFIELD(machine_stat, PANEL_OPEN))
 		return FALSE
 	toggle_cam(user, TRUE)
-	repair_damage(max_integrity)
+	repair_damage(max_integrity, user)
 	I.play_tool_sound(src)
 	update_icon()
 	return TRUE

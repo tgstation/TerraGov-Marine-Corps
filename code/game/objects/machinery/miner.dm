@@ -71,7 +71,7 @@
  **/
 /obj/machinery/miner/proc/init_marker()
 	var/marker_icon = "miner_[mineral_value >= PLATINUM_CRATE_SELL_AMOUNT ? "platinum" : "phoron"]_on"
-	SSminimaps.add_marker(src, MINIMAP_FLAG_ALL, image('icons/UI_icons/map_blips.dmi', null, marker_icon))
+	SSminimaps.add_marker(src, MINIMAP_FLAG_ALL, image('modular_RUtgmc/icons/UI_icons/map_blips.dmi', null, marker_icon)) //RU TGMC edit
 
 /obj/machinery/miner/update_icon()
 	switch(miner_status)
@@ -191,6 +191,7 @@
 	user.visible_message(span_notice("[user] welds [src]'s internal damage."),
 	span_notice("You weld [src]'s internal damage."))
 	cut_overlay(GLOB.welding_sparks)
+	record_miner_repair(user)
 	return TRUE
 
 /obj/machinery/miner/wirecutter_act(mob/living/user, obj/item/I)
@@ -214,6 +215,7 @@
 	set_miner_status()
 	user.visible_message(span_notice("[user] secures [src]'s wiring."),
 	span_notice("You secure [src]'s wiring."))
+	record_miner_repair(user)
 	return TRUE
 
 /obj/machinery/miner/wrench_act(mob/living/user, obj/item/I)
@@ -239,6 +241,7 @@
 	span_notice("You repair [src]'s tubing and plating."))
 	start_processing()
 	faction = user.faction
+	record_miner_repair(user)
 	return TRUE
 
 /obj/machinery/miner/examine(mob/user)
@@ -328,6 +331,9 @@
 		playsound(loc, "alien_claw_metal", 25, TRUE)
 		miner_integrity -= 25
 		set_miner_status()
+		if(miner_status == MINER_DESTROYED && X.client)
+			var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[X.ckey]
+			personal_statistics.miner_sabotages_performed++
 
 /obj/machinery/miner/proc/set_miner_status()
 	var/health_percent = round((miner_integrity / max_miner_integrity) * 100)

@@ -684,7 +684,7 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 		if(MAP_ARMOR_STYLE_JUNGLE)
 			if(flags_item_map_variant & ITEM_JUNGLE_VARIANT)
 				if(colorable_allowed & PRESET_COLORS_ALLOWED)
-					greyscale_colors = ARMOR_PALETTE_DRAB
+					greyscale_colors = ARMOR_PALETTE_BLACK //RUTGMC edit - black instead of default drab
 				else if(colorable_allowed & ICON_STATE_VARIANTS_ALLOWED)
 					current_variant = JUNGLE_VARIANT
 				else

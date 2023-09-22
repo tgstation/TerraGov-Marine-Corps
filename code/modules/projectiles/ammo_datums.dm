@@ -433,7 +433,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	handful_icon_state = "derringer"
 
 /datum/ammo/bullet/pistol/superheavy/derringer/on_hit_mob(mob/M,obj/projectile/P)
-	staggerstun(M, P, knockback = 1)
+	staggerstun(M, P, slowdown = 0.5)
 
 /datum/ammo/bullet/pistol/mech
 	name = "super-heavy pistol bullet"

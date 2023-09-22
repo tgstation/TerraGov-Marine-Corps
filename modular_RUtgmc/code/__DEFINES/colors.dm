@@ -1,1 +1,0 @@
-#define COLOR_RUTGMC_RED "#B43535"

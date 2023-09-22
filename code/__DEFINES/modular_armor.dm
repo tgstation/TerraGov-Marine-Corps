@@ -135,6 +135,7 @@
 #define VISOR_PALETTE_PEARL_PINK "#754068#AA6183#DBADBB"
 
 
+/* RUTGMC edit - color redefine
 #define ARMOR_PALETTES_LIST list(\
 		"Default Armor" = list(\
 			"Drab" = ARMOR_PALETTE_DRAB,\
@@ -217,6 +218,7 @@
 			"Charlie" = ARMOR_PALETTE_CHARLIE,\
 		),\
 	)
+*/
 
 #define VISOR_PALETTES_LIST list(\
 		"Default Visors" = list(\

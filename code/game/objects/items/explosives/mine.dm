@@ -76,6 +76,7 @@ Stepping directly on the mine will also blow it up
 	span_notice("You finish deploying [src]."))
 	var/obj/item/card/id/id = user.get_idcard()
 	deploy_mine(user, id?.iff_signal)
+	user.record_traps_created()
 
 ///this proc is used to deploy a mine
 /obj/item/explosive/mine/proc/deploy_mine(mob/living/user, iff_sig)
