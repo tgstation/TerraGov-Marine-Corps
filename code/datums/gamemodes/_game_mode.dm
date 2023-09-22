@@ -389,6 +389,7 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 		for(var/mob/living/carbon/human/H in GLOB.alive_human_list_faction[FACTION_TERRAGOV])
 			if(ismarinecaptainjob(H.job))
 				parts += span_bold("[marinestring] captain <b>[H]</b>")
+				break //only one captain allowed, in case we somehow have multiple
 	if(HN.living_xeno_ruler)
 		parts += span_bold("[xenostring] <b>[HN.living_xeno_ruler]</b>")
 
