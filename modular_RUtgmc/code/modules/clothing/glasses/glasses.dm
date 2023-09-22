@@ -35,6 +35,49 @@
 
 		update_icon(user)
 
+/obj/item/clothing/glasses/eyepatch/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if(istype(I, /obj/item/clothing/glasses/night/imager_goggles))
+		var/obj/item/clothing/glasses/night/imager_goggles/eyepatch/P = new
+		to_chat(user, span_notice("You fasten the optical scanner to the inside of the eyepatch."))
+		qdel(I)
+		qdel(src)
+		user.put_in_hands(P)
+
+		update_icon(user)
+
+/obj/item/clothing/glasses/mgoggles/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if(istype(I, /obj/item/clothing/glasses/night/imager_goggles))
+		if(prescription)
+			var/obj/item/clothing/glasses/night/optgoggles/prescription/P = new
+			to_chat(user, span_notice("You fasten the optical imaging scanner to the inside of the goggles."))
+			qdel(I)
+			qdel(src)
+			user.put_in_hands(P)
+		else
+			var/obj/item/clothing/glasses/night/optgoggles/S = new
+			to_chat(user, span_notice("You fasten the optical imaging scanner to the inside of the goggles."))
+			qdel(I)
+			qdel(src)
+			user.put_in_hands(S)
+
+		update_icon(user)
+
+/obj/item/clothing/glasses/sunglasses/fake/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if(istype(I, /obj/item/clothing/glasses/night/imager_goggles))
+		var/obj/item/clothing/glasses/night/imager_goggles/sunglasses/P = new
+		to_chat(user, span_notice("You fasten the optical imager scaner to the inside of the glasses."))
+		qdel(I)
+		qdel(src)
+		user.put_in_hands(P)
+
+		update_icon(user)
+
 /obj/item/clothing/glasses/meson/og
 	name = "Orange glasses"
 	desc = "Just orange glasses. This pair has been fitted with an optical meson scanner."
