@@ -28,7 +28,8 @@
 	icon = 'icons/Marine/traps.dmi'
 	icon_state = "spiketrap"
 	resistance_flags = XENO_DAMAGEABLE
-	density = FALSE
+	density = TRUE
+	allow_pass_flags = PASS_DEFENSIVE_STRUCTURE|PASSABLE|PASS_MOB
 	max_integrity = 200
 	///How much damage the spikes do when you step on them
 	var/spike_damage = 6
