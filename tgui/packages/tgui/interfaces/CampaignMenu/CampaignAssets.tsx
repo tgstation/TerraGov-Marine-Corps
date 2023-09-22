@@ -31,7 +31,7 @@ export const CampaignAssets = (props, context) => {
           {faction_rewards_data.map((reward) => (
             <Stack.Item key={reward.name}>
               <Button
-                width={'150px'}
+                width={'180px'}
                 onClick={() => setSelectedReward(reward)}
                 color={
                   selectedReward.name === reward.name
