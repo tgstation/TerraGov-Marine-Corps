@@ -43,6 +43,8 @@ export type FactionReward = {
   uses_original: number;
   cost: number;
   icon?: string;
+  currently_active?: number;
+  is_debuff?: number;
 };
 
 export type CampaignData = {
@@ -95,11 +97,12 @@ export const CampaignMenu = (props, context) => {
               <Stack justify="space-around">
                 <Stack.Item>
                   <Button
-                    onClick={() =>
+                    onClick={() => {
                       act('activate_reward', {
                         selected_reward: selectedAsset.type,
-                      })
-                    }
+                      });
+                      setSelectedAsset(null);
+                    }}
                     icon={'check'}
                     color="green">
                     Yes
@@ -125,11 +128,12 @@ export const CampaignMenu = (props, context) => {
               <Stack justify="space-around">
                 <Stack.Item>
                   <Button
-                    onClick={() =>
-                      act('purchase_reward', {
-                        purchased_reward: purchasedAsset.type,
-                      })
-                    }
+                    onClick={() => {
+                      act('activate_reward', {
+                        selected_reward: purchasedAsset.type,
+                      });
+                      setPurchasedAsset(null);
+                    }}
                     icon={'check'}
                     color="green">
                     Yes

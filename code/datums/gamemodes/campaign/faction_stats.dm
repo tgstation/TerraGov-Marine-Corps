@@ -248,7 +248,9 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 		reward_data["detailed_desc"] = reward.detailed_desc
 		reward_data["uses_remaining"] = reward.uses
 		reward_data["uses_original"] = initial(reward.uses)
-		reward_data["icon"] = initial(reward.ui_icon)
+		reward_data["icon"] = (reward.ui_icon)
+		reward_data["currently_active"] = !!(reward.reward_flags & REWARD_ACTIVE)
+		reward_data["is_debuff"] = !!(reward.reward_flags & REWARD_DEBUFF)
 		faction_rewards_data += list(reward_data)
 	data["faction_rewards_data"] = faction_rewards_data
 

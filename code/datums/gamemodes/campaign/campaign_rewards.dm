@@ -15,6 +15,10 @@
 #define REWARD_ACTIVE_MISSION_ONLY (1<<4)
 ///Temporarily unusable
 #define REWARD_DISABLED (1<<5)
+///Currently active, used for UI purposes
+#define REWARD_ACTIVE (1<<6)
+///debuff, used for UI purposes
+#define REWARD_DEBUFF (1<<7)
 
 /datum/campaign_reward
 	///Name of this reward
@@ -73,6 +77,12 @@
 
 /datum/campaign_reward/proc/remove_passive_effect()
 	return
+
+///Deactivates the asset once the mission is over
+/datum/campaign_reward/proc/deactivate()
+	SIGNAL_HANDLER
+	reward_flags &= ~REWARD_ACTIVE
+	UnregisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_MISSION_ENDED)
 
 //Parent for all 'spawn stuff' rewards
 /datum/campaign_reward/equipment
@@ -165,15 +175,16 @@
 		var/datum/job/bonus_job = SSjob.type_occupations[job_type]
 		bonus_job.add_job_positions(bonus_job_list[job_type])
 
-	RegisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_MISSION_ENDED, PROC_REF(remove_jobs), override = TRUE) //you could use this multiple times per mission
+	reward_flags |= REWARD_ACTIVE
+
+	RegisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_MISSION_ENDED, TYPE_PROC_REF(/datum/campaign_reward, deactivate), override = TRUE) //you could use this multiple times per mission
 
 ///Removes the job slots once the mission is over
-/datum/campaign_reward/bonus_job/proc/remove_jobs()
-	SIGNAL_HANDLER
+/datum/campaign_reward/bonus_job/deactivate()
+	. = ..()
 	for(var/job_type in bonus_job_list)
 		var/datum/job/bonus_job = SSjob.type_occupations[job_type]
 		bonus_job.set_job_positions(0)
-	UnregisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_MISSION_ENDED)
 
 /datum/campaign_reward/bonus_job/colonial_militia
 	name = "Colonial militia support"
@@ -234,7 +245,7 @@
 
 //Parent for all passive attrition modifiers
 /datum/campaign_reward/attrition_modifier
-	reward_flags = REWARD_PASSIVE_EFFECT
+	reward_flags = REWARD_PASSIVE_EFFECT|REWARD_ACTIVE
 	///Modifier to faction passive attrition gain
 	var/attrition_mod = 0
 
@@ -262,18 +273,20 @@
 	desc = "-20% passive Attrition Point gain"
 	detailed_desc = "Damage to our supply lines have increased the difficulty and time required to move men and materiel, resulting in a lower deployment of combat forces."
 	attrition_mod = -0.2
+	reward_flags = REWARD_PASSIVE_EFFECT|REWARD_DEBUFF
 
 /datum/campaign_reward/attrition_modifier/malus_teleporter
 	name = "Bluespace logistics disabled"
 	desc = "-20% passive Attrition Point gain"
 	detailed_desc = "The loss of our teleporter arrays has increased the difficulty and time required to move men and materiel, resulting in a lower deployment of combat forces."
 	attrition_mod = -0.2
+	reward_flags = REWARD_PASSIVE_EFFECT|REWARD_DEBUFF
 
 /datum/campaign_reward/teleporter_disabled
 	name = "Teleporter Array disabled"
 	desc = "Teleporter Array has been permenantly disabled"
 	detailed_desc = "The Bluespace drive powering all Teleporter Arrays in the conflict zone has been destroyed, rending all Teleporter Arrays inoperable. You'll have to deploy the old fashion way from here on out."
-	reward_flags = REWARD_IMMEDIATE_EFFECT
+	reward_flags = REWARD_IMMEDIATE_EFFECT|REWARD_DEBUFF
 
 /datum/campaign_reward/teleporter_disabled/immediate_effect()
 	for(var/obj/structure/teleporter_array/teleporter AS in GLOB.teleporter_arrays)
@@ -328,6 +341,8 @@
 
 	friendly_teleporter.teleporter_status = TELEPORTER_ARRAY_READY
 	to_chat(faction.faction_leader, span_warning("Teleporter Array powered up. Link to Bluespace drive confirmed. Ready for teleportation."))
+	reward_flags |= REWARD_ACTIVE
+	RegisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_MISSION_ENDED, TYPE_PROC_REF(/datum/campaign_reward, deactivate))
 
 /datum/campaign_reward/droppod_refresh
 	name = "Rearm drop pod bays"
@@ -367,6 +382,8 @@
 
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_CAMPAIGN_ENABLE_DROPPODS)
 	to_chat(faction.faction_leader, span_warning("Ship repositioned, drop pods are now ready for use."))
+	reward_flags |= REWARD_ACTIVE
+	RegisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_MISSION_ENDED, TYPE_PROC_REF(/datum/campaign_reward, deactivate))
 
 /datum/campaign_reward/droppod_disable
 	name = "Disable drop pods"
@@ -419,15 +436,15 @@
 		var/datum/fire_support/fire_support_option = GLOB.fire_support_types[firesupport_type]
 		fire_support_option.enable_firesupport(fire_support_types[firesupport_type])
 
-	RegisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_MISSION_ENDED, PROC_REF(disable_firesupport), override = TRUE) //you could use this multiple times per mission
+	reward_flags |= REWARD_ACTIVE
+	RegisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_MISSION_ENDED, TYPE_PROC_REF(/datum/campaign_reward, deactivate), override = TRUE) //you could use this multiple times per mission
 
 ///Turns off the fire support and resets its uses
-/datum/campaign_reward/fire_support/proc/disable_firesupport()
-	SIGNAL_HANDLER
+/datum/campaign_reward/fire_support/deactivate()
+	. = ..()
 	for(var/firesupport_type in fire_support_types)
 		var/datum/fire_support/fire_support_option = GLOB.fire_support_types[firesupport_type]
 		fire_support_option.disable()
-	UnregisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_MISSION_ENDED)
 
 /datum/campaign_reward/fire_support/som_cas
 	fire_support_types = list(
@@ -466,7 +483,7 @@
 	desc = "base type of disabler, you shouldn't see this."
 	detailed_desc = "Why can you see this? Report on github."
 	uses = 2
-	reward_flags = REWARD_IMMEDIATE_EFFECT
+	reward_flags = REWARD_IMMEDIATE_EFFECT|REWARD_DEBUFF
 	///The types of rewards disabled
 	var/list/types_disabled
 	///Any mission flags that will override this disabler
@@ -489,15 +506,15 @@
 			reward_type.reward_flags |= REWARD_DISABLED
 			types_currently_disabled += reward_type
 
-	RegisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_MISSION_ENDED, PROC_REF(reenable_rewards))
+	RegisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_MISSION_ENDED, TYPE_PROC_REF(/datum/campaign_reward, deactivate))
 	if(!uses)
 		UnregisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_MISSION_LOADED)
+		reward_flags &= ~REWARD_DEBUFF
 
 /datum/campaign_reward/reward_disabler/immediate_effect()
-	RegisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_MISSION_LOADED, PROC_REF(activated_effect))
+	RegisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_MISSION_LOADED, TYPE_PROC_REF(/datum/campaign_reward, activated_effect))
 
-///Re-enabled any disabled rewards
-/datum/campaign_reward/reward_disabler/proc/reenable_rewards()
+/datum/campaign_reward/reward_disabler/deactivate()
 	for(var/datum/campaign_reward/reward_type AS in types_currently_disabled)
 		reward_type.reward_flags &= ~REWARD_DISABLED
 	types_currently_disabled.Cut()
