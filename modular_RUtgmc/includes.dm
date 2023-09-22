@@ -108,12 +108,10 @@
 #include "code\modules\projectiles\projectile.dm"
 #include "code\modules\vehicles\powerloader.dm"
 #include "code\modules\xenomorph\xeno_structures.dm"
-//			Fe_ed Modules			//
 #include "code\modules\mob\living\carbon\xenomorph\life.dm"
 #include "code\modules\mob\living\carbon\xenomorph\death.dm"
 #include "code\modules\mob\living\carbon\human\life\death.dm"
 #include "code\_onclick\hud\screen_objects\screen_objects.dm"
-//				end					//
 #include "code\controllers\subsystem\points.dm"
 #include "code\modules\reqs\supply.dm"
 #include "code\modules\projectiles\magazines\magazines.dm"
@@ -126,6 +124,7 @@
 #include "code\game\objects\items\storage\boxes.dm"
 #include "code\game\objects\items\weapons\blades.dm"
 #include "code\game\objects\items\weapons\twohanded.dm"
+#include "code\game\objects\items\radio\headset.dm"
 #include "code\game\objects\machinery\mortar.dm"
 #include "code\game\objects\machinery\vending\new_marine_vendors.dm"
 #include "code\modules\clothing\glasses\glasses.dm"
