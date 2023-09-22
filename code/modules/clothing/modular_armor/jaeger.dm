@@ -149,6 +149,9 @@
 		/obj/item/armor_module/armor/visor/marine/trooper,
 		/obj/item/armor_module/armor/visor/marine/kabuto,
 		/obj/item/armor_module/armor/visor/marine/hotaru,
+		//RUTGMC EDIT ADDITION  BEGIN - MOTION_DETECTOR
+		/obj/item/armor_module/module/motion_detector,
+		//RUTGMC EDIT ADDITION  END
 	)
 
 	starting_attachments = list(/obj/item/armor_module/armor/visor/marine, /obj/item/armor_module/storage/helmet)

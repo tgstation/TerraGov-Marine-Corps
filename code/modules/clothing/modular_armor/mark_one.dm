@@ -30,6 +30,9 @@
 		/obj/item/armor_module/armor/visor/marine/old/eod,
 		/obj/item/armor_module/armor/visor/marine/old/assault,
 		/obj/item/armor_module/module/fire_proof_helmet,
+		//RUTGMC EDIT ADDITION  BEGIN - MOTION_DETECTOR
+		/obj/item/armor_module/module/motion_detector,
+		//RUTGMC EDIT ADDITION  END
 	)
 
 	greyscale_config = /datum/greyscale_config/armor_mk1/infantry

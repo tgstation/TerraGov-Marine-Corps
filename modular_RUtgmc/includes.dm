@@ -130,6 +130,7 @@
 #include "code\modules\clothing\glasses\glasses.dm"
 #include "code\modules\clothing\head\head.dm"
 #include "code\modules\clothing\modular_armor\combat_robot.dm"
+#include "code\modules\clothing\modular_armor\attachments\modules.dm"
 #include "code\modules\clothing\shoes\marine_shoes.dm"
 #include "code\modules\clothing\suits\suits.dm"
 #include "code\modules\clothing\under\marine_uniform.dm"
