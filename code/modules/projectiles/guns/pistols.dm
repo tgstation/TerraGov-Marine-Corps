@@ -475,7 +475,7 @@
 
 	fire_delay = 0.4 SECONDS
 	burst_delay = 0.5 SECONDS
-	damage_mult = 1.15
+	damage_mult = 1.1
 	recoil = 1
 	recoil_unwielded = 2
 	accuracy_mult_unwielded = 0.6
