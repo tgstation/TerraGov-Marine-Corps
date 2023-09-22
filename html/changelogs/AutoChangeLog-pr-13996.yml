@@ -1,0 +1,5 @@
+author: "Blundir"
+delete-after: True
+changes:
+  - bugfix: "flames now spawn with correct flame light color"
+  - code_imp: "changed hex color codes of flame light color"
