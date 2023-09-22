@@ -164,6 +164,9 @@
 		/obj/item/armor_module/module/antenna,
 		/obj/item/armor_module/storage/helmet,
 		/obj/item/armor_module/armor/badge,
+		//RUTGMC EDIT ADDITION  BEGIN - SOLDERING_TOOL
+		/obj/item/armor_module/module/motion_detector,
+		//RUTGMC EDIT ADDITION  END
 	)
 	starting_attachments = list(/obj/item/armor_module/storage/helmet)
 	flags_item_map_variant = ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_DESERT_VARIANT
@@ -206,6 +209,9 @@
 		/obj/item/armor_module/storage/helmet,
 		/obj/item/armor_module/armor/badge,
 		/obj/item/armor_module/armor/visor/marine/xenonaut,
+		//RUTGMC EDIT ADDITION  BEGIN - SOLDERING_TOOL
+		/obj/item/armor_module/module/motion_detector,
+		//RUTGMC EDIT ADDITION  END
 	)
 
 /obj/item/clothing/head/modular/m10x/leader
