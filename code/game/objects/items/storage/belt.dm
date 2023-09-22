@@ -60,6 +60,9 @@
 		/obj/item/tool/taperoll/engineering,
 		/obj/item/tool/extinguisher/mini,
 		/obj/item/tool/shovel/etool,
+		//RUTGMC EDIT ADDITION  BEGIN - SOLDERING_TOOL
+		/obj/item/tool/surgery/solderingtool,
+		//RUTGMC EDIT ADDITION  END
 	)
 
 /obj/item/storage/belt/utility/full/Initialize(mapload)
@@ -118,6 +121,9 @@
 		/obj/item/storage/syringe_case,
 		/obj/item/reagent_containers/hypospray/autoinjector,
 		/obj/item/stack/medical,
+		//RUTGMC EDIT ADDITION  BEGIN - SOLDERING_TOOL
+		/obj/item/tool/surgery/solderingtool,
+		//RUTGMC EDIT ADDITION  END
 	)
 
 /obj/item/storage/belt/lifesaver/full/Initialize(mapload)  //The belt, with all it's magic inside!

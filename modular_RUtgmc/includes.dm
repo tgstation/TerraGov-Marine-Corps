@@ -124,6 +124,7 @@
 #include "code\game\objects\items\storage\boxes.dm"
 #include "code\game\objects\items\weapons\blades.dm"
 #include "code\game\objects\items\weapons\twohanded.dm"
+#include "code\game\objects\items\tools\soldering_tool.dm"
 #include "code\game\objects\items\radio\headset.dm"
 #include "code\game\objects\machinery\mortar.dm"
 #include "code\game\objects\machinery\vending\new_marine_vendors.dm"

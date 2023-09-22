@@ -742,6 +742,9 @@
 		/obj/item/bodybag/cryobag,
 		/obj/item/reagent_containers/hypospray/advanced/oxycodone,
 		/obj/item/tweezers,
+		//RUTGMC EDIT ADDITION  BEGIN - SOLDERING_TOOL
+		/obj/item/tool/surgery/solderingtool,
+		//RUTGMC EDIT ADDITION  END
 	)
 
 /obj/effect/vendor_bundle/white_dress
