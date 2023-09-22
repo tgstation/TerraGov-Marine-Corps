@@ -104,7 +104,6 @@
 #include "code\modules\mob\living\carbon\xenomorph\life.dm"
 #include "code\modules\mob\living\carbon\xenomorph\death.dm"
 #include "code\modules\mob\living\carbon\human\life\death.dm"
-#include "code\modules\mob\living\carbon\human\life\handle_regular_hud_updates.dm"
 #include "code\_onclick\hud\screen_objects\screen_objects.dm"
 //				end					//
 #include "code\controllers\subsystem\points.dm"
