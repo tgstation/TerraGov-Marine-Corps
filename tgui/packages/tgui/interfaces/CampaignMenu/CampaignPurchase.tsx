@@ -39,7 +39,15 @@ export const CampaignPurchase = (props, context) => {
                         ? 'red'
                         : 'grey'
                 }>
-                {!!reward.icon && <AssetIcon icon={reward.icon + '_blue'} />}
+                {!!reward.icon && (
+                  <AssetIcon
+                    icon={
+                      selectedReward.name === reward.name
+                        ? reward.icon + '_red'
+                        : reward.icon + '_blue'
+                    }
+                  />
+                )}
                 {reward.name}
               </Button>
             </Stack.Item>
