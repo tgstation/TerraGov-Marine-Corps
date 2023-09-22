@@ -809,7 +809,7 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 				if(round_finished == MODE_INFESTATION_X_MINOR || round_finished == MODE_INFESTATION_X_MAJOR)
 					parts += "<div class='panel redborder'>"
 					parts += span_redtext("The fragile organics have failed their mission on [SSmapping.configs[GROUND_MAP].map_name]...<br>")
-					parts += span_redtext("Miraculously your systems are still intact and you continue to survive as [M.real_name].")
+					parts += span_redtext("Miraculously, your systems are still intact and you continue to survive as [M.real_name].")
 				else if(round_finished == MODE_INFESTATION_M_MINOR || round_finished == MODE_INFESTATION_M_MAJOR)
 					parts += "<div class='panel greenborder'>"
 					parts += span_greentext("The marines have accomplished their mission to [SSmapping.configs[GROUND_MAP].map_name]...<br>")
