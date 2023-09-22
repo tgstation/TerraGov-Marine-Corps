@@ -341,7 +341,7 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 			return TRUE
 
 		if("purchase_reward")
-			var/datum/campaign_reward/selected_reward = text2path(params["purchased_reward"])
+			var/datum/campaign_reward/selected_reward = text2path(params["selected_reward"])
 			if(!selected_reward)
 				return
 			if(!(selected_reward in purchasable_rewards))

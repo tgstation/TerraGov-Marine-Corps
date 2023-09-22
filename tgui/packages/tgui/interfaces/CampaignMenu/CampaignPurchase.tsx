@@ -34,12 +34,12 @@ export const CampaignPurchase = (props, context) => {
                   selectedReward.name === reward.name
                     ? 'orange'
                     : reward.uses_remaining > 0
-                      ? 'green'
+                      ? 'blue'
                       : reward.uses_remaining < 0
                         ? 'red'
                         : 'grey'
                 }>
-                {!!reward.icon && <AssetIcon icon={reward.icon} />}
+                {!!reward.icon && <AssetIcon icon={reward.icon + '_blue'} />}
                 {reward.name}
               </Button>
             </Stack.Item>

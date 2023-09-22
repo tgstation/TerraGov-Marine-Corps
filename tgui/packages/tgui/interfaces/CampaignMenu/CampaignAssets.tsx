@@ -41,12 +41,28 @@ export const CampaignAssets = (props, context) => {
                       : reward.is_debuff
                         ? 'red'
                         : reward.uses_remaining > 0
-                          ? 'green'
+                          ? 'blue'
                           : reward.uses_remaining < 0
                             ? 'red'
                             : 'grey'
                 }>
-                {!!reward.icon && <AssetIcon icon={reward.icon} />}
+                {!!reward.icon && (
+                  <AssetIcon
+                    icon={
+                      selectedReward.name === reward.name
+                        ? reward.icon + '_red'
+                        : reward.currently_active
+                          ? reward.icon + '_orange'
+                          : reward.is_debuff
+                            ? reward.icon + '_red'
+                            : reward.uses_remaining > 0
+                              ? reward.icon + '_blue'
+                              : reward.uses_remaining < 0
+                                ? reward.icon + '_red'
+                                : reward.icon + '_grey'
+                    }
+                  />
+                )}
                 {reward.name}
               </Button>
             </Stack.Item>

@@ -129,7 +129,7 @@ export const CampaignMenu = (props, context) => {
                 <Stack.Item>
                   <Button
                     onClick={() => {
-                      act('activate_reward', {
+                      act('purchase_reward', {
                         selected_reward: purchasedAsset.type,
                       });
                       setPurchasedAsset(null);
