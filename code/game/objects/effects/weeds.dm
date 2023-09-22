@@ -192,7 +192,7 @@
 		icon_state = W.smoothing_junction ? "weedwall-[W.smoothing_junction]" : initial(icon_state)
 	if(color_variant == STICKY_COLOR)
 		icon = 'icons/obj/smooth_objects/weedwallsticky.dmi'
-	if(color_variant == RESTING_COLOR)
+	else if(color_variant == RESTING_COLOR)
 		icon = 'icons/obj/smooth_objects/weedwallrest.dmi'
 
 // =================
