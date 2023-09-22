@@ -263,9 +263,9 @@
 	if(dogtag_taken)
 		stripper.balloon_alert(stripper, "Info tag already taken")
 		return FALSE
-	//if(owner.stat != DEAD)
-		//stripper.balloon_alert(stripper, "[owner] isn't dead yet")
-		//return FALSE
+	if(owner.stat != DEAD)
+		stripper.balloon_alert(stripper, "[owner] isn't dead yet")
+		return FALSE
 
 /obj/item/card/id/dogtag/special_stripped_behavior(mob/stripper, mob/owner)
 	if(dogtag_taken)
