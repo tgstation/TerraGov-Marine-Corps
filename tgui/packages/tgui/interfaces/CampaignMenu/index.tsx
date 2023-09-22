@@ -235,7 +235,7 @@ export const AssetIcon = (props: { icon: FactionReward['icon'] }, context) => {
       mr={1.5}
       src={`data:image/jpeg;base64,${icons[icon]}`}
       style={{
-        transform: 'scale(1) translatey(3px)',
+        transform: 'scale(1) translatey(2px)',
         '-ms-interpolation-mode': 'nearest-neighbor',
       }}
     />
