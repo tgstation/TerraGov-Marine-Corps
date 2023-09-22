@@ -254,7 +254,7 @@
 	if(dogtag_taken)
 		icon_state = initial(icon_state) + "_taken"
 		return
-	icon = initial(icon_state)
+	icon_state = initial(icon_state)
 
 /obj/item/card/id/dogtag/canStrip(mob/stripper, mob/owner)
 	. = ..()
