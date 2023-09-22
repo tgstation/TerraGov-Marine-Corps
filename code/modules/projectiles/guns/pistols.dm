@@ -331,7 +331,7 @@
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
 	attachable_offset = list("muzzle_x" = 31, "muzzle_y" = 19,"rail_x" = 9, "rail_y" = 23, "under_x" = 22, "under_y" = 14, "stock_x" = 20, "stock_y" = 17)
 
-	fire_delay = 0.35 SECONDS
+	fire_delay = 0.45 SECONDS
 	scatter_unwielded = 25
 	recoil = 1
 	recoil_unwielded = 2
@@ -473,7 +473,7 @@
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
 	attachable_offset = list("muzzle_x" = 27, "muzzle_y" = 20,"rail_x" = 8, "rail_y" = 22, "under_x" = 18, "under_y" = 15, "stock_x" = 16, "stock_y" = 15)
 
-	fire_delay = 0.4 SECONDS
+	fire_delay = 0.45 SECONDS
 	burst_delay = 0.5 SECONDS
 	damage_mult = 1.1
 	recoil = 1
