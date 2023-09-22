@@ -24,6 +24,7 @@
 #include "code\game\objects\items\robot\robot_parts.dm"
 #include "code\game\objects\machinery\doors\airlock.dm"
 #include "code\game\objects\structures\ladders.dm"
+#include "code\game\objects\structures\misc.dm"
 #include "code\game\objects\structures\window.dm"
 #include "code\game\objects\structures\signs.dm"
 #include "code\game\objects\structures\xeno.dm"
