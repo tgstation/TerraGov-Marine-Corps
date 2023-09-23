@@ -112,6 +112,7 @@ Make the SOM proud!"}) //update
 	. = ..()
 	if(!ishuman(new_mob))
 		return
+	SSdirection.set_leader(TRACKING_ID_SOM_COMMANDER, new_mob)
 	var/mob/living/carbon/human/new_human = new_mob
 	var/playtime_mins = user?.client?.get_exp(title)
 	if(!playtime_mins || playtime_mins < 1 )
@@ -127,7 +128,6 @@ Make the SOM proud!"}) //update
 			new_human.wear_id.paygrade = "SOM_O6"
 		if(30001 to INFINITY) // 500 hrs
 			new_human.wear_id.paygrade = "SOM_O7"
-	SSdirection.set_leader(TRACKING_ID_SOM_COMMANDER, new_mob)
 
 //update
 /datum/outfit/job/som/command/fieldcommander
