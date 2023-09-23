@@ -39,3 +39,50 @@
 		slot_l_hand_str = 'modular_RUtgmc/icons/mob/inhands/weapons/melee_left.dmi',
 		slot_r_hand_str = 'modular_RUtgmc/icons/mob/inhands/weapons/melee_right.dmi',
 	)
+
+/obj/item/storage/holster/blade/officer
+	force = 80
+	attack_speed = 5
+	sharp = IS_SHARP_ITEM_ACCURATE
+	hitsound = 'modular_RUtgmc/sound/weapons/rapierhit.ogg'
+	attack_verb = list("slash", "cut")
+
+/obj/item/weapon/claymore/mercsword/officersword/attack(mob/living/carbon/M, mob/living/user)
+	. = ..()
+	if(user.skills.getRating("swordplay") == SKILL_SWORDPLAY_DEFAULT)
+		attack_speed = 20
+		force = 35
+		to_chat(user, span_warning("You try to figure out how to wield [src]..."))
+		if(prob(40))
+			if(CHECK_BITFIELD(flags_item,NODROP))
+				TOGGLE_BITFIELD(flags_item, NODROP)
+			user.drop_held_item(src)
+			to_chat(user, span_warning("[src] slipped out of your hands!"))
+			playsound(src.loc, 'sound/misc/slip.ogg', 25, 1)
+	if(user.skills.getRating("swordplay") == SKILL_SWORDPLAY_TRAINED)
+		attack_speed = initial(attack_speed)
+		force = initial(force)
+
+/obj/item/weapon/claymore/mercsword/officersword/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/strappable)
+
+/obj/item/weapon/claymore/mercsword/officersword/valirapier
+	name = "\improper HP-C Harvester rapier"
+	desc = "Extremely expensive looking blade, with a golden handle and engravings, unexpectedly effective in combat, despite its ceremonial looks, compacted with a vali module."
+	icon = 'modular_RUtgmc/icons/obj/items/weapons.dmi'
+	item_icons = list(
+		slot_back_str = 'modular_RUtgmc/icons/mob/clothing/back.dmi',
+		slot_l_hand_str = 'modular_RUtgmc/icons/mob/inhands/weapons/twohanded_left.dmi',
+		slot_r_hand_str = 'modular_RUtgmc/icons/mob/inhands/weapons/twohanded_right.dmi',
+	)
+	icon_state = "rapier"
+	item_state = "rapier"
+	force = 60
+	attack_speed = 5
+	flags_item = DRAINS_XENO
+
+/obj/item/weapon/claymore/mercsword/officersword/valirapier/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/harvester)
+	RemoveElement(/datum/element/strappable)
