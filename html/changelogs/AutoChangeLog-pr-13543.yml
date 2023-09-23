@@ -1,5 +1,0 @@
-author: "XElectricX"
-delete-after: True
-changes:
-  - rscadd: "Individual player statistics that are displayed at the end of the round."
-  - code_imp: "Refactor requisitions sell code to be neater and have a separate proc for getting the value of sold objects."

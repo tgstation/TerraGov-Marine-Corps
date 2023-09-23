@@ -1,5 +1,0 @@
-author: "Barnet2"
-delete-after: True
-changes:
-  - bugfix: "Xeno queue should (hopefully) work as intended now"
-  - bugfix: "If you ghost as a Valhalla xeno, your xeno respawn timer shouldn't reset"
