@@ -113,4 +113,5 @@
 		/datum/action/xeno_action/rally_hive,
 		/datum/action/xeno_action/activable/command_minions,
 		/datum/action/xeno_action/ready_charge/queen_charge,
+		/datum/action/xeno_action/sow,
 	)

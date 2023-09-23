@@ -100,4 +100,5 @@
 		/datum/action/xeno_action/pheromones/emit_warding,
 		/datum/action/xeno_action/pheromones/emit_frenzy,
 		/datum/action/xeno_action/activable/recycle,
+		/datum/action/xeno_action/sow,
 	)
