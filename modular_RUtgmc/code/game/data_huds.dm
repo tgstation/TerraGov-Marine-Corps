@@ -51,7 +51,7 @@
 				return TRUE
 		if(istype(wear_ear, /obj/item/radio/headset/mainship))
 			var/obj/item/radio/headset/mainship/headset = wear_ear
-			headset.update_minimap_icon()
+			headset.update_minimap_icon() //Pls fix me
 			return TRUE
 
 //medical hud used by ghosts
