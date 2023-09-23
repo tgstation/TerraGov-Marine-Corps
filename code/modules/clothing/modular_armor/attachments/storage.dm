@@ -394,13 +394,21 @@
 	flags_attach_features = NONE
 
 /obj/item/storage/internal/marinehelmet
-	max_storage_space = 2
+	max_storage_space = 3
 	storage_slots = 2
 	max_w_class = WEIGHT_CLASS_TINY
 	bypass_w_limit = list(
 		/obj/item/clothing/glasses,
 		/obj/item/reagent_containers/food/snacks,
+		/obj/item/stack/medical/heal_pack/gauze,
+		/obj/item/stack/medical/heal_pack/ointment,
+		/obj/item/ammo_magazine/handful,
 	)
 	cant_hold = list(
-		/obj/item/stack,
+		/obj/item/stack/sheet,
+		/obj/item/stack/catwalk,
+		/obj/item/stack/rods,
+		/obj/item/stack/sandbags_empty,
+		/obj/item/stack/tile,
+		/obj/item/stack/cable_coil,
 	)
