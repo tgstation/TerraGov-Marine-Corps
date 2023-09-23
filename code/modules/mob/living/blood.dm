@@ -14,7 +14,10 @@
 	if(stat != DEAD && bodytemperature >= 170)	//Dead or cryosleep people do not pump the blood.
 		if(blood_volume > BLOOD_VOLUME_MAXIMUM) //Warning: contents under pressure.
 			var/spare_blood = blood_volume - ((BLOOD_VOLUME_MAXIMUM + BLOOD_VOLUME_NORMAL) / 2) //Knock you to the midpoint between max and normal to not spam.
-			if(drip(spare_blood))
+			//RUTGMC EDIT CHANGE BEGIN - BLOOD_FIX
+			//if(drip(spare_blood)) RUTGMC EDIT - ORIGINAL
+			if(spare_blood)
+			//RUTGMC EDIT CHANGE END
 				var/bleed_range = 0
 				switch(spare_blood)
 					if(0 to 30) //20 is the functional minimum due to midpoint calc
@@ -32,6 +35,10 @@
 					for(var/mob/canvas in viewers(bleed_range, src))
 						canvas.add_blood(species.blood_color) //Splash zone
 					playsound(loc, 'sound/effects/splat.ogg', 25, TRUE, 7)
+
+				//RUTGMC EDIT ADDITION BEGIN - BLOOD_FIX
+				blood_volume -= spare_blood
+				//RUTGMC EDIT ADDITION END
 
 	//Effects of bloodloss
 		switch(blood_volume)
