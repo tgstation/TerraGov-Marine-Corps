@@ -1070,6 +1070,19 @@
 	aim_slowdown = 0.1
 	wield_delay = 0.2 SECONDS
 
+/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/serpenta/custom
+	name = "\improper VX-12c Serpenta"
+	desc = "The 'serpenta' is pistol typically seen in the hands of SOM officers and some NCOs, and is quite dangerous for it's size. This particular weapon appears to be a custom model with improved performance."
+	icon_state = "vx12c"
+	item_state = "vx12"
+	ammo_datum_type = /datum/ammo/energy/volkite/medium/custom
+	max_shots = 27
+	rounds_per_shot = 20
+	scatter = -2
+	scatter_unwielded = 4
+	accuracy_mult = 1.25
+	accuracy_mult_unwielded = 0.95
+
 /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/charger
 	name = "\improper VX-32 Charger"
 	desc = "Volkite weapons are the pride of Martian weapons manufacturing, their construction being a tightly guarded secret. Infamous for its ability to deflagrate organic targets with its tremendous thermal energy, explosively burning flesh in a fiery blast that can be deadly to anyone unfortunate enough to be nearby. The charger is a light weight weapon with a high rate of fire, designed for high mobility and easy handling. Ineffective at longer ranges."
