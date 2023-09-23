@@ -72,9 +72,10 @@
 	desc = "Extremely expensive looking blade, with a golden handle and engravings, unexpectedly effective in combat, despite its ceremonial looks, compacted with a vali module."
 	icon = 'modular_RUtgmc/icons/obj/items/weapons.dmi'
 	item_icons = list(
-		slot_back_str = 'modular_RUtgmc/icons/mob/clothing/back.dmi',
 		slot_l_hand_str = 'modular_RUtgmc/icons/mob/inhands/weapons/twohanded_left.dmi',
 		slot_r_hand_str = 'modular_RUtgmc/icons/mob/inhands/weapons/twohanded_right.dmi',
+		slot_s_store_str = 'modular_RUtgmc/icons/mob/suit_slot.dmi',
+		slot_belt_str = 'modular_RUtgmc/icons/mob/belt.dmi',
 	)
 	icon_state = "rapier"
 	item_state = "rapier"

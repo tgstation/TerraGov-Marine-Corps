@@ -5,6 +5,11 @@
 /obj/item/storage/holster/blade/officer/valirapier
 	name = "\improper HP-C vali rapier sheath"
 	desc = "An exquisite ceremonial sheat for an even more expensive rapier."
+	icon = 'modular_RUtgmc/icons/obj/items/storage/storage.dmi'
+	item_icons = list(
+		slot_l_hand_str = 'modular_RUtgmc/icons/mob/inhands/items/containers_left.dmi',
+		slot_r_hand_str = 'modular_RUtgmc/icons/mob/inhands/items/containers_right.dmi',
+	)
 	icon_state = "rapier_holster"
 	base_icon = "rapier_holster"
 	holsterable_allowed = list(/obj/item/weapon/claymore/mercsword/officersword/valirapier)
