@@ -18,6 +18,14 @@
 /obj/structure/xeno/pherotower/crash/attack_alien(isrightclick = FALSE)
 	return
 
+/obj/structure/xeno/evotower/Initialize(mapload, _hivenumber)
+	. = ..()
+	SSminimaps.add_marker(src, MINIMAP_FLAG_XENO, image('modular_RUtgmc/icons/UI_icons/map_blips.dmi', null, "tower"))
+
+/obj/structure/xeno/psychictower/Initialize(mapload, _hivenumber)
+	. = ..()
+	SSminimaps.add_marker(src, MINIMAP_FLAG_XENO, image('modular_RUtgmc/icons/UI_icons/map_blips.dmi', null, "tower"))
+
 /obj/structure/xeno/plant
 	icon = 'modular_RUtgmc/icons/Xeno/plants.dmi'
 
