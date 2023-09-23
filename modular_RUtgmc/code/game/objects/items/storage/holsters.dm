@@ -7,11 +7,10 @@
 	desc = "An exquisite ceremonial sheat for an even more expensive rapier."
 	icon = 'modular_RUtgmc/icons/obj/items/storage/storage.dmi'
 	item_icons = list(
-		slot_l_hand_str = 'modular_RUtgmc/icons/mob/inhands/items/containers_left.dmi',
-		slot_r_hand_str = 'modular_RUtgmc/icons/mob/inhands/items/containers_right.dmi',
+		slot_s_store_str = 'modular_RUtgmc/icons/mob/suit_slot.dmi',
+		slot_belt_str = 'modular_RUtgmc/icons/mob/belt.dmi',
 	)
 	icon_state = "rapier_holster"
-	base_icon = "rapier_holster"
 	holsterable_allowed = list(/obj/item/weapon/claymore/mercsword/officersword/valirapier)
 	can_hold = list(/obj/item/weapon/claymore/mercsword/officersword/valirapier)
 

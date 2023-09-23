@@ -16,7 +16,7 @@ engineer = 0, construction = 0, leadership = 0, medical = 0, surgery = 0, pilot 
 	if(!.)
 		. = new /datum/skills(cqc, melee_weapons,\
 			firearms, pistols, shotguns, rifles, smgs, heavy_weapons, smartgun,\
-			swordplay = 0,\
+			swordplay,\
 			engineer, construction, leadership, medical, surgery, pilot, police, powerloader, large_vehicle)
 
 /proc/getSkillsType(skills_type = /datum/skills)
@@ -76,6 +76,7 @@ engineer = 0, construction = 0, leadership = 0, medical = 0, surgery = 0, pilot 
 
 /datum/skills/New(cqc, melee_weapons,\
 firearms, pistols, shotguns, rifles, smgs, heavy_weapons, smartgun,\
+swordplay,\
 engineer, construction, leadership, medical, surgery, pilot, police, powerloader, large_vehicle)
 	if(!isnull(cqc))
 		src.cqc = cqc

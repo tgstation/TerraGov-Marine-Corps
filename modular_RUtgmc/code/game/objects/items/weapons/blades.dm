@@ -40,7 +40,7 @@
 		slot_r_hand_str = 'modular_RUtgmc/icons/mob/inhands/weapons/melee_right.dmi',
 	)
 
-/obj/item/storage/holster/blade/officer
+/obj/item/weapon/claymore/mercsword/officersword
 	force = 80
 	attack_speed = 5
 	sharp = IS_SHARP_ITEM_ACCURATE
@@ -63,6 +63,14 @@
 		attack_speed = initial(attack_speed)
 		force = initial(force)
 
+/obj/item/weapon/claymore/mercsword/officersword/equipped(mob/user, slot)
+	. = ..()
+	toggle_item_bump_attack(user, TRUE)
+
+/obj/item/weapon/claymore/mercsword/officersword/dropped(mob/user)
+	. = ..()
+	toggle_item_bump_attack(user, FALSE)
+
 /obj/item/weapon/claymore/mercsword/officersword/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/strappable)
@@ -72,16 +80,13 @@
 	desc = "Extremely expensive looking blade, with a golden handle and engravings, unexpectedly effective in combat, despite its ceremonial looks, compacted with a vali module."
 	icon = 'modular_RUtgmc/icons/obj/items/weapons.dmi'
 	item_icons = list(
-		slot_l_hand_str = 'modular_RUtgmc/icons/mob/inhands/weapons/twohanded_left.dmi',
-		slot_r_hand_str = 'modular_RUtgmc/icons/mob/inhands/weapons/twohanded_right.dmi',
-		slot_s_store_str = 'modular_RUtgmc/icons/mob/suit_slot.dmi',
-		slot_belt_str = 'modular_RUtgmc/icons/mob/belt.dmi',
+		slot_l_hand_str = 'modular_RUtgmc/icons/mob/inhands/weapons/melee_left.dmi',
+		slot_r_hand_str = 'modular_RUtgmc/icons/mob/inhands/weapons/melee_right.dmi',
 	)
 	icon_state = "rapier"
 	item_state = "rapier"
 	force = 60
 	attack_speed = 5
-	flags_item = DRAINS_XENO
 
 /obj/item/weapon/claymore/mercsword/officersword/valirapier/Initialize(mapload)
 	. = ..()
