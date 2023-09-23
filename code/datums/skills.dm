@@ -1,18 +1,22 @@
 #define SKILLSID "skills-[cqc]-[melee_weapons]\
 -[firearms]-[pistols]-[shotguns]-[rifles]-[smgs]-[heavy_weapons]-[smartgun]\
+-[swordplay]\
 -[engineer]-[construction]-[leadership]-[medical]-[surgery]-[pilot]-[police]-[powerloader]-[large_vehicle]"
 
 #define SKILLSIDSRC(S) "skills-[S.cqc]-[S.melee_weapons]\
 -[S.firearms]-[S.pistols]-[S.shotguns]-[S.rifles]-[S.smgs]-[S.heavy_weapons]-[S.smartgun]\
+-[S.swordplay]\
 -[S.engineer]-[S.construction]-[S.leadership]-[S.medical]-[S.surgery]-[S.pilot]-[S.police]-[S.powerloader]-[S.large_vehicle]"
 
 /proc/getSkills(cqc = 0, melee_weapons = 0,\
 firearms = 0, pistols = 0, shotguns = 0, rifles = 0, smgs = 0, heavy_weapons = 0, smartgun = 0,\
+swordplay = 0,\
 engineer = 0, construction = 0, leadership = 0, medical = 0, surgery = 0, pilot = 0, police = 0, powerloader = 0, large_vehicle = 0)
 	. = locate(SKILLSID)
 	if(!.)
 		. = new /datum/skills(cqc, melee_weapons,\
 			firearms, pistols, shotguns, rifles, smgs, heavy_weapons, smartgun,\
+			swordplay,\
 			engineer, construction, leadership, medical, surgery, pilot, police, powerloader, large_vehicle)
 
 /proc/getSkillsType(skills_type = /datum/skills)
@@ -35,6 +39,9 @@ engineer = 0, construction = 0, leadership = 0, medical = 0, surgery = 0, pilot 
 	var/police = initial(new_skill.police)
 	var/powerloader = initial(new_skill.powerloader)
 	var/large_vehicle = initial(new_skill.large_vehicle)
+	//RUTGMC EDIT ADDITION BEGIN - SWORDS
+	var/swordplay = initial(new_skill.swordplay)
+	//RUTGMC EDIT ADDITION END
 	. = locate(SKILLSID)
 	if(!.)
 		. = new skills_type
@@ -62,10 +69,14 @@ engineer = 0, construction = 0, leadership = 0, medical = 0, surgery = 0, pilot 
 	var/police = SKILL_POLICE_DEFAULT
 	var/powerloader = SKILL_POWERLOADER_DEFAULT
 	var/large_vehicle = SKILL_LARGE_VEHICLE_DEFAULT
+	//RUTGMC EDIT ADDITION BEGIN - SWORDS
+	var/swordplay = SKILL_SWORDPLAY_DEFAULT
+	//RUTGMC EDIT ADDITION END
 
 
 /datum/skills/New(cqc, melee_weapons,\
 firearms, pistols, shotguns, rifles, smgs, heavy_weapons, smartgun,\
+swordplay,\
 engineer, construction, leadership, medical, surgery, pilot, police, powerloader, large_vehicle)
 	if(!isnull(cqc))
 		src.cqc = cqc
@@ -103,6 +114,10 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 		src.powerloader = powerloader
 	if(!isnull(large_vehicle))
 		src.large_vehicle = large_vehicle
+	//RUTGMC EDIT ADDITION BEGIN - SWORDS
+	if(!isnull(swordplay))
+		src.swordplay = swordplay
+	//RUTGMC EDIT ADDITION END
 	tag = SKILLSIDSRC(src)
 
 /// returns/gets a new skills datum with values changed according to the args passed
@@ -117,6 +132,7 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	src.rifles+rifles,\
 	src.smgs+smgs,\
 	src.heavy_weapons+heavy_weapons,\
+	src.swordplay+swordplay,\
 	src.smartgun+smartgun,\
 	src.engineer+engineer,\
 	src.construction+construction,\
@@ -138,6 +154,7 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	src.rifles+difference,\
 	src.smgs+difference,\
 	src.heavy_weapons+difference,\
+	src.swordplay+swordplay,\
 	src.smartgun+difference,\
 	src.engineer+difference,\
 	src.construction+difference,\
@@ -162,6 +179,7 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 		(isnull(smgs) ? src.smgs : smgs),\
 		(isnull(heavy_weapons) ? src.heavy_weapons : heavy_weapons),\
 		(isnull(smartgun) ? src.smartgun : smartgun),\
+		(isnull(swordplay) ? src.swordplay : swordplay),\
 		(isnull(engineer) ? src.engineer : engineer),\
 		(isnull(construction) ? src.construction : construction),\
 		(isnull(leadership) ? src.leadership : leadership),\
@@ -200,6 +218,7 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 		SKILL_SMGS = smgs,
 		SKILL_HEAVY_WEAPONS = heavy_weapons,
 		SKILL_SMARTGUN = smartgun,
+		SKILL_SWORDPLAY = swordplay,
 		SKILL_ENGINEER = engineer,
 		SKILL_CONSTRUCTION = construction,
 		SKILL_LEADERSHIP = leadership,
