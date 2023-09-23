@@ -159,3 +159,18 @@
   - bugfix: Fix xeno spawns not counting towards autobalance
   ivanmixo:
   - balance: Gau hits twice again
+2023-09-23:
+  Blundir:
+  - bugfix: flames now spawn with correct flame light color
+  - code_imp: changed hex color codes of flame light color
+  RipGrayson:
+  - bugfix: Made soundplayers no longer dense.
+  - bugfix: Fixes weeds on walls sometimes going invisible.
+  dopamiin0:
+  - rscadd: The dropship fabricator will now receive points whenever anything is exported,
+      equal to 5% of the exported item's value.
+  - balance: Low orbit now only generates 6 points a minute for CAS. High orbit now
+      generates 30.
+  - balance: The prices of almost all items in the dropship fabricator have been increased.
+  - balance: Minirockets now only take 2 seconds to impact on medium orbit, but have
+      an even smaller explosion radius.
