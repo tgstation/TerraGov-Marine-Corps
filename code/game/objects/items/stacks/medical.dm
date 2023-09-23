@@ -181,6 +181,7 @@
 	skill_level_needed = SKILL_MEDICAL_PRACTICED
 	unskilled_delay = SKILL_TASK_EASY
 
+/* //RUTGMC edit - turning off unused proc
 /obj/item/stack/medical/heal_pack/advanced/update_icon_state()
 	if(max_amount < 1 || amount > max_amount)
 		return
@@ -196,6 +197,7 @@
 			setDir(WEST)
 		if(81 to INFINITY)
 			setDir(NORTH)
+*/
 
 /obj/item/stack/medical/heal_pack/advanced/bruise_pack
 	name = "advanced trauma kit"

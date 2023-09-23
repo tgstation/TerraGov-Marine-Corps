@@ -23,6 +23,7 @@
 #include "code\game\objects\effects\landmarks\landmarks.dm"
 #include "code\game\objects\effects\landmarks\marine_spawns.dm"
 #include "code\game\objects\items\robot\robot_parts.dm"
+#include "code\game\objects\items\stacks\medical.dm"
 #include "code\game\objects\machinery\doors\airlock.dm"
 #include "code\game\objects\structures\ladders.dm"
 #include "code\game\objects\structures\misc.dm"
