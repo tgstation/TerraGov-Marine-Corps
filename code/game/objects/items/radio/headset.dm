@@ -361,9 +361,9 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 		return
 
 	var/dat = {"
-	<b><A href='?src=\ref[src];headset_hud_on=1'>Squad HUD: [headset_hud_on ? "On" : "Off"]</A></b><BR>
+	<b><A href='?src=[text_ref(src)];headset_hud_on=1'>Squad HUD: [headset_hud_on ? "On" : "Off"]</A></b><BR>
 	<BR>
-	<b><A href='?src=\ref[src];sl_direction=1'>Squad Leader Directional Indicator: [sl_direction ? "On" : "Off"]</A></b><BR>
+	<b><A href='?src=[text_ref(src)];sl_direction=1'>Squad Leader Directional Indicator: [sl_direction ? "On" : "Off"]</A></b><BR>
 	<BR>"}
 
 	var/datum/browser/popup = new(user, "radio")
@@ -421,7 +421,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	command = TRUE
 
 /obj/item/radio/headset/mainship/mcom/som
-	frequency = RADIO_CHANNEL_SOM
+	frequency = FREQ_SOM
 	keyslot = /obj/item/encryptionkey/mcom/som
 	faction = FACTION_SOM
 	minimap_type = /datum/action/minimap/som

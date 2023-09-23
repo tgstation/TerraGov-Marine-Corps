@@ -1144,7 +1144,7 @@ TUNNEL
 	max_integrity = 600
 	xeno_structure_flags = CRITICAL_STRUCTURE
 	///boost amt to be added per tower per cycle
-	var/boost_amount = 0.25
+	var/boost_amount = 0.2
 
 /obj/structure/xeno/evotower/Initialize(mapload, _hivenumber)
 	. = ..()
@@ -1166,9 +1166,9 @@ TUNNEL
 		if(EXPLODE_WEAK)
 			take_damage(100, BRUTE, BOMB)
 
-/obj/structure/xeno/maturitytower
-	name = "Maturity tower"
-	desc = "A sickly outcrop from the ground. It seems to ooze a strange chemical that makes the vegetation around it grow faster."
+/obj/structure/xeno/psychictower
+	name = "Psychic Relay"
+	desc = "A sickly outcrop from the ground. It seems to allow for more advanced growth of the Xenomorphs."
 	icon = 'icons/Xeno/2x2building.dmi'
 	icon_state = "maturitytower"
 	bound_width = 64
@@ -1176,19 +1176,17 @@ TUNNEL
 	obj_integrity = 400
 	max_integrity = 400
 	xeno_structure_flags = CRITICAL_STRUCTURE
-	///boost amt to be added per tower per cycle
-	var/boost_amount = 0.2
 
-/obj/structure/xeno/maturitytower/Initialize(mapload, _hivenumber)
+/obj/structure/xeno/psychictower/Initialize(mapload, _hivenumber)
 	. = ..()
-	GLOB.hive_datums[hivenumber].maturitytowers += src
+	GLOB.hive_datums[hivenumber].psychictowers += src
 	set_light(2, 2, LIGHT_COLOR_GREEN)
 
-/obj/structure/xeno/maturitytower/Destroy()
-	GLOB.hive_datums[hivenumber].maturitytowers -= src
+/obj/structure/xeno/psychictower/Destroy()
+	GLOB.hive_datums[hivenumber].psychictowers -= src
 	return ..()
 
-/obj/structure/xeno/maturitytower/ex_act(severity)
+/obj/structure/xeno/psychictower/ex_act(severity)
 	switch(severity)
 		if(EXPLODE_DEVASTATE)
 			take_damage(700, BRUTE, BOMB)

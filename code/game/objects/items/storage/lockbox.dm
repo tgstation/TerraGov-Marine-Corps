@@ -46,14 +46,3 @@
 		return
 
 	return ..()
-
-
-/obj/item/storage/lockbox/clusterbang
-	name = "lockbox of clusterbangs"
-	desc = "You have a bad feeling about opening this."
-	req_access = list(ACCESS_MARINE_BRIG)
-
-
-/obj/item/storage/lockbox/clusterbang/Initialize(mapload)
-	. = ..()
-	new /obj/item/explosive/grenade/flashbang/clusterbang(src)

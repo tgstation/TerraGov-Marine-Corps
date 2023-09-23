@@ -372,7 +372,7 @@
 	if(!D.use(1))
 		return
 
-	repair_damage(max_integrity)
+	repair_damage(max_integrity, user)
 	balloon_alert_to_viewers("Repaired")
 	update_icon()
 
@@ -460,7 +460,7 @@
 	if(!metal_sheets.use(2))
 		return FALSE
 
-	repair_damage(max_integrity * 0.3)
+	repair_damage(max_integrity * 0.3, user)
 	balloon_alert_to_viewers("Base repaired")
 	update_icon()
 
@@ -909,7 +909,7 @@
 		if(!plasteel_sheets.use(2))
 			return
 
-		repair_damage(max_integrity * 0.3)
+		repair_damage(max_integrity * 0.3, user)
 		balloon_alert_to_viewers("Base repaired")
 		update_icon()
 
@@ -1037,7 +1037,7 @@
 		if(!D.use(1))
 			return
 
-		repair_damage(max_integrity * 0.2) //Each sandbag restores 20% of max health as 5 sandbags = 1 sandbag barricade.
+		repair_damage(max_integrity * 0.2, user) //Each sandbag restores 20% of max health as 5 sandbags = 1 sandbag barricade.
 		balloon_alert_to_viewers("Repaired")
 		update_icon()
 
@@ -1056,6 +1056,9 @@
 
 /obj/structure/barricade/metal/deployable/Initialize(mapload, _internal_item, deployer)
 	. = ..()
+	if(!_internal_item && !internal_shield)
+		return INITIALIZE_HINT_QDEL
+
 	internal_shield = _internal_item
 
 	name = internal_shield.name

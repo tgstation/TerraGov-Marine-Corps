@@ -300,6 +300,7 @@
 	if(bodybag_occupant)
 		REMOVE_TRAIT(bodybag_occupant, TRAIT_STASIS, STASIS_BAG_TRAIT)
 		UnregisterSignal(bodybag_occupant, list(COMSIG_MOB_DEATH, COMSIG_PREQDELETED))
+		bodybag_occupant.record_time_in_stasis()
 	return ..()
 
 
@@ -314,7 +315,7 @@
 	if(bodybag_occupant)
 		ADD_TRAIT(bodybag_occupant, TRAIT_STASIS, STASIS_BAG_TRAIT)
 		RegisterSignals(bodybag_occupant, list(COMSIG_MOB_DEATH, COMSIG_PREQDELETED), PROC_REF(on_bodybag_occupant_death))
-
+		bodybag_occupant.time_entered_stasis = world.time
 
 /obj/structure/closet/bodybag/cryobag/proc/on_bodybag_occupant_death(mob/source, gibbing)
 	SIGNAL_HANDLER
@@ -335,7 +336,7 @@
 		if(!(medical_record.fields["last_scan_time"]))
 			. += "<span class = 'deptradio'>No scan report on record</span>"
 		else
-			. += "<span class = 'deptradio'><a href='?src=\ref[src];scanreport=1'>Scan from [medical_record.fields["last_scan_time"]]</a></span>"
+			. += "<span class = 'deptradio'><a href='?src=[text_ref(src)];scanreport=1'>Scan from [medical_record.fields["last_scan_time"]]</a></span>"
 		break
 
 

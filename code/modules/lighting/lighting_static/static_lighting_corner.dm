@@ -171,6 +171,5 @@
 	if(master_NW)
 		master_NW.lighting_corner_SE = null
 		master_NW.lighting_corners_initialised = FALSE
-	if(needs_update)
-		SSlighting.corners_queue -= src
+	SSlighting.corners_queue -= src
 	return ..()

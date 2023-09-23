@@ -57,6 +57,21 @@
 	if(usr)
 		user = WEAKREF(usr)
 
+/**
+ * Qdel a callback datum
+ * This is not allowed and will stack trace. callback datums are structs, if they are referenced they exist
+ *
+ * Arguments
+ * * force set to true to force the deletion to be allowed.
+ * * ... an optional list of extra arguments to pass to the proc
+ */
+/datum/callback/Destroy(force=FALSE, ...)
+	SHOULD_CALL_PARENT(FALSE)
+	if (force)
+		return ..()
+	stack_trace("Callbacks can not be qdeleted. If they are referenced, they must exist. ([object == GLOBAL_PROC ? GLOBAL_PROC : object.type] [delegate])")
+	return QDEL_HINT_LETMELIVE
+
 /datum/callback/proc/Invoke(...)
 	if(!usr)
 		var/datum/weakref/W = user
@@ -168,13 +183,20 @@
 	if(length(list_or_datum))
 		list_or_datum[var_name] = var_value
 		return
-	var/datum/D = list_or_datum
-	if(QDELETED(D))
+	var/datum/datum = list_or_datum
+
+	if(isweakref(datum))
+		var/datum/weakref/datum_weakref = datum
+		datum = datum_weakref.resolve()
+		if(isnull(datum))
+			return
+
+	if(QDELETED(datum))
 		return
 	if(IsAdminAdvancedProcCall())
-		D.vv_edit_var(var_name, var_value)
+		datum.vv_edit_var(var_name, var_value)
 	else
-		D.vars[var_name] = var_value
+		datum.vars[var_name] = var_value
 
 /proc/___callbacknew(typepath, arguments)
 	new typepath(arglist(arguments))

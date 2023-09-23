@@ -28,6 +28,8 @@ GLOBAL_VAR(common_report) //Contains common part of roundend report
 	var/deploy_time_lock = 15 MINUTES
 	///The respawn time for marines
 	var/respawn_time = 30 MINUTES
+	//The respawn time for Xenomorphs
+	var/xenorespawn_time = 5 MINUTES
 	///How many points do you need to win in a point gamemode
 	var/win_points_needed = 0
 	///The points per faction, assoc list
@@ -734,8 +736,9 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 /datum/game_mode/proc/personal_report(client/C, popcount)
 	var/list/parts = list()
 	var/mob/M = C.mob
+	//Always display that the round ended
+	parts += span_round_header("<span class='body' style=font-size:20px;text-align:center valign='top'>Round Complete:[round_finished]</span>")
 	if(M.mind && !isnewplayer(M))
-		parts += span_round_header("<span class='body' style=font-size:20px;text-align:center valign='top'>Round Complete:[round_finished]</span>")
 		if(M.stat != DEAD && !isbrain(M))
 			if(ishuman(M))
 				var/turf/current_turf = get_turf(M)
@@ -755,6 +758,9 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 		else
 			parts += "<div class='panel redborder'>"
 			parts += span_redtext("You did not survive the events on [SSmapping.configs[GROUND_MAP].map_name]...")
+		if(GLOB.personal_statistics_list[C.ckey])
+			var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[C.ckey]
+			parts += personal_statistics.compose_report()
 	else
 		parts += "<div class='panel stationborder'>"
 	parts += "<br>"
@@ -768,6 +774,7 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 	parts += "<div class='panel stationborder'>"
 	parts += "</div>"
 	parts += GLOB.common_report
+
 	var/content = parts.Join()
 	//Log the rendered HTML in the round log directory
 	fdel(roundend_file)
