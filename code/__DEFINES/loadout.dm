@@ -129,6 +129,9 @@ GLOBAL_LIST_INIT(leader_gear_listed_products, list(
 		/obj/effect/vendor_bundle/leader = list(CAT_ESS, "Essential SL Set", 0, "white"),
 		/obj/item/whistle = list(CAT_LEDSUP, "Whistle", 5, "black"),
 		/obj/item/beacon/supply_beacon = list(CAT_LEDSUP, "Supply beacon", 10, "black"),
+		//RUTGMC EDIT ADDITION BEGIN - ORBITAL_BEACON
+		/obj/item/beacon/orbital_bombardment_beacon = list(CAT_LEDSUP, "Orbital beacon", 15, "black"),
+		//RUTGMC EDIT ADDITION END
 		/obj/item/fulton_extraction_pack = list(CAT_LEDSUP, "Fulton Extraction Pack", 20, "orange"),
 		/obj/item/deployable_camera = list(CAT_LEDSUP, "Deployable Overwatch Camera", 2, "orange"),
 		/obj/item/stack/sandbags_empty/half = list(CAT_LEDSUP, "Sandbags x25", SANDBAG_PRICE_IN_GEAR_VENDOR, "black"),
@@ -735,6 +738,9 @@ GLOBAL_LIST_INIT(loadout_role_essential_set, list(
 	SQUAD_LEADER = list(
 		/obj/item/explosive/plastique = 1,
 		/obj/item/beacon/supply_beacon = 2,
+		//RUTGMC EDIT ADDITION BEGIN - ORBITAL_BEACON
+		/obj/item/beacon/orbital_bombardment_beacon = 1,
+		//RUTGMC EDIT ADDITION END
 		/obj/item/whistle = 1,
 		/obj/item/binoculars/tactical = 1,
 		/obj/item/pinpointer = 1,

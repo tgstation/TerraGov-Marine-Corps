@@ -152,3 +152,9 @@
 	name = "Optical Imager Goggles"
 	contains = list(/obj/item/clothing/glasses/night/imager_goggles)
 	cost = 50
+
+/datum/supply_packs/operations/beacons_orbital
+	name = "orbital beacon"
+	contains = list(/obj/item/beacon/orbital_bombardment_beacon)
+	cost = 30
+	available_against_xeno_only = TRUE

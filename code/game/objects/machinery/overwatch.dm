@@ -250,6 +250,14 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 							dat += "<a href='?src=[REF(src)];operation=use_cam;cam_target=[REF(LT)];selected_target=[REF(LT)]'>[LT]</a><br>"
 					else
 						dat += "[span_warning("None")]<br>"
+					//RUTGMC EDIT ADDITION BEGIN - ORBITAL_BEACON
+					dat += "<B>[current_squad.name] Beacon Targets:</b><br>"
+					if(length(GLOB.active_orbital_beacons))
+						for(var/obj/item/beacon/orbital_bombardment_beacon/OB AS in current_squad.squad_orbital_beacons)
+							dat += "<a href='?src=[REF(src)];operation=use_cam;cam_target=[REF(OB)];selected_target=[REF(OB)]'>[OB]</a><br>"
+					else
+						dat += "[span_warning("None transmitting")]<br>"
+					//RUTGMC EDIT ADDITION END
 					dat += "<b>Selected Target:</b><br>"
 					if(!selected_target) // Clean the targets if nothing is selected
 						dat += "[span_warning("None")]<br>"
@@ -516,6 +524,14 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 						dat += "<a href='?src=[REF(src)];operation=use_cam;cam_target=[REF(LT)];selected_target=[REF(LT)]'>[LT]</a><br>"
 				else
 					dat += "[span_warning("None")]<br>"
+				//RUTGMC EDIT ADDITION BEGIN - ORBITAL_BEACON
+				dat += "<B>Beacon Targets:</b><br>"
+				if(length(GLOB.active_orbital_beacons))
+					for(var/obj/item/beacon/orbital_bombardment_beacon/OB AS in GLOB.active_orbital_beacons)
+						dat += "<a href='?src=\ref[src];operation=use_cam;cam_target=[REF(OB)];selected_target=[REF(OB)]'>[OB]</a><br>"
+				else
+					dat += "[span_warning("None transmitting")]<br>"
+				//RUTGMC EDIT ADDITION END
 				dat += "<b>Selected Target:</b><br>"
 				if(!selected_target) // Clean the targets if nothing is selected
 					dat += "[span_warning("None")]<br>"
