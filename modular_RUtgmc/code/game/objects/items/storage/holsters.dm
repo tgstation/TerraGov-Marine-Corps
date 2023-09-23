@@ -72,7 +72,7 @@
 	new /obj/item/ammo_magazine/rocket/sadar/ap(src)
 	new /obj/item/ammo_magazine/rocket/sadar/ap(src)
 	var/obj/item/new_item = new /obj/item/weapon/gun/launcher/rocket/sadar(src)
-  INVOKE_ASYNC(src, PROC_REF(handle_item_insertion), new_item)
+	INVOKE_ASYNC(src, PROC_REF(handle_item_insertion), new_item)
 
 /obj/item/storage/holster/blade/officer
 	draw_sound = 'modular_RUtgmc/sound/items/unsheath.ogg'

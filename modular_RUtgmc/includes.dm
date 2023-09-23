@@ -144,5 +144,4 @@
 #include "code\modules\projectiles\guns\smgs.dm"
 #include "code\datums\keybinding\communication.dm"
 #include "code\__HELPERS\text.dm"
-#include "code\game\objects\items\storage\holsters.dm"
 #include "code\modules\projectiles\guns\specialist.dm"
