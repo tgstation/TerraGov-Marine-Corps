@@ -289,14 +289,24 @@ GLOBAL_PROTECT(exp_specialmap)
 	LAZYADD(GLOB.alive_human_list_faction[faction], src)
 	comm_title = job.comm_title
 	if(job.outfit)
-		var/id_type = job.outfit.id ? job.outfit.id : /obj/item/card/id
-		var/obj/item/card/id/id_card = new id_type(src)
-		if(wear_id)
-			if(!admin_action)
-				stack_trace("[src] had an ID when apply_outfit_to_spawn() ran")
-			QDEL_NULL(wear_id)
-		equip_to_slot_or_del(id_card, SLOT_WEAR_ID)
-		job.outfit.handle_id(src)
+		if(job.outfit.id)
+			var/obj/item/card/id/id_card = new job.outfit.id
+			if(wear_id)
+				if(!admin_action)
+					stack_trace("[src] had an ID when apply_outfit_to_spawn() ran")
+				QDEL_NULL(wear_id)
+			equip_to_slot_or_del(id_card, SLOT_WEAR_ID)
+
+		if(player && isnull(job.outfit.back) && player.prefs.backpack > BACK_NOTHING)
+			var/obj/item/storage/backpack/new_backpack
+			switch(player.prefs.backpack)
+				if(BACK_BACKPACK)
+					new_backpack = new /obj/item/storage/backpack/marine(src)
+				if(BACK_SATCHEL)
+					new_backpack = new /obj/item/storage/backpack/marine/satchel(src)
+			equip_to_slot_or_del(new_backpack, SLOT_BACK)
+
+		job.outfit.handle_id(src, player)
 
 		equip_role_outfit(job)
 
