@@ -10,3 +10,4 @@
 #include "xeno.dm"
 #include "dsc\signals.dm"
 #include "calibers.dm"
+#include "skills.dm"

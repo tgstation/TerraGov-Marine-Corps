@@ -27,7 +27,10 @@
 		/obj/item/instrument,
 		/obj/item/storage/belt/sparepouch,
 		/obj/item/storage/holster/blade,
-		/obj/item/weapon/claymore,
+		//RUTGMC EDIT CHANGE BEGIN - SWORDS
+		///obj/item/weapon/claymore, RUTGMC EDIT - ORIGINAL
+		/obj/item/weapon/claymore/harvester,
+		//RUTGMC EDIT CHANGE END
 		/obj/item/storage/holster/belt,
 		/obj/item/storage/belt/knifepouch,
 		/obj/item/weapon/twohanded,
