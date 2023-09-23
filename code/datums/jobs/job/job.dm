@@ -310,6 +310,8 @@ GLOBAL_PROTECT(exp_specialmap)
 
 		equip_role_outfit(job)
 
+		regenerate_icons() //some items lack icons unless updated
+
 	if((job.job_flags & JOB_FLAG_ALLOWS_PREFS_GEAR) && player)
 		equip_preference_gear(player)
 
