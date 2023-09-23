@@ -1,4 +1,8 @@
-/obj/item/radio/headset/mainship/update_minimap_icon()
+/obj/item/radio/headset/mainship/proc/update_minimap_icon()
+	SIGNAL_HANDLER
+	SSminimaps.remove_marker(wearer)
+	if(!wearer.job || !wearer.job.minimap_icon)
+		return
 	var/marker_flags = initial(minimap_type.marker_flags)
 	if(wearer.stat == DEAD)
 		if(HAS_TRAIT(wearer, TRAIT_UNDEFIBBABLE))
