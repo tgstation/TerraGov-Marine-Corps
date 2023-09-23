@@ -689,9 +689,9 @@
 	max_shells = 47 //codex
 	caliber = CALIBER_762X39 //codex
 	fire_sound = "svd_fire"
-	dry_fire_sound = 'sound/weapons/guns/fire/ak47.ogg'
-	unload_sound = 'sound/weapons/guns/interact/T42_unload.ogg'
-	reload_sound = 'sound/weapons/guns/interact/T42_reload.ogg'
+	dry_fire_sound = 'sound/weapons/guns/fire/dpm.ogg'
+	unload_sound = 'sound/weapons/guns/interact/dpm_unload.ogg'
+	reload_sound = 'sound/weapons/guns/interact/dpm_reload.ogg'
 	default_ammo_type = /obj/item/ammo_magazine/rifle/dpm
 	allowed_ammo_types = list(/obj/item/ammo_magazine/rifle/dpm)
 	attachable_allowed = list(
