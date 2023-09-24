@@ -7,7 +7,7 @@
 
 /obj/item/storage/box/crate/update_icon_state()
 	icon_state = length(contents) ? initial(icon_state) : "empty_case"
-	
+
 /obj/item/storage/box/crate/heavy_armor
 	name = "\improper B-Series defensive armor crate"
 	desc = "A large case containing an experiemental suit of B18 armor for the discerning specialist."

@@ -92,3 +92,8 @@ GLOBAL_LIST_INIT(faction_to_squad_hud, list(
 	FACTION_TERRAGOV = SQUAD_HUD_TERRAGOV,
 	FACTION_SOM = SQUAD_HUD_SOM,
 ))
+
+GLOBAL_LIST_INIT(faction_to_portrait, list(
+	FACTION_TERRAGOV = /atom/movable/screen/text/screen_text/picture/potrait,
+	FACTION_SOM = /atom/movable/screen/text/screen_text/picture/potrait/som_over,
+))

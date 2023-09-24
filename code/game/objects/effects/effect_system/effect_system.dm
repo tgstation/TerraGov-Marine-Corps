@@ -15,8 +15,10 @@ would spawn and follow the beaker, even if it is carried or thrown.
 /datum/effect_system
 	var/number = 3
 	var/cardinals = 0
-	var/turf/location
-	var/atom/holder
+	///Weakref to our location
+	var/datum/weakref/location
+	///Weakref to our holder
+	var/datum/weakref/holder
 	var/setup = 0
 
 /datum/effect_system/New(atom/atom, turf/location, n = 3, c = 0, setup_and_start = FALSE, self_delete)
@@ -24,7 +26,7 @@ would spawn and follow the beaker, even if it is carried or thrown.
 	if(atom)
 		attach(atom)
 	if(setup_and_start)
-		src.location = get_turf(location)
+		src.location = WEAKREF(location)
 		number = min(n, 10)
 		cardinals = c
 		setup = TRUE
@@ -38,11 +40,11 @@ would spawn and follow the beaker, even if it is carried or thrown.
 		n = 10
 	number = n
 	cardinals = c
-	location = loca
+	location = WEAKREF(loca)
 	setup = 1
 
 /datum/effect_system/proc/attach(atom/atom)
-	holder = atom
+	holder = WEAKREF(atom)
 
 /datum/effect_system/proc/start()
 	for(var/i in 1 to number)
@@ -51,10 +53,9 @@ would spawn and follow the beaker, even if it is carried or thrown.
 /datum/effect_system/proc/spawn_particle()
 	return
 
-/datum/effect_system/Destroy()
-	holder = null
-	return ..()
-
+/// Getter proc for the holder. Use this instead of directly doing holder.resolve()
+/datum/effect_system/proc/get_holder()
+	return holder?.resolve()
 
 /////////////////////////////////////////////
 // GENERIC STEAM SPREAD SYSTEM
@@ -80,9 +81,9 @@ steam.start() -- spawns the effect
 /datum/effect_system/steam_spread
 
 /datum/effect_system/steam_spread/spawn_particle()
-	if(holder)
-		location = get_turf(holder)
-	var/obj/effect/particle_effect/steam/steam = new /obj/effect/particle_effect/steam(location)
+	if(get_holder())
+		location = WEAKREF(get_turf(holder?.resolve()))
+	var/obj/effect/particle_effect/steam/steam = new /obj/effect/particle_effect/steam(location.resolve())
 	var/direction
 	if(cardinals)
 		direction = pick(GLOB.cardinals)
@@ -119,9 +120,9 @@ steam.start() -- spawns the effect
 /datum/effect_system/spark_spread
 
 /datum/effect_system/spark_spread/spawn_particle()
-	if(holder)
-		location = get_turf(holder)
-	var/obj/effect/particle_effect/sparks/sparks = new /obj/effect/particle_effect/sparks(location)
+	if(get_holder())
+		location = WEAKREF(get_turf(holder?.resolve()))
+	var/obj/effect/particle_effect/sparks/sparks = new /obj/effect/particle_effect/sparks(location?.resolve())
 	var/direction
 	if(src.cardinals)
 		direction = pick(GLOB.cardinals)
@@ -171,15 +172,15 @@ steam.start() -- spawns the effect
 	anchored = TRUE
 
 /datum/effect_system/trail/ion_trail_follow/spawn_particle()
-	var/turf/T = get_turf(holder)
-	if(T != oldposition)
-		if(isspaceturf(T))
-			var/obj/effect/particle_effect/ion_trails/I = new /obj/effect/particle_effect/ion_trails(oldposition)
-			oldposition = T
-			I.setDir(holder.dir)
-			flick("ion_fade", I)
-			I.icon_state = "blank"
-			QDEL_IN(I, 2 SECONDS)
+	var/atom/_holder = get_holder()
+	var/turf/T = get_turf(_holder)
+	if(T != oldposition && isspaceturf(T))
+		var/obj/effect/particle_effect/ion_trails/I = new /obj/effect/particle_effect/ion_trails(oldposition)
+		oldposition = T
+		I.setDir(_holder.dir)
+		flick("ion_fade", I)
+		I.icon_state = "blank"
+		QDEL_IN(I, 2 SECONDS)
 
 	addtimer(CALLBACK(src, PROC_REF(start), TRUE), 0.2 SECONDS)
 
@@ -192,8 +193,10 @@ steam.start() -- spawns the effect
 	if(number < 3)
 		var/obj/effect/particle_effect/steam/I = new /obj/effect/particle_effect/steam(oldposition)
 		number++
-		oldposition = get_turf(holder)
-		I.setDir(holder.dir)
+		var/atom/_holder = get_holder()
+		if(_holder)
+			oldposition = get_turf(_holder)
+			I.setDir(_holder.dir)
 		addtimer(CALLBACK(src, PROC_REF(decay), I), 1 SECONDS)
 
 	addtimer(CALLBACK(src, PROC_REF(start), TRUE), 0.2 SECONDS)

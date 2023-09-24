@@ -124,7 +124,7 @@
 	toggle_game_timer(SENSOR_CAP_ADDITION_TIME_BONUS)
 	update_icon()
 
-	var/datum/game_mode/combat_patrol/sensor_capture/mode = SSticker.mode
+	var/datum/game_mode/hvh/combat_patrol/sensor_capture/mode = SSticker.mode
 	mode.sensors_activated += 1
 
 	playsound(src, 'sound/machines/ping.ogg', 25, 1)
@@ -154,10 +154,10 @@
 
 ///Pauses or restarts the gamemode timer
 /obj/structure/sensor_tower/proc/toggle_game_timer(addition_time)
-	var/datum/game_mode/combat_patrol/sensor_capture/mode = SSticker.mode
+	var/datum/game_mode/hvh/combat_patrol/sensor_capture/mode = SSticker.mode
 
 	if(mode.game_timer == SENSOR_CAP_TIMER_PAUSED)
-		mode.game_timer = addtimer(CALLBACK(mode, TYPE_PROC_REF(/datum/game_mode/combat_patrol, set_game_end)), remaining_game_time + addition_time, TIMER_STOPPABLE)
+		mode.game_timer = addtimer(CALLBACK(mode, TYPE_PROC_REF(/datum/game_mode/hvh/combat_patrol, set_game_end)), remaining_game_time + addition_time, TIMER_STOPPABLE)
 		return
 
 	remaining_game_time = timeleft(mode.game_timer)

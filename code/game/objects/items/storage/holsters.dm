@@ -644,6 +644,17 @@
 	desc = "A quality pistol belt of a style typically seen worn by SOM officers. It looks old, but well looked after."
 	icon_state = "som_belt_pistol_fancy"
 
+/obj/item/storage/holster/belt/pistol/m4a3/som/fancy/fieldcommander/Initialize(mapload)
+	. = ..()
+	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/serpenta/custom(src)
+	new /obj/item/cell/lasgun/volkite/small(src)
+	new /obj/item/cell/lasgun/volkite/small(src)
+	new /obj/item/cell/lasgun/volkite/small(src)
+	new /obj/item/cell/lasgun/volkite/small(src)
+	new /obj/item/cell/lasgun/volkite/small(src)
+	new /obj/item/cell/lasgun/volkite/small(src)
+	INVOKE_ASYNC(src, PROC_REF(handle_item_insertion), new_gun)
+
 /obj/item/storage/holster/belt/pistol/stand
 	name = "\improper M276 pattern M4A3 holster rig"
 	desc = "The M276 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips. This version has a holster assembly that allows one to carry the M4A3 comfortably secure. It also contains side pouches that can store 9mm or .45 magazines."

@@ -36,6 +36,7 @@
 	QDEL_LIST(affected.wounds)
 	if(ishuman(user) && prob(40))
 		user:bloody_hands(target, 0)
+	return ..()
 
 /datum/surgery_step/fix_vein/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
 	user.visible_message(span_warning("[user]'s hand slips, smearing [tool] in the incision in [target]'s [affected.display_name]!") , \

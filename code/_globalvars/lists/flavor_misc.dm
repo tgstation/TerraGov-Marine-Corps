@@ -137,9 +137,48 @@ GLOBAL_LIST_INIT(playable_squad_icons, list(
 	"smartgunner",
 ))
 
+GLOBAL_LIST_INIT(campaign_icon_types, list(
+	"b18",
+	"gorgon",
+	"medkit",
+	"materials",
+	"heavy_mech",
+	"medium_mech",
+	"light_mech",
+	"militia",
+	"freelancers",
+	"icc",
+	"pmc",
+	"combat_robots",
+	"logistics_buff",
+	"logistics_malus",
+	"bluespace_logistics",
+	"bluespace_logistics_malus",
+	"tele_uses",
+	"tele_active",
+	"tele_broken",
+	"droppod_refresh",
+	"droppod_active",
+	"droppod_broken",
+	"cas",
+	"mortar",
+	"cas_disabled",
+	"mortar_disabled",
+	"droppod_disabled",
+	"tele_disabled",
+))
 GLOBAL_LIST_INIT(minimap_icons, init_minimap_icons())
 
 /proc/init_minimap_icons()
 	. = list()
 	for(var/icon_state in GLOB.playable_icons)
 		.[icon_state] = icon2base64(icon('icons/UI_icons/map_blips.dmi', icon_state, frame = 1))
+
+GLOBAL_LIST_INIT(campaign_icons, init_campaign_icons())
+
+/proc/init_campaign_icons()
+	. = list()
+	var/list/colours = list("green", "orange", "grey", "red", "blue")
+	for(var/icon_state in GLOB.campaign_icon_types)
+		for(var/colour in colours)
+			.["[icon_state]_[colour]"] = icon2base64(icon('icons/UI_icons/campaign_icons.dmi', "[icon_state]_[colour]", frame = 1))

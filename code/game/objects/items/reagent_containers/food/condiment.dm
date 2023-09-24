@@ -33,6 +33,7 @@
 				return
 			to_chat(H, span_notice("You swallow some of contents of the [src]."))
 			if(reagents.total_volume)
+				record_reagent_consumption(min(10, reagents.total_volume), reagents.reagent_list, user)
 				reagents.trans_to(H, 10)
 			playsound(H.loc,'sound/items/drink.ogg', 15, 1)
 			return 1
@@ -47,6 +48,7 @@
 			var/rgt_list_text = get_reagent_list_text()
 			log_combat(user, M, "fed", src, "Reagents: [rgt_list_text]")
 			if(reagents.total_volume)
+				record_reagent_consumption(min(10, reagents.total_volume), reagents.reagent_list, user, M)
 				reagents.reaction(M, INGEST)
 				reagents.trans_to(M, 10)
 			playsound(M.loc,'sound/items/drink.ogg', 15, 1)

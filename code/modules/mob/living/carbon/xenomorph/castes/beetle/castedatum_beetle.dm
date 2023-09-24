@@ -31,9 +31,6 @@
 	// *** Defense *** //
 	soft_armor = list(MELEE = 30, BULLET = 30, LASER = 25, ENERGY = 20, BOMB = 20, BIO = 20, FIRE = 30, ACID = 20)
 
-	// *** Ranged Attack *** //
-	charge_type = CHARGE_TYPE_LARGE
-
 	minimap_icon = "xenominion"
 
 	actions = list(

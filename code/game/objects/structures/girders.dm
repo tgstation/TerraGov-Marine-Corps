@@ -23,7 +23,7 @@
 
 #define GIRDER_DECONSTRUCTING (new_state < girder_state)
 
-/obj/structure/girder/proc/change_state(new_state)
+/obj/structure/girder/proc/change_state(new_state, mob/user)
 	if(new_state == girder_state)
 		return
 	switch(new_state)
@@ -42,6 +42,7 @@
 			if(!GIRDER_DECONSTRUCTING)
 				modify_max_integrity((reinforcement == GIRDER_REINF_PLASTEEL) ? 600 : 300)
 		if(GIRDER_WALL_BUILT)
+			user.record_structures_built()
 			return build_wall()
 	girder_state = new_state
 	density = (girder_state >= GIRDER_NORMAL)
@@ -128,7 +129,7 @@
 				return TRUE
 			playsound(loc, 'sound/items/welder2.ogg', 25, 1)
 			to_chat(user, span_notice("You weld the [girder_state == GIRDER_BROKEN_PATCHED ? "girder together" : "metal to the girder"]!"))
-			change_state(girder_state + 1)
+			change_state(girder_state + 1, user)
 			return TRUE
 	return FALSE
 

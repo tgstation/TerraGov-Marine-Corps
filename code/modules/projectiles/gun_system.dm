@@ -392,6 +392,7 @@
 
 /obj/item/weapon/gun/Destroy()
 	active_attachable = null
+	gunattachment = null
 	QDEL_NULL(muzzle_flash)
 	QDEL_NULL(chamber_items)
 	QDEL_NULL(in_chamber)

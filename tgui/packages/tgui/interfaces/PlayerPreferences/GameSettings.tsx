@@ -252,6 +252,13 @@ export const GameSettings = (props, context) => {
                 leftLabel={'Enabled'}
                 rightLabel={'Disabled'}
               />
+              <ToggleFieldPreference
+                label="Radial laser gun wheel"
+                value="radiallasersgunpref"
+                action="radiallasersgunpref"
+                leftLabel={'Enabled'}
+                rightLabel={'Disabled'}
+              />
               <LoopingSelectionPreference
                 label="Scaling Method"
                 value={scaling_method}
