@@ -236,8 +236,8 @@
 //ISG-15 mounted heavy infantry support gun
 
 /obj/item/weapon/gun/heavy_isg
-	name = "\improper ISG-15 mounted smart heavy infantry support gun"
-	desc = "The ISG-15 is a heavy infantry support gun. This will most definitely trouble anything that gets caught in the blast radius. Takes quite a while to dial in the shot, but is IFF-capable. Uses 15cm shells."
+	name = "\improper ISG-88 mounted smart heavy infantry support gun"
+	desc = "The ISG-88 is a heavy infantry support gun. This will most definitely trouble anything that gets caught in the blast radius. Takes quite a while to dial in the shot, but is IFF-capable. Uses 15cm shells."
 
 	w_class = WEIGHT_CLASS_HUGE
 	flags_equip_slot = ITEM_SLOT_BACK

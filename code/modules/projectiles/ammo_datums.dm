@@ -2106,9 +2106,9 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/rocket/heavy_isg
 	name = "15cm round"
 	icon_state = "heavyrr"
-	hud_state = "shell_he"
+	hud_state = "bigshell_he"
 	hud_state_empty = "shell_empty"
-	flags_ammo_behavior = AMMO_ROCKET
+	flags_ammo_behavior = AMMO_ROCKET|AMMO_EXPLOSIVE
 	damage = 50
 	penetration = 200
 	max_range = 30
@@ -2119,6 +2119,10 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/rocket/heavy_isg/drop_nade(turf/T)
 	explosion(T, 0, 7, 8, 12)
+
+/datum/ammo/rocket/heavy_isg/unguided
+	hud_state = "bigshell_he_unguided"
+	flags_ammo_behavior = AMMO_ROCKET
 
 /datum/ammo/rocket/wp
 	name = "white phosphorous rocket"

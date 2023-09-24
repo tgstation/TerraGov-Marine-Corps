@@ -182,7 +182,7 @@
 
 /obj/item/ammo_magazine/heavy_isg
 	name = "ISG-15 HE shell (155mm Shell)"
-	desc = "A 15cm HE shell for the ISG-15 mounted heavy recoilless rifle."
+	desc = "A 15cm HE shell for the ISG-15 mounted heavy recoilless rifle. Activate in hand to swap between unguided and guided modes."
 	w_class = WEIGHT_CLASS_BULKY
 	icon = 'icons/Marine/marine-hmg.dmi'
 	icon_state = "isg_ammo"
@@ -192,3 +192,14 @@
 	max_rounds = 1
 	default_ammo = /datum/ammo/rocket/heavy_isg
 	reload_delay = 8 SECONDS
+	var/guided = TRUE
+
+/obj/item/ammo_magazine/heavy_isg/attack_hand_alternate(mob/living/user)
+	if(guided)
+		default_ammo = /datum/ammo/rocket/heavy_isg/unguided
+		balloon_alert(user, "You swap the shell to unguided form")
+		guided = FALSE
+	else
+		default_ammo = /datum/ammo/rocket/heavy_isg
+		balloon_alert(user, "You swap the shell to guided form")
+		guided = TRUE
