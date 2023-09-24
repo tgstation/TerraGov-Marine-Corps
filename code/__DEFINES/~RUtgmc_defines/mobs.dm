@@ -12,3 +12,6 @@
 
 ///Slowdown for favehuggers moving through liquid
 #define FACEHUGGER_WATER_SLOWDOWN 1.6
+
+//Xeno Defines
+#define HIVE_CAN_COLLAPSE_FROM_SILO (1<<1)

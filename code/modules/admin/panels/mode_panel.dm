@@ -18,6 +18,12 @@
 	if(rulerless_countdown)
 		dat += "<b>Orphan hivemind collapse in [rulerless_countdown] seconds.</b><br>"
 
+	//RUTGMC EDIT ADDITION BEGIN - DISTRESS
+	var/siloless_countdown = SSticker.mode.get_siloless_collapse_countdown()
+	if(siloless_countdown)
+		dat += "<b>Orphan hivemind collapse in [siloless_countdown] seconds.</b><br>"
+	//RUTGMC EDIT ADDITION END
+
 	dat += "<b>Evacuation:</b> "
 	switch(SSevacuation.evac_status)
 		if(EVACUATION_STATUS_STANDING_BY)
