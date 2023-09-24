@@ -133,6 +133,7 @@
 #include "code\game\objects\items\radio\headset.dm"
 #include "code\game\objects\machinery\mortar.dm"
 #include "code\game\objects\machinery\vending\new_marine_vendors.dm"
+#include "code\modules\clothing\clothing.dm"
 #include "code\modules\clothing\glasses\glasses.dm"
 #include "code\modules\clothing\glasses\night.dm"
 #include "code\modules\clothing\head\head.dm"
