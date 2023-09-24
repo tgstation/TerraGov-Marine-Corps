@@ -61,18 +61,6 @@
 	slowdown = SLOWDOWN_ARMOR_HEAVY
 	greyscale_config = /datum/greyscale_config/robot/heavy
 
-/obj/item/clothing/suit/modular/robot/heavy/tyr
-	starting_attachments = list(
-		/obj/item/armor_module/module/tyr_extra_armor,
-		/obj/item/armor_module/storage/engineering,
-	)
-
-/obj/item/clothing/suit/modular/robot/heavy/shield
-	starting_attachments = list(
-		/obj/item/armor_module/module/eshield,
-		/obj/item/armor_module/storage/engineering,
-	)
-
 //robot hats
 /obj/item/clothing/head/modular/robot
 	name = "XN-1 upper armor plating"
@@ -127,6 +115,3 @@
 	desc = "Heavy armor plating designed for self mounting on the upper half of TerraGov combat robotics. It has self-sealing bolts for mounting on robotic owners inside."
 	starting_attachments = list(/obj/item/armor_module/storage/helmet, /obj/item/armor_module/armor/visor/marine/robot/heavy)
 	greyscale_config = /datum/greyscale_config/robot/heavy
-
-/obj/item/clothing/head/modular/robot/heavy/tyr
-	starting_attachments = list(/obj/item/armor_module/storage/helmet, /obj/item/armor_module/armor/visor/marine/robot/heavy, /obj/item/armor_module/module/tyr_head)

@@ -31,6 +31,3 @@ endmap
 
 map combat_patrol_base
 endmap
-
-map iteron
-endmap

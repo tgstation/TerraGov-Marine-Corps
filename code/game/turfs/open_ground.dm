@@ -23,13 +23,10 @@
 	return
 
 /turf/open/ground/grass/beach
-	icon_state = "grassbeach_edge"
+	icon_state = "grassbeach"
 
 /turf/open/ground/grass/beach/corner
-	icon_state = "grassbeach_corner"
-
-/turf/open/ground/grass/beach/corner2
-	icon_state = "grassbeach_corner2"
+	icon_state = "gbcorner"
 
 /turf/open/ground/coast
 	name = "coastline"
@@ -37,7 +34,6 @@
 	shoefootstep = FOOTSTEP_SAND
 	barefootstep = FOOTSTEP_SAND
 	mediumxenofootstep = FOOTSTEP_SAND
-	minimap_color = MINIMAP_WATER
 	smoothing_groups = list(
 		SMOOTH_GROUP_RIVER,
 	)

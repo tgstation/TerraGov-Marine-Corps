@@ -102,16 +102,3 @@ SUBSYSTEM_DEF(lighting)
 /datum/controller/subsystem/lighting/Recover()
 	initialized = SSlighting.initialized
 	return ..()
-
-///sets up light objects for a particular z level. Used for late loading
-/datum/controller/subsystem/lighting/proc/create_lighting_objects_for_z(z_level)
-	for(var/area/new_area in world)
-		if(new_area.z != z_level)
-			continue
-		if(!new_area.static_lighting)
-			continue
-
-		for(var/turf/T in new_area)
-			new/datum/static_lighting_object(T)
-			CHECK_TICK
-		CHECK_TICK

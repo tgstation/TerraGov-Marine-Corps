@@ -35,7 +35,7 @@ SUBSYSTEM_DEF(minimaps)
 	var/list/datum/minimap_updator/updators_by_datum = list()
 	///assoc list of hash = image of images drawn by players
 	var/list/image/drawn_images = list()
-	///list of callbacks we need to invoke late because Initialize happens early, or a Z-level was loaded after init
+	///list of callbacks we need to invoke late because Initialize happens early
 	var/list/datum/callback/earlyadds = list()
 	///assoc list of minimap objects that are hashed so we have to update as few as possible
 	var/list/hashed_minimaps = list()
@@ -43,10 +43,13 @@ SUBSYSTEM_DEF(minimaps)
 /datum/controller/subsystem/minimaps/Initialize()
 	for(var/datum/space_level/z_level AS in SSmapping.z_list)
 		load_new_z(null, z_level)
-	//RegisterSignal(SSdcs, COMSIG_GLOB_NEW_Z, PROC_REF(load_new_z))
+	RegisterSignal(SSdcs, COMSIG_GLOB_NEW_Z, PROC_REF(load_new_z))
 
 	initialized = TRUE
 
+	for(var/i=1 to length(earlyadds)) //lateload icons
+		earlyadds[i].Invoke()
+	earlyadds = null
 	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/minimaps/stat_entry(msg)
@@ -76,13 +79,15 @@ SUBSYSTEM_DEF(minimaps)
 			return
 	iteration = 0
 
-///Creates a minimap for a particular z level
+/**
+ * Generates the minimap for a Z level
+ */
 /datum/controller/subsystem/minimaps/proc/load_new_z(datum/dcs, datum/space_level/z_level)
 	SIGNAL_HANDLER
 
 	var/level = z_level.z_value
 	minimaps_by_z["[level]"] = new /datum/hud_displays
-	if(!is_mainship_level(level) && !is_ground_level(level) && !is_away_level(level)) //todo: maybe move this around
+	if(!is_mainship_level(level) && !is_ground_level(level))
 		return
 	var/icon/icon_gen = new('icons/UI_icons/minimap.dmi') //480x480 blank icon template for drawing on the map
 	for(var/xval = 1 to world.maxx)
@@ -133,14 +138,6 @@ SUBSYSTEM_DEF(minimaps)
 	icon_gen.Shift(NORTH, minimaps_by_z["[level]"].y_offset)
 
 	minimaps_by_z["[level]"].hud_image = icon_gen //done making the image!
-
-	//lateload icons
-	if(!earlyadds["[level]"])
-		return
-
-	for(var/i=1 to length(earlyadds["[level]"]))
-		earlyadds["[level]"][i].Invoke()
-	earlyadds["[level]"] = null //then clear them
 
 /**
  * Adds an atom to the processing updators that will have blips drawn on them
@@ -221,11 +218,8 @@ SUBSYSTEM_DEF(minimaps)
 /datum/controller/subsystem/minimaps/proc/add_marker(atom/target, hud_flags = NONE, image/blip)
 	if(!isatom(target) || !hud_flags || !blip)
 		CRASH("Invalid marker added to subsystem")
-
-	if(!initialized || !(minimaps_by_z["[target.z]"])) //the minimap doesn't exist yet, z level was probably loaded after init
-		if(!(earlyadds["[target.z]"]))
-			earlyadds["[target.z]"] = list()
-		earlyadds["[target.z]"] += CALLBACK(src, PROC_REF(add_marker), target, hud_flags, blip)
+	if(!initialized)
+		earlyadds += CALLBACK(src, PROC_REF(add_marker), target, hud_flags, blip)
 		return
 
 	var/turf/target_turf = get_turf(target)

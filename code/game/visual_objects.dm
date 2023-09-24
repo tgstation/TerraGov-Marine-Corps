@@ -21,7 +21,7 @@
 	if(new_icon_state)
 		icon_state = new_icon_state
 
-/atom/movable/vis_obj/fulton_balloon
+/atom/movable/vis_obj/fulton_baloon
 	appearance_flags = RESET_COLOR|RESET_ALPHA|RESET_TRANSFORM
 	icon = 'icons/obj/items/fulton_balloon.dmi'
 	icon_state = "fulton_noballoon"

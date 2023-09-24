@@ -76,24 +76,7 @@
 		/obj/item/attachable/scope/unremovable/tl102,
 	)
 
-/obj/item/weapon/gun/sentry/pod_sentry
-	name = "\improper ST-583 sentry gun"
-	desc = "A fully automatic turret with AI targeting capabilities, designed specifically for deploying inside a paired drop pod shell. Armed with a M30 autocannon and a 500-round drum magazine. Designed to sweeping a landing area to support orbital assaults."
-	icon_state = "podsentry"
-	turret_flags = TURRET_HAS_CAMERA|TURRET_ALERTS|TURRET_RADIAL
-	flags_item = IS_DEPLOYABLE|DEPLOY_ON_INITIALIZE|DEPLOYED_NO_PICKUP
-	sentry_iff_signal = TGMC_LOYALIST_IFF
-	turret_range = 10
-	knockdown_threshold = 500
-	max_shells = 500
-	fire_delay = 0.15 SECONDS
-	burst_amount = 1
-	scatter = 12
-	ammo_datum_type = /datum/ammo/bullet/turret
-	default_ammo_type = /obj/item/ammo_magazine/sentry
-	allowed_ammo_types = list(/obj/item/ammo_magazine/sentry)
 
-	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
 
 //thrown SOM sentry
 /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/cope
