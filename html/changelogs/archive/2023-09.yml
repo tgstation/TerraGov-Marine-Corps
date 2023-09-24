@@ -174,3 +174,17 @@
   - balance: The prices of almost all items in the dropship fabricator have been increased.
   - balance: Minirockets now only take 2 seconds to impact on medium orbit, but have
       an even smaller explosion radius.
+2023-09-24:
+  Blundir:
+  - rscadd: helmets can now hold gauze, ointment, barbed wire, handful of bullets
+  - rscadd: helmets can now hold a total weight of 3 instead of 2
+  - bugfix: fixed items in a helmet rending under a helmet visor
+  - imageadd: 'added helmet storage sprites for: gauze, bullet handfuls, c4, pinpointer,
+      barbed wire, superior welding goggles and more'
+  Pariah919:
+  - balance: Another balance pass on superheavy pistols, their stagger has been significantly
+      reduced, alongside their fire rate being minorly made worse (0.05 more seconds,
+      so .35 for Deagle and .4 for automag.) Automag does a bit less damage and has
+      a bit more scatter.
+  QualityVan:
+  - bugfix: Taking info tags from corpses works again

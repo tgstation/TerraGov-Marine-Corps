@@ -1,7 +1,0 @@
-author: "Blundir"
-delete-after: True
-changes:
-  - rscadd: "helmets can now hold gauze, ointment, barbed wire, handful of bullets"
-  - rscadd: "helmets can now hold a total weight of 3 instead of 2"
-  - bugfix: "fixed items in a helmet rending under a helmet visor"
-  - imageadd: "added helmet storage sprites for: gauze, bullet handfuls, c4, pinpointer, barbed wire, superior welding goggles and more"
