@@ -29,12 +29,18 @@ GLOBAL_PROTECT(exp_specialmap)
 	var/department_head = list()
 
 	var/faction = FACTION_NEUTRAL
-
+	///The total number of positions for this job
 	var/total_positions = 0
+	///How many positions of this job currently occupied
 	var/current_positions = 0
-	var/max_positions = INFINITY //How many positions can be dynamically assigned.
-	var/job_points = 0 //Points assigned dynamically to open new positions.
+	///How many positions can be dynamically assigned
+	var/max_positions = INFINITY
+	///Points assigned dynamically to open new positions
+	var/job_points = 0
+	///How many points needed to open up a new slot
 	var/job_points_needed = INFINITY
+	///how many job slots, if any this takes up per job
+	var/job_cost = 1
 
 	var/supervisors = ""
 	var/selection_color = "#ffffff"
@@ -282,6 +288,7 @@ GLOBAL_PROTECT(exp_specialmap)
 	job.announce(src)
 	GLOB.round_statistics.total_humans_created[faction]++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "total_humans_created[faction]")
+	SEND_GLOBAL_SIGNAL(COMSIG_LIVING_JOB_SET, src)
 
 /mob/living/carbon/human/apply_assigned_role_to_spawn(datum/job/assigned_role, client/player, datum/squad/assigned_squad, admin_action = FALSE)
 	. = ..()

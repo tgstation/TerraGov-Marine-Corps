@@ -17,6 +17,8 @@
 #define CANNOT_INTERACT (1<<9)
 /// Can click from any direction and perform stuff
 #define OMNIDIRECTIONAL_ATTACKS (1<<10)
+///Do you need mech skill to pilot this mech
+#define MECHA_SKILL_LOCKED (1<<11)
 
 #define MECHA_MELEE (1 << 0)
 #define MECHA_RANGED (1 << 1)
