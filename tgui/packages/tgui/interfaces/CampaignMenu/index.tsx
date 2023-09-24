@@ -191,6 +191,7 @@ export const CampaignMenu = (props, context) => {
                 key={tabname}
                 selected={tabname === selectedTab}
                 fontSize="130%"
+                textAlign="center"
                 onClick={() => setSelectedTab(tabname)}>
                 {tabname}
               </Tabs.Tab>
