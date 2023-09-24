@@ -77,6 +77,9 @@
 	GLOB.unmanned_vehicles -= src
 	QDEL_NULL(flash)
 	QDEL_NULL(in_chamber)
+	for(var/datum/atom_hud/squad/sentry_status_hud in GLOB.huds) //Add to the squad HUD
+		sentry_status_hud.remove_from_hud(src)
+	SSminimaps.remove_marker(src)
 	return ..()
 
 /obj/vehicle/unmanned/obj_destruction()
