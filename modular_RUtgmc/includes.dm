@@ -126,6 +126,7 @@
 #include "code\game\objects\items\storage\belt.dm"
 #include "code\game\objects\items\storage\boxes.dm"
 #include "code\game\objects\items\storage\holsters.dm"
+#include "code\game\objects\items\storage\dispenser.dm"
 #include "code\game\objects\items\weapons\blades.dm"
 #include "code\game\objects\items\weapons\twohanded.dm"
 #include "code\game\objects\items\tools\soldering_tool.dm"
