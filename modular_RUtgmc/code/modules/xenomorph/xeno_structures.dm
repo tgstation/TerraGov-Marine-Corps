@@ -6,6 +6,11 @@
 		INVOKE_NEXT_TICK(SSticker.mode, TYPE_PROC_REF(/datum/game_mode, update_silo_death_timer), GLOB.hive_datums[hivenumber]) // checks all silos next tick after this one is gone
 	return ..()
 
+/obj/structure/xeno/silo/LateInitialize()
+	. = ..()
+	if(GLOB.hive_datums[hivenumber])
+		SSticker.mode.update_silo_death_timer(GLOB.hive_datums[hivenumber])
+
 /obj/structure/xeno/silo/crash
 	resistance_flags = UNACIDABLE | DROPSHIP_IMMUNE | PLASMACUTTER_IMMUNE | INDESTRUCTIBLE
 

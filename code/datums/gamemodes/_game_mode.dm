@@ -916,11 +916,6 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 		var/rulerless_countdown = get_hivemind_collapse_countdown()
 		if(rulerless_countdown)
 			items += "Orphan hivemind collapse timer: [rulerless_countdown]"
-		//RUTGMC EDIT ADDITION BEGIN - DISTRESS
-		var/siloless_countdown = SSticker.mode.get_siloless_collapse_countdown()
-		if(siloless_countdown)
-			items +="Silo less hive collapse timer: [siloless_countdown]"
-		//RUTGMC EDIT ADDITION END
 		if(flags_round_type & MODE_INFESTATION)
 			if(observer_source.larva_position)
 				items += "Position in larva candidate queue: [observer_source.larva_position]"
@@ -934,8 +929,3 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 			var/rulerless_countdown = get_hivemind_collapse_countdown()
 			if(rulerless_countdown)
 				items += "Orphan hivemind collapse timer: [rulerless_countdown]"
-			//RUTGMC EDIT ADDITION BEGIN - DISTRESS
-			var/siloless_countdown = SSticker.mode.get_siloless_collapse_countdown()
-			if(siloless_countdown)
-				items +="Silo less hive collapse timer: [siloless_countdown]"
-			//RUTGMC EDIT ADDITION END

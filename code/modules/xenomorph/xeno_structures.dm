@@ -765,9 +765,6 @@ TUNNEL
 		RegisterSignals(GLOB.hive_datums[hivenumber], list(COMSIG_HIVE_XENO_MOTHER_PRE_CHECK, COMSIG_HIVE_XENO_MOTHER_CHECK), PROC_REF(is_burrowed_larva_host))
 		if(length(GLOB.xeno_resin_silos_by_hive[hivenumber]) == 1)
 			GLOB.hive_datums[hivenumber].give_larva_to_next_in_queue()
-		//RUTGMC EDIT ADDITION BEGIN - DISTRESS
-		SSticker.mode.update_silo_death_timer(GLOB.hive_datums[hivenumber])
-		//RUTGMC EDIT ADDITION END
 	var/turf/tunnel_turf = get_step(center_turf, NORTH)
 	if(tunnel_turf.can_dig_xeno_tunnel())
 		var/obj/structure/xeno/tunnel/newt = new(tunnel_turf, hivenumber)
