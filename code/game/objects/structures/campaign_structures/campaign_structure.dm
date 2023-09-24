@@ -43,24 +43,6 @@
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_CAMPAIGN_OBJECTIVE_DESTROYED, src)
 	GLOB.campaign_objectives -= src
 
-/obj/structure/campaign_objective/destruction_objective
-	name = "GENERIC CAMPAIGN DESTRUCTION OBJECTIVE"
-	soft_armor = list(MELEE = 200, BULLET = 200, LASER = 200, ENERGY = 200, BOMB = 200, BIO = 200, FIRE = 200, ACID = 200) //require c4 normally
-
-/obj/effect/landmark/campaign_objective/howitzer_objective
-	name = "howitzer objective"
-	icon = 'icons/Marine/howitzer.dmi'
-	icon_state = "howitzer_deployed"
-	mission_types = list(/datum/campaign_mission/destroy_mission/fire_support_raid)
-	objective_type = /obj/structure/campaign_objective/destruction_objective/howitzer
-
-/obj/structure/campaign_objective/destruction_objective/howitzer
-	name = "\improper TA-100Y howitzer"
-	desc = "A manual, crew-operated and towable howitzer, will rain down 150mm laserguided and accurate shells on any of your foes."
-	icon = 'icons/Marine/howitzer.dmi'
-	icon_state = "howitzer_deployed"
-	pixel_x = -16
-
 /obj/effect/landmark/campaign_objective/bluespace_core
 	name = "Bluespace Core objective"
 	icon = 'icons/obj/machines/bluespacedrive.dmi'

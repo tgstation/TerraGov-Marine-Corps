@@ -285,6 +285,12 @@
 	ui_icon = "logistics_malus"
 	reward_flags = REWARD_PASSIVE_EFFECT|REWARD_DEBUFF
 
+/datum/campaign_reward/attrition_modifier/malus_standard/higher
+	name = "Severely degraded supply lines"
+	desc = "-35% passive Attrition Point gain"
+	detailed_desc = "Serious damage to our supply lines have increased the difficulty and time required to move men and materiel, resulting in a lower deployment of combat forces."
+	attrition_mod = -0.35
+
 /datum/campaign_reward/attrition_modifier/malus_teleporter
 	name = "Bluespace logistics disabled"
 	desc = "-20% passive Attrition Point gain"
