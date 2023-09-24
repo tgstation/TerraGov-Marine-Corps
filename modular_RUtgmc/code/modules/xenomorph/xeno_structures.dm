@@ -1,4 +1,5 @@
 /obj/structure/xeno/silo
+	plane = FLOOR_PLANE
 	icon = 'modular_RUtgmc/icons/Xeno/resin_silo.dmi'
 
 /obj/structure/xeno/silo/crash
