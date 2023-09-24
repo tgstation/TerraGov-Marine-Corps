@@ -140,6 +140,7 @@ SUBSYSTEM_DEF(minimaps)
 
 	for(var/i=1 to length(earlyadds["[level]"]))
 		earlyadds["[level]"][i].Invoke()
+		UnregisterSignal(earlyadds["[level]"][i].arguments[1], COMSIG_QDELETING)
 	earlyadds["[level]"] = null //then clear them
 
 /**
@@ -226,6 +227,7 @@ SUBSYSTEM_DEF(minimaps)
 		if(!(earlyadds["[target.z]"]))
 			earlyadds["[target.z]"] = list()
 		earlyadds["[target.z]"] += CALLBACK(src, PROC_REF(add_marker), target, hud_flags, blip)
+		RegisterSignal(target, COMSIG_QDELETING, PROC_REF(remove_earlyadd))
 		return
 
 	var/turf/target_turf = get_turf(target)
@@ -245,6 +247,14 @@ SUBSYSTEM_DEF(minimaps)
 		blip.RegisterSignal(target, COMSIG_MOVABLE_MOVED, TYPE_PROC_REF(/image, minimap_on_move))
 	removal_cbs[target] = CALLBACK(src, PROC_REF(removeimage), blip, target, hud_flags)
 	RegisterSignal(target, COMSIG_QDELETING, PROC_REF(remove_marker))
+
+///Removes the object from the earlyadds list, in case it was qdel'd before the z-level was fully loaded
+/datum/controller/subsystem/minimaps/proc/remove_earlyadd(atom/source, target_z)
+	for(var/i=1 to length(earlyadds["[source.z]"]))
+		if(!(earlyadds["[source.z]"][i].arguments[1] == source))
+			continue
+		earlyadds["[source.z]"] -= earlyadds["[source.z]"][i]
+		return
 
 /**
  * removes an image from raw tracked lists, invoked by callback
