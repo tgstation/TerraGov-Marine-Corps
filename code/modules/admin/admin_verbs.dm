@@ -1215,6 +1215,7 @@
 		log_admin("[key_name(usr)] forcibly removed all players from [CA].")
 		message_admins("[ADMIN_TPMONTY(usr)] forcibly removed all players from [CA].")
 
+/// Admin verb to delete a squad completely
 /datum/admins/proc/delete_squad()
 	set category = "Admin"
 	set name = "Delete a squad"

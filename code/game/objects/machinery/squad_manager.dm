@@ -24,7 +24,7 @@
 	if(.)
 		return
 	var/mob/living/carbon/human/user = usr
-	if(!ismarineleaderjob(user.job))
+	if(!ismarineleaderjob(user.job)  && !issommarineleaderjob(user.job))
 		to_chat(user, span_danger("You must be a squad leader to edit squads."))
 		return
 

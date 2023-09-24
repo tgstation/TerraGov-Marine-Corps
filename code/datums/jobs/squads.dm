@@ -140,9 +140,11 @@
 		SOM_SQUAD_LEADER = 1,
 )
 
-/datum/squad/New(set_color)
+/datum/squad/New(set_color, set_name)
 	if(set_color)
 		color = set_color
+	if(set_name)
+		name = set_name
 
 	..()
 
@@ -426,9 +428,7 @@ GLOBAL_LIST_EMPTY_TYPED(custom_squad_radio_freqs, /datum/squad)
 		return
 
 	var/squad_faction = creator.faction
-	var/datum/squad/new_squad = new(squad_color)
-	new_squad.name = squad_name
-	new_squad.id = new_id
+	var/datum/squad/new_squad = new(squad_color, squad_name)
 	new_squad.access = list(ACCESS_MARINE_ALPHA, ACCESS_MARINE_BRAVO, ACCESS_MARINE_CHARLIE, ACCESS_MARINE_DELTA)
 	new_squad.radio_freq = freq
 	GLOB.custom_squad_radio_freqs["[freq]"] = new_squad
@@ -455,5 +455,4 @@ GLOBAL_LIST_EMPTY_TYPED(custom_squad_radio_freqs, /datum/squad)
 	LAZYSET(SSjob.squads_by_name[new_squad.faction], new_squad.name, new_squad)
 	creator.change_squad(new_squad.id)
 	new_squad.promote_leader(creator)
-	new_squad.tracking_id = SSdirection.init_squad(new_squad.name, new_squad.squad_leader)
 	return new_squad
