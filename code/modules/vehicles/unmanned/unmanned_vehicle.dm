@@ -71,12 +71,13 @@
 		max_rounds = initial(spawn_equipped_type.max_rounds)
 		update_icon()
 	hud_set_uav_ammo()
-	SSminimaps.add_marker(src, MINIMAP_FLAG_MARINE, image('icons/UI_icons/map_blips.dmi', null, "uav"))
+	//SSminimaps.add_marker(src, MINIMAP_FLAG_MARINE, image('icons/UI_icons/map_blips.dmi', null, "uav"))
 
 /obj/vehicle/unmanned/Destroy()
-	. = ..()
 	GLOB.unmanned_vehicles -= src
 	QDEL_NULL(flash)
+	QDEL_NULL(in_chamber)
+	return ..()
 
 /obj/vehicle/unmanned/obj_destruction()
 	robogibs(src)
