@@ -35,12 +35,14 @@
 	RegisterSignal(parent, COMSIG_CLICK_ALT_RIGHT, PROC_REF(open_storage))	//Open storage if the armor is alt right clicked
 	RegisterSignal(parent, COMSIG_ATOM_ATTACKBY, PROC_REF(insert_item))
 	RegisterSignal(parent, COMSIG_ATOM_ATTACK_GHOST, PROC_REF(open_storage))
+	RegisterSignal(parent, COMSIG_ATOM_ATTACK_HAND_ALTERNATE, PROC_REF(draw_from_storage))
+	RegisterSignal(parent, COMSIG_CLICK_CTRL, PROC_REF(left_draw_from_storage))
 	storage.master_item = parent
 
 /obj/item/armor_module/storage/on_detach(obj/item/detaching_from, mob/user)
 	equip_delay_self = initial(equip_delay_self)
 	strip_delay = initial(strip_delay)
-	UnregisterSignal(parent, list(COMSIG_ATOM_ATTACK_HAND, COMSIG_CLICK_ALT_RIGHT, COMSIG_ATOM_ATTACKBY, COMSIG_ATOM_ATTACK_GHOST))
+	UnregisterSignal(parent, list(COMSIG_ATOM_ATTACK_HAND, COMSIG_CLICK_ALT_RIGHT, COMSIG_ATOM_ATTACKBY, COMSIG_ATOM_ATTACK_GHOST, COMSIG_ATOM_ATTACK_HAND_ALTERNATE, COMSIG_CLICK_CTRL))
 	storage.master_item = src
 	return ..()
 
@@ -69,6 +71,23 @@
 		return
 	INVOKE_ASYNC(storage, TYPE_PROC_REF(/atom, attackby), I, user)
 	return COMPONENT_NO_AFTERATTACK
+
+///We draw from the item's storage
+/obj/item/armor_module/storage/proc/draw_from_storage(datum/source, mob/user)
+	SIGNAL_HANDLER
+	if(parent.loc != user)
+		return
+	INVOKE_ASYNC(storage, TYPE_PROC_REF(/obj/item/storage/internal, attempt_draw_object), user)
+	return COMPONENT_NO_ATTACK_HAND
+
+
+///We draw the leftmost item from the item's storage
+/obj/item/armor_module/storage/proc/left_draw_from_storage(datum/source, mob/user)
+	SIGNAL_HANDLER
+	if(parent.loc != user)
+		return
+	INVOKE_ASYNC(storage, TYPE_PROC_REF(/obj/item/storage/internal, attempt_draw_object), user, TRUE)
+	return COMPONENT_NO_ATTACK_HAND
 
 /obj/item/armor_module/storage/attackby(obj/item/I, mob/user, params)
 	. = ..()
