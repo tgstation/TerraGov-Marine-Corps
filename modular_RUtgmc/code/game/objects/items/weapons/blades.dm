@@ -93,3 +93,14 @@
 	. = ..()
 	AddComponent(/datum/component/harvester)
 	RemoveElement(/datum/element/strappable)
+
+/obj/item/weapon/claymore/mercsword/officersword/sabre
+	name = "\improper ceremonial officer sabre"
+	desc = "Gold plated, smoked dark wood handle, your name on it, what else do you need?"
+	icon = 'modular_RUtgmc/icons/obj/items/weapons.dmi'
+	item_icons = list(
+		slot_l_hand_str = 'modular_RUtgmc/icons/mob/inhands/weapons/melee_left.dmi',
+		slot_r_hand_str = 'modular_RUtgmc/icons/mob/inhands/weapons/melee_right.dmi',
+	)
+	icon_state = "saber"
+	item_state = "saber"

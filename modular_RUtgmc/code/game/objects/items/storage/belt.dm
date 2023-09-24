@@ -44,4 +44,3 @@
 		/obj/item/stack/medical/heal_pack/advanced/burn_pack/combat,
 		/obj/item/stack/medical/heal_pack/advanced/bruise_pack/combat,
 	)
-
