@@ -1,0 +1,6 @@
+author: "ivanmixo"
+delete-after: True
+changes:
+  - rscadd: "You can now draw from webbings, armor and helmet with right click"
+  - rscadd: "You can now draw the leftmost item from storage"
+  - bugfix: "Fixed clicking the inventory hud element not transferring clicks to the item in the slot correctly (right clicking the slots now right clicks the item in the slot)"
