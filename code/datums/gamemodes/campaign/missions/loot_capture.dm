@@ -1,6 +1,7 @@
 //Loot capture mission
 /datum/campaign_mission/capture_mission
-	name = "Capture mission"
+	name = "Phoron retrieval"
+	mission_icon = "phoron_raid"
 	map_name = "Jungle outpost SR-422"
 	map_file = '_maps/map_files/Campaign maps/jungle_test/jungle_outpost.dmm'
 	map_traits = list(ZTRAIT_AWAY = TRUE, ZTRAIT_RAIN = TRUE)

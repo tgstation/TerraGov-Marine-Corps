@@ -1,6 +1,7 @@
 //disabling some of the enemy's firesupport options
 /datum/campaign_mission/destroy_mission/fire_support_raid
 	name = "Fire support raid"
+	mission_icon = "mortar_raid"
 	map_name = "Lunar base BD-832"
 	map_file = '_maps/map_files/Campaign maps/jungle_test/jungle_outpost.dmm'
 	objectives_total = 5

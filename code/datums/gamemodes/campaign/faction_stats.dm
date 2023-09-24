@@ -220,6 +220,8 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 		mission_data["objective_description"] = potential_mission.starting_faction_objective_description
 		mission_data["mission_brief"] = potential_mission.starting_faction_mission_brief
 		mission_data["mission_rewards"] = potential_mission.starting_faction_additional_rewards
+		mission_data["mission_icon"] = potential_mission.mission_icon
+		mission_data["mission_critical"] = !!(potential_mission.mission_flags & MISSION_CRITICAL)
 		available_missions_data += list(mission_data)
 	data["available_missions"] = available_missions_data
 
@@ -275,6 +277,7 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 	data["victory_points"] = victory_points
 	data["faction"] = faction
 	data["icons"] = GLOB.campaign_icons
+	data["mission_icons"] = GLOB.campaign_mission_icons
 
 	return data
 

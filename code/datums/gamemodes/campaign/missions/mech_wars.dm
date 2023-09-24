@@ -1,6 +1,7 @@
 //mech on mech violence
 /datum/campaign_mission/tdm/mech_wars
 	name = "Mech war"
+	mission_icon = "mech_war"
 	map_name = "Orion Outpost"
 	map_file = '_maps/map_files/Campaign maps/jungle_test/jungle_outpost.dmm'
 	starting_faction_objective_description = null

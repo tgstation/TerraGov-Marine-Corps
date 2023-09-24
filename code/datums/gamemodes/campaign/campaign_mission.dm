@@ -1,6 +1,8 @@
 /datum/campaign_mission
 	///name of the mission
 	var/name
+	///UI icon for the mission
+	var/mission_icon
 	///map name for this mission
 	var/map_name
 	///path of map for this mission

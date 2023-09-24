@@ -32,6 +32,8 @@ export type MissionData = {
   objective_description: string;
   mission_brief: string;
   mission_rewards: string;
+  mission_icon?: string;
+  mission_critical?: number;
 };
 
 export type FactionReward = {
@@ -62,6 +64,7 @@ export type CampaignData = {
   victory_points: number;
   faction: string;
   icons?: string[];
+  mission_icons?: string[];
 };
 
 export const CampaignMenu = (props, context) => {
@@ -234,6 +237,31 @@ export const AssetIcon = (props: { icon: FactionReward['icon'] }, context) => {
       as="img"
       mr={1.5}
       src={`data:image/jpeg;base64,${icons[icon]}`}
+      style={{
+        transform: 'scale(1) translatey(2px)',
+        '-ms-interpolation-mode': 'nearest-neighbor',
+      }}
+    />
+  );
+};
+
+/** Generates a small icon for buttons based on ICONMAP for missions */
+export const MissionIcon = (
+  props: { icon: MissionData['mission_icon'] },
+  context
+) => {
+  const { data } = useBackend<CampaignData>(context);
+  const { mission_icons = [] } = data;
+  const { icon } = props;
+  if (!icon || !mission_icons[icon]) {
+    return null;
+  }
+
+  return (
+    <Box
+      as="img"
+      mr={1.5}
+      src={`data:image/jpeg;base64,${mission_icons[icon]}`}
       style={{
         transform: 'scale(1) translatey(2px)',
         '-ms-interpolation-mode': 'nearest-neighbor',

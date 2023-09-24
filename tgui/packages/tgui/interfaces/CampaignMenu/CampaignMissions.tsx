@@ -1,4 +1,4 @@
-import { CampaignData, MissionData } from './index';
+import { CampaignData, MissionData, MissionIcon } from './index';
 import { useBackend, useLocalState } from '../../backend';
 import { LabeledList, Button, Stack, Section } from '../../components';
 
@@ -20,9 +20,26 @@ export const CampaignMissions = (props, context) => {
           {available_missions.map((mission) => (
             <Stack.Item key={mission.name}>
               <Button
-                width={'120px'}
+                width={'180px'}
                 onClick={() => setSelectedMission(mission)}
-                selected={selectedMission.name === mission.name}>
+                color={
+                  selectedMission.name === mission.name
+                    ? 'orange'
+                    : mission.mission_critical
+                      ? 'red'
+                      : 'blue'
+                }>
+                {!!mission.mission_icon && (
+                  <MissionIcon
+                    icon={
+                      selectedMission.name === mission.name
+                        ? mission.mission_icon + '_yellow'
+                        : mission.mission_critical
+                          ? mission.mission_icon + '_red'
+                          : mission.mission_icon + '_blue'
+                    }
+                  />
+                )}
                 {mission.name}
               </Button>
             </Stack.Item>

@@ -1,6 +1,7 @@
 //disabling an enemy logistics hub
 /datum/campaign_mission/destroy_mission/supply_raid
 	name = "Supply Depot raid"
+	mission_icon = "supply_depot"
 	map_name = "Lunar base BD-832"
 	map_file = '_maps/map_files/Campaign maps/jungle_test/jungle_outpost.dmm'
 	objectives_total = 5

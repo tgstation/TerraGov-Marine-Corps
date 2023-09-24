@@ -1,6 +1,7 @@
 //ASAT capture mission
 /datum/campaign_mission/capture_mission/asat
 	name = "ASAT capture"
+	mission_icon = "asat_capture"
 	map_name = "Orion Outpost"
 	map_file = '_maps/map_files/Campaign maps/jungle_test/jungle_outpost.dmm'
 	max_game_time = 20 MINUTES

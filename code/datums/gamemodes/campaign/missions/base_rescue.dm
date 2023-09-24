@@ -1,6 +1,7 @@
 //placeholder
 /datum/campaign_mission/base_rescue
 	name = "Combat patrol"
+	mission_icon = "nt_rescue"
 	map_name = "Orion Outpost"
 	map_file = '_maps/map_files/Campaign maps/jungle_test/jungle_outpost.dmm'
 	starting_faction_objective_description = null
