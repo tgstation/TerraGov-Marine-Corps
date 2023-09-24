@@ -279,8 +279,7 @@
 
 ///Removes muzzle flash from unmanned vehicles
 /obj/vehicle/unmanned/proc/delete_muzzle_flash()
-	if(!QDELETED(src))
-		vis_contents -= flash
+	vis_contents -= flash
 
 /obj/vehicle/unmanned/flamer_fire_act(burnlevel)
 	take_damage(burnlevel / 2, BURN, FIRE)
