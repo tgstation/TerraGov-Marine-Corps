@@ -226,7 +226,7 @@ SUBSYSTEM_DEF(minimaps)
 		if(!(earlyadds["[target.z]"]))
 			earlyadds["[target.z]"] = list()
 		earlyadds["[target.z]"] += CALLBACK(src, PROC_REF(add_marker), target, hud_flags, blip)
-		RegisterSignal(target, COMSIG_QDELETING, PROC_REF(remove_earlyadd), override = TRUE) //if it was loaded before the z-level
+		RegisterSignal(target, COMSIG_QDELETING, PROC_REF(remove_earlyadd), override = TRUE) //Override required for late z-level loading to prevent hard dels where an atom is initiated during z load, but is qdel'd before it finishes
 		return
 
 	var/turf/target_turf = get_turf(target)
@@ -245,7 +245,7 @@ SUBSYSTEM_DEF(minimaps)
 		RegisterSignal(target, COMSIG_MOVABLE_Z_CHANGED, PROC_REF(on_z_change))
 		blip.RegisterSignal(target, COMSIG_MOVABLE_MOVED, TYPE_PROC_REF(/image, minimap_on_move))
 	removal_cbs[target] = CALLBACK(src, PROC_REF(removeimage), blip, target, hud_flags)
-	RegisterSignal(target, COMSIG_QDELETING, PROC_REF(remove_marker), override = TRUE) //if it was loaded before the z-level
+	RegisterSignal(target, COMSIG_QDELETING, PROC_REF(remove_marker), override = TRUE) //override for atoms that were on a late loaded z-level, overrides the remove_earlyadd above
 
 ///Removes the object from the earlyadds list, in case it was qdel'd before the z-level was fully loaded
 /datum/controller/subsystem/minimaps/proc/remove_earlyadd(atom/source, target_z)
