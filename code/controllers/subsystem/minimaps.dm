@@ -36,7 +36,7 @@ SUBSYSTEM_DEF(minimaps)
 	///assoc list of hash = image of images drawn by players
 	var/list/image/drawn_images = list()
 	///list of callbacks we need to invoke late because Initialize happens early, or a Z-level was loaded after init
-	var/list/datum/callback/earlyadds = list()
+	var/list/list/datum/callback/earlyadds = list()
 	///assoc list of minimap objects that are hashed so we have to update as few as possible
 	var/list/hashed_minimaps = list()
 
@@ -138,8 +138,8 @@ SUBSYSTEM_DEF(minimaps)
 	if(!earlyadds["[level]"])
 		return
 
-	for(var/i=1 to length(earlyadds["[level]"]))
-		earlyadds["[level]"][i].Invoke()
+	for(var/datum/callback/callback AS in earlyadds["[level]"])
+		callback.Invoke()
 	earlyadds["[level]"] = null //then clear them
 
 /**
@@ -223,9 +223,7 @@ SUBSYSTEM_DEF(minimaps)
 		CRASH("Invalid marker added to subsystem")
 
 	if(!initialized || !(minimaps_by_z["[target.z]"])) //the minimap doesn't exist yet, z level was probably loaded after init
-		if(!(earlyadds["[target.z]"]))
-			earlyadds["[target.z]"] = list()
-		earlyadds["[target.z]"] += CALLBACK(src, PROC_REF(add_marker), target, hud_flags, blip)
+		LAZYADDASSOC(earlyadds, "[target.z]", CALLBACK(src, PROC_REF(add_marker), target, hud_flags, blip))
 		RegisterSignal(target, COMSIG_QDELETING, PROC_REF(remove_earlyadd), override = TRUE) //Override required for late z-level loading to prevent hard dels where an atom is initiated during z load, but is qdel'd before it finishes
 		return
 
@@ -248,13 +246,13 @@ SUBSYSTEM_DEF(minimaps)
 	RegisterSignal(target, COMSIG_QDELETING, PROC_REF(remove_marker), override = TRUE) //override for atoms that were on a late loaded z-level, overrides the remove_earlyadd above
 
 ///Removes the object from the earlyadds list, in case it was qdel'd before the z-level was fully loaded
-/datum/controller/subsystem/minimaps/proc/remove_earlyadd(atom/source, target_z)
+/datum/controller/subsystem/minimaps/proc/remove_earlyadd(atom/source)
 	SIGNAL_HANDLER
 	remove_marker(source)
-	for(var/i=1 to length(earlyadds["[source.z]"]))
-		if(!(earlyadds["[source.z]"][i].arguments[1] == source))
+	for(var/datum/callback/callback in earlyadds["[source.z]"])
+		if(callback.arguments[1] != source)
 			continue
-		earlyadds["[source.z]"] -= earlyadds["[source.z]"][i]
+		earlyadds["[source.z]"] -= callback
 		UnregisterSignal(source, COMSIG_QDELETING)
 		return
 
