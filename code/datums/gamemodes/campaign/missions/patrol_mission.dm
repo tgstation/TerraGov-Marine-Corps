@@ -146,9 +146,13 @@
 /datum/campaign_mission/tdm/lv624
 	name = "Combat patrol 2"
 	map_name = "LV-624"
-	map_file = '_maps/map_files/LV624/LV624.dmm' //todo: make modulars work with late load
+	map_file = '_maps/map_files/LV624/LV624.dmm'
+	map_light_colours = list(COLOR_MISSION_YELLOW, COLOR_MISSION_YELLOW, COLOR_MISSION_YELLOW, COLOR_MISSION_YELLOW)
+	map_light_levels = list(225, 150, 100, 75)
 
 /datum/campaign_mission/tdm/desparity
 	name = "Combat patrol 3"
 	map_name = "Desparity"
 	map_file = '_maps/map_files/desparity/desparity.dmm'
+	map_light_colours = list(COLOR_MISSION_YELLOW, COLOR_MISSION_YELLOW, COLOR_MISSION_YELLOW, COLOR_MISSION_YELLOW)
+	map_light_levels = list(225, 150, 100, 75)
