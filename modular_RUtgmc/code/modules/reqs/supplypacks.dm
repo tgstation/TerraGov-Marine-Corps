@@ -158,3 +158,15 @@
 	contains = list(/obj/item/beacon/orbital_bombardment_beacon)
 	cost = 30
 	available_against_xeno_only = TRUE
+
+/datum/supply_packs/weapons/thermobaric
+	name = "RL-57 Thermobaric Launcher Kit"
+	contains = list(/obj/item/storage/holster/backholster/rlquad/full)
+	cost = 500 + 50 //ammo price
+	available_against_xeno_only = TRUE
+
+/datum/supply_packs/weapons/specdemo
+	name = "RL-152 SADAR Rocket Launcher kit"
+	contains = list(/obj/item/storage/holster/backholster/rlsadar/full)
+	cost = SADAR_PRICE + 150 //ammo price
+	available_against_xeno_only = TRUE

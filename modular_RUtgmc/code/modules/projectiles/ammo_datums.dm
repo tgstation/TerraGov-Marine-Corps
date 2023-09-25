@@ -90,8 +90,15 @@
 //================================================
 */
 
+/datum/ammo/xeno/toxin
+	bullet_color = COLOR_LIGHT_ORANGE
+
 /datum/ammo/xeno/toxin/heavy //Praetorian
 	spit_cost = 200
 	damage = 80
 	reagent_transfer_amount = 18
 	smoke_range = 1
+
+/datum/ammo/xeno/toxin/sent //Sentinel
+	spit_cost = 70
+	icon_state = "xeno_sent_neuro"

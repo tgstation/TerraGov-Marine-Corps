@@ -93,6 +93,9 @@ GLOBAL_LIST_INIT(engineer_gear_listed_products, list(
 		/obj/item/mortal_shell/smoke = list(CAT_ENGSUP, "Smoke Mortar shell", 1, "black"),
 		/obj/item/mortal_shell/flare = list(CAT_ENGSUP, "Flare Mortar shell", 1, "black"),
 		/obj/item/ammo_magazine/flamer_tank/large = list(CAT_ENGSUP, "Flamethrower tank", 4, "black"),
+		//RUTGMC EDIT ADDITION BEGIN - Teleporters
+		/obj/effect/teleporter_linker = list(CAT_ENGSUP, "Teleporters", 25, "black"),
+		//RUTGMC EDIT ADDITION END
 	))
 
 GLOBAL_LIST_INIT(medic_gear_listed_products, list(
@@ -120,8 +123,10 @@ GLOBAL_LIST_INIT(medic_gear_listed_products, list(
 		/obj/item/healthanalyzer/gloves = list(CAT_MEDSUP, "Health scanner gloves", 2, "black"),
 		/obj/item/defibrillator/gloves = list(CAT_MEDSUP, "Advanced medical gloves", 5, "black"),
 		/obj/effect/vendor_bundle/stretcher = list(CAT_MEDSUP, "Medivac Stretcher", 45, "black"),
-		//RUTGMC EDIT ADDITION  BEGIN - SOLDERING_TOOL
+		//RUTGMC EDIT ADDITION  BEGIN - MEDICAL ITEMS
 		/obj/item/tool/surgery/solderingtool = list(CAT_MEDSUP, "Soldering tool", 2, "black"),
+		/obj/item/stack/medical/heal_pack/advanced/bruise_pack/combat = list(CAT_MEDSUP, "Combat Trauma Kit", 3, "black"),
+		/obj/item/stack/medical/heal_pack/advanced/burn_pack/combat = list(CAT_MEDSUP, "Combat Burn Kit", 3, "black"),
 		//RUTGMC EDIT ADDITION  END
 	))
 
@@ -134,6 +139,9 @@ GLOBAL_LIST_INIT(leader_gear_listed_products, list(
 		//RUTGMC EDIT ADDITION END
 		/obj/item/fulton_extraction_pack = list(CAT_LEDSUP, "Fulton Extraction Pack", 20, "orange"),
 		/obj/item/deployable_camera = list(CAT_LEDSUP, "Deployable Overwatch Camera", 2, "orange"),
+		//RUTGMC EDIT ADDITION BEGIN - SWORDS
+		/obj/item/storage/holster/blade/officer/valirapier/full = list(CAT_LEDSUP, "Vali Harvester rapier", 25, "black"),
+		//RUTGMC EDIT ADDITION END
 		/obj/item/stack/sandbags_empty/half = list(CAT_LEDSUP, "Sandbags x25", SANDBAG_PRICE_IN_GEAR_VENDOR, "black"),
 		/obj/item/explosive/plastique = list(CAT_LEDSUP, "Plastique explosive", 2, "black"),
 		/obj/item/detpack = list(CAT_LEDSUP, "Detonation pack", 5, "black"),

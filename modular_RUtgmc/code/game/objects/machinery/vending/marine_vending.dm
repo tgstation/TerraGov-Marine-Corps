@@ -45,6 +45,9 @@
 			/obj/item/clothing/suit/modular/rownin = -1,
 			/obj/item/clothing/suit/modular/xenonauten/pilot = -1,
 			/obj/item/facepaint/green = -1,
+			/obj/item/facepaint/sniper = -1,
+			/obj/item/facepaint/black = -1,
+			/obj/item/facepaint/brown = -1,
 		),
 		"Armor modules" = list(
 			/obj/item/armor_module/storage/general = -1,
@@ -127,7 +130,6 @@
 			/obj/item/clothing/under/marine/squad/neck/charile = -1,
 			/obj/item/clothing/under/marine/squad/neck/bravo = -1,
 			/obj/item/clothing/under/marine/squad/neck/alpha = -1,
-			/obj/item/clothing/gloves/marine = -1,
 			/obj/item/clothing/gloves/marine/black = -1,
 			/obj/item/clothing/gloves/marine/fingerless = -1,
 			/obj/item/clothing/shoes/marine/full = -1,
