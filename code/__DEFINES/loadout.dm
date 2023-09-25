@@ -93,6 +93,9 @@ GLOBAL_LIST_INIT(engineer_gear_listed_products, list(
 		/obj/item/mortal_shell/smoke = list(CAT_ENGSUP, "Smoke Mortar shell", 1, "black"),
 		/obj/item/mortal_shell/flare = list(CAT_ENGSUP, "Flare Mortar shell", 1, "black"),
 		/obj/item/ammo_magazine/flamer_tank/large = list(CAT_ENGSUP, "Flamethrower tank", 4, "black"),
+		//RUTGMC EDIT ADDITION BEGIN - Teleporters
+		/obj/effect/teleporter_linker = list(CAT_ENGSUP, "Teleporters", 25, "black"),
+		//RUTGMC EDIT ADDITION END
 	))
 
 GLOBAL_LIST_INIT(medic_gear_listed_products, list(

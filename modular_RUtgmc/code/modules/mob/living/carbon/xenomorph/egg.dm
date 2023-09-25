@@ -1,3 +1,5 @@
+/obj/alien/egg/hugger
+	plane = FLOOR_PLANE
 
 /obj/alien/egg/hugger/Initialize(mapload, hivenumber)
 	. = ..()

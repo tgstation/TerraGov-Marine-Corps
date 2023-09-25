@@ -163,3 +163,23 @@
 	name = "\improper Charlie squad black beret"
 	icon_state = "charlie_black_beret"
 	desc = "Black stylish beret with TGMC marine squad insignia. This one belongs to the Charlie Squad."
+
+/obj/item/clothing/head/beret/marine/captain
+	item_icons = list(
+		slot_head_str = 'modular_RUtgmc/icons/mob/clothing/headwear/marine_hats.dmi')
+
+/obj/item/clothing/head/beret/sec/warden
+	item_icons = list(
+		slot_head_str = 'modular_RUtgmc/icons/mob/clothing/headwear/marine_hats.dmi')
+
+/obj/item/clothing/head/beret/sec
+	item_icons = list(
+		slot_head_str = 'modular_RUtgmc/icons/mob/clothing/headwear/marine_hats.dmi')
+
+/obj/item/clothing/head/beret/eng
+	item_icons = list(
+		slot_head_str = 'modular_RUtgmc/icons/mob/clothing/headwear/marine_hats.dmi')
+
+/obj/item/clothing/head/beret/marine/techofficer
+	item_icons = list(
+		slot_head_str = 'modular_RUtgmc/icons/mob/clothing/headwear/marine_hats.dmi')

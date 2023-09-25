@@ -1,3 +1,6 @@
+/obj/structure/xeno/hivemindcore
+	plane = FLOOR_PLANE
+
 /mob/living/carbon/xenomorph/hivemind/updatehealth()
 	. = ..()
 
