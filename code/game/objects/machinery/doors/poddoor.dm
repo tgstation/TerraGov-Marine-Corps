@@ -119,6 +119,13 @@
 	opacity = FALSE
 	id = "pirate_cargo"
 
+/obj/machinery/door/poddoor/two_tile_hor/teleporter
+	name = "teleporter chamber blast door"
+	icon_state = "pdoor0"
+	density = FALSE
+	opacity = FALSE
+	id = "tele_array"
+
 /obj/machinery/door/poddoor/two_tile_hor/secure
 	icon = 'icons/obj/doors/1x2blast_hor.dmi'
 	openspeed = 17
@@ -278,3 +285,28 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2
 	id = "landing_zone_2"
 	smoothing_groups = null
+
+///Faction signals for campaign mode doors
+GLOBAL_LIST_INIT(faction_to_campaign_door_signal, list(
+	FACTION_TERRAGOV = COMSIG_GLOB_OPEN_CAMPAIGN_SHUTTERS_TGMC,
+	FACTION_SOM = COMSIG_GLOB_OPEN_CAMPAIGN_SHUTTERS_SOM,
+))
+
+/obj/machinery/door/poddoor/campaign
+	name = "secure blast door"
+	desc = "Safety shutters designed to withstand any punishment. You're not forcing your way past this."
+	icon = 'icons/obj/doors/mainship/blastdoors_shutters.dmi'
+	use_power = FALSE
+	resistance_flags = DROPSHIP_IMMUNE|RESIST_ALL
+	open_layer = UNDER_TURF_LAYER
+	closed_layer = ABOVE_WINDOW_LAYER
+	///Faction associated with the door, for signal purposes
+	var/faction = FACTION_TERRAGOV
+
+/obj/machinery/door/poddoor/campaign/Initialize(mapload)
+	RegisterSignal(SSdcs, GLOB.faction_to_campaign_door_signal[faction], PROC_REF(open))
+	RegisterSignal(SSdcs, COMSIG_GLOB_CLOSE_CAMPAIGN_SHUTTERS, TYPE_PROC_REF(/obj/machinery/door, close))
+	return ..()
+
+/obj/machinery/door/poddoor/campaign/som
+	faction = FACTION_SOM

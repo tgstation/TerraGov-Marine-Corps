@@ -38,3 +38,30 @@
 
 /obj/structure/somcas/eight
 	icon_state = "somcas_misc_six"
+
+/obj/structure/somcas/left
+	icon_state = "somcas_cockpit_horizontal"
+
+/obj/structure/somcas/one/left
+	icon_state = "somcas_end_horizontal"
+
+/obj/structure/somcas/two/left
+	icon_state = "somcas_wings_horizontal"
+
+/obj/structure/somcas/three/left
+	icon_state = "somcas_misc_one_horizontal"
+
+/obj/structure/somcas/four/left
+	icon_state = "somcas_misc_two_horizontal"
+
+/obj/structure/somcas/five/left
+	icon_state = "somcas_misc_three_horizontal"
+
+/obj/structure/somcas/six/left
+	icon_state = "somcas_misc_four_horizontal"
+
+/obj/structure/somcas/seven/left
+	icon_state = "somcas_misc_five_horizontal"
+
+/obj/structure/somcas/eight/left
+	icon_state = "somcas_misc_six_horizontal"
