@@ -45,6 +45,7 @@
 #include "code\modules\atmospherics\machinery\components\unary_devices\vent_pump.dm"
 #include "code\modules\atmospherics\machinery\components\unary_devices\vent_scrubber.dm"
 #include "code\modules\mob\living\living_verbs.dm"
+#include "code\modules\mob\living\say.dm"
 #include "code\modules\mob\living\status_procs.dm"
 #include "code\modules\mob\living\carbon\human\species.dm"
 #include "code\modules\mob\living\carbon\human\zombie.dm"
