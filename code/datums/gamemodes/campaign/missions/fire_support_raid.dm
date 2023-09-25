@@ -6,8 +6,8 @@
 	map_file = '_maps/map_files/Campaign maps/jungle_outpost/jungle_outpost.dmm'
 	map_traits = list(ZTRAIT_AWAY = TRUE, ZTRAIT_RAIN = TRUE)
 	map_light_colours = list(LIGHT_COLOR_PALE_GREEN, LIGHT_COLOR_PALE_GREEN, LIGHT_COLOR_PALE_GREEN, LIGHT_COLOR_PALE_GREEN)
-	objectives_total = 5
-	min_destruction_amount = 3
+	objectives_total = 10
+	min_destruction_amount = 7
 	shutter_open_delay = list(
 		"starting_faction" = 0,
 		"hostile_faction" = 60 SECONDS,
@@ -78,5 +78,5 @@
 	map_file = '_maps/map_files/Campaign maps/patricks_rest/patricks_rest.dmm'
 	map_light_colours = list(COLOR_MISSION_RED, COLOR_MISSION_RED, COLOR_MISSION_RED, COLOR_MISSION_RED)
 	map_light_levels = list(225, 150, 100, 75)
-	objectives_total = 6
-	min_destruction_amount = 4
+	objectives_total = 8
+	min_destruction_amount = 6

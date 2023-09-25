@@ -1349,6 +1349,10 @@
 	dir = 1
 	},
 /area/campaign/jungle_outpost/outpost/medbay/chemistry)
+"fM" = (
+/obj/effect/landmark/campaign_objective/howitzer_objective,
+/turf/open/floor,
+/area/campaign/jungle_outpost/outpost/landing/storage)
 "fN" = (
 /obj/machinery/vending/hydroseeds,
 /turf/open/floor/tile/hydro,
@@ -4778,6 +4782,10 @@
 /obj/structure/rock/variable/jungle,
 /turf/open/ground/grass/weedable,
 /area/campaign/jungle_outpost/ground/jungle/south)
+"uq" = (
+/obj/effect/landmark/campaign_objective/howitzer_objective,
+/turf/open/ground/grass/weedable,
+/area/campaign/jungle_outpost/ground/jungle/north_west)
 "ur" = (
 /obj/structure/table/reinforced,
 /obj/item/radio,
@@ -7992,6 +8000,11 @@
 /obj/structure/flora/grass/tallgrass/autosmooth,
 /turf/open/liquid/water/river/autosmooth,
 /area/campaign/jungle_outpost/ground/river/north)
+"Il" = (
+/obj/structure/flora/jungle/grass/thin,
+/obj/effect/landmark/campaign_objective/howitzer_objective,
+/turf/open/ground/grass/weedable,
+/area/campaign/jungle_outpost/ground/jungle/east)
 "Im" = (
 /obj/structure/flora/grass/tallgrass/autosmooth,
 /obj/structure/platform_decoration{
@@ -8304,6 +8317,10 @@
 	},
 /turf/open/floor/plating/ground/concrete,
 /area/campaign/jungle_outpost/outpost/req/containers)
+"JK" = (
+/obj/effect/landmark/campaign_objective/howitzer_objective,
+/turf/open/ground/grass/weedable,
+/area/campaign/jungle_outpost/ground/jungle/south_west)
 "JL" = (
 /turf/open/floor/plating/ground/dirtgrassborder2/corner2,
 /area/campaign/jungle_outpost/ground/jungle/south_west)
@@ -14746,7 +14763,7 @@ BV
 BV
 BV
 Fe
-Fe
+uq
 Fe
 Fe
 BV
@@ -20437,7 +20454,7 @@ cm
 cm
 Uj
 Xz
-Xz
+JK
 Gd
 Gd
 Gd
@@ -30086,7 +30103,7 @@ jf
 HO
 Pd
 jt
-jt
+fM
 jt
 jt
 Yh
@@ -32115,7 +32132,7 @@ Nk
 Nk
 yD
 TF
-XV
+Il
 TF
 TF
 TF

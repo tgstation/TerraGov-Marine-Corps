@@ -1274,6 +1274,7 @@
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/patricks_rest/surface/building/residential_w)
 "fP" = (
+/obj/effect/landmark/campaign_objective/mlrs,
 /turf/open/floor/plating/ground/concrete,
 /turf/open/floor/plating/ground/concrete/edge{
 	dir = 4
@@ -9932,6 +9933,10 @@
 	dir = 10
 	},
 /area/patricks_rest/surface/building/residential_w)
+"WQ" = (
+/obj/effect/landmark/campaign_objective/mlrs,
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/patricks_rest/ground/colonye)
 "WR" = (
 /obj/item/bedsheet/medical,
 /turf/open/floor/mainship/sterile,
@@ -31803,7 +31808,7 @@ Jz
 IX
 IX
 IX
-Jz
+WQ
 Jz
 Jz
 Jz
