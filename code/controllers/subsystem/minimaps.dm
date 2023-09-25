@@ -249,11 +249,13 @@ SUBSYSTEM_DEF(minimaps)
 
 ///Removes the object from the earlyadds list, in case it was qdel'd before the z-level was fully loaded
 /datum/controller/subsystem/minimaps/proc/remove_earlyadd(atom/source, target_z)
+	SIGNAL_HANDLER
 	remove_marker(source)
 	for(var/i=1 to length(earlyadds["[source.z]"]))
 		if(!(earlyadds["[source.z]"][i].arguments[1] == source))
 			continue
 		earlyadds["[source.z]"] -= earlyadds["[source.z]"][i]
+		UnregisterSignal(source, COMSIG_QDELETING)
 		return
 
 /**
