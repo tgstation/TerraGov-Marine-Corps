@@ -5326,6 +5326,10 @@
 	},
 /turf/open/floor/prison/red/full,
 /area/patricks_rest/surface/building/security_post_cargo)
+"zj" = (
+/obj/effect/landmark/campaign_objective/mlrs,
+/turf/open/ground/grass/weedable/patch/grassyellow,
+/area/patricks_rest/ground/colonyw)
 "zl" = (
 /obj/structure/dropship_piece/two/cockpit/right{
 	dir = 1
@@ -8839,6 +8843,10 @@
 /obj/structure/prop/brokenvendor/brokenuniformvendor,
 /turf/open/floor/mainship/green/full,
 /area/patricks_rest/surface/building/barracks)
+"Rq" = (
+/obj/effect/landmark/campaign_objective/mlrs,
+/turf/open/floor/plating/ground/desertdam/asphalt/cement,
+/area/patricks_rest/ground/colonys)
 "Rr" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/concrete,
@@ -8981,6 +8989,10 @@
 	dir = 1
 	},
 /area/patricks_rest/surface/building/command)
+"RW" = (
+/obj/effect/landmark/campaign_objective/mlrs,
+/turf/open/floor/plating/ground/concrete/lines,
+/area/patricks_rest/ground/colonyn)
 "RX" = (
 /obj/machinery/light{
 	dir = 1
@@ -9298,6 +9310,10 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/patricks_rest/surface/building/atc)
+"TG" = (
+/obj/effect/landmark/campaign_objective/mlrs,
+/turf/open/ground/grass/weedable/patch/grassyellow,
+/area/patricks_rest/ground/colonycent)
 "TJ" = (
 /obj/effect/ai_node,
 /obj/machinery/door/airlock/multi_tile/mainship/personalglass{
@@ -9407,6 +9423,10 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/patricks_rest/surface/building/transformer_residential)
+"Un" = (
+/obj/effect/landmark/campaign_objective/mlrs,
+/turf/open/floor/plating/ground/desertdam/asphalt/cement,
+/area/patricks_rest/ground/colonycent)
 "Up" = (
 /turf/closed/mineral/smooth,
 /area/patricks_rest/ground/colonys)
@@ -9577,6 +9597,12 @@
 /obj/structure/cable,
 /turf/open/floor/prison/whitegreenfull2,
 /area/patricks_rest/surface/building/residential_w)
+"Vg" = (
+/obj/effect/landmark/campaign_objective/mlrs,
+/turf/open/floor/plating/ground/concrete/lines{
+	dir = 1
+	},
+/area/patricks_rest/ground/colonys)
 "Vh" = (
 /obj/structure/largecrate/random/case/double,
 /turf/open/floor/plating/ground/concrete/lines{
@@ -16849,7 +16875,7 @@ gk
 wj
 Yq
 Yq
-Yq
+zj
 Yq
 iy
 bH
@@ -19596,7 +19622,7 @@ wA
 pW
 cc
 va
-XG
+RW
 AZ
 AZ
 xp
@@ -19670,7 +19696,7 @@ ud
 tz
 Km
 Lr
-wz
+Rq
 wz
 wz
 wz
@@ -23322,7 +23348,7 @@ ME
 ME
 ME
 NW
-GX
+TG
 GX
 cC
 ME
@@ -23488,7 +23514,7 @@ mx
 VG
 Ni
 wz
-tz
+Vg
 Km
 Km
 Km
@@ -24370,7 +24396,7 @@ Qz
 wk
 Pg
 Pg
-Pg
+Un
 Pg
 PL
 PL

@@ -22,9 +22,10 @@
 
 //MLRS
 /obj/effect/landmark/campaign_objective/mlrs
-	name = "howitzer objective"
-	icon = 'icons/Marine/howitzer.dmi'
-	icon_state = "howitzer_deployed"
+	name = "MLRS objective"
+	icon = 'icons/obj/structures/campaign/campaign_big.dmi'
+	icon_state = "mlrs"
+	pixel_y = -15
 	mission_types = list(/datum/campaign_mission/destroy_mission/fire_support_raid)
 	objective_type = /obj/structure/campaign_objective/destruction_objective/mlrs
 

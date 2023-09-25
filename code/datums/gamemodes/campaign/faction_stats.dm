@@ -41,19 +41,19 @@ GLOBAL_LIST_INIT(campaign_default_purchasable_assets, list(
 GLOBAL_LIST_INIT(campaign_mission_pool, list(
 	FACTION_TERRAGOV = list(
 		/datum/campaign_mission/tdm = 10,
-		/datum/campaign_mission/tdm/lv624= 10,
-		/datum/campaign_mission/tdm/desparity= 10,
-		/datum/campaign_mission/destroy_mission/fire_support_raid= 10,
-		/datum/campaign_mission/capture_mission= 10,
-		/datum/campaign_mission/tdm/mech_wars= 10,
+		/datum/campaign_mission/tdm/lv624 = 10,
+		/datum/campaign_mission/tdm/desparity = 10,
+		/datum/campaign_mission/destroy_mission/fire_support_raid = 15,
+		/datum/campaign_mission/capture_mission = 15,
+		/datum/campaign_mission/tdm/mech_wars = 12,
 	),
 	FACTION_SOM = list(
 		/datum/campaign_mission/tdm = 10,
-		/datum/campaign_mission/tdm/lv624= 10,
-		/datum/campaign_mission/tdm/desparity= 10,
-		/datum/campaign_mission/destroy_mission/fire_support_raid= 10,
-		/datum/campaign_mission/capture_mission= 10,
-		/datum/campaign_mission/tdm/mech_wars= 10,
+		/datum/campaign_mission/tdm/lv624 = 10,
+		/datum/campaign_mission/tdm/desparity = 10,
+		/datum/campaign_mission/destroy_mission/fire_support_raid/som = 15,
+		/datum/campaign_mission/capture_mission = 15,
+		/datum/campaign_mission/tdm/mech_wars = 12,
 	),
 ))
 
