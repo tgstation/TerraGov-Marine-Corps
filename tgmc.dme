@@ -865,6 +865,7 @@
 #include "code\game\objects\machinery\cell_charger.dm"
 #include "code\game\objects\machinery\cic_maptable.dm"
 #include "code\game\objects\machinery\constructable_frame.dm"
+#include "code\game\objects\machinery\cleanbot.dm"
 #include "code\game\objects\machinery\cryopod.dm"
 #include "code\game\objects\machinery\data_disks.dm"
 #include "code\game\objects\machinery\deployable.dm"
