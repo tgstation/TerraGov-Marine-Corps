@@ -226,7 +226,7 @@ SUBSYSTEM_DEF(minimaps)
 		if(!(earlyadds["[target.z]"]))
 			earlyadds["[target.z]"] = list()
 		earlyadds["[target.z]"] += CALLBACK(src, PROC_REF(add_marker), target, hud_flags, blip)
-		RegisterSignal(target, COMSIG_QDELETING, PROC_REF(remove_earlyadd))
+		RegisterSignal(target, COMSIG_QDELETING, PROC_REF(remove_earlyadd), override = TRUE) //if it was loaded before the z-level
 		return
 
 	var/turf/target_turf = get_turf(target)
