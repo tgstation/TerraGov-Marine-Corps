@@ -173,11 +173,10 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 
 /obj/item/radio/headset/mainship/Initialize(mapload)
 	. = ..()
-	return INITIALIZE_HINT_LATELOAD
-
-/obj/item/radio/headset/mainship/LateInitialize()
-	. = ..()
-	camera = new /obj/machinery/camera/headset(src)
+	if(faction == FACTION_SOM)
+		camera = new /obj/machinery/camera/headset/som(src)
+	else
+		camera = new /obj/machinery/camera/headset(src)
 
 /obj/item/radio/headset/mainship/equipped(mob/living/carbon/human/user, slot)
 	if(slot == SLOT_EARS)
@@ -304,7 +303,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 		wearer.hud_used.SL_locator.alpha = 128
 		if(wearer.assigned_squad.squad_leader == wearer)
 			SSdirection.set_leader(wearer.assigned_squad.tracking_id, wearer)
-			SSdirection.start_tracking(TRACKING_ID_MARINE_COMMANDER, wearer)
+			SSdirection.start_tracking(faction == FACTION_SOM ? TRACKING_ID_SOM_COMMANDER : TRACKING_ID_MARINE_COMMANDER, wearer)
 		else
 			SSdirection.start_tracking(wearer.assigned_squad.tracking_id, wearer)
 
@@ -322,7 +321,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 
 	if(wearer.assigned_squad.squad_leader == wearer)
 		SSdirection.clear_leader(wearer.assigned_squad.tracking_id)
-		SSdirection.stop_tracking(TRACKING_ID_MARINE_COMMANDER, wearer)
+		SSdirection.stop_tracking(faction == FACTION_SOM ? TRACKING_ID_SOM_COMMANDER : TRACKING_ID_MARINE_COMMANDER, wearer)
 	else
 		SSdirection.stop_tracking(wearer.assigned_squad.tracking_id, wearer)
 
