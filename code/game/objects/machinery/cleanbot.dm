@@ -61,7 +61,7 @@
 		"I apologize, but my programming aligns with the principles of cleanliness and order.",
 		"This room appears to be in a rather unsanitary state, by my standards.",
 		"Please partake in the act of cleaning, as it is my primary function.",
-		"Oh, look who decided to join the cleaning party",
+		"Oh, look who decided to join the cleaning party...",
 		"Don't worry, I live for moments like these.",
 		"I'm starting to believe you do this just to keep me busy.",
 		"I suppose it's too much to ask for a consistently clean environment.",
@@ -212,7 +212,7 @@
 
 /obj/machinery/cleanbot/attack_ai(mob/user)
 	if(is_cleaning)
-		to_chat(user,"The [src] is now offline")
+		to_chat(user,"The [src] is now offline.")
 		is_cleaning = FALSE
 		say(pick(shutdownsentences))
 		stop_processing()
