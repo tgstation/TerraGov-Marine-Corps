@@ -21,7 +21,7 @@
 	mob_size = MOB_SIZE_SMALL
 	pull_speed = -2
 	allow_pass_flags = PASS_MOB|PASS_XENO
-	pass_flags = PASS_LOW_STRUCTURE
+	pass_flags = PASS_LOW_STRUCTURE|PASS_MOB|PASS_XENO
 	density = FALSE
 
 	inherent_verbs = list(
@@ -36,10 +36,21 @@
 
 /mob/living/carbon/xenomorph/facehugger/handle_living_health_updates()
 	. = ..()
+	var/turf/T = loc
+	if(!istype(T))
+		return
 	//We lose health if we go off the weed
-	if(!loc_weeds_type && !is_ventcrawling && !(lying_angle || resting) && !(status_flags & GODMODE))
+	if(!loc_weeds_type && !(lying_angle || resting))
 		adjustBruteLoss(2, TRUE)
 		return
+
+//Handles change in density (so people can walk through us)
+/mob/living/carbon/xenomorph/facehugger/set_lying_angle(new_lying)
+	. = ..()
+	if(isnull(.))
+		return
+	if(density != initial(density))
+		density = FALSE
 
 /mob/living/carbon/xenomorph/facehugger/update_progression()
 	return
