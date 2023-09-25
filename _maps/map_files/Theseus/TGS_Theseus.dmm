@@ -11537,7 +11537,7 @@
 /area/mainship/squads/delta)
 "iNc" = (
 /obj/machinery/air_alarm,
-/obj/machinery/bot/cleanbot,
+/obj/machinery/cleanbot,
 /turf/open/floor/mainship/floor,
 /area/mainship/living/cafeteria_starboard)
 "iOm" = (
@@ -16230,7 +16230,7 @@
 	},
 /area/mainship/medical/lower_medical)
 "qvE" = (
-/obj/machinery/bot/cleanbot,
+/obj/machinery/cleanbot,
 /turf/open/floor/mainship/sterile/side{
 	dir = 5
 	},
@@ -20133,7 +20133,7 @@
 /area/mainship/command/cic)
 "xoW" = (
 /obj/machinery/light/mainship,
-/obj/machinery/bot/cleanbot,
+/obj/machinery/cleanbot,
 /turf/open/floor/mainship/sterile/side,
 /area/mainship/medical/surgery_hallway)
 "xpi" = (

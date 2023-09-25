@@ -3,7 +3,7 @@
 	name = "Nanotrasen cleanbot"
 	desc = "A robot cleaning automaton, an offshoot of the trash-cleaning roomba . The cleanbot is designed to clean dirt and blood from floors, and thankfully it does not touch items. It has an off and on switch."
 	icon = 'icons/obj/aibots.dmi'
-	icon_state = "roomba"
+	icon_state = "cleanbot0"
 	density = FALSE
 	anchored = FALSE
 	voice_filter = "alimiter=0.9,acompressor=threshold=0.2:ratio=20:attack=10:release=50:makeup=2,highpass=f=1000"

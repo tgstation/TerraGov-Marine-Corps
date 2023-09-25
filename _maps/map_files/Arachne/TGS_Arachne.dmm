@@ -6197,7 +6197,7 @@
 /obj/machinery/firealarm{
 	dir = 8
 	},
-/obj/machinery/bot/cleanbot,
+/obj/machinery/cleanbot,
 /turf/open/floor/mainship/floor,
 /area/mainship/shipboard/brig)
 "foc" = (
@@ -17581,7 +17581,7 @@
 /turf/closed/wall/mainship/outer,
 /area/mainship/hallways/starboard_hallway)
 "oyj" = (
-/obj/machinery/bot/cleanbot,
+/obj/machinery/cleanbot,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/lower_medical)
 "oyu" = (
@@ -18568,7 +18568,7 @@
 /obj/machinery/camera/autoname/mainship{
 	dir = 4
 	},
-/obj/machinery/bot/cleanbot,
+/obj/machinery/cleanbot,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/lower_medical)
 "ppS" = (
