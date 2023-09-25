@@ -245,11 +245,11 @@ SUBSYSTEM_DEF(minimaps)
 		RegisterSignal(target, COMSIG_MOVABLE_Z_CHANGED, PROC_REF(on_z_change))
 		blip.RegisterSignal(target, COMSIG_MOVABLE_MOVED, TYPE_PROC_REF(/image, minimap_on_move))
 	removal_cbs[target] = CALLBACK(src, PROC_REF(removeimage), blip, target, hud_flags)
-	UnregisterSignal(target, COMSIG_QDELETING) //if it was loaded before the z-level
-	RegisterSignal(target, COMSIG_QDELETING, PROC_REF(remove_marker))
+	RegisterSignal(target, COMSIG_QDELETING, PROC_REF(remove_marker), override = TRUE) //if it was loaded before the z-level
 
 ///Removes the object from the earlyadds list, in case it was qdel'd before the z-level was fully loaded
 /datum/controller/subsystem/minimaps/proc/remove_earlyadd(atom/source, target_z)
+	remove_marker(source)
 	for(var/i=1 to length(earlyadds["[source.z]"]))
 		if(!(earlyadds["[source.z]"][i].arguments[1] == source))
 			continue
