@@ -192,3 +192,5 @@ Important note: colors can end up significantly different from the basic html pi
 
 //Campaign map lighting
 #define LIGHT_COLOR_PALE_GREEN "#ebffc6"
+#define COLOR_MISSION_RED "#ffdfd6"
+#define COLOR_MISSION_YELLOW "#fffbd6"

@@ -1,8 +1,10 @@
 //basic tdm mission - i.e. combat patrol
 /datum/campaign_mission/tdm
 	name = "Combat patrol"
-	map_name = "Orion Outpost"
-	map_file = '_maps/map_files/Campaign maps/jungle_test/jungle_outpost.dmm'
+	map_name = "Patrick's Rest"
+	map_file = '_maps/map_files/Campaign maps/patricks_rest/patricks_rest.dmm'
+	map_light_colours = list(COLOR_MISSION_RED, COLOR_MISSION_RED, COLOR_MISSION_RED, COLOR_MISSION_RED)
+	map_light_levels = list(225, 150, 100, 75)
 	mission_icon = "combat_patrol"
 	starting_faction_objective_description = "Major Victory: Wipe out all hostiles in the area of operation. Minor Victory: Eliminate more hostiles than you lose."
 	hostile_faction_objective_description = "Major Victory: Wipe out all hostiles in the area of operation. Minor Victory: Eliminate more hostiles than you lose."

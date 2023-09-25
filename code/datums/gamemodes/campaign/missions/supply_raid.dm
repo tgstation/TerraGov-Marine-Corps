@@ -3,7 +3,7 @@
 	name = "Supply Depot raid"
 	mission_icon = "supply_depot"
 	map_name = "Lunar base BD-832"
-	map_file = '_maps/map_files/Campaign maps/jungle_test/jungle_outpost.dmm'
+	map_file = '_maps/map_files/Campaign maps/jungle_outpost/jungle_outpost.dmm'
 	objectives_total = 5
 	min_destruction_amount = 3
 	max_game_time = 20 MINUTES
