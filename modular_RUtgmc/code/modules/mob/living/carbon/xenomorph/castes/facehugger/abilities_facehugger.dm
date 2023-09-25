@@ -111,8 +111,11 @@
 	add_cooldown()
 	caster.usedPounce = TRUE // this is needed for throwing code
 	caster.pass_flags |= PASS_LOW_STRUCTURE|PASS_FIRE
+	caster.pass_flags ^= PASS_MOB
 
 	start_turf = get_turf(caster)
+	if(ishuman(A) && get_turf(A) == start_turf)
+		mob_hit(caster, A)
 	caster.throw_at(A, range, 2, caster)
 
 	addtimer(CALLBACK(caster, TYPE_PROC_REF(/mob/living/carbon/xenomorph, reset_allow_pass_flags)), 6)
