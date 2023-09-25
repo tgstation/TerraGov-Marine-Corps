@@ -3762,6 +3762,10 @@
 	},
 /turf/open/floor/mainship_hull,
 /area/mainship/patrol_base/som/hanger)
+"Xy" = (
+/obj/machinery/vending/mech_vendor,
+/turf/open/floor/mainship/mono,
+/area/mainship/patrol_base/som/prep)
 "XS" = (
 /obj/effect/turf_decal/warning_stripes/thick{
 	dir = 4
@@ -9375,7 +9379,7 @@ Aw
 Aw
 Aw
 BG
-nQ
+Xy
 nQ
 Yt
 MJ
@@ -12181,7 +12185,7 @@ Aw
 Aw
 Aw
 BG
-nQ
+Xy
 nQ
 SZ
 qg

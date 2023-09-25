@@ -43,9 +43,12 @@
 
 /datum/campaign_mission/tdm/mech_wars/load_mission()
 	. = ..()
-	for(var/obj/effect/landmark/campaign/mech_spawner/spawner AS in GLOB.campaign_mech_spawners[starting_faction])
+	var/mechs_to_spawn = round(length(GLOB.clients) * 0.5)
+	var/obj/effect/landmark/campaign/mech_spawner/spawner
+	for(var/i=1 to mechs_to_spawn)
+		spawner = pick(GLOB.campaign_mech_spawners[starting_faction])
 		spawner.spawn_mech()
-	for(var/obj/effect/landmark/campaign/mech_spawner/spawner AS in GLOB.campaign_mech_spawners[hostile_faction])
+		spawner = pick(GLOB.campaign_mech_spawners[hostile_faction])
 		spawner.spawn_mech()
 
 //todo: proper rewards
