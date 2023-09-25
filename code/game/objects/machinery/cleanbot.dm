@@ -1,7 +1,7 @@
 /// A medical bot designed to clean up blood and other trash that accumulates in medbay
 /obj/machinery/cleanbot
 	name = "Nanotrasen cleanbot"
-	desc = "A robot cleaning automaton. The cleanbot is designed to clean dirt and blood from floors."
+	desc = "A robot cleaning automaton, an offshoot of the trash-cleaning roomba . The cleanbot is designed to clean dirt and blood from floors, and thankfully it does not touch items. It has an off and on switch."
 	icon = 'icons/obj/aibots.dmi'
 	icon_state = "roomba"
 	density = FALSE
