@@ -140,7 +140,6 @@ SUBSYSTEM_DEF(minimaps)
 
 	for(var/i=1 to length(earlyadds["[level]"]))
 		earlyadds["[level]"][i].Invoke()
-		UnregisterSignal(earlyadds["[level]"][i].arguments[1], COMSIG_QDELETING)
 	earlyadds["[level]"] = null //then clear them
 
 /**
@@ -246,6 +245,7 @@ SUBSYSTEM_DEF(minimaps)
 		RegisterSignal(target, COMSIG_MOVABLE_Z_CHANGED, PROC_REF(on_z_change))
 		blip.RegisterSignal(target, COMSIG_MOVABLE_MOVED, TYPE_PROC_REF(/image, minimap_on_move))
 	removal_cbs[target] = CALLBACK(src, PROC_REF(removeimage), blip, target, hud_flags)
+	UnregisterSignal(target, COMSIG_QDELETING) //if it was loaded before the z-level
 	RegisterSignal(target, COMSIG_QDELETING, PROC_REF(remove_marker))
 
 ///Removes the object from the earlyadds list, in case it was qdel'd before the z-level was fully loaded
