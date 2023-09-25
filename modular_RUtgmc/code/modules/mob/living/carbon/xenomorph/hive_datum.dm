@@ -297,4 +297,4 @@
 
 /datum/hive_status/normal/on_shuttle_hijack(obj/docking_port/mobile/marine_dropship/hijacked_ship)
 	SSticker.mode.update_silo_death_timer(src)
-	. = ..()
+	return ..()
