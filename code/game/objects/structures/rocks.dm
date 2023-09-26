@@ -26,19 +26,19 @@
 	name = "volcanic rock"
 	desc = "A volcanic rock. Pioneers used to ride these babies for miles."
 	icon = 'icons/obj/flora/rocks2.dmi'
-	icon_state = "basalt"
+	icon_state = "basalt_1"
 
 /obj/structure/rock/basalt/alt
 	name = "volcanic rock"
-	icon_state = "basalt1"
+	icon_state = "basalt_2"
 
 /obj/structure/rock/basalt/alt2
 	name = "volcanic rock"
-	icon_state = "basalt2"
+	icon_state = "basalt_3"
 
 /obj/structure/rock/basalt/alt3
 	name = "volcanic rock"
-	icon_state = "basalt3"
+	icon_state = "basalt_4"
 
 /obj/structure/rock/basalt/pile
 	name = "rock pile"
@@ -68,6 +68,12 @@
 	. = ..()
 	icon_state = "[initial(icon_state)]_[rand(1, icon_variants)]"
 
+/obj/structure/rock/variable/basalt
+	name = "rock"
+	desc = "A large imposing rock."
+	icon_state = "basalt"
+	icon_variants = 4
+
 /obj/structure/rock/variable/stalagmite
 	name = "stalagmite"
 	desc = "An ancient mound of mineral deposits, typically found in caves."
@@ -82,6 +88,12 @@
 	icon_state = "rock"
 	density = FALSE
 	icon_variants = 5
+
+/obj/structure/rock/variable/jungle/big
+	desc = "A large imposing rock."
+	icon_state = "big_rock"
+	density = TRUE
+	icon_variants = 4
 
 /obj/structure/rock/variable/jungle_large
 	name = "rocks"

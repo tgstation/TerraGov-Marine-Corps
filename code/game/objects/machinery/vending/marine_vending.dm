@@ -1231,8 +1231,6 @@
 			/obj/item/clothing/head/modular/style/beanie = -1,
 			/obj/item/clothing/head/modular/style/headband = -1,
 			/obj/item/clothing/head/modular/style/bandana = -1,
-			/obj/item/clothing/glasses/mgoggles = -1,
-			/obj/item/clothing/glasses/mgoggles/prescription = -1,
 		),
 		"Masks" = list(
 			/obj/item/clothing/mask/rebreather/scarf = -1,
@@ -1315,6 +1313,16 @@
 			/obj/item/clothing/mask/surgical = -1,
 			/obj/item/clothing/gloves/latex = -1,
 			/obj/item/clothing/shoes/white = -1,
+		),
+		"Eyewear" = list(
+			/obj/item/clothing/glasses/regular = -1,
+			/obj/item/clothing/glasses/eyepatch = -1,
+			/obj/item/clothing/glasses/sunglasses/fake/big = -1,
+			/obj/item/clothing/glasses/sunglasses/fake/big/prescription = -1,
+			/obj/item/clothing/glasses/sunglasses/fake = -1,
+			/obj/item/clothing/glasses/sunglasses/fake/prescription = -1,
+			/obj/item/clothing/glasses/mgoggles = -1,
+			/obj/item/clothing/glasses/mgoggles/prescription = -1,
 		),
 	)
 

@@ -269,6 +269,20 @@ GLOBAL_LIST_EMPTY(blood_particles)
 	animate(src, time=duration, transform=matrix().Scale(0.1,0.1))
 	set_light(2, 2, LIGHT_COLOR_DARK_BLUE)
 
+/obj/effect/temp_visual/teleporter_array
+	icon = 'icons/effects/light_overlays/light_320.dmi'
+	icon_state = "light"
+	plane = GRAVITY_PULSE_PLANE
+	duration = 15
+
+/obj/effect/temp_visual/teleporter_array/Initialize(mapload)
+	. = ..()
+	var/image/I = image(icon, src, icon_state, 10, pixel_x = -144, pixel_y = -144)
+	overlays += I //we use an overlay so the icon and light source are both in the correct location
+	icon_state = null
+	animate(src, time=duration, transform=matrix().Scale(0.1,0.1))
+	set_light(9, 9, LIGHT_COLOR_DARK_BLUE)
+
 /obj/effect/temp_visual/shockwave
 	icon = 'icons/effects/light_overlays/shockwave.dmi'
 	icon_state = "shockwave"

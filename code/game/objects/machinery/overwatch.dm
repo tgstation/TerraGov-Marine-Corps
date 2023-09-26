@@ -159,6 +159,28 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	desc = "Big Brother Requisition demands to see money flowing into the void that is greed."
 	circuit = /obj/item/circuitboard/computer/supplyoverwatch
 
+/obj/machinery/computer/camera_advanced/overwatch/som
+	faction = FACTION_SOM
+	networks = list("som")
+	req_access = list(ACCESS_MARINE_BRIDGE)
+
+/obj/machinery/computer/camera_advanced/overwatch/som/main
+	icon_state = "overwatch_main"
+	name = "main Overwatch Console"
+	desc = "State of the art machinery for general overwatch purposes."
+
+/obj/machinery/computer/camera_advanced/overwatch/som/zulu
+	name = "\improper Zulu Overwatch Console"
+
+/obj/machinery/computer/camera_advanced/overwatch/som/yankee
+	name = "\improper Yankee Overwatch Console"
+
+/obj/machinery/computer/camera_advanced/overwatch/som/xray
+	name = "\improper X-ray Overwatch Console"
+
+/obj/machinery/computer/camera_advanced/overwatch/som/whiskey
+	name = "\improper Whiskey Overwatch Console"
+
 /obj/machinery/computer/camera_advanced/overwatch/CreateEye()
 	. = ..()
 	eyeobj.visible_icon = TRUE
@@ -295,6 +317,18 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 		if("monitordelta_squad")
 			state = OW_MONITOR
 			current_squad = get_squad_by_id(DELTA_SQUAD)
+		if("monitorzulu_squad")
+			state = OW_MONITOR
+			current_squad = get_squad_by_id(ZULU_SQUAD)
+		if("monitoryankee_squad")
+			state = OW_MONITOR
+			current_squad = get_squad_by_id(YANKEE_SQUAD)
+		if("monitorxray_squad")
+			state = OW_MONITOR
+			current_squad = get_squad_by_id(XRAY_SQUAD)
+		if("monitorwhiskey_squad")
+			state = OW_MONITOR
+			current_squad = get_squad_by_id(WHISKEY_SQUAD)
 		if("change_operator")
 			if(operator != usr)
 				if(current_squad)
@@ -661,7 +695,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 			to_chat(source, span_boldnotice("[target.real_name] is the new Squad Leader of squad '[target_squad]'! Logging to enlistment file."))
 		visible_message(span_boldnotice("[target.real_name] is the new Squad Leader of squad '[target_squad]'! Logging to enlistment file."))
 
-	to_chat(target, "[icon2html(src, target)] <font size='3' color='blue'><B>\[Overwatch\]: You've been promoted to \'[ismarineleaderjob(target.job) ? "SQUAD LEADER" : "ACTING SQUAD LEADER"]\' for [target_squad.name]. Your headset has access to the command channel (:v).</B></font>")
+	to_chat(target, "[icon2html(src, target)] <font size='3' color='blue'><B>\[Overwatch\]: You've been promoted to \'[(ismarineleaderjob(target.job) || issommarineleaderjob(target.job)) ? "SQUAD LEADER" : "ACTING SQUAD LEADER"]\' for [target_squad.name]. Your headset has access to the command channel (:v).</B></font>")
 	to_chat(source, "[icon2html(src, source)] [target.real_name] is [target_squad]'s new leader!")
 	target_squad.promote_leader(target)
 
@@ -713,7 +747,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	if(!new_squad)
 		return
 
-	if(ismarineleaderjob(transfer_marine.job) && new_squad.current_positions[/datum/job/terragov/squad/leader] >= SQUAD_MAX_POSITIONS(transfer_marine.job.total_positions))
+	if((ismarineleaderjob(transfer_marine.job) || issommarineleaderjob(transfer_marine.job)) && new_squad.current_positions[transfer_marine.job.type] >= SQUAD_MAX_POSITIONS(transfer_marine.job.total_positions))
 		to_chat(source, "[icon2html(src, source)] [span_warning("Transfer aborted. [new_squad] can't have another [transfer_marine.job.title].")]")
 		return
 
@@ -800,7 +834,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 			attempt_spotlight(source, turf_target, params)
 		if(MESSAGE_NEAR)
 			var/input = tgui_input_text(source, "Please write a message to announce to all marines nearby:", "CIC Proximity Message")
-			for(var/mob/living/carbon/human/target in GLOB.alive_human_list_faction[FACTION_TERRAGOV])
+			for(var/mob/living/carbon/human/target in GLOB.alive_human_list_faction[faction])
 				if(!target)
 					return
 				if(get_dist(target, turf_target) > WORLD_VIEW_NUM*2)
@@ -1093,7 +1127,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 		if(current_squad.squad_leader)
 			if(H == current_squad.squad_leader)
 				dist = "<b>N/A</b>"
-				if(!ismarineleaderjob(H.job))
+				if(!ismarineleaderjob(H.job) && !issommarineleaderjob(H.job))
 					act_sl = " (acting SL)"
 			else if(M_turf && SL_z && M_turf.z == SL_z)
 				dist = "[get_dist(H, current_squad.squad_leader)] ([dir2text_short(get_dir(current_squad.squad_leader, H))])"

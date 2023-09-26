@@ -140,6 +140,7 @@ Make the TGMC proud!"})
 	. = ..()
 	if(!ishuman(new_mob))
 		return
+	SSdirection.set_leader(TRACKING_ID_MARINE_COMMANDER, new_mob)
 	var/mob/living/carbon/human/new_human = new_mob
 	var/playtime_mins = user?.client?.get_exp(title)
 	if(!playtime_mins || playtime_mins < 1 )
@@ -151,7 +152,6 @@ Make the TGMC proud!"})
 			new_human.wear_id.paygrade = "MO4"
 		if(7501 to INFINITY) // 125 hrs
 			new_human.wear_id.paygrade = "MO5"
-	SSdirection.set_leader(TRACKING_ID_MARINE_COMMANDER, new_mob)
 
 
 /datum/outfit/job/command/fieldcommander
