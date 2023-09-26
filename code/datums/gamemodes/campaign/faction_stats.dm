@@ -3,7 +3,7 @@ GLOBAL_LIST_INIT(campaign_default_assets, list(
 	FACTION_TERRAGOV = list(
 		/datum/campaign_reward/equipment/mech_heavy,
 		/datum/campaign_reward/bonus_job/freelancer,
-		/datum/campaign_reward/bonus_job/combat_robots
+		/datum/campaign_reward/bonus_job/combat_robots,
 		/datum/campaign_reward/fire_support,
 		/datum/campaign_reward/droppod_refresh,
 		/datum/campaign_reward/droppod_enabled,
