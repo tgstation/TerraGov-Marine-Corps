@@ -19,7 +19,7 @@ SUBSYSTEM_DEF(persistence)
 	///Stores how long each season should last
 	var/list/seasons_durations = list(
 		SEASONAL_GUNS = 24 HOURS,
-		SEASONAL_HEAVY = 8 HOURS,
+		SEASONAL_HEAVY = 24 HOURS,
 	)
 	///Stores the current season for each season group
 	var/list/season_progress = list()
