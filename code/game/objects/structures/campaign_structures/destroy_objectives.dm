@@ -26,7 +26,7 @@
 	icon = 'icons/obj/structures/campaign/campaign_big.dmi'
 	icon_state = "mlrs"
 	pixel_y = -15
-	mission_types = list(/datum/campaign_mission/destroy_mission/fire_support_raid)
+	mission_types = list(/datum/campaign_mission/destroy_mission/fire_support_raid/som)
 	objective_type = /obj/structure/campaign_objective/destruction_objective/mlrs
 
 /obj/structure/campaign_objective/destruction_objective/mlrs
