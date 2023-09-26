@@ -188,3 +188,19 @@
       a bit more scatter.
   QualityVan:
   - bugfix: Taking info tags from corpses works again
+2023-09-25:
+  Looking4bros:
+  - qol: Vali Claymore only bump slashes when wielded.
+  Lumipharon:
+  - rscadd: Added Campaign gamemode
+  ivanmixo:
+  - rscadd: You can now draw from webbings, armor and helmet with right click
+  - rscadd: You can now draw the leftmost item from storage
+  - bugfix: Fixed clicking the inventory hud element not transferring clicks to the
+      item in the slot correctly (right clicking the slots now right clicks the item
+      in the slot)
+2023-09-26:
+  AzonStarfall:
+  - qol: Standardized hazard stripes for dropship outlines across all ships.
+  Blundir:
+  - bugfix: fixed FC sheath side sprites
