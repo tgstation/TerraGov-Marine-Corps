@@ -3,6 +3,8 @@ GLOBAL_LIST_INIT(playable_icons, list(
 	"bull",
 	"baneling",
 	"captain",
+	"clown",
+	"military_police",
 	"carrier",
 	"chief_medical",
 	"cl",

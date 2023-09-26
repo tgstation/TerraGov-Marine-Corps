@@ -407,5 +407,11 @@
 			. = size ? "Mk.II" : "Mark II"
 		if("Mk.I")
 			. = size ? "Mk.I" : "Mark I"
+		//RUTGMC EDIT ADDITION BEGIN - SHITSPAWN_ROLES
+		if("MP")
+			. = size ? "MP " : "Military Police"
+		if("CLW")
+			. = size ? "HONK " : "Ship Clown"
+		//RUTGMC EDIT ADDITION END - SHITSPAWN_ROLES
 		else
 			. = paygrade //custom paygrade
