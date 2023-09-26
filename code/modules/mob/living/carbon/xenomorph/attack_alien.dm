@@ -118,6 +118,8 @@
 	else //Normal xenomorph friendship with benefits
 		log_combat(X, src, log)
 
+	record_melee_damage(X, damage)
+
 	apply_damage(damage, BRUTE, affecting, armor_block, TRUE, TRUE, TRUE, armor_pen) //This should slicey dicey
 
 	return TRUE

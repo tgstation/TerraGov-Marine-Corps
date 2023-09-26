@@ -143,3 +143,12 @@
 
 	/// This is the cooldown on suffering additional effects for when we exhaust all stamina
 	COOLDOWN_DECLARE(last_stamina_exhaustion)
+
+	///The world.time of when this mob was last lying down
+	var/last_rested = 0
+	///The world.time of when this mob became unconscious
+	var/last_unconscious = 0
+	///The world.time of when this mob entered a stasis bag
+	var/time_entered_stasis = 0
+	///The world.time of when this mob entered a cryo tube
+	var/time_entered_cryo = 0

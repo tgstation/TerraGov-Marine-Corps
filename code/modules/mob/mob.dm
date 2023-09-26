@@ -571,25 +571,8 @@
 			if(istype(B) && B.buckled_bodybag)
 				conga_line += B.buckled_bodybag
 			end_of_conga = TRUE //Only mobs can continue the cycle.
-	var/area/new_area = get_area(destination)
 	for(var/atom/movable/AM in conga_line)
-		var/move_dir = get_dir(AM, destination)
-		var/oldLoc
-		if(AM.loc)
-			oldLoc = AM.loc
-			AM.loc.Exited(AM, move_dir)
-		AM.loc = destination
-		AM.loc.Entered(AM, oldLoc)
-		var/area/old_area
-		if(oldLoc)
-			old_area = get_area(oldLoc)
-		if(new_area && old_area != new_area)
-			new_area.Entered(AM, oldLoc)
-		if(oldLoc)
-			AM.Moved(oldLoc, move_dir)
-		var/mob/M = AM
-		if(istype(M))
-			M.reset_perspective(destination)
+		AM.forceMove(destination)
 	return TRUE
 
 
@@ -782,6 +765,10 @@
 	remove_all_indicators()
 	. = stat //old stat
 	stat = new_stat
+	if(. == DEAD && client)
+		//This would go on on_revive() but that is a mob/living proc
+		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[ckey]
+		personal_statistics.times_revived++
 	SEND_SIGNAL(src, COMSIG_MOB_STAT_CHANGED, ., new_stat)
 
 /// Cleanup proc that's called when a mob loses a client, either through client destroy or logout

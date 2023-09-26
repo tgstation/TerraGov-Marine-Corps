@@ -129,7 +129,7 @@
 	* obj/item/W is the item you are trying to equip
 	* del_on_fail if true will delete the item instead of dropping it to the floor
 
-	Returns TURE if it was able to put the thing into one of our hands.
+	Returns TRUE if it was able to put the thing into one of our hands.
 */
 /mob/proc/put_in_hands(obj/item/W, del_on_fail = FALSE)
 	W.do_pickup_animation(src)

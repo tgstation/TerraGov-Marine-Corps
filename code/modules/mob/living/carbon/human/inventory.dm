@@ -533,7 +533,6 @@
 
 /mob/living/carbon/human/stripPanelUnequip(obj/item/I, mob/M, slot_to_process)
 	if(!I.canStrip(M))
-		to_chat(src, span_warning("You can't remove [I.name], it appears to be stuck!</span>"))
 		return
 	log_combat(src, M, "attempted to remove [key_name(I)] ([slot_to_process])")
 

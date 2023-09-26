@@ -60,7 +60,7 @@
 			return
 
 		R.use(amount_needed)
-		repair_damage(max_integrity)
+		repair_damage(max_integrity, user)
 		cut = 0
 		density = TRUE
 		icon = 'icons/obj/smooth_objects/fence.dmi'
