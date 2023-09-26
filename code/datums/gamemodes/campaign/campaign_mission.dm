@@ -226,6 +226,7 @@
 ///Mission start proper
 /datum/campaign_mission/proc/start_mission()
 	SHOULD_CALL_PARENT(TRUE)
+	SEND_SIGNAL(SSdcs, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE)
 	if(!shutter_open_delay["starting_faction"])
 		SEND_GLOBAL_SIGNAL(GLOB.faction_to_campaign_door_signal[starting_faction])
 	else

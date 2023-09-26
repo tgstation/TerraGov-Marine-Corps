@@ -2,7 +2,6 @@
 	name = "Campaign"
 	config_tag = "Campaign"
 	flags_round_type = MODE_TWO_HUMAN_FACTIONS|MODE_HUMAN_ONLY //any changes needed? MODE_LATE_OPENING_SHUTTER_TIMER handled by missions
-	shutters_drop_time = 2 MINUTES //will need changing
 	whitelist_ship_maps = list(MAP_ITERON)
 	whitelist_ground_maps = list(MAP_FORT_PHOBOS)
 	bioscan_interval = 3 MINUTES
@@ -37,6 +36,7 @@
 	for(var/faction in factions)
 		stat_list[faction] = new /datum/faction_stats(faction)
 	RegisterSignal(SSdcs, COMSIG_LIVING_JOB_SET, PROC_REF(register_faction_member))
+	addtimer(CALLBACK(SSticker.mode, TYPE_PROC_REF(/datum/game_mode/hvh/campaign, intro_sequence)), SSticker.round_start_time + 1 MINUTES)
 
 /datum/game_mode/hvh/campaign/post_setup()
 	. = ..()
@@ -47,10 +47,6 @@
 	for(var/i in stat_list)
 		var/datum/faction_stats/selected_faction = stat_list[i]
 		selected_faction.choose_faction_leader()
-
-/datum/game_mode/hvh/campaign/setup_blockers() //to be updated
-	. = ..()
-	addtimer(CALLBACK(SSticker.mode, TYPE_PROC_REF(/datum/game_mode/hvh/campaign, intro_sequence)), SSticker.round_start_time + shutters_drop_time) //starts intro sequence 10 seconds before shutter drop
 
 /datum/game_mode/hvh/campaign/player_respawn(mob/respawnee)
 	attempt_attrition_respawn(respawnee)
