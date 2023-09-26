@@ -16,6 +16,7 @@
 	fill_number = 3
 
 /obj/item/card/id/sec
+	icon = 'modular_RUtgmc/icons/obj/items/card.dmi'
 	name = "identification card"
 	desc = "A security card which shows law and order."
 	icon_state = "sec"
@@ -84,6 +85,7 @@ In addition, you are tasked with the security of high-ranking personnel, includi
 	suit_store = /obj/item/weapon/gun/energy/taser
 
 /obj/item/radio/headset/mainship/mp
+	icon = 'modular_RUtgmc/icons/obj/items/radio.dmi'
 	name = "security radio headset"
 	icon_state = "mp_headset"
 	keyslot = /obj/item/encryptionkey/mcom
