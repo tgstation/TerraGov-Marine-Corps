@@ -72,7 +72,7 @@
 		return
 	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_BIOSCAN) || bioscan_interval == 0 || current_mission.mission_state != MISSION_STATE_ACTIVE)
 		return
-	announce_bioscans_marine_som() //todo: make this faction neutral
+	announce_bioscans_marine_som(ztrait = ZTRAIT_AWAY) //todo: make this faction neutral
 
 //End game checks
 /datum/game_mode/hvh/campaign/check_finished(game_status) //todo: add the actual logic once the persistance stuff is done
