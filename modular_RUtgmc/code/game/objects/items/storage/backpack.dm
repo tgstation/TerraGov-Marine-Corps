@@ -28,3 +28,23 @@
 /obj/item/storage/backpack/marine/standard
 	item_icons = list(
 		slot_back_str = 'modular_RUtgmc/icons/mob/clothing/back.dmi')
+
+/obj/item/storage/backpack/satchel/som
+	item_icons = list(
+		slot_back_str = 'modular_RUtgmc/icons/mob/clothing/back.dmi')
+
+/obj/item/storage/backpack/lightpack/som
+	item_icons = list(
+		slot_back_str = 'modular_RUtgmc/icons/mob/clothing/back.dmi')
+
+/obj/item/storage/backpack/marine/satchel/officer_cloak
+	name = "Officer Cloak - Blue"
+
+/obj/item/storage/backpack/marine/satchel/captain_cloak
+	name = "Captain's Cloak - Blue"
+
+/obj/item/storage/backpack/marine/satchel/officer_cloak_red
+	name = "Officer Cloak - Red"
+
+/obj/item/storage/backpack/marine/satchel/captain_cloak_red
+	name = "Captain's Cloak - Red"
