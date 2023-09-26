@@ -82,6 +82,17 @@
 /obj/structure/droppod/nonmob/supply_pod,
 /turf/open/floor/prison/cleanmarked,
 /area/mainship/patrol_base/hanger)
+"bH" = (
+/obj/structure/closet/crate/bravo,
+/obj/structure/closet/crate/bravo,
+/obj/structure/closet/crate/bravo,
+/obj/structure/closet/crate/bravo,
+/obj/structure/closet/crate/bravo,
+/obj/structure/closet/crate/bravo,
+/obj/structure/closet/crate/bravo,
+/obj/structure/closet/crate/bravo,
+/turf/open/floor/prison/plate,
+/area/mainship/patrol_base)
 "bI" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
@@ -287,6 +298,7 @@
 	},
 /area/mainship/patrol_base/hanger)
 "dW" = (
+/obj/machinery/telecomms/relay/preset/telecomms,
 /turf/open/floor/mainship/orange{
 	dir = 9
 	},
@@ -842,6 +854,15 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/patrol_base/hanger)
+"na" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/vehicle/ridden/powerloader,
+/turf/open/floor/mainship/orange{
+	dir = 8
+	},
+/area/mainship/patrol_base)
 "nl" = (
 /obj/structure/largecrate/random/case/double,
 /turf/open/floor/mainship/orange{
@@ -2711,6 +2732,17 @@
 /obj/item/bodybag,
 /turf/open/floor/prison/sterilewhite,
 /area/mainship/patrol_base)
+"Np" = (
+/obj/structure/closet/crate/alpha,
+/obj/structure/closet/crate/alpha,
+/obj/structure/closet/crate/alpha,
+/obj/structure/closet/crate/alpha,
+/obj/structure/closet/crate/alpha,
+/obj/structure/closet/crate/alpha,
+/obj/structure/closet/crate/alpha,
+/obj/structure/closet/crate/alpha,
+/turf/open/floor/prison/plate,
+/area/mainship/patrol_base)
 "Nt" = (
 /obj/structure/table/mainship/nometal,
 /obj/item/defibrillator,
@@ -2743,6 +2775,15 @@
 	dir = 8
 	},
 /area/mainship/patrol_base/barracks)
+"Oj" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/vehicle/ridden/powerloader,
+/turf/open/floor/mainship/orange{
+	dir = 4
+	},
+/area/mainship/patrol_base)
 "Ok" = (
 /obj/machinery/vending/cigarette,
 /turf/open/floor/mainship/black,
@@ -2753,6 +2794,17 @@
 	dir = 6
 	},
 /area/mainship/patrol_base/barracks)
+"Op" = (
+/obj/structure/closet/crate/delta,
+/obj/structure/closet/crate/delta,
+/obj/structure/closet/crate/delta,
+/obj/structure/closet/crate/delta,
+/obj/structure/closet/crate/delta,
+/obj/structure/closet/crate/delta,
+/obj/structure/closet/crate/delta,
+/obj/structure/closet/crate/delta,
+/turf/open/floor/prison/plate,
+/area/mainship/patrol_base)
 "Oq" = (
 /obj/structure/table/mainship/nometal,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -2909,6 +2961,17 @@
 "Qq" = (
 /turf/open/floor/mainship/black,
 /area/mainship/patrol_base/barracks)
+"Qt" = (
+/obj/structure/closet/crate/charlie,
+/obj/structure/closet/crate/charlie,
+/obj/structure/closet/crate/charlie,
+/obj/structure/closet/crate/charlie,
+/obj/structure/closet/crate/charlie,
+/obj/structure/closet/crate/charlie,
+/obj/structure/closet/crate/charlie,
+/obj/structure/closet/crate/charlie,
+/turf/open/floor/prison/plate,
+/area/mainship/patrol_base)
 "Qz" = (
 /obj/effect/landmark/campaign/mech_spawner/light,
 /turf/open/floor/mainship/black,
@@ -31567,7 +31630,7 @@ fV
 Ff
 fV
 fV
-tp
+OD
 bu
 ci
 XV
@@ -39062,7 +39125,7 @@ fq
 iZ
 nl
 rF
-ka
+na
 fT
 Bx
 fV
@@ -39302,8 +39365,8 @@ bu
 do
 fz
 jk
-fH
-fH
+Np
+bH
 fH
 fH
 BA
@@ -40028,8 +40091,8 @@ bu
 du
 fL
 jn
-fH
-fH
+Qt
+Op
 fH
 fH
 BA
@@ -40272,7 +40335,7 @@ fP
 jq
 nt
 nt
-vb
+Oj
 yH
 BJ
 fV

@@ -6527,7 +6527,7 @@
 /area/patricks_rest/surface/landing_pad)
 "FI" = (
 /obj/machinery/telecomms/relay/preset/telecomms,
-/turf/open/floor/plating,
+/turf/closed/mineral/smooth/indestructible,
 /area/storage/testroom)
 "FJ" = (
 /obj/machinery/gibber,
