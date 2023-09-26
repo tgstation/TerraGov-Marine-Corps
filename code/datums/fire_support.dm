@@ -92,7 +92,7 @@
 	name = "Gun run"
 	fire_support_type = FIRESUPPORT_TYPE_GUN
 	impact_quantity = 5
-	uses = 4
+	uses = 5
 	icon_state = "gau"
 	initiate_chat_message = "TARGET ACQUIRED GUN RUN INBOUND."
 	initiate_screen_message = "Target received, gun run inbound."
@@ -137,7 +137,7 @@
 	fire_support_type = FIRESUPPORT_TYPE_ROCKETS
 	scatter_range = 9
 	impact_quantity = 15
-	uses = 2
+	uses = 3
 	icon_state = "rockets"
 	initiate_chat_message = "TARGET ACQUIRED ROCKET RUN INBOUND."
 	initiate_screen_message = "Rockets hot, incoming!"
@@ -153,7 +153,7 @@
 	name = "Incendiary rocket barrage"
 	fire_support_type = FIRESUPPORT_TYPE_INCEND_ROCKETS
 	scatter_range = 9
-	impact_quantity = 12
+	impact_quantity = 9
 	icon_state = "incendiary_rockets"
 	initiate_chat_message = "TARGET ACQUIRED ROCKET RUN INBOUND."
 	initiate_screen_message = "Rockets hot, incoming!"
@@ -221,7 +221,7 @@
 	playsound(strafelist[1], 'sound/weapons/guns/fire/volkite_4.ogg', 60, FALSE, 25, falloff = 3)
 	strafed = strafelist[1]
 	strafelist -= strafed
-	explosion(strafed, light_impact_range = 2, flame_range = 3, throw_range = 0)
+	explosion(strafed, light_impact_range = 2, flame_range = 2, throw_range = 0)
 	if(length(strafelist))
 		addtimer(CALLBACK(src, PROC_REF(strafe_turfs), strafelist), 0.2 SECONDS)
 
@@ -229,7 +229,7 @@
 	name = "Mortar barrage"
 	fire_support_type = FIRESUPPORT_TYPE_HE_MORTAR
 	scatter_range = 8
-	impact_quantity = 3
+	impact_quantity = 5
 	cooldown_duration = 20 SECONDS
 	uses = 6
 	icon_state = "he_mortar"
@@ -269,6 +269,7 @@
 /datum/fire_support/mortar/smoke
 	name = "Smoke mortar barrage"
 	fire_support_type = FIRESUPPORT_TYPE_SMOKE_MORTAR
+	impact_quantity = 3
 	uses = 2
 	icon_state = "smoke_mortar"
 	initiate_chat_message = "COORDINATES CONFIRMED. MORTAR BARRAGE INCOMING."
