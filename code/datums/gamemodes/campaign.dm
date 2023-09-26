@@ -183,6 +183,7 @@
 					qdel(candidate)
 				return
 
+			message_admins("unable to attrition respawn [ready_candidate]")
 			ready_candidate.client.screen.Cut()
 			candidate.name = ready_candidate.key
 			candidate.key = ready_candidate.key
@@ -193,7 +194,7 @@
 		to_chat(usr, "<span class='warning'>Selected job is not available.<spawn>")
 		return
 	if(!SSticker || SSticker.current_state != GAME_STATE_PLAYING)
-		to_chat(usr, "<span class='warning'>The mission is either not ready, or has already finished!<spawn>")
+		to_chat(usr, "<span class='warning'>The round is either not ready, or has already finished!<spawn>")
 		return
 	if(!GLOB.enter_allowed)
 		to_chat(usr, "<span class='warning'>Spawning currently disabled, please observe.<spawn>")
@@ -202,7 +203,8 @@
 		to_chat(usr, "<span class='warning'>Failed to assign selected role.<spawn>")
 		return
 
-	stat_list[job_datum.faction].active_attrition_points -= job_datum.job_cost
+	if(current_mission.mission_state == MISSION_STATE_ACTIVE)
+		stat_list[job_datum.faction].active_attrition_points -= job_datum.job_cost
 	LateSpawn(ready_candidate)
 	return TRUE
 
@@ -214,7 +216,7 @@
 		return FALSE
 	if((job.current_positions >= job.total_positions) && job.total_positions != -1)
 		return FALSE
-	if(job.job_cost > stat_list[faction].active_attrition_points)
+	if(current_mission.mission_state == MISSION_STATE_ACTIVE && (job.job_cost > stat_list[faction].active_attrition_points))
 		return FALSE
 	if(is_banned_from(candidate.ckey, job.title))
 		return FALSE
