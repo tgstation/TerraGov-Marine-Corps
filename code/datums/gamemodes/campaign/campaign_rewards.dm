@@ -338,7 +338,7 @@
 	name = "Enable Teleporter Array"
 	desc = "Enables the use of the Teleporter Array for the current or next mission"
 	detailed_desc = "Established a link between our Teleporter Array and its master Bluespace drive, allowing its operation during the current or next mission."
-	ui_icon = "tele_enabled"
+	ui_icon = "tele_active"
 	uses = 2
 	cost = 5
 	reward_flags = REWARD_ACTIVATED_EFFECT|REWARD_ACTIVE_MISSION_ONLY
