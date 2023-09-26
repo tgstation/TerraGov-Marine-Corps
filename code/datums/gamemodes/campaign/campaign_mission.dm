@@ -255,7 +255,8 @@
 	play_outro()
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_CLOSE_CAMPAIGN_SHUTTERS)
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_CAMPAIGN_MISSION_ENDED, winning_faction)
-	for(var/datum/outfit/quick/outfit AS in GLOB.quick_loadouts)
+	for(var/i in GLOB.quick_loadouts)
+		var/datum/outfit/quick/outfit = GLOB.quick_loadouts[i]
 		outfit.quantity = initial(outfit.quantity)
 
 
