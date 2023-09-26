@@ -584,7 +584,7 @@
 			holder.overlays += IMG2
 
 	else if(job.job_flags & JOB_FLAG_PROVIDES_SQUAD_HUD)
-		holder.overlays += image('icons/mob/hud.dmi', src, "hudmarine [job.comm_title]")
+		holder.overlays += image('modular_RUtgmc/icons/mob/hud.dmi', src, "hudmarine [job.comm_title]") ///RUTGMC edit, icon redirect to module
 
 	hud_list[hud_type] = holder
 
