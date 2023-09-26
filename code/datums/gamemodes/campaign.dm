@@ -173,19 +173,18 @@
 
 			var/mob/new_player/ready_candidate = new()
 			candidate.client.screen.Cut()
-			ready_candidate.name = candidate.key
-			ready_candidate.key = candidate.key
+			candidate.mind.transfer_to(ready_candidate)
 
 			var/datum/job/job_datum = locate(href_list["job_selected"])
 
-			if(attrition_respawn(ready_candidate, job_datum))
-				if(isobserver(candidate))
-					qdel(candidate)
+			if(!attrition_respawn(ready_candidate, job_datum))
+				ready_candidate.mind.transfer_to(candidate)
+				ready_candidate.client.screen.Cut()
+				qdel(ready_candidate)
 				return
+			if(isobserver(candidate))
+				qdel(candidate)
 
-			ready_candidate.client.screen.Cut()
-			candidate.name = ready_candidate.key
-			candidate.key = ready_candidate.key
 
 ///Actually respawns the player, if still able
 /datum/game_mode/hvh/campaign/proc/attrition_respawn(mob/new_player/ready_candidate, datum/job/job_datum)
