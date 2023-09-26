@@ -147,6 +147,7 @@
 	name = "Combat patrol 2"
 	map_name = "LV-624"
 	map_file = '_maps/map_files/LV624/LV624.dmm'
+	map_traits = list(ZTRAIT_AWAY = TRUE, ZTRAIT_ACIDRAIN = TRUE)
 	map_light_colours = list(COLOR_MISSION_YELLOW, COLOR_MISSION_YELLOW, COLOR_MISSION_YELLOW, COLOR_MISSION_YELLOW)
 	map_light_levels = list(225, 150, 100, 75)
 

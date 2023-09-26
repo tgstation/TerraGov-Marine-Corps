@@ -3,6 +3,7 @@ GLOBAL_LIST_INIT(campaign_default_assets, list(
 	FACTION_TERRAGOV = list(
 		/datum/campaign_reward/equipment/mech_heavy,
 		/datum/campaign_reward/bonus_job/freelancer,
+		/datum/campaign_reward/bonus_job/combat_robots
 		/datum/campaign_reward/fire_support,
 		/datum/campaign_reward/droppod_refresh,
 		/datum/campaign_reward/droppod_enabled,
@@ -23,7 +24,7 @@ GLOBAL_LIST_INIT(campaign_default_purchasable_assets, list(
 		/datum/campaign_reward/droppod_refresh,
 		/datum/campaign_reward/droppod_enabled,
 		/datum/campaign_reward/equipment/power_armor,
-		/datum/campaign_reward/bonus_job/combat_robots,
+		//datum/campaign_reward/bonus_job/combat_robots,
 		/datum/campaign_reward/equipment/medkit_basic,
 		/datum/campaign_reward/equipment/materials_pack,
 	),
@@ -40,7 +41,7 @@ GLOBAL_LIST_INIT(campaign_default_purchasable_assets, list(
 ///The weighted potential mission pool by faction
 GLOBAL_LIST_INIT(campaign_mission_pool, list(
 	FACTION_TERRAGOV = list(
-		/datum/campaign_mission/tdm = 10,
+		//datum/campaign_mission/tdm = 10,
 		/datum/campaign_mission/tdm/lv624 = 10,
 		/datum/campaign_mission/tdm/desparity = 10,
 		/datum/campaign_mission/destroy_mission/fire_support_raid = 15,
@@ -48,7 +49,7 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 		/datum/campaign_mission/tdm/mech_wars = 12,
 	),
 	FACTION_SOM = list(
-		/datum/campaign_mission/tdm = 10,
+		//datum/campaign_mission/tdm = 10,
 		/datum/campaign_mission/tdm/lv624 = 10,
 		/datum/campaign_mission/tdm/desparity = 10,
 		/datum/campaign_mission/destroy_mission/fire_support_raid/som = 15,

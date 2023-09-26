@@ -139,7 +139,7 @@
 ///The addition rewards for capturing objectives, regardless of outcome
 /datum/campaign_mission/capture_mission/proc/objective_reward_bonus()
 	var/starting_team_bonus = capture_count["starting_faction"] * 5
-	var/hostile_team_bonus = capture_count["hostile_faction"] * 5 //todo: maybe a lower reward for the home team here, its supposed to be their supplies after all...
+	var/hostile_team_bonus = capture_count["hostile_faction"] * 2 //todo: maybe a lower reward for the home team here, its supposed to be their supplies after all...
 
 	modify_attrition_points(starting_team_bonus, hostile_team_bonus)
 	map_text_broadcast(starting_faction, "[starting_team_bonus] bonus attrition points awarded for the capture of [capture_count["starting_faction"]] objectives", "Bonus reward")
