@@ -147,6 +147,8 @@
 #include "code\modules\projectiles\guns\revolvers.dm"
 #include "code\modules\projectiles\guns\rifles.dm"
 #include "code\modules\projectiles\guns\smgs.dm"
+#include "code\modules\power\fusion_engine.dm"
+#include "code\modules\power\groundmap_geothermal.dm"
 #include "code\datums\keybinding\communication.dm"
 #include "code\__HELPERS\text.dm"
 #include "code\modules\projectiles\guns\specialist.dm"
