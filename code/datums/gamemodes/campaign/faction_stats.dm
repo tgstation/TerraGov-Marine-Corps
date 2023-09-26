@@ -140,7 +140,10 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 	if(!faction_leader)
 		faction_leader = pick(possible_candidates)
 
-	//add some sound effect and maybe a map text thing
+
+	for(var/mob/living/carbon/human/human AS in possible_candidates)
+		human.playsound_local(null, "sound/effects/CIC_order.ogg", 15, 1)
+		human.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>OVERWATCH</u></span><br>" + "[faction_leader] has been promoted to the role of faction commander", GLOB.faction_to_portrait[faction] ? GLOB.faction_to_portrait[faction] : /atom/movable/screen/text/screen_text/picture/potrait/unknown)
 	to_chat(faction_leader, span_highdanger("You have been promoted to the role of commander for your faction. It is your responsibility to determine your side's course of action, and how to best utilise the resources at your disposal."))
 
 ///Adds a new reward to the faction for use
