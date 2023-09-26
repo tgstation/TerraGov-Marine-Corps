@@ -695,6 +695,11 @@
 	dir = 8
 	},
 /area/gelida/outdoors/colony_streets/north_east_street)
+"avZ" = (
+/obj/structure/cable,
+/obj/effect/landmark/xeno_resin_door,
+/turf/open/floor/plating/ground/ice,
+/area/gelida/caves/central_caves/garbledradio)
 "awx" = (
 /obj/effect/spawner/random/misc/structure/supplycrate,
 /turf/open/floor/prison/cleanmarked,
@@ -7728,6 +7733,28 @@
 /obj/machinery/atmospherics/components/unary/vent_pump,
 /turf/open/floor/carpet,
 /area/gelida/indoors/c_block/garage)
+"fak" = (
+/obj/effect/landmark/xeno_resin_wall,
+/obj/effect/landmark/xeno_resin_wall,
+/obj/effect/landmark/xeno_resin_wall,
+/obj/effect/landmark/xeno_resin_wall,
+/obj/effect/landmark/xeno_resin_wall,
+/obj/effect/landmark/xeno_resin_wall,
+/obj/effect/landmark/xeno_resin_wall,
+/obj/effect/landmark/xeno_resin_wall,
+/obj/effect/landmark/xeno_resin_wall,
+/obj/effect/landmark/xeno_resin_wall,
+/obj/effect/landmark/xeno_resin_wall,
+/obj/effect/landmark/xeno_resin_wall,
+/obj/effect/landmark/xeno_resin_wall,
+/obj/effect/landmark/xeno_resin_wall,
+/obj/effect/landmark/xeno_resin_wall,
+/obj/effect/landmark/xeno_resin_wall,
+/obj/effect/landmark/xeno_resin_wall,
+/obj/effect/landmark/xeno_resin_wall,
+/obj/effect/landmark/xeno_resin_wall,
+/turf/open/floor/plating/ground/desertdam/asphalt/edge/regular,
+/area/gelida/outdoors/colony_streets/central_streets)
 "fav" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -10111,6 +10138,11 @@
 /obj/structure/barricade/wooden,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/outdoors/colony_streets/north_east_street)
+"gPo" = (
+/obj/effect/ai_node,
+/obj/effect/landmark/xeno_resin_wall,
+/turf/open/floor/plating/ground/ice,
+/area/gelida/caves/central_caves)
 "gPp" = (
 /obj/item/clothing/shoes/jackboots{
 	pixel_x = -5;
@@ -13782,6 +13814,11 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/gelida/indoors/a_block/dorms)
+"jrW" = (
+/obj/structure/cable,
+/obj/effect/landmark/xeno_resin_wall,
+/turf/open/floor/plating/ground/ice,
+/area/gelida/caves/central_caves)
 "jrY" = (
 /obj/machinery/vending/medical,
 /obj/machinery/light{
@@ -16069,6 +16106,11 @@
 /obj/structure/bed/stool,
 /turf/open/floor/wood,
 /area/gelida/indoors/b_block/bar)
+"kWK" = (
+/obj/effect/landmark/weed_node,
+/obj/effect/landmark/xeno_resin_wall,
+/turf/open/floor/plating/ground/ice,
+/area/gelida/caves/central_caves/garbledradio)
 "kWO" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -17313,6 +17355,10 @@
 	dir = 4
 	},
 /area/gelida/indoors/b_block/hydro)
+"lOc" = (
+/obj/effect/landmark/xeno_resin_door,
+/turf/open/floor/plating/ground/ice,
+/area/gelida/caves/east_caves/garbledradio)
 "lOf" = (
 /obj/structure/bed/chair/comfy,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -18185,6 +18231,11 @@
 /obj/effect/ai_node,
 /turf/open/floor/mainship/stripesquare,
 /area/gelida/indoors/a_block/fitness)
+"mqj" = (
+/obj/effect/ai_node,
+/obj/effect/landmark/xeno_resin_door,
+/turf/open/floor/plating/ground/ice,
+/area/gelida/caves/east_caves/garbledradio)
 "mqp" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/landmark/xeno_silo_spawn,
@@ -18922,6 +18973,11 @@
 "mQy" = (
 /turf/open/floor/prison,
 /area/gelida/indoors/c_block/casino)
+"mQQ" = (
+/obj/effect/landmark/weed_node,
+/obj/effect/landmark/xeno_resin_wall,
+/turf/open/floor/plating/ground/ice,
+/area/gelida/caves/east_caves/garbledradio)
 "mQV" = (
 /obj/effect/ai_node,
 /obj/effect/spawner/random/decal/blood,
@@ -20070,6 +20126,10 @@
 "nGK" = (
 /turf/open/floor/prison,
 /area/gelida/outdoors/colony_streets/north_west_street)
+"nGR" = (
+/obj/effect/landmark/xeno_resin_wall,
+/turf/open/floor/plating/ground/ice,
+/area/gelida/caves/east_caves/garbledradio)
 "nGT" = (
 /obj/effect/decal/cleanable/blood/oil,
 /turf/open/floor/prison/cellstripe{
@@ -23919,6 +23979,11 @@
 	dir = 8
 	},
 /area/gelida/outdoors/colony_streets/south_west_street)
+"qgQ" = (
+/obj/effect/landmark/weed_node,
+/obj/effect/landmark/xeno_resin_wall,
+/turf/open/floor/plating/ground/ice,
+/area/gelida/caves/west_caves)
 "qgR" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable,
@@ -27147,6 +27212,11 @@
 	dir = 10
 	},
 /area/gelida/outdoors/colony_streets/central_streets)
+"squ" = (
+/obj/effect/landmark/weed_node,
+/obj/effect/landmark/xeno_resin_door,
+/turf/open/floor/plating/ground/ice,
+/area/gelida/caves/east_caves/garbledradio)
 "sqH" = (
 /obj/docking_port/stationary/crashmode,
 /turf/open/floor/plating/ground/snow/layer0,
@@ -28358,6 +28428,11 @@
 	},
 /turf/open/floor/prison,
 /area/gelida/indoors/c_block/cargo)
+"tfD" = (
+/obj/effect/landmark/weed_node,
+/obj/effect/landmark/xeno_resin_wall,
+/turf/open/floor/plating/ground/ice,
+/area/gelida/caves/central_caves)
 "tfL" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/landmark/weed_node,
@@ -28399,6 +28474,11 @@
 	},
 /turf/open/floor/prison/plate,
 /area/gelida/outdoors/colony_streets/south_street)
+"thN" = (
+/obj/effect/landmark/weed_node,
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/ice,
+/area/gelida/caves/west_caves)
 "thQ" = (
 /obj/machinery/power/apc/drained,
 /obj/machinery/light{
@@ -29279,6 +29359,11 @@
 /area/gelida/indoors/b_block/hydro)
 "tPt" = (
 /obj/structure/cable,
+/turf/open/floor/plating/ground/ice,
+/area/gelida/caves/central_caves/garbledradio)
+"tPJ" = (
+/obj/effect/landmark/weed_node,
+/obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/plating/ground/ice,
 /area/gelida/caves/central_caves/garbledradio)
 "tPN" = (
@@ -38335,7 +38420,7 @@ qxI
 qxI
 qEf
 xjB
-qxI
+hLP
 qxI
 qEf
 qxI
@@ -38557,7 +38642,7 @@ amr
 qxI
 qEf
 qxI
-qxI
+hLP
 amr
 qEf
 qxI
@@ -38779,7 +38864,7 @@ qxI
 qxI
 qEf
 qxI
-qxI
+hLP
 qxI
 qEf
 qxI
@@ -39089,7 +39174,7 @@ pKS
 pKS
 pKS
 pKS
-hoS
+fak
 vaN
 vaN
 vaN
@@ -39205,8 +39290,8 @@ cmF
 cmF
 cmF
 cmF
-cmF
-cmF
+anV
+anV
 wpv
 cmF
 cmF
@@ -39427,8 +39512,8 @@ cmF
 cmF
 cmF
 dOs
-cmF
-cmF
+anV
+anV
 wpv
 cmF
 cmF
@@ -41448,8 +41533,8 @@ qxI
 xjB
 qxI
 qxI
-qxI
-qxI
+hLP
+hLP
 xjB
 cJC
 cmF
@@ -41670,8 +41755,8 @@ qxI
 qxI
 qxI
 qxI
-qxI
-xjB
+hLP
+dag
 qxI
 cJC
 rih
@@ -41888,7 +41973,7 @@ qxI
 qEf
 amr
 qxI
-xjB
+dag
 qxI
 qxI
 mPF
@@ -42308,8 +42393,8 @@ xIt
 xIt
 cmF
 dOs
-cmF
-cmF
+anV
+anV
 cmF
 cmF
 anV
@@ -42324,8 +42409,8 @@ xIt
 cmF
 qxI
 qxI
-qxI
-xjB
+hLP
+dag
 qxI
 qxI
 qxI
@@ -42530,9 +42615,9 @@ xIt
 xIt
 cmF
 cmF
+anV
+qgQ
 cmF
-wpv
-cmF
 cmF
 xIt
 xIt
@@ -42546,8 +42631,8 @@ xIt
 xIt
 qxI
 qxI
-qxI
-qxI
+hLP
+hLP
 qxI
 qxI
 ugu
@@ -43433,7 +43518,7 @@ xIt
 qxI
 qxI
 qxI
-qxI
+hLP
 qxI
 qxI
 qxI
@@ -43654,8 +43739,8 @@ xIt
 xIt
 amr
 qxI
-qxI
-qxI
+hLP
+hLP
 qxI
 amr
 xIt
@@ -44526,8 +44611,8 @@ xIt
 xIt
 cmF
 cmF
-wpv
-cmF
+qgQ
+anV
 cmF
 cmF
 xIt
@@ -44748,8 +44833,8 @@ xIt
 xIt
 cmF
 cmF
-cmF
-cmF
+anV
+anV
 cmF
 cmF
 xIt
@@ -44761,8 +44846,8 @@ xIt
 xIt
 qxI
 qxI
-qxI
-qxI
+hLP
+hLP
 qxI
 xIt
 xIt
@@ -44983,8 +45068,8 @@ xIt
 xIt
 qxI
 qxI
-qxI
-xjB
+hLP
+dag
 qxI
 xIt
 xIt
@@ -45195,7 +45280,7 @@ dOs
 cmF
 dOs
 cmF
-wpv
+thN
 cmF
 xIt
 xIt
@@ -45415,8 +45500,8 @@ xIt
 xIt
 xIt
 cmF
-cmF
-fyL
+anV
+anV
 wpv
 cmF
 xIt
@@ -45637,8 +45722,8 @@ xIt
 xIt
 xIt
 uGF
-uGF
-uGF
+loD
+loD
 uGF
 loD
 xIt
@@ -45860,7 +45945,7 @@ xIt
 xIt
 uGF
 gfl
-uGF
+vwm
 uGF
 xIt
 xIt
@@ -46071,8 +46156,8 @@ xIt
 xIt
 xIt
 qzH
-uGF
-gfl
+loD
+tfD
 uGF
 xIt
 xIt
@@ -46081,9 +46166,9 @@ xIt
 xIt
 uGF
 uGF
+xEg
 uGF
-uGF
-uGF
+xEg
 xIt
 xIt
 xIt
@@ -46100,7 +46185,7 @@ xIt
 gkC
 cYz
 cYz
-cYz
+gkC
 cYz
 cYz
 cYz
@@ -46293,8 +46378,8 @@ xIt
 xIt
 xIt
 qzH
-uGF
-uGF
+loD
+loD
 uGF
 xIt
 xIt
@@ -46538,7 +46623,7 @@ xIt
 cYz
 cYz
 cYz
-cYz
+gkC
 cYz
 xIt
 xIt
@@ -47646,8 +47731,8 @@ xIt
 xIt
 xIt
 cYz
-ubb
-cYz
+kWK
+gkC
 cYz
 xIt
 xIt
@@ -47868,8 +47953,8 @@ xIt
 xIt
 gkC
 cYz
-cYz
-cYz
+gkC
+gkC
 cYz
 cYz
 xIt
@@ -48290,7 +48375,7 @@ xIt
 xIt
 xIt
 qzH
-gfl
+tfD
 uGF
 uGF
 xIt
@@ -48535,8 +48620,8 @@ cYz
 cYz
 tJs
 cYz
-cYz
-cYz
+gkC
+gkC
 cYz
 xIt
 xIt
@@ -48757,8 +48842,8 @@ xIt
 cYz
 cYz
 cYz
-cYz
-cYz
+gkC
+gkC
 cYz
 xIt
 xIt
@@ -49427,7 +49512,7 @@ cYz
 cYz
 cYz
 cYz
-cYz
+gkC
 cYz
 cYz
 cYz
@@ -50098,8 +50183,8 @@ cYz
 ubb
 cYz
 cYz
-ubb
-cYz
+kWK
+gkC
 cYz
 cYz
 tJs
@@ -50320,8 +50405,8 @@ xIt
 xIt
 cYz
 cYz
-cYz
-cYz
+gkC
+gkC
 cYz
 cYz
 cQd
@@ -50506,7 +50591,7 @@ cgS
 xIt
 xIt
 uGF
-qzH
+jrW
 uGF
 xIt
 xIt
@@ -52059,8 +52144,8 @@ nsK
 cgS
 xIt
 uGF
-gfl
-qzH
+tfD
+jrW
 uGF
 uGF
 fPM
@@ -52281,8 +52366,8 @@ nsK
 cgS
 xIt
 uGF
-uGF
-qzH
+loD
+jrW
 bMh
 fPM
 dqw
@@ -53886,7 +53971,7 @@ xIt
 xIt
 xIt
 xIt
-cYz
+tVH
 cYz
 ubb
 bcB
@@ -54108,7 +54193,7 @@ xIt
 xIt
 xIt
 cYz
-ubb
+tPJ
 cYz
 cYz
 cYz
@@ -54280,7 +54365,7 @@ cgS
 xIt
 xIt
 uGF
-gfl
+tfD
 qzH
 uGF
 gfl
@@ -54330,7 +54415,7 @@ xIt
 xIt
 cYz
 cYz
-cYz
+tVH
 cYz
 cYz
 cYz
@@ -54552,7 +54637,7 @@ tPt
 tPt
 tPt
 cue
-tPt
+avZ
 cue
 tPt
 cue
@@ -54774,7 +54859,7 @@ tJs
 cYz
 cYz
 cYz
-cYz
+tVH
 tJs
 cYz
 cYz
@@ -54991,12 +55076,12 @@ xIt
 xIt
 xIt
 cYz
+kWK
+gkC
+cYz
 ubb
 cYz
-cYz
-ubb
-cYz
-cYz
+tVH
 cYz
 cYz
 ubb
@@ -55213,8 +55298,8 @@ xIt
 xIt
 cYz
 ubb
-cYz
-ubb
+gkC
+kWK
 cYz
 cYz
 cYz
@@ -55390,7 +55475,7 @@ cgS
 xIt
 uGF
 uGF
-uGF
+loD
 qzH
 csL
 dEZ
@@ -56982,8 +57067,8 @@ xIt
 xIt
 cYz
 cYz
-cYz
-cYz
+gkC
+gkC
 ubb
 cYz
 xIt
@@ -57204,8 +57289,8 @@ xIt
 xIt
 cYz
 tJs
-cYz
-cYz
+gkC
+gkC
 tJs
 cYz
 tVH
@@ -57656,11 +57741,11 @@ tVH
 ubb
 cYz
 cYz
-cYz
-cYz
+gkC
+gkC
 ubb
 cYz
-cYz
+tVH
 cYz
 xIt
 xIt
@@ -57835,7 +57920,7 @@ xIt
 xIt
 xIt
 uGF
-uGF
+loD
 uGF
 uGF
 xIt
@@ -57878,11 +57963,11 @@ tVH
 cYz
 tJs
 cYz
+gkC
+kWK
 cYz
-ubb
 cYz
-cYz
-cYz
+tVH
 tJs
 ubb
 xIt
@@ -58104,7 +58189,7 @@ cYz
 cYz
 cYz
 ubb
-cYz
+tVH
 cYz
 cYz
 cYz
@@ -58326,7 +58411,7 @@ xIt
 cYz
 cYz
 ubb
-cYz
+tVH
 cYz
 cYz
 cYz
@@ -58505,8 +58590,8 @@ xIt
 uGF
 uGF
 uGF
-uGF
-gfl
+loD
+tfD
 uGF
 uGF
 uGF
@@ -58548,7 +58633,7 @@ xIt
 xIt
 cYz
 cYz
-ubb
+tPJ
 cYz
 cYz
 ubb
@@ -58727,8 +58812,8 @@ xIt
 xIt
 uGF
 uGF
-gfl
-uGF
+tfD
+loD
 uGF
 uGF
 gfl
@@ -58770,7 +58855,7 @@ xIt
 xIt
 ubb
 cYz
-cYz
+tVH
 tJs
 cYz
 bcB
@@ -58992,7 +59077,7 @@ xIt
 xIt
 xIt
 cYz
-ubb
+tPJ
 xIt
 bcB
 bcB
@@ -59396,8 +59481,8 @@ gfl
 uGF
 uGF
 uGF
-uGF
-uGF
+loD
+loD
 uGF
 uGF
 loD
@@ -59618,8 +59703,8 @@ uGF
 uGF
 uGF
 uGF
-gfl
-uGF
+tfD
+loD
 uGF
 gfl
 loD
@@ -60287,7 +60372,7 @@ uGF
 gfl
 uGF
 uGF
-xEg
+gPo
 uGF
 uGF
 xIt
@@ -60505,8 +60590,8 @@ loD
 uGF
 uGF
 uGF
-uGF
-uGF
+loD
+loD
 uGF
 uGF
 uGF
@@ -60727,8 +60812,8 @@ xIt
 loD
 uGF
 uGF
-uGF
-gfl
+loD
+tfD
 uGF
 uGF
 vwm
@@ -61189,7 +61274,7 @@ xIt
 xIt
 xIt
 ubb
-cYz
+gkC
 cYz
 gkC
 xIt
@@ -61399,8 +61484,8 @@ uGF
 gfl
 uGF
 uGF
-gfl
-uGF
+tfD
+loD
 uGF
 uGF
 xIt
@@ -61411,7 +61496,7 @@ xIt
 xIt
 cYz
 cYz
-cYz
+gkC
 ubb
 xIt
 xIt
@@ -61621,8 +61706,8 @@ xIt
 uGF
 xEg
 uGF
-uGF
-uGF
+loD
+loD
 uGF
 xEg
 xIt
@@ -61633,7 +61718,7 @@ xIt
 xIt
 cYz
 cYz
-cYz
+gkC
 cYz
 xIt
 xIt
@@ -62515,8 +62600,8 @@ uGF
 uGF
 uGF
 uGF
-gfl
-uGF
+tfD
+loD
 uGF
 cYz
 cYz
@@ -62737,8 +62822,8 @@ xIt
 xEg
 uGF
 uGF
-uGF
-uGF
+loD
+loD
 uGF
 xEg
 cYz
@@ -64296,8 +64381,8 @@ xIt
 xIt
 xIt
 jqf
-lnR
-kjD
+ldC
+nGR
 kjD
 kjD
 xIt
@@ -64518,8 +64603,8 @@ xIt
 xIt
 xIt
 jqf
-jqf
-kjD
+iKs
+nGR
 kjD
 aoY
 xIt
@@ -64948,7 +65033,7 @@ uLt
 jqf
 lnR
 jqf
-jqf
+iKs
 uLt
 jqf
 laW
@@ -66280,8 +66365,8 @@ jqf
 ldC
 jqf
 lnR
-jqf
-jqf
+iKs
+iKs
 jqf
 lnR
 jqf
@@ -66307,7 +66392,7 @@ xIt
 xIt
 xIt
 vqi
-kjD
+lOc
 tzY
 tzY
 tzY
@@ -66502,8 +66587,8 @@ jqf
 jqf
 jqf
 jqf
-lnR
-jqf
+ldC
+iKs
 jqf
 lnR
 xIt
@@ -66529,7 +66614,7 @@ kjD
 xIt
 xIt
 tOc
-kjD
+lOc
 kjD
 tzY
 tzY
@@ -66751,7 +66836,7 @@ kjD
 xIt
 kjD
 tOc
-aoY
+squ
 kjD
 tzY
 cIQ
@@ -66944,7 +67029,7 @@ xIt
 xIt
 uLt
 jqf
-lnR
+ldC
 jqf
 lnR
 uLt
@@ -66973,7 +67058,7 @@ kjD
 kjD
 kjD
 tOc
-kTt
+mqj
 kjD
 tzY
 aZY
@@ -67191,11 +67276,11 @@ kjD
 kjD
 kjD
 kjD
-kjD
-aoY
+nGR
+mQQ
 kjD
 tOc
-kjD
+lOc
 kjD
 tzY
 cIQ
@@ -67414,10 +67499,10 @@ xIt
 xIt
 kjD
 kjD
-kjD
+nGR
 kjD
 pQM
-kjD
+lOc
 aoY
 tzY
 tzY
@@ -68070,7 +68155,7 @@ xIt
 xIt
 jqf
 jqf
-jqf
+iKs
 jqf
 jqf
 xIt
@@ -68502,7 +68587,7 @@ xIt
 jqf
 jqf
 uLt
-jqf
+iKs
 jqf
 uLt
 xIt
@@ -68724,8 +68809,8 @@ xIt
 xIt
 jqf
 lnR
-jqf
-jqf
+iKs
+iKs
 jqf
 jqf
 xIt
@@ -68947,7 +69032,7 @@ xIt
 jqf
 jqf
 jqf
-lnR
+ldC
 jqf
 jqf
 xIt
@@ -69620,8 +69705,8 @@ lnR
 iKs
 jqf
 jqf
-jqf
-jqf
+iKs
+iKs
 jqf
 jqf
 xIt
@@ -69842,8 +69927,8 @@ jqf
 vBx
 jqf
 oCF
-jqf
-jqf
+iKs
+iKs
 lnR
 jqf
 xIt
@@ -70305,7 +70390,7 @@ tOc
 vqi
 vqi
 kjD
-kjD
+lOc
 cIQ
 nIM
 cIQ
@@ -70527,7 +70612,7 @@ kjD
 kjD
 cpa
 kjD
-aoY
+squ
 kjD
 cIQ
 tzY
@@ -70733,7 +70818,7 @@ xIt
 xIt
 jqf
 jqf
-jqf
+iKs
 jqf
 jqf
 jqf
@@ -70749,7 +70834,7 @@ kjD
 kjD
 tOc
 kjD
-kjD
+lOc
 kjD
 kjD
 tzY
@@ -70971,7 +71056,7 @@ kjD
 kjD
 pQM
 aoY
-kjD
+lOc
 kjD
 kjD
 kjD
@@ -71193,7 +71278,7 @@ kjD
 kjD
 tOc
 kjD
-kjD
+lOc
 kjD
 aoY
 kjD
@@ -71415,7 +71500,7 @@ kjD
 kjD
 cpa
 ihG
-kjD
+lOc
 xIt
 xIt
 tzY
