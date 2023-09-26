@@ -171,9 +171,6 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 	for(var/mob/living/carbon/human/human_mob AS in GLOB.alive_human_list_faction[faction])
 		human_mob.revive(TRUE)
 		human_mob.forceMove(pick(GLOB.spawns_by_job[human_mob.job.type]))
-		var/obj/item/card/id/user_id = human_mob.get_idcard()
-		if(user_id)
-			user_id.can_buy_loadout = TRUE //they can buy a new loadout if they want
 
 	addtimer(CALLBACK(src, PROC_REF(get_selector)), AFTER_MISSION_LEADER_DELAY) //if the leader died, we load a new one after a minute to give respawns some time
 
