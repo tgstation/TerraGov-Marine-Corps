@@ -1,0 +1,5 @@
+author: "Wisemonster"
+delete-after: True
+changes:
+  - rscadd: "Added an eyewear category to the surplus clothing vendor, containing various cosmetic and prescription eyewear."
+  - rscdel: "Moved the ballistic goggles from the headwear category to the new eyewear category."
