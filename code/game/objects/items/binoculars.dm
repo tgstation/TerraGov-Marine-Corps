@@ -31,6 +31,7 @@
 /obj/item/binoculars/tactical
 	name = "tactical binoculars"
 	desc = "A pair of binoculars, with a laser targeting function. Unique action to toggle mode. Alt+Click to change selected linked artillery. Ctrl+Click when using to target something. Shift+Click to get coordinates. Ctrl+Shift+Click to fire OB when lasing in OB mode"
+	icon = 'icons/Marine/marine-navigation.dmi'
 	icon_state = "range_finders"
 	var/laser_cooldown = 0
 	var/cooldown_duration = 200 //20 seconds

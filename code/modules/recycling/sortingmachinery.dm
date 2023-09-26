@@ -226,7 +226,7 @@ GLOBAL_LIST_EMPTY(tagger_locations)
 
 /obj/item/packageWrap
 	name = "package wrapper"
-	icon = 'icons/obj/items/paper.dmi'
+	icon = 'icons/obj/stack_objects.dmi'
 	icon_state = "deliveryPaper"
 	w_class = WEIGHT_CLASS_NORMAL
 	var/amount = 25
