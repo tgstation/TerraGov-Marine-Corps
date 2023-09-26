@@ -183,7 +183,6 @@
 					qdel(candidate)
 				return
 
-			message_admins("unable to attrition respawn [ready_candidate]")
 			ready_candidate.client.screen.Cut()
 			candidate.name = ready_candidate.key
 			candidate.key = ready_candidate.key
