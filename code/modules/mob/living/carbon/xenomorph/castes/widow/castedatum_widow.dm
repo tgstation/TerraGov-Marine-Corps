@@ -39,7 +39,7 @@
 	minimap_icon = "widow"
 
 	// *** Widow Abilities *** //
-	max_spiderlings = 5
+	max_spiderlings = 4
 
 	// *** Abilities *** ///
 	actions = list(
