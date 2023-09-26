@@ -82,6 +82,8 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 	var/list/datum/campaign_reward/purchasable_rewards = list()
 	///Any special behavior flags for the faction
 	var/stats_flags = NONE
+	///Portrait used for general screen text notifications
+	var/atom/movable/screen/text/screen_text/picture/faction_portrait
 
 /datum/faction_stats/New(new_faction)
 	. = ..()
@@ -94,6 +96,8 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 	for(var/i = 1 to CAMPAIGN_STANDARD_MISSION_QUANTITY)
 		generate_new_mission()
 	RegisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_MISSION_ENDED, PROC_REF(mission_end))
+
+	faction_portrait = GLOB.faction_to_portrait[faction] ? GLOB.faction_to_portrait[faction] : /atom/movable/screen/text/screen_text/picture/potrait/unknown
 
 /datum/faction_stats/Destroy(force, ...)
 	GLOB.faction_stats_datums -= faction
@@ -142,8 +146,8 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 
 
 	for(var/mob/living/carbon/human/human AS in possible_candidates)
-		human.playsound_local(null, "sound/effects/CIC_order.ogg", 15, 1)
-		human.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>OVERWATCH</u></span><br>" + "[faction_leader] has been promoted to the role of faction commander", GLOB.faction_to_portrait[faction] ? GLOB.faction_to_portrait[faction] : /atom/movable/screen/text/screen_text/picture/potrait/unknown)
+		human.playsound_local(null, 'sound/effects/CIC_order.ogg', 30, 1)
+		human.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>OVERWATCH</u></span><br>" + "[faction_leader] has been promoted to the role of faction commander", faction_portrait)
 	to_chat(faction_leader, span_highdanger("You have been promoted to the role of commander for your faction. It is your responsibility to determine your side's course of action, and how to best utilise the resources at your disposal."))
 
 ///Adds a new reward to the faction for use
@@ -344,6 +348,7 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 				return
 			for(var/mob/living/carbon/human/faction_member AS in GLOB.alive_human_list_faction[faction])
 				faction_member.playsound_local(null, 'sound/effects/CIC_order.ogg', 30, 1)
+				faction_member.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>OVERWATCH</u></span><br>" + "[choice.name] asset activated", faction_portrait)
 				to_chat(faction_member, "<span class='warning'>[user] has activated the [choice.name] campaign asset.")
 			return TRUE
 
