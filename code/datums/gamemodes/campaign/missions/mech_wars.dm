@@ -2,8 +2,10 @@
 /datum/campaign_mission/tdm/mech_wars
 	name = "Mech war"
 	mission_icon = "mech_war"
-	map_name = "Orion Outpost"
-	map_file = '_maps/map_files/Campaign maps/jungle_outpost/jungle_outpost.dmm'
+	map_name = "Patrick's Rest"
+	map_file = '_maps/map_files/Campaign maps/patricks_rest/patricks_rest.dmm'
+	map_light_colours = list(COLOR_MISSION_RED, COLOR_MISSION_RED, COLOR_MISSION_RED, COLOR_MISSION_RED)
+	map_light_levels = list(225, 150, 100, 75)
 	starting_faction_objective_description = null
 	hostile_faction_objective_description = null
 	max_game_time = 20 MINUTES
@@ -43,7 +45,7 @@
 
 /datum/campaign_mission/tdm/mech_wars/load_mission()
 	. = ..()
-	var/mechs_to_spawn = round(length(GLOB.clients) * 0.5)
+	var/mechs_to_spawn = round(length(GLOB.clients) * 0.5) + 2
 	var/obj/effect/landmark/campaign/mech_spawner/spawner
 	for(var/i=1 to mechs_to_spawn)
 		spawner = pick(GLOB.campaign_mech_spawners[starting_faction])
@@ -51,7 +53,6 @@
 		spawner = pick(GLOB.campaign_mech_spawners[hostile_faction])
 		spawner.spawn_mech()
 
-//todo: proper rewards
 /datum/campaign_mission/tdm/mech_wars/apply_major_victory()
 	winning_faction = starting_faction
 	var/datum/faction_stats/winning_team = mode.stat_list[starting_faction]
@@ -75,11 +76,22 @@
 	var/datum/faction_stats/winning_team = mode.stat_list[hostile_faction]
 	winning_team.add_reward(/datum/campaign_reward/equipment/mech_heavy)
 
+/datum/campaign_mission/tdm/mech_wars/som
+	name = "Mech war"
+	mission_icon = "mech_war"
+	map_name = "Big Red"
+	map_file = '_maps/map_files/BigRed_v2 maps/BigRed_v2.dmm'
+	map_light_colours = list(COLOR_MISSION_RED, COLOR_MISSION_RED, COLOR_MISSION_RED, COLOR_MISSION_RED)
+	map_light_levels = list(225, 150, 100, 75)
+
+
+//mech spawn points
 /obj/effect/landmark/campaign/mech_spawner
-	name = "tgmc_mech_spawner"
+	name = "tgmc med mech spawner"
 	icon_state = "mech"
 	var/faction = FACTION_TERRAGOV
-	var/obj/vehicle/sealed/mecha/combat/greyscale/mech_type = /obj/vehicle/sealed/mecha/combat/greyscale/vanguard/noskill
+	var/list/colors = list(ARMOR_PALETTE_SPACE_CADET, ARMOR_PALETTE_GREYISH_TURQUOISE, VISOR_PALETTE_MAGENTA)
+	var/obj/vehicle/sealed/mecha/combat/greyscale/mech_type = /obj/vehicle/sealed/mecha/combat/greyscale/assault/noskill
 
 /obj/effect/landmark/campaign/mech_spawner/Initialize(mapload)
 	. = ..()
@@ -90,8 +102,33 @@
 	return ..()
 
 /obj/effect/landmark/campaign/mech_spawner/proc/spawn_mech()
-	new mech_type(loc)
+	var/obj/vehicle/sealed/mecha/combat/greyscale/new_mech = new mech_type(loc)
+	for(var/i in new_mech.limbs)
+		var/datum/mech_limb/limb = new_mech.limbs[i]
+		limb.update_colors(arglist(colors))
+	new_mech.update_icon()
+
+/obj/effect/landmark/campaign/mech_spawner/heavy
+	name = "tgmc heavy mech spawner"
+	icon_state = "mech_heavy"
+	mech_type = /obj/vehicle/sealed/mecha/combat/greyscale/vanguard/noskill
+
+/obj/effect/landmark/campaign/mech_spawner/light
+	name = "tgmc light mech spawner"
+	icon_state = "mech_light"
+	mech_type = /obj/vehicle/sealed/mecha/combat/greyscale/recon/noskill
 
 /obj/effect/landmark/campaign/mech_spawner/som
-	name = "som_mech_spawner"
+	name = "som med mech spawner"
 	faction = FACTION_SOM
+	colors = list(ARMOR_PALETTE_BEIGE, ARMOR_PALETTE_BLACK, VISOR_PALETTE_SYNDIE_GREEN)
+
+/obj/effect/landmark/campaign/mech_spawner/som/heavy
+	name = "som heavy mech spawner"
+	icon_state = "mech_heavy"
+	mech_type = /obj/vehicle/sealed/mecha/combat/greyscale/vanguard/noskill
+
+/obj/effect/landmark/campaign/mech_spawner/som/light
+	name = "som light mech spawner"
+	icon_state = "mech_light"
+	mech_type = /obj/vehicle/sealed/mecha/combat/greyscale/recon/noskill

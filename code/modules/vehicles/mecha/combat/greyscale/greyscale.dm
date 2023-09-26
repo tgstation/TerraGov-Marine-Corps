@@ -144,6 +144,9 @@
 		MECH_GREY_L_ARM = /datum/mech_limb/arm/recon,
 	)
 
+/obj/vehicle/sealed/mecha/combat/greyscale/recon/noskill
+	mecha_flags = ADDING_ACCESS_POSSIBLE|CANSTRAFE|IS_ENCLOSED|HAS_HEADLIGHTS
+
 /obj/vehicle/sealed/mecha/combat/greyscale/assault
 	name = "Assault Mecha"
 	limbs = list(
@@ -153,6 +156,9 @@
 		MECH_GREY_R_ARM = /datum/mech_limb/arm/assault,
 		MECH_GREY_L_ARM = /datum/mech_limb/arm/assault,
 	)
+
+/obj/vehicle/sealed/mecha/combat/greyscale/assault/noskill
+	mecha_flags = ADDING_ACCESS_POSSIBLE|CANSTRAFE|IS_ENCLOSED|HAS_HEADLIGHTS
 
 /obj/vehicle/sealed/mecha/combat/greyscale/vanguard
 	name = "Vanguard Mecha"

@@ -26,6 +26,10 @@
 /obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/prison/plate,
 /area/mainship/patrol_base/hanger)
+"aJ" = (
+/obj/effect/landmark/campaign/mech_spawner/heavy,
+/turf/open/floor/mainship/black,
+/area/mainship/patrol_base)
 "aL" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 10
@@ -333,6 +337,12 @@
 /obj/structure/window/framed/mainship/hull,
 /turf/open/floor/mainship/mono,
 /area/mainship/patrol_base/prep)
+"eO" = (
+/obj/effect/landmark/campaign/mech_spawner/heavy,
+/turf/open/floor/mainship/black{
+	dir = 1
+	},
+/area/mainship/patrol_base)
 "eP" = (
 /obj/structure/dropship_piece/two/weapon/leftleft{
 	dir = 1;
@@ -962,6 +972,12 @@
 	dir = 9
 	},
 /area/mainship/patrol_base/command)
+"ph" = (
+/obj/effect/landmark/campaign/mech_spawner/light,
+/turf/open/floor/mainship/black{
+	dir = 1
+	},
+/area/mainship/patrol_base)
 "pk" = (
 /obj/structure/table/mainship/nometal,
 /obj/machinery/computer/security,
@@ -1819,7 +1835,7 @@
 /obj/effect/turf_decal/warning_stripes/box/arrow{
 	dir = 4
 	},
-/obj/effect/landmark/campaign/mech_spawner,
+/obj/effect/landmark/campaign/mech_spawner/heavy,
 /turf/open/floor/mainship/black{
 	dir = 1
 	},
@@ -2586,7 +2602,7 @@
 /obj/effect/turf_decal/warning_stripes/box/arrow{
 	dir = 4
 	},
-/obj/effect/landmark/campaign/mech_spawner,
+/obj/effect/landmark/campaign/mech_spawner/heavy,
 /turf/open/floor/mainship/black,
 /area/mainship/patrol_base)
 "Lh" = (
@@ -2893,6 +2909,10 @@
 "Qq" = (
 /turf/open/floor/mainship/black,
 /area/mainship/patrol_base/barracks)
+"Qz" = (
+/obj/effect/landmark/campaign/mech_spawner/light,
+/turf/open/floor/mainship/black,
+/area/mainship/patrol_base)
 "QJ" = (
 /turf/open/floor/mainship/orange{
 	dir = 8
@@ -32025,13 +32045,13 @@ ef
 aQ
 ci
 cc
-Fb
+ph
 fV
 fV
 Ff
 fV
 fV
-NZ
+Qz
 cc
 ci
 XV
@@ -32267,13 +32287,13 @@ ef
 aQ
 ci
 cc
-Fb
+ph
 fV
 fV
 Ff
 fV
 fV
-NZ
+Qz
 cc
 ci
 XV
@@ -33962,11 +33982,11 @@ fV
 qB
 ur
 ta
-Fb
+eO
 fV
 HJ
 fV
-NZ
+aJ
 OJ
 OJ
 fV

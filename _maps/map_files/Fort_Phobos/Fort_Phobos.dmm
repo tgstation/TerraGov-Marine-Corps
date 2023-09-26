@@ -145,6 +145,10 @@
 /obj/structure/largecrate,
 /turf/open/floor/plating/ground/concrete/lines,
 /area/mainship/patrol_base/som)
+"bO" = (
+/obj/effect/landmark/campaign/mech_spawner/som/light,
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/patrol_base/som)
 "bP" = (
 /obj/effect/turf_decal/trimline/red/line{
 	dir = 1
@@ -1826,6 +1830,10 @@
 	dir = 4
 	},
 /turf/open/floor/mainship/mono,
+/area/mainship/patrol_base/som)
+"ys" = (
+/obj/effect/landmark/campaign/mech_spawner/som/heavy,
+/turf/open/floor/plating/ground/concrete,
 /area/mainship/patrol_base/som)
 "yw" = (
 /obj/structure/stairs/seamless{
@@ -9613,7 +9621,7 @@ Uk
 mr
 Aw
 Aw
-Zl
+ys
 Aw
 Aw
 Aw
@@ -9857,7 +9865,7 @@ Uk
 Uk
 vz
 cp
-Zl
+ys
 Aw
 yD
 oA
@@ -10101,7 +10109,7 @@ Uk
 Uk
 vz
 Aw
-Zl
+ys
 Aw
 xU
 sx
@@ -11687,7 +11695,7 @@ Uk
 Uk
 vz
 cp
-Zl
+bO
 Aw
 xg
 sB
@@ -11931,7 +11939,7 @@ Uk
 gW
 Aw
 Aw
-Zl
+bO
 Aw
 Aw
 Aw
@@ -12175,7 +12183,7 @@ Uk
 vz
 vz
 Aw
-Aw
+bO
 Aw
 Aw
 Aw

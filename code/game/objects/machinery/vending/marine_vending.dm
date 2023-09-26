@@ -1646,7 +1646,7 @@
 			/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/flamethrower = -1,
 			/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/rpg = -1,
 			/obj/item/mecha_parts/mecha_equipment/laser_sword = -1,
-			/obj/item/mecha_parts/mecha_equipment/weapon/energy/laser_spear = 1,
+			/obj/item/mecha_parts/mecha_equipment/weapon/energy/laser_spear = -1,
 		),
 		"Ammo" = list(
 			/obj/item/mecha_ammo/vendable/lmg = -1,
