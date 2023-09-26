@@ -25,8 +25,9 @@ GLOBAL_PROTECT(AdminProcCallHandler)
 
 /mob/proccall_handler/Initialize(mapload)
 	. = ..()
-	if(GLOB.AdminProcCallHandler)
+	if(GLOB.AdminProcCallHandler && GLOB.AdminProcCallHandler != src)
 		return INITIALIZE_HINT_QDEL
+	GLOB.AdminProcCallHandler = src
 
 /mob/proccall_handler/vv_edit_var(var_name, var_value)
 	if(GLOB.AdminProcCallHandler != src)
