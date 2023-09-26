@@ -44,7 +44,7 @@
 	name = "Captain's Cloak - Blue"
 
 /obj/item/storage/backpack/marine/satchel/officer_cloak_red
-	name = "Officer Cloak - Red"
+	name = "Officer Cloak"
 
 /obj/item/storage/backpack/marine/satchel/captain_cloak_red
-	name = "Captain's Cloak - Red"
+	name = "Captain's Cloak"
