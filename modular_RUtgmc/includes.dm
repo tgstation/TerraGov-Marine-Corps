@@ -124,6 +124,7 @@
 #include "code\controllers\subsystem\points.dm"
 #include "code\modules\reqs\supply.dm"
 #include "code\modules\projectiles\magazines\magazines.dm"
+#include "code\modules\projectiles\magazines\specialist.dm"
 #include "code\modules\projectiles\ammo_datums.dm"
 #include "code\modules\reqs\supplypacks.dm"
 #include "code\modules\projectiles\gun_attachables.dm"

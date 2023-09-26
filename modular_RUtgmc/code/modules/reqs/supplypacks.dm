@@ -164,3 +164,8 @@
 	contains = list(/obj/item/storage/holster/backholster/rlsadar/full)
 	cost = SADAR_PRICE + 150 //ammo price
 	available_against_xeno_only = TRUE
+
+/datum/supply_packs/weapons/minigun_powerpack
+	name = "SG-85 Minigun Powerpack"
+	contains = list(/obj/item/ammo_magazine/minigun_powerpack/smartgun)
+	cost = 150
