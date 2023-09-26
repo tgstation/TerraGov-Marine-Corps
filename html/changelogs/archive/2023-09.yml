@@ -199,3 +199,8 @@
   - bugfix: Fixed clicking the inventory hud element not transferring clicks to the
       item in the slot correctly (right clicking the slots now right clicks the item
       in the slot)
+2023-09-26:
+  AzonStarfall:
+  - qol: Standardized hazard stripes for dropship outlines across all ships.
+  Blundir:
+  - bugfix: fixed FC sheath side sprites
