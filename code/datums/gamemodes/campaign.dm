@@ -202,13 +202,6 @@
 	if(!GLOB.enter_allowed)
 		to_chat(usr, "<span class='warning'>Spawning currently disabled, please observe.<spawn>")
 		return
-	if(!ready_candidate.client.prefs.random_name)
-		var/name_to_check = ready_candidate.client.prefs.real_name
-		if(job_datum.job_flags & JOB_FLAG_SPECIALNAME)
-			name_to_check = job_datum.get_special_name(ready_candidate.client)
-		if(CONFIG_GET(flag/prevent_dupe_names) && GLOB.real_names_joined.Find(name_to_check))
-			to_chat(usr, "<span class='warning'>Someone has already joined the mission with this character name. Please pick another.<spawn>")
-			return
 	if(!SSjob.AssignRole(ready_candidate, job_datum, TRUE))
 		to_chat(usr, "<span class='warning'>Failed to assign selected role.<spawn>")
 		return
