@@ -4,11 +4,11 @@
 	json_config = 'code/datums/greyscale/json_configs/screwdriver.json'
 
 /datum/greyscale_config/screwdriver_inhand_left
-	icon_file = 'icons/obj/items/tools.dmi'
+	icon_file = 'icons/mob/inhands/equipment/tools_left.dmi'
 	json_config = 'code/datums/greyscale/json_configs/screwdriver_inhand_left.json'
 
 /datum/greyscale_config/screwdriver_inhand_right
-	icon_file = 'icons/obj/items/tools.dmi'
+	icon_file = 'icons/mob/inhands/equipment/tools_left.dmi'
 	json_config = 'code/datums/greyscale/json_configs/screwdriver_inhand_right.json'
 
 /datum/greyscale_config/pillbottle
