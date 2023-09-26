@@ -31,6 +31,11 @@
 	starting_faction_additional_rewards = "Severely degrade enemy fire support options in the future"
 	hostile_faction_additional_rewards = "Protect our fire support options so they can still be used in the future"
 
+/datum/campaign_mission/destroy_mission/fire_support_raid/load_mission()
+	. = ..()
+	for(var/i = 1 to objectives_total)
+		new /obj/item/explosive/plastique(get_turf(pick(GLOB.campaign_reward_spawners[starting_faction])))
+
 /datum/campaign_mission/destroy_mission/fire_support_raid/play_start_intro()
 	intro_message = list(
 		"starting_faction" = "[map_name]<br>" + "[GAME_YEAR]-[time2text(world.realtime, "MM-DD")] [stationTimestamp("hh:mm")]<br>" + "Locate and destroy all [objectives_total] [hostile_faction] fire support installations before further [hostile_faction] reinforcements can arrive. Good hunting!",

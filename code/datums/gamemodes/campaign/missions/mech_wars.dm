@@ -80,7 +80,8 @@
 	name = "Mech war"
 	mission_icon = "mech_war"
 	map_name = "Big Red"
-	map_file = '_maps/map_files/BigRed_v2 maps/BigRed_v2.dmm'
+	map_file = '_maps/map_files/BigRed_v2/BigRed_v2.dmm'
+	map_traits = list(ZTRAIT_AWAY = TRUE, ZTRAIT_SANDSTORM = TRUE)
 	map_light_colours = list(COLOR_MISSION_RED, COLOR_MISSION_RED, COLOR_MISSION_RED, COLOR_MISSION_RED)
 	map_light_levels = list(225, 150, 100, 75)
 

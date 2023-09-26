@@ -75,19 +75,34 @@
 	user.playsound_local(user, "sound/effects/CIC_order.ogg", 10, 1)
 	var/message
 	if(issensorcapturegamemode(SSticker.mode))
-		if(user.faction == FACTION_TERRAGOV)
-			message = "Reactivate all sensor towers, good luck team."
-		else
-			message = "Prevent reactivation of the sensor towers, glory to Mars!"
-	else if(user.faction == FACTION_TERRAGOV)
-		message = "Eliminate all hostile forces in the ao, good luck team."
-	else
-		message = "Eliminate the TerraGov imperialists in the ao, glory to Mars!"
+		switch(user.faction)
+			if(FACTION_TERRAGOV)
+				message = "Reactivate all sensor towers, good luck team."
+			if(FACTION_SOM)
+				message = "Prevent reactivation of the sensor towers, glory to Mars!"
+	else if(iscombatpatrolgamemode(SSticker.mode))
+		switch(user.faction)
+			if(FACTION_TERRAGOV)
+				message = "Eliminate all hostile forces in the ao, good luck team."
+			if(FACTION_SOM)
+				message = "Eliminate the TerraGov imperialists in the ao, glory to Mars!"
+	else if(iscampaigngamemode(SSticker.mode))
+		switch(user.faction)
+			if(FACTION_TERRAGOV)
+				message = "Stick together and achieve those objectives marines. Good luck."
+			if(FACTION_SOM)
+				message = "Remember your training marines, show those Terrans the strength of the SOM, glory to Mars!"
 
-	if(user.faction == FACTION_TERRAGOV)
-		user.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>OVERWATCH</u></span><br>" + message, /atom/movable/screen/text/screen_text/picture/potrait)
-	else
-		user.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>OVERWATCH</u></span><br>" + message, /atom/movable/screen/text/screen_text/picture/potrait/som_over)
+	if(!message)
+		return
+
+	switch(user.faction)
+		if(FACTION_TERRAGOV)
+			user.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>OVERWATCH</u></span><br>" + message, /atom/movable/screen/text/screen_text/picture/potrait)
+		if(FACTION_SOM)
+			user.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>OVERWATCH</u></span><br>" + message, /atom/movable/screen/text/screen_text/picture/potrait/som_over)
+		else
+			user.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>UNKNOWN</u></span><br>" + message, /atom/movable/screen/text/screen_text/picture/potrait/unknown)
 
 /obj/structure/patrol_point/attack_ghost(mob/dead/observer/user)
 	. = ..()
