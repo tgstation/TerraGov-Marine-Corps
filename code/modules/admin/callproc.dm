@@ -43,7 +43,7 @@ GLOBAL_PROTECT(AdminProcCallHandler)
 	if(GLOB.AdminProcCallHandler != src)
 		return ..()
 	if(!force)
-		#ifndef UNIT_TESTS
+		#ifdef UNIT_TESTS
 		stack_trace("Attempted deletion on [type] - [name], aborting.")
 		#endif
 		return QDEL_HINT_LETMELIVE
