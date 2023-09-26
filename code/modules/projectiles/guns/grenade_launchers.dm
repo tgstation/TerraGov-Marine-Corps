@@ -87,6 +87,15 @@ The Grenade Launchers
 	grenade_to_launch.throw_at(target, max_range, 3, (gun_user ? gun_user : loc))
 	if(fire_animation)
 		flick("[fire_animation]", src)
+	if(CHECK_BITFIELD(flags_gun_features, GUN_SMOKE_PARTICLES))
+		var/firing_angle = Get_Angle(user_turf, target)
+		var/x_component = sin(firing_angle) * 40
+		var/y_component = cos(firing_angle) * 40
+		var/obj/effect/abstract/particle_holder/gun_smoke = new(get_turf(src), /particles/firing_smoke)
+		gun_smoke.particles.velocity = list(x_component, y_component)
+		addtimer(VARSET_CALLBACK(gun_smoke.particles, count, 0), 5)
+		addtimer(VARSET_CALLBACK(gun_smoke.particles, drift, 0), 3)
+		QDEL_IN(gun_smoke, 0.6 SECONDS)
 	return TRUE
 
 /obj/item/weapon/gun/grenade_launcher/get_ammo_list()
