@@ -144,13 +144,16 @@
 
 ///clean dirty objects and remove cleanable decals
 /obj/machinery/bot/cleanbot/proc/clean(atom/movable/O as obj|mob)
+	var/turf/currentturf = get_turf(src)
 	if(istype(O, /obj/effect/decal/cleanable))
+		currentturf.wet_floor()
 		flick("cleanbot-c", src)
 		++counter
 		if(prob(15))
 			say(pick(sentences))
 		qdel(O)
 	else if(istype(O, /obj/item/trash) || istype(O, /obj/item/shard) || istype(O, /obj/item/ammo_casing) || istype(O, /obj/effect/turf_decal/tracks/wheels/bloody))
+		currentturf.wet_floor()
 		flick("cleanbot-c", src)
 		++counter
 		if(prob(15))
