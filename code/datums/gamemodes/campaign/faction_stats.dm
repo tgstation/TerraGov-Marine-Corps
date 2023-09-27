@@ -29,6 +29,8 @@ GLOBAL_LIST_INIT(campaign_default_purchasable_assets, list(
 		//datum/campaign_reward/bonus_job/combat_robots,
 		/datum/campaign_reward/equipment/medkit_basic,
 		/datum/campaign_reward/equipment/materials_pack,
+		/datum/campaign_reward/equipment/rifle_pack,
+		/datum/campaign_reward/equipment/scout_rifle,
 	),
 	FACTION_SOM = list(
 		/datum/campaign_reward/fire_support/som_cas,
@@ -38,6 +40,8 @@ GLOBAL_LIST_INIT(campaign_default_purchasable_assets, list(
 		/datum/campaign_reward/equipment/gorgon_armor,
 		/datum/campaign_reward/equipment/medkit_basic/som,
 		/datum/campaign_reward/equipment/materials_pack,
+		/datum/campaign_reward/equipment/som_weapons,
+		/datum/campaign_reward/equipment/caliver,
 	),
 ))
 ///The weighted potential mission pool by faction

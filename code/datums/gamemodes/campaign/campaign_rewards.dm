@@ -164,7 +164,7 @@
 /datum/campaign_reward/equipment/materials_pack
 	name = "Construction supplies"
 	desc = "Metal, plasteel and sandbags"
-	detailed_desc = "Activatable by squad leaders. A significant quantity of metal, plasteel and sandbags. Perfect for fortifying a defensive position"
+	detailed_desc = "Activatable by squad leaders. A significant quantity of metal, plasteel and sandbags. Perfect for fortifying a defensive position."
 	ui_icon = "materials"
 	uses = 1
 	cost = 4
@@ -178,15 +178,48 @@
 /datum/campaign_reward/equipment/rifle_pack
 	name = "Standard weapon resupply"
 	desc = "Rifles and ammo"
-	detailed_desc = "A number of standard rifles and ammo to match"
-	ui_icon = "materials"
+	detailed_desc = "A number of standard rifles and ammo to match."
 	uses = 1
-	cost = 4
+	cost = 2
 	equipment_to_spawn = list(
-		/obj/item/storage/box/crate/loot/materials_pack,
-		/obj/item/tool/shovel/etool,
-		/obj/item/tool/shovel/etool,
-		/obj/item/tool/shovel/etool,
+		/obj/effect/supply_drop/standard_carbine,
+		/obj/effect/supply_drop/standard_rifle,
+		/obj/effect/supply_drop/combat_rifle,
+		/obj/effect/supply_drop/laser_rifle,
+		/obj/effect/supply_drop/standard_shotgun,
+	)
+
+/datum/campaign_reward/equipment/scout_rifle
+	name = "Scout rifle"
+	desc = "BR-8"
+	detailed_desc = "A BR-8 scout rifle and ammo. An accurate, powerful rifle with integrated IFF."
+	uses = 2
+	cost = 6
+	equipment_to_spawn = list(
+		/obj/effect/supply_drop/scout,
+	)
+
+/datum/campaign_reward/equipment/som_weapons
+	name = "SOM ballistic weaponry"
+	desc = "Standard SOM ballistic weapons"
+	detailed_desc = "A set of SOM ballistic weapons and ammo."
+	uses = 1
+	cost = 2
+	equipment_to_spawn = list(
+		/obj/effect/supply_drop/som_rifle,
+		/obj/effect/supply_drop/som_smg,
+		/obj/effect/supply_drop/som_shotgun,
+		/obj/effect/supply_drop/som_mg,
+	)
+
+/datum/campaign_reward/equipment/caliver
+	name = "VX-33 rifle"
+	desc = "Volkite caliver"
+	detailed_desc = "A volkite caliver and ammo. An accurate, powerful rifle able to deflagrate targets, making it deadly against tightly packed opponents."
+	uses = 2
+	cost = 6
+	equipment_to_spawn = list(
+		/obj/effect/supply_drop/scout,
 	)
 
 /datum/campaign_reward/mech
