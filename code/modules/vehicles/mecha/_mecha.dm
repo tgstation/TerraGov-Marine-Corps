@@ -478,6 +478,8 @@
 	if(LAZYACCESS(modifiers, MIDDLE_CLICK))
 		set_safety(user)
 		return COMSIG_MOB_CLICK_CANCELED
+	if(modifiers[SHIFT_CLICK]) //Allows things to be examined.
+		return target.mech_shift_click(src, user)
 	if(weapons_safety)
 		return
 	if(isAI(user)) //For AIs: If safeties are off, use mech functions. If safeties are on, use AI functions.
