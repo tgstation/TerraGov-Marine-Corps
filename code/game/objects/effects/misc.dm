@@ -43,7 +43,6 @@
 /obj/effect/soundplayer
 	anchored = TRUE
 	opacity = FALSE
-	density = TRUE
 	icon_state = "speaker"
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	var/datum/looping_sound/alarm_loop/deltalarm

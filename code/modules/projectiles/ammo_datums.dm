@@ -426,7 +426,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage_falloff = 0.75
 
 /datum/ammo/bullet/pistol/superheavy/on_hit_mob(mob/M,obj/projectile/P)
-	staggerstun(M, P, stagger = 2 SECONDS, slowdown = 0.5, knockback = 1)
+	staggerstun(M, P, stagger = 0.5 SECONDS, slowdown = 0.5, knockback = 1)
 
 /datum/ammo/bullet/pistol/superheavy/derringer
 	handful_amount = 2
@@ -3292,7 +3292,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	penetration = 5
 	shell_speed = 1.5
 	flags_ammo_behavior = AMMO_ENERGY|AMMO_INCENDIARY|AMMO_EXPLOSIVE
-	bullet_color = COLOR_VIBRANT_LIME
+	bullet_color = LIGHT_COLOR_ELECTRIC_GREEN
 
 	///Fire burn time
 	var/heat = 12
@@ -3365,6 +3365,9 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	accuracy_var_low = 3
 	accuracy_var_high = 3
 	fire_burst_damage = 20
+
+/datum/ammo/energy/volkite/medium/custom
+	deflagrate_multiplier = 2
 
 /datum/ammo/energy/volkite/heavy
 	max_range = 35
