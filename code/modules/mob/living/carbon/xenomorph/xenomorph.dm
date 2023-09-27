@@ -159,7 +159,7 @@
 		if(12001 to INFINITY)
 			rank_name = "Ancient"
 		else
-			rank_name = ""
+			rank_name = "Young"
 	var/prefix = (hive.prefix || xeno_caste.upgrade_name) ? "[hive.prefix][xeno_caste.upgrade_name] " : ""
 	name = prefix + rank_name + " [xeno_caste.display_name] ([nicknumber])"
 
@@ -176,6 +176,21 @@
 			return 0
 		if(XENO_UPGRADE_PRIMO)
 			return 1
+
+///Returns the playtime as a number, used for rank icons
+/mob/living/carbon/xenomorph/proc/playtime_as_number()
+	var/playtime_mins = client?.get_exp(xeno_caste.caste_name)
+	switch(playtime_mins)
+		if(0 to 600)
+			return 0
+		if(601 to 3000)
+			return 1
+		if(3001 to 12000)
+			return 2
+		if(12001 to INFINITY)
+			return 3
+		else
+			return 0
 
 /mob/living/carbon/xenomorph/proc/upgrade_next()
 	switch(upgrade)
