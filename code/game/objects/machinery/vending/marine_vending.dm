@@ -1680,7 +1680,6 @@
 			/obj/item/mecha_parts/mecha_equipment/energy_optimizer = -1,
 			/obj/item/mecha_parts/mecha_equipment/melee_core = -1,
 			/obj/item/mecha_parts/mecha_equipment/ability/dash = -1,
-			/obj/item/mecha_parts/mecha_equipment/ability/zoom = -1,
 			/obj/item/mecha_parts/mecha_equipment/ability/smoke/cloak_smoke = -1,
 		),
 	)
