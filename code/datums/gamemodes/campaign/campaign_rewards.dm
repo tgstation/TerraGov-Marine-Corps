@@ -432,8 +432,11 @@
 	if(!.)
 		return
 
+	var/datum/game_mode/hvh/campaign/mode = SSticker.mode
+	var/z_level = mode?.current_mission?.mission_z_level.z_value
+
 	for(var/obj/structure/drop_pod_launcher/launcher AS in GLOB.droppod_bays)
-		launcher.refresh_pod()
+		launcher.refresh_pod(z_level)
 	to_chat(faction.faction_leader, span_warning("All drop pods have been restocked."))
 	return
 

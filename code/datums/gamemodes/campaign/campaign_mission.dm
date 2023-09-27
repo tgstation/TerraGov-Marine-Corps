@@ -13,6 +13,8 @@
 	var/list/map_light_colours = list(COLOR_WHITE, COLOR_WHITE, COLOR_WHITE, COLOR_WHITE)
 	///Light levels for the map
 	var/list/map_light_levels = list(200, 100, 75, 50)
+	///The actual z-level the mission is played on
+	var/datum/space_level/mission_z_level
 	///Optional delay for each faction to be able to deploy, typically used in attacker/defender missions
 	var/list/shutter_open_delay = list(
 		"starting_faction" = 0,
@@ -132,6 +134,8 @@
 
 /datum/campaign_mission/Destroy(force, ...)
 	STOP_PROCESSING(SSslowprocess, src)
+	mission_z_level = null
+	mode = null
 	return ..()
 
 /datum/campaign_mission/process()
@@ -149,10 +153,10 @@
 
 ///Generates a new z level for the mission
 /datum/campaign_mission/proc/load_map()
-	var/datum/space_level/new_level = load_new_z_level(map_file, map_name, TRUE, map_traits)
-	set_z_lighting(new_level.z_value, map_light_colours[1], map_light_levels[1], map_light_colours[2], map_light_levels[2], map_light_colours[3], map_light_levels[3], map_light_colours[4], map_light_levels[4])
+	mission_z_level = load_new_z_level(map_file, map_name, TRUE, map_traits)
+	set_z_lighting(mission_z_level.z_value, map_light_colours[1], map_light_levels[1], map_light_colours[2], map_light_levels[2], map_light_colours[3], map_light_levels[3], map_light_colours[4], map_light_levels[4])
 
-	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_CAMPAIGN_MISSION_LOADED, new_level.z_value)
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_CAMPAIGN_MISSION_LOADED, mission_z_level.z_value)
 
 ///Generates the mission brief for the mission if it needs to be late loaded
 /datum/campaign_mission/proc/load_mission_brief()
