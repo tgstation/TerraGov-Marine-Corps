@@ -66,7 +66,9 @@
 	var/max_game_time = null
 	///Whether the max game time has been reached
 	var/max_time_reached = FALSE
-	///Delay from shutter drop until game timer starts
+	///Delay before the mission actually starts
+	var/mission_start_delay = 3 MINUTES
+	///Delay from shutter drop until game TIMER starts
 	var/game_timer_delay = 1 MINUTES //test num
 	///Map text intro message for the start of the mission
 	var/list/intro_message = list(
@@ -143,7 +145,7 @@
 	play_selection_intro()
 	load_map()
 	addtimer(CALLBACK(src, TYPE_PROC_REF(/datum/campaign_mission, load_objective_description)), 5 SECONDS) //will be called before the map is entirely loaded otherwise, but this is cringe
-	addtimer(CALLBACK(src, TYPE_PROC_REF(/datum/campaign_mission, start_mission)), 2 MINUTES)
+	addtimer(CALLBACK(src, TYPE_PROC_REF(/datum/campaign_mission, start_mission)), mission_start_delay)
 
 ///Generates a new z level for the mission
 /datum/campaign_mission/proc/load_map()

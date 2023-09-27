@@ -9,6 +9,7 @@
 	starting_faction_objective_description = null
 	hostile_faction_objective_description = null
 	max_game_time = 20 MINUTES
+	mission_start_delay = 5 MINUTES //since there is actual mech prep time required
 	victory_point_rewards = list(
 		MISSION_OUTCOME_MAJOR_VICTORY = list(3, 0),
 		MISSION_OUTCOME_MINOR_VICTORY = list(2, 0),
