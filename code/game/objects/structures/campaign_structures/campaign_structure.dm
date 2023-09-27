@@ -106,7 +106,7 @@
 	name = "GENERIC CAPTURABLE OBJECTIVE"
 	resistance_flags = RESIST_ALL
 	///Channel time to capture or activate this objective
-	var/capture_time = 10 SECONDS
+	var/capture_time = 15 SECONDS
 	///Special capture behavior flags for this objectives
 	var/capture_flags = NONE
 	///Who controls this objective. Mainly used for objectives that can be recaptured
