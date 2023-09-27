@@ -484,8 +484,6 @@
 		return
 	if(isAI(user)) //For AIs: If safeties are off, use mech functions. If safeties are on, use AI functions.
 		. = COMSIG_MOB_CLICK_CANCELED
-	if(modifiers[SHIFT_CLICK]) //Allows things to be examined.
-		return target.mech_shift_click(src, user)
 	if(!isturf(target) && !isturf(target.loc)) // Prevents inventory from being drilled
 		return
 	if(completely_disabled || is_currently_ejecting || (mecha_flags & CANNOT_INTERACT))
