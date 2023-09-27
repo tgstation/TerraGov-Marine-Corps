@@ -321,13 +321,13 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 	if(!istype(current_mode))
 		CRASH("campaign_mission loaded without campaign game mode")
 
-	var/mob/user = usr
-	if(user != faction_leader)
-		to_chat(user, "<span class='warning'>Only your faction's commander can do this.")
-		return
+	var/mob/living/user = usr
 
 	switch(action)
 		if("set_attrition_points")
+			if(user != faction_leader)
+				to_chat(user, "<span class='warning'>Only your faction's commander can do this.")
+				return
 			if(current_mode.current_mission?.mission_state != MISSION_STATE_NEW)
 				to_chat(user, "<span class='warning'>Current mission already ongoing, unable to assign more personnel at this time.")
 				return
@@ -344,6 +344,9 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 			return TRUE
 
 		if("set_next_mission")
+			if(user != faction_leader)
+				to_chat(user, "<span class='warning'>Only your faction's commander can do this.")
+				return
 			var/new_mission = text2path(params["new_mission"])
 			if(!new_mission)
 				return
@@ -367,6 +370,13 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 			if(!faction_rewards[selected_reward])
 				return
 			var/datum/campaign_reward/choice = faction_rewards[selected_reward]
+			if(user != faction_leader)
+				if(!(choice.reward_flags & REWARD_SL_AVAILABLE))
+					to_chat(user, "<span class='warning'>Only your faction's commander can do this.")
+					return
+				if(!(ismarineleaderjob(user.job) || issommarineleaderjob(user.job) || ismarinecommandjob(user.job) || issommarinecommandjob(user.job)))
+					to_chat(user, "<span class='warning'>Only your faction's leaders can do this.")
+					return
 			if(!choice.activated_effect())
 				return
 			for(var/mob/living/carbon/human/faction_member AS in GLOB.alive_human_list_faction[faction])
@@ -376,6 +386,9 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 			return TRUE
 
 		if("purchase_reward")
+			if(user != faction_leader)
+				to_chat(user, "<span class='warning'>Only your faction's commander can do this.")
+				return
 			var/datum/campaign_reward/selected_reward = text2path(params["selected_reward"])
 			if(!selected_reward)
 				return

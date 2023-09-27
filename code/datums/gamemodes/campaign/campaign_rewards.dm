@@ -19,6 +19,8 @@
 #define REWARD_ACTIVE (1<<6)
 ///debuff, used for UI purposes
 #define REWARD_DEBUFF (1<<7)
+///SL's can activate this reward
+#define REWARD_SL_AVAILABLE (1<<8)
 
 /datum/campaign_reward
 	///Name of this reward
@@ -86,6 +88,7 @@
 
 //Parent for all 'spawn stuff' rewards
 /datum/campaign_reward/equipment
+	reward_flags = REWARD_ACTIVATED_EFFECT|REWARD_SL_AVAILABLE
 	///list of objects to spawn when this reward is activated
 	var/list/obj/equipment_to_spawn = list()
 
@@ -102,10 +105,10 @@
 /datum/campaign_reward/equipment/power_armor
 	name = "B18 consignment"
 	desc = "Three sets of B18 power armor"
-	detailed_desc = "Your battalion has been assigned a number of B18 power armor sets, available at your request. B18 is TGMC's premier infantry armor, providing superior protection, mobility and an advanced automedical system."
+	detailed_desc = "Activatable by squad leaders. Your battalion has been assigned a number of B18 power armor sets, available at your request. B18 is TGMC's premier infantry armor, providing superior protection, mobility and an advanced automedical system."
+	ui_icon = "b18"
 	uses = 3
 	cost = 15
-	ui_icon = "b18"
 	equipment_to_spawn = list(
 		/obj/item/clothing/head/helmet/marine/specialist,
 		/obj/item/clothing/gloves/marine/specialist,
@@ -115,10 +118,10 @@
 /datum/campaign_reward/equipment/gorgon_armor
 	name = "Gorgon consignment"
 	desc = "Five sets of Gorgon power armor"
-	detailed_desc = "Your battalion has been assigned a number of Gorgon power armor sets, available at your request. Gorgon armor is the SOM's elite infantry armor, providing superior protection and an automedical system without significantly compromising on speed."
+	detailed_desc = "Activatable by squad leaders. Your battalion has been assigned a number of Gorgon power armor sets, available at your request. Gorgon armor is the SOM's elite infantry armor, providing superior protection and an automedical system without significantly compromising on speed."
+	ui_icon = "gorgon"
 	uses = 5
 	cost = 10
-	ui_icon = "gorgon"
 	equipment_to_spawn = list(
 		/obj/item/clothing/head/modular/som/leader,
 		/obj/item/clothing/suit/modular/som/heavy/leader/valk,
@@ -127,7 +130,7 @@
 /datum/campaign_reward/equipment/medkit_basic
 	name = "Medical supplies"
 	desc = "An assortment of medical supplies"
-	detailed_desc = "An assortment of basic medical supplies and some stimulants."
+	detailed_desc = "Activatable by squad leaders. An assortment of basic medical supplies and some stimulants."
 	ui_icon = "medkit"
 	uses = 3
 	cost = 1
@@ -161,7 +164,7 @@
 /datum/campaign_reward/equipment/materials_pack
 	name = "Construction supplies"
 	desc = "Metal, plasteel and sandbags"
-	detailed_desc = "A significant quantity of metal, plasteel and sandbags. Perfect for fortifying a defensive position"
+	detailed_desc = "Activatable by squad leaders. A significant quantity of metal, plasteel and sandbags. Perfect for fortifying a defensive position"
 	ui_icon = "materials"
 	uses = 1
 	cost = 4
@@ -537,8 +540,9 @@
 /datum/campaign_reward/fire_support/mortar
 	name = "Mortar support"
 	desc = "Mortar teams are activated to provide firesupport for this mission"
-	detailed_desc = "A limited number of mortar strikes are available via tactical binoculars for this mission. Excellent for disrupting dug in enemy positions."
+	detailed_desc = "Activatable by squad leaders. A limited number of mortar strikes are available via tactical binoculars for this mission. Excellent for disrupting dug in enemy positions."
 	ui_icon = "mortar"
+	reward_flags = REWARD_ACTIVATED_EFFECT|REWARD_ACTIVE_MISSION_ONLY|REWARD_SL_AVAILABLE
 	cost = 6
 	fire_support_types = list(
 		FIRESUPPORT_TYPE_HE_MORTAR = 6,
@@ -550,8 +554,9 @@
 /datum/campaign_reward/fire_support/som_mortar
 	name = "Mortar support"
 	desc = "Mortar teams are activated to provide firesupport for this mission"
-	detailed_desc = "A limited number of mortar strikes are available via tactical binoculars for this mission. Excellent for disrupting dug in enemy positions."
+	detailed_desc = "Activatable by squad leaders. A limited number of mortar strikes are available via tactical binoculars for this mission. Excellent for disrupting dug in enemy positions."
 	ui_icon = "mortar"
+	reward_flags = REWARD_ACTIVATED_EFFECT|REWARD_ACTIVE_MISSION_ONLY|REWARD_SL_AVAILABLE
 	cost = 6
 	fire_support_types = list(
 		FIRESUPPORT_TYPE_HE_MORTAR_SOM = 6,
