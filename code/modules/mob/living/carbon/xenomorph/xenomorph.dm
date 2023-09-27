@@ -154,9 +154,9 @@
 			rank_name = "Young"
 		if(601 to 3000)
 			rank_name = "Mature"
-		if(3001 to 12000)
+		if(3001 to 9000)
 			rank_name = "Elder"
-		if(12001 to INFINITY)
+		if(9001 to INFINITY)
 			rank_name = "Ancient"
 		else
 			rank_name = "Young"
@@ -185,9 +185,9 @@
 			return 0
 		if(601 to 3000)
 			return 1
-		if(3001 to 12000)
+		if(3001 to 9000)
 			return 2
-		if(12001 to INFINITY)
+		if(9001 to INFINITY)
 			return 3
 		else
 			return 0
