@@ -121,3 +121,7 @@
 		if(sucked.stat != CONSCIOUS)
 			qdel(sucked)
 			counter++
+
+/obj/machinery/bot/roomba/Destroy()
+	. = ..()
+	UnregisterSignal(src, COMSIG_MOVABLE_MOVED)

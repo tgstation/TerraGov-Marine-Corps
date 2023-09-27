@@ -1,6 +1,6 @@
 /obj/machinery/bot
 	name = "generic utility robot"
-	desc = "a generic utility robot, you shouldn't be seeing this in game. If you do ahelp."
+	desc = "a generic utility robot, ahelp if you see this in game."
 	icon = 'icons/obj/aibots.dmi'
 	density = FALSE
 	anchored = FALSE
@@ -25,7 +25,6 @@
 	var/deactivation_animation = null
 	///icon to set while active
 	var/active_icon_state = null
-
 
 /obj/machinery/bot/Initialize(mapload)
 	. = ..()
@@ -67,6 +66,7 @@
 /obj/machinery/bot/examine(mob/user, distance, infix, suffix)
 	. = ..()
 	. += "A panel on the top says it has cleaned [counter] items!"
+	. += "It is currently [is_active ? "on" : "off"]."
 
 /obj/machinery/bot/proc/reactivate()
 	stuck_counter = 0
@@ -95,41 +95,40 @@
 	switch(tgui_alert(user, "Do you you want to turn the [src] [is_active ? "off" : "on"]?" , "Cleanbot activation", list("No", "Yes")))
 		if("Yes")
 			if(is_active)
-				if(length(shutdownsentences))
-					say(pick(shutdownsentences))
-				is_active = FALSE
-				stop_processing()
+				bot_shutdown(user)
 			else
-				if(length(awakeningsentences))
-					say(pick(awakeningsentences))
-				is_active = TRUE
-				start_processing()
+				bot_startup(user)
 
 /obj/machinery/bot/attack_ai(mob/user)
 	if(!alter_operating_mode)
 		to_chat(user, "This robot has a firewall and cannot be remotely accessed.")
 		return
 	if(is_active)
-		balloon_alert_to_viewers("Powers off")
-		is_active = FALSE
-		if(deactivation_animation)
-			flick("[deactivation_animation]", src)
-		if(length(shutdownsentences))
-			say(pick(shutdownsentences))
-		icon_state = "[initial(icon_state)]"
-		stop_processing()
+		bot_shutdown(user)
 	else
-		balloon_alert_to_viewers("Powers on")
-		is_active = TRUE
-		if(activation_animation)
-			flick("[activation_animation]", src)
-		if(length(awakeningsentences))
-			say(pick(awakeningsentences))
-		say(pick(awakeningsentences))
-		icon_state = active_icon_state
-		start_processing()
+		bot_startup(user)
 
-//these bots are mostly for decoration, you can't turn them on by default
+/obj/machinery/bot/proc/bot_shutdown(mob/living/user)
+	icon_state = "[initial(icon_state)]"
+	balloon_alert_to_viewers("Powers off")
+	if(deactivation_animation)
+		flick("[deactivation_animation]", src)
+	if(length(shutdownsentences))
+		say(pick(shutdownsentences))
+	is_active = FALSE
+	stop_processing()
+
+/obj/machinery/bot/proc/bot_startup(mob/living/user)
+	icon_state = active_icon_state
+	balloon_alert_to_viewers("Powers on")
+	if(activation_animation)
+		flick("[activation_animation]", src)
+	if(length(awakeningsentences))
+		say(pick(awakeningsentences))
+	is_active = TRUE
+	start_processing()
+
+//these bots are mostly for decoration, you can't turn them on and they have no behavior aside from randomly moving
 /obj/machinery/bot/medbot
 	name = "Medibot"
 	desc = "A little medical robot. He looks somewhat underwhelmed."

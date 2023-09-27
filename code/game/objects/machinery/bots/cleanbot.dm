@@ -1,7 +1,7 @@
 /// A medical bot designed to clean up blood and other trash that accumulates in medbay
 /obj/machinery/bot/cleanbot
 	name = "Nanotrasen cleanbot"
-	desc = "A robot cleaning automaton, an offshoot of the trash-cleaning roomba . The cleanbot is designed to clean dirt and blood from floors, and thankfully it does not touch items. It has an off and on switch."
+	desc = "A robot cleaning automaton, an offshoot of the trash-cleaning roomba. The cleanbot is designed to clean dirt and blood from floors, and thankfully it does not touch items. It has an off and on switch."
 	icon = 'icons/obj/aibots.dmi'
 	icon_state = "cleanbot0"
 	density = FALSE
@@ -146,6 +146,7 @@
 /obj/machinery/bot/cleanbot/proc/clean(atom/movable/O as obj|mob)
 	var/turf/currentturf = get_turf(src)
 	if(istype(O, /obj/effect/decal/cleanable))
+		playsound(loc, 'sound/effects/slosh.ogg', 25, 1)
 		currentturf.wet_floor()
 		flick("cleanbot-c", src)
 		++counter
@@ -153,6 +154,7 @@
 			say(pick(sentences))
 		qdel(O)
 	else if(istype(O, /obj/item/trash) || istype(O, /obj/item/shard) || istype(O, /obj/item/ammo_casing) || istype(O, /obj/effect/turf_decal/tracks/wheels/bloody))
+		playsound(loc, 'sound/effects/slosh.ogg', 25, 1)
 		currentturf.wet_floor()
 		flick("cleanbot-c", src)
 		++counter
@@ -161,3 +163,7 @@
 		qdel(O)
 	else
 		O.clean_blood()
+
+/obj/machinery/bot/cleanbot/Destroy()
+	. = ..()
+	UnregisterSignal(src, COMSIG_MOVABLE_MOVED)
