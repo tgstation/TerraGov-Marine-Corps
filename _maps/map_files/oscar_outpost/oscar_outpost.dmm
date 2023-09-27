@@ -3720,7 +3720,7 @@
 /turf/open/floor/tile/dark,
 /area/oscar_outpost)
 "yQ" = (
-/obj/machinery/roomba,
+/obj/machinery/bot/roomba,
 /obj/effect/ai_node,
 /obj/structure/cable,
 /turf/open/floor/tile/dark,

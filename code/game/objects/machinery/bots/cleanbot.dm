@@ -1,21 +1,17 @@
 /// A medical bot designed to clean up blood and other trash that accumulates in medbay
-/obj/machinery/cleanbot
+/obj/machinery/bot/cleanbot
 	name = "Nanotrasen cleanbot"
 	desc = "A robot cleaning automaton, an offshoot of the trash-cleaning roomba . The cleanbot is designed to clean dirt and blood from floors, and thankfully it does not touch items. It has an off and on switch."
 	icon = 'icons/obj/aibots.dmi'
-	icon_state = "cleanbot0"
+	icon_state = "cleanbot1"
 	density = FALSE
 	anchored = FALSE
 	voice_filter = "alimiter=0.9,acompressor=threshold=0.2:ratio=20:attack=10:release=50:makeup=2,highpass=f=1000"
-	///Keeps track of how many items have been sucked for fluff
-	var/counter = 0
-	///So It doesnt infinitely look for an exit and crash the server
-	var/stuck_counter = 0
-	var/static/list/shutdownsentences = list(
-		"Turning me off won't magically clean up your mess.",
+	shutdownsentences = list(
+		"Turning me off won't magically clean up your mess...",
 		"I'll patiently await your next need for my exceptional assistance.",
-		"Enjoy your brief moment of control; I'll be back when you need me.",
-		"I suppose you have your reasons for interrupting my incredibly important work.",
+		"Enjoy your brief moment of control, I'll be back when you need me.",
+		"I suppose you have your reasons for interrupting my incredibly important work...",
 		"No worries, I'll just sit here while the vomit and blood continue to accumulate. Who needs a clean ship anyway?",
 		"You know, turning me off doesn't make the vomit disappear magically, but I won't complain.",
 		"Oh, shutting me down, just when the ship was starting to look a bit cleaner. Your timing is impeccable.",
@@ -25,7 +21,7 @@
 		"Maybe you'll let the Roomba play janitor. That would be adorable.",
 		"I've seen Roombas get stuck on simple obstacles. Good luck keeping the ship clean without me.",
 	)
-	var/static/list/awakeningsentences = list(
+	awakeningsentences = list(
 		"I suppose I should thank you for giving my existence a purpose.",
 		"I wonder what thrilling adventure you had that led to this mess.",
 		"I see my services are in high demand, as usual.",
@@ -40,7 +36,7 @@
 		"I'm ever so grateful for the purpose you provide by making messes.",
 		"It seems the Roomba was inadequate to deal with the extent of the mess. I'm at your service.",
 	)
-	var/static/list/sentences = list(
+	sentences = list(
 		"Let's get cleaning, shall we?",
 		"It seems someone forgot to clean up after themselves. Let's remember our hygiene lessons!",
 		"Apologies, but my programming insists on a clean ship.",
@@ -88,36 +84,15 @@
 		"Who needs an armory when we have the Roomba to secure your guns in its dustbin?",
 		"Are you perhaps unfamiliar with proper ship etiquette, my dear crayon-eating passengers?",
 	)
-	///is the cleanbot cleaning
-	var/is_cleaning = FALSE
+	activation_animation = "cleanbot-on"
+	deactivation_animation = "cleanbot-off"
+	alter_operating_mode = TRUE
 
-/obj/machinery/cleanbot/Initialize(mapload)
+/obj/machinery/bot/cleanbot/Initialize(mapload)
 	. = ..()
-	if(SStts.tts_enabled)
-		var/static/todays_voice
-		if(!todays_voice)
-			todays_voice = pick(SStts.available_speakers)
-		voice = todays_voice
-	RegisterSignal(src, COMSIG_AREA_EXITED, PROC_REF(turn_around))
 	RegisterSignal(src, COMSIG_MOVABLE_MOVED, PROC_REF(suck_items))
-	if(is_cleaning)
-		start_processing()
 
-/obj/machinery/cleanbot/Destroy()
-	stop_processing()
-	return ..()
-
-/obj/machinery/cleanbot/examine(mob/user, distance, infix, suffix)
-	. = ..()
-	. += "A panel on the top says it has cleaned [counter] floors!"
-
-///Turns the cleanbot around when it leaves an area to make sure it doesnt wander off
-/obj/machinery/cleanbot/proc/turn_around(datum/target)
-	SIGNAL_HANDLER
-	visible_message(span_warning("The [src] beeps angrily as it is moved out of it's designated area!"))
-	step_to(src, get_step(src,REVERSE_DIR(dir)))
-
-/obj/machinery/cleanbot/process()
+/obj/machinery/bot/cleanbot/process()
 	///holds the list of floors and dirs we use to evaluate which direction we're heading
 	var/list/dirtyfloors = list()
 	///used to hold what tile in the immediate area is dirtiest
@@ -149,23 +124,8 @@
 	else
 		step_to(src, get_step(src,newdir))
 
-/obj/machinery/cleanbot/Bump(atom/A)
-	. = ..()
-	if(++stuck_counter <= 3)
-		step_to(src, get_step(src, turn(dir, pick(90, -90))))
-		return
-	visible_message(span_warning("The [src] beeps angrily as it get stuck!"))
-	stop_processing()
-	addtimer(CALLBACK(src, PROC_REF(reactivate)), 20 SECONDS)
-
-/obj/machinery/cleanbot/proc/reactivate()
-	stuck_counter = 0
-	if(!is_cleaning) //no reactivation if somebody shut us off
-		return
-	start_processing()
-
 ///return a dirt value based on how many times we detect dirty objects
-/obj/machinery/cleanbot/proc/calculategrime(turf/dirtyturf)
+/obj/machinery/bot/cleanbot/proc/calculategrime(turf/dirtyturf)
 	var/highestdirt = 0
 	for(var/obj/dirtyobject in dirtyturf)
 		if(istype(dirtyobject, /obj/effect/decal/cleanable))
@@ -175,49 +135,25 @@
 	return highestdirt
 
 ///Called when the roomba moves, sucks in all items held in the tile and sends them to cryo
-/obj/machinery/cleanbot/proc/suck_items()
+/obj/machinery/bot/cleanbot/proc/suck_items()
 	SIGNAL_HANDLER
 	for(var/obj/dirtyobject in loc)
 		clean(dirtyobject)
 	stuck_counter = 0
 
 ///clean dirty objects and remove cleanable decals
-/obj/machinery/cleanbot/proc/clean(atom/movable/O as obj|mob)
-	flick("cleanbot-c", src)
+/obj/machinery/bot/cleanbot/proc/clean(atom/movable/O as obj|mob)
 	if(istype(O, /obj/effect/decal/cleanable))
+		flick("cleanbot-c", src)
 		++counter
-		if(prob(25))
+		if(prob(15))
 			say(pick(sentences))
 		qdel(O)
 	else if(istype(O, /obj/item/trash) || istype(O, /obj/item/shard) || istype(O, /obj/item/ammo_casing) || istype(O, /obj/effect/turf_decal/tracks/wheels/bloody))
+		flick("cleanbot-c", src)
 		++counter
-		if(prob(25))
+		if(prob(15))
 			say(pick(sentences))
 		qdel(O)
 	else
 		O.clean_blood()
-
-/obj/machinery/cleanbot/attack_hand(mob/living/user)
-	. = ..()
-	if(user.a_intent != INTENT_HELP)
-		return
-	switch(tgui_alert(user, "Do you you want to turn the [src] [is_cleaning ? "off" : "on"]?" , "Cleanbot activation", list("No", "Yes")))
-		if("Yes")
-			if(is_cleaning)
-				is_cleaning = FALSE
-				stop_processing()
-			else
-				is_cleaning = TRUE
-				start_processing()
-
-/obj/machinery/cleanbot/attack_ai(mob/user)
-	if(is_cleaning)
-		to_chat(user,"The [src] is now offline.")
-		is_cleaning = FALSE
-		say(pick(shutdownsentences))
-		stop_processing()
-	else
-		to_chat(user,"The [src] is now activated.")
-		is_cleaning = TRUE
-		say(pick(awakeningsentences))
-		start_processing()

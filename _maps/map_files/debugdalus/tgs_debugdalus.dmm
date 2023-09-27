@@ -2478,7 +2478,7 @@
 /turf/open/floor/mainship,
 /area/mainship/shipboard/weapon_room)
 "jPH" = (
-/obj/machinery/cleanbot,
+/obj/machinery/bot/cleanbot,
 /turf/open/floor/mainship,
 /area/mainship/medical/medical_science)
 "jRy" = (
