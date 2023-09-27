@@ -1,7 +1,6 @@
 ///Default assets a faction starts with
 GLOBAL_LIST_INIT(campaign_default_assets, list(
 	FACTION_TERRAGOV = list(
-		/datum/campaign_reward/mech/heavy,
 		/datum/campaign_reward/mech,
 		/datum/campaign_reward/mech/light,
 		/datum/campaign_reward/bonus_job/freelancer,
@@ -11,7 +10,8 @@ GLOBAL_LIST_INIT(campaign_default_assets, list(
 		/datum/campaign_reward/droppod_enabled,
 	),
 	FACTION_SOM = list(
-		/datum/campaign_reward/mech/heavy,
+		/datum/campaign_reward/mech,
+		/datum/campaign_reward/mech/light,
 		/datum/campaign_reward/bonus_job/colonial_militia,
 		/datum/campaign_reward/fire_support/som_cas,
 		/datum/campaign_reward/teleporter_charges,
@@ -36,7 +36,7 @@ GLOBAL_LIST_INIT(campaign_default_purchasable_assets, list(
 		/datum/campaign_reward/teleporter_charges,
 		/datum/campaign_reward/teleporter_enabled,
 		/datum/campaign_reward/equipment/gorgon_armor,
-		/datum/campaign_reward/equipment/medkit_basic,
+		/datum/campaign_reward/equipment/medkit_basic/som,
 		/datum/campaign_reward/equipment/materials_pack,
 	),
 ))

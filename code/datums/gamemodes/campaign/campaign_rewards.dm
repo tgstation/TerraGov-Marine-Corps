@@ -126,13 +126,36 @@
 
 /datum/campaign_reward/equipment/medkit_basic
 	name = "Medical supplies"
-	desc = "A small number of medkits"
-	detailed_desc = "A number of medkits with some basic medical supplies."
+	desc = "An assortment of medical supplies"
+	detailed_desc = "An assortment of basic medical supplies and some stimulants."
 	ui_icon = "medkit"
-	uses = 2
+	uses = 3
 	cost = 1
 	equipment_to_spawn = list(
-		/obj/effect/supply_drop/medical_basic,
+		/obj/item/storage/pouch/firstaid/basic,
+		/obj/item/storage/pouch/firstaid/basic,
+		/obj/item/storage/pouch/firstaid/basic,
+		/obj/item/storage/pouch/firstaid/basic,
+		/obj/item/reagent_containers/hypospray/autoinjector/combat_advanced,
+		/obj/item/reagent_containers/hypospray/autoinjector/combat_advanced,
+		/obj/item/reagent_containers/hypospray/autoinjector/combat_advanced,
+		/obj/item/reagent_containers/hypospray/autoinjector/synaptizine,
+		/obj/item/reagent_containers/hypospray/autoinjector/synaptizine,
+		/obj/item/reagent_containers/hypospray/autoinjector/synaptizine,
+	)
+
+/datum/campaign_reward/equipment/medkit_basic/som
+	equipment_to_spawn = list(
+		/obj/item/storage/pouch/firstaid/som/full,
+		/obj/item/storage/pouch/firstaid/som/full,
+		/obj/item/storage/pouch/firstaid/som/full,
+		/obj/item/storage/pouch/firstaid/som/full,
+		/obj/item/reagent_containers/hypospray/autoinjector/combat_advanced,
+		/obj/item/reagent_containers/hypospray/autoinjector/combat_advanced,
+		/obj/item/reagent_containers/hypospray/autoinjector/combat_advanced,
+		/obj/item/reagent_containers/hypospray/autoinjector/synaptizine,
+		/obj/item/reagent_containers/hypospray/autoinjector/synaptizine,
+		/obj/item/reagent_containers/hypospray/autoinjector/synaptizine,
 	)
 
 /datum/campaign_reward/equipment/materials_pack
