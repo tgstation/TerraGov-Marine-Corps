@@ -30,6 +30,9 @@
 	both TerraGov Marine Corp and the Sons of Mars forces are looking to intervene.")
 	to_chat(world, "<b>Fight for your faction across the planet, the campaign for Palmaria starts now!</b>")
 	to_chat(world, "<b>WIP, report bugs on the github!</b>")
+	to_chat(world, "<b>Respawns are via the respawn action button. Respawn at any time between missions. Respawn during missions if you have attrition available.</b>")
+	to_chat(world, "<b>See all details about your faction, missions and assets in the campaign status menu in the IC tab.</b>")
+	to_chat(world, "<b>The faction leader has a large responsibility for managing attrition and assets. Ahelp if you need a hand, as your team will suffer if you're not pressing buttons</b>")
 
 /datum/game_mode/hvh/campaign/pre_setup()
 	. = ..()
