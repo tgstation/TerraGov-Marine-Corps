@@ -9658,6 +9658,10 @@
 /obj/effect/spawner/random/medical/medbelt,
 /turf/open/floor,
 /area/campaign/jungle_outpost/outpost/security/vault)
+"Py" = (
+/obj/machinery/telecomms/relay/preset/telecomms,
+/turf/closed/mineral/smooth/indestructible,
+/area/campaign/jungle_outpost/ground/jungle/south_west)
 "Pz" = (
 /obj/structure/platform{
 	dir = 1
@@ -12279,7 +12283,7 @@ xS
 xS
 xS
 xS
-xS
+Py
 "}
 (2,1,1) = {"
 ST
