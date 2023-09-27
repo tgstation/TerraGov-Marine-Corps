@@ -99,6 +99,11 @@
 		return
 
 	current_mission.get_status_tab_items(source, items)
+	for(var/i in stat_list)
+		if((source.faction != stat_list[i].faction) && (source.faction != FACTION_NEUTRAL))
+			continue
+		stat_list[i].get_status_tab_items(source, items)
+
 
 ///sets up the newly selected mission
 /datum/game_mode/hvh/campaign/proc/load_new_mission(datum/campaign_mission/new_mission)

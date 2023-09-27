@@ -188,6 +188,20 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 
 	addtimer(CALLBACK(src, PROC_REF(get_selector)), AFTER_MISSION_LEADER_DELAY) //if the leader died, we load a new one after a minute to give respawns some time
 
+///Generates status tab info for the mission
+/datum/faction_stats/proc/get_status_tab_items(mob/source, list/items)
+	var/datum/game_mode/hvh/campaign/current_mode = SSticker.mode
+	if(current_mode?.current_mission.mission_state == MISSION_STATE_ACTIVE)
+		if(!active_attrition_points)
+			items += "[faction] respawns not available:"
+			items += "Attrition expended"
+		else
+			items += "[faction] respawns available:"
+			items += "Attrition remaining: [active_attrition_points]"
+	else
+		items += "[faction] respawns freely available until next mission starts"
+	items += ""
+
 //UI stuff//
 
 /datum/faction_stats/ui_interact(mob/living/user, datum/tgui/ui)
@@ -215,7 +229,6 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 			ui_theme = "ntos"
 	data["ui_theme"] = ui_theme
 
-	//complex ones
 	var/list/current_mission_data = list()
 	var/datum/campaign_mission/current_mission = current_mode.current_mission
 	current_mission_data["name"] = current_mission.name
@@ -232,7 +245,7 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 	var/list/available_missions_data = list()
 	for(var/i in available_missions)
 		var/datum/campaign_mission/potential_mission = available_missions[i]
-		var/list/mission_data = list() //each relevant bit of info regarding the mission is added to the list. Many more to come
+		var/list/mission_data = list()
 		mission_data["typepath"] = "[potential_mission.type]"
 		mission_data["name"] = potential_mission.name
 		mission_data["map_name"] = potential_mission.map_name
@@ -246,7 +259,7 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 
 	var/list/finished_missions_data = list()
 	for(var/datum/campaign_mission/finished_mission AS in finished_missions)
-		var/list/mission_data = list() //each relevant bit of info regarding the mission is added to the list. Many more to come
+		var/list/mission_data = list()
 		mission_data["name"] = finished_mission.name
 		mission_data["map_name"] = finished_mission.map_name
 		mission_data["starting_faction"] = finished_mission.starting_faction
@@ -262,7 +275,7 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 	var/list/faction_rewards_data = list()
 	for(var/i in faction_rewards)
 		var/datum/campaign_reward/reward = faction_rewards[i]
-		var/list/reward_data = list() //each relevant bit of info regarding the reward is added to the list. Many more to come
+		var/list/reward_data = list()
 		reward_data["name"] = reward.name
 		reward_data["type"] = "[reward.type]"
 		reward_data["desc"] = reward.desc
@@ -289,7 +302,6 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 		purchasable_rewards_data += list(reward_data)
 	data["purchasable_rewards_data"] = purchasable_rewards_data
 
-	//simple ones
 	data["active_attrition_points"] = active_attrition_points
 	data["total_attrition_points"] = total_attrition_points
 	data["faction_leader"] = faction_leader
