@@ -9,8 +9,8 @@
 	objectives_total = 10
 	min_destruction_amount = 7
 	shutter_open_delay = list(
-		"starting_faction" = 0,
-		"hostile_faction" = 60 SECONDS,
+		"starting_faction" = 90 SECONDS,
+		"hostile_faction" = 0,
 	)
 	max_game_time = 20 MINUTES
 	victory_point_rewards = list(
