@@ -406,15 +406,15 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 	icon_state = "mechpod"
 	pixel_x = -9
 
-/obj/structure/droppod/nonmob/mech_pod/mech_melee_attack(obj/vehicle/sealed/mecha/mecha_attacker, mob/living/user)
-	SHOULD_CALL_PARENT(FALSE)
-	if(mecha_attacker.loc == src)
-		mecha_attacker.forceMove(loc)
+/obj/structure/droppod/nonmob/mech_pod/mech_shift_click(obj/vehicle/sealed/mecha/mecha_clicker, mob/living/user)
+	if(mecha_clicker.loc == src)
+		mecha_clicker.forceMove(loc)
+		update_icon()
 		return
 	if(!Adjacent(user))
 		return
-	mecha_attacker.forceMove(src)
-	stored_object = mecha_attacker
+	mecha_clicker.forceMove(src)
+	stored_object = mecha_clicker
 	for(var/datum/action/innate/action AS in interaction_actions)
 		action.give_action(user)
 	update_icon()
