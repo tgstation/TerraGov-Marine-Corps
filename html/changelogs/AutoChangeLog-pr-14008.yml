@@ -1,4 +1,0 @@
-author: "ivanmixo"
-delete-after: True
-changes:
-  - admin: "Admins can't bypass proc call restrictions with remote sdql"
