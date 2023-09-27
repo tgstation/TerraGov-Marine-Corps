@@ -219,7 +219,7 @@
 	uses = 2
 	cost = 6
 	equipment_to_spawn = list(
-		/obj/effect/supply_drop/scout,
+		/obj/effect/supply_drop/caliver,
 	)
 
 /datum/campaign_reward/mech
