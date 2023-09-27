@@ -465,7 +465,10 @@
 
 	else if(isobj(hit_atom)) // Thrown object hits another object and moves it
 		var/obj/O = hit_atom
+		/* //ORIGINAL
 		if(!O.anchored)
+		*/
+		if(!O.anchored && O.move_resist < MOVE_FORCE_EXTREMELY_STRONG) //RUTGMC EDIT CHANGE
 			step(O, dir)
 		O.hitby(src, speed)
 
