@@ -2319,7 +2319,7 @@
 	},
 /area/mainship/patrol_base/prep)
 "GR" = (
-/obj/effect/landmark/start/job/fieldcommander,
+/obj/effect/landmark/start/job/fieldcommander/campaign,
 /turf/open/floor/mainship/mono,
 /area/mainship/patrol_base/prep)
 "GV" = (

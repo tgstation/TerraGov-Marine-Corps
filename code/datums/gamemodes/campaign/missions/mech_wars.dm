@@ -24,9 +24,15 @@
 		MISSION_OUTCOME_MINOR_LOSS = list(10, 15),
 		MISSION_OUTCOME_MAJOR_LOSS = list(5, 20),
 	)
+	///List of mechs relating to this mission
+	var/list/mech_list = list()
 
 	starting_faction_additional_rewards = "Mechanised units will be allocated to your battalion."
 	hostile_faction_additional_rewards = "Mechanised units will be allocated to your battalion."
+
+/datum/campaign_mission/tdm/mech_wars/Destroy(force, ...)
+	QDEL_LIST(mech_list)
+	return ..()
 
 /datum/campaign_mission/tdm/mech_wars/play_start_intro()
 	intro_message = list(
@@ -48,11 +54,18 @@
 	. = ..()
 	var/mechs_to_spawn = round(length(GLOB.clients) * 0.5) + 2
 	var/obj/effect/landmark/campaign/mech_spawner/spawner
-	for(var/i=1 to mechs_to_spawn)
-		spawner = pick(GLOB.campaign_mech_spawners[starting_faction])
-		spawner.spawn_mech()
-		spawner = pick(GLOB.campaign_mech_spawners[hostile_faction])
-		spawner.spawn_mech()
+	var/obj/vehicle/sealed/mecha/combat/greyscale/new_mech
+	var/faction_list = list(starting_faction, hostile_faction)
+	for(var/faction in faction_list)
+		for(var/i=1 to mechs_to_spawn)
+		spawner = pick(GLOB.campaign_mech_spawners[faction])
+		new_mech = spawner.spawn_mech()
+		mech_list += new_mech
+		RegisterSignal(new_mech, COMSIG_QDELETING, PROC_REF(remove_mech))
+
+/datum/campaign_mission/tdm/mech_wars/end_mission()
+	. = ..()
+	QDEL_LIST(mech_list)
 
 /datum/campaign_mission/tdm/mech_wars/apply_major_victory()
 	winning_faction = starting_faction
@@ -82,6 +95,11 @@
 	winning_team.add_reward(/datum/campaign_reward/mech/heavy)
 	winning_team.add_reward(/datum/campaign_reward/mech)
 	winning_team.add_reward(/datum/campaign_reward/mech/light)
+
+///Removes the mech from the list if they are destroyed mid mission
+/datum/campaign_mission/tdm/mech_wars/proc/remove_mech(obj/vehicle/sealed/mecha/combat/greyscale/mech)
+	SIGNAL_HANDLER
+	mech_list -= mech
 
 /datum/campaign_mission/tdm/mech_wars/som
 	name = "Mech war"
@@ -115,6 +133,7 @@
 		var/datum/mech_limb/limb = new_mech.limbs[i]
 		limb.update_colors(arglist(colors))
 	new_mech.update_icon()
+	return new_mech
 
 /obj/effect/landmark/campaign/mech_spawner/heavy
 	name = "tgmc heavy mech spawner"

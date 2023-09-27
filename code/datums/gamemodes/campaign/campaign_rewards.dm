@@ -172,6 +172,20 @@
 		/obj/item/tool/shovel/etool,
 	)
 
+/datum/campaign_reward/equipment/rifle_pack
+	name = "Standard weapon resupply"
+	desc = "Rifles and ammo"
+	detailed_desc = "A number of standard rifles and ammo to match"
+	ui_icon = "materials"
+	uses = 1
+	cost = 4
+	equipment_to_spawn = list(
+		/obj/item/storage/box/crate/loot/materials_pack,
+		/obj/item/tool/shovel/etool,
+		/obj/item/tool/shovel/etool,
+		/obj/item/tool/shovel/etool,
+	)
+
 /datum/campaign_reward/mech
 	name = "Medium combat mech"
 	desc = "One medium combat mech"
