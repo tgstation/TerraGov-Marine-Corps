@@ -58,10 +58,10 @@
 	var/faction_list = list(starting_faction, hostile_faction)
 	for(var/faction in faction_list)
 		for(var/i=1 to mechs_to_spawn)
-		spawner = pick(GLOB.campaign_mech_spawners[faction])
-		new_mech = spawner.spawn_mech()
-		mech_list += new_mech
-		RegisterSignal(new_mech, COMSIG_QDELETING, PROC_REF(remove_mech))
+			spawner = pick(GLOB.campaign_mech_spawners[faction])
+			new_mech = spawner.spawn_mech()
+			mech_list += new_mech
+			RegisterSignal(new_mech, COMSIG_QDELETING, PROC_REF(remove_mech))
 
 /datum/campaign_mission/tdm/mech_wars/end_mission()
 	. = ..()
