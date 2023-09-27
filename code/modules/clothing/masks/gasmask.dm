@@ -13,6 +13,7 @@
 	gas_transfer_coefficient = 0.01
 	permeability_coefficient = 0.01
 	siemens_coefficient = 0.9
+	voice_filter = "lowpass=f=750,volume=2"
 	var/gas_filter_strength = 1			//For gas mask filters
 	var/list/filtered_gases = list(/datum/reagent/toxin/phoron, "sleeping_agent", "carbon_dioxide")
 	///Does this particular mask have breath noises
@@ -125,6 +126,7 @@
 	icon_state = "clown"
 	item_state = "clown_hat"
 	breathy = FALSE
+	voice_filter = null
 
 /obj/item/clothing/mask/gas/sexyclown
 	name = "sexy-clown wig and mask"
