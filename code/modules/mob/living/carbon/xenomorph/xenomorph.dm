@@ -147,8 +147,21 @@
 //Since Xenos change names like they change shoes, we need somewhere to hammer in all those legos
 //We set their name first, then update their real_name AND their mind name
 /mob/living/carbon/xenomorph/proc/generate_name()
+	var/playtime_mins = client?.get_exp(xeno_caste.caste_name)
+	var/rank_name
+	switch(playtime_mins)
+		if(0 to 600)
+			rank_name = "Young"
+		if(601 to 3000)
+			rank_name = "Mature"
+		if(3001 to 12000)
+			rank_name = "Elder"
+		if(12001 to INFINITY)
+			rank_name = "Ancient"
+		else
+			rank_name = ""
 	var/prefix = (hive.prefix || xeno_caste.upgrade_name) ? "[hive.prefix][xeno_caste.upgrade_name] " : ""
-	name = prefix + "[xeno_caste.display_name] ([nicknumber])"
+	name = prefix + rank_name + " [xeno_caste.display_name] ([nicknumber])"
 
 	//Update linked data so they show up properly
 	real_name = name
