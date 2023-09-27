@@ -52,7 +52,7 @@
 
 /datum/campaign_mission/tdm/mech_wars/load_mission()
 	. = ..()
-	var/mechs_to_spawn = round(length(GLOB.clients) * 0.5) + 2
+	var/mechs_to_spawn = round(length(GLOB.clients) * 0.2) + 1
 	var/obj/effect/landmark/campaign/mech_spawner/spawner
 	var/obj/vehicle/sealed/mecha/combat/greyscale/new_mech
 	var/faction_list = list(starting_faction, hostile_faction)
@@ -62,6 +62,13 @@
 			new_mech = spawner.spawn_mech()
 			mech_list += new_mech
 			RegisterSignal(new_mech, COMSIG_QDELETING, PROC_REF(remove_mech))
+
+			//anti mech infantry weapons
+			if(i % 2)
+				if(faction == FACTION_SOM)
+					new /obj/item/storage/holster/backholster/rpg/som/heat(get_turf(pick(GLOB.campaign_reward_spawners[faction])))
+				else
+					new /obj/item/storage/holster/backholster/rpg/heam(get_turf(pick(GLOB.campaign_reward_spawners[faction])))
 
 /datum/campaign_mission/tdm/mech_wars/end_mission()
 	. = ..()

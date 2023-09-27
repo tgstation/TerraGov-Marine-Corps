@@ -2218,6 +2218,18 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/rocket/recoilless/heat/drop_nade(turf/T)
 	explosion(T, flash_range = 1)
 
+/datum/ammo/rocket/recoilless/heat/mech/drop_nade(turf/T)
+	explosion(T, 0, 1, 0, 0, 1)
+
+/datum/ammo/rocket/recoilless/heat/mech //for anti mech use in HvH
+	name = "HEAM shell"
+	accuracy = -50 //Not designed for anti human use
+
+/datum/ammo/rocket/recoilless/heat/mech/on_hit_obj(obj/O, obj/projectile/P)
+	drop_nade(get_turf(O))
+	if(ismecha(O))
+		P.damage *= 3 //this is specifically designed to hurt mechs
+
 /datum/ammo/rocket/recoilless/light
 	name = "light explosive shell"
 	icon_state = "recoilless_rifle_le"
@@ -2329,7 +2341,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 200
 	penetration = 100
 	sundering = 0
-	accuracy = -30 //Not designed for anti human use
+	accuracy = -50 //Not designed for anti human use
 
 /datum/ammo/rocket/som/heat/on_hit_obj(obj/O, obj/projectile/P)
 	drop_nade(get_turf(O))

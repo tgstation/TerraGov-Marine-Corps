@@ -28,8 +28,8 @@
 		MISSION_OUTCOME_MAJOR_LOSS = list(0, 30),
 	)
 
-	starting_faction_additional_rewards = "Severely degrade enemy fire support options in the future"
-	hostile_faction_additional_rewards = "Protect our fire support options so they can still be used in the future"
+	starting_faction_additional_rewards = "Severely degrade enemy fire support, preventing their use of mortars for a while"
+	hostile_faction_additional_rewards = "Protect our fire support options to ensure continued access to mortar support"
 
 /datum/campaign_mission/destroy_mission/fire_support_raid/load_mission()
 	. = ..()
@@ -72,8 +72,6 @@
 
 /datum/campaign_mission/destroy_mission/fire_support_raid/apply_major_loss()
 	. = ..()
-
-
 
 
 /datum/campaign_mission/destroy_mission/fire_support_raid/som

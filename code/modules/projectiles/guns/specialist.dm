@@ -773,6 +773,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 		/obj/item/ammo_magazine/rocket/recoilless/cloak,
 		/obj/item/ammo_magazine/rocket/recoilless/plasmaloss,
 		/obj/item/ammo_magazine/rocket/recoilless/heat,
+		/obj/item/ammo_magazine/rocket/recoilless/heam,
 	)
 	flags_equip_slot = NONE
 	w_class = WEIGHT_CLASS_HUGE
@@ -798,6 +799,9 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 
 /obj/item/weapon/gun/launcher/rocket/recoillessrifle/low_impact
 	default_ammo_type = /obj/item/ammo_magazine/rocket/recoilless/low_impact
+
+/obj/item/weapon/gun/launcher/rocket/recoillessrifle/heam
+	default_ammo_type = /obj/item/ammo_magazine/rocket/recoilless/heam
 
 //-------------------------------------------------------
 //Disposable RPG
@@ -906,6 +910,9 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 
 /obj/item/weapon/gun/launcher/rocket/som/rad
 	default_ammo_type = /obj/item/ammo_magazine/rocket/som/rad
+
+/obj/item/weapon/gun/launcher/rocket/som/heat
+	default_ammo_type = /obj/item/ammo_magazine/rocket/som/heat
 
 //ICC RPG
 /obj/item/weapon/gun/launcher/rocket/icc

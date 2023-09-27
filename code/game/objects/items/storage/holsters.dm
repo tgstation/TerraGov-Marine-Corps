@@ -187,6 +187,15 @@
 	var/obj/item/new_item = new /obj/item/weapon/gun/launcher/rocket/recoillessrifle/low_impact(src)
 	INVOKE_ASYNC(src, PROC_REF(handle_item_insertion), new_item)
 
+/obj/item/storage/holster/backholster/rpg/heam/Initialize(mapload)
+	. = ..()
+	new /obj/item/ammo_magazine/rocket/recoilless/heam(src)
+	new /obj/item/ammo_magazine/rocket/recoilless/heam(src)
+	new /obj/item/ammo_magazine/rocket/recoilless/heam(src)
+	new /obj/item/ammo_magazine/rocket/recoilless/heam(src)
+	var/obj/item/new_item = new /obj/item/weapon/gun/launcher/rocket/recoillessrifle/heam(src)
+	INVOKE_ASYNC(src, PROC_REF(handle_item_insertion), new_item)
+
 /obj/item/storage/holster/backholster/rpg/som
 	name = "\improper SOM RPG bag"
 	desc = "This backpack can hold 4 RPGs, in addition to a RPG launcher."
@@ -218,6 +227,15 @@
 	new /obj/item/ammo_magazine/rocket/som/heat(src)
 	new /obj/item/ammo_magazine/rocket/som/rad(src)
 	var/obj/item/new_item = new /obj/item/weapon/gun/launcher/rocket/som/rad(src)
+	INVOKE_ASYNC(src, PROC_REF(handle_item_insertion), new_item)
+
+/obj/item/storage/holster/backholster/rpg/som/heat/Initialize(mapload)
+	. = ..()
+	new /obj/item/ammo_magazine/rocket/som/heat(src)
+	new /obj/item/ammo_magazine/rocket/som/heat(src)
+	new /obj/item/ammo_magazine/rocket/som/heat(src)
+	new /obj/item/ammo_magazine/rocket/som/heat(src)
+	var/obj/item/new_item = new /obj/item/weapon/gun/launcher/rocket/som/heat(src)
 	INVOKE_ASYNC(src, PROC_REF(handle_item_insertion), new_item)
 
 /obj/item/storage/holster/backholster/mortar
