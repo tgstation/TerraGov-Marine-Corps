@@ -1,5 +1,5 @@
 /obj/machinery/bot
-	name = "a generic utility robot"
+	name = "generic utility robot"
 	desc = "a generic utility robot, you shouldn't be seeing this in game. If you do ahelp."
 	icon = 'icons/obj/aibots.dmi'
 	density = FALSE
@@ -23,6 +23,8 @@
 	var/activation_animation = null
 	///animation to play when the robot is started by hand
 	var/deactivation_animation = null
+	///icon to set while active
+	var/active_icon_state = null
 
 
 /obj/machinery/bot/Initialize(mapload)
@@ -34,6 +36,7 @@
 		voice = todays_voice
 	RegisterSignal(src, COMSIG_AREA_EXITED, PROC_REF(turn_around))
 	if(is_active)
+		icon_state = active_icon_state
 		start_processing()
 
 /obj/machinery/bot/Destroy()
@@ -113,6 +116,7 @@
 			flick("[deactivation_animation]", src)
 		if(length(shutdownsentences))
 			say(pick(shutdownsentences))
+		icon_state = "[initial(icon_state)]"
 		stop_processing()
 	else
 		balloon_alert_to_viewers("Powers on")
@@ -122,6 +126,7 @@
 		if(length(awakeningsentences))
 			say(pick(awakeningsentences))
 		say(pick(awakeningsentences))
+		icon_state = active_icon_state
 		start_processing()
 
 //these bots are mostly for decoration, you can't turn them on by default

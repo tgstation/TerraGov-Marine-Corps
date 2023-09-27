@@ -38,6 +38,7 @@
 		"You just know there's gonna be some variety of pickled crayons in here somewhere.",
 	)
 	is_active = TRUE
+	active_icon_state = "roomba"
 
 /obj/machinery/bot/roomba/Initialize(mapload)
 	. = ..()
