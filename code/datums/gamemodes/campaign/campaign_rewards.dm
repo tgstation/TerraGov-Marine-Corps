@@ -101,7 +101,7 @@
 
 /datum/campaign_reward/equipment/power_armor
 	name = "B18 consignment"
-	desc = "Three sets of B18 power armor."
+	desc = "Three sets of B18 power armor"
 	detailed_desc = "Your battalion has been assigned a number of B18 power armor sets, available at your request. B18 is TGMC's premier infantry armor, providing superior protection, mobility and an advanced automedical system."
 	uses = 3
 	cost = 15
@@ -114,7 +114,7 @@
 
 /datum/campaign_reward/equipment/gorgon_armor
 	name = "Gorgon consignment"
-	desc = "Five sets of Gorgon power armor."
+	desc = "Five sets of Gorgon power armor"
 	detailed_desc = "Your battalion has been assigned a number of Gorgon power armor sets, available at your request. Gorgon armor is the SOM's elite infantry armor, providing superior protection and an automedical system without significantly compromising on speed."
 	uses = 5
 	cost = 10
@@ -126,7 +126,7 @@
 
 /datum/campaign_reward/equipment/medkit_basic
 	name = "Medical supplies"
-	desc = "A small number of medkits."
+	desc = "A small number of medkits"
 	detailed_desc = "A number of medkits with some basic medical supplies."
 	ui_icon = "medkit"
 	uses = 2
@@ -137,7 +137,7 @@
 
 /datum/campaign_reward/equipment/materials_pack
 	name = "Construction supplies"
-	desc = "Metal, plasteel and sandbags."
+	desc = "Metal, plasteel and sandbags"
 	detailed_desc = "A significant quantity of metal, plasteel and sandbags. Perfect for fortifying a defensive position"
 	ui_icon = "materials"
 	uses = 1
@@ -149,20 +149,38 @@
 		/obj/item/tool/shovel/etool,
 	)
 
-/datum/campaign_reward/equipment/mech_heavy
-	name = "Heavy combat mech"
-	desc = "One heavy combat mech."
-	detailed_desc = "Your battalion has been assigned a single Vanguard heavy combat mech. The Vanguard has extreme durability and offensive capability. Able to wade through the thickest of fighting with ease, it is the TGMC's premier assault mech, although its speed and maneuverability are somewhat lackluster."
-	ui_icon = "heavy_mech"
+/datum/campaign_reward/mech
+	name = "Medium combat mech"
+	desc = "One medium combat mech"
+	detailed_desc = "Your battalion has been assigned a single Assault medium combat mech. The Assault mech features balanced armor and mobility, allowing it to keep up with infantry movements while still offering significant resilience. It is considered the general work horse combat mech."
+	ui_icon = "medium_mech"
 	uses = 1
-	equipment_to_spawn = list(
-		/obj/vehicle/sealed/mecha/combat/greyscale/vanguard/noskill,
-		/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/heavy_cannon,
-		/obj/item/mecha_parts/mecha_equipment/weapon/energy/laser_projector,
-		/obj/item/mecha_ammo/vendable/heavycannon,
-		/obj/item/mecha_ammo/vendable/heavycannon,
-		/obj/item/mecha_ammo/vendable/heavycannon,
-	)
+	var/obj/effect/landmark/campaign/mech_spawner/spawner_type = /obj/effect/landmark/campaign/mech_spawner
+
+/datum/campaign_reward/mech/activated_effect()
+	. = ..()
+	if(!.)
+		return
+
+	for(var/obj/effect/landmark/campaign/mech_spawner/faction_spawner AS in GLOB.campaign_mech_spawners[faction.faction])
+		if(faction_spawner.type == spawner_type)
+			faction_spawner.spawn_mech()
+			playsound(faction_spawner,'sound/effects/phasein.ogg', 80, FALSE)
+			return
+
+/datum/campaign_reward/mech/light
+	name = "Light combat mech"
+	desc = "One light combat mech"
+	detailed_desc = "Your battalion has been assigned a single Recon light combat mech. The Recon mech is lightly armored but very nimble and is still capable of carrying a full suite of weapons. Commonly used for scouting, screening and flanking manoeuvres."
+	ui_icon = "light_mech"
+	spawner_type = /obj/effect/landmark/campaign/mech_spawner/light
+
+/datum/campaign_reward/mech/heavy
+	name = "Heavy combat mech"
+	desc = "One heavy combat mech"
+	detailed_desc = "Your battalion has been assigned a single Vanguard heavy combat mech. The Vanguard has extreme durability and offensive capability. Able to wade through the thickest of fighting with ease, it is the galaxy's premier frontline combat mech, although its speed and maneuverability are somewhat lackluster."
+	ui_icon = "heavy_mech"
+	spawner_type = /obj/effect/landmark/campaign/mech_spawner/heavy
 
 //Parent for all bonus role rewards
 /datum/campaign_reward/bonus_job
@@ -432,7 +450,7 @@
 
 /datum/campaign_reward/fire_support
 	name = "CAS mission"
-	desc = "Close Air Support is deployed to support this mission."
+	desc = "Close Air Support is deployed to support this mission"
 	detailed_desc = "A limited number of Close Air Support attack runs are available via tactical binoculars for this mission. Excellent for disrupting dug in enemy positions."
 	ui_icon = "cas"
 	uses = 1
@@ -478,7 +496,7 @@
 
 /datum/campaign_reward/fire_support/mortar
 	name = "Mortar support"
-	desc = "Mortar teams are activated to provide firesupport for this mission."
+	desc = "Mortar teams are activated to provide firesupport for this mission"
 	detailed_desc = "A limited number of mortar strikes are available via tactical binoculars for this mission. Excellent for disrupting dug in enemy positions."
 	ui_icon = "mortar"
 	cost = 6
@@ -491,7 +509,7 @@
 
 /datum/campaign_reward/fire_support/som_mortar
 	name = "Mortar support"
-	desc = "Mortar teams are activated to provide firesupport for this mission."
+	desc = "Mortar teams are activated to provide firesupport for this mission"
 	detailed_desc = "A limited number of mortar strikes are available via tactical binoculars for this mission. Excellent for disrupting dug in enemy positions."
 	ui_icon = "mortar"
 	cost = 6
@@ -547,7 +565,7 @@
 
 /datum/campaign_reward/reward_disabler/tgmc_cas
 	name = "CAS disabled"
-	desc = "CAS fire support temporarily disabled."
+	desc = "CAS fire support temporarily disabled"
 	detailed_desc = "Hostile actions have resulted in the temporary loss of our access to close air support"
 	ui_icon = "cas_disabled"
 	types_disabled = list(/datum/campaign_reward/fire_support)
@@ -555,7 +573,7 @@
 
 /datum/campaign_reward/reward_disabler/som_cas
 	name = "CAS disabled"
-	desc = "CAS fire support temporarily disabled."
+	desc = "CAS fire support temporarily disabled"
 	detailed_desc = "Hostile actions have resulted in the temporary loss of our access to close air support"
 	ui_icon = "cas_disabled"
 	types_disabled = list(/datum/campaign_reward/fire_support/som_cas)
@@ -563,7 +581,7 @@
 
 /datum/campaign_reward/reward_disabler/tgmc_mortar
 	name = "Mortar support disabled"
-	desc = "Mortar fire support temporarily disabled."
+	desc = "Mortar fire support temporarily disabled"
 	detailed_desc = "Hostile actions have resulted in the temporary loss of our access to mortar fire support"
 	ui_icon = "mortar_disabled"
 	types_disabled = list(/datum/campaign_reward/fire_support/mortar)
@@ -574,7 +592,7 @@
 
 /datum/campaign_reward/reward_disabler/som_mortar
 	name = "Mortar support disabled"
-	desc = "Mortar fire support temporarily disabled."
+	desc = "Mortar fire support temporarily disabled"
 	detailed_desc = "Hostile actions have resulted in the temporary loss of our access to mortar fire support"
 	ui_icon = "mortar_disabled"
 	types_disabled = list(/datum/campaign_reward/fire_support/som_mortar)
@@ -585,7 +603,7 @@
 
 /datum/campaign_reward/reward_disabler/drop_pods
 	name = "Drop pods disabled"
-	desc = "Drop pod access temporarily disabled."
+	desc = "Drop pod access temporarily disabled"
 	detailed_desc = "Hostile actions have resulted in the temporary loss of our access to drop pod deployment"
 	ui_icon = "droppod_disabled"
 	types_disabled = list(/datum/campaign_reward/droppod_enabled)
@@ -593,7 +611,7 @@
 
 /datum/campaign_reward/reward_disabler/drop_pods
 	name = "Teleporter disabled"
-	desc = "Teleporter temporarily disabled."
+	desc = "Teleporter temporarily disabled"
 	detailed_desc = "Hostile actions have resulted in the temporary loss of our access to teleporter deployment"
 	ui_icon = "tele_disabled"
 	types_disabled = list(/datum/campaign_reward/teleporter_enabled)

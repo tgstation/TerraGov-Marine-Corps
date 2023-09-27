@@ -42,11 +42,10 @@
 
 	activate_point(user)
 
-/obj/structure/patrol_point/mech_melee_attack(obj/vehicle/sealed/mecha/mecha_attacker, mob/living/user)
-	SHOULD_CALL_PARENT(FALSE)
+/obj/structure/patrol_point/mech_shift_click(obj/vehicle/sealed/mecha/mecha_clicker, mob/living/user)
 	if(!Adjacent(user))
 		return
-	activate_point(user, mecha_attacker)
+	activate_point(user, mecha_clicker)
 
 ///Handles sending someone and/or something through the patrol_point
 /obj/structure/patrol_point/proc/activate_point(mob/living/user, obj/obj_mover)
