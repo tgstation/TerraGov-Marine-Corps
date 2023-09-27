@@ -352,4 +352,4 @@
 		strength = victim.modify_by_armor(strength, BIO, 25)
 		victim.apply_radiation(strength, sound_level)
 
-	explosion(target_turf, weak_impact_range = 4)
+	explosion(target_turf, 0, 1, 0, 4)
