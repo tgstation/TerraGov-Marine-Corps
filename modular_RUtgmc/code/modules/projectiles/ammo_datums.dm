@@ -84,6 +84,29 @@
 	penetration = 25
 	sundering = 3.5
 
+/datum/ammo/energy/lasgun/marine/sniper
+	damage = 70
+	penetration = 45
+	sundering = 5
+
+/datum/ammo/energy/lasgun/marine/sniper_heat
+	penetration = 30
+	hitscan_effect_icon = "beam_incen"
+	bullet_color = COLOR_RED_LIGHT
+
+/datum/ammo/energy/lasgun/marine/sniper_overcharge
+	name = "sniper overcharge bolt"
+	icon_state = "overchargedlaser"
+	hud_state = "laser_sniper_overcharge"
+	shell_speed = 2.5
+	damage = 130
+	penetration = 80
+	accurate_range_min = 6
+	flags_ammo_behavior = AMMO_ENERGY|AMMO_SUNDERING|AMMO_HITSCAN|AMMO_SNIPER
+	sundering = 10
+	hitscan_effect_icon = "beam_heavy_charge"
+	bullet_color = COLOR_DISABLER_BLUE
+
 /*
 //================================================
 					Xeno Spits
