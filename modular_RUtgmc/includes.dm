@@ -151,6 +151,7 @@
 #include "code\modules\clothing\modular_armor\combat_robot.dm"
 #include "code\modules\clothing\modular_armor\som.dm"
 #include "code\modules\clothing\modular_armor\attachments\modules.dm"
+#include "code\modules\clothing\modular_armor\xenonauten.dm"
 #include "code\modules\clothing\shoes\marine_shoes.dm"
 #include "code\modules\clothing\suits\suits.dm"
 #include "code\modules\clothing\under\marine_uniform.dm"
