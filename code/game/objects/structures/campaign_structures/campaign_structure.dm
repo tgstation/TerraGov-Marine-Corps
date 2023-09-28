@@ -38,6 +38,9 @@
 	disable()
 	return ..()
 
+/obj/structure/campaign_objective/ex_act()
+	return
+
 ///Handles the objective being destroyed, disabled or otherwise completed
 /obj/structure/campaign_objective/proc/disable()
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_CAMPAIGN_OBJECTIVE_DESTROYED, src)
