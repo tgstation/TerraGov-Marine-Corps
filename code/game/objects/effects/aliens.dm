@@ -153,7 +153,7 @@
 	. = ..()
 	acid_melt_multiplier = melting_rate
 	acid_t = target
-	if(acid_t == null)
+	if(!acid_t)
 		return INITIALIZE_HINT_QDEL
 	layer = acid_t.layer
 	if(iswallturf(acid_t))
