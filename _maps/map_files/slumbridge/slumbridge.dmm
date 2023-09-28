@@ -9143,7 +9143,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/slumbridge/sombase/hangar)
 "gYq" = (
-/obj/structure/bed/chair/nometal{
+/obj/structure/bed/chair{
 	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
@@ -13115,7 +13115,7 @@
 /turf/open/floor/tile/dark,
 /area/slumbridge/outside3)
 "jMC" = (
-/obj/structure/bed/chair/nometal{
+/obj/structure/bed/chair{
 	dir = 8
 	},
 /obj/effect/decal/cleanable/dirt,
@@ -16873,7 +16873,7 @@
 /turf/open/floor/plating/ground/mars/random/cave/darker,
 /area/slumbridge/mining)
 "mxP" = (
-/obj/structure/bed/chair/nometal{
+/obj/structure/bed/chair{
 	dir = 4
 	},
 /turf/open/floor/plating,
@@ -27040,7 +27040,7 @@
 /turf/closed/mineral/smooth/darkfrostwall/indestructible,
 /area/slumbridge/rock/nearlz)
 "tUv" = (
-/obj/structure/bed/chair/nometal{
+/obj/structure/bed/chair{
 	dir = 8
 	},
 /obj/effect/turf_decal/sandytile/sandyplating,
