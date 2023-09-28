@@ -613,6 +613,7 @@ What you lack in equipment and military training you make up in bravery and conv
 		/datum/outfit/job/tgmc/campaign_robot/machine_gunner,
 		/datum/outfit/job/tgmc/campaign_robot/guardian,
 		/datum/outfit/job/tgmc/campaign_robot/jetpack,
+		/datum/outfit/job/tgmc/campaign_robot/laser_mg,
 	)
 	job_cost = 0
 
@@ -707,7 +708,7 @@ Fight for TGMC, and attempt to achieve all objectives given to you."})
 	r_store = /obj/item/storage/pouch/magazine/large
 	belt = /obj/item/storage/belt/marine/te_cells
 	suit_store = /obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_carbine/mag_harness
-	r_hand = /obj/item/jetpack_marine
+	back = /obj/item/jetpack_marine
 
 /datum/outfit/job/tgmc/campaign_robot/jetpack/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -720,3 +721,26 @@ Fight for TGMC, and attempt to achieve all objectives given to you."})
 	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/lasrifle, SLOT_IN_R_POUCH)
 	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/lasrifle, SLOT_IN_R_POUCH)
 	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/lasrifle, SLOT_IN_R_POUCH)
+
+/datum/outfit/job/tgmc/campaign_robot/laser_mg
+	r_store = /obj/item/storage/pouch/pistol
+	belt = /obj/item/storage/belt/marine/te_cells
+	suit_store = /obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_mlaser/patrol
+
+/datum/outfit/job/tgmc/campaign_robot/laser_mg/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	. = ..()
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_ACCESSORY)
+
+	H.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/vp70/tactical(H), SLOT_IN_R_POUCH)
+
+	H.equip_to_slot_or_del(new /obj/item/tool/weldingtool, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/stack/cable_coil, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/tool/extinguisher/mini, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70, SLOT_IN_BACKPACK)
