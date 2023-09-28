@@ -1,0 +1,4 @@
+author: "Blundir"
+delete-after: True
+changes:
+  - bugfix: "fixed boiler making neuro traps with acid"

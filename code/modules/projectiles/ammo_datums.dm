@@ -3795,7 +3795,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	if(!do_after(user_xeno, 3 SECONDS, TRUE, trap))
 		return FALSE
 	trap.set_trap_type(TRAP_SMOKE_ACID)
-	trap.smoke = new /datum/effect_system/smoke_spread/xeno/neuro/medium
+	trap.smoke = new /datum/effect_system/smoke_spread/xeno/acid
 	trap.smoke.set_up(1, get_turf(trap))
 	return TRUE
 

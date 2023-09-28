@@ -204,3 +204,16 @@
   - qol: Standardized hazard stripes for dropship outlines across all ships.
   Blundir:
   - bugfix: fixed FC sheath side sprites
+2023-09-27:
+  Wisemonster:
+  - rscadd: Added an eyewear category to the surplus clothing vendor, containing various
+      cosmetic and prescription eyewear.
+  - rscdel: Moved the ballistic goggles from the headwear category to the new eyewear
+      category.
+  ivanmixo:
+  - admin: Admins can't bypass proc call restrictions with remote sdql
+  tyeagg:
+  - rscadd: smoke particles for gun firing
+2023-09-28:
+  Barnet2:
+  - balance: Re-added Magmoor LZ 2's SE flank.
