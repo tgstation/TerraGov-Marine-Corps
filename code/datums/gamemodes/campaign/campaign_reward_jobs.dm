@@ -547,13 +547,13 @@ What you lack in equipment and military training you make up in bravery and conv
 	)
 
 /datum/outfit/job/icc/standard/mpi_km/campaign
-	ears = /obj/item/radio/headset/mainship
+	ears = /obj/item/radio/headset/mainship/som
 
 /datum/outfit/job/icc/standard/icc_pdw/campaign
-	ears = /obj/item/radio/headset/mainship
+	ears = /obj/item/radio/headset/mainship/som
 
 /datum/outfit/job/icc/standard/icc_battlecarbine/campaign
-	ears = /obj/item/radio/headset/mainship
+	ears = /obj/item/radio/headset/mainship/som
 
 /datum/job/icc/guard/campaign_bonus
 	faction = FACTION_SOM
@@ -566,10 +566,10 @@ What you lack in equipment and military training you make up in bravery and conv
 	)
 
 /datum/outfit/job/icc/guard/coilgun/campaign
-	ears = /obj/item/radio/headset/mainship
+	ears = /obj/item/radio/headset/mainship/som
 
-/datum/outfit/job/icc/guard/coilgun/campaign
-	ears = /obj/item/radio/headset/mainship
+/datum/outfit/job/icc/guard/icc_autoshotgun/campaign
+	ears = /obj/item/radio/headset/mainship/som
 
 /datum/job/icc/medic/campaign_bonus
 	faction = FACTION_SOM
@@ -583,10 +583,10 @@ What you lack in equipment and military training you make up in bravery and conv
 	)
 
 /datum/outfit/job/icc/medic/icc_machinepistol/campaign
-	ears = /obj/item/radio/headset/mainship
+	ears = /obj/item/radio/headset/mainship/som
 
 /datum/outfit/job/icc/medic/icc_sharpshooter/campaign
-	ears = /obj/item/radio/headset/mainship
+	ears = /obj/item/radio/headset/mainship/som
 
 /datum/job/icc/leader/campaign_bonus
 	faction = FACTION_SOM
@@ -599,10 +599,10 @@ What you lack in equipment and military training you make up in bravery and conv
 	)
 
 /datum/outfit/job/icc/leader/trenchgun/campaign
-	ears = /obj/item/radio/headset/mainship/campaign
+	ears = /obj/item/radio/headset/mainship/som
 
 /datum/outfit/job/icc/leader/icc_confrontationrifle/campaign
-	ears = /obj/item/radio/headset/mainship
+	ears = /obj/item/radio/headset/mainship/som
 
 //TGMC combat robots
 /datum/job/terragov/squad/standard/campaign_robot
