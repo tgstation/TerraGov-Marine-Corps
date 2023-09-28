@@ -24,6 +24,6 @@
 	return succeed_activate()
 
 /datum/action/xeno_action/place_trap
-	desc = "Place a hole on weeds that can be filled with a hugger, acid or neurotoxin. Activates when a marine steps on it."
+	desc = "Place a hole on weeds that can be filled with a hugger, liquid acid, acid or neurotoxin gas. Activates when a marine steps on it."
 	action_icon_state = "small_trap"
 
