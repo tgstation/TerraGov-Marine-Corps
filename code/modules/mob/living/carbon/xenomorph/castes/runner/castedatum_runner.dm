@@ -65,11 +65,11 @@
 /datum/xeno_caste/runner/normal
 	upgrade = XENO_UPGRADE_NORMAL
 
-/datum/xeno_caste/runner/apex
-	upgrade_name = "Apex"
+/datum/xeno_caste/runner/primordial
+	upgrade_name = "Primordial"
 	caste_desc = "A sprinting terror of the hive. It looks ancient and menacing."
-	apex_message = "Nothing can outrun us. We are the swift death."
-	upgrade = XENO_UPGRADE_APEX
+	primordial_message = "Nothing can outrun us. We are the swift death."
+	upgrade = XENO_UPGRADE_PRIMO
 
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,

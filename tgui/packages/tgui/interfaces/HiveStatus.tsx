@@ -16,7 +16,7 @@ type InputPack = {
   hive_orphan_collapse: number;
   hive_orphan_max: number;
   hive_minion_count: number;
-  hive_apexs: APEXUpgrades[];
+  hive_primos: PrimoUpgrades[];
   hive_death_timers: DeathTimer[];
   hive_queen_max: number;
   hive_structures: StructureData[];
@@ -72,7 +72,7 @@ type StructureData = {
   location: string;
 };
 
-type APEXUpgrades = {
+type PrimoUpgrades = {
   tier: number;
   purchased: boolean;
 };
@@ -397,7 +397,7 @@ const PopulationPyramid = (_props, context) => {
     hive_max_tier_two,
     hive_max_tier_three,
     hive_minion_count,
-    hive_apexs,
+    hive_primos,
     xeno_info,
     static_info,
     user_ref,
@@ -414,7 +414,7 @@ const PopulationPyramid = (_props, context) => {
     false
   );
 
-  const apexs: boolean[] = []; // Index is tier.
+  const primos: boolean[] = []; // Index is tier.
   const pyramid_data: PyramidCalc[] = [];
   let hive_total: number = 0;
 
@@ -424,8 +424,8 @@ const PopulationPyramid = (_props, context) => {
   // to find number of counts per caste.
   // But all these keys are numbers. And this is a lot simpler.
 
-  hive_apexs.map((entry) => {
-    apexs[entry.tier] = entry.purchased;
+  hive_primos.map((entry) => {
+    primos[entry.tier] = entry.purchased;
   });
 
   static_info.map((static_entry, index) => {
@@ -518,9 +518,9 @@ const PopulationPyramid = (_props, context) => {
             tier === 2 || tier === 3 ? <TierSlots /> : tier_info.total;
           // Praetorian name way too long. Clips into Rav.
           const row_width = tier === 3 ? 8 : 7;
-          const apex = apexs[tier] ? (
+          const primordial = primos[tier] ? (
             <Box as="span" textColor="good">
-              [Apex]
+              [Primordial]
             </Box>
           ) : (
             ''
@@ -566,7 +566,7 @@ const PopulationPyramid = (_props, context) => {
               {/* Manually creating section because I need stuff in title. */}
               <Box className="Section__title">
                 <Box as="span" className="Section__titleText" fontSize={1.1}>
-                  Tier {tier}: {slot_text} Sisters {apex}
+                  Tier {tier}: {slot_text} Sisters {primordial}
                 </Box>
               </Box>
               <Flex className="Section__content">

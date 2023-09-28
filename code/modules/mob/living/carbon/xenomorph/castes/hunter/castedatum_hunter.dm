@@ -72,11 +72,11 @@
 /datum/xeno_caste/hunter/normal
 	upgrade = XENO_UPGRADE_NORMAL
 
-/datum/xeno_caste/hunter/apex
-	upgrade_name = "Apex"
-	upgrade = XENO_UPGRADE_APEX
+/datum/xeno_caste/hunter/primordial
+	upgrade_name = "Primordial"
+	upgrade = XENO_UPGRADE_PRIMO
 	caste_desc = "A silent but deadly killing machine. It looks frighteningly powerful."
-	apex_message = "We are the ultimate predator. Let the hunt begin."
+	primordial_message = "We are the ultimate predator. Let the hunt begin."
 
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,

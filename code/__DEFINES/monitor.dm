@@ -30,11 +30,11 @@
 #define BURROWED_LARVA_WEIGHT -20
 #define REQ_POINTS_WEIGHT 0.2
 #define NORMAL_T2_WEIGHT -40
-#define APEX_T2_WEIGHT -60
+#define PRIMO_T2_WEIGHT -60
 #define NORMAL_T3_WEIGHT -60
-#define APEX_T3_WEIGHT -100
+#define PRIMO_T3_WEIGHT -100
 #define NORMAL_T4_WEIGHT -80
-#define APEX_T4_WEIGHT -120
+#define PRIMO_T4_WEIGHT -120
 #define SPAWNING_POOL_WEIGHT -100
 
 //The weight of each statistics in the state calculator before shutters drop

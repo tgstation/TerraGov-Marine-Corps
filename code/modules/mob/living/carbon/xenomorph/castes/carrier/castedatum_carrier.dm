@@ -72,11 +72,11 @@
 /datum/xeno_caste/carrier/normal
 	upgrade = XENO_UPGRADE_NORMAL
 
-/datum/xeno_caste/carrier/apexdial
-	upgrade_name = "Apex"
+/datum/xeno_caste/carrier/primodial
+	upgrade_name = "Primordial"
 	caste_desc = "It's literally crawling with 11 huggers."
-	upgrade = XENO_UPGRADE_APEX
-	apex_message = "Not one tall will be left uninfected."
+	upgrade = XENO_UPGRADE_PRIMO
+	primordial_message = "Not one tall will be left uninfected."
 
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,

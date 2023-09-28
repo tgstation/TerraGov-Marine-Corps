@@ -4,7 +4,7 @@
 	upgrade_name = ""
 	caste_desc = "A frightening looking, bulky alien creature that drips with a familiar red fluid."
 	caste_type_path = /mob/living/carbon/xenomorph/gorger
-	apex_message = "There is nothing we can't withstand."
+	primordial_message = "There is nothing we can't withstand."
 
 	tier = XENO_TIER_THREE
 	upgrade = XENO_UPGRADE_BASETYPE
@@ -63,10 +63,10 @@
 /datum/xeno_caste/gorger/normal
 	upgrade = XENO_UPGRADE_NORMAL
 
-/datum/xeno_caste/gorger/apex
-	upgrade_name = "Apex"
+/datum/xeno_caste/gorger/primordial
+	upgrade_name = "Primordial"
 	caste_desc = "Being within mere eyeshot of this hulking monstrosity fills you with a deep, unshakeable sense of unease. You are unsure if you can even harm it."
-	upgrade = XENO_UPGRADE_APEX
+	upgrade = XENO_UPGRADE_PRIMO
 
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,

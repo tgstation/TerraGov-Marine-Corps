@@ -97,11 +97,11 @@
 			"end_time" = caste.death_evolution_delay MILLISECONDS,
 		))
 
-	.["hive_apexs"] = list()
-	for(var/tier in GLOB.tier_to_apex_upgrade)
-		.["hive_apexs"] += list(list(
+	.["hive_primos"] = list()
+	for(var/tier in GLOB.tier_to_primo_upgrade)
+		.["hive_primos"] += list(list(
 			"tier" = GLOB.tier_as_number[tier],
-			"purchased" = purchases.upgrades_by_name[GLOB.tier_to_apex_upgrade[tier]]?.times_bought
+			"purchased" = purchases.upgrades_by_name[GLOB.tier_to_primo_upgrade[tier]]?.times_bought
 		))
 
 	.["hive_structures"] = list()

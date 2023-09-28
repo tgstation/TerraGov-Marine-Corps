@@ -1,14 +1,14 @@
-#define APEX_TIER_ONE "Apex tier one"
-#define APEX_TIER_TWO "Apex tier two"
-#define APEX_TIER_THREE "Apex tier three"
-#define APEX_TIER_FOUR "Apex tier four"
+#define PRIMORDIAL_TIER_ONE "Primordial tier one"
+#define PRIMORDIAL_TIER_TWO "Primordial tier two"
+#define PRIMORDIAL_TIER_THREE "Primordial tier three"
+#define PRIMORDIAL_TIER_FOUR "Primordial tier four"
 
-GLOBAL_LIST_INIT(upgrade_categories, list("Buildings", "Defences", "Xenos"))//, "Apex"))//uncomment to unlock globally
-GLOBAL_LIST_INIT(tier_to_apex_upgrade, list(
-	XENO_TIER_ONE = APEX_TIER_ONE,
-	XENO_TIER_TWO = APEX_TIER_TWO,
-	XENO_TIER_THREE = APEX_TIER_THREE,
-	XENO_TIER_FOUR = APEX_TIER_FOUR,
+GLOBAL_LIST_INIT(upgrade_categories, list("Buildings", "Defences", "Xenos"))//, "Primordial"))//uncomment to unlock globally
+GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
+	XENO_TIER_ONE = PRIMORDIAL_TIER_ONE,
+	XENO_TIER_TWO = PRIMORDIAL_TIER_TWO,
+	XENO_TIER_THREE = PRIMORDIAL_TIER_THREE,
+	XENO_TIER_FOUR = PRIMORDIAL_TIER_FOUR,
 ))
 
 /datum/hive_purchases
@@ -301,11 +301,11 @@ GLOBAL_LIST_INIT(tier_to_apex_upgrade, list(
 /datum/hive_upgrade/xenos
 	category = "Xenos"
 
-/datum/hive_upgrade/apex
+/datum/hive_upgrade/primordial
 	category = "Xenos"
 	flags_upgrade = UPGRADE_FLAG_ONETIME|UPGRADE_FLAG_MESSAGE_HIVE
 
-/datum/hive_upgrade/apex/can_buy(mob/living/carbon/xenomorph/buyer, silent = TRUE)
+/datum/hive_upgrade/primordial/can_buy(mob/living/carbon/xenomorph/buyer, silent = TRUE)
 	. = ..()
 	if(!isxenoqueen(buyer) && !isxenoshrike(buyer) && !isxenoking(buyer))
 		if(!silent)
@@ -313,26 +313,26 @@ GLOBAL_LIST_INIT(tier_to_apex_upgrade, list(
 		return FALSE
 
 
-/datum/hive_upgrade/apex/tier_four
-	name = APEX_TIER_FOUR
-	desc = "Unlocks the apex for the last tier"
+/datum/hive_upgrade/primordial/tier_four
+	name = PRIMORDIAL_TIER_FOUR
+	desc = "Unlocks the primordial for the last tier"
 	psypoint_cost = 600
 	icon = "primoqueen"
 
-/datum/hive_upgrade/apex/tier_three
-	name = APEX_TIER_THREE
-	desc = "Unlocks the apex for the third tier"
+/datum/hive_upgrade/primordial/tier_three
+	name = PRIMORDIAL_TIER_THREE
+	desc = "Unlocks the primordial for the third tier"
 	psypoint_cost = 600
 	icon = "primorav"
 
-/datum/hive_upgrade/apex/tier_two
-	name = APEX_TIER_TWO
-	desc = "Unlocks the apex for the second tier"
+/datum/hive_upgrade/primordial/tier_two
+	name = PRIMORDIAL_TIER_TWO
+	desc = "Unlocks the primordial for the second tier"
 	psypoint_cost = 600
 	icon = "primowarrior"
 
-/datum/hive_upgrade/apex/tier_one
-	name = APEX_TIER_ONE
-	desc = "Unlocks the apex for the first tier"
+/datum/hive_upgrade/primordial/tier_one
+	name = PRIMORDIAL_TIER_ONE
+	desc = "Unlocks the primordial for the first tier"
 	psypoint_cost = 600
 	icon = "primosent"

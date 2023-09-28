@@ -1,7 +1,7 @@
 /mob/living/carbon/xenomorph/king
 	caste_base_type = /mob/living/carbon/xenomorph/king
 	name = "King"
-	desc = "A apex creature, evolved to smash the hardiest of defences and hunt the hardiest of prey."
+	desc = "A primordial creature, evolved to smash the hardiest of defences and hunt the hardiest of prey."
 	icon = 'icons/Xeno/castes/king.dmi'
 	icon_state = "King Walking"
 	attacktext = "bites"
@@ -29,8 +29,8 @@
 	switch(upgrade)
 		if(XENO_UPGRADE_NORMAL)
 			name = "[hive.prefix]Emperor ([nicknumber])"	 //Normal
-		if(XENO_UPGRADE_APEX)
-			name = "[hive.prefix]Apex Emperor ([nicknumber])"
+		if(XENO_UPGRADE_PRIMO)
+			name = "[hive.prefix]Primordial Emperor ([nicknumber])"
 
 	real_name = name
 	if(mind)

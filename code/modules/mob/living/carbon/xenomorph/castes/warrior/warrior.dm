@@ -81,15 +81,15 @@
 	victim.do_resist_grab()
 
 // ***************************************
-// *********** Apex procs
+// *********** Primordial procs
 // ***************************************
-///Handles apex warrior empowered abilities, returns TRUE if the ability should be empowered.
+///Handles primordial warrior empowered abilities, returns TRUE if the ability should be empowered.
 /mob/living/carbon/xenomorph/warrior/empower(empowerable = TRUE)
 	. = ..()
 	if(!empowerable) //gives combo but doesn't combo but doesn't consume it.
 		give_combo()
 		return FALSE
-	if(upgrade != XENO_UPGRADE_APEX)
+	if(upgrade != XENO_UPGRADE_PRIMO)
 		return FALSE
 	if(combo >= WARRIOR_COMBO_THRESHOLD) //Fully stacked, clear all the stacks and return TRUE.
 		emote("roar")
@@ -98,9 +98,9 @@
 	give_combo()
 	return FALSE
 
-///Apex warriors empowered ability trigger when they get 3 combo stacks, handles visuals aswell.
+///Primordial warriors empowered ability trigger when they get 3 combo stacks, handles visuals aswell.
 /mob/living/carbon/xenomorph/warrior/proc/give_combo()
-	if(upgrade != XENO_UPGRADE_APEX)
+	if(upgrade != XENO_UPGRADE_PRIMO)
 		return FALSE
 	combo++
 	if(combo >= WARRIOR_COMBO_THRESHOLD)

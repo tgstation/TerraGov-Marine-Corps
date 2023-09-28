@@ -62,11 +62,11 @@
 /datum/xeno_caste/defender/ancient
 	upgrade = XENO_UPGRADE_NORMAL
 
-/datum/xeno_caste/defender/apex
-	upgrade_name = "Apex"
+/datum/xeno_caste/defender/primordial
+	upgrade_name = "Primordial"
 	caste_desc = "Alien with an incredibly tough and armored head crest able to endure even the strongest hits."
-	upgrade = XENO_UPGRADE_APEX
-	apex_message = "We are the aegis of the hive. Let nothing pierce our guard."
+	upgrade = XENO_UPGRADE_PRIMO
+	primordial_message = "We are the aegis of the hive. Let nothing pierce our guard."
 
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,

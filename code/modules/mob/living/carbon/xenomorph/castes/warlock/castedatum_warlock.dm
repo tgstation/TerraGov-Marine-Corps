@@ -38,11 +38,11 @@
 /datum/xeno_caste/warlock/normal
 	upgrade = XENO_UPGRADE_NORMAL
 
-/datum/xeno_caste/warlock/apex
-	upgrade_name = "Apex"
+/datum/xeno_caste/warlock/primordial
+	upgrade_name = "Primordial"
 	caste_desc = "An overwhelming psychic beacon. The air around it seems to dance with barely contained power."
-	apex_message = "We see the beauty of the unlimited psychic power of the hive. Enlighten the tallhosts to its majesty."
-	upgrade = XENO_UPGRADE_APEX
+	primordial_message = "We see the beauty of the unlimited psychic power of the hive. Enlighten the tallhosts to its majesty."
+	upgrade = XENO_UPGRADE_PRIMO
 
 	spit_types = list(/datum/ammo/energy/xeno/psy_blast, /datum/ammo/energy/xeno/psy_blast/psy_lance)
 

@@ -58,11 +58,11 @@
 /datum/xeno_caste/wraith/normal
 	upgrade = XENO_UPGRADE_NORMAL
 
-/datum/xeno_caste/wraith/apex
-	upgrade_name = "Apex"
+/datum/xeno_caste/wraith/primordial
+	upgrade_name = "Primordial"
 	caste_desc = "A xenomorph that has perfected the manipulation of space and time. Its movements appear quick and distorted."
-	apex_message = "Mastery is achieved when \'telling time\' becomes \'telling time what to do\'."
-	upgrade = XENO_UPGRADE_APEX
+	primordial_message = "Mastery is achieved when \'telling time\' becomes \'telling time what to do\'."
+	upgrade = XENO_UPGRADE_PRIMO
 
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,

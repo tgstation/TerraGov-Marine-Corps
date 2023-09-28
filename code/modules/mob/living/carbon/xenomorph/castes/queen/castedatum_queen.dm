@@ -81,10 +81,10 @@
 /datum/xeno_caste/queen/young
 	upgrade = XENO_UPGRADE_NORMAL
 
-/datum/xeno_caste/queen/apex
+/datum/xeno_caste/queen/primordial
 	caste_desc = "A fearsome Xeno hulk of titanic proportions. Nothing can stand in it's way."
-	apex_message = "Destiny bows to our will as the universe trembles before us."
-	upgrade = XENO_UPGRADE_APEX
+	primordial_message = "Destiny bows to our will as the universe trembles before us."
+	upgrade = XENO_UPGRADE_PRIMO
 
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
