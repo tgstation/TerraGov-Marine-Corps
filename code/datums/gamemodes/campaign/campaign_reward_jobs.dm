@@ -36,7 +36,7 @@ What you lack in equipment and military training you make up in bravery and conv
 	jobtype = /datum/job/som/mercenary/militia/standard
 
 	id = /obj/item/card/id/silver
-	ears = /obj/item/radio/headset/distress/dutch
+	ears = /obj/item/radio/headset/mainship/som
 	w_uniform = /obj/item/clothing/under/colonist
 	shoes = /obj/item/clothing/shoes/marine/clf/full
 	wear_suit = /obj/item/clothing/suit/storage/faction/militia
@@ -204,7 +204,7 @@ What you lack in equipment and military training you make up in bravery and conv
 
 	id = /obj/item/card/id/silver
 	belt = /obj/item/storage/belt/lifesaver/full/upp
-	ears = /obj/item/radio/headset/distress/dutch
+	ears = /obj/item/radio/headset/mainship/som
 	head = /obj/item/clothing/head/tgmcberet/bloodred
 	w_uniform = /obj/item/clothing/under/colonist
 	shoes = /obj/item/clothing/shoes/marine/clf/full
@@ -309,7 +309,7 @@ What you lack in equipment and military training you make up in bravery and conv
 
 	id = /obj/item/card/id/silver
 	belt = /obj/item/storage/belt/marine
-	ears = /obj/item/radio/headset/distress/dutch
+	ears = /obj/item/radio/headset/mainship/som
 	w_uniform = /obj/item/clothing/under/colonist/webbing
 	shoes = /obj/item/clothing/shoes/marine/clf/full
 	wear_suit = /obj/item/clothing/suit/storage/faction/militia
@@ -463,10 +463,16 @@ What you lack in equipment and military training you make up in bravery and conv
 	faction = FACTION_TERRAGOV
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
 	outfits = list(
-		/datum/outfit/job/freelancer/leader,
-		/datum/outfit/job/freelancer/leader/one,
+		/datum/outfit/job/freelancer/leader/campaign,
+		/datum/outfit/job/freelancer/leader/one/campaign,
 	)
 	job_cost = 0
+
+/datum/outfit/job/freelancer/leader/campaign
+	ears = /obj/item/radio/headset/mainship
+
+/datum/outfit/job/freelancer/leader/one/campaign
+	ears = /obj/item/radio/headset/mainship
 
 //PMC
 /datum/job/pmc/standard/campaign_bonus
