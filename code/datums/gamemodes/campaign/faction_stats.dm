@@ -176,7 +176,8 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 		stats_flags &= ~MISSION_SELECTION_ALLOWED
 
 	total_attrition_points += round(length(GLOB.clients) * 0.5 * attrition_gain_multiplier)
-	addtimer(src, (PROC_REF(return_to_base)), 10 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(return_to_base)), 10 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(get_selector)), AFTER_MISSION_LEADER_DELAY) //if the leader died, we load a new one after a bit to give respawns some time
 
 ///Returns all faction members back to base after the mission is completed
 /datum/faction_stats/proc/return_to_base()
@@ -189,8 +190,6 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 		human_mob.overlay_fullscreen_timer(0.5 SECONDS, 10, "roundstart1", /atom/movable/screen/fullscreen/black)
 		human_mob.overlay_fullscreen_timer(2 SECONDS, 20, "roundstart2", /atom/movable/screen/fullscreen/spawning_in)
 		human_mob.forceMove(pick(GLOB.spawns_by_job[human_mob.job.type]))
-
-	addtimer(CALLBACK(src, PROC_REF(get_selector)), AFTER_MISSION_LEADER_DELAY) //if the leader died, we load a new one after a minute to give respawns some time
 
 ///Generates status tab info for the mission
 /datum/faction_stats/proc/get_status_tab_items(mob/source, list/items)
