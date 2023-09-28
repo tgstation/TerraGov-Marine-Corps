@@ -255,6 +255,15 @@
 	ui_icon = "heavy_mech"
 	spawner_type = /obj/effect/landmark/campaign/mech_spawner/heavy
 
+/datum/campaign_reward/mech/som
+	spawner_type = /obj/effect/landmark/campaign/mech_spawner/som
+
+/datum/campaign_reward/mech/light/som
+	spawner_type = /obj/effect/landmark/campaign/mech_spawner/som/light
+
+/datum/campaign_reward/mech/heavy/som
+	spawner_type = /obj/effect/landmark/campaign/mech_spawner/som/heavy
+
 //Parent for all bonus role rewards
 /datum/campaign_reward/bonus_job
 	///list of bonus jobs to grant for this reward

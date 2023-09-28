@@ -10,8 +10,8 @@ GLOBAL_LIST_INIT(campaign_default_assets, list(
 		/datum/campaign_reward/droppod_enabled,
 	),
 	FACTION_SOM = list(
-		/datum/campaign_reward/mech,
-		/datum/campaign_reward/mech/light,
+		/datum/campaign_reward/mech/som,
+		/datum/campaign_reward/mech/light/som,
 		/datum/campaign_reward/bonus_job/colonial_militia,
 		/datum/campaign_reward/fire_support/som_mortar,
 		/datum/campaign_reward/teleporter_charges,

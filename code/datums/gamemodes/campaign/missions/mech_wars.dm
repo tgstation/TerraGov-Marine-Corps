@@ -5,6 +5,7 @@
 	map_name = "Patrick's Rest"
 	map_file = '_maps/map_files/Campaign maps/patricks_rest/patricks_rest.dmm'
 	map_light_colours = list(COLOR_MISSION_RED, COLOR_MISSION_RED, COLOR_MISSION_RED, COLOR_MISSION_RED)
+	map_traits = list(ZTRAIT_AWAY = TRUE)
 	map_light_levels = list(225, 150, 100, 75)
 	starting_faction_objective_description = "Major Victory: Wipe out all hostiles in the area of operation. Minor Victory: Eliminate more hostiles than you lose."
 	hostile_faction_objective_description = "Major Victory: Wipe out all hostiles in the area of operation. Minor Victory: Eliminate more hostiles than you lose."
@@ -93,30 +94,20 @@
 /datum/campaign_mission/tdm/mech_wars/apply_minor_loss()
 	winning_faction = hostile_faction
 	var/datum/faction_stats/winning_team = mode.stat_list[hostile_faction]
-	winning_team.add_reward(/datum/campaign_reward/mech)
-	winning_team.add_reward(/datum/campaign_reward/mech/light)
+	winning_team.add_reward(/datum/campaign_reward/mech/som)
+	winning_team.add_reward(/datum/campaign_reward/mech/light/som)
 
 /datum/campaign_mission/tdm/mech_wars/apply_major_loss()
 	winning_faction = hostile_faction
 	var/datum/faction_stats/winning_team = mode.stat_list[hostile_faction]
-	winning_team.add_reward(/datum/campaign_reward/mech/heavy)
-	winning_team.add_reward(/datum/campaign_reward/mech)
-	winning_team.add_reward(/datum/campaign_reward/mech/light)
+	winning_team.add_reward(/datum/campaign_reward/mech/heavy/som)
+	winning_team.add_reward(/datum/campaign_reward/mech/som)
+	winning_team.add_reward(/datum/campaign_reward/mech/light/som)
 
 ///Removes the mech from the list if they are destroyed mid mission
 /datum/campaign_mission/tdm/mech_wars/proc/remove_mech(obj/vehicle/sealed/mecha/combat/greyscale/mech)
 	SIGNAL_HANDLER
 	mech_list -= mech
-
-/datum/campaign_mission/tdm/mech_wars/som
-	name = "Mech war"
-	mission_icon = "mech_war"
-	map_name = "Big Red"
-	map_file = '_maps/map_files/BigRed_v2/BigRed_v2.dmm'
-	map_traits = list(ZTRAIT_AWAY = TRUE, ZTRAIT_SANDSTORM = TRUE)
-	map_light_colours = list(COLOR_MISSION_RED, COLOR_MISSION_RED, COLOR_MISSION_RED, COLOR_MISSION_RED)
-	map_light_levels = list(225, 150, 100, 75)
-
 
 //mech spawn points
 /obj/effect/landmark/campaign/mech_spawner
@@ -166,3 +157,38 @@
 	name = "som light mech spawner"
 	icon_state = "mech_light"
 	mech_type = /obj/vehicle/sealed/mecha/combat/greyscale/recon/noskill
+
+/datum/campaign_mission/tdm/mech_wars/som
+	name = "Mech war"
+	mission_icon = "mech_war"
+	map_name = "Big Red"
+	map_file = '_maps/map_files/BigRed_v2/BigRed_v2.dmm'
+	map_traits = list(ZTRAIT_AWAY = TRUE, ZTRAIT_SANDSTORM = TRUE)
+	map_light_colours = list(COLOR_MISSION_RED, COLOR_MISSION_RED, COLOR_MISSION_RED, COLOR_MISSION_RED)
+	map_light_levels = list(225, 150, 100, 75)
+
+/datum/campaign_mission/tdm/mech_wars/som/apply_major_victory()
+	winning_faction = starting_faction
+	var/datum/faction_stats/winning_team = mode.stat_list[starting_faction]
+	winning_team.add_reward(/datum/campaign_reward/mech/heavy/som)
+	winning_team.add_reward(/datum/campaign_reward/mech/som)
+	winning_team.add_reward(/datum/campaign_reward/mech/light/som)
+
+/datum/campaign_mission/tdm/mech_wars/som/apply_minor_victory()
+	winning_faction = starting_faction
+	var/datum/faction_stats/winning_team = mode.stat_list[starting_faction]
+	winning_team.add_reward(/datum/campaign_reward/mech/som)
+	winning_team.add_reward(/datum/campaign_reward/mech/light/som)
+
+/datum/campaign_mission/tdm/mech_wars/som/apply_minor_loss()
+	winning_faction = hostile_faction
+	var/datum/faction_stats/winning_team = mode.stat_list[hostile_faction]
+	winning_team.add_reward(/datum/campaign_reward/mech)
+	winning_team.add_reward(/datum/campaign_reward/mech/light)
+
+/datum/campaign_mission/tdm/mech_wars/som/apply_major_loss()
+	winning_faction = hostile_faction
+	var/datum/faction_stats/winning_team = mode.stat_list[hostile_faction]
+	winning_team.add_reward(/datum/campaign_reward/mech/heavy)
+	winning_team.add_reward(/datum/campaign_reward/mech)
+	winning_team.add_reward(/datum/campaign_reward/mech/light)
