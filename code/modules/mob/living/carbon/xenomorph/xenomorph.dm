@@ -156,8 +156,10 @@
 			rank_name = "Mature"
 		if(3001 to 9000)
 			rank_name = "Elder"
-		if(9001 to INFINITY)
+		if(9001 to 18000)
 			rank_name = "Ancient"
+		if(18001 to INFINITY)
+			rank_name = "Prime"
 		else
 			rank_name = "Young"
 	var/prefix = (hive.prefix || xeno_caste.upgrade_name) ? "[hive.prefix][xeno_caste.upgrade_name] " : ""
@@ -187,8 +189,10 @@
 			return 1
 		if(3001 to 9000)
 			return 2
-		if(9001 to INFINITY)
+		if(9001 to 18000)
 			return 3
+		if(18001 to INFINITY)
+			return 4
 		else
 			return 0
 
