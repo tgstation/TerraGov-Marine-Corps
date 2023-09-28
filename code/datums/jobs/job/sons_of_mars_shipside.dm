@@ -51,7 +51,7 @@ Godspeed, captain! And remember, you are not above the law."})
 
 	id = /obj/item/card/id/gold
 	belt = /obj/item/storage/holster/belt/pistol/smart_pistol/full
-	ears = /obj/item/radio/headset/mainship/som
+	ears = /obj/item/radio/headset/mainship/som/command
 	w_uniform = /obj/item/clothing/under/marine/officer/command
 	shoes = /obj/item/clothing/shoes/marinechief/captain
 	gloves = /obj/item/clothing/gloves/marine/techofficer/captain
@@ -136,7 +136,7 @@ Make the SOM proud!"}) //update
 
 	id = /obj/item/card/id/dogtag/fc
 	belt = /obj/item/storage/holster/belt/pistol/m4a3/som/fancy/fieldcommander
-	ears = /obj/item/radio/headset/mainship/som
+	ears = /obj/item/radio/headset/mainship/som/command
 	w_uniform = /obj/item/clothing/under/som/leader/webbing //replace when new sprite available
 	wear_suit = /obj/item/clothing/suit/modular/som/heavy/leader/officer
 	shoes = /obj/item/clothing/shoes/marine/som/knife
@@ -234,7 +234,7 @@ You are in charge of logistics and the overwatch system. You are also in line to
 
 	id = /obj/item/card/id/silver
 	belt = /obj/item/storage/holster/belt/pistol/m4a3/officer
-	ears = /obj/item/radio/headset/mainship/mcom
+	ears = /obj/item/radio/headset/mainship/som/command
 	w_uniform = /obj/item/clothing/under/marine/officer/bridge
 	shoes = /obj/item/clothing/shoes/marine/full
 	head = /obj/item/clothing/head/tgmccap/ro
