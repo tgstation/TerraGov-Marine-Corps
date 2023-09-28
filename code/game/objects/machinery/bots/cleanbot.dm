@@ -130,7 +130,7 @@
 			++highestdirt
 	return highestdirt
 
-///Called when the roomba moves, sucks in all items held in the tile and sends them to cryo
+///called to evaluate and clean all objects in a given tile
 /obj/machinery/bot/cleanbot/proc/clean_items()
 	SIGNAL_HANDLER
 	for(var/obj/dirtyobject in loc)
