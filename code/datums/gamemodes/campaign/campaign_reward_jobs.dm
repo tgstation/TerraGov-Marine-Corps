@@ -598,8 +598,8 @@ What you lack in equipment and military training you make up in bravery and conv
 		/datum/outfit/job/icc/leader/icc_confrontationrifle/campaign,
 	)
 
-/datum/outfit/job/icc/leader/trenchgun
-	ears = /obj/item/radio/headset/mainship
+/datum/outfit/job/icc/leader/trenchgun/campaign
+	ears = /obj/item/radio/headset/mainship/campaign
 
 /datum/outfit/job/icc/leader/icc_confrontationrifle/campaign
 	ears = /obj/item/radio/headset/mainship
