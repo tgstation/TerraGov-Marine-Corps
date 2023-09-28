@@ -416,7 +416,7 @@
 
 //Xeno status hud, for xenos
 /datum/atom_hud/xeno
-	hud_icons = list(HEALTH_HUD_XENO, PLASMA_HUD, PHEROMONE_HUD, QUEEN_OVERWATCH_HUD, ARMOR_SUNDER_HUD, XENO_FIRE_HUD)
+	hud_icons = list(HEALTH_HUD_XENO, PLASMA_HUD, PHEROMONE_HUD, QUEEN_OVERWATCH_HUD, ARMOR_SUNDER_HUD, XENO_FIRE_HUD, XENO_RANK_HUD)
 
 /datum/atom_hud/xeno_heart
 	hud_icons = list(HEART_STATUS_HUD)
@@ -517,6 +517,13 @@
 				holder.overlays += I
 	hud_list[QUEEN_OVERWATCH_HUD] = holder
 
+/mob/living/carbon/xenomorph/proc/hud_update_rank()
+	var/image/holder = hud_list[XENO_RANK_HUD]
+	holder.icon_state = "hudblank"
+	if(stat != DEAD && playtime_as_number() > 0)
+		holder.icon_state = "hudxenoupgrade[playtime_as_number()]"
+
+	hud_list[XENO_RANK_HUD] = holder
 
 /datum/atom_hud/security
 	hud_icons = list(WANTED_HUD)

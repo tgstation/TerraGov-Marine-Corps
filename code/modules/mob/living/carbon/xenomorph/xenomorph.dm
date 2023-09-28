@@ -147,8 +147,23 @@
 //Since Xenos change names like they change shoes, we need somewhere to hammer in all those legos
 //We set their name first, then update their real_name AND their mind name
 /mob/living/carbon/xenomorph/proc/generate_name()
+	var/playtime_mins = client?.get_exp(xeno_caste.caste_name)
+	var/rank_name
+	switch(playtime_mins)
+		if(0 to 600)
+			rank_name = "Broodling"
+		if(601 to 3000)
+			rank_name = "Mature"
+		if(3001 to 9000)
+			rank_name = "Noble"
+		if(9001 to 18000)
+			rank_name = "Royal"
+		if(18001 to INFINITY)
+			rank_name = "Archon"
+		else
+			rank_name = "Broodling"
 	var/prefix = (hive.prefix || xeno_caste.upgrade_name) ? "[hive.prefix][xeno_caste.upgrade_name] " : ""
-	name = prefix + "[xeno_caste.display_name] ([nicknumber])"
+	name = prefix + "[rank_name ? "[rank_name] " : ""][xeno_caste.display_name] ([nicknumber])"
 
 	//Update linked data so they show up properly
 	real_name = name
@@ -163,6 +178,23 @@
 			return 0
 		if(XENO_UPGRADE_PRIMO)
 			return 1
+
+///Returns the playtime as a number, used for rank icons
+/mob/living/carbon/xenomorph/proc/playtime_as_number()
+	var/playtime_mins = client?.get_exp(xeno_caste.caste_name)
+	switch(playtime_mins)
+		if(0 to 600)
+			return 0
+		if(601 to 3000)
+			return 1
+		if(3001 to 9000)
+			return 2
+		if(9001 to 18000)
+			return 3
+		if(18001 to INFINITY)
+			return 4
+		else
+			return 0
 
 /mob/living/carbon/xenomorph/proc/upgrade_next()
 	switch(upgrade)
