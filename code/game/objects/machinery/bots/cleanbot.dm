@@ -91,7 +91,7 @@
 
 /obj/machinery/bot/cleanbot/Initialize(mapload)
 	. = ..()
-	RegisterSignal(src, COMSIG_MOVABLE_MOVED, PROC_REF(suck_items))
+	RegisterSignal(src, COMSIG_MOVABLE_MOVED, PROC_REF(clean_items))
 
 /obj/machinery/bot/cleanbot/process()
 	///holds the list of floors and dirs we use to evaluate which direction we're heading
@@ -102,8 +102,6 @@
 	var/sampledirtvalue = 0
 	///used to override destination if we detect dirt or grime nearby
 	var/destdir = null
-	///controls what direction we're heading, is overridden by destdir if it has a value
-	var/newdir
 	for(var/dirn in GLOB.alldirs)
 		var/targetturf = get_step(src,dirn)
 		if(is_blocked_turf(targetturf)) //blocked turfs are not included in move calculations
@@ -115,15 +113,12 @@
 			destdir = dirn
 		else if(highestdirtvalue == 0)
 			dirtyfloors += dirn
-	for(var/i=1 to length(dirtyfloors))
-		newdir = pick_n_take(dirtyfloors)
-	if(!newdir && !destdir) ///if we have destdir than we have a place to go
-		say("I seem to be stuck...")
+	if(!length(dirtyfloors))
+		say("ERROR 401; UNIT CANNOT DETECT NAVIGABLE ROUTE")
 		return
-	if(destdir)
-		step_to(src, get_step(src,destdir))
-	else
-		step_to(src, get_step(src,newdir))
+	if(!destdir)
+		destdir = pick(dirtyfloors)
+	step_to(src, get_step(src,destdir))
 
 ///return a dirt value based on how many times we detect dirty objects
 /obj/machinery/bot/cleanbot/proc/calculategrime(turf/dirtyturf)
@@ -136,7 +131,7 @@
 	return highestdirt
 
 ///Called when the roomba moves, sucks in all items held in the tile and sends them to cryo
-/obj/machinery/bot/cleanbot/proc/suck_items()
+/obj/machinery/bot/cleanbot/proc/clean_items()
 	SIGNAL_HANDLER
 	for(var/obj/dirtyobject in loc)
 		clean(dirtyobject)
@@ -154,8 +149,6 @@
 			say(pick(sentences))
 		qdel(O)
 	else if(istype(O, /obj/item/trash) || istype(O, /obj/item/shard) || istype(O, /obj/item/ammo_casing) || istype(O, /obj/effect/turf_decal/tracks/wheels/bloody))
-		playsound(loc, 'sound/effects/slosh.ogg', 25, 1)
-		currentturf.wet_floor()
 		flick("cleanbot-c", src)
 		++counter
 		if(prob(15))
@@ -163,7 +156,3 @@
 		qdel(O)
 	else
 		O.clean_blood()
-
-/obj/machinery/bot/cleanbot/Destroy()
-	. = ..()
-	UnregisterSignal(src, COMSIG_MOVABLE_MOVED)

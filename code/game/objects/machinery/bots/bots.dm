@@ -34,13 +34,8 @@
 			todays_voice = pick(SStts.available_speakers)
 		voice = todays_voice
 	RegisterSignal(src, COMSIG_AREA_EXITED, PROC_REF(turn_around))
-	if(is_active)
-		icon_state = active_icon_state
-		start_processing()
-
-/obj/machinery/bot/Destroy()
-	stop_processing()
-	return ..()
+	update_icon_state()
+	start_processing()
 
 ///Turns the bot around when it leaves an area to make sure it doesnt wander off
 /obj/machinery/bot/proc/turn_around(datum/target)
@@ -92,41 +87,54 @@
 		return
 	if(user.a_intent != INTENT_HELP)
 		return
-	switch(tgui_alert(user, "Do you you want to turn the [src] [is_active ? "off" : "on"]?" , "Cleanbot activation", list("No", "Yes")))
+	switch(tgui_alert(user, "Do you you want to turn the [src] [is_active ? "off" : "on"]?" , "Bot activation", list("No", "Yes")))
+		if("No")
+			return
 		if("Yes")
 			if(is_active)
-				bot_shutdown(user)
+				bot_shutdown()
 			else
-				bot_startup(user)
+				bot_startup()
 
 /obj/machinery/bot/attack_ai(mob/user)
 	if(!alter_operating_mode)
 		to_chat(user, "This robot has a firewall and cannot be remotely accessed.")
 		return
-	if(is_active)
-		bot_shutdown(user)
-	else
-		bot_startup(user)
+	switch(tgui_alert(user, "Do you you want to turn the [src] [is_active ? "off" : "on"]?" , "Bot activation", list("No", "Yes")))
+		if("No")
+			return
+		if("Yes")
+			if(is_active)
+				bot_shutdown()
+			else
+				bot_startup()
 
 /obj/machinery/bot/proc/bot_shutdown(mob/living/user)
-	icon_state = "[initial(icon_state)]"
 	balloon_alert_to_viewers("Powers off")
 	if(deactivation_animation)
 		flick("[deactivation_animation]", src)
 	if(length(shutdownsentences))
 		say(pick(shutdownsentences))
 	is_active = FALSE
+	update_icon_state()
 	stop_processing()
 
 /obj/machinery/bot/proc/bot_startup(mob/living/user)
-	icon_state = active_icon_state
 	balloon_alert_to_viewers("Powers on")
 	if(activation_animation)
 		flick("[activation_animation]", src)
 	if(length(awakeningsentences))
 		say(pick(awakeningsentences))
 	is_active = TRUE
+	update_icon_state()
 	start_processing()
+
+/obj/machinery/bot/update_icon_state()
+	. = ..()
+	if(is_active)
+		icon_state = active_icon_state
+	else
+		icon_state = "[initial(icon_state)]"
 
 //these bots are mostly for decoration, you can't turn them on and they have no behavior aside from randomly moving
 /obj/machinery/bot/medbot
