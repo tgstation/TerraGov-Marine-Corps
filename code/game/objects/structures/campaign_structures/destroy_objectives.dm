@@ -71,11 +71,12 @@
 /obj/structure/campaign_objective/destruction_objective/mlrs/disable()
 	if(destroyed_state)
 		return
-	destroyed_state = TRUE
-	var/obj/effect/temp_visual/explosion/explosion = new /obj/effect/temp_visual/explosion(loc, 4, LIGHT_COLOR_LAVA, FALSE, TRUE)
-	explosion.pixel_x = 56
-	explosion_smoke = new(src, /particles/tank_wreck_smoke)
-	update_icon()
+	if(!QDELETED(src))
+		destroyed_state = TRUE
+		var/obj/effect/temp_visual/explosion/explosion = new /obj/effect/temp_visual/explosion(loc, 4, LIGHT_COLOR_LAVA, FALSE, TRUE)
+		explosion.pixel_x = 56
+		explosion_smoke = new(src, /particles/tank_wreck_smoke)
+		update_icon()
 	return ..()
 
 /particles/tank_wreck_smoke
