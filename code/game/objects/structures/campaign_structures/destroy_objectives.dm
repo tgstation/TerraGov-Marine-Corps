@@ -6,6 +6,10 @@
 	///explosion smoke particle holder
 	var/obj/effect/abstract/particle_holder/explosion_smoke
 
+/obj/structure/campaign_objective/destruction_objective/Destroy()
+	QDEL_NULL(explosion_smoke)
+	return ..()
+
 /obj/structure/campaign_objective/destruction_objective/plastique_act()
 	qdel(src)
 
