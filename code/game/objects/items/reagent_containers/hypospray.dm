@@ -100,6 +100,7 @@
 		var/mob/M = A
 		balloon_alert(user, "Injects [M]")
 		to_chat(M, span_warning("You feel a tiny prick!")) // inject self doubleposting
+		record_reagent_consumption(min(amount_per_transfer_from_this, reagents.total_volume), injected, user, M)
 
 	// /mob/living/carbon/human/attack_hand causes
 	// changeNext_move(7) which creates a delay

@@ -247,6 +247,7 @@
 		to_chat(source, span_warning("[active_weapon] just fired, wait for it to cool down."))
 		return
 	active_weapon.open_fire(target, attackdir)
+	record_cas_activity(active_weapon)
 
 /obj/docking_port/mobile/marine_dropship/casplane/ui_data(mob/user)
 	. = list()
@@ -254,43 +255,22 @@
 	.["plane_mode"] = mode
 	.["fuel_left"] = fuel_left
 	.["fuel_max"] = fuel_max
-	.["ship_status"] = getStatusText()
 	.["attackdir"] = uppertext(dir2text(attackdir))
+	.["active_lasers"] = length(GLOB.active_cas_targets)
+
 	var/element_nbr = 1
 	.["all_weapons"] = list()
-	for(var/i in equipments)
-		var/obj/structure/dropship_equipment/cas/weapon/weapon = i
-		.["all_weapons"] += list(list("name"= sanitize(copytext(weapon.name,1,MAX_MESSAGE_LEN)), "ammo" = weapon?.ammo_equipped?.ammo_count, "eqp_tag" = element_nbr))
+	for(var/obj/structure/dropship_equipment/cas/weapon/weapon in equipments)
+		.["all_weapons"] += list(list(
+			"name"= sanitize(copytext(weapon.name,1,MAX_MESSAGE_LEN)),
+			"ammo" = weapon.ammo_equipped?.ammo_count,
+			"max_ammo" = weapon.ammo_equipped?.max_ammo_count,
+			"ammo_name" = weapon.ammo_equipped?.name,
+			"eqp_tag" = element_nbr,
+		))
 		if(weapon == active_weapon)
 			.["active_weapon_tag"] = element_nbr
 		element_nbr++
-	.["active_lasers"] = length(GLOB.active_cas_targets)
-	.["active_weapon_name"] = null
-	.["active_weapon_ammo"] = null
-	.["active_weapon_max_ammo"] = null
-	.["active_weapon_ammo_name"] = null
-	if(active_weapon)
-		.["active_weapon_name"] = sanitize(copytext(active_weapon?.name,1,MAX_MESSAGE_LEN))
-		if(active_weapon.ammo_equipped)
-			.["active_weapon_ammo"] = active_weapon.ammo_equipped.ammo_count
-			.["active_weapon_max_ammo"] = active_weapon.ammo_equipped.max_ammo_count
-			.["active_weapon_ammo_name"] = active_weapon.ammo_equipped.name
-
-/obj/docking_port/mobile/marine_dropship/casplane/getStatusText()
-	switch(mode)
-		if(SHUTTLE_IDLE, SHUTTLE_RECHARGING)
-			switch(state)
-				if(PLANE_STATE_FLYING)
-					return "In-mission"
-				if(PLANE_STATE_PREPARED)
-					return "Engines online and ready for launch."
-				if(PLANE_STATE_ACTIVATED)
-					return "Engines Offline. Idle mode engaged."
-		if(SHUTTLE_IGNITING)
-			return "Accelerating to new destination."
-		if(SHUTTLE_PREARRIVAL)
-			return "Decelerating."
-	return "Unknown status"
 
 /// Used to intercept JUMP links.
 /obj/docking_port/mobile/marine_dropship/casplane/proc/handle_topic(datum/source, mob/user, list/href_list)

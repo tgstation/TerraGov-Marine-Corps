@@ -183,18 +183,17 @@
 	plane = GAME_PLANE
 	icon = 'icons/obj/smooth_objects/weedwall.dmi'
 	icon_state = "weedwall"
-	base_icon_state = "weedwall"
-	smoothing_flags = SMOOTH_BITMASK
-	smoothing_groups = list(SMOOTH_GROUP_ALIEN_WEEDS)
-	canSmoothWith = list(SMOOTH_GROUP_ALIEN_WEEDS)
 
 /obj/alien/weeds/weedwall/update_icon_state()
 	var/turf/closed/wall/W = loc
 	if(!istype(W))
 		icon_state = initial(icon_state)
 	else
-		icon_state = W.junctiontype ? "weedwall[W.junctiontype]" : initial(icon_state)
-	icon_state += color_variant
+		icon_state = W.smoothing_junction ? "weedwall-[W.smoothing_junction]" : initial(icon_state)
+	if(color_variant == STICKY_COLOR)
+		icon = 'icons/obj/smooth_objects/weedwallsticky.dmi'
+	else if(color_variant == RESTING_COLOR)
+		icon = 'icons/obj/smooth_objects/weedwallrest.dmi'
 
 // =================
 // windowed weed wall
@@ -204,6 +203,8 @@
 	var/window_type = /obj/structure/window/framed
 
 /obj/alien/weeds/weedwall/window/update_icon_state()
+	var/obj/structure/window/framed/F = locate() in loc
+	icon_state = F?.smoothing_junction ? "weedwall-[F.smoothing_junction]" : initial(icon_state)
 	if(color_variant == STICKY_COLOR)
 		icon = 'icons/obj/smooth_objects/weedwallsticky.dmi'
 	if(color_variant == RESTING_COLOR)
