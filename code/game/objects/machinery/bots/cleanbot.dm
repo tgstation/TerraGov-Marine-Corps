@@ -172,5 +172,5 @@
 	else
 		O.clean_blood()
 
-/obj/machinery/bot/cleanbot/startson
+/obj/machinery/bot/cleanbot/starts_active
 	is_active = TRUE
