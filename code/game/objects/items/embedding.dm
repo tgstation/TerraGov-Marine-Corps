@@ -82,6 +82,10 @@
 		stack_trace("limb_embed called for NODROP|DELONDROP [embedding]")
 		embedding.unembed_ourself()
 		return FALSE
+	//RUTGMC EDIT START
+	if(embedding.w_class >= WEIGHT_CLASS_NORMAL)
+		return FALSE
+	//RUTGMC EDIT END
 	if(limb_status & LIMB_DESTROYED)
 		return FALSE
 	if(!silent)
@@ -198,8 +202,10 @@
 		balloon_alert_to_viewers("rips [selection] out of [user.p_their()] body")
 	else
 		balloon_alert_to_viewers("rips [selection] out of [src]'s body")
-
+/*
 	handle_yank_out_damage()
+*/
+	handle_yank_out_damage(selection, user) //RUTGMC EDIT - item embed disable
 
 	selection.unembed_ourself()
 
