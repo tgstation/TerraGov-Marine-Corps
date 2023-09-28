@@ -88,6 +88,16 @@
 	deactivation_animation = "cleanbot-off"
 	alter_operating_mode = TRUE
 	active_icon_state = "cleanbot1"
+	///list of garbage the cleanbot removes
+	var/list/cleantypes = list(
+		/obj/effect/decal/cleanable,
+		/obj/item/trash,
+		/obj/item/shard,
+		/obj/item/ammo_casing,
+		/obj/effect/turf_decal/tracks/wheels/bloody,
+	)
+	///have we played a sound when moving into a tile
+	var/has_played_sound = FALSE
 
 /obj/machinery/bot/cleanbot/Initialize(mapload)
 	. = ..()
@@ -113,20 +123,28 @@
 			destdir = dirn
 		else if(highestdirtvalue == 0)
 			dirtyfloors += dirn
-	if(!length(dirtyfloors))
-		say("ERROR 401; UNIT CANNOT DETECT NAVIGABLE ROUTE")
-		return
-	if(!destdir)
+	if(destdir)
+		step_to(src, get_step(src,destdir))
+	else
+		if(!length(dirtyfloors)) //this solves an edge case where dirtyfloors can be empty and will runtime if we attempt to choose from it
+			for(var/dirn in GLOB.alldirs)
+				var/targetturf = get_step(src,dirn)
+				if(is_blocked_turf(targetturf))
+					continue
+				dirtyfloors += dirn
+			if(!length(dirtyfloors)) //still no viable turfs, we're entirely enclosed by dense objects
+				say("ERROR 401, PLEASE CONSULT YOUR INCLUDED NANOTRASEN OWNERS MANUAL")
+				stop_processing()
+				addtimer(CALLBACK(src, PROC_REF(reactivate)), 1 MINUTES)
+				return
 		destdir = pick(dirtyfloors)
-	step_to(src, get_step(src,destdir))
+		step_to(src, get_step(src,destdir))
 
 ///return a dirt value based on how many times we detect dirty objects
 /obj/machinery/bot/cleanbot/proc/calculategrime(turf/dirtyturf)
 	var/highestdirt = 0
 	for(var/obj/dirtyobject in dirtyturf)
-		if(istype(dirtyobject, /obj/effect/decal/cleanable))
-			++highestdirt
-		if(istype(dirtyobject, /obj/item/trash))
+		if(is_type_in_list(dirtyobject, cleantypes))
 			++highestdirt
 	return highestdirt
 
@@ -135,20 +153,17 @@
 	SIGNAL_HANDLER
 	for(var/obj/dirtyobject in loc)
 		clean(dirtyobject)
+	has_played_sound = FALSE
 	stuck_counter = 0
 
 ///clean dirty objects and remove cleanable decals
 /obj/machinery/bot/cleanbot/proc/clean(atom/movable/O as obj|mob)
 	var/turf/currentturf = get_turf(src)
-	if(istype(O, /obj/effect/decal/cleanable))
-		playsound(loc, 'sound/effects/slosh.ogg', 25, 1)
-		currentturf.wet_floor()
-		flick("cleanbot-c", src)
-		++counter
-		if(prob(15))
-			say(pick(sentences))
-		qdel(O)
-	else if(istype(O, /obj/item/trash) || istype(O, /obj/item/shard) || istype(O, /obj/item/ammo_casing) || istype(O, /obj/effect/turf_decal/tracks/wheels/bloody))
+	if(is_type_in_list(O, cleantypes))
+		if(is_cleanable(O) && !has_played_sound)
+			playsound(loc, 'sound/effects/slosh.ogg', 25, 1)
+			currentturf.wet_floor()
+			has_played_sound = TRUE
 		flick("cleanbot-c", src)
 		++counter
 		if(prob(15))
@@ -156,3 +171,6 @@
 		qdel(O)
 	else
 		O.clean_blood()
+
+/obj/machinery/bot/cleanbot/startson
+	is_active = TRUE

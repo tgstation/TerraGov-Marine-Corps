@@ -35,7 +35,8 @@
 		voice = todays_voice
 	RegisterSignal(src, COMSIG_AREA_EXITED, PROC_REF(turn_around))
 	update_icon_state()
-	start_processing()
+	if(is_active)
+		start_processing()
 
 ///Turns the bot around when it leaves an area to make sure it doesnt wander off
 /obj/machinery/bot/proc/turn_around(datum/target)
