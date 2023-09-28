@@ -153,6 +153,9 @@
 	. = ..()
 	acid_melt_multiplier = melting_rate
 	acid_t = target
+	layer = acid_t.layer
+	if(iswallturf(acid_t))
+		icon_state = icon_state += "_wall"
 	START_PROCESSING(SSslowprocess, src)
 
 /obj/effect/xenomorph/acid/Destroy()
