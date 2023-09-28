@@ -6,8 +6,8 @@
 	map_file = '_maps/map_files/Campaign maps/patricks_rest/patricks_rest.dmm'
 	map_light_colours = list(COLOR_MISSION_RED, COLOR_MISSION_RED, COLOR_MISSION_RED, COLOR_MISSION_RED)
 	map_light_levels = list(225, 150, 100, 75)
-	starting_faction_objective_description = null
-	hostile_faction_objective_description = null
+	starting_faction_objective_description = "Major Victory: Wipe out all hostiles in the area of operation. Minor Victory: Eliminate more hostiles than you lose."
+	hostile_faction_objective_description = "Major Victory: Wipe out all hostiles in the area of operation. Minor Victory: Eliminate more hostiles than you lose."
 	max_game_time = 20 MINUTES
 	mission_start_delay = 5 MINUTES //since there is actual mech prep time required
 	victory_point_rewards = list(

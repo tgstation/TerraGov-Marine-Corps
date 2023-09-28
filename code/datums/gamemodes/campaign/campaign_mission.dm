@@ -91,7 +91,7 @@
 			"hostile_faction" = "<u>Draw</u><br> Enemy operation disrupted, they're getting nothing out of this one. Good work.",
 		),
 		MISSION_OUTCOME_MINOR_LOSS = list(
-			"starting_faction" = "<u>Minor loss</u><br> starting faction intro text here",
+			"starting_faction" = "<u>Minor loss</u><br> All forces pull back, mission failure. We'll get them next time.",
 			"hostile_faction" = "<u>Minor victory</u><br> Excellent work, the enemy operation is in disarray. Get ready for the next move.",
 		),
 		MISSION_OUTCOME_MAJOR_LOSS = list(
