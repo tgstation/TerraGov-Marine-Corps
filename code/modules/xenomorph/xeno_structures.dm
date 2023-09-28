@@ -191,6 +191,8 @@
 			drop_hugger()
 		if(TRAP_SMOKE_NEURO, TRAP_SMOKE_ACID)
 			smoke.start()
+//RUTGMC EDIT START
+/* //RUTGMC edit - sprite and stats changes
 		if(TRAP_ACID_WEAK)
 			for(var/turf/acided AS in RANGE_TURFS(1, src))
 				new /obj/effect/xenomorph/spray(acided, 7 SECONDS, XENO_DEFAULT_ACID_PUDDLE_DAMAGE)
@@ -200,6 +202,17 @@
 		if(TRAP_ACID_STRONG)
 			for(var/turf/acided AS in RANGE_TURFS(1, src))
 				new /obj/effect/xenomorph/spray(acided, 12 SECONDS, XENO_DEFAULT_ACID_PUDDLE_DAMAGE)
+*/
+		if(TRAP_ACID_WEAK)
+			for(var/turf/acided AS in RANGE_TURFS(1, src))
+				new /obj/effect/xenomorph/spray/weak(acided, 8 SECONDS, XENO_WEAK_ACID_PUDDLE_DAMAGE)
+		if(TRAP_ACID_NORMAL)
+			for(var/turf/acided AS in RANGE_TURFS(1, src))
+				new /obj/effect/xenomorph/spray(acided, 10 SECONDS, XENO_DEFAULT_ACID_PUDDLE_DAMAGE)
+		if(TRAP_ACID_STRONG)
+			for(var/turf/acided AS in RANGE_TURFS(1, src))
+				new /obj/effect/xenomorph/spray/strong(acided, 12 SECONDS, XENO_HIGH_ACID_PUDDLE_DAMAGE)
+//RUTGMC EDIT END
 	xeno_message("A [trap_type] trap at [AREACOORD_NO_Z(src)] has been triggered!", "xenoannounce", 5, hivenumber,  FALSE, get_turf(src), 'sound/voice/alien_talk2.ogg', FALSE, null, /atom/movable/screen/arrow/attack_order_arrow, COLOR_ORANGE, TRUE)
 	set_trap_type(null)
 

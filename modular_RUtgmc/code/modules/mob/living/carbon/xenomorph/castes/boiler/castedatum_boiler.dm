@@ -15,6 +15,7 @@
 		/datum/action/xeno_action/toggle_bomb,
 		/datum/action/xeno_action/activable/spray_acid/line/boiler,
 		/datum/action/xeno_action/dump_acid,
+		/datum/action/xeno_action/place_trap,
 	)
 
 /datum/xeno_caste/boiler/primordial
@@ -30,5 +31,6 @@
 		/datum/action/xeno_action/toggle_bomb,
 		/datum/action/xeno_action/activable/spray_acid/line/boiler,
 		/datum/action/xeno_action/dump_acid,
+		/datum/action/xeno_action/place_trap,
 	)
 

@@ -7,6 +7,7 @@
 
 /obj/structure/xeno/acidwell
 	icon = 'modular_RUtgmc/icons/Xeno/acid_pool.dmi'
+	plane = FLOOR_PLANE
 
 /obj/structure/xeno/pherotower
 	icon = 'modular_RUtgmc/icons/Xeno/1x1building.dmi'

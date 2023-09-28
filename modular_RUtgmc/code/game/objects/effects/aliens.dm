@@ -5,3 +5,8 @@
 	. = ..()
 	animate(src, duration, alpha = 20)
 
+/obj/effect/xenomorph/spray/strong
+	icon_state = "acid2-strong"
+
+/obj/effect/xenomorph/spray/weak
+	icon_state = "acid2-weak"
