@@ -78,11 +78,11 @@
 /datum/xeno_caste/shrike/normal
 	upgrade = XENO_UPGRADE_NORMAL
 
-/datum/xeno_caste/shrike/primordial
-	upgrade_name = "Primordial"
+/datum/xeno_caste/shrike/apex
+	upgrade_name = "Apex"
 	caste_desc = "The unleashed repository of the hive's psychic power."
-	primordial_message = "We are the unbridled psychic power of the hive. Throw our enemies to their doom."
-	upgrade = XENO_UPGRADE_PRIMO
+	apex_message = "We are the unbridled psychic power of the hive. Throw our enemies to their doom."
+	upgrade = XENO_UPGRADE_APEX
 
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,

@@ -7,8 +7,8 @@
 
 	var/caste_type_path = null
 
-	///primordial message that is shown when a caste becomes primordial
-	var/primordial_message = ""
+	///apex message that is shown when a caste becomes apex
+	var/apex_message = ""
 
 	var/tier = XENO_TIER_ZERO
 	var/upgrade = XENO_UPGRADE_NORMAL

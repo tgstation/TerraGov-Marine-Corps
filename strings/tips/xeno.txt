@@ -35,7 +35,7 @@ As a carrier, you can hide traps beneath certain objects and items.
 As a hunter, you have almost perfect stealth if you stand still.
 As a ravager or the Queen, you are fire-resistant, NOT fireproof. You can still get lit on fire, but you take very little damage from it. As the King, however, you're fireproof until your armor is damaged by sunder.
 As a spitter, boiler, praetorian, or the Queen, take advantage of unguarded barricades and defenses; melt or constantly spit acid on them if you can.
-As a boiler, primordial hivelord, the King or the Queen, you have the most powerful corrosive acid for melting things.
+As a boiler, apex hivelord, the King or the Queen, you have the most powerful corrosive acid for melting things.
 As the Shrike, take advantage of your psychic abilities. Use Psychic Fling and Unrelenting Force to displace a marine or even push certain and hazardous objects towards your enemies and vice versa.
 As the Queen, your screech does not only affect the mobs on view, but affects through walls or gases. However, the effect of the screech will be reduced.
 As a drone, hivelord, Hivemind, Shrike, and the Queen, a large maze is almost always a good investment.

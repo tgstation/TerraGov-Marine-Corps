@@ -67,11 +67,11 @@
 /datum/xeno_caste/praetorian/normal
 	upgrade = XENO_UPGRADE_NORMAL
 
-/datum/xeno_caste/praetorian/primordial
-	upgrade_name = "Primordial"
+/datum/xeno_caste/praetorian/apex
+	upgrade_name = "Apex"
 	caste_desc = "An aberrant creature extremely proficient with acid, keep your distance if you don't wish to be burned."
-	upgrade = XENO_UPGRADE_PRIMO
-	primordial_message = "The strongest of acids flows through our veins, let's reduce them to dust."
+	upgrade = XENO_UPGRADE_APEX
+	apex_message = "The strongest of acids flows through our veins, let's reduce them to dust."
 
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,

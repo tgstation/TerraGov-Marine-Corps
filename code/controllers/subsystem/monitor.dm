@@ -34,11 +34,11 @@ SUBSYSTEM_DEF(monitor)
 	var/maximum_connected_players_count = 0
 
 /datum/monitor_statistics
-	var/primo_T4 = 0
+	var/apex_T4 = 0
 	var/normal_T4 = 0
-	var/primo_T3 = 0
+	var/apex_T3 = 0
 	var/normal_T3 = 0
-	var/primo_T2 = 0
+	var/apex_T2 = 0
 	var/normal_T2 = 0
 	var/list/miniguns_in_use = list()
 	var/list/sadar_in_use = list()
@@ -104,11 +104,11 @@ SUBSYSTEM_DEF(monitor)
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
 	switch(gamestate)
 		if(GROUNDSIDE)
-			. += stats.primo_T2 * PRIMO_T2_WEIGHT
-			. += stats.primo_T3 * PRIMO_T3_WEIGHT
+			. += stats.apex_T2 * APEX_T2_WEIGHT
+			. += stats.apex_T3 * APEX_T3_WEIGHT
 			. += stats.normal_T2 * NORMAL_T2_WEIGHT
 			. += stats.normal_T3 * NORMAL_T3_WEIGHT
-			. += stats.primo_T4 * PRIMO_T4_WEIGHT
+			. += stats.apex_T4 * APEX_T4_WEIGHT
 			. += stats.normal_T4 * NORMAL_T4_WEIGHT
 			. += human_on_ground * HUMAN_LIFE_ON_GROUND_WEIGHT
 			. += (length(GLOB.alive_human_list_faction[FACTION_TERRAGOV]) - human_on_ground) * HUMAN_LIFE_ON_SHIP_WEIGHT

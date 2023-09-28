@@ -57,11 +57,11 @@
 /datum/xeno_caste/warrior/normal
 	upgrade = XENO_UPGRADE_NORMAL
 
-/datum/xeno_caste/warrior/primordial
-	upgrade_name = "Primordial"
+/datum/xeno_caste/warrior/apex
+	upgrade_name = "Apex"
 	caste_desc = "A champion of the hive, methodically shatters its opponents with punches rather than slashes."
-	primordial_message = "Our rhythm is unmatched and our strikes lethal, no single foe can stand against us."
-	upgrade = XENO_UPGRADE_PRIMO
+	apex_message = "Our rhythm is unmatched and our strikes lethal, no single foe can stand against us."
+	upgrade = XENO_UPGRADE_APEX
 
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,

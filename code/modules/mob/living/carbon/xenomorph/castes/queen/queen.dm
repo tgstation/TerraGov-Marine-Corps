@@ -75,8 +75,8 @@
 	switch(upgrade)
 		if(XENO_UPGRADE_NORMAL)
 			name = "[hive.prefix]Empress ([nicknumber])"			 //Normal
-		if(XENO_UPGRADE_PRIMO)
-			name = "[hive.prefix]Primordial Empress ([nicknumber])"
+		if(XENO_UPGRADE_APEX)
+			name = "[hive.prefix]Apex Empress ([nicknumber])"
 
 	real_name = name
 	if(mind)

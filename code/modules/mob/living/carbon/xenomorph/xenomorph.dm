@@ -159,7 +159,7 @@
 		if(9001 to 18000)
 			rank_name = "Ancient"
 		if(18001 to INFINITY)
-			rank_name = "Prime"
+			rank_name = "Primordial"
 		else
 			rank_name = "Young"
 	var/prefix = (hive.prefix || xeno_caste.upgrade_name) ? "[hive.prefix][xeno_caste.upgrade_name] " : ""
@@ -176,7 +176,7 @@
 			return -1
 		if(XENO_UPGRADE_NORMAL)
 			return 0
-		if(XENO_UPGRADE_PRIMO)
+		if(XENO_UPGRADE_APEX)
 			return 1
 
 ///Returns the playtime as a number, used for rank icons
@@ -201,9 +201,9 @@
 		if(XENO_UPGRADE_INVALID)
 			return XENO_UPGRADE_INVALID
 		if(XENO_UPGRADE_NORMAL)
-			return XENO_UPGRADE_PRIMO
-		if(XENO_UPGRADE_PRIMO)
-			return XENO_UPGRADE_PRIMO
+			return XENO_UPGRADE_APEX
+		if(XENO_UPGRADE_APEX)
+			return XENO_UPGRADE_APEX
 
 /mob/living/carbon/xenomorph/proc/upgrade_prev()
 	switch(upgrade)
@@ -211,7 +211,7 @@
 			return XENO_UPGRADE_INVALID
 		if(XENO_UPGRADE_NORMAL)
 			return XENO_UPGRADE_NORMAL
-		if(XENO_UPGRADE_PRIMO)
+		if(XENO_UPGRADE_APEX)
 			return XENO_UPGRADE_NORMAL
 
 /mob/living/carbon/xenomorph/proc/setup_job()

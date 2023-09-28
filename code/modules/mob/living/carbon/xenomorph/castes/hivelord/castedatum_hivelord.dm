@@ -82,11 +82,11 @@
 /datum/xeno_caste/hivelord/normal
 	upgrade = XENO_UPGRADE_NORMAL
 
-/datum/xeno_caste/hivelord/primordial
-	upgrade_name = "Primordial"
+/datum/xeno_caste/hivelord/apex
+	upgrade_name = "Apex"
 	caste_desc = "Ultimate builder of the hive. It seems twitchy and is constantly building something"
-	primordial_message = "We are the master architect of the hive. Let the world be covered in resin."
-	upgrade = XENO_UPGRADE_PRIMO
+	apex_message = "We are the master architect of the hive. Let the world be covered in resin."
+	upgrade = XENO_UPGRADE_APEX
 
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,

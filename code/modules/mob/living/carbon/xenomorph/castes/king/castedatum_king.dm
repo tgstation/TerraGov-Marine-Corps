@@ -2,7 +2,7 @@
 	caste_name = "King"
 	display_name = "King"
 	caste_type_path = /mob/living/carbon/xenomorph/king
-	caste_desc = "A primordial creature, evolved to smash the hardiest of defences and hunt the hardiest of prey."
+	caste_desc = "A apex creature, evolved to smash the hardiest of defences and hunt the hardiest of prey."
 
 	tier = XENO_TIER_FOUR
 	upgrade = XENO_UPGRADE_BASETYPE
@@ -67,10 +67,10 @@
 /datum/xeno_caste/king/normal
 	upgrade = XENO_UPGRADE_NORMAL
 
-/datum/xeno_caste/king/primordial
+/datum/xeno_caste/king/apex
 	caste_desc = "An avatar of death. Running won't help you now."
-	primordial_message = "Death cannot create, but you definitely know how to destroy."
-	upgrade = XENO_UPGRADE_PRIMO
+	apex_message = "Death cannot create, but you definitely know how to destroy."
+	upgrade = XENO_UPGRADE_APEX
 
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,

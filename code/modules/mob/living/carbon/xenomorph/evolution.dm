@@ -166,14 +166,14 @@
 
 		new_xeno.update_leader_icon(TRUE)
 
-	if(upgrade == XENO_UPGRADE_PRIMO)
+	if(upgrade == XENO_UPGRADE_APEX)
 		switch(tier)
 			if(XENO_TIER_TWO)
-				SSmonitor.stats.primo_T2--
+				SSmonitor.stats.apex_T2--
 			if(XENO_TIER_THREE)
-				SSmonitor.stats.primo_T3--
+				SSmonitor.stats.apex_T3--
 			if(XENO_TIER_FOUR)
-				SSmonitor.stats.primo_T4--
+				SSmonitor.stats.apex_T4--
 
 	new_xeno.upgrade_stored = max(upgrade_stored, new_xeno.upgrade_stored)
 	while(new_xeno.upgrade_possible() && new_xeno.upgrade_stored >= new_xeno.xeno_caste.upgrade_threshold)

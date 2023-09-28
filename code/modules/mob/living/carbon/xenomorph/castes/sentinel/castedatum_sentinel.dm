@@ -61,11 +61,11 @@
 /datum/xeno_caste/sentinel/normal
 	upgrade = XENO_UPGRADE_NORMAL
 
-/datum/xeno_caste/sentinel/primordial
-	upgrade_name = "Primordial"
+/datum/xeno_caste/sentinel/apex
+	upgrade_name = "Apex"
 	caste_desc = "A doctors worst nightmare. It's stinger drips with poison."
-	primordial_message = "All will succumb to our toxins. Leave noone standing."
-	upgrade = XENO_UPGRADE_PRIMO
+	apex_message = "All will succumb to our toxins. Leave noone standing."
+	upgrade = XENO_UPGRADE_APEX
 
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,

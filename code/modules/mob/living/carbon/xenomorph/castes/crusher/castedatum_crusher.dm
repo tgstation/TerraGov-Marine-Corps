@@ -64,11 +64,11 @@
 /datum/xeno_caste/crusher/normal
 	upgrade = XENO_UPGRADE_NORMAL
 
-/datum/xeno_caste/crusher/primordial
-	upgrade_name = "Primordial"
+/datum/xeno_caste/crusher/apex
+	upgrade_name = "Apex"
 	caste_desc = "Behemoth of the hive. Nothing will remain in its way"
-	primordial_message = "We are an unstoppable force. Crush. Kill. Destroy."
-	upgrade = XENO_UPGRADE_PRIMO
+	apex_message = "We are an unstoppable force. Crush. Kill. Destroy."
+	upgrade = XENO_UPGRADE_APEX
 
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,

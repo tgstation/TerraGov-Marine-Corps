@@ -56,14 +56,14 @@
 					SSmonitor.stats.normal_T3--
 				if(XENO_TIER_FOUR)
 					SSmonitor.stats.normal_T4--
-		if(XENO_UPGRADE_PRIMO)
+		if(XENO_UPGRADE_APEX)
 			switch(tier)
 				if(XENO_TIER_TWO)
-					SSmonitor.stats.primo_T2--
+					SSmonitor.stats.apex_T2--
 				if(XENO_TIER_THREE)
-					SSmonitor.stats.primo_T3--
+					SSmonitor.stats.apex_T3--
 				if(XENO_TIER_FOUR)
-					SSmonitor.stats.primo_T4--
+					SSmonitor.stats.apex_T4--
 
 	eject_victim()
 

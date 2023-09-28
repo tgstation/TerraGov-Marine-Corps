@@ -64,11 +64,11 @@
 /datum/xeno_caste/ravager/normal
 	upgrade = XENO_UPGRADE_NORMAL
 
-/datum/xeno_caste/ravager/primordial
-	upgrade_name = "Primordial"
+/datum/xeno_caste/ravager/apex
+	upgrade_name = "Apex"
 	caste_desc = "Red like the blood of those that try to stop its rampage."
-	primordial_message = "Our frenzy is eternal. Rip and tear, until it is done."
-	upgrade = XENO_UPGRADE_PRIMO
+	apex_message = "Our frenzy is eternal. Rip and tear, until it is done."
+	upgrade = XENO_UPGRADE_APEX
 
 	// *** Abilities *** //
 	actions = list(

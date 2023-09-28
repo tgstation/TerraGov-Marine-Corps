@@ -286,7 +286,7 @@
 
 	var/mob/living/carbon/xenomorph/X = owner
 
-	if(!isliving(A) && (X.xeno_caste.upgrade != XENO_UPGRADE_PRIMO) || !ismovable(A))
+	if(!isliving(A) && (X.xeno_caste.upgrade != XENO_UPGRADE_APEX) || !ismovable(A))
 		if(!silent)
 			to_chat(X, span_xenowarning("We cannot psychically mark this target!"))
 		return FALSE

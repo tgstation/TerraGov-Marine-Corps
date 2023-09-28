@@ -23,7 +23,7 @@ const categoryIcons = {
   'Buildings': 'gopuram',
   'Defences': 'user-shield',
   'Xenos': 'khanda',
-  'Primordial': 'skull', // wolf-pack-battalion
+  'Apex': 'skull', // wolf-pack-battalion
 };
 
 export const BlessingMenu = (props, context) => {

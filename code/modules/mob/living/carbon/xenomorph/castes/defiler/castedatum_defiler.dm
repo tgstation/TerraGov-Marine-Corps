@@ -71,11 +71,11 @@
 /datum/xeno_caste/defiler/normal
 	upgrade = XENO_UPGRADE_NORMAL
 
-/datum/xeno_caste/defiler/primordial
-	upgrade_name = "Primordial"
+/datum/xeno_caste/defiler/apex
+	upgrade_name = "Apex"
 	caste_desc = "An unspeakable hulking horror dripping and exuding the most vile of substances."
-	primordial_message = "Death follows everywhere we go. We are the plague."
-	upgrade = XENO_UPGRADE_PRIMO
+	apex_message = "Death follows everywhere we go. We are the plague."
+	upgrade = XENO_UPGRADE_APEX
 
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,

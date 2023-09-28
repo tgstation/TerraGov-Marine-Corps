@@ -25,7 +25,7 @@ The two main factions Xenomorphs and TG Marines have assymetrical combat. This m
 
 Xenos have 4 tiers of playable castes. Tier 1-3 have decreasing amounts of availability to players as they move up the tiers. The tiers more or less increase the combat prowess of the player with increasing tiers. They also serve to funnel some players into the weaker roles that they typically wouldn't play by having a player cap based off of total players on the team. Tier 4 allows only one playable per caste and typically comes with minimum player requirements.
 
-Xenos gain maturity over time, progressing from Young to Mature to Elder to Ancient to Primordial. At each stage their stats improve, and for some castes their abilities improve as well e.g. Widows have a greater max amount of spiderlings.
+Xenos gain maturity over time, progressing from Young to Mature to Elder to Ancient to Apex. At each stage their stats improve, and for some castes their abilities improve as well e.g. Widows have a greater max amount of spiderlings.
 
 The 4 main tiers are supplemented by a minion tier that consists of AI xenomorphs. This tier serves as cannon fodder to provide a low enough challenge to new and low skill marine players to learn the basics.
 
@@ -65,7 +65,7 @@ Marines have a variety of different roles, broadly categorised as infantry, engi
 - Less dependent on individual player skill. As there are much more marines than xenos, unless they sabotage the group then skilled players can average out the less skilled ones.
 	- Xenos on the other hand depend on skilled players as there are much less of them, and it's especially needed for the Ruler roles.
 - Greater benefit for getting kills. Xeno corpses when recovered can be converted into req points for top-tier equipment, killing particular castes can totally disrupt xenos' ability to function well as a team (see "dependence on unique roles staying alive") and it neuters the xeno's snowball mechanic (maturity and evolution are reset).
-	- Xenos on the other hand gain psy points for purchasing beneficial structures and Primordial evolution, however xenos have to accumulate a lot more corpses for this.
+	- Xenos on the other hand gain psy points for purchasing beneficial structures and Apex evolution, however xenos have to accumulate a lot more corpses for this.
 - Easier to respec if needed. Marines can pick up a new weapon, get equipment sent down or briefly head shipside to swap to a whole new set of equipment.
 	- Xenos on the other hand  to devolve one or more tiers then wait to evolve one or more tiers, which takes a lot of time.
 - On Nuclear War: Marines losing control of their most important map area (FOB) is not too impactful as they also have a Tadpole for moving troops and can call an ERT for example.
@@ -125,7 +125,7 @@ TBA
 
 Construction is the main form of progression for xenos. All purchasable improvements that provide benefit to the entire hive should have a physical representation. This aims to provide something to fight around/towards. See old school RTSes like C&C. (Long term consideration, add distance-based buffs for building closer to enemies)
 
-Building will cost either tactical or strategic psy points. Strategic psy points are usable by all T4 xenos, and tactical by all xenos that can build. Strategic psy points include major impact purchases such as silos, primordial, etc, while tactical is lower impact such as turrets, special walls, etc.
+Building will cost either tactical or strategic psy points. Strategic psy points are usable by all T4 xenos, and tactical by all xenos that can build. Strategic psy points include major impact purchases such as silos, apex, etc, while tactical is lower impact such as turrets, special walls, etc.
 Possible upgrades can include things like faster maturity, more slots, turrets, etc.
 
 Builder roles can also build defensive structures such as walls and doors in order to provide a defensive line.
@@ -148,7 +148,7 @@ Sundering is a mechanic to ensure that xenos do not pressure marines 24/7 withou
 
 Xenomorph abilities are primarily very selfish, and aim to give the user more creative ways to synergise with the rest of their kit and provide situational benefits in combat. An exception are teamwork oriented castes such as drone. The use of these abilities is limited by plasma. Plasma should typically be enough for a brief engagement before they are forced to retreat again, and serves to stop the xeno from constantly attacking over and over with no reprieve.
 
-Abilities are tied to progression using “Primordial” - these are abilities where after staying alive for a certain time unlocks a capstone ability.
+Abilities are tied to progression using “Apex” - these are abilities where after staying alive for a certain time unlocks a capstone ability.
 
 Abilities should aim to be (in order):
 1) Fun to use
@@ -183,7 +183,7 @@ As there are a lot more players in this faction (around ~3x the amount of player
 - Allow low skill xenos as well?). There should always be an acceptable minimum of these AIs that scales with pop (ratio TBD)
 - on TTS should hivemind play as well? and if yes can it be made so admins crack down on the ooc in ic
 - Garrison (Tivi, pending map)
-- Maturity removal, primo stay on maturity system
+- Maturity removal, apex stay on maturity system
 - Upping Minion spawn rate
 - Xeno TTS (Tivi)
 - Splitting psy points into tactical/strategic
