@@ -110,7 +110,7 @@
 			else
 				bot_startup()
 
-/obj/machinery/bot/proc/bot_shutdown(mob/living/user)
+/obj/machinery/bot/proc/bot_shutdown()
 	balloon_alert_to_viewers("Powers off")
 	if(deactivation_animation)
 		flick("[deactivation_animation]", src)
@@ -120,7 +120,7 @@
 	update_icon_state()
 	stop_processing()
 
-/obj/machinery/bot/proc/bot_startup(mob/living/user)
+/obj/machinery/bot/proc/bot_startup()
 	balloon_alert_to_viewers("Powers on")
 	if(activation_animation)
 		flick("[activation_animation]", src)
