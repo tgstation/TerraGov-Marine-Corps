@@ -217,3 +217,23 @@
 2023-09-28:
   Barnet2:
   - balance: Re-added Magmoor LZ 2's SE flank.
+2023-09-29:
+  Barnet2:
+  - rscadd: Added cosmetic xeno ranks, broodling - archon.
+  - balance: Hold order gives 5% damage resist per leadership level instead of 10%.
+  Blundir:
+  - bugfix: id card having no mob icon when spawning on mob
+  - bugfix: fixed backpack prefs overriding spawn of job assigned backpacks
+  - code_imp: made it possible to specify to spawn without backpack or id in job datums
+  - bugfix: fixed boiler making neuro traps with acid
+  - rscadd: after typing a message, icon above you stays for some time
+  Lumipharon:
+  - bugfix: fixed a running intent exploit
+  ivanmixo:
+  - rscdel: Blackbox subsystem doesn't fire postgame
+  - admin: Fix runtime on init
+  - bugfix: Fixes doors blocking line of sight when they shouldn't
+  vvvv-vvvv:
+  - bugfix: Fix stray zeroes in prefs
+  - bugfix: Fix "Spawn as undefined" in job prefs, where the overflow job should have
+      been
