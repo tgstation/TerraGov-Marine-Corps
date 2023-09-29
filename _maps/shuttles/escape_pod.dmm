@@ -43,9 +43,7 @@
 /turf/open/floor/plating,
 /area/shuttle/escape_pod)
 "l" = (
-/turf/open/shuttle/escapepod{
-	icon_state = "floor10"
-	},
+/turf/open/shuttle/escapepod/ten,
 /area/shuttle/escape_pod)
 "m" = (
 /turf/closed/shuttle/escapepod/cornerone{
@@ -68,11 +66,6 @@
 "q" = (
 /turf/closed/shuttle/escapepod/wallfive,
 /area/shuttle/escape_pod)
-"r" = (
-/turf/closed/shuttle/escapepod{
-	icon_state = "wall8"
-	},
-/area/shuttle/escape_pod)
 "s" = (
 /obj/machinery/cryopod/evacuation,
 /obj/machinery/light{
@@ -93,7 +86,7 @@ b
 f
 s
 f
-r
+n
 "}
 (3,1,1) = {"
 c

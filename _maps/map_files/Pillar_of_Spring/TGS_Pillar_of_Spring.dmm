@@ -9888,14 +9888,6 @@
 "lQN" = (
 /obj/machinery/sleeper,
 /obj/machinery/light/mainship,
-/obj/item/prop/mainship/candle{
-	pixel_x = -20;
-	pixel_y = 25
-	},
-/obj/item/prop/mainship/candle/short{
-	pixel_x = -10;
-	pixel_y = 22
-	},
 /turf/open/floor/mainship/sterile/side,
 /area/mainship/medical/lower_medical)
 "lRc" = (

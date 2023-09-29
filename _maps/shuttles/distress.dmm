@@ -178,8 +178,8 @@
 /obj/structure/prop/holidays/string_lights/corner{
 	dir = 8
 	},
-/turf/closed/shuttle/ert{
-	icon_state = "stan5"
+/turf/closed/shuttle/dropship_regular/interior_wall{
+	dir = 1
 	},
 /area/shuttle/ert)
 "N" = (
@@ -197,16 +197,6 @@
 	dir = 1
 	},
 /area/shuttle/ert)
-"X" = (
-/turf/closed/shuttle/ert/engines/right/two{
-	dir = 1
-	},
-/area/shuttle/ert)
-"Y" = (
-/turf/closed/shuttle/ert/engines/left/two{
-	dir = 1
-	},
-/area/shuttle/ert)
 "U" = (
 /obj/structure/rack,
 /obj/effect/landmark/distress_item,
@@ -221,7 +211,17 @@
 /obj/structure/prop/holidays/string_lights/corner{
 	dir = 4
 	},
-/turf/closed/shuttle/ert,
+/turf/closed/shuttle/dropship_regular/interior_wall,
+/area/shuttle/ert)
+"X" = (
+/turf/closed/shuttle/ert/engines/right/two{
+	dir = 1
+	},
+/area/shuttle/ert)
+"Y" = (
+/turf/closed/shuttle/ert/engines/left/two{
+	dir = 1
+	},
 /area/shuttle/ert)
 "Z" = (
 /obj/structure/prop/holidays/string_lights{

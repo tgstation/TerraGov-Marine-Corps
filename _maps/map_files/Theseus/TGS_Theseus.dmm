@@ -2350,7 +2350,6 @@
 /area/mainship/living/officer_rnr)
 "aVh" = (
 /obj/machinery/roomba,
-/obj/effect/spawner/random/misc/present,
 /turf/open/floor/mainship/green{
 	dir = 1
 	},
@@ -8840,15 +8839,6 @@
 /obj/machinery/door/airlock/mainship/maint,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/cryo_cells)
-"dIe" = (
-/obj/machinery/loadout_vendor,
-/obj/effect/spawner/random/food_or_drink/christmas_food{
-	pixel_x = -5;
-	pixel_y = 3
-	},
-/obj/effect/spawner/random/food_or_drink/christmas_food,
-/turf/open/floor/mainship/floor,
-/area/mainship/squads/req)
 "dIf" = (
 /obj/machinery/disposal,
 /obj/structure/disposalpipe/trunk{
@@ -9406,11 +9396,6 @@
 /obj/structure/prop/holidays/string_lights/cap{
 	dir = 1
 	},
-/obj/effect/spawner/random/food_or_drink/christmas_food{
-	pixel_x = -4;
-	pixel_y = 2
-	},
-/obj/effect/spawner/random/food_or_drink/christmas_food,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
 "eyd" = (
@@ -9718,15 +9703,16 @@
 	},
 /area/mainship/hull/port_hull)
 "eZQ" = (
-/obj/machinery/vending/armor_supply,
-/obj/effect/spawner/random/food_or_drink/christmas_food{
-	pixel_y = 4
+/obj/effect/spawner/random/misc/present{
+	pixel_x = 7
 	},
-/obj/effect/spawner/random/food_or_drink/christmas_food{
-	pixel_x = -6
+/obj/effect/spawner/random/misc/present{
+	pixel_x = 5;
+	pixel_y = 15
 	},
-/obj/effect/spawner/random/food_or_drink/christmas_food,
-/turf/open/floor/mainship/floor,
+/turf/open/floor/mainship/green{
+	dir = 8
+	},
 /area/mainship/squads/req)
 "far" = (
 /turf/open/floor/mainship/mono,
@@ -10342,13 +10328,10 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/command/corporateliaison)
 "fSE" = (
-/obj/effect/spawner/random/misc/present{
-	pixel_y = 10
-	},
-/turf/open/floor/mainship/green{
-	dir = 9
-	},
-/area/mainship/squads/req)
+/obj/machinery/holopad,
+/obj/structure/flora/tree/pine/xmas/presents,
+/turf/open/floor/mainship/floor,
+/area/mainship/hallways/hangar)
 "fSI" = (
 /obj/structure/table/mainship/nometal,
 /obj/machinery/computer/med_data/laptop,
@@ -11084,6 +11067,7 @@
 	},
 /area/mainship/medical/medical_science)
 "haf" = (
+/obj/effect/spawner/random/misc/present,
 /turf/open/floor/mainship/green/full,
 /area/mainship/squads/req)
 "haz" = (
@@ -13512,12 +13496,6 @@
 	dir = 1
 	},
 /area/mainship/hallways/hangar)
-"kTg" = (
-/obj/effect/spawner/random/misc/present,
-/turf/open/floor/mainship/green{
-	dir = 5
-	},
-/area/mainship/squads/req)
 "kUl" = (
 /obj/effect/turf_decal/warning_stripes/box/small{
 	dir = 1
@@ -15383,12 +15361,6 @@
 /obj/effect/soundplayer,
 /turf/closed/wall/mainship,
 /area/mainship/hull/starboard_hull)
-"nCH" = (
-/obj/effect/spawner/random/misc/present,
-/turf/open/floor/mainship/green/corner{
-	dir = 1
-	},
-/area/mainship/squads/req)
 "nCT" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment,
@@ -15425,7 +15397,8 @@
 /obj/structure/shipmast{
 	pixel_y = 2
 	},
-/turf/open/floor/mainship/green/full,
+/obj/structure/flora/tree/pine/xmas/presents,
+/turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
 "nHq" = (
 /turf/open/floor/mainship/terragov/west{
@@ -16057,13 +16030,6 @@
 /obj/machinery/camera/autoname/mainship,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/alpha)
-"oCh" = (
-/obj/effect/spawner/random/misc/present{
-	pixel_x = 5;
-	pixel_y = -5
-	},
-/turf/open/floor/mainship/mono,
-/area/mainship/squads/req)
 "oCV" = (
 /obj/machinery/vending/engivend,
 /turf/open/floor/mainship/orange{
@@ -21357,17 +21323,6 @@
 	dir = 8
 	},
 /area/mainship/living/starboard_emb)
-"wKr" = (
-/obj/machinery/door/poddoor/shutters{
-	id = "qm_warehouse";
-	name = "\improper Warehouse Shutters"
-	},
-/obj/machinery/door/firedoor/mainship,
-/obj/structure/prop/holidays/string_lights{
-	dir = 4
-	},
-/turf/open/floor/mainship/floor,
-/area/mainship/squads/req)
 "wKA" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -21428,17 +21383,6 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
-"wNy" = (
-/obj/effect/spawner/random/food_or_drink/christmas_food{
-	pixel_y = 2
-	},
-/obj/effect/spawner/random/food_or_drink/christmas_food{
-	pixel_x = 7;
-	pixel_y = -2
-	},
-/obj/effect/spawner/random/food_or_drink/christmas_food,
-/turf/open/floor/mainship/mono,
-/area/mainship/squads/req)
 "wNU" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 4;
@@ -21537,8 +21481,6 @@
 /area/mainship/living/pilotbunks)
 "wXo" = (
 /obj/machinery/loadout_vendor,
-/obj/effect/spawner/random/food_or_drink/christmas_food,
-/obj/effect/spawner/random/misc/present,
 /turf/open/floor/mainship/floor,
 /area/mainship/squads/req)
 "wXz" = (
@@ -47014,7 +46956,7 @@ fGo
 uns
 umS
 unW
-bAh
+fSE
 xir
 xjj
 uns
@@ -61655,11 +61597,11 @@ vEt
 fCR
 seG
 bAG
-dIe
+wXo
 bpq
 kxd
-eZQ
-kTg
+aat
+bpq
 kxd
 wXo
 bDM
@@ -62170,7 +62112,7 @@ lNr
 lNr
 abX
 otD
-fSE
+dls
 sEZ
 bzq
 dls
@@ -62689,7 +62631,7 @@ bAG
 nGK
 aVh
 seG
-wNy
+seG
 seG
 mxf
 wgD
@@ -62941,10 +62883,10 @@ bGj
 etQ
 kvt
 seG
-oCh
+seG
 kzX
-acj
-nCH
+eZQ
+vaF
 seG
 eya
 mBt
@@ -65254,11 +65196,11 @@ mWz
 mWz
 mWz
 mWz
-wKr
-wKr
 jiQ
-wKr
-wKr
+jiQ
+jiQ
+jiQ
+jiQ
 mWz
 xNs
 huK

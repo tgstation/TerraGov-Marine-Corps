@@ -331,6 +331,7 @@
 /obj/item/reagent_containers/food/snacks/christmas_cookieone
 	name = "christmas cookie"
 	desc = "A festive Christmas cookie."
+	icon = 'icons/obj/items/food/confectionary.dmi'
 	icon_state = "sugarcookie"
 	filling_color = "#DBC94F"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 5)
@@ -344,6 +345,7 @@
 /obj/item/reagent_containers/food/snacks/christmas_cookietwo
 	name = "christmas cookie"
 	desc = "A festive Christmas cookie, this one is in the shape of a tree."
+	icon = 'icons/obj/items/food/confectionary.dmi'
 	icon_state = "sugarcookie_tree"
 	filling_color = "#DBC94F"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 5)
@@ -357,6 +359,7 @@
 /obj/item/reagent_containers/food/snacks/christmas_cookiethree
 	name = "christmas cookie"
 	desc = "A festive Christmas cookie, this one is in the shape of a teddy bear."
+	icon = 'icons/obj/items/food/confectionary.dmi'
 	icon_state = "sugarcookie_bear"
 	filling_color = "#DBC94F"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 5)
@@ -370,6 +373,7 @@
 /obj/item/reagent_containers/food/snacks/christmas_cookiefour
 	name = "christmas cookie"
 	desc = "A festive Christmas cookie, this one is in the shape of Santa Claus."
+	icon = 'icons/obj/items/food/confectionary.dmi'
 	icon_state = "sugarcookie_santa"
 	filling_color = "#DBC94F"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 10)
@@ -383,6 +387,7 @@
 /obj/item/reagent_containers/food/snacks/christmas_cookiefive
 	name = "christmas cookie"
 	desc = "A festive Christmas cookie, this one is in the shape of a stocking bursting with presents."
+	icon = 'icons/obj/items/food/confectionary.dmi'
 	icon_state = "sugarcookie_stocking"
 	filling_color = "#DBC94F"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 5)
@@ -396,6 +401,7 @@
 /obj/item/reagent_containers/food/snacks/christmas_cookiesix
 	name = "christmas cookie"
 	desc = "A festive Christmas cookie, this one is in the shape of a present."
+	icon = 'icons/obj/items/food/confectionary.dmi'
 	icon_state = "sugarcookie_present"
 	filling_color = "#DBC94F"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 5)
@@ -409,6 +415,7 @@
 /obj/item/reagent_containers/food/snacks/christmas_cookieseven
 	name = "christmas cookie"
 	desc = "A festive Christmas cookie, this one is in the shape of a candy cane."
+	icon = 'icons/obj/items/food/confectionary.dmi'
 	icon_state = "sugarcookie_cane"
 	filling_color = "#DBC94F"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/toxin/minttoxin = 1)
@@ -1260,16 +1267,6 @@
 	filling_color = "#EBF5B8"
 	bitesize = 2
 	tastes = list("cake" = 5, "sweetness" = 1, "apple" = 1)
-
-/obj/item/reagent_containers/food/snacks/sliceable/fruitcake
-	name = "english fruitcake"
-	desc = "A proper good cake, innit?"
-	slice_path = /obj/item/reagent_containers/food/snacks/fruitcakeslice
-	icon_state = "fruitcake"
-	tastes = list("dried fruit" = 5, "treacle" = 2, "christmas" = 2)
-	list_reagents = list(/datum/reagent/consumable/nutriment = 60)
-	force = 7
-	throwforce = 7
 
 /obj/item/reagent_containers/food/snacks/fruitcakeslice
 	name = "english fruitcake slice"
