@@ -42,7 +42,8 @@
 		return FALSE
 	newoccupant.drop_all_held_items()
 	add_occupant(newoccupant)
-	newoccupant.forceMove(src)
+	if(newoccupant.loc != src)
+		newoccupant.forceMove(src)
 	newoccupant.update_mouse_pointer()
 	add_fingerprint(newoccupant, "moved in as pilot")
 	log_message("[newoccupant] moved in as pilot.", LOG_MECHA)
