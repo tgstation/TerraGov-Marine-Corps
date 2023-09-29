@@ -324,7 +324,10 @@
 	full_name = "Carrier: Place Trap"
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_PLACE_TRAP
+/*
 	hotkey_keys = list("Q")
+*/
+	hotkey_keys = list("G") //RUTGMC edit - change button
 
 /datum/keybinding/xeno/spawn_hugger
 	name = "spawn_hugger"

@@ -4,7 +4,7 @@
 	var/w_uniform = null
 	var/wear_suit = null
 	var/toggle_helmet = TRUE
-	var/back = null
+	var/back = null // Set to FALSE if your outfit needs nothing in back slot at all
 	var/belt = null
 	var/gloves = null
 	var/shoes = null

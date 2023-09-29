@@ -193,6 +193,7 @@
 						"bold" = (job.job_flags & JOB_FLAG_BOLD_NAME_ON_SELECTION) ? TRUE : FALSE
 					)
 				)
+			.["overflow_job"] = SSjob?.overflow_role?.title
 			.["special_occupations"] = list(
 				"Latejoin Xenomorph" = BE_ALIEN,
 				"Xenomorph when unrevivable" = BE_ALIEN_UNREVIVABLE,

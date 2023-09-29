@@ -57,11 +57,11 @@ GLOBAL_VAR(common_report) //Contains common part of roundend report
 	///If the gamemode has a whitelist of valid ship maps. Whitelist overrides the blacklist
 	var/list/whitelist_ship_maps
 	///If the gamemode has a blacklist of disallowed ship maps
-	var/list/blacklist_ship_maps = list(MAP_COMBAT_PATROL_BASE)
+	var/list/blacklist_ship_maps = list(MAP_COMBAT_PATROL_BASE, MAP_ITERON)
 	///If the gamemode has a whitelist of valid ground maps. Whitelist overrides the blacklist
 	var/list/whitelist_ground_maps
 	///If the gamemode has a blacklist of disallowed ground maps
-	var/list/blacklist_ground_maps = list(MAP_DELTA_STATION, MAP_WHISKEY_OUTPOST, MAP_OSCAR_OUTPOST)
+	var/list/blacklist_ground_maps = list(MAP_DELTA_STATION, MAP_WHISKEY_OUTPOST, MAP_OSCAR_OUTPOST, MAP_FORT_PHOBOS)
 	///if fun tads are enabled by default
 	var/enable_fun_tads = FALSE
 
@@ -273,6 +273,9 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 			new /obj/effect/forcefield/fog(T)
 			stoplag()
 
+///respawns the player, overrides verb respawn behavior as required
+/datum/game_mode/proc/player_respawn(mob/respawnee)
+	respawnee.respawn()
 
 /datum/game_mode/proc/grant_eord_respawn(datum/dcs, mob/source)
 	SIGNAL_HANDLER
@@ -904,6 +907,7 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 
 ///Add gamemode related items to statpanel
 /datum/game_mode/proc/get_status_tab_items(datum/dcs, mob/source, list/items)
+	SIGNAL_HANDLER
 	var/patrol_end_countdown = game_end_countdown()
 	if(patrol_end_countdown)
 		items += "Round End timer: [patrol_end_countdown]"

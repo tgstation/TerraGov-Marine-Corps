@@ -545,9 +545,9 @@
 		return
 
 	SSminimaps.remove_marker(src)
-	var/image/blip = image('icons/UI_icons/map_blips.dmi', null, xeno_caste.minimap_icon)
+	var/image/blip = image('modular_RUtgmc/icons/UI_icons/map_blips.dmi', null, xeno_caste.minimap_icon) //RUTGMC edit - icon change
 	if(makeleader)
-		blip.overlays += image('icons/UI_icons/map_blips.dmi', null, xeno_caste.minimap_leadered_overlay)
+		blip.overlays += image('modular_RUtgmc/icons/UI_icons/map_blips.dmi', null, xeno_caste.minimap_leadered_overlay) //RUTGMC edit - icon change
 	SSminimaps.add_marker(src, MINIMAP_FLAG_XENO, blip)
 
 ///updates the xeno's glow, based on the ability being used

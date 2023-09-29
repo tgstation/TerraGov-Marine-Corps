@@ -1,0 +1,4 @@
+author: "vvvv-vvvv"
+delete-after: True
+changes:
+  - bugfix: "Fix \"Spawn as undefined\" in job prefs, where the overflow job should have been"
