@@ -4935,7 +4935,7 @@
 "dJa" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/closet/crate/secure/weapon,
-/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
+/obj/effect/spawner/random/weaponry/gun,
 /turf/open/shuttle/blackfloor,
 /area/slumbridge/pmcdome/weaponvault)
 "dJb" = (
@@ -6913,7 +6913,7 @@
 /obj/structure/rack{
 	color = "#50617d"
 	},
-/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
+/obj/effect/spawner/random/weaponry/gun,
 /obj/machinery/light,
 /turf/open/shuttle/blackfloor,
 /area/slumbridge/pmcdome/weaponvault)
@@ -9686,7 +9686,7 @@
 /area/slumbridge/engi/central)
 "hrX" = (
 /obj/structure/closet/crate/secure/weapon,
-/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
+/obj/effect/spawner/random/weaponry/gun,
 /turf/open/shuttle/blackfloor,
 /area/slumbridge/pmcdome/weaponvault)
 "hss" = (
@@ -14015,7 +14015,7 @@
 /area/slumbridge/houses/surgery/garbledradio)
 "kwy" = (
 /obj/structure/closet/crate,
-/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
+/obj/effect/spawner/random/weaponry/gun,
 /turf/open/floor/plating,
 /area/slumbridge/landingzonetwo)
 "kwD" = (
@@ -18243,7 +18243,7 @@
 /obj/structure/rack{
 	color = "#50617d"
 	},
-/obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
+/obj/effect/spawner/random/weaponry/gun,
 /turf/open/shuttle/blackfloor,
 /area/slumbridge/pmcdome/weaponvault)
 "nyn" = (
@@ -28307,7 +28307,7 @@
 /area/slumbridge/colony/northerndome)
 "uVd" = (
 /obj/structure/closet/crate,
-/obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
+/obj/effect/spawner/random/weaponry/gun,
 /turf/open/floor/plating,
 /area/slumbridge/landingzonetwo)
 "uVw" = (
@@ -29664,7 +29664,7 @@
 /area/slumbridge/colony/hydro)
 "vSt" = (
 /obj/structure/closet/crate/secure/gear,
-/obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
+/obj/effect/spawner/random/weaponry/gun,
 /obj/machinery/light{
 	dir = 1
 	},
