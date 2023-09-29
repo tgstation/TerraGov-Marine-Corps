@@ -1,4 +1,0 @@
-author: "ivanmixo"
-delete-after: True
-changes:
-  - rscdel: "Blackbox subsystem doesn't fire postgame"
