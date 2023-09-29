@@ -28,6 +28,7 @@ Contains most of the procs that are called when a mob is attacked by something
 			continue
 		limb_to_check.add_limb_soft_armor(armor_item.soft_armor)
 		limb_to_check.add_limb_hard_armor(armor_item.hard_armor)
+	hud_set_armor()
 
 
 /mob/living/carbon/human/dummy/add_limb_armor(obj/item/armor_item)
@@ -41,6 +42,7 @@ Contains most of the procs that are called when a mob is attacked by something
 			continue
 		limb_to_check.remove_limb_soft_armor(armor_item.soft_armor)
 		limb_to_check.remove_limb_hard_armor(armor_item.hard_armor)
+	hud_set_armor()
 
 
 /mob/living/carbon/human/dummy/remove_limb_armor(obj/item/armor_item)

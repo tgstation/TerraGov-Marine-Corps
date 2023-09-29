@@ -16,6 +16,7 @@
 #define XENO_RANK_HUD "xeno_rank_hud" //indicates the current rank of the xeno
 #define ORDER_HUD "human_order_hud" //shows what orders are applied to marines
 #define PAIN_HUD "pain_hud" //displays human pain / preceived health.
+#define ARMOR_HUD "armor_hud" //Display armor tiers on humans
 #define ARMOR_SUNDER_HUD "armor_sunder_hud" //displays how much sunder has been applied.
 #define XENO_REAGENT_HUD "xeno_reagent_hud" // displays sign based on reagent in human
 #define XENO_TACTICAL_HUD "xeno_tactical_hud" // displays xeno tactical elements such as tunnels and rally hive pings

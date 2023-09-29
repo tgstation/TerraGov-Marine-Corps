@@ -625,6 +625,72 @@
 		if(emitted_auras.Find(aura_type))
 			holder.overlays += image('icons/mob/hud.dmi', src, "hud[aura_type]aura")
 
+/mob/living/carbon/human/proc/hud_set_armor()
+	var/image/holder = hud_list[ARMOR_HUD]
+	if(!holder)
+		return
+
+	//Don't care how much armor the dead has
+	if(stat == DEAD)
+		holder.icon_state = ""
+		holder.overlays.Cut()
+		return
+
+	var/obj/item/clothing/armor = wear_suit ? wear_suit : null
+	if(armor?.attachments_by_slot[ATTACHMENT_SLOT_MODULE])
+		var/obj/item/armor_module/module/module = armor.attachments_by_slot[ATTACHMENT_SLOT_MODULE]
+
+		/*
+		I COULD have it do overlays += module.icon_state but if the icon_state is renamed, it would silently break
+		This way if someone renames a module's sprite, it will still work
+		However this also means any new modules have to be added here by hand
+		*/
+		switch(module.type)
+			if(/obj/item/armor_module/module/ballistic_armor)
+				holder.overlays += "ballistic"
+			if(/obj/item/armor_module/module/better_shoulder_lamp)
+				holder.overlays += "lamp"
+			if(/obj/item/armor_module/module/chemsystem)
+				holder.overlays += "chem"
+			if(/obj/item/armor_module/module/eshield, /obj/item/armor_module/module/eshield/som)
+				holder.overlays += "shield"
+			if(/obj/item/armor_module/module/fire_proof, /obj/item/armor_module/module/fire_proof/som)
+				holder.overlays += "fire"
+			if(/obj/item/armor_module/module/hlin_explosive_armor)
+				holder.overlays += "explosive"
+			if(/obj/item/armor_module/module/mimir_environment_protection,
+			   /obj/item/armor_module/module/mimir_environment_protection/mark1,
+			   /obj/item/armor_module/module/mimir_environment_protection/som)
+				holder.overlays += "biohazard"
+			if(/obj/item/armor_module/module/tyr_extra_armor,
+			   /obj/item/armor_module/module/tyr_extra_armor/mark1,
+			   /obj/item/armor_module/module/tyr_extra_armor/som)
+				holder.overlays += "armor"
+			if(/obj/item/armor_module/module/valkyrie_autodoc, /obj/item/armor_module/module/valkyrie_autodoc/som)
+				holder.overlays += "medic"
+
+	/*
+	There is a bit of a conundrum!
+	From my understanding, soft_armor on the mob is the average value of all soft_armor values on each limb
+	However, some forms of damage only care about the value of the soft_armor on the targeted limb; one could game the system by only having a heavy chestplate
+	So to compromise, store whichever is highest to judge the armor level: overall mob soft_armor or the suit's soft_armor (same as chest)
+	*/
+	var/armor_value = armor ? max(soft_armor.getRating(MELEE), armor.soft_armor.getRating(MELEE)) : soft_armor.getRating(MELEE)
+
+	//If the armor value has not changed, no need to update
+	//7 is how many characters long "armor_" is
+	if(holder.icon_state && armor_value == text2num(copytext(holder.icon_state, 7)))
+		return
+
+	//There are 4 different armor levels, but level 4 is reserved for melee 65 and above (heavy armor with Tyr Mk2 and B18)
+	var/amount = FLOOR(armor_value / 16, 1)
+	if(amount >= 4)
+		holder.icon_state = "armor_4"
+		return
+
+	//There is no "armor_0" so if armor is too low, it will not display an icon
+	holder.icon_state = "armor_[amount]"
+
 ///Makes sentry health visible
 /obj/proc/hud_set_machine_health()
 	var/image/holder = hud_list[MACHINE_HEALTH_HUD]
