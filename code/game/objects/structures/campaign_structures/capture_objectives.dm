@@ -1,4 +1,4 @@
-#define CAPTURE_OBJECTIVE_RECAPTURABLE "capture_objective_recapturable"
+#define CAPTURE_OBJECTIVE_RECAPTURABLE (1<<0)
 
 /obj/structure/campaign_objective/capture_objective
 	name = "GENERIC CAPTURABLE OBJECTIVE"
@@ -113,19 +113,32 @@
 	update_icon()
 
 //sensor tower
+/obj/effect/landmark/campaign_objective/sensor_tower
+	name = "sensor tower objective"
+	icon = 'icons/obj/structures/sensor.dmi'
+	icon_state = "sensor"
+	mission_types = list(/datum/campaign_mission/tdm, /datum/campaign_mission/tdm/lv624, /datum/campaign_mission/tdm/desparity, /datum/campaign_mission/tdm/mech_wars)
+	objective_type = /obj/structure/campaign_objective/capture_objective/sensor_tower
+
 /obj/structure/campaign_objective/capture_objective/sensor_tower
 	name = "sensor tower"
 	desc = "A tall tower with a sensor array at the top and a control box at the bottom. Used to hack into colony control."
 	icon = 'icons/obj/structures/sensor.dmi'
 	icon_state = "sensor"
 	obj_flags = NONE
-
-/obj/structure/campaign_objective/capture_objective/sensor_tower/Initialize(mapload)
-	. = ..()
-	update_icon()
+	capture_flags = CAPTURE_OBJECTIVE_RECAPTURABLE
 
 /obj/structure/campaign_objective/capture_objective/sensor_tower/update_icon_state()
 	icon_state = initial(icon_state)
+	if(!owning_faction)
+		switch(capturing_faction)
+			if(FACTION_TERRAGOV)
+				icon_state += "_cap_tgmc"
+			if(null)
+				return
+			else
+				icon_state += "_cap_som"
+		return
 	switch(owning_faction)
 		if(FACTION_TERRAGOV)
 			icon_state += "_tgmc"

@@ -7753,6 +7753,11 @@
 "Hb" = (
 /turf/open/floor,
 /area/campaign/jungle_outpost/outpost/command)
+"Hc" = (
+/obj/structure/cable,
+/obj/effect/landmark/campaign_objective/sensor_tower,
+/turf/open/floor,
+/area/campaign/jungle_outpost/ground/jungle)
 "Hd" = (
 /obj/structure/stairs/edge,
 /turf/open/floor/plating/ground/concrete,
@@ -9642,6 +9647,10 @@
 	},
 /turf/closed/wall,
 /area/campaign/jungle_outpost/outpost/medbay/lobby)
+"Pt" = (
+/obj/effect/landmark/campaign_objective/sensor_tower,
+/turf/open/ground/grass/weedable,
+/area/campaign/jungle_outpost/ground/jungle)
 "Pu" = (
 /obj/structure/flora/grass/tallgrass/autosmooth,
 /obj/effect/landmark/mob_spawner/farwa,
@@ -10157,6 +10166,10 @@
 	dir = 4
 	},
 /area/campaign/jungle_outpost/outpost/security)
+"RJ" = (
+/obj/effect/landmark/campaign_objective/sensor_tower,
+/turf/open/ground/grass/weedable,
+/area/campaign/jungle_outpost/ground/jungle/south)
 "RK" = (
 /obj/structure/catwalk,
 /obj/structure/flora/grass/tallgrass/autosmooth,
@@ -10408,6 +10421,10 @@
 "SP" = (
 /turf/open/floor/tile/blue/taupeblue,
 /area/campaign/jungle_outpost/outpost/command)
+"SQ" = (
+/obj/effect/landmark/campaign_objective/sensor_tower,
+/turf/open/ground/grass/weedable,
+/area/campaign/jungle_outpost/ground/jungle/west)
 "SR" = (
 /obj/structure/catwalk,
 /obj/structure/platform{
@@ -15257,7 +15274,7 @@ vh
 bE
 il
 bE
-bE
+SQ
 bE
 bE
 bE
@@ -21286,7 +21303,7 @@ pH
 xw
 xw
 kH
-mD
+Pt
 XC
 fQ
 kH
@@ -23815,7 +23832,7 @@ cJ
 nd
 EX
 EX
-EX
+RJ
 EX
 EX
 EX
@@ -27395,7 +27412,7 @@ lB
 ay
 ay
 ay
-ay
+Hc
 ay
 ay
 IN

@@ -69,8 +69,8 @@
 
 
 /datum/campaign_mission/capture_mission/end_mission()
-	UnregisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_CAPTURE_OBJECTIVE_CAPTURED)
-	return ..()
+	. = ..()
+	UnregisterSignal(SSdcs, list(COMSIG_GLOB_CAMPAIGN_CAPTURE_OBJECTIVE_CAPTURED, COMSIG_GLOB_CAMPAIGN_CAPTURE_OBJECTIVE_CAP_STARTED))
 
 /datum/campaign_mission/capture_mission/check_mission_progress()
 	if(outcome)

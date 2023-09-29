@@ -5520,6 +5520,10 @@
 /obj/structure/closet/firecloset/full,
 /turf/open/floor/prison/darkyellow/full,
 /area/patricks_rest/surface/building/engineering)
+"Aq" = (
+/obj/effect/landmark/campaign_objective/sensor_tower,
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/patricks_rest/ground/colonys)
 "As" = (
 /turf/open/floor/mainship/mono,
 /area/patricks_rest/surface/building/offices)
@@ -6257,6 +6261,10 @@
 	},
 /turf/open/floor/mainship/sterile/purple,
 /area/patricks_rest/surface/building/science)
+"Eq" = (
+/obj/effect/landmark/campaign_objective/sensor_tower,
+/turf/open/floor/plating/ground/desertdam/asphalt/cement,
+/area/patricks_rest/ground/colonys)
 "Er" = (
 /obj/machinery/floodlight/colony,
 /turf/open/floor/plating/ground/mars/random/sand,
@@ -8563,6 +8571,10 @@
 	dir = 5
 	},
 /area/patricks_rest/ground/colonyse)
+"PS" = (
+/obj/effect/landmark/campaign_objective/sensor_tower,
+/turf/open/ground/grass/weedable/patch/grassyellow,
+/area/patricks_rest/ground/colonyn)
 "PT" = (
 /turf/open/floor/plating/ground/concrete,
 /area/patricks_rest/surface/building/storage_depot_research)
@@ -8584,6 +8596,10 @@
 	dir = 1
 	},
 /area/patricks_rest/surface/building/science)
+"PX" = (
+/obj/effect/landmark/campaign_objective/sensor_tower,
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/patricks_rest/ground/colonyw)
 "PY" = (
 /obj/structure/table/mainship,
 /turf/open/floor/mainship/mono,
@@ -9357,6 +9373,10 @@
 "TU" = (
 /turf/open/floor/plating/ground/concrete/edge,
 /area/patricks_rest/ground/colonyw)
+"TW" = (
+/obj/effect/landmark/campaign_objective/sensor_tower,
+/turf/open/ground/grass/weedable/patch/grassyellow,
+/area/patricks_rest/ground/colonye)
 "TX" = (
 /obj/structure/table/mainship,
 /obj/machinery/light,
@@ -16220,7 +16240,7 @@ iy
 bj
 iy
 iy
-iy
+PX
 Yq
 Yq
 Yq
@@ -21410,7 +21430,7 @@ ff
 ff
 ff
 lX
-lX
+Aq
 lX
 wz
 tz
@@ -21873,7 +21893,7 @@ va
 XG
 fk
 Ow
-Ow
+PS
 oJ
 fk
 AZ
@@ -23253,7 +23273,7 @@ Lr
 VG
 VG
 UR
-wz
+Eq
 tz
 Km
 Km
@@ -31805,7 +31825,7 @@ Jz
 Jz
 Jz
 IX
-IX
+TW
 IX
 WQ
 Jz

@@ -68,6 +68,21 @@
 		/obj/effect/supply_drop/blink_kit = 3,
 		/obj/effect/supply_drop/som_shotgun_burst = 3,
 	)
+	///Point limit to win the game via objectives
+	var/capture_point_target = 400
+	///starting team's point count
+	var/start_team_cap_points = 0
+	///hostile team's point count
+	var/hostile_team_cap_points = 0
+
+/datum/campaign_mission/tdm/load_mission()
+	. = ..()
+	RegisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_CAPTURE_OBJECTIVE_CAPTURED, PROC_REF(objective_captured))
+	RegisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_CAPTURE_OBJECTIVE_CAP_STARTED, PROC_REF(objective_cap_started))
+
+/datum/campaign_mission/tdm/end_mission()
+	. = ..()
+	UnregisterSignal(SSdcs, list(COMSIG_GLOB_CAMPAIGN_CAPTURE_OBJECTIVE_CAPTURED, COMSIG_GLOB_CAMPAIGN_CAPTURE_OBJECTIVE_CAP_STARTED))
 
 /datum/campaign_mission/tdm/play_start_intro()
 	intro_message = list(
@@ -76,12 +91,42 @@
 	)
 	. = ..()
 
+/datum/campaign_mission/tdm/get_status_tab_items(mob/source, list/items)
+	. = ..()
+	if(!length(GLOB.campaign_objectives))
+		return
+	items += "[starting_faction] Capture points: [start_team_cap_points] / [capture_point_target]"
+	items += "[hostile_faction] Capture points: [hostile_team_cap_points] / [capture_point_target]"
+	items += ""
+
+/datum/campaign_mission/tdm/process()
+	for(var/obj/structure/campaign_objective/capture_objective/sensor_tower/tower in GLOB.campaign_objectives)
+		if(tower.owning_faction == starting_faction)
+			start_team_cap_points += 1
+		else if(tower.owning_faction == hostile_faction)
+			hostile_team_cap_points += 1
+	return ..()
+
 /datum/campaign_mission/tdm/check_mission_progress()
 	if(outcome)
 		return TRUE
 
 	if(!game_timer)
 		return
+
+	//we check points first, and only check deaths after
+	if(start_team_cap_points >= capture_point_target && hostile_team_cap_points >= capture_point_target)
+		message_admins("Mission finished: [MISSION_OUTCOME_DRAW]")
+		outcome = MISSION_OUTCOME_DRAW
+		return TRUE
+	if(start_team_cap_points >= capture_point_target)
+		message_admins("Mission finished: [MISSION_OUTCOME_MAJOR_VICTORY]")
+		outcome = MISSION_OUTCOME_MAJOR_VICTORY
+		return TRUE
+	if(hostile_team_cap_points >= capture_point_target)
+		message_admins("Mission finished: [MISSION_OUTCOME_MAJOR_LOSS]")
+		outcome = MISSION_OUTCOME_MAJOR_LOSS
+		return TRUE
 
 	///pulls the number of both factions, dead or alive
 	var/list/player_list = count_humans(count_flags = COUNT_IGNORE_ALIVE_SSD)
@@ -141,6 +186,32 @@
 	. = ..()
 	Generate_rewards(3, hostile_faction)
 
+///An objective capture cycle was started
+/datum/campaign_mission/tdm/proc/objective_cap_started(datum/source, obj/structure/campaign_objective/capture_objective/fultonable/objective, mob/living/user)
+	SIGNAL_HANDLER
+	var/capturing_team = user.faction
+	var/losing_team = objective.owning_faction
+
+	if(losing_team) //decapping enemy tower
+		map_text_broadcast(capturing_team, "Good work, [objective] is being deactivated. Don't let them stop it!", "Enemy deactivating")
+		map_text_broadcast(losing_team, "[objective] is being deactived, stop them!", "Objective deactivating")
+	else if(objective.capturing_faction)
+		losing_team = objective.capturing_faction //stopping enemy cap
+		map_text_broadcast(capturing_team, "Good work, enemy activation of [objective] was cancelled. Don't let them get it back!", "Activation cancelled")
+		map_text_broadcast(losing_team, "[objective] activation was overridden, take it back!", "Activation cancelled")
+	else //we're capping
+		losing_team = starting_faction == capturing_team ? hostile_faction : starting_faction
+		map_text_broadcast(capturing_team, "[objective] is being activated. hold it down until it's done!", "Objective activating")
+		map_text_broadcast(losing_team, "[objective] is being activated by the enemy. Get in there and stop them!", "Enemy activating")
+
+///Handles the effect of an objective being claimed
+/datum/campaign_mission/tdm/proc/objective_captured(datum/source, obj/structure/campaign_objective/capture_objective/fultonable/objective, mob/living/user)
+	SIGNAL_HANDLER
+	var/capturing_team = user.faction
+	var/losing_team = starting_faction == user.faction ? hostile_faction : starting_faction
+
+	map_text_broadcast(capturing_team, "[objective] is active. Don't let them retake it!", "Objective activated")
+	map_text_broadcast(losing_team, "[objective] was activated by the enemy. Get it offline!", "Activation cancelled")
 
 ///test missions
 /datum/campaign_mission/tdm/lv624
