@@ -8,10 +8,6 @@
 
 ///Return true if the item was found in a linked vendor and successfully bought
 /proc/buy_item_in_vendor(obj/item/item_to_buy_type, datum/loadout_seller/seller, mob/living/user)
-
-	if(seller.faction != FACTION_NEUTRAL && is_type_in_typecache(item_to_buy_type, GLOB.hvh_restricted_items_list))
-		return FALSE
-
 	//If we can find it for in a shared vendor, we buy it
 	for(var/type in (GLOB.loadout_linked_vendor[seller.faction] + GLOB.loadout_linked_vendor[user.job.title]))
 		for(var/datum/vending_product/item_datum AS in GLOB.vending_records[type])
@@ -60,6 +56,8 @@
 		item_cat = CAT_LEDSUP
 	else if (user.job.title == SQUAD_ENGINEER)
 		item_cat = CAT_ENGSUP
+	else if(user.job.title == FIELD_COMMANDER)
+		item_cat = CAT_FCSUP
 	else
 		return FALSE
 
@@ -85,17 +83,17 @@
 	if(ispath(item_type, /obj/item/weapon/gun))
 		return /datum/item_representation/gun
 	if(ispath(item_type, /obj/item/clothing/suit/modular))
-		return /datum/item_representation/modular_armor
-	if(ispath(item_type, /obj/item/armor_module/armor))
-		return /datum/item_representation/armor_module/colored
+		return /datum/item_representation/armor_suit/modular_armor
 	if(ispath(item_type, /obj/item/armor_module/storage))
 		return /datum/item_representation/armor_module/storage
 	if(ispath(item_type, /obj/item/storage))
 		return /datum/item_representation/storage
-	if(ispath(item_type, /obj/item/clothing/suit/storage))
-		return /datum/item_representation/suit_with_storage
+	if(ispath(item_type, /obj/item/clothing/suit))
+		return /datum/item_representation/armor_suit
 	if(ispath(item_type, /obj/item/clothing/head/modular))
-		return /datum/item_representation/modular_helmet
+		return /datum/item_representation/hat/modular_helmet
+	if(ispath(item_type, /obj/item/clothing/head))
+		return /datum/item_representation/hat
 	if(ispath(item_type, /obj/item/clothing/under))
 		return /datum/item_representation/uniform_representation
 	if(ispath(item_type, /obj/item/ammo_magazine/handful))
@@ -128,8 +126,7 @@
 		return
 	if(!user.assigned_squad)
 		return
-	var/headset_type = faction == FACTION_TERRAGOV_REBEL ? /obj/item/radio/headset/mainship/marine/rebel : /obj/item/radio/headset/mainship/marine
-	user.equip_to_slot_or_del(new headset_type(null, user.assigned_squad, user.job.type), SLOT_EARS, override_nodrop = TRUE)
+	user.equip_to_slot_or_del(new /obj/item/radio/headset/mainship/marine(null, user.assigned_squad, user.job.type), SLOT_EARS, override_nodrop = TRUE)
 
 /// Will check if the selected category can be bought according to the category choices left
 /proc/can_buy_category(category, category_choices)

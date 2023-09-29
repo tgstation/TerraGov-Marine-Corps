@@ -6,6 +6,10 @@
 /datum/item_representation
 	/// The type of the object represented, to allow us to create the object when needed
 	var/obj/item/item_type
+	///If the item has greyscale colors, they are saved here
+	var/colors
+	///If the item has an icon_state variant, save it.
+	var/variant
 	/// If it's allowed to bypass the vendor check
 	var/bypass_vendor_check = FALSE
 
@@ -13,6 +17,17 @@
 	if(!item_to_copy)
 		return
 	item_type = item_to_copy.type
+	if(item_to_copy.current_variant && item_to_copy.colorable_allowed & ICON_STATE_VARIANTS_ALLOWED)
+		for(var/key in GLOB.loadout_variant_keys)
+			var/val = GLOB.loadout_variant_keys[key]
+			if(val != item_to_copy.current_variant)
+				continue
+			variant = key
+			break
+
+	if(!item_to_copy.greyscale_config)
+		return
+	colors = item_to_copy.greyscale_colors
 
 /**
  * This will attempt to instantiate an object.
@@ -31,6 +46,11 @@
 		to_chat(user, span_warning("[item_type] in your loadout is an invalid item, it has probably been changed or removed."))
 		return
 	var/obj/item/item = new item_type(master)
+	if(item.greyscale_config)
+		item.set_greyscale_colors(colors)
+	if(item.current_variant && item.colorable_allowed & ICON_STATE_VARIANTS_ALLOWED)
+		item.current_variant = GLOB.loadout_variant_keys[variant]
+		item.update_icon()
 	return item
 
 /**
@@ -38,7 +58,12 @@
  */
 /datum/item_representation/proc/get_tgui_data()
 	var/list/tgui_data = list()
-	var/icon/icon_to_convert = icon(initial(item_type.icon), initial(item_type.icon_state), SOUTH)
+	var/icon/icon_to_convert
+	var/icon_state = initial(item_type.icon_state) + (variant ? "_[GLOB.loadout_variant_keys[variant]]" : "")
+	if(initial(item_type.greyscale_config))
+		icon_to_convert = icon(SSgreyscale.GetColoredIconByType(initial(item_type.greyscale_config), colors), icon_state,  dir = SOUTH)
+	else
+		icon_to_convert = icon(initial(item_type.icon), icon_state, SOUTH)
 	tgui_data["icons"] = list(list(
 				"icon" = icon2base64(icon_to_convert),
 				"translateX" = NO_OFFSET,
@@ -157,28 +182,29 @@
 	return id
 
 /datum/item_representation/boot
-	/// The item stored in the boot
-	var/datum/item_representation/boot_content
+	///List of attachments on the boot.
+	var/list/datum/item_representation/armor_module/attachments = list()
 
 /datum/item_representation/boot/New(obj/item/item_to_copy)
 	if(!item_to_copy)
 		return
-	if(!istype(item_to_copy, /obj/item/clothing/shoes/marine))
-		CRASH("/datum/item_representation/boot created from an item that is not a marine boot")
+	if(!istype(item_to_copy, /obj/item/clothing/shoes))
+		CRASH("/datum/item_representation/boot created from an item that is not a shoe")
 	..()
-	var/obj/item/clothing/shoes/marine/marine_shoes = item_to_copy
-	for(var/atom/item_in_pocket AS in marine_shoes.pockets.contents)
-		var/item_representation_type = item2representation_type(item_in_pocket.type)
-		boot_content = new item_representation_type(item_in_pocket)
+	var/obj/item/clothing/shoes/footwear = item_to_copy
 
-/datum/item_representation/boot/instantiate_object(datum/loadout_seller/seller, master, mob/living/user)
+	for(var/key in footwear.attachments_by_slot)
+		if(!isitem(footwear.attachments_by_slot[key]))
+			continue
+		if(istype(footwear.attachments_by_slot[key], /obj/item/armor_module/storage))
+			attachments += new /datum/item_representation/armor_module/storage(footwear.attachments_by_slot[key])
+			continue
+		attachments += new /datum/item_representation/armor_module(footwear.attachments_by_slot[key])
+
+/datum/item_representation/boot/instantiate_object(datum/loadout_seller/seller, master = null, mob/living/user)
 	. = ..()
 	if(!.)
 		return
-	var/obj/item/clothing/shoes/marine/marine_shoes = .
-	marine_shoes.pockets.delete_contents()
-	var/obj/item/item_in_pocket = boot_content.instantiate_object(seller, master, user)
-	if(!item_in_pocket)
-		return
-	if(marine_shoes.pockets.can_be_inserted(item_in_pocket))
-		marine_shoes.pockets.handle_item_insertion(item_in_pocket)
+	var/obj/item/clothing/shoes/footwear = .
+	for(var/datum/item_representation/armor_module/armor_attachement AS in attachments)
+		armor_attachement.install_on_armor(seller, footwear, user)

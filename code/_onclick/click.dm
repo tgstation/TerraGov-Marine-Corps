@@ -105,10 +105,6 @@
 	if(!modifiers["catcher"] && A.IsObscured())
 		return
 
-	if(istype(loc, /obj/vehicle/multitile/root/cm_armored))
-		var/obj/vehicle/multitile/root/cm_armored/N = loc
-		N.click_action(A, src, params)
-		return
 
 	if(restrained())
 		changeNext_move(CLICK_CD_HANDCUFFED)
@@ -165,7 +161,7 @@
 
 	var/list/closed = list()
 	var/list/checking = list(ultimate_target)
-	while(checking.len && depth > 0)
+	while(length(checking) && depth > 0)
 		var/list/next = list()
 		--depth
 
@@ -196,7 +192,7 @@
 
 
 /mob/living/DirectAccess(atom/target)
-	return ..() + GetAllContents()
+	return GetAllContents() + loc
 
 
 /atom/proc/IsObscured()
@@ -205,14 +201,14 @@
 	var/turf/T = get_turf_pixel(src)
 	if(!T)
 		return FALSE
-	for(var/atom/movable/AM in T)
+	for(var/atom/movable/AM AS in T)
 		if(AM.flags_atom & PREVENT_CLICK_UNDER && AM.density && AM.layer > layer)
 			return TRUE
 	return FALSE
 
 
 /turf/IsObscured()
-	for(var/atom/movable/AM in src)
+	for(var/atom/movable/AM AS in src)
 		if(AM.flags_atom & PREVENT_CLICK_UNDER && AM.density)
 			return TRUE
 	return FALSE
@@ -236,7 +232,7 @@
 			return FALSE //here.Adjacent(there)
 		if(2 to INFINITY)
 			var/obj/dummy = new(get_turf(here))
-			dummy.flags_pass |= PASSTABLE
+			dummy.allow_pass_flags |= PASS_LOW_STRUCTURE
 			dummy.invisibility = INVISIBILITY_ABSTRACT
 			for(var/i in 1 to reach) //Limit it to that many tries
 				var/turf/T = get_step(dummy, get_dir(dummy, there))
@@ -421,6 +417,7 @@ if(selected_ability.target_flags & flagname && !istype(A, typepath)){\
 
 
 /atom/proc/ShiftClick(mob/user)
+	SHOULD_CALL_PARENT(TRUE)
 	SEND_SIGNAL(src, COMSIG_CLICK_SHIFT, user)
 	return TRUE
 
@@ -468,10 +465,9 @@ if(selected_ability.target_flags & flagname && !istype(A, typepath)){\
 
 /atom/proc/AltClick(mob/user)
 	SEND_SIGNAL(src, COMSIG_CLICK_ALT, user)
-	var/turf/examined_turf = get_turf(src)
-	if(examined_turf && user.TurfAdjacent(examined_turf))
-		user.listed_turf = examined_turf
-		user.client.statpanel = examined_turf.name
+	var/turf/T = get_turf(src)
+	if(T && (isturf(loc) || isturf(src)) && user.TurfAdjacent(T))
+		user.set_listed_turf(T)
 	return TRUE
 
 
@@ -488,11 +484,8 @@ if(selected_ability.target_flags & flagname && !istype(A, typepath)){\
 
 
 /mob/proc/ShiftMiddleClickOn(atom/A)
-	return
-
-
-/mob/living/ShiftMiddleClickOn(atom/A)
 	point_to(A)
+	return
 
 
 /atom/proc/CtrlShiftClick(mob/user)

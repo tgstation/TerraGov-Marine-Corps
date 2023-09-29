@@ -83,7 +83,7 @@
 		abort_skyfall()
 		return
 	chassis.balloon_alert(owner, "charging skyfall...")
-	INVOKE_ASYNC(src, .proc/skyfall_charge_loop)
+	INVOKE_ASYNC(src, PROC_REF(skyfall_charge_loop))
 
 /**
  * ## skyfall_charge_loop
@@ -102,16 +102,16 @@
 			playsound(chassis, 'sound/items/rped.ogg', 50, TRUE)
 		if(2)
 			chassis.visible_message(span_warning("[chassis] begins to shake, the sounds of electricity growing louder."))
-			chassis.Shake(5, 5, SKYFALL_SINGLE_CHARGE_TIME-1) // -1 gives space between the animates, so they don't interrupt eachother
+			chassis.Shake(1, 1, SKYFALL_SINGLE_CHARGE_TIME-1) // -1 gives space between the animates, so they don't interrupt eachother
 		if(3)
 			chassis.visible_message(span_warning("[chassis] assumes a pose as it rattles violently."))
-			chassis.Shake(7, 7, SKYFALL_SINGLE_CHARGE_TIME-1) // -1 gives space between the animates, so they don't interrupt eachother
+			chassis.Shake(2, 2, SKYFALL_SINGLE_CHARGE_TIME-1) // -1 gives space between the animates, so they don't interrupt eachother
 			chassis.spark_system.start()
 			chassis.update_icon()
 		if(4)
 			chassis.visible_message(span_warning("[chassis] sparks and shutters as it finalizes preparation."))
 			playsound(chassis, 'sound/mecha/skyfall_power_up.ogg', 50, TRUE)
-			chassis.Shake(10, 10, SKYFALL_SINGLE_CHARGE_TIME-1) // -1 gives space between the animates, so they don't interrupt eachother
+			chassis.Shake(3, 3, SKYFALL_SINGLE_CHARGE_TIME-1) // -1 gives space between the animates, so they don't interrupt eachother
 			chassis.spark_system.start()
 		if(SKYFALL_CHARGELEVEL_LAUNCH)
 			chassis.visible_message(span_danger("[chassis] leaps into the air!"))
@@ -122,7 +122,7 @@
 	S_TIMER_COOLDOWN_START(chassis, COOLDOWN_MECHA_SKYFALL, skyfall_cooldown_time)
 	action_icon_state = "mech_savannah_cooldown"
 	update_button_icon()
-	addtimer(CALLBACK(src, .proc/reset_button_icon), skyfall_cooldown_time)
+	addtimer(CALLBACK(src, PROC_REF(reset_button_icon)), skyfall_cooldown_time)
 	for(var/mob/living/shaken in range(7, chassis))
 		shake_camera(shaken, 3, 3)
 
@@ -135,7 +135,7 @@
 	chassis.layer = ABOVE_ALL_MOB_LAYER
 	animate(chassis, alpha = 0, time = 8, easing = QUAD_EASING|EASE_IN, flags = ANIMATION_PARALLEL)
 	animate(chassis, pixel_z = 400, time = 10, easing = QUAD_EASING|EASE_IN, flags = ANIMATION_PARALLEL) //Animate our rising mech (just like pods hehe)
-	addtimer(CALLBACK(src, .proc/begin_landing), 2 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(begin_landing)), 2 SECONDS)
 
 /**
  * ## begin_landing
@@ -146,7 +146,7 @@
 /datum/action/vehicle/sealed/mecha/skyfall/proc/begin_landing()
 	animate(chassis, pixel_z = 0, time = 10, easing = QUAD_EASING|EASE_IN, flags = ANIMATION_PARALLEL)
 	animate(chassis, alpha = 255, time = 8, easing = QUAD_EASING|EASE_IN, flags = ANIMATION_PARALLEL)
-	addtimer(CALLBACK(src, .proc/land), 1 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(land)), 1 SECONDS)
 
 /**
  * ## land
@@ -156,7 +156,7 @@
  */
 /datum/action/vehicle/sealed/mecha/skyfall/proc/land()
 	chassis.visible_message(span_danger("[chassis] lands from above!"))
-	playsound(chassis, 'sound/effects/explosion1.ogg', 50, 1)
+	playsound(chassis, 'sound/effects/explosion_large1.ogg', 50, 1)
 	chassis.resistance_flags &= ~INDESTRUCTIBLE
 	chassis.mecha_flags &= ~(QUIET_STEPS|QUIET_TURNS|CANNOT_INTERACT)
 	chassis.phasing = initial(chassis.phasing)
@@ -182,7 +182,7 @@
 			var/obj/crushed_object = thing
 			if(crushed_object == chassis || crushed_object.loc == chassis)
 				continue
-			crushed_object.take_damage(150) //same as a hulk punch, makes sense to me
+			crushed_object.take_damage(150, BRUTE, MELEE) //same as a hulk punch, makes sense to me
 			continue
 		if(isliving(thing))
 			var/mob/living/crushed_victim = thing
@@ -268,8 +268,8 @@
 	chassis.balloon_alert(owner, "missile mode on (click to target)")
 	aiming_missile = TRUE
 	rockets_left = 3
-	RegisterSignal(chassis, COMSIG_MECHA_MELEE_CLICK, .proc/on_melee_click)
-	RegisterSignal(chassis, COMSIG_MECHA_EQUIPMENT_CLICK, .proc/on_equipment_click)
+	RegisterSignal(chassis, COMSIG_MECHA_MELEE_CLICK, PROC_REF(on_melee_click))
+	RegisterSignal(chassis, COMSIG_MECHA_EQUIPMENT_CLICK, PROC_REF(on_equipment_click))
 	owner.client.mouse_pointer_icon = 'icons/effects/supplypod_down_target.dmi'
 	owner.update_mouse_pointer()
 	owner.overlay_fullscreen("ivanov", /atom/movable/screen/fullscreen/ivanov_display, 1)
@@ -325,7 +325,7 @@
 	)) */
 	action_icon_state = "mech_ivanov_cooldown"
 	update_button_icon()
-	addtimer(CALLBACK(src, /datum/action/vehicle/sealed/mecha/ivanov_strike.proc/reset_button_icon), strike_cooldown_time)
+	addtimer(CALLBACK(src, TYPE_PROC_REF(/datum/action/vehicle/sealed/mecha/ivanov_strike, reset_button_icon)), strike_cooldown_time)
 
 //misc effects
 
@@ -349,7 +349,7 @@
 		return INITIALIZE_HINT_QDEL
 	src.mecha = mecha
 	animate(src, alpha = 255, TOTAL_SKYFALL_LEAP_TIME/2, easing = CIRCULAR_EASING|EASE_OUT)
-	RegisterSignal(mecha, COMSIG_MOVABLE_MOVED, .proc/follow)
+	RegisterSignal(mecha, COMSIG_MOVABLE_MOVED, PROC_REF(follow))
 	QDEL_IN(src, TOTAL_SKYFALL_LEAP_TIME) //when the animations land
 
 /obj/effect/skyfall_landingzone/Destroy(force)

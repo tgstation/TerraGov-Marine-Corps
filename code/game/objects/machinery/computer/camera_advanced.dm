@@ -17,7 +17,7 @@
 	var/cameraticks = 0
 
 
-/obj/machinery/computer/camera_advanced/Initialize()
+/obj/machinery/computer/camera_advanced/Initialize(mapload)
 	. = ..()
 	off_action = new
 	jump_action = new
@@ -33,10 +33,22 @@
 		if(lock_override & CAMERA_LOCK_CENTCOM)
 			z_lock |= SSmapping.levels_by_trait(ZTRAIT_CENTCOM)
 
-
+///Creates this computer's eye object and sets up its references.
 /obj/machinery/computer/camera_advanced/proc/CreateEye()
 	eyeobj = new()
 	eyeobj.origin = src
+	RegisterSignal(eyeobj, COMSIG_QDELETING, PROC_REF(clear_eye_ref))
+
+/**
+ * This proc is used to make sure no references or other leftovers are left behind if the computer's eye is deleted.
+ * To achieve this, it reacts to the PARENT_QDELETING signal of the computer's eye object and triggers if it is sent.
+**/
+/obj/machinery/computer/camera_advanced/proc/clear_eye_ref()
+	SIGNAL_HANDLER
+	UnregisterSignal(eyeobj, COMSIG_QDELETING)
+	if(current_user)
+		remove_eye_control(current_user)
+	eyeobj = null
 
 
 /obj/machinery/computer/camera_advanced/proc/give_actions(mob/living/user)
@@ -187,6 +199,8 @@
 /obj/machinery/computer/camera_advanced/process()
 	if(QDELETED(tracking_target))
 		return PROCESS_KILL
+	if(QDELETED(eyeobj))
+		return PROCESS_KILL
 
 	if(!tracking_target.can_track(current_user))
 		if(!cameraticks)
@@ -293,7 +307,7 @@
 	var/icon_state_on = "cas_camera"
 	hud_possible = list(SQUAD_HUD_TERRAGOV)
 
-/mob/camera/aiEye/remote/hud/Initialize()
+/mob/camera/aiEye/remote/hud/Initialize(mapload)
 	. = ..()
 	prepare_huds()
 	var/datum/atom_hud/squad/squad_hud = GLOB.huds[DATA_HUD_SQUAD_TERRAGOV]
@@ -305,16 +319,21 @@
 	holder.icon = icon
 	holder.icon_state = icon_state_on
 
+/mob/camera/aiEye/remote/hud/Destroy()
+	var/datum/atom_hud/squad/squad_hud = GLOB.huds[DATA_HUD_SQUAD_TERRAGOV]
+	squad_hud.remove_from_hud(src)
+	return ..()
+
 //This one's for overwatch/CIC
 /mob/camera/aiEye/remote/hud/overwatch
 	icon_state_on = "cic_camera"
 	///List of current aura defines we're emitting, for overlay purposes
 	var/list/current_aura_list = list()
 
-/mob/camera/aiEye/remote/hud/overwatch/Initialize()
-	..()
-	RegisterSignal(src, COMSIG_AURA_STARTED, .proc/add_emitted_auras)
-	RegisterSignal(src, COMSIG_AURA_FINISHED, .proc/remove_emitted_auras)
+/mob/camera/aiEye/remote/hud/overwatch/Initialize(mapload)
+	. = ..()
+	RegisterSignal(src, COMSIG_AURA_STARTED, PROC_REF(add_emitted_auras))
+	RegisterSignal(src, COMSIG_AURA_FINISHED, PROC_REF(remove_emitted_auras))
 
 ///Add to our current aura list and update overlays.
 /mob/camera/aiEye/remote/hud/overwatch/proc/add_emitted_auras(source, list/new_auras)

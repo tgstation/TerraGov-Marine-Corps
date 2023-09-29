@@ -9,8 +9,9 @@
 	closed_layer = PODDOOR_CLOSED_LAYER
 	obj_flags = NONE
 	explosion_block = 6
+	smoothing_groups = list(SMOOTH_GROUP_SHUTTERS)
 
-/obj/machinery/door/poddoor/Initialize()
+/obj/machinery/door/poddoor/Initialize(mapload)
 	. = ..()
 	var/turf/current_turf = get_turf(src)
 	if(anchored && current_turf && density)
@@ -118,6 +119,13 @@
 	opacity = FALSE
 	id = "pirate_cargo"
 
+/obj/machinery/door/poddoor/two_tile_hor/teleporter
+	name = "teleporter chamber blast door"
+	icon_state = "pdoor0"
+	density = FALSE
+	opacity = FALSE
+	id = "tele_array"
+
 /obj/machinery/door/poddoor/two_tile_hor/secure
 	icon = 'icons/obj/doors/1x2blast_hor.dmi'
 	openspeed = 17
@@ -206,10 +214,6 @@
 	name = "\improper Combat Information Center Blast Door"
 	id = "cic_lockdown"
 
-/obj/machinery/door/poddoor/mainship/open/cic/rebel
-	name = "\improper Combat Information Center Blast Door"
-	id = "cic_lockdown_rebel"
-
 /obj/machinery/door/poddoor/mainship/hangar
 	name = "\improper Hangar Lockdown"
 	id = "hangar_lockdown"
@@ -247,8 +251,8 @@
 	resistance_flags = DROPSHIP_IMMUNE|RESIST_ALL
 
 
-/obj/machinery/door/poddoor/timed_late/Initialize()
-	RegisterSignal(SSdcs, list(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_CRASH), .proc/open)
+/obj/machinery/door/poddoor/timed_late/Initialize(mapload)
+	RegisterSignals(SSdcs, list(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_CRASH), PROC_REF(open))
 	return ..()
 
 
@@ -258,8 +262,6 @@
 	resistance_flags = DROPSHIP_IMMUNE|RESIST_ALL
 	open_layer = UNDER_TURF_LAYER //No longer needs to be interacted with.
 	closed_layer = ABOVE_WINDOW_LAYER //Higher than usual, this is only around on the start of the round.
-	smoothing_behavior = NO_SMOOTHING
-	smoothing_groups = NONE
 
 
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/Initialize(mapload)
@@ -277,7 +279,34 @@
 
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone
 	id = "landing_zone"
+	smoothing_groups = null
 
 
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2
 	id = "landing_zone_2"
+	smoothing_groups = null
+
+///Faction signals for campaign mode doors
+GLOBAL_LIST_INIT(faction_to_campaign_door_signal, list(
+	FACTION_TERRAGOV = COMSIG_GLOB_OPEN_CAMPAIGN_SHUTTERS_TGMC,
+	FACTION_SOM = COMSIG_GLOB_OPEN_CAMPAIGN_SHUTTERS_SOM,
+))
+
+/obj/machinery/door/poddoor/campaign
+	name = "secure blast door"
+	desc = "Safety shutters designed to withstand any punishment. You're not forcing your way past this."
+	icon = 'icons/obj/doors/mainship/blastdoors_shutters.dmi'
+	use_power = FALSE
+	resistance_flags = DROPSHIP_IMMUNE|RESIST_ALL
+	open_layer = UNDER_TURF_LAYER
+	closed_layer = ABOVE_WINDOW_LAYER
+	///Faction associated with the door, for signal purposes
+	var/faction = FACTION_TERRAGOV
+
+/obj/machinery/door/poddoor/campaign/Initialize(mapload)
+	RegisterSignal(SSdcs, GLOB.faction_to_campaign_door_signal[faction], PROC_REF(open))
+	RegisterSignal(SSdcs, COMSIG_GLOB_CLOSE_CAMPAIGN_SHUTTERS, TYPE_PROC_REF(/obj/machinery/door, close))
+	return ..()
+
+/obj/machinery/door/poddoor/campaign/som
+	faction = FACTION_SOM

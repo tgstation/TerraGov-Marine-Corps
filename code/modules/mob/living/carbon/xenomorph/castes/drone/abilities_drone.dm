@@ -15,7 +15,7 @@
 /datum/action/xeno_action/activable/essence_link
 	name = "Essence Link"
 	action_icon_state = "healing_infusion"
-	mechanics_text = "Link to a xenomorph. This changes some of your abilities, and grants them and you both various bonuses."
+	desc = "Link to a xenomorph. This changes some of your abilities, and grants them and you both various bonuses."
 	cooldown_timer = 5 SECONDS
 	plasma_cost = 0
 	target_flags = XABB_MOB_TARGET
@@ -75,7 +75,7 @@
 	var/datum/action/xeno_action/enhancement/enhancement_action = X.actions_by_path[/datum/action/xeno_action/enhancement]
 	enhancement_action?.end_ability()
 	X.remove_status_effect(STATUS_EFFECT_XENO_ESSENCE_LINK)
-	QDEL_NULL(existing_link)
+	existing_link = null
 	linked_target = null
 	add_cooldown()
 
@@ -89,11 +89,11 @@
 /datum/action/xeno_action/activable/psychic_cure/acidic_salve
 	name = "Acidic Salve"
 	action_icon_state = "heal_xeno"
-	mechanics_text = "Apply a minor heal to the target. If applied to a linked sister, it will also apply a regenerative buff. Additionally, if that linked sister is near death, the heal's potency is increased"
+	desc = "Apply a minor heal to the target. If applied to a linked sister, it will also apply a regenerative buff. Additionally, if that linked sister is near death, the heal's potency is increased"
 	cooldown_timer = 5 SECONDS
 	plasma_cost = 150
 	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PSYCHIC_CURE,
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_ACIDIC_SALVE,
 	)
 	heal_range = DRONE_HEAL_RANGE
 	target_flags = XABB_MOB_TARGET
@@ -109,6 +109,9 @@
 	salve_healing(target)
 	succeed_activate()
 	add_cooldown()
+	if(owner.client)
+		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[owner.ckey]
+		personal_statistics.heals++
 
 /// Heals the target and gives them a regenerative buff, if applicable.
 /datum/action/xeno_action/activable/psychic_cure/acidic_salve/proc/salve_healing(mob/living/carbon/xenomorph/target)
@@ -125,7 +128,7 @@
 	var/heal_amount = (DRONE_BASE_SALVE_HEAL + target.recovery_aura * target.maxHealth * 0.01) * heal_multiplier
 	target.adjustFireLoss(-max(0, heal_amount - target.getBruteLoss()), TRUE)
 	target.adjustBruteLoss(-heal_amount)
-	target.adjust_sunder(-heal_amount/5)
+	target.adjust_sunder(-heal_amount/10)
 	if(heal_multiplier > 1) // A signal depends on the above heals, so this has to be done here.
 		playsound(target,'sound/effects/magic.ogg', 75, 1)
 		essence_link_action.existing_link.add_stacks(-1)
@@ -136,7 +139,7 @@
 /datum/action/xeno_action/enhancement
 	name = "Enhancement"
 	action_icon_state = "enhancement"
-	mechanics_text = "Apply an enhancement to the linked xeno, increasing their capabilities beyond their limits."
+	desc = "Apply an enhancement to the linked xeno, increasing their capabilities beyond their limits."
 	cooldown_timer = 120 SECONDS
 	plasma_cost = 0
 	keybinding_signals = list(
@@ -176,5 +179,6 @@
 /// Ends the ability if the Enhancement buff is removed.
 /datum/action/xeno_action/enhancement/proc/end_ability()
 	if(existing_enhancement)
-		QDEL_NULL(existing_enhancement)
+		essence_link_action.linked_target.remove_status_effect(STATUS_EFFECT_XENO_ENHANCEMENT)
+		existing_enhancement = null
 		add_cooldown()

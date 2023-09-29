@@ -52,7 +52,7 @@
 
 	//Set direction
 	our_mask.rotate_mask_on_holder_turn(contained_atom.dir)
-	RegisterSignal(our_mask, COMSIG_ATOM_DIR_CHANGE, /atom/movable/lighting_mask.proc/rotate_mask_on_holder_turn)
+	RegisterSignal(our_mask, COMSIG_ATOM_DIR_CHANGE, TYPE_PROC_REF(/atom/movable/lighting_mask, rotate_mask_on_holder_turn))
 
 /datum/dynamic_light_source/Destroy(force)
 	//Remove references to ourself.

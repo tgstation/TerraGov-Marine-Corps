@@ -2,7 +2,7 @@
 	name = "pack of dice"
 	desc = "It's a small container with dice inside."
 
-/obj/item/storage/pill_bottle/dice/Initialize()
+/obj/item/storage/pill_bottle/dice/Initialize(mapload)
 	. = ..()
 	new /obj/item/toy/dice( src )
 	new /obj/item/toy/dice/d20( src )
@@ -12,7 +12,7 @@
 */
 
 /obj/item/storage/donut_box
-	icon = 'icons/obj/items/food.dmi'
+	icon = 'icons/obj/items/food/donuts.dmi'
 	icon_state = "donutbox"
 	name = "\improper Yum! donuts"
 	desc = "A box of mouth watering \"<i>Yum!</i>\" brand donuts."
@@ -22,7 +22,7 @@
 	can_hold = list(/obj/item/reagent_containers/food/snacks/donut)
 	foldable = /obj/item/stack/sheet/cardboard
 
-/obj/item/storage/donut_box/Initialize()
+/obj/item/storage/donut_box/Initialize(mapload)
 	. = ..()
 	for(var/i in 1 to startswith)
 		new /obj/item/reagent_containers/food/snacks/donut/normal(src)
@@ -33,7 +33,7 @@
 	to_chat(user, "You [open ? "close [src]. Another time, then." : "open [src]. Mmmmm... donuts."]")
 	open = !open
 	update_icon()
-	if(!contents.len)
+	if(!length(contents))
 		return ..()
 
 
@@ -46,7 +46,7 @@
 	var/i = 0
 	for(var/obj/item/reagent_containers/food/snacks/donut/D in contents)
 		i++
-		var/image/img = image('icons/obj/items/food.dmi', "[D.overlay_state]-[i]")
+		var/image/img = image('icons/obj/items/food/donuts.dmi', "[D.overlay_state]-[i]")
 		overlays += img
 
 /obj/item/storage/donut_box/empty

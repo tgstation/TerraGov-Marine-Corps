@@ -33,19 +33,19 @@ export const SmartVend = (props, context) => {
               {map((value, key) => {
                 return (
                   <Table.Row key={key}>
-                    <Table.Cell>{value.name}</Table.Cell>
-                    <Table.Cell>{value.amount}</Table.Cell>
+                    <Table.Cell>{key}</Table.Cell>
+                    <Table.Cell>{value}</Table.Cell>
                     <Table.Cell>
                       <Button
-                        disabled={value.amount < 1}
+                        disabled={value < 1}
                         onClick={() =>
-                          act('Release', { name: value.name, amount: 1 })
+                          act('Release', { name: key, amount: 1 })
                         }>
                         One
                       </Button>
                       <Button
-                        disabled={value.amount <= 1}
-                        onClick={() => act('Release', { name: value.name })}>
+                        disabled={value <= 1}
+                        onClick={() => act('Release', { name: key })}>
                         Many
                       </Button>
                     </Table.Cell>

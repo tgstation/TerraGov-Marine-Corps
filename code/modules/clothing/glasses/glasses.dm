@@ -2,6 +2,10 @@
 /obj/item/clothing/glasses
 	name = "glasses"
 	icon = 'icons/obj/clothing/glasses.dmi'
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/clothing/glasses_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/clothing/glasses_right.dmi',
+	)
 	w_class = WEIGHT_CLASS_SMALL
 	var/prescription = FALSE
 	var/toggleable = FALSE
@@ -10,7 +14,7 @@
 	flags_equip_slot = ITEM_SLOT_EYES
 	flags_armor_protection = EYES
 	var/deactive_state = "degoggles"
-	var/vision_flags = 0
+	var/vision_flags = NONE
 	var/darkness_view = 2 //Base human is 2
 	var/invis_view = SEE_INVISIBLE_LIVING
 	var/invis_override = 0 //Override to allow glasses to set higher than normal see_invis
@@ -83,12 +87,6 @@
 		qdel(I)
 		qdel(src)
 		user.put_in_hands(P)
-	else if(istype(I, /obj/item/clothing/glasses/night/imager_goggles))
-		var/obj/item/clothing/glasses/night/imager_goggles/eyepatch/P = new
-		to_chat(user, span_notice("You fasten the optical scanner to the inside of the eyepatch."))
-		qdel(I)
-		qdel(src)
-		user.put_in_hands(P)
 
 		update_icon(user)
 
@@ -97,7 +95,6 @@
 	name = "monocle"
 	desc = "Such a dapper eyepiece!"
 	icon_state = "monocle"
-	item_state = "headset" // lol
 	flags_armor_protection = NONE
 
 /obj/item/clothing/glasses/material
@@ -180,19 +177,6 @@
 			qdel(I)
 			qdel(src)
 			user.put_in_hands(S)
-	else if(istype(I, /obj/item/clothing/glasses/night/imager_goggles))
-		if(prescription)
-			var/obj/item/clothing/glasses/night/optgoggles/prescription/P = new
-			to_chat(user, span_notice("You fasten the optical imaging scanner to the inside of the goggles."))
-			qdel(I)
-			qdel(src)
-			user.put_in_hands(P)
-		else
-			var/obj/item/clothing/glasses/night/optgoggles/S = new
-			to_chat(user, span_notice("You fasten the optical imaging scanner to the inside of the goggles."))
-			qdel(I)
-			qdel(src)
-			user.put_in_hands(S)
 	else if(istype(I, /obj/item/clothing/glasses/meson))
 		if(prescription)
 			var/obj/item/clothing/glasses/meson/enggoggles/prescription/P = new
@@ -233,7 +217,7 @@
 	flags_inv_hide = HIDEEYES
 	eye_protection = 2
 
-/obj/item/clothing/glasses/welding/Initialize()
+/obj/item/clothing/glasses/welding/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/clothing_tint, TINT_5, TRUE)
 
@@ -291,7 +275,7 @@
 	icon_state = "rwelding-g"
 	item_state = "rwelding-g"
 
-/obj/item/clothing/glasses/welding/superior/Initialize()
+/obj/item/clothing/glasses/welding/superior/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/clothing_tint, TINT_4)
 
@@ -304,7 +288,7 @@
 	item_state = "sunglasses"
 	eye_protection = 1
 
-/obj/item/clothing/glasses/sunglasses/Initialize()
+/obj/item/clothing/glasses/sunglasses/Initialize(mapload)
 	. = ..()
 	if(eye_protection)
 		AddComponent(/datum/component/clothing_tint, TINT_3)
@@ -316,7 +300,7 @@
 	item_state = "blindfold"
 	eye_protection = 2
 
-/obj/item/clothing/glasses/sunglasses/blindfold/Initialize()
+/obj/item/clothing/glasses/sunglasses/blindfold/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/clothing_tint, TINT_BLIND)
 
@@ -343,12 +327,6 @@
 	if(istype(I, /obj/item/clothing/glasses/hud/health))
 		var/obj/item/clothing/glasses/hud/medsunglasses/P = new
 		to_chat(user, span_notice("You fasten the medical hud projector to the inside of the glasses."))
-		qdel(I)
-		qdel(src)
-		user.put_in_hands(P)
-	else if(istype(I, /obj/item/clothing/glasses/night/imager_goggles))
-		var/obj/item/clothing/glasses/night/imager_goggles/sunglasses/P = new
-		to_chat(user, span_notice("You fasten the optical imager scaner to the inside of the glasses."))
 		qdel(I)
 		qdel(src)
 		user.put_in_hands(P)
@@ -382,7 +360,7 @@
 	vision_flags = SEE_TURFS|SEE_MOBS|SEE_OBJS
 	lighting_alpha = LIGHTING_PLANE_ALPHA_INVISIBLE
 
-/obj/item/clothing/glasses/sunglasses/sa/Initialize()
+/obj/item/clothing/glasses/sunglasses/sa/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/clothing_tint, TINT_NONE)
 

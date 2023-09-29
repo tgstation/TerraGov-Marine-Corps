@@ -29,7 +29,7 @@
 	spawn_dir = EAST
 	var/list/spawn_hardpoints = list()
 
-/obj/effect/multitile_spawner/cm_armored/tank/Initialize()
+/obj/effect/multitile_spawner/cm_armored/tank/Initialize(mapload)
 	. = ..()
 	return INITIALIZE_HINT_QDEL
 
@@ -89,7 +89,7 @@
 		return
 
 	to_chat(usr, span_notice("You start getting into the other seat."))
-	addtimer(CALLBACK(src, .proc/seat_switched, wannabe_trucker, usr), 3 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(seat_switched), wannabe_trucker, usr), 3 SECONDS)
 
 /obj/vehicle/multitile/root/cm_armored/tank/proc/seat_switched(wannabe_trucker, mob/living/user)
 
@@ -126,7 +126,7 @@
 		return
 	M.visible_message(span_warning("[M] starts pulling [occupant] out of \the [src]."),
 	span_warning("You start pulling [occupant] out of \the [src]. (this will take a while...)"), null, 6)
-	var/fumbling_time = 20 SECONDS - 2 SECONDS * M.skills.getRating("police") - 2 SECONDS * M.skills.getRating("large_vehicle")
+	var/fumbling_time = 20 SECONDS - 2 SECONDS * M.skills.getRating(SKILL_POLICE) - 2 SECONDS * M.skills.getRating(SKILL_LARGE_VEHICLE)
 	if(!do_after(M, fumbling_time, TRUE, src, BUSY_ICON_HOSTILE))
 		return
 	exit_tank(occupant, TRUE, TRUE)
@@ -135,7 +135,7 @@
 	if(!isliving(occupant))
 		return
 	var/mob/living/L = occupant
-	L.Paralyze(80)
+	L.Paralyze(8 SECONDS)
 
 //Two seats, gunner and driver
 //Must have the skills to do so
@@ -167,10 +167,10 @@
 		to_chat(M, span_warning("You need your hands free to climb on [src]."))
 		return
 
-	if(M.skills.getRating("large_vehicle") < SKILL_LARGE_VEHICLE_TRAINED)
+	if(M.skills.getRating(SKILL_LARGE_VEHICLE) < SKILL_LARGE_VEHICLE_TRAINED)
 		M.visible_message(span_notice("[M] fumbles around figuring out how to get into the [src]."),
 		span_notice("You fumble around figuring out how to get into [src]."))
-		var/fumbling_time = 10 SECONDS - 2 SECONDS * M.skills.getRating("large_vehicle")
+		var/fumbling_time = 10 SECONDS - 2 SECONDS * M.skills.getRating(SKILL_LARGE_VEHICLE)
 		if(!do_after(M, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED) || (offhand && !(offhand.flags_item & (NODROP|DELONDROP))))
 			return
 
@@ -204,7 +204,7 @@
 
 	to_chat(M, span_notice("You start climbing out of [src]."))
 
-	addtimer(CALLBACK(src, .proc/exit_tank, M), 5 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(exit_tank), M), 5 SECONDS)
 
 /obj/vehicle/multitile/root/cm_armored/tank/proc/exit_tank(mob/M, forced = FALSE, silent = FALSE)
 	if(!forced)

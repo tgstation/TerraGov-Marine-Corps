@@ -26,11 +26,13 @@ require only minor tweaks.
 #define ZTRAIT_GROUND "Ground"
 #define ZTRAIT_MARINE_MAIN_SHIP "Marine Main Ship"
 #define ZTRAIT_DOUBLE_SHIPS "Double Marine Ship"
+#define ZTRAIT_AWAY "Away"
 
 // boolean - weather types that occur on the level
 #define ZTRAIT_SNOWSTORM "weather_snowstorm"
 #define ZTRAIT_ASHSTORM "weather_ashstorm"
 #define ZTRAIT_ACIDRAIN "weather_acidrain"
+#define ZTRAIT_RAIN "weather_rain"
 #define ZTRAIT_SANDSTORM "weather_sandstorm"
 
 // number - bombcap is multiplied by this before being applied to bombs
@@ -107,8 +109,4 @@ require only minor tweaks.
 #define MAP_ARMOR_STYLE_ICE "ice"
 #define MAP_ARMOR_STYLE_JUNGLE "jungle"
 #define MAP_ARMOR_STYLE_PRISON "prison"
-
-#define CLOSE "close"
-#define CLOSE2 "close2"
-#define FAR "far"
-#define FAR2 "far2"
+#define MAP_ARMOR_STYLE_DESERT "desert"

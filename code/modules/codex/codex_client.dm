@@ -29,13 +29,13 @@
 		SScodex.present_codex_entry(mob, all_entries[1])
 	else
 		if(LAZYLEN(all_entries) > 1)
-			var/list/codex_data = list("<h3><b>[all_entries.len] matches</b> for '[searching]':</h3>")
+			var/list/codex_data = list("<h3><b>[length(all_entries)] matches</b> for '[searching]':</h3>")
 			if(LAZYLEN(all_entries) > max_codex_entries_shown)
-				codex_data += "Showing first <b>[max_codex_entries_shown]</b> entries. <b>[all_entries.len - 5] result\s</b> omitted.</br>"
+				codex_data += "Showing first <b>[max_codex_entries_shown]</b> entries. <b>[length(all_entries) - 5] result\s</b> omitted.</br>"
 			codex_data += "<table width = 100%>"
-			for(var/i = 1 to min(all_entries.len, max_codex_entries_shown))
+			for(var/i = 1 to min(length(all_entries), max_codex_entries_shown))
 				var/datum/codex_entry/entry = all_entries[i]
-				codex_data += "<tr><td>[entry.display_name]</td><td><a href='?_src_=codex;show_examined_info=\ref[entry];show_to=\ref[mob]'>View</a></td></tr>"
+				codex_data += "<tr><td>[entry.display_name]</td><td><a href='?_src_=codex;show_examined_info=[text_ref(entry)];show_to=[text_ref(mob)]'>View</a></td></tr>"
 			codex_data += "</table>"
 			var/datum/browser/popup = new(mob, "codex-search", "Codex Search")
 			popup.set_content(jointext(codex_data, null))
@@ -76,7 +76,7 @@
 			codex_data += "<tr><td colspan = 2><hr></td></tr>"
 			codex_data += "<tr><td colspan = 2>[last_first_letter]</td></tr>"
 			codex_data += "<tr><td colspan = 2><hr></td></tr>"
-		codex_data += "<tr><td>[thing]</td><td><a href='?_src_=codex;show_examined_info=\ref[SScodex.index_file[thing]];show_to=\ref[mob]'>View</a></td></tr>"
+		codex_data += "<tr><td>[thing]</td><td><a href='?_src_=codex;show_examined_info=\ref[SScodex.index_file[thing]];show_to=[text_ref(mob)]'>View</a></td></tr>"
 	codex_data += "</table>"
 	popup.set_content(jointext(codex_data, null))
 	popup.open()

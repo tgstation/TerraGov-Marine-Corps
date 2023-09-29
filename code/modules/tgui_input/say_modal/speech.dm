@@ -48,10 +48,16 @@
 			client.looc(entry)
 			return TRUE
 		if(MOOC_CHANNEL)
-			client.ooc(entry)
+			client.mooc(entry)
 			return TRUE
 		if(XOOC_CHANNEL)
 			client.xooc(entry)
+			return TRUE
+		if(ADMIN_CHANNEL)
+			client.asay(entry)
+			return TRUE
+		if(MENTOR_CHANNEL)
+			client.msay(entry)
 			return TRUE
 	return FALSE
 
@@ -70,7 +76,7 @@
 	if(stat != CONSCIOUS || !client?.tgui_say?.window_open)
 		return FALSE
 	client.tgui_say.force_say()
-	if(client.typing_indicators)
+	if(client.prefs.show_typing)
 		log_speech_indicators("[key_name(client)] FORCED to stop typing, indicators enabled.")
 	else
 		log_speech_indicators("[key_name(client)] FORCED to stop typing, indicators DISABLED.")

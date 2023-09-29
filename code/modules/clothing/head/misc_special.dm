@@ -15,7 +15,6 @@
 	desc = "A head-mounted face cover designed to protect the wearer completely from space-arc eye."
 	icon_state = "welding"
 	item_state = "welding"
-	materials = list(/datum/material/metal = 3000, /datum/material/glass = 1000)
 	var/up = FALSE
 	soft_armor = list(MELEE = 10, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
 	flags_atom = CONDUCT
@@ -29,13 +28,12 @@
 	eye_protection = 2
 	var/hug_memory = 0 //Variable to hold the "memory" of how many anti-hugs remain.  Because people were abusing the fuck out of it.
 
-/obj/item/clothing/head/welding/Initialize()
+/obj/item/clothing/head/welding/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/clothing_tint, TINT_5)
 
 /obj/item/clothing/head/welding/attack_self(mob/user)
 	toggle_item_state(user)
-
 
 /obj/item/clothing/head/welding/verb/verbtoggle()
 	set category = "Object"
@@ -91,7 +89,7 @@
 	desc = "It's tasty looking!"
 	icon_state = "cake0"
 	flags_inventory = COVEREYES
-	var/onfire = 0.0
+	var/onfire = 0
 	var/status = 0
 	var/processing = 0 //I dont think this is used anywhere.
 	flags_armor_protection = EYES

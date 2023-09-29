@@ -2,15 +2,16 @@
 	caste_base_type = /mob/living/carbon/xenomorph/warrior
 	name = "Warrior"
 	desc = "A beefy, alien with an armored carapace."
-	icon = 'icons/Xeno/2x2_Xenos.dmi'
+	icon = 'icons/Xeno/castes/warrior.dmi'
 	icon_state = "Warrior Walking"
+	bubble_icon = "alienroyal"
 	health = 200
 	maxHealth = 200
 	plasma_stored = 50
 	pixel_x = -16
 	old_x = -16
 	tier = XENO_TIER_TWO
-	upgrade = XENO_UPGRADE_ZERO
+	upgrade = XENO_UPGRADE_NORMAL
 	bubble_icon = "alienroyal"
 	///How many stacks of combo do we have ? Interacts with every ability.
 	var/combo = 0
@@ -67,9 +68,9 @@
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "warrior_grabs")
 	setGrabState(GRAB_NECK)
 	ENABLE_BITFIELD(L.restrained_flags, RESTRAINED_NECKGRAB)
-	RegisterSignal(L, COMSIG_LIVING_DO_RESIST, /atom/movable.proc/resisted_against)
+	RegisterSignal(L, COMSIG_LIVING_DO_RESIST, TYPE_PROC_REF(/atom/movable, resisted_against))
 	L.drop_all_held_items()
-	L.Paralyze(1)
+	L.Paralyze(0.1 SECONDS)
 	visible_message(span_xenowarning("\The [src] grabs [L] by the throat!"), \
 	span_xenowarning("We grab [L] by the throat!"))
 	return TRUE
@@ -78,12 +79,6 @@
 /mob/living/carbon/xenomorph/warrior/resisted_against(datum/source)
 	var/mob/living/victim = source
 	victim.do_resist_grab()
-
-
-/mob/living/carbon/xenomorph/warrior/hitby(atom/movable/AM, speed = 5)
-	if(ishuman(AM))
-		return
-	..()
 
 // ***************************************
 // *********** Primordial procs
@@ -94,7 +89,7 @@
 	if(!empowerable) //gives combo but doesn't combo but doesn't consume it.
 		give_combo()
 		return FALSE
-	if(upgrade != XENO_UPGRADE_FOUR)
+	if(upgrade != XENO_UPGRADE_PRIMO)
 		return FALSE
 	if(combo >= WARRIOR_COMBO_THRESHOLD) //Fully stacked, clear all the stacks and return TRUE.
 		emote("roar")
@@ -105,7 +100,7 @@
 
 ///Primordial warriors empowered ability trigger when they get 3 combo stacks, handles visuals aswell.
 /mob/living/carbon/xenomorph/warrior/proc/give_combo()
-	if(upgrade != XENO_UPGRADE_FOUR)
+	if(upgrade != XENO_UPGRADE_PRIMO)
 		return FALSE
 	combo++
 	if(combo >= WARRIOR_COMBO_THRESHOLD)
@@ -113,7 +108,7 @@
 			if(A.type in empowerable_actions)
 				A.add_empowered_frame()
 				A.update_button_icon()
-	addtimer(CALLBACK(src, .proc/clear_combo), WARRIOR_COMBO_FADEOUT_TIME, TIMER_OVERRIDE|TIMER_UNIQUE)
+	addtimer(CALLBACK(src, PROC_REF(clear_combo)), WARRIOR_COMBO_FADEOUT_TIME, TIMER_OVERRIDE|TIMER_UNIQUE)
 	return TRUE
 
 ///Removes all combo stacks from the warrior, removes the frame around the ability buttons.

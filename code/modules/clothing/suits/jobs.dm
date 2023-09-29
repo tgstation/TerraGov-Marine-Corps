@@ -12,7 +12,7 @@
 	flags_armor_protection = NONE
 	allowed = list (
 		/obj/item/reagent_containers/spray/plantbgone,
-		/obj/item/analyzer/plant_analyzer,
+		/obj/item/tool/analyzer/plant_analyzer,
 		/obj/item/seeds,
 		/obj/item/reagent_containers/glass/fertilizer,
 		/obj/item/tool/minihoe,
@@ -104,26 +104,33 @@
 	flags_armor_protection = NONE
 
 //Security
-/obj/item/clothing/suit/security/navyofficer
-	name = "security officer's jacket"
-	desc = "This jacket is for those special occasions when a security officer actually feels safe."
+/obj/item/clothing/suit/security
+	desc = "You shouldn't see this"
+	flags_armor_protection = CHEST|GROIN|ARMS
+
+/obj/item/clothing/suit/security/formal
+	name = "formal jacket"
+	desc = "A formal military jacket. Not recommended for combat use."
 	icon_state = "officerbluejacket"
-	item_state = "officerbluejacket"
-	flags_armor_protection = CHEST|GROIN|ARMS
 
-/obj/item/clothing/suit/security/navywarden
-	name = "warden's jacket"
-	desc = "Perfectly suited for the warden that wants to leave an impression of style on those who visit the brig."
+/obj/item/clothing/suit/security/formal/tan
+	icon_state = "officertanjacket"
+
+/obj/item/clothing/suit/security/formal/officer
+	name = "officer's jacket"
+	desc = "An officer's formal jacket, makes you look authoritative."
 	icon_state = "wardenbluejacket"
-	item_state = "wardenbluejacket"
-	flags_armor_protection = CHEST|GROIN|ARMS
 
-/obj/item/clothing/suit/security/navyhos
-	name = "head of security's jacket"
+/obj/item/clothing/suit/security/formal/officer/tan
+	icon_state = "wardentanjacket"
+
+/obj/item/clothing/suit/security/formal/senior_officer
+	name = "senior officer's jacket"
 	desc = "This piece of clothing was specifically designed for asserting superior authority."
 	icon_state = "hosbluejacket"
-	item_state = "hosbluejacket"
-	flags_armor_protection = CHEST|GROIN|ARMS
+
+/obj/item/clothing/suit/security/formal/senior_officer/tan
+	icon_state = "hostanjacket"
 
 //Detective
 /obj/item/clothing/suit/storage/det_suit
@@ -191,9 +198,9 @@
 	item_state = "hazard"
 	blood_overlay_type = "armor"
 	allowed = list(
-		/obj/item/analyzer,
+		/obj/item/tool/analyzer,
 		/obj/item/flashlight,
-		/obj/item/multitool,
+		/obj/item/tool/multitool,
 		/obj/item/pipe_painter,
 		/obj/item/radio,
 		/obj/item/t_scanner,
@@ -312,7 +319,6 @@
 /obj/item/clothing/suit/storage/snow_suit
 	name = "snow suit"
 	desc = "A standard snow suit. It can protect the wearer from extreme cold."
-	icon = 'icons/obj/clothing/suits.dmi'
 	icon_state = "snowsuit_alpha"
 	flags_armor_protection = CHEST|GROIN|ARMS
 	flags_cold_protection = CHEST|GROIN|ARMS|LEGS

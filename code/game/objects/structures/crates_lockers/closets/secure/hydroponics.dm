@@ -18,7 +18,7 @@
 			new /obj/item/clothing/suit/apron/overalls(src)
 	new /obj/item/storage/bag/plants(src)
 	new /obj/item/clothing/under/rank/hydroponics(src)
-	new /obj/item/analyzer/plant_analyzer(src)
+	new /obj/item/tool/analyzer/plant_analyzer(src)
 	new /obj/item/clothing/head/greenbandanna(src)
 	new /obj/item/tool/minihoe(src)
 	new /obj/item/tool/hatchet(src)

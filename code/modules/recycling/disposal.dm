@@ -15,6 +15,7 @@
 	density = TRUE
 	active_power_usage = 3500 //The pneumatic pump power. 3 HP ~ 2200W
 	idle_power_usage = 100
+	allow_pass_flags = PASS_LOW_STRUCTURE|PASSABLE
 	var/mode = 1 //Item mode 0=off 1=charging 2=charged
 	var/flush = 0 //True if flush handle is pulled
 	var/obj/structure/disposalpipe/trunk/trunk = null //The attached pipe trunk
@@ -25,7 +26,7 @@
 	var/disposal_pressure = 0
 
 //Create a new disposal, find the attached trunk (if present) and init gas resvr.
-/obj/machinery/disposal/Initialize()
+/obj/machinery/disposal/Initialize(mapload)
 	. = ..()
 	set_trunk(locate(/obj/structure/disposalpipe/trunk) in loc)
 	if(!trunk)
@@ -52,11 +53,11 @@
 ///Set the trunk of the disposal
 /obj/machinery/disposal/proc/set_trunk(obj/future_trunk)
 	if(trunk)
-		UnregisterSignal(trunk, COMSIG_PARENT_QDELETING)
+		UnregisterSignal(trunk, COMSIG_QDELETING)
 	trunk = null
 	if(future_trunk)
 		trunk = future_trunk
-		RegisterSignal(trunk, COMSIG_PARENT_QDELETING, .proc/clean_trunk)
+		RegisterSignal(trunk, COMSIG_QDELETING, PROC_REF(clean_trunk))
 
 ///Signal handler to clean trunk to prevent harddel
 /obj/machinery/disposal/proc/clean_trunk()
@@ -145,6 +146,7 @@
 
 //Mouse drop another mob or self
 /obj/machinery/disposal/MouseDrop_T(mob/target, mob/user)
+	. = ..()
 	// Check the user, if they can do all the things, are they close, alive?
 	if(isAI(user) || isxeno(user) || !isliving(user) || get_dist(user, target) > 1 || !in_range(user, src) || user.incapacitated(TRUE))
 		return
@@ -195,7 +197,7 @@
 	user.forceMove(loc)
 	if(isliving(user))
 		var/mob/living/L = user
-		L.Stun(40)
+		L.Stun(4 SECONDS)
 	if(!user.lying_angle)
 		user.visible_message("<span class='warning'>[user] suddenly climbs out of [src]!",
 		"<span class='warning'>You climb out of [src] and get your bearings!")
@@ -206,7 +208,7 @@
 	. = ..()
 	if(!.)
 		return FALSE
-	if(user && user.loc == src)
+	if(user?.loc == src)
 		to_chat(usr, span_warning("You cannot reach the controls from inside."))
 		return FALSE
 
@@ -221,11 +223,11 @@
 
 	if(!isAI(user))  //AI can't pull flush handle
 		if(flush)
-			dat += "Disposal handle: <A href='?src=\ref[src];handle=0'>Disengage</A> <B>Engaged</B>"
+			dat += "Disposal handle: <A href='?src=[text_ref(src)];handle=0'>Disengage</A> <B>Engaged</B>"
 		else
-			dat += "Disposal handle: <B>Disengaged</B> <A href='?src=\ref[src];handle=1'>Engage</A>"
+			dat += "Disposal handle: <B>Disengaged</B> <A href='?src=[text_ref(src)];handle=1'>Engage</A>"
 
-		dat += "<BR><HR><A href='?src=\ref[src];eject=1'>Eject contents</A><HR>"
+		dat += "<BR><HR><A href='?src=[text_ref(src)];eject=1'>Eject contents</A><HR>"
 
 	if(mode <= 0)
 		dat += "Pump: <B>Off</B> On</A><BR>"
@@ -282,7 +284,7 @@
 				"<span class='warning'>You get pushed out of [src] and get your bearings!")
 			if(isliving(M))
 				var/mob/living/L = M
-				L.Stun(40)
+				L.Stun(4 SECONDS)
 	update()
 
 //Pipe affected by explosion
@@ -315,7 +317,7 @@
 		return
 
 	//Check for items in disposal - occupied light
-	if(contents.len > 0)
+	if(length(contents) > 0)
 		overlays += image('icons/obj/pipes/disposal.dmi', "dispover-full")
 
 	//Charging and ready light
@@ -331,9 +333,9 @@
 
 	flush_count++
 	if(flush_count >= flush_every_ticks)
-		if(contents.len)
+		if(length(contents))
 			if(mode == 2)
-				INVOKE_ASYNC(src, .proc/flush)
+				INVOKE_ASYNC(src, PROC_REF(flush))
 		flush_count = 0
 
 	updateUsrDialog()
@@ -409,7 +411,6 @@
 		qdel(H)
 
 /obj/machinery/disposal/CanAllowThrough(atom/movable/mover, turf/target)
-	. = ..()
 	if(istype(mover, /obj/item) && mover.throwing)
 		var/obj/item/I = mover
 		if(prob(75))
@@ -417,7 +418,7 @@
 			visible_message(span_notice("[I] lands into [src]."))
 		else
 			visible_message(span_warning("[I] bounces off of [src]'s rim!"))
-		return 0
+		return FALSE
 	else
 		return ..()
 
@@ -478,7 +479,7 @@
 	loc = D.trunk
 	active = 1
 	setDir(DOWN)
-	INVOKE_NEXT_TICK(src, .proc/move) //Spawn off the movement process
+	INVOKE_NEXT_TICK(src, PROC_REF(move)) //Spawn off the movement process
 
 //Movement process, persists while holder is moving through pipes
 /obj/structure/disposalholder/proc/move()
@@ -571,10 +572,9 @@
 	layer = DISPOSAL_PIPE_LAYER //Slightly lower than wires and other pipes
 	plane = FLOOR_PLANE
 	resistance_flags = RESIST_ALL
-	var/base_icon_state	//Initial icon state on map
 
 	//New pipe, set the icon_state as on map
-/obj/structure/disposalpipe/Initialize()
+/obj/structure/disposalpipe/Initialize(mapload)
 	. = ..()
 	base_icon_state = icon_state
 	GLOB.disposal_list += src
@@ -655,10 +655,8 @@
 		return
 	if(isfloorturf(T)) //intact floor, pop the tile
 		var/turf/open/floor/F = T
-		if(!F.is_plating())
-			if(!F.broken && !F.burnt)
-				new F.floor_tile.type(H)//Add to holder so it will be thrown with other stuff
-			F.make_plating()
+		if(F.has_tile())
+			F.remove_tile()
 
 	if(direction) //Direction is specified
 		if(isspaceturf(T)) //If ended in space, then range is unlimited
@@ -697,9 +695,9 @@
 		if(EXPLODE_DEVASTATE)
 			qdel(src)
 		if(EXPLODE_HEAVY)
-			take_damage(rand(5, 15))
+			take_damage(rand(5, 15), BRUTE, BOMB)
 		if(EXPLODE_LIGHT)
-			take_damage(rand(0, 15))
+			take_damage(rand(0, 15), BRUTE, BOMB)
 
 //Attack by item. Weldingtool: unfasten and convert to obj/disposalconstruct
 /obj/structure/disposalpipe/attackby(obj/item/I, mob/user, params)
@@ -771,7 +769,7 @@
 	icon_state = "pipe-s"
 
 
-/obj/structure/disposalpipe/segment/Initialize()
+/obj/structure/disposalpipe/segment/Initialize(mapload)
 	. = ..()
 
 	if(icon_state == "pipe-s")
@@ -788,7 +786,7 @@
 	icon_state = "pipe-u"
 
 
-/obj/structure/disposalpipe/up/Initialize()
+/obj/structure/disposalpipe/up/Initialize(mapload)
 	. = ..()
 	dpdir = dir
 	update()
@@ -832,7 +830,7 @@
 	icon_state = "pipe-d"
 
 
-/obj/structure/disposalpipe/down/Initialize()
+/obj/structure/disposalpipe/down/Initialize(mapload)
 	. = ..()
 	dpdir = dir
 	update()
@@ -944,7 +942,7 @@
 	icon_state = "pipe-j1"
 
 
-/obj/structure/disposalpipe/junction/Initialize()
+/obj/structure/disposalpipe/junction/Initialize(mapload)
 	. = ..()
 	if(icon_state == "pipe-j1")
 		dpdir = dir|turn(dir, -90)|turn(dir, 180)
@@ -991,7 +989,7 @@
 	var/sort_tag = ""
 	var/partial = 0
 
-/obj/structure/disposalpipe/tagger/Initialize()
+/obj/structure/disposalpipe/tagger/Initialize(mapload)
 	. = ..()
 	dpdir = dir|turn(dir, 180)
 	if(sort_tag)
@@ -1050,7 +1048,7 @@
 	var/negdir = 0
 	var/sortdir = 0
 
-/obj/structure/disposalpipe/sortjunction/Initialize()
+/obj/structure/disposalpipe/sortjunction/Initialize(mapload)
 	. = ..()
 	if(sortType)
 		GLOB.tagger_locations |= sortType
@@ -1158,7 +1156,7 @@
 	icon_state = "pipe-t"
 	var/obj/linked 	//The linked obj/machinery/disposal or obj/disposaloutlet
 
-/obj/structure/disposalpipe/trunk/Initialize()
+/obj/structure/disposalpipe/trunk/Initialize(mapload)
 	. = ..()
 	dpdir = dir
 	getlinked()
@@ -1167,11 +1165,11 @@
 ///Set the linked atom
 /obj/structure/disposalpipe/trunk/proc/set_linked(obj/to_link)
 	if(linked)
-		UnregisterSignal(linked, COMSIG_PARENT_QDELETING)
+		UnregisterSignal(linked, COMSIG_QDELETING)
 	linked = null
 	if(to_link)
 		linked = to_link
-		RegisterSignal(linked, COMSIG_PARENT_QDELETING, .proc/clean_linked)
+		RegisterSignal(linked, COMSIG_QDELETING, PROC_REF(clean_linked))
 
 ///Signal handler to clean linked from harddeling
 /obj/structure/disposalpipe/trunk/proc/clean_linked()
@@ -1234,10 +1232,10 @@
 			O.expel(H) //Expel at outlet
 		else
 			var/obj/machinery/disposal/D = linked
-			if(H && H.loc)
+			if(H?.loc)
 				D.expel(H) //Expel at disposal
 	else
-		if(H && H.loc)
+		if(H?.loc)
 			src.expel(H, loc, 0) //Expel at turf
 	return null
 
@@ -1253,7 +1251,7 @@
 	dpdir = 0 //Broken pipes have dpdir = 0 so they're not found as 'real' pipes i.e. will be treated as an empty turf
 	desc = "A broken piece of disposal pipe."
 
-/obj/structure/disposalpipe/broken/Initialize()
+/obj/structure/disposalpipe/broken/Initialize(mapload)
 	. = ..()
 	update()
 
@@ -1280,7 +1278,7 @@
 	var/turf/target	//This will be where the output objects are 'thrown' to.
 	var/mode = 0
 
-/obj/structure/disposaloutlet/Initialize()
+/obj/structure/disposaloutlet/Initialize(mapload)
 	. = ..()
 
 	target = get_ranged_target_turf(src, dir, 10)
@@ -1330,7 +1328,7 @@
 
 		to_chat(user, span_notice("You sliced the floorweld off the disposal outlet."))
 		var/obj/structure/disposalconstruct/C = new(loc)
-		C.ptype = 7 //7 =  outlet
+		C.ptype = 7 //7 = outlet
 		C.update()
 		C.anchored = TRUE
 		C.density = TRUE

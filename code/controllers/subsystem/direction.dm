@@ -1,4 +1,5 @@
 #define TRACKING_ID_MARINE_COMMANDER "marine-commander"
+#define TRACKING_ID_SOM_COMMANDER "som-commander"
 
 SUBSYSTEM_DEF(direction)
 	name = "Direction"
@@ -35,13 +36,14 @@ SUBSYSTEM_DEF(direction)
 	mobs_in_processing = SSdirection.mobs_in_processing
 	last_faction_id = SSdirection.last_faction_id
 
-/datum/controller/subsystem/direction/Initialize(start_timeofday)
-	. = ..()
+/datum/controller/subsystem/direction/Initialize()
 	// Static squads/factions can be defined here for tracking
 	init_squad(TRACKING_ID_MARINE_COMMANDER)
+	init_squad(TRACKING_ID_SOM_COMMANDER)
 	for (var/hivenumber in GLOB.hive_datums)
 		var/datum/hive_status/HS = GLOB.hive_datums[hivenumber]
-		init_squad(hivenumber, HS.living_xeno_ruler, )
+		init_squad(hivenumber, HS.living_xeno_ruler)
+	return SS_INIT_SUCCESS
 
 
 /datum/controller/subsystem/direction/stat_entry()
@@ -61,8 +63,8 @@ SUBSYSTEM_DEF(direction)
 			untrack_all_in_squad(squad_id) // clear and reset all the squad members
 			continue
 		var/mob/living/tracker
-		while(currentrun[squad_id].len)
-			tracker = currentrun[squad_id][currentrun[squad_id].len]
+		while(length(currentrun[squad_id]))
+			tracker = currentrun[squad_id][length(currentrun[squad_id])]
 			currentrun[squad_id].len--
 			if(QDELETED(tracker))
 				stop_tracking(squad_id, tracker)
@@ -74,8 +76,8 @@ SUBSYSTEM_DEF(direction)
 ///Stops all members of this squad from tracking the leader
 /datum/controller/subsystem/direction/proc/untrack_all_in_squad(squad_id)
 	var/mob/living/tracker
-	while(currentrun[squad_id].len)
-		tracker = currentrun[squad_id][currentrun[squad_id].len]
+	while(length(currentrun[squad_id]))
+		tracker = currentrun[squad_id][length(currentrun[squad_id])]
 		currentrun[squad_id].len--
 		if(QDELETED(tracker))
 			stop_tracking(squad_id, tracker)

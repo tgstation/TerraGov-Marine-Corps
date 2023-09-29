@@ -1,0 +1,422 @@
+2023-08-01:
+  Arturlang:
+  - code_imp: There is now a generic component that lets you display timers to a user
+      on any mob.
+  - rscadd: Both the xeno hive collapsae and nuke will display a timer for xenos on
+      the middle of the screen
+  Barnet2:
+  - qol: Adds default keybind for toggling self harms, turns self harm off by default.
+  - rscadd: Added a new groundmap, Lawanka Outpost.
+  Lewdcifer:
+  - bugfix: Fixed a runtime related to AssignRole().
+  - bugfix: Fixed a runtime where shovel tools would read NULL.max_amount.
+  Lumipharon:
+  - bugfix: Stagger will now have an accurate duration instead of relying on life
+      ticks
+  - code_imp: all staggerstuns now consistantly use SECONDS defines
+  - refactor: refactored stagger code
+  - balance: Reduced the stagger or some guns and effects due to stagger working correctly
+  TiviPlus:
+  - bugfix: Orbit menu supports greyscale squad icons properly
+  breadhunt:
+  - bugfix: Crafting for anything other than plasteel/metal works again
+  - bugfix: The main overwatch console now sends messages properly
+  - bugfix: Fixes a runtime regarding cards that was causing them to become invisible,
+      playing cards work once more!
+  coldironwarrior:
+  - spellcheck: fixed rownin armor description; extra space on one of the blood vendor
+      slogans
+  ivanmixo:
+  - bugfix: Fixed say runtime, you should be able to talk from within objects again
+  - code_imp: Status effects get deleted along with their owners
+  - bugfix: Fixed tracker runtime 2
+  - bugfix: Synth skills should work properly in valhalla now
+  - bugfix: Gravity fixed for real this time
+  lbnesquik:
+  - qol: '- Replaces ''mortar'' by ''artillery piece'' or ''artillery'' while inspecting
+      binoculars'
+  - qol: '- Makes inspecting rangefinders inform you about alt-click'
+  - qol: '- Makes inspecting binoculars inform you better about which gun is linked'
+  - qol: '- Add a small warning if trying to switch linked gun while only having 1
+      linked gun'
+  - qol: Remove the tunnel menu forcing you out of tunnels via timeout.
+  maikilangiolo:
+  - balance: mounted gun miniscope has actual miniscope zoom now
+  - balance: increased mounted gun rail scope zoom by 1
+2023-08-02:
+  Barnet2:
+  - bugfix: Fixes duplicate and misses APC's on Magmoor as per the sanity test.
+  Scarlet-Oduko:
+  - rscadd: Adds a new sticky grenade, the cloaker, cloak gas equivalent of trailblazer
+  coldironwarrior:
+  - rscdel: removed loose pinpointers on the crash ships
+  novaepee:
+  - rscadd: vents and scrubber in PoS operation room.
+  - rscadd: cryo console near PoS Alamo.
+  - rscadd: where jaeger vendor will be for PoS. Keep your eyes out for the future!
+2023-08-03:
+  Barnet2:
+  - balance: Removed SVD from the Cold War seasonals.
+  Lumipharon:
+  - balance: HvH melee stuns halved in duration. Head stuns chance slightly reduced
+  - balance: Stuns from smashing into things on office chairs halved
+  - bugfix: fixed a couple of things having lower stagger than intended.
+  - bugfix: fixed a couple of minor throw bugs
+  - bugfix: Hiveminds can no longer jump
+  Sanuki357:
+  - imageadd: added sprite for an empty sentry box to make them distinguishable visually
+2023-08-04:
+  '@Xander3359 @KillerOrcaCora':
+  - bugfix: Fixes cape sprites for Rapier (Left) and Rapier (Right)
+  yyzsong:
+  - rscadd: Valhalla vendor now has volkite small cells (Serpenta ammo)
+2023-08-05:
+  Xander3359:
+  - rscadd: Navy Blue color preset
+  forestbbbbbbb:
+  - bugfix: fixed clickdrag aimbot
+  ivanmixo:
+  - code_imp: Brought our asset system up to date
+  - bugfix: Landing on cocoons actually gibs the person inside it now
+  - bugfix: Health scanner doesn't tell you you're pregnant if you hold an alien embryo
+      in your hand anymore
+2023-08-06:
+  Sanuki357:
+  - imageadd: added sprite for the crate of ST-580 point defense sentry which was
+      using the same sprite as the ST-571 sentry gun
+  - imageadd: all the wooden crates (the one you can hold on like the sentry one)
+      now has the sprite when they are empty
+  - code_imp: all the wooden crates now dispenses a wooden plank when folded
+2023-08-07:
+  Barnet2:
+  - rscdel: Removed some Platinum Miners on LV.
+  - bugfix: Fixes LV research lab area not being entirely roofed.
+  - balance: Lawanka Outpost; 3 disk spawns, engineering is now underground
+  Sanuki357:
+  - balance: The field utility pouch now can hold compass, "Huginn" ROC-58 Observer,
+      the map tablets, ASRS tablet, megaphone, hand labeller, and deck of cards, as
+      well as papers and clipboard.
+  - rscdel: Removed the document pouch from the vending machine.
+  Xander3359:
+  - bugfix: Xenos can no longer spam left click miners to break them faster than normally.
+  forestbbbbbbb:
+  - rscdel: removed chat feedback from order actions
+  - bugfix: Fix observers being unable to examine
+  - bugfix: Fix observers being unable to open armor storage
+  ivanmixo:
+  - code_imp: World Initialization has been refactored
+  - bugfix: Motion sensor should keep working when inside a locker now
+  - code_imp: cheap_get_human/xenos_near shouldn't return nulls anymore
+  lbnesquik:
+  - bugfix: fixed medical gloves triggering on all intents
+  - bugfix: fixed medical scanner gloves not having the right click behavior when
+      worn
+2023-08-08:
+  forestbbbbbbb:
+  - bugfix: Remove nutrition icon from robot hud
+  lbnesquik:
+  - rscadd: Allows cable coils for ghetto suturing
+  - rscadd: added sounds some to the sink and the surgery table
+2023-08-09:
+  Lumipharon:
+  - balance: Machete and spear now have straps
+  - balance: Miner slash time reduced to 1.5 seconds per cycle
+  - balance: 'HvH: SG-85 loadout comes with extra ammo'
+  Xander3359:
+  - bugfix: AGLS Incendiary ammo drops fire now.
+  coldironwarrior:
+  - bugfix: fixed the XH-L upper plating sprite being misaligned with its visor
+  forestbbbbbbb:
+  - bugfix: CMO and minions have icons in orbit menu
+2023-08-10:
+  Lumipharon:
+  - bugfix: Objects such as tables or windowframes no longer stop smoke
+  Redory:
+  - imageadd: added mini_icons for (hopefully) all mags.
+  - imageadd: redid the compact magazine labels with correct weapon naming conventions.
+  - imagedel: deleted one or two outdated mini_icons.
+  Sanuki357:
+  - imageadd: New progressive sprites for empty belts and pouches which responses
+      to how empty they are
+  - imageadd: Changed the grenade pouch sprite
+  'Sprites: Ocelot':
+  - rscadd: R-76 magnum is now available in gold, silver and nickle flavours via black
+      market lootboxes in req
+  'Sprites: Orca':
+  - imageadd: Updated warlock shield sprites
+  Xander3359:
+  - spellcheck: change broken computer warning to be a bit less misleading.
+  - qol: Switching hands unwields.
+  ivanmixo:
+  - bugfix: Fixed a small emote runtime
+  - bugfix: Fixed ghost observing armor not unregistering signals
+  - bugfix: Toned down super rage shake radius to help with potential clientside lag
+  - bugfix: Fixed some auto observe runtimes
+  - bugfix: Fixed ghosts causing runtimes by having the specialized vendor UI open
+  - bugfix: Fixed warrior punch trying to blind inanimate objects
+  - bugfix: Fixed a hive threat runtime
+  - bugfix: Fixed adjust_fire_stacks trying to affect qdeleted mobs
+  - bugfix: Fixed crit OD peri+ runtime
+  - bugfix: Fixed cas gau exploding contents of turfs twice
+  - bugfix: Fixed multiple bodybag/tarp runtimes
+2023-08-11:
+  Pariah919:
+  - rscadd: Added new SG gun, the SG-62 target rifle. It is a rifle with a unbarreled
+      spotting rifle that applies bullets with status effects or just normal bullets
+      that deal a lot of damage, it has an irremoveable suppressor as well.
+  forestbbbbbbb:
+  - bugfix: Fix jetpack not working over wired cades
+  ivanmixo:
+  - bugfix: Engineer and corpsman slots actually scale properly now
+2023-08-12:
+  Lumipharon:
+  - rscadd: Added a new explosion tier of weak, below light explosions
+  - balance: Rad rockets, AGS, sticky and 20mm grenades all utilise weak explosions
+      to some extent
+  - balance: Humans can be gibbed by devestating explosions if they lack bomb armor,
+      just like xenos
+  - bugfix: fixed a bug with praetorian acid dash
+  Sanuki357:
+  - bugfix: Fixed SOM and ICC pouches going invisible when they are empty
+  Zar000:
+  - bugfix: hunter mirage now works as intended
+  forestbbbbbbb:
+  - bugfix: Fix double leading space in paygrades
+2023-08-13:
+  Barnet2:
+  - rscadd: Added chemistry request lines to most shipmaps.
+2023-08-14:
+  ClosetedSkeletonGH:
+  - rscadd: Adds 150 new robot random names
+  RipGrayson:
+  - rscadd: Added the ability for admins to toggle gimmick tads
+  - balance: The food tad is now classified as a gimmick tad
+  - balance: Gimmick tads now require admin intervention before they can be selected
+  - balance: Enlarged west caves on LV624 to combat map imbalance.
+  Wisemonster:
+  - bugfix: Fixed jobs listing an unused gamemode in their description as the gamemode
+      they are in.
+  Xander3359:
+  - rscadd: Self-dusting implant that triggers on death for the elite moth ERT.
+  - code_imp: Added unit test for implanting
+  ivanmixo:
+  - code_imp: Deleted old shitcode access proc
+  - balance: Bring resin door melee armor back down to previous values
+2023-08-15:
+  Barnet2:
+  - rscadd: Added soap and sterilizing spray bottles to the NanotrasenMed Plus
+  RipGrayson:
+  - rscadd: Added the ability for the AI to conduct a bioscan on its own
+  Sebbe9123:
+  - balance: Natural blood regen now regens in tiers based on how much nutrition you
+      have.
+  coldironwarrior:
+  - bugfix: fixed the area for a single tile in magmoor's security building
+  ivanmixo:
+  - bugfix: Fixed jobs not scaling if nobody readies up
+  - bugfix: Fixed jobs not being scaled properly
+  lbnesquik:
+  - balance: mortar flare and smoke are 50% cheaper now
+  novaepee:
+  - imageadd: Reqtorio screen background color change
+2023-08-16:
+  Barnet2:
+  - qol: All shipside medbays now have a map table.
+  - qol: All shipside medbays now have a blood vendor in the main lobby.
+  - qol: Rechargers in medbay on Pillar of Spring are now more visible.
+  Lumipharon:
+  - bugfix: fixed resin doors appearing closed when they are actuall open, after creation
+  forestbbbbbbb:
+  - rscadd: ported tg statpanel
+  ivanmixo:
+  - bugfix: Fixed people getting stuck in tad camera view
+  yyzsong:
+  - bugfix: Replaced a missing area tile for ice.
+2023-08-17:
+  Blundir:
+  - bugfix: fixed material sheet stacks having no or incorrect inhands sprites
+  - imageadd: added new inhands sprites for tools that match the inventory counterpart
+  DeerJesus:
+  - rscadd: added nt-06 experimental liquor, a proto-bacchus-blessing that fucks up
+      any liver it touches
+  - rscadd: added the bottle of space-aged whiskey (like ship-aged whiskey irl but
+      a pun and more relevant)
+  - rscadd: added SIX new items to the corporate liason suitcase!
+  KrabSpider:
+  - rscadd: Re-adds Silence, a Hunter-exclusive ability that mutes and deafens hostile
+      targets the Hunter has line of sight to in a 5x5 area for 10 seconds. Hunter's
+      Mark targets suffer a 50% longer duration.
+  Lumipharon:
+  - bugfix: fixed an issue with throwing some mobs not stopping correctly
+  - bugfix: fixed the front tad window allow fire and projectiles through
+  RipGrayson:
+  - bugfix: Fixed being able to spam AI bioscans
+  Scarlet-Oduko:
+  - bugfix: Trailblazers no longer teleport to hivemind core with them
+  Xander3359:
+  - balance: Garand clips are smaller
+  - balance: Death Squads are actual threats once more
+  coldironwarrior:
+  - spellcheck: updates the roundstart tips
+  forestbbbbbbb:
+  - rscdel: Remove a bad crash site from Big Red
+  lbnesquik:
+  - rscadd: Added mortar smoke shells to the factory
+  - qol: Improved refills flavor text, so you know what's actually in your hands
+  - bugfix: fixed the Flares refills being wrongly called High Explosives
+  - balance: Actually implemented a discount for HE, INC, Flare and Smoke mortar shells
+      via factory
+2023-08-18:
+  Barnet2:
+  - rscadd: Added Medical Doctor clothing to the Clothing Vendor in a new section
+      called "Medical Clothing"
+  - bugfix: Medical scrubs now have their respective color on their name.
+  - balance: Medical Doctor slots reduced to 2 from 6.
+  forestbbbbbbb:
+  - rscadd: Ghosts can point
+2023-08-19:
+  Lumipharon:
+  - balance: Acting squad leaders now have 1 level lower in leadership compared to
+      actual squad leaders
+  - bugfix: Fixed squaddies being able to use leader droppods
+  Redory:
+  - qol: Ghosts can teleport using Medevacs, Xeno tunnels, ASRS teleporters, Wraith
+      portals and Shuttle computers.
+  - qol: Medevac stretchers now have a realtime cooldown on their sprite when in inventory.
+  - qol: Medevac beacons now list all linked stretchers and show their cooldowns.
+  ivanmixo:
+  - bugfix: Fixes some wield bugs
+  - bugfix: You can't open the shutters before the alamo can even take off anymore
+  tyeagg:
+  - rscdel: unused rocket arty typepath
+  - balance: db mortar reload time to 2 seconds
+  - balance: db mortar max rounds to 2
+  - balance: db mortar now has cooloff time of 6s
+  - balance: db mortar now has base spread of 2 tiles
+2023-08-20:
+  ivanmixo:
+  - bugfix: Fixed all xeno hives sharing the same point pool
+2023-08-21:
+  Lewdcifer:
+  - balance: MK88 Mod 4 Combat Pistol nerfed. Sunder reduced from 2 > 0.5, burst fire
+      now has a 0.3s delay between bursts.
+  Xander3359:
+  - rscadd: station bounced radio in engi-vend
+  forestbbbbbbb:
+  - bugfix: Pointing arrows are no longer hidden under things
+  ivanmixo:
+  - balance: AI xenos no longer gib on death every time
+  - code_imp: Unit tests are done in a box now instead of space
+  - balance: Pistols now have full auto! No more spam clicking
+  - balance: Increased the unwielded scatter of the P23 and 1911
+2023-08-22:
+  DeltaFire15:
+  - admin: Mentors now bypass spam filters when using private messages.
+  Lumipharon:
+  - code_imp: Killed images in sec/med records
+  RipGrayson:
+  - bugfix: Fixed girders not properly smoothing by migrating them to current smoothing
+      system.
+  - bugfix: Fixed ship wall decorations being unused since smoothing system migration.
+  - balance: Firedoors now take a few seconds to weld and unweld
+  - refactor: Cleaned handwashing code up somewhat
+  - bugfix: Fixed an incorrect balloon alert when operating a fire extinguisher
+  - balance: Welding floor tiles no longer generate metal
+  Sebbe9123:
+  - balance: Rebalances blood regen to be more player friendly above 90%
+  - balance: Adds a tier below 50% blood to quickly bring you above 50%
+  coldironwarrior:
+  - bugfix: added some missing fog tiles around silos on ice colony and big red for
+      crash games
+  lbnesquik:
+  - qol: added some markings to the debugdalus
+2023-08-24:
+  Blundir:
+  - refactor: reorganized xenomorph sprites folder
+  Lumipharon:
+  - imageadd: added some new/touched up stair sprites
+  breadhunt:
+  - rscadd: 'New Widow ability: Cannibalise. Consume one of our young, in exchange
+      for a lowered cooldown when birthing new young.'
+  - imageadd: Cannibalise icon
+  coldironwarrior:
+  - bugfix: adds a missing wire to the pillar of spring medbay store room
+  forestbbbbbbb:
+  - bugfix: fixed maps
+  lbnesquik:
+  - rscadd: Added medivac beds to corpsmen vendor for their entire budget
+  - code_imp: Added a space to the mortar code :)
+2023-08-25:
+  Lumipharon:
+  - bugfix: fixed 1911 having lower scatter than it should
+  - balance: Mod4 no longer has an extra delay when burst firing
+  - balance: Slight akimbo nerfs to the P-23, 1911 and Mod4
+  - bugfix: fixed acid sprays getting blocked by things that weren't supposed to
+2023-08-26:
+  QualityVan:
+  - bugfix: Cannibalise doesn't let widow have too many spiderlings
+2023-08-27:
+  yyzsong:
+  - qol: Prebuilt tunnels are no longer named as obtusely
+2023-08-28:
+  Blundir:
+  - imageadd: first aid kits resprite
+  Looking4bros:
+  - balance: G8 belt is no longer slot based, so can hold more smaller items
+  Lumipharon:
+  - bugfix: fixed Psyblast dealing more damage than intended in some cases
+  - bugfix: fixed some black tiles on LV
+  Pariah919:
+  - rscadd: Added new 12G Frag rounds, only for ICC so far.
+  - rscadd: New ML-41 12G autoshotgun, it can fire 12G flechettes and fragmentation
+      rounds.
+  Zar000:
+  - rscadd: Added baneling
+  forestbbbbbbb:
+  - bugfix: You can no longer use non-ASCII characters in OOC
+  ivanmixo:
+  - bugfix: You can only observe living mobs
+  - bugfix: Fixed inhand wielding sprites
+  lbnesquik:
+  - bugfix: fix some AI hud button placement issues
+  - bugfix: fixees lack of helmet in non squad marine jaeger armor sets
+  - qol: Made the sulaco drop pod bay line up with the nose of the alamo :)
+  - balance: Increased the number of drop pods in the sulaco by 11%
+  - rscadd: Added the ALF to req imports
+  - qol: Added chaplain clothes to the clothing vendor
+  - rscadd: AI core display is now random at spawn
+  - rscadd: Added the pets to the sulaco (Martin, Ian, Runtime)
+  - qol: Added more AI holopads to POS
+  - bugfix: re-fixed missing firelocks and shutters buttons to POS.
+  novaepee:
+  - rscadd: hyperscale marine uniform; find it in the surplus | this is NOT changing
+      the normal marine uniform! normal marine uniform =/= hyperscale marine uniform
+  - qol: Change the adjustment_variants "Down" to "Rolled Sleeves", "Half" to "No
+      Sleeves", and "Rolled" to "No Top" for players that want to know how to change
+      their uniform.
+2023-08-29:
+  Lumipharon:
+  - bugfix: Xenos can throw mobs past xenos once again
+  - bugfix: Fixed an issue with throwing mobs past warriors specifically
+  yyzsong:
+  - rscadd: More toys in valhalla!
+  - rscdel: Vali weapons and MMG no longer in valhalla req vendor (why were they ever)
+      (still in the gun vendor dont worry)
+2023-08-30:
+  Barnet2:
+  - bugfix: Fixed Sulaco Drop Pod bay having space tiles in it.
+  Lumipharon:
+  - bugfix: fixed grass and inner cave sprites
+  lbnesquik:
+  - rscadd: Medical armor storage can now hold more things relevant to corpsmen duties
+  novaepee, OrcaOrca the spriter:
+  - rscadd: Add Hotaru armor, another Japanese-Inspired Armor! find it in the style
+      line tab!
+2023-08-31:
+  Blundir:
+  - bugfix: fixed order action icon being missing
+  - imageadd: updated hunter invis, pounce, leader assign, vote action icons.
+  QualityVan:
+  - bugfix: Oze sting cooldown ending doesn't tell you that you can neuro sting again
+  Xander3359:
+  - rscadd: Bench press is a great way to lose weight

@@ -145,14 +145,14 @@
 	name = "wet footprints"
 	desc = "Whoops..."
 	coming_state = "human1"
-	going_state  = "human2"
+	going_state = "human2"
 	amount = 0
 
 /obj/effect/decal/cleanable/blood/tracks/wheels
 	name = "wet tracks"
 	desc = "Whoops..."
 	coming_state = "wheels"
-	going_state  = ""
+	going_state = ""
 	desc = "They look like tracks left by wheels."
 	gender = PLURAL
 	random_icon_states = null

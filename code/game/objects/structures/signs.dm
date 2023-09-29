@@ -6,7 +6,7 @@
 	layer = WALL_OBJ_LAYER
 	var/directional = TRUE //if true init to a given x/y offset on a wall, if not leave floating in space. used for multiple signs on a wall to prevent them all from moving to the same offset and overlapping/becoming unreadable
 
-/obj/structure/sign/Initialize()
+/obj/structure/sign/Initialize(mapload)
 	. = ..()
 	icon = 'icons/obj/decals.dmi'
 	if(!directional) //if not directional do not initialize to a x or y offset
@@ -22,14 +22,9 @@
 			pixel_x = -30
 
 /obj/structure/sign/ex_act(severity)
-	switch(severity)
-		if(EXPLODE_DEVASTATE)
-			qdel(src)
-		if(EXPLODE_HEAVY)
-			qdel(src)
-		if(EXPLODE_LIGHT)
-			qdel(src)
-
+	if(severity == EXPLODE_WEAK)
+		return
+	qdel(src)
 
 /obj/structure/sign/attackby(obj/item/I, mob/user, params)	//deconstruction
 	. = ..()
@@ -535,7 +530,7 @@
 	desc = "A sign notifying the presence of a intercomm system."
 	icon_state = "sign_intercomm"
 
-/obj/structure/sign/safety/Initialize()
+/obj/structure/sign/safety/Initialize(mapload)
 	. = ..()
 	icon = 'icons/obj/safety_signs.dmi'
 

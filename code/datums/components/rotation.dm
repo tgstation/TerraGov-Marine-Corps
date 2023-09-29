@@ -25,17 +25,17 @@
 	if(can_user_rotate)
 		src.can_user_rotate = can_user_rotate
 	else
-		src.can_user_rotate = CALLBACK(src,.proc/default_can_user_rotate)
+		src.can_user_rotate = CALLBACK(src,PROC_REF(default_can_user_rotate))
 
 	if(can_be_rotated)
 		src.can_be_rotated = can_be_rotated
 	else
-		src.can_be_rotated = CALLBACK(src,.proc/default_can_be_rotated)
+		src.can_be_rotated = CALLBACK(src,PROC_REF(default_can_be_rotated))
 
 	if(after_rotation)
 		src.after_rotation = after_rotation
 	else
-		src.after_rotation = CALLBACK(src,.proc/default_after_rotation)
+		src.after_rotation = CALLBACK(src,PROC_REF(default_after_rotation))
 
 	//Try Clockwise,counter,flip in order
 	if(src.rotation_flags & ROTATION_FLIP)
@@ -48,10 +48,10 @@
 
 /datum/component/simple_rotation/proc/add_signals()
 	if(rotation_flags & ROTATION_ALTCLICK)
-		RegisterSignal(parent, COMSIG_CLICK_ALT, .proc/HandRot)
-		RegisterSignal(parent, COMSIG_PARENT_EXAMINE, .proc/ExamineMessage)
+		RegisterSignal(parent, COMSIG_CLICK_ALT, PROC_REF(HandRot))
+		RegisterSignal(parent, COMSIG_ATOM_EXAMINE, PROC_REF(ExamineMessage))
 	if(rotation_flags & ROTATION_WRENCH)
-		RegisterSignal(parent, COMSIG_PARENT_ATTACKBY, .proc/WrenchRot)
+		RegisterSignal(parent, COMSIG_ATOM_ATTACKBY, PROC_REF(WrenchRot))
 
 
 /datum/component/simple_rotation/proc/add_verbs()
@@ -74,7 +74,7 @@
 
 
 /datum/component/simple_rotation/proc/remove_signals()
-	UnregisterSignal(parent, list(COMSIG_CLICK_ALT, COMSIG_PARENT_EXAMINE, COMSIG_PARENT_ATTACKBY))
+	UnregisterSignal(parent, list(COMSIG_CLICK_ALT, COMSIG_ATOM_EXAMINE, COMSIG_ATOM_ATTACKBY))
 
 
 /datum/component/simple_rotation/RegisterWithParent()
@@ -95,9 +95,9 @@
 	return ..()
 
 /datum/component/simple_rotation/Destroy()
-	QDEL_NULL(can_user_rotate)
-	QDEL_NULL(can_be_rotated)
-	QDEL_NULL(after_rotation)
+	can_user_rotate = null
+	can_be_rotated = null
+	after_rotation = null
 	return ..()
 
 

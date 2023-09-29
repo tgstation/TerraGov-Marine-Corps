@@ -7,8 +7,7 @@
 	layer = TANK_BARREL_LAYER
 	use_power = FALSE
 	hud_possible = list(MACHINE_HEALTH_HUD, MACHINE_AMMO_HUD)
-	flags_atom = ON_BORDER
-	throwpass = TRUE
+	allow_pass_flags = PASSABLE
 	///Store user old pixel x
 	var/user_old_x = 0
 	///Store user old pixel y
@@ -19,8 +18,8 @@
 ///generates the icon based on how much ammo it has.
 /obj/machinery/deployable/mounted/update_icon_state(mob/user)
 	. = ..()
-	var/obj/item/weapon/gun/gun = internal_item
-	if(!length(gun.chamber_items) || !gun.chamber_items[gun.current_chamber_position])
+	var/obj/item/weapon/gun/gun = get_internal_item()
+	if(gun && (!length(gun.chamber_items) || !gun.chamber_items[gun.current_chamber_position]))
 		icon_state = default_icon_state + "_e"
 	else
 		icon_state = default_icon_state
@@ -29,12 +28,12 @@
 
 /obj/machinery/deployable/mounted/Initialize(mapload, _internal_item, deployer)
 	. = ..()
-	if(!istype(internal_item, /obj/item/weapon/gun))
-		CRASH("[internal_item] was attempted to be deployed within the type /obj/machinery/deployable/mounted without being a gun]")
+	if(!istype(get_internal_item(), /obj/item/weapon/gun))
+		CRASH("[internal_item] was attempted to be deployed within the type [type] without being a gun]")
 
-	var/obj/item/weapon/gun/new_gun = internal_item
+	var/obj/item/weapon/gun/new_gun = get_internal_item()
 
-	new_gun.set_gun_user(null)
+	new_gun?.set_gun_user(null)
 
 /obj/machinery/deployable/mounted/Destroy()
 	operator?.unset_interaction()
@@ -44,23 +43,23 @@
 	. = ..()
 	if(!Adjacent(user) || user.lying_angle || user.incapacitated() || !ishuman(user)) //Damn you zack, yoinking mags from pipes as a runner.
 		return
-	var/obj/item/weapon/gun/internal_gun = internal_item
-	internal_gun.unload(user)
+	var/obj/item/weapon/gun/internal_gun = get_internal_item()
+	internal_gun?.unload(user)
 	update_icon()
 
 /obj/machinery/deployable/mounted/attack_hand_alternate(mob/living/user)
 	. = ..()
 	if(!ishuman(user))
 		return
-	var/obj/item/weapon/gun/internal_gun = internal_item
-	internal_gun.do_unique_action(internal_gun, user)
+	var/obj/item/weapon/gun/internal_gun = get_internal_item()
+	internal_gun?.do_unique_action(user)
 
 /obj/machinery/deployable/mounted/attackby_alternate(obj/item/I, mob/user, params)
 	. = ..()
 	if(!ishuman(user))
 		return
-	var/obj/item/weapon/gun/internal_gun = internal_item
-	internal_gun.attackby_alternate(I, user, params)
+	var/obj/item/weapon/gun/internal_gun = get_internal_item()
+	internal_gun?.attackby_alternate(I, user, params)
 
 /obj/machinery/deployable/mounted/attackby(obj/item/I, mob/user, params) //This handles reloading the gun, if its in acid cant touch it.
 	. = ..()
@@ -87,19 +86,19 @@
 
 	ADD_TRAIT(src, TRAIT_GUN_RELOADING, GUN_TRAIT)
 
-	var/obj/item/weapon/gun/gun = internal_item
-	if(length(gun.chamber_items))
+	var/obj/item/weapon/gun/gun = get_internal_item()
+	if(length(gun?.chamber_items))
 		gun.unload(user)
 		update_icon_state()
 
-	gun.reload(ammo_magazine, user)
+	gun?.reload(ammo_magazine, user)
 	update_icon_state()
 
 	REMOVE_TRAIT(src, TRAIT_GUN_RELOADING, GUN_TRAIT)
 
-	if(!CHECK_BITFIELD(gun.reciever_flags, AMMO_RECIEVER_REQUIRES_UNIQUE_ACTION))
+	if(!CHECK_BITFIELD(gun?.reciever_flags, AMMO_RECIEVER_REQUIRES_UNIQUE_ACTION))
 		return
-	gun.do_unique_action(gun, user)
+	gun?.do_unique_action(gun, user)
 
 
 
@@ -122,6 +121,13 @@
 	if(issynth(human_user) && !CONFIG_GET(flag/allow_synthetic_gun_use))
 		to_chat(human_user, span_warning("Your programming restricts operating heavy weaponry."))
 		return TRUE
+
+	density = FALSE
+	if(!user.Move(loc)) //Move instead of forcemove to ensure we can actually get to the object's turf
+		density = initial(density)
+		return
+	density = initial(density)
+
 	playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, TRUE, 7)
 	do_attack_animation(src, ATTACK_EFFECT_GRAB)
 	visible_message("[icon2html(src, viewers(src))] [span_notice("[human_user] mans the [src]!")]",
@@ -135,24 +141,22 @@
 
 	. = ..()
 
-	var/obj/item/weapon/gun/gun = internal_item
+	var/obj/item/weapon/gun/gun = get_internal_item()
 
 	if(!gun)
 		CRASH("[src] has been deployed and attempted interaction with [operator] without having a gun. This shouldn't happen.")
 
-	RegisterSignal(operator, COMSIG_MOB_MOUSEDOWN, .proc/start_fire)
-	RegisterSignal(operator, COMSIG_MOB_MOUSEDRAG, .proc/change_target)
+	RegisterSignal(operator, COMSIG_MOB_MOUSEDOWN, PROC_REF(start_fire))
+	RegisterSignal(operator, COMSIG_MOB_MOUSEDRAG, PROC_REF(change_target))
 
 	for(var/datum/action/action AS in gun.actions)
 		action.give_action(operator)
 
 	gun.set_gun_user(operator)
-	operator.forceMove(loc)
 	operator.setDir(dir)
 	user_old_x = operator.pixel_x
 	user_old_y = operator.pixel_y
 	update_pixels(operator, TRUE)
-	density = FALSE
 	user_old_move_resist = operator.move_resist
 	operator.move_resist = MOVE_FORCE_STRONG
 
@@ -182,14 +186,14 @@
 /obj/machinery/deployable/mounted/proc/start_fire(datum/source, atom/object, turf/location, control, params)
 	SIGNAL_HANDLER
 
-	var/obj/item/weapon/gun/gun = internal_item
+	var/obj/item/weapon/gun/gun = get_internal_item()
 
 	var/target = get_turf_on_clickcatcher(object, operator, params)
 
 	if(!can_fire(target))
 		return
 
-	gun.start_fire(source, target, location, control, params, TRUE)
+	gun?.start_fire(source, target, location, control, params, TRUE)
 
 ///Happens when you drag the mouse.
 /obj/machinery/deployable/mounted/proc/change_target(datum/source, atom/src_object, atom/over_object, turf/src_location, turf/over_location, src_control, over_control, params)
@@ -199,9 +203,9 @@
 	if(!can_fire(over_object))
 		return
 
-	var/obj/item/weapon/gun/gun = internal_item
+	var/obj/item/weapon/gun/gun = get_internal_item()
 
-	gun.change_target(source, src_object, over_object, src_location, over_location, src_control, over_control, params)
+	gun?.change_target(source, src_object, over_object, src_location, over_location, src_control, over_control, params)
 
 ///Checks if you can fire
 /obj/machinery/deployable/mounted/proc/can_fire(atom/object)
@@ -213,7 +217,6 @@
 	if(operator.get_active_held_item())
 		to_chat(operator, span_warning("You need a free hand to shoot the [src]."))
 		return FALSE
-
 	var/atom/target = object
 
 	if(!istype(target))
@@ -224,15 +227,22 @@
 
 
 	var/angle = get_dir(src, target)
-	var/obj/item/weapon/gun/gun = internal_item
+	var/obj/item/weapon/gun/gun = get_internal_item()
 	//we can only fire in a 90 degree cone
 	if((dir & angle) && target.loc != loc && target.loc != operator.loc)
+		if(CHECK_BITFIELD(gun.flags_item, DEPLOYED_ANCHORED_FIRING_ONLY) && !anchored)
+			to_chat(operator, "[src] cannot be fired without it being anchored.")
+			return FALSE
 		operator.setDir(dir)
-		gun.set_target(target)
+		gun?.set_target(target)
 		update_icon_state()
 		return TRUE
-	if(CHECK_BITFIELD(gun.flags_item, DEPLOYED_NO_ROTATE))
+	if(CHECK_BITFIELD(gun?.flags_item, DEPLOYED_NO_ROTATE))
 		to_chat(operator, "This one is anchored in place and cannot be rotated.")
+		return FALSE
+
+	if(CHECK_BITFIELD(gun?.flags_item, DEPLOYED_NO_ROTATE_ANCHORED) && anchored)
+		to_chat(operator, "[src] cannot be rotated while anchored.")
 		return FALSE
 
 	var/list/leftright = LeftAndRightOfDir(dir)
@@ -260,8 +270,8 @@
 	operator.visible_message("[operator] rotates the [src].","You rotate the [src].")
 	update_pixels(user, TRUE)
 
-	if(current_scope && current_scope.deployed_scope_rezoom)
-		INVOKE_ASYNC(current_scope, /obj/item/attachable/scope.proc/activate, operator)
+	if(current_scope?.deployed_scope_rezoom)
+		INVOKE_ASYNC(current_scope, TYPE_PROC_REF(/obj/item/attachable/scope, activate), operator)
 
 	return FALSE
 
@@ -272,15 +282,15 @@
 		return
 
 	UnregisterSignal(operator, list(COMSIG_MOB_MOUSEDOWN, COMSIG_MOB_MOUSEDRAG))
-	var/obj/item/weapon/gun/gun = internal_item
+	var/obj/item/weapon/gun/gun = get_internal_item()
 	if(HAS_TRAIT(gun, TRAIT_GUN_IS_AIMING))
 		gun.toggle_aim_mode(operator)
-	gun.UnregisterSignal(operator, COMSIG_MOB_MOUSEUP)
+	gun?.UnregisterSignal(operator, COMSIG_MOB_MOUSEUP)
 
 	for(var/datum/action/action AS in gun.actions)
 		action.remove_action(operator)
 
-	for(var/key in gun.attachments_by_slot)
+	for(var/key in gun?.attachments_by_slot)
 		var/obj/item/attachable = gun.attachments_by_slot[key]
 		if(!attachable || !istype(attachable, /obj/item/attachable/scope))
 			continue
@@ -296,7 +306,7 @@
 	update_pixels(user, FALSE)
 	user_old_x = 0
 	user_old_y = 0
-	density = TRUE
+	density = initial(density)
 	user.move_resist = user_old_move_resist
 
 ///makes sure you can see and or use the gun
@@ -307,15 +317,21 @@
 //Deployable guns that can be moved.
 /obj/machinery/deployable/mounted/moveable
 	anchored = FALSE
+	/// Sets how long a deployable takes to be anchored
+	var/anchor_time = 0 SECONDS
 
 /// Can be anchored and unanchored from the ground by Alt Right Click.
 /obj/machinery/deployable/mounted/moveable/AltRightClick(mob/living/user)
-	if(!Adjacent(user) || user.lying_angle || user.incapacitated() || !ishuman(user))
+	. = ..()
+	if(!Adjacent(user) || !ishuman(user) || user.lying_angle || user.incapacitated())
 		return
 
-	if(!anchored)
-		anchored = TRUE
-		to_chat(user, span_warning("You have anchored the gun to the ground. It may not be moved."))
-	else
-		anchored = FALSE
-		to_chat(user, span_warning("You unanchored the gun from the ground. It may be moved."))
+	if(anchor_time)
+		balloon_alert(user, "You begin [anchored ? "unanchoring" : "anchoring"] [src]")
+		if(!do_after(user, anchor_time, TRUE, src))
+			balloon_alert(user, "Interrupted!")
+			return
+
+	anchored = !anchored
+
+	balloon_alert(user, "You [anchored ? "anchor" : "unanchor"] [src]")

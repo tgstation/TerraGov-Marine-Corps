@@ -3,18 +3,21 @@
 	desc = "Dance my monkeys! DANCE!!!"
 	icon = 'icons/obj/items/radio.dmi'
 	icon_state = "electropack0"
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/equipment/security_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/equipment/security_right.dmi',
+	)
 	item_state = "electropack"
 	flags_atom = CONDUCT
 	flags_equip_slot = ITEM_SLOT_BACK
 	w_class = WEIGHT_CLASS_HUGE
 
-	materials = list(/datum/material/metal = 10000, /datum/material/glass = 2500)
 
 	var/on = TRUE
 	var/code = 2
 	var/frequency = FREQ_ELECTROPACK
 
-/obj/item/electropack/Initialize()
+/obj/item/electropack/Initialize(mapload)
 	. = ..()
 	SSradio.add_object(src, frequency, RADIO_SIGNALER)
 

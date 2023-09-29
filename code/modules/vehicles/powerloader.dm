@@ -6,7 +6,7 @@
 	icon_state = "powerloader_open"
 	layer = POWERLOADER_LAYER //so the top appears above windows and wall mounts
 	anchored = TRUE
-	flags_pass = NONE
+	allow_pass_flags = NONE
 	move_delay = 8
 	light_system = HYBRID_LIGHT
 	light_power = 8
@@ -21,7 +21,7 @@
 	var/light_range_on = 4
 
 
-/obj/vehicle/ridden/powerloader/Initialize()
+/obj/vehicle/ridden/powerloader/Initialize(mapload)
 	. = ..()
 	for(var/i in 1 to 2)
 		var/obj/item/powerloader_clamp/PC = new(src)
@@ -36,21 +36,22 @@
 	setDir(newdir)
 	return TRUE
 
+/obj/vehicle/ridden/powerloader/attack_powerloader(mob/living/user, obj/item/powerloader_clamp/attached_clamp)
+	. = ..()
+	if(.)
+		return
+	if(attached_clamp.linked_powerloader != src)
+		return
+	return user_unbuckle_mob(user, user) //clicking the powerloader with its own clamp unbuckles the pilot.
 
 /obj/vehicle/ridden/powerloader/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(istype(I, /obj/item/powerloader_clamp))
-		var/obj/item/powerloader_clamp/PC = I
-		if(PC.linked_powerloader != src)
-			return
-
-		return user_unbuckle_mob(user, user) //clicking the powerloader with its own clamp unbuckles the pilot.
-
-	else if(isscrewdriver(I))
-		to_chat(user, span_notice("You screw the panel [panel_open ? "closed" : "open"]."))
-		playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)
-		panel_open = !panel_open
+	if(!isscrewdriver(I))
+		return
+	to_chat(user, span_notice("You screw the panel [panel_open ? "closed" : "open"]."))
+	playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)
+	panel_open = !panel_open
 
 
 /obj/vehicle/ridden/powerloader/user_unbuckle_mob(mob/living/buckled_mob, mob/user, silent)
@@ -79,7 +80,7 @@
 	playsound(loc, 'sound/mecha/powerloader_buckle.ogg', 25)
 	icon_state = "powerloader"
 	overlays += image(icon_state= "powerloader_overlay", layer = MOB_LAYER + 0.1)
-	move_delay = max(4, move_delay - buckling_mob.skills.getRating("powerloader"))
+	move_delay = max(4, move_delay - buckling_mob.skills.getRating(SKILL_POWERLOADER))
 	var/clamp_equipped = 0
 	for(var/obj/item/powerloader_clamp/PC in contents)
 		if(!buckling_mob.put_in_hands(PC))
@@ -168,115 +169,12 @@
 
 
 /obj/item/powerloader_clamp/afterattack(atom/target, mob/user, proximity)
+	. = ..()
+
 	if(!proximity)
 		return
 
-	if(loaded)
-		if(!isturf(target))
-			return
-		var/turf/T = target
-		if(T.density)
-			return
-		for(var/i in T.contents)
-			var/atom/movable/blocky_stuff = i
-			if(!blocky_stuff.density)
-				continue
-			to_chat(user, span_warning("You can't drop [loaded] here, [blocky_stuff] blocks the way."))
-			return
-		if(loaded.bound_height > 32)
-			var/turf/next_turf = get_step(T, NORTH)
-			if(next_turf.density)
-				to_chat(user, span_warning("You can't drop [loaded] here, something blocks the way."))
-				return
-			for(var/i in next_turf.contents)
-				var/atom/movable/blocky_stuff = i
-				if(!blocky_stuff.density)
-					continue
-				to_chat(user, span_warning("You can't drop [loaded] here, [blocky_stuff] blocks the way."))
-				return
-		if(loaded.bound_width > 32)
-			var/turf/next_turf = get_step(T, EAST)
-			if(next_turf.density)
-				to_chat(user, span_warning("You can't drop [loaded] here, something blocks the way."))
-				return
-			for(var/i in next_turf.contents)
-				var/atom/movable/blocky_stuff = i
-				if(!blocky_stuff.density)
-					continue
-				to_chat(user, span_warning("You can't drop [loaded] here, [blocky_stuff] blocks the way."))
-				return
-		user.visible_message(span_notice("[user] drops [loaded] on [T] with [src]."),
-		span_notice("You drop [loaded] on [T] with [src]."))
-		loaded.forceMove(T)
-		loaded = null
-		playsound(src, 'sound/machines/hydraulics_1.ogg', 40, 1)
-		update_icon()
-
-	else if(istype(target, /obj/structure/closet))
-		var/obj/structure/closet/C = target
-		if(C.mob_size_counter)
-			to_chat(user, span_warning("There is a creature inside!"))
-			return
-		if(C.anchored)
-			to_chat(user, span_warning("It is bolted to the ground!"))
-			return
-		if(!linked_powerloader)
-			CRASH("[src] called afterattack on [C] without a linked_powerloader")
-		C.forceMove(linked_powerloader)
-		loaded = C
-		playsound(src, 'sound/machines/hydraulics_2.ogg', 40, 1)
-		update_icon()
-		user.visible_message(span_notice("[user] grabs [loaded] with [src]."),
-		span_notice("You grab [loaded] with [src]."))
-
-	else if(istype(target, /obj/structure/largecrate))
-		var/obj/structure/largecrate/LC = target
-		if(LC.anchored)
-			to_chat(user, span_warning("It is bolted to the ground!"))
-			return
-		LC.forceMove(linked_powerloader)
-		loaded = LC
-		playsound(src, 'sound/machines/hydraulics_2.ogg', 40, 1)
-		update_icon()
-		user.visible_message(span_notice("[user] grabs [loaded] with [src]."),
-		span_notice("You grab [loaded] with [src]."))
-
-	else if(istype(target, /obj/machinery/vending))
-		var/obj/machinery/vending/V = target
-		if(V.anchored)
-			to_chat(user, span_warning("It is bolted to the ground!"))
-			return
-		V.forceMove(linked_powerloader)
-		loaded = V
-		playsound(src, 'sound/machines/hydraulics_2.ogg', 40, 1)
-		update_icon()
-		user.visible_message(span_notice("[user] grabs [loaded] with [src]."),
-		span_notice("You grab [loaded] with [src]."))
-
-	else if(istype(target, /obj/structure/reagent_dispensers))
-		var/obj/structure/reagent_dispensers/RD = target
-		if(RD.anchored)
-			to_chat(user, span_warning("You can't lift this!"))
-			return
-		RD.forceMove(linked_powerloader)
-		loaded = RD
-		playsound(src, 'sound/machines/hydraulics_2.ogg', 40, 1)
-		update_icon()
-		user.visible_message(span_notice("[user] grabs [loaded] with [src]."),
-		span_notice("You grab [loaded] with [src]."))
-
-	else if(istype(target, /obj/structure/ore_box))
-		var/obj/structure/ore_box/OB = target
-		OB.forceMove(linked_powerloader)
-		loaded = OB
-		playsound(src, 'sound/machines/hydraulics_2.ogg', 40, TRUE)
-		update_icon()
-		user.visible_message(span_notice("[user] grabs [loaded] with [src]."),
-		span_notice("You grab [loaded] with [src]."))
-
-	else if(istype(target, /obj))
-		to_chat(user, span_warning("The powerloader is not capable of carrying this!"))
-		return
+	return target.attack_powerloader(user, src)
 
 /obj/item/powerloader_clamp/update_icon()
 	if(loaded)

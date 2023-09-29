@@ -93,7 +93,7 @@
 /area/lv624/lazarus/medbay)
 "kY" = (
 /obj/structure/table,
-/obj/structure/paper_bin{
+/obj/effect/spawner/random/misc/paperbin{
 	pixel_y = 6
 	},
 /obj/item/tool/pen{

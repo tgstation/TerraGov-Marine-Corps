@@ -3,15 +3,15 @@
 	if (!isnum(z) || z < 1)
 		return null
 	if (z_list)
-		if (z > z_list.len)
-			stack_trace("Unmanaged z-level [z]! maxz = [world.maxz], z_list.len = [z_list.len]")
+		if (z > length(z_list))
+			stack_trace("Unmanaged z-level [z]! maxz = [world.maxz], z_list.len = [length(z_list)]")
 			return list()
 		var/datum/space_level/S = get_level(z)
 		return S.traits[trait]
 	else
 		var/list/default = DEFAULT_MAP_TRAITS
-		if (z > default.len)
-			stack_trace("Unmanaged z-level [z]! maxz = [world.maxz], default.len = [default.len]")
+		if (z > length(default))
+			stack_trace("Unmanaged z-level [z]! maxz = [world.maxz], default.len = [length(default)]")
 			return list()
 		return default[z][DL_TRAITS][trait]
 

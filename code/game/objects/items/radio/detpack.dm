@@ -4,6 +4,10 @@
 	gender = PLURAL
 	icon = 'icons/obj/det.dmi'
 	icon_state = "detpack_off"
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/weapons/explosives_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/weapons/explosives_right.dmi',
+		)
 	item_state = "plasticx"
 	flags_item = NOBLUDGEON
 	w_class = WEIGHT_CLASS_SMALL
@@ -22,7 +26,7 @@
 	var/datum/radio_frequency/radio_connection
 
 
-/obj/item/detpack/Initialize()
+/obj/item/detpack/Initialize(mapload)
 	. = ..()
 	set_frequency(frequency)
 
@@ -77,14 +81,14 @@
 	. = ..()
 
 	if(ismultitool(I) && armed)
-		if(user.skills.getRating("engineer") < SKILL_ENGINEER_METAL)
+		if(user.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_METAL)
 			user.visible_message(span_notice("[user] fumbles around figuring out how to use the [src]."),
 			span_notice("You fumble around figuring out how to use [src]."))
 			var/fumbling_time = 30
 			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 				return
 
-			if(prob((SKILL_ENGINEER_METAL - user.skills.getRating("engineer")) * 20))
+			if(prob((SKILL_ENGINEER_METAL - user.skills.getRating(SKILL_ENGINEER)) * 20))
 				to_chat(user, "<font color='danger'>After several seconds of your clumsy meddling the [src] buzzes angrily as if offended. You have a <b>very</b> bad feeling about this.</font>")
 				timer = 0 //Oops. Now you fucked up. Immediate detonation.
 
@@ -145,12 +149,12 @@
 		armed = TRUE
 		//bombtick()
 		log_explosion("[key_name(usr)] triggered [src] explosion at [AREACOORD(loc)].")
-		detonation_pending = addtimer(CALLBACK(src, .proc/do_detonate), timer SECONDS, TIMER_STOPPABLE)
+		detonation_pending = addtimer(CALLBACK(src, PROC_REF(do_detonate)), timer SECONDS, TIMER_STOPPABLE)
 		if(timer > 10)
-			sound_timer = addtimer(CALLBACK(src, .proc/do_play_sound_normal), 1 SECONDS, TIMER_LOOP|TIMER_STOPPABLE)
-			addtimer(CALLBACK(src, .proc/change_to_loud_sound), timer-10)
+			sound_timer = addtimer(CALLBACK(src, PROC_REF(do_play_sound_normal)), 1 SECONDS, TIMER_LOOP|TIMER_STOPPABLE)
+			addtimer(CALLBACK(src, PROC_REF(change_to_loud_sound)), timer-10)
 		else
-			sound_timer = addtimer(CALLBACK(src, .proc/do_play_sound_loud), 1 SECONDS, TIMER_LOOP|TIMER_STOPPABLE)
+			sound_timer = addtimer(CALLBACK(src, PROC_REF(do_play_sound_loud)), 1 SECONDS, TIMER_LOOP|TIMER_STOPPABLE)
 		update_icon()
 	else
 		armed = FALSE
@@ -192,7 +196,7 @@
 	if(!.)
 		return FALSE
 
-	if(user.skills.getRating("engineer") < SKILL_ENGINEER_METAL)
+	if(user.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_METAL)
 		if(!do_after(user, 2 SECONDS, TRUE, src, BUSY_ICON_UNSKILLED))
 			return FALSE
 
@@ -205,29 +209,29 @@
 		return
 
 	var/dat = {"
-<A href='?src=\ref[src];power=1'>Turn [on ? "Off" : "On"]</A><BR>
+<A href='?src=[text_ref(src)];power=1'>Turn [on ? "Off" : "On"]</A><BR>
 <B>Current Detonation Mode:</B> [det_mode ? "Demolition" : "Breach"]<BR>
-<A href='?src=\ref[src];det_mode=1'><B>Set Detonation Mode:</B> [det_mode ? "Breach" : "Demolition"]</A><BR>
+<A href='?src=[text_ref(src)];det_mode=1'><B>Set Detonation Mode:</B> [det_mode ? "Breach" : "Demolition"]</A><BR>
 <B>Frequency/Code for Detpack:</B><BR>
-<A href='byond://?src=\ref[src];freq=-10'>-</A>
-<A href='byond://?src=\ref[src];freq=-2'>-</A>
+<A href='byond://?src=[text_ref(src)];freq=-10'>-</A>
+<A href='byond://?src=[text_ref(src)];freq=-2'>-</A>
 [format_frequency(src.frequency)]
-<A href='byond://?src=\ref[src];freq=2'>+</A>
-<A href='byond://?src=\ref[src];freq=10'>+</A><BR>
+<A href='byond://?src=[text_ref(src)];freq=2'>+</A>
+<A href='byond://?src=[text_ref(src)];freq=10'>+</A><BR>
 <B>Signal Code:</B><BR>
-<A href='byond://?src=\ref[src];code=-5'>-</A>
-<A href='byond://?src=\ref[src];code=-1'>-</A> [code]
-<A href='byond://?src=\ref[src];code=1'>+</A>
-<A href='byond://?src=\ref[src];code=5'>+</A><BR>
+<A href='byond://?src=[text_ref(src)];code=-5'>-</A>
+<A href='byond://?src=[text_ref(src)];code=-1'>-</A> [code]
+<A href='byond://?src=[text_ref(src)];code=1'>+</A>
+<A href='byond://?src=[text_ref(src)];code=5'>+</A><BR>
 <B>Timer (Max 300 seconds, Min 5 seconds):</B><BR>
-<A href='byond://?src=\ref[src];timer=-50'>-</A>
-<A href='byond://?src=\ref[src];timer=-10'>-</A>
-<A href='byond://?src=\ref[src];timer=-5'>-</A>
-<A href='byond://?src=\ref[src];timer=-1'>-</A> [timer]
-<A href='byond://?src=\ref[src];timer=1'>+</A>
-<A href='byond://?src=\ref[src];timer=5'>+</A>
-<A href='byond://?src=\ref[src];timer=10'>+</A>
-<A href='byond://?src=\ref[src];timer=50'>+</A><BR>"}
+<A href='byond://?src=[text_ref(src)];timer=-50'>-</A>
+<A href='byond://?src=[text_ref(src)];timer=-10'>-</A>
+<A href='byond://?src=[text_ref(src)];timer=-5'>-</A>
+<A href='byond://?src=[text_ref(src)];timer=-1'>-</A> [timer]
+<A href='byond://?src=[text_ref(src)];timer=1'>+</A>
+<A href='byond://?src=[text_ref(src)];timer=5'>+</A>
+<A href='byond://?src=[text_ref(src)];timer=10'>+</A>
+<A href='byond://?src=[text_ref(src)];timer=50'>+</A><BR>"}
 
 	var/datum/browser/popup = new(user, "detpack")
 	popup.set_content(dat)
@@ -250,7 +254,7 @@
 		to_chat(user, "[span_warning("There is already a device attached to [target]")].")
 		return FALSE
 
-	if(user.skills.getRating("engineer") < SKILL_ENGINEER_METAL)
+	if(user.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_METAL)
 		user.visible_message(span_notice("[user] fumbles around figuring out how to use [src]."),
 		span_notice("You fumble around figuring out how to use [src]."))
 		if(!do_after(user, 5 SECONDS, TRUE, target, BUSY_ICON_UNSKILLED))
@@ -292,7 +296,7 @@
 /obj/item/detpack/proc/change_to_loud_sound()
 	if(sound_timer)
 		deltimer(sound_timer)
-		sound_timer = addtimer(CALLBACK(src, .proc/do_play_sound_loud), 1 SECONDS, TIMER_LOOP|TIMER_STOPPABLE)
+		sound_timer = addtimer(CALLBACK(src, PROC_REF(do_play_sound_loud)), 1 SECONDS, TIMER_LOOP|TIMER_STOPPABLE)
 
 /obj/item/detpack/proc/do_play_sound_normal()
 	timer--
@@ -337,9 +341,9 @@
 	playsound(src.loc, 'sound/weapons/ring.ogg', 200, FALSE)
 	boom = TRUE
 	if(det_mode == TRUE) //If we're on demolition mode, big boom.
-		explosion(plant_target, 3, 5, 6, 6)
+		explosion(plant_target, 3, 5, 6, 0, 6)
 	else //if we're not, focused boom.
-		explosion(plant_target, 2, 2, 3, 3, throw_range = FALSE)
+		explosion(plant_target, 2, 2, 3, 0, 3, throw_range = FALSE)
 	if(plant_target)
 		if(isobj(plant_target))
 			plant_target = null

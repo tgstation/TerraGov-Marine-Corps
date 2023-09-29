@@ -6,7 +6,7 @@
 
 INITIALIZE_IMMEDIATE(/mob/living/carbon/human/dummy)
 
-/mob/living/carbon/human/dummy/Initialize()
+/mob/living/carbon/human/dummy/Initialize(mapload)
 	SHOULD_CALL_PARENT(FALSE)// just dummies, shouldnt register
 	if(flags_atom & INITIALIZED)
 		stack_trace("Warning: [src]([type]) initialized multiple times!")
@@ -58,7 +58,7 @@ GLOBAL_LIST_EMPTY(dummy_mob_list)
 		if(species.name && species.name == new_species) //we're already that species.
 			return
 		// Clear out their species abilities.
-		species.remove_inherent_verbs(src)
+		species.remove_inherent_abilities(src)
 	var/datum/species/oldspecies = species
 	species = GLOB.all_species[new_species]
 	if(oldspecies)
@@ -78,9 +78,9 @@ GLOBAL_LIST_EMPTY(dummy_mob_list)
 		r_hair = hex2num(copytext(species.hair_color, 2, 4))
 		g_hair = hex2num(copytext(species.hair_color, 4, 6))
 		b_hair = hex2num(copytext(species.hair_color, 6, 8))
-	INVOKE_ASYNC(src, .proc/regenerate_icons)
-	INVOKE_ASYNC(src, .proc/update_body)
-	INVOKE_ASYNC(src, .proc/restore_blood)
+	INVOKE_ASYNC(src, PROC_REF(regenerate_icons))
+	INVOKE_ASYNC(src, PROC_REF(update_body))
+	INVOKE_ASYNC(src, PROC_REF(restore_blood))
 	return TRUE
 
 /mob/living/carbon/human/dummy/hud_set_job()

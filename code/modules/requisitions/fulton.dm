@@ -3,11 +3,16 @@
 	desc = "A balloon that can be used to extract equipment or personnel. Anything not bolted down can be moved."
 	icon = 'icons/obj/items/fulton.dmi'
 	icon_state = "extraction_pack"
+	item_state = "fulton"
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/equipment/tools_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/equipment/tools_right.dmi',
+	)
 	w_class = WEIGHT_CLASS_NORMAL
 	tool_behaviour = TOOL_FULTON
 	resistance_flags = RESIST_ALL
 	///Reference to the balloon vis obj effect
-	var/atom/movable/vis_obj/fulton_baloon/baloon
+	var/atom/movable/vis_obj/fulton_balloon/baloon
 	var/obj/effect/fulton_extraction_holder/holder_obj
 	/// How many times you can use the fulton before it goes poof
 	var/uses = 3
@@ -17,7 +22,7 @@
 	. += "It has [uses] uses remaining."
 
 
-/obj/item/fulton_extraction_pack/Initialize()
+/obj/item/fulton_extraction_pack/Initialize(mapload)
 	. = ..()
 	baloon = new()
 	holder_obj = new()
@@ -82,9 +87,9 @@
 	baloon.icon_state = initial(baloon.icon_state)
 	holder_obj.vis_contents += baloon
 
-	addtimer(CALLBACK(GLOBAL_PROC, .proc/playsound, get_turf(holder_obj), 'sound/items/fultext_deploy.ogg', 50, TRUE), 0.4 SECONDS)
-	addtimer(CALLBACK(GLOBAL_PROC, .proc/playsound, get_turf(holder_obj), 'sound/items/fultext_launch.ogg', 50, TRUE), 7.4 SECONDS)
-	addtimer(CALLBACK(src, .proc/cleanup_extraction), 8 SECONDS)
+	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(playsound), get_turf(holder_obj), 'sound/items/fultext_deploy.ogg', 50, TRUE), 0.4 SECONDS)
+	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(playsound), get_turf(holder_obj), 'sound/items/fultext_launch.ogg', 50, TRUE), 7.4 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(cleanup_extraction)), 8 SECONDS)
 
 	flick("fulton_expand", baloon)
 	baloon.icon_state = "fulton_balloon"

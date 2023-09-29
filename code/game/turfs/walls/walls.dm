@@ -3,14 +3,12 @@
 /turf/closed/wall
 	name = "wall"
 	desc = "A huge chunk of metal used to seperate rooms."
-	icon = 'icons/turf/walls.dmi'
-	icon_state = "metal"
+	icon = 'icons/turf/walls/regular_wall.dmi'
+	icon_state = "metal-0"
 	baseturfs = /turf/open/floor/plating
 	opacity = TRUE
 	explosion_block = 2
 
-	smoothing_behavior = CARDINAL_SMOOTHING
-	smoothing_groups = SMOOTH_GENERAL_STRUCTURES|SMOOTH_XENO_STRUCTURES
 	walltype = "metal"
 
 	soft_armor = list(MELEE = 0, BULLET = 50, LASER = 50, ENERGY = 100, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
@@ -25,6 +23,7 @@
 	var/bullethole_increment = 1
 	var/bullethole_state = 0
 	var/image/bullethole_overlay
+	base_icon_state = "metal"
 
 	var/max_temperature = 1800 //K, walls will take damage if they're next to a fire hotter than this
 
@@ -32,6 +31,22 @@
 
 	var/obj/effect/acid_hole/acided_hole //the acid hole inside the wall
 
+	smoothing_flags = SMOOTH_BITMASK
+	smoothing_groups = list(
+		SMOOTH_GROUP_CLOSED_TURFS,
+		SMOOTH_GROUP_SURVIVAL_TITANIUM_WALLS,
+	)
+	canSmoothWith = list(
+		SMOOTH_GROUP_SURVIVAL_TITANIUM_WALLS,
+		SMOOTH_GROUP_AIRLOCK,
+		SMOOTH_GROUP_WINDOW_FRAME,
+		SMOOTH_GROUP_WINDOW_FULLTILE,
+		SMOOTH_GROUP_SHUTTERS,
+		SMOOTH_GROUP_GIRDER,
+	)
+
+/turf/closed/wall/add_debris_element()
+	AddElement(/datum/element/debris, DEBRIS_SPARKS, -15, 8, 1)
 
 /turf/closed/wall/Initialize(mapload, ...)
 	. = ..()
@@ -58,8 +73,8 @@
 			T = get_step(src, i)
 
 			//update junction type of nearby walls
-			if(T.smoothing_behavior)
-				T.smooth_self()
+			if(smoothing_flags)
+				QUEUE_SMOOTH(T)
 
 			//nearby glowshrooms updated
 			for(var/obj/structure/glowshroom/shroom in T)
@@ -156,8 +171,8 @@
 		bullethole_overlay = null
 		return
 
-	var/overlay = round((max_integrity - wall_integrity) / max_integrity * damage_overlays.len) + 1
-	if(overlay > damage_overlays.len) overlay = damage_overlays.len
+	var/overlay = round((max_integrity - wall_integrity) / max_integrity * length(damage_overlays)) + 1
+	if(overlay > length(damage_overlays)) overlay = length(damage_overlays)
 
 	if(!damage_overlay || overlay != damage_overlay)
 		overlays -= damage_overlays[damage_overlay]
@@ -192,23 +207,43 @@
 #undef cur_dir
 
 /turf/closed/wall/proc/generate_overlays()
-	var/alpha_inc = 256 / damage_overlays.len
+	var/alpha_inc = 256 / length(damage_overlays)
 
-	for(var/i = 1; i <= damage_overlays.len; i++)
+	for(var/i = 1; i <= length(damage_overlays); i++)
 		var/image/img = image(icon = 'icons/turf/walls.dmi', icon_state = "overlay_damage")
 		img.blend_mode = BLEND_MULTIPLY
 		img.alpha = (i * alpha_inc) - 1
 		damage_overlays[i] = img
 
 //Damage
-/turf/closed/wall/proc/take_damage(damage)
+/**
+	Returns a number after taking into account both soft and hard armor for the specified damage type
+
+	Arguments
+	* Damage_amount: The original unmodified damage
+	* armor_type: The type of armor by which the damage will be modified
+	* penetration: How much the damage source might bypass the armour value (optional)
+
+	Hard armor reduces penetration by a flat amount.
+	Penetration reduces soft armor by a flat amount.
+	Damage cannot go into the negative, or exceed the original amount.
+*/
+/turf/proc/modify_by_armor(damage_amount, armor_type, penetration)
+	penetration = max(0, penetration - hard_armor.getRating(armor_type))
+	return clamp((damage_amount * (1 - ((soft_armor.getRating(armor_type) - penetration) * 0.01))), 0, damage_amount)
+
+///Applies damage to the wall
+/turf/closed/wall/proc/take_damage(damage_amount, damage_type = BRUTE, damage_flag = "", armour_penetration = 0)
 	if(resistance_flags & INDESTRUCTIBLE) //Hull is literally invincible
 		return
 
-	if(!damage)
+	if(!damage_amount)
 		return
 
-	wall_integrity = max(0, wall_integrity - damage)
+	if(damage_flag)
+		damage_amount = modify_by_armor(damage_amount, damage_flag, armour_penetration)
+
+	wall_integrity = max(0, wall_integrity - damage_amount)
 
 	if(wall_integrity <= 0)
 		// Xenos used to be able to crawl through the wall, should suggest some structural damage to the girder
@@ -219,21 +254,25 @@
 	else
 		update_icon()
 
-
-/turf/closed/wall/proc/repair_damage(repair_amount)
+///Repairs the wall by an amount
+/turf/closed/wall/proc/repair_damage(repair_amount, mob/user)
 	if(resistance_flags & INDESTRUCTIBLE) //Hull is literally invincible
 		return
 
 	if(!repair_amount)
 		return
 
-	wall_integrity = min(max_integrity, wall_integrity + repair_amount)
+	repair_amount = min(repair_amount, max_integrity - wall_integrity)
+	if(user?.client)
+		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[user.ckey]
+		personal_statistics.integrity_repaired += repair_amount
+		personal_statistics.times_repaired++
+	wall_integrity += repair_amount
 	update_icon()
 
 
 /turf/closed/wall/proc/make_girder(destroyed_girder = FALSE)
 	var/obj/structure/girder/G = new /obj/structure/girder(src)
-	G.icon_prefix = "girder[junctiontype]"
 	G.update_icon()
 
 	if(destroyed_girder)
@@ -265,11 +304,13 @@
 			dismantle_wall(FALSE, TRUE)
 		if(EXPLODE_HEAVY)
 			if(prob(75))
-				take_damage(rand(150, 250))
+				take_damage(rand(150, 250), BRUTE, BOMB)
 			else
 				dismantle_wall(TRUE, TRUE)
 		if(EXPLODE_LIGHT)
-			take_damage(rand(0, 250))
+			take_damage(rand(0, 250), BRUTE, BOMB)
+		if(EXPLODE_WEAK)
+			take_damage(rand(0, 50), BRUTE, BOMB)
 
 /turf/closed/wall/attack_animal(mob/living/M as mob)
 	if(M.wall_smash)
@@ -298,23 +339,19 @@
 
 	else if(istype(I, /obj/item/frame/apc))
 		var/obj/item/frame/apc/AH = I
-		AH.try_build(src)
-
-	else if(istype(I, /obj/item/frame/air_alarm))
-		var/obj/item/frame/air_alarm/AH = I
-		AH.try_build(src)
+		AH.try_build(src, user)
 
 	else if(istype(I, /obj/item/frame/fire_alarm))
 		var/obj/item/frame/fire_alarm/AH = I
-		AH.try_build(src)
+		AH.try_build(src, user)
 
 	else if(istype(I, /obj/item/frame/light_fixture))
 		var/obj/item/frame/light_fixture/AH = I
-		AH.try_build(src)
+		AH.try_build(src, user)
 
 	else if(istype(I, /obj/item/frame/light_fixture/small))
 		var/obj/item/frame/light_fixture/small/AH = I
-		AH.try_build(src)
+		AH.try_build(src, user)
 
 	else if(istype(I, /obj/item/frame/camera))
 		var/obj/item/frame/camera/AH = I
@@ -347,7 +384,7 @@
 		user.visible_message(span_notice("[user] finishes repairing the damage to [src]."),
 		span_notice("You finish repairing the damage to [src]."))
 		cut_overlay(GLOB.welding_sparks)
-		repair_damage(250)
+		repair_damage(250, user)
 
 	else
 		//DECONSTRUCTION
@@ -491,5 +528,8 @@
 
 		return attack_hand(user)
 
-/turf/closed/wall/can_be_dissolved()
-	return !(resistance_flags & INDESTRUCTIBLE)
+/turf/closed/wall/get_acid_delay()
+	return 5 SECONDS
+
+/turf/closed/wall/dissolvability(acid_strength)
+	return 0.5

@@ -3,7 +3,6 @@
 	desc = "Used to remotely activate devices. Allows for syncing when using a secure signaler on another."
 	icon_state = "signaller"
 	item_state = "signaler"
-	materials = list(/datum/material/metal = 400, /datum/material/glass = 120)
 	wires = WIRE_RECEIVE | WIRE_PULSE | WIRE_RADIO_PULSE | WIRE_RADIO_RECEIVE
 	attachable = TRUE
 
@@ -13,16 +12,13 @@
 	var/datum/radio_frequency/radio_connection
 	var/hearing_range = 1
 
-
-/obj/item/assembly/signaler/Initialize()
+/obj/item/assembly/signaler/Initialize(mapload)
 	. = ..()
 	set_frequency(frequency)
-
 
 /obj/item/assembly/signaler/Destroy()
 	SSradio.remove_object(src,frequency)
 	return ..()
-
 
 /obj/item/assembly/signaler/activate()
 	. = ..()
@@ -31,11 +27,9 @@
 	signal()
 	return TRUE
 
-
 /obj/item/assembly/signaler/update_icon()
 	if(holder)
 		holder.update_icon()
-
 
 /obj/item/assembly/signaler/can_interact(mob/user)
 	. = ..()
@@ -46,7 +40,6 @@
 		return FALSE
 
 	return TRUE
-
 
 /obj/item/assembly/signaler/interact(mob/user)
 	. = ..()
@@ -67,7 +60,6 @@ Code:
 	var/datum/browser/popup = new(user, "signaler", name)
 	popup.set_content(dat)
 	popup.open()
-
 
 /obj/item/assembly/signaler/Topic(href, href_list)
 	. = ..()
@@ -96,10 +88,9 @@ Code:
 			to_chat(usr, span_warning("[src] is still recharging..."))
 			return
 		TIMER_COOLDOWN_START(src, COOLDOWN_SIGNALLER_SEND, 1 SECONDS)
-		INVOKE_ASYNC(src, .proc/signal)
+		INVOKE_ASYNC(src, PROC_REF(signal))
 
 	updateUsrDialog()
-
 
 /obj/item/assembly/signaler/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -110,14 +101,12 @@ Code:
 			set_frequency(signaler2.frequency)
 			to_chat(user, "You transfer the frequency and code of \the [signaler2.name] to \the [name]")
 
-
 /obj/item/assembly/signaler/proc/signal()
 	if(!radio_connection)
 		return
 
 	var/datum/signal/signal = new(list("code" = code))
 	radio_connection.post_signal(src, signal)
-
 
 /obj/item/assembly/signaler/receive_signal(datum/signal/signal)
 	. = FALSE
@@ -135,13 +124,10 @@ Code:
 			LM.playsound_local(get_turf(src), 'sound/machines/triple_beep.ogg', ASSEMBLY_BEEP_VOLUME, TRUE)
 	return TRUE
 
-
 /obj/item/assembly/signaler/proc/set_frequency(new_frequency)
 	SSradio.remove_object(src, frequency)
 	frequency = new_frequency
 	radio_connection = SSradio.add_object(src, frequency, RADIO_SIGNALER)
-
-
 
 // Embedded signaller used in grenade construction.
 // It's necessary because the signaler doens't have an off state.
@@ -149,10 +135,8 @@ Code:
 /obj/item/assembly/signaler/receiver
 	var/on = FALSE
 
-
 /obj/item/assembly/signaler/receiver/proc/toggle_safety()
 	on = !on
-
 
 /obj/item/assembly/signaler/receiver/activate()
 	toggle_safety()
@@ -161,7 +145,6 @@ Code:
 /obj/item/assembly/signaler/receiver/examine(mob/user)
 	. = ..()
 	. += span_notice("The radio receiver is [on?"on":"off"].")
-
 
 /obj/item/assembly/signaler/receiver/receive_signal(datum/signal/signal)
 	if(!on)

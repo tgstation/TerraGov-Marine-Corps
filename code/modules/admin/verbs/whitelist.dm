@@ -12,7 +12,7 @@ GLOBAL_PROTECT(whitelist)
 			continue
 		GLOB.whitelist += ckey(line)
 
-	if(!GLOB.whitelist.len)
+	if(!length(GLOB.whitelist))
 		GLOB.whitelist = null
 
 /proc/check_whitelist(ckey)

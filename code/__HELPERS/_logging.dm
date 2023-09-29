@@ -35,8 +35,15 @@
 #define testing(msg)
 #endif
 
-#ifdef REFERENCE_TRACKING_LOG
+#if defined(REFERENCE_DOING_IT_LIVE)
+#define log_reftracker(msg) log_harddel("## REF SEARCH [msg]")
+
+/proc/log_harddel(text)
+	WRITE_LOG(GLOB.harddel_log, text)
+
+#elif defined(REFERENCE_TRACKING) // Doing it locally
 #define log_reftracker(msg) log_world("## REF SEARCH [msg]")
+
 #else
 #define log_reftracker(msg)
 #endif
@@ -78,6 +85,11 @@
 	LAZYADD(GLOB.game_log, "\[[stationTimestamp()]\] GAME: [text]")
 	if(CONFIG_GET(flag/log_game))
 		WRITE_LOG(GLOB.world_game_log, "GAME: [text]")
+
+/proc/log_minimap_drawing(text)
+	LAZYADD(GLOB.game_log, "\[[stationTimestamp()]\] MINIMAP_DRAW: [text]")
+	if(CONFIG_GET(flag/log_minimap_drawing))
+		WRITE_LOG(GLOB.world_game_log, "MINIMAP_DRAW: [text]")
 
 /proc/log_mecha(text)
 	if (CONFIG_GET(flag/log_mecha))
@@ -222,6 +234,8 @@
 	WRITE_LOG(GLOB.config_error_log, text)
 	SEND_TEXT(world.log, text)
 
+/proc/log_filter_raw(text)
+	WRITE_LOG(GLOB.filter_log, "FILTER: [text]")
 
 /proc/log_paper(text)
 	WRITE_LOG(GLOB.world_paper_log, "PAPER: [text]")

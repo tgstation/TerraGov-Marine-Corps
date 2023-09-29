@@ -10,6 +10,16 @@
 	max_integrity = 20
 	var/propelled = 0 //Check for fire-extinguisher-driven chairs
 
+//directional variants mostly used for random spawners
+/obj/structure/bed/chair/east
+	dir = EAST
+
+/obj/structure/bed/chair/west
+	dir = WEST
+
+/obj/structure/bed/chair/north
+	dir = NORTH
+
 /obj/structure/bed/chair/alt
 	icon = 'icons/Marine/mainship_props.dmi'
 	icon_state = "chair_alt"
@@ -81,10 +91,10 @@
 			return
 		var/obj/item/tool/weldingtool/WT = I
 
-		if(user.skills.getRating("engineer") < SKILL_ENGINEER_METAL)
+		if(user.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_METAL)
 			user.visible_message(span_notice("[user] fumbles around figuring out how to weld down \the [src]."),
 			span_notice("You fumble around figuring out how to weld down \the [src]."))
-			var/fumbling_time = 5 SECONDS * (SKILL_ENGINEER_METAL - user.skills.getRating("engineer"))
+			var/fumbling_time = 5 SECONDS * (SKILL_ENGINEER_METAL - user.skills.getRating(SKILL_ENGINEER))
 			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED, extra_checks = CALLBACK(WT, /obj/item/tool/weldingtool/proc/isOn)))
 				return
 
@@ -148,8 +158,7 @@
 	name = "comfy sofa"
 	desc = "It looks comfy."
 	icon_state = "sofamiddle"
-
-
+	resistance_flags = XENO_DAMAGEABLE
 /obj/structure/bed/chair/sofa/left
 	icon_state = "sofaend_left"
 
@@ -194,6 +203,25 @@
 	buckle_flags = CAN_BUCKLE
 	drag_delay = 1 //Pulling something on wheels is easy
 
+//directional chairs for random spawners
+/obj/structure/bed/chair/office/light/north
+	dir = 1
+
+/obj/structure/bed/chair/office/light/east
+	dir = 4
+
+/obj/structure/bed/chair/office/light/west
+	dir = 8
+
+/obj/structure/bed/chair/office/dark/north
+	dir = 1
+
+/obj/structure/bed/chair/office/dark/east
+	dir = 4
+
+/obj/structure/bed/chair/office/dark/west
+	dir = 8
+
 /obj/structure/bed/chair/office/Bump(atom/A)
 	. = ..()
 	if(!LAZYLEN(buckled_mobs))
@@ -205,22 +233,22 @@
 	unbuckle_mob(occupant)
 
 	var/def_zone = ran_zone()
-	var/blocked = occupant.get_soft_armor("melee", def_zone)
+	var/armor_modifier = occupant.modify_by_armor(1, MELEE, 0, def_zone)
 	occupant.throw_at(A, 3, propelled)
-	occupant.apply_effect(6, STUN, blocked)
-	occupant.apply_effect(6, WEAKEN, blocked)
-	occupant.apply_effect(6, STUTTER, blocked)
-	occupant.apply_damage(10, BRUTE, def_zone, MELEE)
+	occupant.apply_effect(6 SECONDS * armor_modifier, STUN)
+	occupant.apply_effect(6 SECONDS * armor_modifier, WEAKEN)
+	occupant.apply_effect(6 SECONDS * armor_modifier, STUTTER)
+	occupant.apply_damage(10 * armor_modifier, BRUTE, def_zone)
 	UPDATEHEALTH(occupant)
 	playsound(src.loc, 'sound/weapons/punch1.ogg', 25, 1)
 	if(isliving(A))
 		var/mob/living/victim = A
 		def_zone = ran_zone()
-		blocked = victim.get_soft_armor("melee", def_zone)
-		victim.apply_effect(6, STUN, blocked)
-		victim.apply_effect(6, WEAKEN, blocked)
-		victim.apply_effect(6, STUTTER, blocked)
-		victim.apply_damage(10, BRUTE, def_zone, MELEE)
+		armor_modifier = victim.modify_by_armor(1, MELEE, 0, def_zone)
+		victim.apply_effect(6 SECONDS * armor_modifier, STUN)
+		victim.apply_effect(6 SECONDS * armor_modifier, WEAKEN)
+		victim.apply_effect(6 SECONDS * armor_modifier, STUTTER)
+		victim.apply_damage(10 * armor_modifier, BRUTE, def_zone)
 		UPDATEHEALTH(victim)
 	occupant.visible_message(span_danger("[occupant] crashed into \the [A]!"))
 
@@ -252,13 +280,14 @@
 	var/is_animating = 0
 
 /obj/structure/bed/chair/dropship/passenger/CanAllowThrough(atom/movable/mover, turf/target, height = 0, air_group = 0)
-	. = ..()
 	if(chair_state == DROPSHIP_CHAIR_UNFOLDED && istype(mover, /obj/vehicle/multitile) && !is_animating)
 		visible_message(span_danger("[mover] slams into [src] and breaks it!"))
-		INVOKE_ASYNC(src, .proc/fold_down, TRUE)
+		INVOKE_ASYNC(src, PROC_REF(fold_down), TRUE)
 		return FALSE
 
-/obj/structure/bed/chair/dropship/passenger/Initialize()
+	return ..()
+
+/obj/structure/bed/chair/dropship/passenger/Initialize(mapload)
 	. = ..()
 	chairbar = image("icons/obj/objects.dmi", "shuttle_bars")
 	chairbar.layer = ABOVE_MOB_LAYER
@@ -267,10 +296,13 @@
 /obj/structure/bed/chair/dropship/passenger/post_buckle_mob(mob/buckling_mob)
 	icon_state = "shuttle_chair_buckled"
 	overlays += chairbar
+	return ..()
+
 
 /obj/structure/bed/chair/dropship/passenger/post_unbuckle_mob(mob/buckled_mob)
 	icon_state = "shuttle_chair"
 	overlays -= chairbar
+	return ..()
 
 
 /obj/structure/bed/chair/dropship/passenger/buckle_mob(mob/living/buckling_mob, force = FALSE, check_loc = TRUE, lying_buckle = FALSE, hands_needed = 0, target_hands_needed = 0, silent)
@@ -305,10 +337,6 @@
 /obj/structure/bed/chair/dropship/passenger/rotate()
 	return // no
 
-/obj/structure/bed/chair/dropship/passenger/buckle_mob(mob/living/buckling_mob, force = FALSE, check_loc = TRUE, lying_buckle = FALSE, hands_needed = 0, target_hands_needed = 0, silent)
-	if(chair_state != DROPSHIP_CHAIR_UNFOLDED)
-		return
-	..()
 
 /obj/structure/bed/chair/dropship/passenger/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
 	if(X.status_flags & INCORPOREAL)

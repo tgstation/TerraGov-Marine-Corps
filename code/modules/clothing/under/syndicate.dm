@@ -16,4 +16,5 @@
 	item_state = "bl_suit"
 	siemens_coefficient = 1
 
-
+/obj/item/clothing/under/syndicate/tacticool/holster
+	starting_attachments = list(/obj/item/armor_module/storage/uniform/holster)

@@ -37,7 +37,7 @@
 	if(SEND_SIGNAL(implant_owner, COMSIG_MOB_ENABLE_STEALTH) & STEALTH_ALREADY_ACTIVE)
 		to_chat(implant_owner, span_warning("WARNING. Implant activation failed; Error code 518: Subject already cloaked."))
 		return FALSE
-	INVOKE_ASYNC(src, .proc/stealth_user)
+	INVOKE_ASYNC(src, PROC_REF(stealth_user))
 
 ///stealths the implant user
 /obj/item/implant/cloak/proc/stealth_user()
@@ -51,10 +51,10 @@
 	if(SEND_SIGNAL(implant_owner, COMSIG_MOB_ENABLE_STEALTH) & STEALTH_ALREADY_ACTIVE)
 		to_chat(implant_owner, span_warning("WARNING. Implant activation failed; Error code 518: Subject already cloaked."))
 		return
-	RegisterSignal(implant_owner, COMSIG_MOB_ENABLE_STEALTH, .proc/deactivate_cloak)
+	RegisterSignal(implant_owner, COMSIG_MOB_ENABLE_STEALTH, PROC_REF(deactivate_cloak))
 	playsound(implant_owner, 'sound/effects/pred_cloakon.ogg', 60, TRUE)
 	implant_owner.alpha = CLOAK_IMPLANT_ALPHA
-	deactivation_timer = addtimer(CALLBACK(src, .proc/deactivate_cloak), 12 SECONDS, TIMER_STOPPABLE)
+	deactivation_timer = addtimer(CALLBACK(src, PROC_REF(deactivate_cloak)), 12 SECONDS, TIMER_STOPPABLE)
 
 ///Deactivates the implant when someone turns it off or its forced off
 /obj/item/implant/cloak/proc/deactivate_cloak(datum/source)

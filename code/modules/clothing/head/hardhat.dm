@@ -11,7 +11,7 @@
 	light_power = 2
 	var/hardhat_color = "yellow" //Determines used sprites: hardhat[on]_[hardhat_color]
 
-/obj/item/clothing/head/hardhat/Initialize()
+/obj/item/clothing/head/hardhat/Initialize(mapload)
 	. = ..()
 	GLOB.nightfall_toggleable_lights += src
 

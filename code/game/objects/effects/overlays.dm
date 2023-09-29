@@ -1,3 +1,7 @@
+#define LASER_TYPE_CAS "cas_laser"
+#define LASER_TYPE_OB "railgun_laser"
+#define LASER_TYPE_RAILGUN "railgun_laser"
+
 /obj/effect/overlay
 	name = "overlay"
 
@@ -6,7 +10,7 @@
 	icon='icons/effects/beam.dmi'
 	icon_state="b_beam"
 
-/obj/effect/overlay/beam/Initialize()
+/obj/effect/overlay/beam/Initialize(mapload)
 	. = ..()
 	QDEL_IN(src, 1 SECONDS)
 
@@ -46,7 +50,7 @@
 /obj/effect/overlay/temp
 	anchored = TRUE
 	layer = ABOVE_FLY_LAYER //above mobs
-	mouse_opacity = 0 //can't click to examine it
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT //can't click to examine it
 	var/effect_duration = 10 //in deciseconds
 
 
@@ -55,7 +59,7 @@
 /obj/effect/overlay/blinking_laser //Used to indicate incoming CAS
 	name = "blinking laser"
 	anchored = TRUE
-	mouse_opacity = 0
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	icon = 'icons/effects/lases.dmi'
 	icon_state = "laser_target3"
 	layer = ABOVE_FLY_LAYER
@@ -130,7 +134,7 @@
 	layer = WALL_OBJ_LAYER //Above walls/items, not above mobs
 	icon_state_on = "middle"
 
-/obj/effect/overlay/blinking_laser/marine/lines/Initialize()
+/obj/effect/overlay/blinking_laser/marine/lines/Initialize(mapload)
 	. = ..()
 	dir = pick(CARDINAL_DIRS) //Randomises type, for variation
 
@@ -144,6 +148,7 @@
 	desc = "It's an arrow hanging in mid-air. There may be a wizard about."
 	icon = 'icons/mob/screen/generic.dmi'
 	icon_state = "arrow"
+	layer = POINT_LAYER
 	anchored = TRUE
 	effect_duration = 25
 
@@ -178,15 +183,24 @@
 	var/obj/item/binoculars/tactical/source_binoc
 	var/obj/machinery/camera/laser_cam/linked_cam
 	var/datum/squad/squad
+	///what kind of laser we are, used for signals
+	var/lasertype = LASER_TYPE_RAILGUN
 
 /obj/effect/overlay/temp/laser_target/Initialize(mapload, effect_duration, named, assigned_squad = null)
 	. = ..()
 	if(named)
-		name = "[named] laser"
+		name = "\improper[named] at [get_area_name(src)]"
 	target_id = UNIQUEID //giving it a unique id.
 	squad = assigned_squad
 	if(squad)
 		squad.squad_laser_targets += src
+	switch(lasertype)
+		if(LASER_TYPE_RAILGUN)
+			SEND_GLOBAL_SIGNAL(COMSIG_GLOB_RAILGUN_LASER_CREATED, src)
+		if(LASER_TYPE_CAS)
+			SEND_GLOBAL_SIGNAL(COMSIG_GLOB_CAS_LASER_CREATED, src)
+		if(LASER_TYPE_OB)
+			SEND_GLOBAL_SIGNAL(COMSIG_GLOB_OB_LASER_CREATED, src)
 
 /obj/effect/overlay/temp/laser_target/Destroy()
 	if(squad)
@@ -211,12 +225,12 @@
 
 /obj/effect/overlay/temp/laser_target/cas
 	icon_state = "laser_target_coordinate"
+	lasertype = LASER_TYPE_CAS
 
 /obj/effect/overlay/temp/laser_target/cas/Initialize(mapload, effect_duration, named, assigned_squad = null)
 	. = ..()
 	linked_cam = new(src, name)
 	GLOB.active_cas_targets += src
-	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_CAS_LASER_CREATED, src)
 
 /obj/effect/overlay/temp/laser_target/cas/Destroy()
 	GLOB.active_cas_targets -= src
@@ -227,12 +241,13 @@
 	if(ishuman(user))
 		. += span_danger("It's a laser to designate CAS targets, get away from it!")
 
-/obj/effect/overlay/temp/laser_target/OB
+/obj/effect/overlay/temp/laser_target/OB //This is a subtype of CAS so that CIC gets cameras on the lase
 	icon_state = "laser_target2"
+	lasertype = LASER_TYPE_OB
 
 /obj/effect/overlay/temp/laser_target/OB/Initialize(mapload, effect_duration, named, assigned_squad)
 	. = ..()
-	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_OB_LASER_CREATED, src)
+	linked_cam = new(src, name)
 	GLOB.active_laser_targets += src
 
 /obj/effect/overlay/temp/laser_target/OB/Destroy()
@@ -243,14 +258,14 @@
 	name = "blinking laser"
 	anchored = TRUE
 	effect_duration = 10
-	mouse_opacity = 0
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	icon = 'icons/obj/items/projectiles.dmi'
 	icon_state = "laser_target3"
 
 
 /obj/effect/overlay/temp/sniper_laser
 	name = "laser"
-	mouse_opacity = 0
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	icon = 'icons/obj/items/projectiles.dmi'
 	icon_state = "sniper_laser"
 
@@ -275,7 +290,7 @@
 /obj/effect/overlay/temp/tank_laser
 	name = "tanklaser"
 	anchored = TRUE
-	mouse_opacity = 0
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	icon = 'icons/obj/items/projectiles.dmi'
 	icon_state = "laser_target3"
 	effect_duration = 20
@@ -290,8 +305,9 @@
 
 /obj/effect/overlay/temp/gib_animation/Initialize(mapload, effect_duration, mob/source_mob, gib_icon)
 	. = ..()
-	pixel_x = source_mob.pixel_x
-	pixel_y = source_mob.pixel_y
+	if(source_mob)
+		pixel_x = source_mob.pixel_x
+		pixel_y = source_mob.pixel_y
 	icon_state = gib_icon
 
 /obj/effect/overlay/temp/gib_animation/ex_act(severity)
@@ -304,7 +320,7 @@
 
 
 /obj/effect/overlay/temp/gib_animation/xeno
-	icon = 'icons/Xeno/48x48_Xenos.dmi'
+	icon = 'icons/Xeno/64x64_Xeno_overlays.dmi'
 	effect_duration = 10
 
 /obj/effect/overlay/temp/gib_animation/xeno/Initialize(mapload, effect_duration, mob/source_mob, gib_icon, new_icon)
@@ -344,3 +360,10 @@
 	pixel_x = -60
 	pixel_y = -50
 	alpha = 70
+
+/obj/effect/overlay/eye
+	layer = ABOVE_MOB_LAYER
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	icon_state = "eye_open"
+	pixel_x = 16
+	pixel_y = 16

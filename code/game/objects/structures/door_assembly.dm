@@ -6,10 +6,10 @@
 	anchored = FALSE
 	density = TRUE
 	resistance_flags = XENO_DAMAGEABLE
-	throwpass = FALSE
+	allow_pass_flags = PASS_AIR
 	max_integrity = 50
 	var/state = 0
-	var/base_icon_state = ""
+	base_icon_state = ""
 	var/base_name = "Airlock"
 	var/obj/item/circuitboard/airlock/electronics = null
 	var/airlock_type = "" //the type path of the airlock once completed
@@ -17,7 +17,7 @@
 	var/glass = 0 // 0 = glass can be installed. -1 = glass can't be installed. 1 = glass is already installed. Text = mineral plating is installed instead.
 	var/created_name = null
 
-/obj/structure/door_assembly/Initialize()
+/obj/structure/door_assembly/Initialize(mapload)
 	. = ..()
 	update_state()
 
@@ -113,7 +113,7 @@
 	glass = -1 //To prevent bugs in deconstruction process.
 	var/width = 1
 
-/obj/structure/door_assembly/multi_tile/Initialize()
+/obj/structure/door_assembly/multi_tile/Initialize(mapload)
 	. = ..()
 	if(dir in list(EAST, WEST))
 		bound_width = width * world.icon_size

@@ -19,6 +19,17 @@
 	// goes to DD log and config_error.txt
 	log_world(get_log_message())
 
+/datum/getrev/proc/load_tgs_info()
+	testmerge = world.TgsTestMerges()
+	var/datum/tgs_revision_information/revinfo = world.TgsRevision()
+	if(revinfo)
+		commit = revinfo.commit
+		originmastercommit = revinfo.origin_commit
+		date = revinfo.timestamp || rustg_git_commit_date(commit)
+
+	// goes to DD log and config_error.txt
+	log_world(get_log_message())
+
 /datum/getrev/proc/get_log_message()
 	var/list/msg = list()
 	msg += "Running /tg/ revision: [date]"
@@ -38,7 +49,7 @@
 	return msg.Join("\n")
 
 /datum/getrev/proc/GetTestMergeInfo(header = TRUE)
-	if(!testmerge.len)
+	if(!length(testmerge))
 		return ""
 	. = header ? "The following pull requests are currently test merged:<br>" : ""
 	for(var/line in testmerge)
@@ -69,7 +80,7 @@
 	var/pc = revdata.originmastercommit
 	if(pc)
 		msg += "Master commit: <a href=\"[CONFIG_GET(string/githuburl)]/commit/[pc]\">[pc]</a>"
-	if(revdata.testmerge.len)
+	if(length(revdata.testmerge))
 		msg += revdata.GetTestMergeInfo()
 	if(revdata.commit && revdata.commit != revdata.originmastercommit)
 		msg += "Local commit: [revdata.commit]"

@@ -32,7 +32,7 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 
-/obj/item/weapon/claymore/Initialize()
+/obj/item/weapon/claymore/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/scalping)
 
@@ -50,19 +50,18 @@
 	force = 60
 	attack_speed = 12
 	w_class = WEIGHT_CLASS_BULKY
-	flags_item = DRAINS_XENO
 
 	var/codex_info = {"<b>Reagent info:</b><BR>
-	Bicaridine - heal your target for 10 brute. Usable on both dead and living targets.<BR>
-	Kelotane - produce a cone of flames<BR>
-	Tramadol - slow your target for 2 seconds<BR>
+	Bicaridine - heals somebody else for 12.5 brute, or when used on yourself heal 6 brute and 30 stamina<BR>
+	Kelotane - set your target and any adjacent mobs aflame<BR>
+	Tramadol - slow your target for 1 second and deal 60% more armor-piercing damage<BR>
 	<BR>
 	<b>Tips:</b><BR>
 	> Needs to be connected to the Vali system to collect green blood. You can connect it though the Vali system's configurations menu.<BR>
-	> Filled by liquid reagent containers. Emptied by using an empty liquid reagent container.<BR>
-	> Toggle unique action (SPACE by default) to load a single-use of the reagent effect after the blade has been filled up."}
+	> Filled by liquid reagent containers. Emptied by using an empty liquid reagent container. Can also be filled by pills.<BR>
+	> Press your unique action key (SPACE by default) to load a single-use of the reagent effect after the blade has been filled up."}
 
-/obj/item/weapon/claymore/harvester/Initialize()
+/obj/item/weapon/claymore/harvester/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/harvester)
 
@@ -100,6 +99,10 @@
 	attack_speed = 12
 	w_class = WEIGHT_CLASS_BULKY
 
+/obj/item/weapon/claymore/mercsword/machete/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/strappable)
+
 /obj/item/weapon/claymore/mercsword/machete/equipped(mob/user, slot)
 	. = ..()
 	toggle_item_bump_attack(user, TRUE)
@@ -107,6 +110,11 @@
 /obj/item/weapon/claymore/mercsword/machete/dropped(mob/user)
 	. = ..()
 	toggle_item_bump_attack(user, FALSE)
+
+/obj/item/weapon/claymore/mercsword/machete/alt
+	name = "machete"
+	desc = "A nice looking machete. Great for clearing out jungle or brush on outlying colonies. Found commonly in the hands of scouts and trackers, but difficult to carry with the usual kit."
+	icon_state = "machete_alt"
 
 //FC's sword.
 
@@ -118,14 +126,6 @@
 	force = 75
 	attack_speed = 12
 	w_class = WEIGHT_CLASS_BULKY
-
-/obj/item/weapon/claymore/mercsword/machete/equipped(mob/user, slot)
-	. = ..()
-	toggle_item_bump_attack(user, TRUE)
-
-/obj/item/weapon/claymore/mercsword/machete/dropped(mob/user)
-	. = ..()
-	toggle_item_bump_attack(user, FALSE)
 
 /obj/item/weapon/claymore/mercsword/commissar_sword
 	name = "\improper commissars sword"
@@ -176,6 +176,27 @@
 	playsound(loc, 'sound/weapons/bladeslice.ogg', 25, 1)
 	return ..()
 
+
+/obj/item/tool/kitchen/knife/shiv
+	name = "glass shiv"
+	icon = 'icons/obj/items/weapons.dmi'
+	icon_state = "shiv"
+	desc = "A makeshift glass shiv."
+	attack_verb = list("shanked", "shived")
+	hitsound = 'sound/weapons/slash.ogg'
+
+/obj/item/tool/kitchen/knife/shiv/plasma
+	icon_state = "plasmashiv"
+	desc = "A makeshift plasma glass shiv."
+
+/obj/item/tool/kitchen/knife/shiv/titanium
+	icon_state = "titaniumshiv"
+	desc = "A makeshift titanium shiv."
+
+/obj/item/tool/kitchen/knife/shiv/plastitanium
+	icon_state = "plastitaniumshiv"
+	desc = "A makeshift plastitanium glass shiv."
+
 /obj/item/weapon/combat_knife
 	name = "\improper M5 survival knife"
 	icon = 'icons/obj/items/weapons.dmi'
@@ -184,7 +205,6 @@
 	desc = "A standard survival knife of high quality. You can slide this knife into your boots, and can be field-modified to attach to the end of a rifle with cable coil."
 	flags_atom = CONDUCT
 	sharp = IS_SHARP_ITEM_ACCURATE
-	materials = list(/datum/material/metal = 200)
 	force = 30
 	w_class = WEIGHT_CLASS_SMALL
 	throwforce = 20
@@ -193,7 +213,6 @@
 	attack_speed = 8
 	hitsound = 'sound/weapons/slash.ogg'
 	attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
-
 
 /obj/item/weapon/combat_knife/attackby(obj/item/I, mob/user)
 	if(!istype(I,/obj/item/stack/cable_coil))
@@ -211,7 +230,7 @@
 		F.loc = get_turf(src)
 	qdel(src) //Delete da old knife
 
-/obj/item/weapon/combat_knife/Initialize()
+/obj/item/weapon/combat_knife/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/scalping)
 
@@ -221,38 +240,36 @@
 							span_danger("[user] is slitting [user.p_their()] stomach open with the [name]! It looks like [user.p_theyre()] trying to commit seppuku.")))
 	return (BRUTELOSS)
 
-/obj/item/weapon/combat_knife/vali_knife
+/obj/item/weapon/combat_knife/harvester
 	name = "\improper HP-S Harvester knife"
 	desc = "TerraGov Marine Corps' experimental High Point-Singularity 'Harvester' knife. An advanced version of the HP-S Harvester blade, shrunken down to the size of the standard issue boot knife. It trades the harvester blades size and power for a smaller form, with the side effect of a miniscule chemical storage, yet it still keeps its ability to apply debilitating effects to its targets. Activate after loading to prime a single use of an effect. It also harvests substances from alien lifeforms it strikes when connected to the Vali system."
 	icon_state = "vali_knife_icon"
 	item_state = "vali_knife"
 	force = 25
 	throwforce = 15
-	flags_item = DRAINS_XENO
-
 	var/codex_info = {"<b>Reagent info:</b><BR>
-	Bicaridine - heal your target for 10 brute. Usable on both dead and living targets.<BR>
-	Kelotane - produce a cone of flames<BR>
-	Tramadol - slow your target for 2 seconds<BR>
+	Bicaridine - heals somebody else for 12.5 brute, or when used on yourself heal 6 brute and 30 stamina<BR>
+	Kelotane - set your target and any adjacent mobs aflame<BR>
+	Tramadol - slow your target for 1 second and deal 60% more armor-piercing damage<BR>
 	<BR>
 	<b>Tips:</b><BR>
 	> Needs to be connected to the Vali system to collect green blood. You can connect it though the Vali system's configurations menu.<BR>
-	> Filled by liquid reagent containers. Emptied by using an empty liquid reagent container.<BR>
-	> Toggle unique action (SPACE by default) to load a single-use of the reagent effect after the blade has been filled up."}
+	> Filled by liquid reagent containers. Emptied by using an empty liquid reagent container. Can also be filled by pills.<BR>
+	> Press your unique action key (SPACE by default) to load a single-use of the reagent effect after the blade has been filled up."}
 
-/obj/item/weapon/combat_knife/vali_knife/Initialize()
+/obj/item/weapon/combat_knife/harvester/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/harvester, 5)
 
-/obj/item/weapon/combat_knife/vali_knife/equipped(mob/user, slot)
+/obj/item/weapon/combat_knife/harvester/equipped(mob/user, slot)
 	. = ..()
 	toggle_item_bump_attack(user, FALSE)
 
-/obj/item/weapon/combat_knife/vali_knife/dropped(mob/user)
+/obj/item/weapon/combat_knife/harvester/dropped(mob/user)
 	. = ..()
 	toggle_item_bump_attack(user, FALSE)
 
-/obj/item/weapon/combat_knife/vali_knife/get_mechanics_info()
+/obj/item/weapon/combat_knife/harvester/get_mechanics_info()
 	. = ..()
 	. += jointext(codex_info, "<br>")
 
@@ -274,7 +291,6 @@
 	desc = "A small high quality knife with a curved blade, good for slashing and hooking. This one has a mottled red finish."
 	flags_atom = CONDUCT
 	sharp = IS_SHARP_ITEM_ACCURATE
-	materials = list(/datum/material/metal = 200)
 	force = 30
 	w_class = WEIGHT_CLASS_SMALL
 	throwforce = 20
@@ -320,7 +336,7 @@
 	sharp = IS_SHARP_ITEM_ACCURATE
 	force = 20
 	w_class = WEIGHT_CLASS_TINY
-	throwforce = 45
+	throwforce = 25
 	throw_speed = 5
 	throw_range = 7
 	hitsound = 'sound/weapons/slash.ogg'
@@ -332,11 +348,15 @@
 	amount = 5
 	///Delay between throwing.
 	var/throw_delay = 0.2 SECONDS
-	COOLDOWN_DECLARE(last_thrown)
+	///Current Target that knives are being thrown at. This is for aiming
+	var/current_target
+	///The person throwing knives
+	var/mob/living/living_user
 
 /obj/item/stack/throwing_knife/Initialize(mapload, new_amount)
 	. = ..()
-	RegisterSignal(src, COMSIG_MOVABLE_POST_THROW, .proc/post_throw)
+	RegisterSignal(src, COMSIG_MOVABLE_POST_THROW, PROC_REF(post_throw))
+	AddComponent(/datum/component/automatedfire/autofire, throw_delay, _fire_mode = GUN_FIREMODE_AUTOMATIC, _callback_reset_fire = CALLBACK(src, PROC_REF(stop_fire)), _callback_fire = CALLBACK(src, PROC_REF(throw_knife)))
 
 /obj/item/stack/throwing_knife/update_icon()
 	. = ..()
@@ -345,33 +365,64 @@
 
 /obj/item/stack/throwing_knife/equipped(mob/user, slot)
 	. = ..()
-	if(!isliving(user))
+	if(user.get_active_held_item() != src && user.get_inactive_held_item() != src)
 		return
-	var/mob/living/living_user = user
-	if(living_user.get_active_held_item() != src && living_user.get_inactive_held_item() != src)
-		return
-	RegisterSignal(user, COMSIG_MOB_ITEM_AFTERATTACK, .proc/throw_knife)
+	living_user = user
+	RegisterSignal(user, COMSIG_MOB_MOUSEDRAG, PROC_REF(change_target))
+	RegisterSignal(user, COMSIG_MOB_MOUSEUP, PROC_REF(stop_fire))
+	RegisterSignal(user, COMSIG_MOB_MOUSEDOWN, PROC_REF(start_fire))
 
 /obj/item/stack/throwing_knife/unequipped(mob/unequipper, slot)
 	. = ..()
+	living_user?.client?.mouse_pointer_icon = initial(living_user.client.mouse_pointer_icon) // Force resets the mouse pointer to default so it defaults when the last knife is thrown
 	UnregisterSignal(unequipper, COMSIG_MOB_ITEM_AFTERATTACK)
+	UnregisterSignal(unequipper, list(COMSIG_MOB_MOUSEUP, COMSIG_MOB_MOUSEDRAG, COMSIG_MOB_MOUSEDOWN))
+	living_user = null
+
+///Changes the current target.
+/obj/item/stack/throwing_knife/proc/change_target(datum/source, atom/src_object, atom/over_object, turf/src_location, turf/over_location, src_control, over_control, params)
+	SIGNAL_HANDLER
+	set_target(get_turf_on_clickcatcher(over_object, source, params))
+	living_user.face_atom(current_target)
+
+///Stops the Autofire component and resets the current cursor.
+/obj/item/stack/throwing_knife/proc/stop_fire()
+	SIGNAL_HANDLER
+	living_user?.client?.mouse_pointer_icon = initial(living_user.client.mouse_pointer_icon)
+	set_target(null)
+	SEND_SIGNAL(src, COMSIG_GUN_STOP_FIRE)
+
+///Starts the user firing.
+/obj/item/stack/throwing_knife/proc/start_fire(datum/source, atom/object, turf/location, control, params)
+	SIGNAL_HANDLER
+	if(living_user.get_active_held_item() != src) // If the object in our active hand is not a throwing knife, abort
+		return
+	var/list/modifiers = params2list(params)
+	if(modifiers["shift"] || modifiers["ctrl"])
+		return
+	set_target(get_turf_on_clickcatcher(object, living_user, params))
+	if(!current_target)
+		return
+	SEND_SIGNAL(src, COMSIG_GUN_FIRE)
+	living_user?.client?.mouse_pointer_icon = 'icons/effects/supplypod_target.dmi'
 
 ///Throws a knife from the stack, or, if the stack is one, throws the stack.
-/obj/item/stack/throwing_knife/proc/throw_knife(datum/source, atom/target, params)
+/obj/item/stack/throwing_knife/proc/throw_knife()
 	SIGNAL_HANDLER
-	var/mob/living/user = source
-	if(user.Adjacent(target) || user.get_active_held_item() != src || !COOLDOWN_CHECK(src, last_thrown))
+	if(living_user.get_active_held_item() != src)
 		return
+	if(living_user.Adjacent(current_target))
+		return AUTOFIRE_CONTINUE
 	var/thrown_thing = src
 	if(amount == 1)
-		user.temporarilyRemoveItemFromInventory(src)
+		living_user.temporarilyRemoveItemFromInventory(src)
 		forceMove(get_turf(src))
 		throw_at(target, throw_range, throw_speed, user, TRUE)
 	else if(!iscoal)
 		var/obj/item/stack/throwing_knife/knife_to_throw = new(get_turf(src))
 		knife_to_throw.amount = 1
 		knife_to_throw.update_icon()
-		knife_to_throw.throw_at(target, throw_range, throw_speed, user, TRUE)
+		knife_to_throw.throw_at(current_target, throw_range, throw_speed, living_user, TRUE)
 		amount--
 		thrown_thing = knife_to_throw
 	else
@@ -383,9 +434,9 @@
 		thrown_thing = coal_to_throw
 
 	playsound(src, 'sound/effects/throw.ogg', 30, 1)
-	visible_message(span_warning("[user] expertly throws [thrown_thing]."), null, null, 5)
+	visible_message(span_warning("[living_user] expertly throws [thrown_thing]."), null, null, 5)
 	update_icon()
-	COOLDOWN_START(src, last_thrown, throw_delay)
+	return AUTOFIRE_CONTINUE
 
 ///Fills any stacks currently in the tile that this object is thrown to.
 /obj/item/stack/throwing_knife/proc/post_throw()
@@ -414,12 +465,19 @@
 	hitsound = 'sound/weapons/punch4.ogg'
 	attack_verb = list("bruised", "smashed", "cracked", "whomped", "walloped", "battered", "smacked")
 	iscoal = TRUE
+///Sets the current target and registers for qdel to prevent hardels
+/obj/item/stack/throwing_knife/proc/set_target(atom/object)
+	if(object == current_target || object == living_user)
+		return
+	if(current_target)
+		UnregisterSignal(current_target, COMSIG_QDELETING)
+	current_target = object
 
 /obj/item/weapon/chainsword
 	name = "chainsword"
 	desc = "chainsword thing"
 	icon = 'icons/obj/items/weapons.dmi'
-	icon_state = "chainswordoff"
+	icon_state = "chainsword"
 	attack_verb = list("gored", "slashed", "cut")
 	force = 10
 	throwforce = 5
@@ -429,8 +487,8 @@
 	. = ..()
 	if(!on)
 		on = !on
-		icon_state = "chainswordon"
-		force = 40
+		icon_state = "[initial(icon_state)]_on"
+		force = 80
 		throwforce = 30
 	else
 		on = !on
@@ -445,3 +503,8 @@
 /obj/item/weapon/chainsword/suicide_act(mob/user)
 	user.visible_message(span_danger("[user] is falling on the [src.name]! It looks like [user.p_theyre()] trying to commit suicide."))
 	return(BRUTELOSS)
+
+/obj/item/weapon/chainsword/civilian
+	name = "chainsaw"
+	desc = "A chainsaw. Good for turning big things into little things."
+	icon_state = "chainsaw"

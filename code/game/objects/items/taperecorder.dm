@@ -5,21 +5,19 @@
 	item_state = "analyzer"
 	w_class = WEIGHT_CLASS_SMALL
 
-	materials = list(/datum/material/metal = 60, /datum/material/glass = 30)
-
-	var/recording = 0.0
-	var/playing = 0.0
-	var/timerecorded = 0.0
-	var/playsleepseconds = 0.0
-	var/list/storedinfo = new/list()
-	var/list/timestamp = new/list()
+	var/recording = 0
+	var/playing = 0
+	var/timerecorded = 0
+	var/playsleepseconds = 0
+	var/list/storedinfo = list()
+	var/list/timestamp = list()
 	var/canprint = 1
 	flags_atom = CONDUCT
 	throwforce = 2
 	throw_speed = 4
 	throw_range = 20
 
-/obj/item/taperecorder/Initialize()
+/obj/item/taperecorder/Initialize(mapload)
 	. = ..()
 	become_hearing_sensitive()
 
@@ -110,11 +108,11 @@
 	for(var/i=1,timerecorded<3600,sleep(10 * (playsleepseconds) ))
 		if(playing == 0)
 			break
-		if(storedinfo.len < i)
+		if(length(storedinfo) < i)
 			break
 		var/turf/T = get_turf(src)
 		T.visible_message("<font color=Maroon><B>[src]</B>: [storedinfo[i]]</font>")
-		if(storedinfo.len < i+1)
+		if(length(storedinfo) < i+1)
 			playsleepseconds = 1
 			sleep(1 SECONDS)
 			T = get_turf(src)
@@ -146,7 +144,7 @@
 	to_chat(usr, span_notice("Transcript printed."))
 	var/obj/item/paper/P = new /obj/item/paper(get_turf(src))
 	var/t1 = "<B>Transcript:</B><BR><BR>"
-	for(var/i=1,storedinfo.len >= i,i++)
+	for(var/i=1,length(storedinfo) >= i,i++)
 		t1 += "[storedinfo[i]]<BR>"
 	P.info = t1
 	P.name = "Transcript"

@@ -15,7 +15,7 @@
 	///Whether this computer is activated by the event yet
 	var/active = FALSE
 	///How much supply points you get for completing the terminal
-	var/supply_reward = 60
+	var/supply_reward = 600
 	///How much dropship points you get for completing the terminal
 	var/dropship_reward = 60
 
@@ -35,10 +35,10 @@
 	var/faction = FACTION_TERRAGOV
 
 
-/obj/machinery/computer/intel_computer/Initialize()
+/obj/machinery/computer/intel_computer/Initialize(mapload)
 	. = ..()
 	GLOB.intel_computers += src
-	RegisterSignal(SSdcs, COMSIG_GLOB_DROPSHIP_HIJACKED, .proc/disable_on_hijack)
+	RegisterSignal(SSdcs, COMSIG_GLOB_DROPSHIP_HIJACKED, PROC_REF(disable_on_hijack))
 
 /obj/machinery/computer/intel_computer/process()
 	. = ..()

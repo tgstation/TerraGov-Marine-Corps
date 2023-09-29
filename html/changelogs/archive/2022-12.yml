@@ -395,3 +395,106 @@
 2022-12-21:
   novaepee:
   - rscdel: remove two r walls and useless apc in Big Red's admin
+2022-12-22:
+  Lewdcifer:
+  - rscadd: The Sentinel caste has been redesigned, and is now centered around managing
+      the Intoxicated debuff, which will give victims perjudicial effects.
+  - imageadd: Victims affected by this debuff will display an icon on any given xenomorph's
+      HUD, indicating just how much of that debuff they have.
+  - rscadd: 'New Sentinel ability: Toxic Spit. Spit at a target enemy to inflict them
+      with the Intoxicated debuff.'
+  - rscadd: 'New Sentinel ability: Toxic Slash. Imbue your claws with toxins, inflicting
+      the Intoxicated debuff.'
+  - rscadd: 'New Sentinel ability: Drain Sting. Sting your victim, draining their
+      Intoxication. This will grant you several benefits if used on a victim with
+      high Intoxicated stacks.'
+  - rscadd: 'New Sentinel ability: Toxic Grenade. Throw a ball of resin which will
+      burst into a large gas cloud. Victims caught inside its range will be inflicted
+      with the Intoxicated debuff, and take considerable burn damage.'
+  - rscdel: The Sentinel no longer has access to acid and neurotoxin spits.
+  - rscdel: The Sentinel no longer has access to the Neurotoxin Sting ability.
+  - rscdel: Removed the Neurogas Grenade.
+  - balance: Sentinel slash damage reduced from 16/16/17/17 to 14/14/16/16.
+  - balance: Sentinel movement speed increased from -0.8 to -0.9 (the higher the value,
+      the faster).
+  Lumipharon:
+  - code_imp: Minor proc fix
+  QualityVan:
+  - bugfix: abolition of invisigrillity
+  - refactor: Belt harnesses need an item to be attached to it manually, but any item
+      works - so long as it fits in suit storage or back slot.
+  SiegeB0t:
+  - qol: Ghosts can view supply console information.
+  Waselon:
+  - balance: added sunder resistance based on missing sunder, buffed sunder healing
+      for drone, queen and shrike healing abilities.
+  novaepee:
+  - rscadd: Give kebind for | hunter's Mark | hunter's Psychic Trace | drone's acidic
+      salve | hivemind's change form
+  - qol: 'Change a keybind name from Crusher: Toggle Change to Toggle Change to reflect
+      that both crusher, bull, and primo queen uses toggle charge.'
+  psykzz:
+  - balance: mechs now take a minute to build
+2022-12-23:
+  DeltaFire15:
+  - bugfix: The 'show typing indicator' pref should be functioning properly once again.
+  GravitronBlue:
+  - balance: Mech railgun no longer shoots through walls
+  MLGTASTICa:
+  - balance: Queen screech now gives a maximum of 15 stagger , adjusted based on distance
+      , with the minimum being 3.
+  novaepee:
+  - rscadd: directional sprites for ghost ian, now you can spin2win
+  - rscadd: Give Warlock psychic whisper
+  - rscadd: admins can now read psychic whisper
+2022-12-24:
+  Lumipharon:
+  - bugfix: fixed bonus projectiles stacking gun bonuses incorrectly
+  - bugfix: fixed some rockets having far lower range than they should
+  Waselon:
+  - balance: tweaks to burst weapons burstfire
+2022-12-25:
+  QualityVan:
+  - bugfix: You can only repair mechs one attempt at a time per person
+  Waselon:
+  - balance: mech UI reload now takes time
+  novaepee:
+  - rscadd: update death message and pray you have your head on when you died
+  - bugfix: update death message to reflect that you can survive a chestburst
+2022-12-26:
+  Lumipharon:
+  - bugfix: Warlock crush and flamers will no longer get blocked by mechs
+  - refactor: refactored throwpass
+  - bugfix: fixed brain damage making you better at certain things
+  - code_imp: Cleaned up some unused code for ammo
+  - code_imp: Clean up some warlock code
+  - rscadd: CAS GAU animation behaves more sensibly
+  - bugfix: fixed sentinel gas grenades lasting longer than they should
+  Waselon:
+  - bugfix: fix for deevolve deleting xenos if they are not at full plasma or health
+2022-12-27:
+  Lumipharon:
+  - bugfix: fixed some exploits
+  Waselon:
+  - balance: reduced sunder heal for drone, queen and hivelord abilities.
+2022-12-28:
+  Lumipharon:
+  - bugfix: fixed XOOC and MOOC binds incorrectly opening LOOC
+  Three333Digit:
+  - qol: soldering tool repairs the next damaged limb
+2022-12-29:
+  KuzyXD:
+  - bugfix: Admin can't play music via the Play-Internet-Sound verb
+  Lumipharon:
+  - bugfix: fixed some mech guns not being properly reloadable
+  QualityVan:
+  - balance: Shovels fit in suit storage
+2022-12-30:
+  Waselon:
+  - bugfix: fixed inability to reload mech via UI
+  XElectricX:
+  - qol: Spears look like actual spears when thrown and no longer spin. No longer
+      bounce when hitting turfs.
+2022-12-31:
+  novaepee:
+  - bugfix: the wack reinforced window frame orietation in PoS prep

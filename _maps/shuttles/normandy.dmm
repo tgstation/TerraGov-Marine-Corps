@@ -171,10 +171,8 @@
 	},
 /area/shuttle/dropship/normandy)
 "xX" = (
-/obj/structure/prop/holidays/string_lights,
-/turf/closed/shuttle/dropship2/transparent{
-	dir = 1;
-	icon_state = "109"
+/turf/closed/shuttle/dropship2/singlewindow{
+	dir = 1
 	},
 /area/shuttle/dropship/normandy)
 "yx" = (

@@ -2,6 +2,7 @@
 	gender = pick(MALE, FEMALE)
 	species = pick(get_playable_species())
 	synthetic_type = pick(SYNTH_TYPES)
+	robot_type = pick(ROBOT_TYPES)
 	ethnicity = random_ethnicity()
 
 	h_style = random_hair_style(gender, species)
@@ -10,14 +11,15 @@
 	good_eyesight = pick(list(FALSE, TRUE))
 	citizenship = pick(CITIZENSHIP_CHOICES)
 	religion = pick(RELIGION_CHOICES)
+	tts_voice = random_tts_voice()
 	randomize_hair_color("hair")
 	randomize_hair_color("grad")
 	randomize_hair_color("facial")
 	randomize_eyes_color()
 	randomize_species_specific()
-	underwear = rand(1, GLOB.underwear_m.len)
-	undershirt = rand(1, GLOB.undershirt_t.len)
-	backpack = 2
+	underwear = rand(1, length(GLOB.underwear_m))
+	undershirt = rand(1, length(GLOB.undershirt_f))
+	backpack = rand(BACK_NOTHING, BACK_SATCHEL)
 	age = rand(AGE_MIN,AGE_MAX)
 	if(H)
 		copy_to(H, TRUE)
@@ -134,7 +136,6 @@
 	if(!previewJob)
 		var/mob/living/carbon/human/dummy/mannequin = generate_or_wait_for_human_dummy(DUMMY_HUMAN_SLOT_PREFERENCES)
 		copy_to(mannequin)
-		COMPILE_OVERLAYS(mannequin)
 		parent.show_character_previews(new /mutable_appearance(mannequin))
 		unset_busy_human_dummy(DUMMY_HUMAN_SLOT_PREFERENCES)
 		return
@@ -150,7 +151,6 @@
 		mannequin.job = previewJob
 		previewJob.equip_dummy(mannequin, preference_source = parent)
 
-	COMPILE_OVERLAYS(mannequin)
 	parent.show_character_previews(new /mutable_appearance(mannequin))
 	unset_busy_human_dummy(DUMMY_HUMAN_SLOT_PREFERENCES)
 
@@ -191,9 +191,9 @@
 	character.g_hair = g_hair
 	character.b_hair = b_hair
 
-	character.r_grad	= r_grad
-	character.g_grad	= g_grad
-	character.b_grad	= b_grad
+	character.r_grad = r_grad
+	character.g_grad = g_grad
+	character.b_grad = b_grad
 
 	character.r_facial = r_facial
 	character.g_facial = g_facial
@@ -206,10 +206,12 @@
 	character.citizenship = citizenship
 	character.religion = religion
 
+	character.voice = tts_voice
+	character.pitch = tts_pitch
+
 	character.moth_wings = moth_wings
 	character.underwear = underwear
 	character.undershirt = undershirt
-	character.backpack = backpack
 
 	character.update_body()
 	character.update_hair()

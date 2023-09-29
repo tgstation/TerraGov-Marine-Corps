@@ -3,39 +3,22 @@
 /turf/template_noop,
 /area/template_noop)
 "b" = (
-/obj/structure/prop/holidays/string_lights/corner,
-/turf/closed/shuttle/ert{
-	icon_state = "stan20"
+/turf/closed/shuttle/dropship_regular/top_corner/alt{
+	dir = 1
 	},
 /area/shuttle/ert)
 "c" = (
-/obj/structure/prop/holidays/string_lights,
-/turf/closed/shuttle/ert{
-	icon_state = "stan21"
-	},
+/turf/closed/shuttle/dropship_regular/backwall,
 /area/shuttle/ert)
 "d" = (
 /obj/docking_port/mobile/ert,
-/obj/structure/prop/holidays/string_lights,
-/turf/closed/shuttle/ert{
-	icon_state = "stan27"
-	},
+/turf/closed/shuttle/dropship_regular/cockpit_window,
 /area/shuttle/ert)
 "e" = (
-/obj/structure/prop/holidays/string_lights/corner{
-	dir = 1
-	},
-/turf/closed/shuttle/ert{
-	icon_state = "stan25"
-	},
+/turf/closed/shuttle/dropship_regular/top_corner/alt,
 /area/shuttle/ert)
 "f" = (
-/obj/structure/prop/holidays/string_lights{
-	dir = 6
-	},
-/turf/closed/shuttle/ert{
-	icon_state = "stan22"
-	},
+/turf/closed/shuttle/dropship_regular/interior_corner,
 /area/shuttle/ert)
 "g" = (
 /obj/structure/bed/chair/dropship/passenger,
@@ -48,18 +31,12 @@
 /turf/open/floor/podhatch/floor,
 /area/shuttle/ert)
 "i" = (
-/obj/structure/prop/holidays/string_lights{
-	dir = 10
-	},
-/turf/closed/shuttle/ert{
-	icon_state = "stan23"
+/turf/closed/shuttle/dropship_regular/interior_corner{
+	dir = 1
 	},
 /area/shuttle/ert)
 "j" = (
-/obj/structure/prop/holidays/string_lights{
-	dir = 4
-	},
-/turf/closed/shuttle/ert,
+/turf/closed/shuttle/dropship_regular/interior_wall,
 /area/shuttle/ert)
 "k" = (
 /obj/structure/bed/chair/dropship/passenger{
@@ -84,11 +61,8 @@
 /turf/open/floor/light,
 /area/shuttle/ert)
 "o" = (
-/obj/structure/prop/holidays/string_lights{
-	dir = 8
-	},
-/turf/closed/shuttle/ert{
-	icon_state = "stan5"
+/turf/closed/shuttle/dropship_regular/interior_wall{
+	dir = 1
 	},
 /area/shuttle/ert)
 "p" = (
@@ -117,17 +91,10 @@
 /turf/open/shuttle/brig,
 /area/shuttle/ert)
 "u" = (
-/turf/closed/shuttle/ert{
-	icon_state = "stan1"
-	},
+/turf/closed/shuttle/dropship_regular/backhatch,
 /area/shuttle/ert)
 "v" = (
-/obj/structure/prop/holidays/string_lights/corner{
-	dir = 4
-	},
-/turf/closed/shuttle/ert{
-	icon_state = "stan8"
-	},
+/turf/closed/shuttle/dropship_regular/top_corner,
 /area/shuttle/ert)
 "w" = (
 /obj/structure/bed/chair/dropship/passenger{
@@ -151,21 +118,18 @@
 /turf/open/floor/light,
 /area/shuttle/ert)
 "z" = (
-/obj/structure/prop/holidays/string_lights/corner{
-	dir = 8
-	},
-/turf/closed/shuttle/ert{
-	icon_state = "stan9"
+/turf/closed/shuttle/dropship_regular/top_corner{
+	dir = 1
 	},
 /area/shuttle/ert)
 "A" = (
-/turf/closed/shuttle/ert{
-	icon_state = "stan3"
+/turf/closed/shuttle/dropship_regular/backhatch{
+	dir = 4
 	},
 /area/shuttle/ert)
 "B" = (
-/turf/closed/shuttle/ert{
-	icon_state = "stan2"
+/turf/closed/shuttle/dropship_regular/backhatch{
+	dir = 1
 	},
 /area/shuttle/ert)
 "C" = (

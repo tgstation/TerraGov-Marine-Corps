@@ -12,7 +12,7 @@ SUBSYSTEM_DEF(machines)
 /datum/controller/subsystem/machines/Initialize()
 	makepowernets()
 	fire()
-	return ..()
+	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/machines/proc/makepowernets()
 	for(var/datum/powernet/PN in powernets)
@@ -25,8 +25,9 @@ SUBSYSTEM_DEF(machines)
 			NewPN.add_cable(PC)
 			propagate_network(PC,PC.powernet)
 
-/datum/controller/subsystem/machines/stat_entry()
-	..("PN:[length(powernets)]|PM:[length(processing)]")
+/datum/controller/subsystem/machines/stat_entry(msg)
+	msg = "PM:[length(processing)]|PN:[length(powernets)]"
+	return ..()
 
 /datum/controller/subsystem/machines/fire(resumed = FALSE)
 	if (!resumed)

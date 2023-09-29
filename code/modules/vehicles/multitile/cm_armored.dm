@@ -14,7 +14,7 @@ GLOBAL_LIST_INIT(armorvic_dmg_distributions, list(
 	HDPT_ARMOR = 0.5,
 	HDPT_TREADS = 0.15))
 
-//The main object, should be an abstract class
+//The main object, should be an abstract class // todo delete me
 /obj/vehicle/multitile/root/cm_armored
 	name = "Armored Vehicle"
 	desc = "Get inside to operate the vehicle."
@@ -71,7 +71,7 @@ GLOBAL_LIST_INIT(armorvic_dmg_distributions, list(
 	icon_state = "cargo_engine"
 
 
-/obj/vehicle/multitile/root/cm_armored/Initialize()
+/obj/vehicle/multitile/root/cm_armored/Initialize(mapload)
 	. = ..()
 	GLOB.tank_list += src
 	set_light(0.01)
@@ -176,7 +176,7 @@ GLOBAL_LIST_INIT(armorvic_dmg_distributions, list(
 
 	to_chat(usr, span_notice("You begin reloading the [slot] module."))
 
-	addtimer(CALLBACK(src, .proc/finish_reloading_hp, usr, HP, A, slot), 2 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(finish_reloading_hp), usr, HP, A, slot), 2 SECONDS)
 
 /obj/vehicle/multitile/root/cm_armored/proc/finish_reloading_hp(mob/living/user, obj/item/hardpoint/HP, obj/item/ammo_magazine/A, slot)
 	if(!can_use_hp(usr))
@@ -256,7 +256,7 @@ GLOBAL_LIST_INIT(armorvic_dmg_distributions, list(
 /obj/vehicle/multitile/hitbox/cm_armored
 	name = "Armored Vehicle"
 	desc = "Get inside to operate the vehicle."
-	throwpass = 1 //You can lob nades over tanks, and there's some dumb check somewhere that requires this
+	allow_pass_flags = PASSABLE
 	var/lastsound = 0
 
 //If something want to delete this, it's probably either an admin or the shuttle
@@ -289,7 +289,7 @@ GLOBAL_LIST_INIT(armorvic_dmg_distributions, list(
 	if(stat == DEAD) //We don't care about the dead
 		return
 	if(loc == C.loc) // treaded over.
-		ParalyzeNoChain(20)
+		ParalyzeNoChain(2 SECONDS)
 		var/target_dir = turn(C.dir, 180)
 		temp = get_step(C.loc, target_dir)
 		T = temp
@@ -307,7 +307,7 @@ GLOBAL_LIST_INIT(armorvic_dmg_distributions, list(
 			throw_at(T, 3, 2, C, 0)
 		else
 			throw_at(T, 3, 2, C, 1)
-		ParalyzeNoChain(20)
+		ParalyzeNoChain(2 SECONDS)
 		apply_damage(rand(10, 15), BRUTE, blocked = MELEE)
 		visible_message(span_danger("[C] bumps into [src], throwing [p_them()] away!"), span_danger("[C] violently bumps into you!"))
 	var/obj/vehicle/multitile/root/cm_armored/CA = C.root
@@ -336,7 +336,7 @@ GLOBAL_LIST_INIT(armorvic_dmg_distributions, list(
 
 /mob/living/carbon/xenomorph/larva/tank_collision(obj/vehicle/multitile/hitbox/cm_armored/C, facing, turf/T, turf/temp)
 	if(loc == C.loc) // treaded over.
-		ParalyzeNoChain(20)
+		ParalyzeNoChain(2 SECONDS)
 		apply_damage(rand(5, 7.5), BRUTE, blocked = MELEE)
 		return
 	var/obj/vehicle/multitile/root/cm_armored/CA = C.root
@@ -421,10 +421,6 @@ GLOBAL_LIST_INIT(armorvic_dmg_distributions, list(
 		return FALSE
 
 	return ..()
-
-//For the next few, we're just tossing the handling up to the rot object
-/obj/vehicle/multitile/hitbox/cm_armored/bullet_act(obj/projectile/P)
-	return root.bullet_act(P)
 
 /obj/vehicle/multitile/hitbox/cm_armored/ex_act(severity)
 	return root.ex_act(severity)
@@ -580,10 +576,10 @@ GLOBAL_LIST_INIT(armorvic_dmg_distributions, list(
 /obj/vehicle/multitile/root/cm_armored/proc/handle_hardpoint_repair(obj/item/O, mob/user)
 
 	//Need to the what the hell you're doing
-	if(user.skills.getRating("engineer") < SKILL_ENGINEER_MASTER)
+	if(user.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_MASTER)
 		user.visible_message(span_notice("[user] fumbles around figuring out what to do with [O] on the [src]."),
 		span_notice("You fumble around figuring out what to do with [O] on the [src]."))
-		var/fumbling_time = 5 SECONDS * (SKILL_ENGINEER_MASTER - user.skills.getRating("engineer"))
+		var/fumbling_time = 5 SECONDS * (SKILL_ENGINEER_MASTER - user.skills.getRating(SKILL_ENGINEER))
 		if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 			return
 
@@ -691,10 +687,10 @@ GLOBAL_LIST_INIT(armorvic_dmg_distributions, list(
 //Similar to repairing stuff, down to the time delay
 /obj/vehicle/multitile/root/cm_armored/proc/install_hardpoint(obj/item/hardpoint/HP, mob/user)
 
-	if(user.skills.getRating("engineer") < SKILL_ENGINEER_MASTER)
+	if(user.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_MASTER)
 		user.visible_message(span_notice("[user] fumbles around figuring out what to do with [HP] on the [src]."),
 		span_notice("You fumble around figuring out what to do with [HP] on the [src]."))
-		var/fumbling_time = 5 SECONDS * ( SKILL_ENGINEER_MASTER - user.skills.getRating("engineer") )
+		var/fumbling_time = 5 SECONDS * ( SKILL_ENGINEER_MASTER - user.skills.getRating(SKILL_ENGINEER) )
 		if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 			return
 
@@ -738,10 +734,10 @@ GLOBAL_LIST_INIT(armorvic_dmg_distributions, list(
 //Again, similar to the above ones
 /obj/vehicle/multitile/root/cm_armored/proc/uninstall_hardpoint(obj/item/O, mob/user)
 
-	if(user.skills.getRating("engineer") < SKILL_ENGINEER_MASTER)
+	if(user.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_MASTER)
 		user.visible_message(span_notice("[user] fumbles around figuring out what to do with [O] on the [src]."),
 		span_notice("You fumble around figuring out what to do with [O] on the [src]."))
-		var/fumbling_time = 5 SECONDS * ( SKILL_ENGINEER_MASTER - user.skills.getRating("engineer") )
+		var/fumbling_time = 5 SECONDS * ( SKILL_ENGINEER_MASTER - user.skills.getRating(SKILL_ENGINEER) )
 		if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 			return
 

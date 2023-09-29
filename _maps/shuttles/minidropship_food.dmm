@@ -1,0 +1,351 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/obj/machinery/griddle,
+/obj/item/reagent_containers/glass/rag,
+/obj/effect/spawner/random/food_or_drink/kitchenknife,
+/turf/open/floor/iron/white/textured,
+/area/shuttle/minidropship)
+"c" = (
+/obj/machinery/computer/camera_advanced/shuttle_docker/minidropship,
+/obj/machinery/camera/autoname/mainship,
+/turf/open/floor/iron/white/textured_half,
+/area/shuttle/minidropship)
+"d" = (
+/obj/machinery/door_control{
+	dir = 8;
+	id = "minidropship_podlock";
+	name = "inner door-control";
+	pixel_x = 25;
+	pixel_y = 8
+	},
+/obj/item/clothing/suit/chef/classic,
+/obj/item/tool/kitchen/rollingpin,
+/obj/item/clothing/head/chefhat,
+/turf/open/floor/iron/white/textured_half{
+	dir = 8
+	},
+/area/shuttle/minidropship)
+"e" = (
+/obj/structure/dropship_piece/tadpole/engine{
+	dir = 1;
+	pixel_x = 23
+	},
+/turf/closed/wall/mainship/outer/canterbury,
+/area/shuttle/minidropship)
+"f" = (
+/turf/closed/wall/mainship/outer/canterbury,
+/area/shuttle/minidropship)
+"l" = (
+/obj/machinery/door/poddoor/mainship/open{
+	id = "minidropship_podlock"
+	},
+/obj/machinery/door/poddoor/shutters/transit/nonsmoothing,
+/obj/structure/table/reinforced,
+/turf/open/floor/mainship/white{
+	dir = 8
+	},
+/area/shuttle/minidropship)
+"m" = (
+/turf/open/floor/iron/white/textured_half{
+	dir = 8
+	},
+/area/shuttle/minidropship)
+"n" = (
+/obj/structure/dropship_piece/tadpole/engine{
+	dir = 1;
+	pixel_x = -23;
+	pixel_y = -14
+	},
+/obj/machinery/light,
+/obj/machinery/door/poddoor/mainship/open{
+	id = "minidropship_podlock"
+	},
+/obj/machinery/door/poddoor/shutters/transit/nonsmoothing,
+/obj/structure/table/reinforced,
+/obj/item/book/manual/chef_recipes,
+/turf/open/floor/mainship/white{
+	dir = 4
+	},
+/area/shuttle/minidropship)
+"o" = (
+/obj/machinery/holopad,
+/turf/open/floor/iron/white/textured_half,
+/area/shuttle/minidropship)
+"q" = (
+/turf/open/floor/iron/white/textured_corner{
+	dir = 1
+	},
+/area/shuttle/minidropship)
+"s" = (
+/obj/machinery/door/poddoor/mainship/open{
+	dir = 2;
+	id = "minidropship_podlock"
+	},
+/obj/machinery/vending/boozeomat,
+/turf/closed/wall/mainship/outer/canterbury,
+/area/shuttle/minidropship)
+"v" = (
+/obj/machinery/gibber,
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/machinery/vending/nanomed/tadpolemed{
+	dir = 4
+	},
+/turf/open/floor/iron/white/textured_corner,
+/area/shuttle/minidropship)
+"x" = (
+/obj/structure/dropship_piece/singlewindow/tadpole{
+	dir = 1;
+	max_integrity = 1000
+	},
+/obj/structure/dropship_piece/tadpole/tadpole_nose{
+	dir = 1;
+	pixel_y = 32
+	},
+/turf/open/floor/mainship/mono,
+/area/shuttle/minidropship)
+"y" = (
+/obj/machinery/door/poddoor/mainship/open{
+	dir = 2;
+	id = "minidropship_podlock"
+	},
+/obj/structure/barricade/plasteel,
+/obj/machinery/door/poddoor/shutters/transit/nonsmoothing{
+	dir = 1
+	},
+/turf/open/floor/mainship/white{
+	dir = 1
+	},
+/area/shuttle/minidropship)
+"z" = (
+/obj/machinery/door/poddoor/mainship/open{
+	id = "minidropship_podlock"
+	},
+/obj/machinery/door/poddoor/shutters/transit/nonsmoothing,
+/obj/structure/table/reinforced,
+/obj/machinery/microwave,
+/turf/open/floor/mainship/white{
+	dir = 4
+	},
+/area/shuttle/minidropship)
+"B" = (
+/obj/docking_port/mobile/marine_dropship/minidropship,
+/obj/structure/bed/chair/dropship/pilot{
+	dir = 1
+	},
+/turf/open/floor/iron/white/textured,
+/area/shuttle/minidropship)
+"C" = (
+/obj/structure/dropship_piece/tadpole/tadpole_nose{
+	dir = 1;
+	pixel_y = 32
+	},
+/obj/structure/dropship_piece/singlewindow/tadpole{
+	dir = 1;
+	max_integrity = 1000
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/shuttle/minidropship)
+"D" = (
+/obj/machinery/vending/dinnerware,
+/turf/open/floor/iron/white/textured,
+/area/shuttle/minidropship)
+"E" = (
+/turf/open/floor/iron/white/textured_corner{
+	dir = 4
+	},
+/area/shuttle/minidropship)
+"H" = (
+/obj/structure/dropship_piece/tadpole/tadpole_nose/left{
+	dir = 1;
+	pixel_y = 32
+	},
+/turf/closed/shuttle/dropship2/rearcorner/alt/tadpole{
+	dir = 1
+	},
+/area/shuttle/minidropship)
+"J" = (
+/turf/template_noop,
+/area/space)
+"L" = (
+/obj/structure/closet/secure_closet/freezer/fridge{
+	locked = 0
+	},
+/obj/effect/spawner/random/food_or_drink/burger,
+/obj/effect/spawner/random/food_or_drink/burger,
+/obj/item/storage/box/donkpockets{
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/obj/item/reagent_containers/food/snacks/dough,
+/obj/item/reagent_containers/food/snacks/doughslice,
+/obj/item/reagent_containers/food/snacks/sliceable/flatdough,
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/item/reagent_containers/food/snacks/meat,
+/obj/item/reagent_containers/food/snacks/meat,
+/obj/structure/extinguisher_cabinet{
+	dir = 8
+	},
+/turf/open/floor/iron/white/textured_corner{
+	dir = 8
+	},
+/area/shuttle/minidropship)
+"O" = (
+/obj/machinery/door/poddoor/mainship/open{
+	id = "minidropship_podlock"
+	},
+/obj/machinery/door/poddoor/shutters/transit/nonsmoothing,
+/obj/structure/table/reinforced,
+/obj/machinery/reagentgrinder{
+	pixel_y = 5
+	},
+/turf/open/floor/mainship/white{
+	dir = 8
+	},
+/area/shuttle/minidropship)
+"P" = (
+/obj/structure/sink{
+	dir = 8;
+	pixel_x = -12;
+	pixel_y = 2
+	},
+/turf/open/floor/iron/white/textured_half{
+	dir = 8
+	},
+/area/shuttle/minidropship)
+"R" = (
+/obj/structure/dropship_piece/tadpole/rearright{
+	dir = 1
+	},
+/obj/machinery/telecomms/relay/preset/telecomms/onboard,
+/turf/template_noop,
+/area/shuttle/minidropship)
+"V" = (
+/obj/structure/dropship_piece/tadpole/engine{
+	dir = 1;
+	pixel_x = 23;
+	pixel_y = -14
+	},
+/obj/machinery/light,
+/obj/machinery/door/poddoor/mainship/open{
+	id = "minidropship_podlock"
+	},
+/obj/machinery/door/poddoor/shutters/transit/nonsmoothing,
+/obj/structure/table/reinforced,
+/turf/open/floor/mainship/white{
+	dir = 8
+	},
+/area/shuttle/minidropship)
+"W" = (
+/obj/machinery/door/poddoor/mainship/open{
+	id = "minidropship_podlock"
+	},
+/obj/machinery/door/poddoor/shutters/transit/nonsmoothing,
+/obj/structure/table/reinforced,
+/turf/open/floor/mainship/white{
+	dir = 4
+	},
+/area/shuttle/minidropship)
+"X" = (
+/obj/structure/dropship_piece/tadpole/rearleft{
+	dir = 1
+	},
+/turf/template_noop,
+/area/shuttle/minidropship)
+"Y" = (
+/obj/structure/dropship_piece/tadpole/engine{
+	dir = 1;
+	pixel_x = -23
+	},
+/turf/closed/wall/mainship/outer/canterbury,
+/area/shuttle/minidropship)
+"Z" = (
+/obj/structure/dropship_piece/tadpole/tadpole_nose/right{
+	dir = 1;
+	pixel_y = 32
+	},
+/turf/closed/shuttle/dropship2/rearcorner/tadpole{
+	dir = 1
+	},
+/area/shuttle/minidropship)
+
+(1,1,1) = {"
+J
+J
+J
+J
+J
+J
+J
+J
+J
+"}
+(2,1,1) = {"
+J
+J
+H
+Y
+f
+z
+W
+n
+X
+"}
+(3,1,1) = {"
+J
+J
+x
+v
+P
+m
+m
+E
+s
+"}
+(4,1,1) = {"
+J
+J
+C
+c
+B
+D
+a
+o
+y
+"}
+(5,1,1) = {"
+J
+J
+x
+L
+d
+m
+m
+q
+y
+"}
+(6,1,1) = {"
+J
+J
+Z
+e
+f
+O
+l
+V
+R
+"}
+(7,1,1) = {"
+J
+J
+J
+J
+J
+J
+J
+J
+J
+"}

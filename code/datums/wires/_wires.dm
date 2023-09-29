@@ -123,7 +123,7 @@
 
 /datum/wires/proc/cut(wire, mob/user)
 	if(user)
-		var/skill = user.skills.getRating("engineer")
+		var/skill = user.skills.getRating(SKILL_ENGINEER)
 		if(skill < SKILL_ENGINEER_ENGI)
 			user.visible_message(span_notice("[user] fumbles around figuring out the wiring."),
 			span_notice("You fumble around figuring out the wiring."))
@@ -155,7 +155,7 @@
 	if(is_cut(wire))
 		return
 	if(user) //Signalers skip pulse delay
-		var/skill = user.skills.getRating("engineer")
+		var/skill = user.skills.getRating(SKILL_ENGINEER)
 		if(skill < SKILL_ENGINEER_ENGI)
 			user.visible_message(span_notice("[usr] fumbles around figuring out the wiring."),
 			span_notice("You fumble around figuring out the wiring."))

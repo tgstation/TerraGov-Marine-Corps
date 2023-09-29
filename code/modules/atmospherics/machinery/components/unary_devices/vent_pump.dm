@@ -18,7 +18,6 @@
 	layer = ATMOS_DEVICE_LAYER
 	flags_atom = SHUTTLE_IMMUNE
 
-	var/id_tag = null
 	var/pump_direction = RELEASING
 
 	var/pressure_checks = EXT_BOUND
@@ -32,18 +31,6 @@
 	var/radio_filter_in
 
 	pipe_state = "uvent"
-
-/obj/machinery/atmospherics/components/unary/vent_pump/New()
-	. = ..()
-	if(!id_tag)
-		id_tag = assign_uid_vents()
-
-/obj/machinery/atmospherics/components/unary/vent_pump/Destroy()
-	var/area/A = get_area(src)
-	if (A)
-		A.air_vent_names -= id_tag
-		A.air_vent_info -= id_tag
-	return ..()
 
 /obj/machinery/atmospherics/components/unary/vent_pump/update_icon_nopipes()
 	cut_overlays()
@@ -127,7 +114,7 @@
 		else
 			to_chat(user, span_warning("You need more welding fuel to complete this task."))
 			cut_overlay(GLOB.welding_sparks)
-			return TRUE	
+			return TRUE
 	return FALSE
 
 /obj/machinery/atmospherics/components/unary/vent_pump/can_unwrench(mob/user)
@@ -164,6 +151,10 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/AltClick(mob/user)
 	if(!isliving(user))
 		return
+	if(isxeno(user))
+		var/mob/living/carbon/xenomorph/xeno_user = user
+		xeno_user.handle_ventcrawl(src, xeno_user.xeno_caste.vent_enter_speed, xeno_user.xeno_caste.silent_vent_crawl)
+		return
 	var/mob/living/living_user = user
 	living_user.handle_ventcrawl(src)
 
@@ -180,6 +171,10 @@
 
 /obj/machinery/atmospherics/components/unary/vent_pump/layer3
 	piping_layer = 3
+	icon_state = "vent_map-3"
+
+/obj/machinery/atmospherics/components/unary/vent_pump/layer4
+	piping_layer = 4
 	icon_state = "vent_map-3"
 
 /obj/machinery/atmospherics/components/unary/vent_pump/on

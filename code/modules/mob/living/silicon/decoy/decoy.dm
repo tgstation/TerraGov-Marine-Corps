@@ -46,14 +46,14 @@
 /mob/living/silicon/decoy/on_death()
 	density = TRUE
 	icon_state = "hydra-off"
-	addtimer(CALLBACK(src, .proc/post_mortem_explosion), 2 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(post_mortem_explosion)), 2 SECONDS)
 	return ..()
 
 
 /mob/living/silicon/decoy/proc/post_mortem_explosion()
 	if(isnull(loc))
 		return
-	explosion(get_turf(src), 0, 1, 9, 12, small_animation = TRUE)
+	explosion(get_turf(src), 0, 1, 9, 0, 12)
 
 
 /mob/living/silicon/decoy/say(message, new_sound, datum/language/language) //General communication across the ship.

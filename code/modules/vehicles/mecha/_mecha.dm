@@ -23,7 +23,7 @@
 	icon = 'icons/mecha/mecha.dmi'
 	move_force = MOVE_FORCE_VERY_STRONG
 	move_resist = MOVE_FORCE_OVERPOWERING
-	resistance_flags = UNACIDABLE|XENO_DAMAGEABLE|PORTAL_IMMUNE
+	resistance_flags = UNACIDABLE|XENO_DAMAGEABLE|PORTAL_IMMUNE|PLASMACUTTER_IMMUNE
 	flags_atom = BUMP_ATTACKABLE|PREVENT_CONTENTS_EXPLOSION
 	max_integrity = 300
 	soft_armor = list(MELEE = 20, BULLET = 10, LASER = 0, ENERGY = 0, BOMB = 10, BIO = 0, FIRE = 100, ACID = 100)
@@ -80,8 +80,6 @@
 	var/internal_tank_valve = ONE_ATMOSPHERE
 	///The internal air tank obj of the mech
 	var/obj/machinery/portable_atmospherics/canister/air/internal_tank
-	///Internal air mix datum
-	var/datum/gas_mixture/cabin_air
 	///The connected air port, if we have one
 	var/obj/machinery/atmospherics/components/unary/portables_connector/connected_port
 
@@ -136,9 +134,6 @@
 	///Sound played when the mech walks
 	var/turnsound = 'sound/mecha/mechturn.ogg'
 
-	///base icon state do do stuff off of
-	var/base_icon_state
-
 	///Cooldown duration between melee punches
 	var/melee_cooldown = 10
 
@@ -158,9 +153,6 @@
 	var/datum/effect_system/smoke_spread/bad/smoke_system = new
 
 	////Action vars
-	///Ref to any active thrusters we might have
-	var/obj/item/mecha_parts/mecha_equipment/thrusters/active_thrusters
-
 	///Bool for energy shield on/off
 	var/defense_mode = FALSE
 
@@ -207,7 +199,7 @@
 	ui_view = new(null, src)
 	if(enclosed)
 		internal_tank = new (src)
-	RegisterSignal(src, COMSIG_MOVABLE_MOVED, .proc/play_stepsound)
+	RegisterSignal(src, COMSIG_MOVABLE_MOVED, PROC_REF(play_stepsound))
 
 	spark_system.set_up(2, 0, src)
 	spark_system.attach(src)
@@ -218,7 +210,7 @@
 	radio = new(src)
 	radio.name = "[src] radio"
 
-
+	GLOB.nightfall_toggleable_lights += src
 	add_cell()
 	add_scanmod()
 	add_capacitor()
@@ -250,6 +242,8 @@
 	for(var/ejectee in occupants)
 		mob_exit(ejectee, TRUE, TRUE)
 
+	GLOB.nightfall_toggleable_lights -= src
+
 	if(LAZYLEN(flat_equipment))
 		for(var/obj/item/mecha_parts/mecha_equipment/equip AS in flat_equipment)
 			equip.detach(loc)
@@ -276,7 +270,7 @@
 	spark_system?.start()
 
 	var/mob/living/silicon/ai/unlucky_ais
-	for(var/mob/living/occupant as anything in occupants)
+	for(var/mob/living/occupant AS in occupants)
 		if(isAI(occupant))
 			unlucky_ais = occupant
 			occupant.gib() //No wreck, no AI to recover
@@ -399,7 +393,7 @@
 			. += "It's falling apart."
 	if(LAZYLEN(flat_equipment))
 		. += "It's equipped with:"
-		for(var/obj/item/mecha_parts/mecha_equipment/ME as anything in flat_equipment)
+		for(var/obj/item/mecha_parts/mecha_equipment/ME AS in flat_equipment)
 			. += "[icon2html(ME, user)] \A [ME]."
 	if(enclosed)
 		return
@@ -525,12 +519,12 @@
 	if(!Adjacent(target) && (selected.range & MECHA_RANGED))
 		if(SEND_SIGNAL(src, COMSIG_MECHA_EQUIPMENT_CLICK, livinguser, target) & COMPONENT_CANCEL_EQUIPMENT_CLICK)
 			return
-		INVOKE_ASYNC(selected, /obj/item/mecha_parts/mecha_equipment.proc/action, user, target, modifiers)
+		INVOKE_ASYNC(selected, TYPE_PROC_REF(/obj/item/mecha_parts/mecha_equipment, action), user, target, modifiers)
 		return
 	if((selected.range & MECHA_MELEE) && Adjacent(target))
 		if(SEND_SIGNAL(src, COMSIG_MECHA_EQUIPMENT_CLICK, livinguser, target) & COMPONENT_CANCEL_EQUIPMENT_CLICK)
 			return
-		INVOKE_ASYNC(selected, /obj/item/mecha_parts/mecha_equipment.proc/action, user, target, modifiers)
+		INVOKE_ASYNC(selected, TYPE_PROC_REF(/obj/item/mecha_parts/mecha_equipment, action), user, target, modifiers)
 		return
 	if(!(livinguser in return_controllers_with_flag(VEHICLE_CONTROL_MELEE)))
 		to_chat(livinguser, span_warning("You're in the wrong seat to interact with your hands."))
@@ -565,7 +559,7 @@
 	for(var/mob/M in speech_bubble_recipients)
 		if(M.client)
 			speech_bubble_recipients.Add(M.client)
-	INVOKE_ASYNC(GLOBAL_PROC, /proc/flick_overlay, image('icons/mob/talk.dmi', src, "machine[say_test(speech_args[SPEECH_MESSAGE])]",MOB_LAYER+1), speech_bubble_recipients, 30)
+	INVOKE_ASYNC(GLOBAL_PROC, GLOBAL_PROC_REF(flick_overlay), image('icons/mob/talk.dmi', src, "machine[say_test(speech_args[SPEECH_MESSAGE])]",MOB_LAYER+1), speech_bubble_recipients, 30)
 
 
 /////////////////////////

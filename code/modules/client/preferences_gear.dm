@@ -1,12 +1,11 @@
-GLOBAL_LIST_EMPTY(gear_datums)
+GLOBAL_LIST_INIT(gear_datums, populate_gear_list())
 
 
 /proc/populate_gear_list()
+	. = list()
 	for(var/type in subtypesof(/datum/gear))
 		var/datum/gear/G = new type()
-		GLOB.gear_datums[G.display_name] = G
-	return TRUE
-
+		.[G.display_name] = G
 
 /datum/gear
 	var/display_name       //Name/index.
@@ -219,3 +218,10 @@ GLOBAL_LIST_EMPTY(gear_datums)
 	path = /obj/item/clothing/glasses/mgoggles/prescription
 	cost = 2
 	slot = SLOT_GLASSES
+
+/datum/gear/kotahi
+	display_name = "Kotahi deck"
+	path = /obj/item/toy/deck/kotahi
+	cost = 2
+	slot = SLOT_R_HAND
+

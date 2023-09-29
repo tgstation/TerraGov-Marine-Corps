@@ -4,9 +4,12 @@
 	allow_drawing_method = FALSE /// Unable to set draw_mode ourselves
 	var/obj/master_item
 
-/obj/item/storage/internal/Initialize()
+/obj/item/storage/internal/Initialize(mapload)
 	. = ..()
 	master_item = loc
+	if(!istype(master_item))
+		master_item = null
+		return INITIALIZE_HINT_QDEL
 	name = master_item.name
 	forceMove(master_item)
 	verbs -= /obj/item/verb/verb_pickup	//make sure this is never picked up.
@@ -21,7 +24,7 @@
 /obj/item/storage/internal/attack_hand(mob/living/user)
 	return TRUE
 
-/obj/item/storage/internal/mob_can_equip()
+/obj/item/storage/internal/mob_can_equip(mob/user, slot, warning = TRUE, override_nodrop = FALSE, bitslot = FALSE)
 	return 0	//make sure this is never picked up
 
 //Helper procs to cleanly implement internal storages - storage items that provide inventory slots for other items.
@@ -64,8 +67,8 @@
 		return FALSE
 
 	if(over_object.name == "r_hand" || over_object.name == "l_hand")
-		if(owner.time_to_unequip)
-			INVOKE_ASYNC(src, .proc/unequip_item, user, over_object.name)
+		if(owner.unequip_delay_self)
+			INVOKE_ASYNC(src, PROC_REF(unequip_item), user, over_object.name)
 		else if(over_object.name == "r_hand")
 			user.dropItemToGround(owner)
 			user.put_in_r_hand(owner)
@@ -77,7 +80,7 @@
 ///unequips items that require a do_after because they have an unequip time
 /obj/item/storage/internal/proc/unequip_item(mob/living/carbon/user, hand_to_put_in)
 	var/obj/item/owner = master_item
-	if(!do_after(user, owner.time_to_unequip, TRUE, owner, BUSY_ICON_FRIENDLY))
+	if(!do_after(user, owner.unequip_delay_self, TRUE, owner, BUSY_ICON_FRIENDLY))
 		to_chat(user, "You stop taking off \the [owner]")
 		return
 	if(hand_to_put_in == "r_hand")
@@ -107,8 +110,8 @@
 			return FALSE
 
 	if(master_item.loc == user)
-		if(draw_mode && ishuman(user) && contents.len)
-			var/obj/item/I = contents[contents.len]
+		if(draw_mode && ishuman(user) && length(contents))
+			var/obj/item/I = contents[length(contents)]
 			I.attack_hand(user)
 		else
 			open(user)
@@ -125,12 +128,12 @@
 
 /obj/item/storage/internal/handle_item_insertion(obj/item/W, prevent_warning = FALSE)
 	. = ..()
-	master_item.on_pocket_insertion()
+	master_item?.on_pocket_insertion()
 
 
 /obj/item/storage/internal/remove_from_storage(obj/item/W, atom/new_location, mob/user)
 	. = ..()
-	master_item.on_pocket_removal()
+	master_item?.on_pocket_removal()
 
 
 ///things to do when an item is inserted in the obj's internal pocket

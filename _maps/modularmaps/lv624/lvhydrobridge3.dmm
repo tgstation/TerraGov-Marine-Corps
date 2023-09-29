@@ -1,13 +1,7 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
 /obj/structure/catwalk,
-/turf/open/ground/river,
-/area/lv624/ground/river2)
-"b" = (
-/obj/structure/catwalk,
-/turf/open/ground/coast/corner{
-	dir = 8
-	},
+/turf/open/liquid/water/river,
 /area/lv624/ground/river2)
 "c" = (
 /obj/structure/grille/broken,
@@ -22,27 +16,21 @@
 /turf/open/floor/plating,
 /area/lv624/ground/river2)
 "g" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/effect/landmark/weed_node,
 /turf/open/floor,
 /area/lv624/ground/river2)
-"h" = (
-/obj/structure/catwalk,
-/turf/open/ground/coast{
-	dir = 5
-	},
-/area/lv624/ground/river2)
 "k" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/effect/landmark/corpsespawner/colonist,
 /turf/open/floor,
 /area/lv624/ground/river2)
 "n" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor,
@@ -83,17 +71,17 @@
 /turf/open/floor/plating,
 /area/lv624/ground/river2)
 "y" = (
-/obj/effect/spawner/random/ammo/sidearm,
+/obj/effect/spawner/random/weaponry/ammo/sidearm,
 /turf/open/floor,
 /area/lv624/ground/river2)
 "A" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor,
 /area/lv624/ground/river2)
 "C" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/structure/disposalpipe/segment{
@@ -118,12 +106,6 @@
 	},
 /turf/open/floor,
 /area/lv624/ground/river2)
-"I" = (
-/obj/structure/catwalk,
-/turf/open/ground/coast{
-	dir = 1
-	},
-/area/lv624/ground/river2)
 "J" = (
 /turf/open/floor/plating/dmg1,
 /area/lv624/ground/river2)
@@ -134,17 +116,17 @@
 "M" = (
 /obj/structure/flora/ausbushes/reedbush,
 /obj/structure/catwalk,
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/lv624/ground/river2)
 "N" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/effect/decal/cleanable/blood/gibs,
 /turf/open/floor,
 /area/lv624/ground/river2)
 "P" = (
-/turf/open/ground/river,
+/turf/open/liquid/water/river/deep,
 /area/lv624/ground/river2)
 "R" = (
 /turf/open/floor,
@@ -154,7 +136,7 @@
 /area/lv624/ground/river2)
 "V" = (
 /obj/structure/grille/broken,
-/turf/open/ground/river,
+/turf/open/liquid/water/river/deep,
 /area/lv624/ground/river2)
 "W" = (
 /turf/closed/wall,
@@ -167,10 +149,14 @@
 	dir = 4
 	},
 /obj/structure/catwalk,
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
+/area/lv624/ground/river2)
+"Y" = (
+/obj/structure/catwalk,
+/turf/open/liquid/water/river/deep,
 /area/lv624/ground/river2)
 "Z" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
@@ -183,13 +169,13 @@
 X
 a
 a
+Y
+Y
+Y
+Y
 a
 a
 a
-a
-a
-h
-b
 "}
 (2,1,1) = {"
 D
@@ -270,8 +256,8 @@ a
 P
 P
 V
-a
+Y
 a
 M
-I
+a
 "}

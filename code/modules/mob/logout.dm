@@ -3,6 +3,7 @@
 	SEND_SIGNAL(src, COMSIG_MOB_LOGOUT)
 	SStgui.on_logout(src)
 	unset_machine()
+	remove_all_indicators()
 	if(interactee)
 		unset_interaction()
 	remove_typing_indicator()
@@ -10,8 +11,5 @@
 	log_message("[key_name(src)] has left mob [src]([type]).", LOG_OOC)
 	if(s_active)
 		s_active.hide_from(src)
-	if(client)
-		for(var/foo in client.player_details.post_logout_callbacks)
-			var/datum/callback/CB = foo
-			CB.Invoke()
+	become_uncliented()
 	return ..()

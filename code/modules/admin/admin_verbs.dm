@@ -822,7 +822,7 @@
 
 	var/datum/admin_help/AH = C.current_ticket
 
-	if(AH && AH.tier == TICKET_ADMIN && !check_rights(R_ADMINTICKET, FALSE))
+	if(AH?.tier == TICKET_ADMIN && !check_rights(R_ADMINTICKET, FALSE))
 		return
 	if(AH && !AH.marked)
 		AH.marked = usr.client.key
@@ -937,7 +937,7 @@
 					current_ticket.MessageNoRecipient(msg)
 				return
 
-	if(handle_spam_prevention(msg, MUTE_ADMINHELP))
+	if(handle_spam_prevention(msg, MUTE_ADMINHELP, MESSAGE_FLAG_MENTOR|MESSAGE_FLAG_ADMIN))
 		return
 
 	//clean the message if it's not sent by a high-rank admin
@@ -1299,10 +1299,26 @@
 
 /client/proc/get_togglebuildmode()
 	set name = "Toggle Build Mode"
-	set category = "Fun"
+	set category = "Admin.Fun"
 	if(!check_rights(R_SPAWN))
 		return
 	togglebuildmode(mob)
+
+/client/proc/toggle_admin_tads()
+	set category = "Fun"
+	set name = "Toggle Tadpole Restrictions"
+
+	if(!check_rights(R_FUN))
+		return
+
+	if(SSticker.mode.enable_fun_tads)
+		message_admins("[ADMIN_TPMONTY(usr)] toggled Tadpole restrictions off.")
+		log_admin("[key_name(usr)] toggled Tadpole restrictions off.")
+		SSticker.mode.enable_fun_tads = FALSE
+	else
+		SSticker.mode.enable_fun_tads = TRUE
+		message_admins("[ADMIN_TPMONTY(usr)] toggled Tadpole restrictions on.")
+		log_admin("[key_name(usr)] toggled Tadpole restrictions on.")
 
 //returns TRUE to let the dragdrop code know we are trapping this event
 //returns FALSE if we don't plan to trap the event
@@ -1340,13 +1356,14 @@
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Ghost Drag Control")
 
 	tomob.ckey = frommob.ckey
+	tomob.client?.init_verbs()
 	qdel(frommob)
 
 	return TRUE
 
 /client/proc/mass_replace()
 	set name = "Mass replace atom"
-	set category = "Fun"
+	set category = "Admin.Fun"
 	if(!check_rights(R_SPAWN))
 		return
 	var/to_replace = pick_closest_path(input("Pick a movable atom path to be replaced", "Enter path as text") as text)
@@ -1402,3 +1419,37 @@
 	message_admins(msg)
 	admin_ticket_log(whom, msg)
 	log_admin("[key_name(src)] punished [key_name(whom)] with [punishment].")
+
+/client/proc/show_traitor_panel(mob/target_mob in GLOB.mob_list)
+	set category = "Admin"
+	set name = "Show Objective Panel"
+	var/datum/mind/target_mind = target_mob.mind
+	if(!target_mind)
+		to_chat(usr, "This mob has no mind!", confidential = TRUE)
+		return
+	if(!istype(target_mob) && !istype(target_mind))
+		to_chat(usr, "This can only be used on instances of type /mob and /mind", confidential = TRUE)
+		return
+	target_mind.traitor_panel()
+	SSblackbox.record_feedback("tally", "admin_verb", 1, "Objective Panel") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+
+/client/proc/validate_objectives()
+	set category = "Debug"
+	set name = "Check All Objectives Completion"
+	for(var/datum/antagonist/A in GLOB.antagonists)
+		if(!A.owner)
+			continue
+
+		to_chat(usr,"[A.owner.key]")
+		to_chat(usr,"[A.owner.name]")
+		to_chat(usr,"[A.type]")
+		to_chat(usr,"[A.name]")
+
+		if(length(A.objectives))
+			for(var/datum/objective/O in A.objectives)
+				var/result = O.check_completion() ? "SUCCESS" : "FAIL"
+				to_chat(usr,"--------------------------------")
+				to_chat(usr,"[O.type]")
+				to_chat(usr,"---------------------------------")
+				to_chat(usr,"[O.explanation_text] = [result]")
+				to_chat(usr,"----------------------------------")

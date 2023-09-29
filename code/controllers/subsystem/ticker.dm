@@ -44,15 +44,16 @@ SUBSYSTEM_DEF(ticker)
 	var/queue_delay = 0
 	var/list/queued_players = list()		//used for join queues when the server exceeds the hard population cap
 
+	var/list/datum/mind/minds = list() //The characters in the game. Used for objective tracking.
 
-/datum/controller/subsystem/ticker/Initialize(timeofday)
+/datum/controller/subsystem/ticker/Initialize()
 	load_mode()
 
 	login_music = choose_lobby_song()
 	for(var/client/player AS in GLOB.clients)
 		player.play_title_music()
 
-	return ..()
+	return SS_INIT_SUCCESS
 
 ///returns the string address of a random config lobby song
 /datum/controller/subsystem/ticker/proc/choose_lobby_song()
@@ -61,7 +62,7 @@ SUBSYSTEM_DEF(ticker)
 
 	for(var/themes in reboot_sounds)
 		possible_themes += themes
-	if(possible_themes.len)
+	if(length(possible_themes))
 		return "[global.config.directory]/lobby_themes/[pick(possible_themes)]"
 
 
@@ -120,8 +121,8 @@ SUBSYSTEM_DEF(ticker)
 				GLOB.ooc_allowed = TRUE
 				GLOB.dooc_allowed = TRUE
 				mode.declare_completion(force_ending)
-				addtimer(CALLBACK(SSvote, /datum/controller/subsystem/vote/proc/automatic_vote), 2 SECONDS)
-				addtimer(CALLBACK(src, .proc/Reboot), CONFIG_GET(number/vote_period) * 3 + 9 SECONDS)
+				addtimer(CALLBACK(SSvote, TYPE_PROC_REF(/datum/controller/subsystem/vote, automatic_vote)), 2 SECONDS)
+				addtimer(CALLBACK(src, PROC_REF(Reboot)), CONFIG_GET(number/vote_period) * 3 + 9 SECONDS)
 				Master.SetRunLevel(RUNLEVEL_POSTGAME)
 				for(var/client/C AS in GLOB.clients)
 					C.mob?.update_sight() // To reveal ghosts
@@ -244,14 +245,14 @@ SUBSYSTEM_DEF(ticker)
 	queue_delay = SSticker.queue_delay
 	queued_players = SSticker.queued_players
 
-	switch(current_state)
-		if(GAME_STATE_SETTING_UP)
-			Master.SetRunLevel(RUNLEVEL_SETUP)
-		if(GAME_STATE_PLAYING)
-			Master.SetRunLevel(RUNLEVEL_GAME)
-		if(GAME_STATE_FINISHED)
-			Master.SetRunLevel(RUNLEVEL_POSTGAME)
-
+	if(Master) //Set Masters run level if it exists
+		switch (current_state)
+			if(GAME_STATE_SETTING_UP)
+				Master.SetRunLevel(RUNLEVEL_SETUP)
+			if(GAME_STATE_PLAYING)
+				Master.SetRunLevel(RUNLEVEL_GAME)
+			if(GAME_STATE_FINISHED)
+				Master.SetRunLevel(RUNLEVEL_POSTGAME)
 
 /datum/controller/subsystem/ticker/proc/GetTimeLeft()
 	if(isnull(SSticker.time_left))
@@ -310,7 +311,7 @@ SUBSYSTEM_DEF(ticker)
 		return
 
 	if(!delay)
-		delay = CONFIG_GET(number/round_end_countdown) * 10
+		delay = CONFIG_GET(number/mission_end_countdown) * 10
 
 	var/skip_delay = check_rights()
 	if(delay_end && !skip_delay)
@@ -399,5 +400,5 @@ SUBSYSTEM_DEF(ticker)
 
 	for(var/themes in reboot_sounds)
 		possible_themes += themes
-	if(possible_themes.len)
+	if(length(possible_themes))
 		return "[global.config.directory]/reboot_themes/[pick(possible_themes)]"

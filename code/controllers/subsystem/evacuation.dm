@@ -37,7 +37,7 @@ SUBSYSTEM_DEF(evacuation)
 		return FALSE
 
 	dest_cooldown = SELF_DESTRUCT_ROD_STARTUP_TIME / length(dest_rods)
-	dest_master.desc = "The main operating panel for a self-destruct system. It requires very little user input, but the final safety mechanism is manually unlocked.\nAfter the initial start-up sequence, [dest_rods.len] control rods must be armed, followed by manually flipping the detonation switch."
+	dest_master.desc = "The main operating panel for a self-destruct system. It requires very little user input, but the final safety mechanism is manually unlocked.\nAfter the initial start-up sequence, [length(dest_rods)] control rods must be armed, followed by manually flipping the detonation switch."
 
 /datum/controller/subsystem/evacuation/fire()
 	process_evacuation()

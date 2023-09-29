@@ -2,6 +2,10 @@
 /// Food.
 ////////////////////////////////////////////////////////////////////////////////
 /obj/item/reagent_containers/food
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/items/food_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/items/food_right.dmi',
+	)
 	possible_transfer_amounts = null
 	volume = 50 //Sets the default container amount for all food items.
 	var/filling_color = "#FFFFFF" //Used by sandwiches.
@@ -9,14 +13,14 @@
 
 	var/list/center_of_mass = newlist() //Center of mass
 
-/obj/item/reagent_containers/food/Initialize()
+/obj/item/reagent_containers/food/Initialize(mapload)
 	. = ..()
 	if(!pixel_x && !pixel_y)
 		pixel_x = rand(-6, 6) //Randomizes postion
 		pixel_y = rand(-6, 6)
 
 /obj/item/reagent_containers/food/afterattack(atom/A, mob/user, proximity, params)
-	if(proximity && params && istype(A, /obj/structure/table) && center_of_mass.len)
+	if(proximity && params && istype(A, /obj/structure/table) && length(center_of_mass))
 		//Places the item on a grid
 		var/list/mouse_control = params2list(params)
 		var/cellnumber = 4

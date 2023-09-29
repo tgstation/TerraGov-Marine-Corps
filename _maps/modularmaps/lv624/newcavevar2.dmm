@@ -1,17 +1,17 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "bk" = (
 /turf/closed/wall/r_wall,
-/area/lv624/ground/caves/central1)
+/area/lv624/ground/caves/central1/garbledradio)
 "bF" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark,
 /area/lv624/ground/caves/central1)
 "co" = (
 /turf/open/floor,
-/area/lv624/ground/caves/central1)
+/area/lv624/ground/caves/central1/garbledradio)
 "cr" = (
-/obj/effect/decal/lvsanddecal,
-/obj/effect/decal/lvsanddecal{
+/obj/effect/turf_decal/lvsanddecal,
+/obj/effect/turf_decal/lvsanddecal{
 	dir = 8
 	},
 /turf/open/floor/tile/darkgreen,
@@ -23,10 +23,10 @@
 /area/lv624/ground/caves/central2)
 "cQ" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/lvsanddecal{
+/obj/effect/turf_decal/lvsanddecal{
 	dir = 4
 	},
-/obj/effect/decal/lvsanddecal{
+/obj/effect/turf_decal/lvsanddecal{
 	dir = 8
 	},
 /turf/open/floor/tile/darkgreen,
@@ -56,7 +56,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central2)
 "gq" = (
-/obj/machinery/constructable_frame/state_2,
+/obj/effect/spawner/random/machinery/machine_frame,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central2)
 "gv" = (
@@ -64,7 +64,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central2)
 "gx" = (
-/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/engineering/tool,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central2)
 "gG" = (
@@ -86,8 +86,8 @@
 /area/lv624/ground/caves/central3)
 "gZ" = (
 /obj/structure/rack/nometal,
-/obj/effect/spawner/random/toolbox,
-/obj/effect/spawner/random/cable,
+/obj/effect/spawner/random/engineering/toolbox,
+/obj/effect/spawner/random/engineering/cable,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central2)
 "hL" = (
@@ -139,7 +139,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central1)
 "qA" = (
-/obj/effect/decal/lvsanddecal,
+/obj/effect/turf_decal/lvsanddecal,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/cafe,
 /area/lv624/ground/caves/central2)
@@ -160,13 +160,13 @@
 /area/lv624/ground/caves/central1)
 "sB" = (
 /obj/item/shard,
-/obj/effect/decal/lvsanddecal{
+/obj/effect/turf_decal/lvsanddecal{
 	dir = 8
 	},
 /turf/open/floor/tile/cafe,
 /area/lv624/ground/caves/central2)
 "tk" = (
-/obj/effect/spawner/random/trash,
+/obj/effect/spawner/random/misc/trash,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central2)
 "ty" = (
@@ -185,12 +185,9 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central3)
 "tK" = (
-/obj/effect/decal/lvsanddecal,
+/obj/effect/turf_decal/lvsanddecal,
 /turf/open/floor/tile/darkgreen,
 /area/lv624/ground/caves/central2)
-"uN" = (
-/turf/closed/mineral/smooth,
-/area/lv624/ground/caves/central1)
 "vo" = (
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central1)
@@ -226,7 +223,7 @@
 /area/lv624/ground/caves/central1)
 "AR" = (
 /obj/structure/rack,
-/obj/item/tool/pickaxe,
+/obj/effect/spawner/random/engineering/pickaxe,
 /turf/open/floor/tile/vault{
 	dir = 8
 	},
@@ -250,7 +247,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central2)
 "CO" = (
-/obj/effect/decal/lvsanddecal{
+/obj/effect/turf_decal/lvsanddecal{
 	dir = 4
 	},
 /turf/open/floor/tile/cafe,
@@ -261,8 +258,8 @@
 /area/lv624/ground/caves/central2)
 "Eb" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/lvsanddecal,
-/obj/effect/decal/lvsanddecal{
+/obj/effect/turf_decal/lvsanddecal,
+/obj/effect/turf_decal/lvsanddecal{
 	dir = 4
 	},
 /turf/open/floor/tile/darkgreen,
@@ -285,7 +282,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central2)
 "Gs" = (
-/obj/effect/decal/lvsanddecal{
+/obj/effect/turf_decal/lvsanddecal{
 	dir = 8
 	},
 /obj/effect/decal/cleanable/dirt,
@@ -299,8 +296,8 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central2)
 "ID" = (
-/obj/effect/decal/lvsanddecal,
-/obj/effect/decal/lvsanddecal{
+/obj/effect/turf_decal/lvsanddecal,
+/obj/effect/turf_decal/lvsanddecal{
 	dir = 8
 	},
 /turf/open/floor/tile/cafe,
@@ -320,7 +317,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central2)
 "Kp" = (
-/obj/effect/decal/lvsanddecal{
+/obj/effect/turf_decal/lvsanddecal{
 	dir = 8
 	},
 /turf/open/floor/tile/cafe,
@@ -332,14 +329,14 @@
 /area/lv624/ground/caves/central2)
 "LS" = (
 /obj/item/mecha_parts/part/durand_right_leg,
-/obj/effect/decal/lvsanddecal,
-/obj/effect/decal/lvsanddecal{
+/obj/effect/turf_decal/lvsanddecal,
+/obj/effect/turf_decal/lvsanddecal{
 	dir = 4
 	},
 /turf/open/floor/tile/darkgreen,
 /area/lv624/ground/caves/central2)
 "LU" = (
-/obj/effect/decal/lvsanddecal{
+/obj/effect/turf_decal/lvsanddecal{
 	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
@@ -351,7 +348,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central2)
 "MZ" = (
-/obj/effect/decal/lvsanddecal,
+/obj/effect/turf_decal/lvsanddecal,
 /turf/open/floor/tile/cafe,
 /area/lv624/ground/caves/central2)
 "NA" = (
@@ -362,7 +359,7 @@
 /turf/open/floor/tile/darkgreen,
 /area/lv624/ground/caves/central2)
 "Oq" = (
-/obj/effect/spawner/random/kitchen,
+/obj/effect/spawner/random/food_or_drink/kitchen,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central2)
 "OE" = (
@@ -371,11 +368,11 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central2)
 "OR" = (
-/obj/effect/decal/lvsanddecal,
-/obj/effect/decal/lvsanddecal{
+/obj/effect/turf_decal/lvsanddecal,
+/obj/effect/turf_decal/lvsanddecal{
 	dir = 8
 	},
-/obj/effect/spawner/random/trash,
+/obj/effect/spawner/random/misc/trash,
 /turf/open/floor/tile/darkgreen,
 /area/lv624/ground/caves/central2)
 "Py" = (
@@ -384,7 +381,7 @@
 /area/lv624/ground/caves/central2)
 "PF" = (
 /obj/item/shard,
-/obj/effect/spawner/random/kitchen,
+/obj/effect/spawner/random/food_or_drink/kitchen,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central2)
 "PL" = (
@@ -396,7 +393,7 @@
 /turf/open/floor/tile/cafe,
 /area/lv624/ground/caves/central2)
 "Rk" = (
-/obj/effect/decal/lvsanddecal{
+/obj/effect/turf_decal/lvsanddecal{
 	dir = 8
 	},
 /turf/open/floor/mech_bay_recharge_floor/asteroid,
@@ -442,12 +439,12 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central1)
 "Vc" = (
-/obj/effect/spawner/random/cable,
+/obj/effect/spawner/random/engineering/cable,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central2)
 "WV" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/lvsanddecal,
+/obj/effect/turf_decal/lvsanddecal,
 /turf/open/floor/tile/darkgreen,
 /area/lv624/ground/caves/central2)
 "Xi" = (
@@ -458,10 +455,10 @@
 /turf/open/floor/tile/dark,
 /area/lv624/ground/caves/central1)
 "Xp" = (
-/obj/effect/decal/lvsanddecal{
+/obj/effect/turf_decal/lvsanddecal{
 	dir = 4
 	},
-/obj/effect/decal/lvsanddecal,
+/obj/effect/turf_decal/lvsanddecal,
 /turf/open/floor/tile/cafe,
 /area/lv624/ground/caves/central2)
 "XC" = (
@@ -3277,7 +3274,7 @@ XC
 XC
 XC
 yQ
-uN
+XC
 co
 co
 co

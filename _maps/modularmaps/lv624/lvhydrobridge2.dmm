@@ -4,26 +4,20 @@
 /turf/open/floor/plating,
 /area/lv624/ground/river2)
 "b" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor,
 /area/lv624/ground/river2)
-"c" = (
-/obj/structure/catwalk,
-/turf/open/ground/coast{
-	dir = 1
-	},
-/area/lv624/ground/river2)
 "d" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/effect/landmark/weed_node,
 /turf/open/floor,
 /area/lv624/ground/river2)
 "g" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/structure/disposalpipe/segment{
@@ -39,11 +33,15 @@
 /obj/structure/grille/broken,
 /turf/open/floor/plating,
 /area/lv624/ground/river2)
+"l" = (
+/obj/structure/catwalk,
+/turf/open/liquid/water/river/autosmooth/deep,
+/area/lv624/ground/river2)
 "m" = (
 /turf/open/floor/plating,
 /area/lv624/ground/river2)
 "n" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
@@ -66,7 +64,7 @@
 /turf/closed/wall,
 /area/lv624/ground/river2)
 "u" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor,
@@ -74,12 +72,6 @@
 "w" = (
 /obj/structure/fence,
 /turf/open/floor/plating,
-/area/lv624/ground/river2)
-"A" = (
-/obj/structure/catwalk,
-/turf/open/ground/coast/corner{
-	dir = 8
-	},
 /area/lv624/ground/river2)
 "B" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -101,18 +93,12 @@
 /area/lv624/ground/river2)
 "I" = (
 /obj/structure/catwalk,
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/lv624/ground/river2)
 "K" = (
 /obj/structure/flora/ausbushes/reedbush,
 /obj/structure/catwalk,
-/turf/open/ground/river,
-/area/lv624/ground/river2)
-"N" = (
-/obj/structure/catwalk,
-/turf/open/ground/coast{
-	dir = 5
-	},
+/turf/open/liquid/water/river,
 /area/lv624/ground/river2)
 "P" = (
 /obj/machinery/floodlight/colony{
@@ -122,7 +108,7 @@
 	dir = 4
 	},
 /obj/structure/catwalk,
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/lv624/ground/river2)
 "T" = (
 /obj/structure/disposalpipe/segment{
@@ -140,12 +126,12 @@ P
 I
 I
 I
+l
+l
+l
 I
 I
 I
-I
-N
-A
 "}
 (2,1,1) = {"
 w
@@ -223,11 +209,11 @@ s
 P
 I
 I
-I
-I
-I
-I
+l
+l
+l
+l
 I
 K
-c
+I
 "}

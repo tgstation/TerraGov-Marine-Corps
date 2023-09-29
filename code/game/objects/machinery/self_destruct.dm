@@ -8,8 +8,13 @@
 	var/active_state = SELF_DESTRUCT_MACHINE_INACTIVE
 	///Whether only marines can activate this. left here in case of admins feeling nice or events
 	var/marine_only_activate = TRUE
+	///When the self destruct sequence was initiated
+	var/started_at = 0
+	/// Timer mainly used for hud timers
+	var/timer
 
-/obj/machinery/self_destruct/Initialize()
+
+/obj/machinery/self_destruct/Initialize(mapload)
 	. = ..()
 	icon_state += "_1"
 
@@ -57,7 +62,15 @@
 		ui.open()
 
 /obj/machinery/self_destruct/console/ui_data(mob/user)
-	return list("dest_status" = active_state)
+	var/list/data = list()
+	data["dest_status"] = active_state
+	if(active_state == SELF_DESTRUCT_MACHINE_ARMED)
+		data["detonation_pcent"] = min(round(((world.time - started_at)  / (SELF_DESTRUCT_ROD_STARTUP_TIME)), 0.01), 1)  // percentage of time left to detonation
+		data["detonation_time"] = DisplayTimeText(timeleft(timer), 1) //amount of time left to detonation
+	else
+		data["detonation_pcent"] = 0
+		data["detonation_time"] = "Inactive"
+	return data
 
 
 /obj/machinery/self_destruct/console/ui_act(action, list/params)
@@ -72,7 +85,11 @@
 			active_state = SELF_DESTRUCT_MACHINE_ARMED
 			var/obj/machinery/self_destruct/rod/I = SSevacuation.dest_rods[SSevacuation.dest_index]
 			I.activate_time = world.time
+			started_at = world.time
 			SSevacuation.initiate_self_destruct()
+			timer = addtimer(VARSET_CALLBACK(src, timer, null), SELF_DESTRUCT_ROD_STARTUP_TIME, TIMER_DELETE_ME|TIMER_STOPPABLE)
+
+			SEND_GLOBAL_SIGNAL(COMSIG_GLOB_SHIP_SELF_DESTRUCT_ACTIVATED, src)
 			. = TRUE
 
 		if("dest_trigger")
@@ -99,7 +116,7 @@
 
 
 /obj/machinery/self_destruct/rod/Destroy()
-	if(SSevacuation)
+	if(SSevacuation?.dest_rods)
 		SSevacuation.dest_rods -= src
 	return ..()
 

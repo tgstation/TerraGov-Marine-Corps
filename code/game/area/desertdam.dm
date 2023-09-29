@@ -214,6 +214,7 @@
 /area/desert_dam/interior/east_engineering
 	name = "Eastern Engineering"
 	icon_state = "yellow"
+	minimap_color = MINIMAP_AREA_ENGI
 
 /area/desert_dam/interior/dam_interior/north_tunnel_entrance
 	name = "Engineering North Tunnel Entrance"
@@ -307,10 +308,12 @@
 	icon_state = "western_ss"
 
 //Administration
+/area/desert_dam/building/administration
+	minimap_color = MINIMAP_AREA_COMMAND
+
 /area/desert_dam/building/administration/control_room
 	name = "Administration Landing Control Room"
 	icon_state = "yellow"
-	minimap_color = MINIMAP_AREA_COMMAND
 
 /area/desert_dam/building/administration/lobby
 	name = "Administration Lobby"
@@ -338,6 +341,9 @@
 
 
 //Bar
+/area/desert_dam/building/bar
+	minimap_color = MINIMAP_AREA_LIVING
+
 /area/desert_dam/building/bar/bar
 	name = "Bar"
 	icon_state = "yellow"
@@ -352,6 +358,9 @@
 
 
 //Cafe
+/area/desert_dam/building/cafeteria
+	minimap_color = MINIMAP_AREA_LIVING
+
 /area/desert_dam/building/cafeteria/cafeteria
 	name = "Cafeteria"
 	icon_state = "yellow"
@@ -374,6 +383,9 @@
 
 
 //Dorms
+/area/desert_dam/building/dorms
+	minimap_color = MINIMAP_AREA_LIVING
+
 /area/desert_dam/building/dorms/hallway_northwing
 	name = "Dormitory North Wing"
 	icon_state = "yellow"
@@ -489,6 +501,9 @@
 
 
 //Warehouse
+/area/desert_dam/building/warehouse
+	minimap_color = MINIMAP_AREA_REQ
+
 /area/desert_dam/building/warehouse/warehouse
 	name = "Warehouse"
 	icon_state = "yellow"
@@ -504,6 +519,9 @@
 
 
 //Hydroponics
+/area/desert_dam/building/hydroponics
+	minimap_color = MINIMAP_AREA_LIVING
+
 /area/desert_dam/building/hydroponics/hydroponics
 	name = "Hydroponics"
 	icon_state = "hydro"
@@ -525,12 +543,13 @@
 /area/desert_dam/building/telecommunication
 	name = "Telecommunications"
 	icon_state = "yellow"
-	minimap_color = MINIMAP_AREA_ENGI
+	minimap_color = MINIMAP_AREA_COMMAND
 
 //Water Treatment Plant 1
 /area/desert_dam/building/water_treatment_one
 	name = "Water Treatment One"
 	icon_state = "yellow"
+	minimap_color = MINIMAP_AREA_ENGI
 
 /area/desert_dam/building/water_treatment_one/lobby
 	name = "Water Treatment One Lobby"
@@ -580,6 +599,7 @@
 /area/desert_dam/building/water_treatment_two
 	name = "Water Treatment Two"
 	icon_state = "yellow"
+	minimap_color = MINIMAP_AREA_ENGI
 
 /area/desert_dam/building/water_treatment_two/lobby
 	name = "Water Treatment Two Lobby"
@@ -711,10 +731,11 @@
 /area/desert_dam/building/church
 	name = "Church"
 	icon_state = "courtroom"
+	minimap_color = MINIMAP_AREA_LIVING
 
 //Mining area
 /area/desert_dam/building/mining
-	minimap_color = MINIMAP_AREA_ENGI
+	minimap_color = MINIMAP_AREA_REQ
 
 /area/desert_dam/building/mining/workshop
 	name = "Mining Workshop"
@@ -766,6 +787,9 @@
 
 
 //NorthWest Lab Buildings
+/area/desert_dam/building/lab_northwest
+	minimap_color = MINIMAP_AREA_RESEARCH
+
 /area/desert_dam/building/lab_northwest/west_lab_robotics
 	name = "West Lab Robotics"
 	icon_state = "ass_line"
@@ -886,6 +910,7 @@
 	name = "NTT Jerry-Cabot"
 	icon_state = "dark160"
 	requires_power = FALSE
+	minimap_color = MINIMAP_AREA_SHIP
 
 //Away from LZ
 

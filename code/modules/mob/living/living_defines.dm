@@ -1,9 +1,10 @@
 /mob/living
 	see_invisible = SEE_INVISIBLE_LIVING
 	flags_atom = CRITICAL_ATOM|PREVENT_CONTENTS_EXPLOSION|BUMP_ATTACKABLE
-	var/see_override = 0 //0 for no override, sets see_invisible = see_override in silicon & carbon life process via update_sight()
-
-	var/resize = RESIZE_DEFAULT_SIZE //Badminnery resize
+	///0 for no override, sets see_invisible = see_override in silicon & carbon life process via update_sight()
+	var/see_override = 0
+	///Badminnery resize
+	var/resize = RESIZE_DEFAULT_SIZE
 
 	/* Health and life related vars */
 	/// Maximum health that should be possible.
@@ -57,8 +58,8 @@
 
 	var/dizziness = 0
 	var/jitteriness = 0
-
-	var/hallucination = 0 //Directly affects how long a mob will hallucinate for
+	///Directly affects how long a mob will hallucinate for
+	var/hallucination = 0
 	var/disabilities = NONE
 
 	var/restrained_flags = NONE
@@ -73,60 +74,68 @@
 	var/attack_sound
 	var/friendly = "nuzzles"
 	var/wall_smash
+	///modifier to gun accuracy
 	var/ranged_accuracy_mod = 0
-
-	var/on_fire //The "Are we on fire?" var
-	var/fire_stacks = 0 //Tracks how many stacks of fire we have on, max is
-
-	var/chestburst = 0 // 0: normal, 1: bursting, 2: bursted.
-	var/metabolism_efficiency = 1 //more or less efficiency to metabolize helpful/harmful reagents and (TODO) regulate body temperature..
+	///modifier to gun scatter
+	var/ranged_scatter_mod = 0
+	///The "Are we on fire?" var
+	var/on_fire
+	///Tracks how many stacks of fire we have on, max is
+	var/fire_stacks = 0
+	///0: normal, 1: bursting, 2: bursted.
+	var/chestburst = 0
+	///more or less efficiency to metabolize helpful/harmful reagents and (TODO) regulate body temperature..
+	var/metabolism_efficiency = 1
 
 	var/tinttotal = TINT_NONE
 
-	var/list/status_effects //a list of all status effects the mob has
+	///a list of all status effects the mob has
+	var/list/status_effects
 	///Assoc list mapping aura types to strength, based on what we've received since the last life tick. Handled in handle_status_effects()
 	var/list/received_auras
 	///List of strings for auras this mob is currently emitting via ssAura
 	var/list/emitted_auras
-	var/list/stun_absorption //lazy list
+	///lazy list
+	var/list/stun_absorption
 
 
 	var/resting = FALSE
 
 	var/list/icon/pipes_shown = list()
+	/// TODO MAKE ME A TRAIT
 	var/is_ventcrawling
 
-	var/pull_speed = 0 //How much slower or faster this mob drags as a base
-
-	var/reagent_shock_modifier = 0 //negative values reduce shock/pain
-	var/reagent_pain_modifier = 0 //same as above, except can potentially mask damage
+	///How much slower or faster this mob drags as a base
+	var/pull_speed = 0
+	///negative values reduce shock/pain
+	var/reagent_shock_modifier = 0
+	///same as above, except can potentially mask damage
+	var/reagent_pain_modifier = 0
 
 	///Lazy assoc list of smoke type mapped to the next world time that smoke can affect this mob
 	var/list/smoke_delays
-	var/smokecloaked = FALSE //For the new Smoke Grenade
+	///For the new Smoke Grenade
+	var/smokecloaked = FALSE
 
 	var/no_stun = FALSE
 
 	var/ventcrawl_layer = PIPING_LAYER_DEFAULT
-
-	var/grab_resist_level = 0 //Every time we try to resist a grab, we increment this by 1 until it exceeds the grab level, thereby breaking the grab.
-
+	///Every time we try to resist a grab, we increment this by 1 until it exceeds the grab level, thereby breaking the grab.
+	var/grab_resist_level = 0
 	var/datum/job/job
 	var/comm_title = ""
-
-	var/blood_volume = 0 //how much blood the mob has
-	var/heart_multi = 1 //Multiplier.
+	///how much blood the mob has
+	var/blood_volume = 0
+	///Multiplier.
+	var/heart_multi = 1
 
 	var/list/embedded_objects
 
 	/// How much friendly fire damage has this mob done in the last 30 seconds.
 	var/list/friendly_fire = list()
 
-	///Stagger and slow vars; Stagger penalizes projectile damage for non-Xenos and disables ability use for Xenos. Slowdown is obvious.
 	///Temporary penalty on movement. Regenerates each tick.
 	var/slowdown = 0
-	///Temporary inability to use special actions; hurts projectile damage. Regenerates each tick.
-	var/stagger = 0
 	///Id of the timer to set the afk status to MOB_DISCONNECTED
 	var/afk_timer_id
 	///If this mob is afk
@@ -134,3 +143,12 @@
 
 	/// This is the cooldown on suffering additional effects for when we exhaust all stamina
 	COOLDOWN_DECLARE(last_stamina_exhaustion)
+
+	///The world.time of when this mob was last lying down
+	var/last_rested = 0
+	///The world.time of when this mob became unconscious
+	var/last_unconscious = 0
+	///The world.time of when this mob entered a stasis bag
+	var/time_entered_stasis = 0
+	///The world.time of when this mob entered a cryo tube
+	var/time_entered_cryo = 0

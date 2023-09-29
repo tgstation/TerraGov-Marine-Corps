@@ -1,6 +1,10 @@
 /obj/item/robot_parts
 	name = "robot parts"
 	icon = 'icons/obj/items/robot_parts.dmi'
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/equipment/engineering_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/equipment/engineering_right.dmi',
+	)
 	item_state = "buildpipe"
 	icon_state = "blank"
 	flags_atom = CONDUCT
@@ -45,3 +49,32 @@
 	name = "robot endoskeleton"
 	desc = "A complex metal backbone with standard limb sockets and pseudomuscle anchors."
 	icon_state = "robo_suit"
+
+/obj/item/robot_parts/biotic
+	name = "biotic limbs"
+	icon = 'icons/mob/human_races/r_human.dmi'
+	flags_atom = NONE
+
+/obj/item/robot_parts/biotic/l_arm
+	name = "biotic left arm"
+	desc = "A biotic limb."
+	icon_state = "l_arm"
+	part = list(BODY_ZONE_L_ARM, BODY_ZONE_PRECISE_L_HAND)
+
+/obj/item/robot_parts/biotic/r_arm
+	name = "biotic right arm"
+	desc = "A biotic limb."
+	icon_state = "r_arm"
+	part = list(BODY_ZONE_R_ARM, BODY_ZONE_PRECISE_R_HAND)
+
+/obj/item/robot_parts/biotic/l_leg
+	name = "biotic left leg"
+	desc = "A biotic limb."
+	icon_state = "l_leg"
+	part = list(BODY_ZONE_L_LEG, BODY_ZONE_PRECISE_L_FOOT)
+
+/obj/item/robot_parts/biotic/r_leg
+	name = "biotic right leg"
+	desc = "A biotic limb."
+	icon_state = "r_leg"
+	part = list(BODY_ZONE_R_LEG, BODY_ZONE_PRECISE_R_FOOT)

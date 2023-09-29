@@ -38,7 +38,7 @@
 	var/corpseidaccess = null //This is for access. See access.dm for which jobs give what access. Use CAPTAIN if you want it to be all access.
 	var/corpseidicon = null //For setting it to be a gold, silver, centcom etc ID
 
-/obj/effect/landmark/corpsespawner/Initialize()
+/obj/effect/landmark/corpsespawner/Initialize(mapload)
 	. = ..()
 	GLOB.corpse_landmarks_list += src
 
@@ -295,7 +295,7 @@
 	corpseback = /obj/item/storage/backpack/industrial
 	corpseshoes = /obj/item/clothing/shoes/orange
 	corpsebelt = /obj/item/storage/belt/utility/full
-	corpsegloves = /obj/item/clothing/gloves/yellow
+	corpsegloves = /obj/item/clothing/gloves/insulated
 	corpsehelmet = /obj/item/clothing/head/hardhat
 	corpseid = 1
 	corpseidjob = "Station Engineer"
@@ -389,16 +389,16 @@
 
 /obj/effect/landmark/corpsespawner/pmc
 	name = "Unknown PMC"
-	corpseuniform = /obj/item/clothing/under/marine/veteran/PMC
+	corpseuniform = /obj/item/clothing/under/marine/veteran/pmc
 	corpseshoes = /obj/item/clothing/shoes/jackboots
 	corpsesuit = /obj/item/clothing/suit/armor/vest/security
 	corpseback = /obj/item/storage/backpack/satchel
-	corpsebelt = /obj/item/storage/belt/gun/pistol/m4a3/vp70
-	corpsegloves = /obj/item/clothing/gloves/marine/veteran/PMC
-	corpsehelmet = /obj/item/clothing/head/helmet/marine/veteran/PMC
-	corpsemask = /obj/item/clothing/mask/gas/PMC/damaged
+	corpsebelt = /obj/item/storage/holster/belt/pistol/m4a3/vp70
+	corpsegloves = /obj/item/clothing/gloves/marine/veteran/pmc
+	corpsehelmet = /obj/item/clothing/head/helmet/marine/veteran/pmc
+	corpsemask = /obj/item/clothing/mask/gas/pmc/damaged
 	corpseradio = /obj/item/radio/headset/survivor
-	corpsesuit = /obj/item/clothing/suit/storage/marine/veteran/PMC
+	corpsesuit = /obj/item/clothing/suit/storage/marine/veteran/pmc
 
 /obj/effect/landmark/corpsespawner/pmc/burst
 	death_type = CHESTBURST_DEATH
@@ -457,13 +457,13 @@
 
 /obj/effect/landmark/corpsespawner/PMC
 	name = "Private Security Officer"
-	corpseuniform = /obj/item/clothing/under/marine/veteran/PMC
+	corpseuniform = /obj/item/clothing/under/marine/veteran/pmc
 	corpsesuit = /obj/item/clothing/suit/armor/bulletproof
 	corpseglasses = /obj/item/clothing/glasses/sunglasses
 	corpsemask = /obj/item/clothing/mask/gas
-	corpsehelmet = /obj/item/clothing/head/helmet/marine/veteran/PMC
-	corpsegloves = /obj/item/clothing/gloves/marine/veteran/PMC
-	corpseshoes = /obj/item/clothing/shoes/veteran/PMC
+	corpsehelmet = /obj/item/clothing/head/helmet/marine/veteran/pmc
+	corpsegloves = /obj/item/clothing/gloves/marine/veteran/pmc
+	corpseshoes = /obj/item/clothing/shoes/veteran/pmc
 	corpsepocket1 = /obj/item/tool/lighter/zippo
 	corpseid = 1
 	corpseidjob = "Private Security Officer"
@@ -479,11 +479,11 @@
 
 /obj/effect/landmark/corpsespawner/marine
 	name = "Marine"
-	corpseuniform = /obj/item/clothing/under/marine/standard
+	corpseuniform = /obj/item/clothing/under/marine
 	corpsesuit = /obj/item/clothing/suit/modular/xenonauten/light
 	corpseback = /obj/item/storage/backpack/satchel
 	corpsemask = /obj/item/clothing/mask/rebreather
-	corpsehelmet = /obj/item/clothing/head/modular/marine/m10x
+	corpsehelmet = /obj/item/clothing/head/modular/m10x
 	corpsegloves = /obj/item/clothing/gloves/marine
 	corpseshoes = /obj/item/clothing/shoes/marine
 	corpsepocket1 = /obj/item/tool/lighter/zippo
@@ -496,7 +496,7 @@
 
 /obj/effect/landmark/corpsespawner/marine/engineer
 	name = "Marine Engineer"
-	corpseuniform = /obj/item/clothing/under/marine/standard
+	corpseuniform = /obj/item/clothing/under/marine
 	corpsesuit = /obj/item/clothing/suit/modular/xenonauten/light
 	corpseback = /obj/item/storage/backpack/marine/engineerpack
 	corpsemask = /obj/item/clothing/mask/gas/tactical
@@ -518,7 +518,7 @@
 	corpsesuit = /obj/item/clothing/suit/modular/xenonauten/light
 	corpseback = /obj/item/storage/backpack/corpsman
 	corpsemask = /obj/item/clothing/mask/gas
-	corpsehelmet = /obj/item/clothing/head/helmet/marine/corpsman
+	corpsehelmet = /obj/item/clothing/head/modular/m10x
 	corpsegloves = /obj/item/clothing/gloves/latex
 	corpseshoes = /obj/item/clothing/shoes/marine
 	corpsepocket1 = /obj/item/tweezers
@@ -528,6 +528,21 @@
 	death_type = CHESTBURST_DEATH
 
 /obj/effect/landmark/corpsespawner/marine/corpsman/regular
+	death_type = REGULAR_DEATH
+
+/obj/effect/landmark/corpsespawner/assistant
+	name = "Assistant"
+	corpseuniform = /obj/item/clothing/under/color/grey
+	corpseback = /obj/item/storage/backpack
+	corpsemask = /obj/item/clothing/mask/gas
+	corpseglasses = /obj/item/clothing/glasses/welding
+	corpsehelmet = /obj/item/clothing/head/soft/grey
+	corpsegloves = /obj/item/clothing/gloves/yellow
+	corpseshoes = /obj/item/clothing/shoes/black
+	corpsepocket1 = /obj/item/tool/soap/nanotrasen
+	corpsepocket2 = /obj/item/tool/lighter/zippo
+
+/obj/effect/landmark/corpsespawner/assistant/regular
 	death_type = REGULAR_DEATH
 
 #undef REGULAR_DEATH

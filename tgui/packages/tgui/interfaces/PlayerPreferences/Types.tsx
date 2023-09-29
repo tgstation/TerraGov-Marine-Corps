@@ -35,6 +35,8 @@ type GameSettingData = {
   scaling_method: string;
   pixel_size: number;
   parallax: number;
+  quick_equip: string[];
+  is_admin: number;
 };
 
 type GearCustomizationData = {
@@ -116,11 +118,16 @@ type AllKeybindingsList = {
 
 type PreferencesClothingTypeList = {
   underwear: PreferencesUnderWearTypes;
-  undershirt: string[];
+  undershirt: PreferencesUnderShirtTypes;
   backpack: string[];
 };
 
 type PreferencesUnderWearTypes = {
+  male: string[];
+  female: string[];
+};
+
+type PreferencesUnderShirtTypes = {
   male: string[];
   female: string[];
 };

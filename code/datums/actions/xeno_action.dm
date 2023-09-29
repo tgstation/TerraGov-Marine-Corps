@@ -1,8 +1,11 @@
 
 /datum/action/xeno_action
+	///If you are going to add an explanation for an ability. don't use stats, give a very brief explanation of how to use it.
+	desc = "This ability can not be found in codex."
+	action_icon = 'icons/Xeno/actions.dmi'
 	var/plasma_cost = 0
-	var/mechanics_text = "This ability not found in codex." //codex. If you are going to add an explanation for an ability. don't use stats, give a very brief explanation of how to use it.
-	var/use_state_flags = NONE // bypass use limitations checked by can_use_action()
+	///bypass use limitations checked by can_use_action()
+	var/use_state_flags = NONE
 	var/last_use
 	var/cooldown_timer
 	var/ability_name
@@ -17,7 +20,7 @@
 	if(plasma_cost)
 		name = "[name] ([plasma_cost])"
 	var/image/cooldown_image = image('icons/effects/progressicons.dmi', null, "busy_clock", ACTION_LAYER_CLOCK)
-	var/mutable_appearance/empowered_appearence = mutable_appearance('icons/mob/actions.dmi', "borders_center", ACTION_LAYER_EMPOWERED, FLOAT_PLANE)
+	var/mutable_appearance/empowered_appearence = mutable_appearance('icons/Xeno/actions.dmi', "borders_center", ACTION_LAYER_EMPOWERED, FLOAT_PLANE)
 	cooldown_image.pixel_y = 7
 	cooldown_image.appearance_flags = RESET_COLOR|RESET_ALPHA
 	visual_references[VREF_IMAGE_XENO_CLOCK] = cooldown_image
@@ -27,7 +30,7 @@
 	. = ..()
 	var/mob/living/carbon/xenomorph/X = L
 	X.xeno_abilities += src
-	RegisterSignal(L, COMSIG_XENOMORPH_ABILITY_ON_UPGRADE, .proc/on_xeno_upgrade)
+	RegisterSignal(L, COMSIG_XENOMORPH_ABILITY_ON_UPGRADE, PROC_REF(on_xeno_upgrade))
 
 /datum/action/xeno_action/remove_action(mob/living/L)
 	UnregisterSignal(L, COMSIG_XENOMORPH_ABILITY_ON_UPGRADE)
@@ -42,10 +45,10 @@
 
 ///Adds an outline around the ability button
 /datum/action/xeno_action/proc/add_empowered_frame()
-	button.cut_overlay(visual_references[VREF_MUTABLE_EMPOWERED_FRAME])
+	button.add_overlay(visual_references[VREF_MUTABLE_EMPOWERED_FRAME])
 
 /datum/action/xeno_action/proc/remove_empowered_frame()
-	button.add_overlay(visual_references[VREF_MUTABLE_EMPOWERED_FRAME])
+	button.cut_overlay(visual_references[VREF_MUTABLE_EMPOWERED_FRAME])
 
 /datum/action/xeno_action/can_use_action(silent = FALSE, override_flags)
 	var/mob/living/carbon/xenomorph/X = owner
@@ -73,7 +76,7 @@
 			X.balloon_alert(X, "Cannot while buckled")
 		return FALSE
 
-	if(!(flags_to_check & XACT_USE_STAGGERED) && X.stagger)
+	if(!(flags_to_check & XACT_USE_STAGGERED) && X.IsStaggered())
 		if(!silent)
 			X.balloon_alert(X, "Cannot while staggered")
 		return FALSE
@@ -86,6 +89,11 @@
 	if(!(flags_to_check & XACT_USE_CRESTED) && X.crest_defense)
 		if(!silent)
 			X.balloon_alert(X, "Cannot while in crest defense")
+		return FALSE
+
+	if(!(flags_to_check & XACT_USE_ROOTED) && HAS_TRAIT_FROM(X, TRAIT_IMMOBILE, BOILER_ROOTED_TRAIT))
+		if(!silent)
+			X.balloon_alert(X, "Cannot while rooted")
 		return FALSE
 
 	if(!(flags_to_check & XACT_USE_NOTTURF) && !isturf(X.loc))
@@ -134,8 +142,7 @@
 	if(plasma_cost)
 		X.use_plasma(plasma_cost)
 
-//checks if the linked ability is on some cooldown.
-//The action can still be activated by clicking the button
+///checks if the linked ability is on some cooldown. The action can still be activated by clicking the button
 /datum/action/xeno_action/proc/action_cooldown_check()
 	return !cooldown_id
 
@@ -159,7 +166,7 @@
 	if(cooldown_id || !cooldown_length) // stop doubling up or waiting on zero
 		return
 	last_use = world.time
-	cooldown_id = addtimer(CALLBACK(src, .proc/on_cooldown_finish), cooldown_length, TIMER_STOPPABLE)
+	cooldown_id = addtimer(CALLBACK(src, PROC_REF(on_cooldown_finish)), cooldown_length, TIMER_STOPPABLE)
 	button.add_overlay(visual_references[VREF_IMAGE_XENO_CLOCK])
 
 
@@ -167,7 +174,7 @@
 	return timeleft(cooldown_id) * 0.1
 
 
-//override this for cooldown completion.
+///override this for cooldown completion.
 /datum/action/xeno_action/proc/on_cooldown_finish()
 	cooldown_id = null
 	if(!button)
@@ -192,9 +199,12 @@
 	return ..()
 
 /datum/action/xeno_action/activable/alternate_action_activate()
-	INVOKE_ASYNC(src, .proc/action_activate)
+	INVOKE_ASYNC(src, PROC_REF(action_activate))
 
 /datum/action/xeno_action/activable/action_activate()
+	. = ..()
+	if(!.)
+		return
 	var/mob/living/carbon/xenomorph/X = owner
 	if(X.selected_ability == src)
 		return
@@ -224,16 +234,6 @@
 	X.selected_ability = src
 	on_activation()
 
-/datum/action/xeno_action/activable/action_activate()
-	var/mob/living/carbon/xenomorph/X = owner
-	if(X.selected_ability == src)
-		deselect()
-	else
-		if(X.selected_ability)
-			X.selected_ability.deselect()
-		select()
-	return ..()
-
 
 /datum/action/xeno_action/activable/remove_action(mob/living/carbon/xenomorph/X)
 	if(X.selected_ability == src)
@@ -250,7 +250,7 @@
 		return ..(silent, XACT_IGNORE_COOLDOWN|XACT_IGNORE_PLASMA|XACT_USE_STAGGERED)
 	return ..()
 
-//override this
+///override this
 /datum/action/xeno_action/activable/proc/can_use_ability(atom/A, silent = FALSE, override_flags)
 	if(QDELETED(owner))
 		return FALSE

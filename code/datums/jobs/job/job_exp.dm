@@ -102,6 +102,11 @@ GLOBAL_PROTECT(exp_to_update)
 			return_text += "<LI>[dep] [get_exp_format(exp_data[dep])] ([percentage]%) while alive.</LI>"
 		else
 			return_text += "<LI>[dep] [get_exp_format(exp_data[dep])] </LI>"
+
+	for(var/mob_type AS in GLOB.xeno_caste_datums)
+		var/datum/xeno_caste/caste_type = GLOB.xeno_caste_datums[mob_type][XENO_UPGRADE_BASETYPE]
+		return_text += "<LI>[caste_type.caste_name] [get_exp_format(play_records[caste_type.caste_name])] while alive.</LI>"
+
 	if(CONFIG_GET(flag/use_exp_restrictions_admin_bypass) && check_other_rights(src, R_ADMIN, FALSE))
 		return_text += "<LI>Admin (all jobs auto-unlocked)</LI>"
 	return_text += "</UL>"
@@ -211,9 +216,15 @@ GLOBAL_PROTECT(exp_to_update)
 			if(announce_changes)
 				to_chat(src,span_notice("You got: [minutes] Living EXP!"))
 			if(living_mob.job)
-				play_records[living_mob.job.title] += minutes
-				if(announce_changes)
-					to_chat(src,span_notice("You got: [minutes] [living_mob.job] EXP!"))
+				if(!istype(living_mob.job, /datum/job/fallen))
+					if(isxeno(living_mob))
+						var/mob/living/carbon/xenomorph/xeno = living_mob
+						play_records[xeno.xeno_caste.caste_name] += minutes
+					play_records[living_mob.job.title] += minutes
+					if(announce_changes)
+						to_chat(src,span_notice("You got: [minutes] [living_mob.job] EXP!"))
+				else
+					play_records["Valhalla"] += minutes
 			else
 				play_records["Unknown"] += minutes
 		else
@@ -239,7 +250,7 @@ GLOBAL_PROTECT(exp_to_update)
 			"ckey" = ckey,
 			"minutes" = jvalue)))
 		prefs.exp[jtype] += jvalue
-	addtimer(CALLBACK(GLOBAL_PROC, /proc/update_exp_db), 20, TIMER_OVERRIDE|TIMER_UNIQUE)
+	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(update_exp_db)), 20, TIMER_OVERRIDE|TIMER_UNIQUE)
 
 
 /proc/queen_age_check(client/C)

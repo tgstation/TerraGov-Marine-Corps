@@ -16,7 +16,7 @@
 	var/sheets_refunded = 2
 	var/obj/machinery/light/newlight = null
 
-/obj/machinery/light_construct/Initialize()
+/obj/machinery/light_construct/Initialize(mapload)
 	. = ..()
 	if(fixture_type == "bulb")
 		icon_state = "bulb-construct-stage1"
@@ -150,7 +150,7 @@
 /obj/machinery/light/mainship
 	base_state = "tube"
 
-/obj/machinery/light/mainship/Initialize()
+/obj/machinery/light/mainship/Initialize(mapload)
 	. = ..()
 	GLOB.mainship_lights += src
 
@@ -182,13 +182,13 @@
 	light_type = /obj/item/light_bulb/tube/large
 	brightness = 12
 
-/obj/machinery/light/built/Initialize()
+/obj/machinery/light/built/Initialize(mapload)
 	. = ..()
 	status = LIGHT_EMPTY
 	update(FALSE)
 
 
-/obj/machinery/light/small/built/Initialize()
+/obj/machinery/light/small/built/Initialize(mapload)
 	. = ..()
 	status = LIGHT_EMPTY
 	update(FALSE)
@@ -441,6 +441,7 @@
 	if(light_on)
 		var/prot = 0
 		var/mob/living/carbon/human/H = user
+		var/datum/limb/limb_check = H.get_limb(H.hand? "l_hand" : "r_hand")
 
 		if(istype(H))
 
@@ -451,8 +452,8 @@
 		else
 			prot = 1
 
-		if(prot > 0)
-			to_chat(user, "You remove the light [fitting]")
+		if(prot > 0 || isrobot(H) || (limb_check.limb_status & LIMB_ROBOT))
+			to_chat(user, "You remove the light [fitting].")
 		else
 			to_chat(user, "You try to remove the light [fitting], but it's too hot and you don't want to burn your hand.")
 			return				// if burned, don't remove the light
@@ -513,6 +514,9 @@
 		if(EXPLODE_LIGHT)
 			if (prob(50))
 				broken()
+		if(EXPLODE_WEAK)
+			if (prob(25))
+				broken()
 
 
 //timed process
@@ -540,10 +544,10 @@
 
 /obj/machinery/light/proc/explode()
 	broken()	// break it first to give a warning
-	addtimer(CALLBACK(src, .proc/delayed_explosion), 0.5 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(delayed_explosion)), 0.5 SECONDS)
 
 /obj/machinery/light/proc/delayed_explosion()
-	explosion(loc, 0, 1, 3, 2)
+	explosion(loc, 0, 1, 3, 0, 2)
 	qdel(src)
 
 // the light item
@@ -552,6 +556,10 @@
 
 /obj/item/light_bulb
 	icon = 'icons/obj/lighting.dmi'
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/equipment/lights_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/equipment/lights_right.dmi',
+	)
 	force = 2
 	throwforce = 5
 	w_class = WEIGHT_CLASS_SMALL
@@ -571,7 +579,6 @@
 	icon_state = "ltube"
 	base_state = "ltube"
 	item_state = "c_tube"
-	materials = list(/datum/material/glass = 100)
 	brightness = 8
 
 /obj/item/light_bulb/tube/large
@@ -584,9 +591,25 @@
 	desc = "A replacement light bulb."
 	icon_state = "lbulb"
 	base_state = "lbulb"
-	item_state = "contvapour"
-	materials = list(/datum/material/glass = 100)
 	brightness = 5
+
+/obj/item/light_bulb/bulb/attack_turf(turf/T, mob/living/user)
+	var/turf/open/floor/light/light_tile = T
+	if(!istype(light_tile))
+		return
+	if(status != LIGHT_OK)
+		to_chat(user, span_notice("The replacement bulb is broken."))
+		return
+	var/obj/item/stack/tile/light/existing_bulb = light_tile.floor_tile
+	if(existing_bulb.state == LIGHT_TILE_OK)
+		to_chat(user, span_notice("The lightbulb seems fine, no need to replace it."))
+		return
+
+	user.drop_held_item(src)
+	qdel(src)
+	existing_bulb.state = 0
+	light_tile.update_icon()
+	to_chat(user, span_notice("You replace the light bulb."))
 
 /obj/item/light_bulb/bulb/fire
 	name = "fire bulb"
@@ -611,7 +634,7 @@
 			desc = "A broken [name]."
 
 
-/obj/item/light_bulb/Initialize()
+/obj/item/light_bulb/Initialize(mapload)
 	. = ..()
 	switch(name)
 		if("light tube")
@@ -664,65 +687,48 @@
 	icon = 'icons/obj/landinglights.dmi'
 	icon_state = "landingstripe"
 	desc = "A landing light, if it's flashing stay clear!"
-	var/id = "" // ID for landing zone
 	anchored = TRUE
 	density = FALSE
 	layer = BELOW_TABLE_LAYER
 	use_power = ACTIVE_POWER_USE
 	idle_power_usage = 2
 	active_power_usage = 20
-	power_channel = LIGHT //Lights are calc'd via area so they dont need to be in the machine list
-	resistance_flags = RESIST_ALL
+	resistance_flags = RESIST_ALL|DROPSHIP_IMMUNE
+	///ID of dropship
+	var/id
+	///port its linked to
+	var/obj/docking_port/stationary/marine_dropship/linked_port = null
 
-/obj/machinery/landinglight/Initialize()
+/obj/machinery/landinglight/Initialize(mapload)
 	. = ..()
-	turn_off()
+	GLOB.landing_lights += src
+
+/obj/machinery/landinglight/Destroy()
+	GLOB.landing_lights -= src
+	return ..()
+
+/obj/machinery/landinglight/proc/turn_on()
+	icon_state = "landingstripe1"
+	set_light(2, 2, LIGHT_COLOR_RED)
 
 /obj/machinery/landinglight/proc/turn_off()
 	icon_state = "landingstripe"
 	set_light(0)
 
-/obj/machinery/landinglight/ds1
-
-
-/obj/machinery/landinglight/ds1/Initialize(mapload, ...)
-	. = ..()
+/obj/machinery/landinglight/alamo
 	id = SHUTTLE_ALAMO
 
-/obj/machinery/landinglight/ds2
+/obj/machinery/landinglight/lz1
+	id = "lz1"
 
+/obj/machinery/landinglight/lz2
+	id = "lz2"
 
-/obj/machinery/landinglight/ds2/Initialize(mapload, ...)
-	. = ..()
-	id = SHUTTLE_NORMANDY // ID for landing zone
+/obj/machinery/landinglight/cas
+	id = SHUTTLE_CAS_DOCK
 
-/obj/machinery/landinglight/proc/turn_on()
-	icon_state = "landingstripe0"
-	set_light(2,2)
-
-/obj/machinery/landinglight/ds1/delayone/turn_on()
-	icon_state = "landingstripe1"
-	set_light(2,2)
-
-/obj/machinery/landinglight/ds1/delaytwo/turn_on()
-	icon_state = "landingstripe2"
-	set_light(2,2)
-
-/obj/machinery/landinglight/ds1/delaythree/turn_on()
-	icon_state = "landingstripe3"
-	set_light(2,2)
-
-/obj/machinery/landinglight/ds2/delayone/turn_on()
-	icon_state = "landingstripe1"
-	set_light(2,2)
-
-/obj/machinery/landinglight/ds2/delaytwo/turn_on()
-	icon_state = "landingstripe2"
-	set_light(2,2)
-
-/obj/machinery/landinglight/ds2/delaythree/turn_on()
-	icon_state = "landingstripe3"
-	set_light(2,2)
+/obj/machinery/landinglight/tadpole
+	id = SHUTTLE_TADPOLE
 
 /obj/machinery/floor_warn_light
 	name = "alarm light"
@@ -741,7 +747,7 @@
 	light_power = 0
 	light_range = 0
 
-/obj/machinery/floor_warn_light/self_destruct/Initialize()
+/obj/machinery/floor_warn_light/self_destruct/Initialize(mapload)
 	. = ..()
 	SSevacuation.alarm_lights += src
 

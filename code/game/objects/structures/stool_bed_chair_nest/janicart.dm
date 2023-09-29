@@ -12,11 +12,11 @@
 	buckle_flags = CAN_BUCKLE
 	//copypaste sorry
 	var/amount_per_transfer_from_this = 5 //shit I dunno, adding this so syringes stop runtime erroring. --NeoFite
-	var/obj/item/storage/bag/trash/mybag	= null
+	var/obj/item/storage/bag/trash/mybag = null
 	var/callme = "pimpin' ride"	//how do people refer to it?
 	var/move_delay = 2
 
-/obj/structure/bed/chair/janicart/Initialize()
+/obj/structure/bed/chair/janicart/Initialize(mapload)
 	. = ..()
 	create_reagents(100, OPENCONTAINER)
 
@@ -68,14 +68,6 @@
 		step(src, direction)
 	else
 		to_chat(user, span_notice("You'll need the keys in one of your hands to drive this [callme]."))
-
-
-/obj/structure/bed/chair/janicart/bullet_act(obj/projectile/Proj)
-	if(LAZYLEN(buckled_mobs))
-		if(prob(85))
-			return buckled_mobs[1].bullet_act(Proj)
-	visible_message(span_warning("[Proj] ricochets off the [callme]!"))
-	return 1
 
 /obj/item/key
 	name = "key"

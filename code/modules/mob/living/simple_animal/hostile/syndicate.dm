@@ -36,7 +36,7 @@
 	speed = 1
 
 
-/mob/living/simple_animal/hostile/syndicate/space/Initialize()
+/mob/living/simple_animal/hostile/syndicate/space/Initialize(mapload)
 	. = ..()
 	set_light(4)
 
@@ -69,7 +69,7 @@
 	projectile_deflect_chance = 50
 
 
-/mob/living/simple_animal/hostile/syndicate/melee/space/Initialize()
+/mob/living/simple_animal/hostile/syndicate/melee/space/Initialize(mapload)
 	. = ..()
 	set_light(4)
 
@@ -90,11 +90,11 @@
 	attacktext = "slashes"
 	attack_sound = 'sound/weapons/blade1.ogg'
 	armour_penetration = 35
-	status_flags = 0
+	status_flags = NONE
 	projectile_deflect_chance = 50
 
 
-/mob/living/simple_animal/hostile/syndicate/melee/sword/Initialize()
+/mob/living/simple_animal/hostile/syndicate/melee/sword/Initialize(mapload)
 	. = ..()
 	set_light(2)
 
@@ -149,7 +149,7 @@
 	speed = 1
 
 
-/mob/living/simple_animal/hostile/syndicate/ranged/space/Initialize()
+/mob/living/simple_animal/hostile/syndicate/ranged/space/Initialize(mapload)
 	. = ..()
 	set_light(4)
 
@@ -182,7 +182,7 @@
 	speed = 1
 
 
-/mob/living/simple_animal/hostile/syndicate/ranged/smg/space/Initialize()
+/mob/living/simple_animal/hostile/syndicate/ranged/smg/space/Initialize(mapload)
 	. = ..()
 	set_light(4)
 
@@ -213,7 +213,7 @@
 	speed = 1
 
 
-/mob/living/simple_animal/hostile/syndicate/ranged/shotgun/space/Initialize()
+/mob/living/simple_animal/hostile/syndicate/ranged/shotgun/space/Initialize(mapload)
 	. = ..()
 	set_light(4)
 

@@ -37,7 +37,7 @@
 	if(incapacitated())
 		return
 
-	var/list/ai_emotions = list("Very Happy", "Happy", "Neutral", "Unsure", "Confused", "Sad", "BSOD", "Blank", "Problems?", "Awesome", "Facepalm", "Thinking", "Friend Computer", "Dorfy", "Blue Glow", "Red Glow", "Fish Tank", "Triumvirate", "Triumvirate Glitchy")
+	var/list/ai_emotions = list("Very Happy", "Happy", "Neutral", "Unsure", "Confused", "Sad", "BSOD", "Blank", "Problems?", "Awesome", "Facepalm", "Thinking", "Friend Computer", "Blue Glow", "Red Glow")
 	var/emote = tgui_input_list(usr, "Please, select a status!", "AI Status", ai_emotions)
 	if(!emote)
 		return
@@ -268,7 +268,7 @@
 
 	var/delay = 1 SECONDS
 	for(var/i in laws)
-		addtimer(CALLBACK(src, /atom/movable/.proc/say, "[radiomod] [i]"), delay)
+		addtimer(CALLBACK(src, TYPE_PROC_REF(/atom/movable, say), "[radiomod] [i]"), delay)
 		delay += 1 SECONDS
 
 

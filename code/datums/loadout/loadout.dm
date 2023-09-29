@@ -49,14 +49,10 @@
 		if(slot_l_store_str)
 			if(!item_list[SLOT_W_UNIFORM])
 				return FALSE
-			if(flags_equip_slot & ITEM_SLOT_DENYPOCKET)
-				return FALSE
 			if(w_class <= 2 || (flags_equip_slot & ITEM_SLOT_POCKET))
 				return TRUE
 		if(slot_r_store_str)
 			if(!item_list[SLOT_W_UNIFORM])
-				return FALSE
-			if(flags_equip_slot & ITEM_SLOT_DENYPOCKET)
 				return FALSE
 			if(w_class <= 2 || (flags_equip_slot & ITEM_SLOT_POCKET))
 				return TRUE
@@ -148,10 +144,14 @@
 			if(seller.try_to_equip_loadout(src, ui.user))
 				TIMER_COOLDOWN_START(ui.user, COOLDOWN_LOADOUT_EQUIPPED, 30 SECONDS)
 			ui.close()
+		if("overwriteLoadout")
+			item_list = list()
+			save_mob_loadout(ui.user)
+			ui.user.client.prefs.save_loadout(src)
+			ui.close()
 		if("deleteLoadout")
 			ui.user.client.prefs.loadout_manager.delete_loadout(ui.user, name, job)
 			ui.close()
-
 
 /datum/loadout/ui_assets(mob/user)
 	. = ..() || list()

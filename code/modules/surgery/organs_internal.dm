@@ -56,6 +56,7 @@
 	affected.createwound(CUT, rand(0,20), 1)
 	target.updatehealth()
 	affected.update_wounds()
+	return ..()
 
 
 //////////////////////////////////////////////////////////////////
@@ -84,7 +85,7 @@
 
 /datum/surgery_step/internal/fix_organ/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
 	for(var/datum/internal_organ/I in affected.internal_organs)
-		if(I && I.damage > 0 && I.robotic != ORGAN_ROBOT)
+		if(I?.damage > 0 && I.robotic != ORGAN_ROBOT)
 			user.visible_message(span_notice("[user] starts treating damage to [target]'s [I.name] with the surgical membrane."), \
 			span_notice("You start treating damage to [target]'s [I.name] with the surgical membrane.") )
 			target.balloon_alert_to_viewers("Fixing...")
@@ -94,12 +95,13 @@
 
 /datum/surgery_step/internal/fix_organ/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
 	for(var/datum/internal_organ/I in affected.internal_organs)
-		if(I && I.damage > 0 && I.robotic != ORGAN_ROBOT)
+		if(I?.damage > 0 && I.robotic != ORGAN_ROBOT)
 
 			user.visible_message(span_notice("[user] treats damage to [target]'s [I.name] with surgical membrane."), \
 			span_notice("You treat damage to [target]'s [I.name] with surgical membrane.") )
 			I.heal_organ_damage(I.damage)
 			target.balloon_alert_to_viewers("Success")
+	return ..()
 
 /datum/surgery_step/internal/fix_organ/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
 	user.visible_message(span_warning("[user]'s hand slips, getting messy and tearing the inside of [target]'s [affected.display_name] with \the [tool]!"), \
@@ -111,7 +113,7 @@
 		target.adjustToxLoss(5)
 
 	for(var/datum/internal_organ/I in affected.internal_organs)
-		if(I && I.damage > 0)
+		if(I?.damage > 0)
 			I.take_damage(dam_amt,0)
 	target.updatehealth()
 	affected.update_wounds()
@@ -139,7 +141,7 @@
 
 /datum/surgery_step/internal/fix_organ_robotic/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
 	for(var/datum/internal_organ/I in affected.internal_organs)
-		if(I && I.damage > 0 && I.robotic == ORGAN_ROBOT)
+		if(I?.damage > 0 && I.robotic == ORGAN_ROBOT)
 			user.visible_message(span_notice("[user] starts mending the damage to [target]'s [I.name]'s mechanisms."), \
 			span_notice("You start mending the damage to [target]'s [I.name]'s mechanisms.") )
 
@@ -149,11 +151,12 @@
 
 /datum/surgery_step/internal/fix_organ_robotic/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
 	for(var/datum/internal_organ/I in affected.internal_organs)
-		if(I && I.damage > 0 && I.robotic == ORGAN_ROBOT)
+		if(I?.damage > 0 && I.robotic == ORGAN_ROBOT)
 			user.visible_message(span_notice("[user] repairs [target]'s [I.name] with [tool]."), \
 			span_notice("You repair [target]'s [I.name] with [tool].") )
 			I.damage = 0
 	target.balloon_alert_to_viewers("Success")
+	return ..()
 
 /datum/surgery_step/internal/fix_organ_robotic/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
 	user.visible_message(span_warning("[user]'s hand slips, gumming up the mechanisms inside of [target]'s [affected.display_name] with \the [tool]!"), \

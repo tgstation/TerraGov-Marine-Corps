@@ -2,7 +2,7 @@ SUBSYSTEM_DEF(monitor)
 	name = "Monitor"
 	init_order = INIT_ORDER_MONITOR
 	runlevels = RUNLEVEL_GAME
-	wait = 5 MINUTES
+	wait = 3 MINUTES
 	can_fire = TRUE
 	///The current state
 	var/current_state = STATE_BALANCED
@@ -34,26 +34,25 @@ SUBSYSTEM_DEF(monitor)
 	var/maximum_connected_players_count = 0
 
 /datum/monitor_statistics
-	var/king = 0
-	var/ancient_T4 = 0
-	var/elder_T4 = 0
-	var/ancient_T3 = 0
-	var/elder_T3 = 0
-	var/ancient_T2 = 0
-	var/elder_T2 = 0
+	var/primo_T4 = 0
+	var/normal_T4 = 0
+	var/primo_T3 = 0
+	var/normal_T3 = 0
+	var/primo_T2 = 0
+	var/normal_T2 = 0
 	var/list/miniguns_in_use = list()
 	var/list/sadar_in_use = list()
 	var/list/b18_in_use = list()
 	var/list/b17_in_use = list()
 
-/datum/controller/subsystem/monitor/Initialize(start_timeofday)
-	. = ..()
-	RegisterSignal(SSdcs, list(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE, COMSIG_GLOB_OPEN_SHUTTERS_EARLY), .proc/set_groundside_calculation)
-	RegisterSignal(SSdcs, COMSIG_GLOB_DROPSHIP_HIJACKED, .proc/set_shipside_calculation)
+/datum/controller/subsystem/monitor/Initialize()
+	RegisterSignals(SSdcs, list(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE, COMSIG_GLOB_OPEN_SHUTTERS_EARLY), PROC_REF(set_groundside_calculation))
+	RegisterSignal(SSdcs, COMSIG_GLOB_DROPSHIP_HIJACKED, PROC_REF(set_shipside_calculation))
 	is_automatic_balance_on = CONFIG_GET(flag/is_automatic_balance_on)
+	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/monitor/fire(resumed = 0)
-	var/total_living_players = GLOB.alive_human_list.len + GLOB.alive_xeno_list.len
+	var/total_living_players = length(GLOB.alive_human_list_faction[FACTION_TERRAGOV]) + length(GLOB.alive_xeno_list_hive[XENO_HIVE_NORMAL])
 	current_points = calculate_state_points() / max(total_living_players, 10)//having less than 10 players gives bad results
 	maximum_connected_players_count = max(get_active_player_count(), maximum_connected_players_count)
 	if(gamestate == GROUNDSIDE)
@@ -69,18 +68,18 @@ SUBSYSTEM_DEF(monitor)
 		GLOB.xeno_stat_multiplicator_buff = proposed_balance_buff
 		apply_balance_changes()
 
-	if(SSticker.mode?.flags_round_type & MODE_SPAWNING_MINIONS)
+	if(SSticker.mode?.flags_round_type & MODE_SILOS_SPAWN_MINIONS)
 		//Balance spawners output
-		for(var/silo in GLOB.xeno_resin_silos)
+		for(var/silo in GLOB.xeno_resin_silos_by_hive[XENO_HIVE_NORMAL])
 			SSspawning.spawnerdata[silo].required_increment = 2 * max(45 SECONDS, 3 MINUTES - SSmonitor.maximum_connected_players_count * SPAWN_RATE_PER_PLAYER) / SSspawning.wait
 			SSspawning.spawnerdata[silo].max_allowed_mobs = max(1, MAX_SPAWNABLE_MOB_PER_PLAYER * SSmonitor.maximum_connected_players_count * 0.5)
-		for(var/spawner in GLOB.xeno_spawner)
+		for(var/spawner in GLOB.xeno_spawners_by_hive[XENO_HIVE_NORMAL])
 			SSspawning.spawnerdata[spawner].required_increment = max(45 SECONDS, 3 MINUTES - SSmonitor.maximum_connected_players_count * SPAWN_RATE_PER_PLAYER) / SSspawning.wait
 			SSspawning.spawnerdata[spawner].max_allowed_mobs = max(2, MAX_SPAWNABLE_MOB_PER_PLAYER * SSmonitor.maximum_connected_players_count)
 
 
 	//Automatic respawn buff, if a stalemate is detected and a lot of ghosts are waiting to play
-	if(state != STATE_BALANCED || !stalemate || GLOB.observer_list <= 0.5 * total_living_players)
+	if(current_state != STATE_BALANCED || !stalemate || length(GLOB.observer_list) <= 0.5 * total_living_players)
 		SSsilo.larva_spawn_rate_temporary_buff = 0
 		return
 	for(var/mob/dead/observer/observer AS in GLOB.observer_list)
@@ -105,36 +104,35 @@ SUBSYSTEM_DEF(monitor)
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
 	switch(gamestate)
 		if(GROUNDSIDE)
-			. += stats.ancient_T2 * ANCIENT_T2_WEIGHT
-			. += stats.ancient_T3 * ANCIENT_T3_WEIGHT
-			. += stats.elder_T2 * ELDER_T2_WEIGHT
-			. += stats.elder_T3 * ELDER_T3_WEIGHT
-			. += stats.ancient_T4 * ANCIENT_T4_WEIGHT
-			. += stats.elder_T4 * ELDER_T4_WEIGHT
-			. += stats.king * KING_WEIGHT
+			. += stats.primo_T2 * PRIMO_T2_WEIGHT
+			. += stats.primo_T3 * PRIMO_T3_WEIGHT
+			. += stats.normal_T2 * NORMAL_T2_WEIGHT
+			. += stats.normal_T3 * NORMAL_T3_WEIGHT
+			. += stats.primo_T4 * PRIMO_T4_WEIGHT
+			. += stats.normal_T4 * NORMAL_T4_WEIGHT
 			. += human_on_ground * HUMAN_LIFE_ON_GROUND_WEIGHT
-			. += (GLOB.alive_human_list.len - human_on_ground) * HUMAN_LIFE_ON_SHIP_WEIGHT
-			. += GLOB.alive_xeno_list.len * XENOS_LIFE_WEIGHT
+			. += (length(GLOB.alive_human_list_faction[FACTION_TERRAGOV]) - human_on_ground) * HUMAN_LIFE_ON_SHIP_WEIGHT
+			. += length(GLOB.alive_xeno_list_hive[XENO_HIVE_NORMAL]) * XENOS_LIFE_WEIGHT
 			. += (xeno_job.total_positions - xeno_job.current_positions) * BURROWED_LARVA_WEIGHT
-			. += stats.miniguns_in_use.len * MINIGUN_PRICE * REQ_POINTS_WEIGHT
-			. += stats.sadar_in_use.len * SADAR_PRICE * REQ_POINTS_WEIGHT
-			. += stats.b17_in_use.len * B17_PRICE * REQ_POINTS_WEIGHT
-			. += stats.b18_in_use.len * B18_PRICE * REQ_POINTS_WEIGHT
+			. += length(stats.miniguns_in_use) * MINIGUN_PRICE * REQ_POINTS_WEIGHT
+			. += length(stats.sadar_in_use) * SADAR_PRICE * REQ_POINTS_WEIGHT
+			. += length(stats.b17_in_use) * B17_PRICE * REQ_POINTS_WEIGHT
+			. += length(stats.b18_in_use) * B18_PRICE * REQ_POINTS_WEIGHT
+			. += length(GLOB.xeno_resin_silos_by_hive[XENO_HIVE_NORMAL]) * SPAWNING_POOL_WEIGHT
 			. += SSpoints.supply_points[FACTION_TERRAGOV] * REQ_POINTS_WEIGHT
-			. += GLOB.xeno_resin_silos.len * SPAWNING_POOL_WEIGHT
 		if(SHUTTERS_CLOSED)
-			. += GLOB.alive_human_list.len * HUMAN_LIFE_WEIGHT_PREGAME
-			. += GLOB.alive_xeno_list.len * XENOS_LIFE_WEIGHT_PREGAME
+			. += length(GLOB.alive_human_list_faction[FACTION_TERRAGOV]) * HUMAN_LIFE_WEIGHT_PREGAME
+			. += length(GLOB.alive_xeno_list_hive[XENO_HIVE_NORMAL]) * XENOS_LIFE_WEIGHT_PREGAME
 		if(SHIPSIDE)
-			. += GLOB.alive_human_list.len * HUMAN_LIFE_WEIGHT_SHIPSIDE
-			. += GLOB.alive_xeno_list.len * XENOS_LIFE_WEIGHT_SHIPSIDE
+			. += length(GLOB.alive_human_list_faction[FACTION_TERRAGOV]) * HUMAN_LIFE_WEIGHT_SHIPSIDE
+			. += length(GLOB.alive_xeno_list_hive[XENO_HIVE_NORMAL]) * XENOS_LIFE_WEIGHT_SHIPSIDE
 
 ///Keep the monitor informed about the position of humans
 /datum/controller/subsystem/monitor/proc/process_human_positions()
 	human_on_ground = 0
 	human_in_FOB = 0
 	human_on_ship = 0
-	for(var/human in GLOB.alive_human_list)
+	for(var/human in GLOB.alive_human_list_faction[FACTION_TERRAGOV])
 		var/turf/TU = get_turf(human)
 		var/area/myarea = TU.loc
 		if(is_ground_level(TU.z))
@@ -185,7 +183,7 @@ SUBSYSTEM_DEF(monitor)
  */
 /datum/controller/subsystem/monitor/proc/balance_xeno_team()
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
-	if(current_state >= STATE_BALANCED || ((xeno_job.total_positions - xeno_job.current_positions) <= (length(GLOB.alive_xeno_list) * TOO_MUCH_BURROWED_PROPORTION)) || length(GLOB.xeno_resin_silos) == 0)
+	if(current_state >= STATE_BALANCED || ((xeno_job.total_positions - xeno_job.current_positions) <= (length(GLOB.alive_xeno_list_hive[XENO_HIVE_NORMAL]) * TOO_MUCH_BURROWED_PROPORTION)) || length(GLOB.xeno_resin_silos_by_hive[XENO_HIVE_NORMAL]) == 0)
 		return 1
 	var/datum/hive_status/normal/HN = GLOB.hive_datums[XENO_HIVE_NORMAL]
 	var/xeno_alive_plus_burrowed = length(HN.get_total_xeno_number()) + (xeno_job.total_positions - xeno_job.current_positions)
@@ -207,7 +205,7 @@ SUBSYSTEM_DEF(monitor)
  * Will multiply every base health, regen and melee damage stat on all xeno by GLOB.xeno_stat_multiplicator_buff
  */
 /datum/controller/subsystem/monitor/proc/apply_balance_changes()
-	for(var/mob/living/carbon/xenomorph/xeno AS in GLOB.alive_xeno_list)
+	for(var/mob/living/carbon/xenomorph/xeno AS in GLOB.alive_xeno_list_hive[XENO_HIVE_NORMAL])
 		xeno.apply_health_stat_buff()
 	for(var/xeno_caste_typepath in GLOB.xeno_caste_datums)
 		for(var/upgrade in GLOB.xeno_caste_datums[xeno_caste_typepath])

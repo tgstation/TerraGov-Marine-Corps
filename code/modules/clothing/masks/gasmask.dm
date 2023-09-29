@@ -5,7 +5,7 @@
 	desc = "A face-covering mask that can be connected to an air supply. Filters harmful gases from the air."
 	icon_state = "gas_alt"
 	item_state = "gas_alt"
-	flags_inventory = COVERMOUTH | COVEREYES | ALLOWINTERNALS | BLOCKGASEFFECT
+	flags_inventory = COVERMOUTH | COVEREYES | BLOCKGASEFFECT
 	flags_inv_hide = HIDEEARS|HIDEFACE|HIDELOWHAIR
 	flags_cold_protection = HEAD
 	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
@@ -58,19 +58,19 @@
 	icon_state = "pmc_mask"
 	item_state = "helmet"
 	anti_hug = 3
-	flags_inventory = COVERMOUTH|ALLOWINTERNALS|BLOCKGASEFFECT
+	flags_inventory = COVERMOUTH|BLOCKGASEFFECT
 	flags_inv_hide = HIDEEARS|HIDEFACE|HIDEALLHAIR
 	breathy = FALSE
 
-/obj/item/clothing/mask/gas/PMC/damaged
+/obj/item/clothing/mask/gas/pmc/damaged
 	name = "damaged M8 pattern armored balaclava"
 	anti_hug = 0
 
-/obj/item/clothing/mask/gas/PMC/upp
+/obj/item/clothing/mask/gas/pmc/upp
 	name = "\improper UPP armored commando balaclava"
 	icon_state = "upp_mask"
 
-/obj/item/clothing/mask/gas/PMC/leader
+/obj/item/clothing/mask/gas/pmc/leader
 	name = "\improper M8 pattern armored balaclava"
 	desc = "An armored balaclava designed to conceal both the identity of the operator and act as an air-filter. This particular suit looks like it belongs to a high-ranking officer."
 	icon_state = "officer_mask"
@@ -81,6 +81,11 @@
 	icon_state = "wolf_mask"
 	anti_hug = 2
 	breathy = FALSE
+
+/obj/item/clothing/mask/gas/icc
+	name = "\improper Modelle/60 gas mask"
+	desc = "A gasmask worn by ICC personnel."
+	icon_state = "icc"
 
 //Plague Dr suit can be found in clothing/suits/bio.dm
 /obj/item/clothing/mask/gas/plaguedoctor
@@ -119,7 +124,6 @@
 	name = "gas mask"
 	//desc = "A face-covering mask that can be connected to an air supply. It seems to house some odd electronics."
 	var/mode = 0// 0==Scouter|1==Night Vision|2==Thermal|3==Meson
-	var/voice = "Unknown"
 	var/vchange = 0//This didn't do anything before. It now checks if the mask has special functions/N
 
 

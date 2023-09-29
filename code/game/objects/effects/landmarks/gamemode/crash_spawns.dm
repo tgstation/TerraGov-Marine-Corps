@@ -87,7 +87,7 @@
 	delete_after_roundstart = FALSE
 
 
-/obj/effect/landmark/start/latejoin/crash/Initialize()
+/obj/effect/landmark/start/latejoin/crash/Initialize(mapload)
 	. = ..()
 	return INITIALIZE_HINT_NORMAL
 

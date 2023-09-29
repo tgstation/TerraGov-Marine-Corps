@@ -5,25 +5,25 @@
 	icon_state = "rods"
 	flags_atom = CONDUCT
 	w_class = WEIGHT_CLASS_NORMAL
-	force = 9.0
-	throwforce = 15.0
+	force = 9
+	throwforce = 15
 	throw_speed = 5
 	throw_range = 20
-	materials = list(/datum/material/metal = 1000)
 	max_amount = 60
 	attack_verb = list("hit", "bludgeoned", "whacked")
 
 
 /obj/item/stack/rods/attackby(obj/item/W as obj, mob/user as mob)
 	..()
-	if(istype(W, /obj/item/stack/barbed_wire)) //making razorwire obstacles
+
+	if(istype(W, /obj/item/stack/barbed_wire)) // making razorwire obstacles
 		var/obj/item/stack/barbed_wire/B = W
-		if(amount < 4)
-			to_chat(user, span_warning("You need [4 - amount] more [src] to make a razor wire obstacle!"))
+		if(amount < 8)
+			to_chat(user, span_warning("You need at least [8 - amount] more [src] to make razorwire obstacles!"))
 			return
-		use(4)
+		use(8)
 		B.use(1)
-		var/obj/structure/razorwire/M = new/obj/item/stack/razorwire(user.loc, 1)
+		var/obj/structure/razorwire/M = new /obj/item/stack/razorwire(user.loc, 2)
 		to_chat(user, span_notice("You combine the rods and barbed wire into [M]!"))
 
 	if (iswelder(W))
@@ -53,7 +53,7 @@
 	if (locate(/obj/structure/grille, usr.loc))
 		for(var/obj/structure/grille/G in usr.loc)
 			if (G.obj_integrity <= G.integrity_failure)
-				G.repair_damage(10)
+				G.repair_damage(10, user)
 				G.density = TRUE
 				G.icon_state = "grille"
 				use(1)
@@ -74,3 +74,19 @@
 		DISABLE_BITFIELD(obj_flags, IN_USE)
 		use(4)
 
+/obj/item/stack/rods/attack_turf(turf/T, mob/living/user)
+	if(!istype(T, /turf/open/floor/plating))
+		to_chat(user, span_warning("You must remove the plating first."))
+		return
+	if(get_amount() < 2)
+		to_chat(user, span_warning("You need more rods."))
+		return
+
+	to_chat(user, span_notice("Reinforcing the floor."))
+	if(!do_after(user, 30, TRUE, src, BUSY_ICON_BUILD) || !istype(T, /turf/open/floor/plating))
+		return
+	if(!use(2))
+		to_chat(user, span_warning("You need more rods."))
+		return
+	T.ChangeTurf(/turf/open/floor/engine)
+	playsound(src, 'sound/items/deconstruct.ogg', 25, 1)

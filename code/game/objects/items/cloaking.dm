@@ -7,8 +7,12 @@
 	icon_state = "shield0"
 	flags_atom = CONDUCT
 	flags_equip_slot = ITEM_SLOT_BELT
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/equipment/engineering_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/equipment/engineering_right.dmi',
+	)
 	item_state = "electronic"
-	throwforce = 5.0
+	throwforce = 5
 	throw_speed = 1
 	throw_range = 5
 	w_class = WEIGHT_CLASS_SMALL
@@ -16,7 +20,7 @@
 	var/datum/effect_system/spark_spread/spark_system
 	var/chameleon_cooldown
 
-/obj/item/chameleon/Initialize()
+/obj/item/chameleon/Initialize(mapload)
 	. = ..()
 	spark_system = new
 	spark_system.set_up(5, 0, src)
@@ -45,7 +49,7 @@
 		if(SEND_SIGNAL(user, COMSIG_MOB_ENABLE_STEALTH) & STEALTH_ALREADY_ACTIVE)
 			to_chat(user, span_warning("You are already cloaked!"))
 			return
-		RegisterSignal(user, COMSIG_MOB_ENABLE_STEALTH, .proc/on_other_activate)
+		RegisterSignal(user, COMSIG_MOB_ENABLE_STEALTH, PROC_REF(on_other_activate))
 		user.alpha = 25
 		to_chat(user, span_notice("You activate the [src]."))
 		spark_system.start()

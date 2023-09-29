@@ -1,11 +1,18 @@
 SUBSYSTEM_DEF(blackbox)
 	name = "Blackbox"
 	wait = 10 MINUTES
-	runlevels = RUNLEVEL_GAME|RUNLEVEL_POSTGAME
+	runlevels = RUNLEVEL_GAME
 
 	var/list/feedback = list()
 	var/sealed = FALSE
 
+/datum/controller/subsystem/blackbox/Initialize()
+	record_feedback("amount", "random_seed", Master.random_seed)
+	record_feedback("amount", "dm_version", DM_VERSION)
+	record_feedback("amount", "dm_build", DM_BUILD)
+	record_feedback("amount", "byond_version", world.byond_version)
+	record_feedback("amount", "byond_build", world.byond_build)
+	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/blackbox/Recover()
 	feedback = SSblackbox.feedback
@@ -33,7 +40,7 @@ SUBSYSTEM_DEF(blackbox)
 			return
 
 	if(!GLOB.round_id)
-		SSdbcore.SetRoundID()
+		SSdbcore.InitializeRound()
 
 
 	if(CONFIG_GET(flag/use_exp_tracking))

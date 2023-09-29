@@ -14,7 +14,7 @@
 	var/mob/living/silicon/ai/ai = list()
 	var/last_tick //used to delay the powercheck
 
-/obj/item/radio/intercom/Initialize()
+/obj/item/radio/intercom/Initialize(mapload)
 	. = ..()
 	switch(dir)
 		if(NORTH)
@@ -47,12 +47,10 @@
 		attack_self(user)
 
 
-/obj/item/radio/intercom/can_receive(freq, level)
-	if(!on)
-		return FALSE
-	if(!(0 in level))
+/obj/item/radio/intercom/can_receive(freq, list/levels)
+	if(levels != RADIO_NO_Z_LEVEL_RESTRICTION)
 		var/turf/position = get_turf(src)
-		if(isnull(position) || !(position.z in level))
+		if(isnull(position) || !(position.z in levels))
 			return FALSE
 	if(!listening)
 		return FALSE
@@ -62,9 +60,9 @@
 
 /obj/item/radio/intercom/Hear(message, atom/movable/speaker, message_langs, raw_message, radio_freq, list/spans, message_mode)
 	if(message_mode == MODE_INTERCOM)
-		return  // Avoid hearing the same thing twice
+		return FALSE // Avoid hearing the same thing twice
 	if(!anyai && !(speaker in ai))
-		return
+		return FALSE
 	return ..()
 
 

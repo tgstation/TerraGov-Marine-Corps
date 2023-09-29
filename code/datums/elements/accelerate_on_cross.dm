@@ -1,7 +1,7 @@
 /datum/element/accelerate_on_crossed/Attach(datum/target)
 	. = ..()
 	var/static/list/connections = list(
-		COMSIG_ATOM_ENTERED = /atom.proc/accelerate_crosser,
+		COMSIG_ATOM_ENTERED = TYPE_PROC_REF(/atom, accelerate_crosser),
 	)
 	target.AddElement(/datum/element/connect_loc, connections)
 

@@ -119,6 +119,7 @@
 /area/prison/recreation
 	icon_state = "party"
 	ceiling = CEILING_METAL
+	minimap_color = MINIMAP_AREA_LIVING
 
 /area/prison/recreation/staff
 	name = "Staff Recreation"
@@ -146,6 +147,7 @@
 /area/prison/chapel
 	name = "Chapel"
 	icon_state = "chapel"
+	minimap_color = MINIMAP_AREA_LIVING
 
 /area/prison/holding
 	ceiling = CEILING_METAL
@@ -181,6 +183,7 @@
 /area/prison/toilet
 	icon_state = "restrooms"
 	ceiling = CEILING_METAL
+	minimap_color = MINIMAP_AREA_LIVING
 
 /area/prison/toilet/canteen
 	name = "Canteen Restooms"
@@ -235,20 +238,24 @@
 /area/prison/canteen
 	name = "Canteen"
 	icon_state = "cafeteria"
+	minimap_color = MINIMAP_AREA_LIVING
 
 /area/prison/kitchen
 	name = "Kitchen"
 	icon_state = "kitchen"
 	ceiling = CEILING_METAL
+	minimap_color = MINIMAP_AREA_LIVING
 
 /area/prison/laundry
 	name = "Laundry"
 	icon_state = "bluenew"
 	ceiling = CEILING_METAL
+	minimap_color = MINIMAP_AREA_LIVING
 
 /area/prison/library
 	name = "Library"
 	icon_state = "green"
+	minimap_color = MINIMAP_AREA_LIVING
 
 /area/prison/engineering
 	name = "Engineering"
@@ -309,6 +316,7 @@
 
 /area/prison/quarters
 	ceiling = CEILING_METAL
+	minimap_color = MINIMAP_AREA_LIVING
 
 /area/prison/quarters/staff
 	name = "Staff Quarters"
@@ -478,6 +486,7 @@
 	ceiling = CEILING_DEEP_UNDERGROUND_METAL
 
 /area/prison/residential
+	minimap_color = MINIMAP_AREA_LIVING
 
 /area/prison/residential/central
 	name = "Civilian Residences Central"
@@ -515,6 +524,7 @@
 	name = "Main Hangar Storage"
 	icon_state = "quartstorage"
 	ceiling = CEILING_METAL
+	minimap_color = MINIMAP_AREA_REQ
 
 /area/prison/hangar_storage/research
 	name = "Research Hangar Storage"

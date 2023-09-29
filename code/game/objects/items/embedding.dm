@@ -2,8 +2,8 @@
 	if(!target.embed_item(src, target_zone, silent))
 		return FALSE
 	embedded_into = target
-	RegisterSignal(embedded_into, COMSIG_MOVABLE_MOVED, .proc/embedded_on_carrier_move)
-	RegisterSignal(src, list(COMSIG_ITEM_DROPPED, COMSIG_MOVABLE_MOVED), .proc/embedded_on_move)
+	RegisterSignal(embedded_into, COMSIG_MOVABLE_MOVED, PROC_REF(embedded_on_carrier_move))
+	RegisterSignals(src, list(COMSIG_ITEM_DROPPED, COMSIG_MOVABLE_MOVED), PROC_REF(embedded_on_move))
 	return TRUE
 
 
@@ -37,7 +37,7 @@
 		yankable_embedded = TRUE
 		break
 	if(!yankable_embedded)
-		verbs -= /mob/living/proc/yank_out_object
+		remove_verb(src, /mob/living/proc/yank_out_object)
 
 
 /mob/living/carbon/human/unembed_item(obj/item/embedding)
@@ -52,7 +52,7 @@
 		yankable_embedded = TRUE
 		break
 	if(!yankable_embedded)
-		verbs -= /mob/living/proc/yank_out_object
+		remove_verb(src, /mob/living/proc/yank_out_object)
 
 
 /datum/limb/proc/unembed(obj/item/embedding)
@@ -88,10 +88,10 @@
 		owner.visible_message(span_danger("\The [embedding] sticks in the wound!"))
 	implants += embedding
 	if(embedding.embedding.embedded_flags & EMBEDDED_CAN_BE_YANKED_OUT)
-		owner.verbs += /mob/living/proc/yank_out_object
+		add_verb(owner, /mob/living/proc/yank_out_object)
 	embedding.add_mob_blood(owner)
 	embedding.forceMove(owner)
-	embedding.RegisterSignal(src, COMSIG_LIMB_DESTROYED, /obj/item/.proc/embedded_on_limb_destruction)
+	embedding.RegisterSignal(src, COMSIG_LIMB_DESTROYED, TYPE_PROC_REF(/obj/item, embedded_on_limb_destruction))
 	return TRUE
 
 
@@ -110,7 +110,7 @@
 		CRASH("[src] called embedded_on_carrier_move for [carrier] with mismatching embedded_object: [.]")
 
 
-/obj/item/proc/embedded_on_limb_destruction(/datum/limb/source)
+/obj/item/proc/embedded_on_limb_destruction(datum/limb/source)
 	SIGNAL_HANDLER
 	unembed_ourself()
 
@@ -165,7 +165,7 @@
 		return
 
 	if(user.restrained())
-		to_chat(user, "You are restrained and cannot do that!")
+		balloon_alert(user, "can't, restrained")
 		return
 
 	var/self
@@ -186,21 +186,18 @@
 	var/obj/item/selection = tgui_input_list(user, "What do you want to yank out?", "Embedded objects", valid_objects)
 
 	if(user.get_active_held_item())
-		to_chat(user, span_warning("You need an empty hand for this!"))
+		balloon_alert(user, "cannot, no empty hands")
 		return FALSE
 
-	if(self)
-		to_chat(user, span_warning("You attempt to get a good grip on [selection] in your body."))
-	else
-		to_chat(user, span_warning("You attempt to get a good grip on [selection] in [src]'s body."))
+	balloon_alert(user, "attempts to grip [selection]")
 
 	if(!do_after(user, selection.embedding.embedded_unsafe_removal_time, TRUE, src, BUSY_ICON_GENERIC) || QDELETED(selection) || !(selection in embedded_objects))
 		return
 
 	if(self)
-		visible_message(span_warning("<b>[user] rips [selection] out of [user.p_their()] body.</b>"),span_warning("<b>You rip [selection] out of your body.</b>"), null, 5)
+		balloon_alert_to_viewers("rips [selection] out of [user.p_their()] body")
 	else
-		visible_message(span_warning("<b>[user] rips [selection] out of [src]'s body.</b>"),span_warning("<b>[user] rips [selection] out of your body.</b>"), null, 5)
+		balloon_alert_to_viewers("rips [selection] out of [src]'s body")
 
 	handle_yank_out_damage()
 

@@ -6,7 +6,7 @@
 	desc = "A small bottle."
 	icon = 'icons/obj/items/chemistry.dmi'
 	icon_state = null
-	item_state = "atoxinbottle"
+	item_state = "bottle"
 	amount_per_transfer_from_this = 10
 	possible_transfer_amounts = list(5,10,15,25,30,60)
 	volume = 60
@@ -29,7 +29,7 @@
 		return
 	update_icon()
 
-/obj/item/reagent_containers/glass/bottle/Initialize()
+/obj/item/reagent_containers/glass/bottle/Initialize(mapload)
 	. = ..()
 	if(!icon_state)
 		icon_state = "bottle-[rand(1, 5)]"
@@ -214,9 +214,9 @@
 
 /obj/item/reagent_containers/glass/bottle/polyhexanide
 	name = "\improper Polyhexanide bottle"
-	desc = "A small bottle. Contains one and a half doses of polyhexanide, a sterilizer for internal surgical use."
+	desc = "A small bottle. Contains polyhexanide - Used as a powerful sterilizer for internal surgical use."
 	icon_state = "bottle2"
-	list_reagents = list(/datum/reagent/medicine/polyhexanide = 30)
+	list_reagents = list(/datum/reagent/medicine/polyhexanide = 60)
 
 /obj/item/reagent_containers/glass/bottle/lemoline
 	name = "\improper Lemoline bottle"

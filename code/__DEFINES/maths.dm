@@ -29,6 +29,9 @@
 
 #define CEILING(x, y) ( -round(-(x) / (y)) * (y) )
 
+//Rounds up. Wow.
+#define ROUND_UP(x) ( -round(-(x)))
+
 // round() acts like floor(x, 1) by default but can't handle other values
 #define FLOOR(x, y) ( round((x) / (y)) * (y) )
 
@@ -94,8 +97,8 @@
 /proc/SolveQuadratic(a, b, c)
 	ASSERT(a)
 	. = list()
-	var/d		= b*b - 4 * a * c
-	var/bottom  = 2 * a
+	var/d = b*b - 4 * a * c
+	var/bottom = 2 * a
 	if(d < 0)
 		return
 	var/root = sqrt(d)

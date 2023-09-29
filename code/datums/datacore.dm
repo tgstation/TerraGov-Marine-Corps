@@ -171,32 +171,19 @@ GLOBAL_DATUM_INIT(datacore, /datum/datacore, new)
 
 	var/id = add_leading("[num2hex(rand(1, 1.6777215E7))]", 6, "0")	//this was the best they could come up with? A large random number? *sigh*
 
-	var/image = get_id_photo(H, H.client, show_directions)
-	var/datum/picture/pf = new
-	var/datum/picture/ps = new
-	pf.picture_name = "[H]"
-	ps.picture_name = "[H]"
-	pf.picture_desc = "This is [H]."
-	ps.picture_desc = "This is [H]."
-	pf.picture_image = icon(image, dir = SOUTH)
-	ps.picture_image = icon(image, dir = WEST)
-	var/obj/item/photo/photo_front = new(null, pf)
-	var/obj/item/photo/photo_side = new(null, ps)
 	//General Record
 	var/datum/data/record/G = new()
-	G.fields["id"]			= id
-	G.fields["name"]		= H.real_name
-	G.fields["rank"]		= assignment
-	G.fields["squad"]		= H.assigned_squad ? H.assigned_squad.name : null
-	G.fields["age"]			= H.age
-	G.fields["p_stat"]		= "Active"
-	G.fields["m_stat"]		= "Stable"
-	G.fields["sex"]			= H.gender
-	G.fields["species"]		= H.get_species()
-	G.fields["citizenship"]	= H.citizenship
-	G.fields["religion"]	= H.religion
-	G.fields["photo_front"]	= photo_front
-	G.fields["photo_side"]	= photo_side
+	G.fields["id"] = id
+	G.fields["name"] = H.real_name
+	G.fields["rank"] = assignment
+	G.fields["squad"] = H.assigned_squad ? H.assigned_squad.name : null
+	G.fields["age"] = H.age
+	G.fields["p_stat"] = "Active"
+	G.fields["m_stat"] = "Stable"
+	G.fields["sex"] = H.gender
+	G.fields["species"] = H.get_species()
+	G.fields["citizenship"] = H.citizenship
+	G.fields["religion"] = H.religion
 	if(H.gen_record)
 		G.fields["notes"] = H.gen_record
 	else
@@ -205,19 +192,19 @@ GLOBAL_DATUM_INIT(datacore, /datum/datacore, new)
 
 	//Medical Record
 	var/datum/data/record/M = new()
-	M.fields["id"]			= id
-	M.fields["name"]		= H.real_name
-	M.fields["b_type"]		= H.b_type
-	M.fields["mi_dis"]		= "None"
-	M.fields["mi_dis_d"]	= "No minor disabilities have been declared."
-	M.fields["ma_dis"]		= "None"
-	M.fields["ma_dis_d"]	= "No major disabilities have been diagnosed."
-	M.fields["alg"]			= "None"
-	M.fields["alg_d"]		= "No allergies have been detected in this patient."
-	M.fields["cdi"]			= "None"
-	M.fields["cdi_d"]		= "No diseases have been diagnosed at the moment."
-	M.fields["last_scan_time"]		= null
-	M.fields["last_scan_result"]		= "No scan data on record" // body scanner results
+	M.fields["id"] = id
+	M.fields["name"] = H.real_name
+	M.fields["b_type"] = H.b_type
+	M.fields["mi_dis"] = "None"
+	M.fields["mi_dis_d"] = "No minor disabilities have been declared."
+	M.fields["ma_dis"] = "None"
+	M.fields["ma_dis_d"] = "No major disabilities have been diagnosed."
+	M.fields["alg"] = "None"
+	M.fields["alg_d"] = "No allergies have been detected in this patient."
+	M.fields["cdi"] = "None"
+	M.fields["cdi_d"] = "No diseases have been diagnosed at the moment."
+	M.fields["last_scan_time"] = null
+	M.fields["last_scan_result"] = "No scan data on record" // body scanner results
 	M.fields["autodoc_data"] = list()
 	M.fields["autodoc_manual"] = list()
 	if(H.med_record)
@@ -228,30 +215,19 @@ GLOBAL_DATUM_INIT(datacore, /datum/datacore, new)
 
 	//Security Record
 	var/datum/data/record/S = new()
-	S.fields["id"]			= id
-	S.fields["name"]		= H.real_name
-	S.fields["criminal"]	= "None"
-	S.fields["mi_crim"]		= "None"
-	S.fields["mi_crim_d"]	= "No minor crime convictions."
-	S.fields["ma_crim"]		= "None"
-	S.fields["ma_crim_d"]	= "No major crime convictions."
-	S.fields["notes"]		= "No notes."
+	S.fields["id"] = id
+	S.fields["name"] = H.real_name
+	S.fields["criminal"] = "None"
+	S.fields["mi_crim"] = "None"
+	S.fields["mi_crim_d"] = "No minor crime convictions."
+	S.fields["ma_crim"] = "None"
+	S.fields["ma_crim_d"] = "No major crime convictions."
+	S.fields["notes"] = "No notes."
 	if(H.sec_record)
 		S.fields["notes"] = H.sec_record
 	else
 		S.fields["notes"] = "No notes."
 	security += S
-
-
-/proc/get_id_photo(mob/living/carbon/human/H, client/C, show_directions = list(SOUTH))
-	var/datum/job/J = H.job
-	var/datum/preferences/P
-	if(!C)
-		C = H.client
-	if(C)
-		P = C.prefs
-	return get_flat_human_icon(null, J, P, DUMMY_HUMAN_SLOT_MANIFEST, show_directions)
-
 
 /proc/CreateGeneralRecord()
 	var/datum/data/record/G = new /datum/data/record()
@@ -266,8 +242,8 @@ GLOBAL_DATUM_INIT(datacore, /datum/datacore, new)
 	G.fields["p_stat"] = "Active"
 	G.fields["m_stat"] = "Stable"
 	G.fields["species"] = "Human"
-	G.fields["citizenship"]	= "Unknown"
-	G.fields["religion"]	= "Unknown"
+	G.fields["citizenship"] = "Unknown"
+	G.fields["religion"] = "Unknown"
 	G.fields["photo_front"] = null
 	G.fields["photo_side"] = null
 	GLOB.datacore.general += G
@@ -278,7 +254,7 @@ GLOBAL_DATUM_INIT(datacore, /datum/datacore, new)
 	var/datum/data/record/R = new
 	R.fields["name"] = name
 	R.fields["id"] = id
-	R.name = text("Security Record #[id]")
+	R.name = "Security Record #[id]"
 	R.fields["criminal"] = "None"
 	R.fields["mi_crim"] = "None"
 	R.fields["mi_crim_d"] = "No minor crime convictions."
@@ -291,17 +267,17 @@ GLOBAL_DATUM_INIT(datacore, /datum/datacore, new)
 
 /proc/create_medical_record(mob/living/carbon/human/H)
 	var/datum/data/record/M = new
-	M.fields["id"]			= null
-	M.fields["name"]		= H.real_name
-	M.fields["b_type"]		= H.b_type
-	M.fields["mi_dis"]		= "None"
-	M.fields["mi_dis_d"]	= "No minor disabilities have been declared."
-	M.fields["ma_dis"]		= "None"
-	M.fields["ma_dis_d"]	= "No major disabilities have been diagnosed."
-	M.fields["alg"]			= "None"
-	M.fields["alg_d"]		= "No allergies have been detected in this patient."
-	M.fields["cdi"]			= "None"
-	M.fields["cdi_d"]		= "No diseases have been diagnosed at the moment."
+	M.fields["id"] = null
+	M.fields["name"] = H.real_name
+	M.fields["b_type"] = H.b_type
+	M.fields["mi_dis"] = "None"
+	M.fields["mi_dis_d"] = "No minor disabilities have been declared."
+	M.fields["ma_dis"] = "None"
+	M.fields["ma_dis_d"] = "No major disabilities have been diagnosed."
+	M.fields["alg"] = "None"
+	M.fields["alg_d"] = "No allergies have been detected in this patient."
+	M.fields["cdi"] = "None"
+	M.fields["cdi_d"] = "No diseases have been diagnosed at the moment."
 	M.fields["last_scan_time"] = 0
 	M.fields["last_scan_result"] = "No scan data on record"
 	M.fields["autodoc_data"] = list()

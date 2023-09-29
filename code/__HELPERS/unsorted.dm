@@ -23,9 +23,22 @@
 
 #define UNTIL(X) while(!(X)) stoplag()
 
-//datum may be null, but it does need to be a typed var
+/**
+ * NAMEOF: Compile time checked variable name to string conversion
+ * evaluates to a string equal to "X", but compile errors if X isn't a var on datum.
+ * datum may be null, but it does need to be a typed var.
+ **/
 #define NAMEOF(datum, X) (#X || ##datum.##X)
 
+/**
+ * NAMEOF that actually works in static definitions because src::type requires src to be defined
+ */
+
+#if DM_VERSION >= 515
+#define NAMEOF_STATIC(datum, X) (nameof(type::##X))
+#else
+#define NAMEOF_STATIC(datum, X) (#X || ##datum.##X)
+#endif
 
 //gives us the stack trace from CRASH() without ending the current proc.
 /proc/stack_trace(msg)
@@ -35,23 +48,13 @@
 /datum/proc/stack_trace(msg)
 	CRASH(msg)
 
-
-GLOBAL_REAL_VAR(list/stack_trace_storage)
-/proc/gib_stack_trace()
-	stack_trace_storage = list()
-	stack_trace()
-	stack_trace_storage.Cut(1, min(3, length(stack_trace_storage)))
-	. = stack_trace_storage
-	stack_trace_storage = null
-
-
 //returns a GUID like identifier (using a mostly made up record format)
 //guids are not on their own suitable for access or security tokens, as most of their bits are predictable.
 //	(But may make a nice salt to one)
 /proc/GUID()
 	var/const/GUID_VERSION = "b"
 	var/const/GUID_VARIANT = "d"
-	var/node_id = copytext_char(md5("[rand()*rand(1,9999999)][world.name][world.hub][world.hub_password][world.internet_address][world.address][world.contents.len][world.status][world.port][rand()*rand(1,9999999)]"), 1, 13)
+	var/node_id = copytext_char(md5("[rand()*rand(1,9999999)][world.name][world.hub][world.hub_password][world.internet_address][world.address][length(world.contents)][world.status][world.port][rand()*rand(1,9999999)]"), 1, 13)
 
 	var/time_high = "[num2hex(text2num(time2text(world.realtime,"YYYY")), 2)][num2hex(world.realtime, 6)]"
 
@@ -70,7 +73,7 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 
 // \ref behaviour got changed in 512 so this is necesary to replicate old behaviour.
 // If it ever becomes necesary to get a more performant REF(), this lies here in wait
-// #define REF(thing) (thing && istype(thing, /datum) && (thing:datum_flags & DF_USE_TAG) && thing:tag ? "[thing:tag]" : "\ref[thing]")
+// #define REF(thing) (thing && istype(thing, /datum) && (thing:datum_flags & DF_USE_TAG) && thing:tag ? "[thing:tag]" : text_ref(thing))
 /proc/REF(input)
 	if(istype(input, /datum))
 		var/datum/thing = input
@@ -80,7 +83,7 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 				thing.datum_flags &= ~DF_USE_TAG
 			else
 				return "\[[url_encode(thing.tag)]\]"
-	return "\ref[input]"
+	return text_ref(input)
 
 
 //Returns the middle-most value
@@ -167,11 +170,12 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 /**
  *	Returns true if the path from A to B is blocked. Checks both paths where the direction is diagonal
  *	Variables:
- *	bypass_window - whether it will go through transparent windows like lasers
- *	projectile - whether throwpass will be checked to ignore dense objects like projectiles
+ *	bypass_window - check for PASS_GLASS - laser like behavior
+ *	projectile - check for PASS_PROJECTILE - bullet like behavior
  *	bypass_xeno - whether to bypass dense xeno structures like flamers
+ *	air_pass - whether to bypass non airtight atoms
  */
-/proc/LinkBlocked(turf/A, turf/B, bypass_window = FALSE, projectile = FALSE, bypass_xeno = FALSE)
+/proc/LinkBlocked(turf/A, turf/B, bypass_window = FALSE, projectile = FALSE, bypass_xeno = FALSE, air_pass = FALSE)
 	if(isnull(A) || isnull(B))
 		return TRUE
 	var/adir = get_dir(A, B)
@@ -180,30 +184,32 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 		return TRUE
 	if(adir & (adir - 1))//is diagonal direction
 		var/turf/iStep = get_step(A, adir & (NORTH|SOUTH))
-		if((!iStep.density || (istype(iStep, /turf/closed/wall/resin) && bypass_xeno)) && !LinkBlocked(A, iStep, bypass_window, projectile, bypass_xeno) && !LinkBlocked(iStep, B, bypass_window, projectile, bypass_xeno))
+		if((!iStep.density || (istype(iStep, /turf/closed/wall/resin) && bypass_xeno)) && !LinkBlocked(A, iStep, bypass_window, projectile, bypass_xeno, air_pass) && !LinkBlocked(iStep, B, bypass_window, projectile, bypass_xeno, air_pass))
 			return FALSE
 
 		var/turf/pStep = get_step(A,adir & (EAST|WEST))
-		if((!pStep.density || (istype(pStep, /turf/closed/wall/resin) && bypass_xeno)) && !LinkBlocked(A, pStep, bypass_window, projectile, bypass_xeno) && !LinkBlocked(pStep, B, bypass_window, projectile, bypass_xeno))
+		if((!pStep.density || (istype(pStep, /turf/closed/wall/resin) && bypass_xeno)) && !LinkBlocked(A, pStep, bypass_window, projectile, bypass_xeno, air_pass) && !LinkBlocked(pStep, B, bypass_window, projectile, bypass_xeno, air_pass))
 			return FALSE
 		return TRUE
 
-	if(DirBlocked(A, adir, bypass_window, projectile, bypass_xeno))
+	if(DirBlocked(A, adir, bypass_window, projectile, bypass_xeno, air_pass))
 		return TRUE
-	if(DirBlocked(B, rdir, bypass_window, projectile, bypass_xeno))
+	if(DirBlocked(B, rdir, bypass_window, projectile, bypass_xeno, air_pass))
 		return TRUE
 	return FALSE
 
 ///Checks if moving in a direction is blocked
-/proc/DirBlocked(turf/loc, direction, bypass_window = FALSE, projectile = FALSE, bypass_xeno = FALSE)
+/proc/DirBlocked(turf/loc, direction, bypass_window = FALSE, projectile = FALSE, bypass_xeno = FALSE, air_pass = FALSE)
 	for(var/obj/object in loc)
 		if(!object.density)
 			continue
-		if(object.throwpass && projectile) //projectiles can bypass dense objects with throwpass
+		if((object.allow_pass_flags & PASS_PROJECTILE) && projectile)
 			continue
 		if((istype(object, /obj/structure/mineral_door/resin) || istype(object, /obj/structure/xeno)) && bypass_xeno) //xeno objects are bypassed by flamers
 			continue
-		if((istype(object, /obj/machinery/door/window) || istype(object, /obj/structure/window)) && bypass_window) //windows are bypassed energy weapons
+		if((object.allow_pass_flags & PASS_GLASS) && bypass_window)
+			continue
+		if((object.allow_pass_flags & PASS_AIR) && air_pass)
 			continue
 		if(object.flags_atom & ON_BORDER && object.dir != direction)
 			continue
@@ -648,7 +654,7 @@ GLOBAL_LIST_INIT(common_tools, typecacheof(list(
 /obj/item/tool/weldingtool,
 /obj/item/tool/screwdriver,
 /obj/item/tool/wirecutters,
-/obj/item/multitool,
+/obj/item/tool/multitool,
 /obj/item/tool/crowbar)))
 
 
@@ -694,6 +700,14 @@ GLOBAL_LIST_INIT(common_tools, typecacheof(list(
 	tY = clamp(origin.y + text2num(tY) - round(actual_view[2] * 0.5) + (round(C?.pixel_y / 32)) - 1, 1, world.maxy)
 	return locate(tX, tY, tZ)
 
+///Converts a screen loc param to a x,y coordinate pixel on the screen
+/proc/params2screenpixel(scr_loc)
+	var/list/x_and_y = splittext(scr_loc, ",")
+	var/list/x_dirty = splittext(x_and_y[1], ":")
+	var/list/y_dirty = splittext(x_and_y[2], ":")
+	var/x = (text2num(x_dirty[1])-1)*32 + text2num(x_dirty[2])
+	var/y = (text2num(y_dirty[1])-1)*32 + text2num(y_dirty[2])
+	return list(x, y)
 
 //Returns TRUE if the given item is capable of popping things like balloons, inflatable barriers, or cutting police tape.
 /proc/can_puncture(obj/item/I)
@@ -704,11 +718,6 @@ GLOBAL_LIST_INIT(common_tools, typecacheof(list(
 		istype(I, /obj/item/tool/pen) 		 || \
 		istype(I, /obj/item/tool/shovel) \
 	)
-
-
-//Actually better performant than reverse_direction()
-#define REVERSE_DIR(dir) ( ((dir & 85) << 1) | ((dir & 170) >> 1) )
-
 
 /proc/reverse_nearby_direction(direction)
 	switch(direction)
@@ -734,7 +743,7 @@ GLOBAL_LIST_INIT(common_tools, typecacheof(list(
 Checks if that loc and dir has a item on the wall
 */
 GLOBAL_LIST_INIT(wallitems, typecacheof(list(
-	/obj/machinery/power/apc, /obj/machinery/alarm, /obj/item/radio/intercom,
+	/obj/machinery/power/apc, /obj/machinery/air_alarm, /obj/item/radio/intercom,
 	/obj/structure/extinguisher_cabinet, /obj/structure/reagent_dispensers/wallmounted/peppertank,
 	/obj/machinery/status_display, /obj/machinery/light_switch, /obj/structure/sign,
 	/obj/machinery/newscaster, /obj/machinery/firealarm, /obj/structure/noticeboard, /obj/machinery/door_control,
@@ -921,7 +930,7 @@ GLOBAL_LIST_INIT(wallitems, typecacheof(list(
 	for(var/area/A in world)
 		GLOB.sorted_areas.Add(A)
 
-	sortTim(GLOB.sorted_areas, /proc/cmp_name_asc)
+	sortTim(GLOB.sorted_areas, GLOBAL_PROC_REF(cmp_name_asc))
 
 
 // Format a power value in W, kW, MW, or GW.
@@ -951,7 +960,7 @@ GLOBAL_LIST_INIT(wallitems, typecacheof(list(
 		return GetAllContents()
 	var/list/processing = list(src)
 	. = list()
-	while(processing.len)
+	while(length(processing))
 		var/atom/A = processing[1]
 		processing.Cut(1,2)
 		if(ignore_typecache[A.type])
@@ -959,14 +968,14 @@ GLOBAL_LIST_INIT(wallitems, typecacheof(list(
 		processing += A.contents
 		. += A
 
-/atom/proc/Shake(pixelshiftx = 15, pixelshifty = 15, duration = 25 SECONDS) //Does a "shaking" effect on a sprite, code is from tgstation
+/// Perform a shake on an atom, resets its position afterwards
+/atom/proc/Shake(pixelshiftx = 2, pixelshifty = 2, duration = 2.5 SECONDS, shake_interval = 0.02 SECONDS)
 	var/initialpixelx = pixel_x
 	var/initialpixely = pixel_y
-	var/shiftx = rand(-pixelshiftx,pixelshiftx)
-	var/shifty = rand(-pixelshifty,pixelshifty)
-	animate(src, pixel_x = pixel_x + shiftx, pixel_y = pixel_y + shifty, time = 0.2, loop = duration)
-	pixel_x = initialpixelx
-	pixel_y = initialpixely
+	animate(src, pixel_x = initialpixelx + rand(-pixelshiftx,pixelshiftx), pixel_y = initialpixelx + rand(-pixelshifty,pixelshifty), time = shake_interval, flags = ANIMATION_PARALLEL)
+	for (var/i in 3 to ((duration / shake_interval))) // Start at 3 because we already applied one, and need another to reset
+		animate(pixel_x = initialpixelx + rand(-pixelshiftx,pixelshiftx), pixel_y = initialpixely + rand(-pixelshifty,pixelshifty), time = shake_interval)
+	animate(pixel_x = initialpixelx, pixel_y = initialpixely, time = shake_interval)
 
 /atom/proc/contains(atom/A)
 	if(!A)
@@ -997,7 +1006,7 @@ GLOBAL_DATUM_INIT(dview_mob, /mob/dview, new)
 	move_resist = INFINITY
 	var/ready_to_die = FALSE
 
-/mob/dview/Initialize() //Properly prevents this mob from gaining huds or joining any global lists
+/mob/dview/Initialize(mapload) //Properly prevents this mob from gaining huds or joining any global lists
 	SHOULD_CALL_PARENT(FALSE)
 	if(flags_atom & INITIALIZED)
 		stack_trace("Warning: [src]([type]) initialized multiple times!")
@@ -1078,11 +1087,11 @@ will handle it, but:
 	for(var/client/C in show_to)
 		C.images += I
 	animate(I, transform = 0, alpha = 255, time = 0.5 SECONDS, easing = ELASTIC_EASING)
-	addtimer(CALLBACK(GLOBAL_PROC, /.proc/fade_out, I), duration - 0.5 SECONDS)
+	addtimer(CALLBACK(GLOBAL_PROC, TYPE_PROC_REF(/, fade_out), I), duration - 0.5 SECONDS)
 
 /proc/fade_out(image/I, list/show_to)
 	animate(I, alpha = 0, time = 0.5 SECONDS, easing = EASE_IN)
-	addtimer(CALLBACK(GLOBAL_PROC, /.proc/remove_images_from_clients, I, show_to), 0.5 SECONDS)
+	addtimer(CALLBACK(GLOBAL_PROC, TYPE_PROC_REF(/, remove_images_from_clients), I, show_to), 0.5 SECONDS)
 
 //takes an input_key, as text, and the list of keys already used, outputting a replacement key in the format of "[input_key] ([number_of_duplicates])" if it finds a duplicate
 //use this for lists of things that might have the same name, like mobs or objects, that you plan on giving to a player as input
@@ -1223,15 +1232,16 @@ will handle it, but:
  *	Variables:
  *	center - where the cone begins, or center of a circle drawn with this
  *	max_row_count - how many rows are checked
- *	starting_row - from how far should the turfs start getting included in the cone
+ *	starting_row - from how far should the turfs start getting included in the cone. -1 required to include center turf due to byond
  *	cone_width - big the angle of the cone is
  *	cone_direction - at what angle should the cone be made, relative to the game board's orientation
  *	blocked - whether the cone should take into consideration solid walls
  *	bypass_window - whether it will go through transparent windows like lasers
- *	projectile - whether throwpass will be checked to ignore dense objects like projectiles
+ *	projectile - whether PASS_PROJECTILE will be checked to ignore dense objects like projectiles
  *	bypass_xeno - whether to bypass dense xeno structures like flamers
+ *	air_pass - whether to bypass non airtight atoms
  */
-/proc/generate_true_cone(atom/center, max_row_count = 10, starting_row = 1, cone_width = 60, cone_direction = 0, blocked = TRUE, bypass_window = FALSE, projectile = FALSE, bypass_xeno = FALSE)
+/proc/generate_true_cone(atom/center, max_row_count = 10, starting_row = 1, cone_width = 60, cone_direction = 0, blocked = TRUE, bypass_window = FALSE, projectile = FALSE, bypass_xeno = FALSE, air_pass = FALSE)
 	var/right_angle = cone_direction + cone_width/2
 	var/left_angle = cone_direction - cone_width/2
 
@@ -1241,10 +1251,10 @@ will handle it, but:
 
 	if(left_angle < 0)
 		left_angle += 360
-
+	center = get_turf(center)
 	var/list/cardinals = GLOB.alldirs
-	var/list/turfs_to_check = list(get_turf(center))
-	var/list/cone_turfs = list()
+	var/list/turfs_to_check = list(center)
+	var/list/cone_turfs = list(center)
 
 	for(var/row in 1 to max_row_count)
 		if(row > 2)
@@ -1259,7 +1269,7 @@ will handle it, but:
 					continue
 				if(turf_angle > right_angle && turf_angle < left_angle)
 					continue
-				if(blocked && LinkBlocked(old_turf, turf_to_check, bypass_window, projectile, bypass_xeno))
+				if(blocked && LinkBlocked(old_turf, turf_to_check, bypass_window, projectile, bypass_xeno, air_pass))
 					continue
 				cone_turfs += turf_to_check
 				turfs_to_check += turf_to_check
@@ -1277,14 +1287,15 @@ GLOBAL_LIST_INIT(survivor_outfits, typecacheof(/datum/outfit/job/survivor))
  *	start -start point of the path
  *	end - end point of the path
  *	bypass_window - whether it will go through transparent windows in the same way as lasers
- *	projectile - whether throwpass will be checked to ignore dense objects in the same way as projectiles
+ *	projectile - whether PASS_PROJECTILE will be checked to ignore dense objects in the same way as projectiles
  *	bypass_xeno - whether to bypass dense xeno structures in the same way as flamers
+ *	air_pass - whether to bypass non airtight atoms
  */
-/proc/check_path(atom/start, atom/end, bypass_window = FALSE, projectile = FALSE, bypass_xeno = FALSE)
+/proc/check_path(atom/start, atom/end, bypass_window = FALSE, projectile = FALSE, bypass_xeno = FALSE, air_pass = FALSE)
 	var/list/path_to_target = getline(start, end)
 	var/line_count = 1
 	while(line_count < length(path_to_target))
-		if(LinkBlocked(path_to_target[line_count], path_to_target[line_count + 1], bypass_window, projectile, bypass_xeno))
+		if(LinkBlocked(path_to_target[line_count], path_to_target[line_count + 1], bypass_window, projectile, bypass_xeno, air_pass))
 			return FALSE
 		line_count ++
 	return TRUE

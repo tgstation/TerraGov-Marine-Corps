@@ -12,13 +12,22 @@
 	if(!isxeno(owner))
 		return FALSE
 	var/mob/living/carbon/xenomorph/X = owner
-	X.fire_resist_modifier -= 20
+	ADD_TRAIT(X, TRAIT_NON_FLAMMABLE, id)
+	X.soft_armor = X.soft_armor.modifyRating(fire = 100)
+	X.hard_armor = X.hard_armor.modifyRating(fire = 100)
 	X.add_filter("resin_jelly_outline", 2, outline_filter(1, COLOR_TAN_ORANGE))
+
+	var/datum/status_effect/stacking/melting/debuff = X.has_status_effect(STATUS_EFFECT_MELTING)
+	if(debuff)
+		qdel(debuff)
+
 	return TRUE
 
 /datum/status_effect/resin_jelly_coating/on_remove()
 	var/mob/living/carbon/xenomorph/X = owner
-	X.fire_resist_modifier += 20
+	REMOVE_TRAIT(X, TRAIT_NON_FLAMMABLE, id)
+	X.soft_armor = X.soft_armor.modifyRating(fire = -100)
+	X.hard_armor = X.hard_armor.modifyRating(fire = -100)
 	X.remove_filter("resin_jelly_outline")
 	owner.balloon_alert(owner, "We are vulnerable again")
 	return ..()
@@ -65,8 +74,8 @@
 	essence_link_action = link_owner.actions_by_path[/datum/action/xeno_action/activable/essence_link]
 	ADD_TRAIT(link_owner, TRAIT_ESSENCE_LINKED, TRAIT_STATUS_EFFECT(id))
 	ADD_TRAIT(link_target, TRAIT_ESSENCE_LINKED, TRAIT_STATUS_EFFECT(id))
-	RegisterSignal(link_owner, list(COMSIG_MOB_DEATH, COMSIG_XENOMORPH_EVOLVED, COMSIG_XENOMORPH_DEEVOLVED), .proc/end_link)
-	RegisterSignal(link_target, list(COMSIG_MOB_DEATH, COMSIG_XENOMORPH_EVOLVED, COMSIG_XENOMORPH_DEEVOLVED), .proc/end_link)
+	RegisterSignals(link_owner, list(COMSIG_MOB_DEATH, COMSIG_XENOMORPH_EVOLVED, COMSIG_XENOMORPH_DEEVOLVED), PROC_REF(end_link))
+	RegisterSignals(link_target, list(COMSIG_MOB_DEATH, COMSIG_XENOMORPH_EVOLVED, COMSIG_XENOMORPH_DEEVOLVED), PROC_REF(end_link))
 	toggle_link(TRUE)
 	to_chat(link_owner, span_xenonotice("We have established an Essence Link with [link_target]. Stay within [DRONE_ESSENCE_LINK_RANGE] tiles to maintain it."))
 	to_chat(link_target, span_xenonotice("[link_owner] has established an Essence Link with us. Stay within [DRONE_ESSENCE_LINK_RANGE] tiles to maintain it."))
@@ -137,7 +146,7 @@
 	buff_target.balloon_alert(buff_target, "Buff shared")
 	buff_target.visible_message(span_notice("[buff_target]'s chitin begins to gleam with an unseemly glow..."), \
 		span_xenonotice("Through the Essence Link, [buff_owner] has shared their resin jelly with us."))
-	INVOKE_ASYNC(buff_target, /mob/living/carbon/xenomorph.proc/emote, "roar")
+	INVOKE_ASYNC(buff_target, TYPE_PROC_REF(/mob/living/carbon/xenomorph, emote), "roar")
 	buff_target.apply_status_effect(STATUS_EFFECT_RESIN_JELLY_COATING)
 
 /// Shares heals with the linked xeno.
@@ -158,7 +167,7 @@
 	var/heal_amount = clamp(abs(amount) * (DRONE_ESSENCE_LINK_SHARED_HEAL * stacks), 0, heal_target.maxHealth)
 	heal_target.adjustFireLoss(-max(0, heal_amount - heal_target.getBruteLoss()), passive = TRUE)
 	heal_target.adjustBruteLoss(-heal_amount, passive = TRUE)
-	heal_target.adjust_sunder(-heal_amount/5)
+	heal_target.adjust_sunder(-heal_amount/10)
 	heal_target.balloon_alert(heal_target, "Shared heal: +[heal_amount]")
 
 /// Toggles the link signals on or off.
@@ -168,10 +177,10 @@
 		UnregisterSignal(link_target, list(COMSIG_XENOMORPH_RESIN_JELLY_APPLIED, COMSIG_XENOMORPH_BRUTE_DAMAGE, COMSIG_XENOMORPH_BURN_DAMAGE))
 		toggle_beam(FALSE)
 		return
-	RegisterSignal(link_owner, COMSIG_XENOMORPH_RESIN_JELLY_APPLIED, .proc/share_jelly)
-	RegisterSignal(link_target, COMSIG_XENOMORPH_RESIN_JELLY_APPLIED, .proc/share_jelly)
-	RegisterSignal(link_owner, list(COMSIG_XENOMORPH_BRUTE_DAMAGE, COMSIG_XENOMORPH_BURN_DAMAGE), .proc/share_heal)
-	RegisterSignal(link_target, list(COMSIG_XENOMORPH_BRUTE_DAMAGE, COMSIG_XENOMORPH_BURN_DAMAGE), .proc/share_heal)
+	RegisterSignal(link_owner, COMSIG_XENOMORPH_RESIN_JELLY_APPLIED, PROC_REF(share_jelly))
+	RegisterSignal(link_target, COMSIG_XENOMORPH_RESIN_JELLY_APPLIED, PROC_REF(share_jelly))
+	RegisterSignals(link_owner, list(COMSIG_XENOMORPH_BRUTE_DAMAGE, COMSIG_XENOMORPH_BURN_DAMAGE), PROC_REF(share_heal))
+	RegisterSignals(link_target, list(COMSIG_XENOMORPH_BRUTE_DAMAGE, COMSIG_XENOMORPH_BURN_DAMAGE), PROC_REF(share_heal))
 	toggle_beam(TRUE)
 
 /// Toggles the effect beam on or off.
@@ -270,9 +279,9 @@
 	essence_link_action = buffing_xeno.actions_by_path[/datum/action/xeno_action/activable/essence_link]
 	enhancement_action = buffing_xeno.actions_by_path[/datum/action/xeno_action/enhancement]
 	plasma_cost = round(buffing_xeno.xeno_caste.plasma_max * 0.1)
-	RegisterSignal(buffed_xeno, COMSIG_MOB_DEATH, .proc/handle_death)
-	RegisterSignal(buffing_xeno, COMSIG_MOB_DEATH, .proc/handle_death)
-	INVOKE_ASYNC(buffed_xeno, /mob/living/carbon/xenomorph.proc/emote, "roar2")
+	RegisterSignal(buffed_xeno, COMSIG_MOB_DEATH, PROC_REF(handle_death))
+	RegisterSignal(buffing_xeno, COMSIG_MOB_DEATH, PROC_REF(handle_death))
+	INVOKE_ASYNC(buffed_xeno, TYPE_PROC_REF(/mob/living/carbon/xenomorph, emote), "roar2")
 	toggle_buff(TRUE)
 	return ..()
 
@@ -342,7 +351,7 @@
 	owner = new_owner
 	duration = set_duration
 	src.tick_damage_limit = tick_damage_limit
-	RegisterSignal(owner, list(COMSIG_XENOMORPH_BRUTE_DAMAGE, COMSIG_XENOMORPH_BURN_DAMAGE), .proc/handle_damage_taken)
+	RegisterSignals(owner, list(COMSIG_XENOMORPH_BRUTE_DAMAGE, COMSIG_XENOMORPH_BURN_DAMAGE), PROC_REF(handle_damage_taken))
 	owner.add_movespeed_modifier(MOVESPEED_ID_GORGER_REJUVENATE, TRUE, 0, NONE, TRUE, GORGER_REJUVENATE_SLOWDOWN)
 	owner.add_filter("[id]m", 0, outline_filter(2, "#455d5762"))
 	return ..()
@@ -415,13 +424,13 @@
 	src.minimum_health = minimum_health
 	ADD_TRAIT(target_mob, TRAIT_PSY_LINKED, TRAIT_STATUS_EFFECT(id))
 	ADD_TRAIT(owner, TRAIT_PSY_LINKED, TRAIT_STATUS_EFFECT(id))
-	RegisterSignal(owner, COMSIG_MOB_DEATH, .proc/handle_mob_dead)
-	RegisterSignal(target_mob, COMSIG_MOB_DEATH, .proc/handle_mob_dead)
+	RegisterSignal(owner, COMSIG_MOB_DEATH, PROC_REF(handle_mob_dead))
+	RegisterSignal(target_mob, COMSIG_MOB_DEATH, PROC_REF(handle_mob_dead))
 	var/link_message = "[owner] has linked to you and is redirecting some of your injuries. If they get too hurt, the link may be broken."
 	if(link_range > 0)
 		link_message += " Keep within [link_range] tiles to maintain it."
-		RegisterSignal(owner, COMSIG_MOVABLE_MOVED, .proc/handle_dist)
-		RegisterSignal(target_mob, COMSIG_MOVABLE_MOVED, .proc/handle_dist)
+		RegisterSignal(owner, COMSIG_MOVABLE_MOVED, PROC_REF(handle_dist))
+		RegisterSignal(target_mob, COMSIG_MOVABLE_MOVED, PROC_REF(handle_dist))
 		handle_dist()
 	else
 		link_toggle(TRUE)
@@ -456,8 +465,8 @@
 ///Handles the link toggling on and off
 /datum/status_effect/xeno_psychic_link/proc/link_toggle(toggle_on)
 	if(toggle_on)
-		RegisterSignal(target_mob, COMSIG_XENOMORPH_BURN_DAMAGE, .proc/handle_burn_damage)
-		RegisterSignal(target_mob, COMSIG_XENOMORPH_BRUTE_DAMAGE, .proc/handle_brute_damage)
+		RegisterSignal(target_mob, COMSIG_XENOMORPH_BURN_DAMAGE, PROC_REF(handle_burn_damage))
+		RegisterSignal(target_mob, COMSIG_XENOMORPH_BRUTE_DAMAGE, PROC_REF(handle_brute_damage))
 		owner.add_filter(id, 2, outline_filter(2, PSYCHIC_LINK_COLOR))
 		target_mob.add_filter(id, 2, outline_filter(2, PSYCHIC_LINK_COLOR))
 		return
@@ -524,7 +533,7 @@
 
 	to_chat(owner, span_notice("We give into our thirst!"))
 	owner_xeno.emote("roar")
-	RegisterSignal(owner, COMSIG_XENOMORPH_ATTACK_LIVING, .proc/carnage_slash)
+	RegisterSignal(owner, COMSIG_XENOMORPH_ATTACK_LIVING, PROC_REF(carnage_slash))
 
 	owner.add_filter(id, 5, rays_filter(size = 25, color = "#c50021", offset = 200, density = 50, y = 7))
 	if(plasma_mod >= HIGN_THRESHOLD)
@@ -536,7 +545,7 @@
 	. = ..()
 	owner.remove_movespeed_modifier(MOVESPEED_ID_GORGER_CARNAGE)
 	to_chat(owner, span_notice("Our bloodlust subsides..."))
-	UnregisterSignal(owner, COMSIG_XENOMORPH_ATTACK_LIVING, .proc/carnage_slash)
+	UnregisterSignal(owner, COMSIG_XENOMORPH_ATTACK_LIVING, PROC_REF(carnage_slash))
 	owner.remove_filter(list(id, "[id]m"))
 	REMOVE_TRAIT(owner, TRAIT_HANDS_BLOCKED, src)
 
@@ -546,7 +555,7 @@
 	if(!ishuman(target) || issynth(target))
 		return
 	UnregisterSignal(owner, COMSIG_XENOMORPH_ATTACK_LIVING)
-	INVOKE_ASYNC(src, .proc/do_carnage_slash, source, target, damage)
+	INVOKE_ASYNC(src, PROC_REF(do_carnage_slash), source, target, damage)
 
 ///Performs on-attack logic
 /datum/status_effect/xeno_carnage/proc/do_carnage_slash(datum/source, mob/living/target, damage)
@@ -644,7 +653,7 @@
 	if(!bonus_regen)
 		qdel(src)
 	else
-		RegisterSignal(owner, COMSIG_XENOMORPH_PLASMA_REGEN, .proc/plasma_surge_regeneration)
+		RegisterSignal(owner, COMSIG_XENOMORPH_PLASMA_REGEN, PROC_REF(plasma_surge_regeneration))
 
 /datum/status_effect/plasma_surge/proc/plasma_surge_regeneration()
 	SIGNAL_HANDLER
@@ -694,8 +703,8 @@
 		return
 	ADD_TRAIT(owner, TRAIT_HEALING_INFUSION, TRAIT_STATUS_EFFECT(id))
 	owner.add_filter("hivelord_healing_infusion_outline", 3, outline_filter(1, COLOR_VERY_PALE_LIME_GREEN)) //Set our cool aura; also confirmation we have the buff
-	RegisterSignal(owner, COMSIG_XENOMORPH_HEALTH_REGEN, .proc/healing_infusion_regeneration) //Register so we apply the effect whenever the target heals
-	RegisterSignal(owner, COMSIG_XENOMORPH_SUNDER_REGEN, .proc/healing_infusion_sunder_regeneration) //Register so we apply the effect whenever the target heals
+	RegisterSignal(owner, COMSIG_XENOMORPH_HEALTH_REGEN, PROC_REF(healing_infusion_regeneration)) //Register so we apply the effect whenever the target heals
+	RegisterSignal(owner, COMSIG_XENOMORPH_SUNDER_REGEN, PROC_REF(healing_infusion_sunder_regeneration)) //Register so we apply the effect whenever the target heals
 
 /datum/status_effect/healing_infusion/on_remove()
 	REMOVE_TRAIT(owner, TRAIT_HEALING_INFUSION, TRAIT_STATUS_EFFECT(id))
@@ -755,7 +764,7 @@
 
 	new /obj/effect/temp_visual/telekinesis(get_turf(patient)) //Visual confirmation
 
-	patient.adjust_sunder(-1.8 * (1 + patient.recovery_aura * 0.05)) //5% bonus per rank of our recovery aura
+	patient.adjust_sunder(-1.5 * (1 + patient.recovery_aura * 0.05)) //5% bonus per rank of our recovery aura
 
 /atom/movable/screen/alert/status_effect/healing_infusion
 	name = "Healing Infusion"

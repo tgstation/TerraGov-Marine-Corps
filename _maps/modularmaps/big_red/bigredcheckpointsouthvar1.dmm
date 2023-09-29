@@ -1,9 +1,7 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "f" = (
 /obj/effect/decal/cleanable/blood,
-/turf/open/floor/tile/dark{
-	
-	},
+/turf/open/floor/tile/dark,
 /area/bigredv2/outside/se)
 "h" = (
 /turf/closed/wall,
@@ -13,17 +11,13 @@
 /area/bigredv2/outside/se)
 "u" = (
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/tile/dark{
-	
-	},
+/turf/open/floor/tile/dark,
 /area/bigredv2/outside/se)
 "C" = (
 /turf/closed/wall,
 /area/bigredv2/caves/east)
 "D" = (
-/turf/open/floor/tile/dark{
-	
-	},
+/turf/open/floor/tile/dark,
 /area/bigredv2/outside/se)
 "E" = (
 /turf/open/floor/podhatch/floor,

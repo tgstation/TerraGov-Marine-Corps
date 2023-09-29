@@ -39,7 +39,6 @@
 	var/atom/movable/screen/oxygen_icon
 	var/atom/movable/screen/pressure_icon
 	var/atom/movable/screen/toxin_icon
-	var/atom/movable/screen/internals
 	var/atom/movable/screen/healths
 	var/atom/movable/screen/stamina_hud/staminas
 	var/atom/movable/screen/fire_icon
@@ -75,19 +74,19 @@
 /datum/hud/Destroy()
 	if(mymob.hud_used == src)
 		mymob.hud_used = null
-	if(static_inventory.len)
+	if(length(static_inventory))
 		for(var/thing in static_inventory)
 			qdel(thing)
 		static_inventory.Cut()
-	if(toggleable_inventory.len)
+	if(length(toggleable_inventory))
 		for(var/thing in toggleable_inventory)
 			qdel(thing)
 		toggleable_inventory.Cut()
-	if(hotkeybuttons.len)
+	if(length(hotkeybuttons))
 		for(var/thing in hotkeybuttons)
 			qdel(thing)
 		hotkeybuttons.Cut()
-	if(infodisplay.len)
+	if(length(infodisplay))
 		for(var/thing in infodisplay)
 			qdel(thing)
 		infodisplay.Cut()
@@ -118,7 +117,6 @@
 	oxygen_icon = null
 	pressure_icon = null
 	toxin_icon = null
-	internals = null
 	healths = null
 	staminas = null
 	fire_icon = null
@@ -177,26 +175,26 @@
 	switch(display_hud_version)
 		if(HUD_STYLE_STANDARD)	//Default HUD
 			hud_shown = 1	//Governs behavior of other procs
-			if(static_inventory.len)
+			if(length(static_inventory))
 				screenmob.client.screen += static_inventory
-			if(toggleable_inventory.len && inventory_shown)
+			if(length(toggleable_inventory) && inventory_shown)
 				screenmob.client.screen += toggleable_inventory
-			if(hotkeybuttons.len && !hotkey_ui_hidden)
+			if(length(hotkeybuttons) && !hotkey_ui_hidden)
 				screenmob.client.screen += hotkeybuttons
-			if(infodisplay.len)
+			if(length(infodisplay))
 				screenmob.client.screen += infodisplay
 			if(action_intent)
 				action_intent.screen_loc = initial(action_intent.screen_loc) //Restore intent selection to the original position
 
 		if(HUD_STYLE_REDUCED)	//Reduced HUD
 			hud_shown = 0	//Governs behavior of other procs
-			if(static_inventory.len)
+			if(length(static_inventory))
 				screenmob.client.screen -= static_inventory
-			if(toggleable_inventory.len)
+			if(length(toggleable_inventory))
 				screenmob.client.screen -= toggleable_inventory
-			if(hotkeybuttons.len)
+			if(length(hotkeybuttons))
 				screenmob.client.screen -= hotkeybuttons
-			if(infodisplay.len)
+			if(length(infodisplay))
 				screenmob.client.screen += infodisplay
 
 			//These ones are a part of 'static_inventory', 'toggleable_inventory' or 'hotkeybuttons' but we want them to stay
@@ -210,13 +208,13 @@
 
 		if(HUD_STYLE_NOHUD)	//No HUD
 			hud_shown = 0	//Governs behavior of other procs
-			if(static_inventory.len)
+			if(length(static_inventory))
 				screenmob.client.screen -= static_inventory
-			if(toggleable_inventory.len)
+			if(length(toggleable_inventory))
 				screenmob.client.screen -= toggleable_inventory
-			if(hotkeybuttons.len)
+			if(length(hotkeybuttons))
 				screenmob.client.screen -= hotkeybuttons
-			if(infodisplay.len)
+			if(length(infodisplay))
 				screenmob.client.screen -= infodisplay
 
 	hud_version = display_hud_version

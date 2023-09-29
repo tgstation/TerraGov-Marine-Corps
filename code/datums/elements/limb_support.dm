@@ -1,6 +1,6 @@
 /datum/element/limb_support
 	element_flags = ELEMENT_BESPOKE
-	id_arg_index = 2
+	argument_hash_start_idx = 2
 
 	var/limbs_to_support = FULL_BODY
 
@@ -9,21 +9,27 @@
 	if(limbflags)
 		limbs_to_support = limbflags
 
-	RegisterSignal(target, COMSIG_ITEM_EQUIPPED_TO_SLOT, .proc/equipped)
-	RegisterSignal(target, list(COMSIG_ITEM_EQUIPPED_NOT_IN_SLOT, COMSIG_ITEM_DROPPED), .proc/dropped)
+	RegisterSignal(target, COMSIG_ITEM_EQUIPPED_TO_SLOT, PROC_REF(equipped))
+	RegisterSignals(target, list(COMSIG_ITEM_EQUIPPED_NOT_IN_SLOT, COMSIG_ITEM_DROPPED), PROC_REF(dropped))
+
+/datum/element/limb_support/Detach(datum/source, ...)
+	. = ..()
+	UnregisterSignal(source, list(COMSIG_ITEM_EQUIPPED_TO_SLOT, COMSIG_ITEM_EQUIPPED_NOT_IN_SLOT, COMSIG_ITEM_DROPPED))
 
 /datum/element/limb_support/proc/equipped(datum/source, mob/equipper, slot)
 	SIGNAL_HANDLER
 	if(!ishuman(equipper))
 		return
-	RegisterSignal(equipper, COMSIG_HUMAN_LIMB_FRACTURED, .proc/fuckibrokemyleg)
+	RegisterSignal(equipper, COMSIG_HUMAN_LIMB_FRACTURED, PROC_REF(fuckibrokemyleg))
 	fuckibrokemyleg(equipper, null, FALSE) // manually called when equipped to stabilize limbs
 
+///stops stabilizing limbs when dropped
 /datum/element/limb_support/proc/dropped(datum/source, mob/equipper)
 	SIGNAL_HANDLER
 	fuckibrokemyleg(equipper, null, TRUE) // manually called when dropped to remove stabilization of limbs
 	UnregisterSignal(equipper, COMSIG_HUMAN_LIMB_FRACTURED)
 
+///stabilizes a limb when broken
 /datum/element/limb_support/proc/fuckibrokemyleg(datum/owner, datum/limb/fractured_limb, dropped = FALSE)
 	SIGNAL_HANDLER
 	if(!ishuman(owner))

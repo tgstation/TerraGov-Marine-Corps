@@ -20,10 +20,16 @@
 			msg += "<span style='font-weight: bold; color: purple;'>You sense this creature is dead.</span>\n"
 		else if(stat || !client)
 			msg += "[span_xenowarning("It doesn't seem responsive.")]\n"
-		if(reagents.get_reagent_amount(/datum/reagent/toxin/xeno_transvitox))
-			msg += "Transvitox: 40% brute/burn injuries received are converted to toxin\n"
+		if(reagents.get_reagent_amount(/datum/reagent/toxin/xeno_neurotoxin))
+			msg += "Neurotoxin: Causes increasingly intense pain and stamina damage over time, incrementing in intensity at the 40 second and the minute and a half mark of metabolism.\n"
 		if(reagents.get_reagent_amount(/datum/reagent/toxin/xeno_hemodile))
-			msg += "Hemodile: 20% stamina damage received, when damaged, and slowed by 25% (inject neurotoxin for 50% slow)\n"
+			msg += "Hemodile: Slows down the target, doubling in power with each other xeno-based toxin present.\n"
+		if(reagents.get_reagent_amount(/datum/reagent/toxin/xeno_transvitox))
+			msg += "Transvitox: Converts burns to toxin over time, as well as causing incoming brute damage to deal additional toxin damage. Both effects intensifying with each xeno-based toxin presnt. Toxin damage is capped at 180.\n"
+		if(reagents.get_reagent_amount(/datum/reagent/toxin/xeno_ozelomelyn))
+			msg += "Ozelomelyn: Rapidly purges all medicine in the body, causes toxin damage capped at 40. Metabolizes very quickly.\n"
+		if(reagents.get_reagent_amount(/datum/reagent/toxin/xeno_sanguinal))
+			msg += "Sanguinal: Causes brute damage and bleeding from the brute damage. Does additional damage types in the presence of other xeno-based toxins. Toxin damage for Neuro, Stamina damage for Hemodile, and Burn damage for Transvitox.\n"
 		msg += "</span>"
 		return list(msg)
 
@@ -217,7 +223,7 @@
 				msg += "[span_deadsay("[t_He] [t_has] gone cold.")]\n"
 		if(ishuman(user) && !user.stat && Adjacent(user))
 			user.visible_message("<b>[user]</b> checks [src]'s pulse.", "You check [src]'s pulse.", null, 4)
-		addtimer(CALLBACK(src, .proc/take_pulse, user), 15)
+		addtimer(CALLBACK(src, PROC_REF(take_pulse), user), 15)
 
 	msg += "<span class='warning'>"
 
@@ -466,8 +472,8 @@
 						if(R.fields["id"] == E.fields["id"])
 							criminal = R.fields["criminal"]
 
-			msg += "<span class = 'deptradio'>Criminal status:</span> <a href='?src=\ref[src];criminal=1'>\[[criminal]\]</a>\n"
-			msg += "<span class = 'deptradio'>Security records:</span> <a href='?src=\ref[src];secrecord=`'>\[View\]</a>  <a href='?src=\ref[src];secrecordadd=`'>\[Add comment\]</a>\n"
+			msg += "<span class = 'deptradio'>Criminal status:</span> <a href='?src=[text_ref(src)];criminal=1'>\[[criminal]\]</a>\n"
+			msg += "<span class = 'deptradio'>Security records:</span> <a href='?src=[text_ref(src)];secrecord=`'>\[View\]</a>  <a href='?src=[text_ref(src)];secrecordadd=`'>\[Add comment\]</a>\n"
 
 	if(hasHUD(user,"medical"))
 /*
@@ -488,12 +494,12 @@
 				for (var/datum/data/record/R in GLOB.datacore.general)
 					if (R.fields["id"] == E.fields["id"])
 						medical = R.fields["p_stat"]
-		msg += "<span class = 'deptradio'>Physical status:</span> <a href='?src=\ref[src];medical=1'>\[[medical]\]</a>\n"
-		msg += "<span class = 'deptradio'>Medical records:</span> <a href='?src=\ref[src];medrecord=`'>\[View\]</a> <a href='?src=\ref[src];medrecordadd=`'>\[Add comment\]</a>\n"
+		msg += "<span class = 'deptradio'>Physical status:</span> <a href='?src=[text_ref(src)];medical=1'>\[[medical]\]</a>\n"
+		msg += "<span class = 'deptradio'>Medical records:</span> <a href='?src=[text_ref(src)];medrecord=`'>\[View\]</a> <a href='?src=[text_ref(src)];medrecordadd=`'>\[Add comment\]</a>\n"
 */
 		var/cardcolor = holo_card_color
 		if(!cardcolor) cardcolor = "none"
-		msg += "<span class = 'deptradio'>Triage holo card:</span> <a href='?src=\ref[src];medholocard=1'>\[[cardcolor]\]</a> - "
+		msg += "<span class = 'deptradio'>Triage holo card:</span> <a href='?src=[text_ref(src)];medholocard=1'>\[[cardcolor]\]</a> - "
 
 		// scan reports
 		var/datum/data/record/N = null
@@ -505,14 +511,14 @@
 			if(!(N.fields["last_scan_time"]))
 				msg += "<span class = 'deptradio'>No scan report on record</span>\n"
 			else
-				msg += "<span class = 'deptradio'><a href='?src=\ref[src];scanreport=1'>Scan from [N.fields["last_scan_time"]]</a></span>\n"
+				msg += "<span class = 'deptradio'><a href='?src=[text_ref(src)];scanreport=1'>Scan from [N.fields["last_scan_time"]]</a></span>\n"
 
 
 	if(hasHUD(user,"squadleader"))
 		var/mob/living/carbon/human/H = user
 		if(assigned_squad) //examined mob is a marine in a squad
 			if(assigned_squad == H.assigned_squad) //same squad
-				msg += "<a href='?src=\ref[src];squadfireteam=1'>\[Assign to a fireteam.\]</a>\n"
+				msg += "<a href='?src=[text_ref(src)];squadfireteam=1'>\[Assign to a fireteam.\]</a>\n"
 
 
 	msg += "[flavor_text]<br>"
@@ -540,7 +546,7 @@
 		switch(hudtype)
 			if("security")
 				//only MPs can use the security HUD glasses's functionalities
-				if(H.skills.getRating("police") >= SKILL_POLICE_MP)
+				if(H.skills.getRating(SKILL_POLICE) >= SKILL_POLICE_MP)
 					return istype(H.glasses, /obj/item/clothing/glasses/hud/security) || istype(H.glasses, /obj/item/clothing/glasses/sunglasses/sechud)
 			if("medical")
 				return istype(H.glasses, /obj/item/clothing/glasses/hud/health)

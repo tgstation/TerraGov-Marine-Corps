@@ -4,15 +4,15 @@
 	name = "plant clippers"
 	desc = "A tool used to take samples from plants."
 
-/obj/item/analyzer/plant_analyzer
+/obj/item/tool/analyzer/plant_analyzer
 	name = "plant analyzer"
 	icon_state = "hydro"
 	item_state = "analyzer"
 
-/obj/item/analyzer/plant_analyzer/attack_self(mob/user as mob)
+/obj/item/tool/analyzer/plant_analyzer/attack_self(mob/user as mob)
 	return 0
 
-/obj/item/analyzer/plant_analyzer/afterattack(obj/target, mob/user, flag)
+/obj/item/tool/analyzer/plant_analyzer/afterattack(obj/target, mob/user, flag)
 	if(!flag) return
 
 	var/datum/seed/grown_seed
@@ -36,9 +36,9 @@
 		var/obj/item/seeds/S = target
 		grown_seed = S.seed
 
-	else if(istype(target,/obj/machinery/portable_atmospherics/hydroponics))
+	else if(istype(target,/obj/machinery/hydroponics))
 
-		var/obj/machinery/portable_atmospherics/hydroponics/H = target
+		var/obj/machinery/hydroponics/H = target
 		grown_seed = H.seed
 		grown_reagents = H.reagents
 
@@ -60,7 +60,7 @@
 	dat += "<tr><td><b>Potency</b></td><td>[grown_seed.potency]</td></tr>"
 	dat += "</table>"
 
-	if(grown_reagents && grown_reagents.reagent_list && grown_reagents.reagent_list.len)
+	if(length(grown_reagents.reagent_list))
 		dat += "<h2>Reagent Data</h2>"
 
 		dat += "<br>This sample contains: "
@@ -77,8 +77,8 @@
 	else if(grown_seed.immutable > 0)
 		dat += "This plant does not possess genetics that are alterable.<br>"
 
-	if(grown_seed.products && grown_seed.products.len)
-		dat += "The mature plant will produce [grown_seed.products.len == 1 ? "fruit" : "[grown_seed.products.len] varieties of fruit"].<br>"
+	if(grown_seed.products && length(grown_seed.products))
+		dat += "The mature plant will produce [length(grown_seed.products) == 1 ? "fruit" : "[length(grown_seed.products)] varieties of fruit"].<br>"
 
 	if(grown_seed.requires_nutrients)
 		if(grown_seed.nutrient_consumption < 0.05)
@@ -96,7 +96,7 @@
 		else
 			dat += "It requires a stable supply of water.<br>"
 
-	if(grown_seed.mutants && grown_seed.mutants.len)
+	if(grown_seed.mutants && length(grown_seed.mutants))
 		dat += "It exhibits a high degree of potential subspecies shift.<br>"
 
 	dat += "It thrives in a temperature of [grown_seed.ideal_heat] Kelvin."
@@ -180,7 +180,7 @@
 	volume = 10
 
 
-/obj/item/reagent_containers/glass/fertilizer/Initialize()
+/obj/item/reagent_containers/glass/fertilizer/Initialize(mapload)
 	. = ..()
 
 	pixel_x = rand(-5.0, 5)

@@ -28,15 +28,6 @@
 	icon_state_mini = "mag_sniper_blue"
 	bonus_overlay = "t26_flak"
 
-
-/obj/item/ammo_magazine/rifle/chamberedrifle/flak
-	name = "SR-127 bolt action rifle flak magazine"
-	desc = "A box magazine filled with 8.6x70mm rifle flak rounds for the SR-127."
-	icon_state = "tl127_flak"
-	default_ammo = /datum/ammo/bullet/sniper/pfc/flak
-	icon_state_mini = "mag_sniper_blue"
-	bonus_overlay = "tl127_flak"
-
 //SR-42 magazine
 
 /obj/item/ammo_magazine/sniper/elite
@@ -44,6 +35,7 @@
 	default_ammo = /datum/ammo/bullet/sniper/elite
 	caliber = CALIBER_10X99
 	icon_state = "m42c"
+	icon_state_mini = "mag_rifle_big_white"
 	max_rounds = 6
 
 
@@ -131,34 +123,38 @@
 	name = "\improper 84mm 'L-G' high-explosive rocket"
 	desc = "A warhead for the RL-152 rocket launcher. Carries a bogstandard HE warhead that explodes. Due to being laser-guided, it will hit exactly where you aim, however the payload is smaller due to the internal space required for this.  When empty, use this frame to deconstruct it."
 	caliber = CALIBER_84MM
-	icon_state = "rocket"
+	icon_state = "rocket_he"
 	w_class = WEIGHT_CLASS_NORMAL
 	max_rounds = 1
-	default_ammo = /datum/ammo/rocket
+	default_ammo = /datum/ammo/rocket/he
 	reload_delay = 60
+	bonus_overlay = "rocket_he"
 
 /obj/item/ammo_magazine/rocket/sadar/unguided
 	name = "\improper 84mm 'Unguided' high-explosive rocket"
 	desc = "A warhead for the RL-152 rocket launcher. Carries a bogstandard HE warhead that explodes. It is entirely unguided, and thus 'Dumb', this allows for a larger payload, and a skilled operator can hit longer ranged hits that a laser-guided rocket could not reach at all.  When empty, use this frame to deconstruct it."
-	default_ammo = /datum/ammo/rocket/unguided
+	icon_state = "rocket_he_unguided"
+	default_ammo = /datum/ammo/rocket/he/unguided
 
 /obj/item/ammo_magazine/rocket/sadar/ap
 	name = "\improper 84mm 'L-G' anti-armor rocket"
-	icon_state = "ap_rocket"
-	default_ammo = /datum/ammo/rocket/ap
 	desc = "A tube for an AP rocket, the warhead of which inside is a missile assisted kinetic penetrator that will devastate just about anything that it hits internally, but will do nothing to the surrounding armor. When empty, use this frame to deconstruct it."
+	icon_state = "rocket_ap"
+	default_ammo = /datum/ammo/rocket/ap
+	bonus_overlay = "rocket_ap"
 
 /obj/item/ammo_magazine/rocket/sadar/wp
 	name = "\improper 84mm 'L-G' white-phosphorus rocket"
-	icon_state = "wp_rocket"
-	default_ammo = /datum/ammo/rocket/wp
 	desc = "A highly destructive warhead that bursts into deadly flames on impact. Due to being laser-guided, it will hit exactly where you aim, however the payload is smaller due to the internal space required for this. Use this in hand to deconstruct it."
+	icon_state = "rocket_wp"
+	default_ammo = /datum/ammo/rocket/wp
+	bonus_overlay = "rocket_wp"
 
 /obj/item/ammo_magazine/rocket/sadar/wp/unguided
 	name = "\improper 84mm 'Unguided' white-phosphorus rocket"
-	default_ammo = /datum/ammo/rocket/wp/unguided
 	desc = "A highly destructive warhead that bursts into deadly flames on impact. It is entirely unguided, and thus 'Dumb', the benefit of this is a bigger overall payload, and a skilled operator can hit longer ranged hits that a laser-guided rocket could not reach at all. Use this in hand to deconstruct it."
-
+	icon_state = "rocket_wp_unguided"
+	default_ammo = /datum/ammo/rocket/wp/unguided
 
 //-------------------------------------------------------
 //RL-160 recoilless rifle
@@ -244,7 +240,7 @@
 	icon_state = "quad_rocket"
 	max_rounds = 4
 	default_ammo = /datum/ammo/rocket/wp/quad
-	reload_delay = 200
+	reload_delay = 10 SECONDS
 
 /obj/item/ammo_magazine/rocket/m57a4/ds
 	name = "\improper 84mm thermobaric rocket array"
@@ -253,6 +249,7 @@
 	icon_state = "quad_rocket"
 	max_rounds = 4
 	default_ammo = /datum/ammo/rocket/wp/quad/ds
+	reload_delay = 2 SECONDS
 
 /obj/item/ammo_magazine/internal/launcher/rocket/m57a4
 	desc = "The internal tube of an RL-57 thermobaric launcher."
@@ -265,49 +262,79 @@
 
 //SOM RPG
 /obj/item/ammo_magazine/rocket/som
-	name = "\improper 84mm light-explosive RPG"
+	name = "\improper 84mm high-explosive RPG"
 	desc = "A high explosive warhead for the V-71 rocket launcher. Causes a strong explosion over a respectable area."
-	icon_state = "rpg_rocket"
+	icon_state = "rpg_he"
 	default_ammo = /datum/ammo/rocket/som
 	reload_delay = 2 SECONDS
-	bonus_overlay = "rpg_rocket"
+	bonus_overlay = "rpg_he"
 
 /obj/item/ammo_magazine/rocket/som/light
 	name = "\improper 84mm light-explosive RPG"
 	desc = "A light explosive warhead for the V-71 rocket launcher. Causes a light explosion over a large area but low impact damage."
-	icon_state = "rpg_rocket_le"
+	icon_state = "rpg_le"
 	default_ammo = /datum/ammo/rocket/som/light
 	reload_delay = 1 SECONDS
-	bonus_overlay = "rpg_rocket_le"
+	bonus_overlay = "rpg_le"
 
 /obj/item/ammo_magazine/rocket/som/heat
 	name = "\improper 84mm HEAT RPG"
 	desc = "A high explosive anti armor warhead for the V-71 rocket launcher. Designed to punch through the toughest armor."
-	icon_state = "rpg_rocket_heat"
+	icon_state = "rpg_heat"
 	default_ammo = /datum/ammo/rocket/som/heat
-	bonus_overlay = "rpg_rocket_heat"
+	bonus_overlay = "rpg_heat"
 
 /obj/item/ammo_magazine/rocket/som/thermobaric
 	name = "\improper 84mm thermobaric RPG"
 	desc = "A thermobaric warhead for the V-71 rocket launcher. Causes a powerful fuel air explosion over a moderate area."
-	icon_state = "rpg_rocket_thermobaric"
+	icon_state = "rpg_thermobaric"
 	default_ammo = /datum/ammo/rocket/som/thermobaric
-	bonus_overlay = "rpg_rocket_thermobaric"
+	bonus_overlay = "rpg_thermobaric"
 
 /obj/item/ammo_magazine/rocket/som/rad
 	name = "\improper 84mm  irrad RPG"
 	desc = "A irrad warhead for the V-71 rocket launcher. Releases a devastating milisecond burst of radiation, debilitating anything caught in the blast radius."
-	icon_state = "rpg_rocket_rad"
+	icon_state = "rpg_rad"
 	default_ammo = /datum/ammo/rocket/som/rad
-	bonus_overlay = "rpg_rocket_rad"
+	bonus_overlay = "rpg_rad"
 
 /obj/item/ammo_magazine/rocket/som/incendiary
 	name = "\improper 84mm incendiary RPG"
 	desc = "An incendiary warhead for the V-71 rocket launcher. Releases a white phosphorus payload, burning anything in a moderate blast radius."
-	icon_state = "rpg_rocket_incendiary"
+	icon_state = "rpg_incendiary"
 	default_ammo = /datum/ammo/rocket/wp/quad/som
-	bonus_overlay = "rpg_rocket_incendiary"
+	bonus_overlay = "rpg_incendiary"
 
+//ICC RPG
+/obj/item/ammo_magazine/rocket/icc
+	name = "\improper 84mm high-explosive tube"
+	desc = "A high explosive warhead for MP-IRL rocket launcher. Causes a strong explosion over a respectable area."
+	icon_state = "iccrpg_he"
+	default_ammo = /datum/ammo/rocket/som
+	reload_delay = 2 SECONDS
+	bonus_overlay = "iccrpg_he"
+
+/obj/item/ammo_magazine/rocket/icc/light
+	name = "\improper 84mm light-explosive tube"
+	desc = "A light explosive warhead for the MP-IRL rocket launcher. Causes a light explosion over a large area but low impact damage."
+	icon_state = "iccrpg_le"
+	default_ammo = /datum/ammo/rocket/som/light
+	reload_delay = 1 SECONDS
+	bonus_overlay = "iccrpg_le"
+
+/obj/item/ammo_magazine/rocket/icc/heat
+	name = "\improper 84mm HEAT tube"
+	desc = "A high explosive anti armor warhead for the MP-IRL rocket launcher. Designed to punch through the toughest armor."
+	icon_state = "iccrpg_heat"
+	default_ammo = /datum/ammo/rocket/som/heat
+	bonus_overlay = "iccrpg_heat"
+
+/obj/item/ammo_magazine/rocket/icc/thermobaric
+	name = "\improper 84mm thermobaric tube"
+	desc = "A thermobaric warhead for the MP-IRL rocket launcher. Causes a powerful fuel air explosion over a moderate area."
+	icon_state = "iccrpg_thermobaric"
+	default_ammo = /datum/ammo/rocket/som/thermobaric
+	bonus_overlay = "iccrpg_thermobaric"
 
 // railgun
 
@@ -317,7 +344,7 @@
 	caliber = CALIBER_RAILGUN
 	icon_state = "railgun"
 	default_ammo = /datum/ammo/bullet/railgun
-	max_rounds = 1
+	max_rounds = 3
 	reload_delay = 20 //Hard to reload.
 	w_class = WEIGHT_CLASS_NORMAL
 	icon_state_mini = "mag_railgun"
@@ -326,12 +353,14 @@
 	name = "railgun canister (High Velocity Armor Piericing)"
 	desc = "A canister holding a tungsten projectile to be used inside a railgun. HVAP is written across the canister. This round has less punching power than other railgun canister types, but will leave a sizeable hole in the targets armor."
 	icon_state = "railgun_hvap"
+	icon_state_mini = "mag_railgun_blue"
 	default_ammo = /datum/ammo/bullet/railgun/hvap
 
 /obj/item/ammo_magazine/railgun/smart
 	name = "railgun canister (Smart Armor Piericing)"
 	desc = "A canister holding a tungsten projectile to be used inside a railgun. SAP is written across the canister. This round has poor punching power due to low velocity for the smart ammunition, but will leave a target significantly staggered and stunned due to the impact."
 	icon_state = "railgun_smart"
+	icon_state_mini = "mag_railgun_green"
 	default_ammo = /datum/ammo/bullet/railgun/smart
 
 // pepperball
@@ -390,3 +419,17 @@
 	max_rounds = 1000
 	caliber = CALIBER_10x26_CASELESS
 	flags_item_map_variant = null
+
+
+// ICC coilgun
+
+/obj/item/ammo_magazine/rifle/icc_coilgun
+	name = "coilgun canister"
+	desc = "A canister holding tungsten projectiles for a coilgun. Will probably penetrate through just about everything."
+	caliber = CALIBER_RAILGUN
+	icon_state = "coilgun"
+	default_ammo = /datum/ammo/bullet/coilgun
+	max_rounds = 5
+	reload_delay = 10
+	icon_state_mini = "mag_dmr"
+

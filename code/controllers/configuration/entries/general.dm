@@ -98,6 +98,8 @@ Administrative related.
 
 /datum/config_entry/flag/log_game
 
+/datum/config_entry/flag/log_minimap_drawing
+
 /// log mech data
 /datum/config_entry/flag/log_mecha
 
@@ -151,7 +153,7 @@ Administrative related.
 /datum/config_entry/number/lobby_countdown
 	config_entry_value = 180
 
-/datum/config_entry/number/round_end_countdown
+/datum/config_entry/number/mission_end_countdown
 	config_entry_value = 120
 
 /datum/config_entry/flag/see_own_notes
@@ -295,16 +297,11 @@ Master controller and performance related.
 			FPS.ValidateAndSet(10 / config_entry_value)
 		sync_validate = FALSE
 
-/datum/config_entry/number/tick_limit_mc_init	//SSinitialization throttling
-	config_entry_value = TICK_LIMIT_MC_INIT_DEFAULT
-	min_val = 0 //oranges warned us
-	integer = FALSE
-
 /datum/config_entry/flag/resume_after_initializations
 
 /datum/config_entry/flag/resume_after_initializations/ValidateAndSet(str_val)
 	. = ..()
-	if(. && Master.current_runlevel)
+	if(. && MC_RUNNING())
 		world.sleep_offline = !config_entry_value
 
 /datum/config_entry/flag/tickcomp
@@ -429,3 +426,9 @@ This maintains a list of ip addresses that are able to bypass topic filtering.
 /datum/config_entry/number/ai_anti_stuck_lag_time_dilation_threshold
 	config_entry_value = 20
 	min_val = 0
+
+/datum/config_entry/flag/cache_assets
+	default = TRUE
+
+/datum/config_entry/flag/save_spritesheets
+	default = FALSE

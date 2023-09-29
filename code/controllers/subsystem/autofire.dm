@@ -32,14 +32,15 @@ SUBSYSTEM_DEF(automatedfire)
 	/// List of buckets, each bucket holds every shooter that has to shoot this byond tick
 	var/list/bucket_list = list()
 	/// Reference to the next shooter before we clean shooter.next
-	var/var/datum/component/automatedfire/next_shooter
+	var/datum/component/automatedfire/next_shooter
 
 /datum/controller/subsystem/automatedfire/PreInit()
 	bucket_list.len = BUCKET_LEN
 	head_offset = world.time
 	bucket_resolution = world.tick_lag
 
-/datum/controller/subsystem/automatedfire/stat_entry(msg = "ActShooters:[shooter_count]")
+/datum/controller/subsystem/automatedfire/stat_entry(msg)
+	msg = "ActShooters:[shooter_count]"
 	return ..()
 
 /datum/controller/subsystem/automatedfire/fire(resumed = FALSE)
@@ -65,12 +66,12 @@ SUBSYSTEM_DEF(automatedfire)
 	// Iterate through each bucket starting from the practical offset
 	while (practical_offset <= BUCKET_LEN && head_offset + ((practical_offset - 1) * world.tick_lag) <= world.time)
 		if(!shooter)
-			shooter =  bucket_list[practical_offset]
+			shooter = bucket_list[practical_offset]
 			bucket_list[practical_offset] = null
 
 		while (shooter)
 			next_shooter = shooter.next
-			INVOKE_ASYNC(shooter, /datum/component/automatedfire/proc/process_shot)
+			INVOKE_ASYNC(shooter, TYPE_PROC_REF(/datum/component/automatedfire, process_shot))
 
 			SSautomatedfire.shooter_count--
 			shooter = next_shooter
@@ -163,12 +164,12 @@ SUBSYSTEM_DEF(automatedfire)
 	name = "debug turret slow"
 	firerate = 25
 
-/obj/structure/turret_debug/Initialize()
+/obj/structure/turret_debug/Initialize(mapload)
 	. = ..()
 	ammo = GLOB.ammo_list[/datum/ammo/xeno/acid]
 	target = locate(x+5, y, z)
 	AddComponent(/datum/component/automatedfire/xeno_turret_autofire, firerate)
-	RegisterSignal(src, COMSIG_AUTOMATIC_SHOOTER_SHOOT, .proc/shoot)
+	RegisterSignal(src, COMSIG_AUTOMATIC_SHOOTER_SHOOT, PROC_REF(shoot))
 	SEND_SIGNAL(src, COMSIG_AUTOMATIC_SHOOTER_START_SHOOTING_AT)
 	var/static/number = 1
 	name = "[name] [number]"
@@ -192,15 +193,15 @@ SUBSYSTEM_DEF(automatedfire)
 	if(!isatom(parent))
 		return COMPONENT_INCOMPATIBLE
 	shot_delay = _shot_delay
-	RegisterSignal(parent, COMSIG_AUTOMATIC_SHOOTER_START_SHOOTING_AT, .proc/start_shooting)
-	RegisterSignal(parent, COMSIG_AUTOMATIC_SHOOTER_STOP_SHOOTING_AT, .proc/stop_shooting)
+	RegisterSignal(parent, COMSIG_AUTOMATIC_SHOOTER_START_SHOOTING_AT, PROC_REF(start_shooting))
+	RegisterSignal(parent, COMSIG_AUTOMATIC_SHOOTER_STOP_SHOOTING_AT, PROC_REF(stop_shooting))
 
 ///Signal handler for starting the autoshooting at something
 /datum/component/automatedfire/xeno_turret_autofire/proc/start_shooting(datum/source)
 	SIGNAL_HANDLER
 	if(!shooting)
 		shooting = TRUE
-		INVOKE_ASYNC(src, .proc/process_shot)
+		INVOKE_ASYNC(src, PROC_REF(process_shot))
 
 
 ///Signal handler for stoping the shooting

@@ -3,7 +3,7 @@
 	..()
 	var/list/buttons = subtypesof(/atom/movable/screen/text/lobby)
 	buttons -= /atom/movable/screen/text/lobby/clickable //skip the parent type for clickables
-	var/ycoord = 12
+	var/ycoord = 11
 	for(var/button in buttons)
 		var/atom/movable/screen/text/lobby/screen = new button()
 		screen.hud = src

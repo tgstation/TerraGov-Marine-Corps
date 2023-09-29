@@ -4,7 +4,7 @@
 	var/list/items_to_spawn
 
 
-/obj/effect/landmark/itemspawner/Initialize()
+/obj/effect/landmark/itemspawner/Initialize(mapload)
 	. = ..()
 	for(var/path in items_to_spawn)
 		new path(loc)
@@ -67,7 +67,7 @@
 	/obj/item/clothing/glasses/monocle,\
 	/obj/item/clothing/head/that,\
 	/obj/item/clothing/shoes/black,\
-	/obj/item/cane,\
+	/obj/item/weapon/cane,\
 	/obj/item/clothing/under/sl_suit,\
 	/obj/item/clothing/mask/fakemoustache)
 

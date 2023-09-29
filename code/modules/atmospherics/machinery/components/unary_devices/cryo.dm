@@ -37,17 +37,11 @@
 
 	var/mob/living/carbon/occupant
 
-/obj/machinery/atmospherics/components/unary/cryo_cell/Initialize()
+/obj/machinery/atmospherics/components/unary/cryo_cell/Initialize(mapload)
 	. = ..()
 	initialize_directions = dir
 	beaker = new /obj/item/reagent_containers/glass/beaker/cryomix
 	radio = new(src)
-
-
-/obj/machinery/atmospherics/components/unary/cryo_cell/Destroy()
-	QDEL_NULL(radio)
-	return ..()
-
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/proc/process_occupant()
 	if(!occupant)
@@ -65,7 +59,7 @@
 		occupant.adjustOxyLoss(-1)
 	if (occupant.getToxLoss())
 		occupant.adjustToxLoss(-1)
-	occupant.heal_limb_damage(1, 1, updating_health = TRUE)
+	occupant.heal_overall_damage(1, 1, updating_health = TRUE)
 	var/has_cryo = occupant.reagents.get_reagent_amount(/datum/reagent/medicine/cryoxadone) >= 1
 	var/has_clonexa = occupant.reagents.get_reagent_amount(/datum/reagent/medicine/clonexadone) >= 1
 	var/has_cryo_medicine = has_cryo || has_clonexa
@@ -137,7 +131,7 @@
 		occupant_overlay.pixel_y--
 	add_overlay(occupant_overlay)
 	add_overlay("cover-on")
-	addtimer(CALLBACK(src, .proc/run_anim, anim_up, occupant_overlay), 7, TIMER_UNIQUE)
+	addtimer(CALLBACK(src, PROC_REF(run_anim), anim_up, occupant_overlay), 7, TIMER_UNIQUE)
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/proc/go_out(auto_eject = null, dead = null)
 	if(!( occupant ))
@@ -157,6 +151,7 @@
 			if(dead)
 				reason = "<b>Reason for release:</b> Patient death."
 			radio.talk_into(src, "Patient [occupant] has been automatically released from [src] at: [get_area(occupant)]. [reason]", RADIO_CHANNEL_MEDICAL)
+	occupant.record_time_in_cryo()
 	occupant = null
 	update_icon()
 
@@ -231,7 +226,7 @@
 			to_chat(user, span_warning("That's too big to fit!"))
 			return
 
-		beaker =  I
+		beaker = I
 
 
 		var/reagentnames = ""
@@ -310,6 +305,7 @@
 	if(M.health > -100 && (M.health < 0 || M.IsSleeping()))
 		to_chat(M, span_boldnotice("You feel a cold liquid surround you. Your skin starts to freeze up."))
 	occupant = M
+	occupant.time_entered_cryo = world.time
 	update_icon()
 	return TRUE
 
@@ -389,7 +385,7 @@
 
 	data["isBeakerLoaded"] = beaker ? TRUE : FALSE
 	var/beakerContents = list()
-	if(beaker && beaker.reagents && beaker.reagents.reagent_list.len)
+	if(beaker?.reagents && length(beaker.reagents.reagent_list))
 		for(var/datum/reagent/R in beaker.reagents.reagent_list)
 			beakerContents += list(list("name" = R.name, "volume" = R.volume))
 	data["beakerContents"] = beakerContents

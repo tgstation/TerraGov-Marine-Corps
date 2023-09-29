@@ -98,7 +98,7 @@
 	///reference to image that is used as an overlay
 	var/image/overlay
 
-/obj/item/mecha_parts/mecha_equipment/ability/Initialize()
+/obj/item/mecha_parts/mecha_equipment/ability/Initialize(mapload)
 	. = ..()
 	if(icon_state)
 		overlay = image('icons/mecha/mecha_ability_overlays.dmi', icon_state = icon_state, layer = 10)
@@ -128,7 +128,7 @@
 	///sound to loop when the dash is activated
 	var/datum/looping_sound/mech_overload/sound_loop
 
-/obj/item/mecha_parts/mecha_equipment/ability/dash/Initialize()
+/obj/item/mecha_parts/mecha_equipment/ability/dash/Initialize(mapload)
 	. = ..()
 	sound_loop = new
 
@@ -178,4 +178,4 @@
 	icon_state = "smoke_gas"
 	mech_flags = EXOSUIT_MODULE_GREYSCALE
 	ability_to_grant = /datum/action/vehicle/sealed/mecha/mech_smoke
-	smoke_type = /obj/effect/particle_effect/smoke/tactical
+	smoke_type = /datum/effect_system/smoke_spread/tactical

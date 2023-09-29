@@ -24,7 +24,7 @@
 	signal.data["compression"] = 0
 	signal.mark_done()
 	if(signal.data["slow"])
-		addtimer(CALLBACK(signal, /datum/signal/subspace.proc/broadcast), signal.data["slow"])
+		addtimer(CALLBACK(signal, TYPE_PROC_REF(/datum/signal/subspace, broadcast)), signal.data["slow"])
 		return
 	signal.broadcast()
 

@@ -186,6 +186,11 @@ export const CharacterCustomization = (props, context) => {
                 action={'ethnicity'}
               />
               <SelectFieldPreference
+                label={'Robot model'}
+                value={'robot_type'}
+                action={'robot_type'}
+              />
+              <SelectFieldPreference
                 label={'Citizenship'}
                 value={'citizenship'}
                 action={'citizenship'}
@@ -195,6 +200,12 @@ export const CharacterCustomization = (props, context) => {
                 value={'religion'}
                 action={'religion'}
               />
+              <SelectFieldPreference
+                label={'TTS voice'}
+                value={'tts_voice'}
+                action={'tts_voice'}
+              />
+              <TextFieldPreference label={'TTS pitch'} value={'tts_pitch'} />
             </LabeledList>
           </Flex.Item>
         </Flex>

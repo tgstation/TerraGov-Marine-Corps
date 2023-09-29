@@ -104,7 +104,7 @@
 				AI.last_paper_seen = "<HTML><HEAD><TITLE>[itemname]</TITLE></HEAD><BODY><TT>[info]</TT></BODY></HTML>"
 			else if(O.client && O.client.eye == src)
 				to_chat(O, "[U] holds \a [itemname] up to one of the cameras ...")
-				O << browse(text("<HTML><HEAD><TITLE>[]</TITLE></HEAD><BODY><TT>[]</TT></BODY></HTML>", itemname, info), text("window=[]", itemname))
+				O << browse("<HTML><HEAD><TITLE>[itemname]</TITLE></HEAD><BODY><TT>[info]</TT></BODY></HTML>", "window=[itemname]")
 
 
 /obj/machinery/camera/screwdriver_act(mob/living/user, obj/item/I)
@@ -122,7 +122,7 @@
 	if(!CHECK_BITFIELD(machine_stat, PANEL_OPEN))
 		return FALSE
 	toggle_cam(user, TRUE)
-	repair_damage(max_integrity)
+	repair_damage(max_integrity, user)
 	I.play_tool_sound(src)
 	update_icon()
 	return TRUE
@@ -307,8 +307,8 @@
 
 
 //This camera type automatically sets it's name to whatever the area that it's in is called.
-/obj/machinery/camera/autoname/Initialize()
-	. =  ..()
+/obj/machinery/camera/autoname/Initialize(mapload)
+	. = ..()
 	var/static/list/id_by_area = list()
 	var/area/A = get_area(src)
 	c_tag = "[A.name] #[++id_by_area[A]]"
@@ -317,8 +317,8 @@
 	name = "military-grade camera"
 	network = list("marinemainship")
 
-/obj/machinery/camera/autoname/mainship/rebelship
-	network = list("rebelmainship")
+/obj/machinery/camera/autoname/mainship/somship
+	network = list("sommainship")
 
 //cameras installed inside the dropships, accessible via both cockpit monitor and ship camera computers
 /obj/machinery/camera/autoname/mainship/dropship_one
@@ -328,14 +328,13 @@
 /obj/machinery/camera/autoname/mainship/dropship_two
 	network = list("marinemainship", "dropship2")
 
-/obj/machinery/camera/autoname/mainship/dropship_three
-	network = list("rebelmainship", "dropship3")
-
 /obj/machinery/camera/headset
 	name = "headset camera"
 	network = list("marine")
 	resistance_flags = RESIST_ALL //If the containing headset is not destroyed, neither should this be.
 
+/obj/machinery/camera/headset/som
+	network = list("som")
 
 //used by the laser camera dropship equipment
 /obj/machinery/camera/laser_cam

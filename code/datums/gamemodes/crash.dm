@@ -5,8 +5,8 @@
 	flags_xeno_abilities = ABILITY_CRASH
 	valid_job_types = list(
 		/datum/job/terragov/squad/standard = -1,
-		/datum/job/terragov/squad/engineer = 8,
-		/datum/job/terragov/squad/corpsman = 8,
+		/datum/job/terragov/squad/engineer = 1,
+		/datum/job/terragov/squad/corpsman = 1,
 		/datum/job/terragov/squad/smartgunner = 1,
 		/datum/job/terragov/squad/leader = 1,
 		/datum/job/terragov/medical/professor = 1,
@@ -14,6 +14,13 @@
 		/datum/job/terragov/command/fieldcommander = 1,
 		/datum/job/xenomorph = FREE_XENO_AT_START
 	)
+	job_points_needed_by_job_type = list(
+		/datum/job/terragov/squad/smartgunner = 20,
+		/datum/job/terragov/squad/corpsman = 5,
+		/datum/job/terragov/squad/engineer = 5,
+		/datum/job/xenomorph = CRASH_LARVA_POINTS_NEEDED,
+	)
+	xenorespawn_time = 3 MINUTES
 
 	// Round end conditions
 	var/shuttle_landed = FALSE
@@ -30,15 +37,6 @@
 	///Last time larva balance was checked
 	var/last_larva_check
 	bioscan_interval = 0
-
-
-/datum/game_mode/infestation/crash/scale_roles()
-	. = ..()
-	if(!.)
-		return
-	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
-	xeno_job.job_points_needed  = CRASH_LARVA_POINTS_NEEDED
-
 
 /datum/game_mode/infestation/crash/pre_setup()
 	. = ..()
@@ -73,13 +71,14 @@
 
 	shuttle.crashing = TRUE
 	SSshuttle.moveShuttleToDock(shuttle.id, actual_crash_site, TRUE) // FALSE = instant arrival
-	addtimer(CALLBACK(src, .proc/crash_shuttle, actual_crash_site), 10 MINUTES)
+	addtimer(CALLBACK(src, PROC_REF(crash_shuttle), actual_crash_site), 10 MINUTES)
 
 
 /datum/game_mode/infestation/crash/post_setup()
 	. = ..()
 	for(var/i in GLOB.xeno_resin_silo_turfs)
 		new /obj/structure/xeno/silo(i)
+		new /obj/structure/xeno/pherotower(i)
 
 	for(var/obj/effect/landmark/corpsespawner/corpse AS in GLOB.corpse_landmarks_list)
 		corpse.create_mob()
@@ -95,24 +94,20 @@
 		computer_to_disable.update_icon()
 
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_CRASH)
-	RegisterSignal(SSdcs, COMSIG_GLOB_NUKE_EXPLODED, .proc/on_nuclear_explosion)
-	RegisterSignal(SSdcs, COMSIG_GLOB_NUKE_DIFFUSED, .proc/on_nuclear_diffuse)
-	RegisterSignal(SSdcs, COMSIG_GLOB_NUKE_START, .proc/on_nuke_started)
+	RegisterSignal(SSdcs, COMSIG_GLOB_NUKE_EXPLODED, PROC_REF(on_nuclear_explosion))
+	RegisterSignal(SSdcs, COMSIG_GLOB_NUKE_DIFFUSED, PROC_REF(on_nuclear_diffuse))
+	RegisterSignal(SSdcs, COMSIG_GLOB_NUKE_START, PROC_REF(on_nuke_started))
 
 	if(!(flags_round_type & MODE_INFESTATION))
 		return
 
-	for(var/i in GLOB.alive_xeno_list)
+	for(var/i in GLOB.alive_xeno_list_hive[XENO_HIVE_NORMAL])
 		if(isxenolarva(i)) // Larva
 			var/mob/living/carbon/xenomorph/larva/X = i
 			X.evolution_stored = X.xeno_caste.evolution_threshold //Immediate roundstart evo for larva.
 		else // Handles Shrike etc
 			var/mob/living/carbon/xenomorph/X = i
 			X.upgrade_stored = X.xeno_caste.upgrade_threshold
-
-	var/datum/hive_status/normal/HN = GLOB.hive_datums[XENO_HIVE_NORMAL]
-	if(HN)
-		RegisterSignal(HN, COMSIG_XENOMORPH_POSTEVOLVING, .proc/on_xeno_evolve)
 
 
 /datum/game_mode/infestation/crash/announce()
@@ -132,6 +127,8 @@
 	shuttle_landed = TRUE
 	shuttle.crashing = FALSE
 
+	generate_nuke_disk_spawners()
+
 /datum/game_mode/infestation/crash/check_finished(force_end)
 	if(round_finished)
 		return TRUE
@@ -145,24 +142,32 @@
 	if(num_humans && planet_nuked == INFESTATION_NUKE_NONE && marines_evac == CRASH_EVAC_NONE && !force_end)
 		return FALSE
 
-	if(planet_nuked == INFESTATION_NUKE_NONE)
-		if(!num_humans)
-			message_admins("Round finished: [MODE_INFESTATION_X_MAJOR]") //xenos wiped out ALL the marines
-			round_finished = MODE_INFESTATION_X_MAJOR
-			return TRUE
-		if(marines_evac == CRASH_EVAC_COMPLETED || (!length(GLOB.active_nuke_list) && marines_evac != CRASH_EVAC_NONE))
-			message_admins("Round finished: [MODE_INFESTATION_X_MINOR]") //marines evaced without a nuke
-			round_finished = MODE_INFESTATION_X_MINOR
+	switch(planet_nuked)
+
+		if(INFESTATION_NUKE_NONE)
+			if(!num_humans)
+				message_admins("Round finished: [MODE_INFESTATION_X_MAJOR]") //xenos wiped out ALL the marines
+				round_finished = MODE_INFESTATION_X_MAJOR
+				return TRUE
+			if(marines_evac == CRASH_EVAC_COMPLETED || (!length(GLOB.active_nuke_list) && marines_evac != CRASH_EVAC_NONE))
+				message_admins("Round finished: [MODE_INFESTATION_X_MINOR]") //marines evaced without a nuke
+				round_finished = MODE_INFESTATION_X_MINOR
+				return TRUE
+
+		if(INFESTATION_NUKE_COMPLETED)
+			if(marines_evac == CRASH_EVAC_NONE)
+				message_admins("Round finished: [MODE_INFESTATION_M_MINOR]") //marines nuked the planet but didn't evac
+				round_finished = MODE_INFESTATION_M_MINOR
+				return TRUE
+			message_admins("Round finished: [MODE_INFESTATION_M_MAJOR]") //marines nuked the planet and managed to evac
+			round_finished = MODE_INFESTATION_M_MAJOR
 			return TRUE
 
-	if(planet_nuked == INFESTATION_NUKE_COMPLETED)
-		if(marines_evac == CRASH_EVAC_NONE)
-			message_admins("Round finished: [MODE_INFESTATION_M_MINOR]") //marines nuked the planet but didn't evac
-			round_finished = MODE_INFESTATION_M_MINOR
+		if(INFESTATION_NUKE_COMPLETED_SHIPSIDE, INFESTATION_NUKE_COMPLETED_OTHER)
+			message_admins("Round finished: [MODE_INFESTATION_X_MAJOR]") //marines nuked themselves somehow
+			round_finished = MODE_INFESTATION_X_MAJOR
 			return TRUE
-		message_admins("Round finished: [MODE_INFESTATION_M_MAJOR]") //marines nuked the planet and managed to evac
-		round_finished = MODE_INFESTATION_M_MAJOR
-		return TRUE
+
 	return FALSE
 
 
@@ -171,14 +176,6 @@
 	var/num_humans = living_player_list[1]
 	if(!num_humans) // no humans left on planet to try and restart it.
 		addtimer(VARSET_CALLBACK(src, marines_evac, CRASH_EVAC_COMPLETED), 10 SECONDS)
-
-/datum/game_mode/infestation/crash/proc/on_xeno_evolve(datum/source, mob/living/carbon/xenomorph/new_xeno)
-	SIGNAL_HANDLER
-	switch(new_xeno.tier)
-		if(XENO_TIER_ONE)
-			new_xeno.upgrade_xeno(XENO_UPGRADE_TWO)
-		if(XENO_TIER_TWO)
-			new_xeno.upgrade_xeno(XENO_UPGRADE_ONE)
 
 /datum/game_mode/infestation/crash/can_summon_dropship(mob/user)
 	to_chat(src, span_warning("This power doesn't work in this gamemode."))

@@ -18,8 +18,8 @@
 	slots_to_try = slots
 	if(_reequip_delay)
 		reequip_delay = _reequip_delay
-	RegisterSignal(parent, COMSIG_ITEM_REMOVED_INVENTORY, .proc/begin_reequip)
-	RegisterSignal(parent, COMSIG_MOVABLE_PRE_THROW, .proc/cancel_throw)
+	RegisterSignal(parent, COMSIG_ITEM_REMOVED_INVENTORY, PROC_REF(begin_reequip))
+	RegisterSignal(parent, COMSIG_MOVABLE_PRE_THROW, PROC_REF(cancel_throw))
 
 ///Blocks any item with this component from being thrown
 /datum/component/reequip/proc/cancel_throw(source)
@@ -29,7 +29,7 @@
 ///Just holds a delay for the reequip attempt
 /datum/component/reequip/proc/begin_reequip(source, mob/user)
 	SIGNAL_HANDLER
-	addtimer(CALLBACK(src, .proc/catch_wrapper, source, user), reequip_delay)
+	addtimer(CALLBACK(src, PROC_REF(catch_wrapper), source, user), reequip_delay)
 
 ///Wrapper to ensure signals only come from One Spot
 /datum/component/reequip/proc/catch_wrapper(source, mob/user)

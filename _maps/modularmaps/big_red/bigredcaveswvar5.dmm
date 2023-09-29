@@ -1,7 +1,4 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"a" = (
-/turf/open/space/basic,
-/area/space)
 "d" = (
 /obj/effect/landmark/excavation_site_spawner,
 /obj/effect/ai_node,
@@ -81,6 +78,10 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/southwest)
+"K" = (
+/obj/effect/landmark/xeno_tunnel_spawn,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/southwest)
 "L" = (
 /obj/effect/landmark/patrol_point{
 	id = "SOM_14";
@@ -148,13 +149,13 @@ n
 n
 n
 n
-a
-a
-a
-a
-a
-a
-a
+n
+n
+n
+n
+n
+n
+n
 "}
 (2,1,1) = {"
 f
@@ -193,13 +194,13 @@ f
 f
 f
 n
-a
-a
-a
-a
-a
-a
-a
+n
+n
+n
+n
+n
+n
+n
 "}
 (3,1,1) = {"
 f
@@ -238,13 +239,13 @@ f
 f
 f
 n
-a
-a
-a
-a
-a
-a
-a
+n
+n
+n
+n
+n
+n
+n
 "}
 (4,1,1) = {"
 f
@@ -283,13 +284,13 @@ f
 f
 f
 n
-a
-a
-a
-a
-a
-a
-a
+n
+n
+n
+n
+n
+n
+n
 "}
 (5,1,1) = {"
 f
@@ -328,13 +329,13 @@ f
 f
 f
 n
-a
-a
-a
-a
-a
-a
-a
+n
+n
+n
+n
+n
+n
+n
 "}
 (6,1,1) = {"
 f
@@ -373,13 +374,13 @@ f
 f
 f
 n
-a
-a
-a
-a
-a
-a
-a
+n
+n
+n
+n
+n
+n
+n
 "}
 (7,1,1) = {"
 f
@@ -418,13 +419,13 @@ f
 f
 f
 n
-a
-a
-a
-a
-a
-a
-a
+n
+n
+n
+n
+n
+n
+n
 "}
 (8,1,1) = {"
 f
@@ -463,13 +464,13 @@ f
 f
 f
 n
-a
-a
-a
-a
-a
-a
-a
+n
+n
+n
+n
+n
+n
+n
 "}
 (9,1,1) = {"
 f
@@ -508,13 +509,13 @@ f
 f
 f
 n
-a
-a
-a
-a
-a
-a
-a
+n
+n
+n
+n
+n
+n
+n
 "}
 (10,1,1) = {"
 T
@@ -553,13 +554,13 @@ f
 f
 f
 n
-a
-a
-a
-a
-a
-a
-a
+n
+n
+n
+n
+n
+n
+n
 "}
 (11,1,1) = {"
 h
@@ -585,7 +586,7 @@ f
 f
 f
 V
-T
+K
 w
 T
 T
@@ -598,13 +599,13 @@ f
 f
 f
 n
-a
-a
-a
-a
-a
-a
-a
+n
+n
+n
+n
+n
+n
+n
 "}
 (12,1,1) = {"
 T
@@ -643,13 +644,13 @@ f
 f
 f
 n
-a
-a
-a
-a
-a
-a
-a
+n
+n
+n
+n
+n
+n
+n
 "}
 (13,1,1) = {"
 T
@@ -688,13 +689,13 @@ f
 f
 f
 n
-a
-a
-a
-a
-a
-a
-a
+n
+n
+n
+n
+n
+n
+n
 "}
 (14,1,1) = {"
 T
@@ -733,13 +734,13 @@ f
 f
 f
 n
-a
-a
-a
-a
-a
-a
-a
+n
+n
+n
+n
+n
+n
+n
 "}
 (15,1,1) = {"
 h
@@ -778,13 +779,13 @@ f
 f
 f
 n
-a
-a
-a
-a
-a
-a
-a
+n
+n
+n
+n
+n
+n
+n
 "}
 (16,1,1) = {"
 T
@@ -823,13 +824,13 @@ f
 f
 f
 n
-a
-a
-a
-a
-a
-a
-a
+n
+n
+n
+n
+n
+n
+n
 "}
 (17,1,1) = {"
 T
@@ -868,13 +869,13 @@ f
 f
 f
 n
-a
-a
-a
-a
-a
-a
-a
+n
+n
+n
+n
+n
+n
+n
 "}
 (18,1,1) = {"
 T
@@ -913,13 +914,13 @@ f
 f
 f
 n
-a
-a
-a
-a
-a
-a
-a
+n
+n
+n
+n
+n
+n
+n
 "}
 (19,1,1) = {"
 T
@@ -958,13 +959,13 @@ I
 I
 I
 n
-a
-a
-a
-a
-a
-a
-a
+n
+n
+n
+n
+n
+n
+n
 "}
 (20,1,1) = {"
 f
@@ -1003,13 +1004,13 @@ f
 f
 f
 n
-a
-a
-a
-a
-a
-a
-a
+n
+n
+n
+n
+n
+n
+n
 "}
 (21,1,1) = {"
 f
@@ -1048,13 +1049,13 @@ f
 f
 f
 n
-a
-a
-a
-a
-a
-a
-a
+n
+n
+n
+n
+n
+n
+n
 "}
 (22,1,1) = {"
 f
@@ -1093,13 +1094,13 @@ f
 f
 f
 n
-a
-a
-a
-a
-a
-a
-a
+n
+n
+n
+n
+n
+n
+n
 "}
 (23,1,1) = {"
 f
@@ -1138,13 +1139,13 @@ f
 f
 f
 n
-a
-a
-a
-a
-a
-a
-a
+n
+n
+n
+n
+n
+n
+n
 "}
 (24,1,1) = {"
 f
@@ -1183,13 +1184,13 @@ f
 f
 f
 n
-a
-a
-a
-a
-a
-a
-a
+n
+n
+n
+n
+n
+n
+n
 "}
 (25,1,1) = {"
 f
@@ -1228,13 +1229,13 @@ f
 f
 f
 n
-a
-a
-a
-a
-a
-a
-a
+n
+n
+n
+n
+n
+n
+n
 "}
 (26,1,1) = {"
 f
@@ -1273,13 +1274,13 @@ f
 f
 f
 n
-a
-a
-a
-a
-a
-a
-a
+n
+n
+n
+n
+n
+n
+n
 "}
 (27,1,1) = {"
 f
@@ -1318,13 +1319,13 @@ f
 f
 f
 n
-a
-a
-a
-a
-a
-a
-a
+n
+n
+n
+n
+n
+n
+n
 "}
 (28,1,1) = {"
 f
@@ -1363,13 +1364,13 @@ f
 f
 f
 n
-a
-a
-a
-a
-a
-a
-a
+n
+n
+n
+n
+n
+n
+n
 "}
 (29,1,1) = {"
 f
@@ -1408,13 +1409,13 @@ f
 f
 f
 n
-a
-a
-a
-a
-a
-a
-a
+n
+n
+n
+n
+n
+n
+n
 "}
 (30,1,1) = {"
 f
@@ -1453,13 +1454,13 @@ f
 f
 f
 n
-a
-a
-a
-a
-a
-a
-a
+n
+n
+n
+n
+n
+n
+n
 "}
 (31,1,1) = {"
 f
@@ -1498,13 +1499,13 @@ f
 f
 f
 n
-a
-a
-a
-a
-a
-a
-a
+n
+n
+n
+n
+n
+n
+n
 "}
 (32,1,1) = {"
 f
@@ -1543,13 +1544,13 @@ f
 f
 f
 n
-a
-a
-a
-a
-a
-a
-a
+n
+n
+n
+n
+n
+n
+n
 "}
 (33,1,1) = {"
 f
@@ -1588,13 +1589,13 @@ f
 f
 f
 n
-a
-a
-a
-a
-a
-a
-a
+n
+n
+n
+n
+n
+n
+n
 "}
 (34,1,1) = {"
 f
@@ -1633,13 +1634,13 @@ f
 f
 f
 n
-a
-a
-a
-a
-a
-a
-a
+n
+n
+n
+n
+n
+n
+n
 "}
 (35,1,1) = {"
 f
@@ -1678,13 +1679,13 @@ f
 f
 f
 n
-a
-a
-a
-a
-a
-a
-a
+n
+n
+n
+n
+n
+n
+n
 "}
 (36,1,1) = {"
 f
@@ -1723,13 +1724,13 @@ f
 f
 f
 n
-a
-a
-a
-a
-a
-a
-a
+n
+n
+n
+n
+n
+n
+n
 "}
 (37,1,1) = {"
 T
@@ -1768,13 +1769,13 @@ f
 f
 f
 n
-a
-a
-a
-a
-a
-a
-a
+n
+n
+n
+n
+n
+n
+n
 "}
 (38,1,1) = {"
 T
@@ -1813,13 +1814,13 @@ f
 f
 f
 n
-a
-a
-a
-a
-a
-a
-a
+n
+n
+n
+n
+n
+n
+n
 "}
 (39,1,1) = {"
 T
@@ -1858,13 +1859,13 @@ f
 f
 f
 n
-a
-a
-a
-a
-a
-a
-a
+n
+n
+n
+n
+n
+n
+n
 "}
 (40,1,1) = {"
 T
@@ -1903,13 +1904,13 @@ f
 f
 f
 n
-a
-a
-a
-a
-a
-a
-a
+n
+n
+n
+n
+n
+n
+n
 "}
 (41,1,1) = {"
 G
@@ -1948,11 +1949,11 @@ f
 f
 f
 n
-a
-a
-a
-a
-a
-a
-a
+n
+n
+n
+n
+n
+n
+n
 "}

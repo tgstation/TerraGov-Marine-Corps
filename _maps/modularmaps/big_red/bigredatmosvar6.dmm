@@ -1,6 +1,6 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "aw" = (
-/obj/structure/window/framed/colony,
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /obj/machinery/door/poddoor/shutters/mainship{
 	id = "Filtration Plant";
 	name = "\improper Filtration Plant Shutters"
@@ -144,13 +144,13 @@
 	dir = 6
 	},
 /obj/structure/cable,
-/obj/effect/spawner/random/ammo/sidearm,
+/obj/effect/spawner/random/weaponry/ammo/sidearm,
 /turf/open/floor/marking/asteroidwarning{
 	dir = 4
 	},
 /area/bigredv2/outside/se)
 "lC" = (
-/obj/effect/spawner/random/ammo/sidearm,
+/obj/effect/spawner/random/weaponry/ammo/sidearm,
 /turf/open/floor/plating/ground/mars/random/dirt,
 /area/bigredv2/outside/se)
 "lR" = (
@@ -188,13 +188,17 @@
 	},
 /area/bigredv2/outside/s)
 "oc" = (
-/turf/open/floor/plating/ground/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand/autosmooth{
 	dir = 9
 	},
 /area/bigredv2/outside/se)
+"om" = (
+/obj/effect/landmark/xeno_tunnel_spawn,
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/bigredv2/outside/se)
 "ou" = (
 /obj/effect/landmark/corpsespawner/marine,
-/turf/open/floor/plating/ground/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand/autosmooth{
 	dir = 9
 	},
 /area/bigredv2/outside/se)
@@ -278,12 +282,12 @@
 /obj/structure/barricade/wooden{
 	dir = 8
 	},
-/turf/open/floor/plating/ground/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand/autosmooth{
 	dir = 1
 	},
 /area/bigredv2/outside/s)
 "sG" = (
-/turf/open/floor/plating/ground/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand/autosmooth{
 	dir = 1
 	},
 /area/bigredv2/outside/s)
@@ -326,7 +330,7 @@
 /area/bigredv2/outside/s)
 "vY" = (
 /obj/effect/landmark/corpsespawner/marine,
-/obj/effect/spawner/random/gun/sidearms,
+/obj/effect/spawner/random/weaponry/gun/sidearms,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/se)
 "wo" = (
@@ -356,7 +360,7 @@
 	},
 /area/bigredv2/outside/se)
 "xF" = (
-/obj/structure/window/framed/colony,
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /turf/open/floor/plating,
 /area/bigredv2/outside/filtration_plant)
 "xZ" = (
@@ -382,7 +386,7 @@
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/se)
 "zz" = (
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/bigredv2/caves/rock)
 "zI" = (
 /obj/structure/cable,
@@ -419,10 +423,10 @@
 "BB" = (
 /obj/structure/cable,
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/power/apc{
+/obj/effect/landmark/weed_node,
+/obj/machinery/power/apc/drained{
 	dir = 1
 	},
-/obj/effect/landmark/weed_node,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "BV" = (
@@ -436,7 +440,7 @@
 /turf/closed/wall/r_wall,
 /area/bigredv2/outside/s)
 "Dw" = (
-/obj/effect/spawner/random/gun/sidearms,
+/obj/effect/spawner/random/weaponry/gun/sidearms,
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/se)
 "DB" = (
@@ -451,7 +455,7 @@
 /area/bigredv2/outside/se)
 "Eu" = (
 /obj/effect/landmark/corpsespawner/marine,
-/turf/open/floor/plating/ground/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand/autosmooth{
 	dir = 1
 	},
 /area/bigredv2/outside/se)
@@ -474,16 +478,16 @@
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/s)
 "FI" = (
-/obj/machinery/computer/nuke_disk_generator/red,
+/obj/structure/nuke_disk_candidate,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "Gl" = (
-/obj/effect/spawner/random/gun/sidearms,
-/obj/effect/spawner/random/ammo/sidearm,
+/obj/effect/spawner/random/weaponry/gun/sidearms,
+/obj/effect/spawner/random/weaponry/ammo/sidearm,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/se)
 "GV" = (
-/obj/structure/window/framed/colony,
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /obj/machinery/door/poddoor/shutters/mainship{
 	dir = 2;
 	id = "Filtration Plant";
@@ -547,7 +551,7 @@
 	},
 /area/bigredv2/outside/se)
 "Ma" = (
-/turf/open/floor/plating/ground/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand/autosmooth{
 	dir = 9
 	},
 /area/bigredv2/outside/s)
@@ -576,7 +580,7 @@
 /area/bigredv2/outside/s)
 "OX" = (
 /obj/item/stack/sheet/wood,
-/obj/effect/spawner/random/gun/sidearms,
+/obj/effect/spawner/random/weaponry/gun/sidearms,
 /turf/open/floor/plating/ground/mars/random/dirt,
 /area/bigredv2/outside/se)
 "PC" = (
@@ -626,20 +630,20 @@
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/se)
 "Sv" = (
-/turf/open/floor/plating/ground/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand/autosmooth{
 	dir = 1
 	},
 /area/bigredv2/outside/se)
 "SS" = (
-/obj/effect/spawner/random/ammo/sidearm,
+/obj/effect/spawner/random/weaponry/ammo/sidearm,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/se)
 "SX" = (
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/east)
+/area/bigredv2/caves/east/garbledradio)
 "Tv" = (
 /obj/item/stack/sheet/wood,
-/turf/open/floor/plating/ground/mars/dirttosand{
+/turf/open/floor/plating/ground/mars/dirttosand/autosmooth{
 	dir = 1
 	},
 /area/bigredv2/outside/se)
@@ -670,7 +674,9 @@
 /obj/machinery/door/poddoor/two_tile_hor{
 	name = "\improper Eta Lab Lockdown"
 	},
-/turf/open/floor/plating/ground/mars/random/sand,
+/turf/open/floor/plating/ground/mars/dirttosand/autosmooth{
+	dir = 1
+	},
 /area/bigredv2/outside/s)
 "Wc" = (
 /obj/effect/ai_node,
@@ -861,7 +867,7 @@ OK
 kz
 ec
 sG
-ms
+sG
 qo
 nC
 rV
@@ -1049,7 +1055,7 @@ OK
 OK
 Ey
 ms
-qo
+sG
 BV
 jM
 rV
@@ -1076,7 +1082,7 @@ uz
 OK
 Ey
 ec
-qo
+sG
 BV
 jM
 eE
@@ -1142,7 +1148,7 @@ rV
 "}
 (17,1,1) = {"
 Rk
-Ok
+om
 jL
 Ok
 Ll

@@ -5,6 +5,10 @@
 	name = "drink"
 	desc = "yummy"
 	icon = 'icons/obj/items/drinks.dmi'
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/items/drinks_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/items/drinks_right.dmi',
+	)
 	icon_state = null
 	init_reagent_flags = OPENCONTAINER_NOUNIT
 	var/gulp_size = 5 //This is now officially broken ... need to think of a nice way to fix it.
@@ -29,6 +33,7 @@
 				to_chat(M, span_warning("You have a monitor for a head, where do you think you're going to put that?"))
 				return
 			to_chat(M,span_notice("You swallow a gulp from \the [src]."))
+			record_reagent_consumption(min(gulp_size, reagents.total_volume), reagents.reagent_list, user)
 			if(reagents.total_volume)
 				reagents.reaction(M, INGEST)
 				reagents.trans_to(M, gulp_size)
@@ -47,6 +52,7 @@
 			var/rgt_list_text = get_reagent_list_text()
 
 			log_combat(user, M, "fed", src, "Reagents: [rgt_list_text]")
+			record_reagent_consumption(min(gulp_size, reagents.total_volume), reagents.reagent_list, user, M)
 
 			if(reagents.total_volume)
 				reagents.reaction(M, INGEST)
@@ -126,21 +132,9 @@
 	center_of_mass = list("x"=16, "y"=9)
 	list_reagents = list(/datum/reagent/consumable/drink/milk = 50)
 
-/obj/item/reagent_containers/food/drinks/milk/xmas
-	icon_state = "milkxmas"
 	list_reagents = list(/datum/reagent/consumable/drink/milk = 40, /datum/reagent/consumable/ethanol/eggnog = 10)
-
-/* Flour is no longer a reagent
-/obj/item/reagent_containers/food/drinks/flour
-	name = "flour sack"
-	desc = "A big bag of flour. Good for baking!"
-	icon = 'icons/obj/items/food.dmi'
-	icon_state = "flour"
-	item_state = "flour"
-	center_of_mass = list(x=-10, y=-10)
-	list_reagents = list(/datum/reagent/consumable/flour = 30)
-*/
-
+	icon_state = "milkxmas"
+/obj/item/reagent_containers/food/drinks/milk/xmas
 /obj/item/reagent_containers/food/drinks/soymilk
 	name = "soy milk"
 	desc = "It's soy milk. White and nutritious goodness!"

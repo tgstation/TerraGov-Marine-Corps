@@ -33,7 +33,9 @@
 	var/hasShocked = 0 //Prevents multiple shocks from happening
 	var/secured_wires = 0	//for mapping use
 	var/no_panel = 0 //the airlock has no panel that can be screwdrivered open
-	var/emergency = FALSE
+	///used to determine various abandoned door effects
+	var/abandoned = FALSE
+	smoothing_groups = list(SMOOTH_GROUP_AIRLOCK)
 
 /obj/machinery/door/airlock/bumpopen(mob/living/user) //Airlocks now zap you when you 'bump' them open when they're electrified. --NeoFite
 	if(issilicon(user))
@@ -55,9 +57,32 @@
 			return
 	return ..(user)
 
-/obj/machinery/door/airlock/bumpopen(mob/living/simple_animal/user as mob)
-	..(user)
+/obj/machinery/door/airlock/Initialize()
+	..()
+	return INITIALIZE_HINT_LATELOAD
 
+/obj/machinery/door/airlock/LateInitialize()
+	. = ..()
+	if(!abandoned)
+		return
+	var/outcome = rand(1,40)
+	switch(outcome)
+		if(1 to 9)
+			var/turf/here = get_turf(src)
+			for(var/turf/closed/T in range(2, src))
+				here.PlaceOnTop(T.type)
+				return
+			here.PlaceOnTop(/turf/closed/wall)
+			return
+		if(9 to 11)
+			lights = FALSE
+			locked = TRUE
+		if(12 to 15)
+			locked = TRUE
+		if(16 to 23)
+			welded = TRUE
+		if(24 to 30)
+			machine_stat ^= PANEL_OPEN
 
 /obj/machinery/door/airlock/proc/isElectrified()
 	if(secondsElectrified != MACHINE_NOT_ELECTRIFIED)
@@ -123,7 +148,7 @@
 			secondsBackupPowerLost = 10
 	if(!spawnPowerRestoreRunning)
 		spawnPowerRestoreRunning = TRUE
-	INVOKE_ASYNC(src, .proc/handlePowerRestore)
+	INVOKE_ASYNC(src, PROC_REF(handlePowerRestore))
 	update_icon()
 
 
@@ -132,7 +157,7 @@
 		secondsBackupPowerLost = 60
 	if(!spawnPowerRestoreRunning)
 		spawnPowerRestoreRunning = TRUE
-	INVOKE_ASYNC(src, .proc/handlePowerRestore)
+	INVOKE_ASYNC(src, PROC_REF(handlePowerRestore))
 	update_icon()
 
 
@@ -161,6 +186,8 @@
 /obj/machinery/door/airlock/update_icon()
 	if(overlays) overlays.Cut()
 	if(density)
+		if(emergency && hasPower())
+			overlays += image(icon, "emergency_access_on")
 		if(locked && lights)
 			icon_state = "door_locked"
 		else
@@ -301,7 +328,7 @@
 							span_notice("You begin [welded ? "unwelding":"welding"] the airlock..."), \
 							span_italics("You hear welding."))
 
-			if(!W.use_tool(src, user, 40, volume = 50, extra_checks = CALLBACK(src, .proc/weld_checks)))
+			if(!W.use_tool(src, user, 40, volume = 50, extra_checks = CALLBACK(src, PROC_REF(weld_checks))))
 				return
 
 			welded = !welded
@@ -320,10 +347,10 @@
 							span_notice("You begin repairing the airlock..."), \
 							span_italics("You hear welding."))
 
-			if(!W.use_tool(src, user, 40, volume = 50, extra_checks = CALLBACK(src, .proc/weld_checks)))
+			if(!W.use_tool(src, user, 40, volume = 50, extra_checks = CALLBACK(src, PROC_REF(weld_checks))))
 				return
 
-			repair_damage(max_integrity)
+			repair_damage(max_integrity, user)
 			DISABLE_BITFIELD(machine_stat, BROKEN)
 			user.visible_message(span_notice("[user.name] has repaired [src]."), \
 								span_notice("You finish repairing the airlock."))
@@ -342,11 +369,11 @@
 		return
 
 	else if(I.pry_capable == IS_PRY_CAPABLE_CROWBAR && CHECK_BITFIELD(machine_stat, PANEL_OPEN) && (operating == -1 || (density && welded && operating != 1 && !hasPower() && !locked)))
-		if(user.skills.getRating("engineer") < SKILL_ENGINEER_ENGI)
+		if(user.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_ENGI)
 			user.visible_message(span_notice("[user] fumbles around figuring out how to deconstruct [src]."),
 			span_notice("You fumble around figuring out how to deconstruct [src]."))
 
-			var/fumbling_time = 50 * ( SKILL_ENGINEER_ENGI - user.skills.getRating("engineer") )
+			var/fumbling_time = 50 * ( SKILL_ENGINEER_ENGI - user.skills.getRating(SKILL_ENGINEER) )
 			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 				return
 
@@ -451,7 +478,7 @@
 	if(safe)
 		for(var/turf/turf AS in locs)
 			if(locate(/mob/living) in turf)
-				addtimer(CALLBACK(src, .proc/close), 6 SECONDS)
+				addtimer(CALLBACK(src, PROC_REF(close)), 6 SECONDS)
 				return
 
 	for(var/turf/turf in locs)
@@ -463,7 +490,7 @@
 				var/mob/living/carbon/C = M
 				var/datum/species/S = C.species
 				if(S?.species_flags & NO_PAIN)
-					INVOKE_ASYNC(M, /mob/living.proc/emote, "pain")
+					INVOKE_ASYNC(M, TYPE_PROC_REF(/mob/living, emote), "pain")
 			var/turf/location = src.loc
 			if(istype(location, /turf))
 				location.add_mob_blood(M)
@@ -498,19 +525,9 @@
 		return TRUE
 	return FALSE
 
-/obj/machinery/door/airlock/Initialize(mapload, ...)
-	. = ..()
-
-	wires = new /datum/wires/airlock(src)
-
-	if(closeOtherId != null)
-		for (var/obj/machinery/door/airlock/A in GLOB.machines)
-			if(A.closeOtherId == src.closeOtherId && A != src)
-				src.closeOther = A
-				break
-
 
 /obj/machinery/door/airlock/Destroy()
+	QUEUE_SMOOTH_NEIGHBORS(loc)
 	QDEL_NULL(wires)
 	return ..()
 
@@ -523,13 +540,13 @@
 
 
 /obj/machinery/door/airlock/proc/update_nearby_icons()
-	smooth_neighbors()
+	QUEUE_SMOOTH_NEIGHBORS(src)
 
 
 /obj/machinery/door/airlock/proc/set_electrified(seconds, mob/user)
 	secondsElectrified = seconds
 	if(secondsElectrified > MACHINE_NOT_ELECTRIFIED)
-		INVOKE_ASYNC(src, .proc/electrified_loop)
+		INVOKE_ASYNC(src, PROC_REF(electrified_loop))
 
 	if(user)
 		var/message
@@ -540,7 +557,7 @@
 				message = "unshocked"
 			else
 				message = "temp shocked for [secondsElectrified] seconds"
-		LAZYADD(shockedby, text("\[[time_stamp()]\] [key_name(user)] - ([uppertext(message)])"))
+		LAZYADD(shockedby, "\[[time_stamp()]\] [key_name(user)] - ([uppertext(message)])")
 		log_combat(user, src, message)
 
 

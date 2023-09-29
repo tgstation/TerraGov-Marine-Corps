@@ -3,6 +3,10 @@
 	desc = "A spray bottle, with an unscrewable top."
 	icon = 'icons/obj/items/spray.dmi'
 	icon_state = "cleaner"
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/items/spray_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/items/spray_right.dmi',
+	)
 	item_state = "cleaner"
 	init_reagent_flags = OPENCONTAINER_NOUNIT
 	flags_item = NOBLUDGEON
@@ -93,7 +97,7 @@
 	if(isturf(usr.loc))
 		to_chat(usr, span_notice("You empty \the [src] onto the floor."))
 		reagents.reaction(usr.loc)
-		addtimer(CALLBACK(reagents, /datum/reagents.proc/clear_reagents), 5)
+		addtimer(CALLBACK(reagents, TYPE_PROC_REF(/datum/reagents, clear_reagents)), 5)
 
 //space cleaner
 /obj/item/reagent_containers/spray/cleaner
@@ -106,7 +110,7 @@
 	volume = 50
 
 
-/obj/item/reagent_containers/spray/cleaner/Initialize()
+/obj/item/reagent_containers/spray/cleaner/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(/datum/reagent/space_cleaner, volume)
 
@@ -181,7 +185,7 @@
 	var/turf/T2 = get_step(T,turn(direction, -90))
 	var/list/the_targets = list(T,T1,T2)
 
-	for(var/i=1, i<=Sprays.len, i++)
+	for(var/i=1, length(i<=Sprays), i++)
 		spawn()
 			var/obj/effect/decal/chempuff/D = Sprays[i]
 			if(!D) continue

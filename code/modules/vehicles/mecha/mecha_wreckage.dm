@@ -27,7 +27,7 @@
 	. = ..()
 	if(parts)
 		for(var/i in 1 to 2)
-			if(!parts.len)
+			if(!length(parts))
 				break
 			if(prob(60))
 				continue
@@ -78,7 +78,7 @@
 /obj/structure/mecha_wreckage/crowbar_act(mob/living/user, obj/item/I)
 	..()
 	. = TRUE
-	if(crowbar_salvage.len)
+	if(length(crowbar_salvage))
 		var/obj/S = pick(crowbar_salvage)
 		S.forceMove(user.drop_location())
 		user.visible_message(span_notice("[user] pries [S] from [src]."), span_notice("You pry [S] from [src]."))

@@ -87,7 +87,7 @@
 	if(!chance || prob(chance))
 		play(get_sound(start_time))
 	if(!timer_id)
-		timer_id = addtimer(CALLBACK(src, .proc/sound_loop, world.time), mid_length, TIMER_CLIENT_TIME | TIMER_STOPPABLE | TIMER_LOOP, SSsound_loops)
+		timer_id = addtimer(CALLBACK(src, PROC_REF(sound_loop), world.time), mid_length, TIMER_CLIENT_TIME | TIMER_STOPPABLE | TIMER_LOOP, SSsound_loops)
 
 /**
  * Plays a sound file to our output_atoms
@@ -101,7 +101,7 @@
 	if(direct)
 		S.channel = SSsounds.random_available_channel()
 		S.volume = volume_override || volume //Use volume as fallback if theres no override
-	for(var/i in 1 to atoms_cache.len)
+	for(var/i in 1 to length(atoms_cache))
 		var/atom/thing = atoms_cache[i]
 		if(direct)
 			SEND_SOUND(thing, S)
@@ -129,7 +129,7 @@
 	if(start_sound)
 		play(start_sound, start_volume)
 		start_wait = start_length
-	addtimer(CALLBACK(src, .proc/sound_loop, world.time), start_wait, TIMER_CLIENT_TIME, SSsound_loops)
+	addtimer(CALLBACK(src, PROC_REF(sound_loop), world.time), start_wait, TIMER_CLIENT_TIME, SSsound_loops)
 
 /**
  * Called on loop end

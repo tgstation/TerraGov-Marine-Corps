@@ -14,8 +14,12 @@
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/deathmatch)
 "dl" = (
-/obj/effect/decal/sandytile/sandyplating,
+/obj/effect/turf_decal/sandytile/sandyplating,
 /turf/closed/wall,
+/area/deathmatch)
+"dA" = (
+/obj/item/storage/belt/champion,
+/turf/open/floor/grime,
 /area/deathmatch)
 "dB" = (
 /obj/effect/landmark/deathmatch,
@@ -32,10 +36,14 @@
 	color = "#888888"
 	},
 /area/deathmatch)
+"fv" = (
+/obj/machinery/door/poddoor/railing,
+/obj/effect/landmark/eord_roomba,
+/turf/open/floor/plating/asteroidplating,
+/area/deathmatch)
 "fF" = (
 /obj/structure/rack,
-/obj/effect/spawner/random/plushie/nospawnninetyfive{
-	},
+/obj/effect/spawner/random/misc/plushie/nospawnninetyfive,
 /turf/open/floor/plating/asteroidplating,
 /area/deathmatch)
 "hw" = (
@@ -48,10 +56,11 @@
 /turf/open/floor/plating/asteroidfloor,
 /area/deathmatch)
 "jb" = (
-/turf/open/floor/stairs/rampbottom{
+/obj/structure/stairs/edge{
 	color = "#888888";
 	dir = 8
 	},
+/turf/open/floor/tile/dark,
 /area/deathmatch)
 "jc" = (
 /obj/machinery/door/poddoor/railing{
@@ -61,6 +70,10 @@
 	dir = 1
 	},
 /area/deathmatch)
+"jm" = (
+/obj/effect/landmark/eord_roomba,
+/turf/open/floor/plating/asteroidplating,
+/area/deathmatch)
 "jJ" = (
 /obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
 /turf/open/floor/plating/ground/mars/dirttosand{
@@ -68,12 +81,17 @@
 	},
 /area/deathmatch)
 "jM" = (
-/obj/structure/ore_box,
+/obj/effect/spawner/random/engineering/ore_box,
 /turf/open/floor/plating/ground/mars/dirttosand,
 /area/deathmatch)
 "jP" = (
 /obj/machinery/door/poddoor/railing,
 /turf/open/floor/plating/asteroidfloor,
+/area/deathmatch)
+"jU" = (
+/obj/structure/window/framed/mainship/hull,
+/obj/structure/window/framed/wood,
+/turf/open/floor/wood,
 /area/deathmatch)
 "kh" = (
 /obj/structure/cargo_container/nt,
@@ -87,8 +105,15 @@
 /obj/structure/cargo_container/nt,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/deathmatch)
+"nk" = (
+/obj/machinery/door/window{
+	dir = 8
+	},
+/obj/effect/ai_node,
+/turf/open/floor/grime,
+/area/deathmatch)
 "nt" = (
-/obj/structure/ore_box,
+/obj/effect/spawner/random/engineering/ore_box,
 /turf/open/floor/plating/ground/mars/dirttosand{
 	dir = 8
 	},
@@ -119,14 +144,24 @@
 /obj/structure/largecrate,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/deathmatch)
+"qF" = (
+/obj/structure/window/framed/mainship/hull,
+/obj/structure/window/framed/wood,
+/turf/open/floor/mainship/mono,
+/area/deathmatch)
+"qH" = (
+/obj/effect/landmark/eord_roomba,
+/turf/open/floor/grime,
+/area/deathmatch)
 "rv" = (
 /obj/machinery/door/poddoor/railing,
 /turf/open/floor/plating/asteroidplating,
 /area/deathmatch)
 "rF" = (
-/turf/open/floor/stairs/rampbottom{
+/obj/structure/stairs/edge{
 	dir = 8
 	},
+/turf/open/floor/tile/dark,
 /area/deathmatch)
 "sr" = (
 /obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
@@ -172,15 +207,14 @@
 	dir = 9
 	},
 /area/deathmatch)
-"vW" = (
-/obj/structure/platform,
-/turf/open/floor/plating/asteroidfloor,
-/area/deathmatch)
 "wl" = (
 /obj/structure/cargo_container/ch_red{
 	dir = 4
 	},
 /turf/open/floor/plating/ground/mars/random/sand,
+/area/deathmatch)
+"ww" = (
+/turf/closed/wall/wood,
 /area/deathmatch)
 "wH" = (
 /obj/machinery/door/poddoor/railing{
@@ -199,10 +233,15 @@
 /obj/machinery/door/poddoor/railing{
 	dir = 1
 	},
-/turf/open/floor/stairs/rampbottom{
+/obj/structure/stairs/edge{
 	color = "#888888";
 	dir = 8
 	},
+/turf/open/floor/tile/dark,
+/area/deathmatch)
+"xE" = (
+/obj/effect/landmark/eord_roomba,
+/turf/open/floor/plating/ground/mars/random/sand,
 /area/deathmatch)
 "zr" = (
 /obj/structure/cargo_container{
@@ -210,8 +249,13 @@
 	},
 /turf/open/floor/plating/ground/mars/random/dirt,
 /area/deathmatch)
+"zB" = (
+/obj/structure/window/framed/mainship/requisitions,
+/obj/structure/window/framed/wood,
+/turf/open/floor/wood,
+/area/deathmatch)
 "zQ" = (
-/obj/structure/ore_box,
+/obj/effect/spawner/random/engineering/ore_box,
 /turf/open/floor/plating/ground/mars/random/dirt,
 /area/deathmatch)
 "Ab" = (
@@ -219,6 +263,12 @@
 /turf/open/floor/plating/asteroidplating{
 	color = "#888888"
 	},
+/area/deathmatch)
+"Aw" = (
+/obj/structure/platform{
+	dir = 1
+	},
+/turf/closed/wall,
 /area/deathmatch)
 "Ax" = (
 /obj/effect/landmark/weapon_spawn/tier3_weapon_spawn,
@@ -238,15 +288,23 @@
 /area/deathmatch)
 "De" = (
 /obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
-/turf/open/floor/stairs/rampbottom{
+/obj/structure/stairs/edge{
 	dir = 4
 	},
+/turf/open/floor/tile/dark,
 /area/deathmatch)
 "Do" = (
 /obj/effect/landmark/deathmatch,
-/turf/open/floor/stairs/rampbottom{
+/obj/structure/stairs/edge{
 	dir = 8
 	},
+/turf/open/floor/tile/dark,
+/area/deathmatch)
+"Ei" = (
+/obj/structure/platform{
+	dir = 1
+	},
+/turf/open/floor/plating/asteroidfloor,
 /area/deathmatch)
 "Fc" = (
 /obj/structure/table/reinforced,
@@ -263,6 +321,10 @@
 /obj/effect/landmark/deathmatch,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/deathmatch)
+"Gz" = (
+/obj/machinery/door/window/right,
+/turf/open/floor/grime,
+/area/deathmatch)
 "GJ" = (
 /obj/machinery/door/poddoor/railing{
 	dir = 8
@@ -270,6 +332,10 @@
 /turf/open/floor/plating/asteroidwarning{
 	dir = 8
 	},
+/area/deathmatch)
+"HV" = (
+/obj/structure/window/framed/wood,
+/turf/open/floor/wood,
 /area/deathmatch)
 "Ip" = (
 /turf/open/floor/plating/ground/mars/dirttosand,
@@ -280,8 +346,11 @@
 	},
 /area/deathmatch)
 "Jn" = (
-/obj/structure/ore_box,
+/obj/effect/spawner/random/engineering/ore_box,
 /turf/open/floor/plating/asteroidplating,
+/area/deathmatch)
+"JT" = (
+/turf/open/floor/grime,
 /area/deathmatch)
 "JW" = (
 /obj/machinery/door/poddoor/railing{
@@ -308,16 +377,18 @@
 /area/deathmatch)
 "LA" = (
 /obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
-/turf/open/floor/stairs/rampbottom{
+/obj/structure/stairs/edge{
 	dir = 8
 	},
+/turf/open/floor/tile/dark,
 /area/deathmatch)
 "LY" = (
 /obj/effect/landmark/weapon_spawn/tier3_weapon_spawn,
-/turf/open/floor/stairs/rampbottom{
+/obj/structure/stairs/edge{
 	color = "#888888";
 	dir = 8
 	},
+/turf/open/floor/tile/dark,
 /area/deathmatch)
 "Mn" = (
 /turf/open/floor/plating/asteroidfloor,
@@ -342,10 +413,11 @@
 /obj/machinery/door/poddoor/railing{
 	dir = 2
 	},
-/turf/open/floor/stairs/rampbottom{
+/obj/structure/stairs/edge{
 	color = "#888888";
 	dir = 8
 	},
+/turf/open/floor/tile/dark,
 /area/deathmatch)
 "PF" = (
 /turf/open/floor/plating/ground/mars/dirttosand{
@@ -366,7 +438,7 @@
 /area/deathmatch)
 "QR" = (
 /obj/structure/platform{
-	dir = 8
+	dir = 9
 	},
 /turf/open/floor/plating/asteroidfloor,
 /area/deathmatch)
@@ -376,11 +448,6 @@
 	},
 /turf/open/floor/plating/asteroidwarning,
 /area/deathmatch)
-"TU" = (
-/obj/structure/platform,
-/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
-/turf/open/floor/plating/asteroidfloor,
-/area/deathmatch)
 "Uc" = (
 /obj/machinery/door/poddoor/railing{
 	dir = 2
@@ -388,10 +455,12 @@
 /turf/open/floor/plating/asteroidfloor,
 /area/deathmatch)
 "VQ" = (
-/obj/structure/cargo_container/ch_red{
-	layer = 5
-	},
+/obj/structure/cargo_container/ch_red,
 /turf/open/floor/plating/ground/mars/random/sand,
+/area/deathmatch)
+"VU" = (
+/obj/effect/landmark/deathmatch,
+/turf/open/floor/grime,
 /area/deathmatch)
 "Wa" = (
 /obj/machinery/door/poddoor/railing{
@@ -410,6 +479,13 @@
 	},
 /turf/closed/wall,
 /area/deathmatch)
+"WO" = (
+/obj/effect/landmark/deathmatch,
+/obj/structure/platform{
+	dir = 1
+	},
+/turf/open/floor/plating/asteroidfloor,
+/area/deathmatch)
 "Xe" = (
 /turf/open/floor/plating/ground/mars/dirttosand{
 	dir = 8
@@ -421,7 +497,7 @@
 	},
 /area/deathmatch)
 "XY" = (
-/turf/closed/desertdamrockwall,
+/turf/closed/mineral/smooth/desertdamrockwall,
 /area/deathmatch)
 "YE" = (
 /obj/structure/largecrate,
@@ -435,14 +511,14 @@
 /turf/open/floor/plating/asteroidfloor,
 /area/deathmatch)
 "YO" = (
-/turf/open/floor/stairs/rampbottom{
+/obj/structure/stairs/edge{
 	dir = 4
 	},
+/turf/open/floor/tile/dark,
 /area/deathmatch)
 "ZA" = (
 /obj/structure/table/reinforced,
-/obj/effect/spawner/random/plushie/nospawnninetyfive{
-	},
+/obj/effect/spawner/random/misc/plushie/nospawnninetyfive,
 /turf/open/floor/plating/asteroidfloor,
 /area/deathmatch)
 "ZH" = (
@@ -1043,7 +1119,7 @@ od
 Sf
 Fp
 Fp
-Fp
+jm
 Fp
 Fp
 wH
@@ -1166,13 +1242,13 @@ KZ
 KZ
 bi
 sr
-bi
-bi
-bi
-bi
-bi
-bi
-bi
+ww
+HV
+HV
+nk
+qF
+qF
+ww
 sr
 bi
 bi
@@ -1214,13 +1290,13 @@ XY
 XY
 Jf
 KZ
-od
-od
-od
-od
-od
-bi
-bi
+zB
+VU
+JT
+JT
+JT
+VU
+jU
 bi
 bi
 bi
@@ -1262,13 +1338,13 @@ XY
 XY
 dj
 dj
-od
-oH
-Mn
-My
-Fp
-bi
-bi
+zB
+JT
+JT
+JT
+JT
+JT
+jU
 bi
 bi
 bi
@@ -1310,13 +1386,13 @@ XY
 XY
 XY
 db
-od
-Mn
-Mn
-Mn
-Fp
-sr
-bi
+zB
+JT
+JT
+dA
+JT
+JT
+jU
 bi
 bi
 bi
@@ -1358,13 +1434,13 @@ XY
 XY
 XY
 Ax
-od
-od
-MV
-Mn
-od
-Jf
-KZ
+zB
+JT
+JT
+JT
+JT
+JT
+jU
 KZ
 bi
 bi
@@ -1406,13 +1482,13 @@ XY
 XY
 XY
 XY
-XY
-od
-Mn
-Mn
-od
-od
-od
+zB
+VU
+JT
+qH
+JT
+VU
+jU
 od
 bi
 bi
@@ -1454,13 +1530,13 @@ od
 od
 od
 od
-od
-od
-Fp
-Fp
-Fp
-Fp
-tf
+ww
+zB
+zB
+Gz
+jU
+jU
+ww
 od
 bi
 sr
@@ -1595,8 +1671,8 @@ dj
 Ax
 od
 Mn
-vW
-od
+Mn
+Aw
 od
 od
 od
@@ -1643,8 +1719,8 @@ od
 od
 od
 My
-TU
-Mn
+MV
+Ei
 Mn
 Mn
 Wj
@@ -1739,8 +1815,8 @@ MV
 Mn
 Mn
 Mn
-vW
 Mn
+Ei
 od
 Mn
 Wj
@@ -1786,7 +1862,7 @@ Mn
 Mn
 od
 Mn
-vW
+Mn
 QR
 Mn
 od
@@ -1834,8 +1910,8 @@ Mn
 Mn
 od
 Mn
-vW
-My
+Mn
+WO
 ZA
 od
 Fp
@@ -1882,8 +1958,8 @@ My
 Mn
 od
 Mn
-vW
 Mn
+Ei
 QO
 od
 Fp
@@ -1930,14 +2006,14 @@ bi
 sr
 od
 MV
-vW
-od
+Mn
+Aw
 od
 od
 Fp
 wI
 Fp
-Fp
+jm
 Fp
 Fp
 Fp
@@ -2100,7 +2176,7 @@ dj
 Go
 dj
 dj
-dj
+xE
 dj
 dj
 dj
@@ -2225,7 +2301,7 @@ od
 Fp
 Fp
 rv
-rv
+fv
 rv
 Fp
 Fp

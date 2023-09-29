@@ -34,6 +34,7 @@
 	icon_state="orange"
 	ceiling = CEILING_GLASS
 	outside = FALSE
+	minimap_color = MINIMAP_AREA_REQ
 
 /area/outpost/cargo/office
 	name = "Cargo Office"
@@ -50,6 +51,7 @@
 	name = "Cargo Engineering"
 	icon_state="orange"
 	ceiling = CEILING_GLASS
+	minimap_color = MINIMAP_AREA_REQ
 
 // Cave Areas, cave.
 
@@ -58,6 +60,7 @@
 	icon_state="cave"
 	ceiling = CEILING_NONE
 	outside = FALSE
+	always_unpowered = TRUE
 
 /area/outpost/caves/central
 	name = "Central Caves"
@@ -117,6 +120,7 @@
 	icon_state="thunder"
 	ceiling = CEILING_NONE
 	minimap_color = MINIMAP_AREA_COLONY
+	always_unpowered = TRUE
 
 /area/outpost/yard/central
 	name = "Central Yard"
@@ -269,6 +273,7 @@
 	icon_state="Sleep"
 	ceiling = CEILING_GLASS
 	outside = FALSE
+	minimap_color = MINIMAP_AREA_LIVING
 
 
 // Brig

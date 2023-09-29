@@ -23,14 +23,15 @@
 	w_uniform = /obj/item/clothing/under/marine/veteran/UPP
 	shoes = /obj/item/clothing/shoes/marine
 	wear_suit = /obj/item/clothing/suit/storage/faction/UPP/commando
-	gloves = /obj/item/clothing/gloves/marine/veteran/PMC
+	gloves = /obj/item/clothing/gloves/marine/veteran/pmc
 	head = /obj/item/clothing/head/uppcap
-	mask = /obj/item/clothing/mask/gas/PMC/upp
+	mask = /obj/item/clothing/mask/gas/pmc/upp
 	glasses = /obj/item/clothing/glasses/night/m42_night_goggles/upp
 	suit_store = /obj/item/weapon/gun/rifle/type71/commando
 	r_store = /obj/item/storage/pouch/general/large
 	l_store = /obj/item/storage/pouch/medical_injectors/firstaid
 	back = /obj/item/storage/backpack/lightpack
+	implants = list(/obj/item/implant/suicide_dust)
 
 
 /datum/outfit/job/upp/commando/standard/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
@@ -76,14 +77,15 @@
 	w_uniform = /obj/item/clothing/under/marine/veteran/UPP/medic
 	shoes = /obj/item/clothing/shoes/marine
 	wear_suit = /obj/item/clothing/suit/storage/faction/UPP/commando
-	gloves = /obj/item/clothing/gloves/marine/veteran/PMC
+	gloves = /obj/item/clothing/gloves/marine/veteran/pmc
 	head = /obj/item/clothing/head/uppcap
-	mask = /obj/item/clothing/mask/gas/PMC/upp
+	mask = /obj/item/clothing/mask/gas/pmc/upp
 	glasses = /obj/item/clothing/glasses/night/m42_night_goggles/upp
 	suit_store = /obj/item/weapon/gun/smg/skorpion
 	r_store = /obj/item/storage/pouch/medical_injectors/firstaid
 	l_store = /obj/item/storage/pouch/general/large
 	back = /obj/item/storage/backpack/lightpack
+	implants = list(/obj/item/implant/suicide_dust)
 
 
 /datum/outfit/job/upp/commando/medic/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
@@ -129,19 +131,20 @@
 	jobtype = /datum/job/upp/commando/leader
 
 	id = /obj/item/card/id/silver
-	belt = /obj/item/storage/belt/gun/korovin/tranq
+	belt = /obj/item/storage/holster/belt/korovin/tranq
 	ears = /obj/item/radio/headset/distress/usl
 	w_uniform = /obj/item/clothing/under/marine/veteran/UPP
 	shoes = /obj/item/clothing/shoes/marine
 	wear_suit = /obj/item/clothing/suit/storage/faction/UPP/commando
-	gloves = /obj/item/clothing/gloves/marine/veteran/PMC
+	gloves = /obj/item/clothing/gloves/marine/veteran/pmc
 	head = /obj/item/clothing/head/uppcap/beret
-	mask = /obj/item/clothing/mask/gas/PMC/upp
+	mask = /obj/item/clothing/mask/gas/pmc/upp
 	glasses = /obj/item/clothing/glasses/night/m42_night_goggles/upp
 	suit_store = /obj/item/weapon/gun/rifle/type71/commando
 	r_store = /obj/item/storage/pouch/general/large
 	l_store = /obj/item/storage/pouch/medical_injectors/firstaid
 	back = /obj/item/storage/backpack/lightpack
+	implants = list(/obj/item/implant/suicide_dust)
 
 
 /datum/outfit/job/upp/commando/leader/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)

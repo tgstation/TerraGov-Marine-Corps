@@ -36,7 +36,7 @@
 /datum/tgui_say/New(client/client, id)
 	src.client = client
 	window = new(client, id)
-	window.subscribe(src, .proc/on_message)
+	window.subscribe(src, PROC_REF(on_message))
 	window.is_browser = TRUE
 
 /**
@@ -82,9 +82,9 @@
 	if(!payload?["channel"])
 		CRASH("No channel provided to an open TGUI-Say")
 	window_open = TRUE
-	if(payload["channel"] != OOC_CHANNEL)
+	if(payload["channel"] != OOC_CHANNEL && payload["channel"] != ADMIN_CHANNEL && payload["channel"] != MENTOR_CHANNEL)
 		start_thinking()
-	if(client.typing_indicators)
+	if(client.prefs.show_typing)
 		log_speech_indicators("[key_name(client)] started typing at [loc_name(client.mob)], indicators enabled.")
 	else
 		log_speech_indicators("[key_name(client)] started typing at [loc_name(client.mob)], indicators DISABLED.")
@@ -97,7 +97,7 @@
 /datum/tgui_say/proc/close()
 	window_open = FALSE
 	stop_thinking()
-	if(client.typing_indicators)
+	if(client.prefs.show_typing)
 		log_speech_indicators("[key_name(client)] stopped typing at [loc_name(client.mob)], indicators enabled.")
 	else
 		log_speech_indicators("[key_name(client)] stopped typing at [loc_name(client.mob)], indicators DISABLED.")
@@ -117,10 +117,10 @@
 		close()
 		return TRUE
 	if (type == "thinking")
-		if(payload["mode"] == TRUE)
+		if(payload["visible"] == TRUE)
 			start_thinking()
 			return TRUE
-		if(payload["mode"] == FALSE)
+		if(payload["visible"] == FALSE)
 			stop_thinking()
 			return TRUE
 		return FALSE

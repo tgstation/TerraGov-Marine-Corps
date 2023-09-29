@@ -46,6 +46,16 @@
 	var/mob/living/silicon/ai/AI = usr
 	AI.announcement_help()
 
+/atom/movable/screen/ai/bioscan
+	name = "Issue Manual Bioscan"
+	icon_state = "bioscan"
+
+/atom/movable/screen/ai/bioscan/Click()
+	. = ..()
+	if(.)
+		return
+	SSticker.mode.announce_bioscans(FALSE, GLOB.current_orbit, TRUE, FALSE, FALSE)
+
 /atom/movable/screen/ai/camera_list/Click()
 	. = ..()
 	if(.)
@@ -150,3 +160,30 @@
 	using = new /atom/movable/screen/ai/add_multicam()
 	using.screen_loc = ui_ai_add_multicam
 	static_inventory += using
+
+//bioscan
+	using = new /atom/movable/screen/ai/bioscan()
+	using.screen_loc = ui_ai_bioscan
+	static_inventory += using
+
+/atom/movable/screen/alert/ai_notify
+	name = "Notification"
+	desc = "A new notification. You can enter it."
+	icon_state = "template"
+	timeout = 15 SECONDS
+	var/atom/target = null
+	var/action = NOTIFY_AI_ALERT
+
+/atom/movable/screen/alert/ai_notify/Click()
+	var/mob/living/silicon/ai/recipientai = usr
+	if(!istype(recipientai) || usr != owner)
+		return
+	if(!recipientai.client)
+		return
+	if(!target)
+		return
+	switch(action)
+		if(NOTIFY_AI_ALERT)
+			var/turf/T = get_turf(target)
+			if(T)
+				recipientai.eyeobj.setLoc(T)

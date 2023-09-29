@@ -1,13 +1,12 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
 /obj/structure/catwalk,
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/lv624/ground/river2)
 "b" = (
-/obj/structure/catwalk,
-/turf/open/ground/coast/corner{
-	dir = 8
-	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/structure/cable,
+/turf/open/liquid/water/river/deep,
 /area/lv624/ground/river2)
 "c" = (
 /obj/structure/grille/broken,
@@ -19,33 +18,33 @@
 /turf/open/floor,
 /area/lv624/ground/river2)
 "e" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/lv624/ground/river2)
 "g" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/effect/landmark/weed_node,
 /turf/open/floor,
 /area/lv624/ground/river2)
-"h" = (
-/obj/structure/catwalk,
-/turf/open/ground/coast{
-	dir = 5
-	},
-/area/lv624/ground/river2)
 "k" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/effect/landmark/corpsespawner/colonist,
 /turf/open/floor,
 /area/lv624/ground/river2)
+"l" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 8
+	},
+/turf/open/liquid/water/river/deep,
+/area/lv624/ground/river2)
 "n" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor,
@@ -53,7 +52,7 @@
 "p" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/lv624/ground/river2)
 "q" = (
 /obj/structure/disposalpipe/segment{
@@ -78,20 +77,29 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/effect/ai_node,
 /obj/structure/cable,
-/turf/open/ground/river,
+/turf/open/liquid/water/river/deep,
+/area/lv624/ground/river2)
+"v" = (
+/turf/open/liquid/water/river/deep,
 /area/lv624/ground/river2)
 "w" = (
 /obj/structure/grille/smoothing,
 /turf/open/floor/plating,
 /area/lv624/ground/river2)
+"x" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 4
+	},
+/turf/open/liquid/water/river/deep,
+/area/lv624/ground/river2)
 "A" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor,
 /area/lv624/ground/river2)
 "C" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/structure/disposalpipe/segment{
@@ -105,10 +113,10 @@
 /turf/open/floor/plating,
 /area/lv624/ground/river2)
 "F" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/lv624/ground/river2)
 "H" = (
 /obj/structure/disposalpipe/segment{
@@ -116,40 +124,34 @@
 	},
 /turf/open/floor,
 /area/lv624/ground/river2)
-"I" = (
-/obj/structure/catwalk,
-/turf/open/ground/coast{
-	dir = 1
-	},
-/area/lv624/ground/river2)
 "J" = (
 /obj/structure/grille/smoothing,
-/turf/open/ground/river,
+/turf/open/liquid/water/river/autosmooth,
 /area/lv624/ground/river2)
 "K" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor,
 /area/lv624/ground/river2)
+"L" = (
+/obj/structure/catwalk,
+/turf/open/liquid/water/river/deep,
+/area/lv624/ground/river2)
 "N" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/effect/decal/cleanable/blood/gibs,
-/turf/open/ground/river,
+/turf/open/liquid/water/river/deep,
 /area/lv624/ground/river2)
 "P" = (
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/lv624/ground/river2)
 "R" = (
 /turf/open/floor,
 /area/lv624/ground/river2)
-"T" = (
-/obj/structure/grille/broken,
-/turf/open/floor/plating/dmg3,
-/area/lv624/ground/river2)
 "V" = (
 /obj/structure/grille/broken,
-/turf/open/ground/river,
+/turf/open/liquid/water/river/deep,
 /area/lv624/ground/river2)
 "W" = (
 /turf/closed/wall,
@@ -162,10 +164,10 @@
 	dir = 4
 	},
 /obj/structure/catwalk,
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/lv624/ground/river2)
 "Z" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
@@ -177,22 +179,22 @@
 (1,1,1) = {"
 X
 a
-a
-P
-P
-P
+L
+v
+v
+v
 V
 a
-h
-b
+a
+a
 "}
 (2,1,1) = {"
 D
 W
 r
-P
-P
-P
+v
+v
+v
 c
 w
 W
@@ -201,9 +203,9 @@ W
 (3,1,1) = {"
 C
 A
-e
-P
-P
+l
+v
+v
 P
 e
 A
@@ -214,9 +216,9 @@ A
 q
 d
 d
-p
+b
 u
-p
+b
 p
 d
 d
@@ -226,9 +228,9 @@ d
 H
 K
 R
-P
-P
-P
+v
+v
+v
 P
 P
 R
@@ -238,9 +240,9 @@ R
 Z
 k
 N
-F
-P
-P
+x
+v
+v
 P
 F
 F
@@ -250,9 +252,9 @@ n
 t
 W
 W
-T
-P
-P
+V
+v
+v
 P
 J
 W
@@ -261,12 +263,12 @@ W
 (8,1,1) = {"
 X
 a
-a
-P
-P
+L
+v
+v
 V
+L
 a
 a
 a
-I
 "}

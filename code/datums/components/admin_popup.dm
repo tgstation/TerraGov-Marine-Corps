@@ -16,14 +16,14 @@
 
 	create_notice()
 
-	RegisterSignal(
+	RegisterSignals(
 		ticket,
 		list(
 			COMSIG_ADMIN_HELP_MADE_INACTIVE,
 			COMSIG_ADMIN_HELP_REPLIED,
-			COMSIG_PARENT_QDELETING,
+			COMSIG_QDELETING,
 		),
-		.proc/delete_self,
+		PROC_REF(delete_self),
 	)
 
 /datum/component/admin_popup/Destroy(force, silent)
@@ -36,7 +36,7 @@
 		UnregisterSignal(ticket, list(
 			COMSIG_ADMIN_HELP_MADE_INACTIVE,
 			COMSIG_ADMIN_HELP_REPLIED,
-			COMSIG_PARENT_QDELETING,
+			COMSIG_QDELETING,
 		))
 
 		ticket = null
@@ -101,7 +101,7 @@
 	if(world.time - last_update_time < 2 SECONDS)
 		return
 
-	last_color_index = (last_color_index % colors.len) + 1
+	last_color_index = (last_color_index % length(colors)) + 1
 
 	var/message = "<b style='color: [colors[last_color_index]]; text-align: center; font-size: 32px'>"
 	message += "HEY! An admin is trying to talk to you!<br>Check your chat window, and click their name to respond!"

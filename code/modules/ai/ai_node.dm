@@ -4,7 +4,7 @@
 /obj/effect/ai_node //A effect that has a ai_node datum in it, used by AIs to pathfind over long distances as well as knowing what's happening at it
 	name = "AI Node"
 	icon = 'icons/effects/landmarks_static.dmi'
-	icon_state = "x6" //Pure white 'X' with black borders
+	icon_state = "ai_node" //Pure white 'X' with word "AI" beneath
 	anchored = TRUE //No pulling those nodes yo
 	flags_atom = SHUTTLE_IMMUNE
 	#ifdef TESTING
@@ -25,7 +25,7 @@
 		IDENTIFIER_ZOMBIE = list(NODE_LAST_VISITED = 0),
 		)
 
-/obj/effect/ai_node/Initialize()
+/obj/effect/ai_node/Initialize(mapload)
 	..()
 	GLOB.all_nodes += src
 	unique_id = id_counter++

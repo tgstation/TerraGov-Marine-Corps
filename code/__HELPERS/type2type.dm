@@ -1,3 +1,10 @@
+//Splits the text of a file at seperator and returns them in a list.
+//returns an empty list if the file doesn't exist
+/world/proc/file2list(filename, seperator="\n", trim = TRUE)
+	if (trim)
+		return splittext(trim(file2text(filename)),seperator)
+	return splittext(file2text(filename),seperator)
+
 //Returns an integer given a hex input
 /proc/hex2num(hex)
 	if(!istext(hex))
@@ -56,7 +63,7 @@
 		num -= val * 16 ** power
 		switch(val)
 			if(9, 8, 7, 6, 5, 4, 3, 2, 1, 0)
-				hex += text("[]", val)
+				hex += "[val]"
 			if(10)
 				hex += "A"
 			if(11)
@@ -72,7 +79,7 @@
 			else
 		power--
 	while(length(hex) < placeholder)
-		hex = text("0[]", hex)
+		hex = "0[hex]"
 	return hex
 
 //Turns a direction into text

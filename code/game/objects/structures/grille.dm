@@ -8,12 +8,13 @@
 	anchored = TRUE
 	coverage = 10
 	flags_atom = CONDUCT
+	allow_pass_flags = PASS_AIR|PASS_PROJECTILE|PASS_GRILLE
 	layer = OBJ_LAYER
 	resistance_flags = XENO_DAMAGEABLE
 	soft_armor = list(MELEE = 50, BULLET = 70, LASER = 70, ENERGY = 100, BOMB = 10, BIO = 100, FIRE = 0, ACID = 0)
 	max_integrity = 10
 
-/obj/structure/grille/Initialize()
+/obj/structure/grille/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/egrill)
 
@@ -26,7 +27,7 @@
 	var/width = 3
 	max_integrity = 50
 
-/obj/structure/grille/fence/Initialize()
+/obj/structure/grille/fence/Initialize(mapload)
 	. = ..()
 
 	if(width > 1)
@@ -64,13 +65,6 @@
 	user.visible_message(span_warning("[user] kicks [src]."), \
 						span_warning("You kick [src]."), \
 						"You hear twisting metal.")
-
-/obj/structure/grille/CanAllowThrough(atom/movable/mover, turf/target)
-	. = ..()
-	if(istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSGRILLE))
-		return TRUE
-	else if(istype(mover, /obj/projectile))
-		return prob(90)
 
 /obj/structure/grille/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -137,7 +131,7 @@
 
 /obj/structure/grille/fire_act(exposed_temperature, exposed_volume)
 	if(obj_integrity > integrity_failure && exposed_temperature > T0C + 1500)
-		take_damage(1, BURN, "fire")
+		take_damage(1, BURN, FIRE)
 	return ..()
 
 
@@ -145,9 +139,10 @@
 //MARINE SHIP GRILLE
 
 /obj/structure/grille/smoothing
-	icon_state = "grille0"
-	smoothing_behavior = CARDINAL_SMOOTHING
-	smoothing_groups = SMOOTH_GENERAL_STRUCTURES
+	icon = 'icons/obj/smooth_objects/grille.dmi'
+	icon_state = "grille-0"
+	base_icon_state = "grille"
+	smoothing_flags = SMOOTH_BITMASK
+	smoothing_groups = list(SMOOTH_GROUP_GRILLE)
+	canSmoothWith = list(SMOOTH_GROUP_GRILLE)
 
-/obj/structure/grille/smoothing/update_icon()
-	smooth_self()

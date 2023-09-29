@@ -25,7 +25,7 @@
 	icon_state = "igniter[on]"
 
 
-/obj/machinery/igniter/Initialize()
+/obj/machinery/igniter/Initialize(mapload)
 	. = ..()
 	icon_state = "igniter[on]"
 
@@ -127,13 +127,13 @@
 
 	for(var/obj/machinery/sparker/M in GLOB.machines)
 		if (M.id == src.id)
-			INVOKE_ASYNC(M, /obj/machinery/sparker.proc/ignite)
+			INVOKE_ASYNC(M, TYPE_PROC_REF(/obj/machinery/sparker, ignite))
 
 	for(var/obj/machinery/igniter/M in GLOB.machines)
 		if(M.id == src.id)
 			use_power(active_power_usage)
 			M.on = !( M.on )
-			M.icon_state = text("igniter[]", M.on)
+			M.icon_state = "igniter[M.on]"
 
 	sleep(5 SECONDS)
 

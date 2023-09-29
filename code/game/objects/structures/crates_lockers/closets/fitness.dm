@@ -4,7 +4,7 @@
 	icon_state = "mixed"
 	icon_closed = "mixed"
 
-/obj/structure/closet/athletic_mixed/Initialize()
+/obj/structure/closet/athletic_mixed/Initialize(mapload)
 	. = ..()
 	new /obj/item/clothing/under/shorts/grey(src)
 	new /obj/item/clothing/under/shorts/black(src)
@@ -27,7 +27,7 @@
 	name = "boxing gloves"
 	desc = "It's a storage unit for gloves for use in the boxing ring."
 
-/obj/structure/closet/boxinggloves/Initialize()
+/obj/structure/closet/boxinggloves/Initialize(mapload)
 	. = ..()
 	new /obj/item/clothing/gloves/heldgloves/boxing/blue(src)
 	new /obj/item/clothing/gloves/heldgloves/boxing/green(src)
@@ -39,7 +39,7 @@
 	name = "mask closet"
 	desc = "IT'S A STORAGE UNIT FOR FIGHTER MASKS OLE!"
 
-/obj/structure/closet/masks/Initialize()
+/obj/structure/closet/masks/Initialize(mapload)
 	. = ..()
 	new /obj/item/clothing/mask/luchador(src)
 	new /obj/item/clothing/mask/luchador/rudos(src)
@@ -52,7 +52,7 @@
 	icon_state = "red"
 	icon_closed = "red"
 
-/obj/structure/closet/lasertag/red/Initialize()
+/obj/structure/closet/lasertag/red/Initialize(mapload)
 	. = ..()
 	new /obj/item/clothing/suit/redtag(src)
 	new /obj/item/clothing/suit/redtag(src)
@@ -64,7 +64,7 @@
 	icon_state = "blue"
 	icon_closed = "blue"
 
-/obj/structure/closet/lasertag/blue/Initialize()
+/obj/structure/closet/lasertag/blue/Initialize(mapload)
 	. = ..()
 	new /obj/item/clothing/suit/bluetag(src)
 	new /obj/item/clothing/suit/bluetag(src)
@@ -75,7 +75,7 @@
 	icon_state = "mixed"
 	icon_closed = "mixed"
 
-/obj/structure/closet/basketball/Initialize()
+/obj/structure/closet/basketball/Initialize(mapload)
 	. = ..()
 	new /obj/item/clothing/under/shorts/grey(src)
 	new /obj/item/clothing/under/shorts/black(src)
@@ -89,7 +89,7 @@
 	icon_state = "mixed"
 	icon_closed = "mixed"
 
-/obj/structure/closet/swimsuit/Initialize()
+/obj/structure/closet/swimsuit/Initialize(mapload)
 	. = ..()
 	new /obj/item/clothing/under/swimsuit/red(src)
 	new /obj/item/clothing/under/swimsuit/black(src)

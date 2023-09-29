@@ -58,6 +58,9 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/synthetic_name = "Undefined"
 	var/synthetic_type = "Synthetic"
 
+	//Robot specific preferences
+	var/robot_type = "Basic"
+
 	//Xenomorph specific preferences
 	var/xeno_name = "Undefined"
 
@@ -76,15 +79,15 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	///Your preferred squad, when playing SOM
 	var/preferred_squad_som = "None"
 	var/alternate_option = RETURN_TO_LOBBY
-	var/preferred_slot = SLOT_S_STORE
-	var/preferred_slot_alt = SLOT_BACK
+	///Quick equip slots, up to [MAX_QUICK_EQUIP_SLOTS]. One per quick equip hotkey.
+	var/list/quick_equip = list()
 	var/list/gear
 	var/list/job_preferences = list()
 
 	//Clothing
 	var/underwear = 1
 	var/undershirt = 1
-	var/backpack = 2
+	var/backpack = BACK_SATCHEL
 
 	//Hair style
 	var/h_style = "Bald"
@@ -133,6 +136,16 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	///Whether to mute xeno health alerts from when other xenos are badly hurt.
 	var/mute_xeno_health_alert_messages = TRUE
 
+	///whether the user wants to hear tts
+	var/sound_tts = TTS_SOUND_ENABLED
+	///What tts voice should be used
+	var/tts_voice = "Male 01"
+	///how much to pitch the tts voice up and down
+	var/tts_pitch = 0
+	///Volume to use for tts
+	var/volume_tts = 100
+
+
 	/// Chat on map
 	var/chat_on_map = TRUE
 	var/see_chat_non_mob = FALSE
@@ -155,6 +168,11 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/scaling_method = SCALING_METHOD_NORMAL
 	///If the game is in fullscreen mode
 	var/fullscreen_mode = FALSE
+
+	///Whether or not the MC tab of the Stat Panel refreshes fast. This is expensive so make sure you need it.
+	var/fast_mc_refresh = FALSE
+	///When enabled, will split the 'Admin' panel into several tabs.
+	var/split_admin_tabs = TRUE
 
 	/// New TGUI Preference preview
 	var/map_name = "player_pref_map"

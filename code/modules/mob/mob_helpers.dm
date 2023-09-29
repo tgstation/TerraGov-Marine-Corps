@@ -10,23 +10,11 @@
 		return M.eye_blind
 	return FALSE
 
-/proc/hasorgans(A)
-	return ishuman(A)
-
-/proc/hsl2rgb(h, s, l)
-	return //TODO: Implement
-
-
-
 /mob/proc/can_use_hands()
 	return
 
-
 /mob/proc/get_gender()
 	return gender
-
-
-
 
 /*
 	Miss Chance
@@ -258,7 +246,7 @@ GLOBAL_LIST_INIT(organ_rel_size, list(
 
 /proc/findname(msg)
 	for(var/mob/M in GLOB.mob_list)
-		if (M.real_name == text("[msg]"))
+		if (M.real_name == "[msg]")
 			return TRUE
 	return FALSE
 
@@ -316,7 +304,7 @@ GLOBAL_LIST_INIT(organ_rel_size, list(
 			a_intent = intent_numeric((intent_numeric(a_intent)+3) % 4)
 
 
-	if(hud_used && hud_used.action_intent)
+	if(hud_used?.action_intent)
 		hud_used.action_intent.icon_state = "[a_intent]"
 
 
@@ -471,3 +459,12 @@ GLOBAL_LIST_INIT(organ_rel_size, list(
 	var/obj/item/inactive_item = get_inactive_held_item()
 	if(istype(inactive_item))
 		inactive_item.do_unique_action(src)
+
+///Handles setting or changing a mob's skills
+/mob/proc/set_skills(datum/skills/new_skillset)
+	skills = new_skillset
+	SEND_SIGNAL(src, COMSIG_MOB_SKILLS_CHANGED, skills)
+
+///Returns the slowdown applied to the mob when moving through liquids like water
+/mob/proc/get_liquid_slowdown()
+	return MOB_WATER_SLOWDOWN

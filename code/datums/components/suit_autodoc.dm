@@ -103,12 +103,12 @@
 	toggle_action = new(parent)
 	scan_action = new(parent)
 	configure_action = new(parent)
-	RegisterSignal(parent, COMSIG_PARENT_EXAMINE, .proc/examine)
-	RegisterSignal(parent, list(COMSIG_ITEM_EQUIPPED_NOT_IN_SLOT, COMSIG_ITEM_DROPPED), .proc/dropped)
-	RegisterSignal(parent, COMSIG_ITEM_EQUIPPED_TO_SLOT, .proc/equipped)
-	RegisterSignal(toggle_action, COMSIG_ACTION_TRIGGER, .proc/action_toggle)
-	RegisterSignal(scan_action, COMSIG_ACTION_TRIGGER, .proc/scan_user)
-	RegisterSignal(configure_action, COMSIG_ACTION_TRIGGER, .proc/configure)
+	RegisterSignal(parent, COMSIG_ATOM_EXAMINE, PROC_REF(examine))
+	RegisterSignals(parent, list(COMSIG_ITEM_EQUIPPED_NOT_IN_SLOT, COMSIG_ITEM_DROPPED), PROC_REF(dropped))
+	RegisterSignal(parent, COMSIG_ITEM_EQUIPPED_TO_SLOT, PROC_REF(equipped))
+	RegisterSignal(toggle_action, COMSIG_ACTION_TRIGGER, PROC_REF(action_toggle))
+	RegisterSignal(scan_action, COMSIG_ACTION_TRIGGER, PROC_REF(scan_user))
+	RegisterSignal(configure_action, COMSIG_ACTION_TRIGGER, PROC_REF(configure))
 
 
 /**
@@ -117,25 +117,13 @@
 /datum/component/suit_autodoc/UnregisterFromParent()
 	. = ..()
 	UnregisterSignal(parent, list(
-		COMSIG_PARENT_EXAMINE,
+		COMSIG_ATOM_EXAMINE,
 		COMSIG_ITEM_EQUIPPED_NOT_IN_SLOT,
 		COMSIG_ITEM_DROPPED,
 		COMSIG_ITEM_EQUIPPED_TO_SLOT))
 	QDEL_NULL(toggle_action)
 	QDEL_NULL(scan_action)
 	QDEL_NULL(configure_action)
-
-/**
-	Specifically registers signals with the wearer to ensure we capture damage taken events
-*/
-/datum/component/suit_autodoc/proc/RegisterSignals(mob/user)
-	RegisterSignal(user, COMSIG_HUMAN_DAMAGE_TAKEN, .proc/damage_taken)
-
-/**
-	Removes specific user signals
-*/
-/datum/component/suit_autodoc/proc/UnregisterSignals(mob/user)
-	UnregisterSignal(user, COMSIG_HUMAN_DAMAGE_TAKEN)
 
 /**
 	Hook into the examine of the parent to show additional information about the suit_autodoc
@@ -191,7 +179,7 @@
 		return
 	enabled = FALSE
 	toggle_action.set_toggle(FALSE)
-	UnregisterSignals(wearer)
+	UnregisterSignal(wearer, COMSIG_HUMAN_DAMAGE_TAKEN)
 	STOP_PROCESSING(SSobj, src)
 	if(!silent)
 		wearer.balloon_alert(wearer, "The automedical suite deactivates")
@@ -207,7 +195,7 @@
 		return
 	enabled = TRUE
 	toggle_action.set_toggle(TRUE)
-	RegisterSignals(wearer)
+	RegisterSignal(wearer, COMSIG_HUMAN_DAMAGE_TAKEN, PROC_REF(damage_taken))
 	START_PROCESSING(SSobj, src)
 	if(!silent)
 		wearer.balloon_alert(wearer, "The automedical suite activates")
@@ -252,7 +240,7 @@
 	if(LAZYLEN(drugs))
 		. = "[message_prefix] administered. [span_bold("Dosage:[drugs]")]<br/>"
 		TIMER_COOLDOWN_START(src, cooldown_type, chem_cooldown)
-		addtimer(CALLBACK(src, .proc/nextuse_ready, treatment_message), chem_cooldown)
+		addtimer(CALLBACK(src, PROC_REF(nextuse_ready), treatment_message), chem_cooldown)
 
 /**
 	Trys to inject each chmical into the user.
@@ -337,14 +325,14 @@
 */
 /datum/component/suit_autodoc/proc/scan_user(datum/source)
 	SIGNAL_HANDLER
-	INVOKE_ASYNC(analyzer, /obj/item.proc/attack, wearer, wearer, TRUE)
+	INVOKE_ASYNC(analyzer, TYPE_PROC_REF(/obj/item, attack), wearer, wearer, TRUE)
 
 /**
 	Proc to show the suit configuration page
 */
 /datum/component/suit_autodoc/proc/configure(datum/source)
 	SIGNAL_HANDLER
-	INVOKE_ASYNC(src, .proc/interact, wearer)
+	INVOKE_ASYNC(src, PROC_REF(interact), wearer)
 
 /**
 	Shows the suit configuration
@@ -417,9 +405,6 @@
 	interact(wearer)
 
 //// Action buttons
-/datum/action/suit_autodoc
-	action_icon = 'icons/mob/screen_alert.dmi'
-
 /datum/action/suit_autodoc/can_use_action()
 	if(QDELETED(owner) || owner.incapacitated() || owner.lying_angle)
 		return FALSE

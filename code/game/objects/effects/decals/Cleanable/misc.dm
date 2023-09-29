@@ -21,7 +21,7 @@
 	qdel(src)
 	return TRUE
 
-/obj/effect/decal/cleanable/greenglow/Initialize()
+/obj/effect/decal/cleanable/greenglow/Initialize(mapload)
 	. = ..()
 	QDEL_IN(src, 2 MINUTES)
 
@@ -35,6 +35,23 @@
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "dirt"
 	mouse_opacity = 0
+
+/obj/effect/decal/cleanable/glass
+	name = "broken glass"
+	desc = "This looks hazardous to anyone not wearing shoes."
+	gender = PLURAL
+	density = FALSE
+	anchored = TRUE
+	layer = TURF_LAYER
+	icon = 'icons/obj/items/shards.dmi'
+	icon_state = "tiny"
+	mouse_opacity = 0
+
+/obj/effect/decal/cleanable/glass/plasma
+	icon_state = "plasmatiny"
+
+/obj/effect/decal/cleanable/glass/plastic
+	icon_state = "plasticshards"
 
 /obj/effect/decal/cleanable/flour
 	name = "flour"

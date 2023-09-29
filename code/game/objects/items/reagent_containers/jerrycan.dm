@@ -9,10 +9,6 @@
 	///how much fuel we use up per spill
 	var/fuel_usage = 10
 
-/obj/item/reagent_containers/jerrycan/afterattack(atom/A, mob/user)
-	if(!(get_dist(user,A) <= 1))
-		return
-
 /obj/item/reagent_containers/jerrycan/attack_turf(turf/A, mob/user)
 	. = ..()
 	if(A.density)

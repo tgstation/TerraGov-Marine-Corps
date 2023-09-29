@@ -52,13 +52,13 @@
 	name = "Psychic Shield"
 	ability_name = "psychic shield"
 	action_icon_state = "psy_shield"
-	mechanics_text = "Channel a psychic shield at your current location that can reflect most projectiles. Activate again while the shield is active to detonate the shield forcibly, producing knockback. Must remain static to use."
+	desc = "Channel a psychic shield at your current location that can reflect most projectiles. Activate again while the shield is active to detonate the shield forcibly, producing knockback. Must remain static to use."
 	cooldown_timer = 10 SECONDS
 	plasma_cost = 200
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PSYCHIC_SHIELD,
+		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_TRIGGER_PSYCHIC_SHIELD,
 	)
-	keybind_flags = XACT_KEYBIND_USE_ABILITY
 	use_state_flags = XACT_USE_BUSY
 	///The actual shield object created by this ability
 	var/obj/effect/xeno/shield/active_shield
@@ -72,6 +72,12 @@
 /datum/action/xeno_action/activable/psychic_shield/on_cooldown_finish()
 	owner.balloon_alert(owner, "Shield ready")
 	return ..()
+
+//Overrides parent.
+/datum/action/xeno_action/activable/psychic_shield/alternate_action_activate()
+	if(can_use_ability(null, FALSE, XACT_IGNORE_SELECTED_ABILITY))
+		INVOKE_ASYNC(src, PROC_REF(use_ability))
+
 
 /datum/action/xeno_action/activable/psychic_shield/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/xeno_owner = owner
@@ -100,13 +106,14 @@
 	playsound(owner,'sound/effects/magic.ogg', 75, 1)
 
 	action_icon_state = "psy_shield_reflect"
+	update_button_icon()
 	xeno_owner.update_glow(3, 3, "#5999b3")
 
 	GLOB.round_statistics.psy_shields++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "psy_shields")
 
 	active_shield = new(target_turf, owner)
-	if(!do_after(owner, 6 SECONDS, TRUE, owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, .proc/can_use_action, FALSE, XACT_USE_BUSY)))
+	if(!do_after(owner, 6 SECONDS, TRUE, owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(can_use_action), FALSE, XACT_USE_BUSY)))
 		cancel_shield()
 		return
 	cancel_shield()
@@ -116,6 +123,7 @@
 	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	action_icon_state = "psy_shield"
 	xeno_owner.update_glow()
+	update_button_icon()
 	add_cooldown()
 	if(active_shield)
 		active_shield.release_projectiles()
@@ -146,16 +154,16 @@
 			upper_right = locate(owner.x + 2, owner.y + 1, owner.z)
 
 	for(var/turf/affected_tile AS in block(lower_left, upper_right)) //everything in the 2x3 block is found.
-		affected_tile.Shake(4, 4, 2 SECONDS)
+		affected_tile.Shake(duration = 0.5 SECONDS)
 		for(var/atom/movable/affected in affected_tile)
 			if(!ishuman(affected) && !istype(affected, /obj/item) && !isdroid(affected))
-				affected.Shake(4, 4, 20)
+				affected.Shake(duration = 0.5 SECONDS)
 				continue
 			if(ishuman(affected))
 				var/mob/living/carbon/human/H = affected
 				if(H.stat == DEAD)
 					continue
-				H.apply_effects(0.5, 0.5)
+				H.apply_effects(1 SECONDS, 1 SECONDS)
 				shake_camera(H, 2, 1)
 			var/throwlocation = affected.loc
 			for(var/x in 1 to 6)
@@ -163,7 +171,7 @@
 			affected.throw_at(throwlocation, 4, 1, owner, TRUE)
 
 	playsound(owner,'sound/effects/bamf.ogg', 75, TRUE)
-	playsound(owner, "alien_roar", 50)
+	playsound(owner, 'sound/voice/alien_roar_warlock.ogg', 25)
 
 	GLOB.round_statistics.psy_shield_blasts++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "psy_shield_blasts")
@@ -180,8 +188,10 @@
 	///All the projectiles currently frozen by this obj
 	var/list/frozen_projectiles = list()
 
-/obj/effect/xeno/shield/Initialize(loc, creator)
+/obj/effect/xeno/shield/Initialize(mapload, creator)
 	. = ..()
+	if(!creator)
+		return INITIALIZE_HINT_QDEL
 	owner = creator
 	dir = owner.dir
 	max_integrity = owner.xeno_caste.shield_strength
@@ -205,13 +215,14 @@
 	proj.iff_signal = null
 	frozen_projectiles += proj
 	take_damage(proj.damage, proj.ammo.damage_type, proj.ammo.armor_type, 0, turn(proj.dir, 180), proj.ammo.penetration)
+	alpha = obj_integrity * 255 / max_integrity
 	if(obj_integrity <= 0)
 		release_projectiles()
-		owner.apply_effects(weaken = 0.5)
+		owner.apply_effect(1 SECONDS, WEAKEN)
 
 /obj/effect/xeno/shield/obj_destruction()
 	release_projectiles()
-	owner.apply_effects(weaken = 0.5)
+	owner.apply_effect(1 SECONDS, WEAKEN)
 	return ..()
 
 ///Unfeezes the projectiles on their original path
@@ -219,6 +230,7 @@
 	for(var/obj/projectile/proj AS in frozen_projectiles)
 		proj.flags_projectile_behavior &= ~PROJECTILE_FROZEN
 		proj.resume_move()
+	record_projectiles_frozen(owner, LAZYLEN(frozen_projectiles))
 
 ///Reflects projectiles based on their relative incoming angle
 /obj/effect/xeno/shield/proc/reflect_projectiles()
@@ -234,6 +246,14 @@
 			new_angle -= 360
 		proj.firer = src
 		proj.fire_at(shooter = src, source = src, angle = new_angle, recursivity = TRUE)
+
+		//Record those sick rocket shots
+		//Is not part of record_projectiles_frozen() because it is probably bad to be running that for every bullet!
+		if(istype(proj.ammo, /datum/ammo/rocket) && owner.client)
+			var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[owner.ckey]
+			personal_statistics.rockets_reflected++
+
+	record_projectiles_frozen(owner, LAZYLEN(frozen_projectiles), TRUE)
 	frozen_projectiles.Cut()
 
 
@@ -243,7 +263,7 @@
 /datum/action/xeno_action/activable/psy_crush
 	name = "Psychic Crush"
 	action_icon_state = "psy_crush"
-	mechanics_text = "Channel an expanding AOE crush effect, activating it again pre-maturely crushes enemies over an area. The longer it is channeled, the larger area it will affect, but will consume more plasma."
+	desc = "Channel an expanding AOE crush effect, activating it again pre-maturely crushes enemies over an area. The longer it is channeled, the larger area it will affect, but will consume more plasma."
 	ability_name = "psychic crush"
 	plasma_cost = 40
 	cooldown_timer = 12 SECONDS
@@ -286,7 +306,7 @@
 		return fail_activate()
 
 	ADD_TRAIT(xeno_owner, TRAIT_IMMOBILE, PSYCHIC_CRUSH_ABILITY_TRAIT)
-	if(!do_after(owner, 0.8 SECONDS, TRUE, owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, .proc/can_use_action, FALSE, XACT_USE_BUSY)))
+	if(!do_after(owner, 0.8 SECONDS, TRUE, owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(can_use_action), FALSE, XACT_USE_BUSY)))
 		REMOVE_TRAIT(xeno_owner, TRAIT_IMMOBILE, PSYCHIC_CRUSH_ABILITY_TRAIT)
 		return fail_activate()
 
@@ -308,7 +328,8 @@
 	orb = new /obj/effect/xeno/crush_orb(target_turf)
 
 	action_icon_state = "psy_crush_activate"
-	RegisterSignal(owner, list(SIGNAL_ADDTRAIT(TRAIT_FLOORED), SIGNAL_ADDTRAIT(TRAIT_INCAPACITATED)), .proc/stop_crush)
+	update_button_icon()
+	RegisterSignals(owner, list(SIGNAL_ADDTRAIT(TRAIT_FLOORED), SIGNAL_ADDTRAIT(TRAIT_INCAPACITATED)), PROC_REF(stop_crush))
 	do_channel(target_turf)
 
 ///Checks if the owner is close enough/can see the target
@@ -341,14 +362,14 @@
 		for(var/turf/turf_to_check AS in turfs_to_check)
 			if((turf_to_check in target_turfs) || (turf_to_check in turfs_to_add))
 				continue
-			if(LinkBlocked(current_turf, turf_to_check, projectile = TRUE))
+			if(LinkBlocked(current_turf, turf_to_check, air_pass = TRUE))
 				continue
 			turfs_to_add += turf_to_check
 			effect_list += new /obj/effect/xeno/crush_warning(turf_to_check)
 	target_turfs += turfs_to_add
 	current_iterations ++
 	if(can_use_action(xeno_owner, XACT_IGNORE_COOLDOWN))
-		channel_loop_timer = addtimer(CALLBACK(src, .proc/do_channel, target), 0.6 SECONDS, TIMER_STOPPABLE)
+		channel_loop_timer = addtimer(CALLBACK(src, PROC_REF(do_channel), target), 0.6 SECONDS, TIMER_STOPPABLE)
 		return
 
 	stop_crush()
@@ -370,7 +391,7 @@
 	apply_filters(target_turfs)
 	orb.icon_state = "crush_hard" //used as a check in stop_crush
 	flick("crush_hard", orb)
-	addtimer(CALLBACK(src, .proc/remove_all_filters), 1 SECONDS, TIMER_STOPPABLE)
+	addtimer(CALLBACK(src, PROC_REF(remove_all_filters)), 1 SECONDS, TIMER_STOPPABLE)
 
 	for(var/turf/effected_turf AS in target_turfs)
 		for(var/victim in effected_turf)
@@ -378,14 +399,13 @@
 				var/mob/living/carbon/carbon_victim = victim
 				if(isxeno(carbon_victim) || carbon_victim.stat == DEAD)
 					continue
-				var/block = carbon_victim.get_soft_armor(BOMB)
-				carbon_victim.apply_damage(xeno_owner.xeno_caste.crush_strength, BRUTE, blocked = block)
-				carbon_victim.apply_damage(xeno_owner.xeno_caste.crush_strength * 1.5, STAMINA, blocked = block)
-				carbon_victim.adjust_stagger(5)
+				carbon_victim.apply_damage(xeno_owner.xeno_caste.crush_strength, BRUTE, blocked = BOMB)
+				carbon_victim.apply_damage(xeno_owner.xeno_caste.crush_strength * 1.5, STAMINA, blocked = BOMB)
+				carbon_victim.adjust_stagger(5 SECONDS)
 				carbon_victim.add_slowdown(6)
 			else if(ismecha(victim))
 				var/obj/vehicle/sealed/mecha/mecha_victim = victim
-				mecha_victim.take_damage(xeno_owner.xeno_caste.crush_strength * 5, BOMB)
+				mecha_victim.take_damage(xeno_owner.xeno_caste.crush_strength * 5, BRUTE, BOMB)
 	stop_crush()
 
 /// stops channeling and unregisters all listeners, resetting the ability
@@ -408,6 +428,7 @@
 	action_icon_state = "psy_crush"
 	xeno_owner.update_glow()
 	add_cooldown()
+	update_button_icon()
 	QDEL_NULL(particle_holder)
 	UnregisterSignal(owner, list(SIGNAL_ADDTRAIT(TRAIT_FLOORED), SIGNAL_ADDTRAIT(TRAIT_INCAPACITATED)))
 
@@ -447,7 +468,7 @@
 	///The particle type this ability uses
 	var/channel_particle = /particles/crush_warning
 
-/obj/effect/xeno/crush_warning/Initialize()
+/obj/effect/xeno/crush_warning/Initialize(mapload)
 	. = ..()
 	particle_holder = new(src, channel_particle)
 	particle_holder.pixel_y = 0
@@ -461,7 +482,7 @@
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	pixel_x = -16
 
-/obj/effect/xeno/crush_orb/Initialize()
+/obj/effect/xeno/crush_orb/Initialize(mapload)
 	. = ..()
 	flick("orb_charge", src)
 
@@ -471,7 +492,7 @@
 /datum/action/xeno_action/activable/psy_blast
 	name = "Psychic Blast"
 	action_icon_state = "psy_blast"
-	mechanics_text = "Launch a blast of psychic energy that deals light damage and knocks back enemies in its AOE. Must remain stationary for a few seconds to use."
+	desc = "Launch a blast of psychic energy that deals light damage and knocks back enemies in its AOE. Must remain stationary for a few seconds to use."
 	ability_name = "psychic blast"
 	cooldown_timer = 6 SECONDS
 	plasma_cost = 230
@@ -522,19 +543,16 @@
 
 /datum/action/xeno_action/activable/psy_blast/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/xeno_owner = owner
-	var/turf/target = get_turf(A)
-
-	if(!istype(target))
-		return
+	var/turf/target_turf = get_turf(A)
 
 	owner.balloon_alert(owner, "We channel our psychic power")
 
-	generate_particles(target, 7)
+	generate_particles(A, 7)
 	ADD_TRAIT(xeno_owner, TRAIT_IMMOBILE, PSYCHIC_BLAST_ABILITY_TRAIT)
 	var/datum/ammo/energy/xeno/ammo_type = xeno_owner.ammo
 	xeno_owner.update_glow(3, 3, ammo_type.glow_color)
 
-	if(!do_after(xeno_owner, 1 SECONDS, FALSE, target, BUSY_ICON_DANGER) || !can_use_ability(target, FALSE))
+	if(!do_after(xeno_owner, 1 SECONDS, FALSE, target_turf, BUSY_ICON_DANGER) || !can_use_ability(A, FALSE))
 		owner.balloon_alert(owner, "Our focus is disrupted")
 		end_channel()
 		REMOVE_TRAIT(xeno_owner, TRAIT_IMMOBILE, PSYCHIC_BLAST_ABILITY_TRAIT)
@@ -545,7 +563,7 @@
 	var/obj/projectile/hitscan/projectile = new /obj/projectile/hitscan(xeno_owner.loc)
 	projectile.effect_icon = initial(ammo_type.hitscan_effect_icon)
 	projectile.generate_bullet(ammo_type)
-	projectile.fire_at(target, xeno_owner, null, projectile.ammo.max_range, projectile.ammo.shell_speed)
+	projectile.fire_at(A, xeno_owner, null, projectile.ammo.max_range, projectile.ammo.shell_speed)
 	playsound(xeno_owner, 'sound/weapons/guns/fire/volkite_4.ogg', 40)
 
 	if(istype(xeno_owner.ammo, /datum/ammo/energy/xeno/psy_blast))
@@ -556,8 +574,9 @@
 		SSblackbox.record_feedback("tally", "round_statistics", 1, "psy_lances")
 
 	add_cooldown()
+	update_button_icon()
 	REMOVE_TRAIT(xeno_owner, TRAIT_IMMOBILE, PSYCHIC_BLAST_ABILITY_TRAIT)
-	addtimer(CALLBACK(src, .proc/end_channel), 5)
+	addtimer(CALLBACK(src, PROC_REF(end_channel)), 5)
 
 /datum/action/xeno_action/activable/psy_blast/update_button_icon()
 	var/mob/living/carbon/xenomorph/xeno_owner = owner
@@ -567,7 +586,7 @@
 
 //Generates particles and directs them towards target
 /datum/action/xeno_action/activable/psy_blast/proc/generate_particles(atom/target, velocity)
-	var/angle = Get_Angle(get_turf(owner), target) //pixel offsets effect angles
+	var/angle = Get_Angle(get_turf(owner), get_turf(target)) //pixel offsets effect angles
 	var/x_component = sin(angle) * velocity
 	var/y_component = cos(angle) * velocity
 

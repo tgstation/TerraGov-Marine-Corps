@@ -28,10 +28,10 @@
 	var/resource_drain_amount = 10
 	///Actions that the component provides
 	var/list/datum/action/component_actions = list(
-		/datum/action/chem_booster/configure = .proc/configure,
-		/datum/action/chem_booster/connect_weapon = .proc/connect_weapon,
-		/datum/action/chem_booster/power = .proc/on_off,
-		/datum/action/suit_autodoc/scan = .proc/scan_user
+		/datum/action/chem_booster/configure = PROC_REF(configure),
+		/datum/action/chem_booster/connect_weapon = PROC_REF(connect_weapon),
+		/datum/action/chem_booster/power = PROC_REF(on_off),
+		/datum/action/suit_autodoc/scan = PROC_REF(scan_user)
 	)
 	///Instant analyzer for the chemsuit
 	var/obj/item/healthanalyzer/integrated/analyzer
@@ -111,14 +111,14 @@
 
 /datum/component/chem_booster/RegisterWithParent()
 	. = ..()
-	RegisterSignal(parent, COMSIG_PARENT_EXAMINE, .proc/examine)
-	RegisterSignal(parent, list(COMSIG_ITEM_EQUIPPED_NOT_IN_SLOT, COMSIG_ITEM_DROPPED), .proc/dropped)
-	RegisterSignal(parent, COMSIG_ITEM_EQUIPPED_TO_SLOT, .proc/equipped)
+	RegisterSignal(parent, COMSIG_ATOM_EXAMINE, PROC_REF(examine))
+	RegisterSignals(parent, list(COMSIG_ITEM_EQUIPPED_NOT_IN_SLOT, COMSIG_ITEM_DROPPED), PROC_REF(dropped))
+	RegisterSignal(parent, COMSIG_ITEM_EQUIPPED_TO_SLOT, PROC_REF(equipped))
 
 /datum/component/chem_booster/UnregisterFromParent()
 	. = ..()
 	UnregisterSignal(parent, list(
-		COMSIG_PARENT_EXAMINE,
+		COMSIG_ATOM_EXAMINE,
 		COMSIG_ITEM_EQUIPPED_NOT_IN_SLOT,
 		COMSIG_ITEM_DROPPED,
 		COMSIG_ITEM_EQUIPPED_TO_SLOT))
@@ -183,10 +183,13 @@
 	if(resource_storage_current < resource_drain_amount)
 		to_chat(wearer, span_warning("Insufficient green blood to maintain operation."))
 		on_off()
+		var/datum/action/chem_booster/power/power_action = wearer.actions_by_path[/datum/action/chem_booster/power]
+		power_action.update_onoff_icon()
+		return
 	update_resource(-resource_drain_amount)
 
 	wearer.adjustToxLoss(-tox_heal*boost_amount)
-	wearer.heal_limb_damage(6*boost_amount*brute_heal_amp, 6*boost_amount*burn_heal_amp)
+	wearer.heal_overall_damage(6*boost_amount*brute_heal_amp, 6*boost_amount*burn_heal_amp)
 	vali_necro_timer = world.time - processing_start
 	if(vali_necro_timer > 20 SECONDS)
 		return
@@ -203,7 +206,7 @@
  */
 /datum/component/chem_booster/proc/configure(datum/source)
 	SIGNAL_HANDLER
-	INVOKE_ASYNC(src, .proc/show_radial)
+	INVOKE_ASYNC(src, PROC_REF(show_radial))
 
 ///Shows the radial menu with suit options. It is separate from configure() due to linters
 /datum/component/chem_booster/proc/show_radial()
@@ -243,6 +246,9 @@
 		if(resource_storage_current < resource_drain_amount)
 			wearer.balloon_alert(wearer, "Insufficient green blood to begin operation")
 			return
+		if(wearer.stat)
+			wearer.balloon_alert(wearer, "Not conscious")
+			return
 	boost_on = !boost_on
 	SEND_SIGNAL(src, COMSIG_CHEMSYSTEM_TOGGLED, boost_on)
 	if(!boost_on)
@@ -251,15 +257,14 @@
 		vali_necro_timer = world.time - processing_start
 		var/necrotized_counter = FLOOR(min(vali_necro_timer, 20 SECONDS)/200 + (vali_necro_timer-20 SECONDS)/100, 1)
 		if(necrotized_counter >= 1)
-			for(var/X in shuffle(wearer.limbs))
-				var/datum/limb/L = X
-				if(L.germ_level > 700)
+			for(var/datum/limb/limb_to_ruin AS in shuffle(wearer.limbs))
+				if(limb_to_ruin.limb_status & LIMB_NECROTIZED)
 					continue
-				L.germ_level += max(INFECTION_LEVEL_THREE + 50 - L.germ_level, 200)
-				necrotized_counter -= 1
+				limb_to_ruin.add_limb_flags(LIMB_NECROTIZED)
+				necrotized_counter--
 				if(necrotized_counter < 1)
 					break
-		UnregisterSignal(wearer, COMSIG_MOB_DEATH, .proc/on_off)
+		UnregisterSignal(wearer, COMSIG_MOB_DEATH, PROC_REF(on_off))
 		wearer.balloon_alert(wearer, "Halting green blood injection")
 		COOLDOWN_START(src, chemboost_activation_cooldown, 10 SECONDS)
 		setup_bonus_effects()
@@ -267,7 +272,7 @@
 
 	processing_start = world.time
 	START_PROCESSING(SSobj, src)
-	RegisterSignal(wearer, COMSIG_MOB_DEATH, .proc/on_off)
+	RegisterSignal(wearer, COMSIG_MOB_DEATH, PROC_REF(on_off))
 	playsound(get_turf(wearer), 'sound/effects/bubbles.ogg', 30, 1)
 	to_chat(wearer, span_notice("Commensing green blood injection.<b>[(automatic_meds_use && meds_beaker.reagents.total_volume) ? " Adding additional reagents." : ""]</b>"))
 	if(automatic_meds_use)
@@ -310,11 +315,11 @@
 ///Used to scan the person
 /datum/component/chem_booster/proc/scan_user(datum/source)
 	SIGNAL_HANDLER
-	INVOKE_ASYNC(analyzer, /obj/item/healthanalyzer/.proc/attack, wearer, wearer, TRUE)
+	INVOKE_ASYNC(analyzer, TYPE_PROC_REF(/obj/item/healthanalyzer, attack), wearer, wearer, TRUE)
 
 /datum/component/chem_booster/proc/vali_connect(datum/source)
 	SIGNAL_HANDLER
-	INVOKE_ASYNC(src, .proc/connect_weapon, wearer)
+	INVOKE_ASYNC(src, PROC_REF(connect_weapon), wearer)
 
 ///Links the held item, if compatible, to the chem booster and registers attacking with it
 /datum/component/chem_booster/proc/connect_weapon()
@@ -330,7 +335,7 @@
 		wearer.balloon_alert(wearer, "You need to be holding a harvester")
 		return
 
-	if(!CHECK_BITFIELD(held_item.flags_item, DRAINS_XENO))
+	if(!held_item.GetComponent(/datum/component/harvester))
 		wearer.balloon_alert(wearer, "You need to be holding a harvester")
 		return
 
@@ -360,8 +365,8 @@
 
 	connected_weapon = weapon_to_connect
 	ENABLE_BITFIELD(connected_weapon.flags_item, NODROP)
-	RegisterSignal(connected_weapon, COMSIG_ITEM_ATTACK, .proc/drain_resource)
-	RegisterSignal(connected_weapon, list(COMSIG_ITEM_EQUIPPED_NOT_IN_SLOT, COMSIG_ITEM_DROPPED), .proc/vali_connect)
+	RegisterSignal(connected_weapon, COMSIG_ITEM_ATTACK, PROC_REF(drain_resource))
+	RegisterSignals(connected_weapon, list(COMSIG_ITEM_EQUIPPED_NOT_IN_SLOT, COMSIG_ITEM_DROPPED), PROC_REF(vali_connect))
 	return TRUE
 
 ///Handles resource collection and is ativated when attacking with a weapon.
@@ -373,7 +378,7 @@
 		return
 	if(resource_storage_current >= resource_storage_max)
 		return
-	update_resource(20)
+	update_resource(round(20*connected_weapon.attack_speed/11))
 
 ///Adds or removes resource from the suit. Signal gets sent at every 25% of stored resource
 /datum/component/chem_booster/proc/update_resource(amount)
@@ -419,8 +424,8 @@
 		return
 
 	var/obj/item/held_item = wearer.get_held_item()
-	if((!istype(held_item, /obj/item/reagent_containers) && !meds_beaker.reagents.total_volume) || istype(held_item, /obj/item/reagent_containers/pill))
-		wearer.balloon_alert(wearer, "You must be holding a glass reagent container")
+	if((!istype(held_item, /obj/item/reagent_containers) && !meds_beaker.reagents.total_volume))
+		wearer.balloon_alert(wearer, "You must be holding a suitable reagent container")
 		return
 
 	if(!istype(held_item, /obj/item/reagent_containers) && meds_beaker.reagents.total_volume)
@@ -437,7 +442,7 @@
 		wearer.balloon_alert(wearer, "Both the held reagent container and the system's reagent storage are empty")
 		return
 
-	if(!held_beaker.reagents.total_volume && meds_beaker.reagents.total_volume)
+	if(!held_beaker.reagents.total_volume && meds_beaker.reagents.total_volume) //Pills should never be empty so we don't worry about loading into them
 		var/pick = tgui_input_list(wearer, "Unload internal reagent storage into held container:", "Vali system", list("Yes", "No"))
 		if(pick == "Yes")
 			if(!do_after(wearer, 0.5 SECONDS, TRUE, held_item, BUSY_ICON_FRIENDLY, null, PROGRESS_BRASS, ignore_turf_checks = TRUE))
@@ -456,6 +461,8 @@
 	var/trans = held_beaker.reagents.trans_to(meds_beaker, held_beaker.amount_per_transfer_from_this)
 	wearer.balloon_alert(wearer, "Loaded [trans] units")
 	to_chat(wearer, get_meds_beaker_contents())
+	if(istype(held_beaker, /obj/item/reagent_containers/pill))
+		qdel(held_beaker)
 
 ///Shows the loaded reagents to the person examining the parent/wearer
 /datum/component/chem_booster/proc/get_meds_beaker_contents()
@@ -492,6 +499,10 @@
 	if(!.)
 		return
 
+	update_onoff_icon()
+
+///Update icon based on the suit
+/datum/action/chem_booster/power/proc/update_onoff_icon()
 	var/datum/component/chem_booster/target_component = target
 	if(target_component.boost_on)
 		action_icon_state = "cboost_on"

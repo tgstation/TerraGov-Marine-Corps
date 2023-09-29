@@ -33,7 +33,7 @@
 		qdel(src)
 		return
 	var/list/L = point_grid[1]
-	if(nx > point_grid.len || ny > L.len)
+	if(nx > length(point_grid) || ny > length(L))
 		qdel(src)
 		return
 	x = nx
@@ -79,7 +79,7 @@
 	var/list/possible_points = list()
 	var/list/used_points = list()
 	grid.Cut()
-	while(SLS.len)
+	while(length(SLS))
 		var/datum/space_level/D = pick_n_take(SLS)
 		D.xi = P.x
 		D.yi = P.y
@@ -103,7 +103,7 @@
 
 	for(var/I in cached_z_list)
 		var/datum/space_level/D = I
-		if(!D.neigbours.len)
+		if(!length(D.neigbours))
 			continue
 		var/zlevelnumber = D.z_value
 		for(var/side in 1 to 4)

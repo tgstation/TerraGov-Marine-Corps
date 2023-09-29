@@ -2,7 +2,7 @@
 /obj/effect/landmark/start/job
 	var/job
 
-/obj/effect/landmark/start/job/Initialize()
+/obj/effect/landmark/start/job/Initialize(mapload)
 	. = ..()
 	GLOB.spawns_by_job[job] += list(loc)
 
@@ -86,63 +86,15 @@
 	icon_state = "AI"
 	job = /datum/job/terragov/silicon/ai
 
-/obj/effect/landmark/start/job/captain/rebel
-	job = /datum/job/terragov/command/captain/rebel
-
-/obj/effect/landmark/start/job/fieldcommander/rebel
-	job = /datum/job/terragov/command/fieldcommander/rebel
-
-/obj/effect/landmark/start/job/staffofficer/rebel
-	job = /datum/job/terragov/command/staffofficer/rebel
-
-/obj/effect/landmark/start/job/pilotofficer/rebel
-	job = /datum/job/terragov/command/pilot/rebel
-
-/obj/effect/landmark/start/job/chiefshipengineer/rebel
-	job = /datum/job/terragov/engineering/chief/rebel
-
-/obj/effect/landmark/start/job/requisitionsofficer/rebel
-	job = /datum/job/terragov/requisitions/officer/rebel
-
-/obj/effect/landmark/start/job/shiptech/rebel
-	job = /datum/job/terragov/engineering/tech/rebel
-
-/obj/effect/landmark/start/job/cmo/rebel
-	job = /datum/job/terragov/medical/professor/rebel
-
-/obj/effect/landmark/start/job/medicalofficer/rebel
-	job = /datum/job/terragov/medical/medicalofficer/rebel
-
-/obj/effect/landmark/start/job/researcher/rebel
-	job = /datum/job/terragov/medical/researcher/rebel
-
-/obj/effect/landmark/start/job/synthetic/rebel
-	job = /datum/job/terragov/silicon/synthetic/rebel
-
-/obj/effect/landmark/start/job/squadmarine/rebel
-	job = /datum/job/terragov/squad/standard/rebel
-
-/obj/effect/landmark/start/job/squadengineer/rebel
-	job = /datum/job/terragov/squad/engineer/rebel
-
-/obj/effect/landmark/start/job/squadcorpsman/rebel
-	job = /datum/job/terragov/squad/corpsman/rebel
-
-/obj/effect/landmark/start/job/squadsmartgunner/rebel
-	job = /datum/job/terragov/squad/smartgunner/rebel
-
-/obj/effect/landmark/start/job/squadleader/rebel
-	job = /datum/job/terragov/squad/leader/rebel
-
-/obj/effect/landmark/start/job/ai/rebel
-	job = /datum/job/terragov/silicon/ai/rebel
-
 /obj/effect/landmark/start/job/survivor
 	icon_state = "Shaft Miner"
 	job = /datum/job/survivor/rambo
 
 /obj/effect/landmark/start/job/fallen
-	job = /datum/job/fallen
+	job = /datum/job/fallen/marine
+
+/obj/effect/landmark/start/job/fallen/xenomorph
+	job = /datum/job/fallen/xenomorph
 
 /obj/effect/landmark/start/job/xenomorph
 	icon_state = "xeno_spawn"
@@ -168,3 +120,11 @@
 /obj/effect/landmark/start/job/som/squadleader
 	icon_state = "SL"
 	job = /datum/job/som/squad/leader
+
+/obj/effect/landmark/start/job/som/fieldcommander
+	icon_state = "SL" //placeholder
+	job = /datum/job/som/command/fieldcommander
+
+/obj/effect/landmark/start/job/som/general
+	icon_state = "SL" //placeholder
+	job = /datum/job/som/command/general

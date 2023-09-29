@@ -35,20 +35,7 @@
 	return TRUE
 
 /mob/living/proc/can_xeno_slash(mob/living/carbon/xenomorph/X)
-	if(CHECK_BITFIELD(X.xeno_caste.caste_flags, CASTE_IS_INTELLIGENT)) // intelligent ignore restrictions
-		return TRUE
-	else if(isnestedhost(src))
-		for(var/obj/item/alien_embryo/embryo in src)
-			if(!embryo.issamexenohive(X))
-				continue
-			to_chat(X, span_warning("We should not harm this host! It has a sister inside."))
-			return FALSE
 	return TRUE
-
-/mob/living/carbon/human/can_xeno_slash(mob/living/carbon/xenomorph/X)
-	. = ..()
-	if(!.)
-		return FALSE
 
 /mob/living/proc/get_xeno_slash_zone(mob/living/carbon/xenomorph/X, set_location = FALSE, random_location = FALSE, no_head = FALSE)
 	return
@@ -80,9 +67,9 @@
 	var/armor_block = 0
 
 	var/list/damage_mod = list()
-	var/armor_pen = 0
+	var/list/armor_mod = list()
 
-	var/signal_return = SEND_SIGNAL(X, COMSIG_XENOMORPH_ATTACK_LIVING, src, damage, damage_mod, armor_pen)
+	var/signal_return = SEND_SIGNAL(X, COMSIG_XENOMORPH_ATTACK_LIVING, src, damage, damage_mod, armor_mod)
 
 	// if we don't get any non-stacking bonuses dont apply dam_bonus
 	if(!(signal_return & COMSIG_XENOMORPH_BONUS_APPLIED))
@@ -93,6 +80,10 @@
 
 	for(var/i in damage_mod)
 		damage += i
+
+	var/armor_pen
+	for(var/i in armor_mod)
+		armor_pen += i
 
 	if(!(signal_return & COMPONENT_BYPASS_SHIELDS))
 		damage = check_shields(COMBAT_MELEE_ATTACK, damage, "melee")
@@ -126,6 +117,8 @@
 		log_combat(X, src, log, addition = "while they were infected")
 	else //Normal xenomorph friendship with benefits
 		log_combat(X, src, log)
+
+	record_melee_damage(X, damage)
 
 	apply_damage(damage, BRUTE, affecting, armor_block, TRUE, TRUE, TRUE, armor_pen) //This should slicey dicey
 

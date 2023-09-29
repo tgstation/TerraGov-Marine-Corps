@@ -31,7 +31,7 @@
 	H.moth_wings = pick(GLOB.moth_wings_list - "Burnt Off")
 
 /mob/living/carbon/human/species/vatgrown
-	race = "Vat-Grown"
+	race = "Vat-Grown Human"
 
 /mob/living/carbon/human/species/sectoid
 	race = "Sectoid"
@@ -45,12 +45,25 @@
 /mob/living/carbon/human/species/zombie
 	race = "Strong zombie"
 
-/mob/living/carbon/human/species/zombie/Initialize()
+/mob/living/carbon/human/species/zombie/Initialize(mapload)
 	. = ..()
 	var/datum/outfit/outfit = pick(GLOB.survivor_outfits)
 	outfit = new outfit()
-	INVOKE_ASYNC(outfit, /datum/outfit.proc/equip, src)
+	INVOKE_ASYNC(outfit, TYPE_PROC_REF(/datum/outfit, equip), src)
 	a_intent = INTENT_HARM
 
 /mob/living/carbon/human/species/robot
 	race = "Combat Robot"
+	bubble_icon = "robot"
+
+/mob/living/carbon/human/species/robot/alpharii
+	race = "Hammerhead Combat Robot"
+
+/mob/living/carbon/human/species/robot/charlit
+	race = "Chilvaris Combat Robot"
+
+/mob/living/carbon/human/species/robot/deltad
+	race = "Ratcher Combat Robot"
+
+/mob/living/carbon/human/species/robot/bravada
+	race = "Sterling Combat Robot"

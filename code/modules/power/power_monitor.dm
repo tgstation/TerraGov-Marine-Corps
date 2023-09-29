@@ -20,7 +20,7 @@
 /obj/machinery/power/monitor/grid
 	name = "Main Power Grid Monitoring"
 
-/obj/machinery/power/monitor/Initialize()
+/obj/machinery/power/monitor/Initialize(mapload)
 	. = ..()
 	var/obj/structure/cable/attached = null
 	var/turf/T = loc
@@ -36,8 +36,8 @@
 		return
 
 	var/t
-	t += "<BR><HR><A href='?src=\ref[src];update=1'>Refresh</A>"
-	t += "<BR><HR><A href='?src=\ref[src];close=1'>Close</A>"
+	t += "<BR><HR><A href='?src=[text_ref(src)];update=1'>Refresh</A>"
+	t += "<BR><HR><A href='?src=[text_ref(src)];close=1'>Close</A>"
 
 	if(!powernet)
 		t += span_warning(" No connection")
@@ -53,7 +53,7 @@
 
 		t += "<FONT SIZE=-1>"
 
-		if(L.len > 0)
+		if(length(L) > 0)
 			var/total_demand = 0
 			t += "Area                           Eqp./Lgt./Env.  Load   Cell<HR>"
 

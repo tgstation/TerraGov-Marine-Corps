@@ -4,8 +4,8 @@
 		health = species.total_health
 		set_stat(CONSCIOUS)
 		return
-	var/total_burn	= 0
-	var/total_brute	= 0
+	var/total_burn = 0
+	var/total_brute = 0
 	for(var/datum/limb/O AS in limbs)	//hardcoded to streamline things a bit
 		total_brute	+= O.brute_dam
 		total_burn	+= O.burn_dam
@@ -92,7 +92,7 @@
 
 
 /mob/living/carbon/human/adjustBruteLoss(amount, updating_health = FALSE)
-	if(species && species.brute_mod && amount > 0)
+	if(species?.brute_mod && amount > 0)
 		amount = amount*species.brute_mod
 
 	if(amount > 0)
@@ -102,7 +102,7 @@
 
 
 /mob/living/carbon/human/adjustFireLoss(amount, updating_health = FALSE)
-	if(species && species.burn_mod && amount > 0)
+	if(species?.burn_mod && amount > 0)
 		amount = amount*species.burn_mod
 
 	if(amount > 0)
@@ -112,7 +112,7 @@
 
 
 /mob/living/carbon/human/proc/adjustBruteLossByPart(amount, organ_name, obj/damage_source = null)
-	if(species && species.brute_mod && amount > 0)
+	if(species?.brute_mod && amount > 0)
 		amount = amount*species.brute_mod
 
 	for(var/X in limbs)
@@ -127,7 +127,7 @@
 
 
 /mob/living/carbon/human/proc/adjustFireLossByPart(amount, organ_name, obj/damage_source = null)
-	if(species && species.burn_mod && amount > 0)
+	if(species?.burn_mod && amount > 0)
 		amount = amount*species.burn_mod
 
 	for(var/X in limbs)
@@ -142,12 +142,12 @@
 
 
 /mob/living/carbon/human/getCloneLoss()
-	if(species.species_flags & (IS_SYNTHETIC|NO_SCAN|ROBOTIC_LIMBS))
+	if(species.species_flags & (IS_SYNTHETIC|NO_SCAN))
 		cloneloss = 0
 	return ..()
 
 /mob/living/carbon/human/setCloneLoss(amount)
-	if(species.species_flags & (IS_SYNTHETIC|NO_SCAN|ROBOTIC_LIMBS))
+	if(species.species_flags & (IS_SYNTHETIC|NO_SCAN))
 		cloneloss = 0
 	else
 		..()
@@ -155,7 +155,7 @@
 /mob/living/carbon/human/adjustCloneLoss(amount)
 	..()
 
-	if(species.species_flags & (IS_SYNTHETIC|NO_SCAN|ROBOTIC_LIMBS))
+	if(species.species_flags & (IS_SYNTHETIC|NO_SCAN))
 		cloneloss = 0
 		return
 
@@ -232,7 +232,7 @@
 //It automatically updates health status
 /mob/living/carbon/human/heal_limb_damage(brute, burn, robo_repair = FALSE, updating_health = FALSE)
 	var/list/datum/limb/parts = get_damaged_limbs(brute, burn, robo_repair)
-	if(!parts.len)
+	if(!length(parts))
 		return
 	var/datum/limb/picked = pick(parts)
 	if(picked.heal_limb_damage(brute, burn, robo_repair, updating_health))
@@ -246,7 +246,7 @@ In most cases it makes more sense to use apply_damage() instead! And make sure t
 //It automatically updates health status
 /mob/living/carbon/human/take_limb_damage(brute, burn, sharp = FALSE, edge = FALSE, updating_health = FALSE)
 	var/list/datum/limb/parts = get_damageable_limbs()
-	if(!parts.len)
+	if(!length(parts))
 		return
 	var/datum/limb/picked = pick(parts)
 	if(picked.take_damage_limb(brute, burn, sharp, edge, 0, updating_health))
@@ -260,7 +260,7 @@ In most cases it makes more sense to use apply_damage() instead! And make sure t
 	var/list/datum/limb/parts = get_damaged_limbs(brute, burn, robo_repair)
 
 	var/update = 0
-	while(parts.len && (brute>0 || burn>0) )
+	while(length(parts) && (brute>0 || burn>0) )
 		var/datum/limb/picked = pick(parts)
 
 		var/brute_was = picked.brute_dam
@@ -278,7 +278,7 @@ In most cases it makes more sense to use apply_damage() instead! And make sure t
 		UpdateDamageIcon()
 
 //Damage all limbs on your body equally
-/mob/living/carbon/human/take_overall_damage(damage, damagetype, armortype, sharp = FALSE, edge = FALSE, updating_health = FALSE, penetration)
+/mob/living/carbon/human/take_overall_damage(damage, damagetype, armortype, sharp = FALSE, edge = FALSE, updating_health = FALSE, penetration, max_limbs)
 	if(status_flags & GODMODE)
 		return
 
@@ -286,8 +286,10 @@ In most cases it makes more sense to use apply_damage() instead! And make sure t
 	var/partcount = length(parts)
 	if(!partcount)
 		return
+	if(max_limbs)
+		partcount = min(partcount, max_limbs)
 	damage = damage / partcount
-	while(parts.len)
+	for(var/i=1 to partcount)
 		var/datum/limb/picked = pick_n_take(parts)
 		apply_damage(damage, damagetype, picked, armortype, sharp, edge, FALSE, penetration)
 
@@ -337,3 +339,29 @@ This function restores all limbs.
 	if(status_flags & (GODMODE))
 		return
 	return species.apply_damage(damage, damagetype, def_zone, blocked, sharp, edge, updating_health, penetration, src)
+
+/mob/living/carbon/human/get_soft_armor(armor_type, proj_def_zone)
+	if(!proj_def_zone)
+		return ..()
+
+	var/datum/limb/affected_limb
+
+	if(isorgan(proj_def_zone))
+		affected_limb = proj_def_zone
+	else
+		affected_limb = get_limb(proj_def_zone)
+
+	return affected_limb.soft_armor.getRating(armor_type)
+
+/mob/living/carbon/human/get_hard_armor(armor_type, proj_def_zone)
+	if(!proj_def_zone)
+		return ..()
+
+	var/datum/limb/affected_limb
+
+	if(isorgan(proj_def_zone))
+		affected_limb = proj_def_zone
+	else
+		affected_limb = get_limb(proj_def_zone)
+
+	return affected_limb.hard_armor.getRating(armor_type)

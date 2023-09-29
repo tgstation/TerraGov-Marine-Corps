@@ -9,18 +9,19 @@ SUBSYSTEM_DEF(idlenpcpool)
 	var/static/list/idle_mobs_by_zlevel[][]
 
 
-/datum/controller/subsystem/idlenpcpool/stat_entry()
+/datum/controller/subsystem/idlenpcpool/stat_entry(msg)
 	var/list/idlelist = GLOB.simple_animals[AI_IDLE]
 	var/list/zlist = GLOB.simple_animals[AI_Z_OFF]
-	..("IdleNPCS:[length(idlelist)]|Z:[length(zlist)]")
+	msg = "IdleNPCS:[length(idlelist)]|Z:[length(zlist)]"
+	return ..()
 
 
 /datum/controller/subsystem/idlenpcpool/proc/MaxZChanged()
 	if(!islist(idle_mobs_by_zlevel))
 		idle_mobs_by_zlevel = new /list(world.maxz,0)
-	while(SSidlenpcpool.idle_mobs_by_zlevel.len < world.maxz)
+	while(length(SSidlenpcpool.idle_mobs_by_zlevel) < world.maxz)
 		SSidlenpcpool.idle_mobs_by_zlevel.len++
-		SSidlenpcpool.idle_mobs_by_zlevel[idle_mobs_by_zlevel.len] = list()
+		SSidlenpcpool.idle_mobs_by_zlevel[length(idle_mobs_by_zlevel)] = list()
 
 
 /datum/controller/subsystem/idlenpcpool/fire(resumed = FALSE)
@@ -31,8 +32,8 @@ SUBSYSTEM_DEF(idlenpcpool)
 	//cache for sanic speed (lists are references anyways)
 	var/list/currentrun = src.currentrun
 
-	while(currentrun.len)
-		var/mob/living/simple_animal/SA = currentrun[currentrun.len]
+	while(length(currentrun))
+		var/mob/living/simple_animal/SA = currentrun[length(currentrun)]
 		--currentrun.len
 		if(!SA)
 			GLOB.simple_animals[AI_IDLE] -= SA

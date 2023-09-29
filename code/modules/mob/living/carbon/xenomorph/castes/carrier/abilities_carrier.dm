@@ -23,11 +23,11 @@ GLOBAL_LIST_INIT(hugger_to_ammo, list(
 
 //List of huggie images
 GLOBAL_LIST_INIT(hugger_images_list,  list(
-		LARVAL_HUGGER = image('icons/mob/actions.dmi', icon_state = LARVAL_HUGGER),
-		CLAWED_HUGGER = image('icons/mob/actions.dmi', icon_state = CLAWED_HUGGER),
-		NEURO_HUGGER = image('icons/mob/actions.dmi', icon_state = NEURO_HUGGER ),
-		ACID_HUGGER  = image('icons/mob/actions.dmi', icon_state = ACID_HUGGER),
-		RESIN_HUGGER = image('icons/mob/actions.dmi', icon_state = RESIN_HUGGER),
+		LARVAL_HUGGER = image('icons/Xeno/actions.dmi', icon_state = LARVAL_HUGGER),
+		CLAWED_HUGGER = image('icons/Xeno/actions.dmi', icon_state = CLAWED_HUGGER),
+		NEURO_HUGGER = image('icons/Xeno/actions.dmi', icon_state = NEURO_HUGGER ),
+		ACID_HUGGER = image('icons/Xeno/actions.dmi', icon_state = ACID_HUGGER),
+		RESIN_HUGGER = image('icons/Xeno/actions.dmi', icon_state = RESIN_HUGGER),
 		))
 
 // ***************************************
@@ -36,7 +36,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 /datum/action/xeno_action/activable/throw_hugger
 	name = "Use/Throw Facehugger"
 	action_icon_state = "throw_hugger"
-	mechanics_text = "Click on a non tile and non mob to bring a facehugger into your hand. Click at a target or tile to throw a facehugger."
+	desc = "Click on a non tile and non mob to bring a facehugger into your hand. Click at a target or tile to throw a facehugger."
 	ability_name = "throw facehugger"
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_THROW_HUGGER,
@@ -111,7 +111,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 /datum/action/xeno_action/place_trap
 	name = "Place trap"
 	action_icon_state = "place_trap"
-	mechanics_text = "Place a hole on weeds that can be filled with a hugger or acid. Activates when a marine steps on it."
+	desc = "Place a hole on weeds that can be filled with a hugger or acid. Activates when a marine steps on it."
 	plasma_cost = 400
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PLACE_TRAP,
@@ -142,7 +142,8 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	playsound(T, "alien_resin_build", 25)
 	GLOB.round_statistics.trap_holes++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "carrier_traps")
-	new /obj/structure/xeno/trap(T, owner)
+	owner.record_traps_created()
+	new /obj/structure/xeno/trap(T, owner.get_xeno_hivenumber())
 	to_chat(owner, span_xenonotice("We place a trap on the weeds, but it still needs to be filled."))
 
 // ***************************************
@@ -151,7 +152,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 /datum/action/xeno_action/spawn_hugger
 	name = "Spawn Facehugger"
 	action_icon_state = "spawn_hugger"
-	mechanics_text = "Spawn a facehugger that is stored on your body."
+	desc = "Spawn a facehugger that is stored on your body."
 	plasma_cost = 200
 	cooldown_timer = 10 SECONDS
 	keybinding_signals = list(
@@ -182,6 +183,9 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	playsound(caster, 'sound/voice/alien_drool2.ogg', 50, 0, 1)
 	succeed_activate()
 	add_cooldown()
+	if(owner.client)
+		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[owner.ckey]
+		personal_statistics.huggers_created++
 
 // ***************************************
 // *********** Drop all hugger, panic button
@@ -189,7 +193,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 /datum/action/xeno_action/carrier_panic
 	name = "Drop All Facehuggers"
 	action_icon_state = "carrier_panic"
-	mechanics_text = "Drop all stored huggers in a fit of panic. Uses all remaining plasma!"
+	desc = "Drop all stored huggers in a fit of panic. Uses all remaining plasma!"
 	plasma_cost = 10
 	cooldown_timer = 50 SECONDS
 	keybinding_signals = list(
@@ -199,7 +203,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 
 /datum/action/xeno_action/carrier_panic/give_action(mob/living/L)
 	. = ..()
-	RegisterSignal(owner, COMSIG_MOB_DEATH, .proc/do_activate)
+	RegisterSignal(owner, COMSIG_MOB_DEATH, PROC_REF(do_activate))
 
 /datum/action/xeno_action/carrier_panic/remove_action(mob/living/L)
 	UnregisterSignal(owner, COMSIG_MOB_DEATH)
@@ -208,14 +212,14 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 /// Helper proc for action acitvation via signal
 /datum/action/xeno_action/carrier_panic/proc/do_activate()
 	SIGNAL_HANDLER
-	INVOKE_ASYNC(src, .proc/action_activate)
+	INVOKE_ASYNC(src, PROC_REF(action_activate))
 
 /datum/action/xeno_action/carrier_panic/can_use_action(silent = FALSE, override_flags)
 	. = ..()
 	if(!.)
 		return FALSE
 	var/mob/living/carbon/xenomorph/carrier/caster = owner
-	if(caster.health > (caster.maxHealth * 0.25))
+	if(caster.health > (caster.maxHealth * 0.56))
 		if(!silent)
 			to_chat(caster, span_xenowarning("We are not injured enough to panic yet!"))
 		return FALSE
@@ -232,9 +236,9 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 
 	xeno_carrier.visible_message(span_xenowarning("A chittering mass of tiny aliens is trying to escape [xeno_carrier]!"))
 	while(xeno_carrier.huggers > 0)
-		var/obj/item/clothing/mask/facehugger/new_hugger = new xeno_carrier.selected_hugger_type(get_turf(xeno_carrier))
+		var/obj/item/clothing/mask/facehugger/new_hugger = new /obj/item/clothing/mask/facehugger/larval(get_turf(xeno_carrier), xeno_carrier.hivenumber, xeno_carrier)
 		step_away(new_hugger, xeno_carrier, 1)
-		addtimer(CALLBACK(new_hugger, /obj/item/clothing/mask/facehugger.proc/go_active, TRUE), new_hugger.jump_cooldown)
+		addtimer(CALLBACK(new_hugger, TYPE_PROC_REF(/obj/item/clothing/mask/facehugger, go_active), TRUE), new_hugger.jump_cooldown)
 		xeno_carrier.huggers--
 	succeed_activate(INFINITY) //Consume all remaining plasma
 	add_cooldown()
@@ -246,7 +250,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 /datum/action/xeno_action/choose_hugger_type
 	name = "Choose Hugger Type"
 	action_icon_state = "facehugger"
-	mechanics_text = "Selects which hugger type you will build with the Spawn Hugger ability."
+	desc = "Selects which hugger type you will build with the Spawn Hugger ability."
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_CHOOSE_HUGGER,
 		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_SWITCH_HUGGER,
@@ -275,6 +279,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 
 	var/atom/A = caster.selected_hugger_type
 	to_chat(caster, span_notice("We will now spawn <b>[initial(A.name)]\s</b> when using the Spawn Hugger ability."))
+	caster.balloon_alert(caster,"[initial(A.name)]")
 	update_button_icon()
 	succeed_activate()
 	return COMSIG_KB_ACTIVATED
@@ -289,15 +294,19 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 			caster.selected_hugger_type = hugger_type
 			break
 	to_chat(caster, span_notice("We will now spawn <b>[hugger_choice]\s</b> when using the spawn hugger ability."))
+	caster.balloon_alert(caster, "[hugger_choice]")
 	update_button_icon()
 	return succeed_activate()
 
 /datum/action/xeno_action/build_hugger_turret
 	name = "build hugger turret"
 	action_icon_state = "hugger_turret"
-	mechanics_text = "Build a hugger turret"
+	desc = "Build a hugger turret"
 	plasma_cost = 800
 	cooldown_timer = 5 MINUTES
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_BUILD_HUGGER_TURRET,
+	)
 
 /datum/action/xeno_action/build_hugger_turret/can_use_action(silent, override_flags)
 	. = ..()
@@ -320,7 +329,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	if(!T.check_alien_construction(owner, silent = silent, planned_building = /obj/structure/xeno/xeno_turret) || !T.check_disallow_alien_fortification(owner))
 		return FALSE
 
-	for(var/obj/structure/xeno/xeno_turret/turret AS in GLOB.xeno_resin_turrets)
+	for(var/obj/structure/xeno/xeno_turret/turret AS in GLOB.xeno_resin_turrets_by_hive[blocker.hivenumber])
 		if(get_dist(turret, owner) < 6)
 			if(!silent)
 				to_chat(owner, span_xenowarning("Another turret is too close!"))
@@ -346,7 +355,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 /datum/action/xeno_action/activable/call_younger
 	name = "Call of Younger"
 	action_icon_state = "call_younger"
-	mechanics_text = "Appeals to the larva inside the Marine. The Marine loses his balance, and larva's progress accelerates."
+	desc = "Appeals to the larva inside the Marine. The Marine loses his balance, and larva's progress accelerates."
 	ability_name = "call younger"
 	plasma_cost = 150
 	cooldown_timer = 20 SECONDS
@@ -389,7 +398,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 
 	owner.face_atom(victim)
 
-	if(!do_after(caster, 0.5 SECONDS, TRUE, caster, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, .proc/can_use_ability, A, FALSE, XACT_USE_BUSY)))
+	if(!do_after(caster, 0.5 SECONDS, TRUE, caster, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(can_use_ability), A, FALSE, XACT_USE_BUSY)))
 		return fail_activate()
 	if(!can_use_ability(A))
 		return fail_activate()
@@ -405,8 +414,8 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	victim.visible_message(span_xenowarning("\The [victim] loses his balance, falling to the side!"), \
 	span_xenowarning("You feel like something inside you is tearing out!"))
 
-	victim.apply_effects(1, 0.5)
-	victim.adjust_stagger(debuff)
+	victim.apply_effects(2 SECONDS, 1 SECONDS)
+	victim.adjust_stagger(debuff SECONDS)
 	victim.adjust_slowdown(debuff)
 	victim.apply_damage(stamina_dmg, STAMINA)
 

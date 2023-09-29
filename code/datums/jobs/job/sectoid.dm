@@ -5,6 +5,12 @@
 	skills_type = /datum/skills/sectoid
 	faction = FACTION_SECTOIDS
 
+/datum/outfit/job/sectoid/pre_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	. = ..()
+	H.set_species("Sectoid")
+
+	H.name = GLOB.namepool[/datum/namepool/sectoid].random_name(H)
+	H.real_name = H.name
 
 //Sectoid Grunt
 /datum/job/sectoid/grunt
@@ -32,7 +38,7 @@
 
 /datum/outfit/job/sectoid/grunt/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
-
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/sectoid_rifle, SLOT_IN_BELT)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/sectoid_rifle, SLOT_IN_BELT)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/sectoid_rifle, SLOT_IN_BELT)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/sectoid_rifle, SLOT_IN_BELT)
@@ -67,7 +73,7 @@
 
 /datum/outfit/job/sectoid/leader/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
-
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/sectoid_rifle, SLOT_IN_BELT)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/sectoid_rifle, SLOT_IN_BELT)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/sectoid_rifle, SLOT_IN_BELT)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/sectoid_rifle, SLOT_IN_BELT)

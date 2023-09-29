@@ -4,7 +4,7 @@
 /datum/action/xeno_action/activable/stomp
 	name = "Stomp"
 	action_icon_state = "stomp"
-	mechanics_text = "Knocks all adjacent targets away and down."
+	desc = "Knocks all adjacent targets away and down."
 	ability_name = "stomp"
 	plasma_cost = 100
 	cooldown_timer = 20 SECONDS
@@ -34,7 +34,7 @@
 		if(distance == 0) //If we're on top of our victim, give him the full impact
 			GLOB.round_statistics.crusher_stomp_victims++
 			SSblackbox.record_feedback("tally", "round_statistics", 1, "crusher_stomp_victims")
-			M.take_overall_damage(damage, BRUTE, MELEE, updating_health = TRUE)
+			M.take_overall_damage(damage, BRUTE, MELEE, updating_health = TRUE, max_limbs = 3)
 			M.Paralyze(3 SECONDS)
 			to_chat(M, span_highdanger("You are stomped on by [X]!"))
 			shake_camera(M, 3, 3)
@@ -42,7 +42,7 @@
 			step_away(M, X, 1) //Knock away
 			shake_camera(M, 2, 2)
 			to_chat(M, span_highdanger("You reel from the shockwave of [X]'s stomp!"))
-			M.take_overall_damage(damage, BRUTE, MELEE, updating_health = TRUE)
+			M.take_overall_damage(damage, BRUTE, MELEE, updating_health = TRUE, max_limbs = 3)
 			M.Paralyze(0.5 SECONDS)
 
 /datum/action/xeno_action/activable/stomp/ai_should_start_consider()
@@ -65,7 +65,7 @@
 /datum/action/xeno_action/activable/cresttoss
 	name = "Crest Toss"
 	action_icon_state = "cresttoss"
-	mechanics_text = "Fling an adjacent target over and behind you. Also works over barricades."
+	desc = "Fling an adjacent target over and behind you. Also works over barricades."
 	ability_name = "crest toss"
 	plasma_cost = 75
 	cooldown_timer = 12 SECONDS
@@ -124,6 +124,10 @@
 		if(isclosedturf(throw_origin)) //Make sure the victim can actually go to the target turf
 			to_chat(X, span_xenowarning("We try to fling [A] behind us, but there's no room!"))
 			return fail_activate()
+		if(!X.issamexenohive(A)) //xenos should be able to fling xenos into xeno passable areas!
+			for(var/obj/effect/forcefield/fog/fog in T)
+				A.balloon_alert(X, "cannot, fog")
+				return fail_activate()
 		for(var/obj/O in throw_origin)
 			if(!O.CanPass(A, get_turf(X)) && !istype(O, /obj/structure/barricade)) //Ignore barricades because they will once thrown anyway
 				to_chat(X, span_xenowarning("We try to fling [A] behind us, but there's no room!"))
@@ -154,7 +158,7 @@
 		playsound(A, pick('sound/weapons/alien_claw_block.ogg','sound/weapons/alien_bite2.ogg'), 50, 1)
 
 	add_cooldown()
-	addtimer(CALLBACK(X, /mob/.proc/update_icons), 3)
+	addtimer(CALLBACK(X, TYPE_PROC_REF(/mob, update_icons)), 3)
 
 /datum/action/xeno_action/activable/cresttoss/ai_should_start_consider()
 	return TRUE
@@ -176,7 +180,7 @@
 /datum/action/xeno_action/activable/advance
 	name = "Rapid Advance"
 	action_icon_state = "crest_defense"
-	mechanics_text = "Charges up the crushers charge in place, then unleashes the full bulk of the crusher at the target location. Does not crush in diagonal directions."
+	desc = "Charges up the crushers charge in place, then unleashes the full bulk of the crusher at the target location. Does not crush in diagonal directions."
 	ability_name = "rapid advance"
 	plasma_cost = 175
 	cooldown_timer = 30 SECONDS
@@ -193,6 +197,7 @@
 	. = ..()
 	if(!.)
 		return FALSE
+
 	if(get_dist(owner, A) > 7)
 		return FALSE
 
@@ -202,13 +207,15 @@
 	X.face_atom(A)
 	X.set_canmove(FALSE)
 	if(!do_after(X, 10, TRUE, X, BUSY_ICON_DANGER))
-		X.set_canmove(TRUE)
+		if(!X.stat)
+			X.set_canmove(TRUE)
 		return fail_activate()
 	X.set_canmove(TRUE)
 
 	var/datum/action/xeno_action/ready_charge/charge = X.actions_by_path[/datum/action/xeno_action/ready_charge]
 	var/aimdir = get_dir(X,A)
 	if(charge)
+		charge.charge_on(FALSE)
 		charge.do_stop_momentum(FALSE) //Reset charge so next_move_limit check_momentum() does not cuck us and 0 out steps_taken
 		charge.do_start_crushing()
 		charge.valid_steps_taken = charge.max_steps_buildup - 1

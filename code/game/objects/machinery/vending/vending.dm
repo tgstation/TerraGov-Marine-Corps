@@ -60,21 +60,23 @@
 	icon_state = "generic"
 	anchored = TRUE
 	density = TRUE
-	coverage = 70
+	coverage = 80
+	soft_armor = list(MELEE = 0, BULLET = 30, LASER = 30, ENERGY = 30, BOMB = 0, BIO = 100, FIRE = 0, ACID = 0)
 	layer = BELOW_OBJ_LAYER
 
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 10
 	active_power_usage = 100
-	interaction_flags = INTERACT_MACHINE_TGUI
+	interaction_flags = INTERACT_MACHINE_TGUI|INTERACT_POWERLOADER_PICKUP_ALLOWED
 	wrenchable = TRUE
+	voice_filter = "alimiter=0.9,acompressor=threshold=0.2:ratio=20:attack=10:release=50:makeup=2,highpass=f=1000"
 
 	///Whether this vendor is active or not.
 	var/active = TRUE
 	///If the vendor is ready to vend.
 	var/vend_ready = TRUE
 	///How long it takes to vend an item, vend_ready is false during that.
-	var/vend_delay = 10
+	var/vend_delay = 0
 	///Vending flags to determine the behaviour of the machine
 	var/vending_flags = NONE
 	/// A /datum/vending_product instance of what we're paying for right now.
@@ -173,6 +175,13 @@
 /obj/machinery/vending/Initialize(mapload, ...)
 	. = ..()
 	wires = new /datum/wires/vending(src)
+
+	if(SStts.tts_enabled)
+		var/static/vendor_voice_by_type = list()
+		if(!vendor_voice_by_type[type])
+			vendor_voice_by_type[type] = pick(SStts.available_speakers)
+		voice = vendor_voice_by_type[type]
+
 	slogan_list = splittext(product_slogans, ";")
 
 	// So not all machines speak at the exact same time.
@@ -216,8 +225,9 @@
 		if(EXPLODE_DEVASTATE)
 			qdel(src)
 		if(EXPLODE_HEAVY)
-			if(prob(50))
-				qdel(src)
+			take_damage(rand(150, 250), BRUTE, BOMB)
+		if(EXPLODE_LIGHT)
+			take_damage(rand(75, 125), BRUTE, BOMB)
 
 /**
  * Builds shared vendors inventory
@@ -277,10 +287,6 @@
 	if(X.status_flags & INCORPOREAL)
 		return FALSE
 
-	if(tipped_level)
-		to_chat(X, span_warning("There's no reason to bother with that old piece of trash."))
-		return FALSE
-
 	if(X.a_intent == INTENT_HARM)
 		X.do_attack_animation(src, ATTACK_EFFECT_SMASH)
 		if(prob(X.xeno_caste.melee_damage))
@@ -294,6 +300,10 @@
 			span_danger("We slash \the [src]!"), null, 5)
 			playsound(loc, 'sound/effects/metalhit.ogg', 25, 1)
 		return TRUE
+
+	if(tipped_level)
+		to_chat(X, span_warning("There's no reason to bother with that old piece of trash."))
+		return FALSE
 
 	X.visible_message(span_warning("\The [X] begins to lean against \the [src]."), \
 	span_warning("You begin to lean against \the [src]."), null, 5)
@@ -312,17 +322,21 @@
 
 /obj/machinery/vending/proc/tip_over()
 	var/matrix/A = matrix()
-	tipped_level = 2
-	density = FALSE
 	A.Turn(90)
 	transform = A
 
+	tipped_level = 2
+	allow_pass_flags |= (PASS_LOW_STRUCTURE|PASS_MOB)
+	coverage = 50
+
 /obj/machinery/vending/proc/flip_back()
 	icon_state = initial(icon_state)
-	tipped_level = 0
-	density = TRUE
 	var/matrix/A = matrix()
 	transform = A
+
+	tipped_level = 0
+	allow_pass_flags &= ~(PASS_LOW_STRUCTURE|PASS_MOB)
+	coverage = initial(coverage)
 
 /obj/machinery/vending/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -564,11 +578,6 @@
 		flick(icon_deny, src)
 		return
 
-	if(SSticker.mode?.flags_round_type & MODE_HUMAN_ONLY && is_type_in_typecache(R.product_path, GLOB.hvh_restricted_items_list))
-		to_chat(user, span_warning("This item is banned by the Space Geneva Convention."))
-		flick(icon_deny, src)
-		return
-
 	if(R.category == CAT_HIDDEN && !extended_inventory)
 		return
 
@@ -581,15 +590,9 @@
 			src.last_reply = world.time
 
 	var/obj/item/new_item = release_item(R, vend_delay)
-	if(faction)
-		if(ismodulararmorarmorpiece(new_item))
-			var/obj/item/armor_module/armor/armorpiece = new_item
-			armorpiece.limit_colorable_colors(faction)
-		if(ismodularhelmet(new_item))
-			var/obj/item/clothing/head/modular/helmet = new_item
-			helmet.limit_colorable_colors(faction)
-	if(istype(new_item) && user.put_in_any_hand_if_possible(new_item, warning = FALSE))
-		new_item.pickup(user)
+
+	if(istype(new_item))
+		new_item.on_vend(user, faction, fill_container = TRUE)
 	vend_ready = 1
 	updateUsrDialog()
 
@@ -609,7 +612,7 @@
 		else
 			return
 	SSblackbox.record_feedback("tally", "vendored", 1, R.product_name)
-	addtimer(CALLBACK(src, .proc/stock_vacuum), 2.5 MINUTES, TIMER_UNIQUE | TIMER_OVERRIDE) // We clean up some time after the last item has been vended.
+	addtimer(CALLBACK(src, PROC_REF(stock_vacuum)), 2.5 MINUTES, TIMER_UNIQUE | TIMER_OVERRIDE) // We clean up some time after the last item has been vended.
 	if(vending_sound)
 		playsound(src, vending_sound, 25, 0)
 	else
@@ -621,7 +624,7 @@
 
 
 /obj/machinery/vending/MouseDrop_T(atom/movable/A, mob/user)
-
+	. = ..()
 	if(machine_stat & (BROKEN|NOPOWER))
 		return
 
@@ -788,7 +791,7 @@
 		seconds_electrified--
 
 	//Pitch to the people!  Really sell it!
-	if(((last_slogan + slogan_delay) <= world.time) && (slogan_list.len > 0) && (!shut_up) && prob(5))
+	if(((last_slogan + slogan_delay) <= world.time) && (length(slogan_list) > 0) && (!shut_up) && prob(5))
 		var/slogan = pick(slogan_list)
 		speak(slogan)
 		last_slogan = world.time

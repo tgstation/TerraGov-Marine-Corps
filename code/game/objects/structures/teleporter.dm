@@ -15,27 +15,39 @@
 		/obj/machinery/nuclearbomb
 	)
 
-/obj/machinery/deployable/teleporter/Initialize()
+/obj/machinery/deployable/teleporter/examine(mob/user)
 	. = ..()
-	SSminimaps.add_marker(src, z, MINIMAP_FLAG_MARINE, "teleporter")
+	var/obj/item/teleporter_kit/kit = get_internal_item()
+	if(!kit?.cell)
+		. += "It is currently lacking a power cell."
+	if(kit?.linked_teleporter)
+		. += "It is currently linked to Teleporter #[kit.linked_teleporter.self_tele_tag] at [get_area(kit.linked_teleporter)]"
+	else
+		. += "It is not linked to any other teleporter."
+
+
+/obj/machinery/deployable/teleporter/Initialize(mapload)
+	. = ..()
+	SSminimaps.add_marker(src, MINIMAP_FLAG_MARINE, image('icons/UI_icons/map_blips.dmi', null, "teleporter"))
+
 
 /obj/machinery/deployable/teleporter/attack_hand(mob/living/user)
 	. = ..()
-	var/obj/item/teleporter_kit/kit = internal_item
+	var/obj/item/teleporter_kit/kit = get_internal_item()
 	if(!istype(kit))
 		CRASH("A teleporter didn't have an internal item, or it was of the wrong type.")
 
 	if (!powered() && (!kit.cell || kit.cell.charge < TELEPORTING_COST))
-		to_chat(user, span_warning("A red light flashes on the [src]. It seems it doesn't have enough power."))
+		to_chat(user, span_warning("A red light flashes on \the [src]. It seems it doesn't have enough power."))
 		playsound(loc,'sound/machines/buzz-two.ogg', 25, FALSE)
 		return
 
 	if(!COOLDOWN_CHECK(kit, teleport_cooldown))
-		to_chat(user, span_warning("The [src] is still recharging! It will be ready in [round(COOLDOWN_TIMELEFT(kit, teleport_cooldown) / 10)] seconds."))
+		to_chat(user, span_warning("\The [src] is still recharging! It will be ready in [round(COOLDOWN_TIMELEFT(kit, teleport_cooldown) / 10)] seconds."))
 		return
 
 	if(!kit.linked_teleporter)
-		to_chat(user, span_warning("The [src] is not linked to any other teleporter."))
+		to_chat(user, span_warning("\The [src] is not linked to any other teleporter."))
 		return
 
 	if(!istype(kit.linked_teleporter.loc, /obj/machinery/deployable/teleporter))
@@ -43,13 +55,13 @@
 		return
 
 	var/obj/machinery/deployable/teleporter/deployed_linked_teleporter = kit.linked_teleporter.loc
-	var/obj/item/teleporter_kit/linked_kit = deployed_linked_teleporter.internal_item
+	var/obj/item/teleporter_kit/linked_kit = deployed_linked_teleporter.get_internal_item()
 
 	if(deployed_linked_teleporter.z != z)
 		to_chat(user, span_warning("[src] and [deployed_linked_teleporter] are too far apart!"))
 		return
 
-	if(!deployed_linked_teleporter.powered() && (!linked_kit.cell || linked_kit.cell.charge < TELEPORTING_COST))
+	if(!deployed_linked_teleporter.powered() && (!linked_kit?.cell || linked_kit.cell.charge < TELEPORTING_COST))
 		to_chat(user, span_warning("[deployed_linked_teleporter] is not powered!"))
 		return
 
@@ -60,7 +72,7 @@
 		if(is_type_in_list(thing, teleportable_types) && !thing.anchored)
 			teleporting += thing
 
-	if(!teleporting.len)
+	if(!length(teleporting))
 		to_chat(user, span_warning("No teleportable content was detected on [src]!"))
 		return
 
@@ -81,11 +93,17 @@
 	for(var/atom/movable/thing_to_teleport AS in teleporting)
 		thing_to_teleport.forceMove(get_turf(deployed_linked_teleporter))
 
+/obj/machinery/deployable/teleporter/attack_ghost(mob/dead/observer/user)
+	var/obj/item/teleporter_kit/kit = internal_item
+	if(!istype(kit) || !kit.linked_teleporter)
+		return
+	user.forceMove(get_turf(kit.linked_teleporter))
+
 /obj/machinery/deployable/teleporter/crowbar_act(mob/living/user, obj/item/I)
 	. = ..()
 	if(!user)
 		return
-	var/obj/item/teleporter_kit/kit = internal_item
+	var/obj/item/teleporter_kit/kit = get_internal_item()
 	if(!istype(kit))
 		CRASH("A teleporter didn't have an internal item, or it was of the wrong type.")
 	if(!kit.cell)
@@ -104,23 +122,23 @@
 		return FALSE
 	if(!istype(I, /obj/item/cell))
 		return FALSE
-	var/obj/item/teleporter_kit/kit = internal_item
+	var/obj/item/teleporter_kit/kit = get_internal_item()
 	if(!istype(kit))
 		CRASH("A teleporter didn't have an internal item, or it was of the wrong type.")
-	if(kit.cell)
+	if(kit?.cell)
 		to_chat(user , span_warning("There is already a cell inside, use a crowbar to remove it."))
 		return FALSE
 	if(!do_after(user, 2 SECONDS, TRUE, src))
 		return FALSE
 	user.temporarilyRemoveItemFromInventory(I)
-	I.forceMove(internal_item)
+	I.forceMove(kit)
 	kit.cell = I
 	playsound(loc, 'sound/items/deconstruct.ogg', 25, 1)
 	update_icon()
 
 /obj/machinery/deployable/teleporter/update_icon_state()
-	var/obj/item/teleporter_kit/kit = internal_item
-	if(powered() || kit.cell?.charge > TELEPORTING_COST)
+	var/obj/item/teleporter_kit/kit = get_internal_item()
+	if(powered() || kit?.cell?.charge > TELEPORTING_COST)
 		icon_state = default_icon_state + "_on"
 		return
 	icon_state = default_icon_state
@@ -142,32 +160,68 @@
 	var/obj/item/cell/cell
 	COOLDOWN_DECLARE(teleport_cooldown)
 
-/obj/item/teleporter_kit/Initialize()
+	///Tag for teleporters number. Exists for fluff reasons. Shared variable.
+	var/static/tele_tag = 78
+	///References to the number of the teleporter.
+	var/self_tele_tag
+
+/obj/item/teleporter_kit/Initialize(mapload)
 	. = ..()
-	AddElement(/datum/element/deployable_item, /obj/machinery/deployable/teleporter, type, 2 SECONDS)
+	AddComponent(/datum/component/deployable_item, /obj/machinery/deployable/teleporter, 2 SECONDS)
 	cell = new /obj/item/cell/high(src)
+	tele_tag++
+	self_tele_tag = tele_tag
+	name = "\improper ASRS Bluespace teleporter #[tele_tag]"
+
 
 /obj/item/teleporter_kit/Destroy()
-	linked_teleporter = null
+	if(linked_teleporter)
+		linked_teleporter.linked_teleporter = null
+		linked_teleporter = null
 	QDEL_NULL(cell)
 	return ..()
 
 ///Link the two teleporters
-/obj/item/teleporter_kit/proc/set_linked_teleporter(obj/item/teleporter_kit/linked_teleporter)
-	if(src.linked_teleporter)
+/obj/item/teleporter_kit/proc/set_linked_teleporter(obj/item/teleporter_kit/link_teleport)
+	if(linked_teleporter)
 		CRASH("A teleporter was linked with another teleporter even though it already has a twin!")
-	if(linked_teleporter == src)
+	if(link_teleport == src)
 		CRASH("A teleporter was linked with itself!")
-	src.linked_teleporter = linked_teleporter
+	linked_teleporter = link_teleport
+
+/obj/item/teleporter_kit/attackby(obj/item/I, mob/user, params)
+	if(!ishuman(user))
+		return FALSE
+	if(!istype(I, /obj/item/teleporter_kit))
+		return
+
+	var/obj/item/teleporter_kit/gadget = I
+	if(linked_teleporter)
+		balloon_alert(user, "The teleporter is already linked with another!")
+		return
+	if(linked_teleporter == src)
+		balloon_alert(user, "You can't link the teleporter with itself!")
+		return
+	linked_teleporter = linked_teleporter
+	balloon_alert(user, "You link both teleporters to each others.")
+
+	set_linked_teleporter(gadget)
+	gadget.set_linked_teleporter(src)
+	return
 
 /obj/item/teleporter_kit/attack_self(mob/user)
 	do_unique_action(user)
+
+/obj/item/teleporter_kit/attack_ghost(mob/dead/observer/user)
+	if(!linked_teleporter)
+		return
+	user.forceMove(get_turf(linked_teleporter))
 
 /obj/effect/teleporter_linker
 	name = "\improper ASRS bluespace teleporters"
 	desc = "Two bluespace telepads for moving personnel and equipment across small distances to another prelinked teleporter."
 
-/obj/effect/teleporter_linker/Initialize()
+/obj/effect/teleporter_linker/Initialize(mapload)
 	. = ..()
 	var/obj/item/teleporter_kit/teleporter_a = new(loc)
 	var/obj/item/teleporter_kit/teleporter_b = new(loc)

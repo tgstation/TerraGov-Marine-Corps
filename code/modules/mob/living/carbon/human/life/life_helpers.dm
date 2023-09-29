@@ -16,12 +16,6 @@
 	if(wear_suit && (wear_suit.flags_inventory & NOPRESSUREDMAGE) && head && (head.flags_inventory & NOPRESSUREDMAGE)) //Complete set of pressure-proof suit worn, assume fully sealed.
 		pressure_adjustment_coefficient = 0
 
-		//Handles breaches in your space suit. 10 suit damage equals a 100% loss of pressure protection.
-		if(istype(wear_suit, /obj/item/clothing/suit/space))
-			var/obj/item/clothing/suit/space/S = wear_suit
-			if(S.can_breach && S.damage)
-				pressure_adjustment_coefficient += S.damage * 0.1
-
 	pressure_adjustment_coefficient = min(1, max(pressure_adjustment_coefficient, 0)) //So it isn't less than 0 or larger than 1.
 	return pressure_adjustment_coefficient
 
@@ -78,7 +72,7 @@
 //This proc returns a number made up of the flags for body parts which you are protected on. (such as HEAD, CHEST, GROIN, etc. See setup.dm for the full list)
 /mob/living/carbon/human/proc/get_flags_heat_protection_flags(temperature) //Temperature is the temperature you're being exposed to.
 
-	var/thermal_protection_flags = 0
+	var/thermal_protection_flags = NONE
 
 	//Handle normal clothing
 	if(head)
@@ -105,7 +99,7 @@
 
 /mob/living/carbon/human/proc/get_flags_heat_protection(temperature) //Temperature is the temperature you're being exposed to.
 	var/thermal_protection_flags = get_flags_heat_protection_flags(temperature)
-	var/thermal_protection = 0.0
+	var/thermal_protection = 0
 	if(thermal_protection_flags)
 		if(thermal_protection_flags & HEAD)
 			thermal_protection += THERMAL_PROTECTION_HEAD
@@ -137,7 +131,7 @@
 //See proc/get_flags_heat_protection_flags(temperature) for the description of this proc.
 /mob/living/carbon/human/proc/get_flags_cold_protection_flags(temperature, deficit = 0)
 
-	var/thermal_protection_flags = 0
+	var/thermal_protection_flags = NONE
 
 	//Handle normal clothing
 	if(head)
@@ -170,7 +164,7 @@
 /mob/living/carbon/human/proc/get_flags_cold_protection(temperature)
 	temperature = max(temperature, 2.7) //There is an occasional bug where the temperature is miscalculated in ares with a small amount of gas on them, so this is necessary to ensure that that bug does not affect this calculation. Space's temperature is 2.7K and most suits that are intended to protect against any cold, protect down to 2.0K.
 	var/thermal_protection_flags = get_flags_cold_protection_flags(temperature)
-	var/thermal_protection = 0.0
+	var/thermal_protection = 0
 
 	if(thermal_protection_flags)
 		if(thermal_protection_flags & HEAD)

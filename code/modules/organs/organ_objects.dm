@@ -2,6 +2,11 @@
 	name = "organ"
 	desc = "It looks like it probably just plopped out."
 	icon = 'icons/obj/items/organs.dmi'
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/items/bodyparts_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/items/bodyparts_right.dmi',
+	)
+
 	icon_state = "appendix"
 
 	max_integrity = 100                              // Process() ticks before death.

@@ -1,4 +1,0 @@
-author: "QualityVan"
-delete-after: True
-changes:
-  - refactor: "Belt harnesses need an item to be attached to it manually, but any item works - so long as it fits in suit storage or back slot."

@@ -1,18 +1,18 @@
 /mob/living/carbon/human/species/zombie/ai/stay
 	race = "Zombie"
 
-/mob/living/carbon/human/species/zombie/ai/stay/Initialize()
+/mob/living/carbon/human/species/zombie/ai/stay/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/ai_controller, /datum/ai_behavior/xeno/zombie/idle, null)
 
 /mob/living/carbon/human/species/zombie/ai/patrol
 	race = "Zombie"
 
-/mob/living/carbon/human/species/zombie/ai/patrol/Initialize()
+/mob/living/carbon/human/species/zombie/ai/patrol/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/ai_controller, /datum/ai_behavior/xeno/zombie/patrolling , null)
 
-/mob/living/carbon/human/species/zombie/ai/follower/Initialize(loc, atom_to_escort)
+/mob/living/carbon/human/species/zombie/ai/follower/Initialize(mapload, atom_to_escort)
 	. = ..()
 	AddComponent(/datum/component/ai_controller, /datum/ai_behavior/xeno/zombie, atom_to_escort)
 
@@ -28,7 +28,7 @@
 /obj/effect/zombie_basic_pack
 	name = "Template for 6 basic zombies, plus a leader"
 
-/obj/effect/zombie_basic_pack/Initialize()
+/obj/effect/zombie_basic_pack/Initialize(mapload)
 	. = ..()
 	var/leader = new /mob/living/carbon/human/species/zombie/ai/patrol(loc)
 	for(var/i in 1 to 6)

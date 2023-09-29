@@ -453,7 +453,7 @@ This is good:
 ```DM
 var/list/bag_of_atoms = list(new /obj, new /mob, new /atom, new /atom/movable, new /atom/movable)
 var/highest_alpha = 0
-for(var/atom/thing as anything in bag_of_atoms)
+for(var/atom/thing AS in bag_of_atoms)
 	if(thing.alpha <= highest_alpha)
 		continue
 	highest_alpha = thing.alpha
@@ -600,10 +600,10 @@ Naming numeral iterator variables `i` is also allowed, but do remember to [Avoid
 
 ```dm
 // Bad
-for (var/datum/reagent/R as anything in reagents)
+for (var/datum/reagent/R AS in reagents)
 
 // Good
-for (var/datum/reagent/deadly_reagent as anything in reagents)
+for (var/datum/reagent/deadly_reagent AS in reagents)
 
 // Allowed, but still has the potential to not be clear. What does `i` refer to?
 for (var/i in 1 to 12)

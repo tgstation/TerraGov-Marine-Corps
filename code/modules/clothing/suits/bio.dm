@@ -19,22 +19,11 @@
 	gas_transfer_coefficient = 0.01
 	permeability_coefficient = 0.01
 	flags_armor_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
-	slowdown = 1.0
+	slowdown = 1
 	allowed = list(/obj/item/tank/emergency_oxygen,/obj/item/tool/pen,/obj/item/flashlight/pen)
 	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 100, FIRE = 0, ACID = 0)
 	flags_inv_hide = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
 	siemens_coefficient = 0.9
-
-
-//Standard biosuit, orange stripe
-/obj/item/clothing/head/bio_hood/general
-	icon_state = "bio_general"
-	flags_armor_protection = HEAD|FACE|EYES
-
-/obj/item/clothing/suit/bio_suit/general
-	icon_state = "bio_general"
-	flags_armor_protection = CHEST|GROIN|LEGS|ARMS
-	flags_inv_hide = HIDEGLOVES|HIDEJUMPSUIT
 
 //Virology biosuit, green stripe
 /obj/item/clothing/head/bio_hood/virology

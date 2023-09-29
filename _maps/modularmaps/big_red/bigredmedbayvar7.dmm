@@ -2,18 +2,15 @@
 "aa" = (
 /obj/effect/decal/cleanable/blood,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/plating/dmg1,
 /area/bigredv2/outside/medical)
 "aD" = (
-/obj/effect/decal/cleanable/blood{
-	icon_state = "gib6"
-	},
 /obj/machinery/door/airlock/multi_tile/mainship/medidoor{
 	name = "\improper Medical Clinic"
 	},
+/obj/effect/decal/cleanable/blood/six,
 /turf/open/floor/tile/white/warningstripe{
 	dir = 1
 	},
@@ -21,8 +18,7 @@
 "aJ" = (
 /obj/effect/decal/cleanable/blood,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/item/stack/cable_coil/tiny,
 /turf/open/floor/plating/dmg3,
@@ -107,8 +103,7 @@
 /area/bigredv2/outside/medical)
 "dz" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
@@ -126,7 +121,7 @@
 /area/bigredv2/outside/medical)
 "dF" = (
 /obj/item/shard,
-/obj/item/frame/table,
+/obj/effect/spawner/random/misc/table_parts,
 /turf/open/floor/tile/damaged/five,
 /area/bigredv2/outside/medical)
 "dL" = (
@@ -254,15 +249,14 @@
 /area/bigredv2/outside/medical)
 "hz" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/item/stack/cable_coil/tiny,
 /turf/open/floor/plating/dmg1,
 /area/bigredv2/outside/medical)
 "hD" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/alarm{
+/obj/machinery/air_alarm{
 	dir = 8
 	},
 /turf/open/floor/tile/green/whitegreen{
@@ -271,7 +265,7 @@
 /area/bigredv2/outside/medical)
 "hS" = (
 /obj/structure/table,
-/obj/effect/spawner/random/bomb_supply,
+/obj/effect/spawner/random/engineering/bomb_supply,
 /obj/item/stack/sheet/metal{
 	amount = 1
 	},
@@ -287,12 +281,12 @@
 /obj/machinery/optable,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/landmark/corpsespawner,
-/obj/item/reagent_containers/food/snacks/margheritaslice,
+/obj/item/reagent_containers/food/snacks/pizzapasta/margheritaslice,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "iH" = (
-/obj/machinery/door/airlock/glass_medical{
-	id_tag = "mbayexit";
+/obj/machinery/door/airlock/glass{
+	dir = 1;
 	name = "Medbay Reception"
 	},
 /turf/open/floor/tile/white,
@@ -308,8 +302,7 @@
 /area/bigredv2/outside/medical)
 "iZ" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/item/stack/cable_coil/tiny,
 /obj/item/ammo_casing/shell,
@@ -317,8 +310,7 @@
 /area/bigredv2/outside/medical)
 "ja" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/blue/whitebluefull,
@@ -448,8 +440,7 @@
 /area/bigredv2/outside/medical)
 "oB" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
@@ -465,7 +456,7 @@
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "pr" = (
-/obj/structure/window/framed/colony,
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /obj/machinery/door/poddoor/shutters/mainship{
 	id = "Medical";
 	name = "\improper Medical Storm Shutters"
@@ -480,8 +471,7 @@
 /area/bigredv2/outside/medical)
 "pE" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/machinery/light{
 	dir = 1
@@ -528,8 +518,7 @@
 /area/bigredv2/outside/medical)
 "qn" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/item/stack/cable_coil/tiny,
 /turf/open/floor/tile/damaged/five,
@@ -609,8 +598,7 @@
 /area/bigredv2/outside/medical)
 "sD" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/plating/dmg1,
 /area/bigredv2/outside/medical)
@@ -798,8 +786,7 @@
 /area/bigredv2/outside/medical)
 "yS" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/item/stack/cable_coil/tiny,
 /turf/open/floor/plating/dmg3,
@@ -818,7 +805,7 @@
 /turf/open/floor/tile/blue/whiteblue,
 /area/bigredv2/outside/medical)
 "zt" = (
-/obj/machinery/computer/crew,
+/obj/effect/spawner/random/machinery/random_broken_computer/crewmonitor,
 /turf/open/floor/tile/green/whitegreenfull,
 /area/bigredv2/outside/medical)
 "zx" = (
@@ -839,7 +826,7 @@
 /area/bigredv2/outside/medical)
 "zN" = (
 /obj/effect/decal/cleanable/blood,
-/obj/item/reagent_containers/food/snacks/margheritaslice,
+/obj/item/reagent_containers/food/snacks/pizzapasta/margheritaslice,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "zT" = (
@@ -952,8 +939,7 @@
 /area/bigredv2/outside/medical)
 "BY" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/machinery/door/airlock/mainship/medical/glass/free_access{
 	name = "\improper Medical Clinic Storage"
@@ -962,7 +948,7 @@
 /area/bigredv2/outside/medical)
 "Ca" = (
 /obj/structure/table,
-/obj/item/reagent_containers/food/snacks/sliceable/pizza/margherita,
+/obj/item/reagent_containers/food/snacks/sliceable/pizzapasta/margherita,
 /turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/medical)
 "Cj" = (
@@ -976,8 +962,7 @@
 /area/bigredv2/outside/medical)
 "Cy" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/item/ammo_casing/bullet,
@@ -1021,8 +1006,7 @@
 /area/bigredv2/outside/medical)
 "DH" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating/dmg1,
@@ -1045,8 +1029,7 @@
 "Eb" = (
 /obj/effect/decal/cleanable/blood,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/white,
@@ -1077,8 +1060,7 @@
 /area/bigredv2/outside/medical)
 "Fb" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/effect/decal/cleanable/blood,
 /obj/effect/decal/cleanable/dirt,
@@ -1098,7 +1080,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/item/frame/table,
+/obj/effect/spawner/random/misc/table_parts,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "Fk" = (
@@ -1151,8 +1133,7 @@
 /area/bigredv2/outside/medical)
 "Hd" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating/dmg2,
@@ -1198,8 +1179,7 @@
 /area/bigredv2/outside/medical)
 "Ir" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/green/whitegreenfull,
@@ -1230,7 +1210,7 @@
 /area/bigredv2/outside/medical)
 "IV" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/item/tool/extinguisher,
+/obj/effect/spawner/random/engineering/extinguisher/regularweighted,
 /turf/open/floor/plating/dmg1,
 /area/bigredv2/outside/medical)
 "Jw" = (
@@ -1240,7 +1220,7 @@
 /area/bigredv2/outside/medical)
 "JV" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/item/frame/table,
+/obj/effect/spawner/random/misc/table_parts,
 /turf/open/floor/plating/dmg2,
 /area/bigredv2/outside/medical)
 "Km" = (
@@ -1284,8 +1264,7 @@
 /area/bigredv2/outside/medical)
 "Lp" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/machinery/door/airlock/mainship/medical/glass/free_access{
 	name = "\improper Medical Clinic Operating Theatre"
@@ -1311,7 +1290,7 @@
 /obj/structure/table,
 /obj/item/trash/burger,
 /obj/effect/decal/cleanable/dirt,
-/obj/item/frame/table,
+/obj/effect/spawner/random/misc/table_parts,
 /turf/open/floor/tile/green/whitegreen{
 	dir = 9
 	},
@@ -1349,8 +1328,7 @@
 /area/bigredv2/outside/medical)
 "Ni" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/item/stack/cable_coil/tiny,
@@ -1460,8 +1438,7 @@
 /area/bigredv2/outside/medical)
 "RS" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/effect/landmark/corpsespawner/doctor,
 /turf/open/floor/tile/white,
@@ -1480,7 +1457,7 @@
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "Su" = (
-/obj/item/frame/table,
+/obj/effect/spawner/random/misc/table_parts,
 /turf/open/floor/plating/dmg1,
 /area/bigredv2/outside/medical)
 "Sz" = (
@@ -1496,7 +1473,7 @@
 /area/bigredv2/outside/medical)
 "SC" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/item/frame/table,
+/obj/effect/spawner/random/misc/table_parts,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "SE" = (
@@ -1516,7 +1493,7 @@
 /turf/open/floor/tile/damaged/five,
 /area/bigredv2/outside/medical)
 "Tl" = (
-/obj/structure/window/framed/colony,
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /turf/open/floor/plating,
 /area/bigredv2/outside/medical)
 "Tt" = (
@@ -1549,8 +1526,7 @@
 /area/bigredv2/outside/medical)
 "Uu" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/item/stack/cable_coil/tiny,
@@ -1597,8 +1573,7 @@
 /area/bigredv2/outside/medical)
 "Wm" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/item/stack/sheet/metal{
 	amount = 1
@@ -1613,7 +1588,7 @@
 /area/bigredv2/outside/medical)
 "WC" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/item/frame/table,
+/obj/effect/spawner/random/misc/table_parts,
 /turf/open/floor/tile/purple/whitepurplecorner{
 	dir = 1
 	},
@@ -1625,8 +1600,7 @@
 /area/bigredv2/outside/medical)
 "WU" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/white,
@@ -1656,8 +1630,7 @@
 "XT" = (
 /obj/item/clothing/glasses/meson,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating/dmg1,

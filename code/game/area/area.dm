@@ -60,6 +60,9 @@
 	///Used to decide what the maximum time between ambience is
 	var/max_ambience_cooldown = 120 SECONDS
 
+	///Boolean to limit the areas (subtypes included) that atoms in this area can smooth with. Used for shuttles.
+	var/area_limited_icon_smoothing = FALSE
+
 /area/New()
 	// This interacts with the map loader, so it needs to be set immediately
 	// rather than waiting for atoms to initialize.
@@ -206,7 +209,7 @@
 	if(!(flags_alarm_state & ALARM_WARNING_FIRE))
 		flags_alarm_state |= ALARM_WARNING_FIRE
 		update_icon()
-		mouse_opacity = 0
+		mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 		for(var/obj/machinery/door/firedoor/D in all_fire_doors)
 			if(!D.blocked)
 				if(D.operating)
@@ -221,7 +224,7 @@
 /area/proc/firereset()
 	if(flags_alarm_state & ALARM_WARNING_FIRE)
 		flags_alarm_state &= ~ALARM_WARNING_FIRE
-		mouse_opacity = 0
+		mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 		update_icon()
 
 		for(var/obj/machinery/door/firedoor/D in all_fire_doors)

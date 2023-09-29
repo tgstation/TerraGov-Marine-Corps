@@ -47,6 +47,9 @@
 #define COOLDOWN_BIKE_FUEL_MESSAGE "cooldown_bikee_fuel_message"
 #define COOLDOWN_WRAITH_PORTAL_TELEPORTED "cooldown_wraith_portal_teleported"
 #define COOLDOWN_ITEM_TRICK "cooldown_item_trick"
+#define COOLDOWN_RAVAGER_FLAMER_ACT "cooldown_ravager_flamer_act"
+#define COOLDOWN_DROPPOD_TARGETTING "cooldown_droppod_targetting"
+#define COOLDOWN_TRY_TTS "cooldown_try_tts"
 
 //Mecha cooldowns
 #define COOLDOWN_MECHA "mecha"
@@ -95,7 +98,7 @@
 #define COMSIG_CD_STOP(cd_index) "cooldown_[cd_index]"
 #define COMSIG_CD_RESET(cd_index) "cd_reset_[cd_index]"
 
-#define TIMER_COOLDOWN_START(cd_source, cd_index, cd_time) LAZYSET(cd_source.cooldowns, cd_index, addtimer(CALLBACK(GLOBAL_PROC, /proc/end_cooldown, cd_source, cd_index), cd_time))
+#define TIMER_COOLDOWN_START(cd_source, cd_index, cd_time) LAZYSET(cd_source.cooldowns, cd_index, addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(end_cooldown), cd_source, cd_index), cd_time))
 
 #define TIMER_COOLDOWN_CHECK(cd_source, cd_index) LAZYACCESS(cd_source.cooldowns, cd_index)
 
@@ -108,7 +111,7 @@
  * A bit more expensive than the regular timers, but can be reset before they end and the time left can be checked.
  */
 
-#define S_TIMER_COOLDOWN_START(cd_source, cd_index, cd_time) LAZYSET(cd_source.cooldowns, cd_index, addtimer(CALLBACK(GLOBAL_PROC, /proc/end_cooldown, cd_source, cd_index), cd_time, TIMER_STOPPABLE))
+#define S_TIMER_COOLDOWN_START(cd_source, cd_index, cd_time) LAZYSET(cd_source.cooldowns, cd_index, addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(end_cooldown), cd_source, cd_index), cd_time, TIMER_STOPPABLE))
 
 #define S_TIMER_COOLDOWN_RESET(cd_source, cd_index) reset_cooldown(cd_source, cd_index)
 
@@ -130,3 +133,14 @@
 #define COOLDOWN_RESET(cd_source, cd_index) cd_source.cd_index = 0
 
 #define COOLDOWN_TIMELEFT(cd_source, cd_index) (max(0, cd_source.cd_index - world.time))
+
+//railgun cooldown define
+#define COOLDOWN_RAILGUN_FIRE 300 SECONDS
+
+//AI bioscan cooldown define
+#define COOLDOWN_AI_BIOSCAN 10 MINUTES
+
+//ping cooldown define
+#define COOLDOWN_AI_PING_NORMAL 45 SECONDS
+#define COOLDOWN_AI_PING_LOW 30 SECONDS
+#define COOLDOWN_AI_PING_EXTRA_LOW 15 SECONDS

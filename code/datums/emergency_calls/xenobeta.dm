@@ -12,7 +12,7 @@
 
 
 /datum/emergency_call/xenomorphs_beta/spawn_items()
-	var/turf/drop_spawn	= get_spawn_point(TRUE)
+	var/turf/drop_spawn = get_spawn_point(TRUE)
 	if(istype(drop_spawn))
 		new /obj/alien/weeds/node(drop_spawn) //Drop some weeds for xeno plasma regen.
 
@@ -33,18 +33,18 @@
 		return
 
 	if(prob(35))
-		. = new /mob/living/carbon/xenomorph/drone/elder/Beta(spawn_loc, TRUE)
+		. = new /mob/living/carbon/xenomorph/drone/Beta(spawn_loc, TRUE)
 		M.transfer_to(., TRUE)
 		print_backstory(.)
 		return
 
 	if(prob(35))
-		. = new /mob/living/carbon/xenomorph/spitter/mature/Beta(spawn_loc, TRUE)
+		. = new /mob/living/carbon/xenomorph/spitter/Beta(spawn_loc, TRUE)
 		M.transfer_to(., TRUE)
 		print_backstory(.)
 		return
 
-	. = new /mob/living/carbon/xenomorph/hunter/mature/Beta(spawn_loc, TRUE)
+	. = new /mob/living/carbon/xenomorph/hunter/Beta(spawn_loc, TRUE)
 	M.transfer_to(., TRUE)
 	print_backstory(.)
 

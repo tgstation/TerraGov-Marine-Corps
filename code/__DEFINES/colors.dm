@@ -22,6 +22,7 @@
 #define COLOR_ALMOST_BLACK "#333333"
 #define COLOR_BLACK "#000000"
 #define COLOR_HALF_TRANSPARENT_BLACK "#0000007A"
+#define COLOR_TRANSPARENT_SHADOW "#03020781"
 
 #define COLOR_RED "#FF0000"
 #define COLOR_MOSTLY_PURE_RED "#FF3300"
@@ -107,6 +108,17 @@
 #define COLOR_ASSEMBLY_BLUE "#38559E"
 #define COLOR_ASSEMBLY_PURPLE "#6F6192"
 
+//Color dedfines used by pill packets
+#define COLOR_PACKET_BICARIDINE "#FF0000"
+#define COLOR_PACKET_KELOTANE "#FFFF00"
+#define COLOR_PACKET_TRAMADOL "#675772"
+#define COLOR_PACKET_TRICORDRAZINE "#FFFFFF"
+#define COLOR_PACKET_DYLOVENE "#00FF00"
+#define COLOR_PACKET_PARACETAMOL "#65B4B1"
+#define COLOR_PACKET_ISOTONIC "#5c0e0e"
+#define COLOR_PACKET_LEPORAZINE "#0066FF"
+#define COLOR_PACKET_RUSSIAN_RED "#3d0000"
+#define COLOR_PACKET_RYETALYN "#AC6D32"
 
 /*
 Some defines to generalise colours used in lighting.
@@ -164,3 +176,19 @@ Important note: colors can end up significantly different from the basic html pi
 #define LIGHT_COLOR_TUNGSTEN "#FAE1AF"
 /// Barely visible cyan-ish hue, as the doctor prescribed. rgb(240, 250, 250)
 #define LIGHT_COLOR_HALOGEN "#F0FAFA"
+/// More bright and rich in color compared to lava. rgb(248, 136, 24)
+#define LIGHT_COLOR_FLAME "#F88818"
+/// Rich and bright blue. rgb(0, 183, 255)
+#define LIGHT_COLOR_BLUE_FLAME "#00b8ff"
+
+//Ammo and grenade colors
+#define COLOR_AMMO_AIRBURST "#2272eb"
+#define COLOR_AMMO_INCENDIARY "#fa7923"
+#define COLOR_AMMO_TACTICAL_SMOKE "#2F7B00"
+#define COLOR_AMMO_SMOKE "#0F98BD"
+#define COLOR_AMMO_TANGLEFOOT "#AA1FDC"
+#define COLOR_AMMO_RAZORBURN "#FBF236"
+#define COLOR_AMMO_HIGH_EXPLOSIVE "#b02323"
+
+//Campaign map lighting
+#define LIGHT_COLOR_PALE_GREEN "#ebffc6"

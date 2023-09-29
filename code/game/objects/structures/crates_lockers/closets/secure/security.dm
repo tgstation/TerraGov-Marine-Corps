@@ -23,7 +23,7 @@
 	new /obj/item/clothing/head/helmet/swat(src)
 	new /obj/item/clothing/shoes/brown(src)
 	new /obj/item/clothing/gloves/captain(src)
-	new /obj/item/clothing/suit/armor/captain(src)
+	new /obj/item/clothing/suit/space/captain(src)
 	new /obj/item/weapon/telebaton(src)
 	new /obj/item/clothing/under/dress/dress_cap(src)
 	new /obj/item/clothing/head/helmet/formalcaptain(src)

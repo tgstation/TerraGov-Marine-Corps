@@ -27,7 +27,7 @@
 
 /datum/buildmode_mode/area_edit/show_help(client/c)
 	to_chat(c, span_notice("***********************************************************"))
-	to_chat(c, span_notice("Left Mouse Button on obj/turf/mob  = Paint area"))
+	to_chat(c, span_notice("Left Mouse Button on obj/turf/mob = Paint area"))
 	to_chat(c, span_notice("Right Mouse Button on obj/turf/mob = Select area to paint"))
 	to_chat(c, span_notice("Right Mouse Button on buildmode button = Create new area"))
 	to_chat(c, span_notice("***********************************************************"))

@@ -58,7 +58,7 @@
 			return
 		loadout.equip_mob(dollie)
 		dollie.job = SSjob.name_occupations[loadout.job]
-		dollie.skills = getSkillsType(dollie.job.skills_type)
+		dollie.set_skills(getSkillsType(dollie.job.skills_type))
 		if(dollie.wear_id)
 			dollie.wear_id.registered_name = dollie.name
 			dollie.wear_id.assignment = dollie.job.title

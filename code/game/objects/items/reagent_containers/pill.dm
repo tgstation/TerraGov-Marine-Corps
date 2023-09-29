@@ -8,13 +8,14 @@
 	icon_state = "pill1"
 	item_state = "pill"
 	possible_transfer_amounts = null
+	amount_per_transfer_from_this = 15
 	init_reagent_flags = AMOUNT_SKILLCHECK
 	w_class = WEIGHT_CLASS_TINY
 	volume = 60
 	var/pill_desc = "An unknown pill." //the real description of the pill, shown when examined by a medically trained person
 	var/pill_id
 
-/obj/item/reagent_containers/pill/Initialize()
+/obj/item/reagent_containers/pill/Initialize(mapload)
 	. = ..()
 	if(icon_state == "pill1")
 		icon_state = pill_id ? GLOB.randomized_pill_icons[pill_id] : pick(GLOB.randomized_pill_icons)
@@ -35,6 +36,7 @@
 		to_chat(M, span_notice("You swallow [src]."))
 		M.dropItemToGround(src) //icon update
 		if(reagents.total_volume)
+			record_reagent_consumption(reagents.total_volume, reagents.reagent_list, user)
 			reagents.reaction(M, INGEST)
 			reagents.trans_to(M, reagents.total_volume)
 
@@ -50,7 +52,7 @@
 
 		user.visible_message(span_warning("[user] attempts to force [M] to swallow [src]."))
 
-		var/ingestion_time = max(1 SECONDS, 3 SECONDS - 1 SECONDS * user.skills.getRating("medical"))
+		var/ingestion_time = max(1 SECONDS, 3 SECONDS - 1 SECONDS * user.skills.getRating(SKILL_MEDICAL))
 
 		if(!do_mob(user, M, ingestion_time, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
 			return
@@ -63,6 +65,7 @@
 		log_combat(user, M, "fed", src, "Reagents: [rgt_list_text]")
 
 		if(reagents.total_volume)
+			record_reagent_consumption(reagents.total_volume, reagents.reagent_list, user, M)
 			reagents.reaction(M, INGEST)
 			reagents.trans_to(M, reagents.total_volume)
 			qdel(src)
@@ -160,7 +163,7 @@
 
 /obj/item/reagent_containers/pill/isotonic
 	pill_desc = "A pill with an isotonic solution inside. Used to stimulate blood regeneration."
-	list_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/iron = 6, /datum/reagent/consumable/sugar = 3)
+	list_reagents = list(/datum/reagent/medicine/saline_glucose = 15)
 	pill_id = 4
 
 /obj/item/reagent_containers/pill/inaprovaline

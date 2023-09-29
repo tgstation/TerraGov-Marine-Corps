@@ -22,7 +22,7 @@
 		item_in_hand = mob_parent.l_hand
 	if(!item_in_hand)
 		return
-	INVOKE_ASYNC(item_in_hand, /obj/item.proc/melee_attack_chain, mob_parent, attacked)
+	INVOKE_ASYNC(item_in_hand, TYPE_PROC_REF(/obj/item, melee_attack_chain), mob_parent, attacked)
 
 /datum/ai_behavior/xeno/zombie/try_to_heal()
 	return //Zombies don't need to do anything to heal

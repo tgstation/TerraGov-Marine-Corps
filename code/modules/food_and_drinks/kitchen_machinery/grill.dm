@@ -23,6 +23,7 @@
 
 /obj/machinery/grill/Destroy()
 	QDEL_NULL(grill_loop)
+	grilled_item = null
 	return ..()
 
 /obj/machinery/grill/update_icon_state()
@@ -44,9 +45,37 @@
 		S.use(stackamount)
 		update_icon()
 		return
+
+	if(grill_fuel <= 0)
+		to_chat(user, span_warning("No fuel!"))
+		return ..()
+
+	if(isgrabitem(I))
+		var/obj/item/grab/grab_item = I
+		if(!isliving(grab_item.grabbed_thing))
+			return
+		var/mob/living/living_victim = grab_item.grabbed_thing
+		if(user.grab_state < GRAB_AGGRESSIVE)
+			to_chat(user, span_warning("You need a better grip to do that!"))
+			return
+		if(user.do_actions)
+			return
+
+		user.visible_message(span_danger("[user] starts to press [living_victim] onto the [src]!"))
+
+		if(!do_after(user, 5, TRUE, living_victim, BUSY_ICON_DANGER) || QDELETED(src))
+			return
+
+		user.visible_message(span_danger("[user] slams [living_victim] onto the [src]!"))
+		living_victim.apply_damage(40, BURN, BODY_ZONE_HEAD, FIRE, updating_health = TRUE)
+		playsound(src, "sound/machines/grill/frying.ogg", 100, null, 9)
+		living_victim.emote("scream")
+		return
+
 	if(I.resistance_flags & INDESTRUCTIBLE)
 		to_chat(user, span_warning("You don't feel it would be wise to grill [I]..."))
 		return ..()
+
 	//else if(IS_EDIBLE(I))
 	else if(istype(I, /obj/item/reagent_containers/food))
 		if(I.flags_item & (ITEM_ABSTRACT|DELONDROP|NODROP))
@@ -59,7 +88,7 @@
 			return
 		else if(!grilled_item && user.transferItemToLoc(I, src))
 			grilled_item = I
-			RegisterSignal(grilled_item, COMSIG_GRILL_COMPLETED, .proc/GrillCompleted)
+			RegisterSignal(grilled_item, COMSIG_GRILL_COMPLETED, PROC_REF(GrillCompleted))
 			ADD_TRAIT(grilled_item, TRAIT_FOOD_GRILLED, "boomers")
 			to_chat(user, span_notice("You put the [grilled_item] on [src]."))
 			update_icon()
@@ -67,7 +96,7 @@
 
 			return
 
-	..()
+	return ..()
 
 /obj/machinery/grill/process(delta_time)
 	..()
@@ -92,9 +121,6 @@
 		grilled_item = null
 	return ..()
 
-/obj/machinery/grill/Destroy()
-	grilled_item = null
-	return ..()
 
 /obj/machinery/grill/handle_atom_del(atom/A)
 	if(A == grilled_item)

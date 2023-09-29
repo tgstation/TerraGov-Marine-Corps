@@ -85,6 +85,8 @@
 #define TABLE_LAYER 2.8
 #define ABOVE_TABLE_LAYER 2.81
 
+#define TRACKING_FLUID_LAYER 2.84
+
 #define DOOR_OPEN_LAYER 2.85	//Under all objects if opened. 2.85 due to tables being at 2.8
 
 #define DOOR_HELPER_LAYER 2.86 //keep this above OPEN_DOOR_LAYER
@@ -122,6 +124,9 @@
 #define RIVER_OVERLAY_LAYER 4.01
 
 #define ABOVE_MOB_LAYER 4.1
+
+///for platform corner structures
+#define ABOVE_MOB_PLATFORM_LAYER 4.11
 
 #define TANK_BARREL_LAYER 4.2
 

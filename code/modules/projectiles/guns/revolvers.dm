@@ -12,12 +12,12 @@
 	hand_reload_sound = 'sound/weapons/guns/interact/revolver_load.ogg'
 	type_of_casings = "bullet"
 	load_method = SINGLE_CASING|SPEEDLOADER //codex
-	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_NO_PITCH_SHIFT_NEAR_EMPTY
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_NO_PITCH_SHIFT_NEAR_EMPTY|GUN_SMOKE_PARTICLES
 	actions_types = list(/datum/action/item_action/aim_mode)
 	aim_speed_modifier = 0.75
 	aim_fire_delay = 0.25 SECONDS
 	wield_delay = 0.2 SECONDS //If you modify your revolver to be two-handed, it will still be fast to aim
-	gun_skill_category = GUN_SKILL_PISTOLS
+	gun_skill_category = SKILL_PISTOLS
 
 	reciever_flags = AMMO_RECIEVER_HANDFULS|AMMO_RECIEVER_ROTATES_CHAMBER|AMMO_RECIEVER_TOGGLES_OPEN|AMMO_RECIEVER_TOGGLES_OPEN_EJECTS
 	max_chamber_items = 7
@@ -26,9 +26,9 @@
 	movement_acc_penalty_mult = 3
 	fire_delay = 2
 	accuracy_mult_unwielded = 0.85
-	scatter_unwielded = 25
-	recoil = 2
-	recoil_unwielded = 3
+	scatter_unwielded = 15
+	recoil = 0
+	recoil_unwielded = 1
 
 	placed_overlay_iconstate = "revolver"
 
@@ -62,7 +62,8 @@
 	desc = "The R-44 standard combat revolver, produced by Terran Armories. A sturdy and hard hitting firearm that loads .44 Magnum rounds. Holds 7 rounds in the cylinder. Due to an error in the cylinder rotation system the fire rate of the gun is much faster than intended, it ended up being billed as a feature of the system."
 	icon_state = "tp44"
 	item_state = "tp44"
-	caliber =  CALIBER_44 //codex
+	fire_sound = 'sound/weapons/guns/fire/tgmc/kinetic/gun_r44.ogg'
+	caliber = CALIBER_44 //codex
 	max_chamber_items = 7 //codex
 	default_ammo_type = /obj/item/ammo_magazine/revolver/standard_revolver
 	allowed_ammo_types = list(/obj/item/ammo_magazine/revolver/standard_revolver)
@@ -85,9 +86,7 @@
 	akimbo_additional_delay = 0.6 // Ends up as 0.249, so it'll get moved up to 0.25.
 	accuracy_mult_unwielded = 0.85
 	accuracy_mult = 1
-	scatter_unwielded = 15
 	scatter = -1
-	recoil = 0
 	recoil_unwielded = 0.75
 
 /obj/item/weapon/gun/revolver/standard_revolver/Initialize(mapload, spawn_empty)
@@ -121,7 +120,7 @@
 	attachable_offset = list("muzzle_x" = 28, "muzzle_y" = 21,"rail_x" = 14, "rail_y" = 23, "under_x" = 24, "under_y" = 19, "stock_x" = 24, "stock_y" = 19)
 
 	damage_mult = 1.05
-	recoil = 0
+	scatter_unwielded = 12
 	recoil_unwielded = 0
 
 
@@ -151,8 +150,6 @@
 	)
 	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 19,"rail_x" = 12, "rail_y" = 21, "under_x" = 20, "under_y" = 15, "stock_x" = 20, "stock_y" = 15)
 
-	scatter_unwielded = 20
-	recoil = 0
 	recoil_unwielded = 0
 
 
@@ -184,14 +181,14 @@
 		/obj/item/attachable/shoulder_mount,
 	)
 
-	attachable_offset = list("muzzle_x" = 20, "muzzle_y" = 18,"rail_x" = 16, "rail_y" = 21, "under_x" = 22, "under_y" = 15, "stock_x" = 22, "stock_y" = 15)
+	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 19,"rail_x" = 8, "rail_y" = 23, "under_x" = 24, "under_y" = 15, "stock_x" = 22, "stock_y" = 15)
 
 	fire_delay = 0.2 SECONDS
 	aim_fire_delay = 0.3 SECONDS
-	recoil = 0
-	accuracy_mult = 1.1
+	accuracy_mult = 1.15
 	scatter = 0
-	accuracy_mult_unwielded = 0.6
+	accuracy_mult_unwielded = 0.8
+	akimbo_additional_delay = 0.9 // Akimbo only gives more shots.
 	scatter_unwielded = 7
 
 /obj/item/weapon/gun/revolver/mateba/notmarine
@@ -231,9 +228,9 @@
 	attachable_offset = list("muzzle_x" = 29, "muzzle_y" = 22,"rail_x" = 11, "rail_y" = 25, "under_x" = 20, "under_y" = 18, "stock_x" = 20, "stock_y" = 18)
 
 	fire_delay = 0.15 SECONDS
+	scatter_unwielded = 12
 	burst_amount = 3
 	burst_delay = 0.1 SECONDS
-	scatter_unwielded = 20
 	damage_mult = 1.05
 
 //-------------------------------------------------------
@@ -261,7 +258,6 @@
 		/obj/item/attachable/quickfire,
 		/obj/item/attachable/extended_barrel,
 		/obj/item/attachable/compensator,
-		/obj/item/attachable/stock/revolver,
 		/obj/item/attachable/scope,
 		/obj/item/attachable/lasersight,
 		/obj/item/attachable/scope/mini,
@@ -270,10 +266,86 @@
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 22,"rail_x" = 17, "rail_y" = 22, "under_x" = 22, "under_y" = 17, "stock_x" = 22, "stock_y" = 19)
 
 	fire_delay = 0.35 SECONDS
-	recoil = 0
 	scatter = 8 // Only affects buckshot considering marksman has -15 scatter.
 	damage_falloff_mult = 1.2
 
+//-------------------------------------------------------
+// The R-76 Magnum. Fires a big round, equal to a slug. Has a windup.
+
+/obj/item/weapon/gun/revolver/standard_magnum
+	name = "\improper R-76 KC magnum"
+	desc = "The R-76 magnum is an absolute beast of a handgun used by the TGMC, rumors say it was created as a money laundering scheme by some general due to the sheer inpracticality of this firearm. Hits hard, recommended to be used with its stock attachment. Chambered in 12.7mm."
+	icon = 'icons/Marine/gun64.dmi'
+	icon_state = "t76"
+	item_state = "t76"
+	fire_animation = "t76_fire"
+	caliber = CALIBER_12x7 //codex
+	max_chamber_items = 5 //codex
+	default_ammo_type = /obj/item/ammo_magazine/revolver/standard_magnum
+	allowed_ammo_types = list(/obj/item/ammo_magazine/revolver/standard_magnum)
+	force = 8
+	actions_types = null
+	attachable_allowed = list(
+		/obj/item/attachable/bayonet,
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/heavy_barrel,
+		/obj/item/attachable/extended_barrel,
+		/obj/item/attachable/lasersight,
+		/obj/item/attachable/lace,
+		/obj/item/attachable/shoulder_mount,
+		/obj/item/attachable/stock/t76,
+		/obj/item/attachable/scope/standard_magnum,
+	)
+	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 19,"rail_x" = 15, "rail_y" = 23, "under_x" = 22, "under_y" = 15, "stock_x" = 10, "stock_y" = 18)
+	windup_delay = 0.5 SECONDS
+	aim_slowdown = 0.1
+	windup_sound = 'sound/weapons/guns/fire/t76_start.ogg'
+	fire_sound = 'sound/weapons/guns/fire/tgmc/kinetic/gun_r76.ogg'
+	fire_delay = 0.75 SECONDS
+	akimbo_additional_delay = 0.6
+	accuracy_mult_unwielded = 0.85
+	accuracy_mult = 1
+	scatter_unwielded = 5
+	scatter = 2
+	recoil = 2
+	recoil_unwielded = 3
+
+	starting_attachment_types = list(/obj/item/attachable/stock/t76)
+
+/obj/item/weapon/gun/revolver/standard_magnum/fancy
+	starting_attachment_types = list()
+	attachable_allowed = list(
+		/obj/item/attachable/bayonet,
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/heavy_barrel,
+		/obj/item/attachable/extended_barrel,
+		/obj/item/attachable/lasersight,
+		/obj/item/attachable/lace,
+		/obj/item/attachable/shoulder_mount,
+		/obj/item/attachable/stock/t76,
+		/obj/item/attachable/scope/standard_magnum,
+		/obj/item/attachable/compensator,
+	)
+
+/obj/item/weapon/gun/revolver/standard_magnum/fancy/gold
+	desc = "A gold plated R-76 magnum, to ensure it's incredibly expensive as well as incredibly impractical. The R-76 magnum is an absolute beast of a handgun used by the TGMC, rumors say it was created as a money laundering scheme by some general due to the sheer inpracticality of this firearm. Hits hard, recommended to be used with its stock attachment. Chambered in 12.7mm."
+	icon_state = "g_t76"
+	item_state = "g_t76"
+	fire_animation = "g_t76_fire"
+
+/obj/item/weapon/gun/revolver/standard_magnum/fancy/silver
+	desc = "A silver plated R-76 magnum, to ensure it's incredibly expensive as well as incredibly impractical. The R-76 magnum is an absolute beast of a handgun used by the TGMC, rumors say it was created as a money laundering scheme by some general due to the sheer inpracticality of this firearm. Hits hard, recommended to be used with its stock attachment. Chambered in 12.7mm."
+	icon_state = "s_t76"
+	item_state = "s_t76"
+	fire_animation = "s_t76_fire"
+
+/obj/item/weapon/gun/revolver/standard_magnum/fancy/nickle
+	desc = "A nickle plated R-76 magnum, for a more tasteful finish. The R-76 magnum is an absolute beast of a handgun used by the TGMC, rumors say it was created as a money laundering scheme by some general due to the sheer inpracticality of this firearm. Hits hard, recommended to be used with its stock attachment. Chambered in 12.7mm."
+	icon_state = "n_t76"
+	item_state = "n_t76"
+	fire_animation = "n_t76_fire"
 
 //Single action revolvers below
 //---------------------------------------------------
@@ -302,7 +374,7 @@
 	caliber = CALIBER_44 //codex
 	max_chamber_items = 6
 	default_ammo_type = /obj/item/ammo_magazine/revolver
-	allowed_ammo_types = list(/obj/item/ammo_magazine/revolver)
+	allowed_ammo_types = list(/obj/item/ammo_magazine/revolver, /obj/item/ammo_magazine/revolver/marksman, /obj/item/ammo_magazine/revolver/heavy)
 	force = 8
 	attachable_allowed = list(
 		/obj/item/attachable/bayonet,
@@ -312,7 +384,6 @@
 		/obj/item/attachable/quickfire,
 		/obj/item/attachable/extended_barrel,
 		/obj/item/attachable/compensator,
-		/obj/item/attachable/stock/revolver,
 		/obj/item/attachable/scope,
 		/obj/item/attachable/lasersight,
 		/obj/item/attachable/scope/mini,
@@ -321,3 +392,4 @@
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 22,"rail_x" = 17, "rail_y" = 22, "under_x" = 22, "under_y" = 17, "stock_x" = 22, "stock_y" = 19)
 
 	fire_delay = 0.15 SECONDS
+	damage_mult = 1.1

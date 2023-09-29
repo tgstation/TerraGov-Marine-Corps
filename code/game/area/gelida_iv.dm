@@ -16,6 +16,7 @@
 	icon_state = "cliff_blocked" //because this is a PARENT TYPE and you should not be using it and should also be changing the icon!!!
 	ceiling = CEILING_NONE
 	outside = TRUE
+	always_unpowered = TRUE
 
 /area/gelida/oob
 	name = "gelida - Out Of Bounds"
@@ -66,7 +67,7 @@
 /area/gelida/landing_zone_forecon
 	name = "Gelida IV - FORECON Shuttle"
 	icon_state = "shuttle"
-	ceiling =  CEILING_METAL
+	ceiling = CEILING_METAL
 	requires_power = FALSE
 
 /area/gelida/landing_zone_forecon/landing_zone_3
@@ -81,9 +82,13 @@
 
 /area/gelida/landing_zone_forecon/UD6_Typhoon
 	name = "Gelida IV - UD6 Typhoon"
+	outside = FALSE
+	ceiling = CEILING_METAL
 
 /area/gelida/landing_zone_forecon/UD6_Tornado
 	name = "Gelida IV - UD6 Tornado"
+	outside = FALSE
+	ceiling = CEILING_METAL
 
 //Outdoors areas
 /area/gelida/outdoors/colony_streets //WHY IS THIS A SUBTYPE OF BUILDINGS AAAARGGHGHHHH YOU DIDN'T EVEN USE OBJECT INHERITANCE FOR THE CIELINGS I HATE YOU BOBBY
@@ -158,14 +163,17 @@
 	name = "East LZ1 - Outdoor Botony"
 	icon_state = "yellow"
 	ceiling = CEILING_GLASS
+	minimap_color = MINIMAP_AREA_LIVING
 
 /area/gelida/indoors/lone_buildings/storage_blocks
 	name = "Outdoor Storage"
 	icon_state = "blue"
+	minimap_color = MINIMAP_AREA_REQ
 
 /area/gelida/indoors/lone_buildings/chunk
 	name = "Chunk 'N Dump"
 	icon_state = "blue"
+	minimap_color = MINIMAP_AREA_LIVING
 
 //A Block
 /area/gelida/indoors/a_block
@@ -182,10 +190,12 @@
 /area/gelida/indoors/a_block/dorms
 	name = "A-Block - Western Dorms And Offices"
 	icon_state = "fitness"
+	minimap_color = MINIMAP_AREA_LIVING
 
 /area/gelida/indoors/a_block/fitness
 	name = "A-Block - Fitness Centre"
 	icon_state = "fitness"
+	minimap_color = MINIMAP_AREA_LIVING
 
 /area/gelida/indoors/a_block/hallway
 	name = "A-Block - South Operations Hallway"
@@ -199,7 +209,7 @@
 /area/gelida/indoors/a_block/medical
 	name = "A-Block - Medical"
 	icon_state = "medbay"
-	ceiling =  CEILING_GLASS
+	ceiling = CEILING_GLASS
 	minimap_color = MINIMAP_AREA_MEDBAY
 
 /area/gelida/indoors/a_block/security
@@ -211,15 +221,18 @@
 	name = "A-Block - Kitchen And Dining"
 	icon_state = "kitchen"
 	ceiling = CEILING_GLASS
+	minimap_color = MINIMAP_AREA_LIVING
 
 /area/gelida/indoors/a_block/executive
 	name = "A-Block - Executive Suite"
 	icon_state = "captain"
 	ceiling = CEILING_GLASS
+	minimap_color = MINIMAP_AREA_COMMAND
 
 /area/gelida/indoors/a_block/dorm_north
 	name = "A-Block - Northen Shared Dorms"
 	icon_state = "fitness"
+	minimap_color = MINIMAP_AREA_LIVING
 
 /area/gelida/indoors/a_block/bridges
 	name = "A-Block - Western Dorms To Security Bridge"
@@ -257,20 +270,23 @@
 	name = "A-Block - West Operations Garden"
 	icon_state = "green"
 	ceiling = CEILING_GLASS
+	minimap_color = MINIMAP_AREA_LIVING
 //B Block
 
 /area/gelida/indoors/b_block
 	name = "B-Block"
 	icon_state = "red"
-	ceiling =  CEILING_METAL
+	ceiling = CEILING_METAL
 
 /area/gelida/indoors/b_block/hydro
 	name = "B-Block - Hydroponics"
 	icon_state = "hydro"
+	minimap_color = MINIMAP_AREA_LIVING
 
 /area/gelida/indoors/b_block/bar
 	name = "B-Block - Bar"
 	icon_state = "cafeteria"
+	minimap_color = MINIMAP_AREA_LIVING
 
 /area/gelida/indoors/b_block/bridge
 	name = "B-Block - Hydroponics Bridge Network"
@@ -286,19 +302,22 @@
 /area/gelida/indoors/c_block/cargo
 	name = "C-Block - Cargo"
 	icon_state = "primarystorage"
-	minimap_color = MINIMAP_AREA_ENGI
+	minimap_color = MINIMAP_AREA_REQ
 
 /area/gelida/indoors/c_block/mining
 	name = "C-Block - Mining"
 	icon_state = "yellow"
+	minimap_color = MINIMAP_AREA_REQ
 
 /area/gelida/indoors/c_block/garage
 	name = "C-Block - Garage"
 	icon_state = "storage"
+	minimap_color = MINIMAP_AREA_REQ
 
 /area/gelida/indoors/c_block/casino
 	name = "C-Block - Casino"
 	icon_state = "purple"
+	minimap_color = MINIMAP_AREA_LIVING
 
 /area/gelida/indoors/c_block/bridge
 	name = "C-Block - Cargo To Garage Bridge"
@@ -318,6 +337,8 @@
 /area/gelida/outdoors/w_rockies
 	name = "West Colony - Rockies"
 	icon_state = "away2"
+	ceiling = CEILING_UNDERGROUND
+	always_unpowered = TRUE
 
 /area/gelida/outdoors/p_n_rockies
 	name = "North Processor - Rockies"
@@ -341,17 +362,20 @@
 	outside = FALSE
 	ceiling = CEILING_DEEP_UNDERGROUND
 	minimap_color = MINIMAP_AREA_CAVES
+	always_unpowered = TRUE
 
 //ATMOS
 /area/gelida/atmos
 	name = "Atmospheric Processor"
 	icon_state = "engineering"
 	ceiling = CEILING_METAL
+	minimap_color = MINIMAP_AREA_ENGI
 
 /area/gelida/atmos/outdoor
 	name = "Atmospheric Processor - Outdoors"
 	icon_state = "quart"
 	ceiling = CEILING_NONE
+	minimap_color = NONE
 
 /area/gelida/atmos/east_reactor
 	name = "Atmospheric Processor - Eastern Reactor"
@@ -379,7 +403,7 @@
 /area/gelida/atmos/cargo_intake
 	name = "Atmospheric Processor - Cargo Intake"
 	icon_state = "yellow"
-	minimap_color = MINIMAP_AREA_ENGI
+	minimap_color = MINIMAP_AREA_REQ
 
 /area/gelida/atmos/command_centre
 	name = "Atmospheric Processor - Central Command"
@@ -393,19 +417,46 @@
 	name = "Atmospheric Processor - Filtration System"
 	icon_state = "mechbay"
 
+/area/gelida/powergen
+	name = "Underground Power Generation"
+	icon_state = "ass_line"
+	ceiling = CEILING_DEEP_UNDERGROUND
+	minimap_color = MINIMAP_AREA_ENGI_CAVE
+	outside = FALSE
+
+/area/gelida/powergen/garbledradio
+	ceiling = CEILING_UNDERGROUND
+
+/area/gelida/cavestructuretwo
+	name = "Underground Abandoned Structure"
+	icon_state = "garage"
+	ceiling = CEILING_DEEP_UNDERGROUND
+	minimap_color = MINIMAP_AREA_CAVES
+	outside = FALSE
+
 /area/gelida/caves
 	outside = FALSE
 	ceiling = CEILING_DEEP_UNDERGROUND
 	minimap_color = MINIMAP_AREA_CAVES
+	always_unpowered = TRUE
 
 /area/gelida/caves/west_caves
 	name = "Western Caves"
 	icon_state = "yellow"
 
+/area/gelida/caves/west_caves/garbledradio
+	ceiling = CEILING_UNDERGROUND
+
 /area/gelida/caves/central_caves
 	name = "Central Caves"
 	icon_state = "purple"
 
+/area/gelida/caves/central_caves/garbledradio
+	ceiling = CEILING_UNDERGROUND
+
 /area/gelida/caves/east_caves
 	name = "Eastern Caves"
 	icon_state = "blue-red"
+
+/area/gelida/caves/east_caves/garbledradio
+	ceiling = CEILING_UNDERGROUND

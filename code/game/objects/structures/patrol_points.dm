@@ -11,7 +11,7 @@
 	///The linked exit point
 	var/obj/effect/landmark/patrol_point/linked_point = null
 
-/obj/structure/patrol_point/Initialize()
+/obj/structure/patrol_point/Initialize(mapload)
 	..()
 
 	return INITIALIZE_HINT_LATELOAD
@@ -25,7 +25,7 @@
 	for(var/obj/effect/landmark/patrol_point/exit_point AS in GLOB.patrol_point_list)
 		if(exit_point.id == id)
 			linked_point = exit_point
-			RegisterSignal(linked_point, COMSIG_PARENT_QDELETING, .proc/delete_link)
+			RegisterSignal(linked_point, COMSIG_QDELETING, PROC_REF(delete_link))
 			return
 
 ///Removes the linked patrol exist point
@@ -39,16 +39,39 @@
 		return
 	if(user.incapacitated() || !Adjacent(user) || user.lying_angle || user.buckled || user.anchored)
 		return
+
+	activate_point(user)
+
+/obj/structure/patrol_point/mech_melee_attack(obj/vehicle/sealed/mecha/mecha_attacker, mob/living/user)
+	SHOULD_CALL_PARENT(FALSE)
+	if(!Adjacent(user))
+		return
+	activate_point(user, mecha_attacker)
+
+///Handles sending someone and/or something through the patrol_point
+/obj/structure/patrol_point/proc/activate_point(mob/living/user, obj/obj_mover)
+	if(!user && !obj_mover)
+		return
 	if(!linked_point)
 		create_link()
 		if(!linked_point)
 			//Link your stuff bro. There may be a better way to do this, but the way modular map insert works, linking does not properly happen during initialisation
-			to_chat(user, span_warning("This doesn't seem to go anywhere."))
+			if(user)
+				to_chat(user, span_warning("This doesn't seem to go anywhere."))
 			return
-	user.visible_message(span_notice("[user] goes through the [src]."),
-	span_notice("You walk through the [src]."))
-	user.trainteleport(linked_point.loc)
+
+	if(obj_mover)
+		obj_mover.forceMove(linked_point.loc)
+	else if(user) //this is mainly configured under the assumption that we only have both an obj and a user if its a manned mech going through
+		user.visible_message(span_notice("[user] goes through the [src]."),
+		span_notice("You walk through the [src]."))
+		user.trainteleport(linked_point.loc)
+		add_spawn_protection(user)
+
 	new /atom/movable/effect/rappel_rope(linked_point.loc)
+
+	if(!user)
+		return
 	user.playsound_local(user, "sound/effects/CIC_order.ogg", 10, 1)
 	var/message
 	if(issensorcapturegamemode(SSticker.mode))
@@ -65,14 +88,22 @@
 		user.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>OVERWATCH</u></span><br>" + message, /atom/movable/screen/text/screen_text/picture/potrait)
 	else
 		user.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>OVERWATCH</u></span><br>" + message, /atom/movable/screen/text/screen_text/picture/potrait/som_over)
-	update_icon()
 
 /obj/structure/patrol_point/attack_ghost(mob/dead/observer/user)
 	. = ..()
 	if(. || !linked_point)
 		return
 
-	user.forceMove(get_turf(linked_point))
+	user.forceMove(linked_point.loc)
+
+///Temporarily applies godmode to prevent spawn camping
+/obj/structure/patrol_point/proc/add_spawn_protection(mob/user)
+	user.status_flags |= GODMODE
+	addtimer(CALLBACK(src, PROC_REF(remove_spawn_protection), user), 10 SECONDS)
+
+///Removes spawn protection godmode
+/obj/structure/patrol_point/proc/remove_spawn_protection(mob/user)
+	user.status_flags &= ~GODMODE
 
 /atom/movable/effect/rappel_rope
 	name = "rope"
@@ -83,7 +114,7 @@
 	resistance_flags = RESIST_ALL
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
-/atom/movable/effect/rappel_rope/Initialize()
+/atom/movable/effect/rappel_rope/Initialize(mapload)
 	. = ..()
 	playsound(loc, 'sound/effects/rappel.ogg', 50, TRUE, falloff = 2)
 	playsound(loc, 'sound/effects/tadpolehovering.ogg', 100, TRUE, falloff = 2.5)
@@ -92,7 +123,7 @@
 
 /atom/movable/effect/rappel_rope/proc/ropeanimation()
 	flick("rope_deploy", src)
-	addtimer(CALLBACK(src, .proc/ropeanimation_stop), 2 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(ropeanimation_stop)), 2 SECONDS)
 
 /atom/movable/effect/rappel_rope/proc/ropeanimation_stop()
 	flick("rope_up", src)

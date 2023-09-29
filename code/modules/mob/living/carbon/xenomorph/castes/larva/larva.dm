@@ -2,13 +2,15 @@
 	caste_base_type = /mob/living/carbon/xenomorph/larva
 	speak_emote = list("hisses")
 	icon_state = "Bloody Larva"
+	bubble_icon = "alien"
 
 	a_intent = INTENT_HELP //Forces help intent for all interactions.
 
 	maxHealth = 35
 	health = 35
 	see_in_dark = 8
-	flags_pass = PASSTABLE | PASSMOB | PASSXENO
+	allow_pass_flags = PASS_MOB|PASS_XENO
+	pass_flags = PASS_LOW_STRUCTURE|PASS_MOB|PASS_XENO
 	tier = XENO_TIER_ZERO  //Larva's don't count towards Pop limits
 	upgrade = XENO_UPGRADE_INVALID
 	gib_chance = 25
@@ -17,7 +19,11 @@
 		/mob/living/carbon/xenomorph/proc/vent_crawl,
 	)
 
-	var/base_icon_state = "Larva"
+	base_icon_state = "Larva"
+
+/mob/living/carbon/xenomorph/larva/Initialize(mapload)
+	. = ..()
+	ADD_TRAIT(src, TRAIT_SILENT_FOOTSTEPS, XENO_TRAIT)
 
 // ***************************************
 // *********** Mob overrides

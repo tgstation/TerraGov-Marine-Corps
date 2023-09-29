@@ -79,10 +79,16 @@
 	icon_state = "red"
 	ambience = list('sound/ambience/ambimine.ogg','sound/ambience/ambigen10.ogg','sound/ambience/ambigen4.ogg','sound/ambience/ambisin4.ogg')
 
+/area/lv624/ground/sand2/garbledradio
+	ceiling = CEILING_UNDERGROUND
+
 /area/lv624/ground/sand3
 	name = "\improper Eastern Barrens"
 	icon_state = "east"
 	ambience = list('sound/ambience/ambimine.ogg','sound/ambience/ambigen10.ogg','sound/ambience/ambigen4.ogg','sound/ambience/ambisin4.ogg')
+
+/area/lv624/ground/sand3/garbledradio
+	ceiling = CEILING_UNDERGROUND
 
 /area/lv624/ground/sand4
 	name = "\improper North Western Barrens"
@@ -99,10 +105,16 @@
 	icon_state = "northeast"
 	ambience = list('sound/ambience/ambimine.ogg','sound/ambience/ambigen10.ogg','sound/ambience/ambigen4.ogg','sound/ambience/ambisin4.ogg')
 
+/area/lv624/ground/sand6/garbledradio
+	ceiling = CEILING_UNDERGROUND
+
 /area/lv624/ground/sand7
 	name = "\improper South Western Barrens"
 	icon_state = "southwest"
 	ambience = list('sound/ambience/ambimine.ogg','sound/ambience/ambigen10.ogg','sound/ambience/ambigen4.ogg','sound/ambience/ambisin4.ogg')
+
+/area/lv624/ground/sand7/garbledradio
+	ceiling = CEILING_UNDERGROUND
 
 /area/lv624/ground/sand8
 	name = "\improper South Central Barrens"
@@ -138,6 +150,7 @@
 	name = "\improper Filtration Plant"
 	icon_state = "green"
 	outside = FALSE
+	minimap_color = MINIMAP_AREA_ENGI
 
 /area/lv624/ground/compound
 	name = "\improper Nanotrasen Compound"
@@ -205,9 +218,15 @@
 	name = "Eastern Caves"
 	icon_state = "away"
 
+/area/lv624/ground/caves/east1/garbledradio
+	ceiling = CEILING_UNDERGROUND
+
 /area/lv624/ground/caves/central1
 	name = "Central Caves"
 	icon_state = "away4" //meh
+
+/area/lv624/ground/caves/central1/garbledradio
+	ceiling = CEILING_UNDERGROUND
 
 /area/lv624/ground/caves/central2
 	name = "Central Caves"
@@ -225,13 +244,22 @@
 	name = "South Central Caves"
 	icon_state = "away2"
 
+/area/lv624/ground/caves/central3/garbledradio
+	ceiling = CEILING_UNDERGROUND
+
 /area/lv624/ground/caves/central5
 	name = "South Western Central Caves"
 	icon_state = "purple"
 
+/area/lv624/ground/caves/central5/garbledradio
+	ceiling = CEILING_UNDERGROUND
+
 /area/lv624/ground/caves/central4
 	name = "South Western Caves"
 	icon_state = "yellow"
+
+/area/lv624/ground/caves/central4/garbledradio
+	ceiling = CEILING_UNDERGROUND
 
 //Lazarus landing
 /area/lv624/lazarus
@@ -283,14 +311,17 @@
 /area/lv624/lazarus/hop
 	name = "\improper Head of Personnel's Office"
 	icon_state = "head_quarters"
+	minimap_color = MINIMAP_AREA_COMMAND
 
 /area/lv624/lazarus/kitchen
 	name = "\improper Kitchen"
 	icon_state = "kitchen"
+	minimap_color = MINIMAP_AREA_LIVING
 
 /area/lv624/lazarus/canteen
 	name = "\improper Canteen"
 	icon_state = "cafeteria"
+	minimap_color = MINIMAP_AREA_LIVING
 
 /area/lv624/lazarus/main_hall
 	name = "\improper Main Hallway"
@@ -303,36 +334,49 @@
 /area/lv624/lazarus/toilet
 	name = "\improper Dormitory Toilet"
 	icon_state = "toilet"
+	minimap_color = MINIMAP_AREA_LIVING
 
 /area/lv624/lazarus/chapel
 	name = "\improper Chapel"
 	icon_state = "chapel"
+	minimap_color = MINIMAP_AREA_LIVING
 	ambience = list('sound/ambience/ambicha1.ogg','sound/ambience/ambicha2.ogg','sound/ambience/ambicha3.ogg','sound/ambience/ambicha4.ogg')
 
 /area/lv624/lazarus/toilet
 	name = "\improper Dormitory Toilet"
 	icon_state = "toilet"
+	minimap_color = MINIMAP_AREA_LIVING
 
 /area/lv624/lazarus/sleep_male
 	name = "\improper Male Dorm"
 	icon_state = "Sleep"
+	minimap_color = MINIMAP_AREA_LIVING
 
 /area/lv624/lazarus/sleep_female
 	name = "\improper Female Dorm"
 	icon_state = "Sleep"
+	minimap_color = MINIMAP_AREA_LIVING
 
 /area/lv624/lazarus/quart
 	name = "\improper Quartermasters"
 	icon_state = "quart"
+	minimap_color = MINIMAP_AREA_REQ
 
 /area/lv624/lazarus/quartstorage
 	name = "\improper Cargo Bay"
 	icon_state = "quartstorage"
+	minimap_color = MINIMAP_AREA_REQ
+
+/area/lv624/lazarus/quartstorage/dome
+
+/area/lv624/lazarus/quartstorage/two
 
 /area/lv624/lazarus/quartstorage/outdoors
 	name = "\improper Cargo Bay Area"
 	icon_state = "purple"
 	ceiling = CEILING_NONE
+	minimap_color = MINIMAP_AREA_COLONY
+	always_unpowered = TRUE
 
 /area/lv624/lazarus/engineering
 	name = "\improper Engineering"
@@ -359,20 +403,26 @@
 /area/lv624/lazarus/robotics
 	name = "\improper Robotics"
 	icon_state = "ass_line"
+	minimap_color = MINIMAP_AREA_ENGI
 
 /area/lv624/lazarus/research
 	name = "\improper Research Lab"
 	icon_state = "toxlab"
 	minimap_color = MINIMAP_AREA_RESEARCH
 
+/area/lv624/lazarus/research/caves
+	ceiling = CEILING_DEEP_UNDERGROUND
+
 /area/lv624/lazarus/fitness
 	name = "\improper Fitness Room"
 	icon_state = "fitness"
+	minimap_color = MINIMAP_AREA_LIVING
 
 /area/lv624/lazarus/hydroponics
 	name = "\improper Hydroponics"
 	icon_state = "hydro"
 	ceiling = CEILING_GLASS
+	minimap_color = MINIMAP_AREA_LIVING
 
 /area/lv624/lazarus/hydroponics/aux
 	name = "\improper Auxillary Hydroponics"
@@ -387,12 +437,16 @@
 	icon_state = "construction"
 	ceiling = CEILING_NONE
 	outside = TRUE
-	always_unpowered = TRUE
 
 /area/lv624/lazarus/sandtemple
 	name = "\improper Mysterious Temple"
 	icon_state = "sandtemple"
 	ceiling = CEILING_DEEP_UNDERGROUND
+	always_unpowered = TRUE
+
+/area/lv624/lazarus/sandtemple/garbledradio
+	ceiling = CEILING_UNDERGROUND
+	always_unpowered = FALSE
 
 /area/lv624/lazarus/sandtemple/sideroom //needed to allow nuke generator within temple to function
 	name = "\improper Mysterious Temple"
@@ -403,12 +457,17 @@
 	name = "\improper Table Fort"
 	icon_state = "tablefort"
 	always_unpowered = TRUE
+	outside = FALSE
 
 /area/lv624/lazarus/crashed_ship
 	name = "\improper Crashed Ship"
 	icon_state = "shuttlered"
-	ceiling = CEILING_UNDERGROUND_METAL
+	ceiling = CEILING_DEEP_UNDERGROUND_METAL
 	always_unpowered = TRUE
+	minimap_color = MINIMAP_AREA_SHIP
+
+/area/lv624/lazarus/crashed_ship/desparity
+	always_unpowered = FALSE
 
 /area/lv624/lazarus/relay
 	name = "\improper Secret Relay Room"
@@ -419,6 +478,7 @@
 	name = "\improper Shuttle Console"
 	icon_state = "tcomsatcham"
 	flags_area = NO_DROPPOD
+	requires_power = FALSE
 
 /area/lv624/lazarus/spaceport
 	name = "\improper Eastern Space Port"

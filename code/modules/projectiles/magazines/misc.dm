@@ -15,6 +15,24 @@
 	current_rounds = 150
 	max_rounds = 150
 
+/obj/item/ammo_magazine/packet/pnato
+	name = "box of 5.56x45mm"
+	desc = "A box containing 150 rounds of 5.56x45mm."
+	caliber = CALIBER_556X45
+	icon_state = "box_556mm"
+	default_ammo = /datum/ammo/bullet/rifle
+	current_rounds = 150
+	max_rounds = 150
+
+/obj/item/ammo_magazine/packet/pwarsaw
+	name = "box of 7.62x39mm"
+	desc = "A box containing 120 rounds of 7.62x39mm."
+	caliber = CALIBER_762X39
+	icon_state = "box_76239mm"
+	default_ammo = /datum/ammo/bullet/rifle/mpi_km
+	current_rounds = 120
+	max_rounds = 120
+
 /obj/item/ammo_magazine/packet/p10x265mm
 	name = "box of 10x26.5mm"
 	desc = "A box containing 100 rounds of 10x26.5mm caseless."
@@ -78,6 +96,30 @@
 	caliber = CALIBER_10X28_CASELESS
 	current_rounds = 150
 	max_rounds = 150
+
+/obj/item/ammo_magazine/packet/autosniper
+	name = "box of low-pressure 8.6x70mm"
+	desc = "A box containing 120 rounds of 8.6x70mm low velocity."
+	icon_state = "box_t81"
+	default_ammo = /datum/ammo/bullet/sniper/auto
+	caliber = CALIBER_86X70
+	current_rounds = 100
+	max_rounds = 100
+
+/obj/item/ammo_magazine/packet/standardautoshotgun
+	name = "box of 16 Gauge shotgun slugs"
+	desc = "A box containing 16 Gauge slugs, they look like they'd fit in the SH-15."
+	icon_state = "box_16gslug"
+	default_ammo = /datum/ammo/bullet/shotgun/tx15_slug
+	caliber = CALIBER_16G
+	current_rounds = 60
+	max_rounds = 60
+
+/obj/item/ammo_magazine/packet/standardautoshotgun/flechette
+	name = "box of 16 Gauge shotgun flechette shells"
+	desc = "A box containing 16 Gauge flechette shells, they look like they'd fit in the SH-15."
+	icon_state = "box_16gflech"
+	default_ammo = /datum/ammo/bullet/shotgun/tx15_flechette
 
 // pistol packets
 
@@ -152,7 +194,18 @@
 	desc = "A packet containing 50 rounds of .45-70 Government."
 	caliber = CALIBER_4570
 	icon_state = "box_4570rim_mag"
+	icon_state_mini = "ammo_packet_blue"
 	default_ammo = /datum/ammo/bullet/rifle/repeater
 	w_class = WEIGHT_CLASS_SMALL
 	current_rounds = 50
 	max_rounds = 50
+
+/obj/item/ammo_magazine/packet/pthreeightyacp
+	name = "packet of .380 ACP"
+	desc = "A packet containing 210 rounds of .380 ACP."
+	caliber = CALIBER_380ACP
+	icon_state = "box_380acp"
+	default_ammo = /datum/ammo/bullet/pistol/tiny/ap
+	w_class = WEIGHT_CLASS_SMALL
+	current_rounds = 210
+	max_rounds = 210

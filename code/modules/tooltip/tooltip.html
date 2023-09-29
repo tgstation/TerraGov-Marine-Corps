@@ -120,14 +120,14 @@
 				window.location = 'byond://winset?id='+tooltip.control+';anchor1=0,0;size=999x999';
 
 				//Get the real icon size according to the client view
-				var mapWidth 		= map['view-size'].x,
-					mapHeight 		= map['view-size'].y,
-					tilesShown 		= tooltip.client_view_w
-					realIconSize 	= mapWidth / tilesShown,
-					resizeRatio		= realIconSize / tooltip.tileSize,
+				var mapWidth = map['view-size'].x,
+					mapHeight = map['view-size'].y,
+					tilesShown = tooltip.client_view_w
+					realIconSize = mapWidth / tilesShown,
+					resizeRatio = realIconSize / tooltip.tileSize,
 					//Calculate letterboxing offsets
-					leftOffset 		= (map.size.x - mapWidth) / 2,
-					topOffset 		= (map.size.y - mapHeight) / 2;
+					leftOffset = (map.size.x - mapWidth) / 2,
+					topOffset = (map.size.y - mapHeight) / 2;
 
 				//alert(realIconSize + ' | ' +tooltip.tileSize + ' | ' + resizeRatio); //DEBUG
 
@@ -222,8 +222,8 @@
 					pixelRatio = window.devicePixelRatio;
 				}
 
-				var docWidth	= Math.floor($wrap.outerWidth() * pixelRatio),
-					docHeight	= Math.floor($wrap.outerHeight() * pixelRatio);
+				var docWidth = Math.floor($wrap.outerWidth() * pixelRatio),
+					docHeight = Math.floor($wrap.outerHeight() * pixelRatio);
 
 				if (posY + docHeight > map.size.y) { //Is the bottom edge below the window? Snap it up if so
 					posY = (posY - docHeight) - realIconSize - tooltip.padding;

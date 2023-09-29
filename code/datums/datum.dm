@@ -18,9 +18,9 @@
 	var/gc_destroyed
 
 	/// Active timers with this datum as the target
-	var/list/active_timers
-	/// Status traits attached to this datum
-	var/list/status_traits
+	var/list/_active_timers
+	/// Status traits attached to this datum. associative list of the form: list(trait name (string) = list(source1, source2, source3,...))
+	var/list/_status_traits
 
 	var/hidden_from_codex = FALSE //set to TRUE if you want something to be hidden.
 	var/interaction_flags = NONE //Defined at the datum level since some can be interacted with.
@@ -28,20 +28,25 @@
 	/**
 	  * Components attached to this datum
 	  *
-	  * Lazy associated list in the structure of `type:component/list of components`
+	  * Lazy associated list in the structure of `type -> component/list of components`
 	  */
-	var/list/datum_components
+	var/list/_datum_components
 	/**
 	  * Any datum registered to receive signals from this datum is in this list
 	  *
-	  * Lazy associated list in the structure of `signal:registree/list of registrees`
+	  * Lazy associated list in the structure of `signal -> registree/list of registrees`
 	  */
-	var/list/comp_lookup
-	/// Lazy associated list in the structure of `signals:proctype` that are run when the datum receives that signal
-	var/list/list/datum/callback/signal_procs
+	var/list/_listen_lookup
+	/// Lazy associated list in the structure of `target -> list(signal -> proctype)` that are run when the datum receives that signal
+	var/list/list/_signal_procs
 
 	/// Datum level flags
 	var/datum_flags = NONE
+
+	/// A cached version of our \ref
+	/// The brunt of \ref costs are in creating entries in the string tree (a tree of immutable strings)
+	/// This avoids doing that more then once per datum by ensuring ref strings always have a reference to them after they're first pulled
+	var/cached_ref
 
 	/// A weak reference to another datum
 	var/datum/weakref/weak_reference
@@ -66,14 +71,6 @@
 	#endif
 #endif
 
-/**
- * Called when a href for this datum is clicked
- *
- * Sends a [COMSIG_TOPIC] signal
- */
-/datum/Topic(href, href_list[])
-	..()
-	SEND_SIGNAL(src, COMSIG_TOPIC, usr, href_list)
 
 /**
  * Default implementation of clean-up code.
@@ -99,23 +96,27 @@
 
 	cooldowns = null
 
-	var/list/timers = active_timers
-	active_timers = null
-	for(var/thing in timers)
-		var/datum/timedevent/timer = thing
-		if (timer.spent && !(timer.flags & TIMER_DELETE_ME))
+	var/list/timers = _active_timers
+	_active_timers = null
+	for(var/datum/timedevent/timer as anything in timers)
+		if(timer.spent && !(timer.flags & TIMER_DELETE_ME))
 			continue
 		qdel(timer)
 
+	#ifdef REFERENCE_TRACKING
+	#ifdef REFERENCE_TRACKING_DEBUG
+	found_refs = null
+	#endif
+	#endif
+
 	//BEGIN: ECS SHIT
 
-	var/list/dc = datum_components
+	var/list/dc = _datum_components
 	if(dc)
 		var/all_components = dc[/datum/component]
 		if(length(all_components))
-			for(var/I in all_components)
-				var/datum/component/C = I
-				qdel(C, FALSE, TRUE)
+			for(var/datum/component/component as anything in all_components)
+				qdel(component, FALSE, TRUE)
 		else
 			var/datum/component/C = all_components
 			qdel(C, FALSE, TRUE)
@@ -127,21 +128,20 @@
 
 
 /datum/proc/clear_signal_refs()
-	var/list/lookup = comp_lookup
+	var/list/lookup = _listen_lookup
 	if(lookup)
 		for(var/sig in lookup)
 			var/list/comps = lookup[sig]
 			if(length(comps))
-				for(var/i in comps)
-					var/datum/component/comp = i
+				for(var/datum/component/comp as anything in comps)
 					comp.UnregisterSignal(src, sig)
 			else
 				var/datum/component/comp = comps
 				comp.UnregisterSignal(src, sig)
-		comp_lookup = lookup = null
+		_listen_lookup = lookup = null
 
-	for(var/target in signal_procs)
-		UnregisterSignal(target, signal_procs[target])
+	for(var/target in _signal_procs)
+		UnregisterSignal(target, _signal_procs[target])
 
 #ifdef DATUMVAR_DEBUGGING_MODE
 /datum/proc/save_vars()

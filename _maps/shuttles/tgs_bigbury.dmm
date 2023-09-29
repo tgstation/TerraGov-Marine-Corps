@@ -100,8 +100,7 @@
 /turf/open/floor/mainship/sterile,
 /area/shuttle/canterbury/medical)
 "ax" = (
-/obj/structure/bed/chair/dropship/passenger,
-/obj/effect/landmark/start/job/crash/medicalofficer,
+/obj/machinery/robotic_cradle,
 /turf/open/floor/mainship/sterile,
 /area/shuttle/canterbury/medical)
 "ay" = (
@@ -185,6 +184,7 @@
 /obj/machinery/light/small{
 	dir = 4
 	},
+/obj/item/reagent_containers/glass/beaker/cryomix,
 /turf/open/floor/mainship/sterile,
 /area/shuttle/canterbury/medical)
 "aO" = (
@@ -203,7 +203,6 @@
 /area/shuttle/canterbury)
 "aR" = (
 /obj/structure/table/reinforced,
-/obj/item/pinpointer,
 /obj/item/tool/crowbar,
 /obj/item/radio,
 /obj/item/lightreplacer,
@@ -349,7 +348,6 @@
 "bn" = (
 /obj/machinery/door/airlock/mainship/engineering/free_access,
 /obj/structure/cable,
-/obj/structure/cable,
 /turf/open/floor/mainship/orange/full,
 /area/shuttle/canterbury)
 "bo" = (
@@ -357,9 +355,10 @@
 	dir = 1
 	},
 /obj/structure/cable,
-/obj/structure/prop/holidays/string_lights/cap{
+/obj/structure/bed/chair/dropship/passenger{
 	dir = 1
 	},
+/obj/effect/landmark/start/job/crash/medicalofficer,
 /turf/open/floor/mainship/sterile,
 /area/shuttle/canterbury/medical)
 "bp" = (
@@ -372,15 +371,15 @@
 "bq" = (
 /obj/structure/closet/secure_closet/engineering_personal,
 /obj/item/tool/weldpack,
-/obj/item/tool/extinguisher/mini,
+/obj/effect/spawner/random/engineering/extinguisher/miniweighted,
 /turf/open/floor/mainship/orange/full,
 /area/shuttle/canterbury)
 "br" = (
 /obj/structure/table/mainship,
-/obj/item/fuelCell/full,
-/obj/item/fuelCell/full,
-/obj/item/tool/extinguisher/mini,
-/obj/item/tool/extinguisher,
+/obj/item/fuel_cell/full,
+/obj/item/fuel_cell/full,
+/obj/effect/spawner/random/engineering/extinguisher/miniweighted,
+/obj/effect/spawner/random/engineering/extinguisher/regularweighted,
 /obj/item/t_scanner,
 /obj/item/storage/backpack/marine/engineerpack,
 /obj/item/storage/belt/utility/full,
@@ -512,12 +511,7 @@
 	},
 /area/shuttle/canterbury/cic)
 "bO" = (
-/obj/machinery/alarm{
-	dir = 1
-	},
-/obj/structure/prop/holidays/string_lights{
-	dir = 1
-	},
+/obj/machinery/marine_selector/gear/commander,
 /turf/open/floor/mainship,
 /area/shuttle/canterbury/cic)
 "bP" = (
@@ -543,12 +537,7 @@
 /obj/structure/table/mainship,
 /obj/item/clipboard,
 /obj/item/tool/pen,
-/obj/structure/paper_bin,
-/obj/item/pinpointer,
-/obj/structure/prop/holidays/string_lights{
-	dir = 1
-	},
-/obj/item/reagent_containers/food/drinks/bottle/eggnog,
+/obj/effect/spawner/random/misc/paperbin,
 /turf/open/floor/mainship/blue{
 	dir = 8
 	},
@@ -561,11 +550,8 @@
 /turf/open/floor/mainship,
 /area/shuttle/canterbury/cic)
 "bT" = (
-/obj/machinery/marine_selector/clothes/synth,
 /obj/machinery/light/small,
-/obj/structure/prop/holidays/string_lights{
-	dir = 1
-	},
+/obj/machinery/marine_selector/clothes/commander,
 /turf/open/floor/mainship/blue{
 	dir = 8
 	},
@@ -928,21 +914,17 @@
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "sR" = (
-/obj/machinery/autolathe,
+/obj/machinery/marine_selector/clothes/synth,
 /turf/open/floor/mainship/cargo,
 /area/shuttle/canterbury)
 "te" = (
 /obj/structure/rack,
-/obj/machinery/alarm{
+/obj/machinery/air_alarm{
 	dir = 8
 	},
 /obj/item/stack/sheet/metal/large_stack,
 /obj/item/stack/sheet/metal/large_stack,
 /obj/item/stack/sheet/plasteel/medium_stack,
-/obj/item/pinpointer,
-/obj/structure/prop/holidays/string_lights{
-	dir = 1
-	},
 /turf/open/floor/mainship/cargo,
 /area/shuttle/canterbury)
 "tv" = (
@@ -1005,6 +987,9 @@
 	dir = 8
 	},
 /obj/machinery/iv_drip,
+/obj/structure/sink{
+	dir = 8
+	},
 /turf/open/floor/mainship/sterile/dark,
 /area/shuttle/canterbury/medical)
 "vW" = (
@@ -1052,13 +1037,12 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
-"zp" = (
-/obj/structure/window/framed/mainship/white/canterbury,
-/obj/structure/prop/holidays/string_lights{
-	dir = 6
+"zk" = (
+/obj/machinery/air_alarm,
+/turf/open/floor/mainship/blue{
+	dir = 4
 	},
-/turf/open/floor/mainship/sterile,
-/area/shuttle/canterbury/medical)
+/area/shuttle/canterbury/cic)
 "zy" = (
 /obj/structure/closet/crate/trashcart,
 /obj/item/storage/bag/trash,
@@ -1131,7 +1115,7 @@
 /turf/closed/wall/mainship/outer/canterbury,
 /area/shuttle/canterbury)
 "Fl" = (
-/obj/machinery/loadout_vendor,
+/obj/machinery/loadout_vendor/crash,
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "FQ" = (
@@ -1215,14 +1199,10 @@
 /obj/item/facepaint/sniper,
 /obj/item/pizzabox/meat,
 /obj/item/binoculars,
-/obj/item/tool/extinguisher,
+/obj/effect/spawner/random/engineering/extinguisher/regularweighted,
 /obj/item/tool/shovel/etool,
-/obj/machinery/alarm{
+/obj/machinery/air_alarm{
 	dir = 4
-	},
-/obj/item/pinpointer,
-/obj/structure/prop/holidays/string_lights{
-	dir = 1
 	},
 /turf/open/floor/mainship/cargo,
 /area/shuttle/canterbury)
@@ -1682,8 +1662,8 @@ ah
 Uo
 Uo
 al
-KY
-uu
+al
+zk
 bL
 Mp
 Rd
@@ -1783,8 +1763,8 @@ Uo
 ad
 ae
 MY
-bO
-Mp
+bS
+al
 qh
 JW
 Rv
@@ -1981,8 +1961,8 @@ Uo
 ad
 jo
 MY
-bS
-Mp
+bO
+al
 BZ
 JW
 EB

@@ -4,7 +4,7 @@
 /datum/action/xeno_action/tail_sweep
 	name = "Tail Sweep"
 	action_icon_state = "tail_sweep"
-	mechanics_text = "Hit all adjacent units around you, knocking them away and down."
+	desc = "Hit all adjacent units around you, knocking them away and down."
 	ability_name = "tail sweep"
 	plasma_cost = 35
 	use_state_flags = XACT_USE_CRESTED
@@ -40,7 +40,7 @@
 	for (var/mob/living/carbon/human/H in L)
 		step_away(H, src, sweep_range, 2)
 		H.add_filter("defender_tail_sweep", 2, gauss_blur_filter(1)) //Add cool SFX; motion blur
-		addtimer(CALLBACK(H, /atom.proc/remove_filter, "defender_tail_sweep"), 0.5 SECONDS) //Remove cool SFX
+		addtimer(CALLBACK(H, TYPE_PROC_REF(/atom, remove_filter), "defender_tail_sweep"), 0.5 SECONDS) //Remove cool SFX
 		if(H.stat != DEAD && !isnestedhost(H) ) //No bully
 			var/damage = X.xeno_caste.melee_damage
 			var/affecting = H.get_limb(ran_zone(null, 0))
@@ -48,7 +48,7 @@
 				affecting = H.get_limb("chest") //Gotta have a torso?!
 			H.apply_damage(damage, BRUTE, affecting, MELEE)
 			H.apply_damage(damage, STAMINA, updating_health = TRUE)
-			H.Paralyze(5) //trip and go
+			H.Paralyze(0.5 SECONDS) //trip and go
 		GLOB.round_statistics.defender_tail_sweep_hits++
 		SSblackbox.record_feedback("tally", "round_statistics", 1, "defender_tail_sweep_hits")
 		shake_camera(H, 2, 1)
@@ -56,7 +56,7 @@
 		to_chat(H, span_xenowarning("We are struck by \the [X]'s tail sweep!"))
 		playsound(H,'sound/weapons/alien_claw_block.ogg', 50, 1)
 
-	addtimer(CALLBACK(X, /atom.proc/remove_filter, "defender_tail_sweep"), 0.5 SECONDS) //Remove cool SFX
+	addtimer(CALLBACK(X, TYPE_PROC_REF(/atom, remove_filter), "defender_tail_sweep"), 0.5 SECONDS) //Remove cool SFX
 	succeed_activate()
 	if(X.crest_defense)
 		X.use_plasma(plasma_cost)
@@ -87,8 +87,8 @@
 // ***************************************
 /datum/action/xeno_action/activable/forward_charge
 	name = "Forward Charge"
-	action_icon_state = "charge"
-	mechanics_text = "Charge up to 4 tiles and knockdown any targets in our way."
+	action_icon_state = "pounce"
+	desc = "Charge up to 4 tiles and knockdown any targets in our way."
 	ability_name = "charge"
 	cooldown_timer = 10 SECONDS
 	plasma_cost = 80
@@ -113,13 +113,12 @@
 
 /datum/action/xeno_action/activable/forward_charge/proc/obj_hit(datum/source, obj/target, speed)
 	SIGNAL_HANDLER
-	var/mob/living/carbon/xenomorph/X = owner
-	if(istype(target, /obj/structure/table) || istype(target, /obj/structure/rack))
+	if(istype(target, /obj/structure/table))
 		var/obj/structure/S = target
-		X.visible_message(span_danger("[X] plows straight through [S]!"), null, null, 5)
+		owner.visible_message(span_danger("[owner] plows straight through [S]!"), null, null, 5)
 		S.deconstruct(FALSE) //We want to continue moving, so we do not reset throwing.
 		return // stay registered
-	target.hitby(X, speed) //This resets throwing.
+	target.hitby(owner, speed) //This resets throwing.
 	charge_complete()
 
 /datum/action/xeno_action/activable/forward_charge/can_use_ability(atom/A, silent = FALSE, override_flags)
@@ -137,15 +136,12 @@
 /datum/action/xeno_action/activable/forward_charge/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/X = owner
 
-	if(!do_after(X, windup_time, FALSE, X, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, .proc/can_use_ability, A, FALSE, XACT_USE_BUSY)))
+	if(!do_after(X, windup_time, FALSE, X, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(can_use_ability), A, FALSE, XACT_USE_BUSY)))
 		return fail_activate()
 
 	var/mob/living/carbon/xenomorph/defender/defender = X
 	if(defender.fortify)
 		var/datum/action/xeno_action/fortify/fortify_action = X.actions_by_path[/datum/action/xeno_action/fortify]
-		if(fortify_action.cooldown_id)
-			to_chat(X, span_xenowarning("We cannot yet untuck ourselves from our fortified stance!"))
-			return fail_activate()
 
 		fortify_action.set_fortify(FALSE, TRUE)
 		fortify_action.add_cooldown()
@@ -156,9 +152,9 @@
 	X.emote("roar")
 	succeed_activate()
 
-	RegisterSignal(X, COMSIG_XENO_OBJ_THROW_HIT, .proc/obj_hit,)
-	RegisterSignal(X, COMSIG_XENO_LIVING_THROW_HIT, .proc/mob_hit)
-	RegisterSignal(X, COMSIG_MOVABLE_POST_THROW, .proc/charge_complete)
+	RegisterSignal(X, COMSIG_XENO_OBJ_THROW_HIT, PROC_REF(obj_hit),)
+	RegisterSignal(X, COMSIG_XENO_LIVING_THROW_HIT, PROC_REF(mob_hit))
+	RegisterSignal(X, COMSIG_MOVABLE_POST_THROW, PROC_REF(charge_complete))
 
 	X.throw_at(A, range, 70, X)
 
@@ -178,7 +174,7 @@
 		return FALSE
 	action_activate()
 	LAZYINCREMENT(owner.do_actions, target)
-	addtimer(CALLBACK(src, .proc/decrease_do_action, target), windup_time)
+	addtimer(CALLBACK(src, PROC_REF(decrease_do_action), target), windup_time)
 	return TRUE
 
 ///Decrease the do_actions of the owner
@@ -191,7 +187,7 @@
 /datum/action/xeno_action/toggle_crest_defense
 	name = "Toggle Crest Defense"
 	action_icon_state = "crest_defense"
-	mechanics_text = "Increase your resistance to projectiles at the cost of move speed. Can use abilities while in Crest Defense."
+	desc = "Increase your resistance to projectiles at the cost of move speed. Can use abilities while in Crest Defense."
 	ability_name = "toggle crest defense"
 	use_state_flags = XACT_USE_FORTIFIED|XACT_USE_CRESTED // duh
 	cooldown_timer = 1 SECONDS
@@ -200,14 +196,20 @@
 	)
 	var/last_crest_bonus = 0
 
+/datum/action/xeno_action/toggle_crest_defense/give_action()
+	. = ..()
+	var/mob/living/carbon/xenomorph/defender/X = owner
+	last_crest_bonus = X.xeno_caste.crest_defense_armor
+
 /datum/action/xeno_action/toggle_crest_defense/on_xeno_upgrade()
 	var/mob/living/carbon/xenomorph/X = owner
 	if(X.crest_defense)
-		var/defensebonus = X.xeno_caste.crest_defense_armor
-		X.soft_armor = X.soft_armor.modifyAllRatings(defensebonus)
-		X.soft_armor = X.soft_armor.setRating(bomb = 30)
-		last_crest_bonus = defensebonus
+		X.soft_armor = X.soft_armor.modifyAllRatings(-last_crest_bonus)
+		last_crest_bonus = X.xeno_caste.crest_defense_armor
+		X.soft_armor = X.soft_armor.modifyAllRatings(last_crest_bonus)
 		X.add_movespeed_modifier(MOVESPEED_ID_CRESTDEFENSE, TRUE, 0, NONE, TRUE, X.xeno_caste.crest_defense_slowdown)
+	else
+		last_crest_bonus = X.xeno_caste.crest_defense_armor
 
 /datum/action/xeno_action/toggle_crest_defense/on_cooldown_finish()
 	var/mob/living/carbon/xenomorph/defender/X = owner
@@ -238,17 +240,13 @@
 
 /datum/action/xeno_action/toggle_crest_defense/proc/set_crest_defense(on, silent = FALSE)
 	var/mob/living/carbon/xenomorph/defender/X = owner
-	X.crest_defense = on
 	if(on)
 		if(!silent)
 			to_chat(X, span_xenowarning("We tuck ourselves into a defensive stance."))
 		GLOB.round_statistics.defender_crest_lowerings++
 		SSblackbox.record_feedback("tally", "round_statistics", 1, "defender_crest_lowerings")
-		var/defensebonus = X.xeno_caste.crest_defense_armor
 		ADD_TRAIT(X, TRAIT_STAGGERIMMUNE, CREST_DEFENSE_TRAIT) //Can now endure impacts/damages that would make lesser xenos flinch
-		X.soft_armor = X.soft_armor.modifyAllRatings(defensebonus)
-		X.soft_armor = X.soft_armor.setRating(bomb = 30)
-		last_crest_bonus = defensebonus
+		X.soft_armor = X.soft_armor.modifyAllRatings(last_crest_bonus)
 		X.add_movespeed_modifier(MOVESPEED_ID_CRESTDEFENSE, TRUE, 0, NONE, TRUE, X.xeno_caste.crest_defense_slowdown)
 	else
 		if(!silent)
@@ -257,9 +255,9 @@
 		SSblackbox.record_feedback("tally", "round_statistics", 1, "defender_crest_raises")
 		REMOVE_TRAIT(X, TRAIT_STAGGERIMMUNE, CREST_DEFENSE_TRAIT)
 		X.soft_armor = X.soft_armor.modifyAllRatings(-last_crest_bonus)
-		X.soft_armor = X.soft_armor.setRating(bomb = 20)
-		last_crest_bonus = 0
 		X.remove_movespeed_modifier(MOVESPEED_ID_CRESTDEFENSE)
+
+	X.crest_defense = on
 	X.update_icons()
 
 // ***************************************
@@ -268,7 +266,7 @@
 /datum/action/xeno_action/fortify
 	name = "Fortify"
 	action_icon_state = "fortify"	// TODO
-	mechanics_text = "Plant yourself for a large defensive boost."
+	desc = "Plant yourself for a large defensive boost."
 	ability_name = "fortify"
 	use_state_flags = XACT_USE_FORTIFIED|XACT_USE_CRESTED // duh
 	cooldown_timer = 1 SECONDS
@@ -277,13 +275,23 @@
 	)
 	var/last_fortify_bonus = 0
 
+/datum/action/xeno_action/fortify/give_action()
+	. = ..()
+	var/mob/living/carbon/xenomorph/defender/X = owner
+	last_fortify_bonus = X.xeno_caste.fortify_armor
+
 /datum/action/xeno_action/fortify/on_xeno_upgrade()
 	var/mob/living/carbon/xenomorph/X = owner
 	if(X.fortify)
-		var/fortifyAB = X.xeno_caste.fortify_armor
-		X.soft_armor = X.soft_armor.modifyAllRatings(fortifyAB)
-		X.soft_armor = X.soft_armor.setRating(bomb = 100)
-		last_fortify_bonus = fortifyAB
+		X.soft_armor = X.soft_armor.modifyAllRatings(-last_fortify_bonus)
+		X.soft_armor = X.soft_armor.modifyRating(BOMB = -last_fortify_bonus)
+
+		last_fortify_bonus = X.xeno_caste.fortify_armor
+
+		X.soft_armor = X.soft_armor.modifyAllRatings(last_fortify_bonus)
+		X.soft_armor = X.soft_armor.modifyRating(BOMB = last_fortify_bonus)
+	else
+		last_fortify_bonus = X.xeno_caste.fortify_armor
 
 /datum/action/xeno_action/fortify/on_cooldown_finish()
 	var/mob/living/carbon/xenomorph/X = owner
@@ -308,6 +316,9 @@
 		CD.add_cooldown()
 		to_chat(X, span_xenowarning("We tuck our lowered crest into ourselves."))
 
+	var/datum/action/xeno_action/activable/forward_charge/combo_cooldown = X.actions_by_path[/datum/action/xeno_action/activable/forward_charge]
+	combo_cooldown.add_cooldown(cooldown_timer)
+
 	set_fortify(TRUE, was_crested)
 	add_cooldown()
 	return succeed_activate()
@@ -320,17 +331,15 @@
 		ADD_TRAIT(X, TRAIT_IMMOBILE, FORTIFY_TRAIT)
 		if(!silent)
 			to_chat(X, span_xenowarning("We tuck ourselves into a defensive stance."))
-		var/fortifyAB = X.xeno_caste.fortify_armor
-		X.soft_armor = X.soft_armor.modifyAllRatings(fortifyAB)
-		X.soft_armor = X.soft_armor.setRating(bomb = 100)
-		last_fortify_bonus = fortifyAB
+		X.soft_armor = X.soft_armor.modifyAllRatings(last_fortify_bonus)
+		X.soft_armor = X.soft_armor.modifyRating(BOMB = last_fortify_bonus) //double bomb bonus for explosion immunity
 	else
 		if(!silent)
 			to_chat(X, span_xenowarning("We resume our normal stance."))
 		X.soft_armor = X.soft_armor.modifyAllRatings(-last_fortify_bonus)
-		X.soft_armor = X.soft_armor.setRating(bomb = 20)
-		last_fortify_bonus = 0
+		X.soft_armor = X.soft_armor.modifyRating(BOMB = -last_fortify_bonus)
 		REMOVE_TRAIT(X, TRAIT_IMMOBILE, FORTIFY_TRAIT)
+
 	X.fortify = on
 	X.anchored = on
 	playsound(X.loc, 'sound/effects/stonedoor_openclose.ogg', 30, TRUE)
@@ -342,7 +351,7 @@
 /datum/action/xeno_action/regenerate_skin
 	name = "Regenerate Skin"
 	action_icon_state = "regenerate_skin"
-	mechanics_text = "Regenerate your hard exoskeleton skin, restoring some health and removing all sunder."
+	desc = "Regenerate your hard exoskeleton skin, restoring some health and removing all sunder."
 	ability_name = "regenerate skin"
 	use_state_flags = XACT_USE_FORTIFIED|XACT_USE_CRESTED|XACT_TARGET_SELF|XACT_IGNORE_SELECTED_ABILITY|XACT_KEYBIND_USE_ABILITY
 	plasma_cost = 160
@@ -384,7 +393,7 @@
 /datum/action/xeno_action/centrifugal_force
 	name = "Centrifugal force"
 	action_icon_state = "centrifugal_force"
-	mechanics_text = "Rapidly spin and hit all adjacent humans around you, knocking them away and down. Uses double plasma when crest is active."
+	desc = "Rapidly spin and hit all adjacent humans around you, knocking them away and down. Uses double plasma when crest is active."
 	ability_name = "centrifugal force"
 	plasma_cost = 15
 	use_state_flags = XACT_USE_CRESTED
@@ -413,15 +422,15 @@
 		return
 	if(!can_use_action(TRUE))
 		return fail_activate()
-	if(!do_after(owner, 0.5 SECONDS, TRUE, owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, .proc/can_use_action, FALSE, XACT_USE_BUSY)))
+	if(!do_after(owner, 0.5 SECONDS, TRUE, owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(can_use_action), FALSE, XACT_USE_BUSY)))
 		return fail_activate()
 	owner.visible_message(span_xenowarning("\The [owner] starts swinging its tail in a circle!"), \
 		span_xenowarning("We start swinging our tail in a wide circle!"))
 	do_spin() //kick it off
 
-	spin_loop_timer = addtimer(CALLBACK(src, .proc/do_spin), 5, TIMER_STOPPABLE)
+	spin_loop_timer = addtimer(CALLBACK(src, PROC_REF(do_spin)), 5, TIMER_STOPPABLE)
 	add_cooldown()
-	RegisterSignal(owner, list(SIGNAL_ADDTRAIT(TRAIT_FLOORED), SIGNAL_ADDTRAIT(TRAIT_INCAPACITATED), SIGNAL_ADDTRAIT(TRAIT_IMMOBILE)), .proc/stop_spin)
+	RegisterSignals(owner, list(SIGNAL_ADDTRAIT(TRAIT_FLOORED), SIGNAL_ADDTRAIT(TRAIT_INCAPACITATED), SIGNAL_ADDTRAIT(TRAIT_IMMOBILE)), PROC_REF(stop_spin))
 
 /// runs a spin, then starts the timer for a new spin if needed
 /datum/action/xeno_action/centrifugal_force/proc/do_spin()
@@ -441,7 +450,7 @@
 			affecting = slapped.get_limb("chest")
 		slapped.apply_damage(damage, BRUTE, affecting, MELEE)
 		slapped.apply_damage(damage, STAMINA, updating_health = TRUE)
-		slapped.Paralyze(3)
+		slapped.Paralyze(0.3 SECONDS)
 		shake_camera(slapped, 2, 1)
 
 		to_chat(slapped, span_xenowarning("We are struck by \the [X]'s flying tail!"))
@@ -453,7 +462,7 @@
 	step_tick = !step_tick
 
 	if(can_use_action(X, XACT_IGNORE_COOLDOWN))
-		spin_loop_timer = addtimer(CALLBACK(src, .proc/do_spin), 5, TIMER_STOPPABLE)
+		spin_loop_timer = addtimer(CALLBACK(src, PROC_REF(do_spin)), 5, TIMER_STOPPABLE)
 		return
 	stop_spin()
 

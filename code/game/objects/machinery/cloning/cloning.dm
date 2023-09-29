@@ -24,13 +24,8 @@ These act as a respawn mechanic growning a body and offering it up to ghosts.
 	user.visible_message("You hear something bang on the window of \the [src]", "The door won't budge!")
 	return FALSE
 
-
-/obj/item/reagent_containers/glass/bucket/xeno_blood
-	list_reagents = list(/datum/reagent/blood/xeno_blood = 120)
-
 /obj/item/reagent_containers/glass/beaker/biomass
 	list_reagents = list(/datum/reagent/medicine/biomass = 60)
-
 
 /**
  *These automatically generate marine bodies based on a timer.
@@ -51,7 +46,7 @@ These act as a respawn mechanic growning a body and offering it up to ghosts.
 	var/obj/machinery/cloning/vats/linked_machine
 	var/obj/item/radio/headset/mainship/mcom/radio //God forgive me
 
-/obj/machinery/cloning_console/vats/Initialize()
+/obj/machinery/cloning_console/vats/Initialize(mapload)
 	. = ..()
 	radio = new(src)
 	radio.use_command = FALSE
@@ -112,7 +107,7 @@ These act as a respawn mechanic growning a body and offering it up to ghosts.
 	var/grow_timer = 15 MINUTES
 
 
-/obj/machinery/cloning/vats/Initialize()
+/obj/machinery/cloning/vats/Initialize(mapload)
 	. = ..()
 	beaker = new /obj/item/reagent_containers/glass/beaker/biomass
 	update_icon()
@@ -151,7 +146,7 @@ These act as a respawn mechanic growning a body and offering it up to ghosts.
 		return
 
 	if(timerid || occupant) // You need to stop the process or remove the human first.
-		to_chat(user, span_notice("You can't get to the beaker while the machine growing a clone."))
+		to_chat(user, span_notice("You can't get to the beaker while the machine is growing a clone."))
 		return
 
 	beaker.forceMove(drop_location())
@@ -224,7 +219,7 @@ These act as a respawn mechanic growning a body and offering it up to ghosts.
 		return
 
 	visible_message("[icon2html(src, viewers(src))] <span><b>[src]</b> whirls as it starts to create a new clone.</span>")
-	timerid = addtimer(CALLBACK(src, .proc/finish_growing_human), grow_timer, TIMER_STOPPABLE)
+	timerid = addtimer(CALLBACK(src, PROC_REF(finish_growing_human)), grow_timer, TIMER_STOPPABLE)
 	update_icon()
 
 
@@ -252,6 +247,7 @@ These act as a respawn mechanic growning a body and offering it up to ghosts.
 
 	if(!silent)
 		visible_message("[icon2html(src, viewers(src))] [span_notice("<b>[src]</b> ejects the freshly spawned clone.")]")
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_CLONE_PRODUCED, src)
 	occupant.forceMove(get_step(loc, dir))
 	occupant.Paralyze(10 SECONDS)
 	occupant.disabilities &= ~(BLIND | DEAF)

@@ -10,8 +10,9 @@ SUBSYSTEM_DEF(processing)
 	var/list/processing = list()
 	var/list/currentrun = list()
 
-/datum/controller/subsystem/processing/stat_entry()
-	..("[stat_tag]:[processing.len]")
+/datum/controller/subsystem/processing/stat_entry(msg)
+	msg = "[stat_tag]:[length(processing)]"
+	return ..()
 
 /datum/controller/subsystem/processing/fire(resumed = 0)
 	if (!resumed)
@@ -19,8 +20,8 @@ SUBSYSTEM_DEF(processing)
 	//cache for sanic speed (lists are references anyways)
 	var/list/current_run = currentrun
 
-	while(current_run.len)
-		var/datum/thing = current_run[current_run.len]
+	while(length(current_run))
+		var/datum/thing = current_run[length(current_run)]
 		current_run.len--
 		if(QDELETED(thing))
 			processing -= thing

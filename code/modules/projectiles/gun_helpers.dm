@@ -37,7 +37,7 @@
 
 	active_attachable.reload(I, user)
 
-/obj/item/weapon/gun/mob_can_equip(mob/user)
+/obj/item/weapon/gun/mob_can_equip(mob/user, slot, warning = TRUE, override_nodrop = FALSE, bitslot = FALSE)
 	//Cannot equip wielded items or items burst firing.
 	if(HAS_TRAIT(src, TRAIT_GUN_BURST_FIRING))
 		return
@@ -65,23 +65,17 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 	if(CONFIG_GET(flag/remove_gun_restrictions))
 		return TRUE //Not if the config removed it.
 
-	if(user.skills.getRating("police") >= SKILL_POLICE_MP)
+	if(user.skills.getRating(SKILL_POLICE) >= SKILL_POLICE_MP)
 		return TRUE
 	if(user.mind && allowed(user))
 		return TRUE
 	to_chat(user, span_warning("[src] flashes a warning sign indicating unauthorized use!"))
 
-
-/obj/item/weapon/gun/proc/wielded_stable() //soft wield-delay
-	if(world.time > wield_time)
-		return TRUE
-	else
-		return FALSE
-
-
 /obj/item/weapon/gun/proc/do_wield(mob/user, wdelay) //*shrugs*
-	if(wield_time > 0 && !do_mob(user, user, wdelay, BUSY_ICON_HOSTILE, null, PROGRESS_CLOCK, TRUE, CALLBACK(src, .proc/is_wielded)))
+	if(wield_time > 0 && !do_mob(user, user, wdelay, BUSY_ICON_HOSTILE, null, PROGRESS_CLOCK, IGNORE_LOC_CHANGE, CALLBACK(src, PROC_REF(is_wielded))))
 		return FALSE
+	flags_item |= FULLY_WIELDED
+	setup_bullet_accuracy()
 	return TRUE
 
 /obj/item/weapon/gun/attack_self(mob/user)
@@ -110,18 +104,18 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 			return
 		to_chat(user, span_warning("[new_magazine] cannot fit into [src]!"))
 		return
-	if(src != user.r_hand && src != user.l_hand && master_gun != user.r_hand && master_gun != user.l_hand)
+	if(src != user.r_hand && src != user.l_hand && (!master_gun || (master_gun != user.r_hand && master_gun != user.l_hand)))
 		to_chat(user, span_warning("[src] must be in your hand to do that."))
 		return
 	if(!CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_MAGAZINES) || max_chamber_items > 1)
 		to_chat(user, span_warning("Can't do tactical reloads with [src]."))
 		return
 	//no tactical reload for the untrained.
-	if(!user.skills.getRating("firearms"))
+	if(user.skills.getRating(SKILL_FIREARMS) < SKILL_FIREARMS_DEFAULT)
 		to_chat(user, span_warning("You don't know how to do tactical reloads."))
 		return
 	to_chat(user, span_notice("You start a tactical reload."))
-	var/tac_reload_time = max(0.25 SECONDS, 0.75 SECONDS - user.skills.getRating("firearms") * 5)
+	var/tac_reload_time = max(0.25 SECONDS, 0.75 SECONDS - user.skills.getRating(SKILL_FIREARMS) * 5)
 	if(length(chamber_items))
 		if(!do_after(user, tac_reload_time, TRUE, new_magazine, ignore_turf_checks = TRUE) && loc == user)
 			return
@@ -344,6 +338,7 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 			gun_user.update_action_buttons()
 	playsound(src, 'sound/weapons/guns/interact/selector.ogg', 15, 1)
 	SEND_SIGNAL(src, COMSIG_GUN_FIRE_MODE_TOGGLE, gun_firemode)
+	setup_bullet_accuracy()
 
 
 /obj/item/weapon/gun/proc/add_firemode(added_firemode, mob/user)
@@ -568,7 +563,18 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 		return
 	balloon_alert(usr, "No usable underrail attachments")
 
+///Toggles weapons ejecting their magazines when they're empty. This one is one a gun level and is used via right clicking the gun.
+/obj/item/weapon/gun/verb/toggle_auto_eject()
+	set category = null
+	set name = "Toggle Automatic Magazine Ejection (Weapon)"
+	set desc = "Toggles the automatic unloading of the gun's magazine upon depletion."
 
+	if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_AUTO_EJECT_LOCKED))
+		balloon_alert(usr, "Cannot toggle ejection")
+		return
+
+	TOGGLE_BITFIELD(reciever_flags, AMMO_RECIEVER_AUTO_EJECT)
+	balloon_alert(usr, "Automatic unloading [CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_AUTO_EJECT) ? "enabled" : "disabled"].")
 
 /obj/item/weapon/gun/item_action_slot_check(mob/user, slot)
 	if(slot != SLOT_L_HAND && slot != SLOT_R_HAND && !CHECK_BITFIELD(flags_item, IS_DEPLOYED))
@@ -621,12 +627,14 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 
 ///Removes an aim_fire_delay modificatio value
 /obj/item/weapon/gun/proc/remove_aim_mode_fire_delay(source)
+	if(!(source in aim_fire_delay_mods))
+		return
 	aim_fire_delay_mods -= source
 	recalculate_aim_mode_fire_delay()
 
 /obj/item/weapon/gun/proc/toggle_auto_aim_mode(mob/living/carbon/human/user) //determines whether toggle_aim_mode activates at the end of gun/wield proc
 
-	if(CHECK_BITFIELD(flags_item, WIELDED) || CHECK_BITFIELD(flags_item, IS_DEPLOYED)) //if gun is wielded it toggles aim mode directly instead
+	if((flags_item & WIELDED) || (flags_item & IS_DEPLOYED)) //if gun is wielded it toggles aim mode directly instead
 		toggle_aim_mode(user)
 		return
 
@@ -653,7 +661,7 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 			gunattachment.modify_auto_burst_delay(-aim_fire_delay)
 		to_chat(user, span_notice("You cease aiming."))
 		return
-	if(!CHECK_BITFIELD(flags_item, WIELDED) && !CHECK_BITFIELD(flags_item, IS_DEPLOYED))
+	if(!(flags_item & WIELDED) && !(flags_item & IS_DEPLOYED))
 		to_chat(user, span_notice("You need to wield your gun before aiming."))
 		return
 	if(!user.wear_id)
@@ -661,13 +669,13 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 		return
 	to_chat(user, span_notice("You steady your breathing..."))
 
-	if(user.do_actions && !CHECK_BITFIELD(flags_item, IS_DEPLOYED))
+	if(user.do_actions)
 		return
 	if(!user.marksman_aura)
-		if(!do_after(user, aim_time, TRUE, CHECK_BITFIELD(flags_item, IS_DEPLOYED) ? loc : src, BUSY_ICON_BAR, ignore_turf_checks = TRUE))
+		if(!do_after(user, aim_time, TRUE, (flags_item & IS_DEPLOYED) ? loc : src, BUSY_ICON_BAR, ignore_turf_checks = (flags_item & IS_DEPLOYED) ? FALSE : TRUE))
 			to_chat(user, span_warning("<b>Your concentration is interrupted!</b>"))
 			return
-	if(!CHECK_BITFIELD(flags_item, WIELDED) && !CHECK_BITFIELD(flags_item, IS_DEPLOYED))
+	if(!(flags_item & WIELDED) && !(flags_item & IS_DEPLOYED))
 		to_chat(user, span_notice("You need to wield your gun before aiming."))
 		return
 	user.overlays += aim_mode_visual
@@ -685,7 +693,7 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 /// Signal handler to activate the rail attachement of that gun if it's in our active hand
 /obj/item/weapon/gun/proc/activate_rail_attachment()
 	SIGNAL_HANDLER
-	if(gun_user?.get_active_held_item() != src && !CHECK_BITFIELD(flags_item, IS_DEPLOYED))
+	if(gun_user?.get_active_held_item() != src && !(flags_item & IS_DEPLOYED))
 		return
 	activate_attachment(ATTACHMENT_SLOT_RAIL, gun_user)
 	return COMSIG_KB_ACTIVATED
@@ -693,7 +701,7 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 /// Signal handler to activate the underrail attachement of that gun if it's in our active hand
 /obj/item/weapon/gun/proc/activate_underrail_attachment()
 	SIGNAL_HANDLER
-	if(gun_user?.get_active_held_item() != src && !CHECK_BITFIELD(flags_item, IS_DEPLOYED))
+	if(gun_user?.get_active_held_item() != src && !(flags_item & IS_DEPLOYED))
 		return
 	activate_attachment(ATTACHMENT_SLOT_UNDER, gun_user)
 	return COMSIG_KB_ACTIVATED
@@ -709,3 +717,13 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 	SIGNAL_HANDLER
 	toggle_gun_safety()
 	return COMSIG_KB_ACTIVATED
+
+/// Signal handler to toggle automatic magazine ejection
+/obj/item/weapon/gun/proc/toggle_auto_eject_keybind()
+	SIGNAL_HANDLER
+	toggle_auto_eject()
+	return COMSIG_KB_ACTIVATED
+
+/obj/item/weapon/gun/toggle_deployment_flag(deployed)
+	. = ..()
+	setup_bullet_accuracy()
