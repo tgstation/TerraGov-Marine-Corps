@@ -90,11 +90,11 @@
 /area/centcom/valhalla/security/brig/interiorcavern)
 "aiG" = (
 /obj/structure/table/woodentable,
-/obj/effect/spawner/random/christmas_food{
+/obj/effect/spawner/random/food_or_drink/christmas_food{
 	pixel_x = 5;
 	pixel_y = 4
 	},
-/obj/effect/spawner/random/christmas_food,
+/obj/effect/spawner/random/food_or_drink/christmas_food,
 /turf/open/floor/wood,
 /area/tdome/tdomeobserve)
 "ajh" = (
@@ -7462,7 +7462,7 @@
 /obj/machinery/computer/security/telescreen/entertainment{
 	pixel_y = 32
 	},
-/obj/effect/spawner/random/christmas_food,
+/obj/effect/spawner/random/food_or_drink/christmas_food,
 /turf/open/floor/wood,
 /area/tdome/tdomeobserve)
 "jNR" = (
@@ -7794,7 +7794,7 @@
 /area/centcom/valhalla/engine/engineering)
 "keG" = (
 /obj/structure/table,
-/obj/effect/spawner/random/christmas_food,
+/obj/effect/spawner/random/food_or_drink/christmas_food,
 /turf/open/floor/tile/red/yellowfull,
 /area/tdome/tdomeadmin)
 "keP" = (
@@ -14840,11 +14840,11 @@
 /area/centcom/valhalla/engine/atmos_monitoring)
 "tsg" = (
 /obj/structure/table/woodentable,
-/obj/effect/spawner/random/christmas_food{
+/obj/effect/spawner/random/food_or_drink/christmas_food{
 	pixel_x = -5;
 	pixel_y = -3
 	},
-/obj/effect/spawner/random/christmas_food,
+/obj/effect/spawner/random/food_or_drink/christmas_food,
 /turf/open/floor/wood,
 /area/tdome/tdomeobserve)
 "tsS" = (
@@ -16573,8 +16573,8 @@
 /area/centcom/valhalla/primary/central_one)
 "vFf" = (
 /obj/structure/table/reinforced,
-/obj/effect/spawner/random/christmas_food,
-/obj/effect/spawner/random/christmas_food,
+/obj/effect/spawner/random/food_or_drink/christmas_food,
+/obj/effect/spawner/random/food_or_drink/christmas_food,
 /turf/open/floor/tile/white,
 /area/tdome/tdomeobserve)
 "vFG" = (

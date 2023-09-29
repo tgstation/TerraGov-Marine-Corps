@@ -287,8 +287,8 @@
 	name = "fuel weighted tank spawner"
 	icon_state = "random_weldtank"
 	loot = list(
-		/obj/structure/reagent_dispensers/fueltank = 8,
-		/obj/structure/reagent_dispensers/watertank = 2,
+		/obj/structure/reagent_dispensers/fueltank = 1000,
+		/obj/structure/reagent_dispensers/watertank = 1,
 	)
 
 /obj/effect/spawner/random/engineering/structure/tank/waterweighted

@@ -284,7 +284,7 @@
 /obj/item/clothing/suit/storage/hazardvest,
 /obj/structure/table/mainship,
 /obj/item/facepaint/black,
-/obj/effect/spawner/random/present,
+/obj/effect/spawner/random/misc/present,
 /obj/item/prop/mainship/candle{
 	pixel_y = 7
 	},
@@ -905,7 +905,7 @@
 "Pf" = (
 /obj/structure/cable,
 /obj/structure/flora/tree/pine/xmas/presents,
-/obj/effect/spawner/random/present{
+/obj/effect/spawner/random/misc/present{
 	pixel_x = -6;
 	pixel_y = -6
 	},
@@ -921,29 +921,29 @@
 /turf/closed/wall/mainship/outer/canterbury,
 /area/shuttle/canterbury/cic)
 "Pj" = (
-/obj/effect/spawner/random/christmas_food{
+/obj/effect/spawner/random/food_or_drink/christmas_food{
 	pixel_x = -3;
 	pixel_y = -4
 	},
-/obj/effect/spawner/random/christmas_food{
+/obj/effect/spawner/random/food_or_drink/christmas_food{
 	pixel_x = 1;
 	pixel_y = 1
 	},
-/obj/effect/spawner/random/christmas_food{
+/obj/effect/spawner/random/food_or_drink/christmas_food{
 	pixel_x = -3
 	},
-/obj/effect/spawner/random/present{
+/obj/effect/spawner/random/misc/present{
 	pixel_y = 8
 	},
-/obj/effect/spawner/random/present{
+/obj/effect/spawner/random/misc/present{
 	pixel_x = 7;
 	pixel_y = 5
 	},
-/obj/effect/spawner/random/present{
+/obj/effect/spawner/random/misc/present{
 	pixel_x = 9;
 	pixel_y = -3
 	},
-/obj/effect/spawner/random/present{
+/obj/effect/spawner/random/misc/present{
 	pixel_y = -3
 	},
 /turf/open/floor/mainship/mono,

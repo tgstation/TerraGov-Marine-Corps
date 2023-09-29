@@ -417,7 +417,7 @@
 	if(amount == 1)
 		living_user.temporarilyRemoveItemFromInventory(src)
 		forceMove(get_turf(src))
-		throw_at(target, throw_range, throw_speed, user, TRUE)
+		throw_at(current_target, throw_range, throw_speed, living_user, TRUE)
 	else if(!iscoal)
 		var/obj/item/stack/throwing_knife/knife_to_throw = new(get_turf(src))
 		knife_to_throw.amount = 1
@@ -429,7 +429,7 @@
 		var/obj/item/stack/throwing_knife/coal/coal_to_throw = new(get_turf(src))
 		coal_to_throw.amount = 1
 		coal_to_throw.update_icon()
-		coal_to_throw.throw_at(target, throw_range, throw_speed, user, TRUE)
+		coal_to_throw.throw_at(current_target, throw_range, throw_speed, living_user, TRUE)
 		amount--
 		thrown_thing = coal_to_throw
 
@@ -465,6 +465,7 @@
 	hitsound = 'sound/weapons/punch4.ogg'
 	attack_verb = list("bruised", "smashed", "cracked", "whomped", "walloped", "battered", "smacked")
 	iscoal = TRUE
+
 ///Sets the current target and registers for qdel to prevent hardels
 /obj/item/stack/throwing_knife/proc/set_target(atom/object)
 	if(object == current_target || object == living_user)

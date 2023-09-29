@@ -320,3 +320,31 @@
 	var/obj/item/armor_module/storage/armor_storage = attachments_by_slot[ATTACHMENT_SLOT_STORAGE]
 	if(armor_storage.storage.handle_mousedrop(usr, over_object))
 		return ..()
+
+
+/obj/item/clothing/suit/space/santa
+	name = "Santa's suit"
+	desc = "Festive!"
+	icon_state = "santa"
+	item_state = "santa"
+	slowdown = 0
+	allowed = list(/obj/item) //for stuffing exta special presents
+
+/obj/item/clothing/suit/space/santa/special //for ERT, when santa has to give presents to REALLY naughty children
+	desc = "That's not red dye. That's red blood."
+	soft_armor = list(MELEE = 85, BULLET = 90, LASER = 90, ENERGY = 85, BOMB = 120, BIO = 85, FIRE = 75, ACID = 40)
+	slowdown = 1
+	flags_item = NODROP|DELONDROP
+	flags_armor_protection = CHEST|GROIN|ARMS|LEGS|FEET|HANDS
+	flags_cold_protection = CHEST|GROIN|ARMS|LEGS|FEET|HANDS
+	flags_heat_protection = CHEST|GROIN|ARMS|LEGS|FEET|HANDS
+	supporting_limbs = CHEST | GROIN | ARM_LEFT | ARM_RIGHT | HAND_LEFT | HAND_RIGHT | LEG_LEFT | LEG_RIGHT | FOOT_LEFT | FOOT_RIGHT | HEAD
+	resistance_flags = UNACIDABLE
+
+/obj/item/clothing/suit/space/elf
+	name = "Elf suit"
+	desc = "Festive!"
+	icon_state = "elfcostume"
+	item_state = "elfcostume"
+	soft_armor = list(MELEE = 35, BULLET = 15, LASER = 15, ENERGY = 10, BOMB = 20, BIO = 30, FIRE = 20, ACID = 10)
+	flags_item = NODROP|DELONDROP

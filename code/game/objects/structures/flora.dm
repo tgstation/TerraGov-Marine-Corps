@@ -105,9 +105,9 @@
 	qdel(src)
 
 /obj/structure/flora/tree/flamer_fire_act(burnlevel)
-	take_damage(burnlevel/6, BURN, "fire")
-		return
 	if(is_christmastree)
+		return
+	take_damage(burnlevel/6, BURN, "fire")
 
 
 /obj/structure/flora/tree/update_overlays()

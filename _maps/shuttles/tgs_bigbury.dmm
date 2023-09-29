@@ -591,7 +591,7 @@
 /area/shuttle/canterbury)
 "cE" = (
 /obj/structure/table/woodentable,
-/obj/effect/spawner/random/christmas_food,
+/obj/effect/spawner/random/food_or_drink/christmas_food,
 /obj/item/wrapping_paper,
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
@@ -722,19 +722,19 @@
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "kB" = (
-/obj/effect/spawner/random/present{
+/obj/effect/spawner/random/misc/present{
 	pixel_x = 6;
 	pixel_y = -2
 	},
-/obj/effect/spawner/random/present{
+/obj/effect/spawner/random/misc/present{
 	pixel_x = -8;
 	pixel_y = -2
 	},
-/obj/effect/spawner/random/present{
+/obj/effect/spawner/random/misc/present{
 	pixel_x = -7;
 	pixel_y = 5
 	},
-/obj/effect/spawner/random/present{
+/obj/effect/spawner/random/misc/present{
 	pixel_y = 5
 	},
 /turf/open/floor/plating/plating_catwalk,
@@ -757,7 +757,7 @@
 /turf/closed/wall/mainship/outer/canterbury,
 /area/shuttle/canterbury/cic)
 "lL" = (
-/obj/effect/spawner/random/christmas_food,
+/obj/effect/spawner/random/food_or_drink/christmas_food,
 /turf/open/floor/mainship,
 /area/shuttle/canterbury)
 "mi" = (
@@ -882,8 +882,8 @@
 /area/shuttle/canterbury)
 "rX" = (
 /obj/structure/table/woodentable,
-/obj/effect/spawner/random/christmas_food,
-/obj/effect/spawner/random/christmas_food{
+/obj/effect/spawner/random/food_or_drink/christmas_food,
+/obj/effect/spawner/random/food_or_drink/christmas_food{
 	pixel_x = -3
 	},
 /obj/item/reagent_containers/food/drinks/h_chocolate{
@@ -1073,15 +1073,15 @@
 "CC" = (
 /obj/structure/cable,
 /obj/structure/table/woodentable,
-/obj/effect/spawner/random/christmas_food{
+/obj/effect/spawner/random/food_or_drink/christmas_food{
 	pixel_x = 1;
 	pixel_y = -3
 	},
-/obj/effect/spawner/random/christmas_food{
+/obj/effect/spawner/random/food_or_drink/christmas_food{
 	pixel_x = -3;
 	pixel_y = 3
 	},
-/obj/effect/spawner/random/christmas_food,
+/obj/effect/spawner/random/food_or_drink/christmas_food,
 /turf/open/floor/plating/plating_catwalk,
 /area/shuttle/canterbury)
 "Dt" = (
@@ -1244,8 +1244,8 @@
 /turf/closed/wall/mainship/outer/canterbury,
 /area/shuttle/canterbury/cic)
 "MR" = (
-/obj/effect/spawner/random/present,
-/obj/effect/spawner/random/present{
+/obj/effect/spawner/random/misc/present,
+/obj/effect/spawner/random/misc/present{
 	pixel_x = -3;
 	pixel_y = 9
 	},
@@ -1290,14 +1290,14 @@
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury/medical)
 "PI" = (
-/obj/effect/spawner/random/present{
+/obj/effect/spawner/random/misc/present{
 	pixel_x = -4;
 	pixel_y = -9
 	},
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "PQ" = (
-/obj/effect/spawner/random/christmas_food,
+/obj/effect/spawner/random/food_or_drink/christmas_food,
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "PW" = (
@@ -1344,16 +1344,16 @@
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "Si" = (
-/obj/effect/spawner/random/christmas_food{
+/obj/effect/spawner/random/food_or_drink/christmas_food{
 	pixel_x = -4;
 	pixel_y = 2
 	},
 /obj/structure/table/woodentable,
-/obj/effect/spawner/random/christmas_food{
+/obj/effect/spawner/random/food_or_drink/christmas_food{
 	pixel_x = 5;
 	pixel_y = 3
 	},
-/obj/effect/spawner/random/christmas_food,
+/obj/effect/spawner/random/food_or_drink/christmas_food,
 /turf/open/floor/mainship/blue{
 	dir = 10
 	},
@@ -1435,10 +1435,10 @@
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "VY" = (
-/obj/effect/spawner/random/present{
+/obj/effect/spawner/random/misc/present{
 	pixel_y = -20
 	},
-/obj/effect/spawner/random/present{
+/obj/effect/spawner/random/misc/present{
 	pixel_x = 3;
 	pixel_y = -7
 	},

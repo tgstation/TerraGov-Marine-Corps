@@ -278,8 +278,6 @@
 
 /obj/item/clothing/head/modular/apply_custom(mutable_appearance/standing)
 	. = ..()
-	if(xmashat_color)
-		standing.overlays += mutable_appearance('icons/mob/modular/modular_armor.dmi', icon_state = "[xmashat_color]")
 	if(attachments_by_slot[ATTACHMENT_SLOT_STORAGE] && istype(attachments_by_slot[ATTACHMENT_SLOT_STORAGE], /obj/item/armor_module/storage))
 		var/obj/item/armor_module/storage/storage_module = attachments_by_slot[ATTACHMENT_SLOT_STORAGE]
 		if(storage_module.show_storage)

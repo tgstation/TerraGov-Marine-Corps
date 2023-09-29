@@ -1010,7 +1010,7 @@
 	//is the candle on or off
 	var/litcandle = FALSE
 	//used for easy reverting back to default icon_state once the candle burns out
-	var/base_icon_state = "candle"
+	base_icon_state = "candle"
 
 /obj/item/prop/mainship/candle/Initialize()
 	. = ..()

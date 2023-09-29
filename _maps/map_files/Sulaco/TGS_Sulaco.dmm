@@ -76,14 +76,6 @@
 /obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/plating/mainship,
 /area/sulaco/engineering/engine)
-"aam" = (
-/obj/structure/prop/holidays/string_lights,
-/turf/closed/wall/mainship/white,
-/area/sulaco/medbay/west)
-"aan" = (
-/obj/structure/prop/holidays/string_lights,
-/turf/closed/wall/mainship/white,
-/area/sulaco/medbay/chemistry)
 "aap" = (
 /obj/machinery/power/fusion_engine{
 	name = "\improper S-52 fusion reactor #3"
@@ -98,6 +90,7 @@
 /obj/machinery/light/mainship{
 	dir = 1
 	},
+/obj/structure/prop/holidays/string_lights,
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 1
 	},
@@ -118,6 +111,7 @@
 /obj/item/storage/box/autoinjectors{
 	pixel_x = 7
 	},
+/obj/structure/prop/holidays/string_lights,
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 4
 	},
@@ -134,6 +128,7 @@
 /area/sulaco/engineering/engine)
 "aau" = (
 /obj/structure/closet/secure_closet/chemical,
+/obj/structure/prop/holidays/string_lights,
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 4
 	},
@@ -144,6 +139,7 @@
 /obj/structure/bed/chair/office/dark{
 	dir = 4
 	},
+/obj/structure/prop/holidays/string_lights,
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 1
 	},
@@ -187,16 +183,16 @@
 	},
 /turf/open/floor/prison/sterilewhite,
 /area/sulaco/cryosleep)
-"aaJ" = (
-/obj/structure/prop/holidays/string_lights,
-/turf/closed/wall/mainship/white,
-/area/sulaco/medbay)
 "aaM" = (
 /obj/machinery/door/firedoor/mainship,
 /obj/machinery/door/poddoor/shutters/opened/medbay,
 /obj/structure/table/reinforced,
 /obj/machinery/door/window/secure/medical{
 	dir = 8
+	},
+/obj/structure/prop/holidays/string_lights/corner,
+/obj/structure/prop/holidays/string_lights/corner{
+	dir = 1
 	},
 /turf/open/floor/plating/platebotc,
 /area/sulaco/medbay/chemistry)
@@ -207,6 +203,7 @@
 "aaP" = (
 /obj/structure/disposalpipe/trunk,
 /obj/machinery/disposal,
+/obj/structure/prop/holidays/string_lights,
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 1
 	},
@@ -217,10 +214,7 @@
 "aaR" = (
 /obj/structure/table/mainship/nometal,
 /obj/machinery/firealarm,
-/obj/item/reagent_containers/food/drinks/bottle/eggnog,
-/obj/effect/spawner/random/present{
-	pixel_y = 5
-	},
+/obj/structure/prop/holidays/string_lights,
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 4
 	},
@@ -237,6 +231,7 @@
 	},
 /obj/item/storage/firstaid/adv,
 /obj/machinery/camera/autoname,
+/obj/structure/prop/holidays/string_lights,
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 1
 	},
@@ -268,6 +263,12 @@
 /area/sulaco/maintenance/upperdeck_north_maint)
 "aaX" = (
 /obj/machinery/smartfridge/chemistry,
+/obj/structure/prop/holidays/string_lights{
+	dir = 4
+	},
+/obj/structure/prop/holidays/string_lights{
+	dir = 8
+	},
 /turf/open/floor/plating/platebotc,
 /area/sulaco/medbay/chemistry)
 "aaY" = (
@@ -289,11 +290,15 @@
 	id = "medsci"
 	},
 /obj/machinery/camera/autoname,
+/obj/structure/prop/holidays/string_lights,
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 4
 	},
 /area/sulaco/medbay/west)
 "abe" = (
+/obj/structure/prop/holidays/string_lights{
+	dir = 1
+	},
 /turf/closed/wall/mainship/white/outer,
 /area/sulaco/medbay/surgery_one)
 "abf" = (
@@ -334,17 +339,11 @@
 /obj/item/radio/intercom/general{
 	dir = 1
 	},
-/obj/structure/prop/holidays/string_lights{
-	dir = 1
-	},
 /turf/open/floor/prison/whitegreen/corner,
 /area/sulaco/medbay/chemistry)
 "abl" = (
 /obj/machinery/chem_dispenser,
 /obj/machinery/light/mainship,
-/obj/structure/prop/holidays/string_lights{
-	dir = 1
-	},
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 8
 	},
@@ -352,9 +351,6 @@
 "abm" = (
 /obj/machinery/chem_master,
 /obj/item/reagent_containers/glass/beaker/bluespace,
-/obj/structure/prop/holidays/string_lights{
-	dir = 1
-	},
 /turf/open/floor/prison/whitegreen/corner,
 /area/sulaco/medbay/chemistry)
 "abn" = (
@@ -389,7 +385,6 @@
 /area/sulaco/cryosleep)
 "abs" = (
 /obj/machinery/status_display,
-/obj/structure/prop/holidays/string_lights,
 /turf/closed/wall/mainship/gray,
 /area/sulaco/briefing)
 "abt" = (
@@ -460,12 +455,10 @@
 /area/sulaco/medbay/west)
 "abE" = (
 /obj/structure/sign/chemistry,
-/obj/structure/prop/holidays/string_lights{
-	dir = 8
+/obj/structure/prop/holidays/string_lights/corner{
+	dir = 1
 	},
-/obj/structure/prop/holidays/string_lights{
-	dir = 4
-	},
+/obj/structure/prop/holidays/string_lights/corner,
 /turf/closed/wall/mainship/white,
 /area/sulaco/medbay/west)
 "abF" = (
@@ -476,9 +469,6 @@
 	name = "Privacy Shutters";
 	pixel_x = -5;
 	pixel_y = 10
-	},
-/obj/structure/prop/holidays/string_lights{
-	dir = 1
 	},
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 8
@@ -497,6 +487,9 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 4
 	},
+/obj/effect/spawner/random/misc/present{
+	pixel_y = 5
+	},
 /turf/open/floor/prison/whitegreen/corner,
 /area/sulaco/medbay/chemistry)
 "abL" = (
@@ -514,9 +507,6 @@
 	pixel_x = -5;
 	pixel_y = 10
 	},
-/obj/structure/prop/holidays/string_lights{
-	dir = 1
-	},
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 8
 	},
@@ -524,6 +514,12 @@
 "abN" = (
 /obj/machinery/door/airlock/mainship/medical/glass,
 /obj/machinery/door/firedoor/mainship,
+/obj/structure/prop/holidays/string_lights{
+	dir = 4
+	},
+/obj/structure/prop/holidays/string_lights{
+	dir = 8
+	},
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 1
 	},
@@ -551,15 +547,18 @@
 "abY" = (
 /obj/machinery/door/airlock/mainship/medical/glass/chemistry,
 /obj/machinery/door/firedoor/mainship,
+/obj/structure/prop/holidays/string_lights{
+	dir = 8
+	},
+/obj/structure/prop/holidays/string_lights{
+	dir = 4
+	},
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 1
 	},
 /area/sulaco/medbay/west)
 "aca" = (
 /obj/machinery/vending/MarineMed/Blood,
-/obj/structure/prop/holidays/string_lights{
-	dir = 1
-	},
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 8
 	},
@@ -569,9 +568,6 @@
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
-/obj/structure/prop/holidays/string_lights{
-	dir = 1
-	},
 /turf/open/floor/prison/whitegreen/corner,
 /area/sulaco/medbay/west)
 "acc" = (
@@ -627,6 +623,7 @@
 /area/sulaco/medbay/chemistry)
 "acj" = (
 /obj/machinery/bodyscanner,
+/obj/structure/prop/holidays/string_lights,
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 8
 	},
@@ -664,6 +661,7 @@
 /obj/machinery/light/mainship{
 	dir = 1
 	},
+/obj/structure/prop/holidays/string_lights,
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 8
 	},
@@ -698,6 +696,7 @@
 	dir = 1
 	},
 /obj/machinery/body_scanconsole,
+/obj/structure/prop/holidays/string_lights,
 /turf/open/floor/prison/whitegreen/corner,
 /area/sulaco/medbay/west)
 "acv" = (
@@ -726,6 +725,9 @@
 "acz" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 8
+	},
+/obj/structure/prop/holidays/string_lights{
+	dir = 10
 	},
 /turf/open/floor/prison/whitegreen/corner,
 /area/sulaco/medbay/west)
@@ -758,7 +760,7 @@
 "acG" = (
 /obj/structure/window/framed/mainship/white,
 /obj/structure/prop/holidays/string_lights{
-	dir = 6
+	dir = 5
 	},
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 4
@@ -774,7 +776,9 @@
 	dir = 2
 	},
 /obj/structure/window/framed/mainship/white,
-/obj/structure/prop/holidays/string_lights,
+/obj/structure/prop/holidays/string_lights{
+	dir = 1
+	},
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 1
 	},
@@ -790,7 +794,7 @@
 	},
 /obj/structure/window/framed/mainship/white,
 /obj/structure/prop/holidays/string_lights{
-	dir = 6
+	dir = 5
 	},
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 4
@@ -798,18 +802,12 @@
 /area/sulaco/medbay/surgery_two)
 "acJ" = (
 /obj/machinery/autodoc,
-/obj/structure/prop/holidays/string_lights{
-	dir = 1
-	},
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 1
 	},
 /area/sulaco/medbay)
 "acK" = (
 /obj/machinery/autodoc_console,
-/obj/structure/prop/holidays/string_lights{
-	dir = 1
-	},
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 4
 	},
@@ -820,23 +818,6 @@
 	},
 /turf/open/floor/carpet,
 /area/sulaco/liaison)
-"acP" = (
-/obj/machinery/door/poddoor/shutters/mainship{
-	dir = 1;
-	id = "or1privacyshutter";
-	name = "\improper Privacy Shutters"
-	},
-/obj/machinery/door/firedoor/mainship{
-	dir = 2
-	},
-/obj/structure/window/framed/mainship/white,
-/obj/structure/prop/holidays/string_lights{
-	dir = 6
-	},
-/turf/open/floor/prison/whitegreen/corner{
-	dir = 4
-	},
-/area/sulaco/medbay/surgery_one)
 "acQ" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
@@ -860,7 +841,9 @@
 	dir = 2
 	},
 /obj/structure/window/framed/mainship/white,
-/obj/structure/prop/holidays/string_lights,
+/obj/structure/prop/holidays/string_lights{
+	dir = 1
+	},
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 1
 	},
@@ -868,7 +851,7 @@
 "acT" = (
 /obj/machinery/cryopod/right,
 /obj/structure/prop/holidays/string_lights{
-	dir = 1
+	dir = 6
 	},
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 8
@@ -878,18 +861,27 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 4
 	},
+/obj/structure/prop/holidays/string_lights{
+	dir = 6
+	},
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 8
 	},
 /area/sulaco/medbay/surgery_two)
 "acY" = (
 /obj/machinery/bioprinter/stocked,
+/obj/structure/prop/holidays/string_lights{
+	dir = 10
+	},
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 8
 	},
 /area/sulaco/medbay/surgery_two)
 "acZ" = (
 /obj/machinery/bioprinter/stocked,
+/obj/structure/prop/holidays/string_lights{
+	dir = 6
+	},
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 8
 	},
@@ -897,6 +889,9 @@
 "adb" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 8
+	},
+/obj/structure/prop/holidays/string_lights{
+	dir = 10
 	},
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 8
@@ -916,13 +911,13 @@
 /obj/machinery/atmospherics/pipe/manifold/yellow/hidden{
 	dir = 1
 	},
+/obj/structure/prop/holidays/string_lights,
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 4
 	},
 /area/sulaco/medbay)
 "add" = (
 /obj/machinery/cryopod/right,
-/obj/effect/spawner/random_set/christmas_costume,
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 4
 	},
@@ -966,6 +961,12 @@
 /obj/machinery/door/firedoor/mainship,
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
 	dir = 4
+	},
+/obj/structure/prop/holidays/string_lights{
+	dir = 4
+	},
+/obj/structure/prop/holidays/string_lights{
+	dir = 8
 	},
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 4
@@ -1024,6 +1025,9 @@
 	},
 /area/sulaco/medbay/surgery_one)
 "adv" = (
+/obj/structure/prop/holidays/string_lights{
+	dir = 1
+	},
 /turf/closed/wall/mainship/white/outer,
 /area/sulaco/medbay/surgery_two)
 "ady" = (
@@ -1072,6 +1076,7 @@
 /obj/structure/closet/secure_closet/medical2,
 /obj/item/storage/box/gloves,
 /obj/item/storage/surgical_tray,
+/obj/structure/prop/holidays/string_lights,
 /turf/open/floor/prison/whitegreen/corner,
 /area/sulaco/medbay/surgery_two)
 "adG" = (
@@ -1081,6 +1086,7 @@
 /obj/structure/closet/secure_closet/medical2,
 /obj/item/storage/box/gloves,
 /obj/item/storage/surgical_tray,
+/obj/structure/prop/holidays/string_lights,
 /turf/open/floor/prison/whitegreen/corner,
 /area/sulaco/medbay/surgery_one)
 "adH" = (
@@ -1207,15 +1213,15 @@
 	normaldoorcontrol = 1;
 	pixel_y = 28
 	},
+/obj/structure/prop/holidays/string_lights{
+	dir = 10
+	},
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 8
 	},
 /area/sulaco/medbay)
 "adV" = (
 /obj/machinery/camera/autoname{
-	dir = 1
-	},
-/obj/structure/prop/holidays/string_lights{
 	dir = 1
 	},
 /turf/open/floor/prison/whitegreen/corner{
@@ -1226,9 +1232,6 @@
 /obj/structure/table/mainship/nometal,
 /obj/item/reagent_containers/glass/beaker/cryomix,
 /obj/item/reagent_containers/glass/beaker/cryomix,
-/obj/effect/spawner/random/present{
-	pixel_y = 5
-	},
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 4
 	},
@@ -1244,6 +1247,9 @@
 /obj/machinery/microwave,
 /obj/machinery/light/mainship{
 	dir = 4
+	},
+/obj/item/prop/mainship/candle/short{
+	pixel_y = 6
 	},
 /turf/open/floor/prison/kitchen,
 /area/sulaco/cafeteria)
@@ -1287,9 +1293,6 @@
 /area/sulaco/medbay)
 "aem" = (
 /obj/machinery/sleeper,
-/obj/structure/prop/holidays/string_lights{
-	dir = 1
-	},
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 4
 	},
@@ -1502,6 +1505,7 @@
 /obj/machinery/light/mainship{
 	dir = 1
 	},
+/obj/structure/prop/holidays/string_lights,
 /turf/open/floor/prison/whitegreen/corner,
 /area/sulaco/medbay)
 "aeS" = (
@@ -1547,9 +1551,6 @@
 /obj/structure/bed/chair/nometal{
 	dir = 1
 	},
-/obj/structure/prop/holidays/string_lights{
-	dir = 1
-	},
 /turf/open/floor/prison/whitegreen/corner,
 /area/sulaco/medbay)
 "afd" = (
@@ -1584,9 +1585,6 @@
 /obj/structure/bed/chair/nometal{
 	dir = 1
 	},
-/obj/structure/prop/holidays/string_lights{
-	dir = 1
-	},
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 8
 	},
@@ -1603,6 +1601,9 @@
 /obj/machinery/door/firedoor/mainship,
 /obj/structure/disposalpipe/segment{
 	dir = 4
+	},
+/obj/structure/prop/holidays/string_lights/corner{
+	dir = 1
 	},
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 1
@@ -1866,6 +1867,7 @@
 "aiA" = (
 /obj/machinery/cic_maptable,
 /obj/structure/table/mainship/nometal,
+/obj/structure/prop/holidays/string_lights,
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 8
 	},
@@ -1904,9 +1906,6 @@
 	dir = 4
 	},
 /obj/machinery/vending/MarineMed,
-/obj/structure/prop/holidays/string_lights{
-	dir = 1
-	},
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 8
 	},
@@ -2355,6 +2354,7 @@
 /area/sulaco/showers)
 "amf" = (
 /obj/machinery/marine_selector/gear/medic,
+/obj/structure/prop/holidays/string_lights,
 /turf/open/floor/prison,
 /area/sulaco/marine)
 "amg" = (
@@ -2563,17 +2563,6 @@
 /obj/item/tool/screwdriver,
 /obj/item/tool/screwdriver,
 /obj/item/tool/wrench,
-/obj/item/prop/mainship/candle{
-	pixel_x = 1;
-	pixel_y = 8
-	},
-/obj/item/prop/mainship/candle/short{
-	pixel_x = -8
-	},
-/obj/item/prop/mainship/candle/short{
-	pixel_x = 1;
-	pixel_y = -3
-	},
 /turf/open/floor/prison,
 /area/sulaco/cargo/prep)
 "anK" = (
@@ -2612,7 +2601,6 @@
 /area/sulaco/maintenance/upperdeck_north_maint)
 "aob" = (
 /obj/machinery/status_display/ai,
-/obj/structure/prop/holidays/string_lights,
 /turf/closed/wall/mainship/gray,
 /area/sulaco/briefing)
 "aof" = (
@@ -2640,6 +2628,7 @@
 /area/sulaco/hallway/central_hall)
 "aoj" = (
 /obj/item/radio/intercom/general,
+/obj/structure/prop/holidays/string_lights,
 /turf/open/floor/prison,
 /area/sulaco/briefing)
 "aok" = (
@@ -2701,6 +2690,7 @@
 /obj/machinery/light/mainship{
 	dir = 1
 	},
+/obj/structure/prop/holidays/string_lights,
 /turf/open/floor/prison,
 /area/sulaco/briefing)
 "aoB" = (
@@ -2713,6 +2703,7 @@
 	},
 /obj/machinery/power/apc/mainship,
 /obj/structure/cable,
+/obj/structure/prop/holidays/string_lights,
 /turf/open/floor/prison,
 /area/sulaco/briefing)
 "aoF" = (
@@ -2729,9 +2720,7 @@
 /area/sulaco/bridge)
 "aoG" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on,
-/obj/structure/prop/holidays/stocking{
-	pixel_y = 26
-	},
+/obj/structure/prop/holidays/string_lights,
 /turf/open/floor/prison,
 /area/sulaco/briefing)
 "aoL" = (
@@ -2772,9 +2761,25 @@
 /obj/item/radio/intercom/general{
 	dir = 4
 	},
-/obj/effect/spawner/random/christmas_food{
+/obj/item/prop/mainship/candle{
+	pixel_x = -9;
+	pixel_y = 9
+	},
+/obj/item/prop/mainship/candle/short{
 	pixel_x = 3;
-	pixel_y = -7
+	pixel_y = 4
+	},
+/obj/item/prop/mainship/candle/short{
+	pixel_x = 4;
+	pixel_y = -9
+	},
+/obj/item/prop/mainship/candle/short{
+	pixel_x = -8;
+	pixel_y = -4
+	},
+/obj/item/prop/mainship/candle/short{
+	pixel_x = 15;
+	pixel_y = 9
 	},
 /turf/open/floor/prison,
 /area/sulaco/briefing)
@@ -2825,8 +2830,7 @@
 /area/sulaco/bridge)
 "apn" = (
 /obj/structure/table/mainship/nometal,
-/obj/structure/flora/pottedplant{
-	icon_state = "plant-15";
+/obj/structure/flora/pottedplant/fifteen{
 	pixel_y = 10
 	},
 /turf/open/floor/prison/red{
@@ -2987,6 +2991,9 @@
 "apX" = (
 /obj/structure/bed/chair/nometal,
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
+/obj/structure/prop/holidays/stocking{
+	pixel_y = 26
+	},
 /turf/open/floor/prison/darkpurple{
 	dir = 9
 	},
@@ -3022,6 +3029,7 @@
 /area/sulaco/cargo/office)
 "aqj" = (
 /obj/machinery/camera/autoname,
+/obj/structure/prop/holidays/string_lights,
 /turf/open/floor/prison,
 /area/sulaco/briefing)
 "aql" = (
@@ -3209,6 +3217,10 @@
 	id = "bar";
 	name = "Briefing Shutters"
 	},
+/obj/effect/spawner/random/food_or_drink/christmas_food{
+	pixel_x = 3;
+	pixel_y = -7
+	},
 /turf/open/floor/prison,
 /area/sulaco/briefing)
 "arn" = (
@@ -3325,6 +3337,13 @@
 	dir = 1
 	},
 /area/sulaco/cargo/prep)
+"arG" = (
+/obj/structure/bed/chair/nometal{
+	dir = 1
+	},
+/obj/effect/spawner/random/food_or_drink/christmas_food,
+/turf/open/floor/prison/sterilewhite,
+/area/sulaco/cafeteria/kitchen)
 "arH" = (
 /obj/machinery/door/airlock/mainship/generic,
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
@@ -3335,6 +3354,9 @@
 	},
 /obj/machinery/door/firedoor/mainship,
 /obj/machinery/door/poddoor/opened/port,
+/obj/structure/prop/holidays/string_lights{
+	dir = 8
+	},
 /turf/open/floor/prison/red,
 /area/sulaco/hallway/central_hall3)
 "arM" = (
@@ -3560,6 +3582,9 @@
 /turf/open/floor/prison/red/full,
 /area/sulaco/bridge)
 "asS" = (
+/obj/structure/prop/holidays/stocking{
+	pixel_y = 26
+	},
 /turf/open/floor/prison/red/corner{
 	dir = 8
 	},
@@ -3630,9 +3655,6 @@
 	dir = 4
 	},
 /obj/machinery/door/poddoor/opened/port,
-/obj/structure/prop/holidays/string_lights{
-	dir = 8
-	},
 /turf/open/floor/prison,
 /area/sulaco/hallway/central_hall3)
 "atk" = (
@@ -3896,12 +3918,18 @@
 /turf/open/floor/prison,
 /area/sulaco/briefing)
 "auh" = (
+/obj/structure/bed/chair/nometal,
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
 	dir = 4
 	},
+/obj/effect/spawner/random/misc/present{
+	pixel_x = 4;
+	pixel_y = 6
+	},
+/obj/effect/spawner/random/misc/present,
 /turf/open/floor/prison/darkpurple{
 	dir = 4
 	},
@@ -4074,6 +4102,9 @@
 /obj/machinery/door/airlock/mainship/generic,
 /obj/machinery/door/firedoor/mainship,
 /obj/machinery/door/poddoor/opened/port,
+/obj/structure/prop/holidays/string_lights{
+	dir = 8
+	},
 /turf/open/floor/prison/red{
 	dir = 1
 	},
@@ -4424,9 +4455,6 @@
 	name = "Engine Room Blast Doors";
 	pixel_y = -3
 	},
-/obj/effect/spawner/random/present{
-	pixel_y = 5
-	},
 /turf/open/floor/prison/darkyellow/full,
 /area/sulaco/engineering/engine_monitoring)
 "awl" = (
@@ -4437,6 +4465,9 @@
 	},
 /obj/machinery/door/firedoor/mainship,
 /obj/structure/window/framed/mainship/gray/toughened,
+/obj/structure/prop/holidays/string_lights{
+	dir = 4
+	},
 /turf/open/floor/plating/platebotc,
 /area/sulaco/briefing)
 "awn" = (
@@ -4480,6 +4511,9 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 8
 	},
+/obj/item/prop/mainship/candle{
+	pixel_y = 6
+	},
 /turf/open/floor/carpet,
 /area/sulaco/cap_office)
 "awx" = (
@@ -4494,6 +4528,9 @@
 "awy" = (
 /obj/structure/bed/chair/nometal{
 	dir = 1
+	},
+/obj/effect/spawner/random/misc/present{
+	pixel_y = 5
 	},
 /turf/open/floor/mainship/terragov/west,
 /area/sulaco/bridge)
@@ -4746,9 +4783,6 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/vending/weapon,
-/obj/structure/prop/holidays/string_lights{
-	dir = 1
-	},
 /turf/open/floor/prison,
 /area/sulaco/marine)
 "aym" = (
@@ -4883,7 +4917,6 @@
 /area/sulaco/briefing)
 "ayP" = (
 /obj/structure/bed/chair/nometal,
-/obj/effect/spawner/random/christmas_food,
 /turf/open/floor/prison/red{
 	dir = 10
 	},
@@ -4899,9 +4932,6 @@
 /obj/structure/table/reinforced,
 /obj/structure/window/reinforced/windowstake{
 	dir = 8
-	},
-/obj/item/reagent_containers/food/drinks/h_chocolate{
-	pixel_y = 7
 	},
 /turf/open/floor/prison/bright_clean,
 /area/sulaco/bridge)
@@ -5030,9 +5060,6 @@
 /obj/structure/table/reinforced,
 /obj/item/storage/box/ids,
 /obj/item/storage/box/ids,
-/obj/item/prop/mainship/candle{
-	pixel_y = 6
-	},
 /turf/open/floor/carpet,
 /area/sulaco/cap_office)
 "azI" = (
@@ -5085,6 +5112,7 @@
 	dir = 8
 	},
 /obj/machinery/door/firedoor/mainship,
+/obj/structure/prop/holidays/string_lights/corner,
 /turf/open/floor/prison,
 /area/sulaco/briefing)
 "aAa" = (
@@ -5096,9 +5124,6 @@
 /area/sulaco/cap_office)
 "aAb" = (
 /obj/machinery/light/mainship,
-/obj/structure/prop/holidays/string_lights{
-	dir = 1
-	},
 /turf/open/floor/prison,
 /area/sulaco/briefing)
 "aAj" = (
@@ -5297,10 +5322,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/prison,
 /area/sulaco/hallway/lower_foreship)
-"aBf" = (
-/obj/structure/prop/holidays/string_lights/corner,
-/turf/closed/wall/mainship/gray,
-/area/mainship/living/basketball)
 "aBj" = (
 /obj/machinery/atmospherics/pipe/manifold/cyan/hidden/layer1{
 	dir = 1
@@ -5376,17 +5397,11 @@
 /obj/structure/bed/chair/nometal{
 	dir = 1
 	},
-/obj/structure/prop/holidays/string_lights{
-	dir = 1
-	},
 /turf/open/floor/prison,
 /area/sulaco/briefing)
 "aBD" = (
 /obj/structure/table/mainship/nometal,
 /obj/item/reagent_containers/spray/cleaner,
-/obj/structure/prop/holidays/string_lights{
-	dir = 1
-	},
 /turf/open/floor/prison,
 /area/sulaco/briefing)
 "aBF" = (
@@ -5447,9 +5462,6 @@
 	dir = 8
 	},
 /obj/effect/ai_node,
-/obj/structure/prop/holidays/string_lights{
-	dir = 1
-	},
 /turf/open/floor/prison,
 /area/sulaco/briefing)
 "aBV" = (
@@ -5664,24 +5676,15 @@
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
 	dir = 9
 	},
-/obj/item/reagent_containers/food/drinks/h_chocolate{
-	pixel_y = 7
-	},
 /turf/open/floor/prison,
 /area/sulaco/maintenance/upperdeck_AIcore_maint)
 "aCJ" = (
 /obj/structure/table/mainship/nometal,
-/obj/effect/spawner/random/present{
-	pixel_y = 5
-	},
 /turf/open/floor/prison,
 /area/sulaco/maintenance/upperdeck_AIcore_maint)
 "aCK" = (
 /obj/machinery/door/window/secure{
 	dir = 8
-	},
-/obj/structure/prop/holidays/string_lights{
-	dir = 1
 	},
 /turf/open/floor/prison,
 /area/sulaco/briefing)
@@ -5941,7 +5944,6 @@
 	},
 /area/sulaco/research)
 "aEh" = (
-/obj/effect/spawner/random_set/christmas_costume,
 /turf/open/floor/mainship/research/containment/floor1,
 /area/sulaco/research)
 "aEi" = (
@@ -6321,6 +6323,7 @@
 	dir = 4
 	},
 /obj/machinery/disposal,
+/obj/structure/prop/holidays/string_lights,
 /turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 9
 	},
@@ -7088,9 +7091,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/prison/arrow/clean,
 /area/sulaco/cafeteria)
-"aLf" = (
-/turf/closed/wall/mainship/gray,
-/area/sulaco/marine)
 "aLh" = (
 /obj/effect/decal/cleanable/cobweb{
 	dir = 8
@@ -7108,6 +7108,7 @@
 /area/sulaco/marine)
 "aLo" = (
 /obj/machinery/vending/nanomed,
+/obj/structure/prop/holidays/string_lights,
 /turf/open/floor/prison/green{
 	dir = 1
 	},
@@ -7307,6 +7308,12 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
+/obj/structure/prop/holidays/string_lights{
+	dir = 8
+	},
+/obj/structure/prop/holidays/string_lights{
+	dir = 4
+	},
 /turf/open/floor/prison/green/full,
 /area/sulaco/marine)
 "aMp" = (
@@ -7356,6 +7363,12 @@
 /obj/machinery/door/airlock/mainship/marine/general/sl,
 /obj/structure/disposalpipe/segment{
 	dir = 4
+	},
+/obj/structure/prop/holidays/string_lights{
+	dir = 4
+	},
+/obj/structure/prop/holidays/string_lights{
+	dir = 8
 	},
 /turf/open/floor/prison/green/full,
 /area/sulaco/marine)
@@ -7441,6 +7454,12 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/door/airlock/mainship/marine/general/corps,
 /obj/structure/sign/safety/medical,
+/obj/structure/prop/holidays/string_lights{
+	dir = 4
+	},
+/obj/structure/prop/holidays/string_lights{
+	dir = 8
+	},
 /turf/open/floor/prison/green/full,
 /area/sulaco/marine)
 "aMT" = (
@@ -7504,6 +7523,12 @@
 	dir = 8
 	},
 /area/sulaco/marine)
+"aNi" = (
+/obj/effect/spawner/random/misc/present{
+	pixel_y = 5
+	},
+/turf/open/floor/prison/whitegreen/corner,
+/area/sulaco/medbay)
 "aNk" = (
 /obj/structure/morgue{
 	dir = 8
@@ -7840,19 +7865,6 @@
 "aQl" = (
 /obj/structure/table/mainship/nometal,
 /obj/item/storage/box/beakers,
-/obj/item/prop/mainship/candle{
-	pixel_y = 4
-	},
-/obj/item/prop/mainship/candle/short{
-	pixel_x = 20
-	},
-/obj/item/prop/mainship/candle/short{
-	pixel_x = 11;
-	pixel_y = 8
-	},
-/obj/item/prop/mainship/candle/short{
-	pixel_x = -11
-	},
 /turf/open/floor/prison/whitegreen/full,
 /area/sulaco/research)
 "aQm" = (
@@ -7998,9 +8010,6 @@
 	dir = 1
 	},
 /obj/item/tank/anesthetic,
-/obj/effect/spawner/random/present{
-	pixel_y = 5
-	},
 /turf/open/floor/prison/sterilewhite,
 /area/sulaco/medbay/hangar)
 "aRc" = (
@@ -8057,6 +8066,9 @@
 /area/sulaco/telecomms/office)
 "aRu" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on,
+/obj/effect/spawner/random/misc/present{
+	pixel_y = 5
+	},
 /turf/open/floor/prison/whitegreen/full,
 /area/sulaco/medbay/hangar)
 "aRv" = (
@@ -8179,6 +8191,7 @@
 	id = "gardenblast";
 	name = "Observation Windows"
 	},
+/obj/structure/prop/holidays/string_lights,
 /turf/open/floor/grass,
 /area/mainship/living/starboard_garden)
 "aSa" = (
@@ -8637,9 +8650,6 @@
 /obj/structure/table/mainship/nometal,
 /obj/item/storage/box/bodybags,
 /obj/item/storage/box/bodybags,
-/obj/item/prop/mainship/candle{
-	pixel_y = 5
-	},
 /turf/open/floor/cult,
 /area/sulaco/morgue)
 "aVp" = (
@@ -9020,13 +9030,6 @@
 /obj/machinery/camera/autoname{
 	dir = 4
 	},
-/obj/effect/spawner/random/christmas_food{
-	pixel_x = -4;
-	pixel_y = 4
-	},
-/obj/effect/spawner/random/christmas_food{
-	pixel_y = 1
-	},
 /turf/open/floor/plating,
 /area/sulaco/maintenance/lower_maint2)
 "aYM" = (
@@ -9357,6 +9360,12 @@
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /turf/open/floor/prison,
 /area/sulaco/telecomms/office)
+"bbE" = (
+/obj/structure/prop/holidays/string_lights/corner{
+	dir = 4
+	},
+/turf/closed/wall/mainship/gray,
+/area/sulaco/maintenance/lower_maint2)
 "bbH" = (
 /obj/machinery/computer/skills,
 /obj/structure/table/fancywoodentable,
@@ -9391,9 +9400,6 @@
 /obj/item/storage/box/nt_mre,
 /obj/item/ashtray/bronze,
 /obj/structure/table/fancywoodentable,
-/obj/effect/spawner/random/present{
-	pixel_y = 5
-	},
 /turf/open/floor/wood,
 /area/sulaco/liaison)
 "bcs" = (
@@ -9611,6 +9617,13 @@
 /obj/item/clothing/mask/balaclava,
 /turf/open/floor/wood,
 /area/sulaco/liaison/quarters)
+"beT" = (
+/obj/structure/window/framed/mainship/white,
+/obj/structure/prop/holidays/string_lights{
+	dir = 9
+	},
+/turf/open/floor/plating/platebotc,
+/area/sulaco/medbay)
 "bfC" = (
 /obj/structure/closet/crate/medical,
 /turf/open/floor/prison,
@@ -9681,20 +9694,39 @@
 /turf/open/floor/prison,
 /area/sulaco/hallway/lower_foreship)
 "biP" = (
+/obj/structure/prop/holidays/string_lights,
 /turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 1
 	},
 /area/mainship/living/basketball)
+"bjb" = (
+/obj/structure/window/framed/mainship/gray/toughened,
+/obj/machinery/door/poddoor/shutters/opened/medbay{
+	dir = 2;
+	id = "Research";
+	name = "Research Lockdown Shutters"
+	},
+/obj/item/prop/mainship/candle{
+	pixel_y = 4
+	},
+/obj/item/prop/mainship/candle/short{
+	pixel_x = 20
+	},
+/obj/item/prop/mainship/candle/short{
+	pixel_x = 11;
+	pixel_y = 8
+	},
+/obj/item/prop/mainship/candle/short{
+	pixel_x = -11
+	},
+/turf/open/floor/plating/platebotc,
+/area/sulaco/research)
 "bjj" = (
 /obj/structure/table/mainship/nometal,
 /obj/item/lightreplacer,
 /obj/machinery/vending/nanomed,
 /turf/open/floor/prison/bright_clean,
 /area/sulaco/hydro)
-"bjp" = (
-/obj/structure/prop/holidays/string_lights,
-/turf/closed/wall/mainship/gray,
-/area/sulaco/cafeteria)
 "bjL" = (
 /obj/effect/decal/cleanable/blood/oil,
 /obj/machinery/computer/mech_builder{
@@ -9704,6 +9736,13 @@
 	dir = 5
 	},
 /area/sulaco/hangar/storage)
+"bjN" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/prop/holidays/wreath{
+	dir = 10
+	},
+/turf/open/floor/prison,
+/area/sulaco/hallway/central_hall)
 "bjV" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 8
@@ -9785,12 +9824,6 @@
 	dir = 4
 	},
 /area/sulaco/medbay)
-"brX" = (
-/obj/structure/prop/holidays/stocking{
-	pixel_y = 26
-	},
-/turf/open/floor/prison,
-/area/sulaco/briefing)
 "bsi" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1,
 /turf/open/floor/prison,
@@ -9820,12 +9853,6 @@
 	dir = 8
 	},
 /area/sulaco/hangar/droppod)
-"buc" = (
-/obj/structure/prop/holidays/string_lights/corner{
-	dir = 1
-	},
-/turf/closed/wall/mainship/gray,
-/area/sulaco/morgue)
 "buz" = (
 /obj/machinery/firealarm{
 	dir = 8
@@ -9903,12 +9930,16 @@
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/sulaco/maintenance/lower_maint2)
-"bAa" = (
+"bAv" = (
+/obj/structure/prop/holidays/string_lights/corner,
+/turf/closed/wall/mainship/gray,
+/area/sulaco/briefing)
+"bBc" = (
 /obj/structure/prop/holidays/string_lights/corner{
 	dir = 8
 	},
-/turf/closed/wall/mainship/white/outer,
-/area/sulaco/medbay)
+/turf/closed/wall/mainship/white,
+/area/sulaco/medbay/cmo)
 "bBG" = (
 /obj/structure/cable,
 /turf/open/floor/plating,
@@ -9936,6 +9967,23 @@
 /obj/effect/soundplayer,
 /turf/open/space/basic,
 /area/space)
+"bEB" = (
+/obj/machinery/door/poddoor/shutters/mainship{
+	dir = 1;
+	id = "or1privacyshutter";
+	name = "\improper Privacy Shutters"
+	},
+/obj/machinery/door/firedoor/mainship{
+	dir = 2
+	},
+/obj/structure/window/framed/mainship/white,
+/obj/structure/prop/holidays/string_lights{
+	dir = 1
+	},
+/turf/open/floor/prison/whitegreen/corner{
+	dir = 4
+	},
+/area/sulaco/medbay/surgery_one)
 "bEF" = (
 /obj/structure/reagent_dispensers/fueltank,
 /turf/open/floor/prison/plate,
@@ -9961,6 +10009,14 @@
 /obj/structure/ship_ammo/cas/rocket/keeper,
 /turf/open/floor/prison,
 /area/sulaco/hangar/cas)
+"bFA" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden,
+/obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
+/obj/effect/ai_node,
+/obj/structure/prop/holidays/string_lights,
+/turf/open/floor/prison,
+/area/sulaco/briefing)
 "bGR" = (
 /obj/machinery/door/airlock/mainship/maint{
 	dir = 8
@@ -9994,6 +10050,7 @@
 	dir = 8
 	},
 /obj/machinery/vending/weapon,
+/obj/structure/prop/holidays/string_lights,
 /turf/open/floor/prison,
 /area/sulaco/marine)
 "bHw" = (
@@ -10111,6 +10168,12 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating/mainship,
 /area/sulaco/engineering/engine)
+"bMY" = (
+/obj/structure/prop/holidays/string_lights/corner{
+	dir = 1
+	},
+/turf/closed/wall/mainship/gray,
+/area/sulaco/morgue)
 "bNN" = (
 /obj/machinery/portable_atmospherics/canister,
 /turf/open/floor/prison/yellow,
@@ -10128,6 +10191,12 @@
 /obj/structure/window/framed/mainship/gray/toughened/hull,
 /turf/open/floor/plating/platebotc,
 /area/sulaco/cargo)
+"bOT" = (
+/obj/structure/prop/holidays/string_lights{
+	dir = 8
+	},
+/turf/closed/wall/mainship/white/outer,
+/area/mainship/living/starboard_garden)
 "bOX" = (
 /obj/effect/step_trigger/teleporter/random{
 	affect_ghosts = 1;
@@ -10167,6 +10236,13 @@
 	},
 /turf/open/floor/plating,
 /area/sulaco/maintenance/upperdeck_north_maint)
+"bPZ" = (
+/obj/item/stool,
+/obj/effect/spawner/random/misc/present{
+	pixel_y = 5
+	},
+/turf/open/floor/prison,
+/area/sulaco/bar)
 "bQk" = (
 /obj/item/radio/intercom/general{
 	dir = 4
@@ -10175,6 +10251,9 @@
 /area/sulaco/cryosleep)
 "bRu" = (
 /obj/machinery/firealarm,
+/obj/structure/prop/holidays/wreath{
+	dir = 4
+	},
 /turf/open/floor/prison/bright_clean,
 /area/sulaco/hangar)
 "bSd" = (
@@ -10225,6 +10304,15 @@
 /obj/item/clothing/head/warning_cone,
 /turf/open/floor/prison/bright_clean,
 /area/sulaco/hangar/cas)
+"bVA" = (
+/obj/structure/prop/holidays/string_lights/corner{
+	dir = 8
+	},
+/obj/structure/prop/holidays/string_lights/corner{
+	dir = 4
+	},
+/turf/closed/wall/mainship/white/outer,
+/area/sulaco/medbay/west)
 "bVR" = (
 /obj/effect/landmark/start/latejoin,
 /obj/effect/turf_decal/warning_stripes/thick{
@@ -10232,17 +10320,6 @@
 	},
 /turf/open/floor/prison/sterilewhite,
 /area/sulaco/cryosleep)
-"bVT" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/structure/prop/holidays/string_lights{
-	dir = 5
-	},
-/turf/open/floor/prison/whitegreen/corner{
-	dir = 8
-	},
-/area/sulaco/medbay/west)
 "bVU" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/firealarm{
@@ -10344,6 +10421,12 @@
 	},
 /turf/open/floor/tile/chapel,
 /area/sulaco/marine/chapel)
+"cbw" = (
+/obj/structure/prop/holidays/stocking{
+	pixel_y = 26
+	},
+/turf/open/floor/prison,
+/area/sulaco/briefing)
 "cch" = (
 /obj/structure/sign/vacuum,
 /obj/machinery/door_control/unmeltable{
@@ -10385,20 +10468,11 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/sulaco/hallway/lower_foreship)
-"ces" = (
-/obj/structure/prop/holidays/string_lights{
-	dir = 1
-	},
-/turf/open/floor/grass,
-/area/mainship/living/starboard_garden)
 "cfv" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
 	dir = 1
 	},
 /obj/machinery/camera/autoname{
-	dir = 1
-	},
-/obj/structure/prop/holidays/string_lights{
 	dir = 1
 	},
 /turf/open/floor/prison/whitegreen/corner,
@@ -10409,6 +10483,18 @@
 	},
 /turf/open/floor/plating,
 /area/sulaco/maintenance/lower_maint2)
+"cfP" = (
+/obj/structure/prop/holidays/string_lights{
+	dir = 4
+	},
+/turf/closed/wall/mainship/gray,
+/area/mainship/living/basketball)
+"cgb" = (
+/obj/structure/prop/holidays/string_lights/corner{
+	dir = 8
+	},
+/turf/closed/wall/mainship/gray,
+/area/sulaco/maintenance/lower_maint3)
 "chg" = (
 /obj/machinery/camera/autoname{
 	dir = 1
@@ -10416,10 +10502,21 @@
 /obj/structure/window/reinforced/extratoughened,
 /turf/open/floor/mainship/tcomms,
 /area/sulaco/command/ai)
+"chx" = (
+/obj/structure/prop/holidays/string_lights,
+/turf/open/floor/wood,
+/area/sulaco/medbay/west)
 "cjc" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
 /turf/open/floor/mainship/tcomms,
 /area/sulaco/telecomms)
+"ckb" = (
+/obj/effect/spawner/random/food_or_drink/christmas_food{
+	pixel_x = -2;
+	pixel_y = 4
+	},
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/bridge)
 "ckf" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
 	dir = 4
@@ -10456,14 +10553,9 @@
 /obj/item/storage/bag/trash,
 /turf/open/floor/plating,
 /area/sulaco/maintenance/lower_maint2)
-"clB" = (
-/obj/structure/prop/holidays/wreath{
-	dir = 4
-	},
-/turf/closed/wall/mainship/gray,
-/area/sulaco/hangar/storage)
 "cmN" = (
 /obj/machinery/firealarm,
+/obj/structure/prop/holidays/string_lights,
 /turf/open/floor/prison,
 /area/sulaco/briefing)
 "cnu" = (
@@ -10570,8 +10662,8 @@
 /area/sulaco/marine/chapel/chapel_office)
 "cvw" = (
 /obj/structure/cable,
-/obj/structure/prop/holidays/string_lights{
-	dir = 9
+/obj/effect/spawner/random/misc/present{
+	pixel_y = 5
 	},
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 1
@@ -10595,6 +10687,7 @@
 "cvF" = (
 /obj/machinery/disposal,
 /obj/structure/disposalpipe/trunk,
+/obj/structure/prop/holidays/string_lights,
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 8
 	},
@@ -10621,9 +10714,6 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 5
 	},
-/obj/structure/prop/holidays/stocking{
-	pixel_y = 26
-	},
 /turf/open/floor/prison,
 /area/sulaco/hallway/lower_main_hall)
 "cyv" = (
@@ -10640,12 +10730,6 @@
 	},
 /turf/open/floor/plating,
 /area/mainship/command/self_destruct)
-"cAd" = (
-/obj/structure/prop/holidays/wreath{
-	dir = 9
-	},
-/turf/closed/wall/mainship/gray/outer,
-/area/sulaco/firingrange)
 "cAt" = (
 /obj/machinery/atmospherics/pipe/manifold/yellow/hidden{
 	dir = 8
@@ -10673,6 +10757,7 @@
 /area/sulaco/telecomms)
 "cAK" = (
 /obj/machinery/marine_selector/gear/leader,
+/obj/structure/prop/holidays/string_lights,
 /turf/open/floor/prison,
 /area/sulaco/marine)
 "cAO" = (
@@ -10738,6 +10823,9 @@
 "cEV" = (
 /obj/machinery/camera/autoname/mainship,
 /obj/structure/target_stake,
+/obj/structure/prop/holidays/wreath{
+	dir = 9
+	},
 /turf/open/floor/prison/red{
 	dir = 1
 	},
@@ -10838,10 +10926,6 @@
 "cKq" = (
 /obj/machinery/light/mainship,
 /obj/machinery/vending/armor_supply,
-/obj/machinery/marine_selector/gear/leader,
-/obj/structure/prop/holidays/string_lights{
-	dir = 1
-	},
 /turf/open/floor/prison,
 /area/sulaco/marine)
 "cKA" = (
@@ -10897,6 +10981,12 @@
 /obj/structure/cable,
 /turf/open/floor/prison,
 /area/sulaco/hallway/dropshipprep)
+"cND" = (
+/obj/structure/prop/holidays/string_lights/corner{
+	dir = 1
+	},
+/turf/closed/wall/mainship/white,
+/area/sulaco/medbay/cmo)
 "cNE" = (
 /obj/structure/window/framed/mainship/requisitions{
 	basestate = "gray_rwindow"
@@ -10919,18 +11009,12 @@
 /area/sulaco/hydro)
 "cOs" = (
 /obj/structure/closet/basketball,
-/obj/structure/prop/holidays/string_lights{
-	dir = 1
-	},
 /turf/open/floor/tile/darkgreen/darkgreen2,
 /area/mainship/living/basketball)
 "cOP" = (
 /obj/structure/bed/chair/nometal,
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
 	dir = 6
-	},
-/obj/effect/spawner/random/present{
-	pixel_y = 5
 	},
 /turf/open/floor/prison,
 /area/sulaco/hallway/evac)
@@ -10963,6 +11047,12 @@
 /obj/machinery/computer3/server,
 /turf/open/floor/mainship/ai,
 /area/sulaco/command/ai)
+"cQn" = (
+/obj/structure/prop/holidays/string_lights{
+	dir = 4
+	},
+/turf/closed/wall/mainship/white/outer,
+/area/sulaco/medbay/west)
 "cQR" = (
 /obj/effect/turf_decal/warning_stripes,
 /turf/open/floor/wood,
@@ -11188,12 +11278,6 @@
 	},
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/self_destruct)
-"dgD" = (
-/obj/structure/prop/holidays/string_lights/corner{
-	dir = 1
-	},
-/turf/closed/wall/mainship/white/outer,
-/area/sulaco/medbay)
 "dhn" = (
 /obj/effect/decal/cleanable/cobweb{
 	dir = 1
@@ -11217,18 +11301,9 @@
 "djr" = (
 /turf/open/floor/prison,
 /area/sulaco/hallway/evac)
-"djt" = (
-/obj/structure/prop/holidays/string_lights/corner{
-	dir = 8
-	},
-/turf/closed/wall/mainship/gray,
-/area/sulaco/briefing)
 "djH" = (
 /obj/machinery/light/mainship{
 	dir = 1
-	},
-/obj/structure/prop/holidays/stocking{
-	pixel_y = 26
 	},
 /turf/open/floor/prison,
 /area/sulaco/cargo/office)
@@ -11260,11 +11335,14 @@
 	dir = 4
 	},
 /obj/machinery/vending/weapon,
-/obj/structure/prop/holidays/string_lights{
-	dir = 5
-	},
 /turf/open/floor/prison,
 /area/sulaco/marine)
+"dlS" = (
+/obj/item/prop/mainship/candle{
+	pixel_y = 5
+	},
+/turf/closed/wall/mainship/gray,
+/area/sulaco/morgue)
 "dlV" = (
 /obj/structure/reagent_dispensers/fueltank,
 /obj/effect/decal/cleanable/cobweb{
@@ -11382,19 +11460,6 @@
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /turf/open/floor/prison/plate,
 /area/shuttle/distress/arrive_1)
-"dsQ" = (
-/obj/structure/prop/holidays/string_lights{
-	dir = 6
-	},
-/turf/closed/wall/mainship/gray,
-/area/sulaco/marine)
-"dsX" = (
-/obj/structure/window/framed/mainship/white,
-/obj/structure/prop/holidays/string_lights{
-	dir = 10
-	},
-/turf/open/floor/plating/platebotc,
-/area/sulaco/medbay)
 "dtf" = (
 /obj/structure/disposalpipe/segment/corner,
 /turf/open/floor/prison,
@@ -11429,6 +11494,12 @@
 /obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/prison/bright_clean,
 /area/sulaco/hangar/droppod)
+"dww" = (
+/obj/structure/prop/holidays/string_lights{
+	dir = 5
+	},
+/turf/closed/wall/mainship/gray,
+/area/sulaco/briefing)
 "dwJ" = (
 /obj/machinery/door/firedoor/mainship,
 /obj/structure/cable,
@@ -11512,20 +11583,8 @@
 "dDU" = (
 /obj/structure/window/framed/mainship/gray/toughened,
 /obj/machinery/door/firedoor/mainship,
-/obj/structure/prop/holidays/string_lights{
-	dir = 4
-	},
 /turf/open/floor/plating/platebotc,
 /area/mainship/shipboard/weapon_room)
-"dDY" = (
-/obj/structure/prop/holidays/string_lights{
-	dir = 4
-	},
-/obj/structure/prop/holidays/string_lights/corner{
-	dir = 1
-	},
-/turf/closed/wall/mainship/gray,
-/area/sulaco/marine)
 "dEd" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
@@ -11586,6 +11645,10 @@
 	},
 /turf/open/floor/plating,
 /area/sulaco/hangar/cas)
+"dKm" = (
+/obj/machinery/marine_selector/gear/smartgun,
+/turf/open/floor/prison,
+/area/sulaco/marine)
 "dKT" = (
 /obj/machinery/vending/nanomed{
 	pixel_y = 25
@@ -11594,6 +11657,13 @@
 	dir = 5
 	},
 /area/sulaco/bridge)
+"dLk" = (
+/obj/structure/prop/holidays/string_lights{
+	dir = 8
+	},
+/obj/structure/prop/holidays/string_lights/corner,
+/turf/closed/wall/mainship/white,
+/area/sulaco/medbay/west)
 "dLr" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
 	dir = 8
@@ -11610,6 +11680,13 @@
 /obj/structure/cable,
 /turf/open/floor/prison,
 /area/sulaco/firingrange)
+"dLw" = (
+/obj/structure/prop/holidays/string_lights/corner,
+/obj/structure/prop/holidays/string_lights/corner{
+	dir = 1
+	},
+/turf/closed/wall/mainship/gray,
+/area/sulaco/marine)
 "dLR" = (
 /obj/machinery/suit_storage_unit,
 /obj/machinery/light/mainship/small{
@@ -11635,6 +11712,9 @@
 	id = "gardenblast"
 	},
 /obj/structure/window/framed/mainship/white/toughened/hull,
+/obj/structure/prop/holidays/string_lights{
+	dir = 1
+	},
 /turf/open/floor/plating/platebotc,
 /area/mainship/living/starboard_garden)
 "dMU" = (
@@ -11737,9 +11817,6 @@
 /obj/structure/sink{
 	dir = 1
 	},
-/obj/structure/prop/holidays/string_lights{
-	dir = 1
-	},
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 4
 	},
@@ -11774,9 +11851,6 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
 	dir = 8
 	},
-/obj/structure/prop/holidays/string_lights{
-	dir = 9
-	},
 /turf/open/floor/prison,
 /area/sulaco/marine)
 "dTS" = (
@@ -11810,12 +11884,6 @@
 	},
 /turf/open/floor/prison,
 /area/sulaco/hallway/central_hall3)
-"dYA" = (
-/obj/structure/prop/holidays/string_lights/corner{
-	dir = 4
-	},
-/turf/closed/wall/mainship/gray,
-/area/sulaco/maintenance/lower_maint3)
 "dYK" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
@@ -11936,9 +12004,6 @@
 /obj/item/radio/intercom/general{
 	dir = 1
 	},
-/obj/structure/prop/holidays/string_lights{
-	dir = 1
-	},
 /turf/open/floor/prison,
 /area/sulaco/marine)
 "egQ" = (
@@ -11955,6 +12020,15 @@
 	},
 /turf/open/floor/plating/platebotc,
 /area/sulaco/firingrange)
+"ehe" = (
+/obj/structure/prop/holidays/string_lights/corner{
+	dir = 4
+	},
+/obj/structure/prop/holidays/string_lights{
+	dir = 8
+	},
+/turf/closed/wall/mainship/gray,
+/area/sulaco/marine)
 "ehi" = (
 /obj/machinery/light/mainship/small,
 /turf/open/floor/prison,
@@ -11996,6 +12070,13 @@
 /obj/effect/spawner/random/misc/table_lighting,
 /turf/open/floor/prison,
 /area/sulaco/hangar/storage)
+"eiX" = (
+/obj/structure/bed/chair/nometal,
+/obj/effect/spawner/random/food_or_drink/christmas_food,
+/turf/open/floor/prison/darkyellow{
+	dir = 4
+	},
+/area/sulaco/briefing)
 "ejF" = (
 /obj/structure/table/mainship/nometal,
 /obj/item/tool/kitchen/tray,
@@ -12011,17 +12092,6 @@
 	},
 /turf/open/floor/prison/bright_clean,
 /area/sulaco/hangar)
-"eln" = (
-/obj/structure/prop/holidays/string_lights/corner,
-/turf/closed/wall/mainship/gray,
-/area/sulaco/briefing)
-"elB" = (
-/obj/machinery/vending/weapon,
-/obj/structure/prop/holidays/string_lights{
-	dir = 1
-	},
-/turf/open/floor/prison,
-/area/sulaco/marine)
 "emj" = (
 /obj/structure/target_stake,
 /obj/item/target,
@@ -12063,6 +12133,16 @@
 	},
 /turf/open/floor/mainship/tcomms,
 /area/sulaco/telecomms)
+"epy" = (
+/obj/structure/window/framed/mainship/gray/toughened,
+/obj/structure/prop/holidays/string_lights{
+	dir = 4
+	},
+/obj/structure/prop/holidays/string_lights{
+	dir = 8
+	},
+/turf/open/floor/prison,
+/area/sulaco/marine)
 "epB" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
@@ -12085,7 +12165,6 @@
 /obj/machinery/door/firedoor/mainship{
 	dir = 2
 	},
-/obj/structure/prop/holidays/string_lights,
 /turf/open/floor/plating/platebotc,
 /area/sulaco/medbay)
 "eqn" = (
@@ -12160,6 +12239,9 @@
 /turf/open/floor/prison/plate,
 /area/sulaco/cargo)
 "euR" = (
+/obj/structure/prop/holidays/string_lights{
+	dir = 1
+	},
 /turf/closed/wall/mainship/gray/outer,
 /area/sulaco/marine)
 "euW" = (
@@ -12252,6 +12334,21 @@
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/sulaco/hallway/evac)
+"eAf" = (
+/obj/structure/bed/chair/nometal,
+/obj/effect/spawner/random/misc/present{
+	pixel_x = 2;
+	pixel_y = 12
+	},
+/obj/effect/spawner/random/misc/present,
+/obj/effect/spawner/random/misc/present{
+	pixel_x = -9;
+	pixel_y = 5
+	},
+/turf/open/floor/prison/darkyellow{
+	dir = 8
+	},
+/area/sulaco/briefing)
 "eAl" = (
 /obj/machinery/door_control/unmeltable{
 	id = "sd_blastdoor";
@@ -12303,6 +12400,9 @@
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
+/obj/structure/prop/holidays/string_lights{
+	dir = 1
+	},
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 1
 	},
@@ -12340,6 +12440,10 @@
 /obj/effect/soundplayer,
 /turf/closed/wall/mainship/gray,
 /area/sulaco/bridge/office)
+"eEy" = (
+/obj/machinery/marine_selector/gear/leader,
+/turf/open/floor/prison,
+/area/sulaco/marine)
 "eEB" = (
 /obj/machinery/light/mainship{
 	dir = 8
@@ -12574,27 +12678,12 @@
 /obj/effect/turf_decal/warning_stripes/thick,
 /turf/open/floor/plating,
 /area/sulaco/hangar)
-"eRh" = (
-/obj/structure/prop/holidays/string_lights{
-	dir = 4
-	},
-/turf/closed/wall/mainship/gray,
-/area/sulaco/briefing)
 "eRD" = (
 /obj/machinery/light/mainship/small{
 	dir = 4
 	},
 /turf/open/floor/plating,
 /area/sulaco/maintenance/lower_maint)
-"eRK" = (
-/obj/structure/prop/holidays/string_lights/corner{
-	dir = 8
-	},
-/obj/structure/prop/holidays/string_lights/corner{
-	dir = 4
-	},
-/turf/closed/wall/mainship/gray,
-/area/sulaco/marine)
 "eRL" = (
 /obj/effect/turf_decal/warning_stripes,
 /obj/structure/dropship_equipment/shuttle/flare_launcher,
@@ -12615,6 +12704,7 @@
 /area/sulaco/hallway/central_hall2)
 "eTN" = (
 /obj/machinery/computer/med_data,
+/obj/structure/prop/holidays/string_lights,
 /turf/open/floor/prison/whitegreen/corner,
 /area/sulaco/medbay)
 "eTW" = (
@@ -12632,6 +12722,12 @@
 	},
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/self_destruct)
+"eUF" = (
+/obj/structure/prop/holidays/string_lights{
+	dir = 1
+	},
+/turf/closed/wall/mainship/white/outer,
+/area/sulaco/medbay/west)
 "eVy" = (
 /obj/machinery/door/airlock/mainship/engineering/CSEoffice{
 	dir = 2
@@ -12670,9 +12766,6 @@
 /area/sulaco/hallway/lower_main_hall)
 "eWu" = (
 /obj/structure/table/woodentable,
-/obj/effect/spawner/random/christmas_food{
-	pixel_y = 5
-	},
 /turf/open/floor/tile/chapel{
 	dir = 8
 	},
@@ -12690,6 +12783,9 @@
 	},
 /obj/item/radio/intercom/general{
 	dir = 1
+	},
+/obj/effect/spawner/random/food_or_drink/christmas_food{
+	pixel_y = 5
 	},
 /turf/open/floor/wood,
 /area/sulaco/marine/chapel)
@@ -12737,18 +12833,21 @@
 	dir = 4
 	},
 /area/sulaco/medbay)
-"faO" = (
-/obj/structure/prop/holidays/string_lights{
-	dir = 10
-	},
-/turf/closed/wall/mainship/gray,
-/area/sulaco/marine)
 "fbS" = (
 /obj/machinery/firealarm{
 	dir = 4
 	},
 /turf/open/floor/prison,
 /area/sulaco/hallway/evac)
+"fck" = (
+/obj/structure/prop/holidays/string_lights{
+	dir = 4
+	},
+/obj/structure/prop/holidays/string_lights/corner{
+	dir = 1
+	},
+/turf/closed/wall/mainship/white,
+/area/sulaco/medbay)
 "fdz" = (
 /obj/machinery/atmospherics/pipe/manifold/cyan/hidden/layer1,
 /obj/machinery/atmospherics/pipe/manifold/yellow/hidden,
@@ -12771,6 +12870,12 @@
 	dir = 5
 	},
 /area/space)
+"ffe" = (
+/obj/structure/prop/holidays/string_lights/corner{
+	dir = 4
+	},
+/turf/closed/wall/mainship/gray,
+/area/sulaco/maintenance/lower_maint3)
 "fff" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable,
@@ -12792,6 +12897,9 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
 	dir = 4
 	},
+/obj/structure/prop/holidays/string_lights{
+	dir = 6
+	},
 /turf/open/floor/prison/whitegreen/corner,
 /area/sulaco/medbay/west)
 "fjj" = (
@@ -12806,22 +12914,57 @@
 /obj/machinery/vending/medical/shipside,
 /turf/open/floor/prison/whitegreen/corner,
 /area/sulaco/medbay/west)
+"fjS" = (
+/obj/effect/spawner/random/food_or_drink/christmas_food,
+/turf/open/floor/prison,
+/area/sulaco/briefing)
+"fkp" = (
+/obj/structure/prop/holidays/string_lights{
+	dir = 1
+	},
+/turf/closed/wall/mainship/gray/outer,
+/area/sulaco/briefing)
 "fkB" = (
 /obj/machinery/light/mainship,
 /turf/open/floor/mainship/black,
 /area/sulaco/mechpilotquarters)
+"fkX" = (
+/obj/structure/prop/holidays/string_lights/corner{
+	dir = 8
+	},
+/turf/closed/wall/mainship/white/outer,
+/area/sulaco/medbay)
 "fkY" = (
 /turf/open/floor/prison/whitegreen{
 	dir = 4
 	},
 /area/sulaco/research)
-"fmr" = (
-/obj/effect/spawner/random/christmas_food{
-	pixel_x = -2;
-	pixel_y = 4
+"flt" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
+	dir = 4
 	},
-/turf/open/floor/prison/bright_clean,
-/area/sulaco/bridge)
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden{
+	dir = 4
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/structure/prop/holidays/stocking{
+	pixel_x = 9;
+	pixel_y = 26
+	},
+/obj/structure/prop/holidays/stocking{
+	pixel_y = 26
+	},
+/turf/open/floor/prison,
+/area/sulaco/hallway/central_hall3)
+"fmj" = (
+/obj/structure/prop/holidays/string_lights{
+	dir = 5
+	},
+/turf/closed/wall/mainship/white,
+/area/sulaco/medbay)
 "fmy" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
@@ -12835,6 +12978,7 @@
 /area/sulaco/maintenance/upperdeck_north_maint)
 "fmH" = (
 /obj/machinery/air_alarm,
+/obj/structure/prop/holidays/string_lights,
 /turf/open/floor/prison,
 /area/sulaco/briefing)
 "fmP" = (
@@ -12855,8 +12999,8 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/structure/prop/holidays/stocking{
-	pixel_y = 26
+/obj/structure/prop/holidays/string_lights{
+	dir = 10
 	},
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 1
@@ -13022,10 +13166,27 @@
 "fwb" = (
 /turf/closed/wall/mainship/gray,
 /area/sulaco/hallway/lower_foreship)
+"fxh" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden{
+	dir = 4
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/structure/prop/holidays/stocking{
+	pixel_x = -13;
+	pixel_y = 26
+	},
+/turf/open/floor/prison,
+/area/sulaco/hallway/central_hall3)
 "fxq" = (
 /obj/structure/window/framed/mainship/white,
 /obj/structure/prop/holidays/string_lights{
-	dir = 6
+	dir = 5
 	},
 /turf/open/floor/plating/platebotc,
 /area/sulaco/medbay)
@@ -13067,7 +13228,9 @@
 /obj/machinery/door/firedoor/mainship{
 	dir = 2
 	},
-/obj/structure/prop/holidays/string_lights,
+/obj/structure/prop/holidays/string_lights{
+	dir = 1
+	},
 /turf/open/floor/plating/platebotc,
 /area/sulaco/medbay)
 "fzI" = (
@@ -13152,6 +13315,12 @@
 	name = "Sandwich Joe's Grilled Cheese";
 	volume = 65
 	},
+/obj/effect/spawner/random/food_or_drink/christmas_food{
+	pixel_x = -4
+	},
+/obj/effect/spawner/random/food_or_drink/christmas_food{
+	pixel_y = 1
+	},
 /turf/open/floor/prison/sterilewhite,
 /area/sulaco/cafeteria)
 "fEL" = (
@@ -13188,6 +13357,9 @@
 	pixel_x = 5;
 	pixel_y = 10
 	},
+/obj/structure/prop/holidays/string_lights{
+	dir = 1
+	},
 /turf/closed/wall/mainship/white/outer,
 /area/sulaco/medbay/surgery_two)
 "fFy" = (
@@ -13220,9 +13392,6 @@
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
 	dir = 4
 	},
-/obj/structure/prop/holidays/string_lights{
-	dir = 9
-	},
 /turf/open/floor/prison,
 /area/sulaco/marine)
 "fKw" = (
@@ -13242,9 +13411,6 @@
 /obj/item/reagent_containers/food/condiment/peppermill,
 /obj/machinery/camera/autoname{
 	dir = 8
-	},
-/obj/item/prop/mainship/candle/short{
-	pixel_y = 6
 	},
 /turf/open/floor/prison/kitchen,
 /area/sulaco/cafeteria)
@@ -13290,12 +13456,6 @@
 	dir = 1
 	},
 /area/sulaco/bridge)
-"fRP" = (
-/obj/structure/prop/holidays/string_lights{
-	dir = 6
-	},
-/turf/closed/wall/mainship/white,
-/area/sulaco/medbay)
 "fSz" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /turf/open/floor/tile/dark2,
@@ -13331,18 +13491,26 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
 /area/sulaco/maintenance/lower_maint)
+"fVT" = (
+/obj/structure/bed/chair/nometal,
+/obj/effect/spawner/random/food_or_drink/christmas_food,
+/turf/open/floor/prison/blue,
+/area/sulaco/briefing)
+"fWd" = (
+/obj/effect/spawner/random/misc/present{
+	pixel_y = 5
+	},
+/turf/closed/wall/mainship/gray,
+/area/sulaco/bridge/office)
 "fXb" = (
 /obj/machinery/status_display/ai,
-/obj/structure/prop/holidays/string_lights,
+/obj/effect/spawner/random/food_or_drink/christmas_food,
 /turf/closed/wall/mainship/gray,
 /area/sulaco/cafeteria)
 "fXe" = (
 /obj/machinery/light/mainship,
 /obj/structure/disposalpipe/segment/corner{
 	dir = 1
-	},
-/obj/structure/prop/holidays/string_lights{
-	dir = 9
 	},
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 8
@@ -13538,7 +13706,6 @@
 /obj/machinery/light/mainship{
 	dir = 8
 	},
-/obj/item/reagent_containers/food/drinks/bottle/eggnog,
 /turf/open/floor/prison/sterilewhite,
 /area/sulaco/cafeteria/kitchen)
 "giv" = (
@@ -13604,13 +13771,6 @@
 "glh" = (
 /turf/open/floor/mainship/sterile/plain,
 /area/sulaco/mechpilotquarters)
-"gll" = (
-/obj/effect/decal/warning_stripes/thin,
-/obj/effect/spawner/random/present{
-	pixel_y = 5
-	},
-/turf/open/floor/mainship/ai,
-/area/sulaco/command/ai)
 "glp" = (
 /obj/machinery/light/mainship{
 	dir = 4
@@ -13636,15 +13796,6 @@
 /obj/structure/closet/emcloset,
 /turf/open/floor/prison,
 /area/sulaco/hallway/central_hall2)
-"gof" = (
-/obj/structure/prop/holidays/string_lights/corner{
-	dir = 4
-	},
-/obj/structure/prop/holidays/string_lights/corner{
-	dir = 8
-	},
-/turf/closed/wall/mainship/white,
-/area/sulaco/medbay/chemistry)
 "goL" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
@@ -13674,11 +13825,6 @@
 	},
 /turf/open/floor/prison,
 /area/sulaco/hallway/lower_foreship)
-"gpS" = (
-/obj/structure/table/mainship/nometal,
-/obj/item/reagent_containers/food/drinks/bottle/eggnog,
-/turf/open/floor/prison/sterilewhite,
-/area/sulaco/cafeteria/kitchen)
 "gqU" = (
 /obj/machinery/atmospherics/pipe/manifold/cyan/hidden/layer1{
 	dir = 1
@@ -13698,9 +13844,6 @@
 /obj/machinery/power/apc/mainship{
 	dir = 8
 	},
-/obj/structure/prop/holidays/string_lights{
-	dir = 1
-	},
 /turf/open/floor/prison/whitegreen/corner,
 /area/sulaco/medbay/surgery_one)
 "gsz" = (
@@ -13708,6 +13851,7 @@
 /area/space)
 "gsY" = (
 /obj/effect/spawner/random/misc/structure/flavorvending/snackweighted,
+/obj/structure/prop/holidays/string_lights,
 /turf/open/floor/prison/whitegreen/corner,
 /area/sulaco/medbay/west)
 "gtk" = (
@@ -13721,6 +13865,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
+/obj/structure/prop/holidays/string_lights,
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 1
 	},
@@ -13772,7 +13917,10 @@
 "gxf" = (
 /obj/effect/soundplayer,
 /obj/structure/prop/holidays/string_lights{
-	dir = 6
+	dir = 4
+	},
+/obj/structure/prop/holidays/string_lights/corner{
+	dir = 8
 	},
 /turf/closed/wall/mainship/gray,
 /area/sulaco/marine)
@@ -13804,6 +13952,9 @@
 "gAL" = (
 /obj/machinery/door/airlock/mainship/generic,
 /obj/machinery/door/firedoor/mainship,
+/obj/structure/prop/holidays/string_lights{
+	dir = 8
+	},
 /turf/open/floor/prison,
 /area/sulaco/marine)
 "gBv" = (
@@ -13839,6 +13990,15 @@
 /obj/effect/ai_node,
 /turf/open/floor/tile/dark2,
 /area/mainship/living/basketball)
+"gDh" = (
+/obj/structure/prop/holidays/string_lights{
+	dir = 4
+	},
+/obj/structure/prop/holidays/string_lights{
+	dir = 8
+	},
+/turf/closed/wall/mainship/white,
+/area/sulaco/medbay)
 "gEJ" = (
 /obj/machinery/door_control/mainship/droppod{
 	dir = 4
@@ -13853,6 +14013,12 @@
 /obj/effect/soundplayer,
 /turf/closed/wall/mainship/gray/outer,
 /area/shuttle/distress/arrive_2)
+"gGb" = (
+/obj/structure/prop/holidays/string_lights{
+	dir = 4
+	},
+/turf/closed/wall/mainship/white/outer,
+/area/mainship/living/starboard_garden)
 "gGh" = (
 /obj/structure/table/mainship/nometal,
 /obj/machinery/air_alarm{
@@ -13873,6 +14039,23 @@
 /obj/structure/bed/chair/office/dark{
 	dir = 8
 	},
+/obj/structure/prop/holidays/string_lights,
+/turf/open/floor/prison/whitegreen/corner{
+	dir = 4
+	},
+/area/sulaco/medbay)
+"gGN" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden{
+	dir = 4
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/structure/prop/holidays/string_lights,
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 4
 	},
@@ -13952,6 +14135,20 @@
 /area/sulaco/marine/chapel)
 "gLJ" = (
 /obj/structure/disposalpipe/segment/corner,
+/obj/effect/spawner/random/misc/present{
+	pixel_x = -5;
+	pixel_y = 8
+	},
+/obj/effect/spawner/random/misc/present{
+	pixel_x = -5
+	},
+/obj/effect/spawner/random/misc/present{
+	pixel_x = 9;
+	pixel_y = 8
+	},
+/obj/effect/spawner/random/misc/present{
+	pixel_x = 9
+	},
 /turf/open/floor/prison,
 /area/sulaco/cargo/office)
 "gLT" = (
@@ -13978,6 +14175,23 @@
 /obj/item/radio/intercom/general,
 /turf/open/floor/prison/bright_clean,
 /area/mainship/command/self_destruct)
+"gOf" = (
+/obj/structure/prop/holidays/string_lights/corner{
+	dir = 4
+	},
+/obj/structure/prop/holidays/string_lights{
+	dir = 8
+	},
+/turf/closed/wall/mainship/white/outer,
+/area/sulaco/medbay)
+"gOq" = (
+/obj/effect/spawner/random/misc/present{
+	pixel_y = 5
+	},
+/turf/open/floor/prison/whitegreen/corner{
+	dir = 8
+	},
+/area/sulaco/medbay)
 "gPn" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
 	dir = 4
@@ -14032,6 +14246,9 @@
 /obj/machinery/door/airlock/mainship/engineering,
 /obj/machinery/door/firedoor/mainship,
 /obj/structure/cable,
+/obj/structure/prop/holidays/string_lights{
+	dir = 4
+	},
 /turf/open/floor/prison/red,
 /area/mainship/shipboard/weapon_room)
 "gSq" = (
@@ -14082,9 +14299,6 @@
 	},
 /obj/structure/table/mainship/nometal,
 /obj/item/book/manual/medical_diagnostics_manual,
-/obj/item/prop/mainship/candle{
-	pixel_y = 7
-	},
 /turf/open/floor/prison/whitegreen/corner,
 /area/sulaco/medbay/cmo)
 "gUR" = (
@@ -14136,29 +14350,6 @@
 	dir = 1
 	},
 /area/sulaco/medbay)
-"gXW" = (
-/obj/item/prop/mainship/candle{
-	pixel_x = -9;
-	pixel_y = 9
-	},
-/obj/item/prop/mainship/candle/short{
-	pixel_x = 3;
-	pixel_y = 4
-	},
-/obj/item/prop/mainship/candle/short{
-	pixel_x = 4;
-	pixel_y = -9
-	},
-/obj/item/prop/mainship/candle/short{
-	pixel_x = -8;
-	pixel_y = -4
-	},
-/obj/item/prop/mainship/candle/short{
-	pixel_x = 15;
-	pixel_y = 9
-	},
-/turf/open/floor/prison,
-/area/sulaco/briefing)
 "gYB" = (
 /obj/structure/sink{
 	dir = 4
@@ -14235,10 +14426,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/prison,
 /area/sulaco/hallway/lower_main_hall)
-"hbU" = (
-/obj/structure/prop/holidays/string_lights,
-/turf/closed/wall/mainship/white/outer,
-/area/sulaco/medbay/west)
 "hbW" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/ladder{
@@ -14284,6 +14471,17 @@
 	dir = 8
 	},
 /area/sulaco/bridge)
+"het" = (
+/obj/machinery/door/poddoor/opened/east{
+	dir = 2;
+	id = "gardenblast"
+	},
+/obj/structure/window/framed/mainship/white/toughened/hull,
+/obj/structure/prop/holidays/string_lights{
+	dir = 4
+	},
+/turf/open/floor/plating/platebotc,
+/area/mainship/living/starboard_garden)
 "heV" = (
 /obj/effect/soundplayer,
 /turf/closed/wall/mainship/gray,
@@ -14308,6 +14506,12 @@
 	dir = 5
 	},
 /area/mainship/shipboard/weapon_room)
+"hgB" = (
+/obj/structure/prop/holidays/string_lights{
+	dir = 8
+	},
+/turf/closed/wall/mainship/gray,
+/area/sulaco/maintenance/lower_maint3)
 "hgE" = (
 /obj/machinery/door/airlock/mainship/maint{
 	dir = 8
@@ -14340,6 +14544,9 @@
 	},
 /area/sulaco/hallway/central_hall3)
 "hjK" = (
+/obj/structure/prop/holidays/string_lights/corner{
+	dir = 4
+	},
 /turf/closed/wall/mainship/white/outer,
 /area/mainship/living/starboard_garden)
 "hjU" = (
@@ -14415,6 +14622,12 @@
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
 	dir = 8
 	},
+/obj/structure/prop/holidays/string_lights{
+	dir = 10
+	},
+/obj/structure/prop/holidays/wreath{
+	dir = 6
+	},
 /turf/open/floor/prison/red{
 	dir = 1
 	},
@@ -14453,12 +14666,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/prison,
 /area/sulaco/cargo)
-"how" = (
-/obj/structure/prop/holidays/string_lights{
-	dir = 10
-	},
-/turf/closed/wall/mainship/white,
-/area/sulaco/medbay)
 "hoF" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/prison/whitegreen{
@@ -14495,17 +14702,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/item/prop/mainship/candle{
-	pixel_x = 1;
-	pixel_y = 8
-	},
-/obj/item/prop/mainship/candle/short{
-	pixel_x = -8
-	},
-/obj/item/prop/mainship/candle/short{
-	pixel_x = 1;
-	pixel_y = -6
-	},
+/obj/structure/prop/holidays/string_lights,
 /turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 1
 	},
@@ -14550,8 +14747,16 @@
 /obj/effect/decal/cleanable/cobweb,
 /turf/open/floor/plating,
 /area/sulaco/maintenance/lower_maint2)
+"hse" = (
+/obj/item/reagent_containers/food/snacks/grown/poppy,
+/obj/structure/prop/holidays/string_lights{
+	dir = 10
+	},
+/turf/open/floor/grass,
+/area/mainship/living/starboard_garden)
 "htm" = (
 /obj/machinery/vending/weapon,
+/obj/structure/prop/holidays/string_lights,
 /turf/open/floor/prison,
 /area/sulaco/marine)
 "htz" = (
@@ -14633,6 +14838,18 @@
 	dir = 8
 	},
 /area/sulaco/medbay/west)
+"hzR" = (
+/obj/structure/prop/holidays/string_lights{
+	dir = 1
+	},
+/turf/closed/wall/mainship/white/outer,
+/area/mainship/living/starboard_garden)
+"hzS" = (
+/obj/structure/prop/holidays/string_lights{
+	dir = 4
+	},
+/turf/closed/wall/mainship/gray,
+/area/sulaco/maintenance/lower_maint2)
 "hAO" = (
 /obj/machinery/door/airlock/mainship/maint{
 	dir = 1
@@ -14665,23 +14882,6 @@
 /obj/item/roller,
 /obj/item/roller,
 /obj/item/roller,
-/obj/structure/prop/holidays/string_lights{
-	dir = 1
-	},
-/obj/effect/spawner/random/christmas_food{
-	pixel_x = 3;
-	pixel_y = 3
-	},
-/obj/effect/spawner/random/christmas_food{
-	pixel_x = -8
-	},
-/obj/effect/spawner/random/christmas_food{
-	pixel_x = 1
-	},
-/obj/effect/spawner/random/christmas_food{
-	pixel_x = 1;
-	pixel_y = 3
-	},
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 1
 	},
@@ -14689,9 +14889,6 @@
 "hCn" = (
 /obj/structure/rack,
 /obj/item/toy/beach_ball/basketball,
-/obj/structure/prop/holidays/string_lights{
-	dir = 1
-	},
 /turf/open/floor/tile/darkgreen/darkgreen2,
 /area/mainship/living/basketball)
 "hCu" = (
@@ -14729,16 +14926,6 @@
 	},
 /turf/open/floor/mainship/stripesquare,
 /area/sulaco/hangar/storage)
-"hDp" = (
-/obj/structure/prop/holidays/string_lights{
-	dir = 5
-	},
-/obj/item/prop/mainship/candle/short{
-	pixel_x = 5;
-	pixel_y = -6
-	},
-/turf/open/floor/prison,
-/area/sulaco/briefing)
 "hDD" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
@@ -14901,14 +15088,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/sulaco/hallway/lower_foreship)
-"hMZ" = (
-/obj/machinery/light/mainship,
-/obj/machinery/marine_selector/clothes,
-/obj/structure/prop/holidays/string_lights{
-	dir = 1
-	},
-/turf/open/floor/prison,
-/area/sulaco/marine)
 "hNu" = (
 /obj/machinery/door/poddoor/railing{
 	dir = 1;
@@ -14961,16 +15140,11 @@
 "hQQ" = (
 /obj/structure/bed,
 /obj/item/bedsheet/medical,
+/obj/structure/prop/holidays/string_lights,
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 8
 	},
 /area/sulaco/medbay/west)
-"hRk" = (
-/obj/structure/prop/holidays/wreath{
-	dir = 5
-	},
-/turf/closed/wall/mainship/gray/outer,
-/area/sulaco/firingrange)
 "hSa" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment{
@@ -15069,6 +15243,12 @@
 	},
 /turf/open/floor/mainship/stripesquare,
 /area/sulaco/command/ai)
+"hWP" = (
+/obj/structure/prop/holidays/string_lights{
+	dir = 8
+	},
+/turf/closed/wall/mainship/gray,
+/area/sulaco/morgue)
 "hXk" = (
 /obj/structure/closet/firecloset,
 /turf/open/floor/prison,
@@ -15076,6 +15256,12 @@
 "hYo" = (
 /obj/machinery/light/mainship{
 	dir = 8
+	},
+/obj/item/prop/mainship/candle{
+	pixel_y = 6
+	},
+/obj/item/prop/mainship/candle{
+	pixel_x = -9
 	},
 /turf/open/floor/prison,
 /area/sulaco/bar)
@@ -15085,15 +15271,6 @@
 	},
 /turf/open/floor/plating,
 /area/sulaco/maintenance/lower_maint2)
-"hYE" = (
-/obj/structure/prop/holidays/string_lights{
-	dir = 10
-	},
-/obj/structure/prop/holidays/wreath{
-	dir = 6
-	},
-/turf/closed/wall/mainship/gray,
-/area/sulaco/marine)
 "hYX" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/camera/autoname{
@@ -15179,6 +15356,9 @@
 	dir = 8
 	},
 /obj/machinery/vending/nanomed,
+/obj/structure/prop/holidays/string_lights{
+	dir = 6
+	},
 /turf/open/floor/prison/whitegreen/corner,
 /area/sulaco/medbay)
 "idU" = (
@@ -15200,6 +15380,9 @@
 	dir = 9
 	},
 /area/sulaco/research)
+"ifi" = (
+/turf/closed/wall/mainship/white,
+/area/sulaco/medbay)
 "ifF" = (
 /obj/effect/soundplayer,
 /turf/closed/wall/mainship/gray,
@@ -15239,22 +15422,23 @@
 /turf/open/floor/prison,
 /area/sulaco/bridge/office)
 "ihO" = (
+/obj/structure/bed/chair/nometal,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
 	dir = 4
 	},
-/obj/effect/spawner/random/present{
-	pixel_x = 2;
-	pixel_y = 12
-	},
-/obj/effect/spawner/random/present,
-/obj/effect/spawner/random/present{
-	pixel_x = -9;
-	pixel_y = 5
+/obj/effect/spawner/random/misc/present{
+	pixel_y = -13
 	},
 /turf/open/floor/prison/darkyellow{
 	dir = 8
 	},
 /area/sulaco/briefing)
+"iiq" = (
+/obj/structure/prop/holidays/string_lights/corner{
+	dir = 1
+	},
+/turf/closed/wall/mainship/white/outer,
+/area/mainship/living/starboard_garden)
 "ikJ" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
@@ -15272,9 +15456,6 @@
 /area/sulaco/hallway/central_hall3)
 "ilC" = (
 /obj/effect/ai_node,
-/obj/structure/prop/holidays/string_lights{
-	dir = 5
-	},
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 1
 	},
@@ -15346,6 +15527,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
+/obj/structure/prop/holidays/string_lights,
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 4
 	},
@@ -15401,15 +15583,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/prison,
 /area/sulaco/hallway/central_hall2)
-"ipL" = (
-/obj/structure/bed/chair/nometal{
-	dir = 4
-	},
-/obj/effect/spawner/random/present{
-	pixel_y = 5
-	},
-/turf/open/floor/prison,
-/area/sulaco/hallway/evac)
 "iqc" = (
 /obj/machinery/camera/autoname{
 	dir = 4
@@ -15417,12 +15590,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating,
 /area/sulaco/maintenance/lower_maint3)
-"iqB" = (
-/obj/structure/prop/holidays/string_lights/corner{
-	dir = 4
-	},
-/turf/closed/wall/mainship/white/outer,
-/area/sulaco/medbay/west)
 "iqO" = (
 /obj/structure/window/framed/mainship/gray/toughened/hull,
 /obj/machinery/door/poddoor/shutters/mainship/selfdestruct{
@@ -15435,9 +15602,6 @@
 /obj/effect/ai_node,
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 9
-	},
-/obj/structure/prop/holidays/stocking{
-	pixel_y = 26
 	},
 /turf/open/floor/prison,
 /area/sulaco/hallway/lower_main_hall)
@@ -15526,6 +15690,12 @@
 	dir = 4
 	},
 /area/sulaco/engineering/atmos)
+"iwT" = (
+/obj/effect/spawner/random/misc/present{
+	pixel_y = 5
+	},
+/turf/closed/wall/mainship/gray,
+/area/sulaco/engineering/engine_monitoring)
 "ixz" = (
 /obj/machinery/light/mainship/small,
 /turf/open/floor/plating,
@@ -15563,6 +15733,9 @@
 	dir = 2;
 	id = "Reqshutters";
 	name = "Requisitions Blast Door"
+	},
+/obj/structure/prop/holidays/string_lights{
+	dir = 8
 	},
 /turf/open/floor/mainship/stripesquare,
 /area/sulaco/marine)
@@ -15625,6 +15798,12 @@
 	dir = 4
 	},
 /area/sulaco/engineering)
+"iEG" = (
+/obj/structure/prop/holidays/string_lights/corner{
+	dir = 4
+	},
+/turf/closed/wall/mainship/gray,
+/area/sulaco/briefing)
 "iGf" = (
 /obj/structure/table/mainship/nometal,
 /obj/effect/spawner/random/misc/paperbin{
@@ -15665,6 +15844,7 @@
 	},
 /obj/structure/table/mainship/nometal,
 /obj/machinery/computer/med_data/laptop,
+/obj/structure/prop/holidays/string_lights,
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 1
 	},
@@ -15732,6 +15912,9 @@
 /obj/machinery/camera/autoname{
 	dir = 4
 	},
+/obj/effect/spawner/random/food_or_drink/christmas_food{
+	pixel_y = 1
+	},
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 8
 	},
@@ -15747,6 +15930,7 @@
 /obj/machinery/air_alarm,
 /obj/machinery/disposal,
 /obj/structure/disposalpipe/trunk,
+/obj/structure/prop/holidays/string_lights,
 /turf/open/floor/prison/whitegreen/corner,
 /area/sulaco/medbay/west)
 "iJX" = (
@@ -15764,13 +15948,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/prison,
 /area/sulaco/briefing)
-"iKJ" = (
-/obj/structure/prop/holidays/string_lights/corner,
-/obj/structure/prop/holidays/string_lights/corner{
-	dir = 8
-	},
-/turf/closed/wall/mainship/gray,
-/area/sulaco/marine)
 "iKY" = (
 /obj/machinery/door/airlock/mainship/marine/general,
 /obj/machinery/door/firedoor/mainship,
@@ -15782,13 +15959,11 @@
 "iLk" = (
 /obj/machinery/disposal,
 /obj/structure/disposalpipe/trunk,
+/obj/structure/prop/holidays/string_lights,
 /turf/open/floor/prison,
 /area/sulaco/briefing)
 "iLm" = (
 /obj/machinery/camera/autoname{
-	dir = 1
-	},
-/obj/structure/prop/holidays/string_lights{
 	dir = 1
 	},
 /turf/open/floor/prison/whitegreen/corner,
@@ -15804,6 +15979,12 @@
 /obj/effect/spawner/random/misc/plant,
 /turf/open/floor/prison/bright_clean,
 /area/sulaco/hydro)
+"iLQ" = (
+/obj/structure/prop/holidays/string_lights{
+	dir = 6
+	},
+/turf/open/floor/prison,
+/area/sulaco/briefing)
 "iMF" = (
 /obj/effect/soundplayer,
 /turf/open/floor/mainship_hull/gray,
@@ -15836,12 +16017,6 @@
 /obj/machinery/light/mainship,
 /turf/open/floor/wood,
 /area/sulaco/cap_office)
-"iNw" = (
-/obj/effect/spawner/random/present{
-	pixel_y = 5
-	},
-/turf/open/floor/prison/whitegreen/corner,
-/area/sulaco/medbay)
 "iNC" = (
 /obj/structure/ship_ammo/cas/rocket/widowmaker,
 /turf/open/floor/prison,
@@ -15863,6 +16038,7 @@
 /area/sulaco/hallway/central_hall)
 "iOv" = (
 /obj/machinery/air_alarm,
+/obj/structure/prop/holidays/string_lights,
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 1
 	},
@@ -15876,9 +16052,24 @@
 	},
 /turf/open/floor/wood,
 /area/mainship/living/basketball)
+"iPT" = (
+/obj/structure/prop/holidays/string_lights{
+	dir = 1
+	},
+/obj/effect/spawner/random/misc/present{
+	pixel_y = 5
+	},
+/turf/closed/wall/mainship/gray/outer,
+/area/sulaco/briefing)
 "iRd" = (
 /turf/closed/wall/mainship/gray,
 /area/sulaco/hydro)
+"iRK" = (
+/obj/structure/prop/holidays/string_lights{
+	dir = 4
+	},
+/turf/closed/wall/mainship/gray,
+/area/sulaco/briefing)
 "iSb" = (
 /turf/closed/wall/mainship/gray,
 /area/sulaco/engineering)
@@ -15914,9 +16105,6 @@
 "iTg" = (
 /obj/machinery/vending/MarineMed,
 /obj/machinery/light/mainship,
-/obj/structure/prop/holidays/string_lights{
-	dir = 1
-	},
 /turf/open/floor/prison,
 /area/sulaco/marine)
 "iTj" = (
@@ -15961,6 +16149,12 @@
 	},
 /turf/open/floor/wood,
 /area/sulaco/bridge/office)
+"iUD" = (
+/obj/structure/prop/holidays/string_lights{
+	dir = 8
+	},
+/turf/closed/wall/mainship/gray,
+/area/sulaco/briefing)
 "iUQ" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1,
 /obj/structure/cable,
@@ -15977,7 +16171,6 @@
 /obj/machinery/door/firedoor/mainship{
 	dir = 2
 	},
-/obj/structure/prop/holidays/string_lights,
 /turf/open/floor/plating/platebotc,
 /area/mainship/living/basketball)
 "iWb" = (
@@ -15990,6 +16183,12 @@
 /obj/vehicle/ridden/powerloader,
 /turf/open/floor/prison,
 /area/sulaco/hangar/storage)
+"iWF" = (
+/obj/structure/prop/holidays/string_lights/corner{
+	dir = 8
+	},
+/turf/closed/wall/mainship/gray/outer,
+/area/sulaco/briefing)
 "iWH" = (
 /obj/structure/table/mainship/nometal,
 /obj/item/storage/firstaid,
@@ -16023,12 +16222,6 @@
 	},
 /turf/open/floor/prison,
 /area/sulaco/marine)
-"iXF" = (
-/obj/structure/prop/holidays/string_lights/corner{
-	dir = 1
-	},
-/turf/closed/wall/mainship/gray,
-/area/sulaco/cargo)
 "iXS" = (
 /obj/effect/landmark/start/job/squadmarine,
 /obj/machinery/vending/nanomed,
@@ -16054,9 +16247,7 @@
 /area/sulaco/hangar/storage)
 "iZY" = (
 /obj/structure/table/mainship/nometal,
-/obj/effect/spawner/random/present{
-	pixel_y = 5
-	},
+/obj/structure/prop/holidays/string_lights,
 /turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 5
 	},
@@ -16076,6 +16267,12 @@
 	dir = 9
 	},
 /area/sulaco/mechpilotquarters)
+"jba" = (
+/obj/effect/spawner/random/misc/present{
+	pixel_y = 5
+	},
+/turf/open/floor/wood,
+/area/sulaco/liaison)
 "jbg" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
@@ -16092,6 +16289,9 @@
 /area/sulaco/hangar)
 "jbY" = (
 /obj/structure/window/reinforced,
+/obj/structure/prop/holidays/string_lights{
+	dir = 10
+	},
 /turf/open/floor/prison/green/full,
 /area/sulaco/marine)
 "jcv" = (
@@ -16197,6 +16397,12 @@
 	},
 /turf/open/floor/prison/bright_clean,
 /area/mainship/command/self_destruct)
+"jgx" = (
+/obj/structure/prop/holidays/string_lights{
+	dir = 8
+	},
+/turf/closed/wall/mainship/white/outer,
+/area/sulaco/medbay/storage)
 "jhf" = (
 /obj/structure/table/mainship/nometal,
 /obj/item/reagent_containers/glass/beaker/biomass,
@@ -16229,6 +16435,18 @@
 /obj/structure/cable,
 /turf/open/floor/prison/bright_clean,
 /area/sulaco/hangar)
+"jiP" = (
+/obj/structure/prop/holidays/string_lights{
+	dir = 9
+	},
+/turf/closed/wall/mainship/white,
+/area/sulaco/medbay/west)
+"jkQ" = (
+/obj/effect/spawner/random/misc/present{
+	pixel_y = 5
+	},
+/turf/closed/wall/mainship/gray/outer,
+/area/sulaco/maintenance/upperdeck_AIcore_maint)
 "jlB" = (
 /obj/machinery/door/firedoor/mainship{
 	dir = 2
@@ -16252,13 +16470,10 @@
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
 /turf/open/floor/mainship/sterile/plain,
 /area/sulaco/mechpilotquarters)
-"joi" = (
+"jnI" = (
 /obj/structure/prop/holidays/string_lights/corner,
-/obj/structure/prop/holidays/string_lights/corner{
-	dir = 1
-	},
-/turf/closed/wall/mainship/white,
-/area/sulaco/medbay/west)
+/turf/closed/wall/mainship/gray,
+/area/mainship/living/basketball)
 "joP" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
@@ -16321,12 +16536,6 @@
 	dir = 4
 	},
 /area/sulaco/research)
-"jsI" = (
-/obj/structure/prop/holidays/wreath{
-	dir = 10
-	},
-/turf/closed/wall/mainship/gray/outer,
-/area/sulaco/firingrange)
 "jtC" = (
 /turf/open/floor/prison/bright_clean,
 /area/sulaco/hangar/cas)
@@ -16421,6 +16630,13 @@
 /area/sulaco/hangar)
 "jyu" = (
 /obj/effect/spawner/random/engineering/structure/tank/waterweighted,
+/obj/effect/spawner/random/food_or_drink/christmas_food{
+	pixel_x = -4;
+	pixel_y = 4
+	},
+/obj/effect/spawner/random/food_or_drink/christmas_food{
+	pixel_y = 1
+	},
 /turf/open/floor/plating,
 /area/sulaco/maintenance/lower_maint2)
 "jyQ" = (
@@ -16448,6 +16664,15 @@
 /obj/machinery/door/firedoor/mainship,
 /turf/open/floor/plating/platebotc,
 /area/sulaco/cargo/office)
+"jCa" = (
+/obj/structure/prop/holidays/string_lights{
+	dir = 4
+	},
+/obj/structure/prop/holidays/string_lights{
+	dir = 8
+	},
+/turf/closed/wall/mainship/white,
+/area/sulaco/medbay/west)
 "jCg" = (
 /obj/effect/ai_node,
 /turf/open/floor/prison,
@@ -16458,20 +16683,6 @@
 /obj/item/storage/belt/utility/full,
 /obj/machinery/light/mainship{
 	dir = 8
-	},
-/obj/effect/spawner/random/present{
-	pixel_x = -5;
-	pixel_y = 8
-	},
-/obj/effect/spawner/random/present{
-	pixel_x = -5
-	},
-/obj/effect/spawner/random/present{
-	pixel_x = 9;
-	pixel_y = 8
-	},
-/obj/effect/spawner/random/present{
-	pixel_x = 9
 	},
 /turf/open/floor/prison,
 /area/sulaco/cargo/office)
@@ -16539,9 +16750,6 @@
 /obj/structure/table/mainship/nometal,
 /obj/machinery/microwave,
 /obj/item/storage/box/donkpockets,
-/obj/structure/prop/holidays/string_lights{
-	dir = 1
-	},
 /turf/open/floor/wood,
 /area/sulaco/medbay/west)
 "jGA" = (
@@ -16574,9 +16782,6 @@
 "jGG" = (
 /obj/machinery/marine_selector/gear/smartgun,
 /obj/structure/sign/prop1,
-/obj/structure/prop/holidays/string_lights{
-	dir = 1
-	},
 /turf/open/floor/prison,
 /area/sulaco/marine)
 "jHb" = (
@@ -16611,6 +16816,12 @@
 	},
 /turf/open/floor/prison,
 /area/sulaco/bar)
+"jIG" = (
+/obj/structure/prop/holidays/string_lights{
+	dir = 4
+	},
+/turf/closed/wall/mainship/gray,
+/area/sulaco/maintenance/lower_maint3)
 "jII" = (
 /obj/item/toy/beach_ball/basketball,
 /obj/effect/turf_decal/warning_stripes,
@@ -16620,7 +16831,6 @@
 	holo_range = 9;
 	name = "Basketball Court holopad"
 	},
-/obj/effect/spawner/random/present,
 /turf/open/floor/wood,
 /area/mainship/living/basketball)
 "jJa" = (
@@ -16724,6 +16934,9 @@
 	id = "cicext1"
 	},
 /obj/effect/ai_node,
+/obj/structure/prop/holidays/string_lights{
+	dir = 10
+	},
 /turf/open/floor/prison/marked,
 /area/sulaco/marine)
 "jQi" = (
@@ -16765,10 +16978,12 @@
 "jRd" = (
 /obj/machinery/camera/autoname,
 /obj/machinery/marine_selector/clothes/engi,
+/obj/structure/prop/holidays/string_lights,
 /turf/open/floor/prison,
 /area/sulaco/marine)
 "jRj" = (
 /obj/machinery/marine_selector/clothes/medic,
+/obj/structure/prop/holidays/string_lights,
 /turf/open/floor/prison,
 /area/sulaco/marine)
 "jRo" = (
@@ -16796,6 +17011,7 @@
 /area/sulaco/hydro)
 "jUJ" = (
 /obj/machinery/marine_selector/clothes/leader,
+/obj/structure/prop/holidays/string_lights,
 /turf/open/floor/prison,
 /area/sulaco/marine)
 "jUS" = (
@@ -16804,7 +17020,6 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/effect/spawner/random/christmas_food,
 /turf/open/floor/prison/blue,
 /area/sulaco/briefing)
 "jVb" = (
@@ -16874,6 +17089,9 @@
 /turf/open/floor/plating,
 /area/sulaco/hangar/storage)
 "jXT" = (
+/obj/structure/prop/holidays/string_lights{
+	dir = 1
+	},
 /turf/closed/wall/mainship/white/outer,
 /area/sulaco/medbay)
 "jYl" = (
@@ -16954,12 +17172,6 @@
 /obj/machinery/camera/autoname,
 /turf/open/floor/plating,
 /area/sulaco/maintenance/upperdeck_north_maint)
-"kbD" = (
-/obj/structure/prop/holidays/string_lights{
-	dir = 6
-	},
-/turf/closed/wall/mainship/white,
-/area/sulaco/medbay/west)
 "kbE" = (
 /obj/machinery/camera/autoname,
 /turf/open/floor/plating,
@@ -16975,6 +17187,12 @@
 	},
 /turf/closed/banish_space,
 /area/space)
+"kcA" = (
+/obj/effect/spawner/random/misc/present{
+	pixel_y = 5
+	},
+/turf/open/floor/wood,
+/area/sulaco/marine/chapel)
 "kcP" = (
 /obj/effect/decal/cleanable/cobweb,
 /turf/open/floor/prison/bright_clean,
@@ -17039,6 +17257,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
+/obj/structure/prop/holidays/string_lights,
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 4
 	},
@@ -17149,10 +17368,10 @@
 "kqp" = (
 /obj/machinery/status_display,
 /obj/structure/prop/holidays/string_lights{
-	dir = 8
+	dir = 5
 	},
-/obj/structure/prop/holidays/string_lights/corner{
-	dir = 4
+/obj/effect/spawner/random/misc/present{
+	pixel_y = 5
 	},
 /turf/closed/wall/mainship/gray,
 /area/sulaco/marine)
@@ -17179,14 +17398,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/prison,
 /area/sulaco/cargo/office)
-"kry" = (
-/obj/structure/prop/holidays/stocking{
-	pixel_y = 26
-	},
-/turf/open/floor/prison/red{
-	dir = 1
-	},
-/area/sulaco/hallway/central_hall)
 "krC" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
 	dir = 6
@@ -17206,6 +17417,23 @@
 	dir = 4
 	},
 /area/sulaco/bridge)
+"ksL" = (
+/obj/machinery/door/poddoor/shutters/mainship{
+	dir = 1;
+	id = "or2privacyshutter";
+	name = "\improper Privacy Shutters"
+	},
+/obj/machinery/door/firedoor/mainship{
+	dir = 2
+	},
+/obj/structure/window/framed/mainship/white,
+/obj/structure/prop/holidays/string_lights{
+	dir = 9
+	},
+/turf/open/floor/prison/whitegreen/corner{
+	dir = 4
+	},
+/area/sulaco/medbay/surgery_two)
 "ktb" = (
 /obj/machinery/light/mainship/small{
 	dir = 1
@@ -17214,6 +17442,19 @@
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/sulaco/maintenance/lower_maint3)
+"ktf" = (
+/obj/structure/window/framed/mainship/white,
+/obj/machinery/door/poddoor/shutters/opened/medbay{
+	dir = 2
+	},
+/obj/machinery/door/firedoor/mainship{
+	dir = 2
+	},
+/obj/structure/prop/holidays/string_lights{
+	dir = 1
+	},
+/turf/open/floor/plating/platebotc,
+/area/sulaco/medbay)
 "ktu" = (
 /obj/machinery/air_alarm{
 	dir = 4
@@ -17257,11 +17498,9 @@
 /obj/structure/sign/directions/science{
 	dir = 1
 	},
-/obj/structure/prop/holidays/string_lights{
-	dir = 4
-	},
-/obj/structure/prop/holidays/string_lights{
-	dir = 8
+/obj/structure/prop/holidays/string_lights/corner,
+/obj/structure/prop/holidays/string_lights/corner{
+	dir = 1
 	},
 /turf/closed/wall/mainship/white,
 /area/sulaco/medbay/west)
@@ -17365,6 +17604,17 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 4
 	},
+/obj/item/prop/mainship/candle{
+	pixel_x = 1;
+	pixel_y = 8
+	},
+/obj/item/prop/mainship/candle/short{
+	pixel_x = -8
+	},
+/obj/item/prop/mainship/candle/short{
+	pixel_x = 1;
+	pixel_y = -6
+	},
 /turf/open/floor/tile/dark2,
 /area/mainship/living/basketball)
 "kDB" = (
@@ -17394,6 +17644,12 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/prison/sterilewhite,
 /area/sulaco/cafeteria/kitchen)
+"kHn" = (
+/obj/effect/spawner/random/misc/present{
+	pixel_y = 5
+	},
+/turf/closed/wall/mainship/gray,
+/area/shuttle/distress/arrive_2)
 "kHS" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /turf/open/floor/prison/bright_clean,
@@ -17510,6 +17766,7 @@
 	dir = 1
 	},
 /obj/machinery/vending/uniform_supply,
+/obj/structure/prop/holidays/string_lights,
 /turf/open/floor/prison,
 /area/sulaco/marine)
 "kNv" = (
@@ -17565,11 +17822,12 @@
 /turf/open/floor/prison/bright_clean,
 /area/sulaco/hangar/cas)
 "kSg" = (
+/obj/item/radio/intercom/general,
 /obj/structure/prop/holidays/wreath{
 	dir = 10
 	},
-/turf/closed/wall/mainship/gray,
-/area/sulaco/research)
+/turf/open/floor/prison,
+/area/sulaco/hallway/central_hall)
 "kSh" = (
 /obj/machinery/camera/autoname/mainship,
 /obj/machinery/light/mainship{
@@ -17616,6 +17874,12 @@
 /obj/effect/spawner/random/engineering/cable,
 /turf/open/floor/prison/sterilewhite,
 /area/sulaco/cryosleep)
+"kVB" = (
+/obj/structure/prop/holidays/string_lights/corner{
+	dir = 1
+	},
+/turf/closed/wall/mainship/gray,
+/area/mainship/living/basketball)
 "kVT" = (
 /obj/machinery/door/poddoor/mainship/umbilical/south{
 	dir = 2;
@@ -17725,6 +17989,9 @@
 /area/sulaco/medbay)
 "lcd" = (
 /obj/structure/target_stake,
+/obj/structure/prop/holidays/wreath{
+	dir = 5
+	},
 /turf/open/floor/prison/red{
 	dir = 5
 	},
@@ -17786,13 +18053,6 @@
 	},
 /turf/open/floor/prison/marked,
 /area/sulaco/cargo)
-"lga" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/prop/holidays/string_lights{
-	dir = 1
-	},
-/turf/open/floor/prison,
-/area/sulaco/briefing)
 "lgl" = (
 /turf/closed/wall/mainship/gray,
 /area/shuttle/distress/arrive_2)
@@ -17854,12 +18114,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/prison/plate,
 /area/sulaco/maintenance/upperdeck_AIcore_maint)
-"lnz" = (
-/obj/structure/prop/holidays/string_lights{
-	dir = 8
-	},
-/turf/closed/wall/mainship/white,
-/area/sulaco/medbay/cmo)
 "lod" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/cyan/hidden/layer1{
@@ -17908,6 +18162,9 @@
 	dir = 4
 	},
 /obj/item/radio/intercom/general,
+/obj/structure/prop/holidays/string_lights{
+	dir = 10
+	},
 /turf/open/floor/prison/green{
 	dir = 1
 	},
@@ -17924,6 +18181,12 @@
 	dir = 1
 	},
 /area/sulaco/medbay)
+"lrX" = (
+/obj/structure/prop/holidays/string_lights/corner{
+	dir = 8
+	},
+/turf/closed/wall/mainship/white/outer,
+/area/mainship/living/starboard_garden)
 "lss" = (
 /obj/machinery/status_display/ai,
 /turf/closed/wall/mainship/gray,
@@ -18050,9 +18313,6 @@
 /obj/machinery/camera/autoname{
 	dir = 1
 	},
-/obj/structure/prop/holidays/string_lights{
-	dir = 1
-	},
 /turf/open/floor/prison/whitegreen/corner,
 /area/sulaco/medbay/surgery_two)
 "lzc" = (
@@ -18122,6 +18382,9 @@
 "lDs" = (
 /obj/structure/table/mainship/nometal,
 /obj/item/camera,
+/obj/effect/spawner/random/misc/present{
+	pixel_y = 5
+	},
 /turf/open/floor/prison/sterilewhite,
 /area/sulaco/cryosleep)
 "lDT" = (
@@ -18193,9 +18456,6 @@
 /obj/machinery/camera/autoname{
 	dir = 1
 	},
-/obj/structure/prop/holidays/string_lights{
-	dir = 1
-	},
 /turf/open/floor/prison,
 /area/sulaco/marine)
 "lHY" = (
@@ -18224,6 +18484,7 @@
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
 	dir = 4
 	},
+/obj/structure/prop/holidays/string_lights,
 /turf/open/floor/prison/green{
 	dir = 1
 	},
@@ -18267,6 +18528,7 @@
 /area/shuttle/distress/arrive_1)
 "lJH" = (
 /obj/machinery/marine_selector/gear/engi,
+/obj/structure/prop/holidays/string_lights,
 /turf/open/floor/prison,
 /area/sulaco/marine)
 "lJS" = (
@@ -18285,6 +18547,18 @@
 /obj/effect/turf_decal/warning_stripes/thick/corner,
 /turf/open/floor/plating,
 /area/sulaco/hangar)
+"lMI" = (
+/obj/machinery/door/poddoor/mainship/ai/interior{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/mainship{
+	dir = 2
+	},
+/obj/effect/spawner/random/misc/present{
+	pixel_y = 5
+	},
+/turf/open/floor/mainship/stripesquare,
+/area/sulaco/command/ai)
 "lMO" = (
 /obj/effect/decal/cleanable/cobweb{
 	dir = 8
@@ -18316,6 +18590,9 @@
 	pixel_x = 5;
 	pixel_y = 10
 	},
+/obj/structure/prop/holidays/string_lights{
+	dir = 1
+	},
 /turf/closed/wall/mainship/white/outer,
 /area/sulaco/medbay/surgery_one)
 "lSf" = (
@@ -18343,13 +18620,6 @@
 /obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/prison/bright_clean,
 /area/mainship/command/self_destruct)
-"lTp" = (
-/obj/structure/window/framed/mainship/gray/toughened,
-/obj/structure/prop/holidays/string_lights{
-	dir = 10
-	},
-/turf/open/floor/prison,
-/area/sulaco/marine)
 "lTw" = (
 /obj/machinery/vending/marineFood,
 /obj/item/reagent_containers/food/snacks/protein_pack,
@@ -18368,6 +18638,12 @@
 /obj/machinery/camera/autoname,
 /turf/open/floor/prison/kitchen,
 /area/sulaco/cafeteria)
+"lTE" = (
+/obj/structure/prop/holidays/wreath{
+	dir = 10
+	},
+/turf/open/floor/plating/mainship,
+/area/sulaco/hallway/evac)
 "lTL" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/disposalpipe/segment{
@@ -18472,6 +18748,26 @@
 /obj/machinery/door/firedoor/mainship,
 /turf/open/floor/plating,
 /area/sulaco/cafeteria)
+"lZO" = (
+/obj/structure/prop/holidays/string_lights{
+	dir = 1
+	},
+/obj/effect/spawner/random/food_or_drink/christmas_food{
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/obj/effect/spawner/random/food_or_drink/christmas_food{
+	pixel_x = -8
+	},
+/obj/effect/spawner/random/food_or_drink/christmas_food{
+	pixel_x = 1
+	},
+/obj/effect/spawner/random/food_or_drink/christmas_food{
+	pixel_x = 1;
+	pixel_y = 3
+	},
+/turf/closed/wall/mainship/white/outer,
+/area/sulaco/medbay)
 "mak" = (
 /obj/effect/turf_decal/siding{
 	dir = 4
@@ -18480,6 +18776,15 @@
 	dir = 4
 	},
 /area/space)
+"mbs" = (
+/obj/structure/bed/chair/nometal{
+	dir = 4
+	},
+/obj/effect/spawner/random/misc/present{
+	pixel_y = 5
+	},
+/turf/open/floor/prison,
+/area/sulaco/hallway/evac)
 "mbw" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 5
@@ -18516,9 +18821,6 @@
 	},
 /obj/structure/table/mainship/nometal,
 /obj/item/facepaint/green,
-/obj/effect/spawner/random/present{
-	pixel_y = 5
-	},
 /turf/open/floor/prison/sterilewhite,
 /area/sulaco/cryosleep)
 "mdt" = (
@@ -18628,6 +18930,12 @@
 	dir = 1
 	},
 /area/sulaco/marine/chapel)
+"mlY" = (
+/obj/effect/spawner/random/misc/present{
+	pixel_y = 5
+	},
+/turf/open/floor/prison,
+/area/sulaco/hallway/evac)
 "mmf" = (
 /obj/structure/mopbucket,
 /obj/item/tool/mop,
@@ -18662,9 +18970,7 @@
 /turf/open/floor/wood,
 /area/sulaco/bridge/office)
 "mno" = (
-/obj/structure/prop/mainship/name_stencil{
-	icon_state = "TGMC3"
-	},
+/obj/structure/prop/mainship/name_stencil/M,
 /turf/open/floor/mainship_hull/gray,
 /area/space)
 "mnu" = (
@@ -18792,6 +19098,9 @@
 /obj/structure/bed/chair/wood/normal{
 	dir = 1
 	},
+/obj/effect/spawner/random/food_or_drink/christmas_food{
+	pixel_y = 1
+	},
 /turf/open/floor/wood,
 /area/sulaco/marine/chapel)
 "mxP" = (
@@ -18845,18 +19154,12 @@
 /obj/structure/table/reinforced,
 /obj/item/storage/firstaid/adv,
 /obj/item/reagent_containers/spray/surgery,
-/obj/structure/prop/holidays/string_lights{
-	dir = 1
-	},
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 8
 	},
 /area/sulaco/medbay/surgery_one)
 "mAk" = (
 /obj/machinery/marine_selector/clothes,
-/obj/structure/prop/holidays/string_lights{
-	dir = 1
-	},
 /turf/open/floor/prison,
 /area/sulaco/marine)
 "mBj" = (
@@ -18961,9 +19264,6 @@
 /obj/structure/table/woodentable,
 /obj/item/paper,
 /obj/item/tool/pen,
-/obj/effect/spawner/random/present{
-	pixel_y = 6
-	},
 /turf/open/floor/mainship/black{
 	dir = 10
 	},
@@ -18990,9 +19290,6 @@
 /area/sulaco/firingrange)
 "mFa" = (
 /obj/machinery/status_display,
-/obj/structure/prop/holidays/string_lights{
-	dir = 8
-	},
 /turf/closed/wall/mainship/gray,
 /area/mainship/living/basketball)
 "mFc" = (
@@ -19081,9 +19378,6 @@
 /obj/machinery/camera/autoname{
 	dir = 1
 	},
-/obj/structure/prop/holidays/string_lights{
-	dir = 1
-	},
 /turf/open/floor/prison/whitegreen/corner,
 /area/sulaco/medbay/surgery_one)
 "mNA" = (
@@ -19104,17 +19398,8 @@
 /obj/structure/cable,
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/light/mainship,
-/obj/structure/prop/holidays/string_lights{
-	dir = 5
-	},
 /turf/open/floor/prison/red,
 /area/sulaco/marine)
-"mOI" = (
-/obj/structure/prop/holidays/string_lights/corner{
-	dir = 8
-	},
-/turf/closed/wall/mainship/gray,
-/area/sulaco/maintenance/lower_maint3)
 "mON" = (
 /obj/structure/rack,
 /obj/item/reagent_containers/food/condiment/saltshaker,
@@ -19177,11 +19462,11 @@
 	},
 /obj/item/clothing/head/hardhat/dblue,
 /obj/effect/decal/cleanable/cobweb,
-/obj/effect/spawner/random_set/christmas_costume,
 /turf/open/floor/plating,
 /area/sulaco/maintenance/lower_maint2)
 "mTu" = (
 /obj/structure/sign/prop1,
+/obj/structure/prop/holidays/string_lights/corner,
 /turf/closed/wall/mainship/gray,
 /area/sulaco/maintenance/lower_maint2)
 "mTN" = (
@@ -19279,8 +19564,7 @@
 /turf/open/floor/prison/plate,
 /area/shuttle/distress/arrive_2)
 "nae" = (
-/obj/structure/flora/pottedplant{
-	icon_state = "plant-21";
+/obj/structure/flora/pottedplant/twentyone{
 	pixel_x = 31
 	},
 /turf/closed/wall/mainship/gray/outer,
@@ -19297,9 +19581,6 @@
 /obj/item/storage/bible{
 	desc = "As the legendary US Army chaplain once said, 'There are no Athiests in fancy offices'.";
 	name = "Holy Bible"
-	},
-/obj/effect/spawner/random/christmas_food{
-	pixel_y = 1
 	},
 /turf/open/floor/tile/chapel,
 /area/sulaco/marine/chapel)
@@ -19360,6 +19641,9 @@
 	dir = 4
 	},
 /obj/machinery/door/firedoor/mainship,
+/obj/structure/prop/holidays/string_lights/corner{
+	dir = 1
+	},
 /turf/open/floor/prison,
 /area/sulaco/marine)
 "nfu" = (
@@ -19367,6 +19651,12 @@
 /obj/effect/spawner/random/misc/structure/supplycrate,
 /turf/open/floor/prison/bright_clean,
 /area/sulaco/hangar)
+"nfG" = (
+/obj/structure/prop/holidays/string_lights{
+	dir = 1
+	},
+/turf/closed/wall/mainship/white,
+/area/sulaco/medbay)
 "ngp" = (
 /obj/effect/turf_decal/warning_stripes/thin,
 /obj/machinery/light/mainship{
@@ -19438,6 +19728,10 @@
 	},
 /turf/open/floor/prison/darkyellow,
 /area/sulaco/engineering/ce)
+"nlO" = (
+/obj/effect/spawner/random/food_or_drink/christmas_food,
+/turf/open/floor/prison/sterilewhite,
+/area/sulaco/cryosleep)
 "nmu" = (
 /obj/effect/spawner/random/misc/structure/supplycrate,
 /turf/open/floor/prison/plate,
@@ -19487,27 +19781,6 @@
 	dir = 4
 	},
 /area/sulaco/marine)
-"npA" = (
-/obj/machinery/light/mainship{
-	dir = 8
-	},
-/obj/structure/bed/chair/nometal{
-	dir = 4
-	},
-/obj/effect/spawner/random/present{
-	pixel_x = -8;
-	pixel_y = -2
-	},
-/obj/effect/spawner/random/present{
-	pixel_y = 9
-	},
-/obj/effect/spawner/random/present{
-	pixel_x = 3
-	},
-/turf/open/floor/tile/darkgreen/darkgreen2{
-	dir = 8
-	},
-/area/mainship/living/basketball)
 "nqJ" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/dropship_equipment/cas/weapon/minirocket_pod,
@@ -19519,17 +19792,6 @@
 	},
 /turf/open/floor/prison/sterilewhite,
 /area/sulaco/cryosleep)
-"nsb" = (
-/obj/machinery/door/poddoor/opened/east{
-	dir = 2;
-	id = "gardenblast"
-	},
-/obj/structure/window/framed/mainship/white/toughened/hull,
-/obj/structure/prop/holidays/string_lights{
-	dir = 8
-	},
-/turf/open/floor/plating/platebotc,
-/area/mainship/living/starboard_garden)
 "nta" = (
 /obj/machinery/door_control/mainship/corporate{
 	dir = 8;
@@ -19539,19 +19801,6 @@
 	},
 /turf/open/floor/wood,
 /area/sulaco/liaison)
-"ntj" = (
-/obj/effect/spawner/random/present{
-	pixel_x = -5;
-	pixel_y = -20
-	},
-/obj/effect/spawner/random/present{
-	pixel_x = -5;
-	pixel_y = -8
-	},
-/turf/open/floor/prison/darkpurple{
-	dir = 4
-	},
-/area/sulaco/briefing)
 "ntk" = (
 /turf/open/floor/wood,
 /area/sulaco/medbay/west)
@@ -19559,6 +19808,12 @@
 /obj/structure/ship_ammo/cas/heavygun,
 /turf/open/floor/prison,
 /area/sulaco/hangar/cas)
+"ntD" = (
+/obj/structure/prop/holidays/string_lights{
+	dir = 1
+	},
+/turf/closed/wall/mainship/gray,
+/area/sulaco/maintenance/lower_maint3)
 "nug" = (
 /turf/open/shuttle/escapepod/plain,
 /area/mainship/command/self_destruct)
@@ -19643,12 +19898,6 @@
 	},
 /turf/open/floor/prison,
 /area/sulaco/cargo)
-"nzx" = (
-/obj/structure/prop/holidays/string_lights{
-	dir = 8
-	},
-/turf/closed/wall/mainship/gray/outer,
-/area/sulaco/maintenance/lower_maint3)
 "nzT" = (
 /obj/machinery/holopad,
 /turf/open/floor/prison,
@@ -19659,6 +19908,15 @@
 	},
 /turf/open/floor/prison/sterilewhite,
 /area/mainship/living/starboard_garden)
+"nAm" = (
+/obj/structure/prop/holidays/string_lights{
+	dir = 8
+	},
+/obj/structure/prop/holidays/string_lights/corner{
+	dir = 4
+	},
+/turf/closed/wall/mainship/white,
+/area/sulaco/medbay/west)
 "nBt" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
 	dir = 4
@@ -19675,6 +19933,7 @@
 /area/sulaco/hallway/central_hall3)
 "nBH" = (
 /obj/machinery/robotic_cradle,
+/obj/structure/prop/holidays/string_lights,
 /turf/open/floor/prison/whitegreen/corner,
 /area/sulaco/medbay)
 "nCb" = (
@@ -19695,6 +19954,9 @@
 "nCN" = (
 /obj/structure/cable,
 /obj/machinery/firealarm,
+/obj/structure/prop/holidays/string_lights{
+	dir = 6
+	},
 /turf/open/floor/grass,
 /area/mainship/living/starboard_garden)
 "nCT" = (
@@ -19774,12 +20036,30 @@
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /turf/open/floor/prison,
 /area/sulaco/hallway/evac)
+"nHM" = (
+/obj/structure/prop/holidays/string_lights/corner{
+	dir = 1
+	},
+/obj/structure/prop/holidays/string_lights/corner,
+/turf/closed/wall/mainship/white,
+/area/sulaco/medbay/west)
 "nIK" = (
 /obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/plating/mainship,
 /area/sulaco/engineering/engine)
 "nIP" = (
 /obj/structure/sign/ROsign,
+/obj/effect/spawner/random/food_or_drink/christmas_food{
+	pixel_x = 5;
+	pixel_y = 1
+	},
+/obj/effect/spawner/random/food_or_drink/christmas_food{
+	pixel_y = 1
+	},
+/obj/effect/spawner/random/food_or_drink/christmas_food{
+	pixel_x = -4;
+	pixel_y = -4
+	},
 /turf/closed/wall/mainship/gray,
 /area/sulaco/cargo/office)
 "nJa" = (
@@ -19822,6 +20102,7 @@
 /obj/machinery/light/mainship{
 	dir = 1
 	},
+/obj/structure/prop/holidays/string_lights,
 /turf/open/floor/prison,
 /area/sulaco/marine)
 "nLd" = (
@@ -19921,6 +20202,7 @@
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
 	dir = 4
 	},
+/obj/structure/prop/holidays/string_lights,
 /turf/open/floor/prison/red{
 	dir = 1
 	},
@@ -19944,12 +20226,6 @@
 	},
 /turf/open/floor/plating,
 /area/sulaco/engineering/engine_monitoring)
-"nPN" = (
-/obj/structure/prop/holidays/string_lights/corner{
-	dir = 8
-	},
-/turf/closed/wall/mainship/gray/outer,
-/area/sulaco/marine)
 "nPU" = (
 /obj/machinery/cic_maptable,
 /turf/open/floor/prison,
@@ -19984,18 +20260,9 @@
 /turf/open/floor/prison,
 /area/sulaco/cargo)
 "nTc" = (
-/obj/structure/prop/mainship/name_stencil{
-	icon_state = "TGMC2"
-	},
+/obj/structure/prop/mainship/name_stencil/G,
 /turf/open/floor/mainship_hull/gray,
 /area/space)
-"nTz" = (
-/obj/structure/prop/holidays/string_lights/corner{
-	dir = 1
-	},
-/obj/structure/prop/holidays/string_lights/corner,
-/turf/closed/wall/mainship/white,
-/area/sulaco/medbay/west)
 "nTZ" = (
 /obj/effect/ai_node,
 /turf/open/floor/prison/red/corner{
@@ -20008,6 +20275,13 @@
 	},
 /turf/open/floor/prison,
 /area/sulaco/cargo)
+"nVe" = (
+/obj/machinery/status_display,
+/obj/structure/prop/holidays/string_lights{
+	dir = 1
+	},
+/turf/closed/wall/mainship/gray,
+/area/sulaco/marine)
 "nVR" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/firealarm{
@@ -20125,20 +20399,17 @@
 /turf/open/floor/plating,
 /area/sulaco/maintenance/upperdeck_AIcore_maint)
 "oct" = (
-/obj/structure/prop/holidays/string_lights{
-	dir = 5
-	},
 /turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 10
 	},
 /area/mainship/living/basketball)
-"odv" = (
-/obj/structure/prop/holidays/string_lights{
-	dir = 8
-	},
+"odk" = (
 /obj/structure/prop/holidays/string_lights/corner,
+/obj/structure/prop/holidays/string_lights/corner{
+	dir = 1
+	},
 /turf/closed/wall/mainship/white,
-/area/sulaco/medbay/west)
+/area/sulaco/medbay)
 "odW" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
@@ -20154,15 +20425,6 @@
 	dir = 4
 	},
 /area/sulaco/medbay)
-"oeD" = (
-/obj/structure/prop/holidays/string_lights/corner{
-	dir = 8
-	},
-/obj/structure/prop/holidays/string_lights/corner{
-	dir = 4
-	},
-/turf/closed/wall/mainship/white,
-/area/sulaco/medbay/west)
 "ofF" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
 	dir = 4
@@ -20219,13 +20481,6 @@
 /obj/effect/spawner/random/misc/gnome/fiftyfifty,
 /turf/open/floor/plating,
 /area/sulaco/maintenance/upperdeck_north_maint)
-"okd" = (
-/obj/machinery/vending/medical,
-/obj/structure/prop/holidays/string_lights{
-	dir = 5
-	},
-/turf/open/floor/prison,
-/area/sulaco/marine)
 "okh" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/light/mainship{
@@ -20235,6 +20490,20 @@
 	dir = 8
 	},
 /area/sulaco/firingrange)
+"okm" = (
+/obj/structure/bed/chair/nometal,
+/obj/effect/spawner/random/misc/present{
+	pixel_x = -5;
+	pixel_y = -20
+	},
+/obj/effect/spawner/random/misc/present{
+	pixel_x = -5;
+	pixel_y = -8
+	},
+/turf/open/floor/prison/darkpurple{
+	dir = 4
+	},
+/area/sulaco/briefing)
 "okC" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
@@ -20272,6 +20541,13 @@
 	},
 /turf/open/floor/prison,
 /area/sulaco/hallway/lower_foreship)
+"okZ" = (
+/obj/machinery/status_display,
+/obj/effect/spawner/random/misc/present{
+	pixel_y = 5
+	},
+/turf/closed/wall/mainship/gray,
+/area/sulaco/cafeteria)
 "olF" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
 	dir = 5
@@ -20311,17 +20587,6 @@
 	},
 /turf/open/floor/plating,
 /area/sulaco/maintenance/upperdeck_AIcore_maint)
-"ooZ" = (
-/obj/machinery/status_display,
-/obj/structure/prop/holidays/string_lights,
-/turf/closed/wall/mainship/gray,
-/area/sulaco/cafeteria)
-"opu" = (
-/obj/structure/prop/holidays/string_lights/corner{
-	dir = 8
-	},
-/turf/closed/wall/mainship/white/outer,
-/area/mainship/living/starboard_garden)
 "oqu" = (
 /obj/effect/soundplayer,
 /turf/closed/wall/mainship/gray,
@@ -20352,9 +20617,7 @@
 	},
 /area/sulaco/hangar/droppod)
 "orU" = (
-/obj/structure/prop/mainship/name_stencil{
-	icon_state = "TGMC4"
-	},
+/obj/structure/prop/mainship/name_stencil/C,
 /turf/open/floor/mainship_hull/gray,
 /area/space)
 "oso" = (
@@ -20366,6 +20629,7 @@
 /obj/item/stack/sheet/mineral/phoron,
 /obj/item/stack/sheet/mineral/phoron,
 /obj/item/stack/sheet/mineral/phoron,
+/obj/structure/prop/holidays/string_lights,
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 1
 	},
@@ -20440,12 +20704,6 @@
 	dir = 8
 	},
 /area/sulaco/medbay)
-"ovP" = (
-/obj/structure/prop/holidays/string_lights/corner{
-	dir = 4
-	},
-/turf/closed/wall/mainship/white/outer,
-/area/mainship/living/starboard_garden)
 "owe" = (
 /obj/structure/reagent_dispensers/watertank,
 /turf/open/floor/plating,
@@ -20465,9 +20723,6 @@
 /obj/machinery/light/mainship,
 /obj/structure/disposalpipe/segment{
 	dir = 4
-	},
-/obj/structure/prop/holidays/string_lights{
-	dir = 1
 	},
 /turf/open/floor/prison/whitegreen/corner,
 /area/sulaco/medbay/west)
@@ -20593,11 +20848,13 @@
 /area/sulaco/hydro)
 "oEw" = (
 /obj/structure/window/framed/mainship/gray/toughened,
-/obj/structure/prop/holidays/string_lights,
 /turf/open/floor/prison,
 /area/sulaco/cafeteria)
 "oEH" = (
 /obj/machinery/door/firedoor/mainship,
+/obj/structure/prop/holidays/wreath{
+	dir = 4
+	},
 /turf/open/floor/mainship/stripesquare,
 /area/sulaco/hangar/storage)
 "oEL" = (
@@ -20651,10 +20908,21 @@
 /obj/machinery/light/mainship{
 	dir = 1
 	},
+/obj/structure/prop/holidays/string_lights,
 /turf/open/floor/prison/red{
 	dir = 5
 	},
 /area/sulaco/marine)
+"oHo" = (
+/obj/effect/spawner/random/misc/present{
+	pixel_y = 5
+	},
+/turf/closed/wall/mainship/white/outer,
+/area/sulaco/medbay/storage)
+"oHu" = (
+/obj/effect/spawner/random/food_or_drink/christmas_food,
+/turf/open/floor/prison/sterilewhite,
+/area/sulaco/cafeteria)
 "oHz" = (
 /obj/machinery/light/mainship/small{
 	dir = 1
@@ -20668,6 +20936,7 @@
 /area/sulaco/telecomms)
 "oIc" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on,
+/obj/structure/prop/holidays/string_lights,
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 8
 	},
@@ -20693,9 +20962,6 @@
 /obj/structure/table/reinforced,
 /obj/item/storage/firstaid/adv,
 /obj/item/reagent_containers/spray/surgery,
-/obj/structure/prop/holidays/string_lights{
-	dir = 1
-	},
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 8
 	},
@@ -20738,13 +21004,17 @@
 	dir = 8
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/structure/prop/holidays/string_lights{
+	dir = 10
+	},
 /turf/open/floor/prison,
 /area/sulaco/marine)
-"oMg" = (
-/obj/structure/prop/holidays/string_lights/corner{
-	dir = 4
+"oMi" = (
+/obj/structure/window/framed/mainship/gray/toughened,
+/obj/structure/prop/holidays/string_lights{
+	dir = 9
 	},
-/turf/closed/wall/mainship/gray,
+/turf/open/floor/prison,
 /area/sulaco/marine)
 "oMn" = (
 /obj/structure/cable,
@@ -20765,13 +21035,6 @@
 	},
 /turf/open/floor/prison,
 /area/mainship/living/pilotbunks)
-"oMX" = (
-/obj/machinery/marine_selector/clothes/medic,
-/obj/structure/prop/holidays/string_lights{
-	dir = 1
-	},
-/turf/open/floor/prison,
-/area/sulaco/marine)
 "oNb" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
@@ -20788,17 +21051,8 @@
 	dir = 1
 	},
 /obj/machinery/light/mainship,
-/obj/structure/prop/holidays/string_lights{
-	dir = 1
-	},
 /turf/open/floor/grass,
 /area/mainship/living/starboard_garden)
-"oNF" = (
-/obj/structure/prop/holidays/string_lights{
-	dir = 4
-	},
-/turf/closed/wall/mainship/gray,
-/area/sulaco/maintenance/lower_maint3)
 "oOw" = (
 /obj/machinery/firealarm,
 /turf/open/floor/prison/darkyellow/corner,
@@ -20853,12 +21107,6 @@
 	},
 /turf/open/floor/plating/mainship,
 /area/sulaco/engineering/engine)
-"oQJ" = (
-/obj/structure/prop/holidays/string_lights/corner{
-	dir = 4
-	},
-/turf/closed/wall/mainship/gray,
-/area/sulaco/maintenance/lower_maint2)
 "oQN" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
 	dir = 10
@@ -20890,6 +21138,7 @@
 	dir = 4
 	},
 /obj/machinery/vending/weapon,
+/obj/structure/prop/holidays/string_lights,
 /turf/open/floor/prison,
 /area/sulaco/marine)
 "oTn" = (
@@ -20908,13 +21157,15 @@
 	},
 /turf/open/floor/prison,
 /area/sulaco/hallway/central_hall2)
-"oUx" = (
-/obj/structure/prop/holidays/string_lights/corner,
-/obj/structure/prop/holidays/string_lights/corner{
-	dir = 1
+"oUG" = (
+/obj/structure/window/framed/mainship/gray/toughened,
+/obj/machinery/door/poddoor/shutters/opened{
+	id = "mfsouterhallwayshutters";
+	name = "Lower Foreship Lockdown Shutters"
 	},
-/turf/closed/wall/mainship/white,
-/area/sulaco/medbay/chemistry)
+/obj/machinery/door/firedoor/mainship,
+/turf/open/floor/plating/platebotc,
+/area/mainship/living/basketball)
 "oUY" = (
 /obj/structure/cable,
 /turf/open/floor/prison/sterilewhite,
@@ -20926,12 +21177,12 @@
 	},
 /turf/open/floor/prison/red,
 /area/sulaco/cargo/prep)
-"oVL" = (
+"oVn" = (
 /obj/structure/prop/holidays/string_lights{
-	dir = 6
+	dir = 8
 	},
 /turf/closed/wall/mainship/gray,
-/area/sulaco/briefing)
+/area/mainship/living/basketball)
 "oWg" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/cobweb{
@@ -20943,6 +21194,10 @@
 /obj/structure/disposalpipe/segment/corner,
 /turf/open/floor/prison/sterilewhite,
 /area/sulaco/cafeteria)
+"oWV" = (
+/obj/machinery/vending/medical/shipside,
+/turf/open/floor/prison,
+/area/sulaco/marine)
 "oXl" = (
 /obj/machinery/firealarm{
 	dir = 8
@@ -20954,9 +21209,6 @@
 /area/sulaco/firingrange)
 "oXn" = (
 /obj/machinery/light/mainship,
-/obj/structure/prop/holidays/string_lights{
-	dir = 9
-	},
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 8
 	},
@@ -20983,6 +21235,11 @@
 "oYE" = (
 /turf/closed/wall/mainship/gray/outer,
 /area/sulaco/disposal)
+"oZl" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on,
+/obj/structure/prop/holidays/string_lights,
+/turf/open/floor/prison,
+/area/sulaco/marine)
 "pbw" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
 	dir = 4
@@ -21012,6 +21269,9 @@
 /obj/machinery/status_display{
 	pixel_y = 2
 	},
+/obj/structure/prop/holidays/string_lights{
+	dir = 1
+	},
 /turf/closed/wall/mainship/white,
 /area/sulaco/medbay)
 "pdS" = (
@@ -21023,6 +21283,7 @@
 "pdX" = (
 /obj/machinery/marine_selector/gear/smartgun,
 /obj/item/radio/intercom/general,
+/obj/structure/prop/holidays/string_lights,
 /turf/open/floor/prison,
 /area/sulaco/marine)
 "peD" = (
@@ -21094,6 +21355,12 @@
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/sulaco/maintenance/lower_maint3)
+"phl" = (
+/obj/structure/prop/holidays/string_lights/corner{
+	dir = 1
+	},
+/turf/closed/wall/mainship/gray,
+/area/sulaco/marine)
 "php" = (
 /obj/machinery/door/window{
 	dir = 1;
@@ -21123,6 +21390,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
+/obj/structure/prop/holidays/string_lights,
 /turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 1
 	},
@@ -21142,13 +21410,7 @@
 /area/sulaco/hallway/dropshipprep)
 "pjA" = (
 /obj/structure/table/mainship/nometal,
-/obj/effect/spawner/random/christmas_food{
-	pixel_x = -4
-	},
-/obj/effect/spawner/random/christmas_food{
-	pixel_y = 1
-	},
-/obj/item/wrapping_paper,
+/obj/item/reagent_containers/food/snacks/protein_pack,
 /turf/open/floor/prison/sterilewhite,
 /area/sulaco/cafeteria)
 "pjV" = (
@@ -21177,6 +21439,9 @@
 	},
 /obj/machinery/computer/cryopod{
 	dir = 8
+	},
+/obj/effect/spawner/random/misc/present{
+	pixel_y = 5
 	},
 /turf/open/floor/prison/sterilewhite,
 /area/sulaco/cryosleep)
@@ -21317,6 +21582,9 @@
 /area/sulaco/medbay/storage)
 "ptg" = (
 /obj/effect/decal/cleanable/dirt,
+/obj/structure/prop/holidays/stocking{
+	pixel_y = 26
+	},
 /turf/open/floor/prison/plate,
 /area/sulaco/cargo/office)
 "ptp" = (
@@ -21375,6 +21643,9 @@
 /area/mainship/living/basketball)
 "pxr" = (
 /obj/machinery/status_display/ai,
+/obj/structure/prop/holidays/string_lights{
+	dir = 1
+	},
 /turf/closed/wall/mainship/gray,
 /area/sulaco/marine)
 "pxw" = (
@@ -21467,6 +21738,15 @@
 /obj/structure/cable,
 /turf/open/floor/prison/arrow/clean,
 /area/sulaco/cafeteria)
+"pAF" = (
+/obj/structure/prop/holidays/string_lights{
+	dir = 4
+	},
+/obj/structure/prop/holidays/string_lights/corner{
+	dir = 8
+	},
+/turf/closed/wall/mainship/gray,
+/area/sulaco/marine)
 "pBA" = (
 /obj/structure/window/framed/mainship/gray/toughened,
 /obj/machinery/door/poddoor/opened/sb,
@@ -21495,9 +21775,6 @@
 "pDu" = (
 /obj/structure/disposalpipe/junction/flipped{
 	dir = 4
-	},
-/obj/structure/prop/holidays/string_lights{
-	dir = 1
 	},
 /turf/open/floor/prison/whitegreen/corner,
 /area/sulaco/medbay/west)
@@ -21530,9 +21807,12 @@
 /obj/machinery/door/firedoor/mainship{
 	dir = 2
 	},
-/obj/structure/prop/holidays/string_lights,
 /turf/open/floor/plating,
 /area/sulaco/briefing)
+"pEU" = (
+/obj/structure/prop/holidays/string_lights/corner,
+/turf/closed/wall/mainship/gray,
+/area/sulaco/marine)
 "pFh" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
@@ -21702,9 +21982,6 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/structure/prop/holidays/string_lights{
-	dir = 1
-	},
 /turf/open/floor/prison/whitegreen/corner,
 /area/sulaco/medbay/west)
 "pQL" = (
@@ -21766,6 +22043,12 @@
 /obj/effect/soundplayer,
 /turf/closed/wall/mainship/gray/outer,
 /area/sulaco/firingrange)
+"pXi" = (
+/obj/structure/prop/holidays/string_lights{
+	dir = 1
+	},
+/turf/closed/wall/mainship/gray,
+/area/sulaco/maintenance/lower_maint2)
 "pXp" = (
 /obj/effect/spawner/random/misc/structure/supplycrate,
 /turf/open/floor/prison,
@@ -21806,12 +22089,6 @@
 	},
 /turf/open/floor/prison,
 /area/sulaco/hallway/evac)
-"qam" = (
-/obj/structure/prop/holidays/string_lights{
-	dir = 8
-	},
-/turf/closed/wall/mainship/gray,
-/area/sulaco/marine)
 "qaA" = (
 /obj/machinery/light/mainship{
 	dir = 8
@@ -21850,6 +22127,9 @@
 "qeE" = (
 /obj/structure/table/mainship/nometal,
 /obj/effect/spawner/random/medical/firstaid/alwaysspawns,
+/obj/effect/spawner/random/misc/present{
+	pixel_y = 5
+	},
 /turf/open/floor/prison,
 /area/sulaco/security)
 "qhv" = (
@@ -21860,23 +22140,6 @@
 	dir = 6
 	},
 /area/space)
-"qhy" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/structure/prop/holidays/string_lights{
-	dir = 1
-	},
-/turf/open/floor/prison/whitegreen/corner{
-	dir = 8
-	},
-/area/sulaco/medbay/west)
-"qhD" = (
-/obj/structure/table/mainship/nometal,
-/obj/item/storage/box/nt_mre,
-/obj/item/reagent_containers/food/drinks/bottle/eggnog,
-/turf/open/floor/prison/sterilewhite,
-/area/sulaco/cafeteria)
 "qhI" = (
 /obj/structure/cable,
 /turf/open/floor/prison/sterilewhite,
@@ -21900,9 +22163,6 @@
 /obj/structure/table/mainship/nometal,
 /obj/item/defibrillator,
 /obj/item/defibrillator,
-/obj/structure/prop/holidays/string_lights{
-	dir = 1
-	},
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 4
 	},
@@ -21932,7 +22192,6 @@
 /obj/machinery/door/firedoor/mainship{
 	dir = 2
 	},
-/obj/structure/prop/holidays/string_lights,
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 8
 	},
@@ -21951,6 +22210,12 @@
 /obj/machinery/camera/autoname,
 /turf/open/floor/plating,
 /area/sulaco/maintenance/lower_maint2)
+"qlz" = (
+/obj/structure/prop/holidays/string_lights{
+	dir = 9
+	},
+/turf/closed/wall/mainship/gray,
+/area/sulaco/marine)
 "qlJ" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 4
@@ -21968,6 +22233,13 @@
 	dir = 1
 	},
 /area/sulaco/hallway/central_hall)
+"qoW" = (
+/obj/structure/prop/holidays/string_lights/corner,
+/obj/structure/prop/holidays/string_lights/corner{
+	dir = 8
+	},
+/turf/closed/wall/mainship/gray,
+/area/sulaco/maintenance/lower_maint2)
 "qpo" = (
 /obj/machinery/camera/autoname{
 	dir = 1
@@ -21975,12 +22247,6 @@
 /obj/machinery/vending/weapon,
 /turf/open/floor/prison/red,
 /area/sulaco/bridge)
-"qpp" = (
-/obj/structure/prop/holidays/string_lights{
-	dir = 8
-	},
-/turf/closed/wall/mainship/gray,
-/area/sulaco/morgue)
 "qpD" = (
 /obj/machinery/door_control/mainship/mech{
 	id = "mech_shutters_2"
@@ -22025,6 +22291,7 @@
 /obj/structure/disposalpipe/trunk{
 	dir = 8
 	},
+/obj/structure/prop/holidays/string_lights,
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 4
 	},
@@ -22063,6 +22330,15 @@
 /obj/structure/table/fancywoodentable,
 /turf/open/floor/carpet,
 /area/sulaco/liaison/quarters)
+"qvp" = (
+/obj/structure/prop/holidays/string_lights{
+	dir = 4
+	},
+/obj/structure/prop/holidays/string_lights/corner{
+	dir = 1
+	},
+/turf/closed/wall/mainship/gray,
+/area/sulaco/marine)
 "qvV" = (
 /obj/machinery/door_control/unmeltable{
 	dir = 4;
@@ -22114,6 +22390,13 @@
 /obj/structure/cable,
 /turf/open/floor/prison,
 /area/sulaco/cargo)
+"qyU" = (
+/obj/structure/prop/holidays/string_lights{
+	dir = 8
+	},
+/obj/structure/prop/holidays/string_lights/corner,
+/turf/closed/wall/mainship/gray,
+/area/sulaco/marine)
 "qzc" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/prison,
@@ -22178,6 +22461,12 @@
 "qDO" = (
 /turf/open/floor/mainship_hull/gray/dir,
 /area/space)
+"qDP" = (
+/obj/structure/prop/holidays/string_lights/corner{
+	dir = 8
+	},
+/turf/closed/wall/mainship/gray,
+/area/sulaco/marine)
 "qES" = (
 /obj/effect/turf_decal/warning_stripes/thick/corner{
 	dir = 4
@@ -22216,6 +22505,12 @@
 	dir = 1
 	},
 /area/sulaco/marine/chapel)
+"qGY" = (
+/obj/structure/prop/holidays/string_lights{
+	dir = 5
+	},
+/turf/closed/wall/mainship/gray,
+/area/sulaco/marine)
 "qHb" = (
 /obj/structure/window/framed/mainship/gray/toughened/hull,
 /obj/effect/soundplayer,
@@ -22244,16 +22539,6 @@
 	},
 /turf/open/floor/prison,
 /area/sulaco/hallway/evac)
-"qIP" = (
-/obj/structure/prop/holidays/stocking{
-	pixel_x = 9;
-	pixel_y = 26
-	},
-/obj/structure/prop/holidays/stocking{
-	pixel_y = 26
-	},
-/turf/open/floor/prison/red,
-/area/sulaco/hallway/central_hall3)
 "qIY" = (
 /obj/machinery/disposal,
 /obj/structure/disposalpipe/trunk{
@@ -22277,6 +22562,9 @@
 "qJY" = (
 /obj/structure/table/mainship/nometal,
 /obj/machinery/faxmachine/cic,
+/obj/effect/spawner/random/misc/present{
+	pixel_y = 7
+	},
 /turf/open/floor/prison/bright_clean,
 /area/sulaco/bridge)
 "qKm" = (
@@ -22434,6 +22722,15 @@
 /obj/effect/spawner/random/engineering/structure/tank/waterweighted,
 /turf/open/floor/prison,
 /area/sulaco/engineering/storage)
+"qWc" = (
+/obj/structure/prop/holidays/stocking{
+	pixel_y = 26
+	},
+/obj/structure/prop/holidays/stocking{
+	pixel_y = 26
+	},
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar/cas)
 "qWi" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
@@ -22477,15 +22774,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/prison/red,
 /area/sulaco/firingrange)
-"qYG" = (
-/obj/structure/prop/holidays/string_lights{
-	dir = 4
-	},
-/obj/structure/prop/holidays/string_lights{
-	dir = 8
-	},
-/turf/closed/wall/mainship/white,
-/area/sulaco/medbay/west)
 "qZW" = (
 /obj/machinery/computer/supplycomp,
 /obj/machinery/light/mainship{
@@ -22577,6 +22865,15 @@
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /turf/open/floor/prison/arrow/clean,
 /area/sulaco/cafeteria)
+"rgh" = (
+/obj/structure/prop/holidays/string_lights{
+	dir = 8
+	},
+/obj/structure/prop/holidays/string_lights{
+	dir = 4
+	},
+/turf/closed/wall/mainship/gray,
+/area/sulaco/marine)
 "rgn" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
 	dir = 4
@@ -22668,6 +22965,7 @@
 /obj/machinery/light/mainship{
 	dir = 1
 	},
+/obj/structure/prop/holidays/string_lights,
 /turf/open/floor/grass,
 /area/mainship/living/starboard_garden)
 "rjt" = (
@@ -22897,9 +23195,6 @@
 /area/sulaco/showers)
 "rvr" = (
 /obj/machinery/light/mainship,
-/obj/structure/prop/holidays/string_lights{
-	dir = 1
-	},
 /turf/open/floor/prison,
 /area/sulaco/marine)
 "rvC" = (
@@ -22920,6 +23215,9 @@
 	},
 /turf/open/floor/prison/bright_clean,
 /area/sulaco/hangar/droppod)
+"rvU" = (
+/turf/closed/wall/mainship/gray/outer,
+/area/sulaco/marine)
 "rwf" = (
 /obj/structure/window/framed/mainship/gray/toughened/hull,
 /turf/open/floor/plating/platebotc,
@@ -22967,12 +23265,6 @@
 /obj/vehicle/unmanned/droid/scout,
 /turf/open/floor/prison/bright_clean,
 /area/sulaco/hangar)
-"rzh" = (
-/obj/structure/prop/holidays/string_lights{
-	dir = 8
-	},
-/turf/closed/wall/mainship/white/outer,
-/area/sulaco/medbay/storage)
 "rzi" = (
 /obj/machinery/atmospherics/pipe/manifold/cyan/hidden/layer1,
 /obj/machinery/atmospherics/pipe/manifold/yellow/hidden,
@@ -22993,6 +23285,9 @@
 /area/mainship/command/self_destruct)
 "rBq" = (
 /mob/living/simple_animal/cat/Jones,
+/obj/effect/spawner/random/misc/present{
+	pixel_y = 5
+	},
 /turf/open/floor/wood,
 /area/sulaco/cap_office)
 "rBM" = (
@@ -23008,28 +23303,14 @@
 	dir = 1
 	},
 /area/mainship/shipboard/weapon_room)
-"rCj" = (
-/obj/structure/prop/holidays/stocking{
-	pixel_x = -13;
-	pixel_y = 26
-	},
-/turf/open/floor/prison/red,
-/area/sulaco/hallway/central_hall3)
 "rDx" = (
 /obj/structure/closet/secure_closet/medical3,
 /obj/item/storage/surgical_tray,
+/obj/structure/prop/holidays/string_lights,
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 4
 	},
 /area/sulaco/medbay/west)
-"rDE" = (
-/obj/structure/table/mainship/nometal,
-/obj/item/reagent_containers/food/drinks/bottle/eggnog{
-	pixel_x = 3;
-	pixel_y = 2
-	},
-/turf/open/floor/prison/sterilewhite,
-/area/sulaco/cafeteria/kitchen)
 "rDF" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/cyan/hidden/layer1,
@@ -23065,6 +23346,12 @@
 /obj/effect/attach_point/weapon/dropship1,
 /turf/open/floor/plating,
 /area/sulaco/hangar)
+"rFq" = (
+/obj/effect/spawner/random/misc/present{
+	pixel_y = 5
+	},
+/turf/open/floor/prison,
+/area/mainship/shipboard/weapon_room)
 "rFM" = (
 /obj/structure/droppod,
 /obj/structure/drop_pod_launcher,
@@ -23136,17 +23423,6 @@
 /obj/machinery/light/mainship,
 /obj/item/whistle,
 /obj/item/tool/stamp/denied,
-/obj/effect/spawner/random/christmas_food{
-	pixel_x = 5;
-	pixel_y = 1
-	},
-/obj/effect/spawner/random/christmas_food{
-	pixel_y = 1
-	},
-/obj/effect/spawner/random/christmas_food{
-	pixel_x = -4;
-	pixel_y = -4
-	},
 /turf/open/floor/prison,
 /area/sulaco/cargo/office)
 "rIw" = (
@@ -23157,6 +23433,7 @@
 	dir = 4
 	},
 /obj/structure/table/mainship/nometal,
+/obj/structure/prop/holidays/string_lights,
 /turf/open/floor/wood,
 /area/sulaco/medbay/west)
 "rIx" = (
@@ -23186,6 +23463,9 @@
 	},
 /turf/open/floor/prison/bright_clean,
 /area/sulaco/bridge)
+"rLu" = (
+/turf/closed/wall/mainship/white/outer,
+/area/sulaco/medbay/west)
 "rLJ" = (
 /obj/machinery/air_alarm{
 	dir = 4
@@ -23223,9 +23503,6 @@
 /area/mainship/living/starboard_garden)
 "rOy" = (
 /obj/machinery/vending/uniform_supply,
-/obj/structure/prop/holidays/string_lights{
-	dir = 1
-	},
 /turf/open/floor/prison,
 /area/sulaco/marine)
 "rPe" = (
@@ -23286,15 +23563,6 @@
 	},
 /turf/open/floor/prison,
 /area/sulaco/disposal)
-"rSb" = (
-/obj/structure/prop/holidays/string_lights{
-	dir = 4
-	},
-/obj/structure/prop/holidays/string_lights/corner{
-	dir = 8
-	},
-/turf/closed/wall/mainship/gray,
-/area/sulaco/marine)
 "rSe" = (
 /obj/item/radio/intercom/general{
 	dir = 8
@@ -23308,6 +23576,9 @@
 /obj/item/ashtray/glass,
 /turf/open/floor/prison,
 /area/sulaco/bar)
+"rTw" = (
+/turf/closed/wall/mainship/white,
+/area/sulaco/medbay/west)
 "rTz" = (
 /obj/structure/drop_pod_launcher,
 /obj/structure/droppod/leader,
@@ -23367,12 +23638,24 @@
 	dir = 4
 	},
 /obj/effect/ai_node,
+/obj/structure/prop/holidays/stocking{
+	pixel_y = 26
+	},
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/sulaco/hallway/central_hall)
 "rXM" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on,
 /turf/open/floor/wood,
 /area/sulaco/bridge/office)
+"rYC" = (
+/obj/structure/prop/holidays/string_lights{
+	dir = 8
+	},
+/obj/structure/prop/holidays/string_lights/corner{
+	dir = 4
+	},
+/turf/closed/wall/mainship/gray,
+/area/sulaco/marine)
 "rYR" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
@@ -23486,6 +23769,34 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/sulaco/marine)
+"sdt" = (
+/obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/prop/holidays/string_lights{
+	dir = 6
+	},
+/turf/open/floor/prison/red{
+	dir = 1
+	},
+/area/sulaco/marine)
+"sdT" = (
+/obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden{
+	dir = 4
+	},
+/obj/machinery/vending/weapon,
+/obj/structure/prop/holidays/string_lights{
+	dir = 6
+	},
+/turf/open/floor/prison,
+/area/sulaco/marine)
 "seY" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/air_alarm{
@@ -23535,6 +23846,12 @@
 	dir = 8
 	},
 /area/sulaco/research)
+"sgt" = (
+/obj/structure/prop/holidays/wreath{
+	dir = 6
+	},
+/turf/open/floor/prison,
+/area/sulaco/hallway/lower_main_hall)
 "sgH" = (
 /obj/structure/rack,
 /obj/structure/ob_ammo/warhead/explosive,
@@ -23592,6 +23909,9 @@
 "sio" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 1
+	},
+/obj/effect/spawner/random/misc/present{
+	pixel_y = 5
 	},
 /turf/open/floor/prison,
 /area/sulaco/hallway/evac)
@@ -23688,6 +24008,10 @@
 	dir = 1
 	},
 /area/sulaco/bridge)
+"spy" = (
+/obj/structure/prop/holidays/string_lights,
+/turf/open/floor/prison,
+/area/sulaco/briefing)
 "spI" = (
 /obj/structure/table/mainship/nometal,
 /obj/item/stack/sheet/mineral/phoron,
@@ -23720,6 +24044,22 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/cult,
 /area/sulaco/morgue)
+"sqV" = (
+/obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/yellow/hidden{
+	dir = 1
+	},
+/obj/structure/cable,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/structure/prop/holidays/stocking{
+	pixel_y = 26
+	},
+/turf/open/floor/prison,
+/area/sulaco/hallway/lower_main_hall)
 "srT" = (
 /obj/structure/bed/chair/nometal{
 	dir = 1
@@ -23844,6 +24184,12 @@
 	},
 /turf/open/floor/cult,
 /area/sulaco/morgue)
+"syD" = (
+/obj/structure/prop/holidays/string_lights{
+	dir = 8
+	},
+/turf/closed/wall/mainship/white,
+/area/sulaco/medbay/cmo)
 "szj" = (
 /obj/machinery/light/mainship,
 /obj/structure/sign/ROsign,
@@ -23868,6 +24214,12 @@
 	dir = 4
 	},
 /obj/machinery/door/airlock/mainship/marine/general/engi,
+/obj/structure/prop/holidays/string_lights{
+	dir = 4
+	},
+/obj/structure/prop/holidays/string_lights{
+	dir = 8
+	},
 /turf/open/floor/prison/green/full,
 /area/sulaco/marine)
 "sAq" = (
@@ -23914,15 +24266,6 @@
 /obj/structure/ship_ammo/cas/rocket/widowmaker,
 /turf/open/floor/prison,
 /area/sulaco/hangar/cas)
-"sDc" = (
-/obj/structure/prop/holidays/stocking{
-	pixel_y = 26
-	},
-/obj/structure/prop/holidays/stocking{
-	pixel_y = 26
-	},
-/turf/open/floor/prison/bright_clean,
-/area/sulaco/hangar/cas)
 "sEr" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/prison,
@@ -23956,8 +24299,16 @@
 /obj/structure/table/mainship/nometal,
 /obj/item/tool/hand_labeler,
 /obj/item/tool/hand_labeler,
-/obj/item/reagent_containers/food/drinks/h_chocolate{
-	pixel_y = 7
+/obj/item/prop/mainship/candle{
+	pixel_x = 1;
+	pixel_y = 8
+	},
+/obj/item/prop/mainship/candle/short{
+	pixel_x = -8
+	},
+/obj/item/prop/mainship/candle/short{
+	pixel_x = 1;
+	pixel_y = -3
 	},
 /turf/open/floor/prison,
 /area/sulaco/cargo/prep)
@@ -24095,6 +24446,15 @@
 	},
 /turf/open/floor/wood,
 /area/sulaco/marine/chapel/chapel_office)
+"sOm" = (
+/obj/structure/prop/holidays/string_lights{
+	dir = 4
+	},
+/obj/structure/prop/holidays/string_lights{
+	dir = 8
+	},
+/turf/closed/wall/mainship/gray,
+/area/sulaco/marine)
 "sOt" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
@@ -24132,6 +24492,12 @@
 /obj/effect/ai_node,
 /turf/open/floor/prison,
 /area/sulaco/bridge)
+"sPw" = (
+/obj/structure/prop/holidays/string_lights{
+	dir = 8
+	},
+/turf/closed/wall/mainship/gray/outer,
+/area/sulaco/maintenance/lower_maint3)
 "sPA" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
@@ -24167,9 +24533,6 @@
 /area/sulaco/marine/chapel)
 "sQd" = (
 /obj/machinery/loadout_vendor,
-/obj/structure/prop/holidays/string_lights{
-	dir = 1
-	},
 /turf/open/floor/prison,
 /area/sulaco/marine)
 "sQE" = (
@@ -24187,6 +24550,9 @@
 /area/mainship/command/self_destruct)
 "sRW" = (
 /obj/machinery/marine_selector/gear/smartgun,
+/obj/structure/prop/holidays/string_lights{
+	dir = 6
+	},
 /turf/open/floor/prison,
 /area/sulaco/marine)
 "sTR" = (
@@ -24195,6 +24561,9 @@
 /area/sulaco/hallway/central_hall)
 "sUe" = (
 /obj/structure/target_stake,
+/obj/structure/prop/holidays/wreath{
+	dir = 10
+	},
 /turf/open/floor/prison/red{
 	dir = 9
 	},
@@ -24211,12 +24580,6 @@
 	},
 /turf/open/floor/tile/dark2,
 /area/mainship/living/basketball)
-"sVa" = (
-/obj/structure/prop/holidays/string_lights/corner{
-	dir = 1
-	},
-/turf/closed/wall/mainship/white,
-/area/sulaco/medbay/storage)
 "sVU" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
@@ -24267,9 +24630,6 @@
 /obj/structure/sink{
 	dir = 4
 	},
-/obj/structure/prop/holidays/string_lights{
-	dir = 1
-	},
 /turf/open/floor/prison/whitegreen/corner,
 /area/sulaco/medbay/west)
 "sZz" = (
@@ -24288,9 +24648,6 @@
 	dir = 4
 	},
 /obj/machinery/door/firedoor/mainship,
-/obj/structure/prop/holidays/string_lights{
-	dir = 8
-	},
 /turf/open/floor/plating/platebotc,
 /area/sulaco/marine)
 "sZZ" = (
@@ -24318,6 +24675,15 @@
 "tbJ" = (
 /turf/closed/wall/mainship/gray,
 /area/sulaco/bridge)
+"tbS" = (
+/obj/structure/prop/holidays/string_lights/corner{
+	dir = 4
+	},
+/obj/structure/prop/holidays/string_lights/corner{
+	dir = 8
+	},
+/turf/closed/wall/mainship/white,
+/area/sulaco/medbay/chemistry)
 "tcf" = (
 /obj/machinery/camera/autoname{
 	dir = 8
@@ -24356,6 +24722,22 @@
 	},
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/sulaco/engineering/engine)
+"tep" = (
+/obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/structure/prop/holidays/stocking{
+	pixel_y = 26
+	},
+/turf/open/floor/plating/plating_catwalk/prison,
+/area/sulaco/hallway/lower_main_hall)
 "tex" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
 	dir = 8
@@ -24364,18 +24746,11 @@
 	dir = 4
 	},
 /obj/machinery/vending/weapon,
+/obj/structure/prop/holidays/string_lights{
+	dir = 10
+	},
 /turf/open/floor/prison,
 /area/sulaco/marine)
-"tez" = (
-/obj/structure/prop/holidays/string_lights{
-	dir = 1
-	},
-/obj/item/prop/mainship/candle/short{
-	pixel_x = -10;
-	pixel_y = 9
-	},
-/turf/open/floor/prison,
-/area/sulaco/briefing)
 "teI" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
@@ -24432,16 +24807,11 @@
 /obj/machinery/prop/mainship/computer{
 	dir = 8
 	},
+/obj/effect/spawner/random/misc/present{
+	pixel_y = 5
+	},
 /turf/open/floor/prison/bright_clean,
 /area/sulaco/hydro)
-"tjc" = (
-/obj/machinery/status_display,
-/obj/structure/prop/holidays/string_lights/corner,
-/obj/structure/prop/holidays/string_lights/corner{
-	dir = 1
-	},
-/turf/closed/wall/mainship/gray,
-/area/sulaco/cafeteria)
 "tjq" = (
 /obj/effect/ai_node,
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
@@ -24460,14 +24830,6 @@
 /obj/effect/soundplayer,
 /turf/closed/wall/mainship/gray,
 /area/sulaco/engineering/atmos)
-"tjP" = (
-/obj/structure/prop/holidays/string_lights{
-	dir = 1
-	},
-/turf/open/floor/prison/whitegreen/corner{
-	dir = 8
-	},
-/area/sulaco/medbay/west)
 "tjS" = (
 /obj/machinery/door/airlock/mainship/generic,
 /obj/machinery/door/firedoor/mainship,
@@ -24475,18 +24837,22 @@
 	id = "mfsouterhallwayshutters";
 	name = "Lower Foreship Lockdown Shutters"
 	},
+/obj/structure/prop/holidays/string_lights{
+	dir = 8
+	},
 /turf/open/floor/tile/dark2,
 /area/mainship/living/basketball)
 "tkc" = (
 /obj/structure/cable,
 /obj/machinery/loadout_vendor,
-/obj/structure/prop/holidays/string_lights{
-	dir = 1
-	},
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 4
 	},
 /area/sulaco/medbay)
+"tku" = (
+/obj/effect/spawner/random/misc/present,
+/turf/open/floor/wood,
+/area/mainship/living/basketball)
 "tkS" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
 	dir = 4
@@ -24537,9 +24903,7 @@
 "tny" = (
 /obj/machinery/light/mainship,
 /obj/effect/decal/cleanable/dirt,
-/obj/structure/prop/holidays/string_lights{
-	dir = 1
-	},
+/obj/structure/prop/holidays/string_lights,
 /turf/open/floor/prison,
 /area/sulaco/briefing)
 "toM" = (
@@ -24615,7 +24979,6 @@
 /obj/machinery/door/firedoor/mainship{
 	dir = 2
 	},
-/obj/structure/prop/holidays/string_lights,
 /turf/open/floor/plating,
 /area/sulaco/briefing)
 "ttZ" = (
@@ -24688,17 +25051,10 @@
 	},
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/sulaco/cargo/prep)
-"twL" = (
-/obj/structure/prop/holidays/string_lights/corner,
-/turf/closed/wall/mainship/white/outer,
-/area/sulaco/medbay)
 "txj" = (
 /obj/machinery/light/mainship,
 /obj/structure/rack,
 /obj/item/toy/beach_ball/basketball,
-/obj/structure/prop/holidays/string_lights{
-	dir = 1
-	},
 /turf/open/floor/tile/darkgreen/darkgreen2,
 /area/mainship/living/basketball)
 "txF" = (
@@ -24744,6 +25100,10 @@
 	},
 /turf/open/floor/prison/whitegreen,
 /area/sulaco/research)
+"tAQ" = (
+/obj/machinery/marine_selector/gear/engi,
+/turf/open/floor/prison,
+/area/sulaco/marine)
 "tAS" = (
 /turf/closed/wall/mainship/gray,
 /area/sulaco/engineering/engine)
@@ -24854,6 +25214,9 @@
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
 	dir = 10
 	},
+/obj/structure/prop/holidays/wreath{
+	dir = 6
+	},
 /turf/open/floor/prison/kitchen,
 /area/sulaco/cafeteria)
 "tJx" = (
@@ -24881,6 +25244,10 @@
 /obj/structure/cable,
 /turf/open/floor/prison,
 /area/sulaco/hallway/dropshipprep)
+"tLU" = (
+/obj/machinery/vending/weapon,
+/turf/open/floor/prison,
+/area/sulaco/marine)
 "tLX" = (
 /obj/machinery/door/poddoor/railing{
 	id = "supply_elevator_railing"
@@ -24933,6 +25300,27 @@
 /obj/machinery/door/airlock/multi_tile/mainship/blackgeneric/glass,
 /turf/open/floor/prison,
 /area/sulaco/hangar/cas)
+"tNx" = (
+/obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/item/prop/mainship/candle{
+	pixel_x = -10
+	},
+/obj/item/prop/mainship/candle/short{
+	pixel_y = 12
+	},
+/obj/item/prop/mainship/candle/short,
+/turf/open/floor/plating/plating_catwalk/prison,
+/area/sulaco/hallway/lower_main_hall)
 "tOd" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/rack,
@@ -24966,8 +25354,17 @@
 	id = "mfsouterhallwayshutters";
 	name = "Lower Foreship Lockdown Shutters"
 	},
+/obj/structure/prop/holidays/string_lights{
+	dir = 8
+	},
 /turf/open/floor/tile/dark2,
 /area/mainship/living/basketball)
+"tOC" = (
+/obj/structure/prop/holidays/string_lights{
+	dir = 5
+	},
+/turf/closed/wall/mainship/gray,
+/area/sulaco/maintenance/lower_maint2)
 "tOJ" = (
 /turf/open/floor/prison/red/full{
 	dir = 8
@@ -24998,12 +25395,6 @@
 /area/sulaco/liaison/quarters)
 "tRg" = (
 /obj/structure/table/mainship/nometal,
-/obj/item/prop/mainship/candle{
-	pixel_y = 6
-	},
-/obj/item/prop/mainship/candle{
-	pixel_x = -9
-	},
 /turf/open/floor/prison,
 /area/sulaco/bar)
 "tRW" = (
@@ -25024,6 +25415,16 @@
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /turf/open/floor/prison,
 /area/sulaco/telecomms/office)
+"tTq" = (
+/obj/structure/prop/holidays/string_lights{
+	dir = 5
+	},
+/obj/item/prop/mainship/candle/short{
+	pixel_x = 5;
+	pixel_y = -6
+	},
+/turf/closed/wall/mainship/gray,
+/area/sulaco/briefing)
 "tTP" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
 	dir = 1
@@ -25109,12 +25510,6 @@
 	},
 /turf/closed/wall/mainship/gray,
 /area/sulaco/briefing)
-"tXL" = (
-/obj/structure/prop/holidays/string_lights{
-	dir = 8
-	},
-/turf/closed/wall/mainship/white,
-/area/sulaco/medbay/storage)
 "tXW" = (
 /obj/structure/cable,
 /turf/open/floor/plating,
@@ -25172,12 +25567,6 @@
 	},
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/sulaco/hallway/central_hall)
-"udZ" = (
-/obj/structure/prop/holidays/string_lights/corner{
-	dir = 1
-	},
-/turf/closed/wall/mainship/gray,
-/area/mainship/living/basketball)
 "uec" = (
 /obj/structure/window/framed/mainship/gray/toughened,
 /obj/machinery/door/poddoor/shutters/opened{
@@ -25325,9 +25714,18 @@
 	},
 /turf/open/floor/prison/bright_clean,
 /area/sulaco/hangar)
+"ukF" = (
+/obj/structure/prop/holidays/string_lights{
+	dir = 8
+	},
+/turf/closed/wall/mainship/white/outer,
+/area/sulaco/medbay)
 "ukL" = (
 /turf/open/floor/prison/plate,
 /area/shuttle/distress/arrive_2)
+"ukU" = (
+/turf/closed/wall/mainship/gray,
+/area/sulaco/marine)
 "ulM" = (
 /obj/effect/turf_decal/warning_stripes/thick{
 	dir = 9
@@ -25362,13 +25760,6 @@
 	},
 /turf/open/floor/prison,
 /area/sulaco/maintenance/upperdeck_AIcore_maint)
-"umP" = (
-/obj/machinery/marine_selector/clothes/leader,
-/obj/structure/prop/holidays/string_lights{
-	dir = 1
-	},
-/turf/open/floor/prison,
-/area/sulaco/marine)
 "uok" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
 	dir = 9
@@ -25404,12 +25795,6 @@
 	dir = 1
 	},
 /area/sulaco/disposal)
-"upk" = (
-/obj/structure/prop/holidays/stocking{
-	pixel_y = -5
-	},
-/turf/closed/wall/mainship/gray,
-/area/mainship/living/pilotbunks)
 "usZ" = (
 /turf/open/floor/plating/icefloor/warnplate,
 /area/sulaco/hangar/storage)
@@ -25435,19 +25820,11 @@
 /area/sulaco/cafeteria/kitchen)
 "uux" = (
 /obj/machinery/vending/medical/shipside,
+/obj/structure/prop/holidays/string_lights{
+	dir = 6
+	},
 /turf/open/floor/prison,
 /area/sulaco/marine)
-"uuF" = (
-/obj/machinery/door/poddoor/opened/east{
-	dir = 2;
-	id = "gardenblast"
-	},
-/obj/structure/window/framed/mainship/white/toughened/hull,
-/obj/structure/prop/holidays/string_lights{
-	dir = 4
-	},
-/turf/open/floor/plating/platebotc,
-/area/mainship/living/starboard_garden)
 "uuN" = (
 /obj/machinery/door/poddoor/shutters/opened{
 	id = "mfsouterhallwayshutters";
@@ -25467,16 +25844,12 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plating,
 /area/sulaco/engineering/engine_monitoring)
-"uwi" = (
-/obj/structure/prop/holidays/string_lights{
-	dir = 8
-	},
-/turf/closed/wall/mainship/gray,
-/area/mainship/living/basketball)
 "uwG" = (
 /obj/structure/table/mainship/nometal,
 /obj/machinery/light/mainship,
-/obj/item/reagent_containers/food/drinks/bottle/eggnog,
+/obj/item/prop/mainship/candle/short{
+	pixel_y = 6
+	},
 /turf/open/floor/prison/sterilewhite,
 /area/sulaco/cafeteria)
 "uwH" = (
@@ -25634,6 +26007,10 @@
 	},
 /turf/open/floor/prison/sterilewhite,
 /area/mainship/living/starboard_garden)
+"uFc" = (
+/obj/structure/prop/holidays/string_lights/corner,
+/turf/closed/wall/mainship/white/outer,
+/area/mainship/living/starboard_garden)
 "uFe" = (
 /obj/machinery/door/firedoor/mainship{
 	dir = 1
@@ -25660,6 +26037,12 @@
 	},
 /turf/open/floor/plating,
 /area/sulaco/hangar)
+"uHn" = (
+/obj/structure/prop/holidays/string_lights{
+	dir = 5
+	},
+/turf/closed/wall/mainship/gray,
+/area/sulaco/maintenance/lower_maint3)
 "uHR" = (
 /obj/effect/turf_decal/warning_stripes/thick{
 	dir = 1
@@ -25671,6 +26054,10 @@
 /obj/machinery/vending/tool,
 /turf/open/floor/prison,
 /area/sulaco/hangar/storage)
+"uIw" = (
+/obj/machinery/marine_selector/clothes/leader,
+/turf/open/floor/prison,
+/area/sulaco/marine)
 "uIO" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
 	dir = 4
@@ -25695,6 +26082,12 @@
 	},
 /turf/open/floor/prison,
 /area/sulaco/hangar/storage)
+"uJk" = (
+/obj/structure/prop/holidays/string_lights{
+	dir = 1
+	},
+/turf/closed/wall/mainship/gray,
+/area/sulaco/marine)
 "uJm" = (
 /obj/structure/cable,
 /obj/machinery/power/apc/mainship{
@@ -25704,16 +26097,20 @@
 	dir = 4
 	},
 /area/sulaco/marine/chapel)
+"uJv" = (
+/obj/structure/prop/holidays/stocking{
+	pixel_y = 26
+	},
+/turf/open/floor/prison/whitegreen/corner,
+/area/sulaco/medbay)
+"uJQ" = (
+/obj/structure/prop/holidays/string_lights/corner,
+/turf/closed/wall/mainship/white/outer,
+/area/sulaco/medbay/west)
 "uJU" = (
 /obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/prison,
 /area/sulaco/cargo/prep)
-"uLi" = (
-/obj/structure/prop/holidays/string_lights/corner{
-	dir = 8
-	},
-/turf/closed/wall/mainship/gray/outer,
-/area/sulaco/briefing)
 "uLr" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
@@ -25784,13 +26181,8 @@
 	},
 /turf/open/floor/prison/marked,
 /area/sulaco/cargo)
-"uOx" = (
-/obj/structure/prop/holidays/string_lights,
-/turf/closed/wall/mainship/white/outer,
-/area/sulaco/medbay)
 "uPy" = (
 /obj/structure/window/framed/mainship/white,
-/obj/structure/prop/holidays/string_lights,
 /turf/open/floor/plating/platebotc,
 /area/sulaco/medbay/chemistry)
 "uQi" = (
@@ -25819,23 +26211,20 @@
 /area/sulaco/medbay/storage)
 "uRT" = (
 /obj/machinery/status_display/ai,
+/obj/structure/prop/holidays/string_lights{
+	dir = 1
+	},
 /turf/closed/wall/mainship/gray/outer,
 /area/sulaco/marine)
 "uSj" = (
 /obj/structure/window/reinforced{
 	dir = 1
 	},
-/obj/structure/prop/holidays/string_lights{
-	dir = 9
-	},
 /turf/open/floor/prison/green/full,
 /area/sulaco/marine)
 "uSw" = (
 /obj/machinery/light/mainship,
 /obj/machinery/marine_selector/clothes,
-/obj/structure/prop/holidays/string_lights{
-	dir = 9
-	},
 /turf/open/floor/prison,
 /area/sulaco/marine)
 "uTr" = (
@@ -25931,6 +26320,15 @@
 /obj/effect/ai_node,
 /turf/open/floor/prison/bright_clean,
 /area/mainship/command/self_destruct)
+"uZB" = (
+/obj/structure/prop/holidays/string_lights/corner{
+	dir = 8
+	},
+/obj/structure/prop/holidays/string_lights/corner{
+	dir = 4
+	},
+/turf/closed/wall/mainship/gray,
+/area/sulaco/marine)
 "uZM" = (
 /obj/effect/soundplayer,
 /turf/closed/wall/mainship/gray,
@@ -25950,6 +26348,9 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
 	dir = 4
+	},
+/obj/structure/prop/holidays/string_lights{
+	dir = 6
 	},
 /turf/open/floor/prison/green{
 	dir = 1
@@ -26009,12 +26410,9 @@
 /area/sulaco/cargo)
 "vdG" = (
 /obj/machinery/holopad,
+/obj/effect/spawner/random/misc/present,
 /turf/open/floor/prison,
 /area/sulaco/cargo/office)
-"vdP" = (
-/obj/structure/prop/holidays/string_lights/corner,
-/turf/closed/wall/mainship/gray/outer,
-/area/sulaco/maintenance/lower_maint2)
 "vfa" = (
 /obj/effect/decal/cleanable/cobweb{
 	dir = 4
@@ -26071,9 +26469,6 @@
 "vhq" = (
 /obj/machinery/loadout_vendor,
 /obj/machinery/loadout_vendor,
-/obj/structure/prop/holidays/string_lights{
-	dir = 1
-	},
 /turf/open/floor/prison,
 /area/sulaco/marine)
 "vhM" = (
@@ -26092,9 +26487,6 @@
 /obj/structure/ob_ammo/warhead/incendiary,
 /obj/structure/ob_ammo/warhead/incendiary,
 /obj/machinery/camera/autoname,
-/obj/effect/spawner/random/present{
-	pixel_y = 5
-	},
 /turf/open/floor/prison/red{
 	dir = 1
 	},
@@ -26165,10 +26557,6 @@
 /area/sulaco/firingrange)
 "vnh" = (
 /obj/machinery/marine_selector/clothes/engi,
-/obj/machinery/marine_selector/gear/leader,
-/obj/structure/prop/holidays/string_lights{
-	dir = 1
-	},
 /turf/open/floor/prison,
 /area/sulaco/marine)
 "vnU" = (
@@ -26178,6 +26566,9 @@
 /area/sulaco/marine/chapel)
 "vnZ" = (
 /mob/living/simple_animal/corgi/walten,
+/obj/effect/spawner/random/misc/present{
+	pixel_y = 5
+	},
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 8
 	},
@@ -26195,6 +26586,12 @@
 	},
 /turf/open/floor/prison,
 /area/sulaco/engineering/atmos)
+"vrq" = (
+/obj/structure/prop/holidays/string_lights/corner{
+	dir = 8
+	},
+/turf/closed/wall/mainship/gray/outer,
+/area/sulaco/marine)
 "vrP" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
@@ -26210,9 +26607,6 @@
 /obj/machinery/iv_drip,
 /obj/machinery/power/apc/mainship{
 	dir = 4
-	},
-/obj/structure/prop/holidays/string_lights{
-	dir = 1
 	},
 /turf/open/floor/prison/whitegreen/corner,
 /area/sulaco/medbay/surgery_two)
@@ -26476,6 +26870,9 @@
 /turf/open/floor/mainship_hull/gray,
 /area/space)
 "vHb" = (
+/obj/structure/prop/holidays/string_lights/corner{
+	dir = 4
+	},
 /turf/closed/wall/mainship/white/outer,
 /area/sulaco/medbay/west)
 "vIy" = (
@@ -26491,7 +26888,6 @@
 	pixel_x = -6;
 	pixel_y = 8
 	},
-/obj/effect/spawner/random/present,
 /turf/open/floor/prison,
 /area/sulaco/cargo/office)
 "vIJ" = (
@@ -26526,6 +26922,20 @@
 	dir = 1
 	},
 /area/sulaco/disposal)
+"vLM" = (
+/obj/structure/table/mainship/nometal,
+/obj/effect/spawner/random/food_or_drink/christmas_food,
+/turf/open/floor/prison/sterilewhite,
+/area/sulaco/cafeteria/kitchen)
+"vMe" = (
+/obj/machinery/door/poddoor/shutters/mainship/selfdestruct{
+	dir = 1
+	},
+/obj/effect/spawner/random/misc/present{
+	pixel_y = 6
+	},
+/turf/closed/wall/mainship/gray,
+/area/mainship/command/self_destruct)
 "vMB" = (
 /turf/closed/wall/mainship/gray,
 /area/sulaco/cafeteria/kitchen)
@@ -26641,6 +27051,7 @@
 /area/sulaco/hallway/central_hall)
 "vRI" = (
 /obj/machinery/iv_drip,
+/obj/structure/prop/holidays/string_lights,
 /turf/open/floor/prison/whitegreen/corner,
 /area/sulaco/medbay/west)
 "vRR" = (
@@ -26708,6 +27119,10 @@
 	dir = 5
 	},
 /area/sulaco/research)
+"vTv" = (
+/obj/machinery/marine_selector/clothes/medic,
+/turf/open/floor/prison,
+/area/sulaco/marine)
 "vTH" = (
 /obj/machinery/camera/autoname,
 /turf/open/floor/tile/hydro,
@@ -26725,9 +27140,6 @@
 /area/sulaco/hallway/central_hall3)
 "vVz" = (
 /obj/machinery/vending/armor_supply,
-/obj/structure/prop/holidays/string_lights{
-	dir = 1
-	},
 /turf/open/floor/prison,
 /area/sulaco/marine)
 "vVE" = (
@@ -26757,6 +27169,7 @@
 /area/sulaco/cryosleep)
 "vYG" = (
 /obj/structure/benchpress,
+/obj/structure/prop/holidays/string_lights,
 /turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 1
 	},
@@ -26776,22 +27189,6 @@
 /obj/structure/window/framed/mainship/gray/toughened,
 /turf/open/floor/plating/platebotc,
 /area/sulaco/engineering/atmos)
-"waw" = (
-/obj/machinery/status_display,
-/obj/structure/prop/holidays/string_lights{
-	dir = 4
-	},
-/obj/structure/prop/holidays/string_lights{
-	dir = 8
-	},
-/turf/closed/wall/mainship/gray,
-/area/sulaco/marine)
-"waR" = (
-/obj/structure/prop/holidays/wreath{
-	dir = 6
-	},
-/turf/closed/wall/mainship/gray,
-/area/sulaco/cafeteria)
 "waW" = (
 /obj/machinery/atmospherics/pipe/manifold/cyan/hidden/layer1{
 	dir = 8
@@ -26827,6 +27224,9 @@
 	},
 /turf/open/floor/plating,
 /area/sulaco/maintenance/upperdeck_AIcore_maint)
+"wcn" = (
+/turf/closed/wall/mainship/white,
+/area/sulaco/medbay/chemistry)
 "wco" = (
 /obj/structure/table/mainship/nometal,
 /obj/item/clothing/head/warning_cone,
@@ -26935,7 +27335,6 @@
 /area/sulaco/hangar/droppod)
 "wjT" = (
 /obj/machinery/light/mainship,
-/obj/item/wrapping_paper,
 /turf/open/floor/prison/sterilewhite,
 /area/sulaco/cafeteria)
 "wjX" = (
@@ -27021,6 +27420,20 @@
 	dir = 4
 	},
 /area/mainship/shipboard/weapon_room)
+"woU" = (
+/obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden{
+	dir = 4
+	},
+/obj/effect/spawner/random/misc/present{
+	pixel_y = 5
+	},
+/turf/open/floor/prison/whitegreen/corner{
+	dir = 4
+	},
+/area/sulaco/medbay)
 "wpf" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
@@ -27039,18 +27452,14 @@
 	},
 /turf/open/floor/prison,
 /area/sulaco/cargo/office)
-"wpW" = (
-/obj/structure/table/mainship/nometal,
-/obj/effect/spawner/random/present{
-	pixel_y = 5
-	},
-/turf/open/floor/prison/sterilewhite,
-/area/sulaco/cafeteria/kitchen)
 "wqg" = (
 /obj/machinery/power/apc/mainship{
 	dir = 4
 	},
 /obj/structure/cable,
+/obj/structure/prop/holidays/stocking{
+	pixel_y = -5
+	},
 /turf/open/floor/prison,
 /area/mainship/living/pilotbunks)
 "wrd" = (
@@ -27106,9 +27515,24 @@
 	},
 /turf/open/floor/mainship/stripesquare,
 /area/sulaco/hangar/storage)
+"wyk" = (
+/obj/structure/prop/holidays/string_lights{
+	dir = 8
+	},
+/obj/structure/prop/holidays/string_lights{
+	dir = 4
+	},
+/turf/closed/wall/mainship/white,
+/area/sulaco/medbay/west)
 "wyp" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/door/airlock/mainship/marine/general/engi,
+/obj/structure/prop/holidays/string_lights{
+	dir = 8
+	},
+/obj/structure/prop/holidays/string_lights{
+	dir = 4
+	},
 /turf/open/floor/prison/green/full,
 /area/sulaco/marine)
 "wyr" = (
@@ -27124,6 +27548,18 @@
 	},
 /turf/open/floor/plating,
 /area/sulaco/maintenance/upperdeck_AIcore_maint)
+"wyv" = (
+/obj/structure/prop/holidays/string_lights{
+	dir = 8
+	},
+/turf/closed/wall/mainship/gray/outer,
+/area/sulaco/marine)
+"wyT" = (
+/obj/structure/prop/holidays/string_lights{
+	dir = 1
+	},
+/turf/closed/wall/mainship/white,
+/area/sulaco/medbay/west)
 "wAh" = (
 /obj/effect/turf_decal/siding{
 	dir = 1
@@ -27250,7 +27686,9 @@
 /obj/structure/prop/holidays/string_lights{
 	dir = 8
 	},
-/obj/structure/prop/holidays/string_lights/corner,
+/obj/structure/prop/holidays/string_lights/corner{
+	dir = 4
+	},
 /turf/closed/wall/mainship/gray,
 /area/sulaco/marine)
 "wKj" = (
@@ -27270,6 +27708,12 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/prison/green/full,
 /area/sulaco/marine)
+"wLC" = (
+/obj/structure/prop/holidays/string_lights{
+	dir = 8
+	},
+/turf/closed/wall/mainship/white,
+/area/sulaco/medbay/storage)
 "wLH" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating,
@@ -27289,6 +27733,9 @@
 "wMI" = (
 /obj/structure/table/mainship/nometal,
 /obj/effect/spawner/random/misc/plushie/nospawnninetyfive,
+/obj/effect/spawner/random/food_or_drink/christmas_food{
+	pixel_y = 1
+	},
 /turf/open/floor/prison/sterilewhite,
 /area/sulaco/cafeteria)
 "wMZ" = (
@@ -27302,6 +27749,9 @@
 	dir = 8
 	},
 /obj/effect/ai_node,
+/obj/effect/spawner/random/misc/present{
+	pixel_y = 5
+	},
 /turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 4
 	},
@@ -27401,11 +27851,14 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/sulaco/hallway/central_hall)
+"wTY" = (
+/obj/structure/prop/holidays/string_lights{
+	dir = 9
+	},
+/turf/closed/wall/mainship/white,
+/area/sulaco/medbay)
 "wUm" = (
 /obj/machinery/sleep_console,
-/obj/structure/prop/holidays/string_lights{
-	dir = 1
-	},
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 1
 	},
@@ -27498,6 +27951,9 @@
 "xab" = (
 /obj/structure/table/mainship/nometal,
 /obj/effect/spawner/random/food_or_drink/burger,
+/obj/effect/spawner/random/misc/present{
+	pixel_y = 5
+	},
 /turf/open/floor/prison/sterilewhite,
 /area/sulaco/cafeteria/kitchen)
 "xba" = (
@@ -27557,6 +28013,15 @@
 "xeh" = (
 /turf/open/floor/prison,
 /area/sulaco/engineering/engine_monitoring)
+"xek" = (
+/obj/structure/prop/holidays/string_lights{
+	dir = 4
+	},
+/obj/structure/prop/holidays/string_lights/corner{
+	dir = 8
+	},
+/turf/closed/wall/mainship/white,
+/area/sulaco/medbay/west)
 "xem" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on,
 /turf/open/floor/tile/dark2,
@@ -27600,16 +28065,12 @@
 /obj/machinery/camera/autoname,
 /turf/open/floor/prison,
 /area/mainship/living/pilotbunks)
-"xhy" = (
-/obj/structure/window/framed/mainship/gray/toughened,
+"xgS" = (
 /obj/structure/prop/holidays/string_lights{
-	dir = 4
+	dir = 1
 	},
-/obj/structure/prop/holidays/string_lights{
-	dir = 8
-	},
-/turf/open/floor/prison,
-/area/sulaco/marine)
+/turf/closed/wall/mainship/white,
+/area/sulaco/medbay/chemistry)
 "xhY" = (
 /obj/machinery/door/poddoor/opened/sb,
 /turf/open/floor/mainship/stripesquare,
@@ -27661,6 +28122,16 @@
 	},
 /turf/open/floor/freezer,
 /area/sulaco/showers)
+"xmZ" = (
+/obj/structure/prop/holidays/string_lights{
+	dir = 1
+	},
+/obj/item/prop/mainship/candle/short{
+	pixel_x = -10;
+	pixel_y = 9
+	},
+/turf/closed/wall/mainship/gray,
+/area/sulaco/briefing)
 "xnh" = (
 /obj/structure/closet/crate/internals,
 /obj/effect/decal/cleanable/dirt,
@@ -27722,13 +28193,6 @@
 /obj/item/stack/sheet/plasteel/large_stack,
 /turf/open/floor/plating,
 /area/mainship/command/self_destruct)
-"xsB" = (
-/obj/machinery/marine_selector/gear/smartgun,
-/obj/structure/prop/holidays/string_lights{
-	dir = 5
-	},
-/turf/open/floor/prison,
-/area/sulaco/marine)
 "xta" = (
 /obj/machinery/firealarm,
 /turf/open/floor/prison,
@@ -27756,6 +28220,12 @@
 /obj/machinery/computer3/server/rack,
 /turf/open/floor/mainship/ai,
 /area/sulaco/command/ai)
+"xvg" = (
+/obj/structure/prop/holidays/string_lights{
+	dir = 8
+	},
+/turf/closed/wall/mainship/gray,
+/area/sulaco/marine)
 "xwT" = (
 /obj/structure/cable,
 /obj/structure/stairs/seamless{
@@ -27920,30 +28390,15 @@
 /obj/effect/soundplayer,
 /turf/closed/wall/mainship/gray,
 /area/sulaco/hangar)
-"xHw" = (
-/obj/structure/prop/holidays/string_lights{
-	dir = 8
-	},
-/turf/closed/wall/mainship/gray,
-/area/sulaco/maintenance/lower_maint3)
 "xHE" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
 /turf/open/floor/prison,
 /area/sulaco/hallway/lower_main_hall)
-"xHH" = (
-/obj/structure/prop/holidays/string_lights{
-	dir = 4
-	},
-/turf/closed/wall/mainship/gray,
-/area/mainship/living/basketball)
 "xHY" = (
 /obj/machinery/light/mainship,
 /obj/machinery/loadout_vendor,
-/obj/structure/prop/holidays/string_lights{
-	dir = 1
-	},
 /turf/open/floor/prison,
 /area/sulaco/marine)
 "xIz" = (
@@ -28053,6 +28508,7 @@
 /area/sulaco/marine)
 "xPc" = (
 /obj/machinery/loadout_vendor,
+/obj/structure/prop/holidays/string_lights,
 /turf/open/floor/prison/green{
 	dir = 1
 	},
@@ -28073,6 +28529,17 @@
 	},
 /turf/open/floor/prison,
 /area/sulaco/briefing)
+"xQO" = (
+/obj/machinery/door/poddoor/opened/east{
+	dir = 2;
+	id = "gardenblast"
+	},
+/obj/structure/window/framed/mainship/white/toughened/hull,
+/obj/structure/prop/holidays/string_lights{
+	dir = 8
+	},
+/turf/open/floor/plating/platebotc,
+/area/mainship/living/starboard_garden)
 "xSZ" = (
 /turf/open/floor/prison/red,
 /area/sulaco/firingrange)
@@ -28125,6 +28592,12 @@
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /turf/open/floor/prison/sterilewhite,
 /area/sulaco/cryosleep)
+"xVC" = (
+/obj/structure/prop/holidays/string_lights{
+	dir = 1
+	},
+/turf/closed/wall/mainship/gray,
+/area/sulaco/briefing)
 "xVM" = (
 /obj/machinery/light/mainship{
 	dir = 8
@@ -28134,18 +28607,13 @@
 /area/sulaco/cargo)
 "xWb" = (
 /obj/structure/table/mainship/nometal,
-/obj/effect/spawner/random/christmas_food{
-	pixel_y = 1
-	},
+/obj/structure/prop/holidays/string_lights,
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 4
 	},
 /area/sulaco/medbay/chemistry)
 "xWe" = (
 /obj/machinery/chem_dispenser,
-/obj/structure/prop/holidays/string_lights{
-	dir = 1
-	},
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 8
 	},
@@ -28174,12 +28642,6 @@
 /area/sulaco/maintenance/upperdeck_AIcore_maint)
 "xXD" = (
 /obj/structure/table/mainship/nometal,
-/obj/structure/prop/holidays/string_lights{
-	dir = 5
-	},
-/obj/effect/spawner/random/present{
-	pixel_y = 5
-	},
 /turf/open/floor/prison,
 /area/sulaco/marine)
 "xXL" = (
@@ -28222,9 +28684,38 @@
 /area/sulaco/hallway/lower_main_hall)
 "xZq" = (
 /obj/structure/table/mainship/nometal,
-/obj/effect/spawner/random/christmas_food,
+/obj/item/reagent_containers/food/snacks/cookie,
 /turf/open/floor/prison/sterilewhite,
 /area/sulaco/cafeteria/kitchen)
+"xZM" = (
+/obj/machinery/camera/autoname{
+	dir = 4
+	},
+/obj/structure/bed/chair/nometal{
+	dir = 4
+	},
+/obj/effect/spawner/random/misc/present{
+	pixel_x = -8;
+	pixel_y = -2
+	},
+/obj/effect/spawner/random/misc/present{
+	pixel_y = 9
+	},
+/obj/effect/spawner/random/misc/present{
+	pixel_x = 3
+	},
+/turf/open/floor/tile/darkgreen/darkgreen2{
+	dir = 8
+	},
+/area/mainship/living/basketball)
+"yah" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/open/floor/prison/whitegreen/corner{
+	dir = 8
+	},
+/area/sulaco/medbay/west)
 "yai" = (
 /obj/machinery/door/window{
 	dir = 8
@@ -28254,24 +28745,6 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1,
 /turf/open/floor/mainship/tcomms,
 /area/sulaco/telecomms)
-"yem" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/yellow/hidden{
-	dir = 4
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/effect/spawner/random/present{
-	pixel_y = 5
-	},
-/turf/open/floor/prison/whitegreen/corner{
-	dir = 1
-	},
-/area/sulaco/medbay)
 "yfh" = (
 /obj/machinery/light/mainship{
 	dir = 8
@@ -28326,23 +28799,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/prison,
 /area/sulaco/hallway/lower_main_hall)
-"ygD" = (
-/obj/machinery/door/poddoor/shutters/mainship{
-	dir = 1;
-	id = "or1privacyshutter";
-	name = "\improper Privacy Shutters"
-	},
-/obj/machinery/door/firedoor/mainship{
-	dir = 2
-	},
-/obj/structure/window/framed/mainship/white,
-/obj/structure/prop/holidays/string_lights{
-	dir = 10
-	},
-/turf/open/floor/prison/whitegreen/corner{
-	dir = 4
-	},
-/area/sulaco/medbay/surgery_one)
 "yha" = (
 /obj/machinery/firealarm,
 /turf/open/floor/prison,
@@ -28366,6 +28822,7 @@
 /obj/machinery/light/mainship{
 	dir = 1
 	},
+/obj/structure/prop/holidays/string_lights,
 /turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 1
 	},
@@ -28391,12 +28848,18 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1,
 /obj/structure/bed/chair/office/dark,
 /obj/effect/landmark/start/job/cmo,
+/obj/item/prop/mainship/candle{
+	pixel_y = 7
+	},
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 1
 	},
 /area/sulaco/medbay/cmo)
 "yiU" = (
 /obj/machinery/vending/MarineMed,
+/obj/structure/prop/holidays/string_lights/cap{
+	dir = 1
+	},
 /turf/open/floor/prison,
 /area/sulaco/marine)
 "yiY" = (
@@ -44115,7 +44578,7 @@ qGm
 hNw
 vnU
 jZP
-aHq
+kcA
 xlh
 xfM
 xlh
@@ -44599,7 +45062,9 @@ aPg
 aPg
 aQh
 mTu
-aQh
+hzS
+hzS
+bbE
 aQw
 wLH
 aDm
@@ -44619,20 +45084,22 @@ cts
 hFj
 cts
 aDz
-aDz
-aDz
-aDz
-aDz
-aDz
-aDz
-aDz
-aDz
-aDz
-aDz
-aDz
-aDz
-aDz
-cDU
+jnI
+cfP
+cfP
+cfP
+cfP
+cfP
+cfP
+cfP
+cfP
+cfP
+cfP
+cfP
+cfP
+jIG
+jIG
+ffe
 qzH
 fXi
 qzH
@@ -44849,17 +45316,17 @@ aQh
 aQh
 aPg
 aUt
-vdP
-dsQ
+aPg
+pEU
 uux
 gQJ
-okd
-oMg
-aQh
+oWV
+qGY
+bbE
 aQw
 aDm
 viB
-aHz
+rFq
 hKJ
 gXA
 mVd
@@ -44873,11 +45340,11 @@ vgl
 aFZ
 hlO
 xHk
-hCR
+aDz
 aFY
 gWJ
-npA
-vTl
+eHQ
+xZM
 rLJ
 tct
 iSO
@@ -44889,9 +45356,9 @@ gWJ
 eHQ
 vTl
 oct
-oNF
-dYA
-cDU
+uHn
+jIG
+ffe
 fXi
 xKi
 mDu
@@ -45111,8 +45578,8 @@ jRj
 xJd
 xJd
 xJd
-oMX
-aQh
+vTv
+pXi
 aQw
 aDm
 rgZ
@@ -45363,13 +45830,13 @@ anw
 anw
 xXL
 xXL
-bjp
+anw
 amf
 xJd
 xJd
 xJd
 efY
-aQh
+pXi
 phy
 aDm
 hgv
@@ -45405,7 +45872,7 @@ dwU
 xAO
 vIO
 cOs
-cDU
+ntD
 qzH
 xKi
 mDu
@@ -45614,19 +46081,19 @@ wrd
 aaI
 quS
 abr
-waR
+anw
 tJw
 aKC
 cFX
 afG
 afG
-bjp
+anw
 nKD
 aLC
 aMB
 aNX
 iTg
-aQh
+pXi
 aQw
 aDm
 aDm
@@ -45662,7 +46129,7 @@ lTN
 fGp
 vIO
 cOs
-cDU
+ntD
 oHz
 xKi
 mDu
@@ -45877,13 +46344,13 @@ aKD
 oRM
 oRM
 wjT
-ooZ
+aJy
 jRj
 xJd
 aMF
 xJd
-oMX
-aQh
+vTv
+pXi
 wLH
 aQw
 aQw
@@ -45911,7 +46378,7 @@ xFo
 xFo
 xFo
 jII
-xFo
+tku
 xFo
 xFo
 cQR
@@ -45919,7 +46386,7 @@ xFo
 oBn
 vIO
 hCn
-cDU
+ntD
 qzH
 xKi
 mDu
@@ -46131,26 +46598,26 @@ aaH
 aJy
 lTw
 pFh
-gma
 oRM
+oHu
 hvO
-sHS
-qSb
-xhy
+anw
+dLw
+epy
 aMS
-dFy
-iKJ
-rng
-rng
-rng
-oQJ
-spe
+ukU
+ehe
+qoW
+hzS
+hzS
+hzS
+bbE
 nOn
 qzc
 mOs
-rng
-oQJ
-aQh
+tOC
+hzS
+bbE
 aQh
 aQw
 aQh
@@ -46176,7 +46643,7 @@ eGU
 fGp
 vIO
 txj
-cDU
+ntD
 kbE
 xKi
 mDu
@@ -46400,14 +46867,14 @@ kqp
 sRW
 gXD
 wAF
-xsB
-dsQ
-knr
+dKm
+qGY
+sdt
 xJd
 rtA
 aLk
 vhq
-aLf
+uJk
 aQh
 aQw
 aQh
@@ -46433,7 +46900,7 @@ pxg
 toM
 vIO
 cOs
-cDU
+ntD
 gUR
 xKi
 mDu
@@ -46690,7 +47157,7 @@ vIO
 vIO
 vIO
 cOs
-cDU
+ntD
 oHz
 xKi
 mDu
@@ -46899,23 +47366,23 @@ jWW
 jvW
 nrh
 eAP
-aJy
+okZ
 acD
 aKD
 adZ
 adZ
 tfx
-bjp
+anw
 xPc
 tsP
 xJd
 fJF
-lTp
+oMi
 oMd
 xJd
 xJd
 dTH
-hYE
+qlz
 hlP
 qzc
 rtA
@@ -47159,7 +47626,6 @@ agZ
 anw
 jtQ
 aKD
-qhD
 yfM
 yfM
 vjG
@@ -47168,12 +47634,12 @@ xPc
 aLJ
 xJd
 ayl
-kyT
+uJk
 pdX
 jZZ
 jZZ
 jGG
-kyT
+uJk
 oHm
 aeW
 cSb
@@ -47188,24 +47654,24 @@ bvV
 dIn
 jLl
 aDz
-aDz
-aDz
-aDz
-aDz
+kVB
+oVn
+oVn
+oVn
 tjS
-dMX
+oUG
 tOy
-uwi
-dMX
-dMX
 aDz
+dMX
+dMX
+oVn
 uMe
 uMe
-xKi
+sPw
 aJS
-xHw
-mOI
-cDU
+hgB
+hgB
+cgb
 fXi
 xKi
 mDu
@@ -47414,23 +47880,23 @@ axG
 aaY
 aaY
 eHT
-aJy
+okZ
 lAn
 aKD
 afG
 afG
 afG
-bjp
+anw
 xPc
 aLM
 qzc
 dls
-aLf
-aLf
-aLf
-aLf
-aLf
-aLf
+qGY
+qvp
+sOm
+sOm
+sOm
+pAF
 vax
 qzc
 wYX
@@ -48191,7 +48657,7 @@ aKD
 adZ
 adZ
 adZ
-bjp
+anw
 aLo
 aMd
 xJd
@@ -48449,22 +48915,22 @@ rGz
 wMI
 mnO
 anw
-aLf
+dLw
 aMo
 eDb
-aLf
+ukU
 wJL
-mUZ
+qyU
 wyp
-uVH
-rLC
-faO
+eDb
+rgh
+rYC
 tex
 xJd
 wYX
 aLk
 mAk
-aLf
+uJk
 qXN
 qXN
 qXN
@@ -48709,13 +49175,13 @@ aJy
 jUJ
 aMp
 xJd
-cAK
-kqp
+eEy
+nVe
 kNc
 gRR
 qzc
 cKq
-kyT
+uJk
 bHs
 xJd
 avL
@@ -48739,7 +49205,7 @@ kny
 jLl
 nHk
 wJH
-gpS
+aMg
 ejF
 aMc
 wMZ
@@ -48963,22 +49429,22 @@ afG
 afG
 afG
 oEw
-aLC
+oZl
 aMq
 aNX
 rvr
-kyT
+uJk
 jRd
 wMn
 mgW
 vnh
-kyT
+uJk
 oSV
 xJd
 avL
 aLk
 mAk
-aLf
+uJk
 xPE
 qXN
 aFd
@@ -48997,7 +49463,7 @@ xHk
 nHk
 wJH
 xZq
-rDE
+vLM
 aMc
 wMZ
 vMB
@@ -49116,8 +49582,8 @@ llL
 aBR
 apu
 asd
-fmr
 asd
+ckb
 ats
 ava
 awx
@@ -49219,23 +49685,23 @@ aKD
 aKX
 oRM
 buz
-bjp
+anw
 cAK
 aMt
 xJd
-umP
-kyT
+uIw
+uJk
 lJH
 lzl
 aNX
-oqI
-kyT
+tAQ
+uJk
 oSV
 xJd
 avL
 aLk
-hMZ
-aLf
+uSw
+uJk
 eDY
 eCK
 oDV
@@ -49254,7 +49720,7 @@ uuN
 nHk
 wJH
 ejF
-gpS
+aMg
 aMc
 wMZ
 vMB
@@ -49476,23 +49942,23 @@ aKL
 oaj
 oaj
 anw
-kSk
-qSb
+anw
+phl
 aMu
-xhy
-rSb
-dDY
-qSb
+eDb
+sOm
+pAF
+qvp
 sAb
-xhy
-rSb
+eDb
+sOm
 gxf
-oSV
+sdT
 xJd
 wYX
 aLk
 mAk
-aLf
+uJk
 ueG
 wVR
 rxh
@@ -49512,7 +49978,7 @@ ifF
 oiG
 aMg
 xab
-aMc
+arG
 vMY
 vMB
 bBG
@@ -49725,8 +50191,8 @@ ami
 uFe
 aaY
 aHY
-nQA
 aaY
+nlO
 abQ
 oRM
 aKD
@@ -49749,7 +50215,7 @@ aLF
 nps
 aLk
 yiU
-aLf
+uZB
 wKB
 iRd
 aEo
@@ -50006,7 +50472,7 @@ swn
 ngU
 aLk
 vVz
-aLf
+uJk
 xHk
 vFL
 aFh
@@ -50510,11 +50976,11 @@ nWx
 aYV
 hdZ
 uSw
-faO
+qlz
 jbY
 rHR
 uSj
-faO
+qlz
 lqm
 tsP
 xJd
@@ -50762,22 +51228,22 @@ lpY
 lpY
 lpY
 lpY
-aLf
-aLf
-aLf
+phl
+xvg
+xvg
 izI
-lti
-kyT
+ukU
+qDP
 htm
 gdR
-elB
-kyT
+tLU
+uJk
 lIp
 vRu
 qzc
 bbP
 rOy
-aLf
+uJk
 xHk
 oSf
 aBk
@@ -51024,17 +51490,17 @@ bhK
 jCo
 gLJ
 buK
-cLR
-qam
-qam
-lti
-cLR
+ukU
+phl
+xvg
+xvg
+qDP
 nfk
 sZM
 gAL
-rhS
-nPN
-euR
+rvU
+wyv
+vrq
 vgl
 vgl
 vgl
@@ -51546,15 +52012,15 @@ hCz
 pIP
 xKR
 pIP
-ohS
-inp
-inp
-inp
-iqB
-ohS
-inp
-inp
-iqB
+rLu
+uJQ
+cQn
+cQn
+cQn
+vHb
+uJQ
+cQn
+cQn
 vHb
 mDu
 mDu
@@ -51803,19 +52269,19 @@ uyf
 hbH
 xKR
 pIP
-hbU
+rLu
 rDx
 hzC
 xAq
 cHd
-aam
+wyT
 rIw
 kNv
 jGq
-ohS
-inp
-inp
-iqB
+eUF
+uJQ
+cQn
+cQn
 vHb
 mDu
 mDu
@@ -52057,23 +52523,23 @@ alk
 aqh
 iGf
 hCz
-pIP
+sgt
 xKR
 dAv
-aam
+rTw
 aar
 abo
 abL
 fjF
-aam
+wyT
+chx
 ntk
 ntk
-scX
 acG
 acT
 add
 jQi
-vHb
+eUF
 mDu
 qDO
 aaa
@@ -52315,14 +52781,14 @@ nIP
 hCz
 aqm
 cyq
-jPq
+sqV
 puw
-aam
+rTw
 aau
 abp
 aeC
 aca
-aam
+wyT
 gsY
 abx
 ttl
@@ -52330,7 +52796,7 @@ wAY
 adE
 kLi
 cfv
-vHb
+eUF
 mDu
 qDO
 aaa
@@ -52574,7 +53040,7 @@ hFf
 xWt
 xKR
 pIP
-aam
+rTw
 aaP
 aeu
 aeD
@@ -52583,11 +53049,11 @@ eDl
 jpD
 sPM
 fXe
-odv
-pYa
-pYa
-oeD
-vHb
+jiP
+dLk
+wyk
+wyk
+bVA
 mDu
 qDO
 aaa
@@ -52831,12 +53297,12 @@ hFf
 xWt
 xKR
 kXj
-aam
+rTw
 aaR
 vnZ
 acg
-tjP
-aam
+acA
+wyT
 iJB
 acQ
 pDu
@@ -53088,15 +53554,15 @@ hFf
 xWt
 tkS
 pIP
-aam
+rTw
 aaS
 abB
 abR
 sZs
-aam
+wyT
 acq
 onD
-bVT
+yah
 acI
 acW
 adM
@@ -53345,12 +53811,12 @@ two
 aTg
 aVH
 pIP
-joi
+rTw
 kvF
-qYG
+jCa
 abN
-wbs
-kbD
+rTw
+xek
 fix
 rlh
 wSa
@@ -53483,7 +53949,7 @@ llt
 lWx
 aRL
 aRh
-ndF
+aoi
 aon
 arc
 vYY
@@ -53602,7 +54068,7 @@ bkk
 xWt
 xKR
 pIP
-aam
+rTw
 abb
 abC
 hZZ
@@ -53610,8 +54076,8 @@ abD
 ach
 wgy
 xKv
-edv
-vzT
+yah
+ksL
 acY
 adq
 oIW
@@ -53859,20 +54325,20 @@ hFf
 fOe
 leD
 dAv
-nTz
+rTw
 abE
-pYa
+wyk
 abY
-wou
-etr
+rTw
+nAm
 acz
 qAW
 oxv
-aam
-aam
-aam
-aam
-vHb
+wyT
+nHM
+wyk
+wyk
+bVA
 mDu
 qDO
 aaa
@@ -53996,8 +54462,8 @@ aVc
 aRh
 aFW
 aOb
+aRh
 kSg
-aoi
 jGA
 arc
 crv
@@ -54114,18 +54580,18 @@ lvm
 szj
 sbT
 iqQ
-xKR
+tep
 bIb
-aan
+wcn
 xWb
 iJs
 acf
 xWe
-aan
+xgS
 acj
 onD
-qhy
-acP
+yah
+bEB
 acZ
 adr
 mzl
@@ -54378,7 +54844,7 @@ oso
 abJ
 aci
 abk
-aan
+xgS
 acu
 rlh
 wSa
@@ -54635,11 +55101,11 @@ aas
 aaE
 abi
 abl
-aan
+xgS
 hQQ
 onD
-qhy
-ygD
+yah
+bEB
 adb
 adQ
 abM
@@ -54767,8 +55233,8 @@ jsB
 tao
 tus
 aOW
-kSg
-sTR
+aRh
+bjN
 dez
 arg
 aun
@@ -54788,7 +55254,7 @@ aAI
 lae
 akN
 sPn
-hWu
+lMI
 teI
 wnN
 chg
@@ -54887,12 +55353,12 @@ xMC
 pIP
 tvS
 pIP
-aan
+wcn
 aav
 aax
 xou
 abm
-aan
+xgS
 vRI
 scG
 pQl
@@ -55144,20 +55610,20 @@ sbT
 aWx
 gjE
 aWx
-oUx
+wcn
 aaM
 aaX
 kzw
-gof
-oUx
-gen
+wcn
+tbS
+odk
 adl
 hHK
-gdW
-gen
-cSz
-bAa
-jXT
+ifi
+fck
+gDh
+gOf
+fkX
 mDu
 qDO
 aaa
@@ -55289,7 +55755,7 @@ avr
 atF
 ecX
 uif
-avr
+fWd
 awI
 rhM
 aoi
@@ -55401,12 +55867,12 @@ xMC
 pIP
 kKG
 uXi
-aaJ
+ifi
 iOv
 ade
 lbq
 fmX
-aaJ
+fmj
 icY
 lbq
 doY
@@ -55538,7 +56004,7 @@ aSE
 sah
 tAg
 aQl
-xjl
+bjb
 aoi
 jGA
 arc
@@ -56169,15 +56635,15 @@ tMH
 xWz
 uiN
 erP
-dzM
-wXV
+pIP
+tNx
 uXi
-aaJ
+ifi
 inK
 adf
 hNA
 oXn
-how
+wTY
 adU
 odW
 adf
@@ -56434,10 +56900,10 @@ iHS
 cPT
 oxz
 afc
-eqh
+ktf
 nBH
 pKP
-ade
+aNi
 gXI
 ade
 wUm
@@ -56689,9 +57155,9 @@ pIP
 eqh
 gGv
 iwI
-hNA
+woU
 afk
-eqh
+ktf
 cvF
 gfH
 adf
@@ -56955,7 +57421,7 @@ ade
 fzI
 ade
 hBC
-jXT
+lZO
 mDu
 mDu
 mDu
@@ -57184,7 +57650,7 @@ aPg
 sBH
 tXW
 gBU
-hRk
+phs
 lcd
 bfT
 emj
@@ -57210,7 +57676,7 @@ oIc
 aHF
 adT
 adW
-adf
+gOq
 qjQ
 jXT
 mDu
@@ -57462,7 +57928,7 @@ gtp
 ade
 kMl
 iLm
-aaJ
+nfG
 aeP
 pKP
 ade
@@ -57470,6 +57936,11 @@ fzI
 ade
 vBD
 jXT
+uFc
+het
+het
+het
+gGb
 hjK
 mDu
 qDO
@@ -57709,7 +58180,7 @@ omu
 eWf
 xKR
 wOv
-aaJ
+ifi
 qtj
 akQ
 ajM
@@ -57721,13 +58192,13 @@ adf
 wAz
 nok
 dRt
-uOx
+jXT
 rjf
 sMe
 fXB
 won
 oNr
-hjK
+hzR
 mDu
 qDO
 aaa
@@ -57966,15 +58437,15 @@ omu
 pIP
 xKR
 kXj
-pQQ
-lnz
-lnz
+ifi
+cND
+syD
 aeK
-yhW
-lQV
-hoc
+aeK
+bBc
+cND
 fmW
-ade
+uJv
 jhf
 ade
 ilC
@@ -57983,7 +58454,7 @@ nCN
 nAl
 rPZ
 rOn
-ces
+sMe
 dMC
 mDu
 qDO
@@ -58490,14 +58961,14 @@ agz
 fdz
 ade
 mJk
-iNw
+ade
 cvw
-dsX
-fhg
+beT
+hse
 uEO
 vCQ
 ttZ
-ces
+sMe
 dMC
 mDu
 qDO
@@ -58744,18 +59215,18 @@ ajQ
 pmo
 ahF
 qkC
-odW
+gGN
 uIX
 faC
 aej
 tkc
-uOx
+jXT
 aRX
 won
 fhg
 sMe
 bHw
-hjK
+hzR
 mDu
 qDO
 aaa
@@ -58878,7 +59349,7 @@ cKA
 aov
 apJ
 ank
-fKK
+aor
 asS
 nka
 avz
@@ -59000,19 +59471,19 @@ aaQ
 jtP
 aaQ
 aaQ
-sVa
+aaQ
 afC
-tXL
-tXL
-rzh
-bAa
-dgD
-rLQ
-nsb
-nsb
-nsb
-opu
-hjK
+aaQ
+wLC
+jgx
+ukF
+fkX
+iiq
+xQO
+xQO
+xQO
+bOT
+lrX
 mDu
 qDO
 aaa
@@ -59261,7 +59732,7 @@ aeE
 yfW
 adi
 puG
-moa
+oHo
 mDu
 mDu
 mDu
@@ -60416,9 +60887,9 @@ nzi
 mDu
 aYZ
 alI
-eln
-eRh
-eRh
+akW
+bAv
+iRK
 tXi
 awl
 asT
@@ -60430,7 +60901,7 @@ fHm
 wYN
 azd
 aCJ
-aJm
+jkQ
 mDu
 mDu
 mDu
@@ -60673,17 +61144,17 @@ nzi
 mDu
 aYZ
 agm
-bSB
-gXW
+akW
+spy
 apa
 arm
 anr
 atY
 avD
 atY
-hDp
-tlU
-akW
+anr
+tTq
+iEG
 azd
 lmE
 pMb
@@ -60939,8 +61410,8 @@ arn
 avE
 arn
 ayN
-tez
-eln
+anr
+xmZ
 azZ
 jXo
 aJm
@@ -61187,7 +61658,7 @@ nzi
 mDu
 aYZ
 drJ
-bSB
+akW
 aoA
 apP
 apP
@@ -61197,9 +61668,9 @@ aro
 ghD
 ayO
 aAb
-bSB
+xVC
 tny
-jXo
+fkp
 mDu
 mDu
 mDu
@@ -61300,8 +61771,8 @@ aOd
 aPq
 aPA
 aRd
-sDc
 jtC
+qWc
 kAz
 aWe
 aWS
@@ -61444,8 +61915,8 @@ mDu
 mDu
 aYZ
 alI
-bSB
-anr
+akW
+spy
 apQ
 awb
 awb
@@ -61453,10 +61924,10 @@ awb
 cVn
 awb
 ayP
-iMe
-bSB
-iMe
-jXo
+fjS
+xVC
+spy
+fkp
 mDu
 mDu
 vDU
@@ -61702,7 +62173,7 @@ mDu
 aYZ
 fmy
 pEM
-iKv
+bFA
 iwd
 iwd
 iwd
@@ -61710,10 +62181,10 @@ iKv
 xPO
 anr
 anr
-lga
-bSB
-iMe
-jXo
+wOA
+xVC
+spy
+fkp
 mDu
 qDO
 aaa
@@ -61958,19 +62429,19 @@ mDu
 aYZ
 aYZ
 pMU
-bSB
-anr
+akW
+spy
 apR
 arq
-dko
 arq
+eiX
 fuV
 arq
 ayQ
-iMe
-bSB
-iMe
-jXo
+anr
+xVC
+spy
+fkp
 mDu
 qDO
 aaa
@@ -62225,9 +62696,9 @@ avF
 apS
 sUP
 mZi
-akW
-anr
-jXo
+dww
+iLQ
+fkp
 mDu
 qDO
 aaa
@@ -62327,7 +62798,7 @@ aIT
 aPp
 aPq
 aPA
-vjM
+aRd
 bRu
 aPF
 bbu
@@ -62472,19 +62943,19 @@ mDu
 aYZ
 kau
 pMU
-bSB
+akW
 cmN
 apT
-ngp
+ars
 ihO
-tPl
+eAf
 sjY
 ars
 gID
 rPX
 aBx
 aCK
-jXo
+fkp
 mDu
 qDO
 aaa
@@ -62729,7 +63200,7 @@ mDu
 aYZ
 aaw
 mhV
-bSB
+akW
 aoE
 aoB
 aoB
@@ -62741,7 +63212,7 @@ axi
 xYL
 anr
 aBT
-jXo
+fkp
 mDu
 qDO
 aaa
@@ -62986,18 +63457,19 @@ mDu
 aYZ
 ojL
 pHg
-bSB
+akW
 aqj
 apV
-ntj
-osb
+aru
+okm
 auh
 aIt
 aru
 boT
 wUY
 efq
-jXo
+fkp
+iWF
 mDu
 qDO
 aaa
@@ -63242,7 +63714,7 @@ mDu
 aYZ
 xUM
 oYo
-bSB
+akW
 aoj
 apW
 apW
@@ -63253,7 +63725,7 @@ apW
 jMa
 wOA
 aBz
-jXo
+fkp
 mDu
 mDu
 qDO
@@ -63499,7 +63971,7 @@ mDu
 aYZ
 aaw
 amg
-bSB
+akW
 aoG
 apX
 arv
@@ -63510,7 +63982,7 @@ lHY
 ayT
 anr
 aBz
-jXo
+fkp
 mDu
 mDu
 wFA
@@ -63756,9 +64228,9 @@ mDu
 aYZ
 cWj
 aaW
-bSB
-brX
-anr
+akW
+spy
+cbw
 anr
 wOA
 auc
@@ -63767,7 +64239,7 @@ anr
 anr
 anr
 aBz
-jXo
+fkp
 mDu
 qDO
 aaa
@@ -64013,7 +64485,7 @@ mDu
 aYZ
 aaW
 aaW
-bSB
+akW
 aoA
 apY
 arw
@@ -64024,7 +64496,7 @@ arw
 ayU
 anr
 aBz
-jXo
+fkp
 mDu
 qDO
 aaa
@@ -64271,17 +64743,17 @@ aYZ
 aaV
 aaW
 abs
-anr
+spy
 apZ
 apZ
 apZ
 aul
 jUS
-apZ
+fVT
 apZ
 anr
 iWJ
-jXo
+fkp
 mDu
 qDO
 aaa
@@ -64528,7 +65000,7 @@ aYZ
 aaW
 anQ
 ttE
-anr
+spy
 aqa
 arx
 arx
@@ -64538,7 +65010,7 @@ axv
 ayV
 wOA
 cDd
-jXo
+iPT
 mDu
 qDO
 aaa
@@ -64784,8 +65256,8 @@ aaW
 aaW
 fYC
 pQf
-bSB
-anr
+akW
+spy
 anr
 anr
 wOA
@@ -64795,7 +65267,7 @@ anr
 wOA
 bas
 aBD
-jXo
+fkp
 mDu
 mDu
 wRO
@@ -65041,18 +65513,18 @@ aQi
 aQi
 aQi
 aQi
-buc
-qpp
-qpp
-qpp
-qpp
+aQi
+bMY
+hWP
+hWP
+hWP
 arH
 atc
 auM
-ccC
-ccC
-djt
-jXo
+akW
+iUD
+iUD
+iWF
 mDu
 mDu
 mDu
@@ -66438,7 +66910,7 @@ aPF
 aPF
 tha
 kOr
-clB
+bYM
 oEH
 oLl
 lwx
@@ -66700,7 +67172,7 @@ pWS
 aUL
 jYO
 vfb
-upk
+oLM
 wqg
 aXe
 tgH
@@ -67101,7 +67573,7 @@ aQA
 aNk
 aQA
 aVl
-aQi
+dlS
 rNt
 tqd
 axO
@@ -67110,14 +67582,14 @@ baf
 xcI
 bbH
 bcq
-baf
+jba
 jLZ
 oOJ
 glp
 kvB
 aWU
 cyR
-lgl
+kHn
 kKR
 kKR
 kKR
@@ -67868,8 +68340,8 @@ anQ
 aaW
 aaw
 gbw
-rnf
-amT
+tRg
+bPZ
 ncU
 duZ
 tCB
@@ -68920,8 +69392,8 @@ djr
 fbS
 gLT
 aIb
-ipL
 aIb
+mbs
 aIb
 gRM
 aIb
@@ -69415,8 +69887,8 @@ baz
 baz
 aZG
 aYM
-qIP
-cHX
+mYf
+flt
 axO
 azg
 aAq
@@ -69436,8 +69908,8 @@ djr
 aIb
 aIb
 aIb
-ipL
-djr
+aIb
+mlY
 aIb
 djr
 djr
@@ -69672,8 +70144,8 @@ bbs
 baz
 aZH
 aYM
-rCj
-cHX
+mYf
+fxh
 axO
 azg
 aAu
@@ -70458,16 +70930,16 @@ aaw
 aJe
 ioy
 djr
-rdo
-aHP
+aHc
+lTE
 aHP
 aHP
 aIc
 aHP
 aHP
 aHP
-rdo
-aHP
+aHc
+lTE
 aHP
 aHP
 aIc
@@ -70817,7 +71289,7 @@ glh
 glh
 cCT
 mDl
-qTV
+vMe
 fKE
 lTe
 umc
@@ -74816,7 +75288,7 @@ wEi
 ata
 aye
 awi
-wEi
+iwT
 aCc
 aEf
 oEX
