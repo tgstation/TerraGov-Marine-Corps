@@ -93,7 +93,7 @@ GLOBAL_PROTECT(roles_allowed_minimap_draw)
 	if(SSminimaps.initialized)
 		set_zlevel(zlevel, minimap_flag)
 		return
-	SSminimaps.earlyadds["[zlevel]"] += CALLBACK(src, PROC_REF(set_zlevel), zlevel, minimap_flag)
+	LAZYADDASSOC(SSminimaps.earlyadds, "[zlevel]", CALLBACK(src, PROC_REF(set_zlevel), zlevel, minimap_flag))
 
 ///Setter for the offsets of the x and y of drawing based on the input z, and the drawn_image
 /atom/movable/screen/minimap_tool/proc/set_zlevel(zlevel, minimap_flag)
