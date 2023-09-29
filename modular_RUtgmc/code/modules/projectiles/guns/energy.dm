@@ -22,6 +22,7 @@
 	accuracy_mult = 1.2
 	accuracy_mult_unwielded = 0.5
 	movement_acc_penalty_mult = 6
+	aim_fire_delay = 0.35 SECONDS
 
 	attachable_allowed = list(
 		/obj/item/attachable/bayonet,
