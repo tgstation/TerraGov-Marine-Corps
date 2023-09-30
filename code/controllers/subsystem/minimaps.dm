@@ -391,6 +391,10 @@ SUBSYSTEM_DEF(minimaps)
 	icon = SSminimaps.minimaps_by_z["[target]"].hud_image
 	SSminimaps.add_to_updaters(src, flags, target)
 
+/atom/movable/screen/minimap/Destroy()
+	SSminimaps.hashed_minimaps -= src
+	return ..()
+
 /**
  * lets the user get coordinates by clicking the actual map
  * Returns a list(x_coord, y_coord)
