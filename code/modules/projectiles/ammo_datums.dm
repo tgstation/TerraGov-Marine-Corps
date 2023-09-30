@@ -2211,6 +2211,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	name = "HEAT shell"
 	icon_state = "recoilless_rifle_heat"
 	hud_state = "shell_heat"
+	flags_ammo_behavior = AMMO_ROCKET|AMMO_SUNDERING
 	damage = 200
 	penetration = 100
 	sundering = 0
