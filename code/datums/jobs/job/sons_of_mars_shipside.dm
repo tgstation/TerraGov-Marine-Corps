@@ -189,7 +189,7 @@ Make the SOM proud!"}) //update
 	minimal_access = ALL_MARINE_ACCESS
 	skills_type = /datum/skills/so
 	display_order = JOB_DISPLAY_ORDER_STAFF_OFFICER
-	outfit = /datum/outfit/job/command/staffofficer
+	outfit = /datum/outfit/job/som/command/staffofficer
 	exp_requirements = XP_REQ_INTERMEDIATE
 	exp_type = EXP_TYPE_REGULAR_ALL
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_ISCOMMAND|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS|JOB_FLAG_ALWAYS_VISIBLE_ON_MINIMAP
@@ -228,7 +228,7 @@ You are in charge of logistics and the overwatch system. You are also in line to
 		if(30001 to INFINITY) // 500 hrs
 			new_human.wear_id.paygrade = "SOM_O4"
 
-/datum/outfit/job/command/staffofficer
+/datum/outfit/job/som/command/staffofficer
 	name = SOM_STAFF_OFFICER
 	jobtype = /datum/job/som/command/staffofficer
 
@@ -251,7 +251,7 @@ You are in charge of logistics and the overwatch system. You are also in line to
 	minimal_access = list(ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_PILOT, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_CARGO, ACCESS_MARINE_RO, ACCESS_MARINE_MEDBAY)
 	skills_type = /datum/skills/pilot
 	display_order = JOB_DISPLAY_ORDER_PILOT_OFFICER
-	outfit = /datum/outfit/job/command/pilot
+	outfit = /datum/outfit/job/som/command/pilot
 	exp_requirements = XP_REQ_INTERMEDIATE
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_PROVIDES_SQUAD_HUD
 	html_description = {"
@@ -291,7 +291,7 @@ Though you are a warrant officer, your authority is limited to the dropship and 
 "})
 
 
-/datum/outfit/job/command/pilot
+/datum/outfit/job/som/command/pilot
 	name = SOM_PILOT_OFFICER
 	jobtype = /datum/job/som/command/pilot
 
@@ -318,7 +318,7 @@ Though you are a warrant officer, your authority is limited to the dropship and 
 	access = list(ACCESS_MARINE_WO, ACCESS_MARINE_PREP, ACCESS_MARINE_MECH, ACCESS_CIVILIAN_PUBLIC)
 	minimal_access = list(ACCESS_MARINE_WO, ACCESS_MARINE_PREP, ACCESS_MARINE_MECH, ACCESS_CIVILIAN_PUBLIC, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_CARGO)
 	display_order = JOB_DISPLAY_ORDER_MECH_PILOT
-	outfit = /datum/outfit/job/command/mech_pilot
+	outfit = /datum/outfit/job/som/command/mech_pilot
 	exp_requirements = XP_REQ_EXPERT
 	exp_type = EXP_TYPE_REGULAR_ALL
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS|JOB_FLAG_ALWAYS_VISIBLE_ON_MINIMAP
@@ -357,7 +357,7 @@ You can serve your Division in a variety of roles, so choose carefully."})
 		if(30001 to INFINITY) // 500 hrs
 			new_human.wear_id.paygrade = "SOM_W5"
 
-/datum/outfit/job/command/mech_pilot
+/datum/outfit/job/som/command/mech_pilot
 	name = SOM_MECH_PILOT
 	jobtype = /datum/job/som/command/mech_pilot
 
@@ -389,7 +389,7 @@ You can serve your Division in a variety of roles, so choose carefully."})
 	minimal_access = list(ACCESS_MARINE_CE, ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_BRIDGE, ACCESS_CIVILIAN_ENGINEERING, ACCESS_MARINE_CARGO, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_PREP, ACCESS_MARINE_RO, ACCESS_MARINE_MEDBAY)
 	skills_type = /datum/skills/ce
 	display_order = JOB_DISPLAY_ORDER_CHIEF_ENGINEER
-	outfit = /datum/outfit/job/engineering/chief
+	outfit = /datum/outfit/job/som/engineering/chief
 	exp_requirements = XP_REQ_EXPERIENCED
 	exp_type = EXP_TYPE_REGULAR_ALL
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_ISCOMMAND|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD
@@ -429,7 +429,7 @@ If you have no idea how to set up the engine, or it's your first time, <b>mentor
 You are also next in the chain of command, should the bridge crew fall in the line of duty."})
 
 
-/datum/outfit/job/engineering/chief
+/datum/outfit/job/som/engineering/chief
 	name = SOM_CHIEF_ENGINEER
 	jobtype = /datum/job/som/engineering/chief
 
@@ -445,7 +445,7 @@ You are also next in the chain of command, should the bridge crew fall in the li
 	r_store = /obj/item/storage/pouch/construction
 	back = /obj/item/storage/backpack/marine/engineerpack
 
-/datum/outfit/job/engineering/chief/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+/datum/outfit/job/som/engineering/chief/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
 	H.equip_to_slot_or_del(new /obj/item/stack/sheet/metal/large_stack, SLOT_IN_R_POUCH)
 	H.equip_to_slot_or_del(new /obj/item/stack/sheet/plasteel/large_stack, SLOT_IN_R_POUCH)
@@ -463,7 +463,7 @@ You are also next in the chain of command, should the bridge crew fall in the li
 	minimal_access = list(ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_PREP, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_CARGO, ACCESS_CIVILIAN_ENGINEERING)
 	skills_type = /datum/skills/st
 	display_order = JOB_DISPLAY_ORDER_SHIP_TECH
-	outfit = /datum/outfit/job/engineering/tech
+	outfit = /datum/outfit/job/som/engineering/tech
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_PROVIDES_SQUAD_HUD
 	html_description = {"
 		<b>Difficulty</b>: Medium<br /><br />
@@ -500,7 +500,7 @@ You are also next in the chain of command, should the bridge crew fall in the li
 requisitions line and later on to be ready to send supplies for marines who are groundside."})
 
 
-/datum/outfit/job/engineering/tech
+/datum/outfit/job/som/engineering/tech
 	name = SOM_TECH
 	jobtype = /datum/job/som/engineering/tech
 
@@ -535,7 +535,7 @@ requisitions line and later on to be ready to send supplies for marines who are 
 	minimal_access = list(ACCESS_MARINE_CARGO, ACCESS_MARINE_RO, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_PREP, ACCESS_MARINE_ALPHA, ACCESS_MARINE_BRAVO, ACCESS_MARINE_CHARLIE, ACCESS_MARINE_DELTA, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS)
 	skills_type = /datum/skills/ro
 	display_order = JOB_DISPLAY_ORDER_REQUISITIONS_OFFICER
-	outfit = /datum/outfit/job/requisitions/officer
+	outfit = /datum/outfit/job/som/requisitions/officer
 	exp_requirements = XP_REQ_UNSEASONED
 	exp_type = EXP_TYPE_REGULAR_ALL
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_ISCOMMAND|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD
@@ -575,7 +575,7 @@ While you may request paperwork for supplies, do not go out of your way to screw
 A happy base is a well-functioning base."})
 
 
-/datum/outfit/job/requisitions/officer
+/datum/outfit/job/som/requisitions/officer
 	name = SOM_REQUISITIONS_OFFICER
 	jobtype = /datum/job/som/requisitions/officer
 
@@ -608,7 +608,7 @@ A happy base is a well-functioning base."})
 	minimal_access = list(ACCESS_MARINE_CMO, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_RESEARCH, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_CHEMISTRY, ACCESS_MARINE_CARGO, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS)
 	skills_type = /datum/skills/cmo
 	display_order = JOB_DISPLAY_ORDER_CHIEF_MEDICAL_OFFICER
-	outfit = /datum/outfit/job/medical/professor
+	outfit = /datum/outfit/job/som/medical/professor
 	exp_requirements = XP_REQ_EXPERIENCED
 	exp_type = EXP_TYPE_REGULAR_ALL
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_ISCOMMAND|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD
@@ -641,7 +641,7 @@ Make sure that the doctors and nurses are doing their jobs and keeping the SOM h
 		if(3001 to INFINITY) // 50 hrs
 			new_human.wear_id.paygrade = "CMO"
 
-/datum/outfit/job/medical/professor
+/datum/outfit/job/som/medical/professor
 	name = SOM_CHIEF_MEDICAL_OFFICER
 	jobtype = /datum/job/som/medical/professor
 
@@ -658,7 +658,7 @@ Make sure that the doctors and nurses are doing their jobs and keeping the SOM h
 	r_store = /obj/item/storage/pouch/medkit/medic
 	l_store = /obj/item/storage/pouch/surgery
 
-/datum/outfit/job/medical/professor/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+/datum/outfit/job/som/medical/professor/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
 	H.equip_to_slot_or_del(new /obj/item/tweezers, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/glass/bottle/lemoline/doctor, SLOT_IN_BACKPACK)
@@ -674,7 +674,7 @@ Make sure that the doctors and nurses are doing their jobs and keeping the SOM h
 	minimal_access = list(ACCESS_MARINE_MEDBAY, ACCESS_MARINE_CHEMISTRY, ACCESS_MARINE_CARGO, ACCESS_MARINE_DROPSHIP)
 	skills_type = /datum/skills/doctor
 	display_order = JOB_DISPLAY_ORDER_DOCTOR
-	outfit = /datum/outfit/job/medical/medicalofficer
+	outfit = /datum/outfit/job/som/medical/medicalofficer
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_PROVIDES_SQUAD_HUD
 	html_description = {"
 		<b>Difficulty</b>: Medium<br /><br />
@@ -706,7 +706,7 @@ You are tasked with keeping the SOM healthy and strong, usually in the form of s
 You are also an expert when it comes to medication and treatment. If you do not know what you are doing, <b>mentorhelp</b> so a mentor can assist you."})
 
 
-/datum/outfit/job/medical/medicalofficer
+/datum/outfit/job/som/medical/medicalofficer
 	name = SOM_MEDICAL_DOCTOR
 	jobtype = /datum/job/som/medical/medicalofficer
 
@@ -721,7 +721,7 @@ You are also an expert when it comes to medication and treatment. If you do not 
 	mask = /obj/item/clothing/mask/surgical
 	head = /obj/item/clothing/head/surgery/purple
 
-/datum/outfit/job/medical/medicalofficer/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+/datum/outfit/job/som/medical/medicalofficer/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
 	H.equip_to_slot_or_del(new /obj/item/tweezers, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/glass/bottle/lemoline/doctor, SLOT_IN_BACKPACK)
@@ -738,7 +738,7 @@ You are also an expert when it comes to medication and treatment. If you do not 
 	total_positions = 2
 	supervisors = "the acting commander"
 	display_order = JOB_DISPLAY_ORDER_DOCTOR
-	outfit = /datum/outfit/job/civilian/chef
+	outfit = /datum/outfit/job/som/civilian/chef
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_PROVIDES_SQUAD_HUD
 	html_description = {"
 		<b>Difficulty</b>: Medium<br /><br />
@@ -770,7 +770,7 @@ You are tasked with keeping the SOM well fed and happy, usually in the form of d
 You are also an expert when it comes to botany and hydroponics. If you do not know what you are doing, <b>mentorhelp</b> so a mentor can assist you."})
 
 
-/datum/outfit/job/civilian/chef
+/datum/outfit/job/som/civilian/chef
 	name = SOM_CHEF
 	jobtype = /datum/job/som/civilian/chef
 
@@ -785,7 +785,7 @@ You are also an expert when it comes to botany and hydroponics. If you do not kn
 	mask = /obj/item/clothing/mask/surgical
 	head = /obj/item/clothing/head/surgery/purple
 
-/datum/outfit/job/civilian/chef/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+/datum/outfit/job/som/civilian/chef/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
 	H.equip_to_slot_or_del(new /obj/item/tweezers, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/glass/bottle/lemoline/doctor, SLOT_IN_BACKPACK)

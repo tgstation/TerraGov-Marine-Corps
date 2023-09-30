@@ -296,7 +296,7 @@ export const GameSettings = (props, context) => {
           </Section>
         </Grid.Column>
       </Grid>
-      {is_admin && (
+      {!!is_admin && (
         <Grid>
           <Grid.Column>
             <Section title="Administration (admin only)">
