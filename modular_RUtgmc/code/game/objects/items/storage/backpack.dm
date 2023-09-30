@@ -48,3 +48,9 @@
 
 /obj/item/storage/backpack/marine/satchel/captain_cloak_red
 	name = "Captain's Cloak"
+
+/obj/item/storage/backpack/marine/satchel/captain_cloak_red/white
+	icon = 'modular_RUtgmc/icons/obj/items/storage/storage.dmi'
+	icon_state = "white_com"
+	item_icons = list(
+		slot_back_str = 'modular_RUtgmc/icons/mob/clothing/back.dmi')

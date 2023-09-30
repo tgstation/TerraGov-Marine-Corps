@@ -183,3 +183,6 @@
 /obj/item/clothing/head/beret/marine/techofficer
 	item_icons = list(
 		slot_head_str = 'modular_RUtgmc/icons/mob/clothing/headwear/marine_hats.dmi')
+
+/obj/item/clothing/head/beret/marine/captain
+	icon = 'modular_RUtgmc/icons/obj/clothing/headwear/hats.dmi'
