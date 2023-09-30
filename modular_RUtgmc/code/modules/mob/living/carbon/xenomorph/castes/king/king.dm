@@ -17,3 +17,7 @@
 			name = prefix + "Prime Emperor ([nicknumber])"
 		else
 			name = prefix + "Young King ([nicknumber])"
+
+	real_name = name
+	if(mind)
+		mind.name = name

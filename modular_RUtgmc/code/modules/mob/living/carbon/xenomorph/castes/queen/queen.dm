@@ -28,3 +28,7 @@
 			name = prefix + "Prime Empress ([nicknumber])"
 		else
 			name = prefix + "Young Queen ([nicknumber])"
+
+	real_name = name
+	if(mind)
+		mind.name = name
