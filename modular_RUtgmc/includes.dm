@@ -66,6 +66,7 @@
 #include "code\modules\mob\living\carbon\xenomorph\xeno_defines.dm"
 #include "code\modules\mob\living\carbon\xenomorph\xenoattacks.dm"
 #include "code\modules\mob\living\carbon\xenomorph\xenoupgrade.dm"
+#include "code\modules\mob\living\carbon\xenomorph\xenomorph.dm"
 #include "code\modules\mob\living\carbon\xenomorph\castes\baneling\baneling.dm"
 #include "code\modules\mob\living\carbon\xenomorph\castes\boiler\abilities_boiler.dm"
 #include "code\modules\mob\living\carbon\xenomorph\castes\boiler\castedatum_boiler.dm"
