@@ -1,3 +1,10 @@
+/// Color_hex = ui_key assoc list
+GLOBAL_LIST_INIT(custom_squad_colors, list(
+
+))
+
+
+
 /obj/machinery/computer/squad_manager
 	name = "squad managment console"
 	desc = "A console for squad management. Allows squad leaders to manage their squad."
@@ -28,31 +35,37 @@
 		to_chat(user, span_danger("You must be a squad leader to edit squads."))
 		return
 
-	switch(action)
-		if("create_squad")
-			var/new_name = params["name"]
-			var/new_color = params["color"]
-			var/filter_result = is_ic_filtered(new_name)
-			if(filter_result)
-				to_chat(user, span_warning("That name contained a word prohibited in IC chat! Consider reviewing the server rules.\n<span replaceRegex='show_filtered_ic_chat'>\"[new_name]\"</span>"))
-				SSblackbox.record_feedback(FEEDBACK_TALLY, "ic_blocked_words", 1, lowertext(config.ic_filter_regex.match))
-				REPORT_CHAT_FILTER_TO_USER(user, filter_result)
-				log_filter("Squad naming", new_name, filter_result)
-				return FALSE
-			if(create_squad(new_name, new_color, user))
-				var/log_msg = "[key_name(user)] has created a new squad. Name: [new_name], Color: [new_color]"
-				log_game(log_msg)
-				message_admins(log_msg)
-				return TRUE
-			to_chat(user, span_danger("Error: squad creation failed"))
-		if("change_desc")
-			var/datum/squad/squad = user.assigned_squad
-			if(!squad)
-				return
-			var/new_desc = params["new_desc"]
-			if(is_ic_filtered(new_desc) || NON_ASCII_CHECK(new_desc))
-				to_chat(user, span_danger("Squad description contained characters or words banned in IC chat"))
-				return
-			log_game("[key_name(user)] has changed the squad description of \"[squad.name]\" to: [new_desc]")
-			squad.desc = new_desc
-			return TRUE
+	if(!user.assigned_squad.type == /datum/squad) //means its a generated squad
+		to_chat(user, span_danger("You are already in a squad that has been created."))
+		return
+
+	if(action != "create_squad")
+		return
+
+	var/new_name = sanitize(params["name"])
+	var/new_color = params["color"]
+	var/new_desc = sanitize(params["desc"])
+
+	var/filter_result = is_ic_filtered(new_name)
+	if(filter_result)
+		to_chat(user, span_warning("That name contained a word prohibited in IC chat! Consider reviewing the server rules.\n<span replaceRegex='show_filtered_ic_chat'>\"[new_name]\"</span>"))
+		SSblackbox.record_feedback(FEEDBACK_TALLY, "ic_blocked_words", 1, lowertext(config.ic_filter_regex.match))
+		REPORT_CHAT_FILTER_TO_USER(user, filter_result)
+		log_filter("Squad naming", new_name, filter_result)
+		return FALSE
+
+	if(is_ic_filtered(new_desc) || NON_ASCII_CHECK(new_desc))
+		to_chat(user, span_danger("Squad description contained characters or words banned in IC chat"))
+		return
+
+	var/datum/squad/new_squad = create_squad(new_name, new_color, user)
+	if(!new_squad)
+		to_chat(user, span_danger("Error: squad creation failed"))
+		return FALSE
+	var/log_msg = "[key_name(user)] has created a new squad. Name: [new_name], Color: [new_color]"
+	log_game(log_msg)
+	message_admins(log_msg)
+	new_squad.desc = new_desc
+	ui_close(user)
+	balloon_alert(user, "\"[new_name]\" created")
+	return TRUE

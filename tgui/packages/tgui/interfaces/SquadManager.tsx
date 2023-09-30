@@ -4,6 +4,7 @@ import { useBackend, useLocalState } from '../backend';
 
 type SquadManagerData = {
   active_squads: SquadData[];
+  valid_colors: string[];
 };
 
 type SquadData = {
@@ -14,7 +15,7 @@ type SquadData = {
 
 export const SquadManager = (props, context) => {
   const { act, data } = useBackend<SquadManagerData>(context);
-  const { active_squads } = data;
+  const { active_squads, valid_colors } = data;
   const [squadName, setSquadName] = useLocalState<string>(
     context,
     'squadName',
@@ -23,7 +24,13 @@ export const SquadManager = (props, context) => {
   const [squadColor, setSquadColor] = useLocalState<string>(
     context,
     'squadColor',
-    '#FFF'
+    valid_colors[0]
+  );
+
+  const [squadDesc, setSquadDesc] = useLocalState<string>(
+    context,
+    'squadDesc',
+    'No description set.'
   );
 
   return (
@@ -67,6 +74,7 @@ export const SquadManager = (props, context) => {
                         act('create_squad', {
                           name: squadName,
                           color: squadColor,
+                          desc: squadDesc,
                         })
                       }>
                       Create
@@ -97,12 +105,9 @@ export const SquadManager = (props, context) => {
               <Stack.Item>
                 <TextArea
                   fluid
+                  content={squadDesc}
                   placeholder="Set Description for squad"
-                  onChange={(e, value) =>
-                    act('change_desc', {
-                      new_desc: value,
-                    })
-                  }
+                  onChange={(e, value) => setSquadDesc(value)}
                   width="180px"
                   height="200px"
                 />
