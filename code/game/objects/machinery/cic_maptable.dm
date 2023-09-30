@@ -51,6 +51,7 @@
 	if(!isnum(new_z))
 		return
 	targetted_zlevel = new_z
+	map = null
 
 /obj/machinery/cic_maptable/on_unset_interaction(mob/user)
 	. = ..()
