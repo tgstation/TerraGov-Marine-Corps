@@ -139,7 +139,7 @@
 		user.balloon_alert(user, "Women can't use that")
 	else
 		activator.say("Tenno Heika Banzai!!")
-		//playsound(get_turf(user), 'sound/voice/banzai1.ogg', 30)
+		playsound(get_turf(user), 'modular_RUtgmc/sound/voice/banzai1.ogg', 30)
 
 /obj/item/clothing/head/tgmcberet/squad/black
 	name = "\improper Alpha squad black beret"

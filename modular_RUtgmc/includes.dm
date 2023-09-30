@@ -32,6 +32,7 @@
 #include "code\game\objects\structures\window.dm"
 #include "code\game\objects\structures\signs.dm"
 #include "code\game\objects\structures\xeno.dm"
+#include "code\game\objects\structures\stool_bed_chair_nest\bed.dm"
 #include "code\game\objects\structures\stool_bed_chair_nest\xeno_nest.dm"
 #include "code\game\objects\structures\droppod.dm"
 #include "code\game\objects\machinery\vending\marine_vending.dm"
