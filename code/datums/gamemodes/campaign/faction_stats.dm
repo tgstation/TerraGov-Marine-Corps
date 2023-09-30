@@ -192,10 +192,6 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 		human_mob.overlay_fullscreen_timer(0.5 SECONDS, 10, "roundstart1", /atom/movable/screen/fullscreen/black)
 		human_mob.overlay_fullscreen_timer(2 SECONDS, 20, "roundstart2", /atom/movable/screen/fullscreen/spawning_in)
 		human_mob.forceMove(pick(GLOB.spawns_by_job[human_mob.job.type]))
-		//testing the below again
-		var/obj/item/card/id/user_id = human_mob.get_idcard()
-		if(user_id)
-			user_id.can_buy_loadout = TRUE
 
 ///Generates status tab info for the mission
 /datum/faction_stats/proc/get_status_tab_items(mob/source, list/items)
