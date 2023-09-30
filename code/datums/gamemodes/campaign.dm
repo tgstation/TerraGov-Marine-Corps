@@ -24,6 +24,8 @@
 	///campaign stats organised by faction
 	var/list/datum/faction_stats/stat_list = list()
 
+	var/list/player_death_times = list()
+
 /datum/game_mode/hvh/campaign/announce()
 	to_chat(world, "<b>The current game mode is - Campaign!</b>")
 	to_chat(world, "<b>The fringe world of Palmaria is undergoing significant upheaval, with large portions of the population threatening to succeed from TerraGov. With the population on the brink of civil war, \
@@ -39,7 +41,17 @@
 	for(var/faction in factions)
 		stat_list[faction] = new /datum/faction_stats(faction)
 	RegisterSignal(SSdcs, COMSIG_LIVING_JOB_SET, PROC_REF(register_faction_member))
+	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH, PROC_REF(set_death_time))
 	addtimer(CALLBACK(SSticker.mode, TYPE_PROC_REF(/datum/game_mode/hvh/campaign, intro_sequence)), SSticker.round_start_time + 1 MINUTES)
+
+/datum/game_mode/hvh/campaign/proc/set_death_time(datum/source, mob/living/carbon/human/player)
+	SIGNAL_HANDLER
+	if(!istype(player))
+		return
+	if(!(player.faction in factions))
+		return
+	player_death_times[player.key] = world.time
+
 
 /datum/game_mode/hvh/campaign/post_setup()
 	. = ..()
@@ -52,6 +64,9 @@
 		selected_faction.choose_faction_leader()
 
 /datum/game_mode/hvh/campaign/player_respawn(mob/respawnee)
+	if(current_mission.mission_state == MISSION_STATE_ACTIVE && ((player_death_times[respawnee.key] + 2 MINUTES) > world.time))
+		to_chat(respawnee, "<span class='warning'>Respawn timer has [round((player_death_times[respawnee.key] + 2 MINUTES - world.time) / 10)] seconds remaining.<spawn>")
+		return
 	attempt_attrition_respawn(respawnee)
 
 /datum/game_mode/hvh/campaign/intro_sequence() //update this, new fluff message etc etc, make it faction generic
