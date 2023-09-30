@@ -428,6 +428,14 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 	icon = 'icons/obj/structures/big_droppod.dmi'
 	icon_state = "mechpod"
 	pixel_x = -9
+	max_integrity = 200
+
+/obj/structure/droppod/nonmob/mech_pod/ex_act(severity)
+	switch(severity)
+		if(EXPLODE_DEVASTATE)
+			qdel(src)
+		if(EXPLODE_HEAVY)
+			take_damage(50, BRUTE, BOMB, 0)
 
 /obj/structure/droppod/nonmob/mech_pod/mech_shift_click(obj/vehicle/sealed/mecha/mecha_clicker, mob/living/user)
 	if(mecha_clicker.loc == src)
