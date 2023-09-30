@@ -11,3 +11,20 @@
 	if((cardinal_move & REVERSE_DIR(dir)))
 		proj.damage -= proj.damage * (0.5 * get_sunder())
 	return ..()
+
+/mob/living/carbon/xenomorph/queen/generate_name()
+	var/playtime_mins = client?.get_exp(xeno_caste.caste_name)
+	var/prefix = (hive.prefix || xeno_caste.upgrade_name) ? "[hive.prefix][xeno_caste.upgrade_name] " : ""
+	switch(playtime_mins)
+		if(0 to 600)
+			name = prefix + "Young Queen ([nicknumber])"
+		if(601 to 3000)
+			name = prefix + "Mature Queen ([nicknumber])"
+		if(3001 to 9000)
+			name = prefix + "Elder Empress ([nicknumber])"
+		if(9001 to 18000)
+			name = prefix + "Ancient Empress ([nicknumber])"
+		if(18001 to INFINITY)
+			name = prefix + "Prime Empress ([nicknumber])"
+		else
+			name = prefix + "Young Queen ([nicknumber])"
