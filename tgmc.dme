@@ -1105,6 +1105,7 @@
 #include "code\game\verbs\who.dm"
 #include "code\modules\admin\admin_ranks.dm"
 #include "code\modules\admin\admin_verbs.dm"
+#include "code\modules\admin\callproc.dm"
 #include "code\modules\admin\debug_verbs.dm"
 #include "code\modules\admin\fun_verbs.dm"
 #include "code\modules\admin\holder.dm"

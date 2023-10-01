@@ -13,6 +13,7 @@
 #define PLASMA_HUD "xeno_plasma_hud" //indicates the plasma level of xenos.
 #define PHEROMONE_HUD "xeno_pheromone_hud" //indicates which pheromone is active on a xeno.
 #define QUEEN_OVERWATCH_HUD "xeno_overwatch_hud" //indicates which xeno the queen is overwatching.
+#define XENO_RANK_HUD "xeno_rank_hud" //indicates the current rank of the xeno
 #define ORDER_HUD "human_order_hud" //shows what orders are applied to marines
 #define PAIN_HUD "pain_hud" //displays human pain / preceived health.
 #define ARMOR_SUNDER_HUD "armor_sunder_hud" //displays how much sunder has been applied.
