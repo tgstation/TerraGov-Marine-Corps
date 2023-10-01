@@ -8,7 +8,7 @@
 	icon_state = "green"
 	always_unpowered = TRUE
 	minimap_color = MINIMAP_AREA_COLONY
-	ambience = list('sound/ambience/snow_ambience.ogg')
+	ambience = list('sound/ambience/ambi_snow.ogg')
 
 /area/rocinante_Base/surface
 	name = "Surface"
@@ -20,7 +20,6 @@
 	ceiling = CEILING_METAL
 	outside = FALSE
 	minimap_color = MINIMAP_AREA_COLONY
-	ambience = list('sound/ambience/ambiencetemp.ogg', 'sound/ambience/ambiencepizzaday.ogg', 'sound/ambience/ambiencemeeting.ogg', 'sound/ambience/ambiencereport.ogg', 'sound/ambience/ambienceengi.ogg', 'sound/ambience/ambiencesec.ogg')
 
 /area/rocinante_Base/surface/building/building_underground
 	ceiling = CEILING_DEEP_UNDERGROUND_METAL
@@ -34,7 +33,6 @@
 
 //landingZone
 /area/rocinante_Base/surface/landing
-	ambience = list('sound/ambience/ambiencetemp.ogg', 'sound/ambience/ambiencepizzaday.ogg', 'sound/ambience/ambiencemeeting.ogg', 'sound/ambience/ambiencereport.ogg', 'sound/ambience/ambienceengi.ogg', 'sound/ambience/ambiencesec.ogg')
 
 /area/rocinante_Base/surface/landing/landing_pad_one
 	name = "Landing Pad 1"
