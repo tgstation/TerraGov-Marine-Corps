@@ -1706,8 +1706,10 @@
 /turf/open/floor/mainship/stripesquare,
 /area/gelida/cavestructuretwo)
 "beU" = (
-/turf/closed/mineral/smooth/darkfrostwall,
-/area/gelida/caves/central_caves/garbledradio)
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/obj/effect/landmark/xeno_resin_door,
+/turf/open/floor/plating/ground/ice,
+/area/gelida/caves/central_caves)
 "beW" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -6424,6 +6426,11 @@
 /obj/effect/landmark/start/job/xenomorph,
 /turf/open/floor/mainship/black/full,
 /area/gelida/powergen)
+"elQ" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/ai_node,
+/turf/open/floor/plating,
+/area/gelida/powergen)
 "elY" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -10199,7 +10206,7 @@
 /area/gelida/outdoors/colony_streets/north_east_street)
 "gPo" = (
 /obj/effect/ai_node,
-/obj/effect/landmark/xeno_resin_wall,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/ice,
 /area/gelida/caves/central_caves)
 "gPp" = (
@@ -47712,8 +47719,8 @@ ntJ
 uGF
 gfl
 uGF
-xIt
-xIt
+uGF
+uGF
 xIt
 xIt
 xIt
@@ -47933,9 +47940,9 @@ uGF
 ntJ
 uGF
 xEg
-xIt
-xIt
-xIt
+uGF
+gPo
+uGF
 xIt
 xIt
 xIt
@@ -48154,10 +48161,10 @@ uGF
 uGF
 bFY
 uGF
-xIt
-xIt
-xIt
-xIt
+uGF
+uGF
+tfD
+uGF
 xIt
 xIt
 xIt
@@ -48377,9 +48384,9 @@ xIt
 xIt
 xIt
 xIt
-xIt
-xIt
-xIt
+uGF
+loD
+uGF
 xIt
 xIt
 xIt
@@ -48599,9 +48606,9 @@ xIt
 xIt
 xIt
 xIt
-xIt
-xIt
-xIt
+uGF
+uGF
+uGF
 xIt
 xIt
 xIt
@@ -48821,10 +48828,10 @@ xIt
 xIt
 xIt
 xIt
-xIt
-xIt
-xIt
-xIt
+uGF
+gfl
+uGF
+uGF
 xIt
 xIt
 xIt
@@ -49043,11 +49050,11 @@ vqi
 vqi
 vqi
 vqi
-vqi
-vqi
-vqi
-vqi
-vqi
+beU
+beU
+beU
+beU
+beU
 vqi
 vqi
 vqi
@@ -49266,7 +49273,7 @@ xIt
 cqM
 fPM
 cqM
-fPM
+eqE
 etT
 cqM
 cqM
@@ -49489,7 +49496,7 @@ cqM
 fPM
 fPM
 cqM
-rCQ
+elQ
 elo
 mJj
 cqM
@@ -50168,7 +50175,7 @@ fPM
 pxr
 ubb
 cYz
-beU
+xIt
 xIt
 xIt
 cYz
@@ -58589,12 +58596,12 @@ uGF
 uGF
 gfl
 uGF
-xIt
-xIt
-xIt
-xIt
+xEg
 uGF
 uGF
+ntJ
+uGF
+xEg
 uGF
 uGF
 qTf
@@ -58812,11 +58819,11 @@ uGF
 uGF
 uGF
 uGF
-xIt
-xIt
-xIt
-xIt
-xEg
+uGF
+uGF
+ntJ
+uGF
+uGF
 uGF
 gfl
 oFs
@@ -59034,12 +59041,12 @@ uGF
 gfl
 gfl
 uGF
+uGF
 xIt
 xIt
 xIt
-xIt
-xIt
-xIt
+uGF
+uGF
 uGF
 qTf
 xEg
@@ -59252,7 +59259,7 @@ xEg
 gfl
 uGF
 uGF
-xEg
+uGF
 uGF
 uGF
 xEg
@@ -60587,7 +60594,7 @@ uGF
 gfl
 uGF
 uGF
-gPo
+xEg
 uGF
 uGF
 xIt
