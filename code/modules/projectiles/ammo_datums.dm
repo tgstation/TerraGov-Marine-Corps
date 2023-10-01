@@ -2124,6 +2124,28 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	hud_state = "bigshell_he_unguided"
 	flags_ammo_behavior = AMMO_ROCKET
 
+/datum/ammo/bullet/heavy_isg_apfds
+	name = "15cm APFDS round"
+	icon_state = "ltb"
+	hud_state = "bigshell_apfds"
+	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_PASS_THROUGH_TURF|AMMO_PASS_THROUGH_MOVABLE
+	damage = 225
+	penetration = 80
+	shell_speed = 7
+	accurate_range = 24
+	accurate_range_min = 6
+	max_range = 35
+
+/datum/ammo/bullet/isg_apfds/on_hit_turf(turf/T, obj/projectile/P)
+	P.proj_max_range -= 5
+
+/datum/ammo/bullet/isg_apfds/on_hit_mob(mob/M, obj/projectile/P)
+	P.proj_max_range -= 2
+	staggerstun(M, P, max_range = 20, slowdown = 1.5)
+
+/datum/ammo/bullet/isg_apfds/on_hit_obj(obj/O, obj/projectile/P)
+	P.proj_max_range -= 5
+
 /datum/ammo/rocket/wp
 	name = "white phosphorous rocket"
 	icon_state = "rocket_wp"

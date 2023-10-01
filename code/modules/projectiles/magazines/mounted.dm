@@ -181,20 +181,25 @@
 	icon_state = "hl_mag"
 
 /obj/item/ammo_magazine/heavy_isg
-	name = "ISG-15 HE shell (155mm Shell)"
-	desc = "A 15cm HE shell for the ISG-15 mounted heavy recoilless rifle. Activate in hand to swap between unguided and guided modes."
-	w_class = WEIGHT_CLASS_BULKY
+	name = "ISG-15 shell (155mm Shell)"
+	desc = "A 15cm shell for the ISG-15 mounted heavy recoilless rifle. How did you even get this?"
 	icon = 'icons/Marine/marine-hmg.dmi'
 	icon_state = "isg_ammo"
 	item_state = "isg_ammo"
+	w_class = WEIGHT_CLASS_BULKY
 	flags_magazine = MAGAZINE_REFUND_IN_CHAMBER
 	caliber = CALIBER_15CM
 	max_rounds = 1
-	default_ammo = /datum/ammo/rocket/heavy_isg
 	reload_delay = 8 SECONDS
+	default_ammo = /datum/ammo/rocket/heavy_isg
+
+/obj/item/ammo_magazine/heavy_isg/he
+	name = "ISG-15 HE shell (155mm Shell)"
+	desc = "A 15cm HE shell for the ISG-15 mounted heavy recoilless rifle. Activate in hand to swap between unguided and guided modes."
+	default_ammo = /datum/ammo/rocket/heavy_isg
 	var/guided = TRUE
 
-/obj/item/ammo_magazine/heavy_isg/attack_hand_alternate(mob/living/user)
+/obj/item/ammo_magazine/heavy_isg/he/attack_hand_alternate(mob/living/user)
 	if(guided)
 		default_ammo = /datum/ammo/rocket/heavy_isg/unguided
 		balloon_alert(user, "You swap the shell to unguided form")
@@ -203,3 +208,8 @@
 		default_ammo = /datum/ammo/rocket/heavy_isg
 		balloon_alert(user, "You swap the shell to guided form")
 		guided = TRUE
+
+/obj/item/ammo_magazine/heavy_isg/sabot
+	name = "ISG-15 APFDS shell (155mm Shell)"
+	desc = "A 15cm APFDS shell for the ISG-15 mounted heavy recoilless rifle firing a dart at hypersonic speeds, will pierce through basically anything and onto the other side with ease. Requires a minimum range before it properly arms."
+	default_ammo = /datum/ammo/heavy_isg_sabot

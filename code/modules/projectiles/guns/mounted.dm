@@ -265,7 +265,10 @@
 
 	starting_attachment_types = list(/obj/item/attachable/scope/unremovable/tl102/nest)
 
-	allowed_ammo_types = list(/obj/item/ammo_magazine/heavy_isg)
+	allowed_ammo_types = list(
+		/obj/item/ammo_magazine/heavy_isg,
+		/obj/item/ammo_magazine/heavy_isg/sabot,
+	)
 
 	deploy_time = 5 SECONDS
 	undeploy_time = 3 SECONDS
