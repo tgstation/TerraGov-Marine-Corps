@@ -41,3 +41,11 @@
 	adjustment_variants = list(
 		"Down" = "_d",
 	)
+
+/obj/item/clothing/under/marine/whites/blacks
+	name = "TGMC black dress uniform"
+	desc = "A standard-issue TerraGov Marine Corps black dress uniform. The starch in the fabric chafes a small amount but it pales in comparison to the pride you feel when you first put it on during graduation from boot camp. Doesn't seem to fit perfectly around the waist though."
+	icon = 'modular_RUtgmc/icons/obj/clothing/uniform.dmi'
+	icon_state = "marine_blacks"
+	item_icons = list(
+		slot_w_uniform_str = 'modular_RUtgmc/icons/mob/clothing/uniforms/marine_uniforms.dmi')

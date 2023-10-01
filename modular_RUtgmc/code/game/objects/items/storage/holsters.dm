@@ -81,7 +81,7 @@
 
 /obj/item/storage/holster/blade/officer/valirapier
 	name = "\improper HP-C vali rapier sheath"
-	desc = "An exquisite ceremonial sheat for an even more expensive rapier."
+	desc = "An exquisite ceremonial sheath for an even more expensive rapier."
 	icon = 'modular_RUtgmc/icons/obj/items/storage/storage.dmi'
 	item_icons = list(
 		slot_s_store_str = 'modular_RUtgmc/icons/mob/suit_slot.dmi',
@@ -98,7 +98,7 @@
 
 /obj/item/storage/holster/blade/officer/sabre
 	name = "\improper officer sabre sheath"
-	desc = "An exquisite ceremonial sheat of a high ranking command personel."
+	desc = "An exquisite ceremonial sheath of a high ranking command personel."
 	icon = 'modular_RUtgmc/icons/obj/items/storage/storage.dmi'
 	item_icons = list(
 		slot_s_store_str = 'modular_RUtgmc/icons/mob/suit_slot.dmi',

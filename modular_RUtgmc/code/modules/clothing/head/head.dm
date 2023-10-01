@@ -180,9 +180,37 @@
 	item_icons = list(
 		slot_head_str = 'modular_RUtgmc/icons/mob/clothing/headwear/marine_hats.dmi')
 
-/obj/item/clothing/head/beret/marine/techofficer
-	item_icons = list(
-		slot_head_str = 'modular_RUtgmc/icons/mob/clothing/headwear/marine_hats.dmi')
-
 /obj/item/clothing/head/beret/marine/captain
 	icon = 'modular_RUtgmc/icons/obj/clothing/headwear/hats.dmi'
+
+/obj/item/clothing/head/beret/marine/captain/black
+	icon_state = "black_captain"
+
+/obj/item/clothing/head/beret/marine/staff
+	name = "staff officer's beret"
+	desc = "A beret with the silver insignia emblazoned on it. Wearer may suffer being heavily misunderstood by marines."
+	icon = 'modular_RUtgmc/icons/obj/clothing/headwear/hats.dmi'
+	icon_state = "so_beret"
+
+//Peaked caps
+/obj/item/clothing/head/highcap
+	icon = 'modular_RUtgmc/icons/obj/clothing/headwear/hats.dmi'
+	item_icons = list(
+		slot_head_str = 'modular_RUtgmc/icons/mob/clothing/headwear/marine_hats.dmi')
+	icon_state = "cap_black"
+	soft_armor = list(MELEE = 15, BULLET = 15, LASER = 15, ENERGY = 15, BOMB = 10, BIO = 5, FIRE = 5, ACID = 5)
+	flags_inventory = BLOCKSHARPOBJ
+	flags_armor_features = ARMOR_NO_DECAP
+
+/obj/item/clothing/head/highcap/staff
+	name = "staff officer's peaked cap"
+	desc = "A somewhat fancy hat, typically worn by those who wish to conduct military operations."
+	icon_state = "so_alt"
+
+/obj/item/clothing/head/highcap/captain
+	name = "captain's peaked cap"
+	desc = "A somewhat fancy hat, typically worn by those who wish to have total control."
+	icon_state = "capitan_alt"
+
+/obj/item/clothing/head/highcap/captain/black
+	icon_state = "captain_alt_black"
