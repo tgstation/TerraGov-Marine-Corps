@@ -70,6 +70,19 @@
 /turf/open/floor/plating/ground/dirtgrassborder/corner2
 	icon_state = "grassdirt_corner2"
 
+/turf/open/floor/plating/ground/dirt_alt
+	name = "dirt"
+	icon = 'icons/turf/dirt.dmi'
+	icon_state = "gyellow"
+	shoefootstep = FOOTSTEP_SAND
+	barefootstep = FOOTSTEP_SAND
+	mediumxenofootstep = FOOTSTEP_SAND
+	minimap_color = MINIMAP_DIRT
+
+/turf/open/floor/plating/ground/mars/random/Initialize(mapload)
+	. = ..()
+	dir = pick(GLOB.alldirs)
+
 /turf/open/floor/plating/ground/dirt2
 	name = "dirt"
 	icon_state = "dirt"
