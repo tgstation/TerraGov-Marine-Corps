@@ -130,7 +130,6 @@
 	suffix = "_big"
 	description = "Tadpole-01, the old model barely in service for TGMC, replaced by the newer Tadpole-03. Much like an APC, is pretty armored. Very lacking in firing angle."
 	display_name = "Tadpole Carrier Model"
-	admin_enable = FALSE
 
 /datum/map_template/shuttle/minidropship/food
 	suffix = "_food"
@@ -160,7 +159,6 @@
 	suffix =	"_umbilical"
 	description = "A high-point orbital shuttle with a tactical umbilical airlock for insertion of ground troops."
 	display_name = "Tadpole Umbilical Model"
-	admin_enable = FALSE
 
 /datum/map_template/shuttle/escape_pod
 	shuttle_id = SHUTTLE_ESCAPE_POD
