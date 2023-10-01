@@ -17,6 +17,7 @@
 	///do we have bits of decoration to add to the walls?
 	var/decorated_wall = TRUE
 
+/* this completely breaks hull walls in HvH, will fix in a separate pr because wall overlays are horribly shitcode
 /turf/closed/wall/mainship/smooth_icon()
 	. = ..()
 	cut_overlays()
@@ -29,6 +30,9 @@
 			return
 		if(r1 == 9 || r1 == 10)
 			add_overlay("[r2]")
+*/
+
+//turf/closed/wall/mainship/update_icon()
 
 /turf/closed/wall/mainship/outer
 	name = "outer hull"
