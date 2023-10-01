@@ -2,7 +2,7 @@
 /datum/campaign_mission/tdm
 	name = "Combat patrol"
 	map_name = "Jungle outpost SR-422"
-	map_file = '_maps/map_files/Campaign maps/jungle_outpost/jungle_outpost.dmm'
+	map_file = '_maps/map_files/Campaign maps/som_base/sombase.dmm'
 	map_traits = list(ZTRAIT_AWAY = TRUE, ZTRAIT_RAIN = TRUE)
 	map_light_colours = list(LIGHT_COLOR_PALE_GREEN, LIGHT_COLOR_PALE_GREEN, LIGHT_COLOR_PALE_GREEN, LIGHT_COLOR_PALE_GREEN)
 	mission_icon = "combat_patrol"
@@ -216,10 +216,10 @@
 ///test missions
 /datum/campaign_mission/tdm/lv624
 	name = "Combat patrol 2"
-	map_name = "LV-624"
-	map_file = '_maps/map_files/LV624/LV624.dmm'
-	map_traits = list(ZTRAIT_AWAY = TRUE, ZTRAIT_ACIDRAIN = TRUE)
-	map_light_colours = list(COLOR_MISSION_YELLOW, COLOR_MISSION_YELLOW, COLOR_MISSION_YELLOW, COLOR_MISSION_YELLOW)
+	map_name = "Rocinante base"
+	map_file = '_maps/map_files/Campaign maps/som_base/sombase.dmm'
+	map_traits = list(ZTRAIT_AWAY = TRUE, ZTRAIT_SNOWSTORM = TRUE)
+	map_light_colours = list(COLOR_MISSION_BLUE, COLOR_MISSION_BLUE, COLOR_MISSION_BLUE, COLOR_MISSION_BLUE)
 	map_light_levels = list(225, 150, 100, 75)
 
 /datum/campaign_mission/tdm/desparity
