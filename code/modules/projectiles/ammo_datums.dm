@@ -3085,12 +3085,12 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	icon_state = "u_laser"
 	flags_ammo_behavior = AMMO_ENERGY|AMMO_SUNDERING|AMMO_HITSCAN
 	damage = 25
-	penetration = 5
+	penetration = 10
 	sundering = 1
 	max_range = 15
 	hitscan_effect_icon = "u_laser_beam"
 	/// Number of debuff stacks to apply when hitting mobs.
-	var/debuff_stacks = 1
+	var/debuff_stacks = 5
 
 /datum/ammo/energy/lasgun/marine/xray/on_hit_mob(mob/M, obj/projectile/proj)
 	if(!isliving(M))
