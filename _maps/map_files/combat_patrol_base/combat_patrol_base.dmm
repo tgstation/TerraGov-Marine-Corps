@@ -2027,6 +2027,12 @@
 	dir = 1
 	},
 /area/mainship/patrol_base/som)
+"ED" = (
+/obj/structure/somcas/six{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/patrol_base/som)
 "EF" = (
 /obj/structure/patrol_point{
 	id = "SOM_12"
@@ -5744,7 +5750,7 @@ KC
 sM
 ep
 Oa
-Fk
+ED
 Fk
 Fk
 Fk
