@@ -575,7 +575,6 @@ What you lack in equipment and military training you make up in bravery and conv
 	faction = FACTION_SOM
 	comm_title = "ICC"
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
-	multiple_outfits = FALSE
 	job_cost = 0
 	outfits = list(
 		/datum/outfit/job/icc/medic/icc_machinepistol/campaign,
