@@ -1,0 +1,14 @@
+2023-10-01:
+  Barnet2:
+  - bugfix: Queen and King ranks should work now
+  Blundir:
+  - rscadd: acid on walls now has unique set of sprites
+  - bugfix: fixed acid rendering over everything
+  RipGrayson:
+  - balance: The SOM base tables on Slumbridge now produced metal when deconstructed.
+  ivanmixo:
+  - bugfix: Fixed admin wall deletions
+  vvvv-vvvv:
+  - bugfix: Fix drawing on minimap tablets
+  - bugfix: Fix mantis ravage keybind not working when not selected
+  - bugfix: Fix missing empty sprite for 5.56mm ammo box

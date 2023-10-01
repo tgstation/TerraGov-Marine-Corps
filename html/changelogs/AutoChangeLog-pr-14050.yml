@@ -1,4 +1,0 @@
-author: "vvvv-vvvv"
-delete-after: True
-changes:
-  - bugfix: "Fix mantis ravage keybind not working when not selected"
