@@ -25,7 +25,7 @@
 	///Amount of substance stored currently
 	var/resource_storage_current = 0
 	///Amount required for operation
-	var/resource_drain_amount = 8
+	var/resource_drain_amount = 10
 	///Actions that the component provides
 	var/list/datum/action/component_actions = list(
 		/datum/action/chem_booster/configure = PROC_REF(configure),
