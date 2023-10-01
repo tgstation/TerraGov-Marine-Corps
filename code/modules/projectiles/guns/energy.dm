@@ -335,6 +335,7 @@
 
 	playsound(user, 'sound/weapons/emitter.ogg', 5, FALSE, 2)
 
+	shots_fired = 0
 	gun_firemode = initial(choice.fire_mode)
 	gun_firemode_list = list(gun_firemode)
 	ammo_datum_type = initial(choice.ammo_datum_type)
