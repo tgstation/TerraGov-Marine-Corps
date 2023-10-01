@@ -1,6 +1,9 @@
 ///Number of victory points before a faction wins a campaign
 #define CAMPAIGN_MAX_VICTORY_POINTS 12
 
+///Respawn time in campaign mode
+#define CAMPAIGN_RESPAWN_TIME 2 MINUTES
+
 ///stats/points/etc recorded by faction
 #define MISSION_SELECTION_ALLOWED  (1<<0)
 ///How long after a mission ends a new leader is picked

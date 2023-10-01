@@ -23,7 +23,7 @@
 	var/datum/campaign_mission/current_mission
 	///campaign stats organised by faction
 	var/list/datum/faction_stats/stat_list = list()
-
+	///List of death times by key. Used for respawn time
 	var/list/player_death_times = list()
 
 /datum/game_mode/hvh/campaign/announce()
@@ -44,15 +44,6 @@
 	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH, PROC_REF(set_death_time))
 	addtimer(CALLBACK(SSticker.mode, TYPE_PROC_REF(/datum/game_mode/hvh/campaign, intro_sequence)), SSticker.round_start_time + 1 MINUTES)
 
-/datum/game_mode/hvh/campaign/proc/set_death_time(datum/source, mob/living/carbon/human/player)
-	SIGNAL_HANDLER
-	if(!istype(player))
-		return
-	if(!(player.faction in factions))
-		return
-	player_death_times[player.key] = world.time
-
-
 /datum/game_mode/hvh/campaign/post_setup()
 	. = ..()
 	for(var/obj/effect/landmark/patrol_point/exit_point AS in GLOB.patrol_point_list) //som 'ship' map is now ground, but this ensures we clean up exit points if this changes in the future
@@ -64,8 +55,8 @@
 		selected_faction.choose_faction_leader()
 
 /datum/game_mode/hvh/campaign/player_respawn(mob/respawnee)
-	if(current_mission.mission_state == MISSION_STATE_ACTIVE && ((player_death_times[respawnee.key] + 2 MINUTES) > world.time))
-		to_chat(respawnee, "<span class='warning'>Respawn timer has [round((player_death_times[respawnee.key] + 2 MINUTES - world.time) / 10)] seconds remaining.<spawn>")
+	if(current_mission.mission_state == MISSION_STATE_ACTIVE && ((player_death_times[respawnee.key] + CAMPAIGN_RESPAWN_TIME) > world.time))
+		to_chat(respawnee, "<span class='warning'>Respawn timer has [round((player_death_times[respawnee.key] + CAMPAIGN_RESPAWN_TIME - world.time) / 10)] seconds remaining.<spawn>")
 		return
 	attempt_attrition_respawn(respawnee)
 
@@ -88,7 +79,6 @@
 		return
 	announce_bioscans_marine_som(ztrait = ZTRAIT_AWAY) //todo: make this faction neutral
 
-//End game checks
 /datum/game_mode/hvh/campaign/check_finished(game_status) //todo: add the actual logic once the persistance stuff is done
 	if(round_finished)
 		message_admins("check_finished called when game already over")
@@ -130,6 +120,15 @@
 	TIMER_COOLDOWN_START(src, COOLDOWN_BIOSCAN, bioscan_interval)
 
 //respawn stuff, this is all kinda gross and should be revisited later
+
+///Records the players death time for respawn time purposes
+/datum/game_mode/hvh/campaign/proc/set_death_time(datum/source, mob/living/carbon/human/player)
+	SIGNAL_HANDLER
+	if(!istype(player))
+		return
+	if(!(player.faction in factions))
+		return
+	player_death_times[player.key] = world.time
 
 ///respawns the player if attrition points are available
 /datum/game_mode/hvh/campaign/proc/attempt_attrition_respawn(mob/candidate)
