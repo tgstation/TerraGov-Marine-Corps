@@ -320,7 +320,7 @@ WEAPONS
 /datum/supply_packs/weapons/tx54
 	name = "GL-54 airburst grenade launcher"
 	contains = list(/obj/item/weapon/gun/rifle/tx54)
-	cost = 300
+	cost = 150
 
 /datum/supply_packs/weapons/tx54_airburst
 	name = "GL-54 airburst grenade magazine"
@@ -350,7 +350,7 @@ WEAPONS
 /datum/supply_packs/weapons/tx55
 	name = "AR-55 OICW Rifle"
 	contains = list(/obj/item/weapon/gun/rifle/tx55)
-	cost = 525
+	cost = 325
 
 /datum/supply_packs/weapons/recoillesskit
 	name = "RL-160 Recoilless rifle kit"
