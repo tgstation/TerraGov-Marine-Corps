@@ -37,14 +37,6 @@
 	var/obj/item/healthanalyzer/integrated/analyzer
 	///Determines whether the suit is on
 	var/boost_on = FALSE
-	///Stores the current effect strength
-	var/boost_amount = 0
-	///Normal boost
-	var/boost_tier1 = 1
-	///Overcharged boost
-	var/boost_tier2 = 2
-	///Boost icon, image cycles between 2 states
-	var/boost_icon = "cboost_t1"
 	///Item connected to the system
 	var/obj/item/connected_weapon
 	///When was the effect activated. Used to activate negative effects after a certain amount of use
@@ -90,7 +82,6 @@
 /datum/component/chem_booster/Initialize()
 	if(!isitem(parent))
 		return COMPONENT_INCOMPATIBLE
-	update_boost(boost_tier1)
 	analyzer = new
 	meds_beaker = new
 	setup_reagent_info()
@@ -145,7 +136,7 @@
 ///Adds additional text for the component when examining the item it is attached to
 /datum/component/chem_booster/proc/examine(datum/source, mob/user, list/examine_text)
 	SIGNAL_HANDLER
-	examine_text += span_notice("The chemical system currently holds [resource_storage_current]u of green blood. Its' enhancement level is set to [boost_amount].")
+	examine_text += span_notice("The chemical system currently holds [resource_storage_current]u of green blood.")
 	examine_text += get_meds_beaker_contents()
 
 ///Disables active functions and cleans up actions when the suit is unequipped
@@ -188,8 +179,8 @@
 		return
 	update_resource(-resource_drain_amount)
 
-	wearer.adjustToxLoss(-tox_heal*boost_amount)
-	wearer.heal_overall_damage(6*boost_amount*brute_heal_amp, 6*boost_amount*burn_heal_amp)
+	wearer.adjustToxLoss(-tox_heal)
+	wearer.heal_overall_damage(6*brute_heal_amp, 6*burn_heal_amp)
 	vali_necro_timer = world.time - processing_start
 	if(vali_necro_timer > 20 SECONDS)
 		return
@@ -211,7 +202,6 @@
 ///Shows the radial menu with suit options. It is separate from configure() due to linters
 /datum/component/chem_booster/proc/show_radial()
 	var/list/radial_options = list(
-		BOOST_CONFIG = image(icon = 'icons/mob/radial.dmi', icon_state = "[boost_icon]"),
 		EXTRACT = image(icon = 'icons/mob/radial.dmi', icon_state = "cboost_extract"),
 		LOAD = image(icon = 'icons/mob/radial.dmi', icon_state = "cboost_load"),
 		VALI_INFO = image(icon = 'icons/mob/radial.dmi', icon_state = "cboost_info"),
@@ -219,14 +209,6 @@
 
 	var/choice = show_radial_menu(wearer, wearer, radial_options, null, 48, null, TRUE, TRUE)
 	switch(choice)
-		if(BOOST_CONFIG)
-			if(boost_amount == boost_tier2)
-				update_boost(boost_tier1)
-				boost_icon = "cboost_t1"
-				return
-			update_boost(boost_tier2)
-			boost_icon = "cboost_t2"
-
 		if(EXTRACT)
 			extract(10)
 
@@ -279,12 +261,6 @@
 		to_chat(wearer, get_meds_beaker_contents())
 		meds_beaker.reagents.trans_to(wearer, 30)
 	setup_bonus_effects()
-
-///Updates the boost amount of the suit and effect_str of reagents if component is on. "amount" is the final level you want to set the boost to.
-/datum/component/chem_booster/proc/update_boost(amount)
-	boost_amount = amount
-	wearer?.balloon_alert(wearer, "Enhancement level set to [boost_amount]")
-	resource_drain_amount = boost_amount*(3 + boost_amount)
 
 ///Handles Vali stat boosts and any other potential buffs on activation/deactivation
 /datum/component/chem_booster/proc/setup_bonus_effects()
