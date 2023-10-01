@@ -15,6 +15,13 @@
 	RegisterSignal(src, SIGNAL_ADDTRAIT(TRAIT_IMMOBILE), PROC_REF(on_immobile_trait_gain))
 	RegisterSignal(src, SIGNAL_REMOVETRAIT(TRAIT_IMMOBILE), PROC_REF(on_immobile_trait_loss))
 
+	RegisterSignals(src, list(
+		SIGNAL_ADDTRAIT(TRAIT_CRITICAL_CONDITION),
+		SIGNAL_REMOVETRAIT(TRAIT_CRITICAL_CONDITION),
+
+		SIGNAL_ADDTRAIT(TRAIT_NODEATH),
+		SIGNAL_REMOVETRAIT(TRAIT_NODEATH),
+	), PROC_REF(update_succumb_action))
 
 ///Called when TRAIT_KNOCKEDOUT is added to the mob.
 /mob/living/proc/on_knockedout_trait_gain(datum/source)
@@ -83,3 +90,15 @@
 	SIGNAL_HANDLER
 	if(!HAS_TRAIT(src, TRAIT_FLOORED))
 		set_canmove(TRUE)
+
+/**
+ * Called when traits that alter succumbing are added/removed.
+ *
+ * Will show or hide the succumb alert prompt.
+ */
+/mob/living/proc/update_succumb_action()
+	SIGNAL_HANDLER
+	if (CAN_SUCCUMB(src) || HAS_TRAIT(src, TRAIT_SUCCUMB_OVERRIDE))
+		throw_alert(ALERT_SUCCUMB, /atom/movable/screen/alert/succumb)
+	else
+		clear_alert(ALERT_SUCCUMB)

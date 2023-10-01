@@ -241,3 +241,26 @@ Override makes it so the alert is not replaced until cleared by a clear_alert wi
 	name = "Mech Damaged"
 	desc = "Mech integrity is low."
 	icon_state = "low_mech_integrity"
+
+/// Gives the player the option to succumb while in critical condition
+/atom/movable/screen/alert/succumb
+	name = "Succumb"
+	desc = "Shuffle off this mortal coil."
+	icon_state = ALERT_SUCCUMB
+
+/atom/movable/screen/alert/succumb/Click()
+	. = ..()
+	if(!.)
+		return
+	var/mob/living/living_owner = owner
+	var/last_whisper
+	if(!HAS_TRAIT(living_owner, TRAIT_SUCCUMB_OVERRIDE))
+		last_whisper = tgui_input_text(usr, "Do you have any last words?", "Goodnight, Sweet Prince")
+	if(isnull(last_whisper))
+		if(!HAS_TRAIT(living_owner, TRAIT_SUCCUMB_OVERRIDE))
+			return
+	if(!CAN_SUCCUMB(living_owner) && !HAS_TRAIT(living_owner, TRAIT_SUCCUMB_OVERRIDE))
+		return
+	if(length(last_whisper))
+		living_owner.say("#[last_whisper]")
+	living_owner.succumb(whispered = length(last_whisper) > 0)

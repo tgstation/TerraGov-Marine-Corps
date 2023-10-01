@@ -967,3 +967,21 @@ below 100 is not dizzy
 		height *= gravity * 0.5
 
 	AddComponent(/datum/component/jump, _jump_duration = duration, _jump_cooldown = cooldown, _stamina_cost = cost, _jump_height = height, _jump_sound = sound, _jump_flags = flags, _jumper_allow_pass_flags = flags_pass)
+
+///Sets up succumb for mobs.
+/mob/living/verb/succumb(whispered as null)
+	set hidden = TRUE
+	if (!CAN_SUCCUMB(src))
+		if(HAS_TRAIT(src, TRAIT_SUCCUMB_OVERRIDE))
+			if(whispered)
+				to_chat(src, text="You are unable to succumb to death! Unless you just press the UI button.", type=MESSAGE_TYPE_INFO)
+				return
+		else
+			to_chat(src, text="You are unable to succumb to death! This life continues.", type=MESSAGE_TYPE_INFO)
+			return
+	log_message("Has [whispered ? "whispered his final words" : "succumbed to death"] with [round(health, 0.1)] points of health!", LOG_ATTACK)
+	adjustOxyLoss(health - HEALTH_THRESHOLD_DEAD)
+	updatehealth()
+	if(!whispered)
+		to_chat(src, span_notice("You have given up life and succumbed to death."))
+	death()

@@ -228,3 +228,9 @@
 
 //added to AIs firing railguns
 #define TRAIT_IS_FIRING_RAILGUN "firing_railgun"
+
+/// In some kind of critical condition. Is able to succumb.
+#define TRAIT_CRITICAL_CONDITION "critical-condition"
+#define TRAIT_NODEATH "nodeath"
+/// Lets the user succumb even if they got NODEATH
+#define TRAIT_SUCCUMB_OVERRIDE "succumb_override"

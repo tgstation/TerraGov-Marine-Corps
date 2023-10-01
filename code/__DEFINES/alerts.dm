@@ -3,3 +3,6 @@
 
 /** Mech related */
 #define ALERT_MECH_DAMAGE "mech_damage"
+
+/** Mob related */
+#define ALERT_SUCCUMB "succumb"
