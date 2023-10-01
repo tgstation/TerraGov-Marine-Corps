@@ -8,7 +8,7 @@
 		slot_l_hand_str = 'modular_RUtgmc/icons/mob/items_lefthand_64.dmi',
 		slot_r_hand_str = 'modular_RUtgmc/icons/mob/items_righthand_64.dmi',
 		slot_s_store_str = 'modular_RUtgmc/icons/mob/suit_slot.dmi',
-		slot_back_str = 'modular_RUtgmc/icons/mob/back.dmi',
+		slot_back_str = 'modular_RUtgmc/icons/mob/clothing/back.dmi',
 	)
 	inhand_x_dimension = 64
 	inhand_y_dimension = 32
