@@ -1782,10 +1782,14 @@
 	)
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO)
 	attachable_offset = list("muzzle_x" = 31, "muzzle_y" = 17,"rail_x" = 12, "rail_y" = 20, "under_x" = 28, "under_y" = 13, "stock_x" = -1, "stock_y" = 17)
+	aim_slowdown = 0.8
 	wield_delay = 0.8 SECONDS
 	burst_amount = 1
 	accuracy_mult = 1.15
 	scatter = -2
+	aim_fire_delay = 0.2 SECONDS
+	aim_speed_modifier = 2
+
 //-------------------------------------------------------
 // AR-55 built in grenade launcher
 
@@ -1802,7 +1806,7 @@
 	default_ammo_type = /obj/item/ammo_magazine/rifle/tx54
 	attach_delay = 3 SECONDS
 	detach_delay = 3 SECONDS
-	actions_types = list()
+	actions_types = list(/datum/action/item_action/aim_mode)
 	starting_attachment_types = list()
 
 //-------------------------------------------------------
@@ -1853,6 +1857,8 @@
 	)
 	attachable_offset = list("muzzle_x" = 31, "muzzle_y" = 17,"rail_x" = 13, "rail_y" = 22, "under_x" = 21, "under_y" = 14, "stock_x" = -1, "stock_y" = 17)
 
+	aim_fire_delay = 0.1 SECONDS
+	aim_speed_modifier = 2
 	fire_delay = 0.2 SECONDS
 	burst_delay = 0.15 SECONDS
 	extra_delay = 0.05 SECONDS
@@ -1860,6 +1866,7 @@
 	scatter = 1
 	scatter_unwielded = 15
 	burst_scatter_mult = 2
+	aim_slowdown = 1
 	movement_acc_penalty_mult = 6
 
 /obj/item/weapon/gun/rifle/tx55/freelancer
