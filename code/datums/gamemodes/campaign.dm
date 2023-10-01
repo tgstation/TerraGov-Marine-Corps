@@ -52,7 +52,7 @@
 
 	for(var/i in stat_list)
 		var/datum/faction_stats/selected_faction = stat_list[i]
-		addtimer(CALLBACK(selected_faction, PROC_REF(choose_faction_leader)), 90 SECONDS)
+		addtimer(CALLBACK(selected_faction, TYPE_PROC_REF(/datum/faction_stats, choose_faction_leader)), 90 SECONDS)
 
 /datum/game_mode/hvh/campaign/player_respawn(mob/respawnee)
 	if(current_mission.mission_state == MISSION_STATE_ACTIVE && ((player_death_times[respawnee.key] + CAMPAIGN_RESPAWN_TIME) > world.time))
