@@ -551,6 +551,7 @@
 		FIRESUPPORT_TYPE_GUN = 4,
 		FIRESUPPORT_TYPE_ROCKETS = 2,
 		FIRESUPPORT_TYPE_CRUISE_MISSILE = 1,
+		FIRESUPPORT_TYPE_LASER = 2,
 	)
 
 /datum/campaign_reward/fire_support/activated_effect()

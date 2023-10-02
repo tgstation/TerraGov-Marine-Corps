@@ -4,6 +4,8 @@
 //Firemodes for Campaign gamemode
 ///GAU gun run
 #define FIRESUPPORT_TYPE_GUN "gun"
+///Laser beam run
+#define FIRESUPPORT_TYPE_LASER "laser"
 ///Rocket barrage
 #define FIRESUPPORT_TYPE_ROCKETS "rockets"
 ///Cruise missile strike
@@ -45,6 +47,7 @@ GLOBAL_LIST_INIT(fire_support_types, list(
 	FIRESUPPORT_TYPE_ROCKETS_UNLIMITED = new /datum/fire_support/rockets/unlimited,
 	FIRESUPPORT_TYPE_CRUISE_MISSILE_UNLIMITED = new /datum/fire_support/cruise_missile/unlimited,
 	FIRESUPPORT_TYPE_GUN = new /datum/fire_support/gau,
+	FIRESUPPORT_TYPE_LASER = new /datum/fire_support/laser,
 	FIRESUPPORT_TYPE_ROCKETS = new /datum/fire_support/rockets,
 	FIRESUPPORT_TYPE_CRUISE_MISSILE = new /datum/fire_support/cruise_missile,
 	FIRESUPPORT_TYPE_VOLKITE = new /datum/fire_support/volkite,
