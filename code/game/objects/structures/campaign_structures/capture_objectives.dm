@@ -152,6 +152,8 @@
 	icon_state = "orebox_phoron"
 	mission_types = list(/datum/campaign_mission/capture_mission)
 	objective_type = /obj/structure/campaign_objective/capture_objective/fultonable
+	activation_time = 3 SECONDS
+	capture_delay = 60 SECONDS
 
 /obj/structure/campaign_objective/capture_objective/fultonable
 	name = "phoron crate"
