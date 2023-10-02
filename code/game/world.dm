@@ -65,12 +65,6 @@ GLOBAL_VAR(restart_counter)
 		return
 #endif
 
-#ifdef USE_EXTOOLS
-	var/extools = world.GetConfig("env", "EXTOOLS_DLL") || (world.system_type == MS_WINDOWS ? "./byond-extools.dll" : "./libbyond-extools.so")
-	if(fexists(extools))
-		LIBCALL(extools, "maptick_initialize")()
-#endif
-
 	Profile(PROFILE_RESTART)
 	Profile(PROFILE_RESTART, type = "sendmaps")
 
