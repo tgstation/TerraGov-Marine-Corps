@@ -1,6 +1,7 @@
 /obj/item/tweezers
 	name = "medical tweezers"
 	desc = "Medical tweezers intended to remove shrapnel from patients."
+	icon = 'icons/obj/items/surgery_tools.dmi'
 	icon_state = "tweezers"
 	item_state = "tweezers"
 	flags_item = NOBLUDGEON

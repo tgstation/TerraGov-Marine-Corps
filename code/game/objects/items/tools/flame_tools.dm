@@ -527,7 +527,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 /obj/item/tool/lighter
 	name = "cheap lighter"
 	desc = "A cheap-as-free lighter."
-	icon = 'icons/obj/items/items.dmi'
+	icon = 'icons/obj/items/cigarettes.dmi'
 	icon_state = "lighter-g"
 	item_icons = list(
 		slot_l_hand_str = 'icons/mob/inhands/equipment/smoking_left.dmi',
