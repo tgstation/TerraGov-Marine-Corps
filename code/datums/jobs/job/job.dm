@@ -184,10 +184,7 @@ GLOBAL_PROTECT(exp_specialmap)
 
 
 /datum/outfit/job/proc/handle_id(mob/living/carbon/human/H)
-	var/datum/job/job = SSjob.GetJobType(jobtype)
-	if(!job)
-		job = H.job
-
+	var/datum/job/job = H.job ? H.job : SSjob.GetJobType(jobtype)
 	var/obj/item/card/id/id = H.wear_id
 	if(istype(id))
 		id.access = job.get_access()
