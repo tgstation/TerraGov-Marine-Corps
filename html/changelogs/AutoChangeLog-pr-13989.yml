@@ -1,0 +1,5 @@
+author: "Blundir"
+delete-after: True
+changes:
+  - imagedel: "deletes many unused sprites"
+  - refactor: "relocated numerous sprites into their own files"
