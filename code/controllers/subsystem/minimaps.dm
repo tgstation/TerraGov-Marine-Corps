@@ -223,6 +223,9 @@ SUBSYSTEM_DEF(minimaps)
 		CRASH("Invalid marker added to subsystem")
 
 	if(!initialized || !(minimaps_by_z["[target.z]"])) //the minimap doesn't exist yet, z level was probably loaded after init
+		for(var/datum/callback/callback AS in earlyadds["[target.z]"])
+			if(callback.arguments[1] == target)
+				return
 		LAZYADDASSOC(earlyadds, "[target.z]", CALLBACK(src, PROC_REF(add_marker), target, hud_flags, blip))
 		RegisterSignal(target, COMSIG_QDELETING, PROC_REF(remove_earlyadd), override = TRUE) //Override required for late z-level loading to prevent hard dels where an atom is initiated during z load, but is qdel'd before it finishes
 		return
