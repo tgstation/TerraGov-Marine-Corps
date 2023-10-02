@@ -123,6 +123,11 @@
 	icon_state = "maglev"
 	pixel_x = -63
 
+/obj/structure/campaign_objective/destruction_objective/supply_objective/train/carriage
+	name = "rail carriage"
+	desc = "A heavy duty maglev carriage. I wonder what's inside?."
+	icon_state = "carriage"
+
 /obj/structure/campaign_objective/destruction_objective/supply_objective/train/cargo_nt
 	name = "railcar"
 	desc = "A heavy duty maglev railcar. This one has a large cargo container on it."
