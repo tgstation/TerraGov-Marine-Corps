@@ -425,6 +425,7 @@
 	name = "\improper Barred Airlock"
 	icon = 'icons/Marine/mainship_props.dmi'
 	resistance_flags = RESIST_ALL
+	allow_pass_flags = NONE
 	desc = "It opens and closes."
 	opacity = TRUE
 
