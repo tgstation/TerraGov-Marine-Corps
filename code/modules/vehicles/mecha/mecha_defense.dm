@@ -41,11 +41,12 @@
 	if(damage_taken <= 0 || obj_integrity < 0)
 		return damage_taken
 
+	log_message("Took [damage_taken] points of damage. Damage type: [damage_type]", LOG_MECHA)
+	if(damage_taken < 5)
+		return damage_taken //its only a scratch
 	spark_system.start()
 	try_deal_internal_damage(damage_taken)
-	if(damage_taken >= 5 || prob(33))
-		to_chat(occupants, "[icon2html(src, occupants)][span_userdanger("Taking damage!")]")
-	log_message("Took [damage_taken] points of damage. Damage type: [damage_type]", LOG_MECHA)
+	to_chat(occupants, "[icon2html(src, occupants)][span_userdanger("Taking damage!")]")
 
 	return damage_taken
 
