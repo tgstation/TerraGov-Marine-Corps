@@ -128,6 +128,11 @@
 	desc = "A heavy duty maglev carriage. I wonder what's inside?."
 	icon_state = "carriage"
 
+/obj/structure/campaign_objective/destruction_objective/supply_objective/train/carriage_lit
+	name = "rail carriage"
+	desc = "A heavy duty maglev carriage. I wonder what's inside?."
+	icon_state = "carriage_lit"
+
 /obj/structure/campaign_objective/destruction_objective/supply_objective/train/cargo_nt
 	name = "railcar"
 	desc = "A heavy duty maglev railcar. This one has a large cargo container on it."
@@ -136,37 +141,37 @@
 /obj/structure/campaign_objective/destruction_objective/supply_objective/train/cargo_sat
 	name = "railcar"
 	desc = "A heavy duty maglev railcar. This one has a large cargo container on it."
-	icon_state = "nt"
+	icon_state = "sat"
 
 /obj/structure/campaign_objective/destruction_objective/supply_objective/train/cargo_hyperdyne
 	name = "railcar"
 	desc = "A heavy duty maglev railcar. This one has a large cargo container on it."
-	icon_state = "nt"
+	icon_state = "hyperdyne"
 
 /obj/structure/campaign_objective/destruction_objective/supply_objective/train/construction
 	name = "railcar"
 	desc = "A heavy duty maglev railcar. This one is carrying a variety of construction materials."
-	icon_state = "nt"
+	icon_state = "construction"
 
 /obj/structure/campaign_objective/destruction_objective/supply_objective/train/crates
 	name = "railcar"
 	desc = "A heavy duty maglev railcar. This one has a variety of crates on it."
-	icon_state = "nt"
+	icon_state = "crates"
 
 /obj/structure/campaign_objective/destruction_objective/supply_objective/train/weapons
 	name = "railcar"
 	desc = "A heavy duty maglev railcar. This one is carrying a shipment of weapons."
-	icon_state = "nt"
+	icon_state = "weapons"
 
 /obj/structure/campaign_objective/destruction_objective/supply_objective/train/mech
 	name = "railcar"
 	desc = "A heavy duty maglev railcar. This one has a variety of mech equipment on it."
-	icon_state = "nt"
+	icon_state = "mech"
 
 /obj/structure/campaign_objective/destruction_objective/supply_objective/train/empty
 	name = "railcar"
 	desc = "A heavy duty maglev railcar. This one is currently empty."
-	icon_state = "nt"
+	icon_state = "empty"
 
 //teleporter core
 /obj/effect/landmark/campaign_objective/bluespace_core
