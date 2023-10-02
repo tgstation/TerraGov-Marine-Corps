@@ -12,3 +12,6 @@
   - bugfix: Fix drawing on minimap tablets
   - bugfix: Fix mantis ravage keybind not working when not selected
   - bugfix: Fix missing empty sprite for 5.56mm ammo box
+2023-10-02:
+  ivanmixo:
+  - bugfix: Fixed an issue with quick laser swap
