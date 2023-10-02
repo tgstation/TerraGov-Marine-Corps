@@ -419,6 +419,7 @@
 	layer = LADDER_LAYER
 	light_range = 4
 	resistance_flags = RESIST_ALL //no delaminations here
+	allow_pass_flags = NONE
 	opacity = TRUE
 
 /obj/structure/prop/mainship/doorblocker //doors that exist only to block access, used mostly for valhalla omegastation
