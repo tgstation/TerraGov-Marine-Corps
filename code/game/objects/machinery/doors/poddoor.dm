@@ -305,7 +305,7 @@ GLOBAL_LIST_INIT(faction_to_campaign_door_signal, list(
 
 /obj/machinery/door/poddoor/campaign/Initialize(mapload)
 	RegisterSignal(SSdcs, GLOB.faction_to_campaign_door_signal[faction], PROC_REF(open))
-	RegisterSignal(SSdcs, COMSIG_GLOB_CLOSE_CAMPAIGN_SHUTTERS, TYPE_PROC_REF(/obj/machinery/door, close))
+	RegisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_MISSION_ENDED, TYPE_PROC_REF(/obj/machinery/door, close))
 	return ..()
 
 /obj/machinery/door/poddoor/campaign/som

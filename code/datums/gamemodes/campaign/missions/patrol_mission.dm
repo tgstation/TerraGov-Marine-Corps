@@ -1,10 +1,10 @@
 //basic tdm mission - i.e. combat patrol
 /datum/campaign_mission/tdm
 	name = "Combat patrol"
-	map_name = "Jungle outpost SR-422"
-	map_file = '_maps/map_files/Campaign maps/som_base/sombase.dmm'
-	map_traits = list(ZTRAIT_AWAY = TRUE, ZTRAIT_RAIN = TRUE)
-	map_light_colours = list(LIGHT_COLOR_PALE_GREEN, LIGHT_COLOR_PALE_GREEN, LIGHT_COLOR_PALE_GREEN, LIGHT_COLOR_PALE_GREEN)
+	map_name = "Desparity"
+	map_file = '_maps/map_files/desparity/desparity.dmm'
+	map_light_colours = list(COLOR_MISSION_YELLOW, COLOR_MISSION_YELLOW, COLOR_MISSION_YELLOW, COLOR_MISSION_YELLOW)
+	map_light_levels = list(225, 150, 100, 75)
 	mission_icon = "combat_patrol"
 	starting_faction_objective_description = "Major Victory: Wipe out all hostiles in the area of operation. Minor Victory: Eliminate more hostiles than you lose."
 	hostile_faction_objective_description = "Major Victory: Wipe out all hostiles in the area of operation. Minor Victory: Eliminate more hostiles than you lose."
@@ -222,9 +222,16 @@
 	map_light_colours = list(COLOR_MISSION_BLUE, COLOR_MISSION_BLUE, COLOR_MISSION_BLUE, COLOR_MISSION_BLUE)
 	map_light_levels = list(225, 150, 100, 75)
 
-/datum/campaign_mission/tdm/desparity
-	name = "Combat patrol 3"
-	map_name = "Desparity"
-	map_file = '_maps/map_files/desparity/desparity.dmm'
-	map_light_colours = list(COLOR_MISSION_YELLOW, COLOR_MISSION_YELLOW, COLOR_MISSION_YELLOW, COLOR_MISSION_YELLOW)
-	map_light_levels = list(225, 150, 100, 75)
+/datum/campaign_mission/tdm/first_mission
+	name = "First Contact"
+	map_name = "Jungle outpost SR-422"
+	map_file = '_maps/map_files/Campaign maps/jungle_outpost/jungle_outpost.dmm'
+	map_traits = list(ZTRAIT_AWAY = TRUE, ZTRAIT_RAIN = TRUE)
+	map_light_colours = list(LIGHT_COLOR_PALE_GREEN, LIGHT_COLOR_PALE_GREEN, LIGHT_COLOR_PALE_GREEN, LIGHT_COLOR_PALE_GREEN)
+	map_light_levels = list(200, 100, 75, 50)
+
+/datum/campaign_mission/tdm/first_mission/end_mission()
+	. = ..()
+	for(var/i in mode.stat_list)
+		var/datum/faction_stats/team = mode.stat_list[i]
+		team.add_reward(/datum/campaign_reward/reserves)

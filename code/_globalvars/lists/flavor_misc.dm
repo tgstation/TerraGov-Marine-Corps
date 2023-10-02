@@ -166,6 +166,7 @@ GLOBAL_LIST_INIT(campaign_icon_types, list(
 	"mortar_disabled",
 	"droppod_disabled",
 	"tele_disabled",
+	"reserve_force",
 ))
 
 GLOBAL_LIST_INIT(campaign_mission_icon_types, list(

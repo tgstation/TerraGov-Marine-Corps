@@ -13,10 +13,6 @@
 #define COMSIG_GLOB_OPEN_TIMED_SHUTTERS_CRASH "!open_timed_shutters_crash"
 #define COMSIG_GLOB_OPEN_SHUTTERS_EARLY "!open_shutters_early"
 
-#define COMSIG_GLOB_CLOSE_CAMPAIGN_SHUTTERS "!close_campaign_shutters"
-#define COMSIG_GLOB_OPEN_CAMPAIGN_SHUTTERS_TGMC "!open_campaign_shutters_tgmc"
-#define COMSIG_GLOB_OPEN_CAMPAIGN_SHUTTERS_SOM "!open_campaign_shutters_som"
-
 #define COMSIG_GLOB_TADPOLE_LAUNCHED "!tadpole_launched"
 #define COMSIG_GLOB_DROPPOD_LANDED "!pod_landed"
 #define COMSIG_GLOB_EVACUATION_STARTED "!evacuation_started"
@@ -76,8 +72,14 @@
 ///called when an AI is requested by a holopad
 #define COMSIG_GLOB_HOLOPAD_AI_CALLED "!holopad_calling"
 
-///Sent when a new campaign mission is started
+///Opens the TGMC shipside shutters on campaign
+#define COMSIG_GLOB_OPEN_CAMPAIGN_SHUTTERS_TGMC "!open_campaign_shutters_tgmc"
+///Opens the SOM shipside shutters on campaign
+#define COMSIG_GLOB_OPEN_CAMPAIGN_SHUTTERS_SOM "!open_campaign_shutters_som"
+///Sent when a new campaign mission is loaded
 #define COMSIG_GLOB_CAMPAIGN_MISSION_LOADED "!campaign_mission_loaded"
+///Sent when a campaign mission is started
+#define COMSIG_GLOB_CAMPAIGN_MISSION_STARTED "!campaign_mission_started"
 ///Sent when a campaign mission ends
 #define COMSIG_GLOB_CAMPAIGN_MISSION_ENDED "!campaign_mission_ended"
 ///Sent when a campaign objective has been destroyed

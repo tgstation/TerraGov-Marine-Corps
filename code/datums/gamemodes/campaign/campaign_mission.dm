@@ -232,7 +232,7 @@
 ///Mission start proper
 /datum/campaign_mission/proc/start_mission()
 	SHOULD_CALL_PARENT(TRUE)
-	SEND_SIGNAL(SSdcs, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE)
+	SEND_SIGNAL(SSdcs, COMSIG_GLOB_CAMPAIGN_MISSION_STARTED)
 	if(!shutter_open_delay["starting_faction"])
 		SEND_GLOBAL_SIGNAL(GLOB.faction_to_campaign_door_signal[starting_faction])
 	else
@@ -260,7 +260,6 @@
 	mission_state = MISSION_STATE_FINISHED
 	apply_outcome()
 	play_outro()
-	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_CLOSE_CAMPAIGN_SHUTTERS)
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_CAMPAIGN_MISSION_ENDED, winning_faction)
 	for(var/i in GLOB.quick_loadouts)
 		var/datum/outfit/quick/outfit = GLOB.quick_loadouts[i]

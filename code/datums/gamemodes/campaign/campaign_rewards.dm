@@ -222,6 +222,32 @@
 		/obj/effect/supply_drop/caliver,
 	)
 
+/datum/campaign_reward/reserves
+	name = "Strategic Reserve"
+	desc = "Emergency reserve forces"
+	detailed_desc = "A strategic reserve force is activated to bolster your numbers, increasing your active attrition significantly. Can only be used when defending a mission, and only once per campaign."
+	ui_icon = "reserve_force"
+	uses = 1
+
+/datum/campaign_reward/reserves/activated_effect()
+	var/datum/game_mode/hvh/campaign/mode = SSticker.mode
+	var/datum/campaign_mission/current_mission = mode.current_mission
+	if(current_mission.mission_state != MISSION_STATE_ACTIVE)
+		to_chat(faction.faction_leader, span_warning("You cannot call in the strategic reserve before the mission starts!"))
+		return
+	if(current_mission.hostile_faction != faction.faction)
+		to_chat(faction.faction_leader, span_warning("You can only call in the strategic reserve when defending!"))
+		return
+
+	. = ..()
+	if(!.)
+		return
+
+	faction.active_attrition_points += round(length(GLOB.clients) * 0.3)
+
+	reward_flags |= REWARD_ACTIVE
+	RegisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_MISSION_ENDED, TYPE_PROC_REF(/datum/campaign_reward, deactivate), override = TRUE) //you could use this multiple times per mission
+
 /datum/campaign_reward/mech
 	name = "Medium combat mech"
 	desc = "One medium combat mech"
