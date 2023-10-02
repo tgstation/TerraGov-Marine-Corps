@@ -50,6 +50,13 @@
 	setDir(dir_in)
 	playsound(src, 'sound/machines/windowdoor.ogg', 50, TRUE)
 	set_mouse_pointer()
+	for(var/faction in GLOB.faction_to_data_hud)
+		var/datum/atom_hud/squad/hud_type = GLOB.huds[GLOB.faction_to_data_hud[faction]]
+		if(faction == newoccupant.faction)
+			hud_type.add_to_hud(src)
+		else
+			hud_type.remove_from_hud(src)
+
 	if(!internal_damage)
 		SEND_SOUND(newoccupant, sound('sound/mecha/nominal.ogg',volume=50))
 	return TRUE
