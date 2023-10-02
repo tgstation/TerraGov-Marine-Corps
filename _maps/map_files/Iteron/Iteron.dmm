@@ -661,11 +661,6 @@
 /obj/structure/droppod,
 /turf/open/floor/prison/cleanmarked,
 /area/mainship/patrol_base/hanger)
-"jz" = (
-/obj/structure/drop_pod_launcher,
-/obj/structure/droppod/nonmob/turret_pod,
-/turf/open/space/basic,
-/area/mainship/patrol_base/hanger)
 "jI" = (
 /obj/structure/drop_pod_launcher/leader,
 /obj/structure/droppod/leader,
@@ -42026,7 +42021,7 @@ ab
 bJ
 bJ
 bJ
-jz
+jL
 om
 rR
 vp
