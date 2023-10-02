@@ -473,6 +473,11 @@
 	if(reward_flags & REWARD_ACTIVE)
 		to_chat(faction.faction_leader, span_warning("The Teleporter Array is already activated!"))
 		return
+	var/datum/game_mode/hvh/campaign/mode = SSticker.mode
+	var/datum/campaign_mission/current_mission = mode.current_mission
+	if(current_mission.mission_flags & MISSION_DISALLOW_TELEPORT)
+		to_chat(faction.faction_leader, span_warning("External factors prevent the use of the teleporter at this time. Teleporter unavailable."))
+		return
 	var/obj/structure/teleporter_array/friendly_teleporter
 	for(var/obj/structure/teleporter_array/teleporter AS in GLOB.teleporter_arrays)
 		if(teleporter.faction != faction.faction)

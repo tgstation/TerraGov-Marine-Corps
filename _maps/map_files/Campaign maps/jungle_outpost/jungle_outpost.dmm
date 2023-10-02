@@ -1309,12 +1309,6 @@
 /obj/structure/prop/mainship/research/destructive_analyzer,
 /turf/open/floor/tile/white,
 /area/campaign/jungle_outpost/outpost/science)
-"fE" = (
-/obj/effect/landmark/campaign_objective/phoron_crate,
-/turf/open/floor/tile/blue/whiteblue{
-	dir = 1
-	},
-/area/campaign/jungle_outpost/outpost/medbay)
 "fF" = (
 /obj/structure/flora/tree/jungle,
 /turf/open/ground/grass/weedable,
@@ -1324,6 +1318,10 @@
 /obj/item/tool/mop,
 /turf/open/floor/freezer,
 /area/campaign/jungle_outpost/outpost/living)
+"fH" = (
+/obj/effect/landmark/campaign_objective/phoron_crate,
+/turf/open/floor/tile/white,
+/area/campaign/jungle_outpost/outpost/science/south)
 "fI" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 1
@@ -3924,13 +3922,6 @@
 /obj/effect/spawner/random/misc/folder,
 /turf/open/floor/tile/blue/taupeblue,
 /area/campaign/jungle_outpost/outpost/command)
-"qY" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/effect/landmark/campaign_objective/phoron_crate,
-/turf/open/floor/plating/ground/concrete,
-/area/campaign/jungle_outpost/outpost/req/depot)
 "ra" = (
 /obj/structure/platform{
 	dir = 4
@@ -4653,11 +4644,6 @@
 /obj/structure/cable,
 /turf/open/floor/plating/ground/concrete,
 /area/campaign/jungle_outpost/outpost/req/containers)
-"tP" = (
-/obj/structure/cable,
-/obj/effect/landmark/campaign_objective/phoron_crate,
-/turf/open/floor,
-/area/campaign/jungle_outpost/outpost/command)
 "tQ" = (
 /turf/closed/wall/r_wall,
 /area/campaign/jungle_outpost/outpost/science)
@@ -6162,11 +6148,6 @@
 	dir = 1
 	},
 /area/campaign/jungle_outpost/ground/jungle/north_east)
-"Ao" = (
-/obj/effect/spawner/random/engineering/tool,
-/obj/effect/landmark/campaign_objective/phoron_crate,
-/turf/open/floor,
-/area/campaign/jungle_outpost/outpost/outer/west)
 "Ap" = (
 /obj/structure/closet/crate/mass_produced_crate/construction,
 /turf/open/floor/tile/purple/whitepurple,
@@ -7405,12 +7386,6 @@
 	},
 /turf/open/ground/grass/weedable,
 /area/campaign/jungle_outpost/ground/jungle/south_east)
-"Fz" = (
-/obj/effect/landmark/campaign_objective/phoron_crate,
-/turf/open/floor/tile/green/greentaupe{
-	dir = 5
-	},
-/area/campaign/jungle_outpost/outpost/living)
 "FA" = (
 /obj/structure/stairs/railstairs_vert{
 	dir = 1
@@ -8225,10 +8200,6 @@
 "Ji" = (
 /turf/closed/wall,
 /area/campaign/jungle_outpost/outpost/living/kitchen)
-"Jj" = (
-/obj/effect/landmark/campaign_objective/phoron_crate,
-/turf/open/floor/tile/purple/whitepurple,
-/area/campaign/jungle_outpost/outpost/science)
 "Jk" = (
 /obj/structure/rock/variable/jungle/big,
 /turf/open/ground/grass/weedable,
@@ -9572,10 +9543,6 @@
 /obj/structure/flora/jungle/grass/thin,
 /turf/open/floor/plating/ground/dirtgrassborder2,
 /area/campaign/jungle_outpost/ground/jungle/north_east)
-"Pf" = (
-/obj/effect/landmark/campaign_objective/phoron_crate,
-/turf/open/floor,
-/area/campaign/jungle_outpost/outpost/security/vault)
 "Pg" = (
 /obj/structure/catwalk,
 /obj/structure/platform{
@@ -11978,6 +11945,11 @@
 /obj/structure/largecrate/supply/machine,
 /turf/open/floor/plating/ground/concrete,
 /area/campaign/jungle_outpost/outpost/req/depot)
+"Zp" = (
+/obj/structure/cable,
+/obj/effect/landmark/campaign_objective/phoron_crate,
+/turf/open/floor/tile/dark/gray,
+/area/campaign/jungle_outpost/outpost/req)
 "Zq" = (
 /obj/structure/flora/jungle/bush,
 /turf/open/floor/plating/ground/dirtgrassborder2,
@@ -14217,7 +14189,7 @@ mG
 XN
 XN
 OX
-Ao
+ej
 AL
 Fd
 bE
@@ -18291,7 +18263,7 @@ dn
 pq
 fy
 fy
-mQ
+Po
 ij
 qn
 ot
@@ -19180,7 +19152,7 @@ vb
 vb
 vb
 vb
-fE
+dX
 oe
 oe
 oe
@@ -21202,7 +21174,7 @@ ol
 Zm
 Wz
 Wz
-Wz
+Zp
 sp
 sp
 EQ
@@ -23215,7 +23187,7 @@ yg
 IR
 Oq
 tv
-qY
+gd
 Jb
 zi
 zi
@@ -24788,7 +24760,7 @@ xK
 xl
 ur
 QV
-tP
+kJ
 kJ
 kJ
 Wu
@@ -25280,7 +25252,7 @@ kH
 mD
 mD
 tp
-Fz
+QJ
 SO
 SO
 yp
@@ -26818,7 +26790,7 @@ tQ
 li
 bB
 qv
-Jj
+YH
 tQ
 pX
 pX
@@ -27247,7 +27219,7 @@ Lp
 qj
 wN
 RQ
-Pf
+qj
 qj
 Gf
 He
@@ -28070,7 +28042,7 @@ JR
 gU
 DO
 DO
-DO
+fH
 DO
 DO
 DO
@@ -30754,7 +30726,7 @@ vA
 BF
 nX
 iH
-NF
+iH
 BF
 xF
 ty

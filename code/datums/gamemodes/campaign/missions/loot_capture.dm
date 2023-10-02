@@ -7,7 +7,7 @@
 	map_traits = list(ZTRAIT_AWAY = TRUE, ZTRAIT_RAIN = TRUE)
 	map_light_colours = list(LIGHT_COLOR_PALE_GREEN, LIGHT_COLOR_PALE_GREEN, LIGHT_COLOR_PALE_GREEN, LIGHT_COLOR_PALE_GREEN)
 	max_game_time = 20 MINUTES
-	mission_flags = MISSION_DISALLOW_DROPPODS
+	mission_flags = MISSION_DISALLOW_DROPPODS|MISSION_DISALLOW_TELEPORT
 	victory_point_rewards = list(
 		MISSION_OUTCOME_MAJOR_VICTORY = list(3, 0),
 		MISSION_OUTCOME_MINOR_VICTORY = list(1, 0),
@@ -34,9 +34,9 @@
 	starting_faction_additional_rewards = "Additional supplies for every phoron crate captured"
 	hostile_faction_additional_rewards = "Additional supplies for every phoron crate captured"
 	///Total number of objectives at round start
-	var/objectives_total = 3
+	var/objectives_total = 11
 	///number of targets to capture for a minor victory
-	var/min_capture_amount = 10 //placeholder number
+	var/min_capture_amount = 7 //placeholder number
 	///How many objectives currently remaining
 	var/objectives_remaining = 0
 	///How many objects extracted by each team
@@ -154,7 +154,7 @@
 ///The addition rewards for capturing objectives, regardless of outcome
 /datum/campaign_mission/capture_mission/proc/objective_reward_bonus()
 	var/starting_team_bonus = capture_count["starting_faction"] * 5
-	var/hostile_team_bonus = capture_count["hostile_faction"] * 2 //todo: maybe a lower reward for the home team here, its supposed to be their supplies after all...
+	var/hostile_team_bonus = capture_count["hostile_faction"] * 2
 
 	modify_attrition_points(starting_team_bonus, hostile_team_bonus)
 	map_text_broadcast(starting_faction, "[starting_team_bonus] bonus attrition points awarded for the capture of [capture_count["starting_faction"]] objectives", "Bonus reward")
