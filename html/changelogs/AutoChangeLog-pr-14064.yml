@@ -1,0 +1,4 @@
+author: "vvvv-vvvv"
+delete-after: True
+changes:
+  - admin: "Fixed statpanel showing Toggle Tadpole Restrictions in a different tab"
