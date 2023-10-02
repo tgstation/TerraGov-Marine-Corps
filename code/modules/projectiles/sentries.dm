@@ -377,6 +377,7 @@
 	for(var/mob/living/carbon/xenomorph/nearby_xeno AS in cheap_get_xenos_near(src, range))
 		if(nearby_xeno.stat == DEAD || HAS_TRAIT(nearby_xeno, TRAIT_TURRET_HIDDEN) || CHECK_BITFIELD(nearby_xeno.status_flags, INCORPOREAL) || CHECK_BITFIELD(nearby_xeno.xeno_iff_check(), iff_signal)) //So wraiths wont be shot at when in phase shift
 			continue
+		potential_targets += nearby_xeno
 	for(var/obj/vehicle/sealed/mecha/nearby_mech AS in cheap_get_mechs_near(src, range))
 		if(!nearby_mech.occupants)
 			continue
