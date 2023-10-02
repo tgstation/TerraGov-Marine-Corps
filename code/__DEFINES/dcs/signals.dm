@@ -372,6 +372,7 @@
 
 // vali specific
 #define COMSIG_CHEMSYSTEM_TOGGLED "chemsystem_toggled"
+#define COMSIG_CHEMSYSTEM_RESOURCE_UPDATE "chemsystem_resource_update"
 
 // /obj/item/helmet_module signals
 #define COMSIG_HELMET_MODULE_ATTACHING "helmet_module_attaching"

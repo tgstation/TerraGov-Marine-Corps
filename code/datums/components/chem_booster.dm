@@ -53,8 +53,6 @@
 	var/obj/item/reagent_containers/glass/beaker/meds_beaker
 	///Whether the contents on the meds_beaker will be injected into the wearer when the system is turned on
 	var/automatic_meds_use = TRUE
-	///Image that gets added to the wearer's overlays and gets changed based on resource_storage_current
-	var/static/image/resource_overlay = image('icons/mob/hud.dmi', icon_state = "chemsuit_vis")
 	COOLDOWN_DECLARE(chemboost_activation_cooldown)
 	///Information about how reagents boost the system's effects.
 	var/reagent_info = ""
@@ -163,7 +161,10 @@
 	for(var/datum/action/current_action AS in component_actions)
 		current_action.remove_action(wearer)
 
-	wearer.overlays -= resource_overlay
+	if(ishuman(wearer))
+		var/mob/living/carbon/human/human = wearer
+		UnregisterSignal(human, COMSIG_CHEMSYSTEM_RESOURCE_UPDATE)
+
 	wearer = null
 
 ///Sets up actions and vars when the suit is equipped
@@ -176,7 +177,11 @@
 	for(var/datum/action/current_action AS in component_actions)
 		current_action.give_action(wearer)
 
-	wearer.overlays += resource_overlay
+
+	if(ishuman(wearer))
+		var/mob/living/carbon/human/human = wearer
+		RegisterSignal(human, COMSIG_CHEMSYSTEM_RESOURCE_UPDATE, PROC_REF(hud_resource_update))
+
 	update_resource(0)
 
 /datum/component/chem_booster/process()
@@ -384,9 +389,15 @@
 /datum/component/chem_booster/proc/update_resource(amount)
 	var/amount_added = min(resource_storage_max - resource_storage_current, amount)
 	resource_storage_current = max(resource_storage_current + amount_added, 0)
-	wearer.overlays -= resource_overlay
-	resource_overlay.alpha = resource_storage_current/resource_storage_max*255
-	wearer.overlays += resource_overlay
+	//Check if reagent level was empty and now is not, or if it was not empty but now is
+	if(ishuman(wearer) && ((!resource_storage_current && amount_added) || resource_storage_current == amount_added))
+		hud_resource_update()
+
+///Updates the icon of the user's HUD to show if Vali has green blood or not
+/datum/component/chem_booster/proc/hud_resource_update()
+	SIGNAL_HANDLER
+	var/mob/living/carbon/human/human = wearer
+	human.hud_armor_vali_overlay(resource_storage_current)
 
 ///Extracts resource from the suit to fill a beaker
 /datum/component/chem_booster/proc/extract(volume)

@@ -71,7 +71,6 @@
 	med_hud_set_status()
 	sec_hud_set_security_status()
 	hud_set_order()
-	hud_set_armor()
 	//and display them
 	add_to_all_mob_huds()
 

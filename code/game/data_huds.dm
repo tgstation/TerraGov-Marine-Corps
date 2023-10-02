@@ -552,10 +552,10 @@
 
 
 /datum/atom_hud/squad
-	hud_icons = list(SQUAD_HUD_TERRAGOV, MACHINE_HEALTH_HUD, MACHINE_AMMO_HUD)
+	hud_icons = list(SQUAD_HUD_TERRAGOV, MACHINE_HEALTH_HUD, MACHINE_AMMO_HUD, ARMOR_HUD)
 
 /datum/atom_hud/squad_som
-	hud_icons = list(SQUAD_HUD_SOM, MACHINE_HEALTH_HUD, MACHINE_AMMO_HUD)
+	hud_icons = list(SQUAD_HUD_SOM, MACHINE_HEALTH_HUD, MACHINE_AMMO_HUD, ARMOR_HUD)
 
 /mob/proc/hud_set_job(faction = FACTION_TERRAGOV)
 	return
@@ -630,10 +630,11 @@
 	if(!holder)
 		return
 
+	holder.overlays.Cut()
+
 	//Don't care how much armor the dead has
 	if(stat == DEAD)
 		holder.icon_state = ""
-		holder.overlays.Cut()
 		return
 
 	var/obj/item/clothing/armor = wear_suit ? wear_suit : null
@@ -647,49 +648,60 @@
 		*/
 		switch(module.type)
 			if(/obj/item/armor_module/module/ballistic_armor)
-				holder.overlays += "ballistic"
+				holder.overlays += image(holder.icon, src, "ballistic")
 			if(/obj/item/armor_module/module/better_shoulder_lamp)
-				holder.overlays += "lamp"
+				holder.overlays += image(holder.icon, src, "lamp")
 			if(/obj/item/armor_module/module/chemsystem)
-				holder.overlays += "chem"
+				//chem_booster/proc/hud_update_resource() handles what sprite to assign
+				SEND_SIGNAL(src, COMSIG_CHEMSYSTEM_RESOURCE_UPDATE)
 			if(/obj/item/armor_module/module/eshield, /obj/item/armor_module/module/eshield/som)
-				holder.overlays += "shield"
+				holder.overlays += image(holder.icon, src, "shield")
 			if(/obj/item/armor_module/module/fire_proof, /obj/item/armor_module/module/fire_proof/som)
-				holder.overlays += "fire"
+				holder.overlays += image(holder.icon, src, "fire")
 			if(/obj/item/armor_module/module/hlin_explosive_armor)
-				holder.overlays += "explosive"
+				holder.overlays += image(holder.icon, src, "explosive")
 			if(/obj/item/armor_module/module/mimir_environment_protection,
 			   /obj/item/armor_module/module/mimir_environment_protection/mark1,
 			   /obj/item/armor_module/module/mimir_environment_protection/som)
-				holder.overlays += "biohazard"
+				holder.overlays += image(holder.icon, src, "biohazard")
 			if(/obj/item/armor_module/module/tyr_extra_armor,
 			   /obj/item/armor_module/module/tyr_extra_armor/mark1,
 			   /obj/item/armor_module/module/tyr_extra_armor/som)
-				holder.overlays += "armor"
+				holder.overlays += image(holder.icon, src, "armor")
 			if(/obj/item/armor_module/module/valkyrie_autodoc, /obj/item/armor_module/module/valkyrie_autodoc/som)
-				holder.overlays += "medic"
+				holder.overlays += image(holder.icon, src, "medic")
 
 	/*
 	There is a bit of a conundrum!
 	From my understanding, soft_armor on the mob is the average value of all soft_armor values on each limb
 	However, some forms of damage only care about the value of the soft_armor on the targeted limb; one could game the system by only having a heavy chestplate
 	So to compromise, store whichever is highest to judge the armor level: overall mob soft_armor or the suit's soft_armor (same as chest)
+	There are 4 different armor levels, but level 4 is reserved for melee 65 and above (heavy armor with Tyr Mk2 and B18)
 	*/
-	var/armor_value = armor ? max(soft_armor.getRating(MELEE), armor.soft_armor.getRating(MELEE)) : soft_armor.getRating(MELEE)
+	var/amount = FLOOR((armor ? max(soft_armor.getRating(MELEE), armor.soft_armor.getRating(MELEE)) : soft_armor.getRating(MELEE)) / 16, 1)
 
 	//If the armor value has not changed, no need to update
 	//7 is how many characters long "armor_" is
-	if(holder.icon_state && armor_value == text2num(copytext(holder.icon_state, 7)))
+	if(holder.icon_state && amount == text2num(copytext(holder.icon_state, 7)))
 		return
 
-	//There are 4 different armor levels, but level 4 is reserved for melee 65 and above (heavy armor with Tyr Mk2 and B18)
-	var/amount = FLOOR(armor_value / 16, 1)
 	if(amount >= 4)
 		holder.icon_state = "armor_4"
+	else
+		//There is no "armor_0" so if armor is too low, it will not display an icon
+		holder.icon_state = "armor_[amount]"
+
+	hud_list[ARMOR_HUD] = holder
+
+///Separate proc that updates the Vali module overlay
+/mob/living/carbon/human/proc/hud_armor_vali_overlay(amount)
+	var/image/holder = hud_list[ARMOR_HUD]
+	if(!holder)
 		return
 
-	//There is no "armor_0" so if armor is too low, it will not display an icon
-	holder.icon_state = "armor_[amount]"
+	holder.overlays.Cut()
+	holder.overlays += image(holder.icon, src, amount ? "chem_active" : "chem")
+	hud_list[ARMOR_HUD] = holder
 
 ///Makes sentry health visible
 /obj/proc/hud_set_machine_health()
