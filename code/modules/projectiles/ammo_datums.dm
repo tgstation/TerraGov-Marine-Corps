@@ -3083,12 +3083,24 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	name = "xray heat bolt"
 	hud_state = "laser_xray"
 	icon_state = "u_laser"
-	flags_ammo_behavior = AMMO_ENERGY|AMMO_INCENDIARY|AMMO_SUNDERING|AMMO_HITSCAN
+	flags_ammo_behavior = AMMO_ENERGY|AMMO_SUNDERING|AMMO_HITSCAN
 	damage = 25
-	penetration = 5
+	penetration = 10
 	sundering = 1
 	max_range = 15
 	hitscan_effect_icon = "u_laser_beam"
+	/// Number of debuff stacks to apply when hitting mobs.
+	var/debuff_stacks = 5
+
+/datum/ammo/energy/lasgun/marine/xray/on_hit_mob(mob/M, obj/projectile/proj)
+	if(!isliving(M))
+		return
+	var/mob/living/living_victim = M
+	var/datum/status_effect/stacking/microwave/debuff = living_victim.has_status_effect(STATUS_EFFECT_MICROWAVE)
+	if(debuff)
+		debuff.add_stacks(debuff_stacks)
+	else
+		living_victim.apply_status_effect(STATUS_EFFECT_MICROWAVE, debuff_stacks)
 
 /datum/ammo/energy/lasgun/marine/xray/piercing
 	name = "xray piercing bolt"
@@ -3783,7 +3795,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	if(!do_after(user_xeno, 3 SECONDS, TRUE, trap))
 		return FALSE
 	trap.set_trap_type(TRAP_SMOKE_ACID)
-	trap.smoke = new /datum/effect_system/smoke_spread/xeno/neuro/medium
+	trap.smoke = new /datum/effect_system/smoke_spread/xeno/acid
 	trap.smoke.set_up(1, get_turf(trap))
 	return TRUE
 
