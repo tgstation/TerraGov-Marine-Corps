@@ -1,7 +1,0 @@
-author: "Lewdcifer"
-delete-after: True
-changes:
-  - rscdel: "X-Ray Laser Rifle no longer accepts the T-47 rail scope."
-  - balance: "X-Ray Laser Rifle shots are no longer incendiary. Instead, they now inflict five stacks of the Microwaved debuff."
-  - balance: "X-Ray Laser Rifle penetration increased from 5 to 10."
-  - balance: "X-Ray Laser Rifle's standard firing mode ammo usage reduced, basically amounting to a maximum of 50 shots (from 40)."
