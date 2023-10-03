@@ -379,7 +379,7 @@
 			continue
 		potential_targets += nearby_xeno
 	for(var/obj/vehicle/sealed/mecha/nearby_mech AS in cheap_get_mechs_near(src, range))
-		if(!nearby_mech.occupants)
+		if(!length(nearby_mech.occupants))
 			continue
 		var/mob/living/carbon/human/human_occupant = nearby_mech.occupants[1]
 		if(!istype(human_occupant) || (human_occupant.wear_id?.iff_signal & iff_signal))
