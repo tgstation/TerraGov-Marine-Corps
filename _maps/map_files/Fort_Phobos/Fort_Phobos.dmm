@@ -2013,6 +2013,13 @@
 /obj/structure/prop/vehicle/truck,
 /turf/open/floor/plating/ground/concrete,
 /area/mainship/patrol_base/som)
+"zj" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/machinery/vending/tool,
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/patrol_base/som)
 "zk" = (
 /obj/machinery/telecomms/server/presets/charlie,
 /turf/open/floor/mainship,
@@ -11396,7 +11403,7 @@ Uk
 Uk
 Uk
 vz
-cp
+zj
 Aw
 Aw
 Aw
@@ -12006,7 +12013,7 @@ Uk
 Uk
 Uk
 vz
-cp
+zj
 Aw
 Aw
 Aw
