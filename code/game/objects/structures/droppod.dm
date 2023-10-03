@@ -550,12 +550,14 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 	attached_clamp.update_icon()
 
 ///Loads a new pod onto the bay if one is not already there
-/obj/structure/drop_pod_launcher/proc/refresh_pod(new_target_z)
+/obj/structure/drop_pod_launcher/proc/refresh_pod(new_target_z, enabled = TRUE)
 	if(locate(/obj/structure/droppod) in get_turf(src))
 		return
 	var/obj/structure/droppod/pod = new pod_type(get_turf(src))
 	if(new_target_z)
 		pod.target_z = new_target_z
+	if(enabled)
+		pod.allow_drop()
 
 /obj/structure/drop_pod_launcher/leader
 	pod_type = /obj/structure/droppod/leader

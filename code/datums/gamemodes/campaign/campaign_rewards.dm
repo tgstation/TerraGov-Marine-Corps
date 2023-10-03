@@ -512,10 +512,17 @@
 		return
 
 	var/datum/game_mode/hvh/campaign/mode = SSticker.mode
+	var/datum/campaign_mission/current_mission = mode.current_mission
 	var/z_level = mode?.current_mission?.mission_z_level.z_value
+	var/active = FALSE
+	if(current_mission.mission_state == MISSION_STATE_ACTIVE)
+		for(var/datum/campaign_reward/droppod_enabled/droppod_enabled in faction.faction_rewards)
+			if(droppod_enabled.reward_flags & REWARD_ACTIVE)
+				active = TRUE
+			break
 
 	for(var/obj/structure/drop_pod_launcher/launcher AS in GLOB.droppod_bays)
-		launcher.refresh_pod(z_level)
+		launcher.refresh_pod(z_level, active)
 	to_chat(faction.faction_leader, span_warning("All drop pods have been restocked."))
 	return
 
