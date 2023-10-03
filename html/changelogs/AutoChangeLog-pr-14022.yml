@@ -1,4 +1,0 @@
-author: "Blundir"
-delete-after: True
-changes:
-  - rscadd: "after typing a message, icon above you stays for some time"
