@@ -10,6 +10,10 @@
 #define FIRESUPPORT_TYPE_ROCKETS "rockets"
 ///Cruise missile strike
 #define FIRESUPPORT_TYPE_CRUISE_MISSILE "cruise_missile"
+///Sentry drop pod
+#define FIRESUPPORT_TYPE_SENTRY_POD "sentry_pod"
+///Supply drop pod
+#define FIRESUPPORT_TYPE_SUPPLY_POD "supply_pod"
 ///Volkite gun run
 #define FIRESUPPORT_TYPE_VOLKITE "volkite_gun"
 ///SOM Incendiary rocket barrage
@@ -50,6 +54,8 @@ GLOBAL_LIST_INIT(fire_support_types, list(
 	FIRESUPPORT_TYPE_LASER = new /datum/fire_support/laser,
 	FIRESUPPORT_TYPE_ROCKETS = new /datum/fire_support/rockets,
 	FIRESUPPORT_TYPE_CRUISE_MISSILE = new /datum/fire_support/cruise_missile,
+	FIRESUPPORT_TYPE_SENTRY_POD = new /datum/fire_support/droppod,
+	FIRESUPPORT_TYPE_SUPPLY_POD = new /datum/fire_support/droppod/supply,
 	FIRESUPPORT_TYPE_VOLKITE = new /datum/fire_support/volkite,
 	FIRESUPPORT_TYPE_INCEND_ROCKETS = new /datum/fire_support/incendiary_rockets,
 	FIRESUPPORT_TYPE_RAD_MISSILE = new /datum/fire_support/rad_missile,

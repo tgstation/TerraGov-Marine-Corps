@@ -1,6 +1,3 @@
-#define DROPPOD_READY 1
-#define DROPPOD_ACTIVE 2
-#define DROPPOD_LANDED 3
 GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transit, /turf/open/space, /turf/open/ground/empty, /turf/open/liquid/lava))) // Don't drop at these tiles.
 
 ///Time drop pod spends in the transit z, mostly for visual flavor
@@ -66,7 +63,8 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 		ejectee.forceMove(loc)
 	QDEL_NULL(reserved_area)
 	QDEL_LIST(interaction_actions)
-	GLOB.droppod_list -= src // todo should be active pods only for iterative checks
+	if(drop_state == DROPPOD_READY)
+		GLOB.droppod_list -= src
 	return ..()
 
 
@@ -129,10 +127,9 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 	target_x = new_x
 	target_y = new_y
 	var/mob/notified_user = LAZYACCESS(buckled_mobs, 1)
-	if(notified_user)
-		. = checklanding(notified_user)
-		if(.)
-			balloon_alert(notified_user, "Coordinates updated")
+	. = checklanding(notified_user)
+	if(notified_user && .)
+		balloon_alert(notified_user, "Coordinates updated")
 
 ///Updates the z-level this pod drops to
 /obj/structure/droppod/proc/change_targeted_z(datum/source, new_z)
@@ -213,6 +210,7 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 	reserved_area = SSmapping.RequestBlockReservation(3,3)
 
 	drop_state = DROPPOD_ACTIVE
+	GLOB.droppod_list -= src
 	update_icon()
 	flick("[icon_state]_closing", src)
 	addtimer(CALLBACK(src, PROC_REF(launch_pod), user), 2.5 SECONDS)
@@ -221,6 +219,7 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 /obj/structure/droppod/proc/launch_pod(mob/user)
 	if(!launch_allowed)
 		drop_state = DROPPOD_READY
+		GLOB.droppod_list += src
 		for(var/atom/movable/deployed AS in contents)
 			deployed.forceMove(loc)
 		update_icon()
@@ -375,8 +374,11 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 /obj/structure/droppod/nonmob/supply_pod
 	name = "\improper TGMC Zeus supply drop pod"
 	desc = "A menacing metal hunk of steel that is used by the TGMC for quick tactical redeployment. This one is designed to carry supplies."
-	buckle_flags = null
 	icon_state = "supplypod"
+
+/obj/structure/droppod/nonmob/supply_pod/completedrop(mob/user)
+	layer = DOOR_OPEN_LAYER //so anything inside layers over it
+	return ..()
 
 /obj/structure/droppod/nonmob/supply_pod/attack_powerloader(mob/living/user, obj/item/powerloader_clamp/attached_clamp)
 	if(attached_clamp.loaded)
@@ -433,7 +435,7 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 /obj/structure/droppod/nonmob/mech_pod/ex_act(severity)
 	switch(severity)
 		if(EXPLODE_DEVASTATE)
-			qdel(src)
+			take_damage(100, BRUTE, BOMB, 0)
 		if(EXPLODE_HEAVY)
 			take_damage(50, BRUTE, BOMB, 0)
 
@@ -557,7 +559,3 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 
 /obj/structure/drop_pod_launcher/leader
 	pod_type = /obj/structure/droppod/leader
-
-#undef DROPPOD_READY
-#undef DROPPOD_ACTIVE
-#undef DROPPOD_LANDED
