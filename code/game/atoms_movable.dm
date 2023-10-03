@@ -106,7 +106,7 @@
 
 	if(opacity)
 		RemoveElement(/datum/element/light_blocking)
-	
+
 	if(LAZYLEN(buckled_mobs))
 		unbuckle_all_mobs(force = TRUE)
 
