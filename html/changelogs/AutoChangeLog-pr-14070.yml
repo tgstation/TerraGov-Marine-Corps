@@ -1,0 +1,7 @@
+author: "Barnet2"
+delete-after: True
+changes:
+  - balance: "Moved Lawanka Outpost's nuke closer to the cave entrance."
+  - balance: "Most of Lawanka Outpost's buildings are now normal walls and windows instead of reinforced."
+  - balance: "Made most of Lawanka Outpost's cave walls indestructible, outside layer still destructible"
+  - code_imp: "Named LV cave walls to \"tough rock\" for better player clarity"
