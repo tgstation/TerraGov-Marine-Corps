@@ -4,6 +4,7 @@
 	minimal_access = ALL_ANTAGONIST_ACCESS
 	skills_type = /datum/skills/crafty
 	faction = FACTION_FREELANCERS
+	minimap_icon = "freelancer"
 
 
 //Freelancer Standard

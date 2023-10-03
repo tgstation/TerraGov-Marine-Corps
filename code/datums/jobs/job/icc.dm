@@ -4,6 +4,7 @@
 	minimal_access = ALL_ANTAGONIST_ACCESS
 	skills_type = /datum/skills/craftier
 	faction = FACTION_ICC
+	minimap_icon = "icc"
 
 //ICC Standard
 /datum/job/icc/standard

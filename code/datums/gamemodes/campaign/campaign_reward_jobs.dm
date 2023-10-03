@@ -3,6 +3,7 @@
 	title = "Colonial militia standard"
 	paygrade = "militia1"
 	comm_title = "MIL"
+	minimap_icon = "militia"
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
 	html_description = {"
 		<b>Difficulty</b>:Moderate<br /><br />
@@ -18,7 +19,6 @@
 What you lack in equipment and military training you make up in bravery and conviction. Fight for Blood! Fight for home!"})
 
 /datum/job/som/mercenary/militia/standard
-	minimap_icon = "private"
 	outfit = /datum/outfit/job/som/militia/standard/uzi
 	multiple_outfits = TRUE
 	outfits = list(
@@ -189,7 +189,6 @@ What you lack in equipment and military training you make up in bravery and conv
 /datum/job/som/mercenary/militia/medic
 	title = "Militial Medic"
 	paygrade = "militia2"
-	minimap_icon = "medic"
 	skills_type = /datum/skills/combat_medic
 	outfit = /datum/outfit/job/som/militia/medic/uzi
 	outfits = list(
@@ -292,7 +291,6 @@ What you lack in equipment and military training you make up in bravery and conv
 /datum/job/som/mercenary/militia/leader
 	title = "Militia Leader"
 	paygrade = "militia3"
-	minimap_icon = "leader"
 	skills_type = /datum/skills/sl
 	outfit = /datum/outfit/job/som/militia/leader/assault_rifle
 	outfits = list(
