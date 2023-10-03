@@ -609,6 +609,7 @@
 		/obj/item/tool/surgery,
 		/obj/item/stack/nanopaste,
 		/obj/item/tweezers,
+		/obj/item/tweezers_advanced,
 	)
 
 /obj/item/storage/pouch/surgery/Initialize(mapload)
