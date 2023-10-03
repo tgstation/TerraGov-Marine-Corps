@@ -279,7 +279,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 		SSminimaps.add_marker(wearer, marker_flags, image('icons/UI_icons/map_blips.dmi', null, "defibbable"))
 		return
 	if(wearer.assigned_squad)
-		var/image/underlay = image('icons/UI_icons/map_blips.dmi', null, "squad_underlay")
+		var/image/underlay = image('icons/UI_icons/map_blips.dmi', null, "[wearer.job.minimap_icon]_underlay")
 		var/image/overlay = image('icons/UI_icons/map_blips.dmi', null, wearer.job.minimap_icon)
 		overlay.color = wearer.assigned_squad.color
 		underlay.overlays += overlay
