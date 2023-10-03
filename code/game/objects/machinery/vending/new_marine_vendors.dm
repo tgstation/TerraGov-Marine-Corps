@@ -715,6 +715,9 @@
 		/obj/item/explosive/plastique,
 		/obj/item/beacon/supply_beacon,
 		/obj/item/beacon/supply_beacon,
+		//RUTGMC EDIT ADDITION BEGIN - ORBITAL_BEACON
+		/obj/item/beacon/orbital_bombardment_beacon,
+		//RUTGMC EDIT ADDITION END
 		/obj/item/whistle,
 		/obj/item/compass,
 		/obj/item/binoculars/tactical,
@@ -726,6 +729,9 @@
 	gear_to_spawn = list(
 		/obj/item/explosive/plastique,
 		/obj/item/beacon/supply_beacon,
+		//RUTGMC EDIT ADDITION BEGIN - ORBITAL_BEACON
+		/obj/item/beacon/orbital_bombardment_beacon,
+		//RUTGMC EDIT ADDITION END
 		/obj/item/healthanalyzer,
 		/obj/item/roller/medevac,
 		/obj/item/medevac_beacon,

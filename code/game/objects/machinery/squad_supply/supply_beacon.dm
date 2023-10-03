@@ -61,7 +61,10 @@
 	var/marker_flags = GLOB.faction_to_minimap_flag[H.faction]
 	if(!marker_flags)
 		marker_flags = MINIMAP_FLAG_MARINE
-	SSminimaps.add_marker(src, marker_flags, image('icons/UI_icons/map_blips.dmi', null, "supply"))
+	//RUTGMC EDIT CHANGE BEGIN - ORBITAL_BEACON
+	//SSminimaps.add_marker(src, marker_flags, image('icons/UI_icons/map_blips.dmi', null, "supply")) RUTGMC  EDIT - ORIGINAL
+	SSminimaps.add_marker(src, marker_flags, image('modular_RUtgmc/icons/UI_icons/map_blips.dmi', null, beacon_mini_icon))
+	//RUTGMC EDIT CHANGE END
 	update_icon()
 	return TRUE
 

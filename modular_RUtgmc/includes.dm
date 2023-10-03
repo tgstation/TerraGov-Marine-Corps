@@ -38,6 +38,7 @@
 #include "code\game\objects\structures\stool_bed_chair_nest\xeno_nest.dm"
 #include "code\game\objects\structures\droppod.dm"
 #include "code\game\objects\machinery\vending\marine_vending.dm"
+#include "code\game\objects\machinery\squad_supply\supply_beacon.dm"
 #include "code\game\objects\machinery\autodoc.dm"
 #include "code\game\objects\structures\teleporter.dm"
 #include "code\modules\reagents\machinery\chem_dispenser.dm"

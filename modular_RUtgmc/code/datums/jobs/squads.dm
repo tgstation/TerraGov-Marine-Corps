@@ -1,3 +1,6 @@
+/datum/squad
+	var/list/squad_orbital_beacons = list()
+
 /datum/squad/New()
 	. = ..()
 	tracking_id = SSdirection.init_squad(name, squad_leader)
