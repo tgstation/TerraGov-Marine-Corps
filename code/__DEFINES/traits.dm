@@ -188,7 +188,7 @@
 #define TRAIT_INTOXICATION_IMMUNE "intoxication_immune" // Immune to the Intoxication debuff.
 #define TRAIT_INTOXICATION_RESISTANT "intoxication_resistant" // Resistant to the Intoxication debuff. Maximum amount of stacks limited.
 #define TRAIT_PAIN_IMMUNE "pain_immune" // We don't feel pain.
-///Prevent mob from being ignited due to IgniteMob()
+///Prevent mob from being ignited due to IgniteMob(), aswell as the DoT from already being on fire if the case.
 #define TRAIT_NON_FLAMMABLE "non-flammable"
 /// Prevents mob from riding mobs when buckled onto something
 #define TRAIT_CANT_RIDE "cant_ride"

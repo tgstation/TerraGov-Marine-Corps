@@ -5,7 +5,7 @@
 	if(.)
 		return
 	var/thermal_protection = get_flags_heat_protection(30000) //If you don't have fire suit level protection, you get a temperature increase and burns
-	if((1 - thermal_protection) > 0.0001)
+	if((1 - thermal_protection) > 0.0001 && !HAS_TRAIT(src, TRAIT_NON_FLAMMABLE))
 		adjust_bodytemperature(BODYTEMP_HEATING_MAX)
 		adjustFireLoss(0.5 * fire_stacks)
 	species?.handle_fire(src)
