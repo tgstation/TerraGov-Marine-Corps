@@ -319,6 +319,7 @@
 	anchored = FALSE
 	/// Sets how long a deployable takes to be anchored
 	var/anchor_time = 0 SECONDS
+	var/has_anchored_sprite = FALSE
 
 /// Can be anchored and unanchored from the ground by Alt Right Click.
 /obj/machinery/deployable/mounted/moveable/AltRightClick(mob/living/user)
@@ -331,6 +332,12 @@
 		if(!do_after(user, anchor_time, TRUE, src))
 			balloon_alert(user, "Interrupted!")
 			return
+
+	if(has_anchored_sprite)
+		if(!anchored)
+			icon_state = default_icon_state + "_anchored"
+		else
+			icon_state = default_icon_state
 
 	anchored = !anchored
 

@@ -181,8 +181,8 @@
 	icon_state = "hl_mag"
 
 /obj/item/ammo_magazine/heavy_isg
-	name = "ISG-15 shell (155mm Shell)"
-	desc = "A 15cm shell for the ISG-15 mounted heavy recoilless rifle. How did you even get this?"
+	name = "FK-88 shell (155mm Shell)"
+	desc = "A 15cm shell for the FK-88 mounted flak gun. How did you even get this?"
 	icon = 'icons/Marine/marine-hmg.dmi'
 	icon_state = "isg_ammo"
 	item_state = "isg_ammo"
@@ -194,8 +194,8 @@
 	default_ammo = /datum/ammo/rocket/heavy_isg
 
 /obj/item/ammo_magazine/heavy_isg/he
-	name = "ISG-15 HE shell (155mm Shell)"
-	desc = "A 15cm HE shell for the ISG-15 mounted heavy recoilless rifle. Activate in hand to swap between unguided and guided modes."
+	name = "FK-88 HE shell (155mm Shell)"
+	desc = "A 15cm HE shell for the FK-88 mounted flak gun. Activate in hand to swap between unguided and guided modes."
 	default_ammo = /datum/ammo/rocket/heavy_isg
 	var/guided = TRUE
 
@@ -210,6 +210,6 @@
 		guided = TRUE
 
 /obj/item/ammo_magazine/heavy_isg/sabot
-	name = "ISG-15 APFDS shell (155mm Shell)"
-	desc = "A 15cm APFDS shell for the ISG-15 mounted heavy recoilless rifle firing a dart at hypersonic speeds, will pierce through basically anything and onto the other side with ease. Requires a minimum range before it properly arms."
-	default_ammo = /datum/ammo/heavy_isg_sabot
+	name = "FK-88 APFDS shell (155mm Shell)"
+	desc = "A 15cm APFDS shell for the FK-88 mounted flak gun containing a large metal dart fired at hypersonic speeds, will pierce through basically anything and onto the other side with ease. Requires a minimum range before it stabilizes to properly hit anything, will rip a clean hole through basically anything."
+	default_ammo = /datum/ammo/bullet/heavy_isg_apfds

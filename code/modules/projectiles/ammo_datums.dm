@@ -2129,7 +2129,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	icon_state = "ltb"
 	hud_state = "bigshell_apfds"
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_PASS_THROUGH_TURF|AMMO_PASS_THROUGH_MOVABLE
-	damage = 225
+	damage = 195
 	penetration = 80
 	shell_speed = 7
 	accurate_range = 24

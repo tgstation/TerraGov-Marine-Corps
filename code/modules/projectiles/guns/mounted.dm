@@ -233,11 +233,11 @@
 	soft_armor = list(MELEE = 0, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 100, FIRE = 0, ACID = 0)
 
 //-------------------------------------------------------
-//ISG-15 mounted heavy infantry support gun
+//FK-88 mounted heavy infantry support gun
 
 /obj/item/weapon/gun/heavy_isg
-	name = "\improper ISG-88 mounted smart heavy infantry support gun"
-	desc = "The ISG-88 is a heavy infantry support gun. This will most definitely trouble anything that gets caught in the blast radius. Takes quite a while to dial in the shot, but is IFF-capable. Uses 15cm shells."
+	name = "\improper FK-88 mounted smart flak gun"
+	desc = "The FK-88 is a heavy infantry support gun. This will most definitely give a very bad day to anything that gets caught in its line of fire. Takes quite a while to dial in the shot, but is IFF-capable. Uses 15cm shells."
 
 	w_class = WEIGHT_CLASS_HUGE
 	flags_equip_slot = ITEM_SLOT_BACK
@@ -272,10 +272,13 @@
 
 	deploy_time = 5 SECONDS
 	undeploy_time = 3 SECONDS
-	deployable_item = /obj/machinery/deployable/mounted/moveable
+	deployable_item = /obj/machinery/deployable/mounted/moveable/isg
 
 	max_integrity = 600
 	soft_armor = list(MELEE = 0, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 100, FIRE = 0, ACID = 0)
+
+/obj/machinery/deployable/mounted/moveable/isg
+	has_anchored_sprite = TRUE
 
 ///This is my meme version, the first version of the HSG-102 to have auto-fire, revel in its presence.
 /obj/item/weapon/gun/tl102/death
