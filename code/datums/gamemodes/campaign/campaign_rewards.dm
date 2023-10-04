@@ -226,7 +226,7 @@
 	cost = 4
 	equipment_to_spawn = list(
 		/obj/effect/supply_drop/caliver,
-		/obj/effect/supply_drop/charger
+		/obj/effect/supply_drop/charger,
 	)
 
 /datum/campaign_reward/equipment/scout_rifle
