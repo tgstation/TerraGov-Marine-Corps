@@ -175,52 +175,192 @@
 		/obj/item/tool/shovel/etool,
 	)
 
-/datum/campaign_reward/equipment/rifle_pack
-	name = "Standard weapon resupply"
-	desc = "Rifles and ammo"
-	detailed_desc = "A number of standard rifles and ammo to match."
+/datum/campaign_reward/equipment/ballistic_tgmc
+	name = "ballistic weapon resupply"
+	desc = "Ballistic weapons and ammo"
+	detailed_desc = "A number of standard ballistic weapons and ammo to match."
 	uses = 1
 	cost = 2
 	equipment_to_spawn = list(
 		/obj/effect/supply_drop/standard_carbine,
 		/obj/effect/supply_drop/standard_rifle,
 		/obj/effect/supply_drop/combat_rifle,
-		/obj/effect/supply_drop/laser_rifle,
-		/obj/effect/supply_drop/standard_shotgun,
+		/obj/item/weapon/gun/rifle/standard_gpmg/machinegunner,
+		/obj/item/ammo_magazine/standard_gpmg,
+		/obj/item/ammo_magazine/standard_gpmg,
+		/obj/item/ammo_magazine/standard_gpmg,
+	)
+
+/datum/campaign_reward/equipment/ballistic_som
+	name = "ballistic weapon resupply"
+	desc = "Ballistic weapons and ammo"
+	detailed_desc = "A number of standard ballistic weapons and ammo to match."
+	uses = 1
+	cost = 2
+	equipment_to_spawn = list(
+		/obj/effect/supply_drop/som_rifle,
+		/obj/effect/supply_drop/som_smg,
+		/obj/effect/supply_drop/som_mg,
+	)
+
+/datum/campaign_reward/equipment/lasers
+	name = "Laser weapon resupply"
+	desc = "Laser weapons and ammo"
+	detailed_desc = "A number of laser weapons and ammo to match."
+	uses = 1
+	cost = 3
+	equipment_to_spawn = list(
+		/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_carbine/mag_harness,
+		/obj/item/storage/belt/marine/te_cells,
+		/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_rifle/rifleman,
+		/obj/item/storage/belt/marine/te_cells,
+		/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_mlaser/patrol,
+		/obj/item/storage/belt/marine/te_cells,
+	)
+
+/datum/campaign_reward/equipment/volkite
+	name = "Volkite weapon resupply"
+	desc = "Volkite weaponry and ammo"
+	detailed_desc = "A volkite caliver and charger, with accompanying ammo. Able to deflagrate targets, making them deadly against tightly packed opponents."
+	uses = 1
+	cost = 4
+	equipment_to_spawn = list(
+		/obj/effect/supply_drop/caliver,
+		/obj/effect/supply_drop/charger
 	)
 
 /datum/campaign_reward/equipment/scout_rifle
 	name = "Scout rifle"
-	desc = "BR-8"
-	detailed_desc = "A BR-8 scout rifle and ammo. An accurate, powerful rifle with integrated IFF."
+	desc = "BR-8 and ammo"
+	detailed_desc = "A BR-8 scout rifle and assorted ammo. An accurate, powerful rifle with integrated IFF."
 	uses = 2
 	cost = 6
 	equipment_to_spawn = list(
 		/obj/effect/supply_drop/scout,
 	)
 
-/datum/campaign_reward/equipment/som_weapons
-	name = "SOM ballistic weaponry"
-	desc = "Standard SOM ballistic weapons"
-	detailed_desc = "A set of SOM ballistic weapons and ammo."
+/datum/campaign_reward/equipment/smart_guns
+	name = "Smartgun weapon resupply"
+	desc = "Smartguns and ammo"
+	detailed_desc = "A SG-27 and SG-85 and ammo to match."
+	uses = 1
+	cost = 4
+	equipment_to_spawn = list(
+		/obj/item/weapon/gun/rifle/standard_smartmachinegun,
+		/obj/item/storage/belt/marine/smartgun,
+		/obj/item/weapon/gun/minigun/smart_minigun,
+		/obj/item/ammo_magazine/minigun_powerpack/smartgun,
+	)
+
+/datum/campaign_reward/equipment/shotguns_tgmc
+	name = "Shotgun weapon resupply"
+	desc = "Shotgun and ammo"
+	detailed_desc = "A SH-35 and ammo to match."
 	uses = 1
 	cost = 2
 	equipment_to_spawn = list(
-		/obj/effect/supply_drop/som_rifle,
-		/obj/effect/supply_drop/som_smg,
-		/obj/effect/supply_drop/som_shotgun,
-		/obj/effect/supply_drop/som_mg,
+		/obj/item/storage/belt/shotgun/mixed,
+		/obj/item/weapon/gun/shotgun/pump/t35/standard,
 	)
 
-/datum/campaign_reward/equipment/caliver
-	name = "VX-33 rifle"
-	desc = "Volkite caliver"
-	detailed_desc = "A volkite caliver and ammo. An accurate, powerful rifle able to deflagrate targets, making it deadly against tightly packed opponents."
+/datum/campaign_reward/equipment/shotguns_som
+	name = "Shotgun weapon resupply"
+	desc = "Shotgun and ammo"
+	detailed_desc = "A V-51 and ammo to match."
+	uses = 1
+	cost = 2
+	equipment_to_spawn = list(
+		/obj/item/storage/belt/shotgun/som/mixed,
+		/obj/item/weapon/gun/shotgun/som/standard,
+	)
+
+/datum/campaign_reward/equipment/heavy_armour_tgmc
+	name = "Tyr 2 heavy armour"
+	desc = "Heavy armor upgrades"
+	detailed_desc = "A pair of heavy armor suits equipped with 'Tyr 2' armour upgrades. Premier protection, but somewhat cumbersome."
+	uses = 2
+	cost = 4
+	equipment_to_spawn = list(
+		/obj/item/clothing/head/modular/m10x/tyr,
+		/obj/item/clothing/suit/modular/xenonauten/heavy/tyr_two,
+	)
+
+/datum/campaign_reward/equipment/shields_tgmc
+	name = "Defensive shields"
+	desc = "Heavy shields to hide behind"
+	detailed_desc = "A pair of heavy riot shields. Able to withstand a tremendous amount of punishment at the cost of occupying a hand and slowing you down."
+	uses = 2
+	cost = 3
+	equipment_to_spawn = list(
+		/obj/item/weapon/shield/riot/marine,
+		/obj/item/weapon/shield/riot/marine,
+	)
+
+/datum/campaign_reward/equipment/grenades_tgmc
+	name = "Grenade resupply"
+	desc = "An assortment of grenades"
+	detailed_desc = "A variety of different grenade types. Throw towards enemy."
 	uses = 2
 	cost = 6
 	equipment_to_spawn = list(
-		/obj/effect/supply_drop/caliver,
+		/obj/item/storage/belt/grenade/standard,
+		/obj/item/storage/pouch/grenade/combat_patrol,
 	)
+
+/datum/campaign_reward/equipment/tac_bino_tgmc
+	name = "Tactical binoculars"
+	desc = "One set of tactical binoculars"
+	detailed_desc = "Tactical binoculars for seeing into the distance and calling down air support."
+	uses = 1
+	cost = 3
+	equipment_to_spawn = list(
+		/obj/item/binoculars/fire_support/campaign,
+	)
+
+/datum/campaign_reward/equipment/heavy_armour_som
+	name = "Lorica heavy armour"
+	desc = "Heavy armor upgrades"
+	detailed_desc = "A pair of heavy armor suits equipped with 'Lorica' armour upgrades. Premier protection, but somewhat cumbersome."
+	uses = 2
+	cost = 4
+	equipment_to_spawn = list(
+		/obj/item/clothing/head/modular/som/lorica,
+		/obj/item/clothing/suit/modular/som/heavy/lorica,
+	)
+
+/datum/campaign_reward/equipment/shields_som
+	name = "Defensive shields"
+	desc = "Heavy shields to hide behind"
+	detailed_desc = "A pair of heavy riot shields. Able to withstand a tremendous amount of punishment at the cost of occupying a hand and slowing you down."
+	uses = 2
+	cost = 3
+	equipment_to_spawn = list(
+		/obj/item/weapon/shield/riot/marine/som,
+		/obj/item/weapon/shield/riot/marine/som,
+	)
+
+/datum/campaign_reward/equipment/grenades_som
+	name = "Grenade resupply"
+	desc = "An assortment of grenades"
+	detailed_desc = "A variety of different grenade types. Throw towards enemy."
+	uses = 2
+	cost = 6
+	equipment_to_spawn = list(
+		/obj/item/storage/belt/grenade/som/standard,
+		/obj/item/storage/pouch/grenade/som/combat_patrol,
+	)
+
+/datum/campaign_reward/equipment/tac_bino_som
+	name = "Tactical binoculars"
+	desc = "One set of tactical binoculars"
+	detailed_desc = "Tactical binoculars for seeing into the distance and calling down air support."
+	uses = 1
+	cost = 3
+	equipment_to_spawn = list(
+		/obj/item/binoculars/fire_support/campaign/som,
+	)
+
+////////////////////
 
 /datum/campaign_reward/reserves
 	name = "Strategic Reserve"
@@ -441,7 +581,7 @@
 		return
 
 /datum/campaign_reward/teleporter_charges
-	name = "Delegated Teleporter Array access"
+	name = "Teleporter Array charges"
 	desc = "+2 uses of the Teleporter Array"
 	detailed_desc = "Central command have allocated the battalion with two additional uses of the Teleporter Array. Its extremely costly to run and demand is high across the conflict zone, so make them count."
 	ui_icon = "tele_uses"
