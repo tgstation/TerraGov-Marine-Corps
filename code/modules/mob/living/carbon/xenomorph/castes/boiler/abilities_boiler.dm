@@ -251,9 +251,11 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 
 	to_chat(boiler_owner, span_xenonotice("We begin building up pressure."))
 
+	/* //RUTGMC EDIT REMOVAL BEGIN
 	if(!do_after(boiler_owner, 2 SECONDS, FALSE, target, BUSY_ICON_DANGER))
 		to_chat(boiler_owner, span_warning("We decide not to launch."))
 		return fail_activate()
+	*/ //RUTGMC EDIT REMOVAL END
 
 	if(!can_use_ability(target, FALSE, XACT_IGNORE_PLASMA))
 		return fail_activate()
@@ -284,7 +286,7 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 	INVOKE_ASYNC(src, PROC_REF(root))
 	return COMSIG_KB_ACTIVATED
 
-/* //RUTGMC EDIT BEGIN - Moved to modular_RUtgmc\code\modules\mob\living\carbon\xenomorph\castes\boiler\abilities_boiler.dm
+
 /// The alternative action of bombard, rooting. It begins the rooting/unrooting process.
 /datum/action/xeno_action/activable/bombard/proc/root()
 	if(HAS_TRAIT_FROM(owner, TRAIT_IMMOBILE, BOILER_ROOTED_TRAIT))
@@ -303,7 +305,7 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 
 	owner.balloon_alert_to_viewers("Rooted into place!")
 	set_rooted(TRUE)
-*/ // RUTGMC EDIT END
+
 
 /// Proc that actually does the rooting, makes us immobile and anchors us in place. Similar to defender's fortify.
 /datum/action/xeno_action/activable/bombard/proc/set_rooted(on)
