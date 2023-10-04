@@ -12474,18 +12474,10 @@
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
 	dir = 1
 	},
-<<<<<<< HEAD:_maps/map_files/Minerva/TGS_Minerva.dmm
-/turf/open/floor/grass,
-/area/mainship/living/port_garden)
-"dr" = (
-/obj/machinery/door/airlock/mainship/generic/corporate{
-	dir = 2
-=======
 /obj/machinery/atmospherics/pipe/manifold/supply/visible/layer1,
 /obj/effect/ai_node,
 /turf/open/floor/mainship/black/corner{
 	dir = 1
->>>>>>> master:_maps/map_files/Arachne/TGS_Arachne.dmm
 	},
 /area/mainship/living/cryo_cells)
 "kxJ" = (
@@ -13611,18 +13603,6 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-<<<<<<< HEAD:_maps/map_files/Minerva/TGS_Minerva.dmm
-/obj/structure/disposalpipe/segment,
-/turf/open/floor/plating/plating_catwalk,
-/area/mainship/hallways/port_hallway)
-"hc" = (
-/obj/machinery/air_alarm,
-/turf/closed/wall/mainship,
-/area/mainship/living/briefing)
-"hd" = (
-/obj/machinery/vending/tool,
-/obj/machinery/camera/autoname/mainship{
-=======
 /obj/effect/ai_node,
 /obj/machinery/landinglight/cas{
 	dir = 8;
@@ -13647,7 +13627,6 @@
 /area/mainship/hallways/hangar)
 "lrV" = (
 /obj/structure/bed/chair/sofa/left{
->>>>>>> master:_maps/map_files/Arachne/TGS_Arachne.dmm
 	dir = 1
 	},
 /turf/open/floor/wood,
@@ -15728,16 +15707,8 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-<<<<<<< HEAD:_maps/map_files/Minerva/TGS_Minerva.dmm
-/turf/open/floor/mainship/mono,
-/area/sulaco/hydro)
-"nu" = (
-/obj/machinery/power/apc/mainship{
-	dir = 8
-=======
 /obj/machinery/door/firedoor{
 	dir = 1
->>>>>>> master:_maps/map_files/Arachne/TGS_Arachne.dmm
 	},
 /turf/open/floor/mainship/floor,
 /area/mainship/engineering/engine_core)
@@ -18671,23 +18642,6 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-<<<<<<< HEAD:_maps/map_files/Minerva/TGS_Minerva.dmm
-/obj/effect/ai_node,
-/turf/open/floor/mainship/mono,
-/area/mainship/hull/starboard_hull)
-"wg" = (
-/obj/structure/rack,
-/obj/item/clothing/suit/armor/bulletproof,
-/obj/item/clothing/suit/armor/bulletproof,
-/obj/item/clothing/suit/armor/bulletproof,
-/obj/item/clothing/suit/armor/bulletproof,
-/obj/effect/spawner/random/misc/gnome,
-/turf/open/floor/mainship/red,
-/area/mainship/command/cic)
-"wh" = (
-/obj/machinery/door/airlock/mainship/maint{
-	dir = 2
-=======
 /turf/open/floor/wood,
 /area/mainship/hallways/starboard_hallway)
 "puG" = (
@@ -18699,7 +18653,6 @@
 	},
 /turf/open/floor/mainship/red/corner{
 	dir = 4
->>>>>>> master:_maps/map_files/Arachne/TGS_Arachne.dmm
 	},
 /area/mainship/hull/starboard_hull)
 "puU" = (
@@ -23769,26 +23722,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/plating,
-<<<<<<< HEAD:_maps/map_files/Minerva/TGS_Minerva.dmm
-/area/mainship/hallways/hangar)
-"KA" = (
-/obj/machinery/light/mainship,
-/turf/open/floor/mainship/red,
-/area/mainship/living/briefing)
-"KB" = (
-/turf/open/floor/mainship/red{
-	dir = 6
-	},
-/area/mainship/living/briefing)
-"KC" = (
-/turf/open/floor/mainship/orange{
-	dir = 10
-	},
-/area/mainship/living/briefing)
-"KD" = (
-/turf/open/floor/mainship/orange{
-	dir = 6
-=======
 /area/mainship/engineering/engineering_workshop)
 "tPr" = (
 /turf/closed/wall/mainship/white,
@@ -23797,7 +23730,6 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 8
->>>>>>> master:_maps/map_files/Arachne/TGS_Arachne.dmm
 	},
 /obj/machinery/camera/autoname/mainship,
 /turf/open/floor/mainship/floor,
@@ -27202,21 +27134,11 @@
 /turf/open/floor/mainship/sterile/side{
 	dir = 1
 	},
-<<<<<<< HEAD:_maps/map_files/Minerva/TGS_Minerva.dmm
-/obj/effect/spawner/random/misc/gnome,
-/turf/open/floor/mainship/mono,
-/area/mainship/hallways/hangar)
-"Uz" = (
-/obj/structure/table/woodentable,
-/obj/item/clipboard{
-	pixel_x = 5
-=======
 /area/mainship/medical/lower_medical)
 "wIA" = (
 /obj/machinery/door_control/old/ai{
 	id = "cl_shutters";
 	name = "Privacy Shutters"
->>>>>>> master:_maps/map_files/Arachne/TGS_Arachne.dmm
 	},
 /obj/structure/table/fancywoodentable,
 /turf/open/floor/wood,
@@ -28870,18 +28792,6 @@
 /area/mainship/medical/lower_medical)
 "yiV" = (
 /obj/structure/cable,
-<<<<<<< HEAD:_maps/map_files/Minerva/TGS_Minerva.dmm
-/turf/open/floor/engine,
-/area/mainship/engineering/engine_core)
-"ZW" = (
-/obj/machinery/self_destruct/console,
-/obj/effect/ai_node,
-/obj/effect/spawner/random/misc/gnome,
-/turf/open/floor/mainship/mono,
-/area/mainship/command/self_destruct)
-"ZX" = (
-=======
->>>>>>> master:_maps/map_files/Arachne/TGS_Arachne.dmm
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 9
 	},
@@ -31608,104 +31518,6 @@ meP
 meP
 "}
 (27,1,1) = {"
-<<<<<<< HEAD:_maps/map_files/Minerva/TGS_Minerva.dmm
-ZK
-FW
-ZK
-ZK
-ZK
-ZK
-ZK
-ZK
-ZK
-ZK
-ZK
-ZK
-ZK
-ZK
-ZK
-ZK
-ZK
-ZK
-ZK
-YB
-XE
-XE
-XE
-XE
-fD
-Le
-gQ
-hx
-ip
-vu
-kl
-kl
-kl
-kl
-kl
-kl
-kl
-kl
-kl
-tl
-uE
-vu
-tl
-hA
-NC
-hD
-kl
-BF
-kl
-kl
-tl
-kl
-vw
-vw
-kl
-tl
-kl
-kl
-kl
-kl
-wk
-kl
-NX
-Pt
-NC
-hD
-vw
-uJ
-vw
-vw
-vw
-gQ
-JW
-fD
-XE
-hr
-ZK
-ZK
-ZK
-ZK
-ZK
-ZK
-ZK
-ZK
-ZK
-ZK
-ZK
-ZK
-ZK
-ZK
-ZK
-ZK
-ZK
-ZK
-FW
-ZK
-=======
 meP
 meP
 meP
@@ -31806,7 +31618,6 @@ jzy
 meP
 meP
 meP
->>>>>>> master:_maps/map_files/Arachne/TGS_Arachne.dmm
 "}
 (28,1,1) = {"
 meP
@@ -33645,104 +33456,6 @@ meP
 meP
 "}
 (46,1,1) = {"
-<<<<<<< HEAD:_maps/map_files/Minerva/TGS_Minerva.dmm
-ZK
-FW
-ZK
-ZK
-ZK
-ZK
-YB
-XE
-VS
-ez
-AR
-mR
-dS
-eC
-CH
-aX
-OS
-bO
-VC
-NA
-VC
-dz
-VC
-VC
-VC
-VC
-dz
-VC
-wj
-BI
-kq
-kq
-kq
-kq
-pE
-px
-kq
-kq
-kq
-kZ
-MT
-Vf
-zG
-sf
-ty
-ty
-ty
-ty
-ty
-FB
-ER
-FZ
-GQ
-AS
-wF
-la
-KZ
-zs
-zs
-zs
-yz
-hb
-NZ
-jl
-Wg
-Gn
-SW
-UN
-Wj
-xt
-Da
-UU
-eP
-zm
-UU
-wg
-Qw
-XE
-XE
-XE
-Rb
-zX
-ZK
-ZK
-ZK
-ZK
-ZK
-ZK
-ZK
-ZK
-ZK
-ZK
-ZK
-ZK
-FW
-ZK
-=======
 meP
 meP
 meP
@@ -33843,7 +33556,6 @@ jzy
 meP
 meP
 meP
->>>>>>> master:_maps/map_files/Arachne/TGS_Arachne.dmm
 "}
 (47,1,1) = {"
 meP
@@ -36396,104 +36108,6 @@ meP
 meP
 "}
 (72,1,1) = {"
-<<<<<<< HEAD:_maps/map_files/Minerva/TGS_Minerva.dmm
-ZK
-FW
-ZK
-ZK
-ZK
-ZK
-ZK
-ZK
-ZK
-ZK
-ZK
-ZK
-ZK
-YB
-VD
-yg
-Zm
-cb
-cI
-df
-ez
-ez
-ez
-ez
-ez
-ez
-zP
-ez
-ez
-ez
-ez
-ez
-ez
-ez
-ez
-Cs
-On
-ez
-ez
-dO
-ez
-ez
-ez
-Fo
-rb
-RV
-ez
-ez
-ez
-ez
-ez
-ez
-ez
-ez
-ez
-rx
-ez
-ez
-ez
-ez
-ez
-ez
-ez
-ez
-RV
-ez
-sU
-Ac
-VC
-Gz
-sA
-eC
-yN
-Yr
-Wb
-ZB
-ZB
-bV
-KF
-Lc
-ur
-Bt
-UF
-Dg
-gl
-pP
-gs
-ZW
-aH
-aU
-lY
-ZK
-ZK
-ZK
-FW
-ZK
-=======
 meP
 meP
 meP
@@ -36594,7 +36208,6 @@ jzy
 meP
 meP
 meP
->>>>>>> master:_maps/map_files/Arachne/TGS_Arachne.dmm
 "}
 (73,1,1) = {"
 meP
@@ -38433,104 +38046,6 @@ meP
 meP
 "}
 (91,1,1) = {"
-<<<<<<< HEAD:_maps/map_files/Minerva/TGS_Minerva.dmm
-ZK
-FW
-ZK
-ZK
-ZK
-ZK
-YB
-XE
-UY
-AV
-Am
-Am
-Am
-Am
-hR
-fu
-Vo
-cj
-Io
-Jo
-dA
-ea
-ea
-ea
-ea
-gt
-mF
-gY
-gY
-gY
-jA
-SA
-qV
-gY
-rd
-gY
-gY
-gY
-gY
-pp
-Ci
-Ci
-xS
-xS
-zQ
-zQ
-NM
-LI
-ww
-Cg
-Ci
-Ci
-Ci
-aF
-Ci
-OT
-Ci
-hc
-Ot
-zU
-Jo
-NI
-NQ
-PH
-QG
-RX
-gv
-RX
-QD
-Xv
-Xv
-Xv
-Xv
-Xv
-Xv
-Xy
-Xv
-Xv
-Xv
-Xy
-Xv
-Xy
-aU
-ZK
-ZK
-ZK
-ZK
-ZK
-ZK
-ZK
-ZK
-ZK
-ZK
-ZK
-FW
-ZK
-=======
 meP
 meP
 meP
@@ -38631,7 +38146,6 @@ jzy
 meP
 meP
 meP
->>>>>>> master:_maps/map_files/Arachne/TGS_Arachne.dmm
 "}
 (92,1,1) = {"
 meP
