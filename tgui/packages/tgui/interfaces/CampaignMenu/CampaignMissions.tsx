@@ -1,6 +1,6 @@
 import { CampaignData, MissionData, MissionIcon } from './index';
 import { useBackend, useLocalState } from '../../backend';
-import { LabeledList, Button, Stack, Section } from '../../components';
+import { LabeledList, Button, Stack, Section, Table } from '../../components';
 
 export const CampaignMissions = (props, context) => {
   const { act, data } = useBackend<CampaignData>(context);
@@ -68,7 +68,31 @@ export const CampaignMissions = (props, context) => {
             </LabeledList.Item>
           </LabeledList>
         </Section>
-        <Section title="Rewards">{selectedMission.mission_rewards}</Section>
+        <Section title={'Rewards'}>
+          <Table>
+            <Table.Row>
+              <Table.Cell />
+              <Table.Cell color="label">Victory Points</Table.Cell>
+              <Table.Cell color="label">Attrition Points</Table.Cell>
+            </Table.Row>
+            <Table.Row>
+              <Table.Cell color="label">Major Victory</Table.Cell>
+              <Table.Cell>{selectedMission.vp_major_reward}</Table.Cell>
+              <Table.Cell>{selectedMission.ap_major_reward}</Table.Cell>
+            </Table.Row>
+            <Table.Row>
+              <Table.Cell color="label">Minor Victory</Table.Cell>
+              <Table.Cell>{selectedMission.vp_minor_reward}</Table.Cell>
+              <Table.Cell>{selectedMission.ap_minor_reward}</Table.Cell>
+            </Table.Row>
+            <Table.Row>
+              <Table.Cell color="label">Additional Rewards</Table.Cell>
+              <Table.Cell colspan="2">
+                {selectedMission.mission_rewards}
+              </Table.Cell>
+            </Table.Row>
+          </Table>
+        </Section>
       </Stack.Item>
     </Stack>
   );

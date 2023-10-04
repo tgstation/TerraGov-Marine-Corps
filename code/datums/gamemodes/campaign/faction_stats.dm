@@ -242,6 +242,10 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 	current_mission_data["objective_description"] = (faction == current_mission.starting_faction ? current_mission.starting_faction_objective_description : current_mission.hostile_faction_objective_description)
 	current_mission_data["mission_brief"] = (faction == current_mission.starting_faction ? current_mission.starting_faction_mission_brief : current_mission.hostile_faction_mission_brief)
 	current_mission_data["mission_rewards"] = (faction == current_mission.starting_faction ? current_mission.starting_faction_additional_rewards : current_mission.hostile_faction_additional_rewards)
+	current_mission_data["vp_major_reward"] = (faction == current_mission.starting_faction ? current_mission.victory_point_rewards[MISSION_OUTCOME_MAJOR_VICTORY][1] : current_mission.victory_point_rewards[MISSION_OUTCOME_MAJOR_LOSS][2])
+	current_mission_data["vp_minor_reward"] = (faction == current_mission.starting_faction ? current_mission.victory_point_rewards[MISSION_OUTCOME_MINOR_VICTORY][1] : current_mission.victory_point_rewards[MISSION_OUTCOME_MINOR_LOSS][2])
+	current_mission_data["ap_major_reward"] = (faction == current_mission.starting_faction ? current_mission.attrition_point_rewards[MISSION_OUTCOME_MAJOR_VICTORY][1] : current_mission.attrition_point_rewards[MISSION_OUTCOME_MAJOR_LOSS][2])
+	current_mission_data["ap_minor_reward"] = (faction == current_mission.starting_faction ? current_mission.attrition_point_rewards[MISSION_OUTCOME_MINOR_VICTORY][1] : current_mission.attrition_point_rewards[MISSION_OUTCOME_MINOR_LOSS][2])
 	data["current_mission"] = current_mission_data
 
 	var/list/available_missions_data = list()
@@ -254,6 +258,10 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 		mission_data["objective_description"] = potential_mission.starting_faction_objective_description
 		mission_data["mission_brief"] = potential_mission.starting_faction_mission_brief
 		mission_data["mission_rewards"] = potential_mission.starting_faction_additional_rewards
+		mission_data["vp_major_reward"] = (faction == potential_mission.starting_faction ? potential_mission.victory_point_rewards[MISSION_OUTCOME_MAJOR_VICTORY][1] : potential_mission.victory_point_rewards[MISSION_OUTCOME_MAJOR_LOSS][2])
+		mission_data["vp_minor_reward"] = (faction == potential_mission.starting_faction ? potential_mission.victory_point_rewards[MISSION_OUTCOME_MINOR_VICTORY][1] : potential_mission.victory_point_rewards[MISSION_OUTCOME_MINOR_LOSS][2])
+		mission_data["ap_major_reward"] = (faction == potential_mission.starting_faction ? potential_mission.attrition_point_rewards[MISSION_OUTCOME_MAJOR_VICTORY][1] : potential_mission.attrition_point_rewards[MISSION_OUTCOME_MAJOR_LOSS][2])
+		mission_data["ap_minor_reward"] = (faction == potential_mission.starting_faction ? potential_mission.attrition_point_rewards[MISSION_OUTCOME_MINOR_VICTORY][1] : potential_mission.attrition_point_rewards[MISSION_OUTCOME_MINOR_LOSS][2])
 		mission_data["mission_icon"] = potential_mission.mission_icon
 		mission_data["mission_critical"] = !!(potential_mission.mission_flags & MISSION_CRITICAL)
 		available_missions_data += list(mission_data)
@@ -308,6 +316,7 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 	data["total_attrition_points"] = total_attrition_points
 	data["faction_leader"] = faction_leader
 	data["victory_points"] = victory_points
+	data["max_victory_points"] = CAMPAIGN_MAX_VICTORY_POINTS
 	data["faction"] = faction
 	data["icons"] = GLOB.campaign_icons
 	data["mission_icons"] = GLOB.campaign_mission_icons

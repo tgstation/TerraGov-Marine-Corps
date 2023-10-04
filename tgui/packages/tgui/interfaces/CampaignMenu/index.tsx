@@ -32,6 +32,10 @@ export type MissionData = {
   objective_description: string;
   mission_brief: string;
   mission_rewards: string;
+  vp_major_reward: number;
+  vp_minor_reward: number;
+  ap_major_reward: number;
+  ap_minor_reward: number;
   mission_icon?: string;
   mission_critical?: number;
 };
@@ -62,6 +66,7 @@ export type CampaignData = {
   total_attrition_points: number;
   faction_leader?: string;
   victory_points: number;
+  max_victory_points: number;
   faction: string;
   icons?: string[];
   mission_icons?: string[];
@@ -90,7 +95,7 @@ export const CampaignMenu = (props, context) => {
       theme={data.ui_theme}
       title={data.faction + ' Mission Control'}
       width={700}
-      height={430}>
+      height={550}>
       <Window.Content>
         {selectedAsset ? (
           <Modal width="500px">
