@@ -50,6 +50,10 @@
 	icon_state = "Research"
 	job = /datum/job/terragov/medical/researcher
 
+/obj/effect/landmark/start/job/food_service_specialist
+	icon_state = "Chef"
+	job = /datum/job/terragov/civilian/food_service_specialist
+
 /obj/effect/landmark/start/job/corporateliaison
 	icon_state = "CL"
 	job = /datum/job/terragov/civilian/liaison

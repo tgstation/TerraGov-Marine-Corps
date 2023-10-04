@@ -403,13 +403,19 @@ You can serve your Division in a variety of roles, so choose carefully."})
 
 /datum/job/terragov/civilian/food_service_specialist
 	title = FOOD_SERVICE_SPECIALIST
+	req_admin_notify = TRUE
+	paygrade = "E2"
 	comm_title = "CHEF"
-	paygrade = "PFC"
 	total_positions = 2
-	supervisors = "the acting commander"
-	display_order = JOB_DISPLAY_ORDER_DOCTOR
-	outfit = /datum/job/terragov/civilian/food_service_specialist
+	access = list(ACCESS_MARINE_WO, ACCESS_MARINE_PREP, ACCESS_MARINE_MECH, ACCESS_CIVILIAN_PUBLIC)
+	minimal_access = list(ACCESS_MARINE_WO, ACCESS_MARINE_PREP, ACCESS_CIVILIAN_PUBLIC, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_CARGO)
+	outfit = /datum/outfit/job/terragov/civilian/food_service_specialist
+	exp_type = EXP_TYPE_REGULAR_ALL
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_PROVIDES_SQUAD_HUD
+	jobworth = list(
+		/datum/job/xenomorph = LARVA_POINTS_REGULAR,
+		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
+	)
 	html_description = {"
 		<b>Difficulty</b>: Easy<br /><br />
 		<b>You answer to the</b> acting captain<br /><br />
@@ -429,9 +435,9 @@ You can serve your Division in a variety of roles, so choose carefully."})
 		return
 	switch(playtime_mins)
 		if(0 to 3000) // starting
-			new_human.wear_id.paygrade = "PFC"
+			new_human.wear_id.paygrade = "E2"
 		if(3001 to INFINITY) // 50 hrs
-			new_human.wear_id.paygrade = "CPL"
+			new_human.wear_id.paygrade = "E3"
 
 /datum/job/terragov/civilian/food_service_specialist/radio_help_message(mob/M)
 	. = ..()
@@ -440,7 +446,7 @@ You are tasked with keeping the TGMC well fed and happy, usually in the form of 
 You are also an expert when it comes to botany and hydroponics. If you do not know what you are doing, <b>mentorhelp</b> so a mentor can assist you."})
 
 
-/datum/job/terragov/civilian/food_service_specialist
+/datum/outfit/job/terragov/civilian/food_service_specialist
 	name = FOOD_SERVICE_SPECIALIST
 	jobtype = /datum/job/terragov/civilian/food_service_specialist
 
