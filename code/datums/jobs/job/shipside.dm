@@ -458,6 +458,7 @@ You are also an expert when it comes to botany and hydroponics. If you do not kn
 	shoes = /obj/item/clothing/shoes/black
 	gloves = /obj/item/clothing/gloves/white
 	glasses = /obj/item/clothing/glasses/sunglasses
+	head = /obj/item/clothing/head/chefhat
 
 /datum/job/terragov/engineering
 	job_category = JOB_CAT_ENGINEERING

@@ -38,12 +38,16 @@
 
 /obj/structure/closet/secure_closet/freezer/fridge/Initialize(mapload)
 	. = ..()
-	for(var/i in 1 to 5)
+	for(var/i in 2 to 5)
 		new /obj/item/reagent_containers/food/drinks/milk(src)
 	for(var/i in 1 to 3)
 		new /obj/item/reagent_containers/food/drinks/soymilk(src)
 	for(var/i in 1 to 2)
 		new /obj/item/storage/fancy/egg_box(src)
+	for(var/i in 4 to 6)
+		new /obj/item/reagent_containers/food/snacks/flour(src)
+	for(var/i in 5 to 10)
+		new /obj/item/reagent_containers/food/snacks/meat/monkey(src)
 
 /obj/structure/closet/secure_closet/freezer/money
 	name = "Freezer"
