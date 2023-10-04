@@ -41,7 +41,7 @@
 			adjust_fire_stacks(-1)	//Passively lose firestacks when not on fire while resting and having firestacks built up.
 		return
 	if(!(xeno_caste.caste_flags & CASTE_FIRE_IMMUNE) && on_fire) //Sanity check; have to be on fire to actually take the damage.
-		apply_damage((fire_stacks + 3), BURN, blocked = FIRE)
+		adjustFireLoss(fire_stacks + 3)
 
 /mob/living/carbon/xenomorph/proc/handle_living_health_updates()
 	if(health < 0)
