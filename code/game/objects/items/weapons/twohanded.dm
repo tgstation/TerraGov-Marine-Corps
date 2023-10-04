@@ -52,6 +52,8 @@
 	SEND_SIGNAL(src, COMSIG_ITEM_WIELD, user)
 	name = "[name] (Wielded)"
 	update_item_state()
+	user.update_inv_l_hand()
+	user.update_inv_r_hand()
 	return TRUE
 
 
@@ -79,8 +81,6 @@
 	to_chat(user, span_notice("You grab [src] with both hands."))
 	offhand.name = "[name] - offhand"
 	offhand.desc = "Your second grip on [src]."
-	user.update_inv_l_hand()
-	user.update_inv_r_hand()
 	return TRUE
 
 /obj/item/proc/remove_offhand(mob/user)
@@ -420,12 +420,16 @@
 	. = ..()
 	AddComponent(/datum/component/harvester, 60, TRUE)
 
-/obj/item/weapon/twohanded/glaive/harvester/equipped(mob/user, slot)
+/obj/item/weapon/twohanded/glaive/harvester/wield(mob/user)
 	. = ..()
+	if(!.)
+		return
 	toggle_item_bump_attack(user, TRUE)
 
-/obj/item/weapon/twohanded/glaive/harvester/dropped(mob/user)
+/obj/item/weapon/twohanded/glaive/harvester/unwield(mob/user)
 	. = ..()
+	if(!.)
+		return
 	toggle_item_bump_attack(user, FALSE)
 
 /obj/item/weapon/twohanded/glaive/harvester/get_mechanics_info()

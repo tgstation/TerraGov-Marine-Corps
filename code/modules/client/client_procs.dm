@@ -143,6 +143,9 @@
 	GLOB.clients += src
 	GLOB.directory[ckey] = src
 
+	//On creation of a client, add an entry into the GLOB list of the client with their stats
+	GLOB.personal_statistics_list[ckey] = new /datum/personal_statistics
+
 	// Instantiate stat panel
 	stat_panel = new(src, "statbrowser")
 	stat_panel.subscribe(src, PROC_REF(on_stat_panel_message))
@@ -409,14 +412,13 @@
 				"Forever alone :("\
 			)
 			send2adminchat("Server", "[cheesy_message] (No staff online)")
+	if(mob)
+		mob.become_uncliented()
 	GLOB.ahelp_tickets.ClientLogout(src)
 	GLOB.directory -= ckey
 	GLOB.clients -= src
 	seen_messages = null
 	QDEL_LIST_ASSOC_VAL(char_render_holders)
-	if(movingmob != null)
-		LAZYREMOVE(movingmob.client_mobs_in_contents, mob)
-		movingmob = null
 	SSping.currentrun -= src
 	QDEL_NULL(tooltips)
 	Master.UpdateTickRate()

@@ -16,128 +16,27 @@
 /turf/open/floor/plating/asteroidfloor,
 /area/shuttle/drop2/lz2)
 "aj" = (
-/obj/machinery/landinglight/ds2/delaytwo,
 /obj/structure/barricade/wooden{
 	dir = 1
 	},
+/obj/machinery/landinglight/lz2,
 /turf/open/floor/plating/asteroidwarning/down,
-/area/shuttle/drop2/lz2)
-"ak" = (
-/obj/structure/barricade/wooden{
-	dir = 1
-	},
-/obj/machinery/landinglight/ds2/delayone,
-/turf/open/floor/plating/asteroidwarning/down,
-/area/shuttle/drop2/lz2)
-"al" = (
-/obj/structure/barricade/wooden{
-	dir = 1
-	},
-/obj/machinery/landinglight/ds2,
-/turf/open/floor/plating/asteroidwarning/down,
-/area/shuttle/drop2/lz2)
-"am" = (
-/obj/structure/barricade/wooden{
-	dir = 1
-	},
-/obj/machinery/landinglight/ds2/delaythree,
-/turf/open/floor/plating/asteroidwarning/down,
-/area/shuttle/drop2/lz2)
-"an" = (
-/obj/structure/barricade/wooden{
-	dir = 1
-	},
-/obj/machinery/landinglight/ds2/delaytwo,
-/turf/open/floor/plating/asteroidwarning/down,
-/area/shuttle/drop2/lz2)
-"ao" = (
-/obj/machinery/landinglight/ds2,
-/obj/structure/barricade/wooden{
-	dir = 1
-	},
-/turf/open/floor/plating/asteroidwarning/down,
-/area/shuttle/drop2/lz2)
-"ap" = (
-/obj/structure/barricade/wooden{
-	dir = 8
-	},
-/obj/machinery/landinglight/ds2/delaythree{
-	dir = 4
-	},
-/turf/open/floor/plating/asteroidwarning{
-	dir = 4
-	},
 /area/shuttle/drop2/lz2)
 "aq" = (
 /turf/open/floor/plating,
-/area/shuttle/drop2/lz2)
-"ar" = (
-/obj/structure/barricade/wooden{
-	dir = 4
-	},
-/obj/machinery/landinglight/ds2/delayone{
-	dir = 8
-	},
-/turf/open/floor/plating/asteroidwarning{
-	dir = 8
-	},
 /area/shuttle/drop2/lz2)
 "as" = (
 /obj/docking_port/stationary/marine_dropship/lz2,
 /obj/docking_port/stationary/crashmode,
 /turf/open/floor/plating,
 /area/shuttle/drop2/lz2)
-"at" = (
-/obj/structure/barricade/wooden{
-	dir = 8
-	},
-/obj/machinery/landinglight/ds2{
-	dir = 4
-	},
-/turf/open/floor/plating/asteroidwarning{
-	dir = 4
-	},
-/area/shuttle/drop2/lz2)
-"au" = (
-/obj/structure/barricade/wooden{
-	dir = 4
-	},
-/obj/machinery/landinglight/ds2{
-	dir = 8
-	},
-/turf/open/floor/plating/asteroidwarning{
-	dir = 8
-	},
-/area/shuttle/drop2/lz2)
 "av" = (
 /obj/structure/dispenser,
 /turf/open/floor,
 /area/shuttle/drop2/lz2)
-"aw" = (
-/obj/structure/barricade/wooden{
-	dir = 8
-	},
-/obj/machinery/landinglight/ds2/delayone{
-	dir = 4
-	},
-/turf/open/floor/plating/asteroidwarning{
-	dir = 4
-	},
-/area/shuttle/drop2/lz2)
 "ax" = (
 /obj/machinery/camera/autoname/lz_camera,
 /turf/open/floor/plating,
-/area/shuttle/drop2/lz2)
-"ay" = (
-/obj/structure/barricade/wooden{
-	dir = 4
-	},
-/obj/machinery/landinglight/ds2/delaythree{
-	dir = 8
-	},
-/turf/open/floor/plating/asteroidwarning{
-	dir = 8
-	},
 /area/shuttle/drop2/lz2)
 "az" = (
 /obj/structure/largecrate,
@@ -147,7 +46,7 @@
 /obj/structure/barricade/wooden{
 	dir = 4
 	},
-/obj/machinery/landinglight/ds2/delaytwo{
+/obj/machinery/landinglight/lz2{
 	dir = 8
 	},
 /turf/open/floor/plating/asteroidwarning{
@@ -162,32 +61,8 @@
 /obj/structure/closet/firecloset,
 /turf/open/floor/plating,
 /area/maintenance/apmaint)
-"aF" = (
-/obj/machinery/landinglight/ds2{
-	dir = 8
-	},
-/turf/open/floor/plating/asteroidwarning{
-	dir = 8
-	},
-/area/shuttle/drop2/lz2)
-"aG" = (
-/obj/machinery/landinglight/ds2/delayone{
-	dir = 4
-	},
-/turf/open/floor/plating/asteroidwarning{
-	dir = 4
-	},
-/area/shuttle/drop2/lz2)
-"aI" = (
-/obj/machinery/landinglight/ds2/delaythree{
-	dir = 8
-	},
-/turf/open/floor/plating/asteroidwarning{
-	dir = 8
-	},
-/area/shuttle/drop2/lz2)
 "aJ" = (
-/obj/machinery/landinglight/ds2/delaytwo{
+/obj/machinery/landinglight/lz2{
 	dir = 4
 	},
 /turf/open/floor/plating/asteroidwarning{
@@ -195,15 +70,7 @@
 	},
 /area/shuttle/drop2/lz2)
 "aL" = (
-/obj/machinery/landinglight/ds2/delayone{
-	dir = 8
-	},
-/turf/open/floor/plating/asteroidwarning{
-	dir = 8
-	},
-/area/shuttle/drop2/lz2)
-"aM" = (
-/obj/machinery/landinglight/ds2/delaytwo{
+/obj/machinery/landinglight/lz2{
 	dir = 8
 	},
 /turf/open/floor/plating/asteroidwarning{
@@ -216,33 +83,11 @@
 	},
 /turf/open/floor,
 /area/shuttle/drop2/lz2)
-"aO" = (
-/obj/machinery/landinglight/ds2/delayone{
-	dir = 4
-	},
-/obj/structure/barricade/wooden{
-	dir = 8
-	},
-/turf/open/floor/plating/asteroidwarning{
-	dir = 4
-	},
-/area/shuttle/drop2/lz2)
-"aP" = (
-/obj/machinery/landinglight/ds2/delaytwo{
-	dir = 4
-	},
-/obj/structure/barricade/wooden{
-	dir = 8
-	},
-/turf/open/floor/plating/asteroidwarning{
-	dir = 4
-	},
-/area/shuttle/drop2/lz2)
 "aR" = (
 /obj/structure/barricade/wooden{
 	dir = 8
 	},
-/obj/machinery/landinglight/ds2/delaytwo{
+/obj/machinery/landinglight/lz2{
 	dir = 4
 	},
 /turf/open/floor/plating/asteroidwarning{
@@ -251,63 +96,9 @@
 /area/shuttle/drop2/lz2)
 "aT" = (
 /obj/structure/barricade/wooden,
-/obj/machinery/landinglight/ds2/delaythree{
+/obj/machinery/landinglight/lz2{
 	dir = 1
 	},
-/turf/open/floor/plating/asteroidwarning{
-	dir = 1
-	},
-/area/shuttle/drop2/lz2)
-"aU" = (
-/obj/structure/barricade/wooden,
-/obj/machinery/landinglight/ds2{
-	dir = 1
-	},
-/turf/open/floor/plating/asteroidwarning{
-	dir = 1
-	},
-/area/shuttle/drop2/lz2)
-"aV" = (
-/obj/structure/barricade/wooden,
-/obj/machinery/landinglight/ds2/delayone{
-	dir = 1
-	},
-/turf/open/floor/plating/asteroidwarning{
-	dir = 1
-	},
-/area/shuttle/drop2/lz2)
-"aW" = (
-/obj/machinery/landinglight/ds2/delaytwo{
-	dir = 1
-	},
-/obj/structure/barricade/wooden,
-/turf/open/floor/plating/asteroidwarning{
-	dir = 1
-	},
-/area/shuttle/drop2/lz2)
-"aX" = (
-/obj/machinery/landinglight/ds2/delaythree{
-	dir = 1
-	},
-/obj/structure/barricade/wooden,
-/turf/open/floor/plating/asteroidwarning{
-	dir = 1
-	},
-/area/shuttle/drop2/lz2)
-"aY" = (
-/obj/machinery/landinglight/ds2{
-	dir = 1
-	},
-/obj/structure/barricade/wooden,
-/turf/open/floor/plating/asteroidwarning{
-	dir = 1
-	},
-/area/shuttle/drop2/lz2)
-"aZ" = (
-/obj/machinery/landinglight/ds2/delayone{
-	dir = 1
-	},
-/obj/structure/barricade/wooden,
 /turf/open/floor/plating/asteroidwarning{
 	dir = 1
 	},
@@ -475,35 +266,7 @@
 /obj/structure/largecrate/random,
 /turf/open/floor/prison/sterilewhite,
 /area/lv624/lazarus/fitness)
-"bU" = (
-/obj/machinery/landinglight/ds1/delaytwo,
-/turf/open/floor/plating,
-/area/shuttle/drop1/lz1)
-"bV" = (
-/obj/machinery/landinglight/ds1/delayone,
-/turf/open/floor/plating,
-/area/shuttle/drop1/lz1)
-"bW" = (
-/obj/machinery/landinglight/ds1,
-/turf/open/floor/plating,
-/area/shuttle/drop1/lz1)
-"bX" = (
-/obj/machinery/landinglight/ds1/delaythree,
-/turf/open/floor/plating,
-/area/shuttle/drop1/lz1)
-"bY" = (
-/obj/machinery/landinglight/ds1/delaythree{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/shuttle/drop1/lz1)
 "bZ" = (
-/turf/open/floor/plating,
-/area/shuttle/drop1/lz1)
-"ca" = (
-/obj/machinery/landinglight/ds1/delayone{
-	dir = 8
-	},
 /turf/open/floor/plating,
 /area/shuttle/drop1/lz1)
 "cb" = (
@@ -511,44 +274,8 @@
 /obj/docking_port/stationary/crashmode,
 /turf/open/floor/plating,
 /area/shuttle/drop1/lz1)
-"cc" = (
-/obj/machinery/landinglight/ds1{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/shuttle/drop1/lz1)
 "cd" = (
 /obj/machinery/camera/autoname/lz_camera,
-/turf/open/floor/plating,
-/area/shuttle/drop1/lz1)
-"ce" = (
-/obj/machinery/landinglight/ds1{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/shuttle/drop1/lz1)
-"cf" = (
-/obj/machinery/landinglight/ds1/delayone{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/shuttle/drop1/lz1)
-"cg" = (
-/obj/machinery/landinglight/ds1/delaythree{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/shuttle/drop1/lz1)
-"ch" = (
-/obj/machinery/landinglight/ds1/delaytwo{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/shuttle/drop1/lz1)
-"cj" = (
-/obj/machinery/landinglight/ds1/delaytwo{
-	dir = 8
-	},
 /turf/open/floor/plating,
 /area/shuttle/drop1/lz1)
 "cl" = (
@@ -572,30 +299,6 @@
 "cx" = (
 /turf/open/floor/prison/sterilewhite,
 /area/lv624/lazarus/fitness)
-"cy" = (
-/obj/machinery/landinglight/ds1/delaythree{
-	dir = 1
-	},
-/turf/open/floor/plating,
-/area/shuttle/drop1/lz1)
-"cz" = (
-/obj/machinery/landinglight/ds1{
-	dir = 1
-	},
-/turf/open/floor/plating,
-/area/shuttle/drop1/lz1)
-"cA" = (
-/obj/machinery/landinglight/ds1/delayone{
-	dir = 1
-	},
-/turf/open/floor/plating,
-/area/shuttle/drop1/lz1)
-"cB" = (
-/obj/machinery/landinglight/ds1/delaytwo{
-	dir = 1
-	},
-/turf/open/floor/plating,
-/area/shuttle/drop1/lz1)
 "cC" = (
 /obj/structure/cable,
 /turf/open/floor/prison/sterilewhite,
@@ -964,7 +667,6 @@
 /area/medical/medbay2)
 "ex" = (
 /obj/structure/closet/bodybag/cryobag,
-/obj/structure/closet/bodybag/cryobag,
 /turf/open/floor/tile/bar,
 /area/medical/medbay2)
 "eA" = (
@@ -1168,7 +870,7 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/turf/open/floor/wood/variable/damaged/standard,
+/turf/open/floor/wood/broken,
 /area/crew_quarters/sleep_male)
 "fq" = (
 /obj/machinery/power/terminal,
@@ -2185,6 +1887,13 @@
 "kY" = (
 /turf/closed/gm/dense,
 /area/lv624/ground/compound/sw)
+"kZ" = (
+/obj/structure/largecrate,
+/obj/machinery/landinglight/lz1{
+	dir = 4
+	},
+/turf/open/floor,
+/area/shuttle/drop1/lz1)
 "lb" = (
 /obj/machinery/computer/aifixer,
 /turf/open/floor/tile/blue/whiteblue{
@@ -2690,7 +2399,7 @@
 /turf/open/floor,
 /area/maintenance/substation)
 "oa" = (
-/turf/open/floor/wood/variable/damaged/standard,
+/turf/open/floor/wood/broken,
 /area/crew_quarters/sleep/bedrooms)
 "ob" = (
 /obj/structure/closet/emcloset,
@@ -2717,18 +2426,11 @@
 /area/maintenance/substation)
 "ol" = (
 /obj/structure/cable,
-/turf/open/floor/wood/variable/damaged/standard,
+/turf/open/floor/wood/broken,
 /area/crew_quarters/sleep/bedrooms)
 "ot" = (
 /obj/structure/cable,
 /turf/open/floor,
-/area/shuttle/drop1/lz1)
-"ov" = (
-/obj/machinery/landinglight/ds1/delaythree{
-	dir = 1
-	},
-/obj/effect/ai_node,
-/turf/open/floor/plating,
 /area/shuttle/drop1/lz1)
 "ow" = (
 /obj/structure/table,
@@ -2789,6 +2491,9 @@
 /area/crew_quarters/sleep/bedrooms)
 "oW" = (
 /obj/structure/cargo_container,
+/obj/machinery/landinglight/lz1{
+	dir = 8
+	},
 /turf/open/floor,
 /area/shuttle/drop1/lz1)
 "oX" = (
@@ -2848,7 +2553,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/open/floor/wood/variable/damaged/standard,
+/turf/open/floor/wood/broken,
 /area/crew_quarters/sleep_male)
 "pp" = (
 /obj/structure/window/framed/colony,
@@ -2866,10 +2571,10 @@
 /obj/structure/bed/chair/wood/wings{
 	dir = 1
 	},
-/turf/open/floor/wood/variable/damaged/standard,
+/turf/open/floor/wood/broken,
 /area/crew_quarters/sleep_male)
 "pu" = (
-/turf/open/floor/wood/variable/damaged/standard,
+/turf/open/floor/wood/broken,
 /area/crew_quarters/sleep_male)
 "pv" = (
 /obj/structure/bed/chair/wood/wings{
@@ -2902,14 +2607,14 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/turf/open/floor/wood/variable/damaged/standard,
+/turf/open/floor/wood/broken,
 /area/crew_quarters/sleep_male)
 "pA" = (
 /obj/structure/bed,
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/turf/open/floor/wood/variable/damaged/standard,
+/turf/open/floor/wood/broken,
 /area/crew_quarters/sleep_male)
 "pC" = (
 /turf/open/floor/wood,
@@ -2946,7 +2651,7 @@
 /obj/structure/closet,
 /obj/effect/spawner/random/misc/cigarettes,
 /obj/machinery/light,
-/turf/open/floor/wood/variable/damaged/standard,
+/turf/open/floor/wood/broken,
 /area/crew_quarters/sleep_male)
 "pK" = (
 /turf/closed/wall,
@@ -3021,6 +2726,12 @@
 /turf/open/floor/marking/warning{
 	dir = 1
 	},
+/area/shuttle/drop1/lz1)
+"qj" = (
+/obj/machinery/landinglight/lz1{
+	dir = 8
+	},
+/turf/open/floor,
 /area/shuttle/drop1/lz1)
 "qk" = (
 /obj/structure/table/flipped,
@@ -3167,7 +2878,7 @@
 /obj/structure/cable,
 /obj/machinery/power/apc/drained,
 /obj/structure/nuke_disk_candidate,
-/turf/open/floor/wood/variable/damaged/standard,
+/turf/open/floor/wood/broken,
 /area/crew_quarters/sleep_male)
 "qS" = (
 /obj/structure/window/reinforced{
@@ -3841,7 +3552,7 @@
 	dir = 8;
 	on = 1
 	},
-/turf/open/floor/wood/variable/damaged/standard,
+/turf/open/floor/wood/broken,
 /area/crew_quarters/sleep/bedrooms)
 "tO" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -3926,7 +3637,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 5
 	},
-/turf/open/floor/wood/variable/damaged/standard,
+/turf/open/floor/wood/broken,
 /area/crew_quarters/sleep/bedrooms)
 "us" = (
 /obj/structure/closet/radiation,
@@ -4108,6 +3819,13 @@
 	},
 /turf/open/floor,
 /area/shuttle/drop1/lz1)
+"wI" = (
+/obj/effect/ai_node,
+/obj/machinery/landinglight/lz1{
+	dir = 8
+	},
+/turf/open/floor,
+/area/shuttle/drop1/lz1)
 "wL" = (
 /obj/machinery/atmospherics/pipe/manifold/general/visible,
 /obj/effect/decal/cleanable/blood,
@@ -4131,6 +3849,13 @@
 /obj/structure/nuke_disk_candidate,
 /turf/open/floor/plating,
 /area/lv624/lazarus/hydroponics)
+"xh" = (
+/obj/effect/decal/cleanable/blood/oil,
+/obj/machinery/landinglight/lz1{
+	dir = 8
+	},
+/turf/open/floor,
+/area/shuttle/drop1/lz1)
 "xq" = (
 /obj/machinery/miner/damaged,
 /turf/open/floor/grass,
@@ -4209,7 +3934,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/open/floor/wood/variable/damaged/standard,
+/turf/open/floor/wood/broken,
 /area/crew_quarters/sleep/bedrooms)
 "yI" = (
 /obj/structure/table/flipped,
@@ -4367,6 +4092,12 @@
 	},
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/quart)
+"AX" = (
+/obj/machinery/landinglight/lz1{
+	dir = 1
+	},
+/turf/open/floor,
+/area/shuttle/drop1/lz1)
 "Bc" = (
 /obj/machinery/door/airlock/multi_tile/mainship/medidoor{
 	dir = 2
@@ -4418,7 +4149,7 @@
 /obj/structure/bed,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/effect/ai_node,
-/turf/open/floor/wood/variable/damaged/standard,
+/turf/open/floor/wood/broken,
 /area/crew_quarters/sleep/bedrooms)
 "BJ" = (
 /turf/closed/mineral/smooth,
@@ -4476,7 +4207,7 @@
 /area/lv624/ground/compound/n)
 "Ct" = (
 /obj/machinery/door/airlock/mainship/generic,
-/turf/open/floor/wood/variable/damaged/standard,
+/turf/open/floor/wood/broken,
 /area/crew_quarters/sleep/bedrooms)
 "Cz" = (
 /obj/item/weapon/gun/pistol/holdout,
@@ -4496,15 +4227,8 @@
 "CO" = (
 /obj/structure/cable,
 /obj/effect/ai_node,
-/turf/open/floor/wood/variable/damaged/standard,
+/turf/open/floor/wood/broken,
 /area/crew_quarters/sleep/bedrooms)
-"CW" = (
-/obj/machinery/landinglight/ds1/delaytwo{
-	dir = 8
-	},
-/obj/effect/ai_node,
-/turf/open/floor/plating,
-/area/shuttle/drop1/lz1)
 "CY" = (
 /obj/effect/landmark/corpsespawner/engineer,
 /turf/open/floor/tile/whiteyellow/corner{
@@ -4685,6 +4409,12 @@
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/open/ground/grass/grass2,
 /area/lv624/ground/compound/sw)
+"FH" = (
+/obj/machinery/landinglight/lz1{
+	dir = 1
+	},
+/turf/closed/wall,
+/area/shuttle/drop1/lz1)
 "FJ" = (
 /obj/docking_port/stationary/crashmode,
 /turf/open/floor/grass,
@@ -4971,7 +4701,7 @@
 	dir = 4
 	},
 /obj/effect/spawner/random/engineering/toolbox,
-/turf/open/floor/wood/variable/damaged/standard,
+/turf/open/floor/wood/broken,
 /area/crew_quarters/sleep_male)
 "KH" = (
 /turf/open/ground,
@@ -5114,6 +4844,10 @@
 /obj/machinery/door/airlock/multi_tile/mainship/generic,
 /turf/open/floor,
 /area/lv624/lazarus/robotics)
+"Mz" = (
+/obj/machinery/landinglight/lz1,
+/turf/open/floor,
+/area/shuttle/drop1/lz1)
 "MD" = (
 /obj/structure/window/framed/colony,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -5296,6 +5030,13 @@
 /obj/effect/landmark/weed_node,
 /turf/open/ground,
 /area/space)
+"Pj" = (
+/obj/structure/reagent_dispensers/watertank,
+/obj/machinery/landinglight/lz1{
+	dir = 4
+	},
+/turf/open/floor,
+/area/shuttle/drop1/lz1)
 "Pl" = (
 /obj/effect/decal/cleanable/blood/gibs/xeno,
 /turf/open/floor/plating/dmg2,
@@ -5328,6 +5069,12 @@
 /obj/effect/ai_node,
 /turf/open/floor/grass,
 /area/vapor_processing/east_compound)
+"Py" = (
+/obj/machinery/landinglight/lz1{
+	dir = 4
+	},
+/turf/open/floor,
+/area/shuttle/drop1/lz1)
 "PD" = (
 /turf/closed/mineral/smooth,
 /area/lv624/ground/caves/central1)
@@ -5343,9 +5090,6 @@
 /turf/open/floor/grass,
 /area/lv624/ground/compound/c)
 "PN" = (
-/obj/machinery/landinglight/ds1/delaytwo{
-	dir = 4
-	},
 /obj/effect/landmark/patrol_point{
 	id = "SOM_21";
 	name = "SOM exit point 21"
@@ -5388,6 +5132,13 @@
 /obj/effect/landmark/xeno_silo_spawn,
 /turf/open/ground,
 /area/vapor_processing/caves/se)
+"Qp" = (
+/obj/effect/ai_node,
+/obj/machinery/landinglight/lz1{
+	dir = 4
+	},
+/turf/open/floor,
+/area/shuttle/drop1/lz1)
 "Qu" = (
 /obj/structure/cable,
 /obj/effect/ai_node,
@@ -5532,6 +5283,13 @@
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor,
 /area/lv624/lazarus/research)
+"SH" = (
+/obj/structure/reagent_dispensers/watertank,
+/obj/machinery/landinglight/lz1{
+	dir = 8
+	},
+/turf/open/floor,
+/area/shuttle/drop1/lz1)
 "SJ" = (
 /obj/machinery/computer/intel_computer,
 /turf/open/floor/tile/whiteyellow/full,
@@ -5729,6 +5487,11 @@
 /obj/effect/ai_node,
 /turf/open/ground,
 /area/lv624/ground/caves/west1)
+"Vz" = (
+/obj/effect/ai_node,
+/obj/machinery/landinglight/lz1,
+/turf/open/floor,
+/area/shuttle/drop1/lz1)
 "VC" = (
 /obj/effect/landmark/start/job/survivor,
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
@@ -6015,7 +5778,7 @@
 	dir = 1
 	},
 /obj/effect/ai_node,
-/turf/open/floor/wood/variable/damaged/standard,
+/turf/open/floor/wood/broken,
 /area/crew_quarters/sleep_male)
 "YT" = (
 /obj/machinery/door/airlock/mainship/generic{
@@ -6575,29 +6338,29 @@ mc
 mc
 mr
 mc
-mc
-mc
-mc
-ms
-mc
-wM
-mc
-mc
-mc
-mc
-mc
-wM
-ms
-mc
-mc
-mc
-mc
-mc
-mc
-me
-mc
-me
-me
+Py
+Py
+Py
+Pj
+Py
+Qp
+Py
+Py
+Py
+Py
+Py
+Qp
+Pj
+Py
+Py
+Py
+Py
+Py
+Py
+kZ
+Py
+kZ
+kZ
 me
 me
 me
@@ -6611,26 +6374,26 @@ ad
 ad
 SV
 ai
-ap
-ap
-at
-aw
 aR
-ap
-at
-aG
+aR
+aR
+aR
+aR
+aR
+aR
 aJ
-ap
-at
-aw
+aJ
 aR
-ap
-at
-aO
-aP
-ap
-at
-aw
+aR
+aR
+aR
+aR
+aR
+aR
+aR
+aR
+aR
+aR
 aR
 ai
 ad
@@ -6676,31 +6439,31 @@ lt
 mc
 mc
 me
-mc
+Mz
 Ma
-bY
-bY
-cc
-cf
-ch
-bY
-cc
-cf
-ch
-bY
+bZ
+bZ
+bZ
+bZ
+bZ
+bZ
+bZ
+bZ
+bZ
+bZ
 Ma
-cf
-ch
-bY
-cc
-cf
-ch
-bY
-cc
-cf
+bZ
+bZ
+bZ
+bZ
+bZ
+bZ
+bZ
+bZ
+bZ
 PN
 Ma
-mc
+AX
 mc
 mc
 mc
@@ -6778,15 +6541,7 @@ lu
 wM
 me
 mc
-mc
-bU
-bZ
-bZ
-cd
-bZ
-bZ
-bZ
-bZ
+Mz
 bZ
 bZ
 bZ
@@ -6798,11 +6553,19 @@ bZ
 bZ
 bZ
 bZ
+cd
+bZ
+bZ
+bZ
+bZ
+bZ
+bZ
+bZ
 bZ
 cd
 bZ
-ov
-mc
+za
+AX
 xH
 mc
 wM
@@ -6814,7 +6577,7 @@ ad
 ad
 az
 ad
-ak
+aj
 aq
 aq
 aq
@@ -6836,7 +6599,7 @@ aq
 ax
 aq
 aq
-aU
+aT
 ad
 cO
 ad
@@ -6880,8 +6643,8 @@ lv
 Pt
 mc
 mc
-mc
-bV
+Mz
+bZ
 bZ
 bZ
 bZ
@@ -6903,8 +6666,8 @@ bZ
 bZ
 bZ
 za
-cz
-pK
+bZ
+FH
 pK
 pK
 pK
@@ -6916,7 +6679,7 @@ ad
 az
 az
 Ll
-al
+aj
 aq
 aq
 aq
@@ -6938,7 +6701,7 @@ aq
 aq
 aq
 aq
-aV
+aT
 ad
 ad
 ad
@@ -6982,8 +6745,7 @@ lt
 md
 mc
 mc
-mc
-bW
+Mz
 bZ
 bZ
 bZ
@@ -7005,8 +6767,9 @@ bZ
 bZ
 bZ
 bZ
-cA
-pK
+bZ
+bZ
+FH
 pN
 pW
 qe
@@ -7018,7 +6781,7 @@ ad
 ad
 Ll
 ad
-am
+aj
 aq
 aq
 aq
@@ -7040,7 +6803,7 @@ aq
 aq
 aq
 aq
-aW
+aT
 ad
 ad
 ad
@@ -7084,8 +6847,7 @@ lt
 mc
 mc
 mB
-mc
-bX
+Mz
 bZ
 bZ
 bZ
@@ -7107,8 +6869,9 @@ bZ
 bZ
 bZ
 bZ
-cB
-pK
+bZ
+bZ
+FH
 pO
 Oa
 zS
@@ -7120,7 +6883,7 @@ ad
 ad
 ad
 ad
-an
+aj
 aq
 aq
 aq
@@ -7142,7 +6905,7 @@ aq
 aq
 aq
 aq
-aX
+aT
 Ll
 ad
 cO
@@ -7186,8 +6949,7 @@ lt
 mc
 mc
 mC
-mc
-bU
+Mz
 bZ
 bZ
 bZ
@@ -7209,8 +6971,9 @@ bZ
 bZ
 bZ
 bZ
-cy
-pK
+bZ
+bZ
+FH
 pP
 pY
 ZM
@@ -7222,7 +6985,7 @@ ad
 az
 ad
 ad
-ak
+aj
 aq
 aq
 aq
@@ -7244,7 +7007,7 @@ aq
 aq
 aq
 aq
-aY
+aT
 ad
 ad
 ad
@@ -7288,8 +7051,8 @@ lt
 mc
 mc
 mD
-mc
-bV
+Mz
+bZ
 bZ
 bZ
 bZ
@@ -7311,8 +7074,8 @@ bZ
 bZ
 bZ
 bZ
-cz
-pK
+bZ
+FH
 pQ
 yz
 qh
@@ -7324,7 +7087,7 @@ ad
 az
 ad
 ad
-al
+aj
 aq
 aq
 aq
@@ -7346,7 +7109,7 @@ aq
 aq
 aq
 aq
-aZ
+aT
 ad
 cO
 ad
@@ -7390,8 +7153,7 @@ lt
 wM
 mc
 mc
-wM
-bW
+Vz
 bZ
 bZ
 bZ
@@ -7413,8 +7175,9 @@ bZ
 bZ
 bZ
 bZ
-cA
-pK
+bZ
+bZ
+FH
 Xv
 qa
 hM
@@ -7426,7 +7189,7 @@ ad
 az
 ad
 ad
-am
+aj
 aq
 aq
 aq
@@ -7448,7 +7211,7 @@ aq
 aq
 aq
 aq
-aW
+aT
 ad
 ad
 ad
@@ -7492,8 +7255,7 @@ lt
 mc
 mr
 mc
-mc
-bX
+Mz
 bZ
 bZ
 bZ
@@ -7515,8 +7277,9 @@ bZ
 bZ
 bZ
 bZ
-cB
-mc
+bZ
+bZ
+AX
 ot
 me
 mc
@@ -7550,7 +7313,7 @@ aq
 aq
 aq
 aq
-aX
+aT
 ad
 ad
 ad
@@ -7594,8 +7357,7 @@ lt
 me
 mc
 mc
-mc
-bU
+Mz
 bZ
 bZ
 bZ
@@ -7617,8 +7379,9 @@ bZ
 bZ
 bZ
 bZ
-cy
-mc
+bZ
+bZ
+AX
 Be
 mc
 mc
@@ -7630,7 +7393,7 @@ ad
 az
 Ll
 ad
-ak
+aj
 aq
 aq
 aq
@@ -7652,7 +7415,7 @@ aq
 ax
 aq
 aq
-aU
+aT
 ad
 ad
 ad
@@ -7696,8 +7459,7 @@ lt
 md
 ms
 ms
-mc
-bV
+Mz
 bZ
 bZ
 bZ
@@ -7719,8 +7481,9 @@ bZ
 bZ
 bZ
 bZ
-cz
-mc
+bZ
+bZ
+AX
 ot
 wM
 mc
@@ -7732,7 +7495,7 @@ ad
 Ll
 ad
 ad
-ao
+aj
 aq
 aq
 aq
@@ -7754,7 +7517,7 @@ aq
 aq
 aq
 aq
-aV
+aT
 ad
 ad
 cO
@@ -7798,15 +7561,7 @@ lt
 mc
 mc
 mc
-mc
-bW
-bZ
-bZ
-cd
-bZ
-bZ
-bZ
-bZ
+Mz
 bZ
 bZ
 bZ
@@ -7818,11 +7573,19 @@ bZ
 bZ
 bZ
 bZ
+cd
+bZ
+bZ
+bZ
+bZ
+bZ
+bZ
+bZ
 bZ
 cd
 bZ
-cA
-mc
+bZ
+AX
 ot
 mc
 mc
@@ -7835,26 +7598,26 @@ ad
 ad
 ad
 ai
-ar
-ar
-au
-ay
 aB
-ar
-aF
-aI
-aM
-aL
-aF
-aI
-aM
-aL
-au
-ay
 aB
-ar
-au
-ay
+aB
+aB
+aB
+aB
+aL
+aL
+aL
+aL
+aL
+aL
+aL
+aL
+aB
+aB
+aB
+aB
+aB
+aB
 aB
 ai
 Ll
@@ -7900,31 +7663,31 @@ lt
 mc
 me
 mc
-mc
+Mz
 Ma
-ca
-ca
-ce
-cg
-cj
-ca
-ce
-cg
-cj
-ca
+bZ
+bZ
+bZ
+bZ
+bZ
+bZ
+bZ
+bZ
+bZ
+bZ
 Ma
-cg
-cj
-ca
-ce
-cg
-cj
-ca
-ce
-cg
-CW
+bZ
+bZ
+bZ
+bZ
+bZ
+bZ
+bZ
+bZ
+bZ
+za
 Ma
-mc
+AX
 ot
 mc
 mc
@@ -8003,29 +7766,29 @@ mc
 mc
 mc
 IH
-mc
-mc
-mc
-mc
-mc
-mc
-ms
-mc
-mc
-mc
-mc
-mc
-mc
-mc
-mc
-mc
+qj
+qj
+qj
+qj
+qj
+qj
+SH
+qj
+qj
+qj
+qj
+qj
+qj
+qj
+qj
+qj
 oW
-wM
-mc
-wD
-wM
-mc
-mc
+wI
+qj
+xh
+wI
+qj
+qj
 mc
 pT
 mc

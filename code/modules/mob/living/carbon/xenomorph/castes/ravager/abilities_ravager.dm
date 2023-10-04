@@ -3,7 +3,7 @@
 // ***************************************
 /datum/action/xeno_action/activable/charge
 	name = "Eviscerating Charge"
-	action_icon_state = "charge"
+	action_icon_state = "pounce"
 	desc = "Charge up to 4 tiles and viciously attack your target."
 	ability_name = "charge"
 	cooldown_timer = 20 SECONDS

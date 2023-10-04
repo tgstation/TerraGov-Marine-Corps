@@ -35,71 +35,18 @@ SUBSYSTEM_DEF(minimaps)
 	var/list/datum/minimap_updator/updators_by_datum = list()
 	///assoc list of hash = image of images drawn by players
 	var/list/image/drawn_images = list()
-	///list of callbacks we need to invoke late because Initialize happens early
-	var/list/datum/callback/earlyadds = list()
+	///list of callbacks we need to invoke late because Initialize happens early, or a Z-level was loaded after init
+	var/list/list/datum/callback/earlyadds = list()
 	///assoc list of minimap objects that are hashed so we have to update as few as possible
 	var/list/hashed_minimaps = list()
 
 /datum/controller/subsystem/minimaps/Initialize()
-	for(var/level=1 to length(SSmapping.z_list))
-		minimaps_by_z["[level]"] = new /datum/hud_displays
-		if(!is_mainship_level(level) && !is_ground_level(level))
-			continue
-		var/icon/icon_gen = new('icons/UI_icons/minimap.dmi') //480x480 blank icon template for drawing on the map
-		for(var/xval = 1 to world.maxx)
-			for(var/yval = 1 to world.maxy) //Scan all the turfs and draw as needed
-				var/turf/location = locate(xval,yval,level)
-				if(isspaceturf(location))
-					continue
-				if(location.density)
-					icon_gen.DrawBox(location.minimap_color, xval, yval)
-					continue
-				var/atom/movable/alttarget = (locate(/obj/machinery/door) in location) || (locate(/obj/structure/fence) in location)
-				if(alttarget)
-					icon_gen.DrawBox(alttarget.minimap_color, xval, yval)
-					continue
-				var/area/turfloc = location.loc
-				if(turfloc.minimap_color)
-					icon_gen.DrawBox(BlendRGB(location.minimap_color, turfloc.minimap_color, 0.5), xval, yval)
-					continue
-				icon_gen.DrawBox(location.minimap_color, xval, yval)
-		icon_gen.Scale(480*2,480*2) //scale it up x2 to make it easer to see
-		icon_gen.Crop(1, 1, min(icon_gen.Width(), 480), min(icon_gen.Height(), 480)) //then cut all the empty pixels
-
-		//generation is done, now we need to center the icon to someones view,
-		//this can be left out if you like it ugly and will halve SSinit time
-
-		//calculate the offset of the icon
-		var/largest_x = 0
-		var/smallest_x = SCREEN_PIXEL_SIZE
-		var/largest_y = 0
-		var/smallest_y = SCREEN_PIXEL_SIZE
-		for(var/xval=1 to SCREEN_PIXEL_SIZE step 2) //step 2 is twice as fast :)
-			for(var/yval=1 to SCREEN_PIXEL_SIZE step 2) //keep in mind 1 wide giant straight lines will offset wierd but you shouldnt be mapping those anyway right???
-				if(!icon_gen.GetPixel(xval, yval))
-					continue
-				if(xval > largest_x)
-					largest_x = xval
-				else if(xval < smallest_x)
-					smallest_x = xval
-				if(yval > largest_y)
-					largest_y = yval
-				else if(yval < smallest_y)
-					smallest_y = yval
-
-		minimaps_by_z["[level]"].x_offset = FLOOR((SCREEN_PIXEL_SIZE-largest_x-smallest_x)/2, 1)
-		minimaps_by_z["[level]"].y_offset = FLOOR((SCREEN_PIXEL_SIZE-largest_y-smallest_y)/2, 1)
-
-		icon_gen.Shift(EAST, minimaps_by_z["[level]"].x_offset)
-		icon_gen.Shift(NORTH, minimaps_by_z["[level]"].y_offset)
-
-		minimaps_by_z["[level]"].hud_image = icon_gen //done making the image!
+	for(var/datum/space_level/z_level AS in SSmapping.z_list)
+		load_new_z(null, z_level)
+	//RegisterSignal(SSdcs, COMSIG_GLOB_NEW_Z, PROC_REF(load_new_z))
 
 	initialized = TRUE
 
-	for(var/i=1 to length(earlyadds)) //lateload icons
-		earlyadds[i].Invoke()
-	earlyadds = null
 	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/minimaps/stat_entry(msg)
@@ -128,6 +75,72 @@ SUBSYSTEM_DEF(minimaps)
 		if(MC_TICK_CHECK)
 			return
 	iteration = 0
+
+///Creates a minimap for a particular z level
+/datum/controller/subsystem/minimaps/proc/load_new_z(datum/dcs, datum/space_level/z_level)
+	SIGNAL_HANDLER
+
+	var/level = z_level.z_value
+	minimaps_by_z["[level]"] = new /datum/hud_displays
+	if(!is_mainship_level(level) && !is_ground_level(level) && !is_away_level(level)) //todo: maybe move this around
+		return
+	var/icon/icon_gen = new('icons/UI_icons/minimap.dmi') //480x480 blank icon template for drawing on the map
+	for(var/xval = 1 to world.maxx)
+		for(var/yval = 1 to world.maxy) //Scan all the turfs and draw as needed
+			var/turf/location = locate(xval,yval,level)
+			if(isspaceturf(location))
+				continue
+			if(location.density)
+				icon_gen.DrawBox(location.minimap_color, xval, yval)
+				continue
+			var/atom/movable/alttarget = (locate(/obj/machinery/door) in location) || (locate(/obj/structure/fence) in location)
+			if(alttarget)
+				icon_gen.DrawBox(alttarget.minimap_color, xval, yval)
+				continue
+			var/area/turfloc = location.loc
+			if(turfloc.minimap_color)
+				icon_gen.DrawBox(BlendRGB(location.minimap_color, turfloc.minimap_color, 0.5), xval, yval)
+				continue
+			icon_gen.DrawBox(location.minimap_color, xval, yval)
+	icon_gen.Scale(480*2,480*2) //scale it up x2 to make it easer to see
+	icon_gen.Crop(1, 1, min(icon_gen.Width(), 480), min(icon_gen.Height(), 480)) //then cut all the empty pixels
+
+	//generation is done, now we need to center the icon to someones view,
+	//this can be left out if you like it ugly and will halve SSinit time
+
+	//calculate the offset of the icon
+	var/largest_x = 0
+	var/smallest_x = SCREEN_PIXEL_SIZE
+	var/largest_y = 0
+	var/smallest_y = SCREEN_PIXEL_SIZE
+	for(var/xval=1 to SCREEN_PIXEL_SIZE step 2) //step 2 is twice as fast :)
+		for(var/yval=1 to SCREEN_PIXEL_SIZE step 2) //keep in mind 1 wide giant straight lines will offset wierd but you shouldnt be mapping those anyway right???
+			if(!icon_gen.GetPixel(xval, yval))
+				continue
+			if(xval > largest_x)
+				largest_x = xval
+			else if(xval < smallest_x)
+				smallest_x = xval
+			if(yval > largest_y)
+				largest_y = yval
+			else if(yval < smallest_y)
+				smallest_y = yval
+
+	minimaps_by_z["[level]"].x_offset = FLOOR((SCREEN_PIXEL_SIZE-largest_x-smallest_x)/2, 1)
+	minimaps_by_z["[level]"].y_offset = FLOOR((SCREEN_PIXEL_SIZE-largest_y-smallest_y)/2, 1)
+
+	icon_gen.Shift(EAST, minimaps_by_z["[level]"].x_offset)
+	icon_gen.Shift(NORTH, minimaps_by_z["[level]"].y_offset)
+
+	minimaps_by_z["[level]"].hud_image = icon_gen //done making the image!
+
+	//lateload icons
+	if(!earlyadds["[level]"])
+		return
+
+	for(var/datum/callback/callback AS in earlyadds["[level]"])
+		callback.Invoke()
+	earlyadds["[level]"] = null //then clear them
 
 /**
  * Adds an atom to the processing updators that will have blips drawn on them
@@ -208,8 +221,10 @@ SUBSYSTEM_DEF(minimaps)
 /datum/controller/subsystem/minimaps/proc/add_marker(atom/target, hud_flags = NONE, image/blip)
 	if(!isatom(target) || !hud_flags || !blip)
 		CRASH("Invalid marker added to subsystem")
-	if(!initialized)
-		earlyadds += CALLBACK(src, PROC_REF(add_marker), target, hud_flags, blip)
+
+	if(!initialized || !(minimaps_by_z["[target.z]"])) //the minimap doesn't exist yet, z level was probably loaded after init
+		LAZYADDASSOC(earlyadds, "[target.z]", CALLBACK(src, PROC_REF(add_marker), target, hud_flags, blip))
+		RegisterSignal(target, COMSIG_QDELETING, PROC_REF(remove_earlyadd), override = TRUE) //Override required for late z-level loading to prevent hard dels where an atom is initiated during z load, but is qdel'd before it finishes
 		return
 
 	var/turf/target_turf = get_turf(target)
@@ -228,7 +243,18 @@ SUBSYSTEM_DEF(minimaps)
 		RegisterSignal(target, COMSIG_MOVABLE_Z_CHANGED, PROC_REF(on_z_change))
 		blip.RegisterSignal(target, COMSIG_MOVABLE_MOVED, TYPE_PROC_REF(/image, minimap_on_move))
 	removal_cbs[target] = CALLBACK(src, PROC_REF(removeimage), blip, target, hud_flags)
-	RegisterSignal(target, COMSIG_QDELETING, PROC_REF(remove_marker))
+	RegisterSignal(target, COMSIG_QDELETING, PROC_REF(remove_marker), override = TRUE) //override for atoms that were on a late loaded z-level, overrides the remove_earlyadd above
+
+///Removes the object from the earlyadds list, in case it was qdel'd before the z-level was fully loaded
+/datum/controller/subsystem/minimaps/proc/remove_earlyadd(atom/source)
+	SIGNAL_HANDLER
+	remove_marker(source)
+	for(var/datum/callback/callback in earlyadds["[source.z]"])
+		if(callback.arguments[1] != source)
+			continue
+		earlyadds["[source.z]"] -= callback
+		UnregisterSignal(source, COMSIG_QDELETING)
+		return
 
 /**
  * removes an image from raw tracked lists, invoked by callback

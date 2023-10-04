@@ -359,6 +359,9 @@
 	owner.changeNext_move(CLICK_CD_RANGE)
 	succeed_activate()
 	add_cooldown()
+	if(owner.client)
+		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[owner.ckey]
+		personal_statistics.heals++
 
 /// Heals the target.
 /mob/living/carbon/xenomorph/proc/salve_healing()

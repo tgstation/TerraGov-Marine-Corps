@@ -175,7 +175,6 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 		update_icon()
 
 /obj/item/Destroy()
-	flags_item &= ~DELONDROP //to avoid infinite loop of unequip, delete, unequip, delete.
 	flags_item &= ~NODROP //so the item is properly unequipped if on a mob.
 	if(ismob(loc))
 		var/mob/m = loc
@@ -341,7 +340,7 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 /obj/item/proc/dropped(mob/user)
 	SEND_SIGNAL(src, COMSIG_ITEM_DROPPED, user)
 
-	if(flags_item & DELONDROP)
+	if((flags_item & DELONDROP) && !QDELETED(src))
 		qdel(src)
 
 ///Called whenever an item is unequipped to a new loc (IE, not when the item ends up in the hands)
@@ -677,8 +676,16 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 
 	return storage_item.can_be_inserted(src, warning)
 
+/// Checks whether the item can be unequipped from owner by stripper. Generates a message on failure and returns TRUE/FALSE
 /obj/item/proc/canStrip(mob/stripper, mob/owner)
-	return !(flags_item & NODROP)
+	if(flags_item & NODROP)
+		stripper.balloon_alert(stripper, "[src] is stuck!")
+		return FALSE
+	return TRUE
+
+/// Used by any item which wants to react to or prevent its own stripping, called after checks/delays. Return TRUE to block normal stripping behavior.
+/obj/item/proc/special_stripped_behavior(mob/stripper, mob/owner)
+	return
 
 /obj/item/proc/update_item_sprites()
 	switch(SSmapping.configs[GROUND_MAP].armor_style)
@@ -1057,7 +1064,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 			if(!W)
 				return
 			W.reagents = R
-			R.my_atom = W
+			R.my_atom = WEAKREF(W)
 			if(!W || !src)
 				return
 			reagents.trans_to(W,1)

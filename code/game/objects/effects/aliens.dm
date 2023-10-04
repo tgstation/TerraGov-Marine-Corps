@@ -41,7 +41,7 @@
 	anchored = TRUE
 	layer = ABOVE_OBJ_LAYER
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
-	allow_pass_flags = PASS_LOW_STRUCTURE|PASS_MOB|PASS_GRILLE
+	pass_flags = PASS_LOW_STRUCTURE|PASS_MOB|PASS_GRILLE|PASS_AIR
 	var/slow_amt = 0.8
 	var/duration = 10 SECONDS
 	var/acid_damage = XENO_DEFAULT_ACID_PUDDLE_DAMAGE
@@ -153,6 +153,11 @@
 	. = ..()
 	acid_melt_multiplier = melting_rate
 	acid_t = target
+	if(!acid_t)
+		return INITIALIZE_HINT_QDEL
+	layer = acid_t.layer
+	if(iswallturf(acid_t))
+		icon_state = icon_state += "_wall"
 	START_PROCESSING(SSslowprocess, src)
 
 /obj/effect/xenomorph/acid/Destroy()
@@ -208,7 +213,7 @@
 /obj/effect/xenomorph/warp_shadow
 	name = "warp shadow"
 	desc = "A strange rift in space and time. You probably shouldn't touch this."
-	icon = 'icons/Xeno/2x2_Xenos.dmi'
+	icon = 'icons/Xeno/castes/wraith.dmi'
 	icon_state = "Wraith Walking"
 	color = COLOR_BLACK
 	alpha = 128 //Translucent

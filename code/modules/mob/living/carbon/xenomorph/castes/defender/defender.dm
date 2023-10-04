@@ -2,7 +2,7 @@
 	caste_base_type = /mob/living/carbon/xenomorph/defender
 	name = "Defender"
 	desc = "An alien with an armored head crest."
-	icon = 'icons/Xeno/2x2_Xenos.dmi'
+	icon = 'icons/Xeno/castes/defender.dmi'
 	icon_state = "Defender Walking"
 	bubble_icon = "alienroyal"
 	health = 200
@@ -11,7 +11,7 @@
 	pixel_x = -16
 	old_x = -16
 	tier = XENO_TIER_ONE
-	upgrade = XENO_UPGRADE_ZERO
+	upgrade = XENO_UPGRADE_NORMAL
 	pull_speed = -2
 
 // ***************************************

@@ -2,7 +2,7 @@
 	name = "nanopaste"
 	singular_name = "nanite swarm"
 	desc = "A tube of paste containing swarms of repair nanites. Very effective in repairing robotic machinery."
-	icon = 'icons/obj/items/items.dmi'
+	icon = 'icons/obj/items/surgery_tools.dmi'
 	icon_state = "tube"
 	amount = 10
 	max_amount = 10
@@ -27,7 +27,7 @@
 				if(S.get_damage())
 					S.heal_limb_damage(15, 15, robo_repair = TRUE, updating_health = TRUE)
 					use(1)
-					user.visible_message(span_notice("\The [user] applies some nanite paste at [user != M ? "\the [M]'s" : "\the"] [S.display_name] with \the [src]."),\
+					user.visible_message(span_notice("[user] applies some nanite paste at [user != M ? "[M]'s" : ""] [S.display_name] with [src]."),\
 					span_notice("You apply some nanite paste at [user == M ? "your" : "[M]'s"] [S.display_name]."))
 				else
 					to_chat(user, span_notice("Nothing to fix here."))

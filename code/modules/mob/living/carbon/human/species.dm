@@ -955,7 +955,7 @@
 	has_nutrition = FALSE
 
 ///damage override at the species level, called by /mob/living/proc/apply_damage
-/datum/species/proc/apply_damage(damage = 0, damagetype = BRUTE, def_zone, blocked = 0, sharp = FALSE, edge = FALSE, updating_health = FALSE, penetration, mob/living/carbon/human/victim)
+/datum/species/proc/apply_damage(damage = 0, damagetype = BRUTE, def_zone, blocked = 0, sharp = FALSE, edge = FALSE, updating_health = FALSE, penetration, mob/living/carbon/human/victim, mob/attacker)
 	var/datum/limb/organ = null
 	if(isorgan(def_zone)) //Got sent a limb datum, convert to a zone define
 		organ = def_zone
@@ -974,7 +974,7 @@
 		damage = victim.modify_by_armor(damage, blocked, penetration, def_zone)
 
 	if(victim.protection_aura)
-		damage = round(damage * ((10 - victim.protection_aura) / 10))
+		damage = round(damage * ((20 - victim.protection_aura) / 20))
 
 	if(!damage)
 		return 0
@@ -985,8 +985,10 @@
 			victim.damageoverlaytemp = 20
 			if(brute_mod)
 				damage *= brute_mod
+			var/old_status = organ.limb_status
 			if(organ.take_damage_limb(damage, 0, sharp, edge))
 				victim.UpdateDamageIcon()
+				record_internal_injury(victim, attacker, old_status, organ.limb_status)
 		if(BURN)
 			victim.damageoverlaytemp = 20
 			if(burn_mod)

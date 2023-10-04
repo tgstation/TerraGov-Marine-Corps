@@ -44,7 +44,7 @@
 	. = ..()
 	var/datum/reagents/R = new/datum/reagents(10)
 	reagents = R
-	R.my_atom = src
+	R.my_atom = WEAKREF(src)
 
 /obj/item/toy/balloon/attack(mob/living/carbon/human/M as mob, mob/user as mob)
 	return
@@ -216,7 +216,7 @@
 	. = ..()
 	var/datum/reagents/R = new/datum/reagents(10)
 	reagents = R
-	R.my_atom = src
+	R.my_atom = WEAKREF(src)
 	R.add_reagent(/datum/reagent/water, 10)
 
 /obj/item/toy/waterflower/attack(mob/living/carbon/human/M as mob, mob/user as mob)

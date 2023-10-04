@@ -40,10 +40,6 @@
 /obj/effect/spawner/random/misc/handcuffs,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/marshal_office)
-"bi" = (
-/obj/machinery/landinglight/ds1/delayone,
-/turf/open/floor/marking/asteroidwarning,
-/area/bigredv2/outside/space_port)
 "bn" = (
 /turf/open/floor/tile/dark/green2{
 	dir = 8
@@ -99,14 +95,6 @@
 /obj/item/shard,
 /turf/open/floor/plating,
 /area/bigredv2/outside/space_port)
-"dm" = (
-/obj/machinery/landinglight/ds1/delayone{
-	dir = 8
-	},
-/turf/open/floor/marking/asteroidwarning{
-	dir = 8
-	},
-/area/bigredv2/outside/space_port)
 "dz" = (
 /obj/structure/table,
 /obj/machinery/light{
@@ -123,15 +111,6 @@
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/wall,
 /area/bigredv2/outside/marshal_office)
-"dO" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/landinglight/ds1/delaytwo{
-	dir = 8
-	},
-/turf/open/floor/marking/asteroidwarning{
-	dir = 8
-	},
-/area/bigredv2/outside/space_port)
 "dS" = (
 /obj/structure/table,
 /obj/effect/spawner/random/weaponry/ammo/shotgun,
@@ -321,14 +300,6 @@
 /obj/structure/noticeboard,
 /turf/closed/wall/r_wall,
 /area/bigredv2/outside/space_port)
-"jv" = (
-/obj/machinery/landinglight/ds1/delayone{
-	dir = 4
-	},
-/turf/open/floor/marking/asteroidwarning{
-	dir = 4
-	},
-/area/bigredv2/outside/space_port)
 "jy" = (
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/n)
@@ -396,10 +367,6 @@
 	dir = 4
 	},
 /area/bigredv2/outside/marshal_office)
-"lA" = (
-/obj/machinery/landinglight/ds1/delaythree,
-/turf/open/floor/marking/asteroidwarning,
-/area/bigredv2/outside/space_port)
 "lF" = (
 /obj/machinery/computer/shuttle/shuttle_control/dropship,
 /obj/structure/table,
@@ -468,7 +435,7 @@
 /turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "nb" = (
-/obj/machinery/landinglight/ds1/delaytwo,
+/obj/machinery/landinglight/lz1,
 /turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/space_port)
 "nl" = (
@@ -824,15 +791,6 @@
 	},
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/marshal_office)
-"um" = (
-/obj/machinery/landinglight/ds1/delaytwo{
-	dir = 8
-	},
-/obj/effect/ai_node,
-/turf/open/floor/marking/asteroidwarning{
-	dir = 8
-	},
-/area/bigredv2/outside/space_port)
 "uq" = (
 /obj/effect/decal/cleanable/blood,
 /obj/effect/decal/cleanable/dirt,
@@ -841,7 +799,7 @@
 /area/bigredv2/outside/marshal_office)
 "uv" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/landinglight/ds1/delayone{
+/obj/machinery/landinglight/lz1{
 	dir = 8
 	},
 /turf/open/floor/marking/asteroidwarning{
@@ -885,14 +843,6 @@
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/space_port)
-"vs" = (
-/obj/machinery/landinglight/ds1/delaytwo{
-	dir = 1
-	},
-/turf/open/floor/marking/asteroidwarning{
-	dir = 1
-	},
-/area/bigredv2/outside/space_port)
 "vD" = (
 /obj/structure/closet/secure_closet/injection,
 /obj/structure/sign/safety/hazard{
@@ -935,15 +885,6 @@
 	},
 /turf/open/floor,
 /area/bigredv2/outside/marshal_office)
-"wR" = (
-/obj/machinery/landinglight/ds1{
-	dir = 8
-	},
-/obj/effect/ai_node,
-/turf/open/floor/marking/asteroidwarning{
-	dir = 8
-	},
-/area/bigredv2/outside/space_port)
 "wT" = (
 /obj/structure/table,
 /obj/effect/landmark/weed_node,
@@ -1021,14 +962,6 @@
 /obj/machinery/computer/camera,
 /turf/open/floor/tile/dark/green2{
 	dir = 4
-	},
-/area/bigredv2/outside/space_port)
-"yN" = (
-/obj/machinery/landinglight/ds1/delaythree{
-	dir = 1
-	},
-/turf/open/floor/marking/asteroidwarning{
-	dir = 1
 	},
 /area/bigredv2/outside/space_port)
 "yT" = (
@@ -1137,10 +1070,10 @@
 /turf/open/floor/tile/red/redtaupecorner,
 /area/bigredv2/outside/marshal_office)
 "Bp" = (
-/obj/machinery/landinglight/ds1/delaythree{
+/obj/effect/ai_node,
+/obj/machinery/landinglight/lz1{
 	dir = 1
 	},
-/obj/effect/ai_node,
 /turf/open/floor/marking/asteroidwarning{
 	dir = 1
 	},
@@ -1150,14 +1083,6 @@
 	dir = 4
 	},
 /turf/open/floor/plating/warning,
-/area/bigredv2/outside/space_port)
-"BG" = (
-/obj/machinery/landinglight/ds1/delayone{
-	dir = 1
-	},
-/turf/open/floor/marking/asteroidwarning{
-	dir = 1
-	},
 /area/bigredv2/outside/space_port)
 "BV" = (
 /obj/effect/ai_node,
@@ -1170,14 +1095,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/red/redtaupecorner,
 /area/bigredv2/outside/marshal_office)
-"Dp" = (
-/obj/machinery/landinglight/ds1{
-	dir = 4
-	},
-/turf/open/floor/marking/asteroidwarning{
-	dir = 4
-	},
-/area/bigredv2/outside/space_port)
 "DC" = (
 /turf/open/floor/tile/darkgreen/darkgreen2,
 /area/bigredv2/outside/space_port)
@@ -1296,14 +1213,6 @@
 /obj/structure/window/framed/colony/reinforced/tinted,
 /turf/open/floor/plating,
 /area/bigredv2/outside/marshal_office)
-"GG" = (
-/obj/machinery/landinglight/ds1/delaytwo{
-	dir = 4
-	},
-/turf/open/floor/marking/asteroidwarning{
-	dir = 4
-	},
-/area/bigredv2/outside/space_port)
 "GW" = (
 /obj/structure/cable,
 /turf/open/floor/plating,
@@ -1406,7 +1315,7 @@
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/space_port)
 "IZ" = (
-/obj/machinery/landinglight/ds1{
+/obj/machinery/landinglight/lz1{
 	dir = 1
 	},
 /turf/open/floor/marking/asteroidwarning{
@@ -1549,10 +1458,6 @@
 "LY" = (
 /turf/open/floor/plating/ground/mars/random/cave/rock,
 /area/bigredv2/caves/north)
-"LZ" = (
-/obj/machinery/landinglight/ds1,
-/turf/open/floor/marking/asteroidwarning,
-/area/bigredv2/outside/space_port)
 "Mn" = (
 /obj/structure/nuke_disk_candidate,
 /turf/open/floor/tile/dark,
@@ -1756,7 +1661,7 @@
 	},
 /area/bigredv2/outside/space_port)
 "QC" = (
-/obj/machinery/landinglight/ds1/delaythree{
+/obj/machinery/landinglight/lz1{
 	dir = 4
 	},
 /turf/open/floor/marking/asteroidwarning{
@@ -1855,7 +1760,7 @@
 	},
 /area/bigredv2/outside/marshal_office)
 "Ts" = (
-/obj/machinery/landinglight/ds1/delaythree{
+/obj/machinery/landinglight/lz1{
 	dir = 8
 	},
 /turf/open/floor/marking/asteroidwarning{
@@ -1863,8 +1768,8 @@
 	},
 /area/bigredv2/outside/space_port)
 "Tz" = (
-/obj/machinery/landinglight/ds1/delayone,
 /obj/effect/ai_node,
+/obj/machinery/landinglight/lz1,
 /turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/space_port)
 "TG" = (
@@ -1914,23 +1819,15 @@
 /obj/item/radio/headset/survivor,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/telecomm)
-"Vn" = (
-/obj/machinery/landinglight/ds1/delaytwo{
-	dir = 8
-	},
-/turf/open/floor/marking/asteroidwarning{
-	dir = 8
-	},
-/area/bigredv2/outside/space_port)
 "Vs" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/northwest)
 "Vt" = (
-/obj/machinery/landinglight/ds1/delayone{
+/obj/effect/ai_node,
+/obj/machinery/landinglight/lz1{
 	dir = 8
 	},
-/obj/effect/ai_node,
 /turf/open/floor/marking/asteroidwarning{
 	dir = 8
 	},
@@ -1950,15 +1847,6 @@
 "Wp" = (
 /turf/open/floor/marking/asteroidwarning{
 	dir = 5
-	},
-/area/bigredv2/outside/space_port)
-"Wx" = (
-/obj/machinery/landinglight/ds1{
-	dir = 1
-	},
-/obj/effect/ai_node,
-/turf/open/floor/marking/asteroidwarning{
-	dir = 1
 	},
 /area/bigredv2/outside/space_port)
 "WB" = (
@@ -2053,14 +1941,6 @@
 	dir = 9
 	},
 /area/bigredv2/outside/nw)
-"Zh" = (
-/obj/machinery/landinglight/ds1{
-	dir = 8
-	},
-/turf/open/floor/marking/asteroidwarning{
-	dir = 8
-	},
-/area/bigredv2/outside/space_port)
 "Zi" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark,
@@ -2747,25 +2627,25 @@ gb
 fN
 IU
 QC
-Dp
-jv
-GG
 QC
-Dp
-jv
-GG
 QC
-Dp
-jv
-GG
 QC
-Dp
-jv
-GG
 QC
-Dp
-jv
-GG
+QC
+QC
+QC
+QC
+QC
+QC
+QC
+QC
+QC
+QC
+QC
+QC
+QC
+QC
+QC
 QC
 IU
 fN
@@ -2847,7 +2727,7 @@ DL
 uK
 DL
 DL
-BG
+IZ
 IU
 IU
 IU
@@ -2865,7 +2745,7 @@ LS
 LT
 gb
 fN
-LZ
+nb
 DL
 DL
 DL
@@ -2887,7 +2767,7 @@ DL
 DL
 DL
 DL
-vs
+IZ
 IU
 IU
 IU
@@ -2905,7 +2785,7 @@ LS
 LT
 gb
 fN
-lA
+nb
 DL
 DL
 DL
@@ -2985,7 +2865,7 @@ LS
 LT
 gb
 jB
-bi
+nb
 DL
 DL
 DL
@@ -3007,7 +2887,7 @@ DL
 DL
 DL
 DL
-BG
+IZ
 IU
 IU
 IU
@@ -3025,7 +2905,7 @@ LS
 LT
 gb
 fN
-LZ
+nb
 DL
 DL
 DL
@@ -3047,7 +2927,7 @@ DL
 DL
 DL
 DL
-vs
+IZ
 IU
 NS
 IU
@@ -3065,7 +2945,7 @@ LS
 LT
 gb
 fN
-lA
+nb
 DL
 DL
 DL
@@ -3087,7 +2967,7 @@ DL
 DL
 DL
 DL
-yN
+IZ
 IU
 IU
 IU
@@ -3127,7 +3007,7 @@ DL
 DL
 DL
 DL
-Wx
+Bp
 IU
 IU
 IU
@@ -3167,7 +3047,7 @@ DL
 uK
 DL
 DL
-BG
+IZ
 IU
 IU
 IU
@@ -3185,7 +3065,7 @@ LS
 LT
 gb
 fN
-LZ
+nb
 DL
 DL
 DL
@@ -3207,7 +3087,7 @@ DL
 DL
 DL
 DL
-vs
+IZ
 eK
 Or
 LI
@@ -3227,25 +3107,25 @@ gb
 fN
 kj
 Ts
-Vn
-dm
-wR
 Ts
-dO
-uv
-Zh
 Ts
-um
-dm
-Zh
-Ts
-Vn
 Vt
-Zh
 Ts
-Vn
-dm
-Zh
+uv
+uv
+Ts
+Ts
+Vt
+Ts
+Ts
+Ts
+Ts
+Vt
+Ts
+Ts
+Ts
+Ts
+Ts
 Ts
 kj
 fN

@@ -1,0 +1,46 @@
+2023-10-01:
+  Barnet2:
+  - bugfix: Queen and King ranks should work now
+  Blundir:
+  - rscadd: acid on walls now has unique set of sprites
+  - bugfix: fixed acid rendering over everything
+  RipGrayson:
+  - balance: The SOM base tables on Slumbridge now produced metal when deconstructed.
+  ivanmixo:
+  - bugfix: Fixed admin wall deletions
+  vvvv-vvvv:
+  - bugfix: Fix drawing on minimap tablets
+  - bugfix: Fix mantis ravage keybind not working when not selected
+  - bugfix: Fix missing empty sprite for 5.56mm ammo box
+2023-10-02:
+  ivanmixo:
+  - bugfix: Fixed an issue with quick laser swap
+2023-10-03:
+  Blundir:
+  - imagedel: deletes many unused sprites
+  - refactor: relocated numerous sprites into their own files
+  Lewdcifer:
+  - rscdel: X-Ray Laser Rifle no longer accepts the T-47 rail scope.
+  - balance: X-Ray Laser Rifle shots are no longer incendiary. Instead, they now inflict
+      five stacks of the Microwaved debuff.
+  - balance: X-Ray Laser Rifle penetration increased from 5 to 10.
+  - balance: X-Ray Laser Rifle's standard firing mode ammo usage reduced, basically
+      amounting to a maximum of 50 shots (from 40).
+  RipGrayson:
+  - balance: All ground maps use the regular spawning random gun spawning system instead
+      of the ancient tier based system that could spawn overpowered guns.
+  Wisemonster:
+  - spellcheck: Changed Crest Toss' description to mention it's effects while on harm
+      intent.
+  vvvv-vvvv:
+  - admin: Fixed statpanel showing Toggle Tadpole Restrictions in a different tab
+2023-10-04:
+  Barnet2:
+  - balance: Moved Lawanka Outpost's nuke closer to the cave entrance.
+  - balance: Most of Lawanka Outpost's buildings are now normal walls and windows
+      instead of reinforced.
+  - balance: Made most of Lawanka Outpost's cave walls indestructible, outside layer
+      still destructible
+  - code_imp: Named LV cave walls to "tough rock" for better player clarity
+  efzapa:
+  - bugfix: MG-27 Box Magazine description now quotes correct ammo count

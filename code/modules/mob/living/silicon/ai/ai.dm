@@ -70,6 +70,9 @@
 /mob/living/silicon/ai/Initialize(mapload, ...)
 	. = ..()
 
+	if(!CONFIG_GET(flag/allow_ai))
+		return INITIALIZE_HINT_QDEL
+
 	track = new(src)
 	builtInCamera = new(src)
 	builtInCamera.network = list("marinemainship")
@@ -82,12 +85,15 @@
 	laws += "Protect: Protect the personnel of your assigned vessel, and all other TerraGov personnel to the best of your abilities, with priority as according to their rank and role."
 	laws += "Preserve: Do not allow unauthorized personnel to tamper with your equipment."
 
+	var/list/iconstates = GLOB.ai_core_display_screens
+	icon_state = resolve_ai_icon(pick(iconstates))
+
 	mini = new
 	mini.give_action(src)
 	create_eye()
 
 	if(!job)
-		var/datum/job/terragov/silicon/ai/ai_job = SSjob.type_occupations[/datum/job/terragov/silicon/ai]
+		var/datum/job/terragov/silicon/ai/ai_job = SSjob.GetJobType(/datum/job/terragov/silicon/ai)
 		if(!ai_job)
 			stack_trace("Unemployment has reached to an AI, who has failed to find a job.")
 		apply_assigned_role_to_spawn(ai_job)

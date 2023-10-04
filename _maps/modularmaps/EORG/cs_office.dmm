@@ -4,9 +4,10 @@
 	dir = 1
 	},
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/stairs/rampbottom{
+/obj/structure/stairs/edge{
 	dir = 8
 	},
+/turf/open/floor/tile/dark,
 /area/deathmatch)
 "ai" = (
 /turf/open/floor/tile/arrival{
@@ -278,9 +279,7 @@
 	desc = "You can't get in. Heh.";
 	name = "Blocker"
 	},
-/turf/closed/wall/mainship/gray/outer{
-	icon = null
-	},
+/turf/open/floor/plating/ground/snow/layer2,
 /area/deathmatch)
 "hl" = (
 /obj/effect/decal/cleanable/dirt,
@@ -414,9 +413,10 @@
 "kP" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/stairs/rampbottom{
+/obj/structure/stairs/edge{
 	dir = 1
 	},
+/turf/open/floor/tile/dark,
 /area/deathmatch)
 "kV" = (
 /obj/structure/prop/mainship/ship_memorial,
@@ -1000,7 +1000,8 @@
 /area/deathmatch)
 "xM" = (
 /obj/structure/inflatable/popped,
-/turf/open/floor/stairs/rampbottom,
+/obj/structure/stairs/edge,
+/turf/open/floor/tile/dark,
 /area/deathmatch)
 "xN" = (
 /obj/machinery/vending/snack,
@@ -1449,9 +1450,10 @@
 /area/deathmatch)
 "HB" = (
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/stairs/rampbottom{
+/obj/structure/stairs/edge{
 	dir = 4
 	},
+/turf/open/floor/tile/dark,
 /area/deathmatch)
 "HR" = (
 /obj/machinery/light{
@@ -1554,11 +1556,6 @@
 	dir = 6
 	},
 /area/deathmatch)
-"KH" = (
-/turf/closed/wall/mainship/gray/outer{
-	icon = null
-	},
-/area/deathmatch)
 "KK" = (
 /turf/open/floor/tile/dark/blue2{
 	dir = 10
@@ -1570,9 +1567,10 @@
 /area/deathmatch)
 "Le" = (
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/stairs/rampbottom{
+/obj/structure/stairs/edge{
 	dir = 8
 	},
+/turf/open/floor/tile/dark,
 /area/deathmatch)
 "Lf" = (
 /obj/structure/platform_decoration,
@@ -1691,9 +1689,10 @@
 /area/deathmatch)
 "Np" = (
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/stairs/rampbottom{
+/obj/structure/stairs/edge{
 	dir = 1
 	},
+/turf/open/floor/tile/dark,
 /area/deathmatch)
 "ND" = (
 /obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
@@ -1841,9 +1840,7 @@
 /area/deathmatch)
 "Qw" = (
 /obj/structure/window/framed/mainship/gray/toughened/hull,
-/turf/closed/wall/mainship/gray/outer{
-	icon = null
-	},
+/turf/open/floor/plating,
 /area/deathmatch)
 "QF" = (
 /obj/structure/bed/chair/comfy/black,
@@ -2100,7 +2097,8 @@
 /area/deathmatch)
 "Xb" = (
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/stairs/rampbottom,
+/obj/structure/stairs/edge,
+/turf/open/floor/tile/dark,
 /area/deathmatch)
 "Xg" = (
 /obj/structure/flora/pottedplant/twentytwo,
@@ -3512,7 +3510,7 @@ WK
 WK
 uX
 WK
-KH
+gY
 "}
 (27,1,1) = {"
 Xv
@@ -3560,7 +3558,7 @@ IQ
 uX
 uX
 WK
-KH
+gY
 "}
 (28,1,1) = {"
 Qw
@@ -3608,7 +3606,7 @@ WK
 WK
 WK
 gE
-KH
+gY
 "}
 (29,1,1) = {"
 Qw
@@ -3656,7 +3654,7 @@ uX
 NM
 WK
 ND
-KH
+gY
 "}
 (30,1,1) = {"
 Xv
@@ -3704,7 +3702,7 @@ uX
 WK
 uX
 WK
-KH
+gY
 "}
 (31,1,1) = {"
 Qw
@@ -3752,7 +3750,7 @@ WK
 WK
 WK
 WK
-KH
+gY
 "}
 (32,1,1) = {"
 Qw
@@ -3800,7 +3798,7 @@ WK
 WK
 wn
 WK
-KH
+gY
 "}
 (33,1,1) = {"
 Xv
@@ -3848,7 +3846,7 @@ WK
 WK
 WK
 WK
-KH
+gY
 "}
 (34,1,1) = {"
 Qw
@@ -3896,7 +3894,7 @@ do
 xB
 xB
 xB
-KH
+gY
 "}
 (35,1,1) = {"
 Qw
@@ -3944,7 +3942,7 @@ WK
 WK
 WK
 WK
-KH
+gY
 "}
 (36,1,1) = {"
 Xv
@@ -3992,7 +3990,7 @@ uX
 WK
 WK
 WK
-KH
+gY
 "}
 (37,1,1) = {"
 Xv
@@ -4040,10 +4038,10 @@ WK
 rP
 uX
 WK
-KH
+gY
 "}
 (38,1,1) = {"
-KH
+gY
 RE
 WK
 cc
@@ -4088,10 +4086,10 @@ WK
 WK
 WK
 WK
-KH
+gY
 "}
 (39,1,1) = {"
-KH
+gY
 WK
 WK
 uX
@@ -4136,10 +4134,10 @@ WK
 WK
 WK
 WK
-KH
+gY
 "}
 (40,1,1) = {"
-KH
+gY
 ds
 tI
 uX
@@ -4184,10 +4182,10 @@ WK
 WK
 WK
 WK
-KH
+gY
 "}
 (41,1,1) = {"
-KH
+gY
 kV
 WK
 uX
@@ -4232,10 +4230,10 @@ uX
 WK
 WK
 WK
-KH
+gY
 "}
 (42,1,1) = {"
-KH
+gY
 WK
 Bx
 WK
@@ -4280,10 +4278,10 @@ WK
 WK
 WK
 WK
-KH
+gY
 "}
 (43,1,1) = {"
-KH
+gY
 WK
 WK
 WK
@@ -4328,10 +4326,10 @@ WK
 WK
 WK
 WK
-KH
+gY
 "}
 (44,1,1) = {"
-KH
+gY
 WK
 uX
 WK
@@ -4376,10 +4374,10 @@ uX
 WK
 WK
 WK
-KH
+gY
 "}
 (45,1,1) = {"
-KH
+gY
 WK
 WK
 WK
@@ -4424,20 +4422,20 @@ WK
 WK
 WK
 WK
-KH
+gY
 "}
 (46,1,1) = {"
-KH
-KH
-KH
-KH
-KH
-KH
-KH
-KH
-KH
-KH
-KH
+gY
+gY
+gY
+gY
+gY
+gY
+gY
+gY
+gY
+gY
+gY
 Xv
 Xv
 Xv
@@ -4455,22 +4453,22 @@ Xv
 Xv
 Xv
 Xv
-KH
-KH
-KH
-KH
-KH
-KH
-KH
-KH
-KH
-KH
-KH
-KH
-KH
-KH
-KH
-KH
-KH
-KH
+gY
+gY
+gY
+gY
+gY
+gY
+gY
+gY
+gY
+gY
+gY
+gY
+gY
+gY
+gY
+gY
+gY
+gY
 "}

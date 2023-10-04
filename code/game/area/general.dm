@@ -11,10 +11,16 @@
 	temperature = TCMB
 	pressure = 0
 	flags_area = NO_DROPPOD
+	///What type of debuff do we apply when someone enters this area?
+	var/debuff_type = /datum/status_effect/spacefreeze
 
-/area/engine/
+/area/space/light
+	debuff_type = /datum/status_effect/spacefreeze/light
+
+/area/engine
 	ambience = list('sound/ambience/ambisin1.ogg','sound/ambience/ambisin2.ogg','sound/ambience/ambisin3.ogg','sound/ambience/ambisin4.ogg')
-/area/turret_protected/
+
+/area/turret_protected
 
 /area/arrival
 	requires_power = 0

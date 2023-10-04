@@ -815,7 +815,10 @@
 /area/oscar_outpost/village/abandonedbase)
 "qu" = (
 /obj/machinery/door/airlock/mainship/generic,
-/turf/closed/mineral/smooth,
+/obj/machinery/door/poddoor/mainship/indestructible{
+	id = "zetalockdown"
+	},
+/turf/open/floor/grayscale/black,
 /area/oscar_outpost/village/abandonedbase)
 "qB" = (
 /obj/effect/turf_decal/warning_stripes/thin,
@@ -1475,7 +1478,7 @@
 	dir = 2;
 	id = "zetalockdown"
 	},
-/turf/closed/mineral/smooth,
+/turf/open/floor/grayscale/black,
 /area/oscar_outpost/village/abandonedbase)
 "Jp" = (
 /obj/machinery/light{

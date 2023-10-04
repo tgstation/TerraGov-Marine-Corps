@@ -221,6 +221,11 @@
 /obj/machinery/computer/security/marine_network
 	network = list("marine")
 
+/obj/machinery/computer/security/som_mainship
+	network = list("sommainship")
+
+/obj/machinery/computer/security/som_network
+	network = list("som")
 
 /obj/machinery/computer/security/dropship
 	name = "abstract dropship camera computer"

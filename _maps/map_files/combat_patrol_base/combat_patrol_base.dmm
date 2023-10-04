@@ -925,7 +925,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/patrol_base)
 "or" = (
-/obj/structure/ship_ammo/rocket/banshee,
+/obj/structure/ship_ammo/cas/rocket/banshee,
 /turf/open/floor/mainship/black,
 /area/mainship/patrol_base)
 "oK" = (
@@ -2098,7 +2098,7 @@
 /turf/open/floor/plating/ground/concrete,
 /area/mainship/patrol_base)
 "Fi" = (
-/obj/structure/ship_ammo/heavygun,
+/obj/structure/ship_ammo/cas/heavygun,
 /turf/open/floor/plating/ground/concrete,
 /area/mainship/patrol_base/som)
 "Fj" = (
@@ -2410,7 +2410,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/mainship/patrol_base/som)
 "JY" = (
-/obj/structure/ship_ammo/rocket/banshee,
+/obj/structure/ship_ammo/cas/rocket/banshee,
 /obj/machinery/light,
 /turf/open/floor/mainship/black,
 /area/mainship/patrol_base)

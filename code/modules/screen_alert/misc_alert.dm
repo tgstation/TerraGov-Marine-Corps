@@ -39,3 +39,9 @@
 
 /atom/movable/screen/text/screen_text/picture/potrait/som_over
 	image_to_play = "overwatch_som"
+
+/atom/movable/screen/text/screen_text/picture/potrait/unknown
+	image_to_play = "overwatch_unknown"
+
+/atom/movable/screen/text/screen_text/picture/potrait/pilot
+	image_to_play = "po"

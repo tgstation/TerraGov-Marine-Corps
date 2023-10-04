@@ -4,6 +4,13 @@
 	name = "ground dirt"
 	icon = 'icons/turf/ground_map.dmi'
 	icon_state = "desert"
+	///Number of icon state variation this turf has
+	var/icon_variants = 1
+
+/turf/open/ground/update_icon_state()
+	if(icon_variants < 2)
+		return initial(icon_state)
+	return "[initial(icon_state)]_[rand(1, icon_variants)]"
 
 /turf/open/ground/AfterChange()
 	. = ..()
@@ -16,10 +23,13 @@
 	return
 
 /turf/open/ground/grass/beach
-	icon_state = "grassbeach"
+	icon_state = "grassbeach_edge"
 
 /turf/open/ground/grass/beach/corner
-	icon_state = "gbcorner"
+	icon_state = "grassbeach_corner"
+
+/turf/open/ground/grass/beach/corner2
+	icon_state = "grassbeach_corner2"
 
 /turf/open/ground/coast
 	name = "coastline"
@@ -27,6 +37,7 @@
 	shoefootstep = FOOTSTEP_SAND
 	barefootstep = FOOTSTEP_SAND
 	mediumxenofootstep = FOOTSTEP_SAND
+	minimap_color = MINIMAP_WATER
 	smoothing_groups = list(
 		SMOOTH_GROUP_RIVER,
 	)

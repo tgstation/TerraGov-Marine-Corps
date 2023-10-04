@@ -36,7 +36,7 @@
 /area/lv624/ground/caves/central2)
 "eE" = (
 /obj/item/ammo_casing/shell,
-/turf/open/floor/wood/variable/damaged/standard,
+/turf/open/floor/wood/broken,
 /area/lv624/ground/caves/central2)
 "eF" = (
 /obj/structure/table/woodentable,
@@ -225,7 +225,7 @@
 /area/lv624/ground/caves/central1)
 "sv" = (
 /obj/structure/closet/secure_closet/freezer/fridge,
-/turf/open/floor/wood/variable/damaged/standard,
+/turf/open/floor/wood/broken,
 /area/lv624/ground/caves/central2)
 "sH" = (
 /obj/structure/barricade/sandbags{
@@ -254,18 +254,18 @@
 /obj/structure/barricade/sandbags{
 	dir = 1
 	},
-/turf/open/floor/wood/variable/damaged/standard,
+/turf/open/floor/wood/broken,
 /area/lv624/ground/caves/central2)
 "uy" = (
 /obj/effect/decal/cleanable/blood/drip,
-/turf/open/floor/wood/variable/damaged/standard,
+/turf/open/floor/wood/broken,
 /area/lv624/ground/caves/central2)
 "uV" = (
 /turf/closed/wall/wood,
 /area/lv624/ground/caves/central2)
 "vb" = (
 /obj/effect/ai_node,
-/turf/open/floor/wood/variable/damaged/standard,
+/turf/open/floor/wood/broken,
 /area/lv624/ground/caves/central2)
 "vk" = (
 /turf/closed/mineral/smooth,
@@ -308,7 +308,7 @@
 	pixel_x = -2;
 	pixel_y = 2
 	},
-/turf/open/floor/wood/variable/damaged/standard,
+/turf/open/floor/wood/broken,
 /area/lv624/ground/caves/central2)
 "xD" = (
 /obj/structure/bed/chair/wood/wings,
@@ -436,7 +436,7 @@
 /area/lv624/ground/caves/central2)
 "Ik" = (
 /obj/structure/barricade/sandbags,
-/turf/open/floor/wood/variable/damaged/standard,
+/turf/open/floor/wood/broken,
 /area/lv624/ground/caves/central2)
 "In" = (
 /turf/open/floor,
@@ -490,19 +490,19 @@
 "MQ" = (
 /obj/effect/landmark/corpsespawner/colonist,
 /obj/effect/decal/cleanable/blood/splatter,
-/turf/open/floor/wood/variable/damaged/standard,
+/turf/open/floor/wood/broken,
 /area/lv624/ground/caves/central2)
 "NI" = (
 /obj/effect/spawner/random/weaponry/gun/sidearms,
 /turf/open/floor/wood,
 /area/lv624/ground/caves/central2)
 "NO" = (
-/turf/open/floor/wood/variable/damaged/standard,
+/turf/open/floor/wood/broken,
 /area/lv624/ground/caves/central2)
 "OX" = (
 /obj/effect/decal/cleanable/blood/drip,
 /obj/effect/spawner/random/weaponry/gun/sidearms,
-/turf/open/floor/wood/variable/damaged/standard,
+/turf/open/floor/wood/broken,
 /area/lv624/ground/caves/central2)
 "Pl" = (
 /obj/item/stack/sheet/wood,
@@ -526,7 +526,7 @@
 /area/lv624/ground/caves/central2)
 "RT" = (
 /obj/effect/spawner/random/clothing/general,
-/turf/open/floor/wood/variable/damaged/standard,
+/turf/open/floor/wood/broken,
 /area/lv624/ground/caves/central2)
 "Tp" = (
 /obj/effect/landmark/lv624/fog_blocker,

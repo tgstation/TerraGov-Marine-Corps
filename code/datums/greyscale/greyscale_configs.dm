@@ -1,14 +1,14 @@
 
 /datum/greyscale_config/screwdriver
-	icon_file = 'icons/obj/items/screwdriver.dmi'
+	icon_file = 'icons/obj/items/tools.dmi'
 	json_config = 'code/datums/greyscale/json_configs/screwdriver.json'
 
 /datum/greyscale_config/screwdriver_inhand_left
-	icon_file = 'icons/obj/items/screwdriver.dmi'
+	icon_file = 'icons/mob/inhands/equipment/tools_left.dmi'
 	json_config = 'code/datums/greyscale/json_configs/screwdriver_inhand_left.json'
 
 /datum/greyscale_config/screwdriver_inhand_right
-	icon_file = 'icons/obj/items/screwdriver.dmi'
+	icon_file = 'icons/mob/inhands/equipment/tools_right.dmi'
 	json_config = 'code/datums/greyscale/json_configs/screwdriver_inhand_right.json'
 
 /datum/greyscale_config/pillbottle
@@ -100,6 +100,9 @@
 /datum/greyscale_config/armor_mk1/kabuto
 	icon_file = 'icons/mob/modular/mark_one/kabuto.dmi'
 
+/datum/greyscale_config/armor_mk1/hotaru
+	icon_file = 'icons/mob/modular/mark_one/hotaru.dmi'
+
 //Mark 2
 
 /datum/greyscale_config/armor_mk2
@@ -135,6 +138,9 @@
 
 /datum/greyscale_config/armor_mk2/trooper
 	icon_file = 'icons/mob/modular/mark_two/trooper.dmi'
+
+/datum/greyscale_config/armor_mk2/hotaru
+	icon_file = 'icons/mob/modular/mark_two/hotaru.dmi'
 
 /datum/greyscale_config/xenonaut
 	icon_file = 'icons/mob/modular/xenonauten.dmi'
@@ -183,6 +189,14 @@
 
 /datum/greyscale_config/duster/leather_jacket
 	json_config = 'code/datums/greyscale/json_configs/leather_jacket.json'
+
+/*
+ * COLORABLE UNIFORM
+ */
+
+/datum/greyscale_config/marine_uniform
+	icon_file = 'icons/mob/modular/marine_uniform.dmi'
+	json_config = 'code/datums/greyscale/json_configs/marine_uniform.json'
 
 /*
  * COLORABLE BADGES
