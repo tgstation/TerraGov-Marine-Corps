@@ -8530,7 +8530,7 @@
 /obj/machinery/computer/general_air_control/large_tank_control{
 	name = "Oxygen Supply Console";
 	output_tag = "oxyvent";
-	sensors = list("oxy_sensor"="Tank")
+	sensors = list("oxy_sensor" = "Tank")
 	},
 /turf/open/floor/mainship/floor,
 /area/mainship/engineering/starboard_atmos)
@@ -10017,6 +10017,7 @@
 /area/mainship/living/bridgebunks)
 "izc" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on,
+/obj/effect/landmark/start/job/foodservicespecialist,
 /turf/open/floor/prison/kitchen,
 /area/mainship/living/grunt_rnr)
 "izJ" = (
@@ -15053,6 +15054,7 @@
 /turf/open/floor/mainship/floor,
 /area/mainship/squads/general)
 "myz" = (
+/obj/effect/landmark/start/job/foodservicespecialist,
 /turf/open/floor/prison/kitchen,
 /area/mainship/living/grunt_rnr)
 "myJ" = (
@@ -20978,7 +20980,7 @@
 	input_tag = "mix_in";
 	name = "Mixed Air Control";
 	output_tag = "mix_out";
-	sensors = list("mix_sensor"="Tank")
+	sensors = list("mix_sensor" = "Tank")
 	},
 /turf/open/floor/mainship/floor,
 /area/mainship/engineering/starboard_atmos)
@@ -26860,7 +26862,7 @@
 /obj/machinery/computer/general_air_control/large_tank_control{
 	name = "Nitrogen Control Console";
 	output_tag = "nit_out";
-	sensors = list("nit_sensor"="Tank")
+	sensors = list("nit_sensor" = "Tank")
 	},
 /turf/open/floor/mainship/floor,
 /area/mainship/engineering/starboard_atmos)

@@ -4393,10 +4393,10 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/aft_hallway)
 "fzT" = (
-/mob/living/simple_animal/corgi/ranger,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
 	dir = 8
 	},
+/mob/living/simple_animal/corgi/ranger,
 /turf/open/floor/mainship/black{
 	dir = 1
 	},
@@ -6333,6 +6333,11 @@
 	dir = 6
 	},
 /area/mainship/engineering/engineering_workshop)
+"idZ" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/effect/landmark/start/job/foodservicespecialist,
+/turf/open/floor/prison/kitchen,
+/area/mainship/living/grunt_rnr)
 "iet" = (
 /obj/machinery/door/airlock/mainship/maint{
 	dir = 2
@@ -9907,6 +9912,10 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/living/grunt_rnr)
+"mBX" = (
+/obj/effect/landmark/start/job/foodservicespecialist,
+/turf/open/floor/prison/kitchen,
+/area/mainship/living/grunt_rnr)
 "mBZ" = (
 /turf/open/space,
 /area/space)
@@ -11796,7 +11805,7 @@
 	frequency = 1443;
 	name = "Lower Nitrogen Control Console";
 	output_tag = "nit_lower_out";
-	sensors = list("nit_sensor"="Tank")
+	sensors = list("nit_sensor" = "Tank")
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/port_atmos)
@@ -14822,7 +14831,7 @@
 	frequency = 1443;
 	name = "Lower Oxygen Supply Console";
 	output_tag = "oxygen_lower_out";
-	sensors = list("oxy_sensor"="Tank")
+	sensors = list("oxy_sensor" = "Tank")
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/port_atmos)
@@ -15134,7 +15143,7 @@
 	input_tag = "mix_lower_in";
 	name = "Lower Mixed Air Control";
 	output_tag = "mix_lower_out";
-	sensors = list("mix_sensor"="Tank")
+	sensors = list("mix_sensor" = "Tank")
 	},
 /obj/machinery/light/mainship{
 	dir = 1
@@ -15785,12 +15794,12 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/lower_hull)
 "tRq" = (
-/mob/living/simple_animal/catslug/newt,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 9
 	},
 /obj/effect/ai_node,
+/mob/living/simple_animal/catslug/newt,
 /turf/open/floor/mainship/sterile/purple/side{
 	dir = 4
 	},
@@ -18225,7 +18234,7 @@
 	input_tag = "waste_lower_in";
 	name = "Lower Deck Waste Tank Control";
 	output_tag = "waste_lower_out";
-	sensors = list("waste_sensor"="Tank")
+	sensors = list("waste_sensor" = "Tank")
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 1
@@ -43939,10 +43948,10 @@ ppa
 wcT
 tKd
 tfG
-tfG
+mBX
 osQ
 aKk
-aKk
+idZ
 bsG
 rKn
 tCK

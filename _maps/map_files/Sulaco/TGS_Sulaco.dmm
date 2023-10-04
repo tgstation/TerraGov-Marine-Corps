@@ -1566,7 +1566,7 @@
 	input_tag = "waste_in";
 	name = "Waste Tank Control";
 	output_tag = "waste_out";
-	sensors = list("waste_sensor"="Tank")
+	sensors = list("waste_sensor" = "Tank")
 	},
 /turf/open/floor/prison/yellow{
 	dir = 4
@@ -1664,7 +1664,7 @@
 /obj/machinery/computer/general_air_control/large_tank_control{
 	name = "Oxygen Supply Console";
 	output_tag = "oxyvent";
-	sensors = list("oxy_sensor"="Tank")
+	sensors = list("oxy_sensor" = "Tank")
 	},
 /turf/open/floor/prison/yellow{
 	dir = 1
@@ -1727,7 +1727,7 @@
 	input_tag = "mix_in";
 	name = "Mixed Air Control";
 	output_tag = "mix_out";
-	sensors = list("mix_sensor"="Tank")
+	sensors = list("mix_sensor" = "Tank")
 	},
 /obj/machinery/light/mainship{
 	dir = 1
@@ -1740,7 +1740,7 @@
 /obj/machinery/computer/general_air_control/large_tank_control{
 	name = "Nitrogen Control Console";
 	output_tag = "nit_out";
-	sensors = list("nit_sensor"="Tank")
+	sensors = list("nit_sensor" = "Tank")
 	},
 /turf/open/floor/prison/yellow{
 	dir = 1
@@ -4295,7 +4295,7 @@
 	input_tag = "cooling_in";
 	name = "Core Cooling";
 	output_tag = "cooling_out";
-	sensors = list("core_sensor"="Tank")
+	sensors = list("core_sensor" = "Tank")
 	},
 /turf/open/floor/prison/darkyellow/corner,
 /area/sulaco/engineering/engine_monitoring)
@@ -23764,6 +23764,10 @@
 /obj/machinery/status_display,
 /turf/closed/wall/mainship/gray/outer,
 /area/sulaco/engineering/engine)
+"tBK" = (
+/obj/effect/landmark/start/job/foodservicespecialist,
+/turf/open/floor/prison/sterilewhite,
+/area/sulaco/cafeteria/kitchen)
 "tBY" = (
 /obj/effect/spawner/random/misc/gnome,
 /turf/open/floor/grass,
@@ -49078,7 +49082,7 @@ fyW
 aOR
 oUY
 wMZ
-wMZ
+tBK
 plq
 jsq
 mDu
@@ -49592,7 +49596,7 @@ wMZ
 aOR
 wQy
 wMZ
-wMZ
+tBK
 xKj
 jsq
 mDu
