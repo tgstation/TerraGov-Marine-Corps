@@ -289,10 +289,6 @@
 	dir = 6
 	},
 /area/rocinante_Base/ground/base_e)
-"ays" = (
-/obj/structure/largecrate/random/secure,
-/turf/open/floor/plating/ground/concrete,
-/area/rocinante_Base/ground/underground/caveCent)
 "azv" = (
 /obj/effect/landmark/patrol_point{
 	id = "TGMC_22";
@@ -1851,11 +1847,10 @@
 /turf/open/floor/mainship/som/s,
 /area/rocinante_Base/surface/building/tele_lab)
 "cZD" = (
-/obj/structure/stairs/seamless{
-	dir = 4
-	},
 /obj/structure/cable,
-/obj/structure/platform/metalplatform,
+/obj/structure/stairs/seamless/edge{
+	dir = 1
+	},
 /turf/open/ground/grass/weedable/patch,
 /area/rocinante_Base/ground/base_cent)
 "cZH" = (
@@ -2235,6 +2230,10 @@
 	dir = 8
 	},
 /area/rocinante_Base/surface/building/garage_sec)
+"dOA" = (
+/obj/effect/landmark/campaign_objective/phoron_stack,
+/turf/open/floor/plating/ground/concrete,
+/area/rocinante_Base/ground/underground/caveCent)
 "dPD" = (
 /obj/structure/cable,
 /turf/open/floor/mainship/red,
@@ -7898,6 +7897,10 @@
 	dir = 1
 	},
 /area/rocinante_Base/ground/base_n)
+"nuL" = (
+/obj/structure/largecrate/supply,
+/turf/open/floor/plating/ground/concrete,
+/area/rocinante_Base/ground/underground/caveCent)
 "nvJ" = (
 /obj/structure/cable,
 /turf/open/floor/mainship/blue{
@@ -8766,6 +8769,7 @@
 /obj/effect/turf_decal/siding/dark{
 	dir = 9
 	},
+/obj/effect/landmark/campaign_objective/phoron_stack,
 /turf/open/floor/mainship/som/ne,
 /area/rocinante_Base/surface/building/tele_lab)
 "oWx" = (
@@ -11888,11 +11892,8 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/rocinante_Base/surface/building/crystal_lab)
 "ujv" = (
-/obj/structure/stairs/seamless{
-	dir = 4
-	},
-/obj/structure/platform/metalplatform{
-	dir = 1
+/obj/structure/stairs/seamless/edge{
+	dir = 8
 	},
 /turf/open/ground/grass/weedable/patch,
 /area/rocinante_Base/ground/base_cent)
@@ -12754,6 +12755,12 @@
 	},
 /turf/open/ground/grass/weedable/patch,
 /area/rocinante_Base/ground/base_sw)
+"vyU" = (
+/obj/effect/landmark/campaign_objective/phoron_stack,
+/turf/open/floor/mainship/red{
+	dir = 8
+	},
+/area/rocinante_Base/surface/building/tele_lab)
 "vzm" = (
 /obj/structure/table/black,
 /obj/machinery/computer3/laptop,
@@ -39737,8 +39744,8 @@ dWf
 pxf
 pxf
 wbN
-pxf
-pxf
+gOk
+nuL
 pxf
 pxf
 fjM
@@ -39889,8 +39896,8 @@ dWf
 pxf
 pxf
 fjM
-pxf
-pxf
+bFN
+hWa
 pxf
 pxf
 fjM
@@ -40196,7 +40203,7 @@ pxf
 pxf
 pxf
 pxf
-pxf
+dOA
 fjM
 voB
 voB
@@ -40793,7 +40800,7 @@ iQI
 fjM
 pxf
 pxf
-pxf
+dOA
 fjM
 bFN
 pxf
@@ -40945,7 +40952,7 @@ iQI
 fjM
 pxf
 pxf
-ays
+pxf
 fjM
 pxf
 pxf
@@ -41097,7 +41104,7 @@ iQI
 fjM
 pxf
 pxf
-mhL
+pxf
 fjM
 pxf
 pxf
@@ -42105,7 +42112,7 @@ txy
 txy
 txy
 txy
-txy
+vyU
 tmj
 gYj
 gYj

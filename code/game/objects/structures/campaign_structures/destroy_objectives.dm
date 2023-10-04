@@ -133,6 +133,7 @@
 /obj/effect/landmark/campaign_objective/train/carriage
 	name = "carriage objective"
 	icon_state = "carriage_lit"
+	objective_type = /obj/structure/campaign_objective/destruction_objective/supply_objective/train/carriage_lit
 
 /obj/structure/campaign_objective/destruction_objective/supply_objective/train/carriage_lit
 	name = "rail carriage"
