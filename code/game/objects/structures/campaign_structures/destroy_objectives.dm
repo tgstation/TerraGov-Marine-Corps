@@ -121,7 +121,7 @@
 	desc = "A heavy duty maglev locomotive. Designed for moving large quantities of goods from point A to point B."
 	icon = 'icons/obj/structures/train.dmi'
 	icon_state = "maglev"
-	pixel_x = -63
+	pixel_x = 0
 
 /obj/structure/campaign_objective/destruction_objective/supply_objective/train/carriage
 	name = "rail carriage"
