@@ -312,6 +312,11 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	melee_weapons = SKILL_MELEE_WEAK
 	police = SKILL_POLICE_MP
 
+/datum/skills/fss
+	name = "Food Service Specialist"
+	melee_weapons = SKILL_MELEE_TRAINED
+	firearms = SKILL_FIREARMS_UNTRAINED
+
 /datum/skills/ai
 	name = "AI"
 	engineer = SKILL_ENGINEER_MASTER

@@ -406,6 +406,7 @@ You can serve your Division in a variety of roles, so choose carefully."})
 	req_admin_notify = TRUE
 	paygrade = "E2"
 	comm_title = "FSS"
+	skills_type = /datum/skills/fss
 	total_positions = 2
 	access = list(ACCESS_MARINE_WO, ACCESS_MARINE_PREP, ACCESS_MARINE_MECH, ACCESS_CIVILIAN_PUBLIC)
 	minimal_access = list(ACCESS_MARINE_WO, ACCESS_MARINE_PREP, ACCESS_CIVILIAN_PUBLIC, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_CARGO)
