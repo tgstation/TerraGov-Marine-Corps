@@ -23,6 +23,7 @@
 
 /area/rocinante_Base/surface/building/building_underground
 	ceiling = CEILING_DEEP_UNDERGROUND_METAL
+	flags_area = ALWAYS_RADIO
 
 /area/rocinante_Base/ground/underground
 	name = "rocinante Base Underground"
@@ -30,6 +31,7 @@
 	ceiling = CEILING_DEEP_UNDERGROUND
 	outside = FALSE
 	minimap_color = MINIMAP_AREA_CAVES
+	flags_area = ALWAYS_RADIO
 
 //landingZone
 /area/rocinante_Base/surface/landing
