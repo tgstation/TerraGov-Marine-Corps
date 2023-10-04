@@ -1,4 +1,0 @@
-author: "efzapa"
-delete-after: True
-changes:
-  - bugfix: "MG-27 Box Magazine description now quotes correct ammo count"
