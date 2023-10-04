@@ -4701,9 +4701,6 @@
 	dir = 8
 	},
 /area/mainship/hallways/hangar)
-"edR" = (
-/turf/open/space/basic,
-/area/mainship/living/evacuation)
 "eff" = (
 /obj/machinery/firealarm{
 	dir = 4
@@ -33599,7 +33596,7 @@ lQF
 lQF
 lQF
 rpY
-edR
+dGV
 rFY
 rFY
 uvB
