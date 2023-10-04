@@ -41,21 +41,22 @@
 	for(var/faction in factions)
 		stat_list[faction] = new /datum/faction_stats(faction)
 	RegisterSignal(SSdcs, COMSIG_LIVING_JOB_SET, PROC_REF(register_faction_member))
-	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH, PROC_REF(set_death_time))
+	RegisterSignals(SSdcs, list(COMSIG_GLOB_MOB_DEATH, COMSIG_MOB_GHOSTIZE), PROC_REF(set_death_time))
+	RegisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_MISSION_ENDED, PROC_REF(cut_death_list))
 	addtimer(CALLBACK(SSticker.mode, TYPE_PROC_REF(/datum/game_mode/hvh/campaign, intro_sequence)), SSticker.round_start_time + 1 MINUTES)
 
 /datum/game_mode/hvh/campaign/post_setup()
 	. = ..()
 	for(var/obj/effect/landmark/patrol_point/exit_point AS in GLOB.patrol_point_list) //som 'ship' map is now ground, but this ensures we clean up exit points if this changes in the future
 		qdel(exit_point)
-	load_new_mission(new /datum/campaign_mission/tdm/first_mission(factions[1])) //this is the 'roundstart' mission
+	load_new_mission(new /datum/campaign_mission/destroy_mission/supply_raid(factions[1])) //this is the 'roundstart' mission
 
 	for(var/i in stat_list)
 		var/datum/faction_stats/selected_faction = stat_list[i]
 		addtimer(CALLBACK(selected_faction, TYPE_PROC_REF(/datum/faction_stats, choose_faction_leader)), 90 SECONDS)
 
 /datum/game_mode/hvh/campaign/player_respawn(mob/respawnee)
-	if(current_mission.mission_state == MISSION_STATE_ACTIVE && ((player_death_times[respawnee.key] + CAMPAIGN_RESPAWN_TIME) > world.time))
+	if((player_death_times[respawnee.key] + CAMPAIGN_RESPAWN_TIME) > world.time)
 		to_chat(respawnee, "<span class='warning'>Respawn timer has [round((player_death_times[respawnee.key] + CAMPAIGN_RESPAWN_TIME - world.time) / 10)] seconds remaining.<spawn>")
 		return
 	attempt_attrition_respawn(respawnee)
@@ -119,7 +120,7 @@
 	current_mission.load_mission()
 	TIMER_COOLDOWN_START(src, COOLDOWN_BIOSCAN, bioscan_interval)
 
-//respawn stuff, this is all kinda gross and should be revisited later
+//respawn stuff
 
 ///Records the players death time for respawn time purposes
 /datum/game_mode/hvh/campaign/proc/set_death_time(datum/source, mob/living/carbon/human/player)
@@ -129,6 +130,11 @@
 	if(!(player.faction in factions))
 		return
 	player_death_times[player.key] = world.time
+
+///cuts the death time list at mission end
+/datum/game_mode/hvh/campaign/proc/cut_death_list(datum/source)
+	SIGNAL_HANDLER
+	player_death_times.Cut()
 
 ///respawns the player if attrition points are available
 /datum/game_mode/hvh/campaign/proc/attempt_attrition_respawn(mob/candidate)
