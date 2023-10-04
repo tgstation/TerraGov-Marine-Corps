@@ -1,27 +1,6 @@
 /particles/xeno_smoke/acid_light
 	color = "#9dcf30"
 
-
-/// The alternative action of bombard, rooting. It begins the rooting/unrooting process.
-/datum/action/xeno_action/activable/bombard/proc/root()
-	if(HAS_TRAIT_FROM(owner, TRAIT_IMMOBILE, BOILER_ROOTED_TRAIT))
-		owner.balloon_alert_to_viewers("Rooting out of place...")
-		if(!do_after(owner, 2 SECONDS, FALSE, null, BUSY_ICON_HOSTILE))
-			owner.balloon_alert(owner, "Interrupted!")
-			return
-		owner.balloon_alert(owner, "Unrooted!")
-		set_rooted(FALSE)
-		return
-
-	owner.balloon_alert_to_viewers("Rooting into place...")
-	if(!do_after(owner, 2 SECONDS, FALSE, null, BUSY_ICON_HOSTILE))
-		owner.balloon_alert(owner, "Interrupted!")
-		return
-
-	owner.balloon_alert_to_viewers("Rooted into place!")
-	set_rooted(TRUE)
-
-
 // ***************************************
 // *********** Dump acid
 // ***************************************
