@@ -397,6 +397,61 @@ You can serve your Division in a variety of roles, so choose carefully."})
 	shoes = /obj/item/clothing/shoes/marine/full
 	gloves = /obj/item/clothing/gloves/marine
 
+/datum/job/terragov/civilian
+	job_category = JOB_CAT_CIVILIAN
+	selection_color = "#ffeedd"
+
+/datum/job/terragov/civilian/food_service_specialist
+	title = FOOD_SERVICE_SPECIALIST
+	comm_title = "CHEF"
+	paygrade = "PFC"
+	total_positions = 2
+	supervisors = "the acting commander"
+	display_order = JOB_DISPLAY_ORDER_DOCTOR
+	outfit = /datum/job/terragov/civilian/food_service_specialist
+	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_PROVIDES_SQUAD_HUD
+	html_description = {"
+		<b>Difficulty</b>: Easy<br /><br />
+		<b>You answer to the</b> acting captain<br /><br />
+		<b>Unlock Requirement</b>: Starting Role<br /><br />
+		<b>Gamemode Availability</b>: Campaign<br /><br /><br />
+		<b>Duty</b>: Keep the TGMC well fed and happy. Fight for your team if things get desperate.
+	"}
+	minimap_icon = "chef"
+
+/datum/job/terragov/civilian/food_service_specialist/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
+	. = ..()
+	if(!ishuman(new_mob))
+		return
+	var/mob/living/carbon/human/new_human = new_mob
+	var/playtime_mins = user?.client?.get_exp(title)
+	if(!playtime_mins || playtime_mins < 1 )
+		return
+	switch(playtime_mins)
+		if(0 to 3000) // starting
+			new_human.wear_id.paygrade = "PFC"
+		if(3001 to INFINITY) // 50 hrs
+			new_human.wear_id.paygrade = "CPL"
+
+/datum/job/terragov/civilian/food_service_specialist/radio_help_message(mob/M)
+	. = ..()
+	to_chat(M, {"You are a chef stationed shipside.
+You are tasked with keeping the TGMC well fed and happy, usually in the form of delicious food.
+You are also an expert when it comes to botany and hydroponics. If you do not know what you are doing, <b>mentorhelp</b> so a mentor can assist you."})
+
+
+/datum/job/terragov/civilian/food_service_specialist
+	name = FOOD_SERVICE_SPECIALIST
+	jobtype = /datum/job/terragov/civilian/food_service_specialist
+
+	id = /obj/item/card/id/silver
+	ears = /obj/item/radio/headset/mainship/marine
+	w_uniform = /obj/item/clothing/under/rank/chef
+	wear_suit = /obj/item/clothing/suit/chef
+	shoes = /obj/item/clothing/shoes/black
+	gloves = /obj/item/clothing/gloves/white
+	glasses = /obj/item/clothing/glasses/sunglasses
+
 /datum/job/terragov/engineering
 	job_category = JOB_CAT_ENGINEERING
 	selection_color = "#fff5cc"

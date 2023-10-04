@@ -35,6 +35,7 @@ export const JobPreferences = (props, context) => {
     'Chief Medical Officer',
     'Medical Doctor',
     'Medical Researcher',
+    'Food Service Specialist',
   ];
   const marineJobs = [
     'Squad Marine',

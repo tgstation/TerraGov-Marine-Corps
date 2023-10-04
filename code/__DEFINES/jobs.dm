@@ -43,20 +43,29 @@
 /// Job has a TTS volume bonus
 #define JOB_FLAG_LOUDER_TTS (1<<15)
 
+////MARINES////
+//Command
 #define CAPTAIN "Captain"
 #define EXECUTIVE_OFFICER "Executive Officer" //Currently disabled.
 #define FIELD_COMMANDER "Field Commander"
 #define STAFF_OFFICER "Staff Officer"
 #define PILOT_OFFICER "Pilot Officer"
-#define MECH_PILOT "Mech Pilot"
 #define REQUISITIONS_OFFICER "Requisitions Officer"
-#define CHIEF_SHIP_ENGINEER "Chief Ship Engineer"
-#define CHIEF_MEDICAL_OFFICER "Chief Medical Officer"
-#define CORPORATE_LIAISON "Corporate Liaison"
+#define SILICON_AI "AI"
 #define SYNTHETIC "Synthetic"
+
+//Support
+#define CHIEF_SHIP_ENGINEER "Chief Ship Engineer"
 #define SHIP_TECH "Ship Technician"
+#define CHIEF_MEDICAL_OFFICER "Chief Medical Officer"
 #define MEDICAL_DOCTOR "Medical Doctor"
 #define MEDICAL_RESEARCHER "Medical Researcher"
+#define FOOD_SERVICE_SPECIALIST "Food Service Specialist"
+
+//Flavor
+#define CORPORATE_LIAISON "Corporate Liaison"
+
+//Marines
 #define SQUAD_LEADER "Squad Leader"
 #define SQUAD_SPECIALIST "Squad Specialist"
 #define SQUAD_SMARTGUNNER "Squad Smartgunner"
@@ -65,26 +74,30 @@
 #define SQUAD_MARINE "Squad Marine"
 #define SQUAD_ROBOT "Squad Robot"
 #define SQUAD_VATGROWN "Squad VatGrown"
-#define SILICON_AI "AI"
+#define MECH_PILOT "Mech Pilot"
 
-//SOM
+////SOM////
+//Command
 #define SOM_GENERAL "SOM general"
 #define SOM_FIELD_COMMANDER "SOM Field Commander"
 #define SOM_STAFF_OFFICER "SOM Staff Officer"
 #define SOM_PILOT_OFFICER "SOM Pilot Officer"
-#define SOM_MECH_PILOT "SOM Mech Pilot"
 #define SOM_REQUISITIONS_OFFICER "SOM Requisitions Officer"
-#define SOM_CHIEF_ENGINEER "SOM Chief Engineer"
-#define SOM_CHIEF_MEDICAL_OFFICER "SOM Chief Medical Officer"
-#define SOM_TECH "SOM Technician"
-#define SOM_MEDICAL_DOCTOR "SOM Medical Doctor"
-#define SOM_CHEF "SOM chef"
 
+//Squad
 #define SOM_SQUAD_LEADER "SOM Squad Leader"
 #define SOM_SQUAD_CORPSMAN "SOM Squad Medic"
 #define SOM_SQUAD_ENGINEER "SOM Squad Engineer"
 #define SOM_SQUAD_VETERAN "SOM Squad Veteran"
 #define SOM_SQUAD_MARINE "SOM Squad Standard"
+#define SOM_MECH_PILOT "SOM Mech Pilot"
+
+//Support
+#define SOM_CHIEF_ENGINEER "SOM Chief Engineer"
+#define SOM_CHIEF_MEDICAL_OFFICER "SOM Chief Medical Officer"
+#define SOM_TECH "SOM Technician"
+#define SOM_MEDICAL_DOCTOR "SOM Medical Doctor"
+#define SOM_CHEF "SOM chef"
 
 #define JOB_CAT_COMMAND "Command"
 #define JOB_CAT_SILICON "Silicon"
