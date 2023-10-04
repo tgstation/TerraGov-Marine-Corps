@@ -9,7 +9,6 @@
 	map_light_levels = list(225, 150, 100, 75)
 	objectives_total = 6
 	min_destruction_amount = 4
-	max_game_time = 15 MINUTES
 	victory_point_rewards = list(
 		MISSION_OUTCOME_MAJOR_VICTORY = list(2, 0),
 		MISSION_OUTCOME_MINOR_VICTORY = list(1, 0),

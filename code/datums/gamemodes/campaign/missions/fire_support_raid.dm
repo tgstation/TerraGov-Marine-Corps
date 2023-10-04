@@ -12,7 +12,6 @@
 		"starting_faction" = 90 SECONDS,
 		"hostile_faction" = 0,
 	)
-	max_game_time = 15 MINUTES
 	victory_point_rewards = list(
 		MISSION_OUTCOME_MAJOR_VICTORY = list(2, 0),
 		MISSION_OUTCOME_MINOR_VICTORY = list(1, 0),
@@ -30,11 +29,6 @@
 
 	starting_faction_additional_rewards = "Severely degrade enemy fire support, preventing their use of mortars for a while"
 	hostile_faction_additional_rewards = "Protect our fire support options to ensure continued access to mortar support"
-
-/datum/campaign_mission/destroy_mission/fire_support_raid/load_mission()
-	. = ..()
-	for(var/i = 1 to objectives_total)
-		new /obj/item/explosive/plastique(get_turf(pick(GLOB.campaign_reward_spawners[starting_faction])))
 
 /datum/campaign_mission/destroy_mission/fire_support_raid/play_start_intro()
 	intro_message = list(
