@@ -6,8 +6,8 @@
 	map_light_colours = list(COLOR_MISSION_YELLOW, COLOR_MISSION_YELLOW, COLOR_MISSION_YELLOW, COLOR_MISSION_YELLOW)
 	map_light_levels = list(225, 150, 100, 75)
 	mission_icon = "combat_patrol"
-	starting_faction_objective_description = "Major Victory: Wipe out all hostiles in the area of operation. Minor Victory: Eliminate more hostiles than you lose."
-	hostile_faction_objective_description = "Major Victory: Wipe out all hostiles in the area of operation. Minor Victory: Eliminate more hostiles than you lose."
+	starting_faction_objective_description = "Major Victory: Wipe out all hostiles in the AO or capture and hold the sensor towers for a points victory. Minor Victory: Eliminate more hostiles than you lose."
+	hostile_faction_objective_description = "Major Victory: Wipe out all hostiles in the AO or capture and hold the sensor towers for a points victory. Minor Victory: Eliminate more hostiles than you lose."
 	max_game_time = 20 MINUTES
 	victory_point_rewards = list(
 		MISSION_OUTCOME_MAJOR_VICTORY = list(3, 0),
