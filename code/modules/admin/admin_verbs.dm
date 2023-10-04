@@ -1305,7 +1305,7 @@
 	togglebuildmode(mob)
 
 /client/proc/toggle_admin_tads()
-	set category = "Fun"
+	set category = "Admin.Fun"
 	set name = "Toggle Tadpole Restrictions"
 
 	if(!check_rights(R_FUN))

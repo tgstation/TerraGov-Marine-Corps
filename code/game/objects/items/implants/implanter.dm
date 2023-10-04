@@ -1,6 +1,6 @@
 /obj/item/implanter
 	name = "implanter"
-	icon = 'icons/obj/items/items.dmi'
+	icon = 'icons/obj/items/implants.dmi'
 	icon_state = "implanter0"
 	item_icons = list(
 		slot_l_hand_str = 'icons/mob/inhands/equipment/medical_left.dmi',

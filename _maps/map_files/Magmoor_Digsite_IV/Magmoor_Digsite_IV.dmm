@@ -8864,12 +8864,6 @@
 	},
 /turf/open/floor/mainship/sterile/dark,
 /area/magmoor/medical/treatment)
-"glQ" = (
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
-	dir = 2
-	},
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/magmoor/cave/southeast)
 "gmb" = (
 /turf/open/floor/tile/blue/whitebluecorner,
 /area/magmoor/civilian/clean)
@@ -74588,13 +74582,13 @@ iLH
 iLH
 iLH
 iLH
-iLH
-iLH
-iLH
-iLH
-iLH
-iLH
-glQ
+lbz
+kae
+kae
+kae
+ngh
+ngh
+lbz
 oGr
 oGr
 oGr
@@ -74822,12 +74816,12 @@ ngh
 ngh
 ngh
 ngh
-ngh
-ngh
-ngh
-kae
-kae
-glQ
+oGr
+oGr
+oGr
+oGr
+oGr
+oGr
 oGr
 oGr
 oGr
