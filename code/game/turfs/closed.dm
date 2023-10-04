@@ -60,6 +60,7 @@
 	open_turf_type = /turf/open/floor/plating/ground/mars/random/dirt
 
 /turf/closed/mineral/smooth/indestructible
+	name = "tough rock"
 	resistance_flags = RESIST_ALL
 	icon_state = "wall-invincible"
 

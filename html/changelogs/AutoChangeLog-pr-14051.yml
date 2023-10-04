@@ -1,4 +1,0 @@
-author: "vvvv-vvvv"
-delete-after: True
-changes:
-  - bugfix: "Fix missing empty sprite for 5.56mm ammo box"

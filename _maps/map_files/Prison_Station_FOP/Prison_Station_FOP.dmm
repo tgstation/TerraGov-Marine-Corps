@@ -47972,7 +47972,7 @@
 /area/prison/hallway/entrance)
 "wnT" = (
 /obj/structure/table/woodentable,
-/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
+/obj/effect/spawner/random/weaponry/gun,
 /turf/open/floor/carpet,
 /area/prison/command/quarters)
 "woF" = (

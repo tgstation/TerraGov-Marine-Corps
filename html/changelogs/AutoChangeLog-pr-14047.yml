@@ -1,5 +1,0 @@
-author: "Blundir"
-delete-after: True
-changes:
-  - rscadd: "acid on walls now has unique set of sprites"
-  - bugfix: "fixed acid rendering over everything"
