@@ -328,9 +328,9 @@ SUBSYSTEM_DEF(persistence)
 	description = "TAT, Thermobarics and Disposables for roundstart vendors."
 	item_list = list(
 		/obj/structure/largecrate/supply/weapons/standard_atgun = 1,
-		/obj/item/weapon/gun/launcher/rocket/m57a4/t57 = 2,
-		/obj/item/ammo_magazine/rocket/m57a4 = 6,
-		/obj/item/weapon/gun/launcher/rocket/oneuse = 8,
+		/obj/item/weapon/gun/launcher/rocket/m57a4/t57/unloaded = 2,
+		/obj/item/ammo_magazine/rocket/m57a4 = 8,
+		/obj/structure/largecrate/supply/explosives/disposable = 1,
 	)
 
 /datum/season_datum/weapons/guns/heavy_autorail
@@ -340,8 +340,8 @@ SUBSYSTEM_DEF(persistence)
 		/obj/item/weapon/gun/standard_auto_cannon = 1,
 		/obj/item/ammo_magazine/auto_cannon = 3,
 		/obj/item/ammo_magazine/auto_cannon/flak = 3,
-		/obj/item/weapon/gun/rifle/railgun = 2,
-		/obj/item/ammo_magazine/railgun = 10,
+		/obj/item/weapon/gun/rifle/railgun/unloaded = 2,
+		/obj/item/ammo_magazine/railgun = 12,
 		/obj/item/ammo_magazine/railgun/smart = 6,
 	)
 
