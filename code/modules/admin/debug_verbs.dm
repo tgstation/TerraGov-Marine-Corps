@@ -182,6 +182,11 @@
 	log_admin("[key_name(usr)] deleted [A]([A.type]) at [AREACOORD(T)].")
 	message_admins("[ADMIN_TPMONTY(usr)] deleted [A]([A.type]) at [ADMIN_VERBOSEJMP(T)].")
 
+	if(isturf(A))
+		var/turf/deleting_turf = A
+		deleting_turf.ScrapeAway()
+		return
+
 	qdel(A)
 
 

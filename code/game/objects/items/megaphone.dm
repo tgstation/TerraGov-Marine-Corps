@@ -1,6 +1,7 @@
 /obj/item/megaphone
 	name = "megaphone"
 	desc = "A device used to project your voice. Loudly."
+	icon = 'icons/obj/device.dmi'
 	icon_state = "megaphone"
 	item_icons = list(
 		slot_l_hand_str = 'icons/mob/inhands/equipment/tools_left.dmi',

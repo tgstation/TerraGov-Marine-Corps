@@ -16,17 +16,6 @@
 #warn WARNING! your byond version is over the recommended version! There may be unexpected byond bugs!
 #endif
 
-//Don't load extools on 514
-#if DM_VERSION < 514
-#define USE_EXTOOLS
-#endif
-
-#if DM_BUILD < 1540
-#define AS as()
-#else
-#define AS as anything
-#endif
-
 // So we want to have compile time guarantees these procs exist on local type, unfortunately 515 killed the .proc/procname syntax so we have to use nameof()
 #if DM_VERSION < 515
 /// Call by name proc reference, checks if the proc exists on this type or as a global proc
