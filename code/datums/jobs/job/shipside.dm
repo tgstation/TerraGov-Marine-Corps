@@ -405,7 +405,7 @@ You can serve your Division in a variety of roles, so choose carefully."})
 	title = FOOD_SERVICE_SPECIALIST
 	req_admin_notify = TRUE
 	paygrade = "E2"
-	comm_title = "CHEF"
+	comm_title = "FSS"
 	total_positions = 2
 	access = list(ACCESS_MARINE_WO, ACCESS_MARINE_PREP, ACCESS_MARINE_MECH, ACCESS_CIVILIAN_PUBLIC)
 	minimal_access = list(ACCESS_MARINE_WO, ACCESS_MARINE_PREP, ACCESS_CIVILIAN_PUBLIC, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_CARGO)
@@ -420,7 +420,7 @@ You can serve your Division in a variety of roles, so choose carefully."})
 		<b>Difficulty</b>: Easy<br /><br />
 		<b>You answer to the</b> acting captain<br /><br />
 		<b>Unlock Requirement</b>: Starting Role<br /><br />
-		<b>Gamemode Availability</b>: Campaign<br /><br /><br />
+		<b>Gamemode Availability</b>: Nuclear War<br /><br /><br />
 		<b>Duty</b>: Keep the TGMC well fed and happy. Fight for your team if things get desperate.
 	"}
 	minimap_icon = "chef"
