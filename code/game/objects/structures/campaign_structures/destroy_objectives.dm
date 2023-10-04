@@ -139,6 +139,33 @@
 	desc = "A heavy duty maglev carriage. I wonder what's inside?."
 	icon_state = "carriage_lit"
 
+//Phoron stack
+/obj/effect/landmark/campaign_objective/phoron_stack
+	name = "phoron crates"
+	icon = 'icons/obj/structures/campaign/campaign_64.dmi'
+	icon_state = "phoron_stack"
+	mission_types = list(/datum/campaign_mission/destroy_mission/supply_raid)
+	objective_type = /obj/structure/campaign_objective/destruction_objective/supply_objective/phoron_stack
+	pixel_y = -8
+
+/obj/structure/campaign_objective/destruction_objective/supply_objective/phoron_stack
+	name = "phoron crates"
+	desc = "A stack of crates filled to the brim with valuable phoron."
+	icon = 'icons/obj/structures/campaign/campaign_64.dmi'
+	icon_state = "phoron_stack"
+	pixel_y = -8
+	bound_height = 32
+	bound_width = 64
+
+/obj/structure/campaign_objective/destruction_objective/supply_objective/phoron_stack/Initialize(mapload)
+	. = ..()
+	update_icon()
+
+/obj/structure/campaign_objective/destruction_objective/supply_objective/phoron_stack/update_overlays()
+	. = ..()
+	var/image/new_overlay = image(icon, src, "[icon_state]_overlay", ABOVE_MOB_LAYER, dir)
+	. += new_overlay
+
 //teleporter core
 /obj/effect/landmark/campaign_objective/bluespace_core
 	name = "Bluespace Core objective"
