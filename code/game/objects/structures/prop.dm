@@ -2073,6 +2073,8 @@
 	icon_state = "SOM_fighter"
 	pixel_x = -33
 	pixel_y = -10
+	density = TRUE
+	allow_pass_flags = PASS_AIR
 
 /obj/structure/prop/som_fighter/empty
 	icon_state = "SOM_fighter_empty"
@@ -2083,6 +2085,8 @@
 	desc = "A heavy duty maglev locomotive. Designed for moving large quantities of goods from point A to point B."
 	icon = 'icons/obj/structures/train.dmi'
 	icon_state = "maglev"
+	density = TRUE
+	allow_pass_flags = PASS_AIR
 
 /obj/structure/prop/train/carriage
 	name = "rail carriage"
