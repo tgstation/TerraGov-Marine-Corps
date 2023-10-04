@@ -2078,5 +2078,61 @@
 	icon_state = "SOM_fighter_empty"
 	desc = "A state of the art Harbinger class fighter. The premier fighter for SOM forces in space and atmosphere, this one seems to be unarmed currently."
 
+/obj/structure/prop/train
+	name = "locomotive"
+	desc = "A heavy duty maglev locomotive. Designed for moving large quantities of goods from point A to point B."
+	icon = 'icons/obj/structures/train.dmi'
+	icon_state = "maglev"
+
+/obj/structure/prop/train/carriage
+	name = "rail carriage"
+	desc = "A heavy duty maglev carriage. I wonder what's inside?."
+	icon_state = "carriage"
+
+/obj/structure/prop/train/carriage_lit
+	name = "rail carriage"
+	desc = "A heavy duty maglev carriage. I wonder what's inside?."
+	icon_state = "carriage_lit"
+
+/obj/structure/prop/train/cargo_nt
+	name = "railcar"
+	desc = "A heavy duty maglev railcar. This one has a large cargo container on it."
+	icon_state = "nt"
+
+/obj/structure/prop/train/cargo_sat
+	name = "railcar"
+	desc = "A heavy duty maglev railcar. This one has a large cargo container on it."
+	icon_state = "sat"
+
+/obj/structure/prop/train/cargo_hyperdyne
+	name = "railcar"
+	desc = "A heavy duty maglev railcar. This one has a large cargo container on it."
+	icon_state = "hyperdyne"
+
+/obj/structure/prop/train/construction
+	name = "railcar"
+	desc = "A heavy duty maglev railcar. This one is carrying a variety of construction materials."
+	icon_state = "construction"
+
+/obj/structure/prop/train/crates
+	name = "railcar"
+	desc = "A heavy duty maglev railcar. This one has a variety of crates on it."
+	icon_state = "crates"
+
+/obj/structure/prop/train/weapons
+	name = "railcar"
+	desc = "A heavy duty maglev railcar. This one is carrying a shipment of weapons."
+	icon_state = "weapons"
+
+/obj/structure/prop/train/mech
+	name = "railcar"
+	desc = "A heavy duty maglev railcar. This one has a variety of mech equipment on it."
+	icon_state = "mech"
+
+/obj/structure/prop/train/empty
+	name = "railcar"
+	desc = "A heavy duty maglev railcar. This one is currently empty."
+	icon_state = "empty"
+
 #undef VENDOR_BROKEN
 #undef VENDOR_BLANK

@@ -12,7 +12,7 @@
 		"starting_faction" = 90 SECONDS,
 		"hostile_faction" = 0,
 	)
-	max_game_time = 20 MINUTES
+	max_game_time = 15 MINUTES
 	victory_point_rewards = list(
 		MISSION_OUTCOME_MAJOR_VICTORY = list(2, 0),
 		MISSION_OUTCOME_MINOR_VICTORY = list(1, 0),

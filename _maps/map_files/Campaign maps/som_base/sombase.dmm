@@ -226,6 +226,12 @@
 /obj/effect/decal/cleanable/blood/oil,
 /turf/open/floor/mainship/mono,
 /area/rocinante_Base/surface/building/chapel_ne)
+"ash" = (
+/obj/structure/monorail{
+	dir = 9
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/rocinante_Base/ground/underground/caveE)
 "asn" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 1;
@@ -269,6 +275,13 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/rocinante_Base/surface/building/vehicle_garage)
+"axA" = (
+/obj/structure/monorail{
+	dir = 4
+	},
+/obj/structure/prop/train/construction,
+/turf/open/floor/plating/ground/concrete,
+/area/rocinante_Base/ground/underground/caveN)
 "axV" = (
 /obj/structure/table/reinforced,
 /obj/machinery/computer/emails,
@@ -276,6 +289,10 @@
 	dir = 6
 	},
 /area/rocinante_Base/ground/base_e)
+"ays" = (
+/obj/structure/largecrate/random/secure,
+/turf/open/floor/plating/ground/concrete,
+/area/rocinante_Base/ground/underground/caveCent)
 "azv" = (
 /obj/effect/landmark/patrol_point{
 	id = "TGMC_22";
@@ -287,6 +304,12 @@
 /obj/structure/reagent_dispensers/fueltank,
 /turf/open/floor/mainship/mono,
 /area/rocinante_Base/surface/building/research_lab)
+"aBF" = (
+/obj/structure/prop/vehicle/crawler/crawler_red{
+	dir = 8
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/rocinante_Base/ground/underground/caveCent)
 "aBH" = (
 /turf/open/floor/mainship/red/corner{
 	dir = 4
@@ -474,6 +497,10 @@
 	dir = 4
 	},
 /area/rocinante_Base/surface/building/administration)
+"aPU" = (
+/obj/structure/largecrate/packed,
+/turf/open/floor/plating/ground/concrete,
+/area/rocinante_Base/ground/underground/caveE)
 "aQd" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 4
@@ -618,6 +645,10 @@
 /obj/structure/closet/l3closet/janitor,
 /turf/open/floor/mainship/mono,
 /area/rocinante_Base/ground/base_n)
+"aYR" = (
+/obj/structure/cargo_container/red,
+/turf/open/floor/plating/ground/concrete,
+/area/rocinante_Base/ground/underground/caveE)
 "aZf" = (
 /obj/machinery/door/airlock/multi_tile/mainship/personalglass,
 /turf/open/floor/mainship/mono,
@@ -744,6 +775,10 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/rocinante_Base/ground/base_ne)
+"bjh" = (
+/obj/structure/reagent_dispensers/fueltank/xfuel,
+/turf/open/floor/plating/ground/concrete,
+/area/rocinante_Base/ground/underground/caveE)
 "bjx" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 2
@@ -851,6 +886,11 @@
 /obj/machinery/grill,
 /turf/open/floor/mainship/sterile/dark,
 /area/rocinante_Base/ground/base_ne)
+"bwV" = (
+/turf/open/floor/plating/ground/concrete/edge{
+	dir = 8
+	},
+/area/rocinante_Base/ground/underground/caveN)
 "bxa" = (
 /obj/structure/prop/vehicle/som_mech,
 /turf/open/floor/plating/ground/concrete,
@@ -963,6 +1003,10 @@
 /obj/machinery/vending/cola,
 /turf/open/floor/mainship/mono,
 /area/rocinante_Base/ground/base_ne)
+"bFN" = (
+/obj/structure/largecrate/random/case,
+/turf/open/floor/plating/ground/concrete,
+/area/rocinante_Base/ground/underground/caveCent)
 "bGQ" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 8
@@ -1051,6 +1095,10 @@
 /obj/structure/table/black,
 /turf/open/floor/mainship/mono,
 /area/rocinante_Base/ground/base_cent)
+"bMM" = (
+/obj/structure/reagent_dispensers/fueltank/barrel,
+/turf/open/floor/plating/ground/concrete,
+/area/rocinante_Base/ground/underground/caveE)
 "bMZ" = (
 /obj/machinery/door/airlock/multi_tile/mainship/blackgeneric/glass,
 /turf/open/floor/mainship/mono,
@@ -1120,6 +1168,10 @@
 "bTG" = (
 /turf/open/floor/plating,
 /area/rocinante_Base/ground/base_sw)
+"bUb" = (
+/obj/structure/prop/som_fighter,
+/turf/open/floor/plating/ground/concrete,
+/area/rocinante_Base/ground/underground/caveE)
 "bUo" = (
 /obj/structure/flora/grass/tallgrass/tallgrasscorner{
 	color = "#5b7857";
@@ -1220,6 +1272,12 @@
 "ccq" = (
 /turf/open/floor/mainship/tcomms,
 /area/rocinante_Base/ground/base_n)
+"ccB" = (
+/obj/structure/monorail{
+	dir = 9
+	},
+/turf/open/floor/plating/ground/mars/random/cave/darker,
+/area/rocinante_Base/ground/underground/caveE)
 "cdS" = (
 /obj/structure/sink/bathroom{
 	dir = 8
@@ -1643,6 +1701,12 @@
 	dir = 1
 	},
 /area/rocinante_Base/surface/building/laundromat)
+"cNj" = (
+/obj/structure/monorail{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/rocinante_Base/ground/underground/caveW)
 "cNQ" = (
 /obj/structure/cable,
 /obj/machinery/power/apc/drained,
@@ -1998,6 +2062,12 @@
 	dir = 4
 	},
 /area/rocinante_Base/ground/base_sw)
+"dvS" = (
+/obj/structure/cargo_container/red{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/rocinante_Base/ground/underground/caveE)
 "dwi" = (
 /turf/open/floor/plating/ground/concrete/lines{
 	dir = 6
@@ -2013,6 +2083,10 @@
 /obj/structure/reagent_dispensers/fueltank,
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/rocinante_Base/ground/base_cent)
+"dxF" = (
+/obj/machinery/door/airlock/mainship/generic,
+/turf/open/floor/plating/ground/concrete,
+/area/rocinante_Base/ground/underground/caveCent)
 "dyG" = (
 /obj/effect/turf_decal/warning_stripes/box/small,
 /turf/open/floor/plating/ground/concrete,
@@ -2099,10 +2173,6 @@
 	},
 /turf/open/ground/grass/weedable/patch,
 /area/rocinante_Base/ground/base_ne)
-"dIP" = (
-/obj/structure/prop/mainship/turretprop,
-/turf/closed/wall/mainship/gray,
-/area/rocinante_Base/ground/base_sw)
 "dIT" = (
 /obj/structure/flora/grass/tallgrass/tallgrasscorner{
 	color = "#5b7857";
@@ -2215,6 +2285,10 @@
 	dir = 8
 	},
 /area/rocinante_Base/surface/building/administration)
+"dRX" = (
+/obj/structure/largecrate/packed,
+/turf/open/floor/plating/ground/concrete,
+/area/rocinante_Base/ground/underground/caveN)
 "dSq" = (
 /turf/open/floor/mainship/red{
 	dir = 4
@@ -2234,6 +2308,10 @@
 	dir = 10
 	},
 /area/rocinante_Base/surface/building/command)
+"dTf" = (
+/obj/structure/reagent_dispensers/fueltank/barrel,
+/turf/open/floor/plating/ground/mars/random/cave/darker,
+/area/rocinante_Base/ground/underground/caveN)
 "dTl" = (
 /obj/structure/bed/chair/office/dark,
 /obj/machinery/light{
@@ -2260,6 +2338,12 @@
 /obj/item/phone,
 /turf/open/floor/mainship/black/full,
 /area/rocinante_Base/ground/base_nw)
+"dWf" = (
+/obj/structure/monorail{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/rocinante_Base/ground/underground/caveCent)
 "dWU" = (
 /obj/structure/ship_ammo/cas/heavygun,
 /turf/open/floor/mainship/black{
@@ -2334,6 +2418,13 @@
 	dir = 8
 	},
 /area/rocinante_Base/surface/landing/landing_pad_one)
+"eeD" = (
+/obj/structure/monorail{
+	dir = 4
+	},
+/obj/structure/prop/train/cargo_hyperdyne,
+/turf/open/floor/plating/ground/concrete,
+/area/rocinante_Base/ground/underground/caveN)
 "efV" = (
 /turf/open/floor/mainship/black{
 	dir = 9
@@ -2477,6 +2568,11 @@
 /obj/machinery/science/isolator/inserted,
 /turf/open/floor/mainship/sterile/dark,
 /area/rocinante_Base/surface/building/bio_lab)
+"eqh" = (
+/turf/open/floor/plating/ground/concrete/edge{
+	dir = 4
+	},
+/area/rocinante_Base/ground/underground/caveN)
 "eqk" = (
 /obj/machinery/door/airlock/mainship/security{
 	dir = 2
@@ -2812,6 +2908,9 @@
 /obj/item/tool/mop,
 /turf/open/floor/mainship/mono,
 /area/rocinante_Base/ground/base_n)
+"eUN" = (
+/turf/open/floor/plating/ground/concrete,
+/area/rocinante_Base/ground/underground/caveE)
 "eVj" = (
 /obj/structure/table/black,
 /obj/item/toy/deck,
@@ -2940,6 +3039,12 @@
 "ffn" = (
 /turf/closed/mineral/smooth/indestructible,
 /area/rocinante_Base/ground/base_se)
+"ffw" = (
+/obj/structure/monorail{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/rocinante_Base/ground/underground/caveE)
 "ffB" = (
 /obj/structure/bed/chair/alt,
 /turf/open/floor/mainship/mono,
@@ -2992,6 +3097,9 @@
 	dir = 1
 	},
 /area/rocinante_Base/surface/building/research_lab)
+"fjM" = (
+/turf/closed/wall/mainship/gray,
+/area/rocinante_Base/ground/underground/caveCent)
 "fjN" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 8
@@ -2999,6 +3107,10 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/rocinante_Base/surface/building/command)
+"fjS" = (
+/obj/structure/table/reinforced,
+/turf/open/floor/mainship/mono,
+/area/rocinante_Base/ground/underground/caveN)
 "fkH" = (
 /obj/structure/table/black,
 /obj/machinery/computer3/server,
@@ -3093,6 +3205,9 @@
 	dir = 1
 	},
 /area/rocinante_Base/ground/base_se)
+"fsx" = (
+/turf/open/floor/plating/ground/concrete/lines,
+/area/rocinante_Base/ground/underground/caveN)
 "fsD" = (
 /obj/structure/table/black,
 /obj/machinery/computer/camera,
@@ -3189,6 +3304,12 @@
 	},
 /turf/open/floor/plating/ground/concrete,
 /area/rocinante_Base/ground/base_s)
+"fxb" = (
+/obj/structure/cargo_container/horizontal{
+	dir = 8
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/rocinante_Base/ground/underground/caveW)
 "fxV" = (
 /obj/structure/stairs/seamless{
 	dir = 1
@@ -3296,6 +3417,12 @@
 /obj/machinery/microwave,
 /turf/open/floor/mainship/mono,
 /area/rocinante_Base/ground/base_s)
+"fIg" = (
+/obj/structure/desertdam/decals/road/line{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/rocinante_Base/ground/underground/caveN)
 "fIs" = (
 /obj/structure/ore_box,
 /turf/open/floor/plating/ground/snow,
@@ -3322,6 +3449,13 @@
 	},
 /turf/open/floor/plating/ground/concrete,
 /area/rocinante_Base/ground/base_ne)
+"fLH" = (
+/obj/structure/monorail{
+	dir = 4
+	},
+/obj/structure/prop/train/carriage,
+/turf/open/floor/plating/ground/concrete,
+/area/rocinante_Base/ground/underground/caveN)
 "fMd" = (
 /obj/machinery/door/airlock/mainship/engineering,
 /turf/open/floor/mainship/mono,
@@ -3352,6 +3486,10 @@
 "fQo" = (
 /turf/open/floor/plating/ground/concrete/edge,
 /area/rocinante_Base/surface/landing/landing_pad_one_external)
+"fQr" = (
+/obj/structure/largecrate/random,
+/turf/open/floor/plating/ground/concrete,
+/area/rocinante_Base/ground/underground/caveE)
 "fRd" = (
 /obj/structure/window/framed/mainship/gray,
 /turf/open/floor/mainship/sterile/dark,
@@ -3403,6 +3541,11 @@
 /obj/structure/window/framed/mainship/gray,
 /turf/open/floor/mainship/mono,
 /area/rocinante_Base/surface/building/complex_hall_e)
+"fVx" = (
+/turf/open/floor/plating/ground/concrete/lines{
+	dir = 1
+	},
+/area/rocinante_Base/ground/underground/caveN)
 "fVS" = (
 /obj/structure/prop/mainship/protolathe/sci,
 /turf/open/floor/mainship/sterile/purple/corner{
@@ -3526,6 +3669,11 @@
 	dir = 4
 	},
 /area/rocinante_Base/ground/base_cent)
+"giW" = (
+/turf/open/floor/plating/ground/concrete/lines{
+	dir = 4
+	},
+/area/rocinante_Base/ground/underground/caveN)
 "gja" = (
 /turf/open/floor/plating/ground/concrete/lines{
 	dir = 6
@@ -3682,6 +3830,12 @@
 	dir = 8
 	},
 /area/rocinante_Base/surface/building/tele_lab)
+"gAI" = (
+/obj/structure/bed/chair/office/dark{
+	dir = 8
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/rocinante_Base/ground/underground/caveE)
 "gAP" = (
 /obj/structure/flora/grass/tallgrass{
 	color = "#5b7857"
@@ -3698,6 +3852,12 @@
 /obj/structure/window/framed/mainship/gray,
 /turf/open/floor/mainship/mono,
 /area/rocinante_Base/ground/base_n)
+"gDo" = (
+/obj/structure/cargo_container/ch_red{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/rocinante_Base/ground/underground/caveCent)
 "gDs" = (
 /obj/structure/bed/chair/sofa/corsat,
 /obj/structure/sign/double/map/left,
@@ -3794,6 +3954,12 @@
 "gLg" = (
 /turf/closed/mineral/smooth/snowrock,
 /area/rocinante_Base/surface/landing/landing_pad_two_external)
+"gLF" = (
+/obj/structure/largecrate/supply,
+/turf/open/floor/plating/ground/concrete/lines{
+	dir = 1
+	},
+/area/rocinante_Base/ground/underground/caveN)
 "gNx" = (
 /obj/structure/bed/bunkbed,
 /turf/open/floor/mainship/black{
@@ -3826,6 +3992,10 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/rocinante_Base/surface/building/chapel_ne)
+"gOk" = (
+/obj/structure/largecrate/packed,
+/turf/open/floor/plating/ground/concrete,
+/area/rocinante_Base/ground/underground/caveCent)
 "gOG" = (
 /obj/structure/reagent_dispensers/fueltank,
 /turf/open/floor/mainship/mono,
@@ -3842,6 +4012,11 @@
 /obj/structure/largecrate/random/case/small,
 /turf/open/floor/mainship/sterile/dark,
 /area/rocinante_Base/surface/building/tele_lab)
+"gPK" = (
+/turf/open/floor/plating/ground/concrete/lines{
+	dir = 8
+	},
+/area/rocinante_Base/ground/underground/caveN)
 "gQc" = (
 /obj/structure/prop/mainship/gelida/propserver,
 /obj/structure/window{
@@ -3944,14 +4119,23 @@
 /obj/structure/bed/chair/sofa/corsat/right,
 /turf/open/floor/mainship/mono,
 /area/rocinante_Base/surface/building/laundromat)
+"gZW" = (
+/turf/closed/wall/mainship/gray,
+/area/rocinante_Base/ground/underground/caveE)
 "hac" = (
 /turf/open/floor/plating/ground/concrete/edge{
 	dir = 1
 	},
 /area/rocinante_Base/ground/base_s)
 "haE" = (
-/obj/structure/prop/mainship/turretprop,
-/turf/closed/wall/mainship/gray,
+/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/cope/predeployed,
+/obj/structure/barricade/metal{
+	dir = 1
+	},
+/obj/structure/barricade/metal{
+	dir = 8
+	},
+/turf/open/floor/mainship/mono,
 /area/rocinante_Base/ground/base_w)
 "haL" = (
 /obj/structure/bed/chair/sofa/corsat/right,
@@ -4179,6 +4363,10 @@
 /obj/machinery/status_display,
 /turf/closed/wall/mainship/gray,
 /area/rocinante_Base/ground/base_nw)
+"hpK" = (
+/obj/structure/largecrate/random/barrel/white,
+/turf/open/floor/plating/ground/concrete,
+/area/rocinante_Base/ground/underground/caveN)
 "hqj" = (
 /mob/living/simple_animal/corgi{
 	desc = "It's a corgi,its been trained to sniff out contraband."
@@ -4400,6 +4588,9 @@
 	dir = 5
 	},
 /area/rocinante_Base/surface/building/complex_hall_e)
+"hIn" = (
+/turf/open/floor/plating/ground/concrete,
+/area/rocinante_Base/ground/underground/caveW)
 "hIA" = (
 /obj/structure/desertdam/decals/road/line{
 	dir = 4
@@ -4479,10 +4670,6 @@
 	},
 /turf/open/floor/mainship/sterile/dark,
 /area/rocinante_Base/surface/building/tele_lab)
-"hOv" = (
-/obj/structure/prop/mainship/research/mechafab,
-/turf/open/ground/grass/weedable/patch,
-/area/rocinante_Base/ground/base_e)
 "hQK" = (
 /turf/open/floor/mainship/sterile/dark,
 /area/rocinante_Base/ground/base_e)
@@ -4522,6 +4709,10 @@
 	dir = 6
 	},
 /area/rocinante_Base/surface/building/vehicle_garage)
+"hWa" = (
+/obj/structure/reagent_dispensers/fueltank/barrel,
+/turf/open/floor/plating/ground/concrete,
+/area/rocinante_Base/ground/underground/caveCent)
 "hWQ" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/open/floor/plating/ground/concrete/lines{
@@ -4882,6 +5073,12 @@
 /obj/structure/fence,
 /turf/open/floor/plating/ground/dirt_alt,
 /area/rocinante_Base/ground/base_cent)
+"iym" = (
+/obj/structure/cargo_container/hd_blue{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/rocinante_Base/ground/underground/caveN)
 "iyv" = (
 /obj/structure/bed/chair/alt{
 	dir = 8
@@ -4927,6 +5124,16 @@
 /obj/machinery/light,
 /turf/open/floor/mainship/red,
 /area/rocinante_Base/surface/building/administration)
+"iDw" = (
+/obj/structure/barricade/metal{
+	dir = 8
+	},
+/obj/structure/platform/metalplatform{
+	dir = 8
+	},
+/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/cope/predeployed,
+/turf/open/floor/mainship/mono,
+/area/rocinante_Base/ground/base_sw)
 "iDO" = (
 /obj/structure/toilet/alternate{
 	dir = 4
@@ -5001,6 +5208,10 @@
 /obj/structure/prop/mainship/protolathe/medical,
 /turf/open/floor/mainship/sterile/dark,
 /area/rocinante_Base/surface/building/research_lab)
+"iHE" = (
+/obj/structure/prop/vehicle/crane/cranecargo/destructible,
+/turf/open/floor/plating/ground/concrete,
+/area/rocinante_Base/ground/underground/caveN)
 "iIa" = (
 /obj/structure/flora/grass/tallgrass/tallgrasscorner{
 	color = "#5b7857";
@@ -5115,6 +5326,9 @@
 /obj/structure/table/reinforced,
 /turf/open/floor/mainship/sterile/dark,
 /area/rocinante_Base/ground/base_cent)
+"iQI" = (
+/turf/open/floor/plating/ground/concrete,
+/area/rocinante_Base/ground/underground/caveN)
 "iRj" = (
 /obj/structure/cargo_container/red,
 /turf/open/floor/plating/ground/concrete,
@@ -5247,6 +5461,12 @@
 /obj/structure/largecrate/random/case/double,
 /turf/open/floor/mainship/mono,
 /area/rocinante_Base/ground/base_s)
+"jja" = (
+/obj/structure/bed/chair/office/dark{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/rocinante_Base/ground/underground/caveE)
 "jjx" = (
 /obj/machinery/computer3/server/rack,
 /obj/structure/window/full{
@@ -5263,6 +5483,12 @@
 /obj/structure/prop/mainship/protolathe/sci,
 /turf/open/floor/mainship/mono,
 /area/rocinante_Base/ground/base_se)
+"jlG" = (
+/obj/machinery/door/airlock/mainship/generic{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/rocinante_Base/ground/underground/caveCent)
 "jmi" = (
 /obj/effect/landmark/corpsespawner/scientist,
 /obj/effect/decal/cleanable/blood,
@@ -5342,6 +5568,10 @@
 	},
 /turf/open/ground/grass/weedable/patch,
 /area/rocinante_Base/ground/base_nw)
+"jsJ" = (
+/obj/structure/largecrate/packed,
+/turf/open/floor/plating/ground/concrete,
+/area/rocinante_Base/ground/underground/caveW)
 "juc" = (
 /obj/structure/closet/secure_closet/security,
 /turf/open/floor/mainship/blue{
@@ -5503,6 +5733,10 @@
 /obj/structure/reagent_dispensers/water_cooler,
 /turf/open/floor/mainship/mono,
 /area/rocinante_Base/ground/base_s)
+"jJO" = (
+/obj/structure/table/reinforced,
+/turf/open/floor/plating/ground/concrete,
+/area/rocinante_Base/ground/underground/caveCent)
 "jLh" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 8
@@ -5849,6 +6083,10 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/red/full,
 /area/rocinante_Base/surface/building/administration)
+"knB" = (
+/obj/structure/largecrate/random/case/double,
+/turf/open/floor/plating/ground/concrete,
+/area/rocinante_Base/ground/underground/caveE)
 "kof" = (
 /turf/closed/shuttle/dropship_regular/top_corner{
 	dir = 1
@@ -5926,6 +6164,14 @@
 	},
 /turf/open/floor/plating/ground/concrete,
 /area/rocinante_Base/ground/base_s)
+"kuI" = (
+/obj/structure/largecrate,
+/turf/open/floor/plating/ground/concrete,
+/area/rocinante_Base/ground/underground/caveE)
+"kuY" = (
+/obj/structure/largecrate/random/case/double,
+/turf/open/floor/plating/ground/concrete,
+/area/rocinante_Base/ground/underground/caveCent)
 "kvo" = (
 /obj/structure/sink{
 	dir = 1
@@ -5996,6 +6242,12 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/rocinante_Base/surface/building/crystal_lab)
+"kzO" = (
+/obj/structure/bed/chair/office/dark{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/rocinante_Base/ground/underground/caveE)
 "kAt" = (
 /obj/machinery/door/airlock/mainship/generic/glass{
 	dir = 2
@@ -6213,6 +6465,12 @@
 /obj/effect/turf_decal/warning_stripes/box,
 /turf/closed/wall/mainship/gray,
 /area/rocinante_Base/ground/base_se)
+"kSU" = (
+/obj/structure/cargo_container/ch_red{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/rocinante_Base/ground/underground/caveCent)
 "kTN" = (
 /obj/structure/window/framed/mainship/gray,
 /turf/open/floor/mainship/mono,
@@ -6226,6 +6484,10 @@
 /obj/structure/prop/mainship/sensor_computer2,
 /turf/open/floor/mainship/mono,
 /area/rocinante_Base/ground/base_cent)
+"kVJ" = (
+/obj/structure/largecrate/supply,
+/turf/open/floor/plating/ground/concrete,
+/area/rocinante_Base/ground/underground/caveN)
 "kVV" = (
 /obj/structure/somcas/four{
 	dir = 4
@@ -6263,6 +6525,10 @@
 /obj/structure/largecrate/random/case/double,
 /turf/open/floor/mainship/sterile/dark,
 /area/rocinante_Base/surface/building/tele_lab)
+"kZy" = (
+/obj/structure/cargo_container/ch_red,
+/turf/open/floor/plating/ground/concrete,
+/area/rocinante_Base/ground/underground/caveCent)
 "lae" = (
 /obj/structure/reagent_dispensers/water_cooler,
 /turf/open/floor/mainship/silver,
@@ -6289,6 +6555,10 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/red/corner,
 /area/rocinante_Base/ground/base_n)
+"ldw" = (
+/obj/structure/filingcabinet,
+/turf/open/floor/plating/ground/concrete,
+/area/rocinante_Base/ground/underground/caveCent)
 "ldN" = (
 /obj/machinery/door/airlock/mainship/security/glass/free_access{
 	dir = 2
@@ -6308,6 +6578,10 @@
 /obj/machinery/atmospherics/components/unary/cryo_cell,
 /turf/open/floor/mainship/sterile/corner,
 /area/rocinante_Base/ground/base_cent)
+"lfy" = (
+/obj/structure/prop/vehicle/truck,
+/turf/open/floor/plating/ground/concrete,
+/area/rocinante_Base/ground/underground/caveN)
 "lgq" = (
 /obj/structure/rack,
 /obj/item/cell/high,
@@ -6519,6 +6793,12 @@
 /obj/structure/prop/mainship/mapping_computer,
 /turf/open/floor/mainship/mono,
 /area/rocinante_Base/ground/base_cent)
+"lxj" = (
+/obj/structure/cargo_container/green{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/rocinante_Base/ground/underground/caveCent)
 "lyi" = (
 /turf/open/floor/mainship/red{
 	dir = 9
@@ -6580,6 +6860,10 @@
 	dir = 6
 	},
 /area/rocinante_Base/surface/building/administration)
+"lDZ" = (
+/obj/structure/prop/vehicle/crawler/destructible,
+/turf/open/floor/plating/ground/concrete,
+/area/rocinante_Base/ground/underground/caveCent)
 "lEz" = (
 /obj/structure/table/black,
 /obj/item/clipboard,
@@ -6857,6 +7141,10 @@
 /obj/structure/largecrate/random/case/double,
 /turf/open/floor/mainship/mono,
 /area/rocinante_Base/surface/building/vehicle_garage)
+"mhL" = (
+/obj/structure/largecrate/cow,
+/turf/open/floor/plating/ground/concrete,
+/area/rocinante_Base/ground/underground/caveCent)
 "mhM" = (
 /obj/structure/flora/tree/pine,
 /turf/open/floor/plating/ground/snow,
@@ -6944,6 +7232,12 @@
 	dir = 1
 	},
 /area/rocinante_Base/surface/building/command)
+"mqh" = (
+/obj/structure/cargo_container/hd_blue{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/rocinante_Base/ground/underground/caveN)
 "mqi" = (
 /obj/structure/prop/mainship/sensor_computer3,
 /turf/open/floor/mainship/red{
@@ -6954,6 +7248,14 @@
 /obj/structure/flora/ausbushes/fullgrass,
 /turf/open/ground/grass/weedable/patch,
 /area/rocinante_Base/surface/building/bio_lab)
+"mqU" = (
+/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/cope/predeployed,
+/obj/structure/barricade/metal{
+	dir = 8
+	},
+/obj/structure/barricade/metal,
+/turf/open/floor/mainship/mono,
+/area/rocinante_Base/ground/base_cent)
 "mru" = (
 /obj/machinery/door/airlock/multi_tile/mainship/marine{
 	dir = 2
@@ -6966,6 +7268,12 @@
 	dir = 9
 	},
 /area/rocinante_Base/ground/base_cent)
+"msn" = (
+/obj/structure/monorail{
+	dir = 6
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/rocinante_Base/ground/underground/caveE)
 "muh" = (
 /obj/structure/prop/mainship/protolathe,
 /turf/open/floor/mainship/mono,
@@ -7119,12 +7427,32 @@
 	},
 /turf/open/ground/grass/weedable/patch,
 /area/rocinante_Base/ground/base_e)
+"mHB" = (
+/obj/structure/barricade/metal{
+	dir = 8
+	},
+/obj/structure/barricade/metal{
+	dir = 1
+	},
+/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/cope/predeployed,
+/turf/open/floor/mainship/mono,
+/area/rocinante_Base/ground/base_cent)
 "mHO" = (
 /obj/structure/platform/rockcliff{
 	dir = 10
 	},
 /turf/open/ground/grass/weedable/patch,
 /area/rocinante_Base/ground/base_w)
+"mHP" = (
+/obj/machinery/door/airlock/mainship/security,
+/turf/open/floor/plating/ground/concrete,
+/area/rocinante_Base/ground/underground/caveE)
+"mHW" = (
+/obj/structure/cargo_container/hd_blue{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/mars/random/cave/darker,
+/area/rocinante_Base/ground/underground/caveN)
 "mIs" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 8
@@ -7140,6 +7468,10 @@
 	},
 /turf/open/floor/mainship/red,
 /area/rocinante_Base/ground/base_e)
+"mLr" = (
+/obj/structure/largecrate/random/barrel/green,
+/turf/open/floor/plating/ground/concrete,
+/area/rocinante_Base/ground/underground/caveN)
 "mMf" = (
 /obj/item/tool/crowbar/red,
 /turf/open/floor/mainship/red/corner{
@@ -7378,6 +7710,12 @@
 	dir = 9
 	},
 /area/rocinante_Base/surface/landing/landing_pad_one)
+"niL" = (
+/obj/machinery/door/airlock/multi_tile/mainship/blackgeneric/glass{
+	dir = 2
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/rocinante_Base/ground/underground/caveCent)
 "niN" = (
 /obj/structure/flora/grass/tallgrass/tallgrasscorner{
 	color = "#5b7857"
@@ -7427,6 +7765,10 @@
 /obj/machinery/computer/emails,
 /turf/open/floor/mainship/mono,
 /area/rocinante_Base/ground/base_e)
+"nlV" = (
+/obj/machinery/door/airlock/multi_tile/mainship/blackgeneric/glass,
+/turf/open/floor/mainship/mono,
+/area/rocinante_Base/ground/underground/caveN)
 "nlZ" = (
 /obj/structure/bed/chair/alt{
 	dir = 1
@@ -7941,10 +8283,6 @@
 /obj/structure/largecrate/random,
 /turf/open/floor/plating/ground/concrete,
 /area/rocinante_Base/ground/base_ne)
-"oiY" = (
-/obj/structure/prop/mainship/research/mechafab,
-/turf/open/floor/plating/ground/snow,
-/area/rocinante_Base/ground/base_e)
 "ojS" = (
 /obj/structure/table/reinforced,
 /obj/item/reagent_containers/spray/surgery{
@@ -8039,6 +8377,12 @@
 	},
 /turf/open/floor/plating/ground/snow,
 /area/rocinante_Base/ground/base_n)
+"oqT" = (
+/obj/structure/prop/vehicle/crane{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/rocinante_Base/ground/underground/caveCent)
 "orj" = (
 /obj/structure/cable,
 /turf/open/floor/mainship/black/corner{
@@ -8156,6 +8500,13 @@
 	},
 /turf/open/floor/plating/ground/snow,
 /area/rocinante_Base/ground/base_n)
+"oxL" = (
+/obj/structure/barricade/metal{
+	dir = 1
+	},
+/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/cope/predeployed,
+/turf/open/floor/mainship/mono,
+/area/rocinante_Base/ground/base_sw)
 "oyc" = (
 /obj/effect/turf_decal/tile/corsatstraight/gray,
 /obj/structure/table/black,
@@ -8587,6 +8938,10 @@
 /obj/structure/platform/metalplatform,
 /turf/open/floor/mainship/mono,
 /area/rocinante_Base/ground/base_e)
+"pjo" = (
+/obj/structure/window/framed/mainship/gray,
+/turf/open/floor/mainship/mono,
+/area/rocinante_Base/ground/underground/caveN)
 "pjz" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 1
@@ -8695,10 +9050,6 @@
 /obj/structure/prop/vehicle/truck,
 /turf/open/floor/plating/ground/concrete,
 /area/rocinante_Base/ground/base_cent)
-"pvb" = (
-/obj/effect/landmark/start/job/xenomorph,
-/turf/open/floor/plating/ground/mars/random/cave/darker,
-/area/rocinante_Base/ground/underground/caveS)
 "pvG" = (
 /turf/open/ground/grass/weedable/patch,
 /area/rocinante_Base/ground/base_s)
@@ -8711,11 +9062,20 @@
 	dir = 4
 	},
 /area/rocinante_Base/surface/building/vehicle_garage)
+"pwA" = (
+/obj/machinery/door/airlock/mainship/generic{
+	dir = 1
+	},
+/turf/open/floor/mainship/mono,
+/area/rocinante_Base/ground/underground/caveN)
 "pwJ" = (
 /turf/open/floor/plating/ground/concrete/edge{
 	dir = 8
 	},
 /area/rocinante_Base/ground/base_nw)
+"pxf" = (
+/turf/open/floor/plating/ground/concrete,
+/area/rocinante_Base/ground/underground/caveCent)
 "pxJ" = (
 /obj/machinery/vending/marineFood,
 /turf/open/floor/mainship/red{
@@ -8768,6 +9128,10 @@
 	dir = 1
 	},
 /area/rocinante_Base/surface/building/tramstation_cent)
+"pBQ" = (
+/obj/structure/filingcabinet,
+/turf/open/floor/mainship/mono,
+/area/rocinante_Base/ground/underground/caveN)
 "pBR" = (
 /turf/open/floor/mainship/red/corner{
 	dir = 4
@@ -8861,6 +9225,16 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/rocinante_Base/ground/base_se)
+"pJG" = (
+/obj/structure/monorail{
+	dir = 4
+	},
+/obj/effect/forcefield{
+	desc = "You can't get in. Heh.";
+	name = "Blocker"
+	},
+/turf/open/floor/plating/ground/mars/random/cave/darker,
+/area/rocinante_Base/ground/underground/caveE)
 "pJY" = (
 /obj/machinery/door/airlock/multi_tile/mainship/medidoor{
 	dir = 2
@@ -8868,6 +9242,12 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/sterile/dark,
 /area/rocinante_Base/ground/base_e)
+"pKg" = (
+/obj/structure/cargo_container/horizontal{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/rocinante_Base/ground/underground/caveN)
 "pKL" = (
 /obj/machinery/door/airlock/prison/horizontal/open,
 /turf/open/floor/mainship/mono,
@@ -9032,6 +9412,12 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/silver,
 /area/rocinante_Base/surface/building/command)
+"qec" = (
+/obj/structure/prop/vehicle/truck/truckcargo{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/rocinante_Base/ground/underground/caveN)
 "qev" = (
 /turf/closed/wall/mainship/gray,
 /area/rocinante_Base/surface/building/laundromat)
@@ -9045,6 +9431,13 @@
 /obj/machinery/door/airlock/mainship/marine,
 /turf/open/floor/mainship/mono,
 /area/rocinante_Base/ground/base_se)
+"qfk" = (
+/obj/structure/monorail{
+	dir = 4
+	},
+/obj/structure/prop/train/empty,
+/turf/open/floor/plating/ground/concrete,
+/area/rocinante_Base/ground/underground/caveN)
 "qgf" = (
 /obj/structure/window/reinforced,
 /turf/open/floor/mainship/mono,
@@ -9151,6 +9544,13 @@
 /obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/plating/ground/concrete,
 /area/rocinante_Base/ground/base_cent)
+"qst" = (
+/obj/structure/monorail{
+	dir = 4
+	},
+/obj/effect/landmark/campaign_objective/train/carriage,
+/turf/open/floor/plating/ground/concrete,
+/area/rocinante_Base/ground/underground/caveN)
 "qsA" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 1
@@ -9294,6 +9694,10 @@
 /obj/structure/sign/double/map/right,
 /turf/closed/wall/mainship/gray,
 /area/rocinante_Base/surface/building/research_lab)
+"qEC" = (
+/obj/structure/reagent_dispensers,
+/turf/open/floor/plating/ground/concrete,
+/area/rocinante_Base/ground/underground/caveE)
 "qEJ" = (
 /obj/item/ammo_magazine/tank/tank_glauncher,
 /obj/structure/rack,
@@ -9307,6 +9711,12 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/rocinante_Base/surface/building/tramstation_cent)
+"qFT" = (
+/obj/structure/monorail{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/mars/random/cave/darker,
+/area/rocinante_Base/ground/underground/caveE)
 "qGa" = (
 /obj/structure/largecrate/random,
 /turf/open/floor/mainship/mono,
@@ -9439,10 +9849,20 @@
 	dir = 5
 	},
 /area/rocinante_Base/ground/base_cent)
+"qRP" = (
+/obj/structure/largecrate/random,
+/turf/open/floor/plating/ground/concrete,
+/area/rocinante_Base/ground/underground/caveN)
 "qSd" = (
 /obj/machinery/door/airlock/multi_tile/mainship/engineering,
 /turf/open/floor/mainship/mono,
 /area/rocinante_Base/ground/base_ne)
+"qSx" = (
+/obj/structure/cargo_container/hd_blue{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/mars/random/cave/darker,
+/area/rocinante_Base/ground/underground/caveN)
 "qSK" = (
 /obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/plating/ground/concrete,
@@ -9655,6 +10075,10 @@
 	},
 /turf/open/floor/mainship/sterile/white,
 /area/rocinante_Base/ground/base_s)
+"rgY" = (
+/obj/structure/cargo_container/hd_blue,
+/turf/open/floor/plating/ground/concrete,
+/area/rocinante_Base/ground/underground/caveN)
 "rhO" = (
 /obj/structure/prop/mainship/hangar_stencil,
 /turf/open/floor/plating/ground/concrete,
@@ -9848,11 +10272,19 @@
 /obj/machinery/cic_maptable,
 /turf/open/floor/mainship/mono,
 /area/rocinante_Base/ground/base_n)
+"rBo" = (
+/obj/structure/cargo_container/horizontal,
+/turf/open/floor/plating/ground/concrete,
+/area/rocinante_Base/ground/underground/caveN)
 "rBO" = (
 /obj/structure/table/black,
 /obj/item/storage/donut_box,
 /turf/open/floor/mainship/mono,
 /area/rocinante_Base/ground/base_s)
+"rBY" = (
+/obj/structure/reagent_dispensers/fueltank/barrel,
+/turf/open/floor/plating/ground/concrete,
+/area/rocinante_Base/ground/underground/caveN)
 "rDU" = (
 /obj/structure/flora/pottedplant/two,
 /turf/open/floor/mainship/blue{
@@ -10014,11 +10446,20 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/rocinante_Base/surface/building/research_lab)
+"rSU" = (
+/turf/open/floor/plating/ground/concrete/lines{
+	dir = 10
+	},
+/area/rocinante_Base/ground/underground/caveN)
 "rTu" = (
 /turf/open/floor/mainship/red/corner{
 	dir = 8
 	},
 /area/rocinante_Base/ground/base_se)
+"rTX" = (
+/obj/structure/window/framed/mainship/gray,
+/turf/open/floor/plating/ground/concrete,
+/area/rocinante_Base/ground/underground/caveN)
 "rUc" = (
 /obj/structure/prop/mainship/turretprop,
 /turf/closed/wall/mainship/gray,
@@ -10038,6 +10479,13 @@
 /obj/structure/window/framed/mainship/gray,
 /turf/open/floor/mainship/mono,
 /area/rocinante_Base/ground/base_ne)
+"rWu" = (
+/obj/structure/monorail{
+	dir = 4
+	},
+/obj/effect/landmark/campaign_objective/train,
+/turf/open/floor/plating/ground/concrete,
+/area/rocinante_Base/ground/underground/caveN)
 "rWy" = (
 /obj/structure/closet/secure_closet/engineering_welding,
 /turf/open/floor/mainship/mono,
@@ -10663,6 +11111,12 @@
 	dir = 1
 	},
 /area/rocinante_Base/ground/base_se)
+"sUQ" = (
+/obj/structure/cargo_container/green{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/rocinante_Base/ground/underground/caveCent)
 "sVl" = (
 /obj/structure/cable,
 /turf/open/floor/mainship/red{
@@ -10797,6 +11251,10 @@
 /obj/structure/monorail,
 /turf/open/ground/grass/weedable/patch,
 /area/rocinante_Base/ground/base_se)
+"thp" = (
+/obj/structure/largecrate/random/case/double,
+/turf/open/floor/plating/ground/concrete,
+/area/rocinante_Base/ground/underground/caveN)
 "tie" = (
 /obj/structure/rack,
 /turf/open/floor/mainship/red{
@@ -10907,6 +11365,16 @@
 /obj/structure/rack,
 /turf/open/floor/mainship/mono,
 /area/rocinante_Base/surface/building/complex_hall_e)
+"ttW" = (
+/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/cope/predeployed,
+/obj/structure/barricade/metal{
+	dir = 8
+	},
+/obj/structure/barricade/metal{
+	dir = 1
+	},
+/turf/open/floor/mainship/mono,
+/area/rocinante_Base/ground/base_cent)
 "tuF" = (
 /obj/machinery/door/poddoor/mainship/open,
 /turf/open/floor/mainship/mono,
@@ -11300,6 +11768,10 @@
 	dir = 4
 	},
 /area/rocinante_Base/ground/base_s)
+"uao" = (
+/obj/structure/cargo_container/hd_blue,
+/turf/open/floor/plating/ground/mars/random/cave/darker,
+/area/rocinante_Base/ground/underground/caveN)
 "uaH" = (
 /obj/structure/table/black,
 /turf/open/floor/mainship/red{
@@ -11336,6 +11808,10 @@
 	dir = 5
 	},
 /area/rocinante_Base/surface/building/tramstation_e)
+"udB" = (
+/obj/structure/largecrate/random/barrel/yellow,
+/turf/open/floor/plating/ground/concrete,
+/area/rocinante_Base/ground/underground/caveN)
 "udP" = (
 /obj/structure/window/reinforced,
 /obj/structure/curtain/open/shower,
@@ -11498,6 +11974,12 @@
 "uph" = (
 /turf/closed/wall/mainship/gray,
 /area/rocinante_Base/surface/building/chapel_ne)
+"upi" = (
+/obj/structure/cargo_container/red{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/rocinante_Base/ground/underground/caveE)
 "ups" = (
 /obj/structure/bed/chair/office/dark,
 /obj/structure/platform/metalplatform{
@@ -11702,6 +12184,16 @@
 /obj/structure/cryofeed/right,
 /turf/open/liquid/water/river,
 /area/rocinante_Base/ground/base_ne)
+"uAP" = (
+/obj/structure/monorail{
+	dir = 4
+	},
+/obj/effect/forcefield{
+	desc = "You can't get in. Heh.";
+	name = "Blocker"
+	},
+/turf/open/floor/plating/ground/mars/random/cave/darker,
+/area/rocinante_Base/ground/underground/caveN)
 "uAT" = (
 /turf/open/floor/mainship/black/corner,
 /area/rocinante_Base/ground/base_s)
@@ -12025,6 +12517,12 @@
 	},
 /turf/open/floor/mainship/sterile/dark,
 /area/rocinante_Base/surface/building/tele_lab)
+"vdg" = (
+/obj/machinery/door/airlock/multi_tile/mainship/secdoor{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/rocinante_Base/ground/underground/caveE)
 "vdu" = (
 /obj/machinery/optable,
 /turf/open/floor/mainship/sterile/dark,
@@ -12187,6 +12685,12 @@
 	dir = 10
 	},
 /area/rocinante_Base/surface/building/vehicle_garage)
+"vsH" = (
+/obj/structure/monorail{
+	dir = 6
+	},
+/turf/open/floor/plating/ground/mars/random/cave/darker,
+/area/rocinante_Base/ground/underground/caveE)
 "vto" = (
 /turf/open/floor/mainship/red/full,
 /area/rocinante_Base/surface/building/administration)
@@ -12214,6 +12718,14 @@
 /obj/structure/prop/vehicle/truck,
 /turf/open/floor/plating/ground/concrete,
 /area/rocinante_Base/ground/base_s)
+"vwm" = (
+/obj/structure/cargo_container/horizontal{
+	dir = 8
+	},
+/turf/open/floor/plating/ground/concrete/lines{
+	dir = 1
+	},
+/area/rocinante_Base/ground/underground/caveN)
 "vww" = (
 /obj/structure/bed/chair/sofa/corsat/left,
 /turf/open/floor/mainship/mono,
@@ -12294,6 +12806,10 @@
 /obj/structure/largecrate/random/barrel/red,
 /turf/open/floor/plating/ground/concrete,
 /area/rocinante_Base/ground/base_cent)
+"vEr" = (
+/obj/machinery/door/poddoor/two_tile_hor,
+/turf/open/floor/plating/ground/concrete,
+/area/rocinante_Base/ground/underground/caveE)
 "vEt" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 8
@@ -12301,6 +12817,10 @@
 /obj/structure/window/reinforced,
 /turf/open/floor/mainship/mono,
 /area/rocinante_Base/surface/building/office_n)
+"vFm" = (
+/obj/structure/cargo_container/green,
+/turf/open/floor/plating/ground/concrete,
+/area/rocinante_Base/ground/underground/caveCent)
 "vFn" = (
 /obj/structure/prop/brokenvendor/brokenweaponsrack,
 /turf/open/floor/mainship/blue{
@@ -12380,7 +12900,6 @@
 /turf/open/floor/carpet,
 /area/rocinante_Base/ground/base_cent)
 "vMh" = (
-/obj/structure/prop/mainship/turretprop,
 /obj/structure/platform/metalplatform{
 	dir = 10
 	},
@@ -12392,6 +12911,12 @@
 	dir = 8
 	},
 /area/rocinante_Base/surface/building/crystal_lab)
+"vNs" = (
+/obj/structure/monorail{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/rocinante_Base/ground/underground/caveN)
 "vNJ" = (
 /obj/structure/bed/chair/office/dark,
 /turf/open/floor/mainship/mono,
@@ -12605,6 +13130,10 @@
 /obj/structure/prop/mainship/gelida/smallwire,
 /turf/open/ground/grass/weedable/patch,
 /area/rocinante_Base/ground/base_w)
+"wbN" = (
+/obj/structure/window/framed/mainship/gray,
+/turf/open/floor/plating/ground/concrete,
+/area/rocinante_Base/ground/underground/caveCent)
 "wcg" = (
 /obj/structure/flora/ausbushes/sparsegrass,
 /turf/open/floor/plating/ground/dirt_alt,
@@ -12637,6 +13166,11 @@
 /obj/machinery/door/window,
 /turf/open/floor/mainship/sterile/white,
 /area/rocinante_Base/ground/base_se)
+"weG" = (
+/turf/open/floor/plating/ground/concrete/lines{
+	dir = 5
+	},
+/area/rocinante_Base/ground/underground/caveN)
 "weR" = (
 /obj/structure/sign/double/map/left,
 /turf/open/floor/mainship/red/corner{
@@ -12802,6 +13336,10 @@
 /obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/wood,
 /area/rocinante_Base/surface/building/tramstation_nw)
+"wtV" = (
+/obj/machinery/door/airlock/multi_tile/mainship/blackgeneric/glass,
+/turf/open/floor/plating/ground/concrete,
+/area/rocinante_Base/ground/underground/caveCent)
 "wuW" = (
 /obj/structure/prop/mainship/turretprop,
 /turf/open/floor/mainship/mono,
@@ -12932,10 +13470,6 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/rocinante_Base/surface/building/administration)
-"wDd" = (
-/obj/structure/prop/mainship/gelida/propserver,
-/turf/closed/mineral/smooth/snowrock,
-/area/rocinante_Base/ground/base_nw)
 "wDf" = (
 /obj/structure/bed/chair/alt{
 	dir = 1
@@ -13084,6 +13618,10 @@
 /obj/machinery/newscaster,
 /turf/open/floor/mainship/sterile/dark,
 /area/rocinante_Base/surface/building/research_lab)
+"wRz" = (
+/obj/structure/largecrate/random/case,
+/turf/open/floor/plating/ground/concrete,
+/area/rocinante_Base/ground/underground/caveE)
 "wRP" = (
 /obj/effect/landmark/patrol_point{
 	id = "TGMC_14";
@@ -13284,12 +13822,6 @@
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/rocinante_Base/ground/base_w)
-"xlh" = (
-/obj/machinery/science/centrifuge{
-	dir = 4
-	},
-/turf/open/floor/plating/ground/snow,
-/area/rocinante_Base/ground/base_e)
 "xli" = (
 /obj/machinery/door/airlock/glass,
 /turf/open/floor/plating/ground/concrete,
@@ -13299,6 +13831,10 @@
 	dir = 9
 	},
 /area/rocinante_Base/surface/building/administration)
+"xlX" = (
+/obj/structure/table/reinforced,
+/turf/open/floor/plating/ground/concrete,
+/area/rocinante_Base/ground/underground/caveE)
 "xmb" = (
 /obj/machinery/prop/computer/rdservercontrol,
 /turf/open/floor/mainship/sterile/purple/side{
@@ -13325,6 +13861,15 @@
 	},
 /turf/open/floor/mainship/sterile/dark,
 /area/rocinante_Base/surface/building/bio_lab)
+"xmY" = (
+/obj/structure/monorail{
+	dir = 4
+	},
+/obj/structure/monorail{
+	dir = 9
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/rocinante_Base/ground/underground/caveE)
 "xnl" = (
 /turf/open/floor/mainship/blue{
 	dir = 5
@@ -13338,6 +13883,10 @@
 /obj/item/newspaper,
 /turf/open/floor/mainship/white/full,
 /area/rocinante_Base/ground/base_nw)
+"xnY" = (
+/obj/structure/window/framed/mainship/gray,
+/turf/open/floor/plating/ground/concrete,
+/area/rocinante_Base/ground/underground/caveE)
 "xot" = (
 /obj/structure/prop/mainship/research/mechafab,
 /turf/open/floor/mainship/black{
@@ -13375,6 +13924,12 @@
 /obj/machinery/processor,
 /turf/open/floor/mainship/sterile/dark,
 /area/rocinante_Base/ground/base_ne)
+"xsu" = (
+/obj/machinery/door/airlock/multi_tile/mainship/blackgeneric/glass{
+	dir = 2
+	},
+/turf/open/floor/mainship/mono,
+/area/rocinante_Base/ground/underground/caveN)
 "xsy" = (
 /obj/effect/landmark/corpsespawner/security,
 /turf/open/floor/mainship/blue{
@@ -13455,13 +14010,23 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/rocinante_Base/ground/base_ne)
 "xza" = (
-/obj/structure/prop/mainship/turretprop,
-/turf/closed/wall/mainship/gray,
+/obj/structure/barricade/metal{
+	dir = 8
+	},
+/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/cope/predeployed,
+/obj/structure/barricade/metal,
+/turf/open/floor/mainship/mono,
 /area/rocinante_Base/ground/base_cent)
 "xzc" = (
 /obj/machinery/door/airlock/multi_tile/mainship/personalglass,
 /turf/open/floor/mainship/mono,
 /area/rocinante_Base/ground/base_n)
+"xzp" = (
+/obj/structure/cargo_container/horizontal{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/rocinante_Base/ground/underground/caveW)
 "xAf" = (
 /turf/open/floor/mainship/red{
 	dir = 1
@@ -13574,6 +14139,10 @@
 	},
 /turf/open/ground/grass/weedable/patch,
 /area/rocinante_Base/ground/base_w)
+"xMO" = (
+/obj/structure/cargo_container/horizontal,
+/turf/open/floor/plating/ground/concrete,
+/area/rocinante_Base/ground/underground/caveW)
 "xMS" = (
 /obj/structure/girder/displaced,
 /turf/open/ground/grass/weedable/patch,
@@ -13639,6 +14208,10 @@
 	},
 /turf/open/floor/mainship/sterile/white,
 /area/rocinante_Base/surface/building/vehicle_garage)
+"xTB" = (
+/obj/machinery/door/airlock/mainship/security,
+/turf/open/floor/plating/ground/concrete,
+/area/rocinante_Base/ground/underground/caveCent)
 "xTN" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /turf/open/ground/grass/weedable/patch,
@@ -13728,6 +14301,12 @@
 "ydA" = (
 /turf/open/ground/grass/weedable/patch,
 /area/rocinante_Base/surface/building/bio_lab)
+"yeQ" = (
+/obj/structure/bed/chair/office/dark{
+	dir = 4
+	},
+/turf/open/floor/mainship/mono,
+/area/rocinante_Base/ground/underground/caveN)
 "yeW" = (
 /obj/structure/cable,
 /turf/open/floor/mainship/red{
@@ -13759,6 +14338,13 @@
 	},
 /turf/open/floor/mainship/blue,
 /area/rocinante_Base/ground/base_n)
+"yiT" = (
+/obj/structure/barricade/metal{
+	dir = 1
+	},
+/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/cope/predeployed,
+/turf/open/floor/mainship/mono,
+/area/rocinante_Base/ground/base_w)
 "yja" = (
 /obj/structure/prop/mainship/sensor_computer3,
 /obj/structure/platform/metalplatform{
@@ -15332,11 +15918,11 @@ dSy
 dSy
 dSy
 dSy
-tbH
-tbH
-tbH
 dSy
-tbH
+dSy
+dSy
+dSy
+dSy
 dSy
 dSy
 dSy
@@ -15484,11 +16070,11 @@ dSy
 dSy
 dSy
 dSy
-tbH
 dSy
-tbH
 dSy
-tbH
+dSy
+dSy
+dSy
 dSy
 dSy
 dSy
@@ -15636,19 +16222,19 @@ dSy
 dSy
 dSy
 dSy
-tbH
-dSy
-tbH
-tbH
-tbH
 dSy
 dSy
-tbH
-tbH
-tbH
-tbH
-tbH
-tbH
+dSy
+dSy
+dSy
+dSy
+dSy
+dSy
+dSy
+dSy
+dSy
+dSy
+dSy
 dSy
 dSy
 dSy
@@ -15795,12 +16381,12 @@ dSy
 dSy
 dSy
 dSy
-tbH
 dSy
 dSy
 dSy
 dSy
-tbH
+dSy
+dSy
 dSy
 dSy
 dSy
@@ -15834,7 +16420,7 @@ ucc
 pjR
 pjR
 pjR
-wDd
+pjR
 vpt
 vpt
 vpt
@@ -15940,19 +16526,19 @@ dSy
 dSy
 dSy
 dSy
-tbH
-tbH
-tbH
-tbH
-tbH
-dSy
-dSy
-tbH
 dSy
 dSy
 dSy
 dSy
-tbH
+dSy
+dSy
+dSy
+dSy
+dSy
+dSy
+dSy
+dSy
+dSy
 dSy
 dSy
 dSy
@@ -16092,19 +16678,19 @@ dSy
 dSy
 dSy
 dSy
-tbH
-dSy
-tbH
-dSy
-tbH
-dSy
-dSy
-tbH
 dSy
 dSy
 dSy
 dSy
-tbH
+dSy
+dSy
+dSy
+dSy
+dSy
+dSy
+dSy
+dSy
+dSy
 dSy
 dSy
 dSy
@@ -16244,11 +16830,11 @@ dSy
 dSy
 dSy
 dSy
-tbH
 dSy
-tbH
 dSy
-tbH
+dSy
+dSy
+dSy
 dSy
 dSy
 dSy
@@ -16403,12 +16989,12 @@ dSy
 dSy
 dSy
 dSy
-tbH
-tbH
-tbH
-tbH
-tbH
-tbH
+dSy
+dSy
+dSy
+dSy
+dSy
+dSy
 dSy
 dSy
 dSy
@@ -16548,11 +17134,6 @@ dSy
 dSy
 dSy
 dSy
-tbH
-tbH
-tbH
-tbH
-tbH
 dSy
 dSy
 dSy
@@ -16560,7 +17141,12 @@ dSy
 dSy
 dSy
 dSy
-tbH
+dSy
+dSy
+dSy
+dSy
+dSy
+dSy
 dSy
 dSy
 dSy
@@ -16701,7 +17287,6 @@ dSy
 dSy
 dSy
 dSy
-tbH
 dSy
 dSy
 dSy
@@ -16712,7 +17297,8 @@ dSy
 dSy
 dSy
 dSy
-tbH
+dSy
+dSy
 dSy
 dSy
 dSy
@@ -16854,7 +17440,6 @@ dSy
 dSy
 dSy
 dSy
-tbH
 dSy
 dSy
 dSy
@@ -16864,7 +17449,8 @@ dSy
 dSy
 dSy
 dSy
-tbH
+dSy
+dSy
 dSy
 dSy
 dSy
@@ -17004,19 +17590,19 @@ dSy
 dSy
 dSy
 dSy
-tbH
-tbH
-tbH
-tbH
-tbH
 dSy
 dSy
-tbH
-tbH
-tbH
-tbH
-tbH
-tbH
+dSy
+dSy
+dSy
+dSy
+dSy
+dSy
+dSy
+dSy
+dSy
+dSy
+dSy
 dSy
 dSy
 dSy
@@ -17308,19 +17894,19 @@ dSy
 dSy
 dSy
 dSy
-tbH
-tbH
-tbH
-tbH
-tbH
 dSy
 dSy
-tbH
-tbH
-tbH
-tbH
-tbH
-tbH
+dSy
+dSy
+dSy
+dSy
+dSy
+dSy
+dSy
+dSy
+dSy
+dSy
+dSy
 dSy
 dSy
 dSy
@@ -17460,15 +18046,15 @@ dSy
 dSy
 dSy
 dSy
-tbH
 dSy
 dSy
 dSy
-tbH
 dSy
 dSy
 dSy
-tbH
+dSy
+dSy
+dSy
 dSy
 dSy
 dSy
@@ -17613,15 +18199,15 @@ dSy
 dSy
 dSy
 dSy
-tbH
-tbH
-tbH
 dSy
 dSy
 dSy
 dSy
 dSy
-tbH
+dSy
+dSy
+dSy
+dSy
 dSy
 dSy
 dSy
@@ -17774,7 +18360,7 @@ dSy
 dSy
 dSy
 dSy
-tbH
+dSy
 dSy
 dSy
 dSy
@@ -17927,7 +18513,7 @@ dSy
 dSy
 dSy
 dSy
-tbH
+dSy
 dSy
 dSy
 dSy
@@ -18068,19 +18654,19 @@ dSy
 dSy
 dSy
 dSy
-tbH
-tbH
-tbH
-tbH
-tbH
 dSy
 dSy
-tbH
-tbH
-tbH
-tbH
-tbH
-tbH
+dSy
+dSy
+dSy
+dSy
+dSy
+dSy
+dSy
+dSy
+dSy
+dSy
+dSy
 dSy
 dSy
 dSy
@@ -18220,9 +18806,9 @@ dSy
 dSy
 dSy
 dSy
-tbH
 dSy
-tbH
+dSy
+dSy
 dSy
 dSy
 dSy
@@ -18372,14 +18958,14 @@ dSy
 dSy
 dSy
 dSy
-tbH
-dSy
-tbH
 dSy
 dSy
 dSy
 dSy
-tbH
+dSy
+dSy
+dSy
+dSy
 dSy
 dSy
 dSy
@@ -18531,7 +19117,7 @@ dSy
 dSy
 dSy
 dSy
-tbH
+dSy
 dSy
 dSy
 dSy
@@ -18676,19 +19262,19 @@ dSy
 dSy
 dSy
 dSy
-tbH
-tbH
-tbH
-tbH
-tbH
 dSy
 dSy
-tbH
-tbH
-tbH
-tbH
-tbH
-tbH
+dSy
+dSy
+dSy
+dSy
+dSy
+dSy
+dSy
+dSy
+dSy
+dSy
+dSy
 dSy
 dSy
 dSy
@@ -18828,14 +19414,14 @@ dSy
 dSy
 dSy
 dSy
-tbH
-dSy
-tbH
-dSy
-tbH
 dSy
 dSy
-tbH
+dSy
+dSy
+dSy
+dSy
+dSy
+dSy
 dSy
 dSy
 dSy
@@ -18980,14 +19566,14 @@ dSy
 dSy
 dSy
 dSy
-tbH
-dSy
-tbH
-dSy
-tbH
 dSy
 dSy
-tbH
+dSy
+dSy
+dSy
+dSy
+dSy
+dSy
 dSy
 dSy
 dSy
@@ -19284,19 +19870,19 @@ dSy
 dSy
 dSy
 dSy
-tbH
-tbH
-tbH
-tbH
-tbH
 dSy
 dSy
-tbH
-tbH
-tbH
 dSy
 dSy
-tbH
+dSy
+dSy
+dSy
+dSy
+dSy
+dSy
+dSy
+dSy
+dSy
 dSy
 dSy
 dSy
@@ -19436,19 +20022,19 @@ dSy
 dSy
 dSy
 dSy
-tbH
-dSy
-tbH
-dSy
-tbH
 dSy
 dSy
-tbH
-dSy
-tbH
 dSy
 dSy
-tbH
+dSy
+dSy
+dSy
+dSy
+dSy
+dSy
+dSy
+dSy
+dSy
 dSy
 dSy
 dSy
@@ -19588,19 +20174,19 @@ dSy
 dSy
 dSy
 dSy
-tbH
-dSy
-tbH
-dSy
-tbH
 dSy
 dSy
-tbH
-dSy
-tbH
 dSy
 dSy
-tbH
+dSy
+dSy
+dSy
+dSy
+dSy
+dSy
+dSy
+dSy
+dSy
 dSy
 dSy
 dSy
@@ -19747,12 +20333,12 @@ dSy
 dSy
 dSy
 dSy
-tbH
 dSy
-tbH
-tbH
-tbH
-tbH
+dSy
+dSy
+dSy
+dSy
+dSy
 dSy
 dSy
 dSy
@@ -19892,11 +20478,11 @@ dSy
 dSy
 dSy
 dSy
-tbH
-tbH
-tbH
-tbH
-tbH
+dSy
+dSy
+dSy
+dSy
+dSy
 dSy
 dSy
 dSy
@@ -20004,7 +20590,7 @@ oWD
 ccb
 ccb
 kNr
-kNr
+iDw
 vMh
 vLj
 eMI
@@ -20044,11 +20630,11 @@ dSy
 dSy
 dSy
 dSy
-tbH
 dSy
 dSy
 dSy
-tbH
+dSy
+dSy
 dSy
 dSy
 dSy
@@ -20197,9 +20783,9 @@ dSy
 dSy
 dSy
 dSy
-tbH
-tbH
-tbH
+dSy
+dSy
+dSy
 dSy
 dSy
 dSy
@@ -20305,7 +20891,7 @@ wme
 wme
 wme
 wme
-dIP
+ccb
 lCY
 lCY
 lCY
@@ -20457,7 +21043,7 @@ wme
 wme
 wme
 wme
-wQt
+oxL
 lCY
 lCY
 lCY
@@ -20500,11 +21086,11 @@ dSy
 dSy
 dSy
 dSy
-tbH
-tbH
-tbH
-tbH
-tbH
+dSy
+dSy
+dSy
+dSy
+dSy
 dSy
 dSy
 dSy
@@ -20652,11 +21238,11 @@ dSy
 dSy
 dSy
 dSy
-tbH
 dSy
-tbH
 dSy
-tbH
+dSy
+dSy
+dSy
 dSy
 dSy
 dSy
@@ -20805,9 +21391,9 @@ dSy
 dSy
 dSy
 dSy
-tbH
 dSy
-tbH
+dSy
+dSy
 dSy
 dSy
 dSy
@@ -21109,10 +21695,10 @@ dSy
 dSy
 dSy
 dSy
-tbH
-tbH
-tbH
-tbH
+dSy
+dSy
+dSy
+dSy
 dSy
 dSy
 dSy
@@ -21260,9 +21846,9 @@ dSy
 dSy
 dSy
 dSy
-tbH
 dSy
-tbH
+dSy
+dSy
 dSy
 dSy
 dSy
@@ -21412,9 +21998,9 @@ dSy
 dSy
 dSy
 dSy
-tbH
 dSy
-tbH
+dSy
+dSy
 dSy
 dSy
 dSy
@@ -21565,10 +22151,10 @@ dSy
 dSy
 dSy
 dSy
-tbH
-tbH
-tbH
-tbH
+dSy
+dSy
+dSy
+dSy
 dSy
 dSy
 dSy
@@ -21868,11 +22454,11 @@ dSy
 dSy
 dSy
 dSy
-tbH
-tbH
-tbH
-tbH
-tbH
+dSy
+dSy
+dSy
+dSy
+dSy
 dSy
 dSy
 dSy
@@ -22020,11 +22606,11 @@ dSy
 dSy
 dSy
 dSy
-tbH
 dSy
 dSy
 dSy
-tbH
+dSy
+dSy
 dSy
 dSy
 dSy
@@ -22172,11 +22758,11 @@ dSy
 dSy
 dSy
 dSy
-tbH
 dSy
 dSy
 dSy
-tbH
+dSy
+dSy
 dSy
 dSy
 dSy
@@ -22244,7 +22830,7 @@ xBu
 xBu
 xBu
 xBu
-owB
+yiT
 nUa
 nUa
 aOb
@@ -22396,7 +22982,7 @@ xBu
 xBu
 xBu
 xBu
-haE
+huK
 dDx
 dDx
 huK
@@ -22476,11 +23062,11 @@ dSy
 dSy
 dSy
 dSy
-tbH
-tbH
-tbH
-tbH
-tbH
+dSy
+dSy
+dSy
+dSy
+dSy
 dSy
 dSy
 dSy
@@ -22630,7 +23216,7 @@ dSy
 dSy
 dSy
 dSy
-tbH
+dSy
 dSy
 dSy
 dSy
@@ -22781,9 +23367,9 @@ dSy
 dSy
 dSy
 dSy
-tbH
 dSy
-tbH
+dSy
+dSy
 dSy
 dSy
 dSy
@@ -22932,11 +23518,11 @@ dSy
 dSy
 dSy
 dSy
-tbH
 dSy
 dSy
 dSy
-tbH
+dSy
+dSy
 dSy
 dSy
 dSy
@@ -24813,11 +25399,11 @@ ltW
 ltW
 ltW
 khm
-xza
+ttW
 amx
 otn
 amx
-xza
+mqU
 jfD
 ltW
 khm
@@ -25154,7 +25740,7 @@ sab
 jfD
 ltW
 khm
-xza
+mHB
 amx
 jUI
 xza
@@ -33507,9 +34093,9 @@ sbG
 sbG
 bLB
 fFq
-aMB
-sUr
-dwi
+doH
+hSB
+jFY
 fFq
 xrE
 iuw
@@ -33659,9 +34245,9 @@ fFq
 fFq
 fFq
 fFq
-fFq
-fFq
-fFq
+doH
+hSB
+jFY
 fFq
 fFq
 fFq
@@ -33811,9 +34397,9 @@ mTx
 mTx
 mTx
 mTx
-mTx
-mTx
-mTx
+fVx
+iQI
+fsx
 mTx
 mTx
 mTx
@@ -33963,9 +34549,9 @@ mTx
 mTx
 mTx
 mTx
-mTx
-mTx
-mTx
+fVx
+iQI
+fsx
 mTx
 mTx
 mTx
@@ -34115,9 +34701,9 @@ aJu
 aJu
 mTx
 mTx
-mTx
-mTx
-mTx
+fVx
+iQI
+fsx
 mTx
 mTx
 mTx
@@ -34267,12 +34853,12 @@ aJu
 aJu
 mTx
 mTx
-mTx
-aJu
-aJu
-aJu
-aJu
-aJu
+fVx
+iQI
+fsx
+iQI
+thp
+qRP
 mTx
 mTx
 ylX
@@ -34412,19 +34998,19 @@ uPz
 rev
 pnB
 tKz
-aJu
-aJu
-aJu
-aJu
-aJu
-aJu
-aJu
-aJu
-aJu
-aJu
-aJu
-aJu
-aJu
+iQI
+iQI
+iQI
+iQI
+iQI
+iQI
+iQI
+fVx
+iQI
+bwV
+gPK
+rSU
+qRP
 mTx
 mTx
 ylX
@@ -34564,19 +35150,19 @@ anI
 hjq
 sCM
 mcg
-aJu
-aJu
-aJu
-aJu
-aJu
-aJu
-aJu
-aJu
-aJu
-aJu
-aJu
-aJu
-aJu
+iQI
+iQI
+iQI
+iQI
+iQI
+iQI
+iQI
+fVx
+iQI
+iQI
+iQI
+fsx
+iQI
 aJu
 mTx
 ylX
@@ -34723,12 +35309,12 @@ mTx
 mTx
 aJu
 aJu
-aJu
-aJu
-mTx
-mTx
-aJu
-aJu
+fVx
+iQI
+iQI
+iQI
+fsx
+iQI
 aJu
 aJu
 aJu
@@ -34875,12 +35461,12 @@ mTx
 mTx
 mTx
 aJu
-aJu
-mTx
-mTx
-mTx
-aJu
-aJu
+weG
+giW
+eqh
+iQI
+fsx
+iQI
 aJu
 aJu
 aJu
@@ -35026,13 +35612,13 @@ aTO
 aTO
 aTO
 aTO
-aJu
-aJu
 mTx
-mTx
-mTx
-aJu
-aJu
+iQI
+iQI
+fVx
+iQI
+fsx
+iQI
 aJu
 aJu
 aJu
@@ -35178,13 +35764,13 @@ aTO
 oUJ
 wcx
 aTO
-aJu
-aJu
 mTx
-mTx
-mTx
-aJu
-aJu
+iQI
+iQI
+fVx
+iQI
+fsx
+iQI
 aJu
 aJu
 ylX
@@ -35331,12 +35917,12 @@ wGt
 wcx
 lZB
 aJu
-aJu
-mTx
-mTx
-mTx
-mTx
-aJu
+iQI
+iQI
+fVx
+iQI
+fsx
+iQI
 aJu
 mTx
 ylX
@@ -35483,12 +36069,12 @@ wcx
 oUJ
 lZB
 aJu
-aJu
-aJu
-mTx
-mTx
-mTx
-aJu
+iQI
+iQI
+fVx
+iQI
+fsx
+iQI
 aJu
 mTx
 ylX
@@ -35635,13 +36221,13 @@ oUJ
 wGt
 aTO
 aJu
-aJu
-aJu
-mTx
-mTx
-aJu
-aJu
-aJu
+iQI
+iQI
+fVx
+iQI
+fsx
+iQI
+uao
 mTx
 ylX
 bXB
@@ -35787,13 +36373,13 @@ aTO
 aTO
 aTO
 aJu
-aJu
-aJu
-mTx
-mTx
-aJu
-aJu
-aJu
+iQI
+iQI
+fVx
+iQI
+fsx
+iQI
+mHW
 mTx
 ylX
 bXB
@@ -35936,16 +36522,16 @@ xbO
 aTO
 adq
 mTx
-mTx
-mTx
-aJu
-aJu
-aJu
-aJu
-aJu
-aJu
-aJu
-aJu
+iQI
+iQI
+iQI
+iQI
+iQI
+fVx
+iQI
+fsx
+iQI
+qSx
 mTx
 ylX
 bXB
@@ -36088,16 +36674,16 @@ nUP
 aTO
 ylX
 mTx
-mTx
-mTx
-aJu
-aJu
-aJu
-aJu
-aJu
-aJu
-aJu
-aJu
+fIg
+fIg
+fIg
+fIg
+fIg
+fVx
+iQI
+fsx
+iQI
+dTf
 mTx
 ylX
 ylX
@@ -36240,16 +36826,16 @@ nUP
 aTO
 ylX
 mTx
-mTx
-mTx
-mTx
-mTx
-aJu
-aJu
-aJu
-aJu
-aJu
-aJu
+iQI
+iHE
+iQI
+lfy
+lfy
+fVx
+iQI
+fsx
+iQI
+dTf
 mTx
 mTx
 mTx
@@ -36392,15 +36978,15 @@ hUi
 aTO
 ylX
 mTx
-mTx
-mTx
-mTx
-mTx
-aJu
-aJu
-aJu
-aJu
-aJu
+iQI
+iQI
+iQI
+iQI
+iQI
+fVx
+iQI
+fsx
+iQI
 aJu
 mTx
 mTx
@@ -36543,16 +37129,16 @@ aTO
 aTO
 aTO
 otn
-mTx
-mTx
-mTx
-mTx
-mTx
-aJu
-aJu
-aJu
-aJu
-aJu
+adq
+adq
+adq
+adq
+adq
+adq
+fVx
+iQI
+fsx
+iQI
 mTx
 mTx
 mTx
@@ -36695,20 +37281,20 @@ fOE
 qTi
 aUp
 otn
-mTx
-mTx
-mTx
-mTx
-mTx
-aJu
-aJu
-aJu
-mTx
-mTx
-mTx
-mTx
-mTx
-mTx
+kVJ
+iQI
+iQI
+iQI
+iQI
+adq
+fVx
+iQI
+fsx
+iQI
+vNs
+iQI
+iQI
+iQI
 mTx
 oRp
 oRp
@@ -36847,20 +37433,20 @@ qTi
 qTi
 qTi
 otn
-mTx
-mTx
-mTx
-mTx
-mTx
-aJu
-aJu
-aJu
-mTx
-mTx
-mTx
-mTx
-mTx
-mTx
+kVJ
+iQI
+iQI
+iQI
+iQI
+nlV
+iQI
+iQI
+iQI
+iQI
+vNs
+iQI
+iQI
+iQI
 mTx
 oRp
 oRp
@@ -36872,7 +37458,7 @@ twr
 twr
 twr
 twr
-oRp
+twr
 oRp
 oRp
 gxB
@@ -36999,21 +37585,21 @@ hlm
 vdu
 ojS
 otn
-mTx
-mTx
-mTx
-mTx
-mTx
-aJu
-aJu
-aJu
-mTx
-mTx
-mTx
-mTx
-mTx
-mTx
-mTx
+iQI
+iQI
+iQI
+iQI
+iQI
+xNv
+iQI
+iQI
+iQI
+iQI
+vNs
+iQI
+iQI
+iQI
+iQI
 oRp
 oRp
 oRp
@@ -37024,8 +37610,8 @@ twr
 twr
 twr
 twr
-oRp
-oRp
+twr
+twr
 oRp
 gxB
 njT
@@ -37151,21 +37737,22 @@ otn
 otn
 otn
 otn
-mTx
-mTx
-mTx
-mTx
-mTx
-aJu
-aJu
-aJu
-aJu
-aJu
-mTx
-mTx
-mTx
-mTx
-mTx
+iQI
+iQI
+iQI
+iQI
+dRX
+adq
+fVx
+iQI
+fsx
+iQI
+vNs
+iQI
+iQI
+iQI
+iQI
+oRp
 oRp
 oRp
 oRp
@@ -37173,7 +37760,6 @@ oRp
 oRp
 rzK
 rzK
-twr
 twr
 twr
 twr
@@ -37303,34 +37889,34 @@ fOE
 qTi
 aUp
 otn
-mTx
-mTx
-mTx
-mTx
-aJu
-aJu
-aJu
-aJu
-aJu
-aJu
-aJu
-aJu
-mTx
-mTx
-mTx
-oRp
-oRp
-oRp
-oRp
-oRp
-oRp
-oRp
-twr
-twr
-twr
-twr
-twr
-oRp
+iQI
+iQI
+iQI
+dRX
+dRX
+pjo
+fVx
+iQI
+fsx
+iQI
+vNs
+iQI
+iQI
+iQI
+iQI
+hIn
+hIn
+hIn
+hIn
+hIn
+cNj
+hIn
+hIn
+hIn
+hIn
+hIn
+hIn
+hIn
 oRp
 oRp
 oRp
@@ -37455,34 +38041,34 @@ qTi
 qTi
 qTi
 otn
-mTx
-mTx
-mTx
-aJu
-aJu
-aJu
-aJu
-aJu
-aJu
-aJu
-aJu
-aJu
-aJu
-mTx
-mTx
-oRp
-oRp
-oRp
-oRp
-oRp
-oRp
-oRp
-twr
-twr
-twr
-twr
-twr
-oRp
+iQI
+iQI
+iQI
+iQI
+rBY
+pjo
+fVx
+iQI
+fsx
+iQI
+qst
+iQI
+iQI
+rgY
+iQI
+hIn
+hIn
+hIn
+hIn
+hIn
+cNj
+hIn
+hIn
+hIn
+hIn
+hIn
+hIn
+hIn
 oRp
 oRp
 oRp
@@ -37607,34 +38193,34 @@ hlm
 vdu
 ojS
 otn
-mTx
-mTx
-mTx
-aJu
-aJu
-aJu
-aJu
-aJu
-aJu
-aJu
-aJu
-aJu
-aJu
-aJu
-aJu
-oRp
-oRp
-oRp
-oRp
-oRp
-oRp
-oRp
-twr
-twr
-twr
-twr
-twr
-oRp
+adq
+iQI
+iQI
+iQI
+adq
+adq
+fVx
+iQI
+fsx
+iQI
+vNs
+iQI
+iQI
+mqh
+iQI
+hIn
+xzp
+fxb
+xMO
+hIn
+cNj
+hIn
+hIn
+hIn
+hIn
+hIn
+hIn
+hIn
 oRp
 oRp
 oRp
@@ -37759,34 +38345,34 @@ otn
 otn
 otn
 otn
-mTx
-mTx
-mTx
-aJu
-aJu
-aJu
-aJu
-mTx
-mTx
-aJu
-aJu
-aJu
-aJu
-aJu
-aJu
-oRp
-oRp
-oRp
-oRp
-oRp
-oRp
-oRp
-twr
-twr
-twr
-twr
-twr
-twr
+iQI
+iQI
+iQI
+iQI
+iQI
+adq
+fVx
+iQI
+fsx
+iQI
+vNs
+iQI
+iQI
+iym
+iQI
+hIn
+hIn
+hIn
+hIn
+hIn
+cNj
+hIn
+hIn
+hIn
+hIn
+hIn
+hIn
+hIn
 twr
 twr
 twr
@@ -37911,34 +38497,34 @@ vpW
 vpW
 wwb
 otn
-mTx
-mTx
-aJu
-aJu
-aJu
-aJu
-aJu
-mTx
-mTx
-mTx
-aJu
-aJu
-aJu
-aJu
-aJu
-twr
-twr
-oRp
-oRp
-oRp
-oRp
-oRp
-twr
-twr
-twr
-twr
-twr
-twr
+mLr
+iQI
+iQI
+udB
+iQI
+adq
+gLF
+iQI
+fsx
+iQI
+vNs
+iQI
+iQI
+iQI
+iQI
+hIn
+hIn
+hIn
+jsJ
+hIn
+cNj
+hIn
+hIn
+hIn
+hIn
+hIn
+hIn
+hIn
 twr
 twr
 twr
@@ -38063,34 +38649,34 @@ nuc
 nuc
 xNG
 cEl
-mTx
-mTx
-aJu
-aJu
-aJu
-aJu
-aJu
-mTx
-mTx
-mTx
-aJu
-aJu
-aJu
-dsV
-dsV
-dsV
-dsV
-voB
-voB
-voB
-voB
-voB
-voB
-voB
-dsV
-dsV
-dsV
-dsV
+iQI
+iQI
+iQI
+hpK
+iQI
+adq
+gLF
+iQI
+fsx
+iQI
+axA
+iQI
+iQI
+pxf
+pxf
+pxf
+pxf
+pxf
+mhL
+pxf
+dWf
+pxf
+pxf
+pxf
+pxf
+pxf
+pxf
+pxf
 dsV
 dsV
 dsV
@@ -38215,35 +38801,35 @@ cEl
 nlE
 ffR
 cEl
-mTx
-mTx
-mTx
-aJu
-aJu
-mTx
-mTx
-mTx
-mTx
-mTx
-aJu
-aJu
-aJu
-dsV
-dsV
-dsV
-dsV
-dsV
-voB
-voB
-voB
-voB
-voB
-voB
-dsV
-dsV
-dsV
-dsV
-dsV
+iQI
+iQI
+iQI
+iQI
+iQI
+adq
+fVx
+iQI
+fsx
+iQI
+vNs
+iQI
+iQI
+pxf
+pxf
+pxf
+pxf
+pxf
+pxf
+pxf
+dWf
+pxf
+pxf
+fjM
+fjM
+fjM
+pxf
+niL
+fjM
 dsV
 dsV
 dsV
@@ -38367,35 +38953,35 @@ cEl
 lsr
 mJR
 cEl
-mTx
-mTx
-mTx
-aJu
-aJu
-mTx
-mTx
-mTx
-mTx
-mTx
-aJu
-aJu
-aJu
-dsV
-dsV
-dsV
-dsV
-dsV
-voB
-voB
-voB
-voB
-voB
-dsV
-dsV
-dsV
-dsV
-dsV
-dsV
+adq
+xNv
+xsu
+rTX
+adq
+adq
+fVx
+iQI
+fsx
+iQI
+vNs
+iQI
+iQI
+pxf
+pxf
+kZy
+vFm
+pxf
+pxf
+pxf
+dWf
+pxf
+pxf
+fjM
+pxf
+pxf
+pxf
+pxf
+fjM
 dsV
 dsV
 voB
@@ -38519,35 +39105,35 @@ cEl
 nlE
 ffR
 cEl
-mTx
-mTx
-mTx
-mTx
-mTx
-mTx
-mTx
-mTx
-mTx
-aJu
-aJu
-aJu
-aJu
-dsV
-dsV
-dsV
-dsV
-dsV
-dsV
-dsV
-dsV
-dsV
-dsV
-dsV
-dsV
-dsV
-dsV
-dsV
-voB
+pBQ
+xNv
+xNv
+xNv
+adq
+iQI
+fVx
+iQI
+fsx
+iQI
+vNs
+iQI
+iQI
+pxf
+pxf
+kSU
+sUQ
+pxf
+pxf
+pxf
+dWf
+pxf
+pxf
+fjM
+pxf
+pxf
+pxf
+pxf
+fjM
 voB
 voB
 voB
@@ -38671,35 +39257,35 @@ nxf
 nxf
 ffR
 cEl
-mTx
-mTx
-mTx
-mTx
-mTx
-mTx
-mTx
-mTx
-aJu
-aJu
-aJu
-aJu
-mTx
-voB
-voB
-voB
-dsV
-dsV
-dsV
-dsV
-dsV
-dsV
-dsV
-dsV
-dsV
-dsV
-dsV
-dsV
-voB
+pBQ
+xNv
+xNv
+xNv
+pwA
+iQI
+fVx
+iQI
+fsx
+iQI
+qfk
+iQI
+iQI
+pxf
+pxf
+gDo
+sUQ
+pxf
+pxf
+pxf
+dWf
+pxf
+pxf
+fjM
+ldw
+pxf
+jJO
+jJO
+fjM
 voB
 voB
 voB
@@ -38823,35 +39409,35 @@ uEy
 uEy
 mUQ
 cEl
-mTx
-mTx
-mTx
-mTx
-mTx
-mTx
-mTx
-mTx
-aJu
-aJu
-aJu
-aJu
-mTx
-voB
-voB
-voB
-voB
-dsV
-dsV
-dsV
-dsV
-dsV
-dsV
-dsV
-dsV
-dsV
-voB
-voB
-voB
+xNv
+xNv
+xNv
+xNv
+adq
+iQI
+fVx
+iQI
+fsx
+iQI
+vNs
+iQI
+iQI
+pxf
+pxf
+pxf
+lxj
+pxf
+pxf
+pxf
+dWf
+pxf
+pxf
+fjM
+fjM
+dxF
+fjM
+fjM
+fjM
 voB
 voB
 voB
@@ -38975,35 +39561,35 @@ cEl
 mDZ
 cEl
 cEl
-mTx
-mTx
-mTx
-mTx
-mTx
-mTx
-mTx
-mTx
-aJu
-aJu
-aJu
-aJu
-mTx
-voB
-voB
-voB
-voB
-dsV
-dsV
-dsV
-dsV
-dsV
-dsV
-dsV
-dsV
-dsV
-voB
-voB
-voB
+xNv
+xNv
+yeQ
+fjS
+adq
+iQI
+fVx
+iQI
+fsx
+iQI
+vNs
+iQI
+iQI
+pxf
+pxf
+pxf
+pxf
+pxf
+pxf
+pxf
+dWf
+pxf
+pxf
+wbN
+pxf
+pxf
+pxf
+pxf
+fjM
 voB
 voB
 voB
@@ -39125,37 +39711,37 @@ nuc
 kWl
 kWl
 gpr
-cEl
-mTx
-mTx
-mTx
-mTx
-mTx
-mTx
-mTx
-mTx
-mTx
-aJu
-aJu
-aJu
-aJu
-aJu
-dsV
-voB
-voB
-voB
-voB
-dsV
-dsV
-voB
-voB
-voB
-dsV
-dsV
-voB
-voB
-voB
-voB
+nxf
+pwA
+xNv
+xNv
+fjS
+fjS
+adq
+rBY
+fVx
+iQI
+fsx
+iQI
+vNs
+iQI
+iQI
+fjM
+pxf
+pxf
+pxf
+fjM
+pxf
+pxf
+dWf
+pxf
+pxf
+wbN
+pxf
+pxf
+pxf
+pxf
+fjM
 voB
 voB
 voB
@@ -39281,33 +39867,33 @@ cEl
 cEl
 cEl
 cEl
-mTx
-mTx
-mTx
-mTx
-mTx
-mTx
-aJu
-aJu
-aJu
-aJu
-aJu
-dsV
-dsV
-voB
-voB
-voB
-voB
-voB
-voB
-voB
-voB
-voB
-voB
-voB
-voB
-voB
-voB
+adq
+adq
+adq
+udB
+fVx
+iQI
+fsx
+iQI
+eeD
+iQI
+iQI
+fjM
+gOk
+pxf
+pxf
+fjM
+pxf
+pxf
+dWf
+pxf
+pxf
+fjM
+pxf
+pxf
+pxf
+pxf
+fjM
 voB
 voB
 voB
@@ -39436,30 +40022,30 @@ cEl
 mTx
 mTx
 mTx
-mTx
-mTx
-mTx
-aJu
-aJu
-aJu
-aJu
-aJu
-dsV
-dsV
-voB
-voB
-voB
-voB
-voB
-voB
-voB
-voB
-voB
-voB
-voB
-voB
-voB
-voB
+iQI
+fVx
+iQI
+fsx
+iQI
+vNs
+iQI
+iQI
+jlG
+pxf
+pxf
+pxf
+fjM
+pxf
+pxf
+dWf
+pxf
+pxf
+wtV
+pxf
+pxf
+pxf
+pxf
+fjM
 voB
 voB
 dsV
@@ -39588,30 +40174,30 @@ cEl
 mTx
 mTx
 mTx
-mTx
-mTx
-mTx
-aJu
-aJu
-aJu
-aJu
-aJu
-voB
-voB
-voB
-voB
-voB
-voB
-voB
-voB
-voB
-voB
-voB
-voB
-voB
-voB
-voB
-voB
+iQI
+fVx
+iQI
+fsx
+iQI
+vNs
+iQI
+iQI
+fjM
+pxf
+pxf
+pxf
+jlG
+pxf
+pxf
+dWf
+pxf
+pxf
+pxf
+pxf
+pxf
+pxf
+pxf
+fjM
 voB
 voB
 dsV
@@ -39740,30 +40326,30 @@ cEl
 mTx
 mTx
 mTx
-mTx
-mTx
-mTx
-aJu
-aJu
-aJu
-mTx
-mTx
-voB
-voB
-voB
-voB
-voB
-voB
-voB
-voB
-voB
-voB
-voB
-voB
-voB
-voB
-voB
-voB
+qec
+fVx
+iQI
+fsx
+iQI
+vNs
+iQI
+iQI
+fjM
+pxf
+pxf
+pxf
+fjM
+pxf
+pxf
+dWf
+pxf
+pxf
+fjM
+pxf
+pxf
+pxf
+pxf
+fjM
 voB
 dsV
 dsV
@@ -39892,30 +40478,30 @@ cEl
 mTx
 mTx
 mTx
-mTx
-mTx
-mTx
-aJu
-aJu
-aJu
-mTx
-mTx
-voB
-voB
-voB
-voB
-voB
-voB
-voB
-voB
-voB
-voB
-voB
-voB
-voB
-voB
-voB
-voB
+iQI
+fVx
+iQI
+fsx
+iQI
+fLH
+iQI
+iQI
+fjM
+pxf
+pxf
+oqT
+fjM
+gOk
+pxf
+dWf
+pxf
+pxf
+fjM
+fjM
+wbN
+wbN
+fjM
+fjM
 voB
 dsV
 dsV
@@ -40044,31 +40630,31 @@ cEl
 mTx
 mTx
 mTx
-mTx
-aJu
-aJu
-aJu
-aJu
-aJu
-aJu
-mTx
-voB
-voB
-voB
-voB
-voB
-voB
-voB
-voB
-voB
-voB
-voB
-voB
-voB
-voB
-voB
-voB
-voB
+iQI
+fVx
+iQI
+fsx
+iQI
+vNs
+iQI
+iQI
+fjM
+pxf
+pxf
+pxf
+fjM
+kuY
+pxf
+dWf
+pxf
+pxf
+pxf
+pxf
+pxf
+pxf
+pxf
+dsV
+dsV
 dsV
 dsV
 dsV
@@ -40196,29 +40782,29 @@ cEl
 mTx
 mTx
 mTx
-aJu
-aJu
-aJu
-aJu
-aJu
-aJu
-aJu
-mTx
-voB
-voB
-voB
-voB
-voB
-voB
-voB
-voB
-voB
-voB
-voB
-dsV
-dsV
-dsV
-dsV
+iQI
+fVx
+iQI
+fsx
+iQI
+vNs
+iQI
+iQI
+fjM
+pxf
+pxf
+pxf
+fjM
+bFN
+pxf
+dWf
+pxf
+pxf
+pxf
+aBF
+pxf
+pxf
+pxf
 dsV
 dsV
 dsV
@@ -40348,29 +40934,29 @@ wLx
 aJu
 aJu
 aJu
-aJu
-aJu
-aJu
-aJu
-aJu
-aJu
-aJu
-mTx
-voB
-voB
-voB
-voB
-voB
-voB
-voB
-voB
-dsV
-dsV
-dsV
-dsV
-dsV
-dsV
-dsV
+iQI
+fVx
+iQI
+fsx
+iQI
+vNs
+iQI
+iQI
+fjM
+pxf
+pxf
+ays
+fjM
+pxf
+pxf
+dWf
+pxf
+pxf
+pxf
+pxf
+lDZ
+pxf
+pxf
 dsV
 dsV
 dsV
@@ -40485,7 +41071,7 @@ nqZ
 wLx
 wLx
 rIb
-oiY
+xiT
 xiT
 lVZ
 wTi
@@ -40500,34 +41086,34 @@ wLx
 aJu
 aJu
 aJu
-aJu
-aJu
-aJu
-mTx
-mTx
-aJu
-aJu
-aJu
+iQI
+fVx
+iQI
+fsx
+iQI
+fLH
+iQI
+iQI
+fjM
+pxf
+pxf
+mhL
+fjM
+pxf
+pxf
+dWf
+pxf
+pxf
+pxf
+pxf
+pxf
+pxf
+pxf
 dsV
-voB
-voB
-voB
-voB
-voB
-voB
-voB
 dsV
 dsV
 dsV
 dsV
-dsV
-dsV
-dsV
-dsV
-dsV
-dsV
-voB
-voB
 dsV
 dsV
 dsV
@@ -40652,34 +41238,34 @@ wLx
 aJu
 aJu
 aJu
-aJu
-aJu
-aJu
-mTx
-mTx
-mTx
-aJu
-aJu
+iQI
+fVx
+iQI
+fsx
+iQI
+vNs
+iQI
+iQI
+wtV
+pxf
+pxf
+pxf
+wtV
+pxf
+pxf
+dWf
+pxf
+pxf
+pxf
+pxf
+pxf
+pxf
+pxf
+dsV
 dsV
 dsV
 voB
-voB
-voB
-voB
-voB
-voB
-voB
 dsV
-dsV
-dsV
-dsV
-dsV
-dsV
-dsV
-dsV
-dsV
-voB
-voB
 dsV
 dsV
 dsV
@@ -40804,34 +41390,34 @@ wTi
 aJu
 aJu
 aJu
-aJu
-aJu
-mTx
-mTx
-mTx
-mTx
-mTx
-aJu
-dsV
+iQI
+fVx
+iQI
+fsx
+iQI
+vNs
+iQI
+iQI
+pxf
+pxf
+pxf
+pxf
+pxf
+pxf
+pxf
+dWf
+pxf
+pxf
+pxf
+pxf
+pxf
+pxf
+pxf
 dsV
 dsV
 voB
 voB
-voB
-voB
-voB
-voB
-voB
 dsV
-dsV
-dsV
-dsV
-dsV
-dsV
-dsV
-voB
-voB
-voB
 dsV
 dsV
 dsV
@@ -40956,29 +41542,29 @@ ylX
 mTx
 aJu
 aJu
-aJu
-aJu
-mTx
-mTx
-mTx
-mTx
-mTx
-aJu
-dsV
-dsV
-dsV
-dsV
-voB
-voB
-voB
-voB
-voB
-voB
-dsV
-dsV
-dsV
-dsV
-voB
+pKg
+vwm
+rBo
+fsx
+iQI
+vNs
+iQI
+iQI
+fjM
+pxf
+pxf
+pxf
+fjM
+pxf
+pxf
+dWf
+pxf
+pxf
+pxf
+pxf
+pxf
+pxf
+pxf
 voB
 voB
 voB
@@ -41108,29 +41694,29 @@ mTx
 mTx
 aJu
 aJu
-aJu
-aJu
-aJu
-mTx
-mTx
-mTx
-mTx
-mTx
-voB
-dsV
-dsV
-dsV
-voB
-voB
-voB
-voB
-voB
-voB
-dsV
-dsV
-dsV
-voB
-voB
+iQI
+fVx
+iQI
+fsx
+iQI
+fLH
+iQI
+iQI
+fjM
+pxf
+pxf
+hWa
+fjM
+pxf
+pxf
+dWf
+pxf
+pxf
+pxf
+pxf
+pxf
+pxf
+pxf
 voB
 voB
 voB
@@ -41260,29 +41846,29 @@ mTx
 aJu
 aJu
 aJu
-aJu
-aJu
-aJu
-aJu
-aJu
-aJu
-aJu
-mTx
-voB
-dsV
-dsV
-dsV
-dsV
-voB
-voB
-voB
-voB
-voB
-dsV
-dsV
-dsV
-voB
-voB
+iQI
+fVx
+iQI
+fsx
+iQI
+vNs
+iQI
+iQI
+fjM
+pxf
+pxf
+hWa
+fjM
+pxf
+pxf
+dWf
+pxf
+pxf
+pxf
+pxf
+pxf
+pxf
+pxf
 voB
 voB
 voB
@@ -41412,30 +41998,30 @@ mTx
 aJu
 aJu
 aJu
-aJu
-aJu
-aJu
-aJu
-aJu
-aJu
-aJu
-aJu
-dsV
-dsV
-dsV
-dsV
-dsV
-voB
-voB
-voB
-voB
-dsV
-dsV
-dsV
-dsV
-dsV
-voB
-voB
+pKg
+vwm
+rBo
+fsx
+iQI
+vNs
+iQI
+iQI
+pxf
+pxf
+pxf
+pxf
+pxf
+pxf
+pxf
+dWf
+pxf
+pxf
+fjM
+fjM
+fjM
+fjM
+xTB
+fjM
 voB
 voB
 dsV
@@ -41564,30 +42150,30 @@ mTx
 aJu
 aJu
 aJu
-aJu
-aJu
-aJu
-aJu
-aJu
-aJu
-aJu
-aJu
-dsV
-dsV
-dsV
-dsV
-dsV
-dsV
-dsV
-dsV
-dsV
-dsV
-dsV
-dsV
-dsV
-dsV
-dsV
-dsV
+iQI
+fVx
+iQI
+fsx
+iQI
+vNs
+iQI
+iQI
+pxf
+pxf
+pxf
+pxf
+pxf
+pxf
+pxf
+dWf
+pxf
+pxf
+fjM
+pxf
+pxf
+pxf
+pxf
+fjM
 voB
 voB
 dsV
@@ -41718,28 +42304,28 @@ aJu
 aJu
 aJu
 aJu
-mTx
-mTx
-mTx
-mTx
-mTx
-aJu
-ftv
-ftv
-ftv
-ftv
-ftv
-ftv
-ftv
-ftv
-ftv
-ftv
-ftv
-ftv
-ftv
-ftv
-ftv
-ftv
+iQI
+fsx
+iQI
+rWu
+iQI
+iQI
+eUN
+eUN
+eUN
+eUN
+eUN
+eUN
+eUN
+ffw
+eUN
+eUN
+gZW
+eUN
+eUN
+eUN
+eUN
+gZW
 ftv
 ftv
 ftv
@@ -41870,28 +42456,28 @@ aJu
 aJu
 aJu
 aJu
-mTx
-mTx
-mTx
-mTx
-mTx
-ylX
-ftv
-ftv
-ftv
-ftv
-ftv
-ftv
-ftv
-ftv
-ftv
-ftv
-ftv
-ftv
-ftv
-ftv
-ftv
-ftv
+iQI
+fsx
+iQI
+vNs
+iQI
+iQI
+eUN
+eUN
+eUN
+eUN
+aPU
+fQr
+eUN
+ffw
+eUN
+eUN
+gZW
+eUN
+eUN
+xlX
+xlX
+gZW
 ftv
 ftv
 ftv
@@ -41997,7 +42583,7 @@ hJi
 hJi
 khs
 xiT
-xlh
+xiT
 cEl
 cEl
 irt
@@ -42021,29 +42607,29 @@ aJu
 aJu
 aJu
 mTx
-mTx
-mTx
-mTx
-mTx
-mTx
-mTx
 aJu
-ftv
-ftv
-ftv
-ftv
-nEW
-nEW
-ftv
-ftv
-ftv
-ftv
-ftv
-ftv
-ftv
-ftv
-ftv
-ftv
+iQI
+fsx
+iQI
+vNs
+iQI
+iQI
+eUN
+kuI
+eUN
+eUN
+fQr
+bMM
+eUN
+ffw
+eUN
+eUN
+gZW
+eUN
+eUN
+eUN
+gAI
+gZW
 ftv
 ftv
 ftv
@@ -42150,7 +42736,7 @@ hJi
 khs
 xiT
 wLx
-hOv
+wLx
 nxf
 nxf
 nxf
@@ -42173,29 +42759,29 @@ aJu
 aJu
 aJu
 mTx
-mTx
-mTx
-mTx
-mTx
 aJu
-aJu
-aJu
-ftv
-ftv
-ftv
-ftv
-nEW
-nEW
-nEW
-nEW
-nEW
-nEW
-nEW
-nEW
-ftv
-ftv
-ftv
-ftv
+iQI
+fsx
+iQI
+vNs
+iQI
+iQI
+kuI
+qEC
+eUN
+eUN
+wRz
+eUN
+eUN
+ffw
+eUN
+eUN
+gZW
+eUN
+vdg
+gZW
+gZW
+gZW
 ftv
 ftv
 ftv
@@ -42326,32 +42912,32 @@ aJu
 aJu
 mTx
 mTx
-mTx
-aJu
-aJu
-aJu
-aJu
-aJu
+iQI
+iQI
+iQI
+vNs
+iQI
+iQI
+knB
+bjh
+eUN
+eUN
+eUN
+eUN
+eUN
+ffw
+eUN
+eUN
+gZW
+eUN
+eUN
+eUN
+eUN
+gZW
 ftv
 ftv
 ftv
 ftv
-nEW
-nEW
-nEW
-nEW
-nEW
-nEW
-nEW
-nEW
-ftv
-ftv
-ftv
-ftv
-ftv
-ftv
-ftv
-nEW
 nEW
 ftv
 ftv
@@ -42478,32 +43064,32 @@ aJu
 mTx
 mTx
 mTx
-mTx
-aJu
-aJu
-aJu
-aJu
-aJu
+iQI
+iQI
+iQI
+vNs
+iQI
+iQI
+eUN
+eUN
+eUN
+eUN
+eUN
+eUN
+eUN
+ffw
+eUN
+aYR
+gZW
+eUN
+eUN
+eUN
+eUN
+vEr
 ftv
 ftv
 ftv
 ftv
-ftv
-nEW
-nEW
-nEW
-nEW
-nEW
-nEW
-nEW
-nEW
-ftv
-ftv
-ftv
-ftv
-ftv
-ftv
-nEW
 nEW
 nEW
 nEW
@@ -42524,12 +43110,12 @@ mAb
 mAb
 tit
 tit
-pvb
-pvb
-pvb
-pvb
-pvb
-pvb
+tit
+tit
+tit
+tit
+tit
+tit
 tit
 tit
 mAb
@@ -42630,32 +43216,32 @@ aJu
 aJu
 mTx
 mTx
-mTx
-aJu
-aJu
-aJu
-mTx
-mTx
-nEW
+iQI
+iQI
+iQI
+vNs
+iQI
+iQI
+eUN
+eUN
+eUN
+eUN
+eUN
+eUN
+eUN
+ffw
+eUN
+upi
+gZW
+eUN
+eUN
+eUN
+eUN
+eUN
 ftv
 ftv
 ftv
 ftv
-ftv
-nEW
-nEW
-nEW
-nEW
-nEW
-nEW
-nEW
-ftv
-ftv
-ftv
-nEW
-nEW
-nEW
-nEW
 nEW
 nEW
 nEW
@@ -42676,12 +43262,12 @@ mAb
 mAb
 tit
 tit
-pvb
-pvb
-pvb
-pvb
-pvb
-pvb
+tit
+tit
+tit
+tit
+tit
+tit
 tit
 tit
 mAb
@@ -42782,32 +43368,32 @@ aJu
 aJu
 mTx
 mTx
-mTx
-aJu
-aJu
-aJu
-mTx
-mTx
-nEW
+iQI
+iQI
+iQI
+vNs
+iQI
+iQI
+eUN
+eUN
+eUN
+eUN
+eUN
+eUN
+eUN
+ffw
+eUN
+upi
+gZW
+eUN
+eUN
+eUN
+eUN
+vEr
 ftv
 ftv
 ftv
 ftv
-ftv
-nEW
-nEW
-nEW
-nEW
-nEW
-ftv
-ftv
-ftv
-ftv
-ftv
-ftv
-nEW
-nEW
-nEW
 nEW
 nEW
 nEW
@@ -42828,12 +43414,12 @@ mAb
 mAb
 tit
 tit
-pvb
-pvb
-pvb
-pvb
-pvb
-pvb
+tit
+tit
+tit
+tit
+tit
+tit
 cCg
 tit
 mAb
@@ -42935,31 +43521,31 @@ aJu
 aJu
 mTx
 aJu
-aJu
-aJu
-mTx
-mTx
-mTx
-nEW
+iQI
+iQI
+vNs
+iQI
+adq
+gZW
+gZW
+mHP
+gZW
+eUN
+eUN
+eUN
+ffw
+eUN
+dvS
+gZW
+eUN
+eUN
+bUb
+eUN
+eUN
 ftv
 ftv
 ftv
 ftv
-ftv
-ftv
-ftv
-ftv
-ftv
-ftv
-ftv
-ftv
-ftv
-ftv
-ftv
-ftv
-nEW
-nEW
-nEW
 nEW
 nEW
 nEW
@@ -42980,12 +43566,12 @@ tit
 tit
 tit
 tit
-pvb
-pvb
-pvb
-pvb
-pvb
-pvb
+tit
+tit
+tit
+tit
+tit
+tit
 tit
 tit
 mAb
@@ -43087,31 +43673,31 @@ aJu
 aJu
 aJu
 aJu
-aJu
-aJu
-mTx
-mTx
-mTx
-nEW
-nEW
+iQI
+iQI
+vNs
+iQI
+rTX
+xlX
+eUN
+eUN
+gZW
+eUN
+eUN
+eUN
+ffw
+eUN
+eUN
+gZW
+eUN
+eUN
+eUN
+eUN
+vEr
 ftv
 ftv
 ftv
 ftv
-ftv
-ftv
-ftv
-ftv
-ftv
-ftv
-ftv
-ftv
-ftv
-ftv
-ftv
-ftv
-ftv
-nEW
 nEW
 nEW
 nEW
@@ -43132,12 +43718,12 @@ tit
 tit
 tit
 tit
-pvb
-pvb
-pvb
-pvb
-pvb
-pvb
+tit
+tit
+tit
+tit
+tit
+tit
 tit
 mAb
 mAb
@@ -43239,27 +43825,27 @@ aJu
 aJu
 aJu
 aJu
-aJu
-aJu
-mTx
-mTx
-mTx
-nEW
-nEW
-nEW
-ftv
-ftv
-ftv
-ftv
-ftv
-ftv
-ftv
-ftv
-ftv
-ftv
-ftv
-ftv
-ftv
+iQI
+iQI
+vNs
+iQI
+rTX
+xlX
+kzO
+eUN
+gZW
+eUN
+eUN
+eUN
+ffw
+eUN
+eUN
+gZW
+eUN
+eUN
+eUN
+eUN
+eUN
 ftv
 ftv
 ftv
@@ -43284,11 +43870,11 @@ tit
 tit
 tit
 tit
-pvb
-pvb
-pvb
-pvb
-pvb
+tit
+tit
+tit
+tit
+tit
 tit
 tit
 mAb
@@ -43391,27 +43977,27 @@ aJu
 aJu
 aJu
 aJu
-aJu
-aJu
-mTx
-mTx
-mTx
-nEW
-nEW
-nEW
-nEW
-ftv
-ftv
-ftv
-ftv
-ftv
-nEW
-nEW
-nEW
-nEW
-nEW
-ftv
-ftv
+iQI
+iQI
+vNs
+iQI
+rTX
+xlX
+jja
+eUN
+xnY
+eUN
+eUN
+eUN
+ffw
+eUN
+eUN
+gZW
+eUN
+eUN
+eUN
+eUN
+vEr
 ftv
 ftv
 ftv
@@ -43543,28 +44129,28 @@ mTx
 mTx
 mTx
 mTx
-mTx
-mTx
-mTx
-mTx
-mTx
-nEW
-nEW
-nEW
-nEW
+iQI
+iQI
+vNs
+iQI
+rTX
+xlX
+xlX
+xlX
+xnY
+eUN
+eUN
+msn
+xmY
+eUN
+eUN
+gZW
+eUN
+eUN
+bUb
+eUN
+eUN
 ftv
-ftv
-ftv
-ftv
-ftv
-nEW
-nEW
-nEW
-nEW
-nEW
-nEW
-nEW
-nEW
 ftv
 ftv
 ftv
@@ -43695,31 +44281,31 @@ mTx
 mTx
 mTx
 mTx
-mTx
-mTx
-mTx
-mTx
-mTx
-nEW
+iQI
+iQI
+vNs
+iQI
+adq
+gZW
+xnY
+xnY
+gZW
+eUN
+msn
+ash
+ffw
+eUN
+eUN
+gZW
+eUN
+eUN
+eUN
+eUN
+vEr
 ftv
 ftv
 ftv
 ftv
-ftv
-ftv
-ftv
-ftv
-ftv
-nEW
-nEW
-nEW
-nEW
-nEW
-nEW
-nEW
-nEW
-nEW
-nEW
 ftv
 ftv
 ftv
@@ -43847,31 +44433,31 @@ mTx
 mTx
 mTx
 mTx
+iQI
+iQI
+vNs
 mTx
 mTx
-mTx
-mTx
-mTx
 nEW
+eUN
+eUN
+eUN
+msn
+ash
+eUN
+ffw
+eUN
+eUN
+gZW
+eUN
+eUN
+eUN
+eUN
+eUN
 ftv
 ftv
 ftv
 ftv
-ftv
-ftv
-ftv
-ftv
-ftv
-nEW
-nEW
-nEW
-nEW
-nEW
-nEW
-nEW
-nEW
-nEW
-nEW
 nEW
 nEW
 nEW
@@ -44001,28 +44587,28 @@ mTx
 mTx
 mTx
 mTx
+uAP
 mTx
 mTx
-mTx
-nEW
 nEW
 ftv
 ftv
+vsH
+ccB
+ftv
+ftv
+qFT
+ftv
+ftv
+nEW
+nEW
+nEW
+nEW
+nEW
+gZW
 ftv
 ftv
 ftv
-ftv
-ftv
-ftv
-nEW
-nEW
-nEW
-nEW
-nEW
-nEW
-nEW
-nEW
-nEW
 nEW
 nEW
 nEW
@@ -44153,17 +44739,17 @@ mTx
 mTx
 mTx
 mTx
+uAP
 mTx
 mTx
-mTx
-nEW
-nEW
+ftv
+ftv
+vsH
+ccB
 ftv
 ftv
 ftv
-ftv
-ftv
-ftv
+qFT
 ftv
 ftv
 nEW
@@ -44305,17 +44891,17 @@ mTx
 mTx
 mTx
 mTx
+uAP
 mTx
 mTx
-mTx
-nEW
-nEW
-nEW
+ftv
+vsH
+ccB
 ftv
 ftv
 ftv
 ftv
-ftv
+qFT
 ftv
 ftv
 nEW
@@ -44457,17 +45043,17 @@ mTx
 mTx
 mTx
 mTx
+uAP
 mTx
 mTx
-mTx
-nEW
-nEW
-nEW
-nEW
+ftv
+qFT
 ftv
 ftv
 ftv
 ftv
+ftv
+qFT
 ftv
 ftv
 nEW
@@ -44609,17 +45195,17 @@ mTx
 mTx
 mTx
 mTx
+uAP
 mTx
 mTx
-mTx
 nEW
-nEW
-nEW
+qFT
+ftv
 nEW
 ftv
 ftv
 ftv
-ftv
+qFT
 nEW
 nEW
 nEW
@@ -44761,17 +45347,17 @@ mTx
 mTx
 mTx
 mTx
-mTx
+uAP
 mTx
 mTx
 nEW
-nEW
+pJG
 nEW
 nEW
 ftv
 ftv
 ftv
-nEW
+qFT
 nEW
 nEW
 nEW
@@ -44913,17 +45499,17 @@ mTx
 mTx
 mTx
 mTx
+uAP
 mTx
 mTx
-mTx
+nEW
+pJG
 nEW
 nEW
 nEW
 nEW
 nEW
-nEW
-nEW
-nEW
+pJG
 nEW
 lRt
 lRt
@@ -45065,17 +45651,17 @@ mTx
 mTx
 mTx
 mTx
+uAP
 mTx
 mTx
-mTx
+nEW
+pJG
 nEW
 nEW
 nEW
 nEW
 nEW
-nEW
-nEW
-nEW
+pJG
 nEW
 lRt
 dSy
@@ -45217,17 +45803,17 @@ mTx
 mTx
 mTx
 mTx
-mTx
+uAP
 mTx
 mTx
 nEW
+pJG
 lRt
 lRt
 lRt
 lRt
 lRt
-lRt
-lRt
+pJG
 lRt
 lRt
 dSy
@@ -45369,18 +45955,18 @@ mTx
 mTx
 mTx
 mTx
-mTx
+uAP
 mTx
 mTx
 nEW
-lRt
+pJG
+tbH
 dSy
 dSy
 dSy
-dSy
-dSy
-dSy
-dSy
+tbH
+tbH
+tbH
 dSy
 dSy
 dSy
@@ -45521,12 +46107,12 @@ dqQ
 dqQ
 dqQ
 dqQ
-dqQ
+uAP
 dqQ
 dqQ
 lRt
-lRt
-dSy
+pJG
+tbH
 dSy
 dSy
 dSy
@@ -45672,13 +46258,13 @@ dSy
 dSy
 dSy
 dSy
-dSy
-dSy
-dSy
-dSy
-dSy
-dSy
-dSy
+tbH
+tbH
+tbH
+tbH
+tbH
+tbH
+tbH
 dSy
 dSy
 dSy

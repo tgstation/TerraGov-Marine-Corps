@@ -116,6 +116,13 @@
 	pixel_x = -16
 
 //Train
+/obj/effect/landmark/campaign_objective/train
+	name = "locomotive objective"
+	icon = 'icons/obj/structures/train.dmi'
+	icon_state = "maglev"
+	mission_types = list(/datum/campaign_mission/destroy_mission/supply_raid)
+	objective_type = /obj/structure/campaign_objective/destruction_objective/supply_objective/train
+
 /obj/structure/campaign_objective/destruction_objective/supply_objective/train
 	name = "locomotive"
 	desc = "A heavy duty maglev locomotive. Designed for moving large quantities of goods from point A to point B."
@@ -123,55 +130,14 @@
 	icon_state = "maglev"
 	pixel_x = 0
 
-/obj/structure/campaign_objective/destruction_objective/supply_objective/train/carriage
-	name = "rail carriage"
-	desc = "A heavy duty maglev carriage. I wonder what's inside?."
-	icon_state = "carriage"
+/obj/effect/landmark/campaign_objective/train/carriage
+	name = "carriage objective"
+	icon_state = "carriage_lit"
 
 /obj/structure/campaign_objective/destruction_objective/supply_objective/train/carriage_lit
 	name = "rail carriage"
 	desc = "A heavy duty maglev carriage. I wonder what's inside?."
 	icon_state = "carriage_lit"
-
-/obj/structure/campaign_objective/destruction_objective/supply_objective/train/cargo_nt
-	name = "railcar"
-	desc = "A heavy duty maglev railcar. This one has a large cargo container on it."
-	icon_state = "nt"
-
-/obj/structure/campaign_objective/destruction_objective/supply_objective/train/cargo_sat
-	name = "railcar"
-	desc = "A heavy duty maglev railcar. This one has a large cargo container on it."
-	icon_state = "sat"
-
-/obj/structure/campaign_objective/destruction_objective/supply_objective/train/cargo_hyperdyne
-	name = "railcar"
-	desc = "A heavy duty maglev railcar. This one has a large cargo container on it."
-	icon_state = "hyperdyne"
-
-/obj/structure/campaign_objective/destruction_objective/supply_objective/train/construction
-	name = "railcar"
-	desc = "A heavy duty maglev railcar. This one is carrying a variety of construction materials."
-	icon_state = "construction"
-
-/obj/structure/campaign_objective/destruction_objective/supply_objective/train/crates
-	name = "railcar"
-	desc = "A heavy duty maglev railcar. This one has a variety of crates on it."
-	icon_state = "crates"
-
-/obj/structure/campaign_objective/destruction_objective/supply_objective/train/weapons
-	name = "railcar"
-	desc = "A heavy duty maglev railcar. This one is carrying a shipment of weapons."
-	icon_state = "weapons"
-
-/obj/structure/campaign_objective/destruction_objective/supply_objective/train/mech
-	name = "railcar"
-	desc = "A heavy duty maglev railcar. This one has a variety of mech equipment on it."
-	icon_state = "mech"
-
-/obj/structure/campaign_objective/destruction_objective/supply_objective/train/empty
-	name = "railcar"
-	desc = "A heavy duty maglev railcar. This one is currently empty."
-	icon_state = "empty"
 
 //teleporter core
 /obj/effect/landmark/campaign_objective/bluespace_core

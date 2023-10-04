@@ -2,11 +2,14 @@
 /datum/campaign_mission/destroy_mission/supply_raid
 	name = "Supply Depot raid"
 	mission_icon = "supply_depot"
-	map_name = "Lunar base BD-832"
-	map_file = '_maps/map_files/Campaign maps/jungle_outpost/jungle_outpost.dmm'
-	objectives_total = 5
-	min_destruction_amount = 3
-	max_game_time = 20 MINUTES
+	map_name = "Rocinante base"
+	map_file = '_maps/map_files/Campaign maps/som_base/sombase.dmm'
+	map_traits = list(ZTRAIT_AWAY = TRUE, ZTRAIT_SNOWSTORM = TRUE)
+	map_light_colours = list(COLOR_MISSION_BLUE, COLOR_MISSION_BLUE, COLOR_MISSION_BLUE, COLOR_MISSION_BLUE)
+	map_light_levels = list(225, 150, 100, 75)
+	objectives_total = 2
+	min_destruction_amount = 2
+	max_game_time = 15 MINUTES
 	victory_point_rewards = list(
 		MISSION_OUTCOME_MAJOR_VICTORY = list(2, 0),
 		MISSION_OUTCOME_MINOR_VICTORY = list(1, 0),
@@ -15,11 +18,11 @@
 		MISSION_OUTCOME_MAJOR_LOSS = list(0, 2),
 	)
 	attrition_point_rewards = list(
-		MISSION_OUTCOME_MAJOR_VICTORY = list(15, 0),
-		MISSION_OUTCOME_MINOR_VICTORY = list(10, 0),
+		MISSION_OUTCOME_MAJOR_VICTORY = list(35, 0),
+		MISSION_OUTCOME_MINOR_VICTORY = list(25, 0),
 		MISSION_OUTCOME_DRAW = list(10, 10),
-		MISSION_OUTCOME_MINOR_LOSS = list(0, 25),
-		MISSION_OUTCOME_MAJOR_LOSS = list(0, 35),
+		MISSION_OUTCOME_MINOR_LOSS = list(0, 20),
+		MISSION_OUTCOME_MAJOR_LOSS = list(0, 30),
 	)
 
 	starting_faction_additional_rewards = "Degrade enemy attrition generation."
