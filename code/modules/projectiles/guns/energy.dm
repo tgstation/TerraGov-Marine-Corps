@@ -951,7 +951,7 @@
 	icon_state = "tex"
 	item_state = "tex"
 	max_shots = 50 //codex stuff
-	ammo_datum_type = /datum/ammo/energy/lasgun/marine/xray
+	ammo_datum_type = /datum/ammo/energy/lasgun/marine/xray/standard
 	rounds_per_shot = 12
 	attachable_allowed = list(
 		/obj/item/attachable/bayonet,
@@ -991,7 +991,7 @@
 
 /datum/lasrifle/energy_rifle_mode/xray
 	rounds_per_shot = 12
-	ammo_datum_type = /datum/ammo/energy/lasgun/marine/xray
+	ammo_datum_type = /datum/ammo/energy/lasgun/marine/xray/standard
 	fire_delay = 0.25 SECONDS
 	fire_sound = 'sound/weapons/guns/fire/laser3.ogg'
 	message_to_user = "You set the xray rifle's charge mode to standard fire."
