@@ -6,6 +6,8 @@
 
 ///stats/points/etc recorded by faction
 #define MISSION_SELECTION_ALLOWED  (1<<0)
+///How long after a mission ends players are returned to base
+#define AFTER_MISSION_TELEPORT_DELAY 10 SECONDS
 ///How long after a mission ends a new leader is picked
 #define AFTER_MISSION_LEADER_DELAY 1 MINUTES
 ///Standard amount of missions for a faction to have
