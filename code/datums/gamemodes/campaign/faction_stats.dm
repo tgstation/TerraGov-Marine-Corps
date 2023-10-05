@@ -187,6 +187,7 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 		stats_flags &= ~MISSION_SELECTION_ALLOWED
 
 	total_attrition_points += round(length(GLOB.clients) * 0.5 * attrition_gain_multiplier)
+	generate_new_mission()
 	addtimer(CALLBACK(src, PROC_REF(return_to_base)), 10 SECONDS)
 	addtimer(CALLBACK(src, PROC_REF(get_selector)), AFTER_MISSION_LEADER_DELAY) //if the leader died, we load a new one after a bit to give respawns some time
 
