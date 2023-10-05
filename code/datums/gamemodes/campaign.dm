@@ -42,7 +42,7 @@
 		stat_list[faction] = new /datum/faction_stats(faction)
 	RegisterSignal(SSdcs, COMSIG_LIVING_JOB_SET, PROC_REF(register_faction_member))
 	RegisterSignals(SSdcs, list(COMSIG_GLOB_MOB_DEATH, COMSIG_MOB_GHOSTIZE), PROC_REF(set_death_time))
-	RegisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_MISSION_ENDED, PROC_REF(cut_death_list))
+	RegisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_MISSION_ENDED, PROC_REF(cut_death_list_timer))
 	addtimer(CALLBACK(SSticker.mode, TYPE_PROC_REF(/datum/game_mode/hvh/campaign, intro_sequence)), SSticker.round_start_time + 1 MINUTES)
 
 /datum/game_mode/hvh/campaign/post_setup()
@@ -123,17 +123,23 @@
 //respawn stuff
 
 ///Records the players death time for respawn time purposes
-/datum/game_mode/hvh/campaign/proc/set_death_time(datum/source, mob/living/carbon/human/player)
+/datum/game_mode/hvh/campaign/proc/set_death_time(datum/source, mob/living/carbon/human/player, override = FALSE)
 	SIGNAL_HANDLER
+	if(override)
+		return //ghosting out of a corpse won't count
 	if(!istype(player))
 		return
 	if(!(player.faction in factions))
 		return
 	player_death_times[player.key] = world.time
 
+///Wrapper for cutting the deathlist via timer due to the players not immediately returning to base
+/datum/game_mode/hvh/campaign/proc/cut_death_list_timer(datum/source)
+	SIGNAL_HANDLER
+	addtimer(CALLBACK(src, PROC_REF(cut_death_list)), AFTER_MISSION_TELEPORT_DELAY + 1)
+
 ///cuts the death time list at mission end
 /datum/game_mode/hvh/campaign/proc/cut_death_list(datum/source)
-	SIGNAL_HANDLER
 	player_death_times.Cut()
 
 ///respawns the player if attrition points are available
