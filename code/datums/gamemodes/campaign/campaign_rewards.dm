@@ -618,6 +618,9 @@
 	if(current_mission.mission_flags & MISSION_DISALLOW_TELEPORT)
 		to_chat(faction.faction_leader, span_warning("External factors prevent the use of the teleporter at this time. Teleporter unavailable."))
 		return
+	if(!current_mission.mission_z_level)
+		to_chat(faction.faction_leader, span_warning("New battlefield co-ordinates loading. Please try again in a moment."))
+		return
 	var/obj/structure/teleporter_array/friendly_teleporter
 	for(var/obj/structure/teleporter_array/teleporter AS in GLOB.teleporter_arrays)
 		if(teleporter.faction != faction.faction)
@@ -683,6 +686,9 @@
 	var/datum/campaign_mission/current_mission = mode.current_mission
 	if(current_mission.mission_flags & MISSION_DISALLOW_DROPPODS)
 		to_chat(faction.faction_leader, span_warning("External factors prevent the ship from repositioning at this time. Drop pods unavailable."))
+		return
+	if(!current_mission.mission_z_level)
+		to_chat(faction.faction_leader, span_warning("New battlefield co-ordinates loading. Please try again in a moment."))
 		return
 
 	. = ..()
