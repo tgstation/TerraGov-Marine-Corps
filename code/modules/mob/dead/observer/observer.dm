@@ -964,3 +964,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	if(!..())
 		return FALSE
 	visible_message(span_deadsay("[span_name("[src]")] points at [pointed_atom]."))
+
+/mob/dead/observer/CtrlShiftClick(mob/user)
+	if(isobserver(user) && check_rights(R_SPAWN))
+		change_mob_type(/mob/living/carbon/human , null, null, TRUE) //always delmob, ghosts shouldn't be left lingering
