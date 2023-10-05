@@ -1045,3 +1045,57 @@
 	description = "Freezes bullets in their course, and they will start to move again only after a certain time"
 	keybind_signal = COMSIG_XENOABILITY_TIMESTOP
 	hotkey_keys = list("V")
+
+/datum/keybinding/xeno/flay
+	name = "Flay"
+	full_name = "Puppeteer: Flay"
+	description = "Takes a chunk of flesh from the victim marine through a quick swiping motion, adding 100 biomass to your biomass collection."
+	keybind_signal = COMSIG_XENOABILITY_FLAY
+
+/datum/keybinding/xeno/pincushion
+	name = "Pincushion"
+	full_name = "Puppeteer: Pincushion"
+	description = "Launch a spine from your tail. This attack will help deter any organic as well as support your puppets and teammates in direct combat."
+	keybind_signal = COMSIG_XENOABILITY_PINCUSHION
+
+/datum/keybinding/xeno/dread
+	name = "Dreadful Presence"
+	full_name = "Puppeteer: Dreadful Presence"
+	description = "Emit a menacing presence, striking fear into the organics and slowing them for a short duration."
+	keybind_signal = COMSIG_XENOABILITY_DREADFULPRESENCE
+
+/datum/keybinding/xeno/refurbish_husk
+	name = "Refurbish Husk"
+	full_name = "Puppeteer: Refurbish Husk"
+	description = "Harvest the biomass and organs of a body in order to create a meat puppet to do your bidding."
+	keybind_signal = COMSIG_XENOABILITY_REFURBISHHUSK
+
+/datum/keybinding/xeno/stitch_puppet
+	name = "Stitch Puppet"
+	full_name = "Puppeteer: Stitch Puppet"
+	description = "Uses 350 biomass to create a flesh homunculus to do your bidding, at an adjacent target location."
+	keybind_signal = COMSIG_XENOABILITY_PUPPET
+
+/datum/keybinding/xeno/organic_bomb
+	name = "Organic Bomb"
+	full_name = "Puppeteer: Organic Bomb"
+	description = "Causes one of our puppets to detonate on selection, spewing acid out of the puppet's body in all directions, gibbing the puppet."
+	keybind_signal = COMSIG_XENOABILITY_ORGANICBOMB
+
+/datum/keybinding/xeno/tendrils
+	name = "Tendrils"
+	full_name = "Puppeteer: Tendrils"
+	description = "Burrow freshly created tendrils to tangle organics in a 3x3 patch."
+	keybind_signal = COMSIG_XENOABILITY_TENDRILS
+
+/datum/keybinding/xeno/send_orders_puppet
+	name = "Give Orders to Puppets"
+	full_name = "Puppeteer: Give Orders to Puppets"
+	description = "Give orders to your puppets, altering their behaviour."
+	keybind_signal = COMSIG_XENOABILITY_SENDORDERS
+
+/datum/keybinding/xeno/bestow_blessing
+	name = "Bestow Blessings"
+	full_name = "Puppeteer: Bestow Blessings"
+	description = "Give blessings to your puppets."
+	keybind_signal = COMSIG_XENOABILITY_BESTOWBLESSINGS

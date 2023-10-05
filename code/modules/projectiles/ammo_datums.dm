@@ -3105,16 +3105,6 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	/// Number of debuff stacks to apply when hitting mobs.
 	var/debuff_stacks = 5
 
-/datum/ammo/energy/lasgun/marine/xray/on_hit_mob(mob/M, obj/projectile/proj)
-	if(!isliving(M))
-		return
-	var/mob/living/living_victim = M
-	var/datum/status_effect/stacking/microwave/debuff = living_victim.has_status_effect(STATUS_EFFECT_MICROWAVE)
-	if(debuff)
-		debuff.add_stacks(debuff_stacks)
-	else
-		living_victim.apply_status_effect(STATUS_EFFECT_MICROWAVE, debuff_stacks)
-
 /datum/ammo/energy/lasgun/marine/xray/piercing
 	name = "xray piercing bolt"
 	icon_state = "xray"
@@ -3123,6 +3113,16 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	penetration = 100
 	max_range = 10
 	hitscan_effect_icon = "xray_beam"
+
+/datum/ammo/energy/lasgun/marine/xray/standard/on_hit_mob(mob/M, obj/projectile/proj)
+	if(!isliving(M))
+		return
+	var/mob/living/living_victim = M
+	var/datum/status_effect/stacking/microwave/debuff = living_victim.has_status_effect(STATUS_EFFECT_MICROWAVE)
+	if(debuff)
+		debuff.add_stacks(debuff_stacks)
+	else
+		living_victim.apply_status_effect(STATUS_EFFECT_MICROWAVE, debuff_stacks)
 
 /datum/ammo/energy/lasgun/marine/heavy_laser
 	flags_ammo_behavior = AMMO_EXPLOSIVE|AMMO_ROCKET|AMMO_ENERGY|AMMO_SUNDERING|AMMO_HITSCAN|AMMO_INCENDIARY
@@ -3969,6 +3969,16 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /// This spawns a leash ball and checks if the turf is dense before doing so
 /datum/ammo/xeno/leash_ball/proc/drop_leashball(turf/T)
 	new /obj/structure/xeno/aoe_leash(get_turf(T), hivenumber)
+
+/datum/ammo/xeno/spine //puppeteer
+	name = "spine"
+	damage = 35
+	icon_state = "spine"
+	damage_type = BRUTE
+	bullet_color = COLOR_WHITE
+	sound_hit = 'sound/bullets/spear_armor1.ogg'
+	flags_ammo_behavior = AMMO_XENO|AMMO_SKIPS_ALIENS
+
 /*
 //================================================
 					Misc Ammo
