@@ -2129,8 +2129,8 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	icon_state = "ltb"
 	hud_state = "bigshell_apfds"
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_PASS_THROUGH_TURF|AMMO_PASS_THROUGH_MOVABLE
-	damage = 195
-	penetration = 80
+	damage = 200
+	penetration = 75
 	shell_speed = 7
 	accurate_range = 24
 	accurate_range_min = 6
@@ -2141,7 +2141,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/bullet/isg_apfds/on_hit_mob(mob/M, obj/projectile/P)
 	P.proj_max_range -= 2
-	staggerstun(M, P, max_range = 20, slowdown = 1.5)
+	staggerstun(M, P, max_range = 20, slowdown = 0.5)
 
 /datum/ammo/bullet/isg_apfds/on_hit_obj(obj/O, obj/projectile/P)
 	P.proj_max_range -= 5

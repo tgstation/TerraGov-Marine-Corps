@@ -312,15 +312,20 @@ WEAPONS
 	)
 	cost = 20
 
-/datum/supply_packs/weapons/hisg
-	name = "ISG-15 Heavy Infantry Support Gun"
+/datum/supply_packs/weapons/flak_gun
+	name = "FK-88 Flak Gun"
 	contains = list(/obj/item/weapon/gun/heavy_isg)
-	cost = 1600
+	cost = 1200
 
-/datum/supply_packs/weapons/hisg_ammo
+/datum/supply_packs/weapons/flak_he
 	name = "ISG-15 HE Shell"
-	contains = list(/obj/item/ammo_magazine/heavy_isg)
-	cost = 175
+	contains = list(/obj/item/ammo_magazine/heavy_isg/he)
+	cost = 100
+
+/datum/supply_packs/weapons/flak_sabot
+	name = "ISG-15 APFDS Shell"
+	contains = list(/obj/item/ammo_magazine/heavy_isg/sabot)
+	cost = 120
 
 /datum/supply_packs/weapons/tesla
 	name = "Tesla Shock Rifle"

@@ -265,7 +265,7 @@
 	starting_attachment_types = list(/obj/item/attachable/scope/unremovable/tl102/nest)
 
 	allowed_ammo_types = list(
-		/obj/item/ammo_magazine/heavy_isg,
+		/obj/item/ammo_magazine/heavy_isg/he,
 		/obj/item/ammo_magazine/heavy_isg/sabot,
 	)
 
@@ -279,6 +279,7 @@
 /obj/machinery/deployable/mounted/moveable/isg
 	has_anchored_sprite = TRUE
 	pixel_x = -16
+	pixel_y = -11
 
 ///This is my meme version, the first version of the HSG-102 to have auto-fire, revel in its presence.
 /obj/item/weapon/gun/tl102/death
