@@ -122,7 +122,7 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 
 ///Randomly adds a new mission to the available pool
 /datum/faction_stats/proc/generate_new_mission()
-	if(length(available_missions) >= CAMPAIGN_STANDARD_MISSION_QUANTITY)
+	if(!length(available_missions) || (length(available_missions) >= CAMPAIGN_STANDARD_MISSION_QUANTITY))
 		return
 	var/datum/campaign_mission/selected_mission = pickweight(GLOB.campaign_mission_pool[faction])
 	add_new_mission(selected_mission)
