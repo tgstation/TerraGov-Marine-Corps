@@ -236,14 +236,13 @@
 //FK-88 mounted heavy infantry support gun
 
 /obj/item/weapon/gun/heavy_isg
-	name = "\improper FK-88 mounted smart flak gun"
-	desc = "The FK-88 is a heavy infantry support gun. This will most definitely give a very bad day to anything that gets caught in its line of fire. Takes quite a while to dial in the shot, but is IFF-capable. Uses 15cm shells."
+	name = "\improper FK-88 mounted flak gun"
+	desc = "The FK-88 is a big gun, offically meant to be used against large hostile wildlife or unruly crowds, this cannon will most definitely give a very bad day to anything that gets caught in its line of fire. Takes quite a while to dial in your shots. Uses 15cm shells."
 
 	w_class = WEIGHT_CLASS_HUGE
 	flags_equip_slot = ITEM_SLOT_BACK
-	icon = 'icons/Marine/marine-hmg.dmi'
+	icon = 'icons/Marine/marine-fkgun.dmi'
 	icon_state = "isg"
-
 	fire_sound = 'sound/weapons/guns/fire/tank_cannon1.ogg'
 	reload_sound = 'sound/weapons/guns/interact/tat36_reload.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/launcher_empty.ogg'
@@ -258,7 +257,7 @@
 	fire_delay = 10 SECONDS
 
 	flags_item = IS_DEPLOYABLE|TWOHANDED|DEPLOYED_NO_PICKUP|DEPLOY_ON_INITIALIZE
-	flags_gun_features = GUN_AMMO_COUNTER|GUN_DEPLOYED_FIRE_ONLY|GUN_WIELDED_FIRING_ONLY|GUN_IFF
+	flags_gun_features = GUN_AMMO_COUNTER|GUN_DEPLOYED_FIRE_ONLY|GUN_WIELDED_FIRING_ONLY
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO)
 
 	attachable_allowed = list(/obj/item/attachable/scope/unremovable/tl102/nest)
@@ -279,6 +278,7 @@
 
 /obj/machinery/deployable/mounted/moveable/isg
 	has_anchored_sprite = TRUE
+	pixel_x = -16
 
 ///This is my meme version, the first version of the HSG-102 to have auto-fire, revel in its presence.
 /obj/item/weapon/gun/tl102/death
