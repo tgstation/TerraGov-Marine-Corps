@@ -108,7 +108,7 @@
 	detailed_desc = "Activatable by squad leaders. Your battalion has been assigned a number of B18 power armor sets, available at your request. B18 is TGMC's premier infantry armor, providing superior protection, mobility and an advanced automedical system."
 	ui_icon = "b18"
 	uses = 3
-	cost = 18
+	cost = 25
 	equipment_to_spawn = list(
 		/obj/item/clothing/head/helmet/marine/specialist,
 		/obj/item/clothing/gloves/marine/specialist,
@@ -121,7 +121,7 @@
 	detailed_desc = "Activatable by squad leaders. Your battalion has been assigned a number of Gorgon power armor sets, available at your request. Gorgon armor is the SOM's elite infantry armor, providing superior protection and an automedical system without significantly compromising on speed."
 	ui_icon = "gorgon"
 	uses = 5
-	cost = 10
+	cost = 12
 	equipment_to_spawn = list(
 		/obj/item/clothing/head/modular/som/leader,
 		/obj/item/clothing/suit/modular/som/heavy/leader/valk,
@@ -448,12 +448,13 @@
 
 	RegisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_MISSION_ENDED, TYPE_PROC_REF(/datum/campaign_reward, deactivate), override = TRUE) //you could use this multiple times per mission
 
-///Removes the job slots once the mission is over
+//Removes the job slots once the mission is over
 /datum/campaign_reward/bonus_job/deactivate()
 	. = ..()
 	for(var/job_type in bonus_job_list)
 		var/datum/job/bonus_job = SSjob.type_occupations[job_type]
 		bonus_job.set_job_positions(0)
+		bonus_job.free_job_positions(bonus_job_list[job_type])
 
 /datum/campaign_reward/bonus_job/colonial_militia
 	name = "Colonial militia support"
@@ -467,7 +468,6 @@
 		/datum/job/som/mercenary/militia/standard = 9,
 	)
 
-//TODO: create new jobs
 /datum/campaign_reward/bonus_job/freelancer
 	name = "Freelancer team"
 	desc = "A squad of freelance guns for hire to support our forces"
