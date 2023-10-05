@@ -147,6 +147,7 @@
 	barefootstep = FOOTSTEP_GRASS
 	mediumxenofootstep = FOOTSTEP_GRASS
 	smoothing_groups = list(SMOOTH_GROUP_JUNGLE_FLOOR)
+	minimap_color = MINIMAP_AREA_JUNGLE
 
 /turf/open/ground/grass/grass2
 	icon_state = "grass2"
