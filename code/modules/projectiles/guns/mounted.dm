@@ -257,7 +257,7 @@
 	fire_delay = 10 SECONDS
 
 	flags_item = IS_DEPLOYABLE|TWOHANDED|DEPLOYED_NO_PICKUP|DEPLOY_ON_INITIALIZE
-	flags_gun_features = GUN_AMMO_COUNTER|GUN_DEPLOYED_FIRE_ONLY|GUN_WIELDED_FIRING_ONLY
+	flags_gun_features = GUN_AMMO_COUNTER|GUN_DEPLOYED_FIRE_ONLY|GUN_WIELDED_FIRING_ONLY|DEPLOYED_ANCHORED_FIRING_ONLY
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO)
 
 	attachable_allowed = list(/obj/item/attachable/scope/unremovable/tl102/nest)
@@ -269,14 +269,16 @@
 		/obj/item/ammo_magazine/heavy_isg/sabot,
 	)
 
-	deploy_time = 5 SECONDS
+	deploy_time = 6 SECONDS
 	undeploy_time = 3 SECONDS
 	deployable_item = /obj/machinery/deployable/mounted/moveable/isg
 
-	max_integrity = 600
-	soft_armor = list(MELEE = 0, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 100, FIRE = 0, ACID = 0)
+	max_integrity = 800
+	soft_armor = list(MELEE = 60, BULLET = 60, LASER = 60, ENERGY = 50, BOMB = 50, BIO = 100, FIRE = 0, ACID = 0)
 
 /obj/machinery/deployable/mounted/moveable/isg
+	coverage = 90 // Has a shield.
+	anchor_time = 4 SECONDS
 	has_anchored_sprite = TRUE
 	pixel_x = -16
 	pixel_y = -11

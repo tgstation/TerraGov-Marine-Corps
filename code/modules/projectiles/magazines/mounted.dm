@@ -183,7 +183,7 @@
 /obj/item/ammo_magazine/heavy_isg
 	name = "FK-88 shell (155mm Shell)"
 	desc = "A 15cm shell for the FK-88 mounted flak gun. How did you even get this?"
-	icon = 'icons/Marine/marine-hmg.dmi'
+	icon = 'icons/Marine/marine-fkgun.dmi'
 	icon_state = "isg_ammo"
 	item_state = "isg_ammo"
 	w_class = WEIGHT_CLASS_BULKY
@@ -212,4 +212,5 @@
 /obj/item/ammo_magazine/heavy_isg/sabot
 	name = "FK-88 APFDS shell (155mm Shell)"
 	desc = "A 15cm APFDS shell for the FK-88 mounted flak gun containing a large metal dart fired at hypersonic speeds, will pierce through basically anything and onto the other side with ease. Requires a minimum range before it stabilizes to properly hit anything, will rip a clean hole through basically anything."
+	icon_state = "isg_ammo_sabot"
 	default_ammo = /datum/ammo/bullet/heavy_isg_apfds

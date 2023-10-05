@@ -14,6 +14,8 @@
 	var/user_old_y = 0
 	///Stores user old move resist and apply on unset interaction
 	var/user_old_move_resist
+	///If the gun has different sprites for being anchored.
+	var/has_anchored_sprite = FALSE
 
 ///generates the icon based on how much ammo it has.
 /obj/machinery/deployable/mounted/update_icon_state(mob/user)
@@ -23,6 +25,12 @@
 		icon_state = default_icon_state + "_e"
 	else
 		icon_state = default_icon_state
+
+	if(has_anchored_sprite)
+		if(anchored)
+			icon_state = default_icon_state + "_anchored"
+		else
+			icon_state = default_icon_state
 
 	hud_set_gun_ammo()
 
@@ -319,7 +327,6 @@
 	anchored = FALSE
 	/// Sets how long a deployable takes to be anchored
 	var/anchor_time = 0 SECONDS
-	var/has_anchored_sprite = FALSE
 
 /// Can be anchored and unanchored from the ground by Alt Right Click.
 /obj/machinery/deployable/mounted/moveable/AltRightClick(mob/living/user)
@@ -333,12 +340,7 @@
 			balloon_alert(user, "Interrupted!")
 			return
 
-	if(has_anchored_sprite)
-		if(!anchored)
-			icon_state = default_icon_state + "_anchored"
-		else
-			icon_state = default_icon_state
-
 	anchored = !anchored
+	update_icon()
 
 	balloon_alert(user, "You [anchored ? "anchor" : "unanchor"] [src]")
