@@ -364,9 +364,11 @@
 /obj/item/clothing/head/frelancer/beret
 	name = "\improper armored Freelancer beret"
 	icon_state = "freelancer_beret"
-	attachments_allowed = list(/obj/item/armor_module/storage/helmet,
+	attachments_allowed = list(
+		/obj/item/armor_module/storage/helmet,
 	)
-	starting_attachments = list(/obj/item/armor_module/storage/helmet,
+	starting_attachments = list(
+		/obj/item/armor_module/storage/helmet,
 	)
 
 /obj/item/clothing/head/militia
