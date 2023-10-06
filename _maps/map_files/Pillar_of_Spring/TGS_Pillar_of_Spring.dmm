@@ -554,7 +554,7 @@
 "aKk" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/prison/kitchen,
-/area/mainship/living/grunt_rnr)
+/area/mainship/living/kitchen)
 "aKr" = (
 /obj/structure/table/mainship,
 /obj/item/folder/white,
@@ -754,7 +754,7 @@
 "aTo" = (
 /obj/machinery/grill/unwrenched,
 /turf/open/floor/mainship/mono,
-/area/mainship/hull/lower_hull)
+/area/mainship/living/botany)
 "aTO" = (
 /obj/effect/soundplayer,
 /turf/closed/wall/mainship,
@@ -836,7 +836,7 @@
 	dir = 9
 	},
 /turf/open/floor/tile/white/hall/full,
-/area/mainship/living/grunt_rnr)
+/area/mainship/living/freezer)
 "aZD" = (
 /obj/effect/ai_node,
 /turf/open/floor/mainship/cargo,
@@ -1056,7 +1056,7 @@
 "bni" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/prison/kitchen,
-/area/mainship/living/grunt_rnr)
+/area/mainship/living/kitchen)
 "bnq" = (
 /obj/machinery/disposal,
 /obj/structure/disposalpipe/trunk{
@@ -1131,7 +1131,7 @@
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
 /turf/open/floor/prison/kitchen,
-/area/mainship/living/grunt_rnr)
+/area/mainship/living/kitchen)
 "bth" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 1
@@ -1266,7 +1266,7 @@
 	dir = 1
 	},
 /turf/open/floor/mainship/mono,
-/area/mainship/hull/lower_hull)
+/area/mainship/living/botany)
 "bCH" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -1541,7 +1541,7 @@
 "bSC" = (
 /obj/machinery/holopad,
 /turf/open/floor/prison/kitchen,
-/area/mainship/living/grunt_rnr)
+/area/mainship/living/kitchen)
 "bSK" = (
 /obj/structure/prop/mainship/sensor_computer2,
 /turf/open/floor/mainship/mono,
@@ -1822,7 +1822,7 @@
 	dir = 4
 	},
 /turf/open/floor/mainship/mono,
-/area/mainship/living/grunt_rnr)
+/area/mainship/living/kitchen)
 "cnA" = (
 /obj/machinery/light/mainship{
 	light_color = "#da2f1b"
@@ -1963,6 +1963,10 @@
 /obj/machinery/cryopod/right,
 /turf/open/floor/mainship,
 /area/mainship/living/cryo_cells)
+"cwK" = (
+/obj/structure/window/framed/mainship/hull,
+/turf/open/floor/mainship_hull,
+/area/mainship/living/botany)
 "cxw" = (
 /obj/effect/turf_decal/warning_stripes/thick{
 	dir = 1
@@ -1996,7 +2000,7 @@
 	dir = 4
 	},
 /turf/open/floor/mainship/mono,
-/area/mainship/hull/lower_hull)
+/area/mainship/living/botany)
 "czJ" = (
 /obj/structure/table/mainship/nometal,
 /obj/item/folder/black_random{
@@ -2051,7 +2055,7 @@
 	pixel_y = 8
 	},
 /turf/open/floor/mainship/mono,
-/area/mainship/hull/lower_hull)
+/area/mainship/living/botany)
 "cCZ" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
@@ -2132,7 +2136,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating/plating_catwalk,
-/area/mainship/hull/lower_hull)
+/area/mainship/living/botany)
 "cLc" = (
 /obj/structure/closet/crate/ammo,
 /obj/structure/cable,
@@ -2794,7 +2798,7 @@
 	},
 /obj/machinery/seed_extractor,
 /turf/open/floor/mainship/mono,
-/area/mainship/hull/lower_hull)
+/area/mainship/living/botany)
 "duy" = (
 /obj/machinery/holopad,
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -3272,7 +3276,7 @@
 	},
 /obj/structure/table/mainship/nometal,
 /turf/open/floor/mainship/mono,
-/area/mainship/living/grunt_rnr)
+/area/mainship/living/kitchen)
 "ebE" = (
 /obj/machinery/telecomms/broadcaster/preset_left,
 /turf/open/floor/mainship/tcomms,
@@ -3439,7 +3443,7 @@
 	dir = 4
 	},
 /turf/open/floor/mainship/mono,
-/area/mainship/hull/lower_hull)
+/area/mainship/living/botany)
 "eiU" = (
 /obj/machinery/light/mainship{
 	dir = 8
@@ -3510,6 +3514,9 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/port_atmos)
+"ele" = (
+/turf/closed/wall/mainship,
+/area/mainship/living/kitchen)
 "elQ" = (
 /obj/structure/sign/poster,
 /turf/open/floor/mainship/cargo,
@@ -3780,7 +3787,7 @@
 "eGJ" = (
 /obj/structure/sign/hydro,
 /turf/closed/wall/mainship,
-/area/mainship/hull/lower_hull)
+/area/mainship/living/botany)
 "eHh" = (
 /obj/machinery/camera/autoname/mainship{
 	dir = 8
@@ -3955,7 +3962,7 @@
 "eZd" = (
 /obj/structure/kitchenspike,
 /turf/open/floor/tile/white/hall/full,
-/area/mainship/living/grunt_rnr)
+/area/mainship/living/freezer)
 "eZf" = (
 /obj/structure/window/framed/mainship/requisitions,
 /turf/open/floor/plating,
@@ -4595,7 +4602,7 @@
 /obj/item/reagent_containers/spray/cleaner,
 /obj/item/reagent_containers/glass/rag,
 /turf/open/floor/mainship/floor,
-/area/mainship/living/grunt_rnr)
+/area/mainship/living/kitchen)
 "fKK" = (
 /obj/machinery/vending/armor_supply,
 /turf/open/floor/mainship/floor,
@@ -5251,6 +5258,9 @@
 /obj/effect/ai_node,
 /turf/open/floor/mainship/cargo,
 /area/mainship/hallways/hangar)
+"gKc" = (
+/turf/closed/wall/mainship,
+/area/mainship/living/freezer)
 "gKv" = (
 /obj/structure/cable,
 /turf/open/floor/mainship/white{
@@ -5327,7 +5337,7 @@
 "gQg" = (
 /obj/effect/ai_node,
 /turf/open/floor/mainship/mono,
-/area/mainship/hull/lower_hull)
+/area/mainship/living/botany)
 "gQP" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -5342,7 +5352,7 @@
 "gQU" = (
 /obj/machinery/vending/hydronutrients,
 /turf/open/floor/mainship/mono,
-/area/mainship/hull/lower_hull)
+/area/mainship/living/botany)
 "gQY" = (
 /obj/machinery/door/airlock/multi_tile/mainship/medidoor/medbay/free_access{
 	dir = 1
@@ -5462,7 +5472,7 @@
 	dir = 4
 	},
 /turf/open/floor/mainship/mono,
-/area/mainship/hull/lower_hull)
+/area/mainship/living/botany)
 "gXs" = (
 /obj/structure/target_stake,
 /obj/item/target,
@@ -6219,7 +6229,7 @@
 "hWO" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on,
 /turf/open/floor/mainship/mono,
-/area/mainship/hull/lower_hull)
+/area/mainship/living/botany)
 "hXJ" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment,
@@ -6271,7 +6281,7 @@
 	},
 /obj/machinery/light/mainship,
 /turf/open/floor/mainship/mono,
-/area/mainship/hull/lower_hull)
+/area/mainship/living/botany)
 "iaT" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -6324,7 +6334,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/effect/landmark/start/job/foodservicespecialist,
 /turf/open/floor/prison/kitchen,
-/area/mainship/living/grunt_rnr)
+/area/mainship/living/kitchen)
 "iet" = (
 /obj/machinery/door/airlock/mainship/maint{
 	dir = 2
@@ -6370,7 +6380,7 @@
 "ihU" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/mainship/mono,
-/area/mainship/hull/lower_hull)
+/area/mainship/living/botany)
 "iiC" = (
 /obj/machinery/body_scanconsole,
 /obj/structure/cable,
@@ -6425,7 +6435,7 @@
 	dir = 1
 	},
 /turf/open/floor/mainship/mono,
-/area/mainship/hull/lower_hull)
+/area/mainship/living/botany)
 "ilZ" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -6802,7 +6812,7 @@
 	dir = 5
 	},
 /turf/open/floor/mainship/mono,
-/area/mainship/hull/lower_hull)
+/area/mainship/living/botany)
 "iLp" = (
 /obj/machinery/camera/autoname/mainship{
 	dir = 4
@@ -7784,12 +7794,22 @@
 	dir = 8
 	},
 /turf/open/floor/mainship/mono,
-/area/mainship/hull/lower_hull)
+/area/mainship/living/botany)
 "khM" = (
 /turf/open/floor/mainship/black{
 	dir = 10
 	},
 /area/mainship/squads/general)
+"khR" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/living/kitchen)
 "kir" = (
 /turf/open/floor/plating,
 /area/mainship/living/cryo_cells)
@@ -7844,7 +7864,7 @@
 	dir = 4
 	},
 /turf/open/floor/mainship/mono,
-/area/mainship/living/grunt_rnr)
+/area/mainship/living/kitchen)
 "koA" = (
 /obj/machinery/light/mainship{
 	light_color = "#da2f1b"
@@ -8070,7 +8090,7 @@
 	name = "Freezer"
 	},
 /turf/open/floor/mainship/mono,
-/area/mainship/living/grunt_rnr)
+/area/mainship/living/freezer)
 "kzq" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -8125,7 +8145,7 @@
 	dir = 10
 	},
 /turf/open/floor/tile/white/hall/full,
-/area/mainship/living/grunt_rnr)
+/area/mainship/living/freezer)
 "kDx" = (
 /turf/open/floor/plating,
 /area/mainship/hallways/hangar)
@@ -8336,7 +8356,7 @@
 	dir = 8
 	},
 /turf/open/floor/mainship/mono,
-/area/mainship/hull/lower_hull)
+/area/mainship/living/botany)
 "kQS" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 8
@@ -8512,7 +8532,7 @@
 	},
 /obj/item/pizzabox,
 /turf/open/floor/tile/white/hall/full,
-/area/mainship/living/grunt_rnr)
+/area/mainship/living/freezer)
 "kZz" = (
 /obj/structure/ship_ammo/cas/minirocket/illumination,
 /turf/open/floor/mainship/cargo,
@@ -8556,7 +8576,7 @@
 	dir = 8
 	},
 /turf/open/floor/mainship/mono,
-/area/mainship/living/grunt_rnr)
+/area/mainship/living/kitchen)
 "ldG" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 8
@@ -9904,7 +9924,7 @@
 "mBX" = (
 /obj/effect/landmark/start/job/foodservicespecialist,
 /turf/open/floor/prison/kitchen,
-/area/mainship/living/grunt_rnr)
+/area/mainship/living/kitchen)
 "mBZ" = (
 /turf/open/space,
 /area/space)
@@ -10329,7 +10349,7 @@
 	pixel_x = 6
 	},
 /turf/open/floor/mainship/mono,
-/area/mainship/hull/lower_hull)
+/area/mainship/living/botany)
 "ndI" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -10725,7 +10745,7 @@
 	dir = 1
 	},
 /turf/open/floor/mainship/mono,
-/area/mainship/hull/lower_hull)
+/area/mainship/living/botany)
 "nCV" = (
 /obj/effect/turf_decal/warning_stripes/thin,
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -11055,7 +11075,7 @@
 "nZK" = (
 /obj/machinery/grill/unwrenched,
 /turf/open/floor/tile/white/hall/full,
-/area/mainship/living/grunt_rnr)
+/area/mainship/living/freezer)
 "oac" = (
 /obj/effect/turf_decal/warning_stripes/linethick{
 	dir = 1
@@ -11147,7 +11167,7 @@
 	dir = 1
 	},
 /turf/open/floor/tile/white/hall/full,
-/area/mainship/living/grunt_rnr)
+/area/mainship/living/freezer)
 "ogF" = (
 /obj/structure/noticeboard,
 /turf/closed/wall/mainship,
@@ -11179,7 +11199,7 @@
 "ohF" = (
 /obj/machinery/hydroponics,
 /turf/open/floor/mainship/mono,
-/area/mainship/hull/lower_hull)
+/area/mainship/living/botany)
 "oiy" = (
 /obj/structure/bed/chair/nometal{
 	dir = 1
@@ -11378,7 +11398,7 @@
 	on = 1
 	},
 /turf/open/floor/prison/kitchen,
-/area/mainship/living/grunt_rnr)
+/area/mainship/living/kitchen)
 "osT" = (
 /obj/structure/table/mainship/nometal,
 /obj/effect/spawner/random/food_or_drink/donut,
@@ -11673,7 +11693,7 @@
 	dir = 4
 	},
 /turf/open/floor/mainship/mono,
-/area/mainship/hull/lower_hull)
+/area/mainship/living/botany)
 "oOM" = (
 /obj/machinery/light/mainship{
 	light_color = "#da2f1b"
@@ -11833,7 +11853,7 @@
 /obj/effect/decal/cleanable/blood/gibs,
 /obj/effect/ai_node,
 /turf/open/floor/tile/white/hall/full,
-/area/mainship/living/grunt_rnr)
+/area/mainship/living/freezer)
 "oZN" = (
 /obj/structure/closet/crate/weapon,
 /obj/structure/cable,
@@ -12430,6 +12450,9 @@
 	dir = 4
 	},
 /area/mainship/command/self_destruct)
+"pIi" = (
+/turf/closed/wall/mainship/outer,
+/area/mainship/living/botany)
 "pIs" = (
 /obj/structure/table/fancywoodentable,
 /obj/item/storage/bible/booze,
@@ -12491,7 +12514,7 @@
 /obj/item/tool/kitchen/rollingpin,
 /obj/item/book/manual/chef_recipes,
 /turf/open/floor/mainship/mono,
-/area/mainship/living/grunt_rnr)
+/area/mainship/living/kitchen)
 "pLb" = (
 /obj/machinery/light/mainship{
 	dir = 8
@@ -12664,7 +12687,7 @@
 "pTP" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on,
 /turf/open/floor/prison/kitchen,
-/area/mainship/living/grunt_rnr)
+/area/mainship/living/kitchen)
 "pTU" = (
 /obj/machinery/disposal,
 /obj/structure/disposalpipe/trunk{
@@ -12810,7 +12833,7 @@
 /area/mainship/command/cic)
 "qeW" = (
 /turf/open/floor/plating/plating_catwalk,
-/area/mainship/hull/lower_hull)
+/area/mainship/living/botany)
 "qfd" = (
 /obj/structure/table/mainship/nometal,
 /obj/item/storage/toolbox/mechanical,
@@ -12869,7 +12892,7 @@
 "qjw" = (
 /obj/structure/closet/secure_closet/freezer/fridge,
 /turf/open/floor/tile/white/hall/full,
-/area/mainship/living/grunt_rnr)
+/area/mainship/living/freezer)
 "qjH" = (
 /obj/structure/closet/secure_closet/securecom,
 /obj/item/moneybag/vault,
@@ -13045,7 +13068,7 @@
 /area/mainship/engineering/port_atmos)
 "qtS" = (
 /turf/closed/wall/mainship/outer,
-/area/mainship/living/grunt_rnr)
+/area/mainship/living/freezer)
 "qvJ" = (
 /turf/closed/wall/mainship,
 /area/mainship/living/grunt_rnr)
@@ -13175,6 +13198,9 @@
 /obj/effect/landmark/start/job/cmo,
 /turf/open/floor/mainship/floor,
 /area/mainship/medical/upper_medical)
+"qCm" = (
+/turf/open/floor/mainship/mono,
+/area/mainship/living/botany)
 "qDh" = (
 /obj/structure/closet/secure_closet/guncabinet/mp_armory,
 /turf/open/floor/mainship/sterile/dark,
@@ -13422,7 +13448,7 @@
 	on = 1
 	},
 /turf/open/floor/tile/white/hall/full,
-/area/mainship/living/grunt_rnr)
+/area/mainship/living/freezer)
 "qQD" = (
 /obj/machinery/vending/weapon,
 /turf/open/floor/mainship/white{
@@ -14412,7 +14438,7 @@
 "shm" = (
 /obj/effect/spawner/random/misc/gnome,
 /turf/open/floor/mainship/mono,
-/area/mainship/hull/lower_hull)
+/area/mainship/living/botany)
 "shx" = (
 /obj/structure/cable,
 /obj/effect/ai_node,
@@ -14800,7 +14826,7 @@
 /obj/effect/spawner/random/food_or_drink/kitchenknife,
 /obj/item/storage/box/tgmc_mre,
 /turf/open/floor/mainship/mono,
-/area/mainship/living/grunt_rnr)
+/area/mainship/living/kitchen)
 "sFt" = (
 /obj/machinery/light/mainship{
 	dir = 1
@@ -14899,7 +14925,7 @@
 /obj/item/clothing/head/helmet/marine/som,
 /obj/effect/spawner/random/food_or_drink/burger,
 /turf/open/floor/tile/white/hall/full,
-/area/mainship/living/grunt_rnr)
+/area/mainship/living/freezer)
 "sPc" = (
 /obj/item/radio/intercom/general,
 /turf/open/floor/mainship/cargo/arrow{
@@ -15014,7 +15040,7 @@
 /obj/structure/table/mainship/nometal,
 /obj/effect/spawner/random/food_or_drink/burger,
 /turf/open/floor/mainship/mono,
-/area/mainship/living/grunt_rnr)
+/area/mainship/living/kitchen)
 "sXo" = (
 /obj/structure/closet/l3closet/virology,
 /turf/open/floor/mainship/sterile/dark,
@@ -15126,7 +15152,7 @@
 /area/mainship/engineering/engineering_workshop)
 "tfG" = (
 /turf/open/floor/prison/kitchen,
-/area/mainship/living/grunt_rnr)
+/area/mainship/living/kitchen)
 "tfK" = (
 /obj/machinery/computer/general_air_control/large_tank_control{
 	frequency = 1443;
@@ -15221,7 +15247,7 @@
 /obj/structure/table/mainship/nometal,
 /obj/machinery/chem_dispenser/soda,
 /turf/open/floor/mainship/mono,
-/area/mainship/living/grunt_rnr)
+/area/mainship/living/kitchen)
 "tkS" = (
 /turf/open/floor/mainship/sterile/purple/side,
 /area/mainship/medical/chemistry)
@@ -15338,7 +15364,7 @@
 	dir = 4
 	},
 /turf/open/floor/prison/kitchen,
-/area/mainship/living/grunt_rnr)
+/area/mainship/living/kitchen)
 "ttT" = (
 /obj/structure/bed/roller,
 /obj/structure/cable,
@@ -15665,7 +15691,7 @@
 /obj/structure/table/mainship/nometal,
 /obj/machinery/chem_dispenser/beer,
 /turf/open/floor/mainship/mono,
-/area/mainship/living/grunt_rnr)
+/area/mainship/living/kitchen)
 "tKs" = (
 /obj/structure/mirror,
 /obj/machinery/light/mainship{
@@ -15738,7 +15764,7 @@
 	pixel_y = 8
 	},
 /turf/open/floor/mainship/mono,
-/area/mainship/hull/lower_hull)
+/area/mainship/living/botany)
 "tOZ" = (
 /obj/machinery/conveyor{
 	dir = 4;
@@ -16165,6 +16191,9 @@
 /obj/structure/bed/chair/sofa/corner,
 /turf/open/floor/wood,
 /area/mainship/living/grunt_rnr)
+"uoe" = (
+/turf/closed/wall/mainship,
+/area/mainship/living/botany)
 "upv" = (
 /obj/structure/closet/firecloset,
 /obj/item/clothing/mask/gas,
@@ -16235,7 +16264,7 @@
 "urs" = (
 /obj/machinery/vending/boozeomat,
 /turf/open/floor/mainship/mono,
-/area/mainship/living/grunt_rnr)
+/area/mainship/living/kitchen)
 "urD" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable,
@@ -16619,7 +16648,7 @@
 	},
 /obj/item/clothing/mask/gas/icc,
 /turf/open/floor/tile/white/hall/full,
-/area/mainship/living/grunt_rnr)
+/area/mainship/living/freezer)
 "uPn" = (
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
@@ -16705,7 +16734,7 @@
 /obj/machinery/door/airlock/mainship/maint/free_access,
 /obj/structure/sign/hydro,
 /turf/open/floor/mainship/mono,
-/area/mainship/hull/lower_hull)
+/area/mainship/living/botany)
 "uUp" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -16840,7 +16869,7 @@
 "van" = (
 /obj/machinery/vending/boozeomat,
 /turf/open/floor/prison/kitchen,
-/area/mainship/living/grunt_rnr)
+/area/mainship/living/kitchen)
 "vaW" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
@@ -17473,7 +17502,7 @@
 "vWL" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/mainship/mono,
-/area/mainship/hull/lower_hull)
+/area/mainship/living/botany)
 "vXG" = (
 /obj/structure/mirror,
 /turf/open/floor/wood,
@@ -17619,7 +17648,7 @@
 	pixel_y = 5
 	},
 /turf/open/floor/mainship/mono,
-/area/mainship/living/grunt_rnr)
+/area/mainship/living/kitchen)
 "wkJ" = (
 /obj/machinery/iv_drip,
 /obj/machinery/holopad,
@@ -17744,7 +17773,7 @@
 	dir = 1
 	},
 /turf/open/floor/prison/kitchen,
-/area/mainship/living/grunt_rnr)
+/area/mainship/living/kitchen)
 "wrP" = (
 /obj/machinery/line_nexter,
 /obj/structure/disposalpipe/segment,
@@ -17756,7 +17785,7 @@
 "wrV" = (
 /obj/machinery/griddle,
 /turf/open/floor/mainship/floor,
-/area/mainship/living/grunt_rnr)
+/area/mainship/living/kitchen)
 "wsb" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 8
@@ -17804,7 +17833,7 @@
 /obj/structure/table/mainship/nometal,
 /obj/machinery/computer/emails,
 /turf/open/floor/mainship/mono,
-/area/mainship/hull/lower_hull)
+/area/mainship/living/botany)
 "wup" = (
 /turf/closed/wall/mainship/research/containment/wall/corner,
 /area/mainship/medical/medical_science)
@@ -17828,7 +17857,7 @@
 /obj/item/clothing/under/rank/chef,
 /obj/item/clothing/suit/chef/classic,
 /turf/open/floor/mainship/mono,
-/area/mainship/living/grunt_rnr)
+/area/mainship/living/kitchen)
 "wwQ" = (
 /obj/structure/bed/chair/nometal{
 	dir = 1
@@ -18205,7 +18234,7 @@
 	pixel_y = 3
 	},
 /turf/open/floor/mainship/mono,
-/area/mainship/living/grunt_rnr)
+/area/mainship/living/kitchen)
 "wTX" = (
 /obj/machinery/vending/nanomed,
 /turf/open/floor/mainship/mono,
@@ -18818,7 +18847,7 @@
 "xDy" = (
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/tile/white/hall/full,
-/area/mainship/living/grunt_rnr)
+/area/mainship/living/freezer)
 "xEZ" = (
 /turf/closed/shuttle/ert/engines/left{
 	dir = 1
@@ -19096,7 +19125,7 @@
 	},
 /obj/machinery/door/firedoor/mainship,
 /turf/open/floor/mainship/mono,
-/area/mainship/living/grunt_rnr)
+/area/mainship/living/kitchen)
 "xVI" = (
 /obj/machinery/power/smes/preset,
 /obj/structure/cable,
@@ -19188,7 +19217,7 @@
 /area/mainship/hallways/aft_hallway)
 "xZI" = (
 /turf/open/floor/tile/white/hall/full,
-/area/mainship/living/grunt_rnr)
+/area/mainship/living/freezer)
 "xZL" = (
 /obj/machinery/door/poddoor/shutters/mainship/selfdestruct,
 /turf/open/floor/mainship/stripesquare,
@@ -19286,7 +19315,7 @@
 	},
 /obj/machinery/light/mainship,
 /turf/open/floor/mainship/mono,
-/area/mainship/hull/lower_hull)
+/area/mainship/living/botany)
 "yfw" = (
 /obj/machinery/vending/weapon,
 /turf/open/floor/mainship/mono,
@@ -40843,14 +40872,14 @@ lmF
 lmF
 dbv
 ljh
-esN
-cuG
-cuG
-esN
-esN
-esN
-cuG
-cuG
+pIi
+cwK
+cwK
+pIi
+pIi
+pIi
+cwK
+cwK
 qtS
 qtS
 qtS
@@ -41100,7 +41129,7 @@ gmc
 gmc
 xlx
 jzI
-rKn
+uoe
 wtS
 nBk
 cCT
@@ -41108,11 +41137,11 @@ kgo
 ihU
 ihU
 iLf
-qvJ
+gKc
 xZI
 xZI
 oda
-qvJ
+gKc
 sYv
 gou
 nOJ
@@ -41357,7 +41386,7 @@ rGg
 qDh
 gmc
 jzI
-rKn
+uoe
 ilH
 tOL
 ohF
@@ -41365,11 +41394,11 @@ ohF
 ohF
 ohF
 iaQ
-qvJ
+gKc
 qjw
 xZI
 xDy
-qvJ
+gKc
 uzA
 aOM
 uSe
@@ -41614,7 +41643,7 @@ xYE
 rGg
 gmc
 kEP
-rKn
+uoe
 dus
 shm
 qeW
@@ -41622,11 +41651,11 @@ qeW
 qeW
 qeW
 cHI
-qvJ
+gKc
 xZI
 xZI
 nZK
-qvJ
+gKc
 gou
 bNs
 uSe
@@ -41871,19 +41900,19 @@ jHs
 rZR
 gmc
 kEP
-rKn
+uoe
 ndG
-fRw
+qCm
 ohF
 ohF
 ohF
 ohF
 czH
-qvJ
+gKc
 xZI
 oZh
 qQk
-qvJ
+gKc
 ouE
 uSe
 uSe
@@ -42128,19 +42157,19 @@ jwH
 kKJ
 gmc
 kEP
-rKn
+uoe
 bCc
-fRw
+qCm
 gQg
 hWO
 vWL
 vWL
 yes
-qvJ
+gKc
 sOJ
 uOQ
 kZg
-qvJ
+gKc
 ouE
 drW
 uSe
@@ -42385,19 +42414,19 @@ hSc
 kKJ
 gmc
 ndI
-rKn
+uoe
 aTo
-fRw
-fRw
+qCm
+qCm
 gXg
 kQL
 gQU
 oOG
-qvJ
+gKc
 eZd
 kCI
 aZk
-qvJ
+gKc
 ouE
 uSe
 uSe
@@ -42642,19 +42671,19 @@ dgy
 kKJ
 gmc
 kEP
-rKn
+uoe
 eGJ
-rKn
+uoe
 uTM
-rKn
-rKn
-rKn
+uoe
+uoe
+uoe
 eiu
-qvJ
-qvJ
+gKc
+gKc
 kyE
-qvJ
-qvJ
+gKc
+gKc
 fgk
 jaF
 uSe
@@ -43155,14 +43184,14 @@ gmc
 gmc
 gmc
 xlx
-qvJ
-qvJ
-qvJ
-qvJ
-qvJ
-qvJ
+ele
+ele
+ele
+ele
+ele
+ele
 cnd
-qvJ
+ele
 yga
 fRw
 fRw
@@ -43418,8 +43447,8 @@ wTq
 knx
 ebr
 urs
-vzF
-qvJ
+khR
+ele
 aYX
 fRw
 fRw
@@ -43676,7 +43705,7 @@ pTP
 bni
 bni
 wrb
-qvJ
+ele
 kEP
 tMO
 pvy
@@ -43933,7 +43962,7 @@ osQ
 aKk
 idZ
 bsG
-qvJ
+ele
 tCK
 rKn
 rKn
@@ -44190,7 +44219,7 @@ tfG
 van
 tfG
 ttt
-qvJ
+ele
 wKY
 pPS
 jWu
@@ -44440,14 +44469,14 @@ wcT
 mcR
 rpS
 wcT
-qvJ
+ele
 wrV
 fKj
 sXf
 sFo
 wwC
 xVr
-qvJ
+ele
 vha
 leu
 leu

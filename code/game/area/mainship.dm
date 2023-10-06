@@ -288,6 +288,17 @@
 
 /area/mainship/living/grunt_rnr/two
 
+/area/mainship/living/kitchen
+	name = "Kitchen"
+	icon_state = "kitchen"
+
+/area/mainship/living/freezer
+	name = "Lounge"
+	icon_state = "freezer"
+
+/area/mainship/living/botany
+	name = "Botany"
+	icon_state = "gruntrnr" //need to make sprite lol
 /area/mainship/living/officer_rnr
 	name = "Officer's Lounge"
 	icon_state = "officerrnr"
