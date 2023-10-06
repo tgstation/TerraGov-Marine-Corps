@@ -12947,10 +12947,11 @@
 	},
 /area/mainship/command/airoom)
 "kMx" = (
-/obj/machinery/door/airlock/mainship/maint{
-	dir = 2
+/obj/machinery/door/airlock/mainship/generic{
+	dir = 1;
+	name = "Bathroom"
 	},
-/turf/closed/wall/mainship,
+/turf/open/floor/mainship/mono,
 /area/mainship/living/freezer)
 "kMQ" = (
 /obj/machinery/camera/autoname/mainship{
@@ -21253,8 +21254,10 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/living/pilotbunks)
 "rzy" = (
-/obj/machinery/door/airlock/mainship/maint,
-/turf/closed/wall/mainship,
+/obj/machinery/door/airlock/mainship/generic{
+	name = "Kitchen"
+	},
+/turf/open/floor/mainship/mono,
 /area/mainship/living/botany)
 "rAj" = (
 /obj/effect/turf_decal/warning_stripes/thin{
