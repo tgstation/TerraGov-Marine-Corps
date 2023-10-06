@@ -14,7 +14,8 @@
 	melee_damage = 20
 
 	// *** Speed *** //
-	speed = -0.6
+	speed = -0.4
+	weeds_speed_mod = -0.2
 
 	// *** Plasma *** //
 	plasma_max = 400
