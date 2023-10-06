@@ -132,7 +132,7 @@
 	action_icon_state = "watch_xeno"
 	desc = "See from the target Xenomorphs vision. Click again the ability to stop observing"
 	plasma_cost = 0
-	use_state_flags = XACT_USE_LYING
+	use_state_flags = XACT_USE_LYING|XACT_USE_AGILITY
 	var/overwatch_active = FALSE
 
 /datum/action/xeno_action/watch_xeno/give_action(mob/living/L)
