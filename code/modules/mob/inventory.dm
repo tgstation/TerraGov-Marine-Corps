@@ -317,7 +317,7 @@
 		return ITEM_UNEQUIP_DROPPED
 	return ITEM_UNEQUIP_FAIL
 
-
+/*
 //Outdated but still in use apparently. This should at least be a human proc.
 //this is still in use please fix this mess
 /mob/proc/get_equipped_items()
@@ -339,6 +339,36 @@
 	//if(hasvar(src,"l_hand")) if(src:l_hand) items += src:l_hand
 	//if(hasvar(src,"r_hand")) if(src:r_hand) items += src:r_hand
 
+	return items */ //If the TG port of get_equipped_items() works, then delete this (Or yell at me if you see this in review)
+
+/**
+ * Used to return a list of equipped items on a mob; does not include held items (use get_all_gear)
+ *
+ * Argument(s):
+ * * Optional - include_pockets (TRUE/FALSE), whether or not to include the pockets and suit storage in the returned list
+ * * Optional - include_accessories (TRUE/FALSE), whether or not to include the accessories in the returned list
+ */
+
+/mob/living/proc/get_equipped_items(include_pockets = FALSE, include_accessories = FALSE)
+	var/list/items = list()
+	for(var/obj/item/item_contents in contents)
+		if(item_contents.item_flags & EQUIPPED)
+			items += item_contents
+	items -= get_active_held_item()
+	items -= get_active_held_item()
+	return items
+
+/**
+ * Used to return a list of equipped items on a human mob; does not include held items (use get_all_gear)
+ *
+ * Argument(s):
+ * * Optional - include_pockets (TRUE/FALSE), whether or not to include the pockets and suit storage in the returned list
+ */
+
+/mob/living/carbon/human/get_equipped_items(include_pockets = FALSE)
+	var/list/items = ..()
+	if(!include_pockets)
+		items -= list(l_store, r_store, s_store)
 	return items
 
 ///Find the slot an item is equipped to and returns its slot define
