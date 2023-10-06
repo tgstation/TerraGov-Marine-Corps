@@ -583,6 +583,7 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 /obj/item/medevac_beacon
 	name = "medevac beacon"
 	desc = "A specialized teleportation beacon that links with a medvac stretcher; provides the target destination for the stretcher's displacement field. WARNING: Must be in a powered area to function."
+	icon = 'icons/Marine/marine-navigation.dmi'
 	icon_state = "med_beacon0"
 	var/planted = FALSE
 	var/locked = FALSE
