@@ -247,7 +247,7 @@
 	reload_sound = 'sound/weapons/guns/interact/tat36_reload.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/launcher_empty.ogg'
 
-	default_ammo_type = /obj/item/ammo_magazine/heavy_isg
+	default_ammo_type = /obj/item/ammo_magazine/heavy_isg/he
 	max_shells = 1 //codex
 	caliber = CALIBER_15CM // codex
 
