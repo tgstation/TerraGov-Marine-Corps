@@ -111,17 +111,17 @@
 		return
 	var/dat
 	if(mybag)
-		dat += "<a href='?src=\ref[src];garbage=1'>[mybag.name]</a><br>"
+		dat += "<a href='?src=[text_ref(src)];garbage=1'>[mybag.name]</a><br>"
 	if(mymop)
-		dat += "<a href='?src=\ref[src];mop=1'>[mymop.name]</a><br>"
+		dat += "<a href='?src=[text_ref(src)];mop=1'>[mymop.name]</a><br>"
 	if(myspray)
-		dat += "<a href='?src=\ref[src];spray=1'>[myspray.name]</a><br>"
+		dat += "<a href='?src=[text_ref(src)];spray=1'>[myspray.name]</a><br>"
 	if(myreplacer)
-		dat += "<a href='?src=\ref[src];replacer=1'>[myreplacer.name]</a><br>"
+		dat += "<a href='?src=[text_ref(src)];replacer=1'>[myreplacer.name]</a><br>"
 	if(mybucket)
-		dat += "<a href='?src=\ref[src];bucket=1'>[mybucket.name]</a><br>"
+		dat += "<a href='?src=[text_ref(src)];bucket=1'>[mybucket.name]</a><br>"
 	if(signs)
-		dat += "<a href='?src=\ref[src];sign=1'>[signs] sign\s</a><br>"
+		dat += "<a href='?src=[text_ref(src)];sign=1'>[signs] sign\s</a><br>"
 	var/datum/browser/popup = new(user, "janicart", name, 240, 160)
 	popup.set_content(dat)
 	popup.open()

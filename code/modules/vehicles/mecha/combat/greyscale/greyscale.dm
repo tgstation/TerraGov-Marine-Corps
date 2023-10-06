@@ -27,6 +27,7 @@
 	internal_damage_threshold = 15
 	internal_damage_probability = 5
 	possible_int_damage = MECHA_INT_FIRE|MECHA_INT_SHORT_CIRCUIT
+	mecha_flags = ADDING_ACCESS_POSSIBLE | CANSTRAFE | IS_ENCLOSED | HAS_HEADLIGHTS | MECHA_SKILL_LOCKED
 	/// keyed list. values are types at init, otherwise instances of mecha limbs, order is layer order as well
 	var/list/datum/mech_limb/limbs = list(
 		MECH_GREY_TORSO = null,
@@ -41,11 +42,11 @@
 	var/obj/effect/abstract/particle_holder/holder_right
 
 /obj/vehicle/sealed/mecha/combat/greyscale/Initialize(mapload)
-	. = ..()
 	holder_left = new(src, /particles/mecha_smoke)
 	holder_left.layer = layer+0.001
 	holder_right = new(src, /particles/mecha_smoke)
 	holder_right.layer = layer+0.001
+	. = ..()
 
 	for(var/key in limbs)
 		if(!limbs[key])
@@ -63,13 +64,15 @@
 
 
 /obj/vehicle/sealed/mecha/combat/greyscale/mob_try_enter(mob/M)
-	if(M.skills.getRating(SKILL_LARGE_VEHICLE) < SKILL_LARGE_VEHICLE_TRAINED)
+	if((mecha_flags & MECHA_SKILL_LOCKED) && M.skills.getRating(SKILL_LARGE_VEHICLE) < SKILL_LARGE_VEHICLE_TRAINED)
 		balloon_alert(M, "You don't know how to pilot this")
 		return FALSE
 	return ..()
 
 /obj/vehicle/sealed/mecha/combat/greyscale/update_icon()
 	. = ..()
+	if(QDELING(src))
+		return
 	var/broken_percent = obj_integrity/max_integrity
 	var/inverted_percent = 1-broken_percent
 	holder_left.particles.spawning = 3 * inverted_percent
@@ -160,3 +163,6 @@
 		MECH_GREY_R_ARM = /datum/mech_limb/arm/vanguard,
 		MECH_GREY_L_ARM = /datum/mech_limb/arm/vanguard,
 	)
+
+/obj/vehicle/sealed/mecha/combat/greyscale/vanguard/noskill
+	mecha_flags = ADDING_ACCESS_POSSIBLE|CANSTRAFE|IS_ENCLOSED|HAS_HEADLIGHTS

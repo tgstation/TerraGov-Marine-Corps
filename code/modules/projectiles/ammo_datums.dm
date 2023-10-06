@@ -422,17 +422,18 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	hud_state = "pistol_superheavy"
 	damage = 45
 	penetration = 15
-	sundering = 3.5
+	sundering = 3
+	damage_falloff = 0.75
 
 /datum/ammo/bullet/pistol/superheavy/on_hit_mob(mob/M,obj/projectile/P)
-	staggerstun(M, P, stagger = 2 SECONDS, slowdown = 1)
+	staggerstun(M, P, stagger = 0.5 SECONDS, slowdown = 0.5, knockback = 1)
 
 /datum/ammo/bullet/pistol/superheavy/derringer
 	handful_amount = 2
 	handful_icon_state = "derringer"
 
 /datum/ammo/bullet/pistol/superheavy/derringer/on_hit_mob(mob/M,obj/projectile/P)
-	staggerstun(M, P, knockback = 1)
+	staggerstun(M, P, slowdown = 0.5)
 
 /datum/ammo/bullet/pistol/mech
 	name = "super-heavy pistol bullet"
@@ -3107,12 +3108,14 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	name = "xray heat bolt"
 	hud_state = "laser_xray"
 	icon_state = "u_laser"
-	flags_ammo_behavior = AMMO_ENERGY|AMMO_INCENDIARY|AMMO_SUNDERING|AMMO_HITSCAN
+	flags_ammo_behavior = AMMO_ENERGY|AMMO_SUNDERING|AMMO_HITSCAN
 	damage = 25
-	penetration = 5
+	penetration = 10
 	sundering = 1
 	max_range = 15
 	hitscan_effect_icon = "u_laser_beam"
+	/// Number of debuff stacks to apply when hitting mobs.
+	var/debuff_stacks = 5
 
 /datum/ammo/energy/lasgun/marine/xray/piercing
 	name = "xray piercing bolt"
@@ -3122,6 +3125,16 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	penetration = 100
 	max_range = 10
 	hitscan_effect_icon = "xray_beam"
+
+/datum/ammo/energy/lasgun/marine/xray/standard/on_hit_mob(mob/M, obj/projectile/proj)
+	if(!isliving(M))
+		return
+	var/mob/living/living_victim = M
+	var/datum/status_effect/stacking/microwave/debuff = living_victim.has_status_effect(STATUS_EFFECT_MICROWAVE)
+	if(debuff)
+		debuff.add_stacks(debuff_stacks)
+	else
+		living_victim.apply_status_effect(STATUS_EFFECT_MICROWAVE, debuff_stacks)
 
 /datum/ammo/energy/lasgun/marine/heavy_laser
 	flags_ammo_behavior = AMMO_EXPLOSIVE|AMMO_ROCKET|AMMO_ENERGY|AMMO_SUNDERING|AMMO_HITSCAN|AMMO_INCENDIARY
@@ -3316,7 +3329,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	penetration = 5
 	shell_speed = 1.5
 	flags_ammo_behavior = AMMO_ENERGY|AMMO_INCENDIARY|AMMO_EXPLOSIVE
-	bullet_color = COLOR_VIBRANT_LIME
+	bullet_color = LIGHT_COLOR_ELECTRIC_GREEN
 
 	///Fire burn time
 	var/heat = 12
@@ -3389,6 +3402,9 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	accuracy_var_low = 3
 	accuracy_var_high = 3
 	fire_burst_damage = 20
+
+/datum/ammo/energy/volkite/medium/custom
+	deflagrate_multiplier = 2
 
 /datum/ammo/energy/volkite/heavy
 	max_range = 35
@@ -3520,18 +3536,6 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	added_spit_delay = 0
 	spit_cost = 100
 	damage = 40
-	smoke_strength = 0.9
-	reagent_transfer_amount = 8.5
-
-/datum/ammo/xeno/toxin/heavy/upgrade1
-	smoke_strength = 0.9
-	reagent_transfer_amount = 9
-
-/datum/ammo/xeno/toxin/heavy/upgrade2
-	smoke_strength = 0.95
-	reagent_transfer_amount = 9.5
-
-/datum/ammo/xeno/toxin/heavy/upgrade3
 	smoke_strength = 1
 	reagent_transfer_amount = 10
 
@@ -3702,8 +3706,8 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	var/hit_eye_blur = 11
 	///On a direct hit, how much drowsyness gets added to the target?
 	var/hit_drowsyness = 12
-	///Does the gas spread have a fixed range? -1 for no, 0+ for a fixed range. This prevents scaling from caste age.
-	var/fixed_spread_range = -1
+	///Base spread range
+	var/fixed_spread_range = 3
 	///Which type is the smoke we leave on passed tiles, provided the projectile has AMMO_LEAVE_TURF enabled?
 	var/passed_turf_smoke_type = /datum/effect_system/smoke_spread/xeno/neuro/light
 	///We're going to reuse one smoke spread system repeatedly to cut down on processing.
@@ -3787,10 +3791,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	if(isxeno(firer))
 		var/mob/living/carbon/xenomorph/X = firer
 		smoke_system.strength = X.xeno_caste.bomb_strength
-		if(fixed_spread_range == -1)
-			range = max(2, range + min(X.upgrade_as_number(), 3))
-		else
-			range = fixed_spread_range
+		range = fixed_spread_range
 	smoke_system.set_up(range, T)
 	smoke_system.start()
 	smoke_system = null
@@ -3819,7 +3820,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	if(!do_after(user_xeno, 3 SECONDS, TRUE, trap))
 		return FALSE
 	trap.set_trap_type(TRAP_SMOKE_ACID)
-	trap.smoke = new /datum/effect_system/smoke_spread/xeno/neuro/medium
+	trap.smoke = new /datum/effect_system/smoke_spread/xeno/acid
 	trap.smoke.set_up(1, get_turf(trap))
 	return TRUE
 
@@ -3980,6 +3981,16 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /// This spawns a leash ball and checks if the turf is dense before doing so
 /datum/ammo/xeno/leash_ball/proc/drop_leashball(turf/T)
 	new /obj/structure/xeno/aoe_leash(get_turf(T), hivenumber)
+
+/datum/ammo/xeno/spine //puppeteer
+	name = "spine"
+	damage = 35
+	icon_state = "spine"
+	damage_type = BRUTE
+	bullet_color = COLOR_WHITE
+	sound_hit = 'sound/bullets/spear_armor1.ogg'
+	flags_ammo_behavior = AMMO_XENO|AMMO_SKIPS_ALIENS
+
 /*
 //================================================
 					Misc Ammo

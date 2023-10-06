@@ -420,12 +420,16 @@
 	. = ..()
 	AddComponent(/datum/component/harvester, 60, TRUE)
 
-/obj/item/weapon/twohanded/glaive/harvester/equipped(mob/user, slot)
+/obj/item/weapon/twohanded/glaive/harvester/wield(mob/user)
 	. = ..()
+	if(!.)
+		return
 	toggle_item_bump_attack(user, TRUE)
 
-/obj/item/weapon/twohanded/glaive/harvester/dropped(mob/user)
+/obj/item/weapon/twohanded/glaive/harvester/unwield(mob/user)
 	. = ..()
+	if(!.)
+		return
 	toggle_item_bump_attack(user, FALSE)
 
 /obj/item/weapon/twohanded/glaive/harvester/get_mechanics_info()

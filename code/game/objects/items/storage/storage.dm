@@ -718,29 +718,21 @@
 	for(var/mob/M in content_watchers)
 		hide_from(M)
 	if(boxes)
-		qdel(boxes)
-		boxes = null
+		QDEL_NULL(boxes)
 	if(storage_start)
-		qdel(storage_start)
-		storage_start = null
+		QDEL_NULL(storage_start)
 	if(storage_continue)
-		qdel(storage_continue)
-		storage_continue = null
+		QDEL_NULL(storage_continue)
 	if(storage_end)
-		qdel(storage_end)
-		storage_end = null
+		QDEL_NULL(storage_end)
 	if(stored_start)
-		qdel(stored_start)
-		stored_start = null
-	if(src.stored_continue)
-		qdel(src.stored_continue)
-		src.stored_continue = null
+		QDEL_NULL(stored_start)
+	if(stored_continue)
+		QDEL_NULL(stored_continue)
 	if(stored_end)
-		qdel(stored_end)
-		stored_end = null
+		QDEL_NULL(stored_end)
 	if(closer)
-		qdel(closer)
-		closer = null
+		QDEL_NULL(closer)
 	. = ..()
 
 /obj/item/storage/emp_act(severity)
@@ -844,6 +836,7 @@
 
 
 /obj/item/storage/AltClick(mob/user)
+	. = ..()
 	attempt_draw_object(user)
 
 /obj/item/storage/AltRightClick(mob/user)
@@ -851,20 +844,34 @@
 		open(user)
 
 /obj/item/storage/attack_hand_alternate(mob/living/user)
+	. = ..()
+	if(.)
+		return
 	attempt_draw_object(user)
 
-///attempts to get the first possible object from this container
-/obj/item/storage/proc/attempt_draw_object(mob/living/user)
+/obj/item/storage/CtrlClick(mob/living/user)
+	. = ..()
+	attempt_draw_object(user, TRUE)
+
+/**
+ * Attempts to get the first possible object from this container
+ * 
+ * Arguments:
+ * * mob/living/user - The mob attempting to draw from this container
+ * * start_from_left - If true we draw the leftmost object instead of the rightmost. FALSE by default.
+ */
+/obj/item/storage/proc/attempt_draw_object(mob/living/user, start_from_left = FALSE)
 	if(!ishuman(user) || user.incapacitated() || isturf(loc))
 		return
 	if(!length(contents))
 		return balloon_alert(user, "Empty")
 	if(user.get_active_held_item())
 		return //User is already holding something.
-	var/obj/item/drawn_item = contents[length(contents)]
+	var/obj/item/drawn_item = start_from_left ? contents[1] : contents[length(contents)]
 	drawn_item.attack_hand(user)
 
 /obj/item/storage/proc/PopulateContents()
+	return
 
 /obj/item/storage/update_icon_state()
 	if(!sprite_slots)

@@ -19,8 +19,11 @@
 #define MAP_PILLAR_OF_SPRING "Pillar of Spring"
 #define MAP_SULACO "Sulaco"
 #define MAP_THESEUS "Theseus"
-#define MAP_MINERVA "Minerva"
+#define MAP_ARACHNE "Arachne"
 #define MAP_COMBAT_PATROL_BASE "Combat Patrol Base"
+
+#define MAP_FORT_PHOBOS "Fort Phobos"
+#define MAP_ITERON "Iteron"
 
 
 #define SEE_INVISIBLE_MINIMUM 5

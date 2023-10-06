@@ -123,6 +123,7 @@
 			data["widescreenpref"] = widescreenpref
 			data["radialmedicalpref"] = !!(toggles_gameplay & RADIAL_MEDICAL)
 			data["radialstackspref"] = !!(toggles_gameplay & RADIAL_STACKS)
+			data["radiallasersgunpref"] = !!(toggles_gameplay & RADIAL_LASERGUNS)
 			data["autointeractdeployablespref"] = !!(toggles_gameplay & AUTO_INTERACT_DEPLOYABLES)
 			data["scaling_method"] = scaling_method
 			data["pixel_size"] = pixel_size
@@ -192,6 +193,7 @@
 						"bold" = (job.job_flags & JOB_FLAG_BOLD_NAME_ON_SELECTION) ? TRUE : FALSE
 					)
 				)
+			.["overflow_job"] = SSjob?.overflow_role?.title
 			.["special_occupations"] = list(
 				"Latejoin Xenomorph" = BE_ALIEN,
 				"Xenomorph when unrevivable" = BE_ALIEN_UNREVIVABLE,
@@ -772,6 +774,9 @@
 
 		if("radialmedicalpref")
 			toggles_gameplay ^= RADIAL_MEDICAL
+
+		if("radiallasersgunpref")
+			toggles_gameplay ^= RADIAL_LASERGUNS
 
 		if("radialstackspref")
 			toggles_gameplay ^= RADIAL_STACKS

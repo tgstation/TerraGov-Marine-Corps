@@ -9,7 +9,8 @@
 	RegisterSignal(implant_owner, COMSIG_MOB_DEATH, PROC_REF(on_death))
 
 /obj/item/implant/suicide_dust/unimplant()
-	UnregisterSignal(implant_owner, COMSIG_MOB_DEATH)
+	if(implant_owner)
+		UnregisterSignal(implant_owner, COMSIG_MOB_DEATH)
 	return ..()
 
 /obj/item/implant/suicide_dust/proc/on_death()

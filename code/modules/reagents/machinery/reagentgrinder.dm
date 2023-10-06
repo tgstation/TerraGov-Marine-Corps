@@ -148,12 +148,12 @@
 	[beaker_contents]<hr>
 	"}
 		if(is_beaker_ready && !is_chamber_empty && !(machine_stat & (NOPOWER|BROKEN)))
-			dat += "<A href='?src=\ref[src];action=grind'>Grind the reagents</a><BR>"
-			dat += "<A href='?src=\ref[src];action=juice'>Juice the reagents</a><BR><BR>"
+			dat += "<A href='?src=[text_ref(src)];action=grind'>Grind the reagents</a><BR>"
+			dat += "<A href='?src=[text_ref(src)];action=juice'>Juice the reagents</a><BR><BR>"
 		if(length(holdingitems) > 0)
-			dat += "<A href='?src=\ref[src];action=eject'>Eject the reagents</a><BR>"
+			dat += "<A href='?src=[text_ref(src)];action=eject'>Eject the reagents</a><BR>"
 		if(beaker)
-			dat += "<A href='?src=\ref[src];action=detach'>Detach the beaker</a><BR>"
+			dat += "<A href='?src=[text_ref(src)];action=detach'>Detach the beaker</a><BR>"
 	else
 		dat += "Please wait..."
 

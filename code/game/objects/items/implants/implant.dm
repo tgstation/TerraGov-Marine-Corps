@@ -1,5 +1,6 @@
 /obj/item/implant
 	name = "implant"
+	icon = 'icons/obj/items/implants.dmi'
 	icon_state = "implant"
 	embedding = list("embedded_flags" = EMBEDDED_DEL_ON_HOLDER_DEL, "embed_process_chance" = 0, "embed_chance" = 0, "embedded_fall_chance" = 0)
 	///Whether this implant has been implanted inside a human yet
@@ -30,7 +31,7 @@
 		activation_action = new(src, src)
 	if(allow_reagents)
 		reagents = new /datum/reagents(MAX_IMPLANT_REAGENTS)
-		reagents.my_atom = src
+		reagents.my_atom = WEAKREF(src)
 	if(!allowed_limbs)
 		allowed_limbs = GLOB.human_body_parts
 
