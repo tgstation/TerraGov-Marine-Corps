@@ -1588,8 +1588,6 @@
 			/obj/item/ammo_magazine/rifle/icc_autoshotgun = -1,
 			/obj/item/ammo_magazine/rifle/icc_autoshotgun/frag = -1,
 			/obj/item/weapon/gun/shotgun/pump/trenchgun = -1,
-			/obj/item/weapon/gun/rifle/icc_assaultcarbine = -1,
-			/obj/item/ammo_magazine/rifle/icc_assaultcarbine = -1,
 		),
 		"PMC" = list(
 			/obj/item/weapon/gun/rifle/sniper/elite = -1,
