@@ -54,13 +54,13 @@ export const SelectEquipment = (props, context) => {
   const currentOutfitEntry = getOutfitEntry(current_outfit);
 
   return (
-    <Window width={650} height={415} theme="admin">
+    <Window width={750} height={515} theme="admin">
       <Window.Content>
         <Stack fill>
           <Stack.Item>
             <Stack fill vertical>
               <Stack.Item>
-                <Input
+                <Input width={20}
                   fluid
                   autoFocus
                   placeholder="Search"
