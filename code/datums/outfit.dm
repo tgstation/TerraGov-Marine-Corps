@@ -125,7 +125,6 @@
 	.["shoes"] = shoes
 	.["head"] = head
 	.["mask"] = mask
-	.["neck"] = neck
 	.["ears"] = ears
 	.["glasses"] = glasses
 	.["id"] = id

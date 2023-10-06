@@ -153,9 +153,9 @@
 		if("mask")
 			options = typesof(/obj/item/clothing/mask)
 
-		if("uniform")
+		if("w_uniform")
 			options = typesof(/obj/item/clothing/under)
-		if("suit")
+		if("wear_suit")
 			options = typesof(/obj/item/clothing/suit)
 		if("gloves")
 			options = typesof(/obj/item/clothing/gloves)
