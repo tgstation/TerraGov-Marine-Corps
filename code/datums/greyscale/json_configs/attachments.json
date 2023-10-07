@@ -1,0 +1,26 @@
+{
+	"verticalgrip":[
+		{
+			"type":"hyperscale",
+			"icon_state":"verticalgrip"
+		}
+	],
+	"verticalgrip_a":[
+		{
+			"type":"hyperscale",
+			"icon_state":"verticalgrip_a"
+		}
+	],
+	"angledgrip":[
+		{
+			"type":"hyperscale",
+			"icon_state":"angledgrip"
+		}
+	],
+	"angledgrip_a":[
+		{
+			"type":"hyperscale",
+			"icon_state":"angledgrip_a"
+		}
+	]
+}
