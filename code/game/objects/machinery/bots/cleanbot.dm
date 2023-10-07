@@ -116,29 +116,20 @@
 		var/targetturf = get_step(src,dirn)
 		if(is_blocked_turf(targetturf)) //blocked turfs are not included in move calculations
 			continue
+		dirtyfloors += dirn
 		sampledirtvalue = calculategrime(targetturf)
 		///if the dirt value on a given tile is higher than our current dirt level, than the dirtier tile is our new destination
 		if(highestdirtvalue < sampledirtvalue)
 			highestdirtvalue = sampledirtvalue
 			destdir = dirn
-		else if(highestdirtvalue == 0)
-			dirtyfloors += dirn
-	if(destdir)
-		step_to(src, get_step(src,destdir))
-	else
-		if(!length(dirtyfloors)) //this solves an edge case where dirtyfloors can be empty and will runtime if we attempt to choose from it
-			for(var/dirn in GLOB.alldirs)
-				var/targetturf = get_step(src,dirn)
-				if(is_blocked_turf(targetturf))
-					continue
-				dirtyfloors += dirn
-			if(!length(dirtyfloors)) //still no viable turfs, we're entirely enclosed by dense objects
-				say("ERROR 401, PLEASE CONSULT YOUR INCLUDED NANOTRASEN OWNERS MANUAL")
-				stop_processing()
-				addtimer(CALLBACK(src, PROC_REF(reactivate)), 1 MINUTES)
-				return
+	if(!length(dirtyfloors)) //no viable turfs, we're entirely enclosed by dense objects
+		say("ERROR 401, PLEASE CONSULT YOUR INCLUDED NANOTRASEN OWNERS MANUAL")
+		stop_processing()
+		addtimer(CALLBACK(src, PROC_REF(reactivate)), 1 MINUTES)
+		return
+	else if(!destdir)
 		destdir = pick(dirtyfloors)
-		step_to(src, get_step(src,destdir))
+	step_to(src, get_step(src,destdir))
 
 ///return a dirt value based on how many times we detect dirty objects
 /obj/machinery/bot/cleanbot/proc/calculategrime(turf/dirtyturf)

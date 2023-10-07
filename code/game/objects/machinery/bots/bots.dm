@@ -59,6 +59,7 @@
 		addtimer(CALLBACK(src, PROC_REF(reactivate)), 20 SECONDS)
 		say("DOOR STUCK, DOOOOR STUCK, AAAAAAH!")
 		return
+	step_to(src, get_step(src,newdir))
 
 /obj/machinery/bot/examine(mob/user, distance, infix, suffix)
 	. = ..()
@@ -73,7 +74,6 @@
 
 /obj/machinery/bot/Bump(atom/A)
 	. = ..()
-	say("Bumped [A]")
 	if(++stuck_counter <= 3)
 		step_to(src, get_step(src, turn(dir, pick(90, -90))))
 		return
@@ -112,7 +112,7 @@
 			else
 				bot_startup()
 
-/obj/machinery/bot/proc/bot_shutdown(mob/living/user)
+/obj/machinery/bot/proc/bot_shutdown()
 	balloon_alert_to_viewers("Powers off")
 	if(deactivation_animation)
 		flick("[deactivation_animation]", src)
@@ -122,7 +122,7 @@
 	update_icon()
 	stop_processing()
 
-/obj/machinery/bot/proc/bot_startup(mob/living/user)
+/obj/machinery/bot/proc/bot_startup()
 	balloon_alert_to_viewers("Powers on")
 	if(activation_animation)
 		flick("[activation_animation]", src)
@@ -132,7 +132,7 @@
 	update_icon()
 	start_processing()
 
-/obj/machinery/bot/update_icon()
+/obj/machinery/bot/update_icon_state()
 	. = ..()
 	if(is_active)
 		icon_state = active_icon_state
