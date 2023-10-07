@@ -2470,7 +2470,10 @@
 	reload_sound = 'sound/weapons/guns/interact/m16_reload.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/m16_cocked.ogg'
 	default_ammo_type = /obj/item/ammo_magazine/rifle/icc_assaultcarbine
-	allowed_ammo_types = list(/obj/item/ammo_magazine/rifle/icc_assaultcarbine)
+	allowed_ammo_types = list(
+		/obj/item/ammo_magazine/rifle/icc_assaultcarbine,
+		/obj/item/ammo_magazine/rifle/icc_assaultcarbine/export,
+	)
 	attachable_allowed = list(
 		/obj/item/attachable/suppressor,
 		/obj/item/attachable/bayonet,
@@ -2500,3 +2503,4 @@
 	desc = "An aged, reliable, but outdated bullpup rifle usually seen within ICC space due to being surplused long ago, some of these surplus models sometimes find themselves within TGMC space via underhanded means. It's best used in close quarters when you need to quickly clear corners at rapid pace, has an integral foregrip and unmagnified scope to increase accuracy and reduce drag. Chambered in 5.56x45mm NATO."
 	icon_state = "l88_export"
 	item_state = "l88_export"
+	default_ammo_type = /obj/item/ammo_magazine/rifle/icc_assaultcarbine/export

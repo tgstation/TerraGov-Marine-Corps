@@ -1,0 +1,5 @@
+author: "yyzsong"
+delete-after: True
+changes:
+  - rscadd: "Adds russian red autoinjectors to the valhalla medical vcendor"
+  - bugfix: "removes a duplicate item from the valhalla medical vendor"
