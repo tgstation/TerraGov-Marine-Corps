@@ -5,7 +5,7 @@
 #define RUNNER_POUNCE_SPEED 2
 #define RUNNER_POUNCE_STUN_DURATION 2 SECONDS
 #define RUNNER_POUNCE_STANDBY_DURATION 0.5 SECONDS
-#define RUNNER_POUNCE_SHIELD_STUN_DURATION 5 SECONDS
+#define RUNNER_POUNCE_SHIELD_STUN_DURATION 3 SECONDS
 #define RUNNER_POUNCE_BONUS_DAMAGE 25
 
 /datum/action/xeno_action/activable/runner_pounce
@@ -13,7 +13,8 @@
 	ability_name = "Pounce (Runner)"
 	desc = "Leap at your target, tackling and disarming them. Alternate use toggles Savage off or on."
 	action_icon_state = "pounce_savage_on"
-	cooldown_timer = 15 SECONDS
+	plasma_cost = 10
+	cooldown_timer = 13 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_RUNNER_POUNCE,
 		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_TOGGLE_SAVAGE,
@@ -87,7 +88,7 @@
 	xeno_owner.forceMove(get_turf(living_target))
 	living_target.Knockdown(RUNNER_POUNCE_STUN_DURATION)
 	if(savage_activated)
-		if(xeno_owner.plasma_stored < xeno_owner.xeno_caste.plasma_max * 0.5)
+		if(xeno_owner.plasma_stored < xeno_owner.xeno_caste.plasma_max * 0.4)
 			owner.balloon_alert(owner, "Not enough plasma to Savage")
 			pounce_complete()
 			return
@@ -133,7 +134,7 @@
 	name = "Evasion"
 	action_icon_state = "evasion_on"
 	desc = "Take evasive action, forcing non-friendly projectiles that would hit you to miss for a short duration so long as you keep moving. Alternate use toggles Auto Evasion off or on."
-	plasma_cost = 65
+	plasma_cost = 75
 	cooldown_timer = 10 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_EVASION,
@@ -274,8 +275,8 @@
 		return COMPONENT_PROJECTILE_DODGE
 	if(proj.ammo.flags_ammo_behavior & AMMO_FLAME) //We can't dodge literal fire
 		return FALSE
-	//if(!(proj.ammo.flags_ammo_behavior & AMMO_SENTRY) && !xeno_owner.fire_stacks) //We ignore projectiles from automated sources/sentries for the purpose of contributions towards our cooldown refresh; also fire prevents accumulation of evasion stacks
-	evasion_stacks += proj.damage //Add to evasion stacks for the purposes of determining whether or not our cooldown refreshes
+	if(!(proj.ammo.flags_ammo_behavior & AMMO_SENTRY) && !xeno_owner.fire_stacks) //We ignore projectiles from automated sources/sentries for the purpose of contributions towards our cooldown refresh; also fire prevents accumulation of evasion stacks
+		evasion_stacks += proj.damage //Add to evasion stacks for the purposes of determining whether or not our cooldown refreshes
 	evasion_dodge_fx(proj)
 	return COMPONENT_PROJECTILE_DODGE
 
