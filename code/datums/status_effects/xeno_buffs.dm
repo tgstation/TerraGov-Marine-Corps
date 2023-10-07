@@ -823,3 +823,79 @@
 	scale = 0.6
 	rotation = 0
 	spin = 0
+
+// ***************************************
+// *********** Blessings
+// ***************************************
+/datum/status_effect/blessing
+	duration = -1
+	tick_interval = 5 SECONDS
+	status_type = STATUS_EFFECT_REFRESH
+	alert_type = null
+	/// The owner of this buff.
+	var/mob/living/carbon/xenomorph/buff_owner
+	///Aura strength of the puppeteer who gave this effect
+	var/strength = 1	
+	///weakref to the puppeteer to set strength
+	var/datum/weakref/puppeteer
+
+/datum/status_effect/blessing/tick()
+	var/mob/living/carbon/xenomorph/xeno = puppeteer?.resolve()
+	if(!xeno)
+		return
+	strength = xeno.xeno_caste.aura_strength
+
+/datum/status_effect/blessing/on_creation(mob/living/new_owner, mob/living/carbon/xenomorph/caster)
+	owner = new_owner
+	puppeteer = WEAKREF(caster)
+	strength = caster.xeno_caste.aura_strength
+	return ..()
+
+/datum/status_effect/blessing/frenzy
+	id = "blessing of frenzy"
+
+/datum/status_effect/blessing/frenzy/on_apply()
+	buff_owner = owner
+	if(!isxeno(buff_owner))
+		return FALSE
+	buff_owner.add_movespeed_modifier(type, TRUE, 0, NONE, TRUE, strength * -0.2)
+	return TRUE
+
+/datum/status_effect/blessing/frenzy/on_remove()
+	buff_owner.remove_movespeed_modifier(type)
+	return ..()
+
+/datum/status_effect/blessing/fury
+	id = "blessing of fury"
+	///the modifier we apply to the xenos melee damage modifier
+	var/modifier
+
+/datum/status_effect/blessing/fury/on_apply()
+	buff_owner = owner
+	if(!isxeno(buff_owner))
+		return FALSE
+	modifier = strength * 0.07
+	buff_owner.xeno_melee_damage_modifier += modifier
+	return TRUE
+
+/datum/status_effect/blessing/fury/on_remove()
+	buff_owner.xeno_melee_damage_modifier -= modifier
+	return ..()
+
+/datum/status_effect/blessing/warding
+	id = "blessing of warding"
+	///A holder for the exact armor modified by this status effect
+	var/datum/armor/armor_modifier
+
+/datum/status_effect/blessing/warding/on_apply()
+	buff_owner = owner
+	if(!isxeno(buff_owner))
+		return FALSE
+	armor_modifier = buff_owner.soft_armor.scaleAllRatings(strength * 2.7)
+	buff_owner.soft_armor = buff_owner.soft_armor.attachArmor(armor_modifier)
+	return TRUE
+
+/datum/status_effect/blessing/warding/on_remove()
+	buff_owner.soft_armor = buff_owner.soft_armor.detachArmor(armor_modifier)
+	armor_modifier = null
+	return ..()

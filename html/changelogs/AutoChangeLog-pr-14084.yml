@@ -1,0 +1,4 @@
+author: "vvvv-vvvv"
+delete-after: True
+changes:
+  - admin: "Add Debug Controller verb"

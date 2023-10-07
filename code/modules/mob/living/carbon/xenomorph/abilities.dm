@@ -1014,6 +1014,7 @@
 /datum/action/xeno_action/lay_egg
 	name = "Lay Egg"
 	action_icon_state = "lay_egg"
+	desc = "Create an egg that will grow a larval hugger after a short delay. Empty eggs can have huggers inserted into them."
 	plasma_cost = 200
 	cooldown_timer = 12 SECONDS
 	keybinding_signals = list(

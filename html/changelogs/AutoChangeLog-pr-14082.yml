@@ -1,0 +1,4 @@
+author: "Wisemonster"
+delete-after: True
+changes:
+  - spellcheck: "Changed the smart pistol bundle's name in the smart gunner vendor to clarify that it comes with smart goggles."

@@ -163,6 +163,10 @@
 	///amount of slowdown to apply when the crest defense is active. trading defense for speed. Positive numbers makes it slower.
 	var/crest_defense_slowdown = 0
 
+	// *** Puppeteer Abilities *** //
+	var/flay_plasma_gain = 0
+	var/max_puppets = 0
+
 	// *** Crusher Abilities *** //
 	///The damage the stomp causes, counts armor
 	var/stomp_damage = 0
@@ -273,7 +277,7 @@
 	appearance_flags = TILE_BOUND|PIXEL_SCALE|KEEP_TOGETHER
 	see_infrared = TRUE
 	hud_type = /datum/hud/alien
-	hud_possible = list(HEALTH_HUD_XENO, PLASMA_HUD, PHEROMONE_HUD, XENO_RANK_HUD, QUEEN_OVERWATCH_HUD, ARMOR_SUNDER_HUD, XENO_DEBUFF_HUD, XENO_FIRE_HUD)
+	hud_possible = list(HEALTH_HUD_XENO, PLASMA_HUD, PHEROMONE_HUD, XENO_RANK_HUD, QUEEN_OVERWATCH_HUD, ARMOR_SUNDER_HUD, XENO_DEBUFF_HUD, XENO_FIRE_HUD, XENO_BLESSING_HUD)
 	buckle_flags = NONE
 	faction = FACTION_XENO
 	initial_language_holder = /datum/language_holder/xeno

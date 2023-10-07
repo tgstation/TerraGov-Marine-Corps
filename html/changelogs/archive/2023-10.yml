@@ -44,3 +44,16 @@
   - code_imp: Named LV cave walls to "tough rock" for better player clarity
   efzapa:
   - bugfix: MG-27 Box Magazine description now quotes correct ammo count
+2023-10-06:
+  Lewdcifer:
+  - bugfix: TE-X piercing mode no longer inflicts Microwaved due to a code oopsie.
+  Lumipharon:
+  - rscdel: Stunprods are no longer craftable
+  Pariah919:
+  - rscadd: Added new L-88 Rifle to ICC, and its export variant the L&S EM-88 to Req.
+  Wisemonster:
+  - spellcheck: Added a description to the "lay egg" ability
+  mc-oofert:
+  - rscadd: T2 Puppeteer xeno, Puppet, Puppeteer abilities, Puppet abilities
+  yyzsong:
+  - rscdel: SLs can no longer buy the AR-55 or its ammo
