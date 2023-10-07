@@ -2497,11 +2497,6 @@
 /obj/machinery/door/airlock/mainship/generic,
 /turf/open/floor/plating/ground/concrete,
 /area/rocinante_Base/surface/building/train_station)
-"dye" = (
-/obj/structure/cable,
-/obj/structure/cable,
-/turf/open/floor/mainship/red/full,
-/area/rocinante_Base/surface/building/administration)
 "dyG" = (
 /obj/effect/turf_decal/warning_stripes/box/small,
 /turf/open/floor/plating/ground/concrete,
@@ -4505,11 +4500,6 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/rocinante_Base/surface/building/cargo/southern_aux)
-"gnN" = (
-/obj/structure/cable,
-/obj/structure/cable,
-/turf/open/floor/mainship/mono,
-/area/rocinante_Base/surface/building/cargo/southern_aux)
 "goE" = (
 /obj/structure/desertdam/decals/road/line,
 /turf/open/floor/plating/ground/concrete,
@@ -6401,12 +6391,6 @@
 /obj/structure/curtain/open/shower,
 /turf/open/floor/mainship/sterile/white,
 /area/rocinante_Base/surface/building/living/barracks)
-"iSy" = (
-/obj/machinery/door/airlock/mainship/generic,
-/obj/structure/cable,
-/obj/structure/cable,
-/turf/open/floor/mainship/red/full,
-/area/rocinante_Base/surface/building/administration)
 "iSJ" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /turf/open/floor/plating/ground/snow,
@@ -7269,7 +7253,6 @@
 /obj/machinery/door/airlock/multi_tile/mainship/secdoor/glass{
 	dir = 2
 	},
-/obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/rocinante_Base/surface/building/security/hub)
 "kmj" = (
@@ -28724,7 +28707,7 @@ goT
 wvG
 pPz
 pPz
-iSy
+tHo
 xjr
 goT
 tsC
@@ -32837,7 +32820,7 @@ mTc
 mTc
 mTc
 oJh
-dye
+gvk
 glm
 lAd
 iVi
@@ -33673,7 +33656,7 @@ jMk
 onu
 gnj
 gnj
-gnN
+gnj
 jDc
 aOd
 aOd
