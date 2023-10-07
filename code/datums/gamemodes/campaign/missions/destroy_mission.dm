@@ -55,6 +55,9 @@
 	if(!objectives_total)
 		CRASH("Destroy mission loaded with no objectives to destroy!")
 
+/datum/campaign_mission/destroy_mission/load_pre_mission_bonuses()
+	new /obj/item/storage/box/crate/loot/materials_pack(get_turf(pick(GLOB.campaign_reward_spawners[hostile_faction])))
+
 	for(var/i = 1 to objectives_total)
 		new /obj/item/explosive/plastique(get_turf(pick(GLOB.campaign_reward_spawners[starting_faction])))
 

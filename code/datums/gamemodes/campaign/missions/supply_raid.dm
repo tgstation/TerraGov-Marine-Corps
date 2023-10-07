@@ -17,14 +17,14 @@
 		MISSION_OUTCOME_MAJOR_LOSS = list(0, 2),
 	)
 	attrition_point_rewards = list(
-		MISSION_OUTCOME_MAJOR_VICTORY = list(35, 0),
-		MISSION_OUTCOME_MINOR_VICTORY = list(25, 0),
-		MISSION_OUTCOME_DRAW = list(10, 10),
-		MISSION_OUTCOME_MINOR_LOSS = list(0, 20),
+		MISSION_OUTCOME_MAJOR_VICTORY = list(25, 0),
+		MISSION_OUTCOME_MINOR_VICTORY = list(15, 0),
+		MISSION_OUTCOME_DRAW = list(0, 10),
+		MISSION_OUTCOME_MINOR_LOSS = list(0, 15),
 		MISSION_OUTCOME_MAJOR_LOSS = list(0, 30),
 	)
 
-	starting_faction_additional_rewards = "Degrade enemy attrition generation."
+	starting_faction_additional_rewards = "Disrupt enemy supply routes, reducing enemy attrition generation for future missions."
 	hostile_faction_additional_rewards = "Prevent the degradation of our attrition generation."
 
 /datum/campaign_mission/destroy_mission/supply_raid/play_start_intro()

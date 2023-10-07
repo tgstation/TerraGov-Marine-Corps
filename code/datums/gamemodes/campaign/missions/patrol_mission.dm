@@ -18,11 +18,11 @@
 		MISSION_OUTCOME_MAJOR_LOSS = list(0, 2),
 	)
 	attrition_point_rewards = list(
-		MISSION_OUTCOME_MAJOR_VICTORY = list(20, 5),
-		MISSION_OUTCOME_MINOR_VICTORY = list(15, 10),
+		MISSION_OUTCOME_MAJOR_VICTORY = list(15, 0),
+		MISSION_OUTCOME_MINOR_VICTORY = list(10, 5),
 		MISSION_OUTCOME_DRAW = list(10, 10),
-		MISSION_OUTCOME_MINOR_LOSS = list(10, 15),
-		MISSION_OUTCOME_MAJOR_LOSS = list(5, 20),
+		MISSION_OUTCOME_MINOR_LOSS = list(5, 10),
+		MISSION_OUTCOME_MAJOR_LOSS = list(0, 15),
 	)
 
 	starting_faction_mission_brief = "Hostile forces have been attempting to expand the territory under their control in this area.\
@@ -170,7 +170,7 @@
 
 /datum/campaign_mission/tdm/apply_major_victory()
 	. = ..()
-	Generate_rewards(3, starting_faction)
+	Generate_rewards(2, starting_faction)
 
 /datum/campaign_mission/tdm/apply_minor_victory()
 	. = ..()
@@ -185,7 +185,7 @@
 
 /datum/campaign_mission/tdm/apply_major_loss()
 	. = ..()
-	Generate_rewards(3, hostile_faction)
+	Generate_rewards(2, hostile_faction)
 
 ///An objective capture cycle was started
 /datum/campaign_mission/tdm/proc/objective_cap_started(datum/source, obj/structure/campaign_objective/capture_objective/fultonable/objective, mob/living/user)

@@ -729,7 +729,7 @@
 	detailed_desc = "A limited number of Close Air Support attack runs are available via tactical binoculars for this mission. Excellent for disrupting dug in enemy positions."
 	ui_icon = "cas"
 	uses = 1
-	cost = 10
+	cost = 15
 	reward_flags = REWARD_ACTIVATED_EFFECT|REWARD_ACTIVE_MISSION_ONLY
 	var/list/fire_support_types = list(
 		FIRESUPPORT_TYPE_GUN = 4,

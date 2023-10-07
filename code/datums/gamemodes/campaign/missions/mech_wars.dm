@@ -11,25 +11,11 @@
 	hostile_faction_objective_description = "Major Victory: Wipe out all hostiles in the area of operation. Minor Victory: Eliminate more hostiles than you lose."
 	max_game_time = 20 MINUTES
 	mission_start_delay = 5 MINUTES //since there is actual mech prep time required
-	victory_point_rewards = list(
-		MISSION_OUTCOME_MAJOR_VICTORY = list(3, 0),
-		MISSION_OUTCOME_MINOR_VICTORY = list(2, 0),
-		MISSION_OUTCOME_DRAW = list(0, 0),
-		MISSION_OUTCOME_MINOR_LOSS = list(0, 2),
-		MISSION_OUTCOME_MAJOR_LOSS = list(0, 3),
-	)
-	attrition_point_rewards = list(
-		MISSION_OUTCOME_MAJOR_VICTORY = list(20, 5),
-		MISSION_OUTCOME_MINOR_VICTORY = list(15, 10),
-		MISSION_OUTCOME_DRAW = list(10, 10),
-		MISSION_OUTCOME_MINOR_LOSS = list(10, 15),
-		MISSION_OUTCOME_MAJOR_LOSS = list(5, 20),
-	)
 	///List of mechs relating to this mission
 	var/list/mech_list = list()
 
-	starting_faction_additional_rewards = "Mechanised units will be allocated to your battalion."
-	hostile_faction_additional_rewards = "Mechanised units will be allocated to your battalion."
+	starting_faction_additional_rewards = "Mechanised units will be allocated to your battalion for use in future missions."
+	hostile_faction_additional_rewards = "Mechanised units will be allocated to your battalion for use in future missions."
 
 /datum/campaign_mission/tdm/mech_wars/Destroy(force, ...)
 	QDEL_LIST(mech_list)
@@ -51,8 +37,7 @@
 		Our mechanised forces here are vital to our future plans. The enemy assault has given us a unique opportunity to destroy a significant portion of their mechanised forces with a swift counter attack. \
 		Eliminate all hostiles you come across while preserving your own forces. Good hunting."
 
-/datum/campaign_mission/tdm/mech_wars/load_mission()
-	. = ..()
+/datum/campaign_mission/tdm/mech_wars/load_pre_mission_bonuses()
 	var/mechs_to_spawn = round(length(GLOB.clients) * 0.2) + 1
 	var/obj/effect/landmark/campaign/mech_spawner/spawner
 	var/obj/vehicle/sealed/mecha/combat/greyscale/new_mech

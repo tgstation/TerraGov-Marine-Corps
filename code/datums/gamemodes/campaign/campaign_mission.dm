@@ -150,6 +150,7 @@
 	load_map()
 	addtimer(CALLBACK(src, TYPE_PROC_REF(/datum/campaign_mission, load_objective_description)), 5 SECONDS) //will be called before the map is entirely loaded otherwise, but this is cringe
 	addtimer(CALLBACK(src, TYPE_PROC_REF(/datum/campaign_mission, start_mission)), mission_start_delay)
+	load_pre_mission_bonuses()
 
 ///Generates a new z level for the mission
 /datum/campaign_mission/proc/load_map()
@@ -187,6 +188,10 @@
 		items += "[hostile_faction] mission objectives:"
 		items += splittext(hostile_faction_objective_description, ".")
 		items += ""
+
+///Generates any mission specific assets/benefits for the two teams
+/datum/campaign_mission/proc/load_pre_mission_bonuses()
+	return
 
 ///Generates mission rewards, if there is variability involved
 /datum/campaign_mission/proc/Generate_rewards(reward_amount = 1, faction)

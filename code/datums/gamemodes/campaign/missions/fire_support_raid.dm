@@ -22,13 +22,13 @@
 	attrition_point_rewards = list(
 		MISSION_OUTCOME_MAJOR_VICTORY = list(15, 0),
 		MISSION_OUTCOME_MINOR_VICTORY = list(10, 0),
-		MISSION_OUTCOME_DRAW = list(10, 10),
+		MISSION_OUTCOME_DRAW = list(0, 10),
 		MISSION_OUTCOME_MINOR_LOSS = list(0, 25),
 		MISSION_OUTCOME_MAJOR_LOSS = list(0, 30),
 	)
 
-	starting_faction_additional_rewards = "Severely degrade enemy fire support, preventing their use of mortars for a while"
-	hostile_faction_additional_rewards = "Protect our fire support options to ensure continued access to mortar support"
+	starting_faction_additional_rewards = "Severely degrade enemy fire support, preventing their use of mortars for a period of time."
+	hostile_faction_additional_rewards = "Protect our fire support options to ensure continued access to mortar support."
 
 /datum/campaign_mission/destroy_mission/fire_support_raid/play_start_intro()
 	intro_message = list(
@@ -36,6 +36,11 @@
 		"hostile_faction" = "[map_name]<br>" + "[GAME_YEAR]-[time2text(world.realtime, "MM-DD")] [stationTimestamp("hh:mm")]<br>" + "Protect all [objectives_total] fire support installations until reinforcements arrive. Eliminate all [starting_faction] forces and secure the area.",
 	)
 	return ..()
+
+/datum/campaign_mission/destroy_mission/fire_support_raid/load_pre_mission_bonuses()
+	. = ..()
+	for(var/i = 1 to objectives_total)
+		new /obj/item/storage/box/explosive_mines(get_turf(pick(GLOB.campaign_reward_spawners[hostile_faction])))
 
 /datum/campaign_mission/destroy_mission/fire_support_raid/load_mission_brief()
 	starting_faction_mission_brief = "A [hostile_faction] fire support position has been identified in this area. This key location provides fire support to [hostile_faction] forces across the region. \
