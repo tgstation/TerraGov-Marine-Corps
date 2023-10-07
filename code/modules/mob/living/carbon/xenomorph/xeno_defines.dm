@@ -55,9 +55,6 @@
 	///What negative health amount they die at.
 	var/crit_health = -100
 
-	///Set to TRUE in New() when Whiskey Outpost is active. Prevents healing and queen evolution
-	var/hardcore = FALSE
-
 	// *** Evolution *** //
 	///Threshold amount of evo points to next evolution
 	var/evolution_threshold = 0
