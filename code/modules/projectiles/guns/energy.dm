@@ -950,7 +950,7 @@
 	fire_sound = 'sound/weapons/guns/fire/laser3.ogg'
 	icon_state = "tex"
 	item_state = "tex"
-	max_shots = 50 //codex stuff
+	max_shots = 40 //codex stuff
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine/xray/standard
 	rounds_per_shot = 12
 	attachable_allowed = list(
