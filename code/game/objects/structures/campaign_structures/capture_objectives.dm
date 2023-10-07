@@ -158,7 +158,7 @@
 	desc = "A crate packed full of valuable phoron, ready to claim."
 	icon_state = "orebox_phoron"
 	activation_time = 3 SECONDS
-	capture_delay = 60 SECONDS
+	capture_delay = 90 SECONDS
 
 /obj/structure/campaign_objective/capture_objective/fultonable/finish_capture(mob/living/user)
 	. = ..()
