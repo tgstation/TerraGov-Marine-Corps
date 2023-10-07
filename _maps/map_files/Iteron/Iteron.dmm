@@ -1872,6 +1872,10 @@
 	dir = 1
 	},
 /area/mainship/patrol_base)
+"zY" = (
+/obj/structure/prop/mainship/hangar_stencil,
+/turf/open/floor/mainship/mono,
+/area/mainship/patrol_base/hanger)
 "Ab" = (
 /obj/structure/bed/chair/nometal{
 	dir = 1
@@ -3254,6 +3258,10 @@
 	},
 /turf/open/floor/prison/sterilewhite,
 /area/mainship/patrol_base)
+"SZ" = (
+/obj/structure/prop/mainship/hangar_stencil/two,
+/turf/open/floor/mainship/mono,
+/area/mainship/patrol_base/hanger)
 "Td" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 5
@@ -38079,7 +38087,7 @@ ba
 Bn
 iX
 HQ
-iX
+zY
 LC
 ba
 ZG
@@ -39773,7 +39781,7 @@ ba
 Bn
 iX
 HQ
-iX
+SZ
 LC
 Zc
 TD

@@ -374,6 +374,10 @@
 /obj/machinery/door/poddoor/mainship/open,
 /turf/open/floor/mainship/mono,
 /area/mainship/patrol_base/som/hanger)
+"el" = (
+/obj/structure/prop/mainship/hangar_stencil/two,
+/turf/open/floor/mainship_hull,
+/area/mainship/patrol_base/som/hanger)
 "en" = (
 /turf/open/floor/mainship/office,
 /area/mainship/patrol_base/som)
@@ -3755,6 +3759,10 @@
 	},
 /turf/open/floor/freezer,
 /area/mainship/patrol_base/som/barracks)
+"TM" = (
+/obj/structure/prop/mainship/hangar_stencil,
+/turf/open/floor/mainship_hull,
+/area/mainship/patrol_base/som/hanger)
 "TN" = (
 /obj/machinery/telecomms/server/presets/whiskey,
 /turf/open/floor/mainship,
@@ -6273,6 +6281,7 @@ ua
 ua
 ua
 ua
+el
 ua
 ua
 ua
@@ -6281,8 +6290,7 @@ ua
 ua
 ua
 ua
-ua
-ua
+TM
 ua
 ua
 ua
