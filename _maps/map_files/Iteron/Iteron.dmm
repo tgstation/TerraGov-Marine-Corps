@@ -870,9 +870,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/patrol_base/hanger)
 "mq" = (
-/obj/structure/patrol_point{
-	id = "TGMC_11"
-	},
+/obj/structure/patrol_point/tgmc_11,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/patrol_base/hanger)
 "mr" = (
@@ -884,15 +882,11 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/patrol_base)
 "mw" = (
-/obj/structure/patrol_point{
-	id = "TGMC_13"
-	},
+/obj/structure/patrol_point/tgmc_13,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/patrol_base/hanger)
 "mA" = (
-/obj/structure/patrol_point{
-	id = "TGMC_21"
-	},
+/obj/structure/patrol_point/tgmc_21,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/patrol_base/hanger)
 "mI" = (
@@ -900,9 +894,7 @@
 /turf/closed/wall/mainship/outer/reinforced,
 /area/mainship/patrol_base/prep)
 "mL" = (
-/obj/structure/patrol_point{
-	id = "TGMC_23"
-	},
+/obj/structure/patrol_point/tgmc_23,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/patrol_base/hanger)
 "mU" = (
@@ -1187,9 +1179,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/patrol_base/hanger)
 "ra" = (
-/obj/structure/patrol_point{
-	id = "TGMC_12"
-	},
+/obj/structure/patrol_point/tgmc_12,
 /turf/open/floor/mainship/mono,
 /area/mainship/patrol_base/hanger)
 "rb" = (
@@ -1210,9 +1200,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/patrol_base/hanger)
 "rp" = (
-/obj/structure/patrol_point{
-	id = "TGMC_14"
-	},
+/obj/structure/patrol_point/tgmc_14,
 /turf/open/floor/mainship/mono,
 /area/mainship/patrol_base/hanger)
 "rq" = (
@@ -1228,15 +1216,11 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/patrol_base/hanger)
 "rs" = (
-/obj/structure/patrol_point{
-	id = "TGMC_22"
-	},
+/obj/structure/patrol_point/tgmc_22,
 /turf/open/floor/mainship/mono,
 /area/mainship/patrol_base/hanger)
 "rB" = (
-/obj/structure/patrol_point{
-	id = "TGMC_24"
-	},
+/obj/structure/patrol_point/tgmc_24,
 /turf/open/floor/mainship/mono,
 /area/mainship/patrol_base/hanger)
 "rF" = (

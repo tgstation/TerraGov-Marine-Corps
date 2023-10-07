@@ -243,10 +243,7 @@
 	},
 /area/bigredv2/outside/marshal_office)
 "fs" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_23";
-	name = "TGMC exit point 23"
-	},
+/obj/effect/landmark/patrol_point/tgmc_23,
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/space_port)
 "fM" = (
@@ -794,10 +791,7 @@
 /area/bigredv2/caves/northwest)
 "tm" = (
 /obj/structure/cable,
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_24";
-	name = "TGMC exit point 24"
-	},
+/obj/effect/landmark/patrol_point/tgmc_24,
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/space_port)
 "tu" = (
@@ -1028,10 +1022,7 @@
 /area/bigredv2/outside/space_port)
 "Ak" = (
 /obj/structure/cable,
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_22";
-	name = "TGMC exit point 22"
-	},
+/obj/effect/landmark/patrol_point/tgmc_22,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/space_port)
 "An" = (
@@ -1795,10 +1786,7 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/telecomm)
 "Th" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_21";
-	name = "TGMC exit point 21"
-	},
+/obj/effect/landmark/patrol_point/tgmc_21,
 /turf/open/floor/marking/asteroidwarning{
 	dir = 1
 	},

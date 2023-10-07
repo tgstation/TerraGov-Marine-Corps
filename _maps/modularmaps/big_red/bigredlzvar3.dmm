@@ -63,10 +63,7 @@
 /area/bigredv2/caves/northwest)
 "cI" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_21";
-	name = "TGMC exit point 21"
-	},
+/obj/effect/landmark/patrol_point/tgmc_21,
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/space_port)
 "cP" = (
@@ -325,10 +322,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_22";
-	name = "TGMC exit point 22"
-	},
+/obj/effect/landmark/patrol_point/tgmc_22,
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/space_port)
 "iI" = (
@@ -995,10 +989,7 @@
 /area/bigredv2/outside/marshal_office)
 "zi" = (
 /obj/structure/cable,
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_24";
-	name = "TGMC exit point 24"
-	},
+/obj/effect/landmark/patrol_point/tgmc_24,
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/space_port)
 "zk" = (
@@ -1714,10 +1705,7 @@
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/n)
 "Sp" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_23";
-	name = "TGMC exit point 23"
-	},
+/obj/effect/landmark/patrol_point/tgmc_23,
 /turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/space_port)
 "Sv" = (

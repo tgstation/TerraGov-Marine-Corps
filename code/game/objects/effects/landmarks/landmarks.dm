@@ -478,6 +478,70 @@
 	GLOB.patrol_point_list -= src
 	return ..()
 
+/obj/effect/landmark/patrol_point/tgmc_11
+	name = "TGMC exit point 11"
+	id = "TGMC_11"
+
+/obj/effect/landmark/patrol_point/tgmc_12
+	name = "TGMC exit point 12"
+	id = "TGMC_12"
+
+/obj/effect/landmark/patrol_point/tgmc_13
+	name = "TGMC exit point 13"
+	id = "TGMC_13"
+
+/obj/effect/landmark/patrol_point/tgmc_14
+	name = "TGMC exit point 14"
+	id = "TGMC_14"
+
+/obj/effect/landmark/patrol_point/tgmc_21
+	name = "TGMC exit point 21"
+	id = "TGMC_21"
+
+/obj/effect/landmark/patrol_point/tgmc_22
+	name = "TGMC exit point 22"
+	id = "TGMC_22"
+
+/obj/effect/landmark/patrol_point/tgmc_23
+	name = "TGMC exit point 23"
+	id = "TGMC_23"
+
+/obj/effect/landmark/patrol_point/tgmc_24
+	name = "TGMC exit point 24"
+	id = "TGMC_24"
+
+/obj/effect/landmark/patrol_point/som_11
+	name = "SOM exit point 11"
+	id = "SOM_11"
+
+/obj/effect/landmark/patrol_point/som_12
+	name = "SOM exit point 12"
+	id = "SOM_12"
+
+/obj/effect/landmark/patrol_point/som_13
+	name = "SOM exit point 13"
+	id = "SOM_13"
+
+/obj/effect/landmark/patrol_point/som_14
+	name = "SOM exit point 14"
+	id = "SOM_14"
+
+/obj/effect/landmark/patrol_point/som_21
+	name = "SOM exit point 21"
+	id = "SOM_21"
+
+/obj/effect/landmark/patrol_point/som_22
+	name = "SOM exit point 22"
+	id = "SOM_22"
+
+/obj/effect/landmark/patrol_point/som_23
+	name = "SOM exit point 23"
+	id = "SOM_23"
+
+/obj/effect/landmark/patrol_point/som_24
+	name = "SOM exit point 24"
+	id = "SOM_24"
+
 /obj/effect/landmark/eord_roomba
 	name = "EORD roomba spawn point"
 

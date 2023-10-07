@@ -1,9 +1,6 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "aa" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_21";
-	name = "SOM exit point 21"
-	},
+/obj/effect/landmark/patrol_point/som_21,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/patricks_rest/ground/colonynw)
 "ac" = (
@@ -210,10 +207,7 @@
 /turf/closed/mineral/smooth/indestructible,
 /area/patricks_rest/ground/colonysw)
 "aZ" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_23";
-	name = "SOM exit point 23"
-	},
+/obj/effect/landmark/patrol_point/som_23,
 /turf/open/ground/grass/weedable/patch/grassyellow,
 /area/patricks_rest/ground/colonynw)
 "bb" = (
@@ -315,10 +309,7 @@
 /turf/open/floor/plating/ground/concrete,
 /area/patricks_rest/surface/building/storage_depot_research)
 "bv" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_24";
-	name = "SOM exit point 24"
-	},
+/obj/effect/landmark/patrol_point/som_24,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/patricks_rest/ground/river/riverside_south)
 "bw" = (
@@ -334,10 +325,7 @@
 /turf/open/floor/mainship/sterile,
 /area/patricks_rest/surface/building/medbay)
 "bB" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_22";
-	name = "SOM exit point 22"
-	},
+/obj/effect/landmark/patrol_point/som_22,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/patricks_rest/ground/colonynw)
 "bD" = (
@@ -1080,10 +1068,7 @@
 	},
 /area/patricks_rest/surface/building/storage_depot_south)
 "eU" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_22";
-	name = "TGMC exit point 22"
-	},
+/obj/effect/landmark/patrol_point/tgmc_22,
 /turf/open/floor/plating/ground/desertdam/asphalt/cement,
 /area/patricks_rest/ground/colonyne)
 "eV" = (
@@ -1160,10 +1145,7 @@
 /turf/open/liquid/water/river,
 /area/patricks_rest/ground/colonycent)
 "fq" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_21";
-	name = "TGMC exit point 21"
-	},
+/obj/effect/landmark/patrol_point/tgmc_21,
 /turf/open/floor/plating/ground/desertdam/asphalt/cement,
 /area/patricks_rest/surface/building/science)
 "fr" = (
@@ -1351,10 +1333,7 @@
 /turf/open/floor/mainship/tcomms,
 /area/patricks_rest/surface/building/science)
 "gg" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_24";
-	name = "TGMC exit point 24"
-	},
+/obj/effect/landmark/patrol_point/tgmc_24,
 /turf/open/floor/plating/ground/concrete/lines{
 	dir = 1
 	},
@@ -1530,10 +1509,7 @@
 /turf/open/floor/plating/ground/concrete,
 /area/patricks_rest/ground/colonyn)
 "gX" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_23";
-	name = "TGMC exit point 23"
-	},
+/obj/effect/landmark/patrol_point/tgmc_23,
 /turf/open/floor/plating/ground/desertdam/asphalt/cement,
 /area/patricks_rest/ground/colonyne)
 "gY" = (
@@ -2023,10 +1999,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/effect/landmark/patrol_point{
-	id = "SOM_14";
-	name = "SOM exit point 14"
-	},
+/obj/effect/landmark/patrol_point/som_14,
 /turf/open/floor/plating/ground/desertdam/asphalt/cement,
 /area/patricks_rest/surface/building/engineering)
 "jh" = (
@@ -2080,10 +2053,7 @@
 /turf/open/floor/mainship/sterile,
 /area/patricks_rest/surface/building/medbay)
 "ju" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_11";
-	name = "SOM exit point 11"
-	},
+/obj/effect/landmark/patrol_point/som_12,
 /turf/open/floor/plating/ground/concrete/lines{
 	dir = 1
 	},
@@ -2176,10 +2146,7 @@
 /turf/open/floor/mainship/mono,
 /area/patricks_rest/surface/building/engineering)
 "jQ" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_11";
-	name = "SOM exit point 11"
-	},
+/obj/effect/landmark/patrol_point/som_11,
 /turf/open/floor/plating/ground/concrete/lines,
 /area/patricks_rest/ground/colonyw)
 "jR" = (
@@ -2253,10 +2220,7 @@
 /turf/open/floor/plating/ground/concrete,
 /area/patricks_rest/ground/underground/cave)
 "ki" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_13";
-	name = "SOM exit point 13"
-	},
+/obj/effect/landmark/patrol_point/som_13,
 /turf/open/floor/plating/ground/desertdam/asphalt/cement,
 /area/patricks_rest/ground/colonyw)
 "kk" = (
@@ -2323,12 +2287,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/patricks_rest/ground/colonye)
-"kA" = (
-/obj/effect/landmark/patrol_point{
-	id = 3
-	},
-/turf/open/ground/grass/weedable/patch/grassyellow,
-/area/patricks_rest/ground/colonynw)
 "kB" = (
 /turf/open/floor/mainship/red{
 	dir = 1
@@ -2958,10 +2916,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/cement,
 /area/patricks_rest/ground/colonynw)
 "np" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_14";
-	name = "TGMC exit point 14"
-	},
+/obj/effect/landmark/patrol_point/tgmc_14,
 /turf/open/floor/plating/ground/desertdam/asphalt/cement,
 /area/patricks_rest/ground/colonyse)
 "nq" = (
@@ -3117,10 +3072,7 @@
 /turf/open/floor/mainship/mono,
 /area/patricks_rest/surface/building/residential_cent)
 "nX" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_13";
-	name = "TGMC exit point 13"
-	},
+/obj/effect/landmark/patrol_point/tgmc_13,
 /turf/open/floor/plating/ground/desertdam/asphalt/cement,
 /area/patricks_rest/ground/colonyse)
 "nY" = (
@@ -3272,10 +3224,7 @@
 /turf/open/floor/mainship/sterile,
 /area/patricks_rest/surface/building/medbay)
 "oE" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_12";
-	name = "TGMC exit point 12"
-	},
+/obj/effect/landmark/patrol_point/tgmc_12,
 /turf/open/floor/plating/ground/desertdam/asphalt/cement,
 /area/patricks_rest/ground/colonyse)
 "oF" = (
@@ -3317,10 +3266,7 @@
 	},
 /area/patricks_rest/surface/building/command)
 "oP" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_11";
-	name = "TGMC exit point 11"
-	},
+/obj/effect/landmark/patrol_point/tgmc_11,
 /turf/open/floor/plating/ground/desertdam/asphalt/cement,
 /area/patricks_rest/ground/colonyse)
 "oQ" = (
@@ -5438,12 +5384,6 @@
 /obj/machinery/light,
 /turf/open/ground/grass/weedable/patch/grassyellow,
 /area/patricks_rest/surface/building/hydro)
-"zT" = (
-/obj/effect/landmark/patrol_point{
-	id = 1
-	},
-/turf/open/floor/plating/ground/concrete,
-/area/patricks_rest/ground/colonyw)
 "zU" = (
 /obj/structure/largecrate/random/barrel/white,
 /turf/open/floor/plating/ground/concrete,
@@ -5817,12 +5757,6 @@
 "BS" = (
 /turf/closed/wall/mainship,
 /area/patricks_rest/surface/building/residential_engi)
-"BT" = (
-/obj/effect/landmark/patrol_point{
-	id = 4
-	},
-/turf/open/ground/grass/weedable/patch/grassyellow,
-/area/patricks_rest/ground/colonye)
 "BV" = (
 /obj/structure/rock/variable/basalt,
 /turf/open/ground/grass/weedable/patch/grassyellow,
@@ -10184,12 +10118,6 @@
 /obj/effect/turf_decal/bot,
 /turf/open/floor/mainship/mono,
 /area/patricks_rest/surface/landing_pad)
-"XW" = (
-/obj/effect/landmark/patrol_point{
-	id = 2
-	},
-/turf/open/floor/plating/ground/concrete,
-/area/patricks_rest/ground/colonys)
 "XX" = (
 /obj/item/book/manual/engineering_construction,
 /obj/structure/table/mainship,
@@ -12818,7 +12746,7 @@ IJ
 Yq
 up
 Ot
-zT
+ID
 GB
 ui
 ui
@@ -14091,7 +14019,7 @@ AD
 AD
 KP
 KP
-kA
+KP
 ao
 ao
 ao
@@ -22750,7 +22678,7 @@ Km
 Km
 Km
 Km
-XW
+Km
 Km
 Km
 Km
@@ -31956,7 +31884,7 @@ Vv
 Jz
 Jz
 Jz
-BT
+IX
 IX
 IX
 Jz

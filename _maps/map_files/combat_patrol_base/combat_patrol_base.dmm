@@ -116,9 +116,7 @@
 	},
 /area/mainship/patrol_base)
 "bN" = (
-/obj/structure/patrol_point{
-	id = "SOM_13"
-	},
+/obj/structure/patrol_point/som_13,
 /turf/open/shuttle/elevator/grating,
 /area/mainship/patrol_base/som)
 "bX" = (
@@ -457,9 +455,7 @@
 /turf/open/floor/plating/ground/snow/layer2,
 /area/mainship/patrol_base/som)
 "gG" = (
-/obj/structure/patrol_point{
-	id = "TGMC_24"
-	},
+/obj/structure/patrol_point/tgmc_24,
 /turf/open/floor/mainship/mono,
 /area/mainship/patrol_base)
 "gL" = (
@@ -557,9 +553,7 @@
 	},
 /area/mainship/patrol_base)
 "ig" = (
-/obj/structure/patrol_point{
-	id = "SOM_14"
-	},
+/obj/structure/patrol_point/som_14,
 /turf/open/shuttle/elevator/grating,
 /area/mainship/patrol_base/som)
 "il" = (
@@ -831,9 +825,7 @@
 	},
 /area/mainship/patrol_base/som)
 "mL" = (
-/obj/structure/patrol_point{
-	id = "TGMC_12"
-	},
+/obj/structure/patrol_point/tgmc_12,
 /turf/open/floor/mainship/mono,
 /area/mainship/patrol_base)
 "mS" = (
@@ -1270,9 +1262,7 @@
 /turf/open/floor/mainship/blue,
 /area/mainship/patrol_base)
 "sF" = (
-/obj/structure/patrol_point{
-	id = "TGMC_11"
-	},
+/obj/structure/patrol_point/tgmc_11,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/patrol_base)
 "sG" = (
@@ -1330,9 +1320,7 @@
 	},
 /area/mainship/patrol_base)
 "tr" = (
-/obj/structure/patrol_point{
-	id = "TGMC_22"
-	},
+/obj/structure/patrol_point/tgmc_22,
 /turf/open/floor/mainship/mono,
 /area/mainship/patrol_base)
 "ts" = (
@@ -1520,9 +1508,7 @@
 /turf/open/floor/mainship,
 /area/mainship/patrol_base/telecomms)
 "wo" = (
-/obj/structure/patrol_point{
-	id = "TGMC_21"
-	},
+/obj/structure/patrol_point/tgmc_21,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/patrol_base)
 "wr" = (
@@ -2034,9 +2020,7 @@
 /turf/open/floor/plating/ground/concrete,
 /area/mainship/patrol_base/som)
 "EF" = (
-/obj/structure/patrol_point{
-	id = "SOM_12"
-	},
+/obj/structure/patrol_point/som_12,
 /turf/open/shuttle/elevator/grating,
 /area/mainship/patrol_base/som)
 "EH" = (
@@ -2551,9 +2535,7 @@
 /turf/open/floor/plating/ground/concrete,
 /area/mainship/patrol_base/som)
 "Ma" = (
-/obj/structure/patrol_point{
-	id = "TGMC_14"
-	},
+/obj/structure/patrol_point/tgmc_14,
 /turf/open/floor/mainship/mono,
 /area/mainship/patrol_base)
 "Md" = (
@@ -2747,9 +2729,7 @@
 /turf/open/floor/plating/ground/snow/layer3,
 /area/mainship/patrol_base/som)
 "Om" = (
-/obj/structure/patrol_point{
-	id = "SOM_11"
-	},
+/obj/structure/patrol_point/som_11,
 /turf/open/shuttle/elevator/grating,
 /area/mainship/patrol_base/som)
 "On" = (
@@ -2928,9 +2908,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/patrol_base)
 "Qx" = (
-/obj/structure/patrol_point{
-	id = "SOM_22"
-	},
+/obj/structure/patrol_point/som_22,
 /turf/open/shuttle/elevator/grating,
 /area/mainship/patrol_base/som)
 "QC" = (
@@ -2950,9 +2928,7 @@
 /turf/open/floor/plating,
 /area/mainship/patrol_base)
 "QO" = (
-/obj/structure/patrol_point{
-	id = "TGMC_23"
-	},
+/obj/structure/patrol_point/tgmc_23,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/patrol_base)
 "QS" = (
@@ -3005,9 +2981,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/patrol_base)
 "Rz" = (
-/obj/structure/patrol_point{
-	id = "SOM_23"
-	},
+/obj/structure/patrol_point/som_23,
 /turf/open/shuttle/elevator/grating,
 /area/mainship/patrol_base/som)
 "RA" = (
@@ -3586,15 +3560,11 @@
 /turf/open/floor/mainship/orange/full,
 /area/mainship/patrol_base)
 "Yf" = (
-/obj/structure/patrol_point{
-	id = "SOM_21"
-	},
+/obj/structure/patrol_point/som_21,
 /turf/open/shuttle/elevator/grating,
 /area/mainship/patrol_base/som)
 "Yh" = (
-/obj/structure/patrol_point{
-	id = "TGMC_13"
-	},
+/obj/structure/patrol_point/tgmc_13,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/patrol_base)
 "Yi" = (
@@ -3635,9 +3605,7 @@
 /turf/open/floor/plating/ground/concrete,
 /area/mainship/patrol_base/som)
 "YY" = (
-/obj/structure/patrol_point{
-	id = "SOM_24"
-	},
+/obj/structure/patrol_point/som_24,
 /turf/open/shuttle/elevator/grating,
 /area/mainship/patrol_base/som)
 "Zf" = (

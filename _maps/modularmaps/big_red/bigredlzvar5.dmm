@@ -430,10 +430,7 @@
 /turf/closed/wall/r_wall,
 /area/bigredv2/outside/space_port)
 "kS" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_23";
-	name = "TGMC exit point 23"
-	},
+/obj/effect/landmark/patrol_point/tgmc_23,
 /turf/open/floor/plating,
 /area/bigredv2/outside/space_port)
 "kX" = (
@@ -510,10 +507,7 @@
 /turf/closed/wall/r_wall,
 /area/bigredv2/outside/space_port)
 "ns" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_24";
-	name = "TGMC exit point 24"
-	},
+/obj/effect/landmark/patrol_point/tgmc_24,
 /turf/open/floor/marking/asteroidwarning{
 	dir = 1
 	},
@@ -989,10 +983,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/marshal_office)
 "AP" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_21";
-	name = "TGMC exit point 21"
-	},
+/obj/effect/landmark/patrol_point/tgmc_21,
 /turf/open/floor/plating,
 /area/bigredv2/outside/space_port)
 "AU" = (
@@ -1377,10 +1368,7 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/space_port)
 "MH" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_22";
-	name = "TGMC exit point 22"
-	},
+/obj/effect/landmark/patrol_point/tgmc_22,
 /turf/open/floor/plating,
 /area/bigredv2/outside/space_port)
 "MS" = (

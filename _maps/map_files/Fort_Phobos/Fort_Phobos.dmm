@@ -483,9 +483,7 @@
 	},
 /area/mainship/patrol_base/som/hanger)
 "fX" = (
-/obj/structure/patrol_point{
-	id = "SOM_21"
-	},
+/obj/structure/patrol_point/som_21,
 /turf/open/shuttle/elevator/grating,
 /area/mainship/patrol_base/som/hanger)
 "fY" = (
@@ -1352,9 +1350,7 @@
 /turf/open/shuttle/dropship/floor,
 /area/mainship/patrol_base/som)
 "rK" = (
-/obj/structure/patrol_point{
-	id = "SOM_23"
-	},
+/obj/structure/patrol_point/som_23,
 /turf/open/shuttle/elevator/grating,
 /area/mainship/patrol_base/som/hanger)
 "rL" = (
@@ -1790,9 +1786,7 @@
 /turf/open/floor/bcircuit/anim,
 /area/mainship/patrol_base/som/hanger)
 "wI" = (
-/obj/structure/patrol_point{
-	id = "SOM_24"
-	},
+/obj/structure/patrol_point/som_24,
 /turf/open/shuttle/elevator/grating,
 /area/mainship/patrol_base/som/hanger)
 "wL" = (
@@ -3118,9 +3112,7 @@
 /turf/open/floor/plating/ground/concrete,
 /area/mainship/patrol_base/som)
 "LY" = (
-/obj/structure/patrol_point{
-	id = "SOM_11"
-	},
+/obj/structure/patrol_point/som_11,
 /turf/open/shuttle/elevator/grating,
 /area/mainship/patrol_base/som/hanger)
 "Md" = (
@@ -3429,9 +3421,7 @@
 /turf/open/floor/plating/ground/concrete,
 /area/mainship/patrol_base/som/prep)
 "Pn" = (
-/obj/structure/patrol_point{
-	id = "SOM_14"
-	},
+/obj/structure/patrol_point/som_14,
 /turf/open/shuttle/elevator/grating,
 /area/mainship/patrol_base/som/hanger)
 "Po" = (
@@ -3581,9 +3571,7 @@
 /turf/open/shuttle/dropship/seven,
 /area/mainship/patrol_base/som)
 "Rg" = (
-/obj/structure/patrol_point{
-	id = "SOM_12"
-	},
+/obj/structure/patrol_point/som_12,
 /turf/open/shuttle/elevator/grating,
 /area/mainship/patrol_base/som/hanger)
 "Rh" = (
@@ -3978,9 +3966,7 @@
 /turf/open/floor/mainship,
 /area/mainship/patrol_base/som)
 "Wn" = (
-/obj/structure/patrol_point{
-	id = "SOM_13"
-	},
+/obj/structure/patrol_point/som_13,
 /turf/open/shuttle/elevator/grating,
 /area/mainship/patrol_base/som/hanger)
 "Wo" = (
@@ -4186,9 +4172,7 @@
 	},
 /area/mainship/patrol_base/som)
 "YN" = (
-/obj/structure/patrol_point{
-	id = "SOM_22"
-	},
+/obj/structure/patrol_point/som_22,
 /turf/open/shuttle/elevator/grating,
 /area/mainship/patrol_base/som/hanger)
 "YO" = (

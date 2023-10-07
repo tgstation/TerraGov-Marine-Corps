@@ -2807,10 +2807,7 @@
 /area/campaign/jungle_outpost/outpost/command/captain)
 "lQ" = (
 /obj/structure/flora/jungle/bush,
-/obj/effect/landmark/patrol_point{
-	id = "SOM_11";
-	name = "SOM exit point 11"
-	},
+/obj/effect/landmark/patrol_point/som_11,
 /turf/open/ground/grass/weedable,
 /area/campaign/jungle_outpost/ground/jungle/south_west)
 "lS" = (
@@ -4330,10 +4327,7 @@
 /turf/open/floor,
 /area/campaign/jungle_outpost/outpost/security/vault)
 "sB" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_21";
-	name = "SOM exit point 21"
-	},
+/obj/effect/landmark/patrol_point/som_21,
 /obj/structure/flora/jungle/grass/thin,
 /turf/open/ground/grass/weedable,
 /area/campaign/jungle_outpost/ground/jungle/north_east)
@@ -5075,10 +5069,7 @@
 /turf/closed/wall,
 /area/campaign/jungle_outpost/outpost/living/hydro)
 "vM" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_21";
-	name = "TGMC exit point 21"
-	},
+/obj/effect/landmark/patrol_point/tgmc_21,
 /obj/structure/flora/jungle/grass/thin,
 /turf/open/ground/grass/weedable,
 /area/campaign/jungle_outpost/ground/jungle/north_west)
@@ -5769,10 +5760,7 @@
 /turf/open/floor,
 /area/campaign/jungle_outpost/outpost/medbay/lobby)
 "yL" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_23";
-	name = "SOM exit point 23"
-	},
+/obj/effect/landmark/patrol_point/som_23,
 /turf/open/ground/grass/weedable,
 /area/campaign/jungle_outpost/ground/jungle/north_east)
 "yM" = (
@@ -6032,10 +6020,7 @@
 /area/campaign/jungle_outpost/outpost/science/south)
 "zI" = (
 /obj/structure/flora/jungle/grass/thin,
-/obj/effect/landmark/patrol_point{
-	id = "SOM_12";
-	name = "SOM exit point 12"
-	},
+/obj/effect/landmark/patrol_point/som_12,
 /turf/open/ground/grass/weedable,
 /area/campaign/jungle_outpost/ground/jungle/south_west)
 "zK" = (
@@ -6255,10 +6240,7 @@
 	},
 /area/campaign/jungle_outpost/ground/jungle)
 "AI" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_23";
-	name = "TGMC exit point 23"
-	},
+/obj/effect/landmark/patrol_point/tgmc_23,
 /obj/structure/flora/jungle/grass/thin,
 /turf/open/ground/grass/weedable,
 /area/campaign/jungle_outpost/ground/jungle/north_west)
@@ -6784,10 +6766,7 @@
 /area/campaign/jungle_outpost/ground/jungle/south_west)
 "CW" = (
 /obj/structure/flora/jungle/bush,
-/obj/effect/landmark/patrol_point{
-	id = "SOM_14";
-	name = "SOM exit point 14"
-	},
+/obj/effect/landmark/patrol_point/som_14,
 /turf/open/ground/grass/weedable,
 /area/campaign/jungle_outpost/ground/jungle/south_west)
 "CX" = (
@@ -7478,10 +7457,7 @@
 /turf/closed/mineral/smooth/indestructible,
 /area/campaign/jungle_outpost/ground/river/lake)
 "FV" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_11";
-	name = "TGMC exit point 11"
-	},
+/obj/effect/landmark/patrol_point/tgmc_11,
 /turf/open/floor/plating/ground/dirtgrassborder2{
 	dir = 4
 	},
@@ -7534,10 +7510,7 @@
 	},
 /area/campaign/jungle_outpost/outpost/security)
 "Gk" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_22";
-	name = "SOM exit point 22"
-	},
+/obj/effect/landmark/patrol_point/som_22,
 /obj/structure/flora/jungle/grass/thin,
 /turf/open/ground/grass/weedable,
 /area/campaign/jungle_outpost/ground/jungle/north_east)
@@ -8396,10 +8369,7 @@
 /turf/open/liquid/water/river/autosmooth/deep,
 /area/campaign/jungle_outpost/ground/river/east)
 "Kj" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_14";
-	name = "TGMC exit point 14"
-	},
+/obj/effect/landmark/patrol_point/tgmc_14,
 /turf/open/floor/plating/ground/dirtgrassborder2{
 	dir = 4
 	},
@@ -8873,10 +8843,7 @@
 	},
 /area/campaign/jungle_outpost/outpost/medbay/chemistry)
 "Mk" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_24";
-	name = "TGMC exit point 24"
-	},
+/obj/effect/landmark/patrol_point/tgmc_24,
 /turf/open/ground/grass/weedable,
 /area/campaign/jungle_outpost/ground/jungle/north_west)
 "Ml" = (
@@ -10498,10 +10465,7 @@
 /turf/open/floor,
 /area/campaign/jungle_outpost/outpost/security)
 "Tq" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_13";
-	name = "TGMC exit point 13"
-	},
+/obj/effect/landmark/patrol_point/tgmc_13,
 /turf/open/ground/grass/weedable,
 /area/campaign/jungle_outpost/ground/jungle/south_east)
 "Tr" = (
@@ -10725,10 +10689,7 @@
 /turf/closed/mineral/smooth/indestructible,
 /area/campaign/jungle_outpost/ground/river/east)
 "Uo" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_12";
-	name = "TGMC exit point 12"
-	},
+/obj/effect/landmark/patrol_point/tgmc_12,
 /turf/open/ground/grass/weedable,
 /area/campaign/jungle_outpost/ground/jungle/south_east)
 "Up" = (
@@ -11534,10 +11495,7 @@
 /turf/open/floor/iron/smooth,
 /area/campaign/jungle_outpost/ground/river/west)
 "Xy" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_22";
-	name = "TGMC exit point 22"
-	},
+/obj/effect/landmark/patrol_point/tgmc_22,
 /turf/open/ground/grass/weedable,
 /area/campaign/jungle_outpost/ground/jungle/north_west)
 "Xz" = (
@@ -11914,10 +11872,7 @@
 	},
 /area/campaign/jungle_outpost/outpost/science)
 "Zh" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_24";
-	name = "SOM exit point 24"
-	},
+/obj/effect/landmark/patrol_point/som_24,
 /turf/open/ground/grass/weedable,
 /area/campaign/jungle_outpost/ground/jungle/north_east)
 "Zj" = (
@@ -12010,10 +11965,7 @@
 	},
 /area/campaign/jungle_outpost/ground/jungle/east)
 "ZB" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_13";
-	name = "SOM exit point 13"
-	},
+/obj/effect/landmark/patrol_point/som_13,
 /turf/open/ground/grass/weedable,
 /area/campaign/jungle_outpost/ground/jungle/south_west)
 "ZD" = (

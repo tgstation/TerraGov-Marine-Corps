@@ -570,10 +570,7 @@
 /turf/open/floor/wood,
 /area/lawankaoutpost/colony/bar)
 "ayi" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_23";
-	name = "SOM exit point 23"
-	},
+/obj/effect/landmark/patrol_point/som_23,
 /turf/open/floor/plating/ground/dirt,
 /area/lawankaoutpost/caves/southwest)
 "aym" = (
@@ -1249,10 +1246,7 @@
 	},
 /area/lawankaoutpost/colony/biologics)
 "baZ" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_22";
-	name = "TGMC exit point 22"
-	},
+/obj/effect/landmark/patrol_point/tgmc_22,
 /turf/open/floor/plating/ground/dirt,
 /area/lawankaoutpost/caves/east)
 "bbQ" = (
@@ -2820,10 +2814,7 @@
 	},
 /area/lawankaoutpost/colony/northdorms)
 "cre" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_22";
-	name = "SOM exit point 22"
-	},
+/obj/effect/landmark/patrol_point/som_22,
 /turf/open/floor/plating/ground/dirt,
 /area/lawankaoutpost/caves/southwest)
 "csh" = (
@@ -6606,10 +6597,7 @@
 /area/lawankaoutpost/colony/operations_hall)
 "fDn" = (
 /obj/effect/landmark/weed_node,
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_23";
-	name = "TGMC exit point 23"
-	},
+/obj/effect/landmark/patrol_point/tgmc_23,
 /turf/open/floor/plating/ground/dirt,
 /area/lawankaoutpost/caves/east)
 "fDt" = (
@@ -6680,10 +6668,7 @@
 /turf/open/floor/tile/green/greentaupe,
 /area/lawankaoutpost/colony/chapel)
 "fGn" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_21";
-	name = "SOM exit point 21"
-	},
+/obj/effect/landmark/patrol_point/som_21,
 /turf/open/floor/plating/ground/dirt,
 /area/lawankaoutpost/caves/southwest)
 "fGt" = (
@@ -8621,10 +8606,7 @@
 	},
 /area/lawankaoutpost/colony/robotics)
 "hqH" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_21";
-	name = "TGMC exit point 21"
-	},
+/obj/effect/landmark/patrol_point/tgmc_21,
 /turf/open/floor/plating/ground/dirt,
 /area/lawankaoutpost/caves/east)
 "hri" = (
@@ -10607,10 +10589,7 @@
 /turf/open/floor/tile/dark,
 /area/lawankaoutpost/caves/nanotrasen_lab)
 "jdW" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_14";
-	name = "TGMC exit point 14"
-	},
+/obj/effect/landmark/patrol_point/tgmc_14,
 /turf/open/floor/plating/ground/dirt,
 /area/lawankaoutpost/caves/northwest)
 "jei" = (
@@ -11196,10 +11175,7 @@
 /turf/open/floor/tile/purple/taupepurple/corner,
 /area/lawankaoutpost/colony/biologics)
 "jAX" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_13";
-	name = "TGMC exit point 13"
-	},
+/obj/effect/landmark/patrol_point/tgmc_13,
 /turf/open/floor/plating/ground/dirt,
 /area/lawankaoutpost/caves/northwest)
 "jBe" = (
@@ -11385,10 +11361,7 @@
 /turf/open/ground/grass/weedable,
 /area/lawankaoutpost/caves/nanotrasen_lab)
 "jIR" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_14";
-	name = "SOM exit point 14"
-	},
+/obj/effect/landmark/patrol_point/som_14,
 /turf/open/floor/plating/ground/dirt,
 /area/lawankaoutpost/caves/east)
 "jIX" = (
@@ -14168,10 +14141,7 @@
 /turf/open/ground/grass/weedable,
 /area/lawankaoutpost/outside/northeast)
 "mci" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_24";
-	name = "SOM exit point 24"
-	},
+/obj/effect/landmark/patrol_point/som_24,
 /turf/open/floor/plating/ground/dirt,
 /area/lawankaoutpost/caves/southwest)
 "mcj" = (
@@ -19180,10 +19150,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lawankaoutpost/caves/rock)
 "qhl" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_24";
-	name = "TGMC exit point 24"
-	},
+/obj/effect/landmark/patrol_point/tgmc_24,
 /turf/open/floor/plating/ground/dirt,
 /area/lawankaoutpost/caves/east)
 "qhE" = (
@@ -22194,10 +22161,7 @@
 /turf/open/floor,
 /area/lawankaoutpost/colony/biologics)
 "sHc" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_12";
-	name = "TGMC exit point 12"
-	},
+/obj/effect/landmark/patrol_point/tgmc_12,
 /turf/open/floor/plating/ground/dirt,
 /area/lawankaoutpost/caves/northwest)
 "sHd" = (
@@ -23727,10 +23691,7 @@
 /area/lawankaoutpost/outside/northeast)
 "tSS" = (
 /obj/effect/landmark/weed_node,
-/obj/effect/landmark/patrol_point{
-	id = "SOM_13";
-	name = "SOM exit point 13"
-	},
+/obj/effect/landmark/patrol_point/som_13,
 /turf/open/floor/plating/ground/dirt,
 /area/lawankaoutpost/caves/east)
 "tSX" = (
@@ -24249,10 +24210,7 @@
 /turf/open/floor/tile/dark/yellow2,
 /area/lawankaoutpost/colony/operations_storage)
 "usv" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_11";
-	name = "TGMC exit point 11"
-	},
+/obj/effect/landmark/patrol_point/tgmc_11,
 /turf/open/floor/plating/ground/dirt,
 /area/lawankaoutpost/caves/northwest)
 "usL" = (
@@ -25818,10 +25776,7 @@
 /turf/open/floor,
 /area/lawankaoutpost/colony/robotics)
 "vHu" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_12";
-	name = "SOM exit point 12"
-	},
+/obj/effect/landmark/patrol_point/som_12,
 /turf/open/floor/plating/ground/dirt,
 /area/lawankaoutpost/caves/east)
 "vHx" = (
@@ -27290,10 +27245,7 @@
 /turf/open/floor/wood/variable,
 /area/lawankaoutpost/caves/nanotrasen_lab)
 "wRO" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_11";
-	name = "SOM exit point 11"
-	},
+/obj/effect/landmark/patrol_point/som_11,
 /turf/open/floor/plating/ground/dirt,
 /area/lawankaoutpost/caves/east)
 "wRU" = (

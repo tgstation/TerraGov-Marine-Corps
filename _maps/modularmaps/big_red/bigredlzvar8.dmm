@@ -534,10 +534,7 @@
 	},
 /area/bigredv2/outside/nw)
 "pK" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_22";
-	name = "TGMC exit point 22"
-	},
+/obj/effect/landmark/patrol_point/tgmc_22,
 /turf/open/floor/marking/asteroidwarning{
 	dir = 1
 	},
@@ -799,10 +796,7 @@
 /area/bigredv2/outside/nw)
 "xB" = (
 /obj/machinery/light,
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_23";
-	name = "TGMC exit point 23"
-	},
+/obj/effect/landmark/patrol_point/tgmc_23,
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/space_port)
 "xD" = (
@@ -1699,10 +1693,7 @@
 	},
 /area/bigredv2/outside/marshal_office)
 "Tz" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_21";
-	name = "TGMC exit point 21"
-	},
+/obj/effect/landmark/patrol_point/tgmc_21,
 /turf/open/floor/plating,
 /area/bigredv2/outside/space_port)
 "TQ" = (
@@ -1725,10 +1716,7 @@
 /turf/open/floor/podhatch/floor,
 /area/bigredv2/outside/telecomm)
 "Vf" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_24";
-	name = "TGMC exit point 24"
-	},
+/obj/effect/landmark/patrol_point/tgmc_24,
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/space_port)
 "Vu" = (

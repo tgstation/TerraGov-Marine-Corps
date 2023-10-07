@@ -39,10 +39,7 @@
 /turf/closed/wall/mainship/gray,
 /area/rocinante_Base/ground/underground/caveN)
 "adr" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_24";
-	name = "TGMC exit point 24"
-	},
+/obj/effect/landmark/patrol_point/tgmc_24,
 /turf/open/ground/grass/weedable/patch,
 /area/rocinante_Base/ground/base_nw)
 "adz" = (
@@ -342,10 +339,7 @@
 	},
 /area/rocinante_Base/surface/building/security/medical_sec)
 "azv" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_22";
-	name = "TGMC exit point 22"
-	},
+/obj/effect/landmark/patrol_point/tgmc_22,
 /turf/open/ground/grass/weedable/patch,
 /area/rocinante_Base/ground/base_nw)
 "azz" = (
@@ -395,10 +389,7 @@
 	},
 /area/rocinante_Base/surface/building/security/medical_sec)
 "aCK" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_21";
-	name = "TGMC exit point 21"
-	},
+/obj/effect/landmark/patrol_point/tgmc_21,
 /turf/open/ground/grass/weedable/patch,
 /area/rocinante_Base/ground/base_nw)
 "aDG" = (
@@ -542,10 +533,7 @@
 /turf/open/floor/plating/ground/concrete,
 /area/rocinante_Base/ground/southern_containers)
 "aLr" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_12";
-	name = "SOM exit point 12"
-	},
+/obj/effect/landmark/patrol_point/som_12,
 /turf/open/floor/plating/ground/mars/random/cave/darker,
 /area/rocinante_Base/ground/underground/caveS)
 "aLJ" = (
@@ -834,10 +822,7 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/rocinante_Base/surface/building/science/research_lab)
 "bbz" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_23";
-	name = "TGMC exit point 23"
-	},
+/obj/effect/landmark/patrol_point/tgmc_23,
 /turf/open/ground/grass/weedable/patch,
 /area/rocinante_Base/ground/base_nw)
 "bbI" = (
@@ -1919,10 +1904,7 @@
 /turf/open/floor/mainship/mono,
 /area/rocinante_Base/ground/base_nw)
 "cCg" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_11";
-	name = "SOM exit point 11"
-	},
+/obj/effect/landmark/patrol_point/som_11,
 /turf/open/floor/plating/ground/mars/random/cave/darker,
 /area/rocinante_Base/ground/underground/caveS)
 "cCn" = (
@@ -2725,10 +2707,7 @@
 /turf/open/floor/mainship/red,
 /area/rocinante_Base/surface/building/administration)
 "dPW" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_23";
-	name = "SOM exit point 23"
-	},
+/obj/effect/landmark/patrol_point/som_23,
 /obj/machinery/light,
 /turf/open/floor/mainship/red{
 	dir = 6
@@ -8284,10 +8263,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/rocinante_Base/surface/building/tramstation/tramstation_e)
 "lIS" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_21";
-	name = "SOM exit point 21"
-	},
+/obj/effect/landmark/patrol_point/som_21,
 /turf/open/floor/mainship/red{
 	dir = 4
 	},
@@ -8441,10 +8417,7 @@
 /turf/open/floor/plating/ground/dirt_alt,
 /area/rocinante_Base/ground/base_n)
 "lUj" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_12";
-	name = "TGMC exit point 12"
-	},
+/obj/effect/landmark/patrol_point/tgmc_12,
 /turf/open/ground/grass/weedable/patch,
 /area/rocinante_Base/ground/base_sw)
 "lUF" = (
@@ -8913,10 +8886,7 @@
 /turf/closed/wall/mainship/gray,
 /area/rocinante_Base/surface/building/living/barracks)
 "mDz" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_22";
-	name = "SOM exit point 22"
-	},
+/obj/effect/landmark/patrol_point/som_22,
 /turf/open/floor/mainship/red{
 	dir = 10
 	},
@@ -10701,10 +10671,7 @@
 	},
 /area/rocinante_Base/surface/building/security/command_sec)
 "pcb" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_13";
-	name = "TGMC exit point 13"
-	},
+/obj/effect/landmark/patrol_point/tgmc_13,
 /turf/open/ground/grass/weedable/patch,
 /area/rocinante_Base/ground/base_sw)
 "pci" = (
@@ -11963,10 +11930,7 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/rocinante_Base/surface/building/medical)
 "qTk" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_14";
-	name = "SOM exit point 14"
-	},
+/obj/effect/landmark/patrol_point/som_14,
 /turf/open/floor/plating/ground/mars/random/cave/darker,
 /area/rocinante_Base/ground/underground/caveS)
 "qTm" = (
@@ -12085,10 +12049,7 @@
 /turf/open/floor/plating/ground/snow,
 /area/rocinante_Base/ground/base_e)
 "raL" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_13";
-	name = "SOM exit point 13"
-	},
+/obj/effect/landmark/patrol_point/som_13,
 /turf/open/floor/plating/ground/mars/random/cave/darker,
 /area/rocinante_Base/ground/underground/caveS)
 "rbV" = (
@@ -12700,10 +12661,7 @@
 /turf/open/floor/plating/ground/concrete,
 /area/rocinante_Base/ground/base_s)
 "rYn" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_11";
-	name = "TGMC exit point 11"
-	},
+/obj/effect/landmark/patrol_point/tgmc_11,
 /turf/open/ground/grass/weedable/patch,
 /area/rocinante_Base/ground/base_sw)
 "rYJ" = (
@@ -14802,10 +14760,7 @@
 /turf/open/floor/mainship/mono,
 /area/rocinante_Base/surface/building/engineering)
 "uJB" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_24";
-	name = "SOM exit point 24"
-	},
+/obj/effect/landmark/patrol_point/som_24,
 /turf/open/floor/mainship/cargo/arrow{
 	dir = 4
 	},
@@ -16461,10 +16416,7 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/rocinante_Base/surface/building/science/research_lab)
 "wRP" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_14";
-	name = "TGMC exit point 14"
-	},
+/obj/effect/landmark/patrol_point/tgmc_14,
 /turf/open/ground/grass/weedable/patch,
 /area/rocinante_Base/ground/base_sw)
 "wRU" = (

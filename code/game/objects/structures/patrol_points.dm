@@ -119,6 +119,54 @@
 /obj/structure/patrol_point/proc/remove_spawn_protection(mob/user)
 	user.status_flags &= ~GODMODE
 
+/obj/structure/patrol_point/tgmc_11
+	id = "TGMC_11"
+
+/obj/structure/patrol_point/tgmc_12
+	id = "TGMC_12"
+
+/obj/structure/patrol_point/tgmc_13
+	id = "TGMC_13"
+
+/obj/structure/patrol_point/tgmc_14
+	id = "TGMC_14"
+
+/obj/structure/patrol_point/tgmc_21
+	id = "TGMC_21"
+
+/obj/structure/patrol_point/tgmc_22
+	id = "TGMC_22"
+
+/obj/structure/patrol_point/tgmc_23
+	id = "TGMC_23"
+
+/obj/structure/patrol_point/tgmc_24
+	id = "TGMC_24"
+
+/obj/structure/patrol_point/som_11
+	id = "SOM_11"
+
+/obj/structure/patrol_point/som_12
+	id = "SOM_12"
+
+/obj/structure/patrol_point/som_13
+	id = "SOM_13"
+
+/obj/structure/patrol_point/som_14
+	id = "SOM_14"
+
+/obj/structure/patrol_point/som_21
+	id = "SOM_21"
+
+/obj/structure/patrol_point/som_22
+	id = "SOM_22"
+
+/obj/structure/patrol_point/som_23
+	id = "SOM_23"
+
+/obj/structure/patrol_point/som_24
+	id = "SOM_24"
+
 /atom/movable/effect/rappel_rope
 	name = "rope"
 	icon = 'icons/Marine/mainship_props.dmi'

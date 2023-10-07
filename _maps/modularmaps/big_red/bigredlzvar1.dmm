@@ -569,10 +569,7 @@
 /turf/open/floor/tile/red/redtaupecorner,
 /area/bigredv2/outside/marshal_office)
 "oV" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_21";
-	name = "TGMC exit point 21"
-	},
+/obj/effect/landmark/patrol_point/tgmc_21,
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/space_port)
 "pb" = (
@@ -1053,10 +1050,7 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/space_port)
 "Dv" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_23";
-	name = "TGMC exit point 23"
-	},
+/obj/effect/landmark/patrol_point/tgmc_23,
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/space_port)
 "DB" = (
@@ -1249,10 +1243,7 @@
 /obj/machinery/light/built{
 	dir = 1
 	},
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_22";
-	name = "TGMC exit point 22"
-	},
+/obj/effect/landmark/patrol_point/tgmc_22,
 /turf/open/floor/plating/plating_catwalk,
 /area/bigredv2/outside/space_port)
 "JL" = (
@@ -1272,10 +1263,7 @@
 /area/shuttle/drop1/lz1)
 "JN" = (
 /obj/structure/cable,
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_24";
-	name = "TGMC exit point 24"
-	},
+/obj/effect/landmark/patrol_point/tgmc_24,
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/space_port)
 "Kr" = (
