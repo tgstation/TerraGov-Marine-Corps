@@ -2323,7 +2323,7 @@
 /turf/open/floor/plating/ground/mars/random/cave/darker,
 /area/slumbridge/mining)
 "bJZ" = (
-/obj/effect/landmark/patrol_point/som_22,
+/obj/effect/landmark/patrol_point/som/som_22,
 /turf/open/floor/plating/ground/mars/random/cave/darker,
 /area/slumbridge/northeastcaves)
 "bKi" = (
@@ -3965,7 +3965,7 @@
 /turf/open/floor/cult,
 /area/slumbridge/northeastcaves)
 "cUJ" = (
-/obj/effect/landmark/patrol_point/som_12,
+/obj/effect/landmark/patrol_point/som/som_12,
 /turf/open/floor/tile/dark,
 /area/slumbridge/landingzonetwo)
 "cUX" = (
@@ -7240,7 +7240,7 @@
 /turf/open/floor/plating,
 /area/slumbridge/outside4)
 "fBt" = (
-/obj/effect/landmark/patrol_point/som_14,
+/obj/effect/landmark/patrol_point/som/som_14,
 /turf/open/floor/tile/dark/yellow2{
 	dir = 8
 	},
@@ -11816,7 +11816,7 @@
 /turf/open/floor/plating,
 /area/slumbridge/hydrotreatment)
 "iPr" = (
-/obj/effect/landmark/patrol_point/som_13,
+/obj/effect/landmark/patrol_point/som/som_13,
 /turf/open/floor/tile/dark,
 /area/slumbridge/landingzonetwo)
 "iPy" = (
@@ -11892,7 +11892,7 @@
 /turf/open/floor/tile/green/greentaupe,
 /area/slumbridge/medical/surgery)
 "iSc" = (
-/obj/effect/landmark/patrol_point/som_11,
+/obj/effect/landmark/patrol_point/som/som_11,
 /turf/open/floor/tile/dark/yellow2,
 /area/slumbridge/landingzonetwo)
 "iSw" = (
@@ -20939,7 +20939,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/slumbridge/outside4)
 "pyW" = (
-/obj/effect/landmark/patrol_point/som_24,
+/obj/effect/landmark/patrol_point/som/som_24,
 /turf/open/floor/plating/ground/mars/random/cave/darker,
 /area/slumbridge/northeastcaves)
 "pza" = (
@@ -25283,7 +25283,7 @@
 	},
 /area/slumbridge/outside2)
 "sFO" = (
-/obj/effect/landmark/patrol_point/som_21,
+/obj/effect/landmark/patrol_point/som/som_21,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/mineral/smooth,
 /area/slumbridge/rock)
@@ -29504,7 +29504,7 @@
 /turf/open/floor/prison/greenblue,
 /area/slumbridge/prison/outerringsouth)
 "vPh" = (
-/obj/effect/landmark/patrol_point/som_23,
+/obj/effect/landmark/patrol_point/som/som_23,
 /turf/open/floor/plating/ground/mars/random/cave/darker,
 /area/slumbridge/northeastcaves)
 "vQg" = (

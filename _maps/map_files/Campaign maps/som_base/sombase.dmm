@@ -533,7 +533,7 @@
 /turf/open/floor/plating/ground/concrete,
 /area/rocinante_Base/ground/southern_containers)
 "aLr" = (
-/obj/effect/landmark/patrol_point/som_12,
+/obj/effect/landmark/patrol_point/som/som_12,
 /turf/open/floor/plating/ground/mars/random/cave/darker,
 /area/rocinante_Base/ground/underground/caveS)
 "aLJ" = (
@@ -1904,7 +1904,7 @@
 /turf/open/floor/mainship/mono,
 /area/rocinante_Base/ground/base_nw)
 "cCg" = (
-/obj/effect/landmark/patrol_point/som_11,
+/obj/effect/landmark/patrol_point/som/som_11,
 /turf/open/floor/plating/ground/mars/random/cave/darker,
 /area/rocinante_Base/ground/underground/caveS)
 "cCn" = (
@@ -2707,7 +2707,7 @@
 /turf/open/floor/mainship/red,
 /area/rocinante_Base/surface/building/administration)
 "dPW" = (
-/obj/effect/landmark/patrol_point/som_23,
+/obj/effect/landmark/patrol_point/som/som_23,
 /obj/machinery/light,
 /turf/open/floor/mainship/red{
 	dir = 6
@@ -8263,7 +8263,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/rocinante_Base/surface/building/tramstation/tramstation_e)
 "lIS" = (
-/obj/effect/landmark/patrol_point/som_21,
+/obj/effect/landmark/patrol_point/som/som_21,
 /turf/open/floor/mainship/red{
 	dir = 4
 	},
@@ -8886,7 +8886,7 @@
 /turf/closed/wall/mainship/gray,
 /area/rocinante_Base/surface/building/living/barracks)
 "mDz" = (
-/obj/effect/landmark/patrol_point/som_22,
+/obj/effect/landmark/patrol_point/som/som_22,
 /turf/open/floor/mainship/red{
 	dir = 10
 	},
@@ -11930,7 +11930,7 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/rocinante_Base/surface/building/medical)
 "qTk" = (
-/obj/effect/landmark/patrol_point/som_14,
+/obj/effect/landmark/patrol_point/som/som_14,
 /turf/open/floor/plating/ground/mars/random/cave/darker,
 /area/rocinante_Base/ground/underground/caveS)
 "qTm" = (
@@ -12049,7 +12049,7 @@
 /turf/open/floor/plating/ground/snow,
 /area/rocinante_Base/ground/base_e)
 "raL" = (
-/obj/effect/landmark/patrol_point/som_13,
+/obj/effect/landmark/patrol_point/som/som_13,
 /turf/open/floor/plating/ground/mars/random/cave/darker,
 /area/rocinante_Base/ground/underground/caveS)
 "rbV" = (
@@ -14760,7 +14760,7 @@
 /turf/open/floor/mainship/mono,
 /area/rocinante_Base/surface/building/engineering)
 "uJB" = (
-/obj/effect/landmark/patrol_point/som_24,
+/obj/effect/landmark/patrol_point/som/som_24,
 /turf/open/floor/mainship/cargo/arrow{
 	dir = 4
 	},

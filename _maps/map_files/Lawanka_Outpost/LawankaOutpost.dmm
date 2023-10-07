@@ -570,7 +570,7 @@
 /turf/open/floor/wood,
 /area/lawankaoutpost/colony/bar)
 "ayi" = (
-/obj/effect/landmark/patrol_point/som_23,
+/obj/effect/landmark/patrol_point/som/som_23,
 /turf/open/floor/plating/ground/dirt,
 /area/lawankaoutpost/caves/southwest)
 "aym" = (
@@ -2814,7 +2814,7 @@
 	},
 /area/lawankaoutpost/colony/northdorms)
 "cre" = (
-/obj/effect/landmark/patrol_point/som_22,
+/obj/effect/landmark/patrol_point/som/som_22,
 /turf/open/floor/plating/ground/dirt,
 /area/lawankaoutpost/caves/southwest)
 "csh" = (
@@ -6668,7 +6668,7 @@
 /turf/open/floor/tile/green/greentaupe,
 /area/lawankaoutpost/colony/chapel)
 "fGn" = (
-/obj/effect/landmark/patrol_point/som_21,
+/obj/effect/landmark/patrol_point/som/som_21,
 /turf/open/floor/plating/ground/dirt,
 /area/lawankaoutpost/caves/southwest)
 "fGt" = (
@@ -11361,7 +11361,7 @@
 /turf/open/ground/grass/weedable,
 /area/lawankaoutpost/caves/nanotrasen_lab)
 "jIR" = (
-/obj/effect/landmark/patrol_point/som_14,
+/obj/effect/landmark/patrol_point/som/som_14,
 /turf/open/floor/plating/ground/dirt,
 /area/lawankaoutpost/caves/east)
 "jIX" = (
@@ -14141,7 +14141,7 @@
 /turf/open/ground/grass/weedable,
 /area/lawankaoutpost/outside/northeast)
 "mci" = (
-/obj/effect/landmark/patrol_point/som_24,
+/obj/effect/landmark/patrol_point/som/som_24,
 /turf/open/floor/plating/ground/dirt,
 /area/lawankaoutpost/caves/southwest)
 "mcj" = (
@@ -23691,7 +23691,7 @@
 /area/lawankaoutpost/outside/northeast)
 "tSS" = (
 /obj/effect/landmark/weed_node,
-/obj/effect/landmark/patrol_point/som_13,
+/obj/effect/landmark/patrol_point/som/som_13,
 /turf/open/floor/plating/ground/dirt,
 /area/lawankaoutpost/caves/east)
 "tSX" = (
@@ -25776,7 +25776,7 @@
 /turf/open/floor,
 /area/lawankaoutpost/colony/robotics)
 "vHu" = (
-/obj/effect/landmark/patrol_point/som_12,
+/obj/effect/landmark/patrol_point/som/som_12,
 /turf/open/floor/plating/ground/dirt,
 /area/lawankaoutpost/caves/east)
 "vHx" = (
@@ -27245,7 +27245,7 @@
 /turf/open/floor/wood/variable,
 /area/lawankaoutpost/caves/nanotrasen_lab)
 "wRO" = (
-/obj/effect/landmark/patrol_point/som_11,
+/obj/effect/landmark/patrol_point/som/som_11,
 /turf/open/floor/plating/ground/dirt,
 /area/lawankaoutpost/caves/east)
 "wRU" = (

@@ -742,7 +742,7 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/outpost/caves/north_west)
 "dX" = (
-/obj/effect/landmark/patrol_point/som_14,
+/obj/effect/landmark/patrol_point/som/som_14,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/outpost/caves/south_west)
 "dY" = (
@@ -1603,7 +1603,7 @@
 	},
 /area/outpost/lz1)
 "hU" = (
-/obj/effect/landmark/patrol_point/som_24,
+/obj/effect/landmark/patrol_point/som/som_24,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/outpost/caves/north_east)
 "hV" = (
@@ -1840,7 +1840,7 @@
 /turf/open/floor/tile/dark,
 /area/outpost/hallway/central)
 "iS" = (
-/obj/effect/landmark/patrol_point/som_22,
+/obj/effect/landmark/patrol_point/som/som_22,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/outpost/caves/north_east)
 "iT" = (
@@ -3182,7 +3182,7 @@
 /turf/open/floor/tile/dark/brown2/corner,
 /area/outpost/hallway/central)
 "oS" = (
-/obj/effect/landmark/patrol_point/som_11,
+/obj/effect/landmark/patrol_point/som/som_11,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/outpost/caves/south_west)
 "oV" = (
@@ -3271,7 +3271,7 @@
 	},
 /area/outpost/hallway/south_west)
 "po" = (
-/obj/effect/landmark/patrol_point/som_12,
+/obj/effect/landmark/patrol_point/som/som_12,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/outpost/caves/south_west)
 "pp" = (
@@ -6829,7 +6829,7 @@
 	},
 /area/outpost/caves/north_west)
 "FU" = (
-/obj/effect/landmark/patrol_point/som_13,
+/obj/effect/landmark/patrol_point/som/som_13,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/outpost/caves/south_west)
 "FX" = (
@@ -7816,7 +7816,7 @@
 /turf/open/floor/tile/dark,
 /area/outpost/engineering)
 "KN" = (
-/obj/effect/landmark/patrol_point/som_23,
+/obj/effect/landmark/patrol_point/som/som_23,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/outpost/caves/north_east)
 "KO" = (
@@ -10345,7 +10345,7 @@
 	},
 /area/outpost/caves/south)
 "WF" = (
-/obj/effect/landmark/patrol_point/som_21,
+/obj/effect/landmark/patrol_point/som/som_21,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/outpost/caves/north_east)
 "WH" = (

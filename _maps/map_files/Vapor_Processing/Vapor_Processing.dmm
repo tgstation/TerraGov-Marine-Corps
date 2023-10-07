@@ -3810,7 +3810,7 @@
 /turf/open/floor,
 /area/shuttle/drop1/lz1)
 "wG" = (
-/obj/effect/landmark/patrol_point/som_22,
+/obj/effect/landmark/patrol_point/som/som_22,
 /turf/open/floor,
 /area/shuttle/drop1/lz1)
 "wI" = (
@@ -3863,7 +3863,7 @@
 /turf/open/floor,
 /area/lv624/lazarus/research)
 "xH" = (
-/obj/effect/landmark/patrol_point/som_23,
+/obj/effect/landmark/patrol_point/som/som_23,
 /turf/open/floor,
 /area/shuttle/drop1/lz1)
 "xK" = (
@@ -4421,7 +4421,7 @@
 /turf/open/floor/wood,
 /area/crew_quarters/sleep_male)
 "FZ" = (
-/obj/effect/landmark/patrol_point/som_11,
+/obj/effect/landmark/patrol_point/som/som_11,
 /turf/open/ground,
 /area/space)
 "Gh" = (
@@ -4607,7 +4607,7 @@
 /turf/open/floor/grass,
 /area/vapor_processing/south_compound)
 "JL" = (
-/obj/effect/landmark/patrol_point/som_13,
+/obj/effect/landmark/patrol_point/som/som_13,
 /turf/open/ground,
 /area/space)
 "JN" = (
@@ -4654,7 +4654,7 @@
 /turf/open/floor/wood,
 /area/crew_quarters/sleep_male)
 "Kr" = (
-/obj/effect/landmark/patrol_point/som_24,
+/obj/effect/landmark/patrol_point/som/som_24,
 /turf/open/floor,
 /area/shuttle/drop1/lz1)
 "Ks" = (
@@ -5063,11 +5063,11 @@
 /turf/open/floor/grass,
 /area/lv624/ground/compound/c)
 "PN" = (
-/obj/effect/landmark/patrol_point/som_21,
+/obj/effect/landmark/patrol_point/som/som_21,
 /turf/open/floor/plating,
 /area/shuttle/drop1/lz1)
 "PP" = (
-/obj/effect/landmark/patrol_point/som_14,
+/obj/effect/landmark/patrol_point/som/som_14,
 /turf/open/ground,
 /area/space)
 "PR" = (
@@ -5224,7 +5224,7 @@
 /turf/open/floor,
 /area/storage/tools)
 "Sr" = (
-/obj/effect/landmark/patrol_point/som_12,
+/obj/effect/landmark/patrol_point/som/som_12,
 /turf/open/ground,
 /area/space)
 "St" = (

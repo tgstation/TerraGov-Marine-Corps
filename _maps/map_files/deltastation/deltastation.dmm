@@ -8682,7 +8682,7 @@
 /obj/structure/bed/chair/comfy{
 	dir = 4
 	},
-/obj/effect/landmark/patrol_point/som_22,
+/obj/effect/landmark/patrol_point/som/som_22,
 /turf/open/floor/prison/blackfloor,
 /area/deltastation/asteroidcaves/ship)
 "bNr" = (
@@ -15725,7 +15725,7 @@
 /turf/open/floor/iron/large,
 /area/deltastation/security/processing)
 "dmS" = (
-/obj/effect/landmark/patrol_point/som_14,
+/obj/effect/landmark/patrol_point/som/som_14,
 /turf/open/floor/iron/dark,
 /area/deltastation/asteroidcaves/derelictnortheast)
 "dna" = (
@@ -20609,7 +20609,7 @@
 /turf/open/floor/iron,
 /area/deltastation/engineering/break_room)
 "ehL" = (
-/obj/effect/landmark/patrol_point/som_11,
+/obj/effect/landmark/patrol_point/som/som_11,
 /turf/open/floor/iron/dark,
 /area/deltastation/asteroidcaves/derelictnortheast)
 "ehT" = (
@@ -32449,7 +32449,7 @@
 /turf/open/floor/iron,
 /area/deltastation/science/robotics/mechbay)
 "gyi" = (
-/obj/effect/landmark/patrol_point/som_24,
+/obj/effect/landmark/patrol_point/som/som_24,
 /turf/open/floor/prison/blackfloor,
 /area/deltastation/asteroidcaves/ship)
 "gyr" = (
@@ -49157,7 +49157,7 @@
 /turf/open/floor/iron,
 /area/deltastation/engineering/atmos/storage)
 "jYE" = (
-/obj/effect/landmark/patrol_point/som_23,
+/obj/effect/landmark/patrol_point/som/som_23,
 /turf/open/floor/prison/blackfloor,
 /area/deltastation/asteroidcaves/ship)
 "jYF" = (
@@ -67707,7 +67707,7 @@
 /turf/open/floor/plating,
 /area/deltastation/maintenance/port/aft)
 "nRw" = (
-/obj/effect/landmark/patrol_point/som_12,
+/obj/effect/landmark/patrol_point/som/som_12,
 /turf/open/floor/iron/dark,
 /area/deltastation/asteroidcaves/derelictnortheast)
 "nRB" = (
@@ -70923,7 +70923,7 @@
 /turf/open/floor/plating,
 /area/deltastation/maintenance/department/chapel)
 "oAr" = (
-/obj/effect/landmark/patrol_point/som_13,
+/obj/effect/landmark/patrol_point/som/som_13,
 /turf/open/floor/iron/dark,
 /area/deltastation/asteroidcaves/derelictnortheast)
 "oAs" = (
@@ -103606,7 +103606,7 @@
 /turf/open/floor/plating,
 /area/deltastation/maintenance/port)
 "uZO" = (
-/obj/effect/landmark/patrol_point/som_21,
+/obj/effect/landmark/patrol_point/som/som_21,
 /turf/open/floor/prison/blackfloor,
 /area/deltastation/asteroidcaves/ship)
 "uZS" = (

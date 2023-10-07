@@ -576,7 +576,7 @@
 /turf/open/floor/plating,
 /area/prison/cellblock/maxsec/south)
 "adA" = (
-/obj/effect/landmark/patrol_point/som_21,
+/obj/effect/landmark/patrol_point/som/som_21,
 /turf/open/floor/prison/whitepurple{
 	dir = 5
 	},
@@ -34412,7 +34412,7 @@
 "cgp" = (
 /obj/structure/bed,
 /obj/machinery/air_alarm,
-/obj/effect/landmark/patrol_point/som_12,
+/obj/effect/landmark/patrol_point/som/som_12,
 /turf/open/floor/prison/blackfloor,
 /area/prison/pirate)
 "cgr" = (
@@ -38894,7 +38894,7 @@
 	dir = 8
 	},
 /obj/machinery/light/small,
-/obj/effect/landmark/patrol_point/som_13,
+/obj/effect/landmark/patrol_point/som/som_13,
 /turf/open/floor/plating,
 /area/prison/pirate)
 "cvw" = (
@@ -43094,7 +43094,7 @@
 /turf/open/floor/prison/cleanmarked,
 /area/prison/yard)
 "ksL" = (
-/obj/effect/landmark/patrol_point/som_22,
+/obj/effect/landmark/patrol_point/som/som_22,
 /turf/open/floor/prison/whitepurple{
 	dir = 6
 	},
@@ -45260,7 +45260,7 @@
 /turf/open/floor/plating,
 /area/prison/residential/central)
 "pWy" = (
-/obj/effect/landmark/patrol_point/som_24,
+/obj/effect/landmark/patrol_point/som/som_24,
 /turf/open/floor/prison/whitepurple,
 /area/prison/research/secret/biolab)
 "pWz" = (
@@ -45528,7 +45528,7 @@
 /turf/open/floor/carpet,
 /area/prison/chapel)
 "qBT" = (
-/obj/effect/landmark/patrol_point/som_23,
+/obj/effect/landmark/patrol_point/som/som_23,
 /turf/open/floor/prison/sterilewhite,
 /area/prison/research/secret/biolab)
 "qDV" = (
@@ -48339,7 +48339,7 @@
 /turf/open/floor/prison/sterilewhite,
 /area/prison/residential/central)
 "xsd" = (
-/obj/effect/landmark/patrol_point/som_14,
+/obj/effect/landmark/patrol_point/som/som_14,
 /turf/open/floor/plating,
 /area/prison/pirate)
 "xtg" = (
@@ -48500,7 +48500,7 @@
 /turf/open/floor/prison,
 /area/prison/hangar_storage/research)
 "xOa" = (
-/obj/effect/landmark/patrol_point/som_11,
+/obj/effect/landmark/patrol_point/som/som_11,
 /turf/open/floor/prison/blackfloor,
 /area/prison/pirate)
 "xRA" = (

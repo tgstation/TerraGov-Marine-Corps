@@ -2807,7 +2807,7 @@
 /area/campaign/jungle_outpost/outpost/command/captain)
 "lQ" = (
 /obj/structure/flora/jungle/bush,
-/obj/effect/landmark/patrol_point/som_11,
+/obj/effect/landmark/patrol_point/som/som_11,
 /turf/open/ground/grass/weedable,
 /area/campaign/jungle_outpost/ground/jungle/south_west)
 "lS" = (
@@ -4327,7 +4327,7 @@
 /turf/open/floor,
 /area/campaign/jungle_outpost/outpost/security/vault)
 "sB" = (
-/obj/effect/landmark/patrol_point/som_21,
+/obj/effect/landmark/patrol_point/som/som_21,
 /obj/structure/flora/jungle/grass/thin,
 /turf/open/ground/grass/weedable,
 /area/campaign/jungle_outpost/ground/jungle/north_east)
@@ -5760,7 +5760,7 @@
 /turf/open/floor,
 /area/campaign/jungle_outpost/outpost/medbay/lobby)
 "yL" = (
-/obj/effect/landmark/patrol_point/som_23,
+/obj/effect/landmark/patrol_point/som/som_23,
 /turf/open/ground/grass/weedable,
 /area/campaign/jungle_outpost/ground/jungle/north_east)
 "yM" = (
@@ -6020,7 +6020,7 @@
 /area/campaign/jungle_outpost/outpost/science/south)
 "zI" = (
 /obj/structure/flora/jungle/grass/thin,
-/obj/effect/landmark/patrol_point/som_12,
+/obj/effect/landmark/patrol_point/som/som_12,
 /turf/open/ground/grass/weedable,
 /area/campaign/jungle_outpost/ground/jungle/south_west)
 "zK" = (
@@ -6766,7 +6766,7 @@
 /area/campaign/jungle_outpost/ground/jungle/south_west)
 "CW" = (
 /obj/structure/flora/jungle/bush,
-/obj/effect/landmark/patrol_point/som_14,
+/obj/effect/landmark/patrol_point/som/som_14,
 /turf/open/ground/grass/weedable,
 /area/campaign/jungle_outpost/ground/jungle/south_west)
 "CX" = (
@@ -7510,7 +7510,7 @@
 	},
 /area/campaign/jungle_outpost/outpost/security)
 "Gk" = (
-/obj/effect/landmark/patrol_point/som_22,
+/obj/effect/landmark/patrol_point/som/som_22,
 /obj/structure/flora/jungle/grass/thin,
 /turf/open/ground/grass/weedable,
 /area/campaign/jungle_outpost/ground/jungle/north_east)
@@ -11872,7 +11872,7 @@
 	},
 /area/campaign/jungle_outpost/outpost/science)
 "Zh" = (
-/obj/effect/landmark/patrol_point/som_24,
+/obj/effect/landmark/patrol_point/som/som_24,
 /turf/open/ground/grass/weedable,
 /area/campaign/jungle_outpost/ground/jungle/north_east)
 "Zj" = (
@@ -11965,7 +11965,7 @@
 	},
 /area/campaign/jungle_outpost/ground/jungle/east)
 "ZB" = (
-/obj/effect/landmark/patrol_point/som_13,
+/obj/effect/landmark/patrol_point/som/som_13,
 /turf/open/ground/grass/weedable,
 /area/campaign/jungle_outpost/ground/jungle/south_west)
 "ZD" = (

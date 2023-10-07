@@ -1101,14 +1101,14 @@
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/south)
 "fP" = (
-/obj/effect/landmark/patrol_point/som_13,
+/obj/effect/landmark/patrol_point/som/som_13,
 /obj/machinery/landinglight/lz1{
 	dir = 1
 	},
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/LZ1)
 "fS" = (
-/obj/effect/landmark/patrol_point/som_11,
+/obj/effect/landmark/patrol_point/som/som_11,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/LZ1)
 "ga" = (
@@ -3861,7 +3861,7 @@
 /turf/open/floor/plating,
 /area/icy_caves/outpost/garage)
 "uE" = (
-/obj/effect/landmark/patrol_point/som_24,
+/obj/effect/landmark/patrol_point/som/som_24,
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/northern)
 "uH" = (
@@ -4754,7 +4754,7 @@
 /turf/open/floor/plating/mainship,
 /area/icy_caves/caves/northwestmonorail/hallway)
 "zf" = (
-/obj/effect/landmark/patrol_point/som_14,
+/obj/effect/landmark/patrol_point/som/som_14,
 /obj/machinery/landinglight/lz1{
 	dir = 4
 	},
@@ -4882,7 +4882,7 @@
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/engineering)
 "zO" = (
-/obj/effect/landmark/patrol_point/som_22,
+/obj/effect/landmark/patrol_point/som/som_22,
 /turf/open/floor/plating/mainship,
 /area/icy_caves/caves/crashed_ship)
 "zP" = (
@@ -5661,7 +5661,7 @@
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northwestmonorail)
 "DC" = (
-/obj/effect/landmark/patrol_point/som_23,
+/obj/effect/landmark/patrol_point/som/som_23,
 /turf/open/floor/plating/dmg2,
 /area/icy_caves/caves/crashed_ship)
 "DD" = (
@@ -5701,7 +5701,7 @@
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/alienstuff)
 "DR" = (
-/obj/effect/landmark/patrol_point/som_21,
+/obj/effect/landmark/patrol_point/som/som_21,
 /turf/open/floor/plating/mainship,
 /area/icy_caves/caves/crashed_ship)
 "DU" = (
@@ -9289,7 +9289,7 @@
 /turf/open/shuttle/dropship/seven,
 /area/icy_caves/caves/northwestmonorail)
 "Wh" = (
-/obj/effect/landmark/patrol_point/som_12,
+/obj/effect/landmark/patrol_point/som/som_12,
 /turf/open/floor/plating/ground/snow/layer2,
 /area/icy_caves/outpost/LZ1)
 "Wi" = (

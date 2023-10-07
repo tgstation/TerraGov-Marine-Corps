@@ -5194,7 +5194,7 @@
 /turf/closed/wall,
 /area/lv624/lazarus/quartstorage)
 "ebN" = (
-/obj/effect/landmark/patrol_point/som_24,
+/obj/effect/landmark/patrol_point/som/som_24,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/east1)
 "ebP" = (
@@ -5540,7 +5540,7 @@
 "exE" = (
 /obj/structure/flora/jungle/vines,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/obj/effect/landmark/patrol_point/som_12,
+/obj/effect/landmark/patrol_point/som/som_12,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle3)
 "eyl" = (
@@ -6185,7 +6185,7 @@
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/sandtemple/garbledradio)
 "fof" = (
-/obj/effect/landmark/patrol_point/som_22,
+/obj/effect/landmark/patrol_point/som/som_22,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/east1)
 "foG" = (
@@ -7248,7 +7248,7 @@
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/engineering)
 "gAy" = (
-/obj/effect/landmark/patrol_point/som_13,
+/obj/effect/landmark/patrol_point/som/som_13,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle3)
 "gAO" = (
@@ -9133,7 +9133,7 @@
 /area/lv624/lazarus/quartstorage/dome)
 "iHd" = (
 /obj/structure/flora/jungle/vines,
-/obj/effect/landmark/patrol_point/som_11,
+/obj/effect/landmark/patrol_point/som/som_11,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle3)
 "iHH" = (
@@ -14390,7 +14390,7 @@
 /area/lv624/lazarus/bar)
 "oMV" = (
 /obj/structure/flora/jungle/vines,
-/obj/effect/landmark/patrol_point/som_14,
+/obj/effect/landmark/patrol_point/som/som_14,
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/ground/ruin)
 "oMX" = (
@@ -21244,7 +21244,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle1)
 "wtF" = (
-/obj/effect/landmark/patrol_point/som_23,
+/obj/effect/landmark/patrol_point/som/som_23,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/east1)
 "wui" = (
@@ -21674,7 +21674,7 @@
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/hydroponics/aux)
 "wOK" = (
-/obj/effect/landmark/patrol_point/som_21,
+/obj/effect/landmark/patrol_point/som/som_21,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/east1)
 "wON" = (

@@ -963,7 +963,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle7)
 "fm" = (
-/obj/effect/landmark/patrol_point/som_21,
+/obj/effect/landmark/patrol_point/som/som_21,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/east1)
 "fn" = (
@@ -1332,7 +1332,7 @@
 /turf/open/shuttle/dropship/floor,
 /area/lv624/ground/jungle9)
 "hk" = (
-/obj/effect/landmark/patrol_point/som_22,
+/obj/effect/landmark/patrol_point/som/som_22,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/east1)
 "hm" = (
@@ -1558,7 +1558,7 @@
 /turf/open/ground/grass/weedable,
 /area/lv624/lazarus/spaceport)
 "io" = (
-/obj/effect/landmark/patrol_point/som_24,
+/obj/effect/landmark/patrol_point/som/som_24,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/east1)
 "ip" = (
@@ -4544,7 +4544,7 @@
 /turf/open/floor/tile/bar,
 /area/lv624/lazarus/canteen)
 "xT" = (
-/obj/effect/landmark/patrol_point/som_14,
+/obj/effect/landmark/patrol_point/som/som_14,
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 10
 	},
@@ -4878,7 +4878,7 @@
 /turf/open/ground/grass/weedable,
 /area/lv624/ground/jungle7)
 "zu" = (
-/obj/effect/landmark/patrol_point/som_23,
+/obj/effect/landmark/patrol_point/som/som_23,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/east1)
 "zv" = (
@@ -5666,7 +5666,7 @@
 "Dp" = (
 /obj/structure/flora/jungle/vines,
 /obj/structure/cable,
-/obj/effect/landmark/patrol_point/som_13,
+/obj/effect/landmark/patrol_point/som/som_13,
 /turf/open/ground/grass/weedable,
 /area/lv624/lazarus/spaceport2)
 "Dq" = (
@@ -8680,7 +8680,7 @@
 /turf/open/floor/tile/blue/taupebluecorner,
 /area/lv624/lazarus/medbay)
 "Sr" = (
-/obj/effect/landmark/patrol_point/som_12,
+/obj/effect/landmark/patrol_point/som/som_12,
 /turf/open/floor,
 /area/lv624/lazarus/spaceport2)
 "Ss" = (
@@ -8737,7 +8737,7 @@
 /area/lv624/lazarus/research/caves)
 "SE" = (
 /obj/structure/cable,
-/obj/effect/landmark/patrol_point/som_11,
+/obj/effect/landmark/patrol_point/som/som_11,
 /turf/open/floor/plating,
 /area/lv624/lazarus/spaceport2)
 "SF" = (

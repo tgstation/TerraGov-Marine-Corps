@@ -18609,7 +18609,7 @@
 "diw" = (
 /obj/effect/turf_underlay/icefloor,
 /obj/effect/turf_underlay/icefloor,
-/obj/effect/landmark/patrol_point/som_23,
+/obj/effect/landmark/patrol_point/som/som_23,
 /turf/closed/mineral/smooth/bluefrostwall,
 /area/ice_colony/exterior/underground/caves/rock)
 "dka" = (
@@ -19829,7 +19829,7 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/hallway/south_east)
 "ffU" = (
-/obj/effect/landmark/patrol_point/som_11,
+/obj/effect/landmark/patrol_point/som/som_11,
 /obj/effect/landmark/xeno_tunnel_spawn,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/underground/caves/open)
@@ -19897,7 +19897,7 @@
 /turf/open/floor/plating,
 /area/ice_colony/underground/storage)
 "fkg" = (
-/obj/effect/landmark/patrol_point/som_12,
+/obj/effect/landmark/patrol_point/som/som_12,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/underground/caves/open)
 "fkU" = (
@@ -23964,7 +23964,7 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/research/field_gear)
 "liR" = (
-/obj/effect/landmark/patrol_point/som_21,
+/obj/effect/landmark/patrol_point/som/som_21,
 /turf/open/floor/plating,
 /area/ice_colony/surface/mining)
 "ljf" = (
@@ -31405,7 +31405,7 @@
 	},
 /area/ice_colony/underground/hallway/south_east/garbledradio)
 "vdh" = (
-/obj/effect/landmark/patrol_point/som_13,
+/obj/effect/landmark/patrol_point/som/som_13,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/underground/caves/open)
 "vdi" = (
@@ -31667,7 +31667,7 @@
 /turf/open/floor/freezer,
 /area/ice_colony/surface/bar/bar)
 "vuk" = (
-/obj/effect/landmark/patrol_point/som_14,
+/obj/effect/landmark/patrol_point/som/som_14,
 /turf/open/floor/plating/ground/ice,
 /area/ice_colony/exterior/underground/caves/open)
 "vvy" = (
@@ -32594,7 +32594,7 @@
 "wLj" = (
 /obj/effect/turf_underlay/icefloor,
 /obj/effect/turf_underlay/icefloor,
-/obj/effect/landmark/patrol_point/som_24,
+/obj/effect/landmark/patrol_point/som/som_24,
 /turf/closed/mineral/smooth/bluefrostwall,
 /area/ice_colony/exterior/underground/caves/rock)
 "wLI" = (
@@ -33424,7 +33424,7 @@
 /turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/valley/southwest)
 "xGL" = (
-/obj/effect/landmark/patrol_point/som_22,
+/obj/effect/landmark/patrol_point/som/som_22,
 /turf/open/floor/plating,
 /area/ice_colony/surface/mining)
 "xGZ" = (
