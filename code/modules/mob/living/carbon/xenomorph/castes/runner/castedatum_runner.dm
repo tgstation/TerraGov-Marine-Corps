@@ -52,8 +52,8 @@
 		/datum/action/xeno_action/watch_xeno,
 		/datum/action/xeno_action/activable/psydrain,
 		/datum/action/xeno_action/xenohide,
-		/datum/action/xeno_action/activable/runner_pounce,
 		/datum/action/xeno_action/evasion,
+		/datum/action/xeno_action/activable/pounce/runner,
 	)
 
 /datum/xeno_caste/runner/normal
@@ -70,7 +70,7 @@
 		/datum/action/xeno_action/watch_xeno,
 		/datum/action/xeno_action/activable/psydrain,
 		/datum/action/xeno_action/xenohide,
-		/datum/action/xeno_action/activable/runner_pounce,
 		/datum/action/xeno_action/evasion,
+		/datum/action/xeno_action/activable/pounce/runner,
 		/datum/action/xeno_action/activable/snatch,
 	)

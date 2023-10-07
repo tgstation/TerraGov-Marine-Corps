@@ -2,124 +2,37 @@
 // *********** Runner's Pounce
 // ***************************************
 #define RUNNER_POUNCE_RANGE 6 // in tiles
-#define RUNNER_POUNCE_SPEED 2
-#define RUNNER_POUNCE_STUN_DURATION 2 SECONDS
-#define RUNNER_POUNCE_STANDBY_DURATION 0.5 SECONDS
-#define RUNNER_POUNCE_SHIELD_STUN_DURATION 6 SECONDS
-#define RUNNER_POUNCE_BONUS_DAMAGE 25
+#define RUNNER_SAVAGE_BONUS_DAMAGE 25
 
-/datum/action/xeno_action/activable/runner_pounce
-	name = "Pounce (Runner)"
-	ability_name = "Pounce (Runner)"
-	desc = "Leap at your target, tackling and disarming them. Alternate use toggles Savage off or on."
+/datum/action/xeno_action/activable/pounce/runner
+	desc = "Leap at your target, tackling and disarming them Alternate use toggles Savage off or on."
 	action_icon_state = "pounce_savage_on"
 	plasma_cost = 10
-	cooldown_timer = 13 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_RUNNER_POUNCE,
 		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_TOGGLE_SAVAGE,
 	)
-	use_state_flags = XACT_USE_BUCKLED
+	pounce_range = RUNNER_POUNCE_RANGE
 	/// Whether Savage is active or not.
 	var/savage_activated = TRUE
 
-/datum/action/xeno_action/activable/runner_pounce/on_cooldown_finish()
-	owner.balloon_alert(owner, "Pounce ready")
-	playsound(owner, 'sound/effects/xeno_newlarva.ogg', 25, 0, 1)
-	var/mob/living/carbon/xenomorph/xeno_owner = owner
-	xeno_owner.usedPounce = FALSE
-	return ..()
-
-/datum/action/xeno_action/activable/runner_pounce/alternate_action_activate()
+/datum/action/xeno_action/activable/pounce/runner/alternate_action_activate()
 	savage_activated = !savage_activated
 	owner.balloon_alert(owner, "Savage [savage_activated ? "activated" : "deactivated"]")
 	action_icon_state = "pounce_savage_[savage_activated? "on" : "off"]"
 	update_button_icon()
 
-/datum/action/xeno_action/activable/runner_pounce/can_use_ability(atom/A, silent = FALSE, override_flags)
+/datum/action/xeno_action/activable/pounce/runner/mob_hit(datum/source, mob/living/living_target)
 	. = ..()
-	if(!.)
-		return FALSE
-	if(!A || A.layer >= FLY_LAYER)
-		return FALSE
-
-/datum/action/xeno_action/activable/runner_pounce/use_ability(atom/A)
-	if(owner.layer != MOB_LAYER)
-		owner.layer = MOB_LAYER
-		var/datum/action/xeno_action/xenohide/hide_action = owner.actions_by_path[/datum/action/xeno_action/xenohide]
-		hide_action?.button?.cut_overlay(mutable_appearance('icons/Xeno/actions.dmi', "selected_purple_frame", ACTION_LAYER_ACTION_ICON_STATE, FLOAT_PLANE)) // Removes Hide action icon border
-	if(owner.buckled)
-		owner.buckled.unbuckle_mob(owner)
-	RegisterSignal(owner, COMSIG_MOVABLE_MOVED, PROC_REF(movement_fx))
-	RegisterSignal(owner, COMSIG_XENO_OBJ_THROW_HIT, PROC_REF(object_hit))
-	RegisterSignal(owner, COMSIG_XENO_LIVING_THROW_HIT, PROC_REF(mob_hit))
-	RegisterSignal(owner, COMSIG_MOVABLE_POST_THROW, PROC_REF(pounce_complete))
-	SEND_SIGNAL(owner, COMSIG_XENOMORPH_POUNCE)
-	var/mob/living/carbon/xenomorph/xeno_owner = owner
-	xeno_owner.usedPounce = TRUE
-	xeno_owner.pass_flags |= PASS_LOW_STRUCTURE|PASS_FIRE|PASS_XENO
-	xeno_owner.throw_at(A, RUNNER_POUNCE_RANGE, RUNNER_POUNCE_SPEED, xeno_owner)
-	addtimer(CALLBACK(src, PROC_REF(reset_pass_flags)), 0.6 SECONDS)
-	succeed_activate()
-	add_cooldown()
-
-/datum/action/xeno_action/activable/runner_pounce/proc/movement_fx()
-	SIGNAL_HANDLER
-	new /obj/effect/temp_visual/xenomorph/afterimage(get_turf(owner), owner) //Create the after image.
-
-/datum/action/xeno_action/activable/runner_pounce/proc/object_hit(datum/source, obj/object_target, speed)
-	SIGNAL_HANDLER
-	object_target.hitby(owner, speed)
-	pounce_complete()
-
-/datum/action/xeno_action/activable/runner_pounce/proc/mob_hit(datum/source, mob/living/living_target)
-	SIGNAL_HANDLER
-	if(living_target.stat)
-		return
-	var/mob/living/carbon/xenomorph/xeno_owner = owner
-	if(ishuman(living_target) && (living_target.dir in reverse_nearby_direction(living_target.dir)))
-		var/mob/living/carbon/human/human_target = living_target
-		if(!human_target.check_shields(COMBAT_TOUCH_ATTACK, 30, "melee"))
-			xeno_owner.Paralyze(RUNNER_POUNCE_SHIELD_STUN_DURATION)
-			xeno_owner.set_throwing(FALSE)
-			return COMPONENT_KEEP_THROWING
-	playsound(living_target.loc, 'sound/voice/alien_pounce.ogg', 25, TRUE)
-	xeno_owner.Immobilize(RUNNER_POUNCE_STANDBY_DURATION)
-	xeno_owner.forceMove(get_turf(living_target))
-	living_target.Knockdown(RUNNER_POUNCE_STUN_DURATION)
 	if(savage_activated)
+		var/mob/living/carbon/xenomorph/xeno_owner = owner
 		if(xeno_owner.plasma_stored < xeno_owner.xeno_caste.plasma_max * 0.4)
 			owner.balloon_alert(owner, "Not enough plasma to Savage")
-			pounce_complete()
 			return
 		xeno_owner.use_plasma(xeno_owner.xeno_caste.plasma_max * 0.4)
-		living_target.attack_alien_harm(xeno_owner, RUNNER_POUNCE_BONUS_DAMAGE)
+		living_target.attack_alien_harm(xeno_owner, RUNNER_SAVAGE_BONUS_DAMAGE)
 		GLOB.round_statistics.runner_savage_attacks++
 		SSblackbox.record_feedback("tally", "round_statistics", 1, "runner_savage_attacks")
-	pounce_complete()
-
-/datum/action/xeno_action/activable/runner_pounce/proc/pounce_complete()
-	SIGNAL_HANDLER
-	UnregisterSignal(owner, list(COMSIG_MOVABLE_MOVED, COMSIG_XENO_OBJ_THROW_HIT, COMSIG_XENO_LIVING_THROW_HIT, COMSIG_MOVABLE_POST_THROW))
-	SEND_SIGNAL(owner, COMSIG_XENOMORPH_POUNCE_END)
-
-/datum/action/xeno_action/activable/runner_pounce/proc/reset_pass_flags()
-	var/mob/living/carbon/xenomorph/xeno_owner = owner
-	xeno_owner.pass_flags = initial(xeno_owner.pass_flags)
-
-/datum/action/xeno_action/activable/runner_pounce/ai_should_start_consider()
-	return TRUE
-
-/datum/action/xeno_action/activable/runner_pounce/ai_should_use(atom/target)
-	if(!iscarbon(target))
-		return FALSE
-	if(!line_of_sight(owner, target, RUNNER_POUNCE_RANGE))
-		return FALSE
-	if(!can_use_ability(target, override_flags = XACT_IGNORE_SELECTED_ABILITY))
-		return FALSE
-	if(target.get_xeno_hivenumber() == owner.get_xeno_hivenumber())
-		return FALSE
-	return TRUE
 
 
 // ***************************************
