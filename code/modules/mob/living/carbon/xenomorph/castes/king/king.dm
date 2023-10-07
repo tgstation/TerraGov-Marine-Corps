@@ -40,7 +40,7 @@
 		if(18001 to INFINITY)
 			name = prefix + "Ancient Emperor ([nicknumber])"
 		else
-			name = prefix + "Young King ([nicknumber])"
+			name = prefix + "Hatchling King ([nicknumber])"
 
 	real_name = name
 	if(mind)
