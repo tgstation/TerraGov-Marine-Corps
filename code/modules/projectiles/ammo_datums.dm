@@ -3084,13 +3084,13 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	hud_state = "laser_xray"
 	icon_state = "u_laser"
 	flags_ammo_behavior = AMMO_ENERGY|AMMO_SUNDERING|AMMO_HITSCAN
-	damage = 25
-	penetration = 10
+	damage = 20
+	penetration = 0
 	sundering = 1
 	max_range = 15
 	hitscan_effect_icon = "u_laser_beam"
 	/// Number of debuff stacks to apply when hitting mobs.
-	var/debuff_stacks = 5
+	var/debuff_stacks = 1
 
 /datum/ammo/energy/lasgun/marine/xray/piercing
 	name = "xray piercing bolt"
