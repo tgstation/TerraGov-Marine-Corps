@@ -3084,8 +3084,8 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	hud_state = "laser_xray"
 	icon_state = "u_laser"
 	flags_ammo_behavior = AMMO_ENERGY|AMMO_SUNDERING|AMMO_HITSCAN
-	damage = 20
-	penetration = 0
+	damage = 25
+	penetration = 10
 	sundering = 1
 	max_range = 15
 	hitscan_effect_icon = "u_laser_beam"
