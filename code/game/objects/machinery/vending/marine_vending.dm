@@ -942,6 +942,7 @@
 			/obj/item/reagent_containers/hypospray/autoinjector/imidazoline = -1,
 			/obj/item/reagent_containers/hypospray/autoinjector/quickclot = -1,
 			/obj/item/reagent_containers/hypospray/autoinjector/medicalnanites = -1,
+			/obj/item/reagent_containers/hypospray/autoinjector/russian_red = -1,
 		),
 		"Heal Pack" = list(
 			/obj/item/stack/medical/heal_pack/gauze = -1,
@@ -960,7 +961,6 @@
 			/obj/item/reagent_containers/hypospray/autoinjector/roulettium = -1,
 			/obj/item/reagent_containers/hypospray/autoinjector/rezadone = -1,
 			/obj/item/reagent_containers/hypospray/autoinjector/spaceacillin = -1,
-			/obj/item/reagent_containers/hypospray/autoinjector/combat = -1,
 			/obj/item/reagent_containers/hypospray/autoinjector/synaptizine = -1,
 			/obj/item/reagent_containers/hypospray/autoinjector/neuraline = -1,
 			/obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus = -1,
