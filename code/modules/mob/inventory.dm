@@ -331,7 +331,7 @@
 		if(item_contents.flags_item & IN_INVENTORY)
 			items += item_contents
 	items -= get_active_held_item()
-	items -= get_active_held_item()
+	items -= get_inactive_held_item()
 	return items
 
 /**

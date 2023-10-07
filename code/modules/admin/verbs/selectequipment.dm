@@ -204,7 +204,10 @@
 	var/delete_pocket
 	var/mob/living/carbon/human/human_target
 	if(isobserver(target))
-		human_target = target.change_mob_type(/mob/living/carbon/human, delete_old_mob = TRUE)
+		human_target = new(get_turf(target))
+		target.client.prefs.copy_to(human_target)
+		target.mind.transfer_to(human_target, TRUE)
+		qdel(target)
 	else
 		human_target = target
 		if(human_target.l_store || human_target.r_store || human_target.s_store) //saves a lot of time for admins and coders alike

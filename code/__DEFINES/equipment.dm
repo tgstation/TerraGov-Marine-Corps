@@ -65,28 +65,28 @@
 //clothing specific stuff uses flags_inventory.
 //flags_item
 #define NODROP (1<<0)	// Cannot be dropped/unequipped at all, only deleted.
-///is this item equipped into an inventory slot or hand of a mob?
-#define IN_INVENTORY (1<<1)
-#define NOBLUDGEON (1<<2)	// when an item has this it produces no "X has been hit by Y with Z" message with the default handler
-#define DELONDROP (1<<3)	// Deletes on drop instead of falling on the floor.
-#define TWOHANDED (1<<4)	// The item is twohanded.
-#define WIELDED (1<<5)	// The item is wielded with both hands.
-#define ITEM_ABSTRACT (1<<6)	//The item is abstract (grab, powerloader_clamp, etc)
-#define DOES_NOT_NEED_HANDS (1<<7)	//Dont need hands to use it
-#define SYNTH_RESTRICTED (1<<8)	//Prevents synths from wearing items with this flag
-#define IMPEDE_JETPACK (1<<9)  //Reduce the range of jetpack
-#define CAN_BUMP_ATTACK (1<<10)	 //Item triggers bump attack
-#define IS_DEPLOYABLE (1<<11) //Item can be deployed into a machine
-#define DEPLOY_ON_INITIALIZE (1<<12)
-#define IS_DEPLOYED (1<<13) //If this is on an item, said item is currently deployed
-#define DEPLOYED_NO_PICKUP  (1<<14) //Disables deployed item pickup
-#define DEPLOYED_NO_ROTATE  (1<<15) //Disables deployed item rotation abilities to rotate.
-#define DEPLOYED_NO_ROTATE_ANCHORED (1<<16) //Disables deployed item rotation if anchored.
-#define DEPLOYED_WRENCH_DISASSEMBLE (1<<17) //If this is on an item, the item can only be disassembled using a wrench once deployed.
-#define DEPLOYED_ANCHORED_FIRING_ONLY (1<<18) //Disables firing deployable if it is not anchored.
-#define FULLY_WIELDED (1<<19) //If the item is properly wielded. Used for guns
+#define NOBLUDGEON (1<<1)	// when an item has this it produces no "X has been hit by Y with Z" message with the default handler
+#define DELONDROP (1<<2)	// Deletes on drop instead of falling on the floor.
+#define TWOHANDED (1<<3)	// The item is twohanded.
+#define WIELDED (1<<4)	// The item is wielded with both hands.
+#define ITEM_ABSTRACT (1<<5)	//The item is abstract (grab, powerloader_clamp, etc)
+#define DOES_NOT_NEED_HANDS (1<<6)	//Dont need hands to use it
+#define SYNTH_RESTRICTED (1<<7)	//Prevents synths from wearing items with this flag
+#define IMPEDE_JETPACK (1<<8)  //Reduce the range of jetpack
+#define CAN_BUMP_ATTACK (1<<9)	 //Item triggers bump attack
+#define IS_DEPLOYABLE (1<<10) //Item can be deployed into a machine
+#define DEPLOY_ON_INITIALIZE (1<<11)
+#define IS_DEPLOYED (1<<12) //If this is on an item, said item is currently deployed
+#define DEPLOYED_NO_PICKUP  (1<<13) //Disables deployed item pickup
+#define DEPLOYED_NO_ROTATE  (1<<14) //Disables deployed item rotation abilities to rotate.
+#define DEPLOYED_NO_ROTATE_ANCHORED (1<<15) //Disables deployed item rotation if anchored.
+#define DEPLOYED_WRENCH_DISASSEMBLE (1<<16) //If this is on an item, the item can only be disassembled using a wrench once deployed.
+#define DEPLOYED_ANCHORED_FIRING_ONLY (1<<17) //Disables firing deployable if it is not anchored.
+#define FULLY_WIELDED (1<<18) //If the item is properly wielded. Used for guns
 ///If a holster has underlay sprites
-#define HAS_UNDERLAY (1<<20)
+#define HAS_UNDERLAY (1<<19)
+///is this item equipped into an inventory slot or hand of a mob?
+#define IN_INVENTORY (1<<20)
 
 //==========================================================================================
 

@@ -57,11 +57,10 @@ GLOBAL_LIST_EMPTY(dummy_mob_list)
 			var/mob/living/carbon/human/human_target = target
 			human_target.copy_clothing_prefs(copycat)
 
-	/*
 	else
 		//even if target isn't a carbon, if they have a client we can make the
 		//dummy look like what their human would look like based on their prefs
-		target?.client?.prefs?.apply_prefs_to(copycat, TRUE) */ // Not gonna bother porting if it's not needed -Xander
+		target?.client?.prefs?.copy_to(copycat)
 
 	return copycat
 
