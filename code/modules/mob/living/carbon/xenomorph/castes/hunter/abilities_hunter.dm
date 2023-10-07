@@ -258,11 +258,22 @@
 		cancel_stealth()
 
 // ***************************************
-// *********** Pounce/sneak attack
+// *********** Hunter's Pounce
 // ***************************************
-/datum/action/xeno_action/activable/pounce/hunter
+/datum/action/xeno_action/activable/runner_pounce/hunter
+	name = "Pounce (Hunter)"
+	ability_name = "Pounce (Hunter)"
+	desc = "Leap at your target, tackling and disarming them."
+	action_icon_state = "pounce"
 	plasma_cost = 20
-	range = 7
+	cooldown_timer = 10 SECONDS
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_HUNTER_POUNCE,
+	)
+	savage_activated = FALSE
+
+/datum/action/xeno_action/activable/runner_pounce/hunter/alternate_action_activate()
+	//
 
 // ***************************************
 // *********** Hunter's Mark
