@@ -528,6 +528,9 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 30
 	penetration = 10
 
+/datum/ammo/bullet/revolver/marksman/judge
+	damage = 70
+
 /datum/ammo/bullet/revolver/heavy
 	name = "heavy revolver bullet"
 	hud_state = "revolver_heavy"

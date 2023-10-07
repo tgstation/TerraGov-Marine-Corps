@@ -265,7 +265,7 @@
 	)
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 22,"rail_x" = 17, "rail_y" = 22, "under_x" = 22, "under_y" = 17, "stock_x" = 22, "stock_y" = 19)
 
-	fire_delay = 0.35 SECONDS
+	fire_delay = 0.8 SECONDS
 	scatter = 8 // Only affects buckshot considering marksman has -15 scatter.
 	damage_falloff_mult = 1.2
 
