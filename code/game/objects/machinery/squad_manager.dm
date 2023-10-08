@@ -1,9 +1,4 @@
-/// Color_hex = ui_key assoc list
-GLOBAL_LIST_INIT(custom_squad_colors, list(
-
-))
-
-
+#define MAX_SQUAD_NAME_LEN 15
 
 /obj/machinery/computer/squad_manager
 	name = "squad managment console"
@@ -24,6 +19,7 @@ GLOBAL_LIST_INIT(custom_squad_colors, list(
 	for(var/datum/squad/squad AS in SSjob.active_squads[user.faction])
 		var/leader_name = squad.squad_leader?.real_name ? squad.squad_leader.real_name : "NONE"
 		data["active_squads"] += list(list("name" = squad.name, "leader" = leader_name, "color" = squad.color))
+	data["valid_colors"] = GLOB.custom_squad_colors
 	return data
 
 /obj/machinery/computer/squad_manager/ui_act(action, list/params)
@@ -45,6 +41,13 @@ GLOBAL_LIST_INIT(custom_squad_colors, list(
 	var/new_name = sanitize(params["name"])
 	var/new_color = params["color"]
 	var/new_desc = sanitize(params["desc"])
+
+	if(!GLOB.custom_squad_colors[new_color])
+		return
+	
+	if(length(new_name) > MAX_SQUAD_NAME_LEN)
+		to_chat(user, span_danger("Squad description is too long"))
+		return FALSE
 
 	var/filter_result = is_ic_filtered(new_name)
 	if(filter_result)
@@ -68,4 +71,3 @@ GLOBAL_LIST_INIT(custom_squad_colors, list(
 	new_squad.desc = new_desc
 	ui_close(user)
 	balloon_alert(user, "\"[new_name]\" created")
-	return TRUE

@@ -77,8 +77,7 @@ GLOBAL_LIST_INIT(freqtospan, list(
 #define CMSG_JOBPART compose_job(speaker, message_language, raw_message, radio_freq)
 /atom/movable/proc/compose_message(atom/movable/speaker, datum/language/message_language, raw_message, radio_freq, list/spans, message_mode, face_name = FALSE)
 	//Basic span
-	var/is_custom_radio = ((radio_freq < FREQ_CUSTOM_SQUAD_MAX) && (radio_freq >= FREQ_CUSTOM_SQUAD_MIN))
-	var/spanpart1 = is_custom_radio ? "<font color='[GLOB.custom_squad_radio_freqs["[radio_freq]"].color]'>": "<span class='[radio_freq ? get_radio_span(radio_freq) : "game say"]'>"
+	var/spanpart1 = "<span class='[radio_freq ? get_radio_span(radio_freq) : "game say"]'>"
 	//Start name span.
 	var/spanpart2 = "<span class='name'>"
 	//Speaker name
@@ -209,6 +208,9 @@ GLOBAL_LIST_INIT(freqtospan, list(
 	var/returntext = GLOB.freqtospan["[freq]"]
 	if(returntext)
 		return returntext
+	if((freq < FREQ_CUSTOM_SQUAD_MAX) && (freq >= FREQ_CUSTOM_SQUAD_MIN))
+		var/squad_color = GLOB.custom_squad_radio_freqs["[freq]"].color
+		return GLOB.custom_squad_colors[squad_color]
 	return "radio"
 
 

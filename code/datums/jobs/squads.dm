@@ -429,6 +429,7 @@ GLOBAL_LIST_EMPTY_TYPED(custom_squad_radio_freqs, /datum/squad)
 
 	var/squad_faction = creator.faction
 	var/datum/squad/new_squad = new(squad_color, squad_name)
+	new_squad.id = new_id
 	new_squad.access = list(ACCESS_MARINE_ALPHA, ACCESS_MARINE_BRAVO, ACCESS_MARINE_CHARLIE, ACCESS_MARINE_DELTA)
 	new_squad.radio_freq = freq
 	GLOB.custom_squad_radio_freqs["[freq]"] = new_squad
@@ -456,3 +457,16 @@ GLOBAL_LIST_EMPTY_TYPED(custom_squad_radio_freqs, /datum/squad)
 	creator.change_squad(new_squad.id)
 	new_squad.promote_leader(creator)
 	return new_squad
+
+/// Color_hex = ui_key assoc list
+GLOBAL_LIST_INIT(custom_squad_colors, list(
+	COLOR_RED = "alpharadio",
+	COLOR_VERY_SOFT_YELLOW = "bravoradio",
+	COLOR_STRONG_MAGENTA = "charlieradio",
+	COLOR_NAVY = "deltaradio",
+	COLOR_PURPLE = "sciradio",
+	COLOR_TAN_ORANGE = "zuluradio",
+	COLOR_TEAL = "yankeeradio",
+	COLOR_GREEN = "xrayradio",
+	COLOR_MAGENTA = "whiskeyradio",
+))

@@ -1,6 +1,7 @@
-import { Stack, Box, Button, TextArea } from '../components';
+import { Stack, Box, Button, TextArea, Dropdown } from '../components';
 import { Window } from '../layouts';
 import { useBackend, useLocalState } from '../backend';
+import { DropdownEntry } from '../components/Dropdown';
 
 type SquadManagerData = {
   active_squads: SquadData[];
@@ -85,12 +86,11 @@ export const SquadManager = (props, context) => {
               <Stack.Item>
                 <Stack>
                   <Stack.Item>
-                    <TextArea
-                      content={squadColor}
-                      placeholder={'New color'}
-                      onChange={(e, value) => setSquadColor(value)}
-                      width="180px"
-                      height="20px"
+                    <Dropdown
+                      width={'180px'}
+                      selected={squadColor}
+                      options={Object.keys(valid_colors)}
+                      onSelected={(e) => setSquadColor(e)}
                     />
                   </Stack.Item>
                   <Stack.Item>
