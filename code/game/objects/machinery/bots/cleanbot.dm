@@ -96,8 +96,6 @@
 		/obj/item/ammo_casing,
 		/obj/effect/turf_decal/tracks/wheels/bloody,
 	)
-	///have we played a sound when moving into a tile
-	var/has_played_sound = FALSE
 
 /obj/machinery/bot/cleanbot/Initialize(mapload)
 	. = ..()
@@ -144,17 +142,18 @@
 	SIGNAL_HANDLER
 	for(var/obj/dirtyobject in loc)
 		clean(dirtyobject)
-	has_played_sound = FALSE
+	if(HAS_TRAIT(src, TRAIT_HAS_PLAYED_CLEANING_SOUND))
+		REMOVE_TRAIT(src, TRAIT_HAS_PLAYED_CLEANING_SOUND)
 	stuck_counter = 0
 
 ///clean dirty objects and remove cleanable decals
 /obj/machinery/bot/cleanbot/proc/clean(atom/movable/O as obj|mob)
 	var/turf/currentturf = get_turf(src)
 	if(is_type_in_list(O, cleantypes))
-		if(is_cleanable(O) && !has_played_sound)
+		if(is_cleanable(O) && !HAS_TRAIT(src, TRAIT_HAS_PLAYED_CLEANING_SOUND))
 			playsound(loc, 'sound/effects/slosh.ogg', 25, 1)
 			currentturf.wet_floor()
-			has_played_sound = TRUE
+			ADD_TRAIT(src, TRAIT_HAS_PLAYED_CLEANING_SOUND)
 		flick("cleanbot-c", src)
 		++counter
 		if(prob(15))

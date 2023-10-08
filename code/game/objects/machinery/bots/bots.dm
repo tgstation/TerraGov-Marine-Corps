@@ -112,6 +112,7 @@
 			else
 				bot_startup()
 
+///handles bot deactivation process
 /obj/machinery/bot/proc/bot_shutdown()
 	balloon_alert_to_viewers("Powers off")
 	if(deactivation_animation)
@@ -122,6 +123,7 @@
 	update_icon()
 	stop_processing()
 
+///handles bot activation process
 /obj/machinery/bot/proc/bot_startup()
 	balloon_alert_to_viewers("Powers on")
 	if(activation_animation)
