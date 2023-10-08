@@ -626,6 +626,9 @@
 			holder.overlays += image('icons/mob/hud.dmi', src, "hud[aura_type]aura")
 
 /mob/living/carbon/human/proc/hud_set_armor()
+	if(!CONFIG_GET(flag/armor_hud))
+		return
+
 	var/image/holder = hud_list[ARMOR_HUD]
 	if(!holder)
 		return
@@ -655,7 +658,7 @@
 				//chem_booster/proc/hud_update_resource() handles what sprite to assign
 				SEND_SIGNAL(src, COMSIG_CHEMSYSTEM_RESOURCE_UPDATE)
 			if(/obj/item/armor_module/module/eshield, /obj/item/armor_module/module/eshield/som)
-				holder.overlays += image(holder.icon, src, "shield")
+				holder.overlays += image(holder.icon, src, "eshield")
 			if(/obj/item/armor_module/module/fire_proof, /obj/item/armor_module/module/fire_proof/som)
 				holder.overlays += image(holder.icon, src, "fire")
 			if(/obj/item/armor_module/module/hlin_explosive_armor)
@@ -678,17 +681,17 @@
 	So to compromise, store whichever is highest to judge the armor level: overall mob soft_armor or the suit's soft_armor (same as chest)
 	There are 4 different armor levels, but level 4 is reserved for melee 65 and above (heavy armor with Tyr Mk2 and B18)
 	*/
-	var/amount = FLOOR((armor ? max(soft_armor.getRating(MELEE), armor.soft_armor.getRating(MELEE)) : soft_armor.getRating(MELEE)) / 16, 1)
+	var/amount = min(FLOOR((armor ? max(soft_armor.getRating(MELEE), armor.soft_armor.getRating(MELEE)) : soft_armor.getRating(MELEE)) / 16, 1), 4)
 
 	//If the armor value has not changed, no need to update
 	//7 is how many characters long "armor_" is
 	if(holder.icon_state && amount == text2num(copytext(holder.icon_state, 7)))
 		return
 
-	if(amount >= 4)
-		holder.icon_state = "armor_4"
+	//In the event that the armor value is 0 AND there is no module, don't show anything
+	if(amount == 0 && !holder.overlays.len)
+		holder.icon_state = ""
 	else
-		//There is no "armor_0" so if armor is too low, it will not display an icon
 		holder.icon_state = "armor_[amount]"
 
 	hud_list[ARMOR_HUD] = holder

@@ -161,7 +161,7 @@
 	for(var/datum/action/current_action AS in component_actions)
 		current_action.remove_action(wearer)
 
-	if(ishuman(wearer))
+	if(CONFIG_GET(flag/armor_hud) && ishuman(wearer))
 		var/mob/living/carbon/human/human = wearer
 		UnregisterSignal(human, COMSIG_CHEMSYSTEM_RESOURCE_UPDATE)
 
@@ -178,7 +178,7 @@
 		current_action.give_action(wearer)
 
 
-	if(ishuman(wearer))
+	if(CONFIG_GET(flag/armor_hud) && ishuman(wearer))
 		var/mob/living/carbon/human/human = wearer
 		RegisterSignal(human, COMSIG_CHEMSYSTEM_RESOURCE_UPDATE, PROC_REF(hud_resource_update))
 
@@ -390,7 +390,7 @@
 	var/amount_added = min(resource_storage_max - resource_storage_current, amount)
 	resource_storage_current = max(resource_storage_current + amount_added, 0)
 	//Check if reagent level was empty and now is not, or if it was not empty but now is
-	if(ishuman(wearer) && ((!resource_storage_current && amount_added) || resource_storage_current == amount_added))
+	if(CONFIG_GET(flag/armor_hud) && ishuman(wearer) && ((!resource_storage_current && amount_added) || resource_storage_current == amount_added))
 		hud_resource_update()
 
 ///Updates the icon of the user's HUD to show if Vali has green blood or not
