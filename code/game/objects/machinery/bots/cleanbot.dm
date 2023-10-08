@@ -143,7 +143,7 @@
 	for(var/obj/dirtyobject in loc)
 		clean(dirtyobject)
 	if(HAS_TRAIT(src, TRAIT_HAS_PLAYED_CLEANING_SOUND))
-		REMOVE_TRAIT(src, TRAIT_HAS_PLAYED_CLEANING_SOUND)
+		REMOVE_TRAIT(src, TRAIT_HAS_PLAYED_CLEANING_SOUND, src)
 	stuck_counter = 0
 
 ///clean dirty objects and remove cleanable decals
@@ -153,7 +153,7 @@
 		if(is_cleanable(O) && !HAS_TRAIT(src, TRAIT_HAS_PLAYED_CLEANING_SOUND))
 			playsound(loc, 'sound/effects/slosh.ogg', 25, 1)
 			currentturf.wet_floor()
-			ADD_TRAIT(src, TRAIT_HAS_PLAYED_CLEANING_SOUND)
+			ADD_TRAIT(src, TRAIT_HAS_PLAYED_CLEANING_SOUND), src)
 		flick("cleanbot-c", src)
 		++counter
 		if(prob(15))
