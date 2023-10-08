@@ -49,6 +49,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	var/ghost_squadhud = FALSE
 	var/ghost_xenohud = FALSE
 	var/ghost_orderhud = FALSE
+	///If you can see things only ghosts see, like other ghosts
 	var/ghost_vision = TRUE
 	var/ghost_orbit = GHOST_ORBIT_CIRCLE
 	///Position in the larva queue
@@ -964,3 +965,10 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	if(!..())
 		return FALSE
 	visible_message(span_deadsay("[span_name("[src]")] points at [pointed_atom]."))
+
+/mob/dead/observer/CtrlShiftClickOn(mob/target_ghost)
+	if(ghost_vision && check_rights(R_SPAWN))
+		if(src == target_ghost)
+			client.holder.spatial_agent()
+		else
+			target_ghost.change_mob_type(/mob/living/carbon/human , null, null, TRUE) //always delmob, ghosts shouldn't be left lingering
