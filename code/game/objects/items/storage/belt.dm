@@ -559,7 +559,7 @@
 	new /obj/item/ammo_magazine/rifle/type71(src)
 	new /obj/item/ammo_magazine/rifle/type71(src)
 	new /obj/item/ammo_magazine/rifle/type71(src)
-
+	new /obj/item/ammo_magazine/rifle/type71(src)
 
 /obj/item/storage/belt/marine/som
 	name = "\improper S18 ammo belt"
