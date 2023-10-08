@@ -60,7 +60,8 @@ export const SelectEquipment = (props, context) => {
           <Stack.Item>
             <Stack fill vertical>
               <Stack.Item>
-                <Input width={20}
+                <Input
+                  width={20}
                   fluid
                   autoFocus
                   placeholder="Search"
