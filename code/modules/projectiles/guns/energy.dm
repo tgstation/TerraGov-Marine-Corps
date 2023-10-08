@@ -335,6 +335,7 @@
 
 	playsound(user, 'sound/weapons/emitter.ogg', 5, FALSE, 2)
 
+	shots_fired = 0
 	gun_firemode = initial(choice.fire_mode)
 	gun_firemode_list = list(gun_firemode)
 	ammo_datum_type = initial(choice.ammo_datum_type)
@@ -949,9 +950,9 @@
 	fire_sound = 'sound/weapons/guns/fire/laser3.ogg'
 	icon_state = "tex"
 	item_state = "tex"
-	max_shots = 40 //codex stuff
-	ammo_datum_type = /datum/ammo/energy/lasgun/marine/xray
-	rounds_per_shot = 15
+	max_shots = 50 //codex stuff
+	ammo_datum_type = /datum/ammo/energy/lasgun/marine/xray/standard
+	rounds_per_shot = 12
 	attachable_allowed = list(
 		/obj/item/attachable/bayonet,
 		/obj/item/attachable/bayonetknife,
@@ -960,7 +961,6 @@
 		/obj/item/attachable/lasersight,
 		/obj/item/attachable/flashlight,
 		/obj/item/attachable/magnetic_harness,
-		/obj/item/attachable/scope/marine,
 		/obj/item/attachable/scope/mini,
 		/obj/item/weapon/gun/flamer/mini_flamer,
 		/obj/item/attachable/motiondetector,
@@ -990,8 +990,8 @@
 	)
 
 /datum/lasrifle/energy_rifle_mode/xray
-	rounds_per_shot = 15
-	ammo_datum_type = /datum/ammo/energy/lasgun/marine/xray
+	rounds_per_shot = 12
+	ammo_datum_type = /datum/ammo/energy/lasgun/marine/xray/standard
 	fire_delay = 0.25 SECONDS
 	fire_sound = 'sound/weapons/guns/fire/laser3.ogg'
 	message_to_user = "You set the xray rifle's charge mode to standard fire."

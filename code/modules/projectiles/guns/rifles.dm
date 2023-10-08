@@ -2452,3 +2452,55 @@
 
 /obj/item/weapon/gun/rifle/icc_autoshotgun/guard
 	starting_attachment_types = list(/obj/item/attachable/verticalgrip, /obj/item/attachable/magnetic_harness)
+
+//-------------------------------------------------------
+//L-88 Assaultcarbine and EM-88 'Export' Varient
+
+/obj/item/weapon/gun/rifle/icc_assaultcarbine
+	name = "\improper L-88 assault carbine"
+	desc = "An aged, reliable but outdated bullpup rifle used by ICCAF reserve personnel it is best used in close quarters when you need to quickly clear corners at rapid pace, has an integral foregrip and unmagnified scope to increase accuracy and reduce drag. Chambered in 5.56x45mm NATO."
+	icon = 'icons/Marine/gun64.dmi'
+	icon_state = "l88"
+	item_state = "l88"
+	muzzleflash_iconstate = "muzzle_flash_medium"
+	caliber = CALIBER_556X45 //codex
+	max_shells = 30 //codex
+	fire_sound = 'sound/weapons/guns/fire/famas.ogg'
+	unload_sound = 'sound/weapons/guns/interact/m16_unload.ogg'
+	reload_sound = 'sound/weapons/guns/interact/m16_reload.ogg'
+	cocked_sound = 'sound/weapons/guns/interact/m16_cocked.ogg'
+	default_ammo_type = /obj/item/ammo_magazine/rifle/icc_assaultcarbine
+	allowed_ammo_types = list(
+		/obj/item/ammo_magazine/rifle/icc_assaultcarbine,
+		/obj/item/ammo_magazine/rifle/icc_assaultcarbine/export,
+	)
+	attachable_allowed = list(
+		/obj/item/attachable/suppressor,
+		/obj/item/attachable/bayonet,
+		/obj/item/attachable/bayonetknife,
+		/obj/item/attachable/bayonetknife/som,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/compensator,
+		/obj/item/attachable/magnetic_harness,
+	)
+
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
+	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOBURST)
+	attachable_offset = list("muzzle_x" = 44, "muzzle_y" = 19,"rail_x" = 8, "rail_y" = 21, "under_x" = 28, "under_y" = 12, "stock_x" = 19, "stock_y" = 13)
+
+	fire_delay = 0.2 SECONDS
+	burst_delay = 0.1 SECONDS
+	extra_delay = 0.15 SECONDS
+	accuracy_mult = 1.15
+	damage_mult = 1.2
+	damage_falloff_mult = 1.5
+	wield_delay = 0.65 SECONDS
+	aim_slowdown = 0.2
+	scatter = 0
+
+/obj/item/weapon/gun/rifle/icc_assaultcarbine/export
+	name = "\improper L&S EM-88 assault carbine"
+	desc = "An aged, reliable, but outdated bullpup rifle usually seen within ICC space due to being surplused long ago, some of these surplus models sometimes find themselves within TGMC space via underhanded means. It's best used in close quarters when you need to quickly clear corners at rapid pace, has an integral foregrip and unmagnified scope to increase accuracy and reduce drag. Chambered in 5.56x45mm NATO."
+	icon_state = "l88_export"
+	item_state = "l88_export"
+	default_ammo_type = /obj/item/ammo_magazine/rifle/icc_assaultcarbine/export

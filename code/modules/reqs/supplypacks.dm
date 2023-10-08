@@ -1736,6 +1736,16 @@ Imports
 	contains = list(/obj/item/ammo_magazine/rifle/famas)
 	cost = 5
 
+/datum/supply_packs/imports/aug	//Vietnam time
+	name = "L&S EM-88 Assault Carbine"
+	contains = list(/obj/item/weapon/gun/rifle/icc_assaultcarbine/export)
+	cost = 120
+
+/datum/supply_packs/imports/aug/ammo
+	name = "EM-88 Assault Carbine Ammo"
+	contains = list(/obj/item/ammo_magazine/rifle/icc_assaultcarbine/export)
+	cost = 5
+
 /datum/supply_packs/imports/rev357
 	name = "'Rebota' Revolver"
 	contains = list(/obj/item/weapon/gun/revolver/small)

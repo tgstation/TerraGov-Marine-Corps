@@ -182,6 +182,11 @@
 	log_admin("[key_name(usr)] deleted [A]([A.type]) at [AREACOORD(T)].")
 	message_admins("[ADMIN_TPMONTY(usr)] deleted [A]([A.type]) at [ADMIN_VERBOSEJMP(T)].")
 
+	if(isturf(A))
+		var/turf/deleting_turf = A
+		deleting_turf.ScrapeAway()
+		return
+
 	qdel(A)
 
 
@@ -202,6 +207,33 @@
 	log_admin("[key_name(usr)] has restarted the [controller] controller.")
 	message_admins("[ADMIN_TPMONTY(usr)] has restarted the [controller] controller.")
 
+
+/client/proc/debug_controller()
+	set category = "Debug"
+	set name = "Debug Controller"
+	set desc = "Debug the various periodic loop controllers for the game (be careful!)"
+
+	if(!check_rights(R_DEBUG))
+		return
+
+	var/list/controllers = list()
+	var/list/controller_choices = list()
+
+	for(var/datum/controller/controller)
+		if(istype(controller, /datum/controller/subsystem))
+			continue
+		controllers["[controller] (controller.type)"] = controller //we use an associated list to ensure clients can't hold references to controllers
+		controller_choices += "[controller] (controller.type)"
+
+	var/datum/controller/controller_string = input("Select controller to debug", "Debug Controller") as null|anything in controller_choices
+	var/datum/controller/controller = controllers[controller_string]
+
+	if(!istype(controller))
+		return
+	debug_variables(controller)
+
+	log_admin("[key_name(usr)] is debugging the [controller] controller.")
+	message_admins("Admin [key_name_admin(usr)] is debugging the [controller] controller.")
 
 /datum/admins/proc/check_contents()
 	set category = "Debug"

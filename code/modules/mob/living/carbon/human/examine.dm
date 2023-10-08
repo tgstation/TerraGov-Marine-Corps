@@ -31,6 +31,8 @@
 		if(reagents.get_reagent_amount(/datum/reagent/toxin/xeno_sanguinal))
 			msg += "Sanguinal: Causes brute damage and bleeding from the brute damage. Does additional damage types in the presence of other xeno-based toxins. Toxin damage for Neuro, Stamina damage for Hemodile, and Burn damage for Transvitox.\n"
 		msg += "</span>"
+		if(HAS_TRAIT(src, TRAIT_HOLLOW))
+			msg += "<span style='font-weight: bold; color: purple;'>It is hollow. Useless.</span>\n"
 		return list(msg)
 
 	var/skipgloves = 0
@@ -527,6 +529,9 @@
 		msg += span_highdanger("<B>This player has been slept by staff.</B>\n")
 
 	msg += "</span>"
+	
+	if(HAS_TRAIT(src, TRAIT_HOLLOW))
+		msg += "[span_warning("<b>[t_He] is hollowed out!</b>")]\n"
 
 	return list(msg)
 
