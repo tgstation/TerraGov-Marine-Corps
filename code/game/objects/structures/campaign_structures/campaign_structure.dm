@@ -15,7 +15,8 @@
 		return
 	var/datum/campaign_mission/current_mission = mode.current_mission
 	if(current_mission.type in mission_types)
-		new objective_type(loc)
+		var/obj/objective = new objective_type(loc)
+		objective.dir = dir
 	qdel(src)
 
 

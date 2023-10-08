@@ -72,6 +72,7 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 		/datum/campaign_mission/destroy_mission/fire_support_raid/som = 15,
 		/datum/campaign_mission/capture_mission = 15,
 		/datum/campaign_mission/tdm/mech_wars/som = 12,
+		/datum/campaign_mission/destroy_mission/supply_raid/som = 15,
 	),
 ))
 

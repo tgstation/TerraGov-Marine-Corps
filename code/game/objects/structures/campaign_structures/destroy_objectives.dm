@@ -48,6 +48,8 @@
 	coverage = 100
 	///intact or not
 	var/destroyed_state = FALSE
+	///destroyed vehicle smoke effect
+	var/smoke_type = /particles/tank_wreck_smoke
 
 /obj/structure/campaign_objective/destruction_objective/mlrs/Initialize(mapload)
 	. = ..()
@@ -56,7 +58,7 @@
 /obj/structure/campaign_objective/destruction_objective/mlrs/update_icon_state()
 	. = ..()
 	if(destroyed_state)
-		icon_state = "mlrs_broken"
+		icon_state = "[initial(icon_state)]_broken"
 	else
 		icon_state = initial(icon_state)
 
@@ -75,7 +77,7 @@
 		destroyed_state = TRUE
 		var/obj/effect/temp_visual/explosion/explosion = new /obj/effect/temp_visual/explosion(loc, 4, LIGHT_COLOR_LAVA, FALSE, TRUE)
 		explosion.pixel_x = 56
-		explosion_smoke = new(src, /particles/tank_wreck_smoke)
+		explosion_smoke = new(src, smoke_type)
 		update_icon()
 	return ..()
 
@@ -101,6 +103,36 @@
 	scale = 0.075
 	grow = 0.04
 
+/obj/effect/landmark/campaign_objective/tank
+	name = "tank objective"
+	icon_state = "tank"
+	icon = 'icons/obj/structures/campaign/campaign_big.dmi'
+	pixel_y = -15
+	mission_types = list(/datum/campaign_mission/destroy_mission/supply_raid/som)
+	objective_type = /obj/structure/campaign_objective/destruction_objective/mlrs/tank
+
+/obj/structure/campaign_objective/destruction_objective/mlrs/tank
+	name = "\improper tank"
+	desc = "A massive multi launch rocket system on a tracked chassis. Can unleash a tremendous amount of firepower in a short amount of time."
+	icon_state = "tank"
+
+/obj/effect/landmark/campaign_objective/apc
+	name = "apc objective"
+	icon_state = "apc"
+	icon = 'icons/obj/structures/campaign/campaign_big.dmi'
+	pixel_y = -15
+	mission_types = list(/datum/campaign_mission/destroy_mission/supply_raid/som)
+	objective_type = /obj/structure/campaign_objective/destruction_objective/mlrs/apc
+
+/obj/structure/campaign_objective/destruction_objective/mlrs/apc
+	name = "\improper APC"
+	desc = "A massive multi launch rocket system on a tracked chassis. Can unleash a tremendous amount of firepower in a short amount of time."
+	icon_state = "apc"
+	smoke_type = /particles/tank_wreck_smoke/apc
+
+/particles/tank_wreck_smoke/apc
+	position = list(87, 60, 0)
+
 //Supply depot objectives
 /obj/effect/landmark/campaign_objective/supply_objective
 	name = "howitzer objective"
@@ -113,14 +145,13 @@
 	name = "SUPPLY_OBJECTIVE"
 	icon = 'icons/Marine/howitzer.dmi'
 	icon_state = "howitzer_deployed"
-	pixel_x = -16
 
 //Train
 /obj/effect/landmark/campaign_objective/train
 	name = "locomotive objective"
 	icon = 'icons/obj/structures/train.dmi'
 	icon_state = "maglev"
-	mission_types = list(/datum/campaign_mission/destroy_mission/supply_raid)
+	mission_types = list(/datum/campaign_mission/destroy_mission/supply_raid, /datum/campaign_mission/destroy_mission/supply_raid/som)
 	objective_type = /obj/structure/campaign_objective/destruction_objective/supply_objective/train
 
 /obj/structure/campaign_objective/destruction_objective/supply_objective/train
@@ -129,7 +160,6 @@
 	icon = 'icons/obj/structures/train.dmi'
 	icon_state = "maglev"
 	allow_pass_flags = PASS_AIR
-	pixel_x = 0
 
 /obj/effect/landmark/campaign_objective/train/carriage
 	name = "carriage objective"
@@ -146,16 +176,14 @@
 	name = "phoron crates"
 	icon = 'icons/obj/structures/campaign/campaign_64.dmi'
 	icon_state = "phoron_stack"
-	mission_types = list(/datum/campaign_mission/destroy_mission/supply_raid)
+	mission_types = list(/datum/campaign_mission/destroy_mission/supply_raid, /datum/campaign_mission/destroy_mission/supply_raid/som)
 	objective_type = /obj/structure/campaign_objective/destruction_objective/supply_objective/phoron_stack
-	pixel_y = -8
 
 /obj/structure/campaign_objective/destruction_objective/supply_objective/phoron_stack
 	name = "phoron crates"
 	desc = "A stack of crates filled to the brim with valuable phoron."
 	icon = 'icons/obj/structures/campaign/campaign_64.dmi'
 	icon_state = "phoron_stack"
-	pixel_y = -8
 	bound_height = 32
 	bound_width = 64
 

@@ -51,3 +51,12 @@
 	. = ..()
 	var/datum/faction_stats/hostile_team = mode.stat_list[hostile_faction]
 	hostile_team.add_reward(/datum/campaign_reward/attrition_modifier/malus_standard)
+
+/datum/campaign_mission/destroy_mission/supply_raid/som
+	map_name = "Orion outpost"
+	map_file = '_maps/map_files/Campaign maps/orion_2/orionoutpost_2.dmm'
+	map_light_colours = list(COLOR_MISSION_RED, COLOR_MISSION_RED, COLOR_MISSION_RED, COLOR_MISSION_RED)
+	map_traits = list(ZTRAIT_AWAY = TRUE)
+	map_light_levels = list(225, 150, 100, 75)
+	objectives_total = 8
+	min_destruction_amount = 5

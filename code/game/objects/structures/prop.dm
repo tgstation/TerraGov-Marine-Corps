@@ -2087,6 +2087,7 @@
 	icon_state = "maglev"
 	density = TRUE
 	allow_pass_flags = PASS_AIR
+	bound_width = 128
 
 /obj/structure/prop/train/carriage
 	name = "rail carriage"
@@ -2117,26 +2118,31 @@
 	name = "railcar"
 	desc = "A heavy duty maglev railcar. This one is carrying a variety of construction materials."
 	icon_state = "construction"
+	allow_pass_flags = PASSABLE
 
 /obj/structure/prop/train/crates
 	name = "railcar"
 	desc = "A heavy duty maglev railcar. This one has a variety of crates on it."
 	icon_state = "crates"
+	allow_pass_flags = PASSABLE
 
 /obj/structure/prop/train/weapons
 	name = "railcar"
 	desc = "A heavy duty maglev railcar. This one is carrying a shipment of weapons."
 	icon_state = "weapons"
+	allow_pass_flags = PASSABLE
 
 /obj/structure/prop/train/mech
 	name = "railcar"
 	desc = "A heavy duty maglev railcar. This one has a variety of mech equipment on it."
 	icon_state = "mech"
+	allow_pass_flags = PASSABLE
 
 /obj/structure/prop/train/empty
 	name = "railcar"
 	desc = "A heavy duty maglev railcar. This one is currently empty."
 	icon_state = "empty"
+	allow_pass_flags = PASS_LOW_STRUCTURE|PASSABLE|PASS_WALKOVER
 
 #undef VENDOR_BROKEN
 #undef VENDOR_BLANK
