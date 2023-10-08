@@ -76,8 +76,8 @@
 	var/list/obj/item/storage/refill_types
 	///What sound gets played when the item is tactical refilled
 	var/refill_sound = null
-	///If the storage can be put back into a vendor
-	var/bypass_vendor_check = FALSE
+	///Flags for specifically storage items
+	var/flags_storage = NONE
 
 /obj/item/storage/MouseDrop(obj/over_object as obj)
 	if(!ishuman(usr))
