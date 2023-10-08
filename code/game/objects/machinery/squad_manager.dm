@@ -57,8 +57,15 @@
 		log_filter("Squad naming", new_name, filter_result)
 		return FALSE
 
-	if(is_ic_filtered(new_desc) || NON_ASCII_CHECK(new_desc))
-		to_chat(user, span_danger("Squad description contained characters or words banned in IC chat"))
+	if(NON_ASCII_CHECK(new_desc))
+		to_chat(user, span_danger("Squad description contained characters banned in IC chat"))
+		return
+
+	var/filter_result_desc = is_ic_filtered(new_name)
+	if(filter_result_desc)
+		SSblackbox.record_feedback(FEEDBACK_TALLY, "ic_blocked_words", 1, lowertext(config.ic_filter_regex.match))
+		REPORT_CHAT_FILTER_TO_USER(user, filter_result_desc)
+		log_filter("Squad description", new_desc, filter_result_desc)
 		return
 
 	var/datum/squad/new_squad = create_squad(new_name, new_color, user)
