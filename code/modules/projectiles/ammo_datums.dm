@@ -3105,11 +3105,11 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	if(!isliving(M))
 		return
 	var/mob/living/living_victim = M
-	var/datum/status_effect/stacking/microwave/debuff = living_victim.has_status_effect(STATUS_EFFECT_MICROWAVE)
+	var/datum/status_effect/stacking/burning/debuff = living_victim.has_status_effect(STATUS_EFFECT_BURNING)
 	if(debuff)
 		debuff.add_stacks(debuff_stacks)
 	else
-		living_victim.apply_status_effect(STATUS_EFFECT_MICROWAVE, debuff_stacks)
+		living_victim.apply_status_effect(STATUS_EFFECT_BURNING, debuff_stacks)
 
 /datum/ammo/energy/lasgun/marine/heavy_laser
 	flags_ammo_behavior = AMMO_EXPLOSIVE|AMMO_ROCKET|AMMO_ENERGY|AMMO_SUNDERING|AMMO_HITSCAN|AMMO_INCENDIARY

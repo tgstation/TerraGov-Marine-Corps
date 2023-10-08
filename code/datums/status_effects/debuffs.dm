@@ -816,3 +816,83 @@
 	scale = generator(GEN_VECTOR, list(0.6, 0.6), list(1, 1), NORMAL_RAND)
 	friction = -0.05
 	color = "#818181"
+
+
+// ***************************************
+// *********** Burning
+// ***************************************
+#define BURNING_STATUS_EFFECT_FIRE_STACKS 15 // amount of stacks to inflict when the debuff triggers
+#define BURNING_STATUS_EFFECT_THRESHOLD 6 // amount of stacks needed to cause its bonus effect
+
+/datum/status_effect/stacking/burning
+	id = "burning"
+	tick_interval = 2 SECONDS
+	delay_before_decay = 4 SECONDS
+	stack_threshold = BURNING_STATUS_EFFECT_THRESHOLD
+	max_stacks = BURNING_STATUS_EFFECT_THRESHOLD
+	/// Owner of the debuff is limited to carbons.
+	var/mob/living/carbon/debuff_owner
+	/// Used for particles. Holds the particles instead of the mob. See particle_holder for documentation.
+	var/obj/effect/abstract/particle_holder/particle_holder
+
+/datum/status_effect/stacking/burning/can_gain_stacks()
+	if(owner.status_flags & GODMODE)
+		return FALSE
+	return ..()
+
+/datum/status_effect/stacking/burning/on_creation(mob/living/new_owner, stacks_to_apply)
+	if(new_owner.status_flags & GODMODE)
+		qdel(src)
+		return
+	debuff_owner = new_owner
+	debuff_owner.balloon_alert(debuff_owner, "Burning!")
+	particle_holder = new(debuff_owner, /particles/burning_status)
+	particle_holder.pixel_y = debuff_owner.pixel_y - 14
+	if(isxeno(debuff_owner))
+		particle_holder.pixel_x = debuff_owner.pixel_x + round(debuff_owner.mob_size * 2.5) + 7
+		particle_holder.particles.position = generator(GEN_NUM, 0, 11 * debuff_owner.mob_size, UNIFORM_RAND)
+	else
+		particle_holder.pixel_x = debuff_owner.pixel_x - 11
+		particle_holder.particles.position = generator(GEN_NUM, 0, 21, UNIFORM_RAND)
+	return ..()
+
+/datum/status_effect/stacking/burning/on_remove()
+	debuff_owner = null
+	QDEL_NULL(particle_holder)
+	return ..()
+
+/datum/status_effect/stacking/burning/add_stacks(stacks_added)
+	. = ..()
+	adjust_particles()
+
+/datum/status_effect/stacking/burning/stack_decay_effect()
+	. = ..()
+	adjust_particles()
+
+/datum/status_effect/stacking/burning/stacks_consumed_effect()
+	. = ..()
+	new /obj/effect/temp_visual/shockwave(debuff_owner.loc, 2)
+	playsound(debuff_owner.loc, "incendiary_explosion", 40)
+	debuff_owner.adjust_fire_stacks(BURNING_STATUS_EFFECT_FIRE_STACKS)
+	debuff_owner.IgniteMob()
+
+/// Updates particle appearance based on debuff stacks.
+/datum/status_effect/stacking/burning/proc/adjust_particles()
+	if(particle_holder && particle_holder.particles)
+		var/new_spawning = particle_holder.particles.spawning + stacks
+		particle_holder.particles.spawning = new_spawning
+
+/particles/burning_status
+	icon = 'icons/effects/particles/generic_particles.dmi'
+	icon_state = "fire2"
+	width = 200
+	height = 200
+	count = 1000
+	spawning = 2
+	lifespan = 6
+	fade = 10
+	grow = 0.08
+	velocity = list(0, 1)
+	gravity = list(0, 0.25)
+	scale = generator(GEN_NUM, 0.3, 0.4, UNIFORM_RAND)
+	spin = generator(GEN_NUM, 10, 25)

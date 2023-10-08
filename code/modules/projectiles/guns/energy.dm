@@ -947,12 +947,12 @@
 	name = "\improper Terra Experimental X-Ray laser rifle"
 	desc = "A Terra Experimental X-Ray laser rifle, abbreviated as the TE-X. It has an integrated charge selector for normal and high settings. Uses standard Terra Experimental (abbreviated as TE) power cells. As with all TE Laser weapons, they use a lightweight alloy combined without the need for bullets any longer decreases their weight and aiming speed quite some vs their ballistic counterparts."
 	reload_sound = 'sound/weapons/guns/interact/standard_laser_rifle_reload.ogg'
-	fire_sound = 'sound/weapons/guns/fire/laser3.ogg'
+	fire_sound = 'sound/weapons/guns/fire/volkite_1.ogg'
 	icon_state = "tex"
 	item_state = "tex"
-	max_shots = 30 //codex stuff
+	max_shots = 40 //codex stuff
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine/xray/standard
-	rounds_per_shot = 12
+	rounds_per_shot = 15
 	attachable_allowed = list(
 		/obj/item/attachable/bayonet,
 		/obj/item/attachable/bayonetknife,
@@ -961,7 +961,6 @@
 		/obj/item/attachable/flashlight,
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/scope/mini,
-		/obj/item/weapon/gun/flamer/mini_flamer,
 		/obj/item/attachable/motiondetector,
 		/obj/item/weapon/gun/rifle/pepperball/pepperball_mini,
 		/obj/item/attachable/verticalgrip,
@@ -973,10 +972,10 @@
 	attachable_offset = list("muzzle_x" = 40, "muzzle_y" = 19,"rail_x" = 20, "rail_y" = 21, "under_x" = 30, "under_y" = 13, "stock_x" = 22, "stock_y" = 14)
 	ammo_level_icon = "tex"
 	aim_slowdown = 0.4
-	wield_delay = 0.5 SECONDS
+	wield_delay = 1 SECONDS
 	scatter = 0
 	scatter_unwielded = 10
-	fire_delay = 0.25 SECONDS
+	fire_delay = 0.3 SECONDS
 	accuracy_mult_unwielded = 0.55
 	damage_falloff_mult = 0.3
 	mode_list = list(
@@ -985,10 +984,10 @@
 	)
 
 /datum/lasrifle/energy_rifle_mode/xray
-	rounds_per_shot = 20
+	rounds_per_shot = 15
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine/xray/standard
-	fire_delay = 0.4 SECONDS
-	fire_sound = 'sound/weapons/guns/fire/laser3.ogg'
+	fire_delay = 0.3 SECONDS
+	fire_sound = 'sound/weapons/guns/fire/volkite_1.ogg'
 	message_to_user = "You set the xray rifle's charge mode to standard fire."
 	fire_mode = GUN_FIREMODE_AUTOMATIC
 	icon_state = "tex"

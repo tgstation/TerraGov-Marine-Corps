@@ -78,6 +78,8 @@
 #define STATUS_EFFECT_MICROWAVE /datum/status_effect/stacking/microwave
 ///armor reduction
 #define STATUS_EFFECT_SHATTER /datum/status_effect/shatter
+/// sets the victim on fire after accumulating enough stacks
+#define STATUS_EFFECT_BURNING /datum/status_effect/stacking/burning
 
 /////////////
 // NEUTRAL //
