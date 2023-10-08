@@ -947,7 +947,7 @@
 	name = "\improper Terra Experimental X-Ray laser rifle"
 	desc = "A Terra Experimental X-Ray laser rifle, abbreviated as the TE-X. It has an integrated charge selector for normal and high settings. Uses standard Terra Experimental (abbreviated as TE) power cells. As with all TE Laser weapons, they use a lightweight alloy combined without the need for bullets any longer decreases their weight and aiming speed quite some vs their ballistic counterparts."
 	reload_sound = 'sound/weapons/guns/interact/standard_laser_rifle_reload.ogg'
-	fire_sound = 'sound/weapons/guns/fire/volkite_1.ogg'
+	fire_sound = 'sound/weapons/guns/fire/laser3.ogg'
 	icon_state = "tex"
 	item_state = "tex"
 	max_shots = 40 //codex stuff
@@ -993,7 +993,7 @@
 	rounds_per_shot = 15
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine/xray/standard
 	fire_delay = 0.3 SECONDS
-	fire_sound = 'sound/weapons/guns/fire/volkite_1.ogg'
+	fire_sound = 'sound/weapons/guns/fire/laser3.ogg'
 	message_to_user = "You set the xray rifle's charge mode to standard fire."
 	fire_mode = GUN_FIREMODE_AUTOMATIC
 	icon_state = "tex"
