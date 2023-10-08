@@ -57,3 +57,18 @@
   - rscadd: T2 Puppeteer xeno, Puppet, Puppeteer abilities, Puppet abilities
   yyzsong:
   - rscdel: SLs can no longer buy the AR-55 or its ammo
+2023-10-08:
+  Pariah919:
+  - qol: EF-88/L-88 added to Valhalla
+  - bugfix: EF-88 mags now fit inside EF-88 rifles.
+  Wisemonster:
+  - spellcheck: Changed the smart pistol bundle's name in the smart gunner vendor
+      to clarify that it comes with smart goggles.
+  Xander3359:
+  - balance: Freelancers have better loadouts slightly.
+  vvvv-vvvv:
+  - bugfix: Fix some missing stack singular names
+  - admin: Add Debug Controller verb
+  yyzsong:
+  - rscadd: Adds russian red autoinjectors to the valhalla medical vcendor
+  - bugfix: removes a duplicate item from the valhalla medical vendor
