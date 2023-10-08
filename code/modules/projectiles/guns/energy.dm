@@ -997,7 +997,7 @@
 /datum/lasrifle/energy_rifle_mode/xray/piercing
 	rounds_per_shot = 30
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine/xray/piercing
-	fire_delay = 0.65 SECONDS
+	fire_delay = 0.6 SECONDS
 	fire_sound = 'sound/weapons/guns/fire/laser.ogg'
 	message_to_user = "You set the xray rifle's charge mode to piercing mode."
 	radial_icon_state = "laser"
