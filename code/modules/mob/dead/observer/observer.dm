@@ -967,8 +967,8 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	visible_message(span_deadsay("[span_name("[src]")] points at [pointed_atom]."))
 
 /mob/dead/observer/CtrlShiftClickOn(mob/target_ghost)
-	if(src.ghost_vision && check_rights(R_SPAWN))
+	if(ghost_vision && check_rights(R_SPAWN))
 		if(src == target_ghost)
-			src.client.holder.spatial_agent()
+			client.holder.spatial_agent()
 		else
 			target_ghost.change_mob_type(/mob/living/carbon/human , null, null, TRUE) //always delmob, ghosts shouldn't be left lingering
