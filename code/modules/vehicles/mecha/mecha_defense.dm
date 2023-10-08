@@ -79,11 +79,25 @@
 	), hitting_projectile.def_zone)
 	return ..()
 
-/obj/vehicle/sealed/mecha/ex_act(severity, target)
+/obj/vehicle/sealed/mecha/ex_act(severity)
 	log_message("Affected by explosion of severity: [severity].", LOG_MECHA, color="red")
-	return ..()
+	if(CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE))
+		return
+	if(!(flags_atom & PREVENT_CONTENTS_EXPLOSION))
+		contents_explosion(severity)
+	if(QDELETED(src))
+		return
+	switch(severity)
+		if(EXPLODE_DEVASTATE)
+			take_damage(rand(1200, 1800), BRUTE, BOMB, 0)
+		if(EXPLODE_HEAVY)
+			take_damage(rand(400, 600), BRUTE, BOMB, 0)
+		if(EXPLODE_LIGHT)
+			take_damage(rand(150, 300), BRUTE, BOMB, 0)
+		if(EXPLODE_WEAK)
+			take_damage(rand(50, 100), BRUTE, BOMB, 0)
 
-/obj/vehicle/sealed/mecha/contents_explosion(severity, target)
+/obj/vehicle/sealed/mecha/contents_explosion(severity)
 	severity--
 
 	switch(severity)
