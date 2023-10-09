@@ -26,11 +26,12 @@
 	. = ..()
 	if(savage_activated)
 		var/mob/living/carbon/xenomorph/xeno_owner = owner
-		if(xeno_owner.plasma_stored < RUNNER_SAVAGE_DAMAGE_MINIMUM)
+		var/savage_cost = RUNNER_SAVAGE_DAMAGE_MINIMUM * 2
+		if(xeno_owner.plasma_stored < savage_cost)
 			owner.balloon_alert(owner, "Not enough plasma to Savage")
 			return
 		var/extra_damage = max(RUNNER_SAVAGE_DAMAGE_MINIMUM, xeno_owner.plasma_stored * 0.15)
-		xeno_owner.use_plasma(extra_damage * 2)
+		xeno_owner.use_plasma(savage_cost)
 		living_target.attack_alien_harm(xeno_owner, extra_damage)
 		GLOB.round_statistics.runner_savage_attacks++
 		SSblackbox.record_feedback("tally", "round_statistics", 1, "runner_savage_attacks")
