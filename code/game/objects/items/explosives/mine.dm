@@ -233,7 +233,7 @@ Stepping directly on the mine will also blow it up
 /obj/item/explosive/mine/anti_tank
 	name = "\improper M92 Valiant anti-tank mine"
 	desc = "The M92 Valiant is a anti-tank mine designed by Armat Systems for use by the TerraGov Marine Corps against heavy armour, both tanks and mechs."
-	icon_state = "m20"
+	icon_state = "m92"
 	target_mode = MINE_VEHICLE_ONLY
 
 /obj/item/explosive/mine/anti_tank/trigger_explosion()
