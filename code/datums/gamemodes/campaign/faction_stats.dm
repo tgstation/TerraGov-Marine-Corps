@@ -35,6 +35,7 @@ GLOBAL_LIST_INIT(campaign_default_purchasable_assets, list(
 		/datum/campaign_reward/equipment/heavy_armour_tgmc,
 		/datum/campaign_reward/equipment/shields_tgmc,
 		/datum/campaign_reward/equipment/grenades_tgmc,
+		/datum/campaign_reward/equipment/at_mines,
 		/datum/campaign_reward/equipment/tac_bino_tgmc,
 	),
 	FACTION_SOM = list(
@@ -50,6 +51,7 @@ GLOBAL_LIST_INIT(campaign_default_purchasable_assets, list(
 		/datum/campaign_reward/equipment/heavy_armour_som,
 		/datum/campaign_reward/equipment/shields_som,
 		/datum/campaign_reward/equipment/grenades_som,
+		/datum/campaign_reward/equipment/at_mines,
 		/datum/campaign_reward/equipment/tac_bino_som,
 	),
 ))

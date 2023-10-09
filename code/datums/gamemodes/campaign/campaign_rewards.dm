@@ -349,6 +349,17 @@
 		/obj/item/storage/pouch/grenade/som/combat_patrol,
 	)
 
+/datum/campaign_reward/equipment/at_mines
+	name = "Anti-tank mines"
+	desc = "10 Anti-tank mines"
+	detailed_desc = "M92 anti-tank mines. Extremely effective against mechs, but will not trigger against human targets."
+	uses = 1
+	cost = 3
+	equipment_to_spawn = list(
+		/obj/item/storage/box/explosive_mines/antitank,
+		/obj/item/storage/box/explosive_mines/antitank,
+	)
+
 /datum/campaign_reward/equipment/tac_bino_som
 	name = "Tactical binoculars"
 	desc = "One set of tactical binoculars"
