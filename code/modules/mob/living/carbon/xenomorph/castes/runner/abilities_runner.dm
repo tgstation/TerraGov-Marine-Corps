@@ -5,7 +5,7 @@
 #define RUNNER_SAVAGE_DAMAGE_MINIMUM 15
 
 /datum/action/xeno_action/activable/pounce/runner
-	desc = "Leap at your target, tackling and disarming them Alternate use toggles Savage off or on."
+	desc = "Leap at your target, tackling and disarming them. Alternate use toggles Savage off or on."
 	action_icon_state = "pounce_savage_on"
 	plasma_cost = 10
 	keybinding_signals = list(
