@@ -44,3 +44,41 @@
   - code_imp: Named LV cave walls to "tough rock" for better player clarity
   efzapa:
   - bugfix: MG-27 Box Magazine description now quotes correct ammo count
+2023-10-06:
+  Lewdcifer:
+  - bugfix: TE-X piercing mode no longer inflicts Microwaved due to a code oopsie.
+  Lumipharon:
+  - rscdel: Stunprods are no longer craftable
+  Pariah919:
+  - rscadd: Added new L-88 Rifle to ICC, and its export variant the L&S EM-88 to Req.
+  Wisemonster:
+  - spellcheck: Added a description to the "lay egg" ability
+  mc-oofert:
+  - rscadd: T2 Puppeteer xeno, Puppet, Puppeteer abilities, Puppet abilities
+  yyzsong:
+  - rscdel: SLs can no longer buy the AR-55 or its ammo
+2023-10-08:
+  Pariah919:
+  - qol: EF-88/L-88 added to Valhalla
+  - bugfix: EF-88 mags now fit inside EF-88 rifles.
+  Wisemonster:
+  - spellcheck: Changed the smart pistol bundle's name in the smart gunner vendor
+      to clarify that it comes with smart goggles.
+  Xander3359:
+  - balance: Freelancers have better loadouts slightly.
+  vvvv-vvvv:
+  - bugfix: Fix some missing stack singular names
+  - admin: Add Debug Controller verb
+  yyzsong:
+  - rscadd: Adds russian red autoinjectors to the valhalla medical vcendor
+  - bugfix: removes a duplicate item from the valhalla medical vendor
+2023-10-09:
+  Barnet2:
+  - bugfix: Lawanka tcomms work now
+  - spellcheck: Xeno ranks now go hatchling > young > mature > elder > ancient
+  Xander3359:
+  - admin: CTRL+Shift click self to spawn as a human
+  - balance: Gorger no longer gets slowdown from weeds
+  dopamiin:
+  - balance: the Judge now has a much longer fire delay, but its standard rounds are
+      more powerful.

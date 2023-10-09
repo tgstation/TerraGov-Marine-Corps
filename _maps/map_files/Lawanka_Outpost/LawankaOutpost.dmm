@@ -4479,7 +4479,7 @@
 "dSx" = (
 /obj/machinery/telecomms/relay/preset/telecomms,
 /turf/closed/mineral/smooth/indestructible,
-/area/lawankaoutpost/caves/rock)
+/area/lv624/lazarus/console)
 "dSz" = (
 /obj/structure/sink{
 	dir = 8

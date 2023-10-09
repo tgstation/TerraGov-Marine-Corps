@@ -1458,10 +1458,6 @@
 "LY" = (
 /turf/open/floor/plating/ground/mars/random/cave/rock,
 /area/bigredv2/caves/north)
-"Mn" = (
-/obj/structure/nuke_disk_candidate,
-/turf/open/floor/tile/dark,
-/area/bigredv2/outside/marshal_office)
 "Mu" = (
 /obj/structure/cable,
 /obj/machinery/light,
@@ -5131,7 +5127,7 @@ uy
 jH
 AH
 KW
-Mn
+KW
 KW
 jH
 pO
