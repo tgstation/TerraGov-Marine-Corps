@@ -170,9 +170,6 @@
 	cost = 4
 	equipment_to_spawn = list(
 		/obj/item/storage/box/crate/loot/materials_pack,
-		/obj/item/tool/shovel/etool,
-		/obj/item/tool/shovel/etool,
-		/obj/item/tool/shovel/etool,
 	)
 
 /datum/campaign_reward/equipment/ballistic_tgmc

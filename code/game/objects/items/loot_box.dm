@@ -525,6 +525,10 @@
 	new /obj/item/stack/sandbags_empty/full(src)
 	new /obj/item/stack/sandbags_empty/full(src)
 	new /obj/item/stack/sandbags_empty/full(src)
+	new /obj/item/tool/shovel/etool(src)
+	new /obj/item/tool/shovel/etool(src)
+	new /obj/item/tool/shovel/etool(src)
+	new /obj/item/tool/shovel/etool(src)
 
 /obj/item/storage/box/crate/loot/recoilless_pack/Initialize(mapload)
 	. = ..()
