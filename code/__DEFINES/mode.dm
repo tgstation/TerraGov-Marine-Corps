@@ -108,6 +108,9 @@
 #define DEATHTIME_CHECK(M) ((world.time - GLOB.key_to_time_of_role_death[M.key]) < SSticker.mode?.respawn_time)
 #define DEATHTIME_MESSAGE(M) to_chat(M, span_warning("You have been dead for [(world.time - GLOB.key_to_time_of_role_death[M.key]) * 0.1] second\s.</span><br><span class='warning'>You must wait [SSticker.mode?.respawn_time * 0.1] seconds before rejoining the game!"))
 
+#define XENODEATHTIME_CHECK(M) ((world.time - (GLOB.key_to_time_of_xeno_death[M.key] ? GLOB.key_to_time_of_xeno_death[M.key] : -INFINITY) < SSticker.mode?.xenorespawn_time))
+#define XENODEATHTIME_MESSAGE(M) to_chat(M, span_warning("You have been dead for [(world.time - GLOB.key_to_time_of_xeno_death[M.key]) * 0.1] second\s.</span><br><span class ='warning'>You must wait [SSticker.mode?.xenorespawn_time * 0.1] seconds before rejoining the game as a Xenomorph! You can take a SSD minion without resetting your timer."))
+
 #define COUNT_IGNORE_HUMAN_SSD (1<<0)
 #define COUNT_IGNORE_XENO_SSD (1<<1)
 #define COUNT_IGNORE_XENO_SPECIAL_AREA (1<<2)
@@ -149,3 +152,17 @@
 
 #define SENSOR_CAP_ADDITION_TIME_BONUS 3 MINUTES //additional time granted by capturing a sensor tower
 #define SENSOR_CAP_TIMER_PAUSED "paused"
+
+//mission defines
+#define MISSION_STATE_NEW "mission state new"
+#define MISSION_STATE_ACTIVE "mission state active"
+#define MISSION_STATE_FINISHED "mission state finished"
+
+#define MISSION_OUTCOME_MAJOR_VICTORY "major victory"
+#define MISSION_OUTCOME_MINOR_VICTORY "minor victory"
+#define MISSION_OUTCOME_DRAW "draw"
+#define MISSION_OUTCOME_MINOR_LOSS "minor loss"
+#define MISSION_OUTCOME_MAJOR_LOSS "major loss"
+
+#define MISSION_DISALLOW_DROPPODS (1<<0)
+#define MISSION_DISALLOW_FIRESUPPORT (1<<1)

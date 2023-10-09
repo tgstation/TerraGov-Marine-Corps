@@ -5598,12 +5598,6 @@
 	},
 /turf/open/floor/iron/white,
 /area/deltastation/medical/medbay)
-"bhV" = (
-/obj/machinery/landinglight/ds1{
-	dir = 4
-	},
-/turf/open/floor/asteroidfloor,
-/area/deltastation/external/landingzone)
 "bhW" = (
 /obj/effect/turf_decal/tile/transparent/red/half/contrasted{
 	dir = 8
@@ -7015,13 +7009,6 @@
 /obj/structure/prop/mainship/railing,
 /turf/open/floor/iron,
 /area/deltastation/hallway/primary/fore)
-"bvQ" = (
-/obj/machinery/landinglight/ds1/delayone{
-	dir = 8
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/asteroidfloor,
-/area/deltastation/external/landingzone)
 "bvS" = (
 /turf/open/floor/plating,
 /area/deltastation/science/research/abandoned)
@@ -14319,7 +14306,7 @@
 /area/deltastation/engineering/hallway)
 "cYD" = (
 /obj/machinery/smartfridge,
-/turf/open/space/basic,
+/turf/open/floor/iron,
 /area/deltastation/service/kitchen)
 "cYE" = (
 /obj/effect/spawner/random/misc/structure/girder,
@@ -16056,13 +16043,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron,
 /area/deltastation/maintenance/department/crew_quarters/bar)
-"dqP" = (
-/obj/machinery/landinglight/ds1/delaythree{
-	dir = 1
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/asteroidfloor,
-/area/deltastation/external/landingzone)
 "dqY" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -18210,12 +18190,6 @@
 	},
 /turf/open/floor/iron/white,
 /area/deltastation/medical/medbay)
-"dLp" = (
-/obj/machinery/landinglight/ds1/delaythree{
-	dir = 8
-	},
-/turf/open/floor/asteroidfloor,
-/area/deltastation/external/landingzone)
 "dLr" = (
 /obj/structure/table,
 /obj/item/packageWrap,
@@ -18613,10 +18587,10 @@
 /turf/open/floor/iron,
 /area/deltastation/service/hydroponics)
 "dOS" = (
-/obj/machinery/landinglight/ds1{
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/landinglight/lz1{
 	dir = 1
 	},
-/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/asteroidfloor,
 /area/deltastation/external/landingzone)
 "dPa" = (
@@ -22212,7 +22186,7 @@
 /turf/open/floor/iron/grimy,
 /area/deltastation/service/bar/backroom)
 "exa" = (
-/obj/machinery/landinglight/ds1{
+/obj/machinery/landinglight/lz1{
 	dir = 8
 	},
 /turf/open/floor/asteroidfloor,
@@ -25200,10 +25174,10 @@
 /turf/open/floor/iron,
 /area/deltastation/science/server)
 "fcv" = (
-/obj/machinery/landinglight/ds1/delaytwo{
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/landinglight/lz1{
 	dir = 8
 	},
-/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/asteroidfloor,
 /area/deltastation/external/landingzone)
 "fcx" = (
@@ -27012,12 +26986,6 @@
 	},
 /turf/open/floor/iron/dark,
 /area/deltastation/service/abandoned_gambling_den)
-"fuO" = (
-/obj/machinery/landinglight/ds1/delayone{
-	dir = 4
-	},
-/turf/open/floor/asteroidfloor,
-/area/deltastation/external/landingzone)
 "fuW" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
@@ -28998,11 +28966,6 @@
 /obj/item/stack/sheet/metal,
 /turf/open/floor/iron,
 /area/deltastation/maintenance/port)
-"fPj" = (
-/obj/machinery/landinglight/ds1,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/asteroidfloor,
-/area/deltastation/external/landingzone)
 "fPl" = (
 /obj/structure/prop/camera{
 	dir = 8;
@@ -30820,10 +30783,10 @@
 /turf/open/floor/plating,
 /area/deltastation/cargo/miningoffice)
 "ghS" = (
-/obj/machinery/landinglight/ds1/delayone{
+/obj/effect/ai_node,
+/obj/machinery/landinglight/lz1{
 	dir = 8
 	},
-/obj/effect/ai_node,
 /turf/open/floor/asteroidfloor,
 /area/deltastation/external/landingzone)
 "ghT" = (
@@ -32145,7 +32108,7 @@
 /turf/open/floor/iron,
 /area/deltastation/command/heads_quarters/qm)
 "guZ" = (
-/obj/machinery/landinglight/ds1/delaythree{
+/obj/machinery/landinglight/lz1{
 	dir = 1
 	},
 /turf/open/floor/asteroidfloor,
@@ -35065,7 +35028,7 @@
 /turf/open/floor/iron/dark,
 /area/deltastation/command/heads_quarters/ce)
 "hao" = (
-/obj/machinery/landinglight/ds1/delayone,
+/obj/machinery/landinglight/lz1,
 /turf/open/floor/asteroidfloor,
 /area/deltastation/external/landingzone)
 "har" = (
@@ -37080,13 +37043,6 @@
 	dir = 6
 	},
 /area/deltastation/security/office)
-"huO" = (
-/obj/machinery/landinglight/ds1{
-	dir = 8
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/asteroidfloor,
-/area/deltastation/external/landingzone)
 "huQ" = (
 /obj/effect/turf_decal/tile/transparent/neutral/anticorner/contrasted{
 	dir = 8
@@ -38855,10 +38811,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/closed/wall,
 /area/deltastation/maintenance/port)
-"hPx" = (
-/obj/machinery/landinglight/ds1,
-/turf/open/floor/asteroidfloor,
-/area/deltastation/external/landingzone)
 "hPz" = (
 /obj/machinery/chem_master,
 /obj/effect/turf_decal/tile/transparent/yellow/opposingcorners,
@@ -38962,13 +38914,6 @@
 	},
 /turf/open/floor/iron,
 /area/deltastation/hallway/primary/fore)
-"hQY" = (
-/obj/machinery/landinglight/ds1/delaythree{
-	dir = 4
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/asteroidfloor,
-/area/deltastation/external/landingzone)
 "hRe" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/wood,
@@ -50130,13 +50075,6 @@
 /obj/effect/turf_decal/sandedge/corner2,
 /turf/open/floor/iron,
 /area/deltastation/hallway/primary/starboard)
-"kiI" = (
-/obj/machinery/landinglight/ds1{
-	dir = 4
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/asteroidfloor,
-/area/deltastation/external/landingzone)
 "kiK" = (
 /obj/structure/table/woodentable,
 /obj/item/flashlight/lamp,
@@ -50730,10 +50668,12 @@
 /turf/open/floor/iron,
 /area/deltastation/security/processing)
 "kpn" = (
-/obj/machinery/recycler,
 /obj/machinery/conveyor{
 	dir = 4;
 	id = "bunkerrecycle"
+	},
+/obj/machinery/recycler{
+	dir = 8
 	},
 /turf/open/floor/plating,
 /area/deltastation/asteroidcaves/derelictwest)
@@ -50955,12 +50895,6 @@
 	},
 /turf/open/floor/plating,
 /area/deltastation/asteroidcaves/derelictnortheast)
-"ksI" = (
-/obj/machinery/landinglight/ds1/delaythree{
-	dir = 4
-	},
-/turf/open/floor/asteroidfloor,
-/area/deltastation/external/landingzone)
 "ksJ" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -56105,12 +56039,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/iron,
 /area/deltastation/commons/toilet/locker)
-"lve" = (
-/obj/machinery/landinglight/ds1/delaytwo{
-	dir = 8
-	},
-/turf/open/floor/asteroidfloor,
-/area/deltastation/external/landingzone)
 "lvk" = (
 /obj/effect/mapping_helpers/simple_pipes/green/visible,
 /obj/effect/turf_decal/stripes/line{
@@ -59119,7 +59047,7 @@
 /area/deltastation/maintenance/disposal/incinerator)
 "lZA" = (
 /obj/machinery/smartfridge/chemistry,
-/turf/open/space/basic,
+/turf/open/floor/iron/white,
 /area/deltastation/medical/pharmacy)
 "lZF" = (
 /obj/effect/ai_node,
@@ -62759,6 +62687,14 @@
 	},
 /turf/open/floor/iron,
 /area/deltastation/engineering/break_room)
+"mMC" = (
+/obj/machinery/floodlight/landing,
+/obj/effect/turf_decal/warning_stripes,
+/obj/machinery/landinglight/lz1{
+	dir = 4
+	},
+/turf/open/floor/mech_bay_recharge_floor,
+/area/deltastation/external/landingzone)
 "mMI" = (
 /obj/structure/prop/mainship/turretprop{
 	dir = 4;
@@ -64003,6 +63939,9 @@
 "nbj" = (
 /obj/machinery/floodlight/landing,
 /obj/effect/turf_decal/warning_stripes,
+/obj/machinery/landinglight/lz1{
+	dir = 8
+	},
 /turf/open/floor/asteroidfloor,
 /area/deltastation/external/landingzone)
 "nbo" = (
@@ -64254,13 +64193,6 @@
 	},
 /turf/open/floor/iron,
 /area/deltastation/asteroidcaves/derelictnortheast)
-"neq" = (
-/obj/machinery/landinglight/ds1/delaytwo{
-	dir = 1
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/asteroidfloor,
-/area/deltastation/external/landingzone)
 "ner" = (
 /obj/effect/spawner/random/machinery/machine_frame,
 /obj/effect/spawner/random/engineering/cable,
@@ -71759,12 +71691,6 @@
 /obj/structure/sign/securearea,
 /turf/open/floor/iron/textured_half,
 /area/deltastation/science/robotics/lab)
-"oGn" = (
-/obj/machinery/landinglight/ds1/delayone{
-	dir = 1
-	},
-/turf/open/floor/asteroidfloor,
-/area/deltastation/external/landingzone)
 "oGs" = (
 /obj/structure/table/reinforced,
 /obj/effect/turf_decal/tile/transparent/neutral/fourcorners,
@@ -74140,13 +74066,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/iron/grimy,
 /area/deltastation/service/library/abandoned)
-"pgJ" = (
-/obj/machinery/landinglight/ds1/delayone{
-	dir = 1
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/asteroidfloor,
-/area/deltastation/external/landingzone)
 "pgL" = (
 /obj/effect/decal/cleanable/dirt{
 	dir = 4
@@ -75495,12 +75414,6 @@
 /obj/effect/turf_decal/trimline/neutral,
 /turf/open/floor/iron/dark,
 /area/deltastation/medical/pharmacy)
-"pui" = (
-/obj/machinery/landinglight/ds1/delayone{
-	dir = 8
-	},
-/turf/open/floor/asteroidfloor,
-/area/deltastation/external/landingzone)
 "puk" = (
 /obj/effect/turf_decal/delivery,
 /obj/item/reagent_containers/food/snacks/grown/soybeans{
@@ -83931,13 +83844,6 @@
 	},
 /turf/open/floor/iron/white,
 /area/deltastation/medical/medbay)
-"rbo" = (
-/obj/machinery/landinglight/ds1/delaythree{
-	dir = 8
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/asteroidfloor,
-/area/deltastation/external/landingzone)
 "rbq" = (
 /obj/machinery/chem_dispenser,
 /turf/open/floor/engine,
@@ -87481,10 +87387,10 @@
 /turf/open/floor/iron,
 /area/deltastation/cargo/office)
 "rLQ" = (
-/obj/machinery/landinglight/ds1/delaytwo{
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/landinglight/lz1{
 	dir = 4
 	},
-/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/asteroidfloor,
 /area/deltastation/external/landingzone)
 "rMb" = (
@@ -87642,10 +87548,6 @@
 /obj/effect/turf_decal/warning_stripes/box,
 /turf/open/floor/iron,
 /area/deltastation/maintenance/port/fore)
-"rOc" = (
-/obj/machinery/smartfridge,
-/turf/open/space/basic,
-/area/deltastation/service/hydroponics)
 "rOn" = (
 /obj/structure/table/reinforced,
 /obj/effect/spawner/random/engineering/engibelt,
@@ -88112,7 +88014,7 @@
 /turf/open/floor/iron/dark,
 /area/deltastation/service/abandoned_gambling_den)
 "rTj" = (
-/obj/machinery/landinglight/ds1/delaytwo{
+/obj/machinery/landinglight/lz1{
 	dir = 4
 	},
 /turf/open/floor/asteroidfloor,
@@ -99539,8 +99441,8 @@
 /turf/open/floor/plating,
 /area/deltastation/tcommsat/server)
 "uin" = (
-/obj/machinery/landinglight/ds1/delaytwo,
 /obj/effect/decal/cleanable/dirt,
+/obj/machinery/landinglight/lz1,
 /turf/open/floor/asteroidfloor,
 /area/deltastation/external/landingzone)
 "uit" = (
@@ -115983,10 +115885,6 @@
 	},
 /turf/open/floor/iron,
 /area/deltastation/hallway/secondary/entry)
-"xuN" = (
-/obj/machinery/landinglight/ds1/delaythree,
-/turf/open/floor/asteroidfloor,
-/area/deltastation/external/landingzone)
 "xuY" = (
 /turf/open/floor/asteroidfloor,
 /area/deltastation/external/landingzone)
@@ -116115,11 +116013,6 @@
 	},
 /turf/open/floor/iron,
 /area/deltastation/hallway/primary/fore)
-"xwc" = (
-/obj/machinery/landinglight/ds1/delayone,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/asteroidfloor,
-/area/deltastation/external/landingzone)
 "xwg" = (
 /obj/machinery/holopad,
 /obj/effect/ai_node,
@@ -153504,7 +153397,7 @@ xli
 gqm
 keZ
 keZ
-rOc
+fzS
 oxT
 osP
 obo
@@ -167532,26 +167425,26 @@ dfm
 xuY
 vXs
 orp
-ksI
-ksI
-kiI
-fuO
 rTj
-ksI
-bhV
-fuO
-rLQ
-ksI
-orp
-fuO
 rTj
-hQY
-bhV
-fuO
 rLQ
-ksI
-bhV
-fuO
+rTj
+rTj
+rTj
+rTj
+rTj
+rLQ
+rTj
+mMC
+rTj
+rTj
+rLQ
+rTj
+rTj
+rLQ
+rTj
+rTj
+rTj
 rTj
 orp
 dfm
@@ -168302,7 +168195,7 @@ jOD
 gdc
 aZA
 vXs
-fPj
+uin
 pCO
 qgB
 qgB
@@ -168324,7 +168217,7 @@ qgB
 qgB
 qgB
 nEs
-oGn
+guZ
 dfm
 cSG
 sbS
@@ -168559,7 +168452,7 @@ toH
 xaf
 aZA
 bYh
-xuN
+hao
 pCO
 qgB
 qgB
@@ -168581,7 +168474,7 @@ qgB
 qgB
 qgB
 nEs
-neq
+dOS
 xuY
 cSG
 sbS
@@ -168838,7 +168731,7 @@ qgB
 qgB
 qgB
 nEs
-dqP
+dOS
 dfm
 cSG
 sbS
@@ -169073,7 +168966,7 @@ toH
 toH
 aZA
 bYh
-xwc
+uin
 pCO
 qgB
 qgB
@@ -169330,7 +169223,7 @@ npA
 toH
 sYK
 vXs
-fPj
+uin
 pCO
 qgB
 qgB
@@ -169352,7 +169245,7 @@ qgB
 qgB
 qgB
 nEs
-pgJ
+dOS
 dfm
 cSG
 sbS
@@ -169587,7 +169480,7 @@ toH
 xuo
 kZL
 vXs
-xuN
+hao
 pCO
 qgB
 qgB
@@ -169609,7 +169502,7 @@ qgB
 qgB
 qgB
 nEs
-neq
+dOS
 xuY
 cSG
 sbS
@@ -170101,7 +169994,7 @@ xuo
 toH
 sYK
 vXs
-xwc
+uin
 pCO
 qgB
 mmf
@@ -170358,7 +170251,7 @@ njf
 njf
 liB
 bYh
-hPx
+hao
 wIv
 wAz
 wAz
@@ -170380,7 +170273,7 @@ wAz
 wAz
 wAz
 wkR
-oGn
+guZ
 dfm
 cSG
 sbS
@@ -170616,26 +170509,26 @@ dfm
 xuY
 vXs
 orp
-bvQ
-pui
-huO
-rbo
 fcv
-pui
 exa
-rbo
-lve
+fcv
+fcv
+fcv
+exa
+exa
+fcv
+exa
 ghS
 nbj
-rbo
-lve
-bvQ
-exa
-dLp
 fcv
-pui
 exa
-rbo
+fcv
+exa
+exa
+fcv
+exa
+exa
+fcv
 fcv
 orp
 xuY

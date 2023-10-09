@@ -1,0 +1,84 @@
+2023-10-01:
+  Barnet2:
+  - bugfix: Queen and King ranks should work now
+  Blundir:
+  - rscadd: acid on walls now has unique set of sprites
+  - bugfix: fixed acid rendering over everything
+  RipGrayson:
+  - balance: The SOM base tables on Slumbridge now produced metal when deconstructed.
+  ivanmixo:
+  - bugfix: Fixed admin wall deletions
+  vvvv-vvvv:
+  - bugfix: Fix drawing on minimap tablets
+  - bugfix: Fix mantis ravage keybind not working when not selected
+  - bugfix: Fix missing empty sprite for 5.56mm ammo box
+2023-10-02:
+  ivanmixo:
+  - bugfix: Fixed an issue with quick laser swap
+2023-10-03:
+  Blundir:
+  - imagedel: deletes many unused sprites
+  - refactor: relocated numerous sprites into their own files
+  Lewdcifer:
+  - rscdel: X-Ray Laser Rifle no longer accepts the T-47 rail scope.
+  - balance: X-Ray Laser Rifle shots are no longer incendiary. Instead, they now inflict
+      five stacks of the Microwaved debuff.
+  - balance: X-Ray Laser Rifle penetration increased from 5 to 10.
+  - balance: X-Ray Laser Rifle's standard firing mode ammo usage reduced, basically
+      amounting to a maximum of 50 shots (from 40).
+  RipGrayson:
+  - balance: All ground maps use the regular spawning random gun spawning system instead
+      of the ancient tier based system that could spawn overpowered guns.
+  Wisemonster:
+  - spellcheck: Changed Crest Toss' description to mention it's effects while on harm
+      intent.
+  vvvv-vvvv:
+  - admin: Fixed statpanel showing Toggle Tadpole Restrictions in a different tab
+2023-10-04:
+  Barnet2:
+  - balance: Moved Lawanka Outpost's nuke closer to the cave entrance.
+  - balance: Most of Lawanka Outpost's buildings are now normal walls and windows
+      instead of reinforced.
+  - balance: Made most of Lawanka Outpost's cave walls indestructible, outside layer
+      still destructible
+  - code_imp: Named LV cave walls to "tough rock" for better player clarity
+  efzapa:
+  - bugfix: MG-27 Box Magazine description now quotes correct ammo count
+2023-10-06:
+  Lewdcifer:
+  - bugfix: TE-X piercing mode no longer inflicts Microwaved due to a code oopsie.
+  Lumipharon:
+  - rscdel: Stunprods are no longer craftable
+  Pariah919:
+  - rscadd: Added new L-88 Rifle to ICC, and its export variant the L&S EM-88 to Req.
+  Wisemonster:
+  - spellcheck: Added a description to the "lay egg" ability
+  mc-oofert:
+  - rscadd: T2 Puppeteer xeno, Puppet, Puppeteer abilities, Puppet abilities
+  yyzsong:
+  - rscdel: SLs can no longer buy the AR-55 or its ammo
+2023-10-08:
+  Pariah919:
+  - qol: EF-88/L-88 added to Valhalla
+  - bugfix: EF-88 mags now fit inside EF-88 rifles.
+  Wisemonster:
+  - spellcheck: Changed the smart pistol bundle's name in the smart gunner vendor
+      to clarify that it comes with smart goggles.
+  Xander3359:
+  - balance: Freelancers have better loadouts slightly.
+  vvvv-vvvv:
+  - bugfix: Fix some missing stack singular names
+  - admin: Add Debug Controller verb
+  yyzsong:
+  - rscadd: Adds russian red autoinjectors to the valhalla medical vcendor
+  - bugfix: removes a duplicate item from the valhalla medical vendor
+2023-10-09:
+  Barnet2:
+  - bugfix: Lawanka tcomms work now
+  - spellcheck: Xeno ranks now go hatchling > young > mature > elder > ancient
+  Xander3359:
+  - admin: CTRL+Shift click self to spawn as a human
+  - balance: Gorger no longer gets slowdown from weeds
+  dopamiin:
+  - balance: the Judge now has a much longer fire delay, but its standard rounds are
+      more powerful.

@@ -15,4 +15,4 @@
 #endif
 
 ///Provide a link for CAS users to click to jump to.
-#define CAS_JUMP_LINK(location) "(<a href='?_src_=usr;cas_jump=\ref[location];'>JUMP</a>)"
+#define CAS_JUMP_LINK(location) "(<a href='?_src_=usr;cas_jump=[text_ref(location)];'>JUMP</a>)"

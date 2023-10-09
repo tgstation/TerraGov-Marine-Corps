@@ -63,10 +63,23 @@
 #define SQUAD_CORPSMAN "Squad Corpsman"
 #define SQUAD_ENGINEER "Squad Engineer"
 #define SQUAD_MARINE "Squad Marine"
+#define SQUAD_ROBOT "Squad Robot"
 #define SQUAD_VATGROWN "Squad VatGrown"
 #define SILICON_AI "AI"
 
-//SOM - very placeholder for now
+//SOM
+#define SOM_GENERAL "SOM general"
+#define SOM_FIELD_COMMANDER "SOM Field Commander"
+#define SOM_STAFF_OFFICER "SOM Staff Officer"
+#define SOM_PILOT_OFFICER "SOM Pilot Officer"
+#define SOM_MECH_PILOT "SOM Mech Pilot"
+#define SOM_REQUISITIONS_OFFICER "SOM Requisitions Officer"
+#define SOM_CHIEF_ENGINEER "SOM Chief Engineer"
+#define SOM_CHIEF_MEDICAL_OFFICER "SOM Chief Medical Officer"
+#define SOM_TECH "SOM Technician"
+#define SOM_MEDICAL_DOCTOR "SOM Medical Doctor"
+#define SOM_CHEF "SOM chef"
+
 #define SOM_SQUAD_LEADER "SOM Squad Leader"
 #define SOM_SQUAD_CORPSMAN "SOM Squad Medic"
 #define SOM_SQUAD_ENGINEER "SOM Squad Engineer"

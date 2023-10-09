@@ -63,10 +63,17 @@ map deltastation
 	minplayers 60
 endmap
 
+map fort_phobos
+endmap
+
 map desparity
 	maxplayers 30
 endmap
 
 map lawanka
 minplayers 60
+endmap
+
+map slumbridge
+  minplayers 35
 endmap

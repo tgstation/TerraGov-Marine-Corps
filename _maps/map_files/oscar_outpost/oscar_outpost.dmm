@@ -324,12 +324,6 @@
 	},
 /turf/open/floor/tile/dark,
 /area/oscar_outpost/base)
-"ch" = (
-/obj/machinery/landinglight/ds1/delaytwo{
-	dir = 1
-	},
-/turf/open/floor/plating/asteroidfloor,
-/area/oscar_outpost)
 "ci" = (
 /obj/structure/window,
 /obj/effect/ai_node,
@@ -753,6 +747,9 @@
 /area/oscar_outpost/base)
 "fA" = (
 /obj/effect/ai_node,
+/obj/machinery/landinglight/lz1{
+	dir = 4
+	},
 /turf/open/floor/plating/asteroidfloor,
 /area/oscar_outpost)
 "fC" = (
@@ -1427,12 +1424,6 @@
 	},
 /turf/open/floor/wood,
 /area/oscar_outpost/village/east)
-"jF" = (
-/obj/machinery/landinglight/ds1/delayone{
-	dir = 1
-	},
-/turf/open/floor/plating/asteroidfloor,
-/area/oscar_outpost)
 "jM" = (
 /obj/structure/closet/crate,
 /obj/item/toy/prize/deathripley,
@@ -1986,10 +1977,6 @@
 	},
 /turf/open/floor/wood,
 /area/oscar_outpost/village/east)
-"nZ" = (
-/obj/machinery/landinglight/ds1,
-/turf/open/floor/plating/asteroidfloor,
-/area/oscar_outpost)
 "oc" = (
 /obj/structure/prop/mainship/gelida/miner,
 /obj/structure/prop/mainship/gelida/miner{
@@ -2086,10 +2073,10 @@
 /turf/open/floor/wood,
 /area/oscar_outpost/village/fairgrounds)
 "oN" = (
-/obj/machinery/landinglight/ds1/delaythree{
+/obj/effect/landmark/start/job/squadmarine,
+/obj/machinery/landinglight/lz1{
 	dir = 1
 	},
-/obj/effect/landmark/start/job/squadmarine,
 /turf/open/floor/plating/asteroidfloor,
 /area/oscar_outpost)
 "oO" = (
@@ -2213,6 +2200,13 @@
 /obj/machinery/camera/autoname/mainship,
 /turf/open/floor,
 /area/oscar_outpost/village/central)
+"pC" = (
+/obj/effect/ai_node,
+/obj/machinery/landinglight/lz1{
+	dir = 8
+	},
+/turf/open/floor/plating/asteroidfloor,
+/area/oscar_outpost)
 "pG" = (
 /obj/machinery/vending/medical,
 /obj/structure/cable,
@@ -2354,13 +2348,6 @@
 	dir = 4
 	},
 /area/oscar_outpost/outside/road)
-"qu" = (
-/obj/machinery/landinglight/ds1{
-	dir = 8
-	},
-/obj/effect/ai_node,
-/turf/open/floor/plating/asteroidfloor,
-/area/oscar_outpost)
 "qw" = (
 /obj/structure/table/reinforced/prison,
 /obj/item/phone,
@@ -2964,12 +2951,6 @@
 	},
 /turf/open/floor/wood,
 /area/oscar_outpost/village/east)
-"tZ" = (
-/obj/machinery/landinglight/ds1/delayone{
-	dir = 8
-	},
-/turf/open/floor/plating/asteroidfloor,
-/area/oscar_outpost)
 "uc" = (
 /obj/machinery/light{
 	dir = 4
@@ -3124,12 +3105,6 @@
 	dir = 1
 	},
 /area/oscar_outpost/outside/road)
-"va" = (
-/obj/machinery/landinglight/ds1/delaythree{
-	dir = 1
-	},
-/turf/open/floor/plating/asteroidfloor,
-/area/oscar_outpost)
 "vp" = (
 /obj/structure/barricade/metal{
 	dir = 8
@@ -3769,12 +3744,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/wood,
 /area/oscar_outpost/village/east)
-"za" = (
-/obj/machinery/landinglight/ds1/delaytwo{
-	dir = 8
-	},
-/turf/open/floor/plating/asteroidfloor,
-/area/oscar_outpost)
 "zc" = (
 /obj/machinery/camera/autoname/mainship{
 	dir = 1
@@ -3858,12 +3827,6 @@
 	dir = 4
 	},
 /area/oscar_outpost/village/central)
-"zq" = (
-/obj/machinery/landinglight/ds1/delaytwo{
-	dir = 4
-	},
-/turf/open/floor/plating/asteroidfloor,
-/area/oscar_outpost)
 "zu" = (
 /obj/structure/barricade/sandbags{
 	dir = 4;
@@ -4244,7 +4207,7 @@
 /turf/open/floor,
 /area/oscar_outpost/village)
 "Bh" = (
-/obj/machinery/landinglight/ds1{
+/obj/machinery/landinglight/lz1{
 	dir = 1
 	},
 /turf/open/floor/plating/asteroidfloor,
@@ -4261,13 +4224,6 @@
 	},
 /turf/open/floor/plating/ground/dirt,
 /area/oscar_outpost/village/fairgrounds)
-"Bn" = (
-/obj/machinery/landinglight/ds1/delaytwo{
-	dir = 4
-	},
-/obj/effect/ai_node,
-/turf/open/floor/plating/asteroidfloor,
-/area/oscar_outpost)
 "Bo" = (
 /obj/item/storage/belt/lifesaver/full,
 /obj/item/clothing/glasses/hud/health,
@@ -4391,12 +4347,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/wood,
 /area/oscar_outpost/village/south)
-"BO" = (
-/obj/machinery/landinglight/ds1{
-	dir = 8
-	},
-/turf/open/floor/plating/asteroidfloor,
-/area/oscar_outpost)
 "BP" = (
 /obj/structure/closet/crate,
 /obj/item/reagent_containers/glass/bottle/tricordrazine,
@@ -5116,13 +5066,6 @@
 /obj/item/explosive/grenade/m15,
 /turf/open/floor,
 /area/oscar_outpost/village/south)
-"Ff" = (
-/obj/machinery/landinglight/ds1/delayone{
-	dir = 4
-	},
-/obj/effect/ai_node,
-/turf/open/floor/plating/asteroidfloor,
-/area/oscar_outpost)
 "Fg" = (
 /obj/structure/barricade/metal{
 	dir = 8
@@ -5615,7 +5558,7 @@
 /turf/open/floor/prison,
 /area/oscar_outpost/base)
 "He" = (
-/obj/machinery/landinglight/ds1/delaythree{
+/obj/machinery/landinglight/lz1{
 	dir = 8
 	},
 /turf/open/floor/plating/asteroidfloor,
@@ -6964,13 +6907,6 @@
 	},
 /turf/open/floor/tile/dark,
 /area/oscar_outpost/base)
-"Ms" = (
-/obj/machinery/landinglight/ds1/delayone{
-	dir = 8
-	},
-/obj/effect/ai_node,
-/turf/open/floor/plating/asteroidfloor,
-/area/oscar_outpost)
 "Mt" = (
 /obj/structure/bed/chair/office,
 /turf/open/floor/wood,
@@ -8064,12 +8000,6 @@
 	},
 /turf/open/floor/tile/dark,
 /area/oscar_outpost/base)
-"Ru" = (
-/obj/machinery/landinglight/ds1{
-	dir = 4
-	},
-/turf/open/floor/plating/asteroidfloor,
-/area/oscar_outpost)
 "Rv" = (
 /obj/structure/cable,
 /turf/open/floor/plating/ground/dirtgrassborder,
@@ -8105,12 +8035,6 @@
 	},
 /turf/open/floor/wood,
 /area/oscar_outpost/village/east)
-"RF" = (
-/obj/machinery/landinglight/ds1/delayone{
-	dir = 4
-	},
-/turf/open/floor/plating/asteroidfloor,
-/area/oscar_outpost)
 "RH" = (
 /obj/structure/rack,
 /obj/effect/spawner/random/weaponry/explosive/plastiqueexplosive,
@@ -8163,10 +8087,6 @@
 	dir = 10
 	},
 /turf/open/liquid/lava,
-/area/oscar_outpost)
-"RP" = (
-/obj/machinery/landinglight/ds1/delayone,
-/turf/open/floor/plating/asteroidfloor,
 /area/oscar_outpost)
 "RV" = (
 /obj/machinery/sleeper,
@@ -8938,6 +8858,9 @@
 /area/oscar_outpost/village/south)
 "Vm" = (
 /obj/effect/landmark/start/job/squadcorpsman,
+/obj/machinery/landinglight/lz1{
+	dir = 8
+	},
 /turf/open/floor/plating/asteroidfloor,
 /area/oscar_outpost)
 "Vn" = (
@@ -9778,10 +9701,6 @@
 	dir = 4
 	},
 /area/oscar_outpost/outside/road)
-"YK" = (
-/obj/machinery/landinglight/ds1/delaythree,
-/turf/open/floor/plating/asteroidfloor,
-/area/oscar_outpost)
 "YN" = (
 /obj/structure/closet/crate,
 /obj/effect/spawner/random/weaponry/gun/shotgun,
@@ -9945,7 +9864,7 @@
 /turf/open/floor,
 /area/oscar_outpost/village/central)
 "Zq" = (
-/obj/machinery/landinglight/ds1/delaythree{
+/obj/machinery/landinglight/lz1{
 	dir = 4
 	},
 /turf/open/floor/plating/asteroidfloor,
@@ -10025,7 +9944,7 @@
 /turf/open/floor,
 /area/oscar_outpost/village/central)
 "ZC" = (
-/obj/machinery/landinglight/ds1/delaytwo,
+/obj/machinery/landinglight/lz1,
 /turf/open/floor/plating/asteroidfloor,
 /area/oscar_outpost)
 "ZE" = (
@@ -15453,25 +15372,25 @@ QY
 bk
 xe
 PG
-Ru
-Ru
-RF
-Bn
 Zq
-PG
-RF
-zq
 Zq
-Ru
-Ff
-zq
 Zq
-Ru
-RF
-zq
+fA
 Zq
-Ru
-RF
+Zq
+Zq
+Zq
+Zq
+Zq
+fA
+Zq
+Zq
+Zq
+Zq
+Zq
+Zq
+Zq
+Zq
 fA
 Zq
 PG
@@ -15956,7 +15875,7 @@ jN
 bk
 AB
 xe
-RP
+ZC
 IV
 IV
 IV
@@ -15978,7 +15897,7 @@ IV
 IV
 wE
 IV
-jF
+Bh
 pP
 YO
 Li
@@ -16208,7 +16127,7 @@ Ko
 bk
 bk
 xe
-nZ
+ZC
 IV
 IV
 IV
@@ -16230,7 +16149,7 @@ IV
 IV
 IV
 IV
-ch
+Bh
 pP
 YO
 Li
@@ -16460,7 +16379,7 @@ bk
 bk
 bk
 xe
-YK
+ZC
 IV
 IV
 IV
@@ -16964,7 +16883,7 @@ WZ
 bk
 bk
 xe
-RP
+ZC
 IV
 IV
 IV
@@ -16986,7 +16905,7 @@ IV
 IV
 IV
 wr
-jF
+Bh
 pP
 Ie
 Li
@@ -17216,7 +17135,7 @@ WZ
 bk
 bk
 xe
-nZ
+ZC
 IV
 IV
 IV
@@ -17238,7 +17157,7 @@ IV
 IV
 IV
 wr
-ch
+Bh
 pP
 YO
 Li
@@ -17468,7 +17387,7 @@ Nd
 bk
 AB
 xe
-YK
+ZC
 IV
 IV
 IV
@@ -17490,7 +17409,7 @@ IV
 IV
 IV
 IV
-va
+Bh
 pP
 Nv
 Li
@@ -17972,7 +17891,7 @@ bk
 bk
 bk
 xe
-RP
+ZC
 IV
 IV
 IV
@@ -17994,7 +17913,7 @@ IV
 IV
 wE
 IV
-jF
+Bh
 pP
 YO
 Li
@@ -18224,7 +18143,7 @@ AJ
 YO
 bk
 xe
-nZ
+ZC
 IV
 IV
 IV
@@ -18246,7 +18165,7 @@ IV
 IV
 IV
 IV
-ch
+Bh
 pP
 YO
 Li
@@ -18477,26 +18396,26 @@ Lo
 bk
 xe
 PG
-PG
-PG
-tZ
-qu
 He
-PG
-tZ
-BO
 He
-za
-Ms
-BO
+He
+pC
+He
+He
+He
+He
+He
+He
+pC
+He
 Vm
-za
-tZ
-BO
 He
-za
-PG
-fA
+He
+He
+He
+He
+He
+pC
 He
 PG
 pP

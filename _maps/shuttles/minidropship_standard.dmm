@@ -51,6 +51,7 @@
 	id = "minidropship_podlock";
 	name = "inner door-control"
 	},
+/obj/item/stack/barbed_wire/half_stack,
 /turf/open/floor/mainship/mono,
 /area/shuttle/minidropship)
 "n" = (

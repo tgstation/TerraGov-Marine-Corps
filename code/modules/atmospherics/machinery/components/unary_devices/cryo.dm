@@ -59,7 +59,7 @@
 		occupant.adjustOxyLoss(-1)
 	if (occupant.getToxLoss())
 		occupant.adjustToxLoss(-1)
-	occupant.heal_limb_damage(1, 1, updating_health = TRUE)
+	occupant.heal_overall_damage(1, 1, updating_health = TRUE)
 	var/has_cryo = occupant.reagents.get_reagent_amount(/datum/reagent/medicine/cryoxadone) >= 1
 	var/has_clonexa = occupant.reagents.get_reagent_amount(/datum/reagent/medicine/clonexadone) >= 1
 	var/has_cryo_medicine = has_cryo || has_clonexa
@@ -151,6 +151,7 @@
 			if(dead)
 				reason = "<b>Reason for release:</b> Patient death."
 			radio.talk_into(src, "Patient [occupant] has been automatically released from [src] at: [get_area(occupant)]. [reason]", RADIO_CHANNEL_MEDICAL)
+	occupant.record_time_in_cryo()
 	occupant = null
 	update_icon()
 
@@ -304,6 +305,7 @@
 	if(M.health > -100 && (M.health < 0 || M.IsSleeping()))
 		to_chat(M, span_boldnotice("You feel a cold liquid surround you. Your skin starts to freeze up."))
 	occupant = M
+	occupant.time_entered_cryo = world.time
 	update_icon()
 	return TRUE
 

@@ -252,6 +252,13 @@ export const GameSettings = (props, context) => {
                 leftLabel={'Enabled'}
                 rightLabel={'Disabled'}
               />
+              <ToggleFieldPreference
+                label="Radial laser gun wheel"
+                value="radiallasersgunpref"
+                action="radiallasersgunpref"
+                leftLabel={'Enabled'}
+                rightLabel={'Disabled'}
+              />
               <LoopingSelectionPreference
                 label="Scaling Method"
                 value={scaling_method}
@@ -289,7 +296,7 @@ export const GameSettings = (props, context) => {
           </Section>
         </Grid.Column>
       </Grid>
-      {is_admin && (
+      {!!is_admin && (
         <Grid>
           <Grid.Column>
             <Section title="Administration (admin only)">

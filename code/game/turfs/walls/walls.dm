@@ -255,14 +255,19 @@
 		update_icon()
 
 ///Repairs the wall by an amount
-/turf/closed/wall/proc/repair_damage(repair_amount)
+/turf/closed/wall/proc/repair_damage(repair_amount, mob/user)
 	if(resistance_flags & INDESTRUCTIBLE) //Hull is literally invincible
 		return
 
 	if(!repair_amount)
 		return
 
-	wall_integrity = min(max_integrity, wall_integrity + repair_amount)
+	repair_amount = min(repair_amount, max_integrity - wall_integrity)
+	if(user?.client)
+		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[user.ckey]
+		personal_statistics.integrity_repaired += repair_amount
+		personal_statistics.times_repaired++
+	wall_integrity += repair_amount
 	update_icon()
 
 
@@ -379,7 +384,7 @@
 		user.visible_message(span_notice("[user] finishes repairing the damage to [src]."),
 		span_notice("You finish repairing the damage to [src]."))
 		cut_overlay(GLOB.welding_sparks)
-		repair_damage(250)
+		repair_damage(250, user)
 
 	else
 		//DECONSTRUCTION

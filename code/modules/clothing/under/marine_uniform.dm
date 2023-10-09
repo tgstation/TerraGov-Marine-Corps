@@ -509,3 +509,6 @@
 	if(!isrobot(user))
 		to_chat(user, span_warning("You can't equip this as it requires mounting screws on your body!"))
 		return FALSE
+
+/obj/item/clothing/under/marine/robotic/webbing
+	starting_attachments = list(/obj/item/armor_module/storage/uniform/black_vest)

@@ -20,12 +20,12 @@
 	dat += "<b>Recently stored objects</b><br/><hr/><br/>"
 	dat +="<table style='text-align:justify'><tr>"
 	dat += "<tr></table>"
-	dat += "<center><a href='byond://?src=\ref[src];allitems=TRUE'>Dispense All</a></center><br/>"
+	dat += "<center><a href='byond://?src=[text_ref(src)];allitems=TRUE'>Dispense All</a></center><br/>"
 	for(var/obj/item/I AS in GLOB.cryoed_item_list)
 		if(QDELETED(I))
 			GLOB.cryoed_item_list -= I
 			continue
-		dat += "<p style='text-align:left'><a href='byond://?src=\ref[src];item=\ref[I]'>[I.name]</a></p>"
+		dat += "<p style='text-align:left'><a href='byond://?src=[text_ref(src)];item=[text_ref(I)]'>[I.name]</a></p>"
 	dat += "<hr/>"
 
 	var/datum/browser/popup = new(user, "cryopod_console", "<div align='center'>Cryogenics</div>")
@@ -83,6 +83,9 @@
 /obj/structure/cryofeed/right
 	orient_right = TRUE
 	icon_state = "cryo_rear-r"
+
+/obj/structure/cryofeed/middle
+	icon_state = "cryo_rear-m"
 
 /obj/structure/cryofeed/Initialize(mapload)
 	. = ..()
@@ -167,7 +170,8 @@
 
 /obj/item/proc/store_in_cryo()
 	if(is_type_in_typecache(src, GLOB.do_not_preserve) || flags_item & (ITEM_ABSTRACT|NODROP|DELONDROP))
-		qdel(src)
+		if(!QDELETED(src))
+			qdel(src)
 		return
 	moveToNullspace()
 	GLOB.cryoed_item_list += src

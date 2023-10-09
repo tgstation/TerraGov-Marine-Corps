@@ -7,12 +7,11 @@
 
 	var/caste_type_path = null
 
-	var/ancient_message = ""
 	///primordial message that is shown when a caste becomes primordial
 	var/primordial_message = ""
 
 	var/tier = XENO_TIER_ZERO
-	var/upgrade = XENO_UPGRADE_ZERO
+	var/upgrade = XENO_UPGRADE_NORMAL
 	///used to match appropriate wound overlays
 	var/wound_type = "alien"
 	var/language = "Xenomorph"
@@ -106,8 +105,6 @@
 	///list of datum projectile types the xeno can use.
 	var/list/spit_types
 
-	///numerical type of charge for a xenomorph caste
-	var/charge_type = 0
 	///amount of time between pounce ability uses
 	var/pounce_delay = 4 SECONDS
 
@@ -165,6 +162,10 @@
 	var/fortify_armor = 0
 	///amount of slowdown to apply when the crest defense is active. trading defense for speed. Positive numbers makes it slower.
 	var/crest_defense_slowdown = 0
+
+	// *** Puppeteer Abilities *** //
+	var/flay_plasma_gain = 0
+	var/max_puppets = 0
 
 	// *** Crusher Abilities *** //
 	///The damage the stomp causes, counts armor
@@ -276,7 +277,7 @@
 	appearance_flags = TILE_BOUND|PIXEL_SCALE|KEEP_TOGETHER
 	see_infrared = TRUE
 	hud_type = /datum/hud/alien
-	hud_possible = list(HEALTH_HUD_XENO, PLASMA_HUD, PHEROMONE_HUD, QUEEN_OVERWATCH_HUD, ARMOR_SUNDER_HUD, XENO_DEBUFF_HUD, XENO_FIRE_HUD)
+	hud_possible = list(HEALTH_HUD_XENO, PLASMA_HUD, PHEROMONE_HUD, XENO_RANK_HUD, QUEEN_OVERWATCH_HUD, ARMOR_SUNDER_HUD, XENO_DEBUFF_HUD, XENO_FIRE_HUD, XENO_BLESSING_HUD)
 	buckle_flags = NONE
 	faction = FACTION_XENO
 	initial_language_holder = /datum/language_holder/xeno
@@ -314,8 +315,6 @@
 	var/upgrade = XENO_UPGRADE_INVALID
 	///sunder affects armour values and does a % removal before dmg is applied. 50 sunder == 50% effective armour values
 	var/sunder = 0
-
-	var/obj/structure/xeno/tunnel/start_dig = null
 	///The ammo datum for our spit projectiles. We're born with this, it changes sometimes.
 	var/datum/ammo/xeno/ammo = null
 

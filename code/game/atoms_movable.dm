@@ -104,6 +104,8 @@
 
 	var/old_loc = loc
 
+	loc?.handle_atom_del(src)
+
 	if(opacity)
 		RemoveElement(/datum/element/light_blocking)
 
@@ -116,21 +118,23 @@
 	if(thrower)
 		thrower = null
 
-	. = ..()
+	LAZYCLEARLIST(client_mobs_in_contents)
 
-	loc?.handle_atom_del(src)
+	. = ..()
 
 	for(var/movable_content in contents)
 		qdel(movable_content)
 
+	moveToNullspace()
+
 	if(important_recursive_contents && (important_recursive_contents[RECURSIVE_CONTENTS_CLIENT_MOBS] || important_recursive_contents[RECURSIVE_CONTENTS_HEARING_SENSITIVE]))
 		SSspatial_grid.force_remove_from_cell(src)
 
-	LAZYCLEARLIST(client_mobs_in_contents)
 
-	LAZYCLEARLIST(important_recursive_contents)//has to be before moveToNullspace() so that we can exit our spatial_grid cell if we're in it
-
-	moveToNullspace()
+	//This absolutely must be after moveToNullspace()
+	//We rely on Entered and Exited to manage this list, and the copy of this list that is on any /atom/movable "Containers"
+	//If we clear this before the nullspace move, a ref to this object will be hung in any of its movable containers
+	LAZYCLEARLIST(important_recursive_contents)
 
 	if(smoothing_flags && isturf(old_loc))
 		QUEUE_SMOOTH_NEIGHBORS(old_loc)
@@ -143,8 +147,11 @@
 		orbiting.end_orbit(src)
 		orbiting = null
 
-	vis_contents.Cut()
-	vis_locs = null
+	vis_locs = null //clears this atom out of all viscontents
+
+	// Checking length(vis_contents) before cutting has significant speed benefits
+	if (length(vis_contents))
+		vis_contents.Cut()
 
 	QDEL_NULL(light)
 	QDEL_NULL(static_light)
@@ -1137,9 +1144,9 @@
 	for(var/atom/movable/location as anything in get_nested_locs(src) + src)
 		LAZYREMOVEASSOC(location.important_recursive_contents, RECURSIVE_CONTENTS_HEARING_SENSITIVE, src)
 
-///propogates new_client's mob through our nested contents, similar to other important_recursive_contents procs
+///propogates ourselves through our nested contents, similar to other important_recursive_contents procs
 ///main difference is that client contents need to possibly duplicate recursive contents for the clients mob AND its eye
-/atom/movable/proc/enable_client_mobs_in_contents(client/new_client)
+/mob/proc/enable_client_mobs_in_contents()
 	var/turf/our_turf = get_turf(src)
 	if(our_turf && SSspatial_grid.initialized)
 		SSspatial_grid.enter_cell(src, our_turf, RECURSIVE_CONTENTS_CLIENT_MOBS)
@@ -1147,10 +1154,10 @@
 		SSspatial_grid.enter_pre_init_queue(src, RECURSIVE_CONTENTS_CLIENT_MOBS)
 
 	for(var/atom/movable/movable_loc as anything in get_nested_locs(src) + src)
-		LAZYORASSOCLIST(movable_loc.important_recursive_contents, RECURSIVE_CONTENTS_CLIENT_MOBS, new_client.mob)
+		LAZYORASSOCLIST(movable_loc.important_recursive_contents, RECURSIVE_CONTENTS_CLIENT_MOBS, src)
 
-///Clears the clients channel of this movables important_recursive_contents list and all nested locs
-/atom/movable/proc/clear_important_client_contents(client/former_client)
+///Clears the clients channel of this mob
+/mob/proc/clear_important_client_contents()
 
 	var/turf/our_turf = get_turf(src)
 
@@ -1160,7 +1167,7 @@
 		SSspatial_grid.remove_from_pre_init_queue(src, RECURSIVE_CONTENTS_CLIENT_MOBS)
 
 	for(var/atom/movable/movable_loc as anything in get_nested_locs(src) + src)
-		LAZYREMOVEASSOC(movable_loc.important_recursive_contents, RECURSIVE_CONTENTS_CLIENT_MOBS, former_client.mob)
+		LAZYREMOVEASSOC(movable_loc.important_recursive_contents, RECURSIVE_CONTENTS_CLIENT_MOBS, src)
 
 ///Checks the gravity the atom is subjected to
 /atom/movable/proc/get_gravity()

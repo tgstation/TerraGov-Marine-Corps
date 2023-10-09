@@ -8,7 +8,7 @@
 #define MUTE_DEADCHAT (1<<4)
 #define MUTE_LOOC (1<<5)
 #define MUTE_TTS (1<<6)
-#define MUTE_ALL (1<<7)-1
+#define MUTE_ALL (~0)
 
 //Some constants for DB_Ban
 #define BANTYPE_PERMA 1

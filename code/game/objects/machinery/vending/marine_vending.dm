@@ -98,8 +98,8 @@
 			/obj/item/ammo_magazine/pistol/vp70 = -1,
 			/obj/item/weapon/gun/pistol/plasma_pistol = -1,
 			/obj/item/ammo_magazine/pistol/plasma_pistol = -1,
-			/obj/item/weapon/gun/shotgun/double/derringer = 10,
-			/obj/item/ammo_magazine/pistol/derringer = 15,
+			/obj/item/weapon/gun/shotgun/double/derringer = -1,
+			/obj/item/ammo_magazine/pistol/derringer = -1,
 			/obj/item/ammo_magazine/revolver/standard_magnum = -1,
 		),
 		"Grenades" = list(
@@ -323,8 +323,8 @@
 			/obj/item/ammo_magazine/pistol/vp70 = -1,
 			/obj/item/weapon/gun/pistol/plasma_pistol = -1,
 			/obj/item/ammo_magazine/pistol/plasma_pistol = -1,
-			/obj/item/weapon/gun/shotgun/double/derringer = 10,
-			/obj/item/ammo_magazine/pistol/derringer = 15,
+			/obj/item/weapon/gun/shotgun/double/derringer = -1,
+			/obj/item/ammo_magazine/pistol/derringer = -1,
 		),
 		"Grenades" = list(
 			/obj/item/weapon/gun/grenade_launcher/single_shot = -1,
@@ -535,7 +535,6 @@
 			/obj/item/ammo_magazine/rifle/tx54/smoke = -1,
 			/obj/item/ammo_magazine/rifle/tx54/smoke/dense = -1,
 			/obj/item/ammo_magazine/rifle/tx54/smoke/tangle = -1,
-			/obj/item/ammo_magazine/rifle/tx54/razor = -1,
 			/obj/item/explosive/grenade = -1,
 			/obj/item/explosive/grenade/m15 = -1,
 			/obj/item/explosive/grenade/sticky = -1,
@@ -943,6 +942,7 @@
 			/obj/item/reagent_containers/hypospray/autoinjector/imidazoline = -1,
 			/obj/item/reagent_containers/hypospray/autoinjector/quickclot = -1,
 			/obj/item/reagent_containers/hypospray/autoinjector/medicalnanites = -1,
+			/obj/item/reagent_containers/hypospray/autoinjector/russian_red = -1,
 		),
 		"Heal Pack" = list(
 			/obj/item/stack/medical/heal_pack/gauze = -1,
@@ -961,7 +961,6 @@
 			/obj/item/reagent_containers/hypospray/autoinjector/roulettium = -1,
 			/obj/item/reagent_containers/hypospray/autoinjector/rezadone = -1,
 			/obj/item/reagent_containers/hypospray/autoinjector/spaceacillin = -1,
-			/obj/item/reagent_containers/hypospray/autoinjector/combat = -1,
 			/obj/item/reagent_containers/hypospray/autoinjector/synaptizine = -1,
 			/obj/item/reagent_containers/hypospray/autoinjector/neuraline = -1,
 			/obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus = -1,
@@ -1232,8 +1231,6 @@
 			/obj/item/clothing/head/modular/style/beanie = -1,
 			/obj/item/clothing/head/modular/style/headband = -1,
 			/obj/item/clothing/head/modular/style/bandana = -1,
-			/obj/item/clothing/glasses/mgoggles = -1,
-			/obj/item/clothing/glasses/mgoggles/prescription = -1,
 		),
 		"Masks" = list(
 			/obj/item/clothing/mask/rebreather/scarf = -1,
@@ -1317,9 +1314,16 @@
 			/obj/item/clothing/gloves/latex = -1,
 			/obj/item/clothing/shoes/white = -1,
 		),
-		"Civilian Surplus Wear" = list(
-			/obj/item/clothing/under/rank/chaplain = -1
-		)
+		"Eyewear" = list(
+			/obj/item/clothing/glasses/regular = -1,
+			/obj/item/clothing/glasses/eyepatch = -1,
+			/obj/item/clothing/glasses/sunglasses/fake/big = -1,
+			/obj/item/clothing/glasses/sunglasses/fake/big/prescription = -1,
+			/obj/item/clothing/glasses/sunglasses/fake = -1,
+			/obj/item/clothing/glasses/sunglasses/fake/prescription = -1,
+			/obj/item/clothing/glasses/mgoggles = -1,
+			/obj/item/clothing/glasses/mgoggles/prescription = -1,
+		),
 	)
 
 	prices = list()
@@ -1412,6 +1416,10 @@
 			/obj/item/explosive/grenade/smokebomb/neuro = -1,
 			/obj/item/explosive/grenade/smokebomb/acid = -1,
 			/obj/item/explosive/grenade/smokebomb/satrapine = -1,
+			/obj/item/weapon/gun/rifle/m412l1_hpr = -1,
+			/obj/item/ammo_magazine/m412l1_hpr = -1,
+			/obj/item/weapon/gun/rifle/famas = -1,
+			/obj/item/ammo_magazine/rifle/famas = -1,
 		),
 		"Mounted" = list(
 			/obj/item/weapon/gun/standard_auto_cannon = -1,
@@ -1580,6 +1588,10 @@
 			/obj/item/ammo_magazine/rifle/icc_autoshotgun = -1,
 			/obj/item/ammo_magazine/rifle/icc_autoshotgun/frag = -1,
 			/obj/item/weapon/gun/shotgun/pump/trenchgun = -1,
+			/obj/item/weapon/gun/rifle/icc_assaultcarbine = -1,
+			/obj/item/weapon/gun/rifle/icc_assaultcarbine/export = -1,
+			/obj/item/ammo_magazine/rifle/icc_assaultcarbine = -1,
+			/obj/item/ammo_magazine/rifle/icc_assaultcarbine/export = -1,
 		),
 		"PMC" = list(
 			/obj/item/weapon/gun/rifle/sniper/elite = -1,

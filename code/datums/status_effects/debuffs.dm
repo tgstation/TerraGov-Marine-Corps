@@ -431,6 +431,14 @@
 /datum/status_effect/spacefreeze/tick()
 	owner.adjustFireLoss(40)
 
+/datum/status_effect/spacefreeze/light
+	id = "spacefreeze_light"
+
+/datum/status_effect/spacefreeze/light/tick()
+	if(owner.stat == DEAD)
+		return
+	owner.adjustFireLoss(10)
+
 ///irradiated mob
 /datum/status_effect/incapacitating/irradiated
 	id = "irradiated"
@@ -548,6 +556,40 @@
 		resist_debuff() // We repeat ourselves as long as the debuff persists.
 		return
 
+
+// ***************************************
+// *********** dread
+// ***************************************
+/atom/movable/screen/alert/status_effect/dread
+	name = "Dread"
+	desc = "A dreadful presence. You are slowed down until this expires."
+	icon_state = "dread"
+
+/datum/status_effect/dread
+	id = "dread"
+	status_type = STATUS_EFFECT_REPLACE
+	tick_interval = 2 SECONDS
+	alert_type = /atom/movable/screen/alert/status_effect/dread
+
+/datum/status_effect/dread/on_creation(mob/living/new_owner, set_duration)
+	owner = new_owner
+	duration = set_duration
+	return ..()
+
+/datum/status_effect/dread/tick()
+	. = ..()
+	var/mob/living/living_owner = owner
+	living_owner.do_jitter_animation(250)
+
+/datum/status_effect/dread/on_apply()
+	. = ..()
+	if(!.)
+		return
+	owner.add_movespeed_modifier(MOVESPEED_ID_XENO_DREAD, TRUE, 0, NONE, TRUE, 0.4)
+
+/datum/status_effect/dread/on_remove()
+	owner.remove_movespeed_modifier(MOVESPEED_ID_XENO_DREAD)
+	return ..()
 
 // ***************************************
 // *********** Melting

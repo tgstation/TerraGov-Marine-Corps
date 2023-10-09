@@ -237,7 +237,7 @@ GLOBAL_LIST_INIT(freqtospan, list(
 		return "1"
 	else if (ending == "!")
 		return "2"
-	return "0"
+	return "4"
 
 /atom/movable/proc/GetVoice()
 	return "[src]"	//Returns the atom's name, prepended with 'The' if it's not a proper noun
