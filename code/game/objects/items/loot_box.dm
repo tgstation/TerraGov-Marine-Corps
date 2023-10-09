@@ -331,7 +331,7 @@
 /obj/effect/supply_drop/som_carbine/Initialize(mapload)
 	. = ..()
 	new /obj/item/weapon/gun/rifle/som_carbine/black/standard(loc)
-	new /obj/item/storage/belt/marine/som/carbine/Initialize(loc)
+	new /obj/item/storage/belt/marine/som/carbine(loc)
 	return INITIALIZE_HINT_QDEL
 
 /obj/effect/supply_drop/som_smg/Initialize(mapload)
