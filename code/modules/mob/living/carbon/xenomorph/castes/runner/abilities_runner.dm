@@ -24,16 +24,17 @@
 
 /datum/action/xeno_action/activable/pounce/runner/mob_hit(datum/source, mob/living/living_target)
 	. = ..()
-	if(savage_activated)
-		var/mob/living/carbon/xenomorph/xeno_owner = owner
-		var/savage_cost = RUNNER_SAVAGE_DAMAGE_MINIMUM * 2
-		if(xeno_owner.plasma_stored < savage_cost)
-			owner.balloon_alert(owner, "Not enough plasma to Savage")
-			return
-		living_target.attack_alien_harm(xeno_owner, max(RUNNER_SAVAGE_DAMAGE_MINIMUM, xeno_owner.plasma_stored * 0.15))
-		xeno_owner.use_plasma(savage_cost)
-		GLOB.round_statistics.runner_savage_attacks++
-		SSblackbox.record_feedback("tally", "round_statistics", 1, "runner_savage_attacks")
+	if(!savage_activated)
+		return
+	var/mob/living/carbon/xenomorph/xeno_owner = owner
+	var/savage_cost = RUNNER_SAVAGE_DAMAGE_MINIMUM * 2
+	if(xeno_owner.plasma_stored < savage_cost)
+		owner.balloon_alert(owner, "Not enough plasma to Savage")
+		return
+	living_target.attack_alien_harm(xeno_owner, max(RUNNER_SAVAGE_DAMAGE_MINIMUM, xeno_owner.plasma_stored * 0.15))
+	xeno_owner.use_plasma(savage_cost)
+	GLOB.round_statistics.runner_savage_attacks++
+	SSblackbox.record_feedback("tally", "round_statistics", 1, "runner_savage_attacks")
 
 
 // ***************************************
@@ -62,8 +63,6 @@
 	var/evasion_duration = 0
 	/// Current amount of Evasion stacks.
 	var/evasion_stacks = 0
-	/// How much damage we need to dodge to trigger Evasion's cooldown reset.
-	var/evasion_stack_target = RUNNER_EVASION_COOLDOWN_REFRESH_THRESHOLD
 
 /datum/action/xeno_action/evasion/on_cooldown_finish()
 	. = ..()
@@ -198,7 +197,7 @@
 /datum/action/xeno_action/evasion/proc/evasion_dodge_fx(atom/movable/proj)
 	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	xeno_owner.visible_message(span_warning("[xeno_owner] effortlessly dodges the [proj.name]!"), \
-	span_xenodanger("We effortlessly dodge the [proj.name]![(evasion_stack_target - evasion_stacks) > 0 && evasion_stacks > 0 ? " We must dodge [evasion_stack_target - evasion_stacks] more projectile damage before [src]'s cooldown refreshes." : ""]"))
+	span_xenodanger("We effortlessly dodge the [proj.name]![(RUNNER_EVASION_COOLDOWN_REFRESH_THRESHOLD - evasion_stacks) > 0 && evasion_stacks > 0 ? " We must dodge [RUNNER_EVASION_COOLDOWN_REFRESH_THRESHOLD - evasion_stacks] more projectile damage before [src]'s cooldown refreshes." : ""]"))
 	xeno_owner.add_filter("runner_evasion", 2, gauss_blur_filter(5))
 	addtimer(CALLBACK(xeno_owner, TYPE_PROC_REF(/atom, remove_filter), "runner_evasion"), 0.5 SECONDS)
 	xeno_owner.do_jitter_animation(4000)

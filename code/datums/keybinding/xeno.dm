@@ -782,8 +782,8 @@
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_RAVAGE_SELECT
 
-/datum/keybinding/xeno/runner_pounce
-	name = "runner_pounce"
+/datum/keybinding/xeno/pounce
+	name = "pounce"
 	full_name = "Runner: Pounce"
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_RUNNER_POUNCE
