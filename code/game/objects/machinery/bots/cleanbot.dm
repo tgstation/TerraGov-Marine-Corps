@@ -140,27 +140,22 @@
 ///called to evaluate and clean all objects in a given tile
 /obj/machinery/bot/cleanbot/proc/clean_items()
 	SIGNAL_HANDLER
+	var/has_cleaned = TRUE
 	for(var/obj/dirtyobject in loc)
-		clean(dirtyobject)
-	if(HAS_TRAIT(src, TRAIT_HAS_PLAYED_CLEANING_SOUND))
-		REMOVE_TRAIT(src, TRAIT_HAS_PLAYED_CLEANING_SOUND, src)
+		var/turf/currentturf = get_turf(src)
+		if(is_type_in_list(dirtyobject, cleantypes))
+			if(is_cleanable(dirtyobject) && has_cleaned)
+				playsound(loc, 'sound/effects/slosh.ogg', 25, 1)
+				currentturf.wet_floor()
+				has_cleaned = FALSE
+			flick("cleanbot-c", src)
+			++counter
+			if(prob(15))
+				say(pick(sentences))
+			qdel(dirtyobject)
+		else
+			dirtyobject.clean_blood()
 	stuck_counter = 0
-
-///clean dirty objects and remove cleanable decals
-/obj/machinery/bot/cleanbot/proc/clean(atom/movable/O as obj|mob)
-	var/turf/currentturf = get_turf(src)
-	if(is_type_in_list(O, cleantypes))
-		if(is_cleanable(O) && !HAS_TRAIT(src, TRAIT_HAS_PLAYED_CLEANING_SOUND))
-			playsound(loc, 'sound/effects/slosh.ogg', 25, 1)
-			currentturf.wet_floor()
-			ADD_TRAIT(src, TRAIT_HAS_PLAYED_CLEANING_SOUND, src)
-		flick("cleanbot-c", src)
-		++counter
-		if(prob(15))
-			say(pick(sentences))
-		qdel(O)
-	else
-		O.clean_blood()
 
 /obj/machinery/bot/cleanbot/starts_active
 	is_active = TRUE

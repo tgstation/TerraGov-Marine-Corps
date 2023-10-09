@@ -228,6 +228,3 @@
 
 //added to AIs firing railguns
 #define TRAIT_IS_FIRING_RAILGUN "firing_railgun"
-
-//added to cleanbots who have played a sound
-#define TRAIT_HAS_PLAYED_CLEANING_SOUND "cleaning sound played"
