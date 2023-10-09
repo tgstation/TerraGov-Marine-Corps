@@ -320,6 +320,20 @@
 	new /obj/item/ammo_magazine/handful/micro_grenade/cluster(loc)
 	return INITIALIZE_HINT_QDEL
 
+/obj/effect/supply_drop/mpi/Initialize(mapload)
+	. = ..()
+	new /obj/item/weapon/gun/rifle/mpi_km/black/grenadier(loc)
+	new /obj/item/storage/belt/marine/som/mpi_black(loc)
+	new /obj/item/explosive/grenade/som(loc)
+	new /obj/item/explosive/grenade/som(loc)
+	return INITIALIZE_HINT_QDEL
+
+/obj/effect/supply_drop/som_carbine/Initialize(mapload)
+	. = ..()
+	new /obj/item/weapon/gun/rifle/som_carbine/black/standard(loc)
+	new /obj/item/storage/belt/marine/som/carbine/Initialize(loc)
+	return INITIALIZE_HINT_QDEL
+
 /obj/effect/supply_drop/som_smg/Initialize(mapload)
 	. = ..()
 	new /obj/item/weapon/gun/smg/som/scout(loc)

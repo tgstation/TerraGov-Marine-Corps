@@ -1,7 +1,6 @@
 ///Default assets a faction starts with
 GLOBAL_LIST_INIT(campaign_default_assets, list(
 	FACTION_TERRAGOV = list(
-		/datum/campaign_reward/mech,
 		/datum/campaign_reward/mech/light,
 		/datum/campaign_reward/bonus_job/freelancer,
 		/datum/campaign_reward/bonus_job/pmc,
@@ -11,7 +10,6 @@ GLOBAL_LIST_INIT(campaign_default_assets, list(
 		/datum/campaign_reward/droppod_enabled,
 	),
 	FACTION_SOM = list(
-		/datum/campaign_reward/mech/som,
 		/datum/campaign_reward/mech/light/som,
 		/datum/campaign_reward/bonus_job/colonial_militia,
 		/datum/campaign_reward/bonus_job/icc,
@@ -27,8 +25,6 @@ GLOBAL_LIST_INIT(campaign_default_purchasable_assets, list(
 		/datum/campaign_reward/fire_support/mortar,
 		/datum/campaign_reward/droppod_refresh,
 		/datum/campaign_reward/droppod_enabled,
-		/datum/campaign_reward/equipment/power_armor,
-		//datum/campaign_reward/bonus_job/combat_robots,
 		/datum/campaign_reward/equipment/medkit_basic,
 		/datum/campaign_reward/equipment/materials_pack,
 		/datum/campaign_reward/equipment/ballistic_tgmc,
@@ -46,7 +42,6 @@ GLOBAL_LIST_INIT(campaign_default_purchasable_assets, list(
 		/datum/campaign_reward/fire_support/som_mortar,
 		/datum/campaign_reward/teleporter_charges,
 		/datum/campaign_reward/teleporter_enabled,
-		/datum/campaign_reward/equipment/gorgon_armor,
 		/datum/campaign_reward/equipment/medkit_basic/som,
 		/datum/campaign_reward/equipment/materials_pack,
 		/datum/campaign_reward/equipment/ballistic_som,

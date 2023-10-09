@@ -193,11 +193,13 @@
 	desc = "Ballistic weapons and ammo"
 	detailed_desc = "A number of standard ballistic weapons and ammo to match."
 	uses = 1
-	cost = 2
+	cost = 3
 	equipment_to_spawn = list(
 		/obj/effect/supply_drop/som_rifle,
 		/obj/effect/supply_drop/som_smg,
 		/obj/effect/supply_drop/som_mg,
+		/obj/effect/supply_drop/mpi,
+		/obj/effect/supply_drop/som_carbine,
 	)
 
 /datum/campaign_reward/equipment/lasers
@@ -550,9 +552,9 @@
 
 /datum/campaign_reward/attrition_modifier/malus_standard/higher
 	name = "Severely degraded supply lines"
-	desc = "-35% passive Attrition Point gain"
+	desc = "-30% passive Attrition Point gain"
 	detailed_desc = "Serious damage to our supply lines have increased the difficulty and time required to move men and materiel, resulting in a lower deployment of combat forces."
-	attrition_mod = -0.35
+	attrition_mod = -0.30
 
 /datum/campaign_reward/attrition_modifier/malus_teleporter
 	name = "Bluespace logistics disabled"
