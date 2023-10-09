@@ -72,3 +72,13 @@
   yyzsong:
   - rscadd: Adds russian red autoinjectors to the valhalla medical vcendor
   - bugfix: removes a duplicate item from the valhalla medical vendor
+2023-10-09:
+  Barnet2:
+  - bugfix: Lawanka tcomms work now
+  - spellcheck: Xeno ranks now go hatchling > young > mature > elder > ancient
+  Xander3359:
+  - admin: CTRL+Shift click self to spawn as a human
+  - balance: Gorger no longer gets slowdown from weeds
+  dopamiin:
+  - balance: the Judge now has a much longer fire delay, but its standard rounds are
+      more powerful.
