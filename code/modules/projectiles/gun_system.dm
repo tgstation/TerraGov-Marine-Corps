@@ -479,17 +479,17 @@
 	if(master_gun?.master_gun) //Prevent gunception
 		return
 	gun_user = user
+	SEND_SIGNAL(gun_user, COMSIG_GUN_USER_SET, src)
+	if(flags_gun_features & GUN_AMMO_COUNTER)
+		gun_user.hud_used.add_ammo_hud(src, get_ammo_list(), get_display_ammo_count())
+	if(master_gun)
+		return
 	setup_bullet_accuracy()
 	RegisterSignals(gun_user, list(COMSIG_RANGED_ACCURACY_MOD_CHANGED,
 		COMSIG_RANGED_SCATTER_MOD_CHANGED,
 		COMSIG_MOB_SKILLS_CHANGED,
 		COMSIG_MOB_SHOCK_STAGE_CHANGED,
 		COMSIG_HUMAN_MARKSMAN_AURA_CHANGED), PROC_REF(setup_bullet_accuracy))
-	SEND_SIGNAL(gun_user, COMSIG_GUN_USER_SET, src)
-	if(flags_gun_features & GUN_AMMO_COUNTER)
-		gun_user.hud_used.add_ammo_hud(src, get_ammo_list(), get_display_ammo_count())
-	if(master_gun)
-		return
 	if(!CHECK_BITFIELD(flags_item, IS_DEPLOYED))
 		RegisterSignal(gun_user, COMSIG_MOB_MOUSEDOWN, PROC_REF(start_fire))
 		RegisterSignal(gun_user, COMSIG_MOB_MOUSEDRAG, PROC_REF(change_target))
@@ -1731,6 +1731,9 @@
 ///Sets the projectile accuracy and scatter
 /obj/item/weapon/gun/proc/setup_bullet_accuracy()
 	SIGNAL_HANDLER
+	if(gunattachment)
+		gunattachment.setup_bullet_accuracy()
+
 	var/wielded_fire = FALSE
 	gun_accuracy_mod = 0
 	gun_scatter = 0
