@@ -41,5 +41,5 @@
 	var/datum/action/xeno_action/create_spiderling/create_spiderling_action = actions_by_path[/datum/action/xeno_action/create_spiderling]
 	for(var/mob/living/carbon/xenomorph/spider AS in create_spiderling_action.spiderlings)
 		spider.revive(TRUE)
-		INVOKE_ASYNC(spider, TYPE_PROC_REF(/atom/movable, forceMove), destination)
+		spider.forceMove(destination)
 
