@@ -112,7 +112,7 @@
 				span_warning("We nibble \the [src]."), null, 5)
 				return TRUE
 			// Not at the base of the proc otherwise we can just nibble for free slashing effects
-			SEND_SIGNAL(X, COMSIG_XENOMORPH_ATTACK_XENOMORPH, src, damage_amount, X.xeno_caste.melee_damage * X.xeno_melee_damage_modifier)
+			SEND_SIGNAL(X, COMSIG_XENOMORPH_ATTACK_HOSTILE_XENOMORPH, src, damage_amount, X.xeno_caste.melee_damage * X.xeno_melee_damage_modifier)
 			// copypasted from attack_alien.dm
 			//From this point, we are certain a full attack will go out. Calculate damage and modifiers
 			var/damage = X.xeno_caste.melee_damage
