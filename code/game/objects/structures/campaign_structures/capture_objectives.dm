@@ -36,9 +36,9 @@
 	else
 		switch(owning_faction)
 			if(FACTION_TERRAGOV)
-				new_icon_state = "campaign_objective_tgmc"
+				new_icon_state = capturing_faction ? "campaign_objective_decap_tgmc" : "campaign_objective_tgmc"
 			else
-				new_icon_state = "campaign_objective_som"
+				new_icon_state = capturing_faction ? "campaign_objective_decap_som" : "campaign_objective_som"
 
 	SSminimaps.add_marker(src, MINIMAP_FLAG_ALL, image('icons/UI_icons/map_blips.dmi', null, new_icon_state))
 
@@ -141,9 +141,9 @@
 		return
 	switch(owning_faction)
 		if(FACTION_TERRAGOV)
-			icon_state += "_tgmc"
+			icon_state += capturing_faction ? "_decap_tgmc" : "_tgmc"
 		else
-			icon_state += "_som"
+			icon_state += capturing_faction ? "_decap_som" : "_som"
 
 //fulton objectives = they qdel after being captured
 /obj/effect/landmark/campaign_structure/phoron_crate
