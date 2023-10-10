@@ -1595,7 +1595,7 @@
 			/obj/item/weapon/gun/rifle/dpm = -1,
 			/obj/item/ammo_magazine/rifle/dpm = -1,
 			/obj/item/weapon/gun/clf_heavyrifle = -1,
-			/datum/ammo/bullet/sniper/clf_heavyrifle = -1,
+			/obj/item/shotgunbox/clf_heavyrifle = -1,
 		),
 		"PMC" = list(
 			/obj/item/weapon/gun/rifle/sniper/elite = -1,
