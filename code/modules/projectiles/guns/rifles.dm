@@ -1365,6 +1365,9 @@
 
 	placed_overlay_iconstate = "smartgun"
 
+/obj/item/weapon/gun/rifle/standard_smarttargetrifle/motion
+	starting_attachment_types = list(/obj/item/weapon/gun/rifle/standard_spottingrifle, /obj/item/attachable/stock/strstock, /obj/item/attachable/motiondetector)
+
 /obj/item/weapon/gun/rifle/standard_spottingrifle
 	name = "SG-153 spotting rifle"
 	desc = "An underslung spotting rifle, generally found ontop of another gun."
