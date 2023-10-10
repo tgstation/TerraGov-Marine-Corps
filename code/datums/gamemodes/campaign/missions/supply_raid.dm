@@ -2,6 +2,7 @@
 /datum/campaign_mission/destroy_mission/supply_raid
 	name = "Supply Depot raid"
 	mission_icon = "supply_depot"
+	mission_flags = MISSION_DISALLOW_DROPPODS
 	map_name = "Rocinante base"
 	map_file = '_maps/map_files/Campaign maps/som_base/sombase.dmm'
 	map_traits = list(ZTRAIT_AWAY = TRUE, ZTRAIT_SNOWSTORM = TRUE)

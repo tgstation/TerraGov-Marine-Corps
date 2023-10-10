@@ -2,6 +2,7 @@
 /datum/campaign_mission/destroy_mission/fire_support_raid
 	name = "Fire support raid"
 	mission_icon = "mortar_raid"
+	mission_flags = MISSION_DISALLOW_DROPPODS
 	map_name = "Jungle outpost SR-422"
 	map_file = '_maps/map_files/Campaign maps/jungle_outpost/jungle_outpost.dmm'
 	map_traits = list(ZTRAIT_AWAY = TRUE, ZTRAIT_RAIN = TRUE)
@@ -74,7 +75,7 @@
 
 
 /datum/campaign_mission/destroy_mission/fire_support_raid/som
-	name = "Fire support raid"
+	mission_flags = MISSION_DISALLOW_TELEPORT
 	mission_icon = "mortar_raid"
 	map_name = "Patrick's Rest"
 	map_file = '_maps/map_files/Campaign maps/patricks_rest/patricks_rest.dmm'
