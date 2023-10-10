@@ -307,9 +307,6 @@ SUBSYSTEM_DEF(minimaps)
 		pixel_y = MINIMAP_PIXEL_FROM_WORLD(source.y) + SSminimaps.minimaps_by_z["[source.z]"].y_offset
 		return
 
-	if(!ismovableatom(source.loc))
-		return
-
 	var/atom/movable/movable_loc = source.loc
 	source.override_minimap_tracking(source.loc)
 	pixel_x = MINIMAP_PIXEL_FROM_WORLD(movable_loc.x) + SSminimaps.minimaps_by_z["[movable_loc.z]"].x_offset
