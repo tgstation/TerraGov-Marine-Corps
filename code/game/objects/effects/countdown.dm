@@ -81,7 +81,7 @@
 	color = "#d1d1d1"
 	invisibility = SEE_INVISIBLE_LIVING
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
-	countdown.pixel_y = 16
+	pixel_y = 16
 
 /obj/effect/countdown/campaign_objective/get_value()
 	if(QDELETED(attached_to))
