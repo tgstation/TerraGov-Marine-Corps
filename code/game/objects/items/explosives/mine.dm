@@ -243,3 +243,6 @@ Stepping directly on the mine will also blow it up
 	explosion(tripwire ? tripwire.loc : loc, 2, 0, 0, 4)
 	QDEL_NULL(tripwire)
 	qdel(src)
+
+/obj/item/explosive/mine/ex_act()
+	qdel(src)
