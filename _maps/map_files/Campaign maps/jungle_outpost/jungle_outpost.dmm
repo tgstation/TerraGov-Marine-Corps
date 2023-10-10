@@ -3704,6 +3704,11 @@
 "qa" = (
 /turf/open/liquid/water/river,
 /area/campaign/jungle_outpost/ground/jungle/north_east)
+"qc" = (
+/obj/structure/cable,
+/obj/structure/campaign_deployblocker/drop_blocker,
+/turf/open/floor,
+/area/campaign/jungle_outpost/ground/jungle)
 "qd" = (
 /obj/structure/platform_decoration{
 	dir = 6
@@ -27184,7 +27189,7 @@ bw
 fl
 fl
 gA
-ay
+qc
 fl
 fl
 wA

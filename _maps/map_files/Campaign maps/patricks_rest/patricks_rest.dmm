@@ -7939,6 +7939,10 @@
 /obj/structure/table/mainship,
 /turf/open/floor/mainship/mono,
 /area/patricks_rest/surface/building/science)
+"MX" = (
+/obj/structure/campaign_deployblocker,
+/turf/open/ground/grass/weedable/patch/grassyellow,
+/area/patricks_rest/ground/colonyn)
 "MZ" = (
 /obj/structure/cargo_container/hd_blue{
 	dir = 4
@@ -22878,7 +22882,7 @@ AZ
 AZ
 JF
 fk
-Ow
+MX
 Ow
 Ow
 Ow

@@ -4513,6 +4513,10 @@
 /obj/structure/flora/ausbushes/sparsegrass,
 /turf/open/floor/plating/ground/mars/random/cave/darker,
 /area/orion_outpost/ground/outposts)
+"vU" = (
+/obj/structure/campaign_deployblocker,
+/turf/open/floor/plating/ground/mars/random/cave/darker,
+/area/orion_outpost/ground/outpostcent)
 "vV" = (
 /obj/structure/flora/grass/tallgrass/tallgrasscorner{
 	color = "#7a8c54";
@@ -19835,7 +19839,7 @@ rt
 rt
 rt
 rt
-rt
+vU
 DU
 DU
 DU

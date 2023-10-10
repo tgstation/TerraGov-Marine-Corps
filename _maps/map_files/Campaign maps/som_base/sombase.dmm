@@ -7026,6 +7026,10 @@
 	dir = 1
 	},
 /area/rocinante_Base/surface/building/science/research_lab)
+"jTp" = (
+/obj/structure/campaign_deployblocker/drop_blocker,
+/turf/open/floor/plating/ground/concrete,
+/area/rocinante_Base/ground/base_cent)
 "jTw" = (
 /obj/machinery/door/airlock/mainship/engineering{
 	dir = 2
@@ -36472,7 +36476,7 @@ ltW
 ltW
 goE
 ltW
-ltW
+jTp
 khm
 gaV
 gZp
