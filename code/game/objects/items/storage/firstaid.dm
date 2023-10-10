@@ -282,6 +282,8 @@
 	var/description_overlay = ""
 	refill_types = list(/obj/item/storage/pill_bottle)
 	refill_sound = 'sound/items/pills.ogg'
+	///What skill is required to take out a pill
+	var/skill_needed = SKILL_MEDICAL_PRACTICED
 
 /obj/item/storage/pill_bottle/Initialize(mapload, ...)
 	. = ..()
@@ -291,6 +293,8 @@
 	update_icon()
 
 /obj/item/storage/pill_bottle/attack_self(mob/living/user)
+	if(!skill_check(user))
+		return
 	if(user.get_inactive_held_item())
 		user.balloon_alert(user, "Need an empty hand")
 		return
@@ -306,6 +310,28 @@
 			user.dropItemToGround(I)
 			to_chat(user, span_notice("You fumble around with \the [src] and drop a pill on the floor."))
 		return
+
+/obj/item/storage/pill_bottle/open(mob/user)
+	if(!skill_check(user))
+		return
+	return ..()
+
+/obj/item/storage/pill_bottle/attempt_draw_object(mob/living/user, start_from_left = FALSE)
+	if(!skill_check(user))
+		return
+	return ..()
+
+/obj/item/storage/pill_bottle/do_quick_equip(mob/user)
+	if(!skill_check(user))
+		return
+	return ..()
+
+///Checks the users skill level, returns FALSE if they don't meet the requirement, returns TRUE if you have enough skill
+/obj/item/storage/pill_bottle/proc/skill_check(mob/user)
+	if(user.skills.getRating(SKILL_MEDICAL) < skill_needed)
+		balloon_alert(user, "skill issue")
+		return FALSE
+	return TRUE
 
 /obj/item/storage/pill_bottle/remove_from_storage(obj/item/item, atom/new_location, mob/user)
 	. = ..()
