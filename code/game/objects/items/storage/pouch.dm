@@ -625,16 +625,6 @@
 		/obj/item/paper,
 		/obj/item/clipboard,
 	)
-
-/obj/item/storage/pouch/radio
-	name = "radio pouch"
-	storage_slots = 2
-	icon_state = "radio"
-	draw_mode = 1
-	desc = "It can contain two handheld radios."
-	can_hold = list(/obj/item/radio)
-
-
 /obj/item/storage/pouch/field_pouch
 	name = "field utility pouch"
 	storage_slots = 5
