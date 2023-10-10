@@ -50,7 +50,7 @@
 	SIGNAL_HANDLER
 	if(!isnum(new_z))
 		return
-	QDEL_NULL(map)
+	map = null
 	targetted_zlevel = new_z
 
 /obj/machinery/cic_maptable/on_unset_interaction(mob/user)
@@ -151,7 +151,7 @@
 	SIGNAL_HANDLER
 	if(!isnum(new_z))
 		return
-	QDEL_NULL(map)
+	map = null
 	targetted_zlevel = new_z
 
 	for(var/atom/movable/screen/minimap_tool/tool AS in drawing_tools)
