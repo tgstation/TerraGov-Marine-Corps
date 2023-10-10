@@ -151,6 +151,7 @@
 	addtimer(CALLBACK(src, TYPE_PROC_REF(/datum/campaign_mission, load_objective_description)), 5 SECONDS) //will be called before the map is entirely loaded otherwise, but this is cringe
 	addtimer(CALLBACK(src, TYPE_PROC_REF(/datum/campaign_mission, start_mission)), mission_start_delay)
 	load_pre_mission_bonuses()
+	RegisterSignals(SSdcs, list(COMSIG_GLOB_CAMPAIGN_TELEBLOCKER_DISABLED, COMSIG_GLOB_CAMPAIGN_DROPBLOCKER_DISABLED), PROC_REF(remove_mission_flag))
 
 ///Generates a new z level for the mission
 /datum/campaign_mission/proc/load_map()
@@ -259,7 +260,8 @@
 ///Mission end wrap up
 /datum/campaign_mission/proc/end_mission()
 	SHOULD_CALL_PARENT(TRUE)
-	QDEL_LIST(GLOB.campaign_objectives) //clean up objectives for any future missions
+	QDEL_LIST(GLOB.campaign_objectives)
+	QDEL_LIST(GLOB.campaign_structures)
 	QDEL_LIST(GLOB.patrol_point_list) //purge all existing links, cutting off the current ground map. Start point links are auto severed, and will reconnect to new points when a new map is loaded and upon use.
 	STOP_PROCESSING(SSslowprocess, src)
 	mission_state = MISSION_STATE_FINISHED
@@ -388,3 +390,34 @@
 			continue
 		human.playsound_local(null, sound_effect, 10, 1)
 		human.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>[title]</u></span><br>" + "[message]", display_picture)
+
+///Removes a flag or flags from this mission
+/datum/campaign_mission/proc/remove_mission_flag(datum/source, blocker, removed_flags, losing_faction)
+	SIGNAL_HANDLER
+	if(mission_state != MISSION_STATE_ACTIVE)
+		return
+	mission_flags &= ~(removed_flags)
+
+	if(removed_flags & MISSION_DISALLOW_TELEPORT)
+		tele_blocker_disabled(blocker, losing_faction)
+	if(removed_flags & MISSION_DISALLOW_DROPPODS)
+		drop_blocker_disabled(blocker, losing_faction)
+
+
+///Handles notification of a teleblocker being disabled
+/datum/campaign_mission/proc/tele_blocker_disabled(datum/blocker, losing_faction)
+	if(!istype(blocker) || !losing_faction)
+		return
+	var/destroying_team = starting_faction == losing_faction ? hostile_faction : starting_faction
+
+	map_text_broadcast(destroying_team, "[blocker] destroyed, we can now deploy via teleporter!", "Teleporter unblocked")
+	map_text_broadcast(losing_faction, "[blocker] destroyed, the enemy can now teleport at will!", "Teleporter unblocked")
+
+///Handles notification of a dropblocker being disabled
+/datum/campaign_mission/proc/drop_blocker_disabled(obj/blocker, losing_faction)
+	if(!istype(blocker) || !losing_faction)
+		return
+	var/destroying_team = starting_faction == losing_faction ? hostile_faction : starting_faction
+
+	map_text_broadcast(destroying_team, "[blocker] destroyed, we can now deploy via drop pod!", "Drop pods unblocked")
+	map_text_broadcast(losing_faction, "[blocker] destroyed, the enemy can now drop pod at will!", "Drop pods unblocked")

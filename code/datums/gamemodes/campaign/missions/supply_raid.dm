@@ -53,6 +53,7 @@
 	hostile_team.add_reward(/datum/campaign_reward/attrition_modifier/malus_standard)
 
 /datum/campaign_mission/destroy_mission/supply_raid/som
+	mission_flags = MISSION_DISALLOW_TELEPORT
 	map_name = "Orion outpost"
 	map_file = '_maps/map_files/Campaign maps/orion_2/orionoutpost_2.dmm'
 	map_light_colours = list(COLOR_MISSION_RED, COLOR_MISSION_RED, COLOR_MISSION_RED, COLOR_MISSION_RED)
