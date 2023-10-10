@@ -28,6 +28,19 @@
 	else
 		. += span_notice("It is spent.")
 
+/obj/item/reagent_containers/hypospray/autoinjector/afterattack_alternate(obj/refilling_vendor, mob/living/user)
+	. = ..()
+	if(istype(refilling_vendor, /obj/machinery/vending/MarineMed))
+		refill_injector(user)
+
+///Sets an injectors contents to it's initial value (effectively refilling it)
+/obj/item/reagent_containers/hypospray/autoinjector/proc/refill_injector(mob/user)
+	if(!free_refills)
+		return FALSE
+	reagents.clear_reagents() //Empties the injector
+	reagents.add_reagent_list(list_reagents) //And then we refill it with what it has by default
+	user.balloon_alert(user, "Refilled")
+
 /obj/item/reagent_containers/hypospray/autoinjector/fillable
 	desc = "An autoinjector loaded with... something, consult the doctor who gave this to you."
 	amount_per_transfer_from_this = 30
