@@ -38,16 +38,17 @@
 	if(action != "create_squad")
 		return
 
-	var/new_name = sanitize(params["name"])
+	var/new_name = params["name"]
 	var/new_color = params["color"]
 	var/new_desc = sanitize(params["desc"])
 
 	if(!GLOB.custom_squad_colors[new_color])
 		return
-	
+
 	if(length(new_name) > MAX_SQUAD_NAME_LEN)
-		to_chat(user, span_danger("Squad description is too long"))
+		to_chat(user, span_danger("Squad name is too long"))
 		return FALSE
+	new_name = sanitize(new_name)
 
 	var/filter_result = is_ic_filtered(new_name)
 	if(filter_result)

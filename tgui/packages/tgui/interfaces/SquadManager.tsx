@@ -1,7 +1,6 @@
 import { Stack, Box, Button, TextArea, Dropdown } from '../components';
 import { Window } from '../layouts';
 import { useBackend, useLocalState } from '../backend';
-import { DropdownEntry } from '../components/Dropdown';
 
 type SquadManagerData = {
   active_squads: SquadData[];
