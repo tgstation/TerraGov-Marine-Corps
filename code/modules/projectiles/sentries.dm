@@ -15,7 +15,7 @@
 	var/knockdown_threshold = 150
 
 	///List of targets that can be shot at
-	var/list/potential_targets = list()
+	var/list/atom/potential_targets = list()
 
 	///Time of last alert
 	var/last_alert = 0

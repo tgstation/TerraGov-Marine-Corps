@@ -470,7 +470,7 @@
 	var/id = null
 	///Faction this belongs to for minimap purposes
 	var/faction = FACTION_TERRAGOV
-
+	///minimap icon state
 	var/minimap_icon = "patrol_1"
 
 /obj/effect/landmark/patrol_point/Initialize(mapload)
