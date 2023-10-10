@@ -1088,6 +1088,10 @@
 			/obj/item/armor_module/armor/chest/marine/hotaru = -1,
 			/obj/item/armor_module/armor/legs/marine/hotaru = -1,
 			/obj/item/armor_module/armor/arms/marine/hotaru = -1,
+			/obj/item/clothing/head/modular/marine/dashe = -1,
+			/obj/item/armor_module/armor/chest/marine/dashe = -1,
+			/obj/item/armor_module/armor/arms/marine/dashe = -1,
+			/obj/item/armor_module/armor/legs/marine/dashe = -1,
 		),
 		"Jaeger Mk.I chestpieces" = list(
 			/obj/item/armor_module/armor/chest/marine/skirmisher = -1,
