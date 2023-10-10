@@ -1,3 +1,10 @@
+/obj/effect/landmark/campaign_structure/tele_blocker
+	name = "TELEBLOCKER"
+	icon = 'icons/obj/structures/campaign_structures.dmi'
+	icon_state = "tele_block"
+	mission_types = list(/datum/campaign_mission/destroy_mission/supply_raid/som, /datum/campaign_mission/destroy_mission/fire_support_raid/som)
+	spawn_object = /obj/structure/campaign_deployblocker
+
 /obj/structure/campaign_deployblocker
 	name = "TELEBLOCKER"
 	desc = "THIS PROBABLY BLOCKS TELEPORTERS OR SOMETHING, PAY A SPRITER FOR A NONPLACEHOLDER"
@@ -32,7 +39,14 @@
 	SEND_SIGNAL(SSdcs, COMSIG_GLOB_CAMPAIGN_TELEBLOCKER_DISABLED, src, flags_to_remove, faction)
 	SSminimaps.remove_marker(src)
 
-/obj/structure/campaign_deployblocker/dropblocker
+/obj/effect/landmark/campaign_structure/drop_blocker
+	name = "TELEBLOCKER"
+	icon = 'icons/obj/structures/campaign_structures.dmi'
+	icon_state = "tele_block"
+	mission_types = list(/datum/campaign_mission/destroy_mission/supply_raid, /datum/campaign_mission/destroy_mission/fire_support_raid)
+	spawn_object = /obj/structure/campaign_deployblocker/drop_blocker
+
+/obj/structure/campaign_deployblocker/drop_blocker
 	name = "DROPBLOCKER"
 	desc = "THIS PROBABLY BLOCKS DROPPODS OR SOMETHING, PAY A SPRITER FOR A NONPLACEHOLDER"
 	icon_state = "drop_block"

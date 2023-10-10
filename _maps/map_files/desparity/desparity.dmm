@@ -4626,7 +4626,7 @@
 	},
 /area/lv624/lazarus/research/caves)
 "ym" = (
-/obj/effect/landmark/campaign_objective/sensor_tower,
+/obj/effect/landmark/campaign_structure/sensor_tower,
 /turf/open/ground/grass/weedable,
 /area/lv624/ground/jungle10)
 "yn" = (
@@ -4977,7 +4977,7 @@
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth/buildable,
 /area/lv624/ground/jungle7)
 "zL" = (
-/obj/effect/landmark/campaign_objective/sensor_tower,
+/obj/effect/landmark/campaign_structure/sensor_tower,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle7)
 "zO" = (
@@ -7437,7 +7437,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/obj/effect/landmark/campaign_objective/sensor_tower,
+/obj/effect/landmark/campaign_structure/sensor_tower,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle9)
 "Mo" = (
@@ -8888,7 +8888,7 @@
 /turf/open/floor/plating,
 /area/lv624/lazarus/medbay)
 "To" = (
-/obj/effect/landmark/campaign_objective/sensor_tower,
+/obj/effect/landmark/campaign_structure/sensor_tower,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle9)
 "Tp" = (
@@ -10214,7 +10214,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle9)
 "ZY" = (
-/obj/effect/landmark/campaign_objective/sensor_tower,
+/obj/effect/landmark/campaign_structure/sensor_tower,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle5)
 

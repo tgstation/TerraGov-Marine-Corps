@@ -6837,7 +6837,7 @@
 /turf/open/floor/plating/ground/mars/random/cave/darker,
 /area/orion_outpost/surface/building/crashedufo)
 "HK" = (
-/obj/effect/landmark/campaign_objective/phoron_stack,
+/obj/effect/landmark/campaign_structure/phoron_stack,
 /turf/open/floor/plating/ground/concrete,
 /area/orion_outpost/surface/train_yard)
 "HL" = (
@@ -7476,7 +7476,7 @@
 /turf/open/floor/podhatch/floor,
 /area/orion_outpost/surface/building/crashedufo)
 "KQ" = (
-/obj/effect/landmark/campaign_objective/phoron_stack,
+/obj/effect/landmark/campaign_structure/phoron_stack,
 /turf/open/floor/plating/ground/mars/random/cave/darker,
 /area/orion_outpost/surface/train_yard)
 "KR" = (
@@ -7694,7 +7694,7 @@
 /turf/open/floor/mainship/orange/full,
 /area/orion_outpost/surface/building/cargo)
 "LL" = (
-/obj/effect/landmark/campaign_objective/tank,
+/obj/effect/landmark/campaign_structure/tank,
 /turf/open/floor/plating/ground/concrete,
 /area/orion_outpost/surface/building/vehicledepot)
 "LP" = (
@@ -8429,7 +8429,7 @@
 /obj/structure/monorail{
 	dir = 4
 	},
-/obj/effect/landmark/campaign_objective/train{
+/obj/effect/landmark/campaign_structure/train{
 	dir = 8
 	},
 /turf/open/ground/grass/weedable/patch/grassyellow,
@@ -8530,7 +8530,7 @@
 /turf/open/shuttle/dropship/three,
 /area/orion_outpost/surface/building/tadpolepad)
 "PL" = (
-/obj/effect/landmark/campaign_objective/apc,
+/obj/effect/landmark/campaign_structure/apc,
 /turf/open/floor/plating/ground/concrete,
 /area/orion_outpost/surface/building/vehicledepot)
 "PM" = (
@@ -8554,7 +8554,7 @@
 /obj/structure/monorail{
 	dir = 4
 	},
-/obj/effect/landmark/campaign_objective/train/carriage{
+/obj/effect/landmark/campaign_structure/train/carriage{
 	dir = 8
 	},
 /turf/open/floor/plating/ground/concrete,

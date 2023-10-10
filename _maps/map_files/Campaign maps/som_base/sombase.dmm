@@ -2671,7 +2671,7 @@
 	},
 /area/rocinante_Base/surface/building/security/garage_sec)
 "dOA" = (
-/obj/effect/landmark/campaign_objective/phoron_stack,
+/obj/effect/landmark/campaign_structure/phoron_stack,
 /turf/open/floor/plating/ground/concrete,
 /area/rocinante_Base/surface/building/train_station)
 "dPa" = (
@@ -10584,7 +10584,7 @@
 /obj/effect/turf_decal/siding/dark{
 	dir = 9
 	},
-/obj/effect/landmark/campaign_objective/phoron_stack,
+/obj/effect/landmark/campaign_structure/phoron_stack,
 /turf/open/floor/mainship/som/ne,
 /area/rocinante_Base/surface/building/science/tele_lab)
 "oWx" = (
@@ -11529,7 +11529,7 @@
 /obj/structure/monorail{
 	dir = 4
 	},
-/obj/effect/landmark/campaign_objective/train/carriage,
+/obj/effect/landmark/campaign_structure/train/carriage,
 /turf/open/floor/plating/ground/concrete,
 /area/rocinante_Base/surface/building/train_station)
 "qsA" = (
@@ -12618,7 +12618,7 @@
 /obj/structure/monorail{
 	dir = 4
 	},
-/obj/effect/landmark/campaign_objective/train,
+/obj/effect/landmark/campaign_structure/train,
 /turf/open/floor/plating/ground/concrete,
 /area/rocinante_Base/surface/building/train_station)
 "rWy" = (
@@ -15327,7 +15327,7 @@
 /turf/open/ground/grass/weedable/patch,
 /area/rocinante_Base/ground/base_sw)
 "vyU" = (
-/obj/effect/landmark/campaign_objective/phoron_stack,
+/obj/effect/landmark/campaign_structure/phoron_stack,
 /turf/open/floor/mainship/red{
 	dir = 8
 	},

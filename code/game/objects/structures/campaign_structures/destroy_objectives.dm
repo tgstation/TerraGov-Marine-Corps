@@ -14,12 +14,12 @@
 	qdel(src)
 
 //Howitzer
-/obj/effect/landmark/campaign_objective/howitzer_objective
+/obj/effect/landmark/campaign_structure/howitzer_objective
 	name = "howitzer objective"
 	icon = 'icons/Marine/howitzer.dmi'
 	icon_state = "howitzer_deployed"
 	mission_types = list(/datum/campaign_mission/destroy_mission/fire_support_raid)
-	objective_type = /obj/structure/campaign_objective/destruction_objective/howitzer
+	spawn_object = /obj/structure/campaign_objective/destruction_objective/howitzer
 
 /obj/structure/campaign_objective/destruction_objective/howitzer
 	name = "\improper TA-100Y howitzer"
@@ -29,13 +29,13 @@
 	pixel_x = -16
 
 //MLRS
-/obj/effect/landmark/campaign_objective/mlrs
+/obj/effect/landmark/campaign_structure/mlrs
 	name = "MLRS objective"
 	icon = 'icons/obj/structures/campaign/campaign_big.dmi'
 	icon_state = "mlrs"
 	pixel_y = -15
 	mission_types = list(/datum/campaign_mission/destroy_mission/fire_support_raid/som)
-	objective_type = /obj/structure/campaign_objective/destruction_objective/mlrs
+	spawn_object = /obj/structure/campaign_objective/destruction_objective/mlrs
 
 /obj/structure/campaign_objective/destruction_objective/mlrs
 	name = "\improper SOT-A1 MLRS"
@@ -103,26 +103,26 @@
 	scale = 0.075
 	grow = 0.04
 
-/obj/effect/landmark/campaign_objective/tank
+/obj/effect/landmark/campaign_structure/tank
 	name = "tank objective"
 	icon_state = "tank"
 	icon = 'icons/obj/structures/campaign/campaign_big.dmi'
 	pixel_y = -15
 	mission_types = list(/datum/campaign_mission/destroy_mission/supply_raid/som)
-	objective_type = /obj/structure/campaign_objective/destruction_objective/mlrs/tank
+	spawn_object = /obj/structure/campaign_objective/destruction_objective/mlrs/tank
 
 /obj/structure/campaign_objective/destruction_objective/mlrs/tank
 	name = "\improper tank"
 	desc = "A massive multi launch rocket system on a tracked chassis. Can unleash a tremendous amount of firepower in a short amount of time."
 	icon_state = "tank"
 
-/obj/effect/landmark/campaign_objective/apc
+/obj/effect/landmark/campaign_structure/apc
 	name = "apc objective"
 	icon_state = "apc"
 	icon = 'icons/obj/structures/campaign/campaign_big.dmi'
 	pixel_y = -15
 	mission_types = list(/datum/campaign_mission/destroy_mission/supply_raid/som)
-	objective_type = /obj/structure/campaign_objective/destruction_objective/mlrs/apc
+	spawn_object = /obj/structure/campaign_objective/destruction_objective/mlrs/apc
 
 /obj/structure/campaign_objective/destruction_objective/mlrs/apc
 	name = "\improper APC"
@@ -134,12 +134,12 @@
 	position = list(87, 60, 0)
 
 //Supply depot objectives
-/obj/effect/landmark/campaign_objective/supply_objective
+/obj/effect/landmark/campaign_structure/supply_objective
 	name = "howitzer objective"
 	icon = 'icons/Marine/howitzer.dmi'
 	icon_state = "howitzer_deployed"
 	mission_types = list(/datum/campaign_mission/destroy_mission/fire_support_raid)
-	objective_type = /obj/structure/campaign_objective/destruction_objective/howitzer
+	spawn_object = /obj/structure/campaign_objective/destruction_objective/howitzer
 
 /obj/structure/campaign_objective/destruction_objective/supply_objective
 	name = "SUPPLY_OBJECTIVE"
@@ -147,12 +147,12 @@
 	icon_state = "howitzer_deployed"
 
 //Train
-/obj/effect/landmark/campaign_objective/train
+/obj/effect/landmark/campaign_structure/train
 	name = "locomotive objective"
 	icon = 'icons/obj/structures/train.dmi'
 	icon_state = "maglev"
 	mission_types = list(/datum/campaign_mission/destroy_mission/supply_raid, /datum/campaign_mission/destroy_mission/supply_raid/som)
-	objective_type = /obj/structure/campaign_objective/destruction_objective/supply_objective/train
+	spawn_object = /obj/structure/campaign_objective/destruction_objective/supply_objective/train
 
 /obj/structure/campaign_objective/destruction_objective/supply_objective/train
 	name = "locomotive"
@@ -161,10 +161,10 @@
 	icon_state = "maglev"
 	allow_pass_flags = PASS_AIR
 
-/obj/effect/landmark/campaign_objective/train/carriage
+/obj/effect/landmark/campaign_structure/train/carriage
 	name = "carriage objective"
 	icon_state = "carriage_lit"
-	objective_type = /obj/structure/campaign_objective/destruction_objective/supply_objective/train/carriage_lit
+	spawn_object = /obj/structure/campaign_objective/destruction_objective/supply_objective/train/carriage_lit
 
 /obj/structure/campaign_objective/destruction_objective/supply_objective/train/carriage_lit
 	name = "rail carriage"
@@ -172,12 +172,12 @@
 	icon_state = "carriage_lit"
 
 //Phoron stack
-/obj/effect/landmark/campaign_objective/phoron_stack
+/obj/effect/landmark/campaign_structure/phoron_stack
 	name = "phoron crates"
 	icon = 'icons/obj/structures/campaign/campaign_64.dmi'
 	icon_state = "phoron_stack"
 	mission_types = list(/datum/campaign_mission/destroy_mission/supply_raid, /datum/campaign_mission/destroy_mission/supply_raid/som)
-	objective_type = /obj/structure/campaign_objective/destruction_objective/supply_objective/phoron_stack
+	spawn_object = /obj/structure/campaign_objective/destruction_objective/supply_objective/phoron_stack
 
 /obj/structure/campaign_objective/destruction_objective/supply_objective/phoron_stack
 	name = "phoron crates"
@@ -197,14 +197,14 @@
 	. += new_overlay
 
 //teleporter core
-/obj/effect/landmark/campaign_objective/bluespace_core
+/obj/effect/landmark/campaign_structure/bluespace_core
 	name = "Bluespace Core objective"
 	icon = 'icons/obj/machines/bluespacedrive.dmi'
 	icon_state = "bsd_core"
 	pixel_y = -18
 	pixel_x = -16
 	mission_types = list(/datum/campaign_mission/destroy_mission/teleporter_raid)
-	objective_type = /obj/structure/campaign_objective/destruction_objective/bluespace_core
+	spawn_object = /obj/structure/campaign_objective/destruction_objective/bluespace_core
 
 #define BLUESPACE_CORE_OK "bluespace_core_ok"
 #define BLUESPACE_CORE_UNSTABLE "bluespace_core_unstable"

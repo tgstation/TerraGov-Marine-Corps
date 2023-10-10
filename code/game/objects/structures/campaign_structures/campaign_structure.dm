@@ -1,21 +1,21 @@
 //effects are placed on maps but only generate objectives for applicable missions, so maps can be valid for multiple missions if desired.
-/obj/effect/landmark/campaign_objective
+/obj/effect/landmark/campaign_structure
 	name = "GENERIC CAMPAIGN STRUCTURE"
 	desc = "THIS SHOULDN'T BE VISIBLE"
 	icon = 'icons/obj/structures/campaign_structures.dmi'
 	///Missions that trigger this landmark to spawn an objective
 	var/list/mission_types
-	///Objective spawned by this landmark
-	var/obj/structure/campaign_objective/objective_type
+	///Campaign structure spawned by this landmark
+	var/obj/spawn_object
 
-/obj/effect/landmark/campaign_objective/Initialize(mapload)
+/obj/effect/landmark/campaign_structure/Initialize(mapload)
 	. = ..()
 	var/datum/game_mode/hvh/campaign/mode = SSticker.mode
 	if(!istype(mode))
 		return
 	var/datum/campaign_mission/current_mission = mode.current_mission
 	if(current_mission.type in mission_types)
-		var/obj/objective = new objective_type(loc)
+		var/obj/objective = new spawn_object(loc)
 		objective.dir = dir
 	qdel(src)
 

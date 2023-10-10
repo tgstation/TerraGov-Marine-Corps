@@ -1256,7 +1256,7 @@
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/patricks_rest/surface/building/residential_w)
 "fP" = (
-/obj/effect/landmark/campaign_objective/mlrs,
+/obj/effect/landmark/campaign_structure/mlrs,
 /turf/open/floor/plating/ground/concrete/edge{
 	dir = 4
 	},
@@ -1850,7 +1850,7 @@
 /turf/open/shuttle/dropship/seven,
 /area/patricks_rest/surface/landing_pad)
 "iC" = (
-/obj/effect/landmark/campaign_objective/phoron_crate,
+/obj/effect/landmark/campaign_structure/phoron_crate,
 /turf/open/floor/plating/ground/mars/random/cave/darker,
 /area/patricks_rest/ground/underground/cave)
 "iD" = (
@@ -5273,7 +5273,7 @@
 /turf/open/floor/prison/red/full,
 /area/patricks_rest/surface/building/security_post_cargo)
 "zj" = (
-/obj/effect/landmark/campaign_objective/mlrs,
+/obj/effect/landmark/campaign_structure/mlrs,
 /turf/open/ground/grass/weedable/patch/grassyellow,
 /area/patricks_rest/ground/colonyw)
 "zl" = (
@@ -5461,7 +5461,7 @@
 /turf/open/floor/prison/darkyellow/full,
 /area/patricks_rest/surface/building/engineering)
 "Aq" = (
-/obj/effect/landmark/campaign_objective/sensor_tower,
+/obj/effect/landmark/campaign_structure/sensor_tower,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/patricks_rest/ground/colonys)
 "As" = (
@@ -6196,7 +6196,7 @@
 /turf/open/floor/mainship/sterile/purple,
 /area/patricks_rest/surface/building/science)
 "Eq" = (
-/obj/effect/landmark/campaign_objective/sensor_tower,
+/obj/effect/landmark/campaign_structure/sensor_tower,
 /turf/open/floor/plating/ground/desertdam/asphalt/cement,
 /area/patricks_rest/ground/colonys)
 "Er" = (
@@ -8506,7 +8506,7 @@
 	},
 /area/patricks_rest/ground/colonyse)
 "PS" = (
-/obj/effect/landmark/campaign_objective/sensor_tower,
+/obj/effect/landmark/campaign_structure/sensor_tower,
 /turf/open/ground/grass/weedable/patch/grassyellow,
 /area/patricks_rest/ground/colonyn)
 "PT" = (
@@ -8531,7 +8531,7 @@
 	},
 /area/patricks_rest/surface/building/science)
 "PX" = (
-/obj/effect/landmark/campaign_objective/sensor_tower,
+/obj/effect/landmark/campaign_structure/sensor_tower,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/patricks_rest/ground/colonyw)
 "PY" = (
@@ -8794,7 +8794,7 @@
 /turf/open/floor/mainship/green/full,
 /area/patricks_rest/surface/building/barracks)
 "Rq" = (
-/obj/effect/landmark/campaign_objective/mlrs,
+/obj/effect/landmark/campaign_structure/mlrs,
 /turf/open/floor/plating/ground/desertdam/asphalt/cement,
 /area/patricks_rest/ground/colonys)
 "Rr" = (
@@ -8940,7 +8940,7 @@
 	},
 /area/patricks_rest/surface/building/command)
 "RW" = (
-/obj/effect/landmark/campaign_objective/mlrs,
+/obj/effect/landmark/campaign_structure/mlrs,
 /turf/open/floor/plating/ground/concrete/lines,
 /area/patricks_rest/ground/colonyn)
 "RX" = (
@@ -9261,7 +9261,7 @@
 /turf/open/floor/mainship/mono,
 /area/patricks_rest/surface/building/atc)
 "TG" = (
-/obj/effect/landmark/campaign_objective/mlrs,
+/obj/effect/landmark/campaign_structure/mlrs,
 /turf/open/ground/grass/weedable/patch/grassyellow,
 /area/patricks_rest/ground/colonycent)
 "TJ" = (
@@ -9308,7 +9308,7 @@
 /turf/open/floor/plating/ground/concrete/edge,
 /area/patricks_rest/ground/colonyw)
 "TW" = (
-/obj/effect/landmark/campaign_objective/sensor_tower,
+/obj/effect/landmark/campaign_structure/sensor_tower,
 /turf/open/ground/grass/weedable/patch/grassyellow,
 /area/patricks_rest/ground/colonye)
 "TX" = (
@@ -9378,7 +9378,7 @@
 /turf/open/floor/mainship/mono,
 /area/patricks_rest/surface/building/transformer_residential)
 "Un" = (
-/obj/effect/landmark/campaign_objective/mlrs,
+/obj/effect/landmark/campaign_structure/mlrs,
 /turf/open/floor/plating/ground/desertdam/asphalt/cement,
 /area/patricks_rest/ground/colonycent)
 "Up" = (
@@ -9552,7 +9552,7 @@
 /turf/open/floor/prison/whitegreenfull2,
 /area/patricks_rest/surface/building/residential_w)
 "Vg" = (
-/obj/effect/landmark/campaign_objective/mlrs,
+/obj/effect/landmark/campaign_structure/mlrs,
 /turf/open/floor/plating/ground/concrete/lines{
 	dir = 1
 	},
@@ -9887,7 +9887,7 @@
 	},
 /area/patricks_rest/surface/building/residential_w)
 "WQ" = (
-/obj/effect/landmark/campaign_objective/mlrs,
+/obj/effect/landmark/campaign_structure/mlrs,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/patricks_rest/ground/colonye)
 "WR" = (

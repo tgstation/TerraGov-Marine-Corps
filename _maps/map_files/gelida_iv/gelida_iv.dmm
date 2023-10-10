@@ -4593,7 +4593,7 @@
 /turf/open/floor/tile/yellow/patch,
 /area/gelida/indoors/a_block/corpo)
 "dbW" = (
-/obj/effect/landmark/campaign_objective/sensor_tower,
+/obj/effect/landmark/campaign_structure/sensor_tower,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/outdoors/colony_streets/north_west_street)
 "dci" = (
@@ -7453,7 +7453,7 @@
 /area/gelida/indoors/a_block/medical)
 "eTs" = (
 /obj/structure/platform_decoration,
-/obj/effect/landmark/campaign_objective/phoron_crate,
+/obj/effect/landmark/campaign_structure/phoron_crate,
 /turf/open/floor/prison/darkbrown/full,
 /area/gelida/indoors/c_block/cargo)
 "eTu" = (
@@ -12492,7 +12492,7 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
-/obj/effect/landmark/campaign_objective/phoron_crate,
+/obj/effect/landmark/campaign_structure/phoron_crate,
 /turf/open/floor/plating/ground/desertdam/asphalt/edge/regular{
 	dir = 4
 	},
@@ -13451,7 +13451,7 @@
 /turf/open/floor/mainship/stripesquare,
 /area/gelida/indoors/lone_buildings/storage_blocks)
 "jbF" = (
-/obj/effect/landmark/campaign_objective/phoron_crate,
+/obj/effect/landmark/campaign_structure/phoron_crate,
 /turf/open/floor/prison,
 /area/gelida/outdoors/colony_streets/north_east_street)
 "jcm" = (
@@ -15246,7 +15246,7 @@
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/outdoors/colony_streets/south_street)
 "kqO" = (
-/obj/effect/landmark/campaign_objective/sensor_tower,
+/obj/effect/landmark/campaign_structure/sensor_tower,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/outdoors/colony_streets/central_streets)
 "kqQ" = (
@@ -17746,7 +17746,7 @@
 /turf/open/floor/plating/ground/snow/layer1,
 /area/gelida/outdoors/colony_streets/north_west_street)
 "mao" = (
-/obj/effect/landmark/campaign_objective/phoron_crate,
+/obj/effect/landmark/campaign_structure/phoron_crate,
 /turf/open/floor/prison/cleanmarked,
 /area/gelida/indoors/lone_buildings/storage_blocks)
 "maw" = (
@@ -20363,7 +20363,7 @@
 /turf/open/floor/mainship/stripesquare,
 /area/gelida/indoors/c_block/mining)
 "nNq" = (
-/obj/effect/landmark/campaign_objective/phoron_crate,
+/obj/effect/landmark/campaign_structure/phoron_crate,
 /turf/open/floor/prison/darkbrown/full,
 /area/gelida/indoors/c_block/mining)
 "nNt" = (
@@ -24433,7 +24433,7 @@
 /area/gelida/indoors/c_block/cargo)
 "qwO" = (
 /obj/effect/landmark/weed_node,
-/obj/effect/landmark/campaign_objective/sensor_tower,
+/obj/effect/landmark/campaign_structure/sensor_tower,
 /turf/open/floor/prison,
 /area/gelida/outdoors/colony_streets/north_street)
 "qwT" = (
@@ -24616,7 +24616,7 @@
 /turf/open/floor/prison/whitegreen/full,
 /area/gelida/indoors/a_block/medical)
 "qDp" = (
-/obj/effect/landmark/campaign_objective/phoron_crate,
+/obj/effect/landmark/campaign_structure/phoron_crate,
 /turf/open/floor/prison/whitegreenfull2,
 /area/gelida/indoors/a_block/fitness)
 "qDM" = (
@@ -25247,7 +25247,7 @@
 	},
 /area/gelida/indoors/a_block/hallway)
 "qXz" = (
-/obj/effect/landmark/campaign_objective/sensor_tower,
+/obj/effect/landmark/campaign_structure/sensor_tower,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/outdoors/colony_streets/north_east_street)
 "qXQ" = (
@@ -26709,7 +26709,7 @@
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/outdoors/colony_streets/south_east_street)
 "rVb" = (
-/obj/effect/landmark/campaign_objective/phoron_crate,
+/obj/effect/landmark/campaign_structure/phoron_crate,
 /turf/open/floor/prison,
 /area/gelida/indoors/lone_buildings/storage_blocks)
 "rVn" = (
@@ -28706,7 +28706,7 @@
 /turf/open/floor/prison/blue,
 /area/gelida/indoors/a_block/admin)
 "tlU" = (
-/obj/effect/landmark/campaign_objective/phoron_crate,
+/obj/effect/landmark/campaign_structure/phoron_crate,
 /turf/open/floor/prison,
 /area/gelida/outdoors/colony_streets/north_west_street)
 "tmg" = (
@@ -31676,7 +31676,7 @@
 	},
 /area/gelida/indoors/b_block/hydro)
 "vtN" = (
-/obj/effect/landmark/campaign_objective/sensor_tower,
+/obj/effect/landmark/campaign_structure/sensor_tower,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/outdoors/colony_streets/south_street)
 "vuo" = (
@@ -34005,7 +34005,7 @@
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/gelida/indoors/b_block/bridge)
 "xhS" = (
-/obj/effect/landmark/campaign_objective/phoron_crate,
+/obj/effect/landmark/campaign_structure/phoron_crate,
 /turf/open/floor/prison/plate,
 /area/gelida/outdoors/colony_streets/north_street)
 "xic" = (

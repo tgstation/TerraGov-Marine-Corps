@@ -113,12 +113,12 @@
 	update_icon()
 
 //sensor tower
-/obj/effect/landmark/campaign_objective/sensor_tower
+/obj/effect/landmark/campaign_structure/sensor_tower
 	name = "sensor tower objective"
 	icon = 'icons/obj/structures/sensor.dmi'
 	icon_state = "sensor"
 	mission_types = list(/datum/campaign_mission/tdm, /datum/campaign_mission/tdm/lv624, /datum/campaign_mission/tdm/first_mission, /datum/campaign_mission/tdm/mech_wars)
-	objective_type = /obj/structure/campaign_objective/capture_objective/sensor_tower
+	spawn_object = /obj/structure/campaign_objective/capture_objective/sensor_tower
 
 /obj/structure/campaign_objective/capture_objective/sensor_tower
 	name = "sensor tower"
@@ -146,12 +146,12 @@
 			icon_state += "_som"
 
 //fulton objectives = they qdel after being captured
-/obj/effect/landmark/campaign_objective/phoron_crate
+/obj/effect/landmark/campaign_structure/phoron_crate
 	name = "phoron crate objective"
 	icon = 'icons/obj/structures/campaign_structures.dmi'
 	icon_state = "orebox_phoron"
 	mission_types = list(/datum/campaign_mission/capture_mission)
-	objective_type = /obj/structure/campaign_objective/capture_objective/fultonable
+	spawn_object = /obj/structure/campaign_objective/capture_objective/fultonable
 
 /obj/structure/campaign_objective/capture_objective/fultonable
 	name = "phoron crate"
@@ -188,12 +188,12 @@
 	span_notice("You attach a fulton to [src] and activate it."), null, 5)
 	qdel(src)
 
-/obj/effect/landmark/campaign_objective/asat_system
+/obj/effect/landmark/campaign_structure/asat_system
 	name = "ASAT system"
 	icon = 'icons/obj/structures/campaign_structures.dmi'
 	icon_state = "asat"
 	mission_types = list(/datum/campaign_mission/capture_mission/asat)
-	objective_type = /obj/structure/campaign_objective/capture_objective/fultonable/asat_system
+	spawn_object = /obj/structure/campaign_objective/capture_objective/fultonable/asat_system
 
 /obj/structure/campaign_objective/capture_objective/fultonable/asat_system
 	name = "\improper T-4000 ASAT system"

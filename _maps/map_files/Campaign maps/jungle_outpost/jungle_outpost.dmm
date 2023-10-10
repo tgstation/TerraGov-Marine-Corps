@@ -648,7 +648,7 @@
 	},
 /area/campaign/jungle_outpost/outpost/req)
 "cP" = (
-/obj/effect/landmark/campaign_objective/phoron_crate,
+/obj/effect/landmark/campaign_structure/phoron_crate,
 /turf/open/floor/tile/green/greentaupe{
 	dir = 9
 	},
@@ -998,7 +998,7 @@
 	},
 /area/campaign/jungle_outpost/outpost/science/south)
 "eo" = (
-/obj/effect/landmark/campaign_objective/phoron_crate,
+/obj/effect/landmark/campaign_structure/phoron_crate,
 /turf/open/floor/tile/white,
 /area/campaign/jungle_outpost/outpost/science)
 "ep" = (
@@ -1319,7 +1319,7 @@
 /turf/open/floor/freezer,
 /area/campaign/jungle_outpost/outpost/living)
 "fH" = (
-/obj/effect/landmark/campaign_objective/phoron_crate,
+/obj/effect/landmark/campaign_structure/phoron_crate,
 /turf/open/floor/tile/white,
 /area/campaign/jungle_outpost/outpost/science/south)
 "fI" = (
@@ -1348,7 +1348,7 @@
 	},
 /area/campaign/jungle_outpost/outpost/medbay/chemistry)
 "fM" = (
-/obj/effect/landmark/campaign_objective/howitzer_objective,
+/obj/effect/landmark/campaign_structure/howitzer_objective,
 /turf/open/floor,
 /area/campaign/jungle_outpost/outpost/landing/storage)
 "fN" = (
@@ -1542,7 +1542,7 @@
 /turf/open/floor/tile/purple/whitepurple,
 /area/campaign/jungle_outpost/outpost/science/south)
 "gA" = (
-/obj/effect/landmark/campaign_objective/asat_system,
+/obj/effect/landmark/campaign_structure/asat_system,
 /turf/open/floor,
 /area/campaign/jungle_outpost/ground/jungle)
 "gB" = (
@@ -2964,7 +2964,7 @@
 /turf/open/floor/tile/dark,
 /area/campaign/jungle_outpost/outpost/engineering)
 "mC" = (
-/obj/effect/landmark/campaign_objective/phoron_crate,
+/obj/effect/landmark/campaign_structure/phoron_crate,
 /turf/open/floor/plating/ground/concrete,
 /area/campaign/jungle_outpost/outpost/req/depot)
 "mD" = (
@@ -3014,7 +3014,7 @@
 /turf/open/floor,
 /area/campaign/jungle_outpost/outpost/landing/storage)
 "mQ" = (
-/obj/effect/landmark/campaign_objective/phoron_crate,
+/obj/effect/landmark/campaign_structure/phoron_crate,
 /turf/open/floor/tile/hydro,
 /area/campaign/jungle_outpost/outpost/living/hydro)
 "mS" = (
@@ -4323,7 +4323,7 @@
 /area/campaign/jungle_outpost/outpost/science/south)
 "sA" = (
 /obj/structure/cable,
-/obj/effect/landmark/campaign_objective/phoron_crate,
+/obj/effect/landmark/campaign_structure/phoron_crate,
 /turf/open/floor,
 /area/campaign/jungle_outpost/outpost/security/vault)
 "sB" = (
@@ -4468,7 +4468,7 @@
 /turf/open/floor/freezer,
 /area/campaign/jungle_outpost/outpost/command)
 "sZ" = (
-/obj/effect/landmark/campaign_objective/phoron_crate,
+/obj/effect/landmark/campaign_structure/phoron_crate,
 /turf/open/floor,
 /area/campaign/jungle_outpost/outpost/outer/west)
 "ta" = (
@@ -4763,7 +4763,7 @@
 /turf/open/ground/grass/weedable,
 /area/campaign/jungle_outpost/ground/jungle/south)
 "uq" = (
-/obj/effect/landmark/campaign_objective/howitzer_objective,
+/obj/effect/landmark/campaign_structure/howitzer_objective,
 /turf/open/ground/grass/weedable,
 /area/campaign/jungle_outpost/ground/jungle/north_west)
 "ur" = (
@@ -4961,7 +4961,7 @@
 /turf/open/floor,
 /area/campaign/jungle_outpost/outpost/outer/west)
 "vo" = (
-/obj/effect/landmark/campaign_objective/asat_system,
+/obj/effect/landmark/campaign_structure/asat_system,
 /turf/open/floor/plating/ground/concrete,
 /area/campaign/jungle_outpost/outpost/req/containers)
 "vq" = (
@@ -5079,7 +5079,7 @@
 	},
 /area/campaign/jungle_outpost/ground/jungle/east)
 "vO" = (
-/obj/effect/landmark/campaign_objective/howitzer_objective,
+/obj/effect/landmark/campaign_structure/howitzer_objective,
 /turf/open/ground/grass/weedable,
 /area/campaign/jungle_outpost/ground/jungle/east)
 "vP" = (
@@ -5237,7 +5237,7 @@
 	},
 /area/campaign/jungle_outpost/ground/jungle)
 "wB" = (
-/obj/effect/landmark/campaign_objective/howitzer_objective,
+/obj/effect/landmark/campaign_structure/howitzer_objective,
 /turf/open/ground/grass/weedable,
 /area/campaign/jungle_outpost/ground/jungle)
 "wC" = (
@@ -5314,7 +5314,7 @@
 /area/campaign/jungle_outpost/ground/jungle/east)
 "wT" = (
 /obj/structure/flora/jungle/grass/thin,
-/obj/effect/landmark/campaign_objective/asat_system,
+/obj/effect/landmark/campaign_structure/asat_system,
 /turf/open/ground/grass/weedable,
 /area/campaign/jungle_outpost/ground/jungle/west)
 "wU" = (
@@ -7093,7 +7093,7 @@
 	},
 /area/campaign/jungle_outpost/ground/jungle/west)
 "Er" = (
-/obj/effect/landmark/campaign_objective/phoron_crate,
+/obj/effect/landmark/campaign_structure/phoron_crate,
 /turf/open/floor,
 /area/campaign/jungle_outpost/outpost/command)
 "Es" = (
@@ -7703,7 +7703,7 @@
 /area/campaign/jungle_outpost/outpost/command)
 "Hc" = (
 /obj/structure/cable,
-/obj/effect/landmark/campaign_objective/sensor_tower,
+/obj/effect/landmark/campaign_structure/sensor_tower,
 /turf/open/floor,
 /area/campaign/jungle_outpost/ground/jungle)
 "Hd" = (
@@ -7778,7 +7778,7 @@
 /turf/open/floor/plating/ground/concrete,
 /area/campaign/jungle_outpost/outpost/req/containers)
 "Hw" = (
-/obj/effect/landmark/campaign_objective/howitzer_objective,
+/obj/effect/landmark/campaign_structure/howitzer_objective,
 /turf/open/floor/plating/ground/dirtgrassborder2/corner,
 /area/campaign/jungle_outpost/ground/jungle)
 "Hy" = (
@@ -7955,7 +7955,7 @@
 /area/campaign/jungle_outpost/ground/river/north)
 "Il" = (
 /obj/structure/flora/jungle/grass/thin,
-/obj/effect/landmark/campaign_objective/howitzer_objective,
+/obj/effect/landmark/campaign_structure/howitzer_objective,
 /turf/open/ground/grass/weedable,
 /area/campaign/jungle_outpost/ground/jungle/east)
 "Im" = (
@@ -8267,7 +8267,7 @@
 /turf/open/floor/plating/ground/concrete,
 /area/campaign/jungle_outpost/outpost/req/containers)
 "JK" = (
-/obj/effect/landmark/campaign_objective/howitzer_objective,
+/obj/effect/landmark/campaign_structure/howitzer_objective,
 /turf/open/ground/grass/weedable,
 /area/campaign/jungle_outpost/ground/jungle/south_west)
 "JL" = (
@@ -8474,7 +8474,7 @@
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
 /area/campaign/jungle_outpost/ground/jungle/east)
 "KF" = (
-/obj/effect/landmark/campaign_objective/howitzer_objective,
+/obj/effect/landmark/campaign_structure/howitzer_objective,
 /turf/open/ground/grass/weedable,
 /area/campaign/jungle_outpost/ground/jungle/north)
 "KG" = (
@@ -8653,7 +8653,7 @@
 	},
 /area/campaign/jungle_outpost/outpost/security/vault)
 "Lr" = (
-/obj/effect/landmark/campaign_objective/asat_system,
+/obj/effect/landmark/campaign_structure/asat_system,
 /turf/open/floor/plating/ground/dirtgrassborder2/corner{
 	dir = 1
 	},
@@ -9147,7 +9147,7 @@
 	},
 /area/campaign/jungle_outpost/outpost/req)
 "NF" = (
-/obj/effect/landmark/campaign_objective/phoron_crate,
+/obj/effect/landmark/campaign_structure/phoron_crate,
 /turf/open/floor/tile/dark,
 /area/campaign/jungle_outpost/outpost/engineering)
 "NG" = (
@@ -9582,7 +9582,7 @@
 /turf/closed/wall,
 /area/campaign/jungle_outpost/outpost/medbay/lobby)
 "Pt" = (
-/obj/effect/landmark/campaign_objective/sensor_tower,
+/obj/effect/landmark/campaign_structure/sensor_tower,
 /turf/open/ground/grass/weedable,
 /area/campaign/jungle_outpost/ground/jungle)
 "Pu" = (
@@ -9633,7 +9633,7 @@
 	},
 /area/campaign/jungle_outpost/ground/jungle/east)
 "PE" = (
-/obj/effect/landmark/campaign_objective/howitzer_objective,
+/obj/effect/landmark/campaign_structure/howitzer_objective,
 /turf/open/ground/grass/weedable,
 /area/campaign/jungle_outpost/ground/jungle/south)
 "PF" = (
@@ -10101,7 +10101,7 @@
 	},
 /area/campaign/jungle_outpost/outpost/security)
 "RJ" = (
-/obj/effect/landmark/campaign_objective/sensor_tower,
+/obj/effect/landmark/campaign_structure/sensor_tower,
 /turf/open/ground/grass/weedable,
 /area/campaign/jungle_outpost/ground/jungle/south)
 "RK" = (
@@ -10356,7 +10356,7 @@
 /turf/open/floor/tile/blue/taupeblue,
 /area/campaign/jungle_outpost/outpost/command)
 "SQ" = (
-/obj/effect/landmark/campaign_objective/sensor_tower,
+/obj/effect/landmark/campaign_structure/sensor_tower,
 /turf/open/ground/grass/weedable,
 /area/campaign/jungle_outpost/ground/jungle/west)
 "SR" = (
@@ -11747,7 +11747,7 @@
 /turf/closed/wall,
 /area/campaign/jungle_outpost/outpost/medbay/chemistry)
 "YD" = (
-/obj/effect/landmark/campaign_objective/phoron_crate,
+/obj/effect/landmark/campaign_structure/phoron_crate,
 /turf/open/floor/tile/blue/whiteblue{
 	dir = 4
 	},
@@ -11757,7 +11757,7 @@
 /turf/open/floor/wood/alt_four,
 /area/campaign/jungle_outpost/outpost/command/captain)
 "YF" = (
-/obj/effect/landmark/campaign_objective/howitzer_objective,
+/obj/effect/landmark/campaign_structure/howitzer_objective,
 /turf/open/ground/grass/weedable,
 /area/campaign/jungle_outpost/ground/jungle/west)
 "YG" = (
@@ -11902,7 +11902,7 @@
 /area/campaign/jungle_outpost/outpost/req/depot)
 "Zp" = (
 /obj/structure/cable,
-/obj/effect/landmark/campaign_objective/phoron_crate,
+/obj/effect/landmark/campaign_structure/phoron_crate,
 /turf/open/floor/tile/dark/gray,
 /area/campaign/jungle_outpost/outpost/req)
 "Zq" = (
@@ -11987,7 +11987,7 @@
 	},
 /area/campaign/jungle_outpost/ground/jungle/north)
 "ZG" = (
-/obj/effect/landmark/campaign_objective/asat_system,
+/obj/effect/landmark/campaign_structure/asat_system,
 /turf/open/floor/plating/ground/dirtgrassborder2/corner2{
 	dir = 4
 	},
