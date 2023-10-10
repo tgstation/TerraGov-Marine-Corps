@@ -3,7 +3,7 @@
 	name = "Target Destruction" //(tm)
 	map_name = "Ice Caves"
 	map_file = '_maps/map_files/icy_caves/icy_caves.dmm'
-	max_game_time = 15 MINUTES
+	max_game_time = 12 MINUTES
 	victory_point_rewards = list(
 		MISSION_OUTCOME_MAJOR_VICTORY = list(3, 0),
 		MISSION_OUTCOME_MINOR_VICTORY = list(1, 0),

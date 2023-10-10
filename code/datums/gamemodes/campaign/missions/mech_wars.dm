@@ -9,7 +9,6 @@
 	map_light_levels = list(225, 150, 100, 75)
 	starting_faction_objective_description = "Major Victory: Wipe out all hostiles in the area of operation. Minor Victory: Eliminate more hostiles than you lose."
 	hostile_faction_objective_description = "Major Victory: Wipe out all hostiles in the area of operation. Minor Victory: Eliminate more hostiles than you lose."
-	max_game_time = 20 MINUTES
 	mission_start_delay = 5 MINUTES //since there is actual mech prep time required
 	///List of mechs relating to this mission
 	var/list/mech_list = list()
