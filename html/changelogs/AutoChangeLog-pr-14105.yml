@@ -1,4 +1,0 @@
-author: "Xander3359"
-delete-after: True
-changes:
-  - rscadd: "Vending machines restock items near it (instead of only on the same tile) when you click \"restock\""

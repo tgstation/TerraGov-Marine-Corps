@@ -82,3 +82,20 @@
   dopamiin:
   - balance: the Judge now has a much longer fire delay, but its standard rounds are
       more powerful.
+2023-10-10:
+  Barnet2:
+  - balance: Big Red's Marshall disk spawn is now removed from all modulars.
+  Helg2:
+  - qol: Holsters of some ert now have sidearm in the first slot instead of magazine
+      so you're able to pull it out instantly.
+  - bugfix: Gentleman's Coat now doesn't hide clothes beneath it.
+  - bugfix: X now acts as a No when you try to return to your body while remain in
+      the larva queue.
+  - bugfix: Warrior's lunge early returns now don't show numbers.
+  - bugfix: Powder Monkey's belt is now full instead of being almost full.
+  Pariah919:
+  - rscadd: Added new CLF heavy roles, and two new guns for it, which are the PTR
+      anti tank rifle and the DP 'RP' machine gun.
+  Xander3359:
+  - rscadd: Vending machines restock items near it (instead of only on the same tile)
+      when you click "restock"
