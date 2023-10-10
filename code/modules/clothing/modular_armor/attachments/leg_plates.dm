@@ -63,3 +63,8 @@
 	name = "\improper Style Pattern Hotaru leg plates"
 	desc = "Designed for use with the Jaeger Combat Exoskeleton. It provides high protection and encumbrance when attached and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. All leg plates have the same armor and slowdown, meaning that only changing the chestplate makes significant armor difference. This armor appears to be marked as a Hotaru armor piece."
 	greyscale_config = /datum/greyscale_config/armor_mk1/hotaru
+
+/obj/item/armor_module/armor/legs/marine/dashe
+	name = "\improper Style Pattern Dashe leg plates"
+	desc = "Designed for use with the Jaeger Combat Exoskeleton. It provides high protection and encumbrance when attached and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. This armor appears to be marked as a Dashe armor piece."
+	greyscale_config = /datum/greyscale_config/armor_mk1/dashe
