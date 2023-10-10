@@ -159,7 +159,8 @@
 	desc = "A heavy duty maglev locomotive. Designed for moving large quantities of goods from point A to point B."
 	icon = 'icons/obj/structures/train.dmi'
 	icon_state = "maglev"
-	allow_pass_flags = PASS_AIR
+	allow_pass_flags = PASS_PROJECTILE|PASS_AIR
+	bound_width = 128
 
 /obj/effect/landmark/campaign_structure/train/carriage
 	name = "carriage objective"
