@@ -678,6 +678,48 @@
 	)
 
 //-------------------------------------------------------
+//DP-27
+
+/obj/item/weapon/gun/rifle/dpm
+	name = "\improper Degtyaryov 'RP' machine gun"
+	desc = "A cheap and robust machine gun seen commonly in the fringes of the bubble. Fires high caliber rounds to accommodate for its sluggish rate of fire, it is generally found being called 'The Record Player' due to the resemblance. Fires 7.62x39mm AP rounds."
+	icon = 'icons/Marine/gun64.dmi'
+	icon_state = "dp27"
+	item_state = "dp27"
+	max_shells = 47 //codex
+	caliber = CALIBER_762X39 //codex
+	fire_sound = "svd_fire"
+	dry_fire_sound = 'sound/weapons/guns/fire/dpm.ogg'
+	unload_sound = 'sound/weapons/guns/interact/dpm_unload.ogg'
+	reload_sound = 'sound/weapons/guns/interact/dpm_reload.ogg'
+	default_ammo_type = /obj/item/ammo_magazine/rifle/dpm
+	allowed_ammo_types = list(/obj/item/ammo_magazine/rifle/dpm)
+	attachable_allowed = list(
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/stock/dpm,
+	)
+
+	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
+	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
+	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 17,"rail_x" = 22, "rail_y" = 17, "under_x" = 32, "under_y" = 14, "stock_x" = 13, "stock_y" = 9)
+	starting_attachment_types = list(/obj/item/attachable/stock/dpm)
+	actions_types = list(/datum/action/item_action/aim_mode)
+	aim_fire_delay = 0.25 SECONDS
+	aim_speed_modifier = 0.75
+
+	fire_delay = 0.45 SECONDS
+	damage_mult = 2
+	burst_amount = 1
+	accuracy_mult = 1
+	scatter = 2
+	recoil = -1
+	wield_delay = 0.9 SECONDS
+	aim_slowdown = 0.85
+	movement_acc_penalty_mult = 4
+
+//-------------------------------------------------------
 //M16 RIFLE
 
 /obj/item/weapon/gun/rifle/m16
