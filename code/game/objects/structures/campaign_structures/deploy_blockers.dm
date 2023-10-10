@@ -38,6 +38,7 @@
 /obj/structure/campaign_deployblocker/proc/deactivate()
 	SEND_SIGNAL(SSdcs, COMSIG_GLOB_CAMPAIGN_TELEBLOCKER_DISABLED, src, flags_to_remove, faction)
 	SSminimaps.remove_marker(src)
+	GLOB.campaign_structures -= src
 
 /obj/effect/landmark/campaign_structure/drop_blocker
 	name = "TELEBLOCKER"
