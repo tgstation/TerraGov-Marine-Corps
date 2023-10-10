@@ -1,15 +1,15 @@
 /obj/item/reagent_containers/hypospray/autoinjector
 	name = "generic autoinjector"
-	//desc = "A rapid and safe way to administer small amounts of drugs by untrained or trained personnel."
 	desc = "An autoinjector containing... table salt? <i>\"For any client assistance, please contact the coderbus\" is written on the back.</i>"
 	icon_state = "autoinjector"
 	item_state = "hypo"
 	w_class = WEIGHT_CLASS_TINY
 	skilllock = 0
 	init_reagent_flags = DRAWABLE
-	amount_per_transfer_from_this = 10
-	volume = 30
-	list_reagents = list(/datum/reagent/consumable/sodiumchloride = 30)
+	possible_transfer_amounts = list(1, 3, 5, 10, 15, 30)
+	amount_per_transfer_from_this = 15
+	volume = 60
+	list_reagents = list(/datum/reagent/consumable/sodiumchloride = 60)
 
 /obj/item/reagent_containers/hypospray/autoinjector/update_icon_state()
 	if(!(reagents.total_volume) && is_drawable())
@@ -35,21 +35,22 @@
 
 /obj/item/reagent_containers/hypospray/autoinjector/tricordrazine
 	name = "tricordrazine autoinjector"
-	desc = "An autoinjector loaded with 3 doses of tricordrazine, a weak general use medicine for treating damage."
+	desc = "An autoinjector loaded with 4 doses of tricordrazine, a weak general use medicine for treating damage."
 	icon_state = "autoinjector-4"
-	list_reagents = list(/datum/reagent/medicine/tricordrazine = 30)
+	list_reagents = list(/datum/reagent/medicine/tricordrazine = 60)
 	description_overlay = "Ti"
 
 /obj/item/reagent_containers/hypospray/autoinjector/combat
 	name = "combat autoinjector"
 	desc = "An autoinjector loaded with 2 doses of healing and painkilling chemicals. Intended for use in active combat."
 	icon_state = "RedGreen"
-	amount_per_transfer_from_this = 15
+	possible_transfer_amounts = list(1, 3, 5, 10, 15, 30, 60) //Gigachads will bite the whole injector
+	amount_per_transfer_from_this = 30
 	list_reagents = list(
-		/datum/reagent/medicine/bicaridine = 10,
-		/datum/reagent/medicine/kelotane = 10,
-		/datum/reagent/medicine/tricordrazine = 5,
-		/datum/reagent/medicine/tramadol = 5,
+		/datum/reagent/medicine/bicaridine = 15,
+		/datum/reagent/medicine/kelotane = 15,
+		/datum/reagent/medicine/tricordrazine = 15,
+		/datum/reagent/medicine/tramadol = 15,
 	)
 	description_overlay = "Cb"
 
@@ -57,7 +58,6 @@
 	name = "advanced combat autoinjector"
 	desc = "An autoinjector loaded with 2 doses of advanced healing and painkilling chemicals. Intended for use in active combat."
 	icon_state = "Lilac"
-	amount_per_transfer_from_this = 15
 	list_reagents = list(
 		/datum/reagent/medicine/meralyne = 10,
 		/datum/reagent/medicine/dermaline = 10,
@@ -67,9 +67,11 @@
 
 /obj/item/reagent_containers/hypospray/autoinjector/quickclot
 	name = "quick-clot autoinjector"
-	desc = "An autoinjector loaded with three doses of quick-clot, a chemical designed to pause all bleeding. Renew doses as needed."
+	desc = "An autoinjector loaded with 4 doses of quick-clot, a chemical designed to pause all bleeding. Renew doses as needed."
 	icon_state = "autoinjector-7"
-	list_reagents = list(/datum/reagent/medicine/quickclot = 30)
+	amount_per_transfer_from_this = 10
+	volume = 40
+	list_reagents = list(/datum/reagent/medicine/quickclot = 40)
 	description_overlay = "Qk"
 
 /obj/item/reagent_containers/hypospray/autoinjector/quickclotplus
@@ -103,16 +105,16 @@
 
 /obj/item/reagent_containers/hypospray/autoinjector/dylovene
 	name = "dylovene autoinjector"
-	desc = "An auto-injector loaded with 3 doses of dylovene, an anti-toxin agent useful in cases of poisoning, overdoses and toxin build-up."
+	desc = "An auto-injector loaded with 4 doses of dylovene, an anti-toxin agent useful in cases of poisoning, overdoses and toxin build-up."
 	icon_state = "autoinjector-1"
-	list_reagents = list(/datum/reagent/medicine/dylovene = 30)
+	list_reagents = list(/datum/reagent/medicine/dylovene = 60)
 	description_overlay = "Dy"
 
 /obj/item/reagent_containers/hypospray/autoinjector/tramadol
 	name = "tramadol autoinjector"
-	desc = "An auto-injector loaded with 3 doses of tramadol, an effective painkiller for normal wounds."
+	desc = "An auto-injector loaded with 4 doses of tramadol, an effective painkiller for normal wounds."
 	icon_state = "autoinjector-10"
-	list_reagents = list(/datum/reagent/medicine/tramadol = 30)
+	list_reagents = list(/datum/reagent/medicine/tramadol = 60)
 	description_overlay = "Ta"
 
 /obj/item/reagent_containers/hypospray/autoinjector/oxycodone
@@ -126,24 +128,24 @@
 
 /obj/item/reagent_containers/hypospray/autoinjector/kelotane
 	name = "kelotane autoinjector"
-	desc = "An auto-injector loaded with 3 doses of kelotane, a common burn medicine."
+	desc = "An auto-injector loaded with 4 doses of kelotane, a common burn medicine."
 	icon_state = "autoinjector-5"
-	list_reagents = list(/datum/reagent/medicine/kelotane = 30)
+	list_reagents = list(/datum/reagent/medicine/kelotane = 60)
 	description_overlay = "Ke"
 
 /obj/item/reagent_containers/hypospray/autoinjector/bicaridine
 	name = "bicaridine autoinjector"
-	desc = "An auto-injector loaded with 3 doses of bicaridine, a common brute and circulatory damage medicine."
+	desc = "An auto-injector loaded with 4 doses of bicaridine, a common brute and circulatory damage medicine."
 	icon_state = "autoinjector-3"
-	list_reagents = list(/datum/reagent/medicine/bicaridine = 30)
+	list_reagents = list(/datum/reagent/medicine/bicaridine = 60)
 	description_overlay = "Bi"
 
 /obj/item/reagent_containers/hypospray/autoinjector/inaprovaline
 	name = "inaprovaline autoinjector"
-	desc = "An auto-injector loaded with 2 doses of inaprovaline, an emergency stabilization medicine for patients in critical condition."
+	desc = "An auto-injector loaded with 4 doses of inaprovaline, an emergency stabilization medicine for patients in critical condition."
 	icon_state = "autoinjector-9"
 	amount_per_transfer_from_this = 15
-	list_reagents = list(/datum/reagent/medicine/inaprovaline = 30)
+	list_reagents = list(/datum/reagent/medicine/inaprovaline = 60)
 	description_overlay = "In"
 
 /obj/item/reagent_containers/hypospray/autoinjector/dexalin
@@ -277,12 +279,12 @@
 
 /obj/item/reagent_containers/hypospray/autoinjector/isotonic
 	name = "isotonic solution autoinjector"
-	desc = "An auto-injector loaded with 2 doses of isotonic solution, formulated to quickly recover fluid volume after blood loss or trauma."
+	desc = "An auto-injector loaded with 4 doses of isotonic solution, formulated to quickly recover fluid volume after blood loss or trauma."
 	icon_state = "autoinjector-8"
 	amount_per_transfer_from_this = 15
-	volume = 30
+	volume = 60
 	list_reagents = list(
-		/datum/reagent/medicine/saline_glucose = 30,
+		/datum/reagent/medicine/saline_glucose = 60,
 	)
 
 /obj/item/reagent_containers/hypospray/autoinjector/roulettium
