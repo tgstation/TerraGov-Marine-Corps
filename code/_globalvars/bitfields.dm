@@ -471,6 +471,7 @@ GLOBAL_LIST_INIT(bitfields, list(
 	),
 	"flags_item" = list(
 		"NODROP" = NODROP,
+		"IN_INVENTORY" = IN_INVENTORY,
 		"NOBLUDGEON" = NOBLUDGEON,
 		"DELONDROP" = DELONDROP,
 		"TWOHANDED" = TWOHANDED,
