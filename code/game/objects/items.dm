@@ -144,6 +144,8 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 	///Current variant selected.
 	var/current_variant
 
+	///Whether we can restock this in a vendor
+	var/free_refills = TRUE
 
 
 
@@ -1472,4 +1474,13 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 	selection.color_item(paint, user)
 	update_icon()
 	update_greyscale()
+
+///Proc that gets called by a vendor when you refill something
+///Returns FALSE if it's not elligible for refills
+/obj/item/proc/refill(mob/user)
+	SHOULD_CALL_PARENT(TRUE)
+	if(!free_refills)
+		user.balloon_alert(user, "Can't refill this")
+		return FALSE
+	return TRUE
 

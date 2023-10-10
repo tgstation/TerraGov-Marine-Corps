@@ -392,6 +392,27 @@
 		var/obj/item/to_stock = I
 		stock(to_stock, user)
 
+/obj/machinery/vending/attackby_alternate(obj/item/item_to_refill, mob/user, params)
+	. = ..()
+	/// The found record matching the item_to_refill in the vending_records lists
+	var/datum/vending_product/record = FALSE
+
+	if(tipped_level)
+		return to_chat(user, "Tip it back upright first!")
+	if(!isitem(item_to_refill))
+		return FALSE
+
+	for(var/datum/vending_product/R AS in product_records + hidden_records + coin_records)
+		if(item_to_refill.type != R.product_path)
+			continue
+		record = R
+
+	if(!record) //Item isn't listed in the vending records.
+		display_message_and_visuals(user, TRUE, "[item_to_refill] can't be refilled here!", VENDING_RESTOCK_DENY)
+		return FALSE
+
+	item_to_refill.refill(user)
+
 /obj/machinery/vending/proc/scan_card(obj/item/card/I)
 	if(!currently_vending)
 		return

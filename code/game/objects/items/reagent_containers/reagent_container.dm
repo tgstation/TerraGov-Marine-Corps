@@ -17,9 +17,6 @@
 	var/volume = 30
 	var/liquifier = FALSE //Can liquify/grind pills without needing fluid to dissolve.
 	var/list/list_reagents
-	///Whether we can restock this in a vendor without it having its starting reagents
-	var/free_refills = TRUE
-
 
 /obj/item/reagent_containers/Initialize(mapload)
 	. = ..()
@@ -81,3 +78,12 @@
 		if(reagents.get_reagent_amount(reagent_to_check) != list_reagents[reagent_to_check])
 			return FALSE
 	return TRUE
+
+/obj/item/reagent_containers/refill(mob/user) ///Sets an injectors contents to it's initial value (effectively refilling it)
+	. = ..()
+	if(!.)
+		return FALSE
+	reagents.clear_reagents() //Empties the injector
+	reagents.add_reagent_list(list_reagents) //And then we refill it with what it has by default
+	user.balloon_alert(user, "Refilled")
+	update_icon()
