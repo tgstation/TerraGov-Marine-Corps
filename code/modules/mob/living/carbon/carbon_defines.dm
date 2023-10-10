@@ -40,3 +40,8 @@
 
 	/// % Chance of exploding on death, incremented by total damage taken if not initially zero.
 	var/gib_chance = 0
+
+/mob/living/carbon/proc/transfer_identity(mob/living/carbon/destination)
+	if(!istype(destination))
+		return
+	destination.blood_type = blood_type

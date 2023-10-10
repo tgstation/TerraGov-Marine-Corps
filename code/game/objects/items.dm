@@ -338,10 +338,10 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 // apparently called whenever an item is removed from a slot, container, or anything else.
 //the call happens after the item's potential loc change.
 /obj/item/proc/dropped(mob/user)
-	SEND_SIGNAL(src, COMSIG_ITEM_DROPPED, user)
-
 	if((flags_item & DELONDROP) && !QDELETED(src))
 		qdel(src)
+	flags_item &= ~IN_INVENTORY
+	SEND_SIGNAL(src, COMSIG_ITEM_DROPPED, user)
 
 ///Called whenever an item is unequipped to a new loc (IE, not when the item ends up in the hands)
 /obj/item/proc/removed_from_inventory(mob/user)
@@ -371,6 +371,7 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 			limb_count++
 		UPDATEHEALTH(H)
 		QDEL_NULL(current_acid)
+	flags_item |= IN_INVENTORY
 	return
 
 ///Called to return an item to equip using the quick equip hotkey. Base proc returns the item itself, overridden for storage behavior.
@@ -411,6 +412,8 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 	for(var/datum/action/A AS in actions)
 		if(item_action_slot_check(user, slot)) //some items only give their actions buttons when in a specific slot.
 			A.give_action(user)
+
+	flags_item |= IN_INVENTORY
 
 	if(!equipped_to_slot)
 		return

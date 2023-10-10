@@ -296,6 +296,7 @@ GLOBAL_PROTECT(admin_verbs_default)
 	/datum/admins/proc/check_fingerprints,
 	/client/proc/smite,
 	/client/proc/show_traitor_panel,
+	/client/proc/cmd_select_equipment,
 	/client/proc/validate_objectives,
 	/client/proc/private_message_panel,
 	/client/proc/private_message_context,
