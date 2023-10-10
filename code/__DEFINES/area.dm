@@ -16,3 +16,5 @@
 #define OB_CAS_IMMUNE (1<<3)
 ///Prevent wraith from portaling there, and hivemind to weed there when shutters are closed
 #define MARINE_BASE (1<<4)
+///radio works even underground
+#define ALWAYS_RADIO (1<<5)

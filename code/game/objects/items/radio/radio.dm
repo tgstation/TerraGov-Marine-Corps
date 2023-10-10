@@ -292,11 +292,10 @@
 		return
 
 	var/area/A = get_area(src)
-	if(!isnull(A))
+	if(!isnull(A) && (A.ceiling >= CEILING_UNDERGROUND) && !(A.flags_area & ALWAYS_RADIO))
 		if(A.ceiling >= CEILING_DEEP_UNDERGROUND)
 			return
-		if(A.ceiling >= CEILING_UNDERGROUND)
-			signal.data["compression"] += rand(20, 40)
+		signal.data["compression"] += rand(20, 40)
 
 	// All non-independent radios make an attempt to use the subspace system first
 	signal.send_to_receivers()

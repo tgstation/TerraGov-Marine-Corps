@@ -569,13 +569,6 @@
 	},
 /turf/open/floor/wood,
 /area/lawankaoutpost/colony/bar)
-"ayi" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_23";
-	name = "SOM exit point 23"
-	},
-/turf/open/floor/plating/ground/dirt,
-/area/lawankaoutpost/caves/southwest)
 "aym" = (
 /turf/closed/wall,
 /area/lawankaoutpost/colony/mining)
@@ -1248,13 +1241,6 @@
 	dir = 10
 	},
 /area/lawankaoutpost/colony/biologics)
-"baZ" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_22";
-	name = "TGMC exit point 22"
-	},
-/turf/open/floor/plating/ground/dirt,
-/area/lawankaoutpost/caves/east)
 "bbQ" = (
 /obj/structure/rack,
 /obj/effect/spawner/random/engineering/computercircuit,
@@ -1940,6 +1926,10 @@
 /obj/structure/flora/tree/jungle,
 /turf/open/ground/grass/weedable,
 /area/lawankaoutpost/outside/southeast)
+"bGj" = (
+/obj/effect/landmark/patrol_point/tgmc_22,
+/turf/open/floor/plating/ground/dirt,
+/area/lawankaoutpost/caves/east)
 "bGF" = (
 /obj/structure/table,
 /turf/open/floor/tile/yellow/full,
@@ -2819,13 +2809,6 @@
 	dir = 1
 	},
 /area/lawankaoutpost/colony/northdorms)
-"cre" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_22";
-	name = "SOM exit point 22"
-	},
-/turf/open/floor/plating/ground/dirt,
-/area/lawankaoutpost/caves/southwest)
 "csh" = (
 /obj/structure/cable,
 /obj/machinery/power/apc/drained{
@@ -3020,6 +3003,10 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark2,
 /area/lawankaoutpost/colony/cargo)
+"cCG" = (
+/obj/effect/landmark/patrol_point/som/som_23,
+/turf/open/floor/plating/ground/dirt,
+/area/lawankaoutpost/caves/southwest)
 "cCH" = (
 /obj/machinery/door/airlock/mainship/security/glass/free_access{
 	dir = 1;
@@ -3309,6 +3296,10 @@
 	dir = 10
 	},
 /area/lawankaoutpost/colony/southdorms)
+"cOI" = (
+/obj/effect/landmark/patrol_point/som/som_14,
+/turf/open/floor/plating/ground/dirt,
+/area/lawankaoutpost/caves/east)
 "cOK" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 9
@@ -3886,6 +3877,10 @@
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/plating/ground/dirt,
 /area/lawankaoutpost/caves/west)
+"dnC" = (
+/obj/effect/landmark/patrol_point/tgmc_24,
+/turf/open/floor/plating/ground/dirt,
+/area/lawankaoutpost/caves/east)
 "dnE" = (
 /obj/structure/bed/chair/comfy{
 	dir = 4
@@ -4476,10 +4471,6 @@
 	dir = 4
 	},
 /area/lawankaoutpost/colony/operations_storage)
-"dSx" = (
-/obj/machinery/telecomms/relay/preset/telecomms,
-/turf/closed/mineral/smooth/indestructible,
-/area/lv624/lazarus/console)
 "dSz" = (
 /obj/structure/sink{
 	dir = 8
@@ -5891,6 +5882,10 @@
 /obj/effect/landmark/weed_node,
 /turf/open/ground/grass/weedable,
 /area/lawankaoutpost/outside/central)
+"eZx" = (
+/obj/effect/landmark/patrol_point/som/som_11,
+/turf/open/floor/plating/ground/dirt,
+/area/lawankaoutpost/caves/east)
 "eZL" = (
 /obj/effect/ai_node,
 /turf/open/floor/tile/red/full,
@@ -6604,14 +6599,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/white,
 /area/lawankaoutpost/colony/operations_hall)
-"fDn" = (
-/obj/effect/landmark/weed_node,
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_23";
-	name = "TGMC exit point 23"
-	},
-/turf/open/floor/plating/ground/dirt,
-/area/lawankaoutpost/caves/east)
 "fDt" = (
 /obj/machinery/light{
 	dir = 4
@@ -6679,13 +6666,6 @@
 /obj/effect/spawner/random/food_or_drink/drink_cans,
 /turf/open/floor/tile/green/greentaupe,
 /area/lawankaoutpost/colony/chapel)
-"fGn" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_21";
-	name = "SOM exit point 21"
-	},
-/turf/open/floor/plating/ground/dirt,
-/area/lawankaoutpost/caves/southwest)
 "fGt" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber{
 	dir = 2
@@ -7014,6 +6994,10 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor,
 /area/lawankaoutpost/colony/southdorms)
+"fTr" = (
+/obj/effect/landmark/patrol_point/som/som_24,
+/turf/open/floor/plating/ground/dirt,
+/area/lawankaoutpost/caves/southwest)
 "fTz" = (
 /turf/open/floor/tile/dark/brown2{
 	dir = 10
@@ -7848,6 +7832,10 @@
 /obj/structure/flora/jungle/vines,
 /turf/open/ground/grass/weedable,
 /area/lawankaoutpost/outside/southeast)
+"gCE" = (
+/obj/effect/landmark/patrol_point/som/som_22,
+/turf/open/floor/plating/ground/dirt,
+/area/lawankaoutpost/caves/southwest)
 "gCQ" = (
 /obj/effect/ai_node,
 /turf/open/floor/tile/red/whitered{
@@ -8554,6 +8542,11 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber,
 /turf/open/floor/tile/red/full,
 /area/lawankaoutpost/colony/operations_administration)
+"hmD" = (
+/obj/effect/landmark/weed_node,
+/obj/effect/landmark/patrol_point/tgmc_23,
+/turf/open/floor/plating/ground/dirt,
+/area/lawankaoutpost/caves/east)
 "hmN" = (
 /obj/machinery/vending/snack,
 /turf/open/floor/tile/green/greentaupe{
@@ -8620,13 +8613,6 @@
 	dir = 10
 	},
 /area/lawankaoutpost/colony/robotics)
-"hqH" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_21";
-	name = "TGMC exit point 21"
-	},
-/turf/open/floor/plating/ground/dirt,
-/area/lawankaoutpost/caves/east)
 "hri" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/blue/taupeblue{
@@ -9506,6 +9492,10 @@
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/tile/dark2,
 /area/lawankaoutpost/colony/mining)
+"ifk" = (
+/obj/effect/landmark/patrol_point/som/som_12,
+/turf/open/floor/plating/ground/dirt,
+/area/lawankaoutpost/caves/east)
 "ifn" = (
 /obj/structure/flora/ausbushes/grassybush{
 	pixel_x = -7;
@@ -10194,6 +10184,10 @@
 /obj/effect/landmark/weed_node,
 /turf/open/ground/grass/weedable,
 /area/lawankaoutpost/outside/southeast)
+"iKW" = (
+/obj/effect/landmark/patrol_point/tgmc_11,
+/turf/open/floor/plating/ground/dirt,
+/area/lawankaoutpost/caves/northwest)
 "iLi" = (
 /obj/machinery/vending/cigarette/colony,
 /turf/open/floor/tile/dark/red2{
@@ -10606,13 +10600,6 @@
 /obj/item/mecha_parts/part/phazon_head,
 /turf/open/floor/tile/dark,
 /area/lawankaoutpost/caves/nanotrasen_lab)
-"jdW" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_14";
-	name = "TGMC exit point 14"
-	},
-/turf/open/floor/plating/ground/dirt,
-/area/lawankaoutpost/caves/northwest)
 "jei" = (
 /obj/structure/cable,
 /turf/open/floor/tile/dark/yellow2{
@@ -11195,13 +11182,6 @@
 /obj/effect/spawner/random/medical/beaker/largeweighted,
 /turf/open/floor/tile/purple/taupepurple/corner,
 /area/lawankaoutpost/colony/biologics)
-"jAX" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_13";
-	name = "TGMC exit point 13"
-	},
-/turf/open/floor/plating/ground/dirt,
-/area/lawankaoutpost/caves/northwest)
 "jBe" = (
 /obj/structure/flora/ausbushes/grassybush{
 	pixel_x = 8;
@@ -11384,13 +11364,6 @@
 	},
 /turf/open/ground/grass/weedable,
 /area/lawankaoutpost/caves/nanotrasen_lab)
-"jIR" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_14";
-	name = "SOM exit point 14"
-	},
-/turf/open/floor/plating/ground/dirt,
-/area/lawankaoutpost/caves/east)
 "jIX" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -11485,6 +11458,11 @@
 	dir = 1
 	},
 /area/lawankaoutpost/colony/southdorms)
+"jMW" = (
+/obj/effect/landmark/weed_node,
+/obj/effect/landmark/patrol_point/som/som_13,
+/turf/open/floor/plating/ground/dirt,
+/area/lawankaoutpost/caves/east)
 "jNn" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable,
@@ -12636,6 +12614,10 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt,
 /area/lawankaoutpost/outside/east)
+"kRe" = (
+/obj/machinery/telecomms/relay/preset/telecomms,
+/turf/closed/mineral/smooth/indestructible,
+/area/lv624/lazarus/console)
 "kRj" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable,
@@ -14167,13 +14149,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/ground/grass/weedable,
 /area/lawankaoutpost/outside/northeast)
-"mci" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_24";
-	name = "SOM exit point 24"
-	},
-/turf/open/floor/plating/ground/dirt,
-/area/lawankaoutpost/caves/southwest)
 "mcj" = (
 /turf/open/floor/plating,
 /area/lawankaoutpost/colony/biologics_storage)
@@ -14622,6 +14597,10 @@
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/tile/dark2,
 /area/lawankaoutpost/colony/cargo)
+"myg" = (
+/obj/effect/landmark/patrol_point/tgmc_21,
+/turf/open/floor/plating/ground/dirt,
+/area/lawankaoutpost/caves/east)
 "myl" = (
 /obj/structure/xenoautopsy/tank/escaped,
 /obj/machinery/light{
@@ -19179,13 +19158,6 @@
 /obj/item/toy/plush/rouny,
 /turf/open/floor/plating/ground/dirt,
 /area/lawankaoutpost/caves/rock)
-"qhl" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_24";
-	name = "TGMC exit point 24"
-	},
-/turf/open/floor/plating/ground/dirt,
-/area/lawankaoutpost/caves/east)
 "qhE" = (
 /obj/structure/table,
 /obj/item/storage/belt/shotgun,
@@ -19408,6 +19380,10 @@
 	},
 /turf/open/floor/tile/dark2,
 /area/lawankaoutpost/colony/marshalls)
+"qqN" = (
+/obj/effect/landmark/patrol_point/tgmc_12,
+/turf/open/floor/plating/ground/dirt,
+/area/lawankaoutpost/caves/northwest)
 "qqQ" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/landmark/weed_node,
@@ -21821,6 +21797,10 @@
 	dir = 4
 	},
 /area/lawankaoutpost/colony/recdorms)
+"ssk" = (
+/obj/effect/landmark/patrol_point/tgmc_14,
+/turf/open/floor/plating/ground/dirt,
+/area/lawankaoutpost/caves/northwest)
 "sss" = (
 /obj/effect/landmark/weed_node,
 /obj/effect/ai_node,
@@ -22193,13 +22173,6 @@
 /obj/effect/spawner/random/misc/plant,
 /turf/open/floor,
 /area/lawankaoutpost/colony/biologics)
-"sHc" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_12";
-	name = "TGMC exit point 12"
-	},
-/turf/open/floor/plating/ground/dirt,
-/area/lawankaoutpost/caves/northwest)
 "sHd" = (
 /obj/machinery/disease2/diseaseanalyser,
 /obj/machinery/light{
@@ -23725,14 +23698,6 @@
 	},
 /turf/open/floor/plating/ground/dirt,
 /area/lawankaoutpost/outside/northeast)
-"tSS" = (
-/obj/effect/landmark/weed_node,
-/obj/effect/landmark/patrol_point{
-	id = "SOM_13";
-	name = "SOM exit point 13"
-	},
-/turf/open/floor/plating/ground/dirt,
-/area/lawankaoutpost/caves/east)
 "tSX" = (
 /obj/effect/landmark/weed_node,
 /turf/open/ground/grass/weedable,
@@ -24248,13 +24213,6 @@
 	},
 /turf/open/floor/tile/dark/yellow2,
 /area/lawankaoutpost/colony/operations_storage)
-"usv" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_11";
-	name = "TGMC exit point 11"
-	},
-/turf/open/floor/plating/ground/dirt,
-/area/lawankaoutpost/caves/northwest)
 "usL" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -25431,6 +25389,10 @@
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/ground/grass/weedable,
 /area/lawankaoutpost/outside/northwest)
+"vsp" = (
+/obj/effect/landmark/patrol_point/som/som_21,
+/turf/open/floor/plating/ground/dirt,
+/area/lawankaoutpost/caves/southwest)
 "vtk" = (
 /obj/machinery/griddle,
 /turf/open/floor,
@@ -25817,13 +25779,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor,
 /area/lawankaoutpost/colony/robotics)
-"vHu" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_12";
-	name = "SOM exit point 12"
-	},
-/turf/open/floor/plating/ground/dirt,
-/area/lawankaoutpost/caves/east)
 "vHx" = (
 /obj/structure/closet/secure_closet/engineering_electrical,
 /turf/open/floor/plating,
@@ -27079,6 +27034,10 @@
 /obj/effect/ai_node,
 /turf/open/floor/tile/red/redtaupe,
 /area/lawankaoutpost/colony/recdorms)
+"wIC" = (
+/obj/effect/landmark/patrol_point/tgmc_13,
+/turf/open/floor/plating/ground/dirt,
+/area/lawankaoutpost/caves/northwest)
 "wIE" = (
 /turf/open/floor/tile/blue/taupeblue,
 /area/lawankaoutpost/colony/southdorms)
@@ -27289,13 +27248,6 @@
 "wRs" = (
 /turf/open/floor/wood/variable,
 /area/lawankaoutpost/caves/nanotrasen_lab)
-"wRO" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_11";
-	name = "SOM exit point 11"
-	},
-/turf/open/floor/plating/ground/dirt,
-/area/lawankaoutpost/caves/east)
 "wRU" = (
 /obj/structure/bed/chair/comfy,
 /turf/open/floor/tile/dark2,
@@ -31421,7 +31373,7 @@ oqq
 uDr
 uDr
 flP
-sHc
+qqN
 flP
 flP
 flP
@@ -31853,7 +31805,7 @@ oqq
 oqq
 uDr
 flP
-usv
+iKW
 flP
 flP
 flP
@@ -32503,10 +32455,10 @@ oqq
 oqq
 oqq
 uDr
-jAX
+wIC
 flP
 flP
-jdW
+ssk
 flP
 xGW
 uDr
@@ -34864,7 +34816,7 @@ bKe
 bKe
 bKe
 bKe
-fGn
+vsp
 bKe
 bKe
 bKe
@@ -35083,7 +35035,7 @@ phF
 bKe
 bKe
 bKe
-cre
+gCE
 phF
 bKe
 bKe
@@ -35515,10 +35467,10 @@ xGW
 xGW
 bKe
 bKe
-ayi
+cCG
 bKe
 bKe
-mci
+fTr
 bKe
 bKe
 xGW
@@ -77610,7 +77562,7 @@ sIW
 bVa
 bVa
 bVa
-fDn
+hmD
 bVa
 bVa
 bVa
@@ -77830,7 +77782,7 @@ bVa
 aHz
 bVa
 bVa
-hqH
+myg
 bVa
 bVa
 xGW
@@ -78092,11 +78044,11 @@ oqq
 uDr
 uDr
 bVa
-wRO
+eZx
 bVa
 bVa
 bVa
-tSS
+jMW
 bVa
 bVa
 bVa
@@ -78311,11 +78263,11 @@ bVa
 tub
 bVa
 bVa
-vHu
+ifk
 bVa
 bVa
 bVa
-jIR
+cOI
 bVa
 nQs
 bVa
@@ -78478,11 +78430,11 @@ sIW
 bVa
 bVa
 bVa
-baZ
+bGj
 bVa
 bVa
 bVa
-qhl
+dnC
 tub
 tub
 uDr
@@ -78721,7 +78673,7 @@ oqq
 oqq
 "}
 (230,1,1) = {"
-dSx
+kRe
 oqq
 oqq
 oqq

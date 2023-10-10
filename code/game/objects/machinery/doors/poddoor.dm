@@ -252,7 +252,7 @@
 
 
 /obj/machinery/door/poddoor/timed_late/Initialize(mapload)
-	RegisterSignals(SSdcs, list(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_CRASH), PROC_REF(open))
+	RegisterSignals(SSdcs, list(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_CRASH, COMSIG_GLOB_CAMPAIGN_MISSION_STARTED), PROC_REF(open))
 	return ..()
 
 
@@ -305,7 +305,7 @@ GLOBAL_LIST_INIT(faction_to_campaign_door_signal, list(
 
 /obj/machinery/door/poddoor/campaign/Initialize(mapload)
 	RegisterSignal(SSdcs, GLOB.faction_to_campaign_door_signal[faction], PROC_REF(open))
-	RegisterSignal(SSdcs, COMSIG_GLOB_CLOSE_CAMPAIGN_SHUTTERS, TYPE_PROC_REF(/obj/machinery/door, close))
+	RegisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_MISSION_ENDED, TYPE_PROC_REF(/obj/machinery/door, close))
 	return ..()
 
 /obj/machinery/door/poddoor/campaign/som

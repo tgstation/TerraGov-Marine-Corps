@@ -19,6 +19,8 @@
 #define REWARD_ACTIVE (1<<6)
 ///debuff, used for UI purposes
 #define REWARD_DEBUFF (1<<7)
+///SL's can activate this reward
+#define REWARD_SL_AVAILABLE (1<<8)
 
 /datum/campaign_reward
 	///Name of this reward
@@ -86,6 +88,7 @@
 
 //Parent for all 'spawn stuff' rewards
 /datum/campaign_reward/equipment
+	reward_flags = REWARD_ACTIVATED_EFFECT|REWARD_SL_AVAILABLE
 	///list of objects to spawn when this reward is activated
 	var/list/obj/equipment_to_spawn = list()
 
@@ -101,11 +104,11 @@
 
 /datum/campaign_reward/equipment/power_armor
 	name = "B18 consignment"
-	desc = "Three sets of B18 power armor."
-	detailed_desc = "Your battalion has been assigned a number of B18 power armor sets, available at your request. B18 is TGMC's premier infantry armor, providing superior protection, mobility and an advanced automedical system."
-	uses = 3
-	cost = 15
+	desc = "Three sets of B18 power armor"
+	detailed_desc = "Activatable by squad leaders. Your battalion has been assigned a number of B18 power armor sets, available at your request. B18 is TGMC's premier infantry armor, providing superior protection, mobility and an advanced automedical system."
 	ui_icon = "b18"
+	uses = 3
+	cost = 25
 	equipment_to_spawn = list(
 		/obj/item/clothing/head/helmet/marine/specialist,
 		/obj/item/clothing/gloves/marine/specialist,
@@ -114,11 +117,11 @@
 
 /datum/campaign_reward/equipment/gorgon_armor
 	name = "Gorgon consignment"
-	desc = "Five sets of Gorgon power armor."
-	detailed_desc = "Your battalion has been assigned a number of Gorgon power armor sets, available at your request. Gorgon armor is the SOM's elite infantry armor, providing superior protection and an automedical system without significantly compromising on speed."
-	uses = 5
-	cost = 10
+	desc = "Five sets of Gorgon power armor"
+	detailed_desc = "Activatable by squad leaders. Your battalion has been assigned a number of Gorgon power armor sets, available at your request. Gorgon armor is the SOM's elite infantry armor, providing superior protection and an automedical system without significantly compromising on speed."
 	ui_icon = "gorgon"
+	uses = 5
+	cost = 12
 	equipment_to_spawn = list(
 		/obj/item/clothing/head/modular/som/leader,
 		/obj/item/clothing/suit/modular/som/heavy/leader/valk,
@@ -126,43 +129,316 @@
 
 /datum/campaign_reward/equipment/medkit_basic
 	name = "Medical supplies"
-	desc = "A small number of medkits."
-	detailed_desc = "A number of medkits with some basic medical supplies."
+	desc = "An assortment of medical supplies"
+	detailed_desc = "Activatable by squad leaders. An assortment of basic medical supplies and some stimulants."
 	ui_icon = "medkit"
-	uses = 2
+	uses = 3
 	cost = 1
 	equipment_to_spawn = list(
-		/obj/effect/supply_drop/medical_basic,
+		/obj/item/storage/pouch/firstaid/basic,
+		/obj/item/storage/pouch/firstaid/basic,
+		/obj/item/storage/pouch/firstaid/basic,
+		/obj/item/storage/pouch/firstaid/basic,
+		/obj/item/reagent_containers/hypospray/autoinjector/combat_advanced,
+		/obj/item/reagent_containers/hypospray/autoinjector/combat_advanced,
+		/obj/item/reagent_containers/hypospray/autoinjector/combat_advanced,
+		/obj/item/reagent_containers/hypospray/autoinjector/synaptizine,
+		/obj/item/reagent_containers/hypospray/autoinjector/synaptizine,
+		/obj/item/reagent_containers/hypospray/autoinjector/synaptizine,
+	)
+
+/datum/campaign_reward/equipment/medkit_basic/som
+	equipment_to_spawn = list(
+		/obj/item/storage/pouch/firstaid/som/full,
+		/obj/item/storage/pouch/firstaid/som/full,
+		/obj/item/storage/pouch/firstaid/som/full,
+		/obj/item/storage/pouch/firstaid/som/full,
+		/obj/item/reagent_containers/hypospray/autoinjector/combat_advanced,
+		/obj/item/reagent_containers/hypospray/autoinjector/combat_advanced,
+		/obj/item/reagent_containers/hypospray/autoinjector/combat_advanced,
+		/obj/item/reagent_containers/hypospray/autoinjector/synaptizine,
+		/obj/item/reagent_containers/hypospray/autoinjector/synaptizine,
+		/obj/item/reagent_containers/hypospray/autoinjector/synaptizine,
 	)
 
 /datum/campaign_reward/equipment/materials_pack
 	name = "Construction supplies"
-	desc = "Metal, plasteel and sandbags."
-	detailed_desc = "A significant quantity of metal, plasteel and sandbags. Perfect for fortifying a defensive position"
+	desc = "Metal, plasteel and sandbags"
+	detailed_desc = "Activatable by squad leaders. A significant quantity of metal, plasteel and sandbags. Perfect for fortifying a defensive position."
 	ui_icon = "materials"
 	uses = 1
 	cost = 4
 	equipment_to_spawn = list(
 		/obj/item/storage/box/crate/loot/materials_pack,
-		/obj/item/tool/shovel/etool,
-		/obj/item/tool/shovel/etool,
-		/obj/item/tool/shovel/etool,
 	)
 
-/datum/campaign_reward/equipment/mech_heavy
-	name = "Heavy combat mech"
-	desc = "One heavy combat mech."
-	detailed_desc = "Your battalion has been assigned a single Vanguard heavy combat mech. The Vanguard has extreme durability and offensive capability. Able to wade through the thickest of fighting with ease, it is the TGMC's premier assault mech, although its speed and maneuverability are somewhat lackluster."
-	ui_icon = "heavy_mech"
+/datum/campaign_reward/equipment/ballistic_tgmc
+	name = "ballistic weapon resupply"
+	desc = "Ballistic weapons and ammo"
+	detailed_desc = "A number of standard ballistic weapons and ammo to match."
 	uses = 1
+	cost = 2
 	equipment_to_spawn = list(
-		/obj/vehicle/sealed/mecha/combat/greyscale/vanguard/noskill,
-		/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/heavy_cannon,
-		/obj/item/mecha_parts/mecha_equipment/weapon/energy/laser_projector,
-		/obj/item/mecha_ammo/vendable/heavycannon,
-		/obj/item/mecha_ammo/vendable/heavycannon,
-		/obj/item/mecha_ammo/vendable/heavycannon,
+		/obj/effect/supply_drop/standard_carbine,
+		/obj/effect/supply_drop/standard_rifle,
+		/obj/effect/supply_drop/combat_rifle,
+		/obj/item/weapon/gun/rifle/standard_gpmg/machinegunner,
+		/obj/item/ammo_magazine/standard_gpmg,
+		/obj/item/ammo_magazine/standard_gpmg,
+		/obj/item/ammo_magazine/standard_gpmg,
 	)
+
+/datum/campaign_reward/equipment/ballistic_som
+	name = "ballistic weapon resupply"
+	desc = "Ballistic weapons and ammo"
+	detailed_desc = "A number of standard ballistic weapons and ammo to match."
+	uses = 1
+	cost = 3
+	equipment_to_spawn = list(
+		/obj/effect/supply_drop/som_rifle,
+		/obj/effect/supply_drop/som_smg,
+		/obj/effect/supply_drop/som_mg,
+		/obj/effect/supply_drop/mpi,
+		/obj/effect/supply_drop/som_carbine,
+	)
+
+/datum/campaign_reward/equipment/lasers
+	name = "Laser weapon resupply"
+	desc = "Laser weapons and ammo"
+	detailed_desc = "A number of laser weapons and ammo to match."
+	uses = 1
+	cost = 3
+	equipment_to_spawn = list(
+		/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_carbine/mag_harness,
+		/obj/item/storage/belt/marine/te_cells,
+		/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_rifle/rifleman,
+		/obj/item/storage/belt/marine/te_cells,
+		/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_mlaser/patrol,
+		/obj/item/storage/belt/marine/te_cells,
+	)
+
+/datum/campaign_reward/equipment/volkite
+	name = "Volkite weapon resupply"
+	desc = "Volkite weaponry and ammo"
+	detailed_desc = "A volkite caliver and charger, with accompanying ammo. Able to deflagrate targets, making them deadly against tightly packed opponents."
+	uses = 1
+	cost = 4
+	equipment_to_spawn = list(
+		/obj/effect/supply_drop/caliver,
+		/obj/effect/supply_drop/charger,
+	)
+
+/datum/campaign_reward/equipment/scout_rifle
+	name = "Scout rifle"
+	desc = "BR-8 and ammo"
+	detailed_desc = "A BR-8 scout rifle and assorted ammo. An accurate, powerful rifle with integrated IFF."
+	uses = 2
+	cost = 6
+	equipment_to_spawn = list(
+		/obj/effect/supply_drop/scout,
+	)
+
+/datum/campaign_reward/equipment/smart_guns
+	name = "Smartgun weapon resupply"
+	desc = "Smartguns and ammo"
+	detailed_desc = "A SG-27 and SG-85 and ammo to match."
+	uses = 1
+	cost = 4
+	equipment_to_spawn = list(
+		/obj/item/weapon/gun/rifle/standard_smartmachinegun,
+		/obj/item/storage/belt/marine/smartgun,
+		/obj/item/weapon/gun/minigun/smart_minigun,
+		/obj/item/ammo_magazine/minigun_powerpack/smartgun,
+	)
+
+/datum/campaign_reward/equipment/shotguns_tgmc
+	name = "Shotgun weapon resupply"
+	desc = "Shotgun and ammo"
+	detailed_desc = "A SH-35 and ammo to match."
+	uses = 1
+	cost = 2
+	equipment_to_spawn = list(
+		/obj/item/storage/belt/shotgun/mixed,
+		/obj/item/weapon/gun/shotgun/pump/t35/standard,
+	)
+
+/datum/campaign_reward/equipment/shotguns_som
+	name = "Shotgun weapon resupply"
+	desc = "Shotgun and ammo"
+	detailed_desc = "A V-51 and ammo to match."
+	uses = 1
+	cost = 2
+	equipment_to_spawn = list(
+		/obj/item/storage/belt/shotgun/som/mixed,
+		/obj/item/weapon/gun/shotgun/som/standard,
+	)
+
+/datum/campaign_reward/equipment/heavy_armour_tgmc
+	name = "Tyr 2 heavy armour"
+	desc = "Heavy armor upgrades"
+	detailed_desc = "A pair of heavy armor suits equipped with 'Tyr 2' armour upgrades. Premier protection, but somewhat cumbersome."
+	uses = 2
+	cost = 4
+	equipment_to_spawn = list(
+		/obj/item/clothing/head/modular/m10x/tyr,
+		/obj/item/clothing/suit/modular/xenonauten/heavy/tyr_two,
+	)
+
+/datum/campaign_reward/equipment/shields_tgmc
+	name = "Defensive shields"
+	desc = "Heavy shields to hide behind"
+	detailed_desc = "A pair of heavy riot shields. Able to withstand a tremendous amount of punishment at the cost of occupying a hand and slowing you down."
+	uses = 2
+	cost = 3
+	equipment_to_spawn = list(
+		/obj/item/weapon/shield/riot/marine,
+		/obj/item/weapon/shield/riot/marine,
+	)
+
+/datum/campaign_reward/equipment/grenades_tgmc
+	name = "Grenade resupply"
+	desc = "An assortment of grenades"
+	detailed_desc = "A variety of different grenade types. Throw towards enemy."
+	uses = 2
+	cost = 6
+	equipment_to_spawn = list(
+		/obj/item/storage/belt/grenade/standard,
+		/obj/item/storage/pouch/grenade/combat_patrol,
+	)
+
+/datum/campaign_reward/equipment/tac_bino_tgmc
+	name = "Tactical binoculars"
+	desc = "One set of tactical binoculars"
+	detailed_desc = "Tactical binoculars for seeing into the distance and calling down air support."
+	uses = 1
+	cost = 3
+	equipment_to_spawn = list(
+		/obj/item/binoculars/fire_support/campaign,
+	)
+
+/datum/campaign_reward/equipment/heavy_armour_som
+	name = "Lorica heavy armour"
+	desc = "Heavy armor upgrades"
+	detailed_desc = "A pair of heavy armor suits equipped with 'Lorica' armour upgrades. Premier protection, but somewhat cumbersome."
+	uses = 2
+	cost = 4
+	equipment_to_spawn = list(
+		/obj/item/clothing/head/modular/som/lorica,
+		/obj/item/clothing/suit/modular/som/heavy/lorica,
+	)
+
+/datum/campaign_reward/equipment/shields_som
+	name = "Defensive shields"
+	desc = "Heavy shields to hide behind"
+	detailed_desc = "A pair of heavy riot shields. Able to withstand a tremendous amount of punishment at the cost of occupying a hand and slowing you down."
+	uses = 2
+	cost = 3
+	equipment_to_spawn = list(
+		/obj/item/weapon/shield/riot/marine/som,
+		/obj/item/weapon/shield/riot/marine/som,
+	)
+
+/datum/campaign_reward/equipment/grenades_som
+	name = "Grenade resupply"
+	desc = "An assortment of grenades"
+	detailed_desc = "A variety of different grenade types. Throw towards enemy."
+	uses = 2
+	cost = 6
+	equipment_to_spawn = list(
+		/obj/item/storage/belt/grenade/som/standard,
+		/obj/item/storage/pouch/grenade/som/combat_patrol,
+	)
+
+/datum/campaign_reward/equipment/at_mines
+	name = "Anti-tank mines"
+	desc = "10 Anti-tank mines"
+	detailed_desc = "M92 anti-tank mines. Extremely effective against mechs, but will not trigger against human targets."
+	uses = 1
+	cost = 3
+	equipment_to_spawn = list(
+		/obj/item/storage/box/explosive_mines/antitank,
+		/obj/item/storage/box/explosive_mines/antitank,
+	)
+
+/datum/campaign_reward/equipment/tac_bino_som
+	name = "Tactical binoculars"
+	desc = "One set of tactical binoculars"
+	detailed_desc = "Tactical binoculars for seeing into the distance and calling down air support."
+	uses = 1
+	cost = 3
+	equipment_to_spawn = list(
+		/obj/item/binoculars/fire_support/campaign/som,
+	)
+
+////////////////////
+
+/datum/campaign_reward/reserves
+	name = "Strategic Reserve"
+	desc = "Emergency reserve forces"
+	detailed_desc = "A strategic reserve force is activated to bolster your numbers, increasing your active attrition significantly. Can only be used when defending a mission, and only once per campaign."
+	ui_icon = "reserve_force"
+	uses = 1
+
+/datum/campaign_reward/reserves/activated_effect()
+	var/datum/game_mode/hvh/campaign/mode = SSticker.mode
+	var/datum/campaign_mission/current_mission = mode.current_mission
+	if(current_mission.mission_state != MISSION_STATE_ACTIVE)
+		to_chat(faction.faction_leader, span_warning("You cannot call in the strategic reserve before the mission starts!"))
+		return
+	if(current_mission.hostile_faction != faction.faction)
+		to_chat(faction.faction_leader, span_warning("You can only call in the strategic reserve when defending!"))
+		return
+
+	. = ..()
+	if(!.)
+		return
+
+	faction.active_attrition_points += round(length(GLOB.clients) * 0.3)
+
+	reward_flags |= REWARD_ACTIVE
+	RegisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_MISSION_ENDED, TYPE_PROC_REF(/datum/campaign_reward, deactivate), override = TRUE) //you could use this multiple times per mission
+
+/datum/campaign_reward/mech
+	name = "Medium combat mech"
+	desc = "One medium combat mech"
+	detailed_desc = "Your battalion has been assigned a single Assault medium combat mech. The Assault mech features balanced armor and mobility, allowing it to keep up with infantry movements while still offering significant resilience. It is considered the general work horse combat mech."
+	ui_icon = "medium_mech"
+	uses = 1
+	var/obj/effect/landmark/campaign/mech_spawner/spawner_type = /obj/effect/landmark/campaign/mech_spawner
+
+/datum/campaign_reward/mech/activated_effect()
+	. = ..()
+	if(!.)
+		return
+
+	for(var/obj/effect/landmark/campaign/mech_spawner/faction_spawner AS in GLOB.campaign_mech_spawners[faction.faction])
+		if(faction_spawner.type == spawner_type)
+			faction_spawner.spawn_mech()
+			playsound(faction_spawner,'sound/effects/phasein.ogg', 80, FALSE)
+			return
+
+/datum/campaign_reward/mech/light
+	name = "Light combat mech"
+	desc = "One light combat mech"
+	detailed_desc = "Your battalion has been assigned a single Recon light combat mech. The Recon mech is lightly armored but very nimble and is still capable of carrying a full suite of weapons. Commonly used for scouting, screening and flanking manoeuvres."
+	ui_icon = "light_mech"
+	spawner_type = /obj/effect/landmark/campaign/mech_spawner/light
+
+/datum/campaign_reward/mech/heavy
+	name = "Heavy combat mech"
+	desc = "One heavy combat mech"
+	detailed_desc = "Your battalion has been assigned a single Vanguard heavy combat mech. The Vanguard has extreme durability and offensive capability. Able to wade through the thickest of fighting with ease, it is the galaxy's premier frontline combat mech, although its speed and maneuverability are somewhat lackluster."
+	ui_icon = "heavy_mech"
+	spawner_type = /obj/effect/landmark/campaign/mech_spawner/heavy
+
+/datum/campaign_reward/mech/som
+	spawner_type = /obj/effect/landmark/campaign/mech_spawner/som
+
+/datum/campaign_reward/mech/light/som
+	spawner_type = /obj/effect/landmark/campaign/mech_spawner/som/light
+
+/datum/campaign_reward/mech/heavy/som
+	spawner_type = /obj/effect/landmark/campaign/mech_spawner/som/heavy
 
 //Parent for all bonus role rewards
 /datum/campaign_reward/bonus_job
@@ -182,12 +458,13 @@
 
 	RegisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_MISSION_ENDED, TYPE_PROC_REF(/datum/campaign_reward, deactivate), override = TRUE) //you could use this multiple times per mission
 
-///Removes the job slots once the mission is over
+//Removes the job slots once the mission is over
 /datum/campaign_reward/bonus_job/deactivate()
 	. = ..()
 	for(var/job_type in bonus_job_list)
 		var/datum/job/bonus_job = SSjob.type_occupations[job_type]
 		bonus_job.set_job_positions(0)
+		bonus_job.free_job_positions(bonus_job_list[job_type])
 
 /datum/campaign_reward/bonus_job/colonial_militia
 	name = "Colonial militia support"
@@ -201,7 +478,6 @@
 		/datum/job/som/mercenary/militia/standard = 9,
 	)
 
-//TODO: create new jobs
 /datum/campaign_reward/bonus_job/freelancer
 	name = "Freelancer team"
 	desc = "A squad of freelance guns for hire to support our forces"
@@ -285,6 +561,12 @@
 	ui_icon = "logistics_malus"
 	reward_flags = REWARD_PASSIVE_EFFECT|REWARD_DEBUFF
 
+/datum/campaign_reward/attrition_modifier/malus_standard/higher
+	name = "Severely degraded supply lines"
+	desc = "-30% passive Attrition Point gain"
+	detailed_desc = "Serious damage to our supply lines have increased the difficulty and time required to move men and materiel, resulting in a lower deployment of combat forces."
+	attrition_mod = -0.30
+
 /datum/campaign_reward/attrition_modifier/malus_teleporter
 	name = "Bluespace logistics disabled"
 	desc = "-20% passive Attrition Point gain"
@@ -309,7 +591,7 @@
 		return
 
 /datum/campaign_reward/teleporter_charges
-	name = "Delegated Teleporter Array access"
+	name = "Teleporter Array charges"
 	desc = "+2 uses of the Teleporter Array"
 	detailed_desc = "Central command have allocated the battalion with two additional uses of the Teleporter Array. Its extremely costly to run and demand is high across the conflict zone, so make them count."
 	ui_icon = "tele_uses"
@@ -332,12 +614,23 @@
 	name = "Enable Teleporter Array"
 	desc = "Enables the use of the Teleporter Array for the current or next mission"
 	detailed_desc = "Established a link between our Teleporter Array and its master Bluespace drive, allowing its operation during the current or next mission."
-	ui_icon = "tele_enabled"
+	ui_icon = "tele_active"
 	uses = 2
 	cost = 5
 	reward_flags = REWARD_ACTIVATED_EFFECT|REWARD_ACTIVE_MISSION_ONLY
 
 /datum/campaign_reward/teleporter_enabled/activated_effect()
+	if(reward_flags & REWARD_ACTIVE)
+		to_chat(faction.faction_leader, span_warning("The Teleporter Array is already activated!"))
+		return
+	var/datum/game_mode/hvh/campaign/mode = SSticker.mode
+	var/datum/campaign_mission/current_mission = mode.current_mission
+	if(current_mission.mission_flags & MISSION_DISALLOW_TELEPORT)
+		to_chat(faction.faction_leader, span_warning("External factors prevent the use of the teleporter at this time. Teleporter unavailable."))
+		return
+	if(!current_mission.mission_z_level)
+		to_chat(faction.faction_leader, span_warning("New battlefield co-ordinates loading. Please try again in a moment."))
+		return
 	var/obj/structure/teleporter_array/friendly_teleporter
 	for(var/obj/structure/teleporter_array/teleporter AS in GLOB.teleporter_arrays)
 		if(teleporter.faction != faction.faction)
@@ -371,8 +664,18 @@
 	if(!.)
 		return
 
+	var/datum/game_mode/hvh/campaign/mode = SSticker.mode
+	var/datum/campaign_mission/current_mission = mode.current_mission
+	var/z_level = mode?.current_mission?.mission_z_level.z_value
+	var/active = FALSE
+	if(current_mission.mission_state == MISSION_STATE_ACTIVE)
+		for(var/datum/campaign_reward/droppod_enabled/droppod_enabled in faction.faction_rewards)
+			if(droppod_enabled.reward_flags & REWARD_ACTIVE)
+				active = TRUE
+			break
+
 	for(var/obj/structure/drop_pod_launcher/launcher AS in GLOB.droppod_bays)
-		launcher.refresh_pod()
+		launcher.refresh_pod(z_level, active)
 	to_chat(faction.faction_leader, span_warning("All drop pods have been restocked."))
 	return
 
@@ -386,10 +689,16 @@
 	reward_flags = REWARD_ACTIVATED_EFFECT|REWARD_ACTIVE_MISSION_ONLY
 
 /datum/campaign_reward/droppod_enabled/activated_effect()
+	if(reward_flags & REWARD_ACTIVE)
+		to_chat(faction.faction_leader, span_warning("Ship already repositioned to allow for drop pod usage."))
+		return
 	var/datum/game_mode/hvh/campaign/mode = SSticker.mode
 	var/datum/campaign_mission/current_mission = mode.current_mission
 	if(current_mission.mission_flags & MISSION_DISALLOW_DROPPODS)
 		to_chat(faction.faction_leader, span_warning("External factors prevent the ship from repositioning at this time. Drop pods unavailable."))
+		return
+	if(!current_mission.mission_z_level)
+		to_chat(faction.faction_leader, span_warning("New battlefield co-ordinates loading. Please try again in a moment."))
 		return
 
 	. = ..()
@@ -426,16 +735,17 @@
 
 /datum/campaign_reward/fire_support
 	name = "CAS mission"
-	desc = "Close Air Support is deployed to support this mission."
+	desc = "Close Air Support is deployed to support this mission"
 	detailed_desc = "A limited number of Close Air Support attack runs are available via tactical binoculars for this mission. Excellent for disrupting dug in enemy positions."
 	ui_icon = "cas"
 	uses = 1
-	cost = 10
+	cost = 15
 	reward_flags = REWARD_ACTIVATED_EFFECT|REWARD_ACTIVE_MISSION_ONLY
 	var/list/fire_support_types = list(
 		FIRESUPPORT_TYPE_GUN = 4,
 		FIRESUPPORT_TYPE_ROCKETS = 2,
 		FIRESUPPORT_TYPE_CRUISE_MISSILE = 1,
+		FIRESUPPORT_TYPE_LASER = 2,
 	)
 
 /datum/campaign_reward/fire_support/activated_effect()
@@ -472,9 +782,10 @@
 
 /datum/campaign_reward/fire_support/mortar
 	name = "Mortar support"
-	desc = "Mortar teams are activated to provide firesupport for this mission."
-	detailed_desc = "A limited number of mortar strikes are available via tactical binoculars for this mission. Excellent for disrupting dug in enemy positions."
+	desc = "Mortar teams are activated to provide firesupport for this mission"
+	detailed_desc = "Activatable by squad leaders. A limited number of mortar strikes are available via tactical binoculars for this mission. Excellent for disrupting dug in enemy positions."
 	ui_icon = "mortar"
+	reward_flags = REWARD_ACTIVATED_EFFECT|REWARD_ACTIVE_MISSION_ONLY|REWARD_SL_AVAILABLE
 	cost = 6
 	fire_support_types = list(
 		FIRESUPPORT_TYPE_HE_MORTAR = 6,
@@ -485,9 +796,10 @@
 
 /datum/campaign_reward/fire_support/som_mortar
 	name = "Mortar support"
-	desc = "Mortar teams are activated to provide firesupport for this mission."
-	detailed_desc = "A limited number of mortar strikes are available via tactical binoculars for this mission. Excellent for disrupting dug in enemy positions."
+	desc = "Mortar teams are activated to provide firesupport for this mission"
+	detailed_desc = "Activatable by squad leaders. A limited number of mortar strikes are available via tactical binoculars for this mission. Excellent for disrupting dug in enemy positions."
 	ui_icon = "mortar"
+	reward_flags = REWARD_ACTIVATED_EFFECT|REWARD_ACTIVE_MISSION_ONLY|REWARD_SL_AVAILABLE
 	cost = 6
 	fire_support_types = list(
 		FIRESUPPORT_TYPE_HE_MORTAR_SOM = 6,
@@ -541,7 +853,7 @@
 
 /datum/campaign_reward/reward_disabler/tgmc_cas
 	name = "CAS disabled"
-	desc = "CAS fire support temporarily disabled."
+	desc = "CAS fire support temporarily disabled"
 	detailed_desc = "Hostile actions have resulted in the temporary loss of our access to close air support"
 	ui_icon = "cas_disabled"
 	types_disabled = list(/datum/campaign_reward/fire_support)
@@ -549,7 +861,7 @@
 
 /datum/campaign_reward/reward_disabler/som_cas
 	name = "CAS disabled"
-	desc = "CAS fire support temporarily disabled."
+	desc = "CAS fire support temporarily disabled"
 	detailed_desc = "Hostile actions have resulted in the temporary loss of our access to close air support"
 	ui_icon = "cas_disabled"
 	types_disabled = list(/datum/campaign_reward/fire_support/som_cas)
@@ -557,7 +869,7 @@
 
 /datum/campaign_reward/reward_disabler/tgmc_mortar
 	name = "Mortar support disabled"
-	desc = "Mortar fire support temporarily disabled."
+	desc = "Mortar fire support temporarily disabled"
 	detailed_desc = "Hostile actions have resulted in the temporary loss of our access to mortar fire support"
 	ui_icon = "mortar_disabled"
 	types_disabled = list(/datum/campaign_reward/fire_support/mortar)
@@ -568,7 +880,7 @@
 
 /datum/campaign_reward/reward_disabler/som_mortar
 	name = "Mortar support disabled"
-	desc = "Mortar fire support temporarily disabled."
+	desc = "Mortar fire support temporarily disabled"
 	detailed_desc = "Hostile actions have resulted in the temporary loss of our access to mortar fire support"
 	ui_icon = "mortar_disabled"
 	types_disabled = list(/datum/campaign_reward/fire_support/som_mortar)
@@ -579,7 +891,7 @@
 
 /datum/campaign_reward/reward_disabler/drop_pods
 	name = "Drop pods disabled"
-	desc = "Drop pod access temporarily disabled."
+	desc = "Drop pod access temporarily disabled"
 	detailed_desc = "Hostile actions have resulted in the temporary loss of our access to drop pod deployment"
 	ui_icon = "droppod_disabled"
 	types_disabled = list(/datum/campaign_reward/droppod_enabled)
@@ -587,7 +899,7 @@
 
 /datum/campaign_reward/reward_disabler/drop_pods
 	name = "Teleporter disabled"
-	desc = "Teleporter temporarily disabled."
+	desc = "Teleporter temporarily disabled"
 	detailed_desc = "Hostile actions have resulted in the temporary loss of our access to teleporter deployment"
 	ui_icon = "tele_disabled"
 	types_disabled = list(/datum/campaign_reward/teleporter_enabled)

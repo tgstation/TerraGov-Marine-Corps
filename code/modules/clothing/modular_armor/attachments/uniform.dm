@@ -76,6 +76,7 @@
 		/obj/item/clothing/glasses/hud/health,
 		/obj/item/clothing/gloves/latex,
 		/obj/item/tweezers,
+		/obj/item/tweezers_advanced,
 		/obj/item/bodybag,
 		/obj/item/roller,
 		/obj/item/whistle,
@@ -94,6 +95,7 @@
 		/obj/item/tool/surgery,
 		/obj/item/stack/nanopaste,
 		/obj/item/tweezers,
+		/obj/item/tweezers_advanced,
 	)
 
 /obj/item/storage/internal/surgery_webbing/Initialize(mapload)
