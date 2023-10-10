@@ -7027,7 +7027,7 @@
 	},
 /area/rocinante_Base/surface/building/science/research_lab)
 "jTp" = (
-/obj/structure/campaign_deployblocker/drop_blocker,
+/obj/effect/landmark/campaign_structure/drop_blocker,
 /turf/open/floor/plating/ground/concrete,
 /area/rocinante_Base/ground/base_cent)
 "jTw" = (

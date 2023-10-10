@@ -3706,7 +3706,7 @@
 /area/campaign/jungle_outpost/ground/jungle/north_east)
 "qc" = (
 /obj/structure/cable,
-/obj/structure/campaign_deployblocker/drop_blocker,
+/obj/effect/landmark/campaign_structure/drop_blocker,
 /turf/open/floor,
 /area/campaign/jungle_outpost/ground/jungle)
 "qd" = (

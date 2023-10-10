@@ -7940,7 +7940,7 @@
 /turf/open/floor/mainship/mono,
 /area/patricks_rest/surface/building/science)
 "MX" = (
-/obj/structure/campaign_deployblocker,
+/obj/effect/landmark/campaign_structure/tele_blocker,
 /turf/open/ground/grass/weedable/patch/grassyellow,
 /area/patricks_rest/ground/colonyn)
 "MZ" = (
