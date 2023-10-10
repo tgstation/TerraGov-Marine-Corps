@@ -5,6 +5,8 @@
 /obj/item/armor_module/module
 	name = "broken armor module"
 	desc = "You better be debugging."
+	///The sprite name of the associated module icon; needed because the icon_state might not be the same name
+	var/hud_icon = ""
 
 
 /**
@@ -28,6 +30,7 @@
 	icon = 'icons/mob/modular/modular_armor_modules.dmi'
 	icon_state = "mod_lamp"
 	item_state = "mod_lamp_a"
+	hud_icon = "lamp"
 	slowdown = 0
 	light_mod = 4 /// The boost to armor shoulder light
 	slot = ATTACHMENT_SLOT_MODULE
@@ -42,6 +45,7 @@
 	desc = "Designed for mounting on modular armor. This module has advanced medical systems that inject tricordrazine and tramadol based on the user's needs, as well as automatically securing the bones and body of the wearer, effectively splinting them until professional medical attention can be admistered. Will definitely impact mobility."
 	icon_state = "mod_autodoc"
 	item_state = "mod_autodoc_a"
+	hud_icon = "medic"
 	slowdown = 0.3
 	slot = ATTACHMENT_SLOT_MODULE
 	variants_by_parent_type = list(/obj/item/clothing/suit/modular/xenonauten = "mod_autodoc_xn")
@@ -77,6 +81,7 @@
 	desc = "Designed for mounting on modular armor. Providing a near immunity to being bathed in flames, and amazing flame retardant qualities, this is every pyromaniac's first stop to survival. Will impact mobility."
 	icon_state = "mod_fire"
 	item_state = "mod_fire_a"
+	hud_icon = "fire"
 	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 35, ACID = 0)
 	slowdown = 0.4
 	slot = ATTACHMENT_SLOT_MODULE
@@ -118,6 +123,7 @@
 	icon = 'icons/mob/modular/modular_armor_modules.dmi'
 	icon_state = "mod_armor"
 	item_state = "mod_armor_a"
+	hud_icon = "armor"
 	attachment_layer = COLLAR_LAYER
 	soft_armor = list(MELEE = 15, BULLET = 15, LASER = 15, ENERGY = 15, BOMB = 15, BIO = 15, FIRE = 15, ACID = 15)
 	slowdown = 0.3
@@ -169,6 +175,7 @@
 	icon = 'icons/mob/modular/modular_armor_modules.dmi'
 	icon_state = "mod_biohazard"
 	item_state = "mod_biohazard_a"
+	hud_icon = "biohazard"
 	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 40, FIRE = 0, ACID = 30)
 	slowdown = 0.2
 	slot = ATTACHMENT_SLOT_MODULE
@@ -230,6 +237,7 @@
 	icon = 'icons/mob/modular/modular_armor_modules.dmi'
 	icon_state = "mod_boomimmune"
 	item_state = "mod_boomimmune_a"
+	hud_icon = "explosive"
 	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 40, BIO = 0, FIRE = 0, ACID = 0)
 	slowdown = 0.2
 	slot = ATTACHMENT_SLOT_MODULE
@@ -244,6 +252,7 @@
 	icon = 'icons/mob/modular/modular_armor_modules.dmi'
 	icon_state = "mod_ff"
 	item_state = "mod_ff_a"
+	hud_icon = "ballistic"
 	soft_armor = list(MELEE = 0, BULLET = 40, LASER = 40, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
 	slowdown = 0.2
 	slot = ATTACHMENT_SLOT_MODULE
@@ -255,6 +264,7 @@
 	icon = 'icons/mob/modular/modular_armor_modules.dmi'
 	icon_state = "mod_chemsystem"
 	item_state = "mod_chemsystem_a"
+	hud_icon = "chem"
 	slot = ATTACHMENT_SLOT_MODULE
 	///Lets us keep track of what icon state we're in
 	var/chemsystem_is_active = FALSE

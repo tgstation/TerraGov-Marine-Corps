@@ -122,5 +122,3 @@
 
 /datum/config_entry/str_list/tts_voice_blacklist
 
-/datum/config_entry/flag/armor_hud
-	config_entry_value = TRUE

@@ -626,9 +626,6 @@
 			holder.overlays += image('icons/mob/hud.dmi', src, "hud[aura_type]aura")
 
 /mob/living/carbon/human/proc/hud_set_armor()
-	if(!CONFIG_GET(flag/armor_hud))
-		return
-
 	var/image/holder = hud_list[ARMOR_HUD]
 	if(!holder)
 		return
@@ -647,32 +644,13 @@
 		/*
 		I COULD have it do overlays += module.icon_state but if the icon_state is renamed, it would silently break
 		This way if someone renames a module's sprite, it will still work
-		However this also means any new modules have to be added here by hand
+		The hud_icon var just has to be set whenever a new module is added
 		*/
-		switch(module.type)
-			if(/obj/item/armor_module/module/ballistic_armor)
-				holder.overlays += image(holder.icon, src, "ballistic")
-			if(/obj/item/armor_module/module/better_shoulder_lamp)
-				holder.overlays += image(holder.icon, src, "lamp")
-			if(/obj/item/armor_module/module/chemsystem)
-				//chem_booster/proc/hud_update_resource() handles what sprite to assign
-				SEND_SIGNAL(src, COMSIG_CHEMSYSTEM_RESOURCE_UPDATE)
-			if(/obj/item/armor_module/module/eshield, /obj/item/armor_module/module/eshield/som)
-				holder.overlays += image(holder.icon, src, "eshield")
-			if(/obj/item/armor_module/module/fire_proof, /obj/item/armor_module/module/fire_proof/som)
-				holder.overlays += image(holder.icon, src, "fire")
-			if(/obj/item/armor_module/module/hlin_explosive_armor)
-				holder.overlays += image(holder.icon, src, "explosive")
-			if(/obj/item/armor_module/module/mimir_environment_protection,
-			   /obj/item/armor_module/module/mimir_environment_protection/mark1,
-			   /obj/item/armor_module/module/mimir_environment_protection/som)
-				holder.overlays += image(holder.icon, src, "biohazard")
-			if(/obj/item/armor_module/module/tyr_extra_armor,
-			   /obj/item/armor_module/module/tyr_extra_armor/mark1,
-			   /obj/item/armor_module/module/tyr_extra_armor/som)
-				holder.overlays += image(holder.icon, src, "armor")
-			if(/obj/item/armor_module/module/valkyrie_autodoc, /obj/item/armor_module/module/valkyrie_autodoc/som)
-				holder.overlays += image(holder.icon, src, "medic")
+		if(istype(module, /obj/item/armor_module/module/chemsystem))
+			//chem_booster/proc/hud_update_resource() handles what sprite to assign
+			SEND_SIGNAL(src, COMSIG_CHEMSYSTEM_RESOURCE_UPDATE)
+		else
+			holder.overlays += image(holder.icon, src, module.hud_icon)
 
 	/*
 	There is a bit of a conundrum!
@@ -703,7 +681,10 @@
 		return
 
 	holder.overlays.Cut()
-	holder.overlays += image(holder.icon, src, amount ? "chem_active" : "chem")
+	//Generally these vars should never be null since this is only ever called when the Vali module is equipped
+	var/obj/item/clothing/armor = wear_suit
+	var/obj/item/armor_module/module/module = armor.attachments_by_slot[ATTACHMENT_SLOT_MODULE]
+	holder.overlays += image(holder.icon, src, amount ? module.hud_icon : module.hud_icon + "_active")
 	hud_list[ARMOR_HUD] = holder
 
 ///Makes sentry health visible
