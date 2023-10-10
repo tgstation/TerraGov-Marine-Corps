@@ -34,6 +34,11 @@
 "aM" = (
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/space_port)
+"aN" = (
+/obj/structure/cable,
+/obj/effect/landmark/patrol_point/tgmc_24,
+/turf/open/floor/asteroidfloor,
+/area/bigredv2/outside/space_port)
 "aU" = (
 /obj/structure/table,
 /obj/machinery/light{
@@ -242,10 +247,6 @@
 	dir = 8
 	},
 /area/bigredv2/outside/marshal_office)
-"fs" = (
-/obj/effect/landmark/patrol_point/tgmc_23,
-/turf/open/floor/asteroidfloor,
-/area/bigredv2/outside/space_port)
 "fM" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/vault{
@@ -582,6 +583,12 @@
 	dir = 8
 	},
 /area/bigredv2/outside/marshal_office)
+"ne" = (
+/obj/effect/landmark/patrol_point/tgmc_21,
+/turf/open/floor/marking/asteroidwarning{
+	dir = 1
+	},
+/area/bigredv2/outside/space_port)
 "nh" = (
 /obj/machinery/light{
 	dir = 4
@@ -789,11 +796,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/northwest)
-"tm" = (
-/obj/structure/cable,
-/obj/effect/landmark/patrol_point/tgmc_24,
-/turf/open/floor/asteroidfloor,
-/area/bigredv2/outside/space_port)
 "tu" = (
 /obj/structure/cable,
 /turf/closed/wall,
@@ -909,6 +911,11 @@
 /obj/structure/sign/safety/hazard,
 /turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/space_port)
+"wZ" = (
+/obj/structure/cable,
+/obj/effect/landmark/patrol_point/tgmc_22,
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/space_port)
 "xh" = (
 /obj/structure/cargo_container/green{
 	dir = 8
@@ -977,11 +984,6 @@
 	dir = 10
 	},
 /area/bigredv2/outside/nw)
-"yW" = (
-/obj/effect/landmark/weed_node,
-/obj/structure/nuke_disk_candidate,
-/turf/open/floor/tile/dark,
-/area/bigredv2/outside/marshal_office)
 "zj" = (
 /obj/effect/ai_node,
 /obj/machinery/landinglight/lz1{
@@ -1019,11 +1021,6 @@
 	dir = 1
 	},
 /turf/open/floor/plating,
-/area/bigredv2/outside/space_port)
-"Ak" = (
-/obj/structure/cable,
-/obj/effect/landmark/patrol_point/tgmc_22,
-/turf/open/floor/tile/dark,
 /area/bigredv2/outside/space_port)
 "An" = (
 /obj/structure/cable,
@@ -1264,6 +1261,10 @@
 /turf/open/floor/marking/asteroidwarning{
 	dir = 10
 	},
+/area/bigredv2/outside/space_port)
+"FR" = (
+/obj/effect/landmark/patrol_point/tgmc_23,
+/turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/space_port)
 "Ga" = (
 /turf/open/floor/plating/icefloor/warnplate{
@@ -1785,12 +1786,6 @@
 /obj/effect/spawner/random/engineering/tool,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/telecomm)
-"Th" = (
-/obj/effect/landmark/patrol_point/tgmc_21,
-/turf/open/floor/marking/asteroidwarning{
-	dir = 1
-	},
-/area/bigredv2/outside/space_port)
 "To" = (
 /obj/machinery/light{
 	dir = 1
@@ -2353,7 +2348,7 @@ rD
 rD
 rD
 Jw
-Ak
+wZ
 gF
 gF
 gF
@@ -2551,7 +2546,7 @@ Ln
 FL
 rA
 rA
-fs
+FR
 rA
 rA
 rA
@@ -2599,7 +2594,7 @@ rA
 LB
 LB
 LB
-tm
+aN
 LB
 oz
 LB
@@ -2706,7 +2701,7 @@ rD
 rD
 DG
 iY
-Th
+ne
 uT
 GJ
 jp
@@ -5173,7 +5168,7 @@ kl
 Ly
 uf
 qu
-yW
+Rs
 qu
 Ly
 qo

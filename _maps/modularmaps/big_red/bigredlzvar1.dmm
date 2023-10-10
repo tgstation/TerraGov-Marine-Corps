@@ -93,6 +93,11 @@
 	dir = 4
 	},
 /area/bigredv2/outside/nw)
+"cc" = (
+/obj/structure/cable,
+/obj/effect/landmark/patrol_point/tgmc_24,
+/turf/open/floor/asteroidfloor,
+/area/bigredv2/outside/space_port)
 "cC" = (
 /obj/structure/cargo_container/green{
 	dir = 1
@@ -177,6 +182,10 @@
 /turf/open/floor/marking/asteroidwarning{
 	dir = 8
 	},
+/area/bigredv2/outside/space_port)
+"eC" = (
+/obj/effect/landmark/patrol_point/tgmc_21,
+/turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/space_port)
 "eF" = (
 /obj/structure/bed/chair{
@@ -517,6 +526,10 @@
 "nF" = (
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/marshal_office)
+"nL" = (
+/obj/effect/landmark/patrol_point/tgmc_23,
+/turf/open/floor/asteroidfloor,
+/area/bigredv2/outside/space_port)
 "nU" = (
 /obj/structure/cable,
 /turf/closed/wall/r_wall,
@@ -568,10 +581,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/red/redtaupecorner,
 /area/bigredv2/outside/marshal_office)
-"oV" = (
-/obj/effect/landmark/patrol_point/tgmc_21,
-/turf/open/floor/asteroidfloor,
-/area/bigredv2/outside/space_port)
 "pb" = (
 /obj/effect/mapping_helpers/area_flag_injector/marine_base,
 /turf/open/floor/tile/dark,
@@ -1049,10 +1058,6 @@
 /obj/structure/window/framed/colony,
 /turf/open/floor/plating,
 /area/bigredv2/outside/space_port)
-"Dv" = (
-/obj/effect/landmark/patrol_point/tgmc_23,
-/turf/open/floor/asteroidfloor,
-/area/bigredv2/outside/space_port)
 "DB" = (
 /obj/structure/table/reinforced,
 /obj/machinery/computer/shuttle/shuttle_control/dropship,
@@ -1239,13 +1244,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/telecomm)
-"Ju" = (
-/obj/machinery/light/built{
-	dir = 1
-	},
-/obj/effect/landmark/patrol_point/tgmc_22,
-/turf/open/floor/plating/plating_catwalk,
-/area/bigredv2/outside/space_port)
 "JL" = (
 /obj/machinery/door/poddoor/shutters/mainship{
 	dir = 2;
@@ -1261,11 +1259,6 @@
 	dir = 8
 	},
 /area/shuttle/drop1/lz1)
-"JN" = (
-/obj/structure/cable,
-/obj/effect/landmark/patrol_point/tgmc_24,
-/turf/open/floor/asteroidfloor,
-/area/bigredv2/outside/space_port)
 "Kr" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
@@ -1573,11 +1566,6 @@
 /obj/effect/ai_node,
 /turf/open/floor,
 /area/bigredv2/outside/marshal_office)
-"SF" = (
-/obj/effect/landmark/weed_node,
-/obj/structure/nuke_disk_candidate,
-/turf/open/floor/tile/dark,
-/area/bigredv2/outside/marshal_office)
 "SO" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
 	name = "\improper Marshal Office Isolation"
@@ -1745,6 +1733,13 @@
 "Ws" = (
 /obj/effect/decal/cleanable/blood/gibs/up,
 /turf/open/floor/tile/dark,
+/area/bigredv2/outside/space_port)
+"Wt" = (
+/obj/machinery/light/built{
+	dir = 1
+	},
+/obj/effect/landmark/patrol_point/tgmc_22,
+/turf/open/floor/plating/plating_catwalk,
 /area/bigredv2/outside/space_port)
 "Wv" = (
 /obj/machinery/computer/security,
@@ -2188,7 +2183,7 @@ gJ
 gJ
 gJ
 ht
-Ju
+Wt
 uG
 uG
 uZ
@@ -2381,7 +2376,7 @@ gJ
 gJ
 bb
 tE
-oV
+eC
 QL
 QL
 NZ
@@ -2472,7 +2467,7 @@ QL
 QL
 QL
 ql
-JN
+cc
 ql
 ql
 ql
@@ -2506,7 +2501,7 @@ YE
 ze
 QL
 QL
-Dv
+nL
 QL
 QL
 QL
@@ -5048,7 +5043,7 @@ Dh
 Ym
 Uq
 sD
-SF
+En
 sD
 Ym
 NK

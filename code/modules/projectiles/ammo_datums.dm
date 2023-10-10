@@ -528,6 +528,16 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 30
 	penetration = 10
 
+/datum/ammo/bullet/revolver/judge
+	name = "oversized revolver bullet"
+	hud_state = "revolver_slim"
+	shrapnel_chance = 0
+	damage_falloff = 0
+	accuracy = 15
+	accurate_range = 15
+	damage = 70
+	penetration = 10
+
 /datum/ammo/bullet/revolver/heavy
 	name = "heavy revolver bullet"
 	hud_state = "revolver_heavy"
@@ -1219,6 +1229,17 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	penetration = 30
 	sundering = 2
 	damage_falloff = 0.25
+
+/datum/ammo/bullet/sniper/clf_heavyrifle
+	name = "high velocity incendiary sniper bullet"
+	handful_icon_state = "ptrs"
+	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_INCENDIARY|AMMO_SNIPER|AMMO_SUNDERING
+	hud_state = "sniper_fire"
+	accurate_range_min = 4
+	shell_speed = 5
+	damage = 120
+	penetration = 60
+	sundering = 20
 
 /datum/ammo/bullet/sniper/mech
 	name = "light anti-tank bullet"
