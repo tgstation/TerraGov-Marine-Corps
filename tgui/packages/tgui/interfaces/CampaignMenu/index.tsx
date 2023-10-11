@@ -32,6 +32,12 @@ export type MissionData = {
   objective_description: string;
   mission_brief: string;
   mission_rewards: string;
+  vp_major_reward: number;
+  vp_minor_reward: number;
+  ap_major_reward: number;
+  ap_minor_reward: number;
+  mission_icon?: string;
+  mission_critical?: number;
 };
 
 export type FactionReward = {
@@ -60,8 +66,10 @@ export type CampaignData = {
   total_attrition_points: number;
   faction_leader?: string;
   victory_points: number;
+  max_victory_points: number;
   faction: string;
   icons?: string[];
+  mission_icons?: string[];
 };
 
 export const CampaignMenu = (props, context) => {
@@ -87,7 +95,7 @@ export const CampaignMenu = (props, context) => {
       theme={data.ui_theme}
       title={data.faction + ' Mission Control'}
       width={700}
-      height={430}>
+      height={550}>
       <Window.Content>
         {selectedAsset ? (
           <Modal width="500px">
@@ -188,6 +196,7 @@ export const CampaignMenu = (props, context) => {
                 key={tabname}
                 selected={tabname === selectedTab}
                 fontSize="130%"
+                textAlign="center"
                 onClick={() => setSelectedTab(tabname)}>
                 {tabname}
               </Tabs.Tab>
@@ -234,6 +243,31 @@ export const AssetIcon = (props: { icon: FactionReward['icon'] }, context) => {
       as="img"
       mr={1.5}
       src={`data:image/jpeg;base64,${icons[icon]}`}
+      style={{
+        transform: 'scale(1) translatey(2px)',
+        '-ms-interpolation-mode': 'nearest-neighbor',
+      }}
+    />
+  );
+};
+
+/** Generates a small icon for buttons based on ICONMAP for missions */
+export const MissionIcon = (
+  props: { icon: MissionData['mission_icon'] },
+  context
+) => {
+  const { data } = useBackend<CampaignData>(context);
+  const { mission_icons = [] } = data;
+  const { icon } = props;
+  if (!icon || !mission_icons[icon]) {
+    return null;
+  }
+
+  return (
+    <Box
+      as="img"
+      mr={1.5}
+      src={`data:image/jpeg;base64,${mission_icons[icon]}`}
       style={{
         transform: 'scale(1) translatey(2px)',
         '-ms-interpolation-mode': 'nearest-neighbor',

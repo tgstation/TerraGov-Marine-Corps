@@ -481,6 +481,7 @@ if(selected_ability.target_flags & flagname && !istype(A, typepath)){\
 */
 /mob/proc/CtrlShiftClickOn(atom/A)
 	A.CtrlShiftClick(src)
+	return
 
 
 /mob/proc/ShiftMiddleClickOn(atom/A)

@@ -72,3 +72,62 @@
   yyzsong:
   - rscadd: Adds russian red autoinjectors to the valhalla medical vcendor
   - bugfix: removes a duplicate item from the valhalla medical vendor
+2023-10-09:
+  Barnet2:
+  - bugfix: Lawanka tcomms work now
+  - spellcheck: Xeno ranks now go hatchling > young > mature > elder > ancient
+  Xander3359:
+  - admin: CTRL+Shift click self to spawn as a human
+  - balance: Gorger no longer gets slowdown from weeds
+  dopamiin:
+  - balance: the Judge now has a much longer fire delay, but its standard rounds are
+      more powerful.
+2023-10-10:
+  Barnet2:
+  - balance: Big Red's Marshall disk spawn is now removed from all modulars.
+  Helg2:
+  - qol: Holsters of some ert now have sidearm in the first slot instead of magazine
+      so you're able to pull it out instantly.
+  - bugfix: Gentleman's Coat now doesn't hide clothes beneath it.
+  - bugfix: X now acts as a No when you try to return to your body while remain in
+      the larva queue.
+  - bugfix: Warrior's lunge early returns now don't show numbers.
+  - bugfix: Powder Monkey's belt is now full instead of being almost full.
+  Pariah919:
+  - rscadd: Added new CLF heavy roles, and two new guns for it, which are the PTR
+      anti tank rifle and the DP 'RP' machine gun.
+  Xander3359:
+  - rscadd: Vending machines restock items near it (instead of only on the same tile)
+      when you click "restock"
+2023-10-11:
+  ClosetedSkeletonGH:
+  - balance: adjusts the amount of supply points xeno castes give
+  Helg2:
+  - qol: There is now a balloon alert popping up when you try to grab something as
+      warrior in agility mode.
+  - bugfix: boiler now can't root while resting.
+  Lumipharon:
+  - rscadd: More progress to the Campaign gamemode
+  - balance: You can no longer throw bump mechs or other high resist objects
+  - balance: Drop pods are more resistant to projectile damage
+  - imageadd: Updated tac bino sprites (previous pr)
+  - imageadd: New sprites and animations for drop pods
+  - bugfix: Fixed the minimap not working when you move inside another object
+  - bugfix: Fixed some various minor bugs/runtimes
+  - bugfix: Attached weapons will now properly update accuracy when wielded
+  - rscadd: 'HvH: SG62 loadout added'
+  RipGrayson:
+  - refactor: Genericized some Roomba code so future contributors can more easily
+      add new utility bot types.
+  - rscadd: Added a new version of cleanbots that only cleans blood and trash.
+  - rscadd: Added cleanbots to all shipside medbays.
+  Xander3359:
+  - admin: Port "Select Equipment" from TG
+  hyper2snyper:
+  - rscadd: Hyperscales T12, T18, T81, T42, T21, T35, TP14, TP23, TP44, TX11, TX15
+  - rscadd: Hyperscales the agrip and vgrip.
+  novaepee, Fitz:
+  - rscadd: new armor called Dashe for marines to use; find it in the Style line tab
+      in surplus armor vendor
+  tyeagg:
+  - rscadd: news tv to patrol base

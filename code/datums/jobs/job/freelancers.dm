@@ -4,6 +4,7 @@
 	minimal_access = ALL_ANTAGONIST_ACCESS
 	skills_type = /datum/skills/crafty
 	faction = FACTION_FREELANCERS
+	minimap_icon = "freelancer"
 	outfit = /datum/outfit/job/freelancer
 
 //What all freelancers have shared in between them
@@ -24,8 +25,6 @@
 	l_store = /obj/item/storage/pouch/medkit/firstaid
 
 /datum/outfit/job/freelancer/post_equip(mob/living/carbon/human/H, visualsOnly)
-	SHOULD_CALL_PARENT(TRUE)
-	. = ..()
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/m15, SLOT_IN_SUIT)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/m15, SLOT_IN_SUIT)
 

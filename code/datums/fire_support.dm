@@ -92,7 +92,7 @@
 	name = "Gun run"
 	fire_support_type = FIRESUPPORT_TYPE_GUN
 	impact_quantity = 5
-	uses = 4
+	uses = 5
 	icon_state = "gau"
 	initiate_chat_message = "TARGET ACQUIRED GUN RUN INBOUND."
 	initiate_screen_message = "Target received, gun run inbound."
@@ -132,12 +132,50 @@
 	fire_support_type = FIRESUPPORT_TYPE_GUN_UNLIMITED
 	uses = -1
 
+/datum/fire_support/laser
+	name = "Laser run"
+	fire_support_type = FIRESUPPORT_TYPE_LASER
+	impact_quantity = 4
+	uses = 2
+	icon_state = "cas_laser"
+	initiate_chat_message = "TARGET ACQUIRED LASER RUN INBOUND."
+	initiate_screen_message = "Target received, laser run inbound."
+
+/datum/fire_support/laser/do_impact(turf/target_turf)
+	var/turf/start_turf = locate(clamp(target_turf.x + rand(-3, 3), 1, world.maxx), clamp(target_turf.y - 6, 1, world.maxy), target_turf.z)
+	var/turf/end_turf = locate(clamp(target_turf.x + rand(-3, 3), 1, world.maxx), clamp(target_turf.y + 6, 1, world.maxy), target_turf.z)
+
+	var/list/strafelist = get_line(start_turf, end_turf)
+	strafe_turfs(strafelist)
+
+///lases each turf in the line one by one
+/datum/fire_support/laser/proc/strafe_turfs(list/strafelist)
+	var/turf/strafed = strafelist[1]
+	playsound(strafed, 'sound/effects/pred_vision.ogg', 30, 1)
+	for(var/target in strafed)
+		if(isliving(target))
+			var/mob/living/living_target = target
+			living_target.adjustFireLoss(100)
+			living_target.adjust_fire_stacks(20)
+			living_target.IgniteMob()
+		else if(ismecha(target))
+			var/obj/vehicle/sealed/mecha/mech_target = target
+			mech_target.take_damage(300, BURN, LASER, TRUE, null, 50)
+		else if(isobj(target))
+			var/obj/obj_target = target
+			obj_target.take_damage(120, BURN, LASER, TRUE, null, 50)
+	strafed.ignite(5, 30)
+
+	strafelist -= strafed
+	if(length(strafelist))
+		INVOKE_NEXT_TICK(src, PROC_REF(strafe_turfs), strafelist)
+
 /datum/fire_support/rockets
 	name = "Rocket barrage"
 	fire_support_type = FIRESUPPORT_TYPE_ROCKETS
 	scatter_range = 9
 	impact_quantity = 15
-	uses = 2
+	uses = 3
 	icon_state = "rockets"
 	initiate_chat_message = "TARGET ACQUIRED ROCKET RUN INBOUND."
 	initiate_screen_message = "Rockets hot, incoming!"
@@ -153,7 +191,7 @@
 	name = "Incendiary rocket barrage"
 	fire_support_type = FIRESUPPORT_TYPE_INCEND_ROCKETS
 	scatter_range = 9
-	impact_quantity = 12
+	impact_quantity = 9
 	icon_state = "incendiary_rockets"
 	initiate_chat_message = "TARGET ACQUIRED ROCKET RUN INBOUND."
 	initiate_screen_message = "Rockets hot, incoming!"
@@ -183,6 +221,59 @@
 /datum/fire_support/cruise_missile/unlimited
 	fire_support_type = FIRESUPPORT_TYPE_CRUISE_MISSILE_UNLIMITED
 	uses = -1
+
+/datum/fire_support/droppod
+	name = "Sentry drop pod"
+	fire_support_type = FIRESUPPORT_TYPE_SENTRY_POD
+	scatter_range = 1
+	uses = -1
+	icon_state = "sentry_pod"
+	initiate_chat_message = "TARGET ACQUIRED SENTRY POD LAUNCHING."
+	initiate_screen_message = "Co-ordinates confirmed, sentry pod launching."
+	initiate_sound = null
+	start_visual = null
+	start_sound = null
+	cooldown_duration = 1 SECONDS
+	delay_to_impact = 0.5 SECONDS
+	///The special pod type for this fire support mode
+	var/pod_type = /obj/structure/droppod/nonmob/turret_pod
+
+/datum/fire_support/droppod/New()
+	. = ..()
+	disable_pods()
+
+/datum/fire_support/droppod/select_target(turf/target_turf)
+	for(var/obj/structure/droppod/nonmob/droppod AS in GLOB.droppod_list)
+		if(droppod.type != pod_type)
+			continue
+		if(!droppod.stored_object)
+			continue
+		if(!droppod.set_target(target_turf.x, target_turf.y))
+			return
+		droppod.start_launch_pod()
+		return
+
+///Enabled the datum for use
+/datum/fire_support/droppod/proc/enable_pods(datum/source)
+	SIGNAL_HANDLER
+	RegisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_MISSION_ENDED, PROC_REF(disable_pods))
+	UnregisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_ENABLE_DROPPODS)
+	enable_firesupport(-1) //pods can be used separately, restocked, emptied, etc. select_target will check if there's actually a pod available.
+
+///Disabled the datum from use
+/datum/fire_support/droppod/proc/disable_pods(datum/source)
+	SIGNAL_HANDLER
+	RegisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_ENABLE_DROPPODS, PROC_REF(enable_pods))
+	UnregisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_MISSION_ENDED)
+	disable(TRUE)
+
+/datum/fire_support/droppod/supply
+	name = "Supply drop pod"
+	fire_support_type = FIRESUPPORT_TYPE_SUPPLY_POD
+	icon_state = "supply_pod"
+	initiate_chat_message = "TARGET ACQUIRED SUPPLY POD LAUNCHING."
+	initiate_screen_message = "Co-ordinates confirmed, supply pod launching."
+	pod_type = /obj/structure/droppod/nonmob/supply_pod
 
 /datum/fire_support/volkite
 	name = "Volkite gun run"
@@ -221,7 +312,7 @@
 	playsound(strafelist[1], 'sound/weapons/guns/fire/volkite_4.ogg', 60, FALSE, 25, falloff = 3)
 	strafed = strafelist[1]
 	strafelist -= strafed
-	explosion(strafed, light_impact_range = 2, flame_range = 3, throw_range = 0)
+	explosion(strafed, light_impact_range = 2, flame_range = 2, throw_range = 0)
 	if(length(strafelist))
 		addtimer(CALLBACK(src, PROC_REF(strafe_turfs), strafelist), 0.2 SECONDS)
 
@@ -229,7 +320,7 @@
 	name = "Mortar barrage"
 	fire_support_type = FIRESUPPORT_TYPE_HE_MORTAR
 	scatter_range = 8
-	impact_quantity = 3
+	impact_quantity = 5
 	cooldown_duration = 20 SECONDS
 	uses = 6
 	icon_state = "he_mortar"
@@ -269,6 +360,7 @@
 /datum/fire_support/mortar/smoke
 	name = "Smoke mortar barrage"
 	fire_support_type = FIRESUPPORT_TYPE_SMOKE_MORTAR
+	impact_quantity = 3
 	uses = 2
 	icon_state = "smoke_mortar"
 	initiate_chat_message = "COORDINATES CONFIRMED. MORTAR BARRAGE INCOMING."
@@ -351,4 +443,4 @@
 		strength = victim.modify_by_armor(strength, BIO, 25)
 		victim.apply_radiation(strength, sound_level)
 
-	explosion(target_turf, weak_impact_range = 4)
+	explosion(target_turf, 0, 1, 0, 4)

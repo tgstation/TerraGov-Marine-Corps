@@ -245,6 +245,10 @@
 /obj/effect/ai_node,
 /turf/open/floor/tile/darkgreen/darkgreen2,
 /area/bigredv2/outside/space_port)
+"gV" = (
+/obj/effect/landmark/patrol_point/tgmc_24,
+/turf/open/floor/asteroidfloor,
+/area/bigredv2/outside/space_port)
 "ha" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/decal/cleanable/dirt,
@@ -384,10 +388,6 @@
 	dir = 4
 	},
 /area/bigredv2/outside/marshal_office)
-"lF" = (
-/obj/structure/nuke_disk_candidate,
-/turf/open/floor/tile/dark,
-/area/bigredv2/outside/marshal_office)
 "lH" = (
 /obj/structure/window/reinforced,
 /obj/machinery/hydroponics,
@@ -427,6 +427,10 @@
 /obj/effect/spawner/random/misc/handcuffs,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/marshal_office)
+"mA" = (
+/obj/effect/landmark/patrol_point/tgmc_21,
+/turf/open/floor/plating,
+/area/bigredv2/outside/space_port)
 "mG" = (
 /obj/item/shard,
 /obj/effect/decal/cleanable/blood/gibs,
@@ -533,15 +537,6 @@
 	dir = 8
 	},
 /area/bigredv2/outside/nw)
-"pK" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_22";
-	name = "TGMC exit point 22"
-	},
-/turf/open/floor/marking/asteroidwarning{
-	dir = 1
-	},
-/area/bigredv2/outside/space_port)
 "pS" = (
 /obj/structure/cable,
 /obj/effect/decal/cleanable/dirt,
@@ -797,14 +792,6 @@
 	},
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/nw)
-"xB" = (
-/obj/machinery/light,
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_23";
-	name = "TGMC exit point 23"
-	},
-/turf/open/floor/asteroidfloor,
-/area/bigredv2/outside/space_port)
 "xD" = (
 /obj/structure/sign/safety/hazard{
 	dir = 1
@@ -1072,6 +1059,11 @@
 "Eo" = (
 /obj/item/stack/sheet/metal,
 /turf/open/floor/plating/dmg3,
+/area/bigredv2/outside/space_port)
+"EJ" = (
+/obj/machinery/light,
+/obj/effect/landmark/patrol_point/tgmc_23,
+/turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/space_port)
 "EK" = (
 /obj/structure/cable,
@@ -1436,6 +1428,12 @@
 	},
 /turf/open/floor/plating/ground/mars/random/cave/rock,
 /area/bigredv2/caves/northwest)
+"No" = (
+/obj/effect/landmark/patrol_point/tgmc_22,
+/turf/open/floor/marking/asteroidwarning{
+	dir = 1
+	},
+/area/bigredv2/outside/space_port)
 "ND" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/machinery/door/airlock/mainship/medical/glass/free_access{
@@ -1698,13 +1696,6 @@
 	dir = 1
 	},
 /area/bigredv2/outside/marshal_office)
-"Tz" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_21";
-	name = "TGMC exit point 21"
-	},
-/turf/open/floor/plating,
-/area/bigredv2/outside/space_port)
 "TQ" = (
 /obj/machinery/light,
 /obj/effect/decal/cleanable/dirt,
@@ -1724,13 +1715,6 @@
 "Ux" = (
 /turf/open/floor/podhatch/floor,
 /area/bigredv2/outside/telecomm)
-"Vf" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_24";
-	name = "TGMC exit point 24"
-	},
-/turf/open/floor/asteroidfloor,
-/area/bigredv2/outside/space_port)
 "Vu" = (
 /obj/structure/table,
 /obj/effect/spawner/random/engineering/tool,
@@ -2383,7 +2367,7 @@ MN
 MN
 MN
 MN
-Vf
+gV
 dV
 ga
 Ko
@@ -2458,7 +2442,7 @@ ed
 bg
 Yy
 bg
-xB
+EJ
 MN
 SD
 XR
@@ -2814,7 +2798,7 @@ ds
 ds
 Ge
 MN
-pK
+No
 gM
 Gz
 Gz
@@ -3214,7 +3198,7 @@ ds
 ds
 Ge
 MN
-Tz
+mA
 Qy
 Rc
 Rc
@@ -5041,7 +5025,7 @@ zE
 GD
 Cn
 WH
-lF
+WH
 WH
 GD
 Cz

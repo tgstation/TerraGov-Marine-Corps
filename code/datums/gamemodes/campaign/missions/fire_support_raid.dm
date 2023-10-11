@@ -1,28 +1,35 @@
 //disabling some of the enemy's firesupport options
 /datum/campaign_mission/destroy_mission/fire_support_raid
 	name = "Fire support raid"
-	map_name = "Lunar base BD-832"
-	map_file = '_maps/map_files/Campaign maps/jungle_test/jungle_outpost.dmm'
-	objectives_total = 5
-	min_destruction_amount = 3
-	max_game_time = 20 MINUTES
+	mission_icon = "mortar_raid"
+	mission_flags = MISSION_DISALLOW_DROPPODS
+	map_name = "Jungle outpost SR-422"
+	map_file = '_maps/map_files/Campaign maps/jungle_outpost/jungle_outpost.dmm'
+	map_traits = list(ZTRAIT_AWAY = TRUE, ZTRAIT_RAIN = TRUE)
+	map_light_colours = list(LIGHT_COLOR_PALE_GREEN, LIGHT_COLOR_PALE_GREEN, LIGHT_COLOR_PALE_GREEN, LIGHT_COLOR_PALE_GREEN)
+	objectives_total = 10
+	min_destruction_amount = 7
+	shutter_open_delay = list(
+		"starting_faction" = 90 SECONDS,
+		"hostile_faction" = 0,
+	)
 	victory_point_rewards = list(
-		MISSION_OUTCOME_MAJOR_VICTORY = list(3, 0),
+		MISSION_OUTCOME_MAJOR_VICTORY = list(2, 0),
 		MISSION_OUTCOME_MINOR_VICTORY = list(1, 0),
 		MISSION_OUTCOME_DRAW = list(0, 0),
 		MISSION_OUTCOME_MINOR_LOSS = list(0, 1),
-		MISSION_OUTCOME_MAJOR_LOSS = list(0, 3),
+		MISSION_OUTCOME_MAJOR_LOSS = list(0, 2),
 	)
 	attrition_point_rewards = list(
-		MISSION_OUTCOME_MAJOR_VICTORY = list(20, 5),
-		MISSION_OUTCOME_MINOR_VICTORY = list(15, 10),
-		MISSION_OUTCOME_DRAW = list(10, 10),
-		MISSION_OUTCOME_MINOR_LOSS = list(10, 15),
-		MISSION_OUTCOME_MAJOR_LOSS = list(5, 20),
+		MISSION_OUTCOME_MAJOR_VICTORY = list(15, 0),
+		MISSION_OUTCOME_MINOR_VICTORY = list(10, 0),
+		MISSION_OUTCOME_DRAW = list(0, 10),
+		MISSION_OUTCOME_MINOR_LOSS = list(0, 25),
+		MISSION_OUTCOME_MAJOR_LOSS = list(0, 30),
 	)
 
-	starting_faction_additional_rewards = "Severely degrade enemy fire support options in the future"
-	hostile_faction_additional_rewards = "Protect our fire support options so they can still be used in the future"
+	starting_faction_additional_rewards = "Severely degrade enemy fire support, preventing their use of mortars for a period of time."
+	hostile_faction_additional_rewards = "Protect our fire support options to ensure continued access to mortar support."
 
 /datum/campaign_mission/destroy_mission/fire_support_raid/play_start_intro()
 	intro_message = list(
@@ -31,7 +38,12 @@
 	)
 	return ..()
 
-/datum/campaign_mission/destroy_mission/load_mission_brief()
+/datum/campaign_mission/destroy_mission/fire_support_raid/load_pre_mission_bonuses()
+	. = ..()
+	for(var/i = 1 to objectives_total)
+		new /obj/item/storage/box/explosive_mines(get_turf(pick(GLOB.campaign_reward_spawners[hostile_faction])))
+
+/datum/campaign_mission/destroy_mission/fire_support_raid/load_mission_brief()
 	starting_faction_mission_brief = "A [hostile_faction] fire support position has been identified in this area. This key location provides fire support to [hostile_faction] forces across the region. \
 		By destroying this outpost we can silence their guns and greatly weaken the enemy's forces. \
 		Move quickly and destroy all fire support installations before they have time to react."
@@ -60,3 +72,15 @@
 
 /datum/campaign_mission/destroy_mission/fire_support_raid/apply_major_loss()
 	. = ..()
+
+
+/datum/campaign_mission/destroy_mission/fire_support_raid/som
+	mission_flags = MISSION_DISALLOW_TELEPORT
+	mission_icon = "mortar_raid"
+	map_name = "Patrick's Rest"
+	map_file = '_maps/map_files/Campaign maps/patricks_rest/patricks_rest.dmm'
+	map_traits = list(ZTRAIT_AWAY = TRUE)
+	map_light_colours = list(COLOR_MISSION_RED, COLOR_MISSION_RED, COLOR_MISSION_RED, COLOR_MISSION_RED)
+	map_light_levels = list(225, 150, 100, 75)
+	objectives_total = 8
+	min_destruction_amount = 6
