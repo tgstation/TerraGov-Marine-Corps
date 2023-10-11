@@ -13,10 +13,6 @@
 #define COMSIG_GLOB_OPEN_TIMED_SHUTTERS_CRASH "!open_timed_shutters_crash"
 #define COMSIG_GLOB_OPEN_SHUTTERS_EARLY "!open_shutters_early"
 
-#define COMSIG_GLOB_CLOSE_CAMPAIGN_SHUTTERS "!close_campaign_shutters"
-#define COMSIG_GLOB_OPEN_CAMPAIGN_SHUTTERS_TGMC "!open_campaign_shutters_tgmc"
-#define COMSIG_GLOB_OPEN_CAMPAIGN_SHUTTERS_SOM "!open_campaign_shutters_som"
-
 #define COMSIG_GLOB_TADPOLE_LAUNCHED "!tadpole_launched"
 #define COMSIG_GLOB_DROPPOD_LANDED "!pod_landed"
 #define COMSIG_GLOB_EVACUATION_STARTED "!evacuation_started"
@@ -76,18 +72,32 @@
 ///called when an AI is requested by a holopad
 #define COMSIG_GLOB_HOLOPAD_AI_CALLED "!holopad_calling"
 
-///Sent when a new campaign mission is started
+///Opens the TGMC shipside shutters on campaign
+#define COMSIG_GLOB_OPEN_CAMPAIGN_SHUTTERS_TGMC "!open_campaign_shutters_tgmc"
+///Opens the SOM shipside shutters on campaign
+#define COMSIG_GLOB_OPEN_CAMPAIGN_SHUTTERS_SOM "!open_campaign_shutters_som"
+///Sent when a new campaign mission is loaded
 #define COMSIG_GLOB_CAMPAIGN_MISSION_LOADED "!campaign_mission_loaded"
+///Sent when a campaign mission is started
+#define COMSIG_GLOB_CAMPAIGN_MISSION_STARTED "!campaign_mission_started"
 ///Sent when a campaign mission ends
 #define COMSIG_GLOB_CAMPAIGN_MISSION_ENDED "!campaign_mission_ended"
 ///Sent when a campaign objective has been destroyed
 #define COMSIG_GLOB_CAMPAIGN_OBJECTIVE_DESTROYED "!campaign_objective_destroyed"
 ///Sent when a campaign capture objective has been captured
 #define COMSIG_GLOB_CAMPAIGN_CAPTURE_OBJECTIVE_CAPTURED "!campaign_capture_objective_captured"
+///Sent when a campaign capture objective has been decaptured
+#define COMSIG_GLOB_CAMPAIGN_CAPTURE_OBJECTIVE_DECAPTURED "!campaign_capture_objective_decaptured"
+///Sent when a campaign capture objective has started the capture process
+#define COMSIG_GLOB_CAMPAIGN_CAPTURE_OBJECTIVE_CAP_STARTED "!campaign_capture_objective_started"
 ///Enables droppod use during campaign
 #define COMSIG_GLOB_CAMPAIGN_ENABLE_DROPPODS "!campaign_enable_droppods"
 ///Disables droppod use during campaign
 #define COMSIG_GLOB_CAMPAIGN_DISABLE_DROPPODS "!campaign_disable_droppods"
+///Removes teleporter restrictions from a mission
+#define COMSIG_GLOB_CAMPAIGN_TELEBLOCKER_DISABLED "!campaign_teleblocker_disabled"
+///Removes droppod restrictions from a mission
+#define COMSIG_GLOB_CAMPAIGN_DROPBLOCKER_DISABLED "!campaign_dropblocker_disabled"
 
 //////////////////////////////////////////////////////////////////
 
@@ -418,6 +428,7 @@
 #define COMSIG_MOB_PRE_DEATH "mob_pre_death"
 	#define COMPONENT_CANCEL_DEATH (1<<0)						//interrupt death
 #define COMSIG_MOB_REVIVE "mob_revive"							//from base of mob/on_revive(): ()
+#define COMSIG_MOB_GHOSTIZE "mob_ghostize"							//from base of mob/ghostize(): (gibbing)
 #define COMSIG_MOB_STAT_CHANGED "stat_changed"					//from base of mob/stat_change(): (old_stat, new_stat)
 #define COMSIG_MOB_MOUSEDOWN "mob_mousedown"					//from /client/MouseDown(): (atom/object, turf/location, control, params)
 #define COMSIG_MOB_MOUSEUP "mob_mouseup"						//from /client/MouseUp(): (atom/object, turf/location, control, params)

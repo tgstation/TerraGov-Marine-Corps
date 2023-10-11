@@ -4640,10 +4640,7 @@
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "aQK" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_23";
-	name = "SOM exit point 23"
-	},
+/obj/effect/landmark/patrol_point/som/som_23,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/northeast)
 "aRg" = (
@@ -8663,10 +8660,7 @@
 	},
 /area/bigredv2/caves/lambda_lab)
 "ffN" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_22";
-	name = "SOM exit point 22"
-	},
+/obj/effect/landmark/patrol_point/som/som_22,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/northeast)
 "fgb" = (
@@ -10207,10 +10201,7 @@
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "jsF" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_24";
-	name = "SOM exit point 24"
-	},
+/obj/effect/landmark/patrol_point/som/som_24,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/northeast)
 "jsL" = (
@@ -12483,10 +12474,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/marshal_office)
 "qiV" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_21";
-	name = "SOM exit point 21"
-	},
+/obj/effect/landmark/patrol_point/som/som_21,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/northeast)
 "qjc" = (

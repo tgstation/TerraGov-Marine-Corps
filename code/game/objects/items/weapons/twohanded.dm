@@ -154,6 +154,7 @@
 
 
 /obj/item/weapon/twohanded/offhand/dropped(mob/user)
+	. = ..()
 	return
 
 

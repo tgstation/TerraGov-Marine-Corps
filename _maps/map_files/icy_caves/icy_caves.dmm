@@ -1101,20 +1101,14 @@
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/south)
 "fP" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_13";
-	name = "SOM exit point 13"
-	},
+/obj/effect/landmark/patrol_point/som/som_13,
 /obj/machinery/landinglight/lz1{
 	dir = 1
 	},
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/LZ1)
 "fS" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_11";
-	name = "SOM exit point 11"
-	},
+/obj/effect/landmark/patrol_point/som/som_11,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/LZ1)
 "ga" = (
@@ -2224,10 +2218,7 @@
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/LZ2)
 "mS" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_11";
-	name = "TGMC exit point 11"
-	},
+/obj/effect/landmark/patrol_point/tgmc_11,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/icy_caves/outpost/LZ2)
 "mV" = (
@@ -3870,10 +3861,7 @@
 /turf/open/floor/plating,
 /area/icy_caves/outpost/garage)
 "uE" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_24";
-	name = "SOM exit point 24"
-	},
+/obj/effect/landmark/patrol_point/som/som_24,
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/northern)
 "uH" = (
@@ -4766,10 +4754,7 @@
 /turf/open/floor/plating/mainship,
 /area/icy_caves/caves/northwestmonorail/hallway)
 "zf" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_14";
-	name = "SOM exit point 14"
-	},
+/obj/effect/landmark/patrol_point/som/som_14,
 /obj/machinery/landinglight/lz1{
 	dir = 4
 	},
@@ -4850,10 +4835,7 @@
 /obj/structure/barricade/guardrail{
 	dir = 1
 	},
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_21";
-	name = "TGMC exit point 21"
-	},
+/obj/effect/landmark/patrol_point/tgmc_21,
 /turf/open/shuttle/dropship/floor,
 /area/icy_caves/caves/northwestmonorail)
 "zA" = (
@@ -4900,10 +4882,7 @@
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/engineering)
 "zO" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_22";
-	name = "SOM exit point 22"
-	},
+/obj/effect/landmark/patrol_point/som/som_22,
 /turf/open/floor/plating/mainship,
 /area/icy_caves/caves/crashed_ship)
 "zP" = (
@@ -5682,10 +5661,7 @@
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northwestmonorail)
 "DC" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_23";
-	name = "SOM exit point 23"
-	},
+/obj/effect/landmark/patrol_point/som/som_23,
 /turf/open/floor/plating/dmg2,
 /area/icy_caves/caves/crashed_ship)
 "DD" = (
@@ -5725,10 +5701,7 @@
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/alienstuff)
 "DR" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_21";
-	name = "SOM exit point 21"
-	},
+/obj/effect/landmark/patrol_point/som/som_21,
 /turf/open/floor/plating/mainship,
 /area/icy_caves/caves/crashed_ship)
 "DU" = (
@@ -5956,11 +5929,6 @@
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/dorms)
-"Fd" = (
-/obj/structure/rack,
-/obj/effect/spawner/random/weaponry/gun,
-/turf/open/floor/gcircuit/anim,
-/area/icy_caves/caves/weapon_vault)
 "Fe" = (
 /obj/structure/table/gamblingtable,
 /obj/effect/spawner/random/weaponry/gun,
@@ -6162,10 +6130,7 @@
 /area/icy_caves/outpost/outside)
 "FW" = (
 /obj/structure/barricade/guardrail,
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_23";
-	name = "TGMC exit point 23"
-	},
+/obj/effect/landmark/patrol_point/tgmc_23,
 /turf/open/shuttle/dropship/floor,
 /area/icy_caves/caves/northwestmonorail)
 "FX" = (
@@ -6455,10 +6420,7 @@
 /turf/open/floor/plating/ground/snow/layer1,
 /area/icy_caves/outpost/outside)
 "Hz" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_12";
-	name = "TGMC exit point 12"
-	},
+/obj/effect/landmark/patrol_point/tgmc_12,
 /turf/open/floor/plating/ground/snow/layer2,
 /area/icy_caves/outpost/LZ2)
 "HA" = (
@@ -6581,10 +6543,7 @@
 /area/icy_caves/outpost/dorms)
 "HX" = (
 /obj/structure/barricade/guardrail,
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_24";
-	name = "TGMC exit point 24"
-	},
+/obj/effect/landmark/patrol_point/tgmc_24,
 /turf/open/shuttle/dropship/floor,
 /area/icy_caves/caves/northwestmonorail)
 "HY" = (
@@ -7076,11 +7035,6 @@
 "Kp" = (
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/medbay)
-"Kq" = (
-/obj/structure/rack,
-/obj/effect/spawner/random/weaponry/gun,
-/turf/open/floor/gcircuit/anim,
-/area/icy_caves/caves/weapon_vault)
 "Kr" = (
 /obj/machinery/door/airlock/mainship/maint,
 /turf/open/floor/tile/dark,
@@ -7174,10 +7128,7 @@
 	},
 /area/icy_caves/outpost/security)
 "KW" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_13";
-	name = "TGMC exit point 13"
-	},
+/obj/effect/landmark/patrol_point/tgmc_13,
 /turf/open/floor/plating/ground/snow/layer1,
 /area/icy_caves/outpost/LZ2)
 "KX" = (
@@ -8319,10 +8270,7 @@
 	},
 /area/icy_caves/outpost/refinery)
 "QK" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_14";
-	name = "TGMC exit point 14"
-	},
+/obj/effect/landmark/patrol_point/tgmc_14,
 /turf/open/floor/plating/ground/snow/layer1,
 /area/icy_caves/outpost/LZ2)
 "QL" = (
@@ -8769,10 +8717,7 @@
 /obj/structure/barricade/guardrail{
 	dir = 1
 	},
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_22";
-	name = "TGMC exit point 22"
-	},
+/obj/effect/landmark/patrol_point/tgmc_22,
 /turf/open/shuttle/dropship/floor,
 /area/icy_caves/caves/northwestmonorail)
 "Tq" = (
@@ -9344,10 +9289,7 @@
 /turf/open/shuttle/dropship/seven,
 /area/icy_caves/caves/northwestmonorail)
 "Wh" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_12";
-	name = "SOM exit point 12"
-	},
+/obj/effect/landmark/patrol_point/som/som_12,
 /turf/open/floor/plating/ground/snow/layer2,
 /area/icy_caves/outpost/LZ1)
 "Wi" = (
@@ -30449,13 +30391,13 @@ ZP
 ZP
 ZP
 KY
-Fd
+xy
 Yu
 if
 FI
 jy
 Yu
-Kq
+xy
 KY
 ZP
 ZP
@@ -30767,7 +30709,7 @@ gH
 No
 xc
 Yu
-Fd
+xy
 KY
 ZP
 ZP
@@ -30917,13 +30859,13 @@ ZP
 ZP
 ZP
 KY
-Kq
+xy
 Yu
 Kx
 nn
 Qz
 Yu
-Kq
+xy
 KY
 ZP
 ZP
@@ -31073,13 +31015,13 @@ ZP
 ZP
 ZP
 KY
-Kq
+xy
 Yu
 QI
 Yu
 Yu
 Yu
-Fd
+xy
 KY
 ZP
 ZP
@@ -31385,13 +31327,13 @@ ZP
 ZP
 ZP
 KY
-Kq
+xy
 Yu
 Qx
 KY
 OR
 Yu
-Fd
+xy
 KY
 ZP
 ZP
@@ -31697,13 +31639,13 @@ ZP
 ZP
 ZP
 KY
-Fd
+xy
 Yu
 PF
 Yu
 Yu
 Yu
-Kq
+xy
 KY
 ZP
 ZP

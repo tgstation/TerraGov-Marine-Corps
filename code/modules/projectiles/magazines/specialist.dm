@@ -189,6 +189,12 @@
 	icon_state = "shell_heat"
 	default_ammo = /datum/ammo/rocket/recoilless/heat
 
+/obj/item/ammo_magazine/rocket/recoilless/heam
+	name = "\improper 67mm HEAM shell"
+	desc = "A high explosive-anti mechg shell for the RL-160 recoilless rifle. Fires a penetrating shot designed specifically to penetrate mech armor, but suffers from poor accuracy against other targets. Requires specialized storage to carry."
+	icon_state = "shell_heat"
+	default_ammo = /datum/ammo/rocket/recoilless/heat/mech
+
 /obj/item/ammo_magazine/rocket/recoilless/smoke
 	name = "\improper 67mm Chemical (Smoke) shell"
 	desc = "A chemical shell for the RL-160 recoilless rifle. Fires a low velocity shell for close quarters application of chemical gas, friendlies will be able to easily dodge it due to low velocity. This warhead contains thick concealing smoke. Requires specialized storage to carry."

@@ -129,3 +129,8 @@
 
 	/// This is the cooldown on suffering additional effects for when shock gets high
 	COOLDOWN_DECLARE(last_shock_effect)
+
+///copies over clothing preferences like underwear to another human
+/mob/living/carbon/human/proc/copy_clothing_prefs(mob/living/carbon/human/destination)
+	destination.underwear = underwear
+	destination.undershirt = undershirt

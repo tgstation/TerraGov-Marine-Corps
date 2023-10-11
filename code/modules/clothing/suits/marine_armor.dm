@@ -463,9 +463,18 @@
 	flags_cold_protection = CHEST|GROIN|ARMS|LEGS|FEET|HANDS
 	flags_heat_protection =CHEST|GROIN|ARMS|LEGS|FEET|HANDS
 	soft_armor = list(MELEE = 50, BULLET = 60, LASER = 50, ENERGY = 60, BOMB = 40, BIO = 10, FIRE = 60, ACID = 50)
-	attachments_by_slot = list(ATTACHMENT_SLOT_MODULE)
-	attachments_allowed = list(/obj/item/armor_module/module/better_shoulder_lamp)
-	starting_attachments = list(/obj/item/armor_module/module/better_shoulder_lamp)
+	attachments_by_slot = list(
+		ATTACHMENT_SLOT_STORAGE,
+		ATTACHMENT_SLOT_MODULE,
+	)
+	attachments_allowed = list(
+		/obj/item/armor_module/module/better_shoulder_lamp,
+		/obj/item/armor_module/storage/general,
+	)
+	starting_attachments = list(
+		/obj/item/armor_module/module/better_shoulder_lamp,
+		/obj/item/armor_module/storage/general,
+	)
 
 /obj/item/clothing/suit/storage/faction/freelancer/leader
 	attachments_by_slot = list(

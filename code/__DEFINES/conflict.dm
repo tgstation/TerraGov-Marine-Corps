@@ -40,7 +40,7 @@
 //flags_ammo_behavior
 #define AMMO_EXPLOSIVE (1<<0) //Ammo will impact a targeted open turf instead of continuing past it
 #define AMMO_XENO (1<<1)
-#define AMMO_XENO_TOX (1<<2) //Unused value.
+#define AMMO_UNWIELDY (1<<2) //poor accuracy against humans
 #define AMMO_ENERGY (1<<3) //Ammo will pass through windows and has damage reduced by smokes with SMOKE_NERF_BEAM
 #define AMMO_ROCKET (1<<4) //Ammo is more likely to continue past cover such as cades
 #define AMMO_SNIPER (1<<5) //Ammo is more likely to continue past cover such as cades

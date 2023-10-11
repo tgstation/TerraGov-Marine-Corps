@@ -2323,10 +2323,7 @@
 /turf/open/floor/plating/ground/mars/random/cave/darker,
 /area/slumbridge/mining)
 "bJZ" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_22";
-	name = "SOM exit point 22"
-	},
+/obj/effect/landmark/patrol_point/som/som_22,
 /turf/open/floor/plating/ground/mars/random/cave/darker,
 /area/slumbridge/northeastcaves)
 "bKi" = (
@@ -3968,10 +3965,7 @@
 /turf/open/floor/cult,
 /area/slumbridge/northeastcaves)
 "cUJ" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_12";
-	name = "SOM exit point 12"
-	},
+/obj/effect/landmark/patrol_point/som/som_12,
 /turf/open/floor/tile/dark,
 /area/slumbridge/landingzonetwo)
 "cUX" = (
@@ -6588,10 +6582,7 @@
 /turf/open/floor/plating/fake_space,
 /area/slumbridge/outside3)
 "fcF" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_21";
-	name = "TGMC exit point 21"
-	},
+/obj/effect/landmark/patrol_point/tgmc_21,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/slumbridge/northwestcaves)
 "fdl" = (
@@ -7249,10 +7240,7 @@
 /turf/open/floor/plating,
 /area/slumbridge/outside4)
 "fBt" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_14";
-	name = "SOM exit point 14"
-	},
+/obj/effect/landmark/patrol_point/som/som_14,
 /turf/open/floor/tile/dark/yellow2{
 	dir = 8
 	},
@@ -9592,10 +9580,7 @@
 /turf/open/floor/tile/dark,
 /area/slumbridge/colony/dorms)
 "hpz" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_11";
-	name = "TGMC exit point 11"
-	},
+/obj/effect/landmark/patrol_point/tgmc_11,
 /obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/plating/ground/dirt,
 /area/slumbridge/southeastcaves)
@@ -11831,10 +11816,7 @@
 /turf/open/floor/plating,
 /area/slumbridge/hydrotreatment)
 "iPr" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_13";
-	name = "SOM exit point 13"
-	},
+/obj/effect/landmark/patrol_point/som/som_13,
 /turf/open/floor/tile/dark,
 /area/slumbridge/landingzonetwo)
 "iPy" = (
@@ -11910,10 +11892,7 @@
 /turf/open/floor/tile/green/greentaupe,
 /area/slumbridge/medical/surgery)
 "iSc" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_11";
-	name = "SOM exit point 11"
-	},
+/obj/effect/landmark/patrol_point/som/som_11,
 /turf/open/floor/tile/dark/yellow2,
 /area/slumbridge/landingzonetwo)
 "iSw" = (
@@ -13589,10 +13568,7 @@
 	},
 /area/slumbridge/outside3)
 "keB" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_13";
-	name = "TGMC exit point 13"
-	},
+/obj/effect/landmark/patrol_point/tgmc_13,
 /obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/plating/ground/dirt,
 /area/slumbridge/southeastcaves)
@@ -14975,10 +14951,7 @@
 /turf/open/lavaland/catwalk,
 /area/slumbridge/prison/innerring)
 "lgJ" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_23";
-	name = "TGMC exit point 23"
-	},
+/obj/effect/landmark/patrol_point/tgmc_23,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/slumbridge/northwestcaves)
 "lgK" = (
@@ -15957,10 +15930,7 @@
 /turf/open/floor,
 /area/slumbridge/engi/engineroom)
 "lPX" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_14";
-	name = "TGMC exit point 14"
-	},
+/obj/effect/landmark/patrol_point/tgmc_14,
 /obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/plating/ground/dirt,
 /area/slumbridge/southeastcaves)
@@ -20969,10 +20939,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/slumbridge/outside4)
 "pyW" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_24";
-	name = "SOM exit point 24"
-	},
+/obj/effect/landmark/patrol_point/som/som_24,
 /turf/open/floor/plating/ground/mars/random/cave/darker,
 /area/slumbridge/northeastcaves)
 "pza" = (
@@ -21457,10 +21424,7 @@
 /turf/open/floor/plating/ground/snow/layer2,
 /area/slumbridge/outside3)
 "pTR" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_24";
-	name = "TGMC exit point 24"
-	},
+/obj/effect/landmark/patrol_point/tgmc_24,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/slumbridge/northwestcaves)
 "pTZ" = (
@@ -25319,10 +25283,7 @@
 	},
 /area/slumbridge/outside2)
 "sFO" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_21";
-	name = "SOM exit point 21"
-	},
+/obj/effect/landmark/patrol_point/som/som_21,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/mineral/smooth,
 /area/slumbridge/rock)
@@ -27434,10 +27395,7 @@
 /turf/open/floor/tile/dark/blue2/corner,
 /area/slumbridge/colony/headoffice)
 "ulo" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_22";
-	name = "TGMC exit point 22"
-	},
+/obj/effect/landmark/patrol_point/tgmc_22,
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/slumbridge/northwestcaves)
@@ -28293,11 +28251,6 @@
 	dir = 4
 	},
 /area/slumbridge/colony/northerndome)
-"uVd" = (
-/obj/structure/closet/crate,
-/obj/effect/spawner/random/weaponry/gun,
-/turf/open/floor/plating,
-/area/slumbridge/landingzonetwo)
 "uVw" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -29551,10 +29504,7 @@
 /turf/open/floor/prison/greenblue,
 /area/slumbridge/prison/outerringsouth)
 "vPh" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_23";
-	name = "SOM exit point 23"
-	},
+/obj/effect/landmark/patrol_point/som/som_23,
 /turf/open/floor/plating/ground/mars/random/cave/darker,
 /area/slumbridge/northeastcaves)
 "vQg" = (
@@ -30910,10 +30860,7 @@
 	},
 /area/slumbridge/outside1/bridges)
 "wJY" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_12";
-	name = "TGMC exit point 12"
-	},
+/obj/effect/landmark/patrol_point/tgmc_12,
 /obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/plating/ground/dirt,
 /area/slumbridge/southeastcaves)
@@ -38046,7 +37993,7 @@ ooG
 ooG
 cgP
 fnu
-uVd
+kwy
 fnu
 plp
 ooG
@@ -38591,7 +38538,7 @@ fnu
 fnu
 fLs
 fnu
-uVd
+kwy
 ooG
 gGN
 pjL
@@ -39134,7 +39081,7 @@ plp
 cgP
 fLs
 plp
-uVd
+kwy
 gGN
 pjL
 ljW
