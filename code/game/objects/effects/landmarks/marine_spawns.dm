@@ -14,6 +14,10 @@
 	icon_state = "FC"
 	job = /datum/job/terragov/command/fieldcommander
 
+/obj/effect/landmark/start/job/fieldcommander/campaign
+	icon_state = "FC"
+	job = /datum/job/terragov/command/fieldcommander/campaign
+
 /obj/effect/landmark/start/job/staffofficer
 	icon_state = "IO"
 	job = /datum/job/terragov/command/staffofficer

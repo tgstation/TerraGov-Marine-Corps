@@ -695,6 +695,7 @@
 /turf/open/floor/prison/whitegreen/corner,
 /area/sulaco/medbay/west)
 "acA" = (
+/obj/machinery/bot/cleanbot,
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 8
 	},
@@ -1312,6 +1313,9 @@
 /area/sulaco/medbay/storage)
 "aey" = (
 /obj/structure/table/mainship/nometal,
+/obj/machinery/bot/cleanbot{
+	pixel_y = 9
+	},
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 4
 	},
@@ -17357,6 +17361,11 @@
 /obj/effect/ai_node,
 /turf/open/floor/prison/bright_clean,
 /area/mainship/command/self_destruct)
+"lvC" = (
+/obj/effect/decal/cleanable/cobweb2,
+/obj/machinery/bot/cleanbot,
+/turf/open/floor/plating,
+/area/sulaco/maintenance/upperdeck_AIcore_maint)
 "lwq" = (
 /obj/machinery/door/poddoor/shutters/mainship/selfdestruct{
 	dir = 1
@@ -20016,7 +20025,7 @@
 /turf/open/floor/prison,
 /area/sulaco/hallway/evac)
 "oPD" = (
-/obj/machinery/roomba,
+/obj/machinery/bot/roomba,
 /obj/machinery/light/mainship{
 	dir = 8
 	},
@@ -20183,6 +20192,10 @@
 	},
 /turf/closed/wall/mainship/white,
 /area/sulaco/medbay)
+"pdB" = (
+/obj/machinery/bot/cleanbot,
+/turf/open/floor/plating,
+/area/sulaco/maintenance/lower_maint3)
 "pdS" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 10
@@ -25796,7 +25809,7 @@
 /area/sulaco/hangar)
 "whS" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/roomba,
+/obj/machinery/bot/roomba,
 /obj/docking_port/stationary/marine_dropship/crash_target,
 /turf/open/floor/prison/red,
 /area/sulaco/cargo/prep)
@@ -48306,7 +48319,7 @@ aMc
 vMY
 vMB
 bBG
-qzH
+pdB
 gIj
 xKi
 mDu
@@ -55627,7 +55640,7 @@ pEI
 aCE
 aVR
 aVR
-aEu
+lvC
 aCg
 dGX
 aCg

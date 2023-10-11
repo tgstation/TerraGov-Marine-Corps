@@ -1,8 +1,9 @@
 //placeholder
 /datum/campaign_mission/raiding_base
 	name = "Combat patrol"
+	mission_icon = "raiding_base"
 	map_name = "Orion Outpost"
-	map_file = '_maps/map_files/Campaign maps/jungle_test/jungle_outpost.dmm'
+	map_file = '_maps/map_files/Campaign maps/jungle_outpost/jungle_outpost.dmm'
 	starting_faction_objective_description = null
 	hostile_faction_objective_description = null
 	max_game_time = 20 MINUTES

@@ -188,9 +188,17 @@
 
 	ENABLE_BITFIELD(flags_item, IS_DEPLOYED)
 
+/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/cope/predeployed
+	flags_item = IS_DEPLOYABLE|TWOHANDED|DEPLOY_ON_INITIALIZE|DEPLOYED_NO_PICKUP
+
 /obj/item/weapon/gun/sentry/big_sentry/premade
 	sentry_iff_signal = TGMC_LOYALIST_IFF
 	flags_item = IS_DEPLOYABLE|TWOHANDED|DEPLOY_ON_INITIALIZE
+
+/obj/item/weapon/gun/sentry/big_sentry/premade/radial
+	turret_range = 9
+	turret_flags = TURRET_HAS_CAMERA|TURRET_ALERTS|TURRET_RADIAL
+	flags_item = IS_DEPLOYABLE|TWOHANDED|DEPLOY_ON_INITIALIZE|DEPLOYED_NO_PICKUP
 
 /obj/item/weapon/gun/sentry/big_sentry/dropship
 	ammo_datum_type = /datum/ammo/bullet/turret/gauss

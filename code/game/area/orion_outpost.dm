@@ -59,6 +59,11 @@
 	outside = FALSE
 	minimap_color = MINIMAP_AREA_LZ
 
+/area/orion_outpost/surface/train_yard
+	name = "train yard"
+	icon_state = "landing_pad_ext"
+	minimap_color = MINIMAP_AREA_LZ
+
 //River
 /area/orion_outpost/ground/river/riverside_north
 	name = "Northern Riverbed"
