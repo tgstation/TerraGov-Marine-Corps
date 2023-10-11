@@ -59,6 +59,20 @@
 			msg += "[span_warning("[t_He] [t_is] wearing [icon2html(wear_suit, user)] [wear_suit.gender==PLURAL?"some":"a"] [(wear_suit.blood_color != "#030303") ? "blood" : "oil"]-stained [wear_suit.name]!")]\n"
 		else
 			msg += "[t_He] [t_is] wearing [icon2html(wear_suit, user)] \a [wear_suit].\n"
+		if(istype(wear_suit, /obj/item/clothing/suit/modular))
+			var/obj/item/clothing/suit/modular/wear_modular_suit = wear_suit
+			if(length(wear_modular_suit.contents))
+				msg += "	It has the following attachments:\n"
+				if(wear_modular_suit.attachments_by_slot[ATTACHMENT_SLOT_CHESTPLATE])
+					msg += "	- [wear_modular_suit.attachments_by_slot[ATTACHMENT_SLOT_CHESTPLATE]].\n"
+				if(wear_modular_suit.attachments_by_slot[ATTACHMENT_SLOT_SHOULDER])
+					msg += "	- [wear_modular_suit.attachments_by_slot[ATTACHMENT_SLOT_SHOULDER]].\n"
+				if(wear_modular_suit.attachments_by_slot[ATTACHMENT_SLOT_KNEE])
+					msg += "	- [wear_modular_suit.attachments_by_slot[ATTACHMENT_SLOT_KNEE]].\n"
+				if(wear_modular_suit.attachments_by_slot[ATTACHMENT_SLOT_STORAGE])
+					msg += "	- [wear_modular_suit.attachments_by_slot[ATTACHMENT_SLOT_STORAGE]].\n"
+				if(wear_modular_suit.attachments_by_slot[ATTACHMENT_SLOT_MODULE])
+					msg += "	- [wear_modular_suit.attachments_by_slot[ATTACHMENT_SLOT_MODULE]].\n"
 
 		//suit/armour storage
 		if(s_store && !skipsuitstorage)
