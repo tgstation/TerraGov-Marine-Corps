@@ -130,10 +130,10 @@
 #define BIOSCAN_DELTA(count, delta) count ? max(0, count + rand(-delta, delta)) : 0
 
 ///Annonce to everyone the number of SOM and marines on ship and ground
-/datum/game_mode/hvh/proc/announce_bioscans_marine_som(show_locations = TRUE, delta = 2, announce_marines = TRUE, announce_som = TRUE)
+/datum/game_mode/hvh/proc/announce_bioscans_marine_som(show_locations = TRUE, delta = 2, announce_marines = TRUE, announce_som = TRUE, ztrait = ZTRAIT_GROUND)
 	TIMER_COOLDOWN_START(src, COOLDOWN_BIOSCAN, bioscan_interval)
 	//pulls the number of marines and SOM
-	var/list/player_list = count_humans(count_flags = COUNT_IGNORE_ALIVE_SSD)
+	var/list/player_list = count_humans(SSmapping.levels_by_trait(ztrait), COUNT_IGNORE_ALIVE_SSD)
 	var/list/som_list = player_list[1]
 	var/list/tgmc_list = player_list[2]
 	var/num_som = length(player_list[1])

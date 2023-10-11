@@ -182,6 +182,55 @@ Make the TGMC proud!"})
 	l_store = /obj/item/hud_tablet/fieldcommand
 	suit_store = /obj/item/storage/holster/belt/pistol/m4a3/fieldcommander
 
+//Campaign version with specific loadout
+/datum/job/terragov/command/fieldcommander/campaign
+	outfit = /datum/outfit/job/command/fieldcommander/campaign
+	multiple_outfits = FALSE
+
+/datum/outfit/job/command/fieldcommander/campaign
+	name = FIELD_COMMANDER
+	jobtype = /datum/job/terragov/command/fieldcommander/campaign
+
+	id = /obj/item/card/id/dogtag/fc
+	belt = /obj/item/storage/holster/blade/officer/full
+	ears = /obj/item/radio/headset/mainship/mcom
+	glasses = /obj/item/clothing/glasses/hud/health
+	w_uniform = /obj/item/clothing/under/marine/officer/exec/webbing
+	wear_suit = /obj/item/clothing/suit/modular/xenonauten/valk
+	shoes = /obj/item/clothing/shoes/marine/full
+	gloves = /obj/item/clothing/gloves/marine/officer
+	mask = /obj/item/clothing/mask/rebreather
+	head = /obj/item/clothing/head/tgmcberet/fc
+	r_store = /obj/item/storage/pouch/firstaid/combat_patrol_leader
+	l_store = /obj/item/storage/pouch/grenade/combat_patrol
+	suit_store = /obj/item/storage/holster/belt/pistol/m4a3/fieldcommander
+
+/datum/outfit/job/command/fieldcommander/campaign/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	. = ..()
+
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/binoculars/fire_support/campaign, SLOT_IN_ACCESSORY)
+
+	H.equip_to_slot_or_del(new /obj/item/stack/medical/heal_pack/gauze, SLOT_IN_SUIT)
+	H.equip_to_slot_or_del(new /obj/item/stack/medical/heal_pack/ointment, SLOT_IN_SUIT)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/isotonic, SLOT_IN_SUIT)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/quickclot, SLOT_IN_SUIT)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/dylovene, SLOT_IN_SUIT)
+
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/packet/acp, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/packet/acp, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb/cloak, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/incendiary, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/storage/box/MRE, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/tool/extinguisher/mini, SLOT_IN_BACKPACK)
+
+
 //Staff Officer
 /datum/job/terragov/command/staffofficer
 	title = STAFF_OFFICER

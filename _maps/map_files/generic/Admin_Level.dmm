@@ -6773,7 +6773,7 @@
 /obj/effect/turf_decal/tile/gray{
 	dir = 8
 	},
-/obj/machinery/roomba/valhalla,
+/obj/machinery/bot/roomba/valhalla,
 /turf/open/floor/tile/neutral/full,
 /area/centcom/valhalla/security/brig)
 "jdQ" = (

@@ -475,10 +475,7 @@
 /turf/open/floor/tile/dark,
 /area/oscar_outpost)
 "do" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_14";
-	name = "TGMC exit point 14"
-	},
+/obj/effect/landmark/patrol_point/tgmc_14,
 /turf/open/floor,
 /area/oscar_outpost/village/south)
 "dq" = (
@@ -3424,10 +3421,7 @@
 	},
 /area/oscar_outpost)
 "xj" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_24";
-	name = "TGMC exit point 24"
-	},
+/obj/effect/landmark/patrol_point/tgmc_24,
 /turf/open/floor/plating/ground/dirt,
 /area/oscar_outpost/village/fairgrounds)
 "xk" = (
@@ -3720,7 +3714,7 @@
 /turf/open/floor/tile/dark,
 /area/oscar_outpost)
 "yQ" = (
-/obj/machinery/roomba,
+/obj/machinery/bot/roomba,
 /obj/effect/ai_node,
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
@@ -4218,10 +4212,7 @@
 /turf/open/floor/tile/dark,
 /area/oscar_outpost/base)
 "Bl" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_11";
-	name = "TGMC exit point 11"
-	},
+/obj/effect/landmark/patrol_point/tgmc_11,
 /turf/open/floor/plating/ground/dirt,
 /area/oscar_outpost/village/fairgrounds)
 "Bo" = (
@@ -4528,10 +4519,7 @@
 /turf/open/floor/prison,
 /area/oscar_outpost/base)
 "CF" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_22";
-	name = "TGMC exit point 22"
-	},
+/obj/effect/landmark/patrol_point/tgmc_22,
 /turf/open/floor,
 /area/oscar_outpost/village/south)
 "CH" = (
@@ -5974,10 +5962,7 @@
 /turf/open/floor,
 /area/oscar_outpost/village)
 "IH" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_21";
-	name = "TGMC exit point 21"
-	},
+/obj/effect/landmark/patrol_point/tgmc_21,
 /turf/open/floor,
 /area/oscar_outpost/village/south)
 "II" = (
@@ -7712,10 +7697,7 @@
 /turf/open/floor,
 /area/oscar_outpost/village)
 "Qk" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_12";
-	name = "TGMC exit point 12"
-	},
+/obj/effect/landmark/patrol_point/tgmc_12,
 /turf/open/floor/plating/ground/dirt,
 /area/oscar_outpost/village/fairgrounds)
 "Ql" = (
@@ -8850,10 +8832,7 @@
 	},
 /area/oscar_outpost/outside/west)
 "Vl" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_23";
-	name = "TGMC exit point 23"
-	},
+/obj/effect/landmark/patrol_point/tgmc_23,
 /turf/open/floor,
 /area/oscar_outpost/village/south)
 "Vm" = (
@@ -9613,10 +9592,7 @@
 /turf/open/floor/mainship/sterile,
 /area/oscar_outpost/village/central)
 "Yw" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_13";
-	name = "TGMC exit point 13"
-	},
+/obj/effect/landmark/patrol_point/tgmc_13,
 /turf/open/floor/plating/ground/dirt,
 /area/oscar_outpost/village/fairgrounds)
 "Yx" = (

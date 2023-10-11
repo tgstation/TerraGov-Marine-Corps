@@ -1529,9 +1529,9 @@
 /area/mainship/command/cic)
 "bzN" = (
 /obj/effect/decal/cleanable/blood/oil{
+	dir = 1;
 	name = "grease";
-	pixel_x = -7;
-	dir = 1
+	pixel_x = -7
 	},
 /turf/open/floor/plating,
 /area/mainship/living/tankerbunks)
@@ -1701,9 +1701,9 @@
 /area/mainship/medical/lower_medical)
 "bEA" = (
 /obj/machinery/door_control/mainship/req{
+	dir = 8;
 	id = "requisitions";
-	name = "Requisitions Shutters";
-	dir = 8
+	name = "Requisitions Shutters"
 	},
 /turf/open/floor/mainship/green{
 	dir = 4
@@ -3219,8 +3219,8 @@
 	dir = 8
 	},
 /obj/machinery/door/poddoor/mainship/open{
-	name = "Fuel Shed Shutters";
-	id = "fuelshed"
+	id = "fuelshed";
+	name = "Fuel Shed Shutters"
 	},
 /turf/open/floor/mainship/stripesquare,
 /area/mainship/hallways/hangar)
@@ -3974,16 +3974,16 @@
 	pixel_y = 10
 	},
 /obj/machinery/door_control/old{
-	pixel_x = 8;
-	pixel_y = 3;
+	id = "ammo1";
 	name = "Dropship Armament Storage";
-	id = "ammo1"
+	pixel_x = 8;
+	pixel_y = 3
 	},
 /obj/machinery/door_control/old{
-	pixel_x = 8;
-	pixel_y = -4;
+	id = "ammo2";
 	name = "Dropship Ammo Storage";
-	id = "ammo2"
+	pixel_x = 8;
+	pixel_y = -4
 	},
 /turf/open/floor/mainship/floor,
 /area/mainship/hallways/hangar/flight_control)
@@ -5188,8 +5188,8 @@
 /area/mainship/command/cic)
 "eAi" = (
 /obj/structure/sign/prop1{
-	name = "Squad Leader Preparations";
-	dir = 1
+	dir = 1;
+	name = "Squad Leader Preparations"
 	},
 /turf/open/floor/mainship/black{
 	dir = 1
@@ -6181,6 +6181,7 @@
 /obj/machinery/firealarm{
 	dir = 8
 	},
+/obj/machinery/bot/cleanbot,
 /turf/open/floor/mainship/floor,
 /area/mainship/shipboard/brig)
 "foc" = (
@@ -6761,8 +6762,8 @@
 /area/mainship/hallways/hangar)
 "fNz" = (
 /obj/structure/sign/prop1{
-	name = "Smartgunner Preparations";
-	dir = 1
+	dir = 1;
+	name = "Smartgunner Preparations"
 	},
 /turf/open/floor/mainship/black{
 	dir = 1
@@ -6963,9 +6964,9 @@
 /area/mainship/living/evacuation)
 "fXz" = (
 /obj/machinery/door_control/mainship/req{
+	dir = 4;
 	id = "garage";
 	name = "Garage Access";
-	dir = 4;
 	pixel_x = -19;
 	req_one_access = null
 	},
@@ -8066,8 +8067,8 @@
 /obj/item/reagent_containers/jerrycan,
 /obj/item/reagent_containers/jerrycan,
 /obj/machinery/door_control{
-	name = "Fuel Shed Lockdown";
-	id = "fuelshed"
+	id = "fuelshed";
+	name = "Fuel Shed Lockdown"
 	},
 /turf/open/floor/mainship/orange{
 	dir = 10
@@ -9667,9 +9668,9 @@
 /obj/effect/turf_decal/warning_stripes/thin,
 /obj/machinery/door_control/mainship{
 	dir = 4;
-	pixel_x = -18;
 	id = "firing_range";
-	name = "Firing Range Shutters"
+	name = "Firing Range Shutters";
+	pixel_x = -18
 	},
 /turf/open/floor/mainship/cargo,
 /area/mainship/shipboard/firing_range)
@@ -10111,20 +10112,20 @@
 	},
 /obj/structure/table/mainship/nometal,
 /obj/machinery/door_control/old/cic/armory{
+	name = "Armory";
 	pixel_x = -7;
-	pixel_y = -4;
-	name = "Armory"
+	pixel_y = -4
 	},
 /obj/machinery/door_control/old/cic/hangar_shutters{
+	name = "Hangar Lockdown";
 	pixel_x = 2;
-	pixel_y = -4;
-	name = "Hangar Lockdown"
+	pixel_y = -4
 	},
 /obj/machinery/door_control/old/req{
-	pixel_x = 11;
-	pixel_y = -4;
 	id = "requisitions";
-	name = "Requisitions Lockdown"
+	name = "Requisitions Lockdown";
+	pixel_x = 11;
+	pixel_y = -4
 	},
 /obj/machinery/door_control/old/medbay{
 	id = "medbay_lockdown";
@@ -10137,9 +10138,9 @@
 	pixel_y = 2
 	},
 /obj/machinery/door_control/old/ai{
+	name = "AI Lockdown";
 	pixel_x = 2;
-	pixel_y = 2;
-	name = "AI Lockdown"
+	pixel_y = 2
 	},
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/command/cic)
@@ -10155,7 +10156,7 @@
 /turf/open/floor/mainship/floor,
 /area/mainship/shipboard/chief_mp_office)
 "iEb" = (
-/obj/machinery/roomba,
+/obj/machinery/bot/roomba,
 /turf/open/floor/mainship/floor,
 /area/mainship/squads/general)
 "iER" = (
@@ -10992,7 +10993,7 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/lower_medical)
 "jlK" = (
-/obj/machinery/roomba,
+/obj/machinery/bot/roomba,
 /turf/open/floor/mainship/red{
 	dir = 6
 	},
@@ -11584,8 +11585,8 @@
 /obj/structure/table/mainship/nometal,
 /obj/machinery/keycard_auth,
 /obj/item/minimap_tablet{
-	pixel_y = 10;
-	pixel_x = -1
+	pixel_x = -1;
+	pixel_y = 10
 	},
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/command/cic)
@@ -15594,9 +15595,9 @@
 "mVg" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/door_control/mainship/req{
+	dir = 4;
 	id = "requisitions";
-	name = "Requisitions Shutters";
-	dir = 4
+	name = "Requisitions Shutters"
 	},
 /turf/open/floor/mainship/green{
 	dir = 8
@@ -16572,9 +16573,9 @@
 	dir = 4
 	},
 /obj/machinery/door_control/mainship/ammo{
+	dir = 1;
 	id = "ammo1";
-	name = "Dropship Armament Storage";
-	dir = 1
+	name = "Dropship Armament Storage"
 	},
 /turf/open/floor/mainship/floor,
 /area/mainship/hallways/hangar)
@@ -17392,8 +17393,8 @@
 /area/mainship/living/evacuation)
 "otc" = (
 /obj/machinery/door/airlock/multi_tile/mainship/blackgeneric/glass{
-	name = "\improper Firing Range Airlock";
-	dir = 2
+	dir = 2;
+	name = "\improper Firing Range Airlock"
 	},
 /obj/structure/cable,
 /obj/machinery/door/firedoor/multi_tile{
@@ -17540,6 +17541,10 @@
 "oxH" = (
 /turf/closed/wall/mainship/outer,
 /area/mainship/hallways/starboard_hallway)
+"oyj" = (
+/obj/machinery/bot/cleanbot,
+/turf/open/floor/mainship/sterile/dark,
+/area/mainship/medical/lower_medical)
 "oyu" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -18520,6 +18525,13 @@
 	},
 /turf/open/floor/mainship/stripesquare,
 /area/mainship/hallways/hangar)
+"ppJ" = (
+/obj/machinery/camera/autoname/mainship{
+	dir = 4
+	},
+/obj/machinery/bot/cleanbot,
+/turf/open/floor/mainship/sterile/dark,
+/area/mainship/medical/lower_medical)
 "ppS" = (
 /obj/structure/cable,
 /obj/machinery/firealarm{
@@ -19209,8 +19221,8 @@
 /area/mainship/medical/medical_science)
 "pVP" = (
 /obj/structure/sign/greencross{
-	name = "Corpsman Preparations";
-	dir = 1
+	dir = 1;
+	name = "Corpsman Preparations"
 	},
 /turf/open/floor/mainship/black{
 	dir = 1
@@ -19644,8 +19656,8 @@
 	},
 /obj/item/spacecash/c20,
 /obj/item/spacecash/c20{
-	pixel_y = 7;
-	pixel_x = 5
+	pixel_x = 5;
+	pixel_y = 7
 	},
 /obj/machinery/light/mainship/small,
 /turf/open/floor/plating,
@@ -20367,9 +20379,9 @@
 	dir = 8
 	},
 /obj/machinery/door_control/mainship/ammo{
+	dir = 1;
 	id = "ammo1";
-	name = "Dropship Armament Storage";
-	dir = 1
+	name = "Dropship Armament Storage"
 	},
 /turf/open/floor/mainship/floor,
 /area/mainship/hallways/hangar)
@@ -20523,8 +20535,8 @@
 /area/mainship/hull/port_hull)
 "qZp" = (
 /obj/structure/sign/electricshock{
-	name = "Engineer Preparations";
-	dir = 1
+	dir = 1;
+	name = "Engineer Preparations"
 	},
 /turf/open/floor/mainship/black{
 	dir = 1
@@ -20710,8 +20722,8 @@
 /area/mainship/medical/upper_medical)
 "rgI" = (
 /obj/machinery/door/airlock/multi_tile/mainship/blackgeneric/glass{
-	name = "\improper Firing Range Airlock";
-	dir = 2
+	dir = 2;
+	name = "\improper Firing Range Airlock"
 	},
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 10
@@ -20916,8 +20928,8 @@
 "rpx" = (
 /obj/structure/table/mainship/nometal,
 /obj/effect/spawner/random/misc/paperbin{
-	pixel_y = 11;
-	pixel_x = 9
+	pixel_x = 9;
+	pixel_y = 11
 	},
 /obj/item/tool/pen/blue{
 	pixel_x = 8;
@@ -22795,16 +22807,16 @@
 "sWP" = (
 /obj/structure/table/mainship/nometal,
 /obj/effect/spawner/random/misc/paperbin{
-	pixel_y = 2;
-	pixel_x = -9
+	pixel_x = -9;
+	pixel_y = 2
 	},
 /obj/item/tool/pen{
-	pixel_y = 1;
-	pixel_x = -7
+	pixel_x = -7;
+	pixel_y = 1
 	},
 /obj/item/storage/fancy/cigar{
-	pixel_y = -3;
-	pixel_x = 7
+	pixel_x = 7;
+	pixel_y = -3
 	},
 /obj/item/tool/lighter/zippo{
 	pixel_x = 5;
@@ -23342,8 +23354,8 @@
 	},
 /obj/item/spacecash/c20,
 /obj/item/spacecash/c20{
-	pixel_y = 7;
-	pixel_x = 5
+	pixel_x = 5;
+	pixel_y = 7
 	},
 /obj/structure/table/gamblingtable,
 /turf/open/floor/wood,
@@ -24435,9 +24447,9 @@
 	dir = 10
 	},
 /obj/machinery/door_control/mainship/req{
-	pixel_y = 25;
 	id = "requisitions";
-	name = "Requisitions Shutters"
+	name = "Requisitions Shutters";
+	pixel_y = 25
 	},
 /obj/machinery/light/mainship{
 	dir = 1
@@ -25936,8 +25948,8 @@
 /area/mainship/hallways/hangar)
 "vKf" = (
 /obj/machinery/door/airlock/multi_tile/mainship/secdoor/glass{
-	req_one_access = list(2,42);
-	req_access = null
+	req_access = null;
+	req_one_access = list(2,42)
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -26711,8 +26723,8 @@
 /area/mainship/command/cic)
 "wrs" = (
 /obj/machinery/door_control/mainship{
-	name = "AI Lockdown";
-	id = "AiCoreShutter"
+	id = "AiCoreShutter";
+	name = "AI Lockdown"
 	},
 /turf/open/floor/mainship/red,
 /area/mainship/command/airoom)
@@ -27394,7 +27406,7 @@
 /turf/open/floor/mainship/floor,
 /area/mainship/hallways/hangar/flight_control)
 "wTK" = (
-/obj/machinery/roomba,
+/obj/machinery/bot/roomba,
 /turf/open/floor/mainship/red{
 	dir = 9
 	},
@@ -28181,9 +28193,9 @@
 /area/mainship/medical/lounge)
 "xHp" = (
 /obj/machinery/door_control/mainship/req{
+	dir = 1;
 	id = "garage";
 	name = "Garage Access";
-	dir = 1;
 	pixel_y = -16;
 	req_one_access = null
 	},
@@ -33704,7 +33716,7 @@ xyx
 oea
 iKx
 tzN
-lDr
+ppJ
 iBD
 tPr
 wGW
@@ -34105,7 +34117,7 @@ hqL
 qSo
 kjk
 lYh
-lYh
+oyj
 uPS
 nUb
 nDi
