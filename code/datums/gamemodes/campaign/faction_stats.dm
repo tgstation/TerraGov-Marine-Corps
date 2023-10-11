@@ -399,7 +399,7 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 				if(!(ismarineleaderjob(user.job) || issommarineleaderjob(user.job) || ismarinecommandjob(user.job) || issommarinecommandjob(user.job)))
 					to_chat(user, "<span class='warning'>Only your faction's leaders can do this.")
 					return
-			if(!choice.activated_effect())
+			if(!choice.attempt_activatation())
 				return
 			for(var/mob/living/carbon/human/faction_member AS in GLOB.alive_human_list_faction[faction])
 				faction_member.playsound_local(null, 'sound/effects/CIC_order.ogg', 30, 1)
