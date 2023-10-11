@@ -118,7 +118,6 @@
 #include "code\modules\mob\living\carbon\xenomorph\castes\shrike\castedatum_shrike.dm"
 #include "code\modules\mob\living\carbon\xenomorph\castes\spitter\castedatum_spitter.dm"
 #include "code\modules\mob\living\carbon\xenomorph\castes\warlock\abilities_warlock.dm"
-#include "code\modules\mob\living\carbon\xenomorph\castes\warrior\warrior.dm"
 #include "code\modules\mob\living\carbon\xenomorph\castes\warrior\abilities_warrior.dm"
 #include "code\modules\mob\living\carbon\xenomorph\castes\warrior\castedatum_warrior.dm"
 #include "code\modules\mob\living\carbon\xenomorph\castes\widow\castedatum_widow.dm"
