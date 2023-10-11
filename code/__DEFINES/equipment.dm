@@ -90,6 +90,10 @@
 ///If an item can be restocked/refilled in a vendor, despite not being infinite supply
 #define CAN_REFILL (1<<21)
 
+//flags_storage
+///If a storage container can be restocked into a vendor
+#define BYPASS_VENDOR_CHECK (1<<0)
+
 //==========================================================================================
 
 //flags_inv_hide

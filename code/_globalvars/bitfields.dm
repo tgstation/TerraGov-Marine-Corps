@@ -493,6 +493,9 @@ GLOBAL_LIST_INIT(bitfields, list(
 		"HAS_UNDERLAY" = HAS_UNDERLAY,
 		"CAN_REFILL" = CAN_REFILL,
 	),
+	"flags_storage" = list(
+		"BYPASS_VENDOR_CHECK" = BYPASS_VENDOR_CHECK,
+	),
 	"ghost_hud" = list(
 		"GHOST_HUD_MED" = GHOST_HUD_MED,
 		"GHOST_HUD_SEC" = GHOST_HUD_SEC,

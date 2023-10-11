@@ -72,7 +72,7 @@
 	flags_item = CAN_REFILL
 
 /obj/item/reagent_containers/glass/bottle/dexalin
-	name = "\improper Dexaline bottle"
+	name = "\improper Dexalin bottle"
 	desc = "A small bottle. Contains dexalin - used to supply blood with oxygen."
 	icon_state = "bottle10"
 	list_reagents = list(/datum/reagent/medicine/dexalin = 60)
