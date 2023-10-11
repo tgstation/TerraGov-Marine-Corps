@@ -110,12 +110,12 @@
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "runner_evasions")
 
 /datum/action/xeno_action/evasion/process()
-	var/mob/living/carbon/xenomorph/runner/runner_owner = owner
-	runner_owner.hud_set_evasion(evasion_duration)
 	if(evasion_duration <= 0)
 		evasion_deactivate()
 		return
 	evasion_duration--
+	var/mob/living/carbon/xenomorph/runner/runner_owner = owner
+	runner_owner.hud_set_evasion(evasion_duration)
 
 /**
  * Called when the owner is hit by a flamethrower projectile.
@@ -144,6 +144,7 @@
 
 /// Deactivates Evasion, clearing signals, vars, etc.
 /datum/action/xeno_action/evasion/proc/evasion_deactivate()
+	STOP_PROCESSING(SSprocessing, src)
 	UnregisterSignal(owner, list(
 		COMSIG_LIVING_STATUS_STUN,
 		COMSIG_LIVING_STATUS_KNOCKDOWN,
@@ -156,11 +157,12 @@
 		COMSIG_LIVING_PRE_THROW_IMPACT,
 		COMSIG_ATOM_BULLET_ACT
 		))
-	evade_active = FALSE //Evasion is no longer active
+	evade_active = FALSE
 	evasion_stacks = 0
 	owner.balloon_alert(owner, "Evasion ended")
 	owner.playsound_local(owner, 'sound/voice/hiss5.ogg', 50)
-	STOP_PROCESSING(SSprocessing, src)
+	var/mob/living/carbon/xenomorph/runner/runner_owner = owner
+	runner_owner.hud_set_evasion(evasion_duration)
 
 /// Determines whether or not a thrown projectile is dodged while the Evasion ability is active
 /datum/action/xeno_action/evasion/proc/evasion_throw_dodge(datum/source, atom/movable/proj)
