@@ -375,6 +375,8 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 /obj/structure/droppod/nonmob/proc/load_package(obj/package, mob/user)
 	if(stored_object)
 		return
+	if(!istype(package))
+		return
 	stored_object = package
 	package.forceMove(src)
 	RegisterSignal(package, COMSIG_MOVABLE_MOVED, PROC_REF(unload_package))
