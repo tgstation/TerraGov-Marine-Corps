@@ -389,9 +389,6 @@
 			if(current_turf && density)
 				current_turf.flags_atom &= ~AI_BLOCKED
 	else if(isitem(I))
-		if(I.flags_item & NO_FREE_REFILL)
-			user.balloon_alert(user, "Can't restock this")
-			return FALSE
 		var/obj/item/to_stock = I
 		stock(to_stock, user)
 
@@ -412,6 +409,10 @@
 
 	if(!record) //Item isn't listed in the vending records.
 		display_message_and_visuals(user, TRUE, "[item_to_refill] can't be refilled here!", VENDING_RESTOCK_DENY)
+		return FALSE
+
+	if(!(record.amount <= -1) && !(item_to_refill.flags_item & CAN_REFILL))
+		user.balloon_alert(user, "Can't refill this")
 		return FALSE
 
 	item_to_refill.refill(user)
@@ -737,7 +738,7 @@
 
 		if(isreagentcontainer(item_to_stock))
 			var/obj/item/reagent_containers/reagent_container = item_to_stock
-			if((reagent_container & NO_FREE_REFILL) && !reagent_container.has_initial_reagents())
+			if(!(reagent_container.flags_item & CAN_REFILL) && !reagent_container.has_initial_reagents())
 				display_message_and_visuals(user, show_feedback, "\The [reagent_container] is missing some of its reagents!", VENDING_RESTOCK_DENY)
 				return FALSE
 

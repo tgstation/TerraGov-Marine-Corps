@@ -10,6 +10,7 @@
 	amount_per_transfer_from_this = 10
 	volume = 30
 	list_reagents = list(/datum/reagent/consumable/sodiumchloride = 30)
+	flags_item = CAN_REFILL
 
 /obj/item/reagent_containers/hypospray/autoinjector/update_icon_state()
 	if(!(reagents.total_volume) && is_drawable())
@@ -89,6 +90,7 @@
 	volume = 3
 	list_reagents = list(/datum/reagent/medicine/dexalinplus = 3)
 	description_overlay = "Dx+"
+	flags_item = CAN_REFILL
 
 /obj/item/reagent_containers/hypospray/autoinjector/sleeptoxin
 	name = "anesthetic autoinjector"
@@ -100,6 +102,7 @@
 		/datum/reagent/toxin/sleeptoxin = 8,
 		/datum/reagent/toxin/chloralhydrate = 2,
 	)
+	flags_item = CAN_REFILL
 
 /obj/item/reagent_containers/hypospray/autoinjector/dylovene
 	name = "dylovene autoinjector"
@@ -265,7 +268,7 @@
 		/datum/reagent/medicine/oxycodone = 10,
 	)
 	description_overlay = "Rr"
-	flags_item = NO_FREE_REFILL
+	flags_item = null
 
 /obj/item/reagent_containers/hypospray/autoinjector/polyhexanide
 	name = "polyhexanide autoinjector"
@@ -311,7 +314,7 @@
 	amount_per_transfer_from_this = 1
 	volume = 1
 	list_reagents = list(/datum/reagent/medicine/research/medicalnanites = 1)
-	flags_item = NO_FREE_REFILL
+	flags_item = null
 
 /obj/item/reagent_containers/hypospray/autoinjector/pain //made for debugging
 	name = "liquid pain autoinjector"

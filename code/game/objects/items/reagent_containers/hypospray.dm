@@ -405,6 +405,7 @@
 		/datum/reagent/medicine/bicaridine = 60,
 	)
 	description_overlay = "Bi"
+	flags_item = CAN_REFILL
 
 /obj/item/reagent_containers/hypospray/advanced/kelotane
 	name = "kelotane hypospray"
@@ -413,6 +414,7 @@
 		/datum/reagent/medicine/kelotane = 60,
 	)
 	description_overlay = "Ke"
+	flags_item = CAN_REFILL
 
 /obj/item/reagent_containers/hypospray/advanced/tramadol
 	name = "tramadol hypospray"
@@ -421,6 +423,7 @@
 		/datum/reagent/medicine/tramadol = 60,
 	)
 	description_overlay = "Ta"
+	flags_item = CAN_REFILL
 
 /obj/item/reagent_containers/hypospray/advanced/tricordrazine
 	name = "tricordrazine hypospray"
@@ -429,6 +432,7 @@
 		/datum/reagent/medicine/tricordrazine = 60,
 	)
 	description_overlay = "Ti"
+	flags_item = CAN_REFILL
 
 /obj/item/reagent_containers/hypospray/advanced/dylovene
 	name = "dylovene hypospray"
@@ -437,6 +441,7 @@
 		/datum/reagent/medicine/dylovene = 60,
 	)
 	description_overlay = "Dy"
+	flags_item = CAN_REFILL
 
 /obj/item/reagent_containers/hypospray/advanced/inaprovaline
 	name = "inaprovaline hypospray"

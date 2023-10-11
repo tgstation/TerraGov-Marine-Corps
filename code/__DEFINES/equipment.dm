@@ -87,8 +87,8 @@
 #define HAS_UNDERLAY (1<<19)
 ///is this item equipped into an inventory slot or hand of a mob?
 #define IN_INVENTORY (1<<20)
-///If an item doesn't get free refills from vendors
-#define NO_FREE_REFILL (1<<21)
+///If an item can be restocked/refilled in a vendor, despite not being infinite supply
+#define CAN_REFILL (1<<21)
 
 //==========================================================================================
 

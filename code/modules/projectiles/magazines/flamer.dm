@@ -65,7 +65,6 @@
 	current_rounds = 75
 	reload_delay = 3 SECONDS
 	icon_state_mini = "tank_orange"
-	flags_item = NO_FREE_REFILL
 
 /obj/item/ammo_magazine/flamer_tank/large/som
 	name = "large flamerthrower tank"
@@ -103,7 +102,6 @@
 	caliber = CALIBER_FUEL_THICK
 	flags_magazine = MAGAZINE_WORN
 	icon_state_mini = "tank"
-	flags_item = NO_FREE_REFILL
 
 	default_ammo = /datum/ammo/flamethrower
 

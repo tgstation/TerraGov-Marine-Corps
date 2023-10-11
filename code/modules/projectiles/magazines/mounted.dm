@@ -29,7 +29,6 @@
 	max_rounds = 500
 	default_ammo = /datum/ammo/bullet/machinegun
 	reload_delay = 10 SECONDS
-	flags_item = NO_FREE_REFILL
 
 /obj/item/ammo_magazine/heavymachinegun/small
 	name = "HMG-08 box magazine (10x30mm Caseless)"
