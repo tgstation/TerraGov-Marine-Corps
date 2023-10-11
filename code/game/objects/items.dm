@@ -1479,7 +1479,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 ///Returns FALSE if it's not elligible for refills
 /obj/item/proc/refill(mob/user)
 	SHOULD_CALL_PARENT(TRUE)
-	if(!free_refills)
+	if(flags_item & NO_FREE_REFILL)
 		user.balloon_alert(user, "Can't refill this")
 		return FALSE
 	return TRUE

@@ -389,6 +389,9 @@
 			if(current_turf && density)
 				current_turf.flags_atom &= ~AI_BLOCKED
 	else if(isitem(I))
+		if(I.flags_item & NO_FREE_REFILL)
+			user.balloon_alert(user, "Can't restock this")
+			return FALSE
 		var/obj/item/to_stock = I
 		stock(to_stock, user)
 

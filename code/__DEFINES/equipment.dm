@@ -85,6 +85,8 @@
 #define FULLY_WIELDED (1<<18) //If the item is properly wielded. Used for guns
 ///If a holster has underlay sprites
 #define HAS_UNDERLAY (1<<19)
+///If an item doesn't get free refills from vendors
+#define NO_FREE_REFILL (1<<20)
 
 //==========================================================================================
 

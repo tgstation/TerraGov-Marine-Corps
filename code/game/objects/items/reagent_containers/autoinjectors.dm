@@ -311,7 +311,7 @@
 	amount_per_transfer_from_this = 1
 	volume = 1
 	list_reagents = list(/datum/reagent/medicine/research/medicalnanites = 1)
-	free_refills = FALSE
+	flags_item = NO_FREE_REFILL
 
 /obj/item/reagent_containers/hypospray/autoinjector/pain //made for debugging
 	name = "liquid pain autoinjector"

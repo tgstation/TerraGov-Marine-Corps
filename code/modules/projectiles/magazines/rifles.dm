@@ -464,6 +464,7 @@
 	max_rounds = 8
 	greyscale_config = /datum/greyscale_config/ammo
 	greyscale_colors = COLOR_AMMO_AIRBURST
+	flags_item = NO_FREE_REFILL
 
 /obj/item/ammo_magazine/rifle/tx54/he
 	name = "\improper 20mm HE grenade magazine"
