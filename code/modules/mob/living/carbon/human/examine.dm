@@ -60,19 +60,21 @@
 		else
 			msg += "[t_He] [t_is] wearing [icon2html(wear_suit, user)] \a [wear_suit].\n"
 		if(istype(wear_suit, /obj/item/clothing/suit/modular))
+			var/armor_info
 			var/obj/item/clothing/suit/modular/wear_modular_suit = wear_suit
-			if(length(wear_modular_suit.contents))
+			if(wear_modular_suit.attachments_by_slot[ATTACHMENT_SLOT_CHESTPLATE])
+				armor_info += "	- [wear_modular_suit.attachments_by_slot[ATTACHMENT_SLOT_CHESTPLATE]].\n"
+			if(wear_modular_suit.attachments_by_slot[ATTACHMENT_SLOT_SHOULDER])
+				armor_info += "	- [wear_modular_suit.attachments_by_slot[ATTACHMENT_SLOT_SHOULDER]].\n"
+			if(wear_modular_suit.attachments_by_slot[ATTACHMENT_SLOT_KNEE])
+				armor_info += "	- [wear_modular_suit.attachments_by_slot[ATTACHMENT_SLOT_KNEE]].\n"
+			if(wear_modular_suit.attachments_by_slot[ATTACHMENT_SLOT_STORAGE])
+				armor_info += "	- [wear_modular_suit.attachments_by_slot[ATTACHMENT_SLOT_STORAGE]].\n"
+			if(wear_modular_suit.attachments_by_slot[ATTACHMENT_SLOT_MODULE])
+				armor_info += "	- [wear_modular_suit.attachments_by_slot[ATTACHMENT_SLOT_MODULE]].\n"
+			if(armor_info)
 				msg += "	It has the following attachments:\n"
-				if(wear_modular_suit.attachments_by_slot[ATTACHMENT_SLOT_CHESTPLATE])
-					msg += "	- [wear_modular_suit.attachments_by_slot[ATTACHMENT_SLOT_CHESTPLATE]].\n"
-				if(wear_modular_suit.attachments_by_slot[ATTACHMENT_SLOT_SHOULDER])
-					msg += "	- [wear_modular_suit.attachments_by_slot[ATTACHMENT_SLOT_SHOULDER]].\n"
-				if(wear_modular_suit.attachments_by_slot[ATTACHMENT_SLOT_KNEE])
-					msg += "	- [wear_modular_suit.attachments_by_slot[ATTACHMENT_SLOT_KNEE]].\n"
-				if(wear_modular_suit.attachments_by_slot[ATTACHMENT_SLOT_STORAGE])
-					msg += "	- [wear_modular_suit.attachments_by_slot[ATTACHMENT_SLOT_STORAGE]].\n"
-				if(wear_modular_suit.attachments_by_slot[ATTACHMENT_SLOT_MODULE])
-					msg += "	- [wear_modular_suit.attachments_by_slot[ATTACHMENT_SLOT_MODULE]].\n"
+				msg += armor_info
 
 		//suit/armour storage
 		if(s_store && !skipsuitstorage)
