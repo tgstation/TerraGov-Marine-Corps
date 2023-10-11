@@ -951,7 +951,7 @@
 	icon_state = "tex"
 	item_state = "tex"
 	max_shots = 40 //codex stuff
-	ammo_datum_type = /datum/ammo/energy/lasgun/marine/xray/standard
+	ammo_datum_type = /datum/ammo/energy/lasgun/marine/xray
 	rounds_per_shot = 15
 	attachable_allowed = list(
 		/obj/item/attachable/bayonet,
@@ -967,11 +967,6 @@
 		/obj/item/attachable/buildasentry,
 		/obj/item/weapon/gun/rifle/pepperball/pepperball_mini,
 		/obj/item/attachable/shoulder_mount,
-		/obj/item/attachable/gyro,
-		/obj/item/attachable/verticalgrip,
-		/obj/item/attachable/angledgrip,
-		/obj/item/attachable/flashlight/under,
-		/obj/item/attachable/foldable/bipod,
 	)
 
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_ENERGY|GUN_AMMO_COUNTER|GUN_NO_PITCH_SHIFT_NEAR_EMPTY|GUN_AMMO_COUNT_BY_SHOTS_REMAINING
@@ -981,7 +976,7 @@
 	wield_delay = 0.5 SECONDS
 	scatter = 0
 	scatter_unwielded = 10
-	fire_delay = 0.3 SECONDS
+	fire_delay = 0.5 SECONDS
 	accuracy_mult_unwielded = 0.55
 	damage_falloff_mult = 0.3
 	mode_list = list(
@@ -991,8 +986,8 @@
 
 /datum/lasrifle/energy_rifle_mode/xray
 	rounds_per_shot = 15
-	ammo_datum_type = /datum/ammo/energy/lasgun/marine/xray/standard
-	fire_delay = 0.3 SECONDS
+	ammo_datum_type = /datum/ammo/energy/lasgun/marine/xray
+	fire_delay = 0.5 SECONDS
 	fire_sound = 'sound/weapons/guns/fire/laser3.ogg'
 	message_to_user = "You set the xray rifle's charge mode to standard fire."
 	fire_mode = GUN_FIREMODE_AUTOMATIC
