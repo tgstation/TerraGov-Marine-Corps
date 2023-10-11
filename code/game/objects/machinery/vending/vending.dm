@@ -737,7 +737,7 @@
 
 		if(isreagentcontainer(item_to_stock))
 			var/obj/item/reagent_containers/reagent_container = item_to_stock
-			if(!reagent_container.free_refills && !reagent_container.has_initial_reagents())
+			if((reagent_container & NO_FREE_REFILL) && !reagent_container.has_initial_reagents())
 				display_message_and_visuals(user, show_feedback, "\The [reagent_container] is missing some of its reagents!", VENDING_RESTOCK_DENY)
 				return FALSE
 

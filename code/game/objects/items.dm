@@ -132,8 +132,6 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 
 	var/active = FALSE
 
-
-
 	//Coloring vars
 	///Some defines to determine if the item is allowed to be recolored.
 	var/colorable_allowed = NONE
@@ -143,11 +141,6 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 	var/list/icon_state_variants = list()
 	///Current variant selected.
 	var/current_variant
-
-	///Whether we can restock this in a vendor
-	var/free_refills = TRUE
-
-
 
 /obj/item/Initialize(mapload)
 

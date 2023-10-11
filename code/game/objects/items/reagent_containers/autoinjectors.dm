@@ -265,7 +265,7 @@
 		/datum/reagent/medicine/oxycodone = 10,
 	)
 	description_overlay = "Rr"
-	free_refills = FALSE
+	flags_item = NO_FREE_REFILL
 
 /obj/item/reagent_containers/hypospray/autoinjector/polyhexanide
 	name = "polyhexanide autoinjector"
