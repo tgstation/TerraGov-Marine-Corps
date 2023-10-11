@@ -1046,6 +1046,8 @@
 			/obj/item/clothing/head/modular/robot/light = -1,
 			/obj/item/clothing/head/modular/robot = -1,
 			/obj/item/clothing/head/modular/robot/heavy = -1,
+			/obj/item/clothing/gloves/marine/robot = -1,
+			/obj/item/clothing/shoes/marine/robot/full = -1,
 		),
 		"General" = list(
 			/obj/item/clothing/suit/modular = -1,

@@ -158,3 +158,22 @@
 
 /obj/item/clothing/shoes/marine/icc/guard/knife
 	starting_attachments = list(/obj/item/armor_module/storage/boot/full)
+
+/obj/item/clothing/shoes/marine/robot
+	name = "XF-1 tread armor plating"
+	desc = "Medium armor plating designed for self mounting on the feet of TerraGov combat robotics. It has self-sealing bolts for mounting on robotic owners inside."
+	icon_state = "reinforced"
+	item_state = "reinforced"
+	item_state_slots = list(slot_shoes_str = " ",)
+
+	species_exception = list(/datum/species/robot)
+	slowdown = NONE
+
+/obj/item/clothing/shoes/marine/robot/mob_can_equip(mob/user, slot, warning = TRUE, override_nodrop = FALSE, bitslot = FALSE)
+	. = ..()
+	if(!isrobot(user))
+		to_chat(user, span_warning("You can't equip this as it requires mounting bolts on your body!"))
+		return FALSE
+
+/obj/item/clothing/shoes/marine/robot/full
+	starting_attachments = list(/obj/item/armor_module/storage/boot/full)

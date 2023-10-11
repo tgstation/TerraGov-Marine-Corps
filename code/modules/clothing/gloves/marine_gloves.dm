@@ -121,3 +121,18 @@
 	desc = "Gloves worn by commissars of the Imperial Army so that they do not soil their hands with the blood of their men."
 	icon_state = "red"
 	soft_armor = list(MELEE = 35, BULLET = 30, LASER = 30, ENERGY = 30, BOMB = 15, BIO = 10, FIRE = 20, ACID = 20)
+
+/obj/item/clothing/gloves/marine/robot
+	name = "XH-1 hand armor plating"
+	desc = "Medium armor plating designed for self mounting on the hands of TerraGov combat robotics. It has self-sealing bolts for mounting on robotic owners inside."
+	icon_state = "gray"
+	item_state = "gray"
+	item_state_slots = list(slot_gloves_str = " ",)
+
+	species_exception = list(/datum/species/robot)
+
+/obj/item/clothing/gloves/marine/robot/mob_can_equip(mob/user, slot, warning = TRUE, override_nodrop = FALSE, bitslot = FALSE)
+	. = ..()
+	if(!isrobot(user))
+		to_chat(user, span_warning("You can't equip this as it requires mounting bolts on your body!"))
+		return FALSE
