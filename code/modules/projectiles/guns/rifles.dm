@@ -203,11 +203,15 @@
 	name = "\improper DMR-37 SCA designated marksman rifle"
 	desc = "The San Cristo Arms DMR-37 is the TerraGov Marine Corps designated marksman rifle. It is rather well-known for it's very consistent target placement at longer than usual range, it however lacks a burst fire mode or an automatic mode. It is mostly used by people who prefer to do more careful shooting than most. Uses 10x27mm caseless caliber."
 	icon = 'icons/Marine/gun64.dmi'
-	icon_state = "t37"
-	item_state = "t37"
+	icon_state = GUN_ICONSTATE_LOADED
+	item_state = GUN_ICONSTATE_LOADED
+	greyscale_config = /datum/greyscale_config/gun/gun64/t37
+	colorable_allowed = PRESET_COLORS_ALLOWED
 	item_icons = list(
-		slot_l_hand_str = 'icons/mob/items_lefthand_64.dmi',
-		slot_r_hand_str = 'icons/mob/items_righthand_64.dmi',
+		slot_l_hand_str = /datum/greyscale_config/gun_inhand/t37,
+		slot_r_hand_str = /datum/greyscale_config/gun_inhand/r_hand/t37,
+		slot_back_str = /datum/greyscale_config/worn_gun/t37,
+		slot_s_store_str = /datum/greyscale_config/worn_gun/suit/t37,
 	)
 	inhand_x_dimension = 64
 	inhand_y_dimension = 32
@@ -944,12 +948,16 @@
 	name = "\improper MG-60 Raummetall general purpose machine gun"
 	desc = "The Raummetall MG-60 general purpose machinegun is the TGMC's current standard GPMG. Though usually seen mounted on vehicles, it is sometimes used by infantry to hold chokepoints or suppress enemies, or in rare cases for marching fire. It uses 10x26mm boxes."
 	icon = 'icons/Marine/gun64.dmi'
-	icon_state = "t60"
-	item_state = "t60"
-	fire_animation = "t60_fire"
+	icon_state = GUN_ICONSTATE_LOADED
+	item_state = GUN_ICONSTATE_LOADED
+	fire_animation = "loaded_fire"
+	greyscale_config = /datum/greyscale_config/gun/gun64/t60
+	colorable_allowed = PRESET_COLORS_ALLOWED
 	item_icons = list(
-		slot_l_hand_str = 'icons/mob/items_lefthand_64.dmi',
-		slot_r_hand_str = 'icons/mob/items_righthand_64.dmi',
+		slot_l_hand_str = /datum/greyscale_config/gun_inhand/t60,
+		slot_r_hand_str = /datum/greyscale_config/gun_inhand/r_hand/t60,
+		slot_back_str = /datum/greyscale_config/worn_gun/t60,
+		slot_s_store_str = /datum/greyscale_config/worn_gun/suit/t60,
 	)
 	inhand_x_dimension = 64
 	inhand_y_dimension = 32
@@ -1451,11 +1459,15 @@
 	name = "\improper SR-127 Bauer bolt action rifle"
 	desc = "The Bauer SR-127 is the standard issue bolt action rifle used by the TGMC. Known for its long range accuracy and use by marksmen despite its age and lack of IFF, though careful aim allows fire support from behind. It has an irremoveable scope. Uses 8.6×70mm box magazines."
 	icon = 'icons/Marine/gun64.dmi'
-	icon_state = "tl127"
-	item_state = "tl127"
+	icon_state = GUN_ICONSTATE_LOADED
+	item_state = GUN_ICONSTATE_LOADED
+	greyscale_config = /datum/greyscale_config/gun/gun64/shotgun/tl127
+	colorable_allowed = PRESET_COLORS_ALLOWED
 	item_icons = list(
-		slot_l_hand_str = 'icons/mob/items_lefthand_64.dmi',
-		slot_r_hand_str = 'icons/mob/items_righthand_64.dmi',
+		slot_l_hand_str = /datum/greyscale_config/gun_inhand/tl127,
+		slot_r_hand_str = /datum/greyscale_config/gun_inhand/r_hand/tl127,
+		slot_back_str = /datum/greyscale_config/worn_gun/tl127,
+		slot_s_store_str = /datum/greyscale_config/worn_gun/suit/tl127,
 	)
 
 	inhand_x_dimension = 64
@@ -1489,7 +1501,7 @@
 	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER|GUN_SMOKE_PARTICLES
 	reciever_flags = AMMO_RECIEVER_REQUIRES_UNIQUE_ACTION|AMMO_RECIEVER_MAGAZINES|AMMO_RECIEVER_UNIQUE_ACTION_LOCKS|AMMO_RECIEVER_AUTO_EJECT
 
-	cock_animation = "tl127_cock"
+	cock_animation = GUN_ICONSTATE_PUMP
 	cocked_message = "You rack the bolt!"
 
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO)

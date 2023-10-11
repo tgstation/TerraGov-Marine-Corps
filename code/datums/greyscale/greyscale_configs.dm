@@ -252,12 +252,23 @@
 /datum/greyscale_config/gun/tx15
 	prefix = "tx15_"
 
+/datum/greyscale_config/gun/t90
+	prefix = "t90_"
+
 //Pistols
 /datum/greyscale_config/gun/pistol
 	json_config = 'code/datums/greyscale/json_configs/gun_pistol.json'
 	prefix = "tp14_"
 /datum/greyscale_config/gun/pistol/tp23
 	prefix = "tp23_"
+
+/datum/greyscale_config/gun/pistol/tx7
+	json_config = 'code/datums/greyscale/json_configs/gun_plasma_pistol.json'
+	prefix = "tx7_"
+
+/datum/greyscale_config/gun/pistol/tep
+	icon_file ='icons/Marine/greyscale_gun/gun_64.dmi'
+	prefix = "tep_"
 
 //Revolvers
 /datum/greyscale_config/gun/revolver
@@ -275,10 +286,32 @@
 /datum/greyscale_config/gun/gun64/t21
 	prefix = "t21_"
 
+/datum/greyscale_config/gun/gun64/t60
+	json_config = 'code/datums/greyscale/json_configs/gun_fire.json'
+	prefix = "t60_"
+
+/datum/greyscale_config/gun/gun64/t37
+	prefix = "t37_"
+
+/datum/greyscale_config/gun/gun64/ter
+	prefix = "ter_"
+
+/datum/greyscale_config/gun/gun64/tec
+	prefix = "tec_"
+
+/datum/greyscale_config/gun/gun64/tem
+	prefix = "tem_"
+
+/datum/greyscale_config/gun/gun64/tes
+	prefix = "tes_"
+
 
 /datum/greyscale_config/gun/gun64/shotgun
 	json_config = 'code/datums/greyscale/json_configs/gun_shotgun.json'
 	prefix = "t35_"
+
+/datum/greyscale_config/gun/gun64/shotgun/tl127
+	prefix = "tl127_"
 
 //Mob Sprites for guns
 
@@ -308,6 +341,30 @@
 /datum/greyscale_config/worn_gun/tx15
 	prefix = "tx15_"
 
+/datum/greyscale_config/worn_gun/t90
+	prefix = "t90_"
+
+/datum/greyscale_config/worn_gun/t37
+	prefix = "t37_"
+
+/datum/greyscale_config/worn_gun/ter
+	prefix = "ter_"
+
+/datum/greyscale_config/worn_gun/tec
+	prefix = "tec_"
+
+/datum/greyscale_config/worn_gun/tem
+	prefix = "tem_"
+
+/datum/greyscale_config/worn_gun/tes
+	prefix = "tes_"
+
+/datum/greyscale_config/worn_gun/t60
+	prefix = "t60_"
+
+/datum/greyscale_config/worn_gun/tl127
+	prefix = "tl127_"
+
 /datum/greyscale_config/worn_gun/suit
 	icon_file = 'icons/Marine/greyscale_gun/suit.dmi'
 
@@ -330,6 +387,28 @@
 	prefix = "tx11_"
 
 /datum/greyscale_config/worn_gun/suit/tx15
+	prefix = "tx15_"
+
+/datum/greyscale_config/worn_gun/suit/t90
+	prefix = "t90_"
+
+/datum/greyscale_config/worn_gun/suit/t37
+	prefix = "t37_"
+
+/datum/greyscale_config/worn_gun/suit/ter
+	prefix = "ter_"
+/datum/greyscale_config/worn_gun/suit/tec
+	prefix = "tec_"
+/datum/greyscale_config/worn_gun/suit/tem
+	prefix = "tem_"
+/datum/greyscale_config/worn_gun/suit/tes
+	prefix = "tes_"
+
+/datum/greyscale_config/worn_gun/suit/t60
+	prefix = "t60_"
+
+/datum/greyscale_config/worn_gun/suit/tl127
+	prefix = "tl127_"
 
 /datum/greyscale_config/gun_inhand
 	json_config = 'code/datums/greyscale/json_configs/gun_hands.json'
@@ -368,6 +447,35 @@
 /datum/greyscale_config/gun_inhand/tp44
 	prefix = "tp44_"
 
+/datum/greyscale_config/gun_inhand/t90
+	prefix = "t90_"
+
+/datum/greyscale_config/gun_inhand/t37
+	icon_file =  'icons/Marine/greyscale_gun/l_hand_64.dmi'
+	prefix = "t37_"
+
+/datum/greyscale_config/gun_inhand/ter
+	prefix = "ter_"
+/datum/greyscale_config/gun_inhand/tep
+	prefix = "tep_"
+/datum/greyscale_config/gun_inhand/tec
+	prefix = "tec_"
+/datum/greyscale_config/gun_inhand/tem
+	prefix = "tem_"
+/datum/greyscale_config/gun_inhand/tes
+	prefix = "tes_"
+
+/datum/greyscale_config/gun_inhand/tx7
+	prefix = "tx7_"
+
+/datum/greyscale_config/gun_inhand/t60
+	icon_file =  'icons/Marine/greyscale_gun/l_hand_64.dmi'
+	prefix = "t60_"
+
+/datum/greyscale_config/gun_inhand/tl127
+	icon_file =  'icons/Marine/greyscale_gun/l_hand_64.dmi'
+	prefix = "tl127_"
+
 /datum/greyscale_config/gun_inhand/r_hand
 	icon_file =  'icons/Marine/greyscale_gun/r_hand.dmi'
 
@@ -402,6 +510,35 @@
 
 /datum/greyscale_config/gun_inhand/r_hand/tp44
 	prefix = "tp44_"
+
+/datum/greyscale_config/gun_inhand/r_hand/t90
+	prefix = "t90_"
+
+/datum/greyscale_config/gun_inhand/r_hand/t37
+	icon_file =  'icons/Marine/greyscale_gun/r_hand_64.dmi'
+	prefix = "t37_"
+
+/datum/greyscale_config/gun_inhand/r_hand/ter
+	prefix = "ter_"
+/datum/greyscale_config/gun_inhand/r_hand/tep
+	prefix = "tep_"
+/datum/greyscale_config/gun_inhand/r_hand/tec
+	prefix = "tec_"
+/datum/greyscale_config/gun_inhand/r_hand/tem
+	prefix = "tem_"
+/datum/greyscale_config/gun_inhand/r_hand/tes
+	prefix = "tes_"
+
+/datum/greyscale_config/gun_inhand/r_hand/tx7
+	prefix = "tx7_"
+
+/datum/greyscale_config/gun_inhand/r_hand/t60
+	icon_file =  'icons/Marine/greyscale_gun/r_hand_64.dmi'
+	prefix = "t60_"
+
+/datum/greyscale_config/gun_inhand/r_hand/tl127
+	icon_file =  'icons/Marine/greyscale_gun/r_hand_64.dmi'
+	prefix = "tl127_"
 
 //Attachments
 /datum/greyscale_config/gun_attachment
