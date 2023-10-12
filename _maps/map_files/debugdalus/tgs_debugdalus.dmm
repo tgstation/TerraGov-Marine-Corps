@@ -2477,6 +2477,10 @@
 /obj/structure/cable,
 /turf/open/floor/mainship,
 /area/mainship/shipboard/weapon_room)
+"jPH" = (
+/obj/machinery/bot/cleanbot,
+/turf/open/floor/mainship,
+/area/mainship/medical/medical_science)
 "jRy" = (
 /obj/item/reagent_containers/food/snacks/grown/poppy,
 /turf/open/floor/mainship,
@@ -5318,7 +5322,7 @@ ahq
 ahO
 tZD
 tZD
-tZD
+jPH
 tZD
 aiW
 ahq

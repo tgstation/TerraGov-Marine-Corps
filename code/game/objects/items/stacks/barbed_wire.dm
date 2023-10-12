@@ -54,6 +54,7 @@
 	throwforce = 10
 	throw_range = 5
 	attack_verb = list("hit", "whacked", "sliced")
+	singular_name = "bundle"
 	max_amount = 10
 	merge_type = /obj/item/stack/razorwire
 

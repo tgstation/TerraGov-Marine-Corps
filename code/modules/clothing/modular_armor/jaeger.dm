@@ -149,6 +149,7 @@
 		/obj/item/armor_module/armor/visor/marine/trooper,
 		/obj/item/armor_module/armor/visor/marine/kabuto,
 		/obj/item/armor_module/armor/visor/marine/hotaru,
+		/obj/item/armor_module/armor/visor/marine/dashe,
 	)
 
 	starting_attachments = list(/obj/item/armor_module/armor/visor/marine, /obj/item/armor_module/storage/helmet)
@@ -231,3 +232,9 @@
 	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has Hotaru markings"
 	starting_attachments = list(/obj/item/armor_module/armor/visor/marine/hotaru, /obj/item/armor_module/storage/helmet)
 	greyscale_config = /datum/greyscale_config/armor_mk1/hotaru
+
+/obj/item/clothing/head/modular/marine/dashe
+	name = "Style Pattern Dashe Helmet"
+	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has Dashe markings"
+	starting_attachments = list(/obj/item/armor_module/armor/visor/marine/dashe, /obj/item/armor_module/storage/helmet)
+	greyscale_config = /datum/greyscale_config/armor_mk1/dashe

@@ -32,8 +32,8 @@
 				var/obj/structure/droppod/pod = p
 				if(!length(pod.buckled_mobs))
 					continue
-				var/predroptime = rand(5, 1 SECONDS)	//Randomize it a bit so its staggered
-				addtimer(CALLBACK(pod, TYPE_PROC_REF(/obj/structure/droppod, launchpod), pod.buckled_mobs[1]), predroptime)
+				var/predroptime = rand(3, 1 SECONDS)	//Randomize it a bit so its staggered
+				addtimer(CALLBACK(pod, TYPE_PROC_REF(/obj/structure/droppod, start_launch_pod), pod.buckled_mobs[1]), predroptime)
 			LAZYCLEARLIST(linked_pods)//Clear references for the next drop
 
 /obj/machinery/computer/droppod_control/ui_data(mob/user)

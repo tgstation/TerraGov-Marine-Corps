@@ -6529,7 +6529,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/living/briefing)
 "its" = (
-/obj/machinery/roomba,
+/obj/machinery/bot/roomba,
 /turf/open/floor/mainship,
 /area/mainship/squads/general)
 "iuw" = (
@@ -11247,6 +11247,7 @@
 /obj/machinery/camera/autoname/mainship{
 	dir = 1
 	},
+/obj/machinery/bot/cleanbot,
 /turf/open/floor/mainship/sterile/corner{
 	dir = 4
 	},
@@ -12610,6 +12611,7 @@
 /area/mainship/command/cic)
 "pRb" = (
 /obj/effect/spawner/random/misc/plant,
+/obj/machinery/bot/cleanbot,
 /turf/open/floor/mainship/mono,
 /area/mainship/medical/upper_medical)
 "pRo" = (

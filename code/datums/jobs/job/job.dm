@@ -184,10 +184,7 @@ GLOBAL_PROTECT(exp_specialmap)
 
 
 /datum/outfit/job/proc/handle_id(mob/living/carbon/human/H)
-	var/datum/job/job = SSjob.GetJobType(jobtype)
-	if(!job)
-		job = H.job
-
+	var/datum/job/job = H.job ? H.job : SSjob.GetJobType(jobtype)
 	var/obj/item/card/id/id = H.wear_id
 	if(istype(id))
 		id.access = job.get_access()
@@ -227,7 +224,7 @@ GLOBAL_PROTECT(exp_specialmap)
 /datum/job/proc/free_job_positions(amount)
 	if(amount <= 0)
 		CRASH("free_job_positions() called with amount: [amount]")
-	current_positions -= amount
+	current_positions = max(current_positions - amount, 0)
 	for(var/index in jobworth)
 		var/datum/job/scaled_job = SSjob.GetJobType(index)
 		if(!(scaled_job in SSjob.active_joinable_occupations))

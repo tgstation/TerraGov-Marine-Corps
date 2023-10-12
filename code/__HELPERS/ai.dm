@@ -39,6 +39,21 @@
 			continue
 		. += nearby_xeno
 
+///Returns a list of mechs via get_dist and same z level method, very cheap compared to range()
+/proc/cheap_get_mechs_near(atom/movable/source, distance)
+	. = list()
+	var/turf/source_turf = get_turf(source)
+	if(!source_turf)
+		return
+	for(var/obj/vehicle/sealed/mecha/nearby_mech AS in GLOB.mechas_list)
+		if(isnull(nearby_mech))
+			continue
+		if(source_turf.z != nearby_mech.z)
+			continue
+		if(get_dist(source_turf, nearby_mech) > distance)
+			continue
+		. += nearby_mech
+
 ///Returns the nearest target that has the right target flag
 /proc/get_nearest_target(atom/source, distance, target_flags, attacker_faction, attacker_hive)
 	if(!source)

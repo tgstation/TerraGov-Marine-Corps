@@ -85,6 +85,12 @@
 #define FULLY_WIELDED (1<<18) //If the item is properly wielded. Used for guns
 ///If a holster has underlay sprites
 #define HAS_UNDERLAY (1<<19)
+///is this item equipped into an inventory slot or hand of a mob?
+#define IN_INVENTORY (1<<20)
+
+//flags_storage
+///If a storage container can be restocked into a vendor
+#define BYPASS_VENDOR_CHECK (1<<0)
 
 //==========================================================================================
 
@@ -282,6 +288,8 @@ GLOBAL_LIST_INIT(slot_str_to_slot, list(
 			. = ITEM_SLOT_FEET
 		if(SLOT_WEAR_SUIT)
 			. = ITEM_SLOT_OCLOTHING
+		if(SLOT_S_STORE)
+			. = ITEM_SLOT_SUITSTORE
 		if(SLOT_W_UNIFORM)
 			. = ITEM_SLOT_ICLOTHING
 		if(SLOT_R_STORE)

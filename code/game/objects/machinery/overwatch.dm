@@ -164,10 +164,10 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	networks = list("som")
 	req_access = list(ACCESS_MARINE_BRIDGE)
 
-/obj/machinery/computer/camera_advanced/overwatch/som/main
-	icon_state = "overwatch_main"
-	name = "main Overwatch Console"
-	desc = "State of the art machinery for general overwatch purposes."
+/obj/machinery/computer/camera_advanced/overwatch/main/som
+	faction = FACTION_SOM
+	networks = list("som")
+	req_access = list(ACCESS_MARINE_BRIDGE)
 
 /obj/machinery/computer/camera_advanced/overwatch/som/zulu
 	name = "\improper Zulu Overwatch Console"

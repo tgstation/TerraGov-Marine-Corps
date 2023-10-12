@@ -73,7 +73,7 @@
 /obj/item/ammo_magazine/revolver/judge
 	name = "\improper Judge speed loader (.45L)"
 	desc = "A revolver speed loader for the Judge, these rounds have a high velocity propellant, leading to next to no scatter and falloff."
-	default_ammo = /datum/ammo/bullet/revolver/marksman
+	default_ammo = /datum/ammo/bullet/revolver/judge
 	caliber = CALIBER_45L
 	max_rounds = 5
 	icon_state = "m_m44"

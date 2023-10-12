@@ -333,7 +333,7 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 		CHECK_TICK
 
 	for(var/obj/effect/landmark/eord_roomba/landmark in GLOB.eord_roomba_spawns)
-		new /obj/machinery/roomba/valhalla/eord(get_turf(landmark))
+		new /obj/machinery/bot/roomba/valhalla/eord(get_turf(landmark))
 
 /datum/game_mode/proc/orphan_hivemind_collapse()
 	return
@@ -581,7 +581,7 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 	player.spawning = TRUE
 	player.create_character()
 	SSjob.spawn_character(player, TRUE)
-	player.mind.transfer_to(player.new_character)
+	player.mind.transfer_to(player.new_character, TRUE)
 	var/datum/job/job = player.assigned_role
 	job.on_late_spawn(player.new_character)
 	player.new_character.client?.init_verbs()
