@@ -56,6 +56,7 @@
 	flags_inventory = COVERMOUTH|BLOCKGASEFFECT
 	flags_inv_hide = HIDEEARS|HIDEFACE|HIDEALLHAIR
 	breathy = FALSE
+	voice_filter = null
 
 /obj/item/clothing/mask/gas/pmc/damaged
 	name = "damaged M8 pattern armored balaclava"
@@ -76,6 +77,7 @@
 	icon_state = "wolf_mask"
 	anti_hug = 2
 	breathy = FALSE
+	voice_filter = null
 
 /obj/item/clothing/mask/gas/icc
 	name = "\improper Modelle/60 gas mask"
@@ -134,6 +136,7 @@
 	icon_state = "sexyclown"
 	item_state = "sexyclown"
 	breathy = FALSE
+	voice_filter = null
 
 /obj/item/clothing/mask/gas/mime
 	name = "mime mask"
@@ -141,6 +144,7 @@
 	icon_state = "mime"
 	item_state = "mime"
 	breathy = FALSE
+	voice_filter = null
 
 /obj/item/clothing/mask/gas/monkeymask
 	name = "monkey mask"
@@ -149,6 +153,7 @@
 	item_state = "monkeymask"
 	flags_armor_protection = HEAD|FACE|EYES
 	breathy = FALSE
+	voice_filter = null
 
 /obj/item/clothing/mask/gas/sexymime
 	name = "sexy mime mask"
@@ -156,6 +161,7 @@
 	icon_state = "sexymime"
 	item_state = "sexymime"
 	breathy = FALSE
+	voice_filter = null
 
 /obj/item/clothing/mask/gas/death_commando
 	name = "Death Commando Mask"
@@ -168,6 +174,7 @@
 	desc = "Beep boop"
 	icon_state = "death"
 	breathy = FALSE
+	voice_filter = null
 
 /obj/item/clothing/mask/gas/owl_mask
 	name = "owl mask"
