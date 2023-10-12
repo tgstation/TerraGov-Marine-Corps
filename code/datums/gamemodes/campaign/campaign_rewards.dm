@@ -392,7 +392,7 @@
 /datum/campaign_reward/reserves
 	name = "Strategic Reserve"
 	desc = "Emergency reserve forces"
-	detailed_desc = "A strategic reserve force is activated to bolster your numbers, increasing your active attrition significantly. Additionally, the respawn delay for your team is reduced by 60 seconds. Can only be used when defending a mission, and only once per campaign."
+	detailed_desc = "A strategic reserve force is activated to bolster your numbers, increasing your active attrition significantly. Additionally, the respawn delay for your team is reduced by 90 seconds. Can only be used when defending a mission, and only once per campaign."
 	ui_icon = "reserve_force"
 	uses = 1
 	var/respawn_delay_mod = -90 SECONDS
