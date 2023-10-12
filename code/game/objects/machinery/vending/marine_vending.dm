@@ -1088,6 +1088,10 @@
 			/obj/item/armor_module/armor/chest/marine/hotaru = -1,
 			/obj/item/armor_module/armor/legs/marine/hotaru = -1,
 			/obj/item/armor_module/armor/arms/marine/hotaru = -1,
+			/obj/item/clothing/head/modular/marine/dashe = -1,
+			/obj/item/armor_module/armor/chest/marine/dashe = -1,
+			/obj/item/armor_module/armor/arms/marine/dashe = -1,
+			/obj/item/armor_module/armor/legs/marine/dashe = -1,
 		),
 		"Jaeger Mk.I chestpieces" = list(
 			/obj/item/armor_module/armor/chest/marine/skirmisher = -1,
@@ -1592,6 +1596,10 @@
 			/obj/item/weapon/gun/rifle/icc_assaultcarbine/export = -1,
 			/obj/item/ammo_magazine/rifle/icc_assaultcarbine = -1,
 			/obj/item/ammo_magazine/rifle/icc_assaultcarbine/export = -1,
+			/obj/item/weapon/gun/rifle/dpm = -1,
+			/obj/item/ammo_magazine/rifle/dpm = -1,
+			/obj/item/weapon/gun/clf_heavyrifle = -1,
+			/obj/item/shotgunbox/clf_heavyrifle = -1,
 		),
 		"PMC" = list(
 			/obj/item/weapon/gun/rifle/sniper/elite = -1,

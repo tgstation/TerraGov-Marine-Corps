@@ -1,5 +1,0 @@
-author: "hyper2snyper"
-delete-after: True
-changes:
-  - rscadd: "Hyperscales T12, T18, T81, T42, T21, T35, TP14, TP23, TP44, TX11, TX15"
-  - rscadd: "Hyperscales the agrip and vgrip."

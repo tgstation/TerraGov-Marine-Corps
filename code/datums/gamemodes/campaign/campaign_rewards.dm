@@ -173,9 +173,10 @@
 	)
 
 /datum/campaign_reward/equipment/ballistic_tgmc
-	name = "ballistic weapon resupply"
+	name = "ballistic weapon cache"
 	desc = "Ballistic weapons and ammo"
 	detailed_desc = "A number of standard ballistic weapons and ammo to match."
+	ui_icon = "ballistic"
 	uses = 1
 	cost = 2
 	equipment_to_spawn = list(
@@ -189,9 +190,10 @@
 	)
 
 /datum/campaign_reward/equipment/ballistic_som
-	name = "ballistic weapon resupply"
+	name = "ballistic weapon cache"
 	desc = "Ballistic weapons and ammo"
 	detailed_desc = "A number of standard ballistic weapons and ammo to match."
+	ui_icon = "ballistic"
 	uses = 1
 	cost = 3
 	equipment_to_spawn = list(
@@ -203,9 +205,10 @@
 	)
 
 /datum/campaign_reward/equipment/lasers
-	name = "Laser weapon resupply"
+	name = "Laser weapon cache"
 	desc = "Laser weapons and ammo"
 	detailed_desc = "A number of laser weapons and ammo to match."
+	ui_icon = "lasergun"
 	uses = 1
 	cost = 3
 	equipment_to_spawn = list(
@@ -218,9 +221,10 @@
 	)
 
 /datum/campaign_reward/equipment/volkite
-	name = "Volkite weapon resupply"
-	desc = "Volkite weaponry and ammo"
+	name = "Volkite weapon cache"
+	desc = "Volkite weapon cache and ammo"
 	detailed_desc = "A volkite caliver and charger, with accompanying ammo. Able to deflagrate targets, making them deadly against tightly packed opponents."
+	ui_icon = "volkite"
 	uses = 1
 	cost = 4
 	equipment_to_spawn = list(
@@ -232,6 +236,7 @@
 	name = "Scout rifle"
 	desc = "BR-8 and ammo"
 	detailed_desc = "A BR-8 scout rifle and assorted ammo. An accurate, powerful rifle with integrated IFF."
+	ui_icon = "scout"
 	uses = 2
 	cost = 6
 	equipment_to_spawn = list(
@@ -239,9 +244,10 @@
 	)
 
 /datum/campaign_reward/equipment/smart_guns
-	name = "Smartgun weapon resupply"
+	name = "Smartgun weapon cache"
 	desc = "Smartguns and ammo"
 	detailed_desc = "A SG-27 and SG-85 and ammo to match."
+	ui_icon = "smartgun"
 	uses = 1
 	cost = 4
 	equipment_to_spawn = list(
@@ -252,9 +258,10 @@
 	)
 
 /datum/campaign_reward/equipment/shotguns_tgmc
-	name = "Shotgun weapon resupply"
+	name = "Shotgun cache"
 	desc = "Shotgun and ammo"
 	detailed_desc = "A SH-35 and ammo to match."
+	ui_icon = "shotgun"
 	uses = 1
 	cost = 2
 	equipment_to_spawn = list(
@@ -263,9 +270,10 @@
 	)
 
 /datum/campaign_reward/equipment/shotguns_som
-	name = "Shotgun weapon resupply"
+	name = "Shotgun cache"
 	desc = "Shotgun and ammo"
 	detailed_desc = "A V-51 and ammo to match."
+	ui_icon = "shotgun"
 	uses = 1
 	cost = 2
 	equipment_to_spawn = list(
@@ -277,6 +285,7 @@
 	name = "Tyr 2 heavy armour"
 	desc = "Heavy armor upgrades"
 	detailed_desc = "A pair of heavy armor suits equipped with 'Tyr 2' armour upgrades. Premier protection, but somewhat cumbersome."
+	ui_icon = "tyr"
 	uses = 2
 	cost = 4
 	equipment_to_spawn = list(
@@ -288,6 +297,7 @@
 	name = "Defensive shields"
 	desc = "Heavy shields to hide behind"
 	detailed_desc = "A pair of heavy riot shields. Able to withstand a tremendous amount of punishment at the cost of occupying a hand and slowing you down."
+	ui_icon = "riot_shield"
 	uses = 2
 	cost = 3
 	equipment_to_spawn = list(
@@ -299,6 +309,7 @@
 	name = "Grenade resupply"
 	desc = "An assortment of grenades"
 	detailed_desc = "A variety of different grenade types. Throw towards enemy."
+	ui_icon = "grenade"
 	uses = 2
 	cost = 6
 	equipment_to_spawn = list(
@@ -310,6 +321,7 @@
 	name = "Tactical binoculars"
 	desc = "One set of tactical binoculars"
 	detailed_desc = "Tactical binoculars for seeing into the distance and calling down air support."
+	ui_icon = "binoculars"
 	uses = 1
 	cost = 3
 	equipment_to_spawn = list(
@@ -320,6 +332,7 @@
 	name = "Lorica heavy armour"
 	desc = "Heavy armor upgrades"
 	detailed_desc = "A pair of heavy armor suits equipped with 'Lorica' armour upgrades. Premier protection, but somewhat cumbersome."
+	ui_icon = "lorica"
 	uses = 2
 	cost = 4
 	equipment_to_spawn = list(
@@ -331,6 +344,7 @@
 	name = "Defensive shields"
 	desc = "Heavy shields to hide behind"
 	detailed_desc = "A pair of heavy riot shields. Able to withstand a tremendous amount of punishment at the cost of occupying a hand and slowing you down."
+	ui_icon = "riot_shield"
 	uses = 2
 	cost = 3
 	equipment_to_spawn = list(
@@ -342,6 +356,7 @@
 	name = "Grenade resupply"
 	desc = "An assortment of grenades"
 	detailed_desc = "A variety of different grenade types. Throw towards enemy."
+	ui_icon = "grenade"
 	uses = 2
 	cost = 6
 	equipment_to_spawn = list(
@@ -353,6 +368,7 @@
 	name = "Anti-tank mines"
 	desc = "10 Anti-tank mines"
 	detailed_desc = "M92 anti-tank mines. Extremely effective against mechs, but will not trigger against human targets."
+	ui_icon = "at_mine"
 	uses = 1
 	cost = 3
 	equipment_to_spawn = list(
@@ -364,6 +380,7 @@
 	name = "Tactical binoculars"
 	desc = "One set of tactical binoculars"
 	detailed_desc = "Tactical binoculars for seeing into the distance and calling down air support."
+	ui_icon = "binoculars"
 	uses = 1
 	cost = 3
 	equipment_to_spawn = list(

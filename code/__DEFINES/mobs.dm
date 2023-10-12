@@ -674,11 +674,6 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define DRONE_ESSENCE_LINK_REGEN 0.012 // Amount of health regen given as a percentage.
 #define DRONE_ESSENCE_LINK_SHARED_HEAL 0.1 // The effectiveness of heals when applied to the other linked xeno, as a percentage
 
-//Runner defines
-#define RUNNER_EVASION_DURATION 2 SECONDS //How long Evasion lasts.
-#define RUNNER_EVASION_RUN_DELAY 0.5 SECONDS //If the time since the Runner last moved is equal to or greater than this, its Evasion ends.
-#define RUNNER_EVASION_COOLDOWN_REFRESH_THRESHOLD 120 //If we dodge this much damage times our streak count plus 1 while evading, refresh the cooldown of Evasion.
-
 //Baneling defines
 #define BANELING_CHARGE_MAX 2
 #define BANELING_CHARGE_GAIN_TIME 240 SECONDS

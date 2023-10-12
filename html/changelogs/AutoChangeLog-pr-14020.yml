@@ -1,6 +1,0 @@
-author: "RipGrayson"
-delete-after: True
-changes:
-  - refactor: "Genericized some Roomba code so future contributors can more easily add new utility bot types."
-  - rscadd: "Added a new version of cleanbots that only cleans blood and trash."
-  - rscadd: "Added cleanbots to all shipside medbays."
