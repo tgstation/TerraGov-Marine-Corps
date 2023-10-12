@@ -1,0 +1,4 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - qol: "Campaign firesupport binos show current mode uses and cooldown remaining if applicable"
