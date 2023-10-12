@@ -147,6 +147,8 @@
 					sentence = emote.message,
 					emote_type = (emote.spoken_emote ? "say" : "me"),
 					)
+		if(DRAW_ORDER)
+			data["slot_draw_order"] = list(SLOT_DRAW_ORDER)
 	return data
 
 /datum/preferences/ui_static_data(mob/user)
@@ -210,6 +212,9 @@
 					desc = kb.description,
 					category = kb.category,
 				))
+		if(DRAW_ORDER)
+			.["slot_draw_order"] = DEFAULT_SLOT_DRAW_ORDER
+
 
 /datum/preferences/ui_act(action, list/params, datum/tgui/ui)
 	. = ..()

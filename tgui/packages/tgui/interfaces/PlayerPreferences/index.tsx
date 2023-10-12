@@ -7,6 +7,7 @@ import { JobPreferences } from './JobPreferences';
 import { GameSettings } from './GameSettings';
 import { KeybindSettings } from './KeybindSettings';
 import { BackgroundInformation } from './BackgroundInformation';
+import { DrawOrder } from './DrawOrder';
 
 export const PlayerPreferences = (props, context) => {
   const { act, data } = useBackend<PlayerPreferencesData>(context);
@@ -37,6 +38,9 @@ export const PlayerPreferences = (props, context) => {
       break;
     case 6:
       CurrentTab = KeybindSettings;
+      break;
+    case 7:
+      CurrentTab = DrawOrder;
       break;
     default:
   }
@@ -112,6 +116,11 @@ const NavigationSelector = (props, context) => {
         selected={tabIndex === 6}
         onClick={() => act('tab_change', { tabIndex: 6 })}>
         Keybindings
+      </Tabs.Tab>
+      <Tabs.Tab
+        selected={tabIndex === 7}
+        onClick={() => act('tab_change', { tabIndex: 7 })}>
+        Draw Order
       </Tabs.Tab>
     </Tabs>
   );

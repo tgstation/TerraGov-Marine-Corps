@@ -109,6 +109,7 @@
 #define JOB_PREFERENCES 4
 #define GAME_SETTINGS 5
 #define KEYBIND_SETTINGS 6
+#define DRAW_ORDER 7
 
 #define CITIZENSHIP_CHOICES list(\
 	"Earth Born",\
@@ -197,3 +198,33 @@
 	"End of Round Deathmatch" = BE_DEATHMATCH,\
 	"Prefer Squad over Role" = BE_SQUAD_STRICT\
 	)
+
+
+#define DEFAULT_SLOT_DRAW_ORDER list(\
+	SLOT_IN_HOLSTER,\
+	SLOT_IN_S_HOLSTER,\
+	SLOT_IN_B_HOLSTER,\
+	SLOT_IN_BACKPACK, \
+	SLOT_IN_ACCESSORY,\
+	SLOT_S_STORE,\
+	SLOT_IN_L_POUCH,\
+	SLOT_IN_R_POUCH,\
+	SLOT_BELT,\
+	SLOT_IN_BELT,\
+	SLOT_WEAR_SUIT,\
+	SLOT_IN_STORAGE,\
+	SLOT_L_STORE,\
+	SLOT_R_STORE,\
+	SLOT_BACK,\
+	SLOT_IN_BOOT,\
+	SLOT_IN_HEAD\
+)
+
+
+
+
+
+
+
+
+
