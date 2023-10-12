@@ -52,6 +52,14 @@
 			msg += "[span_warning("[t_He] [t_is] wearing [icon2html(head, user)] [head.gender==PLURAL?"some":"a"] [(head.blood_color != "#030303") ? "blood" : "oil"]-stained [head.name] on [t_his] head!")]\n"
 		else
 			msg += "[t_He] [t_is] wearing [icon2html(head, user)] \a [head] on [t_his] head.\n"
+		if(istype(head, /obj/item/clothing/head/modular))
+			var/head_info
+			var/obj/item/clothing/head/modular/wear_head = head
+			if(wear_head.attachments_by_slot[ATTACHMENT_SLOT_HEAD_MODULE])
+				head_info += "	- [wear_head.attachments_by_slot[ATTACHMENT_SLOT_HEAD_MODULE]].\n"
+			if(head_info)
+				msg += "	It has the following attachments:\n"
+				msg += head_info
 
 	//suit/armour
 	if(wear_suit)
