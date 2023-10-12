@@ -161,8 +161,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	else
 		recast = FALSE
 		add_cooldown()
-
-	X.reset_allow_pass_flags()
+	X.pass_flags = initial(X.pass_flags)
 	recast_available = FALSE
 	UnregisterSignal(owner, list(COMSIG_XENO_OBJ_THROW_HIT, COMSIG_MOVABLE_POST_THROW, COMSIG_XENO_LIVING_THROW_HIT, COMSIG_MOVABLE_MOVED))
 
