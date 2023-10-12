@@ -151,7 +151,7 @@
 		balloon_alert(user, "Turned off")
 	else
 		balloon_alert(user, "Insufficient charge")
-		to_chat(user, span_warning("The plasma cutter has inadequate charge remaining! Give the internal battery time to recharge, or attack a living creature! <b>Charge Remaining: [cell.charge]/[cell.maxcharge]</b>"))
+		to_chat(user, span_warning("The plasma cutter has inadequate charge remaining! Give the internal battery time to recharge! <b>Charge Remaining: [cell.charge]/[cell.maxcharge]</b>"))
 
 /obj/item/tool/pickaxe/plasmacutter/proc/start_cut(mob/user, name = "", atom/source, charge_amount = PLASMACUTTER_BASE_COST, custom_string, no_string, SFX = TRUE)
 	if(!(cell.charge >= charge_amount) || !powered) //Check power
@@ -255,11 +255,6 @@
 		spark_system.set_up(5, 0, M)
 		spark_system.attach(M)
 		spark_system.start(M)
-		if(isxeno(M) && M.stat != DEAD)
-			cell.charge += 200
-			var/mob/living/carbon/xenomorph/xeno = M
-			if(!CHECK_BITFIELD(xeno.xeno_caste.caste_flags, CASTE_PLASMADRAIN_IMMUNE))
-				xeno.use_plasma(round(xeno.xeno_caste.plasma_regen_limit * xeno.xeno_caste.plasma_max * 0.2)) //One fifth of the xeno's regeneratable plasma per hit.
 	return ..()
 
 
