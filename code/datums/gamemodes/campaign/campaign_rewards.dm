@@ -15,12 +15,16 @@
 #define REWARD_ACTIVE_MISSION_ONLY (1<<4)
 ///Temporarily unusable
 #define REWARD_DISABLED (1<<5)
-///Currently active, used for UI purposes
+///Currently active
 #define REWARD_ACTIVE (1<<6)
 ///debuff, used for UI purposes
 #define REWARD_DEBUFF (1<<7)
 ///SL's can activate this reward
 #define REWARD_SL_AVAILABLE (1<<8)
+///Can only use one per mission or until otherwise deactivated
+#define REWARD_DISALLOW_REPEAT_USE (1<<9)
+///Reward will be marked as 'active'and be disabled at the end of the mission
+#define REWARD_DISABLE_ON_MISSION_END (1<<10)
 
 /datum/campaign_reward
 	///Name of this reward
@@ -37,8 +41,14 @@
 	var/uses = 1
 	///Cost in attrition points if this reward is purchased
 	var/cost = 1
-
+	///Iconstate for UI
 	var/ui_icon = "test"
+	///Message if this asset is already active and can't be activated again
+	var/already_active_message = "Asset already active."
+	///Missions flags that prevent the use of this asset
+	var/blacklist_mission_flags = NONE
+	///Feedback message if this asset is unusable during this mission
+	var/blacklist_message = "Unavailable during this mission."
 
 /datum/campaign_reward/New(datum/faction_stats/winning_faction)
 	. = ..()
@@ -52,23 +62,47 @@
 	faction = null
 	return ..()
 
-///Triggers any active effects of this reward
-/datum/campaign_reward/proc/activated_effect() //this shit should probably be in some checker proc for sanity
+///Handles the activated asset process
+/datum/campaign_reward/proc/attempt_activatation()
+	if(activation_checks())
+		return FALSE
+
+	activated_effect()
+
+	if(reward_flags & REWARD_DISABLE_ON_MISSION_END)
+		reward_flags |= REWARD_ACTIVE
+		RegisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_MISSION_ENDED, TYPE_PROC_REF(/datum/campaign_reward, deactivate), override = TRUE) //Some rewards can be used multiple times per mission
+
+	uses --
+	if(uses <= 0)
+		reward_flags |= REWARD_CONSUMED
+	return TRUE
+
+///Returns TRUE if unable to be activated
+/datum/campaign_reward/proc/activation_checks()
 	SHOULD_CALL_PARENT(TRUE)
 	if((reward_flags & REWARD_CONSUMED) || reward_flags & REWARD_DISABLED || uses <= 0)
-		return FALSE
+		return TRUE
+
+	if((reward_flags & REWARD_DISALLOW_REPEAT_USE) && (reward_flags & REWARD_ACTIVE))
+		to_chat(faction.faction_leader, span_warning(already_active_message))
+		return TRUE
 
 	if(reward_flags & REWARD_ACTIVE_MISSION_ONLY)
 		var/datum/game_mode/hvh/campaign/mode = SSticker.mode
 		var/datum/campaign_mission/current_mission = mode.current_mission
 		if(!current_mission || (current_mission.mission_state == MISSION_STATE_FINISHED))
 			to_chat(faction.faction_leader, span_warning("Unavailable until next mission confirmed."))
-			return
+			return TRUE
+		if(blacklist_mission_flags & current_mission.mission_flags)
+			to_chat(faction.faction_leader, span_warning(blacklist_message))
+			return TRUE
 
-	uses --
-	if(uses <= 0)
-		reward_flags |= REWARD_CONSUMED
-	return TRUE
+	return FALSE
+
+///Triggers any active effects of this reward
+/datum/campaign_reward/proc/activated_effect()
+	return
 
 ///Triggers any immediate effects of this reward
 /datum/campaign_reward/proc/immediate_effect()
@@ -93,10 +127,6 @@
 	var/list/obj/equipment_to_spawn = list()
 
 /datum/campaign_reward/equipment/activated_effect()
-	. = ..()
-	if(!.)
-		return
-
 	var/turf/spawn_location = get_turf(pick(GLOB.campaign_reward_spawners[faction.faction]))
 	playsound(spawn_location,'sound/effects/phasein.ogg', 80, FALSE)
 	for(var/obj/object AS in equipment_to_spawn)
@@ -395,27 +425,26 @@
 	detailed_desc = "A strategic reserve force is activated to bolster your numbers, increasing your active attrition significantly. Additionally, the respawn delay for your team is reduced by 90 seconds. Can only be used when defending a mission, and only once per campaign."
 	ui_icon = "reserve_force"
 	uses = 1
+	reward_flags = REWARD_ACTIVATED_EFFECT|REWARD_DISABLE_ON_MISSION_END|REWARD_DISALLOW_REPEAT_USE
+	///How much the faction's respawn delay is modified by
 	var/respawn_delay_mod = -90 SECONDS
 
-/datum/campaign_reward/reserves/activated_effect()
+/datum/campaign_reward/reserves/activation_checks()
+	. = ..()
+	if(.)
+		return
 	var/datum/game_mode/hvh/campaign/mode = SSticker.mode
 	var/datum/campaign_mission/current_mission = mode.current_mission
-	if(current_mission.mission_state != MISSION_STATE_ACTIVE)
+	if(current_mission.mission_state != MISSION_STATE_ACTIVE) //we specifically want ONLY the active state, not the new state
 		to_chat(faction.faction_leader, span_warning("You cannot call in the strategic reserve before the mission starts!"))
-		return
+		return TRUE
 	if(current_mission.hostile_faction != faction.faction)
 		to_chat(faction.faction_leader, span_warning("You can only call in the strategic reserve when defending!"))
-		return
+		return TRUE
 
-	. = ..()
-	if(!.)
-		return
-
+/datum/campaign_reward/reserves/activated_effect()
 	faction.active_attrition_points += round(length(GLOB.clients) * 0.3)
 	faction.respawn_delay_modifier += respawn_delay_mod
-
-	reward_flags |= REWARD_ACTIVE
-	RegisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_MISSION_ENDED, TYPE_PROC_REF(/datum/campaign_reward, deactivate), override = TRUE)
 
 /datum/campaign_reward/reserves/deactivate()
 	. = ..()
@@ -430,10 +459,6 @@
 	var/obj/effect/landmark/campaign/mech_spawner/spawner_type = /obj/effect/landmark/campaign/mech_spawner
 
 /datum/campaign_reward/mech/activated_effect()
-	. = ..()
-	if(!.)
-		return
-
 	for(var/obj/effect/landmark/campaign/mech_spawner/faction_spawner AS in GLOB.campaign_mech_spawners[faction.faction])
 		if(faction_spawner.type == spawner_type)
 			faction_spawner.spawn_mech()
@@ -465,21 +490,14 @@
 
 //Parent for all bonus role rewards
 /datum/campaign_reward/bonus_job
+	reward_flags = REWARD_ACTIVATED_EFFECT|REWARD_DISABLE_ON_MISSION_END
 	///list of bonus jobs to grant for this reward
 	var/list/datum/job/bonus_job_list = list()
 
 /datum/campaign_reward/bonus_job/activated_effect()
-	. = ..()
-	if(!.)
-		return
-
 	for(var/job_type in bonus_job_list)
 		var/datum/job/bonus_job = SSjob.type_occupations[job_type]
 		bonus_job.add_job_positions(bonus_job_list[job_type])
-
-	reward_flags |= REWARD_ACTIVE
-
-	RegisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_MISSION_ENDED, TYPE_PROC_REF(/datum/campaign_reward, deactivate), override = TRUE) //you could use this multiple times per mission
 
 //Removes the job slots once the mission is over
 /datum/campaign_reward/bonus_job/deactivate()
@@ -622,10 +640,6 @@
 	cost = 6
 
 /datum/campaign_reward/teleporter_charges/activated_effect()
-	. = ..()
-	if(!.)
-		return
-
 	for(var/obj/structure/teleporter_array/teleporter AS in GLOB.teleporter_arrays)
 		if(teleporter.faction != faction.faction)
 			continue
@@ -640,39 +654,37 @@
 	ui_icon = "tele_active"
 	uses = 2
 	cost = 5
-	reward_flags = REWARD_ACTIVATED_EFFECT|REWARD_ACTIVE_MISSION_ONLY
+	reward_flags = REWARD_ACTIVATED_EFFECT|REWARD_ACTIVE_MISSION_ONLY|REWARD_DISABLE_ON_MISSION_END|REWARD_DISALLOW_REPEAT_USE
+	already_active_message = "The Teleporter Array is already activated!"
+	blacklist_mission_flags = MISSION_DISALLOW_TELEPORT
+	blacklist_message = "External factors prevent the use of the teleporter at this time. Teleporter unavailable."
+	///The teleporter associated with this asset
+	var/obj/structure/teleporter_array/linked_teleporter
 
-/datum/campaign_reward/teleporter_enabled/activated_effect()
-	if(reward_flags & REWARD_ACTIVE)
-		to_chat(faction.faction_leader, span_warning("The Teleporter Array is already activated!"))
+/datum/campaign_reward/teleporter_enabled/activation_checks()
+	. = ..()
+	if(.)
 		return
 	var/datum/game_mode/hvh/campaign/mode = SSticker.mode
 	var/datum/campaign_mission/current_mission = mode.current_mission
-	if(current_mission.mission_flags & MISSION_DISALLOW_TELEPORT)
-		to_chat(faction.faction_leader, span_warning("External factors prevent the use of the teleporter at this time. Teleporter unavailable."))
-		return
 	if(!current_mission.mission_z_level)
 		to_chat(faction.faction_leader, span_warning("New battlefield co-ordinates loading. Please try again in a moment."))
-		return
-	var/obj/structure/teleporter_array/friendly_teleporter
+		return TRUE
+	if(linked_teleporter)
+		return FALSE
 	for(var/obj/structure/teleporter_array/teleporter AS in GLOB.teleporter_arrays)
 		if(teleporter.faction != faction.faction)
 			continue
 		if(teleporter.teleporter_status == TELEPORTER_ARRAY_INOPERABLE)
 			to_chat(faction.faction_leader, span_warning("The Teleporter Array has been permanently disabled due to the destruction of the linked Bluespace drive."))
-			return
-		friendly_teleporter = teleporter
-		break
-	if(!friendly_teleporter)
-		CRASH("no teleporter found")
-	. = ..()
-	if(!.)
-		return
+			return TRUE
+		linked_teleporter = teleporter
+		return FALSE
+	return TRUE
 
-	friendly_teleporter.teleporter_status = TELEPORTER_ARRAY_READY
+/datum/campaign_reward/teleporter_enabled/activated_effect()
+	linked_teleporter.teleporter_status = TELEPORTER_ARRAY_READY
 	to_chat(faction.faction_leader, span_warning("Teleporter Array powered up. Link to Bluespace drive confirmed. Ready for teleportation."))
-	reward_flags |= REWARD_ACTIVE
-	RegisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_MISSION_ENDED, TYPE_PROC_REF(/datum/campaign_reward, deactivate))
 
 /datum/campaign_reward/droppod_refresh
 	name = "Rearm drop pod bays"
@@ -683,10 +695,6 @@
 	cost = 10
 
 /datum/campaign_reward/droppod_refresh/activated_effect()
-	. = ..()
-	if(!.)
-		return
-
 	var/datum/game_mode/hvh/campaign/mode = SSticker.mode
 	var/datum/campaign_mission/current_mission = mode.current_mission
 	var/z_level = mode?.current_mission?.mission_z_level.z_value
@@ -700,7 +708,6 @@
 	for(var/obj/structure/drop_pod_launcher/launcher AS in GLOB.droppod_bays)
 		launcher.refresh_pod(z_level, active)
 	to_chat(faction.faction_leader, span_warning("All drop pods have been restocked."))
-	return
 
 /datum/campaign_reward/droppod_enabled
 	name = "Enable drop pods"
@@ -709,29 +716,24 @@
 	ui_icon = "droppod_active"
 	uses = 3
 	cost = 9
-	reward_flags = REWARD_ACTIVATED_EFFECT|REWARD_ACTIVE_MISSION_ONLY
+	reward_flags = REWARD_ACTIVATED_EFFECT|REWARD_ACTIVE_MISSION_ONLY|REWARD_DISABLE_ON_MISSION_END|REWARD_DISALLOW_REPEAT_USE
+	already_active_message = "Ship already repositioned to allow for drop pod usage."
+	blacklist_mission_flags = MISSION_DISALLOW_DROPPODS
+	blacklist_message = "External factors prevent the ship from repositioning at this time. Drop pods unavailable."
 
-/datum/campaign_reward/droppod_enabled/activated_effect()
-	if(reward_flags & REWARD_ACTIVE)
-		to_chat(faction.faction_leader, span_warning("Ship already repositioned to allow for drop pod usage."))
+/datum/campaign_reward/droppod_enabled/activation_checks()
+	. = ..()
+	if(.)
 		return
 	var/datum/game_mode/hvh/campaign/mode = SSticker.mode
 	var/datum/campaign_mission/current_mission = mode.current_mission
-	if(current_mission.mission_flags & MISSION_DISALLOW_DROPPODS)
-		to_chat(faction.faction_leader, span_warning("External factors prevent the ship from repositioning at this time. Drop pods unavailable."))
-		return
 	if(!current_mission.mission_z_level)
 		to_chat(faction.faction_leader, span_warning("New battlefield co-ordinates loading. Please try again in a moment."))
-		return
+		return TRUE
 
-	. = ..()
-	if(!.)
-		return
-
+/datum/campaign_reward/droppod_enabled/activated_effect()
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_CAMPAIGN_ENABLE_DROPPODS)
 	to_chat(faction.faction_leader, span_warning("Ship repositioned, drop pods are now ready for use."))
-	reward_flags |= REWARD_ACTIVE
-	RegisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_MISSION_ENDED, TYPE_PROC_REF(/datum/campaign_reward, deactivate))
 
 /datum/campaign_reward/droppod_disable
 	name = "Disable drop pods"
@@ -740,18 +742,12 @@
 	ui_icon = "droppod_broken"
 	uses = 2
 	reward_flags = REWARD_ACTIVATED_EFFECT|REWARD_ACTIVE_MISSION_ONLY
+	blacklist_mission_flags = MISSION_DISALLOW_DROPPODS
+	blacklist_message = "Enemy drop pods already unable to deploy during this mission."
 
 /datum/campaign_reward/droppod_disable/activated_effect()
 	var/datum/game_mode/hvh/campaign/mode = SSticker.mode
 	var/datum/campaign_mission/current_mission = mode.current_mission
-	if(current_mission.mission_flags & MISSION_DISALLOW_DROPPODS)
-		to_chat(faction.faction_leader, span_warning("Enemy drop pods already unable to deploy during this mission."))
-		return
-
-	. = ..()
-	if(!.)
-		return
-
 	current_mission.mission_flags |= MISSION_DISALLOW_DROPPODS
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_CAMPAIGN_DISABLE_DROPPODS)
 	to_chat(faction.faction_leader, span_warning("Orbital deterrence systems activated. Enemy drop pods disabled for this mission."))
@@ -763,7 +759,9 @@
 	ui_icon = "cas"
 	uses = 1
 	cost = 15
-	reward_flags = REWARD_ACTIVATED_EFFECT|REWARD_ACTIVE_MISSION_ONLY
+	reward_flags = REWARD_ACTIVATED_EFFECT|REWARD_ACTIVE_MISSION_ONLY|REWARD_DISABLE_ON_MISSION_END
+	blacklist_mission_flags = MISSION_DISALLOW_FIRESUPPORT
+	blacklist_message = "Fire support unavailable during this mission."
 	var/list/fire_support_types = list(
 		FIRESUPPORT_TYPE_GUN = 4,
 		FIRESUPPORT_TYPE_ROCKETS = 2,
@@ -772,24 +770,10 @@
 	)
 
 /datum/campaign_reward/fire_support/activated_effect()
-	var/datum/game_mode/hvh/campaign/mode = SSticker.mode
-	var/datum/campaign_mission/current_mission = mode.current_mission
-	if(current_mission.mission_flags & MISSION_DISALLOW_FIRESUPPORT)
-		to_chat(faction.faction_leader, span_warning("Fire support unavailable during this mission."))
-		return
-
-	. = ..()
-	if(!.)
-		return
-
 	for(var/firesupport_type in fire_support_types)
 		var/datum/fire_support/fire_support_option = GLOB.fire_support_types[firesupport_type]
 		fire_support_option.enable_firesupport(fire_support_types[firesupport_type])
 
-	reward_flags |= REWARD_ACTIVE
-	RegisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_MISSION_ENDED, TYPE_PROC_REF(/datum/campaign_reward, deactivate), override = TRUE) //you could use this multiple times per mission
-
-///Turns off the fire support and resets its uses
 /datum/campaign_reward/fire_support/deactivate()
 	. = ..()
 	for(var/firesupport_type in fire_support_types)
@@ -808,7 +792,7 @@
 	desc = "Mortar teams are activated to provide firesupport for this mission"
 	detailed_desc = "Activatable by squad leaders. A limited number of mortar strikes are available via tactical binoculars for this mission. Excellent for disrupting dug in enemy positions."
 	ui_icon = "mortar"
-	reward_flags = REWARD_ACTIVATED_EFFECT|REWARD_ACTIVE_MISSION_ONLY|REWARD_SL_AVAILABLE
+	reward_flags = REWARD_ACTIVATED_EFFECT|REWARD_ACTIVE_MISSION_ONLY|REWARD_DISABLE_ON_MISSION_END|REWARD_SL_AVAILABLE
 	cost = 6
 	fire_support_types = list(
 		FIRESUPPORT_TYPE_HE_MORTAR = 6,
@@ -822,7 +806,7 @@
 	desc = "Mortar teams are activated to provide firesupport for this mission"
 	detailed_desc = "Activatable by squad leaders. A limited number of mortar strikes are available via tactical binoculars for this mission. Excellent for disrupting dug in enemy positions."
 	ui_icon = "mortar"
-	reward_flags = REWARD_ACTIVATED_EFFECT|REWARD_ACTIVE_MISSION_ONLY|REWARD_SL_AVAILABLE
+	reward_flags = REWARD_ACTIVATED_EFFECT|REWARD_ACTIVE_MISSION_ONLY|REWARD_DISABLE_ON_MISSION_END|REWARD_SL_AVAILABLE
 	cost = 6
 	fire_support_types = list(
 		FIRESUPPORT_TYPE_HE_MORTAR_SOM = 6,
@@ -831,7 +815,7 @@
 		FIRESUPPORT_TYPE_SATRAPINE_SMOKE_MORTAR = 2,
 	)
 
-//This is a malus effect, some other active disabling ability may belong to the team doing the disabling
+//This is a malus effect, attached to the victim faction
 /datum/campaign_reward/reward_disabler
 	name = "REWARD_DISABLER"
 	desc = "base type of disabler, you shouldn't see this."
@@ -840,19 +824,24 @@
 	reward_flags = REWARD_IMMEDIATE_EFFECT|REWARD_DEBUFF
 	///The types of rewards disabled
 	var/list/types_disabled
-	///Any mission flags that will override this disabler
-	var/override_flags = NONE
 	///Rewards currently disabled. Recorded to reenable later
 	var/list/types_currently_disabled = list()
 
-/datum/campaign_reward/reward_disabler/activated_effect()
+/datum/campaign_reward/reward_disabler/immediate_effect()
+	RegisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_MISSION_LOADED, PROC_REF(trigger_disabler))
+
+/datum/campaign_reward/reward_disabler/deactivate()
+	for(var/datum/campaign_reward/reward_type AS in types_currently_disabled)
+		reward_type.reward_flags &= ~REWARD_DISABLED
+	types_currently_disabled.Cut()
+	UnregisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_MISSION_ENDED)
+
+///Handles the actual disabling activation
+/datum/campaign_reward/reward_disabler/proc/trigger_disabler()
+	SIGNAL_HANDLER
 	var/datum/game_mode/hvh/campaign/mode = SSticker.mode
 	var/datum/campaign_mission/current_mission = mode.current_mission
-	if(current_mission.mission_flags & override_flags) //already disabled, don't need this
-		return
-
-	. = ..()
-	if(!.)
+	if(current_mission.mission_flags & blacklist_mission_flags)
 		return
 
 	for(var/datum/campaign_reward/reward_type AS in faction.faction_rewards)
@@ -861,18 +850,10 @@
 			types_currently_disabled += reward_type
 
 	RegisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_MISSION_ENDED, TYPE_PROC_REF(/datum/campaign_reward, deactivate))
+	uses --
 	if(!uses)
 		UnregisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_MISSION_LOADED)
 		reward_flags &= ~REWARD_DEBUFF
-
-/datum/campaign_reward/reward_disabler/immediate_effect()
-	RegisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_MISSION_LOADED, TYPE_PROC_REF(/datum/campaign_reward, activated_effect))
-
-/datum/campaign_reward/reward_disabler/deactivate()
-	for(var/datum/campaign_reward/reward_type AS in types_currently_disabled)
-		reward_type.reward_flags &= ~REWARD_DISABLED
-	types_currently_disabled.Cut()
-	UnregisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_MISSION_ENDED)
 
 /datum/campaign_reward/reward_disabler/tgmc_cas
 	name = "CAS disabled"
@@ -880,7 +861,7 @@
 	detailed_desc = "Hostile actions have resulted in the temporary loss of our access to close air support"
 	ui_icon = "cas_disabled"
 	types_disabled = list(/datum/campaign_reward/fire_support)
-	override_flags = MISSION_DISALLOW_FIRESUPPORT
+	blacklist_mission_flags = MISSION_DISALLOW_FIRESUPPORT
 
 /datum/campaign_reward/reward_disabler/som_cas
 	name = "CAS disabled"
@@ -888,7 +869,7 @@
 	detailed_desc = "Hostile actions have resulted in the temporary loss of our access to close air support"
 	ui_icon = "cas_disabled"
 	types_disabled = list(/datum/campaign_reward/fire_support/som_cas)
-	override_flags = MISSION_DISALLOW_FIRESUPPORT
+	blacklist_mission_flags = MISSION_DISALLOW_FIRESUPPORT
 
 /datum/campaign_reward/reward_disabler/tgmc_mortar
 	name = "Mortar support disabled"
@@ -896,7 +877,7 @@
 	detailed_desc = "Hostile actions have resulted in the temporary loss of our access to mortar fire support"
 	ui_icon = "mortar_disabled"
 	types_disabled = list(/datum/campaign_reward/fire_support/mortar)
-	override_flags = MISSION_DISALLOW_FIRESUPPORT
+	blacklist_mission_flags = MISSION_DISALLOW_FIRESUPPORT
 
 /datum/campaign_reward/reward_disabler/tgmc_mortar/long
 	uses = 3
@@ -907,7 +888,7 @@
 	detailed_desc = "Hostile actions have resulted in the temporary loss of our access to mortar fire support"
 	ui_icon = "mortar_disabled"
 	types_disabled = list(/datum/campaign_reward/fire_support/som_mortar)
-	override_flags = MISSION_DISALLOW_FIRESUPPORT
+	blacklist_mission_flags = MISSION_DISALLOW_FIRESUPPORT
 
 /datum/campaign_reward/reward_disabler/som_mortar/long
 	uses = 3
@@ -918,9 +899,9 @@
 	detailed_desc = "Hostile actions have resulted in the temporary loss of our access to drop pod deployment"
 	ui_icon = "droppod_disabled"
 	types_disabled = list(/datum/campaign_reward/droppod_enabled)
-	override_flags = MISSION_DISALLOW_DROPPODS
+	blacklist_mission_flags = MISSION_DISALLOW_DROPPODS
 
-/datum/campaign_reward/reward_disabler/drop_pods
+/datum/campaign_reward/reward_disabler/teleporter
 	name = "Teleporter disabled"
 	desc = "Teleporter temporarily disabled"
 	detailed_desc = "Hostile actions have resulted in the temporary loss of our access to teleporter deployment"
