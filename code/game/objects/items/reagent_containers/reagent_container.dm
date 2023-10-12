@@ -89,5 +89,4 @@
 		return FALSE
 	reagents.clear_reagents() //Empties the injector
 	reagents.add_reagent_list(list_reagents) //And then we refill it with what it has by default
-	user.balloon_alert(user, "Refilled")
 	update_icon()

@@ -223,7 +223,6 @@
 	if(!.)
 		return FALSE
 	current_rounds = initial(max_rounds)
-	user.balloon_alert(user, "Refilled")
 	update_icon()
 
 /obj/item/ammo_magazine/handful

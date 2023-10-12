@@ -277,7 +277,8 @@
 	max_storage_space = 16
 	greyscale_config = /datum/greyscale_config/pillbottle
 	greyscale_colors = "#d9cd07#f2cdbb" //default colors
-	var/pill_type_to_fill //type of pill to use to fill in the bottle in New()
+	///type of pill to use to fill in the bottle in New()
+	var/obj/item/pill_type_to_fill = /obj/item/reagent_containers/pill
 	/// Short description in overlay
 	var/description_overlay = ""
 	refill_types = list(/obj/item/storage/pill_bottle)
@@ -339,12 +340,30 @@
 	. = ..()
 	update_icon()
 
+/obj/item/storage/pill_bottle/refill(mob/user)
+	. = ..()
+	if(!.)
+		return
+	var/available_space = max_storage_space
+	for(var/obj/item/stored_item in contents)
+		available_space -= stored_item.w_class
+	if(!available_space)
+		return
+	var/pills_to_add = round(available_space/initial(pill_type_to_fill.w_class))
+	if(storage_slots)
+		pills_to_add = min(pills_to_add, storage_slots, storage_slots - length(contents))
+	for(var/i in 1 to pills_to_add)
+		new pill_type_to_fill(src)
+	update_icon()
+
 /obj/item/storage/pill_bottle/kelotane
 	name = "kelotane pill bottle"
 	desc = "Contains pills that heal burns, but cause slight pain. Take two to heal faster, but have slightly more pain."
 	pill_type_to_fill = /obj/item/reagent_containers/pill/kelotane
 	greyscale_colors = "#CC9900#FFFFFF"
 	description_overlay = "Ke"
+	flags_item = CAN_REFILL
+	flags_storage = BYPASS_VENDOR_CHECK
 
 /obj/item/storage/pill_bottle/dermaline
 	name = "dermaline pill bottle"
@@ -360,6 +379,8 @@
 	pill_type_to_fill = /obj/item/reagent_containers/pill/dylovene
 	greyscale_colors = "#669900#ffffff"
 	description_overlay = "Dy"
+	flags_item = CAN_REFILL
+	flags_storage = BYPASS_VENDOR_CHECK
 
 /obj/item/storage/pill_bottle/isotonic
 	name = "isotonic pill bottle"
@@ -367,6 +388,8 @@
 	pill_type_to_fill = /obj/item/reagent_containers/pill/isotonic
 	greyscale_colors = "#5c0e0e#ffffff"
 	description_overlay = "Is"
+	flags_item = CAN_REFILL
+	flags_storage = BYPASS_VENDOR_CHECK
 
 /obj/item/storage/pill_bottle/inaprovaline
 	name = "inaprovaline pill bottle"
@@ -382,6 +405,8 @@
 	pill_type_to_fill = /obj/item/reagent_containers/pill/tramadol
 	greyscale_colors = "#8a8686#ffffff"
 	description_overlay = "Ta"
+	flags_item = CAN_REFILL
+	flags_storage = BYPASS_VENDOR_CHECK
 
 /obj/item/storage/pill_bottle/paracetamol
 	name = "paracetamol pill bottle"
@@ -391,6 +416,8 @@
 	greyscale_config = /datum/greyscale_config/pillbottlebox
 	greyscale_colors = "#f8f4f8#ffffff"
 	description_overlay = "Pa"
+	flags_item = CAN_REFILL
+	flags_storage = BYPASS_VENDOR_CHECK
 
 /obj/item/storage/pill_bottle/spaceacillin
 	name = "spaceacillin pill bottle"
@@ -406,6 +433,8 @@
 	pill_type_to_fill = /obj/item/reagent_containers/pill/bicaridine
 	greyscale_colors = "#DA0000#ffffff"
 	description_overlay = "Bi"
+	flags_item = CAN_REFILL
+	flags_storage = BYPASS_VENDOR_CHECK
 
 /obj/item/storage/pill_bottle/meralyne
 	name = "meralyne pill bottle"
@@ -474,6 +503,8 @@
 	greyscale_colors = "#f8f8f8#ffffff"
 	greyscale_config = /datum/greyscale_config/pillbottleround
 	description_overlay = "Ti"
+	flags_item = CAN_REFILL
+	flags_storage = BYPASS_VENDOR_CHECK
 
 /obj/item/storage/pill_bottle/happy
 	name = "happy pill bottle"
