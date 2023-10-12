@@ -1,0 +1,4 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - code_imp: "Some code improvements to campaign asset code"
