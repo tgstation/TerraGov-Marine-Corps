@@ -465,6 +465,9 @@
 	H.voice_filter = initial(H.voice_filter)
 	H.health_threshold_crit = -50
 
+#define CLONELOSS_THRESHOLD 0
+#define CLONELOSS_PER_CYCLE 1
+#define MAX_CLONELOSS 51
 /datum/species/robot/handle_unique_behavior(mob/living/carbon/human/H)
 	if(H.health <= 0 && H.health > -50)
 		H.clear_fullscreen("robotlow")
@@ -475,10 +478,31 @@
 	else
 		H.clear_fullscreen("robothalf")
 		H.clear_fullscreen("robotlow")
+
+	if(H.health <= CLONELOSS_THRESHOLD && H.life_tick % 15 == 0)
+		var/loss_amt = clamp(MAX_CLONELOSS - (H.cloneloss + CLONELOSS_PER_CYCLE), 0, CLONELOSS_PER_CYCLE)
+		if(H.getBruteLoss())
+			if(!H.getFireLoss())
+				H.heal_limb_damage(loss_amt, robo_repair = TRUE)
+			else
+				H.heal_limb_damage(loss_amt / 2, loss_amt / 2, TRUE)
+		else if(H.getFireLoss())
+			H.heal_limb_damage(burn = loss_amt, robo_repair = TRUE)
+		H.adjustCloneLoss(loss_amt)
+
+	else return
+
+	if(prob(20))
+		to_chat(H, span_danger("[pick("You feel like you're falling apart", "Error text flashes through your processor", "You hear a strange sound, like scraping metal")]."))
+
 	if(H.health > -25) //Staggerslowed if below crit threshold.
 		return
 	H.Stagger(2 SECONDS)
 	H.adjust_slowdown(1)
+
+#undef CLONELOSS_THRESHOLD
+#undef CLONELOSS_PER_CYCLE
+#undef MAX_CLONELOSS
 
 ///Lets a robot repair itself over time at the cost of being stunned and blind
 /datum/action/repair_self
