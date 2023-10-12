@@ -60,11 +60,11 @@
 		return
 
 	if(!(respawnee.faction in factions))
-		return candidate.respawn()
+		return respawnee.respawn()
 
 	var/respawn_delay = CAMPAIGN_RESPAWN_TIME + stat_list[respawnee.faction].respawn_delay_modifier
-	if((player_death_times[respawnee.key] + CAMPAIGN_RESPAWN_TIME) > world.time)
-		to_chat(respawnee, "<span class='warning'>Respawn timer has [round((player_death_times[respawnee.key] + CAMPAIGN_RESPAWN_TIME - world.time) / 10)] seconds remaining.<spawn>")
+	if((player_death_times[respawnee.key] + respawn_delay) > world.time)
+		to_chat(respawnee, "<span class='warning'>Respawn timer has [round((player_death_times[respawnee.key] + respawn_delay - world.time) / 10)] seconds remaining.<spawn>")
 		return
 	attempt_attrition_respawn(respawnee)
 
