@@ -492,6 +492,9 @@ GLOBAL_LIST_INIT(bitfields, list(
 		"FULLY_WIELDED" = FULLY_WIELDED,
 		"HAS_UNDERLAY" = HAS_UNDERLAY
 	),
+	"flags_storage" = list(
+		"BYPASS_VENDOR_CHECK" = BYPASS_VENDOR_CHECK,
+	),
 	"ghost_hud" = list(
 		"GHOST_HUD_MED" = GHOST_HUD_MED,
 		"GHOST_HUD_SEC" = GHOST_HUD_SEC,

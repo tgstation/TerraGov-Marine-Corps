@@ -88,6 +88,10 @@
 ///is this item equipped into an inventory slot or hand of a mob?
 #define IN_INVENTORY (1<<20)
 
+//flags_storage
+///If a storage container can be restocked into a vendor
+#define BYPASS_VENDOR_CHECK (1<<0)
+
 //==========================================================================================
 
 //flags_inv_hide
