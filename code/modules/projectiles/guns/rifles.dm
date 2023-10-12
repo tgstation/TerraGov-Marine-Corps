@@ -1272,8 +1272,8 @@
 /obj/item/weapon/gun/rifle/standard_smartmachinegun
 	name = "\improper SG-29 Raummetall-KT smart machine gun"
 	desc = "The Raummetall-KT SG-29 is the TGMC's current standard IFF-capable medium machine gun. It's known for its ability to lay down heavy fire support very well. It is generally used when someone wants to hold a position or provide fire support. Requires special training and it cannot turn off IFF. It uses 10x26mm ammunition."
-	icon_state = "sg29"
-	item_state = "sg29"
+	icon_state = GUN_ICONSTATE_LOADED
+	item_state = GUN_ICONSTATE_LOADED
 	caliber = CALIBER_10x26_CASELESS //codex
 	max_shells = 300 //codex
 	force = 30
@@ -1283,6 +1283,14 @@
 	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/T42_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/T42_reload.ogg'
+	greyscale_config = /datum/greyscale_config/gun/sg29
+	colorable_allowed = PRESET_COLORS_ALLOWED
+	item_icons = list(
+		slot_l_hand_str = /datum/greyscale_config/gun_inhand/sg29,
+		slot_r_hand_str = /datum/greyscale_config/gun_inhand/r_hand/sg29,
+		slot_back_str = /datum/greyscale_config/worn_gun/sg29,
+		slot_s_store_str = /datum/greyscale_config/worn_gun/suit/sg29,
+	)
 	default_ammo_type = /obj/item/ammo_magazine/standard_smartmachinegun
 	allowed_ammo_types = list(/obj/item/ammo_magazine/standard_smartmachinegun)
 	attachable_allowed = list(

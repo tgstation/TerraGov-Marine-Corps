@@ -1002,6 +1002,8 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	name = "SG-29 stock"
 	desc = "A standard machinegun stock."
 	icon_state = "sg29stock"
+	greyscale_config = /datum/greyscale_config/gun_attachment
+	colorable_allowed = PRESET_COLORS_ALLOWED
 	pixel_shift_x = 32
 	pixel_shift_y = 13
 

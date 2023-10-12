@@ -44,5 +44,11 @@
 			"icon_state":"tl127stock_no_color_a",
 			"blend_mode":"overlay"
 		}
+	],
+	"sg29stock_a":[
+		{
+			"type":"hyperscale",
+			"icon_state":"sg29stock_a"
+		}
 	]
 }

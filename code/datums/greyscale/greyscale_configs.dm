@@ -255,6 +255,9 @@
 /datum/greyscale_config/gun/t90
 	prefix = "t90_"
 
+/datum/greyscale_config/gun/sg29
+	prefix = "sg29_"
+
 //Pistols
 /datum/greyscale_config/gun/pistol
 	json_config = 'code/datums/greyscale/json_configs/gun_pistol.json'
@@ -362,6 +365,9 @@
 /datum/greyscale_config/worn_gun/t60
 	prefix = "t60_"
 
+/datum/greyscale_config/worn_gun/sg29
+	prefix = "sg29_"
+
 /datum/greyscale_config/worn_gun/tl127
 	prefix = "tl127_"
 
@@ -409,6 +415,9 @@
 
 /datum/greyscale_config/worn_gun/suit/tl127
 	prefix = "tl127_"
+
+/datum/greyscale_config/worn_gun/suit/sg29
+	prefix = "sg29_"
 
 /datum/greyscale_config/gun_inhand
 	json_config = 'code/datums/greyscale/json_configs/gun_hands.json'
@@ -476,6 +485,9 @@
 	icon_file =  'icons/Marine/greyscale_gun/l_hand_64.dmi'
 	prefix = "tl127_"
 
+/datum/greyscale_config/gun_inhand/sg29
+	prefix = "sg29_"
+
 /datum/greyscale_config/gun_inhand/r_hand
 	icon_file =  'icons/Marine/greyscale_gun/r_hand.dmi'
 
@@ -539,6 +551,9 @@
 /datum/greyscale_config/gun_inhand/r_hand/tl127
 	icon_file =  'icons/Marine/greyscale_gun/r_hand_64.dmi'
 	prefix = "tl127_"
+
+/datum/greyscale_config/gun_inhand/r_hand/sg29
+	prefix = "sg29_"
 
 //Attachments
 /datum/greyscale_config/gun_attachment
