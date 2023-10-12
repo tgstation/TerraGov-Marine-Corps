@@ -419,7 +419,7 @@
 
 /datum/campaign_reward/reserves/deactivate()
 	. = ..()
-	faction.respawn_delay_modifier += respawn_delay_mod
+	faction.respawn_delay_modifier -= respawn_delay_mod
 
 /datum/campaign_reward/mech
 	name = "Medium combat mech"
