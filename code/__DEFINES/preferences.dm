@@ -198,9 +198,3 @@
 	"End of Round Deathmatch" = BE_DEATHMATCH,\
 	"Prefer Squad over Role" = BE_SQUAD_STRICT\
 	)
-
-
-
-
-
-

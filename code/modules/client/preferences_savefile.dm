@@ -228,7 +228,6 @@
 	quick_equip = sanitize_islist(quick_equip, QUICK_EQUIP_ORDER, MAX_QUICK_EQUIP_SLOTS, TRUE, VALID_EQUIP_SLOTS)
 	slot_draw_order_pref = sanitize_islist(slot_draw_order_pref, SLOT_DRAW_ORDER, length(SLOT_DRAW_ORDER), TRUE, SLOT_DRAW_ORDER)
 
-
 	mute_self_combat_messages = sanitize_integer(mute_self_combat_messages, FALSE, TRUE, initial(mute_self_combat_messages))
 	mute_others_combat_messages = sanitize_integer(mute_others_combat_messages, FALSE, TRUE, initial(mute_others_combat_messages))
 	mute_xeno_health_alert_messages = sanitize_integer(mute_xeno_health_alert_messages, FALSE, TRUE, initial(mute_xeno_health_alert_messages))
