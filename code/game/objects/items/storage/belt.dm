@@ -554,6 +554,15 @@
 	new /obj/item/ammo_magazine/standard_smartmachinegun(src)
 	new /obj/item/ammo_magazine/standard_smartmachinegun(src)
 
+/obj/item/storage/belt/marine/target_rifle/Initialize(mapload)
+	. = ..()
+	new /obj/item/ammo_magazine/rifle/standard_smarttargetrifle(src)
+	new /obj/item/ammo_magazine/rifle/standard_smarttargetrifle(src)
+	new /obj/item/ammo_magazine/rifle/standard_smarttargetrifle(src)
+	new /obj/item/ammo_magazine/rifle/standard_smarttargetrifle(src)
+	new /obj/item/ammo_magazine/rifle/standard_smarttargetrifle(src)
+	new /obj/item/ammo_magazine/rifle/standard_smarttargetrifle(src)
+
 /obj/item/storage/belt/marine/upp
 	name = "\improper Type 41 pattern load rig"
 	desc = "The Type 41 load rig is the standard-issue LBE of the USL pirates. The primary function of this belt is to provide easy access to mags for the Type 71 during operations. Despite being designed for the Type 71 weapon system, the pouches are modular enough to fit other types of ammo and equipment."
