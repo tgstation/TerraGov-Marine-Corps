@@ -3816,7 +3816,7 @@
 /obj/structure/barricade/sandbags{
 	pixel_y = -6
 	},
-/obj/item/weapon/gun/launcher/rocket/heavy_rr{
+/obj/item/weapon/gun/heavy_isg{
 	dir = 4
 	},
 /obj/structure/platform{
@@ -5421,11 +5421,11 @@
 /area/whiskey_outpost/outside/north)
 "Dh" = (
 /obj/structure/rack,
-/obj/item/ammo_magazine/heavy_rr,
-/obj/item/ammo_magazine/heavy_rr,
-/obj/item/ammo_magazine/heavy_rr,
-/obj/item/ammo_magazine/heavy_rr,
-/obj/item/ammo_magazine/heavy_rr,
+/obj/item/ammo_magazine/heavy_isg/he,
+/obj/item/ammo_magazine/heavy_isg/he,
+/obj/item/ammo_magazine/heavy_isg/he,
+/obj/item/ammo_magazine/heavy_isg/he,
+/obj/item/ammo_magazine/heavy_isg/he,
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost)
 "Di" = (
@@ -5611,7 +5611,7 @@
 /turf/open/floor/plating,
 /area/whiskey_outpost/outside/west)
 "EQ" = (
-/obj/item/weapon/gun/launcher/rocket/heavy_rr,
+/obj/item/weapon/gun/heavy_isg,
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost)
 "ER" = (
@@ -6366,7 +6366,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost/outside/east)
 "Lc" = (
-/obj/item/weapon/gun/launcher/rocket/heavy_rr{
+/obj/item/weapon/gun/heavy_isg{
 	dir = 8
 	},
 /turf/open/floor/plating/asteroidfloor,
