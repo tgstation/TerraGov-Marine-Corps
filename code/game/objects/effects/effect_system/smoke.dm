@@ -246,7 +246,7 @@
 	alpha = 145
 	opacity = FALSE
 	color = "#DBCBB9"
-	smoke_traits = SMOKE_GASP|SMOKE_BLISTERING|SMOKE_OXYLOSS|SMOKE_PLASMALOSS|SMOKE_FOUL
+	smoke_traits = SMOKE_GASP|SMOKE_BLISTERING|SMOKE_OXYLOSS|SMOKE_FOUL
 
 /obj/effect/particle_effect/smoke/phosphorus/mustard
 	opacity = TRUE
