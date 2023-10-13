@@ -129,9 +129,6 @@
 			data["pixel_size"] = pixel_size
 			data["parallax"] = parallax
 			data["fullscreen_mode"] = fullscreen_mode
-			data["quick_equip"] = list()
-			for(var/quick_equip_slots in quick_equip)
-				data["quick_equip"] += slot_flag_to_fluff(quick_equip_slots)
 			data["fast_mc_refresh"] = fast_mc_refresh
 			data["split_admin_tabs"] = split_admin_tabs
 		if(KEYBIND_SETTINGS)
@@ -148,7 +145,12 @@
 					emote_type = (emote.spoken_emote ? "say" : "me"),
 					)
 		if(DRAW_ORDER)
-			data["slot_draw_order"] = list(SLOT_DRAW_ORDER)
+			data["draw_order"] = list()
+			for(var/slot in SLOT_DRAW_ORDER)
+				data["draw_order"] += slot_flag_to_fluff(slot)
+			data["quick_equip"] = list()
+			for(var/quick_equip_slots in quick_equip)
+				data["quick_equip"] += slot_flag_to_fluff(quick_equip_slots)
 	return data
 
 /datum/preferences/ui_static_data(mob/user)
@@ -212,9 +214,6 @@
 					desc = kb.description,
 					category = kb.category,
 				))
-		if(DRAW_ORDER)
-			.["slot_draw_order"] = DEFAULT_SLOT_DRAW_ORDER
-
 
 /datum/preferences/ui_act(action, list/params, datum/tgui/ui)
 	. = ..()
@@ -659,6 +658,29 @@
 				return
 			quick_equip[editing_slot] = slot_fluff_to_flag(slot)
 			to_chat(src, span_notice("You will now equip/draw from the [slot] slot first."))
+
+		if("equip_slot_equip_position")
+			var/equip_from_slot = params["equip_from_slot"]
+			if(isnull(equip_from_slot))
+				return
+			var/list/equip_from_slot_pref
+			for(var/list/equip_from_slot_data as anything in SLOT_DRAW_ORDER)
+				equip_from_slot_pref = equip_from_slot_data
+			if(isnull(equip_from_slot_pref))
+				return
+			var/direction = params["direction"]
+			var/order = params["order"]
+			if(!direction)
+				return
+			switch(direction)
+				if("down")
+					if(order == length(SLOT_DRAW_ORDER))
+						return
+					slot_draw_order_pref.Swap(order++, order)
+				if("up")
+					if(order == 1)
+						return
+					slot_draw_order_pref.Swap(order--, order)
 
 		if("show_typing")
 			show_typing = !show_typing
