@@ -146,7 +146,7 @@
 					)
 		if(DRAW_ORDER)
 			data["draw_order"] = list()
-			for(var/slot in SLOT_DRAW_ORDER)
+			for(var/slot in slot_draw_order_pref)
 				data["draw_order"] += slot_flag_to_fluff(slot)
 			data["quick_equip"] = list()
 			for(var/quick_equip_slots in quick_equip)
@@ -660,27 +660,24 @@
 			to_chat(src, span_notice("You will now equip/draw from the [slot] slot first."))
 
 		if("equip_slot_equip_position")
-			var/equip_from_slot = params["equip_from_slot"]
-			if(isnull(equip_from_slot))
-				return
-			var/list/equip_from_slot_pref
-			for(var/list/equip_from_slot_data as anything in SLOT_DRAW_ORDER)
-				equip_from_slot_pref = equip_from_slot_data
-			if(isnull(equip_from_slot_pref))
+			var/returned_item_list_position = slot_draw_order_pref.Find(slot_fluff_to_flag(params["changing_item"]))
+			if(isnull(returned_item_list_position))
 				return
 			var/direction = params["direction"]
-			var/order = params["order"]
 			if(!direction)
 				return
+			var/swapping_with = returned_item_list_position
 			switch(direction)
 				if("down")
-					if(order == length(SLOT_DRAW_ORDER))
+					if(returned_item_list_position == length(SLOT_DRAW_ORDER))
 						return
-					slot_draw_order_pref.Swap(order++, order)
+					swapping_with += 1
+					slot_draw_order_pref.Swap(returned_item_list_position, swapping_with)
 				if("up")
-					if(order == 1)
+					if(returned_item_list_position == 1)
 						return
-					slot_draw_order_pref.Swap(order--, order)
+					swapping_with -= 1
+					slot_draw_order_pref.Swap(swapping_with, returned_item_list_position)
 
 		if("show_typing")
 			show_typing = !show_typing

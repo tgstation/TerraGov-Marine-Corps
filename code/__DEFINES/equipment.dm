@@ -430,6 +430,7 @@ GLOBAL_LIST_INIT(slot_str_to_slot, list(
 	SLOT_IN_BACKPACK\
 	)
 
+///Each slot you can draw from, used and messed with in your preferences.
 #define SLOT_DRAW_ORDER list(\
 	SLOT_IN_HOLSTER,\
 	SLOT_IN_S_HOLSTER,\
