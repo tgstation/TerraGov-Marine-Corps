@@ -1,5 +1,0 @@
-author: "DeltaFire15"
-delete-after: True
-changes:
-  - code_imp: "Removes an evil operator"
-  - bugfix: "Xeno neurotoxin now has one less edge case."

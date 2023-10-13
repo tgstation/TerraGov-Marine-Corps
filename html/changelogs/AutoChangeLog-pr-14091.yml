@@ -1,4 +1,0 @@
-author: "Barnet2"
-delete-after: True
-changes:
-  - rscdel: "Prison Station is now only voteable on HvH gamemodes."
