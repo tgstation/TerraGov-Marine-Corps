@@ -19,7 +19,7 @@
 	health = 1000
 	maxHealth = 1000
 	plasma_stored = 5
-	tier = XENO_TIER_ZERO
+	tier = XENO_TIER_FOUR
 	upgrade = XENO_UPGRADE_BASETYPE
 
 	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE

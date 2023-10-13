@@ -4,7 +4,7 @@
 	upgrade_name = ""
 	caste_desc = "The mind of the hive"
 	caste_type_path = /mob/living/carbon/xenomorph/hivemind
-	tier = XENO_TIER_ZERO
+	tier = XENO_TIER_FOUR
 	upgrade = XENO_UPGRADE_BASETYPE
 	wound_type = ""
 	// *** Melee Attacks *** //
