@@ -28,13 +28,8 @@ const ParallaxNumToString = (integer) => {
 
 export const GameSettings = (props, context) => {
   const { act, data } = useBackend<GameSettingData>(context);
-  const {
-    ui_style_color,
-    scaling_method,
-    pixel_size,
-    parallax,
-    is_admin,
-  } = data;
+  const { ui_style_color, scaling_method, pixel_size, parallax, is_admin } =
+    data;
   return (
     <Section title="Game Settings">
       <Stack fill>
