@@ -200,6 +200,7 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 		human_mob.overlay_fullscreen_timer(0.5 SECONDS, 10, "roundstart1", /atom/movable/screen/fullscreen/black)
 		human_mob.overlay_fullscreen_timer(2 SECONDS, 20, "roundstart2", /atom/movable/screen/fullscreen/spawning_in)
 		human_mob.forceMove(pick(GLOB.spawns_by_job[human_mob.job.type]))
+		human_mob.Stun(1 SECONDS) //so you don't accidentally shoot your team etc
 
 ///Generates status tab info for the mission
 /datum/faction_stats/proc/get_status_tab_items(mob/source, list/items)
@@ -399,7 +400,7 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 				if(!(ismarineleaderjob(user.job) || issommarineleaderjob(user.job) || ismarinecommandjob(user.job) || issommarinecommandjob(user.job)))
 					to_chat(user, "<span class='warning'>Only your faction's leaders can do this.")
 					return
-			if(!choice.activated_effect())
+			if(!choice.attempt_activatation())
 				return
 			for(var/mob/living/carbon/human/faction_member AS in GLOB.alive_human_list_faction[faction])
 				faction_member.playsound_local(null, 'sound/effects/CIC_order.ogg', 30, 1)

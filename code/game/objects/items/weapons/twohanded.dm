@@ -213,6 +213,7 @@
 	force_wielded = 80
 	penetration = 35
 	flags_equip_slot = ITEM_SLOT_BACK
+	attack_speed = 15
 
 /obj/item/weapon/twohanded/fireaxe/som/Initialize(mapload)
 	. = ..()

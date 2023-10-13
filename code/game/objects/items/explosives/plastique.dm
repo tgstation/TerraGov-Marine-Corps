@@ -32,7 +32,10 @@
 		icon_state = "[icon_state][alarm_sounded ? "_armed" : "_on"]"
 
 /obj/item/explosive/plastique/attack_self(mob/user)
+	. = ..()
 	var/newtime = tgui_input_number(usr, "Please set the timer.", "Timer", 10, 60, 10)
+	if(!newtime)
+		return
 	timer = newtime
 	to_chat(user, "Timer set for [timer] seconds.")
 

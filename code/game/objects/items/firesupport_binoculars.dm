@@ -33,7 +33,12 @@
 
 /obj/item/binoculars/fire_support/examine(mob/user)
 	. = ..()
-	. += span_notice("They are currently set to [mode.name] targeting mode.")
+	if(!mode)
+		return
+	. += span_boldnotice("They are currently set to [mode.name] mode: [mode.uses == -1 ? "unlimited" : "[mode.uses]"] uses remaining.")
+	if(!mode.cooldown_timer)
+		return
+	. += span_warning("Available in [round(timeleft(mode.cooldown_timer) MILLISECONDS)] seconds.")
 
 /obj/item/binoculars/fire_support/Destroy()
 	if(laser)

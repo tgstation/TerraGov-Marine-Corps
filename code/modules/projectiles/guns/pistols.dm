@@ -78,8 +78,8 @@
 /obj/item/weapon/gun/pistol/plasma_pistol
 	name = "\improper PP-7 plasma pistol"
 	desc = "An experimental weapon designed to set the terrain and targets on fire. It hums with power as magnetic fields coil round each other."
-	icon_state = "tx7"
-	item_state = "tx7"
+	icon_state = GUN_ICONSTATE_LOADED
+	item_state = GUN_ICONSTATE_LOADED
 	caliber = CALIBER_PLASMA
 	max_shots = 10
 	reload_sound = 'sound/weapons/guns/interact/tp14_reload.ogg'
@@ -88,6 +88,12 @@
 	allowed_ammo_types = list(/obj/item/ammo_magazine/pistol/plasma_pistol)
 	type_of_casings = null
 	attachable_offset = list("muzzle_x" = 29, "muzzle_y" = 20,"rail_x" = 13, "rail_y" = 23, "under_x" = 19, "under_y" = 13, "stock_x" = 21, "stock_y" = 17)
+	greyscale_config = /datum/greyscale_config/gun/pistol/tx7
+	colorable_allowed = PRESET_COLORS_ALLOWED
+	item_icons = list(
+		slot_l_hand_str = /datum/greyscale_config/gun_inhand/tx7,
+		slot_r_hand_str = /datum/greyscale_config/gun_inhand/r_hand/tx7,
+	)
 	attachable_allowed = list(
 		/obj/item/attachable/reddot,
 		/obj/item/attachable/flashlight,

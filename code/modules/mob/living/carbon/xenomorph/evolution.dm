@@ -197,10 +197,6 @@
 		balloon_alert(src, "We can't evolve here")
 		return FALSE
 
-	if(xeno_caste.hardcore)
-		balloon_alert(src, "Nuh-uh")
-		return FALSE
-
 	if(is_banned_from(ckey, ROLE_XENOMORPH))
 		log_admin_private("[key_name(src)] has tried to evolve as a xenomorph while being banned from the role.")
 		message_admins("[ADMIN_TPMONTY(src)] has tried to evolve as a xenomorph while being banned. They shouldn't be playing the role.")
@@ -237,10 +233,6 @@
 
 	if(HAS_TRAIT_FROM(src, TRAIT_IMMOBILE, BOILER_ROOTED_TRAIT))
 		balloon_alert(src, "We cannot evolve while rooted to the ground")
-		return FALSE
-
-	if(xeno_caste.hardcore)
-		balloon_alert(src, "Nuh-uhh")
 		return FALSE
 
 	return TRUE

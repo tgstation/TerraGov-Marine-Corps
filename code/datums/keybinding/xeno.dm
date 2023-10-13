@@ -130,13 +130,6 @@
 	keybind_signal = COMSIG_XENOABILITY_TRANSFER_PLASMA
 	hotkey_keys = list("N")
 
-/datum/keybinding/xeno/pounce
-	name = "pounce"
-	full_name = "Pounce"
-	description = ""
-	keybind_signal = COMSIG_XENOABILITY_POUNCE
-	hotkey_keys = list("E")
-
 /datum/keybinding/xeno/toggle_charge
 	name = "toggle_charge"
 	full_name = "Toggle Charge"
@@ -599,6 +592,13 @@
 	keybind_signal = COMISG_XENOMORPH_HIVEMIND_TELEPORT
 	hotkey_keys = list("C")
 
+/datum/keybinding/xeno/hunter_pounce
+	name = "hunter_pounce"
+	full_name = "Hunter: Pounce"
+	description = ""
+	keybind_signal = COMSIG_XENOABILITY_HUNTER_POUNCE
+	hotkey_keys = list("E")
+
 /datum/keybinding/xeno/toggle_stealth
 	name = "toggle_stealth"
 	full_name = "Hunter: Toggle Stealth"
@@ -782,19 +782,31 @@
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_RAVAGE_SELECT
 
+/datum/keybinding/xeno/pounce
+	name = "pounce"
+	full_name = "Runner: Pounce"
+	description = ""
+	keybind_signal = COMSIG_XENOABILITY_RUNNER_POUNCE
+	hotkey_keys = list("E")
+
 /datum/keybinding/xeno/toggle_savage
 	name = "toggle_savage"
 	full_name = "Runner: Toggle Savage"
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_TOGGLE_SAVAGE
-	hotkey_keys = list("R")
 
 /datum/keybinding/xeno/evasion
 	name = "evasion"
 	full_name = "Runner: Evasion"
 	description = "Take evasive action, forcing non-friendly projectiles that would hit you to miss so long as you keep moving."
 	keybind_signal = COMSIG_XENOABILITY_EVASION
-	hotkey_keys = list("Space")
+	hotkey_keys = list("Z")
+
+/datum/keybinding/xeno/auto_evasion
+	name = "auto_evasion"
+	full_name = "Runner: Toggle Auto Evasion"
+	description = "Toggles Auto Evasion on or off. While active, Auto Evasion will automatically use Evasion when you gain its cooldown reset bonus."
+	keybind_signal = COMSIG_XENOABILITY_AUTO_EVASION
 
 /datum/keybinding/xeno/snatch
 	name = "snatch"
