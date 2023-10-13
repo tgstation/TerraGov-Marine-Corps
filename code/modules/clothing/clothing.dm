@@ -280,6 +280,10 @@
 	var/anti_hug = 0
 	var/toggleable = FALSE
 	active = TRUE
+	/// If defined, what voice should we override with if TTS is active?
+	var/voice_override
+	/// If set to true, activates the radio effect on TTS.
+	var/use_radio_beeps_tts = FALSE
 
 /obj/item/clothing/mask/update_clothing_icon()
 	if (ismob(src.loc))
