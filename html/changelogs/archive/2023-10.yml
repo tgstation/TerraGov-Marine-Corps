@@ -131,3 +131,64 @@
       in surplus armor vendor
   tyeagg:
   - rscadd: news tv to patrol base
+2023-10-12:
+  Lewdcifer:
+  - balance: 'TE-X Ray Rifle: standard mode shots are incendiary again, and no longer
+      inflict Microwaved.'
+  - balance: 'TE-X Ray Rifle: standard mode penetration reduced from 10 to 5.'
+  - balance: 'TE-X Ray Rifle: standard mode fire rate decreased from 0.25s to 0.5s.'
+  Lumipharon:
+  - qol: Timers on campaign objectives are now visible above the objective
+  Xander3359:
+  - spellcheck: Dexaline -> Dexalin. three doses -> 3 doses
+  - code_imp: un-hardcodes possible_transfer_amounts
+  - qol: Pill packets can be put back in the marinemed
+  aarrisu:
+  - rscdel: radio pouch
+  yyzsong:
+  - rscadd: Adds the two new ICC guns to valhalla
+2023-10-13:
+  Barnet2:
+  - rscdel: Prison Station is now only voteable on HvH gamemodes.
+  DeltaFire15:
+  - code_imp: Removes an evil operator
+  - bugfix: Xeno neurotoxin now has one less edge case.
+  Lewdcifer:
+  - rscadd: Runners now have a new HUD element that indicates Evasion's remaining
+      duration. This updates in real time and is visible to all xenos.
+  - rscadd: Added Auto-Evasion. Right click or alternate use of Evasion toggles this
+      on and off. While Auto-Evasion is active, it will automatically try to use Evasion
+      again if you get the cooldown reset bonus.
+  - rscdel: Removed Toggle Savage. It has been merged with Pounce as its right click
+      / alternate use, otherwise retaining its usual functionality.
+  - qol: Using Evasion again while it is active will extend its current duration instead
+      of flipping the bird at you and making you wait until Evasion is over.
+  - balance: Pounce will now go through xenos.
+  - refactor: Minor code changes to Pounce. Moved it to Hunter's and gave Runner its
+      own child ability with Toggle Savage.
+  - code_imp: Minor code changes to Evasion that remove unnecessary code and account
+      for other changes.
+  - code_imp: Finishes deprecating a hardcore var that wasn't used anywhere.
+  - bugfix: Fixed a bug where using Pounce interrupted Evasion if it was active.
+  - imageadd: Evasion counter sprites. They suck. Please sprite something better,
+      I beg you.
+  - imageadd: Small indicators on ability icons for visual feedback.
+  - spellcheck: Runner's caste description changed ever so slightly to look and sound
+      better.
+  Lumipharon:
+  - balance: Breaching axe attack speed reduced to 15 from 11
+  - bugfix: You can no longer store other drop pods in supply pods
+  - bugfix: You can no longer fit endless mechs into a single clowncar mech pod
+  - balance: FC's sword has a strap and bumpslash
+  - balance: FC's sword has slightly improved attack speed and AP
+  - balance: 'HvH: TGMC guardian and SG loadouts have Tyr 2 instead of Tyr 1'
+  - code_imp: Some code improvements to campaign asset code
+  - imageadd: added more campaign assset icons
+  - qol: Campaign firesupport binos show current mode uses and cooldown remaining
+      if applicable
+  - imageadd: added a proper sprite for the teleport blocker in campaign
+  - bugfix: fixed an issue with map tables when their target z-level changes
+  Xander3359:
+  - bugfix: you can no longer make C4 instant
+  hyper2snyper:
+  - rscadd: Hyperscales T90, T37, TL127, T60, TX7, TER, TEC, TEP, TEM, TES, SG29

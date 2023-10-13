@@ -1,5 +1,0 @@
-author: "Xander3359"
-delete-after: True
-changes:
-  - spellcheck: "Dexaline -> Dexalin. three doses -> 3 doses"
-  - code_imp: "un-hardcodes possible_transfer_amounts"
