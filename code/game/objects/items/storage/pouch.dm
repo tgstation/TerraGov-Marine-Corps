@@ -604,9 +604,7 @@
 	icon_state = "barpouch"
 	sprite_slots = 3
 	storage_slots = 6
-	can_hold = list(
-		/obj/item/reagent_containers/food/snacks/wrapped/berrybar,
-	)
+	can_hold = list(/obj/item/reagent_containers/food/snacks/wrapped/berrybar)
 
 /obj/item/storage/pouch/berrypouch/Initialize(mapload)
 	. = ..()
