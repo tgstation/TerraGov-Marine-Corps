@@ -1,0 +1,4 @@
+author: "vvvv-vvvv"
+delete-after: True
+changes:
+  - bugfix: "Fix a missing trailing space before pod dchat announcement"
