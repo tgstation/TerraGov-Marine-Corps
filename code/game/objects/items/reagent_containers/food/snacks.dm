@@ -1497,8 +1497,7 @@
 		/datum/reagent/medicine/bicaridine = 10,
 		/datum/reagent/medicine/kelotane = 10,
 		/datum/reagent/medicine/tricordrazine = 10,)
-	tastes = list("delicious processed berries" = 1
-	)
+	tastes = list("delicious processed berries" = 1)
 	bitesize = 9
 
 /obj/item/reagent_containers/food/snacks/wrapped/proteinbar
