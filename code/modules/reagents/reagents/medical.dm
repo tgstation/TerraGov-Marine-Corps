@@ -589,7 +589,7 @@
 		TIMER_COOLDOWN_START(L, name, 300 SECONDS)
 
 /datum/reagent/medicine/russian_red/on_mob_life(mob/living/L, metabolism)
-	L.heal_overall_damage(10*effect_str, 10*effect_str)
+	L.heal_overall_damage(5*effect_str, 5*effect_str)
 	L.adjustToxLoss(-2.5*effect_str)
 	L.adjustCloneLoss(effect_str)
 	if(iscarbon(L))
