@@ -429,10 +429,12 @@
 /datum/campaign_reward/reserves
 	name = "Strategic Reserve"
 	desc = "Emergency reserve forces"
-	detailed_desc = "A strategic reserve force is activated to bolster your numbers, increasing your active attrition significantly. Can only be used when defending a mission, and only once per campaign."
+	detailed_desc = "A strategic reserve force is activated to bolster your numbers, increasing your active attrition significantly. Additionally, the respawn delay for your team is reduced by 90 seconds. Can only be used when defending a mission, and only once per campaign."
 	ui_icon = "reserve_force"
 	uses = 1
 	reward_flags = REWARD_ACTIVATED_EFFECT|REWARD_DISABLE_ON_MISSION_END|REWARD_DISALLOW_REPEAT_USE
+	///How much the faction's respawn delay is modified by
+	var/respawn_delay_mod = -90 SECONDS
 
 /datum/campaign_reward/reserves/activation_checks()
 	. = ..()
@@ -449,6 +451,11 @@
 
 /datum/campaign_reward/reserves/activated_effect()
 	faction.active_attrition_points += round(length(GLOB.clients) * 0.3)
+	faction.respawn_delay_modifier += respawn_delay_mod
+
+/datum/campaign_reward/reserves/deactivate()
+	. = ..()
+	faction.respawn_delay_modifier -= respawn_delay_mod
 
 /datum/campaign_reward/mech
 	name = "Medium combat mech"

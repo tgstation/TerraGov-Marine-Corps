@@ -99,6 +99,8 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 	var/stats_flags = NONE
 	///Portrait used for general screen text notifications
 	var/atom/movable/screen/text/screen_text/picture/faction_portrait
+	///Faction-wide modifier to respawn delay
+	var/respawn_delay_modifier = 0
 
 /datum/faction_stats/New(new_faction)
 	. = ..()
