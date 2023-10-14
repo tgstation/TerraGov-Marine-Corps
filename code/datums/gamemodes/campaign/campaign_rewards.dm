@@ -281,10 +281,17 @@
 	uses = 1
 	cost = 4
 	equipment_to_spawn = list(
-		/obj/item/weapon/gun/rifle/standard_smartmachinegun,
+		/obj/item/weapon/gun/rifle/standard_smartmachinegun/patrol,
 		/obj/item/storage/belt/marine/smartgun,
-		/obj/item/weapon/gun/minigun/smart_minigun,
+		/obj/item/weapon/gun/minigun/smart_minigun/motion_detector,
 		/obj/item/ammo_magazine/minigun_powerpack/smartgun,
+		/obj/item/weapon/gun/rifle/standard_smarttargetrifle/motion,
+		/obj/item/storage/belt/marine/target_rifle,
+		/obj/item/ammo_magazine/rifle/standard_spottingrifle/incendiary,
+		/obj/item/ammo_magazine/rifle/standard_spottingrifle/tungsten,
+		/obj/item/ammo_magazine/rifle/standard_spottingrifle/highimpact,
+		/obj/item/ammo_magazine/rifle/standard_spottingrifle/highimpact,
+		/obj/item/ammo_magazine/rifle/standard_spottingrifle/highimpact,
 	)
 
 /datum/campaign_reward/equipment/shotguns_tgmc
