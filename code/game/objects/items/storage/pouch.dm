@@ -615,6 +615,7 @@
 	new /obj/item/reagent_containers/food/snacks/wrapped/berrybar(src)
 	new /obj/item/reagent_containers/food/snacks/wrapped/berrybar(src)
 /obj/item/storage/pouch/surgery
+
 	name = "surgery tools pouch"
 	desc = "An eye catching white medical pouch capable of holding all your surgical tools."
 	icon_state = "surgery"
