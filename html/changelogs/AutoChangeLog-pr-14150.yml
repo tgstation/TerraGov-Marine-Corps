@@ -1,4 +1,0 @@
-author: "Xander3359"
-delete-after: True
-changes:
-  - code_imp: "Replaced all instances of <Grid> with <Stack> and deletes Grid from the codebase"

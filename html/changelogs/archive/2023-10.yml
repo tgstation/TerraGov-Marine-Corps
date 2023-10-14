@@ -192,3 +192,12 @@
   - bugfix: you can no longer make C4 instant
   hyper2snyper:
   - rscadd: Hyperscales T90, T37, TL127, T60, TX7, TER, TEC, TEP, TEM, TES, SG29
+2023-10-14:
+  Lumipharon:
+  - qol: A 1 second stun is applied when returning to base after a campaign mission
+      ends
+  Xander3359:
+  - code_imp: Replaced all instances of <Grid> with <Stack> and deletes Grid from
+      the codebase
+  vvvv-vvvv:
+  - qol: Gas masks now muffle your voice with TTS.
