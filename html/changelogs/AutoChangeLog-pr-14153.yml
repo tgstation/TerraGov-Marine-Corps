@@ -1,0 +1,4 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - balance: "Strategic reserve asset in campaign now reduces the respawn timer for that team to 30sec for the duration of the mission"
