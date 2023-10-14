@@ -318,7 +318,7 @@
 
 	if(crushed.stat == DEAD)
 		return
-	log_combat(src, crushed, "stomed", addition = "(DAMTYPE: [uppertext(BRUTE)])")
+	log_combat(src, crushed, "stomped on", addition = "(DAMTYPE: [uppertext(BRUTE)])")
 	crushed.visible_message(
 		span_danger("[src] crushes [crushed]!"),
 		span_userdanger("[src] steps on you!"),
