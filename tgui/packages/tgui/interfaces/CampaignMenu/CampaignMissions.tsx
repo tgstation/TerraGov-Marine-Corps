@@ -64,7 +64,7 @@ export const CampaignMissions = (props, context) => {
               {selectedMission?.objective_description}
             </LabeledList.Item>
             <LabeledList.Item label="Mission Brief">
-              {selectedMission.mission_brief}
+              {selectedMission?.mission_brief}
             </LabeledList.Item>
           </LabeledList>
         </Section>
@@ -77,18 +77,18 @@ export const CampaignMissions = (props, context) => {
             </Table.Row>
             <Table.Row>
               <Table.Cell color="label">Major Victory</Table.Cell>
-              <Table.Cell>{selectedMission.vp_major_reward}</Table.Cell>
-              <Table.Cell>{selectedMission.ap_major_reward}</Table.Cell>
+              <Table.Cell>{selectedMission?.vp_major_reward}</Table.Cell>
+              <Table.Cell>{selectedMission?.ap_major_reward}</Table.Cell>
             </Table.Row>
             <Table.Row>
               <Table.Cell color="label">Minor Victory</Table.Cell>
-              <Table.Cell>{selectedMission.vp_minor_reward}</Table.Cell>
-              <Table.Cell>{selectedMission.ap_minor_reward}</Table.Cell>
+              <Table.Cell>{selectedMission?.vp_minor_reward}</Table.Cell>
+              <Table.Cell>{selectedMission?.ap_minor_reward}</Table.Cell>
             </Table.Row>
             <Table.Row>
               <Table.Cell color="label">Additional Rewards</Table.Cell>
               <Table.Cell colspan="2">
-                {selectedMission.mission_rewards}
+                {selectedMission?.mission_rewards}
               </Table.Cell>
             </Table.Row>
           </Table>
