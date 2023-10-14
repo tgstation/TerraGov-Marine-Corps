@@ -1052,6 +1052,18 @@ ARMOR
 	)
 	cost = 40
 
+/datum/supply_packs/armor/modular/attachments/vali_chem_system
+	name = "Vali chemical enhancement module"
+	contains = list(
+		/obj/item/armor_module/module/chemsystem,
+		/obj/item/weapon/claymore/harvester,
+		/obj/item/weapon/twohanded/glaive/harvester,
+		/obj/item/weapon/twohanded/spear/tactical/harvester,
+		/obj/item/weapon/combat_knife/harvester,
+		/obj/item/paper/chemsystem,
+	)
+	cost = 200
+
 /*******************************************************************************
 CLOTHING
 *******************************************************************************/
