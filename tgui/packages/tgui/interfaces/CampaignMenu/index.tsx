@@ -239,15 +239,7 @@ export const AssetIcon = (props: { icon: FactionReward['icon'] }, context) => {
   }
 
   return (
-    <Box
-      as="img"
-      mr={1.5}
-      src={`data:image/jpeg;base64,${icons[icon]}`}
-      style={{
-        transform: 'scale(1) translatey(2px)',
-        '-ms-interpolation-mode': 'nearest-neighbor',
-      }}
-    />
+    <Box as="img" mr={1.5} src={`data:image/jpeg;base64,${icons[icon]}`} />
   );
 };
 
@@ -266,12 +258,8 @@ export const MissionIcon = (
   return (
     <Box
       as="img"
-      mr={1.5}
+      mr={1}
       src={`data:image/jpeg;base64,${mission_icons[icon]}`}
-      style={{
-        transform: 'scale(1) translatey(2px)',
-        '-ms-interpolation-mode': 'nearest-neighbor',
-      }}
     />
   );
 };

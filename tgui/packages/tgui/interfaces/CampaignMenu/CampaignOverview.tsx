@@ -1,6 +1,6 @@
-import { CampaignData } from './index';
+import { CampaignData, MissionIcon } from './index';
 import { useBackend } from '../../backend';
-import { LabeledList, Button, Section, Table, ProgressBar } from '../../components';
+import { LabeledList, Button, Section, Table, ProgressBar, Box, Flex } from '../../components';
 
 export const CampaignOverview = (props, context) => {
   const { act, data } = useBackend<CampaignData>(context);
@@ -14,6 +14,7 @@ export const CampaignOverview = (props, context) => {
     faction,
   } = data;
   const {
+    name,
     map_name,
     objective_description,
     mission_brief,
@@ -22,11 +23,21 @@ export const CampaignOverview = (props, context) => {
     vp_minor_reward,
     ap_minor_reward,
     mission_rewards,
+    mission_icon,
   } = current_mission;
   return (
     <>
-      <Section title={'Mission Overview'}>
+      <Section
+        title={
+          <Box>
+            <Flex align="center">
+              {<MissionIcon icon={mission_icon + '_green'} />}
+              Current Mission overview
+            </Flex>
+          </Box>
+        }>
         <LabeledList>
+          <LabeledList.Item label="Mission">{name}</LabeledList.Item>
           <LabeledList.Item label="Map name">{map_name}</LabeledList.Item>
           <LabeledList.Item label="Objectives">
             {objective_description}
