@@ -81,8 +81,8 @@
 
 	opacity = FALSE
 	alpha = 0
-	animate(src, 7 SECONDS, easing = CIRCULAR_EASING|EASE_IN, alpha = 255)
-	addtimer(VARSET_CALLBACK(src, opacity, TRUE), 5 SECONDS)
+	animate(src, 7 SECONDS, easing = CIRCULAR_EASING|EASE_IN, alpha = initial(alpha))
+	addtimer(VARSET_CALLBACK(src, opacity, initial(opacity)), 5 SECONDS)
 
 
 /obj/effect/particle_effect/smoke/proc/on_cross(datum/source, atom/movable/O, oldloc, oldlocs)
