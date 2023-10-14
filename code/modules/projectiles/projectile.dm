@@ -282,6 +282,7 @@
 
 	if(ismob(firer) && !recursivity)
 		var/mob/mob_firer = firer
+		record_projectile_fire(mob_firer)
 		GLOB.round_statistics.total_projectiles_fired[mob_firer.faction]++
 		SSblackbox.record_feedback("tally", "round_statistics", 1, "total_projectiles_fired[mob_firer.faction]")
 		if(ammo.bonus_projectiles_amount)
@@ -643,7 +644,9 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 		return FALSE
 	if(src == proj.original_target) //clicking on the structure itself hits the structure
 		return TRUE
-	if(!(flags_pass & PASSPROJECTILE))
+	if((allow_pass_flags & PASS_GLASS) && (proj.ammo.flags_ammo_behavior & AMMO_ENERGY))
+		return FALSE
+	if(!(allow_pass_flags & PASS_PROJECTILE))
 		return TRUE
 	if(proj.distance_travelled <= proj.ammo.barricade_clear_distance)
 		return FALSE
@@ -669,24 +672,6 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	if(QDELETED(src)) //on_hit_obj could delete the object
 		return
 	bullet_act(proj)
-
-/obj/structure/window/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
-	if(proj.ammo.flags_ammo_behavior & AMMO_ENERGY && !opacity)
-		return FALSE
-	if(flags_atom & ON_BORDER && !(cardinal_move & REVERSE_DIR(dir)))
-		if(!uncrossing)
-			proj.uncross_scheduled += src
-		return FALSE
-	return TRUE
-
-/obj/machinery/door/window/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
-	if(proj.ammo.flags_ammo_behavior & AMMO_ENERGY && !opacity)
-		return FALSE
-	if(flags_atom & ON_BORDER && !(cardinal_move & REVERSE_DIR(dir)))
-		if(!uncrossing)
-			proj.uncross_scheduled += src
-		return FALSE
-	return TRUE
 
 /obj/machinery/deployable/mounted/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
 	if(operator?.wear_id.iff_signal & proj.iff_signal)
@@ -735,6 +720,8 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 		return FALSE
 	if((proj.ammo.flags_ammo_behavior & AMMO_XENO) && (isnestedhost(src) || stat == DEAD))
 		return FALSE
+	if(pass_flags & PASS_PROJECTILE) //he's beginning to believe
+		return FALSE
 
 	//We want a temporary variable so accuracy doesn't change every time the bullet misses.
 	var/hit_chance = proj.accuracy
@@ -780,6 +767,9 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 		BULLET_DEBUG("Moving (*[evasion_bonus]).")
 		hit_chance = round(hit_chance * evasion_bonus)
 
+	if(proj.ammo.flags_ammo_behavior & AMMO_UNWIELDY)
+		hit_chance *= 0.5
+
 	hit_chance = max(5, hit_chance) //It's never impossible to hit
 
 	BULLET_DEBUG("Final accuracy is <b>[hit_chance]</b>")
@@ -824,6 +814,8 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 
 
 /mob/living/carbon/xenomorph/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
+	if(CHECK_BITFIELD(xeno_iff_check(), proj.iff_signal))
+		return FALSE
 	if(SEND_SIGNAL(src, COMSIG_XENO_PROJECTILE_HIT, proj, cardinal_move, uncrossing) & COMPONENT_PROJECTILE_DODGE)
 		return FALSE
 	if(HAS_TRAIT(src, TRAIT_BURROWED))
@@ -881,7 +873,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 
 	if(iscarbon(proj.firer))
 		var/mob/living/carbon/shooter_carbon = proj.firer
-		if(shooter_carbon.stagger)
+		if(shooter_carbon.IsStaggered())
 			damage *= STAGGER_DAMAGE_MULTIPLIER //Since we hate RNG, stagger reduces damage by a % instead of reducing accuracy; consider it a 'glancing' hit due to being disoriented.
 	var/original_damage = damage
 	damage = modify_by_armor(damage, proj.armor_type, proj.penetration, proj.def_zone)
@@ -898,6 +890,9 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 
 	if(proj.ammo.flags_ammo_behavior & AMMO_SUNDERING)
 		adjust_sunder(proj.sundering)
+
+	if(stat != DEAD && ismob(proj.firer))
+		record_projectile_damage(proj.firer, damage)	//Tally up whoever the shooter was
 
 	if(damage)
 		var/shrapnel_roll = do_shrapnel_roll(proj, damage)
@@ -956,9 +951,12 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	else
 		dir_angle = angle
 
-	//If we have the the right kind of ammo, we can fire several projectiles at once.
-	if(ammo.bonus_projectiles_amount && !recursivity) //Recursivity check in case the bonus projectiles have bonus projectiles of their own. Let's not loop infinitely.
-		ammo.fire_bonus_projectiles(src, shooter, source, range, speed, dir_angle)
+	if(!recursivity)	//Recursivity check in case the bonus projectiles have bonus projectiles of their own. Let's not loop infinitely.
+		record_projectile_fire(shooter)
+
+		//If we have the the right kind of ammo, we can fire several projectiles at once.
+		if(ammo.bonus_projectiles_amount)
+			ammo.fire_bonus_projectiles(src, shooter, source, range, speed, dir_angle)
 
 	if(shooter.Adjacent(target) && ismob(target))
 		var/mob/mob_to_hit = target
@@ -970,10 +968,10 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	x_offset = round(sin(dir_angle), 0.01)
 	y_offset = round(cos(dir_angle), 0.01)
 	if(projectile_batch_move(!recursivity) == PROJECTILE_FROZEN || (flags_projectile_behavior & PROJECTILE_FROZEN))
-		var/atom/movable/hitscan_projectile_effect/laser_effect = new /atom/movable/hitscan_projectile_effect(PROJ_ABS_PIXEL_TO_TURF(apx, apy, z), dir_angle, apx % 32 - 16, apy % 32 - 16, 1.01, effect_icon)
+		var/atom/movable/hitscan_projectile_effect/laser_effect = new /atom/movable/hitscan_projectile_effect(PROJ_ABS_PIXEL_TO_TURF(apx, apy, z), dir_angle, apx % 32 - 16, apy % 32 - 16, 1.01, effect_icon, ammo.bullet_color)
 		RegisterSignal(loc, COMSIG_TURF_RESUME_PROJECTILE_MOVE, PROC_REF(resume_move))
 		laser_effect.RegisterSignal(loc, COMSIG_TURF_RESUME_PROJECTILE_MOVE, TYPE_PROC_REF(/atom/movable/hitscan_projectile_effect, remove_effect))
-		laser_effect.RegisterSignal(src, COMSIG_PARENT_QDELETING, TYPE_PROC_REF(/atom/movable/hitscan_projectile_effect, remove_effect))
+		laser_effect.RegisterSignal(src, COMSIG_QDELETING, TYPE_PROC_REF(/atom/movable/hitscan_projectile_effect, remove_effect))
 		return
 	qdel(src)
 
@@ -997,7 +995,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 			apy += 0.1
 
 		if(next_turf == last_processed_turf)
-			laser_effects += new /atom/movable/hitscan_projectile_effect(PROJ_ABS_PIXEL_TO_TURF(apx, apy, z), dir_angle, apx % 32 - 16, apy % 32 - 16, 1.1, effect_icon)
+			laser_effects += new /atom/movable/hitscan_projectile_effect(PROJ_ABS_PIXEL_TO_TURF(apx, apy, z), dir_angle, apx % 32 - 16, apy % 32 - 16, 1.1, effect_icon, ammo.bullet_color)
 			continue //Pixel movement only, didn't manage to change turf.
 		var/movement_dir = get_dir(last_processed_turf, next_turf)
 
@@ -1070,7 +1068,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 				break
 			if(HAS_TRAIT(turf_crossed_by, TRAIT_TURF_BULLET_MANIPULATION))
 				SEND_SIGNAL(turf_crossed_by, COMSIG_TURF_PROJECTILE_MANIPULATED, src)
-				QDEL_LIST_IN(laser_effects, 1)
+				QDEL_LIST_IN(laser_effects, 2)
 				if(HAS_TRAIT_FROM(turf_crossed_by, TRAIT_TURF_BULLET_MANIPULATION, PORTAL_TRAIT))
 					return
 				forceMove(turf_crossed_by)
@@ -1122,16 +1120,16 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 			break
 		if(HAS_TRAIT(next_turf, TRAIT_TURF_BULLET_MANIPULATION))
 			SEND_SIGNAL(next_turf, COMSIG_TURF_PROJECTILE_MANIPULATED, src)
-			QDEL_LIST_IN(laser_effects, 1)
+			QDEL_LIST_IN(laser_effects, 2)
 			if(HAS_TRAIT_FROM(next_turf, TRAIT_TURF_BULLET_MANIPULATION, PORTAL_TRAIT))
 				return
 			forceMove(next_turf)
 			return PROJECTILE_FROZEN
 		if(first_projectile)
-			laser_effects += new /atom/movable/hitscan_projectile_effect(PROJ_ABS_PIXEL_TO_TURF(apx, apy, z), dir_angle, apx % 32 - 16, apy % 32 - 16, 1.01, "muzzle_"+effect_icon)
+			laser_effects += new /atom/movable/hitscan_projectile_effect(PROJ_ABS_PIXEL_TO_TURF(apx, apy, z), dir_angle, apx % 32 - 16, apy % 32 - 16, 1.01, "muzzle_"+effect_icon, ammo.bullet_color)
 			first_projectile = FALSE
 		else
-			laser_effects += new /atom/movable/hitscan_projectile_effect(PROJ_ABS_PIXEL_TO_TURF(apx, apy, z), dir_angle, apx % 32 - 16, apy % 32 - 16, 1.01, effect_icon)
+			laser_effects += new /atom/movable/hitscan_projectile_effect(PROJ_ABS_PIXEL_TO_TURF(apx, apy, z), dir_angle, apx % 32 - 16, apy % 32 - 16, 1.01, effect_icon, ammo.bullet_color)
 	apx -= 8 * x_offset
 	apy -= 8 * y_offset
 
@@ -1140,9 +1138,9 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	if(apy % 32 == 0)
 		apy += 0.1
 	if(first_projectile)
-		laser_effects += new /atom/movable/hitscan_projectile_effect(PROJ_ABS_PIXEL_TO_TURF(apx, apy, z), dir_angle, apx % 32 - 16, apy % 32 - 16, 1.01, "muzzle_"+effect_icon)
-	laser_effects += new /atom/movable/hitscan_projectile_effect(PROJ_ABS_PIXEL_TO_TURF(apx, apy, z), dir_angle, apx % 32 - 16, apy % 32 - 16, 1.01, "impact_"+effect_icon)
-	QDEL_LIST_IN(laser_effects, 1)
+		laser_effects += new /atom/movable/hitscan_projectile_effect(PROJ_ABS_PIXEL_TO_TURF(apx, apy, z), dir_angle, apx % 32 - 16, apy % 32 - 16, 1.01, "muzzle_"+effect_icon, ammo.bullet_color)
+	laser_effects += new /atom/movable/hitscan_projectile_effect(PROJ_ABS_PIXEL_TO_TURF(apx, apy, z), dir_angle, apx % 32 - 16, apy % 32 - 16, 1.01, "impact_"+effect_icon, ammo.bullet_color)
+	QDEL_LIST_IN(laser_effects, 2)
 
 /obj/projectile/hitscan/resume_move(datum/source)
 	UnregisterSignal(source, COMSIG_TURF_RESUME_PROJECTILE_MOVE)
@@ -1161,47 +1159,8 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 		return
 	return ..()
 
-
-///Returns the soft armor for the given mob. If human and no limb is specified, it takes the weighted average of all available limbs.
-/mob/living/proc/get_soft_armor(armor_type, proj_def_zone)
-	return soft_armor.getRating(armor_type)
-
-/mob/living/carbon/human/get_soft_armor(armor_type, proj_def_zone)
-	if(proj_def_zone)
-		var/datum/limb/affected_limb
-
-		if(isorgan(proj_def_zone))
-			affected_limb = proj_def_zone
-		else
-			affected_limb = get_limb(proj_def_zone)
-
-		return affected_limb.soft_armor.getRating(armor_type)
-		//If a specific bodypart is targeted, check how that bodypart is protected and return the value.
-
-	//If you don't specify a bodypart, it checks ALL your available bodyparts for protection, and averages out the values
-	else
-		var/armor_val = 0
-		var/total_weight = 0
-
-		var/list/datum/limb/parts = get_damageable_limbs()
-
-		while(length(parts))
-			var/datum/limb/picked = pick_n_take(parts)
-			var/weight = GLOB.organ_rel_size[picked.name]
-			armor_val += picked.soft_armor.getRating(armor_type) * weight
-			total_weight += weight
-		//Note, in the case of limbs missing, this will increase average armor if remaining armor is higher than if fully limbed.
-		return armor_val / total_weight
-
-/mob/living/proc/get_hard_armor(armor_type, proj_def_zone)
-	return hard_armor.getRating(armor_type)
-
-/mob/living/carbon/human/get_hard_armor(armor_type, proj_def_zone)
-	var/datum/limb/affected_limb = proj_def_zone
-	return affected_limb.hard_armor.getRating(armor_type)
-
 /mob/living/proc/bullet_soak_effect(obj/projectile/proj)
-
+	return
 
 /mob/living/carbon/human/bullet_soak_effect(obj/projectile/proj)
 	if(!proj.ammo.sound_armor)
@@ -1234,7 +1193,6 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 		return TRUE
 	return FALSE
 
-
 // walls can get shot and damaged, but bullets do much less.
 /turf/closed/wall/bullet_act(obj/projectile/proj)
 	. = ..()
@@ -1245,8 +1203,8 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 
 	switch(proj.ammo.damage_type)
 		if(BRUTE, BURN)
-			damage = max(0, proj.damage - round(proj.distance_travelled * proj.damage_falloff) - hard_armor.getRating(proj.armor_type)) //Bullet damage falloff and hard armor.
-			damage -= round(damage * soft_armor.getRating(proj.armor_type) * 0.01, 1) //Wall armor soak.
+			damage = max(0, proj.damage - round(proj.distance_travelled * proj.damage_falloff))
+			damage = round(modify_by_armor(damage, proj.armor_type, proj.penetration), 1)
 		else
 			return FALSE
 

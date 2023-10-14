@@ -19,7 +19,7 @@
 	if(reagents)
 		qdel(reagents)
 	reagents = new (max_vol, new_flags)
-	reagents.my_atom = src
+	reagents.my_atom = WEAKREF(src)
 	for(var/rid in init_reagents)
 		var/amount = list_reagents[rid]
 		if(rid == /datum/reagent/consumable/nutriment)
@@ -114,8 +114,11 @@
 					var/temp_bitesize = max(reagents.total_volume /2, bitesize)
 					reagents.trans_to(M, temp_bitesize)
 					*/
+					//Why is bitesize used instead of an actual portion???
+					record_reagent_consumption(bitesize, reagents.reagent_list, user, M)
 					reagents.trans_to(M, bitesize)
 				else
+					record_reagent_consumption(reagents.total_volume, reagents.reagent_list, user, M)
 					reagents.trans_to(M, reagents.total_volume)
 				bitecount++
 				On_Consume(M)

@@ -1,23 +1,58 @@
 //Various macros
 #define NODE_GET_VALUE_OF_WEIGHT(IDENTIFIER, NODE, WEIGHT_NAME) NODE.weights[IDENTIFIER][WEIGHT_NAME]
 
+///Returns a list of mobs/living via get_dist and same z level method, very cheap compared to range()
+/proc/cheap_get_living_near(atom/movable/source, distance)
+	. = list()
+	for(var/mob/living/nearby_living AS in GLOB.mob_living_list)
+		if(source.z != nearby_living.z)
+			continue
+		if(get_dist(source, nearby_living) > distance)
+			continue
+		. += nearby_living
+
 ///Returns a list of humans via get_dist and same z level method, very cheap compared to range()
 /proc/cheap_get_humans_near(atom/movable/source, distance)
 	. = list()
-	for(var/mob/living/carbon/human/nearby_human AS in GLOB.humans_by_zlevel["[source.z]"])
-		if(get_dist(source, nearby_human) > distance)
+	var/turf/source_turf = get_turf(source)
+	if(!source_turf)
+		return
+	for(var/mob/living/carbon/human/nearby_human AS in GLOB.humans_by_zlevel["[source_turf.z]"])
+		if(isnull(nearby_human))
+			continue
+		if(get_dist(source_turf, nearby_human) > distance)
 			continue
 		. += nearby_human
 
 ///Returns a list of xenos via get_dist and same z level method, very cheap compared to range()
 /proc/cheap_get_xenos_near(atom/movable/source, distance)
 	. = list()
+	var/turf/source_turf = get_turf(source)
+	if(!source_turf)
+		return
 	for(var/mob/living/carbon/xenomorph/nearby_xeno AS in GLOB.alive_xeno_list)
-		if(source.z != nearby_xeno.z)
+		if(isnull(nearby_xeno))
 			continue
-		if(get_dist(source, nearby_xeno) > distance)
+		if(source_turf.z != nearby_xeno.z)
+			continue
+		if(get_dist(source_turf, nearby_xeno) > distance)
 			continue
 		. += nearby_xeno
+
+///Returns a list of mechs via get_dist and same z level method, very cheap compared to range()
+/proc/cheap_get_mechs_near(atom/movable/source, distance)
+	. = list()
+	var/turf/source_turf = get_turf(source)
+	if(!source_turf)
+		return
+	for(var/obj/vehicle/sealed/mecha/nearby_mech AS in GLOB.mechas_list)
+		if(isnull(nearby_mech))
+			continue
+		if(source_turf.z != nearby_mech.z)
+			continue
+		if(get_dist(source_turf, nearby_mech) > distance)
+			continue
+		. += nearby_mech
 
 ///Returns the nearest target that has the right target flag
 /proc/get_nearest_target(atom/source, distance, target_flags, attacker_faction, attacker_hive)

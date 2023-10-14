@@ -57,14 +57,9 @@
 	playsound(src, 'sound/machines/twobeep.ogg', 15, 1)
 	H.visible_message("[H] activates [src].",
 	"You activate [src].")
-	var/marker_flags
-	if(H.faction == FACTION_TERRAGOV)
-		marker_flags = MINIMAP_FLAG_MARINE
-	else if(H.faction == FACTION_TERRAGOV_REBEL)
-		marker_flags = MINIMAP_FLAG_MARINE_REBEL
-	else if(H.faction == FACTION_SOM)
-		marker_flags = MINIMAP_FLAG_MARINE_SOM
-	else
+
+	var/marker_flags = GLOB.faction_to_minimap_flag[H.faction]
+	if(!marker_flags)
 		marker_flags = MINIMAP_FLAG_MARINE
 	SSminimaps.add_marker(src, marker_flags, image('icons/UI_icons/map_blips.dmi', null, "supply"))
 	update_icon()
@@ -101,16 +96,16 @@
 /obj/item/beacon/supply_beacon
 	name = "supply beacon"
 	desc = "A rugged, glorified laser pointer capable of sending a beam into space. Activate and throw this to call for a supply drop."
+	icon = 'icons/Marine/marine-navigation.dmi'
 	icon_state = "motion0"
 	icon_activated = "motion2"
 	activation_time = 60
-	underground_signal = TRUE
 	/// Reference to the datum used by the supply drop console
 	var/datum/supply_beacon/beacon_datum
 
 /obj/item/beacon/supply_beacon/Destroy()
 	if(beacon_datum)
-		UnregisterSignal(beacon_datum, COMSIG_PARENT_QDELETING)
+		UnregisterSignal(beacon_datum, COMSIG_QDELETING)
 		QDEL_NULL(beacon_datum)
 	return ..()
 
@@ -125,13 +120,13 @@
 	if(!.)
 		return
 	beacon_datum = new /datum/supply_beacon("[H.name] + [A]", loc, H.faction)
-	RegisterSignal(beacon_datum, COMSIG_PARENT_QDELETING, PROC_REF(clean_beacon_datum))
+	RegisterSignal(beacon_datum, COMSIG_QDELETING, PROC_REF(clean_beacon_datum))
 
 /obj/item/beacon/supply_beacon/deactivate(mob/living/carbon/human/H)
 	. = ..()
 	if(!.)
 		return
-	UnregisterSignal(beacon_datum, COMSIG_PARENT_QDELETING)
+	UnregisterSignal(beacon_datum, COMSIG_QDELETING)
 	QDEL_NULL(beacon_datum)
 
 /datum/supply_beacon

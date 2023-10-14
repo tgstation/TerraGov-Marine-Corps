@@ -1,5 +1,0 @@
-author: "Zar000"
-delete-after: True
-changes:
-  - balance: "rebalanced flare acid resistance"
-  - refactor: "refactored acid code"

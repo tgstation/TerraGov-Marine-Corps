@@ -58,7 +58,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 		/obj/item/attachable/scope/pmc,
 		/obj/item/attachable/shoulder_mount,
 	)
-	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER|GUN_IFF
+	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER|GUN_IFF|GUN_SMOKE_PARTICLES
 	starting_attachment_types = list(/obj/item/attachable/scope/antimaterial, /obj/item/attachable/sniperbarrel)
 
 	fire_delay = 2.5 SECONDS
@@ -244,7 +244,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	allowed_ammo_types = list(/obj/item/ammo_magazine/sniper/elite)
 	force = 17
 	attachable_allowed = list()
-	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER|GUN_IFF
+	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER|GUN_IFF|GUN_SMOKE_PARTICLES
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 18,"rail_x" = 15, "rail_y" = 19, "under_x" = 20, "under_y" = 15, "stock_x" = 20, "stock_y" = 15)
 	flags_item_map_variant = NONE
 	attachable_allowed = list(
@@ -297,7 +297,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 		/obj/item/attachable/scope/slavic,
 	)
 
-	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
+	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER|GUN_SMOKE_PARTICLES
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 17,"rail_x" = 22, "rail_y" = 21, "under_x" = 32, "under_y" = 14, "stock_x" = 20, "stock_y" = 14)
 	starting_attachment_types = list(/obj/item/attachable/scope/slavic)
 	actions_types = list(/datum/action/item_action/aim_mode)
@@ -362,7 +362,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 		/obj/item/weapon/gun/grenade_launcher/underslung,
 	)
 
-	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER|GUN_IFF
+	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER|GUN_IFF|GUN_SMOKE_PARTICLES
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
 	gun_skill_category = SKILL_FIREARMS
 	attachable_offset = list("muzzle_x" = 44, "muzzle_y" = 18,"rail_x" = 18, "rail_y" = 24, "under_x" = 31, "under_y" = 15, "stock_x" = 24, "stock_y" = 13)
@@ -405,7 +405,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	wield_delay = 12
 	gun_skill_category = SKILL_FIREARMS
 	aim_slowdown = 0.8
-	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
+	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER|GUN_SMOKE_PARTICLES
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
 	attachable_allowed = list(/obj/item/attachable/flashlight, /obj/item/attachable/magnetic_harness)
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 19,"rail_x" = 10, "rail_y" = 21, "under_x" = 24, "under_y" = 14, "stock_x" = 24, "stock_y" = 12)
@@ -444,7 +444,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 
 /obj/item/weapon/gun/minigun/smart_minigun
 	name = "\improper SG-85 smart handheld gatling gun"
-	desc = "A true monster of providing supportive suppresing fire, the SG-85 is the TGMC's newest IFF-capable weapon. Boasting a higher firerate than any other handheld weapon. It is chambered in 10x26 caseless."
+	desc = "A true monster of providing supportive suppresing fire, the SG-85 is the TGMC's IFF-capable minigun for heavy fire support duty. Boasting a higher firerate than any other handheld weapon. It is chambered in 10x26 caseless."
 	icon_state = "minigun_sg"
 	item_state = "minigun_sg"
 	fire_animation = "minigun_sg_fire"
@@ -452,15 +452,14 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	caliber = CALIBER_10x26_CASELESS //codex
 	allowed_ammo_types = list(/obj/item/ammo_magazine/minigun_powerpack/smartgun)
 	wield_delay = 1.5 SECONDS
-	flags_gun_features = GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY|GUN_IFF
+	flags_gun_features = GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY|GUN_IFF|GUN_SMOKE_PARTICLES
 	gun_skill_category = SKILL_SMARTGUN
 	attachable_allowed = list(/obj/item/attachable/flashlight, /obj/item/attachable/magnetic_harness, /obj/item/attachable/motiondetector)
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 19,"rail_x" = 19, "rail_y" = 29, "under_x" = 24, "under_y" = 14, "stock_x" = 24, "stock_y" = 12) //Only has rail attachments so only the rail variables are properly aligned
-	aim_slowdown = 1.5
+	aim_slowdown = 1.2
 	actions_types = list()
 
 	fire_delay = 0.1 SECONDS
-	windup_delay = 0.7 SECONDS
 	scatter = -5
 	recoil = 0
 	recoil_unwielded = 4
@@ -484,6 +483,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	flags_equip_slot = ITEM_SLOT_BACK|ITEM_SLOT_BELT
 	max_shells = 100 //codex
 	caliber = CALIBER_PEPPERBALL
+	fire_sound = "gun_fb12" // idk why i called it "fb-12", ah too late now
 	default_ammo_type = /obj/item/ammo_magazine/rifle/pepperball
 	allowed_ammo_types = list(/obj/item/ammo_magazine/rifle/pepperball)
 	force = 30 // two shots weeds as it has no bayonet
@@ -493,8 +493,12 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 		/obj/item/attachable/buildasentry,
 		/obj/item/attachable/shoulder_mount,
 		/obj/item/attachable/flashlight,
+		/obj/item/weapon/gun/flamer/hydro_cannon/pepperball,
 		/obj/item/attachable/magnetic_harness,
 	) // One
+
+	starting_attachment_types = list(/obj/item/weapon/gun/flamer/hydro_cannon/pepperball)
+
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
 	actions_types = list(/datum/action/item_action/aim_mode)
 	aim_fire_delay = 0.1 SECONDS
@@ -512,6 +516,12 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 
 	placed_overlay_iconstate = "pepper"
 
+/obj/item/weapon/gun/flamer/hydro_cannon/pepperball
+	name = "coaxial watercannon"
+	desc = "For the quenching of unfortunate mistakes."
+	icon_state = "hydrocannon_pepper"
+
+
 
 /obj/item/weapon/gun/rifle/pepperball/pepperball_mini
 	name = "mini pepperball gun"
@@ -523,6 +533,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	allowed_ammo_types = list(/obj/item/ammo_magazine/rifle/pepperball/pepperball_mini)
 	force = 5
 	attachable_allowed = list()
+	starting_attachment_types = list()
 	actions_types = list()
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
 	flags_gun_features = GUN_IS_ATTACHMENT | GUN_WIELDED_FIRING_ONLY | GUN_ATTACHMENT_FIRE_ONLY | GUN_AMMO_COUNTER
@@ -577,8 +588,10 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 		/obj/item/attachable/shoulder_mount,
 	)
 
-	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_WIELDED_STABLE_FIRING_ONLY|GUN_AMMO_COUNTER
+	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_WIELDED_STABLE_FIRING_ONLY|GUN_AMMO_COUNTER|GUN_SMOKE_PARTICLES
+	reciever_flags = AMMO_RECIEVER_MAGAZINES|AMMO_RECIEVER_AUTO_EJECT|AMMO_RECIEVER_AUTO_EJECT_LOCKED
 	gun_skill_category = SKILL_FIREARMS
+	fire_sound = 'sound/weapons/guns/fire/launcher.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/launcher_empty.ogg'
 	reload_sound = 'sound/weapons/guns/interact/launcher_reload.ogg'
 	unload_sound = 'sound/weapons/guns/interact/launcher_reload.ogg'
@@ -611,7 +624,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 		if(victim.lying_angle || victim.stat == DEAD) //Have to be standing up to get the fun stuff
 			continue
 		victim.adjustBruteLoss(15) //The shockwave hurts, quite a bit. It can knock unarmored targets unconscious in real life
-		victim.Paralyze(60) //For good measure
+		victim.Paralyze(6 SECONDS) //For good measure
 		victim.emote("pain")
 		victim.throw_at(get_step(backblast_loc, thrown_dir), 1, 2)
 
@@ -656,7 +669,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 		/obj/item/attachable/buildasentry,
 	)
 
-	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_WIELDED_STABLE_FIRING_ONLY|GUN_AMMO_COUNTER|GUN_SHOWS_LOADED
+	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_WIELDED_STABLE_FIRING_ONLY|GUN_AMMO_COUNTER|GUN_SHOWS_LOADED|GUN_SMOKE_PARTICLES
 
 	gun_skill_category = SKILL_FIREARMS
 	dry_fire_sound = 'sound/weapons/guns/fire/launcher_empty.ogg'
@@ -679,6 +692,12 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	if(obj_flags & AUTOBALANCE_CHECK)
 		SSmonitor.stats.sadar_in_use -= src
 	return ..()
+
+/obj/item/weapon/gun/launcher/rocket/sadar/do_fire(obj/object_to_fire)
+	. = ..()
+	if(!.)
+		return FALSE
+	gun_user?.record_war_crime()
 
 /obj/item/weapon/gun/launcher/rocket/sadar/valhalla
 	obj_flags = NONE
@@ -710,6 +729,20 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 
 	placed_overlay_iconstate = "thermo"
 
+/obj/item/weapon/gun/launcher/rocket/m57a4/do_fire(obj/object_to_fire)
+	. = ..()
+	if(!.)
+		return FALSE
+	gun_user?.record_war_crime()
+
+/obj/item/weapon/gun/launcher/rocket/m57a4/deathsquad
+	attachable_allowed = list(
+		/obj/item/attachable/buildasentry,
+		/obj/item/attachable/shoulder_mount,
+		/obj/item/attachable/magnetic_harness,
+	)
+	starting_attachment_types = list(/obj/item/attachable/magnetic_harness)
+
 /obj/item/weapon/gun/launcher/rocket/m57a4/t57
 	name = "\improper RL-57 quad thermobaric launcher"
 	desc = "The RL-57 is posssibly the most awful man portable weapon. It is a 4-barreled missile launcher capable of burst-firing 4 thermobaric missiles with nearly no force to the rocket. Enough said."
@@ -740,6 +773,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 		/obj/item/ammo_magazine/rocket/recoilless/cloak,
 		/obj/item/ammo_magazine/rocket/recoilless/plasmaloss,
 		/obj/item/ammo_magazine/rocket/recoilless/heat,
+		/obj/item/ammo_magazine/rocket/recoilless/heam,
 	)
 	flags_equip_slot = NONE
 	w_class = WEIGHT_CLASS_HUGE
@@ -766,6 +800,9 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 /obj/item/weapon/gun/launcher/rocket/recoillessrifle/low_impact
 	default_ammo_type = /obj/item/ammo_magazine/rocket/recoilless/low_impact
 
+/obj/item/weapon/gun/launcher/rocket/recoillessrifle/heam
+	default_ammo_type = /obj/item/ammo_magazine/rocket/recoilless/heam
+
 //-------------------------------------------------------
 //Disposable RPG
 
@@ -781,9 +818,9 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	w_class = WEIGHT_CLASS_NORMAL
 	default_ammo_type = /obj/item/ammo_magazine/rocket/oneuse
 	allowed_ammo_types = list(/obj/item/ammo_magazine/rocket/oneuse)
-	reciever_flags = AMMO_RECIEVER_CLOSED|AMMO_RECIEVER_MAGAZINES
+	reciever_flags = AMMO_RECIEVER_CLOSED|AMMO_RECIEVER_MAGAZINES|AMMO_RECIEVER_AUTO_EJECT_LOCKED
 	flags_equip_slot = ITEM_SLOT_BELT
-	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_WIELDED_STABLE_FIRING_ONLY|GUN_AMMO_COUNTER|GUN_DEPLOYED_FIRE_ONLY
+	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_WIELDED_STABLE_FIRING_ONLY|GUN_AMMO_COUNTER|GUN_DEPLOYED_FIRE_ONLY|GUN_SMOKE_PARTICLES
 	attachable_allowed = list(/obj/item/attachable/magnetic_harness)
 	/// Indicates extension state of the launcher. True: Fireable and unable to fit in storage. False: Able to fit in storage but must be extended to fire.
 	var/extended = FALSE
@@ -838,7 +875,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "rpg"
 	item_state = "rpg"
-	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_WIELDED_STABLE_FIRING_ONLY|GUN_AMMO_COUNTER|GUN_SHOWS_LOADED
+	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_WIELDED_STABLE_FIRING_ONLY|GUN_AMMO_COUNTER|GUN_SHOWS_LOADED|GUN_SMOKE_PARTICLES
 	caliber = CALIBER_84MM //codex
 	load_method = MAGAZINE //codex
 	default_ammo_type = /obj/item/ammo_magazine/rocket/som
@@ -864,8 +901,18 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	scatter = -1
 	movement_acc_penalty_mult = 5 //You shouldn't fire this on the move
 
+/obj/item/weapon/gun/launcher/rocket/som/do_fire(obj/object_to_fire)
+	. = ..()
+	if(!.)
+		return FALSE
+	if(istype(in_chamber, /obj/item/ammo_magazine/rocket/som/thermobaric || /obj/item/ammo_magazine/rocket/som/rad || /obj/item/ammo_magazine/rocket/som/incendiary))
+		gun_user?.record_war_crime()
+
 /obj/item/weapon/gun/launcher/rocket/som/rad
 	default_ammo_type = /obj/item/ammo_magazine/rocket/som/rad
+
+/obj/item/weapon/gun/launcher/rocket/som/heat
+	default_ammo_type = /obj/item/ammo_magazine/rocket/som/heat
 
 //ICC RPG
 /obj/item/weapon/gun/launcher/rocket/icc
@@ -874,7 +921,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "iccrpg"
 	item_state = "iccrpg"
-	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_WIELDED_STABLE_FIRING_ONLY|GUN_AMMO_COUNTER|GUN_SHOWS_LOADED
+	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_WIELDED_STABLE_FIRING_ONLY|GUN_AMMO_COUNTER|GUN_SHOWS_LOADED|GUN_SMOKE_PARTICLES
 	caliber = CALIBER_84MM //codex
 	load_method = MAGAZINE //codex
 	default_ammo_type = /obj/item/ammo_magazine/rocket/icc
@@ -897,6 +944,13 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	recoil = 2
 	scatter = -1
 	movement_acc_penalty_mult = 5 //You shouldn't fire this on the move
+
+/obj/item/weapon/gun/launcher/rocket/icc/do_fire(obj/object_to_fire)
+	. = ..()
+	if(!.)
+		return FALSE
+	if(istype(in_chamber, /obj/item/ammo_magazine/rocket/icc/thermobaric))
+		gun_user?.record_war_crime()
 
 //-------------------------------------------------------
 //RG-220 Railgun
@@ -928,13 +982,13 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 		/obj/item/attachable/scope/marine,
 	)
 
-	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
+	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_WIELDED_STABLE_FIRING_ONLY|GUN_AMMO_COUNTER
 	reciever_flags = AMMO_RECIEVER_MAGAZINES|AMMO_RECIEVER_AUTO_EJECT|AMMO_RECIEVER_CYCLE_ONLY_BEFORE_FIRE
 
 	fire_delay = 3 SECONDS
 	burst_amount = 1
 	accuracy_mult = 2
-	recoil = 0
+	recoil = 3
 	scatter = 0
 	movement_acc_penalty_mult = 6
 

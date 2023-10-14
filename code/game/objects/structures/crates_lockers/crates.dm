@@ -9,8 +9,16 @@
 	mob_storage_capacity = 0
 	storage_capacity = 100
 	closet_flags = CLOSET_ALLOW_OBJS|CLOSET_ALLOW_DENSE_OBJ
+	allow_pass_flags = PASS_LOW_STRUCTURE|PASSABLE|PASS_WALKOVER
 	open_sound = 'sound/machines/click.ogg'
 	close_sound = 'sound/machines/click.ogg'
+
+/obj/structure/closet/crate/Initialize(mapload, ...)
+	. = ..()
+	var/static/list/connections = list(
+		COMSIG_OBJ_TRY_ALLOW_THROUGH = PROC_REF(can_climb_over),
+	)
+	AddElement(/datum/element/connect_loc, connections)
 
 /obj/structure/closet/crate/can_close()
 	. = ..()
@@ -20,24 +28,13 @@
 		return FALSE
 	return TRUE
 
-/obj/structure/closet/crate/CanAllowThrough(atom/movable/mover, turf/target)
-	. = ..()
-	if(istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSTABLE))
-		return TRUE
-
-	var/obj/structure/S = locate(/obj/structure) in get_turf(mover)
-	if(S?.climbable && !(S.flags_atom & ON_BORDER) && climbable && isliving(mover)) //Climbable non-border objects allow you to universally climb over others
-		return TRUE
-	if(opened) //Open crate, you can cross over it
-		return TRUE
-
 /obj/structure/closet/crate/open(mob/living/user)
 	. = ..()
 	if(!.)
 		return
 
 	if(climbable)
-		structure_shaken()
+		INVOKE_ASYNC(src, PROC_REF(structure_shaken))
 		climbable = FALSE //Open crate is not a surface that works when climbing around
 
 /obj/structure/closet/crate/close()

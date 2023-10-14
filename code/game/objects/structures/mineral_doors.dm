@@ -5,7 +5,7 @@
 	name = "mineral door"
 	density = TRUE
 	opacity = TRUE
-	flags_pass = NONE
+	allow_pass_flags = NONE
 	icon = 'icons/obj/doors/mineral_doors.dmi'
 	icon_state = "metal"
 
@@ -19,9 +19,15 @@
 	var/material_type
 
 /obj/structure/mineral_door/Initialize(mapload)
-	. = ..()
 	if((locate(/mob/living) in loc) && !open)	//If we build a door below ourselves, it starts open.
 		toggle_state()
+	/*
+	We are calling parent later because if we toggle state, the opacity changes only to change to
+	non opaque after the parent procs do their thing, this is an issue because this changes the
+	directional opacity of the turf below to be opaque from all sides, which screws with
+	line of sight because the turf below the door is considered opaque, when it shouldn't be.
+	*/
+	return ..()
 
 /obj/structure/mineral_door/Bumped(atom/user)
 	. = ..()
@@ -35,9 +41,10 @@
 	return try_toggle_state(user)
 
 /obj/structure/mineral_door/CanAllowThrough(atom/movable/mover, turf/target)
-	. = ..()
 	if(istype(mover, /obj/effect/beam))
 		return !opacity
+
+	return ..()
 
 /*
  * Checks all the requirements for opening/closing a door before opening/closing it
@@ -92,7 +99,7 @@
 	if(W.damtype == BURN && istype(src, /obj/structure/mineral_door/resin)) //Burn damage deals extra vs resin structures (mostly welders).
 		multiplier += 1 //generally means we do double damage to resin doors
 
-	take_damage(max(0, W.force * multiplier - W.force), W.damtype)
+	take_damage(max(0, W.force * multiplier - W.force), W.damtype, MELEE)
 
 /obj/structure/mineral_door/Destroy()
 	if(material_type)

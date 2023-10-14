@@ -2,14 +2,14 @@
 	caste_base_type = /mob/living/carbon/xenomorph/bull
 	name = "Bull"
 	desc = "A bright red alien with a matching temper."
-	icon = 'icons/Xeno/2x2_Xenos.dmi'
+	icon = 'icons/Xeno/castes/bull.dmi'
 	icon_state = "Bull Walking"
 	bubble_icon = "alienleft"
 	health = 160
 	maxHealth = 160
 	plasma_stored = 200
 	tier = XENO_TIER_TWO
-	upgrade = XENO_UPGRADE_ZERO
+	upgrade = XENO_UPGRADE_NORMAL
 
 	pixel_x = -16
 	pixel_y = -3

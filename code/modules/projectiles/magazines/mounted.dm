@@ -10,7 +10,7 @@
 	max_rounds = 300
 	default_ammo = /datum/ammo/bullet/machinegun
 	reload_delay = 5 SECONDS
-	icon_state_mini = "mag_tl102"
+	icon_state_mini = "mag_hmg"
 
 ///This is the one that comes in the mapbound and dropship mounted version of the HSG-102, it has a stupid amount of ammo. Even more than the ammo counter can display.
 /obj/item/ammo_magazine/tl102/hsg_nest
@@ -23,6 +23,7 @@
 	flags_equip_slot = ITEM_SLOT_BACK|ITEM_SLOT_BELT
 	icon = 'icons/Marine/marine-hmg.dmi'
 	icon_state = "mg08_mag"
+	icon_state_mini = "mag_drum_big_green"
 	flags_magazine = NONE
 	caliber = CALIBER_10X28
 	max_rounds = 500
@@ -35,18 +36,20 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	flags_equip_slot = ITEM_SLOT_BELT
 	icon_state = "mg08_mag_small"
+	icon_state_mini = "mag_hmg"
 	max_rounds = 250
 	reload_delay = 5 SECONDS
 
 /obj/item/ammo_magazine/standard_mmg
 	name = "MG-27 box magazine (10x27m Caseless)"
-	desc = "A box of 100 10x27mm caseless rounds for the MG-27 medium machinegun."
+	desc = "A box of 150 10x27mm caseless rounds for the MG-27 medium machinegun."
 	w_class = WEIGHT_CLASS_NORMAL
 	icon = 'icons/Marine/marine-mmg.dmi'
 	icon_state = "mag"
+	icon_state_mini = "mag_drum_big_armygreen"
 	flags_magazine = NONE
 	caliber = CALIBER_10x27_CASELESS
-	max_rounds = 100
+	max_rounds = 150
 	default_ammo = /datum/ammo/bullet/rifle/heavy
 	reload_delay = 1 SECONDS
 
@@ -73,6 +76,25 @@
 	desc = "A box holding 30 40mm caseless White Phosphorous grenades for the AGLS-37 automatic grenade launcher."
 	icon_state = "ags_mag_incend"
 	default_ammo = /datum/ammo/ags_shrapnel/incendiary
+
+/obj/item/ammo_magazine/standard_agls/flare
+	name = "AGLS-37 Flare magazine (40mm Caseless)"
+	desc = "A box holding 30 40mm caseless Flare grenades for the AGLS-37 automatic grenade launcher."
+	icon_state = "ags_mag_flare"
+	default_ammo = /datum/ammo/grenade_container/ags_grenade/flare
+
+/obj/item/ammo_magazine/standard_agls/cloak
+	name = "AGLS-37 Cloak magazine (40mm Caseless)"
+	desc = "A box holding 30 40mm caseless Cloak grenades for the AGLS-37 automatic grenade launcher."
+	icon_state = "ags_mag_cloak"
+	default_ammo = /datum/ammo/grenade_container/ags_grenade/cloak
+
+/obj/item/ammo_magazine/standard_agls/tanglefoot
+	name = "AGLS-37 Tanglefoot magazine (40mm Caseless)"
+	desc = "A box holding 30 40mm caseless Tanglefoot grenades for the AGLS-37 automatic grenade launcher."
+	icon_state = "ags_mag_pgas"
+	default_ammo = /datum/ammo/grenade_container/ags_grenade/tanglefoot
+
 
 /obj/item/ammo_magazine/standard_atgun
 	name = "AT-36 AP-HE shell (37mm Shell)"

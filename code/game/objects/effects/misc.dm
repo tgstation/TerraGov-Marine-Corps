@@ -11,7 +11,7 @@
 /obj/effect/beam
 	name = "beam"
 	var/def_zone
-	flags_pass = PASSTABLE
+	allow_pass_flags = PASS_LOW_STRUCTURE
 
 
 /obj/effect/begin
@@ -43,7 +43,6 @@
 /obj/effect/soundplayer
 	anchored = TRUE
 	opacity = FALSE
-	density = TRUE
 	icon_state = "speaker"
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	var/datum/looping_sound/alarm_loop/deltalarm

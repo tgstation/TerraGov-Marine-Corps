@@ -153,7 +153,7 @@ Administrative related.
 /datum/config_entry/number/lobby_countdown
 	config_entry_value = 180
 
-/datum/config_entry/number/round_end_countdown
+/datum/config_entry/number/mission_end_countdown
 	config_entry_value = 120
 
 /datum/config_entry/flag/see_own_notes
@@ -426,3 +426,9 @@ This maintains a list of ip addresses that are able to bypass topic filtering.
 /datum/config_entry/number/ai_anti_stuck_lag_time_dilation_threshold
 	config_entry_value = 20
 	min_val = 0
+
+/datum/config_entry/flag/cache_assets
+	default = TRUE
+
+/datum/config_entry/flag/save_spritesheets
+	default = FALSE

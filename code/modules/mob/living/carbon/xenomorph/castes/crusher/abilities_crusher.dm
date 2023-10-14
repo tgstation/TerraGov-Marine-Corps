@@ -65,7 +65,7 @@
 /datum/action/xeno_action/activable/cresttoss
 	name = "Crest Toss"
 	action_icon_state = "cresttoss"
-	desc = "Fling an adjacent target over and behind you. Also works over barricades."
+	desc = "Fling an adjacent target over and behind you, or away from you while on harm intent. Also works over barricades."
 	ability_name = "crest toss"
 	plasma_cost = 75
 	cooldown_timer = 12 SECONDS
@@ -197,6 +197,7 @@
 	. = ..()
 	if(!.)
 		return FALSE
+
 	if(get_dist(owner, A) > 7)
 		return FALSE
 
@@ -206,13 +207,15 @@
 	X.face_atom(A)
 	X.set_canmove(FALSE)
 	if(!do_after(X, 10, TRUE, X, BUSY_ICON_DANGER))
-		X.set_canmove(TRUE)
+		if(!X.stat)
+			X.set_canmove(TRUE)
 		return fail_activate()
 	X.set_canmove(TRUE)
 
 	var/datum/action/xeno_action/ready_charge/charge = X.actions_by_path[/datum/action/xeno_action/ready_charge]
 	var/aimdir = get_dir(X,A)
 	if(charge)
+		charge.charge_on(FALSE)
 		charge.do_stop_momentum(FALSE) //Reset charge so next_move_limit check_momentum() does not cuck us and 0 out steps_taken
 		charge.do_start_crushing()
 		charge.valid_steps_taken = charge.max_steps_buildup - 1

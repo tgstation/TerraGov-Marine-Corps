@@ -633,9 +633,10 @@
 	},
 /area/deathmatch)
 "cN" = (
-/turf/open/floor/stairs/rampbottom{
+/obj/structure/stairs/edge{
 	dir = 1
 	},
+/turf/open/floor/tile/dark,
 /area/deathmatch)
 "cQ" = (
 /obj/machinery/door/airlock/dropship_hatch/right,
@@ -723,7 +724,8 @@
 /turf/open/floor/plating/ground/dirt,
 /area/deathmatch)
 "dA" = (
-/turf/open/floor/stairs/rampbottom,
+/obj/structure/stairs/edge,
+/turf/open/floor/tile/dark,
 /area/deathmatch)
 "dD" = (
 /obj/structure/flora/ausbushes/ppflowers,
@@ -854,18 +856,20 @@
 /turf/open/floor/plating/asteroidfloor,
 /area/deathmatch)
 "eq" = (
-/turf/open/floor/stairs/rampbottom{
+/obj/structure/stairs/edge{
 	dir = 8
 	},
+/turf/open/floor/tile/dark,
 /area/deathmatch)
 "er" = (
 /obj/structure/prop/mainship/valmoric,
 /turf/open/floor/mainship/mono,
 /area/deathmatch)
 "es" = (
-/turf/open/floor/stairs/rampbottom{
+/obj/structure/stairs/edge{
 	dir = 4
 	},
+/turf/open/floor/tile/dark,
 /area/deathmatch)
 "et" = (
 /turf/closed/shuttle/dropship1/enginetwo{
@@ -1172,9 +1176,10 @@
 /area/deathmatch)
 "va" = (
 /obj/effect/ai_node,
-/turf/open/floor/stairs/rampbottom{
+/obj/structure/stairs/edge{
 	dir = 1
 	},
+/turf/open/floor/tile/dark,
 /area/deathmatch)
 "wc" = (
 /obj/structure/platform{

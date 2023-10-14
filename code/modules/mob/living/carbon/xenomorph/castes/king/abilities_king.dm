@@ -195,6 +195,8 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_SHATTERING_ROAR,
 	)
+	/// Tracks victims to make sure we only hit them once
+	var/list/victims_hit = list()
 
 /datum/action/xeno_action/activable/shattering_roar/use_ability(atom/target)
 	if(!target)
@@ -232,10 +234,11 @@
 ///Carries out the attack iteratively based on distance from source
 /datum/action/xeno_action/activable/shattering_roar/proc/execute_attack(iteration, list/turf/turfs_to_attack, range, target, turf/source)
 	if(iteration > range)
+		victims_hit.Cut()
 		return
 
 	for(var/turf/turf AS in turfs_to_attack)
-		if(get_dist(turf, source) == iteration)
+		if(get_dist(turf, source) == iteration || get_dist(turf, source) == iteration - 1)
 			attack_turf(turf, LERP(1, 0.3, iteration / SHATTERING_ROAR_RANGE))
 
 	iteration++
@@ -245,20 +248,23 @@
 /datum/action/xeno_action/activable/shattering_roar/proc/attack_turf(turf/turf_victim, severity)
 	new /obj/effect/temp_visual/shattering_roar(turf_victim)
 	for(var/victim in turf_victim)
+		if(victim in victims_hit)
+			continue
+		victims_hit += victim
 		if(iscarbon(victim))
 			var/mob/living/carbon/carbon_victim = victim
 			if(carbon_victim.stat == DEAD || isxeno(carbon_victim))
 				continue
 			carbon_victim.apply_damage(SHATTERING_ROAR_DAMAGE * severity, BRUTE, blocked = MELEE)
 			carbon_victim.apply_damage(SHATTERING_ROAR_DAMAGE * severity, STAMINA)
-			carbon_victim.adjust_stagger(6 * severity)
+			carbon_victim.adjust_stagger(6 SECONDS * severity)
 			carbon_victim.add_slowdown(6 * severity)
 			shake_camera(carbon_victim, 3 * severity, 3 * severity)
-			carbon_victim.apply_effect(0.5, WEAKEN)
+			carbon_victim.apply_effect(1 SECONDS, WEAKEN)
 			to_chat(carbon_victim, "You are smashed to the ground!")
 		else if(ismecha(victim))
 			var/obj/vehicle/sealed/mecha/mecha_victim = victim
-			mecha_victim.take_damage(SHATTERING_ROAR_DAMAGE * 5 * severity, MELEE)
+			mecha_victim.take_damage(SHATTERING_ROAR_DAMAGE * 5 * severity, BRUTE, MELEE)
 		else if(istype(victim, /obj/structure/window))
 			var/obj/structure/window/window_victim = victim
 			if(window_victim.damageable)
@@ -374,7 +380,7 @@
 
 	REMOVE_TRAIT(owner, TRAIT_IMMOBILE, ZERO_FORM_BEAM_ABILITY_TRAIT)
 	sound_loop.start(owner)
-	RegisterSignal(owner, list(COMSIG_MOVABLE_MOVED, COMSIG_ATOM_DIR_CHANGE), PROC_REF(stop_beaming))
+	RegisterSignals(owner, list(COMSIG_MOVABLE_MOVED, COMSIG_ATOM_DIR_CHANGE), PROC_REF(stop_beaming))
 	var/mob/living/carbon/xenomorph/king/king_owner = owner
 	if(istype(king_owner))
 		king_owner.icon_state = "King Screeching"

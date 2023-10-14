@@ -37,7 +37,7 @@
 /obj/machinery/computer/camera_advanced/proc/CreateEye()
 	eyeobj = new()
 	eyeobj.origin = src
-	RegisterSignal(eyeobj, COMSIG_PARENT_QDELETING, PROC_REF(clear_eye_ref))
+	RegisterSignal(eyeobj, COMSIG_QDELETING, PROC_REF(clear_eye_ref))
 
 /**
  * This proc is used to make sure no references or other leftovers are left behind if the computer's eye is deleted.
@@ -45,7 +45,7 @@
 **/
 /obj/machinery/computer/camera_advanced/proc/clear_eye_ref()
 	SIGNAL_HANDLER
-	UnregisterSignal(eyeobj, COMSIG_PARENT_QDELETING)
+	UnregisterSignal(eyeobj, COMSIG_QDELETING)
 	if(current_user)
 		remove_eye_control(current_user)
 	eyeobj = null
@@ -319,6 +319,11 @@
 	holder.icon = icon
 	holder.icon_state = icon_state_on
 
+/mob/camera/aiEye/remote/hud/Destroy()
+	var/datum/atom_hud/squad/squad_hud = GLOB.huds[DATA_HUD_SQUAD_TERRAGOV]
+	squad_hud.remove_from_hud(src)
+	return ..()
+
 //This one's for overwatch/CIC
 /mob/camera/aiEye/remote/hud/overwatch
 	icon_state_on = "cic_camera"
@@ -326,7 +331,7 @@
 	var/list/current_aura_list = list()
 
 /mob/camera/aiEye/remote/hud/overwatch/Initialize(mapload)
-	..()
+	. = ..()
 	RegisterSignal(src, COMSIG_AURA_STARTED, PROC_REF(add_emitted_auras))
 	RegisterSignal(src, COMSIG_AURA_FINISHED, PROC_REF(remove_emitted_auras))
 

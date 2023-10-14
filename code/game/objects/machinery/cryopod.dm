@@ -20,12 +20,12 @@
 	dat += "<b>Recently stored objects</b><br/><hr/><br/>"
 	dat +="<table style='text-align:justify'><tr>"
 	dat += "<tr></table>"
-	dat += "<center><a href='byond://?src=\ref[src];allitems=TRUE'>Dispense All</a></center><br/>"
+	dat += "<center><a href='byond://?src=[text_ref(src)];allitems=TRUE'>Dispense All</a></center><br/>"
 	for(var/obj/item/I AS in GLOB.cryoed_item_list)
 		if(QDELETED(I))
 			GLOB.cryoed_item_list -= I
 			continue
-		dat += "<p style='text-align:left'><a href='byond://?src=\ref[src];item=\ref[I]'>[I.name]</a></p>"
+		dat += "<p style='text-align:left'><a href='byond://?src=[text_ref(src)];item=[text_ref(I)]'>[I.name]</a></p>"
 	dat += "<hr/>"
 
 	var/datum/browser/popup = new(user, "cryopod_console", "<div align='center'>Cryogenics</div>")
@@ -84,6 +84,9 @@
 	orient_right = TRUE
 	icon_state = "cryo_rear-r"
 
+/obj/structure/cryofeed/middle
+	icon_state = "cryo_rear-m"
+
 /obj/structure/cryofeed/Initialize(mapload)
 	. = ..()
 	if(orient_right)
@@ -102,23 +105,15 @@
 	var/mob/living/occupant
 	var/orient_right = FALSE // Flips the sprite.
 	var/obj/item/radio/radio
-	/// The frequency of the radio
-	var/frequency = FREQ_COMMON
-
-/obj/machinery/cryopod/rebel
-	frequency = FREQ_COMMON_REBEL
 
 /obj/machinery/cryopod/right
 	orient_right = TRUE
 	icon_state = "body_scanner_0-r"
 
-/obj/machinery/cryopod/right/rebel
-	frequency = FREQ_COMMON_REBEL
-
 /obj/machinery/cryopod/Initialize(mapload)
 	. = ..()
 	radio = new(src)
-	radio.set_frequency(frequency)
+	radio.set_frequency(FREQ_COMMON)
 	update_icon()
 	RegisterSignal(src, COMSIG_MOVABLE_SHUTTLE_CRUSH, PROC_REF(shuttle_crush))
 
@@ -175,7 +170,8 @@
 
 /obj/item/proc/store_in_cryo()
 	if(is_type_in_typecache(src, GLOB.do_not_preserve) || flags_item & (ITEM_ABSTRACT|NODROP|DELONDROP))
-		qdel(src)
+		if(!QDELETED(src))
+			qdel(src)
 		return
 	moveToNullspace()
 	GLOB.cryoed_item_list += src
@@ -236,19 +232,18 @@
 		return
 	go_out()
 
-/obj/machinery/cryopod/proc/move_inside_wrapper(mob/living/M, mob/user)
-	if(user.stat != CONSCIOUS || !ishuman(M))
+/obj/machinery/cryopod/proc/move_inside_wrapper(mob/living/target, mob/user)
+	if(!ishuman(target) || !ishuman(user) || user.incapacitated(TRUE))
 		return
 
 	if(!QDELETED(occupant))
 		to_chat(user, span_warning("[src] is occupied."))
 		return
 
-	climb_in(M, user)
+	climb_in(target, user)
 
 /obj/machinery/cryopod/MouseDrop_T(mob/M, mob/user)
-	if(!isliving(M) || !ishuman(user))
-		return
+	. = ..()
 	move_inside_wrapper(M, user)
 
 /obj/machinery/cryopod/verb/move_inside()

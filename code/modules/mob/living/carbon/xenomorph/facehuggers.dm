@@ -83,15 +83,15 @@
 ///Registers the source of our facehugger for the purpose of anti-shuffle mechanics
 /obj/item/clothing/mask/facehugger/proc/facehugger_register_source(mob/living/carbon/xenomorph/S)
 	if(source) //If we have an existing source, unregister
-		UnregisterSignal(source, COMSIG_PARENT_QDELETING)
+		UnregisterSignal(source, COMSIG_QDELETING)
 
 	source = S //set and register new source
-	RegisterSignal(S, COMSIG_PARENT_QDELETING, PROC_REF(clear_hugger_source))
+	RegisterSignal(S, COMSIG_QDELETING, PROC_REF(clear_hugger_source))
 
 ///Clears the source of our facehugger for the purpose of anti-shuffle mechanics
 /obj/item/clothing/mask/facehugger/proc/clear_hugger_source()
 	SIGNAL_HANDLER
-	UnregisterSignal(source, COMSIG_PARENT_QDELETING)
+	UnregisterSignal(source, COMSIG_QDELETING)
 	source = null
 
 /obj/item/clothing/mask/facehugger/Destroy()
@@ -353,7 +353,7 @@
 		return TRUE
 	return FALSE
 
-/obj/item/clothing/mask/facehugger/throw_at(atom/target, range, speed)
+/obj/item/clothing/mask/facehugger/throw_at(atom/target, range, speed, thrower, spin, flying = FALSE, targetted_throw = TRUE)
 	. = ..()
 	update_icon()
 
@@ -374,7 +374,7 @@
 			step(src, REVERSE_DIR(dir)) //We want the hugger to bounce off if it hits a mob.
 			update_icon()
 			if(!issamexenohive(M)) //If the target is not friendly, stagger and slow it, and activate faster.
-				M.adjust_stagger(3) //Apply stagger and slowdown so the carrier doesn't have to suicide when going for direct hugger hits.
+				M.adjust_stagger(3 SECONDS) //Apply stagger and slowdown so the carrier doesn't have to suicide when going for direct hugger hits.
 				M.add_slowdown(3)
 				pre_leap(impact_time) //Go into the universal leap set up proc
 				return
@@ -564,12 +564,15 @@
 			embryo.hivenumber = hivenumber
 			GLOB.round_statistics.now_pregnant++
 			SSblackbox.record_feedback("tally", "round_statistics", 1, "now_pregnant")
+			if(source?.client)
+				var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[source.ckey]
+				personal_statistics.impregnations++
 			sterile = TRUE
 		kill_hugger()
 	else
 		reset_attach_status(as_planned)
 		playsound(loc, 'sound/voice/alien_facehugger_dies.ogg', 25, 1)
-		activetimer = addtimer(CALLBACK(src, PROC_REF(go_active)), activate_time)
+		activetimer = addtimer(CALLBACK(src, PROC_REF(go_active)), activate_time, TIMER_STOPPABLE|TIMER_UNIQUE)
 		update_icon()
 
 	if(as_planned)
@@ -757,7 +760,7 @@
 		if(isxeno(target)) //Xenos aren't affected by sticky resin
 			continue
 
-		target.adjust_stagger(3)
+		target.adjust_stagger(3 SECONDS)
 		target.add_slowdown(15)
 		target.apply_damage(100, STAMINA, BODY_ZONE_HEAD, BIO, updating_health = TRUE) //This should prevent sprinting
 

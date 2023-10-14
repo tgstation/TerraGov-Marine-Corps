@@ -3,7 +3,7 @@
 /obj/item/tool/shovel
 	name = "shovel"
 	desc = "A large tool for digging and moving dirt."
-	icon = 'icons/obj/items/items.dmi'
+	icon = 'icons/obj/items/tools.dmi'
 	icon_state = "shovel"
 	item_state = "shovel"
 	flags_atom = CONDUCT
@@ -49,7 +49,7 @@
 		if(dirt_type == DIRT_TYPE_SNOW)
 			var/turf/T = get_turf(user.loc)
 			var/obj/item/stack/snow/S = locate() in T
-			if(S?.amount < S.max_amount)
+			if(S?.amount < S?.max_amount)
 				S.amount += dirt_amt
 			else
 				new /obj/item/stack/snow(T, dirt_amt)
@@ -129,8 +129,9 @@
 /obj/item/tool/shovel/etool
 	name = "entrenching tool"
 	desc = "Used to dig holes and bash heads in. Folds in to fit in small spaces. Use a sharp item on it to sharpen it."
-	icon = 'icons/Marine/marine-items.dmi'
+	icon = 'icons/obj/items/tools.dmi'
 	icon_state = "etool_c"
+	item_state = "etool_c"
 	force = 2
 	throwforce = 2
 	hitsound = "sound/weapons/shovel.ogg"
@@ -143,10 +144,13 @@
 /obj/item/tool/shovel/etool/update_icon_state()
 	if(!folded && !sharp)
 		icon_state = "etool"
+		item_state = "etool"
 	else if(sharp)
 		icon_state = "etool_s"
+		item_state = "etool"
 	else
 		icon_state = "etool_c"
+		item_state = "etool_c"
 	..()
 
 /obj/item/tool/shovel/etool/attack_self(mob/user as mob)

@@ -1,0 +1,8 @@
+{
+	"chest":[
+		{
+		"type": "hyperscale",
+		"icon_state": "chest"
+		}
+	]
+}

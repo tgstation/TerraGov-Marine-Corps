@@ -1,7 +1,7 @@
 /obj/item/tool/extinguisher
 	name = "fire extinguisher"
 	desc = "A traditional red fire extinguisher."
-	icon = 'icons/obj/items/items.dmi'
+	icon = 'icons/obj/items/tank.dmi'
 	icon_state = "fire_extinguisher0"
 	item_icons = list(
 		slot_l_hand_str = 'icons/mob/inhands/equipment/tools_left.dmi',
@@ -44,7 +44,7 @@
 /obj/item/tool/extinguisher/attack_self(mob/user as mob)
 	safety = !safety
 	icon_state = "[sprite_name][!safety]"
-	balloon_alert(user, "[safety ? "on" : "off"]")
+	balloon_alert(user, "Safety [safety ? "on" : "off"]")
 
 /obj/item/tool/extinguisher/attack(mob/M, mob/user)
 	if(user.a_intent == INTENT_HELP && !safety) //If we're on help intent and going to spray people, don't bash them.

@@ -37,11 +37,9 @@
 
 /datum/action/innate/order/can_use_action()
 	. = ..()
-	if(TIMER_COOLDOWN_CHECK(owner, COOLDOWN_CIC_ORDERS))
-		to_chat(owner, span_warning("Your last order was too recent."))
-		return FALSE
-	if(owner.stat)
-		to_chat(owner, span_warning("You can not issue an order in your current state."))
+	if(!.)
+		return
+	if(owner.stat != CONSCIOUS || TIMER_COOLDOWN_CHECK(owner, COOLDOWN_CIC_ORDERS))
 		return FALSE
 
 ///Print order visual to all marines squad hud and give them an arrow to follow the waypoint
@@ -87,14 +85,13 @@
 	if(target == src)
 		return
 	var/hud_type
-	if(faction == FACTION_TERRAGOV)
-		hud_type = DATA_HUD_SQUAD_TERRAGOV
-	else if(faction == FACTION_TERRAGOV_REBEL)
-		hud_type = DATA_HUD_SQUAD_REBEL
-	else if(faction == FACTION_SOM)
-		hud_type = DATA_HUD_SQUAD_SOM
-	else
-		return
+	switch(faction)
+		if(FACTION_TERRAGOV)
+			hud_type = DATA_HUD_SQUAD_TERRAGOV
+		if(FACTION_SOM)
+			hud_type = DATA_HUD_SQUAD_SOM
+		else
+			return
 	var/datum/atom_hud/squad/squad_hud = GLOB.huds[hud_type]
 	if(!squad_hud.hudusers[src])
 		return

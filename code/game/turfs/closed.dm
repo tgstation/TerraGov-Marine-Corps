@@ -21,7 +21,7 @@
 	icon = 'icons/turf/walls.dmi'
 	icon_state = "rock"
 	open_turf_type = /turf/open/floor/plating/ground/desertdam/cave/inner_cave_floor
-	minimap_color = NONE
+	minimap_color = MINIMAP_BLACK
 	resistance_flags = UNACIDABLE
 
 /turf/closed/mineral/add_debris_element()
@@ -60,6 +60,7 @@
 	open_turf_type = /turf/open/floor/plating/ground/mars/random/dirt
 
 /turf/closed/mineral/smooth/indestructible
+	name = "tough rock"
 	resistance_flags = RESIST_ALL
 	icon_state = "wall-invincible"
 
@@ -88,7 +89,7 @@
 	icon_state = "darkfrostwall-0"
 	walltype = "darkfrostwall"
 	base_icon_state = "darkfrostwall"
-	resistance_flags = PLASMACUTTER_IMMUNE
+	resistance_flags = PLASMACUTTER_IMMUNE|UNACIDABLE
 
 /turf/closed/mineral/smooth/darkfrostwall/indestructible
 	resistance_flags = RESIST_ALL
@@ -144,6 +145,7 @@
 	icon = 'icons/turf/walls/jungle.dmi'
 	icon_state = "junglewall-0"
 	desc = "Some thick jungle."
+	resistance_flags = UNACIDABLE
 	smoothing_flags = SMOOTH_BITMASK
 	smoothing_groups = list(SMOOTH_GROUP_FLORA)
 	canSmoothWith = list(SMOOTH_GROUP_FLORA)
@@ -167,8 +169,8 @@
 
 /turf/closed/gm/dense
 	name = "dense jungle wall"
-	resistance_flags = PLASMACUTTER_IMMUNE
-	minimap_color = NONE
+	resistance_flags = PLASMACUTTER_IMMUNE|UNACIDABLE
+	minimap_color = MINIMAP_BLACK
 	icon_state = "wall-dense"
 
 /turf/closed/gm/dense/Initialize(mapload)
@@ -318,7 +320,7 @@
 /turf/closed/ice_rock
 	name = "Icy rock"
 	icon = 'icons/turf/rockwall.dmi'
-	resistance_flags = PLASMACUTTER_IMMUNE
+	resistance_flags = PLASMACUTTER_IMMUNE|UNACIDABLE
 	open_turf_type = /turf/open/floor/plating/ground/ice
 
 /turf/closed/ice_rock/add_debris_element()
@@ -481,6 +483,7 @@
 /turf/closed/shuttle/dropship1/window
 	icon_state = "shuttle_window_glass"
 	opacity = FALSE
+	allow_pass_flags = PASS_GLASS
 
 /turf/closed/shuttle/dropship1/panel
 	icon_state = "shuttle_interior_panel"
@@ -518,6 +521,7 @@
 /turf/closed/shuttle/dropship1/interiorwindow
 	icon_state = "shuttle_interior_inwards"
 	opacity = FALSE
+	allow_pass_flags = PASS_GLASS
 
 /turf/closed/shuttle/dropship1/interiormisc
 	icon_state = "shuttle_interior_threeside"
@@ -671,6 +675,7 @@
 /turf/closed/shuttle/dropship2/window
 	icon_state = "shuttle_window_glass"
 	opacity = FALSE
+	allow_pass_flags = PASS_GLASS
 
 /turf/closed/shuttle/dropship2/panel
 	icon_state = "shuttle_interior_panel"
@@ -728,6 +733,8 @@
 
 /turf/closed/shuttle/dropship2/singlewindow
 	icon_state = "shuttle_single_window"
+	opacity = FALSE
+	allow_pass_flags = PASS_GLASS
 
 /turf/closed/shuttle/dropship2/singlewindow/tadpole
 	icon_state = "shuttle_single_window"
@@ -756,18 +763,24 @@
 
 /turf/closed/shuttle/dropship2/glassone
 	icon_state = "shuttle_glass1"
+	opacity = FALSE
+	allow_pass_flags = PASS_GLASS
 
 /turf/closed/shuttle/dropship2/glassone/tadpole
 	icon_state = "shuttle_glass1"
 	resistance_flags = NONE
 	opacity = FALSE
+	allow_pass_flags = PASS_GLASS
 
 /turf/closed/shuttle/dropship2/glasstwo
 	icon_state = "shuttle_glass2"
+	opacity = FALSE
+	allow_pass_flags = PASS_GLASS
 
 /turf/closed/shuttle/dropship2/glasstwo/tadpole
 	icon_state = "shuttle_glass2"
 	resistance_flags = NONE
+	allow_pass_flags = PASS_GLASS
 
 /turf/closed/shuttle/dropship2/glassthree
 	icon_state = "shuttle_glass3"

@@ -1,7 +1,7 @@
 /obj/item/implantcase
 	name = "glass case"
 	desc = "A case containing an implant."
-	icon = 'icons/obj/items/items.dmi'
+	icon = 'icons/obj/items/implants.dmi'
 	icon_state = "implantcase-0"
 	item_icons = list(
 		slot_l_hand_str = 'icons/mob/inhands/equipment/medical_left.dmi',
@@ -35,7 +35,7 @@
 	. = ..()
 
 	if(istype(I, /obj/item/tool/pen))
-		var/label = stripped_input(user, "What would you like the label to be?", text("[]", name), null)
+		var/label = stripped_input(user, "What would you like the label to be?", "[name]", null)
 		if(user.get_active_held_item() != I)
 			return
 		if((!in_range(src, usr) && loc != user))

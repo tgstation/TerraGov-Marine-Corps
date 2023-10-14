@@ -27,9 +27,6 @@
 
 /// A strippable item for a hand
 /datum/strippable_item/hand
-	// Putting dangerous clothing in our hand is fine.
-	warn_dangerous_clothing = FALSE
-
 	/// Which hand?
 	var/hand_index
 
@@ -125,7 +122,7 @@
 
 /// Getter proc for the alternate action for removing nodrop traits from items with straps
 /datum/strippable_item/proc/get_strippable_alternate_action_strap(obj/item/item, atom/source)
-	if(!is_type_in_typecache(item, strappable_typecache))
+	if(!HAS_TRAIT(item, TRAIT_STRAPPABLE))
 		return
 
 	if(CHECK_BITFIELD(item.flags_item, NODROP))
@@ -135,7 +132,7 @@
 
 /// The proc that actually does the alternate action
 /datum/strippable_item/proc/strippable_alternate_action_strap(obj/item/item, atom/source, mob/user)
-	if(!is_type_in_typecache(item, strappable_typecache))
+	if(!HAS_TRAIT(item, TRAIT_STRAPPABLE))
 		return
 
 	user.balloon_alert_to_viewers("[CHECK_BITFIELD(item.flags_item, NODROP) ? "Loosening" : "Tightening"] strap...")

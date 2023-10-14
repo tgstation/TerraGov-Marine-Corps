@@ -3,11 +3,16 @@
 	desc = "A balloon that can be used to extract equipment or personnel. Anything not bolted down can be moved."
 	icon = 'icons/obj/items/fulton.dmi'
 	icon_state = "extraction_pack"
+	item_state = "fulton"
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/equipment/tools_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/equipment/tools_right.dmi',
+	)
 	w_class = WEIGHT_CLASS_NORMAL
 	tool_behaviour = TOOL_FULTON
 	resistance_flags = RESIST_ALL
 	///Reference to the balloon vis obj effect
-	var/atom/movable/vis_obj/fulton_baloon/baloon
+	var/atom/movable/vis_obj/fulton_balloon/baloon
 	var/obj/effect/fulton_extraction_holder/holder_obj
 	/// How many times you can use the fulton before it goes poof
 	var/uses = 3

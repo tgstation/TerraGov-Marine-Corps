@@ -16,11 +16,11 @@
 
 
 /datum/buildmode_mode/boom/change_settings(client/c)
-	devastation = input(c, "Range of total devastation.", text("Input")) as num|null
-	heavy = input(c, "Range of heavy impact.", text("Input")) as num|null
-	light = input(c, "Range of light impact.", text("Input")) as num|null
-	flash = input(c, "Range of flash.", text("Input")) as num|null
-	throw_input = input(c, "Range of throw.", text("Input")) as num|null
+	devastation = input(c, "Range of total devastation.", "Input") as num|null
+	heavy = input(c, "Range of heavy impact.", "Input") as num|null
+	light = input(c, "Range of light impact.", "Input") as num|null
+	flash = input(c, "Range of flash.", "Input") as num|null
+	throw_input = input(c, "Range of throw.", "Input") as num|null
 
 
 /datum/buildmode_mode/boom/handle_click(client/c, params, obj/object)
@@ -28,6 +28,6 @@
 	var/left_click = pa.Find("left")
 
 	if(left_click)
-		explosion(object, devastation, heavy, light, flash, throw_range = throw_input, adminlog = FALSE, silent = TRUE)
+		explosion(object, devastation, heavy, light, 0, flash, throw_range = throw_input, adminlog = FALSE, silent = TRUE)
 		to_chat(c, span_notice("Success."))
 		log_admin("Build Mode: [key_name(c)] caused an explosion(dev=[devastation], hvy=[heavy], lgt=[light], flash=[flash]) at [AREACOORD(object)]")

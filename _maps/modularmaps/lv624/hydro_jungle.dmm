@@ -15,7 +15,7 @@
 /turf/closed/gm/dense,
 /area/lv624/ground/caves/rock)
 "bL" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/open/ground/grass,
 /area/lv624/ground/compound/ne)
 "cg" = (
@@ -25,7 +25,7 @@
 	},
 /area/lv624/ground/jungle7)
 "ch" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle7)
 "co" = (
@@ -49,7 +49,7 @@
 /turf/closed/gm/dense,
 /area/lv624/ground/compound/ne)
 "eh" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/open/floor/plating/ground/dirtgrassborder/corner{
 	dir = 8
 	},
@@ -63,13 +63,13 @@
 	},
 /area/lv624/ground/jungle9)
 "ep" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/open/floor/plating/ground/dirtgrassborder{
 	dir = 4
 	},
 /area/lv624/ground/jungle7)
 "eA" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/open/floor/plating/ground/dirtgrassborder/corner,
 /area/lv624/ground/jungle9)
 "eM" = (
@@ -96,7 +96,7 @@
 /turf/open/floor/plating/ground/dirtgrassborder,
 /area/lv624/ground/compound/ne)
 "hq" = (
-/obj/structure/jungle/planttop1,
+/obj/structure/flora/jungle/planttop1,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle9)
 "in" = (
@@ -105,7 +105,7 @@
 /area/lv624/ground/jungle7)
 "iF" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/compound/ne)
@@ -117,7 +117,7 @@
 /turf/open/ground/grass,
 /area/lv624/ground/jungle9)
 "jl" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/open/floor/plating/ground/dirtgrassborder/corner2{
 	dir = 8
 	},
@@ -128,11 +128,11 @@
 	},
 /area/lv624/ground/compound/ne)
 "kC" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle7)
 "kF" = (
-/obj/structure/jungle/plantbot1,
+/obj/structure/flora/jungle/plantbot1,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle9)
 "la" = (
@@ -168,7 +168,7 @@
 /area/lv624/ground/compound/ne)
 "qe" = (
 /obj/structure/flora/ausbushes/fullgrass,
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle9)
 "qj" = (
@@ -180,7 +180,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/compound/ne)
 "sZ" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/open/floor/plating/ground/dirtgrassborder/corner{
 	dir = 1
 	},
@@ -199,8 +199,8 @@
 /area/lv624/ground/jungle9)
 "uC" = (
 /obj/structure/flora/ausbushes/fullgrass,
-/obj/structure/jungle/vines,
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/open/ground/grass,
 /area/lv624/ground/compound/ne)
 "uH" = (
@@ -231,7 +231,7 @@
 /turf/open/floor/plating/ground/dirtgrassborder,
 /area/lv624/ground/compound/ne)
 "wR" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/open/floor/plating/ground/dirtgrassborder{
 	dir = 8
 	},
@@ -259,8 +259,8 @@
 /area/lv624/ground/jungle7)
 "yh" = (
 /obj/structure/flora/ausbushes/fullgrass,
-/obj/structure/jungle/vines,
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle9)
 "yi" = (
@@ -271,7 +271,7 @@
 /turf/open/ground/grass,
 /area/lv624/ground/caves/rock)
 "zZ" = (
-/obj/structure/jungle/vines/heavy,
+/obj/structure/flora/jungle/vines/heavy,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle7)
 "Ai" = (
@@ -294,33 +294,33 @@
 /turf/closed/gm/dense,
 /area/lv624/ground/compound/ne)
 "AK" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/open/floor/plating/ground/dirtgrassborder/corner{
 	dir = 1
 	},
 /area/lv624/ground/compound/ne)
 "AQ" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/open/floor/plating/ground/dirtgrassborder{
 	dir = 4
 	},
 /area/lv624/ground/compound/ne)
 "Br" = (
-/obj/structure/jungle/vines,
-/obj/structure/jungle/vines,
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
+/obj/structure/flora/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/open/floor/plating/ground/dirtgrassborder{
 	dir = 4
 	},
 /area/lv624/ground/compound/ne)
 "Bz" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/structure/jungle/vines,
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/compound/ne)
 "BP" = (
-/obj/structure/jungle/vines/heavy,
+/obj/structure/flora/jungle/vines/heavy,
 /turf/open/floor/plating/ground/dirtgrassborder/corner{
 	dir = 1
 	},
@@ -340,7 +340,7 @@
 	},
 /area/lv624/ground/jungle7)
 "CR" = (
-/obj/structure/jungle/vines/heavy,
+/obj/structure/flora/jungle/vines/heavy,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle9)
 "Dq" = (
@@ -378,7 +378,7 @@
 /area/lv624/ground/compound/ne)
 "FO" = (
 /obj/structure/flora/ausbushes/fullgrass,
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/open/ground/grass,
 /area/lv624/ground/compound/ne)
 "GG" = (
@@ -416,8 +416,8 @@
 /turf/open/ground/grass,
 /area/lv624/ground/jungle7)
 "Jm" = (
-/obj/structure/jungle/vines,
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/open/floor/plating/ground/dirtgrassborder{
 	dir = 4
 	},
@@ -433,7 +433,7 @@
 /area/lv624/ground/jungle9)
 "JU" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/compound/ne)
 "Lr" = (
@@ -465,8 +465,8 @@
 /turf/open/ground/grass,
 /area/lv624/ground/compound/ne)
 "MK" = (
-/obj/structure/jungle/vines,
-/obj/structure/jungle/vines/heavy,
+/obj/structure/flora/jungle/vines,
+/obj/structure/flora/jungle/vines/heavy,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle9)
 "MX" = (
@@ -475,13 +475,13 @@
 	},
 /area/lv624/ground/jungle9)
 "Ne" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/open/floor/plating/ground/dirtgrassborder{
 	dir = 8
 	},
 /area/lv624/ground/jungle9)
 "Op" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/open/floor/plating/ground/dirtgrassborder,
 /area/lv624/ground/jungle9)
 "Oz" = (
@@ -512,7 +512,7 @@
 	},
 /area/lv624/ground/compound/ne)
 "RS" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle9)
 "Sx" = (
@@ -532,7 +532,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle9)
 "UP" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/open/floor/plating/ground/dirtgrassborder/corner{
 	dir = 4
 	},
@@ -549,7 +549,7 @@
 /obj/machinery/door/poddoor/mainship/open{
 	dir = 2;
 	id = "nexus_blast";
-	name = "\improper Nexus Blast Door";
+	name = "\improper Nexus Blast Door"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/door/airlock/mainship/secure{
@@ -573,7 +573,7 @@
 /turf/open/ground/grass,
 /area/lv624/ground/jungle9)
 "Wz" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/open/floor/plating/ground/dirtgrassborder{
 	dir = 1
 	},
@@ -603,7 +603,7 @@
 /area/lv624/ground/caves/rock)
 "Xr" = (
 /obj/structure/flora/ausbushes/fullgrass,
-/obj/structure/jungle/vines/heavy,
+/obj/structure/flora/jungle/vines/heavy,
 /turf/open/ground/grass,
 /area/lv624/ground/caves/rock)
 "XQ" = (
@@ -622,7 +622,7 @@
 /turf/open/floor/plating/ground/dirtgrassborder/corner,
 /area/lv624/ground/compound/ne)
 "ZF" = (
-/obj/structure/jungle/vines,
+/obj/structure/flora/jungle/vines,
 /turf/open/floor/plating/ground/dirtgrassborder/corner{
 	dir = 4
 	},

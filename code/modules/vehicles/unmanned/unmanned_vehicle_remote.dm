@@ -1,7 +1,7 @@
 /obj/item/unmanned_vehicle_remote
 	name = "handheld vehicle controller"
 	desc = "Used to control an unmanned vehicle.<br>Tap the vehicle you want to control with the controller to link it."
-	icon = 'icons/obj/items/items.dmi'
+	icon = 'icons/obj/device.dmi'
 	icon_state = "multitool2"
 	///reference to the unmanned vehicle that we're connected to or remote control
 	var/obj/vehicle/unmanned/vehicle
@@ -28,7 +28,7 @@
 	vehicle.on_link(src)
 	AddComponent(/datum/component/remote_control, target, vehicle.turret_type, vehicle.can_interact)
 	to_chat(user, span_notice("You link [target] to [src]."))
-	RegisterSignal(target, COMSIG_PARENT_QDELETING, PROC_REF(clear_vehicle))
+	RegisterSignal(target, COMSIG_QDELETING, PROC_REF(clear_vehicle))
 	return ..()
 
 /obj/item/unmanned_vehicle_remote/attack_self(mob/user)
@@ -41,6 +41,6 @@
 	SIGNAL_HANDLER
 	if(!vehicle)
 		return
-	UnregisterSignal(vehicle, COMSIG_PARENT_QDELETING)
+	UnregisterSignal(vehicle, COMSIG_QDELETING)
 	vehicle.on_unlink(src)
 	vehicle = null

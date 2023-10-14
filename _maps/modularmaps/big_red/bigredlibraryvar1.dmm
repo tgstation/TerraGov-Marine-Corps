@@ -281,7 +281,7 @@
 	},
 /area/bigredv2/outside/e)
 "V" = (
-/obj/machinery/alarm{
+/obj/machinery/air_alarm{
 	dir = 4
 	},
 /turf/open/floor/wood,

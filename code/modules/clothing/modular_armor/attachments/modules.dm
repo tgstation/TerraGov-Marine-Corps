@@ -55,7 +55,6 @@
 	parent.AddComponent(/datum/component/suit_autodoc, 4 MINUTES, tricord, tricord, tricord, tricord, tramadol, 0.5)
 	parent.AddElement(/datum/element/limb_support, supported_limbs)
 
-
 /obj/item/armor_module/module/valkyrie_autodoc/on_detach(obj/item/detaching_from, mob/user)
 	qdel(parent.GetComponent(/datum/component/suit_autodoc))
 	parent.RemoveElement(/datum/element/limb_support, supported_limbs)
@@ -78,7 +77,7 @@
 	desc = "Designed for mounting on modular armor. Providing a near immunity to being bathed in flames, and amazing flame retardant qualities, this is every pyromaniac's first stop to survival. Will impact mobility."
 	icon_state = "mod_fire"
 	item_state = "mod_fire_a"
-	soft_armor = list(FIRE = 35)
+	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 35, ACID = 0)
 	slowdown = 0.4
 	slot = ATTACHMENT_SLOT_MODULE
 	variants_by_parent_type = list(/obj/item/clothing/suit/modular/xenonauten = "mod_fire_xn")
@@ -106,7 +105,7 @@
 	icon = 'icons/mob/modular/modular_armor_modules.dmi'
 	icon_state = "mod_fire_head"
 	item_state = "mod_fire_head_a"
-	soft_armor = list(FIRE = 35)
+	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 35, ACID = 0)
 	slot = ATTACHMENT_SLOT_HEAD_MODULE
 	variants_by_parent_type = list(/obj/item/clothing/head/modular/m10x = "mod_fire_head_xn")
 
@@ -170,7 +169,7 @@
 	icon = 'icons/mob/modular/modular_armor_modules.dmi'
 	icon_state = "mod_biohazard"
 	item_state = "mod_biohazard_a"
-	soft_armor = list("bio" = 40, ACID = 30)
+	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 40, FIRE = 0, ACID = 30)
 	slowdown = 0.2
 	slot = ATTACHMENT_SLOT_MODULE
 	variants_by_parent_type = list(/obj/item/clothing/suit/modular/xenonauten = "mod_biohazard_xn")
@@ -198,7 +197,7 @@
 	desc = "Designed for mounting on modular armor. This older model provides minor resistance to acid, biological, and radiological attacks. Pairing this with a Mimir helmet module and mask will make the user impervious to xeno gas clouds. Will impact mobility."
 	icon_state = "mod_biohazard"
 	item_state = "mod_biohazard_a"
-	soft_armor = list("bio" = 15, ACID = 15)
+	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 15, FIRE = 0, ACID = 15)
 	slowdown = 0.2
 
 //SOM version
@@ -207,14 +206,14 @@
 	desc = "Designed for mounting on modular SOM armor. This module appears to be designed to protect the user from the effects of radiological attacks, although also provides improved resistance against other environmental threats such as acid and gas. Pairing this with a Mithridatius helmet module and mask will make the user impervious to gas clouds. Will impact mobility."
 	icon_state = "mithridatius"
 	item_state = "mithridatius_a"
-	soft_armor = list(BIO = 25, ACID = 20)
+	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 25, FIRE = 0, ACID = 20)
 
 /obj/item/armor_module/module/mimir_environment_protection/mimir_helmet
 	name = "Mark 2 Mimir Environmental Helmet System"
 	desc = "Designed for mounting on a modular helmet. This newer model provides great resistance to acid, biological, and even radiological attacks. Pairing this with a Mimir suit module and mask will make the user impervious to xeno gas clouds."
 	icon_state = "mimir_head"
 	item_state = "mimir_head_a"
-	soft_armor = list("bio" = 40, ACID = 30)
+	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 40, FIRE = 0, ACID = 30)
 	slowdown = 0
 	slot = ATTACHMENT_SLOT_HEAD_MODULE
 	variants_by_parent_type = list(/obj/item/clothing/head/modular/m10x = "mimir_head_xn")
@@ -222,7 +221,7 @@
 /obj/item/armor_module/module/mimir_environment_protection/mimir_helmet/mark1 //gas protection
 	name = "Mark 1 Mimir Environmental Helmet System"
 	desc = "Designed for mounting on a modular helmet. This older model provides minor resistance to acid and biological attacks. Pairing this with a Mimir suit module and mask will make the user impervious to xeno gas clouds."
-	soft_armor = list("bio" = 15, ACID = 15)
+	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 15, FIRE = 0, ACID = 15)
 
 //Explosive defense armor
 /obj/item/armor_module/module/hlin_explosive_armor
@@ -231,7 +230,7 @@
 	icon = 'icons/mob/modular/modular_armor_modules.dmi'
 	icon_state = "mod_boomimmune"
 	item_state = "mod_boomimmune_a"
-	soft_armor = list("bomb" = 40)
+	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 40, BIO = 0, FIRE = 0, ACID = 0)
 	slowdown = 0.2
 	slot = ATTACHMENT_SLOT_MODULE
 	variants_by_parent_type = list(/obj/item/clothing/suit/modular/xenonauten = "mod_bombimmune_xn")
@@ -332,11 +331,11 @@
 	. = ..()
 	RegisterSignal(parent, COMSIG_ITEM_EQUIPPED, PROC_REF(handle_equip))
 	RegisterSignal(parent, COMSIG_ITEM_UNEQUIPPED, PROC_REF(handle_unequip))
-	RegisterSignal(parent, COMSIG_PARENT_EXAMINE, PROC_REF(parent_examine))
+	RegisterSignal(parent, COMSIG_ATOM_EXAMINE, PROC_REF(parent_examine))
 
 
 /obj/item/armor_module/module/eshield/on_detach(obj/item/detaching_from, mob/user)
-	UnregisterSignal(parent, list(COMSIG_ITEM_UNEQUIPPED, COMSIG_ITEM_EQUIPPED, COMSIG_PARENT_EXAMINE))
+	UnregisterSignal(parent, list(COMSIG_ITEM_UNEQUIPPED, COMSIG_ITEM_EQUIPPED, COMSIG_ATOM_EXAMINE))
 	return ..()
 
 ///Called to give extra info on parent examine.
@@ -625,22 +624,26 @@
 
 /obj/item/armor_module/module/antenna/Destroy()
 	if(beacon_datum)
-		UnregisterSignal(beacon_datum, COMSIG_PARENT_QDELETING)
+		UnregisterSignal(beacon_datum, COMSIG_QDELETING)
 		QDEL_NULL(beacon_datum)
 	return ..()
 
 /obj/item/armor_module/module/antenna/activate(mob/living/user)
 	var/turf/location = get_turf(src)
 	if(beacon_datum)
-		UnregisterSignal(beacon_datum, COMSIG_PARENT_QDELETING)
+		UnregisterSignal(beacon_datum, COMSIG_QDELETING)
 		QDEL_NULL(beacon_datum)
 		user.show_message(span_warning("The [src] beeps and states, \"Your last position is no longer accessible by the supply console"), EMOTE_AUDIBLE, span_notice("The [src] vibrates but you can not hear it!"))
 		return
 	if(!is_ground_level(user.z))
 		to_chat(user, span_warning("You have to be on the planet to use this or it won't transmit."))
 		return FALSE
+	var/area/A = get_area(user)
+	if(A && istype(A) && A.ceiling >= CEILING_DEEP_UNDERGROUND)
+		to_chat(user, span_warning("This won't work if you're standing deep underground."))
+		return FALSE
 	beacon_datum = new /datum/supply_beacon(user.name, user.loc, user.faction, 4 MINUTES)
-	RegisterSignal(beacon_datum, COMSIG_PARENT_QDELETING, PROC_REF(clean_beacon_datum))
+	RegisterSignal(beacon_datum, COMSIG_QDELETING, PROC_REF(clean_beacon_datum))
 	user.show_message(span_notice("The [src] beeps and states, \"Your current coordinates were registered by the supply console. LONGITUDE [location.x]. LATITUDE [location.y]. Area ID: [get_area(src)]\""), EMOTE_AUDIBLE, span_notice("The [src] vibrates but you can not hear it!"))
 
 /// Signal handler to nullify beacon datum

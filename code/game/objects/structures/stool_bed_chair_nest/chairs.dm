@@ -235,9 +235,9 @@
 	var/def_zone = ran_zone()
 	var/armor_modifier = occupant.modify_by_armor(1, MELEE, 0, def_zone)
 	occupant.throw_at(A, 3, propelled)
-	occupant.apply_effect(6 * armor_modifier, STUN)
-	occupant.apply_effect(6 * armor_modifier, WEAKEN)
-	occupant.apply_effect(6 * armor_modifier, STUTTER)
+	occupant.apply_effect(6 SECONDS * armor_modifier, STUN)
+	occupant.apply_effect(6 SECONDS * armor_modifier, WEAKEN)
+	occupant.apply_effect(6 SECONDS * armor_modifier, STUTTER)
 	occupant.apply_damage(10 * armor_modifier, BRUTE, def_zone)
 	UPDATEHEALTH(occupant)
 	playsound(src.loc, 'sound/weapons/punch1.ogg', 25, 1)
@@ -245,9 +245,9 @@
 		var/mob/living/victim = A
 		def_zone = ran_zone()
 		armor_modifier = victim.modify_by_armor(1, MELEE, 0, def_zone)
-		victim.apply_effect(6 * armor_modifier, STUN)
-		victim.apply_effect(6 * armor_modifier, WEAKEN)
-		victim.apply_effect(6 * armor_modifier, STUTTER)
+		victim.apply_effect(6 SECONDS * armor_modifier, STUN)
+		victim.apply_effect(6 SECONDS * armor_modifier, WEAKEN)
+		victim.apply_effect(6 SECONDS * armor_modifier, STUTTER)
 		victim.apply_damage(10 * armor_modifier, BRUTE, def_zone)
 		UPDATEHEALTH(victim)
 	occupant.visible_message(span_danger("[occupant] crashed into \the [A]!"))
@@ -280,11 +280,12 @@
 	var/is_animating = 0
 
 /obj/structure/bed/chair/dropship/passenger/CanAllowThrough(atom/movable/mover, turf/target, height = 0, air_group = 0)
-	. = ..()
 	if(chair_state == DROPSHIP_CHAIR_UNFOLDED && istype(mover, /obj/vehicle/multitile) && !is_animating)
 		visible_message(span_danger("[mover] slams into [src] and breaks it!"))
 		INVOKE_ASYNC(src, PROC_REF(fold_down), TRUE)
 		return FALSE
+
+	return ..()
 
 /obj/structure/bed/chair/dropship/passenger/Initialize(mapload)
 	. = ..()

@@ -8,6 +8,7 @@
 	icon_state = "pill1"
 	item_state = "pill"
 	possible_transfer_amounts = null
+	amount_per_transfer_from_this = 15
 	init_reagent_flags = AMOUNT_SKILLCHECK
 	w_class = WEIGHT_CLASS_TINY
 	volume = 60
@@ -35,6 +36,7 @@
 		to_chat(M, span_notice("You swallow [src]."))
 		M.dropItemToGround(src) //icon update
 		if(reagents.total_volume)
+			record_reagent_consumption(reagents.total_volume, reagents.reagent_list, user)
 			reagents.reaction(M, INGEST)
 			reagents.trans_to(M, reagents.total_volume)
 
@@ -63,6 +65,7 @@
 		log_combat(user, M, "fed", src, "Reagents: [rgt_list_text]")
 
 		if(reagents.total_volume)
+			record_reagent_consumption(reagents.total_volume, reagents.reagent_list, user, M)
 			reagents.reaction(M, INGEST)
 			reagents.trans_to(M, reagents.total_volume)
 			qdel(src)

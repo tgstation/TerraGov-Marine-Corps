@@ -363,15 +363,14 @@ and displays selected entry.
 
 - See inherited props: [Box](#box)
 - See inherited props: [Icon](#icon)
-- `options: string[]` - An array of strings which will be displayed in the
-dropdown when open
-- `selected: string` - Currently selected entry
-- `width: number` - Width of dropdown button and resulting menu
+- `options: string[] | DropdownEntry[]` - An array of strings which will be displayed in the
+dropdown when open. See Dropdown.tsx for more adcanced usage with DropdownEntry
+- `selected: any` - Currently selected entry
+- `width: string` - Width of dropdown button and resulting menu; css width value
 - `over: boolean` - Dropdown renders over instead of below
 - `color: string` - Color of dropdown button
 - `nochevron: boolean` - Whether or not the arrow on the right hand side of the dropdown button is visible
-- `noscroll: boolean` - Whether or not the dropdown menu should have a scroll bar
-- `displayText: string` - Text to always display in place of the selected text
+- `displayText: string | number | InfernoNode` - Text to always display in place of the selected text
 - `onClick: (e) => void` - Called when dropdown button is clicked
 - `onSelected: (value) => void` - Called when a value is picked from the list, `value` is the value that was picked
 
@@ -473,43 +472,6 @@ before any flex-related calculations are done. Has to be a length
   Setting basis to `0` breaks the loop and fixes all of the problems.
 - `align: string` - This allows the default alignment (or the one specified by
 align-items) to be overridden for individual flex items. See: [Flex](#flex).
-
-### `Grid`
-
-> **Deprecated:** This component is no longer recommended due to the variety
-> of bugs that come with table-based layouts.
-> We recommend using [Flex](#flex) instead.
-
-Helps you to divide horizontal space into two or more equal sections.
-It is essentially a single-row `Table`, but with some extra features.
-
-Example:
-
-```jsx
-<Grid>
-  <Grid.Column>
-    <Section title="Section 1">
-      Hello world!
-    </Section>
-  </Grid.Column>
-  <Grid.Column size={2}>
-    <Section title="Section 2">
-      Hello world!
-    </Section>
-  </Grid.Column>
-</Grid>
-```
-
-**Props:**
-
-- See inherited props: [Table](#table)
-
-### `Grid.Column`
-
-**Props:**
-
-- See inherited props: [Table.Cell](#tablecell)
-- `size: number` (default: 1) - Size of the column relative to other columns.
 
 ### `Icon`
 

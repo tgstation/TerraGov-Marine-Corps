@@ -529,7 +529,7 @@
 
 	addtimer(CALLBACK(src, PROC_REF(on_cloak)), 1)
 	RegisterSignal(M, COMSIG_HUMAN_DAMAGE_TAKEN, PROC_REF(damage_taken))
-	RegisterSignal(M, list(
+	RegisterSignals(M, list(
 		COMSIG_MOB_GUN_FIRED,
 		COMSIG_MOB_GUN_AUTOFIRED,
 		COMSIG_MOB_ATTACHMENT_FIRED,
@@ -556,8 +556,9 @@
 		anim(wearer.loc,wearer,'icons/mob/mob.dmi',,"uncloak",,wearer.dir)
 
 /obj/item/storage/backpack/marine/satchel/scout_cloak/proc/camo_off(mob/user)
-	UnregisterSignal(wearer, COMSIG_MOB_ENABLE_STEALTH)
-	if (!user)
+	if(wearer)
+		UnregisterSignal(wearer, COMSIG_MOB_ENABLE_STEALTH)
+	if(!user)
 		camo_active = FALSE
 		wearer = null
 		STOP_PROCESSING(SSprocessing, src)
@@ -718,7 +719,7 @@
 	. = ..()
 	var/datum/reagents/R = new/datum/reagents(max_fuel) //Lotsa refills
 	reagents = R
-	R.my_atom = src
+	R.my_atom = WEAKREF(src)
 	R.add_reagent(/datum/reagent/fuel, max_fuel)
 
 

@@ -839,6 +839,10 @@
 	},
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
+"Yf" = (
+/obj/effect/landmark/xeno_tunnel_spawn,
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/bigredv2/outside/se)
 "YQ" = (
 /obj/structure/table,
 /turf/open/floor,
@@ -1295,7 +1299,7 @@ kO
 "}
 (17,1,1) = {"
 mx
-Nw
+Yf
 jO
 Nw
 Nw

@@ -1,18 +1,30 @@
 //PASS FLAGS
-#define PASSTABLE (1<<0)
-#define PASSGLASS (1<<1)
-#define PASSGRILLE (1<<2)
-#define PASSBLOB (1<<3)
-#define PASSMOB (1<<4)
-#define PASSSMALLSTRUCT (1<<5)
-#define PASSFIRE (1<<6)
-#define PASSXENO (1<<7)
-#define PASSTHROW (1<<8) //you can throw past
-#define PASSPROJECTILE (1<<9) //projectiles can pass
-#define PASSAIR (1<<10) //non-airtight, gas/fire can pass
-#define PASSLASER (1<<11) //lasers and the like can pass unobstructed
-#define PASSABLE (PASSTHROW|PASSPROJECTILE|PASSAIR)
-#define HOVERING (PASSTABLE|PASSMOB|PASSSMALLSTRUCT|PASSFIRE)
+
+///Pass low objects like tables or windowframes
+#define PASS_LOW_STRUCTURE (1<<0)
+///lasers and the like can pass unobstructed
+#define PASS_GLASS (1<<1)
+///Pass grilles
+#define PASS_GRILLE (1<<2)
+///Pass mobs
+#define PASS_MOB (1<<3)
+///Pass defensive structures like barricades
+#define PASS_DEFENSIVE_STRUCTURE (1<<4)
+///Allows Mobs to pass fire without ignition
+#define PASS_FIRE (1<<5)
+///Pass xenos
+#define PASS_XENO (1<<6)
+///you can throw past
+#define PASS_THROW (1<<7)
+///projectiles can pass
+#define PASS_PROJECTILE (1<<8)
+///non-airtight, gas/fire can pass
+#define PASS_AIR (1<<9)
+///Mobs can walk freely between turfs with walkover flagged objects
+#define PASS_WALKOVER (1<<10)
+
+#define PASSABLE (PASS_THROW|PASS_PROJECTILE|PASS_AIR)
+#define HOVERING (PASS_LOW_STRUCTURE|PASS_MOB|PASS_DEFENSIVE_STRUCTURE|PASS_FIRE)
 
 //==========================================================================================
 
@@ -20,37 +32,33 @@
 
 //flags_atom
 
-#define NOINTERACT (1<<0)		// You can't interact with it, at all. Useful when doing certain animations.
-#define CONDUCT (1<<1)		// conducts electricity (metal etc.)
-#define ON_BORDER (1<<2)		// 'border object'. item has priority to check when entering or leaving
-#define NOBLOODY (1<<3)		// Don't want a blood overlay on this one.
-#define DIRLOCK (1<<4)		// movable atom won't change direction when Moving()ing. Useful for items that have several dir states.
-#define INITIALIZED (1<<5)  	//Whether /atom/Initialize() has already run for the object
-#define NODECONSTRUCT (1<<6)
-#define PREVENT_CLICK_UNDER (1<<7)		//Prevent clicking things below it on the same turf
-#define CRITICAL_ATOM (1<<8)		//Use when this shouldn't be obscured by large icons.
+#define UNUSED_RESERVATION_TURF_1 (1<<0)
+#define AI_BLOCKED (1<<1) //Prevent ai from going onto this turf
+#define NOINTERACT (1<<2)		// You can't interact with it, at all. Useful when doing certain animations.
+#define CONDUCT (1<<3)		// conducts electricity (metal etc.)
+#define ON_BORDER (1<<4)		// 'border object'. item has priority to check when entering or leaving
+#define NOBLOODY (1<<5)		// Don't want a blood overlay on this one.
+#define DIRLOCK (1<<6)		// movable atom won't change direction when Moving()ing. Useful for items that have several dir states.
+#define INITIALIZED (1<<7)  	//Whether /atom/Initialize() has already run for the object
+#define NODECONSTRUCT (1<<8)
+#define PREVENT_CLICK_UNDER (1<<9)		//Prevent clicking things below it on the same turf
+#define CRITICAL_ATOM (1<<10)		//Use when this shouldn't be obscured by large icons.
 ///Does not cascade explosions to its contents.
-#define PREVENT_CONTENTS_EXPLOSION (1<<9)
+#define PREVENT_CONTENTS_EXPLOSION (1<<11)
 /// was this spawned by an admin? used for stat tracking stuff.
-#define ADMIN_SPAWNED (1<<10)
+#define ADMIN_SPAWNED (1<<12)
 /// Can this atom be bumped attack
-#define BUMP_ATTACKABLE (1<<11)
+#define BUMP_ATTACKABLE (1<<13)
 ///This atom will not be qdeled when a shuttle lands on it; it will just move onto the shuttle tile. It will stay on the ground when the shuttle takes off
-#define SHUTTLE_IMMUNE (1<<12)
+#define SHUTTLE_IMMUNE (1<<14)
 /// Should we use the initial icon for display? Mostly used by overlay only objects
-#define HTML_USE_INITAL_ICON_1 (1<<13)
-
-//turf-only flags
-#define AI_BLOCKED (1<<0) //Prevent ai from going onto this turf
-#define UNUSED_RESERVATION_TURF_1 (1<<1)
-/// If a turf can be made dirty at roundstart. This is also used in areas.
-#define CAN_BE_DIRTY_1 (1<<2)
+#define HTML_USE_INITAL_ICON_1 (1<<15)
 
 //==========================================================================================
 
 //flags_barrier
-#define HANDLE_BARRIER_CHANCE 1
-#define HANDLE_BARRIER_BLOCK 2
+#define HANDLE_BARRIER_CHANCE (1<<0)
+#define HANDLE_BARRIER_BLOCK (1<<1)
 
 
 //bitflags that were previously under flags_atom, these only apply to items.
@@ -71,10 +79,18 @@
 #define IS_DEPLOYED (1<<12) //If this is on an item, said item is currently deployed
 #define DEPLOYED_NO_PICKUP  (1<<13) //Disables deployed item pickup
 #define DEPLOYED_NO_ROTATE  (1<<14) //Disables deployed item rotation abilities to rotate.
-#define DEPLOYED_WRENCH_DISASSEMBLE (1<<15) //If this is on an item, the item can only be disassembled using a wrench once deployed.
-#define FULLY_WIELDED (1<<16) //If the item is properly wielded. Used for guns
+#define DEPLOYED_NO_ROTATE_ANCHORED (1<<15) //Disables deployed item rotation if anchored.
+#define DEPLOYED_WRENCH_DISASSEMBLE (1<<16) //If this is on an item, the item can only be disassembled using a wrench once deployed.
+#define DEPLOYED_ANCHORED_FIRING_ONLY (1<<17) //Disables firing deployable if it is not anchored.
+#define FULLY_WIELDED (1<<18) //If the item is properly wielded. Used for guns
 ///If a holster has underlay sprites
-#define HAS_UNDERLAY (1<<17)
+#define HAS_UNDERLAY (1<<19)
+///is this item equipped into an inventory slot or hand of a mob?
+#define IN_INVENTORY (1<<20)
+
+//flags_storage
+///If a storage container can be restocked into a vendor
+#define BYPASS_VENDOR_CHECK (1<<0)
 
 //==========================================================================================
 
@@ -272,6 +288,8 @@ GLOBAL_LIST_INIT(slot_str_to_slot, list(
 			. = ITEM_SLOT_FEET
 		if(SLOT_WEAR_SUIT)
 			. = ITEM_SLOT_OCLOTHING
+		if(SLOT_S_STORE)
+			. = ITEM_SLOT_SUITSTORE
 		if(SLOT_W_UNIFORM)
 			. = ITEM_SLOT_ICLOTHING
 		if(SLOT_R_STORE)

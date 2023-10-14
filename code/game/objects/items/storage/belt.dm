@@ -82,6 +82,25 @@
 	new /obj/item/tool/wirecutters(src)
 	new /obj/item/t_scanner(src)
 
+/obj/item/storage/belt/medical_small
+	name = "\improper M276 pattern light medical rig"
+	desc = "The M276 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips. This lightweight configuration is often used for bulk carrying of medical supplies by marines."
+	icon_state = "medicalbelt_small"
+	item_state = "medicbag"
+	storage_slots = 15
+	max_storage_space = 30
+	max_w_class = 3
+	can_hold = list(
+		/obj/item/healthanalyzer,
+		/obj/item/reagent_containers/glass/bottle,
+		/obj/item/reagent_containers/pill,
+		/obj/item/reagent_containers/syringe,
+		/obj/item/storage/pill_bottle/packet,
+		/obj/item/stack/medical,
+		/obj/item/reagent_containers/hypospray/autoinjector,
+		/obj/item/reagent_containers/dropper,
+	)
+
 /obj/item/storage/belt/lifesaver
 	name = "\improper M276 pattern lifesaver bag"
 	desc = "The M276 is the standard load-bearing equipment of the TGMC. This configuration mounts a duffel bag filled with a range of injectors and light medical supplies and is common among medics."
@@ -212,7 +231,7 @@
 
 /obj/item/storage/belt/lifesaver/icc
 	name = "\improper Modelle/129 lifesaver bag"
-	desc = "A medical belt made from synthetic tan fibres, carries just about anything you would need to responsd to traumatic injury in combat."
+	desc = "A medical belt made from synthetic tan fibres, carries just about anything you would need to respond to traumatic injury in combat."
 	icon_state = "medicbag_icc"
 	item_state = "medicbag_icc"
 
@@ -526,6 +545,15 @@
 	new /obj/item/ammo_magazine/rifle/tx54(src)
 	new /obj/item/ammo_magazine/rifle/tx54(src)
 
+/obj/item/storage/belt/marine/smartgun/Initialize(mapload)
+	. = ..()
+	new /obj/item/ammo_magazine/standard_smartmachinegun(src)
+	new /obj/item/ammo_magazine/standard_smartmachinegun(src)
+	new /obj/item/ammo_magazine/standard_smartmachinegun(src)
+	new /obj/item/ammo_magazine/standard_smartmachinegun(src)
+	new /obj/item/ammo_magazine/standard_smartmachinegun(src)
+	new /obj/item/ammo_magazine/standard_smartmachinegun(src)
+
 /obj/item/storage/belt/marine/upp
 	name = "\improper Type 41 pattern load rig"
 	desc = "The Type 41 load rig is the standard-issue LBE of the USL pirates. The primary function of this belt is to provide easy access to mags for the Type 71 during operations. Despite being designed for the Type 71 weapon system, the pouches are modular enough to fit other types of ammo and equipment."
@@ -540,7 +568,7 @@
 	new /obj/item/ammo_magazine/rifle/type71(src)
 	new /obj/item/ammo_magazine/rifle/type71(src)
 	new /obj/item/ammo_magazine/rifle/type71(src)
-
+	new /obj/item/ammo_magazine/rifle/type71(src)
 
 /obj/item/storage/belt/marine/som
 	name = "\improper S18 ammo belt"
@@ -899,21 +927,32 @@
 	max_storage_space = 27
 	can_hold = list(/obj/item/explosive/grenade)
 
+/obj/item/storage/belt/grenade/standard/Initialize(mapload)
+	. = ..()
+	new /obj/item/explosive/grenade/incendiary(src)
+	new /obj/item/explosive/grenade/incendiary(src)
+	new /obj/item/explosive/grenade(src)
+	new /obj/item/explosive/grenade(src)
+	new /obj/item/explosive/grenade(src)
+	new /obj/item/explosive/grenade(src)
+	new /obj/item/explosive/grenade(src)
+	new /obj/item/explosive/grenade(src)
+
 /obj/item/storage/belt/grenade/som
 	name = "\improper S16 pattern grenade rig"
 	desc = "A simple harness system available in many configurations. This version is designed to carry bulk quantities of grenades."
 	icon_state = "grenadebelt_som"
 
-/obj/item/storage/belt/grenade/standard/Initialize(mapload)
+/obj/item/storage/belt/grenade/som/standard/Initialize(mapload)
 	. = ..()
-	new /obj/item/explosive/grenade/incendiary(src)
-	new /obj/item/explosive/grenade/incendiary(src)
-	new /obj/item/explosive/grenade/incendiary(src)
-	new /obj/item/explosive/grenade/incendiary(src)
-	new /obj/item/explosive/grenade(src)
-	new /obj/item/explosive/grenade(src)
-	new /obj/item/explosive/grenade(src)
-	new /obj/item/explosive/grenade(src)
+	new /obj/item/explosive/grenade/incendiary/som(src)
+	new /obj/item/explosive/grenade/incendiary/som(src)
+	new /obj/item/explosive/grenade/som(src)
+	new /obj/item/explosive/grenade/som(src)
+	new /obj/item/explosive/grenade/som(src)
+	new /obj/item/explosive/grenade/som(src)
+	new /obj/item/explosive/grenade/som(src)
+	new /obj/item/explosive/grenade/som(src)
 
 /obj/item/storage/belt/grenade/b17
 	name = "\improper M276 pattern M40 HEDP rig Mk II"
@@ -945,7 +984,8 @@
 /obj/item/storage/belt/sparepouch
 	name = "\improper G8 general utility pouch"
 	desc = "A small, lightweight pouch that can be clipped onto Armat Systems M3 Pattern armor or your belt to provide additional storage for miscellaneous gear or box and drum magazines."
-	storage_slots = 3
+	storage_slots = null
+	max_storage_space = 9
 	w_class = WEIGHT_CLASS_BULKY
 	max_w_class = WEIGHT_CLASS_NORMAL
 	icon_state = "sparepouch"

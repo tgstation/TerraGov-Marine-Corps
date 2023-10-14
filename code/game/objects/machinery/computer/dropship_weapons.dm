@@ -94,7 +94,7 @@
 					if(!(selected_equipment?.dropship_equipment_flags & IS_WEAPON))
 						to_chat(L, span_warning("No weapon selected."))
 						return
-					var/obj/structure/dropship_equipment/weapon/DEW = selected_equipment
+					var/obj/structure/dropship_equipment/cas/weapon/DEW = selected_equipment
 					if(!DEW.ammo_equipped || DEW.ammo_equipped.ammo_count <= 0)
 						to_chat(L, span_warning("[DEW] has no ammo."))
 						return
@@ -128,12 +128,3 @@
 /obj/machinery/computer/dropship_weapons/dropship2/Initialize(mapload)
 	. = ..()
 	shuttle_tag = SHUTTLE_NORMANDY
-
-/obj/machinery/computer/dropship_weapons/dropship3
-	name = "\improper 'Triumpg' weapons controls"
-	req_access = list(ACCESS_MARINE_DROPSHIP_REBEL)
-
-/obj/machinery/computer/dropship_weapons/dropship3/Initialize(mapload)
-	. = ..()
-	shuttle_tag = SHUTTLE_TRIUMPH
-

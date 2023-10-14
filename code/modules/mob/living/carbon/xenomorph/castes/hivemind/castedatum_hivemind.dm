@@ -46,6 +46,7 @@
 		/datum/action/xeno_action/watch_xeno/hivemind,
 		/datum/action/xeno_action/change_form,
 		/datum/action/xeno_action/return_to_core,
+		/datum/action/xeno_action/teleport,
 		/datum/action/xeno_action/rally_hive/hivemind,
 		/datum/action/xeno_action/activable/command_minions,
 		/datum/action/xeno_action/activable/plant_weeds/ranged,

@@ -26,6 +26,9 @@
 #define CAT_SMR "SUITS AND ARMOR" // Synth's suits
 #define CAT_SHN "HATS" // Synth's non-protective hats
 
+#define VENDOR_FACTION_NEUTRAL "Neutral"
+#define VENDOR_FACTION_CRASH "Valhalla"
+#define VENDOR_FACTION_VALHALLA "Crash"
 
 GLOBAL_LIST_INIT(marine_selector_cats, list(
 		CAT_MOD = 1,
@@ -65,8 +68,9 @@ GLOBAL_LIST_INIT(engineer_gear_listed_products, list(
 		/obj/item/armor_module/module/welding/superior = list(CAT_ENGSUP, "Superior welding module", 2, "black"),
 		/obj/item/tool/pickaxe/plasmacutter = list(CAT_ENGSUP, "Plasma cutter", 20, "black"),
 		/obj/item/explosive/plastique = list(CAT_ENGSUP, "Plastique explosive", 2, "black"),
+		/obj/item/explosive/plastique/genghis_charge = list(CAT_ENGSUP, "EX-62 Genghis incendiary charge", 15, "black"),
 		/obj/item/detpack = list(CAT_ENGSUP, "Detonation pack", 5, "black"),
-		/obj/item/storage/box/minisentry = list(CAT_ENGSUP, "ST-580 point defense sentry kit", 50, "black"),
+		/obj/item/storage/box/crate/minisentry = list(CAT_ENGSUP, "ST-580 point defense sentry kit", 50, "black"),
 		/obj/structure/closet/crate/uav_crate = list(CAT_ENGSUP, "Iguana Unmanned Vehicle", 50, "black"),
 		/obj/item/attachable/buildasentry = list(CAT_ENGSUP, "Build-A-Sentry Attachment", 30, "black"),
 		/obj/item/binoculars/tactical/range = list(CAT_ENGSUP, "Range Finder", 10, "black"),
@@ -115,6 +119,7 @@ GLOBAL_LIST_INIT(medic_gear_listed_products, list(
 		/obj/item/clothing/glasses/hud/health = list(CAT_MEDSUP, "Medical HUD glasses", 2, "black"),
 		/obj/item/healthanalyzer/gloves = list(CAT_MEDSUP, "Health scanner gloves", 2, "black"),
 		/obj/item/defibrillator/gloves = list(CAT_MEDSUP, "Advanced medical gloves", 5, "black"),
+		/obj/effect/vendor_bundle/stretcher = list(CAT_MEDSUP, "Medivac Stretcher", 45, "black"),
 	))
 
 GLOBAL_LIST_INIT(leader_gear_listed_products, list(
@@ -136,11 +141,6 @@ GLOBAL_LIST_INIT(leader_gear_listed_products, list(
 		/obj/item/ammo_magazine/flamer_tank/large = list(CAT_LEDSUP, "Flamethrower tank", 4, "black"),
 		/obj/item/storage/backpack/marine/radiopack = list(CAT_LEDSUP, "Radio Pack", 15, "black"),
 		/obj/item/weapon/gun/revolver/standard_magnum = list(CAT_LEDSUP, "R-76 Magnum", 12, "black"),
-		/obj/item/weapon/gun/rifle/tx55 = list(CAT_LEDSUP, "AR-55 OICW Rifle", 25, "black"),
-		/obj/item/ammo_magazine/rifle/tx54 = list(CAT_LEDSUP, "GL-54 Flak Magazine for AR-55/GL-54", 5, "black"),
-		/obj/item/ammo_magazine/rifle/tx54/smoke = list(CAT_LEDSUP, "GL-54 tactical smoke Magazine for AR-55/GL-54", 3, "black"),
-		/obj/item/ammo_magazine/rifle/tx54/smoke/tangle = list(CAT_LEDSUP, "GL-54 Tanglefoot Magazine for AR-55/GL-54", 12, "black"),
-		/obj/item/ammo_magazine/rifle/tx54/razor = list(CAT_LEDSUP, "GL-54 Razorburn Magazine for AR-55/GL-54", 20, "black"),
 		/obj/item/storage/firstaid/adv = list(CAT_LEDSUP, "Advanced firstaid kit", 10, "orange"),
 		/obj/item/reagent_containers/hypospray/autoinjector/synaptizine = list(CAT_LEDSUP, "Injector (Synaptizine)", 10, "black"),
 		/obj/item/reagent_containers/hypospray/autoinjector/combat_advanced = list(CAT_LEDSUP, "Injector (Advanced)", 15, "orange"),
@@ -173,11 +173,22 @@ GLOBAL_LIST_INIT(commander_gear_listed_products, list(
 //A way to give them everything at once that still works with loadouts would be nice, but barring that make sure that your point calculation is set up so they don't get more than what they're supposed to
 GLOBAL_LIST_INIT(smartgunner_gear_listed_products, list(
 	/obj/item/clothing/glasses/night/m56_goggles = list(CAT_ESS, "KLTD Smart Goggles", 0, "white"),
+	/obj/effect/vendor_bundle/smartgunner_pistol = list(CAT_ESS, "SP-13 smart pistol and KLTD Smart Goggles bundle", 0, "white"),
+	/obj/item/ammo_magazine/pistol/standard_pistol/smart_pistol = list(CAT_SGSUP, "SP-13 smart pistol ammo", 2, "black"),
 	/obj/item/weapon/gun/rifle/standard_smartmachinegun = list(CAT_SGSUP, "SG-29 Smart Machine Gun", 29, "orange"), //If a smartgunner buys a SG-29, then they will have 16 points to purchase 4 SG-29 drums
 	/obj/item/ammo_magazine/standard_smartmachinegun = list(CAT_SGSUP, "SG-29 Ammo Drum", 4, "black"),
 	/obj/item/weapon/gun/minigun/smart_minigun = list(CAT_SGSUP, "SG-85 Smart Handheld Gatling Gun", 27, "orange"), //If a smartgunner buys a SG-85, then they should be able to buy only 1 powerpack and 2 ammo bins
 	/obj/item/ammo_magazine/minigun_powerpack/smartgun = list(CAT_SGSUP, "SG-85 Powerpack", 10, "black"),
 	/obj/item/ammo_magazine/packet/smart_minigun = list(CAT_SGSUP, "SG-85 Ammo Bin", 4, "black"),
+	/obj/item/weapon/gun/rifle/standard_smarttargetrifle = list(CAT_SGSUP, "SG-62 Target Rifle", 25, "orange"), //If a SG buys a SG-62, they'll have 15 points left, should be enough to buy some mags and or extra SR ammo.
+	/obj/item/ammo_magazine/rifle/standard_smarttargetrifle = list(CAT_SGSUP, "SG-62 Target Rifle Magazine", 3, "orange"),
+	/obj/item/ammo_magazine/rifle/standard_spottingrifle = list(CAT_SGSUP, "SG-153 Spotting Rifle Magazine", 2, "black"),
+	/obj/item/ammo_magazine/rifle/standard_spottingrifle/highimpact = list(CAT_SGSUP, "SG-153 Spotting Rifle High Impact Magazine", 2, "black"),
+	/obj/item/ammo_magazine/rifle/standard_spottingrifle/heavyrubber = list(CAT_SGSUP, "SG-153 Spotting Rifle Heavy Rubber Magazine", 2, "black"),
+	/obj/item/ammo_magazine/rifle/standard_spottingrifle/tungsten = list(CAT_SGSUP, "SG-153 Spotting Rifle Tungsten Magazine", 2, "black"),
+	/obj/item/ammo_magazine/rifle/standard_spottingrifle/flak = list(CAT_SGSUP, "SG-153 Spotting Rifle Flak Magazine", 2, "black"),
+	/obj/item/ammo_magazine/rifle/standard_spottingrifle/plasmaloss = list(CAT_SGSUP, "SG-153 Spotting Rifle Tanglefoot Magazine", 3, "black"),
+	/obj/item/ammo_magazine/rifle/standard_spottingrifle/incendiary = list(CAT_SGSUP, "SG-153 Spotting Rifle Incendiary Magazine", 3, "black"),
 	))
 
 
@@ -218,7 +229,7 @@ GLOBAL_LIST_INIT(additional_admin_item_slot_list, list(
 
 ///All the vendor types which the automated loadout vendor can take items from.
 GLOBAL_LIST_INIT(loadout_linked_vendor, list(
-	FACTION_NEUTRAL = list(
+	VENDOR_FACTION_NEUTRAL = list(
 		/obj/machinery/vending/weapon,
 		/obj/machinery/vending/uniform_supply,
 		/obj/machinery/vending/armor_supply,
@@ -227,26 +238,7 @@ GLOBAL_LIST_INIT(loadout_linked_vendor, list(
 		/obj/machinery/vending/cigarette,
 		/obj/machinery/vending/tool,
 	),
-	FACTION_TERRAGOV = list(
-		/obj/machinery/vending/weapon/hvh/team_one,
-		/obj/machinery/vending/uniform_supply,
-		/obj/machinery/vending/armor_supply/loyalist,
-		/obj/machinery/vending/marineFood,
-		/obj/machinery/vending/MarineMed,
-		/obj/machinery/vending/cigarette,
-		/obj/machinery/vending/tool,
-	),
-	FACTION_TERRAGOV_REBEL = list(
-		/obj/machinery/vending/weapon/hvh,
-		/obj/machinery/vending/uniform_supply,
-		/obj/machinery/vending/armor_supply/rebel,
-		/obj/machinery/vending/marineFood,
-		/obj/machinery/vending/MarineMed/rebel,
-		/obj/machinery/vending/medical/rebel,
-		/obj/machinery/vending/cigarette,
-		/obj/machinery/vending/tool,
-	),
-	FACTION_VALHALLA = list(
+	VENDOR_FACTION_VALHALLA = list(
 		/obj/machinery/vending/weapon/valhalla,
 		/obj/machinery/vending/uniform_supply,
 		/obj/machinery/vending/armor_supply,
@@ -256,6 +248,15 @@ GLOBAL_LIST_INIT(loadout_linked_vendor, list(
 	),
 	SQUAD_CORPSMAN = list(
 		/obj/machinery/vending/medical/shipside,
+	),
+	VENDOR_FACTION_CRASH = list(
+		/obj/machinery/vending/weapon/crash,
+		/obj/machinery/vending/uniform_supply,
+		/obj/machinery/vending/armor_supply,
+		/obj/machinery/vending/marineFood,
+		/obj/machinery/vending/MarineMed,
+		/obj/machinery/vending/cigarette,
+		/obj/machinery/vending/tool,
 	)
 ))
 
@@ -340,15 +341,17 @@ GLOBAL_LIST_INIT(engineer_clothes_listed_products, list(
 		/obj/effect/vendor_bundle/xenonauten_light = list(CAT_AMR, "Xenonauten light armor kit", 0, "orange"),
 		/obj/effect/vendor_bundle/xenonauten_medium = list(CAT_AMR, "Xenonauten medium armor kit", 0, "orange"),
 		/obj/effect/vendor_bundle/xenonauten_heavy = list(CAT_AMR, "Xenonauten heavy armor kit", 0, "orange"),
-		/obj/item/clothing/suit/modular/jaeger/light = list(CAT_AMR, "Jaeger Scout light exo", 0, "orange"),
-		/obj/item/clothing/suit/modular/jaeger/light/skirmisher = list(CAT_AMR, "Jaeger Skirmisher light exo", 0, "orange"),
-		/obj/item/clothing/suit/modular/jaeger = list(CAT_AMR, "Jaeger Infantry medium exo", 0, "orange"),
-		/obj/item/clothing/suit/modular/jaeger/eva = list(CAT_AMR, "Jaeger EVA medium exo", 0, "orange"),
-		/obj/item/clothing/suit/modular/jaeger/heavy = list(CAT_AMR, "Jaeger Gungnir heavy exo", 0, "orange"),
-		/obj/item/clothing/suit/modular/jaeger/heavy/assault = list(CAT_AMR, "Jaeger Assault heavy exo", 0, "orange"),
-		/obj/item/clothing/suit/modular/jaeger/heavy/eod = list(CAT_AMR, "Jaeger EOD heavy exo", 0, "orange"),
+		/obj/effect/vendor_bundle/jaeger_light = list(CAT_AMR, "Jaeger Scout light armor kit", 0, "orange"),
+		/obj/effect/vendor_bundle/jaeger_skirmish = list(CAT_AMR, "Jaeger Skirmisher light armor kit", 0, "orange"),
+		/obj/effect/vendor_bundle/jaeger_infantry = list(CAT_AMR, "Jaeger infantry medium armor kit", 0, "orange"),
+		/obj/effect/vendor_bundle/jaeger_eva = list(CAT_AMR, "Jaeger EVA medium armor kit", 0, "orange"),
+		/obj/effect/vendor_bundle/jaeger_hell_jumper = list(CAT_AMR, "Jaeger Hell Jumper medium armor kit", 0, "orange"),
+		/obj/effect/vendor_bundle/jaeger_ranger = list(CAT_AMR, "Jaeger Ranger medium armor kit", 0, "orange"),
+		/obj/effect/vendor_bundle/jaeger_gungnir = list(CAT_AMR, "Jaeger Gungnir heavy armor kit", 0, "orange"),
+		/obj/effect/vendor_bundle/jaeger_assault = list(CAT_AMR, "Jaeger Assault heavy armor kit", 0, "orange"),
+		/obj/effect/vendor_bundle/jaeger_eod = list(CAT_AMR, "Jaeger EOD heavy armor kit", 0, "orange"),
 		/obj/item/storage/backpack/marine/satchel/tech = list(CAT_BAK, "Satchel", 0, "orange"),
-		/obj/item/storage/backpack/marine/tech = list(CAT_BAK, "Backpack", 0, "black"),
+		/obj/item/storage/backpack/marine/tech = list(CAT_BAK, "Technician Backpack", 0, "black"),
 		/obj/item/storage/holster/blade/machete/full = list(CAT_BAK, "Machete scabbard", 0, "black"),
 		/obj/item/storage/backpack/marine/engineerpack = list(CAT_BAK, "Welderpack", 0, "black"),
 		/obj/item/storage/backpack/marine/radiopack = list(CAT_BAK, "Radio Pack", 0, "black"),
@@ -402,18 +405,20 @@ GLOBAL_LIST_INIT(medic_clothes_listed_products, list(
 		/obj/effect/vendor_bundle/xenonauten_light = list(CAT_AMR, "Xenonauten light armor kit", 0, "orange"),
 		/obj/effect/vendor_bundle/xenonauten_medium = list(CAT_AMR, "Xenonauten medium armor kit", 0, "orange"),
 		/obj/effect/vendor_bundle/xenonauten_heavy = list(CAT_AMR, "Xenonauten heavy armor kit", 0, "orange"),
-		/obj/item/clothing/suit/modular/jaeger/light = list(CAT_AMR, "Jaeger Scout light exo", 0, "orange"),
-		/obj/item/clothing/suit/modular/jaeger/light/skirmisher = list(CAT_AMR, "Jaeger Skirmisher light exo", 0, "orange"),
-		/obj/item/clothing/suit/modular/jaeger = list(CAT_AMR, "Jaeger Infantry medium exo", 0, "orange"),
-		/obj/item/clothing/suit/modular/jaeger/eva = list(CAT_AMR, "Jaeger EVA medium exo", 0, "orange"),
-		/obj/item/clothing/suit/modular/jaeger/heavy = list(CAT_AMR, "Jaeger Gungnir heavy exo", 0, "orange"),
-		/obj/item/clothing/suit/modular/jaeger/heavy/assault = list(CAT_AMR, "Jaeger Assault heavy exo", 0, "orange"),
-		/obj/item/clothing/suit/modular/jaeger/heavy/eod = list(CAT_AMR, "Jaeger EOD heavy exo", 0, "orange"),
+		/obj/effect/vendor_bundle/jaeger_light = list(CAT_AMR, "Jaeger Scout light armor kit", 0, "orange"),
+		/obj/effect/vendor_bundle/jaeger_skirmish = list(CAT_AMR, "Jaeger Skirmisher light armor kit", 0, "orange"),
+		/obj/effect/vendor_bundle/jaeger_infantry = list(CAT_AMR, "Jaeger infantry medium armor kit", 0, "orange"),
+		/obj/effect/vendor_bundle/jaeger_eva = list(CAT_AMR, "Jaeger EVA medium armor kit", 0, "orange"),
+		/obj/effect/vendor_bundle/jaeger_hell_jumper = list(CAT_AMR, "Jaeger Hell Jumper medium armor kit", 0, "orange"),
+		/obj/effect/vendor_bundle/jaeger_ranger = list(CAT_AMR, "Jaeger Ranger medium armor kit", 0, "orange"),
+		/obj/effect/vendor_bundle/jaeger_gungnir = list(CAT_AMR, "Jaeger Gungnir heavy armor kit", 0, "orange"),
+		/obj/effect/vendor_bundle/jaeger_assault = list(CAT_AMR, "Jaeger Assault heavy armor kit", 0, "orange"),
+		/obj/effect/vendor_bundle/jaeger_eod = list(CAT_AMR, "Jaeger EOD heavy armor kit", 0, "orange"),
 		/obj/effect/vendor_bundle/robot/light_armor = list(CAT_AMR, "Combat robot light armor kit", 0, "black"),
 		/obj/effect/vendor_bundle/robot/medium_armor = list(CAT_AMR, "Combat robot medium armor kit", 0, "black"),
 		/obj/effect/vendor_bundle/robot/heavy_armor = list(CAT_AMR, "Combat robot heavy armor kit", 0, "black"),
 		/obj/item/storage/backpack/marine/corpsman/satchel = list(CAT_BAK, "Satchel", 0, "orange"),
-		/obj/item/storage/backpack/marine/corpsman = list(CAT_BAK, "Backpack", 0, "black"),
+		/obj/item/storage/backpack/marine/corpsman = list(CAT_BAK, "Corspman Backpack", 0, "black"),
 		/obj/item/armor_module/storage/uniform/brown_vest = list(CAT_WEB, "Tactical brown vest", 0, "orange"),
 		/obj/item/armor_module/storage/uniform/white_vest = list(CAT_WEB, "Corpsman white vest", 0, "black"),
 		/obj/item/armor_module/storage/uniform/webbing = list(CAT_WEB, "Tactical webbing", 0, "black"),
@@ -453,13 +458,15 @@ GLOBAL_LIST_INIT(smartgunner_clothes_listed_products, list(
 		/obj/effect/vendor_bundle/xenonauten_light = list(CAT_AMR, "Xenonauten light armor kit", 0, "orange"),
 		/obj/effect/vendor_bundle/xenonauten_medium = list(CAT_AMR, "Xenonauten medium armor kit", 0, "orange"),
 		/obj/effect/vendor_bundle/xenonauten_heavy = list(CAT_AMR, "Xenonauten heavy armor kit", 0, "orange"),
-		/obj/item/clothing/suit/modular/jaeger/light = list(CAT_AMR, "Jaeger Scout light exo", 0, "orange"),
-		/obj/item/clothing/suit/modular/jaeger/light/skirmisher = list(CAT_AMR, "Jaeger Skirmisher light exo", 0, "orange"),
-		/obj/item/clothing/suit/modular/jaeger = list(CAT_AMR, "Jaeger Infantry medium exo", 0, "orange"),
-		/obj/item/clothing/suit/modular/jaeger/eva = list(CAT_AMR, "Jaeger EVA medium exo", 0, "orange"),
-		/obj/item/clothing/suit/modular/jaeger/heavy = list(CAT_AMR, "Jaeger Gungnir heavy exo", 0, "orange"),
-		/obj/item/clothing/suit/modular/jaeger/heavy/assault = list(CAT_AMR, "Jaeger Assault heavy exo", 0, "orange"),
-		/obj/item/clothing/suit/modular/jaeger/heavy/eod = list(CAT_AMR, "Jaeger EOD heavy exo", 0, "orange"),
+		/obj/effect/vendor_bundle/jaeger_light = list(CAT_AMR, "Jaeger Scout light armor kit", 0, "orange"),
+		/obj/effect/vendor_bundle/jaeger_skirmish = list(CAT_AMR, "Jaeger Skirmisher light armor kit", 0, "orange"),
+		/obj/effect/vendor_bundle/jaeger_infantry = list(CAT_AMR, "Jaeger infantry medium armor kit", 0, "orange"),
+		/obj/effect/vendor_bundle/jaeger_eva = list(CAT_AMR, "Jaeger EVA medium armor kit", 0, "orange"),
+		/obj/effect/vendor_bundle/jaeger_hell_jumper = list(CAT_AMR, "Jaeger Hell Jumper medium armor kit", 0, "orange"),
+		/obj/effect/vendor_bundle/jaeger_ranger = list(CAT_AMR, "Jaeger Ranger medium armor kit", 0, "orange"),
+		/obj/effect/vendor_bundle/jaeger_gungnir = list(CAT_AMR, "Jaeger Gungnir heavy armor kit", 0, "orange"),
+		/obj/effect/vendor_bundle/jaeger_assault = list(CAT_AMR, "Jaeger Assault heavy armor kit", 0, "orange"),
+		/obj/effect/vendor_bundle/jaeger_eod = list(CAT_AMR, "Jaeger EOD heavy armor kit", 0, "orange"),
 		/obj/effect/vendor_bundle/robot/light_armor = list(CAT_AMR, "Combat robot light armor kit", 0, "black"),
 		/obj/effect/vendor_bundle/robot/medium_armor = list(CAT_AMR, "Combat robot medium armor kit", 0, "black"),
 		/obj/effect/vendor_bundle/robot/heavy_armor = list(CAT_AMR, "Combat robot heavy armor kit", 0, "black"),
@@ -508,13 +515,15 @@ GLOBAL_LIST_INIT(leader_clothes_listed_products, list(
 		/obj/effect/vendor_bundle/xenonauten_light/leader = list(CAT_AMR, "Xenonauten light armor kit", 0, "orange"),
 		/obj/effect/vendor_bundle/xenonauten_medium/leader = list(CAT_AMR, "Xenonauten medium armor kit", 0, "orange"),
 		/obj/effect/vendor_bundle/xenonauten_heavy/leader = list(CAT_AMR, "Xenonauten heavy armor kit", 0, "orange"),
-		/obj/item/clothing/suit/modular/jaeger/light = list(CAT_AMR, "Jaeger Scout light exo", 0, "orange"),
-		/obj/item/clothing/suit/modular/jaeger/light/skirmisher = list(CAT_AMR, "Jaeger Skirmisher light exo", 0, "orange"),
-		/obj/item/clothing/suit/modular/jaeger = list(CAT_AMR, "Jaeger Infantry medium exo", 0, "orange"),
-		/obj/item/clothing/suit/modular/jaeger/eva = list(CAT_AMR, "Jaeger EVA medium exo", 0, "orange"),
-		/obj/item/clothing/suit/modular/jaeger/heavy = list(CAT_AMR, "Jaeger Gungnir heavy exo", 0, "orange"),
-		/obj/item/clothing/suit/modular/jaeger/heavy/assault = list(CAT_AMR, "Jaeger Assault heavy exo", 0, "orange"),
-		/obj/item/clothing/suit/modular/jaeger/heavy/eod = list(CAT_AMR, "Jaeger EOD heavy exo", 0, "orange"),
+		/obj/effect/vendor_bundle/jaeger_light = list(CAT_AMR, "Jaeger Scout light armor kit", 0, "orange"),
+		/obj/effect/vendor_bundle/jaeger_skirmish = list(CAT_AMR, "Jaeger Skirmisher light armor kit", 0, "orange"),
+		/obj/effect/vendor_bundle/jaeger_infantry = list(CAT_AMR, "Jaeger infantry medium armor kit", 0, "orange"),
+		/obj/effect/vendor_bundle/jaeger_eva = list(CAT_AMR, "Jaeger EVA medium armor kit", 0, "orange"),
+		/obj/effect/vendor_bundle/jaeger_hell_jumper = list(CAT_AMR, "Jaeger Hell Jumper medium armor kit", 0, "orange"),
+		/obj/effect/vendor_bundle/jaeger_ranger = list(CAT_AMR, "Jaeger Ranger medium armor kit", 0, "orange"),
+		/obj/effect/vendor_bundle/jaeger_gungnir = list(CAT_AMR, "Jaeger Gungnir heavy armor kit", 0, "orange"),
+		/obj/effect/vendor_bundle/jaeger_assault = list(CAT_AMR, "Jaeger Assault heavy armor kit", 0, "orange"),
+		/obj/effect/vendor_bundle/jaeger_eod = list(CAT_AMR, "Jaeger EOD heavy armor kit", 0, "orange"),
 		/obj/effect/vendor_bundle/robot/light_armor = list(CAT_AMR, "Combat robot light armor kit", 0, "black"),
 		/obj/effect/vendor_bundle/robot/medium_armor = list(CAT_AMR, "Combat robot medium armor kit", 0, "black"),
 		/obj/effect/vendor_bundle/robot/heavy_armor = list(CAT_AMR, "Combat robot heavy armor kit", 0, "black"),
@@ -648,9 +657,8 @@ GLOBAL_LIST_INIT(synthetic_clothes_listed_products, list(
 		/obj/item/storage/pouch/construction/full = list(CAT_POU, "Construction pouch", 0, "black"),
 		/obj/item/storage/pouch/electronics/full = list(CAT_POU, "Electronics pouch", 0, "black"),
 		/obj/item/storage/pouch/medkit/medic = list(CAT_POU, "Medkit pouch", 0, "black"),
-		/obj/item/storage/pouch/surgery = list(CAT_WEB, "White surgical pouch", 0, "black"),
+		/obj/item/storage/pouch/surgery = list(CAT_POU, "White surgical pouch", 0, "black"),
 		/obj/item/storage/holster/flarepouch/full = list(CAT_POU, "Flare pouch", 0, "black"),
-		/obj/item/storage/pouch/radio = list(CAT_POU, "Radio pouch", 0, "black"),
 		/obj/item/storage/pouch/field_pouch/full = list(CAT_POU, "Field pouch", 0, "black"),
 		/obj/item/clothing/head/hardhat = list(CAT_SHN, "Hard hat", 0, "black"),
 		/obj/item/clothing/head/welding = list(CAT_SHN, "Welding helmet", 0, "black"),
@@ -743,6 +751,6 @@ GLOBAL_LIST_INIT(bypass_storage_content_save, typecacheof(list(
 #define MAXIMUM_LOADOUT 50
 
 /// The current loadout version
-#define CURRENT_LOADOUT_VERSION 11
+#define CURRENT_LOADOUT_VERSION 14
 
-GLOBAL_LIST_INIT(accepted_loadout_versions, list(5, 6, 7, 8, 9, 10, 11))
+GLOBAL_LIST_INIT(accepted_loadout_versions, list(5, 6, 7, 8, 9, 10, 11, 13, 14))

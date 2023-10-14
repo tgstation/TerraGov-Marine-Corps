@@ -15,7 +15,7 @@ Mineral Sheets
 */
 
 GLOBAL_LIST_INIT(sandstone_recipes, list ( \
-	new/datum/stack_recipe("pile of dirt", /obj/machinery/portable_atmospherics/hydroponics/soil, 3, time = 1 SECONDS, max_per_turf = STACK_RECIPE_ONE_PER_TILE, on_floor = TRUE), \
+	new/datum/stack_recipe("pile of dirt", /obj/machinery/hydroponics/soil, 3, time = 1 SECONDS, max_per_turf = STACK_RECIPE_ONE_PER_TILE, on_floor = TRUE), \
 	new/datum/stack_recipe("sandstone door", /obj/structure/mineral_door/sandstone, 10, max_per_turf = STACK_RECIPE_ONE_PER_TILE, on_floor = TRUE), \
 	))
 
@@ -220,7 +220,7 @@ GLOBAL_LIST_INIT(iron_recipes, list ( \
 /obj/item/stack/sheet/mineral/osmium
 	name = "osmium"
 	desc = "Osmium is a transition metal. The densest naturally-occuring element known to man, it is obviously known for its extreme hardness and durability and used as such."
-	singular_name = "tritium ingot"
+	singular_name = "osmium ingot"
 	icon_state = "sheet-silver"
 	sheettype = "osmium"
 	color = "#9999FF"

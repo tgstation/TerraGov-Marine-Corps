@@ -22,9 +22,6 @@
 	var/faction = FACTION_TERRAGOV
 	COOLDOWN_DECLARE(next_fire)
 
-/obj/machinery/computer/supplydrop_console/rebel
-	faction = FACTION_TERRAGOV_REBEL
-
 /obj/machinery/computer/supplydrop_console/Initialize(mapload)
 	. = ..()
 	return INITIALIZE_HINT_LATELOAD
@@ -74,7 +71,7 @@
 			if(!istype(supply_beacon_choice))
 				return
 			supply_beacon = supply_beacon_choice
-			RegisterSignal(supply_beacon, COMSIG_PARENT_QDELETING, PROC_REF(clean_supply_beacon), override = TRUE)
+			RegisterSignal(supply_beacon, COMSIG_QDELETING, PROC_REF(clean_supply_beacon), override = TRUE)
 			refresh_pad()
 		if("set_x")
 			var/new_x = text2num(params["set_x"])

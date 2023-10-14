@@ -469,9 +469,12 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 
 /datum/action/xeno_action/portal/remove_action(mob/M)
 	clean_portals()
+	return ..()
 
 /// Destroy the portals when the wraith is no longer supporting them
 /datum/action/xeno_action/portal/proc/clean_portals()
+	SIGNAL_HANDLER
+
 	QDEL_NULL(portal_one)
 	QDEL_NULL(portal_two)
 
@@ -553,6 +556,12 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	QDEL_NULL(portal_visuals)
 	return ..()
 
+/obj/effect/wraith_portal/attack_ghost(mob/dead/observer/user)
+	. = ..()
+	if(!linked_portal)
+		return
+	user.forceMove(get_turf(linked_portal))
+
 /// Link two portals
 /obj/effect/wraith_portal/proc/link_portal(obj/effect/wraith_portal/portal_to_link)
 	linked_portal = portal_to_link
@@ -573,7 +582,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	if(!linked_portal || !COOLDOWN_CHECK(src, portal_cooldown) || crosser.anchored || (crosser.resistance_flags & PORTAL_IMMUNE))
 		return
 	COOLDOWN_START(linked_portal, portal_cooldown, 1)
-	crosser.flags_pass &= ~PASSMOB
+	crosser.pass_flags &= ~PASS_MOB
 	RegisterSignal(crosser, COMSIG_MOVABLE_MOVED, PROC_REF(do_teleport_atom))
 	playsound(loc, 'sound/effects/portal.ogg', 20)
 

@@ -1,12 +1,11 @@
-GLOBAL_LIST_EMPTY(gear_datums)
+GLOBAL_LIST_INIT(gear_datums, populate_gear_list())
 
 
 /proc/populate_gear_list()
+	. = list()
 	for(var/type in subtypesof(/datum/gear))
 		var/datum/gear/G = new type()
-		GLOB.gear_datums[G.display_name] = G
-	return TRUE
-
+		.[G.display_name] = G
 
 /datum/gear
 	var/display_name       //Name/index.

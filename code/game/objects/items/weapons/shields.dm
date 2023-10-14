@@ -71,7 +71,7 @@
 		if(!metal_sheets.use(1))
 			return
 
-		repair_damage(max_integrity * 0.2)
+		repair_damage(max_integrity * 0.2, user)
 		visible_message(span_notice("[user] restores the structural integrity of [src]."))
 
 	else if(istype(I, /obj/item/weapon) && world.time >= cooldown)
@@ -99,6 +99,9 @@
 	force = 20
 	slowdown = 0.5
 
+/obj/item/weapon/shield/riot/marine/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/strappable)
 
 /obj/item/weapon/shield/riot/marine/update_icon_state()
 	if(obj_integrity <= integrity_failure)
@@ -117,19 +120,6 @@
 		holder.update_inv_r_hand()
 		return
 	holder.update_inv_back()
-
-/obj/item/weapon/shield/riot/marine/AltClick(mob/user)
-	if(!can_interact(user))
-		return ..()
-	if(!ishuman(user))
-		return ..()
-	if(!(user.l_hand == src || user.r_hand == src))
-		return ..()
-	TOGGLE_BITFIELD(flags_item, NODROP)
-	if(CHECK_BITFIELD(flags_item, NODROP))
-		to_chat(user, span_warning("You tighten the strap of [src] around your hand!"))
-	else
-		to_chat(user, span_notice("You loosen the strap of [src] around your hand!"))
 
 /obj/item/weapon/shield/riot/marine/metal
 	icon_state = "riot_metal"
@@ -184,6 +174,10 @@
 	attack_verb = list("shoved", "bashed")
 	var/on_force = 10
 
+/obj/item/weapon/shield/energy/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/strappable)
+
 /obj/item/weapon/shield/energy/set_shield()
 	AddComponent(/datum/component/shield, SHIELD_TOGGLE|SHIELD_PURE_BLOCKING)
 
@@ -197,7 +191,7 @@
 		to_chat(user, span_notice("[src] is now active."))
 	else
 		force = initial(force)
-		w_class = WEIGHT_CLASS_TINY
+		w_class = WEIGHT_CLASS_SMALL
 		playsound(user, 'sound/weapons/saberoff.ogg', 25, TRUE)
 		to_chat(user, span_notice("[src] can now be concealed."))
 	add_fingerprint(user, "turned [active ? "on" : "off"]")

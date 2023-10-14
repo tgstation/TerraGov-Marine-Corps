@@ -4,6 +4,13 @@
 	name = "ground dirt"
 	icon = 'icons/turf/ground_map.dmi'
 	icon_state = "desert"
+	///Number of icon state variation this turf has
+	var/icon_variants = 1
+
+/turf/open/ground/update_icon_state()
+	if(icon_variants < 2)
+		return initial(icon_state)
+	return "[initial(icon_state)]_[rand(1, icon_variants)]"
 
 /turf/open/ground/AfterChange()
 	. = ..()
@@ -16,10 +23,13 @@
 	return
 
 /turf/open/ground/grass/beach
-	icon_state = "grassbeach"
+	icon_state = "grassbeach_edge"
 
 /turf/open/ground/grass/beach/corner
-	icon_state = "gbcorner"
+	icon_state = "grassbeach_corner"
+
+/turf/open/ground/grass/beach/corner2
+	icon_state = "grassbeach_corner2"
 
 /turf/open/ground/coast
 	name = "coastline"
@@ -27,6 +37,7 @@
 	shoefootstep = FOOTSTEP_SAND
 	barefootstep = FOOTSTEP_SAND
 	mediumxenofootstep = FOOTSTEP_SAND
+	minimap_color = MINIMAP_WATER
 	smoothing_groups = list(
 		SMOOTH_GROUP_RIVER,
 	)
@@ -74,12 +85,8 @@
 			I.pixel_x = rand(-6,6)
 			I.pixel_y = rand(-6,6)
 			overlays += I
-		else
-			var/obj/structure/jungle_plant/J = new(src)
-			J.pixel_x = rand(-6,6)
-			J.pixel_y = rand(-6,6)
 	if(vines_spawn && prob(8))
-		new /obj/structure/jungle/vines(src)
+		new /obj/structure/flora/jungle/vines(src)
 
 
 /turf/open/ground/jungle/proc/Spread(probability, prob_loss = 50)
@@ -115,13 +122,6 @@
 	icon_state = "grass_path"
 	icon_spawn_state = "dirt"
 
-
-/turf/open/ground/jungle/path/Initialize(mapload, ...)
-	. = ..()
-	for(var/obj/structure/bush/B in src)
-		qdel(B)
-
-
 /turf/open/ground/jungle/impenetrable
 	vines_spawn = TRUE
 	icon_state = "grass_impenetrable"
@@ -129,12 +129,6 @@
 
 /turf/open/ground/jungle/impenetrable/nobush
 	vines_spawn = FALSE
-
-/turf/open/ground/jungle/impenetrable/Initialize()
-	. = ..()
-	if(vines_spawn)
-		var/obj/structure/bush/B = new(src)
-		ENABLE_BITFIELD(B.resistance_flags, INDESTRUCTIBLE)
 
 //ELEVATOR SHAFT-----------------------------------//
 /turf/open/ground/empty

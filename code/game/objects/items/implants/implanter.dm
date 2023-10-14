@@ -1,6 +1,6 @@
 /obj/item/implanter
 	name = "implanter"
-	icon = 'icons/obj/items/items.dmi'
+	icon = 'icons/obj/items/implants.dmi'
 	icon_state = "implanter0"
 	item_icons = list(
 		slot_l_hand_str = 'icons/mob/inhands/equipment/medical_left.dmi',
@@ -48,7 +48,7 @@
 		log_game(user, target, "implanted", src)
 		imp = null
 		update_icon()
-		return
+		return TRUE
 	to_chat(user, span_notice(" You fail to implant [target]."))
 
 /obj/item/implanter/neurostim
@@ -70,3 +70,7 @@
 /obj/item/implanter/blade
 	name = "blade implant implanter"
 	imp = /obj/item/implant/deployitem/blade
+
+/obj/item/implanter/suicide_dust
+	name = "Self-Gibbing implant"
+	imp = /obj/item/implant/suicide_dust

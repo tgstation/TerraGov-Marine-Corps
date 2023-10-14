@@ -10,7 +10,7 @@
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 5
 	active_power_usage = 100
-	flags_pass = PASSTABLE
+	allow_pass_flags = PASS_LOW_STRUCTURE
 	var/operating = FALSE
 	var/speed = 1
 	var/obj/item/reagent_containers/beaker = null
@@ -148,12 +148,12 @@
 	[beaker_contents]<hr>
 	"}
 		if(is_beaker_ready && !is_chamber_empty && !(machine_stat & (NOPOWER|BROKEN)))
-			dat += "<A href='?src=\ref[src];action=grind'>Grind the reagents</a><BR>"
-			dat += "<A href='?src=\ref[src];action=juice'>Juice the reagents</a><BR><BR>"
+			dat += "<A href='?src=[text_ref(src)];action=grind'>Grind the reagents</a><BR>"
+			dat += "<A href='?src=[text_ref(src)];action=juice'>Juice the reagents</a><BR><BR>"
 		if(length(holdingitems) > 0)
-			dat += "<A href='?src=\ref[src];action=eject'>Eject the reagents</a><BR>"
+			dat += "<A href='?src=[text_ref(src)];action=eject'>Eject the reagents</a><BR>"
 		if(beaker)
-			dat += "<A href='?src=\ref[src];action=detach'>Detach the beaker</a><BR>"
+			dat += "<A href='?src=[text_ref(src)];action=detach'>Detach the beaker</a><BR>"
 	else
 		dat += "Please wait..."
 
@@ -385,3 +385,6 @@
 
 /obj/machinery/reagentgrinder/nopower
 	use_power = NO_POWER_USE
+
+/obj/machinery/reagentgrinder/nopower/valhalla
+	resistance_flags = INDESTRUCTIBLE

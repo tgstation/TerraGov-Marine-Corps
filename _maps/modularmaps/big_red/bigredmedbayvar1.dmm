@@ -481,7 +481,7 @@
 /area/bigredv2/outside/medical)
 "nP" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/alarm{
+/obj/machinery/air_alarm{
 	dir = 8
 	},
 /turf/open/floor/tile/green/whitegreen{
@@ -875,7 +875,7 @@
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "xb" = (
-/obj/machinery/computer/crew,
+/obj/effect/spawner/random/machinery/random_broken_computer/crewmonitor,
 /turf/open/floor/tile/green/whitegreenfull,
 /area/bigredv2/outside/medical)
 "xd" = (
@@ -1462,7 +1462,7 @@
 /area/bigredv2/outside/medical)
 "Mm" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/item/tool/extinguisher,
+/obj/effect/spawner/random/engineering/extinguisher/regularweighted,
 /turf/open/floor/tile/green/whitegreencorner,
 /area/bigredv2/outside/medical)
 "Mo" = (

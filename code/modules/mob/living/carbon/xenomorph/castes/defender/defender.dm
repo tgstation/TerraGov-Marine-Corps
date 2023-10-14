@@ -1,8 +1,8 @@
 /mob/living/carbon/xenomorph/defender
 	caste_base_type = /mob/living/carbon/xenomorph/defender
 	name = "Defender"
-	desc = "A alien with an armored head crest."
-	icon = 'icons/Xeno/2x2_Xenos.dmi'
+	desc = "An alien with an armored head crest."
+	icon = 'icons/Xeno/castes/defender.dmi'
 	icon_state = "Defender Walking"
 	bubble_icon = "alienroyal"
 	health = 200
@@ -11,7 +11,7 @@
 	pixel_x = -16
 	old_x = -16
 	tier = XENO_TIER_ONE
-	upgrade = XENO_UPGRADE_ZERO
+	upgrade = XENO_UPGRADE_NORMAL
 	pull_speed = -2
 
 // ***************************************
@@ -59,14 +59,7 @@
 	var/target_turf = get_step_away(src, H, rand(1, 2)) //This is where we blast our target
 	target_turf = get_step_rand(target_turf) //Scatter
 	H.throw_at(get_turf(target_turf), 4, 70, H)
-	H.Paralyze(40)
-
-
-/mob/living/carbon/xenomorph/defender/lay_down()
-	if(fortify) // Ensure the defender isn't fortified while laid down
-		to_chat(src, span_warning("You can't do that right now."))
-		return
-	return ..()
+	H.Paralyze(4 SECONDS)
 
 /mob/living/carbon/xenomorph/defender/Initialize(mapload)
 	. = ..()

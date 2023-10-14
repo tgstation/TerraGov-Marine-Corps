@@ -273,6 +273,8 @@
 	W.layer = ABOVE_HUD_LAYER
 	W.plane = ABOVE_HUD_PLANE
 
+	W.forceMove(src)
+
 	var/obj/item/selected_slot //the item in the specific slot we're trying to insert into, if applicable
 
 	switch(slot)
@@ -531,7 +533,6 @@
 
 /mob/living/carbon/human/stripPanelUnequip(obj/item/I, mob/M, slot_to_process)
 	if(!I.canStrip(M))
-		to_chat(src, span_warning("You can't remove [I.name], it appears to be stuck!</span>"))
 		return
 	log_combat(src, M, "attempted to remove [key_name(I)] ([slot_to_process])")
 

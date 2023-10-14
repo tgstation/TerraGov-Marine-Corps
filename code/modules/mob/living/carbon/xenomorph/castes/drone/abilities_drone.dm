@@ -75,7 +75,7 @@
 	var/datum/action/xeno_action/enhancement/enhancement_action = X.actions_by_path[/datum/action/xeno_action/enhancement]
 	enhancement_action?.end_ability()
 	X.remove_status_effect(STATUS_EFFECT_XENO_ESSENCE_LINK)
-	QDEL_NULL(existing_link)
+	existing_link = null
 	linked_target = null
 	add_cooldown()
 
@@ -109,6 +109,9 @@
 	salve_healing(target)
 	succeed_activate()
 	add_cooldown()
+	if(owner.client)
+		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[owner.ckey]
+		personal_statistics.heals++
 
 /// Heals the target and gives them a regenerative buff, if applicable.
 /datum/action/xeno_action/activable/psychic_cure/acidic_salve/proc/salve_healing(mob/living/carbon/xenomorph/target)
@@ -176,5 +179,6 @@
 /// Ends the ability if the Enhancement buff is removed.
 /datum/action/xeno_action/enhancement/proc/end_ability()
 	if(existing_enhancement)
-		QDEL_NULL(existing_enhancement)
+		essence_link_action.linked_target.remove_status_effect(STATUS_EFFECT_XENO_ENHANCEMENT)
+		existing_enhancement = null
 		add_cooldown()

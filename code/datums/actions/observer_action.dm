@@ -22,6 +22,7 @@
 
 /datum/action/observer_action/show_hivestatus
 	name = "Show Hive status"
+	action_icon = 'icons/Xeno/actions.dmi'
 	action_icon_state = "watch_xeno"
 
 
@@ -61,10 +62,6 @@
 	for(var/mob/living/ssd_mob AS in GLOB.ssd_living_mobs)
 		if(is_centcom_level(ssd_mob.z) || ssd_mob.afk_status == MOB_RECENTLY_DISCONNECTED)
 			continue
-		if(isxeno(ssd_mob))
-			var/mob/living/carbon/xenomorph/potential_minion = ssd_mob
-			if((potential_minion.xeno_caste.caste_flags & CASTE_IS_A_MINION) && !potential_minion.hive.purchases.upgrades_by_name[GHOSTS_CAN_TAKE_MINIONS].times_bought)
-				continue
 		free_ssd_mobs += ssd_mob
 
 	if(!length(free_ssd_mobs))
@@ -78,6 +75,12 @@
 	if(new_mob.stat == DEAD)
 		to_chat(owner, span_warning("You cannot join if the mob is dead."))
 		return FALSE
+
+	if(isxeno(new_mob))
+		var/mob/living/carbon/xenomorph/ssd_xeno = new_mob
+		if(ssd_xeno.tier != XENO_TIER_MINION && XENODEATHTIME_CHECK(owner))
+			XENODEATHTIME_MESSAGE(owner)
+			return
 
 	if(HAS_TRAIT(new_mob, TRAIT_POSSESSING))
 		to_chat(owner, span_warning("That mob is currently possessing a different mob."))
@@ -101,3 +104,12 @@
 		return
 	var/mob/living/carbon/human/H = new_mob
 	H.fully_replace_character_name(H.real_name, H.species.random_name(H.gender))
+
+//respawn button for campaign gamemode
+/datum/action/observer_action/campaign_respawn
+	name = "Respawn"
+	action_icon_state = "respawn"
+
+/datum/action/observer_action/campaign_respawn/action_activate()
+	var/datum/game_mode/mode = SSticker.mode
+	mode.player_respawn(owner)

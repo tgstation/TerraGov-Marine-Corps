@@ -44,7 +44,7 @@
 	. = ..()
 	var/datum/reagents/R = new/datum/reagents(10)
 	reagents = R
-	R.my_atom = src
+	R.my_atom = WEAKREF(src)
 
 /obj/item/toy/balloon/attack(mob/living/carbon/human/M as mob, mob/user as mob)
 	return
@@ -216,7 +216,7 @@
 	. = ..()
 	var/datum/reagents/R = new/datum/reagents(10)
 	reagents = R
-	R.my_atom = src
+	R.my_atom = WEAKREF(src)
 	R.add_reagent(/datum/reagent/water, 10)
 
 /obj/item/toy/waterflower/attack(mob/living/carbon/human/M as mob, mob/user as mob)
@@ -527,6 +527,16 @@
 	item_state = "rounyplush"
 	attack_verb = list("slashes", "bites", "pounces")
 
+/obj/item/toy/plush/gnome
+	name = "gnome"
+	desc = "A mythological creature that guarded Terra's garden. You wonder why it is here."
+	icon_state = "gnome"
+	item_state = "gnome"
+	attack_verb = list("kickes", "punches", "pounces")
+
+/obj/item/toy/plush/gnome/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/squeak, 'sound/items/gnome.ogg', 50)
 
 /obj/item/toy/beach_ball/basketball
 	name = "basketball"
@@ -576,7 +586,6 @@
 
 
 /obj/structure/hoop/CanAllowThrough(atom/movable/mover, turf/target)
-	. = ..()
 	if(istype(mover,/obj/item) && mover.throwing)
 		var/obj/item/I = mover
 		if(prob(50))

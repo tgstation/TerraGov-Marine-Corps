@@ -10,16 +10,6 @@ GLOBAL_LIST_INIT(freqtospan, list(
 	"[FREQ_ENGINEERING]" = "engradio",
 	"[FREQ_MEDICAL]" = "medradio",
 	"[FREQ_REQUISITIONS]" = "supradio",
-	"[FREQ_ALPHA_REBEL]" = "alpharadio",
-	"[FREQ_BRAVO_REBEL]" = "bravoradio",
-	"[FREQ_CHARLIE_REBEL]" = "charlieradio",
-	"[FREQ_DELTA_REBEL]" = "deltaradio",
-	"[FREQ_COMMAND_REBEL]" = "comradio",
-	"[FREQ_AI_REBEL]" = "airadio",
-	"[FREQ_CAS_REBEL]" = "casradio",
-	"[FREQ_ENGINEERING_REBEL]" = "engradio",
-	"[FREQ_MEDICAL_REBEL]" = "medradio",
-	"[FREQ_REQUISITIONS_REBEL]" = "supradio",
 	"[FREQ_ZULU]" = "zuluradio",
 	"[FREQ_YANKEE]" = "yankeeradio",
 	"[FREQ_XRAY]" = "xrayradio",
@@ -74,14 +64,19 @@ GLOBAL_LIST_INIT(freqtospan, list(
 		tts_message_to_use = message
 
 	var/list/filter = list()
+	var/list/special_filter = list()
+	var/voice_to_use = voice
+	var/use_radio = FALSE
 	if(length(voice_filter) > 0)
 		filter += voice_filter
 
 	if(length(tts_filter) > 0)
 		filter += tts_filter.Join(",")
+	if(use_radio)
+		special_filter += TTS_FILTER_RADIO
 
 	if(voice && found_client)
-		INVOKE_ASYNC(SStts, TYPE_PROC_REF(/datum/controller/subsystem/tts, queue_tts_message), src, html_decode(tts_message_to_use), message_language, voice, filter.Join(","), listened, message_range = range)
+		INVOKE_ASYNC(SStts, TYPE_PROC_REF(/datum/controller/subsystem/tts, queue_tts_message), src, html_decode(tts_message_to_use), message_language, voice_to_use, filter.Join(","), listened, message_range = range, pitch = pitch, special_filters = special_filter.Join("|"))
 
 #define CMSG_FREQPART compose_freq(speaker, radio_freq)
 #define CMSG_JOBPART compose_job(speaker, message_language, raw_message, radio_freq)
@@ -129,13 +124,14 @@ GLOBAL_LIST_INIT(freqtospan, list(
 
 		var/paygrade = H.get_paygrade()
 		if(paygrade)
-			return "[paygrade]"	//Attempt to read off the id before defaulting to job
+			return "[paygrade] "	//Attempt to read off the id before defaulting to job
 
 		var/datum/job/J = H.job
 		if(!istype(J))
 			return ""
 
-		return "[get_paygrades(J.paygrade, TRUE, gender)] "
+		paygrade = get_paygrades(J.paygrade, TRUE, gender)
+		return paygrade ? "[paygrade] " : ""
 	else if(istype(speaker, /atom/movable/virtualspeaker))
 		var/atom/movable/virtualspeaker/VT = speaker
 		if(!ishuman(VT.source))
@@ -143,13 +139,14 @@ GLOBAL_LIST_INIT(freqtospan, list(
 		var/mob/living/carbon/human/H = VT.source
 		var/paygrade = H.get_paygrade()
 		if(paygrade)
-			return "[paygrade]"	//Attempt to read off the id before defaulting to job
+			return "[paygrade] "	//Attempt to read off the id before defaulting to job
 
 		var/datum/job/J = H.job
 		if(!istype(J))
 			return ""
 
-		return "[get_paygrades(J.paygrade, TRUE, gender)] "
+		paygrade = get_paygrades(J.paygrade, TRUE, gender)
+		return paygrade ? "[paygrade] " : ""
 	else
 		return ""
 
@@ -245,7 +242,7 @@ GLOBAL_LIST_INIT(freqtospan, list(
 		return "1"
 	else if (ending == "!")
 		return "2"
-	return "0"
+	return "4"
 
 /atom/movable/proc/GetVoice()
 	return "[src]"	//Returns the atom's name, prepended with 'The' if it's not a proper noun

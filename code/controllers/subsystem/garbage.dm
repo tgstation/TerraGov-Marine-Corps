@@ -53,6 +53,10 @@ SUBSYSTEM_DEF(garbage)
 	var/list/queues
 	#ifdef REFERENCE_TRACKING
 	var/list/reference_find_on_fail = list()
+	#ifdef REFERENCE_TRACKING_DEBUG
+	//Should we save found refs. Used for unit testing
+	var/should_save_refs = FALSE
+	#endif
 	#endif
 
 
@@ -77,7 +81,7 @@ SUBSYSTEM_DEF(garbage)
 		msg += "TGR:[round((totalgcs/(totaldels+totalgcs))*100, 0.01)]%"
 	msg += " P:[pass_counts.Join(",")]"
 	msg += "|F:[fail_counts.Join(",")]"
-	..(msg)
+	return ..()
 
 /datum/controller/subsystem/garbage/Shutdown()
 	//Adds the del() log to the qdel log file
@@ -249,7 +253,7 @@ SUBSYSTEM_DEF(garbage)
 		HardDelete(D)
 		return
 	var/queue_time = world.time
-	var/refid = "\ref[D]"
+	var/refid = text_ref(D)
 
 	if (D.gc_destroyed <= 0)
 		D.gc_destroyed = queue_time
@@ -262,7 +266,7 @@ SUBSYSTEM_DEF(garbage)
 	++delslasttick
 	++totaldels
 	var/type = D.type
-	var/refID = "\ref[D]"
+	var/refID = text_ref(D)
 
 	var/tick_usage = TICK_USAGE
 	del(D)
@@ -331,12 +335,12 @@ SUBSYSTEM_DEF(garbage)
 	I.qdels++
 
 	if(isnull(D.gc_destroyed))
-		if (SEND_SIGNAL(D, COMSIG_PARENT_PREQDELETED, force)) // Give the components a chance to prevent their parent from being deleted
+		if (SEND_SIGNAL(D, COMSIG_PREQDELETED, force)) // Give the components a chance to prevent their parent from being deleted
 			return
 		D.gc_destroyed = GC_CURRENTLY_BEING_QDELETED
 		var/start_time = world.time
 		var/start_tick = world.tick_usage
-		SEND_SIGNAL(D, COMSIG_PARENT_QDELETING, force) // Let the (remaining) components know about the result of Destroy
+		SEND_SIGNAL(D, COMSIG_QDELETING, force) // Let the (remaining) components know about the result of Destroy
 		var/hint = D.Destroy(arglist(args.Copy(2))) // Let our friend know they're about to get fucked up.
 		if(world.time != start_time)
 			I.slept_destroy++
@@ -374,10 +378,10 @@ SUBSYSTEM_DEF(garbage)
 			#ifdef REFERENCE_TRACKING
 			if (QDEL_HINT_FINDREFERENCE) //qdel will, if REFERENCE_TRACKING is enabled, display all references to this object, then queue the object for deletion.
 				SSgarbage.Queue(D)
-				D.find_references()
+				D.find_references() //This breaks ci. Consider it insurance against somehow pring reftracking on accident
 			if (QDEL_HINT_IFFAIL_FINDREFERENCE) //qdel will, if REFERENCE_TRACKING is enabled and the object fails to collect, display all references to this object.
 				SSgarbage.Queue(D)
-				SSgarbage.reference_find_on_fail["\ref[D]"] = TRUE
+				SSgarbage.reference_find_on_fail[text_ref(D)] = TRUE
 			#endif
 			else
 				#ifdef TESTING

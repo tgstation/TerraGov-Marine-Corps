@@ -163,7 +163,7 @@
 				var/mob/living/carbon/human/H = affected
 				if(H.stat == DEAD)
 					continue
-				H.apply_effects(0.5, 0.5)
+				H.apply_effects(1 SECONDS, 1 SECONDS)
 				shake_camera(H, 2, 1)
 			var/throwlocation = affected.loc
 			for(var/x in 1 to 6)
@@ -190,6 +190,8 @@
 
 /obj/effect/xeno/shield/Initialize(mapload, creator)
 	. = ..()
+	if(!creator)
+		return INITIALIZE_HINT_QDEL
 	owner = creator
 	dir = owner.dir
 	max_integrity = owner.xeno_caste.shield_strength
@@ -213,13 +215,14 @@
 	proj.iff_signal = null
 	frozen_projectiles += proj
 	take_damage(proj.damage, proj.ammo.damage_type, proj.ammo.armor_type, 0, turn(proj.dir, 180), proj.ammo.penetration)
+	alpha = obj_integrity * 255 / max_integrity
 	if(obj_integrity <= 0)
 		release_projectiles()
-		owner.apply_effects(weaken = 0.5)
+		owner.apply_effect(1 SECONDS, WEAKEN)
 
 /obj/effect/xeno/shield/obj_destruction()
 	release_projectiles()
-	owner.apply_effects(weaken = 0.5)
+	owner.apply_effect(1 SECONDS, WEAKEN)
 	return ..()
 
 ///Unfeezes the projectiles on their original path
@@ -227,6 +230,7 @@
 	for(var/obj/projectile/proj AS in frozen_projectiles)
 		proj.flags_projectile_behavior &= ~PROJECTILE_FROZEN
 		proj.resume_move()
+	record_projectiles_frozen(owner, LAZYLEN(frozen_projectiles))
 
 ///Reflects projectiles based on their relative incoming angle
 /obj/effect/xeno/shield/proc/reflect_projectiles()
@@ -242,6 +246,14 @@
 			new_angle -= 360
 		proj.firer = src
 		proj.fire_at(shooter = src, source = src, angle = new_angle, recursivity = TRUE)
+
+		//Record those sick rocket shots
+		//Is not part of record_projectiles_frozen() because it is probably bad to be running that for every bullet!
+		if(istype(proj.ammo, /datum/ammo/rocket) && owner.client)
+			var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[owner.ckey]
+			personal_statistics.rockets_reflected++
+
+	record_projectiles_frozen(owner, LAZYLEN(frozen_projectiles), TRUE)
 	frozen_projectiles.Cut()
 
 
@@ -317,7 +329,7 @@
 
 	action_icon_state = "psy_crush_activate"
 	update_button_icon()
-	RegisterSignal(owner, list(SIGNAL_ADDTRAIT(TRAIT_FLOORED), SIGNAL_ADDTRAIT(TRAIT_INCAPACITATED)), PROC_REF(stop_crush))
+	RegisterSignals(owner, list(SIGNAL_ADDTRAIT(TRAIT_FLOORED), SIGNAL_ADDTRAIT(TRAIT_INCAPACITATED)), PROC_REF(stop_crush))
 	do_channel(target_turf)
 
 ///Checks if the owner is close enough/can see the target
@@ -389,11 +401,11 @@
 					continue
 				carbon_victim.apply_damage(xeno_owner.xeno_caste.crush_strength, BRUTE, blocked = BOMB)
 				carbon_victim.apply_damage(xeno_owner.xeno_caste.crush_strength * 1.5, STAMINA, blocked = BOMB)
-				carbon_victim.adjust_stagger(5)
+				carbon_victim.adjust_stagger(5 SECONDS)
 				carbon_victim.add_slowdown(6)
 			else if(ismecha(victim))
 				var/obj/vehicle/sealed/mecha/mecha_victim = victim
-				mecha_victim.take_damage(xeno_owner.xeno_caste.crush_strength * 5, BOMB)
+				mecha_victim.take_damage(xeno_owner.xeno_caste.crush_strength * 5, BRUTE, BOMB)
 	stop_crush()
 
 /// stops channeling and unregisters all listeners, resetting the ability

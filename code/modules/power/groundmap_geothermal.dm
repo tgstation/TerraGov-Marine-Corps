@@ -30,15 +30,15 @@ GLOBAL_VAR_INIT(generators_on_ground, 0)
 
 /obj/machinery/power/geothermal/Initialize(mapload)
 	. = ..()
-	RegisterSignal(SSdcs, list(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_XENO_HIVEMIND, COMSIG_GLOB_OPEN_SHUTTERS_EARLY, COMSIG_GLOB_TADPOLE_LAUNCHED), PROC_REF(activate_corruption))
+	RegisterSignals(SSdcs, list(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_XENO_HIVEMIND, COMSIG_GLOB_OPEN_SHUTTERS_EARLY, COMSIG_GLOB_TADPOLE_LAUNCHED), PROC_REF(activate_corruption))
 	update_icon()
 	SSminimaps.add_marker(src, MINIMAP_FLAG_ALL, image('icons/UI_icons/map_blips.dmi', null, "generator"))
 
-	if(corrupted)
-		corrupt(corrupted)
-
 	if(is_ground_level(z))
 		GLOB.generators_on_ground += 1
+
+	if(corrupted)
+		corrupt(corrupted)
 
 /obj/machinery/power/geothermal/Destroy() //just in case
 	if(is_ground_level(z))
@@ -101,6 +101,8 @@ GLOBAL_VAR_INIT(generators_on_ground, 0)
 
 /obj/machinery/power/geothermal/process()
 	if(corrupted && corruption_on)
+		if(!GLOB.generators_on_ground)	//Prevent division by 0
+			return PROCESS_KILL
 		if((length(GLOB.humans_by_zlevel["2"]) > 0.2 * length(GLOB.alive_human_list_faction[FACTION_TERRAGOV])))
 			//You get points proportional to the % of generators corrupted (for example, if 66% of generators are corrupted the hive gets 0.66 points per second)
 			SSpoints.add_psy_points(corrupted, GENERATOR_PSYCH_POINT_OUTPUT / GLOB.generators_on_ground)
@@ -159,6 +161,7 @@ GLOBAL_VAR_INIT(generators_on_ground, 0)
 			return
 		corrupt(X.hivenumber)
 		to_chat(X, span_notice("You have corrupted [src]"))
+		record_generator_sabotages(X)
 		return
 	if(buildstate)
 		return
@@ -167,6 +170,7 @@ GLOBAL_VAR_INIT(generators_on_ground, 0)
 	X.visible_message(span_danger("\The [X] slashes at \the [src], tearing at it's components!"),
 		span_danger("We start slashing at \the [src], tearing at it's components!"))
 	fail_rate += 5 // 5% fail rate every attack
+	record_generator_sabotages(X)
 
 /obj/machinery/power/geothermal/attack_hand(mob/living/carbon/user)
 	interact_hand(user)
@@ -269,6 +273,7 @@ GLOBAL_VAR_INIT(generators_on_ground, 0)
 	span_notice("You weld [src]'s internal damage."))
 	cut_overlay(GLOB.welding_sparks)
 	update_icon()
+	record_generator_repairs(user)
 	return TRUE
 
 /obj/machinery/power/geothermal/wirecutter_act(mob/living/user, obj/item/I)
@@ -292,6 +297,7 @@ GLOBAL_VAR_INIT(generators_on_ground, 0)
 	user.visible_message(span_notice("[user] secures [src]'s wiring."),
 	span_notice("You secure [src]'s wiring."))
 	update_icon()
+	record_generator_repairs(user)
 	return TRUE
 
 /obj/machinery/power/geothermal/wrench_act(mob/living/user, obj/item/I)
@@ -316,6 +322,7 @@ GLOBAL_VAR_INIT(generators_on_ground, 0)
 	user.visible_message(span_notice("[user] repairs [src]'s tubing and plating."),
 	span_notice("You repair [src]'s tubing and plating."))
 	update_icon()
+	record_generator_repairs(user)
 	return TRUE
 
 /obj/machinery/power/geothermal/proc/corrupt(hivenumber)

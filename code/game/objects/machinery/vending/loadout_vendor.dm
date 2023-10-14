@@ -1,6 +1,6 @@
 /obj/machinery/loadout_vendor
 	name = "automated loadout vendor"
-	desc = "An advanced vendor used by the TGMC to rapidly equip their soldiers"
+	desc = "An advanced vendor used by the TGMC to rapidly equip their marines"
 	icon = 'icons/obj/machines/vending.dmi'
 	icon_state = "specialist"
 	density = TRUE
@@ -9,7 +9,7 @@
 	req_access = null
 	req_one_access = null
 	///The faction of this loadout vendor
-	var/faction = FACTION_NEUTRAL
+	var/faction = VENDOR_FACTION_NEUTRAL
 
 /obj/machinery/loadout_vendor/can_interact(mob/user)
 	. = ..()
@@ -37,12 +37,9 @@
 	user.client.prefs.loadout_manager.loadout_vendor = src
 	user.client.prefs.loadout_manager.ui_interact(user)
 
-/obj/machinery/loadout_vendor/loyalist
-	faction = FACTION_TERRAGOV
-
-/obj/machinery/loadout_vendor/rebel
-	faction = FACTION_TERRAGOV_REBEL
+/obj/machinery/loadout_vendor/crash
+	faction = VENDOR_FACTION_CRASH
 
 /obj/machinery/loadout_vendor/valhalla
 	resistance_flags = INDESTRUCTIBLE
-	faction = FACTION_VALHALLA
+	faction = VENDOR_FACTION_VALHALLA
