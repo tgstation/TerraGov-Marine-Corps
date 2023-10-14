@@ -192,7 +192,6 @@
 	for(var/i in 1 to 5)
 		new /obj/item/clothing/mask/cigarette/antitox(src)
 
-	new /obj/item/clothing/mask/cigarette/emergency(src)
 	new /obj/item/tool/lighter(src)
 
 /obj/item/storage/fancy/chemrettes/update_icon_state()

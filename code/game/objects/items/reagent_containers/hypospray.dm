@@ -501,6 +501,15 @@
 	)
 	description_overlay = "Na"
 
+/obj/item/reagent_containers/hypospray/advanced/russian_red
+	name = "russian red hypospray"
+	desc = "A hypospray loaded with Russian Red, a chemical that heals all damage rapidly at the cost of small amounts of clone loss."
+	amount_per_transfer_from_this = 5
+	list_reagents = list(
+		/datum/reagent/medicine/russian_red = 60,
+	)
+	description_overlay = "RR"
+
 /obj/item/reagent_containers/hypospray/advanced/peridaxonplus
 	name = "Peridaxon+ hypospray"
 	desc = "A hypospray loaded with Peridaxon Plus, a chemical that heals organs while causing a buildup of toxins. Use with antitoxin. !DO NOT USE IN ACTIVE COMBAT!"
