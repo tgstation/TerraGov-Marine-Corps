@@ -1483,7 +1483,7 @@
 	icon_state = "barcardine"
 	wrapper = /obj/item/trash/barcardine
 	list_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/coco = 2, /datum/reagent/medicine/tramadol = 1, /datum/reagent/medicine/tramadol = 1)
-	tastes = list (" cough syrup" = 1)
+	tastes = list ("cough syrup" = 1)
 
 /obj/item/reagent_containers/food/snacks/wrapped/berrybar
 	name = "Berry Bars"
