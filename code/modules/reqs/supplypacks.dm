@@ -1062,7 +1062,7 @@ ARMOR
 		/obj/item/weapon/combat_knife/harvester,
 		/obj/item/paper/chemsystem,
 	)
-	cost = 200
+	cost = 150
 
 /*******************************************************************************
 CLOTHING
