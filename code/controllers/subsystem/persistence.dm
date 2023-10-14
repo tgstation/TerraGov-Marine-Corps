@@ -38,9 +38,6 @@ SUBSYSTEM_DEF(persistence)
 		/datum/season_datum/weapons/guns/lever_seasonal,
 		),
 		SEASONAL_HEAVY = list(
-		/datum/season_datum/weapons/guns/heavy_defualt,
-		/datum/season_datum/weapons/guns/heavy_ff,
-		/datum/season_datum/weapons/guns/heavy_autorail,
 		/datum/season_datum/weapons/guns/heavy_shock,
 		),
 	)
@@ -356,7 +353,6 @@ SUBSYSTEM_DEF(persistence)
 		/obj/item/ammo_magazine/rocket/recoilless/cloak = 16,
 		/obj/item/ammo_magazine/rocket/recoilless/smoke = 16,
 		/obj/item/ammo_magazine/rocket/recoilless/plasmaloss = 16,
-		/obj/item/mortar_kit/mlrs = 2,
-		/obj/item/storage/box/mlrs_rockets = 8,
+		/obj/structure/closet/crate/mortar_ammo/mlrs_kit = 2,
 		/obj/item/storage/box/mlrs_rockets_gas = 4,
 	)
