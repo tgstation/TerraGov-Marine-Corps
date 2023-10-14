@@ -20,7 +20,7 @@ export const CampaignMissions = (props, context) => {
           {available_missions.map((mission) => (
             <Stack.Item key={mission.name}>
               <Button
-                height={'26px'}
+                height={'30px'}
                 width={'180px'}
                 onClick={() => setSelectedMission(mission)}
                 color={
@@ -31,18 +31,20 @@ export const CampaignMissions = (props, context) => {
                       : 'blue'
                 }>
                 <Flex align="center">
-                  {!!mission.mission_icon && (
-                    <MissionIcon
-                      icon={
-                        selectedMission.name === mission.name
-                          ? mission.mission_icon + '_yellow'
-                          : mission.mission_critical
-                            ? mission.mission_icon + '_red'
-                            : mission.mission_icon + '_blue'
-                      }
-                    />
-                  )}
-                  {mission.name}
+                  <Flex.Item pt={'3px'} pr={'3px'}>
+                    {!!mission.mission_icon && (
+                      <MissionIcon
+                        icon={
+                          selectedMission.name === mission.name
+                            ? mission.mission_icon + '_yellow'
+                            : mission.mission_critical
+                              ? mission.mission_icon + '_red'
+                              : mission.mission_icon + '_blue'
+                        }
+                      />
+                    )}
+                  </Flex.Item>
+                  <Flex.Item>{mission.name}</Flex.Item>
                 </Flex>
               </Button>
             </Stack.Item>

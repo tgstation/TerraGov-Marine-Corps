@@ -257,8 +257,9 @@ export const MissionIcon = (
 
   return (
     <Box
+      width={'24px'}
+      height={'24px'}
       as="img"
-      mr={1}
       src={`data:image/jpeg;base64,${mission_icons[icon]}`}
     />
   );
