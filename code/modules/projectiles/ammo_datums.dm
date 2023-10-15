@@ -753,7 +753,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	hud_state = "hivelo_impact"
 	damage = 30
 	penetration = 10
-	sundering = 6.5
+	sundering = 7
 
 /datum/ammo/bullet/rifle/tx8/impact/on_hit_mob(mob/M, obj/projectile/P)
 	staggerstun(M, P, max_range = 14, slowdown = 1, knockback = 1)
