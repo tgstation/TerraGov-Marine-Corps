@@ -10,8 +10,8 @@
 	)
 
 //General
-/datum/job/som/command/general
-	title = SOM_GENERAL
+/datum/job/som/command/commander
+	title = SOM_COMMANDER
 	req_admin_notify = TRUE
 	paygrade = "SOM_O7"
 	comm_title = "CMDR"
@@ -21,7 +21,7 @@
 	skills_type = /datum/skills/captain
 	minimal_access = ALL_MARINE_ACCESS
 	display_order = JOB_DISPLAY_ORDER_CAPTAIN
-	outfit = /datum/outfit/job/som/command/general
+	outfit = /datum/outfit/job/som/command/commander
 	exp_requirements = XP_REQ_EXPERT
 	exp_type = EXP_TYPE_REGULAR_ALL
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_ISCOMMAND|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_ALWAYS_VISIBLE_ON_MINIMAP|JOB_FLAG_LOUDER_TTS
@@ -34,7 +34,7 @@
 	"}
 	minimap_icon = "captain" //placeholder
 
-/datum/job/som/command/general/radio_help_message(mob/M)
+/datum/job/som/command/commander/radio_help_message(mob/M)
 	. = ..()
 	to_chat(M, {"As the senior officer in command of this SOM battallion you are held by higher standard and are expected to act competently.
 Your primary task is to command and support the SOM marines under your command from the command center in [SSmapping.configs[SHIP_MAP].map_name].
@@ -44,9 +44,9 @@ If you require any help, use <b>mentorhelp</b> to ask mentors about what you're 
 Godspeed, commander! And remember, you are not above the law."})
 
 
-/datum/outfit/job/som/command/general
-	name = SOM_GENERAL
-	jobtype = /datum/job/som/command/general
+/datum/outfit/job/som/command/commander
+	name = SOM_COMMANDER
+	jobtype = /datum/job/som/command/commander
 
 	id = /obj/item/card/id/gold
 	belt = /obj/item/storage/holster/belt/pistol/m4a3/som/fancy/fieldcommander
@@ -56,11 +56,11 @@ Godspeed, commander! And remember, you are not above the law."})
 	gloves = /obj/item/clothing/gloves/marine/som/officer
 	r_store = /obj/item/storage/pouch/general/large/som
 
-/datum/outfit/job/som/command/general/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+/datum/outfit/job/som/command/commander/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
 	H.equip_to_slot_or_del(new /obj/item/binoculars/fire_support/campaign/som, SLOT_IN_R_POUCH)
 
-/datum/job/som/command/general/after_spawn(mob/living/new_mob, mob/user, latejoin)
+/datum/job/som/command/commander/after_spawn(mob/living/new_mob, mob/user, latejoin)
 	. = ..()
 	if(!ishuman(new_mob))
 		return

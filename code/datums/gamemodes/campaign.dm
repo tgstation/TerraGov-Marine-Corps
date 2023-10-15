@@ -14,7 +14,7 @@
 		/datum/job/terragov/squad/smartgunner = 4,
 		/datum/job/terragov/squad/leader = 4,
 		/datum/job/terragov/squad/standard = -1,
-		/datum/job/som/command/general = 1,
+		/datum/job/som/command/commander = 1,
 		/datum/job/som/command/staffofficer = 2,
 		/datum/job/som/command/fieldcommander = 1,
 		/datum/job/som/squad/leader = 4,

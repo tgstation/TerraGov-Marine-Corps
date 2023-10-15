@@ -139,7 +139,7 @@
 
 /obj/effect/landmark/start/job/som/commander
 	icon_state = "som_commander"
-	job = /datum/job/som/command/general
+	job = /datum/job/som/command/commander
 
 /obj/effect/landmark/start/job/som/staff_officer
 	icon_state = "som_staff_officer"
