@@ -29,10 +29,6 @@
 	smoothing_groups = list(SMOOTH_GROUP_TABLES_GENERAL)
 	canSmoothWith = list(SMOOTH_GROUP_TABLES_GENERAL)
 
-/obj/structure/table/mainship/nometal
-	parts = /obj/item/frame/table/nometal
-	dropmetal = FALSE
-
 /obj/structure/table/deconstruct(disassembled)
 	if(disassembled)
 		new parts(loc)
@@ -491,7 +487,11 @@
 	icon_state = "mainship_table-0"
 	base_icon_state = "mainship_table"
 	table_prefix = "ship"
+	parts = /obj/item/frame/table/mainship
 
+/obj/structure/table/mainship/nometal
+	parts = /obj/item/frame/table/mainship/nometal
+	dropmetal = FALSE
 
 /*
 * Racks
