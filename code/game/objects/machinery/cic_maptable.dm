@@ -8,7 +8,7 @@
 	density = TRUE
 	idle_power_usage = 2
 	///flags that we want to be shown when you interact with this table
-	var/allowed_flags = MINIMAP_FLAG_MARINE
+	var/minimap_flag = MINIMAP_FLAG_MARINE
 	///by default Zlevel 2, groundside is targetted
 	var/targetted_zlevel = 2
 	///minimap obj ref that we will display to users
@@ -31,7 +31,7 @@
 	if(interact_checks())
 		return
 	if(!map)
-		map = SSminimaps.fetch_minimap_object(targetted_zlevel, allowed_flags)
+		map = SSminimaps.fetch_minimap_object(targetted_zlevel, minimap_flag)
 	user.client.screen += map
 	interactees += user
 	if(isobserver(user))
@@ -73,10 +73,10 @@
 	icon_state = "droppodtable"
 
 /obj/machinery/cic_maptable/som_maptable
-	allowed_flags = MINIMAP_FLAG_MARINE_SOM
+	minimap_flag = MINIMAP_FLAG_MARINE_SOM
 
 /obj/machinery/cic_maptable/no_flags
-	allowed_flags = NONE
+	minimap_flag = NONE
 
 /obj/machinery/cic_maptable/drawable
 	desc = "A table that displays a map of the current target location that also allows drawing onto it"
@@ -100,7 +100,7 @@
 
 	var/list/atom/movable/screen/actions = list()
 	for(var/path in drawing_tools)
-		actions += new path(null, targetted_zlevel, allowed_flags)
+		actions += new path(null, targetted_zlevel, minimap_flag)
 	drawing_tools = actions
 
 /obj/machinery/cic_maptable/drawable/Destroy()
