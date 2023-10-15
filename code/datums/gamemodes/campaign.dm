@@ -6,12 +6,16 @@
 	whitelist_ground_maps = list(MAP_FORT_PHOBOS)
 	bioscan_interval = 3 MINUTES
 	valid_job_types = list(
+		/datum/job/terragov/command/captain = 1,
+		/datum/job/terragov/command/staffofficer = 2,
 		/datum/job/terragov/command/fieldcommander/campaign = 1,
 		/datum/job/terragov/squad/engineer = 4,
 		/datum/job/terragov/squad/corpsman = 8,
 		/datum/job/terragov/squad/smartgunner = 4,
 		/datum/job/terragov/squad/leader = 4,
 		/datum/job/terragov/squad/standard = -1,
+		/datum/job/som/command/general = 1,
+		/datum/job/som/command/staffofficer = 2,
 		/datum/job/som/command/fieldcommander = 1,
 		/datum/job/som/squad/leader = 4,
 		/datum/job/som/squad/veteran = 2,
