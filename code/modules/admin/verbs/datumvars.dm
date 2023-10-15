@@ -604,12 +604,12 @@
 
 
 /client/proc/view_var_Topic(href, href_list, hsrc)
-	if(usr.client != src || !src.holder || !holder.CheckAdminHref(href, href_list))
+		if(usr.client != src || !src.holder || !holder.CheckAdminHref(href, href_list))
 		return
 
 
-	if(href_list["Vars"])
-		debug_variables(locate(href_list["Vars"]))
+	if(href_list["vars"])
+		debug_variables(locate(href_list["vars"]))
 
 
 	else if(href_list["datumrefresh"])
