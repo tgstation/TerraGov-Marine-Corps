@@ -95,7 +95,7 @@ export const CampaignMenu = (props, context) => {
       theme={data.ui_theme}
       title={data.faction + ' Mission Control'}
       width={700}
-      height={550}>
+      height={600}>
       <Window.Content>
         {selectedAsset ? (
           <Modal width="500px">
@@ -230,37 +230,63 @@ const CampaignContent = (props, context) => {
 };
 
 /** Generates a small icon for buttons based on ICONMAP */
-export const AssetIcon = (props: { icon: FactionReward['icon'] }, context) => {
+export const AssetIcon = (
+  props: {
+    icon: FactionReward['icon'];
+    icon_width?: string;
+    icon_height?: string;
+  },
+  context
+) => {
   const { data } = useBackend<CampaignData>(context);
   const { icons = [] } = data;
-  const { icon } = props;
+  const { icon, icon_width, icon_height } = props;
   if (!icon || !icons[icon]) {
     return null;
   }
 
   return (
-    <Box as="img" mr={1.5} src={`data:image/jpeg;base64,${icons[icon]}`} />
+    <Box
+      width={icon_width ? icon_width : '18px'}
+      height={icon_height ? icon_height : '18px'}
+      as="img"
+      mr={1.5}
+      src={`data:image/jpeg;base64,${icons[icon]}`}
+      style={{
+        transform: 'scale(1)',
+        '-ms-interpolation-mode': 'nearest-neighbor',
+      }}
+    />
   );
 };
 
 /** Generates a small icon for buttons based on ICONMAP for missions */
 export const MissionIcon = (
-  props: { icon: MissionData['mission_icon'] },
+  props: {
+    icon: MissionData['mission_icon'];
+    icon_width?: string;
+    icon_height?: string;
+  },
   context
 ) => {
   const { data } = useBackend<CampaignData>(context);
   const { mission_icons = [] } = data;
-  const { icon } = props;
+  const { icon, icon_width, icon_height } = props;
   if (!icon || !mission_icons[icon]) {
     return null;
   }
 
   return (
     <Box
-      width={'24px'}
-      height={'24px'}
+      width={icon_width ? icon_width : '24px'}
+      height={icon_height ? icon_height : '24px'}
       as="img"
+      mr={1.5}
       src={`data:image/jpeg;base64,${mission_icons[icon]}`}
+      style={{
+        transform: 'scale(1)',
+        '-ms-interpolation-mode': 'nearest-neighbor',
+      }}
     />
   );
 };

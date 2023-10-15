@@ -78,9 +78,17 @@ export const CampaignAssets = (props, context) => {
               <Box>
                 <Flex align="center">
                   <Flex.Item>
-                    {<AssetIcon icon={selectedReward.icon + '_orange'} />}
+                    {
+                      <AssetIcon
+                        icon={selectedReward.icon + '_orange'}
+                        icon_width={'36px'}
+                        icon_height={'36px'}
+                      />
+                    }
                   </Flex.Item>
-                  <Flex.Item grow={1}>{selectedReward.name}</Flex.Item>
+                  <Flex.Item fontSize="150%" grow={1}>
+                    {selectedReward.name}
+                  </Flex.Item>
                   <Flex.Item alight="right" position="end">
                     <Button
                       onClick={() => setSelectedAsset(selectedReward)}

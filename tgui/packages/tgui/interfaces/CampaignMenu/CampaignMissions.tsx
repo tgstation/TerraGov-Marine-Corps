@@ -31,7 +31,7 @@ export const CampaignMissions = (props, context) => {
                       : 'blue'
                 }>
                 <Flex align="center">
-                  <Flex.Item pt={'3px'} pr={'3px'}>
+                  <Flex.Item pt={'3px'}>
                     {!!mission.mission_icon && (
                       <MissionIcon
                         icon={
@@ -61,10 +61,14 @@ export const CampaignMissions = (props, context) => {
                     {
                       <MissionIcon
                         icon={selectedMission.mission_icon + '_yellow'}
+                        icon_width={'48px'}
+                        icon_height={'48px'}
                       />
                     }
                   </Flex.Item>
-                  <Flex.Item grow={1}>{selectedMission.name}</Flex.Item>
+                  <Flex.Item fontSize="150%" grow={1}>
+                    {selectedMission.name}
+                  </Flex.Item>
                   <Flex.Item alight="right" position="end">
                     <Button
                       onClick={() => setSelectedNewMission(selectedMission)}

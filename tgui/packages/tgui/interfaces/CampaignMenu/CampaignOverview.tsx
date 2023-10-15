@@ -30,8 +30,14 @@ export const CampaignOverview = (props, context) => {
       <Section
         title={
           <Box>
-            <Flex align="center">
-              {<MissionIcon icon={mission_icon + '_green'} />}
+            <Flex fontSize="150%" align="center">
+              {
+                <MissionIcon
+                  icon={mission_icon + '_green'}
+                  icon_width={'48px'}
+                  icon_height={'48px'}
+                />
+              }
               Current Mission overview
             </Flex>
           </Box>
