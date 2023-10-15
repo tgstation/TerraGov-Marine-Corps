@@ -113,7 +113,7 @@
 		slot_r_hand_str = 'icons/mob/inhands/equipment/backpacks_right.dmi',
 	)
 	icon_state = "volkite_powerpack"
-	charge_overlay = "volkite_back"
+	charge_overlay = null
 	flags_atom = CONDUCT
 	flags_equip_slot = ITEM_SLOT_BACK
 	flags_magazine_features = MAGAZINE_REFUND_IN_CHAMBER|MAGAZINE_WORN
