@@ -41,6 +41,8 @@
 			footstep_sounds = GLOB.xenomediumstep
 		if(FOOTSTEP_XENO_HEAVY)
 			footstep_sounds = GLOB.xenoheavystep
+		if(FOOTSTEP_XENO_STOMPY)
+			footstep_sounds = GLOB.xenostompy
 	RegisterSignal(target, COMSIG_MOVABLE_MOVED, PROC_REF(simplestep_wrapper))
 	RegisterSignal(target, COMSIG_ELEMENT_JUMP_ENDED, PROC_REF(play_simplestep))
 	steps_for_living[target] = 0
