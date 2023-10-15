@@ -1070,6 +1070,7 @@
 			/obj/item/armor_module/module/better_shoulder_lamp = -1,
 			/obj/item/armor_module/module/chemsystem = -1,
 			/obj/item/armor_module/module/eshield = -1,
+			/obj/item/armor_module/module/jetpack = -1,
 		),
 		"Style Line" = list(
 			/obj/item/clothing/suit/modular/style/leather_jacket = -1,

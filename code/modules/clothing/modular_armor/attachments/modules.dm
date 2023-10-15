@@ -316,7 +316,6 @@
 	///Holds id for a timer which triggers recharge start. Null if not currently delayed.
 	var/recharge_timer
 
-
 /obj/item/armor_module/module/eshield/Initialize(mapload)
 	. = ..()
 	spark_system = new()
@@ -436,6 +435,272 @@
 /obj/item/armor_module/module/eshield/som
 	name = "Aegis Energy Dispersion Module"
 	desc = "A sophisticated shielding unit, designed to disperse the energy of incoming impacts, rendering them harmless to the user. If it sustains too much it will deactivate, and leave the user vulnerable. It is unclear if this was a purely  SOM designed module, or whether it was reverse engineered from the TGMC's 'Svalinn' shield system which was developed around the same time."
+
+
+// ***************************************
+// *********** Jetpack Module
+// ***************************************
+#define JETPACK_FUEL_USE 5
+
+/obj/item/armor_module/module/jetpack
+	name = "Jetpack module"
+	desc = "Designed for mounting on modular armor. A high powered jetpack with enough fuel to send a person flying for a short while. It allows for fast and agile movement on the battlefield. <b>Alt right click or middleclick to fly to a destination when the jetpack is active.</b>"
+	icon = 'icons/mob/modular/modular_armor_modules.dmi'
+	icon_state = "mod_jetpack"
+	item_state = "mod_jetpack_a"
+	slot = ATTACHMENT_SLOT_MODULE
+	soft_armor = list(MELEE = -10, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = -5, FIRE = 0, ACID = -5)
+	/// This module's custom action.
+	var/datum/action/item_action/toggle/jetpack_action/module_action
+	/// Whether the module's VFX are active or not.
+	var/module_visuals = FALSE
+
+/obj/item/armor_module/module/jetpack/on_attach(obj/item/attaching_to, mob/user)
+	. = ..()
+	RegisterSignal(parent, COMSIG_ITEM_EQUIPPED, PROC_REF(handle_equip))
+	RegisterSignal(parent, COMSIG_ITEM_UNEQUIPPED, PROC_REF(handle_unequip))
+	RegisterSignal(parent, COMSIG_ATOM_EXAMINE, PROC_REF(parent_examine))
+
+/obj/item/armor_module/module/jetpack/on_detach(obj/item/detaching_from, mob/user)
+	. = ..()
+	UnregisterSignal(parent, list(COMSIG_ITEM_EQUIPPED, COMSIG_ITEM_UNEQUIPPED, COMSIG_ATOM_EXAMINE))
+
+/obj/item/armor_module/module/jetpack/update_icon_state()
+	if(module_visuals)
+		icon_state = "[icon_state]_active"
+		return
+	icon_state = initial(icon_state)
+
+/// Gives the appropriate action whenever the parent is equipped.
+/obj/item/armor_module/module/jetpack/proc/handle_equip(datum/source, mob/equipper, slot)
+	SIGNAL_HANDLER
+	if(slot != SLOT_WEAR_SUIT || !isliving(equipper))
+		return
+	var/datum/action/item_action/toggle/jetpack_action/new_action = new(src)
+	new_action?.give_action(equipper)
+
+/// Removes the appropriate action whenever the parent is unequipped.
+/obj/item/armor_module/module/jetpack/proc/handle_unequip(datum/source, mob/unequipper, slot)
+	SIGNAL_HANDLER
+	if(slot != SLOT_WEAR_SUIT || !isliving(unequipper))
+		return
+	module_action?.remove_action(unequipper)
+
+/// Gives additional information about this module.
+/obj/item/armor_module/module/jetpack/proc/parent_examine(datum/source, mob/examiner)
+	SIGNAL_HANDLER
+	if(module_action)
+		to_chat(examiner, span_notice("The jetpack has [module_action.fuel_left]/[initial(module_action.fuel_left)] fuel left, equaling to [module_action.fuel_left/JETPACK_FUEL_USE] uses.\n"))
+
+/// Toggles visuals.
+/obj/item/armor_module/module/jetpack/proc/toggle_visuals()
+	module_visuals = !module_visuals
+	update_icon()
+
+
+// ***************************************
+// *********** Jetpack Action
+// ***************************************
+#define VREF_MUTABLE_JETPACK_USES "VREF_JETPACK_USES"
+#define JETPACK_CONTROL_MIDDLE_CLICK "Middle Click"
+#define JETPACK_CONTROL_SHIFT_CLICK "Shift Click"
+#define JETPACK_CONTROL_ALT_RIGHT_CLICK "Alt wRight Click"
+#define JETPACK_HOVER_SPEED 1
+#define JETPACK_HOVER_TIME 1 SECONDS
+#define JETPACK_COOLDOWN_TIME 10 SECONDS
+
+/datum/action/item_action/toggle/jetpack_action
+	name = "Jetpack"
+	action_icon_state = "jetpack_3"
+	/// Whether this action can be activated using middle click.
+	var/can_middle_click = TRUE
+	/// Whether this action can be activated using shift + click.
+	var/can_shift_click = TRUE
+	/// Whether this action can be activated using alt + right click.
+	var/can_alt_rclick = TRUE
+	/// Amount of fuel left in the jetpack. Starting value is assumed to be the maximum amount of fuel.
+	var/fuel_left = 75
+
+/datum/action/item_action/toggle/jetpack_action/give_action(mob/M)
+	. = ..()
+	var/mutable_appearance/uses_counter = mutable_appearance(icon = null, icon_state = null, layer = ACTION_LAYER_MAPTEXT)
+	uses_counter.pixel_x = 16
+	uses_counter.pixel_y = -4
+	uses_counter.maptext = MAPTEXT("[fuel_left/JETPACK_FUEL_USE]/[initial(fuel_left)/JETPACK_FUEL_USE]")
+	visual_references[VREF_MUTABLE_JETPACK_USES] = uses_counter
+
+/datum/action/item_action/toggle/jetpack_action/remove_action(mob/M)
+	. = ..()
+	button.cut_overlay(visual_references[VREF_MUTABLE_JETPACK_USES])
+	visual_references[VREF_MUTABLE_JETPACK_USES] = null
+	if(toggled)
+		if(can_middle_click)
+			UnregisterSignal(owner, COMSIG_MOB_MIDDLE_CLICK)
+		if(can_shift_click)
+			UnregisterSignal(owner, COMSIG_MOB_CLICK_SHIFT)
+		if(can_alt_rclick)
+			UnregisterSignal(owner, COMSIG_MOB_CLICK_ALT_RIGHT)
+
+/datum/action/item_action/toggle/jetpack_action/update_button_icon()
+	. = ..()
+	button.cut_overlay(visual_references[VREF_MUTABLE_JETPACK_USES])
+	var/mutable_appearance/uses_counter = visual_references[VREF_MUTABLE_JETPACK_USES]
+	uses_counter.maptext = MAPTEXT("[fuel_left/JETPACK_FUEL_USE]/[initial(fuel_left)/JETPACK_FUEL_USE]")
+	visual_references[VREF_MUTABLE_JETPACK_USES] = uses_counter
+	button.add_overlay(visual_references[VREF_MUTABLE_JETPACK_USES])
+	if(fuel_left >= initial(fuel_left))
+		action_icon_state = "jetpack_3"
+		return
+	if(fuel_left >= initial(fuel_left) * 0.5)
+		action_icon_state = "jetpack_2"
+		return
+	if(fuel_left >= JETPACK_FUEL_USE)
+		action_icon_state = "jetpack_1"
+		return
+	action_icon_state = "jetpack_0"
+
+/datum/action/item_action/toggle/jetpack_action/alternate_action_activate()
+	. = ..()
+	var/list/radial_options = list(
+		JETPACK_CONTROL_MIDDLE_CLICK = image('icons/mob/actions.dmi', icon_state = "middle_click"),
+		JETPACK_CONTROL_SHIFT_CLICK = image('icons/mob/actions.dmi', icon_state = "shift_click"),
+		JETPACK_CONTROL_ALT_RIGHT_CLICK = image('icons/mob/actions.dmi', icon_state = "alt_rclick"),
+		)
+	var/control_choice = show_radial_menu(owner, src, radial_options, radius = 35, require_near = TRUE)
+	if(!control_choice)
+		return
+	switch(control_choice)
+		if(JETPACK_CONTROL_MIDDLE_CLICK)
+			can_middle_click = !can_middle_click
+			owner.balloon_alert("Middle click [can_middle_click? "enabled" : "disabled"]")
+		if(JETPACK_CONTROL_SHIFT_CLICK)
+			can_shift_click = !can_shift_click
+			owner.balloon_alert("Shift + Click [can_shift_click? "enabled" : "disabled"]")
+		if(JETPACK_CONTROL_ALT_RIGHT_CLICK)
+			can_alt_rclick = !can_alt_rclick
+			owner.balloon_alert("Alt + Right click [can_alt_rclick? "enabled" : "disabled"]")
+	update_controls()
+
+/datum/action/item_action/toggle/jetpack_action/action_activate()
+	toggled = !toggled
+	set_toggle(toggled)
+	owner.balloon_alert(owner, "Toggled [toggled? "on" : "off"]!")
+	update_controls()
+
+/// Updates controls based on item preferences.
+/datum/action/item_action/toggle/jetpack_action/proc/update_controls()
+	if(!toggled)
+		if(can_middle_click)
+			UnregisterSignal(owner, COMSIG_MOB_MIDDLE_CLICK)
+		if(can_shift_click)
+			UnregisterSignal(owner, COMSIG_MOB_CLICK_SHIFT)
+		if(can_alt_rclick)
+			UnregisterSignal(owner, COMSIG_MOB_CLICK_ALT_RIGHT)
+		return
+	if(can_middle_click)
+		RegisterSignal(owner, COMSIG_MOB_MIDDLE_CLICK, PROC_REF(use_jetpack))
+	if(can_shift_click)
+		RegisterSignal(owner, COMSIG_MOB_CLICK_SHIFT, PROC_REF(use_jetpack))
+	if(can_alt_rclick)
+		RegisterSignal(owner, COMSIG_MOB_CLICK_ALT_RIGHT, PROC_REF(use_jetpack))
+
+/// Makes the user fly towards the target atom.
+/datum/action/item_action/toggle/jetpack_action/proc/use_jetpack(datum/source, atom/A)
+	SIGNAL_HANDLER
+	if(!holder_item || !istype(holder_item, /obj/item/armor_module/module/jetpack))
+		return
+	if(!can_use_jetpack(A))
+		return
+	var/mob/living/carbon/human/human_owner = owner
+	var/hover_distance = calculate_distance(human_owner)
+	if(!hover_distance)
+		owner.balloon_alert("Too heavy!")
+		return
+	fuel_left -= JETPACK_FUEL_USE
+	update_button_icon()
+	var/obj/item/armor_module/module/jetpack/holder_jetpack = holder_item
+	holder_jetpack.toggle_visuals()
+	new /obj/effect/temp_visual/smoke(get_turf(human_owner))
+	playsound(human_owner, 'sound/items/jetpack_sound.ogg',45)
+	human_owner.fly_at(A, hover_distance, JETPACK_HOVER_SPEED, JETPACK_HOVER_TIME)
+	addtimer(CALLBACK(holder_item, TYPE_PROC_REF(/obj/item/armor_module/module/jetpack, toggle_visuals)), JETPACK_HOVER_TIME)
+	TIMER_COOLDOWN_START(src, COOLDOWN_JETPACK, JETPACK_COOLDOWN_TIME)
+
+/// Checks if we can use the jetpack, otherwise giving feedback to the user.
+/datum/action/item_action/toggle/jetpack_action/proc/can_use_jetpack(atom/A)
+	if(!ishuman(owner) || !A)
+		return
+	var/mob/living/carbon/human/human_owner = owner
+	if(human_owner.incapacitated() || human_owner.lying_angle)
+		return
+	if(fuel_left < JETPACK_FUEL_USE)
+		human_owner.balloon_alert(human_owner, "No fuel")
+		return
+	if(human_owner.buckled)
+		human_owner.balloon_alert(human_owner, "Cannot while buckled")
+		return
+	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_JETPACK))
+		human_owner.balloon_alert(human_owner, "On cooldown, wait [S_TIMER_COOLDOWN_TIMELEFT(src, COOLDOWN_JETPACK) * 0.1]s")
+		return
+	if(human_owner.do_actions)
+		return
+	if(!do_after(user = human_owner, delay = 0.3 SECONDS, needhand = FALSE, target = A, ignore_turf_checks = TRUE))
+		return
+	return TRUE
+
+/// Calculates the hover distance of the jetpack based on the user's current slowdown.
+/datum/action/item_action/toggle/jetpack_action/proc/calculate_distance(proc_owner)
+	if(!proc_owner || !ishuman(proc_owner))
+		return 0
+	var/mob/living/carbon/human/human_owner = proc_owner
+	var/current_slowdown = human_owner.additive_flagged_slowdown(SLOWDOWN_IMPEDE_JETPACK)
+	switch(current_slowdown)
+		if(0 to 0.35) // Light armor or unarmored users.
+			return 7
+		if(0.35 to 0.75) // Medium and heavy armor users, although lighter armor types with shield can also achieve this.
+			return 5
+		if(0.75 to 1.2) // Heavier setups, achievable through Tyr modules or heavy armors with shield.
+			return 3
+		if(1.2 to INFINITY) // Anything heavier than previous cases.
+			return 2
+
+/*
+/obj/item/jetpack_marine/afterattack(obj/target, mob/user, proximity_flag) //refuel at fueltanks when we run out of fuel
+	if(!istype(target, /obj/structure/reagent_dispensers/fueltank) || !proximity_flag)
+		return ..()
+	var/obj/structure/reagent_dispensers/fueltank/FT = target
+	if(FT.reagents.total_volume == 0)
+		balloon_alert(user, "No fuel")
+		return
+
+	var/fuel_transfer_amount = min(FT.reagents.total_volume, (fuel_max - fuel_left))
+	FT.reagents.remove_reagent(/datum/reagent/fuel, fuel_transfer_amount)
+	fuel_left += fuel_transfer_amount
+	fuel_indicator = FUEL_INDICATOR_FULL
+	change_fuel_indicator()
+	update_icon()
+	playsound(loc, 'sound/effects/refill.ogg', 30, 1, 3)
+	balloon_alert(user, "Refilled")
+
+/obj/item/jetpack_marine/attackby(obj/item/I, mob/user, params)
+	. = ..()
+	if(!istype(I, /obj/item/ammo_magazine/flamer_tank))
+		return
+	var/obj/item/ammo_magazine/flamer_tank/FT = I
+	if(FT.current_rounds == 0)
+		balloon_alert(user, "No fuel")
+		return
+
+	var/fuel_transfer_amount = min(FT.current_rounds, (fuel_max - fuel_left))
+	FT.current_rounds -= fuel_transfer_amount
+	fuel_left += fuel_transfer_amount
+	fuel_indicator = FUEL_INDICATOR_FULL
+	change_fuel_indicator()
+	playsound(loc, 'sound/effects/refill.ogg', 25, 1, 3)
+	balloon_alert(user, "Refilled")
+	update_icon()
+*/
+
 
 /obj/item/armor_module/module/style
 	name = "\improper Armor Equalizer"
