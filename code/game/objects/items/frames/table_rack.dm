@@ -73,7 +73,6 @@
 */
 
 /obj/item/frame/table/mainship
-	name = "ship table parts"
 	table_type = /obj/structure/table/mainship
 
 /obj/item/frame/table/mainship/nometal
