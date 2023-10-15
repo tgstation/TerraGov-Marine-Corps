@@ -14,11 +14,18 @@
 	if(!I) //draw item
 		if(next_move > world.time)
 			return
-		var/list/slot_to_draw = client?.prefs?.slot_draw_order_pref || SLOT_DRAW_ORDER
+
+		if(slot_requested) //Equips from quick_equip 1-5
+			if(draw_from_slot_if_possible(slot_requested))
+				next_move = world.time + 1
+				return
+
+		var/list/slot_to_draw = client?.prefs?.slot_draw_order_pref || SLOT_DRAW_ORDER //Equips from draw order in prefs
 		for(var/slot in slot_to_draw)
 			if(draw_from_slot_if_possible(slot))
 				next_move = world.time + 1
 				return
+
 	else //store item
 		if(s_active?.attackby(I, src)) //stored in currently open storage
 			return TRUE
