@@ -143,6 +143,15 @@
 	new /obj/item/stack/medical/splint(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/inaprovaline(src)
 
+/obj/item/storage/pouch/firstaid/basic/Initialize(mapload)
+	. = ..()
+	new /obj/item/storage/pill_bottle/packet/bicaridine(src)
+	new /obj/item/storage/pill_bottle/packet/kelotane(src)
+	new /obj/item/storage/pill_bottle/packet/tramadol(src)
+	new /obj/item/storage/pill_bottle/packet/tricordrazine(src)
+	new /obj/item/stack/medical/splint(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/inaprovaline(src)
+
 /obj/item/storage/pouch/firstaid/combat_patrol_leader/Initialize(mapload)
 	. = ..()
 	new /obj/item/storage/pill_bottle/packet/bicaridine(src)
@@ -600,6 +609,7 @@
 		/obj/item/tool/surgery,
 		/obj/item/stack/nanopaste,
 		/obj/item/tweezers,
+		/obj/item/tweezers_advanced,
 	)
 
 /obj/item/storage/pouch/surgery/Initialize(mapload)
@@ -625,16 +635,6 @@
 		/obj/item/paper,
 		/obj/item/clipboard,
 	)
-
-/obj/item/storage/pouch/radio
-	name = "radio pouch"
-	storage_slots = 2
-	icon_state = "radio"
-	draw_mode = 1
-	desc = "It can contain two handheld radios."
-	can_hold = list(/obj/item/radio)
-
-
 /obj/item/storage/pouch/field_pouch
 	name = "field utility pouch"
 	storage_slots = 5

@@ -1,8 +1,9 @@
 //placeholder
 /datum/campaign_mission/comm_uplink
 	name = "Combat patrol"
+	mission_icon = "comm_uplink"
 	map_name = "Orion Outpost"
-	map_file = '_maps/map_files/Campaign maps/jungle_test/jungle_outpost.dmm'
+	map_file = '_maps/map_files/Campaign maps/jungle_outpost/jungle_outpost.dmm'
 	starting_faction_objective_description = null
 	hostile_faction_objective_description = null
 	max_game_time = 20 MINUTES

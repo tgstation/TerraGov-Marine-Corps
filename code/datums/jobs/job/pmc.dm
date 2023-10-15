@@ -4,6 +4,7 @@
 	minimal_access = ALL_PMC_ACCESS
 	skills_type = /datum/skills/pmc
 	faction = FACTION_NANOTRASEN
+	minimap_icon = "pmc"
 
 
 //PMC Standard

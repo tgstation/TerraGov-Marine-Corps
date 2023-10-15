@@ -43,13 +43,26 @@ GLOBAL_LIST_EMPTY(dummy_mob_list)
 	D.in_use = TRUE
 	return D
 
-/proc/unset_busy_human_dummy(slotnumber)
-	if(!slotnumber)
-		return
-	var/mob/living/carbon/human/dummy/D = GLOB.human_dummy_list[slotnumber]
-	if(!QDELETED(D))
-		D.wipe_state()
-		D.in_use = FALSE
+/proc/generate_dummy_lookalike(slotkey, mob/target)
+	if(!istype(target))
+		return generate_or_wait_for_human_dummy(slotkey)
+
+	var/mob/living/carbon/human/dummy/copycat = generate_or_wait_for_human_dummy(slotkey)
+
+	if(iscarbon(target))
+		var/mob/living/carbon/carbon_target = target
+		carbon_target.transfer_identity(copycat)
+
+		if(ishuman(target))
+			var/mob/living/carbon/human/human_target = target
+			human_target.copy_clothing_prefs(copycat)
+
+	else
+		//even if target isn't a carbon, if they have a client we can make the
+		//dummy look like what their human would look like based on their prefs
+		target?.client?.prefs?.copy_to(copycat)
+
+	return copycat
 
 /mob/living/carbon/human/dummy/set_species(new_species, default_colour)
 	if(!new_species)
@@ -85,3 +98,22 @@ GLOBAL_LIST_EMPTY(dummy_mob_list)
 
 /mob/living/carbon/human/dummy/hud_set_job()
 	return
+
+/proc/unset_busy_human_dummy(slotkey)
+	if(!slotkey)
+		return
+	var/mob/living/carbon/human/dummy/D = GLOB.human_dummy_list[slotkey]
+	if(istype(D))
+		D.wipe_state()
+		D.in_use = FALSE
+
+/proc/clear_human_dummy(slotkey)
+	if(!slotkey)
+		return
+
+	var/mob/living/carbon/human/dummy/dummy = GLOB.human_dummy_list[slotkey]
+
+	GLOB.human_dummy_list -= slotkey
+	if(istype(dummy))
+		GLOB.dummy_mob_list -= dummy
+		qdel(dummy)

@@ -1,12 +1,13 @@
 //Loot capture mission
 /datum/campaign_mission/capture_mission
-	name = "Capture mission"
+	name = "Phoron retrieval"
+	mission_icon = "phoron_raid"
 	map_name = "Jungle outpost SR-422"
-	map_file = '_maps/map_files/Campaign maps/jungle_test/jungle_outpost.dmm'
+	map_file = '_maps/map_files/Campaign maps/jungle_outpost/jungle_outpost.dmm'
 	map_traits = list(ZTRAIT_AWAY = TRUE, ZTRAIT_RAIN = TRUE)
 	map_light_colours = list(LIGHT_COLOR_PALE_GREEN, LIGHT_COLOR_PALE_GREEN, LIGHT_COLOR_PALE_GREEN, LIGHT_COLOR_PALE_GREEN)
-	max_game_time = 20 MINUTES
-	mission_flags = MISSION_DISALLOW_DROPPODS
+	max_game_time = 12 MINUTES
+	mission_flags = MISSION_DISALLOW_DROPPODS|MISSION_DISALLOW_TELEPORT
 	victory_point_rewards = list(
 		MISSION_OUTCOME_MAJOR_VICTORY = list(3, 0),
 		MISSION_OUTCOME_MINOR_VICTORY = list(1, 0),
@@ -33,9 +34,9 @@
 	starting_faction_additional_rewards = "Additional supplies for every phoron crate captured"
 	hostile_faction_additional_rewards = "Additional supplies for every phoron crate captured"
 	///Total number of objectives at round start
-	var/objectives_total = 3
+	var/objectives_total = 11
 	///number of targets to capture for a minor victory
-	var/min_capture_amount = 10 //placeholder number
+	var/min_capture_amount = 7 //placeholder number
 	///How many objectives currently remaining
 	var/objectives_remaining = 0
 	///How many objects extracted by each team
@@ -47,6 +48,7 @@
 /datum/campaign_mission/capture_mission/load_mission()
 	. = ..()
 	RegisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_CAPTURE_OBJECTIVE_CAPTURED, PROC_REF(objective_extracted))
+	RegisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_CAPTURE_OBJECTIVE_CAP_STARTED, PROC_REF(objective_cap_started))
 	objectives_total = length(GLOB.campaign_objectives)
 	objectives_remaining = objectives_total
 	if(!objectives_total)
@@ -67,8 +69,8 @@
 
 
 /datum/campaign_mission/capture_mission/end_mission()
-	UnregisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_CAPTURE_OBJECTIVE_CAPTURED)
-	return ..()
+	. = ..()
+	UnregisterSignal(SSdcs, list(COMSIG_GLOB_CAMPAIGN_CAPTURE_OBJECTIVE_CAPTURED, COMSIG_GLOB_CAMPAIGN_CAPTURE_OBJECTIVE_CAP_STARTED))
 
 /datum/campaign_mission/capture_mission/check_mission_progress()
 	if(outcome)
@@ -117,6 +119,20 @@
 	. = ..()
 	objective_reward_bonus()
 
+///An objective capture cycle was started
+/datum/campaign_mission/capture_mission/proc/objective_cap_started(datum/source, obj/structure/campaign_objective/capture_objective/fultonable/objective, mob/living/user)
+	SIGNAL_HANDLER
+	var/capturing_team = user.faction
+	var/losing_team = objective.capturing_faction
+
+	map_text_broadcast(capturing_team, "[objective] is activating, hold it down until its finished!", "Objective activated")
+
+	if(!losing_team) //no cap was interupted
+		losing_team = starting_faction == user.faction ? hostile_faction : starting_faction
+		map_text_broadcast(losing_team, "[objective] activation was overridden, take it back!", "Activation cancelled")
+	else
+		map_text_broadcast(losing_team, "[objective] is being activated by the enemy. Get in there and stop them!", "Enemy activation")
+
 ///Handles the effect of an objective being claimed
 /datum/campaign_mission/capture_mission/proc/objective_extracted(datum/source, obj/structure/campaign_objective/capture_objective/fultonable/objective, mob/living/user)
 	SIGNAL_HANDLER
@@ -138,7 +154,7 @@
 ///The addition rewards for capturing objectives, regardless of outcome
 /datum/campaign_mission/capture_mission/proc/objective_reward_bonus()
 	var/starting_team_bonus = capture_count["starting_faction"] * 5
-	var/hostile_team_bonus = capture_count["hostile_faction"] * 5 //todo: maybe a lower reward for the home team here, its supposed to be their supplies after all...
+	var/hostile_team_bonus = capture_count["hostile_faction"] * 2
 
 	modify_attrition_points(starting_team_bonus, hostile_team_bonus)
 	map_text_broadcast(starting_faction, "[starting_team_bonus] bonus attrition points awarded for the capture of [capture_count["starting_faction"]] objectives", "Bonus reward")

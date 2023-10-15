@@ -826,7 +826,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/machinery/roomba,
+/obj/machinery/bot/roomba,
 /turf/open/floor/mainship/purple{
 	dir = 1
 	},
@@ -2283,7 +2283,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/living/officer_rnr)
 "aVh" = (
-/obj/machinery/roomba,
+/obj/machinery/bot/roomba,
 /turf/open/floor/mainship/green{
 	dir = 1
 	},
@@ -9943,7 +9943,7 @@
 	},
 /area/mainship/engineering/ce_room)
 "gbG" = (
-/obj/machinery/roomba,
+/obj/machinery/bot/roomba,
 /turf/open/floor/mainship/orange,
 /area/mainship/squads/alpha)
 "gcJ" = (
@@ -11524,6 +11524,7 @@
 /area/mainship/squads/delta)
 "iNc" = (
 /obj/machinery/air_alarm,
+/obj/machinery/bot/cleanbot,
 /turf/open/floor/mainship/floor,
 /area/mainship/living/cafeteria_starboard)
 "iOm" = (
@@ -16207,6 +16208,7 @@
 	},
 /area/mainship/medical/lower_medical)
 "qvE" = (
+/obj/machinery/bot/cleanbot,
 /turf/open/floor/mainship/sterile/side{
 	dir = 5
 	},
@@ -19886,7 +19888,7 @@
 /turf/open/floor/mainship/floor,
 /area/mainship/command/cic)
 "wRf" = (
-/obj/machinery/roomba,
+/obj/machinery/bot/roomba,
 /turf/open/floor/mainship/sterile/side{
 	dir = 4
 	},
@@ -20107,6 +20109,7 @@
 /area/mainship/command/cic)
 "xoW" = (
 /obj/machinery/light/mainship,
+/obj/machinery/bot/cleanbot,
 /turf/open/floor/mainship/sterile/side,
 /area/mainship/medical/surgery_hallway)
 "xpi" = (
