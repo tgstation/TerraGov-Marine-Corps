@@ -1194,6 +1194,6 @@
 		return SSmapping.gravity_by_z_level["[src_turf.z]"]
 	return 1 //if both fail we're in nullspace, just return a 1 as a fallback
 
-//This is called when the mob is thrown into a dense turf
+//This is called when the AM is thrown into a dense turf
 /atom/movable/proc/turf_collision(turf/T, speed)
 	return
