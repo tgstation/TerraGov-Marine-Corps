@@ -72,7 +72,7 @@
 		add_spawn_protection(user)
 
 	if(!shadow)
-		shadow = new(linked_point.loc, shadow_icon_state)
+		shadow = new /obj/effect/dropship_shadow(linked_point.loc, shadow_icon_state)
 		addtimer(CALLBACK(src, PROC_REF(dropship_exit)), 15 SECONDS)
 
 	new /atom/movable/effect/rappel_rope(linked_point.loc)
