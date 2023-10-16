@@ -91,10 +91,10 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 	var/list/datum/campaign_mission/available_missions = list()
 	///Missions this faction has succesfully completed
 	var/list/datum/campaign_mission/finished_missions = list()
-	///List of all rewards the faction has earnt this campaign
+	///List of all assets the faction currently has
 	var/list/datum/campaign_asset/faction_assets = list()
-	///List of all rewards the faction can currently purchase
-	var/list/datum/campaign_asset/purchasable_rewards = list()
+	///List of all assets the faction can currently purchase
+	var/list/datum/campaign_asset/purchasable_assets = list()
 	///Any special behavior flags for the faction
 	var/stats_flags = NONE
 	///Portrait used for general screen text notifications
@@ -107,9 +107,9 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 	faction = new_faction
 	GLOB.faction_stats_datums[faction] = src
 	for(var/asset in GLOB.campaign_default_assets[faction])
-		add_reward(asset)
+		add_asset(asset)
 	for(var/asset in GLOB.campaign_default_purchasable_assets[faction])
-		purchasable_rewards += asset
+		purchasable_assets += asset
 	for(var/i = 1 to CAMPAIGN_STANDARD_MISSION_QUANTITY)
 		generate_new_mission()
 	RegisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_MISSION_ENDED, PROC_REF(mission_end))
@@ -169,14 +169,14 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 		human.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>OVERWATCH</u></span><br>" + "[faction_leader] has been promoted to the role of faction commander", faction_portrait)
 	to_chat(faction_leader, span_highdanger("You have been promoted to the role of commander for your faction. It is your responsibility to determine your side's course of action, and how to best utilise the resources at your disposal."))
 
-///Adds a new reward to the faction for use
-/datum/faction_stats/proc/add_reward(datum/campaign_reward/new_reward)
-	if(faction_assets[new_reward]) //todo: should passive/instant rewards reproc? probably
-		var/datum/campaign_asset/existing_reward = faction_assets[new_reward]
+///Adds a new asset to the faction for use
+/datum/faction_stats/proc/add_asset(datum/campaign_asset/new_asset)
+	if(faction_assets[new_asset]) //todo: should passive/instant rewards reproc? probably
+		var/datum/campaign_asset/existing_reward = faction_assets[new_asset]
 		existing_reward.uses += initial(existing_reward.uses)
 		existing_reward.asset_flags &= ~ASSET_CONSUMED
 	else
-		faction_assets[new_reward] = new new_reward(src)
+		faction_assets[new_asset] = new new_asset(src)
 
 ///handles post mission wrap up for the faction
 /datum/faction_stats/proc/mission_end(datum/source, winning_faction)
@@ -313,8 +313,8 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 		faction_assets_data += list(reward_data)
 	data["faction_rewards_data"] = faction_assets_data
 
-	var/list/purchasable_rewards_data = list()
-	for(var/datum/campaign_asset/reward AS in purchasable_rewards)
+	var/list/purchasable_assets_data = list()
+	for(var/datum/campaign_asset/reward AS in purchasable_assets)
 		var/list/reward_data = list()
 		reward_data["name"] = initial(reward.name)
 		reward_data["type"] = initial(reward)
@@ -324,8 +324,8 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 		reward_data["uses_original"] = initial(reward.uses)
 		reward_data["cost"] = initial(reward.cost)
 		reward_data["icon"] = initial(reward.ui_icon)
-		purchasable_rewards_data += list(reward_data)
-	data["purchasable_rewards_data"] = purchasable_rewards_data
+		purchasable_assets_data += list(reward_data)
+	data["purchasable_rewards_data"] = purchasable_assets_data
 
 	data["active_attrition_points"] = active_attrition_points
 	data["total_attrition_points"] = total_attrition_points
@@ -421,12 +421,12 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 			var/datum/campaign_asset/selected_reward = text2path(params["selected_reward"])
 			if(!selected_reward)
 				return
-			if(!(selected_reward in purchasable_rewards))
+			if(!(selected_reward in purchasable_assets))
 				return
 			if(initial(selected_reward.cost) > total_attrition_points)
 				to_chat(user, "<span class='warning'>[initial(selected_reward.cost) - total_attrition_points] more attrition points required.")
 				return
-			add_reward(selected_reward)
+			add_asset(selected_reward)
 			total_attrition_points -= initial(selected_reward.cost)
 			for(var/mob/living/carbon/human/faction_member AS in GLOB.alive_human_list_faction[faction])
 				faction_member.playsound_local(null, 'sound/effects/CIC_order.ogg', 30, 1)
