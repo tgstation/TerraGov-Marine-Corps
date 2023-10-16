@@ -79,6 +79,14 @@
 	if(host.can_be_facehugged(mask, provoked = TRUE))
 		if(mask.Attach(host, FALSE)) //Attach hugger-mask
 			src.forceMove(host) //Moving sentient hugger inside host
+
+			if(client)
+				GLOB.exp_to_update.Add(list(list(
+				"job" = "Facehugger_hugs",
+				"ckey" = client.ckey,
+				"minutes" = 1)))
+				client.prefs.exp["Facehugger_hugs"] += 1
+
 			return TRUE
 		else
 			qdel(mask)
