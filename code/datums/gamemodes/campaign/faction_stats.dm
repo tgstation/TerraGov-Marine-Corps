@@ -171,10 +171,9 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 
 ///Adds a new reward to the faction for use
 /datum/faction_stats/proc/add_reward(datum/campaign_reward/new_reward)
-	if(faction_rewards[new_reward]) //todo: should passive/instant rewards reproc? probably
+	if(faction_rewards[new_reward])
 		var/datum/campaign_reward/existing_reward = faction_rewards[new_reward]
-		existing_reward.uses += initial(existing_reward.uses)
-		existing_reward.reward_flags &= ~REWARD_CONSUMED
+		existing_reward.reapply()
 	else
 		faction_rewards[new_reward] = new new_reward(src)
 
