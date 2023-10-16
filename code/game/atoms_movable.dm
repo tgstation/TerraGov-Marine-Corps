@@ -470,12 +470,35 @@
 		O.hitby(src, speed)
 
 	else if(isturf(hit_atom))
+		var/old_throw_source = throw_source
 		stop_throw()
 		var/turf/T = hit_atom
 		if(T.density)
 			if(bounce)
 				spawn(2)
-					step(src, turn(dir, 180))
+					//step(src, turn(dir, 180))
+					//
+					var/dir_to_proj = get_dir(T, old_throw_source)
+					if(ISDIAGONALDIR(dir_to_proj))
+						var/list/cardinals = list(turn(dir_to_proj, 45), turn(dir_to_proj, -45))
+						for(var/direction in cardinals)
+							var/turf/turf_to_check = get_step(T, direction)
+							if(turf_to_check.density)
+								cardinals -= direction
+						dir_to_proj = pick(cardinals)
+
+					var/perpendicular_angle = Get_Angle(T, get_step(T, dir_to_proj))
+					var/new_angle = (perpendicular_angle + (perpendicular_angle - Get_Angle(src, old_throw_source) - 180) + rand(-10, 10))
+
+					if(new_angle < -360)
+						new_angle += 720 //north is 0 instead of 360
+					else if(new_angle < 0)
+						new_angle += 360
+					else if(new_angle > 360)
+						new_angle -= 360
+
+					step(src, angle_to_dir(new_angle))
+
 			if(isliving(src))
 				var/mob/living/M = src
 				M.turf_collision(T, speed)
