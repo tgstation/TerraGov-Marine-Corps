@@ -844,6 +844,4 @@
 	item_state = "survival"
 	w_class = WEIGHT_CLASS_BULKY
 	storage_slots = 10
-	max_w_class = WEIGHT_CLASS_SMALL
-	max_storage_space = 20
 	can_hold = list(/obj/item/reagent_containers/food/snacks/protein_pack)
