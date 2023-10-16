@@ -64,8 +64,8 @@
 
 ///Reapplies the asset, refreshing it or restoring uses
 /datum/campaign_reward/proc/reapply()
-	existing_reward.uses += initial(existing_reward.uses)
-	existing_reward.reward_flags &= ~REWARD_CONSUMED
+	uses += initial(uses)
+	reward_flags &= ~REWARD_CONSUMED
 	if(reward_flags & REWARD_IMMEDIATE_EFFECT)
 		immediate_effect()
 
