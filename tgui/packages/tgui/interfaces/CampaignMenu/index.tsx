@@ -167,11 +167,12 @@ export const CampaignMenu = (props, context) => {
               <Stack justify="space-around">
                 <Stack.Item>
                   <Button
-                    onClick={() =>
+                    onClick={() => {
                       act('set_next_mission', {
                         new_mission: selectedNewMission.typepath,
-                      })
-                    }
+                      });
+                      setSelectedNewMission(null);
+                    }}
                     icon={'check'}
                     color="green">
                     Yes
