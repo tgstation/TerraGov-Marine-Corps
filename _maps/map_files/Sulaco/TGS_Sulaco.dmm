@@ -6894,7 +6894,6 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/effect/spawner/random/misc/gnome,
 /turf/open/floor/prison,
 /area/mainship/shipboard/weapon_room)
 "aKU" = (
@@ -8863,6 +8862,7 @@
 /obj/machinery/camera/autoname{
 	dir = 4
 	},
+/obj/effect/spawner/random/misc/gnome,
 /turf/open/floor/plating,
 /area/sulaco/maintenance/lower_maint2)
 "aYM" = (
@@ -10912,6 +10912,7 @@
 /obj/structure/table/mainship/nometal,
 /obj/item/tool/crowbar,
 /obj/item/clothing/head/hardhat/rugged,
+/obj/effect/spawner/random/misc/gnome,
 /turf/open/floor/plating,
 /area/sulaco/maintenance/lower_maint3)
 "dde" = (
@@ -16063,6 +16064,7 @@
 /area/sulaco/firingrange)
 "jJN" = (
 /obj/structure/bed/chair/office/light,
+/obj/effect/spawner/random/misc/gnome,
 /turf/open/floor/prison,
 /area/sulaco/security)
 "jJX" = (
@@ -23777,10 +23779,6 @@
 /obj/machinery/status_display,
 /turf/closed/wall/mainship/gray/outer,
 /area/sulaco/engineering/engine)
-"tBY" = (
-/obj/effect/spawner/random/misc/gnome,
-/turf/open/floor/grass,
-/area/mainship/living/starboard_garden)
 "tCl" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
@@ -57048,7 +57046,7 @@ sZZ
 gJO
 uyz
 iWb
-tBY
+sMe
 dMC
 mDu
 qDO
