@@ -2,7 +2,8 @@
 /datum/job/som/mercenary/militia
 	title = "Colonial militia standard"
 	paygrade = "militia1"
-	comm_title = "militia"
+	comm_title = "MIL"
+	minimap_icon = "militia"
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
 	html_description = {"
 		<b>Difficulty</b>:Moderate<br /><br />
@@ -18,7 +19,6 @@
 What you lack in equipment and military training you make up in bravery and conviction. Fight for Blood! Fight for home!"})
 
 /datum/job/som/mercenary/militia/standard
-	minimap_icon = "private"
 	outfit = /datum/outfit/job/som/militia/standard/uzi
 	multiple_outfits = TRUE
 	outfits = list(
@@ -36,7 +36,7 @@ What you lack in equipment and military training you make up in bravery and conv
 	jobtype = /datum/job/som/mercenary/militia/standard
 
 	id = /obj/item/card/id/silver
-	ears = /obj/item/radio/headset/distress/dutch
+	ears = /obj/item/radio/headset/mainship/som
 	w_uniform = /obj/item/clothing/under/colonist
 	shoes = /obj/item/clothing/shoes/marine/clf/full
 	wear_suit = /obj/item/clothing/suit/storage/faction/militia
@@ -189,7 +189,6 @@ What you lack in equipment and military training you make up in bravery and conv
 /datum/job/som/mercenary/militia/medic
 	title = "Militial Medic"
 	paygrade = "militia2"
-	minimap_icon = "medic"
 	skills_type = /datum/skills/combat_medic
 	outfit = /datum/outfit/job/som/militia/medic/uzi
 	outfits = list(
@@ -204,7 +203,7 @@ What you lack in equipment and military training you make up in bravery and conv
 
 	id = /obj/item/card/id/silver
 	belt = /obj/item/storage/belt/lifesaver/full/upp
-	ears = /obj/item/radio/headset/distress/dutch
+	ears = /obj/item/radio/headset/mainship/som
 	head = /obj/item/clothing/head/tgmcberet/bloodred
 	w_uniform = /obj/item/clothing/under/colonist
 	shoes = /obj/item/clothing/shoes/marine/clf/full
@@ -292,7 +291,6 @@ What you lack in equipment and military training you make up in bravery and conv
 /datum/job/som/mercenary/militia/leader
 	title = "Militia Leader"
 	paygrade = "militia3"
-	minimap_icon = "leader"
 	skills_type = /datum/skills/sl
 	outfit = /datum/outfit/job/som/militia/leader/assault_rifle
 	outfits = list(
@@ -309,7 +307,7 @@ What you lack in equipment and military training you make up in bravery and conv
 
 	id = /obj/item/card/id/silver
 	belt = /obj/item/storage/belt/marine
-	ears = /obj/item/radio/headset/distress/dutch
+	ears = /obj/item/radio/headset/mainship/som
 	w_uniform = /obj/item/clothing/under/colonist/webbing
 	shoes = /obj/item/clothing/shoes/marine/clf/full
 	wear_suit = /obj/item/clothing/suit/storage/faction/militia
@@ -442,69 +440,166 @@ What you lack in equipment and military training you make up in bravery and conv
 //Freelancers
 /datum/job/freelancer/standard/campaign_bonus
 	faction = FACTION_TERRAGOV
+	comm_title = "FL"
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
 	job_cost = 0
+	outfits = list(
+		/datum/outfit/job/freelancer/standard/campaign,
+		/datum/outfit/job/freelancer/standard/one,
+		/datum/outfit/job/freelancer/standard/two,
+	)
+
+/datum/outfit/job/freelancer/standard/campaign
+	ears = /obj/item/radio/headset/mainship
+
+/datum/outfit/job/freelancer/standard/one
+	ears = /obj/item/radio/headset/mainship
+
+/datum/outfit/job/freelancer/standard/two
+	ears = /obj/item/radio/headset/mainship
+
 
 /datum/job/freelancer/medic/campaign_bonus
 	faction = FACTION_TERRAGOV
+	comm_title = "FL"
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
 	job_cost = 0
+	outfit = /datum/outfit/job/freelancer/medic/campaign
+
+/datum/outfit/job/freelancer/medic/campaign
+	ears = /obj/item/radio/headset/mainship
 
 /datum/job/freelancer/grenadier/campaign_bonus
 	faction = FACTION_TERRAGOV
+	comm_title = "FL"
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
 	outfits = list(
-		/datum/outfit/job/freelancer/grenadier,
-		/datum/outfit/job/freelancer/grenadier/one,
+		/datum/outfit/job/freelancer/grenadier/campaign,
+		/datum/outfit/job/freelancer/grenadier/one/campaign,
 	)
 	job_cost = 0
 
+/datum/outfit/job/freelancer/grenadier/campaign
+	ears = /obj/item/radio/headset/mainship
+
+/datum/outfit/job/freelancer/grenadier/one/campaign
+	ears = /obj/item/radio/headset/mainship
+
 /datum/job/freelancer/leader/campaign_bonus
 	faction = FACTION_TERRAGOV
+	comm_title = "FL"
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
 	outfits = list(
-		/datum/outfit/job/freelancer/leader,
-		/datum/outfit/job/freelancer/leader/one,
+		/datum/outfit/job/freelancer/leader/campaign,
+		/datum/outfit/job/freelancer/leader/one/campaign,
 	)
 	job_cost = 0
+
+/datum/outfit/job/freelancer/leader/campaign
+	ears = /obj/item/radio/headset/mainship
+
+/datum/outfit/job/freelancer/leader/one/campaign
+	ears = /obj/item/radio/headset/mainship
 
 //PMC
 /datum/job/pmc/standard/campaign_bonus
 	faction = FACTION_TERRAGOV
+	comm_title = "PMC"
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
 	job_cost = 0
+	outfit = /datum/outfit/job/pmc/standard/campaign
+
+/datum/outfit/job/pmc/standard/campaign
+	ears = /obj/item/radio/headset/mainship
 
 /datum/job/pmc/gunner/campaign_bonus
 	faction = FACTION_TERRAGOV
+	comm_title = "PMC"
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
 	job_cost = 0
+	outfit = /datum/outfit/job/pmc/gunner/campaign
+
+/datum/outfit/job/pmc/gunner/campaign
+	ears = /obj/item/radio/headset/mainship
 
 /datum/job/pmc/leader/campaign_bonus
 	faction = FACTION_TERRAGOV
+	comm_title = "PMC"
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
 	job_cost = 0
+	outfit = /datum/outfit/job/pmc/leader/campaign
+
+/datum/outfit/job/pmc/leader/campaign
+	ears = /obj/item/radio/headset/mainship
 
 //ICC
 /datum/job/icc/standard/campaign_bonus
 	faction = FACTION_SOM
+	comm_title = "ICC"
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
 	job_cost = 0
+	outfits = list(
+		/datum/outfit/job/icc/standard/mpi_km/campaign,
+		/datum/outfit/job/icc/standard/icc_pdw/campaign,
+		/datum/outfit/job/icc/standard/icc_battlecarbine/campaign,
+	)
+
+/datum/outfit/job/icc/standard/mpi_km/campaign
+	ears = /obj/item/radio/headset/mainship/som
+
+/datum/outfit/job/icc/standard/icc_pdw/campaign
+	ears = /obj/item/radio/headset/mainship/som
+
+/datum/outfit/job/icc/standard/icc_battlecarbine/campaign
+	ears = /obj/item/radio/headset/mainship/som
 
 /datum/job/icc/guard/campaign_bonus
 	faction = FACTION_SOM
+	comm_title = "ICC"
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
 	job_cost = 0
+	outfits = list(
+		/datum/outfit/job/icc/guard/coilgun/campaign,
+		/datum/outfit/job/icc/guard/icc_autoshotgun/campaign,
+	)
+
+/datum/outfit/job/icc/guard/coilgun/campaign
+	ears = /obj/item/radio/headset/mainship/som
+
+/datum/outfit/job/icc/guard/icc_autoshotgun/campaign
+	ears = /obj/item/radio/headset/mainship/som
 
 /datum/job/icc/medic/campaign_bonus
 	faction = FACTION_SOM
+	comm_title = "ICC"
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
-	multiple_outfits = FALSE
 	job_cost = 0
+	outfits = list(
+		/datum/outfit/job/icc/medic/icc_machinepistol/campaign,
+		/datum/outfit/job/icc/medic/icc_sharpshooter/campaign,
+	)
+
+/datum/outfit/job/icc/medic/icc_machinepistol/campaign
+	ears = /obj/item/radio/headset/mainship/som
+
+/datum/outfit/job/icc/medic/icc_sharpshooter/campaign
+	ears = /obj/item/radio/headset/mainship/som
 
 /datum/job/icc/leader/campaign_bonus
 	faction = FACTION_SOM
+	comm_title = "ICC"
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
 	job_cost = 0
+	outfits = list(
+		/datum/outfit/job/icc/leader/trenchgun/campaign,
+		/datum/outfit/job/icc/leader/icc_confrontationrifle/campaign,
+	)
+
+/datum/outfit/job/icc/leader/trenchgun/campaign
+	ears = /obj/item/radio/headset/mainship/som
+
+/datum/outfit/job/icc/leader/icc_confrontationrifle/campaign
+	ears = /obj/item/radio/headset/mainship/som
 
 //TGMC combat robots
 /datum/job/terragov/squad/standard/campaign_robot
@@ -515,6 +610,7 @@ What you lack in equipment and military training you make up in bravery and conv
 		/datum/outfit/job/tgmc/campaign_robot/machine_gunner,
 		/datum/outfit/job/tgmc/campaign_robot/guardian,
 		/datum/outfit/job/tgmc/campaign_robot/jetpack,
+		/datum/outfit/job/tgmc/campaign_robot/laser_mg,
 	)
 	job_cost = 0
 
@@ -609,7 +705,7 @@ Fight for TGMC, and attempt to achieve all objectives given to you."})
 	r_store = /obj/item/storage/pouch/magazine/large
 	belt = /obj/item/storage/belt/marine/te_cells
 	suit_store = /obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_carbine/mag_harness
-	r_hand = /obj/item/jetpack_marine
+	back = /obj/item/jetpack_marine
 
 /datum/outfit/job/tgmc/campaign_robot/jetpack/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -622,3 +718,26 @@ Fight for TGMC, and attempt to achieve all objectives given to you."})
 	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/lasrifle, SLOT_IN_R_POUCH)
 	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/lasrifle, SLOT_IN_R_POUCH)
 	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/lasrifle, SLOT_IN_R_POUCH)
+
+/datum/outfit/job/tgmc/campaign_robot/laser_mg
+	r_store = /obj/item/storage/pouch/pistol
+	belt = /obj/item/storage/belt/marine/te_cells
+	suit_store = /obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_mlaser/patrol
+
+/datum/outfit/job/tgmc/campaign_robot/laser_mg/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	. = ..()
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_ACCESSORY)
+
+	H.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/vp70/tactical(H), SLOT_IN_R_POUCH)
+
+	H.equip_to_slot_or_del(new /obj/item/tool/weldingtool, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/stack/cable_coil, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/tool/extinguisher/mini, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70, SLOT_IN_BACKPACK)

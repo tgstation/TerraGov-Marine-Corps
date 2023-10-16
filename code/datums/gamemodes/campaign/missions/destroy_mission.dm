@@ -3,7 +3,7 @@
 	name = "Target Destruction" //(tm)
 	map_name = "Ice Caves"
 	map_file = '_maps/map_files/icy_caves/icy_caves.dmm'
-	max_game_time = 20 MINUTES
+	max_game_time = 12 MINUTES
 	victory_point_rewards = list(
 		MISSION_OUTCOME_MAJOR_VICTORY = list(3, 0),
 		MISSION_OUTCOME_MINOR_VICTORY = list(1, 0),
@@ -54,6 +54,12 @@
 	objectives_total = length(GLOB.campaign_objectives)
 	if(!objectives_total)
 		CRASH("Destroy mission loaded with no objectives to destroy!")
+
+/datum/campaign_mission/destroy_mission/load_pre_mission_bonuses()
+	new /obj/item/storage/box/crate/loot/materials_pack(get_turf(pick(GLOB.campaign_reward_spawners[hostile_faction])))
+
+	for(var/i = 1 to objectives_total)
+		new /obj/item/explosive/plastique(get_turf(pick(GLOB.campaign_reward_spawners[starting_faction])))
 
 /datum/campaign_mission/destroy_mission/load_objective_description()
 	starting_faction_objective_description = "Major Victory:Destroy all [objectives_total] targets.[min_destruction_amount ? " Minor Victory: Destroy at least [min_destruction_amount] targets." : ""]"

@@ -33,7 +33,12 @@
 
 /obj/item/binoculars/fire_support/examine(mob/user)
 	. = ..()
-	. += span_notice("They are currently set to [mode.name] targeting mode.")
+	if(!mode)
+		return
+	. += span_boldnotice("They are currently set to [mode.name] mode: [mode.uses == -1 ? "unlimited" : "[mode.uses]"] uses remaining.")
+	if(!mode.cooldown_timer)
+		return
+	. += span_warning("Available in [round(timeleft(mode.cooldown_timer) MILLISECONDS)] seconds.")
 
 /obj/item/binoculars/fire_support/Destroy()
 	if(laser)
@@ -190,10 +195,13 @@
 		FIRESUPPORT_TYPE_GUN,
 		FIRESUPPORT_TYPE_ROCKETS,
 		FIRESUPPORT_TYPE_CRUISE_MISSILE,
+		FIRESUPPORT_TYPE_LASER,
 		FIRESUPPORT_TYPE_HE_MORTAR,
 		FIRESUPPORT_TYPE_INCENDIARY_MORTAR,
-		FIRESUPPORT_TYPE_SMOKE_MORTAR,
 		FIRESUPPORT_TYPE_ACID_SMOKE_MORTAR,
+		FIRESUPPORT_TYPE_SMOKE_MORTAR,
+		FIRESUPPORT_TYPE_SENTRY_POD,
+		FIRESUPPORT_TYPE_SUPPLY_POD,
 	)
 
 /obj/item/binoculars/fire_support/campaign/som
@@ -204,6 +212,6 @@
 		FIRESUPPORT_TYPE_RAD_MISSILE,
 		FIRESUPPORT_TYPE_HE_MORTAR_SOM,
 		FIRESUPPORT_TYPE_INCENDIARY_MORTAR_SOM,
-		FIRESUPPORT_TYPE_SMOKE_MORTAR_SOM,
 		FIRESUPPORT_TYPE_SATRAPINE_SMOKE_MORTAR,
+		FIRESUPPORT_TYPE_SMOKE_MORTAR_SOM,
 	)

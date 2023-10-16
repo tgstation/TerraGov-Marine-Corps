@@ -767,6 +767,9 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 		BULLET_DEBUG("Moving (*[evasion_bonus]).")
 		hit_chance = round(hit_chance * evasion_bonus)
 
+	if(proj.ammo.flags_ammo_behavior & AMMO_UNWIELDY)
+		hit_chance *= 0.5
+
 	hit_chance = max(5, hit_chance) //It's never impossible to hit
 
 	BULLET_DEBUG("Final accuracy is <b>[hit_chance]</b>")

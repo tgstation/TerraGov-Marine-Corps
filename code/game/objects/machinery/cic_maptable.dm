@@ -13,6 +13,8 @@
 	var/targetted_zlevel = 2
 	///minimap obj ref that we will display to users
 	var/atom/movable/screen/minimap/map
+	///List of currently interacting mobs
+	var/list/mob/interactees = list()
 
 /obj/machinery/cic_maptable/Initialize(mapload)
 	. = ..()
@@ -31,6 +33,7 @@
 	if(!map)
 		map = SSminimaps.fetch_minimap_object(targetted_zlevel, allowed_flags)
 	user.client.screen += map
+	interactees += user
 	if(isobserver(user))
 		RegisterSignal(user, COMSIG_MOVABLE_MOVED, PROC_REF(on_move))
 
@@ -50,10 +53,14 @@
 	SIGNAL_HANDLER
 	if(!isnum(new_z))
 		return
+	for(var/mob/user AS in interactees)
+		on_unset_interaction(user)
+	map = null
 	targetted_zlevel = new_z
 
 /obj/machinery/cic_maptable/on_unset_interaction(mob/user)
 	. = ..()
+	interactees -= user
 	user.client.screen -= map
 
 /obj/machinery/cic_maptable/droppod_maptable
@@ -97,6 +104,8 @@
 	var/minimap_flag = MINIMAP_FLAG_MARINE
 	///minimap obj ref that we will display to users
 	var/atom/movable/screen/minimap/map
+	///List of currently interacting mobs
+	var/list/mob/interactees = list()
 
 /obj/machinery/cic_maptable_big/Initialize(mapload)
 	. = ..()
@@ -135,10 +144,12 @@
 		map = SSminimaps.fetch_minimap_object(targetted_zlevel, minimap_flag)
 	user.client.screen += map
 	user.client.screen += drawing_tools
+	interactees += user
 
 ///Handles closing the map, including removing all on-screen indicators and similar
 /obj/machinery/cic_maptable_big/on_unset_interaction(mob/user)
 	. = ..()
+	interactees -= user
 	user.client.screen -= map
 	user.client.screen -= drawing_tools
 	user.client.mouse_pointer_icon = null
@@ -150,8 +161,10 @@
 	SIGNAL_HANDLER
 	if(!isnum(new_z))
 		return
-	targetted_zlevel = new_z
+	for(var/mob/user AS in interactees)
+		on_unset_interaction(user)
 	map = null
+	targetted_zlevel = new_z
 
 	for(var/atom/movable/screen/minimap_tool/tool AS in drawing_tools)
 		tool.zlevel = new_z

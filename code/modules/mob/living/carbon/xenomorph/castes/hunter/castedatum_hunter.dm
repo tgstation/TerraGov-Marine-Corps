@@ -42,9 +42,6 @@
 	// *** Defense *** //
 	soft_armor = list(MELEE = 55, BULLET = 30, LASER = 30, ENERGY = 30, BOMB = 0, BIO = 20, FIRE = 30, ACID = 20)
 
-	// *** Ranged Attack *** //
-	pounce_delay = 10.0 SECONDS
-
 	// *** Stealth ***
 	stealth_break_threshold = 15
 
@@ -57,7 +54,7 @@
 		/datum/action/xeno_action/watch_xeno,
 		/datum/action/xeno_action/activable/psydrain,
 		/datum/action/xeno_action/activable/silence,
-		/datum/action/xeno_action/activable/pounce/hunter,
+		/datum/action/xeno_action/activable/pounce,
 		/datum/action/xeno_action/stealth,
 		/datum/action/xeno_action/activable/hunter_mark,
 		/datum/action/xeno_action/psychic_trace,
@@ -83,7 +80,7 @@
 		/datum/action/xeno_action/watch_xeno,
 		/datum/action/xeno_action/activable/psydrain,
 		/datum/action/xeno_action/activable/silence,
-		/datum/action/xeno_action/activable/pounce/hunter,
+		/datum/action/xeno_action/activable/pounce,
 		/datum/action/xeno_action/stealth,
 		/datum/action/xeno_action/stealth/disguise,
 		/datum/action/xeno_action/activable/hunter_mark,

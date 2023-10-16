@@ -300,6 +300,32 @@
 	icon_state = get_mecha_occupancy_state()
 	return ..()
 
+/obj/vehicle/sealed/mecha/Moved(atom/old_loc, movement_dir, forced, list/old_locs)
+	. = ..()
+	for(var/mob/living/future_pancake in loc)
+		if(future_pancake.mob_size > MOB_SIZE_HUMAN)
+			return
+		if(!future_pancake.lying_angle && future_pancake.mob_size == MOB_SIZE_HUMAN)
+			continue
+		run_over(future_pancake)
+
+///Crushing the mob underfoot
+/obj/vehicle/sealed/mecha/proc/run_over(mob/living/crushed)
+	playsound(src, 'sound/effects/splat.ogg', 50, TRUE)
+	add_mob_blood(crushed)
+	var/turf/below_us = get_turf(src)
+	below_us.add_mob_blood(crushed)
+
+	if(crushed.stat == DEAD)
+		return
+	log_combat(src, crushed, "stomped on", addition = "(DAMTYPE: [uppertext(BRUTE)])")
+	crushed.visible_message(
+		span_danger("[src] crushes [crushed]!"),
+		span_userdanger("[src] steps on you!"),
+	)
+	crushed.emote(pick("scream", "pain"))
+	crushed.take_overall_damage(rand(10, 30) * move_delay, BRUTE, MELEE, FALSE, FALSE, TRUE, 0, 2)
+
 /**
  * Toggles Weapons Safety
  *
@@ -478,12 +504,12 @@
 	if(LAZYACCESS(modifiers, MIDDLE_CLICK))
 		set_safety(user)
 		return COMSIG_MOB_CLICK_CANCELED
+	if(modifiers[SHIFT_CLICK]) //Allows things to be examined.
+		return target.mech_shift_click(src, user)
 	if(weapons_safety)
 		return
 	if(isAI(user)) //For AIs: If safeties are off, use mech functions. If safeties are on, use AI functions.
 		. = COMSIG_MOB_CLICK_CANCELED
-	if(modifiers[SHIFT_CLICK]) //Allows things to be examined.
-		return
 	if(!isturf(target) && !isturf(target.loc)) // Prevents inventory from being drilled
 		return
 	if(completely_disabled || is_currently_ejecting || (mecha_flags & CANNOT_INTERACT))
@@ -555,8 +581,8 @@
 ///Displays a special speech bubble when someone inside the mecha speaks
 /obj/vehicle/sealed/mecha/proc/display_speech_bubble(datum/source, list/speech_args)
 	SIGNAL_HANDLER
-	var/list/speech_bubble_recipients = get_hearers_in_view(7,src)
-	for(var/mob/M in speech_bubble_recipients)
+	var/list/speech_bubble_recipients = list()
+	for(var/mob/M in get_hearers_in_view(7,src))
 		if(M.client)
 			speech_bubble_recipients.Add(M.client)
 	INVOKE_ASYNC(GLOBAL_PROC, GLOBAL_PROC_REF(flick_overlay), image('icons/mob/talk.dmi', src, "machine[say_test(speech_args[SPEECH_MESSAGE])]",MOB_LAYER+1), speech_bubble_recipients, 30)

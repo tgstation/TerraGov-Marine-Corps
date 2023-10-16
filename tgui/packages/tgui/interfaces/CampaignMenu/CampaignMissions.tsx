@@ -1,6 +1,6 @@
-import { CampaignData, MissionData } from './index';
+import { CampaignData, MissionData, MissionIcon } from './index';
 import { useBackend, useLocalState } from '../../backend';
-import { LabeledList, Button, Stack, Section } from '../../components';
+import { LabeledList, Button, Stack, Section, Table } from '../../components';
 
 export const CampaignMissions = (props, context) => {
   const { act, data } = useBackend<CampaignData>(context);
@@ -20,9 +20,26 @@ export const CampaignMissions = (props, context) => {
           {available_missions.map((mission) => (
             <Stack.Item key={mission.name}>
               <Button
-                width={'120px'}
+                width={'180px'}
                 onClick={() => setSelectedMission(mission)}
-                selected={selectedMission.name === mission.name}>
+                color={
+                  selectedMission.name === mission.name
+                    ? 'orange'
+                    : mission.mission_critical
+                      ? 'red'
+                      : 'blue'
+                }>
+                {!!mission.mission_icon && (
+                  <MissionIcon
+                    icon={
+                      selectedMission.name === mission.name
+                        ? mission.mission_icon + '_yellow'
+                        : mission.mission_critical
+                          ? mission.mission_icon + '_red'
+                          : mission.mission_icon + '_blue'
+                    }
+                  />
+                )}
                 {mission.name}
               </Button>
             </Stack.Item>
@@ -51,7 +68,31 @@ export const CampaignMissions = (props, context) => {
             </LabeledList.Item>
           </LabeledList>
         </Section>
-        <Section title="Rewards">{selectedMission.mission_rewards}</Section>
+        <Section title={'Rewards'}>
+          <Table>
+            <Table.Row>
+              <Table.Cell />
+              <Table.Cell color="label">Victory Points</Table.Cell>
+              <Table.Cell color="label">Attrition Points</Table.Cell>
+            </Table.Row>
+            <Table.Row>
+              <Table.Cell color="label">Major Victory</Table.Cell>
+              <Table.Cell>{selectedMission.vp_major_reward}</Table.Cell>
+              <Table.Cell>{selectedMission.ap_major_reward}</Table.Cell>
+            </Table.Row>
+            <Table.Row>
+              <Table.Cell color="label">Minor Victory</Table.Cell>
+              <Table.Cell>{selectedMission.vp_minor_reward}</Table.Cell>
+              <Table.Cell>{selectedMission.ap_minor_reward}</Table.Cell>
+            </Table.Row>
+            <Table.Row>
+              <Table.Cell color="label">Additional Rewards</Table.Cell>
+              <Table.Cell colspan="2">
+                {selectedMission.mission_rewards}
+              </Table.Cell>
+            </Table.Row>
+          </Table>
+        </Section>
       </Stack.Item>
     </Stack>
   );

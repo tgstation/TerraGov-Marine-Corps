@@ -1,6 +1,8 @@
 /datum/campaign_mission
 	///name of the mission
 	var/name
+	///UI icon for the mission
+	var/mission_icon
 	///map name for this mission
 	var/map_name
 	///path of map for this mission
@@ -11,6 +13,8 @@
 	var/list/map_light_colours = list(COLOR_WHITE, COLOR_WHITE, COLOR_WHITE, COLOR_WHITE)
 	///Light levels for the map
 	var/list/map_light_levels = list(200, 100, 75, 50)
+	///The actual z-level the mission is played on
+	var/datum/space_level/mission_z_level
 	///Optional delay for each faction to be able to deploy, typically used in attacker/defender missions
 	var/list/shutter_open_delay = list(
 		"starting_faction" = 0,
@@ -64,8 +68,10 @@
 	var/max_game_time = null
 	///Whether the max game time has been reached
 	var/max_time_reached = FALSE
-	///Delay from shutter drop until game timer starts
-	var/game_timer_delay = 1 MINUTES //test num
+	///Delay before the mission actually starts
+	var/mission_start_delay = 3 MINUTES
+	///Delay from shutter drop until game TIMER starts
+	var/game_timer_delay = 3 MINUTES
 	///Map text intro message for the start of the mission
 	var/list/intro_message = list(
 		"starting_faction" = "starting faction intro text here",
@@ -85,7 +91,7 @@
 			"hostile_faction" = "<u>Draw</u><br> Enemy operation disrupted, they're getting nothing out of this one. Good work.",
 		),
 		MISSION_OUTCOME_MINOR_LOSS = list(
-			"starting_faction" = "<u>Minor loss</u><br> starting faction intro text here",
+			"starting_faction" = "<u>Minor loss</u><br> All forces pull back, mission failure. We'll get them next time.",
 			"hostile_faction" = "<u>Minor victory</u><br> Excellent work, the enemy operation is in disarray. Get ready for the next move.",
 		),
 		MISSION_OUTCOME_MAJOR_LOSS = list(
@@ -128,6 +134,8 @@
 
 /datum/campaign_mission/Destroy(force, ...)
 	STOP_PROCESSING(SSslowprocess, src)
+	mission_z_level = null
+	mode = null
 	return ..()
 
 /datum/campaign_mission/process()
@@ -141,14 +149,16 @@
 	play_selection_intro()
 	load_map()
 	addtimer(CALLBACK(src, TYPE_PROC_REF(/datum/campaign_mission, load_objective_description)), 5 SECONDS) //will be called before the map is entirely loaded otherwise, but this is cringe
-	addtimer(CALLBACK(src, TYPE_PROC_REF(/datum/campaign_mission, start_mission)), 2 MINUTES)
+	addtimer(CALLBACK(src, TYPE_PROC_REF(/datum/campaign_mission, start_mission)), mission_start_delay)
+	load_pre_mission_bonuses()
+	RegisterSignals(SSdcs, list(COMSIG_GLOB_CAMPAIGN_TELEBLOCKER_DISABLED, COMSIG_GLOB_CAMPAIGN_DROPBLOCKER_DISABLED), PROC_REF(remove_mission_flag))
 
 ///Generates a new z level for the mission
 /datum/campaign_mission/proc/load_map()
-	var/datum/space_level/new_level = load_new_z_level(map_file, map_name, TRUE, map_traits)
-	set_z_lighting(new_level.z_value, map_light_colours[1], map_light_levels[1], map_light_colours[2], map_light_levels[2], map_light_colours[3], map_light_levels[3], map_light_colours[4], map_light_levels[4])
+	mission_z_level = load_new_z_level(map_file, map_name, TRUE, map_traits)
+	set_z_lighting(mission_z_level.z_value, map_light_colours[1], map_light_levels[1], map_light_colours[2], map_light_levels[2], map_light_colours[3], map_light_levels[3], map_light_colours[4], map_light_levels[4])
 
-	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_CAMPAIGN_MISSION_LOADED, new_level.z_value)
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_CAMPAIGN_MISSION_LOADED, mission_z_level.z_value)
 
 ///Generates the mission brief for the mission if it needs to be late loaded
 /datum/campaign_mission/proc/load_mission_brief()
@@ -179,6 +189,10 @@
 		items += "[hostile_faction] mission objectives:"
 		items += splittext(hostile_faction_objective_description, ".")
 		items += ""
+
+///Generates any mission specific assets/benefits for the two teams
+/datum/campaign_mission/proc/load_pre_mission_bonuses()
+	return
 
 ///Generates mission rewards, if there is variability involved
 /datum/campaign_mission/proc/Generate_rewards(reward_amount = 1, faction)
@@ -224,6 +238,7 @@
 ///Mission start proper
 /datum/campaign_mission/proc/start_mission()
 	SHOULD_CALL_PARENT(TRUE)
+	SEND_SIGNAL(SSdcs, COMSIG_GLOB_CAMPAIGN_MISSION_STARTED)
 	if(!shutter_open_delay["starting_faction"])
 		SEND_GLOBAL_SIGNAL(GLOB.faction_to_campaign_door_signal[starting_faction])
 	else
@@ -245,15 +260,16 @@
 ///Mission end wrap up
 /datum/campaign_mission/proc/end_mission()
 	SHOULD_CALL_PARENT(TRUE)
-	QDEL_LIST(GLOB.campaign_objectives) //clean up objectives for any future missions
+	QDEL_LIST(GLOB.campaign_objectives)
+	QDEL_LIST(GLOB.campaign_structures)
 	QDEL_LIST(GLOB.patrol_point_list) //purge all existing links, cutting off the current ground map. Start point links are auto severed, and will reconnect to new points when a new map is loaded and upon use.
 	STOP_PROCESSING(SSslowprocess, src)
 	mission_state = MISSION_STATE_FINISHED
 	apply_outcome()
 	play_outro()
-	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_CLOSE_CAMPAIGN_SHUTTERS)
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_CAMPAIGN_MISSION_ENDED, winning_faction)
-	for(var/datum/outfit/quick/outfit AS in GLOB.quick_loadouts)
+	for(var/i in GLOB.quick_loadouts)
+		var/datum/outfit/quick/outfit = GLOB.quick_loadouts[i]
 		outfit.quantity = initial(outfit.quantity)
 
 
@@ -374,3 +390,34 @@
 			continue
 		human.playsound_local(null, sound_effect, 10, 1)
 		human.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>[title]</u></span><br>" + "[message]", display_picture)
+
+///Removes a flag or flags from this mission
+/datum/campaign_mission/proc/remove_mission_flag(datum/source, blocker, removed_flags, losing_faction)
+	SIGNAL_HANDLER
+	if(mission_state != MISSION_STATE_ACTIVE)
+		return
+	mission_flags &= ~(removed_flags)
+
+	if(removed_flags & MISSION_DISALLOW_TELEPORT)
+		tele_blocker_disabled(blocker, losing_faction)
+	if(removed_flags & MISSION_DISALLOW_DROPPODS)
+		drop_blocker_disabled(blocker, losing_faction)
+
+
+///Handles notification of a teleblocker being disabled
+/datum/campaign_mission/proc/tele_blocker_disabled(datum/blocker, losing_faction)
+	if(!istype(blocker) || !losing_faction)
+		return
+	var/destroying_team = starting_faction == losing_faction ? hostile_faction : starting_faction
+
+	map_text_broadcast(destroying_team, "[blocker] destroyed, we can now deploy via teleporter!", "Teleporter unblocked")
+	map_text_broadcast(losing_faction, "[blocker] destroyed, the enemy can now teleport at will!", "Teleporter unblocked")
+
+///Handles notification of a dropblocker being disabled
+/datum/campaign_mission/proc/drop_blocker_disabled(obj/blocker, losing_faction)
+	if(!istype(blocker) || !losing_faction)
+		return
+	var/destroying_team = starting_faction == losing_faction ? hostile_faction : starting_faction
+
+	map_text_broadcast(destroying_team, "[blocker] destroyed, we can now deploy via drop pod!", "Drop pods unblocked")
+	map_text_broadcast(losing_faction, "[blocker] destroyed, the enemy can now drop pod at will!", "Drop pods unblocked")
