@@ -129,7 +129,7 @@
 
 /obj/structure/patrol_point/proc/dropship_exit()
 	animate(shadow, alpha = 0, time = 15)
-	QDEL_IN(src, shadow, 15)
+	QDEL_IN(shadow, 15)
 
 /obj/structure/patrol_point/tgmc
 	name = "UD-4L Cheyenne Dropship"
