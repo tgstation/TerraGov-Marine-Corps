@@ -92,7 +92,7 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 	///Missions this faction has succesfully completed
 	var/list/datum/campaign_mission/finished_missions = list()
 	///List of all rewards the faction has earnt this campaign
-	var/list/datum/campaign_asset/faction_rewards = list()
+	var/list/datum/campaign_asset/faction_assets = list()
 	///List of all rewards the faction can currently purchase
 	var/list/datum/campaign_asset/purchasable_rewards = list()
 	///Any special behavior flags for the faction
@@ -171,12 +171,12 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 
 ///Adds a new reward to the faction for use
 /datum/faction_stats/proc/add_reward(datum/campaign_reward/new_reward)
-	if(faction_rewards[new_reward]) //todo: should passive/instant rewards reproc? probably
-		var/datum/campaign_asset/existing_reward = faction_rewards[new_reward]
+	if(faction_assets[new_reward]) //todo: should passive/instant rewards reproc? probably
+		var/datum/campaign_asset/existing_reward = faction_assets[new_reward]
 		existing_reward.uses += initial(existing_reward.uses)
 		existing_reward.asset_flags &= ~ASSET_CONSUMED
 	else
-		faction_rewards[new_reward] = new new_reward(src)
+		faction_assets[new_reward] = new new_reward(src)
 
 ///handles post mission wrap up for the faction
 /datum/faction_stats/proc/mission_end(datum/source, winning_faction)
@@ -297,9 +297,9 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 		finished_missions_data += list(mission_data)
 	data["finished_missions"] = finished_missions_data
 
-	var/list/faction_rewards_data = list()
-	for(var/i in faction_rewards)
-		var/datum/campaign_asset/reward = faction_rewards[i]
+	var/list/faction_assets_data = list()
+	for(var/i in faction_assets)
+		var/datum/campaign_asset/reward = faction_assets[i]
 		var/list/reward_data = list()
 		reward_data["name"] = reward.name
 		reward_data["type"] = "[reward.type]"
@@ -310,8 +310,8 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 		reward_data["icon"] = (reward.ui_icon)
 		reward_data["currently_active"] = !!(reward.asset_flags & ASSET_ACTIVE)
 		reward_data["is_debuff"] = !!(reward.asset_flags & ASSET_DEBUFF)
-		faction_rewards_data += list(reward_data)
-	data["faction_rewards_data"] = faction_rewards_data
+		faction_assets_data += list(reward_data)
+	data["faction_rewards_data"] = faction_assets_data
 
 	var/list/purchasable_rewards_data = list()
 	for(var/datum/campaign_asset/reward AS in purchasable_rewards)
@@ -395,9 +395,9 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 			var/selected_reward = text2path(params["selected_reward"])
 			if(!selected_reward)
 				return
-			if(!faction_rewards[selected_reward])
+			if(!faction_assets[selected_reward])
 				return
-			var/datum/campaign_asset/choice = faction_rewards[selected_reward]
+			var/datum/campaign_asset/choice = faction_assets[selected_reward]
 			if(user != faction_leader)
 				if(!(choice.asset_flags & ASSET_SL_AVAILABLE))
 					to_chat(user, "<span class='warning'>Only your faction's commander can do this.")

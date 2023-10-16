@@ -27,7 +27,7 @@
 	if(current_mission.mission_flags & blacklist_mission_flags)
 		return
 
-	for(var/datum/campaign_asset/asset_type AS in faction.faction_rewards)
+	for(var/datum/campaign_asset/asset_type AS in faction.faction_assets)
 		if(asset_type.type in types_disabled)
 			asset_type.asset_flags |= ASSET_DISABLED
 			types_currently_disabled += asset_type
