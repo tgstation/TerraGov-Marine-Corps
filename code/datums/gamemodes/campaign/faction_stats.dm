@@ -299,32 +299,32 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 
 	var/list/faction_assets_data = list()
 	for(var/i in faction_assets)
-		var/datum/campaign_asset/reward = faction_assets[i]
-		var/list/reward_data = list()
-		reward_data["name"] = reward.name
-		reward_data["type"] = "[reward.type]"
-		reward_data["desc"] = reward.desc
-		reward_data["detailed_desc"] = reward.detailed_desc
-		reward_data["uses_remaining"] = reward.uses
-		reward_data["uses_original"] = initial(reward.uses)
-		reward_data["icon"] = (reward.ui_icon)
-		reward_data["currently_active"] = !!(reward.asset_flags & ASSET_ACTIVE)
-		reward_data["is_debuff"] = !!(reward.asset_flags & ASSET_DEBUFF)
-		faction_assets_data += list(reward_data)
+		var/datum/campaign_asset/asset = faction_assets[i]
+		var/list/asset_data = list()
+		asset_data["name"] = asset.name
+		asset_data["type"] = "[asset.type]"
+		asset_data["desc"] = asset.desc
+		asset_data["detailed_desc"] = asset.detailed_desc
+		asset_data["uses_remaining"] = asset.uses
+		asset_data["uses_original"] = initial(asset.uses)
+		asset_data["icon"] = (asset.ui_icon)
+		asset_data["currently_active"] = !!(asset.asset_flags & ASSET_ACTIVE)
+		asset_data["is_debuff"] = !!(asset.asset_flags & ASSET_DEBUFF)
+		faction_assets_data += list(asset_data)
 	data["faction_rewards_data"] = faction_assets_data
 
 	var/list/purchasable_assets_data = list()
-	for(var/datum/campaign_asset/reward AS in purchasable_assets)
-		var/list/reward_data = list()
-		reward_data["name"] = initial(reward.name)
-		reward_data["type"] = initial(reward)
-		reward_data["desc"] = initial(reward.desc)
-		reward_data["detailed_desc"] = initial(reward.detailed_desc)
-		reward_data["uses_remaining"] = initial(reward.uses)
-		reward_data["uses_original"] = initial(reward.uses)
-		reward_data["cost"] = initial(reward.cost)
-		reward_data["icon"] = initial(reward.ui_icon)
-		purchasable_assets_data += list(reward_data)
+	for(var/datum/campaign_asset/asset AS in purchasable_assets)
+		var/list/asset_data = list()
+		asset_data["name"] = initial(asset.name)
+		asset_data["type"] = initial(asset)
+		asset_data["desc"] = initial(asset.desc)
+		asset_data["detailed_desc"] = initial(asset.detailed_desc)
+		asset_data["uses_remaining"] = initial(asset.uses)
+		asset_data["uses_original"] = initial(asset.uses)
+		asset_data["cost"] = initial(asset.cost)
+		asset_data["icon"] = initial(asset.ui_icon)
+		purchasable_assets_data += list(asset_data)
 	data["purchasable_rewards_data"] = purchasable_assets_data
 
 	data["active_attrition_points"] = active_attrition_points
@@ -392,12 +392,12 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 			return TRUE
 
 		if("activate_reward")
-			var/selected_reward = text2path(params["selected_reward"])
-			if(!selected_reward)
+			var/selected_asset = text2path(params["selected_reward"])
+			if(!selected_asset)
 				return
-			if(!faction_assets[selected_reward])
+			if(!faction_assets[selected_asset])
 				return
-			var/datum/campaign_asset/choice = faction_assets[selected_reward]
+			var/datum/campaign_asset/choice = faction_assets[selected_asset]
 			if(user != faction_leader)
 				if(!(choice.asset_flags & ASSET_SL_AVAILABLE))
 					to_chat(user, "<span class='warning'>Only your faction's commander can do this.")
@@ -418,18 +418,18 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 			if(user != faction_leader)
 				to_chat(user, "<span class='warning'>Only your faction's commander can do this.")
 				return
-			var/datum/campaign_asset/selected_reward = text2path(params["selected_reward"])
-			if(!selected_reward)
+			var/datum/campaign_asset/selected_asset = text2path(params["selected_reward"])
+			if(!selected_asset)
 				return
-			if(!(selected_reward in purchasable_assets))
+			if(!(selected_asset in purchasable_assets))
 				return
-			if(initial(selected_reward.cost) > total_attrition_points)
-				to_chat(user, "<span class='warning'>[initial(selected_reward.cost) - total_attrition_points] more attrition points required.")
+			if(initial(selected_asset.cost) > total_attrition_points)
+				to_chat(user, "<span class='warning'>[initial(selected_asset.cost) - total_attrition_points] more attrition points required.")
 				return
-			add_asset(selected_reward)
-			total_attrition_points -= initial(selected_reward.cost)
+			add_asset(selected_asset)
+			total_attrition_points -= initial(selected_asset.cost)
 			for(var/mob/living/carbon/human/faction_member AS in GLOB.alive_human_list_faction[faction])
 				faction_member.playsound_local(null, 'sound/effects/CIC_order.ogg', 30, 1)
-				to_chat(faction_member, "<span class='warning'>[user] has purchased the [initial(selected_reward.name)] campaign asset.")
+				to_chat(faction_member, "<span class='warning'>[user] has purchased the [initial(selected_asset.name)] campaign asset.")
 			update_static_data_for_all_viewers()
 			return TRUE
