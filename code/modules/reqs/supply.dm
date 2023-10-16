@@ -262,6 +262,9 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 		SU.faction = faction
 	return SU.interact(user)
 
+/obj/machinery/computer/supplycomp/screwdriver_act(mob/living/user, obj/item/I)
+	return TRUE //no deconstructing this please
+
 /datum/supply_ui
 	interaction_flags = INTERACT_MACHINE_TGUI
 	var/atom/source_object
