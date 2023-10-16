@@ -1,0 +1,4 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - rscadd: "Added some background info for the SOM in the lobby menu"

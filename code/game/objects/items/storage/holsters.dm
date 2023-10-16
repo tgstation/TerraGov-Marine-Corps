@@ -660,6 +660,17 @@
 		/obj/item/cell/lasgun/volkite/small,
 	)
 
+/obj/item/storage/holster/belt/pistol/m4a3/som/serpenta/Initialize(mapload, ...)
+	. = ..()
+	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/serpenta(src)
+	new /obj/item/cell/lasgun/volkite/small(src)
+	new /obj/item/cell/lasgun/volkite/small(src)
+	new /obj/item/cell/lasgun/volkite/small(src)
+	new /obj/item/cell/lasgun/volkite/small(src)
+	new /obj/item/cell/lasgun/volkite/small(src)
+	new /obj/item/cell/lasgun/volkite/small(src)
+	INVOKE_ASYNC(src, PROC_REF(handle_item_insertion), new_gun)
+
 /obj/item/storage/holster/belt/pistol/m4a3/som/fancy
 	name = "\improper S19-B holster rig"
 	desc = "A quality pistol belt of a style typically seen worn by SOM officers. It looks old, but well looked after."

@@ -147,3 +147,80 @@
   - rscdel: radio pouch
   yyzsong:
   - rscadd: Adds the two new ICC guns to valhalla
+2023-10-13:
+  Barnet2:
+  - rscdel: Prison Station is now only voteable on HvH gamemodes.
+  DeltaFire15:
+  - code_imp: Removes an evil operator
+  - bugfix: Xeno neurotoxin now has one less edge case.
+  Lewdcifer:
+  - rscadd: Runners now have a new HUD element that indicates Evasion's remaining
+      duration. This updates in real time and is visible to all xenos.
+  - rscadd: Added Auto-Evasion. Right click or alternate use of Evasion toggles this
+      on and off. While Auto-Evasion is active, it will automatically try to use Evasion
+      again if you get the cooldown reset bonus.
+  - rscdel: Removed Toggle Savage. It has been merged with Pounce as its right click
+      / alternate use, otherwise retaining its usual functionality.
+  - qol: Using Evasion again while it is active will extend its current duration instead
+      of flipping the bird at you and making you wait until Evasion is over.
+  - balance: Pounce will now go through xenos.
+  - refactor: Minor code changes to Pounce. Moved it to Hunter's and gave Runner its
+      own child ability with Toggle Savage.
+  - code_imp: Minor code changes to Evasion that remove unnecessary code and account
+      for other changes.
+  - code_imp: Finishes deprecating a hardcore var that wasn't used anywhere.
+  - bugfix: Fixed a bug where using Pounce interrupted Evasion if it was active.
+  - imageadd: Evasion counter sprites. They suck. Please sprite something better,
+      I beg you.
+  - imageadd: Small indicators on ability icons for visual feedback.
+  - spellcheck: Runner's caste description changed ever so slightly to look and sound
+      better.
+  Lumipharon:
+  - balance: Breaching axe attack speed reduced to 15 from 11
+  - bugfix: You can no longer store other drop pods in supply pods
+  - bugfix: You can no longer fit endless mechs into a single clowncar mech pod
+  - balance: FC's sword has a strap and bumpslash
+  - balance: FC's sword has slightly improved attack speed and AP
+  - balance: 'HvH: TGMC guardian and SG loadouts have Tyr 2 instead of Tyr 1'
+  - code_imp: Some code improvements to campaign asset code
+  - imageadd: added more campaign assset icons
+  - qol: Campaign firesupport binos show current mode uses and cooldown remaining
+      if applicable
+  - imageadd: added a proper sprite for the teleport blocker in campaign
+  - bugfix: fixed an issue with map tables when their target z-level changes
+  Xander3359:
+  - bugfix: you can no longer make C4 instant
+  hyper2snyper:
+  - rscadd: Hyperscales T90, T37, TL127, T60, TX7, TER, TEC, TEP, TEM, TES, SG29
+2023-10-14:
+  Lumipharon:
+  - qol: A 1 second stun is applied when returning to base after a campaign mission
+      ends
+  Xander3359:
+  - code_imp: Replaced all instances of <Grid> with <Stack> and deletes Grid from
+      the codebase
+  vvvv-vvvv:
+  - qol: Gas masks now muffle your voice with TTS.
+2023-10-15:
+  Lumipharon:
+  - rscadd: Mechs will now crush human sized mobs underfoot
+  - bugfix: The smartgun asset in campaign now has targeting rifle ammo
+  - balance: Strategic reserve asset in campaign now reduces the respawn timer for
+      that team to 30sec for the duration of the mission
+  - code_imp: campaign status screen uses static data
+  Vincent983:
+  - bugfix: sticky weed and resting weed node examines made accurate
+  coldironwarrior:
+  - balance: sg62 bullets now have a max range of 40, equivalent to other marksman
+      guns
+  vvvv-vvvv:
+  - bugfix: Fix a missing trailing space before pod dchat announcement
+  - spellcheck: Spellchecked some bot messages
+2023-10-16:
+  Lumipharon:
+  - balance: Explosions will now temporarily reduce the opacity of dense smoke caught
+      in the radius.
+  Waselon:
+  - rscadd: Added fade in type fullscreen overlay on xeno spawn and evolution
+  hyper2snyper:
+  - bugfix: Fixes the Lasguns becoming invisible when attaching to a powerpack.

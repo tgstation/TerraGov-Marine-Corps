@@ -99,6 +99,8 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 	var/stats_flags = NONE
 	///Portrait used for general screen text notifications
 	var/atom/movable/screen/text/screen_text/picture/faction_portrait
+	///Faction-wide modifier to respawn delay
+	var/respawn_delay_modifier = 0
 
 /datum/faction_stats/New(new_faction)
 	. = ..()
@@ -186,6 +188,7 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 
 	total_attrition_points += round(length(GLOB.clients) * 0.5 * attrition_gain_multiplier)
 	generate_new_mission()
+	update_static_data_for_all_viewers()
 	addtimer(CALLBACK(src, PROC_REF(return_to_base)), AFTER_MISSION_TELEPORT_DELAY)
 	addtimer(CALLBACK(src, PROC_REF(get_selector)), AFTER_MISSION_LEADER_DELAY) //if the leader died, we load a new one after a bit to give respawns some time
 
@@ -200,6 +203,7 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 		human_mob.overlay_fullscreen_timer(0.5 SECONDS, 10, "roundstart1", /atom/movable/screen/fullscreen/black)
 		human_mob.overlay_fullscreen_timer(2 SECONDS, 20, "roundstart2", /atom/movable/screen/fullscreen/spawning_in)
 		human_mob.forceMove(pick(GLOB.spawns_by_job[human_mob.job.type]))
+		human_mob.Stun(1 SECONDS) //so you don't accidentally shoot your team etc
 
 ///Generates status tab info for the mission
 /datum/faction_stats/proc/get_status_tab_items(mob/source, list/items)
@@ -215,6 +219,13 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 		items += "[faction] respawns freely available until next mission starts"
 	items += ""
 
+///Checks if a mob is in a command role for this faction
+/datum/faction_stats/proc/is_leadership_role(mob/living/user)
+	if(user == faction_leader)
+		return TRUE
+	if(ismarinecommandjob(user.job) || issommarinecommandjob(user.job))
+		return TRUE
+
 //UI stuff//
 
 /datum/faction_stats/ui_interact(mob/living/user, datum/tgui/ui)
@@ -227,7 +238,7 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 /datum/faction_stats/ui_state(mob/user)
 	return GLOB.conscious_state
 
-/datum/faction_stats/ui_data(mob/living/user)
+/datum/faction_stats/ui_static_data(mob/living/user)
 	. = ..()
 	var/datum/game_mode/hvh/campaign/current_mode = SSticker.mode
 	if(!istype(current_mode))
@@ -257,6 +268,7 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 	current_mission_data["vp_minor_reward"] = (faction == current_mission.starting_faction ? current_mission.victory_point_rewards[MISSION_OUTCOME_MINOR_VICTORY][1] : current_mission.victory_point_rewards[MISSION_OUTCOME_MINOR_LOSS][2])
 	current_mission_data["ap_major_reward"] = (faction == current_mission.starting_faction ? current_mission.attrition_point_rewards[MISSION_OUTCOME_MAJOR_VICTORY][1] : current_mission.attrition_point_rewards[MISSION_OUTCOME_MAJOR_LOSS][2])
 	current_mission_data["ap_minor_reward"] = (faction == current_mission.starting_faction ? current_mission.attrition_point_rewards[MISSION_OUTCOME_MINOR_VICTORY][1] : current_mission.attrition_point_rewards[MISSION_OUTCOME_MINOR_LOSS][2])
+	current_mission_data["mission_icon"] = current_mission.mission_icon
 	data["current_mission"] = current_mission_data
 
 	var/list/available_missions_data = list()
@@ -347,8 +359,8 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 
 	switch(action)
 		if("set_attrition_points")
-			if(user != faction_leader)
-				to_chat(user, "<span class='warning'>Only your faction's commander can do this.")
+			if(!is_leadership_role(user))
+				to_chat(user, "<span class='warning'>Only leadership roles can do this.")
 				return
 			if(current_mode.current_mission?.mission_state != MISSION_STATE_NEW)
 				to_chat(user, "<span class='warning'>Current mission already ongoing, unable to assign more personnel at this time.")
@@ -362,7 +374,8 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 			active_attrition_points = choice
 			for(var/mob/living/carbon/human/faction_member AS in GLOB.alive_human_list_faction[faction])
 				faction_member.playsound_local(null, 'sound/effects/CIC_order.ogg', 30, 1)
-				to_chat(faction_member, "<span class='warning'>[faction_leader] has assigned [choice] attrition points for the next mission.")
+				to_chat(faction_member, "<span class='warning'>[user] has assigned [choice] attrition points for the next mission.")
+			update_static_data_for_all_viewers()
 			return TRUE
 
 		if("set_next_mission")
@@ -383,6 +396,7 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 				return
 			current_mode.load_new_mission(choice)
 			available_missions -= new_mission
+			update_static_data_for_all_viewers()
 			return TRUE
 
 		if("activate_reward")
@@ -392,24 +406,25 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 			if(!faction_rewards[selected_reward])
 				return
 			var/datum/campaign_reward/choice = faction_rewards[selected_reward]
-			if(user != faction_leader)
+			if(!is_leadership_role(user))
 				if(!(choice.reward_flags & REWARD_SL_AVAILABLE))
 					to_chat(user, "<span class='warning'>Only your faction's commander can do this.")
 					return
-				if(!(ismarineleaderjob(user.job) || issommarineleaderjob(user.job) || ismarinecommandjob(user.job) || issommarinecommandjob(user.job)))
-					to_chat(user, "<span class='warning'>Only your faction's leaders can do this.")
+				if(!(ismarineleaderjob(user.job) || issommarineleaderjob(user.job)))
+					to_chat(user, "<span class='warning'>Only squad leaders and above can do this.")
 					return
-			if(!choice.activated_effect())
+			if(!choice.attempt_activatation())
 				return
 			for(var/mob/living/carbon/human/faction_member AS in GLOB.alive_human_list_faction[faction])
 				faction_member.playsound_local(null, 'sound/effects/CIC_order.ogg', 30, 1)
 				faction_member.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>OVERWATCH</u></span><br>" + "[choice.name] asset activated", faction_portrait)
 				to_chat(faction_member, "<span class='warning'>[user] has activated the [choice.name] campaign asset.")
+			update_static_data_for_all_viewers()
 			return TRUE
 
 		if("purchase_reward")
-			if(user != faction_leader)
-				to_chat(user, "<span class='warning'>Only your faction's commander can do this.")
+			if(!is_leadership_role(user))
+				to_chat(user, "<span class='warning'>Only leadership roles can do this.")
 				return
 			var/datum/campaign_reward/selected_reward = text2path(params["selected_reward"])
 			if(!selected_reward)
@@ -424,4 +439,5 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 			for(var/mob/living/carbon/human/faction_member AS in GLOB.alive_human_list_faction[faction])
 				faction_member.playsound_local(null, 'sound/effects/CIC_order.ogg', 30, 1)
 				to_chat(faction_member, "<span class='warning'>[user] has purchased the [initial(selected_reward.name)] campaign asset.")
+			update_static_data_for_all_viewers()
 			return TRUE

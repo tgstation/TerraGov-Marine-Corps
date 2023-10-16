@@ -314,6 +314,7 @@
 	name = "style mask"
 	desc = "A cool sylish mask that through some arcane magic blocks gas attacks. How? Who knows. How did you even get this?"
 	breathy = FALSE
+	voice_filter = null
 	icon_state = "gas_alt"
 	item_state = "gas_alt"
 	item_icons = list(slot_wear_mask_str)

@@ -184,6 +184,8 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 				icon_state = variants_by_parent_type[selection]
 
 	update_icon()
+	if(!greyscale_colors || !greyscale_config)
+		return
 	RegisterSignal(master_gun, COMSIG_ITEM_SECONDARY_COLOR, PROC_REF(handle_color))
 
 ///Sends a list of available colored attachments to be colored when the parent is right clicked with paint.
@@ -209,6 +211,8 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	master_gun = null
 	icon_state = initial(icon_state)
 	update_icon()
+	if(!greyscale_config || !greyscale_colors)
+		return
 	UnregisterSignal(master_gun, COMSIG_ITEM_SECONDARY_COLOR)
 
 ///Handles the modifiers to the parent gun
@@ -998,6 +1002,8 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	name = "SG-29 stock"
 	desc = "A standard machinegun stock."
 	icon_state = "sg29stock"
+	greyscale_config = /datum/greyscale_config/gun_attachment
+	colorable_allowed = PRESET_COLORS_ALLOWED
 	pixel_shift_x = 32
 	pixel_shift_y = 13
 
@@ -1026,6 +1032,8 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	name = "\improper SR-127 stock"
 	desc = "A irremovable SR-127 sniper rifle stock."
 	icon_state = "tl127stock"
+	greyscale_config = /datum/greyscale_config/gun_attachment
+	colorable_allowed = PRESET_COLORS_ALLOWED
 	pixel_shift_x = 32
 	pixel_shift_y = 13
 
@@ -1089,6 +1097,8 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	name = "MG-60 stock"
 	desc = "A irremovable MG-60 general purpose machinegun stock."
 	icon_state = "t60stock"
+	greyscale_config = /datum/greyscale_config/gun_attachment
+	colorable_allowed = PRESET_COLORS_ALLOWED
 	pixel_shift_x = 32
 	pixel_shift_y = 13
 

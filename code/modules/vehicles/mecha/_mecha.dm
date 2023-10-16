@@ -300,6 +300,32 @@
 	icon_state = get_mecha_occupancy_state()
 	return ..()
 
+/obj/vehicle/sealed/mecha/Moved(atom/old_loc, movement_dir, forced, list/old_locs)
+	. = ..()
+	for(var/mob/living/future_pancake in loc)
+		if(future_pancake.mob_size > MOB_SIZE_HUMAN)
+			return
+		if(!future_pancake.lying_angle && future_pancake.mob_size == MOB_SIZE_HUMAN)
+			continue
+		run_over(future_pancake)
+
+///Crushing the mob underfoot
+/obj/vehicle/sealed/mecha/proc/run_over(mob/living/crushed)
+	playsound(src, 'sound/effects/splat.ogg', 50, TRUE)
+	add_mob_blood(crushed)
+	var/turf/below_us = get_turf(src)
+	below_us.add_mob_blood(crushed)
+
+	if(crushed.stat == DEAD)
+		return
+	log_combat(src, crushed, "stomped on", addition = "(DAMTYPE: [uppertext(BRUTE)])")
+	crushed.visible_message(
+		span_danger("[src] crushes [crushed]!"),
+		span_userdanger("[src] steps on you!"),
+	)
+	crushed.emote(pick("scream", "pain"))
+	crushed.take_overall_damage(rand(10, 30) * move_delay, BRUTE, MELEE, FALSE, FALSE, TRUE, 0, 2)
+
 /**
  * Toggles Weapons Safety
  *
