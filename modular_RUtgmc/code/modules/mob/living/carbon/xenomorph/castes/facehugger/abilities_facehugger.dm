@@ -30,6 +30,7 @@
 /datum/action/xeno_action/activable/pounce_hugger/proc/pounce_complete()
 	SIGNAL_HANDLER
 	var/mob/living/carbon/xenomorph/caster = owner
+	caster.pass_flags = initial(caster.pass_flags)
 	caster.icon_state = "[caster.xeno_caste.caste_name] Walking"
 	UnregisterSignal(owner, list(COMSIG_XENO_OBJ_THROW_HIT, COMSIG_MOVABLE_POST_THROW, COMSIG_XENO_LIVING_THROW_HIT))
 
@@ -117,8 +118,6 @@
 	if(ishuman(A) && get_turf(A) == start_turf)
 		mob_hit(caster, A)
 	caster.throw_at(A, range, 2, caster)
-
-	addtimer(CALLBACK(caster, TYPE_PROC_REF(/mob/living/carbon/xenomorph, reset_allow_pass_flags)), 6)
 
 	return TRUE
 
