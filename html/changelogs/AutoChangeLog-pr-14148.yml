@@ -1,4 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - balance: "Explosions will now temporarily reduce the opacity of dense smoke caught in the radius."
