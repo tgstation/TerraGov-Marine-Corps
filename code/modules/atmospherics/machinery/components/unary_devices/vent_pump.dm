@@ -165,6 +165,10 @@
 
 // mapping
 
+/obj/machinery/atmospherics/components/unary/vent_pump/Initialize(mapload)
+	. = ..()
+	GLOB.atmospumps += src
+
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1
 	piping_layer = 1
 	icon_state = "vent_map-1"
@@ -198,6 +202,10 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/siphon/on
 	on = TRUE
 	icon_state = "vent_map_siphon_on-2"
+
+/obj/machinery/atmospherics/components/unary/vent_pump/Destroy()
+	. = ..()
+	GLOB.atmospumps -= src
 
 #undef INT_BOUND
 #undef EXT_BOUND
