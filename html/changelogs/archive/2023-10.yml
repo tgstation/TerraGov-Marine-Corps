@@ -201,3 +201,26 @@
       the codebase
   vvvv-vvvv:
   - qol: Gas masks now muffle your voice with TTS.
+2023-10-15:
+  Lumipharon:
+  - rscadd: Mechs will now crush human sized mobs underfoot
+  - bugfix: The smartgun asset in campaign now has targeting rifle ammo
+  - balance: Strategic reserve asset in campaign now reduces the respawn timer for
+      that team to 30sec for the duration of the mission
+  - code_imp: campaign status screen uses static data
+  Vincent983:
+  - bugfix: sticky weed and resting weed node examines made accurate
+  coldironwarrior:
+  - balance: sg62 bullets now have a max range of 40, equivalent to other marksman
+      guns
+  vvvv-vvvv:
+  - bugfix: Fix a missing trailing space before pod dchat announcement
+  - spellcheck: Spellchecked some bot messages
+2023-10-16:
+  Lumipharon:
+  - balance: Explosions will now temporarily reduce the opacity of dense smoke caught
+      in the radius.
+  Waselon:
+  - rscadd: Added fade in type fullscreen overlay on xeno spawn and evolution
+  hyper2snyper:
+  - bugfix: Fixes the Lasguns becoming invisible when attaching to a powerpack.

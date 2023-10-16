@@ -99,6 +99,8 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 	var/stats_flags = NONE
 	///Portrait used for general screen text notifications
 	var/atom/movable/screen/text/screen_text/picture/faction_portrait
+	///Faction-wide modifier to respawn delay
+	var/respawn_delay_modifier = 0
 
 /datum/faction_stats/New(new_faction)
 	. = ..()
@@ -186,6 +188,7 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 
 	total_attrition_points += round(length(GLOB.clients) * 0.5 * attrition_gain_multiplier)
 	generate_new_mission()
+	update_static_data_for_all_viewers()
 	addtimer(CALLBACK(src, PROC_REF(return_to_base)), AFTER_MISSION_TELEPORT_DELAY)
 	addtimer(CALLBACK(src, PROC_REF(get_selector)), AFTER_MISSION_LEADER_DELAY) //if the leader died, we load a new one after a bit to give respawns some time
 
@@ -235,7 +238,7 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 /datum/faction_stats/ui_state(mob/user)
 	return GLOB.conscious_state
 
-/datum/faction_stats/ui_data(mob/living/user)
+/datum/faction_stats/ui_static_data(mob/living/user)
 	. = ..()
 	var/datum/game_mode/hvh/campaign/current_mode = SSticker.mode
 	if(!istype(current_mode))
@@ -371,6 +374,7 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 			for(var/mob/living/carbon/human/faction_member AS in GLOB.alive_human_list_faction[faction])
 				faction_member.playsound_local(null, 'sound/effects/CIC_order.ogg', 30, 1)
 				to_chat(faction_member, "<span class='warning'>[user] has assigned [choice] attrition points for the next mission.")
+			update_static_data_for_all_viewers()
 			return TRUE
 
 		if("set_next_mission")
@@ -391,6 +395,7 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 				return
 			current_mode.load_new_mission(choice)
 			available_missions -= new_mission
+			update_static_data_for_all_viewers()
 			return TRUE
 
 		if("activate_reward")
@@ -413,6 +418,7 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 				faction_member.playsound_local(null, 'sound/effects/CIC_order.ogg', 30, 1)
 				faction_member.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>OVERWATCH</u></span><br>" + "[choice.name] asset activated", faction_portrait)
 				to_chat(faction_member, "<span class='warning'>[user] has activated the [choice.name] campaign asset.")
+			update_static_data_for_all_viewers()
 			return TRUE
 
 		if("purchase_reward")
@@ -432,4 +438,5 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 			for(var/mob/living/carbon/human/faction_member AS in GLOB.alive_human_list_faction[faction])
 				faction_member.playsound_local(null, 'sound/effects/CIC_order.ogg', 30, 1)
 				to_chat(faction_member, "<span class='warning'>[user] has purchased the [initial(selected_reward.name)] campaign asset.")
+			update_static_data_for_all_viewers()
 			return TRUE

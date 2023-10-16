@@ -250,6 +250,8 @@
 	json_config = 'code/datums/greyscale/json_configs/gun.json'
 	icon_file ='icons/Marine/greyscale_gun/gun.dmi'
 	prefix = "t18_"
+	ignore_states = list("loaded_fire", "belt", "loaded_l", "loaded_a", "unloaded_a")
+
 /datum/greyscale_config/gun/tx11
 	prefix = "tx11_"
 /datum/greyscale_config/gun/tx15
@@ -263,22 +265,25 @@
 
 //Pistols
 /datum/greyscale_config/gun/pistol
-	json_config = 'code/datums/greyscale/json_configs/gun_pistol.json'
+	ignore_states = list("loaded_fire", "loaded_l", "loaded_a", "unloaded_a")
 	prefix = "tp14_"
+
 /datum/greyscale_config/gun/pistol/tp23
 	prefix = "tp23_"
 
 /datum/greyscale_config/gun/pistol/tx7
-	json_config = 'code/datums/greyscale/json_configs/gun_plasma_pistol.json'
+	ignore_states = list("loaded_fire", "loaded_l")
 	prefix = "tx7_"
 
 /datum/greyscale_config/gun/pistol/tep
 	icon_file ='icons/Marine/greyscale_gun/gun_64.dmi'
+	ignore_states = list("loaded_fire", "loaded_a", "unloaded_a")
 	prefix = "tep_"
 
 //Revolvers
 /datum/greyscale_config/gun/revolver
 	json_config = 'code/datums/greyscale/json_configs/gun_revolver.json'
+	ignore_states = list()
 	prefix = "tp44_"
 
 //64 pixel guns
@@ -293,27 +298,29 @@
 	prefix = "t21_"
 
 /datum/greyscale_config/gun/gun64/t60
-	json_config = 'code/datums/greyscale/json_configs/gun_fire.json'
+	ignore_states = list("belt", "loaded_l", "loaded_a", "unloaded_a")
 	prefix = "t60_"
 
 /datum/greyscale_config/gun/gun64/t37
 	prefix = "t37_"
 
-/datum/greyscale_config/gun/gun64/ter
+/datum/greyscale_config/gun/gun64/lasgun
+	ignore_states = list("loaded_fire", "belt", "loaded_a", "unloaded_a")
 	prefix = "ter_"
 
-/datum/greyscale_config/gun/gun64/tec
+/datum/greyscale_config/gun/gun64/lasgun/tec
 	prefix = "tec_"
 
-/datum/greyscale_config/gun/gun64/tem
+/datum/greyscale_config/gun/gun64/lasgun/tem
 	prefix = "tem_"
 
-/datum/greyscale_config/gun/gun64/tes
+/datum/greyscale_config/gun/gun64/lasgun/tes
 	prefix = "tes_"
 
 
 /datum/greyscale_config/gun/gun64/shotgun
 	json_config = 'code/datums/greyscale/json_configs/gun_shotgun.json'
+	ignore_states = list()
 	prefix = "t35_"
 
 /datum/greyscale_config/gun/gun64/shotgun/tl127

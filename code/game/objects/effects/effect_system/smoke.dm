@@ -11,6 +11,7 @@
 	layer = FLY_LAYER
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	pass_flags = PASS_AIR
+	resistance_flags = UNACIDABLE|PLASMACUTTER_IMMUNE|PROJECTILE_IMMUNE|CRUSHER_IMMUNE
 	var/amount = 3
 	var/lifetime = 5
 	///time in decisecond for a smoke to spread one tile.
@@ -72,6 +73,17 @@
 		return FALSE
 	apply_smoke_effect(get_turf(src))
 	return TRUE
+
+/obj/effect/particle_effect/smoke/ex_act(severity)
+	if(lifetime <= 3)
+		qdel(src)
+		return
+
+	opacity = FALSE
+	alpha = 0
+	animate(src, 7 SECONDS, easing = CIRCULAR_EASING|EASE_IN, alpha = initial(alpha))
+	addtimer(VARSET_CALLBACK(src, opacity, initial(opacity)), 5 SECONDS)
+
 
 /obj/effect/particle_effect/smoke/proc/on_cross(datum/source, atom/movable/O, oldloc, oldlocs)
 	SIGNAL_HANDLER
