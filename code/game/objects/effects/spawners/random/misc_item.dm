@@ -146,7 +146,7 @@
 	icon_state = "random_gnome"
 	spawn_loot_chance = 15
 	loot = list(
-		/obj/item/toy/plush/gnome = 15,
+		/obj/item/toy/plush/gnome = 50,
 		/obj/item/toy/plush/gnome/living = 1,
 	)
 
