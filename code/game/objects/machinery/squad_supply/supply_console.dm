@@ -38,6 +38,9 @@
 	supply_pad = null
 	return ..()
 
+/obj/machinery/computer/supplydrop_console/screwdriver_act(mob/living/user, obj/item/I)
+	return TRUE //no deconstructing this please
+
 /obj/machinery/computer/supplydrop_console/ui_interact(mob/user, datum/tgui/ui)
 	. = ..()
 	ui = SStgui.try_update_ui(user, src, ui)
