@@ -573,11 +573,11 @@
 /obj/item/toy/plush/gnome/living/proc/gnome_act()
 	///targetturf stores our position at the start of routine in all. teleport_routine uses it as a baseline for determining where to find teleport locations also
 	targetturf = get_turf(src)
-	gnome_act_timer = rand(4,8)
+	gnome_act_timer = rand(4,8) MINUTES
 	pipe_mode_chance = STANDARD_GNOME_PIPE_CHANCE
 	if(prob(10))
 		do_flavor_actions(targetturf) //flavor actions don't take being watched into account
-		addtimer(CALLBACK(src, PROC_REF(gnome_act)), gnome_act_timer MINUTES)
+		addtimer(CALLBACK(src, PROC_REF(gnome_act)), gnome_act_timer)
 		return
 	possible_mobs = list()
 	for(var/mob/nearbymob in range(GNOME_EXCLUSION_RANGE, src)) //all mobs are included except animals, this means that AIs and ghosts will block gnome movement
@@ -587,7 +587,7 @@
 			continue
 		possible_mobs += nearbymob
 	if(handle_pipe_mode(targetturf) && pipe_mode) //if we're in pipe_mode we return,
-		addtimer(CALLBACK(src, PROC_REF(gnome_act)), gnome_act_timer MINUTES)
+		addtimer(CALLBACK(src, PROC_REF(gnome_act)), gnome_act_timer)
 		return
 	if(isspacearea(get_area(src)))
 		forceMove(gnome_origin) //we're in space, return to origin
@@ -602,7 +602,7 @@
 			targetturf = get_turf(src) //need to reset targetturf to new position indicated by ladder use, or teleport_routine will calculate from old position
 		flick("gnome_escape", src)
 		addtimer(CALLBACK(src, PROC_REF(teleport_routine), targetturf), 1.5 SECONDS) //delay just briefly so our animation can go off
-	addtimer(CALLBACK(src, PROC_REF(gnome_act)), gnome_act_timer MINUTES)
+	addtimer(CALLBACK(src, PROC_REF(gnome_act)), gnome_act_timer)
 
 //handles gnome going up or down ladders
 /obj/item/toy/plush/gnome/living/proc/handle_ladders()
