@@ -751,6 +751,8 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	default_ammo_type = /obj/item/ammo_magazine/rocket/m57a4
 	allowed_ammo_types = list(/obj/item/ammo_magazine/rocket/m57a4)
 
+/obj/item/weapon/gun/launcher/rocket/m57a4/t57/unloaded
+	default_ammo_type = null
 
 //-------------------------------------------------------
 //RL-160 Recoilless Rifle. Its effectively an RPG codewise.
@@ -991,6 +993,9 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	recoil = 3
 	scatter = 0
 	movement_acc_penalty_mult = 6
+
+/obj/item/weapon/gun/rifle/railgun/unloaded
+	default_ammo_type = null
 
 //-------------------------------------------------------
 //ML-120 Coilgun

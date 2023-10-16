@@ -136,19 +136,11 @@
 		"Heavy Weapons" = list(
 			/obj/structure/closet/crate/mortar_ammo/mortar_kit = 1,
 			/obj/structure/closet/crate/mortar_ammo/howitzer_kit = 1,
-			/obj/structure/largecrate/supply/weapons/standard_atgun = 1,
 			/obj/item/storage/box/crate/sentry = 4,
 			/obj/item/storage/box/tl102 = 1,
 			/obj/item/weapon/gun/heavymachinegun = 1,
 			/obj/item/ammo_magazine/heavymachinegun = 5,
 			/obj/item/ammo_magazine/heavymachinegun/small = 10,
-			/obj/item/storage/holster/backholster/rpg/full = 2,
-			/obj/item/ammo_magazine/rocket/recoilless = 4,
-			/obj/item/ammo_magazine/rocket/recoilless/light = 4,
-			/obj/item/ammo_magazine/rocket/recoilless/heat = 16,
-			/obj/item/ammo_magazine/rocket/recoilless/cloak = 16,
-			/obj/item/ammo_magazine/rocket/recoilless/smoke = 16,
-			/obj/item/ammo_magazine/rocket/recoilless/plasmaloss = 16,
 		),
 		"Attachments" = list(
 			/obj/item/attachable/bayonet = -1,
@@ -229,6 +221,7 @@
 
 	seasonal_items = list(
 		SEASONAL_GUNS = "Seasonal",
+		SEASONAL_HEAVY = "Operational Weapons",
 	)
 
 /obj/machinery/vending/weapon/crash
