@@ -202,4 +202,4 @@
 	animate(src, alpha = 255, time = 15)
 	var/obj/effect/abstract/particle_holder/dust = new(get_turf(src), /particles/shuttle_dust)
 	dust.particles.position = generator(GEN_CIRCLE, 180, 180, NORMAL_RAND)
-	addtimer(VARSET_CALLBACK(dust.particles, count, 0), 14 SECONDS)
+	addtimer(VARSET_WEAK_CALLBACK(dust.particles, count, 0), 14 SECONDS)
