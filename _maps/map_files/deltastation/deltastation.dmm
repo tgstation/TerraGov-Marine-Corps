@@ -8678,13 +8678,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/iron/white,
 /area/deltastation/medical/treatment_center)
-"bNm" = (
-/obj/structure/bed/chair/comfy{
-	dir = 4
-	},
-/obj/effect/landmark/patrol_point/som/som_22,
-/turf/open/floor/prison/blackfloor,
-/area/deltastation/asteroidcaves/ship)
 "bNr" = (
 /obj/effect/turf_decal/tile/transparent/neutral/fourcorners,
 /obj/effect/spawner/random/misc/plant,
@@ -9354,11 +9347,6 @@
 /obj/effect/turf_decal/bot_white,
 /turf/open/floor/iron,
 /area/deltastation/maintenance/department/science)
-"bUN" = (
-/obj/effect/turf_decal/tile/transparent/neutral/fourcorners,
-/obj/effect/landmark/patrol_point/tgmc_13,
-/turf/open/floor/iron,
-/area/deltastation/hallway/secondary/exit/departure_lounge)
 "bVb" = (
 /obj/structure/cable,
 /obj/effect/decal/cleanable/dirt,
@@ -15724,10 +15712,6 @@
 	},
 /turf/open/floor/iron/large,
 /area/deltastation/security/processing)
-"dmS" = (
-/obj/effect/landmark/patrol_point/som/som_14,
-/turf/open/floor/iron/dark,
-/area/deltastation/asteroidcaves/derelictnortheast)
 "dna" = (
 /obj/structure/sign/securearea,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
@@ -20281,14 +20265,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/iron,
 /area/deltastation/science/auxlab/firing_range)
-"eee" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/obj/effect/landmark/patrol_point/tgmc_22,
-/turf/open/floor/iron,
-/area/deltastation/maintenance/department/eva/abandoned)
 "eem" = (
 /obj/item/radio/intercom,
 /obj/machinery/holopad,
@@ -30184,11 +30160,6 @@
 	},
 /turf/open/floor/engine,
 /area/deltastation/science/ordnance/freezerchamber)
-"gbt" = (
-/obj/effect/turf_decal/warning_stripes/box,
-/obj/effect/landmark/patrol_point/tgmc_24,
-/turf/open/floor/iron,
-/area/deltastation/maintenance/department/eva/abandoned)
 "gbD" = (
 /obj/structure/cable,
 /obj/effect/turf_decal/tile/transparent/blue{
@@ -32448,10 +32419,6 @@
 /obj/effect/decal/cleanable/blood/oil,
 /turf/open/floor/iron,
 /area/deltastation/science/robotics/mechbay)
-"gyi" = (
-/obj/effect/landmark/patrol_point/som/som_24,
-/turf/open/floor/prison/blackfloor,
-/area/deltastation/asteroidcaves/ship)
 "gyr" = (
 /obj/machinery/door/window{
 	dir = 2;
@@ -34966,11 +34933,6 @@
 /obj/effect/turf_decal/tile/transparent/neutral/fourcorners,
 /turf/open/floor/iron,
 /area/deltastation/security/brig)
-"gZV" = (
-/obj/effect/turf_decal/tile/transparent/neutral/fourcorners,
-/obj/effect/landmark/patrol_point/tgmc_14,
-/turf/open/floor/iron,
-/area/deltastation/hallway/secondary/exit/departure_lounge)
 "hab" = (
 /obj/structure/cable,
 /obj/machinery/holopad,
@@ -49156,10 +49118,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/iron,
 /area/deltastation/engineering/atmos/storage)
-"jYE" = (
-/obj/effect/landmark/patrol_point/som/som_23,
-/turf/open/floor/prison/blackfloor,
-/area/deltastation/asteroidcaves/ship)
 "jYF" = (
 /obj/effect/spawner/random/misc/structure/directional_window/west,
 /obj/effect/turf_decal/tile/transparent/neutral/fourcorners,
@@ -57425,7 +57383,6 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
 	},
-/obj/effect/landmark/patrol_point/tgmc_23,
 /turf/open/floor/iron,
 /area/deltastation/maintenance/department/eva/abandoned)
 "lJu" = (
@@ -67706,10 +67663,6 @@
 	},
 /turf/open/floor/plating,
 /area/deltastation/maintenance/port/aft)
-"nRw" = (
-/obj/effect/landmark/patrol_point/som/som_12,
-/turf/open/floor/iron/dark,
-/area/deltastation/asteroidcaves/derelictnortheast)
 "nRB" = (
 /obj/effect/spawner/random/machinery/status_display,
 /turf/closed/wall,
@@ -70922,10 +70875,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating,
 /area/deltastation/maintenance/department/chapel)
-"oAr" = (
-/obj/effect/landmark/patrol_point/som/som_13,
-/turf/open/floor/iron/dark,
-/area/deltastation/asteroidcaves/derelictnortheast)
 "oAs" = (
 /obj/effect/turf_decal/tile/transparent/blue/anticorner/contrasted{
 	dir = 4
@@ -75138,10 +75087,6 @@
 	},
 /turf/closed/wall,
 /area/deltastation/service/chapel)
-"prZ" = (
-/obj/effect/landmark/patrol_point/tgmc_12,
-/turf/open/floor/iron,
-/area/deltastation/hallway/secondary/exit/departure_lounge)
 "psc" = (
 /obj/structure/disposalpipe/segment,
 /obj/effect/turf_decal/tile/transparent/neutral/half/contrasted{
@@ -150649,7 +150594,7 @@ iPW
 qvm
 inL
 wqc
-eee
+rym
 cxo
 lwe
 wWX
@@ -151680,7 +151625,7 @@ gDt
 rym
 tro
 wWX
-gbt
+wWX
 iPH
 swV
 jrE
@@ -156120,7 +156065,7 @@ ksJ
 iqQ
 xzd
 iqQ
-jYE
+bJc
 ayb
 bJc
 aus
@@ -156371,7 +156316,7 @@ auB
 ayb
 iSg
 bJc
-bNm
+oqn
 omi
 nrD
 oqn
@@ -157147,7 +157092,7 @@ qok
 opN
 bJc
 bJc
-gyi
+bJc
 bJc
 ayb
 bJc
@@ -162468,7 +162413,7 @@ gna
 vNu
 sst
 tNp
-prZ
+tNp
 gna
 vNu
 sst
@@ -163494,7 +163439,7 @@ mxE
 uTU
 mxE
 amM
-gZV
+mxE
 hip
 sDn
 mxE
@@ -163756,7 +163701,7 @@ uLA
 uLA
 uLA
 ykL
-bUN
+mxE
 ldG
 fLy
 fVY
@@ -177199,7 +177144,7 @@ gEB
 rSY
 gEB
 rSY
-oAr
+rSY
 vkQ
 gOF
 gOF
@@ -177710,7 +177655,7 @@ jYY
 jdP
 gOF
 lbP
-dmS
+rSY
 gEB
 gOF
 rSY
@@ -178997,7 +178942,7 @@ gOF
 rSY
 rSY
 rSY
-nRw
+rSY
 rSY
 rSY
 rSY

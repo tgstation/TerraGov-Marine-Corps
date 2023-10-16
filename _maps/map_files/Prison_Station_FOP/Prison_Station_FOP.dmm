@@ -11311,7 +11311,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 9
 	},
-/obj/effect/landmark/patrol_point/tgmc_22,
 /turf/open/floor/prison/bright_clean/two,
 /area/prison/residential/north)
 "aJI" = (
@@ -34412,7 +34411,6 @@
 "cgp" = (
 /obj/structure/bed,
 /obj/machinery/air_alarm,
-/obj/effect/landmark/patrol_point/som/som_12,
 /turf/open/floor/prison/blackfloor,
 /area/prison/pirate)
 "cgr" = (
@@ -38894,7 +38892,6 @@
 	dir = 8
 	},
 /obj/machinery/light/small,
-/obj/effect/landmark/patrol_point/som/som_13,
 /turf/open/floor/plating,
 /area/prison/pirate)
 "cvw" = (
@@ -40445,10 +40442,6 @@
 	},
 /turf/open/floor/prison/bright_clean/two,
 /area/prison/hallway/east)
-"dGP" = (
-/obj/effect/landmark/patrol_point/tgmc_23,
-/turf/open/floor/prison/bright_clean/two,
-/area/prison/residential/north)
 "dJr" = (
 /obj/effect/ai_node,
 /turf/open/floor/prison/sterilewhite,
@@ -43093,12 +43086,6 @@
 /obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/prison/cleanmarked,
 /area/prison/yard)
-"ksL" = (
-/obj/effect/landmark/patrol_point/som/som_22,
-/turf/open/floor/prison/whitepurple{
-	dir = 6
-	},
-/area/prison/research/secret/biolab)
 "ksV" = (
 /obj/machinery/vending/coffee,
 /turf/open/floor/plating,
@@ -45259,10 +45246,6 @@
 /obj/structure/window/framed/prison/reinforced,
 /turf/open/floor/plating,
 /area/prison/residential/central)
-"pWy" = (
-/obj/effect/landmark/patrol_point/som/som_24,
-/turf/open/floor/prison/whitepurple,
-/area/prison/research/secret/biolab)
 "pWz" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 4
@@ -45386,14 +45369,6 @@
 "qhf" = (
 /turf/open/floor/plating,
 /area/prison/hangar/civilian)
-"qio" = (
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 4
-	},
-/obj/effect/turf_decal/warning_stripes/thin,
-/obj/effect/landmark/patrol_point/tgmc_12,
-/turf/open/floor/plating,
-/area/prison/hangar/main)
 "qiV" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	on = 1
@@ -45527,10 +45502,6 @@
 "qBA" = (
 /turf/open/floor/carpet,
 /area/prison/chapel)
-"qBT" = (
-/obj/effect/landmark/patrol_point/som/som_23,
-/turf/open/floor/prison/sterilewhite,
-/area/prison/research/secret/biolab)
 "qDV" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment,
@@ -46298,10 +46269,6 @@
 	dir = 9
 	},
 /area/prison/cellblock/highsec/south/north)
-"slO" = (
-/obj/effect/landmark/patrol_point/tgmc_24,
-/turf/open/floor/prison/bright_clean/two,
-/area/prison/residential/north)
 "smL" = (
 /obj/machinery/light/small,
 /turf/open/floor/wood/broken,
@@ -46649,13 +46616,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/carpet,
 /area/prison/research/RD)
-"sWv" = (
-/obj/structure/bed/chair/comfy{
-	dir = 8
-	},
-/obj/effect/landmark/patrol_point/tgmc_14,
-/turf/open/floor/prison/darkred/full,
-/area/prison/hangar/main)
 "sWQ" = (
 /obj/machinery/light/small,
 /turf/open/floor/plating,
@@ -48201,10 +48161,6 @@
 	dir = 8
 	},
 /area/prison/cellblock/highsec/north/north)
-"wUH" = (
-/obj/effect/landmark/patrol_point/tgmc_13,
-/turf/open/floor/prison,
-/area/prison/hangar/main)
 "wXP" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -48338,10 +48294,6 @@
 /obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/prison/sterilewhite,
 /area/prison/residential/central)
-"xsd" = (
-/obj/effect/landmark/patrol_point/som/som_14,
-/turf/open/floor/plating,
-/area/prison/pirate)
 "xtg" = (
 /obj/machinery/light/small{
 	dir = 1
@@ -58319,7 +58271,7 @@ aHN
 aHN
 aST
 aFX
-slO
+aBV
 aHe
 aBV
 avN
@@ -59606,7 +59558,7 @@ aBV
 aBV
 aBV
 aHe
-dGP
+aBV
 avN
 azk
 azk
@@ -72808,7 +72760,7 @@ cio
 ckF
 cwt
 cio
-xsd
+lZe
 lZe
 lZe
 lZe
@@ -85770,7 +85722,7 @@ aeC
 owV
 owV
 aha
-pWy
+aeX
 agt
 fHU
 agX
@@ -87306,7 +87258,7 @@ acF
 acX
 ado
 adx
-qBT
+svM
 aeg
 aeg
 hdc
@@ -89108,7 +89060,7 @@ adA
 aeI
 aek
 aeI
-ksL
+aeY
 afj
 afj
 afj
@@ -108991,7 +108943,7 @@ dXl
 bwp
 bnQ
 pDQ
-wUH
+bnQ
 aXt
 obp
 obp
@@ -111815,7 +111767,7 @@ pOu
 pOu
 hFq
 pOu
-qio
+vDZ
 gdP
 gdP
 gdP
@@ -111830,7 +111782,7 @@ bET
 bET
 bET
 bET
-sWv
+bET
 bET
 bNq
 bxM

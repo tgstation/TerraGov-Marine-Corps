@@ -34,11 +34,6 @@
 "aM" = (
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/space_port)
-"aN" = (
-/obj/structure/cable,
-/obj/effect/landmark/patrol_point/tgmc_24,
-/turf/open/floor/asteroidfloor,
-/area/bigredv2/outside/space_port)
 "aU" = (
 /obj/structure/table,
 /obj/machinery/light{
@@ -911,11 +906,6 @@
 /obj/structure/sign/safety/hazard,
 /turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/space_port)
-"wZ" = (
-/obj/structure/cable,
-/obj/effect/landmark/patrol_point/tgmc_22,
-/turf/open/floor/tile/dark,
-/area/bigredv2/outside/space_port)
 "xh" = (
 /obj/structure/cargo_container/green{
 	dir = 8
@@ -1261,10 +1251,6 @@
 /turf/open/floor/marking/asteroidwarning{
 	dir = 10
 	},
-/area/bigredv2/outside/space_port)
-"FR" = (
-/obj/effect/landmark/patrol_point/tgmc_23,
-/turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/space_port)
 "Ga" = (
 /turf/open/floor/plating/icefloor/warnplate{
@@ -2348,7 +2334,7 @@ rD
 rD
 rD
 Jw
-wZ
+gF
 gF
 gF
 gF
@@ -2546,7 +2532,7 @@ Ln
 FL
 rA
 rA
-FR
+rA
 rA
 rA
 rA
@@ -2594,7 +2580,7 @@ rA
 LB
 LB
 LB
-aN
+LB
 LB
 oz
 LB

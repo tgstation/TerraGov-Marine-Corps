@@ -2,10 +2,6 @@
 "a" = (
 /turf/open/space/basic,
 /area/space)
-"b" = (
-/obj/effect/landmark/patrol_point/tgmc_13,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/southeast)
 "d" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/mineral/smooth/bigred,
@@ -41,10 +37,6 @@
 /obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/southeast)
-"u" = (
-/obj/effect/landmark/patrol_point/tgmc_12,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/southeast)
 "v" = (
 /turf/closed/mineral/smooth/bigred/indestructible,
 /area/space)
@@ -70,10 +62,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave/rock,
 /area/bigredv2/caves/southeast/garbledradio)
-"H" = (
-/obj/effect/landmark/patrol_point/tgmc_14,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/southeast)
 "I" = (
 /obj/docking_port/stationary/crashmode,
 /turf/closed/mineral/smooth/bigred,
@@ -2165,7 +2153,7 @@ V
 V
 V
 V
-b
+w
 w
 w
 w
@@ -2384,7 +2372,7 @@ w
 w
 w
 w
-u
+w
 V
 V
 d
@@ -3129,7 +3117,7 @@ w
 w
 w
 w
-H
+w
 w
 V
 V

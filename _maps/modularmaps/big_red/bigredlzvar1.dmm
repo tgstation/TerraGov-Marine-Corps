@@ -93,11 +93,6 @@
 	dir = 4
 	},
 /area/bigredv2/outside/nw)
-"cc" = (
-/obj/structure/cable,
-/obj/effect/landmark/patrol_point/tgmc_24,
-/turf/open/floor/asteroidfloor,
-/area/bigredv2/outside/space_port)
 "cC" = (
 /obj/structure/cargo_container/green{
 	dir = 1
@@ -526,10 +521,6 @@
 "nF" = (
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/marshal_office)
-"nL" = (
-/obj/effect/landmark/patrol_point/tgmc_23,
-/turf/open/floor/asteroidfloor,
-/area/bigredv2/outside/space_port)
 "nU" = (
 /obj/structure/cable,
 /turf/closed/wall/r_wall,
@@ -1738,7 +1729,6 @@
 /obj/machinery/light/built{
 	dir = 1
 	},
-/obj/effect/landmark/patrol_point/tgmc_22,
 /turf/open/floor/plating/plating_catwalk,
 /area/bigredv2/outside/space_port)
 "Wv" = (
@@ -2467,7 +2457,7 @@ QL
 QL
 QL
 ql
-cc
+ql
 ql
 ql
 ql
@@ -2501,7 +2491,7 @@ YE
 ze
 QL
 QL
-nL
+QL
 QL
 QL
 QL

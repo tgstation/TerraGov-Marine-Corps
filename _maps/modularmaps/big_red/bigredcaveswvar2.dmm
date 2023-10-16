@@ -1,8 +1,4 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"b" = (
-/obj/effect/landmark/patrol_point/som/som_13,
-/turf/open/floor/plating/ground/mars/random/cave/rock,
-/area/bigredv2/caves/southwest)
 "c" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -80,10 +76,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/southwest)
-"N" = (
-/obj/effect/landmark/patrol_point/som/som_14,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/southwest)
 "O" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/mineral/smooth/bigred,
@@ -97,10 +89,6 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/southwest)
 "S" = (
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/southwest)
-"W" = (
-/obj/effect/landmark/patrol_point/som/som_12,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/southwest)
 "Y" = (
@@ -808,7 +796,7 @@ S
 j
 j
 S
-W
+S
 j
 j
 j
@@ -1072,7 +1060,7 @@ S
 M
 D
 j
-b
+D
 S
 S
 S
@@ -1168,7 +1156,7 @@ j
 j
 j
 j
-N
+S
 S
 S
 S

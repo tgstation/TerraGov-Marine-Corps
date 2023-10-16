@@ -51,10 +51,6 @@
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/southwest)
-"A" = (
-/obj/effect/landmark/patrol_point/som/som_12,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/southwest)
 "F" = (
 /obj/effect/landmark/xeno_silo_spawn,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -76,10 +72,6 @@
 /obj/effect/landmark/xeno_tunnel_spawn,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/southwest)
-"L" = (
-/obj/effect/landmark/patrol_point/som/som_14,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/southwest)
 "P" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/mineral/smooth/bigred,
@@ -90,10 +82,6 @@
 "U" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave/rock,
-/area/bigredv2/caves/southwest)
-"V" = (
-/obj/effect/landmark/patrol_point/som/som_13,
-/turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/southwest)
 "W" = (
 /obj/effect/ai_node,
@@ -489,7 +477,7 @@ T
 T
 T
 T
-A
+T
 f
 f
 f
@@ -573,7 +561,7 @@ f
 f
 f
 f
-V
+T
 K
 w
 T
@@ -845,7 +833,7 @@ T
 W
 T
 T
-L
+T
 T
 T
 U

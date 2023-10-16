@@ -610,10 +610,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/plating_catwalk,
 /area/bigredv2/caves/secomplex)
-"LX" = (
-/obj/effect/landmark/patrol_point/tgmc_14,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/southeast)
 "Md" = (
 /obj/effect/decal/cleanable/blood/splatter,
 /obj/effect/landmark/weed_node,
@@ -707,10 +703,6 @@
 /obj/effect/spawner/random/misc/structure/supplycrate/secureweighted,
 /turf/open/floor/tile/dark,
 /area/bigredv2/caves/secomplex)
-"Rb" = (
-/obj/effect/landmark/patrol_point/tgmc_12,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/southeast)
 "Rf" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/mineral/smooth/bigred,
@@ -835,10 +827,6 @@
 /obj/machinery/computer/security/marinemainship_network,
 /turf/open/floor/tile/dark,
 /area/bigredv2/caves/secomplex)
-"Yh" = (
-/obj/effect/landmark/patrol_point/tgmc_13,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/southeast)
 "Yn" = (
 /obj/effect/spawner/random/misc/structure/barrel,
 /turf/open/floor/tile/dark,
@@ -4784,7 +4772,7 @@ Dx
 Dx
 Dx
 Dx
-Yh
+Ro
 Ro
 Ro
 Ro
@@ -5482,7 +5470,7 @@ Ro
 Ro
 My
 Ro
-LX
+Ro
 le
 Ap
 Ap
@@ -5613,7 +5601,7 @@ zI
 Dx
 Dx
 Dx
-Rb
+Ro
 Ro
 Ro
 Ro

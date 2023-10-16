@@ -35,10 +35,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/southwest)
-"u" = (
-/obj/effect/landmark/patrol_point/som/som_14,
-/turf/open/floor/plating/ground/mars/random/cave/rock,
-/area/bigredv2/caves/southwest)
 "w" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/mineral/smooth/bigred,
@@ -46,14 +42,6 @@
 "A" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/cave/rock,
-/area/bigredv2/caves/southwest)
-"B" = (
-/obj/effect/landmark/patrol_point/som/som_12,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/southwest)
-"C" = (
-/obj/effect/landmark/patrol_point/som/som_13,
-/turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/southwest)
 "E" = (
 /obj/effect/landmark/xeno_resin_wall,
@@ -402,7 +390,7 @@ Q
 Q
 Q
 Q
-C
+l
 V
 l
 E
@@ -633,7 +621,7 @@ l
 q
 l
 l
-B
+l
 Q
 Q
 Q
@@ -859,7 +847,7 @@ l
 l
 l
 l
-u
+Y
 Q
 Q
 Q

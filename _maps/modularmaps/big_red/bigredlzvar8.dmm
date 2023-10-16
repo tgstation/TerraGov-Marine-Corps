@@ -245,10 +245,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/tile/darkgreen/darkgreen2,
 /area/bigredv2/outside/space_port)
-"gV" = (
-/obj/effect/landmark/patrol_point/tgmc_24,
-/turf/open/floor/asteroidfloor,
-/area/bigredv2/outside/space_port)
 "ha" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/decal/cleanable/dirt,
@@ -1062,7 +1058,6 @@
 /area/bigredv2/outside/space_port)
 "EJ" = (
 /obj/machinery/light,
-/obj/effect/landmark/patrol_point/tgmc_23,
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/space_port)
 "EK" = (
@@ -1428,12 +1423,6 @@
 	},
 /turf/open/floor/plating/ground/mars/random/cave/rock,
 /area/bigredv2/caves/northwest)
-"No" = (
-/obj/effect/landmark/patrol_point/tgmc_22,
-/turf/open/floor/marking/asteroidwarning{
-	dir = 1
-	},
-/area/bigredv2/outside/space_port)
 "ND" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/machinery/door/airlock/mainship/medical/glass/free_access{
@@ -2367,7 +2356,7 @@ MN
 MN
 MN
 MN
-gV
+bg
 dV
 ga
 Ko
@@ -2798,7 +2787,7 @@ ds
 ds
 Ge
 MN
-No
+ed
 gM
 Gz
 Gz

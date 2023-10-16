@@ -474,10 +474,6 @@
 /obj/structure/closet/secure_closet/engineering_welding,
 /turf/open/floor/tile/dark,
 /area/oscar_outpost)
-"do" = (
-/obj/effect/landmark/patrol_point/tgmc_14,
-/turf/open/floor,
-/area/oscar_outpost/village/south)
 "dq" = (
 /obj/machinery/body_scanconsole,
 /turf/open/floor/mainship/sterile,
@@ -3420,10 +3416,6 @@
 	dir = 1
 	},
 /area/oscar_outpost)
-"xj" = (
-/obj/effect/landmark/patrol_point/tgmc_24,
-/turf/open/floor/plating/ground/dirt,
-/area/oscar_outpost/village/fairgrounds)
 "xk" = (
 /obj/structure/closet/crate,
 /obj/item/clothing/under/brown,
@@ -4518,10 +4510,6 @@
 /obj/machinery/vending/armor_supply,
 /turf/open/floor/prison,
 /area/oscar_outpost/base)
-"CF" = (
-/obj/effect/landmark/patrol_point/tgmc_22,
-/turf/open/floor,
-/area/oscar_outpost/village/south)
 "CH" = (
 /obj/machinery/space_heater,
 /turf/open/floor/wood,
@@ -7696,10 +7684,6 @@
 /obj/item/weapon/gun/smg/m25,
 /turf/open/floor,
 /area/oscar_outpost/village)
-"Qk" = (
-/obj/effect/landmark/patrol_point/tgmc_12,
-/turf/open/floor/plating/ground/dirt,
-/area/oscar_outpost/village/fairgrounds)
 "Ql" = (
 /obj/effect/spawner/random/food_or_drink/beer/oscaroutpost{
 	pixel_x = -5;
@@ -8831,10 +8815,6 @@
 	dir = 4
 	},
 /area/oscar_outpost/outside/west)
-"Vl" = (
-/obj/effect/landmark/patrol_point/tgmc_23,
-/turf/open/floor,
-/area/oscar_outpost/village/south)
 "Vm" = (
 /obj/effect/landmark/start/job/squadcorpsman,
 /obj/machinery/landinglight/lz1{
@@ -9591,10 +9571,6 @@
 /obj/machinery/computer/crew,
 /turf/open/floor/mainship/sterile,
 /area/oscar_outpost/village/central)
-"Yw" = (
-/obj/effect/landmark/patrol_point/tgmc_13,
-/turf/open/floor/plating/ground/dirt,
-/area/oscar_outpost/village/fairgrounds)
 "Yx" = (
 /obj/structure/bed/chair{
 	dir = 4
@@ -31441,9 +31417,9 @@ DU
 DU
 GY
 nU
-CF
 DP
-do
+DP
+DP
 sV
 sV
 sV
@@ -31945,7 +31921,7 @@ DU
 DU
 GY
 zI
-Vl
+DP
 el
 DP
 nU
@@ -40500,7 +40476,7 @@ VN
 VN
 Ta
 Ta
-Qk
+Ta
 Ta
 Ta
 Ta
@@ -41001,7 +40977,7 @@ Ta
 PE
 Ta
 Ta
-Yw
+Ta
 Ta
 lg
 Ta
@@ -41507,7 +41483,7 @@ VI
 VQ
 VI
 ZP
-xj
+Ta
 lO
 id
 lI

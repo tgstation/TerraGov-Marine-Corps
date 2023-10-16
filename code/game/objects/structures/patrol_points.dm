@@ -6,10 +6,13 @@
 	anchored = TRUE
 	resistance_flags = RESIST_ALL
 	layer = LADDER_LAYER
+	density = TRUE
 	///ID to link with associated exit point
 	var/id = null
 	///The linked exit point
 	var/obj/effect/landmark/patrol_point/linked_point = null
+	var/obj/effect/dropship_shadow/shadow
+	var/shadow_icon_state = "shadow"
 
 /obj/structure/patrol_point/Initialize(mapload)
 	..()
@@ -19,6 +22,7 @@
 
 /obj/structure/patrol_point/LateInitialize()
 	create_link()
+	set_light(15, 3, COLOR_WHITE)
 
 ///Links the patrol point to its associated exit point
 /obj/structure/patrol_point/proc/create_link()
@@ -66,6 +70,10 @@
 		span_notice("You walk through the [src]."))
 		user.trainteleport(linked_point.loc)
 		add_spawn_protection(user)
+
+	if(!shadow)
+		shadow = new(linked_point.loc, shadow_icon_state)
+		addtimer(CALLBACK(src, PROC_REF(dropship_exit)), 15 SECONDS)
 
 	new /atom/movable/effect/rappel_rope(linked_point.loc)
 
@@ -119,53 +127,40 @@
 /obj/structure/patrol_point/proc/remove_spawn_protection(mob/user)
 	user.status_flags &= ~GODMODE
 
-/obj/structure/patrol_point/tgmc_11
+/obj/structure/patrol_point/proc/dropship_exit()
+	animate(shadow, alpha = 0, time = 15)
+	QDEL_NULL_IN(src, shadow, 15)
+
+/obj/structure/patrol_point/tgmc
+	name = "UD-4L Cheyenne Dropship"
+	desc = "A versatile dropship and tactical transport employed in a primary role in the TGMC."
+	icon = 'icons/Marine/dropship_prop.dmi'
+	icon_state = "ud"
+	pixel_x = -48
+	bound_height = 224
+
+/obj/structure/patrol_point/tgmc/tgmc_11
 	id = "TGMC_11"
 
-/obj/structure/patrol_point/tgmc_12
-	id = "TGMC_12"
-
-/obj/structure/patrol_point/tgmc_13
-	id = "TGMC_13"
-
-/obj/structure/patrol_point/tgmc_14
-	id = "TGMC_14"
-
-/obj/structure/patrol_point/tgmc_21
+/obj/structure/patrol_point/tgmc/tgmc_21
 	id = "TGMC_21"
 
-/obj/structure/patrol_point/tgmc_22
-	id = "TGMC_22"
+/obj/structure/patrol_point/som
+	name = "Antares Dropship"
+	desc = "A versatile dropship and tactical transport employed in a primary role in the MMC."
+	icon = 'icons/Marine/som_dropship_prop.dmi'
+	icon_state = "antares"
+	shadow_icon_state = "antares_shadow"
+	pixel_x = -4
+	pixel_y = -39
+	bound_width = 192
+	bound_height = 32
 
-/obj/structure/patrol_point/tgmc_23
-	id = "TGMC_23"
-
-/obj/structure/patrol_point/tgmc_24
-	id = "TGMC_24"
-
-/obj/structure/patrol_point/som_11
+/obj/structure/patrol_point/som/som_11
 	id = "SOM_11"
 
-/obj/structure/patrol_point/som_12
-	id = "SOM_12"
-
-/obj/structure/patrol_point/som_13
-	id = "SOM_13"
-
-/obj/structure/patrol_point/som_14
-	id = "SOM_14"
-
-/obj/structure/patrol_point/som_21
+/obj/structure/patrol_point/som/som_21
 	id = "SOM_21"
-
-/obj/structure/patrol_point/som_22
-	id = "SOM_22"
-
-/obj/structure/patrol_point/som_23
-	id = "SOM_23"
-
-/obj/structure/patrol_point/som_24
-	id = "SOM_24"
 
 /atom/movable/effect/rappel_rope
 	name = "rope"
@@ -190,3 +185,22 @@
 /atom/movable/effect/rappel_rope/proc/ropeanimation_stop()
 	flick("rope_up", src)
 	QDEL_IN(src, 5)
+
+/obj/effect/dropship_shadow
+	icon = 'icons/Marine/dropship_prop.dmi'
+	icon_state = "shadow"
+	pixel_x = -48
+	pixel_y = -120
+	alpha = 0
+	layer = ABOVE_MOB_LAYER
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+
+/obj/effect/dropship_shadow/Initialize(mapload, new_icon_state)
+	. = ..()
+	if(new_icon_state)
+		icon_state = new_icon_state
+	animate(src, alpha = 255, time = 15)
+	var/obj/effect/abstract/particle_holder/dust = new(get_turf(src), /particles/shuttle_dust)
+	dust.particles.position = generator(GEN_CIRCLE, 180, 180, NORMAL_RAND)
+	addtimer(VARSET_CALLBACK(dust.particles, count, 0), 14 SECONDS)
+	QDEL_IN(dust, 15 SECONDS)

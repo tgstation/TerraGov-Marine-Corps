@@ -4639,10 +4639,6 @@
 	dir = 8
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
-"aQK" = (
-/obj/effect/landmark/patrol_point/som/som_23,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/northeast)
 "aRg" = (
 /obj/structure/table,
 /obj/effect/spawner/random/engineering/technology_scanner,
@@ -8659,10 +8655,6 @@
 	dir = 4
 	},
 /area/bigredv2/caves/lambda_lab)
-"ffN" = (
-/obj/effect/landmark/patrol_point/som/som_22,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/northeast)
 "fgb" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/asteroidfloor,
@@ -10200,10 +10192,6 @@
 	dir = 4
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
-"jsF" = (
-/obj/effect/landmark/patrol_point/som/som_24,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/northeast)
 "jsL" = (
 /obj/effect/ai_node,
 /obj/structure/cable,
@@ -59447,7 +59435,7 @@ gCQ
 gCQ
 gCQ
 gCQ
-ffN
+vyZ
 vyZ
 vyZ
 vyZ
@@ -60537,7 +60525,7 @@ mtc
 mtc
 mtc
 vyZ
-jsF
+vyZ
 vyZ
 kKe
 kKe
@@ -61844,7 +61832,7 @@ vyZ
 vyZ
 vyZ
 vyZ
-aQK
+vyZ
 gCQ
 gCQ
 gCQ

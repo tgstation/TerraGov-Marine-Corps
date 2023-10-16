@@ -555,10 +555,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/marshal_office)
-"qj" = (
-/obj/effect/landmark/patrol_point/tgmc_22,
-/turf/open/floor/asteroidfloor,
-/area/bigredv2/outside/space_port)
 "qp" = (
 /turf/open/floor/plating/ground/mars/dirttosand/autosmooth{
 	dir = 4
@@ -732,12 +728,6 @@
 "uL" = (
 /turf/open/floor/marking/asteroidwarning{
 	dir = 9
-	},
-/area/bigredv2/outside/space_port)
-"uN" = (
-/obj/effect/landmark/patrol_point/tgmc_24,
-/turf/open/floor/marking/asteroidwarning{
-	dir = 1
 	},
 /area/bigredv2/outside/space_port)
 "uR" = (
@@ -1766,10 +1756,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor,
 /area/bigredv2/outside/marshal_office)
-"Yg" = (
-/obj/effect/landmark/patrol_point/tgmc_23,
-/turf/open/floor/asteroidfloor,
-/area/bigredv2/outside/space_port)
 "Yn" = (
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/marshal_office)
@@ -2272,7 +2258,7 @@ LR
 LR
 Wt
 Ei
-qj
+gM
 mf
 mR
 qE
@@ -2469,7 +2455,7 @@ Iq
 gM
 gM
 uZ
-Yg
+gM
 gM
 gM
 gM
@@ -2783,7 +2769,7 @@ LR
 LR
 Wt
 Ei
-uN
+su
 Zk
 im
 im

@@ -1331,10 +1331,6 @@
 /obj/structure/cable,
 /turf/open/shuttle/dropship/floor,
 /area/lv624/ground/jungle9)
-"hk" = (
-/obj/effect/landmark/patrol_point/som/som_22,
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/caves/east1)
 "hm" = (
 /obj/structure/closet/crate/explosives,
 /turf/open/floor/rcircuit/off,
@@ -1557,10 +1553,6 @@
 	},
 /turf/open/ground/grass/weedable,
 /area/lv624/lazarus/spaceport)
-"io" = (
-/obj/effect/landmark/patrol_point/som/som_24,
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/caves/east1)
 "ip" = (
 /obj/structure/window/framed/colony/reinforced,
 /turf/open/floor/tile/red/redtaupe{
@@ -3566,10 +3558,6 @@
 	dir = 8
 	},
 /area/lv624/lazarus/hydroponics)
-"sL" = (
-/obj/effect/landmark/patrol_point/tgmc_23,
-/turf/open/floor/plating/mainship,
-/area/lv624/lazarus/crashed_ship/desparity)
 "sM" = (
 /obj/effect/landmark/corpsespawner/doctor,
 /turf/open/floor/tile/dark,
@@ -4391,10 +4379,6 @@
 /obj/effect/spawner/random/medical/medhud,
 /turf/open/floor/tile/dark/blue2/corner,
 /area/lv624/lazarus/research/caves)
-"wZ" = (
-/obj/effect/landmark/patrol_point/tgmc_24,
-/turf/open/floor/plating/dmg3,
-/area/lv624/lazarus/crashed_ship/desparity)
 "xc" = (
 /obj/structure/flora/ausbushes/grassybush{
 	pixel_x = 18;
@@ -4544,7 +4528,6 @@
 /turf/open/floor/tile/bar,
 /area/lv624/lazarus/canteen)
 "xT" = (
-/obj/effect/landmark/patrol_point/som/som_14,
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 10
 	},
@@ -4877,10 +4860,6 @@
 /obj/structure/flora/ausbushes/genericbush,
 /turf/open/ground/grass/weedable,
 /area/lv624/ground/jungle7)
-"zu" = (
-/obj/effect/landmark/patrol_point/som/som_23,
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/caves/east1)
 "zv" = (
 /obj/machinery/light{
 	dir = 1
@@ -5663,12 +5642,6 @@
 	},
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth/buildable,
 /area/lv624/ground/jungle5)
-"Dp" = (
-/obj/structure/flora/jungle/vines,
-/obj/structure/cable,
-/obj/effect/landmark/patrol_point/som/som_13,
-/turf/open/ground/grass/weedable,
-/area/lv624/lazarus/spaceport2)
 "Dq" = (
 /obj/structure/flora/grass/tallgrass/tallgrasscorner{
 	color = "#798963"
@@ -5952,13 +5925,6 @@
 "EP" = (
 /turf/closed/wall/wood,
 /area/lv624/lazarus/bar)
-"EQ" = (
-/obj/effect/landmark/patrol_point/tgmc_12,
-/obj/machinery/landinglight/lz1{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/lv624/lazarus/spaceport)
 "ER" = (
 /obj/effect/landmark/start/job/survivor,
 /turf/open/floor/plating/ground/dirt,
@@ -5975,10 +5941,6 @@
 /obj/structure/cable,
 /turf/open/floor/podhatch/floor,
 /area/lv624/ground/jungle9)
-"Fc" = (
-/obj/effect/landmark/patrol_point/tgmc_22,
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/caves/west1)
 "Fe" = (
 /obj/structure/table,
 /obj/item/trash/barcardine,
@@ -6402,10 +6364,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
 /area/lv624/lazarus/captain)
-"He" = (
-/obj/effect/landmark/patrol_point/tgmc_13,
-/turf/open/ground/grass/weedable,
-/area/lv624/lazarus/spaceport)
 "Hg" = (
 /obj/structure/flora/jungle/vines,
 /turf/open/ground/grass/weedable,
@@ -7632,11 +7590,6 @@
 	},
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle9)
-"Na" = (
-/obj/effect/landmark/patrol_point/tgmc_14,
-/obj/effect/turf_decal/riverdecal,
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/lazarus/spaceport)
 "Nb" = (
 /obj/structure/flora/ausbushes/brflowers,
 /turf/open/ground/grass/weedable,
@@ -8679,10 +8632,6 @@
 /obj/machinery/sleeper,
 /turf/open/floor/tile/blue/taupebluecorner,
 /area/lv624/lazarus/medbay)
-"Sr" = (
-/obj/effect/landmark/patrol_point/som/som_12,
-/turf/open/floor,
-/area/lv624/lazarus/spaceport2)
 "Ss" = (
 /obj/structure/flora/grass/tallgrass/tallgrasscorner{
 	color = "#798963";
@@ -10727,7 +10676,7 @@ fn
 Yn
 fn
 fn
-Sr
+fn
 fn
 hw
 wl
@@ -10748,7 +10697,7 @@ FC
 FC
 FC
 FC
-Fc
+vt
 vt
 vt
 lD
@@ -11358,7 +11307,7 @@ Ux
 Ux
 YP
 Um
-Dp
+jJ
 Uw
 wh
 "}
@@ -11785,7 +11734,7 @@ bT
 xJ
 tK
 tK
-sL
+mU
 Oh
 vt
 lD
@@ -12306,7 +12255,7 @@ aD
 jM
 mU
 mU
-wZ
+tK
 bT
 Oh
 vX
@@ -19876,7 +19825,7 @@ so
 dW
 so
 so
-EQ
+so
 so
 dZ
 so
@@ -19892,7 +19841,7 @@ wh
 "}
 (94,1,1) = {"
 wh
-hk
+Uq
 Uq
 Uq
 Uq
@@ -20081,7 +20030,7 @@ eJ
 vw
 vw
 vw
-He
+ZV
 QT
 uv
 WK
@@ -20391,7 +20340,7 @@ ce
 nX
 xK
 nX
-Na
+nX
 hQ
 hQ
 eJ
@@ -20416,7 +20365,7 @@ wh
 FC
 FC
 FC
-io
+Uq
 Uq
 Uq
 Uq
@@ -20523,7 +20472,7 @@ FC
 FC
 Uq
 Uq
-zu
+Uq
 Uq
 Uq
 Uq

@@ -5764,10 +5764,6 @@
 /obj/machinery/door/airlock/multi_tile/mainship/generic,
 /turf/open/floor,
 /area/campaign/jungle_outpost/outpost/medbay/lobby)
-"yL" = (
-/obj/effect/landmark/patrol_point/som/som_23,
-/turf/open/ground/grass/weedable,
-/area/campaign/jungle_outpost/ground/jungle/north_east)
 "yM" = (
 /obj/structure/cable,
 /turf/open/floor/tile/green/greentaupecorner{
@@ -6023,11 +6019,6 @@
 	dir = 4
 	},
 /area/campaign/jungle_outpost/outpost/science/south)
-"zI" = (
-/obj/structure/flora/jungle/grass/thin,
-/obj/effect/landmark/patrol_point/som/som_12,
-/turf/open/ground/grass/weedable,
-/area/campaign/jungle_outpost/ground/jungle/south_west)
 "zK" = (
 /turf/open/ground/grass/beach,
 /area/campaign/jungle_outpost/ground/jungle/east)
@@ -6244,11 +6235,6 @@
 	dir = 8
 	},
 /area/campaign/jungle_outpost/ground/jungle)
-"AI" = (
-/obj/effect/landmark/patrol_point/tgmc_23,
-/obj/structure/flora/jungle/grass/thin,
-/turf/open/ground/grass/weedable,
-/area/campaign/jungle_outpost/ground/jungle/north_west)
 "AJ" = (
 /obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/tile/neutral{
@@ -6767,11 +6753,6 @@
 /area/campaign/jungle_outpost/ground/jungle/east)
 "CV" = (
 /obj/structure/rock/variable/jungle/big,
-/turf/open/ground/grass/weedable,
-/area/campaign/jungle_outpost/ground/jungle/south_west)
-"CW" = (
-/obj/structure/flora/jungle/bush,
-/obj/effect/landmark/patrol_point/som/som_14,
 /turf/open/ground/grass/weedable,
 /area/campaign/jungle_outpost/ground/jungle/south_west)
 "CX" = (
@@ -7514,11 +7495,6 @@
 	dir = 10
 	},
 /area/campaign/jungle_outpost/outpost/security)
-"Gk" = (
-/obj/effect/landmark/patrol_point/som/som_22,
-/obj/structure/flora/jungle/grass/thin,
-/turf/open/ground/grass/weedable,
-/area/campaign/jungle_outpost/ground/jungle/north_east)
 "Gl" = (
 /obj/structure/flora/jungle/grass,
 /turf/open/ground/grass/weedable,
@@ -8373,12 +8349,6 @@
 	},
 /turf/open/liquid/water/river/autosmooth/deep,
 /area/campaign/jungle_outpost/ground/river/east)
-"Kj" = (
-/obj/effect/landmark/patrol_point/tgmc_14,
-/turf/open/floor/plating/ground/dirtgrassborder2{
-	dir = 4
-	},
-/area/campaign/jungle_outpost/ground/jungle/south_east)
 "Kk" = (
 /obj/structure/flora/jungle/bush,
 /turf/open/ground/grass/weedable,
@@ -8847,10 +8817,6 @@
 	dir = 4
 	},
 /area/campaign/jungle_outpost/outpost/medbay/chemistry)
-"Mk" = (
-/obj/effect/landmark/patrol_point/tgmc_24,
-/turf/open/ground/grass/weedable,
-/area/campaign/jungle_outpost/ground/jungle/north_west)
 "Ml" = (
 /obj/structure/closet/firecloset,
 /turf/open/floor/tile/purple/whitepurple{
@@ -10469,10 +10435,6 @@
 	},
 /turf/open/floor,
 /area/campaign/jungle_outpost/outpost/security)
-"Tq" = (
-/obj/effect/landmark/patrol_point/tgmc_13,
-/turf/open/ground/grass/weedable,
-/area/campaign/jungle_outpost/ground/jungle/south_east)
 "Tr" = (
 /turf/open/floor/plating/ground/concrete/lines{
 	dir = 1
@@ -10693,10 +10655,6 @@
 "Un" = (
 /turf/closed/mineral/smooth/indestructible,
 /area/campaign/jungle_outpost/ground/river/east)
-"Uo" = (
-/obj/effect/landmark/patrol_point/tgmc_12,
-/turf/open/ground/grass/weedable,
-/area/campaign/jungle_outpost/ground/jungle/south_east)
 "Up" = (
 /obj/structure/platform{
 	dir = 1
@@ -11499,10 +11457,6 @@
 	},
 /turf/open/floor/iron/smooth,
 /area/campaign/jungle_outpost/ground/river/west)
-"Xy" = (
-/obj/effect/landmark/patrol_point/tgmc_22,
-/turf/open/ground/grass/weedable,
-/area/campaign/jungle_outpost/ground/jungle/north_west)
 "Xz" = (
 /turf/open/ground/grass/weedable,
 /area/campaign/jungle_outpost/ground/jungle/south_west)
@@ -11876,10 +11830,6 @@
 	dir = 8
 	},
 /area/campaign/jungle_outpost/outpost/science)
-"Zh" = (
-/obj/effect/landmark/patrol_point/som/som_24,
-/turf/open/ground/grass/weedable,
-/area/campaign/jungle_outpost/ground/jungle/north_east)
 "Zj" = (
 /obj/structure/flora/jungle/bush,
 /turf/open/floor/plating/ground/dirtgrassborder2/corner2{
@@ -11969,10 +11919,6 @@
 	dir = 8
 	},
 /area/campaign/jungle_outpost/ground/jungle/east)
-"ZB" = (
-/obj/effect/landmark/patrol_point/som/som_13,
-/turf/open/ground/grass/weedable,
-/area/campaign/jungle_outpost/ground/jungle/south_west)
 "ZD" = (
 /obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /obj/structure/platform{
@@ -12392,7 +12338,7 @@ RS
 RS
 Fe
 Fe
-Xy
+Fe
 Lt
 Fe
 Fe
@@ -12679,7 +12625,7 @@ Xz
 Xz
 Xz
 Ft
-ZB
+Xz
 Xz
 Xz
 Ft
@@ -12847,7 +12793,7 @@ RS
 RS
 Ui
 RS
-Mk
+Fe
 Fe
 Fe
 Fe
@@ -13444,7 +13390,7 @@ Xz
 Xz
 Xz
 Xz
-zI
+Ft
 xS
 "}
 (10,1,1) = {"
@@ -13452,7 +13398,7 @@ ST
 BV
 Fe
 Fe
-AI
+Lt
 RS
 RS
 Ui
@@ -13745,7 +13691,7 @@ TJ
 Xz
 Ft
 wJ
-CW
+Uj
 Ft
 cm
 cm
@@ -33505,7 +33451,7 @@ Ze
 Ze
 Ze
 Ze
-Tq
+Ze
 Ze
 Ze
 OT
@@ -33970,7 +33916,7 @@ kt
 (145,1,1) = {"
 KU
 Ex
-Gk
+uY
 EU
 EU
 EU
@@ -34108,7 +34054,7 @@ VH
 VH
 rG
 VH
-Kj
+VH
 VH
 rG
 PK
@@ -34125,7 +34071,7 @@ Ex
 Ho
 EU
 EU
-Zh
+EU
 YU
 Jr
 qa
@@ -34414,7 +34360,7 @@ Ze
 Ze
 Ze
 Ze
-Uo
+Ze
 Ze
 Ze
 Ze
@@ -34430,7 +34376,7 @@ Ex
 sB
 he
 Ho
-yL
+EU
 uY
 uY
 Yi

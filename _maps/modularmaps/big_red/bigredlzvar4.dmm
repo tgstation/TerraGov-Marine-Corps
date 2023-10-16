@@ -522,11 +522,6 @@
 	dir = 4
 	},
 /area/shuttle/drop1/lz1)
-"pV" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/landmark/patrol_point/tgmc_23,
-/turf/open/floor/asteroidfloor,
-/area/bigredv2/outside/space_port)
 "qg" = (
 /turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/space_port)
@@ -1227,11 +1222,6 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
-"Id" = (
-/obj/structure/cable,
-/obj/effect/landmark/patrol_point/tgmc_24,
-/turf/open/floor/asteroidfloor,
-/area/bigredv2/outside/space_port)
 "Ik" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 2
@@ -1622,11 +1612,6 @@
 "Sw" = (
 /obj/machinery/landinglight/lz1,
 /turf/open/floor/marking/asteroidwarning,
-/area/bigredv2/outside/space_port)
-"SE" = (
-/obj/structure/cable,
-/obj/effect/landmark/patrol_point/tgmc_22,
-/turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/space_port)
 "SF" = (
 /obj/machinery/washing_machine,
@@ -2157,7 +2142,7 @@ CE
 yj
 OE
 Nt
-pV
+ad
 dV
 dV
 dV
@@ -2474,7 +2459,7 @@ zV
 zV
 al
 zV
-SE
+zV
 Tb
 zV
 zV
@@ -2484,7 +2469,7 @@ zV
 zV
 zV
 zV
-Id
+zV
 PE
 Na
 mL

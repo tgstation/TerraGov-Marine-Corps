@@ -18,10 +18,6 @@
 /obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/southwest)
-"m" = (
-/obj/effect/landmark/patrol_point/som/som_14,
-/turf/open/floor/plating/ground/mars/random/cave/rock,
-/area/bigredv2/caves/southwest)
 "n" = (
 /obj/effect/landmark/weed_node,
 /obj/effect/landmark/weed_node,
@@ -55,20 +51,12 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/southwest)
-"z" = (
-/obj/effect/landmark/patrol_point/som/som_13,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/southwest)
 "B" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/southwest)
 "E" = (
 /obj/effect/ai_node,
-/turf/open/floor/plating/ground/mars/random/cave/rock,
-/area/bigredv2/caves/southwest)
-"G" = (
-/obj/effect/landmark/patrol_point/som/som_12,
 /turf/open/floor/plating/ground/mars/random/cave/rock,
 /area/bigredv2/caves/southwest)
 "J" = (
@@ -744,7 +732,7 @@ P
 P
 P
 j
-m
+p
 h
 h
 h
@@ -848,7 +836,7 @@ h
 h
 h
 h
-G
+p
 P
 P
 P
@@ -1067,7 +1055,7 @@ j
 p
 h
 h
-z
+h
 p
 P
 P

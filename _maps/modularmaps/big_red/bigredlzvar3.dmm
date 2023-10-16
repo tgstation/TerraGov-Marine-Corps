@@ -28,10 +28,6 @@
 /obj/item/stack/sheet/metal,
 /turf/open/floor/plating/dmg1,
 /area/bigredv2/outside/space_port)
-"bC" = (
-/obj/effect/landmark/patrol_point/tgmc_23,
-/turf/open/floor/marking/asteroidwarning,
-/area/bigredv2/outside/space_port)
 "bK" = (
 /obj/machinery/light,
 /turf/open/floor/tile/red/redtaupecorner,
@@ -209,13 +205,6 @@
 /obj/item/shard,
 /obj/effect/ai_node,
 /turf/open/floor/plating,
-/area/bigredv2/outside/space_port)
-"gt" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/obj/effect/landmark/patrol_point/tgmc_22,
-/turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/space_port)
 "gw" = (
 /obj/structure/closet/l3closet/security,
@@ -963,11 +952,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/nw)
-"yQ" = (
-/obj/structure/cable,
-/obj/effect/landmark/patrol_point/tgmc_24,
-/turf/open/floor/asteroidfloor,
-/area/bigredv2/outside/space_port)
 "yS" = (
 /obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /obj/machinery/door/poddoor/shutters/mainship{
@@ -2334,7 +2318,7 @@ wT
 wT
 pG
 Bk
-gt
+NO
 ZR
 Ry
 eW
@@ -2392,7 +2376,7 @@ PV
 PV
 ZR
 PV
-bC
+wV
 Bk
 Bi
 TI
@@ -2541,7 +2525,7 @@ Mm
 hb
 hb
 OG
-yQ
+hb
 Mm
 Jk
 hb

@@ -1184,13 +1184,6 @@
 /obj/structure/window/framed/colony/reinforced/tinted,
 /turf/open/floor/plating,
 /area/bigredv2/outside/marshal_office)
-"GP" = (
-/obj/structure/prop/mainship/hangar_stencil,
-/obj/effect/landmark/patrol_point/tgmc_24,
-/turf/open/floor/marking/asteroidwarning{
-	dir = 10
-	},
-/area/bigredv2/outside/space_port)
 "GW" = (
 /obj/structure/cable,
 /turf/open/floor/plating,
@@ -1649,12 +1642,6 @@
 "QK" = (
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/telecomm)
-"QM" = (
-/obj/structure/cable,
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/landmark/patrol_point/tgmc_23,
-/turf/open/floor/asteroidfloor,
-/area/bigredv2/outside/space_port)
 "QR" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor,
@@ -1843,10 +1830,6 @@
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/telecomm)
-"WW" = (
-/obj/effect/landmark/patrol_point/tgmc_22,
-/turf/open/floor/asteroidfloor,
-/area/bigredv2/outside/space_port)
 "Xb" = (
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
@@ -2153,7 +2136,7 @@ IU
 IU
 IU
 IU
-WW
+IU
 IU
 Kp
 gb
@@ -2546,7 +2529,7 @@ gY
 SA
 gY
 xN
-QM
+Zw
 gY
 gY
 gY
@@ -2594,7 +2577,7 @@ IU
 IU
 aK
 Or
-GP
+LI
 fy
 gb
 LT

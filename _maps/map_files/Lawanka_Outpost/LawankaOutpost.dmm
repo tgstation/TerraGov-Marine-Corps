@@ -1926,10 +1926,6 @@
 /obj/structure/flora/tree/jungle,
 /turf/open/ground/grass/weedable,
 /area/lawankaoutpost/outside/southeast)
-"bGj" = (
-/obj/effect/landmark/patrol_point/tgmc_22,
-/turf/open/floor/plating/ground/dirt,
-/area/lawankaoutpost/caves/east)
 "bGF" = (
 /obj/structure/table,
 /turf/open/floor/tile/yellow/full,
@@ -3003,10 +2999,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark2,
 /area/lawankaoutpost/colony/cargo)
-"cCG" = (
-/obj/effect/landmark/patrol_point/som/som_23,
-/turf/open/floor/plating/ground/dirt,
-/area/lawankaoutpost/caves/southwest)
 "cCH" = (
 /obj/machinery/door/airlock/mainship/security/glass/free_access{
 	dir = 1;
@@ -3296,10 +3288,6 @@
 	dir = 10
 	},
 /area/lawankaoutpost/colony/southdorms)
-"cOI" = (
-/obj/effect/landmark/patrol_point/som/som_14,
-/turf/open/floor/plating/ground/dirt,
-/area/lawankaoutpost/caves/east)
 "cOK" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 9
@@ -3877,10 +3865,6 @@
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/plating/ground/dirt,
 /area/lawankaoutpost/caves/west)
-"dnC" = (
-/obj/effect/landmark/patrol_point/tgmc_24,
-/turf/open/floor/plating/ground/dirt,
-/area/lawankaoutpost/caves/east)
 "dnE" = (
 /obj/structure/bed/chair/comfy{
 	dir = 4
@@ -6994,10 +6978,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor,
 /area/lawankaoutpost/colony/southdorms)
-"fTr" = (
-/obj/effect/landmark/patrol_point/som/som_24,
-/turf/open/floor/plating/ground/dirt,
-/area/lawankaoutpost/caves/southwest)
 "fTz" = (
 /turf/open/floor/tile/dark/brown2{
 	dir = 10
@@ -7832,10 +7812,6 @@
 /obj/structure/flora/jungle/vines,
 /turf/open/ground/grass/weedable,
 /area/lawankaoutpost/outside/southeast)
-"gCE" = (
-/obj/effect/landmark/patrol_point/som/som_22,
-/turf/open/floor/plating/ground/dirt,
-/area/lawankaoutpost/caves/southwest)
 "gCQ" = (
 /obj/effect/ai_node,
 /turf/open/floor/tile/red/whitered{
@@ -8542,11 +8518,6 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber,
 /turf/open/floor/tile/red/full,
 /area/lawankaoutpost/colony/operations_administration)
-"hmD" = (
-/obj/effect/landmark/weed_node,
-/obj/effect/landmark/patrol_point/tgmc_23,
-/turf/open/floor/plating/ground/dirt,
-/area/lawankaoutpost/caves/east)
 "hmN" = (
 /obj/machinery/vending/snack,
 /turf/open/floor/tile/green/greentaupe{
@@ -9492,10 +9463,6 @@
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/tile/dark2,
 /area/lawankaoutpost/colony/mining)
-"ifk" = (
-/obj/effect/landmark/patrol_point/som/som_12,
-/turf/open/floor/plating/ground/dirt,
-/area/lawankaoutpost/caves/east)
 "ifn" = (
 /obj/structure/flora/ausbushes/grassybush{
 	pixel_x = -7;
@@ -11458,11 +11425,6 @@
 	dir = 1
 	},
 /area/lawankaoutpost/colony/southdorms)
-"jMW" = (
-/obj/effect/landmark/weed_node,
-/obj/effect/landmark/patrol_point/som/som_13,
-/turf/open/floor/plating/ground/dirt,
-/area/lawankaoutpost/caves/east)
 "jNn" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable,
@@ -19380,10 +19342,6 @@
 	},
 /turf/open/floor/tile/dark2,
 /area/lawankaoutpost/colony/marshalls)
-"qqN" = (
-/obj/effect/landmark/patrol_point/tgmc_12,
-/turf/open/floor/plating/ground/dirt,
-/area/lawankaoutpost/caves/northwest)
 "qqQ" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/landmark/weed_node,
@@ -21797,10 +21755,6 @@
 	dir = 4
 	},
 /area/lawankaoutpost/colony/recdorms)
-"ssk" = (
-/obj/effect/landmark/patrol_point/tgmc_14,
-/turf/open/floor/plating/ground/dirt,
-/area/lawankaoutpost/caves/northwest)
 "sss" = (
 /obj/effect/landmark/weed_node,
 /obj/effect/ai_node,
@@ -27034,10 +26988,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/tile/red/redtaupe,
 /area/lawankaoutpost/colony/recdorms)
-"wIC" = (
-/obj/effect/landmark/patrol_point/tgmc_13,
-/turf/open/floor/plating/ground/dirt,
-/area/lawankaoutpost/caves/northwest)
 "wIE" = (
 /turf/open/floor/tile/blue/taupeblue,
 /area/lawankaoutpost/colony/southdorms)
@@ -31373,7 +31323,7 @@ oqq
 uDr
 uDr
 flP
-qqN
+flP
 flP
 flP
 flP
@@ -32455,10 +32405,10 @@ oqq
 oqq
 oqq
 uDr
-wIC
 flP
 flP
-ssk
+flP
+flP
 flP
 xGW
 uDr
@@ -35035,7 +34985,7 @@ phF
 bKe
 bKe
 bKe
-gCE
+bKe
 phF
 bKe
 bKe
@@ -35467,10 +35417,10 @@ xGW
 xGW
 bKe
 bKe
-cCG
 bKe
 bKe
-fTr
+bKe
+bKe
 bKe
 bKe
 xGW
@@ -77562,7 +77512,7 @@ sIW
 bVa
 bVa
 bVa
-hmD
+tub
 bVa
 bVa
 bVa
@@ -78048,7 +77998,7 @@ eZx
 bVa
 bVa
 bVa
-jMW
+tub
 bVa
 bVa
 bVa
@@ -78263,11 +78213,11 @@ bVa
 tub
 bVa
 bVa
-ifk
 bVa
 bVa
 bVa
-cOI
+bVa
+bVa
 bVa
 nQs
 bVa
@@ -78430,11 +78380,11 @@ sIW
 bVa
 bVa
 bVa
-bGj
 bVa
 bVa
 bVa
-dnC
+bVa
+bVa
 tub
 tub
 uDr

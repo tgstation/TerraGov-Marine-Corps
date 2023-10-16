@@ -18606,12 +18606,6 @@
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/ice,
 /area/ice_colony/exterior/underground/caves/open/garbledradio)
-"diw" = (
-/obj/effect/turf_underlay/icefloor,
-/obj/effect/turf_underlay/icefloor,
-/obj/effect/landmark/patrol_point/som/som_23,
-/turf/closed/mineral/smooth/bluefrostwall,
-/area/ice_colony/exterior/underground/caves/rock)
 "dka" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable,
@@ -19896,10 +19890,6 @@
 /obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
 /area/ice_colony/underground/storage)
-"fkg" = (
-/obj/effect/landmark/patrol_point/som/som_12,
-/turf/open/floor/plating/ground/snow/layer0,
-/area/ice_colony/exterior/underground/caves/open)
 "fkU" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable,
@@ -20662,10 +20652,6 @@
 "gqZ" = (
 /turf/open/floor/plating/ground/ice,
 /area/ice_colony/exterior/underground/caves/rock)
-"grl" = (
-/obj/effect/landmark/patrol_point/tgmc_14,
-/turf/open/floor/plating/ground/ice,
-/area/ice_colony/exterior/underground/caves/open)
 "grm" = (
 /obj/structure/cable,
 /obj/effect/landmark/weed_node,
@@ -24214,10 +24200,6 @@
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/maintenance/central)
-"lCm" = (
-/obj/effect/landmark/patrol_point/tgmc_24,
-/turf/open/floor/plating/ground/snow/layer1,
-/area/ice_colony/exterior/surface/landing_pad2)
 "lCB" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/ice,
@@ -25026,10 +25008,6 @@
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/freezer,
 /area/ice_colony/surface/dorms/restroom_w)
-"mBK" = (
-/obj/effect/landmark/patrol_point/tgmc_12,
-/turf/open/floor/plating/ground/ice,
-/area/ice_colony/exterior/underground/caves/open)
 "mBR" = (
 /obj/structure/bed,
 /obj/item/bedsheet/orange,
@@ -27637,10 +27615,6 @@
 	dir = 8
 	},
 /area/ice_colony/underground/hallway/north_west/garbledradio)
-"qms" = (
-/obj/effect/landmark/patrol_point/tgmc_23,
-/turf/open/floor/tile/dark,
-/area/ice_colony/exterior/surface/landing_pad2)
 "qnr" = (
 /obj/effect/turf_decal/warning_stripes/thin,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -28595,10 +28569,6 @@
 /obj/effect/decal/cleanable/blood/gibs/xeno,
 /turf/open/floor/wood,
 /area/ice_colony/surface/bar/bar)
-"rzp" = (
-/obj/effect/landmark/patrol_point/tgmc_13,
-/turf/open/floor/plating/ground/ice,
-/area/ice_colony/exterior/underground/caves/open)
 "rzD" = (
 /obj/machinery/air_alarm{
 	dir = 4
@@ -31404,10 +31374,6 @@
 	dir = 4
 	},
 /area/ice_colony/underground/hallway/south_east/garbledradio)
-"vdh" = (
-/obj/effect/landmark/patrol_point/som/som_13,
-/turf/open/floor/plating/ground/snow/layer0,
-/area/ice_colony/exterior/underground/caves/open)
 "vdi" = (
 /obj/effect/spawner/random/misc/structure/flavorvending,
 /turf/open/floor/tile/dark/yellow2{
@@ -31666,10 +31632,6 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/freezer,
 /area/ice_colony/surface/bar/bar)
-"vuk" = (
-/obj/effect/landmark/patrol_point/som/som_14,
-/turf/open/floor/plating/ground/ice,
-/area/ice_colony/exterior/underground/caves/open)
 "vvy" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /obj/effect/landmark/xeno_resin_wall,
@@ -32594,7 +32556,6 @@
 "wLj" = (
 /obj/effect/turf_underlay/icefloor,
 /obj/effect/turf_underlay/icefloor,
-/obj/effect/landmark/patrol_point/som/som_24,
 /turf/closed/mineral/smooth/bluefrostwall,
 /area/ice_colony/exterior/underground/caves/rock)
 "wLI" = (
@@ -32654,10 +32615,6 @@
 "wPl" = (
 /turf/open/floor/tile/dark/purple2,
 /area/ice_colony/surface/research)
-"wPB" = (
-/obj/effect/landmark/patrol_point/tgmc_22,
-/turf/open/floor/plating/ground/snow/layer1,
-/area/ice_colony/exterior/surface/landing_pad2)
 "wPH" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -33423,10 +33380,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/valley/southwest)
-"xGL" = (
-/obj/effect/landmark/patrol_point/som/som_22,
-/turf/open/floor/plating,
-/area/ice_colony/surface/mining)
 "xGZ" = (
 /turf/open/floor/tile/dark,
 /area/ice_colony/exterior/surface/landing_pad2)
@@ -34784,7 +34737,7 @@ tjg
 hyh
 hyh
 hyh
-wPB
+hyh
 qlb
 qlb
 qlb
@@ -35846,7 +35799,7 @@ hyh
 hyh
 hyh
 hyh
-lCm
+hyh
 hyh
 hyh
 hyh
@@ -36029,7 +35982,7 @@ rGe
 wEL
 vfw
 vfw
-vdh
+vfw
 uQB
 uQB
 uQB
@@ -36236,7 +36189,7 @@ ePo
 ePo
 ePo
 sij
-vuk
+ePo
 rGe
 tRU
 rNJ
@@ -36686,7 +36639,7 @@ aaa
 (14,1,1) = {"
 aaa
 xJX
-qms
+xGZ
 aay
 xBE
 cTP
@@ -37515,7 +37468,7 @@ uQB
 dSq
 uQB
 uQB
-fkg
+vfw
 cMa
 vfw
 uQB
@@ -67625,7 +67578,7 @@ sij
 ePo
 ePo
 ePo
-rzp
+ePo
 uQB
 uQB
 uQB
@@ -68256,7 +68209,7 @@ ePo
 xxV
 xxV
 uQB
-grl
+ePo
 ePo
 ePo
 ePo
@@ -69526,7 +69479,7 @@ ePo
 ePo
 uQB
 xxV
-mBK
+ePo
 ePo
 ePo
 ePo
@@ -73396,7 +73349,7 @@ anq
 anq
 anq
 aoW
-xGL
+amk
 alE
 alE
 mqj
@@ -74024,7 +73977,7 @@ xJX
 xJX
 xJX
 uSg
-diw
+wLj
 uSg
 amk
 amK
