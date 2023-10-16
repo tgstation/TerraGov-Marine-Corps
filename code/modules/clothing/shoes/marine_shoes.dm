@@ -65,6 +65,11 @@
 	name = "captain's shoes"
 	desc = "Has special soles for better trampling those underneath."
 
+/obj/item/clothing/shoes/marinechief/som
+	name = "officer's boots"
+	desc = "A shiny pair of boots, normally seen on the feet of SOM officers."
+	icon_state = "som_officer_boots"
+
 /obj/item/clothing/shoes/marinechief/sa
 	name = "spatial agent's shoes"
 	desc = "Shoes worn by a spatial agent."

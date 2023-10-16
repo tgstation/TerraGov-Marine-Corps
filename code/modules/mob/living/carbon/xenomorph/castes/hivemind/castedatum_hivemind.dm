@@ -50,7 +50,7 @@
 		/datum/action/xeno_action/rally_hive/hivemind,
 		/datum/action/xeno_action/activable/command_minions,
 		/datum/action/xeno_action/activable/plant_weeds/ranged,
-		/datum/action/xeno_action/activable/psychic_cure/hivemind,
+		/datum/action/xeno_action/activable/psychic_cure/queen_give_heal/hivemind,
 		/datum/action/xeno_action/activable/transfer_plasma/hivemind,
 		/datum/action/xeno_action/pheromones/hivemind,
 		/datum/action/xeno_action/pheromones/emit_recovery,

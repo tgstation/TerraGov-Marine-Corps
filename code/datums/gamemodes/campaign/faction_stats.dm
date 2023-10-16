@@ -219,6 +219,13 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 		items += "[faction] respawns freely available until next mission starts"
 	items += ""
 
+///Checks if a mob is in a command role for this faction
+/datum/faction_stats/proc/is_leadership_role(mob/living/user)
+	if(user == faction_leader)
+		return TRUE
+	if(ismarinecommandjob(user.job) || issommarinecommandjob(user.job))
+		return TRUE
+
 //UI stuff//
 
 /datum/faction_stats/ui_interact(mob/living/user, datum/tgui/ui)
@@ -261,6 +268,7 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 	current_mission_data["vp_minor_reward"] = (faction == current_mission.starting_faction ? current_mission.victory_point_rewards[MISSION_OUTCOME_MINOR_VICTORY][1] : current_mission.victory_point_rewards[MISSION_OUTCOME_MINOR_LOSS][2])
 	current_mission_data["ap_major_reward"] = (faction == current_mission.starting_faction ? current_mission.attrition_point_rewards[MISSION_OUTCOME_MAJOR_VICTORY][1] : current_mission.attrition_point_rewards[MISSION_OUTCOME_MAJOR_LOSS][2])
 	current_mission_data["ap_minor_reward"] = (faction == current_mission.starting_faction ? current_mission.attrition_point_rewards[MISSION_OUTCOME_MINOR_VICTORY][1] : current_mission.attrition_point_rewards[MISSION_OUTCOME_MINOR_LOSS][2])
+	current_mission_data["mission_icon"] = current_mission.mission_icon
 	data["current_mission"] = current_mission_data
 
 	var/list/available_missions_data = list()
@@ -351,8 +359,8 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 
 	switch(action)
 		if("set_attrition_points")
-			if(user != faction_leader)
-				to_chat(user, "<span class='warning'>Only your faction's commander can do this.")
+			if(!is_leadership_role(user))
+				to_chat(user, "<span class='warning'>Only leadership roles can do this.")
 				return
 			if(current_mode.current_mission?.mission_state != MISSION_STATE_NEW)
 				to_chat(user, "<span class='warning'>Current mission already ongoing, unable to assign more personnel at this time.")
@@ -366,7 +374,7 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 			active_attrition_points = choice
 			for(var/mob/living/carbon/human/faction_member AS in GLOB.alive_human_list_faction[faction])
 				faction_member.playsound_local(null, 'sound/effects/CIC_order.ogg', 30, 1)
-				to_chat(faction_member, "<span class='warning'>[faction_leader] has assigned [choice] attrition points for the next mission.")
+				to_chat(faction_member, "<span class='warning'>[user] has assigned [choice] attrition points for the next mission.")
 			update_static_data_for_all_viewers()
 			return TRUE
 
@@ -398,12 +406,12 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 			if(!faction_assets[selected_asset])
 				return
 			var/datum/campaign_asset/choice = faction_assets[selected_asset]
-			if(user != faction_leader)
+			if(!is_leadership_role(user))
 				if(!(choice.asset_flags & ASSET_SL_AVAILABLE))
-					to_chat(user, "<span class='warning'>Only your faction's commander can do this.")
+					to_chat(user, "<span class='warning'>Only leadership roles can do this.")
 					return
-				if(!(ismarineleaderjob(user.job) || issommarineleaderjob(user.job) || ismarinecommandjob(user.job) || issommarinecommandjob(user.job)))
-					to_chat(user, "<span class='warning'>Only your faction's leaders can do this.")
+				if(!(ismarineleaderjob(user.job) || issommarineleaderjob(user.job)))
+					to_chat(user, "<span class='warning'>Only squad leaders and above can do this.")
 					return
 			if(!choice.attempt_activatation())
 				return
@@ -415,8 +423,8 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 			return TRUE
 
 		if("purchase_reward")
-			if(user != faction_leader)
-				to_chat(user, "<span class='warning'>Only your faction's commander can do this.")
+			if(!is_leadership_role(user))
+				to_chat(user, "<span class='warning'>Only leadership roles can do this.")
 				return
 			var/datum/campaign_asset/selected_asset = text2path(params["selected_reward"])
 			if(!selected_asset)
