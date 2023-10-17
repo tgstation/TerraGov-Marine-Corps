@@ -24,9 +24,10 @@
 		MISSION_OUTCOME_MINOR_LOSS = list(0, 15),
 		MISSION_OUTCOME_MAJOR_LOSS = list(0, 30),
 	)
-
 	starting_faction_additional_rewards = "Disrupt enemy supply routes, reducing enemy attrition generation for future missions."
 	hostile_faction_additional_rewards = "Prevent the degradation of our attrition generation."
+	///The mech spawner type to create a mech for the defending team
+	var/mech_type = /obj/effect/landmark/campaign/mech_spawner/som
 
 /datum/campaign_mission/destroy_mission/supply_raid/play_start_intro()
 	intro_message = list(
@@ -42,6 +43,16 @@
 	hostile_faction_mission_brief = "[starting_faction] forces have been detected moving against our supply depot in this area. \
 		Repel the enemy and protect the installation until reinforcements can arrive. \
 		Loss of this depot will significantly degrade our logistical capabilities and weaken our forces going forwards."
+
+/datum/campaign_mission/destroy_mission/supply_raid/load_pre_mission_bonuses()
+	. = ..()
+	for(var/obj/effect/landmark/campaign/mech_spawner/mech_spawner AS in GLOB.campaign_mech_spawners[hostile_faction])
+		if(mech_spawner.type != mech_type)
+			continue
+		var/new_mech = mech_spawner.spawn_mech()
+		GLOB.campaign_structures += new_mech
+		RegisterSignal(new_mech, COMSIG_QDELETING, TYPE_PROC_REF(/datum/campaign_mission, remove_mission_object))
+		return
 
 /datum/campaign_mission/destroy_mission/supply_raid/apply_major_victory()
 	. = ..()
@@ -62,3 +73,4 @@
 	map_light_levels = list(225, 150, 100, 75)
 	objectives_total = 8
 	min_destruction_amount = 5
+	mech_type = /obj/effect/landmark/campaign/mech_spawner

@@ -272,7 +272,6 @@
 		var/datum/outfit/quick/outfit = GLOB.quick_loadouts[i]
 		outfit.quantity = initial(outfit.quantity)
 
-
 ///Intro when the mission is selected
 /datum/campaign_mission/proc/play_selection_intro()
 	to_chat(world, span_round_header("|[name]|"))
@@ -421,3 +420,8 @@
 
 	map_text_broadcast(destroying_team, "[blocker] destroyed, we can now deploy via drop pod!", "Drop pods unblocked")
 	map_text_broadcast(losing_faction, "[blocker] destroyed, the enemy can now drop pod at will!", "Drop pods unblocked")
+
+///Removes the object from the campaign_structrures list if they are destroyed mid mission
+/datum/campaign_mission/proc/remove_mission_object(obj/mission_obj)
+	SIGNAL_HANDLER
+	GLOB.campaign_structures -= mission_obj
