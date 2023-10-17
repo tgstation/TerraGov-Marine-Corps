@@ -21,11 +21,11 @@
 		MISSION_OUTCOME_MAJOR_LOSS = list(0, 2),
 	)
 	attrition_point_rewards = list(
-		MISSION_OUTCOME_MAJOR_VICTORY = list(15, 0),
-		MISSION_OUTCOME_MINOR_VICTORY = list(10, 0),
+		MISSION_OUTCOME_MAJOR_VICTORY = list(10, 0),
+		MISSION_OUTCOME_MINOR_VICTORY = list(5, 0),
 		MISSION_OUTCOME_DRAW = list(0, 10),
-		MISSION_OUTCOME_MINOR_LOSS = list(0, 25),
-		MISSION_OUTCOME_MAJOR_LOSS = list(0, 30),
+		MISSION_OUTCOME_MINOR_LOSS = list(0, 15),
+		MISSION_OUTCOME_MAJOR_LOSS = list(0, 25),
 	)
 
 	starting_faction_additional_rewards = "Severely degrade enemy fire support, preventing their use of mortars for a period of time."
