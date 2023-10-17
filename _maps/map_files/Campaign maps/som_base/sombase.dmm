@@ -126,6 +126,10 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/rocinante_base/surface/building/administration/south_com)
+"aic" = (
+/obj/structure/barricade/concrete,
+/turf/open/floor/plating/ground/mars/random/cave/darker,
+/area/rocinante_base/ground/underground/caveW)
 "aij" = (
 /obj/structure/prop/mainship/gelida/smallwire,
 /turf/open/ground/grass/weedable/patch,
@@ -179,12 +183,6 @@
 /obj/machinery/camera/autoname/lz_camera,
 /turf/open/floor/plating/ground/concrete,
 /area/rocinante_base/surface/landing/landing_pad_two)
-"amx" = (
-/obj/structure/barricade/metal{
-	dir = 8
-	},
-/turf/open/floor/mainship/mono,
-/area/rocinante_base/ground/base_cent)
 "amG" = (
 /turf/open/floor/mainship/red{
 	dir = 4
@@ -918,6 +916,12 @@
 	dir = 4
 	},
 /area/rocinante_base/surface/building/administration)
+"bgi" = (
+/obj/structure/barricade/concrete{
+	dir = 8
+	},
+/turf/open/floor/plating/ground/mars/random/cave/darker,
+/area/rocinante_base/ground/underground/caveN)
 "bgD" = (
 /obj/machinery/computer3/server/rack,
 /turf/open/floor/mainship/tcomms,
@@ -1677,6 +1681,12 @@
 	dir = 5
 	},
 /area/rocinante_base/surface/building/science/break_room)
+"cjp" = (
+/obj/structure/barricade/concrete{
+	dir = 1
+	},
+/turf/open/floor/mainship/mono,
+/area/rocinante_base/ground/base_cent)
 "cjL" = (
 /obj/effect/turf_decal/warning_stripes/thick/corner{
 	dir = 8
@@ -2246,6 +2256,13 @@
 	},
 /turf/open/floor/mainship/sterile/dark,
 /area/rocinante_base/surface/building/science/bio_lab)
+"dco" = (
+/obj/structure/barricade/concrete{
+	dir = 8
+	},
+/obj/structure/barricade/concrete,
+/turf/open/floor/plating/ground/concrete,
+/area/rocinante_base/ground/underground/caveN)
 "dcC" = (
 /obj/item/weapon/gun/revolver/cmb,
 /obj/item/ammo_casing,
@@ -2875,6 +2892,12 @@
 	dir = 4
 	},
 /area/rocinante_base/ground/base_cent)
+"ecp" = (
+/obj/structure/barricade/concrete{
+	dir = 8
+	},
+/turf/open/floor/mainship/mono,
+/area/rocinante_base/ground/base_cent)
 "ecE" = (
 /obj/structure/largecrate/random/case/small,
 /turf/open/floor/plating,
@@ -3162,6 +3185,11 @@
 	},
 /turf/open/floor/mainship/blue,
 /area/rocinante_base/surface/building/security/hub)
+"ete" = (
+/obj/structure/platform/metalplatform,
+/obj/structure/barricade/concrete,
+/turf/open/floor/plating/ground/concrete,
+/area/rocinante_base/ground/base_sw)
 "etU" = (
 /obj/effect/turf_decal/warning_stripes/box/arrow{
 	dir = 1
@@ -4151,6 +4179,13 @@
 	dir = 10
 	},
 /area/rocinante_base/surface/building/science/crystal_lab)
+"fJK" = (
+/obj/structure/barricade/concrete,
+/obj/structure/barricade/concrete{
+	dir = 8
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/rocinante_base/surface/building/train_station)
 "fKx" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
@@ -4942,6 +4977,12 @@
 	dir = 8
 	},
 /area/rocinante_base/surface/building/tramstation/tramstation_e)
+"gUN" = (
+/obj/structure/barricade/concrete{
+	dir = 8
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/rocinante_base/surface/building/train_station)
 "gUY" = (
 /obj/structure/bed/chair/alt,
 /turf/open/floor/mainship/black{
@@ -5025,11 +5066,11 @@
 /area/rocinante_base/ground/base_s)
 "haE" = (
 /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/cope/predeployed,
-/obj/structure/barricade/metal{
-	dir = 1
-	},
-/obj/structure/barricade/metal{
+/obj/structure/barricade/concrete{
 	dir = 8
+	},
+/obj/structure/barricade/concrete{
+	dir = 1
 	},
 /turf/open/floor/mainship/mono,
 /area/rocinante_base/surface/building/security/west_sec)
@@ -6132,6 +6173,9 @@
 	dir = 8
 	},
 /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/cope/predeployed,
+/obj/structure/barricade/concrete{
+	dir = 8
+	},
 /turf/open/floor/mainship/mono,
 /area/rocinante_base/ground/base_sw)
 "iDO" = (
@@ -6562,6 +6606,10 @@
 	dir = 10
 	},
 /area/rocinante_base/surface/building/administration/meeting)
+"jkI" = (
+/obj/structure/barricade/concrete,
+/turf/open/floor/plating/ground/concrete,
+/area/rocinante_base/ground/underground/caveN)
 "jli" = (
 /obj/structure/window/framed/mainship/gray,
 /turf/open/floor/mainship/mono,
@@ -6753,6 +6801,12 @@
 /obj/machinery/computer/emails,
 /turf/open/floor/mainship/mono,
 /area/rocinante_base/surface/building/science/complex_hall_e)
+"jzg" = (
+/obj/structure/barricade/concrete{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/rocinante_base/surface/building/train_station)
 "jAb" = (
 /obj/structure/window/framed/mainship/gray,
 /turf/open/floor/mainship/mono,
@@ -6855,6 +6909,12 @@
 	dir = 8
 	},
 /area/rocinante_base/surface/building/science/complex_hall_e)
+"jHE" = (
+/obj/structure/barricade/concrete{
+	dir = 8
+	},
+/turf/open/floor/plating/ground/desertdam/asphalt,
+/area/rocinante_base/ground/base_cent)
 "jHV" = (
 /obj/structure/cargo_container/gorg,
 /turf/open/floor/plating/ground/concrete,
@@ -7639,6 +7699,9 @@
 /obj/structure/platform/metalplatform{
 	dir = 8
 	},
+/obj/structure/barricade/concrete{
+	dir = 8
+	},
 /turf/open/floor/mainship/mono,
 /area/rocinante_base/ground/base_sw)
 "kNI" = (
@@ -7959,6 +8022,12 @@
 /obj/structure/table/black,
 /turf/open/floor/mainship/mono,
 /area/rocinante_base/surface/building/administration)
+"loC" = (
+/obj/structure/barricade/concrete{
+	dir = 8
+	},
+/turf/open/floor/plating/ground/mars/random/cave/darker,
+/area/rocinante_base/ground/underground/caveW)
 "loG" = (
 /obj/machinery/door/airlock/multi_tile/mainship/comdoor/free_access,
 /turf/open/floor/mainship/mono,
@@ -8080,6 +8149,12 @@
 /obj/item/cell/high,
 /turf/open/floor/mainship/mono,
 /area/rocinante_base/surface/building/administration)
+"lvn" = (
+/obj/structure/barricade/concrete{
+	dir = 8
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/rocinante_base/ground/underground/caveN)
 "lwe" = (
 /turf/open/floor/mainship/red,
 /area/rocinante_base/surface/building/living/barracks)
@@ -8581,6 +8656,9 @@
 /area/rocinante_base/surface/building/administration/south_com)
 "mjb" = (
 /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/cope/predeployed,
+/obj/structure/barricade/concrete{
+	dir = 8
+	},
 /turf/open/floor/plating/ground/mars/random/cave/darker,
 /area/rocinante_base/ground/underground/caveN)
 "mjz" = (
@@ -8705,10 +8783,10 @@
 /area/rocinante_base/surface/building/science/bio_lab)
 "mqU" = (
 /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/cope/predeployed,
-/obj/structure/barricade/metal{
+/obj/structure/barricade/concrete,
+/obj/structure/barricade/concrete{
 	dir = 8
 	},
-/obj/structure/barricade/metal,
 /turf/open/floor/mainship/mono,
 /area/rocinante_base/ground/base_cent)
 "mru" = (
@@ -8929,13 +9007,13 @@
 /turf/open/ground/grass/weedable/patch,
 /area/rocinante_base/ground/base_e)
 "mHB" = (
-/obj/structure/barricade/metal{
-	dir = 8
-	},
-/obj/structure/barricade/metal{
+/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/cope/predeployed,
+/obj/structure/barricade/concrete{
 	dir = 1
 	},
-/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/cope/predeployed,
+/obj/structure/barricade/concrete{
+	dir = 8
+	},
 /turf/open/floor/mainship/mono,
 /area/rocinante_base/ground/base_cent)
 "mHO" = (
@@ -9553,6 +9631,10 @@
 	dir = 10
 	},
 /area/rocinante_base/ground/base_cent)
+"nBb" = (
+/obj/structure/barricade/concrete,
+/turf/open/floor/plating/ground/mars/random/cave/darker,
+/area/rocinante_base/ground/underground/caveN)
 "nDM" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /turf/open/floor/plating/ground/dirt_alt,
@@ -9716,6 +9798,15 @@
 	dir = 8
 	},
 /area/rocinante_base/surface/building/administration)
+"nOt" = (
+/obj/structure/platform/metalplatform{
+	dir = 8
+	},
+/obj/structure/barricade/concrete{
+	dir = 8
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/rocinante_base/ground/base_sw)
 "nOC" = (
 /obj/effect/turf_decal/warning_stripes/box,
 /turf/open/floor/mainship/black/corner{
@@ -9960,6 +10051,10 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/rocinante_base/surface/building/engineering/south_smes)
+"oeQ" = (
+/obj/structure/barricade/concrete,
+/turf/open/ground/grass/weedable/patch,
+/area/rocinante_base/ground/firing_range)
 "ofj" = (
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
@@ -10237,7 +10332,7 @@
 /turf/open/floor/plating/ground/snow,
 /area/rocinante_base/ground/base_cent)
 "owB" = (
-/obj/structure/barricade/metal{
+/obj/structure/barricade/concrete{
 	dir = 1
 	},
 /turf/open/floor/mainship/mono,
@@ -10672,7 +10767,7 @@
 /turf/open/floor/wood,
 /area/rocinante_base/surface/building/tramstation/tramstation_nw)
 "pdR" = (
-/obj/structure/barricade/metal{
+/obj/structure/barricade/concrete{
 	dir = 8
 	},
 /turf/open/floor/mainship/mono,
@@ -11302,6 +11397,10 @@
 	dir = 10
 	},
 /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/cope/predeployed,
+/obj/structure/barricade/concrete{
+	dir = 8
+	},
+/obj/structure/barricade/concrete,
 /turf/open/floor/plating/ground/concrete,
 /area/rocinante_base/ground/base_sw)
 "pZY" = (
@@ -11405,6 +11504,10 @@
 	dir = 5
 	},
 /area/rocinante_base/surface/building/administration/command)
+"qib" = (
+/obj/structure/barricade/concrete,
+/turf/open/ground/grass/weedable/patch,
+/area/rocinante_base/ground/base_w)
 "qjd" = (
 /obj/effect/turf_decal/warning_stripes/linethick{
 	dir = 4
@@ -12519,6 +12622,7 @@
 /area/rocinante_base/surface/building/living/barracks)
 "rOf" = (
 /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/cope/predeployed,
+/obj/structure/barricade/concrete,
 /turf/open/floor/plating,
 /area/rocinante_base/surface/building/train_station)
 "rOQ" = (
@@ -12563,6 +12667,12 @@
 /obj/item/clipboard,
 /turf/open/floor/mainship/mono,
 /area/rocinante_base/surface/building/administration)
+"rRM" = (
+/obj/structure/barricade/concrete{
+	dir = 8
+	},
+/turf/open/ground/grass/weedable/patch,
+/area/rocinante_base/ground/base_cent)
 "rRR" = (
 /obj/structure/prop/mainship/sensor_computer2,
 /turf/open/floor/mainship/mono,
@@ -13243,6 +13353,10 @@
 	dir = 1
 	},
 /area/rocinante_base/surface/building/administration)
+"sNi" = (
+/obj/structure/barricade/concrete,
+/turf/open/ground/grass/weedable/patch,
+/area/rocinante_base/ground/base_cent)
 "sNt" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 4
@@ -13694,16 +13808,6 @@
 /obj/structure/rack,
 /turf/open/floor/mainship/mono,
 /area/rocinante_base/surface/building/science/complex_hall_e)
-"ttW" = (
-/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/cope/predeployed,
-/obj/structure/barricade/metal{
-	dir = 8
-	},
-/obj/structure/barricade/metal{
-	dir = 1
-	},
-/turf/open/floor/mainship/mono,
-/area/rocinante_base/ground/base_cent)
 "tuc" = (
 /obj/machinery/light{
 	dir = 4
@@ -13896,6 +14000,10 @@
 	dir = 8
 	},
 /turf/open/floor/plating/ground/snow,
+/area/rocinante_base/ground/base_cent)
+"tIi" = (
+/obj/structure/barricade/concrete,
+/turf/open/floor/mainship/mono,
 /area/rocinante_base/ground/base_cent)
 "tIr" = (
 /obj/structure/bed/chair/office/dark{
@@ -14171,6 +14279,12 @@
 	},
 /turf/open/floor/plating/ground/concrete,
 /area/rocinante_base/ground/base_ne)
+"tZf" = (
+/obj/structure/barricade/concrete{
+	dir = 8
+	},
+/turf/open/floor/plating/ground/mars/random/cave/darker,
+/area/rocinante_base/ground/underground/caveCent)
 "tZt" = (
 /obj/structure/filingcabinet,
 /turf/open/floor/mainship/blue{
@@ -15790,6 +15904,10 @@
 "wcp" = (
 /turf/open/floor/mainship/mono,
 /area/rocinante_base/surface/building/security/sec_dorms)
+"wcs" = (
+/obj/structure/barricade/concrete,
+/turf/open/floor/plating/ground/concrete,
+/area/rocinante_base/surface/building/train_station)
 "wcx" = (
 /turf/open/ground/grass/weedable/patch,
 /area/rocinante_base/surface/building/administration/command)
@@ -16563,6 +16681,13 @@
 	dir = 1
 	},
 /area/rocinante_base/surface/building/administration/breakroom)
+"xdY" = (
+/obj/structure/barricade/concrete{
+	dir = 8
+	},
+/obj/structure/barricade/concrete,
+/turf/open/ground/grass/weedable/patch,
+/area/rocinante_base/ground/base_cent)
 "xej" = (
 /obj/structure/rack,
 /obj/machinery/power/apc,
@@ -16908,11 +17033,11 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/rocinante_base/surface/building/tram_line)
 "xza" = (
-/obj/structure/barricade/metal{
+/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/cope/predeployed,
+/obj/structure/barricade/concrete{
 	dir = 8
 	},
-/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/cope/predeployed,
-/obj/structure/barricade/metal,
+/obj/structure/barricade/concrete,
 /turf/open/floor/mainship/mono,
 /area/rocinante_base/ground/base_cent)
 "xzc" = (
@@ -17240,6 +17365,12 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/black/full,
 /area/rocinante_base/surface/building/living/bar)
+"yak" = (
+/obj/structure/barricade/concrete{
+	dir = 8
+	},
+/turf/open/floor/plating/ground/mars/random/cave/darker,
+/area/rocinante_base/ground/underground/caveS)
 "yau" = (
 /obj/machinery/mech_bay_recharge_port,
 /turf/open/floor/mainship/black,
@@ -17349,10 +17480,10 @@
 /turf/open/floor/mainship/blue,
 /area/rocinante_base/surface/building/administration/central_com)
 "yiT" = (
-/obj/structure/barricade/metal{
+/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/cope/predeployed,
+/obj/structure/barricade/concrete{
 	dir = 1
 	},
-/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/cope/predeployed,
 /turf/open/floor/mainship/mono,
 /area/rocinante_base/surface/building/security/west_sec)
 "yja" = (
@@ -23622,7 +23753,7 @@ cvk
 cvk
 cvk
 cvk
-cvk
+nOt
 pXD
 xhc
 ifD
@@ -23775,7 +23906,7 @@ kHb
 kHb
 kHb
 gVl
-cKk
+ete
 xhc
 ifD
 jQw
@@ -25100,7 +25231,7 @@ xtZ
 kdm
 xBu
 duz
-xBu
+qib
 xBu
 sHT
 pCj
@@ -25252,7 +25383,7 @@ nTp
 kdm
 xBu
 xBu
-xBu
+qib
 xBu
 sHT
 pCj
@@ -25404,7 +25535,7 @@ oFT
 kdm
 sHT
 xBu
-xBu
+qib
 xBu
 xBu
 pCj
@@ -28415,10 +28546,10 @@ ltW
 ltW
 ltW
 khm
-ttW
-amx
+mHB
+ecp
 otn
-amx
+ecp
 mqU
 jfD
 ltW
@@ -28567,11 +28698,11 @@ giQ
 giQ
 giQ
 btc
-wIz
+cjp
 jUI
 pAD
 jUI
-jHb
+tIi
 jfD
 ltW
 khm
@@ -28715,9 +28846,9 @@ tHo
 xjr
 goT
 tsC
-tsC
-sab
-sab
+jHE
+rRM
+rRM
 sab
 otn
 jUI
@@ -28757,8 +28888,8 @@ jfD
 lAd
 khm
 mHB
-amx
-jUI
+ecp
+ecp
 xza
 pvG
 pvG
@@ -28908,7 +29039,7 @@ sab
 jfD
 lAd
 khm
-wIz
+cjp
 jUI
 jUI
 jUI
@@ -33894,9 +34025,9 @@ otn
 mAt
 mAt
 mAt
-sab
-sab
-sab
+rRM
+rRM
+xdY
 jfD
 lAd
 khm
@@ -34048,7 +34179,7 @@ mAt
 mAt
 sab
 sab
-sab
+sNi
 jfD
 lAd
 khm
@@ -34200,7 +34331,7 @@ mAt
 mAt
 sab
 sab
-sab
+sNi
 jfD
 lAd
 khm
@@ -37727,7 +37858,7 @@ mTx
 mTx
 ylX
 ylX
-xRZ
+oeQ
 laC
 laC
 laC
@@ -38031,7 +38162,7 @@ mTx
 mTx
 ylX
 xRZ
-xRZ
+oeQ
 laC
 laC
 laC
@@ -38333,9 +38464,9 @@ fsx
 iQI
 aJu
 aJu
-aJu
+nBb
 xRZ
-xRZ
+oeQ
 laC
 laC
 thm
@@ -38484,7 +38615,7 @@ iQI
 fsx
 iQI
 aJu
-aJu
+nBb
 aJu
 xRZ
 xRZ
@@ -38637,9 +38768,9 @@ fsx
 iQI
 aJu
 aJu
-aJu
+nBb
 xRZ
-xRZ
+oeQ
 thm
 laC
 laC
@@ -38943,7 +39074,7 @@ aJu
 mTx
 ylX
 xRZ
-xRZ
+oeQ
 laC
 laC
 thm
@@ -39236,9 +39367,9 @@ aTO
 oUJ
 wGt
 aTO
-aJu
-iQI
-iQI
+bgi
+lvn
+dco
 fVx
 iQI
 fsx
@@ -39247,7 +39378,7 @@ uao
 mTx
 ylX
 xRZ
-xRZ
+oeQ
 laC
 laC
 laC
@@ -39390,7 +39521,7 @@ aTO
 aTO
 aJu
 iQI
-iQI
+jkI
 fVx
 iQI
 fsx
@@ -39551,7 +39682,7 @@ qSx
 mTx
 ylX
 xRZ
-xRZ
+oeQ
 laC
 laC
 laC
@@ -40765,7 +40896,7 @@ ooS
 eUN
 cNj
 eUN
-eUN
+jzg
 eUN
 eUN
 oRp
@@ -40778,8 +40909,8 @@ rzK
 rzK
 twr
 twr
-twr
-twr
+loC
+loC
 oRp
 gxB
 gxB
@@ -40917,7 +41048,7 @@ ooS
 eUN
 cNj
 eUN
-eUN
+jzg
 eUN
 eUN
 eUN
@@ -41391,7 +41522,7 @@ eUN
 eUN
 cOn
 twr
-twr
+aic
 twr
 twr
 twr
@@ -41535,15 +41666,15 @@ gOk
 eUN
 cNj
 eUN
-eUN
-eUN
+gUN
+fJK
 eUN
 eUN
 eUN
 eUN
 cOn
 jpn
-twr
+aic
 twr
 twr
 twr
@@ -41688,7 +41819,7 @@ eUN
 cNj
 eUN
 eUN
-eUN
+wcs
 jkr
 eUN
 eUN
@@ -43523,9 +43654,9 @@ xAN
 xAN
 dsV
 dsV
-dsV
-dsV
-tit
+tZf
+tZf
+yak
 mAb
 mAb
 mAb
@@ -44727,7 +44858,7 @@ gCc
 eUN
 cNj
 eUN
-eUN
+wcs
 eUN
 eUN
 eUN
@@ -44879,7 +45010,7 @@ eUN
 eUN
 cNj
 eUN
-eUN
+wcs
 eUN
 eUN
 eUN
