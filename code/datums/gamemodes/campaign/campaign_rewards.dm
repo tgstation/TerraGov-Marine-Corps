@@ -613,7 +613,7 @@
 	name = "Severely degraded supply lines"
 	desc = "-30% passive Attrition Point gain"
 	detailed_desc = "Serious damage to our supply lines have increased the difficulty and time required to move men and materiel, resulting in a lower deployment of combat forces."
-	attrition_mod = -0.30
+	attrition_mod = -0.25
 
 /datum/campaign_reward/attrition_modifier/malus_teleporter
 	name = "Bluespace logistics disabled"
