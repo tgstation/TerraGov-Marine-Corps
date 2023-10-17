@@ -1,0 +1,4 @@
+author: "Waselon"
+delete-after: True
+changes:
+  - balance: "Ravagers in Endure are no longer slowed down by vali tramadol attack"
