@@ -185,14 +185,13 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 	SIGNAL_HANDLER
 	if(faction == winning_faction)
 		stats_flags |= MISSION_SELECTION_ALLOWED
+		loss_bonus = 0
 	else
 		stats_flags &= ~MISSION_SELECTION_ALLOWED
 
 	total_attrition_points += round(length(GLOB.clients) * 0.5 * (attrition_gain_multiplier + loss_bonus))
 	if((completed_mission.winning_faction != faction) && (completed_mission.hostile_faction == faction) && (completed_mission.type != /datum/campaign_mission/tdm/first_mission))
 		loss_bonus = min( loss_bonus + CAMPAIGN_LOSS_BONUS, CAMPAIGN_MAX_LOSS_BONUS)
-	else
-		loss_bonus = 0
 
 	generate_new_mission()
 	update_static_data_for_all_viewers()
