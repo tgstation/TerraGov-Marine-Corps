@@ -170,6 +170,8 @@
 	return TRUE
 
 /mob/living/carbon/xenomorph/user_can_buckle(mob/living/buckling_mob)
-	if(buckling_mob.stat)
+	//RUTGMC EDIT CHANGE
+	//if(buckling_mob.stat) //ORIGINAL
+	if(buckling_mob.stat == DEAD) //RUTGMC EDIT CHANGE
 		return FALSE
 	return ..()
