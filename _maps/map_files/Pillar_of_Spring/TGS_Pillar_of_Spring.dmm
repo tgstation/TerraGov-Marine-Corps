@@ -16987,7 +16987,7 @@
 /turf/closed/wall/mainship,
 /area/mainship/living/tankerbunks)
 "vjs" = (
-/obj/machinery/cic_maptable_big,
+/obj/machinery/cic_maptable/drawable/big,
 /turf/open/floor/mainship/mono,
 /area/mainship/command/cic)
 "vjC" = (
