@@ -87,6 +87,8 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 	var/active_attrition_points = 0
 	///Multiplier on the passive attrition point gain for this faction
 	var/attrition_gain_multiplier = 1
+	///cumulative loss bonus which is applied to attrition gain mult
+	var/loss_bonus = 0
 	///Future missions this faction can currently choose from
 	var/list/datum/campaign_mission/available_missions = list()
 	///Missions this faction has succesfully completed
@@ -179,14 +181,19 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 		faction_rewards[new_reward] = new new_reward(src)
 
 ///handles post mission wrap up for the faction
-/datum/faction_stats/proc/mission_end(datum/source, winning_faction)
+/datum/faction_stats/proc/mission_end(datum/campaign_mission/completed_mission, winning_faction)
 	SIGNAL_HANDLER
 	if(faction == winning_faction)
 		stats_flags |= MISSION_SELECTION_ALLOWED
 	else
 		stats_flags &= ~MISSION_SELECTION_ALLOWED
 
-	total_attrition_points += round(length(GLOB.clients) * 0.5 * attrition_gain_multiplier)
+	total_attrition_points += round(length(GLOB.clients) * 0.5 * (attrition_gain_multiplier + loss_bonus))
+	if((completed_mission.winning_faction != faction) && (completed_mission.hostile_faction == faction) && (completed_mission.type != /datum/campaign_mission/tdm/first_mission))
+		loss_bonus += 0.1
+	else
+		loss_bonus = 0
+
 	generate_new_mission()
 	update_static_data_for_all_viewers()
 	addtimer(CALLBACK(src, PROC_REF(return_to_base)), AFTER_MISSION_TELEPORT_DELAY)
