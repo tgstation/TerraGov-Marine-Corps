@@ -25,7 +25,7 @@
 		MISSION_OUTCOME_MAJOR_LOSS = list(0, 30),
 	)
 	starting_faction_additional_rewards = "Disrupt enemy supply routes, reducing enemy attrition generation for future missions."
-	hostile_faction_additional_rewards = "Prevent the degradation of our attrition generation."
+	hostile_faction_additional_rewards = "Prevent the degradation of our attrition generation. Recon mech and gorgon armor available if you successfully protect this depot."
 	///The mech spawner type to create a mech for the defending team
 	var/mech_type = /obj/effect/landmark/campaign/mech_spawner/som
 
@@ -55,14 +55,32 @@
 		return
 
 /datum/campaign_mission/destroy_mission/supply_raid/apply_major_victory()
-	. = ..()
+	winning_faction = starting_faction
 	var/datum/faction_stats/hostile_team = mode.stat_list[hostile_faction]
 	hostile_team.add_reward(/datum/campaign_reward/attrition_modifier/malus_standard/higher)
 
 /datum/campaign_mission/destroy_mission/supply_raid/apply_minor_victory()
-	. = ..()
+	winning_faction = starting_faction
 	var/datum/faction_stats/hostile_team = mode.stat_list[hostile_faction]
 	hostile_team.add_reward(/datum/campaign_reward/attrition_modifier/malus_standard)
+
+/datum/campaign_mission/destroy_mission/supply_raid/apply_minor_loss()
+	winning_faction = hostile_faction
+	var/datum/faction_stats/hostile_team = mode.stat_list[hostile_faction]
+	if(hostile_faction == FACTION_TERRAGOV)
+		winning_team.add_reward(/datum/campaign_reward/equipment/power_armor)
+	else if(hostile_faction == FACTION_SOM)
+		winning_team.add_reward(/obj/effect/landmark/campaign/mech_spawner/som/light)
+		winning_team.add_reward(/datum/campaign_reward/equipment/gorgon_armor)
+
+/datum/campaign_mission/destroy_mission/supply_raid/apply_major_loss()
+	winning_faction = hostile_faction
+	var/datum/faction_stats/hostile_team = mode.stat_list[hostile_faction]
+	if(hostile_faction == FACTION_TERRAGOV)
+		winning_team.add_reward(/datum/campaign_reward/equipment/power_armor)
+	else if(hostile_faction == FACTION_SOM)
+		winning_team.add_reward(/obj/effect/landmark/campaign/mech_spawner/som/light)
+		winning_team.add_reward(/datum/campaign_reward/equipment/gorgon_armor)
 
 /datum/campaign_mission/destroy_mission/supply_raid/som
 	mission_flags = MISSION_DISALLOW_TELEPORT
@@ -74,3 +92,4 @@
 	objectives_total = 8
 	min_destruction_amount = 5
 	mech_type = /obj/effect/landmark/campaign/mech_spawner
+	hostile_faction_additional_rewards = "Prevent the degradation of our attrition generation. B18 power armour available if you successfully protect this depot."

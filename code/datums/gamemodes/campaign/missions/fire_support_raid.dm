@@ -29,7 +29,7 @@
 	)
 
 	starting_faction_additional_rewards = "Severely degrade enemy fire support, preventing their use of mortars for a period of time."
-	hostile_faction_additional_rewards = "Protect our fire support options to ensure continued access to mortar support."
+	hostile_faction_additional_rewards = "Protect our fire support options to ensure continued access to mortar support. Additional equipment and fire support is available if you successfully defend this outpost."
 
 /datum/campaign_mission/destroy_mission/fire_support_raid/play_start_intro()
 	intro_message = list(
@@ -52,7 +52,7 @@
 		Loss of these fire support installations will significantly weaken our forces across this region."
 
 /datum/campaign_mission/destroy_mission/fire_support_raid/apply_major_victory()
-	. = ..()
+	winning_faction = starting_faction
 	var/datum/faction_stats/hostile_team = mode.stat_list[hostile_faction]
 	if(hostile_faction == FACTION_TERRAGOV)
 		hostile_team.add_reward(/datum/campaign_reward/reward_disabler/tgmc_mortar/long)
@@ -60,7 +60,7 @@
 		hostile_team.add_reward(/datum/campaign_reward/reward_disabler/som_mortar/long)
 
 /datum/campaign_mission/destroy_mission/fire_support_raid/apply_minor_victory()
-	. = ..()
+	winning_faction = starting_faction
 	var/datum/faction_stats/hostile_team = mode.stat_list[hostile_faction]
 	if(hostile_faction == FACTION_TERRAGOV)
 		hostile_team.add_reward(/datum/campaign_reward/reward_disabler/tgmc_mortar)
@@ -68,11 +68,24 @@
 		hostile_team.add_reward(/datum/campaign_reward/reward_disabler/som_mortar)
 
 /datum/campaign_mission/destroy_mission/fire_support_raid/apply_minor_loss()
-	. = ..()
+	winning_faction = hostile_faction
+	var/datum/faction_stats/hostile_team = mode.stat_list[hostile_faction]
+	if(hostile_faction == FACTION_TERRAGOV)
+		winning_team.add_reward(/datum/campaign_reward/bonus_job/combat_robots)
+		winning_team.add_reward(/datum/campaign_reward/fire_support/mortar)
+	else if(hostile_faction == FACTION_SOM)
+		winning_team.add_reward(/datum/campaign_reward/equipment/gorgon_armor)
+		winning_team.add_reward(/datum/campaign_reward/fire_support/som_mortar)
 
 /datum/campaign_mission/destroy_mission/fire_support_raid/apply_major_loss()
-	. = ..()
-
+	winning_faction = hostile_faction
+	var/datum/faction_stats/hostile_team = mode.stat_list[hostile_faction]
+	if(hostile_faction == FACTION_TERRAGOV)
+		winning_team.add_reward(/datum/campaign_reward/bonus_job/combat_robots)
+		winning_team.add_reward(/datum/campaign_reward/fire_support/mortar)
+	else if(hostile_faction == FACTION_SOM)
+		winning_team.add_reward(/datum/campaign_reward/equipment/gorgon_armor)
+		winning_team.add_reward(/datum/campaign_reward/fire_support/som_mortar)
 
 /datum/campaign_mission/destroy_mission/fire_support_raid/som
 	mission_flags = MISSION_DISALLOW_TELEPORT
@@ -84,3 +97,4 @@
 	map_light_levels = list(225, 150, 100, 75)
 	objectives_total = 8
 	min_destruction_amount = 6
+	hostile_faction_additional_rewards = "Protect our fire support options to ensure continued access to mortar support. Combat robots and fire support is available if you successfully defend this outpost."
