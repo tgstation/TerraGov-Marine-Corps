@@ -102,10 +102,12 @@
 #define VISOR_PALETTE_GOLD "#6a5b2d#928446#a59770"
 #define VISOR_PALETTE_SILVER "#9db4c0#c2dfe3#e0fbfc"
 #define VISOR_PALETTE_BLACK "#353340#4c4a59#686671"
+#define VISOR_PALETTE_SYNDIE_BLACK_HELMET "#181719#3e3d3f#63615e"
+#define VISOR_PALETTE_NIGHTSHADE_HELMET "#080808#1b1b1f#2d2d37"
 
 //Red
 #define VISOR_PALETTE_RED "#682c2c#914545#a3736e"
-
+#define VISOR_PALETTE_SYNDIE_RED_HELMET"#3f0f25#820a26#b72b2b"
 //Green
 #define VISOR_PALETTE_GREEN "#8fc0a9#c8d5b9#faf3dd"
 #define VISOR_PALETTE_TOPAZ "#18C196#5EEBA6#BAF7D8"
@@ -121,7 +123,8 @@
 #define VISOR_PALETTE_BLUE "#2b6666#448e8e#6d9e9e"
 #define VISOR_PALETTE_ICE "#1D425B#4B7EA1#93CBDC"
 #define VISOR_PALETTE_SKY_BLUE "#44496B#81ABC9#BFD7E6"
-
+#define VISOR_PALETTE_DARK_BLUE_HELMET "#151126#242e63#275591"
+#define VISOR_PALETTE_SPACE_CADET_HELMET "#151126#203357#215ead"
 //Yellow
 #define VISOR_PALETTE_HONEY "#74422D#D47111#F3B32F"
 #define VISOR_PALETTE_METALLIC_BRONZE "#7C534D#A5915B#E2E0B3"
@@ -152,7 +155,7 @@
 			"Fall" = ARMOR_PALETTE_FALL,\
 			"Steel" = ARMOR_PALETTE_STEEL,\
 			"Nightshade" = ARMOR_PALETTE_NIGHTSHADE,\
-			"Syndie Black" = ARMOR_PALETTE_SYNDIE_BLACK,\
+			"Syndicate Black" = ARMOR_PALETTE_SYNDIE_BLACK,\
 		),\
 		"Pink" = list(\
 			"Salmon" = ARMOR_PALETTE_SALMON_PINK,\
@@ -164,7 +167,7 @@
 			"Bronze Red" = ARMOR_PALETTE_BRONZE_RED,\
 			"Red" = ARMOR_PALETTE_LIGHT_RED,\
 			"Blood Red" = ARMOR_PALETTE_BLOOD_RED,\
-			"Syndie Red" = ARMOR_PALETTE_SYNDIE_RED,\
+			"Syndicate Red" = ARMOR_PALETTE_SYNDIE_RED,\
 			"Alpha" = ARMOR_PALETTE_ALPHA,\
 		),\
 		"Orange" = list(\
@@ -223,6 +226,8 @@
 			"Gold" = VISOR_PALETTE_GOLD,\
 			"Silver" = VISOR_PALETTE_SILVER,\
 			"Black" = VISOR_PALETTE_BLACK,\
+			"Syndicate Black" = VISOR_PALETTE_SYNDIE_BLACK_HELMET,\
+			"Nightshade" = VISOR_PALETTE_NIGHTSHADE_HELMET,\
 		),\
 		"Pink" = list(\
 			"Salmon" = VISOR_PALETTE_SALMON,\
@@ -230,6 +235,7 @@
 		),\
 		"Red" = list(\
 			"Red" = VISOR_PALETTE_RED,\
+			"Syndicate Red" = VISOR_PALETTE_SYNDIE_RED_HELMET,\
 		),\
 		"Orange" = list(\
 			"Orange" = VISOR_PALETTE_ORANGE,\
@@ -244,12 +250,14 @@
 			"Topaz" = VISOR_PALETTE_TOPAZ,\
 			"Irish" = VISOR_PALETTE_IRISH,\
 			"Lemon" = VISOR_PALETTE_LEMON,\
-			"Syndie Green" = VISOR_PALETTE_SYNDIE_GREEN,\
+			"Syndicate Green" = VISOR_PALETTE_SYNDIE_GREEN,\
 		),\
 		"Blue" = list(\
 			"Blue" = VISOR_PALETTE_BLUE,\
 			"Ice Blue" = VISOR_PALETTE_ICE,\
 			"Sky Blue" = VISOR_PALETTE_SKY_BLUE,\
+			"Dark Blue" = VISOR_PALETTE_DARK_BLUE_HELMET,\
+			"Space Cadet" = VISOR_PALETTE_SPACE_CADET_HELMET,\
 		),\
 		"Purple" = list(\
 			"Purple" = VISOR_PALETTE_PURPLE,\
