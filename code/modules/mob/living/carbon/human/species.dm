@@ -465,7 +465,7 @@
 	H.voice_filter = initial(H.voice_filter)
 	H.health_threshold_crit = -50
 
-#define CLONELOSS_THRESHOLD 0
+#define CLONELOSS_THRESHOLD -50
 #define CLONELOSS_PER_CYCLE 1
 #define MAX_CLONELOSS 51
 /datum/species/robot/handle_unique_behavior(mob/living/carbon/human/H)
