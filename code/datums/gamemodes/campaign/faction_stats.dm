@@ -190,7 +190,7 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 
 	total_attrition_points += round(length(GLOB.clients) * 0.5 * (attrition_gain_multiplier + loss_bonus))
 	if((completed_mission.winning_faction != faction) && (completed_mission.hostile_faction == faction) && (completed_mission.type != /datum/campaign_mission/tdm/first_mission))
-		loss_bonus += 0.1
+		loss_bonus = min( loss_bonus + CAMPAIGN_LOSS_BONUS, CAMPAIGN_MAX_LOSS_BONUS)
 	else
 		loss_bonus = 0
 
