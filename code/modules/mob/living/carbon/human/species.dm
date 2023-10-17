@@ -479,6 +479,11 @@
 		H.clear_fullscreen("robothalf")
 		H.clear_fullscreen("robotlow")
 
+	if(H.health > -25) //Staggerslowed if below crit threshold.
+		return
+	H.Stagger(2 SECONDS)
+	H.adjust_slowdown(1)
+
 	if(H.health <= CLONELOSS_THRESHOLD && H.life_tick % 15 == 0)
 		var/loss_amt = clamp(MAX_CLONELOSS - (H.cloneloss + CLONELOSS_PER_CYCLE), 0, CLONELOSS_PER_CYCLE)
 		if(H.getBruteLoss())
@@ -494,11 +499,6 @@
 
 	if(prob(20))
 		to_chat(H, span_danger("[pick("You feel like you're falling apart", "Error text flashes through your processor", "You hear a strange sound, like scraping metal")]."))
-
-	if(H.health > -25) //Staggerslowed if below crit threshold.
-		return
-	H.Stagger(2 SECONDS)
-	H.adjust_slowdown(1)
 
 #undef CLONELOSS_THRESHOLD
 #undef CLONELOSS_PER_CYCLE
