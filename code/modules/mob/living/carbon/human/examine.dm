@@ -444,7 +444,7 @@
 
 	if(chestburst == 2)
 		if(isxeno(user))
-			msg+= "[span_xenowarning("A larva escaped from [t_him]!")]\n"
+			msg += "[span_xenowarning("A larva escaped from [t_him]!")]\n"
 		else
 			msg += "[span_warning("[t_He] has a giant hole in [t_his] chest!")]\n"
 
