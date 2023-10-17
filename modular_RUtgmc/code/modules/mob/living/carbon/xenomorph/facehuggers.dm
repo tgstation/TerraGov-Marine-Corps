@@ -120,7 +120,7 @@
 		if(source in M.client_mobs_in_contents)
 			M.client_mobs_in_contents -= source
 		if(sterile || M.status_flags & XENO_HOST)
-			if(source?.client)
+			if(source?.client && isnormalhive(source.hive))
 				source.client.facehugger_exp_update(4)
 			source.death()
 		qdel(src)
