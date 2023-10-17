@@ -169,9 +169,9 @@
 		return FALSE
 	return TRUE
 
+/* //RUTGMC EDIT - Moved to modular_RUtgmc\code\game\buckling.dm
 /mob/living/carbon/xenomorph/user_can_buckle(mob/living/buckling_mob)
-	//RUTGMC EDIT CHANGE
-	//if(buckling_mob.stat) //ORIGINAL
-	if(buckling_mob.stat == DEAD) //RUTGMC EDIT CHANGE
+	if(buckling_mob.stat)
 		return FALSE
 	return ..()
+*/
