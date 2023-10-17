@@ -224,3 +224,24 @@
   - rscadd: Added fade in type fullscreen overlay on xeno spawn and evolution
   hyper2snyper:
   - bugfix: Fixes the Lasguns becoming invisible when attaching to a powerpack.
+2023-10-17:
+  Barnet2:
+  - balance: Puppeteer's max puppets reduced to 3
+  Lewdcifer:
+  - balance: Sawn off shotgun must now be wielded to fire.
+  - bugfix: Certain "VV" buttons that weren't working before are now fixed.
+  Lumipharon:
+  - qol: Some general campaign UI improvements
+  - bugfix: fixed a BSOD on the campaign UI if no missions were available
+  - rscadd: Added some background info for the SOM in the lobby menu
+  - imageadd: updated some missing or old sprites for SOM powerpacks and blinkdrives
+  - rscadd: Added support roles for Campaign
+  - rscadd: Command roles can purchase and activate campaign assets, and set attrition
+  Pariah919:
+  - balance: Synths deal less damage on melee now.
+  - rscadd: Rotational heavy weapons system, the tab itself ingame is called 'Operational
+      Weapons' which rotates every 24 hours between bins like seasonals, TAT and RR
+      have been moved to here and the 3 other bins contain objects like Flak, Thermo,
+      and DRPGs.
+  coldironwarrior:
+  - balance: hiveminds now have the queen's version of psychic cure
