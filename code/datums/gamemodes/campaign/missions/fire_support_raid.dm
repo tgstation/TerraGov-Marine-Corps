@@ -69,7 +69,7 @@
 
 /datum/campaign_mission/destroy_mission/fire_support_raid/apply_minor_loss()
 	winning_faction = hostile_faction
-	var/datum/faction_stats/hostile_team = mode.stat_list[hostile_faction]
+	var/datum/faction_stats/winning_team = mode.stat_list[hostile_faction]
 	if(hostile_faction == FACTION_TERRAGOV)
 		winning_team.add_reward(/datum/campaign_reward/bonus_job/combat_robots)
 		winning_team.add_reward(/datum/campaign_reward/fire_support/mortar)
@@ -79,7 +79,7 @@
 
 /datum/campaign_mission/destroy_mission/fire_support_raid/apply_major_loss()
 	winning_faction = hostile_faction
-	var/datum/faction_stats/hostile_team = mode.stat_list[hostile_faction]
+	var/datum/faction_stats/winning_team = mode.stat_list[hostile_faction]
 	if(hostile_faction == FACTION_TERRAGOV)
 		winning_team.add_reward(/datum/campaign_reward/bonus_job/combat_robots)
 		winning_team.add_reward(/datum/campaign_reward/fire_support/mortar)

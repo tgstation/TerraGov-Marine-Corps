@@ -66,7 +66,7 @@
 
 /datum/campaign_mission/destroy_mission/supply_raid/apply_minor_loss()
 	winning_faction = hostile_faction
-	var/datum/faction_stats/hostile_team = mode.stat_list[hostile_faction]
+	var/datum/faction_stats/winning_team = mode.stat_list[hostile_faction]
 	if(hostile_faction == FACTION_TERRAGOV)
 		winning_team.add_reward(/datum/campaign_reward/equipment/power_armor)
 	else if(hostile_faction == FACTION_SOM)
@@ -75,7 +75,7 @@
 
 /datum/campaign_mission/destroy_mission/supply_raid/apply_major_loss()
 	winning_faction = hostile_faction
-	var/datum/faction_stats/hostile_team = mode.stat_list[hostile_faction]
+	var/datum/faction_stats/winning_team = mode.stat_list[hostile_faction]
 	if(hostile_faction == FACTION_TERRAGOV)
 		winning_team.add_reward(/datum/campaign_reward/equipment/power_armor)
 	else if(hostile_faction == FACTION_SOM)
