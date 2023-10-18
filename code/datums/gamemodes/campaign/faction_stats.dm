@@ -171,10 +171,9 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 
 ///Adds a new asset to the faction for use
 /datum/faction_stats/proc/add_asset(datum/campaign_asset/new_asset)
-	if(faction_assets[new_asset]) //todo: should passive/instant rewards reproc? probably
-		var/datum/campaign_asset/existing_reward = faction_assets[new_asset]
-		existing_reward.uses += initial(existing_reward.uses)
-		existing_reward.asset_flags &= ~ASSET_CONSUMED
+	if(faction_assets[new_asset])
+		var/datum/campaign_asset/existing_asset = faction_assets[new_asset]
+		existing_asset.reapply()
 	else
 		faction_assets[new_asset] = new new_asset(src)
 

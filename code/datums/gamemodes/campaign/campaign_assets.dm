@@ -57,6 +57,13 @@
 	faction = null
 	return ..()
 
+///Reapplies the asset, refreshing it or restoring uses
+/datum/campaign_asset/proc/reapply()
+	uses += initial(uses)
+	asset_flags &= ~ASSET_CONSUMED
+	if(asset_flags & ASSET_IMMEDIATE_EFFECT)
+		immediate_effect()
+
 ///Handles the activated asset process
 /datum/campaign_asset/proc/attempt_activatation()
 	if(activation_checks())
@@ -100,12 +107,13 @@
 	return
 
 ///Triggers any immediate effects of this asset
-/datum/campaign_asset/proc/immediate_effect()
+/datum/campaign_asset/proc/immediate_effect() //Immediate effects can be applied repeatedly if the asset is reobtained
 	return
 ///Triggers any passive effects of this asset
-/datum/campaign_asset/proc/passive_effect() //functionally identical to immediate effect, but specifically intended to be removable, and displayed differently in the UI
+/datum/campaign_asset/proc/passive_effect() //Passive effects do not stack
 	return
 
+///Removes the passive effect of this asset
 /datum/campaign_asset/proc/remove_passive_effect()
 	return
 
