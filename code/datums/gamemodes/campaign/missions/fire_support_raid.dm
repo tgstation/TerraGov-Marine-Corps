@@ -71,21 +71,21 @@
 	winning_faction = hostile_faction
 	var/datum/faction_stats/winning_team = mode.stat_list[hostile_faction]
 	if(hostile_faction == FACTION_TERRAGOV)
-		winning_team.add_reward(/datum/campaign_reward/bonus_job/combat_robots)
-		winning_team.add_reward(/datum/campaign_reward/fire_support/mortar)
+		winning_team.add_asset(/datum/campaign_reward/bonus_job/combat_robots)
+		winning_team.add_asset(/datum/campaign_reward/fire_support/mortar)
 	else if(hostile_faction == FACTION_SOM)
-		winning_team.add_reward(/datum/campaign_reward/equipment/gorgon_armor)
-		winning_team.add_reward(/datum/campaign_reward/fire_support/som_mortar)
+		winning_team.add_asset(/datum/campaign_reward/equipment/gorgon_armor)
+		winning_team.add_asset(/datum/campaign_reward/fire_support/som_mortar)
 
 /datum/campaign_mission/destroy_mission/fire_support_raid/apply_major_loss()
 	winning_faction = hostile_faction
 	var/datum/faction_stats/winning_team = mode.stat_list[hostile_faction]
 	if(hostile_faction == FACTION_TERRAGOV)
-		winning_team.add_reward(/datum/campaign_reward/bonus_job/combat_robots)
-		winning_team.add_reward(/datum/campaign_reward/fire_support/mortar)
+		winning_team.add_asset(/datum/campaign_reward/bonus_job/combat_robots)
+		winning_team.add_asset(/datum/campaign_reward/fire_support/mortar)
 	else if(hostile_faction == FACTION_SOM)
-		winning_team.add_reward(/datum/campaign_reward/equipment/gorgon_armor)
-		winning_team.add_reward(/datum/campaign_reward/fire_support/som_mortar)
+		winning_team.add_asset(/datum/campaign_reward/equipment/gorgon_armor)
+		winning_team.add_asset(/datum/campaign_reward/fire_support/som_mortar)
 
 /datum/campaign_mission/destroy_mission/fire_support_raid/som
 	mission_flags = MISSION_DISALLOW_TELEPORT
