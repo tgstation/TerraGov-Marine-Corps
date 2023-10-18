@@ -256,8 +256,9 @@
 /obj/item/weapon/brick/proc/turn_to_stone(obj/item/itemturningtostone, mob/user)
 	user.balloon_alert(user, "Making stones...")
 	if(do_after(user, 5 SECONDS))
-		new /obj/item/stack/throwing_knife/stone(get_turf(src))
+		var/obj/new_stone = new /obj/item/stack/throwing_knife/stone(get_turf(src))
 		qdel(src)
+		user.put_in_hands(new_stone)
 		return
 	return user.balloon_alert(user, "Cancelled")
 
@@ -275,6 +276,9 @@
 	amount = 12
 	throw_delay = 0.3 SECONDS
 	hitsound = 'sound/weapons/heavyhit.ogg'
+	singular_name = "stone"
+	flags_atom = DIRLOCK
+	sharp = IS_NOT_SHARP_ITEM
 
 /obj/item/weapon/combat_knife/harvester
 	name = "\improper HP-S Harvester knife"
