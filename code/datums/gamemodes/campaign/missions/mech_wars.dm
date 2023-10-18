@@ -51,15 +51,15 @@
 /datum/campaign_mission/tdm/mech_wars/apply_major_victory()
 	winning_faction = starting_faction
 	var/datum/faction_stats/winning_team = mode.stat_list[starting_faction]
-	winning_team.add_reward(/datum/campaign_reward/mech/heavy)
-	winning_team.add_reward(/datum/campaign_reward/mech)
-	winning_team.add_reward(/datum/campaign_reward/mech/light)
+	winning_team.add_asset(/datum/campaign_asset/mech/heavy)
+	winning_team.add_asset(/datum/campaign_asset/mech)
+	winning_team.add_asset(/datum/campaign_asset/mech/light)
 
 /datum/campaign_mission/tdm/mech_wars/apply_minor_victory()
 	winning_faction = starting_faction
 	var/datum/faction_stats/winning_team = mode.stat_list[starting_faction]
-	winning_team.add_reward(/datum/campaign_reward/mech)
-	winning_team.add_reward(/datum/campaign_reward/mech/light)
+	winning_team.add_asset(/datum/campaign_asset/mech)
+	winning_team.add_asset(/datum/campaign_asset/mech/light)
 
 /datum/campaign_mission/tdm/mech_wars/apply_draw()
 	winning_faction = hostile_faction
@@ -67,15 +67,15 @@
 /datum/campaign_mission/tdm/mech_wars/apply_minor_loss()
 	winning_faction = hostile_faction
 	var/datum/faction_stats/winning_team = mode.stat_list[hostile_faction]
-	winning_team.add_reward(/datum/campaign_reward/mech/som)
-	winning_team.add_reward(/datum/campaign_reward/mech/light/som)
+	winning_team.add_asset(/datum/campaign_asset/mech/som)
+	winning_team.add_asset(/datum/campaign_asset/mech/light/som)
 
 /datum/campaign_mission/tdm/mech_wars/apply_major_loss()
 	winning_faction = hostile_faction
 	var/datum/faction_stats/winning_team = mode.stat_list[hostile_faction]
-	winning_team.add_reward(/datum/campaign_reward/mech/heavy/som)
-	winning_team.add_reward(/datum/campaign_reward/mech/som)
-	winning_team.add_reward(/datum/campaign_reward/mech/light/som)
+	winning_team.add_asset(/datum/campaign_asset/mech/heavy/som)
+	winning_team.add_asset(/datum/campaign_asset/mech/som)
+	winning_team.add_asset(/datum/campaign_asset/mech/light/som)
 
 //mech spawn points
 /obj/effect/landmark/campaign/mech_spawner
@@ -138,25 +138,25 @@
 /datum/campaign_mission/tdm/mech_wars/som/apply_major_victory()
 	winning_faction = starting_faction
 	var/datum/faction_stats/winning_team = mode.stat_list[starting_faction]
-	winning_team.add_reward(/datum/campaign_reward/mech/heavy/som)
-	winning_team.add_reward(/datum/campaign_reward/mech/som)
-	winning_team.add_reward(/datum/campaign_reward/mech/light/som)
+	winning_team.add_asset(/datum/campaign_asset/mech/heavy/som)
+	winning_team.add_asset(/datum/campaign_asset/mech/som)
+	winning_team.add_asset(/datum/campaign_asset/mech/light/som)
 
 /datum/campaign_mission/tdm/mech_wars/som/apply_minor_victory()
 	winning_faction = starting_faction
 	var/datum/faction_stats/winning_team = mode.stat_list[starting_faction]
-	winning_team.add_reward(/datum/campaign_reward/mech/som)
-	winning_team.add_reward(/datum/campaign_reward/mech/light/som)
+	winning_team.add_asset(/datum/campaign_asset/mech/som)
+	winning_team.add_asset(/datum/campaign_asset/mech/light/som)
 
 /datum/campaign_mission/tdm/mech_wars/som/apply_minor_loss()
 	winning_faction = hostile_faction
 	var/datum/faction_stats/winning_team = mode.stat_list[hostile_faction]
-	winning_team.add_reward(/datum/campaign_reward/mech)
-	winning_team.add_reward(/datum/campaign_reward/mech/light)
+	winning_team.add_asset(/datum/campaign_asset/mech)
+	winning_team.add_asset(/datum/campaign_asset/mech/light)
 
 /datum/campaign_mission/tdm/mech_wars/som/apply_major_loss()
 	winning_faction = hostile_faction
 	var/datum/faction_stats/winning_team = mode.stat_list[hostile_faction]
-	winning_team.add_reward(/datum/campaign_reward/mech/heavy)
-	winning_team.add_reward(/datum/campaign_reward/mech)
-	winning_team.add_reward(/datum/campaign_reward/mech/light)
+	winning_team.add_asset(/datum/campaign_asset/mech/heavy)
+	winning_team.add_asset(/datum/campaign_asset/mech)
+	winning_team.add_asset(/datum/campaign_asset/mech/light)

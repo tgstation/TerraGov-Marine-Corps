@@ -57,12 +57,12 @@
 /datum/campaign_mission/destroy_mission/supply_raid/apply_major_victory()
 	winning_faction = starting_faction
 	var/datum/faction_stats/hostile_team = mode.stat_list[hostile_faction]
-	hostile_team.add_reward(/datum/campaign_reward/attrition_modifier/malus_standard/higher)
+	hostile_team.add_asset(/datum/campaign_asset/attrition_modifier/malus_standard/higher)
 
 /datum/campaign_mission/destroy_mission/supply_raid/apply_minor_victory()
 	winning_faction = starting_faction
 	var/datum/faction_stats/hostile_team = mode.stat_list[hostile_faction]
-	hostile_team.add_reward(/datum/campaign_reward/attrition_modifier/malus_standard)
+	hostile_team.add_asset(/datum/campaign_asset/attrition_modifier/malus_standard)
 
 /datum/campaign_mission/destroy_mission/supply_raid/apply_minor_loss()
 	winning_faction = hostile_faction
