@@ -185,6 +185,9 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	///What outfit typepaths we've favorited in the SelectEquipment menu
 	var/list/favorite_outfits = list()
 
+	///List of slot_draw_order
+	var/list/slot_draw_order_pref = list()
+
 /datum/preferences/New(client/C)
 	if(!istype(C))
 		return
@@ -223,7 +226,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		custom_emotes += emote
 	C.set_macros()
 	loadout_manager = new
-
 
 /datum/preferences/can_interact(mob/user)
 	return TRUE
