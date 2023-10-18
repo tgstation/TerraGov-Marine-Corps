@@ -405,6 +405,11 @@ WEAPONS
 	contains = list(/obj/item/weapon/gun/rifle/pepperball)
 	cost = 100
 
+/datum/supply_packs/weapons/bricks
+	name = "Brick"
+	contains = list(/obj/item/weapon/brick)
+	cost = 10
+
 /datum/supply_packs/weapons/railgun
 	name = "SR-220 Railgun"
 	contains = list(/obj/item/weapon/gun/rifle/railgun)

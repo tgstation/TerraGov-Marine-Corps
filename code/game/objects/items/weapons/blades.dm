@@ -241,7 +241,7 @@
 
 /obj/item/weapon/brick
 	name = "\improper Brick"
-	desc = "It's a brick."
+	desc = "It's a brick. By rubbing 2 bricks together, you can get some stones."
 	icon_state = "brick"
 	force = 50
 	throwforce = 50
@@ -263,7 +263,7 @@
 
 /obj/item/stack/throwing_knife/stone
 	name = "\improper Stone"
-	desc = "Capable of doing minor amounts of damage, these stones will annoy the hell out of anything it gets thrown at."
+	desc = "Capable of doing minor amounts of damage, these stones will annoy the hell out of the recipient."
 	item_icons = list(
 		slot_l_hand_str = 'icons/mob/inhands/weapons/melee_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/weapons/melee_right.dmi',
