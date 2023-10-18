@@ -1,0 +1,4 @@
+author: "Barnet2"
+delete-after: True
+changes:
+  - bugfix: "Autobalance will now care about the ratio of alive xenos to burrowed xenos when giving out stat buffs"
