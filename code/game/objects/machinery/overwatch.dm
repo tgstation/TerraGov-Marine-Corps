@@ -97,7 +97,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	send_defend_order = new
 	send_retreat_order = new
 	send_rally_order = new
-	cic_mini = new
+	cic_mini = (faction == FACTION_SOM ? new /datum/action/minimap/marine/external/som : new /datum/action/minimap/marine/external)
 	GLOB.main_overwatch_consoles += src
 
 /obj/machinery/computer/camera_advanced/overwatch/Destroy()
