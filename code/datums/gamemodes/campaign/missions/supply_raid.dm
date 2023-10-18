@@ -68,19 +68,19 @@
 	winning_faction = hostile_faction
 	var/datum/faction_stats/winning_team = mode.stat_list[hostile_faction]
 	if(hostile_faction == FACTION_TERRAGOV)
-		winning_team.add_asset(/datum/campaign_reward/equipment/power_armor)
+		winning_team.add_asset(/datum/campaign_asset/equipment/power_armor)
 	else if(hostile_faction == FACTION_SOM)
 		winning_team.add_asset(/obj/effect/landmark/campaign/mech_spawner/som/light)
-		winning_team.add_asset(/datum/campaign_reward/equipment/gorgon_armor)
+		winning_team.add_asset(/datum/campaign_asset/equipment/gorgon_armor)
 
 /datum/campaign_mission/destroy_mission/supply_raid/apply_major_loss()
 	winning_faction = hostile_faction
 	var/datum/faction_stats/winning_team = mode.stat_list[hostile_faction]
 	if(hostile_faction == FACTION_TERRAGOV)
-		winning_team.add_asset(/datum/campaign_reward/equipment/power_armor)
+		winning_team.add_asset(/datum/campaign_asset/equipment/power_armor)
 	else if(hostile_faction == FACTION_SOM)
 		winning_team.add_asset(/obj/effect/landmark/campaign/mech_spawner/som/light)
-		winning_team.add_asset(/datum/campaign_reward/equipment/gorgon_armor)
+		winning_team.add_asset(/datum/campaign_asset/equipment/gorgon_armor)
 
 /datum/campaign_mission/destroy_mission/supply_raid/som
 	mission_flags = MISSION_DISALLOW_TELEPORT
