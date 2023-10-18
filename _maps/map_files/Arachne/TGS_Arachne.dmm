@@ -6266,7 +6266,7 @@
 /turf/open/floor/mainship/floor,
 /area/mainship/living/tankerbunks)
 "ftG" = (
-/obj/machinery/cic_maptable_big{
+/obj/machinery/cic_maptable/drawable/big{
 	pixel_x = -19
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{

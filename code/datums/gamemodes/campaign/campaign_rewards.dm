@@ -62,6 +62,13 @@
 	faction = null
 	return ..()
 
+///Reapplies the asset, refreshing it or restoring uses
+/datum/campaign_reward/proc/reapply()
+	uses += initial(uses)
+	reward_flags &= ~REWARD_CONSUMED
+	if(reward_flags & REWARD_IMMEDIATE_EFFECT)
+		immediate_effect()
+
 ///Handles the activated asset process
 /datum/campaign_reward/proc/attempt_activatation()
 	if(activation_checks())
@@ -105,12 +112,13 @@
 	return
 
 ///Triggers any immediate effects of this reward
-/datum/campaign_reward/proc/immediate_effect()
+/datum/campaign_reward/proc/immediate_effect() //Immediate effects can be applied repeatedly if the asset is reobtained
 	return
 ///Triggers any passive effects of this reward
-/datum/campaign_reward/proc/passive_effect() //functionally identical to immediate effect, but specifically intended to be removable, and displayed differently in the UI
+/datum/campaign_reward/proc/passive_effect() //Passive effects do not stack
 	return
 
+///Removes the passive effect of this asset
 /datum/campaign_reward/proc/remove_passive_effect()
 	return
 

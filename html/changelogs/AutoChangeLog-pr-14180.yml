@@ -1,5 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - qol: "Some general campaign UI improvements"
-  - bugfix: "fixed a BSOD on the campaign UI if no missions were available"
