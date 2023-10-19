@@ -197,6 +197,41 @@
 	var/image/new_overlay = image(icon, src, "[icon_state]_overlay", ABOVE_MOB_LAYER, dir)
 	. += new_overlay
 
+//NT base
+/obj/effect/landmark/campaign_structure/nt_computer
+	name = "server rack"
+	icon = 'icons/obj/structures/campaign/tall_structures.dmi'
+	icon_state = "serverrack_on"
+	mission_types = list(/datum/campaign_mission/base_rescue)
+	spawn_object = /obj/structure/campaign_objective/destruction_objective/nt_computer
+
+/obj/structure/campaign_objective/destruction_objective/nt_computer
+	name = "server rack"
+	desc = "A server rack. Who knows what's on it?."
+	icon = 'icons/obj/structures/campaign/tall_structures.dmi'
+	icon_state = "serverrack_on"
+	layer = ABOVE_MOB_LAYER
+
+/obj/effect/landmark/campaign_structure/nt_computer/rack
+	name = "control rack"
+	icon_state = "recorder_on"
+	spawn_object = /obj/structure/campaign_objective/destruction_objective/nt_computer/rack
+
+/obj/structure/campaign_objective/destruction_objective/nt_computer/rack
+	name = "control rack"
+	desc = "A system control rack. Who knows what's on it?."
+	icon_state = "recorder_on"
+
+/obj/effect/landmark/campaign_structure/nt_computer/recorder
+	name = "backup recorder"
+	icon_state = "rack_on"
+	spawn_object = /obj/structure/campaign_objective/destruction_objective/nt_computer/recorder
+
+/obj/structure/campaign_objective/destruction_objective/nt_computer/recorder
+	name = "backup recorder"
+	desc = "A backup data recorder. Who knows what's on it?."
+	icon_state = "rack_on"
+
 //teleporter core
 /obj/effect/landmark/campaign_structure/bluespace_core
 	name = "Bluespace Core objective"

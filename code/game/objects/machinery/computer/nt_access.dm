@@ -6,11 +6,13 @@
 /obj/machinery/computer/nt_access
 	name = "NT security override terminal"
 	desc = "Used to generate a security override code."
-	icon_state = "nuke_red"
+	icon = 'icons/obj/structures/campaign/tall_structures.dmi'
+	icon_state = "terminal_red"
 	interaction_flags = INTERACT_MACHINE_TGUI
 	circuit = /obj/item/circuitboard/computer/nt_access
 	use_power = NO_POWER_USE
 	resistance_flags = INDESTRUCTIBLE|UNACIDABLE
+	layer = ABOVE_MOB_LAYER
 	///Time needed for the machine to generate the disc
 	var/segment_time = 1.5 MINUTES
 	///Time to start a segment
@@ -45,6 +47,7 @@
 
 /obj/machinery/computer/nt_access/Initialize(mapload)
 	. = ..()
+	update_icon()
 	update_minimap_icon()
 	GLOB.campaign_objectives += src
 
@@ -65,6 +68,15 @@
 	current_timer = null
 	update_minimap_icon()
 	visible_message("<b>[src]</b> shuts down as it loses power. Any running programs will now exit")
+
+/obj/machinery/computer/nt_access/update_icon_state()
+	icon_state = initial(icon_state)
+
+/obj/machinery/computer/nt_access/update_overlays()
+	. = ..()
+	if(machine_stat & NOPOWER)
+		return
+	. += image(icon, src, "terminal_overlay")
 
 /obj/machinery/computer/nt_access/attackby(obj/item/I, mob/living/user, params)
 	return attack_hand(user)
@@ -172,22 +184,22 @@
 
 /obj/machinery/computer/nt_access/green
 	name = "green NT security override terminal"
-	icon_state = "nuke_green"
+	icon_state = "terminal_green"
 	code_color = "green"
 
 /obj/machinery/computer/nt_access/blue
 	name = "blue NT security override terminal"
-	icon_state = "nuke_blue"
+	icon_state = "terminal_blue"
 	code_color = "blue"
 
 /obj/effect/landmark/campaign_structure/nt_access
 	name = "red NT security override terminal"
-	icon = 'icons/obj/machines/computer.dmi'
-	icon_state = "nuke_red"
+	icon = 'icons/obj/structures/campaign/tall_structures.dmi'
+	icon_state = "terminal_red"
 	mission_types = list(/datum/campaign_mission/base_rescue)
 	spawn_object = /obj/machinery/computer/nt_access/red
 
 /obj/effect/landmark/campaign_structure/nt_access/blue
 	name = "blue NT security override terminal"
-	icon_state = "nuke_blue"
+	icon_state = "terminal_blue"
 	spawn_object = /obj/machinery/computer/nt_access/blue
