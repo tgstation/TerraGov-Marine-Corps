@@ -1367,6 +1367,10 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/boxingring)
+"bGI" = (
+/obj/machinery/camera/autoname,
+/turf/open/floor/tile/white/hall/full,
+/area/mainship/living/freezer)
 "bIl" = (
 /obj/machinery/light/mainship{
 	dir = 4
@@ -14175,10 +14179,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/stern_hallway)
-"rME" = (
-/obj/machinery/camera/autoname,
-/turf/open/floor/tile/white/hall/full,
-/area/mainship/living/freezer)
 "rOr" = (
 /obj/machinery/holopad,
 /turf/open/floor/mainship/floor,
@@ -16597,7 +16597,6 @@
 /obj/effect/ai_node,
 /obj/machinery/atmospherics/pipe/manifold4w/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/manifold4w/scrubbers/hidden,
-/obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/lower_hull)
 "uKH" = (
@@ -41702,7 +41701,7 @@ qeW
 qeW
 cHI
 gKc
-rME
+bGI
 xZI
 nZK
 gKc
