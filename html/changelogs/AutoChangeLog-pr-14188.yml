@@ -1,0 +1,4 @@
+author: "Barnet2"
+delete-after: True
+changes:
+  - balance: "Puppeteer's max puppets reduced to 3"

@@ -1,5 +1,5 @@
 import { useBackend } from '../../backend';
-import { Box, Button, Section, LabeledList, Grid, ColorBox } from '../../components';
+import { Box, Button, Section, LabeledList, Stack, ColorBox } from '../../components';
 import { ToggleFieldPreference, TextFieldPreference, SelectFieldPreference, LoopingSelectionPreference } from './FieldPreferences';
 
 const ParallaxNumToString = (integer) => {
@@ -38,8 +38,8 @@ export const GameSettings = (props, context) => {
   } = data;
   return (
     <Section title="Game Settings">
-      <Grid>
-        <Grid.Column>
+      <Stack fill>
+        <Stack.Item grow>
           <Section title="Window settings">
             <LabeledList>
               <ToggleFieldPreference
@@ -140,8 +140,8 @@ export const GameSettings = (props, context) => {
               />
             </LabeledList>
           </Section>
-        </Grid.Column>
-        <Grid.Column>
+        </Stack.Item>
+        <Stack.Item grow>
           <Section title="Message settings">
             <LabeledList>
               <ToggleFieldPreference
@@ -204,10 +204,10 @@ export const GameSettings = (props, context) => {
               />
             </LabeledList>
           </Section>
-        </Grid.Column>
-      </Grid>
-      <Grid>
-        <Grid.Column>
+        </Stack.Item>
+      </Stack>
+      <Stack>
+        <Stack.Item grow>
           <Section title="UI settings">
             <LabeledList>
               <SelectFieldPreference
@@ -276,8 +276,8 @@ export const GameSettings = (props, context) => {
               />
             </LabeledList>
           </Section>
-        </Grid.Column>
-        <Grid.Column>
+        </Stack.Item>
+        <Stack.Item grow>
           <Section title="Keybinding Settings">
             <LabeledList>
               {quick_equip.map((equip_slot, index_slot) => (
@@ -294,11 +294,11 @@ export const GameSettings = (props, context) => {
               ))}
             </LabeledList>
           </Section>
-        </Grid.Column>
-      </Grid>
+        </Stack.Item>
+      </Stack>
       {!!is_admin && (
-        <Grid>
-          <Grid.Column>
+        <Stack>
+          <Stack.Item grow>
             <Section title="Administration (admin only)">
               <LabeledList>
                 <ToggleFieldPreference
@@ -317,8 +317,8 @@ export const GameSettings = (props, context) => {
                 />
               </LabeledList>
             </Section>
-          </Grid.Column>
-        </Grid>
+          </Stack.Item>
+        </Stack>
       )}
     </Section>
   );

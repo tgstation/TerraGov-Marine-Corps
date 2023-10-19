@@ -4,6 +4,7 @@
 	minimal_access = ALL_ANTAGONIST_ACCESS
 	skills_type = /datum/skills/craftier
 	faction = FACTION_ICC
+	minimap_icon = "icc"
 
 //ICC Standard
 /datum/job/icc/standard
@@ -125,6 +126,7 @@
 	title = "ICC Guardsman"
 	paygrade = "ICC3"
 	outfit = /datum/outfit/job/icc/guard/coilgun
+	multiple_outfits = TRUE
 	outfits = list(
 		/datum/outfit/job/icc/guard/coilgun,
 		/datum/outfit/job/icc/guard/icc_autoshotgun,

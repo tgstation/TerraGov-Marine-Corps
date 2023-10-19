@@ -183,6 +183,8 @@
 	qdel(src)
 	INVOKE_ASYNC(new_xeno, TYPE_PROC_REF(/mob/living, do_jitter_animation), 1000)
 
+	overlay_fullscreen_timer(2 SECONDS, 20, "roundstart2", /atom/movable/screen/fullscreen/spawning_in)
+
 ///Check if the xeno is currently able to evolve
 /mob/living/carbon/xenomorph/proc/generic_evolution_checks()
 	if(do_actions)
@@ -195,10 +197,6 @@
 
 	if(!isturf(loc))
 		balloon_alert(src, "We can't evolve here")
-		return FALSE
-
-	if(xeno_caste.hardcore)
-		balloon_alert(src, "Nuh-uh")
 		return FALSE
 
 	if(is_banned_from(ckey, ROLE_XENOMORPH))
@@ -237,10 +235,6 @@
 
 	if(HAS_TRAIT_FROM(src, TRAIT_IMMOBILE, BOILER_ROOTED_TRAIT))
 		balloon_alert(src, "We cannot evolve while rooted to the ground")
-		return FALSE
-
-	if(xeno_caste.hardcore)
-		balloon_alert(src, "Nuh-uhh")
 		return FALSE
 
 	return TRUE

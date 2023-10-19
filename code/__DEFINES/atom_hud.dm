@@ -25,6 +25,7 @@
 #define HEART_STATUS_HUD "heart_status_hud" // display if revivable, along with blood level
 #define XENO_FIRE_HUD "xeno_fire_hud" // displays how many fire stacks a xeno has
 #define XENO_BLESSING_HUD "xeno_blessing_hud" //indicates what blessings the xeno has
+#define XENO_EVASION_HUD "xeno_extra_hud" // displays anything extra or additional such as runner's evasion duration
 
 #define ADD_HUD_TO_COOLDOWN 20 //cooldown for being shown the images for any particular data hud
 

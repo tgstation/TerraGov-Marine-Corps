@@ -76,17 +76,17 @@
 	var/prefix = (hive.prefix || xeno_caste.upgrade_name) ? "[hive.prefix][xeno_caste.upgrade_name] " : ""
 	switch(playtime_mins)
 		if(0 to 600)
-			name = prefix + "Broodling Queen ([nicknumber])"
+			name = prefix + "Hatchling Queen ([nicknumber])"
 		if(601 to 3000)
-			name = prefix + "Mature Queen ([nicknumber])"
+			name = prefix + "Young Queen ([nicknumber])"
 		if(3001 to 9000)
-			name = prefix + "Noble Empress ([nicknumber])"
+			name = prefix + "Mature Empress ([nicknumber])"
 		if(9001 to 18000)
-			name = prefix + "Royal Empress ([nicknumber])"
+			name = prefix + "Elder Empress ([nicknumber])"
 		if(18001 to INFINITY)
-			name = prefix + "Archon Empress ([nicknumber])"
+			name = prefix + "Ancient Empress ([nicknumber])"
 		else
-			name = prefix + "Broodling Queen ([nicknumber])"
+			name = prefix + "Hatchling Queen ([nicknumber])"
 
 	real_name = name
 	if(mind)

@@ -854,7 +854,7 @@
 
 
 /obj/structure/closet/crate/mortar_ammo/mlrs_kit
-	name = "\improper TA-40L howitzer kit"
+	name = "\improper TA-40L MLRS kit"
 	desc = "A crate containing a basic, somehow compressed kit consisting of an entire multiple launch rocket system and some rockets, to get a artilleryman started."
 
 /obj/structure/closet/crate/mortar_ammo/mlrs_kit/PopulateContents()

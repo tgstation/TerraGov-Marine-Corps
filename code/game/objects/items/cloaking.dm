@@ -32,6 +32,7 @@
 	return ..()
 
 /obj/item/chameleon/dropped(mob/user)
+	. = ..()
 	disrupt(user)
 
 /obj/item/chameleon/equipped(mob/user, slot)

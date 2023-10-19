@@ -125,7 +125,6 @@
 	.["shoes"] = shoes
 	.["head"] = head
 	.["mask"] = mask
-	.["neck"] = neck
 	.["ears"] = ears
 	.["glasses"] = glasses
 	.["id"] = id
@@ -140,6 +139,32 @@
 	.["implants"] = implants
 	.["accessory"] = accessory
 
+/// Copy most vars from another outfit to this one
+/datum/outfit/proc/copy_from(datum/outfit/target)
+	name = target.name
+	w_uniform = target.w_uniform
+	wear_suit = target.wear_suit
+	toggle_helmet = target.toggle_helmet
+	back = target.back
+	belt = target.belt
+	gloves = target.gloves
+	shoes = target.shoes
+	head = target.head
+	mask = target.mask
+	ears = target.ears
+	glasses = target.glasses
+	id = target.id
+	l_store = target.l_store
+	r_store = target.r_store
+	suit_store = target.suit_store
+	r_hand = target.r_hand
+	l_hand = target.l_hand
+	internals_slot = target.internals_slot
+	backpack_contents = target.backpack_contents
+	box = target.box
+	implants = target.implants
+	accessory = target.accessory
+	return TRUE
 
 /datum/outfit/proc/save_to_file()
 	var/stored_data = get_json_data()

@@ -136,19 +136,11 @@
 		"Heavy Weapons" = list(
 			/obj/structure/closet/crate/mortar_ammo/mortar_kit = 1,
 			/obj/structure/closet/crate/mortar_ammo/howitzer_kit = 1,
-			/obj/structure/largecrate/supply/weapons/standard_atgun = 1,
 			/obj/item/storage/box/crate/sentry = 4,
 			/obj/item/storage/box/tl102 = 1,
 			/obj/item/weapon/gun/heavymachinegun = 1,
 			/obj/item/ammo_magazine/heavymachinegun = 5,
 			/obj/item/ammo_magazine/heavymachinegun/small = 10,
-			/obj/item/storage/holster/backholster/rpg/full = 2,
-			/obj/item/ammo_magazine/rocket/recoilless = 4,
-			/obj/item/ammo_magazine/rocket/recoilless/light = 4,
-			/obj/item/ammo_magazine/rocket/recoilless/heat = 16,
-			/obj/item/ammo_magazine/rocket/recoilless/cloak = 16,
-			/obj/item/ammo_magazine/rocket/recoilless/smoke = 16,
-			/obj/item/ammo_magazine/rocket/recoilless/plasmaloss = 16,
 		),
 		"Attachments" = list(
 			/obj/item/attachable/bayonet = -1,
@@ -229,6 +221,7 @@
 
 	seasonal_items = list(
 		SEASONAL_GUNS = "Seasonal",
+		SEASONAL_HEAVY = "Operational Weapons",
 	)
 
 /obj/machinery/vending/weapon/crash
@@ -942,6 +935,7 @@
 			/obj/item/reagent_containers/hypospray/autoinjector/imidazoline = -1,
 			/obj/item/reagent_containers/hypospray/autoinjector/quickclot = -1,
 			/obj/item/reagent_containers/hypospray/autoinjector/medicalnanites = -1,
+			/obj/item/reagent_containers/hypospray/autoinjector/russian_red = -1,
 		),
 		"Heal Pack" = list(
 			/obj/item/stack/medical/heal_pack/gauze = -1,
@@ -960,7 +954,6 @@
 			/obj/item/reagent_containers/hypospray/autoinjector/roulettium = -1,
 			/obj/item/reagent_containers/hypospray/autoinjector/rezadone = -1,
 			/obj/item/reagent_containers/hypospray/autoinjector/spaceacillin = -1,
-			/obj/item/reagent_containers/hypospray/autoinjector/combat = -1,
 			/obj/item/reagent_containers/hypospray/autoinjector/synaptizine = -1,
 			/obj/item/reagent_containers/hypospray/autoinjector/neuraline = -1,
 			/obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus = -1,
@@ -1088,6 +1081,10 @@
 			/obj/item/armor_module/armor/chest/marine/hotaru = -1,
 			/obj/item/armor_module/armor/legs/marine/hotaru = -1,
 			/obj/item/armor_module/armor/arms/marine/hotaru = -1,
+			/obj/item/clothing/head/modular/marine/dashe = -1,
+			/obj/item/armor_module/armor/chest/marine/dashe = -1,
+			/obj/item/armor_module/armor/arms/marine/dashe = -1,
+			/obj/item/armor_module/armor/legs/marine/dashe = -1,
 		),
 		"Jaeger Mk.I chestpieces" = list(
 			/obj/item/armor_module/armor/chest/marine/skirmisher = -1,
@@ -1588,6 +1585,14 @@
 			/obj/item/ammo_magazine/rifle/icc_autoshotgun = -1,
 			/obj/item/ammo_magazine/rifle/icc_autoshotgun/frag = -1,
 			/obj/item/weapon/gun/shotgun/pump/trenchgun = -1,
+			/obj/item/weapon/gun/rifle/icc_assaultcarbine = -1,
+			/obj/item/weapon/gun/rifle/icc_assaultcarbine/export = -1,
+			/obj/item/ammo_magazine/rifle/icc_assaultcarbine = -1,
+			/obj/item/ammo_magazine/rifle/icc_assaultcarbine/export = -1,
+			/obj/item/weapon/gun/rifle/dpm = -1,
+			/obj/item/ammo_magazine/rifle/dpm = -1,
+			/obj/item/weapon/gun/clf_heavyrifle = -1,
+			/obj/item/shotgunbox/clf_heavyrifle = -1,
 		),
 		"PMC" = list(
 			/obj/item/weapon/gun/rifle/sniper/elite = -1,
@@ -1628,3 +1633,58 @@
 
 /obj/machinery/vending/tool/nopower/valhalla
 	resistance_flags = INDESTRUCTIBLE
+
+/obj/machinery/vending/mech_vendor
+	name = "\improper Mech equipment vendor"
+	desc = "An automated rack hooked up to a colossal storage of items."
+	icon_state = "requisitionop"
+	resistance_flags = INDESTRUCTIBLE
+	use_power = NO_POWER_USE
+	products = list(
+		"Weapon" = list(
+			/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/pistol = -1,
+			/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/burstpistol = -1,
+			/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/smg = -1,
+			/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/burstrifle = -1,
+			/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/assault_rifle = -1,
+			/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/shotgun = -1,
+			/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/greyscale_lmg = -1,
+			/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/light_cannon = -1,
+			/obj/item/mecha_parts/mecha_equipment/weapon/energy/laser_rifle = -1,
+			/obj/item/mecha_parts/mecha_equipment/weapon/energy/laser_projector = -1,
+			/obj/item/mecha_parts/mecha_equipment/weapon/energy/laser_smg = -1,
+			/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/heavy_cannon = -1,
+			/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/minigun = -1,
+			/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/launcher/grenadelauncher = -1,
+			/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/flamethrower = -1,
+			/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/rpg = -1,
+			/obj/item/mecha_parts/mecha_equipment/laser_sword = -1,
+			/obj/item/mecha_parts/mecha_equipment/weapon/energy/laser_spear = -1,
+		),
+		"Ammo" = list(
+			/obj/item/mecha_ammo/vendable/lmg = -1,
+			/obj/item/mecha_ammo/vendable/rifle = -1,
+			/obj/item/mecha_ammo/vendable/burstrifle = -1,
+			/obj/item/mecha_ammo/vendable/shotgun = -1,
+			/obj/item/mecha_ammo/vendable/lightcannon = -1,
+			/obj/item/mecha_ammo/vendable/heavycannon = -1,
+			/obj/item/mecha_ammo/vendable/smg = -1,
+			/obj/item/mecha_ammo/vendable/burstpistol = -1,
+			/obj/item/mecha_ammo/vendable/pistol = -1,
+			/obj/item/mecha_ammo/vendable/rpg = -1,
+			/obj/item/mecha_ammo/vendable/minigun = -1,
+			/obj/item/mecha_ammo/vendable/grenade = -1,
+			/obj/item/mecha_ammo/vendable/flamer = -1,
+		),
+		"Equipment" = list(
+			/obj/item/mecha_parts/mecha_equipment/armor/melee = -1,
+			/obj/item/mecha_parts/mecha_equipment/armor/acid = -1,
+			/obj/item/mecha_parts/mecha_equipment/armor/explosive = -1,
+			/obj/item/mecha_parts/mecha_equipment/generator/greyscale = -1,
+			/obj/item/mecha_parts/mecha_equipment/generator/greyscale/upgraded = -1,
+			/obj/item/mecha_parts/mecha_equipment/energy_optimizer = -1,
+			/obj/item/mecha_parts/mecha_equipment/melee_core = -1,
+			/obj/item/mecha_parts/mecha_equipment/ability/dash = -1,
+			/obj/item/mecha_parts/mecha_equipment/ability/smoke/cloak_smoke = -1,
+		),
+	)
