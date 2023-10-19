@@ -250,3 +250,21 @@
   - code_imp: Updated some maptable code
   Waselon:
   - balance: Ravagers in Endure are no longer slowed down by vali tramadol attack
+2023-10-19:
+  Barnet2:
+  - bugfix: Puppeteer now has the proper evolution threshold
+  - bugfix: Autobalance will now care about the ratio of alive xenos to burrowed xenos
+      when giving out stat buffs
+  Lewdcifer:
+  - rscadd: Cement protein bar. Mmm... cement...
+  Lumipharon:
+  - bugfix: SOM officers are properly in job preferences
+  - code_imp: Reorganised some campaign asset code
+  - bugfix: Instant effect assets correctly reapply if obtained multiple times
+  Xander3359:
+  - qol: You can now change your default draw order in prefs.
+  aarrisu:
+  - rscadd: berrybar berrybar pouch
+  - imageadd: berry bar berry bar wrapper berry bar pouch
+  hyper2snyper:
+  - bugfix: Fixes lasguns becoming invisible after changing modes.
