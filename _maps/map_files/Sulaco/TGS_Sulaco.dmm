@@ -6689,10 +6689,9 @@
 	},
 /area/sulaco/engineering/ce)
 "aJS" = (
-/obj/machinery/door/airlock/mainship/maint,
-/obj/machinery/door/firedoor/mainship,
-/turf/open/floor/plating,
-/area/sulaco/maintenance/lower_maint3)
+/mob/living/simple_animal/cat/space,
+/turf/open/floor/prison/sterilewhite,
+/area/sulaco/cafeteria/kitchen)
 "aJT" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic/canteen,
 /obj/machinery/door/firedoor/mainship{
@@ -7156,6 +7155,7 @@
 /obj/machinery/light/mainship{
 	dir = 4
 	},
+/obj/effect/ai_node,
 /turf/open/floor/prison/sterilewhite,
 /area/sulaco/cafeteria/kitchen)
 "aMo" = (
@@ -9497,6 +9497,18 @@
 	dir = 4
 	},
 /area/mainship/command/self_destruct)
+"bic" = (
+/obj/structure/bed/chair/nometal{
+	dir = 8
+	},
+/obj/machinery/camera/autoname{
+	dir = 8
+	},
+/obj/structure/cable,
+/turf/open/floor/tile/darkgreen/darkgreen2{
+	dir = 4
+	},
+/area/mainship/living/basketball)
 "bij" = (
 /obj/machinery/door/firedoor/mainship{
 	dir = 2
@@ -10501,12 +10513,8 @@
 /turf/open/floor/prison,
 /area/sulaco/hallway/lower_foreship)
 "cDB" = (
-/obj/machinery/camera/autoname{
-	dir = 8
-	},
-/obj/effect/ai_node,
-/turf/open/floor/plating,
-/area/sulaco/maintenance/lower_maint3)
+/turf/closed/wall/mainship/gray,
+/area/mainship/living/freezer)
 "cDU" = (
 /turf/closed/wall/mainship/gray,
 /area/sulaco/maintenance/lower_maint3)
@@ -10909,11 +10917,12 @@
 /area/sulaco/cargo)
 "cZo" = (
 /obj/machinery/light/mainship/small,
-/obj/structure/table/mainship/nometal,
-/obj/item/tool/crowbar,
-/obj/item/clothing/head/hardhat/rugged,
-/turf/open/floor/plating,
-/area/sulaco/maintenance/lower_maint3)
+/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+	dir = 4;
+	on = 1
+	},
+/turf/open/floor/tile/white/hall/full,
+/area/mainship/living/freezer)
 "dde" = (
 /obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/prison/bright_clean,
@@ -11678,9 +11687,10 @@
 /turf/closed/banish_space,
 /area/space)
 "eho" = (
-/obj/effect/spawner/random/misc/structure/supplycrate,
-/turf/open/floor/plating,
-/area/sulaco/maintenance/lower_maint3)
+/obj/effect/decal/cleanable/blood,
+/obj/item/pizzabox,
+/turf/open/floor/tile/white/hall/full,
+/area/mainship/living/freezer)
 "ehA" = (
 /obj/structure/drop_pod_launcher,
 /obj/structure/droppod,
@@ -12949,10 +12959,9 @@
 /turf/open/floor/tile/dark2,
 /area/mainship/living/basketball)
 "fUZ" = (
-/obj/machinery/power/monitor,
-/obj/structure/cable,
-/turf/open/floor/plating,
-/area/sulaco/maintenance/lower_maint3)
+/obj/machinery/grill/unwrenched,
+/turf/open/floor/tile/white/hall/full,
+/area/mainship/living/freezer)
 "fVo" = (
 /turf/closed/wall/mainship/white,
 /area/sulaco/medbay/cmo)
@@ -13254,11 +13263,11 @@
 /turf/open/floor/wood,
 /area/sulaco/liaison/quarters)
 "glt" = (
-/obj/machinery/light/mainship/small{
-	dir = 8
+/obj/structure/sink{
+	dir = 1
 	},
-/turf/open/floor/plating,
-/area/sulaco/maintenance/lower_maint3)
+/turf/open/floor/tile/white/hall/full,
+/area/mainship/living/freezer)
 "gmg" = (
 /obj/machinery/light/mainship/small{
 	dir = 8
@@ -13453,6 +13462,7 @@
 /area/sulaco/hallway/lower_foreship)
 "gCU" = (
 /obj/effect/ai_node,
+/obj/structure/cable,
 /turf/open/floor/tile/dark2,
 /area/mainship/living/basketball)
 "gEJ" = (
@@ -13505,9 +13515,12 @@
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/self_destruct)
 "gIj" = (
-/obj/machinery/suit_storage_unit,
-/turf/open/floor/plating,
-/area/sulaco/maintenance/lower_maint3)
+/obj/effect/decal/cleanable/blood,
+/obj/machinery/firealarm{
+	dir = 1
+	},
+/turf/open/floor/tile/white/hall/full,
+/area/mainship/living/freezer)
 "gID" = (
 /turf/open/floor/prison/darkyellow{
 	dir = 10
@@ -14268,10 +14281,8 @@
 	},
 /area/sulaco/marine/chapel)
 "hDk" = (
-/obj/structure/cable,
-/obj/machinery/power/apc/mainship,
-/turf/open/floor/plating,
-/area/sulaco/maintenance/lower_maint3)
+/turf/open/floor/tile/white/hall/full,
+/area/mainship/living/freezer)
 "hDn" = (
 /obj/machinery/door/firedoor/mainship{
 	dir = 2
@@ -16610,13 +16621,10 @@
 	},
 /area/sulaco/bridge)
 "ktb" = (
-/obj/machinery/light/mainship/small{
-	dir = 1
-	},
-/obj/machinery/camera/autoname,
 /obj/structure/cable,
-/turf/open/floor/plating,
-/area/sulaco/maintenance/lower_maint3)
+/obj/machinery/power/apc/mainship,
+/turf/open/floor/tile/white/hall/full,
+/area/mainship/living/freezer)
 "ktu" = (
 /obj/machinery/air_alarm{
 	dir = 4
@@ -16796,8 +16804,8 @@
 /turf/open/floor/prison/bright_clean,
 /area/sulaco/bridge)
 "kKg" = (
-/obj/structure/cable,
 /obj/effect/spawner/random/misc/structure/flavorvending/colaweighted,
+/obj/structure/cable,
 /turf/open/floor/prison/kitchen,
 /area/sulaco/cafeteria/kitchen)
 "kKv" = (
@@ -17118,6 +17126,10 @@
 	dir = 1
 	},
 /area/sulaco/medbay)
+"lbE" = (
+/obj/structure/kitchenspike,
+/turf/open/floor/tile/white/hall/full,
+/area/mainship/living/freezer)
 "lcd" = (
 /obj/structure/target_stake,
 /turf/open/floor/prison/red{
@@ -18461,28 +18473,13 @@
 /turf/open/floor/prison/red,
 /area/sulaco/marine)
 "mON" = (
-/obj/structure/rack,
-/obj/item/reagent_containers/food/condiment/saltshaker,
-/obj/item/reagent_containers/food/condiment/saltshaker,
-/obj/item/reagent_containers/food/condiment/saltshaker,
-/obj/item/reagent_containers/food/condiment/saltshaker,
-/obj/item/reagent_containers/food/condiment/saltshaker,
-/obj/item/reagent_containers/food/condiment/saltshaker,
-/obj/item/reagent_containers/food/condiment/peppermill,
-/obj/item/reagent_containers/food/condiment/peppermill,
-/obj/item/reagent_containers/food/condiment/peppermill,
-/obj/item/reagent_containers/food/condiment/peppermill,
-/obj/item/reagent_containers/food/condiment/peppermill,
-/obj/item/reagent_containers/food/condiment/peppermill,
-/obj/machinery/light/mainship/small{
-	dir = 1
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on{
+	dir = 4
 	},
-/obj/item/reagent_containers/food/snacks/flour,
-/obj/item/reagent_containers/food/snacks/flour,
-/obj/item/storage/box/monkeycubes,
-/obj/item/reagent_containers/food/snacks/flour,
-/turf/open/floor/freezer,
-/area/sulaco/cafeteria/kitchen)
+/obj/item/clothing/mask/gas/icc,
+/obj/structure/cable,
+/turf/open/floor/tile/white/hall/full,
+/area/mainship/living/freezer)
 "mPO" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/light/mainship{
@@ -18679,8 +18676,8 @@
 /turf/open/floor/prison,
 /area/sulaco/bar)
 "ndm" = (
-/obj/structure/cable,
 /obj/effect/spawner/random/misc/structure/flavorvending/coffeeweighted,
+/obj/structure/cable,
 /turf/open/floor/prison/kitchen,
 /area/sulaco/cafeteria/kitchen)
 "neZ" = (
@@ -19379,7 +19376,13 @@
 /turf/open/floor/plating,
 /area/sulaco/maintenance/upperdeck_north_maint)
 "obf" = (
-/turf/open/floor/freezer,
+/obj/machinery/light/mainship{
+	dir = 8
+	},
+/obj/machinery/camera/autoname{
+	dir = 4
+	},
+/turf/open/floor/prison/sterilewhite,
 /area/sulaco/cafeteria/kitchen)
 "obm" = (
 /obj/machinery/keycard_auth,
@@ -20193,9 +20196,12 @@
 /turf/closed/wall/mainship/white,
 /area/sulaco/medbay)
 "pdB" = (
-/obj/machinery/bot/cleanbot,
-/turf/open/floor/plating,
-/area/sulaco/maintenance/lower_maint3)
+/obj/effect/turf_decal/tracks/wheels/bloody{
+	dir = 10
+	},
+/obj/structure/cable,
+/turf/open/floor/tile/white/hall/full,
+/area/mainship/living/freezer)
 "pdS" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 10
@@ -20247,14 +20253,15 @@
 /turf/open/floor/prison/bright_clean,
 /area/sulaco/hangar)
 "pfD" = (
-/obj/machinery/light/mainship/small{
-	dir = 8
-	},
-/obj/machinery/camera/autoname{
+/obj/effect/turf_decal/tracks/wheels/bloody{
 	dir = 4
 	},
-/turf/open/floor/plating,
-/area/sulaco/maintenance/lower_maint3)
+/obj/machinery/door/airlock/mainship/generic{
+	name = "Freezer"
+	},
+/obj/structure/cable,
+/turf/open/floor/mainship/mono,
+/area/mainship/living/freezer)
 "pgQ" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
 	dir = 4
@@ -20738,33 +20745,34 @@
 /turf/open/floor/mainship/terragov/south,
 /area/space)
 "pHZ" = (
-/obj/machinery/door/airlock/mainship/maint{
-	dir = 1
+/obj/item/reagent_containers/food/snacks/meat{
+	pixel_x = -1;
+	pixel_y = 2
 	},
-/turf/open/floor/plating,
-/area/sulaco/maintenance/lower_maint3)
+/obj/item/reagent_containers/food/snacks/meat{
+	pixel_x = -1;
+	pixel_y = 2
+	},
+/obj/item/reagent_containers/food/snacks/meat{
+	pixel_x = -1;
+	pixel_y = 2
+	},
+/obj/item/reagent_containers/food/snacks/meat{
+	pixel_x = -1;
+	pixel_y = 2
+	},
+/obj/effect/decal/cleanable/blood/gibs,
+/obj/effect/ai_node,
+/obj/structure/cable,
+/turf/open/floor/tile/white/hall/full,
+/area/mainship/living/freezer)
 "pIC" = (
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/structure/closet/crate/freezer,
-/obj/item/reagent_containers/food/snacks/dough,
-/obj/item/reagent_containers/food/snacks/dough,
-/obj/item/reagent_containers/food/snacks/dough,
-/obj/item/reagent_containers/food/snacks/dough,
-/obj/item/reagent_containers/food/snacks/dough,
-/obj/item/reagent_containers/food/snacks/dough,
-/obj/item/reagent_containers/food/snacks/dough,
-/obj/item/reagent_containers/food/snacks/dough,
-/obj/item/reagent_containers/food/snacks/dough,
-/obj/item/reagent_containers/food/snacks/dough,
-/obj/item/reagent_containers/food/snacks/grown/potato,
-/obj/item/reagent_containers/food/snacks/grown/potato,
-/obj/item/reagent_containers/food/snacks/grown/potato,
-/obj/item/reagent_containers/food/snacks/grown/potato,
-/obj/item/reagent_containers/food/snacks/grown/potato,
-/turf/open/floor/freezer,
-/area/sulaco/cafeteria/kitchen)
+/obj/structure/table/reinforced,
+/obj/effect/spawner/random/food_or_drink/kitchenknife/butcherweighted,
+/obj/item/clothing/head/helmet/marine/som,
+/obj/effect/spawner/random/food_or_drink/burger,
+/turf/open/floor/tile/white/hall/full,
+/area/mainship/living/freezer)
 "pIP" = (
 /turf/open/floor/prison,
 /area/sulaco/hallway/lower_main_hall)
@@ -20949,9 +20957,12 @@
 	},
 /area/sulaco/engineering)
 "pXL" = (
-/obj/effect/spawner/random/engineering/structure/tank/waterweighted,
-/turf/open/floor/plating,
-/area/sulaco/maintenance/lower_maint3)
+/obj/effect/decal/cleanable/blood,
+/obj/machinery/camera/autoname{
+	dir = 1
+	},
+/turf/open/floor/tile/white/hall/full,
+/area/mainship/living/freezer)
 "pYe" = (
 /turf/open/floor/prison/sterilewhite,
 /area/ice_colony/surface/engineering)
@@ -21727,8 +21738,8 @@
 /area/sulaco/mechpilotquarters)
 "rgW" = (
 /obj/structure/table/reinforced,
-/obj/structure/cable,
 /obj/structure/window/reinforced,
+/obj/structure/cable,
 /turf/open/floor/prison/sterilewhite,
 /area/sulaco/cafeteria/kitchen)
 "rgZ" = (
@@ -24397,9 +24408,8 @@
 /turf/open/floor/mainship/empty,
 /area/sulaco/cargo)
 "utO" = (
-/obj/structure/kitchenspike,
-/turf/open/floor/freezer,
-/area/sulaco/cafeteria/kitchen)
+/turf/closed/wall/mainship/gray/outer,
+/area/mainship/living/freezer)
 "utY" = (
 /obj/machinery/door/window{
 	dir = 2
@@ -24675,8 +24685,9 @@
 /turf/open/floor/prison,
 /area/sulaco/hangar/storage)
 "uMe" = (
-/turf/closed/wall/mainship/gray/outer,
-/area/mainship/living/basketball)
+/obj/structure/closet/secure_closet/freezer/fridge,
+/turf/open/floor/tile/white/hall/full,
+/area/mainship/living/freezer)
 "uMT" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 4
@@ -24871,14 +24882,17 @@
 /turf/closed/wall/mainship/gray,
 /area/sulaco/command/ai)
 "uZN" = (
-/obj/machinery/camera/autoname{
+/obj/machinery/light/mainship{
 	dir = 4
 	},
-/obj/machinery/light/mainship{
+/obj/structure/bed/chair/nometal{
 	dir = 8
 	},
-/turf/open/floor/prison/sterilewhite,
-/area/sulaco/cafeteria/kitchen)
+/obj/structure/cable,
+/turf/open/floor/tile/darkgreen/darkgreen2{
+	dir = 4
+	},
+/area/mainship/living/basketball)
 "vax" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
 	dir = 8
@@ -25761,6 +25775,7 @@
 /obj/structure/bed/chair/nometal{
 	dir = 8
 	},
+/obj/structure/cable,
 /turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 4
 	},
@@ -27065,11 +27080,12 @@
 /turf/open/floor/prison/sterilewhite,
 /area/sulaco/cafeteria/kitchen)
 "yai" = (
-/obj/machinery/door/window{
+/obj/structure/cable,
+/obj/machinery/power/apc/mainship{
 	dir = 8
 	},
-/turf/open/floor/freezer,
-/area/sulaco/cafeteria/kitchen)
+/turf/open/floor/plating,
+/area/sulaco/maintenance/lower_maint3)
 "ybc" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable,
@@ -45750,8 +45766,8 @@ eri
 eri
 iTS
 wfn
-mfe
-hVY
+uZN
+bic
 gCU
 ibD
 bsu
@@ -46006,10 +46022,10 @@ aDz
 dMX
 dMX
 aDz
-uMe
-uMe
-xKi
-aJS
+cDU
+cDU
+cDU
+phb
 cDU
 cDU
 cDU
@@ -46263,12 +46279,12 @@ nSs
 ujW
 iWH
 fsL
-vgl
-mDu
-xKi
+cDU
 qzH
-cDU
-cDU
+qzH
+bBG
+qzH
+qzH
 fXi
 qzH
 xKi
@@ -46520,12 +46536,12 @@ xHk
 mvV
 mvV
 sZo
-xKi
-xKi
-xKi
+cDU
+fXi
 qzH
-cDU
-cDU
+yai
+qzH
+qzH
 qzH
 xKi
 xKi
@@ -46779,10 +46795,10 @@ oDe
 mvV
 rNq
 qzH
-pfD
-fXi
-pHZ
-glt
+cDB
+cDB
+cDB
+cDB
 cDB
 xKi
 mDu
@@ -47036,11 +47052,11 @@ vMB
 vMB
 vMB
 vMB
-vMB
-qzH
-cDU
-cDU
-xKi
+cDB
+hDk
+hDk
+glt
+utO
 xKi
 mDu
 qDO
@@ -47293,11 +47309,11 @@ aMg
 gim
 mMU
 wMZ
-vMB
-qzH
-qzH
+cDB
+uMe
+hDk
 pXL
-xKi
+utO
 mDu
 mDu
 wFA
@@ -47550,11 +47566,11 @@ aMg
 ejF
 aMc
 wMZ
-vMB
+cDB
 hDk
-bBG
+hDk
 fUZ
-xKi
+utO
 mDu
 qDO
 aaa
@@ -47807,11 +47823,11 @@ xZq
 aMg
 aMc
 wMZ
-vMB
+cDB
 ktb
-qzH
+pHZ
 cZo
-xKi
+utO
 mDu
 qDO
 aaa
@@ -48064,11 +48080,11 @@ ejF
 aMg
 aMc
 wMZ
-vMB
-bBG
-qzH
+cDB
+pIC
+mON
 eho
-xKi
+utO
 mDu
 qDO
 aaa
@@ -48321,11 +48337,11 @@ aMg
 xab
 aMc
 vMY
-vMB
-bBG
+cDB
+lbE
 pdB
 gIj
-xKi
+utO
 mDu
 mDu
 vyQ
@@ -48578,11 +48594,11 @@ wMZ
 wMZ
 wMZ
 jdD
-vMB
-phb
-cDU
-cDU
-xKi
+cDB
+cDB
+pfD
+cDB
+utO
 wpp
 mDu
 qDO
@@ -48836,8 +48852,8 @@ mCZ
 wMZ
 cKW
 aOR
-ifW
-uZN
+obf
+oUY
 uam
 bJY
 wpp
@@ -49093,8 +49109,8 @@ bXC
 aCm
 fyW
 aOR
-oUY
 wMZ
+ifW
 tBK
 plq
 jsq
@@ -49351,8 +49367,8 @@ oUY
 hTK
 rgW
 oUY
-wMZ
-wMZ
+oUY
+aJS
 gVp
 jsq
 mDu
@@ -50121,8 +50137,8 @@ wpp
 wpp
 wpp
 wpp
-pIC
-yai
+wpp
+wpp
 wpp
 wpp
 wpp
@@ -50377,11 +50393,11 @@ mDu
 mDu
 mDu
 mDu
-wpp
-mON
-obf
-utO
-cyv
+mDu
+mDu
+mDu
+mDu
+mDu
 mDu
 mDu
 qDO
@@ -50632,14 +50648,14 @@ vDU
 vDU
 vDU
 vDU
-mDu
-mDu
-wpp
-jsq
-jsq
-wpp
-cyv
-mDu
+vDU
+vDU
+vDU
+vDU
+vDU
+vDU
+vDU
+vDU
 vDU
 wFA
 aaa
@@ -50889,14 +50905,14 @@ aaa
 aaa
 aaa
 aaa
-nzi
-mDu
-mDu
-mDu
-mDu
-mDu
-mDu
-qDO
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -51146,14 +51162,14 @@ aaa
 aaa
 aaa
 aaa
-tZr
-vDU
-vDU
-vDU
-vDU
-vDU
-vDU
-wFA
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
