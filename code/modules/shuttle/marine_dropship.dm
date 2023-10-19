@@ -1316,8 +1316,8 @@
 		return TRUE
 
 	if(!(params["destination"] in valid_destinations()))
-		log_admin("[key_name(usr)] may be attempting a href dock exploit on [src] with target location \"[params["destination"]]\"")
-		message_admins("[ADMIN_TPMONTY(usr)] may be attempting a href dock exploit on [src] with target location \"[params["destination"]]\"")
+		log_admin("[key_name(usr)] may be attempting a href dock exploit on [src] with target location \"[html_encode(params["destination"])]\"")
+		message_admins("[ADMIN_TPMONTY(usr)] may be attempting a href dock exploit on [src] with target location \"[html_encode(params["destination"])]\"")
 		return TRUE
 
 	var/previous_status = M.mode
