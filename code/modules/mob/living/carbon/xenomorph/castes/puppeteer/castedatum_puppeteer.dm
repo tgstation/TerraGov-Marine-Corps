@@ -17,7 +17,7 @@
 	plasma_icon_state = "fury"
 	max_health = 365
 	upgrade_threshold = TIER_TWO_THRESHOLD
-	evolution_threshold = 80
+	evolution_threshold = 225
 
 	evolves_to = list(/mob/living/carbon/xenomorph/widow, /mob/living/carbon/xenomorph/warlock)
 	deevolves_to = list(/mob/living/carbon/xenomorph/defender)

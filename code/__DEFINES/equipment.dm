@@ -430,6 +430,7 @@ GLOBAL_LIST_INIT(slot_str_to_slot, list(
 	SLOT_IN_BACKPACK\
 	)
 
+///Each slot you can draw from, used and messed with in your preferences.
 #define SLOT_DRAW_ORDER list(\
 	SLOT_IN_HOLSTER,\
 	SLOT_IN_S_HOLSTER,\
@@ -539,8 +540,12 @@ GLOBAL_LIST_INIT(slot_str_to_slot, list(
 			return SLOT_IN_HEAD
 		if("Left Pocket")
 			return SLOT_L_STORE
+		if("Left Pocket Inside")
+			return SLOT_IN_L_POUCH
 		if("Right Pocket")
 			return SLOT_R_STORE
+		if("Right Pocket Inside")
+			return SLOT_IN_R_POUCH
 		if("Webbing")
 			return SLOT_IN_ACCESSORY
 		if("Belt Inside")
@@ -551,6 +556,8 @@ GLOBAL_LIST_INIT(slot_str_to_slot, list(
 			return SLOT_IN_S_HOLSTER
 		if("Back Holster")
 			return SLOT_IN_B_HOLSTER
+		if("Active Storage")
+			return SLOT_IN_STORAGE
 
 /proc/slot_flag_to_fluff(slot)
 	switch(slot)
@@ -572,8 +579,12 @@ GLOBAL_LIST_INIT(slot_str_to_slot, list(
 			return "Helmet"
 		if(SLOT_L_STORE)
 			return "Left Pocket"
+		if(SLOT_IN_L_POUCH)
+			return "Left Pocket Inside"
 		if(SLOT_R_STORE)
 			return "Right Pocket"
+		if(SLOT_IN_R_POUCH)
+			return "Right Pocket Inside"
 		if(SLOT_IN_ACCESSORY)
 			return "Webbing"
 		if(SLOT_IN_HOLSTER)
@@ -582,3 +593,6 @@ GLOBAL_LIST_INIT(slot_str_to_slot, list(
 			return "Suit Storage Holster"
 		if(SLOT_IN_B_HOLSTER)
 			return "Back Holster"
+		if(SLOT_IN_STORAGE)
+			return "Active Storage"
+

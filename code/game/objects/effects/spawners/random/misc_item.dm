@@ -260,6 +260,7 @@
 		/obj/item/trash/chunk,
 		/obj/item/trash/barcardine,
 		/obj/item/trash/mre,
+		/obj/item/trash/berrybar,
 	)
 
 /obj/effect/spawner/random/misc/greytide

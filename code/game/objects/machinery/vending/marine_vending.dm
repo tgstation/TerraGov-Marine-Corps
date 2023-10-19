@@ -1209,6 +1209,7 @@
 			/obj/item/storage/pouch/medkit = -1,
 			/obj/item/storage/pouch/medical_injectors = -1,
 			/obj/item/storage/pouch/med_lolipops = -1,
+			/obj/item/storage/pouch/berrypouch = -1,
 			/obj/item/storage/pouch/construction = -1,
 			/obj/item/storage/pouch/electronics = -1,
 			/obj/item/storage/pouch/tools/full = -1,

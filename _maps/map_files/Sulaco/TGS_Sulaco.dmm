@@ -4018,7 +4018,7 @@
 	},
 /area/sulaco/bridge)
 "avb" = (
-/obj/machinery/cic_maptable_big,
+/obj/machinery/cic_maptable/drawable/big,
 /turf/open/floor/mainship/terragov{
 	dir = 8
 	},

@@ -389,6 +389,8 @@
 	. = ..()
 	if(!.)
 		return
+	if(HAS_TRAIT(owner, TRAIT_SLOWDOWNIMMUNE))
+		return
 	owner.add_movespeed_modifier(MOVESPEED_ID_HARVEST_TRAM_SLOWDOWN, TRUE, 0, NONE, TRUE, debuff_slowdown)
 
 /datum/status_effect/incapacitating/harvester_slowdown/on_remove()
