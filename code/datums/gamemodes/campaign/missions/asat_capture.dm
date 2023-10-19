@@ -1,8 +1,9 @@
 //ASAT capture mission
 /datum/campaign_mission/capture_mission/asat
 	name = "ASAT capture"
+	mission_icon = "asat_capture"
 	map_name = "Orion Outpost"
-	map_file = '_maps/map_files/Campaign maps/jungle_test/jungle_outpost.dmm'
+	map_file = '_maps/map_files/Campaign maps/jungle_outpost/jungle_outpost.dmm'
 	max_game_time = 20 MINUTES
 	victory_point_rewards = list(
 		MISSION_OUTCOME_MAJOR_VICTORY = list(3, 0),
@@ -64,13 +65,13 @@
 /datum/campaign_mission/capture_mission/asat/apply_major_victory()
 	. = ..()
 	var/datum/faction_stats/som_team = mode.stat_list[starting_faction]
-	som_team.add_reward(/datum/campaign_reward/droppod_disable)
-	som_team.add_reward(/datum/campaign_reward/bonus_job/icc)
+	som_team.add_asset(/datum/campaign_asset/droppod_disable)
+	som_team.add_asset(/datum/campaign_asset/bonus_job/icc)
 
 /datum/campaign_mission/capture_mission/asat/apply_minor_victory()
 	. = ..()
 	var/datum/faction_stats/som_team = mode.stat_list[starting_faction]
-	som_team.add_reward(/datum/campaign_reward/droppod_disable)
+	som_team.add_asset(/datum/campaign_asset/droppod_disable)
 
 /datum/campaign_mission/capture_mission/asat/apply_minor_loss()
 	. = ..()

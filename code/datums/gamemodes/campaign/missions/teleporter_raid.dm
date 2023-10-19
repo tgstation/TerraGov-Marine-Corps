@@ -1,8 +1,9 @@
 //disabling SOM's ability to teleport deploy
 /datum/campaign_mission/destroy_mission/teleporter_raid
 	name = "Teleporter control raid"
+	mission_icon = "teleporter_raid"
 	map_name = "Lunar base BD-832"
-	map_file = '_maps/map_files/Campaign maps/jungle_test/jungle_outpost.dmm'
+	map_file = '_maps/map_files/Campaign maps/jungle_outpost/jungle_outpost.dmm'
 	map_traits = list(ZTRAIT_AWAY = TRUE, ZTRAIT_GRAVITY = 0.4) //moon gravity
 	objectives_total = 1
 	min_destruction_amount = 0
@@ -52,11 +53,11 @@
 /datum/campaign_mission/destroy_mission/teleporter_raid/apply_major_victory()
 	. = ..()
 	var/datum/faction_stats/som_team = mode.stat_list[hostile_faction]
-	som_team.add_reward(/datum/campaign_reward/teleporter_disabled)
-	som_team.add_reward(/datum/campaign_reward/attrition_modifier/malus_teleporter)
+	som_team.add_asset(/datum/campaign_asset/teleporter_disabled)
+	som_team.add_asset(/datum/campaign_asset/attrition_modifier/malus_teleporter)
 
 /datum/campaign_mission/destroy_mission/teleporter_raid/apply_major_loss()
 	. = ..()
 	var/datum/faction_stats/som_team = mode.stat_list[hostile_faction]
-	som_team.add_reward(/datum/campaign_reward/teleporter_enabled)
-	som_team.add_reward(/datum/campaign_reward/teleporter_charges)
+	som_team.add_asset(/datum/campaign_asset/teleporter_enabled)
+	som_team.add_asset(/datum/campaign_asset/teleporter_charges)

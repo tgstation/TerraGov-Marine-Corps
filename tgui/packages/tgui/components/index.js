@@ -21,7 +21,6 @@ export { DraggableControl } from './DraggableControl';
 export { Dropdown } from './Dropdown';
 export { Flex } from './Flex';
 export { FitText } from './FitText';
-export { Grid } from './Grid';
 export { Icon } from './Icon';
 export { InfinitePlane } from './InfinitePlane';
 export { Input } from './Input';

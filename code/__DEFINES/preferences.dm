@@ -109,6 +109,7 @@
 #define JOB_PREFERENCES 4
 #define GAME_SETTINGS 5
 #define KEYBIND_SETTINGS 6
+#define DRAW_ORDER 7
 
 #define CITIZENSHIP_CHOICES list(\
 	"Earth Born",\

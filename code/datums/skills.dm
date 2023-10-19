@@ -338,7 +338,7 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	cqc = SKILL_CQC_MASTER
 	surgery = SKILL_SURGERY_EXPERT
 	pilot = SKILL_PILOT_TRAINED
-	melee_weapons = SKILL_MELEE_DEFAULT
+	melee_weapons = SKILL_MELEE_WEAK
 	pistols = SKILL_PISTOLS_TRAINED
 	police = SKILL_POLICE_MP
 	powerloader = SKILL_POWERLOADER_MASTER
@@ -352,7 +352,7 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	cqc = SKILL_CQC_MASTER
 	surgery = SKILL_SURGERY_PROFESSIONAL
 	pilot = SKILL_PILOT_TRAINED
-	melee_weapons = SKILL_MELEE_DEFAULT
+	melee_weapons = SKILL_MELEE_WEAK
 	pistols = SKILL_PISTOLS_TRAINED
 	police = SKILL_POLICE_MP
 	powerloader = SKILL_POWERLOADER_MASTER
