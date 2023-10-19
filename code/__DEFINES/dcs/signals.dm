@@ -98,6 +98,8 @@
 #define COMSIG_GLOB_CAMPAIGN_TELEBLOCKER_DISABLED "!campaign_teleblocker_disabled"
 ///Removes droppod restrictions from a mission
 #define COMSIG_GLOB_CAMPAIGN_DROPBLOCKER_DISABLED "!campaign_dropblocker_disabled"
+///Override code for NT base rescue mission
+#define COMSIG_GLOB_CAMPAIGN_NT_OVERRIDE_CODE "!campaign_nt_override_code"
 
 //////////////////////////////////////////////////////////////////
 

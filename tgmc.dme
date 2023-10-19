@@ -949,6 +949,7 @@
 #include "code\game\objects\machinery\computer\intel_computer.dm"
 #include "code\game\objects\machinery\computer\marines_consoles.dm"
 #include "code\game\objects\machinery\computer\medical.dm"
+#include "code\game\objects\machinery\computer\nt_access.dm"
 #include "code\game\objects\machinery\computer\nuke_disk_generator.dm"
 #include "code\game\objects\machinery\computer\Operating.dm"
 #include "code\game\objects\machinery\computer\pod.dm"
