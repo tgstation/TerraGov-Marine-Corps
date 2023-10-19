@@ -121,6 +121,7 @@
 	brainmob = new(src)
 	brainmob.name = H.real_name
 	brainmob.real_name = H.real_name
+	brainmob.faction = H.faction
 	if(H.mind)
 		H.mind.transfer_to(brainmob)
 	brainmob.container = src

@@ -62,6 +62,7 @@
 	victim.timeofdeath = -CONFIG_GET(number/revive_grace_period)
 	ADD_TRAIT(victim, TRAIT_PSY_DRAINED, TRAIT_PSY_DRAINED)
 	ADD_TRAIT(victim, TRAIT_UNDEFIBBABLE, TRAIT_UNDEFIBBABLE)
+	ADD_TRAIT(victim, TRAIT_MAPSPAWNED, TRAIT_MAPSPAWNED)
 	victim.med_hud_set_status()
 	equip_items_to_mob(victim)
 	switch(death_type)
@@ -544,6 +545,18 @@
 
 /obj/effect/landmark/corpsespawner/assistant/regular
 	death_type = REGULAR_DEATH
+
+//SOM
+/obj/effect/landmark/corpsespawner/som
+	name = "SOM marine"
+	corpseuniform = /obj/item/clothing/under/som
+	corpsesuit = /obj/item/clothing/suit/modular/som
+	corpseback = /obj/item/storage/backpack/satchel/som
+	corpsemask = /obj/item/clothing/mask/gas
+	corpsehelmet = /obj/item/clothing/head/modular/som
+	corpsegloves = /obj/item/clothing/gloves/marine/som
+	corpseshoes = /obj/item/clothing/shoes/marine/som/knife
+	corpsepocket1 = /obj/item/tool/lighter/zippo
 
 #undef REGULAR_DEATH
 #undef COCOONED_DEATH

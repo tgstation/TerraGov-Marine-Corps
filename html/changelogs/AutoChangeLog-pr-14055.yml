@@ -1,4 +1,0 @@
-author: "RipGrayson"
-delete-after: True
-changes:
-  - balance: "All ground maps use the regular spawning random gun spawning system instead of the ancient tier based system that could spawn overpowered guns."

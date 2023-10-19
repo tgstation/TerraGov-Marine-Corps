@@ -40,6 +40,8 @@ GLOBAL_LIST_EMPTY(nightfall_toggleable_lights)		//list of all atoms which light 
 GLOBAL_LIST_EMPTY(main_overwatch_consoles)			//list of all main overwatch consoles
 ///List of all objectives in the campaign gamemode loaded in the current mission
 GLOBAL_LIST_EMPTY(campaign_objectives)
+///List of non-objective campaign related structures loaded in the current mission
+GLOBAL_LIST_EMPTY(campaign_structures)
 ///List of all mech spawners in campaign mode
 GLOBAL_LIST_EMPTY(campaign_mech_spawners)
 ///Locations for rewards to spawn by faction

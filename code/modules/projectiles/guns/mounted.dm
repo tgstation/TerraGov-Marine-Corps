@@ -408,6 +408,65 @@
 /obj/item/weapon/gun/standard_mmg/machinegunner
 	starting_attachment_types = list(/obj/item/attachable/stock/t27, /obj/item/attachable/scope/unremovable/mmg, /obj/item/attachable/heavy_barrel)
 
+/obj/item/weapon/gun/clf_heavyrifle
+	name = "\improper PTR-41/1785 anti-mech gun"
+	desc = "The PTR-41/1785 is a bottom shelf solution modernized for dealing with armor, while one could use it while standing it is obviously not a great idea. It is recommended to be used while the bipod is deployed. It uses 14.5mm high velocity rounds that will certainly leave a hole in whatever unfortunate soul is hit by it."
+	w_class = WEIGHT_CLASS_BULKY
+	icon = 'icons/Marine/clf_heavyrifle.dmi'
+	icon_state = "ptrs"
+	item_state = "ptrs"
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/items_lefthand_64.dmi',
+		slot_r_hand_str = 'icons/mob/items_righthand_64.dmi',
+	)
+	inhand_x_dimension = 64
+	inhand_y_dimension = 32
+	caliber = CALIBER_14X5 // codex
+	max_shells = 5 //codex
+	max_chamber_items = 5
+	force = 30
+	fire_sound = 'sound/weapons/guns/fire/ptrs.ogg'
+	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
+	reload_sound = 'sound/weapons/guns/interact/shotgun_shell_insert.ogg'
+	hand_reload_sound = 'sound/weapons/guns/interact/shotgun_shell_insert.ogg'
+	cocked_sound = 'sound/weapons/guns/interact/shotgun_reload.ogg'
+	opened_sound = 'sound/weapons/guns/interact/shotgun_open.ogg'
+	flags_gun_features = GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY|GUN_WIELDED_STABLE_FIRING_ONLY
+	reciever_flags = AMMO_RECIEVER_HANDFULS
+	default_ammo_type = /datum/ammo/bullet/sniper/clf_heavyrifle
+	attachable_allowed = list(
+		/obj/item/attachable/motiondetector,
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/flashlight/under,
+		/obj/item/attachable/stock/clf_heavyrifle,
+		/obj/item/attachable/scope,
+	)
+
+	starting_attachment_types = list(/obj/item/attachable/stock/clf_heavyrifle)
+	attachable_offset = list("muzzle_x" = 45, "muzzle_y" = 19,"rail_x" = 18, "rail_y" = 24, "under_x" = 28, "under_y" = 13, "stock_x" = 8, "stock_y" = 0)
+
+	flags_item = IS_DEPLOYABLE|TWOHANDED
+	flags_gun_features = GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY
+	deployable_item = /obj/machinery/deployable/mounted
+	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
+	actions_types = list(/datum/action/item_action/aim_mode)
+	aim_fire_delay = 2 SECONDS
+	aim_speed_modifier = 3
+	soft_armor = list(MELEE = 0, BULLET = 50, LASER = 0, ENERGY = 0, BOMB = 50, BIO = 100, FIRE = 0, ACID = 0)
+
+
+	scatter = 16
+	deployed_scatter_change = -16
+	recoil = 4
+	scatter_unwielded = 45
+	accuracy_mult = 1
+	burst_amount = 1
+	fire_delay = 1.35 SECONDS
+	aim_slowdown = 2
+	deploy_time = 1 SECONDS // Meant to be used by ERT's
+	undeploy_time = 0.25 SECONDS
+	movement_acc_penalty_mult = 20 // Good luck hitting on the move, bruv
+
 //-------------------------------------------------------
 //AT-36 Anti Tank Gun
 
