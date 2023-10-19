@@ -179,7 +179,7 @@
 
 	switch(loaded_reagent)
 		if(/datum/reagent/medicine/tramadol)
-			target.apply_damage(weapon.force*0.6, BRUTE, user.zone_selected)
+			target.apply_damage(weapon.force*0.6, BRUTE, user.zone_selected, MELEE)
 			target.apply_status_effect(/datum/status_effect/incapacitating/harvester_slowdown, 1 SECONDS)
 
 		if(/datum/reagent/medicine/kelotane)
