@@ -835,6 +835,9 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 9
 	},
+/obj/machinery/firealarm{
+	dir = 1
+	},
 /turf/open/floor/tile/white/hall/full,
 /area/mainship/living/freezer)
 "aZD" = (
@@ -1130,6 +1133,9 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
+/obj/machinery/power/apc/mainship{
+	dir = 1
+	},
 /turf/open/floor/prison/kitchen,
 /area/mainship/living/kitchen)
 "bth" = (
@@ -1999,6 +2005,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
+/obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/botany)
 "czJ" = (
@@ -2135,6 +2142,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
+/obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/living/botany)
 "cLc" = (
@@ -3442,6 +3450,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
+/obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/botany)
 "eiU" = (
@@ -3802,6 +3811,11 @@
 /obj/structure/closet/emcloset,
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/engineering_workshop)
+"eId" = (
+/obj/structure/cable,
+/obj/machinery/power/apc/mainship,
+/turf/open/floor/tile/white/hall/full,
+/area/mainship/living/freezer)
 "eIM" = (
 /obj/machinery/camera/autoname/mainship,
 /obj/machinery/vending/MarineMed,
@@ -6280,6 +6294,7 @@
 	dir = 4
 	},
 /obj/machinery/light/mainship,
+/obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/botany)
 "iaT" = (
@@ -6379,6 +6394,10 @@
 /area/mainship/command/telecomms)
 "ihU" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/power/apc/mainship{
+	dir = 4
+	},
+/obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/botany)
 "iiC" = (
@@ -6810,6 +6829,10 @@
 "iLf" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 5
+	},
+/obj/structure/cable,
+/obj/machinery/firealarm{
+	dir = 1
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/living/botany)
@@ -8089,6 +8112,7 @@
 /obj/machinery/door/airlock/mainship/generic{
 	name = "Freezer"
 	},
+/obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/freezer)
 "kzq" = (
@@ -8144,6 +8168,7 @@
 /obj/effect/turf_decal/tracks/wheels/bloody{
 	dir = 10
 	},
+/obj/structure/cable,
 /turf/open/floor/tile/white/hall/full,
 /area/mainship/living/freezer)
 "kDx" = (
@@ -11693,6 +11718,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
+/obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/botany)
 "oOM" = (
@@ -11853,6 +11879,7 @@
 	},
 /obj/effect/decal/cleanable/blood/gibs,
 /obj/effect/ai_node,
+/obj/structure/cable,
 /turf/open/floor/tile/white/hall/full,
 /area/mainship/living/freezer)
 "oZN" = (
@@ -12575,6 +12602,10 @@
 /obj/effect/ai_node,
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/upper_engineering)
+"pNz" = (
+/mob/living/simple_animal/cat/space,
+/turf/open/floor/prison/kitchen,
+/area/mainship/living/kitchen)
 "pNT" = (
 /obj/structure/table/mainship,
 /obj/machinery/faxmachine,
@@ -15365,6 +15396,9 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
+/obj/machinery/firealarm{
+	dir = 1
+	},
 /turf/open/floor/prison/kitchen,
 /area/mainship/living/kitchen)
 "ttT" = (
@@ -16557,6 +16591,7 @@
 /obj/machinery/atmospherics/pipe/manifold4w/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/manifold4w/scrubbers/hidden,
 /obj/effect/turf_decal/tracks/wheels/bloody,
+/obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/lower_hull)
 "uKH" = (
@@ -16649,6 +16684,7 @@
 	dir = 4
 	},
 /obj/item/clothing/mask/gas/icc,
+/obj/structure/cable,
 /turf/open/floor/tile/white/hall/full,
 /area/mainship/living/freezer)
 "uPn" = (
@@ -18660,6 +18696,11 @@
 	},
 /turf/open/floor/plating,
 /area/mainship/hallways/starboard_hallway)
+"xwe" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/structure/cable,
+/turf/open/floor/mainship/mono,
+/area/mainship/living/botany)
 "xwg" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -19316,6 +19357,7 @@
 	dir = 5
 	},
 /obj/machinery/light/mainship,
+/obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/botany)
 "yfw" = (
@@ -41137,7 +41179,7 @@ nBk
 cCT
 kgo
 ihU
-ihU
+xwe
 iLf
 gKc
 xZI
@@ -41911,7 +41953,7 @@ ohF
 ohF
 czH
 gKc
-xZI
+eId
 oZh
 qQk
 gKc
@@ -44217,7 +44259,7 @@ wcT
 pKr
 tfG
 bSC
-tfG
+pNz
 van
 tfG
 ttt

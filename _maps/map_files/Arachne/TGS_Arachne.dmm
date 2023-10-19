@@ -469,6 +469,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 9
 	},
+/obj/structure/cable,
 /turf/open/floor/prison/kitchen,
 /area/mainship/living/kitchen)
 "axB" = (
@@ -755,6 +756,10 @@
 /obj/effect/turf_decal/warning_stripes/thick,
 /turf/open/floor/plating,
 /area/mainship/hallways/hangar)
+"aLn" = (
+/obj/structure/cable,
+/turf/open/floor/mainship/mono,
+/area/mainship/living/botany)
 "aLJ" = (
 /obj/machinery/power/terminal{
 	dir = 4
@@ -914,6 +919,7 @@
 	dir = 1;
 	on = 1
 	},
+/obj/structure/cable,
 /turf/open/floor/prison/kitchen,
 /area/mainship/living/kitchen)
 "aUa" = (
@@ -3977,6 +3983,16 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/hangar/droppod)
+"dwH" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 6
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/living/botany)
 "dxr" = (
 /obj/structure/table/mainship/nometal,
 /obj/machinery/door_control/old/cic/hangar_shutters{
@@ -4930,6 +4946,13 @@
 	dir = 1
 	},
 /area/mainship/engineering/engineering_workshop)
+"epG" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+	dir = 1;
+	on = 1
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/living/botany)
 "epM" = (
 /obj/machinery/door/airlock/mainship/maint{
 	dir = 2
@@ -5271,6 +5294,10 @@
 	},
 /turf/open/floor/mainship/black/corner,
 /area/mainship/hallways/hangar/droppod)
+"eCO" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/living/botany)
 "eDk" = (
 /obj/structure/cable,
 /turf/open/floor/mainship/floor,
@@ -6388,6 +6415,12 @@
 	},
 /turf/open/floor/mainship/floor,
 /area/mainship/command/cic)
+"fxl" = (
+/obj/machinery/firealarm{
+	dir = 1
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/living/botany)
 "fxU" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -7472,6 +7505,16 @@
 /obj/docking_port/stationary/supply,
 /turf/open/floor/mainship/empty,
 /area/mainship/squads/req)
+"guq" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/manifold/supply/visible/layer1{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
+	dir = 4
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/hull/starboard_hull)
 "guS" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 4
@@ -10046,6 +10089,7 @@
 "izc" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on,
 /obj/effect/landmark/start/job/foodservicespecialist,
+/obj/structure/cable,
 /turf/open/floor/prison/kitchen,
 /area/mainship/living/kitchen)
 "izJ" = (
@@ -11801,6 +11845,11 @@
 	},
 /turf/open/floor/wood,
 /area/mainship/living/evacuation)
+"jSj" = (
+/obj/structure/cable,
+/obj/machinery/power/apc/mainship,
+/turf/open/floor/mainship/mono,
+/area/mainship/living/botany)
 "jSx" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
@@ -13987,6 +14036,10 @@
 /obj/structure/sink{
 	dir = 1
 	},
+/obj/machinery/power/apc/mainship{
+	dir = 1
+	},
+/obj/structure/cable,
 /turf/open/floor/prison/kitchen,
 /area/mainship/living/kitchen)
 "lBP" = (
@@ -15123,6 +15176,7 @@
 /area/mainship/squads/general)
 "myz" = (
 /obj/effect/landmark/start/job/foodservicespecialist,
+/obj/structure/cable,
 /turf/open/floor/prison/kitchen,
 /area/mainship/living/kitchen)
 "myJ" = (
@@ -18998,6 +19052,12 @@
 	},
 /turf/open/floor/mainship/floor,
 /area/mainship/living/tankerbunks)
+"pFy" = (
+/obj/machinery/firealarm{
+	dir = 1
+	},
+/turf/open/floor/tile/white/hall/full,
+/area/mainship/living/freezer)
 "pGa" = (
 /obj/structure/closet/secure_closet/guncabinet/mp_armory,
 /turf/open/floor/mainship/sterile/dark,
@@ -19670,6 +19730,13 @@
 /obj/machinery/holopad,
 /turf/open/floor/mainship/red,
 /area/mainship/shipboard/firing_range)
+"qjQ" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on{
+	dir = 4
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/living/botany)
 "qjY" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -21268,6 +21335,9 @@
 "rzy" = (
 /obj/machinery/door/airlock/mainship/generic{
 	name = "Kitchen"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/living/botany)
@@ -23658,6 +23728,9 @@
 	},
 /area/mainship/command/cic)
 "tFS" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 6
+	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/living/botany)
 "tGC" = (
@@ -24997,6 +25070,12 @@
 	dir = 9
 	},
 /area/mainship/command/cic)
+"uQy" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 9
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/living/botany)
 "uRe" = (
 /obj/machinery/door/airlock/mainship/maint{
 	dir = 8
@@ -25275,6 +25354,9 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 9
+	},
+/obj/machinery/firealarm{
+	dir = 1
 	},
 /turf/open/floor/prison/kitchen,
 /area/mainship/living/kitchen)
@@ -27267,6 +27349,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 6
 	},
+/obj/machinery/power/apc/mainship,
 /turf/open/floor/tile/white/hall/full,
 /area/mainship/living/freezer)
 "wJw" = (
@@ -42115,9 +42198,9 @@ rJJ
 qfZ
 gcw
 xut
-xut
+pFy
 qfZ
-mwD
+jSj
 adi
 adi
 adi
@@ -42219,12 +42302,12 @@ mML
 xut
 xut
 kMx
-mwD
+aLn
+qjQ
 tFS
-tFS
-tFS
-tFS
-tFS
+eCO
+eCO
+epG
 mwD
 oiQ
 twS
@@ -42322,12 +42405,12 @@ ane
 xut
 qfZ
 qav
-mwD
-mwD
+dwH
+uQy
 jDk
 ugP
 nSa
-mwD
+fxl
 oiQ
 twS
 eju
@@ -42526,7 +42609,7 @@ jTF
 jTF
 jTF
 jTF
-jTF
+guq
 jTF
 jTF
 jTF
