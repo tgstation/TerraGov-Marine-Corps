@@ -1367,10 +1367,6 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/boxingring)
-"bGI" = (
-/obj/machinery/camera/autoname,
-/turf/open/floor/tile/white/hall/full,
-/area/mainship/living/freezer)
 "bIl" = (
 /obj/machinery/light/mainship{
 	dir = 4
@@ -16936,6 +16932,10 @@
 /obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/plating/mainship,
 /area/mainship/command/cic)
+"vbk" = (
+/obj/machinery/camera/autoname,
+/turf/open/floor/tile/white/hall/full,
+/area/mainship/living/freezer)
 "vbu" = (
 /obj/machinery/light/mainship{
 	dir = 8
@@ -41701,7 +41701,7 @@ qeW
 qeW
 cHI
 gKc
-bGI
+vbk
 xZI
 nZK
 gKc
