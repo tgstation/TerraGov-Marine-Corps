@@ -1,0 +1,4 @@
+author: "DeltaFire15"
+delete-after: True
+changes:
+  - bugfix: "The cloning vat console now actually checks around itself for clone vats to link to."
