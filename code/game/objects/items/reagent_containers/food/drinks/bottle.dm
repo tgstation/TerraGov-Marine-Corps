@@ -271,3 +271,15 @@
 	center_of_mass = list("x"=16, "y"=8)
 	isGlass = 0
 	list_reagents = list(/datum/reagent/consumable/drink/limejuice = 100)
+
+/obj/item/reagent_containers/food/drinks/bottle/terran_dairies
+	name = "Terran Dairies' Mixture Delight"
+	desc = "Contains all the needed liquid flavours like cream and nicotine."
+	icon_state = "terran_dairies"
+	item_state = "carton"
+	center_of_mass = list("x"=16, "y"=8)
+	isGlass = 0
+	list_reagents = list(
+		/datum/reagent/consumable/drink/milk/cream = 60,
+		/datum/reagent/nicotine = 30,
+	)
