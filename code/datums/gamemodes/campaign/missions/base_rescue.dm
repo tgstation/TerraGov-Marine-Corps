@@ -1,96 +1,74 @@
-//placeholder
-/datum/campaign_mission/base_rescue
-	name = "Combat patrol"
+//disabling some of the enemy's firesupport options
+/datum/campaign_mission/destroy_mission/base_rescue
+	name = "NT base rescue"
 	mission_icon = "nt_rescue"
-	map_name = "Orion Outpost"
+	mission_flags = MISSION_DISALLOW_TELEPORT
+	map_name = "Jungle outpost SR-422"
 	map_file = '_maps/map_files/Campaign maps/jungle_outpost/jungle_outpost.dmm'
-	starting_faction_objective_description = null
-	hostile_faction_objective_description = null
-	max_game_time = 20 MINUTES
+	map_traits = list(ZTRAIT_AWAY = TRUE, ZTRAIT_RAIN = TRUE)
+	map_light_colours = list(LIGHT_COLOR_PALE_GREEN, LIGHT_COLOR_PALE_GREEN, LIGHT_COLOR_PALE_GREEN, LIGHT_COLOR_PALE_GREEN)
+	objectives_total = 3
+	min_destruction_amount = 2
+	shutter_open_delay = list(
+		"starting_faction" = 90 SECONDS,
+		"hostile_faction" = 0,
+	)
 	victory_point_rewards = list(
-		MISSION_OUTCOME_MAJOR_VICTORY = list(3, 0),
+		MISSION_OUTCOME_MAJOR_VICTORY = list(2, 0),
 		MISSION_OUTCOME_MINOR_VICTORY = list(1, 0),
 		MISSION_OUTCOME_DRAW = list(0, 0),
 		MISSION_OUTCOME_MINOR_LOSS = list(0, 1),
-		MISSION_OUTCOME_MAJOR_LOSS = list(0, 3),
+		MISSION_OUTCOME_MAJOR_LOSS = list(0, 2),
 	)
 	attrition_point_rewards = list(
-		MISSION_OUTCOME_MAJOR_VICTORY = list(20, 5),
-		MISSION_OUTCOME_MINOR_VICTORY = list(15, 10),
-		MISSION_OUTCOME_DRAW = list(10, 10),
-		MISSION_OUTCOME_MINOR_LOSS = list(10, 15),
-		MISSION_OUTCOME_MAJOR_LOSS = list(5, 20),
+		MISSION_OUTCOME_MAJOR_VICTORY = list(10, 0),
+		MISSION_OUTCOME_MINOR_VICTORY = list(5, 0),
+		MISSION_OUTCOME_DRAW = list(0, 0),
+		MISSION_OUTCOME_MINOR_LOSS = list(0, 25),
+		MISSION_OUTCOME_MAJOR_LOSS = list(0, 30),
 	)
-	starting_faction_mission_brief = null
-	hostile_faction_mission_brief = null
-	starting_faction_additional_rewards = null
-	hostile_faction_additional_rewards = null
 
-/datum/campaign_mission/base_rescue/play_start_intro()
+	starting_faction_additional_rewards = "NanoTrasen has offered a level of corporate assistance if their facility can be protected."
+	hostile_faction_additional_rewards = "Improved relations with local militias will allow us to call on their assistance in the future."
+
+/datum/campaign_mission/destroy_mission/base_rescue/play_start_intro()
 	intro_message = list(
-		"starting_faction" = "[map_name]<br>" + "[GAME_YEAR]-[time2text(world.realtime, "MM-DD")] [stationTimestamp("hh:mm")]<br>" + "Eliminate all [hostile_faction] resistance in the AO. Reinforcements are limited so preserve your forces as best you can. Good hunting!",
-		"hostile_faction" = "[map_name]<br>" + "[GAME_YEAR]-[time2text(world.realtime, "MM-DD")] [stationTimestamp("hh:mm")]<br>" + "Eliminate all [starting_faction] resistance in the AO. Reinforcements are limited so preserve your forces as best you can. Good hunting!",
+		"starting_faction" = "[map_name]<br>" + "[GAME_YEAR]-[time2text(world.realtime, "MM-DD")] [stationTimestamp("hh:mm")]<br>" + "Protect all the NT base from SOM aggression until reinforcements arrive. Eliminate all SOM forces and prevent them from overriding the security lockdown and raiding the facility.",
+		"hostile_faction" = "[map_name]<br>" + "[GAME_YEAR]-[time2text(world.realtime, "MM-DD")] [stationTimestamp("hh:mm")]<br>" + "The NT facility is on lockdown. Find a way to override the lockdown, then penetrate the facility and destroy the data equipment inside.",
 	)
+	return ..()
+
+/datum/campaign_mission/destroy_mission/base_rescue/load_pre_mission_bonuses()
 	. = ..()
+	for(var/i = 1 to objectives_total)
+		new /obj/item/storage/box/explosive_mines(get_turf(pick(GLOB.campaign_reward_spawners[defending_faction])))
 
-/datum/campaign_mission/base_rescue/check_mission_progress()
-	if(outcome)
-		return TRUE
+/datum/campaign_mission/destroy_mission/base_rescue/load_mission_brief()
+	starting_faction_mission_brief = "NanoTrasen has issues an emergency request for assistance at an isolated medical facility located in the Western Ayolan Ranges. \
+		SOM forces are rapidly approaching the facility, which is currently on emergency lockdown. \
+		Move quickly prevent the SOM from lifting the lockdown and destroying the facility."
+	hostile_faction_mission_brief = "Recon forces have led us to this secure Nanotrasen facility in the Western Ayolan Ranges. Sympathetic native elements suggest NT have been conducting secret research here to the detriment of the local ecosystem and human settlements. \
+		Find the security override terminals to override the facility's emergency lockdown. \
+		Once the lockdown is lifted, destroy the data storage equipment inside to render the facility inoperable."
 
-	if(!game_timer)
-		return
-
-	///pulls the number of both factions, dead or alive
-	var/list/player_list = count_humans(count_flags = COUNT_IGNORE_ALIVE_SSD)
-	var/num_team_one = length(player_list[1])
-	var/num_team_two = length(player_list[2])
-	var/num_dead_team_one = length(player_list[3])
-	var/num_dead_team_two = length(player_list[4])
-
-	if(num_team_two && num_team_one && !max_time_reached)
-		return //fighting is ongoing
-
-	//major victor for wiping out the enemy, or draw if both sides wiped simultaneously somehow
-	if(!num_team_two)
-		if(!num_team_one)
-			message_admins("Mission finished: [MISSION_OUTCOME_DRAW]") //everyone died at the same time, no one wins
-			outcome = MISSION_OUTCOME_DRAW
-			return TRUE
-		message_admins("Mission finished: [MISSION_OUTCOME_MAJOR_VICTORY]") //starting team wiped the hostile team
-		outcome = MISSION_OUTCOME_MAJOR_VICTORY
-		return TRUE
-
-	if(!num_team_one)
-		message_admins("Mission finished: [MISSION_OUTCOME_MAJOR_LOSS]") //hostile team wiped the starting team
-		outcome = MISSION_OUTCOME_MAJOR_LOSS
-		return TRUE
-
-	//minor victories for more kills or draw for equal kills
-	if(num_dead_team_two > num_dead_team_one)
-		message_admins("Mission finished: [MISSION_OUTCOME_MINOR_VICTORY]") //starting team got more kills
-		outcome = MISSION_OUTCOME_MINOR_VICTORY
-		return TRUE
-	if(num_dead_team_one > num_dead_team_two)
-		message_admins("Mission finished: [MISSION_OUTCOME_MINOR_LOSS]") //hostile team got more kills
-		outcome = MISSION_OUTCOME_MINOR_LOSS
-		return TRUE
-
-	message_admins("Mission finished: [MISSION_OUTCOME_DRAW]") //equal number of kills, or any other edge cases
-	outcome = MISSION_OUTCOME_DRAW
-	return TRUE
-
-//todo: remove these if nothing new is added
-/datum/campaign_mission/base_rescue/apply_major_victory()
+/datum/campaign_mission/destroy_mission/base_rescue/apply_major_victory()
 	. = ..()
+	var/datum/faction_stats/winning_team = mode.stat_list[starting_faction]
+		winning_team.add_asset(/datum/campaign_asset/bonus_job/pmc)
+		winning_team.add_asset(/datum/campaign_asset/attrition_modifier/corporate_approval)
 
-/datum/campaign_mission/base_rescue/apply_minor_victory()
+/datum/campaign_mission/destroy_mission/base_rescue/apply_minor_victory()
 	. = ..()
+	var/datum/faction_stats/winning_team = mode.stat_list[starting_faction]
+		winning_team.add_asset(/datum/campaign_asset/bonus_job/pmc)
 
-/datum/campaign_mission/base_rescue/apply_draw()
-	winning_faction = pick(starting_faction, hostile_faction)
-
-/datum/campaign_mission/base_rescue/apply_minor_loss()
+/datum/campaign_mission/destroy_mission/base_rescue/apply_minor_loss()
 	. = ..()
+	var/datum/faction_stats/winning_team = mode.stat_list[hostile_faction]
+		winning_team.add_asset(/datum/campaign_asset/bonus_job/colonial_militia)
 
-/datum/campaign_mission/base_rescue/apply_major_loss()
+/datum/campaign_mission/destroy_mission/base_rescue/apply_major_loss()
 	. = ..()
+	var/datum/faction_stats/winning_team = mode.stat_list[hostile_faction]
+		winning_team.add_asset(/datum/campaign_asset/bonus_job/colonial_militia)
+		winning_team.add_asset(/datum/campaign_asset/attrition_modifier/local_approval)

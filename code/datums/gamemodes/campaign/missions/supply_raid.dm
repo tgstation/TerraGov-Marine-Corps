@@ -46,7 +46,7 @@
 /datum/campaign_mission/destroy_mission/supply_raid/apply_major_victory()
 	. = ..()
 	var/datum/faction_stats/hostile_team = mode.stat_list[hostile_faction]
-	hostile_team.add_asset(/datum/campaign_asset/attrition_modifier/malus_standard/higher)
+	hostile_team.add_asset(/datum/campaign_asset/attrition_modifier/malus_strong)
 
 /datum/campaign_mission/destroy_mission/supply_raid/apply_minor_victory()
 	. = ..()

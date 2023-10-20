@@ -24,6 +24,9 @@
 #define MISSION_OUTCOME_MINOR_LOSS "minor loss"
 #define MISSION_OUTCOME_MAJOR_LOSS "major loss"
 
+#define MISSION_ATTACKING_FACTION "mission_attacking_faction"
+#define MISSION_DEFENDING_FACTION "mission_defending_faction"
+
 #define MISSION_DISALLOW_DROPPODS (1<<0)
 #define MISSION_DISALLOW_FIRESUPPORT (1<<1)
 #define MISSION_CRITICAL (1<<2)
