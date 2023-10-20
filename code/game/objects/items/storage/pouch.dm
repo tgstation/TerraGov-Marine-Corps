@@ -598,22 +598,22 @@
 	new /obj/item/storage/box/combat_lolipop/tricord(src)
 	new /obj/item/storage/box/combat_lolipop/tramadol(src)
 
-/obj/item/storage/pouch/berrypouch
-	name = "berry bar pouch"
-	desc = "A pouch containing all of your berry needs."
+/obj/item/storage/pouch/healthpouch
+	name = "health bar pouch"
+	desc = "A pouch containing all of your health needs."
 	icon_state = "barpouch"
 	sprite_slots = 3
 	storage_slots = 6
-	can_hold = list(/obj/item/reagent_containers/food/snacks/wrapped/berrybar)
+	can_hold = list(/obj/item/reagent_containers/food/snacks/wrapped/healthbar)
 
-/obj/item/storage/pouch/berrypouch/Initialize(mapload)
+/obj/item/storage/pouch/healthpouch/Initialize(mapload)
 	. = ..()
-	new /obj/item/reagent_containers/food/snacks/wrapped/berrybar(src)
-	new /obj/item/reagent_containers/food/snacks/wrapped/berrybar(src)
-	new /obj/item/reagent_containers/food/snacks/wrapped/berrybar(src)
-	new /obj/item/reagent_containers/food/snacks/wrapped/berrybar(src)
-	new /obj/item/reagent_containers/food/snacks/wrapped/berrybar(src)
-	new /obj/item/reagent_containers/food/snacks/wrapped/berrybar(src)
+	new /obj/item/reagent_containers/food/snacks/wrapped/healthbar(src)
+	new /obj/item/reagent_containers/food/snacks/wrapped/healthbar(src)
+	new /obj/item/reagent_containers/food/snacks/wrapped/healthbar(src)
+	new /obj/item/reagent_containers/food/snacks/wrapped/healthbar(src)
+	new /obj/item/reagent_containers/food/snacks/wrapped/healthbar(src)
+	new /obj/item/reagent_containers/food/snacks/wrapped/healthbar(src)
 
 /obj/item/storage/pouch/surgery
 

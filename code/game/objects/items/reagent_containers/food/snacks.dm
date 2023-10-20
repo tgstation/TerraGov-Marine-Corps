@@ -1485,11 +1485,11 @@
 	list_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/coco = 2, /datum/reagent/medicine/tramadol = 1, /datum/reagent/medicine/tramadol = 1)
 	tastes = list ("cough syrup" = 1)
 
-/obj/item/reagent_containers/food/snacks/wrapped/berrybar
-	name = "Berry Bars"
+/obj/item/reagent_containers/food/snacks/wrapped/healthbar
+	name = "Health Bars"
 	desc = "Berry-licious bars! These are a new invention from the world health association for outer-rim colonies. <i>\"Bit of berry to keep the bars away!\"</i>"
 	icon_state = "berrybar"
-	wrapper = /obj/item/trash/berrybar
+	wrapper = /obj/item/trash/healthbar
 	list_reagents = list(
 		/datum/reagent/consumable/nutriment = 1,
 		/datum/reagent/consumable/drink/berryjuice = 1,

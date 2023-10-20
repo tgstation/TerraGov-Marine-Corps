@@ -153,9 +153,9 @@
 	desc = "An empty wrapper from a barcardine bar. You notice the inside has several medical labels. You're not sure if you care or not about that."
 	icon_state = "barcardine_trash"
 
-/obj/item/trash/berrybar
-	name = "berry bar wrapper"
-	desc = "An empty wrapper from a berry bar. You notice the inside has several medical labels and ingredients but You're not sure if you care or not about that."
+/obj/item/trash/healthbar
+	name = "health bar wrapper"
+	desc = "An empty wrapper from a health bar. You notice the inside has several medical labels and ingredients but You're not sure if you care or not about that."
 	icon_state = "berrybar_trash"
 
 /obj/item/trash/mre
