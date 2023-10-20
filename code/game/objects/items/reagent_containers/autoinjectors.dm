@@ -64,7 +64,7 @@
 		/datum/reagent/medicine/oxycodone = 10,
 	)
 	description_overlay = "Ca"
-	flags_item = null
+	flags_item = NONE
 
 /obj/item/reagent_containers/hypospray/autoinjector/quickclot
 	name = "quick-clot autoinjector"
@@ -81,7 +81,7 @@
 	volume = 15
 	list_reagents = list(/datum/reagent/medicine/quickclotplus = 15)
 	description_overlay = "Qk+"
-	flags_item = null
+	flags_item = NONE
 
 /obj/item/reagent_containers/hypospray/autoinjector/dexalinplus
 	name = "dexalin plus autoinjector"
@@ -91,7 +91,7 @@
 	volume = 3
 	list_reagents = list(/datum/reagent/medicine/dexalinplus = 3)
 	description_overlay = "Dx+"
-	flags_item = null
+	flags_item = NONE
 
 /obj/item/reagent_containers/hypospray/autoinjector/sleeptoxin
 	name = "anesthetic autoinjector"
@@ -223,7 +223,7 @@
 		/datum/reagent/medicine/hyronalin = 6,
 	)
 	description_overlay = "Sy"
-	flags_item = null
+	flags_item = NONE
 
 /obj/item/reagent_containers/hypospray/autoinjector/synaptizine_expired
 	name = "expired synaptizine autoinjector"
@@ -236,7 +236,7 @@
 		/datum/reagent/medicine/hyronalin = 3,
 	)
 	description_overlay = "Sy-"
-	flags_item = null
+	flags_item = NONE
 
 /obj/item/reagent_containers/hypospray/autoinjector/neuraline
 	name = "neuraline autoinjector"
@@ -246,7 +246,7 @@
 	volume = 12
 	list_reagents = list(/datum/reagent/medicine/neuraline = 12)
 	description_overlay = "Ne"
-	flags_item = null
+	flags_item = NONE
 
 /obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus
 	name = "peridaxon Plus autoinjector"
@@ -259,7 +259,7 @@
 		/datum/reagent/medicine/hyronalin = 6,
 	)
 	description_overlay = "Pe+"
-	flags_item = null
+	flags_item = NONE
 
 /obj/item/reagent_containers/hypospray/autoinjector/russian_red
 	name = "emergency autoinjector"
@@ -272,7 +272,7 @@
 		/datum/reagent/medicine/oxycodone = 10,
 	)
 	description_overlay = "Rr"
-	flags_item = null
+	flags_item = NONE
 
 /obj/item/reagent_containers/hypospray/autoinjector/polyhexanide
 	name = "polyhexanide autoinjector"
@@ -299,7 +299,7 @@
 	amount_per_transfer_from_this = 1
 	volume = 1
 	list_reagents = list(/datum/reagent/medicine/roulettium = 1)
-	flags_item = null
+	flags_item = NONE
 
 /obj/item/reagent_containers/hypospray/autoinjector/elite //only deathsquad should be able to get this
 	name = "elite autoinjector"
@@ -311,7 +311,7 @@
 		/datum/reagent/medicine/russian_red = 30,
 		/datum/reagent/medicine/rezadone = 7.2,
 	)
-	flags_item = null
+	flags_item = NONE
 
 /obj/item/reagent_containers/hypospray/autoinjector/medicalnanites
 	name = "nanomachines autoinjector"
@@ -320,7 +320,7 @@
 	amount_per_transfer_from_this = 1
 	volume = 1
 	list_reagents = list(/datum/reagent/medicine/research/medicalnanites = 1)
-	flags_item = null
+	flags_item = NONE
 
 /obj/item/reagent_containers/hypospray/autoinjector/pain //made for debugging
 	name = "liquid pain autoinjector"
@@ -337,7 +337,7 @@
 	amount_per_transfer_from_this = 25
 	volume = 25
 	list_reagents = list(/datum/reagent/space_drugs = 25)
-	flags_item = null
+	flags_item = NONE
 
 /obj/item/reagent_containers/hypospray/autoinjector/mindbreaker //made for debugging
 	name = "mindbreaker toxin autoinjector"
