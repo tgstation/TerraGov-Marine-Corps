@@ -30,7 +30,6 @@ var permanent_tabs = []; // tabs that won't be cleared by wipes
 var turfcontents = [];
 var turfname = "";
 var imageRetryDelay = 500;
-var imageRetryLimit = 50;
 var menu = document.getElementById('menu');
 var under_menu = document.getElementById('under_menu');
 var statcontentdiv = document.getElementById('statcontent');
@@ -423,14 +422,7 @@ function iconError(e) {
 	}
 	setTimeout(function () {
 		var node = e.target;
-		var current_attempts = Number(node.getAttribute("data-attempts")) || 0
-		if (current_attempts > imageRetryLimit) {
-			return;
-		}
-		var src = node.src;
-		node.src = null;
-		node.src = src + '#' + current_attempts;
-		node.setAttribute("data-attempts", current_attempts + 1)
+		storedimages[node.id] = storedimages[node.id] + '#' + Math.random();
 		draw_listedturf();
 	}, imageRetryDelay);
 }
