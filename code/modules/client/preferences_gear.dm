@@ -20,19 +20,19 @@ GLOBAL_LIST_INIT(gear_datums, populate_gear_list())
 	slot = SLOT_HEAD
 
 /datum/gear/bandanna_grey
-	display_name = "TGMC bandanna (grey)"
+	display_name = "surplus bandanna (grey)"
 	path = /obj/item/clothing/head/bandanna/grey
 	cost = 3
 	slot = SLOT_HEAD
 
 /datum/gear/bandanna_red
-	display_name = "TGMC bandanna (red)"
+	display_name = "surplus bandanna (red)"
 	path = /obj/item/clothing/head/bandanna/red
 	cost = 3
 	slot = SLOT_HEAD
 
 /datum/gear/bandanna_brown
-	display_name = "TGMC bandanna (brown)"
+	display_name = "surplus bandanna (brown)"
 	path = /obj/item/clothing/head/bandanna/brown
 	cost = 3
 	slot = SLOT_HEAD
@@ -43,86 +43,86 @@ GLOBAL_LIST_INIT(gear_datums, populate_gear_list())
 	slot = SLOT_GLASSES
 
 /datum/gear/beret
-	display_name = "TGMC beret (blue)"
+	display_name = "surplus beret (blue)"
 	path = /obj/item/clothing/head/tgmcberet
 	cost = 3
 	slot = SLOT_HEAD
 
 
 /datum/gear/beret_tan
-	display_name = "TGMC beret (tan)"
+	display_name = "surplus beret (tan)"
 	path = /obj/item/clothing/head/tgmcberet/tan
 	cost = 3
 	slot = SLOT_HEAD
 
 
 /datum/gear/beret_green
-	display_name = "TGMC beret (green)"
+	display_name = "surplus beret (green)"
 	path = /obj/item/clothing/head/tgmcberet/green
 	cost = 3
 	slot = SLOT_HEAD
 
 /datum/gear/beret_green
-	display_name = "TGMC beret (red)"
+	display_name = "surplus beret (red)"
 	path = /obj/item/clothing/head/tgmcberet/red2
 	cost = 3
 	slot = SLOT_HEAD
 
 /datum/gear/beret_darkgreen
-	display_name = "TGMC beret (dark green)"
+	display_name = "surplus beret (dark green)"
 	path = /obj/item/clothing/head/tgmcberet/darkgreen
 	cost = 3
 	slot = SLOT_HEAD
 
 /datum/gear/beret_bloodred
-	display_name = "TGMC beret (blood red)"
+	display_name = "surplus beret (blood red)"
 	path = /obj/item/clothing/head/tgmcberet/bloodred
 	cost = 3
 	slot = SLOT_HEAD
 
 /datum/gear/beret_bloodred/blue
-	display_name = "TGMC beret (dark blue)"
+	display_name = "surplus beret (dark blue)"
 	path = /obj/item/clothing/head/tgmcberet/blueberet
 	cost = 3
 	slot = SLOT_HEAD
 
 /datum/gear/beret_snow
-	display_name = "TGMC beret (snow)"
+	display_name = "surplus beret (snow)"
 	path = /obj/item/clothing/head/tgmcberet/snow
 	cost = 3
 	slot = SLOT_HEAD
 
 
 /datum/gear/headband_green
-	display_name = "TGMC headband (green)"
+	display_name = "surplus headband (green)"
 	path = /obj/item/clothing/head/headband
 	cost = 3
 	slot = SLOT_HEAD
 
 
 /datum/gear/headband_red
-	display_name = "TGMC headband (red)"
+	display_name = "surplus headband (red)"
 	path = /obj/item/clothing/head/headband/red
 	cost = 3
 	slot = SLOT_HEAD
 
 
 /datum/gear/headpiece
-	display_name = "TGMC earpiece"
+	display_name = "surplus earpiece"
 	path = /obj/item/clothing/head/headset
 	cost = 3
 	slot = SLOT_HEAD
 
 
 /datum/gear/cap
-	display_name = "TGMC cap"
+	display_name = "surplus cap"
 	path = /obj/item/clothing/head/tgmccap
 	cost = 3
 	slot = SLOT_HEAD
 
 
 /datum/gear/booniehat
-	display_name = "TGMC boonie hat"
+	display_name = "surplus boonie hat"
 	path = /obj/item/clothing/head/boonie
 	cost = 3
 	slot = SLOT_HEAD
