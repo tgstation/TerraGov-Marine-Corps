@@ -7,10 +7,10 @@
 	map_file = '_maps/map_files/Campaign maps/jungle_outpost/jungle_outpost.dmm'
 	map_traits = list(ZTRAIT_AWAY = TRUE, ZTRAIT_RAIN = TRUE)
 	map_light_colours = list(LIGHT_COLOR_PALE_GREEN, LIGHT_COLOR_PALE_GREEN, LIGHT_COLOR_PALE_GREEN, LIGHT_COLOR_PALE_GREEN)
-	objectives_total = 3
-	min_destruction_amount = 2
+	objectives_total = 1
+	min_destruction_amount = 1
 	shutter_open_delay = list(
-		"starting_faction" = 90 SECONDS,
+		"starting_faction" = 45 SECONDS,
 		"hostile_faction" = 0,
 	)
 	victory_point_rewards = list(
@@ -34,7 +34,7 @@
 /datum/campaign_mission/destroy_mission/base_rescue/play_start_intro()
 	intro_message = list(
 		"starting_faction" = "[map_name]<br>" + "[GAME_YEAR]-[time2text(world.realtime, "MM-DD")] [stationTimestamp("hh:mm")]<br>" + "Protect all the NT base from SOM aggression until reinforcements arrive. Eliminate all SOM forces and prevent them from overriding the security lockdown and raiding the facility.",
-		"hostile_faction" = "[map_name]<br>" + "[GAME_YEAR]-[time2text(world.realtime, "MM-DD")] [stationTimestamp("hh:mm")]<br>" + "The NT facility is on lockdown. Find a way to override the lockdown, then penetrate the facility and destroy the data equipment inside.",
+		"hostile_faction" = "[map_name]<br>" + "[GAME_YEAR]-[time2text(world.realtime, "MM-DD")] [stationTimestamp("hh:mm")]<br>" + "The NT facility is on lockdown. Find a way to override the lockdown, then penetrate the facility and destroy whatever you find inside.",
 	)
 	return ..()
 
@@ -49,7 +49,7 @@
 		Move quickly prevent the SOM from lifting the lockdown and destroying the facility."
 	hostile_faction_mission_brief = "Recon forces have led us to this secure Nanotrasen facility in the Western Ayolan Ranges. Sympathetic native elements suggest NT have been conducting secret research here to the detriment of the local ecosystem and human settlements. \
 		Find the security override terminals to override the facility's emergency lockdown. \
-		Once the lockdown is lifted, destroy the data storage equipment inside to render the facility inoperable."
+		Once the lockdown is lifted, destroy what they're working on inside."
 
 /datum/campaign_mission/destroy_mission/base_rescue/apply_major_victory()
 	. = ..()

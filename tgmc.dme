@@ -1005,6 +1005,7 @@
 #include "code\game\objects\structures\bedsheet_bin.dm"
 #include "code\game\objects\structures\benchpress.dm"
 #include "code\game\objects\structures\bookcase.dm"
+#include "code\game\objects\structures\campaign_props.dm"
 #include "code\game\objects\structures\cargo_container.dm"
 #include "code\game\objects\structures\cas_plane_parts.dm"
 #include "code\game\objects\structures\coathanger.dm"
