@@ -396,11 +396,11 @@
 	// This is cursed, don't copy this code its the WRONG way to do this.
 	// TODO: generate this from GLOB.defiler_toxin_type_list
 	var/static/list/defiler_toxin_images_list = list(
-			DEFILER_NEUROTOXIN = image('icons/Xeno/actions.dmi', icon_state = DEFILER_NEUROTOXIN),
-			DEFILER_HEMODILE = image('icons/Xeno/actions.dmi', icon_state = DEFILER_HEMODILE),
-			DEFILER_TRANSVITOX = image('icons/Xeno/actions.dmi', icon_state = DEFILER_TRANSVITOX),
-			DEFILER_OZELOMELYN = image('icons/Xeno/actions.dmi', icon_state = DEFILER_OZELOMELYN),
-			DEFILER_ACID = image('modular_RUtgmc/icons/Xeno/actions.dmi', icon_state = DEFILER_ACID),
+			DEFILER_NEUROTOXIN = image('modular_RUtgmc/icons/Xeno/actions.dmi', icon_state = DEFILER_NEUROTOXIN), //RUTGMC edit - icon change
+			DEFILER_HEMODILE = image('modular_RUtgmc/icons/Xeno/actions.dmi', icon_state = DEFILER_HEMODILE), //RUTGMC edit - icon change
+			DEFILER_TRANSVITOX = image('modular_RUtgmc/icons/Xeno/actions.dmi', icon_state = DEFILER_TRANSVITOX), //RUTGMC edit - icon change
+			DEFILER_OZELOMELYN = image('modular_RUtgmc/icons/Xeno/actions.dmi', icon_state = DEFILER_OZELOMELYN), //RUTGMC edit - icon change
+			DEFILER_ACID = image('modular_RUtgmc/icons/Xeno/actions.dmi', icon_state = DEFILER_ACID), //RUTGMC edit - icon change
 			)
 	var/toxin_choice = show_radial_menu(owner, owner, defiler_toxin_images_list, radius = 48)
 	if(!toxin_choice)

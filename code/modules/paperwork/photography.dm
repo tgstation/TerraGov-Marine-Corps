@@ -77,7 +77,7 @@
 
 /obj/item/camera_film
 	name = "film cartridge"
-	icon = 'icons/obj/items/items.dmi'
+	icon = 'icons/obj/device.dmi'
 	desc = "A camera film cartridge. Insert it into a camera to reload it."
 	icon_state = "film"
 	item_state = "electropack"
@@ -164,7 +164,7 @@
 
 /obj/item/camera
 	name = "camera"
-	icon = 'icons/obj/items/items.dmi'
+	icon = 'icons/obj/device.dmi'
 	desc = "A polaroid camera."
 	icon_state = "camera"
 	item_state = "camera"

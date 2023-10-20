@@ -63,10 +63,23 @@
 #define SQUAD_CORPSMAN "Squad Corpsman"
 #define SQUAD_ENGINEER "Squad Engineer"
 #define SQUAD_MARINE "Squad Marine"
+#define SQUAD_ROBOT "Squad Robot"
 #define SQUAD_VATGROWN "Squad VatGrown"
 #define SILICON_AI "AI"
 
-//SOM - very placeholder for now
+//SOM
+#define SOM_GENERAL "SOM general"
+#define SOM_FIELD_COMMANDER "SOM Field Commander"
+#define SOM_STAFF_OFFICER "SOM Staff Officer"
+#define SOM_PILOT_OFFICER "SOM Pilot Officer"
+#define SOM_MECH_PILOT "SOM Mech Pilot"
+#define SOM_REQUISITIONS_OFFICER "SOM Requisitions Officer"
+#define SOM_CHIEF_ENGINEER "SOM Chief Engineer"
+#define SOM_CHIEF_MEDICAL_OFFICER "SOM Chief Medical Officer"
+#define SOM_TECH "SOM Technician"
+#define SOM_MEDICAL_DOCTOR "SOM Medical Doctor"
+#define SOM_CHEF "SOM chef"
+
 #define SOM_SQUAD_LEADER "SOM Squad Leader"
 #define SOM_SQUAD_CORPSMAN "SOM Squad Medic"
 #define SOM_SQUAD_ENGINEER "SOM Squad Engineer"
@@ -102,7 +115,7 @@ GLOBAL_LIST_INIT(jobs_regular_all, list(CAPTAIN, FIELD_COMMANDER, STAFF_OFFICER,
 CHIEF_MEDICAL_OFFICER, SYNTHETIC, SILICON_AI, CORPORATE_LIAISON, SHIP_TECH, \
 MEDICAL_DOCTOR, MEDICAL_RESEARCHER, SQUAD_LEADER, SQUAD_SMARTGUNNER, SQUAD_CORPSMAN, SQUAD_ENGINEER, SQUAD_MARINE, \
 SOM_SQUAD_MARINE, SOM_SQUAD_VETERAN, SOM_SQUAD_ENGINEER, SOM_SQUAD_CORPSMAN, SOM_SQUAD_LEADER))
-//GLOBAL_LIST_INIT(jobs_xenos, list(ROLE_XENOMORPH, ROLE_XENO_QUEEN)) //RUTGMC EDIT: Moved to modular_RUtgmc\code\__DEFINES\jobs.dm
+GLOBAL_LIST_INIT(jobs_xenos, list(ROLE_XENOMORPH, ROLE_XENO_QUEEN))
 GLOBAL_LIST_INIT(jobs_fallen_marine, typecacheof(list(/datum/job/fallen/marine), TRUE))
 
 //Playtime tracking system, see jobs_exp.dm

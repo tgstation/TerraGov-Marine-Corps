@@ -883,8 +883,8 @@
 	name = "Privacy Shutters"
 	},
 /obj/structure/table,
-/obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
-/obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
+/obj/effect/spawner/random/weaponry/gun,
+/obj/effect/spawner/random/weaponry/gun,
 /turf/open/floor/tile/dark/purple2{
 	dir = 4
 	},
@@ -1543,7 +1543,7 @@
 /area/lv624/lazarus/sleep_male)
 "if" = (
 /obj/structure/rack,
-/obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
+/obj/effect/spawner/random/weaponry/gun,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/dark/red2/corner,
 /area/lv624/lazarus/research/caves)
@@ -2766,7 +2766,7 @@
 /area/lv624/ground/jungle5)
 "oH" = (
 /obj/structure/closet/crate/secure,
-/obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
+/obj/effect/spawner/random/weaponry/gun,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/research/caves)
 "oI" = (
@@ -4788,7 +4788,7 @@
 /area/lv624/lazarus/spaceport)
 "yV" = (
 /obj/structure/table/mainship,
-/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
+/obj/effect/spawner/random/weaponry/gun,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/research/caves)
 "yX" = (
@@ -5064,7 +5064,7 @@
 	},
 /obj/structure/table/woodentable,
 /obj/item/weapon/nullrod,
-/obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
+/obj/effect/spawner/random/weaponry/gun,
 /turf/open/floor/wood,
 /area/lv624/lazarus/chapel)
 "Ad" = (
@@ -5670,7 +5670,7 @@
 /area/lv624/ground/jungle9)
 "Dn" = (
 /obj/structure/rack,
-/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
+/obj/effect/spawner/random/weaponry/gun,
 /turf/open/floor/tile/dark/red2/corner,
 /area/lv624/lazarus/research/caves)
 "Do" = (
@@ -6220,7 +6220,7 @@
 /area/lv624/lazarus/engineering)
 "Gh" = (
 /obj/structure/table,
-/obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
+/obj/effect/spawner/random/weaponry/gun,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle7)
 "Gi" = (
@@ -6389,7 +6389,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
+/obj/effect/spawner/random/weaponry/gun,
 /turf/open/floor/tile/lightred/full,
 /area/lv624/lazarus/security)
 "GW" = (
@@ -6496,7 +6496,7 @@
 /area/lv624/ground/jungle10)
 "Hy" = (
 /obj/structure/table,
-/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
+/obj/effect/spawner/random/weaponry/gun,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle7)
 "HA" = (
@@ -7068,7 +7068,7 @@
 /area/lv624/lazarus/spaceport)
 "Ki" = (
 /obj/structure/closet/secure_closet/marshal,
-/obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
+/obj/effect/spawner/random/weaponry/gun,
 /turf/open/floor/tile/lightred/full,
 /area/lv624/lazarus/security)
 "Kj" = (

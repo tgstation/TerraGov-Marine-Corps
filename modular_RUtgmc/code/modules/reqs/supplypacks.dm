@@ -153,6 +153,12 @@
 	contains = list(/obj/item/clothing/glasses/night/imager_goggles)
 	cost = 50
 
+/datum/supply_packs/operations/beacons_orbital
+	name = "orbital beacon"
+	contains = list(/obj/item/beacon/orbital_bombardment_beacon)
+	cost = 30
+	available_against_xeno_only = TRUE
+
 /datum/supply_packs/weapons/thermobaric
 	name = "RL-57 Thermobaric Launcher Kit"
 	contains = list(/obj/item/storage/holster/backholster/rlquad/full)
@@ -164,3 +170,8 @@
 	contains = list(/obj/item/storage/holster/backholster/rlsadar/full)
 	cost = SADAR_PRICE + 150 //ammo price
 	available_against_xeno_only = TRUE
+
+/datum/supply_packs/weapons/minigun_powerpack
+	name = "SG-85 Minigun Powerpack"
+	contains = list(/obj/item/ammo_magazine/minigun_powerpack/smartgun)
+	cost = 150

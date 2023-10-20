@@ -267,15 +267,15 @@
 
 /datum/hive_status/proc/target_status_check(mob/living/carbon/xenomorph/user, mob/living/carbon/xenomorph/target)
 	if(target.is_ventcrawling)
-		to_chat(user, span_xenonotice("Cannot banish, [target] is ventcrawling."))
+		to_chat(user, span_xenonotice("Cannot punish, [target] is ventcrawling."))
 		return FALSE
 
 	if(!isturf(target.loc))
-		to_chat(user, span_xenonotice("Cannot banish, [target] here."))
+		to_chat(user, span_xenonotice("Cannot punish [target] here."))
 		return FALSE
 
 	if(target.tier == XENO_TIER_FOUR || isxenohivemind(target))
-		to_chat(user, span_xenonotice("Tier does not allow to banish."))
+		to_chat(user, span_xenonotice("Tier does not allow to punish."))
 		return FALSE
 
 	return TRUE

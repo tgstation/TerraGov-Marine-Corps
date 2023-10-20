@@ -134,6 +134,9 @@ GLOBAL_LIST_INIT(leader_gear_listed_products, list(
 		/obj/effect/vendor_bundle/leader = list(CAT_ESS, "Essential SL Set", 0, "white"),
 		/obj/item/whistle = list(CAT_LEDSUP, "Whistle", 5, "black"),
 		/obj/item/beacon/supply_beacon = list(CAT_LEDSUP, "Supply beacon", 10, "black"),
+		//RUTGMC EDIT ADDITION BEGIN - ORBITAL_BEACON
+		/obj/item/beacon/orbital_bombardment_beacon = list(CAT_LEDSUP, "Orbital beacon", 15, "black"),
+		//RUTGMC EDIT ADDITION END
 		/obj/item/fulton_extraction_pack = list(CAT_LEDSUP, "Fulton Extraction Pack", 20, "orange"),
 		/obj/item/deployable_camera = list(CAT_LEDSUP, "Deployable Overwatch Camera", 2, "orange"),
 		//RUTGMC EDIT ADDITION BEGIN - SWORDS
@@ -576,8 +579,16 @@ GLOBAL_LIST_INIT(leader_clothes_listed_products, list(
 		/obj/item/storage/pouch/magazine/pistol/large = list(CAT_POU, "Pistol magazine pouch", 0, "black"),
 		/obj/item/storage/pouch/pistol = list(CAT_POU, "Sidearm pouch", 0, "black"),
 		/obj/item/storage/pouch/explosive = list(CAT_POU, "Explosive pouch", 0, "black"),
+		//RUTGMC EDIT REMOVAL BEGIN - LEADER_T2_ARMOR
+		/*
 		/obj/effect/vendor_bundle/mimir = list(CAT_ARMMOD, "Mark 1 Mimir Resistance set", 0,"black"),
 		/obj/effect/vendor_bundle/tyr = list(CAT_ARMMOD, "Mark 1 Tyr extra armor set", 0,"black"),
+		*/
+		//RUTGMC EDIT REMOVAL END
+		//RUTGMC EDIT ADDITION BEGIN - LEADER_T2_ARMOR
+		/obj/effect/vendor_bundle/tyr/two = list(CAT_ARMMOD, "Mark 2 Tyr extra armor set", 0,"black"),
+		/obj/effect/vendor_bundle/mimir/two = list(CAT_ARMMOD, "Mark 2 Mimir Resistance set", 0,"black"),
+		//RUTGMC EDIT ADDITION END
 		/obj/item/armor_module/module/ballistic_armor = list(CAT_ARMMOD, "Hod Accident Prevention Plating", 0,"black"),
 		/obj/item/armor_module/module/better_shoulder_lamp = list(CAT_ARMMOD, "Baldur light armor module", 0,"black"),
 		/obj/effect/vendor_bundle/vali = list(CAT_ARMMOD, "Vali chemical enhancement set", 0,"black"),
@@ -743,6 +754,9 @@ GLOBAL_LIST_INIT(loadout_role_essential_set, list(
 	SQUAD_LEADER = list(
 		/obj/item/explosive/plastique = 1,
 		/obj/item/beacon/supply_beacon = 2,
+		//RUTGMC EDIT ADDITION BEGIN - ORBITAL_BEACON
+		/obj/item/beacon/orbital_bombardment_beacon = 1,
+		//RUTGMC EDIT ADDITION END
 		/obj/item/whistle = 1,
 		/obj/item/binoculars/tactical = 1,
 		/obj/item/pinpointer = 1,

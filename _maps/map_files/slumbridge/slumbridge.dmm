@@ -2236,7 +2236,7 @@
 /area/slumbridge/prison/outerringsouth)
 "bIl" = (
 /obj/machinery/computer/emails,
-/obj/structure/table/mainship/nometal,
+/obj/structure/table/mainship,
 /turf/open/floor/mainship/black{
 	dir = 1
 	},
@@ -2533,7 +2533,7 @@
 /turf/open/floor/prison,
 /area/slumbridge/outside4)
 "bPw" = (
-/obj/structure/table/mainship/nometal,
+/obj/structure/table/mainship,
 /obj/structure/prop/mainship/minigun_crate,
 /turf/open/floor/mainship/floor,
 /area/slumbridge/sombase/hangar)
@@ -2666,7 +2666,7 @@
 /turf/open/floor,
 /area/slumbridge/engi/west)
 "bWR" = (
-/obj/structure/table/mainship/nometal,
+/obj/structure/table/mainship,
 /obj/item/storage/fancy/vials/prison,
 /turf/open/floor/mainship/green/full,
 /area/slumbridge/sombase/west)
@@ -2694,7 +2694,7 @@
 /turf/open/floor/tile/bar,
 /area/slumbridge/medical/foyer)
 "bXw" = (
-/obj/structure/table/mainship/nometal,
+/obj/structure/table/mainship,
 /obj/machinery/computer/security/wooden_tv,
 /turf/open/floor/mainship/black{
 	dir = 9
@@ -2939,7 +2939,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/slumbridge/southeastcaves/garbledradio)
 "civ" = (
-/obj/structure/rack/nometal,
+/obj/structure/rack,
 /obj/item/explosive/plastique{
 	pixel_x = -3;
 	pixel_y = -5
@@ -3231,7 +3231,7 @@
 /area/slumbridge/zeta/north)
 "crp" = (
 /obj/item/shotgunbox,
-/obj/structure/rack/nometal,
+/obj/structure/rack,
 /turf/open/floor/mainship/red{
 	dir = 5
 	},
@@ -4787,7 +4787,7 @@
 /turf/open/liquid/water/river/autosmooth,
 /area/slumbridge/outside4)
 "dDF" = (
-/obj/structure/rack/nometal,
+/obj/structure/rack,
 /obj/item/stack/sheet/glass{
 	amount = 30
 	},
@@ -4935,7 +4935,7 @@
 "dJa" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/closet/crate/secure/weapon,
-/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
+/obj/effect/spawner/random/weaponry/gun,
 /turf/open/shuttle/blackfloor,
 /area/slumbridge/pmcdome/weaponvault)
 "dJb" = (
@@ -6518,7 +6518,7 @@
 /turf/open/floor/tile/dark,
 /area/slumbridge/colony/orestorage)
 "eYT" = (
-/obj/structure/table/mainship/nometal,
+/obj/structure/table/mainship,
 /obj/machinery/light,
 /turf/open/floor/mainship/red,
 /area/slumbridge/sombase/hangar)
@@ -6913,7 +6913,7 @@
 /obj/structure/rack{
 	color = "#50617d"
 	},
-/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
+/obj/effect/spawner/random/weaponry/gun,
 /obj/machinery/light,
 /turf/open/shuttle/blackfloor,
 /area/slumbridge/pmcdome/weaponvault)
@@ -8254,7 +8254,7 @@
 /obj/structure/somcas/one{
 	dir = 4
 	},
-/obj/structure/table/mainship/nometal,
+/obj/structure/table/mainship,
 /turf/open/floor/prison/blackfloor,
 /area/slumbridge/sombase/hangar)
 "goL" = (
@@ -8867,7 +8867,7 @@
 /area/slumbridge/prison/outerringsouth)
 "gLQ" = (
 /obj/structure/ob_ammo/ob_fuel,
-/obj/structure/table/mainship/nometal,
+/obj/structure/table/mainship,
 /turf/open/floor/prison/blackfloor,
 /area/slumbridge/sombase/hangar)
 "gLR" = (
@@ -9143,7 +9143,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/slumbridge/sombase/hangar)
 "gYq" = (
-/obj/structure/bed/chair/nometal{
+/obj/structure/bed/chair{
 	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
@@ -9686,7 +9686,7 @@
 /area/slumbridge/engi/central)
 "hrX" = (
 /obj/structure/closet/crate/secure/weapon,
-/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
+/obj/effect/spawner/random/weaponry/gun,
 /turf/open/shuttle/blackfloor,
 /area/slumbridge/pmcdome/weaponvault)
 "hss" = (
@@ -9917,7 +9917,7 @@
 /turf/open/floor/tile/bar,
 /area/slumbridge/houses/recreational)
 "hBo" = (
-/obj/structure/table/mainship/nometal,
+/obj/structure/table/mainship,
 /obj/structure/prop/mainship/minigun_crate,
 /turf/open/floor/mainship/red{
 	dir = 6
@@ -10384,10 +10384,6 @@
 	dir = 5
 	},
 /area/slumbridge/engi/west)
-"hRZ" = (
-/obj/structure/table/mainship/nometal,
-/turf/open/floor/prison/blackfloor,
-/area/slumbridge/sombase/hangar)
 "hSm" = (
 /obj/machinery/door/airlock/mainship/secure/free_access{
 	dir = 1;
@@ -10521,7 +10517,7 @@
 /turf/open/floor/plating,
 /area/slumbridge/hydrotreatment)
 "hWn" = (
-/obj/structure/table/mainship/nometal,
+/obj/structure/table/mainship,
 /obj/structure/prop/mainship/minigun_crate,
 /turf/open/floor/plating/plating_catwalk,
 /area/slumbridge/sombase/hangar)
@@ -10914,7 +10910,7 @@
 /turf/open/floor/wood,
 /area/slumbridge/colony/bar)
 "ijV" = (
-/obj/structure/table/mainship/nometal,
+/obj/structure/table/mainship,
 /obj/machinery/reagentgrinder,
 /obj/item/reagent_containers/glass/bucket{
 	pixel_x = -12
@@ -11481,7 +11477,7 @@
 /turf/open/floor/tile/showroom,
 /area/slumbridge/engi/south)
 "iBg" = (
-/obj/structure/table/mainship/nometal,
+/obj/structure/table/mainship,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -11891,7 +11887,7 @@
 /obj/item/tool/pickaxe,
 /obj/item/tool/pickaxe,
 /obj/item/tool/pickaxe,
-/obj/structure/rack/nometal,
+/obj/structure/rack,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/slumbridge/northwestcaves)
 "iQU" = (
@@ -12778,7 +12774,7 @@
 /turf/open/floor/tile/dark,
 /area/slumbridge/colony/pharmacy)
 "jAi" = (
-/obj/structure/table/mainship/nometal,
+/obj/structure/table/mainship,
 /obj/machinery/reagentgrinder,
 /turf/open/floor/mainship/green{
 	dir = 9
@@ -13119,7 +13115,7 @@
 /turf/open/floor/tile/dark,
 /area/slumbridge/outside3)
 "jMC" = (
-/obj/structure/bed/chair/nometal{
+/obj/structure/bed/chair{
 	dir = 8
 	},
 /obj/effect/decal/cleanable/dirt,
@@ -13883,7 +13879,7 @@
 /turf/open/floor/plating/ground/snow/layer2,
 /area/slumbridge/outside3)
 "krH" = (
-/obj/structure/table/mainship/nometal,
+/obj/structure/table/mainship,
 /obj/structure/somcas/one{
 	dir = 1
 	},
@@ -14015,7 +14011,7 @@
 /area/slumbridge/houses/surgery/garbledradio)
 "kwy" = (
 /obj/structure/closet/crate,
-/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
+/obj/effect/spawner/random/weaponry/gun,
 /turf/open/floor/plating,
 /area/slumbridge/landingzonetwo)
 "kwD" = (
@@ -14567,7 +14563,7 @@
 /obj/structure/somcas/five{
 	dir = 1
 	},
-/obj/structure/table/mainship/nometal,
+/obj/structure/table/mainship,
 /turf/open/floor/prison/blackfloor,
 /area/slumbridge/sombase/hangar)
 "kRj" = (
@@ -15712,7 +15708,7 @@
 /area/slumbridge/southeastcaves)
 "lIV" = (
 /obj/item/shotgunbox/buckshot,
-/obj/structure/rack/nometal,
+/obj/structure/rack,
 /turf/open/floor/mainship/red{
 	dir = 10
 	},
@@ -16877,7 +16873,7 @@
 /turf/open/floor/plating/ground/mars/random/cave/darker,
 /area/slumbridge/mining)
 "mxP" = (
-/obj/structure/bed/chair/nometal{
+/obj/structure/bed/chair{
 	dir = 4
 	},
 /turf/open/floor/plating,
@@ -17118,7 +17114,7 @@
 /area/slumbridge/sombase/east)
 "mHI" = (
 /obj/structure/somcas,
-/obj/structure/table/mainship/nometal,
+/obj/structure/table/mainship,
 /turf/open/floor/mainship/floor,
 /area/slumbridge/sombase/west)
 "mIs" = (
@@ -17627,7 +17623,7 @@
 /turf/open/floor/plating/dmg2,
 /area/slumbridge/mining)
 "nes" = (
-/obj/structure/rack/nometal,
+/obj/structure/rack,
 /turf/open/floor/vault,
 /area/slumbridge/sombase/east)
 "nez" = (
@@ -18243,7 +18239,7 @@
 /obj/structure/rack{
 	color = "#50617d"
 	},
-/obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
+/obj/effect/spawner/random/weaponry/gun,
 /turf/open/shuttle/blackfloor,
 /area/slumbridge/pmcdome/weaponvault)
 "nyn" = (
@@ -18547,7 +18543,7 @@
 	},
 /area/slumbridge/prison/outerringnorth)
 "nIh" = (
-/obj/structure/table/mainship/nometal,
+/obj/structure/table/mainship,
 /obj/machinery/computer/robotics,
 /turf/open/floor/mainship/floor,
 /area/slumbridge/sombase/hangar)
@@ -18959,7 +18955,7 @@
 /obj/structure/somcas/five{
 	dir = 4
 	},
-/obj/structure/table/mainship/nometal,
+/obj/structure/table/mainship,
 /turf/open/floor/prison/blackfloor,
 /area/slumbridge/sombase/hangar)
 "nYi" = (
@@ -20253,7 +20249,7 @@
 /obj/structure/somcas/one{
 	dir = 8
 	},
-/obj/structure/table/mainship/nometal,
+/obj/structure/table/mainship,
 /obj/machinery/light,
 /turf/open/floor/prison/blackfloor,
 /area/slumbridge/sombase/hangar)
@@ -20893,7 +20889,7 @@
 	name = "Armory Shutters";
 	pixel_x = -1
 	},
-/obj/structure/table/mainship/nometal,
+/obj/structure/table/mainship,
 /obj/machinery/door_control/old/unmeltable{
 	id = "NorthBaseSomHangar";
 	name = "Hangar Shutters";
@@ -21128,7 +21124,7 @@
 /turf/open/floor/asteroidfloor,
 /area/slumbridge/outside2)
 "pGL" = (
-/obj/structure/table/mainship/nometal,
+/obj/structure/table/mainship,
 /obj/item/storage/fancy/vials,
 /turf/open/floor/mainship/floor,
 /area/slumbridge/sombase/west)
@@ -21922,7 +21918,7 @@
 /obj/item/weapon/gun/shotgun/som/standard,
 /obj/item/clothing/shoes/marine/som,
 /obj/item/clothing/gloves/marine/som,
-/obj/structure/rack/nometal,
+/obj/structure/rack,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/vault,
 /area/slumbridge/sombase/east)
@@ -22041,7 +22037,7 @@
 /area/slumbridge/mining)
 "qoC" = (
 /obj/item/clothing/suit/modular/som/light,
-/obj/structure/rack/nometal,
+/obj/structure/rack,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/vault,
 /area/slumbridge/sombase/east)
@@ -22156,7 +22152,7 @@
 "qtf" = (
 /obj/item/clothing/under/som,
 /obj/item/clothing/suit/storage/marine/som,
-/obj/structure/rack/nometal,
+/obj/structure/rack,
 /turf/open/floor/vault,
 /area/slumbridge/sombase/east)
 "qti" = (
@@ -22309,7 +22305,7 @@
 /area/slumbridge/engi/west)
 "qxI" = (
 /obj/structure/somcas/five,
-/obj/structure/table/mainship/nometal,
+/obj/structure/table/mainship,
 /turf/open/floor/prison/blackfloor,
 /area/slumbridge/sombase/hangar)
 "qxT" = (
@@ -23434,7 +23430,7 @@
 /area/slumbridge/colony/dorms)
 "rmZ" = (
 /obj/item/shotgunbox/buckshot,
-/obj/structure/rack/nometal,
+/obj/structure/rack,
 /turf/open/floor/mainship/floor,
 /area/slumbridge/sombase/east)
 "rnj" = (
@@ -23524,7 +23520,7 @@
 /obj/item/weapon/gun/pistol/som/standard,
 /obj/item/clothing/gloves/marine/som,
 /obj/item/clothing/head/modular/som,
-/obj/structure/rack/nometal,
+/obj/structure/rack,
 /turf/open/floor/vault,
 /area/slumbridge/sombase/east)
 "rpP" = (
@@ -24018,7 +24014,7 @@
 /obj/structure/somcas{
 	dir = 1
 	},
-/obj/structure/table/mainship/nometal,
+/obj/structure/table/mainship,
 /turf/open/floor/mainship/floor,
 /area/slumbridge/sombase/hangar)
 "rIY" = (
@@ -25814,7 +25810,7 @@
 /turf/open/floor,
 /area/slumbridge/engi/central)
 "sXX" = (
-/obj/structure/table/mainship/nometal,
+/obj/structure/table/mainship,
 /obj/machinery/computer3{
 	name = "Manta Jet Monitoring"
 	},
@@ -26258,7 +26254,7 @@
 /obj/structure/somcas/five{
 	dir = 8
 	},
-/obj/structure/table/mainship/nometal,
+/obj/structure/table/mainship,
 /obj/structure/prop/mainship/weapon_recharger,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/prison/blackfloor,
@@ -27044,7 +27040,7 @@
 /turf/closed/mineral/smooth/darkfrostwall/indestructible,
 /area/slumbridge/rock/nearlz)
 "tUv" = (
-/obj/structure/bed/chair/nometal{
+/obj/structure/bed/chair{
 	dir = 8
 	},
 /obj/effect/turf_decal/sandytile/sandyplating,
@@ -27061,7 +27057,7 @@
 	pixel_x = -5;
 	pixel_y = 3
 	},
-/obj/structure/table/mainship/nometal,
+/obj/structure/table/mainship,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/lightred/full,
 /area/slumbridge/colony/southerndome)
@@ -27757,11 +27753,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/elevatorshaft,
 /area/slumbridge/zeta/north)
-"uzf" = (
-/obj/structure/table/mainship/nometal,
-/obj/structure/somcas/seven,
-/turf/open/floor/prison/blackfloor,
-/area/slumbridge/sombase/hangar)
 "uAk" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -28055,10 +28046,7 @@
 /turf/open/floor/plating/ground/mars/random/cave/darker,
 /area/slumbridge/outside1)
 "uMl" = (
-/obj/structure/table/mainship/nometal,
-/obj/structure/somcas/seven{
-	dir = 1
-	},
+/obj/structure/table/mainship,
 /turf/open/floor/prison/blackfloor,
 /area/slumbridge/sombase/hangar)
 "uML" = (
@@ -28307,7 +28295,7 @@
 /area/slumbridge/colony/northerndome)
 "uVd" = (
 /obj/structure/closet/crate,
-/obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
+/obj/effect/spawner/random/weaponry/gun,
 /turf/open/floor/plating,
 /area/slumbridge/landingzonetwo)
 "uVw" = (
@@ -28807,7 +28795,7 @@
 /turf/open/floor/mainship/red,
 /area/slumbridge/colony/northerndome)
 "vnZ" = (
-/obj/structure/rack/nometal,
+/obj/structure/rack,
 /obj/item/explosive/plastique{
 	pixel_x = 3;
 	pixel_y = 7
@@ -29664,7 +29652,7 @@
 /area/slumbridge/colony/hydro)
 "vSt" = (
 /obj/structure/closet/crate/secure/gear,
-/obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
+/obj/effect/spawner/random/weaponry/gun,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -29899,7 +29887,7 @@
 	},
 /area/slumbridge/medical/southern)
 "waM" = (
-/obj/structure/rack/nometal,
+/obj/structure/rack,
 /obj/item/storage/box/lightstick,
 /obj/item/storage/box/lightstick/red{
 	pixel_x = -3;
@@ -30645,7 +30633,7 @@
 /turf/open/floor/prison/blackfloor,
 /area/slumbridge/colony/vault)
 "wAm" = (
-/obj/structure/rack/nometal,
+/obj/structure/rack,
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/slumbridge/colony/construction)
@@ -32325,7 +32313,7 @@
 /turf/open/floor,
 /area/slumbridge/engi/engineroom)
 "xPC" = (
-/obj/structure/rack/nometal,
+/obj/structure/rack,
 /obj/machinery/light{
 	dir = 4
 	},
@@ -53846,8 +53834,8 @@ elP
 liM
 liM
 gLQ
-hRZ
-hRZ
+uMl
+uMl
 wpD
 sOk
 xBF
@@ -55838,7 +55826,7 @@ aeE
 dPQ
 gcs
 wQG
-uzf
+uMl
 hLM
 oCR
 olC

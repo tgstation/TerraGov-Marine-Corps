@@ -668,7 +668,7 @@
 	template_height = 24
 
 /datum/map_template/modular/bigred/medbaypassageone
-	name = "Big red nedbay passage"
+	name = "Big red medbaypassage"
 	mappath = "_maps/modularmaps/big_red/bigredmedbaypassagevar1.dmm"
 	modular_id = "brmedbaypassage"
 	template_width = 6
@@ -1132,14 +1132,14 @@
 	mappath = "_maps/modularmaps/big_red/barracks.dmm"
 	modular_id = "broperations"
 	template_width = 29
-	template_height = 25
+	template_height = 24
 
 /datum/map_template/modular/bigred/operations
 	name = "Big red administration"
 	mappath = "_maps/modularmaps/big_red/operation.dmm"
 	modular_id = "broperations"
 	template_width = 29
-	template_height = 25
+	template_height = 24
 
 /datum/map_template/modular/oscaroutposttopone
 	name = "Oscar outpost map top half"

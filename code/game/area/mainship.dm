@@ -479,8 +479,48 @@
 	icon_state = "req"
 	requires_power = FALSE
 
+/area/mainship/patrol_base/hanger
+	name = "TGMC Hanger"
+	icon_state = "hangar"
+	minimap_color = MINIMAP_AREA_LZ
+
+/area/mainship/patrol_base/command
+	name = "TGMC Bridge"
+	icon_state = "bridge"
+	minimap_color = MINIMAP_AREA_COMMAND
+
+/area/mainship/patrol_base/prep
+	name = "TGMC Preparations"
+	icon_state = "mainship"
+	minimap_color = MINIMAP_AREA_PREP
+
+/area/mainship/patrol_base/barracks
+	name = "TGMC Barracks"
+	icon_state = "cryo"
+	minimap_color = MINIMAP_AREA_LIVING
+
 /area/mainship/patrol_base/som
 	name = "SOM Combat Patrol Base"
+
+/area/mainship/patrol_base/som/hanger
+	name = "SOM Main Hanger"
+	icon_state = "hangar"
+	minimap_color = MINIMAP_AREA_LZ
+
+/area/mainship/patrol_base/som/command
+	name = "SOM Command"
+	icon_state = "bridge"
+	minimap_color = MINIMAP_AREA_COMMAND
+
+/area/mainship/patrol_base/som/prep
+	name = "SOM Preparations"
+	icon_state = "mainship"
+	minimap_color = MINIMAP_AREA_PREP
+
+/area/mainship/patrol_base/som/barracks
+	name = "SOM Barracks"
+	icon_state = "cryo"
+	minimap_color = MINIMAP_AREA_LIVING
 
 /area/mainship/patrol_base/telecomms
 	name = "Telecommunications"

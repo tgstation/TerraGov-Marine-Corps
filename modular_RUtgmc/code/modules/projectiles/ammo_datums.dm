@@ -84,6 +84,29 @@
 	penetration = 25
 	sundering = 3.5
 
+/datum/ammo/energy/lasgun/marine/sniper
+	damage = 70
+	penetration = 45
+	sundering = 5
+
+/datum/ammo/energy/lasgun/marine/sniper_heat
+	penetration = 30
+	hitscan_effect_icon = "beam_incen"
+	bullet_color = COLOR_RED_LIGHT
+
+/datum/ammo/energy/lasgun/marine/sniper_overcharge
+	name = "sniper overcharge bolt"
+	icon_state = "overchargedlaser"
+	hud_state = "laser_sniper_overcharge"
+	shell_speed = 2.5
+	damage = 130
+	penetration = 80
+	accurate_range_min = 6
+	flags_ammo_behavior = AMMO_ENERGY|AMMO_SUNDERING|AMMO_HITSCAN|AMMO_SNIPER
+	sundering = 10
+	hitscan_effect_icon = "beam_heavy_charge"
+	bullet_color = COLOR_DISABLER_BLUE
+
 /*
 //================================================
 					Xeno Spits
@@ -102,3 +125,47 @@
 /datum/ammo/xeno/toxin/sent //Sentinel
 	spit_cost = 70
 	icon_state = "xeno_sent_neuro"
+
+/datum/ammo/xeno/acid
+	icon_state = "xeno_acid_weak"
+
+/datum/ammo/xeno/acid/drop_nade(turf/T) //Leaves behind an acid pool; defaults to 1-3 seconds.
+	if(T.density)
+		return
+	new /obj/effect/xenomorph/spray/weak(T, puddle_duration, puddle_acid_damage)
+
+/datum/ammo/xeno/acid/medium
+	icon_state = "xeno_acid_normal"
+	bullet_color = COLOR_VERY_PALE_LIME_GREEN
+
+/datum/ammo/xeno/acid/medium/drop_nade(turf/T) //Leaves behind an acid pool; defaults to 1-3 seconds.
+	if(T.density)
+		return
+	new /obj/effect/xenomorph/spray(T, puddle_duration, puddle_acid_damage)
+
+/datum/ammo/xeno/acid/heavy
+	icon_state = "xeno_acid_strong"
+	bullet_color = COLOR_ASSEMBLY_YELLOW
+
+/datum/ammo/xeno/acid/heavy/drop_nade(turf/T) //Leaves behind an acid pool; defaults to 1-3 seconds.
+	if(T.density)
+		return
+	new /obj/effect/xenomorph/spray/strong(T, puddle_duration, puddle_acid_damage)
+
+/datum/ammo/xeno/acid/heavy/scatter
+	icon_state = "xeno_acid_normal"
+	bullet_color = COLOR_VERY_PALE_LIME_GREEN
+
+/datum/ammo/xeno/acid/heavy/scatter/drop_nade(turf/T) //Leaves behind an acid pool; defaults to 1-3 seconds.
+	if(T.density)
+		return
+	new /obj/effect/xenomorph/spray(T, puddle_duration, puddle_acid_damage)
+
+/datum/ammo/xeno/acid/heavy/turret
+	icon_state = "xeno_acid_weak"
+	bullet_color = COLOR_PALE_GREEN_GRAY
+
+/datum/ammo/xeno/acid/heavy/turret/drop_nade(turf/T) //Leaves behind an acid pool; defaults to 1-3 seconds.
+	if(T.density)
+		return
+	new /obj/effect/xenomorph/spray/weak(T, puddle_duration, puddle_acid_damage)

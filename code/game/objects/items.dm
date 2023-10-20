@@ -676,8 +676,16 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 
 	return storage_item.can_be_inserted(src, warning)
 
+/// Checks whether the item can be unequipped from owner by stripper. Generates a message on failure and returns TRUE/FALSE
 /obj/item/proc/canStrip(mob/stripper, mob/owner)
-	return !(flags_item & NODROP)
+	if(flags_item & NODROP)
+		stripper.balloon_alert(stripper, "[src] is stuck!")
+		return FALSE
+	return TRUE
+
+/// Used by any item which wants to react to or prevent its own stripping, called after checks/delays. Return TRUE to block normal stripping behavior.
+/obj/item/proc/special_stripped_behavior(mob/stripper, mob/owner)
+	return
 
 /obj/item/proc/update_item_sprites()
 	switch(SSmapping.configs[GROUND_MAP].armor_style)

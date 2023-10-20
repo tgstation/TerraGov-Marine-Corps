@@ -335,6 +335,7 @@
 
 	playsound(user, 'sound/weapons/emitter.ogg', 5, FALSE, 2)
 
+	shots_fired = 0
 	gun_firemode = initial(choice.fire_mode)
 	gun_firemode_list = list(gun_firemode)
 	ammo_datum_type = initial(choice.ammo_datum_type)
@@ -663,7 +664,23 @@
 	)
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_carbine/scout
-	starting_attachment_types = list(/obj/item/attachable/reddot, /obj/item/weapon/gun/grenade_launcher/underslung,)
+	starting_attachment_types = list(
+		/obj/item/attachable/reddot,
+		/obj/item/weapon/gun/grenade_launcher/underslung,
+	)
+
+/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_carbine/mag_harness
+	starting_attachment_types = list(
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/weapon/gun/grenade_launcher/underslung,
+		/obj/item/attachable/bayonet,
+	)
+
+/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_carbine/gyro
+	starting_attachment_types = list(
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/gyro,
+	)
 
 /datum/lasrifle/energy_carbine_mode/auto_burst
 	rounds_per_shot = 12
@@ -933,9 +950,9 @@
 	fire_sound = 'sound/weapons/guns/fire/laser3.ogg'
 	icon_state = "tex"
 	item_state = "tex"
-	max_shots = 40 //codex stuff
+	max_shots = 50 //codex stuff
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine/xray
-	rounds_per_shot = 15
+	rounds_per_shot = 12
 	attachable_allowed = list(
 		/obj/item/attachable/bayonet,
 		/obj/item/attachable/bayonetknife,
@@ -944,7 +961,6 @@
 		/obj/item/attachable/lasersight,
 		/obj/item/attachable/flashlight,
 		/obj/item/attachable/magnetic_harness,
-		/obj/item/attachable/scope/marine,
 		/obj/item/attachable/scope/mini,
 		/obj/item/weapon/gun/flamer/mini_flamer,
 		/obj/item/attachable/motiondetector,
@@ -974,7 +990,7 @@
 	)
 
 /datum/lasrifle/energy_rifle_mode/xray
-	rounds_per_shot = 15
+	rounds_per_shot = 12
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine/xray
 	fire_delay = 0.25 SECONDS
 	fire_sound = 'sound/weapons/guns/fire/laser3.ogg'
@@ -1053,6 +1069,19 @@
 	movement_acc_penalty_mult = 2
 	aim_slowdown = 0.1
 	wield_delay = 0.2 SECONDS
+
+/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/serpenta/custom
+	name = "\improper VX-12c Serpenta"
+	desc = "The 'serpenta' is pistol typically seen in the hands of SOM officers and some NCOs, and is quite dangerous for it's size. This particular weapon appears to be a custom model with improved performance."
+	icon_state = "vx12c"
+	item_state = "vx12"
+	ammo_datum_type = /datum/ammo/energy/volkite/medium/custom
+	max_shots = 27
+	rounds_per_shot = 20
+	scatter = -2
+	scatter_unwielded = 4
+	accuracy_mult = 1.25
+	accuracy_mult_unwielded = 0.95
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/charger
 	name = "\improper VX-32 Charger"

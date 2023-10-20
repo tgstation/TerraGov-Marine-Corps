@@ -17,6 +17,7 @@
 
 /obj/structure/xeno/acidwell
 	icon = 'modular_RUtgmc/icons/Xeno/acid_pool.dmi'
+	plane = FLOOR_PLANE
 
 /obj/structure/xeno/pherotower
 	icon = 'modular_RUtgmc/icons/Xeno/1x1building.dmi'
@@ -62,3 +63,13 @@
 
 /obj/structure/xeno/tunnel/attack_facehugger(mob/living/carbon/xenomorph/facehugger/F, isrightclick = FALSE)
 	attack_alien(F)
+
+/obj/structure/xeno/spawner
+	icon = 'modular_RUtgmc/icons/Xeno/2x2building.dmi.dmi'
+	bound_width = 64
+	bound_height = 64
+	plane = FLOOR_PLANE
+
+/obj/structure/xeno/spawner/Initialize(mapload)
+	. = ..()
+	set_light(2, 2, LIGHT_COLOR_GREEN)

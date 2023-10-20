@@ -666,7 +666,7 @@
 /area/icy_caves/caves/northwestmonorail)
 "dt" = (
 /obj/structure/table/reinforced/prison,
-/obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
+/obj/effect/spawner/random/weaponry/gun,
 /turf/open/floor/prison/red,
 /area/icy_caves/caves/cavesbrig)
 "dv" = (
@@ -1619,7 +1619,7 @@
 /area/icy_caves/caves/northwestmonorail/breakroom)
 "jr" = (
 /obj/structure/table/reinforced/prison,
-/obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
+/obj/effect/spawner/random/weaponry/gun,
 /turf/open/floor/prison/red{
 	dir = 4
 	},
@@ -1783,7 +1783,7 @@
 /turf/open/floor/plating/mainship,
 /area/icy_caves/caves/crashed_ship)
 "kt" = (
-/obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
+/obj/effect/spawner/random/weaponry/gun,
 /turf/open/floor/tile/dark/green2{
 	dir = 8
 	},
@@ -2000,7 +2000,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
+/obj/effect/spawner/random/weaponry/gun,
 /obj/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northern)
@@ -3470,7 +3470,7 @@
 	dir = 1
 	},
 /obj/structure/table/reinforced/prison,
-/obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
+/obj/effect/spawner/random/weaponry/gun,
 /turf/open/floor/prison/red{
 	dir = 1
 	},
@@ -3792,7 +3792,7 @@
 /area/icy_caves/caves/northwestmonorail)
 "um" = (
 /obj/structure/rack,
-/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
+/obj/effect/spawner/random/weaponry/gun,
 /obj/machinery/light/small{
 	dir = 1
 	},
@@ -3890,7 +3890,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/icy_caves/caves/northwestmonorail/hallway)
 "uM" = (
-/obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
+/obj/effect/spawner/random/weaponry/gun,
 /turf/open/floor/tile/dark/green2/corner{
 	dir = 1
 	},
@@ -4372,7 +4372,7 @@
 /turf/open/floor/plating,
 /area/icy_caves/outpost/mining/west)
 "wY" = (
-/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
+/obj/effect/spawner/random/weaponry/gun,
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/west)
 "wZ" = (
@@ -4757,7 +4757,7 @@
 /area/icy_caves/caves/northwestmonorail)
 "zd" = (
 /obj/structure/rack,
-/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
+/obj/effect/spawner/random/weaponry/gun,
 /obj/machinery/light/small,
 /turf/open/floor/gcircuit/anim,
 /area/icy_caves/caves/weapon_vault)
@@ -5446,7 +5446,7 @@
 /turf/open/floor/wood,
 /area/icy_caves/outpost/dorms)
 "Cu" = (
-/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
+/obj/effect/spawner/random/weaponry/gun,
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/northern)
 "Cv" = (
@@ -5871,7 +5871,7 @@
 	dir = 4
 	},
 /obj/structure/table/reinforced/prison,
-/obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
+/obj/effect/spawner/random/weaponry/gun,
 /turf/open/floor/prison/red{
 	dir = 4
 	},
@@ -5958,12 +5958,12 @@
 /area/icy_caves/outpost/dorms)
 "Fd" = (
 /obj/structure/rack,
-/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
+/obj/effect/spawner/random/weaponry/gun,
 /turf/open/floor/gcircuit/anim,
 /area/icy_caves/caves/weapon_vault)
 "Fe" = (
 /obj/structure/table/gamblingtable,
-/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
+/obj/effect/spawner/random/weaponry/gun,
 /turf/open/floor/wood,
 /area/icy_caves/caves/underground_cafeteria)
 "Ff" = (
@@ -6071,7 +6071,7 @@
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northern)
 "FD" = (
-/obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
+/obj/effect/spawner/random/weaponry/gun,
 /turf/open/floor/tile/dark/green2{
 	dir = 4
 	},
@@ -6258,7 +6258,7 @@
 /obj/structure/table/woodentable,
 /obj/item/storage/bible/booze,
 /obj/item/reagent_containers/food/drinks/bottle/vodka,
-/obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
+/obj/effect/spawner/random/weaponry/gun,
 /turf/open/floor/cult,
 /area/icy_caves/caves/chapel)
 "Gv" = (
@@ -7078,7 +7078,7 @@
 /area/icy_caves/outpost/medbay)
 "Kq" = (
 /obj/structure/rack,
-/obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
+/obj/effect/spawner/random/weaponry/gun,
 /turf/open/floor/gcircuit/anim,
 /area/icy_caves/caves/weapon_vault)
 "Kr" = (
@@ -8657,7 +8657,7 @@
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/west)
 "SG" = (
-/obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
+/obj/effect/spawner/random/weaponry/gun,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northern)
 "SH" = (
