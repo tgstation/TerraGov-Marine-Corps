@@ -202,7 +202,7 @@
 	name = "Mysterious pod"
 	icon = 'icons/obj/structures/campaign/tall_structures.dmi'
 	icon_state = "nt_pod"
-	mission_types = list(/datum/campaign_mission/base_rescue)
+	mission_types = list(/datum/campaign_mission/destroy_mission/base_rescue)
 	spawn_object = /obj/structure/campaign_objective/destruction_objective/nt_pod
 
 /obj/structure/campaign_objective/destruction_objective/nt_pod

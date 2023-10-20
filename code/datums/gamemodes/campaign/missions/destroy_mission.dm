@@ -52,7 +52,7 @@
 		),
 	)
 
-/datum/campaign_mission/New(initiating_faction)
+/datum/campaign_mission/destroy_mission/New(initiating_faction)
 	. = ..()
 	set_factions()
 

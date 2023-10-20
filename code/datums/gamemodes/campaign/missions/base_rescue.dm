@@ -60,21 +60,21 @@
 /datum/campaign_mission/destroy_mission/base_rescue/apply_major_victory()
 	. = ..()
 	var/datum/faction_stats/winning_team = mode.stat_list[starting_faction]
-		winning_team.add_asset(/datum/campaign_asset/bonus_job/pmc)
-		winning_team.add_asset(/datum/campaign_asset/attrition_modifier/corporate_approval)
+	winning_team.add_asset(/datum/campaign_asset/bonus_job/pmc)
+	winning_team.add_asset(/datum/campaign_asset/attrition_modifier/corporate_approval)
 
 /datum/campaign_mission/destroy_mission/base_rescue/apply_minor_victory()
 	. = ..()
 	var/datum/faction_stats/winning_team = mode.stat_list[starting_faction]
-		winning_team.add_asset(/datum/campaign_asset/bonus_job/pmc)
+	winning_team.add_asset(/datum/campaign_asset/bonus_job/pmc)
 
 /datum/campaign_mission/destroy_mission/base_rescue/apply_minor_loss()
 	. = ..()
 	var/datum/faction_stats/winning_team = mode.stat_list[hostile_faction]
-		winning_team.add_asset(/datum/campaign_asset/bonus_job/colonial_militia)
+	winning_team.add_asset(/datum/campaign_asset/bonus_job/colonial_militia)
 
 /datum/campaign_mission/destroy_mission/base_rescue/apply_major_loss()
 	. = ..()
 	var/datum/faction_stats/winning_team = mode.stat_list[hostile_faction]
-		winning_team.add_asset(/datum/campaign_asset/bonus_job/colonial_militia)
-		winning_team.add_asset(/datum/campaign_asset/attrition_modifier/local_approval)
+	winning_team.add_asset(/datum/campaign_asset/bonus_job/colonial_militia)
+	winning_team.add_asset(/datum/campaign_asset/attrition_modifier/local_approval)

@@ -196,7 +196,7 @@
 	name = "red NT security override terminal"
 	icon = 'icons/obj/structures/campaign/tall_structures.dmi'
 	icon_state = "terminal_red"
-	mission_types = list(/datum/campaign_mission/base_rescue)
+	mission_types = list(/datum/campaign_mission/destroy_mission/base_rescue)
 	spawn_object = /obj/machinery/computer/nt_access/red
 
 /obj/effect/landmark/campaign_structure/nt_access/blue
