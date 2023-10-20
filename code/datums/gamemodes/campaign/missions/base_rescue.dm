@@ -37,6 +37,10 @@
 	starting_faction_additional_rewards = "NanoTrasen has offered a level of corporate assistance if their facility can be protected."
 	hostile_faction_additional_rewards = "Improved relations with local militias will allow us to call on their assistance in the future."
 
+/datum/campaign_mission/destroy_mission/base_rescue/load_mission()
+	. = ..()
+	RegisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_NT_OVERRIDE_CODE, PROC_REF(override_code_received))
+
 /datum/campaign_mission/destroy_mission/base_rescue/play_start_intro()
 	intro_message = list(
 		MISSION_STARTING_FACTION = "[map_name]<br>" + "[GAME_YEAR]-[time2text(world.realtime, "MM-DD")] [stationTimestamp("hh:mm")]<br>" + "Protect all the NT base from SOM aggression until reinforcements arrive. Eliminate all SOM forces and prevent them from overriding the security lockdown and raiding the facility.",
@@ -78,3 +82,10 @@
 	var/datum/faction_stats/winning_team = mode.stat_list[hostile_faction]
 	winning_team.add_asset(/datum/campaign_asset/bonus_job/colonial_militia)
 	winning_team.add_asset(/datum/campaign_asset/attrition_modifier/local_approval)
+
+///Alerts players that a code has been sent
+/datum/campaign_mission/destroy_mission/base_rescue/proc/override_code_received(datum/source, color)
+	SIGNAL_HANDLER
+	var/message_to_play = "[color] override code confirmed. Lifting [color] lockdown protocols."
+	map_text_broadcast(attacking_faction, message_to_play, "[color] override broadcast", /atom/movable/screen/text/screen_text/picture/potrait/unknown)
+	map_text_broadcast(defending_faction, message_to_play, "[color] override broadcast", /atom/movable/screen/text/screen_text/picture/potrait/unknown)
