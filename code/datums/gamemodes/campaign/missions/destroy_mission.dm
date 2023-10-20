@@ -18,8 +18,9 @@
 		MISSION_OUTCOME_MINOR_LOSS = list(10, 15),
 		MISSION_OUTCOME_MAJOR_LOSS = list(5, 20),
 	)
+	///The faction trying to destroy objectives
 	var/attacking_faction
-
+	///The faction trying to protect objectives
 	var/defending_faction
 	///Total number of objectives at round start
 	var/objectives_total = 3
@@ -51,8 +52,11 @@
 		),
 	)
 
-/datum/campaign_mission/destroy_mission/load_mission()
+/datum/campaign_mission/New(initiating_faction)
+	. = ..()
 	set_factions()
+
+/datum/campaign_mission/destroy_mission/load_mission()
 	. = ..()
 	RegisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_OBJECTIVE_DESTROYED, PROC_REF(objective_destroyed))
 	objectives_total = length(GLOB.campaign_objectives)

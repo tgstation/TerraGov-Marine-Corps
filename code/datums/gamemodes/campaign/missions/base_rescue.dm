@@ -10,7 +10,7 @@
 	objectives_total = 1
 	min_destruction_amount = 1
 	shutter_open_delay = list(
-		"starting_faction" = 45 SECONDS,
+		"starting_faction" = 60 SECONDS,
 		"hostile_faction" = 0,
 	)
 	victory_point_rewards = list(
@@ -26,6 +26,12 @@
 		MISSION_OUTCOME_DRAW = list(0, 0),
 		MISSION_OUTCOME_MINOR_LOSS = list(0, 25),
 		MISSION_OUTCOME_MAJOR_LOSS = list(0, 30),
+	)
+	objective_destruction_messages = list(
+		"last" = list(
+			MISSION_ATTACKING_FACTION = "Objective destroyed, outstanding work!",
+			MISSION_DEFENDING_FACTION = "Objective destroyed, fallback, fallback!",
+		),
 	)
 
 	starting_faction_additional_rewards = "NanoTrasen has offered a level of corporate assistance if their facility can be protected."
