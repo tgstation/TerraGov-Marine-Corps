@@ -10,8 +10,8 @@
 	objectives_total = 1
 	min_destruction_amount = 1
 	shutter_open_delay = list(
-		"starting_faction" = 60 SECONDS,
-		"hostile_faction" = 0,
+		MISSION_STARTING_FACTION = 60 SECONDS,
+		MISSION_HOSTILE_FACTION = 0,
 	)
 	victory_point_rewards = list(
 		MISSION_OUTCOME_MAJOR_VICTORY = list(2, 0),
@@ -39,8 +39,8 @@
 
 /datum/campaign_mission/destroy_mission/base_rescue/play_start_intro()
 	intro_message = list(
-		"starting_faction" = "[map_name]<br>" + "[GAME_YEAR]-[time2text(world.realtime, "MM-DD")] [stationTimestamp("hh:mm")]<br>" + "Protect all the NT base from SOM aggression until reinforcements arrive. Eliminate all SOM forces and prevent them from overriding the security lockdown and raiding the facility.",
-		"hostile_faction" = "[map_name]<br>" + "[GAME_YEAR]-[time2text(world.realtime, "MM-DD")] [stationTimestamp("hh:mm")]<br>" + "The NT facility is on lockdown. Find a way to override the lockdown, then penetrate the facility and destroy whatever you find inside.",
+		MISSION_STARTING_FACTION = "[map_name]<br>" + "[GAME_YEAR]-[time2text(world.realtime, "MM-DD")] [stationTimestamp("hh:mm")]<br>" + "Protect all the NT base from SOM aggression until reinforcements arrive. Eliminate all SOM forces and prevent them from overriding the security lockdown and raiding the facility.",
+		MISSION_HOSTILE_FACTION = "[map_name]<br>" + "[GAME_YEAR]-[time2text(world.realtime, "MM-DD")] [stationTimestamp("hh:mm")]<br>" + "The NT facility is on lockdown. Find a way to override the lockdown, then penetrate the facility and destroy whatever you find inside.",
 	)
 	return ..()
 

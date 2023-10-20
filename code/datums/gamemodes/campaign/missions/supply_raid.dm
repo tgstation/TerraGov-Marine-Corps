@@ -30,8 +30,8 @@
 
 /datum/campaign_mission/destroy_mission/supply_raid/play_start_intro()
 	intro_message = list(
-		"starting_faction" = "[map_name]<br>" + "[GAME_YEAR]-[time2text(world.realtime, "MM-DD")] [stationTimestamp("hh:mm")]<br>" + "Locate and destroy all [objectives_total] target objectives before further [hostile_faction] reinforcements can arrive. Good hunting!",
-		"hostile_faction" = "[map_name]<br>" + "[GAME_YEAR]-[time2text(world.realtime, "MM-DD")] [stationTimestamp("hh:mm")]<br>" + "Protect all [objectives_total] supply points until reinforcements arrive. Eliminate all [starting_faction] forces and secure the area.",
+		MISSION_STARTING_FACTION = "[map_name]<br>" + "[GAME_YEAR]-[time2text(world.realtime, "MM-DD")] [stationTimestamp("hh:mm")]<br>" + "Locate and destroy all [objectives_total] target objectives before further [hostile_faction] reinforcements can arrive. Good hunting!",
+		MISSION_HOSTILE_FACTION = "[map_name]<br>" + "[GAME_YEAR]-[time2text(world.realtime, "MM-DD")] [stationTimestamp("hh:mm")]<br>" + "Protect all [objectives_total] supply points until reinforcements arrive. Eliminate all [starting_faction] forces and secure the area.",
 	)
 	return ..()
 

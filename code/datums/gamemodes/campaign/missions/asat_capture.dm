@@ -47,13 +47,13 @@
 	if(!max_time_reached && objectives_remaining) //todo: maybe a check in case both teams wipe each other out at the same time...
 		return FALSE
 
-	if(capture_count["starting_faction"] >= objectives_total)
+	if(capture_count[MISSION_STARTING_FACTION] >= objectives_total)
 		message_admins("Mission finished: [MISSION_OUTCOME_MAJOR_VICTORY]")
 		outcome = MISSION_OUTCOME_MAJOR_VICTORY
-	else if(min_capture_amount && (capture_count["starting_faction"] >= min_capture_amount))
+	else if(min_capture_amount && (capture_count[MISSION_STARTING_FACTION] >= min_capture_amount))
 		message_admins("Mission finished: [MISSION_OUTCOME_MINOR_VICTORY]")
 		outcome = MISSION_OUTCOME_MINOR_VICTORY
-	else if(capture_count["starting_faction"] > 0)
+	else if(capture_count[MISSION_STARTING_FACTION] > 0)
 		message_admins("Mission finished: [MISSION_OUTCOME_MINOR_LOSS]")
 		outcome = MISSION_OUTCOME_MINOR_LOSS
 	else
