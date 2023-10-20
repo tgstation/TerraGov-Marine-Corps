@@ -37,6 +37,7 @@ GLOBAL_LIST_INIT(campaign_default_purchasable_assets, list(
 		/datum/campaign_asset/equipment/grenades_tgmc,
 		/datum/campaign_asset/equipment/at_mines,
 		/datum/campaign_asset/equipment/tac_bino_tgmc,
+		/datum/campaign_asset/tactical_reserves,
 	),
 	FACTION_SOM = list(
 		/datum/campaign_asset/fire_support/som_cas,
@@ -53,6 +54,7 @@ GLOBAL_LIST_INIT(campaign_default_purchasable_assets, list(
 		/datum/campaign_asset/equipment/grenades_som,
 		/datum/campaign_asset/equipment/at_mines,
 		/datum/campaign_asset/equipment/tac_bino_som,
+		/datum/campaign_asset/tactical_reserves,
 	),
 ))
 ///The weighted potential mission pool by faction
