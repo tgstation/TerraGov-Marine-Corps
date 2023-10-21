@@ -122,7 +122,7 @@
 	. = ..()
 	GLOB.campaign_structures += src
 	RegisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_NT_OVERRIDE_CODE, PROC_REF(attempt_open))
-	occupant = new(src)
+	occupant = new mob_type(src)
 
 /obj/structure/weapon_x_pod/Destroy()
 	if(occupant)
@@ -137,12 +137,12 @@
 
 ///Releases the occupant and tries to find a ghost
 /obj/structure/weapon_x_pod/proc/attempt_open(source, color)
-	if(color != )
+	if(color != code_color)
 		return
 	if(!occupant)
 		return
 	occupant.offer_mob()
-	RegisterSignal(new_mob, COMSIG_MOVABLE_MOVED, PROC_REF(release_occupant))
+	RegisterSignal(occupant, COMSIG_MOVABLE_MOVED, PROC_REF(release_occupant))
 	UnregisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_NT_OVERRIDE_CODE)
 
 ///Releases the occupant and tries to find a ghost
