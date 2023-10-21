@@ -939,18 +939,18 @@
 	buff_owner = owner
 	if(!isxeno(buff_owner))
 		return FALSE
-	current_tier = (length(GLOB.xeno_resin_silos_by_hive[buff_owner.hivenumber]) - 1)
+	current_tier = length(GLOB.xeno_resin_silos_by_hive[buff_owner.hivenumber])
 	apply_health_buff(buff_owner, (current_tier * xeno_health_buff))
 	buff_owner.xeno_melee_damage_modifier += (current_tier * xeno_damage_buff)
 	return TRUE
 
 /datum/status_effect/hive_tier_blessing/tick()
 	buff_owner = owner
-	if(current_tier == (length(GLOB.xeno_resin_silos_by_hive[buff_owner.hivenumber]) - 1))
+	if(current_tier == length(GLOB.xeno_resin_silos_by_hive[buff_owner.hivenumber]))
 		return
 	buff_owner.maxHealth = buff_owner.xeno_caste.max_health
 	buff_owner.xeno_melee_damage_modifier -= (current_tier * xeno_damage_buff)
-	current_tier = (length(GLOB.xeno_resin_silos_by_hive[buff_owner.hivenumber]) - 1)
+	current_tier = length(GLOB.xeno_resin_silos_by_hive[buff_owner.hivenumber])
 	apply_health_buff(buff_owner, (current_tier * xeno_health_buff))
 	buff_owner.xeno_melee_damage_modifier += (current_tier * xeno_damage_buff)
 
