@@ -52,32 +52,6 @@ You should not be voluntarily leaving your vessel under any circumstances. A cap
 If you require any help, use <b>mentorhelp</b> to ask mentors about what you're supposed to do.
 Godspeed, captain! And remember, you are not above the law."})
 
-
-/datum/outfit/job/command/captain
-	name = CAPTAIN
-	jobtype = /datum/job/terragov/command/captain
-
-	id = /obj/item/card/id/gold
-	belt = /obj/item/storage/holster/belt/pistol/smart_pistol/full
-	ears = /obj/item/radio/headset/mainship/mcom
-	w_uniform = /obj/item/clothing/under/marine/officer/command
-	shoes = /obj/item/clothing/shoes/marinechief/captain
-	gloves = /obj/item/clothing/gloves/marine/techofficer/captain
-	head = /obj/item/clothing/head/tgmcberet/tan
-	r_store = /obj/item/storage/pouch/general/large/command
-	l_store = /obj/item/hud_tablet/leadership
-
-
-/datum/outfit/job/command/captain/robot
-	species = SPECIES_COMBAT_ROBOT
-
-	w_uniform = /obj/item/clothing/under/marine/robotic
-	shoes = null
-	gloves = null
-	head = /obj/item/clothing/head/modular/robot
-	r_store = /obj/item/storage/pouch/general/large/command
-	l_store = /obj/item/hud_tablet/leadership
-
 /datum/job/terragov/command/captain/after_spawn(mob/living/new_mob, mob/user, latejoin)
 	. = ..()
 	if(!ishuman(new_mob))
@@ -93,6 +67,38 @@ Godspeed, captain! And remember, you are not above the law."})
 			new_human.wear_id.paygrade = "O7"
 		if(7501 to INFINITY) //125 hrs
 			new_human.wear_id.paygrade = "O8"
+
+/datum/job/terragov/command/captain/campaign
+	outfit = /datum/outfit/job/command/captain/campaign
+	multiple_outfits = FALSE
+
+/datum/outfit/job/command/captain
+	name = CAPTAIN
+	jobtype = /datum/job/terragov/command/captain
+
+	id = /obj/item/card/id/gold
+	belt = /obj/item/storage/holster/belt/pistol/smart_pistol/full
+	ears = /obj/item/radio/headset/mainship/mcom
+	w_uniform = /obj/item/clothing/under/marine/officer/command
+	shoes = /obj/item/clothing/shoes/marinechief/captain
+	gloves = /obj/item/clothing/gloves/marine/techofficer/captain
+	head = /obj/item/clothing/head/tgmcberet/tan
+	r_store = /obj/item/storage/pouch/general/large/command
+	l_store = /obj/item/hud_tablet/leadership
+
+/datum/outfit/job/command/captain/robot
+	species = SPECIES_COMBAT_ROBOT
+
+	w_uniform = /obj/item/clothing/under/marine/robotic
+	shoes = null
+	gloves = null
+	head = /obj/item/clothing/head/modular/robot
+	r_store = /obj/item/storage/pouch/general/large/command
+	l_store = /obj/item/hud_tablet/leadership
+
+/datum/outfit/job/command/captain/campaign
+	r_store = /obj/item/storage/pouch/general/large
+	l_store = /obj/item/binoculars/fire_support/campaign
 
 //Field Commander
 /datum/job/terragov/command/fieldcommander
@@ -287,6 +293,10 @@ You are in charge of logistics and the overwatch system. You are also in line to
 		if(3001 to INFINITY) // 50 hrs
 			new_human.wear_id.paygrade = "O5"
 
+/datum/job/terragov/command/staffofficer/campaign
+	outfit = /datum/outfit/job/command/staffofficer/campaign
+	multiple_outfits = FALSE
+
 /datum/outfit/job/command/staffofficer
 	name = STAFF_OFFICER
 	jobtype = /datum/job/terragov/command/staffofficer
@@ -310,6 +320,9 @@ You are in charge of logistics and the overwatch system. You are also in line to
 	head = /obj/item/clothing/head/modular/robot
 	r_store = /obj/item/storage/pouch/general/large
 	l_store = /obj/item/binoculars/tactical
+
+/datum/outfit/job/command/staffofficer/campaign
+	l_store = /obj/item/binoculars/fire_support/campaign
 
 //Pilot Officer
 /datum/job/terragov/command/pilot

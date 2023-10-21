@@ -432,7 +432,7 @@
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
 	turret_flags = TURRET_INACCURATE
 	ammo_level_icon = "te"
-	greyscale_config = /datum/greyscale_config/gun/gun64/ter
+	greyscale_config = /datum/greyscale_config/gun/gun64/lasgun
 	colorable_allowed = PRESET_COLORS_ALLOWED
 	item_icons = list(
 		slot_l_hand_str = /datum/greyscale_config/gun_inhand/ter,
@@ -634,7 +634,7 @@
 	gun_firemode = GUN_FIREMODE_SEMIAUTO
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO)
 	ammo_level_icon = "te"
-	greyscale_config = /datum/greyscale_config/gun/gun64/tec
+	greyscale_config = /datum/greyscale_config/gun/gun64/lasgun/tec
 	colorable_allowed = PRESET_COLORS_ALLOWED
 	item_icons = list(
 		slot_l_hand_str = /datum/greyscale_config/gun_inhand/tec,
@@ -770,7 +770,7 @@
 	ammo_level_icon = "te"
 	icon_overlay_x_offset = -1
 	icon_overlay_y_offset = -3
-	greyscale_config = /datum/greyscale_config/gun/gun64/tes
+	greyscale_config = /datum/greyscale_config/gun/gun64/lasgun/tes
 	colorable_allowed = PRESET_COLORS_ALLOWED
 	item_icons = list(
 		slot_l_hand_str = /datum/greyscale_config/gun_inhand/tes,
@@ -875,7 +875,7 @@
 	gun_firemode = GUN_FIREMODE_AUTOMATIC
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
 	ammo_level_icon = "te"
-	greyscale_config = /datum/greyscale_config/gun/gun64/tem
+	greyscale_config = /datum/greyscale_config/gun/gun64/lasgun/tem
 	colorable_allowed = PRESET_COLORS_ALLOWED
 	item_icons = list(
 		slot_l_hand_str = /datum/greyscale_config/gun_inhand/tem,
