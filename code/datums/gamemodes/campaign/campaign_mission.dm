@@ -267,11 +267,16 @@
 	mission_state = MISSION_STATE_FINISHED
 	apply_outcome()
 	play_outro()
+	unregister_mission_signals()
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_CAMPAIGN_MISSION_ENDED, winning_faction)
 	for(var/i in GLOB.quick_loadouts)
 		var/datum/outfit/quick/outfit = GLOB.quick_loadouts[i]
 		outfit.quantity = initial(outfit.quantity)
 
+///Unregisters all signals when the mission finishes
+/datum/campaign_mission/proc/unregister_mission_signals()
+	SHOULD_CALL_PARENT(TRUE)
+	UnregisterSignal(SSdcs, list(COMSIG_GLOB_CAMPAIGN_TELEBLOCKER_DISABLED, COMSIG_GLOB_CAMPAIGN_DROPBLOCKER_DISABLED))
 
 ///Intro when the mission is selected
 /datum/campaign_mission/proc/play_selection_intro()

@@ -63,6 +63,10 @@
 	if(!objectives_total)
 		CRASH("Destroy mission loaded with no objectives to destroy!")
 
+/datum/campaign_mission/destroy_mission/unregister_mission_signals()
+	. = ..()
+	UnregisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_OBJECTIVE_DESTROYED)
+
 /datum/campaign_mission/destroy_mission/load_pre_mission_bonuses()
 	new /obj/item/storage/box/crate/loot/materials_pack(get_turf(pick(GLOB.campaign_reward_spawners[defending_faction])))
 
@@ -80,10 +84,6 @@
 	items += ""
 	items += "Objectives remaining: [objectives_total - objectives_destroyed]"
 	items += ""
-
-/datum/campaign_mission/destroy_mission/end_mission()
-	UnregisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_OBJECTIVE_DESTROYED)
-	return ..()
 
 /datum/campaign_mission/destroy_mission/check_mission_progress()
 	if(outcome)

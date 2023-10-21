@@ -41,6 +41,10 @@
 	. = ..()
 	RegisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_NT_OVERRIDE_CODE, PROC_REF(override_code_received))
 
+/datum/campaign_mission/destroy_mission/base_rescue/unregister_mission_signals()
+	. = ..()
+	UnregisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_NT_OVERRIDE_CODE)
+
 /datum/campaign_mission/destroy_mission/base_rescue/play_start_intro()
 	intro_message = list(
 		MISSION_STARTING_FACTION = "[map_name]<br>" + "[GAME_YEAR]-[time2text(world.realtime, "MM-DD")] [stationTimestamp("hh:mm")]<br>" + "Protect all the NT base from SOM aggression until reinforcements arrive. Eliminate all SOM forces and prevent them from overriding the security lockdown and raiding the facility.",

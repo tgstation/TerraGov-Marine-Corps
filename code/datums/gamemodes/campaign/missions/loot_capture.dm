@@ -54,6 +54,10 @@
 	if(!objectives_total)
 		CRASH("Destroy mission loaded with no objectives to extract!")
 
+/datum/campaign_mission/capture_mission/unregister_mission_signals()
+	. = ..()
+	UnregisterSignal(SSdcs, list(COMSIG_GLOB_CAMPAIGN_CAPTURE_OBJECTIVE_CAPTURED, COMSIG_GLOB_CAMPAIGN_CAPTURE_OBJECTIVE_CAP_STARTED))
+
 /datum/campaign_mission/capture_mission/load_objective_description()
 	starting_faction_objective_description = "Major Victory:Capture all [objectives_total] targets.[min_capture_amount ? " Minor Victory: Capture at least [min_capture_amount] targets." : ""]"
 	hostile_faction_objective_description = "Major Victory:Capture all [objectives_total] targets.[min_capture_amount ? " Minor Victory: Capture at least [min_capture_amount] targets." : ""]"
@@ -66,11 +70,6 @@
 	items += ""
 	items += "Objectives remaining: [objectives_remaining]"
 	items += ""
-
-
-/datum/campaign_mission/capture_mission/end_mission()
-	. = ..()
-	UnregisterSignal(SSdcs, list(COMSIG_GLOB_CAMPAIGN_CAPTURE_OBJECTIVE_CAPTURED, COMSIG_GLOB_CAMPAIGN_CAPTURE_OBJECTIVE_CAP_STARTED))
 
 /datum/campaign_mission/capture_mission/check_mission_progress()
 	if(outcome)
