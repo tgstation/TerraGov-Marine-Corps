@@ -13,6 +13,10 @@ type InputPack = {
   hive_larva_rate: number;
   hive_larva_burrowed: number;
   hive_psy_points: number;
+  hive_tier: number;
+  hive_max_tier: number;
+  hive_progression_points: number;
+  hive_tier_progression: number;
   hive_orphan_collapse: number;
   hive_orphan_max: number;
   hive_minion_count: number;
@@ -196,6 +200,10 @@ const GeneralInfo = (_props, context) => {
   const {
     hive_larva_burrowed,
     hive_psy_points,
+    hive_tier,
+    hive_max_tier,
+    hive_progression_points,
+    hive_tier_progression,
     hive_orphan_collapse,
     hive_death_timers,
     hive_orphan_max,
@@ -221,6 +229,16 @@ const GeneralInfo = (_props, context) => {
           | Burrowed Larva:
           <Box as="span" color={hive_larva_burrowed > 0 ? 'good' : 'bad'}>
             {' ' + hive_larva_burrowed}
+          </Box>
+          <Box>
+            Hive Tier:
+            <Box as="span" color="good">
+              {' ' + hive_tier + ' / ' + hive_max_tier + ' '}
+            </Box>
+            | Progress:
+            <Box as="span" color="good">
+              {' ' + hive_progression_points + ' / ' + hive_tier_progression}
+            </Box>
           </Box>
         </Box>
         <BlessingsButton />

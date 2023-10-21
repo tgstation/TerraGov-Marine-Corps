@@ -198,6 +198,10 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 				to_chat(buyer, span_xenowarning("Another silo is too close!"))
 				return FALSE
 
+	if(length(GLOB.xeno_resin_silos_by_hive[buyer.hivenumber]) >= (buyer.hive.silos_per_tier * buyer.hive.hive_tier))
+		to_chat(buyer, span_xenowarning("Hive can only support [buyer.hive.silos_per_tier * buyer.hive.hive_tier] silos. Increase hive tier to build more."))
+		return FALSE
+
 /datum/hive_upgrade/building/evotower
 	name = "Evolution Tower"
 	desc = "Constructs a tower that increases the rate of evolution point and maturity point generation by 1.2 times per tower."
@@ -206,6 +210,15 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 	flags_upgrade = ABILITY_NUCLEARWAR
 	building_type = /obj/structure/xeno/evotower
 
+/datum/hive_upgrade/building/evotower/can_buy(mob/living/carbon/xenomorph/buyer, silent = TRUE)
+	. = ..()
+	if(!.)
+		return
+
+	if(length(buyer.hive.evotowers) >= (buyer.hive.evotowers_per_tier * length(GLOB.xeno_resin_silos_by_hive[buyer.hivenumber])))
+		to_chat(buyer, span_xenowarning("Hive can only support [(buyer.hive.evotowers_per_tier * length(GLOB.xeno_resin_silos_by_hive[buyer.hivenumber]))] evotowers. Build more silos to support more."))
+		return FALSE
+
 /datum/hive_upgrade/building/psychictower
 	name = "Psychic Relay"
 	desc = "Constructs a tower that increases the slots of higher tier Xenomorphs."
@@ -213,6 +226,15 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 	icon = "maturitytower"
 	flags_upgrade = ABILITY_NUCLEARWAR
 	building_type = /obj/structure/xeno/psychictower
+
+/datum/hive_upgrade/building/psychictower/can_buy(mob/living/carbon/xenomorph/buyer, silent = TRUE)
+	. = ..()
+	if(!.)
+		return
+
+	if(length(buyer.hive.psychictowers) >= (buyer.hive.psychictowers_per_tier * length(GLOB.xeno_resin_silos_by_hive[buyer.hivenumber])))
+		to_chat(buyer, span_xenowarning("Hive can only support [(buyer.hive.psychictowers_per_tier * length(GLOB.xeno_resin_silos_by_hive[buyer.hivenumber]))] psychictowers. Build more silos to support more."))
+		return FALSE
 
 /datum/hive_upgrade/building/pherotower
 	name = "Pheromone Tower"
@@ -224,6 +246,15 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 	building_loc = 0 //This results in spawning the structure under the user.
 	building_time = 5 SECONDS
 
+/datum/hive_upgrade/building/pherotower/can_buy(mob/living/carbon/xenomorph/buyer, silent = TRUE)
+	. = ..()
+	if(!.)
+		return
+
+	if(length(buyer.hive.pherotowers) >= (buyer.hive.pherotowers_per_tier * length(GLOB.xeno_resin_silos_by_hive[buyer.hivenumber])))
+		to_chat(buyer, span_xenowarning("Hive can only support [(buyer.hive.pherotowers_per_tier * length(GLOB.xeno_resin_silos_by_hive[buyer.hivenumber]))] pherotowers. Build more silos to support more."))
+		return FALSE
+
 /datum/hive_upgrade/building/spawner
 	name = "Spawner"
 	desc = "Constructs a spawner that generates ai xenos over time"
@@ -231,6 +262,15 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 	icon = "spawner"
 	flags_upgrade = ABILITY_NUCLEARWAR
 	building_type = /obj/structure/xeno/spawner
+
+/datum/hive_upgrade/building/spawner/can_buy(mob/living/carbon/xenomorph/buyer, silent = TRUE)
+	. = ..()
+	if(!.)
+		return
+
+	if(length(GLOB.xeno_spawners_by_hive[buyer.hivenumber]) >= (buyer.hive.spawners_per_tier * length(GLOB.xeno_resin_silos_by_hive[buyer.hivenumber])))
+		to_chat(buyer, span_xenowarning("Hive can only support [(buyer.hive.spawners_per_tier * length(GLOB.xeno_resin_silos_by_hive[buyer.hivenumber]))] spawners. Build more silos to support more."))
+		return FALSE
 
 /datum/hive_upgrade/defence
 	category = "Defences"
@@ -274,6 +314,10 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 				to_chat(buyer, span_xenowarning("Another turret is too close!"))
 			return FALSE
 
+	if(length(GLOB.xeno_resin_turrets_by_hive[buyer.hivenumber]) >= (buyer.hive.turrets_per_tier * length(GLOB.xeno_resin_silos_by_hive[buyer.hivenumber])))
+		to_chat(buyer, span_xenowarning("Hive can only support [(buyer.hive.turrets_per_tier * length(GLOB.xeno_resin_silos_by_hive[buyer.hivenumber]))] turrets. Build more silos to support more."))
+		return FALSE
+
 	return TRUE
 
 /datum/hive_upgrade/defence/turret/on_buy(mob/living/carbon/xenomorph/buyer)
@@ -312,6 +356,9 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 			to_chat(buyer, span_xenonotice("You must be a ruler to buy this!"))
 		return FALSE
 
+	if(buyer.hive.hive_tier < buyer.hive.hive_tier_for_primo)
+		to_chat(buyer, span_xenonotice("Hive must reach tier [buyer.hive.hive_tier_for_primo] to buy this!"))
+		return FALSE
 
 /datum/hive_upgrade/primordial/tier_four
 	name = PRIMORDIAL_TIER_FOUR

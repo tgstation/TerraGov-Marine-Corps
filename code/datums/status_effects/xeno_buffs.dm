@@ -835,7 +835,7 @@
 	/// The owner of this buff.
 	var/mob/living/carbon/xenomorph/buff_owner
 	///Aura strength of the puppeteer who gave this effect
-	var/strength = 1	
+	var/strength = 1
 	///weakref to the puppeteer to set strength
 	var/datum/weakref/puppeteer
 
@@ -899,3 +899,63 @@
 	buff_owner.soft_armor = buff_owner.soft_armor.detachArmor(armor_modifier)
 	armor_modifier = null
 	return ..()
+
+/datum/status_effect/hive_tier_blessing
+	id = "hive tier blessing"
+	duration = -1
+	tick_interval = 5 SECONDS
+	status_type = STATUS_EFFECT_UNIQUE
+	alert_type = null
+	/// The owner of this buff.
+	var/mob/living/carbon/xenomorph/buff_owner
+	///Xeno bonus health multiplier per hive tier
+	var/xeno_health_buff = 0.05
+	///Xeno bonus damage multiplier per hive tier
+	var/xeno_damage_buff = 0.05
+	///Current hive tier
+	var/current_tier
+
+/datum/status_effect/hive_tier_blessing/proc/apply_health_buff(mob/living/carbon/xenomorph/xeno, health_buff)
+	var/new_max_health = xeno.xeno_caste.max_health * (1 + health_buff)
+	var/needed_healing = 0
+
+	if(xeno.health < 0)
+		needed_healing = xeno.maxHealth - new_max_health
+	else
+		var/current_health_percent = xeno.health / xeno.maxHealth
+		var/new_health = current_health_percent * new_max_health
+		var/new_total_damage = new_max_health - new_health
+		var/current_total_damage = xeno.maxHealth - xeno.health
+		needed_healing = current_total_damage - new_total_damage
+
+	var/brute_healing = min(xeno.getBruteLoss(), needed_healing)
+	xeno.adjustBruteLoss(-brute_healing)
+	xeno.adjustFireLoss(-(needed_healing - brute_healing))
+
+	xeno.maxHealth = new_max_health
+	xeno.updatehealth()
+
+/datum/status_effect/hive_tier_blessing/on_apply()
+	buff_owner = owner
+	if(!isxeno(buff_owner))
+		return FALSE
+	current_tier = (length(GLOB.xeno_resin_silos_by_hive[buff_owner.hivenumber]) - 1)
+	apply_health_buff(buff_owner, (current_tier * xeno_health_buff))
+	buff_owner.xeno_melee_damage_modifier += (current_tier * xeno_damage_buff)
+	return TRUE
+
+/datum/status_effect/hive_tier_blessing/tick()
+	buff_owner = owner
+	if(current_tier == (length(GLOB.xeno_resin_silos_by_hive[buff_owner.hivenumber]) - 1))
+		return
+	buff_owner.maxHealth = buff_owner.xeno_caste.max_health
+	buff_owner.xeno_melee_damage_modifier -= (current_tier * xeno_damage_buff)
+	current_tier = (length(GLOB.xeno_resin_silos_by_hive[buff_owner.hivenumber]) - 1)
+	apply_health_buff(buff_owner, (current_tier * xeno_health_buff))
+	buff_owner.xeno_melee_damage_modifier += (current_tier * xeno_damage_buff)
+
+/datum/status_effect/hive_tier_blessing/on_remove()
+	. = ..()
+	buff_owner = owner
+	buff_owner.maxHealth = buff_owner.xeno_caste.max_health
+	buff_owner.xeno_melee_damage_modifier -= (current_tier * xeno_damage_buff)

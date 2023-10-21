@@ -337,6 +337,8 @@
 /mob/living/carbon/xenomorph/on_spawn(mob/new_player/summoner)
 	overlay_fullscreen_timer(0.5 SECONDS, 10, "roundstart1", /atom/movable/screen/fullscreen/black)
 	overlay_fullscreen_timer(2 SECONDS, 20, "roundstart2", /atom/movable/screen/fullscreen/spawning_in)
+	if(CHECK_BITFIELD(SSticker.mode.flags_round_type, MODE_PSY_POINTS))
+		apply_status_effect(/datum/status_effect/hive_tier_blessing)
 
 /mob/new_player/proc/transfer_character()
 	. = new_character

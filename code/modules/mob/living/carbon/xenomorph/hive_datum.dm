@@ -32,6 +32,34 @@
 	var/datum/hive_purchases/purchases = new
 	/// The nuke HUD timer datum, shown on each xeno's screen
 	var/atom/movable/screen/text/screen_timer/nuke_hud_timer
+	///Hive tier
+	var/hive_tier = 1
+	///Hive maximum tier
+	var/hive_max_tier = 5
+	///Used to calculate hive tier progression
+	var/hive_progression_points = 0
+	///Amount of psypoints required to progress to next hive tier
+	var/hive_tier_progression = 500
+	///Amount of psypoints hive_tier_progression is increased per hive tier
+	var/hive_progression_increment = 500
+	///Silo limit per hive tier
+	var/silos_per_tier = 1
+	///Evotower limit per hive tier
+	var/evotowers_per_tier = 1
+	///Psychictower limit per hive tier
+	var/psychictowers_per_tier = 1
+	///Pherotower limit per hive tier
+	var/pherotowers_per_tier = 2
+	///Spawner limit per hive tier
+	var/spawners_per_tier = 1
+	///Turret limit per hive tier
+	var/turrets_per_tier = 4
+	///Hive tier required to buy primodial upgrade
+	var/hive_tier_for_primo = 3
+	///Hive tier required to evolve to tier 2
+	var/hive_tier_for_t2 = 2
+	///Hive tier required to evolve to tier 3
+	var/hive_tier_for_t3 = 3
 
 // ***************************************
 // *********** Init
@@ -82,6 +110,10 @@
 
 	var/psy_points = SSpoints.xeno_points_by_hive[hivenumber]
 	.["hive_psy_points"] = !isnull(psy_points) ? psy_points : 0
+	.["hive_progression_points"] = hive_progression_points
+	.["hive_tier_progression"] = hive_tier_progression
+	.["hive_tier"] = hive_tier
+	.["hive_max_tier"] = hive_max_tier
 
 	var/hivemind_countdown = SSticker.mode?.get_hivemind_collapse_countdown()
 	.["hive_orphan_collapse"] = !isnull(hivemind_countdown) ? hivemind_countdown : 0

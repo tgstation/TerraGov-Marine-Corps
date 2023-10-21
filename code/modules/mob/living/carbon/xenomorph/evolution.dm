@@ -183,7 +183,9 @@
 	qdel(src)
 	INVOKE_ASYNC(new_xeno, TYPE_PROC_REF(/mob/living, do_jitter_animation), 1000)
 
-	overlay_fullscreen_timer(2 SECONDS, 20, "roundstart2", /atom/movable/screen/fullscreen/spawning_in)
+	new_xeno.overlay_fullscreen_timer(2 SECONDS, 20, "roundstart2", /atom/movable/screen/fullscreen/spawning_in)
+	if(CHECK_BITFIELD(SSticker.mode.flags_round_type, MODE_PSY_POINTS))
+		new_xeno.apply_status_effect(/datum/status_effect/hive_tier_blessing)
 
 ///Check if the xeno is currently able to evolve
 /mob/living/carbon/xenomorph/proc/generic_evolution_checks()
@@ -302,6 +304,12 @@
 			return FALSE
 		if(new_caste_type.tier == XENO_TIER_THREE && no_room_tier_three)
 			balloon_alert(src, "The hive cannot support another Tier 3, wait for either more aliens to be born or someone to die")
+			return FALSE
+		if(new_caste_type.tier == XENO_TIER_TWO && hive.hive_tier < hive.hive_tier_for_t2)
+			balloon_alert(src, "Hive must reach tier [hive.hive_tier_for_t2] for you to evolve!")
+			return FALSE
+		if(new_caste_type.tier == XENO_TIER_THREE && hive.hive_tier < hive.hive_tier_for_t3)
+			balloon_alert(src, "Hive must reach tier [hive.hive_tier_for_t3] for you to evolve!")
 			return FALSE
 		var/potential_queens = length(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/larva]) + length(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/drone])
 		if(SSticker.mode?.flags_round_type & MODE_XENO_RULER && !hive.living_xeno_ruler && potential_queens == 1)

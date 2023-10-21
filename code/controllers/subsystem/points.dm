@@ -14,6 +14,10 @@ SUBSYSTEM_DEF(points)
 	var/supply_points = list()
 	///Assoc list of xeno points: xeno_points_by_hive["hivenum"]
 	var/list/xeno_points_by_hive = list()
+	///Starting xeno psypoints
+	var/xeno_starting_points = 1400
+	///Ignore counting starting points towards hive progression
+	var/ignore_starting_points = TRUE
 
 	var/ordernum = 1					//order number given to next order
 
@@ -80,10 +84,26 @@ SUBSYSTEM_DEF(points)
 
 ///Add amount of psy points to the selected hive only if the gamemode support psypoints
 /datum/controller/subsystem/points/proc/add_psy_points(hivenumber, amount)
+	var/datum/hive_status/hive = GLOB.hive_datums[hivenumber]
 	if(!CHECK_BITFIELD(SSticker.mode.flags_round_type, MODE_PSY_POINTS))
+		hive.hive_tier = 5
 		return
 	xeno_points_by_hive[hivenumber] += amount
 
+	if(ignore_starting_points)
+		ignore_starting_points = FALSE
+		return
+
+	hive.hive_progression_points += amount
+
+	if(hive.hive_progression_points < hive.hive_tier_progression)
+		return
+	if(hive.hive_tier >= hive.hive_max_tier)
+		return
+
+	hive.hive_tier++
+	hive.hive_tier_progression += hive.hive_progression_increment
+	hive.hive_progression_points = 0
 
 /datum/controller/subsystem/points/proc/approve_request(datum/supply_order/O, mob/living/user)
 	var/cost = 0
