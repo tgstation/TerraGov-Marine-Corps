@@ -1011,7 +1011,6 @@
 	desc = "A storage belt designed to hold mass amounts of protein packs for those particuarly hungry marines."
 	icon_state = "p_belt"
 	item_state = "shotgunbelt"
-	w_class = WEIGHT_CLASS_BULKY
 	storage_slots = 20
 	max_storage_space = 20
 	max_w_class = WEIGHT_CLASS_TINY

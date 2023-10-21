@@ -860,7 +860,6 @@
 	desc = "A storage pouch designed to hold a moderate amount of protein packs."
 	icon_state = "p_pouch"
 	item_state = "survival"
-	w_class = WEIGHT_CLASS_BULKY
 	storage_slots = 10
 	max_storage_space = 10
 	sprite_slots = 1
