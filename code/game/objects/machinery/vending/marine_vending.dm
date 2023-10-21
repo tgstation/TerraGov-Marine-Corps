@@ -1197,7 +1197,7 @@
 			/obj/item/weapon/twohanded/glaive/harvester = -1,
 			/obj/item/storage/belt/utility/full =-1,
 			/obj/item/storage/belt/medical_small = -1,
-			/obj/item/storage/belt/protein_pack = -1
+			/obj/item/storage/belt/protein_pack = -1,
 		),
 		"Pouches" = list(
 			/obj/item/storage/pouch/pistol = -1,
