@@ -3657,6 +3657,23 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	name = "acid turret splash"
 	shell_speed = 2
 	max_range = 9
+	smoke_strength = 1
+	smoke_range = 0
+
+/datum/ammo/xeno/acid/heavy/turret/set_smoke()
+	smoke_system = new /datum/effect_system/smoke_spread/xeno/acid()
+
+/datum/ammo/xeno/acid/heavy/turret/drop_nade(turf/T)
+	if(T.density)
+		return
+
+	new /obj/effect/xenomorph/spray(T, puddle_duration, puddle_acid_damage)
+
+	set_smoke()
+	smoke_system.strength = smoke_strength
+	smoke_system.set_up(smoke_range, T)
+	smoke_system.start()
+	smoke_system = null
 
 /datum/ammo/xeno/acid/heavy/on_hit_mob(mob/M, obj/projectile/P)
 	var/turf/T = get_turf(M)

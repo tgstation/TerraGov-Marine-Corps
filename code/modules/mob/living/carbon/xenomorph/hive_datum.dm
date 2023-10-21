@@ -39,9 +39,9 @@
 	///Used to calculate hive tier progression
 	var/hive_progression_points = 0
 	///Amount of psypoints required to progress to next hive tier
-	var/hive_tier_progression = 500
+	var/hive_tier_progression = 250
 	///Amount of psypoints hive_tier_progression is increased per hive tier
-	var/hive_progression_increment = 500
+	var/hive_progression_increment = 250
 	///Silo limit per hive tier
 	var/silos_per_tier = 1
 	///Evotower limit per hive tier
