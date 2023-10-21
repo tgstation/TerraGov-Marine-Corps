@@ -93,3 +93,60 @@
 	var/message_to_play = "[color] override code confirmed. Lifting [color] lockdown protocols."
 	map_text_broadcast(attacking_faction, message_to_play, "[color] override broadcast", /atom/movable/screen/text/screen_text/picture/potrait/unknown)
 	map_text_broadcast(defending_faction, message_to_play, "[color] override broadcast", /atom/movable/screen/text/screen_text/picture/potrait/unknown)
+
+
+/obj/effect/landmark/campaign_structure/weapon_x
+	name = "weapon X spawner"
+	icon = 'icons/obj/structures/campaign/tall_structures.dmi'
+	icon_state = "nt_pod"
+	mission_types = list(/datum/campaign_mission/destroy_mission/base_rescue)
+	spawn_object = /obj/structure/weapon_x_pod
+
+/obj/structure/weapon_x_pod
+	name = "pod"
+	desc = "A unadorned metal pod of some kind. Seems kind of ominous."
+	icon = 'icons/obj/structures/campaign/tall_structures.dmi'
+	icon_state = "nt_pod"
+	density = TRUE
+	anchored = TRUE
+	resistance_flags = RESIST_ALL
+	destroy_sound = 'sound/effects/meteorimpact.ogg'
+	///Mob type to spawn
+	var/mob_type = /mob/living/carbon/xenomorph/hunter/weapon_x
+	///Actual mob occupant
+	var/mob/living/occupant
+
+/obj/structure/weapon_x_pod/Initialize(mapload)
+	. = ..()
+	GLOB.campaign_structures += src
+	RegisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_NT_OVERRIDE_CODE, PROC_REF(attempt_open))
+	occupant = new(src)
+
+/obj/structure/weapon_x_pod/Destroy()
+	if(occupant)
+		qdel(occupant)
+	return ..()
+
+/obj/structure/weapon_x_pod/update_icon_state()
+	if(occupant)
+		icon_state = initial(icon_state)
+	else
+		icon_state = "[initial(icon_state)]_open"
+
+///Releases the occupant and tries to find a ghost
+/obj/structure/weapon_x_pod/proc/attempt_open()
+	if(!occupant)
+		return
+	occupant.offer_mob()
+	RegisterSignal(new_mob, COMSIG_MOVABLE_MOVED, PROC_REF(release_occupant))
+
+///Releases the occupant and tries to find a ghost
+/obj/structure/weapon_x_pod/proc/release_occupant()
+	if(!occupant)
+		return
+	UnregisterSignal(occupant, COMSIG_MOVABLE_MOVED)
+	occupant.forceMove(loc)
+	if(!occupant.client)
+		occupant.offer_mob()
+	occupant = null
+	update_icon()
