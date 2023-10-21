@@ -213,7 +213,7 @@
 	layer = ABOVE_MOB_LAYER
 
 /obj/structure/campaign_objective/destruction_objective/nt_pod/Destroy()
-	playsound(loc, 'sound/voice/alien_king_died.ogg', 75, 0)
+	playsound(loc, 'sound/voice/predalien_death.ogg', 75, 0)
 	return ..()
 
 //teleporter core

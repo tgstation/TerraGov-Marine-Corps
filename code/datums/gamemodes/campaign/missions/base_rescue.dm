@@ -115,6 +115,8 @@
 	var/mob_type = /mob/living/carbon/xenomorph/hunter/weapon_x
 	///Actual mob occupant
 	var/mob/living/occupant
+	///Color code associated for signal purposes
+	var/code_color = "blue"
 
 /obj/structure/weapon_x_pod/Initialize(mapload)
 	. = ..()
@@ -134,11 +136,14 @@
 		icon_state = "[initial(icon_state)]_open"
 
 ///Releases the occupant and tries to find a ghost
-/obj/structure/weapon_x_pod/proc/attempt_open()
+/obj/structure/weapon_x_pod/proc/attempt_open(source, color)
+	if(color != )
+		return
 	if(!occupant)
 		return
 	occupant.offer_mob()
 	RegisterSignal(new_mob, COMSIG_MOVABLE_MOVED, PROC_REF(release_occupant))
+	UnregisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_NT_OVERRIDE_CODE)
 
 ///Releases the occupant and tries to find a ghost
 /obj/structure/weapon_x_pod/proc/release_occupant()
@@ -150,3 +155,4 @@
 		occupant.offer_mob()
 	occupant = null
 	update_icon()
+	playsound(src, 'sound/effects/airhiss.ogg', 60, 1)
