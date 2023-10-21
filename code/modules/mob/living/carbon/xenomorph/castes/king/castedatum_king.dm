@@ -22,6 +22,9 @@
 	// *** Health *** //
 	max_health = 650
 
+	// *** Sunder *** //
+	sunder_max = 150
+
 	// *** Evolution *** //
 	upgrade_threshold = TIER_THREE_THRESHOLD
 	maximum_active_caste = 1

@@ -23,6 +23,9 @@
 	// *** Health *** //
 	max_health = 400
 
+	// *** Sunder *** //
+	sunder_max = 200
+
 	// *** Evolution *** //
 	upgrade_threshold = TIER_THREE_THRESHOLD
 
