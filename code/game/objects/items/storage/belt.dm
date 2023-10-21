@@ -1013,8 +1013,8 @@
 	item_state = "shotgunbelt"
 	w_class = WEIGHT_CLASS_BULKY
 	storage_slots = 20
+	max_storage_space = 20
 	max_w_class = WEIGHT_CLASS_TINY
-	max_storage_space = 40
 	can_hold = list(/obj/item/reagent_containers/food/snacks/protein_pack)
 	sprite_slots = 4
 
