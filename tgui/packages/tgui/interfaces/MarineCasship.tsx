@@ -214,7 +214,10 @@ const NormalOperation = (props, context) => {
               icon={getDirectionArrow(props, context)}
               tooltip="Direction of strafe"
               onClick={() => act('cycle_attackdir')}
-              disabled={plane_state !== PLANE_STATE_FLYING || location_state !== PLANE_IN_SPACE}
+              disabled={
+                plane_state !== PLANE_STATE_FLYING ||
+                location_state !== PLANE_IN_SPACE
+              }
             />
           </Stack.Item>
         </Stack>
@@ -291,7 +294,9 @@ const EngineFiremissionButton = (props, context) => {
       fontSize="20px"
       content="Begin Firemission"
       onClick={() => act('deploy')}
-      disabled={plane_state !== PLANE_STATE_FLYING || location_state !== PLANE_IN_SPACE}
+      disabled={
+        plane_state !== PLANE_STATE_FLYING || location_state !== PLANE_IN_SPACE
+      }
     />
   );
 };
