@@ -2,6 +2,9 @@
     "map_name": "Magmoor Digsite IV",
     "map_path": "map_files/Magmoor_Digsite_IV",
     "map_file": "Magmoor_Digsite_IV.dmm",
+	"disk_sets": {
+		"basic": 1
+	},
 	"quickbuilds": 1800,
     "announce_text": "A faint distress signal has been picked up by our scanners, which have tracked the source to a mining and archaeological site, known as Magmoor Digsite IV. Through use of bluespace drive tech, the ship has jumped within range of the colony. TGMC, gear up and get ready to respond!"
 }

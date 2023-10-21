@@ -2,6 +2,9 @@
     "map_name": "Orion Military Outpost",
     "map_path": "map_files/Orion_Military_Outpost",
     "map_file": "orionoutpost.dmm",
+	"disk_sets": {
+		"basic": 1
+	},
     "armor": "jungle",
 	"quickbuilds": 1000,
 	"announce_text": "The automatic emergency beacon has activated at the Orion Military Outpost on the moon of Trivonus IV, a xenomorph infestation is likely. TGMC, get prepared and ready for a fight!"

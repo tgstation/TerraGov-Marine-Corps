@@ -2,6 +2,9 @@
     "map_name": "Lawanka Outpost",
     "map_path": "map_files/Lawanka_Outpost",
     "map_file": "LawankaOutpost.dmm",
+	"disk_sets": {
+		"basic": 1
+	},
 	"quickbuilds": 1800,
 	"announce_text": "An AI from a Nanotrasen sponsored Research Colony has been sending a distress signal, nonstop. Nanotrasen has hired us to reclaim the Colony in any form. TGMC, prepare to deploy!"
 }

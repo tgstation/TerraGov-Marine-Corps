@@ -2,6 +2,9 @@
     "map_name": "Prison Station",
     "map_path": "map_files/Prison_Station_FOP",
     "map_file": "Prison_Station_FOP.dmm",
+	"disk_sets": {
+		"basic": 1
+	},
     "armor": "prison",
 	"quickbuilds": 1200,
 	"announce_text": "A Nanotrasen maximum security prison has activated its distress signal. The ship is swiftly cruising through space, and nearing the vicinity of the prison station. TGMC, get moving!"
