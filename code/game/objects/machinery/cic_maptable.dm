@@ -8,11 +8,13 @@
 	density = TRUE
 	idle_power_usage = 2
 	///flags that we want to be shown when you interact with this table
-	var/allowed_flags = MINIMAP_FLAG_MARINE
+	var/minimap_flag = MINIMAP_FLAG_MARINE
 	///by default Zlevel 2, groundside is targetted
 	var/targetted_zlevel = 2
 	///minimap obj ref that we will display to users
 	var/atom/movable/screen/minimap/map
+	///List of currently interacting mobs
+	var/list/mob/interactees = list()
 
 /obj/machinery/cic_maptable/Initialize(mapload)
 	. = ..()
@@ -26,14 +28,19 @@
 	. = ..()
 	if(.)
 		return
-	if(!user.client)
+	if(interact_checks())
 		return
 	if(!map)
-		map = SSminimaps.fetch_minimap_object(targetted_zlevel, allowed_flags)
+		map = SSminimaps.fetch_minimap_object(targetted_zlevel, minimap_flag)
 	user.client.screen += map
+	interactees += user
 	if(isobserver(user))
 		RegisterSignal(user, COMSIG_MOVABLE_MOVED, PROC_REF(on_move))
 
+///Returns true if something prevents the user from interacting with this. used mainly with the drawtable
+/obj/machinery/cic_maptable/proc/interact_checks(mob/user)
+	if(!user.client)
+		return TRUE
 
 //Bugfix to handle cases for ghosts/observers that dont automatically close uis on move.
 /obj/machinery/cic_maptable/proc/on_move(mob/dead/observer/source, oldloc)
@@ -50,12 +57,15 @@
 	SIGNAL_HANDLER
 	if(!isnum(new_z))
 		return
+	for(var/mob/user AS in interactees)
+		on_unset_interaction(user)
 	map = null
 	targetted_zlevel = new_z
 
 /obj/machinery/cic_maptable/on_unset_interaction(mob/user)
 	. = ..()
-	user.client.screen -= map
+	interactees -= user
+	user?.client?.screen -= map
 
 /obj/machinery/cic_maptable/droppod_maptable
 	name = "Athena tactical map console"
@@ -63,25 +73,13 @@
 	icon_state = "droppodtable"
 
 /obj/machinery/cic_maptable/som_maptable
-	allowed_flags = MINIMAP_FLAG_MARINE_SOM
+	minimap_flag = MINIMAP_FLAG_MARINE_SOM
 
 /obj/machinery/cic_maptable/no_flags
-	allowed_flags = NONE
+	minimap_flag = NONE
 
-/obj/machinery/cic_maptable_big
-	name = "map table"
+/obj/machinery/cic_maptable/drawable
 	desc = "A table that displays a map of the current target location that also allows drawing onto it"
-	interaction_flags = INTERACT_MACHINE_DEFAULT
-	use_power = IDLE_POWER_USE
-	density = TRUE
-	idle_power_usage = 2
-	icon = 'icons/Marine/mainship_props96.dmi'
-	icon_state = "maptable"
-	layer = ABOVE_OBJ_LAYER
-	pixel_x = -16
-	pixel_y = -14
-	coverage = 75
-	allow_pass_flags = PASS_LOW_STRUCTURE|PASSABLE
 	/// List of references to the tools we will be using to shape what the map looks like
 	var/list/atom/movable/screen/drawing_tools = list(
 		/atom/movable/screen/minimap_tool/draw_tool/red,
@@ -92,16 +90,9 @@
 		/atom/movable/screen/minimap_tool/label,
 		/atom/movable/screen/minimap_tool/clear,
 	)
-	/// the Zlevel that this table views
-	var/targetted_zlevel = 2
-	/// The minimap flag we will be allowing to edit
-	var/minimap_flag = MINIMAP_FLAG_MARINE
-	///minimap obj ref that we will display to users
-	var/atom/movable/screen/minimap/map
 
-/obj/machinery/cic_maptable_big/Initialize(mapload)
+/obj/machinery/cic_maptable/drawable/Initialize(mapload)
 	. = ..()
-	RegisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_MISSION_LOADED, PROC_REF(change_targeted_z))
 	var/static/list/connections = list(
 		COMSIG_OBJ_TRY_ALLOW_THROUGH = PROC_REF(can_climb_over),
 	)
@@ -112,51 +103,56 @@
 		actions += new path(null, targetted_zlevel, minimap_flag)
 	drawing_tools = actions
 
-/obj/machinery/cic_maptable_big/Destroy()
+/obj/machinery/cic_maptable/drawable/Destroy()
 	. = ..()
 	QDEL_LIST(drawing_tools)
 
-/obj/machinery/cic_maptable_big/examine(mob/user)
+/obj/machinery/cic_maptable/drawable/examine(mob/user)
 	. = ..()
 	. += span_warning("Note that abuse may result in a command role ban.")
 
-/obj/machinery/cic_maptable_big/interact(mob/user)
+/obj/machinery/cic_maptable/drawable/interact_checks(mob/user)
 	. = ..()
 	if(.)
 		return
-	if(!user.client)
-		return
 	if(user.skills.getRating(SKILL_LEADERSHIP) < SKILL_LEAD_EXPERT)
 		user.balloon_alert(user, "Can't use that!")
-		return
+		return TRUE
 	if(is_banned_from(user.client.ckey, GLOB.roles_allowed_minimap_draw))
 		to_chat(user, span_boldwarning("You have been banned from a command role. You may not use [src] until the ban has been lifted."))
+		return TRUE
+
+/obj/machinery/cic_maptable/drawable/interact(mob/user)
+	. = ..()
+	if(.)
 		return
-	if(!map)
-		map = SSminimaps.fetch_minimap_object(targetted_zlevel, minimap_flag)
-	user.client.screen += map
 	user.client.screen += drawing_tools
 
-///Handles closing the map, including removing all on-screen indicators and similar
-/obj/machinery/cic_maptable_big/on_unset_interaction(mob/user)
+/obj/machinery/cic_maptable/drawable/on_unset_interaction(mob/user)
 	. = ..()
-	user.client.screen -= map
-	user.client.screen -= drawing_tools
-	user.client.mouse_pointer_icon = null
+	user?.client?.screen -= drawing_tools
+	user?.client?.mouse_pointer_icon = null
 	for(var/atom/movable/screen/minimap_tool/tool AS in drawing_tools)
 		tool.UnregisterSignal(user, list(COMSIG_MOB_MOUSEDOWN, COMSIG_MOB_MOUSEUP))
 
 ///Updates the z-level this maptable views
-/obj/machinery/cic_maptable_big/proc/change_targeted_z(datum/source, new_z)
-	SIGNAL_HANDLER
-	if(!isnum(new_z))
-		return
-	map = null
-	targetted_zlevel = new_z
+/obj/machinery/cic_maptable/drawable/change_targeted_z(datum/source, new_z)
+	. = ..()
 
 	for(var/atom/movable/screen/minimap_tool/tool AS in drawing_tools)
 		tool.zlevel = new_z
 		tool.set_zlevel(new_z, tool.minimap_flag)
 
-/obj/machinery/cic_maptable_big/som
+/////////////////////////////////////
+
+/obj/machinery/cic_maptable/drawable/big
+	icon = 'icons/Marine/mainship_props96.dmi'
+	icon_state = "maptable"
+	layer = ABOVE_OBJ_LAYER
+	pixel_x = -16
+	pixel_y = -14
+	coverage = 75
+	allow_pass_flags = PASS_LOW_STRUCTURE|PASSABLE
+
+/obj/machinery/cic_maptable/drawable/big/som
 	minimap_flag = MINIMAP_FLAG_MARINE_SOM

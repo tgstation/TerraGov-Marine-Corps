@@ -17509,7 +17509,7 @@
 /turf/open/floor/plating,
 /area/mainship/medical/upper_medical)
 "syG" = (
-/obj/machinery/cic_maptable_big,
+/obj/machinery/cic_maptable/drawable/big,
 /turf/open/floor/mainship/floor,
 /area/mainship/command/cic)
 "syT" = (

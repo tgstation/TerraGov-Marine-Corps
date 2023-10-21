@@ -1,19 +1,21 @@
 /obj/effect/landmark/campaign_structure/tele_blocker
-	name = "TELEBLOCKER"
-	icon = 'icons/obj/structures/campaign_structures.dmi'
-	icon_state = "tele_block"
+	name = "\improper Bluespace quantum disruption emitter"
+	icon = 'icons/obj/structures/campaign/tele_blocker.dmi'
+	icon_state = "tele_blocker"
+	pixel_x = -16
 	mission_types = list(/datum/campaign_mission/destroy_mission/supply_raid/som, /datum/campaign_mission/destroy_mission/fire_support_raid/som)
 	spawn_object = /obj/structure/campaign_deployblocker
 
 /obj/structure/campaign_deployblocker
-	name = "TELEBLOCKER"
-	desc = "THIS PROBABLY BLOCKS TELEPORTERS OR SOMETHING, PAY A SPRITER FOR A NONPLACEHOLDER"
+	name = "\improper Bluespace quantum disruption emitter"
+	desc = "A cutting edge piece of technology designed to disrupt long range bluespace interference in a given radius. The SOM's long range teleporters are unlikely to work here while this is active."
 	density = TRUE
 	anchored = TRUE
 	allow_pass_flags = PASS_PROJECTILE|PASS_AIR
 	destroy_sound = 'sound/effects/meteorimpact.ogg'
-	icon = 'icons/obj/structures/campaign_structures.dmi'
-	icon_state = "tele_block"
+	icon = 'icons/obj/structures/campaign/tele_blocker.dmi'
+	icon_state = "tele_blocker"
+	pixel_x = -16
 	///What flag this removes from the mission
 	var/flags_to_remove = MISSION_DISALLOW_TELEPORT
 	///The faction this belongs to
@@ -43,7 +45,7 @@
 /obj/effect/landmark/campaign_structure/drop_blocker
 	name = "TELEBLOCKER"
 	icon = 'icons/obj/structures/campaign_structures.dmi'
-	icon_state = "tele_block"
+	icon_state = "drop_block"
 	mission_types = list(/datum/campaign_mission/destroy_mission/supply_raid, /datum/campaign_mission/destroy_mission/fire_support_raid)
 	spawn_object = /obj/structure/campaign_deployblocker/drop_blocker
 

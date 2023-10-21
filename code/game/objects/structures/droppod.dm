@@ -204,7 +204,7 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 	var/turf/target = locate(target_x, target_y, target_z)
 	if(user)
 		log_game("[key_name(user)] launched pod [src] at [AREACOORD(target)]")
-	deadchat_broadcast("has been launched", src, turf_target = target)
+	deadchat_broadcast(" has been launched", src, turf_target = target)
 	for(var/mob/living/silicon/ai/AI AS in GLOB.ai_list)
 		to_chat(AI, span_notice("[user ? user : "unknown"] has launched [src] towards [target.loc] at X:[target_x] Y:[target_y]"))
 	reserved_area = SSmapping.RequestBlockReservation(3,3)
@@ -354,7 +354,7 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 	var/obj/stored_object
 
 /obj/structure/droppod/nonmob/Destroy()
-	stored_object = null
+	unload_package()
 	return ..()
 
 /obj/structure/droppod/nonmob/update_icon_state()
@@ -368,8 +368,30 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 		icon_state = initial(icon_state) + "_inactive"
 
 /obj/structure/droppod/nonmob/completedrop(mob/user)
-	stored_object = null
+	unload_package()
 	return ..()
+
+///Handles loading an object into the pod
+/obj/structure/droppod/nonmob/proc/load_package(obj/package, mob/user)
+	if(stored_object)
+		return
+	if(!istype(package))
+		return
+	stored_object = package
+	package.forceMove(src)
+	RegisterSignal(package, COMSIG_MOVABLE_MOVED, PROC_REF(unload_package))
+	update_icon()
+
+///Handles removing the stored object from the pod
+/obj/structure/droppod/nonmob/proc/unload_package()
+	SIGNAL_HANDLER
+	if(!stored_object)
+		return
+	UnregisterSignal(stored_object, COMSIG_MOVABLE_MOVED)
+	if(stored_object.loc == src)
+		stored_object.forceMove(loc)
+	stored_object = null
+	update_icon()
 
 /obj/structure/droppod/nonmob/supply_pod
 	name = "\improper TGMC Zeus supply drop pod"
@@ -382,15 +404,18 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 
 /obj/structure/droppod/nonmob/supply_pod/attack_powerloader(mob/living/user, obj/item/powerloader_clamp/attached_clamp)
 	if(attached_clamp.loaded)
+		if(istype(attached_clamp.loaded, /obj/structure/droppod))
+			return //no recursive pods please
+		if(stored_object)
+			balloon_alert(user, "Occupied")
+			return
 		var/obj/structure/closet/clamped_closet = attached_clamp.loaded
 		playsound(src, 'sound/machines/hydraulics_1.ogg', 40, 1)
 		if(!do_after(user, 30, FALSE, src, BUSY_ICON_BUILD))
 			return
 		if(length(contents) || attached_clamp.loaded != clamped_closet || !LAZYLEN(attached_clamp.linked_powerloader?.buckled_mobs) || attached_clamp.linked_powerloader.buckled_mobs[1] != user)
 			return
-		clamped_closet.forceMove(src)
-		stored_object = clamped_closet
-		update_icon()
+		load_package(clamped_closet)
 		attached_clamp.loaded = null
 		playsound(src, 'sound/machines/hydraulics_2.ogg', 40, 1)
 		attached_clamp.update_icon()
@@ -402,13 +427,10 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 		if(!stored_object || !LAZYLEN(attached_clamp.linked_powerloader?.buckled_mobs) || attached_clamp.linked_powerloader.buckled_mobs[1] != user)
 			return
 		playsound(src, 'sound/machines/hydraulics_1.ogg', 40, 1)
-
-		stored_object.forceMove(attached_clamp.linked_powerloader)
-		attached_clamp.loaded = stored_object
-		attached_clamp.update_icon()
 		to_chat(user, span_notice("You've removed [stored_object] from [src] and loaded it into [attached_clamp]."))
-		stored_object = null
-		update_icon()
+		attached_clamp.loaded = stored_object
+		stored_object.forceMove(attached_clamp.linked_powerloader)
+		attached_clamp.update_icon()
 	else
 		return ..()
 
@@ -420,9 +442,9 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 /obj/structure/droppod/nonmob/turret_pod/Initialize(mapload)
 	. = ..()
 	new /obj/item/weapon/gun/sentry/pod_sentry(src)
-	if(LAZYLEN(contents))
-		stored_object = contents[1]
-		update_icon()
+	if(!LAZYLEN(contents))
+		CRASH("Sentry pod spawned without a sentry!")
+	load_package(contents[1])
 
 /obj/structure/droppod/nonmob/mech_pod
 	name = "\improper TGMC Zeus mech drop pod"
@@ -432,6 +454,22 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 	pixel_x = -9
 	max_integrity = 150
 
+/obj/structure/droppod/nonmob/mech_pod/load_package(obj/package, mob/user)
+	. = ..()
+	if(!user)
+		return
+	for(var/datum/action/innate/action AS in interaction_actions)
+		action.give_action(user)
+
+/obj/structure/droppod/nonmob/mech_pod/unload_package()
+	var/obj/vehicle/sealed/mecha/stored_mech = stored_object
+	if(!istype(stored_mech))
+		return
+	for(var/mob/occupant AS in stored_mech.occupants)
+		for(var/datum/action/innate/action AS in interaction_actions)
+			action.remove_action(occupant)
+	return ..()
+
 /obj/structure/droppod/nonmob/mech_pod/ex_act(severity)
 	switch(severity)
 		if(EXPLODE_DEVASTATE)
@@ -440,17 +478,14 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 			take_damage(50, BRUTE, BOMB, 0)
 
 /obj/structure/droppod/nonmob/mech_pod/mech_shift_click(obj/vehicle/sealed/mecha/mecha_clicker, mob/living/user)
-	if(mecha_clicker.loc == src)
-		mecha_clicker.forceMove(loc)
-		update_icon()
+	if(mecha_clicker == stored_object)
+		unload_package()
 		return
-	if(!Adjacent(user))
+	if(stored_object)
 		return
-	mecha_clicker.forceMove(src)
-	stored_object = mecha_clicker
-	for(var/datum/action/innate/action AS in interaction_actions)
-		action.give_action(user)
-	update_icon()
+	if(!Adjacent(mecha_clicker))
+		return
+	load_package(mecha_clicker, user)
 
 /obj/structure/droppod/nonmob/mech_pod/change_targeted_z(datum/source, new_z)
 	. = ..()
@@ -458,19 +493,11 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 		ejectee.forceMove(loc)
 
 /obj/structure/droppod/nonmob/mech_pod/dodrop(turf/targetturf, mob/user)
-	deadchat_broadcast(" has landed at [get_area(targetturf)]!", src, stored_object)
+	deadchat_broadcast(" has landed at [get_area(targetturf)]!", src, stored_object ? stored_object : null)
 	explosion(targetturf, 1, 2) //A mech just dropped onto your head from orbit
 	playsound(targetturf, 'sound/effects/droppod_impact.ogg', 100)
 	QDEL_NULL(reserved_area)
 	addtimer(CALLBACK(src, PROC_REF(completedrop), user), 7) //dramatic effect
-
-/obj/structure/droppod/nonmob/mech_pod/completedrop(mob/user)
-	if(stored_object)
-		var/obj/vehicle/sealed/mecha/stored_mech = stored_object
-		for(var/mob/occupant AS in stored_mech.occupants)
-			for(var/datum/action/innate/action AS in interaction_actions)
-				action.remove_action(occupant)
-	return ..()
 
 /datum/action/innate/launch_droppod
 	name = "Begin Launch"

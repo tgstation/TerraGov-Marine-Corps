@@ -465,12 +465,12 @@
 
 	//Apply stamina damage, then apply any 'excess' stamina damage beyond our maximum as tox and oxy damage
 	var/stamina_loss_limit = L.maxHealth * 2
-	L.adjustStaminaLoss(min(power, max(0, stamina_loss_limit - L.staminaloss))) //If we're under our stamina_loss limit, apply the difference between our limit and current stamina damage or power, whichever's less
-
-	var/stamina_excess_damage = (L.staminaloss + power) - stamina_loss_limit
-	if(stamina_excess_damage > 0) //If we exceed maxHealth * 2 stamina damage, apply any excess as toxloss and oxyloss
-		L.adjustToxLoss(stamina_excess_damage * 0.5)
-		L.adjustOxyLoss(stamina_excess_damage * 0.5)
+	var/applied_damage = clamp(power, 0, (stamina_loss_limit - L.getStaminaLoss()))
+	L.adjustStaminaLoss(applied_damage) //If we're under our stamina_loss limit, apply the difference between our limit and current stamina damage or power, whichever's less
+	var/damage_overflow = power - applied_damage
+	if(damage_overflow > 0) //If we exceed maxHealth * 2 stamina damage, apply any excess as toxloss and oxyloss
+		L.adjustToxLoss(damage_overflow * 0.5)
+		L.adjustOxyLoss(damage_overflow * 0.5)
 		L.Losebreath(2) //So the oxy loss actually means something.
 
 	L.set_timed_status_effect(2 SECONDS, /datum/status_effect/speech/stutter, only_if_higher = TRUE)
@@ -706,8 +706,9 @@
 	if(current_cycle > 21)
 		L.adjustStaminaLoss(effect_str)
 		if(iscarbon(L) && prob(min(current_cycle - 10,30)))
-			L.emote("me", 1, "coughs up blood!")
-			L:drip(10)
+			var/mob/living/carbon/C = L
+			C.emote("me", 1, "coughs up blood!")
+			C.drip(10)
 		if(prob(min(current_cycle - 5,30)))
 			L.emote("me", 1, "gasps for air!")
 			L.Losebreath(4)

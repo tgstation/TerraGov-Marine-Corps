@@ -6,12 +6,16 @@
 	whitelist_ground_maps = list(MAP_FORT_PHOBOS)
 	bioscan_interval = 3 MINUTES
 	valid_job_types = list(
+		/datum/job/terragov/command/captain/campaign = 1,
+		/datum/job/terragov/command/staffofficer/campaign = 2,
 		/datum/job/terragov/command/fieldcommander/campaign = 1,
 		/datum/job/terragov/squad/engineer = 4,
 		/datum/job/terragov/squad/corpsman = 8,
 		/datum/job/terragov/squad/smartgunner = 4,
 		/datum/job/terragov/squad/leader = 4,
 		/datum/job/terragov/squad/standard = -1,
+		/datum/job/som/command/commander = 1,
+		/datum/job/som/command/staffofficer = 2,
 		/datum/job/som/command/fieldcommander = 1,
 		/datum/job/som/squad/leader = 4,
 		/datum/job/som/squad/veteran = 2,
@@ -56,8 +60,15 @@
 		addtimer(CALLBACK(selected_faction, TYPE_PROC_REF(/datum/faction_stats, choose_faction_leader)), 90 SECONDS)
 
 /datum/game_mode/hvh/campaign/player_respawn(mob/respawnee)
-	if((player_death_times[respawnee.key] + CAMPAIGN_RESPAWN_TIME) > world.time)
-		to_chat(respawnee, "<span class='warning'>Respawn timer has [round((player_death_times[respawnee.key] + CAMPAIGN_RESPAWN_TIME - world.time) / 10)] seconds remaining.<spawn>")
+	if(!respawnee?.client)
+		return
+
+	if(!(respawnee.faction in factions))
+		return respawnee.respawn()
+
+	var/respawn_delay = CAMPAIGN_RESPAWN_TIME + stat_list[respawnee.faction].respawn_delay_modifier
+	if((player_death_times[respawnee.key] + respawn_delay) > world.time)
+		to_chat(respawnee, "<span class='warning'>Respawn timer has [round((player_death_times[respawnee.key] + respawn_delay - world.time) / 10)] seconds remaining.<spawn>")
 		return
 	attempt_attrition_respawn(respawnee)
 
@@ -144,12 +155,6 @@
 
 ///respawns the player if attrition points are available
 /datum/game_mode/hvh/campaign/proc/attempt_attrition_respawn(mob/candidate)
-	if(!candidate?.client)
-		return
-
-	if(!(candidate.faction in factions))
-		return candidate.respawn()
-
 	var/list/dat = list("<div class='notice'>Mission Duration: [DisplayTimeText(world.time - SSticker.round_start_time)]</div>")
 	if(!GLOB.enter_allowed)
 		dat += "<div class='notice red'>You may no longer join the mission.</div><br>"

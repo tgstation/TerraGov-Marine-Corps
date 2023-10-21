@@ -25,9 +25,6 @@
 	///number of ticks between attacks for a caste.
 	var/attack_delay = CLICK_CD_MELEE
 
-	///The amount of time between the 'savage' ability activations
-	var/savage_cooldown = 30 SECONDS
-
 	// *** Tackle *** //
 	///The minimum amount of random paralyze applied to a human upon being 'pulled' multiplied by 20 ticks
 	var/tacklemin = 1
@@ -57,9 +54,6 @@
 	var/max_health = 100
 	///What negative health amount they die at.
 	var/crit_health = -100
-
-	///Set to TRUE in New() when Whiskey Outpost is active. Prevents healing and queen evolution
-	var/hardcore = FALSE
 
 	// *** Evolution *** //
 	///Threshold amount of evo points to next evolution
@@ -104,9 +98,6 @@
 	var/spit_delay = 6 SECONDS
 	///list of datum projectile types the xeno can use.
 	var/list/spit_types
-
-	///amount of time between pounce ability uses
-	var/pounce_delay = 4 SECONDS
 
 	// *** Acid spray *** //
 	///Number of tiles of the acid spray cone extends outward to. Not recommended to go beyond 4.
@@ -277,7 +268,7 @@
 	appearance_flags = TILE_BOUND|PIXEL_SCALE|KEEP_TOGETHER
 	see_infrared = TRUE
 	hud_type = /datum/hud/alien
-	hud_possible = list(HEALTH_HUD_XENO, PLASMA_HUD, PHEROMONE_HUD, XENO_RANK_HUD, QUEEN_OVERWATCH_HUD, ARMOR_SUNDER_HUD, XENO_DEBUFF_HUD, XENO_FIRE_HUD, XENO_BLESSING_HUD)
+	hud_possible = list(HEALTH_HUD_XENO, PLASMA_HUD, PHEROMONE_HUD, XENO_RANK_HUD, QUEEN_OVERWATCH_HUD, ARMOR_SUNDER_HUD, XENO_DEBUFF_HUD, XENO_FIRE_HUD, XENO_BLESSING_HUD, XENO_EVASION_HUD)
 	buckle_flags = NONE
 	faction = FACTION_XENO
 	initial_language_holder = /datum/language_holder/xeno
@@ -397,10 +388,6 @@
 	// Baneling vars
 	/// Respawn charges, each charge makes respawn take 30 seconds. Maximum of 2 charges. If there is no charge the respawn takes 120 seconds.
 	var/stored_charge = 0
-
-	//Runner vars
-	var/savage = FALSE
-	var/savage_used = FALSE
 
 	// *** Ravager vars *** //
 	/// when true the rav will not go into crit or take crit damage.

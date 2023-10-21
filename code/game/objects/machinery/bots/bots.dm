@@ -41,7 +41,7 @@
 ///Turns the bot around when it leaves an area to make sure it doesnt wander off
 /obj/machinery/bot/proc/turn_around(datum/target)
 	SIGNAL_HANDLER
-	visible_message(span_warning("The [src] beeps angrily as it is moved out of it's designated area!"))
+	visible_message(span_warning("\The [src] beeps angrily as it is moved out of it's designated area!"))
 	step_to(src, get_step(src,REVERSE_DIR(dir)))
 
 /obj/machinery/bot/process()
@@ -77,7 +77,7 @@
 	if(++stuck_counter <= 3)
 		step_to(src, get_step(src, turn(dir, pick(90, -90))))
 		return
-	visible_message(span_warning("The [src] beeps angrily as it get stuck!"))
+	visible_message(span_warning("\The [src] beeps angrily as it gets stuck!"))
 	stop_processing()
 	addtimer(CALLBACK(src, PROC_REF(reactivate)), 20 SECONDS)
 
@@ -90,7 +90,7 @@
 		return
 	if(user.a_intent != INTENT_HELP)
 		return
-	switch(tgui_alert(user, "Do you you want to turn the [src] [is_active ? "off" : "on"]?" , "Bot activation", list("No", "Yes")))
+	switch(tgui_alert(user, "Do you want to turn \the [src] [is_active ? "off" : "on"]?" , "Bot activation", list("No", "Yes")))
 		if("No")
 			return
 		if("Yes")
@@ -103,7 +103,7 @@
 	if(!alter_operating_mode)
 		to_chat(user, "This robot has a firewall and cannot be remotely accessed.")
 		return
-	switch(tgui_alert(user, "Do you you want to turn the [src] [is_active ? "off" : "on"]?" , "Bot activation", list("No", "Yes")))
+	switch(tgui_alert(user, "Do you want to turn \the [src] [is_active ? "off" : "on"]?" , "Bot activation", list("No", "Yes")))
 		if("No")
 			return
 		if("Yes")

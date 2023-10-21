@@ -10,6 +10,17 @@
 			"blend_mode":"overlay"
 		}
 	],
+	"loaded_fire":[
+		{
+			"type":"hyperscale",
+			"icon_state":"colored"
+		},
+		{
+			"type":"icon_state",
+			"icon_state":"fire",
+			"blend_mode":"overlay"
+		}
+	],
 	"unloaded":[
 		{
 			"type":"hyperscale",
@@ -18,17 +29,6 @@
 		{
 			"type":"icon_state",
 			"icon_state":"unloaded",
-			"blend_mode":"overlay"
-		}
-	],
-	"belt":[
-		{
-			"type":"hyperscale",
-			"icon_state":"belt_color"
-		},
-		{
-			"type":"icon_state",
-			"icon_state":"belt_no_color",
 			"blend_mode":"overlay"
 		}
 	]

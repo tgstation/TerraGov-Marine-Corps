@@ -232,6 +232,10 @@
 	max_integrity = 400
 	soft_armor = list(MELEE = 0, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 100, FIRE = 0, ACID = 0)
 
+/obj/item/weapon/gun/heavy_laser/deployable
+	icon_state = "heavylaser_deployable"
+	flags_item = IS_DEPLOYABLE|TWOHANDED
+
 //-------------------------------------------------------
 //RR-15 mounted heavy recoilless rifle
 

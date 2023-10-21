@@ -168,6 +168,19 @@ GLOBAL_LIST_INIT(campaign_icon_types, list(
 	"droppod_disabled",
 	"tele_disabled",
 	"reserve_force",
+	"tyr",
+	"lorica",
+	"riot_shield",
+	"xeno",
+	"grenade",
+	"shotgun",
+	"scout",
+	"ballistic",
+	"lasergun",
+	"volkite",
+	"smartgun",
+	"at_mine",
+	"binoculars",
 ))
 
 GLOBAL_LIST_INIT(campaign_mission_icon_types, list(

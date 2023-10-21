@@ -9,19 +9,23 @@
 	if(incapacitated() || lying_angle)
 		return
 
-	var/slot_requested = client?.prefs?.quick_equip[quick_equip_slot]
+	var/slot_requested = client?.prefs?.quick_equip[quick_equip_slot] || VALID_EQUIP_SLOTS
 	var/obj/item/I = get_active_held_item()
 	if(!I) //draw item
 		if(next_move > world.time)
 			return
-		if(slot_requested)
+
+		if(slot_requested) //Equips from quick_equip 1-5
 			if(draw_from_slot_if_possible(slot_requested))
 				next_move = world.time + 1
 				return
-		for(var/slot in SLOT_DRAW_ORDER)
+
+		var/list/slot_to_draw = client?.prefs?.slot_draw_order_pref || SLOT_DRAW_ORDER //Equips from draw order in prefs
+		for(var/slot in slot_to_draw)
 			if(draw_from_slot_if_possible(slot))
 				next_move = world.time + 1
 				return
+
 	else //store item
 		if(s_active?.attackby(I, src)) //stored in currently open storage
 			return TRUE
