@@ -902,15 +902,24 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 	if(!length(SSmapping.configs[GROUND_MAP].disk_sets))
 		CRASH("Map Json invalid for generating nuke disks on this map - set up at least one disk set in it. Have you tried \"basic\", assuming only one disk set exists?")
 	var/chosen_disk_set = pickweight(SSmapping.configs[GROUND_MAP].disk_sets)
-	message_admins("disk set chosen: [chosen_disk_set]!") //DEBUG!!!
 	var/list/viable_disks = list()
+	var/list/forced_disks = list()
 	for(var/obj/structure/nuke_disk_candidate/candidate AS in GLOB.nuke_disk_spawn_locs)
 		if(chosen_disk_set in candidate.set_associations)
-			viable_disks += candidate
-	if(length(viable_disks) < length(GLOB.nuke_disk_generator_types)) //Lets in maps with > 3 disks for a given set and just behaves like the previous rng in that case.
+			if(chosen_disk_set in candidate.force_for_sets)
+				forced_disks += candidate
+			else
+				viable_disks += candidate
+	if((length(viable_disks) + length(forced_disks)) < length(GLOB.nuke_disk_generator_types)) //Lets in maps with > 3 disks for a given set and just behaves like the previous rng in that case.
 		CRASH("Warning: Current map has too few nuke disk generators to correctly generate disks for set \">[chosen_disk_set]<\". Make sure both generators and json are set up correctly.")
+	if(length(forced_disks) > length(GLOB.nuke_disk_generator_types))
+		CRASH("Warning: Current map has too many forced disks for the current set type \">[chosen_disk_set]<\". Amount is [length(forced_disks)]. Please revisit your disk candidates.")
 	for(var/obj/machinery/computer/nuke_disk_generator AS in GLOB.nuke_disk_generator_types)
-		var/spawn_loc = pick_n_take(viable_disks)
+		var/spawn_loc
+		if(length(forced_disks))
+			spawn_loc = pick_n_take(forced_disks)
+		else
+			spawn_loc = pick_n_take(viable_disks)
 		new nuke_disk_generator(get_turf(spawn_loc))
 		qdel(spawn_loc)
 
