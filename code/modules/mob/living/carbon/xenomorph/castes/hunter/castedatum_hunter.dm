@@ -87,3 +87,31 @@
 		/datum/action/xeno_action/psychic_trace,
 		/datum/action/xeno_action/mirage,
 	)
+
+
+/////
+
+/datum/xeno_caste/hunter/weapon_x
+	display_name = "Weapon X"
+	upgrade_name = ""
+	caste_desc = "A fast, powerful creature. It has some kind of machinery attached to its head."
+	caste_type_path = /mob/living/carbon/xenomorph/hunter/weapon_x
+
+	// *** Melee Attacks *** //
+	melee_damage = 26
+
+	// *** Speed *** //
+	speed = -1.7
+
+	// *** Health *** //
+	max_health = 330
+
+	// *** Flags *** //
+	caste_flags = CASTE_INNATE_HEALING|CASTE_INNATE_PLASMA_REGEN
+	can_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER|CASTE_CAN_HEAL_WITHOUT_QUEEN
+
+	// *** Defense *** //
+	soft_armor = list(MELEE = 65, BULLET = 40, LASER = 40, ENERGY = 40, BOMB = 20, BIO = 30, FIRE = 50, ACID = 30)
+
+/datum/xeno_caste/hunter/weapon_x/normal
+	upgrade = XENO_UPGRADE_NORMAL
