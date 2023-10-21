@@ -268,3 +268,29 @@
   - imageadd: berry bar berry bar wrapper berry bar pouch
   hyper2snyper:
   - bugfix: Fixes lasguns becoming invisible after changing modes.
+2023-10-21:
+  DeltaFire15:
+  - bugfix: The cloning vat console now actually checks around itself for clone vats
+      to link to.
+  Lumipharon:
+  - bugfix: fixed a couple of freelancer ert loadouts having the wrong headset
+  - rscadd: Added concrete barricades for campaign
+  Pariah919:
+  - rscadd: Added a non-tad variant of the mounted heavy laser.
+  Wisemonster:
+  - spellcheck: Replaced the "TGMC" in the loadout pref headwear names to "surplus".
+      Actually hats in the loadout pref unchanged.
+  Xander3359:
+  - rscadd: New brick in req
+  coldironwarrior:
+  - rscadd: gives hiveminds psychic whisper
+  vilereaver41:
+  - qol: Sentrys now start in sentry crates
+  - rscadd: rear attach & machinegun nest with powersuits present.
+  - qol: tidy up some useless junk that clutters around.
+  - qol: fuel tank now has its own spot instead of always getting pushed around.
+  - balance: big-bury now has an extra Auto-Doc and marine med
+  - qol: big-bury has an extra fusion reactor and power storage unit due to power
+      drain issues
+  - rscadd: emergency interior pod-locks that lead to cockpit for a bit more realism.
+      bigbury only
