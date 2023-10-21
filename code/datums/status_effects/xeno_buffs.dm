@@ -908,9 +908,9 @@
 	alert_type = null
 	/// The owner of this buff.
 	var/mob/living/carbon/xenomorph/buff_owner
-	///Xeno bonus health multiplier per hive tier
+	///Xeno bonus health multiplier per silo
 	var/xeno_health_buff = 0.05
-	///Xeno bonus damage multiplier per hive tier
+	///Xeno bonus damage multiplier per silo
 	var/xeno_damage_buff = 0.05
 	///Current hive tier
 	var/current_tier
