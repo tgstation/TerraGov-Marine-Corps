@@ -182,6 +182,9 @@
 	if(currently_returning)
 		to_chat(user, span_warning("You are currently on your return flight!"))
 		return
+	if(eyeobj.eye_user)
+		to_chat(user, span_warning("CAS mode is already in-use!"))
+		return
 
 	SSmonitor.process_human_positions()
 	#ifndef TESTING
