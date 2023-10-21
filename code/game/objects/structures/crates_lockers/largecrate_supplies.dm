@@ -257,7 +257,7 @@
 /obj/structure/largecrate/supply/explosives/disposable
 	name = "RL-72 disposable rocket launchers (x8)"
 	desc = "A case contaning eight RL-72 disposables."
-	supplies = list(/obj/item/weapon/gun/launcher/rocket/oneuse = 1)
+	supplies = list(/obj/item/weapon/gun/launcher/rocket/oneuse = 8)
 
 /obj/structure/largecrate/supply/supplies
 	name = "supplies crate"
