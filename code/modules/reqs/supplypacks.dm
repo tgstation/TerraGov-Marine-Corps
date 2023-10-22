@@ -315,7 +315,7 @@ WEAPONS
 
 /datum/supply_packs/weapons/heayvlaser_emplacement
 	name = "Mounted Heavy Laser"
-	contains = list(/obj/item/weapon/gun/heavy_laser)
+	contains = list(/obj/item/weapon/gun/heavy_laser/deployable)
 	cost = 800
 
 
