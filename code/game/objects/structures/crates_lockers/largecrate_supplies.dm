@@ -153,7 +153,7 @@
 
 /obj/structure/largecrate/supply/weapons/standard_flakgun
 	name = "\improper ATR-22 flak gun and ammo chest (x1, x6)"
-	desc = "A supply crate containing a AT-36 and a full set of ammo to load into the sponson."
+	desc = "A supply crate containing a ATR-22 and a full set of ammo to load into the sponson."
 	supplies = list(
 		/obj/item/weapon/gun/standard_auto_cannon = 1,
 		/obj/item/ammo_magazine/auto_cannon = 3,
