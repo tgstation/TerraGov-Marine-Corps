@@ -13,11 +13,11 @@
 		MISSION_OUTCOME_MAJOR_LOSS = list(0, 3),
 	)
 	attrition_point_rewards = list(
-		MISSION_OUTCOME_MAJOR_VICTORY = list(20, 5),
-		MISSION_OUTCOME_MINOR_VICTORY = list(15, 10),
-		MISSION_OUTCOME_DRAW = list(10, 10),
-		MISSION_OUTCOME_MINOR_LOSS = list(10, 15),
-		MISSION_OUTCOME_MAJOR_LOSS = list(5, 20),
+		MISSION_OUTCOME_MAJOR_VICTORY = list(10, 0),
+		MISSION_OUTCOME_MINOR_VICTORY = list(10, 0),
+		MISSION_OUTCOME_DRAW = list(0, 0),
+		MISSION_OUTCOME_MINOR_LOSS = list(0, 25),
+		MISSION_OUTCOME_MAJOR_LOSS = list(0, 30),
 	)
 
 	starting_faction_mission_brief = "A TGMC ASAT battery has been detected in this location. It forms part if their space defense grid across the planet and so is a valuable installation to them. \
@@ -32,6 +32,15 @@
 
 	min_capture_amount = 3
 
+/datum/campaign_mission/destroy_mission/supply_raid/load_pre_mission_bonuses()
+	. = ..()
+	for(var/obj/effect/landmark/campaign/mech_spawner/mech_spawner AS in GLOB.campaign_mech_spawners[hostile_faction])
+		if(mech_spawner.type != /obj/effect/landmark/campaign/mech_spawner/light)
+			continue
+		var/new_mech = mech_spawner.spawn_mech()
+		GLOB.campaign_structures += new_mech
+		RegisterSignal(new_mech, COMSIG_QDELETING, TYPE_PROC_REF(/datum/campaign_mission, remove_mission_object))
+		return
 
 /datum/campaign_mission/capture_mission/asat/load_objective_description()
 	starting_faction_objective_description = "Major Victory:Capture all [objectives_total] ASAT systems.[min_capture_amount ? " Minor Victory: Capture at least [min_capture_amount] ASAT systems." : ""]"
