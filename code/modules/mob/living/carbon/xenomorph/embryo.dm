@@ -147,6 +147,8 @@
 	new_xeno.transfer_to_hive(hivenumber)
 	new_xeno.update_icons()
 
+	SSpoints.add_psy_points(hivenumber, CHESTBURSTER_PSY_POINTS_REWARD)
+
 	//If we have a candidate, transfer it over.
 	if(picked)
 		picked.mind.transfer_to(new_xeno, TRUE)

@@ -562,6 +562,7 @@
 		if(!(locate(/obj/item/alien_embryo) in target))
 			var/obj/item/alien_embryo/embryo = new(target)
 			embryo.hivenumber = hivenumber
+			SSpoints.add_psy_points(hivenumber, IMPREGNATION_PSY_POINTS_REWARD)
 			GLOB.round_statistics.now_pregnant++
 			SSblackbox.record_feedback("tally", "round_statistics", 1, "now_pregnant")
 			if(source?.client)

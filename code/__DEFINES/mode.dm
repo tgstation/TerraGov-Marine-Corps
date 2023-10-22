@@ -130,6 +130,10 @@
 #define COCOON_PSY_POINTS_REWARD_MAX 3
 //How many psy points are gave every 5 second by a cocoon at high pop
 #define COCOON_PSY_POINTS_REWARD_MIN 1
+//How many psy points are given for each hugger impregnation
+#define IMPREGNATION_PSY_POINTS_REWARD 25
+//How many psy points are given for each succesful lavra birth
+#define CHESTBURSTER_PSY_POINTS_REWARD 75
 
 //The player pop consider to be very high pop
 #define HIGH_PLAYER_POP 80
