@@ -181,6 +181,10 @@ GLOBAL_LIST_INIT(campaign_icon_types, list(
 	"smartgun",
 	"at_mine",
 	"binoculars",
+	"respawn",
+	"support_1",
+	"support_2",
+	"support_3",
 ))
 
 GLOBAL_LIST_INIT(campaign_mission_icon_types, list(

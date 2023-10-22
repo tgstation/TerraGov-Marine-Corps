@@ -33,7 +33,7 @@
 	name = "Rapid reserves"
 	desc = "Reserves are able to immediately deploy"
 	detailed_desc = "Tactical reserves undergo emergency rapid mobilisation to bolster your forces. All currently dead players on your team can immediately respawn, if attrition is available."
-	ui_icon = "reserve_force"
+	ui_icon = "respawn"
 	uses = 1
 	cost = 5
 
