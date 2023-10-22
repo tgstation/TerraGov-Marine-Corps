@@ -208,6 +208,7 @@
 		addtimer(CALLBACK(src, PROC_REF(autoclose)), normalspeed ? 150 + openspeed : 5)
 
 /obj/machinery/door/proc/close()
+	SIGNAL_HANDLER_DOES_SLEEP
 	if(density)
 		return TRUE
 	if(operating)

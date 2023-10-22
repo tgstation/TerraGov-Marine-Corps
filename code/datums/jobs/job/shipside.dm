@@ -52,32 +52,6 @@ You should not be voluntarily leaving your vessel under any circumstances. A cap
 If you require any help, use <b>mentorhelp</b> to ask mentors about what you're supposed to do.
 Godspeed, captain! And remember, you are not above the law."})
 
-
-/datum/outfit/job/command/captain
-	name = CAPTAIN
-	jobtype = /datum/job/terragov/command/captain
-
-	id = /obj/item/card/id/gold
-	belt = /obj/item/storage/holster/belt/pistol/smart_pistol/full
-	ears = /obj/item/radio/headset/mainship/mcom
-	w_uniform = /obj/item/clothing/under/marine/officer/command
-	shoes = /obj/item/clothing/shoes/marinechief/captain
-	gloves = /obj/item/clothing/gloves/marine/techofficer/captain
-	head = /obj/item/clothing/head/tgmcberet/tan
-	r_store = /obj/item/storage/pouch/general/large/command
-	l_store = /obj/item/hud_tablet/leadership
-
-
-/datum/outfit/job/command/captain/robot
-	species = SPECIES_COMBAT_ROBOT
-
-	w_uniform = /obj/item/clothing/under/marine/robotic
-	shoes = null
-	gloves = null
-	head = /obj/item/clothing/head/modular/robot
-	r_store = /obj/item/storage/pouch/general/large/command
-	l_store = /obj/item/hud_tablet/leadership
-
 /datum/job/terragov/command/captain/after_spawn(mob/living/new_mob, mob/user, latejoin)
 	. = ..()
 	if(!ishuman(new_mob))
@@ -93,6 +67,38 @@ Godspeed, captain! And remember, you are not above the law."})
 			new_human.wear_id.paygrade = "O7"
 		if(7501 to INFINITY) //125 hrs
 			new_human.wear_id.paygrade = "O8"
+
+/datum/job/terragov/command/captain/campaign
+	outfit = /datum/outfit/job/command/captain/campaign
+	multiple_outfits = FALSE
+
+/datum/outfit/job/command/captain
+	name = CAPTAIN
+	jobtype = /datum/job/terragov/command/captain
+
+	id = /obj/item/card/id/gold
+	belt = /obj/item/storage/holster/belt/pistol/smart_pistol/full
+	ears = /obj/item/radio/headset/mainship/mcom
+	w_uniform = /obj/item/clothing/under/marine/officer/command
+	shoes = /obj/item/clothing/shoes/marinechief/captain
+	gloves = /obj/item/clothing/gloves/marine/techofficer/captain
+	head = /obj/item/clothing/head/tgmcberet/tan
+	r_store = /obj/item/storage/pouch/general/large/command
+	l_store = /obj/item/hud_tablet/leadership
+
+/datum/outfit/job/command/captain/robot
+	species = SPECIES_COMBAT_ROBOT
+
+	w_uniform = /obj/item/clothing/under/marine/robotic
+	shoes = null
+	gloves = null
+	head = /obj/item/clothing/head/modular/robot
+	r_store = /obj/item/storage/pouch/general/large/command
+	l_store = /obj/item/hud_tablet/leadership
+
+/datum/outfit/job/command/captain/campaign
+	r_store = /obj/item/storage/pouch/general/large
+	l_store = /obj/item/binoculars/fire_support/campaign
 
 //Field Commander
 /datum/job/terragov/command/fieldcommander
@@ -140,6 +146,7 @@ Make the TGMC proud!"})
 	. = ..()
 	if(!ishuman(new_mob))
 		return
+	SSdirection.set_leader(TRACKING_ID_MARINE_COMMANDER, new_mob)
 	var/mob/living/carbon/human/new_human = new_mob
 	var/playtime_mins = user?.client?.get_exp(title)
 	if(!playtime_mins || playtime_mins < 1 )
@@ -151,7 +158,6 @@ Make the TGMC proud!"})
 			new_human.wear_id.paygrade = "MO4"
 		if(7501 to INFINITY) // 125 hrs
 			new_human.wear_id.paygrade = "MO5"
-	SSdirection.set_leader(TRACKING_ID_MARINE_COMMANDER, new_mob)
 
 
 /datum/outfit/job/command/fieldcommander
@@ -181,6 +187,55 @@ Make the TGMC proud!"})
 	r_store = /obj/item/storage/pouch/general/large/command
 	l_store = /obj/item/hud_tablet/fieldcommand
 	suit_store = /obj/item/storage/holster/belt/pistol/m4a3/fieldcommander
+
+//Campaign version with specific loadout
+/datum/job/terragov/command/fieldcommander/campaign
+	outfit = /datum/outfit/job/command/fieldcommander/campaign
+	multiple_outfits = FALSE
+
+/datum/outfit/job/command/fieldcommander/campaign
+	name = FIELD_COMMANDER
+	jobtype = /datum/job/terragov/command/fieldcommander/campaign
+
+	id = /obj/item/card/id/dogtag/fc
+	belt = /obj/item/storage/holster/blade/officer/full
+	ears = /obj/item/radio/headset/mainship/mcom
+	glasses = /obj/item/clothing/glasses/hud/health
+	w_uniform = /obj/item/clothing/under/marine/officer/exec/webbing
+	wear_suit = /obj/item/clothing/suit/modular/xenonauten/valk
+	shoes = /obj/item/clothing/shoes/marine/full
+	gloves = /obj/item/clothing/gloves/marine/officer
+	mask = /obj/item/clothing/mask/rebreather
+	head = /obj/item/clothing/head/tgmcberet/fc
+	r_store = /obj/item/storage/pouch/firstaid/combat_patrol_leader
+	l_store = /obj/item/storage/pouch/grenade/combat_patrol
+	suit_store = /obj/item/storage/holster/belt/pistol/m4a3/fieldcommander
+
+/datum/outfit/job/command/fieldcommander/campaign/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	. = ..()
+
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/binoculars/fire_support/campaign, SLOT_IN_ACCESSORY)
+
+	H.equip_to_slot_or_del(new /obj/item/stack/medical/heal_pack/gauze, SLOT_IN_SUIT)
+	H.equip_to_slot_or_del(new /obj/item/stack/medical/heal_pack/ointment, SLOT_IN_SUIT)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/isotonic, SLOT_IN_SUIT)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/quickclot, SLOT_IN_SUIT)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/dylovene, SLOT_IN_SUIT)
+
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/packet/acp, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/packet/acp, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb/cloak, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/incendiary, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/storage/box/MRE, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/tool/extinguisher/mini, SLOT_IN_BACKPACK)
+
 
 //Staff Officer
 /datum/job/terragov/command/staffofficer
@@ -238,6 +293,10 @@ You are in charge of logistics and the overwatch system. You are also in line to
 		if(3001 to INFINITY) // 50 hrs
 			new_human.wear_id.paygrade = "O5"
 
+/datum/job/terragov/command/staffofficer/campaign
+	outfit = /datum/outfit/job/command/staffofficer/campaign
+	multiple_outfits = FALSE
+
 /datum/outfit/job/command/staffofficer
 	name = STAFF_OFFICER
 	jobtype = /datum/job/terragov/command/staffofficer
@@ -262,6 +321,9 @@ You are in charge of logistics and the overwatch system. You are also in line to
 	r_store = /obj/item/storage/pouch/general/large
 	l_store = /obj/item/binoculars/tactical
 
+/datum/outfit/job/command/staffofficer/campaign
+	l_store = /obj/item/binoculars/fire_support/campaign
+
 //Pilot Officer
 /datum/job/terragov/command/pilot
 	title = PILOT_OFFICER
@@ -274,6 +336,7 @@ You are in charge of logistics and the overwatch system. You are also in line to
 	display_order = JOB_DISPLAY_ORDER_PILOT_OFFICER
 	outfit = /datum/outfit/job/command/pilot
 	exp_requirements = XP_REQ_EXPERT
+	exp_type = EXP_TYPE_REGULAR_ALL
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_PROVIDES_SQUAD_HUD
 	jobworth = list(
 		/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE_STRONG,

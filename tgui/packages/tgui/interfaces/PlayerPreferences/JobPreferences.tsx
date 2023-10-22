@@ -1,5 +1,5 @@
 import { useBackend, useLocalState } from '../../backend';
-import { Section, LabeledList, Modal, Button, Box, Grid, Flex } from '../../components';
+import { Section, LabeledList, Modal, Button, Box, Stack, Flex } from '../../components';
 
 export const JobPreferences = (props, context) => {
   const { act, data } = useBackend<JobPreferencesData>(context);
@@ -50,6 +50,9 @@ export const JobPreferences = (props, context) => {
     'SOM Squad Medic',
     'SOM Squad Veteran',
     'SOM Squad Leader',
+    'SOM Field Commander',
+    'SOM Staff Officer',
+    'SOM Commander',
   ];
   const flavourJobs = ['Corporate Liaison'];
 
@@ -85,27 +88,27 @@ export const JobPreferences = (props, context) => {
           </Box>
         </Modal>
       )}
-      <Grid>
-        <Grid.Column>
+      <Stack>
+        <Stack.Item grow>
           <JobList name="Command Jobs" jobs={commandRoles} />
-        </Grid.Column>
-        <Grid.Column>
+        </Stack.Item>
+        <Stack.Item grow>
           <JobList name="Support Jobs" jobs={supportRoles} />
-        </Grid.Column>
-      </Grid>
-      <Grid>
-        <Grid.Column>
+        </Stack.Item>
+      </Stack>
+      <Stack>
+        <Stack.Item grow>
           <JobList name="Xenomorph Jobs" jobs={xenoJobs} />
-        </Grid.Column>
-        <Grid.Column>
+        </Stack.Item>
+        <Stack.Item grow>
           <JobList name="Flavour Jobs" jobs={flavourJobs} />
-        </Grid.Column>
-      </Grid>
-      <Grid>
-        <Grid.Column>
+        </Stack.Item>
+      </Stack>
+      <Stack>
+        <Stack.Item grow>
           <JobList name="Marine Jobs" jobs={marineJobs} />
-        </Grid.Column>
-        <Grid.Column>
+        </Stack.Item>
+        <Stack.Item grow>
           <Section title="Other settings">
             <Flex direction="column" height="100%">
               <Flex.Item>
@@ -176,13 +179,13 @@ export const JobPreferences = (props, context) => {
               </Flex.Item>
             </Flex>
           </Section>
-        </Grid.Column>
-      </Grid>
-      <Grid>
-        <Grid.Column>
+        </Stack.Item>
+      </Stack>
+      <Stack>
+        <Stack.Item grow>
           <JobList name="SOM Jobs" jobs={somJobs} />
-        </Grid.Column>
-      </Grid>
+        </Stack.Item>
+      </Stack>
     </Section>
   );
 };

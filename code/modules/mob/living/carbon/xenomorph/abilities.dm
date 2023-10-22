@@ -79,6 +79,9 @@
 	playsound(T, "alien_resin_build", 25)
 	GLOB.round_statistics.weeds_planted++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "weeds_planted")
+	if(owner.client)
+		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[owner.ckey]
+		personal_statistics.weeds_planted++
 	add_cooldown()
 	return succeed_activate(SSmonitor.gamestate == SHUTTERS_CLOSED ? plasma_cost/2 : plasma_cost)
 
@@ -429,6 +432,7 @@
 		add_cooldown(SSmonitor.gamestate == SHUTTERS_CLOSED ? get_cooldown()/2 : get_cooldown())
 		succeed_activate(SSmonitor.gamestate == SHUTTERS_CLOSED ? plasma_cost/2 : plasma_cost)
 	plasma_cost = initial(plasma_cost) //Reset the plasma cost
+	owner.record_structures_built()
 
 /datum/action/xeno_action/pheromones
 	name = "Emit Pheromones"
@@ -1010,6 +1014,7 @@
 /datum/action/xeno_action/lay_egg
 	name = "Lay Egg"
 	action_icon_state = "lay_egg"
+	desc = "Create an egg that will grow a larval hugger after a short delay. Empty eggs can have huggers inserted into them."
 	plasma_cost = 200
 	cooldown_timer = 12 SECONDS
 	keybinding_signals = list(
@@ -1041,6 +1046,7 @@
 
 	succeed_activate()
 	add_cooldown()
+	owner.record_traps_created()
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -1211,6 +1217,9 @@
 	X.hive.update_tier_limits()
 	GLOB.round_statistics.larva_from_psydrain +=larva_point_reward / xeno_job.job_points_needed
 
+	if(owner.client)
+		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[owner.ckey]
+		personal_statistics.drained++
 	log_combat(victim, owner, "was drained.")
 	log_game("[key_name(victim)] was drained at [AREACOORD(victim.loc)].")
 
@@ -1303,6 +1312,9 @@
 	victim.dead_ticks = 0
 	ADD_TRAIT(victim, TRAIT_STASIS, TRAIT_STASIS)
 	X.eject_victim(TRUE, starting_turf)
+	if(owner.client)
+		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[owner.ckey]
+		personal_statistics.cocooned++
 
 /////////////////////////////////
 // blessing Menu

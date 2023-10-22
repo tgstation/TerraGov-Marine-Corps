@@ -32,7 +32,10 @@
 		icon_state = "[icon_state][alarm_sounded ? "_armed" : "_on"]"
 
 /obj/item/explosive/plastique/attack_self(mob/user)
+	. = ..()
 	var/newtime = tgui_input_number(usr, "Please set the timer.", "Timer", 10, 60, 10)
+	if(!newtime)
+		return
 	timer = newtime
 	to_chat(user, "Timer set for [timer] seconds.")
 
@@ -141,6 +144,7 @@
 		plant_target = null
 		update_icon()
 
+///Handles the actual explosion effects
 /obj/item/explosive/plastique/proc/detonate()
 	if(QDELETED(plant_target))
 		playsound(plant_target, 'sound/weapons/ring.ogg', 100, FALSE, 25)
@@ -152,7 +156,7 @@
 	var/datum/effect_system/smoke_spread/smoke = new smoketype()
 	smoke.set_up(smokeradius, plant_target, 2)
 	smoke.start()
-	plant_target.ex_act(EXPLODE_DEVASTATE)
+	plant_target.plastique_act()
 	qdel(src)
 
 ///Triggers a warning beep prior to the actual detonation, while also setting the actual detonation timer
@@ -162,6 +166,10 @@
 		detonation_pending = addtimer(CALLBACK(src, PROC_REF(detonate)), 27, TIMER_STOPPABLE)
 		alarm_sounded = TRUE
 		update_icon()
+
+///Handles the effect of c4 on the atom - overridden as needed
+/atom/proc/plastique_act()
+	ex_act(EXPLODE_DEVASTATE)
 
 /obj/item/explosive/plastique/genghis_charge
 	name = "EX-62 Genghis incendiary charge"

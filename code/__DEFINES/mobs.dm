@@ -166,15 +166,12 @@ GLOBAL_LIST_INIT(tier_as_number, list(XENO_TIER_MINION = -1, XENO_TIER_ZERO = 0,
 
 #define XENO_UPGRADE_BASETYPE "basetype"
 #define XENO_UPGRADE_INVALID "invalid" // not applicable, the old -1
-#define XENO_UPGRADE_ZERO "zero"	// god forgive me again
-#define XENO_UPGRADE_ONE "one"
-#define XENO_UPGRADE_TWO "two"
-#define XENO_UPGRADE_THREE "three"
-#define XENO_UPGRADE_FOUR "four"
+#define XENO_UPGRADE_NORMAL "zero"	// god forgive me again
+#define XENO_UPGRADE_PRIMO "one"
 
 #define XENO_UPGRADE_MANIFESTATION "manifestation" //just for the hivemind
 
-GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVALID, XENO_UPGRADE_ZERO, XENO_UPGRADE_ONE, XENO_UPGRADE_TWO, XENO_UPGRADE_THREE, XENO_UPGRADE_FOUR, XENO_UPGRADE_MANIFESTATION))
+GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVALID, XENO_UPGRADE_NORMAL, XENO_UPGRADE_PRIMO, XENO_UPGRADE_MANIFESTATION))
 
 //=================================================
 
@@ -475,7 +472,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 
 #define KING_SUMMON_TIMER_DURATION 5 MINUTES
 
-#define SPIT_UPGRADE_BONUS(Xenomorph) (( max(0,Xenomorph.upgrade_as_number()) * 0.15 )) //increase damage by 15% per upgrade level; compensates for the loss of insane attack speed.
+#define SPIT_UPGRADE_BONUS(Xenomorph) (Xenomorph.upgrade_as_number() ?  0.6 : 0.45 ) //Primo damage increase
 
 #define PLASMA_TRANSFER_AMOUNT 100
 
@@ -548,12 +545,6 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define CHARGE_ON 2
 #define CHARGE_MAX 3
 
-// Xeno charge types
-#define CHARGE_TYPE_SMALL 1
-#define CHARGE_TYPE_MEDIUM 2
-#define CHARGE_TYPE_LARGE 3
-#define CHARGE_TYPE_MASSIVE 4
-
 //Hunter Defines
 #define HUNTER_STEALTH_COOLDOWN 50 //5 seconds
 #define HUNTER_STEALTH_WALK_PLASMADRAIN 2
@@ -585,9 +576,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 
 //Ravager defines:
 #define RAV_CHARGESPEED 2
-#define RAV_CHARGESTRENGTH 2
 #define RAV_CHARGEDISTANCE 4
-#define RAV_CHARGE_TYPE 3
 
 #define RAVAGER_ENDURE_DURATION				10 SECONDS
 #define RAVAGER_ENDURE_DURATION_WARNING		0.7
@@ -684,11 +673,6 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define DRONE_ESSENCE_LINK_RANGE 6 // How far apart the linked xenos can be, in tiles. Going past this deactivates the buff.
 #define DRONE_ESSENCE_LINK_REGEN 0.012 // Amount of health regen given as a percentage.
 #define DRONE_ESSENCE_LINK_SHARED_HEAL 0.1 // The effectiveness of heals when applied to the other linked xeno, as a percentage
-
-//Runner defines
-#define RUNNER_EVASION_DURATION 2 SECONDS //How long Evasion lasts.
-#define RUNNER_EVASION_RUN_DELAY 0.5 SECONDS //If the time since the Runner last moved is equal to or greater than this, its Evasion ends.
-#define RUNNER_EVASION_COOLDOWN_REFRESH_THRESHOLD 120 //If we dodge this much damage times our streak count plus 1 while evading, refresh the cooldown of Evasion.
 
 //Baneling defines
 #define BANELING_CHARGE_MAX 2
@@ -827,20 +811,11 @@ GLOBAL_LIST_INIT(human_body_parts, list(BODY_ZONE_HEAD,
 #define IGNORE_TARGET_LOC_CHANGE (1<<1)
 #define IGNORE_HAND (1<<2)
 
-#define TIER_ONE_YOUNG_THRESHOLD 60
-#define TIER_ONE_MATURE_THRESHOLD TIER_ONE_YOUNG_THRESHOLD + 120
-#define TIER_ONE_ELDER_THRESHOLD TIER_ONE_MATURE_THRESHOLD + 240
-#define TIER_ONE_ANCIENT_THRESHOLD TIER_ONE_ELDER_THRESHOLD + 240
+#define TIER_ONE_THRESHOLD 420
 
-#define TIER_TWO_YOUNG_THRESHOLD 120
-#define TIER_TWO_MATURE_THRESHOLD TIER_TWO_YOUNG_THRESHOLD + 240
-#define TIER_TWO_ELDER_THRESHOLD TIER_TWO_MATURE_THRESHOLD + 480
-#define TIER_TWO_ANCIENT_THRESHOLD TIER_TWO_ELDER_THRESHOLD + 240
+#define TIER_TWO_THRESHOLD 840
 
-#define TIER_THREE_YOUNG_THRESHOLD 250
-#define TIER_THREE_MATURE_THRESHOLD TIER_THREE_YOUNG_THRESHOLD + 500
-#define TIER_THREE_ELDER_THRESHOLD TIER_THREE_MATURE_THRESHOLD + 1000
-#define TIER_THREE_ANCIENT_THRESHOLD TIER_THREE_ELDER_THRESHOLD + 100
+#define TIER_THREE_THRESHOLD 1750
 
 
 // Pheromones and buff orders
@@ -852,6 +827,10 @@ GLOBAL_LIST_INIT(human_body_parts, list(BODY_ZONE_HEAD,
 #define AURA_HUMAN_MOVE "move"
 #define AURA_HUMAN_HOLD "hold"
 #define AURA_HUMAN_FOCUS "focus"
+
+#define AURA_XENO_BLESSWARDING "Blessing Of Warding"
+#define AURA_XENO_BLESSFRENZY "Blessing Of Frenzy"
+#define AURA_XENO_BLESSFURY "Blessing Of Fury"
 
 //slowdown defines for liquid turfs
 

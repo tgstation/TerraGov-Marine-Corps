@@ -10,7 +10,7 @@
 	plasma_stored = 50
 	pass_flags = PASS_LOW_STRUCTURE
 	tier = XENO_TIER_ONE
-	upgrade = XENO_UPGRADE_ZERO
+	upgrade = XENO_UPGRADE_NORMAL
 	pixel_x = -16  //Needed for 2x2
 	old_x = -16
 	inherent_verbs = list(
@@ -27,3 +27,20 @@
 		return
 	if(. == CONSCIOUS && layer != initial(layer))
 		layer = MOB_LAYER
+
+/mob/living/carbon/xenomorph/runner/med_hud_set_status()
+	. = ..()
+	hud_set_evasion()
+
+/mob/living/carbon/xenomorph/runner/proc/hud_set_evasion(duration)
+	var/image/holder = hud_list[XENO_EVASION_HUD]
+	if(!holder)
+		return
+	holder.overlays.Cut()
+	holder.icon_state = "hudblank"
+	if(stat == DEAD || !duration)
+		return
+	holder.icon_state = "evasion_duration[duration]"
+	holder.pixel_x = 24
+	holder.pixel_y = 24
+	hud_list[XENO_EVASION_HUD] = holder

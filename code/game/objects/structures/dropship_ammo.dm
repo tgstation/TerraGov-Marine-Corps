@@ -200,17 +200,17 @@
 
 //30mm gun
 
-/obj/structure/ship_ammo/heavygun
+/obj/structure/ship_ammo/cas/heavygun
 	name = "\improper 30mm ammo crate"
 	icon_state = "30mm_crate"
 	desc = "A crate full of 30mm bullets used on the dropship heavy guns. Moving this will require some sort of lifter."
-	equipment_type = /obj/structure/dropship_equipment/weapon/heavygun
+	equipment_type = /obj/structure/dropship_equipment/cas/weapon/heavygun
 	travelling_time = 6 SECONDS
-	ammo_count = 200
-	max_ammo_count = 200
+	ammo_count = 2000
+	max_ammo_count = 2000
 	transferable_ammo = TRUE
-	ammo_used_per_firing = 20
-	point_cost = 75
+	ammo_used_per_firing = 200
+	point_cost = 100
 	///Radius of the square that the bullets will strafe
 	var/bullet_spread_range = 2
 	///Width of the square we are attacking, so you can make rectangular attacks later
@@ -218,14 +218,14 @@
 	ammo_type = CAS_30MM
 	cas_effect = /obj/effect/overlay/blinking_laser/heavygun
 
-/obj/structure/ship_ammo/heavygun/examine(mob/user)
+/obj/structure/ship_ammo/cas/heavygun/examine(mob/user)
 	. = ..()
 	. += "It has [ammo_count] round\s."
 
-/obj/structure/ship_ammo/heavygun/show_loaded_desc(mob/user)
+/obj/structure/ship_ammo/cas/heavygun/show_loaded_desc(mob/user)
 	return "It's loaded with \a [src] containing [ammo_count] round\s."
 
-/obj/structure/ship_ammo/heavygun/get_turfs_to_impact(turf/impact, attackdir = NORTH)
+/obj/structure/ship_ammo/cas/heavygun/get_turfs_to_impact(turf/impact, attackdir = NORTH)
 	var/turf/beginning = impact
 	var/revdir = REVERSE_DIR(attackdir)
 	for(var/i=0 to bullet_spread_range)
@@ -241,12 +241,12 @@
 
 	return strafelist
 
-/obj/structure/ship_ammo/heavygun/detonate_on(turf/impact, attackdir = NORTH)
+/obj/structure/ship_ammo/cas/heavygun/detonate_on(turf/impact, attackdir = NORTH)
 	playsound(impact, 'sound/effects/casplane_flyby.ogg', 40)
 	strafe_turfs(get_turfs_to_impact(impact, attackdir))
 
 ///Takes the top 3 turfs and miniguns them, then repeats until none left
-/obj/structure/ship_ammo/heavygun/proc/strafe_turfs(list/strafelist)
+/obj/structure/ship_ammo/cas/heavygun/proc/strafe_turfs(list/strafelist)
 	var/turf/strafed
 	playsound(strafelist[1], get_sfx("explosion"), 40, 1, 20, falloff = 3)
 	for(var/i=1 to attack_width)
@@ -254,17 +254,22 @@
 		strafelist -= strafed
 		strafed.ex_act(EXPLODE_LIGHT)
 		new /obj/effect/temp_visual/heavyimpact(strafed)
+		for(var/atom/movable/AM AS in strafed)
+			if(QDELETED(AM))
+				continue
+			//This may seem a bit wacky as we're exploding the turf's content twice, but doing it another way would be even more wacky because of how hard it is to modify explosion damage without adding a whole other explosion type
+			AM.ex_act(EXPLODE_LIGHT)
 
 	if(length(strafelist))
 		addtimer(CALLBACK(src, PROC_REF(strafe_turfs), strafelist), 2)
 
 
-/obj/structure/ship_ammo/heavygun/highvelocity
+/obj/structure/ship_ammo/cas/heavygun/highvelocity
 	name = "high-velocity 30mm ammo crate"
 	icon_state = "30mm_crate_hv"
 	desc = "A crate full of 30mm high-velocity bullets used on the dropship heavy guns. Moving this will require some sort of lifter."
 	travelling_time = 3 SECONDS
-	point_cost = 150
+	point_cost = 225
 
 
 //railgun
@@ -273,7 +278,7 @@
 	desc = "This is not meant to exist. Moving this will require some sort of lifter."
 	icon_state = "30mm_crate_hv"
 	icon = 'icons/Marine/mainship_props.dmi'
-	equipment_type = /obj/structure/dropship_equipment/weapon/minirocket_pod
+	equipment_type = /obj/structure/dropship_equipment/cas/weapon/minirocket_pod
 	ammo_count = 400
 	max_ammo_count = 400
 	ammo_name = "railgun"
@@ -303,7 +308,7 @@
 
 //laser battery
 
-/obj/structure/ship_ammo/laser_battery
+/obj/structure/ship_ammo/cas/laser_battery
 	name = "high-capacity laser battery"
 	icon_state = "laser_battery"
 	desc = "A high-capacity laser battery used to power laser beam weapons. Moving this will require some sort of lifter."
@@ -311,26 +316,26 @@
 	ammo_count = 100
 	max_ammo_count = 100
 	ammo_used_per_firing = 40
-	equipment_type = /obj/structure/dropship_equipment/weapon/laser_beam_gun
+	equipment_type = /obj/structure/dropship_equipment/cas/weapon/laser_beam_gun
 	ammo_name = "charge"
 	transferable_ammo = TRUE
 	ammo_used_per_firing = 10
 	warning_sound = 'sound/effects/nightvision.ogg'
-	point_cost = 85
+	point_cost = 150
 	///The length of the beam that will come out of when we fire do both ends xxxoxxx where o is where you click
 	var/laze_radius = 4
 	ammo_type = CAS_LASER_BATTERY
 	cas_effect = /obj/effect/overlay/blinking_laser/laser
 
-/obj/structure/ship_ammo/laser_battery/examine(mob/user)
+/obj/structure/ship_ammo/cas/laser_battery/examine(mob/user)
 	. = ..()
 	. += "It's at [round(100*ammo_count/max_ammo_count)]% charge."
 
 
-/obj/structure/ship_ammo/laser_battery/show_loaded_desc(mob/user)
+/obj/structure/ship_ammo/cas/laser_battery/show_loaded_desc(mob/user)
 	return "It's loaded with \a [src] at [round(100*ammo_count/max_ammo_count)]% charge."
 
-/obj/structure/ship_ammo/laser_battery/get_turfs_to_impact(turf/epicenter, attackdir = NORTH)
+/obj/structure/ship_ammo/cas/laser_battery/get_turfs_to_impact(turf/epicenter, attackdir = NORTH)
 	var/turf/beginning = epicenter
 	var/turf/end = epicenter
 	var/revdir = REVERSE_DIR(attackdir)
@@ -339,21 +344,21 @@
 		end = get_step(end, attackdir)
 	return getline(beginning, end)
 
-/obj/structure/ship_ammo/laser_battery/detonate_on(turf/impact, attackdir = NORTH)
+/obj/structure/ship_ammo/cas/laser_battery/detonate_on(turf/impact, attackdir = NORTH)
 	var/list/turf/lazertargets = get_turfs_to_impact(impact, attackdir)
 	process_lazer(lazertargets)
 	if(!ammo_count)
 		QDEL_IN(src, laze_radius+1) //deleted after last laser beam is fired and impact the ground.
 
 ///takes the top lazertarget on the stack and fires the lazer at it
-/obj/structure/ship_ammo/laser_battery/proc/process_lazer(list/lazertargets)
+/obj/structure/ship_ammo/cas/laser_battery/proc/process_lazer(list/lazertargets)
 	laser_burn(lazertargets[1])
 	lazertargets -= lazertargets[1]
 	if(length(lazertargets))
 		INVOKE_NEXT_TICK(src, PROC_REF(process_lazer), lazertargets)
 
 ///Lazer ammo acts on the turf passed in
-/obj/structure/ship_ammo/laser_battery/proc/laser_burn(turf/T)
+/obj/structure/ship_ammo/cas/laser_battery/proc/laser_burn(turf/T)
 	playsound(T, 'sound/effects/pred_vision.ogg', 30, 1)
 	for(var/mob/living/L in T)
 		L.adjustFireLoss(120)
@@ -364,11 +369,11 @@
 
 //Rockets
 
-/obj/structure/ship_ammo/rocket
+/obj/structure/ship_ammo/cas/rocket
 	name = "abstract rocket"
 	icon_state = "single"
 	icon = 'icons/Marine/mainship_props64.dmi'
-	equipment_type = /obj/structure/dropship_equipment/weapon/rocket_pod
+	equipment_type = /obj/structure/dropship_equipment/cas/weapon/rocket_pod
 	ammo_count = 1
 	max_ammo_count = 1
 	ammo_name = "rocket"
@@ -379,35 +384,35 @@
 	point_cost = 0
 	ammo_type = CAS_MISSILE
 
-/obj/structure/ship_ammo/rocket/detonate_on(turf/impact, attackdir = NORTH)
+/obj/structure/ship_ammo/cas/rocket/detonate_on(turf/impact, attackdir = NORTH)
 	qdel(src)
 
 
 //this one is air-to-air only
-/obj/structure/ship_ammo/rocket/widowmaker
+/obj/structure/ship_ammo/cas/rocket/widowmaker
 	name = "\improper AIM-224 'Widowmaker'"
 	desc = "The AIM-224 is the latest in air to air missile technology. Earning the nickname of 'Widowmaker' from various dropship pilots after improvements to its guidence warhead prevents it from being jammed leading to its high kill rate. Not well suited for ground bombardment, but its high velocity makes it reach its target quickly. Moving this will require some sort of lifter."
 	icon_state = "single"
 	travelling_time = 3 SECONDS //not powerful, but reaches target fast
 	ammo_id = ""
-	point_cost = 75
+	point_cost = 225
 	devastating_explosion_range = 2
 	heavy_explosion_range = 4
 	light_explosion_range = 7
 	prediction_type = CAS_AMMO_EXPLOSIVE
 	cas_effect = /obj/effect/overlay/blinking_laser/widowmaker
 
-/obj/structure/ship_ammo/rocket/widowmaker/detonate_on(turf/impact, attackdir = NORTH)
+/obj/structure/ship_ammo/cas/rocket/widowmaker/detonate_on(turf/impact, attackdir = NORTH)
 	impact.ceiling_debris_check(3)
 	explosion(impact, devastating_explosion_range, heavy_explosion_range, light_explosion_range)
 	qdel(src)
 
-/obj/structure/ship_ammo/rocket/banshee
+/obj/structure/ship_ammo/cas/rocket/banshee
 	name = "\improper AGM-227 'Banshee'"
 	desc = "The AGM-227 missile is a mainstay of the overhauled dropship fleet against any mobile or armored ground targets. It's earned the nickname of 'Banshee' from the sudden wail that it emitts right before hitting a target. Useful to clear out large areas. Moving this will require some sort of lifter."
 	icon_state = "banshee"
 	ammo_id = "b"
-	point_cost = 150
+	point_cost = 225
 	devastating_explosion_range = 2
 	heavy_explosion_range = 4
 	light_explosion_range = 7
@@ -415,12 +420,12 @@
 	prediction_type = CAS_AMMO_INCENDIARY
 	cas_effect = /obj/effect/overlay/blinking_laser/banshee
 
-/obj/structure/ship_ammo/rocket/banshee/detonate_on(turf/impact, attackdir = NORTH)
+/obj/structure/ship_ammo/cas/rocket/banshee/detonate_on(turf/impact, attackdir = NORTH)
 	impact.ceiling_debris_check(3)
 	explosion(impact, devastating_explosion_range, heavy_explosion_range, light_explosion_range, flame_range = fire_range) //more spread out, with flames
 	qdel(src)
 
-/obj/structure/ship_ammo/rocket/keeper
+/obj/structure/ship_ammo/cas/rocket/keeper
 	name = "\improper GBU-67 'Keeper II'"
 	desc = "The GBU-67 'Keeper II' is the latest in a generation of laser guided weaponry that spans all the way back to the 20th century. Earning its nickname from a shortening of 'Peacekeeper' which comes from the program that developed its guidance system and the various uses of it during peacekeeping conflicts. Its payload is designed to devastate armored targets. Moving this will require some sort of lifter."
 	icon_state = "keeper"
@@ -431,24 +436,24 @@
 	light_explosion_range = 5
 	prediction_type = CAS_AMMO_EXPLOSIVE
 
-/obj/structure/ship_ammo/rocket/keeper/detonate_on(turf/impact, attackdir = NORTH)
+/obj/structure/ship_ammo/cas/rocket/keeper/detonate_on(turf/impact, attackdir = NORTH)
 	impact.ceiling_debris_check(3)
 	explosion(impact, devastating_explosion_range, heavy_explosion_range, light_explosion_range) //tighter blast radius, but more devastating near center
 	qdel(src)
 
-/obj/structure/ship_ammo/rocket/fatty
+/obj/structure/ship_ammo/cas/rocket/fatty
 	name = "\improper SM-17 'Fatty'"
 	desc = "The SM-17 'Fatty' is the most devestating rocket in TGMC arsenal, only second after its big cluster brother in Orbital Cannon. These rocket are also known for highest number of Friendly-on-Friendly incidents due to secondary cluster explosions as well as range of these explosions, TGMC recommends pilots to encourage usage of signal flares or laser for 'Fatty' support. Moving this will require some sort of lifter."
 	icon_state = "fatty"
 	ammo_id = "f"
-	point_cost = 250
+	point_cost = 325
 	devastating_explosion_range = 2
 	heavy_explosion_range = 3
 	light_explosion_range = 4
 	prediction_type = CAS_AMMO_EXPLOSIVE
 	cas_effect = /obj/effect/overlay/blinking_laser/fatty
 
-/obj/structure/ship_ammo/rocket/fatty/detonate_on(turf/impact, attackdir = NORTH)
+/obj/structure/ship_ammo/cas/rocket/fatty/detonate_on(turf/impact, attackdir = NORTH)
 	impact.ceiling_debris_check(2)
 	explosion(impact, devastating_explosion_range, heavy_explosion_range, light_explosion_range) //first explosion is small to trick xenos into thinking its a minirocket.
 	addtimer(CALLBACK(src, PROC_REF(delayed_detonation), impact), 3 SECONDS)
@@ -460,7 +465,7 @@
  * * (turf/impact): targets impacted turf from first explosion
  */
 
-/obj/structure/ship_ammo/rocket/fatty/proc/delayed_detonation(turf/impact)
+/obj/structure/ship_ammo/cas/rocket/fatty/proc/delayed_detonation(turf/impact)
 	var/list/impact_coords = list(list(-3,3),list(0,4),list(3,3),list(-4,0),list(4,0),list(-3,-3),list(0,-4), list(3,-3))
 	for(var/i=1 to 8)
 		var/list/coords = impact_coords[i]
@@ -469,12 +474,12 @@
 		explosion(detonation_target, devastating_explosion_range, heavy_explosion_range, light_explosion_range, adminlog = FALSE)
 	qdel(src)
 
-/obj/structure/ship_ammo/rocket/napalm
+/obj/structure/ship_ammo/cas/rocket/napalm
 	name = "\improper XN-99 'Napalm'"
 	desc = "The XN-99 'Napalm' is an incendiary rocket used to turn specific targeted areas into giant balls of fire for a long time. Moving this will require some sort of lifter."
 	icon_state = "napalm"
 	ammo_id = "n"
-	point_cost = 200
+	point_cost = 250
 	devastating_explosion_range = 2
 	heavy_explosion_range = 3
 	light_explosion_range = 4
@@ -482,7 +487,7 @@
 	prediction_type = CAS_AMMO_INCENDIARY
 	cas_effect = /obj/effect/overlay/blinking_laser/incendiary
 
-/obj/structure/ship_ammo/rocket/napalm/detonate_on(turf/impact, attackdir = NORTH)
+/obj/structure/ship_ammo/cas/rocket/napalm/detonate_on(turf/impact, attackdir = NORTH)
 	impact.ceiling_debris_check(3)
 	explosion(impact, devastating_explosion_range, heavy_explosion_range, light_explosion_range) //relatively weak
 	flame_radius(fire_range, impact, 60, 30) //cooking for a long time
@@ -494,102 +499,106 @@
 
 //minirockets
 
-/obj/structure/ship_ammo/minirocket
+/obj/structure/ship_ammo/cas/minirocket
 	name = "mini rocket stack"
 	desc = "A pack of explosive laser guided mini rockets. Moving this will require some sort of lifter."
 	icon_state = "minirocket"
 	icon = 'icons/Marine/mainship_props.dmi'
-	equipment_type = /obj/structure/dropship_equipment/weapon/minirocket_pod
+	equipment_type = /obj/structure/dropship_equipment/cas/weapon/minirocket_pod
 	ammo_count = 6
 	max_ammo_count = 6
 	ammo_name = "minirocket"
-	travelling_time = 4 SECONDS
+	travelling_time = 2 SECONDS
 	transferable_ammo = TRUE
-	point_cost = 100
+	point_cost = 175
 	ammo_type = CAS_MINI_ROCKET
 	devastating_explosion_range = 0
 	heavy_explosion_range = 2
-	light_explosion_range = 4
+	light_explosion_range = 3
 	prediction_type = CAS_AMMO_EXPLOSIVE
 	cas_effect = /obj/effect/overlay/blinking_laser/minirocket
 
-/obj/structure/ship_ammo/minirocket/detonate_on(turf/impact, attackdir = NORTH)
+/obj/structure/ship_ammo/cas/minirocket/detonate_on(turf/impact, attackdir = NORTH)
 	impact.ceiling_debris_check(2)
 	explosion(impact, devastating_explosion_range, heavy_explosion_range, light_explosion_range, adminlog = FALSE)//no messaging admin, that'd spam them.
 	if(!ammo_count)
 		QDEL_IN(src, travelling_time) //deleted after last minirocket has fired and impacted the ground.
 
-/obj/structure/ship_ammo/minirocket/show_loaded_desc(mob/user)
+/obj/structure/ship_ammo/cas/minirocket/show_loaded_desc(mob/user)
 	return "It's loaded with \a [src] containing [ammo_count] minirocket\s."
 
-/obj/structure/ship_ammo/minirocket/examine(mob/user)
+/obj/structure/ship_ammo/cas/minirocket/examine(mob/user)
 	. = ..()
 	. += "It has [ammo_count] minirocket\s."
 
 
-/obj/structure/ship_ammo/minirocket/incendiary
+/obj/structure/ship_ammo/cas/minirocket/incendiary
 	name = "incendiary mini rocket stack"
 	desc = "A pack of laser guided incendiary mini rockets. Moving this will require some sort of lifter."
 	icon_state = "minirocket_inc"
-	point_cost = 200
+	point_cost = 250
+	travelling_time = 4 SECONDS
 	light_explosion_range = 3 //Slightly weaker than standard minirockets
 	fire_range = 3 //Fire range should be the same as the explosion range. Explosion should leave fire, not vice versa
 	prediction_type = CAS_AMMO_INCENDIARY
 	cas_effect = /obj/effect/overlay/blinking_laser/incendiary
 
-/obj/structure/ship_ammo/minirocket/incendiary/detonate_on(turf/impact, attackdir = NORTH)
+/obj/structure/ship_ammo/cas/minirocket/incendiary/detonate_on(turf/impact, attackdir = NORTH)
 	. = ..()
 	flame_radius(fire_range, impact)
 
-/obj/structure/ship_ammo/minirocket/smoke
+/obj/structure/ship_ammo/cas/minirocket/smoke
 	name = "smoke mini rocket stack"
 	desc = "A pack of laser guided screening smoke mini rockets. Moving this will require some sort of lifter."
 	icon_state = "minirocket_smoke"
-	point_cost = 25
+	point_cost = 75
+	travelling_time = 4 SECONDS
 	cas_effect = /obj/effect/overlay/blinking_laser/smoke
 	devastating_explosion_range = 0
 	heavy_explosion_range = 0
 	light_explosion_range = 2
 
-/obj/structure/ship_ammo/minirocket/smoke/detonate_on(turf/impact, attackdir = NORTH)
+/obj/structure/ship_ammo/cas/minirocket/smoke/detonate_on(turf/impact, attackdir = NORTH)
 	impact.ceiling_debris_check(2)
 	var/datum/effect_system/smoke_spread/tactical/S = new
 	S.set_up(7, impact)// Large radius, but dissipates quickly
 	S.start()
 
-/obj/structure/ship_ammo/minirocket/tangle
+/obj/structure/ship_ammo/cas/minirocket/tangle
 	name = "Tanglefoot mini rocket stack"
 	desc = "A pack of laser guided mini rockets loaded with plasma-draining Tanglefoot gas. Moving this will require some sort of lifter."
 	icon_state = "minirocket_tfoot"
-	point_cost = 150
+	point_cost = 200
 	devastating_explosion_range = 0
+	travelling_time = 4 SECONDS
 	heavy_explosion_range = 0
 	light_explosion_range = 2
 	cas_effect = /obj/effect/overlay/blinking_laser/tfoot
 
-/obj/structure/ship_ammo/minirocket/tangle/detonate_on(turf/impact, attackdir = NORTH)
+/obj/structure/ship_ammo/cas/minirocket/tangle/detonate_on(turf/impact, attackdir = NORTH)
 	impact.ceiling_debris_check(2)
 	explosion(impact, devastating_explosion_range, heavy_explosion_range, light_explosion_range, throw_range = 0)
 	var/datum/effect_system/smoke_spread/plasmaloss/S = new
 	S.set_up(9, impact, 9)// Between grenade and mortar
 	S.start()
 
-/obj/structure/ship_ammo/minirocket/illumination
-	name = "illumination rocket-launched flare stack"
+/obj/structure/ship_ammo/cas/minirocket/illumination
+	name = "illumination rocket flare stack"
 	desc = "A pack of laser guided mini rockets, each loaded with a payload of white-star illuminant and a parachute, while extremely ineffective at damaging the enemy, it is very effective at lighting the battlefield so marines can damage the enemy. Moving this will require some sort of lifter."
 	icon_state = "minirocket_ilm"
-	point_cost = 25 // Not a real rocket, so its cheap
+	point_cost = 50 // Not a real rocket, so its cheap
+	travelling_time = 4 SECONDS
 	cas_effect = /obj/effect/overlay/blinking_laser/flare
 	devastating_explosion_range = 0
 	heavy_explosion_range = 0
 	light_explosion_range = 0
 	prediction_type = CAS_AMMO_HARMLESS
 
-/obj/structure/ship_ammo/minirocket/illumination/detonate_on(turf/impact, attackdir = NORTH)
+/obj/structure/ship_ammo/cas/minirocket/illumination/detonate_on(turf/impact, attackdir = NORTH)
 	impact.ceiling_debris_check(2)
 	addtimer(CALLBACK(src, PROC_REF(drop_cas_flare), impact), 1.5 SECONDS)
 	if(!ammo_count)
 		QDEL_IN(src, travelling_time) //deleted after last minirocket has fired and impacted the ground.
 
-/obj/structure/ship_ammo/minirocket/illumination/proc/drop_cas_flare(turf/impact)
+/obj/structure/ship_ammo/cas/minirocket/illumination/proc/drop_cas_flare(turf/impact)
 	new /obj/effect/temp_visual/above_flare(impact)

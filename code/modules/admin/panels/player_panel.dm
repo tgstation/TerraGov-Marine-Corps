@@ -482,7 +482,8 @@
 		<a href='?src=[ref];transform=spitter;mob=[REF(M)]'>Spitter</a> |
 		<a href='?src=[ref];transform=hivelord;mob=[REF(M)]'>Hivelord</a> |
 		<a href='?src=[ref];transform=carrier;mob=[REF(M)]'>Carrier</a> |
-		<a href='?src=[ref];transform=wraith;mob=[REF(M)]'>Wraith</a>
+		<a href='?src=[ref];transform=wraith;mob=[REF(M)]'>Wraith</a> |
+		<a href='?src=[ref];transform=puppeteer;mob=[REF(M)]'>Puppeteer</a> |
 		<br> Alien Tier 3:
 		<a href='?src=[ref];transform=ravager;mob=[REF(M)]'>Ravager</a> |
 		<a href='?src=[ref];transform=widow;mob=[REF(M)]'>Widow</a> |

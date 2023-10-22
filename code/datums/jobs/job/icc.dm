@@ -4,6 +4,7 @@
 	minimal_access = ALL_ANTAGONIST_ACCESS
 	skills_type = /datum/skills/craftier
 	faction = FACTION_ICC
+	minimap_icon = "icc"
 
 //ICC Standard
 /datum/job/icc/standard
@@ -15,6 +16,7 @@
 		/datum/outfit/job/icc/standard/mpi_km,
 		/datum/outfit/job/icc/standard/icc_pdw,
 		/datum/outfit/job/icc/standard/icc_battlecarbine,
+		/datum/outfit/job/icc/standard/icc_assaultcarbine,
 	)
 
 /datum/outfit/job/icc
@@ -107,11 +109,24 @@
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/icc_battlecarbine, SLOT_IN_BELT)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/icc_battlecarbine, SLOT_IN_BELT)
 
+/datum/outfit/job/icc/standard/icc_assaultcarbine
+	suit_store = /obj/item/weapon/gun/rifle/icc_assaultcarbine
+
+/datum/outfit/job/icc/standard/icc_assaultcarbine/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	. = ..()
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/icc_assaultcarbine, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/icc_assaultcarbine, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/icc_assaultcarbine, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/icc_assaultcarbine, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/icc_assaultcarbine, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/icc_assaultcarbine, SLOT_IN_BELT)
+
 //ICC Guard
 /datum/job/icc/guard
 	title = "ICC Guardsman"
 	paygrade = "ICC3"
 	outfit = /datum/outfit/job/icc/guard/coilgun
+	multiple_outfits = TRUE
 	outfits = list(
 		/datum/outfit/job/icc/guard/coilgun,
 		/datum/outfit/job/icc/guard/icc_autoshotgun,

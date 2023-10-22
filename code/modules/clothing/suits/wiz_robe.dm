@@ -95,6 +95,7 @@
 	icon_state = "gentlecoat"
 	item_state = "gentlecoat"
 	flags_armor_protection = CHEST|GROIN|ARMS
+	flags_inv_hide = NONE
 
 /obj/item/clothing/suit/wizrobe/fake
 	name = "wizard robe"

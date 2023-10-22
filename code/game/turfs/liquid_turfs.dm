@@ -144,7 +144,7 @@
 	icon = 'icons/turf/desertdam_map.dmi'
 
 /turf/open/liquid/water/river/desertdam/Initialize() //needed to avoid visual bugs with the river
-	return
+	return INITIALIZE_HINT_NORMAL //haha totally normal, TODO DEAL WITH THIS INSTEAD OF THIS BANDAID
 
 //shallow water
 /turf/open/liquid/water/river/desertdam/clean/shallow

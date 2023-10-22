@@ -365,6 +365,13 @@
 	name = "\improper M20P mine box"
 	spawn_type = /obj/item/explosive/mine/pmc
 
+/obj/item/storage/box/explosive_mines/antitank
+	name = "\improper M92 mine box"
+	desc = "A secure box holding anti-tank proximity mines."
+	icon_state = "atminebox"
+	spawn_type = /obj/item/explosive/mine/anti_tank
+	spawn_number = 5
+
 /obj/item/storage/box/m94
 	name = "\improper M40 FLDP flare pack"
 	desc = "A packet of seven M40 FLDP Flares. Carried by TGMC marines to light dark areas that cannot be reached with the usual TNR Shoulder Lamp. Can be launched from an underslung grenade launcher."

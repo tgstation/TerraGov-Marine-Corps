@@ -54,6 +54,7 @@
 	throwforce = 10
 	throw_range = 5
 	attack_verb = list("hit", "whacked", "sliced")
+	singular_name = "bundle"
 	max_amount = 10
 	merge_type = /obj/item/stack/razorwire
 
@@ -103,3 +104,4 @@
 		playsound(src, 'sound/effects/barbed_wire_movement.ogg', 25, 1)
 		M.update_icon()
 		use(1)
+	user.record_structures_built()

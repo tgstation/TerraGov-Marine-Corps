@@ -1,9 +1,12 @@
 /obj/item/binoculars
-
 	name = "binoculars"
 	desc = "A pair of binoculars."
+	icon = 'icons/Marine/marine-navigation.dmi'
 	icon_state = "binoculars"
-
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/equipment/binoculars_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/equipment/binoculars_right.dmi',
+	)
 	flags_atom = CONDUCT
 	force = 5
 	w_class = WEIGHT_CLASS_SMALL
@@ -28,6 +31,8 @@
 /obj/item/binoculars/tactical
 	name = "tactical binoculars"
 	desc = "A pair of binoculars, with a laser targeting function. Unique action to toggle mode. Alt+Click to change selected linked artillery. Ctrl+Click when using to target something. Shift+Click to get coordinates. Ctrl+Shift+Click to fire OB when lasing in OB mode"
+	icon = 'icons/Marine/marine-navigation.dmi'
+	icon_state = "range_finders"
 	var/laser_cooldown = 0
 	var/cooldown_duration = 200 //20 seconds
 	var/obj/effect/overlay/temp/laser_target/laser
@@ -139,7 +144,7 @@
 	. = ..()
 	if(!length(linked_mortars))
 		return
-	if(length(linked_mortars) == 1) 
+	if(length(linked_mortars) == 1)
 		to_chat(user, span_notice("There is only one linked piece, you can't switch to another."))
 	selected_mortar += 1
 	check_mortar_index()

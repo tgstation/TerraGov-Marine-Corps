@@ -85,6 +85,12 @@
 #define FULLY_WIELDED (1<<18) //If the item is properly wielded. Used for guns
 ///If a holster has underlay sprites
 #define HAS_UNDERLAY (1<<19)
+///is this item equipped into an inventory slot or hand of a mob?
+#define IN_INVENTORY (1<<20)
+
+//flags_storage
+///If a storage container can be restocked into a vendor
+#define BYPASS_VENDOR_CHECK (1<<0)
 
 //==========================================================================================
 
@@ -282,6 +288,8 @@ GLOBAL_LIST_INIT(slot_str_to_slot, list(
 			. = ITEM_SLOT_FEET
 		if(SLOT_WEAR_SUIT)
 			. = ITEM_SLOT_OCLOTHING
+		if(SLOT_S_STORE)
+			. = ITEM_SLOT_SUITSTORE
 		if(SLOT_W_UNIFORM)
 			. = ITEM_SLOT_ICLOTHING
 		if(SLOT_R_STORE)
@@ -422,6 +430,7 @@ GLOBAL_LIST_INIT(slot_str_to_slot, list(
 	SLOT_IN_BACKPACK\
 	)
 
+///Each slot you can draw from, used and messed with in your preferences.
 #define SLOT_DRAW_ORDER list(\
 	SLOT_IN_HOLSTER,\
 	SLOT_IN_S_HOLSTER,\
@@ -531,8 +540,12 @@ GLOBAL_LIST_INIT(slot_str_to_slot, list(
 			return SLOT_IN_HEAD
 		if("Left Pocket")
 			return SLOT_L_STORE
+		if("Left Pocket Inside")
+			return SLOT_IN_L_POUCH
 		if("Right Pocket")
 			return SLOT_R_STORE
+		if("Right Pocket Inside")
+			return SLOT_IN_R_POUCH
 		if("Webbing")
 			return SLOT_IN_ACCESSORY
 		if("Belt Inside")
@@ -543,6 +556,8 @@ GLOBAL_LIST_INIT(slot_str_to_slot, list(
 			return SLOT_IN_S_HOLSTER
 		if("Back Holster")
 			return SLOT_IN_B_HOLSTER
+		if("Active Storage")
+			return SLOT_IN_STORAGE
 
 /proc/slot_flag_to_fluff(slot)
 	switch(slot)
@@ -564,8 +579,12 @@ GLOBAL_LIST_INIT(slot_str_to_slot, list(
 			return "Helmet"
 		if(SLOT_L_STORE)
 			return "Left Pocket"
+		if(SLOT_IN_L_POUCH)
+			return "Left Pocket Inside"
 		if(SLOT_R_STORE)
 			return "Right Pocket"
+		if(SLOT_IN_R_POUCH)
+			return "Right Pocket Inside"
 		if(SLOT_IN_ACCESSORY)
 			return "Webbing"
 		if(SLOT_IN_HOLSTER)
@@ -574,3 +593,6 @@ GLOBAL_LIST_INIT(slot_str_to_slot, list(
 			return "Suit Storage Holster"
 		if(SLOT_IN_B_HOLSTER)
 			return "Back Holster"
+		if(SLOT_IN_STORAGE)
+			return "Active Storage"
+
