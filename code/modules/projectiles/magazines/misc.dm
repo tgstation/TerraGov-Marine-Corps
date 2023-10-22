@@ -9,7 +9,7 @@
 /obj/item/ammo_magazine/packet/attack_hand_alternate(mob/living/user)
 	. = ..()
 	if(current_rounds <= 0)
-		to_chat(user, span_notice("[src] is empty. There is nothing to grab."))
+		balloon_alert(user, "Empty")
 		return
 	create_handful(user)
 
