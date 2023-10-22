@@ -32,7 +32,7 @@
 
 	min_capture_amount = 3
 
-/datum/campaign_mission/destroy_mission/supply_raid/load_pre_mission_bonuses()
+/datum/campaign_mission/capture_mission/asat/load_pre_mission_bonuses()
 	. = ..()
 	for(var/obj/effect/landmark/campaign/mech_spawner/mech_spawner AS in GLOB.campaign_mech_spawners[hostile_faction])
 		if(mech_spawner.type != /obj/effect/landmark/campaign/mech_spawner/light)
