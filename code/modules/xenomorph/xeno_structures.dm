@@ -1534,7 +1534,7 @@ TUNNEL
 		return TRUE
 
 	var/mob/living/carbon/xenomorph/X = user
-	if(isxenoravager(X)) //Ask if this should be made into a trait for xenos with special ressources
+	if(!(X.xeno_caste.can_flags & CASTE_CAN_BE_GIVEN_PLASMA)) //Ask if this should be made into a trait for xenos with special ressources
 		to_chat(X, span_xenowarning("But our body rejects the fruit, our fury does not build up with a healthy diet!"))
 		return FALSE
 	X.apply_status_effect(/datum/status_effect/plasma_surge, X.xeno_caste.plasma_max, bonus_regen, duration)
