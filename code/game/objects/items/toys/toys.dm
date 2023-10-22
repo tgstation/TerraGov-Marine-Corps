@@ -689,6 +689,7 @@
 					forceMove(destturf)
 					break
 		if(4)
+			desc = initial(desc)
 			new /obj/item/tool/kitchen/knife/butcher(targetturf)
 			new /obj/effect/decal/cleanable/blood(targetturf)
 			color = COLOR_DARK_RED
