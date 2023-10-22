@@ -34,3 +34,7 @@
 #define MISSION_DISALLOW_FIRESUPPORT (1<<1)
 #define MISSION_CRITICAL (1<<2)
 #define MISSION_DISALLOW_TELEPORT (1<<3)
+
+#define MISSION_CODE_BLUE "blue"
+#define MISSION_CODE_RED "red"
+#define MISSION_CODE_GREEN "green"

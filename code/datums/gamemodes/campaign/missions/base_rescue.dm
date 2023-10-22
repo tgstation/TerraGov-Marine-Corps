@@ -116,7 +116,7 @@
 	///Actual mob occupant
 	var/mob/living/occupant
 	///Color code associated for signal purposes
-	var/code_color = "blue"
+	var/code_color = MISSION_CODE_BLUE
 
 /obj/structure/weapon_x_pod/Initialize(mapload)
 	. = ..()

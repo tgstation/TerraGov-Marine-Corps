@@ -320,7 +320,7 @@ GLOBAL_LIST_INIT(faction_to_campaign_door_signal, list(
 	open_layer = UNDER_TURF_LAYER
 	closed_layer = ABOVE_WINDOW_LAYER
 	///color associated with the door, for signal purposes
-	var/code_color = "blue"
+	var/code_color = MISSION_CODE_BLUE
 
 /obj/machinery/door/poddoor/nt_lockdown/Initialize(mapload)
 	RegisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_NT_OVERRIDE_CODE, PROC_REF(open))
@@ -333,4 +333,4 @@ GLOBAL_LIST_INIT(faction_to_campaign_door_signal, list(
 	open()
 
 /obj/machinery/door/poddoor/nt_lockdown/red
-	code_color = "red"
+	code_color = MISSION_CODE_RED

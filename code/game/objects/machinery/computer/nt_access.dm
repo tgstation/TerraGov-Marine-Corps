@@ -180,17 +180,17 @@
 
 /obj/machinery/computer/nt_access/red
 	name = "red NT security override terminal"
-	code_color = "red"
+	code_color = MISSION_CODE_RED
 
 /obj/machinery/computer/nt_access/green
 	name = "green NT security override terminal"
 	icon_state = "terminal_green"
-	code_color = "green"
+	code_color = MISSION_CODE_GREEN
 
 /obj/machinery/computer/nt_access/blue
 	name = "blue NT security override terminal"
 	icon_state = "terminal_blue"
-	code_color = "blue"
+	code_color = MISSION_CODE_BLUE
 
 /obj/effect/landmark/campaign_structure/nt_access
 	name = "red NT security override terminal"
