@@ -5508,12 +5508,9 @@
 /turf/open/floor/wood,
 /area/mainship/medical/lower_medical)
 "gZg" = (
-/obj/structure/bed/stool{
-	pixel_y = 8
-	},
 /obj/effect/spawner/random/misc/gnome,
-/turf/open/floor/grass,
-/area/mainship/living/starboard_garden)
+/turf/open/floor/wood,
+/area/mainship/hallways/boxingring)
 "gZv" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -44685,7 +44682,7 @@ iTM
 vuM
 jQH
 goY
-jQH
+gZg
 jQH
 oUM
 iTM
@@ -49597,7 +49594,7 @@ fyR
 qfG
 mqD
 jHd
-gZg
+mrK
 gbM
 hUf
 lPc

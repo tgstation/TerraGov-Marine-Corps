@@ -8401,6 +8401,12 @@
 /obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/mainship/floor,
 /area/mainship/hallways/hangar)
+"hjI" = (
+/obj/structure/table/mainship/nometal,
+/obj/item/book/manual/marine_law,
+/obj/effect/spawner/random/misc/gnome,
+/turf/open/floor/mainship/floor,
+/area/mainship/shipboard/brig_cells)
 "hjX" = (
 /obj/machinery/telecomms/receiver/preset_right,
 /turf/open/floor/mainship/tcomms,
@@ -42175,7 +42181,7 @@ uDR
 iOX
 bmD
 dMp
-uDR
+hjI
 iOX
 mIN
 twS
