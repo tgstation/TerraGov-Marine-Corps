@@ -431,3 +431,27 @@
 /datum/campaign_mission/proc/remove_mission_object(obj/mission_obj)
 	SIGNAL_HANDLER
 	GLOB.campaign_structures -= mission_obj
+
+///spawns mechs for a faction
+/datum/campaign_mission/proc/spawn_mech(mech_faction, heavy_mech, medium_mech, light_mech)
+	if(!mech_faction)
+		return
+	var/total_count = heavy_mech + medium_mech + light_mech
+	var/faction_types = GLOB.campaign_mech_spawners[mech_faction]
+	for(var/obj/effect/landmark/campaign/mech_spawner/mech_spawner AS in GLOB.campaign_mech_spawners[mech_faction])
+		if(!heavy_mech && !medium_mech && !light_mech)
+			break
+		var/new_mech
+		if(heavy_mech && (mech_spawner.type == GLOB.faction_to_mech_spawner[mech_faction]["heavy"]))
+			heavy_mech --
+		else if(medium_mech && (mech_spawner.type == GLOB.faction_to_mech_spawner[mech_faction]["medium"]))
+			medium_mech --
+		else if(light_mech && (mech_spawner.type == GLOB.faction_to_mech_spawner[mech_faction]["light"]))
+			light_mech --
+		else
+			continue
+		new_mech = mech_spawner.spawn_mech()
+		GLOB.campaign_structures += new_mech
+		RegisterSignal(new_mech, COMSIG_QDELETING, TYPE_PROC_REF(/datum/campaign_mission, remove_mission_object))
+
+	map_text_broadcast(mech_faction, "[total_count] mechs have been deployed for this mission.", "Mechs available")
