@@ -37,6 +37,7 @@ GLOBAL_LIST_INIT(campaign_default_purchasable_assets, list(
 		/datum/campaign_asset/equipment/grenades_tgmc,
 		/datum/campaign_asset/equipment/at_mines,
 		/datum/campaign_asset/equipment/tac_bino_tgmc,
+		/datum/campaign_asset/tactical_reserves,
 	),
 	FACTION_SOM = list(
 		/datum/campaign_asset/fire_support/som_cas,
@@ -53,6 +54,7 @@ GLOBAL_LIST_INIT(campaign_default_purchasable_assets, list(
 		/datum/campaign_asset/equipment/grenades_som,
 		/datum/campaign_asset/equipment/at_mines,
 		/datum/campaign_asset/equipment/tac_bino_som,
+		/datum/campaign_asset/tactical_reserves,
 	),
 ))
 ///The weighted potential mission pool by faction
@@ -87,6 +89,8 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 	var/active_attrition_points = 0
 	///Multiplier on the passive attrition point gain for this faction
 	var/attrition_gain_multiplier = 1
+	///cumulative loss bonus which is applied to attrition gain mult
+	var/loss_bonus = 0
 	///Future missions this faction can currently choose from
 	var/list/datum/campaign_mission/available_missions = list()
 	///Missions this faction has succesfully completed
@@ -178,14 +182,17 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 		faction_assets[new_asset] = new new_asset(src)
 
 ///handles post mission wrap up for the faction
-/datum/faction_stats/proc/mission_end(datum/source, winning_faction)
+/datum/faction_stats/proc/mission_end(datum/source, datum/campaign_mission/completed_mission, winning_faction)
 	SIGNAL_HANDLER
+	total_attrition_points += round(length(GLOB.clients) * 0.5 * (attrition_gain_multiplier + loss_bonus))
 	if(faction == winning_faction)
 		stats_flags |= MISSION_SELECTION_ALLOWED
+		loss_bonus = 0
 	else
 		stats_flags &= ~MISSION_SELECTION_ALLOWED
+		if((completed_mission.hostile_faction == faction) && (completed_mission.type != /datum/campaign_mission/tdm/first_mission))
+			loss_bonus = min( loss_bonus + CAMPAIGN_LOSS_BONUS, CAMPAIGN_MAX_LOSS_BONUS)
 
-	total_attrition_points += round(length(GLOB.clients) * 0.5 * attrition_gain_multiplier)
 	generate_new_mission()
 	update_static_data_for_all_viewers()
 	addtimer(CALLBACK(src, PROC_REF(return_to_base)), AFTER_MISSION_TELEPORT_DELAY)

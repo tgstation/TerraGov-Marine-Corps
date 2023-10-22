@@ -16,11 +16,11 @@
 		MISSION_OUTCOME_MAJOR_LOSS = list(0, 3),
 	)
 	attrition_point_rewards = list(
-		MISSION_OUTCOME_MAJOR_VICTORY = list(20, 5),
-		MISSION_OUTCOME_MINOR_VICTORY = list(15, 10),
-		MISSION_OUTCOME_DRAW = list(10, 10),
-		MISSION_OUTCOME_MINOR_LOSS = list(10, 15),
-		MISSION_OUTCOME_MAJOR_LOSS = list(5, 20),
+		MISSION_OUTCOME_MAJOR_VICTORY = list(10, 0),
+		MISSION_OUTCOME_MINOR_VICTORY = list(5, 0),
+		MISSION_OUTCOME_DRAW = list(0, 0),
+		MISSION_OUTCOME_MINOR_LOSS = list(0, 10),
+		MISSION_OUTCOME_MAJOR_LOSS = list(0, 15),
 	)
 	intro_message = list(
 		"starting_faction" = "Locate and extract all phoron crates in the ao before the enemy does.",
@@ -153,7 +153,7 @@
 
 ///The addition rewards for capturing objectives, regardless of outcome
 /datum/campaign_mission/capture_mission/proc/objective_reward_bonus()
-	var/starting_team_bonus = capture_count["starting_faction"] * 5
+	var/starting_team_bonus = capture_count["starting_faction"] * 4
 	var/hostile_team_bonus = capture_count["hostile_faction"] * 2
 
 	modify_attrition_points(starting_team_bonus, hostile_team_bonus)
