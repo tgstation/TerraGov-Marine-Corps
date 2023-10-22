@@ -436,8 +436,7 @@
 /datum/campaign_mission/proc/spawn_mech(mech_faction, heavy_mech, medium_mech, light_mech)
 	if(!mech_faction)
 		return
-	var/total_count = heavy_mech + medium_mech + light_mech
-	var/faction_types = GLOB.campaign_mech_spawners[mech_faction]
+	var/total_count = (heavy_mech + medium_mech + light_mech)
 	for(var/obj/effect/landmark/campaign/mech_spawner/mech_spawner AS in GLOB.campaign_mech_spawners[mech_faction])
 		if(!heavy_mech && !medium_mech && !light_mech)
 			break
