@@ -603,11 +603,17 @@
 	desc = "A pouch containing all of your berry needs."
 	icon_state = "barpouch"
 	sprite_slots = 3
-	storage_slots = 6
+	storage_slots = 10
+	max_storage_space= 10
+	draw_mode = 1
 	can_hold = list(/obj/item/reagent_containers/food/snacks/wrapped/berrybar)
 
 /obj/item/storage/pouch/berrypouch/Initialize(mapload)
 	. = ..()
+	new /obj/item/reagent_containers/food/snacks/wrapped/berrybar(src)
+	new /obj/item/reagent_containers/food/snacks/wrapped/berrybar(src)
+	new /obj/item/reagent_containers/food/snacks/wrapped/berrybar(src)
+	new /obj/item/reagent_containers/food/snacks/wrapped/berrybar(src)
 	new /obj/item/reagent_containers/food/snacks/wrapped/berrybar(src)
 	new /obj/item/reagent_containers/food/snacks/wrapped/berrybar(src)
 	new /obj/item/reagent_containers/food/snacks/wrapped/berrybar(src)

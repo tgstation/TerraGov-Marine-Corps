@@ -1489,16 +1489,17 @@
 	name = "Berry Bars"
 	desc = "Berry-licious bars! These are a new invention from the world health association for outer-rim colonies. <i>\"Bit of berry to keep the bars away!\"</i>"
 	icon_state = "berrybar"
+	w_class = WEIGHT_CLASS_TINY
 	wrapper = /obj/item/trash/berrybar
 	list_reagents = list(
-		/datum/reagent/consumable/nutriment = 1,
+		/datum/reagent/consumable/nutriment = 6.5,
 		/datum/reagent/consumable/drink/berryjuice = 1,
-		/datum/reagent/medicine/tramadol = 10,
-		/datum/reagent/medicine/bicaridine = 10,
-		/datum/reagent/medicine/kelotane = 10,
-		/datum/reagent/medicine/tricordrazine = 10,)
+		/datum/reagent/medicine/tramadol = 7.5,
+		/datum/reagent/medicine/bicaridine = 15,
+		/datum/reagent/medicine/kelotane = 15,
+		/datum/reagent/medicine/tricordrazine = 15,)
 	tastes = list("delicious processed berries" = 1)
-	bitesize = 9
+	bitesize = 25
 
 /obj/item/reagent_containers/food/snacks/wrapped/proteinbar
 	name = "Protein Bar"
