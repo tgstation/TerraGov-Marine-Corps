@@ -32,6 +32,7 @@
 	name = "hyperscale marine combat gloves"
 	icon_state = "hyperscale_glove_inhand"
 	item_state = "hyperscale_glove_mob"
+	item_icons = list(slot_gloves = /datum/greyscale_config/marine_uniform)
 	greyscale_colors = ARMOR_PALETTE_BLACK
 	greyscale_config = /datum/greyscale_config/marine_uniform
 	colorable_colors = ARMOR_PALETTES_LIST
