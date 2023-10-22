@@ -70,7 +70,7 @@
 			owner.state = PLANE_STATE_ACTIVATED
 			return
 
-		if(PLANE_STATE_PREPARED | PLANE_STATE_FLYING)
+		if(PLANE_STATE_PREPARED, PLANE_STATE_FLYING)
 			to_chat(user, span_warning("The plane is in-flight!"))
 			return
 
@@ -192,6 +192,11 @@
 				owner.turn_on_engines()
 			if(PLANE_STATE_PREPARED)
 				owner.turn_off_engines()
+	if(action == "eject")
+		if(owner.state != PLANE_STATE_ACTIVATED)
+			return
+		resisted_against()
+		ui.close()
 
 	if(owner.state == PLANE_STATE_ACTIVATED)
 		return
@@ -207,11 +212,13 @@
 				to_chat(usr, "<span class='warning'>Unable to launch, low fuel.")
 				return
 			SSshuttle.moveShuttleToDock(owner.id, SSshuttle.generate_transit_dock(owner), TRUE)
+			owner.currently_returning = FALSE
 		if("land")
 			if(owner.state != PLANE_STATE_FLYING)
 				return
 			SSshuttle.moveShuttle(owner.id, SHUTTLE_CAS_DOCK, TRUE)
 			owner.end_cas_mission(usr)
+			owner.currently_returning = TRUE
 		if("deploy")
 			if(owner.state != PLANE_STATE_FLYING)
 				return
@@ -219,9 +226,6 @@
 		if("change_weapon")
 			var/selection = text2num(params["selection"])
 			owner.active_weapon = owner.equipments[selection]
-		if("deselect")
-			owner.active_weapon = null
-			. = TRUE
 		if("cycle_attackdir")
 			if(params["newdir"] == null)
 				owner.attackdir = turn(owner.attackdir, 90)

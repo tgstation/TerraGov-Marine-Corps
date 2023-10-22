@@ -206,11 +206,11 @@
 	desc = "A crate full of 30mm bullets used on the dropship heavy guns. Moving this will require some sort of lifter."
 	equipment_type = /obj/structure/dropship_equipment/cas/weapon/heavygun
 	travelling_time = 6 SECONDS
-	ammo_count = 200
-	max_ammo_count = 200
+	ammo_count = 2000
+	max_ammo_count = 2000
 	transferable_ammo = TRUE
-	ammo_used_per_firing = 20
-	point_cost = 75
+	ammo_used_per_firing = 200
+	point_cost = 100
 	///Radius of the square that the bullets will strafe
 	var/bullet_spread_range = 2
 	///Width of the square we are attacking, so you can make rectangular attacks later
@@ -254,6 +254,11 @@
 		strafelist -= strafed
 		strafed.ex_act(EXPLODE_LIGHT)
 		new /obj/effect/temp_visual/heavyimpact(strafed)
+		for(var/atom/movable/AM AS in strafed)
+			if(QDELETED(AM))
+				continue
+			//This may seem a bit wacky as we're exploding the turf's content twice, but doing it another way would be even more wacky because of how hard it is to modify explosion damage without adding a whole other explosion type
+			AM.ex_act(EXPLODE_LIGHT)
 
 	if(length(strafelist))
 		addtimer(CALLBACK(src, PROC_REF(strafe_turfs), strafelist), 2)
@@ -264,7 +269,7 @@
 	icon_state = "30mm_crate_hv"
 	desc = "A crate full of 30mm high-velocity bullets used on the dropship heavy guns. Moving this will require some sort of lifter."
 	travelling_time = 3 SECONDS
-	point_cost = 150
+	point_cost = 225
 
 
 //railgun
@@ -316,7 +321,7 @@
 	transferable_ammo = TRUE
 	ammo_used_per_firing = 10
 	warning_sound = 'sound/effects/nightvision.ogg'
-	point_cost = 85
+	point_cost = 150
 	///The length of the beam that will come out of when we fire do both ends xxxoxxx where o is where you click
 	var/laze_radius = 4
 	ammo_type = CAS_LASER_BATTERY
@@ -390,7 +395,7 @@
 	icon_state = "single"
 	travelling_time = 3 SECONDS //not powerful, but reaches target fast
 	ammo_id = ""
-	point_cost = 75
+	point_cost = 225
 	devastating_explosion_range = 2
 	heavy_explosion_range = 4
 	light_explosion_range = 7
@@ -407,7 +412,7 @@
 	desc = "The AGM-227 missile is a mainstay of the overhauled dropship fleet against any mobile or armored ground targets. It's earned the nickname of 'Banshee' from the sudden wail that it emitts right before hitting a target. Useful to clear out large areas. Moving this will require some sort of lifter."
 	icon_state = "banshee"
 	ammo_id = "b"
-	point_cost = 150
+	point_cost = 225
 	devastating_explosion_range = 2
 	heavy_explosion_range = 4
 	light_explosion_range = 7
@@ -441,7 +446,7 @@
 	desc = "The SM-17 'Fatty' is the most devestating rocket in TGMC arsenal, only second after its big cluster brother in Orbital Cannon. These rocket are also known for highest number of Friendly-on-Friendly incidents due to secondary cluster explosions as well as range of these explosions, TGMC recommends pilots to encourage usage of signal flares or laser for 'Fatty' support. Moving this will require some sort of lifter."
 	icon_state = "fatty"
 	ammo_id = "f"
-	point_cost = 250
+	point_cost = 325
 	devastating_explosion_range = 2
 	heavy_explosion_range = 3
 	light_explosion_range = 4
@@ -474,7 +479,7 @@
 	desc = "The XN-99 'Napalm' is an incendiary rocket used to turn specific targeted areas into giant balls of fire for a long time. Moving this will require some sort of lifter."
 	icon_state = "napalm"
 	ammo_id = "n"
-	point_cost = 200
+	point_cost = 250
 	devastating_explosion_range = 2
 	heavy_explosion_range = 3
 	light_explosion_range = 4
@@ -503,13 +508,13 @@
 	ammo_count = 6
 	max_ammo_count = 6
 	ammo_name = "minirocket"
-	travelling_time = 4 SECONDS
+	travelling_time = 2 SECONDS
 	transferable_ammo = TRUE
-	point_cost = 100
+	point_cost = 175
 	ammo_type = CAS_MINI_ROCKET
 	devastating_explosion_range = 0
 	heavy_explosion_range = 2
-	light_explosion_range = 4
+	light_explosion_range = 3
 	prediction_type = CAS_AMMO_EXPLOSIVE
 	cas_effect = /obj/effect/overlay/blinking_laser/minirocket
 
@@ -531,7 +536,8 @@
 	name = "incendiary mini rocket stack"
 	desc = "A pack of laser guided incendiary mini rockets. Moving this will require some sort of lifter."
 	icon_state = "minirocket_inc"
-	point_cost = 200
+	point_cost = 250
+	travelling_time = 4 SECONDS
 	light_explosion_range = 3 //Slightly weaker than standard minirockets
 	fire_range = 3 //Fire range should be the same as the explosion range. Explosion should leave fire, not vice versa
 	prediction_type = CAS_AMMO_INCENDIARY
@@ -545,7 +551,8 @@
 	name = "smoke mini rocket stack"
 	desc = "A pack of laser guided screening smoke mini rockets. Moving this will require some sort of lifter."
 	icon_state = "minirocket_smoke"
-	point_cost = 25
+	point_cost = 75
+	travelling_time = 4 SECONDS
 	cas_effect = /obj/effect/overlay/blinking_laser/smoke
 	devastating_explosion_range = 0
 	heavy_explosion_range = 0
@@ -561,8 +568,9 @@
 	name = "Tanglefoot mini rocket stack"
 	desc = "A pack of laser guided mini rockets loaded with plasma-draining Tanglefoot gas. Moving this will require some sort of lifter."
 	icon_state = "minirocket_tfoot"
-	point_cost = 150
+	point_cost = 200
 	devastating_explosion_range = 0
+	travelling_time = 4 SECONDS
 	heavy_explosion_range = 0
 	light_explosion_range = 2
 	cas_effect = /obj/effect/overlay/blinking_laser/tfoot
@@ -575,10 +583,11 @@
 	S.start()
 
 /obj/structure/ship_ammo/cas/minirocket/illumination
-	name = "illumination rocket-launched flare stack"
+	name = "illumination rocket flare stack"
 	desc = "A pack of laser guided mini rockets, each loaded with a payload of white-star illuminant and a parachute, while extremely ineffective at damaging the enemy, it is very effective at lighting the battlefield so marines can damage the enemy. Moving this will require some sort of lifter."
 	icon_state = "minirocket_ilm"
-	point_cost = 25 // Not a real rocket, so its cheap
+	point_cost = 50 // Not a real rocket, so its cheap
+	travelling_time = 4 SECONDS
 	cas_effect = /obj/effect/overlay/blinking_laser/flare
 	devastating_explosion_range = 0
 	heavy_explosion_range = 0

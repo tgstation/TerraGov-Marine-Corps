@@ -42,6 +42,7 @@
 	for(var/i in 1 to 7)
 		var/picked = pick(randompick)
 		new picked(src)
+
 /obj/item/reagent_containers/food/snacks/protein_pack
 	name = "TGMC protein bar"
 	desc = "The most fake looking protein bar you have ever laid eyes on, comes in many flavors"
@@ -64,7 +65,8 @@
 			list("milk chocolate TGMC protein bar","A nice milky addition to a otherwise bland protein taste.","#efc296",list("off flavor milk chocolate"= 1)),
 			list("raspberry lime TGMC protein bar","A flavored protein bar, some might say a bit too strongly flavored for their tastes.","#ff0066",list("sour raspberry and lime" = 1)),
 			list("chicken TGMC protein bar","Protein bar covered with chicken powder one might find in ramen. Get some extra sodium with your protein.","#cccc00",list= ("powdered chicken")),
-			list("blueberry TGMC protein bar","A nice blueberry crunch into your otherwise stale and boring protein bar.","#4e39c5",list("blueberry" = 1))
+			list("blueberry TGMC protein bar","A nice blueberry crunch into your otherwise stale and boring protein bar.","#4e39c5",list("blueberry" = 1)),
+			list("cement TGMC protein bar", "A gray bar that's allegedly made of cement. It seems to have hardened up. Perhaps it'll make you harden up, too.", "#B2B2B2", list("cement" = 1))
 		),
 		FACTION_SOM = list(
 			list("stale SOM protein bar","The most fake looking protein bar you have ever laid eyes on, covered in the a subtitution chocolate. Its supposedly made with real Martian soil for that patriotic flavour. It has a grainy, metallic taste.","#f37d43",list("rust" = 1)),
@@ -332,6 +334,7 @@
 /obj/item/compass
 	name = "compass"
 	desc = "A small compass that can tell you your coordinates on use."
+	icon = 'icons/Marine/marine-navigation.dmi'
 	icon_state = "compass"
 	w_class = WEIGHT_CLASS_TINY
 

@@ -86,7 +86,7 @@
 	//If there is an item in the slot you are clicking on, this will relay the click to the item within the slot
 	var/atom/item_in_slot = usr.get_item_by_slot(slot_id)
 	if(item_in_slot)
-		return item_in_slot.Click()
+		return item_in_slot.Click(location, control, params)
 
 	if(!istype(src, /atom/movable/screen/inventory/hand) && usr.attack_ui(slot_id)) // until we get a proper hands refactor
 		usr.update_inv_l_hand()

@@ -175,6 +175,18 @@
 	max_rounds = 100
 
 //-------------------------------------------------------
+//DP-27
+
+/obj/item/ammo_magazine/rifle/dpm
+	name = "\improper Degtyaryov drum AP magazine (7.62x39mm)"
+	desc = "A drum magazine for the Degtyaryov machine gun."
+	caliber = CALIBER_762X39
+	icon_state = "dp27"
+	default_ammo = /datum/ammo/bullet/rifle/ap
+	max_rounds = 47
+	icon_state_mini = "mag_rifle"
+
+//-------------------------------------------------------
 //M16 RIFLE
 
 /obj/item/ammo_magazine/rifle/m16
@@ -610,3 +622,18 @@
 	icon_state = "ml41_frag"
 	default_ammo = /datum/ammo/bullet/shotgun/frag
 	max_rounds = 12
+
+//-------------------------------------------------------
+//L-88 Assault Carbine
+/obj/item/ammo_magazine/rifle/icc_assaultcarbine
+	name = "\improper L-88 assault carbine magazine (5.56x45mm)"
+	desc = "A magazine filled with 5.56x45mm rifle rounds for the L-88 series of firearms."
+	caliber = CALIBER_556X45
+	icon_state = "aug"
+	icon_state_mini = "mag_rifle"
+	default_ammo = /datum/ammo/bullet/rifle
+	max_rounds = 30
+
+/obj/item/ammo_magazine/rifle/icc_assaultcarbine/export
+	name = "\improper EM-88 assault carbine magazine (5.56x45mm)"
+	desc = "A magazine filled with 5.56x45mm rifle rounds for the EM-88 series of firearms."

@@ -367,3 +367,9 @@
 	icon_state = "eye_open"
 	pixel_x = 16
 	pixel_y = 16
+
+/obj/effect/overlay/dread
+	layer = ABOVE_MOB_LAYER
+	icon_state = "spooky"
+	pixel_x = 16
+	pixel_y = 16

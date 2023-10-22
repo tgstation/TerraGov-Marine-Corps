@@ -104,3 +104,12 @@
 		return
 	var/mob/living/carbon/human/H = new_mob
 	H.fully_replace_character_name(H.real_name, H.species.random_name(H.gender))
+
+//respawn button for campaign gamemode
+/datum/action/observer_action/campaign_respawn
+	name = "Respawn"
+	action_icon_state = "respawn"
+
+/datum/action/observer_action/campaign_respawn/action_activate()
+	var/datum/game_mode/mode = SSticker.mode
+	mode.player_respawn(owner)

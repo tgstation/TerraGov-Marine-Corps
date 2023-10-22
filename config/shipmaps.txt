@@ -26,8 +26,11 @@ endmap
 map sulaco
 endmap
 
-map minerva
+map arachne
 endmap
 
 map combat_patrol_base
+endmap
+
+map iteron
 endmap

@@ -49,6 +49,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	var/ghost_squadhud = FALSE
 	var/ghost_xenohud = FALSE
 	var/ghost_orderhud = FALSE
+	///If you can see things only ghosts see, like other ghosts
 	var/ghost_vision = TRUE
 	var/ghost_orbit = GHOST_ORBIT_CIRCLE
 	///Position in the larva queue
@@ -236,6 +237,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 /mob/proc/ghostize(can_reenter_corpse = TRUE, aghosting = FALSE)
 	if(!key || isaghost(src))
 		return FALSE
+	SEND_SIGNAL(SSdcs, COMSIG_MOB_GHOSTIZE, src, can_reenter_corpse)
 	var/mob/dead/observer/ghost = new(src)
 	var/turf/T = get_turf(src)
 
@@ -296,7 +298,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	if(!. || can_reenter_corpse || aghosting)
 		return
 	var/mob/ghost = .
-	if(tier != XENO_TIER_MINION)
+	if(tier != XENO_TIER_MINION && hivenumber == XENO_HIVE_NORMAL)
 		GLOB.key_to_time_of_xeno_death[ghost.key] = world.time //If you ghost as a xeno that is not a minion, sets respawn timer
 
 
@@ -964,3 +966,10 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	if(!..())
 		return FALSE
 	visible_message(span_deadsay("[span_name("[src]")] points at [pointed_atom]."))
+
+/mob/dead/observer/CtrlShiftClickOn(mob/target_ghost)
+	if(ghost_vision && check_rights(R_SPAWN))
+		if(src == target_ghost)
+			client.holder.spatial_agent()
+		else
+			target_ghost.change_mob_type(/mob/living/carbon/human , null, null, TRUE) //always delmob, ghosts shouldn't be left lingering

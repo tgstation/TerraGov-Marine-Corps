@@ -135,13 +135,4 @@
 		to_chat(user, span_notice("You fasten the glass shard to the top of the rod with the cable."))
 		qdel(I)
 		qdel(src)
-
-	else if(iswirecutter(I))
-		var/obj/item/weapon/baton/cattleprod/P = new
-
-		user.put_in_hands(P)
-		to_chat(user, span_notice("You fasten the wirecutters to the top of the rod with the cable, prongs outward."))
-		qdel(I)
-		qdel(src)
-
-	update_icon(user)
+		update_icon(user)

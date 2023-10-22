@@ -350,7 +350,7 @@
 			if(!W.use_tool(src, user, 40, volume = 50, extra_checks = CALLBACK(src, PROC_REF(weld_checks))))
 				return
 
-			repair_damage(max_integrity)
+			repair_damage(max_integrity, user)
 			DISABLE_BITFIELD(machine_stat, BROKEN)
 			user.visible_message(span_notice("[user.name] has repaired [src]."), \
 								span_notice("You finish repairing the airlock."))

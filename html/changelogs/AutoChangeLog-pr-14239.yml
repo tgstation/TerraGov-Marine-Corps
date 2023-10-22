@@ -1,0 +1,4 @@
+author: "vvvv-vvvv"
+delete-after: True
+changes:
+  - bugfix: "Fixed prefs bluescreening when invalid gear is saved"

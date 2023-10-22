@@ -1,5 +1,5 @@
 import { useBackend, useLocalState } from '../../backend';
-import { Button, Section, TextArea, Box, Grid } from '../../components';
+import { Button, Section, TextArea, Box, Stack } from '../../components';
 
 export const BackgroundInformation = (props, context) => {
   const { act, data } = useBackend<BackgroundInformationData>(context);
@@ -62,8 +62,8 @@ export const BackgroundInformation = (props, context) => {
         />
       </Section>
 
-      <Grid>
-        <Grid.Column>
+      <Stack>
+        <Stack.Item grow>
           <Section
             title="Medical Records"
             buttons={
@@ -86,8 +86,8 @@ export const BackgroundInformation = (props, context) => {
               onChange={(e, value) => setMedicalDesc(value)}
             />
           </Section>
-        </Grid.Column>
-        <Grid.Column>
+        </Stack.Item>
+        <Stack.Item grow>
           <Section
             title="Employment Records"
             buttons={
@@ -112,10 +112,10 @@ export const BackgroundInformation = (props, context) => {
               onChange={(e, value) => setEmploymentDesc(value)}
             />
           </Section>
-        </Grid.Column>
-      </Grid>
-      <Grid>
-        <Grid.Column>
+        </Stack.Item>
+      </Stack>
+      <Stack>
+        <Stack.Item grow>
           <Section
             title="Security Records"
             buttons={
@@ -140,8 +140,8 @@ export const BackgroundInformation = (props, context) => {
               onChange={(e, value) => setSecurityDesc(value)}
             />
           </Section>
-        </Grid.Column>
-        <Grid.Column>
+        </Stack.Item>
+        <Stack.Item grow>
           <Section
             title="Exploit Records"
             buttons={
@@ -166,8 +166,8 @@ export const BackgroundInformation = (props, context) => {
               onChange={(e, value) => setExploitsDesc(value)}
             />
           </Section>
-        </Grid.Column>
-      </Grid>
+        </Stack.Item>
+      </Stack>
     </Section>
   );
 };

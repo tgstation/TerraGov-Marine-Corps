@@ -312,6 +312,18 @@ WEAPONS
 	)
 	cost = 20
 
+
+/datum/supply_packs/weapons/heayvlaser_emplacement
+	name = "Mounted Heavy Laser"
+	contains = list(/obj/item/weapon/gun/heavy_laser)
+	cost = 800
+
+
+/datum/supply_packs/weapons/heayvlaser_ammo
+	name = "Mounted Heavy Laser Ammo (x1)"
+	contains = list(/obj/item/ammo_magazine/heavy_laser)
+	cost = 15
+
 /datum/supply_packs/weapons/tesla
 	name = "Tesla Shock Rifle"
 	contains = list(/obj/item/weapon/gun/energy/lasgun/lasrifle/tesla)
@@ -404,6 +416,11 @@ WEAPONS
 	name = "PB-12 pepperball gun"
 	contains = list(/obj/item/weapon/gun/rifle/pepperball)
 	cost = 100
+
+/datum/supply_packs/weapons/bricks
+	name = "Brick"
+	contains = list(/obj/item/weapon/brick)
+	cost = 10
 
 /datum/supply_packs/weapons/railgun
 	name = "SR-220 Railgun"
@@ -996,7 +1013,7 @@ ARMOR
 	available_against_xeno_only = TRUE
 
 /datum/supply_packs/armor/modular/attachments/mixed
-	name = "Jaeger experimental mark 2 modules"
+	name = "Experimental mark 2 modules"
 	contains = list(
 		/obj/item/armor_module/module/valkyrie_autodoc,
 		/obj/item/armor_module/module/fire_proof,
@@ -1011,14 +1028,14 @@ ARMOR
 	cost = 400
 
 /datum/supply_packs/armor/modular/attachments/valkyrie_autodoc
-	name = "Jaeger Valkyrie autodoc module"
+	name = "Valkyrie autodoc armor module"
 	contains = list(
 		/obj/item/armor_module/module/valkyrie_autodoc,
 	)
 	cost = 120
 
 /datum/supply_packs/armor/modular/attachments/fire_proof
-	name = "Jaeger Surt fireproof module"
+	name = "Surt fireproof module set"
 	contains = list(
 		/obj/item/armor_module/module/fire_proof,
 		/obj/item/armor_module/module/fire_proof_helmet,
@@ -1026,14 +1043,14 @@ ARMOR
 	cost = 120
 
 /datum/supply_packs/armor/modular/attachments/tyr_extra_armor
-	name = "Jaeger Tyr mark 2 module"
+	name = "Tyr mark 2 armor module"
 	contains = list(
 		/obj/item/armor_module/module/tyr_extra_armor,
 	)
 	cost = 120
 
 /datum/supply_packs/armor/modular/attachments/mimir_environment_protection
-	name = "Jaeger Mimir Mark 2 module set"
+	name = "Mimir Mark 2 module set"
 	contains = list(
 		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet,
 		/obj/item/armor_module/module/mimir_environment_protection,
@@ -1041,7 +1058,7 @@ ARMOR
 	cost = 150
 
 /datum/supply_packs/armor/modular/attachments/hlin_bombimmune
-	name = "Jaeger Hlin module"
+	name = "Hlin armor module"
 	contains = list(/obj/item/armor_module/module/hlin_explosive_armor)
 	cost = 120
 
@@ -1734,6 +1751,16 @@ Imports
 /datum/supply_packs/imports/famas/ammo
 	name = "FAMAS Assault Rifle Ammo"
 	contains = list(/obj/item/ammo_magazine/rifle/famas)
+	cost = 5
+
+/datum/supply_packs/imports/aug	//Vietnam time
+	name = "L&S EM-88 Assault Carbine"
+	contains = list(/obj/item/weapon/gun/rifle/icc_assaultcarbine/export)
+	cost = 120
+
+/datum/supply_packs/imports/aug/ammo
+	name = "EM-88 Assault Carbine Ammo"
+	contains = list(/obj/item/ammo_magazine/rifle/icc_assaultcarbine/export)
 	cost = 5
 
 /datum/supply_packs/imports/rev357

@@ -137,7 +137,7 @@
 		if(!metal_sheets.use(1))
 			return
 
-		repair_damage(max_integrity * 0.30)
+		repair_damage(max_integrity * 0.30, user)
 		visible_message(span_notice("[user] repairs \the [src]."))
 		update_icon()
 		return

@@ -177,7 +177,7 @@
 /obj/item/wrapping_paper
 	name = "wrapping paper"
 	desc = "You can use this to wrap items in."
-	icon = 'icons/obj/items/items.dmi'
+	icon = 'icons/obj/stack_objects.dmi'
 	icon_state = "wrap_paper"
 	var/amount = 20
 

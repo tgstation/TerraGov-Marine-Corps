@@ -1,36 +1,45 @@
 import { useBackend } from '../backend';
-import { Box, Button, LabeledList, ProgressBar, NoticeBox, Section } from '../components';
+import { Button, ProgressBar, NoticeBox, Stack } from '../components';
 import { KEY_DOWN, KEY_ENTER, KEY_LEFT, KEY_RIGHT, KEY_SPACE, KEY_UP, KEY_W, KEY_D, KEY_S, KEY_A, KEY_1, KEY_2, KEY_3, KEY_4, KEY_5, KEY_6 } from '../../common/keycodes';
 import { Window } from '../layouts';
 
+// _DEFINES/cas.dm
+const PLANE_STATE_ACTIVATED = 0;
+const PLANE_STATE_DEACTIVATED = 1;
+const PLANE_STATE_PREPARED = 2;
+const PLANE_STATE_FLYING = 3;
+
+const PLANE_IN_HANGAR = 0;
+const PLANE_IN_SPACE = 1;
+
 type CasData = {
   plane_state: number;
+  location_state: number;
   plane_mode: string;
   fuel_left: number;
   fuel_max: number;
-  ship_status: string;
   attackdir: string;
   all_weapons: CasWeapon[];
   active_lasers: number;
   active_weapon_tag: number;
-  active_weapon_name: string | null;
-  active_weapon_ammo: number | null;
-  active_weapon_max_ammo: number | null;
-  active_weapon_ammo_name: string | null;
 };
 
 type CasWeapon = {
   name: string;
-  ammo: number;
+  ammo?: number;
+  max_ammo?: number;
+  ammo_name?: string;
   eqp_tag: number;
 };
 
 export const MarineCasship = (props, context) => {
   const { act, data } = useBackend<CasData>(context);
   return (
-    <Window width={600} height={500} theme="ntos">
+    <Window
+      width={590}
+      height={data.plane_state === PLANE_STATE_ACTIVATED ? 170 : 285}
+      theme="ntos">
       <Window.Content
-        scrollable
         onKeyDown={(event) => {
           const keyCode = window.event ? event.which : event.keyCode;
           if (keyCode === KEY_ENTER) {
@@ -57,7 +66,7 @@ export const MarineCasship = (props, context) => {
           if (keyCode === KEY_6) {
             act('deselect');
           }
-          if (data.plane_state !== 0) {
+          if (data.plane_state !== PLANE_STATE_ACTIVATED) {
             let newdir = 0;
             switch (keyCode) {
               case KEY_UP:
@@ -94,7 +103,11 @@ export const MarineCasship = (props, context) => {
             act('cycle_attackdir', { newdir: newdir });
           }
         }}>
-        {data.plane_state === 0 ? <EnginesOff /> : <NormalOperation />}
+        {data.plane_state === PLANE_STATE_ACTIVATED ? (
+          <EnginesOff />
+        ) : (
+          <NormalOperation />
+        )}
       </Window.Content>
     </Window>
   );
@@ -102,23 +115,42 @@ export const MarineCasship = (props, context) => {
 
 const EnginesOff = (props, context) => {
   const { act, data } = useBackend<CasData>(context);
-  const { ship_status, fuel_left, fuel_max } = data;
+  const { fuel_left, fuel_max } = data;
   return (
-    <>
-      <Section title="Ship Status">{ship_status}</Section>
-      <Section title="Engine Control">
-        <Box width="100%" textAlign="center">
-          <Button
-            content="Spool Engines"
-            onClick={() => act('toggle_engines')}
-            disabled={fuel_left <= 0}
-          />
-        </Box>
-        <Box content="Fuel capacity:" width="100%" textAlign="center">
-          <NoticeBox>Fuel level {(fuel_left / fuel_max) * 100}%</NoticeBox>
-        </Box>
-      </Section>
-    </>
+    <Stack fill>
+      <Stack.Item grow>
+        <Button
+          fluid
+          textAlign="center"
+          fontSize="30px"
+          content="Spool Engines"
+          onClick={() => act('toggle_engines')}
+          disabled={fuel_left <= 0}
+        />
+        <NoticeBox textAlign="center" fontSize="20px">
+          Fuel level
+        </NoticeBox>
+        <ProgressBar
+          value={fuel_left / fuel_max}
+          ranges={{
+            good: [0.67, Infinity],
+            average: [0.33, 0.67],
+            bad: [-Infinity, 0.33],
+          }}
+        />
+      </Stack.Item>
+      <Stack.Item>
+        <Button
+          textAlign="center"
+          fontSize="20px"
+          height="100%"
+          content="Eject"
+          color="red"
+          onClick={() => act('eject')}
+          disabled={fuel_left <= 0}
+        />
+      </Stack.Item>
+    </Stack>
   );
 };
 
@@ -126,114 +158,161 @@ const NormalOperation = (props, context) => {
   const { act, data } = useBackend<CasData>(context);
   const {
     plane_state,
+    location_state,
     plane_mode,
-    ship_status,
     attackdir,
     active_lasers,
     fuel_left,
     fuel_max,
     all_weapons,
-    active_weapon_name,
-    active_weapon_ammo,
-    active_weapon_max_ammo,
-    active_weapon_ammo_name,
     active_weapon_tag,
   } = data;
   return (
-    <>
-      <Section title="Ship Status">
-        <NoticeBox>{ship_status}</NoticeBox>
-        <NoticeBox>{active_lasers} Active Lasers Detected</NoticeBox>
-        <NoticeBox>Fuel level</NoticeBox>
-        <ProgressBar
-          ranges={{
-            good: [0.5, Infinity],
-            average: [-Infinity, 0.25],
-          }}
-          value={fuel_left / fuel_max}
-        />
-      </Section>
-      <Section title="Weapons">
-        {all_weapons.length > 0 ? (
-          all_weapons.map((equipment) => (
-            <Box key={equipment.eqp_tag}>
+    <Stack vertical fill>
+      <Stack.Item>
+        <Stack>
+          <Stack.Item>
+            <Stack vertical>
+              <Stack.Item>
+                <Stack>
+                  <Stack.Item>
+                    <LaunchLandButton />
+                  </Stack.Item>
+                  <Stack.Item>
+                    <EngineFiremissionButton />
+                  </Stack.Item>
+                  <Stack.Item>
+                    <NoticeBox fontSize="17px">
+                      {active_lasers} Active lasers
+                    </NoticeBox>
+                  </Stack.Item>
+                </Stack>
+              </Stack.Item>
+              <Stack.Item>
+                <Stack fluid>
+                  <Stack.Item>
+                    <NoticeBox mt={0.2}>Fuel:</NoticeBox>
+                  </Stack.Item>
+                  <Stack.Item grow>
+                    <ProgressBar
+                      fontSize="16px"
+                      title="Fuel"
+                      ranges={{
+                        good: [0.5, Infinity],
+                        average: [-Infinity, 0.25],
+                      }}
+                      value={fuel_left / fuel_max}
+                    />
+                  </Stack.Item>
+                </Stack>
+              </Stack.Item>
+            </Stack>
+          </Stack.Item>
+          <Stack.Item>
+            <Button
+              fontSize="43px"
+              icon={getDirectionArrow(props, context)}
+              tooltip="Direction of strafe"
+              onClick={() => act('cycle_attackdir')}
+              disabled={
+                plane_state !== PLANE_STATE_FLYING ||
+                location_state !== PLANE_IN_SPACE
+              }
+            />
+          </Stack.Item>
+        </Stack>
+      </Stack.Item>
+      {all_weapons.map((equipment) => (
+        <Stack.Item key={equipment.eqp_tag}>
+          <Stack fill>
+            <Stack.Item>
               <Button
+                fontSize="16px"
+                width="280px"
+                tooltip={equipment.name}
                 onClick={() =>
                   act('change_weapon', { selection: equipment.eqp_tag })
                 }
-                disabled={equipment.eqp_tag === active_weapon_tag}>
-                {equipment.name}
+                color={equipment.eqp_tag === active_weapon_tag ? 'red' : null}>
+                {equipment.ammo_name ? equipment.ammo_name : equipment.name}
               </Button>
-            </Box>
-          ))
-        ) : (
-          <Box>No equipment installed.</Box>
-        )}
-      </Section>
-      {data.active_weapon_name ? (
-        <Section
-          title={'Weapon Selected: ' + active_weapon_name}
-          buttons={<Button onClick={() => act('deselect')}>Deselect</Button>}>
-          {active_weapon_ammo === null || active_weapon_max_ammo === null ? (
-            <Box color="bad">No ammo loaded</Box>
-          ) : (
-            <LabeledList>
-              <LabeledList.Item label="Ammo loaded">
-                {active_weapon_ammo_name}
-              </LabeledList.Item>
-              <LabeledList.Item label="Ammo count">
-                <ProgressBar
-                  ranges={{
-                    good: [0.5, Infinity],
-                    average: [0, 0.5],
-                    bad: [-Infinity, 0],
-                  }}
-                  value={active_weapon_ammo / active_weapon_max_ammo}
-                  content={active_weapon_ammo + ' / ' + active_weapon_max_ammo}
-                />
-              </LabeledList.Item>
-            </LabeledList>
-          )}
-        </Section>
-      ) : (
-        <Section title="No active equipment." />
-      )}
-      <Section title="Piloting control">
-        <Box width="100%" textAlign="center">
-          <Button
-            content="Launch plane"
-            onClick={() => act('launch')}
-            disabled={plane_state === 3 || plane_mode !== 'idle'}
-          />
-        </Box>
-        <Box width="100%" textAlign="center">
-          <Button
-            content="Land plane"
-            onClick={() => act('land')}
-            disabled={plane_state !== 3 || plane_mode !== 'idle'}
-          />
-        </Box>
-        <Box width="100%" textAlign="center">
-          <Button
-            content="Disable Engines"
-            onClick={() => act('toggle_engines')}
-            disabled={plane_state !== 2}
-          />
-        </Box>
-        <Box width="100%" textAlign="center">
-          <Button
-            content="Begin Firemission"
-            onClick={() => act('deploy')}
-            disabled={plane_state !== 3}
-          />
-        </Box>
-        <Box width="100%" textAlign="center">
-          <Button
-            content={'Strafe Direction: ' + attackdir}
-            onClick={() => act('cycle_attackdir')}
-          />
-        </Box>
-      </Section>
-    </>
+            </Stack.Item>
+            <Stack.Item grow>
+              <ProgressBar
+                fontSize="16px"
+                title={equipment.ammo_name}
+                ranges={{
+                  good: [0.5, Infinity],
+                  average: [-Infinity, 0.25],
+                }}
+                value={
+                  equipment.ammo && equipment.max_ammo
+                    ? equipment.ammo / equipment.max_ammo
+                    : 0
+                }
+              />
+            </Stack.Item>
+          </Stack>
+        </Stack.Item>
+      ))}
+    </Stack>
   );
+};
+
+const LaunchLandButton = (props, context) => {
+  const { act, data } = useBackend<CasData>(context);
+  const { plane_state, plane_mode } = data;
+  return plane_state === PLANE_STATE_FLYING ? (
+    <Button
+      content="Land plane"
+      fontSize="20px"
+      onClick={() => act('land')}
+      disabled={plane_mode !== 'idle'}
+    />
+  ) : (
+    <Button
+      content="Launch plane"
+      fontSize="20px"
+      onClick={() => act('launch')}
+      disabled={plane_mode !== 'idle'}
+    />
+  );
+};
+
+const EngineFiremissionButton = (props, context) => {
+  const { act, data } = useBackend<CasData>(context);
+  const { plane_state, location_state } = data;
+  return plane_state === PLANE_STATE_PREPARED ? (
+    <Button
+      fontSize="20px"
+      content="Disable Engines"
+      onClick={() => act('toggle_engines')}
+      disabled={plane_state !== PLANE_STATE_PREPARED}
+    />
+  ) : (
+    <Button
+      fontSize="20px"
+      content="Begin Firemission"
+      onClick={() => act('deploy')}
+      disabled={
+        plane_state !== PLANE_STATE_FLYING || location_state !== PLANE_IN_SPACE
+      }
+    />
+  );
+};
+
+const getDirectionArrow = (props, context) => {
+  const { act, data } = useBackend<CasData>(context);
+  switch (data.attackdir) {
+    case 'NORTH':
+      return 'arrow-up';
+    case 'SOUTH':
+      return 'arrow-down';
+    case 'EAST':
+      return 'arrow-right';
+    case 'WEST':
+      return 'arrow-left';
+    default:
+      return 'arrow-up';
+  }
 };
