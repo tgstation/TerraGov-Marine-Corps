@@ -142,7 +142,7 @@
 			cell.charge = start_charge * cell.maxcharge / 100.0 //Convert percentage to actual value
 			cell.update_icon()
 
-		
+
 		make_terminal()
 
 		update() //areas should be lit on startup
@@ -219,6 +219,7 @@
 	if(!update)
 		return
 
+	set_light()
 	overlays.Cut()
 
 	if(update & 1)
@@ -241,6 +242,15 @@
 			overlays += mutable_appearance(icon, "apco1-[operating ? lighting : 0]")
 			overlays += emissive_appearance(icon, "apco2-[operating ? environ : 0]")
 			overlays += mutable_appearance(icon, "apco2-[operating ? environ : 0]")
+
+			switch(charging)
+				if(APC_NOT_CHARGING)
+					set_light_color(LIGHT_COLOR_RED)
+				if(APC_CHARGING)
+					set_light_color(LIGHT_COLOR_BLUE)
+				if(APC_FULLY_CHARGED)
+					set_light_color(LIGHT_COLOR_GREEN)
+			set_light(1)
 
 /obj/machinery/power/apc/proc/check_updates()
 
