@@ -1,4 +1,0 @@
-author: "DeltaFire15"
-delete-after: True
-changes:
-  - bugfix: "Fixes some oversights in CAS code, some of which are ancient."

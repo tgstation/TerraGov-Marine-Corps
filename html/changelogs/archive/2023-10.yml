@@ -294,3 +294,30 @@
       drain issues
   - rscadd: emergency interior pod-locks that lead to cockpit for a bit more realism.
       bigbury only
+2023-10-23:
+  Alfalfa523:
+  - rscadd: Ability to attach the KTLD sight to sunglasses
+  - rscadd: KTLD sunglasses w/ new sprite
+  DeltaFire15:
+  - bugfix: Fixes some oversights in CAS code, some of which are ancient.
+  Helg2:
+  - bugfix: You can now gain metal from ship tables without transforming them. They
+      also won't transform upon construction now.
+  - bugfix: Table frames no longer will teleport to nowhere upon using wood/rods on
+      them.
+  Lumipharon:
+  - bugfix: Objects will no longer bounce at impossible angles when hitting solid
+      turfs or objects
+  RipGrayson:
+  - rscadd: Gnomes can sometimes have a spark of magic in them and move around when
+      not being watched.
+  Xander3359:
+  - rscadd: ghost runechat
+  Xander3359 efzapa:
+  - rscadd: Adds a protein-bar belt + pouch option.
+  vvvv-vvvv:
+  - bugfix: Fixed prefs bluescreening when invalid gear is saved
+  - bugfix: Fix boiler being able to ventcrawl
+  - bugfix: Fix x8 DRPG crate containing only one DRPG
+  yyzsong:
+  - rscadd: SLs may buy megaphones from their vendor
