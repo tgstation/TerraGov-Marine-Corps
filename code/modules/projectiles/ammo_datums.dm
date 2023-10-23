@@ -3578,7 +3578,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	drop_resin(T.density ? P.loc : T)
 
 /datum/ammo/xeno/sticky/proc/drop_resin(turf/T)
-	if(T.density)
+	if(T.density || istype(T, /turf/open/space)) // No structures in space
 		return
 
 	for(var/obj/O in T.contents)
