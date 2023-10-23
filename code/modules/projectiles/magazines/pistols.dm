@@ -263,3 +263,12 @@
 	max_rounds = 30
 	w_class = WEIGHT_CLASS_SMALL
 	default_ammo = /datum/ammo/bullet/pistol/ap
+
+//-------------------------------------------------------
+// knife
+/obj/item/ammo_magazine/pistol/knife
+	name = "\improper ballistic knife head (Blade)"
+	default_ammo = /datum/ammo/bullet/pistol
+	caliber = CALIBER_ALIEN
+	icon_state = "knife"
+	max_rounds = 1
