@@ -193,7 +193,7 @@
 		var/mob/M = loc
 		M.update_inv_head()
 
-/obj/item/clothing/head/helmet/marine/apply_custom(mutable_appearance/standing, inhands)
+/obj/item/clothing/head/helmet/marine/apply_custom(mutable_appearance/standing, inhands, icon_used, state_used)
 	if(inhands)
 		return
 	. = ..()

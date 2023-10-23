@@ -62,7 +62,7 @@
 		armor_overlays["lamp"] = null
 	user?.update_inv_wear_suit()
 
-/obj/item/clothing/suit/storage/marine/apply_custom(mutable_appearance/standing, inhands)
+/obj/item/clothing/suit/storage/marine/apply_custom(mutable_appearance/standing, inhands, icon_used, state_used)
 	if(inhands)
 		return
 	. = ..()

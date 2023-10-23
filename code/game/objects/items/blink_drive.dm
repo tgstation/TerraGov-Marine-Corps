@@ -63,10 +63,10 @@
 		RegisterSignal(user, COMSIG_ITEM_EXCLUSIVE_TOGGLE, PROC_REF(unselect))
 	selected = !selected
 
-/obj/item/blink_drive/apply_custom(mutable_appearance/standing, inhands, icon_used)
-	var/mutable_appearance/emissive_overlay = emissive_appearance(icon_used, "[icon_state]_emissive")
+/obj/item/blink_drive/apply_custom(mutable_appearance/standing, inhands, icon_used, state_used)
+	. = ..()
+	var/mutable_appearance/emissive_overlay = emissive_appearance(icon_used, "[state_used]_emissive")
 	standing.overlays.Add(emissive_overlay)
-	return ..()
 
 ///Signal handler for making it impossible to use middleclick to use the blink drive
 /obj/item/blink_drive/proc/unselect(datum/source, mob/user)

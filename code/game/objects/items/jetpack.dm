@@ -146,7 +146,7 @@
 		else
 			. += image('icons/obj/items/jetpack.dmi', src, "+jetpackempty")
 
-/obj/item/jetpack_marine/apply_custom(mutable_appearance/standing, inhands)
+/obj/item/jetpack_marine/apply_custom(mutable_appearance/standing, inhands, icon_used, state_used)
 	if(inhands)
 		return
 	. = ..()

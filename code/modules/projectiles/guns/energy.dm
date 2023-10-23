@@ -1082,10 +1082,10 @@
 	mode_list = list()
 	var/overlay_to_apply
 
-/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/apply_custom(mutable_appearance/standing, inhands, icon_used)
+/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/apply_custom(mutable_appearance/standing, inhands, icon_used, state_used)
+	. = ..()
 	var/mutable_appearance/emissive_overlay = emissive_appearance(icon_used, "[item_state]_emissive")
 	standing.overlays.Add(emissive_overlay)
-	return ..()
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/serpenta
 	name = "\improper VX-12 Serpenta"
