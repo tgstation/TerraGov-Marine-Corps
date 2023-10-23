@@ -3595,7 +3595,8 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	icon_state = "sticky_globe"
 	damage = 40
 	max_range = 7
-	added_spit_delay = 5 SECONDS
+	spit_cost = 200
+	added_spit_delay = 8 SECONDS
 	bonus_projectiles_type = /datum/ammo/xeno/sticky/mini
 	bonus_projectiles_scatter = 22
 	var/bonus_projectile_quantity = 16
