@@ -1313,6 +1313,7 @@
 			/obj/item/clothing/mask/surgical = -1,
 			/obj/item/clothing/gloves/latex = -1,
 			/obj/item/clothing/shoes/white = -1,
+			/obj/item/clothing/under/marine/officer/researcher = -1,
 		),
 		"Eyewear" = list(
 			/obj/item/clothing/glasses/regular = -1,
