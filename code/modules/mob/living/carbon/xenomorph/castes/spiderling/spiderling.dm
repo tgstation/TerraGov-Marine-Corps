@@ -50,7 +50,7 @@
 
 ///If we're covering our widow, any clicks should be transferred to them
 /mob/living/carbon/xenomorph/spiderling/attack_alien(mob/living/carbon/xenomorph/X, damage_amount, damage_type, damage_flag, effects, armor_penetration, isrightclick)
-	if(!get_dist(src, spidermother) && if(isxeno(x)))
+	if(!get_dist(src, spidermother) && isxeno(x))
 		spidermother.attack_alien(X, damage_amount, damage_type, damage_flag, effects, armor_penetration, isrightclick)
 		return
 	return ..()
@@ -215,7 +215,6 @@
 	if(!length(possible_victims))
 		kill_parent()
 		return
-	x.emote("roar")
 	x.spiderling_state = SPIDERLING_ENRAGED
 	x.update_icons()
 	// Makes the spiderlings roar at slightly different times so they don't stack their roars
