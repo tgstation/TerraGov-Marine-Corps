@@ -1080,7 +1080,27 @@
 	damage_falloff_mult = 0.9
 	fire_delay = 0.2 SECONDS
 	mode_list = list()
+	var/overlay_to_apply
 
+/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/apply_custom(mutable_appearance/standing, inhands, icon_used)
+
+	//var/mutable_appearance/emissive_overlay = emissive_appearance(icon_used, "[item_state]_emissive")
+	var/mutable_appearance/emissive_overlay = emissive_appearance(icon_used, "[item_state]_emissive", FLOAT_LAYER, 255, EMISSIVE_APPEARANCE_FLAGS|KEEP_APART)
+	//emissive_overlay.appearance_flags = KEEP_APART
+	//var/mutable_appearance/test_overlay = mutable_appearance('icons/Xeno/actions.dmi', "borders_center", ACTION_LAYER_EMPOWERED, FLOAT_PLANE)
+	standing.overlays.Add(emissive_overlay)
+	//standing.overlays.Add(test_overlay)
+	//standing = emissive_overlay
+	return ..()
+/////////////////////////////////////////
+
+
+
+
+
+
+
+///////////////////////////////////////
 /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/serpenta
 	name = "\improper VX-12 Serpenta"
 	desc = "Volkite weapons are the pride of Martian weapons manufacturing, their construction being a tightly guarded secret. Infamous for its ability to deflagrate organic targets with its tremendous thermal energy, explosively burning flesh in a fiery blast that can be deadly to anyone unfortunate enough to be nearby. The 'serpenta' is pistol typically seen in the hands of SOM officers and some NCOs, and is quite dangerous for it's size."
