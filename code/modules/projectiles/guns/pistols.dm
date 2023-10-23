@@ -142,6 +142,10 @@
 	flags_gun_features &= ~GUN_WIELDED_STABLE_FIRING_ONLY|GUN_WIELDED_FIRING_ONLY
 	return ..()
 
+/obj/item/weapon/gun/pistol/plasma_pistol/apply_custom(mutable_appearance/standing, inhands, icon_used)
+	var/mutable_appearance/emissive_overlay = emissive_appearance(icon_used, "[item_state]_emissive")
+	standing.overlays.Add(emissive_overlay)
+	return ..()
 
 /obj/item/weapon/gun/pistol/plasma_pistol/guardsman_pistol
 	name = "\improper Guardsman\'s plasma pistol"

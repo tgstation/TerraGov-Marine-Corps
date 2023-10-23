@@ -306,7 +306,6 @@
 
 /obj/item/weapon/gun/flamer/som/apply_custom(mutable_appearance/standing, inhands, icon_used)
 	var/mutable_appearance/emissive_overlay = emissive_appearance(icon_used, "[item_state]_emissive")
-	//var/mutable_appearance/emissive_overlay = emissive_appearance(icon_used, "[item_state]_emissive", FLOAT_LAYER, 255, EMISSIVE_APPEARANCE_FLAGS|KEEP_APART)
 	standing.overlays.Add(emissive_overlay)
 	return ..()
 

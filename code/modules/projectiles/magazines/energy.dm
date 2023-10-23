@@ -124,6 +124,11 @@
 	charge_amount = 100
 	charge_delay = 2 SECONDS
 
+/obj/item/cell/lasgun/volkite/powerpack/apply_custom(mutable_appearance/standing, inhands, icon_used)
+	var/mutable_appearance/emissive_overlay = emissive_appearance(icon_used, "[icon_state]_emissive")
+	standing.overlays.Add(emissive_overlay)
+	return ..()
+
 ///Handles draining power from the powerpack, returns the value of the charge drained to MouseDrop where it's added to the cell.
 /obj/item/cell/lasgun/volkite/powerpack/proc/use_charge(mob/user, amount = 0, mention_charge = TRUE)
 	var/warning = ""
