@@ -44,10 +44,28 @@
 
 	allowed_uniform_type = /obj/item/clothing/under
 
+/obj/item/clothing/suit/modular/xenonauten/hodgrenades
+	starting_attachments = list(
+		/obj/item/armor_module/module/ballistic_armor,
+		/obj/item/armor_module/storage/grenade,
+	)
+
 /obj/item/clothing/suit/modular/xenonauten/engineer
 	starting_attachments = list(
 		/obj/item/armor_module/module/better_shoulder_lamp,
 		/obj/item/armor_module/storage/engineering,
+	)
+
+/obj/item/clothing/suit/modular/xenonauten/lightmedical
+	starting_attachments = list(
+		/obj/item/armor_module/module/better_shoulder_lamp,
+		/obj/item/armor_module/storage/medical,
+	)
+
+/obj/item/clothing/suit/modular/xenonauten/lightgeneral
+	starting_attachments = list(
+		/obj/item/armor_module/module/better_shoulder_lamp,
+		/obj/item/armor_module/storage/general,
 	)
 
 /obj/item/clothing/suit/modular/xenonauten/mimir
@@ -94,6 +112,12 @@
 		/obj/item/armor_module/storage/medical,
 	)
 
+/obj/item/clothing/suit/modular/xenonauten/heavy/tyrgeneral
+	starting_attachments = list(
+		/obj/item/armor_module/module/tyr_extra_armor,
+		/obj/item/armor_module/storage/general,
+	)
+
 /obj/item/clothing/suit/modular/xenonauten/heavy/tyr_one
 	starting_attachments = list(
 		/obj/item/armor_module/module/tyr_extra_armor/mark1,
@@ -104,6 +128,12 @@
 	starting_attachments = list(
 		/obj/item/armor_module/module/tyr_extra_armor,
 		/obj/item/armor_module/storage/medical,
+	)
+
+/obj/item/clothing/suit/modular/xenonauten/heavy/grenadier //Literally grenades
+	starting_attachments = list(
+		/obj/item/armor_module/module/ballistic_armor,
+		/obj/item/armor_module/storage/grenade,
 	)
 
 /obj/item/clothing/suit/modular/xenonauten/heavy/surt
@@ -178,6 +208,15 @@
 	greyscale_colors = ARMOR_PALETTE_DRAB
 
 	visorless_offset_y = 0
+
+/obj/item/clothing/head/modular/m10x/hod
+	starting_attachments = list(/obj/item/armor_module/storage/helmet, /obj/item/armor_module/module/hod_head)
+
+/obj/item/clothing/head/modular/m10x/freyr
+	starting_attachments = list(/obj/item/armor_module/storage/helmet, /obj/item/armor_module/module/artemis)
+
+/obj/item/clothing/head/modular/m10x/antenna
+	starting_attachments = list(/obj/item/armor_module/storage/helmet, /obj/item/armor_module/module/antenna)
 
 /obj/item/clothing/head/modular/m10x/welding
 	starting_attachments = list(/obj/item/armor_module/storage/helmet, /obj/item/armor_module/module/welding)

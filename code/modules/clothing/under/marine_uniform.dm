@@ -19,6 +19,12 @@
 		"No Top" = "_r",
 	)
 
+/obj/item/clothing/under/marine/holster
+	starting_attachments = list(/obj/item/armor_module/storage/uniform/holster)
+
+/obj/item/clothing/under/marine/corpman_vest
+	starting_attachments = list(/obj/item/armor_module/storage/uniform/white_vest)
+
 /obj/item/clothing/under/marine/hyperscale
 	name = "\improper 8E Chameleon TGMC uniform"
 	desc = "A standard-issue, kevlar-weaved, hazmat-tested, EMF-augmented marine uniform BUT colorable with a facepaint! You suspect it's not as robust-proof as advertised."

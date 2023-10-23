@@ -76,6 +76,14 @@ GLOBAL_LIST_INIT(quick_loadouts, init_quick_loadouts())
 		/datum/outfit/quick/som/squad_leader/charger,
 		/datum/outfit/quick/som/squad_leader/caliver,
 		/datum/outfit/quick/som/squad_leader/mpi,
+		/datum/outfit/quick/beginner/beginner/rifleman,
+		/datum/outfit/quick/beginner/beginner/machinegunner,
+		/datum/outfit/quick/beginner/beginner/marksman,
+		/datum/outfit/quick/beginner/beginner/shotgunner,
+		/datum/outfit/quick/beginner/beginner/shocktrooper,
+		/datum/outfit/quick/beginner/beginner/hazmat,
+		/datum/outfit/quick/beginner/beginner/cqc,
+		/datum/outfit/quick/beginner/beginner/chad,
 	)
 
 	for(var/X in loadout_list)
@@ -112,6 +120,11 @@ GLOBAL_LIST_INIT(quick_loadouts, init_quick_loadouts())
 		"SOM Squad Medic",
 		"SOM Squad Veteran",
 		"SOM Squad Leader",
+	)
+
+/obj/machinery/quick_vendor/beginner //Loadout vendor that shits out basic pre-made loadouts so new players can get something usable
+	categories = list(
+		"Squad Beginner",
 	)
 
 /obj/machinery/quick_vendor/can_interact(mob/user)
@@ -151,7 +164,8 @@ GLOBAL_LIST_INIT(quick_loadouts, init_quick_loadouts())
 	for(var/loadout_data in GLOB.quick_loadouts)
 		var/list/next_loadout_data = list() //makes a list item with the below lines, for each loadout entry in the list
 		var/datum/outfit/quick/current_loadout = GLOB.quick_loadouts[loadout_data]
-		next_loadout_data["job"] = current_loadout.jobtype
+		next_loadout_data["job"] = current_loadout.category
+		next_loadout_data["req"] = current_loadout.job_req
 		next_loadout_data["name"] = current_loadout.name
 		next_loadout_data["desc"] = current_loadout.desc
 		next_loadout_data["amount"] = current_loadout.quantity
@@ -183,7 +197,7 @@ GLOBAL_LIST_INIT(quick_loadouts, init_quick_loadouts())
 				to_chat(usr, span_warning("This loadout has been depleted, you'll need to pick another."))
 				return
 			var/obj/item/card/id/user_id = usr.get_idcard() //ui.user better?
-			if(selected_loadout.jobtype != user_id.rank)
+			if(selected_loadout.job_req != user_id.rank)
 				to_chat(usr, span_warning("You are not in the right job for this loadout!"))
 				return
 			if(user_id.can_buy_loadout)

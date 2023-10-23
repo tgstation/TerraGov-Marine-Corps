@@ -226,6 +226,10 @@
 
 /obj/item/weapon/gun/pistol/standard_heavypistol/tactical
 	starting_attachment_types = list(/obj/item/attachable/reddot)
+
+/obj/item/weapon/gun/pistol/standard_heavypistol/beginner
+	starting_attachment_types = list(/obj/item/attachable/lace, /obj/item/attachable/reddot)
+
 //-------------------------------------------------------
 //P-1911
 

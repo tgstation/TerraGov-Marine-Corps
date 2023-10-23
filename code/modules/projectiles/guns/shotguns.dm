@@ -112,6 +112,10 @@
 	wield_delay = 0.8 SECONDS
 	akimbo_additional_delay = 0.9
 
+/obj/item/weapon/gun/shotgun/combat/standardmarine/beginner
+	default_ammo_type = /datum/ammo/bullet/shotgun/slug
+	starting_attachment_types = list(/obj/item/attachable/heavy_barrel, /obj/item/attachable/verticalgrip, /obj/item/attachable/stock/t39stock)
+
 /obj/item/weapon/gun/shotgun/combat/masterkey
 	name = "masterkey shotgun"
 	desc = "A weapon-mounted, three-shot shotgun. Reloadable with any normal 12 gauge shell. The short barrel reduces the ammo's effectiveness drastically in exchange for fitting as a attachment.."
