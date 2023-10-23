@@ -304,6 +304,12 @@
 		/obj/item/ammo_magazine/flamer_tank/backtank/X,
 	)
 
+/obj/item/weapon/gun/flamer/som/apply_custom(mutable_appearance/standing, inhands, icon_used)
+	var/mutable_appearance/emissive_overlay = emissive_appearance(icon_used, "[item_state]_emissive")
+	//var/mutable_appearance/emissive_overlay = emissive_appearance(icon_used, "[item_state]_emissive", FLOAT_LAYER, 255, EMISSIVE_APPEARANCE_FLAGS|KEEP_APART)
+	standing.overlays.Add(emissive_overlay)
+	return ..()
+
 /obj/item/weapon/gun/flamer/som/mag_harness
 	starting_attachment_types = list(/obj/item/attachable/flamer_nozzle/wide, /obj/item/attachable/magnetic_harness)
 

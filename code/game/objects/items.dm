@@ -1215,7 +1215,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 	var/mutable_appearance/standing = mutable_appearance(iconfile2use, state2use, layer2use)
 
 	//Apply any special features
-	apply_custom(standing, inhands, default_icon) //image overrideable proc to customize the onmob icon.
+	apply_custom(standing, inhands, iconfile2use) //image overrideable proc to customize the onmob icon.
 	//Apply any special features
 	if(!inhands)
 		apply_blood(standing)			//Some items show blood when bloodied.
