@@ -27,3 +27,20 @@
 		return
 	if(. == CONSCIOUS && layer != initial(layer))
 		layer = MOB_LAYER
+
+/mob/living/carbon/xenomorph/runner/med_hud_set_status()
+	. = ..()
+	hud_set_evasion()
+
+/mob/living/carbon/xenomorph/runner/proc/hud_set_evasion(duration)
+	var/image/holder = hud_list[XENO_EVASION_HUD]
+	if(!holder)
+		return
+	holder.overlays.Cut()
+	holder.icon_state = "hudblank"
+	if(stat == DEAD || !duration)
+		return
+	holder.icon_state = "evasion_duration[duration]"
+	holder.pixel_x = 24
+	holder.pixel_y = 24
+	hud_list[XENO_EVASION_HUD] = holder

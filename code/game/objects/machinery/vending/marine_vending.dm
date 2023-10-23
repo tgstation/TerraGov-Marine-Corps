@@ -136,19 +136,11 @@
 		"Heavy Weapons" = list(
 			/obj/structure/closet/crate/mortar_ammo/mortar_kit = 1,
 			/obj/structure/closet/crate/mortar_ammo/howitzer_kit = 1,
-			/obj/structure/largecrate/supply/weapons/standard_atgun = 1,
 			/obj/item/storage/box/crate/sentry = 4,
 			/obj/item/storage/box/tl102 = 1,
 			/obj/item/weapon/gun/heavymachinegun = 1,
 			/obj/item/ammo_magazine/heavymachinegun = 5,
 			/obj/item/ammo_magazine/heavymachinegun/small = 10,
-			/obj/item/storage/holster/backholster/rpg/full = 2,
-			/obj/item/ammo_magazine/rocket/recoilless = 4,
-			/obj/item/ammo_magazine/rocket/recoilless/light = 4,
-			/obj/item/ammo_magazine/rocket/recoilless/heat = 16,
-			/obj/item/ammo_magazine/rocket/recoilless/cloak = 16,
-			/obj/item/ammo_magazine/rocket/recoilless/smoke = 16,
-			/obj/item/ammo_magazine/rocket/recoilless/plasmaloss = 16,
 		),
 		"Attachments" = list(
 			/obj/item/attachable/bayonet = -1,
@@ -229,6 +221,7 @@
 
 	seasonal_items = list(
 		SEASONAL_GUNS = "Seasonal",
+		SEASONAL_HEAVY = "Operational Weapons",
 	)
 
 /obj/machinery/vending/weapon/crash
@@ -1204,6 +1197,7 @@
 			/obj/item/weapon/twohanded/glaive/harvester = -1,
 			/obj/item/storage/belt/utility/full =-1,
 			/obj/item/storage/belt/medical_small = -1,
+			/obj/item/storage/belt/protein_pack = -1,
 		),
 		"Pouches" = list(
 			/obj/item/storage/pouch/pistol = -1,
@@ -1216,6 +1210,7 @@
 			/obj/item/storage/pouch/medkit = -1,
 			/obj/item/storage/pouch/medical_injectors = -1,
 			/obj/item/storage/pouch/med_lolipops = -1,
+			/obj/item/storage/pouch/berrypouch = -1,
 			/obj/item/storage/pouch/construction = -1,
 			/obj/item/storage/pouch/electronics = -1,
 			/obj/item/storage/pouch/tools/full = -1,
@@ -1223,6 +1218,7 @@
 			/obj/item/storage/pouch/general/large = -1,
 			/obj/item/cell/lasgun/volkite/powerpack/marine = -1,
 			/obj/item/storage/pouch/general/medium = -1,
+			/obj/item/storage/pouch/protein_pack = -1,
 		),
 		"Headwear" = list(
 			/obj/item/clothing/head/modular/style/beret = -1,

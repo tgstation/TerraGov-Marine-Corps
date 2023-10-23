@@ -563,9 +563,9 @@
 	else if(istype(value, /datum))
 		var/datum/D = value
 		if("[D]" != "[D.type]") //if the thing as a name var, lets use it.
-			item = "<a href='?_src_=vars;[HrefToken()];Vars=[REF(value)]'>[VV_HTML_ENCODE(name)] [REF(value)]</a> = [D] [D.type]"
+			item = "<a href='?_src_=vars;[HrefToken()];vars=[REF(value)]'>[VV_HTML_ENCODE(name)] [REF(value)]</a> = [D] [D.type]"
 		else
-			item = "<a href='?_src_=vars;[HrefToken()];Vars=[REF(value)]'>[VV_HTML_ENCODE(name)] [REF(value)]</a> = [D.type]"
+			item = "<a href='?_src_=vars;[HrefToken()];vars=[REF(value)]'>[VV_HTML_ENCODE(name)] [REF(value)]</a> = [D.type]"
 
 	else if(islist(value))
 		var/list/L = value
@@ -585,9 +585,9 @@
 
 				items += debug_variable(key, val, level + 1, sanitize = sanitize)
 
-			item = "<a href='?_src_=vars;[HrefToken()];Vars=[REF(value)]'>[VV_HTML_ENCODE(name)] = /list ([length(L)])</a><ul>[items.Join()]</ul>"
+			item = "<a href='?_src_=vars;[HrefToken()];vars=[REF(value)]'>[VV_HTML_ENCODE(name)] = /list ([length(L)])</a><ul>[items.Join()]</ul>"
 		else
-			item = "<a href='?_src_=vars;[HrefToken()];Vars=[REF(value)]'>[VV_HTML_ENCODE(name)] = /list ([length(L)])</a>"
+			item = "<a href='?_src_=vars;[HrefToken()];vars=[REF(value)]'>[VV_HTML_ENCODE(name)] = /list ([length(L)])</a>"
 
 	else if(name in GLOB.bitfields)
 		var/list/flags = list()
@@ -608,8 +608,8 @@
 		return
 
 
-	if(href_list["Vars"])
-		debug_variables(locate(href_list["Vars"]))
+	if(href_list["vars"])
+		debug_variables(locate(href_list["vars"]))
 
 
 	else if(href_list["datumrefresh"])

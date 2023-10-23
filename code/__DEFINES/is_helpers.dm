@@ -166,6 +166,8 @@
 
 #define issuit(A) (istype(A, /obj/item/clothing/suit))
 
+#define isfood(A) (istype(A, /obj/item/reagent_containers/food))
+
 #define isgun(A) (istype(A, /obj/item/weapon/gun))
 
 #define isammomagazine(A) (istype(A, /obj/item/ammo_magazine))
@@ -189,6 +191,10 @@
 #define ishat(A) (istype(A, /obj/item/clothing/head))
 
 #define ismodularhelmet(A) (istype(A, /obj/item/clothing/head/modular))
+
+#define isatmosscrubber(A) (istype(A, /obj/machinery/atmospherics/components/unary/vent_scrubber))
+
+#define isatmosvent(A) (istype(A, /obj/machinery/atmospherics/components/unary/vent_pump))
 
 #define isattachmentflashlight(A) (istype(A, /obj/item/attachable/flashlight))
 
@@ -220,6 +226,8 @@
 
 #define iscable(A) (istype(A, /obj/structure/cable))
 
+#define isladder(A) (istype(A, /obj/structure/ladder))
+
 #define ismachinery(A) (istype(A, /obj/machinery))
 
 #define ispowermachinery(A) (istype(A, /obj/machinery/power))
@@ -235,6 +243,8 @@
 #define isorgan(A) (istype(A, /datum/limb))
 
 #define isidcard(A) (istype(A, /obj/item/card/id))
+
+#define isinjector(A) (istype(A, /obj/item/reagent_containers/hypospray/autoinjector))
 
 #define isuav(A) (istype(A, /obj/vehicle/unmanned))
 

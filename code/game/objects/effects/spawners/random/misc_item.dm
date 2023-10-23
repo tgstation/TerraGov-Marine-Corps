@@ -146,7 +146,8 @@
 	icon_state = "random_gnome"
 	spawn_loot_chance = 15
 	loot = list(
-		/obj/item/toy/plush/gnome,
+		/obj/item/toy/plush/gnome = 25,
+		/obj/item/toy/plush/gnome/living = 1,
 	)
 
 /obj/effect/spawner/random/misc/gnome/fiftyfifty
@@ -260,6 +261,7 @@
 		/obj/item/trash/chunk,
 		/obj/item/trash/barcardine,
 		/obj/item/trash/mre,
+		/obj/item/trash/berrybar,
 	)
 
 /obj/effect/spawner/random/misc/greytide

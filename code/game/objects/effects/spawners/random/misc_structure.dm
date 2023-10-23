@@ -235,7 +235,7 @@
 	spawn_loot_chance = 95
 	loot = list(
 		/obj/item/frame/table = 15,
-		/obj/item/frame/table/nometal = 10,
+		/obj/item/frame/table/mainship/nometal = 10,
 		/obj/item/frame/table/reinforced = 10,
 		/obj/item/frame/table/wood = 5,
 		/obj/item/frame/table/fancywood = 5,

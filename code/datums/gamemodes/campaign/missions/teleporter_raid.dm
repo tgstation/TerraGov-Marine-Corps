@@ -53,11 +53,11 @@
 /datum/campaign_mission/destroy_mission/teleporter_raid/apply_major_victory()
 	. = ..()
 	var/datum/faction_stats/som_team = mode.stat_list[hostile_faction]
-	som_team.add_reward(/datum/campaign_reward/teleporter_disabled)
-	som_team.add_reward(/datum/campaign_reward/attrition_modifier/malus_teleporter)
+	som_team.add_asset(/datum/campaign_asset/teleporter_disabled)
+	som_team.add_asset(/datum/campaign_asset/attrition_modifier/malus_teleporter)
 
 /datum/campaign_mission/destroy_mission/teleporter_raid/apply_major_loss()
 	. = ..()
 	var/datum/faction_stats/som_team = mode.stat_list[hostile_faction]
-	som_team.add_reward(/datum/campaign_reward/teleporter_enabled)
-	som_team.add_reward(/datum/campaign_reward/teleporter_charges)
+	som_team.add_asset(/datum/campaign_asset/teleporter_enabled)
+	som_team.add_asset(/datum/campaign_asset/teleporter_charges)

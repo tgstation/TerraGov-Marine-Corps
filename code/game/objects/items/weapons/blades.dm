@@ -118,14 +118,13 @@
 
 //FC's sword.
 
-/obj/item/weapon/claymore/mercsword/officersword
+/obj/item/weapon/claymore/mercsword/machete/officersword
 	name = "\improper Officers sword"
 	desc = "This appears to be a rather old blade that has been well taken care of, it is probably a family heirloom. Oddly despite its probable non-combat purpose it is sharpened and not blunt."
 	icon_state = "officer_sword"
 	item_state = "officer_sword"
-	force = 75
-	attack_speed = 12
-	w_class = WEIGHT_CLASS_BULKY
+	attack_speed = 11
+	penetration = 15
 
 /obj/item/weapon/claymore/mercsword/commissar_sword
 	name = "\improper commissars sword"
@@ -239,6 +238,47 @@
 							span_danger("[user] is slitting [user.p_their()] throat with the [name]! It looks like [user.p_theyre()] trying to commit suicide."), \
 							span_danger("[user] is slitting [user.p_their()] stomach open with the [name]! It looks like [user.p_theyre()] trying to commit seppuku.")))
 	return (BRUTELOSS)
+
+/obj/item/weapon/brick
+	name = "\improper Brick"
+	desc = "It's a brick. By rubbing 2 bricks together, you can get some stones."
+	icon_state = "brick"
+	force = 50
+	throwforce = 50
+	attack_verb = list("smacked", "whacked", "bonked", "bricked", "thwacked", "socked")
+	hitsound = 'sound/weapons/heavyhit.ogg'
+
+/obj/item/weapon/brick/attackby(obj/item/I, mob/user, params)
+	. = ..()
+	if(istype(I, /obj/item/weapon/brick))
+		turn_to_stone(I, user)
+
+/obj/item/weapon/brick/proc/turn_to_stone(obj/item/itemturningtostone, mob/user)
+	user.balloon_alert(user, "Making stones...")
+	if(do_after(user, 5 SECONDS))
+		var/obj/new_stone = new /obj/item/stack/throwing_knife/stone(get_turf(src))
+		qdel(src)
+		user.put_in_hands(new_stone)
+		return
+	return user.balloon_alert(user, "Cancelled")
+
+/obj/item/stack/throwing_knife/stone
+	name = "\improper Stone"
+	desc = "Capable of doing minor amounts of damage, these stones will annoy the hell out of the recipient."
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/weapons/melee_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/weapons/melee_right.dmi',
+	)
+	icon_state = "stone"
+	force = 15
+	throwforce = 15
+	max_amount = 12
+	amount = 12
+	throw_delay = 0.3 SECONDS
+	hitsound = 'sound/weapons/heavyhit.ogg'
+	singular_name = "stone"
+	flags_atom = DIRLOCK
+	sharp = IS_NOT_SHARP_ITEM
 
 /obj/item/weapon/combat_knife/harvester
 	name = "\improper HP-S Harvester knife"
@@ -360,6 +400,9 @@
 /obj/item/stack/throwing_knife/update_icon()
 	. = ..()
 	var/amount_to_show = amount > max_amount ? max_amount : amount
+	if(amount_to_show > 8)
+		setDir(8)
+		return
 	setDir(amount_to_show + round(amount_to_show / 3))
 
 /obj/item/stack/throwing_knife/equipped(mob/user, slot)
@@ -419,7 +462,7 @@
 		throw_at(current_target, throw_range, throw_speed, living_user, TRUE)
 		current_target = null
 	else
-		var/obj/item/stack/throwing_knife/knife_to_throw = new(get_turf(src))
+		var/obj/item/stack/throwing_knife/knife_to_throw = new type(get_turf(src))
 		knife_to_throw.amount = 1
 		knife_to_throw.update_icon()
 		knife_to_throw.throw_at(current_target, throw_range, throw_speed, living_user, TRUE)

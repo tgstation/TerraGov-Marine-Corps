@@ -10,18 +10,18 @@
 	)
 
 //General
-/datum/job/som/command/general
-	title = SOM_GENERAL
+/datum/job/som/command/commander
+	title = SOM_COMMANDER
 	req_admin_notify = TRUE
 	paygrade = "SOM_O7"
-	comm_title = "GEN"
+	comm_title = "CMDR"
 	supervisors = "SOM high command"
 	selection_color = "#ccccff"
 	total_positions = 1
 	skills_type = /datum/skills/captain
 	minimal_access = ALL_MARINE_ACCESS
 	display_order = JOB_DISPLAY_ORDER_CAPTAIN
-	outfit = /datum/outfit/job/som/command/general
+	outfit = /datum/outfit/job/som/command/commander
 	exp_requirements = XP_REQ_EXPERT
 	exp_type = EXP_TYPE_REGULAR_ALL
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_ISCOMMAND|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_ALWAYS_VISIBLE_ON_MINIMAP|JOB_FLAG_LOUDER_TTS
@@ -34,32 +34,33 @@
 	"}
 	minimap_icon = "captain" //placeholder
 
-/datum/job/som/command/general/radio_help_message(mob/M)
+/datum/job/som/command/commander/radio_help_message(mob/M)
 	. = ..()
-	to_chat(M, {"As the captain of the [SSmapping.configs[SHIP_MAP].map_name] you are held by higher standard and are expected to act competently.
-While you may support Nanotrasen, you report to the SOM High Command, not the corporate office.
-Your primary task is the safety of the ship and her crew, and ensuring the survival and success of the marines.
-Your first order of business should be briefing the marines on the mission they are about to undertake.
-You should not be voluntarily leaving your vessel under any circumstances. A captain goes down with their ship.
+	to_chat(M, {"As the senior officer in command of this SOM battallion you are held by higher standard and are expected to act competently.
+Your primary task is to command and support the SOM marines under your command from the command center in [SSmapping.configs[SHIP_MAP].map_name].
+Your first order of business should be briefing the marines on the mission they are about to undertake, and providing them with all the required attrition and asset support they need to succeed.
+You should not be voluntarily leaving your base under any circumstances. You are a senior officer, not a field officer.
 If you require any help, use <b>mentorhelp</b> to ask mentors about what you're supposed to do.
-Godspeed, captain! And remember, you are not above the law."})
+Godspeed, commander! And remember, you are not above the law."})
 
 
-/datum/outfit/job/som/command/general
-	name = SOM_GENERAL
-	jobtype = /datum/job/som/command/general
+/datum/outfit/job/som/command/commander
+	name = SOM_COMMANDER
+	jobtype = /datum/job/som/command/commander
 
 	id = /obj/item/card/id/gold
-	belt = /obj/item/storage/holster/belt/pistol/smart_pistol/full
+	belt = /obj/item/storage/holster/belt/pistol/m4a3/som/fancy/fieldcommander
 	ears = /obj/item/radio/headset/mainship/som/command
-	w_uniform = /obj/item/clothing/under/marine/officer/command
-	shoes = /obj/item/clothing/shoes/marinechief/captain
-	gloves = /obj/item/clothing/gloves/marine/techofficer/captain
-	head = /obj/item/clothing/head/tgmcberet/tan
-	r_store = /obj/item/storage/pouch/general/large/command
-	l_store = /obj/item/hud_tablet/leadership
+	w_uniform = /obj/item/clothing/under/som/officer/senior
+	shoes = /obj/item/clothing/shoes/marinechief/som
+	gloves = /obj/item/clothing/gloves/marine/som/officer
+	r_store = /obj/item/storage/pouch/general/large/som
 
-/datum/job/som/command/general/after_spawn(mob/living/new_mob, mob/user, latejoin)
+/datum/outfit/job/som/command/commander/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	. = ..()
+	H.equip_to_slot_or_del(new /obj/item/binoculars/fire_support/campaign/som, SLOT_IN_R_POUCH)
+
+/datum/job/som/command/commander/after_spawn(mob/living/new_mob, mob/user, latejoin)
 	. = ..()
 	if(!ishuman(new_mob))
 		return
@@ -103,10 +104,10 @@ Godspeed, captain! And remember, you are not above the law."})
 
 /datum/job/som/command/fieldcommander/radio_help_message(mob/M)
 	. = ..()
-	to_chat(M, {"You are charged with overseeing the operation on the ground, and are the highest-ranked deployed marine.
-Your duties are to ensure marines hold when ordered, and push when they are cowering behind barricades.
-Do not ask your men to do anything you would not do side by side with them.
-Make the SOM proud!"}) //update
+	to_chat(M, {"You are charged with overseeing the operation on the ground, and are the highest-ranked deployed SOM marine.
+Your duties are to ensure the SOM are following orders and achieving objectives.
+Lead by example and support those under your command.
+Make the SOM proud!"})
 
 /datum/job/som/command/fieldcommander/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
 	. = ..()
@@ -129,7 +130,6 @@ Make the SOM proud!"}) //update
 		if(30001 to INFINITY) // 500 hrs
 			new_human.wear_id.paygrade = "SOM_O7"
 
-//update
 /datum/outfit/job/som/command/fieldcommander
 	name = SOM_FIELD_COMMANDER
 	jobtype = /datum/job/som/command/fieldcommander
@@ -137,10 +137,10 @@ Make the SOM proud!"}) //update
 	id = /obj/item/card/id/dogtag/fc
 	belt = /obj/item/storage/holster/belt/pistol/m4a3/som/fancy/fieldcommander
 	ears = /obj/item/radio/headset/mainship/som/command
-	w_uniform = /obj/item/clothing/under/som/leader/webbing //replace when new sprite available
+	w_uniform = /obj/item/clothing/under/som/officer/webbing
 	wear_suit = /obj/item/clothing/suit/modular/som/heavy/leader/officer
 	shoes = /obj/item/clothing/shoes/marine/som/knife
-	gloves = /obj/item/clothing/gloves/marine/som/veteran
+	gloves = /obj/item/clothing/gloves/marine/som/officer
 	mask = /obj/item/clothing/mask/gas
 	head = /obj/item/clothing/head/modular/som/leader/officer
 	glasses = /obj/item/clothing/glasses/hud/health
@@ -163,15 +163,9 @@ Make the SOM proud!"}) //update
 	H.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/serpenta(H), SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/som/ap, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/som/ap, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/micro_grenade, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/micro_grenade/dragonbreath, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/micro_grenade/dragonbreath, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/micro_grenade/cluster, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/micro_grenade/cluster, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/micro_grenade/smoke_burst, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/tool/extinguisher, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/som, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/som, SLOT_IN_BACKPACK)
 
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/som, SLOT_IN_ACCESSORY)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/som, SLOT_IN_ACCESSORY)
@@ -205,8 +199,8 @@ Make the SOM proud!"}) //update
 
 /datum/job/som/command/staffofficer/radio_help_message(mob/M)
 	. = ..()
-	to_chat(M, {"Your job is to monitor the marines, man the CIC, and listen to your superior officers.
-You are in charge of logistics and the overwatch system. You are also in line to take command after the captain."})
+	to_chat(M, {"Your job is to monitor the SOM forces on the ground, man the CIC, and listen to your superior officers.
+You are in charge of logistics and the overwatch system. You are also in line to take command after the senior officer."})
 
 /datum/job/som/command/staffofficer/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
 	. = ..()
@@ -233,13 +227,13 @@ You are in charge of logistics and the overwatch system. You are also in line to
 	jobtype = /datum/job/som/command/staffofficer
 
 	id = /obj/item/card/id/silver
-	belt = /obj/item/storage/holster/belt/pistol/m4a3/officer
+	belt = /obj/item/storage/holster/belt/pistol/m4a3/som/serpenta
 	ears = /obj/item/radio/headset/mainship/som/command
-	w_uniform = /obj/item/clothing/under/marine/officer/bridge
-	shoes = /obj/item/clothing/shoes/marine/full
-	head = /obj/item/clothing/head/tgmccap/ro
-	r_store = /obj/item/storage/pouch/general/large
-	l_store = /obj/item/binoculars/tactical
+	w_uniform = /obj/item/clothing/under/som/officer
+	shoes = /obj/item/clothing/shoes/marinechief/som
+	gloves = /obj/item/clothing/gloves/marine/som/officer
+	r_store = /obj/item/storage/pouch/general/large/som
+	l_store = /obj/item/binoculars/fire_support/campaign/som
 
 //Pilot Officer
 /datum/job/som/command/pilot

@@ -85,20 +85,25 @@
 	resistance_flags = UNACIDABLE
 
 /obj/item/clothing/gloves/marine/som
-	name = "\improper SoM gloves"
+	name = "\improper SOM gloves"
 	desc = "Gloves with origins dating back to the old mining colonies, they look pretty tough."
 	icon_state = "som"
 
 /obj/item/clothing/gloves/marine/som/insulated
-	name = "\improper Insulated SoM gloves"
+	name = "\improper Insulated SOM gloves"
 	desc = "Gloves with origins dating back to the old mining colonies. These ones appear to have an electrically insulating layer built into them."
 	siemens_coefficient = 0
 
 /obj/item/clothing/gloves/marine/som/veteran
-	name = "\improper SoM veteran gloves"
+	name = "\improper SOM veteran gloves"
 	desc = "Gloves with origins dating back to the old mining colonies. These ones seem tougher than normal."
 	icon_state = "som_veteran"
 	soft_armor = list(MELEE = 30, BULLET = 20, LASER = 15, ENERGY = 20, BOMB = 15, BIO = 5, FIRE = 15, ACID = 15)
+
+/obj/item/clothing/gloves/marine/som/officer
+	name = "\improper SOM gloves"
+	desc = "Black gloves commonly worn by SOM officers."
+	icon_state = "som_officer_gloves"
 
 /obj/item/clothing/gloves/marine/icc
 	name = "\improper ICC gloves"
