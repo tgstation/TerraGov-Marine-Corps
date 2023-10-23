@@ -722,7 +722,7 @@ It is a modified Beretta 93R, and can fire three round burst or single fire. Whe
 	force = 30
 	movement_acc_penalty_mult = 3
 	aim_slowdown = -0.2
-	wield_delay = 0.97 SECONDS // This is how long a knife takes to pull out in CS.
+	wield_delay = 1 SECONDS // This is how long a knife takes to pull out in CS.
 	fire_sound = 'sound/weapons/guns/fire/pistol_service.ogg'
 	default_ammo_type = /obj/item/ammo_magazine/pistol/knife
 	allowed_ammo_types = list(/obj/item/ammo_magazine/pistol/knife)
