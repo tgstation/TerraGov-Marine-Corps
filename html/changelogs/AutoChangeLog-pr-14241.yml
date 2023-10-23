@@ -1,0 +1,4 @@
+author: "Luxyboo"
+delete-after: True
+changes:
+  - rscadd: "Take out bullets from packets and boxes now with right click.\n:cl:"
