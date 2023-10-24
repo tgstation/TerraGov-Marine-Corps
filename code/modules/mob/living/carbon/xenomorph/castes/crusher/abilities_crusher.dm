@@ -121,12 +121,7 @@
 	if(X.a_intent == INTENT_HARM) //If we use the ability on hurt intent, we throw them in front; otherwise we throw them behind.
 		facing = get_dir(X, A)
 	else
-		for(var/obj/O in throw_origin)
-			if(!istype(O, /obj/structure/barricade) && !O.CanPass(A, throw_origin)) //Ignore barricades because they will once thrown anyway
-				to_chat(X, span_xenowarning("We try to fling [A] behind us, but there's no room!"))
-				return fail_activate()
 		facing = get_dir(A, X)
-	A.forceMove(throw_origin)
 
 	var/turf/temp
 	for(var/x in 1 to toss_distance)
@@ -142,6 +137,7 @@
 
 	succeed_activate()
 
+	A.forceMove(throw_origin)
 	A.throw_at(target_turf, toss_distance, 1, X, TRUE, TRUE)
 
 	//Handle the damage
