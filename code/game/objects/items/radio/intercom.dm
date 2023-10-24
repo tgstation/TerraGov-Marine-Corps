@@ -38,10 +38,10 @@
 /obj/item/radio/intercom/update_icon()
 	. = ..()
 	if(!on)
-		set_light_on(FALSE)
+		set_light(0)
 		return
 
-	set_light()
+	set_light(initial(light_range))
 
 /obj/item/radio/intercom/update_icon_state()
 	if(!on)

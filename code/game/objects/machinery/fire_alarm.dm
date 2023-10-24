@@ -51,7 +51,7 @@ FIRE ALARM
 
 /obj/machinery/firealarm/update_icon()
 	. = ..()
-	set_light_on(FALSE)
+	set_light(0)
 	if(machine_stat & (BROKEN|DISABLED|NOPOWER))
 		return
 
@@ -69,7 +69,7 @@ FIRE ALARM
 			else
 				set_light_color(LIGHT_COLOR_EMISSIVE_GREEN)
 
-	set_light()
+	set_light(initial(light_range))
 
 /obj/machinery/firealarm/update_icon_state()
 	. = ..()

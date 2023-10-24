@@ -30,10 +30,10 @@
 /obj/machinery/air_alarm/update_icon()
 	. = ..()
 	if(machine_stat & (NOPOWER|BROKEN))
-		set_light_on(FALSE)
+		set_light(0)
 		return
 
-	set_light()
+	set_light(initial(light_range))
 
 /obj/machinery/air_alarm/update_icon_state()
 	if(machine_stat & (NOPOWER|BROKEN))
