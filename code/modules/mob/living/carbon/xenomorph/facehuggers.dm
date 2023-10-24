@@ -360,7 +360,7 @@
 /obj/item/clothing/mask/facehugger/throw_impact(atom/hit_atom, speed)
 	. = ..()
 	if(stat != CONSCIOUS)
-		return ..()
+		return
 	if(iscarbon(hit_atom))
 		var/mob/living/carbon/M = hit_atom
 		if(loc == M) //Caught
@@ -388,6 +388,7 @@
 					if(!Attach(M))
 						go_idle()
 					return
+	stop_throw()
 	leaping = FALSE
 	go_idle(FALSE)
 
