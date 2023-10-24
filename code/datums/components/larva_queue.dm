@@ -1,0 +1,80 @@
+/**
+ * Handles clients getting the button to join the larva queue when they're eligible
+ */
+/datum/component/larva_queue
+	/// The client we track (instead of having to cast every time)
+	var/client/waiter
+	/// The position we have in the larva queue (0 means you're not in it)
+	var/position = 0
+
+/datum/component/larva_queue/Initialize()
+	. = ..()
+	if (QDELETED(parent)) // Client disconnect fuckery
+		return COMPONENT_INCOMPATIBLE
+
+	src.waiter = parent
+	var/mob/M = waiter.mob // Clients always have a mob
+	if(!isxeno(M) && !isobserver(M))
+		return COMPONENT_INCOMPATIBLE //Only xenos or observers
+	add_queue_button()
+
+/datum/component/larva_queue/RegisterWithParent()
+	RegisterSignal(parent, COMSIG_MOB_LOGIN, PROC_REF(add_queue_button))
+	RegisterSignal(parent, COMSIG_MOB_LOGOUT, PROC_REF(remove_queue_button))
+
+/datum/component/larva_queue/UnregisterFromParent()
+	UnregisterSignal(parent, list(COMSIG_MOB_LOGIN, COMSIG_MOB_LOGOUT))
+	src.waiter = null
+	. = ..()
+
+/**
+ * Adds the larva queue button whenever the client is eligible to wait
+ */
+/datum/component/larva_queue/proc/add_queue_button()
+	SIGNAL_HANDLER
+	if(!src.waiter.mob.actions_by_path[/datum/action/join_larva_queue])
+		var/datum/action/join_larva_queue/queue = new
+		queue.give_action(src.waiter.mob) // ZEWAKA TODO FIX: giving too early, to xeno
+
+/**
+ *  Removes the larva queue button whenever a client leaves a mob
+ */
+/datum/component/larva_queue/proc/remove_queue_button()
+	SIGNAL_HANDLER
+	// seemingly nothing? ZEWAKA TODO: DEBUG THE LOGOUT ABILITY BUTTON FLOW
+
+/**
+ * Gets the current position in the larva queue
+ */
+/datum/component/larva_queue/proc/get_queue_position(return_value)
+	SIGNAL_HANDLER
+	return_value = src.position
+
+/**
+ * Sets the current position in the larva queue
+ */
+/datum/component/larva_queue/proc/set_queue_position(new_position)
+	SIGNAL_HANDLER
+	src.position = new_position
+
+
+/// Action for joining the larva queue
+/datum/action/join_larva_queue
+	name = "Join Larva Queue"
+	action_icon_state = "larva_queue"
+	action_type = ACTION_TOGGLE
+
+/datum/action/join_larva_queue/can_use_action()
+	. = ..()
+	if(!.)
+		return FALSE
+	if(isobserver(owner.client) || isxeno(owner.client))
+		return TRUE
+	return FALSE
+
+/datum/action/join_larva_queue/action_activate()
+	var/datum/hive_status/normal/HS = GLOB.hive_datums[XENO_HIVE_NORMAL]
+	if(HS.add_to_larva_candidate_queue(owner.client))
+		set_toggle(TRUE)
+		return
+	set_toggle(FALSE)

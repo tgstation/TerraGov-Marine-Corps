@@ -198,7 +198,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 		var/mob/dead/observer/ghost = usr
 
 		var/datum/hive_status/normal/HS = GLOB.hive_datums[XENO_HIVE_NORMAL]
-		if(LAZYFIND(HS.candidate, ghost))
+		if(LAZYFIND(HS.candidates, ghost.client))
 			to_chat(ghost, span_warning("You are already in the queue to become a Xenomorph."))
 			return
 

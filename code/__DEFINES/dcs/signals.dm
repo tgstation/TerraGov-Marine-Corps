@@ -193,6 +193,10 @@
 /// Called after one or more verbs are removed: (list of verbs added)
 #define COMSIG_CLIENT_VERB_REMOVED "client_verb_removed"
 
+// Xeno larva queue stuff for clients
+#define COMSIG_CLIENT_GET_LARVA_QUEUE_POSITION "client_get_larva_queue_position" // from datum/hive_status/normal/proc/attempt_to_spawn_larva()
+#define COMSIG_CLIENT_SET_LARVA_QUEUE_POSITION "client_set_larva_queue_position" // from datum/hive_status/normal/proc/attempt_to_spawn_larva()
+
 // /atom signals
 #define COMSIG_ATOM_ATTACKBY "atom_attackby"			        //from base of atom/attackby(): (/obj/item, /mob/living)
 #define COMSIG_ATOM_ATTACKBY_ALTERNATE "atom_attackby_alternate" //from base of atom/attackby_alternate(): (/obj/item, /mob/living)
