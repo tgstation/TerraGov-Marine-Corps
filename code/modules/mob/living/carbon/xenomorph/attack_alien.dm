@@ -196,6 +196,8 @@
 	if (X.fortify)
 		return FALSE
 
+	SEND_SIGNAL(X, COMSIG_XENOMORPH_ATTACK_LIVING, src, damage_amount, X.xeno_caste.melee_damage * X.xeno_melee_damage_modifier)
+
 	switch(X.a_intent)
 		if(INTENT_HELP)
 			if(on_fire)

@@ -234,4 +234,4 @@
 	. = ..()
 	for(var/i in mode.stat_list)
 		var/datum/faction_stats/team = mode.stat_list[i]
-		team.add_reward(/datum/campaign_reward/reserves)
+		team.add_asset(/datum/campaign_asset/strategic_reserves)

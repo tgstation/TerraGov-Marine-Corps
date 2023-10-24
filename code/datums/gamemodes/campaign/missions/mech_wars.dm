@@ -10,15 +10,8 @@
 	starting_faction_objective_description = "Major Victory: Wipe out all hostiles in the area of operation. Minor Victory: Eliminate more hostiles than you lose."
 	hostile_faction_objective_description = "Major Victory: Wipe out all hostiles in the area of operation. Minor Victory: Eliminate more hostiles than you lose."
 	mission_start_delay = 5 MINUTES //since there is actual mech prep time required
-	///List of mechs relating to this mission
-	var/list/mech_list = list()
-
 	starting_faction_additional_rewards = "Mechanised units will be allocated to your battalion for use in future missions."
 	hostile_faction_additional_rewards = "Mechanised units will be allocated to your battalion for use in future missions."
-
-/datum/campaign_mission/tdm/mech_wars/Destroy(force, ...)
-	QDEL_LIST(mech_list)
-	return ..()
 
 /datum/campaign_mission/tdm/mech_wars/play_start_intro()
 	intro_message = list(
@@ -45,8 +38,8 @@
 		for(var/i=1 to mechs_to_spawn)
 			spawner = pick(GLOB.campaign_mech_spawners[faction])
 			new_mech = spawner.spawn_mech()
-			mech_list += new_mech
-			RegisterSignal(new_mech, COMSIG_QDELETING, PROC_REF(remove_mech))
+			GLOB.campaign_structures += new_mech
+			RegisterSignal(new_mech, COMSIG_QDELETING, TYPE_PROC_REF(/datum/campaign_mission, remove_mission_object))
 
 			//anti mech infantry weapons
 			if(i % 2)
@@ -55,22 +48,17 @@
 				else
 					new /obj/item/storage/holster/backholster/rpg/heam(get_turf(pick(GLOB.campaign_reward_spawners[faction])))
 
-/datum/campaign_mission/tdm/mech_wars/end_mission()
-	. = ..()
-	QDEL_LIST(mech_list)
-
 /datum/campaign_mission/tdm/mech_wars/apply_major_victory()
 	winning_faction = starting_faction
 	var/datum/faction_stats/winning_team = mode.stat_list[starting_faction]
-	winning_team.add_reward(/datum/campaign_reward/mech/heavy)
-	winning_team.add_reward(/datum/campaign_reward/mech)
-	winning_team.add_reward(/datum/campaign_reward/mech/light)
+	winning_team.add_asset(/datum/campaign_asset/mech/heavy)
+	winning_team.add_asset(/datum/campaign_asset/mech)
 
 /datum/campaign_mission/tdm/mech_wars/apply_minor_victory()
 	winning_faction = starting_faction
 	var/datum/faction_stats/winning_team = mode.stat_list[starting_faction]
-	winning_team.add_reward(/datum/campaign_reward/mech)
-	winning_team.add_reward(/datum/campaign_reward/mech/light)
+	winning_team.add_asset(/datum/campaign_asset/mech)
+	winning_team.add_asset(/datum/campaign_asset/mech/light)
 
 /datum/campaign_mission/tdm/mech_wars/apply_draw()
 	winning_faction = hostile_faction
@@ -78,20 +66,14 @@
 /datum/campaign_mission/tdm/mech_wars/apply_minor_loss()
 	winning_faction = hostile_faction
 	var/datum/faction_stats/winning_team = mode.stat_list[hostile_faction]
-	winning_team.add_reward(/datum/campaign_reward/mech/som)
-	winning_team.add_reward(/datum/campaign_reward/mech/light/som)
+	winning_team.add_asset(/datum/campaign_asset/mech/som)
+	winning_team.add_asset(/datum/campaign_asset/mech/light/som)
 
 /datum/campaign_mission/tdm/mech_wars/apply_major_loss()
 	winning_faction = hostile_faction
 	var/datum/faction_stats/winning_team = mode.stat_list[hostile_faction]
-	winning_team.add_reward(/datum/campaign_reward/mech/heavy/som)
-	winning_team.add_reward(/datum/campaign_reward/mech/som)
-	winning_team.add_reward(/datum/campaign_reward/mech/light/som)
-
-///Removes the mech from the list if they are destroyed mid mission
-/datum/campaign_mission/tdm/mech_wars/proc/remove_mech(obj/vehicle/sealed/mecha/combat/greyscale/mech)
-	SIGNAL_HANDLER
-	mech_list -= mech
+	winning_team.add_asset(/datum/campaign_asset/mech/heavy/som)
+	winning_team.add_asset(/datum/campaign_asset/mech/som)
 
 //mech spawn points
 /obj/effect/landmark/campaign/mech_spawner
@@ -154,25 +136,23 @@
 /datum/campaign_mission/tdm/mech_wars/som/apply_major_victory()
 	winning_faction = starting_faction
 	var/datum/faction_stats/winning_team = mode.stat_list[starting_faction]
-	winning_team.add_reward(/datum/campaign_reward/mech/heavy/som)
-	winning_team.add_reward(/datum/campaign_reward/mech/som)
-	winning_team.add_reward(/datum/campaign_reward/mech/light/som)
+	winning_team.add_asset(/datum/campaign_asset/mech/heavy/som)
+	winning_team.add_asset(/datum/campaign_asset/mech/som)
 
 /datum/campaign_mission/tdm/mech_wars/som/apply_minor_victory()
 	winning_faction = starting_faction
 	var/datum/faction_stats/winning_team = mode.stat_list[starting_faction]
-	winning_team.add_reward(/datum/campaign_reward/mech/som)
-	winning_team.add_reward(/datum/campaign_reward/mech/light/som)
+	winning_team.add_asset(/datum/campaign_asset/mech/som)
+	winning_team.add_asset(/datum/campaign_asset/mech/light/som)
 
 /datum/campaign_mission/tdm/mech_wars/som/apply_minor_loss()
 	winning_faction = hostile_faction
 	var/datum/faction_stats/winning_team = mode.stat_list[hostile_faction]
-	winning_team.add_reward(/datum/campaign_reward/mech)
-	winning_team.add_reward(/datum/campaign_reward/mech/light)
+	winning_team.add_asset(/datum/campaign_asset/mech)
+	winning_team.add_asset(/datum/campaign_asset/mech/light)
 
 /datum/campaign_mission/tdm/mech_wars/som/apply_major_loss()
 	winning_faction = hostile_faction
 	var/datum/faction_stats/winning_team = mode.stat_list[hostile_faction]
-	winning_team.add_reward(/datum/campaign_reward/mech/heavy)
-	winning_team.add_reward(/datum/campaign_reward/mech)
-	winning_team.add_reward(/datum/campaign_reward/mech/light)
+	winning_team.add_asset(/datum/campaign_asset/mech/heavy)
+	winning_team.add_asset(/datum/campaign_asset/mech)
