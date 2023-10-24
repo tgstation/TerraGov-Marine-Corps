@@ -1267,6 +1267,7 @@ TUNNEL
 /obj/structure/xeno/pherotower/omni
 	desc = "A resin formation that looks like a small pillar. A potent, bizarre smell can be perceived from it."
 	icon_state = "omnitower"
+	aura_radius = 48
 
 /obj/structure/xeno/pherotower/omni/Initialize(mapload, _hivenumber)
 	. = ..() //Don't need to add recov pheros because that's handled by parent
@@ -1276,7 +1277,7 @@ TUNNEL
 	set_light(4, 2, LIGHT_COLOR_WHITE)
 
 /obj/structure/xeno/pherotower/omni/attack_alien(mob/living/carbon/xenomorph/X, damage_amount, damage_type, damage_flag, effects, armor_penetration, isrightclick)
-	return X.balloon_alert(X, "Cannot change") //We're already emitting all the pheros you silly goose
+	return X.balloon_alert(X, "Cannot change") //We're already emitting all the pheros.
 
 /obj/structure/xeno/spawner
 	name = "spawner"
