@@ -123,6 +123,19 @@
 	self_recharge = TRUE
 	charge_amount = 100
 	charge_delay = 2 SECONDS
+	light_range = 0.1
+	light_power = 0.1
+	light_color = LIGHT_COLOR_ORANGE
+
+/obj/item/cell/lasgun/volkite/powerpack/Initialize(mapload)
+	. = ..()
+	turn_light(null, TRUE)
+
+/obj/item/cell/lasgun/volkite/powerpack/turn_light(mob/user, toggle_on)
+	. = ..()
+	if(. != CHECKS_PASSED)
+		return
+	set_light_on(toggle_on)
 
 /obj/item/cell/lasgun/volkite/powerpack/apply_custom(mutable_appearance/standing, inhands, icon_used, state_used)
 	. = ..()

@@ -1080,7 +1080,22 @@
 	damage_falloff_mult = 0.9
 	fire_delay = 0.2 SECONDS
 	mode_list = list()
-	var/overlay_to_apply
+	light_range = 0.1
+	light_power = 0.1
+	light_color = LIGHT_COLOR_ORANGE
+
+/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/update_icon(mob/user)
+	. = ..()
+	if(rounds)
+		turn_light(user, TRUE)
+	else
+		turn_light(user, FALSE)
+
+/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/turn_light(mob/user, toggle_on)
+	. = ..()
+	if(. != CHECKS_PASSED)
+		return
+	set_light_on(toggle_on)
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/apply_custom(mutable_appearance/standing, inhands, icon_used, state_used)
 	. = ..()
