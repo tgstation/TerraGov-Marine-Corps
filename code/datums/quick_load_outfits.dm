@@ -2272,6 +2272,7 @@
 	head = /obj/item/clothing/head/modular/m10x/hod
 	w_uniform = /obj/item/clothing/under/marine/holster
 	suit_store = /obj/item/weapon/gun/rifle/standard_assaultrifle/medic
+	l_hand = /obj/item/paper/tutorial/beginner_rifleman
 
 /datum/outfit/quick/beginner/beginner/rifleman/post_equip(mob/living/carbon/human/H, visualsOnly)
 	. = ..()
@@ -2312,6 +2313,7 @@
 	belt = /obj/item/belt_harness/marine
 	suit_store = /obj/item/weapon/gun/rifle/standard_gpmg/beginner
 	mask = /obj/item/clothing/mask/rebreather
+	l_hand = /obj/item/paper/tutorial/beginner_machinegunner
 
 /datum/outfit/quick/beginner/beginner/machinegunner/post_equip(mob/living/carbon/human/H, visualsOnly)
 	. = ..()
@@ -2346,6 +2348,7 @@
 	r_store = /obj/item/storage/pouch/magazine/large
 	suit_store = /obj/item/weapon/gun/rifle/standard_dmr/beginner
 	mask = /obj/item/clothing/mask/breath
+	l_hand = /obj/item/paper/tutorial/beginner_marksman
 
 /datum/outfit/quick/beginner/beginner/marksman/post_equip(mob/living/carbon/human/H, visualsOnly)
 	. = ..()
@@ -2385,6 +2388,7 @@
 	head = /obj/item/clothing/head/modular/m10x/freyr
 	gloves = /obj/item/clothing/gloves/marine/fingerless
 	mask = /obj/item/clothing/mask/gas/tactical/coif
+	l_hand = /obj/item/paper/tutorial/beginner_shotgunner
 
 /datum/outfit/quick/beginner/beginner/shotgunner/post_equip(mob/living/carbon/human/H, visualsOnly)
 	. = ..()
@@ -2432,6 +2436,7 @@
 	r_store = /obj/item/cell/lasgun/volkite/powerpack/marine
 	w_uniform = /obj/item/clothing/under/marine/corpman_vest
 	shoes = /obj/item/clothing/shoes/marine
+	l_hand = /obj/item/paper/tutorial/beginner_shocktrooper
 
 /datum/outfit/quick/beginner/beginner/shocktrooper/post_equip(mob/living/carbon/human/H, visualsOnly)
 	. = ..()
@@ -2474,6 +2479,7 @@
 	wear_suit = /obj/item/clothing/suit/modular/xenonauten/mimir
 	mask = /obj/item/clothing/mask/rebreather/scarf
 	belt = /obj/item/belt_harness/marine
+	l_hand = /obj/item/paper/tutorial/beginner_hazmat
 
 /datum/outfit/quick/beginner/beginner/hazmat/post_equip(mob/living/carbon/human/H, visualsOnly)
 	. = ..()
@@ -2504,6 +2510,7 @@
 	w_uniform = /obj/item/clothing/under/marine/black_vest
 	head = /obj/item/clothing/head/modular/style/beret
 	glasses = /obj/item/clothing/glasses/mgoggles
+	l_hand = /obj/item/paper/tutorial/beginner_cqc
 
 /datum/outfit/quick/beginner/beginner/cqc/post_equip(mob/living/carbon/human/H, visualsOnly)
 	. = ..()
@@ -2542,6 +2549,7 @@
 	w_uniform = /obj/item/clothing/under/marine/corpman_vest
 	head = /obj/item/clothing/head/modular/m10x/antenna
 	shoes = /obj/item/clothing/shoes/marine
+	l_hand = /obj/item/paper/tutorial/beginner_chad
 
 /datum/outfit/quick/beginner/beginner/chad/post_equip(mob/living/carbon/human/H, visualsOnly)
 	. = ..()
