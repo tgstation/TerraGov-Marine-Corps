@@ -239,7 +239,7 @@
 
 /obj/item/explosive/grenade/incendiary/molotov/throw_impact(atom/hit_atom, speed, bounce = TRUE)
 	. = ..()
-	if(!hit_atom.density || prob(20))
+	if(!hit_atom.density || prob(35))
 		return
 	prime()
 
