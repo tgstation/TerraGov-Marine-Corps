@@ -1104,10 +1104,7 @@ to_chat will check for valid clients itself already so no need to double check f
 /datum/hive_status/proc/remove_from_larva_candidate_queue(client/waiter)
 	LAZYREMOVE(candidates, waiter)
 	UnregisterSignal(waiter, COMSIG_QDELETING)
-	var/new_position = 0
-	SEND_SIGNAL(waiter, COMSIG_CLIENT_SET_LARVA_QUEUE_POSITION, new_position)
-	var/datum/action/join_larva_queue/join = waiter.mob.actions_by_path[/datum/action/join_larva_queue]
-	join.set_toggle(FALSE)
+	SEND_SIGNAL(waiter, COMSIG_CLIENT_SET_LARVA_QUEUE_POSITION, 0)
 	to_chat(waiter, span_warning("You left the Larva queue."))
 	var/client/client_in_queue
 	for(var/i in 1 to LAZYLEN(candidates))
