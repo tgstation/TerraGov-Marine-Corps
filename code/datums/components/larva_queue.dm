@@ -48,6 +48,9 @@
 	if (src.is_valid_to_wait(src.waiter.mob))
 		if(!src.waiter.mob.actions_by_path[/datum/action/join_larva_queue]) // ZEWAKA TODO: INVEST
 			button.give_action(src.waiter.mob)
+	else
+		// Leave the queue since they logged into an ineligible mob
+		remove_from_larva_candidate_queue(src.waiter)
 
 /**
  *  Removes the larva queue button whenever a client leaves a mob
