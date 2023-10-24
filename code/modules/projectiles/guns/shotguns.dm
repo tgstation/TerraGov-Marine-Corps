@@ -114,7 +114,7 @@
 
 /obj/item/weapon/gun/shotgun/combat/standardmarine/beginner
 	default_ammo_type = /datum/ammo/bullet/shotgun/slug
-	starting_attachment_types = list(/obj/item/attachable/heavy_barrel, /obj/item/attachable/verticalgrip, /obj/item/attachable/stock/t39stock)
+	starting_attachment_types = list(/obj/item/attachable/magnetic_harness, /obj/item/attachable/heavy_barrel, /obj/item/attachable/verticalgrip, /obj/item/attachable/stock/t39stock)
 
 /obj/item/weapon/gun/shotgun/combat/masterkey
 	name = "masterkey shotgun"

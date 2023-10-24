@@ -2266,7 +2266,7 @@
 
 /datum/outfit/quick/beginner/beginner/rifleman
 	name = "Rifleman"
-	desc = "Equipped with an AR-12"
+	desc = "A typical rifleman for the marines. Wields the AR-12, a versatile all-rounder assault rifle with a powerful underbarrel grenade launcher attached. Also carries the strong P-23 sidearm and a variety of flares, medical equipment, and more for every situation."
 
 	wear_suit = /obj/item/clothing/suit/modular/xenonauten/hodgrenades
 	head = /obj/item/clothing/head/modular/m10x/hod
@@ -2303,6 +2303,7 @@
 
 /datum/outfit/quick/beginner/beginner/machinegunner
 	name = "Machinegunner"
+	desc = "The king of suppressive fire. Uses the MG-60, a fully automatic 200 round machine gun with a bipod attached. Excels at denying large areas to the enemy and eliminating those who refuse to leave."
 
 	wear_suit = /obj/item/clothing/suit/modular/xenonauten/heavy/tyrgeneral
 	head = /obj/item/clothing/head/modular/m10x/tyr
@@ -2335,6 +2336,7 @@
 
 /datum/outfit/quick/beginner/beginner/marksman
 	name = "Marksman"
+	desc = "Quality over quantity. Equipped with the DMR-37, an accurate long-range designated marksman rifle with a scope attached. While subpar in close quarters, the precision of the DMR is unmatched, exceeding at taking out threats from afar."
 
 	wear_suit = /obj/item/clothing/suit/modular/xenonauten/lightmedical
 	head = /obj/item/clothing/head/modular/style/boonie
@@ -2374,6 +2376,7 @@
 
 /datum/outfit/quick/beginner/beginner/shotgunner
 	name = "Shotgunner"
+	desc = "Up close and personal. Wields the SH-39, a semi-automatic shotgun loaded with slugs. An absolute monster at short to mid range, the shotgun will do heavy damage to any target hit, as well as stunning them briefly, staggering them, and knocking them back."
 
 	w_uniform = /obj/item/clothing/under/marine/holster
 	wear_suit = /obj/item/clothing/suit/modular/xenonauten/lightgeneral
@@ -2419,13 +2422,16 @@
 
 /datum/outfit/quick/beginner/beginner/shocktrooper
 	name = "Shocktrooper"
+	desc = "The bleeding edge of the corps. Equipped with the experimental battery-fed laser rifle, featuring four different modes that can be freely swapped between, with an underbarrel flamethrower for area denial and clearing mazes."
 
 	suit_store = /obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_rifle/medic
 	glasses = /obj/item/clothing/glasses/sunglasses/fake/big
-	wear_suit = /obj/item/clothing/suit/modular/xenonauten/lightmedical
+	wear_suit = /obj/item/clothing/suit/modular/xenonauten/lightgeneral
 	head = /obj/item/clothing/head/modular/style/cap
 	mask = /obj/item/clothing/mask/gas/modular/skimask
 	r_store = /obj/item/cell/lasgun/volkite/powerpack/marine
+	w_uniform = /obj/item/clothing/under/marine/corpman_vest
+	shoes = /obj/item/clothing/shoes/marine
 
 /datum/outfit/quick/beginner/beginner/shocktrooper/post_equip(mob/living/carbon/human/H, visualsOnly)
 	. = ..()
@@ -2436,7 +2442,9 @@
 	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/lasrifle, SLOT_IN_BELT)
 	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/lasrifle, SLOT_IN_BELT)
 
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/flamer_tank/mini, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/storage/box/MRE, SLOT_IN_BOOT)
+
+	H.equip_to_slot_or_del(new /obj/item/storage/pill_bottle/packet/dylovene, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/flamer_tank/mini, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/flamer_tank/mini, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/flamer_tank/mini, SLOT_IN_BACKPACK)
@@ -2445,15 +2453,21 @@
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/flamer_tank/mini, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/inaprovaline, SLOT_IN_BACKPACK)
 
-	H.equip_to_slot_or_del(new /obj/item/storage/pill_bottle/packet/bicaridine, SLOT_IN_SUIT)
-	H.equip_to_slot_or_del(new /obj/item/storage/pill_bottle/packet/kelotane, SLOT_IN_SUIT)
-	H.equip_to_slot_or_del(new /obj/item/storage/pill_bottle/packet/tricordrazine, SLOT_IN_SUIT)
-	H.equip_to_slot_or_del(new /obj/item/storage/pill_bottle/packet/tramadol, SLOT_IN_SUIT)
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/dylovene, SLOT_IN_SUIT)
+	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/volkite/powerpack/marine, SLOT_IN_SUIT)
+	H.equip_to_slot_or_del(new /obj/item/storage/box/m94, SLOT_IN_SUIT)
+
+	H.equip_to_slot_or_del(new /obj/item/storage/pill_bottle/packet/bicaridine, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/storage/pill_bottle/packet/kelotane, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/storage/pill_bottle/packet/tricordrazine, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/storage/pill_bottle/packet/tramadol, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/stack/medical/heal_pack/gauze, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/stack/medical/heal_pack/ointment, SLOT_IN_ACCESSORY)
 
 /datum/outfit/quick/beginner/beginner/hazmat
 	name = "Hazmat"
+	desc = "Designed for danger. Wields the AR-11, a powerful yet innacurate assault rifle with high magazine size and an equipped tactical sensor that detects enemies through smoke and walls. Wears Mimir combat armor, rendering the user immune to the dangerous toxic gas possessed by many xenomorphs."
 
+	head = /obj/item/clothing/head/modular/m10x/mimir
 	suit_store = /obj/item/weapon/gun/rifle/tx11/freelancertwo
 	back = /obj/item/storage/backpack/marine/standard
 	w_uniform = /obj/item/clothing/under/marine/black_vest
@@ -2483,6 +2497,7 @@
 
 /datum/outfit/quick/beginner/beginner/cqc
 	name = "CQC"
+	desc = "Swift and lethal. Equipped with the AR-18, a lightweight carbine with a rapid-fire burst mode. Designed for maximum mobility, soldiers are able to rush in, assault the enemy, and retreat before they can respond."
 
 	suit_store = /obj/item/weapon/gun/rifle/standard_carbine/beginner
 	wear_suit = /obj/item/clothing/suit/modular/xenonauten/lightgeneral
@@ -2516,6 +2531,7 @@
 
 /datum/outfit/quick/beginner/beginner/chad //Ya gotta be if you pick this loadout
 	name = "Grenadier"
+	desc = "Explosive area denial. Uses the GL-70, a six shot semi-automatic grenade launcher, loaded with HEDP high explosive grenades. Boasts unmatched power, though heavy caution is advised to avoid harming friendlies."
 
 	wear_suit = /obj/item/clothing/suit/modular/xenonauten/heavy/grenadier
 	suit_store = /obj/item/weapon/gun/grenade_launcher/multinade_launcher/beginner
@@ -2538,18 +2554,18 @@
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_BELT)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_BELT)
 
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_L_STORE)
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_L_STORE)
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_L_STORE)
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_L_STORE)
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_L_STORE)
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_L_STORE)
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_R_STORE)
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_R_STORE)
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_R_STORE)
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_R_STORE)
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_R_STORE)
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_R_STORE)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_L_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_L_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_L_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_L_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_L_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_L_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_R_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_R_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_R_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_R_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_R_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_R_POUCH)
 
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/inaprovaline, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_BACKPACK)

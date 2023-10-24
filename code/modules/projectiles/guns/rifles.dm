@@ -113,7 +113,7 @@
 	starting_attachment_types = list(/obj/item/attachable/stock/t18stock, /obj/item/weapon/gun/pistol/plasma_pistol, /obj/item/attachable/motiondetector, /obj/item/attachable/compensator)
 
 /obj/item/weapon/gun/rifle/standard_carbine/beginner
-	starting_attachment_types = list(/obj/item/attachable/stock/t18stock, /obj/item/attachable/magnetic_harness, /obj/item/attachable/verticalgrip)
+	starting_attachment_types = list(/obj/item/attachable/stock/t18stock, /obj/item/attachable/magnetic_harness, /obj/item/attachable/angledgrip, /obj/item/attachable/compensator)
 
 //-------------------------------------------------------
 //AR-12 Assault Rifle
