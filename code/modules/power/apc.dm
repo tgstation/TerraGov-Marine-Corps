@@ -27,10 +27,10 @@
 /obj/machinery/power/apc
 	name = "area power controller"
 	desc = "A control terminal for the area electrical systems."
-	icon = 'icons/obj/wallframes.dmi'
+	icon = 'icons/obj/machines/apc.dmi'
 	icon_state = "apc0"
-	pixel_x = -16
-	pixel_y = -16
+	//pixel_x = -16
+	//pixel_y = -16
 	anchored = TRUE
 	use_power = NO_POWER_USE
 	req_access = list(ACCESS_CIVILIAN_ENGINEERING)
@@ -98,13 +98,13 @@
 
 	switch(dir)
 		if(NORTH)
-			pixel_y -= 32
+			pixel_y = -32
 		if(SOUTH)
-			pixel_y += 32
+			pixel_y = 32
 		if(EAST)
-			pixel_x -= 32
+			pixel_x = -32
 		if(WEST)
-			pixel_x += 32
+			pixel_x = 32
 
 	if(building)
 		var/area/A = get_area(src)
@@ -219,7 +219,7 @@
 	if(!update)
 		return
 
-	set_light()
+	set_light(0)
 	overlays.Cut()
 
 	if(update & 1)
