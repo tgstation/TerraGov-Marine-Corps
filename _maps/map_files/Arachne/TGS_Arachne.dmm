@@ -7205,6 +7205,7 @@
 /area/mainship/living/pilotbunks)
 "glX" = (
 /obj/structure/rack,
+/obj/item/toy/plush/rouny,
 /obj/machinery/camera/autoname/mainship{
 	dir = 4
 	},
