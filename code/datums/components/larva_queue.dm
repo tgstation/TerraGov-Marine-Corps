@@ -34,7 +34,7 @@
 	SIGNAL_HANDLER
 	if(!src.waiter.mob.actions_by_path[/datum/action/join_larva_queue])
 		var/datum/action/join_larva_queue/queue = new
-		queue.give_action(src.waiter.mob) // ZEWAKA TODO FIX: giving too early, to xeno
+		queue.give_action(src.waiter.mob) // ZEWAKA TODO: DISABLED OR SOMETHING IDK
 
 /**
  *  Removes the larva queue button whenever a client leaves a mob

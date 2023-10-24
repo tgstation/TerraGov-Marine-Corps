@@ -35,6 +35,8 @@
 	update_icon(client.prefs.ghost_form)
 	updateghostimages()
 
+	src.client.AddComponent(/datum/component/larva_queue) // Bit nicer if it's first
+
 	for(var/path in subtypesof(/datum/action/observer_action))
 		if(!actions_by_path[path])
 			var/datum/action/observer_action/A = new path()
@@ -42,7 +44,6 @@
 	if(!actions_by_path[/datum/action/minimap/observer])
 		var/datum/action/minimap/observer/mini = new
 		mini.give_action(src)
-	src.client.AddComponent(/datum/component/larva_queue)
 
 	if(length(GLOB.offered_mob_list))
 		to_chat(src, span_boldnotice("There's mobs available for taking! Ghost > Take Offered Mob"))
