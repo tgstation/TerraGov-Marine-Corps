@@ -321,3 +321,11 @@
   - bugfix: Fix x8 DRPG crate containing only one DRPG
   yyzsong:
   - rscadd: SLs may buy megaphones from their vendor
+2023-10-24:
+  Luxyboo:
+  - rscadd: 'Take out bullets from packets and boxes now with right click.
+
+      :cl:'
+  Waselon:
+  - qol: Baneling can now watch other xenos while in pod
+  - bugfix: Evolution overlay runtime error fix
