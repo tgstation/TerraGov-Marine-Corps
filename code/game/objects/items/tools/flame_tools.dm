@@ -172,11 +172,17 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	var/list/list_reagents = list(/datum/reagent/nicotine = 15)
 	/// the quantity that will be transmited each 2 seconds
 	var/transquantity = 1
+	var/emissive_state = "cigon_emissive"
 	flags_armor_protection = NONE
 
 /obj/item/clothing/mask/cigarette/Initialize(mapload)
 	. = ..()
 	create_reagents(chem_volume, INJECTABLE|NO_REACT, list_reagents) // making the cigarrete a chemical holder with a maximum volume of 30
+
+/obj/item/clothing/mask/cigarette/apply_custom(mutable_appearance/standing, inhands, icon_used, state_used)
+	. = ..()
+	var/mutable_appearance/emissive_overlay = emissive_appearance(icon_used, emissive_state)
+	standing.overlays.Add(emissive_overlay)
 
 /obj/item/clothing/mask/cigarette/attackby(obj/item/W, mob/user, params)
 	if(lit || smoketime <= 0)
@@ -440,6 +446,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	smoketime = 1500
 	chem_volume = 40
 	list_reagents = list(/datum/reagent/nicotine = 10)
+	emissive_state = "cigaron_emissive"
 
 /obj/item/clothing/mask/cigarette/cigar/cohiba
 	name = "\improper Cohiba Robusto cigar"
