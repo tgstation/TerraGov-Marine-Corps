@@ -18,6 +18,7 @@
 	var/mob/M = waiter.mob // Clients always have a mob
 	if(!isxeno(M) && !isobserver(M))
 		return COMPONENT_INCOMPATIBLE //Only xenos or observers
+	src.button = new
 	add_queue_button()
 
 /datum/component/larva_queue/RegisterWithParent()
