@@ -76,14 +76,14 @@ GLOBAL_LIST_INIT(quick_loadouts, init_quick_loadouts())
 		/datum/outfit/quick/som/squad_leader/charger,
 		/datum/outfit/quick/som/squad_leader/caliver,
 		/datum/outfit/quick/som/squad_leader/mpi,
-		/datum/outfit/quick/beginner/beginner/rifleman,
-		/datum/outfit/quick/beginner/beginner/machinegunner,
-		/datum/outfit/quick/beginner/beginner/marksman,
-		/datum/outfit/quick/beginner/beginner/shotgunner,
-		/datum/outfit/quick/beginner/beginner/shocktrooper,
-		/datum/outfit/quick/beginner/beginner/hazmat,
-		/datum/outfit/quick/beginner/beginner/cqc,
-		/datum/outfit/quick/beginner/beginner/chad,
+		/datum/outfit/quick/beginner/rifleman,
+		/datum/outfit/quick/beginner/machinegunner,
+		/datum/outfit/quick/beginner/marksman,
+		/datum/outfit/quick/beginner/shotgunner,
+		/datum/outfit/quick/beginner/shocktrooper,
+		/datum/outfit/quick/beginner/hazmat,
+		/datum/outfit/quick/beginner/cqc,
+		/datum/outfit/quick/beginner/chad,
 	)
 
 	for(var/X in loadout_list)

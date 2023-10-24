@@ -23,7 +23,7 @@
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/protein_pack, SLOT_IN_HEAD)
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/protein_pack, SLOT_IN_HEAD)
 
-/datum/outfit/quick/beginner/beginner/rifleman
+/datum/outfit/quick/beginner/rifleman
 	name = "Rifleman"
 	desc = "A typical rifleman for the marines. Wields the AR-12, a versatile all-rounder assault rifle with a powerful underbarrel grenade launcher attached. Also carries the strong P-23 sidearm and a variety of flares, medical equipment, and more for every situation."
 
@@ -33,7 +33,7 @@
 	suit_store = /obj/item/weapon/gun/rifle/standard_assaultrifle/medic
 	l_hand = /obj/item/paper/tutorial/beginner_rifleman
 
-/datum/outfit/quick/beginner/beginner/rifleman/post_equip(mob/living/carbon/human/H, visualsOnly)
+/datum/outfit/quick/beginner/rifleman/post_equip(mob/living/carbon/human/H, visualsOnly)
 	. = ..()
 	H.equip_to_slot_or_del(new /obj/item/storage/box/MRE, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/stack/medical/heal_pack/gauze, SLOT_IN_BACKPACK)
@@ -61,7 +61,7 @@
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_SUIT)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_SUIT)
 
-/datum/outfit/quick/beginner/beginner/machinegunner
+/datum/outfit/quick/beginner/machinegunner
 	name = "Machinegunner"
 	desc = "The king of suppressive fire. Uses the MG-60, a fully automatic 200 round machine gun with a bipod attached. Excels at denying large areas to the enemy and eliminating those who refuse to leave."
 
@@ -74,7 +74,7 @@
 	mask = /obj/item/clothing/mask/rebreather
 	l_hand = /obj/item/paper/tutorial/beginner_machinegunner
 
-/datum/outfit/quick/beginner/beginner/machinegunner/post_equip(mob/living/carbon/human/H, visualsOnly)
+/datum/outfit/quick/beginner/machinegunner/post_equip(mob/living/carbon/human/H, visualsOnly)
 	. = ..()
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/standard_gpmg, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/standard_gpmg, SLOT_IN_BACKPACK)
@@ -95,7 +95,7 @@
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/plasma_pistol, SLOT_IN_SUIT)
 
 
-/datum/outfit/quick/beginner/beginner/marksman
+/datum/outfit/quick/beginner/marksman
 	name = "Marksman"
 	desc = "Quality over quantity. Equipped with the DMR-37, an accurate long-range designated marksman rifle with a scope attached. While subpar in close quarters, the precision of the DMR is unmatched, exceeding at taking out threats from afar."
 
@@ -109,7 +109,7 @@
 	mask = /obj/item/clothing/mask/breath
 	l_hand = /obj/item/paper/tutorial/beginner_marksman
 
-/datum/outfit/quick/beginner/beginner/marksman/post_equip(mob/living/carbon/human/H, visualsOnly)
+/datum/outfit/quick/beginner/marksman/post_equip(mob/living/carbon/human/H, visualsOnly)
 	. = ..()
 	H.equip_to_slot_or_del(new /obj/item/storage/box/MRE, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/stack/medical/heal_pack/gauze, SLOT_IN_BACKPACK)
@@ -136,7 +136,7 @@
 	H.equip_to_slot_or_del(new /obj/item/storage/pill_bottle/packet/tramadol, SLOT_IN_SUIT)
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/dylovene, SLOT_IN_SUIT)
 
-/datum/outfit/quick/beginner/beginner/shotgunner
+/datum/outfit/quick/beginner/shotgunner
 	name = "Shotgunner"
 	desc = "Up close and personal. Wields the SH-39, a semi-automatic shotgun loaded with slugs. An absolute monster at short to mid range, the shotgun will do heavy damage to any target hit, as well as stunning them briefly, staggering them, and knocking them back."
 
@@ -149,7 +149,7 @@
 	mask = /obj/item/clothing/mask/gas/tactical/coif
 	l_hand = /obj/item/paper/tutorial/beginner_shotgunner
 
-/datum/outfit/quick/beginner/beginner/shotgunner/post_equip(mob/living/carbon/human/H, visualsOnly)
+/datum/outfit/quick/beginner/shotgunner/post_equip(mob/living/carbon/human/H, visualsOnly)
 	. = ..()
 	H.equip_to_slot_or_del(new /obj/item/storage/box/MRE, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/stack/medical/heal_pack/gauze, SLOT_IN_BACKPACK)
@@ -183,7 +183,7 @@
 	H.equip_to_slot_or_del(new /obj/item/storage/box/m94, SLOT_IN_SUIT)
 	H.equip_to_slot_or_del(new /obj/item/storage/box/m94, SLOT_IN_SUIT)
 
-/datum/outfit/quick/beginner/beginner/shocktrooper
+/datum/outfit/quick/beginner/shocktrooper
 	name = "Shocktrooper"
 	desc = "The bleeding edge of the corps. Equipped with the experimental battery-fed laser rifle, featuring four different modes that can be freely swapped between, with an underbarrel flamethrower for area denial and clearing mazes."
 
@@ -197,7 +197,7 @@
 	shoes = /obj/item/clothing/shoes/marine
 	l_hand = /obj/item/paper/tutorial/beginner_shocktrooper
 
-/datum/outfit/quick/beginner/beginner/shocktrooper/post_equip(mob/living/carbon/human/H, visualsOnly)
+/datum/outfit/quick/beginner/shocktrooper/post_equip(mob/living/carbon/human/H, visualsOnly)
 	. = ..()
 	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/lasrifle, SLOT_IN_BELT)
 	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/lasrifle, SLOT_IN_BELT)
@@ -227,7 +227,7 @@
 	H.equip_to_slot_or_del(new /obj/item/stack/medical/heal_pack/gauze, SLOT_IN_ACCESSORY)
 	H.equip_to_slot_or_del(new /obj/item/stack/medical/heal_pack/ointment, SLOT_IN_ACCESSORY)
 
-/datum/outfit/quick/beginner/beginner/hazmat
+/datum/outfit/quick/beginner/hazmat
 	name = "Hazmat"
 	desc = "Designed for danger. Wields the AR-11, a powerful yet innacurate assault rifle with high magazine size and an equipped tactical sensor that detects enemies through smoke and walls. Wears Mimir combat armor, rendering the user immune to the dangerous toxic gas possessed by many xenomorphs."
 
@@ -240,7 +240,7 @@
 	belt = /obj/item/belt_harness/marine
 	l_hand = /obj/item/paper/tutorial/beginner_hazmat
 
-/datum/outfit/quick/beginner/beginner/hazmat/post_equip(mob/living/carbon/human/H, visualsOnly)
+/datum/outfit/quick/beginner/hazmat/post_equip(mob/living/carbon/human/H, visualsOnly)
 	. = ..()
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/tx11, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/tx11, SLOT_IN_BACKPACK)
@@ -260,7 +260,7 @@
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/tx11, SLOT_IN_SUIT)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/tx11, SLOT_IN_SUIT)
 
-/datum/outfit/quick/beginner/beginner/cqc
+/datum/outfit/quick/beginner/cqc
 	name = "CQC"
 	desc = "Swift and lethal. Equipped with the AR-18, a lightweight carbine with a rapid-fire burst mode. Designed for maximum mobility, soldiers are able to rush in, assault the enemy, and retreat before they can respond."
 
@@ -271,7 +271,7 @@
 	glasses = /obj/item/clothing/glasses/mgoggles
 	l_hand = /obj/item/paper/tutorial/beginner_cqc
 
-/datum/outfit/quick/beginner/beginner/cqc/post_equip(mob/living/carbon/human/H, visualsOnly)
+/datum/outfit/quick/beginner/cqc/post_equip(mob/living/carbon/human/H, visualsOnly)
 	. = ..()
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_carbine, SLOT_IN_BELT)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_carbine, SLOT_IN_BELT)
@@ -295,7 +295,7 @@
 	H.equip_to_slot_or_del(new /obj/item/storage/box/m94, SLOT_IN_ACCESSORY)
 	H.equip_to_slot_or_del(new /obj/item/storage/box/m94, SLOT_IN_ACCESSORY)
 
-/datum/outfit/quick/beginner/beginner/chad //Ya gotta be if you pick this loadout
+/datum/outfit/quick/beginner/chad //Ya gotta be if you pick this loadout
 	name = "Grenadier"
 	desc = "Explosive area denial. Uses the GL-70, a six shot semi-automatic grenade launcher, loaded with HEDP high explosive grenades. Boasts unmatched power, though heavy caution is advised to avoid harming friendlies."
 
@@ -310,7 +310,7 @@
 	shoes = /obj/item/clothing/shoes/marine
 	l_hand = /obj/item/paper/tutorial/beginner_chad
 
-/datum/outfit/quick/beginner/beginner/chad/post_equip(mob/living/carbon/human/H, visualsOnly)
+/datum/outfit/quick/beginner/chad/post_equip(mob/living/carbon/human/H, visualsOnly)
 	. = ..()
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_BELT)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_BELT)
