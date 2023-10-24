@@ -51,7 +51,8 @@
 			button.give_action(src.waiter.mob)
 	else
 		// Leave the queue since they logged into an ineligible mob
-		remove_from_larva_candidate_queue(src.waiter)
+		var/datum/hive_status/normal/HS = GLOB.hive_datums[XENO_HIVE_NORMAL]
+		HS.remove_from_larva_candidate_queue(src.waiter)
 
 /**
  *  Removes the larva queue button whenever a client leaves a mob
