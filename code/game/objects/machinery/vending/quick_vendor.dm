@@ -76,19 +76,28 @@ GLOBAL_LIST_INIT(quick_loadouts, init_quick_loadouts())
 		/datum/outfit/quick/som/squad_leader/charger,
 		/datum/outfit/quick/som/squad_leader/caliver,
 		/datum/outfit/quick/som/squad_leader/mpi,
-		/datum/outfit/quick/beginner/rifleman,
-		/datum/outfit/quick/beginner/machinegunner,
-		/datum/outfit/quick/beginner/marksman,
-		/datum/outfit/quick/beginner/shotgunner,
-		/datum/outfit/quick/beginner/shocktrooper,
-		/datum/outfit/quick/beginner/hazmat,
-		/datum/outfit/quick/beginner/cqc,
-		/datum/outfit/quick/beginner/chad,
 	)
 
 	for(var/X in loadout_list)
 		.[X] = new X
 
+GLOBAL_LIST_INIT(beginner_loadouts, init_beginner_loadouts())
+
+/proc/init_beginner_loadouts()
+	. = list()
+	var/list/loadout_list = list(
+		/datum/outfit/quick/beginner/marine/rifleman,
+		/datum/outfit/quick/beginner/marine/machinegunner,
+		/datum/outfit/quick/beginner/marine/marksman,
+		/datum/outfit/quick/beginner/marine/shotgunner,
+		/datum/outfit/quick/beginner/marine/shocktrooper,
+		/datum/outfit/quick/beginner/marine/hazmat,
+		/datum/outfit/quick/beginner/marine/cqc,
+		/datum/outfit/quick/beginner/marine/chad,
+	)
+
+	for(var/X in loadout_list)
+		.[X] = new X
 
 /obj/machinery/quick_vendor
 	name = "Kwik-E-Quip vendor"
@@ -111,6 +120,12 @@ GLOBAL_LIST_INIT(quick_loadouts, init_quick_loadouts())
 		"Squad Smartgunner",
 		"Squad Leader",
 	)
+	///Whichever global loadout is used to build the vendor stock
+	var/list/global_list_to_use
+
+/obj/machinery/quick_vendor/Initialize(mapload)
+	. = ..()
+	global_list_to_use = GLOB.quick_loadouts
 
 /obj/machinery/quick_vendor/som
 	faction = FACTION_SOM
@@ -123,9 +138,11 @@ GLOBAL_LIST_INIT(quick_loadouts, init_quick_loadouts())
 	)
 
 /obj/machinery/quick_vendor/beginner //Loadout vendor that shits out basic pre-made loadouts so new players can get something usable
-	categories = list(
-		"Squad Beginner",
-	)
+	icon_state = "specialist" //Placeholder until I get sprite
+
+/obj/machinery/quick_vendor/beginner/Initialize(mapload)
+	. = ..()
+	global_list_to_use = GLOB.beginner_loadouts
 
 /obj/machinery/quick_vendor/can_interact(mob/user)
 	. = ..()
@@ -161,11 +178,10 @@ GLOBAL_LIST_INIT(quick_loadouts, init_quick_loadouts())
 	. = ..()
 	var/list/data = list()
 	var/list/loadouts_data_tgui = list()
-	for(var/loadout_data in GLOB.quick_loadouts)
+	for(var/loadout_data in global_list_to_use)
 		var/list/next_loadout_data = list() //makes a list item with the below lines, for each loadout entry in the list
-		var/datum/outfit/quick/current_loadout = GLOB.quick_loadouts[loadout_data]
-		next_loadout_data["job"] = current_loadout.category
-		next_loadout_data["req"] = current_loadout.job_req
+		var/datum/outfit/quick/current_loadout = global_list_to_use[loadout_data]
+		next_loadout_data["job"] = current_loadout.jobtype
 		next_loadout_data["name"] = current_loadout.name
 		next_loadout_data["desc"] = current_loadout.desc
 		next_loadout_data["amount"] = current_loadout.quantity
@@ -189,7 +205,7 @@ GLOBAL_LIST_INIT(quick_loadouts, init_quick_loadouts())
 		return
 	switch(action)
 		if("selectLoadout")
-			var/datum/outfit/quick/selected_loadout = GLOB.quick_loadouts[text2path(params["loadout_outfit"])]
+			var/datum/outfit/quick/selected_loadout = global_list_to_use[text2path(params["loadout_outfit"])]
 			if(!selected_loadout)
 				to_chat(ui.user, span_warning("Error when loading this loadout"))
 				CRASH("Fail to load loadouts")
@@ -197,7 +213,7 @@ GLOBAL_LIST_INIT(quick_loadouts, init_quick_loadouts())
 				to_chat(usr, span_warning("This loadout has been depleted, you'll need to pick another."))
 				return
 			var/obj/item/card/id/user_id = usr.get_idcard() //ui.user better?
-			if(selected_loadout.job_req != user_id.rank)
+			if(selected_loadout.jobtype != user_id.rank)
 				to_chat(usr, span_warning("You are not in the right job for this loadout!"))
 				return
 			if(user_id.can_buy_loadout)

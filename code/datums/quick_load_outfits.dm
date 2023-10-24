@@ -3,10 +3,8 @@
 	var/desc = "Description here"
 	///How much of this loadout there is. infinite by default
 	var/quantity = -1
-	///What category this loadout is under. Used for tabs.
-	var/category = "Squad Marine"
-	///What access is required to vend this loadout.
-	var/job_req = "Squad Marine"
+	///What job this loadout is associated with. Used for tabs and access.
+	var/jobtype = "Squad Marine"
 
 
 /datum/outfit/quick/equip(mob/living/carbon/human/H, visualsOnly = FALSE)
@@ -100,8 +98,7 @@
 //Base TGMC marine outfit
 /datum/outfit/quick/tgmc/marine
 	name = "TGMC Squad Marine"
-	category = "Squad Marine"
-	job_req = "Squad Marine"
+	jobtype = "Squad Marine"
 
 	ears = /obj/item/radio/headset/mainship/marine
 	w_uniform = /obj/item/clothing/under/marine/black_vest
@@ -533,8 +530,7 @@
 //Base TGMC engineer outfit
 /datum/outfit/quick/tgmc/engineer
 	name = "TGMC Squad Engineer"
-	category = "Squad Engineer"
-	job_req = "Squad Engineer"
+	jobtype = "Squad Engineer"
 
 	ears = /obj/item/radio/headset/mainship/marine
 	glasses = /obj/item/clothing/glasses/meson
@@ -632,8 +628,7 @@
 //Base TGMC corpsman outfit
 /datum/outfit/quick/tgmc/corpsman
 	name = "TGMC Squad Corpsman"
-	category = "Squad Corpsman"
-	job_req = "Squad Corpsman"
+	jobtype = "Squad Corpsman"
 
 	belt = /obj/item/storage/belt/lifesaver/quick
 	ears = /obj/item/radio/headset/mainship/marine
@@ -821,8 +816,7 @@
 //Base TGMC smartgunner outfit
 /datum/outfit/quick/tgmc/smartgunner
 	name = "TGMC Squad Smartgunner"
-	category = "Squad Smartgunner"
-	job_req = "Squad Smartgunner"
+	jobtype = "Squad Smartgunner"
 
 	belt = /obj/item/belt_harness/marine
 	ears = /obj/item/radio/headset/mainship/marine
@@ -917,8 +911,7 @@
 //Base TGMC leader outfit
 /datum/outfit/quick/tgmc/leader
 	name = "TGMC Squad Leader"
-	category = "Squad Leader"
-	job_req = "Squad Leader"
+	jobtype = "Squad Leader"
 
 	ears = /obj/item/radio/headset/mainship/marine
 	glasses = /obj/item/clothing/glasses/hud/health
@@ -1146,8 +1139,7 @@
 //Base SOM marine outfit
 /datum/outfit/quick/som/marine
 	name = "SOM Squad Marine"
-	category = "SOM Squad Standard"
-	job_req = "SOM Squad Standard"
+	jobtype = "SOM Squad Standard"
 
 	ears = /obj/item/radio/headset/mainship/som
 	w_uniform = /obj/item/clothing/under/som/webbing
@@ -1437,8 +1429,7 @@
 //Base SOM engineer outfit
 /datum/outfit/quick/som/engineer
 	name = "SOM Squad Engineer"
-	category = "SOM Squad Engineer"
-	job_req = "SOM Squad Engineer"
+	jobtype = "SOM Squad Engineer"
 
 	ears = /obj/item/radio/headset/mainship/som
 	w_uniform = /obj/item/clothing/under/som/webbing
@@ -1617,8 +1608,7 @@
 //Base SOM medic outfit
 /datum/outfit/quick/som/medic
 	name = "SOM Squad Medic"
-	category = "SOM Squad Medic"
-	job_req = "SOM Squad Medic"
+	jobtype = "SOM Squad Medic"
 
 	belt = /obj/item/storage/belt/lifesaver/som/quick
 	ears = /obj/item/radio/headset/mainship/som
@@ -1789,8 +1779,7 @@
 //Base SOM veteran outfit
 /datum/outfit/quick/som/veteran
 	name = "SOM Squad Veteran"
-	category = "SOM Squad Veteran"
-	job_req = "SOM Squad Veteran"
+	jobtype = "SOM Squad Veteran"
 
 	ears = /obj/item/radio/headset/mainship/som
 	w_uniform = /obj/item/clothing/under/som/veteran/webbing
@@ -2094,8 +2083,7 @@
 //Base SOM leader outfit
 /datum/outfit/quick/som/squad_leader
 	name = "SOM Squad Leader"
-	category = "SOM Squad Leader"
-	job_req = "SOM Squad Leader"
+	jobtype = "SOM Squad Leader"
 
 	ears = /obj/item/radio/headset/mainship/som
 	w_uniform = /obj/item/clothing/under/som/leader/webbing
