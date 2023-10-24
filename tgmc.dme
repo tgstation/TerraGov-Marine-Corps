@@ -61,7 +61,6 @@
 #include "code\__DEFINES\footsteps.dm"
 #include "code\__DEFINES\generators.dm"
 #include "code\__DEFINES\greyscale.dm"
-#include "code\__DEFINES\greyscale_guns.dm"
 #include "code\__DEFINES\icon_smoothing.dm"
 #include "code\__DEFINES\implants.dm"
 #include "code\__DEFINES\instruments.dm"

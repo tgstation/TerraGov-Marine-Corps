@@ -106,14 +106,9 @@
 		for(var/x=0 to (icon.Width()-1))
 			for(var/y=0 to (icon.Height()-1))
 				var/pixel = icon.GetPixel(x,y, dir=dir)
-				var/pixel_rgb = ReadRGB(pixel)
-				if(!pixel)
+				if(!pixel || (pixel in icon_file_colors))
 					continue
-				if(length(pixel_rgb) == 4) //Makes sure alpha is ignored
-					pixel = rgb(pixel_rgb[1], pixel_rgb[2], pixel_rgb[3])
-				if(pixel in icon_file_colors)
-					continue
-				var/rgb_val = pixel_rgb[1]
+				var/rgb_val = ReadRGB(pixel)[1]
 				if(!length(icon_file_colors))
 					icon_file_colors.Add(pixel)
 					continue
