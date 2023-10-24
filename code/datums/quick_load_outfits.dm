@@ -2541,6 +2541,7 @@
 	mask = /obj/item/clothing/mask/gas
 	w_uniform = /obj/item/clothing/under/marine/corpman_vest
 	head = /obj/item/clothing/head/modular/m10x/antenna
+	shoes = /obj/item/clothing/shoes/marine
 
 /datum/outfit/quick/beginner/beginner/chad/post_equip(mob/living/carbon/human/H, visualsOnly)
 	. = ..()
@@ -2590,3 +2591,4 @@
 	H.equip_to_slot_or_del(new /obj/item/stack/medical/heal_pack/gauze, SLOT_IN_ACCESSORY)
 	H.equip_to_slot_or_del(new /obj/item/stack/medical/heal_pack/ointment, SLOT_IN_ACCESSORY)
 
+	H.equip_to_slot_or_del(new /obj/item/weapon/gun/shotgun/double/derringer, SLOT_IN_BOOT) //So you can kill yourself when you run out of grenades
