@@ -32,12 +32,11 @@
 
 	icon = 'icons/obj/machines/computer.dmi'
 	icon_state = "computer_small"
-	screen_overlay = "terminal_misc"
 	light_range = 2
 	light_power = 0.5
 	light_color = LIGHT_COLOR_BLUE
 	///The actual screen sprite for this computer
-	var/screen_overlay
+	var/screen_overlay = "terminal_misc"
 	///The destroyed computer sprite. Defaults based on the icon_state if not specified
 	var/broken_icon
 
