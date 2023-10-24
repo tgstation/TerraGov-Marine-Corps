@@ -27,8 +27,7 @@
 /datum/component/larva_queue/UnregisterFromParent()
 	UnregisterSignal(parent, list(COMSIG_MOB_LOGIN, COMSIG_MOB_LOGOUT))
 	src.waiter = null
-	qdel(src.button)
-	src.button = null
+	QDEL_NULL(src.button)
 	. = ..()
 
 /// Returns if the mob is valid to keep waiting in the larva queue
