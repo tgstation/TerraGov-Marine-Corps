@@ -2,7 +2,8 @@
 /obj/machinery/computer/station_alert
 	name = "Station Alert Computer"
 	desc = "Used to access the station's automated alert system."
-	icon_state = "atmos"
+	icon_state = "computer_small"
+	screen_overlay = "atmos"
 	circuit = /obj/item/circuitboard/computer/stationalert
 	var/alarms = list("Fire"=list(), "Atmosphere"=list(), "Power"=list())
 
@@ -89,17 +90,17 @@
 
 /obj/machinery/computer/station_alert/process()
 	if (machine_stat &(NOPOWER))
-		icon_state = "atmos0"
+		icon_state = "computer_small"
 		return
 	if(machine_stat & (BROKEN|DISABLED))
-		icon_state = "atmosb"
+		icon_state = "computer_small_broken"
 		return
 	var/active_alarms = 0
 	for (var/cat in src.alarms)
 		var/list/L = src.alarms[cat]
 		if(length(L)) active_alarms = 1
 	if(active_alarms)
-		icon_state = "atmos2"
+		screen_overlay = "atmos2"
 	else
-		icon_state = "atmos"
+		screen_overlay = "atmos"
 	return ..()

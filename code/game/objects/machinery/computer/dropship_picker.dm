@@ -3,8 +3,8 @@
 	name = "dropship picker"
 	desc = "A computer that lets you choose the model of the tadpole.."
 	density = TRUE
-	icon = 'icons/obj/machines/computer.dmi'
-	icon_state = "computer_generic"
+	icon_state = "computer"
+	screen_overlay = "computer_generic"
 	circuit = null
 	resistance_flags = RESIST_ALL
 	interaction_flags = INTERACT_MACHINE_TGUI

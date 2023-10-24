@@ -4,6 +4,7 @@
 	desc = "A large console controlling the ship's hypersleep bay. Mainly used for recovery of items from long-term hypersleeping crew."
 	icon = 'icons/obj/machines/computer.dmi'
 	icon_state = "cellconsole"
+	screen_overlay = "cellconsole_screen"
 	circuit = /obj/item/circuitboard/computer/cryopodcontrol
 	resistance_flags = RESIST_ALL
 

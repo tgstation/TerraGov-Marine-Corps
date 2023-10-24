@@ -16,7 +16,8 @@
 /obj/machinery/computer/communications
 	name = "communications console"
 	desc = "This can be used for various important functions."
-	icon_state = "comm"
+	icon_state = "computer_small"
+	screen_overlay = "comm"
 	req_access = list(ACCESS_MARINE_BRIDGE)
 	circuit = /obj/item/circuitboard/computer/communications
 	var/prints_intercept = TRUE

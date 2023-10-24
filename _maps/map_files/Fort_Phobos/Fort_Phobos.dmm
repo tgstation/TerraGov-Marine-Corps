@@ -3877,7 +3877,7 @@
 /turf/open/floor/mainship/red,
 /area/mainship/patrol_base/som/command)
 "Vd" = (
-/obj/structure/prop/computer/tadpole{
+/obj/machinery/prop/computer/tadpole{
 	dir = 4
 	},
 /turf/open/floor/mainship/mono,

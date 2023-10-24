@@ -1,7 +1,8 @@
 /obj/machinery/computer/marine_card
 	name = "Identification Computer"
 	desc = "You can use this to change ID's."
-	icon_state = "id"
+	icon_state = "computer_small"
+	screen_overlay = "id"
 	req_access = list(ACCESS_MARINE_LOGISTICS)
 	circuit = /obj/item/circuitboard/computer/card
 	resistance_flags = INDESTRUCTIBLE
@@ -340,7 +341,8 @@
 /obj/machinery/computer/squad_changer
 	name = "Squad Distribution Computer"
 	desc = "You can use this to change someone's squad."
-	icon_state = "guest"
+	icon_state = "computer_small"
+	screen_overlay = "guest"
 	req_access = list(ACCESS_MARINE_LOGISTICS)
 	resistance_flags = INDESTRUCTIBLE
 	var/obj/item/card/id/modify = null

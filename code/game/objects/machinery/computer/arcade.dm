@@ -3,6 +3,7 @@
 	desc = "Does not support Pinball."
 	icon = 'icons/obj/machines/computer.dmi'
 	icon_state = "arcade"
+	screen_overlay = "arcade_screen"
 	circuit = /obj/item/circuitboard/computer/arcade
 	var/enemy_name = "Space Villain"
 	var/temp = "Sponsored by Nanotrasen and the TerraGov Marine Corps" //Temporary message, for attack messages, etc

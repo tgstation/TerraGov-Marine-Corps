@@ -4,6 +4,7 @@
 	name = "supply drop console"
 	desc = "used by shipside staff to issue supply drops to squad beacons"
 	icon_state = "supplydrop"
+	screen_overlay = "supplydrop_screen"
 	interaction_flags = INTERACT_MACHINE_TGUI
 	circuit = /obj/item/circuitboard/computer/supplydrop
 	///Time between two supply drops

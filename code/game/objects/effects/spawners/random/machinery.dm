@@ -33,7 +33,7 @@
 /obj/effect/spawner/random/machinery/random_broken_computer/genetics
 	name = "Genetics console or broken computer spawner"
 	loot = list(
-		/obj/machinery/prop/mainship/computer/dna = 75,
+		/obj/machinery/prop/computer/dna = 75,
 		/obj/effect/spawner/random/machinery/random_broken_computer = 25,
 	)
 
@@ -148,7 +148,7 @@
 /obj/effect/spawner/random/machinery/random_broken_computer/small/pc
 	name = "Personal computer or broken computer spawner"
 	loot = list(
-		/obj/machinery/prop/mainship/computer/PC = 95,
+		/obj/machinery/prop/computer/PC = 95,
 		/obj/effect/spawner/random/machinery/random_broken_computer/small = 15,
 	)
 

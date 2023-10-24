@@ -86,7 +86,7 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 
 /obj/machinery/computer/mech_builder
 	name = "mech computer"
-	icon_state = "mech_computer"
+	screen_overlay = "mech_computer"
 	dir = EAST // determines where the mech will pop out, NOT where the computer faces
 	interaction_flags = INTERACT_OBJ_UI
 

@@ -2,7 +2,9 @@
 	name = "exosuit control console"
 	desc = "Used to remotely locate or lockdown exosuits."
 	icon = 'icons/obj/machines/computer.dmi'
-	icon_state = "mecha"
+	icon_state = "computer"
+	screen_overlay = "mecha"
+	broken_icon = "computer_blue_broken"
 	req_access = list()
 
 /obj/machinery/computer/mecha/ui_interact(mob/user, datum/tgui/ui)

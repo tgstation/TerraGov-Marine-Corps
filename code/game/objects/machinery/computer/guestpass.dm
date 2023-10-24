@@ -21,5 +21,6 @@
 
 /obj/machinery/computer/guestpass
 	name = "guest pass terminal"
-	icon_state = "guest"
+	icon_state = "computer_small"
+	screen_overlay = "guest"
 	density = FALSE

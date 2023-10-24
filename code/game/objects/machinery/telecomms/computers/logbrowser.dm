@@ -2,7 +2,8 @@
 	name = "telecommunications server monitoring console"
 	desc = "Has full access to all details and record of the telecommunications network it's monitoring."
 
-	icon_state = "comm_logs"
+	icon_state = "computer"
+	screen_overlay = "comm_logs"
 
 	var/screen = 0				// the screen number:
 	var/list/servers = list()	// the servers located by the computer

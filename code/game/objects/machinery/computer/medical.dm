@@ -1,7 +1,8 @@
 /obj/machinery/computer/med_data
 	name = "Medical Records"
 	desc = "This can be used to check medical records."
-	icon_state = "medcomp"
+	icon_state = "computer"
+	screen_overlay = "medcomp"
 	req_one_access = list(ACCESS_MARINE_MEDBAY, ACCESS_NT_CORPORATE)
 	circuit = /obj/item/circuitboard/computer/med_data
 	var/obj/item/card/id/scan = null
@@ -490,5 +491,6 @@
 /obj/machinery/computer/med_data/laptop
 	name = "Medical Laptop"
 	desc = "Cheap Nanotrasen Laptop."
-	icon_state = "medlaptop"
+	icon_state = "computer_small"
+	screen_overlay = "medlaptop"
 	density = FALSE

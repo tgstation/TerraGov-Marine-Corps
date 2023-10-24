@@ -1,5 +1,7 @@
 /obj/machinery/computer/general_air_control
-	icon_state = "tank"
+	icon_state = "computer"
+	screen_overlay = "tank"
+	broken_icon = "computer_blue_broken"
 	var/frequency = 1439
 	var/list/sensors = list()
 
@@ -311,7 +313,8 @@ Min Core Pressure: [pressure_limit] kPa<BR>"}
 
 /obj/machinery/computer/general_air_control/fuel_injection
 	icon = 'icons/obj/machines/computer.dmi'
-	icon_state = "atmos"
+	icon_state = "computer_small"
+	screen_overlay = "atmos"
 
 	var/device_tag
 	var/list/device_info

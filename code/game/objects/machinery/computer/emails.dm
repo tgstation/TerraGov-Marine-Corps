@@ -2,7 +2,8 @@
 	name = "Personal Computer"
 	desc = "A personal computer used to view emails"
 	icon = 'icons/obj/machines/computer.dmi'
-	icon_state = "terminal1"
+	icon_state = "terminal"
+	screen_overlay = "terminal1"
 	var/screen = 0
 	var/email_type = /datum/fluff_email/mainship //the type of emails this computer will show. e.g. TGMC emails for the personal computers on the ship
 	var/list/email_list

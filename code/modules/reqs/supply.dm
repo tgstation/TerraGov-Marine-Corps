@@ -579,7 +579,9 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 /obj/machinery/computer/ordercomp
 	name = "Supply ordering console"
 	icon = 'icons/obj/machines/computer.dmi'
-	icon_state = "request"
+	icon_state = "computer"
+	screen_overlay = "request"
+	broken_icon = "computer_orange_broken"
 	circuit = /obj/item/circuitboard/computer/ordercomp
 	var/datum/supply_ui/requests/SU
 

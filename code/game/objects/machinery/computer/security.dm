@@ -1,7 +1,9 @@
 /obj/machinery/computer/secure_data
 	name = "Security Records"
 	desc = "Used to view and edit personnel's security records"
-	icon_state = "security"
+	icon_state = "computer_small"
+	screen_overlay = "security"
+	broken_icon = "computer_small_red_broken"
 	req_one_access = list(ACCESS_MARINE_BRIG, ACCESS_NT_CORPORATE, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_LOGISTICS)
 	circuit = /obj/item/circuitboard/computer/secure_data
 	var/obj/item/card/id/scan = null
@@ -578,3 +580,4 @@ What a mess.*/
 /obj/machinery/computer/secure_data/detective_computer
 	icon = 'icons/obj/machines/computer.dmi'
 	icon_state = "messyfiles"
+	screen_overlay = "messyfiles_screen"
