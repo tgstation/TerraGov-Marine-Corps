@@ -5,6 +5,7 @@
 	density = TRUE
 	icon = 'icons/Marine/shuttle-parts.dmi'
 	icon_state = "consoleright"
+	screen_overlay = "consoleright_emissive"
 	circuit = null
 	resistance_flags = RESIST_ALL
 	interaction_flags = INTERACT_MACHINE_TGUI

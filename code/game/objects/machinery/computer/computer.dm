@@ -27,6 +27,7 @@
 	if(!broken_icon)
 		broken_icon = "[initial(icon_state)]_broken"
 	start_processing()
+	update_icon()
 	return INITIALIZE_HINT_LATELOAD
 
 /obj/machinery/computer/LateInitialize()
@@ -97,9 +98,9 @@
 /obj/machinery/computer/update_icon()
 	. = ..()
 	if(machine_stat & (BROKEN|DISABLED|NOPOWER))
-		turn_light(null, FALSE)
+		set_light(0)
 	else
-		turn_light(null, TRUE)
+		set_light(initial(light_range))
 
 /obj/machinery/computer/update_icon_state()
 	if(machine_stat & (BROKEN|DISABLED))
@@ -115,12 +116,6 @@
 		return
 	. += emissive_appearance(icon, screen_overlay, alpha = src.alpha)
 	. += mutable_appearance(icon, screen_overlay, alpha = src.alpha)
-
-/obj/machinery/computer/turn_light(mob/user, toggle_on)
-	. = ..()
-	if(. != CHECKS_PASSED)
-		return
-	set_light_on(toggle_on)
 
 /obj/machinery/computer/proc/set_broken()
 	machine_stat |= BROKEN
