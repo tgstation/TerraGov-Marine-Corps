@@ -97,7 +97,7 @@
 /datum/action/xeno_action/activable/cresttoss/use_ability(atom/movable/A)
 	var/mob/living/carbon/xenomorph/X = owner
 	X.face_atom(A) //Face towards the target so we don't look silly
-	var/facing = get_dir(X, A)
+	var/facing
 	var/toss_distance = X.xeno_caste.crest_toss_distance
 	var/turf/throw_origin = get_turf(X)
 	var/turf/target_turf = throw_origin //throw distance is measured from the xeno itself
