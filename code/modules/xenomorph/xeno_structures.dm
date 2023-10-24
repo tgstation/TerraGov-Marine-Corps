@@ -1264,6 +1264,20 @@ TUNNEL
 			icon_state = "frenzytower"
 			set_light(2, 2, LIGHT_COLOR_RED)
 
+/obj/structure/xeno/pherotower/omni
+	desc = "A resin formation that looks like a small pillar. A potent, bizarre smell can be perceived from it."
+	icon_state = "omnitower"
+
+/obj/structure/xeno/pherotower/omni/Initialize(mapload, _hivenumber)
+	. = ..() //Don't need to add recov pheros because that's handled by parent
+	current_aura = SSaura.add_emitter(src, AURA_XENO_WARDING, aura_radius, aura_strength, -1, FACTION_XENO, hivenumber)
+	current_aura = SSaura.add_emitter(src, AURA_XENO_FRENZY, aura_radius, aura_strength, -1, FACTION_XENO, hivenumber)
+	icon_state = "omnitower"
+	set_light(4, 2, LIGHT_COLOR_WHITE)
+
+/obj/structure/xeno/pherotower/omni/attack_alien(mob/living/carbon/xenomorph/X, damage_amount, damage_type, damage_flag, effects, armor_penetration, isrightclick)
+	return X.balloon_alert(X, "Cannot change") //We're already emitting all the pheros you silly goose
+
 /obj/structure/xeno/spawner
 	name = "spawner"
 	desc = "A slimy, oozy resin bed filled with foul-looking egg-like ...things."
