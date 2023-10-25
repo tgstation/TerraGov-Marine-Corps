@@ -115,3 +115,22 @@
 
 /datum/xeno_caste/hunter/weapon_x/normal
 	upgrade = XENO_UPGRADE_NORMAL
+
+/datum/xeno_caste/hunter/weapon_x/primordial
+	upgrade_name = "Primordial"
+	upgrade = XENO_UPGRADE_PRIMO
+	caste_desc = "A silent but deadly killing machine. It looks frighteningly powerful."
+	primordial_message = "We are the ultimate predator. Let the hunt begin."
+
+	actions = list(
+		/datum/action/xeno_action/xeno_resting,
+		/datum/action/xeno_action/watch_xeno,
+		/datum/action/xeno_action/activable/psydrain,
+		/datum/action/xeno_action/activable/silence,
+		/datum/action/xeno_action/activable/pounce,
+		/datum/action/xeno_action/stealth,
+		/datum/action/xeno_action/stealth/disguise,
+		/datum/action/xeno_action/activable/hunter_mark,
+		/datum/action/xeno_action/psychic_trace,
+		/datum/action/xeno_action/mirage,
+	)
