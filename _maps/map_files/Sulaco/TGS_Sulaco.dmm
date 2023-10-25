@@ -23852,6 +23852,10 @@
 /obj/machinery/status_display,
 /turf/closed/wall/mainship/gray/outer,
 /area/sulaco/engineering/engine)
+"tBK" = (
+/obj/effect/landmark/start/job/foodservicespecialist,
+/turf/open/floor/prison/sterilewhite,
+/area/sulaco/cafeteria/kitchen)
 "tBY" = (
 /obj/effect/spawner/random/misc/gnome,
 /turf/open/floor/grass,
