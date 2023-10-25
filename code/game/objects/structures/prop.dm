@@ -32,7 +32,7 @@
 
 	icon = 'icons/obj/machines/computer.dmi'
 	icon_state = "computer_small"
-	light_range = 2
+	light_range = 1
 	light_power = 0.5
 	light_color = LIGHT_COLOR_BLUE
 	///The actual screen sprite for this computer

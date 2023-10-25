@@ -14,7 +14,7 @@
 	resistance_flags = UNACIDABLE
 	///they don't provide good cover
 	coverage = 15
-	light_range = 2
+	light_range = 1
 	light_power = 0.5
 	light_color = LIGHT_COLOR_BLUE
 	///The actual screen sprite for this computer
