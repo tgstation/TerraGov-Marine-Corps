@@ -358,20 +358,19 @@
 
 /obj/item/storage/backpack/marine/tech
 	name = "\improper TGMC technician backpack"
-	desc = "The standard-issue backpack worn by TGMC technicians. Specially equipped to hold sentry gun and M56D emplacement parts."
+	desc = "The standard-issue backpack worn by TGMC technicians. Specially equipped to hold deployable gun parts and howitzer shells."
 	icon_state = "marinepackt"
 	item_state = "marinepackt"
 	bypass_w_limit = list(
-		/obj/item/weapon/gun/sentry/big_sentry,
-		/obj/item/weapon/gun/sentry/mini,
 		/obj/item/weapon/gun/tl102,
-		/obj/item/ammo_magazine/tl102,
-		/obj/item/ammo_magazine/sentry,
-		/obj/item/ammo_magazine/minisentry,
-		/obj/item/mortal_shell,
+		/obj/item/weapon/gun/standard_minigun,
+		/obj/item/ammo_magazine/heavy_minigun,
+		/obj/item/weapon/gun/heavymachinegun,
+		/obj/item/ammo_magazine/heavymachinegun,
+		/obj/item/weapon/gun/standard_agls,
+		/obj/item/weapon/gun/heavy_laser/deployable,
 		/obj/item/mortar_kit,
-		/obj/item/stack/razorwire,
-		/obj/item/stack/sandbags,
+		/obj/item/mortal_shell/howitzer, // Howitzer shells are BULKY, same size as the mortar kit.
 	)
 
 /obj/item/storage/backpack/marine/satchel
