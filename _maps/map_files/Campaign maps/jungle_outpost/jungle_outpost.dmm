@@ -5903,7 +5903,7 @@
 /turf/open/floor/tile/dark,
 /area/campaign/jungle_outpost/outpost/engineering)
 "zo" = (
-/obj/machinery/prop/mainship/computer/dna,
+/obj/machinery/prop/computer/dna,
 /turf/open/floor/tile/purple/whitepurple{
 	dir = 1
 	},
@@ -10525,7 +10525,7 @@
 /area/campaign/jungle_outpost/outpost/science/south)
 "TC" = (
 /obj/structure/table/fancywoodentable,
-/obj/machinery/prop/mainship/computer/PC,
+/obj/machinery/prop/computer/PC,
 /turf/open/floor/wood/alt_seven,
 /area/campaign/jungle_outpost/outpost/science/office)
 "TE" = (

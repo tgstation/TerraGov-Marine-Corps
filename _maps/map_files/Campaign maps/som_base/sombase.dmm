@@ -9452,7 +9452,7 @@
 /turf/open/floor/mainship/mono,
 /area/rocinante_base/surface/building/cargo/vehicle_garage)
 "noe" = (
-/obj/structure/prop/computer/tadpole,
+/obj/machinery/prop/computer/tadpole,
 /turf/open/floor/mainship/mono,
 /area/rocinante_base/ground/base_sw)
 "non" = (

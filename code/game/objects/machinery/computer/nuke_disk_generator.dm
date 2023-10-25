@@ -7,7 +7,9 @@
 /obj/machinery/computer/nuke_disk_generator
 	name = "nuke disk generator"
 	desc = "Used to generate the correct auth discs for the nuke."
-	icon_state = "nuke_red"
+	icon_state = "computer"
+	screen_overlay = "nuke_red"
+	broken_icon = "computer_red_broken"
 	interaction_flags = INTERACT_MACHINE_TGUI
 	circuit = /obj/item/circuitboard/computer/nuke_disk_generator
 
@@ -192,13 +194,15 @@
 
 /obj/machinery/computer/nuke_disk_generator/green
 	name = "green nuke disk generator"
-	icon_state = "nuke_green"
+	screen_overlay = "nuke_green"
+	broken_icon = "computer_broken"
 	disk_type = /obj/item/disk/nuclear/green
 	disk_color = "green"
 
 /obj/machinery/computer/nuke_disk_generator/blue
 	name = "blue nuke disk generator"
-	icon_state = "nuke_blue"
+	screen_overlay = "nuke_blue"
+	broken_icon = "computer_blue_broken"
 	disk_type = /obj/item/disk/nuclear/blue
 	disk_color = "blue"
 

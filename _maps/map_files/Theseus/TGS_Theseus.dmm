@@ -11052,7 +11052,7 @@
 /area/mainship/living/commandbunks)
 "hVi" = (
 /obj/structure/table/mainship/nometal,
-/obj/machinery/prop/mainship/computer,
+/obj/machinery/prop/computer,
 /obj/machinery/light/mainship{
 	dir = 8
 	},
@@ -13095,7 +13095,7 @@
 /turf/closed/wall/mainship,
 /area/mainship/living/pilotbunks)
 "lzB" = (
-/obj/machinery/prop/mainship/computer{
+/obj/machinery/prop/computer{
 	dir = 8
 	},
 /obj/structure/table/mainship/nometal,
