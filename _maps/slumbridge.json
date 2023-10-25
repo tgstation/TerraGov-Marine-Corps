@@ -2,6 +2,9 @@
     "map_name": "Slumbridge",
     "map_path": "map_files/slumbridge",
     "map_file": "slumbridge.dmm",
+	"disk_sets": {
+		"basic": 1
+	},
 	"quickbuilds": 2000,
 	"announce_text": "We've received not one, but four distress signals at once coming from the same location. Ground-penetrating scanners and sensors show an unusual arrangement of a segmented asteroid with artificial gravity online. Not only that, but the four segments look nothing alike. TGMC, prepare for deployment and expect the worst."
 }
