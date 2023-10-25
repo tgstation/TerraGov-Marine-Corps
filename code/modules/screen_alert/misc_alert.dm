@@ -27,6 +27,12 @@
 /atom/movable/screen/text/screen_text/picture/shokk
 	image_to_play = "shokk"
 
+/atom/movable/screen/text/screen_text/picture/saf_four
+	image_to_play = "saf_4"
+
+/atom/movable/screen/text/screen_text/picture/rapid_response
+	image_to_play = "rapid_response"
+
 /atom/movable/screen/text/screen_text/picture/blackop
 	image_to_play = "blackops"
 
