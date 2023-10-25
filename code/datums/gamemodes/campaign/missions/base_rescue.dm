@@ -125,6 +125,7 @@
 	occupant = new mob_type(src)
 
 /obj/structure/weapon_x_pod/Destroy()
+	GLOB.campaign_structures -= src
 	if(occupant)
 		QDEL_NULL(occupant)
 	return ..()
