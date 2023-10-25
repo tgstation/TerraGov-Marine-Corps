@@ -6,6 +6,8 @@
 	var/client/waiter
 	/// The position we have in the larva queue (0 means you're not in it)
 	var/position = 0
+	/// Our queue button
+	var/datum/action/join_larva_queue/button = null
 
 /datum/component/larva_queue/Initialize()
 	. = ..()
@@ -16,6 +18,7 @@
 	var/mob/M = waiter.mob // Clients always have a mob
 	if(!isxeno(M) && !isobserver(M))
 		return COMPONENT_INCOMPATIBLE //Only xenos or observers
+	src.button = new
 	add_queue_button()
 
 /datum/component/larva_queue/RegisterWithParent()
@@ -25,16 +28,31 @@
 /datum/component/larva_queue/UnregisterFromParent()
 	UnregisterSignal(parent, list(COMSIG_MOB_LOGIN, COMSIG_MOB_LOGOUT))
 	src.waiter = null
+	QDEL_NULL(src.button)
 	. = ..()
+
+/// Returns if the mob is valid to keep waiting in the larva queue
+/datum/component/larva_queue/is_valid_to_wait(mob/M)
+	. = FALSE
+	if (isobserver(M))
+		return TRUE
+	if (isxeno(M))
+		var/mob/living/carbon/xenomorph/xeno = M
+		if (xeno.xeno_caste.tier == XENO_TIER_MINION)
+			return TRUE
 
 /**
  * Adds the larva queue button whenever the client is eligible to wait
  */
 /datum/component/larva_queue/proc/add_queue_button()
 	SIGNAL_HANDLER
-	if(!src.waiter.mob.actions_by_path[/datum/action/join_larva_queue])
-		var/datum/action/join_larva_queue/queue = new
-		queue.give_action(src.waiter.mob) // ZEWAKA TODO: DISABLED OR SOMETHING IDK
+	if (src.is_valid_to_wait(src.waiter.mob))
+		if(!src.waiter.mob.actions_by_path[/datum/action/join_larva_queue]) // ZEWAKA TODO: INVEST
+			button.give_action(src.waiter.mob)
+	else
+		// Leave the queue since they logged into an ineligible mob
+		var/datum/hive_status/normal/HS = GLOB.hive_datums[XENO_HIVE_NORMAL]
+		HS.remove_from_larva_candidate_queue(src.waiter)
 
 /**
  *  Removes the larva queue button whenever a client leaves a mob
@@ -56,6 +74,9 @@
 /datum/component/larva_queue/proc/set_queue_position(new_position)
 	SIGNAL_HANDLER
 	src.position = new_position
+	if (src.position == 0) // We have been removed from the queue
+		// ZEWAKA TODO: remove handling idk
+		src.remove_queue_button()
 
 
 /// Action for joining the larva queue
