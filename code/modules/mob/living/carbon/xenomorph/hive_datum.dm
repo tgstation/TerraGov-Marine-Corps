@@ -925,8 +925,8 @@ to_chat will check for valid clients itself already so no need to double check f
 
 
 // This proc checks for available spawn points and offers a choice if there's more than one.
-/datum/hive_status/proc/attempt_to_spawn_larva(mob/xeno_candidate, larva_already_reserved = FALSE)
-	if(!xeno_candidate?.client)
+/datum/hive_status/proc/attempt_to_spawn_larva(client/xeno_candidate, larva_already_reserved = FALSE)
+	if(isnull(xeno_candidate))
 		return FALSE
 
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
@@ -946,26 +946,26 @@ to_chat will check for valid clients itself already so no need to double check f
 
 	var/mob/living/carbon/xenomorph/chosen_mother
 	if(length(possible_mothers) > 1)
-		chosen_mother = tgui_input_list(xeno_candidate, "Available Mothers", null, possible_mothers)
+		chosen_mother = tgui_input_list(xeno_candidate.mob, "Available Mothers", null, possible_mothers)
 	else
 		chosen_mother = possible_mothers[1]
 
-	if(QDELETED(chosen_mother) || !xeno_candidate?.client)
+	if(QDELETED(chosen_mother) || isnull(xeno_candidate))
 		return FALSE
 
 	return spawn_larva(xeno_candidate, chosen_mother, larva_already_reserved)
 
 
-/datum/hive_status/proc/attempt_to_spawn_larva_in_silo(mob/xeno_candidate, possible_silos, larva_already_reserved = FALSE)
-	xeno_candidate.playsound_local(xeno_candidate, 'sound/ambience/votestart.ogg', 50)
-	window_flash(xeno_candidate.client)
+/datum/hive_status/proc/attempt_to_spawn_larva_in_silo(client/xeno_candidate, possible_silos, larva_already_reserved = FALSE)
+	xeno_candidate.mob.playsound_local(xeno_candidate, 'sound/ambience/votestart.ogg', 50)
+	window_flash(xeno_candidate)
 	var/obj/structure/xeno/silo/chosen_silo
 	if(length(possible_silos) > 1)
-		chosen_silo = tgui_input_list(xeno_candidate, "Available Egg Silos", "Spawn location", possible_silos, timeout = 20 SECONDS)
-		if(!chosen_silo)
+		chosen_silo = tgui_input_list(xeno_candidate.mob, "Available Egg Silos", "Spawn location", possible_silos, timeout = 20 SECONDS)
+		if(!chosen_silo || isnull(xeno_candidate))
 			return FALSE
-		xeno_candidate.forceMove(get_turf(chosen_silo))
-		var/double_check = tgui_alert(xeno_candidate, "Spawn here?", "Spawn location", list("Yes","Pick another silo","Abort"), timeout = 20 SECONDS)
+		xeno_candidate.mob.forceMove(get_turf(chosen_silo)) // ZEWAKA TODO: BEETLE TELEPORTATION
+		var/double_check = tgui_alert(xeno_candidate.mob, "Spawn here?", "Spawn location", list("Yes","Pick another silo","Abort"), timeout = 20 SECONDS)
 		if(double_check == "Pick another silo")
 			return attempt_to_spawn_larva_in_silo(xeno_candidate, possible_silos)
 		else if(double_check != "Yes")
@@ -973,45 +973,45 @@ to_chat will check for valid clients itself already so no need to double check f
 			return FALSE
 	else
 		chosen_silo = possible_silos[1]
-		xeno_candidate.forceMove(get_turf(chosen_silo))
+		xeno_candidate.mob.forceMove(get_turf(chosen_silo)) // ZEWAKA TODO: BEETLE TELEPORTATION
 		var/check = tgui_alert(xeno_candidate, "Spawn as a xeno?", "Spawn location", list("Yes", "Abort"), timeout = 20 SECONDS)
 		if(check != "Yes")
 			remove_from_larva_candidate_queue(xeno_candidate)
 			return FALSE
 
-	if(QDELETED(chosen_silo) || !xeno_candidate?.client)
+	if(QDELETED(chosen_silo) || isnull(xeno_candidate))
 		return FALSE
 
 	return do_spawn_larva(xeno_candidate, chosen_silo.loc, larva_already_reserved)
 
 
-/datum/hive_status/proc/spawn_larva(mob/xeno_candidate, mob/living/carbon/xenomorph/mother, larva_already_reserved = FALSE)
-	if(!xeno_candidate?.mind)
+/datum/hive_status/proc/spawn_larva(client/xeno_candidate, mob/living/carbon/xenomorph/mother, larva_already_reserved = FALSE)
+	if(!xeno_candidate?.mob?.mind)
 		return FALSE
 
 	if(QDELETED(mother) || !istype(mother))
-		to_chat(xeno_candidate, span_warning("Something went awry with mom. Can't spawn at the moment."))
+		to_chat(xeno_candidate.mob, span_warning("Something went awry with mom. Can't spawn at the moment."))
 		return FALSE
 
 	if(!larva_already_reserved)
 		var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
 		var/stored_larva = xeno_job.total_positions - xeno_job.current_positions
 		if(!stored_larva)
-			to_chat(xeno_candidate, span_warning("There are no longer burrowed larvas available."))
+			to_chat(xeno_candidate.mob, span_warning("There are no longer burrowed larvas available."))
 			return FALSE
 
 	var/list/possible_mothers = list()
 	SEND_SIGNAL(src, COMSIG_HIVE_XENO_MOTHER_CHECK, possible_mothers) //List variable passed by reference, and hopefully populated.
 
 	if(!(mother in possible_mothers))
-		to_chat(xeno_candidate, span_warning("This mother is not in a state to receive us."))
+		to_chat(xeno_candidate.mob, span_warning("This mother is not in a state to receive us."))
 		return FALSE
 	return do_spawn_larva(xeno_candidate, get_turf(mother), larva_already_reserved)
 
 
-/datum/hive_status/proc/do_spawn_larva(mob/xeno_candidate, turf/spawn_point, larva_already_reserved = FALSE)
+/datum/hive_status/proc/do_spawn_larva(client/xeno_candidate, turf/spawn_point, larva_already_reserved = FALSE)
 	if(is_banned_from(xeno_candidate.ckey, ROLE_XENOMORPH))
-		to_chat(xeno_candidate, span_warning("You are jobbaned from the [ROLE_XENOMORPH] role."))
+		to_chat(xeno_candidate.mob, span_warning("You are jobbaned from the [ROLE_XENOMORPH] role."))
 		return FALSE
 
 	var/mob/living/carbon/xenomorph/larva/new_xeno = new /mob/living/carbon/xenomorph/larva(spawn_point)
@@ -1023,7 +1023,7 @@ to_chat will check for valid clients itself already so no need to double check f
 	log_debug("A larva was spawned, it was [larva_already_reserved ? "already" : "not"] reserved. There is now [xeno_job.total_positions] total xeno positions and [xeno_job.current_positions] were taken.")
 	message_admins("[key_name(xeno_candidate)] has joined as [ADMIN_TPMONTY(new_xeno)].")
 
-	xeno_candidate.mind.transfer_to(new_xeno, TRUE)
+	xeno_candidate.mob.mind.transfer_to(new_xeno, TRUE)
 	new_xeno.playsound_local(new_xeno, 'sound/effects/xeno_newlarva.ogg')
 	to_chat(new_xeno, span_xenoannounce("We are a xenomorph larva awakened from slumber!"))
 	if(!larva_already_reserved)
