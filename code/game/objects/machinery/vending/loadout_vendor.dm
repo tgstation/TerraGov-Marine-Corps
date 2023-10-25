@@ -8,7 +8,7 @@
 	layer = BELOW_OBJ_LAYER
 	req_access = null
 	req_one_access = null
-	light_range = 1.5
+	light_range = 1
 	light_power = 0.5
 	light_color = LIGHT_COLOR_BLUE
 	///The faction of this loadout vendor

@@ -93,7 +93,7 @@ GLOBAL_LIST_INIT(quick_loadouts, init_quick_loadouts())
 	req_access = null
 	req_one_access = null
 	interaction_flags = INTERACT_MACHINE_TGUI
-	light_range = 1.5
+	light_range = 1
 	light_power = 0.5
 	light_color = LIGHT_COLOR_BLUE
 	///The faction of this quick load vendor
