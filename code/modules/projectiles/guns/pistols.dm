@@ -142,7 +142,6 @@
 	flags_gun_features &= ~GUN_WIELDED_STABLE_FIRING_ONLY|GUN_WIELDED_FIRING_ONLY
 	return ..()
 
-
 /obj/item/weapon/gun/pistol/plasma_pistol/guardsman_pistol
 	name = "\improper Guardsman\'s plasma pistol"
 	desc = "FOR THE EMPEROR!"
