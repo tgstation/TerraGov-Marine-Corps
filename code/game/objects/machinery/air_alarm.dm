@@ -4,7 +4,7 @@
 	icon = 'icons/obj/machines/air_alarm.dmi'
 	icon_state = "alarm_powered"
 	power_channel = ENVIRON
-	light_range = 1.5
+	light_range = 1
 	light_power = 0.5
 	light_color = LIGHT_COLOR_EMISSIVE_GREEN
 

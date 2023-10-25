@@ -36,6 +36,8 @@
 	req_access = list(ACCESS_CIVILIAN_ENGINEERING)
 	resistance_flags = UNACIDABLE
 	interaction_flags = INTERACT_MACHINE_TGUI
+	light_range = 1
+	light_power = 0.5
 	var/area/area
 	var/areastring = null
 	var/obj/item/cell/cell
@@ -250,7 +252,7 @@
 					set_light_color(LIGHT_COLOR_BLUE)
 				if(APC_FULLY_CHARGED)
 					set_light_color(LIGHT_COLOR_GREEN)
-			set_light(1)
+			set_light(initial(light_range))
 
 /obj/machinery/power/apc/proc/check_updates()
 
