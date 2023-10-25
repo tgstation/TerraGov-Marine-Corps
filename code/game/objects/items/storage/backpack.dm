@@ -369,8 +369,9 @@
 		/obj/item/ammo_magazine/heavymachinegun,
 		/obj/item/weapon/gun/standard_agls,
 		/obj/item/weapon/gun/heavy_laser/deployable,
+		/obj/item/ammo_magazine/heavy_laser,
 		/obj/item/mortar_kit,
-		/obj/item/mortal_shell/howitzer, // Howitzer shells are BULKY, same size as the mortar kit.
+		/obj/item/mortal_shell/howitzer // Howitzer shells are BULKY, same size as the mortar kit.
 	)
 
 /obj/item/storage/backpack/marine/satchel
