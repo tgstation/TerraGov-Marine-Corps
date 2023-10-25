@@ -888,7 +888,7 @@
 	apply_clickcatcher()
 	mob.reload_fullscreens()
 	if(prefs.auto_fit_viewport)
-		INVOKE_NEXT_TICK(src, .verb/fit_viewport, 1 SECONDS) //Delayed to avoid wingets from Login calls.
+		INVOKE_NEXT_TICK(src, VERB_REF(fit_viewport), 1 SECONDS) //Delayed to avoid wingets from Login calls.
 
 ///Change the fullscreen setting of the client
 /client/proc/set_fullscreen(fullscreen_mode)

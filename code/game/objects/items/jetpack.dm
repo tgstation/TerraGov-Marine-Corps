@@ -146,7 +146,9 @@
 		else
 			. += image('icons/obj/items/jetpack.dmi', src, "+jetpackempty")
 
-/obj/item/jetpack_marine/apply_custom(mutable_appearance/standing)
+/obj/item/jetpack_marine/apply_custom(mutable_appearance/standing, inhands, icon_used, state_used)
+	if(inhands)
+		return
 	. = ..()
 	if(lit)
 		standing.overlays += mutable_appearance('icons/mob/clothing/back.dmi',"+jetpack_lit")

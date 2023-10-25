@@ -130,7 +130,9 @@
 #define COMSIG_ELEMENT_CLOSE_SHUTTER_LINKED "close_shutter_linked"
 ///from turf/open/get_footstep_override(), to find an override footstep sound
 #define COMSIG_FIND_FOOTSTEP_SOUND "find_footstep_sound"
-///from /datum/element/jump when a jump has finished
+
+///from /datum/element/jump when a jump has started and ended
+#define COMSIG_ELEMENT_JUMP_STARTED "element_jump_started"
 #define COMSIG_ELEMENT_JUMP_ENDED "element_jump_ended"
 
 // /datum/limb signals
@@ -605,6 +607,10 @@
 ///from /mob/living/proc/attack_alien_harm(mob/living/carbon/xenomorph/X, dam_bonus, set_location, random_location, no_head, no_crit, force_intent)
 #define COMSIG_XENOMORPH_ATTACK_LIVING "xenomorph_attack_living"
 	#define COMSIG_XENOMORPH_BONUS_APPLIED (1<<0)
+///from /mob/living/carbon/xenomorph/attack_alien(mob/living/carbon/xenomorph/X, damage_amount, damage_type, damage_flag, effects, armor_penetration, isrightclick)
+///only on INTENT_HARM, INTENT_DISARM, IF it does damaage
+#define COMSIG_XENOMORPH_ATTACK_HOSTILE_XENOMORPH "xenomorph_attack_xenomorph"
+
 ///after attacking, accounts for armor
 #define COMSIG_XENOMORPH_POSTATTACK_LIVING "xenomorph_postattack_living"
 #define COMSIG_XENOMORPH_ATTACK_HUMAN "xenomorph_attack_human"

@@ -598,7 +598,25 @@
 	new /obj/item/storage/box/combat_lolipop/tricord(src)
 	new /obj/item/storage/box/combat_lolipop/tramadol(src)
 
+/obj/item/storage/pouch/berrypouch
+	name = "berry bar pouch"
+	desc = "A pouch containing all of your berry needs."
+	icon_state = "barpouch"
+	sprite_slots = 3
+	storage_slots = 6
+	can_hold = list(/obj/item/reagent_containers/food/snacks/wrapped/berrybar)
+
+/obj/item/storage/pouch/berrypouch/Initialize(mapload)
+	. = ..()
+	new /obj/item/reagent_containers/food/snacks/wrapped/berrybar(src)
+	new /obj/item/reagent_containers/food/snacks/wrapped/berrybar(src)
+	new /obj/item/reagent_containers/food/snacks/wrapped/berrybar(src)
+	new /obj/item/reagent_containers/food/snacks/wrapped/berrybar(src)
+	new /obj/item/reagent_containers/food/snacks/wrapped/berrybar(src)
+	new /obj/item/reagent_containers/food/snacks/wrapped/berrybar(src)
+
 /obj/item/storage/pouch/surgery
+
 	name = "surgery tools pouch"
 	desc = "An eye catching white medical pouch capable of holding all your surgical tools."
 	icon_state = "surgery"
@@ -836,3 +854,19 @@
 	desc = "A pouch specialized for holding shotgun ammo. Made with traditional SOM leather."
 	icon_state = "shotshells_som"
 	sprite_slots = null
+
+/obj/item/storage/pouch/protein_pack
+	name = "\improper protein pack pouch"
+	desc = "A storage pouch designed to hold a moderate amount of protein packs."
+	icon_state = "p_pouch"
+	item_state = "survival"
+	storage_slots = 10
+	max_storage_space = 10
+	sprite_slots = 1
+	max_w_class = WEIGHT_CLASS_TINY
+	can_hold = list(/obj/item/reagent_containers/food/snacks/protein_pack)
+
+/obj/item/storage/pouch/protein_pack/Initialize(mapload)
+	. = ..()
+	for(var/i in 1 to storage_slots)
+		new /obj/item/reagent_containers/food/snacks/protein_pack(src)

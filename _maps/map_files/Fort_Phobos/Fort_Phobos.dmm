@@ -1432,7 +1432,7 @@
 /turf/open/floor/plating/ground/concrete,
 /area/mainship/patrol_base/som/barracks)
 "sL" = (
-/obj/machinery/cic_maptable_big/som{
+/obj/machinery/cic_maptable/drawable/big/som{
 	pixel_x = -3
 	},
 /turf/open/floor/plating/ground/concrete,
@@ -3813,7 +3813,7 @@
 /turf/open/floor/mainship_hull,
 /area/mainship/patrol_base/som/hanger)
 "Ug" = (
-/obj/machinery/cic_maptable_big/som{
+/obj/machinery/cic_maptable/drawable/big/som{
 	pixel_x = -3
 	},
 /turf/open/floor/mainship/office,
@@ -3877,7 +3877,7 @@
 /turf/open/floor/mainship/red,
 /area/mainship/patrol_base/som/command)
 "Vd" = (
-/obj/structure/prop/computer/tadpole{
+/obj/machinery/prop/computer/tadpole{
 	dir = 4
 	},
 /turf/open/floor/mainship/mono,

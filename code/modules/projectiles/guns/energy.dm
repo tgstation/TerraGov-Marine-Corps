@@ -492,7 +492,7 @@
 	fire_sound = 'sound/weapons/guns/fire/Laser Rifle Standard.ogg'
 	message_to_user = "You set the laser rifle's charge mode to standard fire."
 	fire_mode = GUN_FIREMODE_AUTOMATIC
-	icon_state = "ter"
+	icon_state = GUN_ICONSTATE_LOADED
 	description = "Fire a standard automatic laser pulse. Better armour penetration and sunder than common projectiles."
 
 
@@ -503,7 +503,7 @@
 	fire_sound = 'sound/weapons/guns/fire/Laser overcharge standard.ogg'
 	message_to_user = "You set the laser rifle's charge mode to overcharge."
 	fire_mode = GUN_FIREMODE_AUTOMATIC
-	icon_state = "ter"
+	icon_state = GUN_ICONSTATE_LOADED
 	radial_icon_state = "laser_overcharge"
 	description = "Fires a powerful overcharged laser pulse. Deals heavy damage with superior penetration at the cost of slower fire rate."
 
@@ -514,7 +514,7 @@
 	fire_sound = 'sound/weapons/guns/fire/laser.ogg'
 	message_to_user = "You set the laser rifle's charge mode to weakening."
 	fire_mode = GUN_FIREMODE_AUTOMATIC
-	icon_state = "ter"
+	icon_state = GUN_ICONSTATE_LOADED
 	radial_icon_state = "laser_disabler"
 	description = "Fires a pulse of energy that inflicts slowdown, and deals stamina damage to humans, or drains plasma from xenomorphs."
 
@@ -526,7 +526,7 @@
 	fire_sound = 'sound/weapons/guns/fire/laser_rifle_2.ogg'
 	message_to_user = "You set the laser rifle's charge mode to microwave."
 	fire_mode = GUN_FIREMODE_AUTOMATIC
-	icon_state = "ter"
+	icon_state = GUN_ICONSTATE_LOADED
 	radial_icon_state = "laser_microwave"
 	description = "Fires a deadly pulse of microwave radiation, dealing moderate damage but applying a 'microwave' effect that deals strong damage over time."
 
@@ -594,7 +594,7 @@
 	fire_sound = 'sound/weapons/guns/fire/Laser Pistol Standard.ogg'
 	message_to_user = "You set the laser pistol's charge mode to standard fire."
 	fire_mode = GUN_FIREMODE_SEMIAUTO
-	icon_state = "tep"
+	icon_state = GUN_ICONSTATE_LOADED
 	description = "Fires a standard laser pulse. Moderate damage."
 
 /datum/lasrifle/energy_pistol_mode/disabler
@@ -604,7 +604,7 @@
 	fire_sound = 'sound/weapons/guns/fire/disabler.ogg'
 	message_to_user = "You set the laser pistol's charge mode to disabler fire."
 	fire_mode = GUN_FIREMODE_AUTOMATIC
-	icon_state = "tep"
+	icon_state = GUN_ICONSTATE_LOADED
 	radial_icon_state = "laser_disabler"
 	description = "Fires a disabling pulse that drains stamina. Ineffective against xenomorphs."
 
@@ -615,7 +615,7 @@
 	fire_sound = 'sound/weapons/guns/fire/laser3.ogg'
 	message_to_user = "You set the laser pistol's charge mode to wave heat."
 	fire_mode = GUN_FIREMODE_AUTOMATIC
-	icon_state = "tep"
+	icon_state = GUN_ICONSTATE_LOADED
 	radial_icon_state = "laser_heat"
 	description = "Fires an incendiary laser pulse that ignites living targets."
 
@@ -711,7 +711,7 @@
 	fire_sound = 'sound/weapons/guns/fire/Laser Rifle Standard.ogg'
 	message_to_user = "You set the laser carbine's charge mode to standard auto burst fire."
 	fire_mode = GUN_FIREMODE_AUTOBURST
-	icon_state = "tec"
+	icon_state = GUN_ICONSTATE_LOADED
 	description = "Fires a rapid pulse laser, dealing good damage per second, but suffers from increased scatter and poorer falloff."
 
 /datum/lasrifle/energy_carbine_mode/base/spread
@@ -722,7 +722,7 @@
 	fire_sound = 'sound/weapons/guns/fire/Laser Carbine Scatter.ogg'
 	message_to_user = "You set the laser carbine's charge mode to spread."
 	fire_mode = GUN_FIREMODE_SEMIAUTO
-	icon_state = "tec"
+	icon_state = GUN_ICONSTATE_LOADED
 	radial_icon_state = "laser_spread"
 	description = "Fire a 3 strong laser pulse dealing heavy damage with good penetration, but with a very slow rate of fire."
 
@@ -734,7 +734,7 @@
 	fire_sound = 'sound/weapons/guns/fire/laser3.ogg'
 	message_to_user = "You set the laser carbine's charge mode to impact."
 	fire_mode = GUN_FIREMODE_SEMIAUTO
-	icon_state = "tec"
+	icon_state = GUN_ICONSTATE_LOADED
 	radial_icon_state = "laser_impact"
 	description = "Fires an experimental laser pulse designed to apply significant kinetic force on a target, applying strong knockback, but modest direct damage."
 
@@ -746,7 +746,7 @@
 	fire_sound = 'sound/weapons/guns/fire/laser.ogg'
 	message_to_user = "You set the laser carbine's charge mode to cripple."
 	fire_mode = GUN_FIREMODE_AUTOMATIC
-	icon_state = "tec"
+	icon_state = GUN_ICONSTATE_LOADED
 	radial_icon_state = "laser_disabler"
 	description = "Fires a laser pulse dealing moderate damage and slowdown."
 
@@ -823,7 +823,7 @@
 	fire_sound = 'sound/weapons/guns/fire/Laser Sniper Standard.ogg'
 	message_to_user = "You set the sniper rifle's charge mode to standard fire."
 	fire_mode = GUN_FIREMODE_SEMIAUTO
-	icon_state = "tes"
+	icon_state = GUN_ICONSTATE_LOADED
 	description = "Fires a single strong laser pulse, with good damage and penetration, and no falloff."
 
 /datum/lasrifle/energy_sniper_mode/heat
@@ -833,7 +833,7 @@
 	fire_sound = 'sound/weapons/guns/fire/laser3.ogg'
 	message_to_user = "You set the sniper rifle's charge mode to wave heat."
 	fire_mode = GUN_FIREMODE_SEMIAUTO
-	icon_state = "tes"
+	icon_state = GUN_ICONSTATE_LOADED
 	radial_icon_state = "laser_heat"
 	description = "Fires an incendiary laser pulse, designed to ignite victims at range."
 
@@ -844,7 +844,7 @@
 	fire_sound = 'sound/weapons/guns/fire/laser_rifle_2.ogg'
 	message_to_user = "You set the sniper rifle's charge mode to shatter."
 	fire_mode = GUN_FIREMODE_SEMIAUTO
-	icon_state = "tes"
+	icon_state = GUN_ICONSTATE_LOADED
 	radial_icon_state = "laser_charge"
 	description = "Fires a devestating laser pulse that significantly degrades the victims armor, at the cost of lower direct damage."
 
@@ -855,7 +855,7 @@
 	fire_sound = 'sound/weapons/guns/fire/laser3.ogg'
 	message_to_user = "You set the sniper rifle's charge mode to ricochet."
 	fire_mode = GUN_FIREMODE_SEMIAUTO
-	icon_state = "tes"
+	icon_state = GUN_ICONSTATE_LOADED
 	radial_icon_state = "laser_ricochet"
 	description = "Fires an experiment laser pulse capable of bouncing off many wall surfaces. The laser increases in potency when bouncing, before collapsing entirely after exceeding its threshold."
 
@@ -940,7 +940,7 @@
 	fire_sound = 'sound/weapons/guns/fire/Laser Sniper Standard.ogg'
 	message_to_user = "You set the machine laser's charge mode to standard fire."
 	fire_mode = GUN_FIREMODE_AUTOMATIC
-	icon_state = "tem"
+	icon_state = GUN_ICONSTATE_LOADED
 	description = "Fires a rapid laser pulse with slightly reduced damage, but improved penetration and vastly improved energy efficiency."
 
 /datum/lasrifle/energy_mg_mode/standard/burst
@@ -951,7 +951,7 @@
 	fire_sound = 'sound/weapons/guns/fire/Laser Carbine Scatter.ogg'
 	message_to_user = "You set the machine laser's charge mode to burst."
 	fire_mode = GUN_FIREMODE_BURSTFIRE
-	icon_state = "tem"
+	icon_state = GUN_ICONSTATE_LOADED
 	radial_icon_state = "laser_spread"
 	description = "Fires a series of laser pulses in quick succession. Each pulse in a burst is more powerful than the last."
 
@@ -1080,6 +1080,27 @@
 	damage_falloff_mult = 0.9
 	fire_delay = 0.2 SECONDS
 	mode_list = list()
+	light_range = 0.1
+	light_power = 0.1
+	light_color = LIGHT_COLOR_ORANGE
+
+/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/update_icon(mob/user)
+	. = ..()
+	if(rounds)
+		turn_light(user, TRUE)
+	else
+		turn_light(user, FALSE)
+
+/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/turn_light(mob/user, toggle_on)
+	. = ..()
+	if(. != CHECKS_PASSED)
+		return
+	set_light_on(toggle_on)
+
+/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/apply_custom(mutable_appearance/standing, inhands, icon_used, state_used)
+	. = ..()
+	var/mutable_appearance/emissive_overlay = emissive_appearance(icon_used, "[item_state]_emissive")
+	standing.overlays.Add(emissive_overlay)
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/serpenta
 	name = "\improper VX-12 Serpenta"

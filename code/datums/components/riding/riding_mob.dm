@@ -299,7 +299,7 @@
 	RegisterSignal(parent, COMSIG_ATOM_DIR_CHANGE, PROC_REF(vehicle_turned))
 	RegisterSignal(parent, COMSIG_MOVABLE_UNBUCKLE, PROC_REF(vehicle_mob_unbuckle))
 	RegisterSignal(parent, COMSIG_MOVABLE_MOVED, PROC_REF(vehicle_moved))
-	RegisterSignal(parent, COMSIG_XENOMORPH_ATTACK_LIVING, PROC_REF(check_widow_attack))
+	RegisterSignals(parent, list(COMSIG_XENOMORPH_ATTACK_LIVING, COMSIG_XENOMORPH_ATTACK_OBJ, COMSIG_XENOMORPH_ATTACK_HOSTILE_XENOMORPH), PROC_REF(check_widow_attack))
 
 /datum/component/riding/creature/widow/vehicle_mob_unbuckle(datum/source, mob/living/former_rider, force = FALSE)
 	unequip_buckle_inhands(parent)

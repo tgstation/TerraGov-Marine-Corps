@@ -27,15 +27,17 @@
 /obj/machinery/power/apc
 	name = "area power controller"
 	desc = "A control terminal for the area electrical systems."
-	icon = 'icons/obj/wallframes.dmi'
+	icon = 'icons/obj/machines/apc.dmi'
 	icon_state = "apc0"
-	pixel_x = -16
-	pixel_y = -16
+	//pixel_x = -16
+	//pixel_y = -16
 	anchored = TRUE
 	use_power = NO_POWER_USE
 	req_access = list(ACCESS_CIVILIAN_ENGINEERING)
 	resistance_flags = UNACIDABLE
 	interaction_flags = INTERACT_MACHINE_TGUI
+	light_range = 1
+	light_power = 0.5
 	var/area/area
 	var/areastring = null
 	var/obj/item/cell/cell
@@ -98,13 +100,13 @@
 
 	switch(dir)
 		if(NORTH)
-			pixel_y -= 32
+			pixel_y = -32
 		if(SOUTH)
-			pixel_y += 32
+			pixel_y = 32
 		if(EAST)
-			pixel_x -= 32
+			pixel_x = -32
 		if(WEST)
-			pixel_x += 32
+			pixel_x = 32
 
 	if(building)
 		var/area/A = get_area(src)
@@ -142,7 +144,7 @@
 			cell.charge = start_charge * cell.maxcharge / 100.0 //Convert percentage to actual value
 			cell.update_icon()
 
-		
+
 		make_terminal()
 
 		update() //areas should be lit on startup
@@ -219,6 +221,7 @@
 	if(!update)
 		return
 
+	set_light(0)
 	overlays.Cut()
 
 	if(update & 1)
@@ -241,6 +244,15 @@
 			overlays += mutable_appearance(icon, "apco1-[operating ? lighting : 0]")
 			overlays += emissive_appearance(icon, "apco2-[operating ? environ : 0]")
 			overlays += mutable_appearance(icon, "apco2-[operating ? environ : 0]")
+
+			switch(charging)
+				if(APC_NOT_CHARGING)
+					set_light_color(LIGHT_COLOR_RED)
+				if(APC_CHARGING)
+					set_light_color(LIGHT_COLOR_BLUE)
+				if(APC_FULLY_CHARGED)
+					set_light_color(LIGHT_COLOR_GREEN)
+			set_light(initial(light_range))
 
 /obj/machinery/power/apc/proc/check_updates()
 

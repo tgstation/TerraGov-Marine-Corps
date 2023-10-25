@@ -153,6 +153,11 @@
 	desc = "An empty wrapper from a barcardine bar. You notice the inside has several medical labels. You're not sure if you care or not about that."
 	icon_state = "barcardine_trash"
 
+/obj/item/trash/berrybar
+	name = "berry bar wrapper"
+	desc = "An empty wrapper from a berry bar. You notice the inside has several medical labels and ingredients but You're not sure if you care or not about that."
+	icon_state = "berrybar_trash"
+
 /obj/item/trash/mre
 	name = "\improper crumbled TGMC MRE"
 	desc = "It has done its part for the TGMC. Have you?"

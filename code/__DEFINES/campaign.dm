@@ -12,6 +12,10 @@
 #define AFTER_MISSION_LEADER_DELAY 1 MINUTES
 ///Standard amount of missions for a faction to have
 #define CAMPAIGN_STANDARD_MISSION_QUANTITY 3
+///Attrition bonus for losing
+#define CAMPAIGN_LOSS_BONUS 0.15
+///Max losing bonus
+#define CAMPAIGN_MAX_LOSS_BONUS 0.45
 
 //mission defines
 #define MISSION_STATE_NEW "mission state new"
