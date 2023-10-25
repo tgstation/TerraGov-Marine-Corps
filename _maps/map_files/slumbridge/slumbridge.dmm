@@ -32070,7 +32070,7 @@
 /turf/open/floor/plating,
 /area/slumbridge/sombase/west)
 "xGW" = (
-/obj/item/weapon/gun/heavy_laser{
+/obj/item/weapon/gun/mounted/heavy_laser{
 	dir = 1
 	},
 /turf/open/floor/tile/whiteyellow{
