@@ -35,6 +35,8 @@
 	///Minimap for the pilot to know where the marines have ran off to
 	var/datum/action/minimap/marine/external/cas_mini
 
+	///If the shuttle is currently returning to the hangar.
+	var/currently_returning = FALSE
 	/// Jump to Lase action for active firemissions
 	var/datum/action/innate/jump_to_lase/jump_action
 
@@ -58,6 +60,7 @@
 	if((fuel_left <= LOW_FUEL_LANDING_THRESHOLD) && (state == PLANE_STATE_FLYING))
 		to_chat(chair.occupant, span_warning("Out of fuel, landing."))
 		SSshuttle.moveShuttle(id, SHUTTLE_CAS_DOCK, TRUE)
+		currently_returning = TRUE
 		end_cas_mission(chair.occupant)
 	if (fuel_left <= 0)
 		fuel_left = 0
@@ -131,8 +134,11 @@
 	if(!fuel_left)
 		to_chat(user, span_warning("No fuel remaining!"))
 		return
-	if(state != PLANE_STATE_FLYING)
+	if(state != PLANE_STATE_FLYING || is_mainship_level(z))
 		to_chat(user, span_warning("You are not in-flight!"))
+		return
+	if(currently_returning)
+		to_chat(user, span_warning("You are currently on your return flight!"))
 		return
 	if(!eyeobj)
 		eyeobj = new()
@@ -169,6 +175,24 @@
 
 	if(!starting_point)
 		return
+
+	if(state != PLANE_STATE_FLYING || is_mainship_level(z)) //Secondary safety due to input being able to delay time.
+		to_chat(user, span_warning("You are not in-flight!"))
+		return
+	if(currently_returning)
+		to_chat(user, span_warning("You are currently on your return flight!"))
+		return
+	if(eyeobj.eye_user)
+		to_chat(user, span_warning("CAS mode is already in-use!"))
+		return
+
+	SSmonitor.process_human_positions()
+	#ifndef TESTING
+	if(SSmonitor.human_on_ground <= 5)
+		to_chat(user, span_warning("The signal from the area of operations is too weak, you cannot route towards the battlefield."))
+		return
+	#endif
+
 	to_chat(user, span_warning("Targets detected, routing to area of operations."))
 	give_eye_control(user)
 	eyeobj.setLoc(get_turf(starting_point))
@@ -225,7 +249,7 @@
 
 ///Handles clicking on a target while in CAS mode
 /obj/docking_port/mobile/marine_dropship/casplane/proc/fire_weapons_at(datum/source, atom/target, turf/location, control, params)
-	if(state != PLANE_STATE_FLYING)
+	if(state != PLANE_STATE_FLYING || is_mainship_level(z))
 		end_cas_mission(source)
 		return
 	if(!GLOB.cameranet.checkTurfVis(get_turf_pixel(target)))
@@ -252,6 +276,7 @@
 /obj/docking_port/mobile/marine_dropship/casplane/ui_data(mob/user)
 	. = list()
 	.["plane_state"] = state
+	.["location_state"] = !is_mainship_level(z)
 	.["plane_mode"] = mode
 	.["fuel_left"] = fuel_left
 	.["fuel_max"] = fuel_max

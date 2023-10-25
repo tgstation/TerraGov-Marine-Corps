@@ -16,6 +16,10 @@
 	. = ..()
 	add_debris_element()
 
+/turf/closed/hitby(atom/movable/AM, speed = 5)
+	AM.stop_throw()
+	AM.turf_collision(src, speed)
+
 /turf/closed/mineral
 	name = "rock"
 	icon = 'icons/turf/walls.dmi'
