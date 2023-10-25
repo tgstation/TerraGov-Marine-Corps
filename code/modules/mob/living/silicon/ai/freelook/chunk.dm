@@ -81,13 +81,12 @@
 	//turfs that are included in the chunks normal turfs list minus the turfs the cameras CAN see
 	obscuredTurfs = turfs - newVisibleTurfs
 
-	var/static/list/vis_contents_opaque = parent_cameranet.vis_contents_opaque //ba dum tsss
 	for(var/turf/added_turf AS in visAdded)
-		added_turf.vis_contents -= vis_contents_opaque
+		added_turf.vis_contents -= parent_cameranet.vis_contents_opaque
 
 	for(var/turf/removed_turf AS in visRemoved)
 		if(obscuredTurfs[removed_turf] && !istype(removed_turf, /turf/open/ai_visible))
-			removed_turf.vis_contents += vis_contents_opaque
+			removed_turf.vis_contents += parent_cameranet.vis_contents_opaque
 
 	changed = FALSE
 
@@ -102,11 +101,11 @@
 	parent_cameranet = cameranet ? cameranet : GLOB.cameranet
 
 	for(var/obj/machinery/camera/camera in urange(CHUNK_SIZE, locate(x + (CHUNK_SIZE / 2), y + (CHUNK_SIZE / 2), z)))
-		if(camera.can_use())
+		if(camera.can_use() && (parent_cameranet == camera.parent_cameranet))
 			cameras += camera
 
 	for(var/mob/living/silicon/sillycone in urange(CHUNK_SIZE, locate(x + (CHUNK_SIZE / 2), y + (CHUNK_SIZE / 2), z)))
-		if(sillycone.builtInCamera?.can_use())
+		if(sillycone.builtInCamera?.can_use() && (parent_cameranet == sillycone.builtInCamera?.parent_cameranet))
 			cameras += sillycone.builtInCamera
 
 	for(var/turf/t AS in block(locate(max(x, 1), max(y, 1), z), locate(min(x + CHUNK_SIZE - 1, world.maxx), min(y + CHUNK_SIZE - 1, world.maxy), z)))
