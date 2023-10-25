@@ -422,7 +422,7 @@
 		/obj/item/weapon/gun/minigun,
 		/obj/item/weapon/gun/grenade_launcher/multinade_launcher,
 		/obj/item/weapon/gun/energy/lasgun/pulse,
-		/obj/item/weapon/gun/tl102/death, // memes
+		/obj/item/weapon/gun/mounted/tl102/death, // memes
 	)
 
 /obj/effect/landmark/weapon_spawn/tier6_weapon_spawn

@@ -625,7 +625,7 @@
 
 /obj/item/storage/box/crate/loot/agl_pack/Initialize(mapload)
 	. = ..()
-	new /obj/item/weapon/gun/standard_agls(src)
+	new /obj/item/weapon/gun/mounted/standard_agls(src)
 	new /obj/item/ammo_magazine/standard_agls(src)
 	new /obj/item/ammo_magazine/standard_agls(src)
 	new /obj/item/ammo_magazine/standard_agls(src)

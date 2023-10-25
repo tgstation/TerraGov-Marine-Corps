@@ -204,7 +204,7 @@ WEAPONS
 
 /datum/supply_packs/weapons/minigun_emplacement
 	name = "Mounted Automatic Minigun"
-	contains = list(/obj/item/weapon/gun/standard_minigun)
+	contains = list(/obj/item/weapon/gun/mounted/standard_minigun)
 	cost = 600
 
 /datum/supply_packs/weapons/minigun_ammo
@@ -229,7 +229,7 @@ WEAPONS
 
 /datum/supply_packs/weapons/ags_emplacement
 	name = "AGLS-37 Mounted Automated Grenade Launcher"
-	contains = list(/obj/item/weapon/gun/standard_agls)
+	contains = list(/obj/item/weapon/gun/mounted/standard_agls)
 	cost = 700
 
 /datum/supply_packs/weapons/ags_highexplo
@@ -315,7 +315,7 @@ WEAPONS
 
 /datum/supply_packs/weapons/heayvlaser_emplacement
 	name = "Mounted Heavy Laser"
-	contains = list(/obj/item/weapon/gun/heavy_laser)
+	contains = list(/obj/item/weapon/gun/mounted/heavy_laser)
 	cost = 800
 
 
@@ -596,7 +596,7 @@ WEAPONS
 
 /datum/supply_packs/weapons/hmg
 	name = "HMG-08 heavy machinegun"
-	contains = list(/obj/item/weapon/gun/heavymachinegun)
+	contains = list(/obj/item/weapon/gun/mounted/heavymachinegun)
 	cost = 400
 
 /datum/supply_packs/weapons/hmg_ammo

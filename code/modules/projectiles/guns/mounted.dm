@@ -1,3 +1,11 @@
+// Base gun for deployables. Very simple because each deployable is different.
+// Only includes guns that can be picked up.
+/obj/item/weapon/gun/mounted
+	icon_state = ""
+	icon = 'icons/Marine/marine-hmg.dmi'
+	w_class = WEIGHT_CLASS_HUGE
+	flags_equip_slot = ITEM_SLOT_BACK
+
 ///box for storage of ammo and gun
 /obj/item/storage/box/tl102
 	name = "\improper HSG-102 crate"
@@ -7,23 +15,20 @@
 	w_class = WEIGHT_CLASS_HUGE
 	storage_slots = 7
 	bypass_w_limit = list(
-		/obj/item/weapon/gun/tl102,
+		/obj/item/weapon/gun/mounted/tl102,
 		/obj/item/ammo_magazine/tl102,
 	)
 
 /obj/item/storage/box/tl102/Initialize(mapload)
 	. = ..()
-	new /obj/item/weapon/gun/tl102(src) //gun itself
+	new /obj/item/weapon/gun/mounted/tl102(src) //gun itself
 	new /obj/item/ammo_magazine/tl102(src) //ammo for the gun
 
 ///HSG-102, now with full auto. It is not a superclass of deployed guns, however there are a few varients.
-/obj/item/weapon/gun/tl102
+/obj/item/weapon/gun/mounted/tl102
 	name = "\improper HSG-102 mounted heavy smartgun"
 	desc = "The HSG-102 heavy machinegun, it's too heavy to be wielded or operated without the tripod. IFF capable. No extra work required, just deploy it with Ctrl-Click. Can be repaired with a blowtorch once deployed."
 
-	w_class = WEIGHT_CLASS_HUGE
-	flags_equip_slot = ITEM_SLOT_BACK
-	icon = 'icons/Marine/marine-hmg.dmi'
 	icon_state = "turret"
 
 	fire_sound = 'sound/weapons/guns/fire/hmg2.ogg'
@@ -46,17 +51,9 @@
 	flags_gun_features = GUN_AMMO_COUNTER|GUN_DEPLOYED_FIRE_ONLY|GUN_WIELDED_FIRING_ONLY|GUN_IFF|GUN_SMOKE_PARTICLES
 	gun_firemode_list = list(GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC)
 
-	attachable_allowed = list(
-		/obj/item/attachable/scope/unremovable/tl102,
-	)
-
-	starting_attachment_types = list(
-		/obj/item/attachable/scope/unremovable/tl102,
-	)
-
-	allowed_ammo_types = list(
-		/obj/item/ammo_magazine/tl102,
-	)
+	attachable_allowed = list(/obj/item/attachable/scope/unremovable/tl102)
+	starting_attachment_types = list(/obj/item/attachable/scope/unremovable/tl102)
+	allowed_ammo_types = list(/obj/item/ammo_magazine/tl102)
 
 	deploy_time = 5 SECONDS
 	undeploy_time = 3 SECONDS
@@ -66,7 +63,7 @@
 	soft_armor = list(MELEE = 0, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 100, FIRE = 0, ACID = 20)
 
 ///Unmovable ship mounted version.
-/obj/item/weapon/gun/tl102/hsg_nest
+/obj/item/weapon/gun/mounted/tl102/hsg_nest
 	name = "\improper HSG-102 heavy smartgun nest"
 	desc = "A HSG-102 heavy smartgun mounted upon a small reinforced post with sandbags to provide a small machinegun nest for all your defense purpose needs.</span>"
 	icon = 'icons/Marine/marine-hmg.dmi'
@@ -75,9 +72,7 @@
 	default_ammo_type = /obj/item/ammo_magazine/tl102/hsg_nest
 
 	attachable_allowed = list(/obj/item/attachable/scope/unremovable/tl102/nest)
-	starting_attachment_types = list(
-		/obj/item/attachable/scope/unremovable/tl102/nest,
-	)
+	starting_attachment_types = list(/obj/item/attachable/scope/unremovable/tl102/nest)
 
 	allowed_ammo_types = list(
 		/obj/item/ammo_magazine/tl102,
@@ -86,19 +81,16 @@
 	flags_item = IS_DEPLOYABLE|TWOHANDED|DEPLOYED_NO_PICKUP|DEPLOY_ON_INITIALIZE
 	soft_armor = list(MELEE = 0, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 100, FIRE = 0, ACID = 0)
 
-/obj/item/weapon/gun/tl102/hsg_nest/sandless
+/obj/item/weapon/gun/mounted/tl102/hsg_nest/sandless
 	icon_state = "entrenched_sandless"
 
 //-------------------------------------------------------
 //MG-2005 mounted minigun
 
-/obj/item/weapon/gun/standard_minigun
+/obj/item/weapon/gun/mounted/standard_minigun
 	name = "\improper MG-2005 mounted minigun"
 	desc = "The MG-2005 mounted minigun is a gun simple in principle, it will shoot a lot of bullets really fast and will rip through xeno hordes."
 
-	w_class = WEIGHT_CLASS_HUGE
-	flags_equip_slot = ITEM_SLOT_BACK
-	icon = 'icons/Marine/marine-hmg.dmi'
 	icon_state = "minigun"
 	caliber = CALIBER_762X51
 
@@ -134,10 +126,9 @@
 	soft_armor = list(MELEE = 0, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 100, FIRE = 0, ACID = 20)
 
 ///Unmovable ship mounted version.
-/obj/item/weapon/gun/standard_minigun/nest
+/obj/item/weapon/gun/mounted/standard_minigun/nest
 	name = "\improper MG-2005 mounted minigun nest"
 	desc = "A MG-2005 mounted minigun mounted upon a small reinforced post with sandbags."
-	icon = 'icons/Marine/marine-hmg.dmi'
 	icon_state = "minigun_nest"
 
 	flags_item = IS_DEPLOYABLE|TWOHANDED|DEPLOYED_NO_PICKUP|DEPLOY_ON_INITIALIZE
@@ -197,13 +188,10 @@
 //-------------------------------------------------------
 //TE-9001 mounted heavy laser
 
-/obj/item/weapon/gun/heavy_laser
+/obj/item/weapon/gun/mounted/heavy_laser
 	name = "\improper TE-9001 mounted heavy laser"
 	desc = "The TE-9001 mounted heavy laser is a non-IFF heavy laser that is powerful enough to start a sizeable fire on its impact, this weapon is exceptional at area denial."
 
-	w_class = WEIGHT_CLASS_HUGE
-	flags_equip_slot = ITEM_SLOT_BACK
-	icon = 'icons/Marine/marine-hmg.dmi'
 	icon_state = "heavylaser"
 
 	fire_sound = 'sound/weapons/guns/fire/tank_flamethrower.ogg'
@@ -232,7 +220,7 @@
 	max_integrity = 400
 	soft_armor = list(MELEE = 0, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 100, FIRE = 0, ACID = 0)
 
-/obj/item/weapon/gun/heavy_laser/deployable
+/obj/item/weapon/gun/mounted/heavy_laser/deployable
 	icon_state = "heavylaser_deployable"
 	flags_item = IS_DEPLOYABLE|TWOHANDED
 
@@ -280,7 +268,7 @@
 	soft_armor = list(MELEE = 0, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 100, FIRE = 0, ACID = 0)
 
 ///This is my meme version, the first version of the HSG-102 to have auto-fire, revel in its presence.
-/obj/item/weapon/gun/tl102/death
+/obj/item/weapon/gun/mounted/tl102/death
 	name = "\improper \"Death incarnate\" heavy machine gun"
 	desc = "It looks like a regular HSG-102, however glowing archaeic writing glows faintly on its sides and top. It beckons for blood."
 	icon = 'icons/Marine/marine-hmg.dmi'
@@ -300,12 +288,10 @@
 
 // This is a deployed IFF-less MACHINEGUN, has 500 rounds, drums do not fit anywhere but your belt slot and your back slot. But it has 500 rounds. That's nice.
 
-/obj/item/weapon/gun/heavymachinegun
+/obj/item/weapon/gun/mounted/heavymachinegun
 	name = "\improper HMG-08 heavy machinegun"
 	desc = "An absolute monster of a weapon, this is a watercooled heavy machinegun modernized by some crazy armorer with a wheeling kit included. Considering the mish mash of parts for the wheeling kit, you think its from another model of the gun. The pinnacle at holding a chokepoint. Holds 500 rounds of 10x28mm caseless in a box case. IS NOT IFF CAPABLE. Aiming carefully recommended. Can be repaired with a blowtorch once deployed. Alt Right click to unanchor and reanchor it."
-	w_class = WEIGHT_CLASS_HUGE
-	flags_equip_slot = ITEM_SLOT_BACK
-	icon = 'icons/Marine/marine-hmg.dmi'
+
 	icon_state = "mg08"
 
 	fire_sound = 'sound/weapons/guns/fire/mg08.ogg'
@@ -326,13 +312,9 @@
 	flags_gun_features = GUN_AMMO_COUNTER|GUN_DEPLOYED_FIRE_ONLY|GUN_WIELDED_FIRING_ONLY|GUN_SMOKE_PARTICLES
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
 
-	attachable_allowed = list(
-		/obj/item/attachable/scope/unremovable/heavymachinegun,
-	)
+	attachable_allowed = list(/obj/item/attachable/scope/unremovable/heavymachinegun)
 
-	starting_attachment_types = list(
-		/obj/item/attachable/scope/unremovable/heavymachinegun,
-	)
+	starting_attachment_types = list(/obj/item/attachable/scope/unremovable/heavymachinegun)
 
 	deploy_time = 8 SECONDS
 	undeploy_time = 3 SECONDS
@@ -567,7 +549,7 @@
 
 //AGLS-37, or Automatic Grenade Launching System 37, a fully automatic mounted grenade launcher that fires fragmentation and HE shells, can't be turned.
 
-/obj/item/weapon/gun/standard_agls
+/obj/item/weapon/gun/mounted/standard_agls
 	name = "\improper AGLS-37 Kauser automatic grenade launcher"
 	desc = "The AGLS-37 automatic grenade launching IFF capable system, it's too heavy to be wielded or operated without the tripod. On the back, it reads: \"The Explosions and Fragmentation from this weapon ARE NOT friendly fire capable. Kauser is not obligated to buy you new body parts for you or your friends if you lose them.\"\nCan be deployed with Crtl-Click. It CANNOT be turned once deployed, due to a lack of swivels, pick it up to move your cone of fire. Can be repaired with a blowtorch once deployed."
 	w_class = WEIGHT_CLASS_HUGE
@@ -586,13 +568,9 @@
 	flags_gun_features = GUN_AMMO_COUNTER|GUN_DEPLOYED_FIRE_ONLY|GUN_WIELDED_FIRING_ONLY
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
 
-	attachable_allowed = list(
-		/obj/item/attachable/scope/unremovable/standard_atgun,
-	)
+	attachable_allowed = list(/obj/item/attachable/scope/unremovable/standard_atgun)
 
-	starting_attachment_types = list(
-		/obj/item/attachable/scope/unremovable/standard_atgun,
-	)
+	starting_attachment_types = list(/obj/item/attachable/scope/unremovable/standard_atgun)
 
 	allowed_ammo_types = list(
 		/obj/item/ammo_magazine/standard_agls,
@@ -611,7 +589,7 @@
 	max_integrity = 300
 	soft_armor = list(MELEE = 0, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 100, FIRE = 0, ACID = 20)
 
-/obj/item/weapon/gun/standard_agls/do_fire(obj/object_to_fire)
+/obj/item/weapon/gun/mounted/standard_agls/do_fire(obj/object_to_fire)
 	. = ..()
 	if(!.)
 		return FALSE

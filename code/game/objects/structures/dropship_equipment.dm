@@ -525,14 +525,14 @@
 	desc = "A box that deploys a modified M56D crewserved machine gun. Fits on the crewserved weapon attach points of dropships. You need a powerloader to lift it."
 	icon_state = "mg_system"
 	point_cost = 300
-	deployable_type = /obj/item/weapon/gun/tl102/hsg_nest
+	deployable_type = /obj/item/weapon/gun/mounted/tl102/hsg_nest
 
 /obj/structure/dropship_equipment/shuttle/weapon_holder/minigun
 	name = "minigun deployment system"
 	desc = "A box that deploys a modified MG-2005 crewserved minigun. Fits on the crewserved weapon attach points of dropships. You need a powerloader to lift it."
 	icon_state = "minigun_system"
 	point_cost = 0 //this removes it from the fabricator
-	deployable_type = /obj/item/weapon/gun/standard_minigun/nest
+	deployable_type = /obj/item/weapon/gun/mounted/standard_minigun/nest
 	undeployed_icon_state = "minigun_system"
 
 /obj/structure/dropship_equipment/shuttle/weapon_holder/heavylaser
@@ -540,7 +540,7 @@
 	desc = "A box that deploys a modified TE-9001 crewserved heavylaser. Fits on the crewserved weapon attach points of dropships. You need a powerloader to lift it."
 	icon_state = "hl_system"
 	point_cost = 0 //this removes it from the fabricator
-	deployable_type = /obj/item/weapon/gun/heavy_laser
+	deployable_type = /obj/item/weapon/gun/mounted/heavy_laser
 	undeployed_icon_state = "hl_system"
 
 /obj/structure/dropship_equipment/shuttle/weapon_holder/heavy_rr
