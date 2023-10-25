@@ -368,7 +368,7 @@
 		/obj/item/ammo_magazine/heavy_laser,
 		/obj/item/mortal_shell/howitzer // Howitzer shells are BULKY, same size as the mortar kit.
 	)
-	storage_type_limits = list(/obj/item/weapon/gun/mounted)
+	storage_type_limits = list(/obj/item/weapon/gun/mounted = 1)
 /obj/item/storage/backpack/marine/satchel
 	name = "\improper TGMC satchel"
 	desc = "A heavy-duty satchel carried by some TGMC soldiers and support personnel."
