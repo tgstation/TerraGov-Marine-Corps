@@ -126,7 +126,7 @@
 
 /obj/structure/weapon_x_pod/Destroy()
 	if(occupant)
-		qdel(occupant)
+		QDEL_NULL(occupant)
 	return ..()
 
 /obj/structure/weapon_x_pod/update_icon_state()
