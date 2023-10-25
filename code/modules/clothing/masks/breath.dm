@@ -87,14 +87,9 @@
 
 	active = !active
 	icon_state = "[initial(icon_state)][!active ? "_down" : ""]"
-	if(!active)
-		flags_inventory = NONE
-		flags_inv_hide = NONE
-		flags_armor_protection = NONE
-	else
-		flags_inventory = COVERMOUTH|BLOCKGASEFFECT
-		flags_inv_hide = HIDEFACE
-		flags_armor_protection = FACE
+	flags_armor_protection ^= initial(flags_armor_protection)
+	flags_inv_hide ^= initial(flags_inv_hide)
+	flags_inventory ^= initial(flags_inventory)
 	to_chat(usr, "You [active ? "pull [src] up to cover your face" : "pull [src] off your face"].")
 
 	update_clothing_icon()
