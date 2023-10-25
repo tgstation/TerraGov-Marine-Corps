@@ -74,6 +74,12 @@
 		/obj/item/armor_module/storage/general,
 	)
 
+/obj/item/clothing/suit/modular/xenonauten/mimirinjector
+	starting_attachments = list(
+		/obj/item/armor_module/module/mimir_environment_protection/mark1,
+		/obj/item/armor_module/storage/injector,
+	)
+
 /obj/item/clothing/suit/modular/xenonauten/shield
 	starting_attachments = list(
 		/obj/item/armor_module/module/eshield,

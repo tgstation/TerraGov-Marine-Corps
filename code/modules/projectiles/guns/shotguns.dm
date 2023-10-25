@@ -615,6 +615,9 @@
 	aim_slowdown = 0.6
 	movement_acc_penalty_mult = 5
 
+/obj/item/weapon/gun/shotgun/pump/lever/repeater/beginner
+	starting_attachment_types = list(/obj/item/attachable/magnetic_harness, /obj/item/attachable/bayonet)
+
 //------------------------------------------------------
 //MBX900 Lever Action Shotgun
 /obj/item/weapon/gun/shotgun/pump/lever/mbx900

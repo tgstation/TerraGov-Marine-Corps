@@ -162,6 +162,11 @@ GLOBAL_LIST_INIT(beginner_loadouts, init_beginner_loadouts())
 	var/obj/item/card/id/user_id = human_user.get_idcard()
 	if(user_id.registered_name != human_user.real_name)
 		return FALSE
+
+	if(user_id.used_GHMME) //No free stuff from GHHME if you want to use a preset loadout
+		to_chat(user, span_warning("Access denied, continue using the GHHME."))
+		return FALSE
+
 	return TRUE
 
 /obj/machinery/quick_vendor/ui_interact(mob/living/user, datum/tgui/ui)

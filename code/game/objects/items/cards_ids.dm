@@ -88,6 +88,9 @@
 
 	var/can_buy_loadout = TRUE
 
+	///Used to restrict the beginner loadout vendor after vending from the GHMME
+	var/used_GHMME = FALSE
+
 	//alt titles are handled a bit weirdly in order to unobtrusively integrate into existing ID system
 	var/assignment = null	//can be alt title or the actual job
 	var/rank = null			//actual job
