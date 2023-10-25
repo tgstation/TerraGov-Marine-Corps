@@ -362,7 +362,7 @@
 		/obj/item/storage/syringe_case,
 	)
 
-/obj/item/storage/belt/hypospraybelt/Initialize(mapload)  //The belt, with all it's magic inside!
+/obj/item/storage/belt/hypospraybelt/full/Initialize(mapload)  //The belt, with all it's magic inside!
 	. = ..()
 	new /obj/item/reagent_containers/glass/bottle/bicaridine(src)
 	new /obj/item/reagent_containers/glass/bottle/kelotane(src)
@@ -381,6 +381,31 @@
 	new /obj/item/reagent_containers/hypospray/advanced/imialky(src)
 	new /obj/item/reagent_containers/hypospray/advanced/hypervene(src)
 	new /obj/item/healthanalyzer(src)
+
+/obj/item/storage/belt/hypospraybelt/beginner/Initialize(mapload)
+	. = ..()
+	new /obj/item/reagent_containers/glass/bottle/bicaridine(src)
+	new /obj/item/reagent_containers/glass/bottle/kelotane(src)
+	new /obj/item/reagent_containers/glass/bottle/tramadol(src)
+	new /obj/item/reagent_containers/glass/bottle/tricordrazine(src)
+	new /obj/item/reagent_containers/hypospray/advanced/big/bicaridine(src)
+	new /obj/item/reagent_containers/hypospray/advanced/big/kelotane(src)
+	new /obj/item/reagent_containers/hypospray/advanced/big/tramadol(src)
+	new /obj/item/reagent_containers/hypospray/advanced/big/tricordrazine(src)
+	new /obj/item/reagent_containers/hypospray/advanced/big/combatmix(src)
+	new /obj/item/reagent_containers/hypospray/advanced/big/dylovene(src)
+	new /obj/item/reagent_containers/hypospray/advanced/big/inaprovaline(src)
+	new /obj/item/reagent_containers/hypospray/advanced/big/isotonic(src)
+	new /obj/item/reagent_containers/hypospray/advanced/big/spaceacillin(src)
+	new /obj/item/reagent_containers/hypospray/advanced/big/quickclot(src)
+	new /obj/item/reagent_containers/hypospray/advanced/imialky(src)
+	new /obj/item/reagent_containers/hypospray/advanced/hypervene(src)
+	new /obj/item/reagent_containers/hypospray/advanced/peridaxonplus(src)
+	new /obj/item/reagent_containers/hypospray/advanced/quickclotplus(src)
+	new /obj/item/storage/syringe_case/meraderm(src)
+	new /obj/item/storage/syringe_case/meraderm(src)
+	new /obj/item/reagent_containers/hypospray/advanced/meraderm(src)
+
 
 /obj/item/storage/belt/security
 	name = "\improper M276 pattern security rig"
