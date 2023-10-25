@@ -9,8 +9,12 @@ const PLANE_STATE_DEACTIVATED = 1;
 const PLANE_STATE_PREPARED = 2;
 const PLANE_STATE_FLYING = 3;
 
+const PLANE_IN_HANGAR = 0;
+const PLANE_IN_SPACE = 1;
+
 type CasData = {
   plane_state: number;
+  location_state: number;
   plane_mode: string;
   fuel_left: number;
   fuel_max: number;
@@ -154,6 +158,7 @@ const NormalOperation = (props, context) => {
   const { act, data } = useBackend<CasData>(context);
   const {
     plane_state,
+    location_state,
     plane_mode,
     attackdir,
     active_lasers,
@@ -209,7 +214,10 @@ const NormalOperation = (props, context) => {
               icon={getDirectionArrow(props, context)}
               tooltip="Direction of strafe"
               onClick={() => act('cycle_attackdir')}
-              disabled={plane_state !== PLANE_STATE_FLYING}
+              disabled={
+                plane_state !== PLANE_STATE_FLYING ||
+                location_state !== PLANE_IN_SPACE
+              }
             />
           </Stack.Item>
         </Stack>
@@ -273,7 +281,7 @@ const LaunchLandButton = (props, context) => {
 
 const EngineFiremissionButton = (props, context) => {
   const { act, data } = useBackend<CasData>(context);
-  const { plane_state } = data;
+  const { plane_state, location_state } = data;
   return plane_state === PLANE_STATE_PREPARED ? (
     <Button
       fontSize="20px"
@@ -286,7 +294,9 @@ const EngineFiremissionButton = (props, context) => {
       fontSize="20px"
       content="Begin Firemission"
       onClick={() => act('deploy')}
-      disabled={plane_state !== PLANE_STATE_FLYING}
+      disabled={
+        plane_state !== PLANE_STATE_FLYING || location_state !== PLANE_IN_SPACE
+      }
     />
   );
 };

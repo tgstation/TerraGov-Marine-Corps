@@ -854,3 +854,19 @@
 	desc = "A pouch specialized for holding shotgun ammo. Made with traditional SOM leather."
 	icon_state = "shotshells_som"
 	sprite_slots = null
+
+/obj/item/storage/pouch/protein_pack
+	name = "\improper protein pack pouch"
+	desc = "A storage pouch designed to hold a moderate amount of protein packs."
+	icon_state = "p_pouch"
+	item_state = "survival"
+	storage_slots = 10
+	max_storage_space = 10
+	sprite_slots = 1
+	max_w_class = WEIGHT_CLASS_TINY
+	can_hold = list(/obj/item/reagent_containers/food/snacks/protein_pack)
+
+/obj/item/storage/pouch/protein_pack/Initialize(mapload)
+	. = ..()
+	for(var/i in 1 to storage_slots)
+		new /obj/item/reagent_containers/food/snacks/protein_pack(src)
