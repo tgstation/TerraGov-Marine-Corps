@@ -21,12 +21,7 @@
 
 /obj/machinery/prop/mainship/hangar/dropship_part_fabricator
 
-/obj/machinery/prop/mainship/computer/PC
-	name = "personal desktop"
-	desc = "A small computer hooked up into the ship's computer network."
-	icon_state = "terminal1"
-
-/obj/machinery/prop/mainship/computer
+/obj/machinery/prop/computer
 	name = "systems computer"
 	desc = "A small computer hooked up into the ship's systems."
 
@@ -36,9 +31,22 @@
 	idle_power_usage = 20
 
 	icon = 'icons/obj/machines/computer.dmi'
-	icon_state = "terminal"
+	icon_state = "computer_small"
+	light_range = 1
+	light_power = 0.5
+	light_color = LIGHT_COLOR_BLUE
+	///The actual screen sprite for this computer
+	var/screen_overlay = "terminal_misc"
+	///The destroyed computer sprite. Defaults based on the icon_state if not specified
+	var/broken_icon
 
-/obj/machinery/prop/mainship/computer/ex_act(severity)
+/obj/machinery/prop/computer/Initialize(mapload)
+	. = ..()
+	if(!broken_icon)
+		broken_icon = "[initial(icon_state)]_broken"
+	update_icon()
+
+/obj/machinery/prop/computer/ex_act(severity)
 	switch(severity)
 		if(EXPLODE_DEVASTATE)
 			qdel(src)
@@ -55,27 +63,50 @@
 			if (prob(15))
 				set_broken()
 
-
-/obj/machinery/prop/mainship/computer/proc/set_broken()
+/obj/machinery/prop/computer/proc/set_broken()
 	machine_stat |= BROKEN
 	update_icon()
 
-/obj/machinery/prop/mainship/computer/update_icon_state()
-	icon_state = initial(icon_state)
-	if(machine_stat & BROKEN)
-		icon_state += "b"
-	if(machine_stat & NOPOWER)
-		icon_state = initial(icon_state)
-		icon_state += "0"
+/obj/machinery/prop/computer/update_icon()
+	. = ..()
+	if(machine_stat & (BROKEN|DISABLED|NOPOWER))
+		set_light(0)
+	else
+		set_light(initial(light_range))
 
-/obj/machinery/prop/mainship/computer/aiupload
+/obj/machinery/prop/computer/update_icon_state()
+	if(machine_stat & (BROKEN|DISABLED))
+		icon_state = "[initial(icon_state)]_broken"
+	else
+		icon_state = initial(icon_state)
+
+/obj/machinery/prop/computer/update_overlays()
+	. = ..()
+	if(!screen_overlay)
+		return
+	if(machine_stat & (BROKEN|DISABLED|NOPOWER))
+		return
+	. += emissive_appearance(icon, screen_overlay, alpha = src.alpha)
+	. += mutable_appearance(icon, screen_overlay, alpha = src.alpha)
+
+/obj/machinery/prop/computer/PC
+	name = "personal desktop"
+	desc = "A small computer hooked up into the ship's computer network."
+	icon_state = "terminal"
+	screen_overlay = "terminal1"
+
+/obj/machinery/prop/computer/aiupload
 	name = "\improper AI upload console"
 	desc = "Used to upload laws to the AI."
 
-	icon_state = "aiupload"
+	icon_state = "computer"
+	screen_overlay = "aiupload"
+	broken_icon = "computer_blue_broken"
 
-/obj/machinery/prop/mainship/computer/dna
-	icon_state = "dna"
+/obj/machinery/prop/computer/dna
+	icon_state = "computer"
+	screen_overlay = "dna"
+	broken_icon = "computer_blue_broken"
 
 /obj/structure/prop/mainship/massdiver
 	name = "mass driver"
@@ -166,7 +197,9 @@
 	name = "R&D Console"
 	icon = 'icons/obj/machines/computer.dmi'
 	desc = "A research console."
-	icon_state = "rdcomp"
+	icon_state = "computer"
+	screen_overlay = "rdcomp"
+	broken_icon = "computer_blue_broken"
 
 /obj/machinery/prop/r_n_d/server
 	name = "R&D Server"
@@ -178,7 +211,9 @@
 	name = "R&D Server Controller"
 	icon = 'icons/obj/machines/computer.dmi'
 	desc = "Oversees all research"
-	icon_state = "rdcomp"
+	icon_state = "computer"
+	screen_overlay = "rdcomp"
+	broken_icon = "computer_blue_broken"
 
 /obj/machinery/prop/computer/communications
 	name = "communications console"
@@ -1983,14 +2018,15 @@
 	. = ..()
 	icon_state = "camera1"
 
-/obj/structure/prop/computer
-	icon = 'icons/obj/machines/computer.dmi'
-
-/obj/structure/prop/computer/tadpole
+/obj/machinery/prop/computer/tadpole
 	name = "Tadpole navigation computer"
 	desc = "Used to designate a precise transit location for the Tadpole."
 	icon_state = "shuttlecomputer"
+	screen_overlay = "shuttlecomputer_screen"
 	resistance_flags = RESIST_ALL
+
+/obj/structure/prop/computer
+	icon = 'icons/obj/machines/computer.dmi'
 
 /obj/structure/prop/computer/broken
 	name = "broken computer"
@@ -2058,7 +2094,9 @@
 /obj/machinery/computer/solars
 	name = "Port Quarter Solar Control"
 	desc = "A controller for solar panel arrays."
-	icon_state = "solar"
+	icon_state = "computer"
+	screen_overlay = "solar"
+	broken_icon = "computer_blue_broken"
 
 /obj/structure/prop/mainship/errorprop
 	name = "ERROR"

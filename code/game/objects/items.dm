@@ -1215,8 +1215,9 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 	var/mutable_appearance/standing = mutable_appearance(iconfile2use, state2use, layer2use)
 
 	//Apply any special features
+	apply_custom(standing, inhands, iconfile2use, state2use) //image overrideable proc to customize the onmob icon.
+	//Apply any special features
 	if(!inhands)
-		apply_custom(standing)		//image overrideable proc to customize the onmob icon.
 		apply_blood(standing)			//Some items show blood when bloodied.
 		apply_accessories(standing)		//Some items sport accessories like webbings or ties.
 
@@ -1274,9 +1275,11 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		return icon_state
 
 ///applies any custom thing to the sprite, caled by make_worn_icon().
-/obj/item/proc/apply_custom(mutable_appearance/standing)
+/obj/item/proc/apply_custom(mutable_appearance/standing, inhands, icon_used, state_used)
 	SHOULD_CALL_PARENT(TRUE)
-	SEND_SIGNAL(src, COMSIG_ITEM_APPLY_CUSTOM_OVERLAY, standing)
+	if(blocks_emissive != EMISSIVE_BLOCK_NONE)
+		standing.overlays += emissive_blocker(icon_used, state_used, alpha = standing.alpha)
+	SEND_SIGNAL(src, COMSIG_ITEM_APPLY_CUSTOM_OVERLAY, standing, inhands)
 	return standing
 
 ///applies blood on the item, called by make_worn_icon().

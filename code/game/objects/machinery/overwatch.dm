@@ -32,6 +32,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	desc = "State of the art machinery for giving orders to a squad. <b>Shift click</b> to send order when watching squads."
 	density = FALSE
 	icon_state = "overwatch"
+	screen_overlay = "overwatch_screen"
 	req_access = list(ACCESS_MARINE_BRIDGE)
 	networks = list("marine")
 	open_prompt = FALSE
@@ -138,6 +139,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 
 /obj/machinery/computer/camera_advanced/overwatch/main
 	icon_state = "overwatch_main"
+	screen_overlay = "overwatch_main_screen"
 	name = "Main Overwatch Console"
 	desc = "State of the art machinery for general overwatch purposes."
 
@@ -155,6 +157,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 
 /obj/machinery/computer/camera_advanced/overwatch/req
 	icon_state = "overwatch_req"
+	screen_overlay = "overwatch_req_screen"
 	name = "Requisition Overwatch Console"
 	desc = "Big Brother Requisition demands to see money flowing into the void that is greed."
 	circuit = /obj/item/circuitboard/computer/supplyoverwatch

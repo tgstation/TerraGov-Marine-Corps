@@ -3557,7 +3557,7 @@
 	dir = 8
 	},
 /obj/structure/window/reinforced/toughened,
-/obj/machinery/prop/mainship/computer{
+/obj/machinery/prop/computer{
 	dir = 8
 	},
 /turf/open/floor/prison/red{
@@ -22654,7 +22654,7 @@
 /area/sulaco/cafeteria)
 "shz" = (
 /obj/structure/table/mainship/nometal,
-/obj/machinery/prop/mainship/computer{
+/obj/machinery/prop/computer{
 	dir = 4
 	},
 /obj/machinery/light/mainship/small{
@@ -23465,7 +23465,7 @@
 /area/sulaco/hallway/lower_foreship)
 "tiD" = (
 /obj/structure/table/mainship/nometal,
-/obj/machinery/prop/mainship/computer{
+/obj/machinery/prop/computer{
 	dir = 8
 	},
 /turf/open/floor/prison/bright_clean,
