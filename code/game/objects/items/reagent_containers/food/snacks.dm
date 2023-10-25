@@ -1491,7 +1491,7 @@
 	icon_state = "berrybar"
 	wrapper = /obj/item/trash/berrybar
 	list_reagents = list(
-		/datum/reagent/consumable/nutriment = 1,
+		/datum/reagent/consumable/nutriment = 2,
 		/datum/reagent/consumable/drink/berryjuice = 1,
 		/datum/reagent/medicine/tramadol = 10,
 		/datum/reagent/medicine/bicaridine = 10,
