@@ -18590,7 +18590,7 @@
 /area/magmoor/medical/storage)
 "nFZ" = (
 /obj/structure/table/mainship,
-/obj/machinery/prop/mainship/computer/PC,
+/obj/machinery/prop/computer/PC,
 /turf/open/floor/mainship/orange{
 	dir = 1
 	},
@@ -26501,7 +26501,7 @@
 /area/magmoor/engi)
 "tzc" = (
 /obj/structure/table/mainship,
-/obj/machinery/prop/mainship/computer,
+/obj/machinery/prop/computer,
 /turf/open/floor/mainship/orange{
 	dir = 1
 	},

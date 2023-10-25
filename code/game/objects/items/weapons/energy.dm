@@ -143,3 +143,8 @@
 	else
 		flick("som_sword_close", src)
 		set_light_on(FALSE)
+
+/obj/item/weapon/energy/sword/som/apply_custom(mutable_appearance/standing, inhands, icon_used, state_used)
+	. = ..()
+	var/mutable_appearance/emissive_overlay = emissive_appearance(icon_used, "[state_used]_emissive")
+	standing.overlays.Add(emissive_overlay)

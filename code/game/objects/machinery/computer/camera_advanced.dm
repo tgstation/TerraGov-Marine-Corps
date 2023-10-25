@@ -1,7 +1,9 @@
 /obj/machinery/computer/camera_advanced
 	name = "advanced camera console"
 	desc = "Used to access the various cameras on the ship."
-	icon_state = "cameras"
+	icon_state = "computer_small"
+	screen_overlay = "cameras"
+	broken_icon = "computer_small_red_broken"
 	interaction_flags = INTERACT_MACHINE_NOSILICON
 	var/list/z_lock = list() // Lock use to these z levels
 	var/lock_override = NONE

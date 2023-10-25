@@ -1,5 +1,5 @@
 import { useBackend } from '../../backend';
-import { Box, Button, Section, LabeledList, Stack, ColorBox } from '../../components';
+import { Button, Section, LabeledList, Stack, ColorBox } from '../../components';
 import { ToggleFieldPreference, TextFieldPreference, SelectFieldPreference, LoopingSelectionPreference } from './FieldPreferences';
 
 const ParallaxNumToString = (integer) => {
@@ -28,14 +28,8 @@ const ParallaxNumToString = (integer) => {
 
 export const GameSettings = (props, context) => {
   const { act, data } = useBackend<GameSettingData>(context);
-  const {
-    ui_style_color,
-    scaling_method,
-    pixel_size,
-    parallax,
-    quick_equip,
-    is_admin,
-  } = data;
+  const { ui_style_color, scaling_method, pixel_size, parallax, is_admin } =
+    data;
   return (
     <Section title="Game Settings">
       <Stack fill>
@@ -274,24 +268,6 @@ export const GameSettings = (props, context) => {
                 value={ParallaxNumToString(parallax)}
                 action="parallax"
               />
-            </LabeledList>
-          </Section>
-        </Stack.Item>
-        <Stack.Item grow>
-          <Section title="Keybinding Settings">
-            <LabeledList>
-              {quick_equip.map((equip_slot, index_slot) => (
-                <>
-                  <Box>Quick equip #{index_slot + 1}</Box>
-                  <Button
-                    key={equip_slot}
-                    content={equip_slot}
-                    onClick={() =>
-                      act('change_quick_equip', { selection: index_slot + 1 })
-                    }
-                  />
-                </>
-              ))}
             </LabeledList>
           </Section>
         </Stack.Item>

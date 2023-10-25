@@ -164,3 +164,5 @@
 	X.record_tactical_unalive()
 	X.death(FALSE)
 
+/datum/action/xeno_action/watch_xeno/baneling
+	use_state_flags = XACT_USE_LYING|XACT_USE_NOTTURF

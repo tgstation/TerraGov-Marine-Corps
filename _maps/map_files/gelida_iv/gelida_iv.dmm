@@ -490,7 +490,7 @@
 /area/gelida/landing_zone_1)
 "apR" = (
 /obj/structure/table/mainship,
-/obj/machinery/prop/mainship/computer/PC{
+/obj/machinery/prop/computer/PC{
 	dir = 1
 	},
 /obj/machinery/light,
@@ -604,7 +604,7 @@
 /area/gelida/indoors/a_block/security)
 "atZ" = (
 /obj/structure/table/mainship,
-/obj/machinery/prop/mainship/computer/PC{
+/obj/machinery/prop/computer/PC{
 	pixel_y = 7
 	},
 /turf/open/floor/prison/whitepurple/full{
@@ -905,7 +905,7 @@
 /area/gelida/indoors/b_block/bridge)
 "aGG" = (
 /obj/structure/table/reinforced/prison,
-/obj/machinery/prop/mainship/computer/PC{
+/obj/machinery/prop/computer/PC{
 	dir = 8;
 	pixel_y = 4
 	},
@@ -2598,7 +2598,7 @@
 /area/gelida/indoors/a_block/dorms)
 "bMU" = (
 /obj/structure/table/reinforced/prison,
-/obj/machinery/prop/mainship/computer/PC{
+/obj/machinery/prop/computer/PC{
 	dir = 1
 	},
 /turf/open/floor/carpet,
@@ -2837,7 +2837,7 @@
 /area/gelida/indoors/b_block/bridge)
 "bUO" = (
 /obj/structure/table/mainship,
-/obj/machinery/prop/mainship/computer/PC{
+/obj/machinery/prop/computer/PC{
 	dir = 8
 	},
 /turf/open/floor/prison/darkred/full,
@@ -3436,7 +3436,7 @@
 	pixel_x = 6;
 	pixel_y = -5
 	},
-/obj/machinery/prop/mainship/computer/PC{
+/obj/machinery/prop/computer/PC{
 	dir = 8;
 	pixel_y = 4
 	},
@@ -4903,7 +4903,7 @@
 /turf/open/floor/prison/plate,
 /area/gelida/indoors/b_block/bar)
 "doc" = (
-/obj/machinery/prop/mainship/computer/PC{
+/obj/machinery/prop/computer/PC{
 	pixel_y = 5
 	},
 /turf/open/floor/prison,
@@ -5585,7 +5585,7 @@
 /area/gelida/indoors/b_block/bridge)
 "dLu" = (
 /obj/structure/table/fancywoodentable,
-/obj/machinery/prop/mainship/computer/PC{
+/obj/machinery/prop/computer/PC{
 	pixel_y = 3
 	},
 /turf/open/floor/wood,
@@ -6737,7 +6737,7 @@
 /area/gelida/indoors/c_block/mining)
 "evW" = (
 /obj/structure/table/mainship,
-/obj/machinery/prop/mainship/computer/PC{
+/obj/machinery/prop/computer/PC{
 	dir = 4;
 	pixel_y = 1
 	},
@@ -6993,7 +6993,7 @@
 /area/gelida/outdoors/colony_streets/east_central_street)
 "eEZ" = (
 /obj/structure/table/mainship,
-/obj/machinery/prop/mainship/computer/PC{
+/obj/machinery/prop/computer/PC{
 	dir = 8;
 	pixel_y = 5
 	},
@@ -10242,7 +10242,7 @@
 /area/gelida/indoors/a_block/medical)
 "gQg" = (
 /obj/structure/table/mainship,
-/obj/machinery/prop/mainship/computer/PC{
+/obj/machinery/prop/computer/PC{
 	dir = 8;
 	pixel_y = 3
 	},
@@ -11875,7 +11875,7 @@
 /area/gelida/indoors/a_block/dorms)
 "hZr" = (
 /obj/structure/table/mainship,
-/obj/machinery/prop/mainship/computer/PC{
+/obj/machinery/prop/computer/PC{
 	desc = "A small desktop computer. Someone has switched to personal emails and disabled the inventory sort system.";
 	name = "inventory computer"
 	},
@@ -11997,7 +11997,7 @@
 /area/gelida/indoors/a_block/dorms)
 "icZ" = (
 /obj/structure/table/mainship,
-/obj/machinery/prop/mainship/computer/PC{
+/obj/machinery/prop/computer/PC{
 	dir = 8;
 	pixel_y = 3
 	},
@@ -14461,7 +14461,7 @@
 	},
 /area/gelida/outdoors/colony_streets/south_west_street)
 "jPr" = (
-/obj/machinery/prop/mainship/computer/PC{
+/obj/machinery/prop/computer/PC{
 	dir = 4;
 	pixel_y = 7
 	},
@@ -14589,7 +14589,7 @@
 /area/gelida/landing_zone_forecon/landing_zone_4)
 "jRO" = (
 /obj/structure/table/mainship,
-/obj/machinery/prop/mainship/computer/PC{
+/obj/machinery/prop/computer/PC{
 	dir = 4;
 	pixel_y = 3
 	},
@@ -15469,7 +15469,7 @@
 /area/gelida/indoors/a_block/medical)
 "kzQ" = (
 /obj/structure/table/mainship,
-/obj/machinery/prop/mainship/computer/PC{
+/obj/machinery/prop/computer/PC{
 	dir = 4;
 	pixel_y = 2
 	},
@@ -16569,7 +16569,7 @@
 "lmc" = (
 /obj/structure/table/reinforced/prison,
 /obj/structure/window,
-/obj/machinery/prop/mainship/computer/PC{
+/obj/machinery/prop/computer/PC{
 	dir = 8;
 	pixel_y = 4
 	},
@@ -17386,7 +17386,7 @@
 /area/gelida/landing_zone_2)
 "lMZ" = (
 /obj/structure/table/reinforced/prison,
-/obj/machinery/prop/mainship/computer/PC{
+/obj/machinery/prop/computer/PC{
 	dir = 4
 	},
 /obj/structure/window,
@@ -17661,7 +17661,7 @@
 /area/gelida/indoors/a_block/medical)
 "lXm" = (
 /obj/structure/table/reinforced/prison,
-/obj/machinery/prop/mainship/computer/PC{
+/obj/machinery/prop/computer/PC{
 	dir = 4
 	},
 /turf/open/floor/prison/darkbrown/full,
@@ -18433,7 +18433,7 @@
 /area/gelida/indoors/a_block/executive)
 "mwx" = (
 /obj/structure/table/mainship,
-/obj/machinery/prop/mainship/computer/PC{
+/obj/machinery/prop/computer/PC{
 	dir = 4
 	},
 /obj/machinery/light{
@@ -20455,7 +20455,7 @@
 /area/gelida/outdoors/colony_streets/north_west_street)
 "nPI" = (
 /obj/structure/table/mainship,
-/obj/machinery/prop/mainship/computer/PC{
+/obj/machinery/prop/computer/PC{
 	pixel_y = 3
 	},
 /turf/open/floor/prison/plate,
@@ -20540,7 +20540,7 @@
 /area/gelida/outdoors/colony_streets/south_west_street)
 "nSm" = (
 /obj/structure/table/mainship,
-/obj/machinery/prop/mainship/computer/PC{
+/obj/machinery/prop/computer/PC{
 	dir = 8;
 	pixel_y = 6
 	},
@@ -21340,7 +21340,7 @@
 /area/gelida/indoors/a_block/dorms)
 "owa" = (
 /obj/structure/table/mainship,
-/obj/machinery/prop/mainship/computer/PC{
+/obj/machinery/prop/computer/PC{
 	pixel_y = 5
 	},
 /turf/open/floor/prison/whitegreenfull2,
@@ -22214,7 +22214,7 @@
 /area/gelida/powergen)
 "oXo" = (
 /obj/structure/table/mainship,
-/obj/machinery/prop/mainship/computer/PC{
+/obj/machinery/prop/computer/PC{
 	pixel_y = 9
 	},
 /turf/open/floor/prison/darkbrown/full,
@@ -24404,7 +24404,7 @@
 /area/gelida/indoors/c_block/garage)
 "qvC" = (
 /obj/structure/table/mainship,
-/obj/machinery/prop/mainship/computer/PC{
+/obj/machinery/prop/computer/PC{
 	dir = 4
 	},
 /turf/open/floor/prison/darkred/full,
@@ -24625,7 +24625,7 @@
 /area/gelida/caves/east_caves/garbledradio)
 "qDN" = (
 /obj/structure/table/mainship,
-/obj/machinery/prop/mainship/computer/PC{
+/obj/machinery/prop/computer/PC{
 	dir = 1;
 	pixel_y = 6
 	},
@@ -24830,7 +24830,7 @@
 /turf/open/floor/plating,
 /area/gelida/indoors/a_block/hallway)
 "qKl" = (
-/obj/machinery/prop/mainship/computer/PC{
+/obj/machinery/prop/computer/PC{
 	dir = 8;
 	pixel_y = 4
 	},
@@ -26238,7 +26238,7 @@
 /area/gelida/indoors/a_block/admin)
 "rCt" = (
 /obj/structure/table/mainship,
-/obj/machinery/prop/mainship/computer/PC{
+/obj/machinery/prop/computer/PC{
 	dir = 1;
 	pixel_y = 6
 	},
@@ -26474,7 +26474,7 @@
 /area/gelida/outdoors/colony_streets/north_west_street)
 "rMA" = (
 /obj/structure/table/mainship,
-/obj/machinery/prop/mainship/computer/PC{
+/obj/machinery/prop/computer/PC{
 	dir = 8;
 	pixel_y = 4
 	},
@@ -26840,7 +26840,7 @@
 /area/gelida/outdoors/colony_streets/central_streets)
 "rZN" = (
 /obj/structure/table/mainship,
-/obj/machinery/prop/mainship/computer/PC{
+/obj/machinery/prop/computer/PC{
 	dir = 4
 	},
 /obj/item/tool/lighter/random{
@@ -27617,7 +27617,7 @@
 /area/gelida/indoors/c_block/mining)
 "szX" = (
 /obj/structure/table/mainship,
-/obj/machinery/prop/mainship/computer/PC{
+/obj/machinery/prop/computer/PC{
 	pixel_y = 6
 	},
 /turf/open/floor/prison/blue/plate{
@@ -28166,7 +28166,7 @@
 /area/gelida/indoors/c_block/garage)
 "sRh" = (
 /obj/structure/table/mainship,
-/obj/machinery/prop/mainship/computer/PC{
+/obj/machinery/prop/computer/PC{
 	pixel_y = 5
 	},
 /turf/open/floor/prison/darkbrown/full,
@@ -28366,7 +28366,7 @@
 /area/gelida/indoors/b_block/bridge)
 "sZV" = (
 /obj/structure/table/mainship,
-/obj/machinery/prop/mainship/computer/PC{
+/obj/machinery/prop/computer/PC{
 	dir = 8;
 	pixel_y = 4
 	},
@@ -29538,7 +29538,7 @@
 /turf/open/floor/prison/plate,
 /area/gelida/outdoors/colony_streets/south_street)
 "tTe" = (
-/obj/machinery/prop/mainship/computer/PC{
+/obj/machinery/prop/computer/PC{
 	dir = 8;
 	pixel_y = 4
 	},
@@ -30661,7 +30661,7 @@
 /area/gelida/outdoors/rock)
 "uJf" = (
 /obj/structure/table/mainship,
-/obj/machinery/prop/mainship/computer/PC{
+/obj/machinery/prop/computer/PC{
 	dir = 1;
 	pixel_y = 5
 	},
@@ -30892,7 +30892,7 @@
 /obj/structure/window{
 	dir = 8
 	},
-/obj/machinery/prop/mainship/computer/PC{
+/obj/machinery/prop/computer/PC{
 	desc = "A small desktop computer. Someone has switched to personal emails and disabled the inventory sort system.";
 	name = "inventory computer"
 	},
@@ -30939,7 +30939,7 @@
 /area/gelida/indoors/c_block/garage)
 "uUl" = (
 /obj/structure/table/mainship,
-/obj/machinery/prop/mainship/computer/PC{
+/obj/machinery/prop/computer/PC{
 	dir = 8;
 	pixel_y = 7
 	},
@@ -31150,7 +31150,7 @@
 /area/gelida/indoors/c_block/cargo)
 "vaA" = (
 /obj/structure/table/mainship,
-/obj/machinery/prop/mainship/computer/PC{
+/obj/machinery/prop/computer/PC{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -32253,7 +32253,7 @@
 /area/gelida/outdoors/rock)
 "vNY" = (
 /obj/structure/table/mainship,
-/obj/machinery/prop/mainship/computer/PC{
+/obj/machinery/prop/computer/PC{
 	dir = 8;
 	pixel_y = 1
 	},
@@ -32891,7 +32891,7 @@
 /area/gelida/indoors/a_block/hallway)
 "wok" = (
 /obj/structure/table/mainship,
-/obj/machinery/prop/mainship/computer/PC{
+/obj/machinery/prop/computer/PC{
 	dir = 1
 	},
 /turf/open/floor/plating/plating_catwalk/prison,
@@ -33994,7 +33994,7 @@
 /area/gelida/outdoors/colony_streets/north_street)
 "xhe" = (
 /obj/structure/table/fancywoodentable,
-/obj/machinery/prop/mainship/computer/PC{
+/obj/machinery/prop/computer/PC{
 	dir = 4;
 	pixel_y = 3
 	},
@@ -34191,7 +34191,7 @@
 /area/gelida/indoors/b_block/bridge)
 "xoV" = (
 /obj/structure/table/reinforced/prison,
-/obj/machinery/prop/mainship/computer/PC{
+/obj/machinery/prop/computer/PC{
 	dir = 1
 	},
 /obj/item/ashtray/bronze{

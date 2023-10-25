@@ -12,11 +12,11 @@
 		MISSION_OUTCOME_MAJOR_LOSS = list(0, 3),
 	)
 	attrition_point_rewards = list(
-		MISSION_OUTCOME_MAJOR_VICTORY = list(20, 5),
-		MISSION_OUTCOME_MINOR_VICTORY = list(15, 10),
-		MISSION_OUTCOME_DRAW = list(10, 10),
-		MISSION_OUTCOME_MINOR_LOSS = list(10, 15),
-		MISSION_OUTCOME_MAJOR_LOSS = list(5, 20),
+		MISSION_OUTCOME_MAJOR_VICTORY = list(10, 0),
+		MISSION_OUTCOME_MINOR_VICTORY = list(5, 0),
+		MISSION_OUTCOME_DRAW = list(0, 0),
+		MISSION_OUTCOME_MINOR_LOSS = list(0, 10),
+		MISSION_OUTCOME_MAJOR_LOSS = list(0, 15),
 	)
 	///Total number of objectives at round start
 	var/objectives_total = 3

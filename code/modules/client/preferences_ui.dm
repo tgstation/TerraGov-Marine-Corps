@@ -129,9 +129,6 @@
 			data["pixel_size"] = pixel_size
 			data["parallax"] = parallax
 			data["fullscreen_mode"] = fullscreen_mode
-			data["quick_equip"] = list()
-			for(var/quick_equip_slots in quick_equip)
-				data["quick_equip"] += slot_flag_to_fluff(quick_equip_slots)
 			data["fast_mc_refresh"] = fast_mc_refresh
 			data["split_admin_tabs"] = split_admin_tabs
 		if(KEYBIND_SETTINGS)
@@ -147,6 +144,13 @@
 					sentence = emote.message,
 					emote_type = (emote.spoken_emote ? "say" : "me"),
 					)
+		if(DRAW_ORDER)
+			data["draw_order"] = list()
+			for(var/slot in slot_draw_order_pref)
+				data["draw_order"] += slot_flag_to_fluff(slot)
+			data["quick_equip"] = list()
+			for(var/quick_equip_slots in quick_equip)
+				data["quick_equip"] += slot_flag_to_fluff(quick_equip_slots)
 	return data
 
 /datum/preferences/ui_static_data(mob/user)
@@ -654,6 +658,26 @@
 				return
 			quick_equip[editing_slot] = slot_fluff_to_flag(slot)
 			to_chat(src, span_notice("You will now equip/draw from the [slot] slot first."))
+
+		if("equip_slot_equip_position")
+			var/returned_item_list_position = slot_draw_order_pref.Find(slot_fluff_to_flag(params["changing_item"]))
+			if(isnull(returned_item_list_position))
+				return
+			var/direction = params["direction"]
+			if(!direction)
+				return
+			var/swapping_with = returned_item_list_position
+			switch(direction)
+				if("down")
+					if(returned_item_list_position == length(SLOT_DRAW_ORDER))
+						return
+					swapping_with += 1
+					slot_draw_order_pref.Swap(returned_item_list_position, swapping_with)
+				if("up")
+					if(returned_item_list_position == 1)
+						return
+					swapping_with -= 1
+					slot_draw_order_pref.Swap(swapping_with, returned_item_list_position)
 
 		if("show_typing")
 			show_typing = !show_typing

@@ -267,11 +267,10 @@
 	mission_state = MISSION_STATE_FINISHED
 	apply_outcome()
 	play_outro()
-	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_CAMPAIGN_MISSION_ENDED, winning_faction)
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_CAMPAIGN_MISSION_ENDED, src, winning_faction)
 	for(var/i in GLOB.quick_loadouts)
 		var/datum/outfit/quick/outfit = GLOB.quick_loadouts[i]
 		outfit.quantity = initial(outfit.quantity)
-
 
 ///Intro when the mission is selected
 /datum/campaign_mission/proc/play_selection_intro()
@@ -421,3 +420,8 @@
 
 	map_text_broadcast(destroying_team, "[blocker] destroyed, we can now deploy via drop pod!", "Drop pods unblocked")
 	map_text_broadcast(losing_faction, "[blocker] destroyed, the enemy can now drop pod at will!", "Drop pods unblocked")
+
+///Removes the object from the campaign_structrures list if they are destroyed mid mission
+/datum/campaign_mission/proc/remove_mission_object(obj/mission_obj)
+	SIGNAL_HANDLER
+	GLOB.campaign_structures -= mission_obj

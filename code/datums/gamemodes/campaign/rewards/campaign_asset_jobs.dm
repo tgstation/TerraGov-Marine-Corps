@@ -445,17 +445,17 @@ What you lack in equipment and military training you make up in bravery and conv
 	job_cost = 0
 	outfits = list(
 		/datum/outfit/job/freelancer/standard/campaign,
-		/datum/outfit/job/freelancer/standard/one,
-		/datum/outfit/job/freelancer/standard/two,
+		/datum/outfit/job/freelancer/standard/one/campaign,
+		/datum/outfit/job/freelancer/standard/two/campaign,
 	)
 
 /datum/outfit/job/freelancer/standard/campaign
 	ears = /obj/item/radio/headset/mainship
 
-/datum/outfit/job/freelancer/standard/one
+/datum/outfit/job/freelancer/standard/one/campaign
 	ears = /obj/item/radio/headset/mainship
 
-/datum/outfit/job/freelancer/standard/two
+/datum/outfit/job/freelancer/standard/two/campaign
 	ears = /obj/item/radio/headset/mainship
 
 

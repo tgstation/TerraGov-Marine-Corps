@@ -64,6 +64,7 @@
 
 	jumper.layer = ABOVE_MOB_LAYER
 
+	SEND_SIGNAL(jumper, COMSIG_ELEMENT_JUMP_STARTED)
 	jumper.adjustStaminaLoss(stamina_cost)
 	jumper.pass_flags |= jumper_allow_pass_flags
 	ADD_TRAIT(jumper, TRAIT_SILENT_FOOTSTEPS, JUMP_COMPONENT)

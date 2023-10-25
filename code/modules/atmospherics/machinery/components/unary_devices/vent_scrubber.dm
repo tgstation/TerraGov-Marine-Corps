@@ -155,5 +155,13 @@
 	on = TRUE
 	icon_state = "scrub_map_on-2"
 
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/Initialize(mapload)
+	. = ..()
+	GLOB.atmospumps += src
+
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/Destroy()
+	. = ..()
+	GLOB.atmospumps -= src
+
 #undef SIPHONING
 #undef SCRUBBING

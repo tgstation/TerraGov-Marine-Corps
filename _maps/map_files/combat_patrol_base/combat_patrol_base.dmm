@@ -818,7 +818,7 @@
 	},
 /area/mainship/patrol_base/som)
 "mC" = (
-/obj/machinery/cic_maptable_big{
+/obj/machinery/cic_maptable/drawable/big{
 	pixel_x = -3
 	},
 /turf/open/floor/mainship/office,
@@ -2976,7 +2976,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/patrol_base/som)
 "Ri" = (
-/obj/machinery/cic_maptable_big,
+/obj/machinery/cic_maptable/drawable/big,
 /turf/open/floor/mainship/mono,
 /area/mainship/patrol_base)
 "Rr" = (

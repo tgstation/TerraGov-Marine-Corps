@@ -506,7 +506,7 @@
 	},
 /area/lawankaoutpost/colony/operations_hall)
 "avX" = (
-/obj/machinery/prop/mainship/computer/dna,
+/obj/machinery/prop/computer/dna,
 /turf/open/floor,
 /area/lawankaoutpost/colony/hydroponics)
 "awn" = (
@@ -26746,7 +26746,7 @@
 	},
 /area/lawankaoutpost/colony/operations_hall)
 "wuR" = (
-/obj/machinery/prop/mainship/computer/dna,
+/obj/machinery/prop/computer/dna,
 /turf/open/floor/tile/purple/taupepurple/corner,
 /area/lawankaoutpost/colony/biologics)
 "wvk" = (
