@@ -164,12 +164,12 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 
 /obj/machinery/computer/camera_advanced/overwatch/som
 	faction = FACTION_SOM
-	networks = list("som")
+	networks = list(SOM_CAMERA_NETWORK)
 	req_access = list(ACCESS_MARINE_BRIDGE)
 
 /obj/machinery/computer/camera_advanced/overwatch/main/som
 	faction = FACTION_SOM
-	networks = list("som")
+	networks = list(SOM_CAMERA_NETWORK)
 	req_access = list(ACCESS_MARINE_BRIDGE)
 
 /obj/machinery/computer/camera_advanced/overwatch/som/zulu

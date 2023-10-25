@@ -12,6 +12,8 @@
 	var/list/visibleTurfs = list()
 	///cameras that can see into our grid
 	var/list/cameras = list()
+	///The cameranet this chunk belongs to
+	var/datum/cameranet/parent_cameranet
 	///list of all turfs
 	var/list/turfs = list()
 	///camera mobs that can see turfs in our grid
@@ -36,7 +38,7 @@
 	if(remove_static_with_last_chunk && !length(eye.visibleCameraChunks))
 		var/client/client = eye.GetViewerClient()
 		if(client && eye.use_static)
-			client.images -= GLOB.cameranet.obscured
+			client.images -= parent_cameranet.obscured
 
 /// Called when a chunk has changed. I.E: A wall was deleted.
 /datum/camerachunk/proc/visibilityChanged(turf/loc)
@@ -79,7 +81,7 @@
 	//turfs that are included in the chunks normal turfs list minus the turfs the cameras CAN see
 	obscuredTurfs = turfs - newVisibleTurfs
 
-	var/static/list/vis_contents_opaque = GLOB.cameranet.vis_contents_opaque //ba dum tsss
+	var/static/list/vis_contents_opaque = parent_cameranet.vis_contents_opaque //ba dum tsss
 	for(var/turf/added_turf AS in visAdded)
 		added_turf.vis_contents -= vis_contents_opaque
 
@@ -90,13 +92,14 @@
 	changed = FALSE
 
 /// Create a new camera chunk, since the chunks are made as they are needed.
-/datum/camerachunk/New(x, y, z)
+/datum/camerachunk/New(x, y, z, cameranet)
 	x &= ~(CHUNK_SIZE - 1)
 	y &= ~(CHUNK_SIZE - 1)
 
 	src.x = x
 	src.y = y
 	src.z = z
+	parent_cameranet = cameranet ? cameranet : GLOB.cameranet
 
 	for(var/obj/machinery/camera/camera in urange(CHUNK_SIZE, locate(x + (CHUNK_SIZE / 2), y + (CHUNK_SIZE / 2), z)))
 		if(camera.can_use())
@@ -122,7 +125,7 @@
 
 	obscuredTurfs = turfs - visibleTurfs
 
-	var/list/vis_contents_opaque = GLOB.cameranet.vis_contents_opaque
+	var/list/vis_contents_opaque = parent_cameranet.vis_contents_opaque
 	for(var/turf/obscured_turf AS in obscuredTurfs)
 		obscured_turf.vis_contents += vis_contents_opaque
 
