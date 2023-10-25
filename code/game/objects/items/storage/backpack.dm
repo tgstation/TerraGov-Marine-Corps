@@ -362,18 +362,13 @@
 	icon_state = "marinepackt"
 	item_state = "marinepackt"
 	bypass_w_limit = list(
-		/obj/item/weapon/gun/tl102,
-		/obj/item/weapon/gun/standard_minigun,
+		/obj/item/weapon/gun/mounted,
 		/obj/item/ammo_magazine/heavy_minigun,
-		/obj/item/weapon/gun/heavymachinegun,
 		/obj/item/ammo_magazine/heavymachinegun,
-		/obj/item/weapon/gun/standard_agls,
-		/obj/item/weapon/gun/heavy_laser/deployable,
 		/obj/item/ammo_magazine/heavy_laser,
-		/obj/item/mortar_kit,
 		/obj/item/mortal_shell/howitzer // Howitzer shells are BULKY, same size as the mortar kit.
 	)
-
+	storage_type_limits = list(/obj/item/weapon/gun/mounted)
 /obj/item/storage/backpack/marine/satchel
 	name = "\improper TGMC satchel"
 	desc = "A heavy-duty satchel carried by some TGMC soldiers and support personnel."
