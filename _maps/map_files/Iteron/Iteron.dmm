@@ -409,7 +409,7 @@
 	},
 /area/mainship/patrol_base/hanger)
 "ff" = (
-/obj/structure/prop/computer/tadpole,
+/obj/machinery/prop/computer/tadpole,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/patrol_base/hanger)
 "fj" = (
@@ -2062,7 +2062,7 @@
 	},
 /area/mainship/patrol_base)
 "Cn" = (
-/obj/structure/prop/computer/tadpole{
+/obj/machinery/prop/computer/tadpole{
 	dir = 4
 	},
 /turf/open/floor/mainship/blue{
@@ -2225,7 +2225,7 @@
 /area/mainship/patrol_base)
 "Ex" = (
 /obj/structure/table/mainship/nometal,
-/obj/machinery/prop/mainship/computer{
+/obj/machinery/prop/computer{
 	dir = 8
 	},
 /turf/open/floor/mainship/blue{
@@ -2643,7 +2643,7 @@
 	dir = 8
 	},
 /obj/structure/table/mainship/nometal,
-/obj/machinery/prop/mainship/computer{
+/obj/machinery/prop/computer{
 	dir = 8
 	},
 /turf/open/floor/mainship/mono,
@@ -3719,7 +3719,7 @@
 /turf/closed/shuttle/dropship2/rearcorner,
 /area/mainship/patrol_base/hanger)
 "Yn" = (
-/obj/structure/prop/computer/tadpole{
+/obj/machinery/prop/computer/tadpole{
 	dir = 1
 	},
 /turf/open/floor/plating/plating_catwalk,

@@ -3797,7 +3797,7 @@
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla/primary/fore/port)
 "eSN" = (
-/obj/machinery/prop/mainship/computer,
+/obj/machinery/prop/computer,
 /obj/structure/table/reinforced,
 /obj/structure/window/reinforced{
 	dir = 1
@@ -7815,7 +7815,7 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/centcom/valhalla/xenocave)
 "kov" = (
-/obj/machinery/prop/mainship/computer,
+/obj/machinery/prop/computer,
 /obj/structure/table/reinforced,
 /obj/structure/window/reinforced{
 	dir = 1

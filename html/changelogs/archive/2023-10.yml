@@ -321,3 +321,17 @@
   - bugfix: Fix x8 DRPG crate containing only one DRPG
   yyzsong:
   - rscadd: SLs may buy megaphones from their vendor
+2023-10-24:
+  Luxyboo:
+  - rscadd: 'Take out bullets from packets and boxes now with right click.
+
+      :cl:'
+  Waselon:
+  - qol: Baneling can now watch other xenos while in pod
+  - bugfix: Evolution overlay runtime error fix
+2023-10-25:
+  Lewdcifer:
+  - rscadd: (Re-)added a rouny plushie to Pillar of Spring. It is located in CIC storage.
+  - rscadd: Added a rouny plushie to Sulaco. It's in the telecomms room.
+  - rscadd: Added a rouny plushie to Arachne. It's in the hidden hydroponics room,
+      far northwest in maintenance.

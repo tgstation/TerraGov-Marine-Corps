@@ -45,7 +45,7 @@
 	// *** Abilities *** ///
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
-		/datum/action/xeno_action/watch_xeno,
+		/datum/action/xeno_action/watch_xeno/baneling,
 		/datum/action/xeno_action/activable/psydrain,
 		/datum/action/xeno_action/spawn_pod,
 		/datum/action/xeno_action/select_reagent/baneling,
@@ -64,7 +64,7 @@
 	// *** Abilities *** ///
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
-		/datum/action/xeno_action/watch_xeno,
+		/datum/action/xeno_action/watch_xeno/baneling,
 		/datum/action/xeno_action/activable/psydrain,
 		/datum/action/xeno_action/spawn_pod,
 		/datum/action/xeno_action/select_reagent/baneling,

@@ -4794,6 +4794,7 @@
 	pixel_x = 5;
 	pixel_y = 10
 	},
+/obj/item/toy/plush/rouny,
 /turf/open/floor/mainship/orange/full,
 /area/mainship/command/cic)
 "gaD" = (
