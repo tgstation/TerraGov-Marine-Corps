@@ -151,6 +151,15 @@
 		/obj/item/ammo_magazine/standard_atgun/he = 3,
 	)
 
+/obj/structure/largecrate/supply/weapons/standard_flakgun
+	name = "\improper ATR-22 flak gun and ammo chest (x1, x6)"
+	desc = "A supply crate containing a ATR-22 and a full set of ammo to load into the sponson."
+	supplies = list(
+		/obj/item/weapon/gun/standard_auto_cannon = 1,
+		/obj/item/ammo_magazine/auto_cannon = 3,
+		/obj/item/ammo_magazine/auto_cannon/flak = 3,
+	)
+
 /obj/structure/largecrate/supply/ammo
 	name = "ammunition case"
 	icon_state = "case"
@@ -256,8 +265,8 @@
 
 /obj/structure/largecrate/supply/explosives/disposable
 	name = "RL-72 disposable rocket launchers (x8)"
-	desc = "A case contaning eight RL-72 disposables."
-	supplies = list(/obj/item/weapon/gun/launcher/rocket/oneuse = 1)
+	desc = "A case containing eight RL-72 disposables."
+	supplies = list(/obj/item/weapon/gun/launcher/rocket/oneuse = 8)
 
 /obj/structure/largecrate/supply/supplies
 	name = "supplies crate"

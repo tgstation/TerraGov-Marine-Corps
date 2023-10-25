@@ -329,6 +329,7 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 			var/mob/living/carbon/human/H = M
 			do_eord_respawn(H)
 
+		M.on_eord(picked)
 		to_chat(M, "<br><br><h1>[span_danger("Fight for your life!")]</h1><br><br>")
 		CHECK_TICK
 

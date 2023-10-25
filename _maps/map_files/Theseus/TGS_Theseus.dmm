@@ -296,6 +296,7 @@
 /area/mainship/living/cafeteria_starboard)
 "abj" = (
 /obj/structure/table/mainship/nometal,
+/obj/effect/spawner/random/misc/gnome,
 /turf/open/floor/mainship/orange{
 	dir = 4
 	},
@@ -3744,6 +3745,7 @@
 /obj/effect/spawner/random/misc/paperbin,
 /obj/item/tool/pen,
 /obj/structure/cable,
+/obj/effect/spawner/random/misc/gnome,
 /turf/open/floor/mainship/floor,
 /area/mainship/engineering/ce_room)
 "blm" = (
@@ -9445,11 +9447,6 @@
 	},
 /turf/open/floor/mainship/sterile/side,
 /area/mainship/medical/lower_medical)
-"fqo" = (
-/obj/structure/cable,
-/obj/effect/spawner/random/misc/gnome,
-/turf/open/floor/mainship/floor,
-/area/mainship/command/self_destruct)
 "fqH" = (
 /turf/open/floor/mainship/sterile/side,
 /area/mainship/medical/surgery_hallway)
@@ -12951,13 +12948,6 @@
 	dir = 1
 	},
 /area/mainship/medical/lower_medical)
-"ljo" = (
-/obj/structure/bed/stool{
-	pixel_y = 8
-	},
-/obj/effect/spawner/random/misc/gnome,
-/turf/open/floor/grass,
-/area/mainship/living/starboard_garden)
 "lkq" = (
 /obj/machinery/shower{
 	dir = 8
@@ -17239,6 +17229,7 @@
 "rYA" = (
 /obj/structure/table/mainship/nometal,
 /obj/item/stack/sheet/glass/large_stack,
+/obj/effect/spawner/random/misc/gnome,
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/lower_engineering)
 "rZo" = (
@@ -17808,7 +17799,6 @@
 "sXw" = (
 /obj/machinery/computer/orbital_cannon_console,
 /obj/structure/bed/chair/ob_chair,
-/obj/effect/spawner/random/misc/gnome,
 /turf/open/floor/mainship/mono,
 /area/mainship/shipboard/port_point_defense)
 "sYp" = (
@@ -51111,7 +51101,7 @@ rpv
 aca
 jkR
 aeB
-ljo
+pPG
 acf
 cbT
 iwt
@@ -76022,7 +76012,7 @@ aui
 avX
 axn
 axn
-fqo
+auo
 axn
 axn
 avX

@@ -463,24 +463,40 @@
 		var/mob/living/M = hit_atom
 		M.hitby(src, speed)
 
-	else if(isobj(hit_atom)) // Thrown object hits another object and moves it
-		var/obj/O = hit_atom
-		if(!O.anchored && (O.move_resist < MOVE_FORCE_STRONG))
-			step(O, dir)
-		O.hitby(src, speed)
-
-	else if(isturf(hit_atom))
-		stop_throw()
-		var/turf/T = hit_atom
-		if(T.density)
-			if(bounce)
-				spawn(2)
-					step(src, turn(dir, 180))
-			if(isliving(src))
-				var/mob/living/M = src
-				M.turf_collision(T, speed)
+	else
+		var/old_throw_source = throw_source
+		hit_atom.hitby(src, speed)
+		if(bounce && hit_atom.density)
+			INVOKE_NEXT_TICK(src, PROC_REF(throw_bounce), hit_atom, old_throw_source)
 
 	SEND_SIGNAL(src, COMSIG_MOVABLE_IMPACT, hit_atom)
+
+///Bounces the AM off hit_atom
+/atom/movable/proc/throw_bounce(atom/hit_atom, turf/old_throw_source)
+	if(QDELETED(src))
+		return
+	if(!isturf(loc))
+		return
+	var/dir_to_proj = get_dir(hit_atom, old_throw_source)
+	if(ISDIAGONALDIR(dir_to_proj))
+		var/list/cardinals = list(turn(dir_to_proj, 45), turn(dir_to_proj, -45))
+		for(var/direction in cardinals)
+			var/turf/turf_to_check = get_step(hit_atom, direction)
+			if(turf_to_check.density)
+				cardinals -= direction
+		dir_to_proj = pick(cardinals)
+
+	var/perpendicular_angle = Get_Angle(hit_atom, get_step(hit_atom, dir_to_proj))
+	var/new_angle = (perpendicular_angle + (perpendicular_angle - Get_Angle(old_throw_source, src) - 180) + rand(-10, 10))
+
+	if(new_angle < -360)
+		new_angle += 720 //north is 0 instead of 360
+	else if(new_angle < 0)
+		new_angle += 360
+	else if(new_angle > 360)
+		new_angle -= 360
+
+	step(src, angle_to_dir(new_angle))
 
 /atom/movable/proc/throw_at(atom/target, range, speed, thrower, spin, flying = FALSE, targetted_throw = TRUE)
 	set waitfor = FALSE
@@ -1177,3 +1193,7 @@
 	if(src_turf?.z)
 		return SSmapping.gravity_by_z_level["[src_turf.z]"]
 	return 1 //if both fail we're in nullspace, just return a 1 as a fallback
+
+//This is called when the AM is thrown into a dense turf
+/atom/movable/proc/turf_collision(turf/T, speed)
+	return
