@@ -51,7 +51,7 @@
 	SIGNAL_HANDLER
 	if(TIMER_COOLDOWN_CHECK(jumper, JUMP_COMPONENT_COOLDOWN))
 		return
-	if(jumper.incapacitated())
+	if(jumper.incapacitated(TRUE))
 		return
 	if(jumper.buckled)
 		return
