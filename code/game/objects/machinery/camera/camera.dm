@@ -327,7 +327,7 @@
 	network = list("marinemainship")
 
 /obj/machinery/camera/autoname/mainship/somship
-	network = list("sommainship")
+	network = list(SOM_CAMERA_NETWORK)
 
 //cameras installed inside the dropships, accessible via both cockpit monitor and ship camera computers
 /obj/machinery/camera/autoname/mainship/dropship_one
