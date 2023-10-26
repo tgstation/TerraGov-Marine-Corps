@@ -369,7 +369,6 @@
 	attachable_allowed = list(
 		/obj/item/attachable/reddot,
 		/obj/item/attachable/motiondetector,
-		/obj/item/attachable/heavy_barrel,
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/flashlight,
 		/obj/item/attachable/flashlight/under,
@@ -391,7 +390,7 @@
 	deployable_item = /obj/machinery/deployable/mounted
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
 	actions_types = list(/datum/action/item_action/aim_mode)
-	aim_fire_delay = 0.1 SECONDS
+	aim_fire_delay = 0.05 SECONDS
 	aim_speed_modifier = 5
 	soft_armor = list(MELEE = 0, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 100, FIRE = 0, ACID = 0)
 
