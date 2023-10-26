@@ -51,11 +51,9 @@
 	SIGNAL_HANDLER
 	if(TIMER_COOLDOWN_CHECK(jumper, JUMP_COMPONENT_COOLDOWN))
 		return
-	if(jumper.incapacitated(TRUE))
-		return
 	if(jumper.buckled)
 		return
-	if(jumper.IsStun() || jumper.IsKnockdown() || jumper.IsParalyzed())
+	if(jumper.incapacitated(TRUE))
 		return
 
 	if(stamina_cost && (jumper.getStaminaLoss() > -stamina_cost))
