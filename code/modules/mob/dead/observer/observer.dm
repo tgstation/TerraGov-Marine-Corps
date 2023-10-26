@@ -52,9 +52,6 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	///If you can see things only ghosts see, like other ghosts
 	var/ghost_vision = TRUE
 	var/ghost_orbit = GHOST_ORBIT_CIRCLE
-	///Position in the larva queue
-	var/larva_position = 0
-
 
 /mob/dead/observer/Initialize(mapload)
 	invisibility = GLOB.observer_default_invisibility

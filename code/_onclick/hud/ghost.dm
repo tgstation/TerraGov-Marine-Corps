@@ -33,12 +33,14 @@
 	icon_state = "reenter_corpse"
 
 /atom/movable/screen/ghost/reenter_corpse/Click()
-	var/mob/dead/observer/G = usr
-	if(G.larva_position)
-		var/confirm = tgui_alert(usr, "Returning to your corpse will make you leave the larva queue.", "Confirm.", list("Yes", "No"))
-		if(confirm != "Yes")
-			return
-	G.reenter_corpse()
+	var/mob/dead/observer/ghost = usr
+	var/larva_position = null
+	if (SEND_SIGNAL(usr.client, COMSIG_CLIENT_GET_LARVA_QUEUE_POSITION, larva_position))
+		if (larva_position) // If non-zero, we're in queue
+			var/confirm = tgui_alert(usr, "Returning to your corpse will make you leave the larva queue. Position: [larva_position]", "Confirm.", list("Yes", "No"))
+			if (confirm != "Yes")
+				return
+	ghost.reenter_corpse()
 
 
 /datum/hud/ghost/New(mob/owner, ui_style='icons/mob/screen/white.dmi', ui_color, ui_alpha = 230)

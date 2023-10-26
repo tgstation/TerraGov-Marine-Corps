@@ -194,6 +194,7 @@
 #define COMSIG_CLIENT_VERB_REMOVED "client_verb_removed"
 
 // Xeno larva queue stuff for clients
+#define COMSIG_CLIENT_MOB_LOGIN "client_mob_login"
 #define COMSIG_CLIENT_GET_LARVA_QUEUE_POSITION "client_get_larva_queue_position" // from datum/hive_status/normal/proc/attempt_to_spawn_larva()
 #define COMSIG_CLIENT_SET_LARVA_QUEUE_POSITION "client_set_larva_queue_position" // from datum/hive_status/normal/proc/attempt_to_spawn_larva()
 

@@ -22,7 +22,7 @@
 	add_queue_button()
 
 /datum/component/larva_queue/RegisterWithParent()
-	RegisterSignal(parent, COMSIG_MOB_LOGIN, PROC_REF(add_queue_button))
+	RegisterSignal(parent, COMSIG_CLIENT_MOB_LOGIN, PROC_REF(add_queue_button))
 	RegisterSignal(parent, COMSIG_MOB_LOGOUT, PROC_REF(remove_queue_button))
 	RegisterSignal(parent, COMSIG_CLIENT_SET_LARVA_QUEUE_POSITION, PROC_REF(set_queue_position))
 	RegisterSignal(parent, COMSIG_CLIENT_GET_LARVA_QUEUE_POSITION, PROC_REF(get_queue_position))
