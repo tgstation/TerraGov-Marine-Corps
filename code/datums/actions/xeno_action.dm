@@ -116,6 +116,11 @@
 			X.balloon_alert(X, "Cannot while burrowed")
 		return FALSE
 
+	if(!(flags_to_check & XACT_USE_PLASMA_SHIELD) && HAS_TRAIT(X, TRAIT_PLASMA_SHIELDING))
+		if(!silent)
+			X.balloon_alert(X, "Cannot while shielding")
+		return FALSE
+
 	if(!(flags_to_check & XACT_IGNORE_PLASMA) && X.plasma_stored < plasma_cost)
 		if(!silent)
 			X.balloon_alert(X, "Need [plasma_cost - X.plasma_stored] more plasma")

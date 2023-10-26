@@ -58,6 +58,7 @@
 		/datum/action/xeno_action/activable/carnage,
 		/datum/action/xeno_action/activable/feast,
 		/datum/action/xeno_action/activable/devour,
+		/datum/action/xeno_action/activable/plasma_shield,
 	)
 
 /datum/xeno_caste/gorger/normal
@@ -79,4 +80,5 @@
 		/datum/action/xeno_action/activable/carnage,
 		/datum/action/xeno_action/activable/feast,
 		/datum/action/xeno_action/activable/devour,
+		/datum/action/xeno_action/activable/plasma_shield,
 	)

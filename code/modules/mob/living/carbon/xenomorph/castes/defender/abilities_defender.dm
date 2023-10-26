@@ -473,3 +473,181 @@
 		deltimer(spin_loop_timer)
 		spin_loop_timer = null
 	UnregisterSignal(owner, list(SIGNAL_ADDTRAIT(TRAIT_FLOORED), SIGNAL_ADDTRAIT(TRAIT_INCAPACITATED), SIGNAL_ADDTRAIT(TRAIT_IMMOBILE)))
+
+// ***************************************
+// *********** Plasma Shield
+// ***************************************
+#define PLASMA_SHIELD_INTEGRITY_MULTIPLIER 1.5
+#define PLASMA_SHIELD_REGEN_RATE 0.05
+#define PLASMA_SHIELD_SLOWDOWN 1.0
+#define PLASMA_SHIELD_BROKEN_DEBUFF_DURATION 3 SECONDS
+
+/datum/action/xeno_action/activable/plasma_shield
+	name = "Plasma Shield"
+	ability_name = "plasma shield"
+	action_icon_state = "psy_shield"
+	desc = "Channel a plasma shield at your current location that reduces projectile damage. Activate again to cancel."
+	cooldown_timer = 20 SECONDS
+	use_state_flags = XACT_USE_PLASMA_SHIELD
+	keybind_flags = XACT_KEYBIND_USE_ABILITY | XACT_IGNORE_SELECTED_ABILITY
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PLASMA_SHIELD,
+		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_PLASMA_SHIELD_SELECT,
+	)
+	/// Current shield durability.
+	var/shield_integrity = 600
+	/// Maximum shield durability.
+	var/shield_max_integrity = 600
+	/// Whether the shield is currently broken or not.
+	var/shield_broken = FALSE
+	/// The actual shield object created by this ability
+	var/obj/effect/xeno/plasma_shield/active_shield
+
+/datum/action/xeno_action/activable/plasma_shield/give_action(mob/living/L)
+	. = ..()
+	var/mob/living/carbon/xenomorph/xeno_owner = owner
+	shield_max_integrity = xeno_owner.xeno_caste.max_health * PLASMA_SHIELD_INTEGRITY_MULTIPLIER
+	shield_integrity = shield_max_integrity
+	var/mutable_appearance/integrity_maptext = mutable_appearance(icon = null, icon_state = null, layer = ACTION_LAYER_MAPTEXT)
+	integrity_maptext.pixel_x = 8
+	integrity_maptext.pixel_y = -11
+	integrity_maptext.maptext = MAPTEXT("[shield_integrity]")
+	visual_references[VREF_MUTABLE_PLASMA_SHIELD] = integrity_maptext
+	START_PROCESSING(SSprocessing, src)
+
+/datum/action/xeno_action/activable/plasma_shield/remove_action(mob/M)
+	STOP_PROCESSING(SSprocessing, src)
+	if(active_shield)
+		QDEL_NULL(active_shield)
+	return ..()
+
+/datum/action/xeno_action/activable/plasma_shield/on_xeno_upgrade()
+	if(active_shield)
+		var/mob/living/carbon/xenomorph/xeno_owner = owner
+		xeno_owner.add_movespeed_modifier(MOVESPEED_ID_PLASMA_SHIELD, TRUE, 0, NONE, TRUE, PLASMA_SHIELD_SLOWDOWN)
+
+/datum/action/xeno_action/activable/plasma_shield/update_button_icon()
+	button.cut_overlay(visual_references[VREF_MUTABLE_PLASMA_SHIELD])
+	var/mutable_appearance/current_integrity = visual_references[VREF_MUTABLE_PLASMA_SHIELD]
+	current_integrity.maptext = MAPTEXT("[shield_integrity]")
+	visual_references[VREF_MUTABLE_PLASMA_SHIELD] = current_integrity
+	button.add_overlay(visual_references[VREF_MUTABLE_PLASMA_SHIELD])
+	return ..()
+
+/datum/action/xeno_action/activable/plasma_shield/on_cooldown_finish()
+	owner.balloon_alert(owner, "[name] ready")
+	return ..()
+
+/datum/action/xeno_action/activable/plasma_shield/process()
+	if(active_shield)
+		return
+	if(shield_integrity >= shield_max_integrity)
+		if(shield_broken)
+			shield_broken = FALSE
+			var/mutable_appearance/current_integrity = visual_references[VREF_MUTABLE_PLASMA_SHIELD]
+			current_integrity.color = initial(current_integrity.color)
+		return
+	shield_integrity = clamp(shield_integrity + (shield_max_integrity * PLASMA_SHIELD_REGEN_RATE), 0, shield_max_integrity)
+	message_admins("shield_integrity: [shield_integrity]")
+	update_button_icon()
+
+/datum/action/xeno_action/activable/plasma_shield/use_ability(atom/A)
+	if(active_shield)
+		cancel_shield()
+		return
+	if(shield_broken)
+		owner.balloon_alert(owner, "Shield broken, unable to use")
+		return
+	if(A)
+		owner.dir = get_cardinal_dir(owner, A) // If activated by mouse click, we face the atom clicked.
+	succeed_activate()
+	playsound(owner,'sound/effects/magic.ogg', 75, 1)
+	var/mob/living/carbon/xenomorph/xeno_owner = owner
+	xeno_owner.update_glow(3, 3, "#5999b3")
+	xeno_owner.add_movespeed_modifier(MOVESPEED_ID_PLASMA_SHIELD, TRUE, 0, NONE, TRUE, PLASMA_SHIELD_SLOWDOWN)
+	active_shield = new(get_step(xeno_owner, xeno_owner.dir), xeno_owner, src)
+	RegisterSignal(xeno_owner, COMSIG_ATOM_DIR_CHANGE, PROC_REF(cancel_dir_change))
+	RegisterSignal(xeno_owner, COMSIG_XENO_PLASMA_SHIELD_BROKEN, PROC_REF(shield_broken))
+
+/// Removes the shield and resets the ability.
+/datum/action/xeno_action/activable/plasma_shield/proc/cancel_shield()
+	var/mob/living/carbon/xenomorph/xeno_owner = owner
+	xeno_owner.update_glow()
+	xeno_owner.remove_movespeed_modifier(MOVESPEED_ID_PLASMA_SHIELD)
+	add_cooldown()
+	UnregisterSignal(owner, list(COMSIG_ATOM_DIR_CHANGE, COMSIG_XENO_PLASMA_SHIELD_BROKEN))
+	if(active_shield)
+		QDEL_NULL(active_shield)
+
+/// Cancels any attempts to change the direction we are currently facing.
+/datum/action/xeno_action/activable/plasma_shield/proc/cancel_dir_change()
+	SIGNAL_HANDLER
+	return ATOM_DIR_CHANGE_CANCEL
+
+/// Sets the shield's status to broken.
+/datum/action/xeno_action/activable/plasma_shield/proc/shield_broken()
+	SIGNAL_HANDLER
+	shield_broken = TRUE
+	var/mutable_appearance/current_integrity = visual_references[VREF_MUTABLE_PLASMA_SHIELD]
+	current_integrity.color = "#CC2828"
+	cancel_shield()
+
+/obj/effect/xeno/plasma_shield
+	icon = 'icons/Xeno/96x96.dmi'
+	icon_state = "shield"
+	resistance_flags = BANISH_IMMUNE|UNACIDABLE|PLASMACUTTER_IMMUNE
+	layer = ABOVE_MOB_LAYER
+	/// How much to reduce projectile stats by.
+	var/shield_reduction = 0.5
+	/// Owner or creator of this shield.
+	var/mob/living/carbon/xenomorph/xeno_owner
+
+/obj/effect/xeno/plasma_shield/Initialize(mapload, owner, action)
+	. = ..()
+	if(!owner)
+		return INITIALIZE_HINT_QDEL
+	xeno_owner = owner
+	var/datum/action/xeno_action/activable/plasma_shield/shield_action = xeno_owner.actions_by_path[/datum/action/xeno_action/activable/plasma_shield]
+	if(!shield_action)
+		return
+	alpha = shield_action.shield_integrity * 255 / shield_action.shield_max_integrity
+	dir = xeno_owner.dir
+	if(dir & (EAST|WEST))
+		bound_height = 96
+		bound_y = -32
+		pixel_y = -32
+	else
+		bound_width = 96
+		bound_x = -32
+		pixel_x = -32
+	RegisterSignal(src, COMSIG_ATOM_DIR_CHANGE, PROC_REF(cancel_dir_change))
+	RegisterSignal(xeno_owner, COMSIG_MOVABLE_MOVED, PROC_REF(move_shield))
+
+/obj/effect/xeno/plasma_shield/Destroy()
+	UnregisterSignal(xeno_owner, list(COMSIG_ATOM_DIR_CHANGE, COMSIG_MOVABLE_MOVED))
+	return ..()
+
+/obj/effect/xeno/plasma_shield/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
+	if(!(cardinal_move & REVERSE_DIR(dir)))
+		return FALSE
+	var/datum/action/xeno_action/activable/plasma_shield/shield_action = xeno_owner.actions_by_path[/datum/action/xeno_action/activable/plasma_shield]
+	if(!shield_action)
+		return
+	shield_action.shield_integrity = clamp(shield_action.shield_integrity - proj.damage, 0, shield_action.shield_max_integrity)
+	proj.damage *= shield_reduction
+	proj.penetration *= shield_reduction
+	proj.sundering *= shield_reduction
+	alpha = shield_action.shield_integrity * 255 / shield_action.shield_max_integrity
+	if(shield_action.shield_integrity <= 0)
+		SEND_SIGNAL(xeno_owner, COMSIG_XENO_PLASMA_SHIELD_BROKEN)
+		xeno_owner.apply_effect(PLASMA_SHIELD_BROKEN_DEBUFF_DURATION, WEAKEN)
+
+/// Cancels any attempts to change the direction we are currently facing.
+/obj/effect/xeno/plasma_shield/proc/cancel_dir_change()
+	SIGNAL_HANDLER
+	return ATOM_DIR_CHANGE_CANCEL
+
+/// Moves the shield.
+/obj/effect/xeno/plasma_shield/proc/move_shield(atom/movable/mover, atom/old_loc, movement_dir)
+	SIGNAL_HANDLER
+	forceMove(get_step(src, movement_dir))

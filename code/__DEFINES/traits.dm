@@ -141,6 +141,7 @@
 #define TRAIT_ESSENCE_LINKED "essence_linked"
 #define TRAIT_PSY_LINKED "psy_linked"
 #define TRAIT_TIME_SHIFTED "time_shifted"
+#define TRAIT_PLASMA_SHIELDING "plasma_shielding"
 #define TRAIT_LEASHED "leashed"
 #define TRAIT_CAN_VENTCRAWL "can_ventcrawl"
 #define TRAIT_WORKED_OUT "worked_out" //user has a cqc buff from working out

@@ -58,6 +58,7 @@
 		/datum/action/xeno_action/activable/forward_charge,
 		/datum/action/xeno_action/tail_sweep,
 		/datum/action/xeno_action/regenerate_skin,
+		/datum/action/xeno_action/activable/plasma_shield,
 	)
 
 /datum/xeno_caste/defender/ancient
@@ -78,5 +79,6 @@
 		/datum/action/xeno_action/activable/forward_charge,
 		/datum/action/xeno_action/tail_sweep,
 		/datum/action/xeno_action/regenerate_skin,
+		/datum/action/xeno_action/activable/plasma_shield,
 		/datum/action/xeno_action/centrifugal_force,
 	)

@@ -205,6 +205,7 @@
 #define COMSIG_ATOM_EXITED "atom_exited"						//from base of atom/Exited(): (atom/movable/exiting, direction)
 #define COMSIG_ATOM_BUMPED "atom_bumped"						///from base of atom/Bumped(): (/atom/movable)
 #define COMSIG_ATOM_DIR_CHANGE "atom_dir_change"				//from base of atom/setDir(): (old_dir, new_dir)
+	#define ATOM_DIR_CHANGE_CANCEL (1<<0)
 #define COMSIG_ATOM_CANREACH "atom_can_reach"					//from internal loop in atom/movable/proc/CanReach(): (list/next)
 	#define COMPONENT_BLOCK_REACH (1<<0)
 #define COMSIG_ATOM_SCREWDRIVER_ACT "atom_screwdriver_act"		//from base of atom/screwdriver_act(): (mob/living/user, obj/item/I)
@@ -647,6 +648,8 @@
 
 #define COMSIG_XENO_PSYCHIC_LINK_REMOVED "xeno_psychic_link_removed"
 
+#define COMSIG_XENO_PLASMA_SHIELD_BROKEN "xeno_plasma_shield_broken"
+
 //human signals
 #define COMSIG_CLICK_QUICKEQUIP "click_quickequip"
 
@@ -798,6 +801,8 @@
 #define COMSIG_XENOABILITY_CREST_DEFENSE "xenoability_crest_defense"
 #define COMSIG_XENOABILITY_FORTIFY "xenoability_fortify"
 #define COMSIG_XENOABILITY_REGENERATE_SKIN "xenoability_regenerate_skin"
+#define COMSIG_XENOABILITY_PLASMA_SHIELD "xenoability_plasma_shield"
+#define COMSIG_XENOABILITY_PLASMA_SHIELD_SELECT "xenoability_plasma_shield_select"
 #define COMSIG_XENOABILITY_CENTRIFUGAL_FORCE "xenoability_centrifugal_force"
 
 #define COMSIG_XENOABILITY_EMIT_NEUROGAS "xenoability_emit_neurogas"

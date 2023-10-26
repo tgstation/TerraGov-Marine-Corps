@@ -137,13 +137,6 @@
 	keybind_signal = COMSIG_XENOABILITY_TOGGLE_CHARGE
 	hotkey_keys = list("Space")
 
-/datum/keybinding/xeno/toxic_spit
-	name = "toxic_spit"
-	full_name = "Sentinel: Toxic Spit"
-	description = "A type of spit that inflicts the Intoxicated debuff, dealing damage over time."
-	keybind_signal = COMSIG_XENOABILITY_TOXIC_SPIT
-	hotkey_keys = list("E")
-
 /datum/keybinding/xeno/vent
 	name = "vent"
 	full_name = "Vent crawl"
@@ -193,6 +186,18 @@
 	full_name = "Command Minions"
 	description = "Order the minions escorting you to be either agressive or passive."
 	keybind_signal = COMSIG_XENOABILITY_MINION_BEHAVIOUR
+
+/datum/keybinding/xeno/plasma_shield
+	name = "plasma_shield"
+	full_name = "Plasma Shield"
+	description = ""
+	keybind_signal = COMSIG_XENOABILITY_PLASMA_SHIELD
+
+/datum/keybinding/xeno/plasma_shield_select
+	name = "plasma_shield_select"
+	full_name = "Select Plasma Shield"
+	description = ""
+	keybind_signal = COMSIG_XENOABILITY_PLASMA_SHIELD
 
 //
 // Single caste, alphabetical order
@@ -814,6 +819,13 @@
 	description = "Take an item equipped by your target in your mouth, and carry it away."
 	keybind_signal = COMSIG_XENOABILITY_SNATCH
 	hotkey_keys = list("Q")
+
+/datum/keybinding/xeno/toxic_spit
+	name = "toxic_spit"
+	full_name = "Sentinel: Toxic Spit"
+	description = "A type of spit that inflicts the Intoxicated debuff, dealing damage over time."
+	keybind_signal = COMSIG_XENOABILITY_TOXIC_SPIT
+	hotkey_keys = list("E")
 
 /datum/keybinding/xeno/toxic_slash
 	name = "toxic_slash"

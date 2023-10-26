@@ -26,6 +26,8 @@
 #define VREF_MUTABLE_RAV_LEECH "VREF_RAV_LEECH"
 // a reference for the  build counter of a xeno
 #define VREF_MUTABLE_BUILDING_COUNTER "VREF_BUILD_COUNTER"
+// references the plasma shield's integrity
+#define VREF_MUTABLE_PLASMA_SHIELD "VREF_PLASMA_SHIELD"
 
 /// Actions that toggle on click/trigger
 #define ACTION_TOGGLE "toggle"
