@@ -234,6 +234,7 @@
 	name = "handful of heavy impact rifle bullet (.45-70 Government)"
 	icon_state = "bullet"
 	current_rounds = 8
+	max_rounds = 8
 	default_ammo = /datum/ammo/bullet/rifle/repeater
 	caliber = CALIBER_4570
 

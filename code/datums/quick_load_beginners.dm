@@ -427,7 +427,7 @@
 
 	suit_store = /obj/item/weapon/gun/shotgun/pump/t35/beginner
 	w_uniform = /obj/item/clothing/under/marine/corpsman/corpman_vest
-	wear_suit = /obj/item/clothing/suit/modular/xenonauten/light/mimirmedical
+	wear_suit = /obj/item/clothing/suit/modular/xenonauten/light/lightmedical
 	gloves = /obj/item/healthanalyzer/gloves
 	mask = /obj/item/clothing/mask/gas/modular/coofmask
 	head = /obj/item/clothing/head/modular/m10x/antenna
@@ -492,7 +492,7 @@
 /datum/outfit/quick/beginner/smartgunner/sg29/post_equip(mob/living/carbon/human/H, visualsOnly)
 	. = ..()
 	H.equip_to_slot_or_del(new /obj/item/tool/extinguisher, SLOT_IN_SUIT)
-	H.equip_to_slot_or_del(new /obj/item/tool/extinguisher, SLOT_IN_SUIT)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/standard_smartmachinegun, SLOT_IN_SUIT)
 
 	H.equip_to_slot_or_del(new /obj/item/storage/box/m94, SLOT_IN_ACCESSORY)
 	H.equip_to_slot_or_del(new /obj/item/storage/box/m94, SLOT_IN_ACCESSORY)
@@ -501,7 +501,7 @@
 	H.equip_to_slot_or_del(new /obj/item/stack/medical/heal_pack/ointment, SLOT_IN_ACCESSORY)
 
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/plasma_pistol, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/standard_smartmachinegun, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/tool/extinguisher, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/standard_smartmachinegun, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/standard_smartmachinegun, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/standard_smartmachinegun, SLOT_IN_BACKPACK)

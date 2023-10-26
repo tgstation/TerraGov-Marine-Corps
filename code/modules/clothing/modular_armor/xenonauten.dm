@@ -105,9 +105,9 @@
 		/obj/item/armor_module/storage/medical,
 	)
 
-/obj/item/clothing/suit/modular/xenonauten/light/mimirmedical
+/obj/item/clothing/suit/modular/xenonauten/light/lightmedical
 	starting_attachments = list(
-		/obj/item/armor_module/module/mimir_environment_protection/mark1,
+		/obj/item/armor_module/module/better_shoulder_lamp,
 		/obj/item/armor_module/storage/medical,
 	)
 
