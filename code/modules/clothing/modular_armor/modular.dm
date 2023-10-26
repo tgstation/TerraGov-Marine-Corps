@@ -283,7 +283,7 @@
 	var/visorless_offset_y = -1
 
 /obj/item/clothing/head/modular/apply_custom(mutable_appearance/standing, inhands, icon_used, state_used)
-	if(!inhands)
+	if(inhands)
 		return
 	. = ..()
 	if(attachments_by_slot[ATTACHMENT_SLOT_STORAGE] && istype(attachments_by_slot[ATTACHMENT_SLOT_STORAGE], /obj/item/armor_module/storage))
