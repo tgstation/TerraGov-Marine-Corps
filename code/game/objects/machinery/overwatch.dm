@@ -172,6 +172,12 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	networks = list("som")
 	req_access = list(ACCESS_MARINE_BRIDGE)
 
+///Creates this computer's eye object and sets up its references.
+/obj/machinery/computer/camera_advanced/overwatch/CreateEye()
+	eyeobj = new(null, faction)
+	eyeobj.origin = src
+	RegisterSignal(eyeobj, COMSIG_QDELETING, PROC_REF(clear_eye_ref))
+
 /obj/machinery/computer/camera_advanced/overwatch/som/zulu
 	name = "\improper Zulu Overwatch Console"
 
