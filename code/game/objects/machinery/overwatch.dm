@@ -67,6 +67,8 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	var/datum/action/innate/order/rally_order/send_rally_order
 	///Groundside minimap for overwatch
 	var/datum/action/minimap/marine/external/cic_mini
+	///Overrides the minimap action minimap and marker flags
+	var/map_flags = MINIMAP_FLAG_MARINE
 	///Ref of the lase that's had an OB warning mark placed on the minimap
 	var/obj/effect/overlay/temp/laser_target/OB/marked_lase
 	///Static list of CIC radial options for the camera when clicking on a marine
@@ -98,7 +100,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	send_defend_order = new
 	send_retreat_order = new
 	send_rally_order = new
-	cic_mini = (faction == FACTION_SOM ? new /datum/action/minimap/marine/external/som : new /datum/action/minimap/marine/external)
+	cic_mini = new(null, map_flags, map_flags)
 	GLOB.main_overwatch_consoles += src
 
 /obj/machinery/computer/camera_advanced/overwatch/Destroy()
