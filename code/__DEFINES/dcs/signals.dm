@@ -194,9 +194,10 @@
 #define COMSIG_CLIENT_VERB_REMOVED "client_verb_removed"
 
 // Xeno larva queue stuff for clients
-#define COMSIG_CLIENT_MOB_LOGIN "client_mob_login"
-#define COMSIG_CLIENT_GET_LARVA_QUEUE_POSITION "client_get_larva_queue_position" // from datum/hive_status/normal/proc/attempt_to_spawn_larva()
-#define COMSIG_CLIENT_SET_LARVA_QUEUE_POSITION "client_set_larva_queue_position" // from datum/hive_status/normal/proc/attempt_to_spawn_larva()
+#define COMSIG_CLIENT_MOB_LOGIN "client_mob_login" //! Called on the client that just logged into a mob
+#define COMSIG_CLIENT_MOB_LOGOUT "client_mob_logout" //! Called on the client that just logged out from the mob: (/mob)
+#define COMSIG_CLIENT_GET_LARVA_QUEUE_POSITION "client_get_larva_queue_position" //! from /datum/component/larva_queue
+#define COMSIG_CLIENT_SET_LARVA_QUEUE_POSITION "client_set_larva_queue_position" //! from /datum/component/larva_queue
 
 // /atom signals
 #define COMSIG_ATOM_ATTACKBY "atom_attackby"			        //from base of atom/attackby(): (/obj/item, /mob/living)

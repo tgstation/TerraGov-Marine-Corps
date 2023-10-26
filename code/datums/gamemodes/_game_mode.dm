@@ -916,21 +916,37 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 	if(patrol_wave_countdown)
 		items += "Respawn wave timer: [patrol_wave_countdown]"
 
-	if(isobserver(source))
-		var/mob/dead/observer/observer_source = source
-		var/rulerless_countdown = get_hivemind_collapse_countdown()
-		if(rulerless_countdown)
-			items += "Orphan hivemind collapse timer: [rulerless_countdown]"
-		if(flags_round_type & MODE_INFESTATION)
-			if(observer_source.larva_position)
-				items += "Position in larva candidate queue: [observer_source.larva_position]"
-			var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
-			var/stored_larva = xeno_job.total_positions - xeno_job.current_positions
-			if(stored_larva)
-				items += "Burrowed larva: [stored_larva]"
-	else if(isxeno(source))
-		var/mob/living/carbon/xenomorph/xeno_source = source
-		if(xeno_source.hivenumber == XENO_HIVE_NORMAL)
-			var/rulerless_countdown = get_hivemind_collapse_countdown()
-			if(rulerless_countdown)
-				items += "Orphan hivemind collapse timer: [rulerless_countdown]"
+	if (isobserver(source) || isxeno(source))
+		src.handle_collapse_timer(dcs, source, items)
+
+	if (source.can_wait_in_larva_queue())
+		src.handle_larva_timer(dcs, source, items)
+		src.handle_xeno_respawn_timer(dcs, source, items)
+
+/datum/game_mode/proc/handle_collapse_timer(datum/dcs, mob/source, list/items)
+	if (isxeno(source))
+		var/mob/living/carbon/xenomorph/xeno = source
+		if(xeno.hivenumber != XENO_HIVE_NORMAL)
+			return // Don't show for non-normal hives
+	var/rulerless_countdown = get_hivemind_collapse_countdown()
+	if(rulerless_countdown)
+		items += "Orphan hivemind collapse timer: [rulerless_countdown]"
+
+/datum/game_mode/proc/handle_larva_timer(datum/dcs, mob/source, list/items)
+	if(flags_round_type & MODE_INFESTATION)
+		var/larva_position = SEND_SIGNAL(source.client, COMSIG_CLIENT_GET_LARVA_QUEUE_POSITION)
+		if (larva_position) // If non-zero, we're in queue
+			items += "Position in larva candidate queue: [larva_position]"
+
+		var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
+		var/stored_larva = xeno_job.total_positions - xeno_job.current_positions
+		if(stored_larva)
+			items += "Burrowed larva: [stored_larva]"
+
+/datum/game_mode/proc/handle_xeno_respawn_timer(datum/dcs, mob/source, list/items)
+	if(GLOB.respawn_allowed)
+		var/status_value = ((GLOB.key_to_time_of_xeno_death[source.key] ? GLOB.key_to_time_of_xeno_death[source.key] : -INFINITY)  + SSticker.mode?.xenorespawn_time - world.time) * 0.1 //If xeno_death is null, use -INFINITY
+		if(status_value <= 0)
+			items += "Xeno respawn timer: READY"
+		else
+			items += "Xeno respawn timer: [(status_value / 60) % 60]:[add_leading(num2text(status_value % 60), 2, "0")]"

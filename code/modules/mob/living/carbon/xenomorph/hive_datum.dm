@@ -964,7 +964,7 @@ to_chat will check for valid clients itself already so no need to double check f
 		chosen_silo = tgui_input_list(xeno_candidate.mob, "Available Egg Silos", "Spawn location", possible_silos, timeout = 20 SECONDS)
 		if(!chosen_silo || isnull(xeno_candidate))
 			return FALSE
-		xeno_candidate.mob.forceMove(get_turf(chosen_silo)) // ZEWAKA TODO: BEETLE TELEPORTATION
+		xeno_candidate.mob.forceMove(get_turf(chosen_silo)) // ZEWAKA TODO: BEETLE TELEPORTATION CONFIRMED, SET EYE IF XENO?
 		var/double_check = tgui_alert(xeno_candidate.mob, "Spawn here?", "Spawn location", list("Yes","Pick another silo","Abort"), timeout = 20 SECONDS)
 		if(double_check == "Pick another silo")
 			return attempt_to_spawn_larva_in_silo(xeno_candidate, possible_silos)
@@ -973,7 +973,7 @@ to_chat will check for valid clients itself already so no need to double check f
 			return FALSE
 	else
 		chosen_silo = possible_silos[1]
-		xeno_candidate.mob.forceMove(get_turf(chosen_silo)) // ZEWAKA TODO: BEETLE TELEPORTATION
+		xeno_candidate.mob.forceMove(get_turf(chosen_silo)) // ZEWAKA TODO: BEETLE TELEPORTATION CONFIRMED, SET EYE IF XENO?
 		var/check = tgui_alert(xeno_candidate, "Spawn as a xeno?", "Spawn location", list("Yes", "Abort"), timeout = 20 SECONDS)
 		if(check != "Yes")
 			remove_from_larva_candidate_queue(xeno_candidate)
