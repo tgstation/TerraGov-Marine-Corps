@@ -469,4 +469,57 @@
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/slug, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/slug, SLOT_IN_BACKPACK)
 
+/datum/outfit/quick/beginner/smartgunner
+	jobtype = "Squad Smartgunner"
+
+	w_uniform = /obj/item/clothing/under/marine/black_vest
+	shoes = /obj/item/clothing/shoes/marine
+	wear_suit = /obj/item/clothing/suit/modular/xenonauten/lightgeneral
+	mask = /obj/item/clothing/mask/gas
+	head = /obj/item/clothing/head/modular/m10x/antenna
+	belt = /obj/item/belt_harness/marine
+	glasses = /obj/item/clothing/glasses/night/m56_goggles
+
+/datum/outfit/quick/beginner/smartgunner/post_equip(mob/living/carbon/human/H, visualsOnly)
+	. = ..()
+	H.equip_to_slot_or_del(new /obj/item/storage/box/MRE, SLOT_IN_BOOT)
+
+/datum/outfit/quick/beginner/smartgunner/sg29
+	name = "Standard Smartmachinegun"
+
+	suit_store = /obj/item/weapon/gun/rifle/standard_smartmachinegun/pmc
+
+/datum/outfit/quick/beginner/smartgunner/sg29/post_equip(mob/living/carbon/human/H, visualsOnly)
+	. = ..()
+	H.equip_to_slot_or_del(new /obj/item/tool/extinguisher, SLOT_IN_SUIT)
+	H.equip_to_slot_or_del(new /obj/item/tool/extinguisher, SLOT_IN_SUIT)
+
+	H.equip_to_slot_or_del(new /obj/item/storage/box/m94, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/storage/box/m94, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/storage/box/m94, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/stack/medical/heal_pack/gauze, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/stack/medical/heal_pack/ointment, SLOT_IN_ACCESSORY)
+
+	H.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/plasma_pistol, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/standard_smartmachinegun, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/standard_smartmachinegun, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/standard_smartmachinegun, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/standard_smartmachinegun, SLOT_IN_BACKPACK)
+
+/datum/outfit/quick/beginner/smartgunner/sg85
+	name = "Standard Smartminigun"
+
+	suit_store = /obj/item/weapon/gun/minigun/smart_minigun/motion_detector
+	back = /obj/item/ammo_magazine/minigun_powerpack/smartgun
+
+/datum/outfit/quick/beginner/smartgunner/sg85/post_equip(mob/living/carbon/human/H, visualsOnly)
+	. = ..()
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/packet/smart_minigun, SLOT_IN_SUIT)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/packet/smart_minigun, SLOT_IN_SUIT)
+
+	H.equip_to_slot_or_del(new /obj/item/storage/box/m94, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/storage/box/m94, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/storage/box/m94, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/stack/medical/heal_pack/gauze, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/stack/medical/heal_pack/ointment, SLOT_IN_ACCESSORY)
 

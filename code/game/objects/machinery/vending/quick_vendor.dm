@@ -96,6 +96,8 @@ GLOBAL_LIST_INIT(beginner_loadouts, init_beginner_loadouts())
 		/datum/outfit/quick/beginner/marine/chad,
 		/datum/outfit/quick/beginner/corpsman/lifesaver,
 		/datum/outfit/quick/beginner/corpsman/hypobelt,
+		/datum/outfit/quick/beginner/smartgunner/sg29,
+		/datum/outfit/quick/beginner/smartgunner/sg85,
 	)
 
 	for(var/X in loadout_list)
