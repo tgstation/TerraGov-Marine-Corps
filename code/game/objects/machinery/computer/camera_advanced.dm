@@ -306,8 +306,7 @@
 //This one's for CAS
 /mob/camera/aiEye/remote/hud
 	icon_state = "nothing"
-	///owning faction
-	var/faction = FACTION_TERRAGOV
+	faction = FACTION_TERRAGOV
 	///Visible icon state
 	var/icon_state_on = "cas_camera"
 
