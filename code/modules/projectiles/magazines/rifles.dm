@@ -422,8 +422,9 @@
 	desc = "A magazine filled with 10x25mm rifle rounds for the AR-21."
 	caliber = CALIBER_10X25_CASELESS
 	icon_state = "t21"
-	icon_state_mini = "mag_rifle"
-	default_ammo = /datum/ammo/bullet/rifle/heavy
+	caliber = CALIBER_10x265_CASELESS
+	w_class = WEIGHT_CLASS_NORMAL
+	default_ammo = /datum/ammo/bullet/rifle/standard_br
 	max_rounds = 30
 
 //ALF-51B
