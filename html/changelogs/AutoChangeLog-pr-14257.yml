@@ -1,5 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - rscadd: "Added emissive effects for various som mob sprites"
-  - rscadd: "Lights and emissives for apcs, fire alarms, air alarms and intercoms"

@@ -1,4 +1,0 @@
-author: "ZeWaka"
-delete-after: True
-changes:
-  - bugfix: "Xenos can no longer spit onto space turfs"
