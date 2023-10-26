@@ -245,7 +245,7 @@
 	icon_state = "brick"
 	force = 50
 	throwforce = 50
-	attack_verb = list("smacked", "whacked", "bonked", "bricked", "thwacked", "socked")
+	attack_verb = list("smacked", "whacked", "bonked", "bricked", "thwacked", "socked", "donked")
 	hitsound = 'sound/weapons/heavyhit.ogg'
 
 /obj/item/weapon/brick/attackby(obj/item/I, mob/user, params)
@@ -279,6 +279,7 @@
 	singular_name = "stone"
 	flags_atom = DIRLOCK
 	sharp = IS_NOT_SHARP_ITEM
+	attack_verb = list("smacked", "whacked", "bonked", "stoned", "thwacked", "socked", "donked")
 
 /obj/item/weapon/combat_knife/harvester
 	name = "\improper HP-S Harvester knife"
