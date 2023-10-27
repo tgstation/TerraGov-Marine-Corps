@@ -621,6 +621,8 @@ GLOBAL_LIST_EMPTY(flamer_particles)
 		qdel(current_fire)
 	for(var/mob/living/mob_caught in turf_to_ignite)
 		mob_caught.ExtinguishMob()
+	for(var/obj/effect/particle_effect/smoke/smokeinstance in turf_to_ignite) //Cold water condensates and/or dilutes the smoke particles??
+		smokeinstance.lifetime /= 1.5 //Removes 33% of the current smoke lifespan
 	new /obj/effect/temp_visual/dir_setting/water_splash(turf_to_ignite, direction)
 
 /obj/item/weapon/gun/flamer/hydro_cannon/light_pilot(light)

@@ -107,12 +107,12 @@
 
 /obj/item/ammo_magazine/flamer_tank/water
 	name = "pressurized water tank"
-	desc = "A cannister of water for use with the FL-84's underslung extinguisher. Can be refilled by hand."
+	desc = "A small cannister of water for use with the underslung extinguisher. Can be refilled by hand."
 	icon_state = "watertank"
-	max_rounds = 200
-	current_rounds = 200
+	max_rounds = 70
+	current_rounds = 70
 	reload_delay = 0 SECONDS
-	w_class = WEIGHT_CLASS_NORMAL
+	w_class = WEIGHT_CLASS_SMALL
 	caliber = CALIBER_WATER //Deep lore
 	flags_magazine = NONE
 	icon_state_mini = "tank_water"

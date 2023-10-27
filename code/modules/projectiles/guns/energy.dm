@@ -432,6 +432,7 @@
 		/obj/item/attachable/angledgrip,
 		/obj/item/attachable/flashlight/under,
 		/obj/item/attachable/foldable/bipod,
+		/obj/item/weapon/gun/flamer/hydro_cannon,
 	)
 
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_ENERGY|GUN_AMMO_COUNTER|GUN_NO_PITCH_SHIFT_NEAR_EMPTY|GUN_AMMO_COUNT_BY_SHOTS_REMAINING
@@ -619,6 +620,7 @@
 		/obj/item/attachable/verticalgrip,
 		/obj/item/attachable/angledgrip,
 		/obj/item/attachable/flashlight/under,
+		/obj/item/weapon/gun/flamer/hydro_cannon,
 	)
 
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_ENERGY|GUN_AMMO_COUNTER|GUN_NO_PITCH_SHIFT_NEAR_EMPTY|GUN_AMMO_COUNT_BY_SHOTS_REMAINING
