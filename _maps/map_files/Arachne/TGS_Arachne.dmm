@@ -478,12 +478,6 @@
 /obj/effect/turf_decal/warning_stripes/thick,
 /turf/open/floor/plating,
 /area/mainship/hallways/hangar)
-"ayu" = (
-/obj/machinery/vending/engivend,
-/turf/open/floor/mainship/orange{
-	dir = 4
-	},
-/area/mainship/hallways/hangar)
 "ayz" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -3241,6 +3235,12 @@
 	dir = 6
 	},
 /area/mainship/hallways/starboard_ert)
+"cVg" = (
+/obj/machinery/vending/engivend,
+/turf/open/floor/mainship/orange{
+	dir = 4
+	},
+/area/mainship/hallways/hangar)
 "cVh" = (
 /obj/machinery/firealarm{
 	dir = 4
@@ -22183,7 +22183,7 @@
 	},
 /area/mainship/hallways/port_ert)
 "smB" = (
-/obj/structure/closet/firecloset/full,
+/obj/machinery/vending/engivend,
 /turf/open/floor/mainship/green{
 	dir = 10
 	},
@@ -35826,8 +35826,8 @@ mFV
 xPi
 cet
 mFV
-ayu
-ayu
+cVg
+cVg
 uPh
 azI
 hHY

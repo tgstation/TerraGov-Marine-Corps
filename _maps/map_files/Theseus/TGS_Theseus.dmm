@@ -5481,6 +5481,9 @@
 /obj/machinery/firealarm{
 	dir = 8
 	},
+/obj/item/tool/extinguisher,
+/obj/item/reagent_containers/spray/cleaner,
+/obj/item/reagent_containers/spray/cleaner,
 /turf/open/floor/mainship/floor,
 /area/mainship/squads/req)
 "bGm" = (
@@ -8786,12 +8789,6 @@
 	dir = 8
 	},
 /area/mainship/medical/operating_room_three)
-"eby" = (
-/obj/machinery/vending/engivend,
-/turf/open/floor/mainship/green{
-	dir = 8
-	},
-/area/mainship/squads/req)
 "ecE" = (
 /turf/open/floor/mainship/white/corner{
 	dir = 4
@@ -17237,14 +17234,7 @@
 	},
 /area/mainship/living/tankerbunks)
 "sic" = (
-/obj/item/reagent_containers/spray/cleaner,
-/obj/item/reagent_containers/spray/cleaner,
-/obj/item/tool/extinguisher,
-/obj/item/tool/extinguisher/mini,
-/obj/structure/rack,
-/obj/item/flashlight,
-/obj/item/flashlight,
-/obj/item/lightreplacer,
+/obj/machinery/vending/engivend,
 /turf/open/floor/mainship/floor,
 /area/mainship/squads/req)
 "sim" = (
@@ -59476,7 +59466,7 @@ biu
 cbm
 cxA
 erX
-eby
+erX
 hfD
 iWe
 jMY
@@ -59488,7 +59478,7 @@ rjC
 jMY
 iWe
 hfD
-eby
+erX
 erX
 cxA
 wCe
