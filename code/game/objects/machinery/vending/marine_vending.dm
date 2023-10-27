@@ -875,6 +875,16 @@
 			/obj/item/storage/pill_bottle/packet/paracetamol = -1,
 			/obj/item/storage/pill_bottle/packet/isotonic = -1,
 		),
+		"Marine-Grade Pill Bottles" = list(
+			/obj/item/storage/pill_bottle/marine/bicaridine = -1,
+			/obj/item/storage/pill_bottle/marine/kelotane = -1,
+			/obj/item/storage/pill_bottle/marine/tramadol = -1,
+			/obj/item/storage/pill_bottle/marine/tricordrazine = -1,
+			/obj/item/storage/pill_bottle/marine/dylovene = -1,
+			/obj/item/storage/pill_bottle/marine/paracetamol = -1,
+			/obj/item/storage/pill_bottle/marine/isotonic = -1,
+			/obj/item/storage/pill_bottle/marine = -1, //These ones are empty, so you can customize
+		),
 		"Auto Injector" = list(
 			/obj/item/reagent_containers/hypospray/autoinjector/bicaridine = -1,
 			/obj/item/reagent_containers/hypospray/autoinjector/kelotane = -1,
@@ -919,6 +929,16 @@
 			/obj/item/storage/pill_bottle/packet/dylovene = -1,
 			/obj/item/storage/pill_bottle/packet/paracetamol = -1,
 			/obj/item/storage/pill_bottle/packet/isotonic = -1,
+		),
+		"Marine-Grade Pill Bottles" = list(
+			/obj/item/storage/pill_bottle/marine/bicaridine = -1,
+			/obj/item/storage/pill_bottle/marine/kelotane = -1,
+			/obj/item/storage/pill_bottle/marine/tramadol = -1,
+			/obj/item/storage/pill_bottle/marine/tricordrazine = -1,
+			/obj/item/storage/pill_bottle/marine/dylovene = -1,
+			/obj/item/storage/pill_bottle/marine/paracetamol = -1,
+			/obj/item/storage/pill_bottle/marine/isotonic = -1,
+			/obj/item/storage/pill_bottle/marine = -1, //These ones are empty, so you can customize
 		),
 		"Auto Injector" = list(
 			/obj/item/reagent_containers/hypospray/autoinjector/bicaridine = -1,

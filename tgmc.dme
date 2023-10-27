@@ -830,6 +830,7 @@
 #include "code\game\objects\items\storage\internal.dm"
 #include "code\game\objects\items\storage\lockbox.dm"
 #include "code\game\objects\items\storage\marine_boxes.dm"
+#include "code\game\objects\items\storage\marine_p_bottle.dm"
 #include "code\game\objects\items\storage\misc.dm"
 #include "code\game\objects\items\storage\pill_packets.dm"
 #include "code\game\objects\items\storage\pouch.dm"
