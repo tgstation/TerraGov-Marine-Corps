@@ -15,10 +15,6 @@
 	icon_file='icons/obj/items/chemistry.dmi'
 	json_config = 'code/datums/greyscale/json_configs/pillbottle.json'
 
-/datum/greyscale_config/pillbottle/marine
-	icon_file='icons/obj/items/chemistry.dmi'
-	json_config = 'code/datums/greyscale/json_configs/pillbottleold.json'
-
 /datum/greyscale_config/pillbottleround
 	icon_file='icons/obj/items/chemistry.dmi'
 	json_config = 'code/datums/greyscale/json_configs/pillbottleround.json'
