@@ -176,9 +176,8 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	req_access = list(ACCESS_MARINE_BRIDGE)
 	map_flags = MINIMAP_FLAG_MARINE_SOM
 
-///Creates this computer's eye object and sets up its references.
 /obj/machinery/computer/camera_advanced/overwatch/CreateEye()
-	eyeobj = new(null, faction)
+	eyeobj = new(null, parent_cameranet, faction)
 	eyeobj.origin = src
 	RegisterSignal(eyeobj, COMSIG_QDELETING, PROC_REF(clear_eye_ref))
 
