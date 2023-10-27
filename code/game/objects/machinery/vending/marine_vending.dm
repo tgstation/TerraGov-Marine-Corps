@@ -892,6 +892,7 @@
 			/obj/item/reagent_containers/hypospray/autoinjector/quickclot = 10,
 			/obj/item/reagent_containers/hypospray/autoinjector/medicalnanites = 20,
 			/obj/item/reagent_containers/hypospray/autoinjector/russian_red = 30,
+			/obj/item/reagent_containers/hypospray/autoinjector/synaptizine = 15,
 		),
 		"Heal Pack" = list(
 			/obj/item/stack/medical/heal_pack/gauze = -1,
@@ -906,6 +907,60 @@
 			/obj/item/bodybag/cryobag = 24,
 		),
 	)
+
+/obj/machinery/vending/engivend
+	name = "\improper Engi-Vend"
+	desc = "Spare engineer vending. What? Did you expect some witty description?"
+	icon_state = "tool"
+	icon_deny = "tool-deny"
+	icon_vend = "tool-vend"
+	req_one_access = ALL_MARINE_ACCESS
+	wrenchable = FALSE
+	isshared = TRUE
+	products = list(
+		"Tools" = list(
+			/obj/item/tool/shovel/etool = -1,
+			/obj/item/tool/crowbar = -1,
+			/obj/item/tool/weldingtool = -1,
+			/obj/item/tool/wirecutters = -1,
+			/obj/item/tool/wrench = -1,
+			/obj/item/tool/screwdriver = -1,
+			/obj/item/tool/multitool = -1,
+			/obj/item/tool/analyzer = -1,
+			/obj/item/t_scanner = -1,
+		),
+		"Engineering Supplies" = list(
+			/obj/item/stack/cable_coil = -1,
+			/obj/item/circuitboard/apc = -1,
+			/obj/item/circuitboard/airlock = -1,
+			/obj/item/cell/high = 10,
+			/obj/item/stack/sandbags_empty/one = 25, //1 cade per vend
+			/obj/item/stack/barbed_wire/small_stack = 5, //5 coils given per vend
+			/obj/item/clothing/head/hardhat = -1,
+			/obj/item/clothing/head/welding = 4,
+			/obj/item/clothing/glasses/welding = 4,
+		),
+		"Misc. Gear" = list(
+			/obj/item/radio = -1,
+			/obj/item/taperecorder = -1,
+			/obj/item/assembly/igniter = -1,
+			/obj/item/assembly/signaler = -1,
+			/obj/item/assembly/infra = -1,
+			/obj/item/assembly/timer = -1,
+			/obj/item/assembly/prox_sensor = -1,
+			/obj/item/light_bulb/tube = -1,
+			/obj/item/light_bulb/bulb = -1,
+			/obj/item/ashtray/glass = -1,
+			/obj/item/frame/camera = -1,
+			/obj/item/reagent_containers/glass/bucket = -1,
+		),
+	)
+
+/obj/machinery/vending/engivend/nopower
+	use_power = NO_POWER_USE
+
+/obj/machinery/vending/engivend/nopower/valhalla
+	resistance_flags = INDESTRUCTIBLE
 
 /obj/machinery/vending/MarineMed/valhalla
 	resistance_flags = INDESTRUCTIBLE
@@ -1145,6 +1200,7 @@
 	icon_vend = "surplus-vend"
 	icon_deny = "surplus_clothes-deny"
 	isshared = TRUE
+	wrenchable = FALSE
 	product_ads = "Be the musician that you parents never approve you of.;You gotta look good when you're in the battlefield.;We have all types of hats here!;What did one hat say to the other on the hiking trip? I'll wait here, you go on ahead;Sometimes, a beret is better than a helmet.;Drip is the priority, marine."
 	products = list(
 		"Standard" = list(
@@ -1207,8 +1263,8 @@
 			/obj/item/storage/holster/flarepouch/full = -1,
 			/obj/item/storage/pouch/grenade = -1,
 			/obj/item/storage/pouch/explosive = -1,
-			/obj/item/storage/pouch/medkit = -1,
-			/obj/item/storage/pouch/medical_injectors = -1,
+			/obj/item/storage/pouch/medkit/firstaid = -1,
+			/obj/item/storage/pouch/medical_injectors/basic = -1,
 			/obj/item/storage/pouch/med_lolipops = -1,
 			/obj/item/storage/pouch/berrypouch = -1,
 			/obj/item/storage/pouch/construction = -1,
@@ -1614,28 +1670,6 @@
 			/obj/item/ammo_magazine/pistol/auto9 = -1,
 		)
 	)
-
-/obj/machinery/vending/tool
-	name = "YouTool"
-	desc = "Tools for tools."
-	icon_state = "tool"
-	icon_deny = "tool-deny"
-	icon_vend = "tool-vend"
-	isshared = TRUE
-	products = list(
-		/obj/item/stack/cable_coil = -1,
-		/obj/item/tool/crowbar = -1,
-		/obj/item/tool/weldingtool = -1,
-		/obj/item/tool/wirecutters = -1,
-		/obj/item/tool/wrench = -1,
-		/obj/item/tool/screwdriver = -1,
-	)
-
-/obj/machinery/vending/tool/nopower
-	use_power = NO_POWER_USE
-
-/obj/machinery/vending/tool/nopower/valhalla
-	resistance_flags = INDESTRUCTIBLE
 
 /obj/machinery/vending/mech_vendor
 	name = "\improper Mech equipment vendor"
