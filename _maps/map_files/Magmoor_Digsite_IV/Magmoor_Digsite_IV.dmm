@@ -3782,7 +3782,7 @@
 /turf/open/floor/mainship/orange,
 /area/magmoor/engi/storage)
 "cHO" = (
-/obj/machinery/vending/tool,
+/obj/machinery/vending/engivend,
 /turf/open/floor/mainship/orange,
 /area/magmoor/engi/storage)
 "cIk" = (

@@ -483,7 +483,7 @@
 /turf/open/floor/wood,
 /area/bigredv2/outside/general_offices)
 "zY" = (
-/obj/machinery/vending/tool,
+/obj/machinery/vending/engivend,
 /turf/open/floor,
 /area/bigredv2/outside/general_offices)
 "Av" = (

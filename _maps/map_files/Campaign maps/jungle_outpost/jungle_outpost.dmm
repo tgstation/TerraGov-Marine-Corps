@@ -6565,7 +6565,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/campaign/jungle_outpost/ground/jungle/south)
 "Ca" = (
-/obj/effect/spawner/random/misc/structure/flavorvending/engitool,
+/obj/effect/spawner/random/misc/structure/flavorvending/engivend,
 /turf/open/floor/tile/dark,
 /area/campaign/jungle_outpost/outpost/engineering)
 "Cb" = (
@@ -7453,7 +7453,7 @@
 /turf/open/floor/tile/barber,
 /area/campaign/jungle_outpost/outpost/living/kitchen)
 "FS" = (
-/obj/machinery/vending/tool,
+/obj/machinery/vending/engivend,
 /turf/open/floor/tile/brown{
 	dir = 6
 	},
@@ -12035,7 +12035,7 @@
 	},
 /area/campaign/jungle_outpost/outpost/living)
 "ZP" = (
-/obj/machinery/vending/tool,
+/obj/machinery/vending/engivend,
 /obj/machinery/light{
 	dir = 1
 	},

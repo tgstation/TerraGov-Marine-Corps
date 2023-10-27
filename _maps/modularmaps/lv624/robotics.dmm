@@ -297,7 +297,7 @@
 /turf/open/floor/plating/platebot,
 /area/lv624/lazarus/robotics)
 "Ny" = (
-/obj/machinery/vending/tool,
+/obj/machinery/vending/engivend,
 /turf/open/floor/tile/vault,
 /area/lv624/lazarus/robotics)
 "NM" = (

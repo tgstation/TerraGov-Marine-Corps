@@ -3251,7 +3251,7 @@
 /turf/open/floor/plating,
 /area/lv624/lazarus/quartstorage)
 "bRI" = (
-/obj/machinery/vending/tool,
+/obj/machinery/vending/engivend,
 /turf/open/floor/tile/dark/brown2{
 	dir = 8
 	},
@@ -7954,7 +7954,7 @@
 /turf/open/floor/plating/platebot,
 /area/lv624/lazarus/robotics)
 "hsN" = (
-/obj/machinery/vending/tool,
+/obj/machinery/vending/engivend,
 /turf/open/floor/tile/vault,
 /area/lv624/lazarus/robotics)
 "htq" = (
@@ -19968,7 +19968,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/lazarus/sandtemple/garbledradio)
 "vdj" = (
-/obj/effect/spawner/random/misc/structure/flavorvending/engitool,
+/obj/effect/spawner/random/misc/structure/flavorvending/engivend,
 /turf/open/floor/plating/warning{
 	dir = 4
 	},

@@ -9168,7 +9168,7 @@
 /turf/open/floor/plating/ground/concrete,
 /area/orion_outpost/surface/building/vehicledepot)
 "Vh" = (
-/obj/machinery/vending/tool,
+/obj/machinery/vending/engivend,
 /turf/open/floor/mainship/orange{
 	dir = 4
 	},

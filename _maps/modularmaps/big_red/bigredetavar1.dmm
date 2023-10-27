@@ -103,7 +103,7 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/general_offices)
 "fY" = (
-/obj/machinery/vending/tool,
+/obj/machinery/vending/engivend,
 /turf/open/floor,
 /area/bigredv2/outside/general_offices)
 "gg" = (

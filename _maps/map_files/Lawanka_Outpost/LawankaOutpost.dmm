@@ -9032,7 +9032,7 @@
 	},
 /area/lawankaoutpost/colony/operations_hall)
 "hNX" = (
-/obj/machinery/vending/tool,
+/obj/machinery/vending/engivend,
 /turf/open/floor/tile/dark/yellow2,
 /area/lawankaoutpost/colony/engineering)
 "hNY" = (
@@ -10034,7 +10034,7 @@
 /turf/open/floor/freezer,
 /area/lawankaoutpost/caves/nanotrasen_lab)
 "iEr" = (
-/obj/machinery/vending/tool{
+/obj/machinery/vending/engivend{
 	pixel_y = -2
 	},
 /turf/open/floor,
@@ -23583,7 +23583,7 @@
 /turf/open/floor/tile/blue/taupebluecorner,
 /area/lawankaoutpost/colony/recdorms)
 "tMM" = (
-/obj/machinery/vending/tool,
+/obj/machinery/vending/engivend,
 /turf/open/floor/tile/dark/yellow2{
 	dir = 1
 	},

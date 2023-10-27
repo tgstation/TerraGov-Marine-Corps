@@ -4982,7 +4982,7 @@
 /turf/open/floor/tile/red/redblue/full,
 /area/tdome/tdomeobserve)
 "gzk" = (
-/obj/machinery/vending/tool/nopower/valhalla,
+/obj/machinery/vending/engivend/nopower/valhalla,
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla/storage/primary)
 "gzl" = (
@@ -12100,7 +12100,7 @@
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla/primary/port)
 "qlP" = (
-/obj/machinery/vending/tool/nopower/valhalla,
+/obj/machinery/vending/engivend/nopower/valhalla,
 /obj/effect/turf_decal/warning_stripes/thick{
 	dir = 6
 	},
@@ -17323,7 +17323,7 @@
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla/engine/break_room)
 "wAP" = (
-/obj/machinery/vending/tool/nopower/valhalla,
+/obj/machinery/vending/engivend/nopower/valhalla,
 /obj/effect/turf_decal/warning_stripes/thick{
 	dir = 8
 	},

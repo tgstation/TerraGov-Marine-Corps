@@ -1034,7 +1034,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "blX" = (
-/obj/machinery/vending/tool,
+/obj/machinery/vending/engivend,
 /turf/open/floor/mainship/orange{
 	dir = 4
 	},
@@ -2784,6 +2784,10 @@
 	},
 /turf/open/floor/mainship/cargo,
 /area/mainship/squads/general)
+"dtL" = (
+/obj/machinery/vending/engivend,
+/turf/open/floor/mainship,
+/area/mainship/squads/general)
 "duo" = (
 /obj/structure/disposalpipe/segment/corner{
 	dir = 8
@@ -3843,13 +3847,12 @@
 /turf/open/floor/mainship/cargo,
 /area/mainship/squads/general)
 "eMJ" = (
-/obj/item/facepaint/green,
-/obj/item/facepaint/green,
-/obj/item/facepaint/green,
-/obj/item/tool/hand_labeler,
-/obj/item/tool/hand_labeler,
-/obj/item/tool/hand_labeler,
-/obj/structure/table/reinforced,
+/obj/structure/rack,
+/obj/item/storage/belt/utility/full,
+/obj/item/storage/belt/utility/full,
+/obj/item/reagent_containers/spray/cleaner,
+/obj/item/reagent_containers/spray/cleaner,
+/obj/item/tool/weldpack,
 /turf/open/floor/mainship/black,
 /area/mainship/squads/general)
 "eNw" = (
@@ -9628,6 +9631,12 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/mainship/sterile/corner,
 /area/mainship/medical/lower_medical)
+"mgU" = (
+/obj/machinery/vending/engivend,
+/turf/open/floor/mainship/black{
+	dir = 1
+	},
+/area/mainship/squads/general)
 "mia" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable,
@@ -17881,7 +17890,7 @@
 /turf/open/floor/carpet/side,
 /area/mainship/living/commandbunks)
 "wBE" = (
-/obj/machinery/vending/tool,
+/obj/machinery/vending/engivend,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "wBL" = (
@@ -18632,7 +18641,7 @@
 /obj/machinery/light/mainship{
 	dir = 4
 	},
-/obj/machinery/vending/tool,
+/obj/machinery/vending/engivend,
 /obj/effect/turf_decal/warning_stripes/linethick{
 	dir = 4
 	},
@@ -56789,9 +56798,9 @@ uEU
 qVS
 uyy
 cdz
-rrh
+dtL
 eMJ
-hxc
+mgU
 cPg
 bYP
 xLV

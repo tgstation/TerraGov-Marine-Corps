@@ -63,7 +63,7 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/general_offices)
 "cC" = (
-/obj/machinery/vending/tool,
+/obj/machinery/vending/engivend,
 /turf/open/floor,
 /area/bigredv2/outside/general_offices)
 "cD" = (

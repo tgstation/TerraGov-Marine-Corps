@@ -778,7 +778,7 @@
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "vY" = (
-/obj/machinery/vending/tool,
+/obj/machinery/vending/engivend,
 /turf/open/floor/mainship/orange/full,
 /area/shuttle/canterbury)
 "zE" = (

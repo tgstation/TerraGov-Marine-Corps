@@ -631,7 +631,7 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/general_offices)
 "Ey" = (
-/obj/machinery/vending/tool,
+/obj/machinery/vending/engivend,
 /turf/open/floor/plating,
 /area/bigredv2/outside/general_offices)
 "EU" = (
@@ -948,7 +948,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/general_offices)
 "Sd" = (
-/obj/machinery/vending/tool,
+/obj/machinery/vending/engivend,
 /turf/open/floor,
 /area/bigredv2/outside/general_offices)
 "Sj" = (

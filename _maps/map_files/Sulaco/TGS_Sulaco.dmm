@@ -1970,9 +1970,9 @@
 /turf/open/floor/prison,
 /area/sulaco/cargo/office)
 "ake" = (
-/obj/machinery/vending/tool,
-/turf/open/floor/prison/darkyellow/full,
-/area/sulaco/engineering)
+/obj/machinery/vending/engivend,
+/turf/open/floor/prison,
+/area/sulaco/marine)
 "akh" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 4
@@ -3656,7 +3656,7 @@
 /turf/open/floor/prison/marked,
 /area/sulaco/hallway/central_hall)
 "atF" = (
-/obj/machinery/vending/tool,
+/obj/machinery/vending/engivend,
 /turf/open/floor/prison,
 /area/sulaco/bridge/office)
 "atG" = (
@@ -10087,7 +10087,6 @@
 /area/sulaco/cafeteria/kitchen)
 "bXW" = (
 /obj/machinery/light/mainship/small,
-/obj/machinery/vending/tool,
 /turf/open/floor/prison,
 /area/sulaco/hallway/lower_main_hall)
 "bYh" = (
@@ -23651,7 +23650,7 @@
 /turf/open/floor/prison/sterilewhite,
 /area/sulaco/research)
 "tvj" = (
-/obj/machinery/vending/tool,
+/obj/machinery/vending/engivend,
 /obj/machinery/camera/autoname{
 	dir = 4
 	},
@@ -24618,7 +24617,7 @@
 /turf/open/floor/prison/sterilewhite,
 /area/sulaco/cryosleep)
 "uIe" = (
-/obj/machinery/vending/tool,
+/obj/machinery/vending/engivend,
 /turf/open/floor/prison,
 /area/sulaco/hangar/storage)
 "uIO" = (
@@ -48293,7 +48292,7 @@ oSV
 xJd
 wYX
 aLk
-mAk
+ake
 aLf
 ueG
 wVR
@@ -57544,7 +57543,7 @@ aGy
 pIP
 xKR
 pIP
-pIP
+eOA
 fVo
 xzB
 ajQ
@@ -71812,7 +71811,7 @@ aeV
 afQ
 gmg
 aib
-ake
+anO
 akk
 alr
 anE

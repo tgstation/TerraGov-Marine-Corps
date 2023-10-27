@@ -5262,7 +5262,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "aZq" = (
-/obj/machinery/vending/tool,
+/obj/machinery/vending/engivend,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "aZw" = (
@@ -6035,7 +6035,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "boY" = (
-/obj/machinery/vending/tool,
+/obj/machinery/vending/engivend,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "bpm" = (
@@ -6506,7 +6506,7 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "bwS" = (
-/obj/machinery/vending/tool,
+/obj/machinery/vending/engivend,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "bwU" = (

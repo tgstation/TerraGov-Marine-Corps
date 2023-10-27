@@ -19990,7 +19990,7 @@
 	},
 /area/ice_colony/underground/westroadtunnel)
 "foY" = (
-/obj/effect/spawner/random/misc/structure/flavorvending/engitool,
+/obj/effect/spawner/random/misc/structure/flavorvending/engivend,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -21444,7 +21444,7 @@
 /obj/machinery/air_alarm{
 	dir = 8
 	},
-/obj/effect/spawner/random/misc/structure/flavorvending/engitool,
+/obj/effect/spawner/random/misc/structure/flavorvending/engivend,
 /turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 4
 	},
@@ -23809,7 +23809,7 @@
 /turf/open/floor/plating,
 /area/ice_colony/underground/engineering/substation)
 "kVY" = (
-/obj/effect/spawner/random/misc/structure/flavorvending/engitool,
+/obj/effect/spawner/random/misc/structure/flavorvending/engivend,
 /turf/open/floor/tile/dark/blue2{
 	dir = 1
 	},
@@ -26675,7 +26675,7 @@
 /obj/machinery/air_alarm{
 	dir = 8
 	},
-/obj/effect/spawner/random/misc/structure/flavorvending/engitool,
+/obj/effect/spawner/random/misc/structure/flavorvending/engivend,
 /turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 4
 	},
@@ -26918,7 +26918,7 @@
 /turf/open/floor/wood,
 /area/ice_colony/surface/clinic/treatment)
 "pgx" = (
-/obj/effect/spawner/random/misc/structure/flavorvending/engitool,
+/obj/effect/spawner/random/misc/structure/flavorvending/engivend,
 /turf/open/floor/tile/dark/yellow2{
 	dir = 1
 	},
@@ -30354,7 +30354,7 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/security/hallway)
 "tHA" = (
-/obj/effect/spawner/random/misc/structure/flavorvending/engitool,
+/obj/effect/spawner/random/misc/structure/flavorvending/engivend,
 /turf/open/floor/tile/dark/yellow2{
 	dir = 6
 	},
@@ -31791,7 +31791,7 @@
 /turf/closed/mineral/smooth/bluefrostwall,
 /area/ice_colony/exterior/surface/valley/west)
 "vFt" = (
-/obj/effect/spawner/random/misc/structure/flavorvending/engitool,
+/obj/effect/spawner/random/misc/structure/flavorvending/engivend,
 /turf/open/floor/tile/dark/yellow2{
 	dir = 6
 	},

@@ -1092,7 +1092,7 @@
 /turf/open/shuttle/elevator/grating,
 /area/mainship/patrol_base/som)
 "rg" = (
-/obj/machinery/vending/tool,
+/obj/machinery/vending/engivend,
 /turf/open/floor/mainship/black{
 	dir = 6
 	},
@@ -2290,7 +2290,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/patrol_base/som)
 "Iq" = (
-/obj/machinery/vending/tool,
+/obj/machinery/vending/engivend,
 /turf/open/floor/mainship/red,
 /area/mainship/patrol_base/som)
 "Iu" = (

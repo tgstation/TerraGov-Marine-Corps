@@ -3154,8 +3154,8 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/machinery/vending/nanomed{
-	dir = 4
+/obj/machinery/computer/cryopod{
+	dir = 8
 	},
 /turf/open/floor/mainship/black{
 	dir = 8
@@ -3241,12 +3241,6 @@
 	dir = 6
 	},
 /area/mainship/hallways/starboard_ert)
-"cVg" = (
-/obj/machinery/vending/tool,
-/turf/open/floor/mainship/orange{
-	dir = 4
-	},
-/area/mainship/hallways/hangar)
 "cVh" = (
 /obj/machinery/firealarm{
 	dir = 4
@@ -11154,7 +11148,7 @@
 /turf/open/floor/mainship/floor,
 /area/mainship/living/numbertwobunks)
 "jqZ" = (
-/obj/machinery/vending/tool,
+/obj/machinery/vending/engivend,
 /obj/machinery/light/mainship{
 	dir = 1
 	},
@@ -18940,9 +18934,9 @@
 /turf/open/floor/mainship/floor,
 /area/mainship/hallways/port_ert)
 "pHy" = (
-/obj/machinery/vending/armor_supply,
+/obj/machinery/vending/engivend,
 /turf/open/floor/mainship/black{
-	dir = 6
+	dir = 1
 	},
 /area/mainship/squads/general)
 "pHG" = (
@@ -19068,7 +19062,7 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
-/obj/machinery/vending/tool,
+/obj/machinery/vending/engivend,
 /obj/structure/cable,
 /obj/machinery/camera/autoname/mainship{
 	dir = 8
@@ -19284,10 +19278,8 @@
 /turf/open/floor/mainship/floor,
 /area/mainship/command/cic)
 "pXC" = (
-/obj/machinery/vending/uniform_supply,
-/turf/open/floor/mainship/black{
-	dir = 5
-	},
+/obj/machinery/vending/engivend,
+/turf/open/floor/mainship,
 /area/mainship/squads/general)
 "pXS" = (
 /obj/structure/cable,
@@ -19823,10 +19815,6 @@
 	},
 /turf/open/floor/mainship/floor,
 /area/mainship/medical/upper_medical)
-"qtw" = (
-/obj/machinery/vending/tool,
-/turf/open/floor/plating,
-/area/mainship/hallways/starboard_hallway)
 "qtB" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 9
@@ -24837,38 +24825,17 @@
 	},
 /area/mainship/hallways/starboard_hallway)
 "uOY" = (
-/obj/item/facepaint/green{
-	pixel_x = -7;
-	pixel_y = 1
-	},
-/obj/item/facepaint/black{
-	pixel_y = 3
-	},
-/obj/item/facepaint/brown{
-	pixel_x = 7;
-	pixel_y = 5
-	},
-/obj/item/facepaint/green{
-	pixel_x = -7;
-	pixel_y = 1
-	},
-/obj/item/facepaint/black{
-	pixel_y = 3
-	},
-/obj/item/facepaint/brown{
-	pixel_x = 7;
-	pixel_y = 5
-	},
-/obj/structure/table/reinforced,
+/obj/structure/rack,
+/obj/item/storage/belt/utility/full,
+/obj/item/storage/belt/utility/full,
+/obj/item/reagent_containers/spray/cleaner,
+/obj/item/reagent_containers/spray/cleaner,
+/obj/item/tool/weldpack,
+/obj/machinery/atmospherics/pipe/manifold4w/supply/visible/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/turf/open/floor/mainship/black{
-	dir = 4
-	},
+/turf/open/floor/plating/plating_catwalk,
 /area/mainship/squads/general)
 "uPh" = (
 /obj/structure/cable,
@@ -35860,7 +35827,7 @@ xPi
 cet
 mFV
 ayu
-cVg
+ayu
 uPh
 azI
 hHY
@@ -37305,7 +37272,7 @@ iTj
 aQr
 qQG
 qns
-qtw
+dfs
 xVN
 qFo
 dpN

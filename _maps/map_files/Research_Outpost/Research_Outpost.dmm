@@ -1561,7 +1561,7 @@
 	},
 /area/outpost/hallway/central)
 "hJ" = (
-/obj/machinery/vending/tool,
+/obj/machinery/vending/engivend,
 /turf/open/floor/tile/dark/brown2{
 	dir = 5
 	},
@@ -10532,7 +10532,7 @@
 /turf/open/floor/tile/dark,
 /area/outpost/medbay)
 "XB" = (
-/obj/machinery/vending/tool,
+/obj/machinery/vending/engivend,
 /turf/open/floor/tile/dark/yellow2{
 	dir = 10
 	},

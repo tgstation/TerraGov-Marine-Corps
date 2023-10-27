@@ -3074,7 +3074,7 @@
 /turf/open/ground/grass,
 /area/whiskey_outpost/outside/north)
 "po" = (
-/obj/machinery/vending/tool,
+/obj/machinery/vending/engivend,
 /turf/open/floor/plating,
 /area/whiskey_outpost)
 "pp" = (
@@ -3516,7 +3516,7 @@
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost)
 "rg" = (
-/obj/machinery/vending/tool,
+/obj/machinery/vending/engivend,
 /turf/open/floor,
 /area/whiskey_outpost)
 "rh" = (

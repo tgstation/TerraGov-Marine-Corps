@@ -2201,7 +2201,7 @@
 /turf/open/floor/grayscale/black,
 /area/oscar_outpost/village/abandonedbase)
 "DR" = (
-/obj/machinery/vending/tool,
+/obj/machinery/vending/engivend,
 /turf/open/floor/grayscale/black,
 /area/oscar_outpost/village/abandonedbase)
 "DY" = (
@@ -3246,7 +3246,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/machinery/vending/tool,
+/obj/machinery/vending/engivend,
 /turf/open/floor/plating,
 /area/oscar_outpost/village/abandonedbase)
 "UH" = (
@@ -3563,7 +3563,7 @@
 /turf/open/shuttle/elevator/grating,
 /area/oscar_outpost/village/abandonedbase)
 "YJ" = (
-/obj/machinery/vending/tool,
+/obj/machinery/vending/engivend,
 /turf/open/floor/plating,
 /area/oscar_outpost/village/abandonedbase)
 "YM" = (

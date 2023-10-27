@@ -1487,7 +1487,7 @@
 /turf/open/floor/prison/whitepurple,
 /area/lv624/lazarus/engineering)
 "jl" = (
-/obj/machinery/vending/tool,
+/obj/machinery/vending/engivend,
 /turf/open/floor/prison/yellow/full,
 /area/lv624/lazarus/engineering)
 "jn" = (
@@ -2223,7 +2223,7 @@
 /turf/closed/wall,
 /area/lv624/lazarus/research)
 "mR" = (
-/obj/machinery/vending/tool,
+/obj/machinery/vending/engivend,
 /turf/open/floor,
 /area/lv624/lazarus/research)
 "mU" = (

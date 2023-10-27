@@ -9556,7 +9556,7 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/slumbridge/northwestcaves)
 "hob" = (
-/obj/machinery/vending/tool,
+/obj/machinery/vending/engivend,
 /turf/open/floor,
 /area/slumbridge/engi/south)
 "hpc" = (
@@ -28038,7 +28038,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/slumbridge/outside4)
 "uNk" = (
-/obj/machinery/vending/tool,
+/obj/machinery/vending/engivend,
 /turf/open/floor,
 /area/slumbridge/engi/central)
 "uNl" = (
@@ -29208,7 +29208,7 @@
 /turf/open/floor/asteroidfloor,
 /area/slumbridge/outside2)
 "vEa" = (
-/obj/machinery/vending/tool,
+/obj/machinery/vending/engivend,
 /turf/open/floor/prison/darkyellow{
 	dir = 4
 	},

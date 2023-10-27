@@ -2562,7 +2562,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/starboard_hallway)
 "aZO" = (
-/obj/machinery/vending/tool,
+/obj/machinery/vending/engivend,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/alpha)
 "aZR" = (
@@ -8831,7 +8831,7 @@
 /turf/open/floor/plating,
 /area/mainship/hallways/hangar)
 "ehv" = (
-/obj/machinery/vending/tool,
+/obj/machinery/vending/engivend,
 /obj/machinery/camera/autoname/mainship,
 /turf/open/floor/mainship/orange{
 	dir = 1
@@ -8924,7 +8924,7 @@
 	},
 /area/mainship/shipboard/firing_range)
 "erX" = (
-/obj/machinery/vending/tool,
+/obj/machinery/vending/engivend,
 /turf/open/floor/mainship/green{
 	dir = 8
 	},
@@ -14364,7 +14364,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/alpha)
 "ntN" = (
-/obj/machinery/vending/tool,
+/obj/machinery/vending/engivend,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/delta)
 "nui" = (
@@ -16935,7 +16935,7 @@
 /obj/machinery/light/mainship{
 	dir = 8
 	},
-/obj/machinery/vending/tool,
+/obj/machinery/vending/engivend,
 /turf/open/floor/mainship/orange{
 	dir = 9
 	},
@@ -20601,7 +20601,7 @@
 /area/mainship/medical/lower_medical)
 "yes" = (
 /obj/item/radio/intercom/general,
-/obj/machinery/vending/tool,
+/obj/machinery/vending/engivend,
 /turf/open/floor/mainship/orange{
 	dir = 1
 	},

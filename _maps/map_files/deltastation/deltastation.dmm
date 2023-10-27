@@ -61017,7 +61017,7 @@
 /turf/open/floor/iron,
 /area/deltastation/engineering/atmos)
 "mvR" = (
-/obj/machinery/vending/tool,
+/obj/machinery/vending/engivend,
 /obj/effect/turf_decal/warning_stripes/box,
 /obj/item/radio/intercom{
 	dir = 4
@@ -66985,7 +66985,7 @@
 /turf/open/floor/iron/grimy,
 /area/deltastation/service/library/lounge)
 "nKv" = (
-/obj/machinery/vending/tool,
+/obj/machinery/vending/engivend,
 /obj/effect/turf_decal/tile/transparent/neutral,
 /obj/effect/turf_decal/tile/transparent/neutral{
 	dir = 8

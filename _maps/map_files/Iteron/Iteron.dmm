@@ -902,7 +902,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/patrol_base/hanger)
 "mt" = (
-/obj/machinery/vending/tool,
+/obj/machinery/vending/engivend,
 /turf/open/floor/mainship/mono,
 /area/mainship/patrol_base)
 "mw" = (
@@ -1644,7 +1644,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/patrol_base/barracks)
 "xO" = (
-/obj/machinery/vending/tool,
+/obj/machinery/vending/engivend,
 /turf/open/floor/mainship/black{
 	dir = 1
 	},
@@ -2939,7 +2939,7 @@
 /turf/open/floor/mainship/black,
 /area/mainship/patrol_base/barracks)
 "On" = (
-/obj/machinery/vending/tool,
+/obj/machinery/vending/engivend,
 /turf/open/floor/mainship/black{
 	dir = 6
 	},

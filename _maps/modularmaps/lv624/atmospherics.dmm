@@ -600,7 +600,7 @@
 	},
 /area/lv624/lazarus/atmos)
 "YC" = (
-/obj/machinery/vending/tool,
+/obj/machinery/vending/engivend,
 /turf/open/floor/tile/dark/brown2{
 	dir = 8
 	},

@@ -7687,7 +7687,7 @@
 /turf/open/floor/mainship/sterile,
 /area/oscar_outpost/village)
 "Qf" = (
-/obj/machinery/vending/tool,
+/obj/machinery/vending/engivend,
 /turf/open/floor/tile/dark,
 /area/oscar_outpost/base)
 "Qg" = (
