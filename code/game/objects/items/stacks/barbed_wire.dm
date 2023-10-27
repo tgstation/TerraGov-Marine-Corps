@@ -37,9 +37,12 @@
 	if(R.amount < 8)
 		to_chat(user, span_warning("You need [8 - R.amount] more [R] to make a razor wire obstacle!"))
 		return
+	if(amount < 2)
+		to_chat(user, span_warning("You need at least [2 - amount] more [src] to make razorwire obstacles!"))
+		return
 
 	R.use(8)
-	use(1)
+	use(2)
 
 	var/obj/structure/razorwire/M = new /obj/item/stack/razorwire(user.loc, 2)
 	to_chat(user, span_notice("You combine the rods and barbed wire into [M]!"))
