@@ -964,24 +964,27 @@ to_chat will check for valid clients itself already so no need to double check f
 		chosen_silo = tgui_input_list(xeno_candidate.mob, "Available Egg Silos", "Spawn location", possible_silos, timeout = 20 SECONDS)
 		if(!chosen_silo || isnull(xeno_candidate))
 			return FALSE
-		xeno_candidate.mob.forceMove(get_turf(chosen_silo)) // ZEWAKA TODO: BEETLE TELEPORTATION CONFIRMED, SET EYE IF XENO?
+		xeno_candidate.mob.reset_perspective(chosen_silo)
 		var/double_check = tgui_alert(xeno_candidate.mob, "Spawn here?", "Spawn location", list("Yes","Pick another silo","Abort"), timeout = 20 SECONDS)
 		if(double_check == "Pick another silo")
 			return attempt_to_spawn_larva_in_silo(xeno_candidate, possible_silos)
 		else if(double_check != "Yes")
+			xeno_candidate.mob.reset_perspective(null)
 			remove_from_larva_candidate_queue(xeno_candidate)
 			return FALSE
 	else
 		chosen_silo = possible_silos[1]
-		xeno_candidate.mob.forceMove(get_turf(chosen_silo)) // ZEWAKA TODO: BEETLE TELEPORTATION CONFIRMED, SET EYE IF XENO?
+		xeno_candidate.mob.reset_perspective(chosen_silo)
 		var/check = tgui_alert(xeno_candidate, "Spawn as a xeno?", "Spawn location", list("Yes", "Abort"), timeout = 20 SECONDS)
 		if(check != "Yes")
+			xeno_candidate.mob.reset_perspective(null)
 			remove_from_larva_candidate_queue(xeno_candidate)
 			return FALSE
 
 	if(QDELETED(chosen_silo) || isnull(xeno_candidate))
 		return FALSE
 
+	xeno_candidate.mob.reset_perspective(null)
 	return do_spawn_larva(xeno_candidate, chosen_silo.loc, larva_already_reserved)
 
 
