@@ -103,8 +103,6 @@
 	var/turf/target_turf = throw_origin //throw distance is measured from the xeno itself
 	var/big_mob_message
 
-	//if(isclosedturf(throw_origin)) //shouldn't be possible anyway
-	//	return
 	if(!X.issamexenohive(A)) //xenos should be able to fling xenos into xeno passable areas!
 		for(var/obj/effect/forcefield/fog/fog in throw_origin)
 			A.balloon_alert(X, "cannot, fog")
