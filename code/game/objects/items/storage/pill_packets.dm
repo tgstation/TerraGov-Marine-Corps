@@ -53,8 +53,8 @@
 	pip_color = COLOR_PACKET_TRAMADOL
 
 /obj/item/storage/pill_bottle/packet/tricordrazine
-	name = "tricordazine pill packet"
-	desc = "This packet contains tricordazine pills. Heals all types of damage slightly. Once you take them out they don't go back in. No more than 2 pills at once."
+	name = "tricordrazine pill packet"
+	desc = "This packet contains tricordrazine pills. Heals all types of damage slightly. Once you take them out they don't go back in. No more than 2 pills at once."
 	pill_type_to_fill = /obj/item/reagent_containers/pill/tricordrazine
 	pip_color = COLOR_PACKET_TRICORDRAZINE
 
@@ -65,7 +65,7 @@
 	pip_color = COLOR_PACKET_DYLOVENE
 
 /obj/item/storage/pill_bottle/packet/paracetamol
-	name = "paracematol pill packet"
+	name = "paracetamol pill packet"
 	desc = "This packet contains paracetamol pills, also known as tylenol. A long lasting but minor painkiller. Once you take them out they don't go back in. No more than 4 pills in a long period."
 	pill_type_to_fill = /obj/item/reagent_containers/pill/paracetamol
 	pip_color = COLOR_PACKET_PARACETAMOL
