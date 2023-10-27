@@ -109,8 +109,8 @@
 	name = "pressurized water tank"
 	desc = "A small cannister of water for use with the underslung extinguisher. Can be refilled by hand."
 	icon_state = "watertank"
-	max_rounds = 70
-	current_rounds = 70
+	max_rounds = 125
+	current_rounds = 125
 	reload_delay = 0 SECONDS
 	w_class = WEIGHT_CLASS_SMALL
 	caliber = CALIBER_WATER //Deep lore
