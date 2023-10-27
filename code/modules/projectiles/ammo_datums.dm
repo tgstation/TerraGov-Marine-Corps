@@ -3943,6 +3943,8 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 		qdel(current_fire)
 	for(var/mob/living/mob_caught in extinguished_turf)
 		mob_caught.ExtinguishMob()
+	for(var/obj/effect/particle_effect/smoke/smokeinstance in extinguished_turf) //Cold water condensates and/or dilutes the smoke particles??
+		smokeinstance.lifetime /= 1.5 //Removes 33% of the current smoke lifespan
 	new /obj/effect/temp_visual/dir_setting/water_splash(extinguished_turf, splash_direction)
 
 /datum/ammo/water/on_hit_mob(mob/M, obj/projectile/P)
