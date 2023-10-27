@@ -1,0 +1,4 @@
+author: "Waselon"
+delete-after: True
+changes:
+  - bugfix: "baneling now can overwatch xenos if died from normal death"
