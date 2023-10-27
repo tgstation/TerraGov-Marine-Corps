@@ -213,9 +213,8 @@
 	if(!istype(TU))
 		return
 	var/is_outside = FALSE
-	if(is_ground_level(TU.z))
-		if (targ_area.ceiling <= CEILING_OBSTRUCTED)
-			is_outside = TRUE
+	if(is_ground_level(TU.z) && (targ_area.ceiling <= CEILING_OBSTRUCTED))
+		is_outside = TRUE
 	if(!is_outside)
 		to_chat(user, span_warning("DEPTH WARNING: Target too deep for ordnance."))
 		return
