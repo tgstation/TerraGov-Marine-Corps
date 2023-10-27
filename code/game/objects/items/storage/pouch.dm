@@ -505,7 +505,7 @@
 	icon_state = "medkit_som"
 	sprite_slots = null
 
-/obj/item/storage/pouch/medical_injectors
+/obj/item/storage/pouch/medical_injectors/firstaid
 	name = "medical injector pouch"
 	desc = "A specialized medical pouch that can only hold auto-injectors."
 	icon_state = "firstaid_injector"
@@ -516,6 +516,25 @@
 
 /obj/item/storage/pouch/medical_injectors/firstaid
 	desc = "Standard marine first-aid injector pouch. Specialized to store only auto-injectors. Contains basic injectors, a stabilizing injector, stimulant injector, and an emergency injector."
+
+/obj/item/storage/pouch/medical_injectors/basic
+	name = "medical injector pouch"
+	desc = "Standard marine first-aid injector pouch. Specialized to store only auto-injectors. Contains the basic injectors and two stabilizing injectors along with room to store specialized injectors."
+	icon_state = "firstaid_injector"
+	sprite_slots = 5
+	storage_slots = 8
+	max_storage_space = 14
+	can_hold = list(/obj/item/reagent_containers/hypospray/autoinjector)
+
+/obj/item/storage/pouch/medical_injectors/basic/Initialize(mapload)
+	. = ..()
+	new /obj/item/reagent_containers/hypospray/autoinjector/bicaridine (src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/kelotane (src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/tramadol (src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/tricordrazine (src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/dylovene (src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/inaprovaline(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/inaprovaline(src)
 
 /obj/item/storage/pouch/medical_injectors/firstaid/Initialize(mapload)
 	. = ..()
