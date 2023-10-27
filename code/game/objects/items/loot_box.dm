@@ -109,7 +109,7 @@
 		/obj/effect/supply_drop/armor_upgrades,
 		/obj/effect/supply_drop/medical_basic,
 		/obj/item/storage/pouch/firstaid/combat_patrol,
-		/obj/item/storage/pouch/medical_injectors/firstaid,
+		/obj/item/storage/pouch/medical_injectors/basic/firstaid,
 		/obj/item/storage/pouch/medical_injectors/medic,
 		/obj/effect/supply_drop/standard_carbine,
 		/obj/effect/supply_drop/standard_rifle,

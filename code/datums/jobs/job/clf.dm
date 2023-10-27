@@ -33,7 +33,7 @@
 	wear_suit = /obj/item/clothing/suit/storage/faction/militia
 	gloves = /obj/item/clothing/gloves/black
 	head = /obj/item/clothing/head/strawhat
-	r_store = /obj/item/storage/pouch/medical_injectors/firstaid
+	r_store = /obj/item/storage/pouch/medical_injectors/basic/firstaid
 	l_store = /obj/item/storage/pill_bottle/zoom
 	back = /obj/item/storage/backpack/lightpack
 
@@ -309,7 +309,7 @@
 	gloves = /obj/item/clothing/gloves/black
 	head = /obj/item/clothing/head/helmet/marine
 	r_store = /obj/item/storage/pouch/pistol
-	l_store = /obj/item/storage/pouch/medical_injectors/firstaid
+	l_store = /obj/item/storage/pouch/medical_injectors/basic/firstaid
 
 
 /datum/outfit/job/clf/specialist/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
@@ -396,7 +396,7 @@
 	head = /obj/item/clothing/head/militia
 	glasses = /obj/item/clothing/glasses/hud/health
 	r_store = /obj/item/storage/pouch/pistol
-	l_store = /obj/item/storage/pouch/medical_injectors/firstaid
+	l_store = /obj/item/storage/pouch/medical_injectors/basic/firstaid
 	back = /obj/item/storage/backpack/lightpack
 
 
