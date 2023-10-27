@@ -1,0 +1,5 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - bugfix: "fixed SOM overwatch minimap showing marines instead of SOM"
+  - bugfix: "The SOM cic eye is now correctly flagged to SOM huds"
