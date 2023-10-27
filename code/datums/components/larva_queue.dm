@@ -1,5 +1,5 @@
 /**
- * Handles clients getting the button to join the larva queue when they're eligible
+ * Handles clients getting the action to join the larva queue when they're eligible
  */
 /datum/component/larva_queue
 	dupe_mode = COMPONENT_DUPE_UNIQUE
@@ -7,8 +7,8 @@
 	var/client/waiter
 	/// The position we have in the larva queue (0 means you're not in it)
 	var/position = 0
-	/// Our queue button
-	var/datum/action/join_larva_queue/button = null
+	/// Our queue action
+	var/datum/action/join_larva_queue/action = null
 
 /datum/component/larva_queue/Initialize()
 	. = ..()
@@ -19,12 +19,12 @@
 	var/mob/M = waiter.mob // Clients always have a mob
 	if(!isxeno(M) && !isobserver(M))
 		return COMPONENT_INCOMPATIBLE // Only xenos or observers
-	src.button = new
-	add_queue_button()
+	src.action = new
+	add_queue_action()
 
 /datum/component/larva_queue/RegisterWithParent()
-	RegisterSignal(parent, COMSIG_CLIENT_MOB_LOGIN, PROC_REF(add_queue_button))
-	RegisterSignal(parent, COMSIG_CLIENT_MOB_LOGOUT, PROC_REF(remove_queue_button))
+	RegisterSignal(parent, COMSIG_CLIENT_MOB_LOGIN, PROC_REF(add_queue_action))
+	RegisterSignal(parent, COMSIG_CLIENT_MOB_LOGOUT, PROC_REF(remove_queue_action))
 	RegisterSignal(parent, COMSIG_CLIENT_SET_LARVA_QUEUE_POSITION, PROC_REF(set_queue_position))
 	RegisterSignal(parent, COMSIG_CLIENT_GET_LARVA_QUEUE_POSITION, PROC_REF(get_queue_position))
 
@@ -36,7 +36,7 @@
 		COMSIG_CLIENT_GET_LARVA_QUEUE_POSITION
 	))
 	src.waiter = null
-	QDEL_NULL(src.button)
+	QDEL_NULL(src.action)
 	. = ..()
 
 /// Returns if the mob is valid to keep waiting in the larva queue
@@ -52,26 +52,26 @@
 		return TRUE
 
 /**
- * Adds the larva queue button whenever the client is eligible to wait
+ * Adds the larva queue action whenever the client is eligible to wait
  * Removes from queue if they were no longer eligible
  */
-/datum/component/larva_queue/proc/add_queue_button()
+/datum/component/larva_queue/proc/add_queue_action()
 	SIGNAL_HANDLER
 	if (src.waiter.mob.can_wait_in_larva_queue())
 		var/datum/action/join_larva_queue/existing_action = src.waiter.mob.actions_by_path[/datum/action/join_larva_queue]
 		if(!existing_action)
-			button.give_action(src.waiter.mob)
+			action.give_action(src.waiter.mob)
 		if (src.position != 0)
-			button.set_toggle(TRUE)
+			action.set_toggle(TRUE)
 	else
 		// Leave the queue since they logged into an ineligible mob
 		var/datum/hive_status/normal/HS = GLOB.hive_datums[XENO_HIVE_NORMAL]
 		HS.remove_from_larva_candidate_queue(src.waiter)
 
 /**
- * Removes the larva queue button whenever the client leaves a mob
+ * Removes the larva queue action whenever the client leaves a mob
  */
-/datum/component/larva_queue/proc/remove_queue_button(client/our_client, mob/old_mob)
+/datum/component/larva_queue/proc/remove_queue_action(client/our_client, mob/old_mob)
 	SIGNAL_HANDLER
 	var/datum/action/join_larva_queue/existing_action = old_mob.actions_by_path[/datum/action/join_larva_queue]
 	existing_action?.remove_action(old_mob)
@@ -90,8 +90,7 @@
 	SIGNAL_HANDLER
 	src.position = new_position
 	if (src.position == 0) // No longer in queue
-		src.button.set_toggle(FALSE)
-	// ZEWAKA TODO CONSIDER
+		src.action.set_toggle(FALSE)
 
 
 /// Action for joining the larva queue
