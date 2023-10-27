@@ -991,6 +991,7 @@
 			/obj/item/reagent_containers/hypospray/autoinjector/quickclot = -1,
 			/obj/item/reagent_containers/hypospray/autoinjector/medicalnanites = -1,
 			/obj/item/reagent_containers/hypospray/autoinjector/russian_red = -1,
+			/obj/item/reagent_containers/hypospray/autoinjector/synaptizine = -1,
 		),
 		"Heal Pack" = list(
 			/obj/item/stack/medical/heal_pack/gauze = -1,
@@ -1003,6 +1004,7 @@
 			/obj/item/healthanalyzer = -1,
 			/obj/item/healthanalyzer/gloves = -1,
 			/obj/item/bodybag/cryobag = -1,
+			/obj/item/defibrillator = -1,
 		),
 		"Valhalla" = list(
 			/obj/item/reagent_containers/hypospray/autoinjector/virilyth = -1,
