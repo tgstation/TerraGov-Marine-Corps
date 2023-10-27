@@ -36,16 +36,15 @@
 	action_icon_state = "take_ssd"
 
 /datum/action/observer_action/take_ssd_mob/action_activate()
-	//var/mob/dead/observer/dead_owner = owner
+	var/mob/dead/observer/dead_owner = owner
 
 	if(!GLOB.ssd_posses_allowed)
 		to_chat(owner, span_warning("Taking over SSD mobs is currently disabled."))
 		return
 
-	// ZEWAKA TODO READD RIPPO
-	// if(GLOB.key_to_time_of_death[owner.key] + TIME_BEFORE_TAKING_BODY > world.time && !dead_owner.started_as_observer)
-	// 	to_chat(owner, span_warning("You died too recently to be able to take a new mob."))
-	// 	return
+	if(GLOB.key_to_time_of_death[owner.key] + TIME_BEFORE_TAKING_BODY > world.time && !dead_owner.started_as_observer)
+		to_chat(owner, span_warning("You died too recently to be able to take a new mob."))
+		return
 
 	var/list/mob/living/free_ssd_mobs = list()
 	for(var/mob/living/ssd_mob AS in GLOB.ssd_living_mobs)

@@ -35,12 +35,13 @@
 	update_icon(client.prefs.ghost_form)
 	updateghostimages()
 
-	src.client.AddComponent(/datum/component/larva_queue) // Bit nicer if it's first
-
 	for(var/path in subtypesof(/datum/action/observer_action))
 		if(!actions_by_path[path])
 			var/datum/action/observer_action/A = new path()
 			A.give_action(src)
+
+	src.client.AddComponent(/datum/component/larva_queue)
+
 	if(!actions_by_path[/datum/action/minimap/observer])
 		var/datum/action/minimap/observer/mini = new
 		mini.give_action(src)

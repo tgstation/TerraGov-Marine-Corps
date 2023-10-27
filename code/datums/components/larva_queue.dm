@@ -15,10 +15,12 @@
 	if (QDELETED(parent)) // Client disconnect fuckery
 		return COMPONENT_INCOMPATIBLE
 
-	src.waiter = parent
-	var/mob/M = waiter.mob // Clients always have a mob
-	if(!isxeno(M) && !isobserver(M))
-		return COMPONENT_INCOMPATIBLE // Only xenos or observers
+	var/client/client = parent
+	var/mob/double_check = client.mob // Clients always have a mob
+	if(!double_check.can_wait_in_larva_queue())
+		return COMPONENT_INCOMPATIBLE
+
+	src.waiter = client
 	src.action = new
 	add_queue_action()
 
@@ -103,7 +105,7 @@
 	. = ..()
 	if(!.)
 		return FALSE
-	if(isobserver(owner) || isxeno(owner))
+	if(owner.can_wait_in_larva_queue())
 		return TRUE
 	return FALSE
 
