@@ -520,17 +520,13 @@
 /obj/item/storage/pouch/medical_injectors/basic
 	desc = "Standard marine autoinjector pouch. Specialized to store only auto-injectors. Contains the basic injectors and two stabilizing injectors along with room to store specialized injectors."
 
-/obj/item/storage/pouch/medical_injectors/Initialize(mapload)
+/obj/item/storage/pouch/medical_injectors/basic/Initialize(mapload)
 	. = ..()
 	new /obj/item/reagent_containers/hypospray/autoinjector/bicaridine (src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/kelotane (src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/tramadol (src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/tricordrazine (src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/dylovene (src)
-	new /obj/item/reagent_containers/hypospray/autoinjector/inaprovaline(src)
-
-/obj/item/storage/pouch/medical_injectors/basic/Initialize(mapload)
-	. = ..()
 	new /obj/item/reagent_containers/hypospray/autoinjector/inaprovaline(src)
 
 /obj/item/storage/pouch/medical_injectors/basic/firstaid/Initialize(mapload)
