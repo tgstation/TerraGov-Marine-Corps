@@ -12,7 +12,9 @@
 /obj/item/storage/pill_bottle/marine/should_access_delay(obj/item/item, mob/user, taking_out)
 	if(!taking_out) // Always allow items to be tossed in instantly
 		return FALSE
-	if(user?.skills.getRating(SKILL_MEDICAL) >= skill_needed) //If you have the skill, it's instant
+	if(!user)
+		return FALSE
+	if(user.skills.getRating(SKILL_MEDICAL) >= skill_needed) //If you have the skill, it's instant
 		return FALSE
 	return TRUE
 
