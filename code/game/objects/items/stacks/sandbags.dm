@@ -53,6 +53,9 @@
 
 
 //half a max stack
+
+/obj/item/stack/sandbags_empty/one
+	amount = 5
 /obj/item/stack/sandbags_empty/half
 	amount = 25
 
