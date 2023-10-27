@@ -477,9 +477,13 @@ SUBSYSTEM_DEF(minimaps)
 	///Sets a fixed z level to be tracked by this minimap action instead of being influenced by the owner's / locator override's z level.
 	var/default_overwatch_level = 0
 
-/datum/action/minimap/New(Target)
+/datum/action/minimap/New(Target, new_minimap_flags, new_marker_flags)
 	. = ..()
 	locator = new
+	if(new_minimap_flags)
+		minimap_flags = new_minimap_flags
+	if(new_marker_flags)
+		marker_flags = new_marker_flags
 
 /datum/action/minimap/Destroy()
 	map = null

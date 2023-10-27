@@ -15,7 +15,7 @@
 	var/datum/cameranet/parent_cameranet
 
 
-/mob/camera/Initialize(mapload, cameranet)
+/mob/camera/Initialize(mapload, cameranet, new_faction)
 	. = ..()
 	if(call_life)
 		GLOB.living_cameras += src

@@ -1,5 +1,0 @@
-author: "Pariah919"
-delete-after: True
-changes:
-  - bugfix: "You can't infinitely dupe flak guns in seasonal, they now spawn in a crate like TAT for consistency."
-  - bugfix: "Heavy laser is now the deployable variant in req for the deployable version."

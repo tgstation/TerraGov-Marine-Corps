@@ -1,5 +1,0 @@
-author: "DeltaFire15"
-delete-after: True
-changes:
-  - code_imp: "Nuke disk generator candidates now support sets for mapping, which allows more control over which disk groups appear aswell as how common they are. Look at this PR if you need to know how."
-  - code_imp: "Nuke disk generators can also be forced to always appear for specific sets."
