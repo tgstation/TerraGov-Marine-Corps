@@ -28,7 +28,7 @@
 		B.use(2)
 		var/obj/structure/razorwire/M = new /obj/item/stack/razorwire(user.loc, 2)
 		to_chat(user, span_notice("You combine the rods and barbed wire into [M]!"))
-
+		return
 	if (iswelder(W))
 		var/obj/item/tool/weldingtool/WT = W
 
