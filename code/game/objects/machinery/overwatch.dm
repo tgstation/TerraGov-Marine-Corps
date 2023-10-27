@@ -168,11 +168,13 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	faction = FACTION_SOM
 	networks = list("som")
 	req_access = list(ACCESS_MARINE_BRIDGE)
+	map_flags = MINIMAP_FLAG_MARINE_SOM
 
 /obj/machinery/computer/camera_advanced/overwatch/main/som
 	faction = FACTION_SOM
 	networks = list("som")
 	req_access = list(ACCESS_MARINE_BRIDGE)
+	map_flags = MINIMAP_FLAG_MARINE_SOM
 
 ///Creates this computer's eye object and sets up its references.
 /obj/machinery/computer/camera_advanced/overwatch/CreateEye()
