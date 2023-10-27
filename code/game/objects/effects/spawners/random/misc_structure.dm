@@ -562,15 +562,6 @@
 	icon_state = "random_engivend"
 	loot = list(
 		/obj/machinery/vending/engivend = 60,
-		/obj/machinery/vending/tool = 5,
-		/obj/effect/spawner/random/misc/structure/flavorvending = 2,
-	)
-
-/obj/effect/spawner/random/misc/structure/flavorvending/engitool
-	icon_state = "random_engitool"
-	loot = list(
-		/obj/machinery/vending/tool = 60,
-		/obj/machinery/vending/engivend = 5,
 		/obj/effect/spawner/random/misc/structure/flavorvending = 2,
 	)
 
