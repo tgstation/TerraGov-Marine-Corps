@@ -538,42 +538,6 @@
 	)
 	idle_power_usage = 211
 
-/obj/machinery/vending/engivend
-	name = "Engi-Vend"
-	desc = "Spare engineer vending. What? Did you expect some witty description?"
-	icon_state = "engivend"
-	icon_vend = "engivend-vend"
-	icon_deny = "engivend-deny"
-	products = list(
-		/obj/item/tool/multitool = -1,
-		/obj/item/tool/analyzer = -1,
-		/obj/item/t_scanner = -1,
-		/obj/item/circuitboard/apc = -1,
-		/obj/item/circuitboard/airlock = -1,
-		/obj/item/cell/high = 10,
-		/obj/item/clothing/head/hardhat = 4,
-		/obj/item/clothing/head/welding = 4,
-		/obj/item/clothing/glasses/welding = 4,
-		/obj/item/radio = -1,
-		/obj/item/taperecorder = -1,
-		/obj/item/assembly/igniter = -1,
-		/obj/item/assembly/signaler = -1,
-		/obj/item/assembly/infra = -1,
-		/obj/item/assembly/timer = -1,
-		/obj/item/assembly/prox_sensor = -1,
-		/obj/item/light_bulb/tube = -1,
-		/obj/item/light_bulb/bulb = -1,
-		/obj/item/ashtray/glass = -1,
-		/obj/item/frame/camera = -1,
-		/obj/item/reagent_containers/glass/bucket = -1,
-	)
-
-/obj/machinery/vending/engivend/nopower
-	use_power = NO_POWER_USE
-
-/obj/machinery/vending/engivend/nopower/valhalla
-	resistance_flags = INDESTRUCTIBLE
-
 //This one's from bay12
 /obj/machinery/vending/robotics
 	name = "Robotech Deluxe"
