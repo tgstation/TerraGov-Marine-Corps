@@ -45,7 +45,7 @@
 	. = ..()
 	if(.)
 		return
-	if(interact_checks())
+	if(interact_checks(user))
 		return
 	if(!map)
 		map = SSminimaps.fetch_minimap_object(targetted_zlevel, minimap_flag)
