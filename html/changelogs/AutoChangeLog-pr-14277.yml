@@ -1,0 +1,5 @@
+author: "Aporhtonoma"
+delete-after: True
+changes:
+  - balance: "razor wires cost 8 iron rods 2 barbed to make"
+  - bugfix: "fixes infinite barbed duplication"
