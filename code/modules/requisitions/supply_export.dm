@@ -5,7 +5,7 @@
 		return FALSE
 
 	SSpoints.supply_points[faction_selling] += points
-	SSpoints.dropship_points += points * 0.08
+	SSpoints.dropship_points += points * 0.1
 	return new /datum/export_report(points, name, faction_selling)
 
 /mob/living/carbon/human/supply_export(faction_selling)
