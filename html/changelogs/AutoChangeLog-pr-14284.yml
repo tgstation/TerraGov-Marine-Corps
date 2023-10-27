@@ -1,4 +1,0 @@
-author: "Lewdcifer"
-delete-after: True
-changes:
-  - bugfix: "Fixed an issue where headwear with an emissive visor would display when in hand, but not when worn."

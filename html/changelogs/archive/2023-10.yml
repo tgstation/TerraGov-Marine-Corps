@@ -357,3 +357,7 @@
   - bugfix: Heavy laser is now the deployable variant in req for the deployable version.
   ZeWaka:
   - bugfix: Xenos can no longer spit onto space turfs
+2023-10-27:
+  Lewdcifer:
+  - bugfix: Fixed an issue where headwear with an emissive visor would display when
+      in hand, but not when worn.
