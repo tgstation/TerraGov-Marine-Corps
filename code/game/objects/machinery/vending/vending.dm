@@ -345,6 +345,9 @@
 		to_chat(user, "Tip it back upright first!")
 
 	else if(isscrewdriver(I))
+		if(!panel_openable)
+			user.balloon_alert(user, "Can't open panel")
+			return
 		TOGGLE_BITFIELD(machine_stat, PANEL_OPEN)
 		to_chat(user, "You [CHECK_BITFIELD(machine_stat, PANEL_OPEN) ? "open" : "close"] the maintenance panel.")
 		overlays.Cut()

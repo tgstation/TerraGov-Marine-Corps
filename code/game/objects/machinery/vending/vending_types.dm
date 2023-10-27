@@ -228,6 +228,7 @@
 /obj/machinery/vending/medical/shipside
 	isshared = TRUE
 	wrenchable = FALSE
+	panel_openable = FALSE
 
 /obj/machinery/vending/medical/valhalla
 	use_power = NO_POWER_USE

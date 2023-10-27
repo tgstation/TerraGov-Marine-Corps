@@ -12,17 +12,22 @@
 	var/use_power = IDLE_POWER_USE
 	var/idle_power_usage = 0
 	var/active_power_usage = 0
-	var/machine_current_charge = 0 //Does it have an integrated, unremovable capacitor? Normally 10k if so.
+	///Does it have an integrated, unremovable capacitor? Normally 10k if so.
+	var/machine_current_charge = 0
 	var/machine_max_charge = 0
 	var/power_channel = EQUIP
-	var/list/component_parts //list of all the parts used to build it, if made from certain kinds of frames.
+	///list of all the parts used to build it, if made from certain kinds of frames.
+	var/list/component_parts
 
 	var/wrenchable = FALSE
-	var/obj/item/circuitboard/circuit // Circuit to be created and inserted when the machinery is created
+	///Circuit to be created and inserted when the machinery is created
+	var/obj/item/circuitboard/circuit
 	var/mob/living/carbon/human/operator
 
 	///Whether bullets can bypass the object even though it's dense
 	allow_pass_flags = PASSABLE
+	///Wether you can open the panel of a machine with a screwdriver or not
+	var/panel_openable = TRUE
 
 /obj/machinery/Initialize(mapload)
 	. = ..()
