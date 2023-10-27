@@ -221,6 +221,8 @@
 				is_outside = TRUE
 			if(CEILING_METAL)
 				is_outside = TRUE
+			if(CEILING_OBSTRUCTED) //given that our values for these are integers i dont know why we don't just check if it's less than a certain value but i dont know enough about dm to change that safely
+				is_outside = TRUE
 	if(!is_outside)
 		to_chat(user, span_warning("DEPTH WARNING: Target too deep for ordnance."))
 		return
