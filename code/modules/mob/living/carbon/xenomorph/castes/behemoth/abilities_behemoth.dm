@@ -1235,7 +1235,7 @@
 /obj/structure/earth_pillar/Destroy()
 	playsound(loc, 'sound/effects/behemoth/earth_pillar_destroyed.ogg', 40, TRUE)
 	new /obj/effect/temp_visual/behemoth/earth_pillar/broken(loc)
-	var/datum/action/xeno_action/activable/earth_riser/earth_riser_action = xeno_owner.actions_by_path[/datum/action/xeno_action/activable/earth_riser]
+	var/datum/action/xeno_action/activable/earth_riser/earth_riser_action = xeno_owner?.actions_by_path[/datum/action/xeno_action/activable/earth_riser]
 	if(earth_riser_action && (src in earth_riser_action.active_pillars))
 		earth_riser_action.active_pillars -= src
 	xeno_owner = null
