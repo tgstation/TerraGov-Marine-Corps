@@ -27,7 +27,7 @@
 	head = /obj/item/clothing/head/modular/m10x
 	suit_store = /obj/item/weapon/gun/smg/m25/elite/suppressed
 	r_store = /obj/item/storage/pouch/grenade
-	l_store = /obj/item/storage/pouch/medical_injectors/firstaid
+	l_store = /obj/item/storage/pouch/medical_injectors/basic/firstaid
 	back = /obj/item/storage/backpack/lightpack
 
 /datum/outfit/job/special_forces/standard/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
@@ -85,7 +85,7 @@
 	gloves = /obj/item/clothing/gloves/marine/veteran/pmc
 	head = /obj/item/clothing/head/modular/m10x
 	suit_store = /obj/item/weapon/gun/smg/m25/elite/suppressed/breacher
-	r_store = /obj/item/storage/pouch/medical_injectors/firstaid
+	r_store = /obj/item/storage/pouch/medical_injectors/basic/firstaid
 	l_store = /obj/item/storage/pouch/medkit/firstaid
 	back = /obj/item/storage/backpack/lightpack
 
@@ -141,7 +141,7 @@
 	head = /obj/item/clothing/head/modular/m10x/welding
 	suit_store = /obj/item/weapon/gun/smg/m25/elite/suppressed
 	r_store = /obj/item/storage/pouch/grenade
-	l_store = /obj/item/storage/pouch/medical_injectors/firstaid
+	l_store = /obj/item/storage/pouch/medical_injectors/basic/firstaid
 	back = /obj/item/storage/backpack/lightpack
 
 /datum/outfit/job/special_forces/drone_operator/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
@@ -202,7 +202,7 @@
 	head = /obj/item/clothing/head/beret/sec
 	suit_store = /obj/item/weapon/gun/rifle/m16/spec_op
 	r_store = /obj/item/storage/pouch/shotgun
-	l_store = /obj/item/storage/pouch/medical_injectors/firstaid
+	l_store = /obj/item/storage/pouch/medical_injectors/basic/firstaid
 	back = /obj/item/storage/backpack/lightpack
 
 

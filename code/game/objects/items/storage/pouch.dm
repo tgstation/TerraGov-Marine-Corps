@@ -514,10 +514,14 @@
 	max_storage_space = 14
 	can_hold = list(/obj/item/reagent_containers/hypospray/autoinjector)
 
-/obj/item/storage/pouch/medical_injectors/firstaid
+/obj/item/storage/pouch/medical_injectors/basic/firstaid
 	desc = "Standard marine first-aid injector pouch. Specialized to store only auto-injectors. Contains basic injectors, a stabilizing injector, stimulant injector, and an emergency injector."
 
-/obj/item/storage/pouch/medical_injectors/firstaid/Initialize(mapload)
+/obj/item/storage/pouch/medical_injectors/basic
+	desc = "Standard marine autoinjector pouch. Specialized to store only auto-injectors. Contains basic injectors and a stabilizing injector,
+
+
+/obj/item/storage/pouch/medical_injectors/basic/Initialize(mapload)
 	. = ..()
 	new /obj/item/reagent_containers/hypospray/autoinjector/bicaridine (src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/kelotane (src)
@@ -525,6 +529,9 @@
 	new /obj/item/reagent_containers/hypospray/autoinjector/tricordrazine (src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/dylovene (src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/inaprovaline(src)
+
+/obj/item/storage/pouch/medical_injectors/basic/firstaid/Initialize(mapload)
+	. = ..()
 	new /obj/item/reagent_containers/hypospray/autoinjector/synaptizine (src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/russian_red (src)
 
