@@ -922,7 +922,7 @@
 			pixel_y += 6
 
 /atom/movable/vis_obj/wrath_block
-	icon = 'icons/Xeno/3x3_Xenos.dmi'
+	icon = 'icons/Xeno/castes/behemoth.dmi'
 	icon_state = "Behemoth Flashing"
 
 /datum/action/xeno_action/primal_wrath

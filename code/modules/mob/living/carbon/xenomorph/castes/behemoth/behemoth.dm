@@ -2,14 +2,14 @@
 	caste_base_type = /mob/living/carbon/xenomorph/behemoth
 	name = "Behemoth"
 	desc = "A resilient and equally ferocious monster that commands the earth itself."
-	icon = 'icons/Xeno/3x3_Xenos.dmi'
+	icon = 'icons/Xeno/castes/behemoth.dmi'
 	icon_state = "Behemoth Walking"
 	bubble_icon = "alienleft"
 	health = 725
 	maxHealth = 725
 	plasma_stored = 140
 	tier = XENO_TIER_THREE
-	upgrade = XENO_UPGRADE_ZERO
+	upgrade = XENO_UPGRADE_NORMAL
 	drag_delay = 6
 	mob_size = MOB_SIZE_BIG
 	max_buckled_mobs = 2

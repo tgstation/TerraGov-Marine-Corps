@@ -120,8 +120,6 @@
 	if(HAS_TRAIT(src, TRAIT_MOB_ICON_UPDATE_BLOCKED))
 		wound_overlay.icon_state = "none"
 		return
-	if(wound_overlay.icon != xeno_caste.wound_icon)
-		wound_overlay.icon = xeno_caste.wound_icon
 	if(health > health_threshold_crit)
 		health_thresholds = CEILING((health * 4) / (maxHealth), 1) //From 1 to 4, in 25% chunks
 		if(health_thresholds > 3)

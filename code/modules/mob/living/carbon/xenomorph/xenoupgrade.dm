@@ -398,17 +398,11 @@
 //============//
 //----BEHEMOTH START----//
 
-/mob/living/carbon/xenomorph/behemoth/mature
-	upgrade = XENO_UPGRADE_ONE
-
-/mob/living/carbon/xenomorph/behemoth/elder
-	upgrade = XENO_UPGRADE_TWO
-
-/mob/living/carbon/xenomorph/behemoth/ancient
-	upgrade = XENO_UPGRADE_THREE
+/mob/living/carbon/xenomorph/behemoth
+	upgrade = XENO_UPGRADE_NORMAL
 
 /mob/living/carbon/xenomorph/behemoth/primordial
-	upgrade = XENO_UPGRADE_FOUR
+	upgrade = XENO_UPGRADE_PRIMO
 
 //----BEHEMOTH END----//
 //============//
