@@ -3,7 +3,8 @@
 /obj/item/reagent_containers/glass/reagent_canister // See the Reagent Canister Pouch, this is just the container
 	name = "pressurized reagent container"
 	desc = "A pressurized container. The inner part of a pressurized reagent canister pouch. Too large to fit in anything but the pouch it comes with."
-	icon_state = "pressurized_reagent_container"
+	icon = 'icons/Marine/marine-pouches.dmi'
+	icon_state = "r_canister"
 	item_icons = list(
 		slot_l_hand_str = 'icons/mob/inhands/equipment/tanks_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/equipment/tanks_right.dmi',
@@ -13,14 +14,30 @@
 	volume = 1200 //The equivalent of 5 pill bottles worth of BKTT
 	w_class = WEIGHT_CLASS_BULKY
 
-/obj/item/reagent_containers/glass/reagent_canister/on_reagent_change()
-	update_icon()
+/obj/item/reagent_containers/glass/reagent_canister/examine(mob/user)
+	. = ..()
+	var/examine_info = get_examine_info(user)
+	if(examine_info)
+		. += examine_info
 
-/obj/item/reagent_containers/glass/reagent_canister/update_icon()
-	color = COLOR_WHITE
-	if(reagents)
-		color = mix_color_from_reagents(reagents.reagent_list)
-	..()
+///Used on examine for properly skilled people to see contents.
+/obj/item/reagent_containers/glass/reagent_canister/proc/get_examine_info(mob/user)
+	if(isxeno(user))
+		return
+	if(user.skills.getRating(SKILL_MEDICAL) >= SKILL_MEDICAL_NOVICE)
+		if(isnull(reagents.total_volume))
+			return span_notice("[src] is empty!")
+		var/list/dat = list()
+		dat += "\n \t [span_notice("<b>Total Reagents:</b> [reagents.total_volume]/[volume].")]</br>"
+		for(var/datum/reagent/R in reagents.reagent_list)
+			var/percent = round(R.volume / max(0.01 , reagents.total_volume * 0.01),0.01)
+			if(R.scannable)
+				dat += "\n \t <b>[R]:</b> [R.volume]|[percent]%</br>"
+			else
+				dat += "\n \t <b>Unknown:</b> [R.volume]|[percent]%</br>"
+		return span_notice("[src]'s contains: [dat.Join(" ")]")
+	else
+		return "You don't know what's in it."
 
 /obj/item/storage/pouch/pressurized_reagent_pouch //The actual pouch itself and all its function
 	name = "pressurized reagent pouch"
@@ -31,6 +48,7 @@
 	desc = "A very large reagent pouch. It is used to refill custom injectors, and can also store one.\
 	You can Alt-Click to remove the canister in order to refill it."
 	can_hold = list(/obj/item/reagent_containers/hypospray)
+	cant_hold = list(/obj/item/reagent_containers/glass/reagent_canister) //To prevent chat spam when you try to put the container in
 	flags_item = NOBLUDGEON
 	///The internal container of the pouch. Holds the reagent that you use to refill the connected injector
 	var/obj/item/reagent_containers/glass/reagent_canister/inner
@@ -41,16 +59,23 @@
 	new /obj/item/reagent_containers/hypospray/advanced(src)
 	update_icon()
 
-/obj/item/storage/pouch/pressurized_reagent_pouch/update_icon()
+/obj/item/storage/pouch/pressurized_reagent_pouch/update_overlays()
+	. = ..()
 	overlays.Cut()
-	if(length(contents))
-		overlays += "[icon_state]_full"
-	if(inner)
-		//tint the inner display based on what chemical is inside
-		var/image/I = image(icon, icon_state="[icon_state]_loaded")
-		if(inner.reagents)
-			I.color = mix_color_from_reagents(inner.reagents.reagent_list)
-		overlays += I
+	if(!inner)
+		overlays += "reagent_pouch_0"
+	else
+		overlays += "reagent_canister"
+		var/percentage = round((inner.reagents.total_volume/inner.reagents.maximum_volume)*100)
+		switch(percentage)
+			if(0)
+				overlays += "reagent_pouch_0"
+			if(1 to 33)
+				overlays += "reagent_pouch_1"
+			if(34 to 66)
+				overlays += "reagent_pouch_2"
+			if(67 to 100)
+				overlays += "reagent_pouch_3"
 
 /obj/item/storage/pouch/pressurized_reagent_pouch/bktt/Initialize()
 	. = ..()
