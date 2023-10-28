@@ -518,7 +518,7 @@
 	desc = "Standard marine first-aid injector pouch. Specialized to store only auto-injectors. Contains basic injectors, a stabilizing injector, stimulant injector, and an emergency injector."
 
 /obj/item/storage/pouch/medical_injectors/basic
-	desc = "Standard marine autoinjector pouch. Specialized to store only auto-injectors. Contains basic injectors and a stabilizing injector,
+	desc = "Standard marine autoinjector pouch. Specialized to store only auto-injectors. Contains basic injectors and a stabilizing injector."
 
 
 /obj/item/storage/pouch/medical_injectors/basic/Initialize(mapload)
