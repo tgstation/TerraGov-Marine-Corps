@@ -36,6 +36,7 @@
 		to_chat(M, span_notice("You swallow [src]."))
 		M.dropItemToGround(src) //icon update
 		if(reagents.total_volume)
+			record_reagent_consumption(reagents.total_volume, reagents.reagent_list, user)
 			reagents.reaction(M, INGEST)
 			reagents.trans_to(M, reagents.total_volume)
 
@@ -64,6 +65,7 @@
 		log_combat(user, M, "fed", src, "Reagents: [rgt_list_text]")
 
 		if(reagents.total_volume)
+			record_reagent_consumption(reagents.total_volume, reagents.reagent_list, user, M)
 			reagents.reaction(M, INGEST)
 			reagents.trans_to(M, reagents.total_volume)
 			qdel(src)

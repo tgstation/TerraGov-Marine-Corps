@@ -193,7 +193,9 @@
 		var/mob/M = loc
 		M.update_inv_head()
 
-/obj/item/clothing/head/helmet/marine/apply_custom(mutable_appearance/standing)
+/obj/item/clothing/head/helmet/marine/apply_custom(mutable_appearance/standing, inhands, icon_used, state_used)
+	if(inhands)
+		return
 	. = ..()
 	var/mutable_appearance/M
 	for(var/i in helmet_overlays)
@@ -309,6 +311,7 @@
 	soft_armor = list(MELEE = 95, BULLET = 120, LASER = 200, ENERGY = 200, BOMB = 90, BIO = 100, FIRE = 90, ACID = 95)
 	flags_inventory = COVEREYES|COVERMOUTH|BLOCKSHARPOBJ|BLOCKGASEFFECT
 	flags_inv_hide = HIDEEARS|HIDEEYES|HIDEFACE|HIDEMASK|HIDEALLHAIR
+	eye_protection = 2
 	anti_hug = 50
 	resistance_flags = UNACIDABLE
 

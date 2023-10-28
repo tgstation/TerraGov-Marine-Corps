@@ -72,6 +72,7 @@ GLOBAL_LIST_INIT(surgery_steps, init_surgery())
 
 //Does stuff to end the step, which is normally print a message + do whatever this step changes
 /datum/surgery_step/proc/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
+	record_surgical_operation(user)
 	return
 
 //Stuff that happens when the step fails
@@ -178,6 +179,8 @@ GLOBAL_LIST_INIT(surgery_steps, init_surgery())
 
 		//calculate step duration
 		var/step_duration = max(0.5 SECONDS, rand(surgery_step.min_duration, surgery_step.max_duration) - 1 SECONDS * user.skills.getRating(SKILL_SURGERY))
+		if(locate(/obj/machinery/optable) in M.loc)
+			step_duration = max(0.5 SECONDS, surgery_step.min_duration - 1 SECONDS * user.skills.getRating(SKILL_SURGERY))
 
 		//Multiply tool success rate with multipler
 		if(do_mob(user, M, step_duration, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL, extra_checks = CALLBACK(user, TYPE_PROC_REF(/mob, break_do_after_checks), null, null, user.zone_selected)) && prob(surgery_step.tool_quality(tool) * CLAMP01(multipler)))

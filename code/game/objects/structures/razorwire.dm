@@ -137,7 +137,7 @@
 		if(!metal_sheets.use(1))
 			return
 
-		repair_damage(max_integrity * 0.30)
+		repair_damage(max_integrity * 0.30, user)
 		visible_message(span_notice("[user] repairs \the [src]."))
 		update_icon()
 		return
@@ -208,7 +208,7 @@
 
 
 /obj/structure/razorwire/CanAllowThrough(atom/movable/mover, turf/target)
-	if(mover.throwing && ismob(mover))
+	if(mover.throwing && ismob(mover) && !(mover.pass_flags & PASS_DEFENSIVE_STRUCTURE))
 		return FALSE
 
 	return ..()

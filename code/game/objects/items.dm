@@ -175,7 +175,6 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 		update_icon()
 
 /obj/item/Destroy()
-	flags_item &= ~DELONDROP //to avoid infinite loop of unequip, delete, unequip, delete.
 	flags_item &= ~NODROP //so the item is properly unequipped if on a mob.
 	if(ismob(loc))
 		var/mob/m = loc
@@ -339,10 +338,10 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 // apparently called whenever an item is removed from a slot, container, or anything else.
 //the call happens after the item's potential loc change.
 /obj/item/proc/dropped(mob/user)
-	SEND_SIGNAL(src, COMSIG_ITEM_DROPPED, user)
-
-	if(flags_item & DELONDROP)
+	if((flags_item & DELONDROP) && !QDELETED(src))
 		qdel(src)
+	flags_item &= ~IN_INVENTORY
+	SEND_SIGNAL(src, COMSIG_ITEM_DROPPED, user)
 
 ///Called whenever an item is unequipped to a new loc (IE, not when the item ends up in the hands)
 /obj/item/proc/removed_from_inventory(mob/user)
@@ -372,6 +371,7 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 			limb_count++
 		UPDATEHEALTH(H)
 		QDEL_NULL(current_acid)
+	flags_item |= IN_INVENTORY
 	return
 
 ///Called to return an item to equip using the quick equip hotkey. Base proc returns the item itself, overridden for storage behavior.
@@ -412,6 +412,8 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 	for(var/datum/action/A AS in actions)
 		if(item_action_slot_check(user, slot)) //some items only give their actions buttons when in a specific slot.
 			A.give_action(user)
+
+	flags_item |= IN_INVENTORY
 
 	if(!equipped_to_slot)
 		return
@@ -677,8 +679,16 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 
 	return storage_item.can_be_inserted(src, warning)
 
+/// Checks whether the item can be unequipped from owner by stripper. Generates a message on failure and returns TRUE/FALSE
 /obj/item/proc/canStrip(mob/stripper, mob/owner)
-	return !(flags_item & NODROP)
+	if(flags_item & NODROP)
+		stripper.balloon_alert(stripper, "[src] is stuck!")
+		return FALSE
+	return TRUE
+
+/// Used by any item which wants to react to or prevent its own stripping, called after checks/delays. Return TRUE to block normal stripping behavior.
+/obj/item/proc/special_stripped_behavior(mob/stripper, mob/owner)
+	return
 
 /obj/item/proc/update_item_sprites()
 	switch(SSmapping.configs[GROUND_MAP].armor_style)
@@ -1057,7 +1067,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 			if(!W)
 				return
 			W.reagents = R
-			R.my_atom = W
+			R.my_atom = WEAKREF(W)
 			if(!W || !src)
 				return
 			reagents.trans_to(W,1)
@@ -1205,8 +1215,9 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 	var/mutable_appearance/standing = mutable_appearance(iconfile2use, state2use, layer2use)
 
 	//Apply any special features
+	apply_custom(standing, inhands, iconfile2use, state2use) //image overrideable proc to customize the onmob icon.
+	//Apply any special features
 	if(!inhands)
-		apply_custom(standing)		//image overrideable proc to customize the onmob icon.
 		apply_blood(standing)			//Some items show blood when bloodied.
 		apply_accessories(standing)		//Some items sport accessories like webbings or ties.
 
@@ -1228,14 +1239,16 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		return icon_override
 
 	//2: species-specific sprite sheets.
-	. = LAZYACCESS(sprite_sheets, species_type)
-	if(. && !inhands)
-		return
+	var/icon = LAZYACCESS(sprite_sheets, species_type)
+	if(icon && !inhands)
+		return icon
 
 	//3: slot-specific sprite sheets
-	. = LAZYACCESS(item_icons, slot_name)
-	if(.)
-		return
+	icon = LAZYACCESS(item_icons, slot_name)
+	if(ispath(icon, /datum/greyscale_config))
+		return SSgreyscale.GetColoredIconByType(icon, greyscale_colors)
+	if(icon)
+		return icon
 
 	//5: provided default_icon
 	if(default_icon)
@@ -1262,9 +1275,11 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		return icon_state
 
 ///applies any custom thing to the sprite, caled by make_worn_icon().
-/obj/item/proc/apply_custom(mutable_appearance/standing)
+/obj/item/proc/apply_custom(mutable_appearance/standing, inhands, icon_used, state_used)
 	SHOULD_CALL_PARENT(TRUE)
-	SEND_SIGNAL(src, COMSIG_ITEM_APPLY_CUSTOM_OVERLAY, standing)
+	if(blocks_emissive != EMISSIVE_BLOCK_NONE)
+		standing.overlays += emissive_blocker(icon_used, state_used, alpha = standing.alpha)
+	SEND_SIGNAL(src, COMSIG_ITEM_APPLY_CUSTOM_OVERLAY, standing, inhands)
 	return standing
 
 ///applies blood on the item, called by make_worn_icon().

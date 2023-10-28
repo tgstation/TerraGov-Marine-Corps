@@ -27,6 +27,12 @@
 /atom/movable/screen/text/screen_text/picture/shokk
 	image_to_play = "shokk"
 
+/atom/movable/screen/text/screen_text/picture/saf_four
+	image_to_play = "saf_4"
+
+/atom/movable/screen/text/screen_text/picture/rapid_response
+	image_to_play = "rapid_response"
+
 /atom/movable/screen/text/screen_text/picture/blackop
 	image_to_play = "blackops"
 
@@ -39,3 +45,9 @@
 
 /atom/movable/screen/text/screen_text/picture/potrait/som_over
 	image_to_play = "overwatch_som"
+
+/atom/movable/screen/text/screen_text/picture/potrait/unknown
+	image_to_play = "overwatch_unknown"
+
+/atom/movable/screen/text/screen_text/picture/potrait/pilot
+	image_to_play = "po"

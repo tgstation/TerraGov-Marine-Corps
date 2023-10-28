@@ -72,11 +72,11 @@
 	var/dat
 
 	for(var/obj/item/paper/P in src)
-		dat += "<A href='?src=\ref[src];remove=\ref[P]'>Remove</A> - <A href='?src=\ref[src];read=\ref[P]'>[P.name]</A><BR>"
+		dat += "<A href='?src=[text_ref(src)];remove=[text_ref(P)]'>Remove</A> - <A href='?src=[text_ref(src)];read=[text_ref(P)]'>[P.name]</A><BR>"
 	for(var/obj/item/photo/Ph in src)
-		dat += "<A href='?src=\ref[src];remove=\ref[Ph]'>Remove</A> - <A href='?src=\ref[src];look=\ref[Ph]'>[Ph.name]</A><BR>"
+		dat += "<A href='?src=[text_ref(src)];remove=[text_ref(Ph)]'>Remove</A> - <A href='?src=[text_ref(src)];look=[text_ref(Ph)]'>[Ph.name]</A><BR>"
 	for(var/obj/item/paper_bundle/Pb in src)
-		dat += "<A href='?src=\ref[src];remove=\ref[Pb]'>Remove</A> - <A href='?src=\ref[src];browse=\ref[Pb]'>[Pb.name]</A><BR>"
+		dat += "<A href='?src=[text_ref(src)];remove=[text_ref(Pb)]'>Remove</A> - <A href='?src=[text_ref(src)];browse=[text_ref(Pb)]'>[Pb.name]</A><BR>"
 	var/datum/browser/popup = new(user, "folder", "<div align='center'>[src]</div>")
 	popup.set_content(dat)
 	popup.open()

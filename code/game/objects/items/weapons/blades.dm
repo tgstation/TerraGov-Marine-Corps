@@ -118,14 +118,13 @@
 
 //FC's sword.
 
-/obj/item/weapon/claymore/mercsword/officersword
+/obj/item/weapon/claymore/mercsword/machete/officersword
 	name = "\improper Officers sword"
 	desc = "This appears to be a rather old blade that has been well taken care of, it is probably a family heirloom. Oddly despite its probable non-combat purpose it is sharpened and not blunt."
 	icon_state = "officer_sword"
 	item_state = "officer_sword"
-	force = 75
-	attack_speed = 12
-	w_class = WEIGHT_CLASS_BULKY
+	attack_speed = 11
+	penetration = 15
 
 /obj/item/weapon/claymore/mercsword/commissar_sword
 	name = "\improper commissars sword"
@@ -176,6 +175,27 @@
 	playsound(loc, 'sound/weapons/bladeslice.ogg', 25, 1)
 	return ..()
 
+
+/obj/item/tool/kitchen/knife/shiv
+	name = "glass shiv"
+	icon = 'icons/obj/items/weapons.dmi'
+	icon_state = "shiv"
+	desc = "A makeshift glass shiv."
+	attack_verb = list("shanked", "shived")
+	hitsound = 'sound/weapons/slash.ogg'
+
+/obj/item/tool/kitchen/knife/shiv/plasma
+	icon_state = "plasmashiv"
+	desc = "A makeshift plasma glass shiv."
+
+/obj/item/tool/kitchen/knife/shiv/titanium
+	icon_state = "titaniumshiv"
+	desc = "A makeshift titanium shiv."
+
+/obj/item/tool/kitchen/knife/shiv/plastitanium
+	icon_state = "plastitaniumshiv"
+	desc = "A makeshift plastitanium glass shiv."
+
 /obj/item/weapon/combat_knife
 	name = "\improper M5 survival knife"
 	icon = 'icons/obj/items/weapons.dmi'
@@ -192,7 +212,6 @@
 	attack_speed = 8
 	hitsound = 'sound/weapons/slash.ogg'
 	attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
-
 
 /obj/item/weapon/combat_knife/attackby(obj/item/I, mob/user)
 	if(!istype(I,/obj/item/stack/cable_coil))
@@ -340,6 +359,9 @@
 /obj/item/stack/throwing_knife/update_icon()
 	. = ..()
 	var/amount_to_show = amount > max_amount ? max_amount : amount
+	if(amount_to_show > 8)
+		setDir(8)
+		return
 	setDir(amount_to_show + round(amount_to_show / 3))
 
 /obj/item/stack/throwing_knife/equipped(mob/user, slot)
@@ -399,7 +421,7 @@
 		throw_at(current_target, throw_range, throw_speed, living_user, TRUE)
 		current_target = null
 	else
-		var/obj/item/stack/throwing_knife/knife_to_throw = new(get_turf(src))
+		var/obj/item/stack/throwing_knife/knife_to_throw = new type(get_turf(src))
 		knife_to_throw.amount = 1
 		knife_to_throw.update_icon()
 		knife_to_throw.throw_at(current_target, throw_range, throw_speed, living_user, TRUE)

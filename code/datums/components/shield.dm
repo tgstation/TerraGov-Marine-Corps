@@ -61,9 +61,8 @@
 	soft_armor = null
 	hard_armor = null
 	cover = null
-	QDEL_NULL(intercept_damage_cb)
-	if(transfer_damage_cb)
-		QDEL_NULL(transfer_damage_cb)
+	intercept_damage_cb = null
+	transfer_damage_cb = null
 	return ..()
 
 /datum/component/shield/proc/setup_callbacks(shield_flags)

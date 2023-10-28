@@ -180,3 +180,27 @@
 	cell = null
 	update_icon()
 	playsound(user, 'sound/weapons/guns/interact/rifle_reload.ogg', 25, TRUE)
+
+/obj/item/weapon/brick
+	name = "brick"
+	desc = "It's a brick. Commonly used to hit things, occasionally used to build stuff instead."
+	icon_state = "brick"
+	force = 30
+	throwforce = 40
+	attack_verb = list("smacked", "whacked", "bonked", "bricked", "thwacked", "socked", "donked")
+	hitsound = 'sound/weapons/heavyhit.ogg'
+
+/obj/item/stack/throwing_knife/stone
+	name = "stone"
+	desc = "Capable of doing minor amounts of damage, these stones will annoy the hell out of the recipient."
+	icon_state = "stone"
+	force = 15
+	throwforce = 15
+	max_amount = 12
+	amount = 12
+	throw_delay = 0.3 SECONDS
+	attack_verb = list("smacked", "whacked", "bonked", "pelted", "thwacked", "cracked")
+	hitsound = 'sound/weapons/heavyhit.ogg'
+	singular_name = "stone"
+	flags_atom = DIRLOCK
+	sharp = IS_NOT_SHARP_ITEM

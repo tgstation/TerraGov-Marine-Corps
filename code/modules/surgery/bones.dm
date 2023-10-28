@@ -36,6 +36,7 @@
 	span_notice("You apply some [tool] to [target]'s bone in [affected.display_name] with \the [tool]."))
 	target.balloon_alert_to_viewers("Success")
 	affected.bone_repair_stage = 1
+	return ..()
 
 /datum/surgery_step/bone/glue_bone/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
 	user.visible_message(span_warning("[user]'s hand slips, smearing [tool] in the incision in [target]'s [affected.display_name]!") , \
@@ -76,6 +77,7 @@
 	affected.remove_limb_flags(LIMB_BROKEN | LIMB_SPLINTED | LIMB_STABILIZED)
 	affected.add_limb_flags(LIMB_REPAIRED)
 	affected.bone_repair_stage = 0
+	return ..()
 
 /datum/surgery_step/bone/set_bone/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
 	target.balloon_alert_to_viewers("Slipped!")

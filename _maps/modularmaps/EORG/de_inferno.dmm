@@ -15,7 +15,7 @@
 /obj/structure/platform{
 	dir = 1
 	},
-/turf/open/floor/wood/variable/damaged/standard,
+/turf/open/floor/wood/broken,
 /area/deathmatch)
 "ar" = (
 /obj/effect/turf_decal/siding{
@@ -47,7 +47,7 @@
 /area/deathmatch)
 "bk" = (
 /obj/structure/inflatable/wall,
-/turf/open/floor/wood/variable/damaged/standard,
+/turf/open/floor/wood/broken,
 /area/deathmatch)
 "bl" = (
 /obj/structure/largecrate/random/barrel/blue,
@@ -87,9 +87,10 @@
 /turf/open/floor/plating/asteroidplating,
 /area/deathmatch)
 "bN" = (
-/turf/open/floor/stairs/rampbottom{
+/obj/structure/stairs/edge{
 	dir = 4
 	},
+/turf/open/floor/tile/dark,
 /area/deathmatch)
 "bO" = (
 /obj/machinery/door/airlock/mainship/medical/glass/free_access{
@@ -127,7 +128,7 @@
 "cm" = (
 /obj/effect/decal/remains/human,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plating/ground/dirt/desert,
+/turf/open/floor/plating/ground/dirt_desert,
 /area/deathmatch)
 "cx" = (
 /obj/machinery/light{
@@ -199,13 +200,13 @@
 	dir = 10
 	},
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plating/ground/dirt/desert,
+/turf/open/floor/plating/ground/dirt_desert,
 /area/deathmatch)
 "dA" = (
 /obj/item/storage/bible,
 /obj/structure/table/woodentable,
 /obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
-/turf/open/floor/wood/variable/damaged/standard,
+/turf/open/floor/wood/broken,
 /area/deathmatch)
 "dB" = (
 /obj/structure/inflatable/wall,
@@ -227,13 +228,13 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/open/floor/wood/variable/damaged/standard,
+/turf/open/floor/wood/broken,
 /area/deathmatch)
 "dN" = (
 /obj/machinery/door/airlock/mainship/medical/glass/free_access{
 	name = "\improper Civilian Housing"
 	},
-/turf/open/floor/wood/variable/damaged/standard,
+/turf/open/floor/wood/broken,
 /area/deathmatch)
 "dQ" = (
 /obj/structure/cargo_container/gorg,
@@ -255,9 +256,10 @@
 /area/deathmatch)
 "dT" = (
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/stairs/rampbottom{
+/obj/structure/stairs/edge{
 	dir = 8
 	},
+/turf/open/floor/tile/dark,
 /area/deathmatch)
 "dV" = (
 /obj/machinery/light{
@@ -267,7 +269,7 @@
 /area/deathmatch)
 "dW" = (
 /obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
-/turf/open/floor/wood/variable/damaged/standard,
+/turf/open/floor/wood/broken,
 /area/deathmatch)
 "dY" = (
 /obj/structure/largecrate/random/barrel/white,
@@ -382,9 +384,10 @@
 /turf/open/floor/plating/asteroidfloor,
 /area/space)
 "eO" = (
-/turf/open/floor/stairs/rampbottom{
+/obj/structure/stairs/edge{
 	dir = 1
 	},
+/turf/open/floor/tile/dark,
 /area/deathmatch)
 "eP" = (
 /obj/structure/platform{
@@ -442,9 +445,10 @@
 /area/deathmatch)
 "fs" = (
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/stairs/rampbottom{
+/obj/structure/stairs/edge{
 	dir = 1
 	},
+/turf/open/floor/tile/dark,
 /area/deathmatch)
 "fx" = (
 /obj/machinery/light{
@@ -511,7 +515,7 @@
 "hH" = (
 /obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plating/ground/dirt/desert,
+/turf/open/floor/plating/ground/dirt_desert,
 /area/deathmatch)
 "hX" = (
 /obj/machinery/door/airlock/mainship/medical/glass/free_access{
@@ -574,7 +578,7 @@
 /obj/structure/table/woodentable,
 /obj/item/storage/bible,
 /obj/effect/landmark/weapon_spawn/tier4_weapon_spawn,
-/turf/open/floor/wood/variable/damaged/standard,
+/turf/open/floor/wood/broken,
 /area/deathmatch)
 "kq" = (
 /obj/structure/table/gamblingtable,
@@ -586,7 +590,7 @@
 	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plating/ground/dirt/desert,
+/turf/open/floor/plating/ground/dirt_desert,
 /area/deathmatch)
 "kI" = (
 /obj/structure/largecrate/guns/merc,
@@ -595,7 +599,7 @@
 /turf/open/floor/plating/asteroidplating,
 /area/deathmatch)
 "kJ" = (
-/turf/open/floor/wood/variable/damaged/standard,
+/turf/open/floor/wood/broken,
 /area/deathmatch)
 "kL" = (
 /obj/machinery/door/window{
@@ -680,7 +684,7 @@
 "nv" = (
 /obj/structure/table/woodentable,
 /obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
-/turf/open/floor/wood/variable/damaged/standard,
+/turf/open/floor/wood/broken,
 /area/deathmatch)
 "nL" = (
 /obj/structure/prop/mainship/toolboxforacause2020,
@@ -761,16 +765,17 @@
 /obj/structure/platform{
 	dir = 9
 	},
-/turf/open/floor/wood/variable/damaged/standard,
+/turf/open/floor/wood/broken,
 /area/deathmatch)
 "qc" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/platform{
 	dir = 1
 	},
-/turf/open/floor/stairs/rampbottom{
+/obj/structure/stairs/edge{
 	dir = 8
 	},
+/turf/open/floor/tile/dark,
 /area/deathmatch)
 "ql" = (
 /obj/structure/platform_decoration{
@@ -787,7 +792,7 @@
 /area/deathmatch)
 "qV" = (
 /obj/effect/landmark/deathmatch,
-/turf/open/floor/wood/variable/damaged/standard,
+/turf/open/floor/wood/broken,
 /area/deathmatch)
 "rA" = (
 /obj/effect/decal/cleanable/blood/gibs/xeno,
@@ -823,9 +828,10 @@
 /area/deathmatch)
 "si" = (
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/stairs/rampbottom{
+/obj/structure/stairs/edge{
 	dir = 4
 	},
+/turf/open/floor/tile/dark,
 /area/deathmatch)
 "sp" = (
 /obj/structure/table/gamblingtable,
@@ -849,9 +855,10 @@
 "th" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/stairs/rampbottom{
+/obj/structure/stairs/edge{
 	dir = 4
 	},
+/turf/open/floor/tile/dark,
 /area/deathmatch)
 "tq" = (
 /obj/structure/inflatable/wall,
@@ -911,9 +918,10 @@
 /obj/structure/platform{
 	dir = 8
 	},
-/turf/open/floor/stairs/rampbottom{
+/obj/structure/stairs/edge{
 	dir = 1
 	},
+/turf/open/floor/tile/dark,
 /area/deathmatch)
 "uS" = (
 /obj/structure/table/gamblingtable,
@@ -926,7 +934,8 @@
 /area/deathmatch)
 "va" = (
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/stairs/rampbottom,
+/obj/structure/stairs/edge,
+/turf/open/floor/tile/dark,
 /area/deathmatch)
 "vg" = (
 /obj/effect/landmark/weapon_spawn/tier4_weapon_spawn,
@@ -942,7 +951,7 @@
 /obj/structure/platform{
 	dir = 4
 	},
-/turf/open/floor/wood/variable/damaged/standard,
+/turf/open/floor/wood/broken,
 /area/deathmatch)
 "wu" = (
 /obj/structure/table/woodentable,
@@ -962,7 +971,7 @@
 "wS" = (
 /obj/effect/landmark/deathmatch,
 /obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
-/turf/open/floor/wood/variable/damaged/standard,
+/turf/open/floor/wood/broken,
 /area/deathmatch)
 "xf" = (
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -1010,7 +1019,7 @@
 /area/deathmatch)
 "zx" = (
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plating/ground/dirt/desert,
+/turf/open/floor/plating/ground/dirt_desert,
 /area/deathmatch)
 "zB" = (
 /obj/structure/platform,
@@ -1050,9 +1059,10 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
-/turf/open/floor/stairs/rampbottom{
+/obj/structure/stairs/edge{
 	dir = 4
 	},
+/turf/open/floor/tile/dark,
 /area/deathmatch)
 "Bs" = (
 /obj/effect/decal/cleanable/dirt,
@@ -1110,9 +1120,10 @@
 	dir = 8
 	},
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/stairs/rampbottom{
+/obj/structure/stairs/edge{
 	dir = 1
 	},
+/turf/open/floor/tile/dark,
 /area/deathmatch)
 "DT" = (
 /obj/structure/platform_decoration,
@@ -1150,7 +1161,7 @@
 /obj/structure/platform{
 	dir = 5
 	},
-/turf/open/floor/wood/variable/damaged/standard,
+/turf/open/floor/wood/broken,
 /area/deathmatch)
 "Gb" = (
 /obj/structure/flora/ausbushes/brflowers,
@@ -1179,7 +1190,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/turf/open/floor/wood/variable/damaged/standard,
+/turf/open/floor/wood/broken,
 /area/deathmatch)
 "HE" = (
 /obj/effect/decal/cleanable/dirt,
@@ -1214,7 +1225,7 @@
 	dir = 4
 	},
 /obj/effect/decal/cleanable/cobweb,
-/turf/open/floor/wood/variable/damaged/standard,
+/turf/open/floor/wood/broken,
 /area/deathmatch)
 "IW" = (
 /obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
@@ -1259,7 +1270,7 @@
 /area/deathmatch)
 "Kr" = (
 /obj/effect/ai_node,
-/turf/open/floor/wood/variable/damaged/standard,
+/turf/open/floor/wood/broken,
 /area/deathmatch)
 "KD" = (
 /obj/effect/ai_node,
@@ -1298,7 +1309,7 @@
 /obj/effect/turf_decal/sandedge{
 	dir = 4
 	},
-/turf/open/floor/plating/ground/dirt/desert,
+/turf/open/floor/plating/ground/dirt_desert,
 /area/deathmatch)
 "Li" = (
 /obj/structure/flora/ausbushes/ppflowers,
@@ -1308,7 +1319,7 @@
 "Lp" = (
 /obj/effect/spawner/random/engineering/ore_box,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plating/ground/dirt/desert,
+/turf/open/floor/plating/ground/dirt_desert,
 /area/deathmatch)
 "LH" = (
 /obj/machinery/light{
@@ -1343,9 +1354,10 @@
 	dir = 1
 	},
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/stairs/rampbottom{
+/obj/structure/stairs/edge{
 	dir = 8
 	},
+/turf/open/floor/tile/dark,
 /area/deathmatch)
 "Ms" = (
 /obj/effect/landmark/deathmatch,
@@ -1367,7 +1379,7 @@
 /obj/effect/turf_decal/sandedge{
 	dir = 4
 	},
-/turf/open/floor/plating/ground/dirt/desert,
+/turf/open/floor/plating/ground/dirt_desert,
 /area/deathmatch)
 "Nd" = (
 /obj/structure/cargo_container/green{
@@ -1422,7 +1434,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/turf/open/floor/wood/variable/damaged/standard,
+/turf/open/floor/wood/broken,
 /area/deathmatch)
 "Om" = (
 /obj/structure/largecrate/guns/merc,
@@ -1491,14 +1503,14 @@
 /obj/effect/landmark/deathmatch,
 /obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plating/ground/dirt/desert,
+/turf/open/floor/plating/ground/dirt_desert,
 /area/deathmatch)
 "RT" = (
 /obj/effect/landmark/deathmatch,
 /obj/structure/platform{
 	dir = 8
 	},
-/turf/open/floor/wood/variable/damaged/standard,
+/turf/open/floor/wood/broken,
 /area/deathmatch)
 "RZ" = (
 /obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
@@ -1528,9 +1540,10 @@
 	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/stairs/rampbottom{
+/obj/structure/stairs/edge{
 	dir = 1
 	},
+/turf/open/floor/tile/dark,
 /area/deathmatch)
 "Tx" = (
 /obj/structure/reagent_dispensers/fueltank/barrel,
@@ -1585,14 +1598,14 @@
 /area/deathmatch)
 "UV" = (
 /obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
-/turf/open/floor/wood/variable/damaged/standard,
+/turf/open/floor/wood/broken,
 /area/deathmatch)
 "Vv" = (
 /obj/vehicle/train/cargo/engine{
 	dir = 2
 	},
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plating/ground/dirt/desert,
+/turf/open/floor/plating/ground/dirt_desert,
 /area/deathmatch)
 "Vw" = (
 /turf/open/liquid/water/river,
@@ -1622,7 +1635,7 @@
 /area/deathmatch)
 "WV" = (
 /obj/structure/largecrate/random/barrel/yellow,
-/turf/open/floor/wood/variable/damaged/standard,
+/turf/open/floor/wood/broken,
 /area/deathmatch)
 "Xj" = (
 /obj/effect/landmark/deathmatch,
@@ -1632,7 +1645,7 @@
 "Xl" = (
 /obj/vehicle/train/cargo/trolley,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plating/ground/dirt/desert,
+/turf/open/floor/plating/ground/dirt_desert,
 /area/deathmatch)
 "Xn" = (
 /obj/effect/spawner/random/engineering/ore_box,
@@ -1672,7 +1685,7 @@
 	dir = 1
 	},
 /obj/effect/decal/cleanable/cobweb,
-/turf/open/floor/wood/variable/damaged/standard,
+/turf/open/floor/wood/broken,
 /area/deathmatch)
 "Zn" = (
 /obj/effect/ai_node,
@@ -1695,7 +1708,7 @@
 /area/deathmatch)
 "ZL" = (
 /obj/structure/platform,
-/turf/open/floor/wood/variable/damaged/standard,
+/turf/open/floor/wood/broken,
 /area/deathmatch)
 "ZO" = (
 /obj/effect/landmark/weapon_spawn/tier3_weapon_spawn,

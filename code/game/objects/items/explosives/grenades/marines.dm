@@ -237,6 +237,12 @@
 	playsound(loc, "molotov", 35)
 	qdel(src)
 
+/obj/item/explosive/grenade/incendiary/molotov/throw_impact(atom/hit_atom, speed, bounce = TRUE)
+	. = ..()
+	if(!hit_atom.density || prob(35))
+		return
+	prime()
+
 /obj/item/explosive/grenade/ags
 	name = "\improper AGLS-37 HEDP grenade"
 	desc = "A small tiny smart grenade, it is about to blow up in your face, unless you found it inert. Otherwise a pretty normal grenade, other than it is somehow in a primeable state."
@@ -314,6 +320,12 @@
 	smoketype = /datum/effect_system/smoke_spread/satrapine
 	smokeradius = 6
 
+/obj/item/explosive/grenade/smokebomb/satrapine/activate(mob/user)
+	. = ..()
+	if(!.)
+		return FALSE
+	user?.record_war_crime()
+
 /obj/item/explosive/grenade/smokebomb/cloak
 	name = "\improper M40-2 SCDP smoke grenade"
 	desc = "A sophisticated version of the M40 HSDP with a slighty improved smoke screen payload. It's set to detonate in 2 seconds."
@@ -372,6 +384,12 @@
 	flame_radius(4, get_turf(src))
 	flame_radius(1, get_turf(src), burn_intensity = 45, burn_duration = 75, burn_damage = 15, fire_stacks = 75)	//The closer to the middle you are the more it hurts
 	qdel(src)
+
+/obj/item/explosive/grenade/phosphorus/activate(mob/user)
+	. = ..()
+	if(!.)
+		return FALSE
+	user?.record_war_crime()
 
 /obj/item/explosive/grenade/phosphorus/upp
 	name = "\improper Type 8 WP grenade"

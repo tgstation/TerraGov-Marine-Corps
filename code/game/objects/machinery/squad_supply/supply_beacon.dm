@@ -96,6 +96,7 @@
 /obj/item/beacon/supply_beacon
 	name = "supply beacon"
 	desc = "A rugged, glorified laser pointer capable of sending a beam into space. Activate and throw this to call for a supply drop."
+	icon = 'icons/Marine/marine-navigation.dmi'
 	icon_state = "motion0"
 	icon_activated = "motion2"
 	activation_time = 60

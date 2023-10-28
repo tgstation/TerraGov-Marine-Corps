@@ -29,7 +29,7 @@
 	for(var/i in GLOB.xeno_tunnel_spawn_turfs)
 		var/obj/structure/xeno/tunnel/new_tunnel = new /obj/structure/xeno/tunnel(i, XENO_HIVE_NORMAL)
 		new_tunnel.name = "[get_area_name(new_tunnel)] tunnel"
-		new_tunnel.tunnel_desc = "["An old tunnel dug by a former member of the hive prior to our awakening at [get_area_name(new_tunnel)]"] (X: [new_tunnel.x], Y: [new_tunnel.y])"
+		new_tunnel.tunnel_desc = "["[get_area_name(new_tunnel)]"] (X: [new_tunnel.x], Y: [new_tunnel.y])"
 	for(var/i in GLOB.xeno_jelly_pod_turfs)
 		new /obj/structure/xeno/resin_jelly_pod(i, XENO_HIVE_NORMAL)
 

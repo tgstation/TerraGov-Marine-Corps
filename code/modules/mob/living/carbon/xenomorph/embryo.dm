@@ -1,7 +1,7 @@
 /obj/item/alien_embryo
 	name = "alien embryo"
 	desc = "All slimy and yucky."
-	icon = 'icons/Xeno/1x1_Xenos.dmi'
+	icon = 'icons/Xeno/castes/larva.dmi'
 	icon_state = "Embryo"
 	var/grinder_datum = /datum/reagent/consumable/larvajelly //good ol cookin
 	var/grinder_amount = 5

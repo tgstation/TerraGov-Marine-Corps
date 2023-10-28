@@ -225,7 +225,7 @@
 /obj/structure/platform_decoration{
 	dir = 4
 	},
-/obj/structure/stairs/cornerdark/seamless,
+/obj/structure/stairs/corner_seamless,
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/ground/sand9)
 "wB" = (
@@ -284,7 +284,7 @@
 	},
 /area/lv624/ground/sand9)
 "BP" = (
-/obj/structure/stairs/cornerdark/seamless{
+/obj/structure/stairs/corner_seamless{
 	dir = 4
 	},
 /turf/open/floor/plating/ground/dirt,
@@ -401,7 +401,7 @@
 /obj/structure/platform_decoration{
 	dir = 8
 	},
-/obj/structure/stairs/cornerdark/seamless{
+/obj/structure/stairs/corner_seamless{
 	dir = 8
 	},
 /turf/open/floor/tile/whiteyellow/full,
@@ -420,7 +420,7 @@
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/ground/sand9)
 "NH" = (
-/obj/structure/stairs/cornerdark/seamless{
+/obj/structure/stairs/corner_seamless{
 	dir = 1
 	},
 /turf/open/floor/plating/ground/dirt,

@@ -18,7 +18,7 @@
 	///list of evo towers
 	var/list/obj/structure/xeno/evotower/evotowers = list()
 	///list of upgrade towers
-	var/list/obj/structure/xeno/maturitytower/maturitytowers = list()
+	var/list/obj/structure/xeno/psychictower/psychictowers = list()
 	///list of phero towers
 	var/list/obj/structure/xeno/pherotower/pherotowers = list()
 	///list of hivemind cores
@@ -111,8 +111,8 @@
 	// Acid, sticky, and hugger turrets.
 	for(var/obj/structure/xeno/xeno_turret/turret AS in GLOB.xeno_resin_turrets_by_hive[hivenumber])
 		.["hive_structures"] += list(get_structure_packet(turret))
-	// Maturity towers
-	for(var/obj/structure/xeno/maturitytower/tower AS in GLOB.hive_datums[hivenumber].maturitytowers)
+	// Psychic relays
+	for(var/obj/structure/xeno/psychictower/tower AS in GLOB.hive_datums[hivenumber].psychictowers)
 		.["hive_structures"] += list(get_structure_packet(tower))
 	// Evolution towers (if they're ever built)
 	for(var/obj/structure/xeno/evotower/tower AS in GLOB.hive_datums[hivenumber].evotowers)
@@ -374,12 +374,6 @@
 	for(var/obj/structure/xeno/evotower/tower AS in evotowers)
 		. += tower.boost_amount
 
-///fetches number of bonus upgrade points given to the hive
-/datum/hive_status/proc/get_upgrade_boost()
-	. = 0
-	for(var/obj/structure/xeno/maturitytower/tower AS in maturitytowers)
-		. += tower.boost_amount
-
 // ***************************************
 // *********** Adding xenos
 // ***************************************
@@ -449,15 +443,21 @@
 	if(!GLOB.xeno_structures_by_hive[HS.hivenumber])
 		GLOB.xeno_structures_by_hive[HS.hivenumber] = list()
 
-	GLOB.xeno_structures_by_hive[HS.hivenumber] |= core
+	var/obj/structure/xeno/hivemindcore/hive_core = get_core()
+
+	if(!hive_core) //how are you even alive then?
+		qdel(src)
+		return
+
+	GLOB.xeno_structures_by_hive[HS.hivenumber] |= hive_core
 
 	if(!GLOB.xeno_critical_structures_by_hive[HS.hivenumber])
 		GLOB.xeno_critical_structures_by_hive[HS.hivenumber] = list()
 
-	GLOB.xeno_critical_structures_by_hive[HS.hivenumber] |= core
-	core.hivenumber = HS.hivenumber
-	core.name = "[HS.hivenumber == XENO_HIVE_NORMAL ? "" : "[HS.name] "]hivemind core"
-	core.color = HS.color
+	GLOB.xeno_critical_structures_by_hive[HS.hivenumber] |= hive_core
+	hive_core.hivenumber = HS.hivenumber
+	hive_core.name = "[HS.hivenumber == XENO_HIVE_NORMAL ? "" : "[HS.name] "]hivemind core"
+	hive_core.color = HS.color
 
 /mob/living/carbon/xenomorph/king/add_to_hive(datum/hive_status/HS, force = FALSE)
 	. = ..()
@@ -583,12 +583,13 @@
 		hive_removed_from.update_ruler() //Try to find a successor.
 
 /mob/living/carbon/xenomorph/hivemind/remove_from_hive()
-	GLOB.xeno_structures_by_hive[hivenumber] -= core
-	GLOB.xeno_critical_structures_by_hive[hivenumber] -= core
+	var/obj/structure/xeno/hivemindcore/hive_core = get_core()
+	GLOB.xeno_structures_by_hive[hivenumber] -= hive_core
+	GLOB.xeno_critical_structures_by_hive[hivenumber] -= hive_core
 	. = ..()
-	if(!QDELETED(src)) //if we aren't dead
-		core.name = "banished hivemind core"
-		core.color = null
+	if(!QDELETED(src)) //if we aren't dead, somehow?
+		hive_core.name = "banished hivemind core"
+		hive_core.color = null
 
 
 // ***************************************
@@ -644,7 +645,7 @@
 		to_chat(devolver, span_xenonotice("Cannot deevolve [target]."))
 		return
 
-	var/datum/xeno_caste/new_caste = GLOB.xeno_caste_datums[target.xeno_caste.deevolves_to][XENO_UPGRADE_ZERO]
+	var/datum/xeno_caste/new_caste = GLOB.xeno_caste_datums[target.xeno_caste.deevolves_to][XENO_UPGRADE_NORMAL]
 
 	var/confirm = tgui_alert(devolver, "Are you sure you want to deevolve [target] from [target.xeno_caste.caste_name] to [new_caste.caste_name]?", null, list("Yes", "No"))
 	if(confirm != "Yes")
@@ -1085,7 +1086,7 @@ to_chat will check for valid clients itself already so no need to double check f
 	var/list/possible_mothers = list()
 	var/list/possible_silos = list()
 	SEND_SIGNAL(src, COMSIG_HIVE_XENO_MOTHER_PRE_CHECK, possible_mothers, possible_silos)
-	if(stored_larva > 0 && !LAZYLEN(candidate) && (length(possible_mothers) || length(possible_silos) || (SSticker.mode?.flags_round_type & MODE_SILO_RESPAWN && SSmonitor.gamestate == SHUTTERS_CLOSED)))
+	if(stored_larva > 0 && !LAZYLEN(candidate) && !XENODEATHTIME_CHECK(observer) && (length(possible_mothers) || length(possible_silos) || (SSticker.mode?.flags_round_type & MODE_SILO_RESPAWN && SSmonitor.gamestate == SHUTTERS_CLOSED)))
 		attempt_to_spawn_larva(observer)
 		return
 	if(LAZYFIND(candidate, observer))
@@ -1094,7 +1095,8 @@ to_chat will check for valid clients itself already so no need to double check f
 	LAZYADD(candidate, observer)
 	RegisterSignal(observer, COMSIG_QDELETING, PROC_REF(clean_observer))
 	observer.larva_position = LAZYLEN(candidate)
-	to_chat(observer, span_warning("There are no burrowed Larvae or no silos. You are in position [observer.larva_position] to become a Xenomorph."))
+	to_chat(observer, span_warning("There are either no burrowed larva, you are on your xeno respawn timer, or there are no silos. You are in position [observer.larva_position] to become a Xenomorph."))
+	give_larva_to_next_in_queue() //Updates the queue for xeno respawn timer
 	return TRUE
 
 /// Remove an observer from the larva candidate queue
@@ -1126,13 +1128,28 @@ to_chat will check for valid clients itself already so no need to double check f
 	if(!xeno_job.occupy_job_positions(slot_occupied))
 		return
 	var/mob/dead/observer/observer_in_queue
+	var/oldest_death = 0
 	while(stored_larva > 0 && LAZYLEN(candidate))
-		observer_in_queue = LAZYACCESS(candidate, 1)
+		for(var/i in 1 to LAZYLEN(candidate))
+			observer_in_queue = LAZYACCESS(candidate, i)
+			if(!XENODEATHTIME_CHECK(observer_in_queue))
+				break
+			var/candidate_death_time = (GLOB.key_to_time_of_xeno_death[observer_in_queue.key] + SSticker.mode?.xenorespawn_time) - world.time
+			if(oldest_death > candidate_death_time || !oldest_death)
+				oldest_death = candidate_death_time
+			observer_in_queue = null //Deathtimer still running
+
+		if(!observer_in_queue) //No valid candidates in the queue
+			if(oldest_death)
+				addtimer(CALLBACK(src, PROC_REF(give_larva_to_next_in_queue)), oldest_death + 1 SECONDS) //Will update the queue once timer is up, spawning them in if there is a burrowed
+			break
+
 		LAZYREMOVE(candidate, observer_in_queue)
 		UnregisterSignal(observer_in_queue, COMSIG_QDELETING)
 		if(try_to_give_larva(observer_in_queue))
 			stored_larva--
 			slot_really_taken++
+
 	if(slot_occupied - slot_really_taken > 0)
 		xeno_job.free_job_positions(slot_occupied - slot_really_taken)
 	for(var/i in 1 to LAZYLEN(candidate))
@@ -1160,8 +1177,8 @@ to_chat will check for valid clients itself already so no need to double check f
 	var/threes = length(xenos_by_tier[XENO_TIER_THREE])
 	var/fours = length(xenos_by_tier[XENO_TIER_FOUR])
 
-	tier3_xeno_limit = max(threes, FLOOR((zeros + ones + twos + fours) / 3 + length(evotowers) + 1, 1))
-	tier2_xeno_limit = max(twos, (zeros + ones + fours) + length(evotowers) * 2 + 1 - threes)
+	tier3_xeno_limit = max(threes, FLOOR((zeros + ones + twos + fours) / 3 + length(psychictowers) + 1, 1))
+	tier2_xeno_limit = max(twos, (zeros + ones + fours) + length(psychictowers) * 2 + 1 - threes)
 
 // ***************************************
 // *********** Corrupted Xenos

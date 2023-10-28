@@ -233,6 +233,8 @@
 			qdel(I)
 	//BubbleWrap END
 
+	if(istype(O, /obj/structure))
+		user.record_structures_built()
 
 /obj/item/stack/proc/building_checks(mob/user, datum/stack_recipe/R, multiplier)
 	if (get_amount() < R.req_amount*multiplier)

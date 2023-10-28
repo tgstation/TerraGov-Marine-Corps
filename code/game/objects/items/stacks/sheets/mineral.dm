@@ -220,7 +220,7 @@ GLOBAL_LIST_INIT(iron_recipes, list ( \
 /obj/item/stack/sheet/mineral/osmium
 	name = "osmium"
 	desc = "Osmium is a transition metal. The densest naturally-occuring element known to man, it is obviously known for its extreme hardness and durability and used as such."
-	singular_name = "tritium ingot"
+	singular_name = "osmium ingot"
 	icon_state = "sheet-silver"
 	sheettype = "osmium"
 	color = "#9999FF"

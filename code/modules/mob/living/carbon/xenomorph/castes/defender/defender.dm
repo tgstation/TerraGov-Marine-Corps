@@ -2,7 +2,7 @@
 	caste_base_type = /mob/living/carbon/xenomorph/defender
 	name = "Defender"
 	desc = "An alien with an armored head crest."
-	icon = 'icons/Xeno/2x2_Xenos.dmi'
+	icon = 'icons/Xeno/castes/defender.dmi'
 	icon_state = "Defender Walking"
 	bubble_icon = "alienroyal"
 	health = 200
@@ -11,7 +11,7 @@
 	pixel_x = -16
 	old_x = -16
 	tier = XENO_TIER_ONE
-	upgrade = XENO_UPGRADE_ZERO
+	upgrade = XENO_UPGRADE_NORMAL
 	pull_speed = -2
 
 // ***************************************
@@ -58,7 +58,7 @@
 	H.attack_alien_harm(src, extra_dmg, FALSE, TRUE, FALSE, TRUE) //Location is always random, cannot crit, harm only
 	var/target_turf = get_step_away(src, H, rand(1, 2)) //This is where we blast our target
 	target_turf = get_step_rand(target_turf) //Scatter
-	H.throw_at(get_turf(target_turf), 4, 70, H)
+	H.throw_at(get_turf(target_turf), 4, 70, src)
 	H.Paralyze(4 SECONDS)
 
 /mob/living/carbon/xenomorph/defender/Initialize(mapload)

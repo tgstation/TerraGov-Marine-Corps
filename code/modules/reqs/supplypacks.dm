@@ -77,6 +77,13 @@ OPERATIONS
 	cost = 200
 	available_against_xeno_only = TRUE
 
+/datum/supply_packs/operations/xeno_iff_tag
+	name = "Xenomorph IFF tag crate" //Intended for corrupted or friendly rounies as rounds sometimes turn out. Avoid abuse or I'll have to admin-only it, which is no fun!
+	notes = "Contains an IFF tag used to mark a xenomorph as friendly to IFF systems. Warning: Nanotrasen is not responsible for incidents related to attaching this to hostile entities."
+	contains = list(/obj/item/xeno_iff_tag)
+	access = ACCESS_MARINE_BRIDGE //Better be safe.
+	cost = 130
+
 /datum/supply_packs/operations/deployable_camera
 	name = "3 Deployable Cameras"
 	contains = list(
@@ -305,6 +312,18 @@ WEAPONS
 	)
 	cost = 20
 
+
+/datum/supply_packs/weapons/heayvlaser_emplacement
+	name = "Mounted Heavy Laser"
+	contains = list(/obj/item/weapon/gun/heavy_laser/deployable)
+	cost = 800
+
+
+/datum/supply_packs/weapons/heayvlaser_ammo
+	name = "Mounted Heavy Laser Ammo (x1)"
+	contains = list(/obj/item/ammo_magazine/heavy_laser)
+	cost = 15
+
 /datum/supply_packs/weapons/tesla
 	name = "Tesla Shock Rifle"
 	contains = list(/obj/item/weapon/gun/energy/lasgun/lasrifle/tesla)
@@ -339,11 +358,6 @@ WEAPONS
 	name = "GL-54 tanglefoot grenade magazine"
 	contains = list(/obj/item/ammo_magazine/rifle/tx54/smoke/tangle)
 	cost = 48
-
-/datum/supply_packs/weapons/tx54_razor
-	name = "GL-54 razorburn grenade magazine"
-	contains = list(/obj/item/ammo_magazine/rifle/tx54/razor)
-	cost = 96
 
 /datum/supply_packs/weapons/tx54_he
 	name = "GL-54 HE grenade magazine"
@@ -402,6 +416,11 @@ WEAPONS
 	name = "PB-12 pepperball gun"
 	contains = list(/obj/item/weapon/gun/rifle/pepperball)
 	cost = 100
+
+/datum/supply_packs/weapons/bricks
+	name = "Brick"
+	contains = list(/obj/item/weapon/brick)
+	cost = 10
 
 /datum/supply_packs/weapons/railgun
 	name = "SR-220 Railgun"
@@ -621,32 +640,32 @@ WEAPONS
 	cost = 35
 
 /datum/supply_packs/weapons/spotting_rifle_ammo
-	name = "SR-153 spotting rifle ammo"
+	name = "SG-153 spotting rifle ammo"
 	contains = list(/obj/item/ammo_magazine/rifle/standard_spottingrifle)
 	cost = 15
 
 /datum/supply_packs/weapons/spotting_rifle_ammo/highimpact
-	name = "SR-153 high impact spotting rifle ammo"
+	name = "SG-153 high impact spotting rifle ammo"
 	contains = list(/obj/item/ammo_magazine/rifle/standard_spottingrifle/highimpact)
 
 /datum/supply_packs/weapons/spotting_rifle_ammo/heavyrubber
-	name = "SR-153 heavy rubber spotting rifle ammo"
+	name = "SG-153 heavy rubber spotting rifle ammo"
 	contains = list(/obj/item/ammo_magazine/rifle/standard_spottingrifle/heavyrubber)
 
 /datum/supply_packs/weapons/spotting_rifle_ammo/plasmaloss
-	name = "SR-153 tanglefoot spotting rifle ammo"
+	name = "SG-153 tanglefoot spotting rifle ammo"
 	contains = list(/obj/item/ammo_magazine/rifle/standard_spottingrifle/plasmaloss)
 
 /datum/supply_packs/weapons/spotting_rifle_ammo/tungsten
-	name = "SR-153 tungsten spotting rifle ammo"
+	name = "SG-153 tungsten spotting rifle ammo"
 	contains = list(/obj/item/ammo_magazine/rifle/standard_spottingrifle/tungsten)
 
 /datum/supply_packs/weapons/spotting_rifle_ammo/flak
-	name = "SR-153 flak spotting rifle ammo"
+	name = "SG-153 flak spotting rifle ammo"
 	contains = list(/obj/item/ammo_magazine/rifle/standard_spottingrifle/flak)
 
 /datum/supply_packs/weapons/spotting_rifle_ammo/incendiary
-	name = "SR-153 incendiary spotting rifle ammo"
+	name = "SG-153 incendiary spotting rifle ammo"
 	contains = list(/obj/item/ammo_magazine/rifle/standard_spottingrifle/incendiary)
 
 /datum/supply_packs/weapons/flamethrower
@@ -994,7 +1013,7 @@ ARMOR
 	available_against_xeno_only = TRUE
 
 /datum/supply_packs/armor/modular/attachments/mixed
-	name = "Jaeger experimental mark 2 modules"
+	name = "Experimental mark 2 modules"
 	contains = list(
 		/obj/item/armor_module/module/valkyrie_autodoc,
 		/obj/item/armor_module/module/fire_proof,
@@ -1009,14 +1028,14 @@ ARMOR
 	cost = 400
 
 /datum/supply_packs/armor/modular/attachments/valkyrie_autodoc
-	name = "Jaeger Valkyrie autodoc module"
+	name = "Valkyrie autodoc armor module"
 	contains = list(
 		/obj/item/armor_module/module/valkyrie_autodoc,
 	)
 	cost = 120
 
 /datum/supply_packs/armor/modular/attachments/fire_proof
-	name = "Jaeger Surt fireproof module"
+	name = "Surt fireproof module set"
 	contains = list(
 		/obj/item/armor_module/module/fire_proof,
 		/obj/item/armor_module/module/fire_proof_helmet,
@@ -1024,14 +1043,14 @@ ARMOR
 	cost = 120
 
 /datum/supply_packs/armor/modular/attachments/tyr_extra_armor
-	name = "Jaeger Tyr mark 2 module"
+	name = "Tyr mark 2 armor module"
 	contains = list(
 		/obj/item/armor_module/module/tyr_extra_armor,
 	)
 	cost = 120
 
 /datum/supply_packs/armor/modular/attachments/mimir_environment_protection
-	name = "Jaeger Mimir Mark 2 module set"
+	name = "Mimir Mark 2 module set"
 	contains = list(
 		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet,
 		/obj/item/armor_module/module/mimir_environment_protection,
@@ -1039,7 +1058,7 @@ ARMOR
 	cost = 150
 
 /datum/supply_packs/armor/modular/attachments/hlin_bombimmune
-	name = "Jaeger Hlin module"
+	name = "Hlin armor module"
 	contains = list(/obj/item/armor_module/module/hlin_explosive_armor)
 	cost = 120
 
@@ -1583,6 +1602,16 @@ Imports
 	contains = list(/obj/item/ammo_magazine/smg/m25)
 	cost = 3
 
+/datum/supply_packs/imports/alf
+	name = "ALF-51B Kauser machinecarbine"
+	contains = list(/obj/item/weapon/gun/rifle/alf_machinecarbine)
+	cost = 50
+
+/datum/supply_packs/imports/alf/ammo
+	name = "ALF-51B Kauser machinecarbine Ammo"
+	contains = list(/obj/item/ammo_magazine/rifle/alf_machinecarbine)
+	cost = 3
+
 /datum/supply_packs/imports/skorpion
 	name = "CZ-81 Skorpion SMG"
 	contains = list(/obj/item/weapon/gun/smg/skorpion)
@@ -1722,6 +1751,16 @@ Imports
 /datum/supply_packs/imports/famas/ammo
 	name = "FAMAS Assault Rifle Ammo"
 	contains = list(/obj/item/ammo_magazine/rifle/famas)
+	cost = 5
+
+/datum/supply_packs/imports/aug	//Vietnam time
+	name = "L&S EM-88 Assault Carbine"
+	contains = list(/obj/item/weapon/gun/rifle/icc_assaultcarbine/export)
+	cost = 120
+
+/datum/supply_packs/imports/aug/ammo
+	name = "EM-88 Assault Carbine Ammo"
+	contains = list(/obj/item/ammo_magazine/rifle/icc_assaultcarbine/export)
 	cost = 5
 
 /datum/supply_packs/imports/rev357
@@ -1894,22 +1933,22 @@ VEHICLES
 
 /datum/supply_packs/vehicles/mounted_hsg
 	name = "Mounted HSG"
-	contains = list(/obj/structure/dropship_equipment/weapon_holder/machinegun)
+	contains = list(/obj/structure/dropship_equipment/shuttle/weapon_holder/machinegun)
 	cost = 500
 
 /datum/supply_packs/vehicles/minigun_nest
 	name = "Mounted Minigun"
-	contains = list(/obj/structure/dropship_equipment/weapon_holder/minigun)
+	contains = list(/obj/structure/dropship_equipment/shuttle/weapon_holder/minigun)
 	cost = 750
 
 /datum/supply_packs/vehicles/mounted_heavy_laser
 	name = "Mounted Heavy Laser"
-	contains = list(/obj/structure/dropship_equipment/weapon_holder/heavylaser)
+	contains = list(/obj/structure/dropship_equipment/shuttle/weapon_holder/heavylaser)
 	cost = 900
 
 /datum/supply_packs/vehicles/mounted_rr
 	name = "Mounted Heavy Recoilless Rifle"
-	contains = list(/obj/structure/dropship_equipment/weapon_holder/heavy_rr)
+	contains = list(/obj/structure/dropship_equipment/shuttle/weapon_holder/heavy_rr)
 	cost = 1800
 
 /datum/supply_packs/vehicles/hsg_ammo

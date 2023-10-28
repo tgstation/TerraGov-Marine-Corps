@@ -90,7 +90,7 @@
 	if(X.status_flags & INCORPOREAL)
 		return
 	if(CHECK_BITFIELD(SSticker.mode.flags_round_type, MODE_ALLOW_XENO_QUICKBUILD) && SSresinshaping.active)
-		SSresinshaping.quickbuilds++
+		SSresinshaping.quickbuild_points_by_hive[X.hivenumber]++
 		take_damage(max_integrity) // Ensure its destroyed
 		return
 	X.visible_message(span_xenonotice("\The [X] starts tearing down \the [src]!"), \

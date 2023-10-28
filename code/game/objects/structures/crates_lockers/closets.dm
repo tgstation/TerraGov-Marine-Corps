@@ -131,8 +131,10 @@
 	var/atom/drop_loc = drop_location()
 	for(var/thing in src)
 		var/atom/movable/stuffed_thing = thing
+		if(isliving(stuffed_thing))
+			var/mob/living/stuffed_mob = stuffed_thing
+			stuffed_mob.on_closet_dump(src)
 		stuffed_thing.forceMove(drop_loc)
-		SEND_SIGNAL(stuffed_thing, COMSIG_MOVABLE_CLOSET_DUMPED, src)
 		if(throwing) // you keep some momentum when getting out of a thrown closet
 			step(stuffed_thing, dir)
 	mob_size_counter = 0
@@ -148,6 +150,9 @@
 
 
 /obj/structure/closet/proc/open(mob/living/user)
+	SIGNAL_HANDLER
+	if(user)
+		UnregisterSignal(user, COMSIG_ATOM_EXITED)
 	if(opened || !can_open(user))
 		return FALSE
 	opened = TRUE
@@ -286,13 +291,15 @@
 
 	user.changeNext_move(5)
 
-	if(!open())
-		balloon_alert(user, "Won't budge")
-		if(!lastbang)
-			lastbang = TRUE
-			for(var/mob/M in hearers(src, null))
-				to_chat(M, "<FONT size=[max(0, 5 - get_dist(src, M))]>BANG, bang!</FONT>")
-			addtimer(VARSET_CALLBACK(src, lastbang, FALSE), 3 SECONDS)
+	if(open())
+		return
+
+	balloon_alert(user, "Won't budge")
+	if(!lastbang)
+		lastbang = TRUE
+		for(var/mob/M in hearers(src, null))
+			to_chat(M, "<FONT size=[max(0, 5 - get_dist(src, M))]>BANG, bang!</FONT>")
+		addtimer(VARSET_CALLBACK(src, lastbang, FALSE), 3 SECONDS)
 
 
 /obj/structure/closet/attack_hand(mob/living/user)
@@ -429,8 +436,7 @@
 	destination.mob_size_counter += mob_size
 	stop_pulling()
 	smokecloak_off()
-	destination.RegisterSignal(src, COMSIG_LIVING_DO_RESIST, TYPE_PROC_REF(/atom/movable, resisted_against))
-	RegisterSignal(src, COMSIG_MOVABLE_CLOSET_DUMPED, PROC_REF(on_closet_dump))
+	destination.RegisterSignal(destination, COMSIG_ATOM_EXITED, TYPE_PROC_REF(/obj/structure/closet, open))
 	return TRUE
 
 
@@ -467,15 +473,11 @@
 	return FALSE
 
 
-/mob/living/proc/on_closet_dump(datum/source, obj/structure/closet/origin)
-	SIGNAL_HANDLER
+/mob/living/proc/on_closet_dump(obj/structure/closet/origin)
 	SetStun(origin.closet_stun_delay)//Action delay when going out of a closet
 	if(!lying_angle && IsStun())
-		balloon_alert_to_viewers("Gets out of [origin]", ignored_mobs = source)
-		balloon_alert(source, "You struggle to get your bearings")
-	origin.UnregisterSignal(source, COMSIG_LIVING_DO_RESIST)
-	UnregisterSignal(source, COMSIG_MOVABLE_CLOSET_DUMPED)
-
+		balloon_alert_to_viewers("Gets out of [origin]", ignored_mobs = src)
+		balloon_alert(src, "You struggle to get your bearings")
 
 #undef CLOSET_INSERT_END
 #undef CLOSET_INSERT_FAIL

@@ -52,6 +52,7 @@
 // --- Snipers ---
 #define CALIBER_86X70 "8.6x70mm"
 #define CALIBER_10X99 "10x99mm"
+#define CALIBER_14X5 "14x5mm"
 #define CALIBER_762X54 "7.62x54mm Rimmed" //SVD and mosin
 #define CALIBER_557 ".557/440" //Martini Henry
 #define CALIBER_RAILGUN "rail projectile"

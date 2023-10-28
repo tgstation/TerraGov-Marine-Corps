@@ -96,7 +96,7 @@
 		displayed_key = null
 
 	deadchat_broadcast(rendered, source, follow_target = src, speaker_key = displayed_key)
-
+	create_chat_message(src, /datum/language/common, message)
 
 /mob/living/proc/get_message_mode(message)
 	var/key = message[1]

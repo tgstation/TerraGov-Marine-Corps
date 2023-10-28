@@ -79,10 +79,10 @@
 	spawner_width = 22
 
 /************BIG RED******/
-/obj/effect/spawner/modularmap/bigred/operations //todo decrease y by one
+/obj/effect/spawner/modularmap/bigred/operations
 	mapid = "broperations"
 	spawner_width = 29
-	spawner_height = 25
+	spawner_height = 24
 
 /obj/effect/spawner/modularmap/bigred/fence
 	mapid = "brfence"

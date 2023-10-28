@@ -53,25 +53,25 @@
 	else
 		scan_name = "--------"
 
-	dat += "Confirm Identity: <a href='byond://?src=\ref[src];scan=1'>[scan_name]</a><br>"
+	dat += "Confirm Identity: <a href='byond://?src=[text_ref(src)];scan=1'>[scan_name]</a><br>"
 
 	if(authenticated)
-		dat += "<a href='byond://?src=\ref[src];logout=1'>{Log Out}</a>"
+		dat += "<a href='byond://?src=[text_ref(src)];logout=1'>{Log Out}</a>"
 	else
-		dat += "<a href='byond://?src=\ref[src];auth=1'>{Log In}</a>"
+		dat += "<a href='byond://?src=[text_ref(src)];auth=1'>{Log In}</a>"
 
 	dat += "<hr>"
 
 	if(authenticated)
 		dat += "<b>Logged in to:</b> Nanotrasen Private Corporate Network<br><br>"
 		if(message)
-			dat += "<a href='byond://?src=\ref[src];remove=1'>Remove Paper</a><br><br>"
+			dat += "<a href='byond://?src=[text_ref(src)];remove=1'>Remove Paper</a><br><br>"
 			if(sendcooldown)
 				dat += "<b>Transmitter arrays realigning. Please stand by.</b><br>"
 			else
-				dat += "<a href='byond://?src=\ref[src];send=1'>Send</a><br>"
+				dat += "<a href='byond://?src=[text_ref(src)];send=1'>Send</a><br>"
 				dat += "<b>Currently sending:</b> [message.name]<br>"
-				dat += "<b>Sending to:</b> <a href='byond://?src=\ref[src];dept=1'>[selected]</a><br>"
+				dat += "<b>Sending to:</b> <a href='byond://?src=[text_ref(src)];dept=1'>[selected]</a><br>"
 		else
 			if(sendcooldown)
 				dat += "Please insert paper to send via secure connection.<br><br>"
@@ -81,7 +81,7 @@
 	else
 		dat += "Proper authentication is required to use this device.<br><br>"
 		if(message)
-			dat += "<a href ='byond://?src=\ref[src];remove=1'>Remove Paper</a><br>"
+			dat += "<a href ='byond://?src=[text_ref(src)];remove=1'>Remove Paper</a><br>"
 
 	var/datum/browser/popup = new(user, "fax", "<div align='center'>Fax Machine</div>")
 	popup.set_content(dat)

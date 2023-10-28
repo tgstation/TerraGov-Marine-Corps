@@ -454,9 +454,10 @@
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/admin_building)
 "tx" = (
-/turf/open/floor/stairs/rampbottom{
+/obj/structure/stairs/edge{
 	dir = 1
 	},
+/turf/open/floor/tile/dark,
 /area/bigredv2/outside/admin_building)
 "ty" = (
 /obj/structure/table,
@@ -621,9 +622,10 @@
 "xS" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable,
-/turf/open/floor/stairs/rampbottom{
+/obj/structure/stairs/edge{
 	dir = 1
 	},
+/turf/open/floor/tile/dark,
 /area/bigredv2/outside/admin_building)
 "xT" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,

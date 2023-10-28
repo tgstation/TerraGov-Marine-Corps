@@ -49,6 +49,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	var/ghost_squadhud = FALSE
 	var/ghost_xenohud = FALSE
 	var/ghost_orderhud = FALSE
+	///If you can see things only ghosts see, like other ghosts
 	var/ghost_vision = TRUE
 	var/ghost_orbit = GHOST_ORBIT_CIRCLE
 	///Position in the larva queue
@@ -236,6 +237,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 /mob/proc/ghostize(can_reenter_corpse = TRUE, aghosting = FALSE)
 	if(!key || isaghost(src))
 		return FALSE
+	SEND_SIGNAL(SSdcs, COMSIG_MOB_GHOSTIZE, src, can_reenter_corpse)
 	var/mob/dead/observer/ghost = new(src)
 	var/turf/T = get_turf(src)
 
@@ -291,6 +293,15 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	if(!aghosting && job?.job_flags & (JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE))//Only some jobs cost you your respawn timer.
 		GLOB.key_to_time_of_role_death[ghost.key] = world.time
 
+/mob/living/carbon/xenomorph/ghostize(can_reenter_corpse = TRUE, aghosting = FALSE)
+	. = ..()
+	if(!. || can_reenter_corpse || aghosting)
+		return
+	var/mob/ghost = .
+	if(tier != XENO_TIER_MINION && hivenumber == XENO_HIVE_NORMAL)
+		GLOB.key_to_time_of_xeno_death[ghost.key] = world.time //If you ghost as a xeno that is not a minion, sets respawn timer
+
+
 /mob/dead/observer/Move(atom/newloc, direct)
 	if(updatedir)
 		setDir(direct)//only update dir if we actually need it, so overlays won't spin on base sprites that don't have directions of their own
@@ -338,6 +349,12 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 			. += "Respawn timer: READY"
 		else
 			. += "Respawn timer: [(status_value / 60) % 60]:[add_leading(num2text(status_value % 60), 2, "0")]"
+	if(GLOB.respawn_allowed)
+		status_value = ((GLOB.key_to_time_of_xeno_death[key] ? GLOB.key_to_time_of_xeno_death[key] : -INFINITY)  + SSticker.mode?.xenorespawn_time - world.time) * 0.1 //If xeno_death is null, use -INFINITY
+		if(status_value <= 0)
+			. += "Xeno respawn timer: READY"
+		else
+			. += "Xeno respawn timer: [(status_value / 60) % 60]:[add_leading(num2text(status_value % 60), 2, "0")]"
 
 /mob/dead/observer/verb/reenter_corpse()
 	set category = "Ghost"
@@ -628,6 +645,12 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 		to_chat(src, span_warning("Mob already taken."))
 		return
 
+	if(isxeno(L))
+		var/mob/living/carbon/xenomorph/offered_xenomorph = L
+		if(offered_xenomorph.tier != XENO_TIER_MINION && XENODEATHTIME_CHECK(src))
+			XENODEATHTIME_MESSAGE(src)
+			return
+
 	switch(tgui_alert(usr, "Take over mob named: [L.real_name][L.job ? " | Job: [L.job]" : ""]", "Offered Mob", list("Yes", "No", "Follow")))
 		if("Yes")
 			L.take_over(src)
@@ -792,7 +815,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 
 	reset_perspective(null)
 
-	var/mob/target = tgui_input_list(usr, "Please select a mob:", "Observe", GLOB.mob_list)
+	var/mob/target = tgui_input_list(usr, "Please select a mob:", "Observe", GLOB.mob_living_list)
 	if(!target)
 		return
 
@@ -800,7 +823,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 
 ///makes the ghost see the target hud and sets the eye at the target.
 /mob/dead/observer/proc/do_observe(mob/target)
-	if(!client || !target || !istype(target))
+	if(!client || !target || !isliving(target))
 		return
 
 	client.eye = target
@@ -943,3 +966,10 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	if(!..())
 		return FALSE
 	visible_message(span_deadsay("[span_name("[src]")] points at [pointed_atom]."))
+
+/mob/dead/observer/CtrlShiftClickOn(mob/target_ghost)
+	if(ghost_vision && check_rights(R_SPAWN))
+		if(src == target_ghost)
+			client.holder.spatial_agent()
+		else
+			target_ghost.change_mob_type(/mob/living/carbon/human , null, null, TRUE) //always delmob, ghosts shouldn't be left lingering

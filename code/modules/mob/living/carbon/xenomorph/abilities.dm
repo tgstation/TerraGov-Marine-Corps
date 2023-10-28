@@ -79,6 +79,9 @@
 	playsound(T, "alien_resin_build", 25)
 	GLOB.round_statistics.weeds_planted++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "weeds_planted")
+	if(owner.client)
+		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[owner.ckey]
+		personal_statistics.weeds_planted++
 	add_cooldown()
 	return succeed_activate(SSmonitor.gamestate == SHUTTERS_CLOSED ? plasma_cost/2 : plasma_cost)
 
@@ -131,7 +134,7 @@
 	if(auto_weeding)
 		if(!visual_references[VREF_IMAGE_ONTOP])
 			// below maptext , above selected frames
-			visual_references[VREF_IMAGE_ONTOP] = image('icons/mob/actions.dmi', icon_state = "repeating", layer = ACTION_LAYER_IMAGE_ONTOP)
+			visual_references[VREF_IMAGE_ONTOP] = image('icons/Xeno/actions.dmi', icon_state = "repeating", layer = ACTION_LAYER_IMAGE_ONTOP)
 			button.add_overlay(visual_references[VREF_IMAGE_ONTOP])
 	else if(visual_references[VREF_IMAGE_ONTOP])
 		button.cut_overlay(visual_references[VREF_IMAGE_ONTOP])
@@ -225,7 +228,7 @@
 	var/mutable_appearance/build_maptext = mutable_appearance(icon = null,icon_state = null, layer = ACTION_LAYER_MAPTEXT)
 	build_maptext.pixel_x = 12
 	build_maptext.pixel_y = -5
-	build_maptext.maptext = MAPTEXT(SSresinshaping.quickbuilds)
+	build_maptext.maptext = MAPTEXT(SSresinshaping.quickbuild_points_by_hive[owner.get_xeno_hivenumber()])
 	visual_references[VREF_MUTABLE_BUILDING_COUNTER] = build_maptext
 
 	RegisterSignal(owner, COMSIG_MOB_MOUSEDOWN, PROC_REF(start_resin_drag))
@@ -249,7 +252,7 @@
 	if(SSmonitor.gamestate == SHUTTERS_CLOSED && CHECK_BITFIELD(SSticker.mode.flags_round_type, MODE_ALLOW_XENO_QUICKBUILD) && SSresinshaping.active)
 		button.cut_overlay(visual_references[VREF_MUTABLE_BUILDING_COUNTER])
 		var/mutable_appearance/number = visual_references[VREF_MUTABLE_BUILDING_COUNTER]
-		number.maptext = MAPTEXT("[SSresinshaping.quickbuilds]")
+		number.maptext = MAPTEXT("[SSresinshaping.quickbuild_points_by_hive[owner.get_xeno_hivenumber()]]")
 		visual_references[VREF_MUTABLE_BUILDING_COUNTER] = number
 		button.add_overlay(visual_references[VREF_MUTABLE_BUILDING_COUNTER])
 	else if(visual_references[VREF_MUTABLE_BUILDING_COUNTER])
@@ -310,7 +313,7 @@
 
 /// A version of build_resin with the plasma drain and distance checks removed.
 /datum/action/xeno_action/activable/secrete_resin/proc/preshutter_build_resin(turf/T)
-	if(!SSresinshaping.quickbuilds)
+	if(!SSresinshaping.quickbuild_points_by_hive[owner.get_xeno_hivenumber()])
 		owner.balloon_alert(owner, "The hive has ran out of quickbuilding points! Wait until more sisters awaken or the marines land!")
 		return
 	var/mob/living/carbon/xenomorph/X = owner
@@ -347,7 +350,7 @@
 	else
 		new_resin = new X.selected_resin(T)
 	if(new_resin)
-		SSresinshaping.quickbuilds--
+		SSresinshaping.quickbuild_points_by_hive[owner.get_xeno_hivenumber()]--
 
 
 /datum/action/xeno_action/activable/secrete_resin/proc/preshutter_resin_drag(datum/source, atom/src_object, atom/over_object, turf/src_location, turf/over_location, src_control, over_control, params)
@@ -429,6 +432,7 @@
 		add_cooldown(SSmonitor.gamestate == SHUTTERS_CLOSED ? get_cooldown()/2 : get_cooldown())
 		succeed_activate(SSmonitor.gamestate == SHUTTERS_CLOSED ? plasma_cost/2 : plasma_cost)
 	plasma_cost = initial(plasma_cost) //Reset the plasma cost
+	owner.record_structures_built()
 
 /datum/action/xeno_action/pheromones
 	name = "Emit Pheromones"
@@ -881,11 +885,11 @@
 	if(X.layer != XENO_HIDING_LAYER)
 		X.layer = XENO_HIDING_LAYER
 		to_chat(X, span_notice("We are now hiding."))
-		button.add_overlay(mutable_appearance('icons/mob/actions.dmi', "selected_purple_frame", ACTION_LAYER_ACTION_ICON_STATE, FLOAT_PLANE))
+		button.add_overlay(mutable_appearance('icons/Xeno/actions.dmi', "selected_purple_frame", ACTION_LAYER_ACTION_ICON_STATE, FLOAT_PLANE))
 	else
 		X.layer = MOB_LAYER
 		to_chat(X, span_notice("We have stopped hiding."))
-		button.cut_overlay(mutable_appearance('icons/mob/actions.dmi', "selected_purple_frame", ACTION_LAYER_ACTION_ICON_STATE, FLOAT_PLANE))
+		button.cut_overlay(mutable_appearance('icons/Xeno/actions.dmi', "selected_purple_frame", ACTION_LAYER_ACTION_ICON_STATE, FLOAT_PLANE))
 
 
 //Neurotox Sting
@@ -927,7 +931,7 @@
 
 /datum/action/xeno_action/activable/neurotox_sting/on_cooldown_finish()
 	playsound(owner.loc, 'sound/voice/alien_drool1.ogg', 50, 1)
-	to_chat(owner, span_xenodanger("We feel our neurotoxin glands refill. We can use our Neurotoxin Sting again."))
+	to_chat(owner, span_xenodanger("We feel our toxic glands refill. We can use our [ability_name] again."))
 	return ..()
 
 /datum/action/xeno_action/activable/neurotox_sting/use_ability(atom/A)
@@ -1010,6 +1014,7 @@
 /datum/action/xeno_action/lay_egg
 	name = "Lay Egg"
 	action_icon_state = "lay_egg"
+	desc = "Create an egg that will grow a larval hugger after a short delay. Empty eggs can have huggers inserted into them."
 	plasma_cost = 200
 	cooldown_timer = 12 SECONDS
 	keybinding_signals = list(
@@ -1041,6 +1046,7 @@
 
 	succeed_activate()
 	add_cooldown()
+	owner.record_traps_created()
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -1211,6 +1217,9 @@
 	X.hive.update_tier_limits()
 	GLOB.round_statistics.larva_from_psydrain +=larva_point_reward / xeno_job.job_points_needed
 
+	if(owner.client)
+		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[owner.ckey]
+		personal_statistics.drained++
 	log_combat(victim, owner, "was drained.")
 	log_game("[key_name(victim)] was drained at [AREACOORD(victim.loc)].")
 
@@ -1303,6 +1312,9 @@
 	victim.dead_ticks = 0
 	ADD_TRAIT(victim, TRAIT_STASIS, TRAIT_STASIS)
 	X.eject_victim(TRUE, starting_turf)
+	if(owner.client)
+		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[owner.ckey]
+		personal_statistics.cocooned++
 
 /////////////////////////////////
 // blessing Menu

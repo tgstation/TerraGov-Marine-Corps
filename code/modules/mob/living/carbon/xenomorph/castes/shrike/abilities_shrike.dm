@@ -272,6 +272,9 @@
 	if(!do_mob(owner, target, 1 SECONDS, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
 		return FALSE
 
+	if(owner.client)
+		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[owner.ckey]
+		personal_statistics.heals++
 	GLOB.round_statistics.psychic_cures++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "psychic_cures")
 	owner.visible_message(span_xenowarning("A strange psychic aura is suddenly emitted from \the [owner]!"), \
@@ -343,6 +346,7 @@
 	to_chat(owner, span_xenonotice("We place an acid well; it can be filled with more acid."))
 	GLOB.round_statistics.xeno_acid_wells++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "xeno_acid_wells")
+	owner.record_traps_created()
 
 
 // ***************************************

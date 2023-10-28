@@ -42,7 +42,7 @@
 
 /obj/item/ammo_magazine/standard_mmg
 	name = "MG-27 box magazine (10x27m Caseless)"
-	desc = "A box of 100 10x27mm caseless rounds for the MG-27 medium machinegun."
+	desc = "A box of 150 10x27mm caseless rounds for the MG-27 medium machinegun."
 	w_class = WEIGHT_CLASS_NORMAL
 	icon = 'icons/Marine/marine-mmg.dmi'
 	icon_state = "mag"

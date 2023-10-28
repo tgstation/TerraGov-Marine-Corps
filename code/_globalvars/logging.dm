@@ -75,3 +75,8 @@ GLOBAL_LIST_EMPTY(ffattack_log)
 GLOBAL_PROTECT(ffattack_log)
 GLOBAL_LIST_EMPTY(explosion_log)
 GLOBAL_PROTECT(explosion_log)
+
+#ifdef REFERENCE_DOING_IT_LIVE
+GLOBAL_LIST_EMPTY(harddel_log)
+GLOBAL_PROTECT(harddel_log)
+#endif

@@ -1,5 +1,0 @@
-author: "Barnet2"
-delete-after: True
-changes:
-  - rscadd: "Added Medical Doctor clothing to the Clothing Vendor in a new section called \"Medical Clothing\""
-  - bugfix: "Medical scrubs now have their respective color on their name."

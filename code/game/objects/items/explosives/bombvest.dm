@@ -56,6 +56,8 @@
 		message_admins("[activator] has detonated an explosive vest with no warcry at [ADMIN_VERBOSEJMP(target)]")
 		log_game("[activator] has detonated an explosive vest with no warcry at [AREACOORD(target)]")
 
+	activator.record_tactical_unalive()
+
 	for(var/datum/limb/appendage AS in activator.limbs) //Oops we blew all our limbs off
 		if(istype(appendage, /datum/limb/chest) || istype(appendage, /datum/limb/groin) || istype(appendage, /datum/limb/head))
 			continue

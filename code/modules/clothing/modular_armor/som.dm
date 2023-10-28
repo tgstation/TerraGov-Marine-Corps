@@ -143,6 +143,15 @@
 		/obj/item/armor_module/storage/medical/som,
 	)
 
+/obj/item/clothing/suit/modular/som/heavy/leader/officer
+	desc = "A bulky suit of heavy combat armor, the M-35 'Gorgon' armor provides the user with superior protection without severely impacting mobility. The gold markings on this one signify it is worn by a high ranking field officer. You'll need serious firepower to punch through this. Alt-Click to remove attached items. Use it to toggle the built-in flashlight."
+	icon_state = "som_officer"
+	item_state = "som_officer"
+	starting_attachments = list(
+		/obj/item/armor_module/module/valkyrie_autodoc/som,
+		/obj/item/armor_module/storage/medical/som,
+	)
+
 //helmet
 
 /obj/item/clothing/head/modular/som
@@ -242,3 +251,8 @@
 		/obj/item/armor_module/storage/helmet,
 		/obj/item/armor_module/armor/badge,
 	)
+
+/obj/item/clothing/head/modular/som/leader/officer
+	desc = "Made for use with Gorgon pattern assault armor, providing superior protection. This one has gold markings indicating it belongs to a high ranking field officer."
+	icon_state = "som_helmet_officer"
+	item_state = "som_helmet_officer"

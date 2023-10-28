@@ -287,7 +287,6 @@
 /obj/item/reagent_containers/food/snacks/grown/banana
 	name = "banana"
 	desc = "It's an excellent prop for a comedy."
-	icon = 'icons/obj/items/items.dmi'
 	icon_state = "banana"
 	item_state = "banana"
 	filling_color = "#FCF695"

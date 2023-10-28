@@ -16,6 +16,10 @@
 	. = ..()
 	add_debris_element()
 
+/turf/closed/hitby(atom/movable/AM, speed = 5)
+	AM.stop_throw()
+	AM.turf_collision(src, speed)
+
 /turf/closed/mineral
 	name = "rock"
 	icon = 'icons/turf/walls.dmi'
@@ -77,6 +81,7 @@
 	open_turf_type = /turf/open/floor/plating/ground/mars/random/dirt
 
 /turf/closed/mineral/smooth/indestructible
+	name = "tough rock"
 	resistance_flags = RESIST_ALL
 	icon_state = "wall-invincible"
 

@@ -1377,9 +1377,10 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/general_offices)
 "amz" = (
-/turf/open/floor/stairs/rampbottom{
+/obj/structure/stairs/edge{
 	dir = 1
 	},
+/turf/open/floor/engine/cult,
 /area/bigredv2/outside/marshal_office)
 "amA" = (
 /obj/structure/bed/chair{
@@ -1674,7 +1675,8 @@
 /turf/open/floor/tile/red/full,
 /area/bigredv2/outside/marshal_office)
 "aol" = (
-/turf/open/floor/stairs/rampbottom,
+/obj/structure/stairs/edge,
+/turf/open/floor/engine/cult,
 /area/bigredv2/outside/marshal_office)
 "aom" = (
 /obj/structure/table/woodentable,
@@ -4638,10 +4640,7 @@
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "aQK" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_23";
-	name = "SOM exit point 23"
-	},
+/obj/effect/landmark/patrol_point/som/som_23,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/northeast)
 "aRg" = (
@@ -8661,10 +8660,7 @@
 	},
 /area/bigredv2/caves/lambda_lab)
 "ffN" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_22";
-	name = "SOM exit point 22"
-	},
+/obj/effect/landmark/patrol_point/som/som_22,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/northeast)
 "fgb" = (
@@ -10205,10 +10201,7 @@
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "jsF" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_24";
-	name = "SOM exit point 24"
-	},
+/obj/effect/landmark/patrol_point/som/som_24,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/northeast)
 "jsL" = (
@@ -11735,11 +11728,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
-"nNZ" = (
-/obj/structure/cable,
-/obj/structure/cable,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/south)
 "nOl" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -12183,6 +12171,11 @@
 /obj/item/trash/plate,
 /turf/open/floor,
 /area/bigredv2/outside/hydroponics)
+"pjg" = (
+/obj/effect/landmark/xeno_resin_wall,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/east)
 "pkg" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/wall/r_wall,
@@ -12481,10 +12474,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/marshal_office)
 "qiV" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_21";
-	name = "SOM exit point 21"
-	},
+/obj/effect/landmark/patrol_point/som/som_21,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/northeast)
 "qjc" = (
@@ -15200,7 +15190,6 @@
 /turf/open/floor/plating,
 /area/bigredv2/caves/lambda_lab)
 "xUu" = (
-/obj/structure/cable,
 /obj/structure/cable,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating,
@@ -46594,7 +46583,7 @@ sQi
 jkl
 pRm
 jkl
-nNZ
+jkl
 sZZ
 kJU
 sQi
@@ -62346,8 +62335,8 @@ bfc
 vyZ
 bfc
 tzo
-tPk
-tzo
+pjg
+jcm
 tzo
 eny
 tzo
@@ -62563,7 +62552,7 @@ bfc
 vyZ
 vyZ
 gCQ
-tPk
+pjg
 tzo
 dVK
 tzo

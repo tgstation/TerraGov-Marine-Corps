@@ -416,7 +416,7 @@
 
 //Xeno status hud, for xenos
 /datum/atom_hud/xeno
-	hud_icons = list(HEALTH_HUD_XENO, PLASMA_HUD, PHEROMONE_HUD, QUEEN_OVERWATCH_HUD, ARMOR_SUNDER_HUD, XENO_FIRE_HUD)
+	hud_icons = list(HEALTH_HUD_XENO, PLASMA_HUD, PHEROMONE_HUD, QUEEN_OVERWATCH_HUD, ARMOR_SUNDER_HUD, XENO_FIRE_HUD, XENO_RANK_HUD, XENO_BLESSING_HUD, XENO_EVASION_HUD)
 
 /datum/atom_hud/xeno_heart
 	hud_icons = list(HEART_STATUS_HUD)
@@ -517,11 +517,15 @@
 			if(queen_chosen_lead)
 				var/image/I = image('icons/mob/hud.dmi',src, "hudxenoleader")
 				holder.overlays += I
-		if(upgrade_as_number() > 0) // theres only icons for 1 2 3, not for -1
-			var/image/J = image('icons/mob/hud.dmi',src, "hudxenoupgrade[upgrade_as_number()]")
-			holder.overlays += J
 	hud_list[QUEEN_OVERWATCH_HUD] = holder
 
+/mob/living/carbon/xenomorph/proc/hud_update_rank()
+	var/image/holder = hud_list[XENO_RANK_HUD]
+	holder.icon_state = "hudblank"
+	if(stat != DEAD && playtime_as_number() > 0)
+		holder.icon_state = "hudxenoupgrade[playtime_as_number()]"
+
+	hud_list[XENO_RANK_HUD] = holder
 
 /datum/atom_hud/security
 	hud_icons = list(WANTED_HUD)
@@ -645,11 +649,11 @@
 
 	if(!holder)
 		return
-	var/obj/item/weapon/gun/gun = internal_item
-	if(!gun.rounds)
+	var/obj/item/weapon/gun/internal_gun = internal_item.resolve()
+	if(!internal_gun?.rounds)
 		holder.icon_state = "plasma0"
 		return
-	var/amount = gun.max_rounds ? round(gun.rounds * 100 / gun.max_rounds, 10) : 0
+	var/amount = internal_gun.max_rounds ? round(internal_gun.rounds * 100 / internal_gun.max_rounds, 10) : 0
 	holder.icon_state = "plasma[amount]"
 
 ///Makes unmanned vehicle ammo visible

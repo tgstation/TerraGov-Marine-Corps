@@ -112,14 +112,6 @@
 "iN" = (
 /turf/closed/wall,
 /area/lv624/lazarus/atmos)
-"jW" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/obj/structure/cable,
-/obj/structure/cable,
-/turf/open/floor/tile/dark,
-/area/lv624/lazarus/atmos)
 "kc" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
@@ -409,7 +401,6 @@
 	},
 /area/lv624/lazarus/atmos)
 "Hy" = (
-/obj/structure/cable,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold4w/supply/hidden/layer1,
 /obj/effect/ai_node,
@@ -708,7 +699,7 @@ NM
 iN
 iN
 Kw
-jW
+CS
 RH
 iN
 iN

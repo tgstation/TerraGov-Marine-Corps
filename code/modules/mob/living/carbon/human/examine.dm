@@ -31,6 +31,8 @@
 		if(reagents.get_reagent_amount(/datum/reagent/toxin/xeno_sanguinal))
 			msg += "Sanguinal: Causes brute damage and bleeding from the brute damage. Does additional damage types in the presence of other xeno-based toxins. Toxin damage for Neuro, Stamina damage for Hemodile, and Burn damage for Transvitox.\n"
 		msg += "</span>"
+		if(HAS_TRAIT(src, TRAIT_HOLLOW))
+			msg += "<span style='font-weight: bold; color: purple;'>It is hollow. Useless.</span>\n"
 		return list(msg)
 
 	var/skipgloves = 0
@@ -472,8 +474,8 @@
 						if(R.fields["id"] == E.fields["id"])
 							criminal = R.fields["criminal"]
 
-			msg += "<span class = 'deptradio'>Criminal status:</span> <a href='?src=\ref[src];criminal=1'>\[[criminal]\]</a>\n"
-			msg += "<span class = 'deptradio'>Security records:</span> <a href='?src=\ref[src];secrecord=`'>\[View\]</a>  <a href='?src=\ref[src];secrecordadd=`'>\[Add comment\]</a>\n"
+			msg += "<span class = 'deptradio'>Criminal status:</span> <a href='?src=[text_ref(src)];criminal=1'>\[[criminal]\]</a>\n"
+			msg += "<span class = 'deptradio'>Security records:</span> <a href='?src=[text_ref(src)];secrecord=`'>\[View\]</a>  <a href='?src=[text_ref(src)];secrecordadd=`'>\[Add comment\]</a>\n"
 
 	if(hasHUD(user,"medical"))
 /*
@@ -494,12 +496,12 @@
 				for (var/datum/data/record/R in GLOB.datacore.general)
 					if (R.fields["id"] == E.fields["id"])
 						medical = R.fields["p_stat"]
-		msg += "<span class = 'deptradio'>Physical status:</span> <a href='?src=\ref[src];medical=1'>\[[medical]\]</a>\n"
-		msg += "<span class = 'deptradio'>Medical records:</span> <a href='?src=\ref[src];medrecord=`'>\[View\]</a> <a href='?src=\ref[src];medrecordadd=`'>\[Add comment\]</a>\n"
+		msg += "<span class = 'deptradio'>Physical status:</span> <a href='?src=[text_ref(src)];medical=1'>\[[medical]\]</a>\n"
+		msg += "<span class = 'deptradio'>Medical records:</span> <a href='?src=[text_ref(src)];medrecord=`'>\[View\]</a> <a href='?src=[text_ref(src)];medrecordadd=`'>\[Add comment\]</a>\n"
 */
 		var/cardcolor = holo_card_color
 		if(!cardcolor) cardcolor = "none"
-		msg += "<span class = 'deptradio'>Triage holo card:</span> <a href='?src=\ref[src];medholocard=1'>\[[cardcolor]\]</a> - "
+		msg += "<span class = 'deptradio'>Triage holo card:</span> <a href='?src=[text_ref(src)];medholocard=1'>\[[cardcolor]\]</a> - "
 
 		// scan reports
 		var/datum/data/record/N = null
@@ -511,14 +513,14 @@
 			if(!(N.fields["last_scan_time"]))
 				msg += "<span class = 'deptradio'>No scan report on record</span>\n"
 			else
-				msg += "<span class = 'deptradio'><a href='?src=\ref[src];scanreport=1'>Scan from [N.fields["last_scan_time"]]</a></span>\n"
+				msg += "<span class = 'deptradio'><a href='?src=[text_ref(src)];scanreport=1'>Scan from [N.fields["last_scan_time"]]</a></span>\n"
 
 
 	if(hasHUD(user,"squadleader"))
 		var/mob/living/carbon/human/H = user
 		if(assigned_squad) //examined mob is a marine in a squad
 			if(assigned_squad == H.assigned_squad) //same squad
-				msg += "<a href='?src=\ref[src];squadfireteam=1'>\[Assign to a fireteam.\]</a>\n"
+				msg += "<a href='?src=[text_ref(src)];squadfireteam=1'>\[Assign to a fireteam.\]</a>\n"
 
 
 	msg += "[flavor_text]<br>"
@@ -527,6 +529,9 @@
 		msg += span_highdanger("<B>This player has been slept by staff.</B>\n")
 
 	msg += "</span>"
+	
+	if(HAS_TRAIT(src, TRAIT_HOLLOW))
+		msg += "[span_warning("<b>[t_He] is hollowed out!</b>")]\n"
 
 	return list(msg)
 

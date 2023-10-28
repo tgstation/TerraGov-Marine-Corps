@@ -17,9 +17,10 @@
 /turf/open/floor/tile/darkish,
 /area/bigredv2/outside/chapel)
 "d" = (
-/turf/open/floor/stairs/rampbottom{
+/obj/structure/stairs/edge{
 	dir = 1
 	},
+/turf/open/floor/tile/dark,
 /area/bigredv2/outside/chapel)
 "e" = (
 /obj/structure/cable,
@@ -60,7 +61,8 @@
 /area/bigredv2/outside/chapel)
 "l" = (
 /obj/effect/landmark/weed_node,
-/turf/open/floor/stairs/rampbottom,
+/obj/structure/stairs/edge,
+/turf/open/floor/tile/dark,
 /area/bigredv2/outside/chapel)
 "m" = (
 /obj/docking_port/stationary/crashmode,

@@ -1,7 +1,7 @@
 /obj/item/unmanned_vehicle_remote
 	name = "handheld vehicle controller"
 	desc = "Used to control an unmanned vehicle.<br>Tap the vehicle you want to control with the controller to link it."
-	icon = 'icons/obj/items/items.dmi'
+	icon = 'icons/obj/device.dmi'
 	icon_state = "multitool2"
 	///reference to the unmanned vehicle that we're connected to or remote control
 	var/obj/vehicle/unmanned/vehicle

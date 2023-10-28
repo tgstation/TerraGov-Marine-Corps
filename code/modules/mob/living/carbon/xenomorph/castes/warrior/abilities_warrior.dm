@@ -89,13 +89,13 @@
 
 	if(!isliving(A)) //We can only lunge at the living; expanded to xenos in order to allow for supportive applications; lunging > throwing to safety
 		if(!silent)
-			to_chat(owner, span_xenodanger("We can't [name] at that!"))
+			to_chat(owner, span_xenodanger("We can't [ability_name] at that!"))
 		return FALSE
 
 	var/mob/living/living_target = A
 	if(living_target.stat == DEAD)
 		if(!silent)
-			to_chat(owner, span_xenodanger("We can't [name] at that!"))
+			to_chat(owner, span_xenodanger("We can't [ability_name] at that!"))
 		return FALSE
 
 /datum/action/xeno_action/activable/lunge/ai_should_start_consider()

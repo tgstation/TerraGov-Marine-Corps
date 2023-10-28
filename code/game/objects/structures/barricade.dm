@@ -64,8 +64,11 @@
 		return COMPONENT_ATOM_BLOCK_EXIT
 
 /obj/structure/barricade/CanAllowThrough(atom/movable/mover, turf/target)
-	if(!CHECK_MULTIPLE_BITFIELDS(mover?.pass_flags, HOVERING) && is_wired && density && ismob(mover) && (get_dir(loc, target) & dir))
-		return FALSE
+	if(get_dir(loc, target) & dir)
+		if(!CHECK_MULTIPLE_BITFIELDS(mover?.pass_flags, HOVERING) && is_wired && density && ismob(mover))
+			return FALSE
+		if(istype(mover, /obj/effect/xenomorph)) //cades stop xeno effects like acid spray
+			return FALSE
 
 	return ..()
 
@@ -369,7 +372,7 @@
 	if(!D.use(1))
 		return
 
-	repair_damage(max_integrity)
+	repair_damage(max_integrity, user)
 	balloon_alert_to_viewers("Repaired")
 	update_icon()
 
@@ -457,7 +460,7 @@
 	if(!metal_sheets.use(2))
 		return FALSE
 
-	repair_damage(max_integrity * 0.3)
+	repair_damage(max_integrity * 0.3, user)
 	balloon_alert_to_viewers("Base repaired")
 	update_icon()
 
@@ -906,7 +909,7 @@
 		if(!plasteel_sheets.use(2))
 			return
 
-		repair_damage(max_integrity * 0.3)
+		repair_damage(max_integrity * 0.3, user)
 		balloon_alert_to_viewers("Base repaired")
 		update_icon()
 
@@ -1034,7 +1037,7 @@
 		if(!D.use(1))
 			return
 
-		repair_damage(max_integrity * 0.2) //Each sandbag restores 20% of max health as 5 sandbags = 1 sandbag barricade.
+		repair_damage(max_integrity * 0.2, user) //Each sandbag restores 20% of max health as 5 sandbags = 1 sandbag barricade.
 		balloon_alert_to_viewers("Repaired")
 		update_icon()
 
@@ -1053,6 +1056,9 @@
 
 /obj/structure/barricade/metal/deployable/Initialize(mapload, _internal_item, deployer)
 	. = ..()
+	if(!_internal_item && !internal_shield)
+		return INITIALIZE_HINT_QDEL
+
 	internal_shield = _internal_item
 
 	name = internal_shield.name
@@ -1096,3 +1102,27 @@
 
 /obj/structure/barricade/metal/deployable/attempt_barricade_upgrade()
 	return //not upgradable
+
+
+/*----------------------*/
+// CONCRETE
+/*----------------------*/
+
+/obj/structure/barricade/concrete
+	name = "concrete barricade"
+	desc = "A short wall made of reinforced concrete. It looks like it can take a lot of punishment."
+	icon_state = "concrete_0"
+	coverage = 100
+	max_integrity = 500
+	soft_armor = list(MELEE = 60, BULLET = 60, LASER = 60, ENERGY = 60, BOMB = 40, BIO = 100, FIRE = 100, ACID = 20)
+	stack_type = null
+	destroyed_stack_amount = 0
+	hit_sound = "sound/effects/metalhit.ogg"
+	barricade_type = "concrete"
+	can_wire = FALSE
+
+/obj/structure/barricade/concrete/update_overlays()
+	. = ..()
+	var/image/new_overlay = image(icon, src, "[icon_state]_overlay", dir == SOUTH ? BELOW_OBJ_LAYER : ABOVE_MOB_LAYER, dir)
+	new_overlay.pixel_y = (dir == SOUTH ? -32 : 32)
+	. += new_overlay

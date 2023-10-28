@@ -114,6 +114,7 @@
 		/obj/item/reagent_containers/food/snacks/wrapped/chunk = -1,
 		/obj/item/reagent_containers/food/snacks/wrapped/barcardine = -1,
 		/obj/item/reagent_containers/food/snacks/lollipop = -1,
+		/obj/item/reagent_containers/food/snacks/wrapped/berrybar = -1,
 	)
 
 /obj/machinery/vending/cola
@@ -203,6 +204,7 @@
 			/obj/item/reagent_containers/glass/beaker = -1,
 			/obj/item/reagent_containers/glass/beaker/large = -1,
 			/obj/item/reagent_containers/glass/beaker/vial = -1,
+			/obj/item/reagent_containers/dropper = -1,
 			/obj/item/storage/reagent_tank = 5,
 			/obj/item/storage/reagent_tank/bicaridine = 1,
 			/obj/item/storage/reagent_tank/kelotane = 1,
@@ -291,6 +293,7 @@
 			/obj/item/reagent_containers/glass/beaker = -1,
 			/obj/item/reagent_containers/glass/beaker/large = -1,
 			/obj/item/reagent_containers/glass/beaker/vial = -1,
+			/obj/item/reagent_containers/dropper = -1,
 			/obj/item/clothing/glasses/hud/health = -1,
 			/obj/item/roller = -1,
 		),
@@ -551,6 +554,7 @@
 		/obj/item/clothing/head/hardhat = 4,
 		/obj/item/clothing/head/welding = 4,
 		/obj/item/clothing/glasses/welding = 4,
+		/obj/item/radio = -1,
 		/obj/item/taperecorder = -1,
 		/obj/item/assembly/igniter = -1,
 		/obj/item/assembly/signaler = -1,

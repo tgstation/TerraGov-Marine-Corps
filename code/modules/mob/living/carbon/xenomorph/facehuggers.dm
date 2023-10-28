@@ -360,7 +360,7 @@
 /obj/item/clothing/mask/facehugger/throw_impact(atom/hit_atom, speed)
 	. = ..()
 	if(stat != CONSCIOUS)
-		return ..()
+		return
 	if(iscarbon(hit_atom))
 		var/mob/living/carbon/M = hit_atom
 		if(loc == M) //Caught
@@ -388,6 +388,7 @@
 					if(!Attach(M))
 						go_idle()
 					return
+	stop_throw()
 	leaping = FALSE
 	go_idle(FALSE)
 
@@ -564,6 +565,9 @@
 			embryo.hivenumber = hivenumber
 			GLOB.round_statistics.now_pregnant++
 			SSblackbox.record_feedback("tally", "round_statistics", 1, "now_pregnant")
+			if(source?.client)
+				var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[source.ckey]
+				personal_statistics.impregnations++
 			sterile = TRUE
 		kill_hugger()
 	else

@@ -426,7 +426,7 @@
 /turf/open/floor/wood,
 /area/deathmatch)
 "Qa" = (
-/turf/open/floor/wood/variable/damaged/standard,
+/turf/open/floor/wood/broken,
 /area/deathmatch)
 "Qf" = (
 /obj/structure/window/framed/mainship/hull,

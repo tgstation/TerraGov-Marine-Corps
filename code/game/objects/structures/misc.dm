@@ -84,7 +84,7 @@
 		playsound(loc, 'sound/effects/slosh.ogg', 25, 1)
 
 /obj/structure/shipmast
-	name = "\the Ships Mast"
+	name = "Ships Mast"
 	icon = 'icons/obj/structures/structures.dmi'
 	icon_state = "shipmast" //Thank you to Spyroshark and Arachnidnexus
 	desc = "A piece of old earth that was. The plaque reads<br><br><span class='name'>HMS Victory Sailed 1765 to 1922.</span><br><span class='name'>Relaunched 2393.</span><br><span class='name'>On loan from the First Sea Lord.</span><br><br>"
@@ -218,28 +218,89 @@
 
 /obj/structure/stairs
 	name = "Stairs"
-	icon = 'icons/obj/structures/structures.dmi'
+	icon = 'icons/obj/structures/stairs.dmi'
 	desc = "Stairs.  You walk up and down them."
 	icon_state = "rampbottom"
 	layer = TURF_LAYER
 	density = FALSE
 	opacity = FALSE
 
+/obj/structure/stairs/Initialize(mapload)
+	. = ..()
+	update_icon()
+
+	var/static/list/connections = list(
+		COMSIG_FIND_FOOTSTEP_SOUND = PROC_REF(footstep_override),
+		COMSIG_TURF_CHECK_COVERED = PROC_REF(turf_cover_check),
+	)
+	AddElement(/datum/element/connect_loc, connections)
+
+/obj/structure/stairs/footstep_override(atom/movable/source, list/footstep_overrides)
+	footstep_overrides[FOOTSTEP_CATWALK] = layer
+
+//stand alone stairs
+/obj/structure/stairs/edge
+	icon_state = "rampbottom"
+
+/obj/structure/stairs/edge/update_overlays()
+	. = ..()
+	if(dir == WEST || dir == EAST)
+		var/image/new_overlay = image(icon, src, "[initial(icon_state)]_overlay", layer, dir)
+		new_overlay.pixel_y = -32
+		. += new_overlay
+
+/obj/structure/stairs/railstairs
+	icon_state = "railstairs"
+
+/obj/structure/stairs/railstairs/update_overlays()
+	. = ..()
+	var/image/new_overlay = image(icon, src, "[initial(icon_state)]_overlay", layer, dir)
+	new_overlay.pixel_y = -32
+	if(dir == WEST || dir == EAST)
+		new_overlay.layer = ABOVE_MOB_PLATFORM_LAYER
+	. += new_overlay
+
+/obj/structure/stairs/railstairs_vert
+	icon_state = "railstairs_vert"
+
+//seamless stairs
 /obj/structure/stairs/seamless
 	icon_state = "stairs_seamless"
+
+/obj/structure/stairs/seamless/edge
+	icon_state = "stairs_seamless_edge"
+
+/obj/structure/stairs/seamless/edge/update_overlays()
+	. = ..()
+	if(dir == NORTH || dir == SOUTH)
+		var/image/new_overlay = image(icon, src, "[initial(icon_state)]_overlay", layer, dir)
+		new_overlay.pixel_y = -32
+		. += new_overlay
+
+/obj/structure/stairs/seamless/edge_vert
+	icon_state = "stairs_seamless_edge_vert"
 
 /obj/structure/stairs/seamless/platform
 	icon_state = "railstairs_seamless"
 
-/obj/structure/stairs/seamless/platform/alt
+/obj/structure/stairs/seamless/platform/update_overlays()
+	. = ..()
+	if(dir == WEST || dir == EAST)
+		var/image/new_overlay = image(icon, src, "[initial(icon_state)]_overlay", layer, dir)
+		new_overlay.layer = ABOVE_MOB_PLATFORM_LAYER
+		. += new_overlay
+
+/obj/structure/stairs/seamless/platform/water
+	icon_state = "railstairs_seamless_water"
+
+/obj/structure/stairs/seamless/platform_vert
 	icon_state = "railstairs_seamless_vert"
 
-/obj/structure/stairs/seamless/platform/adobe //west and east
-	icon_state = "adobe_stairs"
+/obj/structure/stairs/seamless/platform_vert/water
+	icon_state = "railstairs_seamless_vert_water"
 
-/obj/structure/stairs/seamless/platform/adobe/Initialize(mapload)
-	. = ..()
-	update_icon()
+/obj/structure/stairs/seamless/platform/adobe
+	icon_state = "adobe_stairs"
 
 /obj/structure/stairs/seamless/platform/adobe/update_overlays()
 	. = ..()
@@ -251,24 +312,14 @@
 /obj/structure/stairs/seamless/platform/adobe/straight
 	icon_state = "adobe_stairs_straight"
 
-/obj/structure/stairs/seamless/platform/adobe_vert //north and west
+/obj/structure/stairs/seamless/platform/adobe_vert
 	icon_state = "adobe_stairs_vertical"
 
 /obj/structure/stairs/seamless/platform/adobe_vert/straight
 	icon_state = "adobe_stairs_vertical_straight"
 
-/obj/structure/stairs/corner
-	icon_state = "staircorners"
-
-/obj/structure/stairs/cornerdark //darker version for the darkened ramp bottoms
-	icon_state = "staircornersdark"
-
-/obj/structure/stairs/cornerdark/seamless //darker version for the darkened ramp bottoms
+/obj/structure/stairs/corner_seamless
 	icon_state = "staircorners_seamless"
-
-/obj/structure/stairs/railstairs
-	icon = 'icons/obj/structures/railstairs.dmi'
-	icon_state = "stairdownrailright"
 
 /obj/structure/plasticflaps //HOW DO YOU CALL THOSE THINGS ANYWAY
 	name = "\improper plastic flaps"

@@ -380,9 +380,8 @@ SUBSYSTEM_DEF(mapping)
 	reserve_turfs(clearing)
 
 /datum/controller/subsystem/mapping/proc/reg_in_areas_in_z(list/areas)
-	for(var/B in areas)
-		var/area/A = B
-		A.reg_in_areas_in_z()
+	for(var/area/new_area AS in areas)
+		new_area.reg_in_areas_in_z()
 
 ///Generates baseline gravity levels for all z-levels based off traits
 /datum/controller/subsystem/mapping/proc/calculate_default_z_level_gravities()

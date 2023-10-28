@@ -14,7 +14,7 @@ GLOBAL_VAR_INIT(custom_info, "")
 GLOBAL_VAR_INIT(motd, "")
 
 ///Regex for detecting non-ASCII symbols
-GLOBAL_VAR_INIT(non_ascii_regex, regex("\[^\\x00-\\x7F]", "g"))
+GLOBAL_VAR_INIT(non_ascii_regex, regex(@"[^\x00-\x7F]"))
 GLOBAL_PROTECT(non_ascii_regex)
 
 ///Returns true if this contains text that is not ASCII

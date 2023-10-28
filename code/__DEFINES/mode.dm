@@ -108,6 +108,9 @@
 #define DEATHTIME_CHECK(M) ((world.time - GLOB.key_to_time_of_role_death[M.key]) < SSticker.mode?.respawn_time)
 #define DEATHTIME_MESSAGE(M) to_chat(M, span_warning("You have been dead for [(world.time - GLOB.key_to_time_of_role_death[M.key]) * 0.1] second\s.</span><br><span class='warning'>You must wait [SSticker.mode?.respawn_time * 0.1] seconds before rejoining the game!"))
 
+#define XENODEATHTIME_CHECK(M) ((world.time - (GLOB.key_to_time_of_xeno_death[M.key] ? GLOB.key_to_time_of_xeno_death[M.key] : -INFINITY) < SSticker.mode?.xenorespawn_time))
+#define XENODEATHTIME_MESSAGE(M) to_chat(M, span_warning("You have been dead for [(world.time - GLOB.key_to_time_of_xeno_death[M.key]) * 0.1] second\s.</span><br><span class ='warning'>You must wait [SSticker.mode?.xenorespawn_time * 0.1] seconds before rejoining the game as a Xenomorph! You can take a SSD minion without resetting your timer."))
+
 #define COUNT_IGNORE_HUMAN_SSD (1<<0)
 #define COUNT_IGNORE_XENO_SSD (1<<1)
 #define COUNT_IGNORE_XENO_SPECIAL_AREA (1<<2)

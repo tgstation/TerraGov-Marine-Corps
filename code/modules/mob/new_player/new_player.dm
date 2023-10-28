@@ -133,6 +133,9 @@
 		if("aliens")
 			view_aliens()
 
+		if("som")
+			view_som()
+
 		if("SelectedJob")
 			if(!SSticker)
 				return
@@ -232,7 +235,7 @@
 
 /mob/new_player/proc/view_lore()
 	var/output = "<div align='center'>"
-	output += "<a href='byond://?src=[REF(src)];lobby_choice=marines'>TerraGov Marine Corps</A><br><br><a href='byond://?src=[REF(src)];lobby_choice=aliens'>Xenomorph Hive</A>"
+	output += "<a href='byond://?src=[REF(src)];lobby_choice=marines'>TerraGov Marine Corps</A><br><br><a href='byond://?src=[REF(src)];lobby_choice=aliens'>Xenomorph Hive</A><br><br><a href='byond://?src=[REF(src)];lobby_choice=som'>Sons of Mars</A>"
 	output += "</div>"
 
 	var/datum/browser/popup = new(src, "lore", "<div align='center'>Current Year: [GAME_YEAR]</div>", 240, 300)
@@ -257,8 +260,21 @@
 	popup.set_content(output)
 	popup.open(FALSE)
 
+/mob/new_player/proc/view_som()
+	var/output = "<div align='left'>"
+	output += "<p><i>The <b>Sons of Mars</b> are a fanatical group that trace their lineage back to the great Martian uprising. \
+	After TerraGov brutally crushed the rebellion, many Martians fled into deep space and most Terrans thought they would die in the great void. \
+	However, more than a century later their descendants emerged as the Sons of Mars, who are determined to reclaim their lost home and crush their hated enemy TerraGov.\
+	</i></p>"
+	output += "</div>"
+	output += "<p><i>The men and women that form the SOM are taught from birth of their dream of Mars, and hatred of TerraGov, and are fiercely proud of their history. \
+	As a society they have a single mindeded dedication towards reclaiming a home almost none of them have ever seen. What they lack in sheer manpower or resources compared to TerraGov, they make up for with advanced technology and bloody minded focus. \
+	Across the outer rim of colonised space, the SOM have worked to spread discontent and rebellion across TerraGov's many colonies, many of whom are receptive to the SOM's promises of freedom from TerraGov tyranny. \
+	Now the SOM feel their long promised revenge is almost at hand, and the threat of all out war looms over all human occupied space...</i></p>"
 
-
+	var/datum/browser/popup = new(src, "som", "<div align='center'>Sons of Mars</div>", 480, 430)
+	popup.set_content(output)
+	popup.open(FALSE)
 
 /mob/new_player/Move()
 	return FALSE
@@ -318,6 +334,9 @@
 	overlay_fullscreen_timer(0.5 SECONDS, 10, "roundstart1", /atom/movable/screen/fullscreen/black)
 	overlay_fullscreen_timer(2 SECONDS, 20, "roundstart2", /atom/movable/screen/fullscreen/spawning_in)
 
+/mob/living/carbon/xenomorph/on_spawn(mob/new_player/summoner)
+	overlay_fullscreen_timer(0.5 SECONDS, 10, "roundstart1", /atom/movable/screen/fullscreen/black)
+	overlay_fullscreen_timer(2 SECONDS, 20, "roundstart2", /atom/movable/screen/fullscreen/spawning_in)
 
 /mob/new_player/proc/transfer_character()
 	. = new_character

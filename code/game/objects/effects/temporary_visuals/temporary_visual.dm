@@ -14,7 +14,7 @@
 	if(randomdir)
 		setDir(pick(GLOB.cardinals))
 
-	timerid = QDEL_IN(src, duration)
+	timerid = QDEL_IN_STOPPABLE(src, duration)
 
 
 /obj/effect/temp_visual/Destroy()
@@ -111,3 +111,21 @@ GLOBAL_DATUM_INIT(flare_particles, /particles/flare_smoke, new)
 	loc.visible_message(span_warning("You see a tiny flash, and then a blindingly bright light from a flare as it lights off in the sky!"))
 	playsound(loc, 'sound/weapons/guns/fire/flare.ogg', 50, 1, 4)
 	animate(src, time = duration, pixel_y = 0)
+
+/obj/effect/temp_visual/dropship_flyby
+	icon = 'icons/Marine/dropship_prop.dmi'
+	icon_state = "fighter_shadow"
+	layer = FLY_LAYER
+	resistance_flags = RESIST_ALL
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	duration = 3 SECONDS
+	pixel_x = -48
+	pixel_y = -120
+	pixel_z = -480
+
+/obj/effect/temp_visual/dropship_flyby/Initialize()
+	. = ..()
+	animate(src, pixel_z = 960, time = 3 SECONDS)
+
+/obj/effect/temp_visual/dropship_flyby/som
+	icon_state = "harbinger_shadow"

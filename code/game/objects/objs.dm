@@ -284,7 +284,7 @@
 			handle_weldingtool_overlay(TRUE)
 			return TRUE
 
-		repair_damage(repair_amount)
+		repair_damage(repair_amount, user)
 		update_icon()
 
 	balloon_alert_to_viewers("repaired")

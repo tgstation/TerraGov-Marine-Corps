@@ -13,6 +13,7 @@ REAGENT SCANNER
 /obj/item/t_scanner
 	name = "\improper T-ray scanner"
 	desc = "A terahertz-ray emitter and scanner used to detect underfloor objects such as cables and pipes."
+	icon = 'icons/obj/device.dmi'
 	icon_state = "t-ray0"
 	var/on = 0
 	flags_atom = CONDUCT
@@ -62,6 +63,7 @@ REAGENT SCANNER
 
 /obj/item/healthanalyzer
 	name = "\improper HF2 health analyzer"
+	icon = 'icons/obj/device.dmi'
 	icon_state = "health"
 	item_icons = list(
 		slot_l_hand_str = 'icons/mob/inhands/equipment/medical_left.dmi',
@@ -338,6 +340,7 @@ REAGENT SCANNER
 /obj/item/tool/analyzer
 	desc = "A hand-held environmental scanner which reports current gas levels."
 	name = "analyzer"
+	icon = 'icons/obj/device.dmi'
 	icon_state = "atmos"
 	item_state = "analyzer"
 	w_class = WEIGHT_CLASS_SMALL
@@ -387,6 +390,7 @@ REAGENT SCANNER
 /obj/item/mass_spectrometer
 	desc = "A hand-held mass spectrometer which identifies trace chemicals in a blood sample."
 	name = "mass-spectrometer"
+	icon = 'icons/obj/device.dmi'
 	icon_state = "spectrometer"
 	item_state = "analyzer"
 	w_class = WEIGHT_CLASS_SMALL

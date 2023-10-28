@@ -266,3 +266,157 @@
   - bugfix: fixed the Flares refills being wrongly called High Explosives
   - balance: Actually implemented a discount for HE, INC, Flare and Smoke mortar shells
       via factory
+2023-08-18:
+  Barnet2:
+  - rscadd: Added Medical Doctor clothing to the Clothing Vendor in a new section
+      called "Medical Clothing"
+  - bugfix: Medical scrubs now have their respective color on their name.
+  - balance: Medical Doctor slots reduced to 2 from 6.
+  forestbbbbbbb:
+  - rscadd: Ghosts can point
+2023-08-19:
+  Lumipharon:
+  - balance: Acting squad leaders now have 1 level lower in leadership compared to
+      actual squad leaders
+  - bugfix: Fixed squaddies being able to use leader droppods
+  Redory:
+  - qol: Ghosts can teleport using Medevacs, Xeno tunnels, ASRS teleporters, Wraith
+      portals and Shuttle computers.
+  - qol: Medevac stretchers now have a realtime cooldown on their sprite when in inventory.
+  - qol: Medevac beacons now list all linked stretchers and show their cooldowns.
+  ivanmixo:
+  - bugfix: Fixes some wield bugs
+  - bugfix: You can't open the shutters before the alamo can even take off anymore
+  tyeagg:
+  - rscdel: unused rocket arty typepath
+  - balance: db mortar reload time to 2 seconds
+  - balance: db mortar max rounds to 2
+  - balance: db mortar now has cooloff time of 6s
+  - balance: db mortar now has base spread of 2 tiles
+2023-08-20:
+  ivanmixo:
+  - bugfix: Fixed all xeno hives sharing the same point pool
+2023-08-21:
+  Lewdcifer:
+  - balance: MK88 Mod 4 Combat Pistol nerfed. Sunder reduced from 2 > 0.5, burst fire
+      now has a 0.3s delay between bursts.
+  Xander3359:
+  - rscadd: station bounced radio in engi-vend
+  forestbbbbbbb:
+  - bugfix: Pointing arrows are no longer hidden under things
+  ivanmixo:
+  - balance: AI xenos no longer gib on death every time
+  - code_imp: Unit tests are done in a box now instead of space
+  - balance: Pistols now have full auto! No more spam clicking
+  - balance: Increased the unwielded scatter of the P23 and 1911
+2023-08-22:
+  DeltaFire15:
+  - admin: Mentors now bypass spam filters when using private messages.
+  Lumipharon:
+  - code_imp: Killed images in sec/med records
+  RipGrayson:
+  - bugfix: Fixed girders not properly smoothing by migrating them to current smoothing
+      system.
+  - bugfix: Fixed ship wall decorations being unused since smoothing system migration.
+  - balance: Firedoors now take a few seconds to weld and unweld
+  - refactor: Cleaned handwashing code up somewhat
+  - bugfix: Fixed an incorrect balloon alert when operating a fire extinguisher
+  - balance: Welding floor tiles no longer generate metal
+  Sebbe9123:
+  - balance: Rebalances blood regen to be more player friendly above 90%
+  - balance: Adds a tier below 50% blood to quickly bring you above 50%
+  coldironwarrior:
+  - bugfix: added some missing fog tiles around silos on ice colony and big red for
+      crash games
+  lbnesquik:
+  - qol: added some markings to the debugdalus
+2023-08-24:
+  Blundir:
+  - refactor: reorganized xenomorph sprites folder
+  Lumipharon:
+  - imageadd: added some new/touched up stair sprites
+  breadhunt:
+  - rscadd: 'New Widow ability: Cannibalise. Consume one of our young, in exchange
+      for a lowered cooldown when birthing new young.'
+  - imageadd: Cannibalise icon
+  coldironwarrior:
+  - bugfix: adds a missing wire to the pillar of spring medbay store room
+  forestbbbbbbb:
+  - bugfix: fixed maps
+  lbnesquik:
+  - rscadd: Added medivac beds to corpsmen vendor for their entire budget
+  - code_imp: Added a space to the mortar code :)
+2023-08-25:
+  Lumipharon:
+  - bugfix: fixed 1911 having lower scatter than it should
+  - balance: Mod4 no longer has an extra delay when burst firing
+  - balance: Slight akimbo nerfs to the P-23, 1911 and Mod4
+  - bugfix: fixed acid sprays getting blocked by things that weren't supposed to
+2023-08-26:
+  QualityVan:
+  - bugfix: Cannibalise doesn't let widow have too many spiderlings
+2023-08-27:
+  yyzsong:
+  - qol: Prebuilt tunnels are no longer named as obtusely
+2023-08-28:
+  Blundir:
+  - imageadd: first aid kits resprite
+  Looking4bros:
+  - balance: G8 belt is no longer slot based, so can hold more smaller items
+  Lumipharon:
+  - bugfix: fixed Psyblast dealing more damage than intended in some cases
+  - bugfix: fixed some black tiles on LV
+  Pariah919:
+  - rscadd: Added new 12G Frag rounds, only for ICC so far.
+  - rscadd: New ML-41 12G autoshotgun, it can fire 12G flechettes and fragmentation
+      rounds.
+  Zar000:
+  - rscadd: Added baneling
+  forestbbbbbbb:
+  - bugfix: You can no longer use non-ASCII characters in OOC
+  ivanmixo:
+  - bugfix: You can only observe living mobs
+  - bugfix: Fixed inhand wielding sprites
+  lbnesquik:
+  - bugfix: fix some AI hud button placement issues
+  - bugfix: fixees lack of helmet in non squad marine jaeger armor sets
+  - qol: Made the sulaco drop pod bay line up with the nose of the alamo :)
+  - balance: Increased the number of drop pods in the sulaco by 11%
+  - rscadd: Added the ALF to req imports
+  - qol: Added chaplain clothes to the clothing vendor
+  - rscadd: AI core display is now random at spawn
+  - rscadd: Added the pets to the sulaco (Martin, Ian, Runtime)
+  - qol: Added more AI holopads to POS
+  - bugfix: re-fixed missing firelocks and shutters buttons to POS.
+  novaepee:
+  - rscadd: hyperscale marine uniform; find it in the surplus | this is NOT changing
+      the normal marine uniform! normal marine uniform =/= hyperscale marine uniform
+  - qol: Change the adjustment_variants "Down" to "Rolled Sleeves", "Half" to "No
+      Sleeves", and "Rolled" to "No Top" for players that want to know how to change
+      their uniform.
+2023-08-29:
+  Lumipharon:
+  - bugfix: Xenos can throw mobs past xenos once again
+  - bugfix: Fixed an issue with throwing mobs past warriors specifically
+  yyzsong:
+  - rscadd: More toys in valhalla!
+  - rscdel: Vali weapons and MMG no longer in valhalla req vendor (why were they ever)
+      (still in the gun vendor dont worry)
+2023-08-30:
+  Barnet2:
+  - bugfix: Fixed Sulaco Drop Pod bay having space tiles in it.
+  Lumipharon:
+  - bugfix: fixed grass and inner cave sprites
+  lbnesquik:
+  - rscadd: Medical armor storage can now hold more things relevant to corpsmen duties
+  novaepee, OrcaOrca the spriter:
+  - rscadd: Add Hotaru armor, another Japanese-Inspired Armor! find it in the style
+      line tab!
+2023-08-31:
+  Blundir:
+  - bugfix: fixed order action icon being missing
+  - imageadd: updated hunter invis, pounce, leader assign, vote action icons.
+  QualityVan:
+  - bugfix: Oze sting cooldown ending doesn't tell you that you can neuro sting again
+  Xander3359:
+  - rscadd: Bench press is a great way to lose weight

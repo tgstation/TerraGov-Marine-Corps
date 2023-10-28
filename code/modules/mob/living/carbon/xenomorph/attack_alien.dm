@@ -118,7 +118,9 @@
 	else //Normal xenomorph friendship with benefits
 		log_combat(X, src, log)
 
-	apply_damage(damage, BRUTE, affecting, armor_block, TRUE, TRUE, TRUE, armor_pen) //This should slicey dicey
+	record_melee_damage(X, damage)
+	var/damage_done = apply_damage(damage, BRUTE, affecting, armor_block, TRUE, TRUE, TRUE, armor_pen) //This should slicey dicey
+	SEND_SIGNAL(X, COMSIG_XENOMORPH_POSTATTACK_LIVING, src, damage_done, damage_mod)
 
 	return TRUE
 
@@ -193,6 +195,8 @@
 
 	if (X.fortify || X.behemoth_charging)
 		return FALSE
+
+	SEND_SIGNAL(X, COMSIG_XENOMORPH_ATTACK_LIVING, src, damage_amount, X.xeno_caste.melee_damage * X.xeno_melee_damage_modifier)
 
 	switch(X.a_intent)
 		if(INTENT_HELP)

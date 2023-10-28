@@ -8,7 +8,7 @@
 
 	icon_state = "hivemind_marker"
 	bubble_icon = "alienroyal"
-	icon = 'icons/Xeno/48x48_Xenos.dmi'
+	icon = 'icons/Xeno/castes/hivemind.dmi'
 	status_flags = GODMODE | INCORPOREAL
 	resistance_flags = RESIST_ALL|BANISH_IMMUNE
 	pass_flags = PASS_LOW_STRUCTURE|PASSABLE|PASS_FIRE //to prevent hivemind eye to catch fire when crossing lava
@@ -30,16 +30,17 @@
 	move_on_shuttle = TRUE
 
 	hud_type = /datum/hud/hivemind
-	hud_possible = list(PLASMA_HUD, HEALTH_HUD_XENO, PHEROMONE_HUD, QUEEN_OVERWATCH_HUD)
+	hud_possible = list(PLASMA_HUD, HEALTH_HUD_XENO, PHEROMONE_HUD, XENO_RANK_HUD, QUEEN_OVERWATCH_HUD, XENO_BLESSING_HUD, XENO_EVASION_HUD)
 	///The core of our hivemind
-	var/obj/structure/xeno/hivemindcore/core
+	var/datum/weakref/core
 	///The minimum health we can have
 	var/minimum_health = -300
 
 /mob/living/carbon/xenomorph/hivemind/Initialize(mapload)
-	core = new(loc, hivenumber)
+	var/obj/structure/xeno/hivemindcore/new_core = new /obj/structure/xeno/hivemindcore(loc, hivenumber)
+	core = WEAKREF(new_core)
 	. = ..()
-	core.parent = src
+	new_core.parent = WEAKREF(src)
 	RegisterSignal(src, COMSIG_XENOMORPH_CORE_RETURN, PROC_REF(return_to_core))
 	RegisterSignal(src, COMSIG_XENOMORPH_HIVEMIND_CHANGE_FORM, PROC_REF(change_form))
 	update_action_buttons()
@@ -87,16 +88,16 @@
 	updatehealth()
 
 /mob/living/carbon/xenomorph/hivemind/Destroy()
-	if(!QDELETED(core))
-		QDEL_NULL(core)
-	else
-		core = null
+	var/obj/structure/xeno/hivemindcore/hive_core = get_core()
+	if(hive_core)
+		qdel(hive_core)
 	return ..()
 
 
 /mob/living/carbon/xenomorph/hivemind/on_death()
-	if(!QDELETED(core))
-		QDEL_NULL(core)
+	var/obj/structure/xeno/hivemindcore/hive_core = get_core()
+	if(!QDELETED(hive_core))
+		qdel(hive_core)
 	return ..()
 
 /mob/living/carbon/xenomorph/hivemind/gib()
@@ -180,7 +181,7 @@
 	for(var/obj/item/explosive/grenade/sticky/sticky_bomb in contents)
 		sticky_bomb.clean_refs()
 		sticky_bomb.forceMove(loc)
-	forceMove(get_turf(core))
+	forceMove(get_turf(get_core()))
 
 ///Start the teleportation process to send the hivemind manifestation to the selected turf
 /mob/living/carbon/xenomorph/hivemind/proc/start_teleport(turf/T)
@@ -303,18 +304,23 @@
 		return FALSE
 	return ..()
 
+/// Getter proc for the weakref'd core
+/mob/living/carbon/xenomorph/hivemind/proc/get_core()
+	return core?.resolve()
+
 // =================
 // hivemind core
 /obj/structure/xeno/hivemindcore
 	name = "hivemind core"
 	desc = "A very weird, pulsating node. This looks almost alive."
 	max_integrity = 600
-	icon = 'icons/Xeno/weeds.dmi'
-	icon_state = "weed_hivemind4"
-	var/mob/living/carbon/xenomorph/hivemind/parent
+	icon = 'icons/Xeno/1x1building.dmi'
+	icon_state = "hivemind_core"
 	xeno_structure_flags = CRITICAL_STRUCTURE|DEPART_DESTRUCTION_IMMUNE
 	///The cooldown of the alert hivemind gets when a hostile is near it's core
 	COOLDOWN_DECLARE(hivemind_proxy_alert_cooldown)
+	///The weakref to the parent hivemind mob that we're attached to
+	var/datum/weakref/parent
 
 /obj/structure/xeno/hivemindcore/Initialize(mapload)
 	. = ..()
@@ -325,19 +331,18 @@
 		RegisterSignal(turfs, COMSIG_ATOM_ENTERED, PROC_REF(hivemind_proxy_alert))
 
 /obj/structure/xeno/hivemindcore/Destroy()
-	if(isnull(parent))
-		return ..()
-	parent.playsound_local(parent, get_sfx("alien_help"), 30, TRUE)
-	to_chat(parent, span_xenohighdanger("Your core has been destroyed!"))
-	xeno_message("A sudden tremor ripples through the hive... \the [parent] has been slain!", "xenoannounce", 5, parent.hivenumber)
-	GLOB.key_to_time_of_role_death[parent.key] = world.time
-	GLOB.key_to_time_of_death[parent.key] = world.time
-	parent.ghostize()
-	if(!QDELETED(parent))
-		QDEL_NULL(parent)
-	else
-		parent = null
 	GLOB.hive_datums[hivenumber].hivemindcores -= src
+	var/mob/living/carbon/xenomorph/hivemind/our_parent = get_parent()
+	if(isnull(our_parent))
+		return ..()
+	our_parent.playsound_local(our_parent, get_sfx("alien_help"), 30, TRUE)
+	to_chat(our_parent, span_xenohighdanger("Your core has been destroyed!"))
+	xeno_message("A sudden tremor ripples through the hive... \the [our_parent] has been slain!", "xenoannounce", 5, our_parent.hivenumber)
+	GLOB.key_to_time_of_role_death[our_parent.key] = world.time
+	GLOB.key_to_time_of_death[our_parent.key] = world.time
+	our_parent.ghostize()
+	if(!QDELETED(our_parent))
+		qdel(our_parent)
 	return ..()
 
 //hivemind cores
@@ -354,16 +359,17 @@
 
 /obj/structure/xeno/hivemindcore/take_damage(damage_amount, damage_type, damage_flag, sound_effect, attack_dir, armour_penetration)
 	. = ..()
-	if(isnull(parent))
+	var/mob/living/carbon/xenomorph/hivemind/our_parent = get_parent()
+	if(isnull(our_parent))
 		return
 	var/health_percent = round((max_integrity / obj_integrity) * 100)
 	switch(health_percent)
 		if(-INFINITY to 25)
-			to_chat(parent, span_xenohighdanger("Your core is under attack, and dangerous low on health!"))
+			to_chat(our_parent, span_xenohighdanger("Your core is under attack, and dangerous low on health!"))
 		if(26 to 75)
-			to_chat(parent, span_xenodanger("Your core is under attack, and low on health!"))
+			to_chat(our_parent, span_xenodanger("Your core is under attack, and low on health!"))
 		if(76 to INFINITY)
-			to_chat(parent, span_xenodanger("Your core is under attack!"))
+			to_chat(our_parent, span_xenodanger("Your core is under attack!"))
 
 /**
  * Proc checks if we should alert the hivemind, and if it can, it does so.
@@ -387,6 +393,10 @@
 		if(X.hivenumber == hivenumber) //Trigger proxy alert only for hostile xenos
 			return
 
-	to_chat(parent, span_xenoannounce("Our [src.name] has detected a nearby hostile [hostile] at [get_area(hostile)] (X: [hostile.x], Y: [hostile.y])."))
-	SEND_SOUND(parent, 'sound/voice/alien_help1.ogg')
+	to_chat(get_parent(), span_xenoannounce("Our [src.name] has detected a nearby hostile [hostile] at [get_area(hostile)] (X: [hostile.x], Y: [hostile.y])."))
+	SEND_SOUND(get_parent(), 'sound/voice/alien_help1.ogg')
 	COOLDOWN_START(src, hivemind_proxy_alert_cooldown, XENO_HIVEMIND_DETECTION_COOLDOWN) //set the cooldown.
+
+/// Getter for the parent of this hive core
+/obj/structure/xeno/hivemindcore/proc/get_parent()
+	return parent?.resolve()

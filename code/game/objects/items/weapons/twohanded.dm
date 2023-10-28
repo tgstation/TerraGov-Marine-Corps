@@ -44,11 +44,16 @@
 			to_chat(user, span_warning("Your other hand can't hold [src]!"))
 			return FALSE
 
+	if(!place_offhand(user))
+		to_chat(user, span_warning("You cannot wield [src] right now."))
+		return FALSE
+
 	toggle_wielded(user, TRUE)
 	SEND_SIGNAL(src, COMSIG_ITEM_WIELD, user)
 	name = "[name] (Wielded)"
 	update_item_state()
-	place_offhand(user, name)
+	user.update_inv_l_hand()
+	user.update_inv_r_hand()
 	return TRUE
 
 
@@ -68,18 +73,18 @@
 	return TRUE
 
 
-/obj/item/proc/place_offhand(mob/user, item_name)
-	to_chat(user, span_notice("You grab [item_name] with both hands."))
+/obj/item/proc/place_offhand(mob/user)
 	var/obj/item/weapon/twohanded/offhand/offhand = new /obj/item/weapon/twohanded/offhand(user)
-	offhand.name = "[item_name] - offhand"
-	offhand.desc = "Your second grip on the [item_name]."
-	user.put_in_inactive_hand(offhand)
-	user.update_inv_l_hand()
-	user.update_inv_r_hand()
-
+	if(!user.put_in_inactive_hand(offhand))
+		qdel(offhand)
+		return FALSE
+	to_chat(user, span_notice("You grab [src] with both hands."))
+	offhand.name = "[name] - offhand"
+	offhand.desc = "Your second grip on [src]."
+	return TRUE
 
 /obj/item/proc/remove_offhand(mob/user)
-	to_chat(user, span_notice("You are now carrying [name] with one hand."))
+	to_chat(user, span_notice("You are now carrying [src] with one hand."))
 	var/obj/item/weapon/twohanded/offhand/offhand = user.get_inactive_held_item()
 	if(istype(offhand) && !QDELETED(offhand))
 		qdel(offhand)
@@ -149,6 +154,7 @@
 
 
 /obj/item/weapon/twohanded/offhand/dropped(mob/user)
+	. = ..()
 	return
 
 
@@ -207,6 +213,7 @@
 	force_wielded = 80
 	penetration = 35
 	flags_equip_slot = ITEM_SLOT_BACK
+	attack_speed = 15
 
 /obj/item/weapon/twohanded/fireaxe/som/Initialize(mapload)
 	. = ..()
@@ -415,12 +422,16 @@
 	. = ..()
 	AddComponent(/datum/component/harvester, 60, TRUE)
 
-/obj/item/weapon/twohanded/glaive/harvester/equipped(mob/user, slot)
+/obj/item/weapon/twohanded/glaive/harvester/wield(mob/user)
 	. = ..()
+	if(!.)
+		return
 	toggle_item_bump_attack(user, TRUE)
 
-/obj/item/weapon/twohanded/glaive/harvester/dropped(mob/user)
+/obj/item/weapon/twohanded/glaive/harvester/unwield(mob/user)
 	. = ..()
+	if(!.)
+		return
 	toggle_item_bump_attack(user, FALSE)
 
 /obj/item/weapon/twohanded/glaive/harvester/get_mechanics_info()

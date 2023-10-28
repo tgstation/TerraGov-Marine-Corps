@@ -23,11 +23,11 @@ GLOBAL_LIST_INIT(hugger_to_ammo, list(
 
 //List of huggie images
 GLOBAL_LIST_INIT(hugger_images_list,  list(
-		LARVAL_HUGGER = image('icons/mob/actions.dmi', icon_state = LARVAL_HUGGER),
-		CLAWED_HUGGER = image('icons/mob/actions.dmi', icon_state = CLAWED_HUGGER),
-		NEURO_HUGGER = image('icons/mob/actions.dmi', icon_state = NEURO_HUGGER ),
-		ACID_HUGGER = image('icons/mob/actions.dmi', icon_state = ACID_HUGGER),
-		RESIN_HUGGER = image('icons/mob/actions.dmi', icon_state = RESIN_HUGGER),
+		LARVAL_HUGGER = image('icons/Xeno/actions.dmi', icon_state = LARVAL_HUGGER),
+		CLAWED_HUGGER = image('icons/Xeno/actions.dmi', icon_state = CLAWED_HUGGER),
+		NEURO_HUGGER = image('icons/Xeno/actions.dmi', icon_state = NEURO_HUGGER ),
+		ACID_HUGGER = image('icons/Xeno/actions.dmi', icon_state = ACID_HUGGER),
+		RESIN_HUGGER = image('icons/Xeno/actions.dmi', icon_state = RESIN_HUGGER),
 		))
 
 // ***************************************
@@ -142,6 +142,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	playsound(T, "alien_resin_build", 25)
 	GLOB.round_statistics.trap_holes++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "carrier_traps")
+	owner.record_traps_created()
 	new /obj/structure/xeno/trap(T, owner.get_xeno_hivenumber())
 	to_chat(owner, span_xenonotice("We place a trap on the weeds, but it still needs to be filled."))
 
@@ -182,6 +183,9 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	playsound(caster, 'sound/voice/alien_drool2.ogg', 50, 0, 1)
 	succeed_activate()
 	add_cooldown()
+	if(owner.client)
+		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[owner.ckey]
+		personal_statistics.huggers_created++
 
 // ***************************************
 // *********** Drop all hugger, panic button
@@ -300,6 +304,9 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	desc = "Build a hugger turret"
 	plasma_cost = 800
 	cooldown_timer = 5 MINUTES
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_BUILD_HUGGER_TURRET,
+	)
 
 /datum/action/xeno_action/build_hugger_turret/can_use_action(silent, override_flags)
 	. = ..()

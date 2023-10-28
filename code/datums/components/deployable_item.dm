@@ -123,6 +123,9 @@
 	var/obj/deployed_machine = source //The machinethat is undeploying should be the the one sending the Signal
 	var/obj/item/undeployed_item = deployed_machine.get_internal_item() //Item the machine is undeploying
 
+	if(!undeployed_item)
+		CRASH("[src] is missing it's internal item.")
+
 	if(!user)
 		CRASH("[source] has sent the signal COMSIG_ITEM_UNDEPLOY to [undeployed_item] without the arg 'user'")
 	if(!ishuman(user))

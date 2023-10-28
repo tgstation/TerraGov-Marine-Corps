@@ -65,7 +65,7 @@
 /datum/action/xeno_action/activable/cresttoss
 	name = "Crest Toss"
 	action_icon_state = "cresttoss"
-	desc = "Fling an adjacent target over and behind you. Also works over barricades."
+	desc = "Fling an adjacent target over and behind you, or away from you while on harm intent. Also works over barricades."
 	ability_name = "crest toss"
 	plasma_cost = 75
 	cooldown_timer = 12 SECONDS

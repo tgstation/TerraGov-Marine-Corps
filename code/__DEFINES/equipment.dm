@@ -32,37 +32,33 @@
 
 //flags_atom
 
-#define NOINTERACT (1<<0)		// You can't interact with it, at all. Useful when doing certain animations.
-#define CONDUCT (1<<1)		// conducts electricity (metal etc.)
-#define ON_BORDER (1<<2)		// 'border object'. item has priority to check when entering or leaving
-#define NOBLOODY (1<<3)		// Don't want a blood overlay on this one.
-#define DIRLOCK (1<<4)		// movable atom won't change direction when Moving()ing. Useful for items that have several dir states.
-#define INITIALIZED (1<<5)  	//Whether /atom/Initialize() has already run for the object
-#define NODECONSTRUCT (1<<6)
-#define PREVENT_CLICK_UNDER (1<<7)		//Prevent clicking things below it on the same turf
-#define CRITICAL_ATOM (1<<8)		//Use when this shouldn't be obscured by large icons.
+#define UNUSED_RESERVATION_TURF_1 (1<<0)
+#define AI_BLOCKED (1<<1) //Prevent ai from going onto this turf
+#define NOINTERACT (1<<2)		// You can't interact with it, at all. Useful when doing certain animations.
+#define CONDUCT (1<<3)		// conducts electricity (metal etc.)
+#define ON_BORDER (1<<4)		// 'border object'. item has priority to check when entering or leaving
+#define NOBLOODY (1<<5)		// Don't want a blood overlay on this one.
+#define DIRLOCK (1<<6)		// movable atom won't change direction when Moving()ing. Useful for items that have several dir states.
+#define INITIALIZED (1<<7)  	//Whether /atom/Initialize() has already run for the object
+#define NODECONSTRUCT (1<<8)
+#define PREVENT_CLICK_UNDER (1<<9)		//Prevent clicking things below it on the same turf
+#define CRITICAL_ATOM (1<<10)		//Use when this shouldn't be obscured by large icons.
 ///Does not cascade explosions to its contents.
-#define PREVENT_CONTENTS_EXPLOSION (1<<9)
+#define PREVENT_CONTENTS_EXPLOSION (1<<11)
 /// was this spawned by an admin? used for stat tracking stuff.
-#define ADMIN_SPAWNED (1<<10)
+#define ADMIN_SPAWNED (1<<12)
 /// Can this atom be bumped attack
-#define BUMP_ATTACKABLE (1<<11)
+#define BUMP_ATTACKABLE (1<<13)
 ///This atom will not be qdeled when a shuttle lands on it; it will just move onto the shuttle tile. It will stay on the ground when the shuttle takes off
-#define SHUTTLE_IMMUNE (1<<12)
+#define SHUTTLE_IMMUNE (1<<14)
 /// Should we use the initial icon for display? Mostly used by overlay only objects
-#define HTML_USE_INITAL_ICON_1 (1<<13)
-
-//turf-only flags
-#define AI_BLOCKED (1<<0) //Prevent ai from going onto this turf
-#define UNUSED_RESERVATION_TURF_1 (1<<1)
-/// If a turf can be made dirty at roundstart. This is also used in areas.
-#define CAN_BE_DIRTY_1 (1<<2)
+#define HTML_USE_INITAL_ICON_1 (1<<15)
 
 //==========================================================================================
 
 //flags_barrier
-#define HANDLE_BARRIER_CHANCE 1
-#define HANDLE_BARRIER_BLOCK 2
+#define HANDLE_BARRIER_CHANCE (1<<0)
+#define HANDLE_BARRIER_BLOCK (1<<1)
 
 
 //bitflags that were previously under flags_atom, these only apply to items.
@@ -89,6 +85,12 @@
 #define FULLY_WIELDED (1<<18) //If the item is properly wielded. Used for guns
 ///If a holster has underlay sprites
 #define HAS_UNDERLAY (1<<19)
+///is this item equipped into an inventory slot or hand of a mob?
+#define IN_INVENTORY (1<<20)
+
+//flags_storage
+///If a storage container can be restocked into a vendor
+#define BYPASS_VENDOR_CHECK (1<<0)
 
 //==========================================================================================
 
@@ -286,6 +288,8 @@ GLOBAL_LIST_INIT(slot_str_to_slot, list(
 			. = ITEM_SLOT_FEET
 		if(SLOT_WEAR_SUIT)
 			. = ITEM_SLOT_OCLOTHING
+		if(SLOT_S_STORE)
+			. = ITEM_SLOT_SUITSTORE
 		if(SLOT_W_UNIFORM)
 			. = ITEM_SLOT_ICLOTHING
 		if(SLOT_R_STORE)
@@ -426,6 +430,7 @@ GLOBAL_LIST_INIT(slot_str_to_slot, list(
 	SLOT_IN_BACKPACK\
 	)
 
+///Each slot you can draw from, used and messed with in your preferences.
 #define SLOT_DRAW_ORDER list(\
 	SLOT_IN_HOLSTER,\
 	SLOT_IN_S_HOLSTER,\
@@ -535,8 +540,12 @@ GLOBAL_LIST_INIT(slot_str_to_slot, list(
 			return SLOT_IN_HEAD
 		if("Left Pocket")
 			return SLOT_L_STORE
+		if("Left Pocket Inside")
+			return SLOT_IN_L_POUCH
 		if("Right Pocket")
 			return SLOT_R_STORE
+		if("Right Pocket Inside")
+			return SLOT_IN_R_POUCH
 		if("Webbing")
 			return SLOT_IN_ACCESSORY
 		if("Belt Inside")
@@ -547,6 +556,8 @@ GLOBAL_LIST_INIT(slot_str_to_slot, list(
 			return SLOT_IN_S_HOLSTER
 		if("Back Holster")
 			return SLOT_IN_B_HOLSTER
+		if("Active Storage")
+			return SLOT_IN_STORAGE
 
 /proc/slot_flag_to_fluff(slot)
 	switch(slot)
@@ -568,8 +579,12 @@ GLOBAL_LIST_INIT(slot_str_to_slot, list(
 			return "Helmet"
 		if(SLOT_L_STORE)
 			return "Left Pocket"
+		if(SLOT_IN_L_POUCH)
+			return "Left Pocket Inside"
 		if(SLOT_R_STORE)
 			return "Right Pocket"
+		if(SLOT_IN_R_POUCH)
+			return "Right Pocket Inside"
 		if(SLOT_IN_ACCESSORY)
 			return "Webbing"
 		if(SLOT_IN_HOLSTER)
@@ -578,3 +593,6 @@ GLOBAL_LIST_INIT(slot_str_to_slot, list(
 			return "Suit Storage Holster"
 		if(SLOT_IN_B_HOLSTER)
 			return "Back Holster"
+		if(SLOT_IN_STORAGE)
+			return "Active Storage"
+

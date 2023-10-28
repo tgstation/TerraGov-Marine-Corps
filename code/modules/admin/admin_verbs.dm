@@ -937,7 +937,7 @@
 					current_ticket.MessageNoRecipient(msg)
 				return
 
-	if(handle_spam_prevention(msg, MUTE_ADMINHELP))
+	if(handle_spam_prevention(msg, MUTE_ADMINHELP, MESSAGE_FLAG_MENTOR|MESSAGE_FLAG_ADMIN))
 		return
 
 	//clean the message if it's not sent by a high-rank admin
@@ -1305,7 +1305,7 @@
 	togglebuildmode(mob)
 
 /client/proc/toggle_admin_tads()
-	set category = "Fun"
+	set category = "Admin.Fun"
 	set name = "Toggle Tadpole Restrictions"
 
 	if(!check_rights(R_FUN))

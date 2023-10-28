@@ -348,14 +348,28 @@
 	flags_inventory = BLOCKSHARPOBJ
 	flags_inv_hide = HIDEEARS
 	flags_armor_features = ARMOR_NO_DECAP
-	attachments_by_slot = list(ATTACHMENT_SLOT_HEAD_MODULE)
-	attachments_allowed = list(/obj/item/armor_module/module/binoculars)
-	starting_attachments = list(/obj/item/armor_module/module/binoculars)
+	attachments_by_slot = list(
+		ATTACHMENT_SLOT_STORAGE,
+		ATTACHMENT_SLOT_HEAD_MODULE,
+	)
+	attachments_allowed = list(
+		/obj/item/armor_module/module/binoculars,
+		/obj/item/armor_module/storage/helmet,
+	)
+	starting_attachments = list(
+		/obj/item/armor_module/module/binoculars,
+		/obj/item/armor_module/storage/helmet,
+	)
 
 /obj/item/clothing/head/frelancer/beret
 	name = "\improper armored Freelancer beret"
 	icon_state = "freelancer_beret"
-	starting_attachments = list()
+	attachments_allowed = list(
+		/obj/item/armor_module/storage/helmet,
+	)
+	starting_attachments = list(
+		/obj/item/armor_module/storage/helmet,
+	)
 
 /obj/item/clothing/head/militia
 	name = "\improper armored militia cowl"

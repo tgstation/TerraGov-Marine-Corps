@@ -153,7 +153,7 @@ Administrative related.
 /datum/config_entry/number/lobby_countdown
 	config_entry_value = 180
 
-/datum/config_entry/number/round_end_countdown
+/datum/config_entry/number/mission_end_countdown
 	config_entry_value = 120
 
 /datum/config_entry/flag/see_own_notes

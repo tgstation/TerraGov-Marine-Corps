@@ -147,8 +147,23 @@
 //Since Xenos change names like they change shoes, we need somewhere to hammer in all those legos
 //We set their name first, then update their real_name AND their mind name
 /mob/living/carbon/xenomorph/proc/generate_name()
+	var/playtime_mins = client?.get_exp(xeno_caste.caste_name)
+	var/rank_name
+	switch(playtime_mins)
+		if(0 to 600)
+			rank_name = "Hatchling"
+		if(601 to 3000)
+			rank_name = "Young"
+		if(3001 to 9000)
+			rank_name = "Mature"
+		if(9001 to 18000)
+			rank_name = "Elder"
+		if(18001 to INFINITY)
+			rank_name = "Ancient"
+		else
+			rank_name = "Hatchling"
 	var/prefix = (hive.prefix || xeno_caste.upgrade_name) ? "[hive.prefix][xeno_caste.upgrade_name] " : ""
-	name = prefix + "[xeno_caste.display_name] ([nicknumber])"
+	name = prefix + "[rank_name ? "[rank_name] " : ""][xeno_caste.display_name] ([nicknumber])"
 
 	//Update linked data so they show up properly
 	real_name = name
@@ -159,46 +174,45 @@
 	switch(upgrade)
 		if(XENO_UPGRADE_INVALID)
 			return -1
-		if(XENO_UPGRADE_ZERO)
+		if(XENO_UPGRADE_NORMAL)
 			return 0
-		if(XENO_UPGRADE_ONE)
+		if(XENO_UPGRADE_PRIMO)
 			return 1
-		if(XENO_UPGRADE_TWO)
+
+///Returns the playtime as a number, used for rank icons
+/mob/living/carbon/xenomorph/proc/playtime_as_number()
+	var/playtime_mins = client?.get_exp(xeno_caste.caste_name)
+	switch(playtime_mins)
+		if(0 to 600)
+			return 0
+		if(601 to 3000)
+			return 1
+		if(3001 to 9000)
 			return 2
-		if(XENO_UPGRADE_THREE)
+		if(9001 to 18000)
 			return 3
-		if(XENO_UPGRADE_FOUR)
+		if(18001 to INFINITY)
 			return 4
+		else
+			return 0
 
 /mob/living/carbon/xenomorph/proc/upgrade_next()
 	switch(upgrade)
 		if(XENO_UPGRADE_INVALID)
 			return XENO_UPGRADE_INVALID
-		if(XENO_UPGRADE_ZERO)
-			return XENO_UPGRADE_ONE
-		if(XENO_UPGRADE_ONE)
-			return XENO_UPGRADE_TWO
-		if(XENO_UPGRADE_TWO)
-			return XENO_UPGRADE_THREE
-		if(XENO_UPGRADE_THREE)
-			return XENO_UPGRADE_FOUR
-		if(XENO_UPGRADE_FOUR)
-			return XENO_UPGRADE_FOUR
+		if(XENO_UPGRADE_NORMAL)
+			return XENO_UPGRADE_PRIMO
+		if(XENO_UPGRADE_PRIMO)
+			return XENO_UPGRADE_PRIMO
 
 /mob/living/carbon/xenomorph/proc/upgrade_prev()
 	switch(upgrade)
 		if(XENO_UPGRADE_INVALID)
 			return XENO_UPGRADE_INVALID
-		if(XENO_UPGRADE_ZERO)
-			return XENO_UPGRADE_ZERO
-		if(XENO_UPGRADE_ONE)
-			return XENO_UPGRADE_ZERO
-		if(XENO_UPGRADE_TWO)
-			return XENO_UPGRADE_ONE
-		if(XENO_UPGRADE_THREE)
-			return XENO_UPGRADE_TWO
-		if(XENO_UPGRADE_FOUR)
-			return XENO_UPGRADE_THREE
+		if(XENO_UPGRADE_NORMAL)
+			return XENO_UPGRADE_NORMAL
+		if(XENO_UPGRADE_PRIMO)
+			return XENO_UPGRADE_NORMAL
 
 /mob/living/carbon/xenomorph/proc/setup_job()
 	var/datum/job/xenomorph/xeno_job = SSjob.type_occupations[xeno_caste.job_type]
@@ -395,6 +409,11 @@
 	if(is_zoomed)
 		zoom_out()
 	handle_weeds_on_movement()
+	return ..()
+
+/mob/living/carbon/xenomorph/CanAllowThrough(atom/movable/mover, turf/target)
+	if(mover.throwing && ismob(mover) && isxeno(mover.thrower)) //xenos can throw mobs past other xenos
+		return TRUE
 	return ..()
 
 /mob/living/carbon/xenomorph/set_stat(new_stat)

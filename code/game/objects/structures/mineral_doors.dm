@@ -19,9 +19,15 @@
 	var/material_type
 
 /obj/structure/mineral_door/Initialize(mapload)
-	. = ..()
 	if((locate(/mob/living) in loc) && !open)	//If we build a door below ourselves, it starts open.
 		toggle_state()
+	/*
+	We are calling parent later because if we toggle state, the opacity changes only to change to
+	non opaque after the parent procs do their thing, this is an issue because this changes the
+	directional opacity of the turf below to be opaque from all sides, which screws with
+	line of sight because the turf below the door is considered opaque, when it shouldn't be.
+	*/
+	return ..()
 
 /obj/structure/mineral_door/Bumped(atom/user)
 	. = ..()

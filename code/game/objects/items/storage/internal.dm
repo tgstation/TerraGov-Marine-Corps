@@ -7,6 +7,9 @@
 /obj/item/storage/internal/Initialize(mapload)
 	. = ..()
 	master_item = loc
+	if(!istype(master_item))
+		master_item = null
+		return INITIALIZE_HINT_QDEL
 	name = master_item.name
 	forceMove(master_item)
 	verbs -= /obj/item/verb/verb_pickup	//make sure this is never picked up.
@@ -125,12 +128,12 @@
 
 /obj/item/storage/internal/handle_item_insertion(obj/item/W, prevent_warning = FALSE)
 	. = ..()
-	master_item.on_pocket_insertion()
+	master_item?.on_pocket_insertion()
 
 
 /obj/item/storage/internal/remove_from_storage(obj/item/W, atom/new_location, mob/user)
 	. = ..()
-	master_item.on_pocket_removal()
+	master_item?.on_pocket_removal()
 
 
 ///things to do when an item is inserted in the obj's internal pocket

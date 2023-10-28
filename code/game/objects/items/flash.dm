@@ -1,6 +1,7 @@
 /obj/item/flash
 	name = "flash"
 	desc = "Used for blinding and being an asshole."
+	icon = 'icons/obj/device.dmi'
 	icon_state = "flash"
 	item_state = "flashbang"	//looks exactly like a flash (and nothing like a flashbang)
 	throwforce = 5

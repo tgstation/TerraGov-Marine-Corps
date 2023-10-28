@@ -664,8 +664,10 @@
 
 	//More accurate comparison between absolute paths.
 	if(isstorage(item_to_stock)) //Nice try, specialists/engis
-		display_message_and_visuals(user, show_feedback, "Can't restock containers!", VENDING_RESTOCK_DENY)
-		return FALSE
+		var/obj/item/storage/storage_to_stock = item_to_stock
+		if(!(storage_to_stock.flags_storage & BYPASS_VENDOR_CHECK)) //If your storage has this flag, it can be restocked
+			display_message_and_visuals(user, show_feedback, "Can't restock containers!", VENDING_RESTOCK_DENY)
+			return FALSE
 
 	else if(isgrenade(item_to_stock))
 		var/obj/item/explosive/grenade/grenade = item_to_stock
@@ -746,8 +748,8 @@
 /obj/machinery/vending/proc/stock_vacuum(mob/user)
 	var/stocked = FALSE
 
-	for(var/obj/item/I in loc)
-		stocked = stock(I, null, FALSE) ? TRUE : stocked
+	for(var/obj/item/item_being_restocked in range(1, src))
+		stocked = stock(item_to_stock = item_being_restocked, user = null, show_feedback = FALSE) ? TRUE : stocked
 
 	stocked ? display_message_and_visuals(user, TRUE, "Automatically restocked all items from outlet.", VENDING_RESTOCK_ACCEPT) : null
 

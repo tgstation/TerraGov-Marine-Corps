@@ -171,17 +171,6 @@ GLOBAL_DATUM_INIT(datacore, /datum/datacore, new)
 
 	var/id = add_leading("[num2hex(rand(1, 1.6777215E7))]", 6, "0")	//this was the best they could come up with? A large random number? *sigh*
 
-	var/image = get_id_photo(H, H.client, show_directions)
-	var/datum/picture/pf = new
-	var/datum/picture/ps = new
-	pf.picture_name = "[H]"
-	ps.picture_name = "[H]"
-	pf.picture_desc = "This is [H]."
-	ps.picture_desc = "This is [H]."
-	pf.picture_image = icon(image, dir = SOUTH)
-	ps.picture_image = icon(image, dir = WEST)
-	var/obj/item/photo/photo_front = new(null, pf)
-	var/obj/item/photo/photo_side = new(null, ps)
 	//General Record
 	var/datum/data/record/G = new()
 	G.fields["id"] = id
@@ -195,8 +184,6 @@ GLOBAL_DATUM_INIT(datacore, /datum/datacore, new)
 	G.fields["species"] = H.get_species()
 	G.fields["citizenship"] = H.citizenship
 	G.fields["religion"] = H.religion
-	G.fields["photo_front"] = photo_front
-	G.fields["photo_side"] = photo_side
 	if(H.gen_record)
 		G.fields["notes"] = H.gen_record
 	else
@@ -241,17 +228,6 @@ GLOBAL_DATUM_INIT(datacore, /datum/datacore, new)
 	else
 		S.fields["notes"] = "No notes."
 	security += S
-
-
-/proc/get_id_photo(mob/living/carbon/human/H, client/C, show_directions = list(SOUTH))
-	var/datum/job/J = H.job
-	var/datum/preferences/P
-	if(!C)
-		C = H.client
-	if(C)
-		P = C.prefs
-	return get_flat_human_icon(null, J, P, DUMMY_HUMAN_SLOT_MANIFEST, show_directions)
-
 
 /proc/CreateGeneralRecord()
 	var/datum/data/record/G = new /datum/data/record()

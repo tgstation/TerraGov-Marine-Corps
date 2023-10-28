@@ -36,8 +36,8 @@
 		return
 
 	var/t
-	t += "<BR><HR><A href='?src=\ref[src];update=1'>Refresh</A>"
-	t += "<BR><HR><A href='?src=\ref[src];close=1'>Close</A>"
+	t += "<BR><HR><A href='?src=[text_ref(src)];update=1'>Refresh</A>"
+	t += "<BR><HR><A href='?src=[text_ref(src)];close=1'>Close</A>"
 
 	if(!powernet)
 		t += span_warning(" No connection")

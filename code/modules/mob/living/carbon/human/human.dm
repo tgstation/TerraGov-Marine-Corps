@@ -377,7 +377,7 @@
 				to_chat(usr, "<b>Major Crimes:</b> [security_record.fields["ma_crim"]]")
 				to_chat(usr, "<b>Details:</b> [security_record.fields["ma_crim_d"]]")
 				to_chat(usr, "<b>Notes:</b> [security_record.fields["notes"]]")
-				to_chat(usr, "<a href='?src=\ref[src];secrecordComment=`'>\[View Comment Log\]</a>")
+				to_chat(usr, "<a href='?src=[text_ref(src)];secrecordComment=`'>\[View Comment Log\]</a>")
 				return
 
 		to_chat(usr, span_warning("Unable to locate a data core entry for this person."))
@@ -409,7 +409,7 @@
 					counter++
 				if(counter == 1)
 					to_chat(usr, "No comment found")
-				to_chat(usr, "<a href='?src=\ref[src];secrecordadd=`'>\[Add comment\]</a>")
+				to_chat(usr, "<a href='?src=[text_ref(src)];secrecordadd=`'>\[Add comment\]</a>")
 				return
 
 		to_chat(usr, span_warning("Unable to locate a data core entry for this person."))
@@ -506,7 +506,7 @@
 				to_chat(usr, "<b>Major Disabilities:</b> [medical_record.fields["ma_dis"]]")
 				to_chat(usr, "<b>Details:</b> [medical_record.fields["ma_dis_d"]]")
 				to_chat(usr, "<b>Notes:</b> [medical_record.fields["notes"]]")
-				to_chat(usr, "<a href='?src=\ref[src];medrecordComment=`'>\[View Comment Log\]</a>")
+				to_chat(usr, "<a href='?src=[text_ref(src)];medrecordComment=`'>\[View Comment Log\]</a>")
 				return
 
 		to_chat(usr, span_warning("Unable to locate a data core entry for this person."))
@@ -539,7 +539,7 @@
 					counter++
 				if(counter == 1)
 					to_chat(usr, "No comment found")
-				to_chat(usr, "<a href='?src=\ref[src];medrecordadd=`'>\[Add comment\]</a>")
+				to_chat(usr, "<a href='?src=[text_ref(src)];medrecordadd=`'>\[Add comment\]</a>")
 				return
 
 		to_chat(usr, span_warning("Unable to locate a data core entry for this person."))
@@ -798,7 +798,7 @@
 	else
 		R = new /datum/reagents(1000)
 	reagents = R
-	R.my_atom = src
+	R.my_atom = WEAKREF(src)
 
 	species.create_organs(src)
 

@@ -1,7 +1,9 @@
 /obj/machinery/computer/camera_advanced
 	name = "advanced camera console"
 	desc = "Used to access the various cameras on the ship."
-	icon_state = "cameras"
+	icon_state = "computer_small"
+	screen_overlay = "cameras"
+	broken_icon = "computer_small_red_broken"
 	interaction_flags = INTERACT_MACHINE_NOSILICON
 	var/list/z_lock = list() // Lock use to these z levels
 	var/lock_override = NONE
@@ -304,20 +306,29 @@
 //This one's for CAS
 /mob/camera/aiEye/remote/hud
 	icon_state = "nothing"
+	faction = FACTION_TERRAGOV
+	///Visible icon state
 	var/icon_state_on = "cas_camera"
-	hud_possible = list(SQUAD_HUD_TERRAGOV)
 
-/mob/camera/aiEye/remote/hud/Initialize(mapload)
+/mob/camera/aiEye/remote/hud/Initialize(mapload, new_faction)
 	. = ..()
+	if(new_faction)
+		faction = new_faction
+	hud_possible = list(GLOB.faction_to_squad_hud[faction])
 	prepare_huds()
-	var/datum/atom_hud/squad/squad_hud = GLOB.huds[DATA_HUD_SQUAD_TERRAGOV]
+	var/datum/atom_hud/squad/squad_hud = GLOB.huds[GLOB.faction_to_data_hud[faction]]
 	squad_hud.add_to_hud(src)
 
-	var/image/holder = hud_list[SQUAD_HUD_TERRAGOV]
+	var/image/holder = hud_list[hud_possible[1]]
 	if(!holder)
 		return
 	holder.icon = icon
 	holder.icon_state = icon_state_on
+
+/mob/camera/aiEye/remote/hud/Destroy()
+	var/datum/atom_hud/squad/squad_hud = GLOB.huds[GLOB.faction_to_data_hud[faction]]
+	squad_hud.remove_from_hud(src)
+	return ..()
 
 //This one's for overwatch/CIC
 /mob/camera/aiEye/remote/hud/overwatch
@@ -326,7 +337,7 @@
 	var/list/current_aura_list = list()
 
 /mob/camera/aiEye/remote/hud/overwatch/Initialize(mapload)
-	..()
+	. = ..()
 	RegisterSignal(src, COMSIG_AURA_STARTED, PROC_REF(add_emitted_auras))
 	RegisterSignal(src, COMSIG_AURA_FINISHED, PROC_REF(remove_emitted_auras))
 
@@ -344,14 +355,13 @@
 
 ///Applies order overlays (hold/move/focus) depending on what we have. Only visible to marines.
 /mob/camera/aiEye/remote/hud/overwatch/proc/update_aura_overlays(source, list/new_auras)
-	var/image/holder = hud_list[SQUAD_HUD_TERRAGOV]
+	var/image/holder = hud_list[GLOB.faction_to_squad_hud[faction]]
 	if(!holder)
 		return
 	holder.overlays.Cut()
 	for(var/aura_type in current_aura_list)
 		holder.overlays += image('icons/mob/hud.dmi', src, "hud[aura_type]")
 		holder.overlays += image('icons/mob/hud.dmi', src, "hud[aura_type]aura")
-
 
 /datum/action/innate/camera_off
 	name = "End Camera View"

@@ -65,12 +65,6 @@ GLOBAL_VAR(restart_counter)
 		return
 #endif
 
-#ifdef USE_EXTOOLS
-	var/extools = world.GetConfig("env", "EXTOOLS_DLL") || (world.system_type == MS_WINDOWS ? "./byond-extools.dll" : "./libbyond-extools.so")
-	if(fexists(extools))
-		LIBCALL(extools, "maptick_initialize")()
-#endif
-
 	Profile(PROFILE_RESTART)
 	Profile(PROFILE_RESTART, type = "sendmaps")
 
@@ -146,7 +140,8 @@ GLOBAL_VAR(restart_counter)
 	//trigger things to run the whole process
 	Master.sleep_offline_after_initializations = FALSE
 	SSticker.start_immediately = TRUE
-	CONFIG_SET(number/round_end_countdown, 0)
+	SSticker.bypass_checks = TRUE
+	CONFIG_SET(number/mission_end_countdown, 0)
 	var/datum/callback/cb
 #ifdef UNIT_TESTS
 	cb = CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(RunUnitTests))
