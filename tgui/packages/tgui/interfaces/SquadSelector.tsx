@@ -17,13 +17,13 @@ type SquadEntry = {
 export const SquadSelector = (props, context) => {
   const { act, data } = useBackend<SquadSelectorData>(context);
   const { active_squads } = data;
-  const [selectedSquad, setselectedSquad] = useLocalState<string>(
+  const [selectedSquad, setSelectedSquad] = useLocalState<string>(
     context,
     'selectedSquad',
     ''
   );
 
-  const selectedSquadEntry = active_squads.find(
+  const selectedSquadEntry = active_squads?.find(
     (i) => i.name === selectedSquad
   );
 
@@ -37,7 +37,7 @@ export const SquadSelector = (props, context) => {
                 <Stack.Item key={squad.name}>
                   <Button
                     width={'90px'}
-                    onClick={() => setselectedSquad(squad.name)}
+                    onClick={() => setSelectedSquad(squad.name)}
                     backgroundColor={
                       selectedSquad === squad.name ? null : squad.color
                     }

@@ -455,7 +455,11 @@ GLOBAL_LIST_EMPTY_TYPED(custom_squad_radio_freqs, /datum/squad)
 	SSjob.squads[new_squad.id] = new_squad
 	LAZYSET(SSjob.squads_by_name[new_squad.faction], new_squad.name, new_squad)
 	creator.change_squad(new_squad.id)
-	new_squad.promote_leader(creator)
+	for(var/obj/item/encryptionkey/key in GLOB.custom_updating_encryptkeys)
+		if(!istype(key.loc, /obj/item/radio/headset))
+			continue
+		var/obj/item/radio/headset/head = key.loc
+		head.recalculateChannels()
 	return new_squad
 
 /// Color_hex = ui_key assoc list

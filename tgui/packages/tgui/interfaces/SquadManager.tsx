@@ -3,7 +3,7 @@ import { Window } from '../layouts';
 import { useBackend, useLocalState } from '../backend';
 
 type SquadManagerData = {
-  active_squads: SquadData[];
+  active_squads?: SquadData[];
   valid_colors: string[];
 };
 
@@ -39,7 +39,7 @@ export const SquadManager = (props, context) => {
         <Stack>
           <Stack.Item>
             <Stack vertical>
-              {active_squads.map((squad) => (
+              {active_squads?.map((squad) => (
                 <Stack.Item key={squad.name}>
                   <Box
                     backgroundColor={squad.color}

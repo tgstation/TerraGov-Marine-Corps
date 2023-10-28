@@ -1226,7 +1226,7 @@
 	if(!id_to_del)
 		return
 	qdel(SSjob.squads[id_to_del])
-	var/msg = "[key_name_admin(usr)] has deleted a squad. ID:[id_to_del]."
+	var/msg = "[key_name(usr)] has deleted a squad. ID:[id_to_del]."
 	message_admins(msg)
 	log_admin(msg)
 

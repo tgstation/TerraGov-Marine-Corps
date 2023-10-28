@@ -31,7 +31,7 @@
 		to_chat(user, span_danger("You must be a squad leader to edit squads."))
 		return
 
-	if(!user.assigned_squad.type == /datum/squad) //means its a generated squad
+	if(user.assigned_squad?.type == /datum/squad) //means its a generated squad
 		to_chat(user, span_danger("You are already in a squad that has been created."))
 		return
 
