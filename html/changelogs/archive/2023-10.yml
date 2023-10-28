@@ -361,3 +361,22 @@
   Lewdcifer:
   - bugfix: Fixed an issue where headwear with an emissive visor would display when
       in hand, but not when worn.
+2023-10-28:
+  Aporhtonoma:
+  - balance: razor wires cost 8 iron rods 2 barbed to make
+  - bugfix: fixes infinite barbed duplication
+  ClosetedSkeletonGH:
+  - balance: Removes barrel charger from MG-27
+  Lewdcifer:
+  - balance: Alkysine now slightly heals ear damage.
+  Lumipharon:
+  - bugfix: fixed map table interaction checks always passing
+  - bugfix: You can no longer jump while stunned or buckled
+  - bugfix: You can no longer attack with a strapped weapon while stunned
+  - code_imp: Some more campaign backend work added
+  - bugfix: fixed SOM overwatch minimap showing marines instead of SOM
+  - bugfix: The SOM cic eye is now correctly flagged to SOM huds
+  - balance: Reduced brick damage somewhat
+  - bugfix: fixed a rare defender bug
+  Waselon:
+  - bugfix: baneling now can overwatch xenos if died from normal death

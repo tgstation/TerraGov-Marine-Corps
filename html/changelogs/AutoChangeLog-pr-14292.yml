@@ -1,5 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - bugfix: "You can no longer jump while stunned or buckled"
-  - bugfix: "You can no longer attack with a strapped weapon while stunned"
