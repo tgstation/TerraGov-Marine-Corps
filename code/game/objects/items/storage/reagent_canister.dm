@@ -1,15 +1,14 @@
 //Reagent Canister pouch. Including the canister inside the pouch, as well as the pouch item.
 
 /obj/item/reagent_containers/glass/reagent_canister // See the Reagent Canister Pouch, this is just the container
-	name = "Reagent canister"
-	desc = "A pressurized container. The inner part of a pressurized reagent canister pouch. Only compatible with its pouch, machinery or a storage tank."
+	name = "\improper Pressurized Reagent Container"
+	desc = "A pressurized container. The inner part of a pressurized reagent canister pouch. Too large to fit in anything but the pouch it comes with."
 	icon_state = "pressurized_reagent_container"
 	item_icons = list(
 		slot_l_hand_str = 'icons/mob/inhands/equipment/tanks_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/equipment/tanks_right.dmi',
 	)
 	item_state = "anesthetic"
-	amount_per_transfer_from_this = 0
 	possible_transfer_amounts = null
 	volume = 1200 //The equivalent of 5 pill bottles worth of BKTT
 	w_class = WEIGHT_CLASS_BULKY
@@ -24,12 +23,12 @@
 	..()
 
 /obj/item/storage/pouch/pressurized_reagent_pouch //The actual pouch itself and all its function
-	name = "Pressurized Reagent Pouch"
+	name = "\improper Pressurized Reagent Pouch"
 	w_class = WEIGHT_CLASS_BULKY
 	max_w_class = WEIGHT_CLASS_BULKY
 	allow_drawing_method = TRUE
 	icon_state = "reagent_pouch"
-	desc = "A pressurized reagent pouch. It is used to refill custom injectors, and can also store one.\
+	desc = "A very large reagent pouch. It is used to refill custom injectors, and can also store one.\
 	You can Alt-Click to remove the canister in order to refill it."
 	can_hold = list(/obj/item/reagent_containers/hypospray)
 	flags_item = NOBLUDGEON
@@ -101,12 +100,24 @@
 			return
 
 	if(istype(held_item, /obj/item/reagent_containers/hypospray))
-		fill_autoinjector(held_item)
+		fill_autoinjector(held_item, user)
 		return
 
-///Fills the hypo that gets stored in the pouch
-/obj/item/storage/pouch/pressurized_reagent_pouch/proc/fill_autoinjector(obj/item/reagent_containers/hypospray/autoinjector)
-	if(inner && inner.reagents.total_volume > 0)
+/obj/item/storage/pouch/pressurized_reagent_pouch/attackby_alternate(obj/item/held_item, mob/user, params)
+	. = ..()
+	if(istype(held_item, /obj/item/reagent_containers/hypospray))
+		fill_autoinjector(held_item, user)
+		return
+
+///Fills the hypo that gets stored in the pouch from the internal storage tank. Returns FALSE if you fail to refill your injector
+/obj/item/storage/pouch/pressurized_reagent_pouch/proc/fill_autoinjector(obj/item/reagent_containers/hypospray/autoinjector, mob/user)
+	if(!inner)
+		user.balloon_alert(user, "No container")
+		return FALSE
+	if(inner.reagents.total_volume == 0)
+		user.balloon_alert(user, "No reagent left")
+		return FALSE
+	if(inner.reagents.total_volume > 0)
 		inner.reagents.trans_to(autoinjector, autoinjector.volume)
 		playsound(loc, 'sound/effects/refill.ogg', 25, TRUE, 3)
 		autoinjector.update_icon()
