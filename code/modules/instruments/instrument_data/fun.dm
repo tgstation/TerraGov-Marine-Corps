@@ -21,7 +21,8 @@
 /datum/instrument/fun/meowsynth
 	name = "MeowSynth"
 	id = "meowsynth"
-	real_samples = list("36"='sound/runtime/instruments/synthesis_samples/meowsynth/c2.ogg',
+	real_samples = list(
+		           "36"='sound/runtime/instruments/synthesis_samples/meowsynth/c2.ogg',
 				   "48"='sound/runtime/instruments/synthesis_samples/meowsynth/c3.ogg',
 				   "60"='sound/runtime/instruments/synthesis_samples/meowsynth/c4.ogg',
 				   "72"='sound/runtime/instruments/synthesis_samples/meowsynth/c5.ogg',
@@ -30,7 +31,8 @@
 /datum/instrument/fun/spaceman
 	name = "Spaceman"
 	id = "spaceman"
-	real_samples = list("36"='sound/runtime/instruments/synthesis_samples/spaceman/c2.ogg',
+	real_samples = list(
+		           "36"='sound/runtime/instruments/synthesis_samples/spaceman/c2.ogg',
 				   "48"='sound/runtime/instruments/synthesis_samples/spaceman/c3.ogg',
 				   "60"='sound/runtime/instruments/synthesis_samples/spaceman/c4.ogg',
 				   "72"='sound/runtime/instruments/synthesis_samples/spaceman/c5.ogg')
