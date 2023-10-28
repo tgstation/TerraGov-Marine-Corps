@@ -1,7 +1,7 @@
 //Reagent Canister pouch. Including the canister inside the pouch, as well as the pouch item.
 
 /obj/item/reagent_containers/glass/reagent_canister // See the Reagent Canister Pouch, this is just the container
-	name = "\improper Pressurized Reagent Container"
+	name = "pressurized reagent container"
 	desc = "A pressurized container. The inner part of a pressurized reagent canister pouch. Too large to fit in anything but the pouch it comes with."
 	icon_state = "pressurized_reagent_container"
 	item_icons = list(
@@ -23,7 +23,7 @@
 	..()
 
 /obj/item/storage/pouch/pressurized_reagent_pouch //The actual pouch itself and all its function
-	name = "\improper Pressurized Reagent Pouch"
+	name = "pressurized reagent pouch"
 	w_class = WEIGHT_CLASS_BULKY
 	max_w_class = WEIGHT_CLASS_BULKY
 	allow_drawing_method = TRUE
@@ -133,8 +133,8 @@
 /obj/item/storage/pouch/pressurized_reagent_pouch/proc/display_contents(mob/user)
 	if(isxeno(user))
 		return
-	if(!inner)
-		return "This [src] has no container inside!"
+	if(isnull(inner))
+		return "[src] has no container inside!"
 	if(user.skills.getRating(SKILL_MEDICAL) >= SKILL_MEDICAL_NOVICE)
 		if(isnull(inner.reagents.total_volume))
 			return span_notice("[src] is empty!")
