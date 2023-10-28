@@ -112,8 +112,7 @@
 	return TRUE
 
 /obj/item/storage/pouch/pressurized_reagent_pouch/attackby(obj/item/held_item, mob/user)
-	. = ..()
-	if(istype(held_item, /obj/item/reagent_containers/glass/reagent_canister))
+	if(istype(held_item, /obj/item/reagent_containers/glass/reagent_canister)) //If it's the reagent canister, we put it in the special holder
 		if(inner)
 			to_chat(user, span_warning("There already is a container inside [src]!"))
 			return
@@ -124,6 +123,7 @@
 			update_icon()
 			return
 
+	. = ..()
 	if(istype(held_item, /obj/item/reagent_containers/hypospray))
 		fill_autoinjector(held_item, user)
 		return
