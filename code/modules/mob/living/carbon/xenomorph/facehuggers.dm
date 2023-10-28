@@ -359,6 +359,8 @@
 
 /obj/item/clothing/mask/facehugger/throw_impact(atom/hit_atom, speed)
 	. = ..()
+	if(!.)
+		return
 	if(stat != CONSCIOUS)
 		return
 	if(iscarbon(hit_atom))

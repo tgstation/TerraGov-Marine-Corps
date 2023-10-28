@@ -358,7 +358,9 @@
 	tastes = list("egg" = 1)
 
 /obj/item/reagent_containers/food/snacks/egg/throw_impact(atom/hit_atom)
-	..()
+	. = ..()
+	if(!.)
+		return
 	new/obj/effect/decal/cleanable/egg_smudge(src.loc)
 	src.reagents.reaction(hit_atom, TOUCH)
 	src.visible_message(span_warning(" [src.name] has been squashed."),span_warning(" You hear a smack."))

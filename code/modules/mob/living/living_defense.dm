@@ -9,6 +9,7 @@
 
 //this proc handles being hit by a thrown atom
 /mob/living/hitby(atom/movable/AM, speed = 5)
+	. = TRUE
 	if(isliving(AM))
 		var/mob/living/thrown_mob = AM
 		if(thrown_mob.mob_size >= mob_size)
