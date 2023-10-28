@@ -1,0 +1,5 @@
+author: "Pariah919"
+delete-after: True
+changes:
+  - rscadd: "FK-88, a deployable direct fire support weapon that fires 15cm high explosive shells, replaces the RR-15."
+  - rscdel: "Tad heavy RR has been replaced by the ISG-15 HISG."
