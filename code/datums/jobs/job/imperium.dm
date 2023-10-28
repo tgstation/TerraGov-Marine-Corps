@@ -43,7 +43,7 @@
 	belt = /obj/item/storage/belt/marine
 	wear_suit = /obj/item/clothing/suit/storage/marine/imperial
 	head = /obj/item/clothing/head/helmet/marine/imperial
-	r_store = /obj/item/storage/pouch/medical_injectors/basic/firstaid
+	r_store = /obj/item/storage/pouch/medical_injectors/firstaid
 	l_store = /obj/item/storage/holster/flarepouch/full
 	back = /obj/item/storage/backpack/lightpack
 
