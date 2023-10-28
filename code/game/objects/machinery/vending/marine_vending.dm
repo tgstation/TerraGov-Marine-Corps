@@ -1144,6 +1144,7 @@
 	icon_state = "surplus_clothes"
 	icon_vend = "surplus-vend"
 	icon_deny = "surplus_clothes-deny"
+	wrenchable = FALSE
 	isshared = TRUE
 	product_ads = "Be the musician that you parents never approve you of.;You gotta look good when you're in the battlefield.;We have all types of hats here!;What did one hat say to the other on the hiking trip? I'll wait here, you go on ahead;Sometimes, a beret is better than a helmet.;Drip is the priority, marine."
 	products = list(
@@ -1207,8 +1208,8 @@
 			/obj/item/storage/holster/flarepouch/full = -1,
 			/obj/item/storage/pouch/grenade = -1,
 			/obj/item/storage/pouch/explosive = -1,
-			/obj/item/storage/pouch/medkit = -1,
-			/obj/item/storage/pouch/medical_injectors = -1,
+			/obj/item/storage/pouch/medkit/firstaid = -1,
+			/obj/item/storage/pouch/medical_injectors/basic = -1,
 			/obj/item/storage/pouch/med_lolipops = -1,
 			/obj/item/storage/pouch/berrypouch = -1,
 			/obj/item/storage/pouch/construction = -1,
