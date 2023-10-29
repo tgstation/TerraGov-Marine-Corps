@@ -856,15 +856,17 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 
 
 /turf/proc/visibilityChanged()
-	GLOB.cameranet.updateVisibility(src)
-	// The cameranet usually handles this for us, but if we've just been
-	// recreated we should make sure we have the cameranet vis_contents.
-	var/datum/camerachunk/C = GLOB.cameranet.chunkGenerated(x, y, z)
-	if(C)
-		if(C.obscuredTurfs[src])
-			vis_contents += GLOB.cameranet.vis_contents_opaque
-		else
-			vis_contents -= GLOB.cameranet.vis_contents_opaque
+	for(var/datum/cameranet/net AS in list(GLOB.cameranet, GLOB.som_cameranet))
+
+		net.updateVisibility(src)
+		// The cameranet usually handles this for us, but if we've just been
+		// recreated we should make sure we have the cameranet vis_contents.
+		var/datum/camerachunk/C = net.chunkGenerated(x, y, z)
+		if(C)
+			if(C.obscuredTurfs[src])
+				vis_contents += net.vis_contents_opaque
+			else
+				vis_contents -= net.vis_contents_opaque
 
 
 /turf/AllowDrop()
