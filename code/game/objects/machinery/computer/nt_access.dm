@@ -8,6 +8,7 @@
 	desc = "Used to generate a security override code."
 	icon = 'icons/obj/structures/campaign/tall_structures.dmi'
 	icon_state = "terminal_red"
+	screen_overlay = "terminal_overlay"
 	interaction_flags = INTERACT_MACHINE_TGUI
 	circuit = /obj/item/circuitboard/computer/nt_access
 	use_power = NO_POWER_USE
@@ -71,12 +72,6 @@
 
 /obj/machinery/computer/nt_access/update_icon_state()
 	icon_state = initial(icon_state)
-
-/obj/machinery/computer/nt_access/update_overlays()
-	. = ..()
-	if(machine_stat & NOPOWER)
-		return
-	. += image(icon, src, "terminal_overlay")
 
 /obj/machinery/computer/nt_access/attackby(obj/item/I, mob/living/user, params)
 	return attack_hand(user)
