@@ -57,12 +57,11 @@
 		traumatic_shock = 0
 		return
 
-	traumatic_shock = 			\
-	0.75	* getOxyLoss() + 		\
-	0.75	* getToxLoss() + 		\
-	1.20	* getFireLoss() + 		\
-	1		* getBruteLoss() + 		\
-	1		* getCloneLoss()
+	traumatic_shock = \
+	0.75 * getOxyLoss() + \
+	0.75 * getToxLoss() + \
+	1.20 * getFireLoss() + \
+	1 * getBruteLoss()
 
 	traumatic_shock += reagent_shock_modifier
 
