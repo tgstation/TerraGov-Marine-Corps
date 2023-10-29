@@ -917,11 +917,11 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 		items += "Respawn wave timer: [patrol_wave_countdown]"
 
 	if (isobserver(source) || isxeno(source))
-		src.handle_collapse_timer(dcs, source, items)
+		handle_collapse_timer(dcs, source, items)
 
 	if (source.can_wait_in_larva_queue())
-		src.handle_larva_timer(dcs, source, items)
-		src.handle_xeno_respawn_timer(dcs, source, items)
+		handle_larva_timer(dcs, source, items)
+		handle_xeno_respawn_timer(dcs, source, items)
 
 /// Displays the orphan hivemind collapse timer, if applicable
 /datum/game_mode/proc/handle_collapse_timer(datum/dcs, mob/source, list/items)
@@ -935,15 +935,16 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 
 /// Displays your position in the larva queue and how many burrowed larva there are, if applicable
 /datum/game_mode/proc/handle_larva_timer(datum/dcs, mob/source, list/items)
-	if(flags_round_type & MODE_INFESTATION)
-		var/larva_position = SEND_SIGNAL(source.client, COMSIG_CLIENT_GET_LARVA_QUEUE_POSITION)
-		if (larva_position) // If non-zero, we're in queue
-			items += "Position in larva candidate queue: [larva_position]"
+	if(!(flags_round_type & MODE_INFESTATION))
+		return
+	var/larva_position = SEND_SIGNAL(source.client, COMSIG_CLIENT_GET_LARVA_QUEUE_POSITION)
+	if (larva_position) // If non-zero, we're in queue
+		items += "Position in larva candidate queue: [larva_position]"
 
-		var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
-		var/stored_larva = xeno_job.total_positions - xeno_job.current_positions
-		if(stored_larva)
-			items += "Burrowed larva: [stored_larva]"
+	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
+	var/stored_larva = xeno_job.total_positions - xeno_job.current_positions
+	if(stored_larva)
+		items += "Burrowed larva: [stored_larva]"
 
 /// Displays your xeno respawn timer, if applicable
 /datum/game_mode/proc/handle_xeno_respawn_timer(datum/dcs, mob/source, list/items)
