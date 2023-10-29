@@ -8,8 +8,34 @@
 	layer = BELOW_OBJ_LAYER
 	req_access = null
 	req_one_access = null
+	light_range = 1
+	light_power = 0.5
+	light_color = LIGHT_COLOR_BLUE
 	///The faction of this loadout vendor
 	var/faction = VENDOR_FACTION_NEUTRAL
+
+/obj/machinery/loadout_vendor/Initialize(mapload)
+	. = ..()
+	update_icon()
+
+/obj/machinery/loadout_vendor/update_icon()
+	. = ..()
+	if(is_operational())
+		set_light(initial(light_range))
+	else
+		set_light(0)
+
+/obj/machinery/loadout_vendor/update_icon_state()
+	if(is_operational())
+		icon_state = initial(icon_state)
+	else
+		icon_state = "[initial(icon_state)]-off"
+
+/obj/machinery/loadout_vendor/update_overlays()
+	. = ..()
+	if(!is_operational())
+		return
+	. += emissive_appearance(icon, "[icon_state]_emissive")
 
 /obj/machinery/loadout_vendor/can_interact(mob/user)
 	. = ..()
