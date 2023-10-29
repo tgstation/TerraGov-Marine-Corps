@@ -1,4 +1,0 @@
-author: "Dallas"
-delete-after: True
-changes:
-  - soundadd: "Ported meowsynth and spaceman synthesizer sounds from TG"

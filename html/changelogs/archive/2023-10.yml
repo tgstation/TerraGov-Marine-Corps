@@ -380,3 +380,17 @@
   - bugfix: fixed a rare defender bug
   Waselon:
   - bugfix: baneling now can overwatch xenos if died from normal death
+2023-10-29:
+  Dallas:
+  - soundadd: Ported meowsynth and spaceman synthesizer sounds from TG
+  Lumipharon:
+  - bugfix: Sentry IFF flags are correctly checked when IFF projectile try to hit
+      them
+  - rscadd: Vendors are emissive
+  - bugfix: fixed a camera issue in campaign
+  Pariah919:
+  - rscadd: FK-88, a deployable direct fire support weapon that fires 15cm high explosive
+      shells, replaces the RR-15.
+  - rscdel: Tad heavy RR has been replaced by the ISG-15 HISG.
+  Xander3359:
+  - balance: improves imialk hypo

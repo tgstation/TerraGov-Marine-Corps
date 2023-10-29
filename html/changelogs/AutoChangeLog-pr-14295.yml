@@ -1,4 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - bugfix: "Sentry IFF flags are correctly checked when IFF projectile try to hit them"
