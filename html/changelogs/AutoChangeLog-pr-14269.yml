@@ -1,0 +1,5 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - bugfix: "Crest toss now throws the correct distance diagonally"
+  - balance: "Crest toss is from the xeno's turf, so some tosses will be possible that were not previously"
