@@ -65,6 +65,7 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 		/datum/campaign_mission/capture_mission = 15,
 		/datum/campaign_mission/tdm/mech_wars = 12,
 		/datum/campaign_mission/destroy_mission/supply_raid = 15,
+		/datum/campaign_mission/destroy_mission/base_rescue = 12,
 	),
 	FACTION_SOM = list(
 		/datum/campaign_mission/tdm/lv624 = 10,
