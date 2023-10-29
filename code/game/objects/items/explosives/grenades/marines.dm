@@ -237,6 +237,12 @@
 	playsound(loc, "molotov", 35)
 	qdel(src)
 
+/obj/item/explosive/grenade/incendiary/molotov/throw_impact(atom/hit_atom, speed, bounce = TRUE)
+	. = ..()
+	if(!hit_atom.density || prob(35))
+		return
+	prime()
+
 /obj/item/explosive/grenade/ags
 	name = "\improper AGLS-37 HEDP grenade"
 	desc = "A small tiny smart grenade, it is about to blow up in your face, unless you found it inert. Otherwise a pretty normal grenade, other than it is somehow in a primeable state."

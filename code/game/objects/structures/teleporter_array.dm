@@ -66,7 +66,8 @@
 /obj/structure/teleporter_array/proc/change_targeted_z(datum/source, new_z)
 	SIGNAL_HANDLER
 	remove_user()
-	targetted_zlevel = new_z
+	if(isnum(new_z))
+		targetted_zlevel = new_z
 	target_turf = null
 	teleporter_status = TELEPORTER_ARRAY_INACTIVE
 

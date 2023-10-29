@@ -1005,3 +1005,19 @@
 	desc = "A small, lightweight pouch that can be clipped onto armor or your belt to provide additional storage for miscellaneous gear or box and drum magazines. Made from genuine SOM leather."
 	icon_state = "sparepouch_som"
 	item_state = "som_belt"
+
+/obj/item/storage/belt/protein_pack
+	name = "\improper protein pack load rig"
+	desc = "A storage belt designed to hold mass amounts of protein packs for those particuarly hungry marines."
+	icon_state = "p_belt"
+	item_state = "shotgunbelt"
+	storage_slots = 20
+	max_storage_space = 20
+	max_w_class = WEIGHT_CLASS_TINY
+	can_hold = list(/obj/item/reagent_containers/food/snacks/protein_pack)
+	sprite_slots = 4
+
+/obj/item/storage/belt/protein_pack/Initialize(mapload)
+	. = ..()
+	for(var/i in 1 to storage_slots)
+		new /obj/item/reagent_containers/food/snacks/protein_pack(src)
