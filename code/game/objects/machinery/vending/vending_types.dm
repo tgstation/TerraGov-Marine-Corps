@@ -194,6 +194,8 @@
 			/obj/item/reagent_containers/glass/bottle/tricordrazine = 6,
 			/obj/item/reagent_containers/glass/bottle/dylovene = 6,
 			/obj/item/reagent_containers/glass/bottle/inaprovaline = 6,
+			/obj/item/reagent_containers/glass/bottle/paracetamol = 6,
+			/obj/item/reagent_containers/glass/bottle/isotonic = 6,
 			/obj/item/reagent_containers/glass/bottle/dexalin = 6,
 			/obj/item/reagent_containers/glass/bottle/spaceacillin = 6,
 			/obj/item/reagent_containers/glass/bottle/oxycodone = 6,
