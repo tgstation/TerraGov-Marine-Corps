@@ -906,7 +906,7 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 		GLOB.nuke_disk_spawn_locs -= spawn_loc
 		qdel(spawn_loc)
 
-///Add gamemode related items to statpanel
+/// Add gamemode related items to statpanel
 /datum/game_mode/proc/get_status_tab_items(datum/dcs, mob/source, list/items)
 	SIGNAL_HANDLER
 	var/patrol_end_countdown = game_end_countdown()
@@ -923,6 +923,7 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 		src.handle_larva_timer(dcs, source, items)
 		src.handle_xeno_respawn_timer(dcs, source, items)
 
+// Displays the orphan hivemind collapse timer, if applicable
 /datum/game_mode/proc/handle_collapse_timer(datum/dcs, mob/source, list/items)
 	if (isxeno(source))
 		var/mob/living/carbon/xenomorph/xeno = source
@@ -932,6 +933,7 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 	if(rulerless_countdown)
 		items += "Orphan hivemind collapse timer: [rulerless_countdown]"
 
+/// Displays your position in the larva queue and how many burrowed larva there are, if applicable
 /datum/game_mode/proc/handle_larva_timer(datum/dcs, mob/source, list/items)
 	if(flags_round_type & MODE_INFESTATION)
 		var/larva_position = SEND_SIGNAL(source.client, COMSIG_CLIENT_GET_LARVA_QUEUE_POSITION)
@@ -943,6 +945,7 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 		if(stored_larva)
 			items += "Burrowed larva: [stored_larva]"
 
+/// Displays your xeno respawn timer, if applicable
 /datum/game_mode/proc/handle_xeno_respawn_timer(datum/dcs, mob/source, list/items)
 	if(GLOB.respawn_allowed)
 		var/status_value = ((GLOB.key_to_time_of_xeno_death[source.key] ? GLOB.key_to_time_of_xeno_death[source.key] : -INFINITY)  + SSticker.mode?.xenorespawn_time - world.time) * 0.1 //If xeno_death is null, use -INFINITY

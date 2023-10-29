@@ -20,8 +20,8 @@
 	if(!double_check.can_wait_in_larva_queue())
 		return COMPONENT_INCOMPATIBLE
 
-	src.waiter = client
-	src.action = new
+	waiter = client
+	action = new
 	add_queue_action()
 
 /datum/component/larva_queue/RegisterWithParent()
@@ -37,9 +37,9 @@
 		COMSIG_CLIENT_SET_LARVA_QUEUE_POSITION,
 		COMSIG_CLIENT_GET_LARVA_QUEUE_POSITION
 	))
-	src.waiter = null
-	QDEL_NULL(src.action)
-	. = ..()
+	waiter = null
+	QDEL_NULL(action)
+	return ..()
 
 /// Returns if the mob is valid to keep waiting in the larva queue
 /mob/proc/can_wait_in_larva_queue()
@@ -50,7 +50,7 @@
 
 /mob/living/carbon/xenomorph/can_wait_in_larva_queue()
 	. = FALSE
-	if (src.xeno_caste.tier == XENO_TIER_MINION)
+	if (xeno_caste.tier == XENO_TIER_MINION)
 		return TRUE
 
 /**
@@ -59,16 +59,16 @@
  */
 /datum/component/larva_queue/proc/add_queue_action()
 	SIGNAL_HANDLER
-	if (src.waiter.mob.can_wait_in_larva_queue())
-		var/datum/action/join_larva_queue/existing_action = src.waiter.mob.actions_by_path[/datum/action/join_larva_queue]
+	if (waiter.mob.can_wait_in_larva_queue())
+		var/datum/action/join_larva_queue/existing_action = waiter.mob.actions_by_path[/datum/action/join_larva_queue]
 		if(!existing_action)
-			action.give_action(src.waiter.mob)
-		if (src.position != 0)
+			action.give_action(waiter.mob)
+		if (position != 0)
 			action.set_toggle(TRUE)
 	else
 		// Leave the queue since they logged into an ineligible mob
 		var/datum/hive_status/normal/HS = GLOB.hive_datums[XENO_HIVE_NORMAL]
-		HS.remove_from_larva_candidate_queue(src.waiter)
+		HS.remove_from_larva_candidate_queue(waiter)
 
 /**
  * Removes the larva queue action whenever the client leaves a mob
@@ -83,16 +83,16 @@
  */
 /datum/component/larva_queue/proc/get_queue_position(waiter)
 	SIGNAL_HANDLER
-	return src.position
+	return position
 
 /**
  * Sets the current position in the larva queue
  */
 /datum/component/larva_queue/proc/set_queue_position(waiter, new_position)
 	SIGNAL_HANDLER
-	src.position = new_position
-	if (src.position == 0) // No longer in queue
-		src.action.set_toggle(FALSE)
+	position = new_position
+	if (position == 0) // No longer in queue
+		action.set_toggle(FALSE)
 
 
 /// Action for joining the larva queue

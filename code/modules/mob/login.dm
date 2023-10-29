@@ -65,6 +65,6 @@
 	update_movespeed()
 	log_mob_tag("\[[tag]\] NEW OWNER: [key_name(src)]")
 	SEND_SIGNAL(src, COMSIG_MOB_LOGIN)
-	SEND_SIGNAL(src.client, COMSIG_CLIENT_MOB_LOGIN)
+	SEND_SIGNAL(client, COMSIG_CLIENT_MOB_LOGIN)
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_MOB_LOGIN, src)
 	client.init_verbs()
