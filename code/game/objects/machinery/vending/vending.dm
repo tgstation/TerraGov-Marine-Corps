@@ -330,6 +330,7 @@
 	transform = A
 
 	tipped_level = 2
+	density = FALSE
 	allow_pass_flags |= (PASS_LOW_STRUCTURE|PASS_MOB)
 	coverage = 50
 
