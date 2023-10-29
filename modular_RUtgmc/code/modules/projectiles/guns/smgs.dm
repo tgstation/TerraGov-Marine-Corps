@@ -6,7 +6,7 @@
 	name = "\improper Vector storm submachinegun"
 	desc = "The Vector is the TerraGov Marine Corps depelopment to increase assault capability of marines. Lightweight and simple to use. It features delayed blowback system, heavily reducing recoil even with its high ROF. A highly-customizable platform, it is reliable and versatile. Ideal weapon for quick assaults. Uses extended .45 ACP HP magazines"
 	fire_sound = 'sound/weapons/guns/fire/tp23.ogg'
-	icon = 'icons/Marine/gun64.dmi'
+	icon = 'modular_RUtgmc/icons/Marine/gun64.dmi
 	icon_state = "v45"
 	item_state = "v45"
 	caliber = CALIBER_45ACP //codex

@@ -5,7 +5,7 @@
 /obj/item/weapon/gun/revolver/standard_revolver/coltrifle
 	name = "\improper M1855 Revolving Rifle"
 	desc = "A revolver and carbine hybrid, designed and manufactured a long time ago by Crowford Armory Union. Popular back then, but completely obsolete today. Still used by some antiquity lovers."
-	icon = 'icons/marine/gun64.dmi'
+	icon = 'modular_RUtgmc/icons/Marine/gun64.dmi'
 	icon_state = "coltrifle"
 	item_state = "coltrifle"
 	fire_animation = "coltrifle_fire"
