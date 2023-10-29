@@ -6,7 +6,6 @@
 	caste_type_path = /mob/living/carbon/xenomorph/behemoth
 	tier = XENO_TIER_THREE
 	upgrade = XENO_UPGRADE_BASETYPE
-
 	wound_type = "behemoth"
 
 	// *** Melee Attacks *** //
@@ -31,6 +30,7 @@
 	// *** Flags *** //
 	caste_flags = CASTE_EVOLUTION_ALLOWED|CASTE_IS_STRONG|CASTE_STAGGER_RESISTANT
 	can_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER
+	caste_traits = null
 
 	// *** Defense *** //
 	soft_armor = list(MELEE = 20, BULLET = 20, LASER = 20, ENERGY = 20, BOMB = 50, BIO = 50, FIRE = 50, ACID = 50)

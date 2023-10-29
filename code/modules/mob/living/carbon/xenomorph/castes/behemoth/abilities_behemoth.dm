@@ -151,6 +151,7 @@
 #define LANDSLIDE_KNOCKDOWN_DURATION 1 SECONDS
 #define LANDSLIDE_DAMAGE_MULTIPLIER 1.2
 #define LANDSLIDE_DAMAGE_MECHA_MODIFIER 20
+#define LANDSLIDE_OBJECT_INTEGRITY_THRESHOLD 150
 
 #define LANDSLIDE_ENDED_CANCELLED (1<<0)
 #define LANDSLIDE_ENDED_NO_PLASMA (1<<1)
@@ -405,14 +406,19 @@
 					step_away(affected_living, xeno_owner, 2, 1)
 					continue
 				hit_living(affected_living, damage)
-			if(isearthpillar(affected_atom))
-				var/obj/structure/earth_pillar/affected_pillar = affected_atom
-				affected_pillar.throw_pillar(get_ranged_target_turf(xeno_owner, xeno_owner.dir, 7), TRUE)
-				continue
-			if(ismecha(affected_atom))
-				var/obj/vehicle/sealed/mecha/affected_mecha = affected_atom
-				affected_mecha.take_damage(damage * LANDSLIDE_DAMAGE_MECHA_MODIFIER, MELEE)
-				continue
+			if(isobj(affected_atom))
+				if(isearthpillar(affected_atom))
+					var/obj/structure/earth_pillar/affected_pillar = affected_atom
+					affected_pillar.throw_pillar(get_ranged_target_turf(xeno_owner, xeno_owner.dir, 7), TRUE)
+					continue
+				if(ismecha(affected_atom))
+					var/obj/vehicle/sealed/mecha/affected_mecha = affected_atom
+					affected_mecha.take_damage(damage * LANDSLIDE_DAMAGE_MECHA_MODIFIER, MELEE)
+					continue
+				var/obj/affected_object = affected_atom
+				if(!affected_object.density || affected_object.allow_pass_flags & PASS_MOB || affected_object.resistance_flags & INDESTRUCTIBLE)
+					continue
+				hit_object(affected_object)
 	if(LinkBlocked(owner_turf, direct_turf))
 		playsound(direct_turf, 'sound/effects/behemoth/behemoth_stomp.ogg', 40, TRUE)
 		xeno_owner.do_attack_animation(direct_turf)
@@ -464,14 +470,19 @@
 				if(xeno_owner.issamexenohive(affected_living) || affected_living.stat == DEAD)
 					continue
 				hit_living(affected_living, damage)
-			if(isearthpillar(affected_atom))
-				var/obj/structure/earth_pillar/affected_pillar = affected_atom
-				affected_pillar.throw_pillar(get_ranged_target_turf(xeno_owner, xeno_owner.dir, 7), TRUE)
-				continue
-			if(ismecha(affected_atom))
-				var/obj/vehicle/sealed/mecha/affected_mecha = affected_atom
-				affected_mecha.take_damage(damage * LANDSLIDE_DAMAGE_MECHA_MODIFIER, MELEE)
-				continue
+			if(isobj(affected_atom))
+				if(isearthpillar(affected_atom))
+					var/obj/structure/earth_pillar/affected_pillar = affected_atom
+					affected_pillar.throw_pillar(get_ranged_target_turf(xeno_owner, xeno_owner.dir, 7), TRUE)
+					continue
+				if(ismecha(affected_atom))
+					var/obj/vehicle/sealed/mecha/affected_mecha = affected_atom
+					affected_mecha.take_damage(damage * LANDSLIDE_DAMAGE_MECHA_MODIFIER, MELEE)
+					continue
+				var/obj/affected_object = affected_atom
+				if(!affected_object.density || affected_object.allow_pass_flags & PASS_MOB || affected_object.resistance_flags & INDESTRUCTIBLE)
+					continue
+				hit_object(affected_object)
 	steps_to_take--
 	step(xeno_owner, direction, 1)
 	if(steps_to_take <= 2)
@@ -506,6 +517,8 @@
 /datum/action/xeno_action/activable/landslide/proc/hit_living(mob/living/living_target, damage)
 	if(!living_target || !damage)
 		return
+	if(living_target.buckled)
+		living_target.buckled.unbuckle_mob(living_target, TRUE)
 	if(!living_target.lying_angle)
 		living_target.Knockdown(LANDSLIDE_KNOCKDOWN_DURATION)
 		new /obj/effect/temp_visual/behemoth/landslide/hit(get_turf(living_target))
@@ -513,6 +526,33 @@
 	living_target.emote("scream")
 	shake_camera(living_target, LANDSLIDE_KNOCKDOWN_DURATION, 0.8)
 	living_target.apply_damage(damage, BRUTE, blocked = MELEE)
+
+/**
+ * Attempts to deconstruct the object in question if possible.
+ * * object_target: The targeted object.
+*/
+/datum/action/xeno_action/activable/landslide/proc/hit_object(obj/object_target)
+	if(!object_target)
+		return
+	var/object_turf = get_turf(object_target)
+	if(istype(object_target, /obj/machinery/vending))
+		var/obj/machinery/vending/vending_target = object_target
+		playsound(object_turf, 'sound/effects/meteorimpact.ogg', 30, TRUE)
+		new /obj/effect/temp_visual/behemoth/landslide/hit(object_turf)
+		vending_target.tip_over()
+		return
+	if(istype(object_target, /obj/structure/reagent_dispensers/fueltank))
+		var/obj/structure/reagent_dispensers/fueltank/tank_target = object_target
+		tank_target.explode()
+		return
+	if(object_target.obj_integrity <= LANDSLIDE_OBJECT_INTEGRITY_THRESHOLD || istype(object_target, /obj/structure/closet))
+		playsound(object_turf, 'sound/effects/meteorimpact.ogg', 30, TRUE)
+		new /obj/effect/temp_visual/behemoth/landslide/hit(object_turf)
+		if(istype(object_target, /obj/structure/window/framed))
+			var/obj/structure/window/framed/framed_window = object_target
+			framed_window.deconstruct(FALSE, FALSE)
+			return
+		object_target.deconstruct(FALSE)
 
 /**
  * Changes the maximum amount of charges the ability can have.
@@ -825,20 +865,24 @@
 				animate(affected_living, pixel_y = affected_living.pixel_y + 40, time = SEISMIC_FRACTURE_PARALYZE_DURATION / 2, easing = CIRCULAR_EASING|EASE_OUT, flags = ANIMATION_END_NOW)
 				animate(pixel_y = initial(affected_living.pixel_y), time = SEISMIC_FRACTURE_PARALYZE_DURATION / 2, easing = CIRCULAR_EASING|EASE_IN)
 				addtimer(CALLBACK(src, PROC_REF(living_landing), affected_living), SEISMIC_FRACTURE_PARALYZE_DURATION)
-			else if(ismecha(affected_atom) || isearthpillar(affected_atom))
+			else if(isearthpillar(affected_atom) || ismecha(affected_atom) || istype(affected_atom, /obj/structure/reagent_dispensers/fueltank))
 				affected_atom.do_jitter_animation()
 				new /obj/effect/temp_visual/behemoth/landslide/hit(affected_atom.loc)
 				playsound(affected_atom.loc, get_sfx("behemoth_earth_pillar_hit"), 40)
-				if(ismecha(affected_atom))
-					var/obj/vehicle/sealed/mecha/affected_mecha = affected_atom
-					affected_mecha.take_damage(damage * SEISMIC_FRACTURE_DAMAGE_MECHA_MODIFIER, MELEE)
-					continue
 				if(isearthpillar(affected_atom))
 					var/obj/structure/earth_pillar/affected_pillar = affected_atom
 					if(affected_pillar.warning_flashes < initial(affected_pillar.warning_flashes))
 						continue
 					affected_pillar.seismic_fracture()
 					do_ability(target_turf, initial(affected_pillar.warning_flashes) * 10, FALSE)
+					continue
+				if(ismecha(affected_atom))
+					var/obj/vehicle/sealed/mecha/affected_mecha = affected_atom
+					affected_mecha.take_damage(damage * SEISMIC_FRACTURE_DAMAGE_MECHA_MODIFIER, MELEE)
+					continue
+				if(istype(affected_atom, /obj/structure/reagent_dispensers/fueltank))
+					var/obj/structure/reagent_dispensers/fueltank/affected_tank = affected_atom
+					affected_tank.explode()
 					continue
 
 /// Living mobs that were previously caught in the attack's radius are subject to a landing effect. Their invincibility is removed, and they receive a reduced amount of damage.
@@ -1350,8 +1394,9 @@
 	icon_state = "earth_pillar"
 	ping = null
 	bullet_color = COLOR_LIGHT_ORANGE
-	flags_ammo_behavior = AMMO_XENO|AMMO_SKIPS_ALIENS|AMMO_EXPLOSIVE
+	flags_ammo_behavior = AMMO_XENO|AMMO_SKIPS_ALIENS
 	shell_speed = 1
+	max_range = 10
 	damage_falloff = 0
 	damage_type = BRUTE
 	armor_type = MELEE
@@ -1362,6 +1407,12 @@
 /datum/ammo/xeno/earth_pillar/on_hit_turf(turf/hit_turf, obj/projectile/proj)
 	return rock_broke(hit_turf, proj)
 
+/datum/ammo/xeno/earth_pillar/on_hit_obj(obj/hit_object, obj/projectile/proj)
+	if(istype(hit_object, /obj/structure/reagent_dispensers/fueltank))
+		var/obj/structure/reagent_dispensers/fueltank/hit_tank = hit_object
+		hit_tank.explode()
+	return rock_broke(get_turf(hit_object), proj)
+
 /datum/ammo/xeno/earth_pillar/on_hit_mob(mob/hit_mob, obj/projectile/proj)
 	if(!isxeno(proj.firer) || !isliving(hit_mob))
 		return
@@ -1371,9 +1422,6 @@
 		return on_hit_anything(get_turf(hit_mob), proj)
 	step_away(hit_living, proj, 1, 1)
 	return on_hit_anything(get_turf(hit_mob), proj)
-
-/datum/ammo/xeno/earth_pillar/on_hit_obj(obj/hit_object, obj/projectile/proj)
-	return on_hit_anything(get_turf(hit_object), proj)
 
 /// VFX + SFX for when the rock doesn't hit anything.
 /datum/ammo/xeno/earth_pillar/proc/rock_broke(turf/hit_turf, obj/projectile/proj)
@@ -1395,3 +1443,7 @@
 
 /datum/ammo/xeno/earth_pillar/landslide/on_hit_turf(turf/hit_turf, obj/projectile/proj)
 	return on_hit_anything(hit_turf, proj)
+
+/datum/ammo/xeno/earth_pillar/landslide/on_hit_obj(obj/hit_object, obj/projectile/proj)
+	. = ..()
+	return on_hit_anything(get_turf(hit_object), proj)
