@@ -218,13 +218,14 @@
 /obj/machinery/prop/computer/communications
 	name = "communications console"
 	desc = "This can be used for various important functions."
-	icon_state = "comm"
+	screen_overlay = "comm"
 	icon = 'icons/obj/machines/computer.dmi'
 
 /obj/machinery/prop/computer/crew
 	name = "Crew monitoring computer"
 	desc = "Used to monitor active health sensors built into most of the crew's uniforms."
-	icon_state = "crew"
+	icon_state = "computer"
+	screen_overlay = "crew"
 	icon = 'icons/obj/machines/computer.dmi'
 
 /obj/machinery/prop/r_n_d/server/alt

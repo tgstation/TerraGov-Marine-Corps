@@ -115,6 +115,7 @@
 #define isxenowidow(A) (istype(A, /mob/living/carbon/xenomorph/widow))
 #define isxenowarlock(A) (istype(A, /mob/living/carbon/xenomorph/warlock))
 #define isxenoking(A) (istype(A, /mob/living/carbon/xenomorph/king))
+#define isxenobehemoth(A) (istype(A, /mob/living/carbon/xenomorph/behemoth))
 
 //Silicon mobs
 #define issilicon(A) (istype(A, /mob/living/silicon))
@@ -253,6 +254,8 @@
 #define isreagentcontainer(A) (istype(A, /obj/item/reagent_containers)) //Checks for if something is a reagent container.
 
 #define is_research_product(A) (istype(A, /obj/item/research_product)) //Checks if item is research item
+
+#define isearthpillar(A) (istype(A, /obj/structure/earth_pillar))
 
 //Assemblies
 #define isassembly(O) (istype(O, /obj/item/assembly))

@@ -166,19 +166,18 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 
 /obj/machinery/computer/camera_advanced/overwatch/som
 	faction = FACTION_SOM
-	networks = list("som")
+	networks = list(SOM_CAMERA_NETWORK)
 	req_access = list(ACCESS_MARINE_BRIDGE)
 	map_flags = MINIMAP_FLAG_MARINE_SOM
 
 /obj/machinery/computer/camera_advanced/overwatch/main/som
 	faction = FACTION_SOM
-	networks = list("som")
+	networks = list(SOM_CAMERA_NETWORK)
 	req_access = list(ACCESS_MARINE_BRIDGE)
 	map_flags = MINIMAP_FLAG_MARINE_SOM
 
-///Creates this computer's eye object and sets up its references.
 /obj/machinery/computer/camera_advanced/overwatch/CreateEye()
-	eyeobj = new(null, faction)
+	eyeobj = new(null, parent_cameranet, faction)
 	eyeobj.origin = src
 	RegisterSignal(eyeobj, COMSIG_QDELETING, PROC_REF(clear_eye_ref))
 

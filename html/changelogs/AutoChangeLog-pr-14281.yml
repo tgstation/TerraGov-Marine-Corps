@@ -1,4 +1,4 @@
 author: "Lumipharon"
 delete-after: True
 changes:
-  - bugfix: "fixed a rare defender bug"
+  - rscadd: "SOM has their own camera net"

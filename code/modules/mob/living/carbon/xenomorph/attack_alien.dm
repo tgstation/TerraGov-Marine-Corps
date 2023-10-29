@@ -35,7 +35,7 @@
 	return TRUE
 
 /mob/living/proc/can_xeno_slash(mob/living/carbon/xenomorph/X)
-	return TRUE
+	return !(status_flags & INCORPOREAL)
 
 /mob/living/proc/get_xeno_slash_zone(mob/living/carbon/xenomorph/X, set_location = FALSE, random_location = FALSE, no_head = FALSE)
 	return
@@ -193,7 +193,7 @@
 	if(X.status_flags & INCORPOREAL)
 		return FALSE
 
-	if (X.fortify)
+	if (X.fortify || X.behemoth_charging)
 		return FALSE
 
 	SEND_SIGNAL(X, COMSIG_XENOMORPH_ATTACK_LIVING, src, damage_amount, X.xeno_caste.melee_damage * X.xeno_melee_damage_modifier)
