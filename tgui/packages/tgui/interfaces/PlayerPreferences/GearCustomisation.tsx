@@ -24,7 +24,7 @@ export const GearCustomization = (props, context) => {
   }
 
   const currentPoints = gear.reduce(
-    (total, name) => total + gearsets[name].cost,
+    (total, name) => total + gearsets[name]?.cost,
     0
   );
 
