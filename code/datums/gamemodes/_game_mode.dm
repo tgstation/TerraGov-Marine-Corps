@@ -923,7 +923,7 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 		src.handle_larva_timer(dcs, source, items)
 		src.handle_xeno_respawn_timer(dcs, source, items)
 
-// Displays the orphan hivemind collapse timer, if applicable
+/// Displays the orphan hivemind collapse timer, if applicable
 /datum/game_mode/proc/handle_collapse_timer(datum/dcs, mob/source, list/items)
 	if (isxeno(source))
 		var/mob/living/carbon/xenomorph/xeno = source
