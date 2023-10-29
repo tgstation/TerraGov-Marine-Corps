@@ -165,6 +165,7 @@
 #include "code\modules\clothing\under\marine_uniform.dm"
 #include "code\modules\clothing\masks\miscellaneous.dm"
 #include "code\modules\reagents\reagents\toxin.dm"
+#include "code\modules\reagents\reagents\medical.dm"
 #include "code\modules\projectiles\guns\revolvers.dm"
 #include "code\modules\projectiles\guns\rifles.dm"
 #include "code\modules\projectiles\guns\smgs.dm"
