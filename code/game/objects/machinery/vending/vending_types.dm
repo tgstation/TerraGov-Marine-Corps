@@ -115,7 +115,7 @@
 		/obj/item/reagent_containers/food/snacks/wrapped/barcardine = -1,
 		/obj/item/reagent_containers/food/snacks/lollipop = -1,
 		/obj/item/reagent_containers/food/snacks/wrapped/berrybar = -1,
- 		/obj/item/reagent_containers/food/drinks/bottle/terran_dairies = -1,
+		/obj/item/reagent_containers/food/drinks/bottle/terran_dairies = -1,
 	)
 
 /obj/machinery/vending/cola
