@@ -92,6 +92,7 @@
 		else
 			forceMove(location)
 		armed = TRUE
+		timer = target.plastique_time_mod(timer)
 
 		log_combat(user, target, "attached [src] to")
 		message_admins("[ADMIN_TPMONTY(user)] planted [src] on [target] at [ADMIN_VERBOSEJMP(target.loc)] with [timer] second fuse.")
@@ -227,3 +228,7 @@
 	if(old_flame)
 		qdel(old_flame)
 	new /obj/flamer_fire/autospread(turf_to_burn, 17, 31, flame_color, 0, 0, spread_directions)
+
+///Allows the c4 timer to be tweaked on certain atoms as required
+/atom/proc/plastique_time_mod(time)
+	return time
