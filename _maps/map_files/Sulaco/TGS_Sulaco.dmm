@@ -17575,10 +17575,10 @@
 	},
 /area/sulaco/command/eva)
 "lGX" = (
-/obj/machinery/marine_selector/clothes,
 /obj/machinery/camera/autoname{
 	dir = 1
 	},
+/obj/machinery/quick_vendor/beginner,
 /turf/open/floor/prison,
 /area/sulaco/marine)
 "lHY" = (
@@ -25684,6 +25684,12 @@
 /obj/structure/window/framed/mainship/gray/toughened,
 /turf/open/floor/plating/platebotc,
 /area/sulaco/engineering/atmos)
+"waM" = (
+/obj/machinery/quick_vendor/beginner,
+/turf/open/floor/prison/green{
+	dir = 1
+	},
+/area/sulaco/marine)
 "waW" = (
 /obj/machinery/atmospherics/pipe/manifold/cyan/hidden/layer1{
 	dir = 8
@@ -26582,6 +26588,10 @@
 	},
 /turf/open/floor/wood,
 /area/sulaco/liaison)
+"xsg" = (
+/obj/machinery/quick_vendor/beginner,
+/turf/open/floor/prison,
+/area/sulaco/marine)
 "xss" = (
 /obj/structure/rack,
 /obj/item/stack/sheet/metal/large_stack,
@@ -45965,7 +45975,7 @@ yfM
 yfM
 vjG
 fXb
-xPc
+waM
 aLJ
 xJd
 ayl
@@ -46493,7 +46503,7 @@ dmj
 mmI
 oJO
 aLk
-mAk
+xsg
 euR
 qXN
 qXN
@@ -47007,7 +47017,7 @@ dmj
 xJd
 wYX
 aLk
-mAk
+xsg
 euR
 fRw
 qXN

@@ -771,6 +771,10 @@
 	},
 /turf/open/floor/mainship/red,
 /area/shuttle/canterbury)
+"nN" = (
+/obj/machinery/quick_vendor/beginner,
+/turf/open/floor/mainship/red/full,
+/area/shuttle/canterbury)
 "pY" = (
 /obj/machinery/door/airlock/mainship/marine/canterbury{
 	dir = 8
@@ -813,7 +817,7 @@
 /obj/structure/window/reinforced/toughened{
 	dir = 4
 	},
-/obj/machinery/loadout_vendor/crash,
+/obj/machinery/quick_vendor/beginner,
 /turf/open/floor/mainship/cargo,
 /area/shuttle/canterbury)
 "KE" = (
@@ -1058,7 +1062,7 @@ bJ
 Cq
 cH
 aJ
-cK
+nN
 bD
 bF
 an
