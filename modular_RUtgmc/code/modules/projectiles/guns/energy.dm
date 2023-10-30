@@ -46,7 +46,7 @@
 	)
 
 	attachable_offset = list("muzzle_x" = 49, "muzzle_y" = 15,"rail_x" = 21, "rail_y" = 21, "under_x" = 28, "under_y" = 11, "stock_x" = 22, "stock_y" = 12)
-	starting_attachment_types = list(/obj/item/attachable/scope/laser_sniper_scope)
+	starting_attachment_types = list(/obj/item/attachable/scope/unremovable/laser_sniper_scope)
 
 	mode_list = list(
 		"Standard" = /datum/lasrifle/energy_sniper_mode/standard,
@@ -55,6 +55,12 @@
 		"Shatter" = /datum/lasrifle/energy_sniper_mode/shatter,
 		"Ricochet" = /datum/lasrifle/energy_sniper_mode/ricochet,
 	)
+
+/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_sniper/unique_action(mob/user)
+	. = ..()
+	if(HAS_TRAIT(src, TRAIT_GUN_IS_AIMING))
+		modify_fire_delay(aim_fire_delay)
+		modify_auto_burst_delay(aim_fire_delay)
 
 /datum/lasrifle/energy_sniper_mode/overcharge
 	rounds_per_shot = 200
