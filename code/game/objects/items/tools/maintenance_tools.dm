@@ -533,3 +533,8 @@
 /obj/item/tool/handheld_charger/Destroy()
 	QDEL_NULL(cell)
 	return ..()
+
+/obj/item/tool/handheld_charger/hicapcell/Initialize(mapload)
+	. = ..()
+	cell = new /obj/item/cell/high(src)
+	icon_state = "handheldcharger_black"

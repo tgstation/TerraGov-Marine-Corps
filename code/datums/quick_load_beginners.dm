@@ -370,10 +370,123 @@
 
 	human.equip_to_slot_or_del(new /obj/item/weapon/gun/shotgun/double/derringer, SLOT_IN_BOOT) //So you can kill yourself when you run out of grenades
 
+/datum/outfit/quick/beginner/engineer
+	jobtype = "Squad Engineer"
+
+	w_uniform = /obj/item/clothing/under/marine/brown_vest
+	shoes = /obj/item/clothing/shoes/marine
+	gloves = /obj/item/clothing/gloves/marine/insulated
+	l_store = /obj/item/storage/pouch/tools
+
+/datum/outfit/quick/beginner/engineer/post_equip(mob/living/carbon/human/human, visualsOnly)
+	. = ..()
+	human.equip_to_slot_or_del(new /obj/item/storage/box/MRE, SLOT_IN_BOOT)
+
+	human.equip_to_slot_or_del(new /obj/item/tool/screwdriver, SLOT_IN_L_POUCH)
+	human.equip_to_slot_or_del(new /obj/item/tool/wirecutters, SLOT_IN_L_POUCH)
+	human.equip_to_slot_or_del(new /obj/item/tool/wrench, SLOT_IN_L_POUCH)
+	human.equip_to_slot_or_del(new /obj/item/tool/crowbar, SLOT_IN_L_POUCH)
+	human.equip_to_slot_or_del(new /obj/item/tool/weldingtool/hugetank, SLOT_IN_L_POUCH)
+
+	human.equip_to_slot_or_del(new /obj/item/explosive/grenade/chem_grenade/razorburn_smol, SLOT_IN_ACCESSORY)
+	human.equip_to_slot_or_del(new /obj/item/circuitboard/apc, SLOT_IN_ACCESSORY)
+	human.equip_to_slot_or_del(new /obj/item/tool/handheld_charger/hicapcell, SLOT_IN_ACCESSORY)
+	human.equip_to_slot_or_del(new /obj/item/stack/medical/heal_pack/gauze, SLOT_IN_ACCESSORY)
+	human.equip_to_slot_or_del(new /obj/item/stack/medical/heal_pack/ointment, SLOT_IN_ACCESSORY)
+
+	human.equip_to_slot_or_del(new /obj/item/stack/sheet/plasteel/medium_stack, SLOT_IN_SUIT)
+	human.equip_to_slot_or_del(new /obj/item/stack/sheet/metal/large_stack, SLOT_IN_SUIT)
+
+/datum/outfit/quick/beginner/engineer/builder
+	name = "Engineer Standard"
+
+	suit_store = /obj/item/weapon/gun/rifle/standard_lmg/beginner
+	wear_suit = /obj/item/clothing/suit/modular/xenonauten/heavy/mimirengi
+	mask = /obj/item/clothing/mask/gas/tactical
+	head = /obj/item/clothing/head/modular/m10x/mimir
+	back = /obj/item/storage/backpack/marine/radiopack
+	belt = /obj/item/belt_harness/marine
+	glasses = /obj/item/clothing/glasses/welding/superior
+
+/datum/outfit/quick/beginner/engineer/builder/post_equip(mob/living/carbon/human/human, visualsOnly)
+	. = ..()
+	human.equip_to_slot_or_del(new /obj/item/stack/sheet/metal/large_stack, SLOT_IN_SUIT)
+	human.equip_to_slot_or_del(new /obj/item/stack/sheet/metal/large_stack, SLOT_IN_SUIT)
+	human.equip_to_slot_or_del(new /obj/item/stack/sheet/metal/large_stack, SLOT_IN_SUIT)
+
+	human.equip_to_slot_or_del(new /obj/item/stack/sheet/metal/small_stack, SLOT_IN_BACKPACK)
+	human.equip_to_slot_or_del(new /obj/item/stack/sandbags_empty/full, SLOT_IN_BACKPACK)
+	human.equip_to_slot_or_del(new /obj/item/tool/shovel/etool, SLOT_IN_BACKPACK)
+	human.equip_to_slot_or_del(new /obj/item/storage/box/m94, SLOT_IN_BACKPACK)
+	human.equip_to_slot_or_del(new /obj/item/ammo_magazine/standard_lmg, SLOT_IN_BACKPACK)
+	human.equip_to_slot_or_del(new /obj/item/ammo_magazine/standard_lmg, SLOT_IN_BACKPACK)
+	human.equip_to_slot_or_del(new /obj/item/ammo_magazine/standard_lmg, SLOT_IN_BACKPACK)
+	human.equip_to_slot_or_del(new /obj/item/ammo_magazine/standard_lmg, SLOT_IN_BACKPACK)
+	human.equip_to_slot_or_del(new /obj/item/ammo_magazine/standard_lmg, SLOT_IN_BACKPACK)
+	human.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_BACKPACK)
+
+/datum/outfit/quick/beginner/engineer/burnitall
+	name = "Flamethrower"
+
+	suit_store = /obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_carbine/beginner
+	wear_suit = /obj/item/clothing/suit/modular/xenonauten/engineer
+	mask = /obj/item/clothing/mask/gas/tactical/coif
+	head = /obj/item/clothing/head/modular/m10x/superiorwelding
+	back = /obj/item/storage/holster/backholster/flamer
+	glasses = /obj/item/clothing/glasses/meson
+
+/datum/outfit/quick/beginner/engineer/burnitall/post_equip(mob/living/carbon/human/human, visualsOnly)
+	. = ..()
+	human.equip_to_slot_or_del(new /obj/item/stack/sheet/metal/medium_stack, SLOT_IN_SUIT)
+	human.equip_to_slot_or_del(new /obj/item/circuitboard/apc, SLOT_IN_SUIT)
+	human.equip_to_slot_or_del(new /obj/item/tool/multitool, SLOT_IN_SUIT)
+
+	human.equip_to_slot_or_del(new /obj/item/cell/lasgun/lasrifle, SLOT_IN_BELT)
+	human.equip_to_slot_or_del(new /obj/item/cell/lasgun/lasrifle, SLOT_IN_BELT)
+	human.equip_to_slot_or_del(new /obj/item/cell/lasgun/lasrifle, SLOT_IN_BELT)
+	human.equip_to_slot_or_del(new /obj/item/cell/lasgun/lasrifle, SLOT_IN_BELT)
+	human.equip_to_slot_or_del(new /obj/item/cell/lasgun/lasrifle, SLOT_IN_BELT)
+	human.equip_to_slot_or_del(new /obj/item/cell/lasgun/lasrifle, SLOT_IN_BELT)
+
+	human.equip_to_slot_or_del(new /obj/item/weapon/gun/flamer/big_flamer/marinestandard/engineer/beginner(human), SLOT_IN_BACKPACK)
+	human.equip_to_slot_or_del(new /obj/item/storage/box/explosive_mines/large, SLOT_IN_BACKPACK)
+	human.equip_to_slot_or_del(new /obj/item/tool/extinguisher, SLOT_IN_BACKPACK)
+	human.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_BACKPACK)
+	human.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_BACKPACK)
+	human.equip_to_slot_or_del(new /obj/item/tool/shovel/etool, SLOT_IN_BACKPACK)
+
+/datum/outfit/quick/beginner/engineer/pcenjoyer
+	name = "Plasma Cutter"
+
+	suit_store = /obj/item/tool/pickaxe/plasmacutter
+	wear_suit = /obj/item/clothing/suit/modular/xenonauten/engineer
+	mask = /obj/item/clothing/mask/gas
+	head = /obj/item/clothing/head/modular/m10x/superiorwelding
+	back = /obj/item/storage/backpack/marine/engineerpack
+	belt = /obj/item/belt_harness/marine
+	glasses = /obj/item/clothing/glasses/meson
+
+/datum/outfit/quick/beginner/engineer/pcenjoyer/post_equip(mob/living/carbon/human/human, visualsOnly)
+	. = ..()
+	human.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_HEAD)
+
+	human.equip_to_slot_or_del(new /obj/item/stack/sheet/metal/large_stack, SLOT_IN_SUIT)
+	human.equip_to_slot_or_del(new /obj/item/stack/sheet/metal/large_stack, SLOT_IN_SUIT)
+	human.equip_to_slot_or_del(new /obj/item/stack/sheet/metal/small_stack, SLOT_IN_SUIT)
+
+	human.equip_to_slot_or_del(new /obj/item/weapon/gun/smg/standard_machinepistol/compact(human), SLOT_IN_BACKPACK)
+	human.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/standard_machinepistol, SLOT_IN_BACKPACK)
+	human.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/standard_machinepistol, SLOT_IN_BACKPACK)
+	human.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/standard_machinepistol, SLOT_IN_BACKPACK)
+	human.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/standard_machinepistol, SLOT_IN_BACKPACK)
+	human.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/standard_machinepistol, SLOT_IN_BACKPACK)
+	human.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/standard_machinepistol, SLOT_IN_BACKPACK)
+
 /datum/outfit/quick/beginner/corpsman
 	jobtype = "Squad Corpsman"
 
 	shoes = /obj/item/clothing/shoes/marine
+	w_uniform = /obj/item/clothing/under/marine/corpsman/corpman_vest
 	glasses = /obj/item/clothing/glasses/hud/health
 	r_hand = /obj/item/medevac_beacon
 
@@ -385,7 +498,6 @@
 	name = "Standard Lifesaver"
 
 	suit_store = /obj/item/weapon/gun/shotgun/pump/lever/repeater/beginner
-	w_uniform = /obj/item/clothing/under/marine/corpsman/corpman_vest
 	wear_suit = /obj/item/clothing/suit/modular/xenonauten/mimirinjector
 	gloves = /obj/item/defibrillator/gloves
 	mask = /obj/item/clothing/mask/gas
@@ -437,7 +549,6 @@
 	name = "Standard Hypobelt"
 
 	suit_store = /obj/item/weapon/gun/shotgun/pump/t35/beginner
-	w_uniform = /obj/item/clothing/under/marine/corpsman/corpman_vest
 	wear_suit = /obj/item/clothing/suit/modular/xenonauten/light/lightmedical
 	gloves = /obj/item/healthanalyzer/gloves
 	mask = /obj/item/clothing/mask/gas/modular/coofmask

@@ -94,6 +94,9 @@ GLOBAL_LIST_INIT(beginner_loadouts, init_beginner_loadouts())
 		/datum/outfit/quick/beginner/marine/hazmat,
 		/datum/outfit/quick/beginner/marine/cqc,
 		/datum/outfit/quick/beginner/marine/chad,
+		/datum/outfit/quick/beginner/engineer/builder,
+		/datum/outfit/quick/beginner/engineer/burnitall,
+		/datum/outfit/quick/beginner/engineer/pcenjoyer,
 		/datum/outfit/quick/beginner/corpsman/lifesaver,
 		/datum/outfit/quick/beginner/corpsman/hypobelt,
 		/datum/outfit/quick/beginner/smartgunner/sg29,
@@ -142,7 +145,13 @@ GLOBAL_LIST_INIT(beginner_loadouts, init_beginner_loadouts())
 	)
 
 /obj/machinery/quick_vendor/beginner //Loadout vendor that shits out basic pre-made loadouts so new players can get something usable
-	icon_state = "specialist" //Placeholder until I get sprite
+	icon_state = "Loadoutvendor"
+	categories = list(
+		"Squad Marine",
+		"Squad Engineer",
+		"Squad Corpsman",
+		"Squad Smartgunner",
+	)
 
 /obj/machinery/quick_vendor/beginner/Initialize(mapload)
 	. = ..()

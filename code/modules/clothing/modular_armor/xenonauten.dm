@@ -118,6 +118,12 @@
 	slowdown = SLOWDOWN_ARMOR_HEAVY
 	greyscale_config = /datum/greyscale_config/xenonaut/heavy
 
+/obj/item/clothing/suit/modular/xenonauten/heavy/mimirengi
+	starting_attachments = list(
+		/obj/item/armor_module/module/mimir_environment_protection/mark1,
+		/obj/item/armor_module/storage/engineering,
+	)
+
 /obj/item/clothing/suit/modular/xenonauten/heavy/leader
 	starting_attachments = list(
 		/obj/item/armor_module/module/valkyrie_autodoc,
@@ -232,6 +238,9 @@
 
 /obj/item/clothing/head/modular/m10x/welding
 	starting_attachments = list(/obj/item/armor_module/storage/helmet, /obj/item/armor_module/module/welding)
+
+/obj/item/clothing/head/modular/m10x/superiorwelding
+	starting_attachments = list(/obj/item/armor_module/storage/helmet, /obj/item/armor_module/module/welding/superior)
 
 /obj/item/clothing/head/modular/m10x/mimir
 	starting_attachments = list(/obj/item/armor_module/storage/helmet, /obj/item/armor_module/module/mimir_environment_protection/mimir_helmet/mark1)

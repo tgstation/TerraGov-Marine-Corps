@@ -38,6 +38,9 @@
 /obj/item/clothing/under/marine/black_vest
 	starting_attachments = list(/obj/item/armor_module/storage/uniform/black_vest)
 
+/obj/item/clothing/under/marine/brown_vest
+	starting_attachments = list(/obj/item/armor_module/storage/uniform/brown_vest)
+
 //Squad colored turtlenecks
 /obj/item/clothing/under/marine/squad/neck
 	name = "\improper TGMC Delta turtleneck"
