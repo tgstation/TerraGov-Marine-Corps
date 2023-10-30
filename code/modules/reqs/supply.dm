@@ -595,7 +595,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 
 /obj/item/storage/backpack/marine/radiopack
 	name = "\improper TGMC radio operator backpack"
-	desc = "A backpack that resembles the ones old-age radio operator marines would use. It has a supply ordering console installed on it, and a retractable antenna to recieve supply drops."
+	desc = "A backpack that resembles the ones old-age radio operator marines would use. It has a supply ordering console installed on it, and a retractable antenna to receive supply drops."
 	icon_state = "radiopack"
 	item_state = "radiopack"
 	///Var for the window pop-up
