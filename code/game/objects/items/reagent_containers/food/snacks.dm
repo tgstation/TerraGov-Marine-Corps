@@ -1638,7 +1638,7 @@
 
 /obj/item/reagent_containers/food/snacks/lollipop/tricord
 	name = "Tricord-pop"
-	desc = "A lolipop laced with tricordazine, a slow healing reagent. Can be eaten or put in the mask slot."
+	desc = "A lolipop laced with tricordrazine, a slow healing reagent. Can be eaten or put in the mask slot."
 	list_reagents = list(/datum/reagent/consumable/sugar = 1, /datum/reagent/medicine/tricordrazine = 10)
 	tastes = list("cough syrup" = 1, "artificial sweetness" = 1)
 
