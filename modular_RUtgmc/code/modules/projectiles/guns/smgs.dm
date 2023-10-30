@@ -9,6 +9,11 @@
 	icon = 'modular_RUtgmc/icons/Marine/gun64.dmi'
 	icon_state = "v45"
 	item_state = "v45"
+	item_icons = list(
+		slot_l_hand_str = 'modular_RUtgmc/icons/mob/items_lefthand_1.dmi',
+		slot_r_hand_str = 'modular_RUtgmc/icons/mob/items_righthand_1.dmi',
+		slot_back_str = 'modular_RUtgmc/icons/mob/clothing/back.dmi',
+	)
 	caliber = CALIBER_45ACP //codex
 	max_shells = 25 //codex
 	flags_equip_slot = ITEM_SLOT_BACK

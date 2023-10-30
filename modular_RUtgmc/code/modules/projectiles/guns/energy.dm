@@ -56,6 +56,12 @@
 		"Ricochet" = /datum/lasrifle/energy_sniper_mode/ricochet,
 	)
 
+/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_sniper/unique_action(mob/user)
+	. = ..()
+	if(HAS_TRAIT(src, TRAIT_GUN_IS_AIMING))
+		modify_fire_delay(aim_fire_delay)
+		modify_auto_burst_delay(aim_fire_delay)
+
 /datum/lasrifle/energy_sniper_mode/overcharge
 	rounds_per_shot = 200
 	fire_delay = 3 SECONDS
