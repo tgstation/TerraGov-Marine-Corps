@@ -1,0 +1,5 @@
+author: "dopamiin0"
+delete-after: True
+changes:
+  - rscadd: "Added a new ceiling type, obstructed, that blocks tadpole and droppods but not other things caves ordinarily block."
+  - balance: "Engineering on Lawanka Outpost now has an obstructed ceiling, instead of being caves."
