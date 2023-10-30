@@ -18,6 +18,10 @@
 		MISSION_OUTCOME_MINOR_LOSS = list(0, 10),
 		MISSION_OUTCOME_MAJOR_LOSS = list(0, 15),
 	)
+	///The faction trying to destroy objectives
+	var/attacking_faction
+	///The faction trying to protect objectives
+	var/defending_faction
 	///Total number of objectives at round start
 	var/objectives_total = 3
 	///number of targets destroyed for a minor victory
@@ -27,26 +31,30 @@
 	///Overwatch messages for destroying objectives
 	var/list/objective_destruction_messages = list(
 		"first" = list(
-			"starting_faction" = "First objective destroyed, keep it up!",
-			"hostile_faction" = "We've lost an objective, regroup and drive them back!",
+			MISSION_ATTACKING_FACTION = "First objective destroyed, keep it up!",
+			MISSION_DEFENDING_FACTION = "We've lost an objective, regroup and drive them back!",
 		),
 		"second" = list(
-			"starting_faction" = "Another objective destroyed, press the advantage!",
-			"hostile_faction" = "We've lost another objective, get it together team!",
+			MISSION_ATTACKING_FACTION = "Another objective destroyed, press the advantage!",
+			MISSION_DEFENDING_FACTION = "We've lost another objective, get it together team!",
 		),
 		"third" = list(
-			"starting_faction" = "Objective down, nice work team!",
-			"hostile_faction" = "We've lost another, shore up those defences!",
+			MISSION_ATTACKING_FACTION = "Objective down, nice work team!",
+			MISSION_DEFENDING_FACTION = "We've lost another, shore up those defences!",
 		),
 		"second_last" = list(
-			"starting_faction" = "Scratch another, that's just one to go. Finish them off!",
-			"hostile_faction" = "Objective destroyed, protect the last objective at all costs!",
+			MISSION_ATTACKING_FACTION = "Scratch another, that's just one to go. Finish them off!",
+			MISSION_DEFENDING_FACTION = "Objective destroyed, protect the last objective at all costs!",
 		),
 		"last" = list(
-			"starting_faction" = "All objectives destroyed, outstanding!",
-			"hostile_faction" = "All objectives destroyed, fallback, fallback!",
+			MISSION_ATTACKING_FACTION = "All objectives destroyed, outstanding!",
+			MISSION_DEFENDING_FACTION = "All objectives destroyed, fallback, fallback!",
 		),
 	)
+
+/datum/campaign_mission/destroy_mission/New(initiating_faction)
+	. = ..()
+	set_factions()
 
 /datum/campaign_mission/destroy_mission/load_mission()
 	. = ..()
@@ -55,11 +63,15 @@
 	if(!objectives_total)
 		CRASH("Destroy mission loaded with no objectives to destroy!")
 
+/datum/campaign_mission/destroy_mission/unregister_mission_signals()
+	. = ..()
+	UnregisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_OBJECTIVE_DESTROYED)
+
 /datum/campaign_mission/destroy_mission/load_pre_mission_bonuses()
-	new /obj/item/storage/box/crate/loot/materials_pack(get_turf(pick(GLOB.campaign_reward_spawners[hostile_faction])))
+	new /obj/item/storage/box/crate/loot/materials_pack(get_turf(pick(GLOB.campaign_reward_spawners[defending_faction])))
 
 	for(var/i = 1 to objectives_total)
-		new /obj/item/explosive/plastique(get_turf(pick(GLOB.campaign_reward_spawners[starting_faction])))
+		new /obj/item/explosive/plastique(get_turf(pick(GLOB.campaign_reward_spawners[attacking_faction])))
 
 /datum/campaign_mission/destroy_mission/load_objective_description()
 	starting_faction_objective_description = "Major Victory:Destroy all [objectives_total] targets.[min_destruction_amount ? " Minor Victory: Destroy at least [min_destruction_amount] targets." : ""]"
@@ -73,10 +85,6 @@
 	items += "Objectives remaining: [objectives_total - objectives_destroyed]"
 	items += ""
 
-/datum/campaign_mission/destroy_mission/end_mission()
-	UnregisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_OBJECTIVE_DESTROYED)
-	return ..()
-
 /datum/campaign_mission/destroy_mission/check_mission_progress()
 	if(outcome)
 		return TRUE
@@ -85,40 +93,32 @@
 		return FALSE
 
 	if(!length(GLOB.campaign_objectives))
-		message_admins("Mission finished: [MISSION_OUTCOME_MAJOR_VICTORY]")
-		outcome = MISSION_OUTCOME_MAJOR_VICTORY
+		message_admins("Mission finished: [attacking_faction == starting_faction ? MISSION_OUTCOME_MAJOR_VICTORY : MISSION_OUTCOME_MAJOR_LOSS]")
+		outcome = attacking_faction == starting_faction ? MISSION_OUTCOME_MAJOR_VICTORY : MISSION_OUTCOME_MAJOR_LOSS
 		return TRUE
 
 	if(!max_time_reached) //if there is still time on the clock, game continues UNLESS attacking side is completely spent
-		if(mode.stat_list[starting_faction].active_attrition_points)
+		if(mode.stat_list[attacking_faction].active_attrition_points)
 			return FALSE //attacking team still has more bodies to throw into the fight
 		var/list/player_list = count_humans(count_flags = COUNT_IGNORE_ALIVE_SSD)
-		if(length(player_list[1]))
+		if(length(player_list[attacking_faction == starting_faction ? 1 : 3]))
 			return FALSE //attacking team still has living guys
 
 	if(min_destruction_amount && objectives_destroyed >= min_destruction_amount) //Destroyed at least the minimum required
-		message_admins("Mission finished: [MISSION_OUTCOME_MINOR_VICTORY]")
-		outcome = MISSION_OUTCOME_MINOR_VICTORY
+		message_admins("Mission finished: [attacking_faction == starting_faction ? MISSION_OUTCOME_MINOR_VICTORY : MISSION_OUTCOME_MINOR_LOSS]")
+		outcome = attacking_faction == starting_faction ? MISSION_OUTCOME_MINOR_VICTORY : MISSION_OUTCOME_MINOR_LOSS
 	else if(objectives_destroyed > 0) //Destroyed atleast 1 target
-		message_admins("Mission finished: [MISSION_OUTCOME_MINOR_LOSS]")
-		outcome = MISSION_OUTCOME_MINOR_LOSS
+		message_admins("Mission finished: [attacking_faction == starting_faction ? MISSION_OUTCOME_MINOR_LOSS : MISSION_OUTCOME_MINOR_VICTORY]")
+		outcome = attacking_faction == starting_faction ? MISSION_OUTCOME_MINOR_LOSS : MISSION_OUTCOME_MINOR_VICTORY
 	else //Destroyed nothing
-		message_admins("Mission finished: [MISSION_OUTCOME_MAJOR_LOSS]")
-		outcome = MISSION_OUTCOME_MAJOR_LOSS
+		message_admins("Mission finished: [attacking_faction == starting_faction ? MISSION_OUTCOME_MAJOR_LOSS : MISSION_OUTCOME_MAJOR_VICTORY]")
+		outcome = attacking_faction == starting_faction ? MISSION_OUTCOME_MAJOR_LOSS : MISSION_OUTCOME_MAJOR_VICTORY
 	return TRUE
 
-//todo: remove these if nothing new is added
-/datum/campaign_mission/destroy_mission/apply_major_victory()
-	. = ..()
-
-/datum/campaign_mission/destroy_mission/apply_minor_victory()
-	. = ..()
-
-/datum/campaign_mission/destroy_mission/apply_minor_loss()
-	. = ..()
-
-/datum/campaign_mission/destroy_mission/apply_major_loss()
-	. = ..()
+///Sets the attacking and defending faction. Can be overridden to make the starting faction defenders
+/datum/campaign_mission/destroy_mission/proc/set_factions()
+	attacking_faction = starting_faction
+	defending_faction = hostile_faction
 
 ///Handles the destruction of an objective
 /datum/campaign_mission/destroy_mission/proc/objective_destroyed(datum/source, atom/destroyed_objective)
@@ -136,5 +136,5 @@
 	else //catch all if a mission has a million objectives
 		message_to_play = "third"
 
-	map_text_broadcast(starting_faction, objective_destruction_messages[message_to_play]["starting_faction"], "[destroyed_objective] destroyed")
-	map_text_broadcast(hostile_faction, objective_destruction_messages[message_to_play]["hostile_faction"], "[destroyed_objective] destroyed")
+	map_text_broadcast(attacking_faction, objective_destruction_messages[message_to_play][MISSION_ATTACKING_FACTION], "[destroyed_objective] destroyed")
+	map_text_broadcast(defending_faction, objective_destruction_messages[message_to_play][MISSION_DEFENDING_FACTION], "[destroyed_objective] destroyed")

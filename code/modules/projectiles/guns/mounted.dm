@@ -237,47 +237,55 @@
 	flags_item = IS_DEPLOYABLE|TWOHANDED
 
 //-------------------------------------------------------
-//RR-15 mounted heavy recoilless rifle
+//FK-88 mounted heavy infantry support gun
 
-/obj/item/weapon/gun/launcher/rocket/heavy_rr
-	name = "\improper RR-15 mounted heavy recoilless rifle"
-	desc = "The RR-15 mounted recoilless rifle is a non-IFF, modernized version of the L6 Wombat using 75mm. Reintroduced due to the rather close quarter nature of combat against xenomorphs, this thing will kill mostly anything on its way."
+/obj/item/weapon/gun/heavy_isg
+	name = "\improper FK-88 mounted flak gun"
+	desc = "The FK-88 is a big gun, offically meant to be used against large hostile wildlife or unruly crowds, this cannon will most definitely give a very bad day to anything that gets caught in its line of fire. Takes quite a while to dial in your shots. Uses 15cm shells."
 
 	w_class = WEIGHT_CLASS_HUGE
 	flags_equip_slot = ITEM_SLOT_BACK
-	icon = 'icons/Marine/marine-hmg.dmi'
-	icon_state = "heavyrr"
-
+	icon = 'icons/Marine/marine-fkgun.dmi'
+	icon_state = "isg"
 	fire_sound = 'sound/weapons/guns/fire/tank_cannon1.ogg'
 	reload_sound = 'sound/weapons/guns/interact/tat36_reload.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/launcher_empty.ogg'
 
-	default_ammo_type = /obj/item/ammo_magazine/heavy_rr
+	default_ammo_type = /obj/item/ammo_magazine/heavy_isg/he
 	max_shells = 1 //codex
-	caliber = CALIBER_75MM // codex
+	caliber = CALIBER_15CM // codex
 
 	scatter = 10
 	deployed_scatter_change = -10
-	windup_delay = 1 SECONDS
-	fire_delay = 3 SECONDS
+	windup_delay = 8 SECONDS
+	fire_delay = 10 SECONDS
 
-	flags_item = IS_DEPLOYABLE|TWOHANDED|DEPLOYED_NO_PICKUP|DEPLOY_ON_INITIALIZE
+	flags_item = IS_DEPLOYABLE|TWOHANDED|DEPLOYED_NO_PICKUP|DEPLOY_ON_INITIALIZE|DEPLOYED_ANCHORED_FIRING_ONLY
 	flags_gun_features = GUN_AMMO_COUNTER|GUN_DEPLOYED_FIRE_ONLY|GUN_WIELDED_FIRING_ONLY|GUN_SMOKE_PARTICLES
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO)
-	backblastdamage = FALSE
 
 	attachable_allowed = list(/obj/item/attachable/scope/unremovable/tl102/nest)
 
 	starting_attachment_types = list(/obj/item/attachable/scope/unremovable/tl102/nest)
 
-	allowed_ammo_types = list(/obj/item/ammo_magazine/heavy_rr)
+	allowed_ammo_types = list(
+		/obj/item/ammo_magazine/heavy_isg/he,
+		/obj/item/ammo_magazine/heavy_isg/sabot,
+	)
 
-	deploy_time = 5 SECONDS
+	deploy_time = 6 SECONDS
 	undeploy_time = 3 SECONDS
-	deployable_item = /obj/machinery/deployable/mounted
+	deployable_item = /obj/machinery/deployable/mounted/moveable/isg
 
-	max_integrity = 600
-	soft_armor = list(MELEE = 0, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 100, FIRE = 0, ACID = 0)
+	max_integrity = 800
+	soft_armor = list(MELEE = 60, BULLET = 60, LASER = 60, ENERGY = 50, BOMB = 50, BIO = 100, FIRE = 0, ACID = 0)
+
+/obj/machinery/deployable/mounted/moveable/isg
+	coverage = 90 // Has a shield.
+	anchor_time = 4 SECONDS
+	has_anchored_sprite = TRUE
+	pixel_x = -16
+	pixel_y = -11
 
 ///This is my meme version, the first version of the HSG-102 to have auto-fire, revel in its presence.
 /obj/item/weapon/gun/tl102/death
@@ -369,7 +377,6 @@
 	attachable_allowed = list(
 		/obj/item/attachable/reddot,
 		/obj/item/attachable/motiondetector,
-		/obj/item/attachable/heavy_barrel,
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/flashlight,
 		/obj/item/attachable/flashlight/under,
@@ -410,7 +417,7 @@
 
 
 /obj/item/weapon/gun/standard_mmg/machinegunner
-	starting_attachment_types = list(/obj/item/attachable/stock/t27, /obj/item/attachable/scope/unremovable/mmg, /obj/item/attachable/heavy_barrel)
+	starting_attachment_types = list(/obj/item/attachable/stock/t27, /obj/item/attachable/scope/unremovable/mmg)
 
 /obj/item/weapon/gun/clf_heavyrifle
 	name = "\improper PTR-41/1785 anti-mech gun"

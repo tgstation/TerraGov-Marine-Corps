@@ -234,7 +234,7 @@
 	network = list("sommainship")
 
 /obj/machinery/computer/security/som_network
-	network = list("som")
+	network = list(SOM_CAMERA_NETWORK)
 
 /obj/machinery/computer/security/dropship
 	name = "abstract dropship camera computer"

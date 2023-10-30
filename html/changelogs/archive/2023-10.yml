@@ -361,3 +361,49 @@
   Lewdcifer:
   - bugfix: Fixed an issue where headwear with an emissive visor would display when
       in hand, but not when worn.
+2023-10-28:
+  Aporhtonoma:
+  - balance: razor wires cost 8 iron rods 2 barbed to make
+  - bugfix: fixes infinite barbed duplication
+  ClosetedSkeletonGH:
+  - balance: Removes barrel charger from MG-27
+  Lewdcifer:
+  - balance: Alkysine now slightly heals ear damage.
+  Lumipharon:
+  - bugfix: fixed map table interaction checks always passing
+  - bugfix: You can no longer jump while stunned or buckled
+  - bugfix: You can no longer attack with a strapped weapon while stunned
+  - code_imp: Some more campaign backend work added
+  - bugfix: fixed SOM overwatch minimap showing marines instead of SOM
+  - bugfix: The SOM cic eye is now correctly flagged to SOM huds
+  - balance: Reduced brick damage somewhat
+  - bugfix: fixed a rare defender bug
+  Waselon:
+  - bugfix: baneling now can overwatch xenos if died from normal death
+2023-10-29:
+  Dallas:
+  - soundadd: Ported meowsynth and spaceman synthesizer sounds from TG
+  Lumipharon:
+  - bugfix: Sentry IFF flags are correctly checked when IFF projectile try to hit
+      them
+  - rscadd: Vendors are emissive
+  - bugfix: fixed a camera issue in campaign
+  Pariah919:
+  - rscadd: FK-88, a deployable direct fire support weapon that fires 15cm high explosive
+      shells, replaces the RR-15.
+  - rscdel: Tad heavy RR has been replaced by the ISG-15 HISG.
+  Xander3359:
+  - balance: improves imialk hypo
+2023-10-30:
+  Lewdcifer:
+  - rscadd: Adds the Behemoth, a new tier 3 caste.
+  Lumipharon:
+  - rscadd: SOM has their own camera net
+  - bugfix: Crest toss now throws the correct distance diagonally
+  - balance: Crest toss is from the xeno's turf, so some tosses will be possible that
+      were not previously
+  TiviPlus:
+  - rscadd: Added custom squads;
+  - rscadd: SLs may now create their own squads using a terminal in/near their prep,
+      and marines can join said squads using the squad selection consoles near preps
+  - admin: admins can now delete squads

@@ -2251,6 +2251,7 @@
 /area/mainship/hallways/aft_hallway)
 "aTT" = (
 /obj/machinery/firealarm,
+/obj/machinery/computer/squad_selector,
 /turf/open/floor/mainship/red{
 	dir = 1
 	},
@@ -7419,6 +7420,7 @@
 /area/mainship/living/port_emb)
 "ccT" = (
 /obj/machinery/light/mainship,
+/obj/machinery/computer/squad_selector,
 /turf/open/floor/mainship/blue,
 /area/mainship/squads/delta)
 "cdt" = (
@@ -9068,6 +9070,15 @@
 	},
 /turf/open/floor/mainship/floor,
 /area/mainship/command/cic)
+"eGf" = (
+/obj/machinery/light/mainship{
+	dir = 1
+	},
+/obj/machinery/computer/squad_manager,
+/turf/open/floor/mainship/red{
+	dir = 1
+	},
+/area/mainship/squads/alpha)
 "eGg" = (
 /obj/structure/window/framed/mainship/hull,
 /obj/machinery/door/firedoor/mainship,
@@ -17568,6 +17579,11 @@
 /obj/machinery/telecomms/bus/preset_three,
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/telecomms)
+"sIX" = (
+/obj/machinery/light/mainship,
+/obj/machinery/computer/squad_manager,
+/turf/open/floor/mainship/blue,
+/area/mainship/squads/delta)
 "sJd" = (
 /obj/effect/landmark/start/latejoin_gateway,
 /obj/machinery/camera/autoname/mainship,
@@ -19773,6 +19789,13 @@
 /obj/machinery/griddle,
 /turf/open/floor/mainship/floor,
 /area/mainship/living/grunt_rnr)
+"wJn" = (
+/obj/machinery/camera/autoname/mainship,
+/obj/machinery/computer/squad_selector,
+/turf/open/floor/mainship/red{
+	dir = 1
+	},
+/area/mainship/squads/alpha)
 "wJw" = (
 /obj/structure/window/framed/mainship,
 /turf/open/floor/plating,
@@ -63831,7 +63854,7 @@ aWR
 bdv
 aZi
 aWH
-bpD
+wJn
 aaf
 kMY
 brj
@@ -64345,7 +64368,7 @@ aWR
 bQr
 aZi
 aWH
-bSQ
+eGf
 jZv
 bjP
 brj
@@ -64385,7 +64408,7 @@ awz
 ktN
 ada
 vJr
-ccT
+sIX
 cbn
 cej
 aXI

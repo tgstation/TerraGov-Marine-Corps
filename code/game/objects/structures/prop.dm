@@ -218,13 +218,14 @@
 /obj/machinery/prop/computer/communications
 	name = "communications console"
 	desc = "This can be used for various important functions."
-	icon_state = "comm"
+	screen_overlay = "comm"
 	icon = 'icons/obj/machines/computer.dmi'
 
 /obj/machinery/prop/computer/crew
 	name = "Crew monitoring computer"
 	desc = "Used to monitor active health sensors built into most of the crew's uniforms."
-	icon_state = "crew"
+	icon_state = "computer"
+	screen_overlay = "crew"
 	icon = 'icons/obj/machines/computer.dmi'
 
 /obj/machinery/prop/r_n_d/server/alt
@@ -2103,84 +2104,6 @@
 	desc = "If you see this object in game you should ahelp, something has broken."
 	icon = 'icons/Marine/mainship_props.dmi'
 	icon_state = "error"
-
-/obj/structure/prop/som_fighter
-	name = "\improper Harbinger"
-	desc = "A state of the art Harbinger class fighter. The premier fighter for SOM forces in space and atmosphere, bristling with high tech systems and weapons."
-	icon = 'icons/Marine/mainship_props96.dmi'
-	icon_state = "SOM_fighter"
-	pixel_x = -33
-	pixel_y = -10
-	density = TRUE
-	allow_pass_flags = PASS_AIR
-
-/obj/structure/prop/som_fighter/empty
-	icon_state = "SOM_fighter_empty"
-	desc = "A state of the art Harbinger class fighter. The premier fighter for SOM forces in space and atmosphere, this one seems to be unarmed currently."
-
-/obj/structure/prop/train
-	name = "locomotive"
-	desc = "A heavy duty maglev locomotive. Designed for moving large quantities of goods from point A to point B."
-	icon = 'icons/obj/structures/train.dmi'
-	icon_state = "maglev"
-	density = TRUE
-	allow_pass_flags = PASS_AIR
-	bound_width = 128
-
-/obj/structure/prop/train/carriage
-	name = "rail carriage"
-	desc = "A heavy duty maglev carriage. I wonder what's inside?."
-	icon_state = "carriage"
-
-/obj/structure/prop/train/carriage_lit
-	name = "rail carriage"
-	desc = "A heavy duty maglev carriage. I wonder what's inside?."
-	icon_state = "carriage_lit"
-
-/obj/structure/prop/train/cargo_nt
-	name = "railcar"
-	desc = "A heavy duty maglev railcar. This one has a large cargo container on it."
-	icon_state = "nt"
-
-/obj/structure/prop/train/cargo_sat
-	name = "railcar"
-	desc = "A heavy duty maglev railcar. This one has a large cargo container on it."
-	icon_state = "sat"
-
-/obj/structure/prop/train/cargo_hyperdyne
-	name = "railcar"
-	desc = "A heavy duty maglev railcar. This one has a large cargo container on it."
-	icon_state = "hyperdyne"
-
-/obj/structure/prop/train/construction
-	name = "railcar"
-	desc = "A heavy duty maglev railcar. This one is carrying a variety of construction materials."
-	icon_state = "construction"
-	allow_pass_flags = PASSABLE
-
-/obj/structure/prop/train/crates
-	name = "railcar"
-	desc = "A heavy duty maglev railcar. This one has a variety of crates on it."
-	icon_state = "crates"
-	allow_pass_flags = PASSABLE
-
-/obj/structure/prop/train/weapons
-	name = "railcar"
-	desc = "A heavy duty maglev railcar. This one is carrying a shipment of weapons."
-	icon_state = "weapons"
-	allow_pass_flags = PASSABLE
-
-/obj/structure/prop/train/mech
-	name = "railcar"
-	desc = "A heavy duty maglev railcar. This one has a variety of mech equipment on it."
-	icon_state = "mech"
-	allow_pass_flags = PASSABLE
-
-/obj/structure/prop/train/empty
-	name = "railcar"
-	desc = "A heavy duty maglev railcar. This one is currently empty."
-	icon_state = "empty"
-	allow_pass_flags = PASS_LOW_STRUCTURE|PASSABLE|PASS_WALKOVER
 
 /obj/prop/mainship/prop/news_tv
 	name = "TV"

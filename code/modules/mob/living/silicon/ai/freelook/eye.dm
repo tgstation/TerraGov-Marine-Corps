@@ -16,7 +16,7 @@
 	var/ai_detector_color = "#FF0000"
 
 
-/mob/camera/aiEye/Initialize(mapload)
+/mob/camera/aiEye/Initialize(mapload, cameranet, new_faction)
 	. = ..()
 	GLOB.aiEyes += src
 	setLoc(loc, TRUE)

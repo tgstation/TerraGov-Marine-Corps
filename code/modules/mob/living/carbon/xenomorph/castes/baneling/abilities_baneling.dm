@@ -165,4 +165,4 @@
 	X.death(FALSE)
 
 /datum/action/xeno_action/watch_xeno/baneling
-	use_state_flags = XACT_USE_LYING|XACT_USE_NOTTURF
+	use_state_flags = XACT_USE_LYING|XACT_USE_NOTTURF|XACT_USE_INCAP

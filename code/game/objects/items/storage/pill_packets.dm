@@ -83,7 +83,7 @@
 	pip_color = COLOR_PACKET_LEPORAZINE
 
 /obj/item/storage/pill_bottle/packet/russian_red
-	name = "Russian Red pill packet"
+	name = "russian red pill packet"
 	desc = "This packet contains Russian Red pills. Used for field treatment of critical cases without a medic. Once you take them out they don't go back in.."
 	pill_type_to_fill = /obj/item/reagent_containers/pill/russian_red
 	pip_color = COLOR_PACKET_RUSSIAN_RED

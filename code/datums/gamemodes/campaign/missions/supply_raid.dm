@@ -26,13 +26,11 @@
 	)
 	starting_faction_additional_rewards = "Disrupt enemy supply routes, reducing enemy attrition generation for future missions."
 	hostile_faction_additional_rewards = "Prevent the degradation of our attrition generation. Recon mech and gorgon armor available if you successfully protect this depot."
-	///The mech spawner type to create a mech for the defending team
-	var/mech_type = /obj/effect/landmark/campaign/mech_spawner/som
 
 /datum/campaign_mission/destroy_mission/supply_raid/play_start_intro()
 	intro_message = list(
-		"starting_faction" = "[map_name]<br>" + "[GAME_YEAR]-[time2text(world.realtime, "MM-DD")] [stationTimestamp("hh:mm")]<br>" + "Locate and destroy all [objectives_total] target objectives before further [hostile_faction] reinforcements can arrive. Good hunting!",
-		"hostile_faction" = "[map_name]<br>" + "[GAME_YEAR]-[time2text(world.realtime, "MM-DD")] [stationTimestamp("hh:mm")]<br>" + "Protect all [objectives_total] supply points until reinforcements arrive. Eliminate all [starting_faction] forces and secure the area.",
+		MISSION_STARTING_FACTION = "[map_name]<br>" + "[GAME_YEAR]-[time2text(world.realtime, "MM-DD")] [stationTimestamp("hh:mm")]<br>" + "Locate and destroy all [objectives_total] target objectives before further [hostile_faction] reinforcements can arrive. Good hunting!",
+		MISSION_HOSTILE_FACTION = "[map_name]<br>" + "[GAME_YEAR]-[time2text(world.realtime, "MM-DD")] [stationTimestamp("hh:mm")]<br>" + "Protect all [objectives_total] supply points until reinforcements arrive. Eliminate all [starting_faction] forces and secure the area.",
 	)
 	return ..()
 
@@ -46,18 +44,12 @@
 
 /datum/campaign_mission/destroy_mission/supply_raid/load_pre_mission_bonuses()
 	. = ..()
-	for(var/obj/effect/landmark/campaign/mech_spawner/mech_spawner AS in GLOB.campaign_mech_spawners[hostile_faction])
-		if(mech_spawner.type != mech_type)
-			continue
-		var/new_mech = mech_spawner.spawn_mech()
-		GLOB.campaign_structures += new_mech
-		RegisterSignal(new_mech, COMSIG_QDELETING, TYPE_PROC_REF(/datum/campaign_mission, remove_mission_object))
-		return
+	spawn_mech(defending_faction, 0, 1)
 
 /datum/campaign_mission/destroy_mission/supply_raid/apply_major_victory()
 	winning_faction = starting_faction
 	var/datum/faction_stats/hostile_team = mode.stat_list[hostile_faction]
-	hostile_team.add_asset(/datum/campaign_asset/attrition_modifier/malus_standard/higher)
+	hostile_team.add_asset(/datum/campaign_asset/attrition_modifier/malus_strong)
 
 /datum/campaign_mission/destroy_mission/supply_raid/apply_minor_victory()
 	winning_faction = starting_faction
@@ -91,5 +83,4 @@
 	map_light_levels = list(225, 150, 100, 75)
 	objectives_total = 8
 	min_destruction_amount = 5
-	mech_type = /obj/effect/landmark/campaign/mech_spawner
 	hostile_faction_additional_rewards = "Prevent the degradation of our attrition generation. B18 power armour available if you successfully protect this depot."

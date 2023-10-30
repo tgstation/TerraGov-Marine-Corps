@@ -2248,11 +2248,11 @@
 /turf/open/floor/mainship/sterile,
 /area/oscar_outpost/base)
 "pX" = (
-/obj/item/ammo_magazine/heavy_rr,
-/obj/item/ammo_magazine/heavy_rr,
-/obj/item/ammo_magazine/heavy_rr,
-/obj/item/ammo_magazine/heavy_rr,
-/obj/item/ammo_magazine/heavy_rr,
+/obj/item/ammo_magazine/heavy_isg/he,
+/obj/item/ammo_magazine/heavy_isg/he,
+/obj/item/ammo_magazine/heavy_isg/he,
+/obj/item/ammo_magazine/heavy_isg/he,
+/obj/item/ammo_magazine/heavy_isg/he,
 /obj/structure/barricade/sandbags{
 	dir = 8;
 	name = "trench lining";
@@ -5824,7 +5824,7 @@
 /turf/open/floor,
 /area/oscar_outpost/village)
 "Ir" = (
-/obj/item/weapon/gun/launcher/rocket/heavy_rr{
+/obj/item/weapon/gun/heavy_isg{
 	dir = 4
 	},
 /turf/open/floor/plating/ground/dirt2,
@@ -8982,11 +8982,11 @@
 /turf/open/floor/mainship/sterile,
 /area/oscar_outpost/base)
 "Wc" = (
-/obj/item/ammo_magazine/heavy_rr,
-/obj/item/ammo_magazine/heavy_rr,
-/obj/item/ammo_magazine/heavy_rr,
-/obj/item/ammo_magazine/heavy_rr,
-/obj/item/ammo_magazine/heavy_rr,
+/obj/item/ammo_magazine/heavy_isg/he,
+/obj/item/ammo_magazine/heavy_isg/he,
+/obj/item/ammo_magazine/heavy_isg/he,
+/obj/item/ammo_magazine/heavy_isg/he,
+/obj/item/ammo_magazine/heavy_isg/he,
 /obj/structure/barricade/sandbags{
 	dir = 8;
 	name = "trench lining";
