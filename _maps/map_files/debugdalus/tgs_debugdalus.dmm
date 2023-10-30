@@ -2420,6 +2420,19 @@
 /obj/structure/ship_rail_gun,
 /turf/open/floor/mainship,
 /area/mainship/shipboard/weapon_room)
+"gtH" = (
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/machinery/quick_vendor/beginner,
+/turf/open/floor/mainship,
+/area/mainship/squads/general)
 "gOE" = (
 /obj/machinery/light,
 /turf/open/floor/mainship,
@@ -5107,7 +5120,7 @@ aal
 vsI
 aab
 wqS
-qxC
+gtH
 aaA
 aaS
 qxC
