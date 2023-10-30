@@ -63,3 +63,19 @@
 /obj/structure/xeno/spawner/Initialize(mapload)
 	. = ..()
 	set_light(2, 2, LIGHT_COLOR_GREEN)
+
+/obj/structure/xeno/spawner/update_minimap_icon()
+	. = ..()
+	SSminimaps.add_marker(src, MINIMAP_FLAG_XENO, image('modular_RUtgmc/icons/UI_icons/map_blips.dmi', null, "spawner[warning ? "_warn" : "_passive"]"))
+
+/obj/structure/xeno/pherotower/Initialize(mapload, _hivenumber)
+	. = ..()
+	SSminimaps.add_marker(src, MINIMAP_FLAG_XENO, image('modular_RUtgmc/icons/UI_icons/map_blips.dmi', null, "phero"))
+
+/obj/structure/xeno/xeno_turret/update_minimap_icon()
+	. = ..()
+	SSminimaps.add_marker(src, MINIMAP_FLAG_XENO, image('modular_RUtgmc/icons/UI_icons/map_blips.dmi', null, "xeno_turret[firing ? "_firing" : "_passive"]"))
+
+/obj/structure/xeno/silo/update_minimap_icon()
+	. = ..()
+	SSminimaps.add_marker(src, MINIMAP_FLAG_XENO, image('modular_RUtgmc/icons/UI_icons/map_blips.dmi', null, "silo[warning ? "_warn" : "_passive"]"))
