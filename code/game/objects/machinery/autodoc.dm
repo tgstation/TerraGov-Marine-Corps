@@ -35,6 +35,9 @@
 	anchored = TRUE
 	coverage = 20
 	req_one_access = list(ACCESS_MARINE_MEDBAY, ACCESS_MARINE_CHEMISTRY, ACCESS_MARINE_MEDPREP)
+	light_range = 1
+	light_power = 0.5
+	light_color = LIGHT_COLOR_BLUE
 	var/locked = FALSE
 	var/mob/living/carbon/human/occupant = null
 	var/list/surgery_todo_list = list() //a list of surgeries to do.
@@ -90,6 +93,14 @@
 	surgery = FALSE
 	go_out(AUTODOC_NOTICE_NO_POWER)
 
+/obj/machinery/autodoc/update_icon()
+	. = ..()
+	if(machine_stat & NOPOWER)
+		set_light(0)
+	else if(surgery || occupant)
+		set_light(initial(light_range) + 1)
+	else
+		set_light(initial(light_range))
 
 /obj/machinery/autodoc/update_icon_state()
 	if(machine_stat & NOPOWER)
@@ -100,6 +111,12 @@
 		icon_state = "autodoc_closed"
 	else
 		icon_state = "autodoc_open"
+
+/obj/machinery/autodoc/update_overlays()
+	. = ..()
+	if(machine_stat & NOPOWER)
+		return
+	. += emissive_appearance(icon, "[icon_state]_emissive", alpha = src.alpha)
 
 /obj/machinery/autodoc/process()
 	if(!occupant)
