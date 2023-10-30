@@ -186,7 +186,7 @@
 	name = "Engineering"
 	icon_state = "engine"
 	minimap_color = MINIMAP_AREA_ENGI
-	ceiling = CEILING_UNDERGROUND_METAL
+	ceiling = CEILING_OBSTRUCTED
 
 /area/lawankaoutpost/colony/chapel
 	name = "Chapel"
