@@ -6863,7 +6863,7 @@
 	},
 /area/icy_caves/outpost/security)
 "JB" = (
-/obj/machinery/autodoc_console,
+/obj/machinery/computer/autodoc_console,
 /turf/open/floor/tile/dark/green2,
 /area/icy_caves/outpost/medbay)
 "JC" = (

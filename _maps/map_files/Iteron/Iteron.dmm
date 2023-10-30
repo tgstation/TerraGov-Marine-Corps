@@ -3805,7 +3805,7 @@
 /turf/open/floor/prison/sterilewhite,
 /area/mainship/patrol_base)
 "WM" = (
-/obj/machinery/autodoc_console,
+/obj/machinery/computer/autodoc_console,
 /obj/machinery/light/mainship{
 	light_color = "#da2f1b"
 	},

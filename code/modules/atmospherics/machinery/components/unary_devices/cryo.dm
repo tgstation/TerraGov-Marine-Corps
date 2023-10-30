@@ -7,7 +7,7 @@
 	density = TRUE
 	max_integrity = 350
 	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 100, BOMB = 0, BIO = 100, FIRE = 30, ACID = 30)
-	layer = ABOVE_WINDOW_LAYER
+	layer = ABOVE_MOB_LAYER
 	pipe_flags = PIPING_ONE_PER_TURF|PIPING_DEFAULT_LAYER_ONLY
 	interaction_flags = INTERACT_MACHINE_TGUI
 	can_see_pipes = FALSE

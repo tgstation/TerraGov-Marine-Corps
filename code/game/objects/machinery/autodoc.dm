@@ -53,7 +53,7 @@
 	var/event = 0
 	var/forceeject = FALSE
 
-	var/obj/machinery/autodoc_console/connected
+	var/obj/machinery/computer/autodoc_console/connected
 
 	//It uses power
 	use_power = ACTIVE_POWER_USE
@@ -779,7 +779,7 @@
 		target.stop_pulling()
 		target.forceMove(src)
 		occupant = target
-		icon_state = "autodoc_closed"
+		update_icon()
 		var/implants = list(/obj/item/implant/neurostim)
 		var/mob/living/carbon/human/H = occupant
 		var/doc_dat
@@ -929,7 +929,7 @@
 
 	M.forceMove(src)
 	occupant = M
-	icon_state = "autodoc_closed"
+	update_icon()
 	var/implants = list(/obj/item/implant/neurostim)
 	var/mob/living/carbon/human/H = occupant
 	med_scan(H, null, implants, TRUE)
@@ -943,24 +943,25 @@
 /////////////////////////////////////////////////////////////
 
 //Auto Doc console that links up to it.
-/obj/machinery/autodoc_console
-	name = "\improper autodoc medical system control console"
+/obj/machinery/computer/autodoc_console
+	name = "autodoc medical system control console"
 	icon = 'icons/obj/machines/cryogenics.dmi'
 	icon_state = "sleeperconsole"
+	screen_overlay = "sleeperconsole_emissive"
 	var/obj/machinery/autodoc/connected = null
 	var/release_notice = TRUE //Are notifications for patient discharges turned on?
 	var/locked = FALSE //Medics, Doctors and so on can lock this.
 	req_one_access = list(ACCESS_MARINE_MEDBAY, ACCESS_MARINE_CHEMISTRY, ACCESS_MARINE_MEDPREP) //Valid access while locked
-	anchored = TRUE //About time someone fixed this.
 	density = FALSE
-
-	use_power = IDLE_POWER_USE
 	idle_power_usage = 40
+	light_range = 1
+	light_power = 0.5
+	light_color = LIGHT_COLOR_BLUE
 	var/obj/item/radio/headset/mainship/doc/radio
 	var/obj/item/reagent_containers/blood/OMinus/blood_pack
 
 
-/obj/machinery/autodoc_console/Initialize(mapload)
+/obj/machinery/computer/autodoc_console/Initialize(mapload)
 	. = ..()
 	connected = locate(/obj/machinery/autodoc, get_step(src, WEST))
 	if(connected)
@@ -969,7 +970,7 @@
 	blood_pack = new(src)
 
 
-/obj/machinery/autodoc_console/Destroy()
+/obj/machinery/computer/autodoc_console/Destroy()
 	QDEL_NULL(radio)
 	QDEL_NULL(blood_pack)
 	if(connected)
@@ -977,15 +978,7 @@
 		connected = null
 	return ..()
 
-
-/obj/machinery/autodoc_console/update_icon_state()
-	if(machine_stat & NOPOWER)
-		icon_state = "sleeperconsole-p"
-	else
-		icon_state = "sleeperconsole"
-
-
-/obj/machinery/autodoc_console/can_interact(mob/user)
+/obj/machinery/computer/autodoc_console/can_interact(mob/user)
 	. = ..()
 	if(!.)
 		return FALSE
@@ -1000,7 +993,7 @@
 
 
 
-/obj/machinery/autodoc_console/interact(mob/user)
+/obj/machinery/computer/autodoc_console/interact(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -1188,7 +1181,7 @@
 	popup.open()
 
 
-/obj/machinery/autodoc_console/Topic(href, href_list)
+/obj/machinery/computer/autodoc_console/Topic(href, href_list)
 	. = ..()
 	if(.)
 		return
@@ -1357,7 +1350,7 @@
 /obj/machinery/autodoc/event
 	event = 1
 
-/obj/machinery/autodoc_console/examine(mob/living/user)
+/obj/machinery/computer/autodoc_console/examine(mob/living/user)
 	. = ..()
 	if(locked)
 		. += span_warning("It's currently locked down!")

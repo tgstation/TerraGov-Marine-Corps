@@ -2865,7 +2865,7 @@
 	},
 /area/oscar_outpost/outside/northwest)
 "Ck" = (
-/obj/machinery/autodoc_console,
+/obj/machinery/computer/autodoc_console,
 /turf/open/floor/mainship/sterile,
 /area/oscar_outpost)
 "Cr" = (

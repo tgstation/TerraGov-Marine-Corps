@@ -13265,7 +13265,7 @@
 /turf/open/floor/mainship/black,
 /area/mainship/squads/general)
 "lbs" = (
-/obj/machinery/autodoc_console,
+/obj/machinery/computer/autodoc_console,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/mainship/sterile/corner,

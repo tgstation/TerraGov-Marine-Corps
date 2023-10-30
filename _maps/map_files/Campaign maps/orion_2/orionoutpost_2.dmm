@@ -1321,7 +1321,7 @@
 /turf/open/floor/plating,
 /area/orion_outpost/surface/building/tadpolepad)
 "go" = (
-/obj/machinery/autodoc_console,
+/obj/machinery/computer/autodoc_console,
 /turf/open/floor/mainship/sterile/dark,
 /area/orion_outpost/surface/building/medbay)
 "gq" = (

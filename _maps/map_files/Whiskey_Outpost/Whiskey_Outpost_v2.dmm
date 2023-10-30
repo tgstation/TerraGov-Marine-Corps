@@ -2449,7 +2449,7 @@
 /turf/open/floor/plating/asteroidplating,
 /area/whiskey_outpost/outside/north)
 "lX" = (
-/obj/machinery/autodoc_console,
+/obj/machinery/computer/autodoc_console,
 /turf/open/floor/mainship/sterile,
 /area/whiskey_outpost)
 "lZ" = (
@@ -6854,7 +6854,7 @@
 /area/whiskey_outpost/outside/south)
 "OO" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/autodoc_console,
+/obj/machinery/computer/autodoc_console,
 /turf/open/floor/mainship/sterile,
 /area/whiskey_outpost)
 "OP" = (

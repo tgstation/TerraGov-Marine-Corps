@@ -201,7 +201,7 @@
 /turf/open/floor/plating/ground/dirtgrassborder,
 /area/oscar_outpost/outside/road)
 "br" = (
-/obj/machinery/autodoc_console,
+/obj/machinery/computer/autodoc_console,
 /obj/structure/reagent_dispensers/fueltank,
 /turf/open/floor/mainship/sterile,
 /area/oscar_outpost/base)
@@ -1194,7 +1194,7 @@
 /turf/open/liquid/water/river/desertdam/clean/deep_water_clean,
 /area/oscar_outpost/village/fairgrounds)
 "ig" = (
-/obj/machinery/autodoc_console,
+/obj/machinery/computer/autodoc_console,
 /turf/open/floor/mainship/sterile,
 /area/oscar_outpost/village/central)
 "ij" = (

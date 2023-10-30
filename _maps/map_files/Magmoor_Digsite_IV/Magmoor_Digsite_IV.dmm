@@ -4483,7 +4483,7 @@
 	},
 /area/magmoor/civilian/rnr)
 "diw" = (
-/obj/machinery/autodoc_console,
+/obj/machinery/computer/autodoc_console,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
 	dir = 4

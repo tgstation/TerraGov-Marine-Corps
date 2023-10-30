@@ -6505,7 +6505,7 @@
 	},
 /area/outpost/hallway/south_east)
 "Ey" = (
-/obj/machinery/autodoc_console,
+/obj/machinery/computer/autodoc_console,
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 8
 	},

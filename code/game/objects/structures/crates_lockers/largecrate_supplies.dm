@@ -406,7 +406,7 @@
 			return
 
 		var/obj/machinery/autodoc/event/E = new (T)
-		var/obj/machinery/autodoc_console/C = new (T)
+		var/obj/machinery/computer/autodoc_console/C = new (T)
 		C.loc = get_step(T, EAST)
 		E.connected = C
 		C.connected = E

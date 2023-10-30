@@ -11690,7 +11690,7 @@
 /turf/open/floor/wood,
 /area/centcom/valhalla/port)
 "pFR" = (
-/obj/machinery/autodoc_console,
+/obj/machinery/computer/autodoc_console,
 /turf/open/floor/mainship/sterile/side{
 	dir = 8
 	},

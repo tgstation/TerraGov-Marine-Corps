@@ -762,7 +762,7 @@
 	},
 /area/sulaco/medbay)
 "acK" = (
-/obj/machinery/autodoc_console,
+/obj/machinery/computer/autodoc_console,
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 4
 	},

@@ -2404,7 +2404,7 @@
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/road)
 "Ck" = (
-/obj/machinery/autodoc_console,
+/obj/machinery/computer/autodoc_console,
 /turf/open/floor/mainship/sterile,
 /area/oscar_outpost)
 "Cz" = (
