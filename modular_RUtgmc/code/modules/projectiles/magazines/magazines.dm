@@ -173,3 +173,13 @@
 	desc = "A packet containing 125 rounds of 10x20mm caseless."
 	icon_state = "box_10x20mm_ap"
 	default_ammo = /datum/ammo/bullet/smg/ap
+
+/obj/item/ammo_magazine/packet/sg62_rifle
+	name = "box of 10x27mm"
+	desc = "A box containing 200 rounds of 10x27mm caseless."
+	icon = 'modular_RUtgmc/icons/obj/items/ammo.dmi'
+	icon_state = "box_sg62"
+	default_ammo = /datum/ammo/bullet/smarttargetrifle
+	caliber = CALIBER_10x27_CASELESS
+	current_rounds = 200
+	max_rounds = 200
