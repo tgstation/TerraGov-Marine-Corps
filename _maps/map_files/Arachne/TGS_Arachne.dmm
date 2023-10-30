@@ -7053,6 +7053,12 @@
 "gdm" = (
 /turf/open/floor/mainship/sterile/purple/corner,
 /area/mainship/medical/upper_medical)
+"gdu" = (
+/obj/machinery/computer/squad_selector,
+/turf/open/floor/mainship/black{
+	dir = 4
+	},
+/area/mainship/squads/general)
 "gdx" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -7128,6 +7134,7 @@
 /obj/structure/disposalpipe/junction/yjunc{
 	dir = 1
 	},
+/obj/machinery/computer/squad_selector,
 /turf/open/floor/mainship/black,
 /area/mainship/squads/general)
 "gfy" = (
@@ -7205,6 +7212,7 @@
 /area/mainship/living/pilotbunks)
 "glX" = (
 /obj/structure/rack,
+/obj/item/toy/plush/rouny,
 /obj/machinery/camera/autoname/mainship{
 	dir = 4
 	},
@@ -15532,19 +15540,10 @@
 /turf/open/floor/mainship/floor,
 /area/mainship/living/pilotbunks)
 "mRE" = (
-/obj/machinery/vending/marineFood,
-/obj/item/reagent_containers/food/snacks/protein_pack,
-/obj/item/reagent_containers/food/snacks/protein_pack,
-/obj/item/reagent_containers/food/snacks/protein_pack,
-/obj/item/reagent_containers/food/snacks/protein_pack,
-/obj/item/reagent_containers/food/snacks/protein_pack,
-/obj/item/reagent_containers/food/snacks/protein_pack,
-/obj/item/reagent_containers/food/snacks/protein_pack,
-/obj/item/reagent_containers/food/snacks/protein_pack,
-/obj/item/reagent_containers/food/snacks/protein_pack,
 /obj/machinery/light/mainship{
 	dir = 4
 	},
+/obj/machinery/computer/squad_selector,
 /turf/open/floor/mainship/black{
 	dir = 6
 	},
@@ -18062,6 +18061,10 @@
 	dir = 1
 	},
 /area/mainship/shipboard/brig)
+"oTv" = (
+/obj/machinery/computer/squad_manager,
+/turf/open/floor/mainship/black,
+/area/mainship/squads/general)
 "oTD" = (
 /obj/structure/cable,
 /turf/open/floor/mainship/black{
@@ -39554,7 +39557,7 @@ rTb
 oUI
 xaX
 pwD
-nkm
+gdu
 vza
 vza
 nkm
@@ -40160,7 +40163,7 @@ lqg
 lqg
 sqT
 qtC
-jNz
+oTv
 eQh
 sqT
 oUI

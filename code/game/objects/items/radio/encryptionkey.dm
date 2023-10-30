@@ -1,3 +1,7 @@
+#define ENCRYPT_CUSTOM_TERRAGOV (1<<0)
+#define ENCRYPT_CUSTOM_SOM (1<<1)
+GLOBAL_LIST_EMPTY_TYPED(custom_updating_encryptkeys, /obj/item/encryptionkey)
+
 /obj/item/encryptionkey
 	name = "Standard Encryption Key"
 	desc = "An encryption key for a radio headset."
@@ -7,7 +11,17 @@
 	w_class = WEIGHT_CLASS_TINY
 	var/list/channels = list()
 	var/independent = FALSE
+	///bitflags for factions that make this key grant certain factions custom squad frequencies automatically
+	var/custom_squad_factions = NONE
 
+/obj/item/encryptionkey/Initialize(mapload)
+	. = ..()
+	if(custom_squad_factions)
+		GLOB.custom_updating_encryptkeys += src
+
+/obj/item/encryptionkey/Destroy()
+	. = ..()
+	GLOB.custom_updating_encryptkeys -= src
 
 /obj/item/encryptionkey/engi
 	name = "Engineering Radio Encryption Key"
@@ -33,6 +47,7 @@
 	name = "\improper Marine Command radio encryption key"
 	icon_state = "cap_cypherkey"
 	channels = list(RADIO_CHANNEL_COMMAND = TRUE, RADIO_CHANNEL_CAS = TRUE, RADIO_CHANNEL_ALPHA = TRUE, RADIO_CHANNEL_BRAVO = TRUE, RADIO_CHANNEL_CHARLIE = TRUE, RADIO_CHANNEL_DELTA = TRUE, RADIO_CHANNEL_ENGINEERING = TRUE, RADIO_CHANNEL_MEDICAL = TRUE, RADIO_CHANNEL_REQUISITIONS = TRUE)
+	custom_squad_factions = ENCRYPT_CUSTOM_TERRAGOV
 
 /obj/item/encryptionkey/mcom/ai //AI only.
 	channels = list(RADIO_CHANNEL_COMMAND = TRUE, RADIO_CHANNEL_CAS = TRUE, RADIO_CHANNEL_ALPHA = TRUE, RADIO_CHANNEL_BRAVO = TRUE, RADIO_CHANNEL_CHARLIE = TRUE, RADIO_CHANNEL_DELTA = TRUE, RADIO_CHANNEL_ENGINEERING = TRUE, RADIO_CHANNEL_MEDICAL = TRUE, RADIO_CHANNEL_REQUISITIONS = TRUE)
@@ -41,7 +56,7 @@
 /obj/item/encryptionkey/squadlead
 	name = "\improper Squad Leader encryption key"
 	icon_state = "hop_cypherkey"
-	channels = list(RADIO_CHANNEL_COMMAND = TRUE,RADIO_CHANNEL_CAS = TRUE)
+	channels = list(RADIO_CHANNEL_COMMAND = TRUE, RADIO_CHANNEL_CAS = TRUE)
 
 /obj/item/encryptionkey/alpha
 	name = "\improper Alpha Squad radio encryption key"
@@ -129,6 +144,7 @@
 
 /obj/item/encryptionkey/mcom/som
 	channels = list(RADIO_CHANNEL_SOM = TRUE, RADIO_CHANNEL_COMMAND_SOM = TRUE, RADIO_CHANNEL_ZULU = TRUE, RADIO_CHANNEL_YANKEE = TRUE, RADIO_CHANNEL_XRAY = TRUE, RADIO_CHANNEL_WHISKEY = TRUE, RADIO_CHANNEL_ENGINEERING_SOM = TRUE, RADIO_CHANNEL_MEDICAL_SOM = TRUE)
+	custom_squad_factions = ENCRYPT_CUSTOM_SOM
 
 /obj/item/encryptionkey/squadlead/som
 	channels = list(RADIO_CHANNEL_COMMAND_SOM = TRUE)

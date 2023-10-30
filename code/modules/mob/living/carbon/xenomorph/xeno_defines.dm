@@ -207,6 +207,10 @@
 	/// The additional amount of stacks that the Sentinel will apply on eligible abilities.
 	var/additional_stacks = 0
 
+	// *** Behemoth Abilities ***
+	/// The maximum amount of Wrath that we can have stored at a time.
+	var/wrath_max = 0
+
 	///the 'abilities' available to a caste.
 	var/list/actions
 
@@ -398,6 +402,12 @@
 	// *** Carrier vars *** //
 	var/selected_hugger_type = /obj/item/clothing/mask/facehugger
 
+	// *** Behemoth vars *** //
+	/// Whether we are currently charging or not.
+	var/behemoth_charging = FALSE
+	/// The amount of Wrath currently stored.
+	var/wrath_stored = 0
+
 	//Notification spam controls
 	var/recent_notice = 0
 	var/notice_delay = 20 //2 second between notices
@@ -409,5 +419,8 @@
 
 	///Are we the roony version of this xeno
 	var/is_a_rouny = FALSE
+
+	/// The type of footstep this xeno has.
+	var/footstep_type = FOOTSTEP_XENO_MEDIUM
 
 	COOLDOWN_DECLARE(xeno_health_alert_cooldown)

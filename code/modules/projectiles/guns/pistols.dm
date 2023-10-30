@@ -145,7 +145,6 @@
 	flags_gun_features &= ~GUN_WIELDED_STABLE_FIRING_ONLY|GUN_WIELDED_FIRING_ONLY
 	return ..()
 
-
 /obj/item/weapon/gun/pistol/plasma_pistol/guardsman_pistol
 	name = "\improper Guardsman\'s plasma pistol"
 	desc = "FOR THE EMPEROR!"
@@ -726,12 +725,16 @@ It is a modified Beretta 93R, and can fire three round burst or single fire. Whe
 	icon_state = "elite_knife"
 	reload_sound = 'sound/weapons/flipblade.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/pistol_cocked.ogg'
+	caliber = CALIBER_ALIEN
 	flags_equip_slot = ITEM_SLOT_BELT
 	w_class = WEIGHT_CLASS_NORMAL
-	force = 25
+	force = 30
 	movement_acc_penalty_mult = 3
-	wield_delay = 0.2 SECONDS
+	aim_slowdown = -0.2
+	wield_delay = 1 SECONDS // This is how long a knife takes to pull out in CS.
 	fire_sound = 'sound/weapons/guns/fire/pistol_service.ogg'
+	default_ammo_type = /obj/item/ammo_magazine/pistol/knife
+	allowed_ammo_types = list(/obj/item/ammo_magazine/pistol/knife)
 	type_of_casings = "bullet"
 	gun_skill_category = SKILL_PISTOLS
 	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 14,"rail_x" = 9, "rail_y" = 17, "under_x" = 23, "under_y" = 11, "stock_x" = 23, "stock_y" = 10)
@@ -755,7 +758,6 @@ It is a modified Beretta 93R, and can fire three round burst or single fire. Whe
 		/obj/item/attachable/scope/mini,
 		/obj/item/attachable/lace,
 	)
-
 
 // Smart pistol, based on Calico M-950
 /obj/item/weapon/gun/pistol/smart_pistol

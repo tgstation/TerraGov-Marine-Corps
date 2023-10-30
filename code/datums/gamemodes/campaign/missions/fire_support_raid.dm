@@ -10,8 +10,8 @@
 	objectives_total = 10
 	min_destruction_amount = 7
 	shutter_open_delay = list(
-		"starting_faction" = 90 SECONDS,
-		"hostile_faction" = 0,
+		MISSION_STARTING_FACTION = 90 SECONDS,
+		MISSION_HOSTILE_FACTION = 0,
 	)
 	victory_point_rewards = list(
 		MISSION_OUTCOME_MAJOR_VICTORY = list(2, 0),
@@ -33,15 +33,15 @@
 
 /datum/campaign_mission/destroy_mission/fire_support_raid/play_start_intro()
 	intro_message = list(
-		"starting_faction" = "[map_name]<br>" + "[GAME_YEAR]-[time2text(world.realtime, "MM-DD")] [stationTimestamp("hh:mm")]<br>" + "Locate and destroy all [objectives_total] [hostile_faction] fire support installations before further [hostile_faction] reinforcements can arrive. Good hunting!",
-		"hostile_faction" = "[map_name]<br>" + "[GAME_YEAR]-[time2text(world.realtime, "MM-DD")] [stationTimestamp("hh:mm")]<br>" + "Protect all [objectives_total] fire support installations until reinforcements arrive. Eliminate all [starting_faction] forces and secure the area.",
+		MISSION_STARTING_FACTION = "[map_name]<br>" + "[GAME_YEAR]-[time2text(world.realtime, "MM-DD")] [stationTimestamp("hh:mm")]<br>" + "Locate and destroy all [objectives_total] [hostile_faction] fire support installations before further [hostile_faction] reinforcements can arrive. Good hunting!",
+		MISSION_HOSTILE_FACTION = "[map_name]<br>" + "[GAME_YEAR]-[time2text(world.realtime, "MM-DD")] [stationTimestamp("hh:mm")]<br>" + "Protect all [objectives_total] fire support installations until reinforcements arrive. Eliminate all [starting_faction] forces and secure the area.",
 	)
 	return ..()
 
 /datum/campaign_mission/destroy_mission/fire_support_raid/load_pre_mission_bonuses()
 	. = ..()
 	for(var/i = 1 to objectives_total)
-		new /obj/item/storage/box/explosive_mines(get_turf(pick(GLOB.campaign_reward_spawners[hostile_faction])))
+		new /obj/item/storage/box/explosive_mines(get_turf(pick(GLOB.campaign_reward_spawners[defending_faction])))
 
 /datum/campaign_mission/destroy_mission/fire_support_raid/load_mission_brief()
 	starting_faction_mission_brief = "A [hostile_faction] fire support position has been identified in this area. This key location provides fire support to [hostile_faction] forces across the region. \

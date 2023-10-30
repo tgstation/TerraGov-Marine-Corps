@@ -137,6 +137,12 @@
 /obj/machinery/door/window/secure/bridge,
 /turf/open/floor/plating/mainship,
 /area/mainship/command/cic)
+"alz" = (
+/obj/machinery/computer/squad_selector,
+/turf/open/floor/mainship/black{
+	dir = 1
+	},
+/area/mainship/squads/general)
 "alH" = (
 /obj/effect/decal/cleanable/cobweb,
 /turf/open/floor/mainship/tcomms,
@@ -565,8 +571,7 @@
 /turf/open/floor/prison/kitchen,
 /area/mainship/living/grunt_rnr)
 "aKr" = (
-/obj/structure/table/mainship,
-/obj/item/folder/white,
+/obj/machinery/computer/squad_manager,
 /turf/open/floor/mainship,
 /area/mainship/squads/general)
 "aKD" = (
@@ -4794,6 +4799,7 @@
 	pixel_x = 5;
 	pixel_y = 10
 	},
+/obj/item/toy/plush/rouny,
 /turf/open/floor/mainship/orange/full,
 /area/mainship/command/cic)
 "gaD" = (
@@ -11845,6 +11851,7 @@
 /obj/machinery/light/mainship{
 	dir = 8
 	},
+/obj/machinery/computer/squad_selector,
 /turf/open/floor/mainship/black{
 	dir = 9
 	},
@@ -55250,7 +55257,7 @@ gUJ
 pRo
 lFo
 dZY
-eYx
+alz
 lTQ
 lOp
 aDz
