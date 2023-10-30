@@ -140,6 +140,7 @@
 #include "code\modules\projectiles\magazines\specialist.dm"
 #include "code\modules\projectiles\ammo_datums.dm"
 #include "code\modules\reqs\supplypacks.dm"
+#include "code\modules\requisitions\supply_export.dm"
 #include "code\modules\projectiles\gun_attachables.dm"
 #include "code\game\objects\items\misc.dm"
 #include "code\game\objects\items\storage\backpack.dm"
