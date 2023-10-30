@@ -67,6 +67,7 @@
 /obj/machinery/autodoc/Initialize(mapload)
 	. = ..()
 	RegisterSignal(src, COMSIG_MOVABLE_SHUTTLE_CRUSH, PROC_REF(shuttle_crush))
+	update_icon()
 
 
 /obj/machinery/autodoc/Destroy()
