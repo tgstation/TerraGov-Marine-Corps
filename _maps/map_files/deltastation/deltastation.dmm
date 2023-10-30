@@ -12554,7 +12554,7 @@
 "cEW" = (
 /obj/effect/turf_decal/tile/transparent/neutral/fourcorners,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/machinery/prop/mainship/computer/aiupload,
+/obj/machinery/prop/computer/aiupload,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
@@ -72096,7 +72096,7 @@
 "oKN" = (
 /obj/effect/turf_decal/tile/transparent/neutral/fourcorners,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/machinery/prop/mainship/computer/aiupload{
+/obj/machinery/prop/computer/aiupload{
 	name = "cyborg upload console"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{

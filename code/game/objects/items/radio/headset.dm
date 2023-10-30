@@ -129,6 +129,17 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	for(var/ch_name in channels)
 		secure_radio_connections[ch_name] = add_radio(src, GLOB.radiochannels[ch_name])
 
+	/// only headsets autoupdate squads cuz im lazy and dont want to redo this proc
+	if(keyslot?.custom_squad_factions || keyslot2?.custom_squad_factions)
+		for(var/key in GLOB.custom_squad_radio_freqs)
+			var/datum/squad/custom_squad = GLOB.custom_squad_radio_freqs[key]
+			if(!(keyslot.custom_squad_factions & ENCRYPT_CUSTOM_TERRAGOV) && !(keyslot.custom_squad_factions & ENCRYPT_CUSTOM_TERRAGOV) && custom_squad.faction == FACTION_TERRAGOV)
+				continue
+			if(!(keyslot.custom_squad_factions & ENCRYPT_CUSTOM_SOM) && !(keyslot.custom_squad_factions & ENCRYPT_CUSTOM_SOM) && custom_squad.faction == FACTION_SOM)
+				continue
+			channels[custom_squad.name] = TRUE
+			secure_radio_connections[custom_squad.name] = add_radio(src, custom_squad.radio_freq)
+
 /obj/item/radio/headset/AltClick(mob/living/user)
 	if(!istype(user) || !Adjacent(user) || user.incapacitated())
 		return

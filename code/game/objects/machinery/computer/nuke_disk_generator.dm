@@ -7,7 +7,9 @@
 /obj/machinery/computer/nuke_disk_generator
 	name = "nuke disk generator"
 	desc = "Used to generate the correct auth discs for the nuke."
-	icon_state = "nuke_red"
+	icon_state = "computer"
+	screen_overlay = "nuke_red"
+	broken_icon = "computer_red_broken"
 	interaction_flags = INTERACT_MACHINE_TGUI
 	circuit = /obj/item/circuitboard/computer/nuke_disk_generator
 
@@ -192,13 +194,15 @@
 
 /obj/machinery/computer/nuke_disk_generator/green
 	name = "green nuke disk generator"
-	icon_state = "nuke_green"
+	screen_overlay = "nuke_green"
+	broken_icon = "computer_broken"
 	disk_type = /obj/item/disk/nuclear/green
 	disk_color = "green"
 
 /obj/machinery/computer/nuke_disk_generator/blue
 	name = "blue nuke disk generator"
-	icon_state = "nuke_blue"
+	screen_overlay = "nuke_blue"
+	broken_icon = "computer_blue_broken"
 	disk_type = /obj/item/disk/nuclear/blue
 	disk_color = "blue"
 
@@ -213,6 +217,10 @@ GLOBAL_LIST_INIT(nuke_disk_generator_types, list(/obj/machinery/computer/nuke_di
 	density = TRUE
 	anchored = TRUE
 	resistance_flags = RESIST_ALL
+	///This list contains disk set keys this list as associated with. Keys must be contained in the map's json combined with their weight. Intended to be at least 3 disks per key. Supports more, does NOT support less.
+	var/list/set_associations = list("basic") //These are set by mappers via map vars. Setting this one as its base type so people can skip that part if they only have 3 disks on a map.
+	///This will FORCE this disk location to exist for these specific sets. Please do not force more than 3 for a set or I will scream at you.
+	var/list/force_for_sets = list() //Mapper var. Edit in map.
 
 //Randomised spawn points for nuke disk generators
 /obj/structure/nuke_disk_candidate/Initialize(mapload)

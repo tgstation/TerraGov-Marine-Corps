@@ -359,6 +359,9 @@
 /obj/item/stack/throwing_knife/update_icon()
 	. = ..()
 	var/amount_to_show = amount > max_amount ? max_amount : amount
+	if(amount_to_show > 8)
+		setDir(8)
+		return
 	setDir(amount_to_show + round(amount_to_show / 3))
 
 /obj/item/stack/throwing_knife/equipped(mob/user, slot)
@@ -418,7 +421,7 @@
 		throw_at(current_target, throw_range, throw_speed, living_user, TRUE)
 		current_target = null
 	else
-		var/obj/item/stack/throwing_knife/knife_to_throw = new(get_turf(src))
+		var/obj/item/stack/throwing_knife/knife_to_throw = new type(get_turf(src))
 		knife_to_throw.amount = 1
 		knife_to_throw.update_icon()
 		knife_to_throw.throw_at(current_target, throw_range, throw_speed, living_user, TRUE)

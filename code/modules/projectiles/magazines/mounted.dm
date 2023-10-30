@@ -180,15 +180,37 @@
 	icon = 'icons/Marine/marine-hmg.dmi'
 	icon_state = "hl_mag"
 
-/obj/item/ammo_magazine/heavy_rr
-	name = "RR-15 HE shell (75mm Shell)"
-	desc = "A 75mm HE shell for the RR-15 mounted heavy recoilless rifle."
+/obj/item/ammo_magazine/heavy_isg
+	name = "FK-88 shell (155mm Shell)"
+	desc = "A 15cm shell for the FK-88 mounted flak gun. How did you even get this?"
+	icon = 'icons/Marine/marine-fkgun.dmi'
+	icon_state = "isg_ammo"
+	item_state = "isg_ammo"
 	w_class = WEIGHT_CLASS_BULKY
-	icon = 'icons/Marine/marine-hmg.dmi'
-	icon_state = "75shell"
-	item_state = "75shell"
 	flags_magazine = MAGAZINE_REFUND_IN_CHAMBER
-	caliber = CALIBER_75MM
+	caliber = CALIBER_15CM
 	max_rounds = 1
-	default_ammo = /datum/ammo/rocket/heavy_rr
-	reload_delay = 10 SECONDS
+	reload_delay = 8 SECONDS
+	default_ammo = /datum/ammo/rocket/heavy_isg
+
+/obj/item/ammo_magazine/heavy_isg/he
+	name = "FK-88 HE shell (155mm Shell)"
+	desc = "A 15cm HE shell for the FK-88 mounted flak gun. Activate in hand to swap between unguided and guided modes."
+	default_ammo = /datum/ammo/rocket/heavy_isg
+	var/guided = TRUE
+
+/obj/item/ammo_magazine/heavy_isg/he/attack_hand_alternate(mob/living/user)
+	if(guided)
+		default_ammo = /datum/ammo/rocket/heavy_isg/unguided
+		balloon_alert(user, "You swap the shell to unguided form")
+		guided = FALSE
+	else
+		default_ammo = /datum/ammo/rocket/heavy_isg
+		balloon_alert(user, "You swap the shell to guided form")
+		guided = TRUE
+
+/obj/item/ammo_magazine/heavy_isg/sabot
+	name = "FK-88 APFDS shell (155mm Shell)"
+	desc = "A 15cm APFDS shell for the FK-88 mounted flak gun containing a large metal dart fired at hypersonic speeds, will pierce through basically anything and onto the other side with ease. Requires a minimum range before it stabilizes to properly hit anything, will rip a clean hole through basically anything."
+	icon_state = "isg_ammo_sabot"
+	default_ammo = /datum/ammo/bullet/heavy_isg_apfds

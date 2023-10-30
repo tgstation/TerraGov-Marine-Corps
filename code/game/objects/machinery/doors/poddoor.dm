@@ -310,3 +310,27 @@ GLOBAL_LIST_INIT(faction_to_campaign_door_signal, list(
 
 /obj/machinery/door/poddoor/campaign/som
 	faction = FACTION_SOM
+
+/obj/machinery/door/poddoor/nt_lockdown
+	name = "secure blast door"
+	desc = "Safety shutters designed to withstand any punishment. You're not forcing your way past this."
+	icon = 'icons/obj/doors/mainship/blastdoors_shutters.dmi'
+	use_power = FALSE
+	resistance_flags = DROPSHIP_IMMUNE|RESIST_ALL
+	open_layer = UNDER_TURF_LAYER
+	closed_layer = ABOVE_WINDOW_LAYER
+	///color associated with the door, for signal purposes
+	var/code_color = MISSION_CODE_BLUE
+
+/obj/machinery/door/poddoor/nt_lockdown/Initialize(mapload)
+	RegisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_NT_OVERRIDE_CODE, PROC_REF(open))
+	return ..()
+
+///Opens if the correct code color is received
+/obj/machinery/door/poddoor/nt_lockdown/proc/receive_code(datum/source, color)
+	if(color != code_color)
+		return
+	open()
+
+/obj/machinery/door/poddoor/nt_lockdown/red
+	code_color = MISSION_CODE_RED

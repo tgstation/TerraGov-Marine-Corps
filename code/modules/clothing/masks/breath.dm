@@ -71,10 +71,9 @@
 	desc = "A colored, resilient, and insulating cloth to cover your face from the elements. This one is Desert Tan"
 	icon_state = "bandanna"
 	item_state = "bandanna"
-	flags_armor_protection = NONE
 	flags_armor_protection = FACE
-	flags_inv_hide = HIDEFACE|HIDELOWHAIR
-	flags_inventory = COVERMOUTH|COVEREYES|BLOCKGASEFFECT
+	flags_inv_hide = HIDEFACE
+	flags_inventory = COVERMOUTH|BLOCKGASEFFECT
 	gas_transfer_coefficient = 0.01
 	permeability_coefficient = 0.01
 
@@ -88,14 +87,9 @@
 
 	active = !active
 	icon_state = "[initial(icon_state)][!active ? "_down" : ""]"
-	if(!active)
-		DISABLE_BITFIELD(flags_inventory, (COVERMOUTH))
-		DISABLE_BITFIELD(flags_inv_hide, (HIDEFACE|HIDELOWHAIR))
-		DISABLE_BITFIELD(flags_armor_protection, FACE)
-	else
-		ENABLE_BITFIELD(flags_inventory, (COVERMOUTH))
-		ENABLE_BITFIELD(flags_inv_hide, (HIDEFACE|HIDELOWHAIR))
-		ENABLE_BITFIELD(flags_armor_protection, FACE)
+	flags_armor_protection ^= initial(flags_armor_protection)
+	flags_inv_hide ^= initial(flags_inv_hide)
+	flags_inventory ^= initial(flags_inventory)
 	to_chat(usr, "You [active ? "pull [src] up to cover your face" : "pull [src] off your face"].")
 
 	update_clothing_icon()
