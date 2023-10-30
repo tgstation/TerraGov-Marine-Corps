@@ -358,6 +358,10 @@
 	update_icon()
 
 /obj/item/clothing/mask/facehugger/throw_impact(atom/hit_atom, speed)
+	if(isopenturf(hit_atom))
+		leaping = FALSE
+		go_idle(FALSE)
+		return FALSE
 	. = ..()
 	if(!.)
 		return
