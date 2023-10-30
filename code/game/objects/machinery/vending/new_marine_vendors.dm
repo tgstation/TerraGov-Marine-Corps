@@ -67,7 +67,7 @@
 		if(!istype(user_id)) //not wearing an ID
 			return FALSE
 
-		if(!user_id.can_buy_loadout) //If you use the quick-e-quip, you cannot also use the GHMMEs
+		if(!(user_id.flags_id & CAN_BUY_LOADOUT)) //If you use the quick-e-quip, you cannot also use the GHMMEs
 			to_chat(user, span_warning("Access denied. You have already vended a loadout."))
 			return FALSE
 
@@ -204,7 +204,7 @@
 			if(use_points && (item_category in user_id.marine_points))
 				user_id.marine_points[item_category] -= cost
 			. = TRUE
-			user_id.used_GHMME = TRUE
+			user_id.flags_id |= USED_GHMME
 	updateUsrDialog()
 
 /obj/machinery/marine_selector/clothes

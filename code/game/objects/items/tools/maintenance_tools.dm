@@ -457,9 +457,12 @@
 	///Are we currently recharging something.
 	var/recharging = FALSE
 
-/obj/item/tool/handheld_charger/Initialize(mapload)
+/obj/item/tool/handheld_charger/update_icon_state()
 	. = ..()
-	cell = null
+	if(cell)
+		icon_state = "handheldcharger_black"
+	else
+		icon_state = "handheldcharger_black_empty"
 
 /obj/item/tool/handheld_charger/attack_self(mob/user)
 	if(!cell)
@@ -516,7 +519,7 @@
 	cell = null
 	playsound(user, 'sound/machines/click.ogg', 20, 1, 5)
 	balloon_alert(user, "Removes the cell")
-	icon_state = "handheldcharger_black_empty"
+	update_icon_state()
 
 /obj/item/tool/handheld_charger/attack_hand(mob/living/user)
 	if(user.get_inactive_held_item() != src)
@@ -528,7 +531,7 @@
 	cell = null
 	playsound(user, 'sound/machines/click.ogg', 20, 1, 5)
 	balloon_alert(user, "Removes the cell")
-	icon_state = "handheldcharger_black_empty"
+	update_icon_state()
 
 /obj/item/tool/handheld_charger/Destroy()
 	QDEL_NULL(cell)
@@ -537,4 +540,4 @@
 /obj/item/tool/handheld_charger/hicapcell/Initialize(mapload)
 	. = ..()
 	cell = new /obj/item/cell/high(src)
-	icon_state = "handheldcharger_black"
+	update_icon_state()

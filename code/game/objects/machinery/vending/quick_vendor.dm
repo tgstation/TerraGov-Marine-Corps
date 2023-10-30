@@ -135,6 +135,10 @@ GLOBAL_LIST_INIT(beginner_loadouts, init_beginner_loadouts())
 
 /obj/machinery/quick_vendor/Initialize(mapload)
 	. = ..()
+	set_stock_list()
+
+///Chooses which global list the vendor will build stock from, gets run on Initialize()
+/obj/machinery/quick_vendor/proc/set_stock_list()
 	global_list_to_use = GLOB.quick_loadouts
 
 /obj/machinery/quick_vendor/Initialize(mapload)
@@ -169,8 +173,7 @@ GLOBAL_LIST_INIT(beginner_loadouts, init_beginner_loadouts())
 		"Squad Smartgunner",
 	)
 
-/obj/machinery/quick_vendor/beginner/Initialize(mapload)
-	. = ..()
+/obj/machinery/quick_vendor/beginner/set_stock_list()
 	global_list_to_use = GLOB.beginner_loadouts
 
 /obj/machinery/quick_vendor/can_interact(mob/user)
@@ -192,7 +195,7 @@ GLOBAL_LIST_INIT(beginner_loadouts, init_beginner_loadouts())
 	if(user_id.registered_name != human_user.real_name)
 		return FALSE
 
-	if(user_id.used_GHMME) //No free stuff from GHHME if you want to use a preset loadout
+	if(user_id.flags_id & USED_GHMME) //No free stuff from GHHME if you want to use a preset loadout
 		to_chat(user, span_warning("Access denied, continue using the GHHME."))
 		return FALSE
 
@@ -250,8 +253,8 @@ GLOBAL_LIST_INIT(beginner_loadouts, init_beginner_loadouts())
 			if(selected_loadout.jobtype != user_id.rank)
 				to_chat(usr, span_warning("You are not in the right job for this loadout!"))
 				return
-			if(user_id.can_buy_loadout)
-				user_id.can_buy_loadout = FALSE
+			if(user_id.flags_id & CAN_BUY_LOADOUT)
+				user_id.flags_id &= ~CAN_BUY_LOADOUT
 				selected_loadout.quantity --
 				selected_loadout.equip(ui.user) //actually equips the loadout
 			else
