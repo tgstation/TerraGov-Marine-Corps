@@ -441,7 +441,7 @@
 
 
 #define BULWARK_LOOP_TIME 1 SECONDS
-#define BULWARK_RADIUS 4
+#define BULWARK_RADIUS 8 //RUTGMC EDIT
 #define BULWARK_ARMOR_MULTIPLIER 0.25
 
 /datum/action/xeno_action/bulwark

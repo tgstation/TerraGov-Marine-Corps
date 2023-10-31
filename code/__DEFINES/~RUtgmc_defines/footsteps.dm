@@ -37,9 +37,6 @@ GLOBAL_LIST_INIT(xenostompy, list(
 		'sound/effects/footstep/water2.ogg',
 		'sound/effects/footstep/water3.ogg',
 		'sound/effects/footstep/water4.ogg'), 50, 1),
-	FOOTSTEP_RESIN = list(list(
-		'sound/effects/footstep/alien_resin_move1.ogg',
-		'sound/effects/footstep/alien_resin_move2.ogg',), 15, -4),
 	FOOTSTEP_CATWALK = list(list(
 		'modular_RUtgmc/sound/effects/footstep/alien_footstep_large1.ogg',
 		'modular_RUtgmc/sound/effects/footstep/alien_footstep_large2.ogg',
@@ -60,4 +57,8 @@ GLOBAL_LIST_INIT(xenostompy, list(
 		'modular_RUtgmc/sound/effects/footstep/alien_footstep_large1.ogg',
 		'modular_RUtgmc/sound/effects/footstep/alien_footstep_large2.ogg',
 		'modular_RUtgmc/sound/effects/footstep/alien_footstep_large3.ogg'), 55, 1),
-))
+	FOOTSTEP_RESIN = list(list(
+		'modular_RUtgmc/sound/effects/footstep/alien_footstep_large1.ogg',
+		'modular_RUtgmc/sound/effects/footstep/alien_footstep_large2.ogg',
+		'modular_RUtgmc/sound/effects/footstep/alien_footstep_large3.ogg'), 40, -1),
+	))
