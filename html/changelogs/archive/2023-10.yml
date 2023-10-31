@@ -407,3 +407,18 @@
   - rscadd: SLs may now create their own squads using a terminal in/near their prep,
       and marines can join said squads using the squad selection consoles near preps
   - admin: admins can now delete squads
+2023-10-31:
+  Wisemonster:
+  - spellcheck: Updated the description of the radio backpack to clarify it's access
+      to a supply request console.
+  Xander3359:
+  - spellcheck: tricordrazine > tricordazine
+  - spellcheck: pill packets are no longer capitalized (they looked weird)
+  dopamiin0:
+  - rscadd: Added a new ceiling type, obstructed, that blocks tadpole and droppods
+      but not other things caves ordinarily block.
+  - balance: Engineering on Lawanka Outpost now has an obstructed ceiling, instead
+      of being caves.
+  novaepee:
+  - rscadd: hyperscale gloves; its name is 8E Chameleon TGMC combat gloves, and you
+      can find it in the standard tab in surplus clothing vendor
