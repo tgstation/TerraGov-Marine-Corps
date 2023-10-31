@@ -192,7 +192,7 @@
 	screen_overlay = "body_scannerconsole_emissive"
 	density = FALSE
 	idle_power_usage = 3
-	light_color = LIGHT_COLOR_EMISSIVE_RED
+	light_color = LIGHT_COLOR_EMISSIVE_GREEN
 	dir = EAST
 	var/obj/machinery/bodyscanner/connected
 	var/delete
