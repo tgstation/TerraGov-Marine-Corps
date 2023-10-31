@@ -13,6 +13,9 @@
 /obj/structure/campaign_objective/destruction_objective/plastique_act()
 	qdel(src)
 
+/obj/structure/campaign_objective/destruction_objective/plastique_time_mod(time)
+	return max(time, 30)
+
 //Howitzer
 /obj/effect/landmark/campaign_structure/howitzer_objective
 	name = "howitzer objective"
