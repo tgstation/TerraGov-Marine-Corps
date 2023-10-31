@@ -1,0 +1,4 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - bugfix: "Drop pod blocker objects in Campaign are no longer invisible"
