@@ -421,7 +421,6 @@
 	if(LinkBlocked(owner_turf, direct_turf))
 		playsound(direct_turf, 'sound/effects/behemoth/behemoth_stomp.ogg', 40, TRUE)
 		xeno_owner.do_attack_animation(direct_turf)
-		shake_camera(xeno_owner, 1, 0.5)
 		addtimer(CALLBACK(src, PROC_REF(end_charge)), LANDSLIDE_ENDING_COLLISION_DELAY)
 		return
 	which_step = !which_step
@@ -454,7 +453,6 @@
 		if(LinkBlocked(owner_turf, direct_turf))
 			playsound(direct_turf, 'sound/effects/behemoth/behemoth_stomp.ogg', 40, TRUE)
 			xeno_owner.do_attack_animation(direct_turf)
-			shake_camera(xeno_owner, 1, 0.5)
 		new /obj/effect/temp_visual/behemoth/crack/landslide(get_turf(owner), direction, pick(1, 2))
 		end_charge()
 		return
@@ -523,7 +521,7 @@
 		new /obj/effect/temp_visual/behemoth/landslide/hit(get_turf(living_target))
 		playsound(living_target, 'sound/effects/behemoth/landslide_hit_mob.ogg', 30, TRUE)
 	living_target.emote("scream")
-	shake_camera(living_target, LANDSLIDE_KNOCKDOWN_DURATION, 0.8)
+	shake_camera(living_target, 1, 0.8)
 	living_target.apply_damage(damage, BRUTE, blocked = MELEE)
 
 /**
@@ -858,7 +856,7 @@
 				if(xeno_owner.issamexenohive(affected_living) || affected_living.stat == DEAD || CHECK_BITFIELD(affected_living.status_flags, INCORPOREAL|GODMODE))
 					continue
 				affected_living.emote("scream")
-				shake_camera(affected_living, SEISMIC_FRACTURE_PARALYZE_DURATION, 0.8)
+				shake_camera(affected_living, 1, 0.8)
 				affected_living.Paralyze(SEISMIC_FRACTURE_PARALYZE_DURATION)
 				affected_living.apply_damage(damage, BRUTE, blocked = MELEE)
 				if(instant)
@@ -1061,7 +1059,6 @@
 	for(var/mob/living/affected_living in cheap_get_humans_near(owner, PRIMAL_WRATH_RANGE) + owner)
 		if(!affected_living.hud_used)
 			continue
-		shake_camera(affected_living, 1, 0.1)
 		var/atom/movable/screen/plane_master/floor/floor_plane = affected_living.hud_used.plane_masters["[FLOOR_PLANE]"]
 		var/atom/movable/screen/plane_master/game_world/world_plane = affected_living.hud_used.plane_masters["[GAME_PLANE]"]
 		if(floor_plane.get_filter("primal_wrath") || world_plane.get_filter("primal_wrath"))
