@@ -445,7 +445,7 @@
 			return
 
 		var/obj/machinery/sleeper/E = new (T)
-		var/obj/machinery/sleep_console/C = new (T)
+		var/obj/machinery/computer/sleep_console/C = new (T)
 		C.loc = get_step(T, EAST)
 		E.connected = C
 		C.connected = E

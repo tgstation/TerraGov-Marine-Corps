@@ -595,7 +595,7 @@
 	},
 /area/bigredv2/outside/medical)
 "qE" = (
-/obj/machinery/sleep_console,
+/obj/machinery/computer/sleep_console,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "qG" = (

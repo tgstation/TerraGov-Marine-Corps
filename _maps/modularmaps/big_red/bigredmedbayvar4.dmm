@@ -69,7 +69,7 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/medical)
 "ct" = (
-/obj/machinery/sleep_console,
+/obj/machinery/computer/sleep_console,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "cB" = (

@@ -5532,7 +5532,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "bHi" = (
-/obj/machinery/sleep_console,
+/obj/machinery/computer/sleep_console,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/lower_medical)
 "bHk" = (
@@ -20680,7 +20680,7 @@
 	},
 /area/mainship/living/cafeteria_starboard)
 "yfx" = (
-/obj/machinery/sleep_console,
+/obj/machinery/computer/sleep_console,
 /turf/open/floor/mainship/sterile/side,
 /area/mainship/medical/lower_medical)
 "yfJ" = (

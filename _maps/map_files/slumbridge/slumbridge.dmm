@@ -5284,7 +5284,7 @@
 /turf/open/floor/prison/kitchen,
 /area/slumbridge/prison/outerringsouth)
 "dWg" = (
-/obj/machinery/sleep_console,
+/obj/machinery/computer/sleep_console,
 /obj/machinery/light,
 /turf/open/floor/prison/whitegreen,
 /area/slumbridge/prison/outerringsouth)
@@ -12306,7 +12306,7 @@
 /turf/open/floor/scorched,
 /area/slumbridge/pmcdome)
 "jkR" = (
-/obj/machinery/sleep_console,
+/obj/machinery/computer/sleep_console,
 /turf/open/floor/tile/bar,
 /area/slumbridge/medical/foyer)
 "jla" = (
@@ -22321,7 +22321,7 @@
 /turf/open/floor/prison/plate,
 /area/slumbridge/prison/innerring)
 "qyQ" = (
-/obj/machinery/sleep_console,
+/obj/machinery/computer/sleep_console,
 /obj/structure/cable,
 /turf/open/floor/tile/green/whitegreenfull,
 /area/slumbridge/medical/foyer)
@@ -28934,7 +28934,7 @@
 /turf/open/floor/wood,
 /area/slumbridge/sombase/east)
 "vui" = (
-/obj/machinery/sleep_console,
+/obj/machinery/computer/sleep_console,
 /turf/open/floor/tile/green/whitegreencorner{
 	dir = 1
 	},
@@ -32105,7 +32105,7 @@
 /turf/open/floor/tile/showroom,
 /area/slumbridge/engi/west)
 "xJc" = (
-/obj/machinery/sleep_console,
+/obj/machinery/computer/sleep_console,
 /obj/structure/cable,
 /turf/open/floor/tile/green/whitegreen{
 	dir = 4

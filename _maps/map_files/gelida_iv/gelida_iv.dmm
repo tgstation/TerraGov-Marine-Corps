@@ -11683,7 +11683,7 @@
 /turf/open/floor/mainship/stripesquare,
 /area/gelida/indoors/c_block/garage)
 "hTM" = (
-/obj/machinery/sleep_console,
+/obj/machinery/computer/sleep_console,
 /turf/open/floor/prison/sterilewhite/full,
 /area/gelida/indoors/a_block/medical)
 "hUc" = (

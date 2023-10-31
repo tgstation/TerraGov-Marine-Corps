@@ -7191,7 +7191,7 @@
 /turf/open/floor,
 /area/oscar_outpost/village)
 "Or" = (
-/obj/machinery/sleep_console,
+/obj/machinery/computer/sleep_console,
 /obj/machinery/light{
 	dir = 4
 	},

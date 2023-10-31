@@ -8311,7 +8311,7 @@
 /turf/open/floor/plating/dmg2,
 /area/outpost/science/xenobiology)
 "Nb" = (
-/obj/machinery/sleep_console,
+/obj/machinery/computer/sleep_console,
 /turf/open/floor/tile/dark/blue2{
 	dir = 9
 	},
@@ -9593,7 +9593,7 @@
 	},
 /area/outpost/medbay/storage)
 "SY" = (
-/obj/machinery/sleep_console,
+/obj/machinery/computer/sleep_console,
 /turf/open/floor/tile/dark,
 /area/outpost/medbay)
 "Tb" = (

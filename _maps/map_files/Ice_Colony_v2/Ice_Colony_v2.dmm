@@ -30049,7 +30049,7 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/hallway/south_east)
 "tqS" = (
-/obj/machinery/sleep_console,
+/obj/machinery/computer/sleep_console,
 /turf/open/floor/tile/white,
 /area/ice_colony/underground/medical/treatment/garbledradio)
 "trk" = (

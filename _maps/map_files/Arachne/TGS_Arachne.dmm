@@ -8614,7 +8614,7 @@
 	dir = 4
 	},
 /obj/machinery/firealarm,
-/obj/machinery/sleep_console,
+/obj/machinery/computer/sleep_console,
 /turf/open/floor/mainship/sterile/corner,
 /area/mainship/medical/lower_medical)
 "hrv" = (

@@ -5018,7 +5018,7 @@
 /turf/open/floor/plating,
 /area/icy_caves/outpost/garage)
 "As" = (
-/obj/machinery/sleep_console,
+/obj/machinery/computer/sleep_console,
 /turf/open/floor/tile/dark/green2{
 	dir = 5
 	},

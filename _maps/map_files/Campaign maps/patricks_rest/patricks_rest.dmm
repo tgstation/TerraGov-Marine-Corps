@@ -9935,7 +9935,7 @@
 /turf/open/floor/mainship/mono,
 /area/patricks_rest/surface/building/command)
 "WY" = (
-/obj/machinery/sleep_console,
+/obj/machinery/computer/sleep_console,
 /turf/open/floor/mainship/sterile,
 /area/patricks_rest/surface/building/medbay)
 "Xa" = (

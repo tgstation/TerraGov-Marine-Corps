@@ -9534,7 +9534,7 @@
 	},
 /area/mainship/medical/upper_medical)
 "lYL" = (
-/obj/machinery/sleep_console,
+/obj/machinery/computer/sleep_console,
 /turf/open/floor/mainship/sterile/side,
 /area/mainship/medical/lower_medical)
 "mam" = (

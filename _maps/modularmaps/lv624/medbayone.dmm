@@ -36,7 +36,7 @@
 	},
 /area/lv624/lazarus/medbay)
 "gn" = (
-/obj/machinery/sleep_console{
+/obj/machinery/computer/sleep_console{
 	density = 0
 	},
 /turf/open/floor/tile/blue/whitebluecorner{
@@ -184,6 +184,7 @@
 	dir = 2;
 	id = "OR2";
 	name = "\improper Shutters";
+	
 	},
 /turf/open/floor/tile/blue/whitebluecorner{
 	dir = 2
@@ -256,6 +257,7 @@
 	dir = 2;
 	id = "OR2";
 	name = "\improper Shutters";
+	
 	},
 /turf/open/floor/plating,
 /area/lv624/lazarus/medbay)

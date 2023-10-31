@@ -11241,7 +11241,7 @@
 /turf/open/ground/grass/weedable,
 /area/lawankaoutpost/outside/southeast)
 "jEj" = (
-/obj/machinery/sleep_console,
+/obj/machinery/computer/sleep_console,
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
 /turf/open/floor/tile/white,
 /area/lawankaoutpost/colony/medbay)
@@ -12878,7 +12878,7 @@
 /turf/open/floor/wood,
 /area/lawankaoutpost/colony/chapel)
 "lbk" = (
-/obj/machinery/sleep_console,
+/obj/machinery/computer/sleep_console,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
@@ -19817,7 +19817,7 @@
 /turf/open/ground/grass/weedable,
 /area/lawankaoutpost/outside/north)
 "qML" = (
-/obj/machinery/sleep_console,
+/obj/machinery/computer/sleep_console,
 /turf/open/floor/tile/green/whitegreen,
 /area/lawankaoutpost/colony/medbay)
 "qMM" = (
