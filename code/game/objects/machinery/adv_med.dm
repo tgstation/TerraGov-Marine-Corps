@@ -14,6 +14,7 @@
 	light_range = 1
 	light_power = 0.5
 	light_color = LIGHT_COLOR_BLUE
+	dir = EAST
 	///mob inside
 	var/mob/living/carbon/occupant
 	///If its locked
@@ -184,15 +185,6 @@
 				ex_act(severity)
 			qdel(src)
 
-/obj/machinery/computer/body_scanconsole/ex_act(severity)
-
-	switch(severity)
-		if(EXPLODE_DEVASTATE)
-			qdel(src)
-		if(EXPLODE_HEAVY)
-			if (prob(50))
-				qdel(src)
-
 /obj/machinery/computer/body_scanconsole
 	name = "Body Scanner Console"
 	icon = 'icons/obj/machines/cryogenics.dmi'
@@ -201,6 +193,7 @@
 	density = FALSE
 	idle_power_usage = 3
 	light_color = LIGHT_COLOR_EMISSIVE_RED
+	dir = EAST
 	var/obj/machinery/bodyscanner/connected
 	var/delete
 	var/temphtml
@@ -208,7 +201,14 @@
 /obj/machinery/computer/body_scanconsole/Initialize(mapload)
 	. = ..()
 	set_connected(locate(/obj/machinery/bodyscanner, get_step(src, REVERSE_DIR(dir))))
-	connected?.set_connected(src)
+
+/obj/machinery/computer/body_scanconsole/ex_act(severity)
+	switch(severity)
+		if(EXPLODE_DEVASTATE)
+			qdel(src)
+		if(EXPLODE_HEAVY)
+			if (prob(50))
+				qdel(src)
 
 /obj/machinery/computer/body_scanconsole/can_interact(mob/user)
 	. = ..()

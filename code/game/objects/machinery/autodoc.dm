@@ -38,6 +38,7 @@
 	light_range = 1
 	light_power = 0.5
 	light_color = LIGHT_COLOR_BLUE
+	dir = EAST
 	var/locked = FALSE
 	var/mob/living/carbon/human/occupant = null
 	var/list/surgery_todo_list = list() //a list of surgeries to do.
@@ -949,22 +950,23 @@
 	icon = 'icons/obj/machines/cryogenics.dmi'
 	icon_state = "sleeperconsole"
 	screen_overlay = "sleeperconsole_emissive"
-	var/obj/machinery/autodoc/connected = null
-	var/release_notice = TRUE //Are notifications for patient discharges turned on?
-	var/locked = FALSE //Medics, Doctors and so on can lock this.
+	light_color = LIGHT_COLOR_EMISSIVE_RED
 	req_one_access = list(ACCESS_MARINE_MEDBAY, ACCESS_MARINE_CHEMISTRY, ACCESS_MARINE_MEDPREP) //Valid access while locked
 	density = FALSE
 	idle_power_usage = 40
-	light_range = 1
-	light_power = 0.5
-	light_color = LIGHT_COLOR_BLUE
+	dir = EAST
 	var/obj/item/radio/headset/mainship/doc/radio
 	var/obj/item/reagent_containers/blood/OMinus/blood_pack
-
+	///connected autodoc
+	var/obj/machinery/autodoc/connected = null
+	///Are notifications for patient discharges turned on?
+	var/release_notice = TRUE
+	///Medics, Doctors and so on can lock this
+	var/locked = FALSE
 
 /obj/machinery/computer/autodoc_console/Initialize(mapload)
 	. = ..()
-	connected = locate(/obj/machinery/autodoc, get_step(src, WEST))
+	connected = locate(/obj/machinery/autodoc, get_step(src, REVERSE_DIR(dir)))
 	if(connected)
 		connected.connected = src
 	radio = new(src)
