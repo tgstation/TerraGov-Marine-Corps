@@ -402,7 +402,8 @@
 				if(affected_living.stat == DEAD)
 					continue
 				if(xeno_owner.issamexenohive(affected_living) && !affected_living.lying_angle)
-					step_away(affected_living, xeno_owner, 2, 1)
+					if(affected_living in direct_turf)
+						step_away(affected_living, xeno_owner, 2, 1)
 					continue
 				hit_living(affected_living, damage)
 			if(isobj(affected_atom))
