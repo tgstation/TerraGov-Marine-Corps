@@ -183,8 +183,7 @@
 /obj/machinery/door/poddoor/shutters/mainship/open{
 	dir = 2;
 	id = "OR2";
-	name = "\improper Shutters";
-	
+	name = "\improper Shutters"
 	},
 /turf/open/floor/tile/blue/whitebluecorner{
 	dir = 2

@@ -20,17 +20,6 @@
 	var/cmp_proc = /proc/cmp_list_asc
 	var/sortkey = "name"
 
-
-/obj/machinery/computer/crew/update_icon_state()
-	if(machine_stat & (BROKEN|DISABLED))
-		icon_state = "crewb"
-	else if(machine_stat & NOPOWER)
-		icon_state = "crew0"
-		machine_stat |= NOPOWER
-	else
-		icon_state = initial(icon_state)
-		machine_stat &= ~NOPOWER
-
 /obj/machinery/computer/crew/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 
