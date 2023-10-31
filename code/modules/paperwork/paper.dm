@@ -715,6 +715,48 @@ then, for every time you included a field, increment fields. */
 	<BR>
 	Explosions knock anything near them back, even over barricades. With careful aim, you can knock xenomorphs towards marines, who can then finish them off with more traditional firearms - and with REALLY careful aim, you can knock a xenomorph into a barricaded position it can't escape from, practically guaranteeing its demise!<BR>"}
 
+/obj/item/paper/tutorial/builder
+	name = "Builder Tutorial"
+	info = {"The builder loadout is designed around you establishing defenses, barricades made from metal, plasteel or sandbags. You are the frontline, without you marines will be exposed to attacks from any and all directions. Use your quicker build speed and tools to aid and repair barricades, and fix APCs for generating the nuclear disks to win the round! Your loadout contains materials, a MG42 Light machine gun for self defense and suppression, and a radiopack for ordering more material to entrench and establish a fortified defensive position.<BR>
+	<BR>
+	<b>TIPS</b><BR>
+	<BR>
+	In your webbing you will find a spare powercell and a handheld cell crank charger to charge them, when fixing apcs swap the empty battery for your full one and insert the empty one into your crank and charge it for the next disk!<BR>
+	<BR>
+	When building defensive barricades it is best to not make them "flush" with nearby doors or walls. Instead pull back 1 tile and build it there, this prevents xenos from hiding around the corner behind the walls and smacking your cades freely without repercussion.<BR>
+	<BR>
+	All metal barricades can be upgraded, the basic upgrade is of course barbed wire. This damages xenos when they attack the barricade and prevents them (and marines!) from climbing over the barricade.<BR>
+	<BR>
+	BKTT is an acronym that is used to describe the combination of Bicardine, Kelotane, Tricordizine, and Tramadol used as an all-rounder combat medicine mix for any situation that heals all different types of damage. Make sure not to take more than two of each pill at a time - medicine takes a while to process through your system, and too many at once risks a dangerous overdose. Your gauze and ointment are body-part specific, unlike medication, but once you start applying one, you will keep applying it to all body parts that require treatment as long as you hold still. Your splints are used to alleviate the effects of bone fractures, by applying them to a fractured limb. Your inaprovaline autoinjector is not to be applied to yourself - rather, it should be applied to an alive marine that is so heavily injured they are unconscious on the ground (referred to as "critical condition") to rescue them from that state. You can remove pills from their packets directly by right clicking on the packet, even while it's in storage."}
+
+/obj/item/paper/tutorial/flamer
+	name = "Flamer Tutorial"
+	info = {"As a flamethrower specialist your job is to burn, burn some more and BURN again. You are equipped with a flamethrower bag that refills your flamethrower everytime you insert it back into the bag, and also have a lascarbine for more practical and pragmatic self defense. Also comes with a large box of claymore anti-personnel mines, and some general materials for helping fortify positions.<BR>
+	<BR>
+	<b>TIPS</b><BR>
+	<BR>
+	Your flamethrower is best used to clear resin walls, it is a poor weapon for self defense and is best used to help carve a path through enemy mazes and to deny areas of movement without punishing xenos for trekking through the flames.<BR>
+	<BR>
+	In your webbing you will find a spare powercell and a handheld cell crank charger to charge them, when fixing apcs swap the empty battery for your full one and insert the empty one into your crank and charge it for the next disk!<BR>
+	<BR>
+	Your claymore mines are useful for denying an area from being easily flanked and can cause serious disruption (or even kill!) backlining xenomorphs from causing you a bad day.<BR>
+	<BR>
+	BKTT is an acronym that is used to describe the combination of Bicardine, Kelotane, Tricordizine, and Tramadol used as an all-rounder combat medicine mix for any situation that heals all different types of damage. Make sure not to take more than two of each pill at a time - medicine takes a while to process through your system, and too many at once risks a dangerous overdose. Your gauze and ointment are body-part specific, unlike medication, but once you start applying one, you will keep applying it to all body parts that require treatment as long as you hold still. Your splints are used to alleviate the effects of bone fractures, by applying them to a fractured limb. Your inaprovaline autoinjector is not to be applied to yourself - rather, it should be applied to an alive marine that is so heavily injured they are unconscious on the ground (referred to as "critical condition") to rescue them from that state. You can remove pills from their packets directly by right clicking on the packet, even while it's in storage."}
+
+/obj/item/paper/tutorial/plasmacutter
+	name = "PlasmaCutter Tutorial"
+	info = {"Tired of watching marines endlessly pour into a maze or terribly held choke point? This is the class for you then! With your plasma cutter you will be able to easily delete resin walls from existence, and carve through metal, reinforced or even solid rock walls! With this kit you'll be able to widen choke points and eradicate mazes with ease. This loadout also comes with a few materials for defenses and a MP19 SMG for self defense in your welderpack.<BR>
+	<BR>
+	<b>TIPS</b><BR>
+	<BR>
+	Your Plasma Cutter (often abbreviated to PC) is a very versatile tool but it contains a limited charge of 7500, for resin walls the charge is rather miniscule at 100 Charge but a much heavier or thicker metallic or rock wall will cost you 1000 charge so make sure to keep track of how much charge your battery contains! Do remember to keep your welding module or goggles on when using it however, as the plasma cutter will damage your eyes until they're blind!<BR>
+	<BR>
+	In your webbing you will find a spare powercell and a handheld cell crank charger to charge them, when fixing apcs swap the empty battery for your full one and insert the empty one into your crank and charge it for the next disk!<BR>
+	<BR>
+	Your plasma cutter can be used as a melee weapon in emergency situations, while not the best by any means it can work in a pinch and if you manage to smack a xeno you'll get rewarded with draining them of a small amount of plasma and a bit of charge for your plasma cutter. Use this to destroy mazes and punish xenos for trying to attack you by refilling your battery. A recommended combo when frontlining us combining it with a defensive shield!<BR>
+	<BR>
+	BKTT is an acronym that is used to describe the combination of Bicardine, Kelotane, Tricordizine, and Tramadol used as an all-rounder combat medicine mix for any situation that heals all different types of damage. Make sure not to take more than two of each pill at a time - medicine takes a while to process through your system, and too many at once risks a dangerous overdose. Your gauze and ointment are body-part specific, unlike medication, but once you start applying one, you will keep applying it to all body parts that require treatment as long as you hold still. Your splints are used to alleviate the effects of bone fractures, by applying them to a fractured limb. Your inaprovaline autoinjector is not to be applied to yourself - rather, it should be applied to an alive marine that is so heavily injured they are unconscious on the ground (referred to as "critical condition") to rescue them from that state. You can remove pills from their packets directly by right clicking on the packet, even while it's in storage."}
+
 /obj/item/paper/tutorial/lifesaver
 	name = "Lifesaver Tutorial"
 	info = {"As the lifesaver, you are a MEDIC first and foremost. You should be prioritizing healing marines over trying to fight xenomorphs yourself. Your belt contains many pill bottles - examine them to find out what they do with shift click, and draw from them with right click. Your belt also contains splints, which are used on fractured bones, and a medical analyzer, which will tell you exactly what's wrong with a person. Avoid giving someone more than one pill of a given medicine at a time; many pills overdose at three, and some at two, and some marines might go and take a pill themselves, so one is safest. In your armor storage are an assortment of autoinjectors. Combat injectors should be used on marines in active danger, quick clot plus helps deal with internal bleeding, peridaxon plus heals organs, and dexalin plus helps with deoxygenation. Your right pouch contains three stacks of trauma and burn kits, which will cause a body part they're applied to to heal brute or burn damage over time respectively. It also contains a hypospray full of meraderm, a medicine mixture that heals both brute and burn damage quickly. Your webbing contains oxycodone, a painkiller, nanoblood, a blood replacement, a stasis bag to hold patients you aren't actively treating in to prevent their condition from worsening, tweezers to remove shrapnel, a roller bed to roll around patients with, and a medivac to evacuate patients. Your boots and helmet contain food.<BR>

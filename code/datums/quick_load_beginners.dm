@@ -399,6 +399,7 @@
 
 /datum/outfit/quick/beginner/engineer/builder
 	name = "Engineer Standard"
+	desc = "Born to build. Equipped with a metric ton of metal, you can be certain that a lack of barricades is not a possibility with you around."
 
 	suit_store = /obj/item/weapon/gun/rifle/standard_lmg/beginner
 	wear_suit = /obj/item/clothing/suit/modular/xenonauten/heavy/mimirengi
@@ -407,6 +408,7 @@
 	back = /obj/item/storage/backpack/marine/radiopack
 	belt = /obj/item/belt_harness/marine
 	glasses = /obj/item/clothing/glasses/welding/superior
+	l_hand = /obj/item/paper/tutorial/builder
 
 /datum/outfit/quick/beginner/engineer/builder/post_equip(mob/living/carbon/human/human, visualsOnly)
 	. = ..()
@@ -427,6 +429,7 @@
 
 /datum/outfit/quick/beginner/engineer/burnitall
 	name = "Flamethrower"
+	desc = "For those who truly love to watch the world burn. Equipped with a laser and a flamethrower, you can be certain that none of your enemies will be left un-burnt."
 
 	suit_store = /obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_carbine/beginner
 	wear_suit = /obj/item/clothing/suit/modular/xenonauten/engineer
@@ -434,6 +437,7 @@
 	head = /obj/item/clothing/head/modular/m10x/superiorwelding
 	back = /obj/item/storage/holster/backholster/flamer
 	glasses = /obj/item/clothing/glasses/meson
+	l_hand = /obj/item/paper/tutorial/flamer
 
 /datum/outfit/quick/beginner/engineer/burnitall/post_equip(mob/living/carbon/human/human, visualsOnly)
 	. = ..()
@@ -457,6 +461,7 @@
 
 /datum/outfit/quick/beginner/engineer/pcenjoyer
 	name = "Plasma Cutter"
+	desc = "For the open-air enjoyers. Equipped with a plasma cutter, you will be able to cut down all types of walls and obstacles that dare exist within your vicinity."
 
 	suit_store = /obj/item/tool/pickaxe/plasmacutter
 	wear_suit = /obj/item/clothing/suit/modular/xenonauten/engineer
@@ -465,6 +470,7 @@
 	back = /obj/item/storage/backpack/marine/engineerpack
 	belt = /obj/item/belt_harness/marine
 	glasses = /obj/item/clothing/glasses/meson
+	l_hand = /obj/item/paper/tutorial/plasmacutter
 
 /datum/outfit/quick/beginner/engineer/pcenjoyer/post_equip(mob/living/carbon/human/human, visualsOnly)
 	. = ..()
