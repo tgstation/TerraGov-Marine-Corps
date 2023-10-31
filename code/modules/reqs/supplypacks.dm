@@ -617,10 +617,10 @@ WEAPONS
 	contains = list(/obj/item/weapon/gun/rifle/standard_smarttargetrifle)
 	cost = 400
 
-/*/datum/supply_packs/weapons/smarttarget_rifle_ammo
+/datum/supply_packs/weapons/smarttarget_rifle_ammo
 	name = "SG-62 smart target rifle ammo"
 	contains = list(/obj/item/ammo_magazine/rifle/standard_smarttargetrifle)
-	cost = 35*/
+	cost = 35
 
 /datum/supply_packs/weapons/spotting_rifle_ammo
 	name = "SG-153 spotting rifle ammo"

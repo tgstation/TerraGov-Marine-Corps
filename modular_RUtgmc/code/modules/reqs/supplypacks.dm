@@ -177,8 +177,6 @@
 	cost = 150
 
 /datum/supply_packs/weapons/smarttarget_rifle_ammo
-	name = "SG-62 smart target rifle ammo"
-	contains = list(/obj/item/ammo_magazine/rifle/standard_smarttargetrifle)
 	cost = 25
 
 /datum/supply_packs/weapons/box_10x27mm
