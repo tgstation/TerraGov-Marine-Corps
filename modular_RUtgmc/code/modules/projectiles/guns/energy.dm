@@ -12,8 +12,8 @@
 	)
 	inhand_x_dimension = 64
 	inhand_y_dimension = 32
-	max_shots = 8 //codex stuff
-	rounds_per_shot = 75
+	max_shots = 20 //codex stuff
+	rounds_per_shot = 30
 	actions_types = list(/datum/action/item_action/aim_mode)
 	scatter = 0
 	scatter_unwielded = 15
