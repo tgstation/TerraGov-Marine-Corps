@@ -3,19 +3,32 @@
 ///////////////////////////////////////////////////////////////////////
 
 /obj/item/clothing/head/helmet/marine/robot/advanced
-	flags_item_map_variant = 0
+	flags_item_map_variant = NONE
 	icon = 'modular_RUtgmc/icons/obj/clothing/headwear/marine_helmets.dmi'
 	item_icons = list(
-		slot_head_str = 'modular_RUtgmc/icons/obj/clothing/headwear/marine_helmets.dmi',
+		slot_head_str = 'modular_RUtgmc/icons/mob/clothing/headwear/robot_helmets.dmi',
 	)
+	species_exception = list(/datum/species/robot)
+
+/obj/item/clothing/head/helmet/marine/robot/advanced/mob_can_equip(mob/user, slot, warning = TRUE, override_nodrop = FALSE, bitslot = FALSE)
+	. = ..()
+	if(!isrobot(user))
+		to_chat(user, span_warning("You can't equip this as it requires mounting bolts on your body!"))
+		return FALSE
 
 /obj/item/clothing/suit/storage/marine/robot/advanced
-	flags_item_map_variant = 0
+	flags_item_map_variant = NONE
 	icon = 'modular_RUtgmc/icons/obj/clothing/suits/marine_armor.dmi'
 	item_icons = list(
-		slot_wear_suit_str = 'modular_RUtgmc/icons/obj/clothing/suits/marine_armor.dmi',
+		slot_wear_suit_str = 'modular_RUtgmc/icons/mob/clothing/suits/robot_armor.dmi',
 	)
-	//pockets = /obj/item/storage/internal/modular/general
+	species_exception = list(/datum/species/robot)
+
+/obj/item/clothing/suit/storage/marine/robot/advanced/mob_can_equip(mob/user, slot, warning = TRUE, override_nodrop = FALSE, bitslot = FALSE)
+	. = ..()
+	if(!isrobot(user))
+		to_chat(user, span_warning("You can't equip this as it requires mounting bolts on your body!"))
+		return FALSE
 
 /obj/item/clothing/head/helmet/marine/robot/advanced/acid
 	name = "\improper Exidobate upper armor plating"
