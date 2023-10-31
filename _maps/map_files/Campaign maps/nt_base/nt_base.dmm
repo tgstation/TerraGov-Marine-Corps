@@ -17605,10 +17605,6 @@
 "mXb" = (
 /turf/open/floor/plating,
 /area/gelida/landing_zone_forecon/UD6_Typhoon)
-"mXm" = (
-/obj/effect/turf_decal/tile/full/black,
-/turf/open/space/basic,
-/area/gelida/indoors/c_block/mining)
 "mXx" = (
 /turf/open/floor/prison/cellstripe{
 	dir = 8
@@ -24848,11 +24844,6 @@
 	},
 /turf/open/floor/prison/plate,
 /area/gelida/indoors/a_block/hallway)
-"sgH" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/turf_decal/tile/full/black,
-/turf/open/space/basic,
-/area/gelida/indoors/c_block/mining)
 "sgI" = (
 /obj/structure/bed/chair/comfy{
 	dir = 8
@@ -56933,7 +56924,7 @@ xJv
 kNO
 kxK
 kxK
-sgH
+kxK
 dsc
 qmp
 qmp
@@ -57155,7 +57146,7 @@ qkJ
 kNO
 ezl
 ezl
-mXm
+ezl
 ezl
 qmp
 qmp
