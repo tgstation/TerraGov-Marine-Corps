@@ -5,9 +5,15 @@
 /obj/item/weapon/gun/revolver/standard_revolver/coltrifle
 	name = "\improper M1855 Revolving Rifle"
 	desc = "A revolver and carbine hybrid, designed and manufactured a long time ago by Crowford Armory Union. Popular back then, but completely obsolete today. Still used by some antiquity lovers."
-	icon = 'icons/marine/gun64.dmi'
+	icon = 'modular_RUtgmc/icons/Marine/gun64.dmi'
 	icon_state = "coltrifle"
 	item_state = "coltrifle"
+	item_icons = list(
+		slot_l_hand_str = 'modular_RUtgmc/icons/mob/items_lefthand_1.dmi',
+		slot_r_hand_str = 'modular_RUtgmc/icons/mob/items_righthand_1.dmi',
+		slot_s_store_str = 'modular_RUtgmc/icons/mob/suit_slot.dmi',
+		slot_back_str = 'modular_RUtgmc/icons/mob/clothing/back.dmi',
+	)
 	fire_animation = "coltrifle_fire"
 	fire_sound = 'sound/weapons/guns/fire/mateba.ogg'
 	gun_skill_category = SKILL_RIFLES
@@ -53,7 +59,8 @@
 	icon_state = "t500"
 	item_icons = list(
 		slot_l_hand_str = 'modular_RUtgmc/icons/mob/items_lefthand_1.dmi',
-		slot_r_hand_str = 'modular_RUtgmc/icons/mob/items_righthand_1.dmi',)
+		slot_r_hand_str = 'modular_RUtgmc/icons/mob/items_righthand_1.dmi',
+		)
 	item_state = "t500"
 	caliber =  CALIBER_500 //codex
 	max_chamber_items = 5 //codex

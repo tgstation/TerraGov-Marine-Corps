@@ -47,7 +47,7 @@
 			var/affecting = H.get_limb(ran_zone(null, 0))
 			if(!affecting) //Still nothing??
 				affecting = H.get_limb("chest") //Gotta have a torso?!
-			H.apply_damage(damage*2, BRUTE, affecting, MELEE)
+			H.apply_damage(damage, BRUTE, affecting, MELEE)
 			X.plasma_stored += 25
 			X.heal_overall_damage(25, 25, updating_health = TRUE)
 			if(H.can_sting())
