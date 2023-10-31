@@ -124,7 +124,7 @@
 	if(!on)
 		icon_state = "cell_off"
 	else
-		icon_state = "cell-on"
+		icon_state = "cell_on"
 	if(occupant)
 		icon_state += "_occupied"
 

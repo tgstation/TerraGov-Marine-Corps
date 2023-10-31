@@ -35,7 +35,7 @@
 
 	var/connected = 0 //Direction bitset
 
-	if(device_type)
+	if(nodes)
 		for(var/i in 1 to device_type) //adds intact pieces
 			if(nodes[i])
 				var/obj/machinery/atmospherics/node = nodes[i]

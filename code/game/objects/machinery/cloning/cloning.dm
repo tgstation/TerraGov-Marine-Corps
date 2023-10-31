@@ -5,8 +5,6 @@ These act as a respawn mechanic growning a body and offering it up to ghosts.
 */
 /obj/machinery/cloning
 	name = "broken cloning machine"
-	bound_width = 32
-	bound_height = 64
 	density = TRUE
 	opacity = FALSE
 	anchored = TRUE
@@ -101,6 +99,7 @@ These act as a respawn mechanic growning a body and offering it up to ghosts.
 	light_range = 2
 	light_power = 0.5
 	light_color = LIGHT_COLOR_EMISSIVE_GREEN
+	layer = ABOVE_MOB_LAYER
 
 	var/timerid
 	var/mob/living/carbon/human/occupant
@@ -219,8 +218,9 @@ These act as a respawn mechanic growning a body and offering it up to ghosts.
 
 /obj/machinery/cloning/vats/update_overlays()
 	. = ..()
-	if(occupant || timerid)
-		. += emissive_appearance(icon, "cell_emissive", alpha = src.alpha)
+	if(!beaker)
+		return
+	. += emissive_appearance(icon, "[icon_state]_emissive", alpha = src.alpha)
 
 /obj/machinery/cloning/vats/proc/grow_human(instant = FALSE)
 	use_power = ACTIVE_POWER_USE
