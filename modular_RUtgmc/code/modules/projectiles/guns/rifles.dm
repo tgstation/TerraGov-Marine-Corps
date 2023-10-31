@@ -92,7 +92,7 @@
 	attachable_offset = list("muzzle_x" = 12, "muzzle_y" = 22, "rail_x" = 15, "rail_y" = 22, "under_x" = 28, "under_y" = 16, "stock_x" = 12, "stock_y" = 14)
 	starting_attachment_types = list(/obj/item/weapon/gun/rifle/standard_spottingrifle, /obj/item/attachable/stock/strstock)
 
-	fire_delay = 0.3 SECONDS
+	fire_delay = 0.4 SECONDS
 	burst_amount = 0
 	accuracy_mult_unwielded = 0.4
 	accuracy_mult = 1.1
@@ -207,7 +207,7 @@
 	sundering = 0.5
 
 /datum/ammo/bullet/spottingrifle/tungsten/on_hit_mob(mob/M,obj/projectile/P)
-	staggerstun(M, P, stun = 0.5 SECONDS, knockback = 1 SECONDS, max_range = 6)
+	staggerstun(M, P, stun = 1 SECONDS, knockback = 1, max_range = 6)
 
 /datum/ammo/bullet/spottingrifle/flak
 	name = "smart flak spotting bullet"

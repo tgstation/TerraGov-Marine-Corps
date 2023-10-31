@@ -1270,7 +1270,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage_falloff = 0.5
 	accurate_range = 25
 	accurate_range_min = 3
-/*
+
 /datum/ammo/bullet/spottingrifle
 	name = "smart spotting bullet"
 	bullet_color = COLOR_SOFT_RED //Red bullets to indicate friendly fire restriction
@@ -1337,7 +1337,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage_type = BURN
 	damage = 10
 	sundering = 0.5
-*/
+
 /datum/ammo/bullet/turret
 	name = "autocannon bullet"
 	bullet_color = COLOR_SOFT_RED

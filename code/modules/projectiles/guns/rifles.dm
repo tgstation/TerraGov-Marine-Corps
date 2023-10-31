@@ -1252,7 +1252,6 @@
 	starting_attachment_types = list(/obj/item/attachable/stock/sgstock, /obj/item/attachable/sgbarrel, /obj/item/attachable/motiondetector, /obj/item/attachable/verticalgrip)
 
 //-------------------------------------------------------
-/*
 //SG Target Rifle, has underbarreled spotting rifle that applies effects.
 
 /obj/item/weapon/gun/rifle/standard_smarttargetrifle
@@ -1329,7 +1328,6 @@
 	accuracy_mult = 1.25
 	pixel_shift_x = 18
 	pixel_shift_y = 16
-*/
 //-------------------------------------------------------
 //Sectoid Rifle
 
