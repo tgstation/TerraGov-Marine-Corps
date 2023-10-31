@@ -444,7 +444,7 @@
 	name = "handheld charger"
 	desc = "A hand-held, lightweight cell charger. It isn't going to give you tons of power, but it can help in a pinch."
 	icon = 'icons/obj/items/tools.dmi'
-	icon_state = "handheldcharger_black_empty"
+	icon_state = "handheldcharger_black"
 	item_state = "handheldcharger_black_empty"
 	w_class = WEIGHT_CLASS_SMALL
 	flags_atom = CONDUCT
@@ -457,12 +457,15 @@
 	///Are we currently recharging something.
 	var/recharging = FALSE
 
-/obj/item/tool/handheld_charger/update_icon_state()
+/obj/item/tool/handheld_charger/Initialize(mapload)
 	. = ..()
+	update_icon()
+
+/obj/item/tool/handheld_charger/update_icon_state()
 	if(cell)
-		icon_state = "handheldcharger_black"
+		icon_state = initial(icon_state)
 	else
-		icon_state = "handheldcharger_black_empty"
+		icon_state = initial(icon_state) + "_empty"
 
 /obj/item/tool/handheld_charger/attack_self(mob/user)
 	if(!cell)
@@ -538,6 +541,5 @@
 	return ..()
 
 /obj/item/tool/handheld_charger/hicapcell/Initialize(mapload)
-	. = ..()
 	cell = new /obj/item/cell/high(src)
-	update_icon_state()
+	return ..()

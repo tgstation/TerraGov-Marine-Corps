@@ -67,10 +67,6 @@
 		if(!istype(user_id)) //not wearing an ID
 			return FALSE
 
-		if(!(user_id.flags_id & CAN_BUY_LOADOUT)) //If you use the quick-e-quip, you cannot also use the GHMMEs
-			to_chat(user, span_warning("Access denied. You have already vended a loadout."))
-			return FALSE
-
 		if(user_id.registered_name != H.real_name)
 			return FALSE
 
@@ -154,6 +150,9 @@
 			var/item_category = L[1]
 			var/cost = L[3]
 
+			if(!(user_id.flags_id & CAN_BUY_LOADOUT)) //If you use the quick-e-quip, you cannot also use the GHMMEs
+				to_chat(usr, span_warning("Access denied. You have already vended a loadout."))
+				return FALSE
 			if(use_points && (item_category in user_id.marine_points) && user_id.marine_points[item_category] < cost)
 				to_chat(usr, span_warning("Not enough points."))
 				if(icon_deny)

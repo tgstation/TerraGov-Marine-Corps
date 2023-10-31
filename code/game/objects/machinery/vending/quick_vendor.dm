@@ -195,10 +195,6 @@ GLOBAL_LIST_INIT(beginner_loadouts, init_beginner_loadouts())
 	if(user_id.registered_name != human_user.real_name)
 		return FALSE
 
-	if(user_id.flags_id & USED_GHMME) //No free stuff from GHHME if you want to use a preset loadout
-		to_chat(user, span_warning("Access denied, continue using the GHHME."))
-		return FALSE
-
 	return TRUE
 
 /obj/machinery/quick_vendor/ui_interact(mob/living/user, datum/tgui/ui)
@@ -253,6 +249,9 @@ GLOBAL_LIST_INIT(beginner_loadouts, init_beginner_loadouts())
 			if(selected_loadout.jobtype != user_id.rank)
 				to_chat(usr, span_warning("You are not in the right job for this loadout!"))
 				return
+			if(user_id.flags_id & USED_GHMME) //Same check here, in case they opened the UI before vending a loadout somehow
+				to_chat(ui.user, span_warning("Access denied, continue using the GHHME."))
+				return FALSE
 			if(user_id.flags_id & CAN_BUY_LOADOUT)
 				user_id.flags_id &= ~CAN_BUY_LOADOUT
 				selected_loadout.quantity --
