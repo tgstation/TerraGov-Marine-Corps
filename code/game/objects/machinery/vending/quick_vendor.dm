@@ -108,7 +108,8 @@ GLOBAL_LIST_INIT(beginner_loadouts, init_beginner_loadouts())
 
 /obj/machinery/quick_vendor
 	name = "Kwik-E-Quip vendor"
-	desc = "An advanced vendor to instantly arm soldiers with specific sets of equipment, allowing for immediate combat deployment."
+	desc = "An advanced vendor to instantly arm soldiers with specific sets of equipment, allowing for immediate combat deployment. \
+	Mutually exclusive with the GHMME."
 	icon = 'icons/obj/machines/vending.dmi'
 	icon_state = "specialist"
 	density = TRUE
@@ -165,7 +166,7 @@ GLOBAL_LIST_INIT(beginner_loadouts, init_beginner_loadouts())
 	. += emissive_appearance(icon, "[icon_state]_emissive")
 
 /obj/machinery/quick_vendor/beginner //Loadout vendor that shits out basic pre-made loadouts so new players can get something usable
-	icon_state = "Loadoutvendor"
+	icon_state = "loadoutvendor"
 	categories = list(
 		"Squad Marine",
 		"Squad Engineer",
