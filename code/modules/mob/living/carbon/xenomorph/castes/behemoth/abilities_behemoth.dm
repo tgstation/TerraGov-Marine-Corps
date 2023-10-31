@@ -90,7 +90,6 @@
 		for(var/mob/living/target_living in target_turf)
 			if(xeno_owner.issamexenohive(target_living) || target_living.stat == DEAD || CHECK_BITFIELD(target_living.status_flags, INCORPOREAL|GODMODE))
 				continue
-			shake_camera(target_living, max(1, duration), 0.5)
 
 
 // ***************************************
@@ -532,7 +531,7 @@
  * * object_target: The targeted object.
 */
 /datum/action/xeno_action/activable/landslide/proc/hit_object(obj/object_target)
-	if(!object_target)
+	if(!object_target || istype(object_target, /obj/structure/mineral_door/resin))
 		return
 	var/object_turf = get_turf(object_target)
 	if(istype(object_target, /obj/machinery/vending))
@@ -593,7 +592,7 @@
 	name = "Earth Riser"
 	ability_name = "Earth Riser"
 	action_icon_state = "earth_riser"
-	desc = "Raise a pillar of earth at the selected location. This solid structure can be used for defense, and it interacts with other abilities for offensive usage. Alternate use destroys active pillars, starting with the oldest one."
+	desc = "Raise a pillar of earth at the selected location. This solid structure can be used for defense, and it reacts with your other abilities. Clickdrag the rock anywhere to throw it. Alternate use destroys active pillars, starting with the oldest one."
 	plasma_cost = 30
 	cooldown_timer = 15 SECONDS
 	keybinding_signals = list(
@@ -671,7 +670,6 @@
 	for(var/mob/living/affected_living in target_turf)
 		if(xeno_owner.issamexenohive(affected_living) || affected_living.stat == DEAD)
 			continue
-		shake_camera(affected_living, 1, 0.5)
 		step_away(affected_living, target_turf, 1, 2)
 	active_pillars += new /obj/structure/earth_pillar(target_turf, xeno_owner)
 	update_button_icon()
@@ -1056,7 +1054,7 @@
 	if(!currently_roaring)
 		return
 	new /obj/effect/temp_visual/shockwave/primal_wrath(get_turf(owner), 4, owner.dir)
-	for(var/mob/living/affected_living in cheap_get_humans_near(owner, PRIMAL_WRATH_RANGE) + cheap_get_xenos_near(owner, PRIMAL_WRATH_RANGE))
+	for(var/mob/living/affected_living in cheap_get_humans_near(owner, PRIMAL_WRATH_RANGE) + owner)
 		if(!affected_living.hud_used)
 			continue
 		shake_camera(affected_living, 1, 0.1)
@@ -1064,7 +1062,7 @@
 		var/atom/movable/screen/plane_master/game_world/world_plane = affected_living.hud_used.plane_masters["[GAME_PLANE]"]
 		if(floor_plane.get_filter("primal_wrath") || world_plane.get_filter("primal_wrath"))
 			continue
-		var/filter_size = 0.02
+		var/filter_size = 0.01
 		world_plane.add_filter("primal_wrath", 2, radial_blur_filter(filter_size))
 		animate(world_plane.get_filter("primal_wrath"), size = filter_size * 2, time = 0.5 SECONDS, loop = -1)
 		floor_plane.add_filter("primal_wrath", 2, radial_blur_filter(filter_size))
