@@ -75,56 +75,5 @@
 	radial_icon = 'modular_RUtgmc/icons/mob/radial.dmi'
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_carbine
-	name = "\improper Terra Experimental laser carbine"
-	desc = "A TerraGov standard issue laser carbine, otherwise known as TE-C for short. Has multiple firemodes for tactical flexibility. Uses standard Terra Experimental (abbreviated as TE) power cells. As with all TE Laser weapons, they use a lightweight alloy combined without the need for bullets any longer decreases their weight and aiming speed quite some vs their ballistic counterparts."
-	reload_sound = 'sound/weapons/guns/interact/standard_laser_rifle_reload.ogg'
-	fire_sound = 'sound/weapons/guns/fire/Laser Carbine Scatter.ogg'
-	icon_state = "tec"
-	item_state = "tec"
-	max_shots = 12
-	ammo_datum_type = /datum/ammo/energy/lasgun/marine/blast
-	rounds_per_shot = 50
-	gun_firemode = GUN_FIREMODE_SEMIAUTO
-	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO)
-	ammo_level_icon = "te"
-	attachable_allowed = list(
-		/obj/item/attachable/bayonet,
-		/obj/item/attachable/bayonetknife,
-		/obj/item/attachable/bayonetknife/som,
-		/obj/item/attachable/reddot,
-		/obj/item/attachable/lasersight,
-		/obj/item/attachable/flashlight,
-		/obj/item/attachable/magnetic_harness,
-		/obj/item/weapon/gun/grenade_launcher/underslung,
-		/obj/item/weapon/gun/flamer/mini_flamer,
-		/obj/item/attachable/motiondetector,
-		/obj/item/attachable/buildasentry,
-		/obj/item/weapon/gun/rifle/pepperball/pepperball_mini,
-		/obj/item/attachable/shoulder_mount,
-		/obj/item/attachable/gyro,
-		/obj/item/attachable/verticalgrip,
-		/obj/item/attachable/angledgrip,
-		/obj/item/attachable/flashlight/under,
-	)
-
-	flags_gun_features = GUN_CAN_POINTBLANK|GUN_ENERGY|GUN_AMMO_COUNTER|GUN_NO_PITCH_SHIFT_NEAR_EMPTY|GUN_AMMO_COUNT_BY_SHOTS_REMAINING
-	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 18,"rail_x" = 17, "rail_y" = 21, "under_x" = 23, "under_y" = 10, "stock_x" = 22, "stock_y" = 12)
-
-	aim_slowdown = 0.2
-	wield_delay = 0.3 SECONDS
-	scatter = 1
-	scatter_unwielded = 10
-	fire_delay = 1.5 SECONDS
 	burst_delay = 0.6 SECONDS
-	extra_delay = 0.15 SECONDS
-	autoburst_delay = 0.35 SECONDS
-	accuracy_mult = 1
-	accuracy_mult_unwielded = 0.65
-	damage_falloff_mult = 0.5
-	movement_acc_penalty_mult = 4
-	mode_list = list(
-		"Auto burst standard" = /datum/lasrifle/energy_carbine_mode/auto_burst,
-		"Spread" = /datum/lasrifle/energy_carbine_mode/base/spread,
-		"Impact" = /datum/lasrifle/energy_carbine_mode/base/impact,
-		"Cripple" = /datum/lasrifle/energy_carbine_mode/base/cripple,
-	)
+
