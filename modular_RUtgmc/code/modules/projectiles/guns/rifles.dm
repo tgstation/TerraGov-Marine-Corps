@@ -68,10 +68,10 @@
 
 
 /datum/ammo/bullet/spottingrifle/highimpact/on_hit_mob(mob/M,obj/projectile/P)
-	staggerstun(M, P, stagger = 1 SECONDS, slowdown = 1 SECONDS, max_range = 6)
+	staggerstun(M, P, stagger = 3, slowdown = 1, max_range = 6)
 
 /datum/ammo/bullet/spottingrifle/heavyrubber/on_hit_mob(mob/M,obj/projectile/P)
-	staggerstun(M, P, slowdown = 2 SECONDS, max_range = 6)
+	staggerstun(M, P, slowdown = 2, max_range = 6)
 
 /datum/ammo/bullet/spottingrifle/plasmaloss
 	var/datum/effect_system/smoke_spread/smoke_system
