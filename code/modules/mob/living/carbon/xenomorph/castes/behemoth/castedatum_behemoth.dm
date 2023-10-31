@@ -59,7 +59,7 @@
 	upgrade = XENO_UPGRADE_PRIMO
 
 	// *** Wrath *** //
-	wrath_max = 800
+	wrath_max = 750
 
 	// *** Abilities *** ///
 	actions = list(
