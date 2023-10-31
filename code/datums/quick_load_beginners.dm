@@ -24,8 +24,8 @@
 
 /datum/outfit/quick/beginner/marine/rifleman
 	name = "Rifleman"
-	desc = "A typical rifleman for the marines.\
-	Wields the AR-12, a versatile all-rounder assault rifle with a powerful underbarrel grenade launcher attached.\
+	desc = "A typical rifleman for the marines. \
+	Wields the AR-12, a versatile all-rounder assault rifle with a powerful underbarrel grenade launcher attached. \
 	Also carries the strong P-23 sidearm and a variety of flares, medical equipment, and more for every situation."
 
 	wear_suit = /obj/item/clothing/suit/modular/xenonauten/hodgrenades
@@ -64,7 +64,7 @@
 
 /datum/outfit/quick/beginner/marine/machinegunner
 	name = "Machinegunner"
-	desc = "The king of suppressive fire. Uses the MG-60, a fully automatic 200 round machine gun with a bipod attached.\
+	desc = "The king of suppressive fire. Uses the MG-60, a fully automatic 200 round machine gun with a bipod attached. \
 	Excels at denying large areas to the enemy and eliminating those who refuse to leave."
 
 	wear_suit = /obj/item/clothing/suit/modular/xenonauten/heavy/tyrgeneral
@@ -99,7 +99,7 @@
 
 /datum/outfit/quick/beginner/marine/marksman
 	name = "Marksman"
-	desc = "Quality over quantity. Equipped with the DMR-37, an accurate long-range designated marksman rifle with a scope attached.\
+	desc = "Quality over quantity. Equipped with the DMR-37, an accurate long-range designated marksman rifle with a scope attached. \
 	While subpar in close quarters, the precision of the DMR is unmatched, exceeding at taking out threats from afar."
 
 	wear_suit = /obj/item/clothing/suit/modular/xenonauten/lightmedical
@@ -141,7 +141,7 @@
 
 /datum/outfit/quick/beginner/marine/shotgunner
 	name = "Shotgunner"
-	desc = "Up close and personal. Wields the SH-39, a semi-automatic shotgun loaded with slugs.\
+	desc = "Up close and personal. Wields the SH-39, a semi-automatic shotgun loaded with slugs. \
 	An absolute monster at short to mid range, the shotgun will do heavy damage to any target hit, as well as stunning them briefly, staggering them, and knocking them back."
 
 	w_uniform = /obj/item/clothing/under/marine/holster
@@ -189,7 +189,7 @@
 
 /datum/outfit/quick/beginner/marine/shocktrooper
 	name = "Shocktrooper"
-	desc = "The bleeding edge of the corps.\
+	desc = "The bleeding edge of the corps. \
 	Equipped with the experimental battery-fed laser rifle, featuring four different modes that can be freely swapped between, with an underbarrel flamethrower for area denial and clearing mazes."
 
 	suit_store = /obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_rifle/medic
@@ -234,8 +234,8 @@
 
 /datum/outfit/quick/beginner/marine/hazmat
 	name = "Hazmat"
-	desc = "Designed for danger\
-	Wields the AR-11, a powerful yet innacurate assault rifle with high magazine size and an equipped tactical sensor that detects enemies through smoke and walls.\
+	desc = "Designed for danger. \
+	Wields the AR-11, a powerful yet innacurate assault rifle with high magazine size and an equipped tactical sensor that detects enemies through smoke and walls. \
 	Wears Mimir combat armor, rendering the user immune to the dangerous toxic gas possessed by many xenomorphs."
 
 	head = /obj/item/clothing/head/modular/m10x/mimir
@@ -269,7 +269,7 @@
 
 /datum/outfit/quick/beginner/marine/cqc
 	name = "CQC"
-	desc = "Swift and lethal.\
+	desc = "Swift and lethal. \
 	Equipped with the AR-18, a lightweight carbine with a rapid-fire burst mode. Designed for maximum mobility, soldiers are able to rush in, assault the enemy, and retreat before they can respond."
 
 	suit_store = /obj/item/weapon/gun/rifle/standard_carbine/beginner
@@ -305,8 +305,8 @@
 
 /datum/outfit/quick/beginner/marine/chad //Ya gotta be if you pick this loadout
 	name = "Grenadier"
-	desc = "Explosive area denial.\
-	Uses the GL-70, a six shot semi-automatic grenade launcher, loaded with HEDP high explosive grenades.\
+	desc = "Explosive area denial. \
+	Uses the GL-70, a six shot semi-automatic grenade launcher, loaded with HEDP high explosive grenades. \
 	Boasts unmatched power, though heavy caution is advised to avoid harming friendlies."
 
 	wear_suit = /obj/item/clothing/suit/modular/xenonauten/heavy/grenadier
@@ -496,6 +496,8 @@
 
 /datum/outfit/quick/beginner/corpsman/lifesaver
 	name = "Standard Lifesaver"
+	desc = "Miracle in progress. \
+	Wields the bolt action Leicaster Repeater, and is equipped with a large variety of medicine for keeping the entire corps topped up and in the fight."
 
 	suit_store = /obj/item/weapon/gun/shotgun/pump/lever/repeater/beginner
 	wear_suit = /obj/item/clothing/suit/modular/xenonauten/mimirinjector
@@ -506,6 +508,7 @@
 	l_store = /obj/item/storage/pouch/shotgun
 	back = /obj/item/storage/backpack/marine/corpsman
 	belt = /obj/item/storage/belt/lifesaver/beginner
+	l_hand = /obj/item/paper/tutorial/lifesaver
 
 /datum/outfit/quick/beginner/corpsman/lifesaver/post_equip(mob/living/carbon/human/human, visualsOnly)
 	. = ..()
@@ -547,6 +550,8 @@
 
 /datum/outfit/quick/beginner/corpsman/hypobelt
 	name = "Standard Hypobelt"
+	desc = "Putting the combat in combat medic. \
+	Wields the pump action SH-35 shotgun, and is equipped with a belt full of hyposprays for rapidly treating patients in bad condition."
 
 	suit_store = /obj/item/weapon/gun/shotgun/pump/t35/beginner
 	wear_suit = /obj/item/clothing/suit/modular/xenonauten/light/lightmedical
@@ -557,6 +562,7 @@
 	l_store = /obj/item/storage/pouch/shotgun
 	back = /obj/item/storage/backpack/marine/corpsman
 	belt = /obj/item/storage/belt/hypospraybelt/beginner
+	l_hand = /obj/item/paper/tutorial/hypobelt
 
 /datum/outfit/quick/beginner/corpsman/hypobelt/post_equip(mob/living/carbon/human/human, visualsOnly)
 	. = ..()
@@ -608,8 +614,12 @@
 
 /datum/outfit/quick/beginner/smartgunner/sg29
 	name = "Standard Smartmachinegun"
+	desc = "Tactical support fire. \
+	Uses the SG-29, a specialist light machine gun that will shoot through your allies, \
+	equipped with a tactical sensor to detect enemies through smoke, walls, and darkness."
 
 	suit_store = /obj/item/weapon/gun/rifle/standard_smartmachinegun/pmc
+	l_hand = /obj/item/paper/tutorial/smartmachinegunner
 
 /datum/outfit/quick/beginner/smartgunner/sg29/post_equip(mob/living/carbon/human/human, visualsOnly)
 	. = ..()
@@ -630,9 +640,12 @@
 
 /datum/outfit/quick/beginner/smartgunner/sg85
 	name = "Standard Smartminigun"
+	desc = "Lead wall! Wields the SG-85, a specialist minigun that holds one thousand rounds and can shoot through your allies, \
+	equipped with a tactical sensor to detect enemies through smoke, walls, and darkness."
 
 	suit_store = /obj/item/weapon/gun/minigun/smart_minigun/motion_detector
 	back = /obj/item/ammo_magazine/minigun_powerpack/smartgun
+	l_hand = /obj/item/paper/tutorial/smartminigunner
 
 /datum/outfit/quick/beginner/smartgunner/sg85/post_equip(mob/living/carbon/human/human, visualsOnly)
 	. = ..()
