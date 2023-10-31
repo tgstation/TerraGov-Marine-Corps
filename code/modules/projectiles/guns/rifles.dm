@@ -1328,6 +1328,7 @@
 	accuracy_mult = 1.25
 	pixel_shift_x = 18
 	pixel_shift_y = 16
+
 //-------------------------------------------------------
 //Sectoid Rifle
 
