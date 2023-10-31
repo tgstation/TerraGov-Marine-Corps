@@ -214,7 +214,7 @@ These act as a respawn mechanic growning a body and offering it up to ghosts.
 	if(occupant || timerid)
 		icon_state = "cell_growing"
 		return
-	var/amount = clamp(round(beaker.reagents.total_volume / biomass_required, 25), 0, 100)
+	var/amount = clamp(round(beaker.reagents.total_volume / biomass_required, 0.25) * 100, 0, 100)
 	icon_state = "cell_[amount]"
 
 /obj/machinery/cloning/vats/update_overlays()
