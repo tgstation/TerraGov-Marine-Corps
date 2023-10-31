@@ -19,6 +19,7 @@
 /turf/closed/hitby(atom/movable/AM, speed = 5)
 	AM.stop_throw()
 	AM.turf_collision(src, speed)
+	return TRUE
 
 /turf/closed/mineral
 	name = "rock"
