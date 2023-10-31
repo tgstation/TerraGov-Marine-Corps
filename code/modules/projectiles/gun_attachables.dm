@@ -1403,6 +1403,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	accuracy_mod = 0.2
 	recoil_mod = -2
 	scatter_mod = -8
+	aim_speed_mod = 0.05
 
 /obj/item/attachable/foldable/icc_machinepistol
 	name = "\improper PL-38 machinepistol stock"

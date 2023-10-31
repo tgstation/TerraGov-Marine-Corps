@@ -358,7 +358,9 @@
 	tastes = list("egg" = 1)
 
 /obj/item/reagent_containers/food/snacks/egg/throw_impact(atom/hit_atom)
-	..()
+	. = ..()
+	if(!.)
+		return
 	new/obj/effect/decal/cleanable/egg_smudge(src.loc)
 	src.reagents.reaction(hit_atom, TOUCH)
 	src.visible_message(span_warning(" [src.name] has been squashed."),span_warning(" You hear a smack."))
@@ -1638,7 +1640,7 @@
 
 /obj/item/reagent_containers/food/snacks/lollipop/tricord
 	name = "Tricord-pop"
-	desc = "A lolipop laced with tricordazine, a slow healing reagent. Can be eaten or put in the mask slot."
+	desc = "A lolipop laced with tricordrazine, a slow healing reagent. Can be eaten or put in the mask slot."
 	list_reagents = list(/datum/reagent/consumable/sugar = 1, /datum/reagent/medicine/tricordrazine = 10)
 	tastes = list("cough syrup" = 1, "artificial sweetness" = 1)
 

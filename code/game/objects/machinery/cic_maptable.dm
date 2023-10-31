@@ -46,7 +46,7 @@
 	if(.)
 		return
 	if(interact_checks(user))
-		return
+		return TRUE
 	if(!map)
 		map = SSminimaps.fetch_minimap_object(targetted_zlevel, minimap_flag)
 	user.client.screen += map

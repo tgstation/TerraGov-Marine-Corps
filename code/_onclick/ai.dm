@@ -312,7 +312,7 @@
 	if(SSmonitor.gamestate == SHUTTERS_CLOSED)
 		to_chat(user, span_warning("The operation hasn't started yet."))
 		return
-	if(A.ceiling > CEILING_METAL)
+	if(A.ceiling > CEILING_OBSTRUCTED)
 		to_chat(user, span_warning("DEPTH WARNING: Target too deep for ordnance."))
 		return
 	if((GLOB.marine_main_ship?.rail_gun?.last_firing_ai + COOLDOWN_RAILGUN_FIRE) > world.time)

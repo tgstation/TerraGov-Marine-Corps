@@ -1,6 +1,0 @@
-author: "TiviPlus"
-delete-after: True
-changes:
-  - rscadd: "Added custom squads;"
-  - rscadd: "SLs may now create their own squads using a terminal in/near their prep, and marines can join said squads using the squad selection consoles near preps"
-  - admin: "admins can now delete squads"

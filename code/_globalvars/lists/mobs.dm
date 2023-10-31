@@ -134,6 +134,8 @@ GLOBAL_LIST_INIT(hive_ui_static_data, init_hive_status_lists()) // init by make_
 	var/list/per_tier_counter = list()
 	for(var/caste_type_path AS in GLOB.xeno_caste_datums)
 		var/datum/xeno_caste/caste = GLOB.xeno_caste_datums[caste_type_path][XENO_UPGRADE_BASETYPE]
+		if(caste.caste_flags & CASTE_HIDE_IN_STATUS)
+			continue
 		var/type_path = initial(caste.caste_type_path)
 
 		GLOB.hive_ui_caste_index[type_path] = length(.) //Starts from 0.

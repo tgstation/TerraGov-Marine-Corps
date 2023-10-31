@@ -436,6 +436,9 @@
 		return
 	if(!client)
 		return
+	var/mob/mob_to_push = AM
+	if(istype(mob_to_push) && mob_to_push.lying_angle)
+		return
 	now_pushing = TRUE
 	var/dir_to_target = get_dir(src, AM)
 
@@ -456,7 +459,6 @@
 		if(force_push(AM, move_force, dir_to_target, push_anchored))
 			push_anchored = TRUE
 	if(ismob(AM))
-		var/mob/mob_to_push = AM
 		var/atom/movable/mob_buckle = mob_to_push.buckled
 		// If we can't pull them because of what they're buckled to, make sure we can push the thing they're buckled to instead.
 		// If neither are true, we're not pushing anymore.

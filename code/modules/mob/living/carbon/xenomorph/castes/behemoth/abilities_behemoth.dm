@@ -593,7 +593,7 @@
 	name = "Earth Riser"
 	ability_name = "Earth Riser"
 	action_icon_state = "earth_riser"
-	desc = "Raise a pillar of earth at the selected location. This solid structure can be used for defense, and it interacts with other abilities for offensive usage. Alternate use destroys active pillars, starting with the oldest one."
+	desc = "Raise a pillar of earth at the selected location. This solid structure can be used for defense, and it interacts with other abilities for offensive usage. The pillar can be launched by click-dragging it in a direction. Alternate use destroys active pillars, starting with the oldest one."
 	plasma_cost = 30
 	cooldown_timer = 15 SECONDS
 	keybinding_signals = list(

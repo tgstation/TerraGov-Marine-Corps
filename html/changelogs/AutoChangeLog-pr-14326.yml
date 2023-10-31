@@ -1,0 +1,4 @@
+author: "Helg2"
+delete-after: True
+changes:
+  - bugfix: "fixed plasma pistol not shooting from one hand after detaching it as attachment from somewhere."

@@ -20,7 +20,7 @@
 		switch(area_to_lit.ceiling)
 			if(CEILING_NONE to CEILING_GLASS)
 				area_to_lit.set_base_lighting(outside_colour, outside_lvl)
-			if(CEILING_METAL)
+			if(CEILING_METAL to CEILING_OBSTRUCTED)
 				area_to_lit.set_base_lighting(inside_colour, inside_lvl)
 			if(CEILING_UNDERGROUND to CEILING_UNDERGROUND_METAL)
 				area_to_lit.set_base_lighting(cave_colour, cave_lvl)

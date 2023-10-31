@@ -434,7 +434,7 @@
 				for(var/i=1, i<=amount, i++)
 					new /obj/item/shard(pick(turfs))
 					new /obj/item/shard(pick(turfs))
-		if(CEILING_METAL)
+		if(CEILING_METAL, CEILING_OBSTRUCTED)
 			playsound(src, "sound/effects/metal_crash.ogg", 60, 1)
 			spawn(8)
 				if(amount >1)
@@ -465,6 +465,8 @@
 			return "The ceiling above is glass."
 		if(CEILING_METAL)
 			return "The ceiling above is metal."
+		if(CEILING_OBSTRUCTED)
+			return "The ceiling above is metal. Nothing could land here."
 		if(CEILING_UNDERGROUND)
 			return "It is underground. The cavern roof lies above."
 		if(CEILING_UNDERGROUND_METAL)
