@@ -1,4 +1,6 @@
 //Any loadout that is intended for the new player loadout vendor
+///When making new loadouts, remember to also add the typepath to the list under init_beginner_loadouts() or else it won't show up in the vendor
+
 
 /datum/outfit/quick/beginner
 	name = "Beginner loadout base"
