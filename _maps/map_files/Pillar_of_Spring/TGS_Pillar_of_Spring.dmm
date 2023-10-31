@@ -6383,7 +6383,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/lower_hull)
 "iiC" = (
-/obj/machinery/body_scanconsole,
+/obj/machinery/computer/body_scanconsole,
 /obj/structure/cable,
 /obj/machinery/light/mainship{
 	dir = 4
@@ -16576,7 +16576,7 @@
 	},
 /area/mainship/command/airoom)
 "uMj" = (
-/obj/machinery/body_scanconsole,
+/obj/machinery/computer/body_scanconsole,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/lower_medical)
 "uMG" = (

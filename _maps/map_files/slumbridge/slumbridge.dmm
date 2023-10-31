@@ -3311,7 +3311,7 @@
 /turf/open/floor/plating,
 /area/slumbridge/colony/construction)
 "cvO" = (
-/obj/machinery/body_scanconsole,
+/obj/machinery/computer/body_scanconsole,
 /turf/open/floor/tile/blue,
 /area/slumbridge/houses/surgery/garbledradio)
 "cwu" = (
@@ -10266,7 +10266,7 @@
 	},
 /area/slumbridge/northwestcaves)
 "hOy" = (
-/obj/machinery/body_scanconsole,
+/obj/machinery/computer/body_scanconsole,
 /turf/open/floor/tile/bar,
 /area/slumbridge/medical/foyer)
 "hOz" = (
@@ -19264,7 +19264,7 @@
 /turf/open/ground/grass,
 /area/slumbridge/outside4)
 "old" = (
-/obj/machinery/body_scanconsole,
+/obj/machinery/computer/body_scanconsole,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/bar,
 /area/slumbridge/medical/foyer)

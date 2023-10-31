@@ -27,7 +27,7 @@
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "ax" = (
-/obj/machinery/body_scanconsole,
+/obj/machinery/computer/body_scanconsole,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/green/whitegreen,
 /area/bigredv2/outside/medical)
@@ -59,7 +59,7 @@
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "bb" = (
-/obj/machinery/body_scanconsole,
+/obj/machinery/computer/body_scanconsole,
 /turf/open/floor/tile/green/whitegreen{
 	dir = 6
 	},

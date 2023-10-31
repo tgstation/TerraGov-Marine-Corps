@@ -426,7 +426,7 @@
 			return
 
 		var/obj/machinery/bodyscanner/E = new (T)
-		var/obj/machinery/body_scanconsole/C = new (T)
+		var/obj/machinery/computer/body_scanconsole/C = new (T)
 		C.loc = get_step(T, EAST)
 		C.connected = E
 

@@ -1118,7 +1118,7 @@
 /turf/open/floor/prison/yellow,
 /area/lv624/lazarus/engineering)
 "ht" = (
-/obj/machinery/body_scanconsole,
+/obj/machinery/computer/body_scanconsole,
 /obj/machinery/light,
 /turf/open/floor/tile/green/whitegreen{
 	dir = 6

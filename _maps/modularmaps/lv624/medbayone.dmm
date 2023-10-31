@@ -612,7 +612,7 @@
 	},
 /area/lv624/lazarus/medbay)
 "YX" = (
-/obj/machinery/body_scanconsole,
+/obj/machinery/computer/body_scanconsole,
 /turf/open/floor/tile/blue/whitebluecorner{
 	dir = 2
 	},

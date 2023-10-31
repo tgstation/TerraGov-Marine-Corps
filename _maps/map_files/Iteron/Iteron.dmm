@@ -3797,7 +3797,7 @@
 	},
 /area/mainship/patrol_base)
 "Wu" = (
-/obj/machinery/body_scanconsole,
+/obj/machinery/computer/body_scanconsole,
 /turf/open/floor/prison/sterilewhite,
 /area/mainship/patrol_base)
 "Wv" = (

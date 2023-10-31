@@ -14141,7 +14141,7 @@
 /turf/open/floor/mainship/orange/full,
 /area/lawankaoutpost/caves/nanotrasen_lab)
 "mbV" = (
-/obj/machinery/body_scanconsole,
+/obj/machinery/computer/body_scanconsole,
 /turf/open/floor/tile/white,
 /area/lawankaoutpost/colony/medbay)
 "mbW" = (
@@ -17285,7 +17285,7 @@
 	},
 /area/lawankaoutpost/colony/operations_hall)
 "oFP" = (
-/obj/machinery/body_scanconsole,
+/obj/machinery/computer/body_scanconsole,
 /turf/open/floor/tile/red/whitered{
 	dir = 1
 	},

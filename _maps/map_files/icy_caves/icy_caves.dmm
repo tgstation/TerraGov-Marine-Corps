@@ -6942,7 +6942,7 @@
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/dorms)
 "JT" = (
-/obj/machinery/body_scanconsole,
+/obj/machinery/computer/body_scanconsole,
 /turf/open/floor/tile/dark/green2{
 	dir = 6
 	},

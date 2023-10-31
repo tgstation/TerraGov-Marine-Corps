@@ -11652,7 +11652,7 @@
 	},
 /area/rocinante_base/surface/building/living/barracks)
 "qsX" = (
-/obj/machinery/body_scanconsole,
+/obj/machinery/computer/body_scanconsole,
 /obj/structure/cable,
 /obj/machinery/light{
 	dir = 1

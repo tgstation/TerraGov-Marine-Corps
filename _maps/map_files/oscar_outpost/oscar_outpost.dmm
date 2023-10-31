@@ -479,7 +479,7 @@
 /turf/open/floor,
 /area/oscar_outpost/village/south)
 "dq" = (
-/obj/machinery/body_scanconsole,
+/obj/machinery/computer/body_scanconsole,
 /turf/open/floor/mainship/sterile,
 /area/oscar_outpost/base)
 "ds" = (
@@ -3160,7 +3160,7 @@
 /turf/open/floor/wood,
 /area/oscar_outpost/village/east)
 "vy" = (
-/obj/machinery/body_scanconsole,
+/obj/machinery/computer/body_scanconsole,
 /turf/open/floor/mainship/sterile,
 /area/oscar_outpost/village/central)
 "vz" = (
@@ -5218,7 +5218,7 @@
 /turf/open/floor,
 /area/oscar_outpost/village/south)
 "FR" = (
-/obj/machinery/body_scanconsole,
+/obj/machinery/computer/body_scanconsole,
 /obj/structure/sign/safety/medical_supplies{
 	dir = 1
 	},

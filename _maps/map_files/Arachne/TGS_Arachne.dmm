@@ -7108,7 +7108,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/squads/general)
 "gey" = (
-/obj/machinery/body_scanconsole,
+/obj/machinery/computer/body_scanconsole,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/supply/visible/layer1{
 	dir = 4
@@ -12106,7 +12106,7 @@
 	},
 /area/mainship/engineering/engineering_workshop)
 "kjk" = (
-/obj/machinery/body_scanconsole,
+/obj/machinery/computer/body_scanconsole,
 /turf/open/floor/mainship/sterile/corner{
 	dir = 4
 	},
@@ -20843,7 +20843,7 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/lounge)
 "rlz" = (
-/obj/machinery/body_scanconsole,
+/obj/machinery/computer/body_scanconsole,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
 	dir = 8

@@ -6823,7 +6823,7 @@
 /turf/open/floor/freezer,
 /area/patricks_rest/surface/building/residential_cent)
 "Hu" = (
-/obj/machinery/body_scanconsole,
+/obj/machinery/computer/body_scanconsole,
 /turf/open/floor/mainship/sterile/dark,
 /area/patricks_rest/surface/building/medbay)
 "Hw" = (

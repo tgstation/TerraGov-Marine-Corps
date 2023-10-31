@@ -6308,7 +6308,7 @@
 /turf/open/floor,
 /area/oscar_outpost)
 "Rp" = (
-/obj/machinery/body_scanconsole,
+/obj/machinery/computer/body_scanconsole,
 /turf/open/floor/mainship/sterile/dark,
 /area/oscar_outpost)
 "Rq" = (

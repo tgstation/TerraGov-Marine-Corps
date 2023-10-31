@@ -3560,7 +3560,7 @@
 	},
 /area/mainship/command/cic)
 "bkw" = (
-/obj/machinery/body_scanconsole,
+/obj/machinery/computer/body_scanconsole,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/lower_medical)
 "bky" = (
@@ -4025,7 +4025,7 @@
 /turf/open/floor/mainship/sterile/corner,
 /area/mainship/medical/operating_room_one)
 "boR" = (
-/obj/machinery/body_scanconsole,
+/obj/machinery/computer/body_scanconsole,
 /turf/open/floor/mainship/sterile/side{
 	dir = 1
 	},
@@ -6006,7 +6006,7 @@
 	},
 /area/mainship/medical/operating_room_four)
 "bMk" = (
-/obj/machinery/body_scanconsole,
+/obj/machinery/computer/body_scanconsole,
 /turf/open/floor/mainship/sterile/side,
 /area/mainship/medical/lower_medical)
 "bMl" = (
