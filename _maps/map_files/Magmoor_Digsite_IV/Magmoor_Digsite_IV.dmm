@@ -2695,7 +2695,6 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 8;
 	name = "\improper Arrivals"
@@ -3297,12 +3296,6 @@
 /turf/open/floor/plating/mainship,
 /area/magmoor/engi/storage)
 "cnO" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 4
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
@@ -14702,9 +14695,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/structure/cable,
 /obj/effect/landmark/excavation_site_spawner,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/effect/ai_node,
 /obj/effect/ai_node,
 /turf/open/floor/mainship/mono,
 /area/magmoor/research/rnd/lobby)
@@ -17311,9 +17301,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/docking_port/stationary/crashmode,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
-	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 1
 	},
 /turf/open/floor/wood,
@@ -22282,9 +22269,6 @@
 /turf/open/floor/plating/mainship,
 /area/magmoor/mining/garage)
 "qlX" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
