@@ -1630,6 +1630,7 @@
 		/obj/item/tool/wirecutters = -1,
 		/obj/item/tool/wrench = -1,
 		/obj/item/tool/screwdriver = -1,
+		/obj/item/tool/multitool = -1,
 	)
 
 /obj/machinery/vending/tool/nopower
