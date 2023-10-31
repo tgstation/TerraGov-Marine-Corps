@@ -531,7 +531,7 @@
  * * object_target: The targeted object.
 */
 /datum/action/xeno_action/activable/landslide/proc/hit_object(obj/object_target)
-	if(!object_target || istype(object_target, /obj/structure/mineral_door/resin))
+	if(!object_target)
 		return
 	var/object_turf = get_turf(object_target)
 	if(istype(object_target, /obj/machinery/vending))
@@ -543,6 +543,10 @@
 	if(istype(object_target, /obj/structure/reagent_dispensers/fueltank))
 		var/obj/structure/reagent_dispensers/fueltank/tank_target = object_target
 		tank_target.explode()
+		return
+	if(istype(object_target, /obj/structure/mineral_door/resin))
+		var/obj/structure/mineral_door/resin/resin_door = object_target
+		resin_door.toggle_state()
 		return
 	if(object_target.obj_integrity <= LANDSLIDE_OBJECT_INTEGRITY_THRESHOLD || istype(object_target, /obj/structure/closet))
 		playsound(object_turf, 'sound/effects/meteorimpact.ogg', 30, TRUE)
