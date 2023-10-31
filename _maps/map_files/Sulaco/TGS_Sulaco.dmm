@@ -9321,8 +9321,6 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
-/obj/machinery/atmospherics/pipe/simple/yellow/hidden,
-/obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
 /obj/machinery/door/airlock/mainship/command/officer{
 	dir = 2
 	},
