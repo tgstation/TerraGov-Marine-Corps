@@ -201,6 +201,7 @@
 		),
 		"Chemistry Equipment" = list(
 			/obj/item/reagent_containers/syringe = -1,
+			/obj/item/storage/syringe_case/empty = -1,
 			/obj/item/reagent_containers/glass/beaker = -1,
 			/obj/item/reagent_containers/glass/beaker/large = -1,
 			/obj/item/reagent_containers/glass/beaker/vial = -1,
