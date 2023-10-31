@@ -1,0 +1,8 @@
+author: "Lewdcifer"
+delete-after: True
+changes:
+  - rscdel: "Behemoth's ability warnings no longer cause screen shaking."
+  - rscdel: "Behemoth's abilities have lost screen shaking in various cases."
+  - qol: "Reduced Primal Wrath's screen distortion a little. Additionally, this effect no longer applies to allied xenos besides yourself."
+  - bugfix: "Behemoth's Landslide no longer displaces adjacent allies, only those directly in front of you."
+  - bugfix: "Behemoth's Landslide no longer destroys resin doors. Instead, they will open and let you proceed."
