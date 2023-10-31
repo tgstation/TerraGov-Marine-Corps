@@ -16,28 +16,25 @@
 
 /obj/item/reagent_containers/glass/reagent_canister/examine(mob/user)
 	. = ..()
-	var/examine_info = get_examine_info(user)
-	if(examine_info)
-		. += examine_info
+	. += get_examine_info(user)
 
 ///Used on examine for properly skilled people to see contents.
 /obj/item/reagent_containers/glass/reagent_canister/proc/get_examine_info(mob/user)
 	if(isxeno(user))
 		return
-	if(user.skills.getRating(SKILL_MEDICAL) >= SKILL_MEDICAL_NOVICE)
-		if(isnull(reagents.total_volume))
-			return span_notice("[src] is empty!")
-		var/list/dat = list()
-		dat += "\n \t [span_notice("<b>Total Reagents:</b> [reagents.total_volume]/[volume].")]</br>"
-		for(var/datum/reagent/R in reagents.reagent_list)
-			var/percent = round(R.volume / max(0.01 , reagents.total_volume * 0.01),0.01)
-			if(R.scannable)
-				dat += "\n \t <b>[R]:</b> [R.volume]|[percent]%</br>"
-			else
-				dat += "\n \t <b>Unknown:</b> [R.volume]|[percent]%</br>"
-		return span_notice("[src]'s contains: [dat.Join(" ")]")
-	else
+	if(!(user.skills.getRating(SKILL_MEDICAL) >= SKILL_MEDICAL_NOVICE)) //Failed skill check
 		return "You don't know what's in it."
+	if(isnull(reagents.total_volume))
+		return span_notice("[src] is empty!")
+	var/list/dat = list()
+	dat += "\n \t [span_notice("<b>Total Reagents:</b> [reagents.total_volume]/[volume].")]</br>"
+	for(var/datum/reagent/R in reagents.reagent_list)
+		var/percent = round(R.volume / max(0.01 , reagents.total_volume * 0.01),0.01)
+		if(R.scannable)
+			dat += "\n \t <b>[R]:</b> [R.volume]|[percent]%</br>"
+		else
+			dat += "\n \t <b>Unknown:</b> [R.volume]|[percent]%</br>"
+	return span_notice("[src]'s contains: [dat.Join(" ")]")
 
 /obj/item/storage/pouch/pressurized_reagent_pouch //The actual pouch itself and all its function
 	name = "pressurized reagent pouch"
@@ -61,25 +58,23 @@
 
 /obj/item/storage/pouch/pressurized_reagent_pouch/update_overlays()
 	. = ..()
-	overlays.Cut()
 	if(!inner)
-		overlays += "reagent_pouch_0"
-	else
-		overlays += "reagent_canister"
-		var/percentage = round((inner.reagents.total_volume/inner.reagents.maximum_volume)*100)
-		switch(percentage)
-			if(0)
-				overlays += "reagent_pouch_0"
-			if(1 to 33)
-				overlays += "reagent_pouch_1"
-			if(34 to 66)
-				overlays += "reagent_pouch_2"
-			if(67 to 100)
-				overlays += "reagent_pouch_3"
+		. += image('icons/Marine/marine-pouches.dmi', src, "reagent_pouch_0")
+		return
+	. += image('icons/Marine/marine-pouches.dmi', src, "reagent_canister")
+	var/percentage = round((inner.reagents.total_volume/inner.reagents.maximum_volume)*100)
+	switch(percentage)
+		if(0)
+			. += image('icons/Marine/marine-pouches.dmi', src, "reagent_pouch_0")
+		if(1 to 33)
+			. += image('icons/Marine/marine-pouches.dmi', src, "reagent_pouch_1")
+		if(34 to 66)
+			. += image('icons/Marine/marine-pouches.dmi', src, "reagent_pouch_2")
+		if(67 to 100)
+			. += image('icons/Marine/marine-pouches.dmi', src, "reagent_pouch_3")
 
 /obj/item/storage/pouch/pressurized_reagent_pouch/bktt/Initialize()
 	. = ..()
-	//we don't call fill_with because of the complex mix of chemicals we have
 	var/amount_to_fill = inner.volume/4
 	inner.reagents.add_reagent(/datum/reagent/medicine/bicaridine, amount_to_fill)
 	inner.reagents.add_reagent(/datum/reagent/medicine/kelotane, amount_to_fill)
@@ -102,37 +97,34 @@
 ///Removes the reagent canister from the pouch. Returns FALSE if there is no canister to remove
 /obj/item/storage/pouch/pressurized_reagent_pouch/proc/remove_canister(mob/user)
 	if(!inner)
-		to_chat(usr, span_warning("There is no container inside this pouch!"))
+		to_chat(user, span_warning("There is no container inside this pouch!"))
 		return FALSE
-	var/had_empty_hand = user.put_in_active_hand(inner)
-	if(!had_empty_hand)
-		user.put_in_hands(inner)
+	if(!user.put_in_active_hand(inner))
+		user.put_in_hands(inner) //If put_in_active fails, we still pick up or drop the canister
 	inner = null
 	update_icon()
 	return TRUE
 
 /obj/item/storage/pouch/pressurized_reagent_pouch/attackby(obj/item/held_item, mob/user)
+	if(istype(held_item, /obj/item/reagent_containers/hypospray))
+		fill_autoinjector(held_item, user)
+		return ..()
+
 	if(istype(held_item, /obj/item/reagent_containers/glass/reagent_canister)) //If it's the reagent canister, we put it in the special holder
-		if(inner)
-			to_chat(user, span_warning("There already is a container inside [src]!"))
-			return
-		else
+		if(!inner)
 			user.temporarilyRemoveItemFromInventory(held_item)
 			inner = held_item
 			to_chat(user, span_notice("You insert [held_item] into [src]!"))
 			update_icon()
 			return
+		return to_chat(user, span_warning("There already is a container inside [src]!"))
 
-	. = ..()
-	if(istype(held_item, /obj/item/reagent_containers/hypospray))
-		fill_autoinjector(held_item, user)
-		return
+	return ..()
 
 /obj/item/storage/pouch/pressurized_reagent_pouch/attackby_alternate(obj/item/held_item, mob/user, params)
 	. = ..()
 	if(istype(held_item, /obj/item/reagent_containers/hypospray))
 		fill_autoinjector(held_item, user)
-		return
 
 ///Fills the hypo that gets stored in the pouch from the internal storage tank. Returns FALSE if you fail to refill your injector
 /obj/item/storage/pouch/pressurized_reagent_pouch/proc/fill_autoinjector(obj/item/reagent_containers/hypospray/autoinjector, mob/user)
@@ -150,29 +142,26 @@
 
 /obj/item/storage/pouch/pressurized_reagent_pouch/examine(mob/user)
 	. = ..()
-	var/display_info = display_contents(user)
-	if(display_info)
-		. += display_info
+	. += get_display_contents(user)
 
 ///Used on examine for properly skilled people to see contents.
-/obj/item/storage/pouch/pressurized_reagent_pouch/proc/display_contents(mob/user)
+/obj/item/storage/pouch/pressurized_reagent_pouch/proc/get_display_contents(mob/user)
 	if(isxeno(user))
 		return
+	if(!(user.skills.getRating(SKILL_MEDICAL) >= SKILL_MEDICAL_NOVICE)) //Failed skill check
+		return "You don't know what's in it."
 	if(isnull(inner))
 		return "[src] has no container inside!"
-	if(user.skills.getRating(SKILL_MEDICAL) >= SKILL_MEDICAL_NOVICE)
-		if(isnull(inner.reagents.total_volume))
-			return span_notice("[src] is empty!")
-		var/list/dat = list()
-		dat += "\n \t [span_notice("<b>Total Reagents:</b> [inner.reagents.total_volume]/[inner.volume].")]</br>"
-		if(length(inner.reagents.reagent_list) > 0)
-			for(var/datum/reagent/R in inner.reagents.reagent_list)
-				var/percent = round(R.volume / max(0.01 , inner.reagents.total_volume * 0.01),0.01)
-				if(R.scannable)
-					dat += "\n \t <b>[R]:</b> [R.volume]|[percent]%</br>"
-				else
-					dat += "\n \t <b>Unknown:</b> [R.volume]|[percent]%</br>"
-		return span_notice("[src]'s reagent display shows the following contents: [dat.Join(" ")]")
-	else
-		return "You don't know what's in it."
+	if(isnull(inner.reagents.total_volume))
+		return span_notice("[src] is empty!")
+	var/list/dat = list()
+	dat += "\n \t [span_notice("<b>Total Reagents:</b> [inner.reagents.total_volume]/[inner.volume].")]</br>"
+	if(length(inner.reagents.reagent_list) > 0)
+		for(var/datum/reagent/R in inner.reagents.reagent_list)
+			var/percent = round(R.volume / max(0.01 , inner.reagents.total_volume * 0.01),0.01)
+			if(R.scannable)
+				dat += "\n \t <b>[R]:</b> [R.volume]|[percent]%</br>"
+			else
+				dat += "\n \t <b>Unknown:</b> [R.volume]|[percent]%</br>"
+	return span_notice("[src]'s reagent display shows the following contents: [dat.Join(" ")]")
 
