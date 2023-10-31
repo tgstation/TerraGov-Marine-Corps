@@ -122,12 +122,11 @@
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/update_icon_state()
 	if(!on)
-		icon_state = "cell-off"
-		return
+		icon_state = "cell_off"
+	else
+		icon_state = "cell-on"
 	if(occupant)
-		icon_state = "cell-occupied"
-		return
-	icon_state = "cell-on"
+		icon_state += "_occupied"
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/update_overlays()
 	. = ..()
