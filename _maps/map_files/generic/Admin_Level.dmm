@@ -5001,12 +5001,7 @@
 /turf/open/floor/plating,
 /area/centcom/valhalla/security/brig/interiorcavern)
 "gzY" = (
-/obj/effect/turf_decal/warning_stripes/thick{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 4
-	},
+/obj/machinery/quick_vendor/beginner,
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla/security/brig/interiorcavern)
 "gAA" = (
@@ -5994,6 +5989,15 @@
 /obj/item/reagent_containers/food/snacks/chips,
 /turf/open/floor/grimy,
 /area/centcom/valhalla/primary/aft)
+"hTu" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 4
+	},
+/obj/effect/turf_decal/warning_stripes/thick{
+	dir = 4
+	},
+/turf/open/floor/tile/dark/gray,
+/area/centcom/valhalla/security/brig/interiorcavern)
 "hTv" = (
 /turf/closed/wall/r_wall/unmeltable,
 /area/centcom/valhalla/security/brig/interiorcavern)
@@ -6087,6 +6091,12 @@
 	dir = 5
 	},
 /area/centcom/valhalla/janitor)
+"iaj" = (
+/obj/effect/turf_decal/warning_stripes/thick/corner{
+	dir = 1
+	},
+/turf/open/floor/tile/dark/gray,
+/area/centcom/valhalla/security/brig/interiorcavern)
 "iaL" = (
 /obj/effect/turf_decal/tile/brown{
 	dir = 8
@@ -23120,9 +23130,9 @@ bog
 ndm
 ndm
 ndm
-ndm
-ndm
-ndm
+gnR
+hTu
+iaj
 gNi
 ndm
 cdt
@@ -23258,7 +23268,7 @@ wfL
 xVT
 llp
 ndm
-gnR
+nZy
 gzY
 lEp
 lEp
