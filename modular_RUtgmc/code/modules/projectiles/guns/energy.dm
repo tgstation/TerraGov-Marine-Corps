@@ -73,3 +73,7 @@
 	icon_state = "tes"
 	radial_icon_state = "laser_sniper_overcharge"
 	radial_icon = 'modular_RUtgmc/icons/mob/radial.dmi'
+
+/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_carbine
+	burst_delay = 0.6 SECONDS
+
