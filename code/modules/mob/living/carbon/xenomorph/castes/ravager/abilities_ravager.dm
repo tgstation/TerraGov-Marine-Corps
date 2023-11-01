@@ -497,7 +497,7 @@
 
 /datum/action/xeno_action/vampirism
 	name = "Toggle vampirism"
-	action_icon_state = "rage"
+	action_icon_state = "neuroclaws_off"
 	desc = "Toggle on to enable boosting on "
 	ability_name = "Vampirism"
 	plasma_cost = 0 //We're limited by nothing, rip and tear
@@ -513,18 +513,9 @@
 	/// Ref to our particle deletion timer
 	var/timer_ref
 
-/datum/action/xeno_action/vampirism/New(Target)
-	..()
-	var/mutable_appearance/leech_appeareace = mutable_appearance(null,null, ACTION_LAYER_IMAGE_ONTOP)
-	visual_references[VREF_MUTABLE_RAV_LEECH] = leech_appeareace
-
 /datum/action/xeno_action/vampirism/update_button_icon()
 	var/mob/living/carbon/xenomorph/xeno = owner
 	action_icon_state = xeno.vampirism ? "neuroclaws_on" : "neuroclaws_off"
-	button.cut_overlay(visual_references[VREF_MUTABLE_RAV_LEECH])
-	var/mutable_appearance/number = visual_references[VREF_MUTABLE_RAV_LEECH]
-	visual_references[VREF_MUTABLE_RAV_LEECH] = number
-	button.add_overlay(visual_references[VREF_MUTABLE_RAV_LEECH])
 	return ..()
 
 /datum/action/xeno_action/vampirism/give_action(mob/living/L)
