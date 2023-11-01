@@ -17,10 +17,32 @@
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_BANELING_EXPLODE,
 	)
 
+/datum/action/xeno_action/baneling_explode/handle_button_status_visuals()
+	var/mob/living/carbon/xenomorph/baneling = owner
+	button.cut_overlay(visual_references[VREF_MUTABLE_BANE_CHARGES])
+	var/mutable_appearance/number = visual_references[VREF_MUTABLE_BANE_CHARGES]
+	number.maptext = MAPTEXT("[baneling.stored_charge]")
+	visual_references[VREF_MUTABLE_BANE_CHARGES] = number
+	button.add_overlay(visual_references[VREF_MUTABLE_BANE_CHARGES])
+	. = ..()
+
 /datum/action/xeno_action/baneling_explode/give_action(mob/living/L)
 	. = ..()
 	var/mob/living/carbon/xenomorph/X = L
+	var/mutable_appearance/charge_maptext = mutable_appearance(icon = null, icon_state = null, layer = ACTION_LAYER_MAPTEXT)
+	charge_maptext.pixel_x = 12
+	charge_maptext.pixel_y = -5
+	visual_references[VREF_MUTABLE_BANE_CHARGES] = charge_maptext
 	RegisterSignal(X, COMSIG_MOB_PRE_DEATH, PROC_REF(handle_smoke))
+
+/datum/action/xeno_action/baneling_explode/remove_action(mob/living/L)
+	. = ..()
+	var/mob/living/carbon/xenomorph/X = L
+	UnregisterSignal(X, COMSIG_MOB_PRE_DEATH)
+
+/datum/action/xeno_action/baneling_explode/clean_action()
+	button.cut_overlay(visual_references[VREF_MUTABLE_BANE_CHARGES])
+	visual_references[VREF_MUTABLE_BANE_CHARGES] = null
 
 /datum/action/xeno_action/baneling_explode/action_activate()
 	. = ..()
