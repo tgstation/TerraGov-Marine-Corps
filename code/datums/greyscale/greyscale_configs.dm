@@ -109,7 +109,7 @@
 //Hardsuits
 
 /datum/greyscale_config/armor_mk1/syndicate_heavy
-    icon_file = 'icons/mob/modular/Syndicate_Expansion.dmi'
+    icon_file =	'icons/mob/modular/Syndicate_Expansion.dmi'
 	prefix = "heavy_"
 
 /datum/greyscale_config/armor_mk1/syndicate_medium
@@ -119,7 +119,6 @@
 /datum/greyscale_config/armor_mk1/syndicate_light
     icon_file = 'icons/mob/modular/Syndicate_Expansion.dmi'
 	prefix = "light_"
-
 
 //Mark 2
 
