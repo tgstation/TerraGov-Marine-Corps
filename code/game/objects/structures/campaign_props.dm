@@ -83,6 +83,17 @@
 	icon_state = "serverrack_on"
 	layer = ABOVE_MOB_LAYER
 	density = TRUE
+	light_range = 1
+	light_power = 0.5
+	light_color = LIGHT_COLOR_FLARE
+
+/obj/structure/prop/nt_computer/Initialize(mapload)
+	. = ..()
+	update_icon()
+
+/obj/structure/prop/nt_computer/update_overlays()
+	. = ..()
+	. += emissive_appearance(icon, "[icon_state]_emissive", alpha = src.alpha)
 
 /obj/structure/prop/nt_computer/rack
 	name = "control rack"
@@ -93,6 +104,8 @@
 	name = "backup recorder"
 	desc = "A backup data recorder. Who knows what's on it?."
 	icon_state = "rack_on"
+	light_range = 0
+	light_power = 0
 
 /obj/structure/gauss_cannon
 	name = "\improper Gauss Cannon"
