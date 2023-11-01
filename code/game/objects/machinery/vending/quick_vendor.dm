@@ -220,6 +220,11 @@ GLOBAL_LIST_INIT(quick_loadouts, init_quick_loadouts())
 				user_id.flags_id &= ~CAN_BUY_LOADOUT
 				selected_loadout.quantity --
 				selected_loadout.equip(ui.user) //actually equips the loadout
+				//After vending a quick loadout, remove points and GHMME options so that you can't vend them via loadout vendor
+				for(var/points in user_id.marine_points)
+					user_id.marine_points[points] = 0
+				for(var/option in user_id.marine_buy_choices)
+					user_id.marine_buy_choices[option] = 0
 			else
 				to_chat(usr, span_warning("You can't buy things from this category anymore."))
 
