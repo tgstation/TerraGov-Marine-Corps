@@ -463,8 +463,6 @@
 #include "code\datums\gamemodes\objective_items.dm"
 #include "code\datums\gamemodes\sensor_capture.dm"
 #include "code\datums\gamemodes\campaign\campaign_mission.dm"
-#include "code\datums\gamemodes\campaign\campaign_reward_jobs.dm"
-#include "code\datums\gamemodes\campaign\campaign_rewards.dm"
 #include "code\datums\gamemodes\campaign\faction_stats.dm"
 #include "code\datums\gamemodes\campaign\missions\asat_capture.dm"
 #include "code\datums\gamemodes\campaign\missions\base_rescue.dm"

@@ -106,6 +106,21 @@
 /datum/greyscale_config/armor_mk1/dashe
 	icon_file = 'icons/mob/modular/mark_one/dashe.dmi'
 
+//Hardsuits
+
+/datum/greyscale_config/armor_mk1/Syndicate_Heavy
+    icon_file = 'icons/mob/modular/Syndicate_Expansion.dmi'
+	prefix = "heavy_"
+
+/datum/greyscale_config/armor_mk1/Syndicate_Medium
+    icon_file = 'icons/mob/modular/Syndicate_Expansion.dmi'
+	prefix = "medium_"
+
+/datum/greyscale_config/armor_mk1/Syndicate_Light
+    icon_file = 'icons/mob/modular/Syndicate_Expansion.dmi'
+	prefix = "light_"
+
+
 //Mark 2
 
 /datum/greyscale_config/armor_mk2

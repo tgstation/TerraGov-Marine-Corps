@@ -230,6 +230,41 @@
 		/obj/item/armor_module/armor/badge,
 	)
 
+/obj/item/clothing/suit/modular/syndie_exo
+    name = "Placeholder WY-01 hardsuit exoskeleton"
+    desc = "Designed to mount a variety of modular armor components and support systems. It comes installed with light-plating and a shoulder lamp. Mount armor pieces to it by clicking on the frame with the components. Use Alt-Click to remove any attached items."
+    icon = 'icons/mob/modular/Syndicate_Expansion.dmi'
+    icon_state = "exoskeleton"
+    item_state = "exoskeleton"
+    item_state_worn = TRUE
+    item_icons = list(slot_wear_suit_str = 'icons/mob/modular/Syndicate_Expansion.dmi')
+    allowed_uniform_type = /obj/item/clothing/under
+    attachments_allowed = list(
+        /obj/item/armor_module/module/better_shoulder_lamp,
+        /obj/item/armor_module/module/valkyrie_autodoc,
+        /obj/item/armor_module/module/fire_proof,
+        /obj/item/armor_module/module/tyr_extra_armor,
+        /obj/item/armor_module/module/tyr_extra_armor/mark1,
+        /obj/item/armor_module/module/mimir_environment_protection,
+        /obj/item/armor_module/module/mimir_environment_protection/mark1,
+        /obj/item/armor_module/module/hlin_explosive_armor,
+        /obj/item/armor_module/module/ballistic_armor,
+        /obj/item/armor_module/module/chemsystem,
+        /obj/item/armor_module/module/eshield,
+
+        /obj/item/armor_module/storage/general,
+        /obj/item/armor_module/storage/ammo_mag,
+        /obj/item/armor_module/storage/engineering,
+        /obj/item/armor_module/storage/medical,
+        /obj/item/armor_module/storage/general/som,
+        /obj/item/armor_module/storage/engineering/som,
+        /obj/item/armor_module/storage/medical/som,
+        /obj/item/armor_module/storage/injector,
+        /obj/item/armor_module/storage/grenade,
+        /obj/item/armor_module/storage/integrated,
+        /obj/item/armor_module/armor/badge,
+    )
+
 /** Core helmet module */
 /obj/item/clothing/head/modular
 	name = "Jaeger Pattern Helmet"
