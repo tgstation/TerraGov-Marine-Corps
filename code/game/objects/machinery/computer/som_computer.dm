@@ -10,7 +10,7 @@
 /obj/machinery/computer/som/Initialize(mapload)
 	. = ..()
 	if(dir == SOUTH || dir == NORTH)
-		pixel_y == 10
+		pixel_y = 10
 
 /obj/machinery/computer/som/update_icon_state()
 	if(machine_stat & (BROKEN|DISABLED))
