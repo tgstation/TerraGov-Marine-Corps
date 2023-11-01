@@ -107,10 +107,10 @@
 	desc = "The visor attachment of the Jaeger modular helmets. This one is designed for the Dashe class of helmet."
 	icon_state = "dashe_visor"
 
-/obj/item/armor_module/armor/visor/marine/4visor
+/obj/item/armor_module/armor/visor/marine/fourvisor
 	name = "\improper Syndicate pattern Visor"
 	desc = "The visor attachment of the Jaeger modular helmets. This one is designed for the Dashe class of helmet."
-	icon_state = "4visor_visor"
+	icon_state = "fourvisor_visor"
 
 /obj/item/armor_module/armor/visor/marine/eva
 	name = "\improper Jaeger Pattern EVA visor"

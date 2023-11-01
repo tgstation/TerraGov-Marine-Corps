@@ -59,10 +59,10 @@
 			"icon_state": "dashe"
 		}
 	],
-		"4visor_visor": [
+		"fourvisor_visor": [
 		{
 			"type": "hyperscale",
-			"icon_state": "4visor"
+			"icon_state": "fourvisor"
 		}
 	],
 	"eva_visor": [
