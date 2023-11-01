@@ -254,6 +254,8 @@
 			/obj/item/reagent_containers/glass/bottle/tricordrazine = -1,
 			/obj/item/reagent_containers/glass/bottle/dylovene = -1,
 			/obj/item/reagent_containers/glass/bottle/inaprovaline = -1,
+			/obj/item/reagent_containers/glass/bottle/paracetamol = -1,
+			/obj/item/reagent_containers/glass/bottle/isotonic = -1,
 			/obj/item/reagent_containers/glass/bottle/sleeptoxin = -1,
 			/obj/item/reagent_containers/glass/bottle/spaceacillin = -1,
 			/obj/item/reagent_containers/glass/bottle/dexalin = -1,
