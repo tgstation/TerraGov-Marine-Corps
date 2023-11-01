@@ -1,58 +1,60 @@
 ///Default assets a faction starts with
 GLOBAL_LIST_INIT(campaign_default_assets, list(
 	FACTION_TERRAGOV = list(
-		/datum/campaign_reward/mech/light,
-		/datum/campaign_reward/bonus_job/freelancer,
-		/datum/campaign_reward/bonus_job/pmc,
-		/datum/campaign_reward/bonus_job/combat_robots,
-		/datum/campaign_reward/fire_support/mortar,
-		/datum/campaign_reward/droppod_refresh,
-		/datum/campaign_reward/droppod_enabled,
+		/datum/campaign_asset/mech/light,
+		/datum/campaign_asset/bonus_job/freelancer,
+		/datum/campaign_asset/bonus_job/pmc,
+		/datum/campaign_asset/bonus_job/combat_robots,
+		/datum/campaign_asset/fire_support/mortar,
+		/datum/campaign_asset/droppod_refresh,
+		/datum/campaign_asset/droppod_enabled,
 	),
 	FACTION_SOM = list(
-		/datum/campaign_reward/mech/light/som,
-		/datum/campaign_reward/bonus_job/colonial_militia,
-		/datum/campaign_reward/bonus_job/icc,
-		/datum/campaign_reward/fire_support/som_mortar,
-		/datum/campaign_reward/teleporter_charges,
-		/datum/campaign_reward/teleporter_enabled,
+		/datum/campaign_asset/mech/light/som,
+		/datum/campaign_asset/bonus_job/colonial_militia,
+		/datum/campaign_asset/bonus_job/icc,
+		/datum/campaign_asset/fire_support/som_mortar,
+		/datum/campaign_asset/teleporter_charges,
+		/datum/campaign_asset/teleporter_enabled,
 	),
 ))
 ///Default assets a faction can purchase
 GLOBAL_LIST_INIT(campaign_default_purchasable_assets, list(
 	FACTION_TERRAGOV = list(
-		/datum/campaign_reward/fire_support,
-		/datum/campaign_reward/fire_support/mortar,
-		/datum/campaign_reward/droppod_refresh,
-		/datum/campaign_reward/droppod_enabled,
-		/datum/campaign_reward/equipment/medkit_basic,
-		/datum/campaign_reward/equipment/materials_pack,
-		/datum/campaign_reward/equipment/ballistic_tgmc,
-		/datum/campaign_reward/equipment/lasers,
-		/datum/campaign_reward/equipment/smart_guns,
-		/datum/campaign_reward/equipment/shotguns_tgmc,
-		/datum/campaign_reward/equipment/scout_rifle,
-		/datum/campaign_reward/equipment/heavy_armour_tgmc,
-		/datum/campaign_reward/equipment/shields_tgmc,
-		/datum/campaign_reward/equipment/grenades_tgmc,
-		/datum/campaign_reward/equipment/at_mines,
-		/datum/campaign_reward/equipment/tac_bino_tgmc,
+		/datum/campaign_asset/fire_support,
+		/datum/campaign_asset/fire_support/mortar,
+		/datum/campaign_asset/droppod_refresh,
+		/datum/campaign_asset/droppod_enabled,
+		/datum/campaign_asset/equipment/medkit_basic,
+		/datum/campaign_asset/equipment/materials_pack,
+		/datum/campaign_asset/equipment/ballistic_tgmc,
+		/datum/campaign_asset/equipment/lasers,
+		/datum/campaign_asset/equipment/smart_guns,
+		/datum/campaign_asset/equipment/shotguns_tgmc,
+		/datum/campaign_asset/equipment/scout_rifle,
+		/datum/campaign_asset/equipment/heavy_armour_tgmc,
+		/datum/campaign_asset/equipment/shields_tgmc,
+		/datum/campaign_asset/equipment/grenades_tgmc,
+		/datum/campaign_asset/equipment/at_mines,
+		/datum/campaign_asset/equipment/tac_bino_tgmc,
+		/datum/campaign_asset/tactical_reserves,
 	),
 	FACTION_SOM = list(
-		/datum/campaign_reward/fire_support/som_cas,
-		/datum/campaign_reward/fire_support/som_mortar,
-		/datum/campaign_reward/teleporter_charges,
-		/datum/campaign_reward/teleporter_enabled,
-		/datum/campaign_reward/equipment/medkit_basic/som,
-		/datum/campaign_reward/equipment/materials_pack,
-		/datum/campaign_reward/equipment/ballistic_som,
-		/datum/campaign_reward/equipment/shotguns_som,
-		/datum/campaign_reward/equipment/volkite,
-		/datum/campaign_reward/equipment/heavy_armour_som,
-		/datum/campaign_reward/equipment/shields_som,
-		/datum/campaign_reward/equipment/grenades_som,
-		/datum/campaign_reward/equipment/at_mines,
-		/datum/campaign_reward/equipment/tac_bino_som,
+		/datum/campaign_asset/fire_support/som_cas,
+		/datum/campaign_asset/fire_support/som_mortar,
+		/datum/campaign_asset/teleporter_charges,
+		/datum/campaign_asset/teleporter_enabled,
+		/datum/campaign_asset/equipment/medkit_basic/som,
+		/datum/campaign_asset/equipment/materials_pack,
+		/datum/campaign_asset/equipment/ballistic_som,
+		/datum/campaign_asset/equipment/shotguns_som,
+		/datum/campaign_asset/equipment/volkite,
+		/datum/campaign_asset/equipment/heavy_armour_som,
+		/datum/campaign_asset/equipment/shields_som,
+		/datum/campaign_asset/equipment/grenades_som,
+		/datum/campaign_asset/equipment/at_mines,
+		/datum/campaign_asset/equipment/tac_bino_som,
+		/datum/campaign_asset/tactical_reserves,
 	),
 ))
 ///The weighted potential mission pool by faction
@@ -63,6 +65,7 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 		/datum/campaign_mission/capture_mission = 15,
 		/datum/campaign_mission/tdm/mech_wars = 12,
 		/datum/campaign_mission/destroy_mission/supply_raid = 15,
+		/datum/campaign_mission/destroy_mission/base_rescue = 12,
 	),
 	FACTION_SOM = list(
 		/datum/campaign_mission/tdm/lv624 = 10,
@@ -87,14 +90,16 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 	var/active_attrition_points = 0
 	///Multiplier on the passive attrition point gain for this faction
 	var/attrition_gain_multiplier = 1
+	///cumulative loss bonus which is applied to attrition gain mult
+	var/loss_bonus = 0
 	///Future missions this faction can currently choose from
 	var/list/datum/campaign_mission/available_missions = list()
 	///Missions this faction has succesfully completed
 	var/list/datum/campaign_mission/finished_missions = list()
-	///List of all rewards the faction has earnt this campaign
-	var/list/datum/campaign_reward/faction_rewards = list()
-	///List of all rewards the faction can currently purchase
-	var/list/datum/campaign_reward/purchasable_rewards = list()
+	///List of all assets the faction currently has
+	var/list/datum/campaign_asset/faction_assets = list()
+	///List of all assets the faction can currently purchase
+	var/list/datum/campaign_asset/purchasable_assets = list()
 	///Any special behavior flags for the faction
 	var/stats_flags = NONE
 	///Portrait used for general screen text notifications
@@ -107,9 +112,9 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 	faction = new_faction
 	GLOB.faction_stats_datums[faction] = src
 	for(var/asset in GLOB.campaign_default_assets[faction])
-		add_reward(asset)
+		add_asset(asset)
 	for(var/asset in GLOB.campaign_default_purchasable_assets[faction])
-		purchasable_rewards += asset
+		purchasable_assets += asset
 	for(var/i = 1 to CAMPAIGN_STANDARD_MISSION_QUANTITY)
 		generate_new_mission()
 	RegisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_MISSION_ENDED, PROC_REF(mission_end))
@@ -169,24 +174,26 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 		human.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>OVERWATCH</u></span><br>" + "[faction_leader] has been promoted to the role of faction commander", faction_portrait)
 	to_chat(faction_leader, span_highdanger("You have been promoted to the role of commander for your faction. It is your responsibility to determine your side's course of action, and how to best utilise the resources at your disposal."))
 
-///Adds a new reward to the faction for use
-/datum/faction_stats/proc/add_reward(datum/campaign_reward/new_reward)
-	if(faction_rewards[new_reward]) //todo: should passive/instant rewards reproc? probably
-		var/datum/campaign_reward/existing_reward = faction_rewards[new_reward]
-		existing_reward.uses += initial(existing_reward.uses)
-		existing_reward.reward_flags &= ~REWARD_CONSUMED
+///Adds a new asset to the faction for use
+/datum/faction_stats/proc/add_asset(datum/campaign_asset/new_asset)
+	if(faction_assets[new_asset])
+		var/datum/campaign_asset/existing_asset = faction_assets[new_asset]
+		existing_asset.reapply()
 	else
-		faction_rewards[new_reward] = new new_reward(src)
+		faction_assets[new_asset] = new new_asset(src)
 
 ///handles post mission wrap up for the faction
-/datum/faction_stats/proc/mission_end(datum/source, winning_faction)
+/datum/faction_stats/proc/mission_end(datum/source, datum/campaign_mission/completed_mission, winning_faction)
 	SIGNAL_HANDLER
+	total_attrition_points += round(length(GLOB.clients) * 0.5 * (attrition_gain_multiplier + loss_bonus))
 	if(faction == winning_faction)
 		stats_flags |= MISSION_SELECTION_ALLOWED
+		loss_bonus = 0
 	else
 		stats_flags &= ~MISSION_SELECTION_ALLOWED
+		if((completed_mission.hostile_faction == faction) && (completed_mission.type != /datum/campaign_mission/tdm/first_mission))
+			loss_bonus = min( loss_bonus + CAMPAIGN_LOSS_BONUS, CAMPAIGN_MAX_LOSS_BONUS)
 
-	total_attrition_points += round(length(GLOB.clients) * 0.5 * attrition_gain_multiplier)
 	generate_new_mission()
 	update_static_data_for_all_viewers()
 	addtimer(CALLBACK(src, PROC_REF(return_to_base)), AFTER_MISSION_TELEPORT_DELAY)
@@ -257,8 +264,8 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 	var/datum/campaign_mission/current_mission = current_mode.current_mission
 	current_mission_data["name"] = current_mission.name
 	current_mission_data["map_name"] = current_mission.map_name
-	current_mission_data["starting_faction"] = current_mission.starting_faction
-	current_mission_data["hostile_faction"] = current_mission.hostile_faction
+	current_mission_data[MISSION_STARTING_FACTION] = current_mission.starting_faction
+	current_mission_data[MISSION_HOSTILE_FACTION] = current_mission.hostile_faction
 	current_mission_data["winning_faction"] = current_mission.winning_faction
 	current_mission_data["outcome"] = current_mission.outcome
 	current_mission_data["objective_description"] = (faction == current_mission.starting_faction ? current_mission.starting_faction_objective_description : current_mission.hostile_faction_objective_description)
@@ -295,8 +302,8 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 		var/list/mission_data = list()
 		mission_data["name"] = finished_mission.name
 		mission_data["map_name"] = finished_mission.map_name
-		mission_data["starting_faction"] = finished_mission.starting_faction
-		mission_data["hostile_faction"] = finished_mission.hostile_faction
+		mission_data[MISSION_STARTING_FACTION] = finished_mission.starting_faction
+		mission_data[MISSION_HOSTILE_FACTION] = finished_mission.hostile_faction
 		mission_data["winning_faction"] = finished_mission.winning_faction
 		mission_data["outcome"] = finished_mission.outcome
 		mission_data["objective_description"] = (faction == finished_mission.starting_faction ? finished_mission.starting_faction_objective_description : finished_mission.hostile_faction_objective_description)
@@ -305,35 +312,35 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 		finished_missions_data += list(mission_data)
 	data["finished_missions"] = finished_missions_data
 
-	var/list/faction_rewards_data = list()
-	for(var/i in faction_rewards)
-		var/datum/campaign_reward/reward = faction_rewards[i]
-		var/list/reward_data = list()
-		reward_data["name"] = reward.name
-		reward_data["type"] = "[reward.type]"
-		reward_data["desc"] = reward.desc
-		reward_data["detailed_desc"] = reward.detailed_desc
-		reward_data["uses_remaining"] = reward.uses
-		reward_data["uses_original"] = initial(reward.uses)
-		reward_data["icon"] = (reward.ui_icon)
-		reward_data["currently_active"] = !!(reward.reward_flags & REWARD_ACTIVE)
-		reward_data["is_debuff"] = !!(reward.reward_flags & REWARD_DEBUFF)
-		faction_rewards_data += list(reward_data)
-	data["faction_rewards_data"] = faction_rewards_data
+	var/list/faction_assets_data = list()
+	for(var/i in faction_assets)
+		var/datum/campaign_asset/asset = faction_assets[i]
+		var/list/asset_data = list()
+		asset_data["name"] = asset.name
+		asset_data["type"] = "[asset.type]"
+		asset_data["desc"] = asset.desc
+		asset_data["detailed_desc"] = asset.detailed_desc
+		asset_data["uses_remaining"] = asset.uses
+		asset_data["uses_original"] = initial(asset.uses)
+		asset_data["icon"] = (asset.ui_icon)
+		asset_data["currently_active"] = !!(asset.asset_flags & ASSET_ACTIVE)
+		asset_data["is_debuff"] = !!(asset.asset_flags & ASSET_DEBUFF)
+		faction_assets_data += list(asset_data)
+	data["faction_rewards_data"] = faction_assets_data
 
-	var/list/purchasable_rewards_data = list()
-	for(var/datum/campaign_reward/reward AS in purchasable_rewards)
-		var/list/reward_data = list()
-		reward_data["name"] = initial(reward.name)
-		reward_data["type"] = initial(reward)
-		reward_data["desc"] = initial(reward.desc)
-		reward_data["detailed_desc"] = initial(reward.detailed_desc)
-		reward_data["uses_remaining"] = initial(reward.uses)
-		reward_data["uses_original"] = initial(reward.uses)
-		reward_data["cost"] = initial(reward.cost)
-		reward_data["icon"] = initial(reward.ui_icon)
-		purchasable_rewards_data += list(reward_data)
-	data["purchasable_rewards_data"] = purchasable_rewards_data
+	var/list/purchasable_assets_data = list()
+	for(var/datum/campaign_asset/asset AS in purchasable_assets)
+		var/list/asset_data = list()
+		asset_data["name"] = initial(asset.name)
+		asset_data["type"] = initial(asset)
+		asset_data["desc"] = initial(asset.desc)
+		asset_data["detailed_desc"] = initial(asset.detailed_desc)
+		asset_data["uses_remaining"] = initial(asset.uses)
+		asset_data["uses_original"] = initial(asset.uses)
+		asset_data["cost"] = initial(asset.cost)
+		asset_data["icon"] = initial(asset.ui_icon)
+		purchasable_assets_data += list(asset_data)
+	data["purchasable_rewards_data"] = purchasable_assets_data
 
 	data["active_attrition_points"] = active_attrition_points
 	data["total_attrition_points"] = total_attrition_points
@@ -400,15 +407,15 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 			return TRUE
 
 		if("activate_reward")
-			var/selected_reward = text2path(params["selected_reward"])
-			if(!selected_reward)
+			var/selected_asset = text2path(params["selected_reward"])
+			if(!selected_asset)
 				return
-			if(!faction_rewards[selected_reward])
+			if(!faction_assets[selected_asset])
 				return
-			var/datum/campaign_reward/choice = faction_rewards[selected_reward]
+			var/datum/campaign_asset/choice = faction_assets[selected_asset]
 			if(!is_leadership_role(user))
-				if(!(choice.reward_flags & REWARD_SL_AVAILABLE))
-					to_chat(user, "<span class='warning'>Only your faction's commander can do this.")
+				if(!(choice.asset_flags & ASSET_SL_AVAILABLE))
+					to_chat(user, "<span class='warning'>Only leadership roles can do this.")
 					return
 				if(!(ismarineleaderjob(user.job) || issommarineleaderjob(user.job)))
 					to_chat(user, "<span class='warning'>Only squad leaders and above can do this.")
@@ -426,18 +433,18 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 			if(!is_leadership_role(user))
 				to_chat(user, "<span class='warning'>Only leadership roles can do this.")
 				return
-			var/datum/campaign_reward/selected_reward = text2path(params["selected_reward"])
-			if(!selected_reward)
+			var/datum/campaign_asset/selected_asset = text2path(params["selected_reward"])
+			if(!selected_asset)
 				return
-			if(!(selected_reward in purchasable_rewards))
+			if(!(selected_asset in purchasable_assets))
 				return
-			if(initial(selected_reward.cost) > total_attrition_points)
-				to_chat(user, "<span class='warning'>[initial(selected_reward.cost) - total_attrition_points] more attrition points required.")
+			if(initial(selected_asset.cost) > total_attrition_points)
+				to_chat(user, "<span class='warning'>[initial(selected_asset.cost) - total_attrition_points] more attrition points required.")
 				return
-			add_reward(selected_reward)
-			total_attrition_points -= initial(selected_reward.cost)
+			add_asset(selected_asset)
+			total_attrition_points -= initial(selected_asset.cost)
 			for(var/mob/living/carbon/human/faction_member AS in GLOB.alive_human_list_faction[faction])
 				faction_member.playsound_local(null, 'sound/effects/CIC_order.ogg', 30, 1)
-				to_chat(faction_member, "<span class='warning'>[user] has purchased the [initial(selected_reward.name)] campaign asset.")
+				to_chat(faction_member, "<span class='warning'>[user] has purchased the [initial(selected_asset.name)] campaign asset.")
 			update_static_data_for_all_viewers()
 			return TRUE

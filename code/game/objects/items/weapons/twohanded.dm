@@ -288,9 +288,6 @@
 	transform = rotate_me
 	return ..()
 
-/obj/item/weapon/twohanded/spear/throw_impact(atom/hit_atom, speed, bounce = FALSE)
-	. = ..()
-
 /obj/item/weapon/twohanded/spear/pickup(mob/user)
 	. = ..()
 	if(initial(current_angle) == current_angle)

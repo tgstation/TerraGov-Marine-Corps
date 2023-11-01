@@ -143,6 +143,12 @@
 	/// Current amount of cannibalise charges
 	var/cannibalise_charges = 0
 
+/datum/action/xeno_action/create_spiderling/give_action(mob/living/L)
+	. = ..()
+	var/mob/living/carbon/xenomorph/X = L
+	var/max_spiderlings = X?.xeno_caste.max_spiderlings ? X.xeno_caste.max_spiderlings : 5
+	desc = "Give birth to a spiderling after a short charge-up. The spiderlings will follow you until death. You can only deploy [max_spiderlings] spiderlings at one time. On alt-use, if any charges of Cannibalise are stored, create a spiderling at no plasma cost or cooldown."
+
 /datum/action/xeno_action/create_spiderling/can_use_action(silent = FALSE, override_flags)
 	. = ..()
 	if(!.)
@@ -214,6 +220,8 @@
 
 /datum/action/xeno_action/activable/spiderling_mark/use_ability(atom/A)
 	. = ..()
+	// So the spiderlings can actually attack
+	owner.unbuckle_all_mobs(TRUE)
 	var/datum/action/xeno_action/create_spiderling/create_spiderling_action = owner.actions_by_path[/datum/action/xeno_action/create_spiderling]
 	if(length(create_spiderling_action.spiderlings) <= 0)
 		owner.balloon_alert(owner, "No spiderlings")
@@ -276,6 +284,7 @@
 	REMOVE_TRAIT(X, TRAIT_HANDS_BLOCKED, WIDOW_ABILITY_TRAIT)
 	X.update_icons()
 	add_cooldown()
+	owner.unbuckle_all_mobs(TRUE)
 
 /// Called by xeno_burrow only when burrowing
 /datum/action/xeno_action/burrow/proc/xeno_burrow_doafter()
@@ -286,7 +295,7 @@
 	owner.mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	owner.density = FALSE
 	owner.allow_pass_flags |= PASSABLE
-	// Here we prevent the xeno from moving or attacking or using abilities untill they unburrow by clicking the ability
+	// Here we prevent the xeno from moving or attacking or using abilities until they unburrow by clicking the ability
 	ADD_TRAIT(owner, TRAIT_IMMOBILE, WIDOW_ABILITY_TRAIT)
 	ADD_TRAIT(owner, TRAIT_BURROWED, WIDOW_ABILITY_TRAIT)
 	ADD_TRAIT(owner, TRAIT_HANDS_BLOCKED, WIDOW_ABILITY_TRAIT)
@@ -329,6 +338,10 @@
 		X.balloon_alert(X, "No spiderlings")
 		return fail_activate()
 	var/list/mob/living/carbon/xenomorph/spiderling/remaining_spiderlings = create_spiderling_action.spiderlings.Copy()
+	// First make the spiderlings stop what they are doing and return to the widow
+	for(var/mob/spider in remaining_spiderlings)
+		var/datum/component/ai_controller/AI = spider.GetComponent(/datum/component/ai_controller)
+		AI?.ai_behavior.change_action(ESCORTING_ATOM, AI.ai_behavior.escorted_atom)
 	grab_spiderlings(remaining_spiderlings, attach_attempts)
 	succeed_activate()
 

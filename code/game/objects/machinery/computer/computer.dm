@@ -1,6 +1,7 @@
 /obj/machinery/computer
 	name = "computer"
 	icon = 'icons/obj/machines/computer.dmi'
+	icon_state = "computer"
 	density = TRUE
 	anchored = TRUE
 	use_power = IDLE_POWER_USE
@@ -13,10 +14,20 @@
 	resistance_flags = UNACIDABLE
 	///they don't provide good cover
 	coverage = 15
+	light_range = 1
+	light_power = 0.5
+	light_color = LIGHT_COLOR_BLUE
+	///The actual screen sprite for this computer
+	var/screen_overlay
+	///The destroyed computer sprite. Defaults based on the icon_state if not specified
+	var/broken_icon
 
 /obj/machinery/computer/Initialize(mapload)
 	. = ..()
+	if(!broken_icon)
+		broken_icon = "[initial(icon_state)]_broken"
 	start_processing()
+	update_icon()
 	return INITIALIZE_HINT_LATELOAD
 
 /obj/machinery/computer/LateInitialize()
@@ -84,13 +95,27 @@
 		..()
 		return 1
 
+/obj/machinery/computer/update_icon()
+	. = ..()
+	if(machine_stat & (BROKEN|DISABLED|NOPOWER))
+		set_light(0)
+	else
+		set_light(initial(light_range))
+
 /obj/machinery/computer/update_icon_state()
 	if(machine_stat & (BROKEN|DISABLED))
-		icon_state = "[initial(icon_state)]b"
-	else if(machine_stat & NOPOWER)
-		icon_state = "[initial(icon_state)]0"
+		icon_state = "[initial(icon_state)]_broken"
 	else
 		icon_state = initial(icon_state)
+
+/obj/machinery/computer/update_overlays()
+	. = ..()
+	if(!screen_overlay)
+		return
+	if(machine_stat & (BROKEN|DISABLED|NOPOWER))
+		return
+	. += emissive_appearance(icon, screen_overlay, alpha = src.alpha)
+	. += mutable_appearance(icon, screen_overlay, alpha = src.alpha)
 
 /obj/machinery/computer/proc/set_broken()
 	machine_stat |= BROKEN

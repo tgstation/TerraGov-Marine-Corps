@@ -442,7 +442,7 @@
 
 /obj/item/mortar_kit/unique_action(mob/user)
 	var/area/current_area = get_area(src)
-	if(current_area.ceiling >= CEILING_METAL)
+	if(current_area.ceiling >= CEILING_OBSTRUCTED)
 		to_chat(user, span_warning("You probably shouldn't deploy [src] indoors."))
 		return
 	return ..()

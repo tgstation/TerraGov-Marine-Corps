@@ -98,6 +98,8 @@
 #define COMSIG_GLOB_CAMPAIGN_TELEBLOCKER_DISABLED "!campaign_teleblocker_disabled"
 ///Removes droppod restrictions from a mission
 #define COMSIG_GLOB_CAMPAIGN_DROPBLOCKER_DISABLED "!campaign_dropblocker_disabled"
+///Override code for NT base rescue mission
+#define COMSIG_GLOB_CAMPAIGN_NT_OVERRIDE_CODE "!campaign_nt_override_code"
 
 //////////////////////////////////////////////////////////////////
 
@@ -130,7 +132,9 @@
 #define COMSIG_ELEMENT_CLOSE_SHUTTER_LINKED "close_shutter_linked"
 ///from turf/open/get_footstep_override(), to find an override footstep sound
 #define COMSIG_FIND_FOOTSTEP_SOUND "find_footstep_sound"
-///from /datum/element/jump when a jump has finished
+
+///from /datum/element/jump when a jump has started and ended
+#define COMSIG_ELEMENT_JUMP_STARTED "element_jump_started"
 #define COMSIG_ELEMENT_JUMP_ENDED "element_jump_ended"
 
 // /datum/limb signals
@@ -569,6 +573,8 @@
 #define COMSIG_HIVE_XENO_MOTHER_PRE_CHECK "hive_xeno_mother_pre_check"		//from datum/hive_status/normal/proc/attempt_to_spawn_larva()
 #define COMSIG_HIVE_XENO_MOTHER_CHECK "hive_xeno_mother_check"				//from /datum/hive_status/normal/proc/spawn_larva()
 
+#define COMSIG_XENO_ACTION_SUCCEED_ACTIVATE "xeno_action_succeed_activate"
+	#define SUCCEED_ACTIVATE_CANCEL (1<<0)
 #define COMSIG_XENOACTION_TOGGLECHARGETYPE "xenoaction_togglechargetype"
 
 #define COMSIG_WARRIOR_USED_GRAB "warrior_used_grab"
@@ -605,6 +611,10 @@
 ///from /mob/living/proc/attack_alien_harm(mob/living/carbon/xenomorph/X, dam_bonus, set_location, random_location, no_head, no_crit, force_intent)
 #define COMSIG_XENOMORPH_ATTACK_LIVING "xenomorph_attack_living"
 	#define COMSIG_XENOMORPH_BONUS_APPLIED (1<<0)
+///from /mob/living/carbon/xenomorph/attack_alien(mob/living/carbon/xenomorph/X, damage_amount, damage_type, damage_flag, effects, armor_penetration, isrightclick)
+///only on INTENT_HARM, INTENT_DISARM, IF it does damaage
+#define COMSIG_XENOMORPH_ATTACK_HOSTILE_XENOMORPH "xenomorph_attack_xenomorph"
+
 ///after attacking, accounts for armor
 #define COMSIG_XENOMORPH_POSTATTACK_LIVING "xenomorph_postattack_living"
 #define COMSIG_XENOMORPH_ATTACK_HUMAN "xenomorph_attack_human"
@@ -901,6 +911,13 @@
 #define COMSIG_XENOABILITY_BANELING_SPAWN_POD "xenoability_baneling_spawn_pod"
 #define COMSIG_XENOABILITY_BANELING_CHOOSE_REAGENT "xenoability_baneling_choose_reagent"
 #define COMSIG_XENOABILITY_BANELING_DASH_EXPLOSION "xenoability_baneling_dash_explosion"
+
+#define COMSIG_XENOABILITY_BEHEMOTH_ROLL "xenoability_behemoth_roll"
+#define COMSIG_XENOABILITY_LANDSLIDE "xenoability_landslide"
+#define COMSIG_XENOABILITY_EARTH_RISER "xenoability_earth_riser"
+#define COMSIG_XENOABILITY_EARTH_RISER_ALTERNATE "xenoability_earth_riser_alternate"
+#define COMSIG_XENOABILITY_SEISMIC_FRACTURE "xenoability_seismic_fracture"
+#define COMSIG_XENOABILITY_PRIMAL_WRATH "xenoability_primal_wrath"
 
 // throw parry signals
 #define COMSIG_THROW_PARRY_CHECK "throw_parry_check"

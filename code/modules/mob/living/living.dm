@@ -436,6 +436,9 @@
 		return
 	if(!client)
 		return
+	var/mob/mob_to_push = AM
+	if(istype(mob_to_push) && mob_to_push.lying_angle)
+		return
 	now_pushing = TRUE
 	var/dir_to_target = get_dir(src, AM)
 
@@ -456,7 +459,6 @@
 		if(force_push(AM, move_force, dir_to_target, push_anchored))
 			push_anchored = TRUE
 	if(ismob(AM))
-		var/mob/mob_to_push = AM
 		var/atom/movable/mob_buckle = mob_to_push.buckled
 		// If we can't pull them because of what they're buckled to, make sure we can push the thing they're buckled to instead.
 		// If neither are true, we're not pushing anymore.
@@ -588,15 +590,6 @@
 		return
 	else
 		smokecloak_off()
-
-/mob/living/proc/do_jitter_animation(jitteriness)
-	var/amplitude = min(4, (jitteriness/100) + 1)
-	var/pixel_x_diff = rand(-amplitude, amplitude)
-	var/pixel_y_diff = rand(-amplitude/3, amplitude/3)
-	var/final_pixel_x = initial(pixel_x)
-	var/final_pixel_y = initial(pixel_y)
-	animate(src, pixel_x = pixel_x + pixel_x_diff, pixel_y = pixel_y + pixel_y_diff , time = 2, loop = 6)
-	animate(pixel_x = final_pixel_x , pixel_y = final_pixel_y , time = 2)
 
 
 /*

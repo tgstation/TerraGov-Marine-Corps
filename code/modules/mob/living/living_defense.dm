@@ -9,6 +9,7 @@
 
 //this proc handles being hit by a thrown atom
 /mob/living/hitby(atom/movable/AM, speed = 5)
+	. = TRUE
 	if(isliving(AM))
 		var/mob/living/thrown_mob = AM
 		if(thrown_mob.mob_size >= mob_size)
@@ -40,9 +41,8 @@
 		visible_message(span_warning(" [src] staggers under the impact!"),span_warning(" You stagger under the impact!"), null, 5)
 		src.throw_at(get_edge_target_turf(src, get_dir(AM.throw_source, src)), 1, speed * 0.5)
 
-//This is called when the mob is thrown into a dense turf
-/mob/living/proc/turf_collision(turf/T, speed)
-	src.take_limb_damage(speed*5)
+/mob/living/turf_collision(turf/T, speed)
+	take_limb_damage(speed*5)
 
 /mob/living/proc/near_wall(direction,distance=1)
 	var/turf/T = get_step(get_turf(src),direction)

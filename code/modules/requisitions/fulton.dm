@@ -68,7 +68,7 @@
 		balloon_alert(user, "Cannot extract anchored")
 		return FALSE
 	var/area/bathhouse = get_area(spirited_away)
-	if(bathhouse.ceiling >= CEILING_METAL)
+	if(bathhouse.ceiling >= CEILING_OBSTRUCTED)
 		balloon_alert(user, "Cannot extract indoors")
 		return FALSE
 	return TRUE
@@ -212,7 +212,7 @@
 		return
 	if(must_be_used_outdoors)
 		var/area/target_area = get_area(target)
-		if(target_area.ceiling >= CEILING_METAL)
+		if(target_area.ceiling >= CEILING_OBSTRUCTED)
 			balloon_alert(user, "Cannot extract indoors")
 			return
 	var/atom/movable/movable_target = target

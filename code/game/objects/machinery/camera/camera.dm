@@ -9,6 +9,7 @@
 	layer = WALL_OBJ_LAYER
 	anchored = TRUE
 
+	var/datum/cameranet/parent_cameranet
 	var/list/network = list("marinemainship")
 	var/c_tag = null
 	var/status = TRUE
@@ -42,8 +43,15 @@
 		network -= i
 		network += lowertext(i)
 
-	GLOB.cameranet.cameras += src
-	GLOB.cameranet.addCamera(src)
+
+	if(SOM_CAMERA_NETWORK in network)
+		parent_cameranet = GLOB.som_cameranet
+	else
+		parent_cameranet = GLOB.cameranet
+
+
+	parent_cameranet.cameras += src
+	parent_cameranet.addCamera(src)
 
 	myarea = get_area(src)
 	if(myarea)
@@ -56,7 +64,7 @@
 	if(can_use())
 		toggle_cam(null, 0) //kick anyone viewing out and remove from the camera chunks
 
-	GLOB.cameranet.cameras -= src
+	parent_cameranet.cameras -= src
 	if(isarea(myarea))
 		LAZYREMOVE(myarea.cameras, src)
 
@@ -78,7 +86,8 @@
 
 /obj/machinery/camera/proc/setViewRange(num = 7)
 	view_range = num
-	GLOB.cameranet.updateVisibility(src, 0)
+
+	parent_cameranet.updateVisibility(src, 0)
 
 
 /obj/machinery/camera/attackby(obj/item/I, mob/user, params)
@@ -186,10 +195,10 @@
 	status = FALSE
 	obj_integrity = 0
 	set_light(0)
-	GLOB.cameranet.removeCamera(src)
+	parent_cameranet.removeCamera(src)
 	if(isarea(myarea))
 		LAZYREMOVE(myarea.cameras, src)
-	GLOB.cameranet.updateChunk(x, y, z)
+	parent_cameranet.updateChunk(x, y, z)
 	update_icon()
 
 	for(var/i in GLOB.player_list)
@@ -218,7 +227,7 @@
 /obj/machinery/camera/proc/toggle_cam(mob/user, displaymessage = TRUE)
 	status = !status
 	if(can_use())
-		GLOB.cameranet.addCamera(src)
+		parent_cameranet.addCamera(src)
 		if(isturf(loc))
 			myarea = get_area(src)
 			LAZYADD(myarea.cameras, src)
@@ -226,10 +235,10 @@
 			myarea = null
 	else
 		set_light(0)
-		GLOB.cameranet.removeCamera(src)
+		parent_cameranet.removeCamera(src)
 		if(isarea(myarea))
 			LAZYREMOVE(myarea.cameras, src)
-	GLOB.cameranet.updateChunk(x, y, z)
+	parent_cameranet.updateChunk(x, y, z)
 
 	var/change_msg = "deactivates"
 	if(status)
@@ -318,7 +327,7 @@
 	network = list("marinemainship")
 
 /obj/machinery/camera/autoname/mainship/somship
-	network = list("sommainship")
+	network = list(SOM_CAMERA_NETWORK)
 
 //cameras installed inside the dropships, accessible via both cockpit monitor and ship camera computers
 /obj/machinery/camera/autoname/mainship/dropship_one
@@ -334,7 +343,7 @@
 	resistance_flags = RESIST_ALL //If the containing headset is not destroyed, neither should this be.
 
 /obj/machinery/camera/headset/som
-	network = list("som")
+	network = list(SOM_CAMERA_NETWORK)
 
 //used by the laser camera dropship equipment
 /obj/machinery/camera/laser_cam

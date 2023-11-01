@@ -52,6 +52,5 @@
 /obj/structure/campaign_deployblocker/drop_blocker
 	name = "DROPBLOCKER"
 	desc = "THIS PROBABLY BLOCKS DROPPODS OR SOMETHING, PAY A SPRITER FOR A NONPLACEHOLDER"
-	icon_state = "drop_block"
 	flags_to_remove = MISSION_DISALLOW_DROPPODS
 	faction = FACTION_SOM

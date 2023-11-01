@@ -51,6 +51,8 @@ export const JobPreferences = (props, context) => {
     'SOM Squad Veteran',
     'SOM Squad Leader',
     'SOM Field Commander',
+    'SOM Staff Officer',
+    'SOM Commander',
   ];
   const flavourJobs = ['Corporate Liaison'];
 

@@ -9,8 +9,8 @@
 	min_destruction_amount = 0
 	objective_destruction_messages = list(
 		"last" = list(
-			"starting_faction" = "Bluespace core destroyed, outstanding work marines!",
-			"hostile_faction" = "Bluespace core destroyed, mission failed. All forces retreat!",
+			MISSION_STARTING_FACTION = "Bluespace core destroyed, outstanding work marines!",
+			MISSION_HOSTILE_FACTION = "Bluespace core destroyed, mission failed. All forces retreat!",
 		),
 	)
 	starting_faction_objective_description = "Major Victory: Destroy the SOM Bluespace core at all costs"
@@ -42,8 +42,8 @@
 
 /datum/campaign_mission/destroy_mission/teleporter_raid/play_start_intro()
 	intro_message = list(
-		"starting_faction" = "[map_name]<br>" + "[GAME_YEAR]-[time2text(world.realtime, "MM-DD")] [stationTimestamp("hh:mm")]<br>" + "Locate and destroy the [hostile_faction] Bluespace core before further [hostile_faction] reinforcements can arrive. All other considerations are secondary. Good hunting!",
-		"hostile_faction" = "[map_name]<br>" + "[GAME_YEAR]-[time2text(world.realtime, "MM-DD")] [stationTimestamp("hh:mm")]<br>" + "Protect the Bluespace core at all costs! Eliminate all [starting_faction] forces and secure the base, reinforcements are enroute, hold them off until they arrive.",
+		MISSION_STARTING_FACTION = "[map_name]<br>" + "[GAME_YEAR]-[time2text(world.realtime, "MM-DD")] [stationTimestamp("hh:mm")]<br>" + "Locate and destroy the [hostile_faction] Bluespace core before further [hostile_faction] reinforcements can arrive. All other considerations are secondary. Good hunting!",
+		MISSION_HOSTILE_FACTION = "[map_name]<br>" + "[GAME_YEAR]-[time2text(world.realtime, "MM-DD")] [stationTimestamp("hh:mm")]<br>" + "Protect the Bluespace core at all costs! Eliminate all [starting_faction] forces and secure the base, reinforcements are enroute, hold them off until they arrive.",
 	)
 	. = ..()
 
@@ -53,11 +53,11 @@
 /datum/campaign_mission/destroy_mission/teleporter_raid/apply_major_victory()
 	. = ..()
 	var/datum/faction_stats/som_team = mode.stat_list[hostile_faction]
-	som_team.add_reward(/datum/campaign_reward/teleporter_disabled)
-	som_team.add_reward(/datum/campaign_reward/attrition_modifier/malus_teleporter)
+	som_team.add_asset(/datum/campaign_asset/teleporter_disabled)
+	som_team.add_asset(/datum/campaign_asset/attrition_modifier/malus_teleporter)
 
 /datum/campaign_mission/destroy_mission/teleporter_raid/apply_major_loss()
 	. = ..()
 	var/datum/faction_stats/som_team = mode.stat_list[hostile_faction]
-	som_team.add_reward(/datum/campaign_reward/teleporter_enabled)
-	som_team.add_reward(/datum/campaign_reward/teleporter_charges)
+	som_team.add_asset(/datum/campaign_asset/teleporter_enabled)
+	som_team.add_asset(/datum/campaign_asset/teleporter_charges)
