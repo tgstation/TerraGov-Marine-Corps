@@ -513,6 +513,11 @@
 	/// Ref to our particle deletion timer
 	var/timer_ref
 
+/datum/action/xeno_action/vampirism/clean_action()
+	QDEL_NULL(particle_holder)
+	timer_ref = null
+	. = ..()
+
 /datum/action/xeno_action/vampirism/update_button_icon()
 	var/mob/living/carbon/xenomorph/xeno = owner
 	action_icon_state = xeno.vampirism ? "neuroclaws_on" : "neuroclaws_off"
