@@ -21,8 +21,8 @@
 		icon_state = "[initial(icon_state)]_on"
 
 /obj/machinery/computer/som_two
-	name = "dropship picker"
-	desc = "A computer that lets you choose the model of the tadpole.."
+	name = "\improper SOM console"
+	desc = "A computer console of some description."
 	density = TRUE
 	icon_state = "som_console"
 	screen_overlay = "som_console_screen"
