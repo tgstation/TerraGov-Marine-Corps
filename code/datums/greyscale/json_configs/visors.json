@@ -59,6 +59,12 @@
 			"icon_state": "dashe"
 		}
 	],
+		"4visor_visor": [
+		{
+			"type": "hyperscale",
+			"icon_state": "4visor"
+		}
+	],
 	"eva_visor": [
 		{
 			"type": "hyperscale",

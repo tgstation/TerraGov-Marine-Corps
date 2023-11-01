@@ -238,3 +238,11 @@
 	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has Dashe markings"
 	starting_attachments = list(/obj/item/armor_module/armor/visor/marine/dashe, /obj/item/armor_module/storage/helmet)
 	greyscale_config = /datum/greyscale_config/armor_mk1/dashe
+
+/obj/item/clothing/head/modular/marine/heavy_helmet
+	name = "syndie heavy helmet"
+	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has Dashe markings"
+	starting_attachments = list(/obj/item/armor_module/armor/visor/marine/4visor, /obj/item/armor_module/storage/helmet)
+	greyscale_config = /datum/greyscale_config/armor_mk1/syndicate_heavy
+
+
