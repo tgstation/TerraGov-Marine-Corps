@@ -105,6 +105,10 @@
 		/obj/item/armor_module/armor/arms/marine/dashe,
 		/obj/item/armor_module/armor/legs/marine/dashe,
 
+		/obj/item/armor_module/armor/chest/marine/placeholder_heavy_syndie,
+		/obj/item/armor_module/armor/arms/marine/placeholder_heavy_syndie,
+		/obj/item/armor_module/armor/legs/marine/placeholder_heavy_syndie,
+
 		/obj/item/armor_module/module/better_shoulder_lamp,
 		/obj/item/armor_module/module/valkyrie_autodoc,
 		/obj/item/armor_module/module/fire_proof,
