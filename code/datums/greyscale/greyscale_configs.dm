@@ -110,15 +110,15 @@
 
 /datum/greyscale_config/armor_mk1/syndicate_heavy
     icon_file =	'icons/mob/modular/Syndicate_Expansion.dmi'
-	prefix = "heavy_"
+    prefix = "heavy_"
 
 /datum/greyscale_config/armor_mk1/syndicate_medium
     icon_file = 'icons/mob/modular/Syndicate_Expansion.dmi'
-	prefix = "medium_"
+    prefix = "medium_"
 
 /datum/greyscale_config/armor_mk1/syndicate_light
     icon_file = 'icons/mob/modular/Syndicate_Expansion.dmi'
-	prefix = "light_"
+    prefix = "light_"
 
 //Mark 2
 
