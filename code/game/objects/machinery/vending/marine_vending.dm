@@ -1085,6 +1085,9 @@
 			/obj/item/armor_module/armor/chest/marine/dashe = -1,
 			/obj/item/armor_module/armor/arms/marine/dashe = -1,
 			/obj/item/armor_module/armor/legs/marine/dashe = -1,
+			/obj/item/armor_module/armor/chest/marine/placeholder_heavy_syndie = -1,
+			/obj/item/armor_module/armor/arms/marine/placeholder_heavy_syndie = -1,
+			/obj/item/armor_module/armor/legs/marine/placeholder_heavy_syndie = -1,
 		),
 		"Jaeger Mk.I chestpieces" = list(
 			/obj/item/armor_module/armor/chest/marine/skirmisher = -1,
