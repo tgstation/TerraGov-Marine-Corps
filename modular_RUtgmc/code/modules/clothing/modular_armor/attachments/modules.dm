@@ -1,3 +1,9 @@
+/obj/item/armor_module/module/style/light_armor
+	soft_armor = list(MELEE = 40, BULLET = 60, LASER = 60, ENERGY = 50, BOMB = 45, BIO = 45, FIRE = 45, ACID = 50)
+
+/obj/item/armor_module/module/style/heavy_armor
+	soft_armor = list(MELEE = 50, BULLET = 70, LASER = 70, ENERGY = 60, BOMB = 50, BIO = 50, FIRE = 50, ACID = 60)
+
 /obj/item/armor_module/module/motion_detector
 	name = "Tactical sensor helmet module"
 	desc = "Help you to detect the xeno in the darkness."
