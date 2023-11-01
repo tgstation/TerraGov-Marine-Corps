@@ -8,8 +8,7 @@
 	active_power_usage = 10
 	layer = WALL_OBJ_LAYER
 	anchored = TRUE
-	light_range = 1
-	light_power = 0.2
+	light_power = 0
 
 	var/datum/cameranet/parent_cameranet
 	var/list/network = list("marinemainship")
@@ -135,7 +134,6 @@
 	toggle_cam(user, TRUE)
 	repair_damage(max_integrity, user)
 	I.play_tool_sound(src)
-	set_light(initial(light_range), initial(light_power))
 	update_icon()
 	return TRUE
 
@@ -225,12 +223,6 @@
 	else
 		icon_state = "camera"
 
-/obj/machinery/camera/update_overlays()
-	. = ..()
-	if(obj_integrity <= 0)
-		return
-	. += emissive_appearance(icon, "[icon_state]_emissive")
-
 /obj/machinery/camera/proc/toggle_cam(mob/user, displaymessage = TRUE)
 	status = !status
 	if(can_use())
@@ -317,10 +309,21 @@
 	user.see_in_dark = 2
 	return TRUE
 
-
 /obj/machinery/camera/autoname
+	light_range = 1
+	light_power = 0.2
 	var/number = 0 //camera number in area
 
+/obj/machinery/camera/autoname/wirecutter_act(mob/living/user, obj/item/I)
+	. = ..()
+	if(.)
+		set_light(initial(light_range), initial(light_power))
+
+/obj/machinery/camera/autoname/update_overlays()
+	. = ..()
+	if(obj_integrity <= 0)
+		return
+	. += emissive_appearance(icon, "[icon_state]_emissive")
 
 //This camera type automatically sets it's name to whatever the area that it's in is called.
 /obj/machinery/camera/autoname/Initialize(mapload)
