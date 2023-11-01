@@ -526,6 +526,8 @@
 
 /datum/action/xeno_action/vampirism/remove_action(mob/living/L)
 	. = ..()
+	var/mob/living/carbon/xenomorph/xeno = L
+	xeno.vampirism = FALSE
 	UnregisterSignal(L, COMSIG_XENOMORPH_ATTACK_LIVING)
 
 /datum/action/xeno_action/vampirism/action_activate()
