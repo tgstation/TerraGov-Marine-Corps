@@ -4,7 +4,7 @@
 /datum/action/xeno_action/baneling_explode
 	name = "Baneling Explode"
 	action_icon_state = "baneling_explode"
-	desc = "Explode and spread dangerous toxins to hinder or kill your foes. You will respawn in your pod after you detonate, should your pod be planted."
+	desc = "Explode and spread dangerous toxins to hinder or kill your foes. You will respawn in your pod after you detonate, should your pod be planted. By staying alive, you gain charges to respawn quicker."
 	ability_name = "baneling explode"
 	var/static/list/baneling_smoke_list = list(
 		/datum/reagent/toxin/xeno_neurotoxin = /datum/effect_system/smoke_spread/xeno/neuro/medium,
