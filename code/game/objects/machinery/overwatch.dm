@@ -37,7 +37,6 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	networks = list("marine")
 	open_prompt = FALSE
 	interaction_flags = INTERACT_MACHINE_DEFAULT
-
 	var/state = OW_MAIN
 	var/living_marines_sorting = FALSE
 	///The overwatch computer is busy launching an OB/SB, lock controls
@@ -166,12 +165,18 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 
 /obj/machinery/computer/camera_advanced/overwatch/som
 	faction = FACTION_SOM
+	icon_state = "som_console"
+	screen_overlay = "som_overwatch_emissive"
+	light_color = LIGHT_COLOR_FLARE
 	networks = list(SOM_CAMERA_NETWORK)
 	req_access = list(ACCESS_MARINE_BRIDGE)
 	map_flags = MINIMAP_FLAG_MARINE_SOM
 
 /obj/machinery/computer/camera_advanced/overwatch/main/som
 	faction = FACTION_SOM
+	icon_state = "som_console"
+	screen_overlay = "som_main_overwatch_emissive"
+	light_color = LIGHT_COLOR_FLARE
 	networks = list(SOM_CAMERA_NETWORK)
 	req_access = list(ACCESS_MARINE_BRIDGE)
 	map_flags = MINIMAP_FLAG_MARINE_SOM

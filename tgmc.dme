@@ -960,6 +960,7 @@
 #include "code\game\objects\machinery\computer\robot.dm"
 #include "code\game\objects\machinery\computer\security.dm"
 #include "code\game\objects\machinery\computer\skills.dm"
+#include "code\game\objects\machinery\computer\som_computer.dm"
 #include "code\game\objects\machinery\computer\station_alert.dm"
 #include "code\game\objects\machinery\door_display\door_display.dm"
 #include "code\game\objects\machinery\doors\airlock.dm"
