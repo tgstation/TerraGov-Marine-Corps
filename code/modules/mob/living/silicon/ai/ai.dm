@@ -247,7 +247,7 @@
 /mob/living/silicon/ai/proc/toggle_camera_light()
 	if(camera_light_on)
 		for(var/obj/machinery/camera/C in lit_cameras)
-			C.set_light(0)
+			C.set_light(initial(C.light_range), initial(C.light_power))
 			lit_cameras = list()
 		to_chat(src, span_notice("Camera lights deactivated."))
 	else

@@ -8,6 +8,8 @@
 	active_power_usage = 10
 	layer = WALL_OBJ_LAYER
 	anchored = TRUE
+	light_range = 1
+	light_power = 0.2
 
 	var/datum/cameranet/parent_cameranet
 	var/list/network = list("marinemainship")
@@ -133,6 +135,7 @@
 	toggle_cam(user, TRUE)
 	repair_damage(max_integrity, user)
 	I.play_tool_sound(src)
+	set_light(initial(light_range), initial(light_power))
 	update_icon()
 	return TRUE
 
@@ -216,13 +219,17 @@
 			continue
 		to_chat(AI, span_notice("[src] has been desactived at [myarea]"))
 
-
-/obj/machinery/camera/update_icon()
+/obj/machinery/camera/update_icon_state()
 	if(obj_integrity <= 0)
 		icon_state = "camera_assembly"
 	else
 		icon_state = "camera"
 
+/obj/machinery/camera/update_overlays()
+	. = ..()
+	if(obj_integrity <= 0)
+		return
+	. += emissive_appearance(icon, "[icon_state]_emissive")
 
 /obj/machinery/camera/proc/toggle_cam(mob/user, displaymessage = TRUE)
 	status = !status
@@ -234,7 +241,7 @@
 		else
 			myarea = null
 	else
-		set_light(0)
+		set_light(initial(light_range), initial(light_power))
 		parent_cameranet.removeCamera(src)
 		if(isarea(myarea))
 			LAZYREMOVE(myarea.cameras, src)
@@ -296,7 +303,7 @@
 	if(on)
 		set_light(AI_CAMERA_LUMINOSITY, AI_CAMERA_LUMINOSITY)
 	else
-		set_light(0)
+		set_light(initial(light_range), initial(light_power))
 
 
 /obj/machinery/camera/get_remote_view_fullscreens(mob/user)
