@@ -1085,6 +1085,7 @@
 			/obj/item/armor_module/armor/chest/marine/dashe = -1,
 			/obj/item/armor_module/armor/arms/marine/dashe = -1,
 			/obj/item/armor_module/armor/legs/marine/dashe = -1,
+			/obj/item/clothing/suit/modular/syndie_exo = -1,
 			/obj/item/clothing/head/modular/marine/heavy_helmet = -1,
 			/obj/item/armor_module/armor/chest/marine/placeholder_heavy_syndie = -1,
 			/obj/item/armor_module/armor/arms/marine/placeholder_heavy_syndie = -1,

@@ -150,6 +150,7 @@
 		/obj/item/armor_module/armor/visor/marine/kabuto,
 		/obj/item/armor_module/armor/visor/marine/hotaru,
 		/obj/item/armor_module/armor/visor/marine/dashe,
+		/obj/item/armor_module/armor/visor/marine/fourvisor,
 	)
 
 	starting_attachments = list(/obj/item/armor_module/armor/visor/marine, /obj/item/armor_module/storage/helmet)
