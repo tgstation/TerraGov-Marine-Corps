@@ -697,3 +697,359 @@
 	desc = "A piece of ICCGF body armor, worn by specialized infantry. Most Infantry actions in the ICC forces are done by adhoc personnel due to constant shortages of manpower, however most real Infantry divisions are of high quality, and are better known as 'Guardsmen'.  Protects well from most sources, and will entirely protect from explosions."
 	icon_state = "icc_guard"
 	soft_armor = list(MELEE = 60, BULLET = 65, LASER = 40, ENERGY = 60, BOMB = 85, BIO = 10, FIRE = 55, ACID = 40)
+
+//===========================CM and it's color variants================================
+
+/obj/item/clothing/suit/storage/marine/cm_m
+	name = "\improper M3 pattern marine armor"
+	desc = "You seem to have a hard time reading this. All the words you can make out is ballistic, chestplate, accidents. This thing really is old."
+	icon = 'icons/obj/clothing/suits/marine_armor.dmi'
+	icon_state = "k_1"
+	item_state = "k_1"
+	item_icons = list(
+		slot_wear_suit_str = 'icons/mob/clothing/suits/marine_armor.dmi',
+		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
+		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',
+	)
+	slowdown = SLOWDOWN_ARMOR_MEDIUM
+	flags_armor_protection = CHEST|GROIN|ARMS|LEGS|HANDS
+	soft_armor = list(MELEE = 45, BULLET = 65, LASER = 65, ENERGY = 55, BOMB = 50, BIO = 50, FIRE = 50, ACID = 55)
+	attachments_allowed = list(
+		/obj/item/armor_module/storage/general,
+		/obj/item/armor_module/storage/ammo_mag,
+		/obj/item/armor_module/storage/engineering,
+		/obj/item/armor_module/storage/medical,
+		/obj/item/armor_module/storage/injector,
+		/obj/item/armor_module/storage/grenade,
+		/obj/item/armor_module/storage/integrated,
+		/obj/item/armor_module/armor/badge,
+	)
+
+/obj/item/clothing/suit/storage/marine/cm_l
+	name = "\improper M3-L pattern marine armor"
+	desc = "Lighter, and compact version of that old thing."
+	icon = 'icons/obj/clothing/suits/marine_armor.dmi'
+	icon_state = "k_L1"
+	item_state = "k_L1"
+	item_icons = list(
+		slot_wear_suit_str = 'icons/mob/clothing/suits/marine_armor.dmi',
+		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
+		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',
+	)
+	slowdown = SLOWDOWN_ARMOR_LIGHT
+	flags_armor_protection = CHEST|GROIN|ARMS|HANDS
+	soft_armor = list(MELEE = 35, BULLET = 55, LASER = 55, ENERGY = 50, BOMB = 45, BIO = 45, FIRE = 45, ACID = 45)
+	attachments_allowed = list(
+		/obj/item/armor_module/storage/general,
+		/obj/item/armor_module/storage/ammo_mag,
+		/obj/item/armor_module/storage/engineering,
+		/obj/item/armor_module/storage/medical,
+		/obj/item/armor_module/storage/injector,
+		/obj/item/armor_module/storage/grenade,
+		/obj/item/armor_module/storage/integrated,
+		/obj/item/armor_module/armor/badge,
+	)
+
+/obj/item/clothing/suit/storage/marine/cm_h
+	name = "\improper M3-EOD heavy pattern marine armor"
+	desc = "Heavy! Big and brutal, let's see what those aliens think of now!"
+	icon = 'icons/obj/clothing/suits/marine_armor.dmi'
+	icon_state = "k_H1"
+	item_state = "k_H1"
+	item_icons = list(
+		slot_wear_suit_str = 'icons/mob/clothing/suits/marine_armor.dmi',
+		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
+		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',
+	)
+	slowdown = SLOWDOWN_ARMOR_HEAVY
+	flags_armor_protection = CHEST|GROIN|ARMS|LEGS|FEET|HANDS
+	soft_armor = list(MELEE = 50, BULLET = 70, LASER = 70, ENERGY = 60, BOMB = 55, BIO = 55, FIRE = 55, ACID = 60)
+	attachments_allowed = list(
+		/obj/item/armor_module/storage/general,
+		/obj/item/armor_module/storage/ammo_mag,
+		/obj/item/armor_module/storage/engineering,
+		/obj/item/armor_module/storage/medical,
+		/obj/item/armor_module/storage/injector,
+		/obj/item/armor_module/storage/grenade,
+		/obj/item/armor_module/storage/integrated,
+		/obj/item/armor_module/armor/badge,
+	)
+
+/obj/item/clothing/suit/storage/marine/cm_m/jungle
+	name = "\improper M3 jungle pattern marine armor"
+	desc = "You seem to have a hard time reading this. All the words you can make out is ballistic, chestplate, accidents. This thing really is old."
+	icon = 'icons/obj/clothing/suits/marine_armor.dmi'
+	icon_state = "1"
+	item_state = "1"
+	item_icons = list(
+		slot_wear_suit_str = 'icons/mob/clothing/suits/marine_armor.dmi',
+		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
+		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',
+	)
+	slowdown = SLOWDOWN_ARMOR_MEDIUM
+	flags_armor_protection = CHEST|GROIN|ARMS|LEGS|HANDS
+	soft_armor = list(MELEE = 45, BULLET = 65, LASER = 65, ENERGY = 55, BOMB = 50, BIO = 50, FIRE = 50, ACID = 55)
+	attachments_allowed = list(
+		/obj/item/armor_module/storage/general,
+		/obj/item/armor_module/storage/ammo_mag,
+		/obj/item/armor_module/storage/engineering,
+		/obj/item/armor_module/storage/medical,
+		/obj/item/armor_module/storage/injector,
+		/obj/item/armor_module/storage/grenade,
+		/obj/item/armor_module/storage/integrated,
+		/obj/item/armor_module/armor/badge,
+	)
+
+/obj/item/clothing/suit/storage/marine/cm_l/jungle
+	name = "\improper M3-L jungle pattern marine armor"
+	desc = "Lighter, and compact version of that old thing."
+	icon = 'icons/obj/clothing/suits/marine_armor.dmi'
+	icon_state = "L1"
+	item_state = "L1"
+	item_icons = list(
+		slot_wear_suit_str = 'icons/mob/clothing/suits/marine_armor.dmi',
+		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
+		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',
+	)
+	slowdown = SLOWDOWN_ARMOR_LIGHT
+	flags_armor_protection = CHEST|GROIN|ARMS|HANDS
+	soft_armor = list(MELEE = 35, BULLET = 55, LASER = 55, ENERGY = 50, BOMB = 45, BIO = 45, FIRE = 45, ACID = 45)
+	attachments_allowed = list(
+		/obj/item/armor_module/storage/general,
+		/obj/item/armor_module/storage/ammo_mag,
+		/obj/item/armor_module/storage/engineering,
+		/obj/item/armor_module/storage/medical,
+		/obj/item/armor_module/storage/injector,
+		/obj/item/armor_module/storage/grenade,
+		/obj/item/armor_module/storage/integrated,
+		/obj/item/armor_module/armor/badge,
+	)
+
+/obj/item/clothing/suit/storage/marine/cm_h/jungle
+	name = "\improper M3-EOD heavy jungle pattern marine armor"
+	desc = "Heavy! Big and brutal, let's see what those aliens think of now!"
+	icon = 'icons/obj/clothing/suits/marine_armor.dmi'
+	icon_state = "H1"
+	item_state = "H1"
+	item_icons = list(
+		slot_wear_suit_str = 'icons/mob/clothing/suits/marine_armor.dmi',
+		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
+		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',
+	)
+	slowdown = SLOWDOWN_ARMOR_HEAVY
+	flags_armor_protection = CHEST|GROIN|ARMS|LEGS|FEET|HANDS
+	soft_armor = list(MELEE = 50, BULLET = 70, LASER = 70, ENERGY = 60, BOMB = 55, BIO = 55, FIRE = 55, ACID = 60)
+	attachments_allowed = list(
+		/obj/item/armor_module/storage/general,
+		/obj/item/armor_module/storage/ammo_mag,
+		/obj/item/armor_module/storage/engineering,
+		/obj/item/armor_module/storage/medical,
+		/obj/item/armor_module/storage/injector,
+		/obj/item/armor_module/storage/grenade,
+		/obj/item/armor_module/storage/integrated,
+		/obj/item/armor_module/armor/badge,
+	)
+
+/obj/item/clothing/suit/storage/marine/cm_m/snow
+	name = "\improper M3 snow pattern marine armor"
+	desc = "You seem to have a hard time reading this. All the words you can make out is ballistic, chestplate, accidents. This thing really is old."
+	icon = 'icons/obj/clothing/suits/marine_armor.dmi'
+	icon_state = "s_1"
+	item_state = "s_1"
+	item_icons = list(
+		slot_wear_suit_str = 'icons/mob/clothing/suits/marine_armor.dmi',
+		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
+		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',
+	)
+	slowdown = SLOWDOWN_ARMOR_MEDIUM
+	flags_armor_protection = CHEST|GROIN|ARMS|LEGS|HANDS
+	soft_armor = list(MELEE = 45, BULLET = 65, LASER = 65, ENERGY = 55, BOMB = 50, BIO = 50, FIRE = 50, ACID = 55)
+	attachments_allowed = list(
+		/obj/item/armor_module/storage/general,
+		/obj/item/armor_module/storage/ammo_mag,
+		/obj/item/armor_module/storage/engineering,
+		/obj/item/armor_module/storage/medical,
+		/obj/item/armor_module/storage/injector,
+		/obj/item/armor_module/storage/grenade,
+		/obj/item/armor_module/storage/integrated,
+		/obj/item/armor_module/armor/badge,
+	)
+
+/obj/item/clothing/suit/storage/marine/cm_l/snow
+	name = "\improper M3-L snow pattern marine armor"
+	desc = "Lighter, and compact version of that old thing."
+	icon = 'icons/obj/clothing/suits/marine_armor.dmi'
+	icon_state = "s_L1"
+	item_state = "s_l1"
+	item_icons = list(
+		slot_wear_suit_str = 'icons/mob/clothing/suits/marine_armor.dmi',
+		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
+		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',
+	)
+	slowdown = SLOWDOWN_ARMOR_LIGHT
+	flags_armor_protection = CHEST|GROIN|ARMS|HANDS
+	soft_armor = list(MELEE = 35, BULLET = 55, LASER = 55, ENERGY = 50, BOMB = 45, BIO = 45, FIRE = 45, ACID = 45)
+	attachments_allowed = list(
+		/obj/item/armor_module/storage/general,
+		/obj/item/armor_module/storage/ammo_mag,
+		/obj/item/armor_module/storage/engineering,
+		/obj/item/armor_module/storage/medical,
+		/obj/item/armor_module/storage/injector,
+		/obj/item/armor_module/storage/grenade,
+		/obj/item/armor_module/storage/integrated,
+		/obj/item/armor_module/armor/badge,
+	)
+
+/obj/item/clothing/suit/storage/marine/cm_h/snow
+	name = "\improper M3-EOD heavy snow pattern marine armor"
+	desc = "Heavy! Big and brutal, let's see what those aliens think of now!"
+	icon = 'icons/obj/clothing/suits/marine_armor.dmi'
+	icon_state = "s_H1"
+	item_state = "s_H1"
+	item_icons = list(
+		slot_wear_suit_str = 'icons/mob/clothing/suits/marine_armor.dmi',
+		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
+		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',
+	)
+	slowdown = SLOWDOWN_ARMOR_HEAVY
+	flags_armor_protection = CHEST|GROIN|ARMS|LEGS|FEET|HANDS
+	soft_armor = list(MELEE = 50, BULLET = 70, LASER = 70, ENERGY = 60, BOMB = 55, BIO = 55, FIRE = 55, ACID = 60)
+	attachments_allowed = list(
+		/obj/item/armor_module/storage/general,
+		/obj/item/armor_module/storage/ammo_mag,
+		/obj/item/armor_module/storage/engineering,
+		/obj/item/armor_module/storage/medical,
+		/obj/item/armor_module/storage/injector,
+		/obj/item/armor_module/storage/grenade,
+		/obj/item/armor_module/storage/integrated,
+		/obj/item/armor_module/armor/badge,
+	)
+
+/obj/item/clothing/suit/storage/marine/cm_m/desert
+	name = "\improper M3 desert pattern marine armor"
+	desc = "You seem to have a hard time reading this. All the words you can make out is ballistic, chestplate, accidents. This thing really is old."
+	icon = 'icons/obj/clothing/suits/marine_armor.dmi'
+	icon_state = "d_1"
+	item_state = "d_1"
+	item_icons = list(
+		slot_wear_suit_str = 'icons/mob/clothing/suits/marine_armor.dmi',
+		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
+		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',
+	)
+	slowdown = SLOWDOWN_ARMOR_MEDIUM
+	flags_armor_protection = CHEST|GROIN|ARMS|LEGS|HANDS
+	soft_armor = list(MELEE = 45, BULLET = 65, LASER = 65, ENERGY = 55, BOMB = 50, BIO = 50, FIRE = 50, ACID = 55)
+	attachments_allowed = list(
+		/obj/item/armor_module/storage/general,
+		/obj/item/armor_module/storage/ammo_mag,
+		/obj/item/armor_module/storage/engineering,
+		/obj/item/armor_module/storage/medical,
+		/obj/item/armor_module/storage/injector,
+		/obj/item/armor_module/storage/grenade,
+		/obj/item/armor_module/storage/integrated,
+		/obj/item/armor_module/armor/badge,
+	)
+
+/obj/item/clothing/suit/storage/marine/cm_l/desert
+	name = "\improper M3-L desert pattern marine armor"
+	desc = "Lighter, and compact version of that old thing."
+	icon = 'icons/obj/clothing/suits/marine_armor.dmi'
+	icon_state = "d_L1"
+	item_state = "d_l1"
+	item_icons = list(
+		slot_wear_suit_str = 'icons/mob/clothing/suits/marine_armor.dmi',
+		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
+		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',
+	)
+	slowdown = SLOWDOWN_ARMOR_LIGHT
+	flags_armor_protection = CHEST|GROIN|ARMS|HANDS
+	soft_armor = list(MELEE = 35, BULLET = 55, LASER = 55, ENERGY = 50, BOMB = 45, BIO = 45, FIRE = 45, ACID = 45)
+	attachments_allowed = list(
+		/obj/item/armor_module/storage/general,
+		/obj/item/armor_module/storage/ammo_mag,
+		/obj/item/armor_module/storage/engineering,
+		/obj/item/armor_module/storage/medical,
+		/obj/item/armor_module/storage/injector,
+		/obj/item/armor_module/storage/grenade,
+		/obj/item/armor_module/storage/integrated,
+		/obj/item/armor_module/armor/badge,
+	)
+
+/obj/item/clothing/suit/storage/marine/cm_h/desert
+	name = "\improper M3-EOD heavy pattern marine armor"
+	desc = "Heavy! Big and brutal, let's see what those aliens think of now!"
+	icon = 'icons/obj/clothing/suits/marine_armor.dmi'
+	icon_state = "d_H1"
+	item_state = "d_H1"
+	item_icons = list(
+		slot_wear_suit_str = 'icons/mob/clothing/suits/marine_armor.dmi',
+		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
+		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',
+	)
+	slowdown = SLOWDOWN_ARMOR_HEAVY
+	flags_armor_protection = CHEST|GROIN|ARMS|LEGS|FEET|HANDS
+	soft_armor = list(MELEE = 50, BULLET = 70, LASER = 70, ENERGY = 60, BOMB = 55, BIO = 55, FIRE = 55, ACID = 60)
+	attachments_allowed = list(
+		/obj/item/armor_module/storage/general,
+		/obj/item/armor_module/storage/ammo_mag,
+		/obj/item/armor_module/storage/engineering,
+		/obj/item/armor_module/storage/medical,
+		/obj/item/armor_module/storage/injector,
+		/obj/item/armor_module/storage/grenade,
+		/obj/item/armor_module/storage/integrated,
+		/obj/item/armor_module/armor/badge,
+	)
+
+//PAS
+
+/obj/item/clothing/suit/storage/marine/pas
+	name = "\improper PAS-11 pattern marine armor"
+	desc = "A rare type of TerraGov Marine Corps PAS Pattern Chestplate."
+	icon = 'icons/obj/clothing/suits/marine_armor.dmi'
+	icon_state = "pas11_black"
+	item_state = "pas11_black"
+	item_icons = list(
+		slot_wear_suit_str = 'icons/mob/clothing/suits/marine_armor.dmi',
+		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
+		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',
+	)
+	soft_armor = list(MELEE = 40, BULLET = 60, LASER = 60, ENERGY = 45, BOMB = 45, BIO = 45, FIRE = 45, ACID = 50)
+
+/obj/item/clothing/suit/storage/marine/pas/snow
+	name = "\improper PAS-11 snow pattern marine armor"
+	desc = "A rare type of TerraGov Marine Corps PAS Pattern Chestplate."
+	icon = 'icons/obj/clothing/suits/marine_armor.dmi'
+	icon_state = "pas11_snow"
+	item_state = "pas11_snow"
+	item_icons = list(
+		slot_wear_suit_str = 'icons/mob/clothing/suits/marine_armor.dmi',
+		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
+		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',
+	)
+	soft_armor = list(MELEE = 40, BULLET = 60, LASER = 60, ENERGY = 45, BOMB = 45, BIO = 45, FIRE = 45, ACID = 50)
+
+/obj/item/clothing/suit/storage/marine/pas/jungle
+	name = "\improper PAS-11 jungle pattern marine armor"
+	desc = "A rare type of TerraGov Marine Corps PAS Pattern Chestplate."
+	icon = 'icons/obj/clothing/suits/marine_armor.dmi'
+	icon_state = "pas11_jungle"
+	item_state = "pas11_jungle"
+	item_icons = list(
+		slot_wear_suit_str = 'icons/mob/clothing/suits/marine_armor.dmi',
+		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
+		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',
+	)
+	soft_armor = list(MELEE = 40, BULLET = 60, LASER = 60, ENERGY = 45, BOMB = 45, BIO = 45, FIRE = 45, ACID = 50)
+
+/obj/item/clothing/suit/storage/marine/pas/desert
+	name = "\improper PAS-11 desert pattern marine armor"
+	desc = "A rare type of TerraGov Marine Corps PAS Pattern Chestplate."
+	icon = 'icons/obj/clothing/suits/marine_armor.dmi'
+	icon_state = "pas11_desert"
+	item_state = "pas11_desert"
+	item_icons = list(
+		slot_wear_suit_str = 'icons/mob/clothing/suits/marine_armor.dmi',
+		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
+		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',
+	)
+	soft_armor = list(MELEE = 40, BULLET = 60, LASER = 60, ENERGY = 45, BOMB = 45, BIO = 45, FIRE = 45, ACID = 50)

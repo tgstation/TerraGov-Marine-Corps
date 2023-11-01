@@ -1691,3 +1691,43 @@
 			/obj/item/mecha_parts/mecha_equipment/ability/smoke/cloak_smoke = -1,
 		),
 	)
+/obj/machinery/vending/armor_supply_CM
+	name = "\improper Old marine vendor"
+	desc = "An automated equipment rack- wait... This isn't one of ours, looks old."
+	icon_state = "marine_clothing_broken_CM"
+	icon_vend = "marine_clothing_broken_CM"
+	isshared = TRUE
+	product_ads = "You are out of uniform, marine! Where is your armor? Don't have any? You expect me to believe that, maggot?;Why wear heavy armor and unable to chase the enemy when you can go light and zoom by your peers?;Thank your armor later when you didn't die!;I remember PAS, do you remember PAS?;Time to paint the rainbow!;So many selections to choose from!"
+	products = list(
+		"Standard marine armor" = list(
+			/obj/item/clothing/suit/storage/marine/cm_m = -1,
+			/obj/item/clothing/suit/storage/marine/cm_l = -1,
+			/obj/item/clothing/suit/storage/marine/cm_h = -1,
+			/obj/item/clothing/suit/storage/marine/pas = -1,
+			/obj/item/clothing/head/helmet/marine/cm = -1,
+		),
+		"Colored armor" = list(
+			/obj/item/clothing/suit/storage/marine/cm_m/jungle = -1,
+			/obj/item/clothing/suit/storage/marine/cm_l/jungle = -1,
+			/obj/item/clothing/suit/storage/marine/cm_h/jungle = -1,
+			/obj/item/clothing/suit/storage/marine/pas/jungle = 1,
+			/obj/item/clothing/head/helmet/marine/cm/jungle = -1,
+			/obj/item/clothing/suit/storage/marine/cm_m/snow = -1,
+			/obj/item/clothing/suit/storage/marine/cm_l/snow = -1,
+			/obj/item/clothing/suit/storage/marine/cm_h/snow = -1,
+			/obj/item/clothing/suit/storage/marine/pas/snow = -1,
+			/obj/item/clothing/head/helmet/marine/cm/snow = -1,
+			/obj/item/clothing/suit/storage/marine/cm_m/desert = -1,
+			/obj/item/clothing/suit/storage/marine/cm_l/desert = -1,
+			/obj/item/clothing/suit/storage/marine/cm_h/desert = -1,
+			/obj/item/clothing/suit/storage/marine/pas/desert = 1,
+			/obj/item/clothing/head/helmet/marine/cm/desert = -1,
+		),
+		"Armor modules" = list(
+			/obj/item/armor_module/storage/general = -1,
+			/obj/item/armor_module/storage/engineering = -1,
+			/obj/item/armor_module/storage/medical = -1,
+			/obj/item/armor_module/storage/injector = -1,
+			/obj/item/armor_module/storage/grenade = -1,
+		),
+	)

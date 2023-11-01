@@ -467,3 +467,49 @@
 	icon_state = "icc_guard"
 	item_state = "icc_guard"
 	soft_armor = list(MELEE = 60, BULLET = 65, LASER = 40, ENERGY = 60, BOMB = 80, BIO = 10, FIRE = 55, ACID = 40)
+
+// CM helmets
+
+/obj/item/clothing/head/helmet/marine/cm
+	name = "\improper M10 pattern marine helmet"
+	desc = "M10 Pattern Helmet. There are words knifed into it. Can't make out what it says."
+	icon = 'icons/obj/clothing/headwear/marine_helmets.dmi'
+	item_icons = list(
+		slot_head_str = 'icons/mob/clothing/headwear/marine_helmets.dmi',
+		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
+		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',)
+	icon_state = "CM_k_helmet"
+	soft_armor = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 50, FIRE = 50, ACID = 50)
+
+/obj/item/clothing/head/helmet/marine/cm/jungle
+	name = "\improper M10 jungle pattern marine helmet"
+	desc = "M10 Pattern Helmet. There are words knifed into it. Born to feel"
+	icon = 'icons/obj/clothing/headwear/marine_helmets.dmi'
+	item_icons = list(
+		slot_head_str = 'icons/mob/clothing/headwear/marine_helmets.dmi',
+		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
+		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',)
+	icon_state = "CM_helmet"
+	soft_armor = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 50, FIRE = 50, ACID = 50)
+
+/obj/item/clothing/head/helmet/marine/cm/snow
+	name = "\improper M10 snow pattern marine helmet"
+	desc = "M10 Pattern Helmet. There are words knifed into it. Can't make out what it says."
+	icon = 'icons/obj/clothing/headwear/marine_helmets.dmi'
+	item_icons = list(
+		slot_head_str = 'icons/mob/clothing/headwear/marine_helmets.dmi',
+		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
+		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',)
+	icon_state = "CM_s_helmet"
+	soft_armor = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 50, FIRE = 50, ACID = 50)
+
+/obj/item/clothing/head/helmet/marine/cm/desert
+	name = "\improper M10 desert pattern marine helmet"
+	desc = "M10 Pattern Helmet. There are words knifed into it. Can't make out what it says."
+	icon = 'icons/obj/clothing/headwear/marine_helmets.dmi'
+	item_icons = list(
+		slot_head_str = 'icons/mob/clothing/headwear/marine_helmets.dmi',
+		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
+		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',)
+	icon_state = "CM_d_helmet"
+	soft_armor = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 50, FIRE = 50, ACID = 50)
