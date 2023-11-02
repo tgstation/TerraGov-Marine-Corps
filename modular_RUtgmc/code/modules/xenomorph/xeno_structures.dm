@@ -2,6 +2,16 @@
 	plane = FLOOR_PLANE
 	icon = 'modular_RUtgmc/icons/Xeno/resin_silo.dmi'
 
+/obj/structure/xeno/silo/obj_destruction(damage_amount, damage_type, damage_flag)
+	if(GLOB.hive_datums[hivenumber])
+		INVOKE_NEXT_TICK(SSticker.mode, TYPE_PROC_REF(/datum/game_mode, update_silo_death_timer), GLOB.hive_datums[hivenumber]) // checks all silos next tick after this one is gone
+	return ..()
+
+/obj/structure/xeno/silo/LateInitialize()
+	. = ..()
+	if(GLOB.hive_datums[hivenumber])
+		SSticker.mode.update_silo_death_timer(GLOB.hive_datums[hivenumber])
+
 /obj/structure/xeno/silo/crash
 	resistance_flags = UNACIDABLE | DROPSHIP_IMMUNE | PLASMACUTTER_IMMUNE | INDESTRUCTIBLE
 
@@ -63,19 +73,3 @@
 /obj/structure/xeno/spawner/Initialize(mapload)
 	. = ..()
 	set_light(2, 2, LIGHT_COLOR_GREEN)
-
-/obj/structure/xeno/spawner/update_minimap_icon()
-	. = ..()
-	SSminimaps.add_marker(src, MINIMAP_FLAG_XENO, image('modular_RUtgmc/icons/UI_icons/map_blips.dmi', null, "spawner[warning ? "_warn" : "_passive"]"))
-
-/obj/structure/xeno/pherotower/Initialize(mapload, _hivenumber)
-	. = ..()
-	SSminimaps.add_marker(src, MINIMAP_FLAG_XENO, image('modular_RUtgmc/icons/UI_icons/map_blips.dmi', null, "phero"))
-
-/obj/structure/xeno/xeno_turret/update_minimap_icon()
-	. = ..()
-	SSminimaps.add_marker(src, MINIMAP_FLAG_XENO, image('modular_RUtgmc/icons/UI_icons/map_blips.dmi', null, "xeno_turret[firing ? "_firing" : "_passive"]"))
-
-/obj/structure/xeno/silo/update_minimap_icon()
-	. = ..()
-	SSminimaps.add_marker(src, MINIMAP_FLAG_XENO, image('modular_RUtgmc/icons/UI_icons/map_blips.dmi', null, "silo[warning ? "_warn" : "_passive"]"))
