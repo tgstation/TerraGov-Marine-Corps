@@ -233,7 +233,7 @@
 		else
 			myarea = null
 	else
-		set_light(initial(light_range), initial(light_power))
+		set_light(0)
 		parent_cameranet.removeCamera(src)
 		if(isarea(myarea))
 			LAZYREMOVE(myarea.cameras, src)
@@ -317,7 +317,7 @@
 /obj/machinery/camera/autoname/wirecutter_act(mob/living/user, obj/item/I)
 	. = ..()
 	if(.)
-		set_light(initial(light_range), initial(light_power))
+		set_light(0)
 
 /obj/machinery/camera/autoname/update_overlays()
 	. = ..()
