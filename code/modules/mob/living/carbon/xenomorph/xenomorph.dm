@@ -45,7 +45,7 @@
 	wound_overlay = new(null, src)
 	vis_contents += wound_overlay
 
-	fire_overlay = mob_size == MOB_SIZE_BIG ? new(null, src) : new /atom/movable/vis_obj/xeno_wounds/fire_overlay/small(null, src)
+	fire_overlay = new(null, icon)
 	vis_contents += fire_overlay
 
 	generate_nicknumber()
