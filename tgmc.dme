@@ -475,6 +475,7 @@
 #include "code\datums\gamemodes\campaign\missions\loot_capture.dm"
 #include "code\datums\gamemodes\campaign\missions\mech_wars.dm"
 #include "code\datums\gamemodes\campaign\missions\patrol_mission.dm"
+#include "code\datums\gamemodes\campaign\missions\phoron_capture.dm"
 #include "code\datums\gamemodes\campaign\missions\raiding_base.dm"
 #include "code\datums\gamemodes\campaign\missions\spearhead_assault.dm"
 #include "code\datums\gamemodes\campaign\missions\supply_raid.dm"
