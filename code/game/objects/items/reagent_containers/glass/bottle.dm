@@ -195,8 +195,8 @@
 	list_reagents = list(/datum/reagent/medicine/paracetamol = 60)
 
 /obj/item/reagent_containers/glass/bottle/isotonic
-	name = "\improper Isotonic bottle"
-	desc = "A small bottle. Contains tricordrazine - used to aid the body in blood restoration."
+	name = "\improper Saline-Glucose bottle"
+	desc = "A small bottle. Contains saline-glucose, also known as isotonic - used to aid the body in blood restoration."
 	icon_state = "bottle-1"
 	list_reagents = list(/datum/reagent/medicine/saline_glucose = 60)
 
