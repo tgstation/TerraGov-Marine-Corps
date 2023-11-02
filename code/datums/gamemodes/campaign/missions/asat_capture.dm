@@ -7,6 +7,10 @@
 	map_traits = list(ZTRAIT_AWAY = TRUE, ZTRAIT_RAIN = TRUE)
 	map_light_colours = list(LIGHT_COLOR_PALE_GREEN, LIGHT_COLOR_PALE_GREEN, LIGHT_COLOR_PALE_GREEN, LIGHT_COLOR_PALE_GREEN)
 	mission_flags = MISSION_DISALLOW_TELEPORT
+	shutter_open_delay = list(
+		MISSION_STARTING_FACTION = 90 SECONDS,
+		MISSION_HOSTILE_FACTION = 0,
+	)
 	victory_point_rewards = list(
 		MISSION_OUTCOME_MAJOR_VICTORY = list(2, 0),
 		MISSION_OUTCOME_MINOR_VICTORY = list(1, 0),
@@ -40,8 +44,8 @@
 
 /datum/campaign_mission/capture_mission/asat/load_pre_mission_bonuses()
 	. = ..()
-	spawn_mech(hostile_faction, 0, 0, 1)
-	spawn_mech(starting_faction, 0, 1)
+	spawn_mech(hostile_faction, 0, 0, 2)
+	spawn_mech(starting_faction, 0, 1, 1)
 
 /datum/campaign_mission/capture_mission/asat/load_objective_description()
 	starting_faction_objective_description = "Major Victory:Capture all [objectives_total] ASAT systems.[min_capture_amount ? " Minor Victory: Capture at least [min_capture_amount] ASAT systems." : ""]"
