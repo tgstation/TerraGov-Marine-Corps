@@ -2,6 +2,12 @@
 ///////////////////////// Robotic armor ///////////////////////////////
 ///////////////////////////////////////////////////////////////////////
 
+/obj/item/clothing/suit/modular/robot/light
+	soft_armor = list(MELEE = 40, BULLET = 60, LASER = 60, ENERGY = 55, BOMB = 50, BIO = 50, FIRE = 50, ACID = 50)
+
+/obj/item/clothing/suit/modular/robot/heavy
+	soft_armor = list(MELEE = 50, BULLET = 70, LASER = 70, ENERGY = 55, BOMB = 50, BIO = 50, FIRE = 50, ACID = 60)
+
 /obj/item/clothing/head/helmet/marine/robot/advanced
 	flags_item_map_variant = NONE
 	icon = 'modular_RUtgmc/icons/obj/clothing/headwear/marine_helmets.dmi'
