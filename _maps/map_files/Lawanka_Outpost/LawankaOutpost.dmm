@@ -1298,6 +1298,7 @@
 	pixel_y = -4
 	},
 /obj/effect/landmark/weed_node,
+/obj/effect/landmark/campaign_structure/tele_blocker,
 /turf/open/ground/grass/weedable,
 /area/lawankaoutpost/outside/west)
 "bdf" = (
