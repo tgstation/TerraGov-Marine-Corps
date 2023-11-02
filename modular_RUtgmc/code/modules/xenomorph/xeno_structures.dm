@@ -2,6 +2,16 @@
 	plane = FLOOR_PLANE
 	icon = 'modular_RUtgmc/icons/Xeno/resin_silo.dmi'
 
+/obj/structure/xeno/silo/obj_destruction(damage_amount, damage_type, damage_flag)
+	if(GLOB.hive_datums[hivenumber])
+		INVOKE_NEXT_TICK(SSticker.mode, TYPE_PROC_REF(/datum/game_mode, update_silo_death_timer), GLOB.hive_datums[hivenumber]) // checks all silos next tick after this one is gone
+	return ..()
+
+/obj/structure/xeno/silo/LateInitialize()
+	. = ..()
+	if(GLOB.hive_datums[hivenumber])
+		SSticker.mode.update_silo_death_timer(GLOB.hive_datums[hivenumber])
+
 /obj/structure/xeno/silo/crash
 	resistance_flags = UNACIDABLE | DROPSHIP_IMMUNE | PLASMACUTTER_IMMUNE | INDESTRUCTIBLE
 

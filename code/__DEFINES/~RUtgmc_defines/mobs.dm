@@ -13,6 +13,7 @@
 ///Slowdown for favehuggers moving through liquid
 #define FACEHUGGER_WATER_SLOWDOWN 1.6
 
-//Xeno defines
+//Xeno Defines
+#define HIVE_CAN_COLLAPSE_FROM_SILO (1<<1)
 #define XENO_WEAK_ACID_PUDDLE_DAMAGE 8 //Weak acid damage dealt by acid puddles
 #define XENO_HIGH_ACID_PUDDLE_DAMAGE 20 //Strong acid damage dealt by acid puddles

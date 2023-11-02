@@ -11,6 +11,8 @@
 #include "code\datums\actions\xeno_action.dm"
 #include "code\datums\actions\actions\action.dm"
 #include "code\datums\gamemodes\crash.dm"
+#include "code\datums\gamemodes\_game_mode.dm"
+#include "code\datums\gamemodes\distress.dm"
 #include "code\datums\jobs\squads.dm"
 #include "code\datums\jobs\job\clown.dm"
 #include "code\datums\jobs\job\job_exp.dm"
