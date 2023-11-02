@@ -28,7 +28,7 @@
 		return span_notice("[src] is empty!")
 	var/list/dat = list()
 	dat += "\n \t [span_notice("<b>Total Reagents:</b> [reagents.total_volume]/[volume].")]</br>"
-	for(var/datum/reagent/R in reagents.reagent_list)
+	for(var/datum/reagent/R as in reagents.reagent_list)
 		var/percent = round(R.volume / max(0.01 , reagents.total_volume * 0.01),0.01)
 		if(R.scannable)
 			dat += "\n \t <b>[R]:</b> [R.volume]|[percent]%</br>"
@@ -157,7 +157,7 @@
 	var/list/dat = list()
 	dat += "\n \t [span_notice("<b>Total Reagents:</b> [inner.reagents.total_volume]/[inner.volume].")]</br>"
 	if(length(inner.reagents.reagent_list) > 0)
-		for(var/datum/reagent/R in inner.reagents.reagent_list)
+		for(var/datum/reagent/R as in inner.reagents.reagent_list)
 			var/percent = round(R.volume / max(0.01 , inner.reagents.total_volume * 0.01),0.01)
 			if(R.scannable)
 				dat += "\n \t <b>[R]:</b> [R.volume]|[percent]%</br>"
