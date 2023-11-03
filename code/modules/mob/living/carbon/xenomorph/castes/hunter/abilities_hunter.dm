@@ -283,7 +283,7 @@
 
 /datum/action/xeno_action/activable/pounce/on_cooldown_finish()
 	owner.balloon_alert(owner, "Pounce ready")
-	playsound(owner, 'sound/effects/xeno_newlarva.ogg', 25, 0, 1)
+	owner.playsound_local(owner, 'sound/effects/xeno_newlarva.ogg', 25, 0, 1)
 	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	xeno_owner.usedPounce = FALSE
 	return ..()
