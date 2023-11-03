@@ -95,17 +95,7 @@
 /mob/living/carbon/xenomorph/update_fire()
 	if(!fire_overlay)
 		return
-	if(!on_fire)
-		fire_overlay.icon_state = ""
-		return
-	if(HAS_TRAIT(src, TRAIT_BURROWED))
-		fire_overlay.icon_state = ""
-		return
-	fire_overlay.layer = layer + 0.4
-	if(mob_size!= MOB_SIZE_BIG || ((!initial(pixel_y) || lying_angle) && !resting && !IsSleeping()))
-		fire_overlay.icon_state = "alien_fire"
-	else
-		fire_overlay.icon_state = "alien_fire_lying"
+	fire_overlay.update_icon()
 
 /mob/living/carbon/xenomorph/proc/apply_alpha_channel(image/I)
 	return I
@@ -153,15 +143,37 @@
 	vis_flags = VIS_INHERIT_DIR
 
 /atom/movable/vis_obj/xeno_wounds/fire_overlay
-	icon = 'icons/Xeno/64x64_Xeno_overlays.dmi'
+	///The xeno this belongs to
+	var/mob/living/carbon/xenomorph/owner
 
-/atom/movable/vis_obj/xeno_wounds/fire_overlay/Initialize(mapload, new_icon)
+/atom/movable/vis_obj/xeno_wounds/fire_overlay/Initialize(mapload, new_owner)
 	. = ..()
-	if(new_icon)
-		icon = new_icon
+	owner = new_owner
+	if(!owner)
+		return
+	icon = owner.icon
 	update_icon()
+
+/atom/movable/vis_obj/xeno_wounds/fire_overlay/Destroy()
+	owner = null
+	return ..()
+
+/atom/movable/vis_obj/xeno_wounds/fire_overlay/update_icon_state()
+	if(!owner.on_fire)
+		icon_state = ""
+		return
+	if(HAS_TRAIT(owner, TRAIT_BURROWED))
+		icon_state = ""
+		return
+	layer = layer + 0.4
+	if((!owner.lying_angle && !owner.resting && !owner.IsSleeping()))
+		icon_state = "alien_fire"
+	else
+		icon_state = "alien_fire_lying"
 
 /atom/movable/vis_obj/xeno_wounds/fire_overlay/update_overlays()
 	. = ..()
+	if(!owner.on_fire || HAS_TRAIT(owner, TRAIT_BURROWED))
+		return
 	. += emissive_appearance(icon, icon_state)
 

@@ -45,7 +45,7 @@
 	wound_overlay = new(null, src)
 	vis_contents += wound_overlay
 
-	fire_overlay = new(null, icon)
+	fire_overlay = new(null, src)
 	vis_contents += fire_overlay
 
 	generate_nicknumber()
