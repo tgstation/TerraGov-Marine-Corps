@@ -2046,6 +2046,11 @@ FACTORY
 	contains = list(/obj/item/factory_refill/sadar_he_refill)
 	cost = 500
 
+/datum/supply_packs/factory/sadar_refill_he_unguided
+	name = "SADAR HE unguided missile assembly refill"
+	contains = list(/obj/item/factory_refill/sadar_he_unguided_refill)
+	cost = 500
+
 /datum/supply_packs/factory/sadar_refill_ap
 	name = "SADAR AP missile assembly refill"
 	contains = list(/obj/item/factory_refill/sadar_ap_refill)
@@ -2099,6 +2104,12 @@ FACTORY
 /datum/supply_packs/factory/smartgun_magazine_refill
 	name = "SG-29 ammo drum parts refill"
 	contains = list(/obj/item/factory_refill/smartgunner_machinegun_magazine_refill)
+	cost = 250
+
+
+/datum/supply_packs/factory/smartgun_targetrifle_refill
+	name = "SG-62 ammo drum parts refill"
+	contains = list(/datum/supply_packs/factory/smartgun_magazine_refill)
 	cost = 250
 
 /datum/supply_packs/factory/autosniper_magazine_refill
