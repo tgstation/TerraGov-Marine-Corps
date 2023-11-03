@@ -1,0 +1,814 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"ax" = (
+/obj/structure/dropship_piece/two/corner/middleright,
+/turf/template_noop,
+/area/shuttle/dropship/normandy)
+"aD" = (
+/turf/closed/shuttle/dropship2/engine_sidealt{
+	dir = 4
+	},
+/area/shuttle/dropship/normandy)
+"bc" = (
+/turf/closed/shuttle/dropship2/finright{
+	dir = 1
+	},
+/area/shuttle/dropship/normandy)
+"bg" = (
+/turf/closed/shuttle/dropship2/engine_sidealt{
+	dir = 8
+	},
+/area/shuttle/dropship/normandy)
+"bq" = (
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 8
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/shuttle/dropship/floor,
+/area/shuttle/dropship/normandy)
+"cE" = (
+/turf/closed/shuttle/dropship2/aisle{
+	dir = 4
+	},
+/area/shuttle/dropship/normandy)
+"cN" = (
+/turf/template_noop,
+/area/template_noop)
+"cX" = (
+/turf/closed/shuttle/dropship2/engine_sidealt{
+	dir = 1
+	},
+/area/shuttle/dropship/normandy)
+"ev" = (
+/obj/item/radio/intercom/dropship{
+	pixel_x = 21;
+	pixel_y = 16
+	},
+/turf/open/shuttle/dropship/floor,
+/area/shuttle/dropship/normandy)
+"ex" = (
+/turf/closed/shuttle/dropship2/edge/alt,
+/area/shuttle/dropship/normandy)
+"eZ" = (
+/turf/closed/shuttle/dropship2/finleft{
+	dir = 1
+	},
+/area/shuttle/dropship/normandy)
+"fa" = (
+/turf/closed/shuttle/dropship2/engineone/alt{
+	dir = 1
+	},
+/area/shuttle/dropship/normandy)
+"fh" = (
+/obj/structure/dropship_piece/two/corner/middleleft,
+/turf/template_noop,
+/area/shuttle/dropship/normandy)
+"fr" = (
+/obj/machinery/door/poddoor/shutters/transit{
+	dir = 1
+	},
+/turf/open/shuttle/dropship/floor,
+/area/shuttle/dropship/normandy)
+"fP" = (
+/turf/closed/shuttle/dropship2/window,
+/area/shuttle/dropship/normandy)
+"gt" = (
+/turf/closed/shuttle/dropship2/enginethree{
+	dir = 1
+	},
+/area/shuttle/dropship/normandy)
+"hk" = (
+/obj/structure/dropship_piece/two/front{
+	dir = 1
+	},
+/turf/template_noop,
+/area/shuttle/dropship/normandy)
+"hV" = (
+/obj/structure/dropship_piece/two/engine/righttop,
+/turf/template_noop,
+/area/shuttle/dropship/normandy)
+"jc" = (
+/obj/item/phone{
+	pixel_x = -11;
+	pixel_y = 14
+	},
+/obj/machinery/computer/dropship_weapons/dropship2,
+/turf/closed/shuttle/dropship2/panel{
+	opacity = 0;
+	dir = 4
+	},
+/area/shuttle/dropship/normandy)
+"jo" = (
+/obj/structure/dropship_piece/two/wing/right/bottom,
+/obj/effect/attach_point/weapon/dropship2,
+/turf/template_noop,
+/area/shuttle/dropship/normandy)
+"jG" = (
+/turf/closed/shuttle/dropship2/enginetwo{
+	dir = 1
+	},
+/area/shuttle/dropship/normandy)
+"jY" = (
+/obj/structure/dropship_piece/two/rearwing/righttop,
+/turf/template_noop,
+/area/shuttle/dropship/normandy)
+"kh" = (
+/obj/docking_port/mobile/marine_dropship/two,
+/turf/closed/shuttle/dropship2/aisle{
+	dir = 4
+	},
+/area/shuttle/dropship/normandy)
+"kD" = (
+/turf/closed/shuttle/dropship2/edge/alt{
+	dir = 1
+	},
+/area/shuttle/dropship/normandy)
+"kZ" = (
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 8
+	},
+/obj/machinery/camera/autoname/mainship/dropship_two{
+	dir = 8
+	},
+/turf/open/shuttle/dropship/floor,
+/area/shuttle/dropship/normandy)
+"lp" = (
+/obj/structure/dropship_piece/two/rearwing/lefttop,
+/turf/template_noop,
+/area/shuttle/dropship/normandy)
+"lq" = (
+/obj/structure/dropship_piece/two/rearwing/rightrrbottom,
+/turf/template_noop,
+/area/shuttle/dropship/normandy)
+"lY" = (
+/obj/structure/dropship_piece/two/wing/left/bottom,
+/obj/effect/attach_point/weapon/dropship2,
+/turf/template_noop,
+/area/shuttle/dropship/normandy)
+"my" = (
+/turf/closed/shuttle/dropship2/engineone/alt{
+	dir = 4
+	},
+/area/shuttle/dropship/normandy)
+"nf" = (
+/turf/closed/shuttle/dropship2/enginethree,
+/area/shuttle/dropship/normandy)
+"ns" = (
+/obj/machinery/door/poddoor/shutters/transit{
+	dir = 8
+	},
+/obj/machinery/door/airlock/dropship_hatch/left/two,
+/turf/open/shuttle/dropship/floor,
+/area/shuttle/dropship/normandy)
+"nT" = (
+/obj/structure/dropship_piece/two/engine/leftbottom,
+/turf/template_noop,
+/area/shuttle/dropship/normandy)
+"oF" = (
+/obj/machinery/telecomms/relay/preset/telecomms/onboard,
+/turf/closed/shuttle/dropship2/aisle{
+	dir = 4
+	},
+/area/shuttle/dropship/normandy)
+"pm" = (
+/obj/machinery/computer/shuttle/marine_dropship/two{
+	icon_state = "console"
+	},
+/turf/closed/shuttle/dropship2/panel{
+	opacity = 0;
+	dir = 1
+	},
+/area/shuttle/dropship/normandy)
+"pH" = (
+/turf/closed/shuttle/dropship2/finleft,
+/area/shuttle/dropship/normandy)
+"pO" = (
+/obj/structure/bed/chair/dropship/passenger,
+/turf/open/shuttle/dropship/floor,
+/area/shuttle/dropship/normandy)
+"rC" = (
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 4
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/shuttle/dropship/floor,
+/area/shuttle/dropship/normandy)
+"rJ" = (
+/turf/closed/shuttle/dropship2/cornersalt,
+/area/shuttle/dropship/normandy)
+"rL" = (
+/obj/structure/dropship_piece/two/wing/right/top,
+/turf/template_noop,
+/area/shuttle/dropship/normandy)
+"sx" = (
+/obj/item/radio/intercom/dropship/normandy,
+/turf/open/shuttle/dropship/seven,
+/area/shuttle/dropship/normandy)
+"tn" = (
+/obj/structure/dropship_piece/two/weapon/rightleft,
+/obj/effect/attach_point/electronics/dropship2,
+/turf/template_noop,
+/area/shuttle/dropship/normandy)
+"tD" = (
+/obj/structure/dropship_piece/two/weapon/leftleft{
+	dir = 1
+	},
+/obj/effect/attach_point/weapon/dropship2,
+/turf/template_noop,
+/area/shuttle/dropship/normandy)
+"tE" = (
+/turf/closed/shuttle/dropship2/glassthree{
+	opacity = 0
+	},
+/area/shuttle/dropship/normandy)
+"ur" = (
+/turf/closed/shuttle/dropship2/enginethree{
+	dir = 8
+	},
+/area/shuttle/dropship/normandy)
+"uK" = (
+/turf/closed/shuttle/dropship2/enginetwo{
+	dir = 8
+	},
+/area/shuttle/dropship/normandy)
+"uL" = (
+/turf/closed/shuttle/dropship2/finright{
+	dir = 8
+	},
+/area/shuttle/dropship/normandy)
+"uU" = (
+/turf/closed/shuttle/dropship2/cornersalt{
+	dir = 1
+	},
+/area/shuttle/dropship/normandy)
+"ve" = (
+/turf/closed/shuttle/dropship2/engineone/alt,
+/area/shuttle/dropship/normandy)
+"vw" = (
+/obj/structure/dropship_piece/two/engine/rightbottom,
+/turf/template_noop,
+/area/shuttle/dropship/normandy)
+"wt" = (
+/turf/closed/shuttle/dropship2/edge{
+	dir = 8
+	},
+/area/shuttle/dropship/normandy)
+"yt" = (
+/turf/closed/shuttle/dropship2/aisle,
+/area/shuttle/dropship/normandy)
+"zl" = (
+/turf/closed/shuttle/dropship2/enginethree{
+	dir = 4
+	},
+/area/shuttle/dropship/normandy)
+"zF" = (
+/turf/closed/shuttle/dropship2/finright,
+/area/shuttle/dropship/normandy)
+"Ag" = (
+/obj/effect/attach_point/crew_weapon/dropship2,
+/turf/open/shuttle/dropship/floor,
+/area/shuttle/dropship/normandy)
+"AZ" = (
+/obj/structure/dropship_piece/two/wing/left/top,
+/turf/template_noop,
+/area/shuttle/dropship/normandy)
+"Bn" = (
+/obj/structure/dropship_piece/two/cockpit/right{
+	dir = 1
+	},
+/turf/template_noop,
+/area/shuttle/dropship/normandy)
+"Br" = (
+/turf/closed/shuttle/dropship2/edge{
+	dir = 4
+	},
+/area/shuttle/dropship/normandy)
+"Cd" = (
+/turf/open/shuttle/dropship/three,
+/area/shuttle/dropship/normandy)
+"Dw" = (
+/turf/closed/shuttle/dropship2/aisle{
+	dir = 8
+	},
+/area/shuttle/dropship/normandy)
+"EF" = (
+/turf/closed/shuttle/dropship2/interiormisc{
+	dir = 8
+	},
+/area/shuttle/dropship/normandy)
+"EH" = (
+/turf/closed/shuttle/dropship2/enginetwo,
+/area/shuttle/dropship/normandy)
+"ET" = (
+/turf/closed/shuttle/dropship2/window{
+	dir = 8
+	},
+/area/shuttle/dropship/normandy)
+"EW" = (
+/turf/closed/shuttle/dropship2/engine_sidealt,
+/area/shuttle/dropship/normandy)
+"FA" = (
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 4
+	},
+/obj/machinery/camera/autoname/mainship/dropship_two{
+	dir = 4
+	},
+/turf/open/shuttle/dropship/floor,
+/area/shuttle/dropship/normandy)
+"FO" = (
+/turf/open/shuttle/dropship/five,
+/area/shuttle/dropship/normandy)
+"GC" = (
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 4
+	},
+/turf/open/shuttle/dropship/floor,
+/area/shuttle/dropship/normandy)
+"Hf" = (
+/obj/structure/dropship_piece/two/front/right{
+	dir = 1
+	},
+/turf/template_noop,
+/area/shuttle/dropship/normandy)
+"HR" = (
+/obj/structure/dropship_piece/two/engine/lefttop,
+/turf/template_noop,
+/area/shuttle/dropship/normandy)
+"HT" = (
+/obj/structure/dropship_piece/two/rearwing/rightrbottom,
+/turf/template_noop,
+/area/shuttle/dropship/normandy)
+"HU" = (
+/obj/structure/dropship_piece/two/rearwing/leftbottom,
+/turf/template_noop,
+/area/shuttle/dropship/normandy)
+"HY" = (
+/turf/open/shuttle/dropship/four,
+/area/shuttle/dropship/normandy)
+"IC" = (
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 4
+	},
+/obj/structure/closet/walllocker/hydrant/extinguisher{
+	dir = 4
+	},
+/turf/open/shuttle/dropship/floor,
+/area/shuttle/dropship/normandy)
+"Km" = (
+/obj/item/radio/intercom/dropship/normandy,
+/turf/open/shuttle/dropship/six,
+/area/shuttle/dropship/normandy)
+"KP" = (
+/obj/structure/dropship_piece/two/weapon/leftright,
+/obj/effect/attach_point/electronics/dropship2,
+/turf/template_noop,
+/area/shuttle/dropship/normandy)
+"KQ" = (
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 8
+	},
+/obj/machinery/vending/nanomed{
+	dir = 8
+	},
+/turf/open/shuttle/dropship/floor,
+/area/shuttle/dropship/normandy)
+"Mh" = (
+/obj/machinery/door/poddoor/shutters/transit{
+	dir = 1
+	},
+/obj/machinery/door/airlock/multi_tile/mainship/dropshiprear/ds2,
+/turf/open/shuttle/dropship/floor,
+/area/shuttle/dropship/normandy)
+"Ne" = (
+/obj/structure/dropship_piece/two/weapon/rightright{
+	dir = 1
+	},
+/obj/effect/attach_point/weapon/dropship2,
+/turf/template_noop,
+/area/shuttle/dropship/normandy)
+"Ns" = (
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 8
+	},
+/obj/structure/closet/walllocker/hydrant/extinguisher{
+	dir = 8
+	},
+/turf/open/shuttle/dropship/floor,
+/area/shuttle/dropship/normandy)
+"NN" = (
+/turf/closed/shuttle/dropship2/interiorwindow{
+	dir = 8;
+	opacity = 0
+	},
+/area/shuttle/dropship/normandy)
+"Od" = (
+/turf/closed/shuttle/dropship2/edge,
+/area/shuttle/dropship/normandy)
+"Pc" = (
+/turf/closed/shuttle/dropship2/cornersalt2{
+	dir = 1
+	},
+/area/shuttle/dropship/normandy)
+"Pz" = (
+/obj/structure/dropship_piece/two/rearwing/leftlbottom,
+/turf/template_noop,
+/area/shuttle/dropship/normandy)
+"PH" = (
+/obj/machinery/computer/security/dropship/two,
+/turf/closed/shuttle/dropship2/panel{
+	opacity = 0
+	},
+/area/shuttle/dropship/normandy)
+"PI" = (
+/turf/closed/shuttle/dropship2/enginetwo{
+	dir = 4
+	},
+/area/shuttle/dropship/normandy)
+"Qp" = (
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 4
+	},
+/obj/machinery/vending/nanomed{
+	dir = 4
+	},
+/turf/open/shuttle/dropship/floor,
+/area/shuttle/dropship/normandy)
+"QD" = (
+/obj/machinery/door/airlock/hatch/cockpit/two,
+/turf/open/shuttle/dropship/floor,
+/area/shuttle/dropship/normandy)
+"QV" = (
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 4
+	},
+/obj/machinery/vending/nanomed{
+	dir = 4
+	},
+/obj/machinery/camera/autoname/mainship/dropship_two{
+	dir = 4
+	},
+/turf/open/shuttle/dropship/floor,
+/area/shuttle/dropship/normandy)
+"QY" = (
+/turf/closed/shuttle/dropship2/cornersalt2,
+/area/shuttle/dropship/normandy)
+"RG" = (
+/turf/closed/shuttle/dropship2/glassfour{
+	opacity = 0
+	},
+/area/shuttle/dropship/normandy)
+"RK" = (
+/turf/closed/shuttle/dropship2/engineone/alt{
+	dir = 8
+	},
+/area/shuttle/dropship/normandy)
+"RP" = (
+/turf/closed/shuttle/dropship2/finright{
+	dir = 4
+	},
+/area/shuttle/dropship/normandy)
+"Te" = (
+/obj/structure/dropship_piece/two/rearwing/rightbottom,
+/turf/template_noop,
+/area/shuttle/dropship/normandy)
+"Tk" = (
+/turf/open/shuttle/dropship/eight,
+/area/shuttle/dropship/normandy)
+"Tw" = (
+/turf/closed/shuttle/dropship2/finleft{
+	dir = 8
+	},
+/area/shuttle/dropship/normandy)
+"Vg" = (
+/obj/structure/dropship_piece/two/front/left{
+	dir = 1
+	},
+/turf/template_noop,
+/area/shuttle/dropship/normandy)
+"VB" = (
+/obj/structure/bed/chair/dropship/pilot{
+	dir = 1
+	},
+/obj/machinery/light,
+/turf/open/shuttle/dropship/floor,
+/area/shuttle/dropship/normandy)
+"VE" = (
+/turf/closed/shuttle/dropship2/interiormisc,
+/area/shuttle/dropship/normandy)
+"Wd" = (
+/obj/machinery/door/poddoor/shutters/transit,
+/obj/machinery/door/airlock/dropship_hatch/right/two,
+/turf/open/shuttle/dropship/floor,
+/area/shuttle/dropship/normandy)
+"WO" = (
+/obj/structure/bed/chair/dropship/pilot{
+	dir = 1
+	},
+/obj/machinery/camera/autoname/mainship/dropship_two,
+/turf/open/shuttle/dropship/floor,
+/area/shuttle/dropship/normandy)
+"WQ" = (
+/obj/machinery/holopad,
+/obj/item/radio/intercom/dropship/normandy,
+/turf/open/shuttle/dropship/five,
+/area/shuttle/dropship/normandy)
+"Xk" = (
+/obj/structure/dropship_piece/two/rearwing/leftllbottom,
+/turf/template_noop,
+/area/shuttle/dropship/normandy)
+"XA" = (
+/turf/closed/shuttle/dropship2/window{
+	dir = 4
+	},
+/area/shuttle/dropship/normandy)
+"XL" = (
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 8
+	},
+/turf/open/shuttle/dropship/floor,
+/area/shuttle/dropship/normandy)
+"XN" = (
+/turf/closed/shuttle/dropship2/interiorwindow{
+	opacity = 0
+	},
+/area/shuttle/dropship/normandy)
+"Yi" = (
+/turf/closed/shuttle/dropship2/interiormisc{
+	dir = 4
+	},
+/area/shuttle/dropship/normandy)
+"YR" = (
+/turf/open/shuttle/dropship/ten,
+/area/shuttle/dropship/normandy)
+"Zh" = (
+/turf/closed/shuttle/dropship2/finleft{
+	dir = 4
+	},
+/area/shuttle/dropship/normandy)
+"Zm" = (
+/obj/structure/dropship_piece/two/cockpit/left{
+	dir = 1
+	},
+/turf/template_noop,
+/area/shuttle/dropship/normandy)
+"ZE" = (
+/turf/open/shuttle/dropship/floor,
+/area/shuttle/dropship/normandy)
+
+(1,1,1) = {"
+cN
+cN
+cN
+cN
+cN
+AZ
+Tw
+lY
+cN
+cN
+cN
+cN
+cN
+cN
+HR
+ve
+nf
+EH
+nT
+cN
+cN
+"}
+(2,1,1) = {"
+cN
+cN
+cN
+tD
+QY
+Zh
+eZ
+pH
+ns
+ns
+kD
+Br
+kD
+fh
+hV
+fa
+gt
+uK
+vw
+cN
+Xk
+"}
+(3,1,1) = {"
+cN
+cN
+cN
+KP
+Od
+GC
+FA
+GC
+ZE
+ZE
+GC
+GC
+GC
+rJ
+kD
+kD
+EW
+aD
+fh
+cN
+Pz
+"}
+(4,1,1) = {"
+Vg
+Zm
+tE
+XN
+Od
+Km
+Cd
+Cd
+Cd
+Cd
+Cd
+Cd
+HY
+GC
+QV
+IC
+rC
+GC
+VE
+lp
+HU
+"}
+(5,1,1) = {"
+hk
+fP
+PH
+VB
+Yi
+FO
+bq
+XL
+KQ
+Ns
+XL
+bq
+YR
+Cd
+Cd
+Cd
+Cd
+Cd
+Mh
+cN
+cN
+"}
+(6,1,1) = {"
+hk
+XA
+pm
+ev
+QD
+FO
+yt
+oF
+cE
+cE
+kh
+Dw
+WQ
+pO
+Ag
+ZE
+ZE
+ZE
+fr
+cN
+cN
+"}
+(7,1,1) = {"
+hk
+ET
+jc
+WO
+EF
+FO
+rC
+GC
+Qp
+IC
+GC
+rC
+YR
+Cd
+Cd
+Cd
+Cd
+Cd
+fr
+cN
+cN
+"}
+(8,1,1) = {"
+Hf
+Bn
+RG
+NN
+Od
+sx
+Cd
+Cd
+Cd
+Cd
+Cd
+Cd
+Tk
+XL
+KQ
+Ns
+bq
+XL
+VE
+jY
+Te
+"}
+(9,1,1) = {"
+cN
+cN
+cN
+tn
+Od
+XL
+kZ
+XL
+ZE
+ZE
+XL
+XL
+XL
+uU
+ex
+ex
+cX
+bg
+ax
+cN
+HT
+"}
+(10,1,1) = {"
+cN
+cN
+cN
+Ne
+Pc
+RP
+bc
+zF
+Wd
+Wd
+ex
+wt
+ex
+ax
+HR
+my
+ur
+PI
+nT
+cN
+lq
+"}
+(11,1,1) = {"
+cN
+cN
+cN
+cN
+cN
+rL
+uL
+jo
+cN
+cN
+cN
+cN
+cN
+cN
+hV
+RK
+zl
+jG
+vw
+cN
+cN
+"}
