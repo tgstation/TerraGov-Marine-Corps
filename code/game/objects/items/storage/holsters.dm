@@ -301,7 +301,7 @@
 		"Ratcher Combat Robot" = 'icons/mob/species/robot/backpack.dmi',
 		)
 
-/obj/item/storage/holster/backholster/flamer/Initialize()
+/obj/item/storage/holster/backholster/flamer/Initialize(mapload)
 	. = ..()
 	tank = new
 	update_icon()
@@ -353,15 +353,23 @@
 	. = ..()
 	. += "[tank.current_rounds] units of fuel left!"
 
-///Retracts the flamer if we drop it
-/obj/item/storage/holster/backholster/flamer/proc/retract_flamer(mob/user)
-	if(linked_flamer.dropped(user))
-		handle_item_insertion(linked_flamer, FALSE, user)
-
-/obj/item/storage/holster/backholster/flamer/full/Initialize()
+/obj/item/storage/holster/backholster/flamer/full/Initialize(mapload)
 	. = ..()
 	linked_flamer = new /obj/item/weapon/gun/flamer/big_flamer/marinestandard/engineer(src)
+	RegisterSignal(linked_flamer, COMSIG_ITEM_REMOVED_INVENTORY, PROC_REF(begin_retract))
 	INVOKE_ASYNC(src, PROC_REF(handle_item_insertion), linked_flamer)
+
+///Just holds a delay before retracting to storage
+/obj/item/storage/holster/backholster/flamer/proc/begin_retract(obj/flamethrower, mob/user)
+	SIGNAL_HANDLER
+	addtimer(CALLBACK(src, PROC_REF(retract_flamer), flamethrower, user), 0.3 SECONDS)
+
+///Retracts the flamer if we drop it
+/obj/item/storage/holster/backholster/flamer/proc/retract_flamer(obj/item/flamethrower, mob/user)
+	if(flamethrower.flags_item & IN_INVENTORY)
+		return
+	if(can_be_inserted(flamethrower, FALSE))
+		handle_item_insertion(flamethrower, TRUE)
 
 //one slot holsters
 

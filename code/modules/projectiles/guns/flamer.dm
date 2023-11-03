@@ -333,13 +333,12 @@
 		/obj/item/ammo_magazine/flamer_tank/large/X,
 	)
 	attachable_allowed = list(
-		/obj/item/attachable/magnetic_harness/unremovable,
 		/obj/item/attachable/stock/t84stock,
 		/obj/item/attachable/flamer_nozzle,
 		/obj/item/attachable/flamer_nozzle/wide,
 		/obj/item/attachable/flamer_nozzle/long,
 	)
-	starting_attachment_types = list(/obj/item/attachable/flamer_nozzle, /obj/item/attachable/stock/t84stock, /obj/item/attachable/magnetic_harness/unremovable)
+	starting_attachment_types = list(/obj/item/attachable/flamer_nozzle, /obj/item/attachable/stock/t84stock)
 
 /obj/item/weapon/gun/flamer/mini_flamer
 	name = "mini flamethrower"

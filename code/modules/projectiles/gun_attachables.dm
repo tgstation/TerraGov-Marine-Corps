@@ -691,9 +691,6 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 		return
 	QDEL_NULL(reequip_component)
 
-/obj/item/attachable/magnetic_harness/unremovable
-	flags_attach_features = null
-
 /obj/item/attachable/scope
 	name = "rail scope"
 	icon_state = "sniperscope"
