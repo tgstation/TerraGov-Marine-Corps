@@ -287,3 +287,14 @@
 /datum/hive_status/on_queen_death()
 	. = ..()
 	unforbid_all_castes()
+
+///Signal handler to tell the hive to check for siloless in MINIMUM_TIME_SILO_LESS_COLLAPSE
+/datum/hive_status/normal/proc/set_siloless_collapse_timer()
+	SIGNAL_HANDLER
+	UnregisterSignal(SSdcs, list(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE, COMSIG_GLOB_OPEN_SHUTTERS_EARLY))
+	hive_flags |= HIVE_CAN_COLLAPSE_FROM_SILO
+	addtimer(CALLBACK(SSticker.mode, TYPE_PROC_REF(/datum/game_mode, update_silo_death_timer), src), MINIMUM_TIME_SILO_LESS_COLLAPSE)
+
+/datum/hive_status/normal/on_shuttle_hijack(obj/docking_port/mobile/marine_dropship/hijacked_ship)
+	SSticker.mode.update_silo_death_timer(src)
+	return ..()

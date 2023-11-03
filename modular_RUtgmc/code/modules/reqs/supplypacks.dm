@@ -18,6 +18,11 @@
 	contains = list(/obj/item/weapon/gun/smg/vector)
 	cost = 200
 
+/datum/supply_packs/weapons/ammo_magazine/vector
+	name = "Vector drum magazine"
+	contains = list(/obj/item/ammo_magazine/smg/vector)
+	cost = 5
+
 /datum/supply_packs/weapons/valihalberd
 	name = "VAL-HAL-A"
 	contains = list(/obj/item/weapon/twohanded/glaive/harvester)

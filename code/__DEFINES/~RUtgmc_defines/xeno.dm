@@ -48,6 +48,7 @@ GLOBAL_LIST_INIT(resin_images_list, list(
 		))
 
 GLOBAL_LIST_INIT(panther_toxin_type_list, list(
+		/datum/reagent/toxin/xeno_ozelomelyn,
 		/datum/reagent/toxin/xeno_hemodile,
 		/datum/reagent/toxin/xeno_transvitox,
 		/datum/reagent/toxin/xeno_neurotoxin,
