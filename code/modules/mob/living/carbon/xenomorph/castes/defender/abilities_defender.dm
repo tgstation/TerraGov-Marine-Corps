@@ -156,7 +156,7 @@
 	RegisterSignal(X, COMSIG_XENO_LIVING_THROW_HIT, PROC_REF(mob_hit))
 	RegisterSignal(X, COMSIG_MOVABLE_POST_THROW, PROC_REF(charge_complete))
 
-	X.throw_at(A, range, 70, X)
+	X.throw_at(A, range, 5, X)
 
 	add_cooldown()
 
