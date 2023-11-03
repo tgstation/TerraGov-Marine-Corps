@@ -516,7 +516,7 @@
 /datum/action/xeno_action/vampirism/clean_action()
 	QDEL_NULL(particle_holder)
 	timer_ref = null
-	. = ..()
+	return ..()
 
 /datum/action/xeno_action/vampirism/update_button_icon()
 	var/mob/living/carbon/xenomorph/xeno = owner
