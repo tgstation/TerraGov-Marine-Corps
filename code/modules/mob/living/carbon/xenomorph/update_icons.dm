@@ -155,5 +155,13 @@
 /atom/movable/vis_obj/xeno_wounds/fire_overlay
 	icon = 'icons/Xeno/64x64_Xeno_overlays.dmi'
 
-/atom/movable/vis_obj/xeno_wounds/fire_overlay/small
-	icon = 'icons/Xeno/Effects.dmi'
+/atom/movable/vis_obj/xeno_wounds/fire_overlay/Initialize(mapload, new_icon)
+	. = ..()
+	if(new_icon)
+		icon = new_icon
+	update_icon()
+
+/atom/movable/vis_obj/xeno_wounds/fire_overlay/update_overlays()
+	. = ..()
+	. += emissive_appearance(icon, icon_state)
+
