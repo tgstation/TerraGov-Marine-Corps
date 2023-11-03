@@ -14,6 +14,8 @@
 	var/user_old_y = 0
 	///Stores user old move resist and apply on unset interaction
 	var/user_old_move_resist
+	///If the gun has different sprites for being anchored.
+	var/has_anchored_sprite = FALSE
 
 ///generates the icon based on how much ammo it has.
 /obj/machinery/deployable/mounted/update_icon_state(mob/user)
@@ -23,6 +25,12 @@
 		icon_state = default_icon_state + "_e"
 	else
 		icon_state = default_icon_state
+
+	if(has_anchored_sprite)
+		if(anchored)
+			icon_state = default_icon_state + "_anchored"
+		else
+			icon_state = default_icon_state
 
 	hud_set_gun_ammo()
 
@@ -333,5 +341,6 @@
 			return
 
 	anchored = !anchored
+	update_icon()
 
 	balloon_alert(user, "You [anchored ? "anchor" : "unanchor"] [src]")

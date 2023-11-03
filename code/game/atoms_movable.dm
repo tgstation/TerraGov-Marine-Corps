@@ -50,7 +50,7 @@
 	var/datum/component/orbiter/orbiting
 
 	/// Either FALSE, [EMISSIVE_BLOCK_GENERIC], or [EMISSIVE_BLOCK_UNIQUE]
-	var/blocks_emissive = FALSE
+	var/blocks_emissive = EMISSIVE_BLOCK_NONE
 	///Internal holder for emissive blocker object, do not use directly use blocks_emissive
 	var/atom/movable/emissive_blocker/em_block
 
@@ -80,17 +80,24 @@
 //===========================================================================
 /atom/movable/Initialize(mapload, ...)
 	. = ..()
-	switch(blocks_emissive)
-		if(EMISSIVE_BLOCK_GENERIC)
-			var/mutable_appearance/gen_emissive_blocker = mutable_appearance(icon, icon_state, plane = EMISSIVE_PLANE, alpha = src.alpha)
-			gen_emissive_blocker.color = GLOB.em_block_color
-			gen_emissive_blocker.dir = dir
-			gen_emissive_blocker.appearance_flags |= appearance_flags
-			add_overlay(list(gen_emissive_blocker))
-		if(EMISSIVE_BLOCK_UNIQUE)
+	// This one is incredible.
+	// `if (x) else { /* code */ }` is surprisingly fast, and it's faster than a switch, which is seemingly not a jump table.
+	// From what I can tell, a switch case checks every single branch individually, although sane, is slow in a hot proc like this.
+	// So, we make the most common `blocks_emissive` value, EMISSIVE_BLOCK_GENERIC, 0, getting to the fast else branch quickly.
+	// If it fails, then we can check over every value it can be (here, EMISSIVE_BLOCK_UNIQUE is the only one that matters).
+	// This saves several hundred milliseconds of init time.
+	if(blocks_emissive)
+		if(blocks_emissive == EMISSIVE_BLOCK_UNIQUE)
 			render_target = ref(src)
 			em_block = new(src, render_target)
 			add_overlay(list(em_block))
+	else
+		var/mutable_appearance/gen_emissive_blocker = mutable_appearance(icon, icon_state, plane = EMISSIVE_PLANE, alpha = src.alpha)
+		gen_emissive_blocker.color = GLOB.em_block_color
+		gen_emissive_blocker.dir = dir
+		gen_emissive_blocker.appearance_flags |= appearance_flags
+		add_overlay(list(gen_emissive_blocker))
+
 	if(opacity)
 		AddElement(/datum/element/light_blocking)
 	if(light_system == MOVABLE_LIGHT)
@@ -158,16 +165,21 @@
 
 ///Updates this movables emissive overlay
 /atom/movable/proc/update_emissive_block()
-	if(!blocks_emissive)
-		return
-	else if (blocks_emissive == EMISSIVE_BLOCK_GENERIC)
+	// This one is incredible.
+	// `if (x) else { /* code */ }` is surprisingly fast, and it's faster than a switch, which is seemingly not a jump table.
+	// From what I can tell, a switch case checks every single branch individually, although sane, is slow in a hot proc like this.
+	// So, we make the most common `blocks_emissive` value, EMISSIVE_BLOCK_GENERIC, 0, getting to the fast else branch quickly.
+	// If it fails, then we can check over every value it can be (here, EMISSIVE_BLOCK_UNIQUE is the only one that matters).
+	// This saves several hundred milliseconds of init time.
+	if(blocks_emissive)
+		if(blocks_emissive == EMISSIVE_BLOCK_UNIQUE)
+			if(!em_block)
+				render_target = ref(src)
+				em_block = new(src, render_target)
+			return em_block
+	else
 		var/mutable_appearance/gen_emissive_blocker = emissive_blocker(icon, icon_state, alpha = src.alpha, appearance_flags = src.appearance_flags)
 		gen_emissive_blocker.dir = dir
-	if(blocks_emissive == EMISSIVE_BLOCK_UNIQUE)
-		if(!em_block)
-			render_target = ref(src)
-			em_block = new(src, render_target)
-		return em_block
 
 /atom/movable/update_overlays()
 	. = ..()
@@ -299,7 +311,7 @@
 		return COMPONENT_BUMP_RESOLVED
 	. = ..()
 	if(throwing)
-		. = throw_impact(A)
+		. = !throw_impact(A)
 	if(QDELETED(A))
 		return
 	A.Bumped(src)
@@ -457,19 +469,16 @@
 			for(var/atom/movable/location AS in nested_locs)
 				LAZYORASSOCLIST(location.important_recursive_contents, channel, arrived.important_recursive_contents[channel])
 
-//called when src is thrown into hit_atom
+///called when src is thrown into hit_atom
 /atom/movable/proc/throw_impact(atom/hit_atom, speed, bounce = TRUE)
-	if(isliving(hit_atom))
-		var/mob/living/M = hit_atom
-		M.hitby(src, speed)
-
-	else
-		var/old_throw_source = throw_source
-		hit_atom.hitby(src, speed)
-		if(bounce && hit_atom.density)
+	var/hit_successful
+	var/old_throw_source = throw_source
+	hit_successful = hit_atom.hitby(src, speed)
+	if(hit_successful)
+		SEND_SIGNAL(src, COMSIG_MOVABLE_IMPACT, hit_atom)
+		if(bounce && hit_atom.density && !isliving(hit_atom))
 			INVOKE_NEXT_TICK(src, PROC_REF(throw_bounce), hit_atom, old_throw_source)
-
-	SEND_SIGNAL(src, COMSIG_MOVABLE_IMPACT, hit_atom)
+	return hit_successful //if the throw missed, it continues
 
 ///Bounces the AM off hit_atom
 /atom/movable/proc/throw_bounce(atom/hit_atom, turf/old_throw_source)

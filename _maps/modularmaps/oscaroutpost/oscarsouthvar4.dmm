@@ -653,7 +653,7 @@
 /turf/open/floor/grayscale/black,
 /area/oscar_outpost/village/abandonedbase)
 "mS" = (
-/obj/machinery/body_scanconsole{
+/obj/machinery/computer/body_scanconsole{
 	dir = 8
 	},
 /turf/open/floor/mainship/sterile/dark,

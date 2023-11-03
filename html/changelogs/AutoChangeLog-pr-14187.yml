@@ -1,5 +1,0 @@
-author: "Helg2"
-delete-after: True
-changes:
-  - bugfix: "You can now gain metal from ship tables without transforming them. They also won't transform upon construction now."
-  - bugfix: "Table frames no longer will teleport to nowhere upon using wood/rods on them."

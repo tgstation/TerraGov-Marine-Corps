@@ -7,6 +7,9 @@
 	use_power = IDLE_POWER_USE
 	density = TRUE
 	idle_power_usage = 2
+	light_range = 2
+	light_power = 0.5
+	light_color = LIGHT_COLOR_BLUE
 	///flags that we want to be shown when you interact with this table
 	var/minimap_flag = MINIMAP_FLAG_MARINE
 	///by default Zlevel 2, groundside is targetted
@@ -19,17 +22,31 @@
 /obj/machinery/cic_maptable/Initialize(mapload)
 	. = ..()
 	RegisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_MISSION_LOADED, PROC_REF(change_targeted_z))
+	update_icon()
 
 /obj/machinery/cic_maptable/Destroy()
 	map = null
 	return ..()
 
+/obj/machinery/cic_maptable/update_icon()
+	. = ..()
+	if(machine_stat & (BROKEN|DISABLED|NOPOWER))
+		set_light(0)
+	else
+		set_light(initial(light_range))
+
+/obj/machinery/cic_maptable/update_overlays()
+	. = ..()
+	if(machine_stat & (BROKEN|DISABLED|NOPOWER))
+		return
+	. += emissive_appearance(icon, "[initial(icon_state)]_emissive", alpha = src.alpha)
+
 /obj/machinery/cic_maptable/interact(mob/user)
 	. = ..()
 	if(.)
 		return
-	if(interact_checks())
-		return
+	if(interact_checks(user))
+		return TRUE
 	if(!map)
 		map = SSminimaps.fetch_minimap_object(targetted_zlevel, minimap_flag)
 	user.client.screen += map
@@ -78,6 +95,7 @@
 /obj/machinery/cic_maptable/no_flags
 	minimap_flag = NONE
 
+//Exactly the same but you can draw on the map
 /obj/machinery/cic_maptable/drawable
 	desc = "A table that displays a map of the current target location that also allows drawing onto it"
 	/// List of references to the tools we will be using to shape what the map looks like
@@ -142,8 +160,6 @@
 	for(var/atom/movable/screen/minimap_tool/tool AS in drawing_tools)
 		tool.zlevel = new_z
 		tool.set_zlevel(new_z, tool.minimap_flag)
-
-/////////////////////////////////////
 
 /obj/machinery/cic_maptable/drawable/big
 	icon = 'icons/Marine/mainship_props96.dmi'

@@ -103,8 +103,9 @@
 		"<span class='warning'>You're thrown violently from [movable_parent]!</span>")
 		rider.throw_at(target, 14, 5, movable_parent)
 
-
-///////Yes, I said humans. No, this won't end well...//////////
+// ***************************************
+// *********** Humans
+// ***************************************
 /datum/component/riding/creature/human
 	can_be_driven = FALSE
 
@@ -142,7 +143,6 @@
 	human_carrier.remove_movespeed_modifier(MOVESPEED_ID_HUMAN_CARRYING)
 	former_rider.density = TRUE
 	return ..()
-
 
 /// If the carrier gets knocked over, force the rider(s) off and see if someone got hurt
 /datum/component/riding/creature/human/proc/check_carrier_fall_over(mob/living/carbon/human/human_parent)
@@ -191,8 +191,9 @@
 	dismounted_rider.visible_message("<span class='warning'>[AM] pushes [dismounted_rider] off of [AM.p_them()]!</span>", \
 						"<span class='warning'>[AM] pushes you off of [AM.p_them()]!</span>")
 
-
-
+// ***************************************
+// *********** Simple Animals
+// ***************************************
 /datum/component/riding/creature/cow/handle_specials()
 	. = ..()
 	set_riding_offsets(RIDING_OFFSET_ALL, list(TEXT_NORTH = list(0, 8), TEXT_SOUTH = list(0, 8), TEXT_EAST = list(-2, 8), TEXT_WEST = list(2, 8)))
@@ -201,7 +202,6 @@
 	set_vehicle_dir_layer(EAST, OBJ_LAYER)
 	set_vehicle_dir_layer(WEST, OBJ_LAYER)
 
-
 /datum/component/riding/creature/bear/handle_specials()
 	. = ..()
 	set_riding_offsets(RIDING_OFFSET_ALL, list(TEXT_NORTH = list(1, 8), TEXT_SOUTH = list(1, 8), TEXT_EAST = list(-3, 6), TEXT_WEST = list(3, 6)))
@@ -209,7 +209,6 @@
 	set_vehicle_dir_layer(NORTH, OBJ_LAYER)
 	set_vehicle_dir_layer(EAST, ABOVE_MOB_LAYER)
 	set_vehicle_dir_layer(WEST, ABOVE_MOB_LAYER)
-
 
 /datum/component/riding/creature/carp
 	override_allow_spacemove = TRUE
@@ -222,6 +221,9 @@
 	set_vehicle_dir_layer(EAST, OBJ_LAYER)
 	set_vehicle_dir_layer(WEST, OBJ_LAYER)
 
+// ***************************************
+// *********** Crusher
+// ***************************************
 /datum/component/riding/creature/crusher
 	can_be_driven = FALSE
 
@@ -255,7 +257,6 @@
 	former_rider.density = TRUE
 	return ..()
 
-
 /// If the crusher gets knocked over, force the riding rounys off and see if someone got hurt
 /datum/component/riding/creature/crusher/proc/check_carrier_fall_over(mob/living/carbon/xenomorph/crusher/carrying_crusher)
 	SIGNAL_HANDLER
@@ -275,6 +276,9 @@
 	else if(riding_offsets["[RIDING_OFFSET_ALL]"])
 		. = riding_offsets["[RIDING_OFFSET_ALL]"]
 
+// ***************************************
+// *********** Widow
+// ***************************************
 /datum/component/riding/creature/widow
 	can_be_driven = FALSE
 

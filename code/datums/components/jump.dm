@@ -49,10 +49,11 @@
 ///Performs the jump
 /datum/component/jump/proc/do_jump(mob/living/jumper)
 	SIGNAL_HANDLER
-	if(jumper.incapacitated(TRUE))
-		return
-
 	if(TIMER_COOLDOWN_CHECK(jumper, JUMP_COMPONENT_COOLDOWN))
+		return
+	if(jumper.buckled)
+		return
+	if(jumper.incapacitated())
 		return
 
 	if(stamina_cost && (jumper.getStaminaLoss() > -stamina_cost))

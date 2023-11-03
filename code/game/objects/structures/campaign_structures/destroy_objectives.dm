@@ -13,6 +13,9 @@
 /obj/structure/campaign_objective/destruction_objective/plastique_act()
 	qdel(src)
 
+/obj/structure/campaign_objective/destruction_objective/plastique_time_mod(time)
+	return max(time, 30)
+
 //Howitzer
 /obj/effect/landmark/campaign_structure/howitzer_objective
 	name = "howitzer objective"
@@ -197,6 +200,25 @@
 	var/image/new_overlay = image(icon, src, "[icon_state]_overlay", ABOVE_MOB_LAYER, dir)
 	. += new_overlay
 
+//NT base
+/obj/effect/landmark/campaign_structure/nt_pod
+	name = "Mysterious pod"
+	icon = 'icons/obj/structures/campaign/tall_structures.dmi'
+	icon_state = "nt_pod"
+	mission_types = list(/datum/campaign_mission/destroy_mission/base_rescue)
+	spawn_object = /obj/structure/campaign_objective/destruction_objective/nt_pod
+
+/obj/structure/campaign_objective/destruction_objective/nt_pod
+	name = "Mysterious pod"
+	desc = "A large sealed pod, completely lacking any identifying markings. Who knows what's in it?."
+	icon = 'icons/obj/structures/campaign/tall_structures.dmi'
+	icon_state = "nt_pod"
+	layer = ABOVE_MOB_LAYER
+
+/obj/structure/campaign_objective/destruction_objective/nt_pod/Destroy()
+	playsound(loc, 'sound/voice/predalien_death.ogg', 75, 0)
+	return ..()
+
 //teleporter core
 /obj/effect/landmark/campaign_structure/bluespace_core
 	name = "Bluespace Core objective"
@@ -259,3 +281,56 @@
 		change_status(BLUESPACE_CORE_UNSTABLE)
 	else if(status == BLUESPACE_CORE_UNSTABLE)
 		change_status(BLUESPACE_CORE_BROKEN)
+
+//airbase
+/obj/structure/prop/som_fighter
+	name = "\improper Harbinger"
+	desc = "A state of the art Harbinger class fighter. The premier fighter for SOM forces in space and atmosphere, bristling with high tech systems and weapons."
+	icon = 'icons/Marine/mainship_props96.dmi'
+	icon_state = "SOM_fighter"
+	pixel_x = -33
+	pixel_y = -10
+	density = TRUE
+	allow_pass_flags = PASS_AIR
+
+/obj/effect/landmark/campaign_structure/harbinger
+	name = "\improper Harbinger"
+	icon = 'icons/Marine/mainship_props96.dmi'
+	icon_state = "SOM_fighter"
+	pixel_x = -33
+	pixel_y = -10
+	mission_types = list(/datum/campaign_mission/destroy_mission/airbase)
+	spawn_object = /obj/structure/campaign_objective/destruction_objective/harbinger
+
+/obj/structure/campaign_objective/destruction_objective/harbinger
+	name = "\improper Harbinger"
+	desc = "A state of the art harbinger class fighter. The premier fighter for SOM forces in space and atmosphere, bristling with high tech systems and weapons."
+	icon = 'icons/Marine/mainship_props96.dmi'
+	icon_state = "SOM_fighter"
+	pixel_x = -33
+	pixel_y = -10
+	bound_height = 2
+	bound_width = 3
+	bound_x = -32
+	layer = ABOVE_MOB_LAYER
+
+/obj/effect/landmark/campaign_structure/viper
+	name = "\improper Viper"
+	icon = 'icons/Marine/mainship_props96.dmi'
+	icon_state = "fighter_loaded"
+	pixel_x = -33
+	pixel_y = -10
+	mission_types = list(/datum/campaign_mission/destroy_mission/airbase/som)
+	spawn_object = /obj/structure/campaign_objective/destruction_objective/viper
+
+/obj/structure/campaign_objective/destruction_objective/viper
+	name = "\improper Viper"
+	desc = "A viper MK.III fightcraft. Effective in atmosphere and space, the viper has been a reliable and versatile workhorse in the TerraGov navy for decades."
+	icon = 'icons/Marine/mainship_props96.dmi'
+	icon_state = "fighter_loaded"
+	pixel_x = -33
+	pixel_y = -10
+	bound_height = 2
+	bound_width = 3
+	bound_x = -32
+	layer = ABOVE_MOB_LAYER

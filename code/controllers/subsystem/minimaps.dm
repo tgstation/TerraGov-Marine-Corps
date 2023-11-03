@@ -477,9 +477,13 @@ SUBSYSTEM_DEF(minimaps)
 	///Sets a fixed z level to be tracked by this minimap action instead of being influenced by the owner's / locator override's z level.
 	var/default_overwatch_level = 0
 
-/datum/action/minimap/New(Target)
+/datum/action/minimap/New(Target, new_minimap_flags, new_marker_flags)
 	. = ..()
 	locator = new
+	if(new_minimap_flags)
+		minimap_flags = new_minimap_flags
+	if(new_marker_flags)
+		marker_flags = new_marker_flags
 
 /datum/action/minimap/Destroy()
 	map = null
@@ -640,6 +644,10 @@ SUBSYSTEM_DEF(minimaps)
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_KB_TOGGLE_EXTERNAL_MINIMAP,
 	)
+
+/datum/action/minimap/marine/external/som
+	minimap_flags = MINIMAP_FLAG_MARINE_SOM
+	marker_flags = MINIMAP_FLAG_MARINE_SOM
 
 /datum/action/minimap/ai	//I'll keep this as seperate type despite being identical so it's easier if people want to make different aspects different.
 	minimap_flags = MINIMAP_FLAG_MARINE

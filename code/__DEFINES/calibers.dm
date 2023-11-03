@@ -64,7 +64,7 @@
 #define CALIBER_67MM "67mm shell"
 #define CALIBER_68MM "68mm rocket"
 #define CALIBER_37MM "37mm"
-#define CALIBER_75MM "75mm" //Heavy Recoilless Rifle
+#define CALIBER_15CM "155mm" //Heavy Infantry Support Gun
 
 #define CALIBER_ROCKETARRAY "rocket array"
 #define CALIBER_ROCKETTOY "toy rocket"

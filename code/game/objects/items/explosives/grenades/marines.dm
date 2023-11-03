@@ -86,8 +86,10 @@
 
 /obj/item/explosive/grenade/sticky/throw_impact(atom/hit_atom, speed)
 	. = ..()
+	if(!.)
+		return
 	if(!active || stuck_to || isturf(hit_atom))
-		return TRUE
+		return
 	var/image/stuck_overlay = image(icon, hit_atom, initial(icon_state) + "_stuck")
 	stuck_overlay.pixel_x = rand(-5, 5)
 	stuck_overlay.pixel_y = rand(-7, 7)
@@ -129,7 +131,7 @@
 
 /obj/item/explosive/grenade/sticky/trailblazer/throw_impact(atom/hit_atom, speed)
 	. = ..()
-	if(.)
+	if(!.)
 		return
 	RegisterSignal(stuck_to, COMSIG_MOVABLE_MOVED, PROC_REF(make_fire))
 	var/turf/T = get_turf(src)
@@ -171,7 +173,7 @@
 
 /obj/item/explosive/grenade/sticky/cloaker/throw_impact(atom/hit_atom, speed)
 	. = ..()
-	if(.)
+	if(!.)
 		return
 	RegisterSignal(stuck_to, COMSIG_MOVABLE_MOVED, PROC_REF(make_smoke))
 
@@ -236,6 +238,14 @@
 	flame_radius(2, get_turf(src))
 	playsound(loc, "molotov", 35)
 	qdel(src)
+
+/obj/item/explosive/grenade/incendiary/molotov/throw_impact(atom/hit_atom, speed, bounce = TRUE)
+	. = ..()
+	if(!.)
+		return
+	if(!hit_atom.density || prob(35))
+		return
+	prime()
 
 /obj/item/explosive/grenade/ags
 	name = "\improper AGLS-37 HEDP grenade"
@@ -405,6 +415,8 @@
 
 /obj/item/explosive/grenade/impact/throw_impact(atom/hit_atom, speed)
 	. = ..()
+	if(!.)
+		return
 	if(launched && active && !istype(hit_atom, /turf/open)) //Only contact det if active, we actually hit something, and we're fired from a grenade launcher.
 		explosion(loc, light_impact_range = 1, flash_range = 2)
 		qdel(src)
@@ -516,6 +528,8 @@
 
 /obj/item/explosive/grenade/flare/throw_impact(atom/hit_atom, speed)
 	. = ..()
+	if(!.)
+		return
 	if(!active)
 		return
 
@@ -586,6 +600,8 @@
 
 /obj/item/explosive/grenade/flare/strongerflare/throw_impact(atom/hit_atom, speed)
 	. = ..()
+	if(!.)
+		return
 	anchored = TRUE//prevents marines from picking up and running around with a stronger flare
 
 /obj/item/explosive/grenade/flare/strongerflare/update_brightness()

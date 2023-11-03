@@ -20,6 +20,8 @@
 	var/traits = null
 	var/space_empty_levels = 1
 	var/list/environment_traits = list()
+	///Which disk sets this map has, key-value = name - weight for choosing.
+	var/list/disk_sets = list()
 	var/armor_style = "default"
 	var/quickbuilds = 1000
 	var/list/gamemodes = list()
@@ -156,6 +158,12 @@
 
 	if(json["quickbuilds"])
 		quickbuilds = json["quickbuilds"]
+
+	if(islist(json["disk_sets"]))
+		disk_sets = json["disk_sets"]
+	else if(!isnull(json["disk_sets"]))
+		log_world("map_config disk sets are not a list!")
+		return
 
 	if(islist(json["environment_traits"]))
 		environment_traits = json["environment_traits"]

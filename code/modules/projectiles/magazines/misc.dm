@@ -6,6 +6,13 @@
 	icon_state_mini = "ammo_packet"
 	w_class = WEIGHT_CLASS_NORMAL
 
+/obj/item/ammo_magazine/packet/attack_hand_alternate(mob/living/user)
+	. = ..()
+	if(current_rounds <= 0)
+		balloon_alert(user, "Empty")
+		return
+	create_handful(user)
+
 /obj/item/ammo_magazine/packet/p10x24mm
 	name = "box of 10x24mm"
 	desc = "A box containing 150 rounds of 10x24mm caseless."

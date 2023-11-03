@@ -407,8 +407,8 @@
 
 
 
-/obj/structure/window/framed/deconstruct(disassembled = TRUE)
-	if(window_frame)
+/obj/structure/window/framed/deconstruct(disassembled = TRUE, leave_frame = TRUE)
+	if(window_frame && leave_frame)
 		var/obj/structure/window_frame/WF = new window_frame(loc, TRUE)
 		WF.icon_state = "[WF.basestate][junction]_frame"
 		WF.setDir(dir)

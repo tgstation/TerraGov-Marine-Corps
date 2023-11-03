@@ -7053,6 +7053,12 @@
 "gdm" = (
 /turf/open/floor/mainship/sterile/purple/corner,
 /area/mainship/medical/upper_medical)
+"gdu" = (
+/obj/machinery/computer/squad_selector,
+/turf/open/floor/mainship/black{
+	dir = 4
+	},
+/area/mainship/squads/general)
 "gdx" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -7102,7 +7108,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/squads/general)
 "gey" = (
-/obj/machinery/body_scanconsole,
+/obj/machinery/computer/body_scanconsole,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/supply/visible/layer1{
 	dir = 4
@@ -7128,6 +7134,7 @@
 /obj/structure/disposalpipe/junction/yjunc{
 	dir = 1
 	},
+/obj/machinery/computer/squad_selector,
 /turf/open/floor/mainship/black,
 /area/mainship/squads/general)
 "gfy" = (
@@ -7205,6 +7212,7 @@
 /area/mainship/living/pilotbunks)
 "glX" = (
 /obj/structure/rack,
+/obj/item/toy/plush/rouny,
 /obj/machinery/camera/autoname/mainship{
 	dir = 4
 	},
@@ -8606,7 +8614,7 @@
 	dir = 4
 	},
 /obj/machinery/firealarm,
-/obj/machinery/sleep_console,
+/obj/machinery/computer/sleep_console,
 /turf/open/floor/mainship/sterile/corner,
 /area/mainship/medical/lower_medical)
 "hrv" = (
@@ -12098,7 +12106,7 @@
 	},
 /area/mainship/engineering/engineering_workshop)
 "kjk" = (
-/obj/machinery/body_scanconsole,
+/obj/machinery/computer/body_scanconsole,
 /turf/open/floor/mainship/sterile/corner{
 	dir = 4
 	},
@@ -12335,7 +12343,7 @@
 /turf/open/floor/mainship/floor,
 /area/mainship/squads/general)
 "ksC" = (
-/obj/machinery/cloning_console/vats,
+/obj/machinery/computer/cloning_console/vats,
 /turf/open/floor/mainship/sterile,
 /area/mainship/medical/lower_medical)
 "ksL" = (
@@ -13257,7 +13265,7 @@
 /turf/open/floor/mainship/black,
 /area/mainship/squads/general)
 "lbs" = (
-/obj/machinery/autodoc_console,
+/obj/machinery/computer/autodoc_console,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/mainship/sterile/corner,
@@ -15528,19 +15536,10 @@
 /turf/open/floor/mainship/floor,
 /area/mainship/living/pilotbunks)
 "mRE" = (
-/obj/machinery/vending/marineFood,
-/obj/item/reagent_containers/food/snacks/protein_pack,
-/obj/item/reagent_containers/food/snacks/protein_pack,
-/obj/item/reagent_containers/food/snacks/protein_pack,
-/obj/item/reagent_containers/food/snacks/protein_pack,
-/obj/item/reagent_containers/food/snacks/protein_pack,
-/obj/item/reagent_containers/food/snacks/protein_pack,
-/obj/item/reagent_containers/food/snacks/protein_pack,
-/obj/item/reagent_containers/food/snacks/protein_pack,
-/obj/item/reagent_containers/food/snacks/protein_pack,
 /obj/machinery/light/mainship{
 	dir = 4
 	},
+/obj/machinery/computer/squad_selector,
 /turf/open/floor/mainship/black{
 	dir = 6
 	},
@@ -18058,6 +18057,10 @@
 	dir = 1
 	},
 /area/mainship/shipboard/brig)
+"oTv" = (
+/obj/machinery/computer/squad_manager,
+/turf/open/floor/mainship/black,
+/area/mainship/squads/general)
 "oTD" = (
 /obj/structure/cable,
 /turf/open/floor/mainship/black{
@@ -20840,7 +20843,7 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/lounge)
 "rlz" = (
-/obj/machinery/body_scanconsole,
+/obj/machinery/computer/body_scanconsole,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
 	dir = 8
@@ -39550,7 +39553,7 @@ rTb
 oUI
 xaX
 pwD
-nkm
+gdu
 vza
 vza
 nkm
@@ -40156,7 +40159,7 @@ lqg
 lqg
 sqT
 qtC
-jNz
+oTv
 eQh
 sqT
 oUI

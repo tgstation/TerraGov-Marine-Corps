@@ -62,16 +62,17 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 	FACTION_TERRAGOV = list(
 		/datum/campaign_mission/tdm = 10,
 		/datum/campaign_mission/destroy_mission/fire_support_raid = 15,
-		/datum/campaign_mission/capture_mission = 15,
+		/datum/campaign_mission/capture_mission/phoron_capture = 15,
 		/datum/campaign_mission/tdm/mech_wars = 12,
 		/datum/campaign_mission/destroy_mission/supply_raid = 15,
+		/datum/campaign_mission/destroy_mission/base_rescue = 12,
 	),
 	FACTION_SOM = list(
 		/datum/campaign_mission/tdm/lv624 = 10,
 		/datum/campaign_mission/destroy_mission/fire_support_raid/som = 15,
-		/datum/campaign_mission/capture_mission = 15,
 		/datum/campaign_mission/tdm/mech_wars/som = 12,
 		/datum/campaign_mission/destroy_mission/supply_raid/som = 15,
+		/datum/campaign_mission/capture_mission/asat = 12,
 	),
 ))
 
@@ -263,8 +264,8 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 	var/datum/campaign_mission/current_mission = current_mode.current_mission
 	current_mission_data["name"] = current_mission.name
 	current_mission_data["map_name"] = current_mission.map_name
-	current_mission_data["starting_faction"] = current_mission.starting_faction
-	current_mission_data["hostile_faction"] = current_mission.hostile_faction
+	current_mission_data[MISSION_STARTING_FACTION] = current_mission.starting_faction
+	current_mission_data[MISSION_HOSTILE_FACTION] = current_mission.hostile_faction
 	current_mission_data["winning_faction"] = current_mission.winning_faction
 	current_mission_data["outcome"] = current_mission.outcome
 	current_mission_data["objective_description"] = (faction == current_mission.starting_faction ? current_mission.starting_faction_objective_description : current_mission.hostile_faction_objective_description)
@@ -301,8 +302,8 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 		var/list/mission_data = list()
 		mission_data["name"] = finished_mission.name
 		mission_data["map_name"] = finished_mission.map_name
-		mission_data["starting_faction"] = finished_mission.starting_faction
-		mission_data["hostile_faction"] = finished_mission.hostile_faction
+		mission_data[MISSION_STARTING_FACTION] = finished_mission.starting_faction
+		mission_data[MISSION_HOSTILE_FACTION] = finished_mission.hostile_faction
 		mission_data["winning_faction"] = finished_mission.winning_faction
 		mission_data["outcome"] = finished_mission.outcome
 		mission_data["objective_description"] = (faction == finished_mission.starting_faction ? finished_mission.starting_faction_objective_description : finished_mission.hostile_faction_objective_description)
