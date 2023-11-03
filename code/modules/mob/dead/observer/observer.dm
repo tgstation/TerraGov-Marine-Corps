@@ -52,9 +52,6 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	///If you can see things only ghosts see, like other ghosts
 	var/ghost_vision = TRUE
 	var/ghost_orbit = GHOST_ORBIT_CIRCLE
-	///Position in the larva queue
-	var/larva_position = 0
-
 
 /mob/dead/observer/Initialize(mapload)
 	invisibility = GLOB.observer_default_invisibility
@@ -198,7 +195,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 		var/mob/dead/observer/ghost = usr
 
 		var/datum/hive_status/normal/HS = GLOB.hive_datums[XENO_HIVE_NORMAL]
-		if(LAZYFIND(HS.candidate, ghost))
+		if(LAZYFIND(HS.candidates, ghost.client))
 			to_chat(ghost, span_warning("You are already in the queue to become a Xenomorph."))
 			return
 
@@ -349,12 +346,6 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 			. += "Respawn timer: READY"
 		else
 			. += "Respawn timer: [(status_value / 60) % 60]:[add_leading(num2text(status_value % 60), 2, "0")]"
-	if(GLOB.respawn_allowed)
-		status_value = ((GLOB.key_to_time_of_xeno_death[key] ? GLOB.key_to_time_of_xeno_death[key] : -INFINITY)  + SSticker.mode?.xenorespawn_time - world.time) * 0.1 //If xeno_death is null, use -INFINITY
-		if(status_value <= 0)
-			. += "Xeno respawn timer: READY"
-		else
-			. += "Xeno respawn timer: [(status_value / 60) % 60]:[add_leading(num2text(status_value % 60), 2, "0")]"
 
 /mob/dead/observer/verb/reenter_corpse()
 	set category = "Ghost"

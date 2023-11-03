@@ -39,6 +39,9 @@
 		if(!actions_by_path[path])
 			var/datum/action/observer_action/A = new path()
 			A.give_action(src)
+
+	client.AddComponent(/datum/component/larva_queue)
+
 	if(!actions_by_path[/datum/action/minimap/observer])
 		var/datum/action/minimap/observer/mini = new
 		mini.give_action(src)
