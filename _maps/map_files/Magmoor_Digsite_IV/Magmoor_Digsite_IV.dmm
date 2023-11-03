@@ -4483,7 +4483,7 @@
 	},
 /area/magmoor/civilian/rnr)
 "diw" = (
-/obj/machinery/autodoc_console,
+/obj/machinery/computer/autodoc_console,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
 	dir = 4
@@ -12467,7 +12467,7 @@
 /turf/open/floor/wood,
 /area/magmoor/medical/lobby)
 "jfk" = (
-/obj/machinery/body_scanconsole,
+/obj/machinery/computer/body_scanconsole,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/mainship/sterile/dark,
 /area/magmoor/medical/treatment)
@@ -13974,7 +13974,7 @@
 /turf/open/floor/plating,
 /area/magmoor/civilian/cook)
 "kfD" = (
-/obj/machinery/body_scanconsole,
+/obj/machinery/computer/body_scanconsole,
 /obj/structure/cable,
 /turf/open/floor/mainship/sterile/dark,
 /area/magmoor/medical/treatment)
@@ -15859,7 +15859,7 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/magmoor/cave/northwest)
 "lzj" = (
-/obj/machinery/body_scanconsole,
+/obj/machinery/computer/body_scanconsole,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
@@ -18763,7 +18763,7 @@
 /turf/open/floor/plating/ground/concrete/lines,
 /area/magmoor/compound)
 "nPS" = (
-/obj/machinery/body_scanconsole,
+/obj/machinery/computer/body_scanconsole,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -28416,7 +28416,7 @@
 /turf/open/floor/plating/ground/concrete/edge,
 /area/magmoor/compound/north)
 "uNO" = (
-/obj/machinery/body_scanconsole,
+/obj/machinery/computer/body_scanconsole,
 /turf/open/floor/mainship/sterile/side{
 	dir = 4
 	},

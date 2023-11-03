@@ -43,6 +43,17 @@
 	attrition_mod = 0.2
 	ui_icon = "support_2"
 
+/datum/campaign_asset/attrition_modifier/corporate_backing/reapply()
+	faction.add_asset(/datum/campaign_asset/attrition_modifier/corporate_directive)
+	remove_passive_effect()
+
+/datum/campaign_asset/attrition_modifier/corporate_directive
+	name = "Corporate directive"
+	desc = "+30% passive Attrition Point gain"
+	detailed_desc = "Our mission goals have been realigned with ensuring that lawful megacorporate economic uplift programs can be reestablished. The corporations are now heavily support our efforts."
+	attrition_mod = 0.3
+	ui_icon = "support_3"
+
 //native support
 /datum/campaign_asset/attrition_modifier/local_approval
 	name = "Indigenous approval"
@@ -61,6 +72,17 @@
 	detailed_desc = "Signficiant portions of the local population now directly support our mission, actively assisting us and hampering the efforts of the enemy."
 	attrition_mod = 0.2
 	ui_icon = "support_2"
+
+/datum/campaign_asset/attrition_modifier/local_backing/reapply()
+	faction.add_asset(/datum/campaign_asset/attrition_modifier/local_uprising)
+	remove_passive_effect()
+
+/datum/campaign_asset/attrition_modifier/local_uprising
+	name = "Indigenous uprising"
+	desc = "+30% passive Attrition Point gain"
+	detailed_desc = "Signficiant portions of the local population now actively oppose our enemy as well as supporting our forces. Large swathes of the planet can be considered friendly territory."
+	attrition_mod = 0.3
+	ui_icon = "support_3"
 
 /datum/campaign_asset/attrition_modifier/malus_standard
 	name = "Degraded supply lines"

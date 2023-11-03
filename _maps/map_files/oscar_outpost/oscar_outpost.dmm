@@ -201,7 +201,7 @@
 /turf/open/floor/plating/ground/dirtgrassborder,
 /area/oscar_outpost/outside/road)
 "br" = (
-/obj/machinery/autodoc_console,
+/obj/machinery/computer/autodoc_console,
 /obj/structure/reagent_dispensers/fueltank,
 /turf/open/floor/mainship/sterile,
 /area/oscar_outpost/base)
@@ -479,7 +479,7 @@
 /turf/open/floor,
 /area/oscar_outpost/village/south)
 "dq" = (
-/obj/machinery/body_scanconsole,
+/obj/machinery/computer/body_scanconsole,
 /turf/open/floor/mainship/sterile,
 /area/oscar_outpost/base)
 "ds" = (
@@ -1194,7 +1194,7 @@
 /turf/open/liquid/water/river/desertdam/clean/deep_water_clean,
 /area/oscar_outpost/village/fairgrounds)
 "ig" = (
-/obj/machinery/autodoc_console,
+/obj/machinery/computer/autodoc_console,
 /turf/open/floor/mainship/sterile,
 /area/oscar_outpost/village/central)
 "ij" = (
@@ -3160,7 +3160,7 @@
 /turf/open/floor/wood,
 /area/oscar_outpost/village/east)
 "vy" = (
-/obj/machinery/body_scanconsole,
+/obj/machinery/computer/body_scanconsole,
 /turf/open/floor/mainship/sterile,
 /area/oscar_outpost/village/central)
 "vz" = (
@@ -5218,7 +5218,7 @@
 /turf/open/floor,
 /area/oscar_outpost/village/south)
 "FR" = (
-/obj/machinery/body_scanconsole,
+/obj/machinery/computer/body_scanconsole,
 /obj/structure/sign/safety/medical_supplies{
 	dir = 1
 	},
@@ -7191,7 +7191,7 @@
 /turf/open/floor,
 /area/oscar_outpost/village)
 "Or" = (
-/obj/machinery/sleep_console,
+/obj/machinery/computer/sleep_console,
 /obj/machinery/light{
 	dir = 4
 	},
@@ -9621,7 +9621,7 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/oscar_outpost/village/central)
 "YC" = (
-/obj/machinery/cloning_console/vats,
+/obj/machinery/computer/cloning_console/vats,
 /turf/open/floor/mainship/sterile/dark,
 /area/oscar_outpost/village/central)
 "YD" = (

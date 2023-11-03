@@ -1,6 +1,0 @@
-author: "Lewdcifer"
-delete-after: True
-changes:
-  - rscadd: "Examine, when used by xenos, will now provide complete information instead of omitting most of it."
-  - rscadd: "Examine will now include more information about modular armor, such as attachments and modules."
-  - code_imp: "Gets rid of a distance check in unconscious/dead examine text."

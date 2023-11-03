@@ -7048,7 +7048,7 @@
 /turf/open/floor/prison/whitegreen/full,
 /area/prison/medbay)
 "awL" = (
-/obj/machinery/sleep_console,
+/obj/machinery/computer/sleep_console,
 /turf/open/floor/prison/whitegreen/full,
 /area/prison/medbay)
 "awM" = (
@@ -9193,7 +9193,7 @@
 /turf/open/floor/prison/whitegreen/full,
 /area/prison/medbay)
 "aDj" = (
-/obj/machinery/body_scanconsole,
+/obj/machinery/computer/body_scanconsole,
 /turf/open/floor/prison/whitegreen/full,
 /area/prison/medbay)
 "aDk" = (
@@ -38996,7 +38996,7 @@
 /turf/open/floor/plating,
 /area/prison/pirate)
 "cvM" = (
-/obj/machinery/sleep_console,
+/obj/machinery/computer/sleep_console,
 /turf/open/floor/plating,
 /area/prison/pirate)
 "cvN" = (

@@ -98,18 +98,21 @@
 	name = "hypersleep chamber"
 	desc = "A large automated capsule with LED displays intended to put anyone inside into 'hypersleep', a form of non-cryogenic statis used on most ships, linked to a long-term hypersleep bay on a lower level."
 	icon = 'icons/obj/machines/cryogenics.dmi'
-	icon_state = "body_scanner_0"
+	icon_state = "body_scanner"
 	density = TRUE
 	anchored = TRUE
 	resistance_flags = RESIST_ALL
+	light_range = 0.5
+	light_power = 0.5
+	light_color = LIGHT_COLOR_BLUE
+	dir = EAST
 	///Person waiting to be taken by ghosts
 	var/mob/living/occupant
-	var/orient_right = FALSE // Flips the sprite.
+	///the radio plugged into this pod
 	var/obj/item/radio/radio
 
 /obj/machinery/cryopod/right
-	orient_right = TRUE
-	icon_state = "body_scanner_0-r"
+	dir = WEST
 
 /obj/machinery/cryopod/Initialize(mapload)
 	. = ..()
@@ -117,6 +120,28 @@
 	radio.set_frequency(FREQ_COMMON)
 	update_icon()
 	RegisterSignal(src, COMSIG_MOVABLE_SHUTTLE_CRUSH, PROC_REF(shuttle_crush))
+
+/obj/machinery/cryopod/update_icon()
+	. = ..()
+	if((machine_stat & (BROKEN|DISABLED|NOPOWER)) || !occupant)
+		set_light(0)
+	else
+		set_light(initial(light_range))
+
+/obj/machinery/cryopod/update_icon_state()
+	if(occupant)
+		icon_state = "[initial(icon_state)]_occupied"
+	else
+		icon_state = initial(icon_state)
+
+/obj/machinery/cryopod/update_overlays()
+	. = ..()
+	if(machine_stat & (BROKEN|DISABLED|NOPOWER))
+		return
+	if(!occupant)
+		return
+	. += emissive_appearance(icon, "[icon_state]_emissive", alpha = src.alpha)
+	. += mutable_appearance(icon, "[icon_state]_emissive", alpha = src.alpha)
 
 /obj/machinery/cryopod/proc/shuttle_crush()
 	SIGNAL_HANDLER
@@ -129,11 +154,6 @@
 	QDEL_NULL(radio)
 	go_out()
 	return ..()
-
-/obj/machinery/cryopod/update_icon()
-	var/occupied = occupant ? TRUE : FALSE
-	var/mirror = orient_right ? "-r" : ""
-	icon_state = "body_scanner_[occupied][mirror]"
 
 ///Despawn the mob, remove its job and store its item
 /mob/living/proc/despawn()

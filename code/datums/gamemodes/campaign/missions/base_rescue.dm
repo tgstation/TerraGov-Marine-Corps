@@ -5,8 +5,9 @@
 	mission_flags = MISSION_DISALLOW_TELEPORT
 	map_name = "NT site B-403"
 	map_file = '_maps/map_files/Campaign maps/nt_base/nt_base.dmm'
-	map_traits = list(ZTRAIT_AWAY = TRUE, ZTRAIT_RAIN = TRUE)
-	map_light_colours = list(LIGHT_COLOR_PALE_GREEN, LIGHT_COLOR_PALE_GREEN, LIGHT_COLOR_PALE_GREEN, LIGHT_COLOR_PALE_GREEN)
+	map_traits = list(ZTRAIT_AWAY = TRUE, ZTRAIT_SNOWSTORM = TRUE)
+	map_light_colours = list(COLOR_MISSION_BLUE, COLOR_MISSION_BLUE, COLOR_MISSION_BLUE, COLOR_MISSION_BLUE)
+	map_light_levels = list(225, 150, 100, 75)
 	objectives_total = 1
 	min_destruction_amount = 1
 	shutter_open_delay = list(

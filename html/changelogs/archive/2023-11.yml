@@ -1,0 +1,50 @@
+2023-11-01:
+  Helg2:
+  - bugfix: fixed plasma pistol not shooting from one hand after detaching it as attachment
+      from somewhere.
+  Lewdcifer:
+  - rscdel: Behemoth's ability warnings no longer cause screen shaking.
+  - rscdel: Behemoth's abilities have lost screen shaking in various cases.
+  - qol: Reduced Primal Wrath's screen distortion a little. Additionally, this effect
+      no longer applies to allied xenos besides yourself.
+  - bugfix: Behemoth's Landslide no longer displaces adjacent allies, only those directly
+      in front of you.
+  - bugfix: Behemoth's Landslide no longer destroys resin doors. Instead, they will
+      open and let you proceed.
+  - rscadd: Examine, when used by xenos, will now provide complete information instead
+      of omitting most of it.
+  - rscadd: Examine will now include more information about modular armor, such as
+      attachments and modules.
+  - code_imp: Gets rid of a distance check in unconscious/dead examine text.
+  - balance: Behemoth's maximum health reduced from 800 to 750.
+  - balance: Behemoth's Wrath gain reduced from 50% of damage received to 30%.
+  Lumipharon:
+  - bugfix: fixed ghosts drawing on maptables for reals
+  - balance: C4 now takes 30 seconds at minimum to detonate on campaign objectives
+  - rscadd: Youtool vendor stocks multitools
+  - bugfix: Fixed campaign missions ending causing unintended notifications in some
+      instances
+  - bugfix: Drop pod blocker objects in Campaign are no longer invisible
+  - balance: V-34 stock now increases slowdown by 0.05
+  - bugfix: fixed various throw bugs
+  - bugfix: Missing a throw because you tried to hit a missing limb will now properly
+      miss and keep going
+  - rscadd: NT base rescue mission is now available for TGMC
+  - bugfix: fixed hunter appearing twice in the hive status screen
+  Wisemonster:
+  - spellcheck: Changed the description of Behemoth's Earth Riser to mention the click-drag
+      launching function.
+  Xander3359:
+  - rscadd: Syringe cases in the NT Medplus
+2023-11-03:
+  Lewdcifer:
+  - balance: MG-27 no longer accepts suppressors.
+  Xander3359:
+  - balance: Disables Big Red on crash gamemode
+  - code_imp: Delete unused chigusa define
+  - bugfix: moves 2 carps
+  ZeWaka:
+  - qol: Warlocks can only be pushed by big xenos while channeling Psychic Shield.
+  gl0ck:
+  - imageadd: Changed cafe latte, hot chocolate, and soy latte sprites to be a bit
+      more modern.

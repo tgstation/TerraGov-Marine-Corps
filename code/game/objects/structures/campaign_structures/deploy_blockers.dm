@@ -3,7 +3,7 @@
 	icon = 'icons/obj/structures/campaign/tele_blocker.dmi'
 	icon_state = "tele_blocker"
 	pixel_x = -16
-	mission_types = list(/datum/campaign_mission/destroy_mission/supply_raid/som, /datum/campaign_mission/destroy_mission/fire_support_raid/som)
+	mission_types = list(/datum/campaign_mission/destroy_mission/supply_raid/som, /datum/campaign_mission/destroy_mission/fire_support_raid/som, /datum/campaign_mission/capture_mission/asat)
 	spawn_object = /obj/structure/campaign_deployblocker
 
 /obj/structure/campaign_deployblocker
