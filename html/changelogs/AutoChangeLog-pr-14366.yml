@@ -1,0 +1,6 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - imageadd: "Xeno flame sprites are now emissive and specific to each caste"
+  - bugfix: "Xenos now reliably emit light when on fire"
+  - bugfix: "Xenos emitting light no longer do so off center"
