@@ -3915,7 +3915,7 @@
 	},
 /area/campaign/jungle_outpost/ground/jungle)
 "qV" = (
-/obj/machinery/body_scanconsole,
+/obj/machinery/computer/body_scanconsole,
 /turf/open/floor/tile/white,
 /area/campaign/jungle_outpost/outpost/medbay)
 "qW" = (
@@ -9184,7 +9184,7 @@
 	},
 /area/campaign/jungle_outpost/outpost/command)
 "NM" = (
-/obj/machinery/body_scanconsole,
+/obj/machinery/computer/body_scanconsole,
 /obj/machinery/light,
 /turf/open/floor/tile/blue/whiteblue,
 /area/campaign/jungle_outpost/outpost/medbay)
