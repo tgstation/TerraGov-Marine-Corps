@@ -120,7 +120,7 @@ GLOBAL_LIST_INIT(sadar_ammo_recipe, list(
 /obj/item/factory_part/sadar_unguided
 	name = "SADAR HE unguided missile assembly"
 	desc = "An unfinished squat missile with less electrical bits."
-	result = /obj/item/ammo_magazine/rocket/sadar_unguided
+	result = /obj/item/ammo_magazine/rocket/sadar/unguided
 
 /obj/item/factory_part/sadar_unguided/Initialize(mapload)
 	. = ..()
@@ -231,7 +231,6 @@ GLOBAL_LIST_INIT(IFF_ammo, list(
 /obj/item/factory_part/smartgunner_targetrifle_magazine/Initialize(mapload)
 	. = ..()
 	recipe = GLOB.IFF_ammo
-
 
 /obj/item/factory_part/auto_sniper_magazine
 	name = "\improper IFF high caliber bullet box"
