@@ -24,7 +24,7 @@
 	number.maptext = MAPTEXT("[baneling.stored_charge]")
 	visual_references[VREF_MUTABLE_BANE_CHARGES] = number
 	button.add_overlay(visual_references[VREF_MUTABLE_BANE_CHARGES])
-	. = ..()
+	return ..()
 
 /datum/action/xeno_action/baneling_explode/give_action(mob/living/L)
 	. = ..()
