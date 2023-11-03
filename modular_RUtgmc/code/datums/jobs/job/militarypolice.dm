@@ -99,8 +99,12 @@ In addition, you are tasked with the security of high-ranking personnel, includi
 	AddComponent(/datum/component/clothing_tint, TINT_NONE)
 
 /obj/item/reagent_containers/hypospray/attack(mob/living/carbon/M as mob, mob/user as mob)
+	. = ..()
 	var/mob/living/carbon/human/H = M
 	var/datum/limb/affecting = user.client.prefs.toggles_gameplay & RADIAL_MEDICAL ? radial_medical(H, user) : H.get_limb(user.zone_selected)
+
+	if(!affecting)
+		return TRUE
 
 	if(affecting.body_part == HEAD)
 		if(H.head && istype(H.head,/obj/item/clothing/head/beret/sec/mp))

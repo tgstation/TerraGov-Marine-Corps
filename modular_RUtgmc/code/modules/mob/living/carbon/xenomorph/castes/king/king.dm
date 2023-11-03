@@ -1,5 +1,6 @@
 /mob/living/carbon/xenomorph/king
 	icon = 'modular_RUtgmc/icons/Xeno/castes/king.dmi'
+	footsteps = FOOTSTEP_XENO_STOMPY
 
 /mob/living/carbon/xenomorph/king/generate_name()
 	var/playtime_mins = client?.get_exp(xeno_caste.caste_name)

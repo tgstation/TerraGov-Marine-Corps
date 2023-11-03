@@ -113,12 +113,12 @@
 	var/number_of_alphanumeric = 0
 	var/last_char_group = NO_CHARS_DETECTED
 	var/t_out = ""
-	var/t_len = length(t_in)
+	var/t_len = length_char(t_in)
 	var/charcount = 0
 	var/char = ""
 
 
-	for(var/i = 1, i <= t_len, i += length(char))
+	for(var/i = 1, i <= t_len, i += length_char(char))
 		char = copytext_char(t_in, i, i+1)
 
 		switch(text2ascii_char(char))

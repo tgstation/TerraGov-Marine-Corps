@@ -1,3 +1,3 @@
-#define ROLE_XENO_HUGGER "Xeno Facehugger"
+//Playtime tracking system, see jobs_exp.dm
 
-GLOBAL_LIST_INIT(jobs_xenos, list(ROLE_XENOMORPH, ROLE_XENO_QUEEN, ROLE_XENO_HUGGER))
+#define EXP_TYPE_FACEHUGGER_STAT "Facehugger_Stat"

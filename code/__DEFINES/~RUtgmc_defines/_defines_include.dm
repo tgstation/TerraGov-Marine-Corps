@@ -1,5 +1,6 @@
 #include "atom_hud.dm"
 #include "colors.dm"
+#include "footsteps.dm"
 #include "is_helpers.dm"
 #include "jobs.dm"
 #include "mobs.dm"

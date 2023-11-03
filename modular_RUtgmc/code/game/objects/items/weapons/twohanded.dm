@@ -7,8 +7,14 @@
 /obj/item/weapon/twohanded/glaive/halberd/harvester
 	name = "\improper VAL-HAL-A halberd harvester"
 	desc = "TerraGov Marine Corps' cutting-edge 'Harvester' halberd, with experimental plasma regulator. An advanced weapon that combines sheer force with the ability to apply a variety of debilitating effects when loaded with certain reagents, but should be used with both hands. Activate after loading to prime a single use of an effect. It also harvests substances from alien lifeforms it strikes when connected to the Vali system."
+	icon = 'modular_RUtgmc/icons/obj/items/weapons.dmi'
 	icon_state = "VAL-HAL-A"
 	item_state = "VAL-HAL-A"
+	item_icons = list(
+		slot_l_hand_str = 'modular_RUtgmc/icons/mob/inhands/weapons/twohanded_left.dmi',
+		slot_r_hand_str = 'modular_RUtgmc/icons/mob/inhands/weapons/twohanded_right.dmi',
+		slot_back_str = 'modular_RUtgmc/icons/mob/clothing/back.dmi',
+	)
 	force = 40
 	force_wielded = 95 //Reminder: putting trama inside deals 60% additional damage
 	flags_item = TWOHANDED
