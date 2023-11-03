@@ -154,8 +154,8 @@
 	owner = new_owner
 	if(owner)
 		icon = owner.icon
-	light_pixel_x = owner.light_pixel_x
-	light_pixel_y = owner.light_pixel_y
+		light_pixel_x = owner.light_pixel_x
+		light_pixel_y = owner.light_pixel_y
 	. = ..()
 	update_icon()
 
