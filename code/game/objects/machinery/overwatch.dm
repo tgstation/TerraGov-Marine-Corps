@@ -32,6 +32,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	desc = "State of the art machinery for giving orders to a squad. <b>Shift click</b> to send order when watching squads."
 	density = FALSE
 	icon_state = "overwatch"
+	screen_overlay = "overwatch_screen"
 	req_access = list(ACCESS_MARINE_BRIDGE)
 	networks = list("marine")
 	open_prompt = FALSE
@@ -66,6 +67,8 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	var/datum/action/innate/order/rally_order/send_rally_order
 	///Groundside minimap for overwatch
 	var/datum/action/minimap/marine/external/cic_mini
+	///Overrides the minimap action minimap and marker flags
+	var/map_flags = MINIMAP_FLAG_MARINE
 	///Ref of the lase that's had an OB warning mark placed on the minimap
 	var/obj/effect/overlay/temp/laser_target/OB/marked_lase
 	///Static list of CIC radial options for the camera when clicking on a marine
@@ -97,7 +100,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	send_defend_order = new
 	send_retreat_order = new
 	send_rally_order = new
-	cic_mini = new
+	cic_mini = new(null, map_flags, map_flags)
 	GLOB.main_overwatch_consoles += src
 
 /obj/machinery/computer/camera_advanced/overwatch/Destroy()
@@ -138,6 +141,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 
 /obj/machinery/computer/camera_advanced/overwatch/main
 	icon_state = "overwatch_main"
+	screen_overlay = "overwatch_main_screen"
 	name = "Main Overwatch Console"
 	desc = "State of the art machinery for general overwatch purposes."
 
@@ -155,19 +159,27 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 
 /obj/machinery/computer/camera_advanced/overwatch/req
 	icon_state = "overwatch_req"
+	screen_overlay = "overwatch_req_screen"
 	name = "Requisition Overwatch Console"
 	desc = "Big Brother Requisition demands to see money flowing into the void that is greed."
 	circuit = /obj/item/circuitboard/computer/supplyoverwatch
 
 /obj/machinery/computer/camera_advanced/overwatch/som
 	faction = FACTION_SOM
-	networks = list("som")
+	networks = list(SOM_CAMERA_NETWORK)
 	req_access = list(ACCESS_MARINE_BRIDGE)
+	map_flags = MINIMAP_FLAG_MARINE_SOM
 
 /obj/machinery/computer/camera_advanced/overwatch/main/som
 	faction = FACTION_SOM
-	networks = list("som")
+	networks = list(SOM_CAMERA_NETWORK)
 	req_access = list(ACCESS_MARINE_BRIDGE)
+	map_flags = MINIMAP_FLAG_MARINE_SOM
+
+/obj/machinery/computer/camera_advanced/overwatch/CreateEye()
+	eyeobj = new(null, parent_cameranet, faction)
+	eyeobj.origin = src
+	RegisterSignal(eyeobj, COMSIG_QDELETING, PROC_REF(clear_eye_ref))
 
 /obj/machinery/computer/camera_advanced/overwatch/som/zulu
 	name = "\improper Zulu Overwatch Console"

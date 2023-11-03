@@ -3758,7 +3758,7 @@
 /turf/open/floor/mainship/sterile,
 /area/oscar_outpost)
 "zG" = (
-/obj/machinery/sleep_console{
+/obj/machinery/computer/sleep_console{
 	dir = 8
 	},
 /turf/open/floor/mainship/sterile,
@@ -3977,7 +3977,7 @@
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/east)
 "Ck" = (
-/obj/machinery/autodoc_console,
+/obj/machinery/computer/autodoc_console,
 /turf/open/floor/mainship/sterile,
 /area/oscar_outpost)
 "Cm" = (
@@ -6308,7 +6308,7 @@
 /turf/open/floor,
 /area/oscar_outpost)
 "Rp" = (
-/obj/machinery/body_scanconsole,
+/obj/machinery/computer/body_scanconsole,
 /turf/open/floor/mainship/sterile/dark,
 /area/oscar_outpost)
 "Rq" = (

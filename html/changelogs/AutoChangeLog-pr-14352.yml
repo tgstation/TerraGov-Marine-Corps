@@ -1,0 +1,5 @@
+author: "ZeWaka"
+delete-after: True
+changes:
+  - rscadd: "Added a 'respawn charge' indicator for banelings on the explode ability."
+  - code_imp: "Removed some vestigial ravager code from before the primo rework."

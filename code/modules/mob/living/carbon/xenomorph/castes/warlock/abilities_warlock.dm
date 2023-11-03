@@ -60,7 +60,7 @@
 		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_TRIGGER_PSYCHIC_SHIELD,
 	)
 	use_state_flags = XACT_USE_BUSY
-	///The actual shield object created by this ability
+	/// The actual shield object created by this ability
 	var/obj/effect/xeno/shield/active_shield
 
 /datum/action/xeno_action/activable/psychic_shield/remove_action(mob/M)
@@ -108,6 +108,7 @@
 	action_icon_state = "psy_shield_reflect"
 	update_button_icon()
 	xeno_owner.update_glow(3, 3, "#5999b3")
+	xeno_owner.move_resist = MOVE_FORCE_EXTREMELY_STRONG
 
 	GLOB.round_statistics.psy_shields++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "psy_shields")
@@ -123,6 +124,7 @@
 	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	action_icon_state = "psy_shield"
 	xeno_owner.update_glow()
+	xeno_owner.move_resist = initial(xeno_owner.move_resist)
 	update_button_icon()
 	add_cooldown()
 	if(active_shield)

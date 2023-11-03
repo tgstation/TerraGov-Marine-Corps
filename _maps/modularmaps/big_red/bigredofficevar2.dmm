@@ -432,7 +432,7 @@
 /turf/open/floor/mainship,
 /area/bigredv2/outside/office_complex)
 "ng" = (
-/obj/machinery/autodoc_console,
+/obj/machinery/computer/autodoc_console,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/mainship/sterile,
 /area/bigredv2/outside/office_complex)
@@ -892,7 +892,7 @@
 /turf/open/floor/mainship/mono,
 /area/bigredv2/outside/office_complex)
 "Ai" = (
-/obj/machinery/body_scanconsole,
+/obj/machinery/computer/body_scanconsole,
 /turf/open/floor/mainship/sterile,
 /area/bigredv2/outside/office_complex)
 "Am" = (

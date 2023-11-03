@@ -329,3 +329,96 @@
   Waselon:
   - qol: Baneling can now watch other xenos while in pod
   - bugfix: Evolution overlay runtime error fix
+2023-10-25:
+  Lewdcifer:
+  - rscadd: (Re-)added a rouny plushie to Pillar of Spring. It is located in CIC storage.
+  - rscadd: Added a rouny plushie to Sulaco. It's in the telecomms room.
+  - rscadd: Added a rouny plushie to Arachne. It's in the hidden hydroponics room,
+      far northwest in maintenance.
+2023-10-26:
+  Blundir:
+  - rscdel: bandana no longer hides facial hair
+  DeltaFire15:
+  - code_imp: Nuke disk generator candidates now support sets for mapping, which allows
+      more control over which disk groups appear aswell as how common they are. Look
+      at this PR if you need to know how.
+  - code_imp: Nuke disk generators can also be forced to always appear for specific
+      sets.
+  Lumipharon:
+  - rscadd: Computers are now emissive
+  - rscadd: Added emissive effects for various som mob sprites
+  - rscadd: Lights and emissives for apcs, fire alarms, air alarms and intercoms
+  - bugfix: fixed a minor visual issue with throwing huggers
+  - balance: Molotovs now have a high chance to explode on impact
+  Pariah919:
+  - balance: Buffed the knife gun.
+  - bugfix: You can't infinitely dupe flak guns in seasonal, they now spawn in a crate
+      like TAT for consistency.
+  - bugfix: Heavy laser is now the deployable variant in req for the deployable version.
+  ZeWaka:
+  - bugfix: Xenos can no longer spit onto space turfs
+2023-10-27:
+  Lewdcifer:
+  - bugfix: Fixed an issue where headwear with an emissive visor would display when
+      in hand, but not when worn.
+2023-10-28:
+  Aporhtonoma:
+  - balance: razor wires cost 8 iron rods 2 barbed to make
+  - bugfix: fixes infinite barbed duplication
+  ClosetedSkeletonGH:
+  - balance: Removes barrel charger from MG-27
+  Lewdcifer:
+  - balance: Alkysine now slightly heals ear damage.
+  Lumipharon:
+  - bugfix: fixed map table interaction checks always passing
+  - bugfix: You can no longer jump while stunned or buckled
+  - bugfix: You can no longer attack with a strapped weapon while stunned
+  - code_imp: Some more campaign backend work added
+  - bugfix: fixed SOM overwatch minimap showing marines instead of SOM
+  - bugfix: The SOM cic eye is now correctly flagged to SOM huds
+  - balance: Reduced brick damage somewhat
+  - bugfix: fixed a rare defender bug
+  Waselon:
+  - bugfix: baneling now can overwatch xenos if died from normal death
+2023-10-29:
+  Dallas:
+  - soundadd: Ported meowsynth and spaceman synthesizer sounds from TG
+  Lumipharon:
+  - bugfix: Sentry IFF flags are correctly checked when IFF projectile try to hit
+      them
+  - rscadd: Vendors are emissive
+  - bugfix: fixed a camera issue in campaign
+  Pariah919:
+  - rscadd: FK-88, a deployable direct fire support weapon that fires 15cm high explosive
+      shells, replaces the RR-15.
+  - rscdel: Tad heavy RR has been replaced by the ISG-15 HISG.
+  Xander3359:
+  - balance: improves imialk hypo
+2023-10-30:
+  Lewdcifer:
+  - rscadd: Adds the Behemoth, a new tier 3 caste.
+  Lumipharon:
+  - rscadd: SOM has their own camera net
+  - bugfix: Crest toss now throws the correct distance diagonally
+  - balance: Crest toss is from the xeno's turf, so some tosses will be possible that
+      were not previously
+  TiviPlus:
+  - rscadd: Added custom squads;
+  - rscadd: SLs may now create their own squads using a terminal in/near their prep,
+      and marines can join said squads using the squad selection consoles near preps
+  - admin: admins can now delete squads
+2023-10-31:
+  Wisemonster:
+  - spellcheck: Updated the description of the radio backpack to clarify it's access
+      to a supply request console.
+  Xander3359:
+  - spellcheck: tricordrazine > tricordazine
+  - spellcheck: pill packets are no longer capitalized (they looked weird)
+  dopamiin0:
+  - rscadd: Added a new ceiling type, obstructed, that blocks tadpole and droppods
+      but not other things caves ordinarily block.
+  - balance: Engineering on Lawanka Outpost now has an obstructed ceiling, instead
+      of being caves.
+  novaepee:
+  - rscadd: hyperscale gloves; its name is 8E Chameleon TGMC combat gloves, and you
+      can find it in the standard tab in surplus clothing vendor

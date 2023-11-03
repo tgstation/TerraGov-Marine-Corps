@@ -2,6 +2,9 @@
     "map_name": "Desparity",
     "map_path": "map_files/desparity",
     "map_file": "desparity.dmm",
+	"disk_sets": {
+		"basic": 1
+	},
     "armor": "jungle",
 	"announce_text": "An emergency broadcast has been picked up by our scanners, triangulated to a jungle outpost near LV624, known as Desparity. Through use of bluespace drive tech, the ship has jumped within range of the colony. TGMC, gear up and get ready to respond!",
 	"traits":[{

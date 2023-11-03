@@ -1,0 +1,4 @@
+author: "ZeWaka"
+delete-after: True
+changes:
+  - rscadd: "You can now continue to wait in/join the xeno larva queue while playing as a minion"

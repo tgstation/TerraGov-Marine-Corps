@@ -543,14 +543,6 @@
 	deployable_type = /obj/item/weapon/gun/heavy_laser
 	undeployed_icon_state = "hl_system"
 
-/obj/structure/dropship_equipment/shuttle/weapon_holder/heavy_rr
-	name = "heavy recoilless rifle deployment system"
-	desc = "A box that deploys a modified RR-15 crewserved recoilless rifle. Fits on the crewserved weapon attach points of dropships. You need a powerloader to lift it."
-	icon_state = "rr_system"
-	point_cost = 0 //this removes it from the fabricator
-	deployable_type = /obj/item/weapon/gun/launcher/rocket/heavy_rr
-	undeployed_icon_state = "rr_system"
-
 /obj/structure/dropship_equipment/shuttle/weapon_holder/mortar_holder
 	name = "mortar deployment system"
 	desc = "A box that deploys a TA-55DB mortar. Fits on the crewserved weapon attach points of dropships. You need a powerloader to lift it."
