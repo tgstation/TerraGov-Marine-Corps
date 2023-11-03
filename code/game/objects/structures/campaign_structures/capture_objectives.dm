@@ -169,7 +169,7 @@
 	name = "phoron crate objective"
 	icon = 'icons/obj/structures/campaign_structures.dmi'
 	icon_state = "orebox_phoron"
-	mission_types = list(/datum/campaign_mission/capture_mission)
+	mission_types = list(/datum/campaign_mission/capture_mission/phoron_capture)
 	spawn_object = /obj/structure/campaign_objective/capture_objective/fultonable
 
 /obj/structure/campaign_objective/capture_objective/fultonable
@@ -219,6 +219,13 @@
 	icon = 'icons/obj/structures/campaign_structures.dmi'
 	icon_state = "asat"
 	desc = "A sophisticated surface to space missile system designed for attacking orbiting satellites or spacecraft."
-	capture_delay = 45 SECONDS
 	capture_flags = CAPTURE_OBJECTIVE_RECAPTURABLE
-	owning_faction = FACTION_TERRAGOV //this could have a coded solution, but the mission is tgmc specific
+	///owning faction
+	var/faction = FACTION_TERRAGOV
+
+/obj/structure/campaign_objective/capture_objective/fultonable/asat_system/capture_check(mob/living/user)
+	//This is a 'defend' objective. The defending faction can't actually claim it for themselves, just decap it.
+	if((user.faction == faction) && !capturing_faction && !owning_faction)
+		user.balloon_alert(user, "Defend this objective!")
+		return FALSE
+	return ..()
