@@ -152,10 +152,11 @@
 
 /atom/movable/vis_obj/xeno_wounds/fire_overlay/Initialize(mapload, new_owner)
 	owner = new_owner
-	if(owner)
-		icon = owner.icon
-		light_pixel_x = owner.light_pixel_x
-		light_pixel_y = owner.light_pixel_y
+	if(!owner)
+		return INITIALIZE_HINT_QDEL
+	icon = owner.icon
+	light_pixel_x = owner.light_pixel_x
+	light_pixel_y = owner.light_pixel_y
 	. = ..()
 	update_icon()
 
