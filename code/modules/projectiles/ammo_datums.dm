@@ -1230,6 +1230,17 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	sundering = 2
 	damage_falloff = 0.25
 
+/datum/ammo/bullet/sniper/clf_heavyrifle
+	name = "high velocity incendiary sniper bullet"
+	handful_icon_state = "ptrs"
+	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_INCENDIARY|AMMO_SNIPER|AMMO_SUNDERING
+	hud_state = "sniper_fire"
+	accurate_range_min = 4
+	shell_speed = 5
+	damage = 120
+	penetration = 60
+	sundering = 20
+
 /datum/ammo/bullet/sniper/mech
 	name = "light anti-tank bullet"
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING|AMMO_SNIPER|AMMO_IFF
@@ -1274,6 +1285,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	hud_state_empty = "smartgun_empty"
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
 	damage = 40
+	max_range = 40
 	penetration = 30
 	sundering = 5
 	shell_speed = 4
@@ -1495,7 +1507,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	name = "\improper APFSDS round"
 	hud_state = "alloy_spike"
 	icon_state = "blue_bullet"
-	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING|AMMO_PASS_THROUGH_MOVABLE
+	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING|AMMO_PASS_THROUGH_MOVABLE|AMMO_UNWIELDY
 	shell_speed = 4
 	max_range = 14
 	damage = 150
@@ -2114,23 +2126,48 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/rocket/mech/drop_nade(turf/T)
 	explosion(T, 0, 0, 5, 0, 5)
 
-/datum/ammo/rocket/heavy_rr
-	name = "75mm round"
+/datum/ammo/rocket/heavy_isg
+	name = "15cm round"
 	icon_state = "heavyrr"
-	hud_state = "shell_he"
+	hud_state = "bigshell_he"
 	hud_state_empty = "shell_empty"
-	flags_ammo_behavior = AMMO_EXPLOSIVE|AMMO_ROCKET|AMMO_SUNDERING
-	accuracy = 40
-	accurate_range = 15
-	max_range = 40
-	shell_speed = 3
+	flags_ammo_behavior = AMMO_ROCKET|AMMO_EXPLOSIVE
+	damage = 50
 	penetration = 200
-	damage = 200
-	sundering = 50
+	max_range = 30
+	shell_speed = 0.75
+	accuracy = 30
+	accurate_range = 21
 	handful_amount = 1
 
-/datum/ammo/rocket/heavy_rr/drop_nade(turf/T)
-	explosion(T, 0, 2, 3, 0, 4)
+/datum/ammo/rocket/heavy_isg/drop_nade(turf/T)
+	explosion(T, 0, 7, 8, 12)
+
+/datum/ammo/rocket/heavy_isg/unguided
+	hud_state = "bigshell_he_unguided"
+	flags_ammo_behavior = AMMO_ROCKET
+
+/datum/ammo/bullet/heavy_isg_apfds
+	name = "15cm APFDS round"
+	icon_state = "apfds"
+	hud_state = "bigshell_apfds"
+	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_PASS_THROUGH_TURF|AMMO_PASS_THROUGH_MOVABLE
+	damage = 200
+	penetration = 75
+	shell_speed = 7
+	accurate_range = 24
+	accurate_range_min = 6
+	max_range = 35
+
+/datum/ammo/bullet/isg_apfds/on_hit_turf(turf/T, obj/projectile/P)
+	P.proj_max_range -= 5
+
+/datum/ammo/bullet/isg_apfds/on_hit_mob(mob/M, obj/projectile/P)
+	P.proj_max_range -= 2
+	staggerstun(M, P, max_range = 20, slowdown = 0.5)
+
+/datum/ammo/bullet/isg_apfds/on_hit_obj(obj/O, obj/projectile/P)
+	P.proj_max_range -= 5
 
 /datum/ammo/rocket/wp
 	name = "white phosphorous rocket"
@@ -2221,12 +2258,26 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	name = "HEAT shell"
 	icon_state = "recoilless_rifle_heat"
 	hud_state = "shell_heat"
+	flags_ammo_behavior = AMMO_ROCKET|AMMO_SUNDERING
 	damage = 200
 	penetration = 100
 	sundering = 0
 
 /datum/ammo/rocket/recoilless/heat/drop_nade(turf/T)
 	explosion(T, flash_range = 1)
+
+/datum/ammo/rocket/recoilless/heat/mech //for anti mech use in HvH
+	name = "HEAM shell"
+	accuracy = -10 //Not designed for anti human use
+	flags_ammo_behavior = AMMO_ROCKET|AMMO_SUNDERING|AMMO_UNWIELDY
+
+/datum/ammo/rocket/recoilless/heat/mech/on_hit_obj(obj/O, obj/projectile/P)
+	drop_nade(get_turf(O))
+	if(ismecha(O))
+		P.damage *= 3 //this is specifically designed to hurt mechs
+
+/datum/ammo/rocket/recoilless/heat/mech/drop_nade(turf/T)
+	explosion(T, 0, 1, 0, 0, 1)
 
 /datum/ammo/rocket/recoilless/light
 	name = "light explosive shell"
@@ -2339,7 +2390,8 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 200
 	penetration = 100
 	sundering = 0
-	accuracy = -30 //Not designed for anti human use
+	accuracy = -10 //Not designed for anti human use
+	flags_ammo_behavior = AMMO_ROCKET|AMMO_SUNDERING|AMMO_UNWIELDY
 
 /datum/ammo/rocket/som/heat/on_hit_obj(obj/O, obj/projectile/P)
 	drop_nade(get_turf(O))
@@ -3093,14 +3145,12 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	name = "xray heat bolt"
 	hud_state = "laser_xray"
 	icon_state = "u_laser"
-	flags_ammo_behavior = AMMO_ENERGY|AMMO_SUNDERING|AMMO_HITSCAN
+	flags_ammo_behavior = AMMO_ENERGY|AMMO_INCENDIARY|AMMO_SUNDERING|AMMO_HITSCAN
 	damage = 25
-	penetration = 10
+	penetration = 5
 	sundering = 1
 	max_range = 15
 	hitscan_effect_icon = "u_laser_beam"
-	/// Number of debuff stacks to apply when hitting mobs.
-	var/debuff_stacks = 5
 
 /datum/ammo/energy/lasgun/marine/xray/piercing
 	name = "xray piercing bolt"
@@ -3110,16 +3160,6 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	penetration = 100
 	max_range = 10
 	hitscan_effect_icon = "xray_beam"
-
-/datum/ammo/energy/lasgun/marine/xray/standard/on_hit_mob(mob/M, obj/projectile/proj)
-	if(!isliving(M))
-		return
-	var/mob/living/living_victim = M
-	var/datum/status_effect/stacking/microwave/debuff = living_victim.has_status_effect(STATUS_EFFECT_MICROWAVE)
-	if(debuff)
-		debuff.add_stacks(debuff_stacks)
-	else
-		living_victim.apply_status_effect(STATUS_EFFECT_MICROWAVE, debuff_stacks)
 
 /datum/ammo/energy/lasgun/marine/heavy_laser
 	flags_ammo_behavior = AMMO_EXPLOSIVE|AMMO_ROCKET|AMMO_ENERGY|AMMO_SUNDERING|AMMO_HITSCAN|AMMO_INCENDIARY
@@ -3563,7 +3603,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	drop_resin(T.density ? P.loc : T)
 
 /datum/ammo/xeno/sticky/proc/drop_resin(turf/T)
-	if(T.density)
+	if(T.density || istype(T, /turf/open/space)) // No structures in space
 		return
 
 	for(var/obj/O in T.contents)

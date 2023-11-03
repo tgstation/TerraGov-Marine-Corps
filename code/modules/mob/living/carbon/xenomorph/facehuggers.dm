@@ -245,12 +245,8 @@
 	if(stat != CONSCIOUS) //need to be active to leap
 		return
 
-	for(var/check_smoke in get_turf(src)) //Check for pacifying smoke
-		if(!istype(check_smoke, /obj/effect/particle_effect/smoke/xeno))
-			continue
-
-		var/obj/effect/particle_effect/smoke/xeno/xeno_smoke = check_smoke
-		if(CHECK_BITFIELD(xeno_smoke.smoke_traits, SMOKE_HUGGER_PACIFY)) //Cancel out and make the hugger go idle if we have the xeno pacify tag
+	for(var/obj/effect/particle_effect/smoke/check_smoke in get_turf(src)) //Check for pacifying smoke
+		if(CHECK_BITFIELD(check_smoke.smoke_traits, SMOKE_HUGGER_PACIFY)) //Cancel out and make the hugger go idle if we have the xeno pacify tag
 			go_idle()
 			return
 
@@ -358,39 +354,38 @@
 	update_icon()
 
 /obj/item/clothing/mask/facehugger/throw_impact(atom/hit_atom, speed)
+	if(isopenturf(hit_atom))
+		leaping = FALSE
+		go_idle()
+		return FALSE
 	. = ..()
+	if(!.)
+		return
 	if(stat != CONSCIOUS)
-		return ..()
-	if(iscarbon(hit_atom))
-		var/mob/living/carbon/M = hit_atom
-		if(loc == M) //Caught
-			update_icon()
-			pre_leap(impact_time)
-		else if(leaping && M.can_be_facehugged(src)) //Standard leaping behaviour, not attributable to being _thrown_ such as by a Carrier.
-			if(!Attach(M))
-				go_idle()
-			return
-		else
-			step(src, REVERSE_DIR(dir)) //We want the hugger to bounce off if it hits a mob.
-			update_icon()
-			if(!issamexenohive(M)) //If the target is not friendly, stagger and slow it, and activate faster.
-				M.adjust_stagger(3 SECONDS) //Apply stagger and slowdown so the carrier doesn't have to suicide when going for direct hugger hits.
-				M.add_slowdown(3)
-				pre_leap(impact_time) //Go into the universal leap set up proc
-				return
+		return
+	if(!iscarbon(hit_atom))
+		leaping = FALSE
+		go_idle()
+		return
 
-			pre_leap(activate_time) //Go into the universal leap set up proc
-			return
+	var/mob/living/carbon/M = hit_atom
+	if(loc == M) //Caught
+		pre_leap(impact_time)
+	else if(leaping && M.can_be_facehugged(src)) //Standard leaping behaviour, not attributable to being _thrown_ such as by a Carrier.
+		if(!Attach(M))
+			go_idle()
 	else
-		if(leaping)
-			for(var/mob/living/carbon/M in loc)
-				if(M.can_be_facehugged(src))
-					if(!Attach(M))
-						go_idle()
-					return
-	leaping = FALSE
-	go_idle(FALSE)
+		step(src, REVERSE_DIR(dir))
+		if(!issamexenohive(M))
+			M.adjust_stagger(3 SECONDS)
+			M.add_slowdown(3)
+		pre_leap(activate_time)
 
+	leaping = FALSE
+
+/obj/item/clothing/mask/facehugger/stop_throw(flying, original_layer)
+	. = ..()
+	update_icon()
 
 //////////////////////
 //  FACEHUG CHECKS

@@ -301,7 +301,7 @@
 //Sticky weed node
 /obj/alien/weeds/node/sticky
 	name = STICKY_WEED
-	desc = "A weird, pulsating red node."
+	desc = "A weird, pulsating blue node."
 	weed_type = /obj/alien/weeds/sticky
 	color_variant = STICKY_COLOR
 	node_icon = "weednodegreen"
@@ -340,7 +340,7 @@
 //Resting weed node
 /obj/alien/weeds/node/resting
 	name = RESTING_WEED
-	desc = "A weird, pulsating white node."
+	desc = "A weird, pulsating pale node."
 	weed_type = /obj/alien/weeds/resting
 	color_variant = RESTING_COLOR
 	node_icon = "weednodewhite"

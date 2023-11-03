@@ -154,6 +154,7 @@
 
 
 /obj/item/weapon/twohanded/offhand/dropped(mob/user)
+	. = ..()
 	return
 
 
@@ -212,6 +213,7 @@
 	force_wielded = 80
 	penetration = 35
 	flags_equip_slot = ITEM_SLOT_BACK
+	attack_speed = 15
 
 /obj/item/weapon/twohanded/fireaxe/som/Initialize(mapload)
 	. = ..()
@@ -285,9 +287,6 @@
 	rotate_me.Turn(rotation_value)
 	transform = rotate_me
 	return ..()
-
-/obj/item/weapon/twohanded/spear/throw_impact(atom/hit_atom, speed, bounce = FALSE)
-	. = ..()
 
 /obj/item/weapon/twohanded/spear/pickup(mob/user)
 	. = ..()

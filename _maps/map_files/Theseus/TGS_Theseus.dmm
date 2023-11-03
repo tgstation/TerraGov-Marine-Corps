@@ -296,6 +296,7 @@
 /area/mainship/living/cafeteria_starboard)
 "abj" = (
 /obj/structure/table/mainship/nometal,
+/obj/effect/spawner/random/misc/gnome,
 /turf/open/floor/mainship/orange{
 	dir = 4
 	},
@@ -826,7 +827,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/machinery/roomba,
+/obj/machinery/bot/roomba,
 /turf/open/floor/mainship/purple{
 	dir = 1
 	},
@@ -2250,6 +2251,7 @@
 /area/mainship/hallways/aft_hallway)
 "aTT" = (
 /obj/machinery/firealarm,
+/obj/machinery/computer/squad_selector,
 /turf/open/floor/mainship/red{
 	dir = 1
 	},
@@ -2283,7 +2285,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/living/officer_rnr)
 "aVh" = (
-/obj/machinery/roomba,
+/obj/machinery/bot/roomba,
 /turf/open/floor/mainship/green{
 	dir = 1
 	},
@@ -3558,7 +3560,7 @@
 	},
 /area/mainship/command/cic)
 "bkw" = (
-/obj/machinery/body_scanconsole,
+/obj/machinery/computer/body_scanconsole,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/lower_medical)
 "bky" = (
@@ -3737,6 +3739,7 @@
 /obj/effect/spawner/random/misc/paperbin,
 /obj/item/tool/pen,
 /obj/structure/cable,
+/obj/effect/spawner/random/misc/gnome,
 /turf/open/floor/mainship/floor,
 /area/mainship/engineering/ce_room)
 "blm" = (
@@ -4022,7 +4025,7 @@
 /turf/open/floor/mainship/sterile/corner,
 /area/mainship/medical/operating_room_one)
 "boR" = (
-/obj/machinery/body_scanconsole,
+/obj/machinery/computer/body_scanconsole,
 /turf/open/floor/mainship/sterile/side{
 	dir = 1
 	},
@@ -5529,7 +5532,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "bHi" = (
-/obj/machinery/sleep_console,
+/obj/machinery/computer/sleep_console,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/lower_medical)
 "bHk" = (
@@ -6003,7 +6006,7 @@
 	},
 /area/mainship/medical/operating_room_four)
 "bMk" = (
-/obj/machinery/body_scanconsole,
+/obj/machinery/computer/body_scanconsole,
 /turf/open/floor/mainship/sterile/side,
 /area/mainship/medical/lower_medical)
 "bMl" = (
@@ -7417,6 +7420,7 @@
 /area/mainship/living/port_emb)
 "ccT" = (
 /obj/machinery/light/mainship,
+/obj/machinery/computer/squad_selector,
 /turf/open/floor/mainship/blue,
 /area/mainship/squads/delta)
 "cdt" = (
@@ -8324,7 +8328,7 @@
 	},
 /area/mainship/living/officer_study)
 "dus" = (
-/obj/machinery/cloning_console/vats,
+/obj/machinery/computer/cloning_console/vats,
 /turf/open/floor/mainship/sterile/side{
 	dir = 1
 	},
@@ -9066,6 +9070,15 @@
 	},
 /turf/open/floor/mainship/floor,
 /area/mainship/command/cic)
+"eGf" = (
+/obj/machinery/light/mainship{
+	dir = 1
+	},
+/obj/machinery/computer/squad_manager,
+/turf/open/floor/mainship/red{
+	dir = 1
+	},
+/area/mainship/squads/alpha)
 "eGg" = (
 /obj/structure/window/framed/mainship/hull,
 /obj/machinery/door/firedoor/mainship,
@@ -9439,11 +9452,6 @@
 	},
 /turf/open/floor/mainship/sterile/side,
 /area/mainship/medical/lower_medical)
-"fqo" = (
-/obj/structure/cable,
-/obj/effect/spawner/random/misc/gnome,
-/turf/open/floor/mainship/floor,
-/area/mainship/command/self_destruct)
 "fqH" = (
 /turf/open/floor/mainship/sterile/side,
 /area/mainship/medical/surgery_hallway)
@@ -9943,7 +9951,7 @@
 	},
 /area/mainship/engineering/ce_room)
 "gbG" = (
-/obj/machinery/roomba,
+/obj/machinery/bot/roomba,
 /turf/open/floor/mainship/orange,
 /area/mainship/squads/alpha)
 "gcJ" = (
@@ -11055,7 +11063,7 @@
 /area/mainship/living/commandbunks)
 "hVi" = (
 /obj/structure/table/mainship/nometal,
-/obj/machinery/prop/mainship/computer,
+/obj/machinery/prop/computer,
 /obj/machinery/light/mainship{
 	dir = 8
 	},
@@ -11524,6 +11532,7 @@
 /area/mainship/squads/delta)
 "iNc" = (
 /obj/machinery/air_alarm,
+/obj/machinery/bot/cleanbot,
 /turf/open/floor/mainship/floor,
 /area/mainship/living/cafeteria_starboard)
 "iOm" = (
@@ -12906,13 +12915,6 @@
 	dir = 1
 	},
 /area/mainship/medical/lower_medical)
-"ljo" = (
-/obj/structure/bed/stool{
-	pixel_y = 8
-	},
-/obj/effect/spawner/random/misc/gnome,
-/turf/open/floor/grass,
-/area/mainship/living/starboard_garden)
 "lkq" = (
 /obj/machinery/shower{
 	dir = 8
@@ -13104,7 +13106,7 @@
 /turf/closed/wall/mainship,
 /area/mainship/living/pilotbunks)
 "lzB" = (
-/obj/machinery/prop/mainship/computer{
+/obj/machinery/prop/computer{
 	dir = 8
 	},
 /obj/structure/table/mainship/nometal,
@@ -16207,6 +16209,7 @@
 	},
 /area/mainship/medical/lower_medical)
 "qvE" = (
+/obj/machinery/bot/cleanbot,
 /turf/open/floor/mainship/sterile/side{
 	dir = 5
 	},
@@ -17168,6 +17171,7 @@
 "rYA" = (
 /obj/structure/table/mainship/nometal,
 /obj/item/stack/sheet/glass/large_stack,
+/obj/effect/spawner/random/misc/gnome,
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/lower_engineering)
 "rZo" = (
@@ -17507,7 +17511,7 @@
 /turf/open/floor/plating,
 /area/mainship/medical/upper_medical)
 "syG" = (
-/obj/machinery/cic_maptable_big,
+/obj/machinery/cic_maptable/drawable/big,
 /turf/open/floor/mainship/floor,
 /area/mainship/command/cic)
 "syT" = (
@@ -17575,6 +17579,11 @@
 /obj/machinery/telecomms/bus/preset_three,
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/telecomms)
+"sIX" = (
+/obj/machinery/light/mainship,
+/obj/machinery/computer/squad_manager,
+/turf/open/floor/mainship/blue,
+/area/mainship/squads/delta)
 "sJd" = (
 /obj/effect/landmark/start/latejoin_gateway,
 /obj/machinery/camera/autoname/mainship,
@@ -17724,7 +17733,6 @@
 "sXw" = (
 /obj/machinery/computer/orbital_cannon_console,
 /obj/structure/bed/chair/ob_chair,
-/obj/effect/spawner/random/misc/gnome,
 /turf/open/floor/mainship/mono,
 /area/mainship/shipboard/port_point_defense)
 "sYp" = (
@@ -18630,7 +18638,7 @@
 /turf/open/floor/mainship/floor,
 /area/mainship/living/cafeteria_starboard)
 "uBZ" = (
-/obj/machinery/autodoc_console,
+/obj/machinery/computer/autodoc_console,
 /turf/open/floor/mainship/sterile,
 /area/mainship/medical/lower_medical)
 "uDw" = (
@@ -19781,6 +19789,13 @@
 /obj/machinery/griddle,
 /turf/open/floor/mainship/floor,
 /area/mainship/living/grunt_rnr)
+"wJn" = (
+/obj/machinery/camera/autoname/mainship,
+/obj/machinery/computer/squad_selector,
+/turf/open/floor/mainship/red{
+	dir = 1
+	},
+/area/mainship/squads/alpha)
 "wJw" = (
 /obj/structure/window/framed/mainship,
 /turf/open/floor/plating,
@@ -19886,7 +19901,7 @@
 /turf/open/floor/mainship/floor,
 /area/mainship/command/cic)
 "wRf" = (
-/obj/machinery/roomba,
+/obj/machinery/bot/roomba,
 /turf/open/floor/mainship/sterile/side{
 	dir = 4
 	},
@@ -20107,6 +20122,7 @@
 /area/mainship/command/cic)
 "xoW" = (
 /obj/machinery/light/mainship,
+/obj/machinery/bot/cleanbot,
 /turf/open/floor/mainship/sterile/side,
 /area/mainship/medical/surgery_hallway)
 "xpi" = (
@@ -20226,7 +20242,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/port_hallway)
 "xCj" = (
-/obj/machinery/cloning_console/vats,
+/obj/machinery/computer/cloning_console/vats,
 /turf/open/floor/mainship/sterile/corner,
 /area/mainship/medical/lower_medical)
 "xCw" = (
@@ -20664,7 +20680,7 @@
 	},
 /area/mainship/living/cafeteria_starboard)
 "yfx" = (
-/obj/machinery/sleep_console,
+/obj/machinery/computer/sleep_console,
 /turf/open/floor/mainship/sterile/side,
 /area/mainship/medical/lower_medical)
 "yfJ" = (
@@ -51026,7 +51042,7 @@ rpv
 aca
 jkR
 aeB
-ljo
+pPG
 acf
 cbT
 iwt
@@ -63838,7 +63854,7 @@ aWR
 bdv
 aZi
 aWH
-bpD
+wJn
 aaf
 kMY
 brj
@@ -64352,7 +64368,7 @@ aWR
 bQr
 aZi
 aWH
-bSQ
+eGf
 jZv
 bjP
 brj
@@ -64392,7 +64408,7 @@ awz
 ktN
 ada
 vJr
-ccT
+sIX
 cbn
 cej
 aXI
@@ -75937,7 +75953,7 @@ aui
 avX
 axn
 axn
-fqo
+auo
 axn
 axn
 avX

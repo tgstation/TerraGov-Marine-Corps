@@ -47,12 +47,18 @@
 /obj/item/weapon/gun/pistol/standard_pistol
 	name = "\improper P-14 pistol"
 	desc = "The P-14, produced by Terran Armories. A reliable sidearm that loads 9x19mm Parabellum Auto munitions. Capable of mounting a limited amount of attachments, and firing at a respectable rate of fire, often as fast as you can pull the trigger. Takes 21-round 9mm magazines."
-	icon_state = "tp14"
-	item_state = "tp14"
+	icon_state = GUN_ICONSTATE_LOADED
+	item_state = GUN_ICONSTATE_LOADED
 	caliber = CALIBER_9X19 //codex
 	max_shells = 21 //codex
 	fire_sound = 'sound/weapons/guns/fire/tgmc/kinetic/gun_p14.ogg'
 	reload_sound = 'sound/weapons/guns/interact/tp14_reload.ogg'
+	greyscale_config = /datum/greyscale_config/gun/pistol
+	colorable_allowed = PRESET_COLORS_ALLOWED
+	item_icons = list(
+		slot_l_hand_str = /datum/greyscale_config/gun_inhand/tp14,
+		slot_r_hand_str = /datum/greyscale_config/gun_inhand/r_hand/tp14,
+	)
 	default_ammo_type = /obj/item/ammo_magazine/pistol/standard_pistol
 	allowed_ammo_types = list(/obj/item/ammo_magazine/pistol/standard_pistol)
 
@@ -72,8 +78,8 @@
 /obj/item/weapon/gun/pistol/plasma_pistol
 	name = "\improper PP-7 plasma pistol"
 	desc = "An experimental weapon designed to set the terrain and targets on fire. It hums with power as magnetic fields coil round each other."
-	icon_state = "tx7"
-	item_state = "tx7"
+	icon_state = GUN_ICONSTATE_LOADED
+	item_state = GUN_ICONSTATE_LOADED
 	caliber = CALIBER_PLASMA
 	max_shots = 10
 	reload_sound = 'sound/weapons/guns/interact/tp14_reload.ogg'
@@ -82,6 +88,12 @@
 	allowed_ammo_types = list(/obj/item/ammo_magazine/pistol/plasma_pistol)
 	type_of_casings = null
 	attachable_offset = list("muzzle_x" = 29, "muzzle_y" = 20,"rail_x" = 13, "rail_y" = 23, "under_x" = 19, "under_y" = 13, "stock_x" = 21, "stock_y" = 17)
+	greyscale_config = /datum/greyscale_config/gun/pistol/tx7
+	colorable_allowed = PRESET_COLORS_ALLOWED
+	item_icons = list(
+		slot_l_hand_str = /datum/greyscale_config/gun_inhand/tx7,
+		slot_r_hand_str = /datum/greyscale_config/gun_inhand/r_hand/tx7,
+	)
 	attachable_allowed = list(
 		/obj/item/attachable/reddot,
 		/obj/item/attachable/flashlight,
@@ -123,13 +135,12 @@
 	return FALSE
 
 /obj/item/weapon/gun/pistol/plasma_pistol/on_attach(obj/item/attached_to, mob/user)
-	flags_gun_features |= GUN_WIELDED_STABLE_FIRING_ONLY|GUN_WIELDED_FIRING_ONLY
+	flags_gun_features |= (GUN_WIELDED_STABLE_FIRING_ONLY|GUN_WIELDED_FIRING_ONLY)
 	return ..()
 
 /obj/item/weapon/gun/pistol/plasma_pistol/on_detach(obj/item/attached_to, mob/user)
-	flags_gun_features &= ~GUN_WIELDED_STABLE_FIRING_ONLY|GUN_WIELDED_FIRING_ONLY
+	flags_gun_features &= ~(GUN_WIELDED_STABLE_FIRING_ONLY|GUN_WIELDED_FIRING_ONLY)
 	return ..()
-
 
 /obj/item/weapon/gun/pistol/plasma_pistol/guardsman_pistol
 	name = "\improper Guardsman\'s plasma pistol"
@@ -168,14 +179,20 @@
 /obj/item/weapon/gun/pistol/standard_heavypistol
 	name = "\improper P-23 service pistol"
 	desc = "A standard P-23 chambered in .45 ACP. Has a smaller magazine capacity, but packs a better punch. Has an irremovable laser sight. Uses .45 magazines."
-	icon_state = "tp23"
-	item_state = "tp23"
+	icon_state = GUN_ICONSTATE_LOADED
+	item_state = GUN_ICONSTATE_LOADED
 	caliber = CALIBER_45ACP //codex
 	max_shells = 14 //codex
 	fire_sound = 'sound/weapons/guns/fire/tgmc/kinetic/gun_p23.ogg'
 	unload_sound = 'sound/weapons/guns/interact/colt_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/colt_reload.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/colt_cocked.ogg'
+	greyscale_config = /datum/greyscale_config/gun/pistol/tp23
+	colorable_allowed = PRESET_COLORS_ALLOWED
+	item_icons = list(
+		slot_l_hand_str = /datum/greyscale_config/gun_inhand/tp23,
+		slot_r_hand_str = /datum/greyscale_config/gun_inhand/r_hand/tp23,
+	)
 	default_ammo_type = /obj/item/ammo_magazine/pistol/standard_heavypistol
 	allowed_ammo_types = list(/obj/item/ammo_magazine/pistol/standard_heavypistol)
 	attachable_allowed = list(
@@ -698,12 +715,16 @@ It is a modified Beretta 93R, and can fire three round burst or single fire. Whe
 	icon_state = "elite_knife"
 	reload_sound = 'sound/weapons/flipblade.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/pistol_cocked.ogg'
+	caliber = CALIBER_ALIEN
 	flags_equip_slot = ITEM_SLOT_BELT
 	w_class = WEIGHT_CLASS_NORMAL
-	force = 25
+	force = 30
 	movement_acc_penalty_mult = 3
-	wield_delay = 0.2 SECONDS
+	aim_slowdown = -0.2
+	wield_delay = 1 SECONDS // This is how long a knife takes to pull out in CS.
 	fire_sound = 'sound/weapons/guns/fire/pistol_service.ogg'
+	default_ammo_type = /obj/item/ammo_magazine/pistol/knife
+	allowed_ammo_types = list(/obj/item/ammo_magazine/pistol/knife)
 	type_of_casings = "bullet"
 	gun_skill_category = SKILL_PISTOLS
 	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 14,"rail_x" = 9, "rail_y" = 17, "under_x" = 23, "under_y" = 11, "stock_x" = 23, "stock_y" = 10)
@@ -727,7 +748,6 @@ It is a modified Beretta 93R, and can fire three round burst or single fire. Whe
 		/obj/item/attachable/scope/mini,
 		/obj/item/attachable/lace,
 	)
-
 
 // Smart pistol, based on Calico M-950
 /obj/item/weapon/gun/pistol/smart_pistol

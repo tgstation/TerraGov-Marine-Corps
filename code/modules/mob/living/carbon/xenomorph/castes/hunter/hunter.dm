@@ -21,3 +21,6 @@
 /mob/living/carbon/xenomorph/hunter/apply_alpha_channel(image/I)
 	I.alpha = src.alpha
 	return I
+
+/mob/living/carbon/xenomorph/hunter/weapon_x
+	caste_base_type = /mob/living/carbon/xenomorph/hunter/weapon_x

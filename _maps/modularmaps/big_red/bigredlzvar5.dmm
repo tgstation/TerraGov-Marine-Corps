@@ -429,13 +429,6 @@
 "kz" = (
 /turf/closed/wall/r_wall,
 /area/bigredv2/outside/space_port)
-"kS" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_23";
-	name = "TGMC exit point 23"
-	},
-/turf/open/floor/plating,
-/area/bigredv2/outside/space_port)
 "kX" = (
 /obj/machinery/washing_machine,
 /turf/open/floor/tile/white,
@@ -508,15 +501,6 @@
 	dir = 1
 	},
 /turf/closed/wall/r_wall,
-/area/bigredv2/outside/space_port)
-"ns" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_24";
-	name = "TGMC exit point 24"
-	},
-/turf/open/floor/marking/asteroidwarning{
-	dir = 1
-	},
 /area/bigredv2/outside/space_port)
 "nu" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
@@ -953,6 +937,10 @@
 /obj/machinery/light,
 /turf/open/floor/plating,
 /area/bigredv2/outside/space_port)
+"zO" = (
+/obj/effect/landmark/patrol_point/tgmc_22,
+/turf/open/floor/plating,
+/area/bigredv2/outside/space_port)
 "Ag" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 5
@@ -988,13 +976,6 @@
 	},
 /turf/open/floor,
 /area/bigredv2/outside/marshal_office)
-"AP" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_21";
-	name = "TGMC exit point 21"
-	},
-/turf/open/floor/plating,
-/area/bigredv2/outside/space_port)
 "AU" = (
 /obj/structure/cable,
 /turf/closed/wall,
@@ -1006,6 +987,12 @@
 "Bb" = (
 /obj/structure/sign/safety/hazard,
 /turf/open/floor/asteroidfloor,
+/area/bigredv2/outside/space_port)
+"Bi" = (
+/obj/effect/landmark/patrol_point/tgmc_24,
+/turf/open/floor/marking/asteroidwarning{
+	dir = 1
+	},
 /area/bigredv2/outside/space_port)
 "Bu" = (
 /obj/effect/decal/cleanable/dirt,
@@ -1136,6 +1123,10 @@
 "FY" = (
 /obj/machinery/computer/security,
 /turf/open/floor/tile/darkgreen/darkgreen2,
+/area/bigredv2/outside/space_port)
+"Ge" = (
+/obj/effect/landmark/patrol_point/tgmc_23,
+/turf/open/floor/plating,
 /area/bigredv2/outside/space_port)
 "Gf" = (
 /obj/effect/decal/cleanable/dirt,
@@ -1373,13 +1364,6 @@
 "MC" = (
 /obj/structure/cargo_container{
 	dir = 8
-	},
-/turf/open/floor/plating,
-/area/bigredv2/outside/space_port)
-"MH" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_22";
-	name = "TGMC exit point 22"
 	},
 /turf/open/floor/plating,
 /area/bigredv2/outside/space_port)
@@ -1855,6 +1839,10 @@
 "Yr" = (
 /turf/open/floor/tile/darkgreen/darkgreen2,
 /area/bigredv2/outside/space_port)
+"YL" = (
+/obj/effect/landmark/patrol_point/tgmc_21,
+/turf/open/floor/plating,
+/area/bigredv2/outside/space_port)
 "YV" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/machinery/door/airlock/mainship/security/glass/free_access{
@@ -1874,11 +1862,6 @@
 /obj/machinery/atmospherics/components/unary/vent_pump,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/ai_node,
-/turf/open/floor/tile/dark,
-/area/bigredv2/outside/marshal_office)
-"Zk" = (
-/obj/effect/landmark/weed_node,
-/obj/structure/nuke_disk_candidate,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/marshal_office)
 "Zo" = (
@@ -2946,7 +2929,7 @@ ws
 ws
 PX
 kz
-ns
+Bi
 ph
 Nr
 Qk
@@ -3188,7 +3171,7 @@ PX
 kz
 SK
 SK
-AP
+YL
 SK
 Jd
 SK
@@ -3233,11 +3216,11 @@ SK
 SK
 SK
 SK
-MH
+zO
 SK
 Jd
 SK
-kS
+Ge
 SK
 NJ
 SK
@@ -5053,7 +5036,7 @@ bB
 fF
 Rr
 nX
-Zk
+ql
 nX
 fF
 aM

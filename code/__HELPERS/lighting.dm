@@ -1,7 +1,11 @@
 /// Produces a mutable appearance glued to the [EMISSIVE_PLANE] dyed to be the [EMISSIVE_COLOR].
 /proc/emissive_appearance(icon, icon_state = "", layer = FLOAT_LAYER, alpha = 255, appearance_flags = NONE)
 	var/mutable_appearance/appearance = mutable_appearance(icon, icon_state, layer, EMISSIVE_PLANE, alpha, appearance_flags | EMISSIVE_APPEARANCE_FLAGS)
-	appearance.color = GLOB.emissive_color
+	if(alpha == 255)
+		appearance.color = GLOB.emissive_color
+	else
+		var/alpha_ratio = alpha/255
+		appearance.color = _EMISSIVE_COLOR(alpha_ratio)
 	return appearance
 
 /// Produces a mutable appearance glued to the [EMISSIVE_PLANE] dyed to be the [EM_BLOCK_COLOR].
@@ -16,7 +20,7 @@
 		switch(area_to_lit.ceiling)
 			if(CEILING_NONE to CEILING_GLASS)
 				area_to_lit.set_base_lighting(outside_colour, outside_lvl)
-			if(CEILING_METAL)
+			if(CEILING_METAL to CEILING_OBSTRUCTED)
 				area_to_lit.set_base_lighting(inside_colour, inside_lvl)
 			if(CEILING_UNDERGROUND to CEILING_UNDERGROUND_METAL)
 				area_to_lit.set_base_lighting(cave_colour, cave_lvl)

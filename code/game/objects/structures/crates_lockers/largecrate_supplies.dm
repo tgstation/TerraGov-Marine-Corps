@@ -151,6 +151,15 @@
 		/obj/item/ammo_magazine/standard_atgun/he = 3,
 	)
 
+/obj/structure/largecrate/supply/weapons/standard_flakgun
+	name = "\improper ATR-22 flak gun and ammo chest (x1, x6)"
+	desc = "A supply crate containing a ATR-22 and a full set of ammo to load into the sponson."
+	supplies = list(
+		/obj/item/weapon/gun/standard_auto_cannon = 1,
+		/obj/item/ammo_magazine/auto_cannon = 3,
+		/obj/item/ammo_magazine/auto_cannon/flak = 3,
+	)
+
 /obj/structure/largecrate/supply/ammo
 	name = "ammunition case"
 	icon_state = "case"
@@ -254,6 +263,10 @@
 	desc = "A case containing twenty five 80mm flare mortar shells."
 	supplies = list(/obj/item/mortal_shell/flare = 25)
 
+/obj/structure/largecrate/supply/explosives/disposable
+	name = "RL-72 disposable rocket launchers (x8)"
+	desc = "A case containing eight RL-72 disposables."
+	supplies = list(/obj/item/weapon/gun/launcher/rocket/oneuse = 8)
 
 /obj/structure/largecrate/supply/supplies
 	name = "supplies crate"
@@ -393,7 +406,7 @@
 			return
 
 		var/obj/machinery/autodoc/event/E = new (T)
-		var/obj/machinery/autodoc_console/C = new (T)
+		var/obj/machinery/computer/autodoc_console/C = new (T)
 		C.loc = get_step(T, EAST)
 		E.connected = C
 		C.connected = E
@@ -413,7 +426,7 @@
 			return
 
 		var/obj/machinery/bodyscanner/E = new (T)
-		var/obj/machinery/body_scanconsole/C = new (T)
+		var/obj/machinery/computer/body_scanconsole/C = new (T)
 		C.loc = get_step(T, EAST)
 		C.connected = E
 
@@ -432,7 +445,7 @@
 			return
 
 		var/obj/machinery/sleeper/E = new (T)
-		var/obj/machinery/sleep_console/C = new (T)
+		var/obj/machinery/computer/sleep_console/C = new (T)
 		C.loc = get_step(T, EAST)
 		E.connected = C
 		C.connected = E

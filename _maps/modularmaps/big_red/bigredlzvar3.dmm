@@ -28,6 +28,10 @@
 /obj/item/stack/sheet/metal,
 /turf/open/floor/plating/dmg1,
 /area/bigredv2/outside/space_port)
+"bC" = (
+/obj/effect/landmark/patrol_point/tgmc_23,
+/turf/open/floor/marking/asteroidwarning,
+/area/bigredv2/outside/space_port)
 "bK" = (
 /obj/machinery/light,
 /turf/open/floor/tile/red/redtaupecorner,
@@ -61,14 +65,6 @@
 /obj/effect/spawner/random/engineering/pickaxe,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/northwest)
-"cI" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_21";
-	name = "TGMC exit point 21"
-	},
-/turf/open/floor/asteroidfloor,
-/area/bigredv2/outside/space_port)
 "cP" = (
 /obj/item/shard,
 /turf/open/floor,
@@ -145,6 +141,11 @@
 	},
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/space_port)
+"em" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/landmark/patrol_point/tgmc_21,
+/turf/open/floor/asteroidfloor,
+/area/bigredv2/outside/space_port)
 "eC" = (
 /obj/machinery/computer/telecomms/server,
 /turf/open/floor/tile/dark,
@@ -208,6 +209,13 @@
 /obj/item/shard,
 /obj/effect/ai_node,
 /turf/open/floor/plating,
+/area/bigredv2/outside/space_port)
+"gt" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/effect/landmark/patrol_point/tgmc_22,
+/turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/space_port)
 "gw" = (
 /obj/structure/closet/l3closet/security,
@@ -321,16 +329,6 @@
 "iD" = (
 /turf/closed/wall/r_wall,
 /area/bigredv2/outside/marshal_office)
-"iF" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_22";
-	name = "TGMC exit point 22"
-	},
-/turf/open/floor/asteroidfloor,
-/area/bigredv2/outside/space_port)
 "iI" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/red/redtaupecorner,
@@ -965,6 +963,11 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/nw)
+"yQ" = (
+/obj/structure/cable,
+/obj/effect/landmark/patrol_point/tgmc_24,
+/turf/open/floor/asteroidfloor,
+/area/bigredv2/outside/space_port)
 "yS" = (
 /obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /obj/machinery/door/poddoor/shutters/mainship{
@@ -993,14 +996,6 @@
 	},
 /turf/open/floor/tile/green/whitegreenfull,
 /area/bigredv2/outside/marshal_office)
-"zi" = (
-/obj/structure/cable,
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_24";
-	name = "TGMC exit point 24"
-	},
-/turf/open/floor/asteroidfloor,
-/area/bigredv2/outside/space_port)
 "zk" = (
 /obj/effect/ai_node,
 /turf/open/floor/asteroidfloor,
@@ -1713,13 +1708,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/n)
-"Sp" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_23";
-	name = "TGMC exit point 23"
-	},
-/turf/open/floor/marking/asteroidwarning,
-/area/bigredv2/outside/space_port)
 "Sv" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/landmark/weed_node,
@@ -1819,10 +1807,6 @@
 	},
 /turf/open/floor/plating/ground/mars/random/dirt,
 /area/bigredv2/outside/nw)
-"Vc" = (
-/obj/structure/nuke_disk_candidate,
-/turf/open/floor/tile/dark,
-/area/bigredv2/outside/marshal_office)
 "Vj" = (
 /obj/structure/table,
 /obj/effect/spawner/random/engineering/tech_supply,
@@ -2161,7 +2145,7 @@ RY
 Pf
 eW
 zU
-cI
+em
 PV
 PV
 PV
@@ -2350,7 +2334,7 @@ wT
 wT
 pG
 Bk
-iF
+gt
 ZR
 Ry
 eW
@@ -2408,7 +2392,7 @@ PV
 PV
 ZR
 PV
-Sp
+bC
 Bk
 Bi
 TI
@@ -2557,7 +2541,7 @@ Mm
 hb
 hb
 OG
-zi
+yQ
 Mm
 Jk
 hb
@@ -5128,7 +5112,7 @@ So
 iD
 gw
 gf
-Vc
+gf
 gf
 iD
 JS

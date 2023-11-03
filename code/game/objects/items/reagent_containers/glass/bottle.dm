@@ -57,6 +57,9 @@
 		var/image/lid = image(icon, src, "lid_bottle")
 		overlays += lid
 
+/obj/item/reagent_containers/glass/bottle/empty //Because the parent has RNG icon_state
+	icon_state = "bottle-1" //Same one when you make a bottle in the chem master
+
 /obj/item/reagent_containers/glass/bottle/inaprovaline
 	name = "\improper Inaprovaline bottle"
 	desc = "A small bottle. Contains inaprovaline - used to stabilize patients."
@@ -70,7 +73,7 @@
 	list_reagents = list(/datum/reagent/medicine/kelotane = 60)
 
 /obj/item/reagent_containers/glass/bottle/dexalin
-	name = "\improper Dexaline bottle"
+	name = "\improper Dexalin bottle"
 	desc = "A small bottle. Contains dexalin - used to supply blood with oxygen."
 	icon_state = "bottle10"
 	list_reagents = list(/datum/reagent/medicine/dexalin = 60)

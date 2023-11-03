@@ -30,6 +30,9 @@
 	/// Flags that can be used to modify use
 	var/greyscale_flags = NONE
 
+	///If an icon_state is in this list, it wont be generated.
+	var/list/ignore_states = list()
+
 // There's more sanity checking here than normal because this is designed for spriters to work with
 // Sensible error messages that tell you exactly what's wrong is the best way to make this easy to use
 /datum/greyscale_config/New()
@@ -69,6 +72,8 @@
 		var/list/raw_layers = data[state]
 		if(!length(raw_layers))
 			stack_trace("The json configuration [DebugName()] for icon state '[state]' is missing any layers.")
+			continue
+		if(state in ignore_states)
 			continue
 		if(icon_states[state])
 			stack_trace("The json configuration [DebugName()] has a duplicate icon state '[state]' and is being overriden.")

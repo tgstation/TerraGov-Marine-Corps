@@ -1079,7 +1079,8 @@
 	if(QDELETED(H?.camera) || oldloc == get_turf(src))
 		return
 
-	GLOB.cameranet.updatePortableCamera(H.camera)
+	var/datum/cameranet/net = H.camera.parent_cameranet
+	net.updatePortableCamera(H.camera)
 
 
 /mob/living/carbon/human/update_camera_location(oldloc)

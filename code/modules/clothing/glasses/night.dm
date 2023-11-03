@@ -67,6 +67,19 @@
 	actions_types = list(/datum/action/item_action/toggle)
 	vision_flags = SEE_TURFS
 
+/obj/item/clothing/glasses/night/sunglasses
+	name = "\improper KTLD sunglasses"
+	desc = "A pair of designer sunglasses. This pair has been fitted with a KTLD head mounted sight."
+	icon = 'icons/obj/clothing/glasses.dmi'
+	icon_state = "m56sunglasses"
+	item_state = "m56sunglasses"
+	deactive_state = "degoggles_mesonsunglasses"
+	darkness_view = 5
+	toggleable = TRUE
+	actions_types = list(/datum/action/item_action/toggle)
+	vision_flags = SEE_TURFS
+	prescription = TRUE
+
 /obj/item/clothing/glasses/night/optgoggles
 	name = "\improper Optical imager ballistic goggles"
 	desc = "Standard issue TGMC goggles. This pair has been fitted with an internal optical imaging scanner."

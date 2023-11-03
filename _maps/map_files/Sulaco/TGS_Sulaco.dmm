@@ -662,7 +662,7 @@
 /obj/machinery/light/mainship{
 	dir = 1
 	},
-/obj/machinery/body_scanconsole,
+/obj/machinery/computer/body_scanconsole,
 /turf/open/floor/prison/whitegreen/corner,
 /area/sulaco/medbay/west)
 "acv" = (
@@ -695,6 +695,7 @@
 /turf/open/floor/prison/whitegreen/corner,
 /area/sulaco/medbay/west)
 "acA" = (
+/obj/machinery/bot/cleanbot,
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 8
 	},
@@ -761,7 +762,7 @@
 	},
 /area/sulaco/medbay)
 "acK" = (
-/obj/machinery/autodoc_console,
+/obj/machinery/computer/autodoc_console,
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 4
 	},
@@ -1028,7 +1029,7 @@
 /turf/open/floor/prison/whitegreen/corner,
 /area/sulaco/medbay/surgery_one)
 "adH" = (
-/obj/machinery/body_scanconsole,
+/obj/machinery/computer/body_scanconsole,
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 4
 	},
@@ -1312,6 +1313,9 @@
 /area/sulaco/medbay/storage)
 "aey" = (
 /obj/structure/table/mainship/nometal,
+/obj/machinery/bot/cleanbot{
+	pixel_y = 9
+	},
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 4
 	},
@@ -3553,7 +3557,7 @@
 	dir = 8
 	},
 /obj/structure/window/reinforced/toughened,
-/obj/machinery/prop/mainship/computer{
+/obj/machinery/prop/computer{
 	dir = 8
 	},
 /turf/open/floor/prison/red{
@@ -4014,7 +4018,7 @@
 	},
 /area/sulaco/bridge)
 "avb" = (
-/obj/machinery/cic_maptable_big,
+/obj/machinery/cic_maptable/drawable/big,
 /turf/open/floor/mainship/terragov{
 	dir = 8
 	},
@@ -6890,7 +6894,6 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/effect/spawner/random/misc/gnome,
 /turf/open/floor/prison,
 /area/mainship/shipboard/weapon_room)
 "aKU" = (
@@ -8205,7 +8208,7 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
 	dir = 1
 	},
-/obj/machinery/body_scanconsole,
+/obj/machinery/computer/body_scanconsole,
 /turf/open/floor/prison/sterilewhite,
 /area/sulaco/medbay/hangar)
 "aTk" = (
@@ -8859,6 +8862,7 @@
 /obj/machinery/camera/autoname{
 	dir = 4
 	},
+/obj/effect/spawner/random/misc/gnome,
 /turf/open/floor/plating,
 /area/sulaco/maintenance/lower_maint2)
 "aYM" = (
@@ -10401,6 +10405,7 @@
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
 	dir = 4
 	},
+/obj/machinery/computer/squad_selector,
 /turf/open/floor/prison/green/full,
 /area/sulaco/marine)
 "cyq" = (
@@ -10908,6 +10913,7 @@
 /obj/structure/table/mainship/nometal,
 /obj/item/tool/crowbar,
 /obj/item/clothing/head/hardhat/rugged,
+/obj/effect/spawner/random/misc/gnome,
 /turf/open/floor/plating,
 /area/sulaco/maintenance/lower_maint3)
 "dde" = (
@@ -13740,7 +13746,7 @@
 /turf/open/floor/prison,
 /area/sulaco/marine)
 "gXI" = (
-/obj/machinery/body_scanconsole,
+/obj/machinery/computer/body_scanconsole,
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 1
 	},
@@ -15334,6 +15340,10 @@
 	dir = 1
 	},
 /area/sulaco/medbay)
+"iOD" = (
+/obj/machinery/computer/squad_selector,
+/turf/open/floor/prison,
+/area/sulaco/marine)
 "iPn" = (
 /obj/structure/window/reinforced{
 	dir = 8
@@ -16059,6 +16069,7 @@
 /area/sulaco/firingrange)
 "jJN" = (
 /obj/structure/bed/chair/office/light,
+/obj/effect/spawner/random/misc/gnome,
 /turf/open/floor/prison,
 /area/sulaco/security)
 "jJX" = (
@@ -17347,6 +17358,7 @@
 	id = "tcomwind";
 	name = "Telecomms Window Control"
 	},
+/obj/item/toy/plush/rouny,
 /turf/open/floor/prison,
 /area/sulaco/telecomms/office)
 "lvm" = (
@@ -17357,6 +17369,11 @@
 /obj/effect/ai_node,
 /turf/open/floor/prison/bright_clean,
 /area/mainship/command/self_destruct)
+"lvC" = (
+/obj/effect/decal/cleanable/cobweb2,
+/obj/machinery/bot/cleanbot,
+/turf/open/floor/plating,
+/area/sulaco/maintenance/upperdeck_AIcore_maint)
 "lwq" = (
 /obj/machinery/door/poddoor/shutters/mainship/selfdestruct{
 	dir = 1
@@ -18387,7 +18404,7 @@
 /turf/open/floor/prison,
 /area/sulaco/hallway/evac)
 "mJk" = (
-/obj/machinery/cloning_console/vats,
+/obj/machinery/computer/cloning_console/vats,
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 1
 	},
@@ -20016,7 +20033,7 @@
 /turf/open/floor/prison,
 /area/sulaco/hallway/evac)
 "oPD" = (
-/obj/machinery/roomba,
+/obj/machinery/bot/roomba,
 /obj/machinery/light/mainship{
 	dir = 8
 	},
@@ -20183,6 +20200,10 @@
 	},
 /turf/closed/wall/mainship/white,
 /area/sulaco/medbay)
+"pdB" = (
+/obj/machinery/bot/cleanbot,
+/turf/open/floor/plating,
+/area/sulaco/maintenance/lower_maint3)
 "pdS" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 10
@@ -20478,6 +20499,10 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/prison/whitegreen/corner,
 /area/sulaco/medbay/storage)
+"ppY" = (
+/obj/machinery/computer/squad_manager,
+/turf/open/floor/prison,
+/area/sulaco/marine)
 "ptg" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/prison/plate,
@@ -22638,7 +22663,7 @@
 /area/sulaco/cafeteria)
 "shz" = (
 /obj/structure/table/mainship/nometal,
-/obj/machinery/prop/mainship/computer{
+/obj/machinery/prop/computer{
 	dir = 4
 	},
 /obj/machinery/light/mainship/small{
@@ -23449,7 +23474,7 @@
 /area/sulaco/hallway/lower_foreship)
 "tiD" = (
 /obj/structure/table/mainship/nometal,
-/obj/machinery/prop/mainship/computer{
+/obj/machinery/prop/computer{
 	dir = 8
 	},
 /turf/open/floor/prison/bright_clean,
@@ -23764,10 +23789,6 @@
 /obj/machinery/status_display,
 /turf/closed/wall/mainship/gray/outer,
 /area/sulaco/engineering/engine)
-"tBY" = (
-/obj/effect/spawner/random/misc/gnome,
-/turf/open/floor/grass,
-/area/mainship/living/starboard_garden)
 "tCl" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
@@ -25796,7 +25817,7 @@
 /area/sulaco/hangar)
 "whS" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/roomba,
+/obj/machinery/bot/roomba,
 /obj/docking_port/stationary/marine_dropship/crash_target,
 /turf/open/floor/prison/red,
 /area/sulaco/cargo/prep)
@@ -26271,7 +26292,7 @@
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/sulaco/hallway/central_hall)
 "wUm" = (
-/obj/machinery/sleep_console,
+/obj/machinery/computer/sleep_console,
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 1
 	},
@@ -47498,7 +47519,7 @@ uwG
 aJy
 jUJ
 aMp
-xJd
+ppY
 cAK
 kqp
 kNc
@@ -48281,7 +48302,7 @@ oSV
 xJd
 wYX
 aLk
-mAk
+iOD
 aLf
 ueG
 wVR
@@ -48306,7 +48327,7 @@ aMc
 vMY
 vMB
 bBG
-qzH
+pdB
 gIj
 xKi
 mDu
@@ -55627,7 +55648,7 @@ pEI
 aCE
 aVR
 aVR
-aEu
+lvC
 aCg
 dGX
 aCg
@@ -57035,7 +57056,7 @@ sZZ
 gJO
 uyz
 iWb
-tBY
+sMe
 dMC
 mDu
 qDO

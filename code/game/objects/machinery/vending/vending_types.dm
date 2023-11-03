@@ -114,6 +114,7 @@
 		/obj/item/reagent_containers/food/snacks/wrapped/chunk = -1,
 		/obj/item/reagent_containers/food/snacks/wrapped/barcardine = -1,
 		/obj/item/reagent_containers/food/snacks/lollipop = -1,
+		/obj/item/reagent_containers/food/snacks/wrapped/berrybar = -1,
 	)
 
 /obj/machinery/vending/cola
@@ -200,6 +201,7 @@
 		),
 		"Chemistry Equipment" = list(
 			/obj/item/reagent_containers/syringe = -1,
+			/obj/item/storage/syringe_case/empty = -1,
 			/obj/item/reagent_containers/glass/beaker = -1,
 			/obj/item/reagent_containers/glass/beaker/large = -1,
 			/obj/item/reagent_containers/glass/beaker/vial = -1,
@@ -289,6 +291,7 @@
 			/obj/item/storage/pouch/surgery = -1,
 			/obj/item/armor_module/storage/uniform/surgery_webbing = -1,
 			/obj/item/reagent_containers/syringe = -1,
+			/obj/item/storage/syringe_case/empty = -1,
 			/obj/item/reagent_containers/glass/beaker = -1,
 			/obj/item/reagent_containers/glass/beaker/large = -1,
 			/obj/item/reagent_containers/glass/beaker/vial = -1,
