@@ -3615,6 +3615,43 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/xeno/sticky/turret
 	max_range = 9
 
+/datum/ammo/xeno/sticky/globe
+	name = "sticky resin globe"
+	icon_state = "sticky_globe"
+	damage = 40
+	max_range = 7
+	spit_cost = 200
+	added_spit_delay = 8 SECONDS
+	bonus_projectiles_type = /datum/ammo/xeno/sticky/mini
+	bonus_projectiles_scatter = 22
+	var/bonus_projectile_quantity = 16
+	var/bonus_projectile_range = 3
+	var/bonus_projectile_speed = 1
+
+/datum/ammo/xeno/sticky/mini
+	damage = 5
+	max_range = 3
+
+/datum/ammo/xeno/sticky/globe/on_hit_obj(obj/O, obj/projectile/P)
+	var/turf/initial_turf = O.density ? P.loc : get_turf(O)
+	drop_resin(initial_turf)
+	fire_directionalburst(P, P.firer, P.shot_from, bonus_projectile_quantity, bonus_projectile_range, bonus_projectile_speed, Get_Angle(P.firer, initial_turf))
+
+/datum/ammo/xeno/sticky/globe/on_hit_turf(turf/T, obj/projectile/P)
+	var/turf/initial_turf = T.density ? P.loc : T
+	drop_resin(initial_turf)
+	fire_directionalburst(P, P.firer, P.shot_from, bonus_projectile_quantity, bonus_projectile_range, bonus_projectile_speed, Get_Angle(P.firer, initial_turf))
+
+/datum/ammo/xeno/sticky/globe/on_hit_mob(mob/M, obj/projectile/P)
+	var/turf/initial_turf = get_turf(M)
+	drop_resin(initial_turf)
+	fire_directionalburst(P, P.firer, P.shot_from, bonus_projectile_quantity, bonus_projectile_range, bonus_projectile_speed, Get_Angle(P.firer, initial_turf))
+
+/datum/ammo/xeno/sticky/globe/do_at_max_range(turf/T, obj/projectile/P)
+	var/turf/initial_turf = T.density ? P.loc : T
+	drop_resin(initial_turf)
+	fire_directionalburst(P, P.firer, P.shot_from, bonus_projectile_quantity, bonus_projectile_range, bonus_projectile_speed, Get_Angle(P.firer, initial_turf))
+
 /datum/ammo/xeno/acid
 	name = "acid spit"
 	icon_state = "xeno_acid"
