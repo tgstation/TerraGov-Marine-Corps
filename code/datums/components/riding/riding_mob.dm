@@ -333,8 +333,7 @@
 // Spiderlings latch on to crit widows when guarding and cannot be kicked off..
 /datum/component/riding/creature/widow/ride_check(mob/living/rider)
 	var/mob/living/widow = parent
-	if(widow.stat == UNCONSCIOUS)
-		return TRUE
+	return widow.stat == UNCONSCIOUS
 
 //..nor can they be laid under widow..
 /datum/component/riding/creature/widow/handle_vehicle_layer(dir)
