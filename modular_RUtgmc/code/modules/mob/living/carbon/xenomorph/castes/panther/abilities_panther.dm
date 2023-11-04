@@ -47,7 +47,7 @@
 			var/affecting = H.get_limb(ran_zone(null, 0))
 			if(!affecting) //Still nothing??
 				affecting = H.get_limb("chest") //Gotta have a torso?!
-			H.apply_damage(damage, BRUTE, affecting, MELEE)
+			H.apply_damage(damage*2, BRUTE, affecting, MELEE)
 			X.plasma_stored += 25
 			X.heal_overall_damage(25, 25, updating_health = TRUE)
 			if(H.can_sting())
@@ -499,7 +499,6 @@
 			PANTHER_NEUROTOXIN = image('modular_RUtgmc/icons/Xeno/actions.dmi', icon_state = PANTHER_NEUROTOXIN),
 			PANTHER_HEMODILE = image('modular_RUtgmc/icons/Xeno/actions.dmi', icon_state = PANTHER_HEMODILE),
 			PANTHER_TRANSVITOX = image('modular_RUtgmc/icons/Xeno/actions.dmi', icon_state = PANTHER_TRANSVITOX),
-			PANTHER_OZELOMELYN = image('modular_RUtgmc/icons/Xeno/actions.dmi', icon_state = PANTHER_OZELOMELYN),
 			PANTHER_SANGUINAL = image('modular_RUtgmc/icons/Xeno/actions.dmi', icon_state = PANTHER_SANGUINAL),
 			)
 	var/toxin_choice = show_radial_menu(owner, owner, panther_toxin_images_list, radius = 48)
@@ -518,5 +517,4 @@
 #undef PANTHER_NEUROTOXIN
 #undef PANTHER_HEMODILE
 #undef PANTHER_TRANSVITOX
-#undef PANTHER_OZELOMELYN
 #undef PANTHER_SANGUINAL
