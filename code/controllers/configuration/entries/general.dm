@@ -124,7 +124,7 @@ Administrative related.
 
 /// Log human readable versions of json log entries
 /datum/config_entry/flag/log_as_human_readable
-	default = TRUE
+	config_entry_value = TRUE
 
 /datum/config_entry/flag/allow_admin_ooccolor // Allows admins to customize their OOC color.
 
