@@ -89,6 +89,8 @@
 
 /obj/hitby(atom/movable/AM, speed = 5)
 	. = ..()
+	if(!.)
+		return
 	if(!anchored && (move_resist < MOVE_FORCE_STRONG))
 		step(src, AM.dir)
 	visible_message(span_warning("[src] was hit by [AM]."), visible_message_flags = COMBAT_MESSAGE)

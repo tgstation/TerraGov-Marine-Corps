@@ -56885,7 +56885,7 @@
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 9
 	},
-/obj/machinery/body_scanconsole,
+/obj/machinery/computer/body_scanconsole,
 /turf/open/floor/iron/white,
 /area/deltastation/medical/treatment_center)
 "lEb" = (
@@ -100357,7 +100357,7 @@
 /area/deltastation/hallway/secondary/service)
 "urR" = (
 /obj/effect/turf_decal/tile/transparent/blue/fourcorners,
-/obj/machinery/body_scanconsole,
+/obj/machinery/computer/body_scanconsole,
 /turf/open/floor/iron,
 /area/deltastation/medical/treatment_center)
 "urU" = (
@@ -120342,7 +120342,7 @@
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 10
 	},
-/obj/machinery/body_scanconsole,
+/obj/machinery/computer/body_scanconsole,
 /turf/open/floor/iron/white,
 /area/deltastation/medical/treatment_center)
 "ymd" = (

@@ -113,7 +113,7 @@
 /turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/medical)
 "do" = (
-/obj/machinery/sleep_console,
+/obj/machinery/computer/sleep_console,
 /turf/open/floor/tile/blue/whiteblue{
 	dir = 6
 	},
@@ -490,7 +490,7 @@
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "rL" = (
-/obj/machinery/sleep_console,
+/obj/machinery/computer/sleep_console,
 /turf/open/floor/tile/blue/whiteblue{
 	dir = 4
 	},
@@ -649,7 +649,7 @@
 	},
 /area/bigredv2/outside/medical)
 "vd" = (
-/obj/machinery/sleep_console,
+/obj/machinery/computer/sleep_console,
 /turf/open/floor/tile/blue/whiteblue{
 	dir = 1
 	},
@@ -705,7 +705,7 @@
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "vT" = (
-/obj/machinery/sleep_console,
+/obj/machinery/computer/sleep_console,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "vU" = (
@@ -1209,7 +1209,7 @@
 /turf/open/floor/tile/green/whitegreencorner,
 /area/bigredv2/outside/medical)
 "Ii" = (
-/obj/machinery/sleep_console,
+/obj/machinery/computer/sleep_console,
 /turf/open/floor/tile/blue/whiteblue{
 	dir = 5
 	},
@@ -1396,7 +1396,7 @@
 /turf/closed/wall,
 /area/bigredv2/outside/medical)
 "MM" = (
-/obj/machinery/body_scanconsole,
+/obj/machinery/computer/body_scanconsole,
 /turf/open/floor/tile/green/whitegreen{
 	dir = 6
 	},
@@ -1963,7 +1963,7 @@
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "ZT" = (
-/obj/machinery/body_scanconsole,
+/obj/machinery/computer/body_scanconsole,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/green/whitegreen,
 /area/bigredv2/outside/medical)

@@ -3311,7 +3311,7 @@
 /turf/open/floor/plating,
 /area/slumbridge/colony/construction)
 "cvO" = (
-/obj/machinery/body_scanconsole,
+/obj/machinery/computer/body_scanconsole,
 /turf/open/floor/tile/blue,
 /area/slumbridge/houses/surgery/garbledradio)
 "cwu" = (
@@ -5284,7 +5284,7 @@
 /turf/open/floor/prison/kitchen,
 /area/slumbridge/prison/outerringsouth)
 "dWg" = (
-/obj/machinery/sleep_console,
+/obj/machinery/computer/sleep_console,
 /obj/machinery/light,
 /turf/open/floor/prison/whitegreen,
 /area/slumbridge/prison/outerringsouth)
@@ -10266,7 +10266,7 @@
 	},
 /area/slumbridge/northwestcaves)
 "hOy" = (
-/obj/machinery/body_scanconsole,
+/obj/machinery/computer/body_scanconsole,
 /turf/open/floor/tile/bar,
 /area/slumbridge/medical/foyer)
 "hOz" = (
@@ -12306,7 +12306,7 @@
 /turf/open/floor/scorched,
 /area/slumbridge/pmcdome)
 "jkR" = (
-/obj/machinery/sleep_console,
+/obj/machinery/computer/sleep_console,
 /turf/open/floor/tile/bar,
 /area/slumbridge/medical/foyer)
 "jla" = (
@@ -19264,7 +19264,7 @@
 /turf/open/ground/grass,
 /area/slumbridge/outside4)
 "old" = (
-/obj/machinery/body_scanconsole,
+/obj/machinery/computer/body_scanconsole,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/bar,
 /area/slumbridge/medical/foyer)
@@ -22321,7 +22321,7 @@
 /turf/open/floor/prison/plate,
 /area/slumbridge/prison/innerring)
 "qyQ" = (
-/obj/machinery/sleep_console,
+/obj/machinery/computer/sleep_console,
 /obj/structure/cable,
 /turf/open/floor/tile/green/whitegreenfull,
 /area/slumbridge/medical/foyer)
@@ -28934,7 +28934,7 @@
 /turf/open/floor/wood,
 /area/slumbridge/sombase/east)
 "vui" = (
-/obj/machinery/sleep_console,
+/obj/machinery/computer/sleep_console,
 /turf/open/floor/tile/green/whitegreencorner{
 	dir = 1
 	},
@@ -32105,7 +32105,7 @@
 /turf/open/floor/tile/showroom,
 /area/slumbridge/engi/west)
 "xJc" = (
-/obj/machinery/sleep_console,
+/obj/machinery/computer/sleep_console,
 /obj/structure/cable,
 /turf/open/floor/tile/green/whitegreen{
 	dir = 4

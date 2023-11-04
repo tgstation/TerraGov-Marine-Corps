@@ -28,6 +28,25 @@
 	icon_state = "gloves_marine_fingerless"
 	item_state = "fingerless"
 
+/obj/item/clothing/gloves/marine/hyperscale
+	name = "8E Chameleon TGMC combat gloves"
+	desc = "Standard issue marine tactical gloves BUT colorable with a facepaint! It reads: 'knit by Marine Widows Association'."
+	icon_state = "hyperscale_glove_inhand"
+	item_state = "hyperscale_glove_mob"
+	item_icons = list(slot_gloves = /datum/greyscale_config/marine_uniform)
+	greyscale_colors = ARMOR_PALETTE_BLACK
+	greyscale_config = /datum/greyscale_config/marine_uniform
+	colorable_colors = ARMOR_PALETTES_LIST
+	colorable_allowed = ICON_STATE_VARIANTS_ALLOWED|PRESET_COLORS_ALLOWED
+
+
+/obj/item/clothing/gloves/marine/hyperscale/color_item(obj/item/facepaint/paint, mob/user)
+	. = ..()
+	if(!ishuman(user))
+		return
+	var/mob/living/carbon/human/human = user
+	human.regenerate_icons()
+
 /obj/item/clothing/gloves/marine/insulated
 	name = "insulated marine combat gloves"
 	desc = "Insulated marine tactical gloves that protect against electrical shocks."

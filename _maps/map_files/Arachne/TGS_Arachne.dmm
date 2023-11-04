@@ -3744,9 +3744,6 @@
 /obj/machinery/atmospherics/pipe/manifold/supply/visible/layer1{
 	dir = 1
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
@@ -7108,7 +7105,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/squads/general)
 "gey" = (
-/obj/machinery/body_scanconsole,
+/obj/machinery/computer/body_scanconsole,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/supply/visible/layer1{
 	dir = 4
@@ -8614,7 +8611,7 @@
 	dir = 4
 	},
 /obj/machinery/firealarm,
-/obj/machinery/sleep_console,
+/obj/machinery/computer/sleep_console,
 /turf/open/floor/mainship/sterile/corner,
 /area/mainship/medical/lower_medical)
 "hrv" = (
@@ -12106,7 +12103,7 @@
 	},
 /area/mainship/engineering/engineering_workshop)
 "kjk" = (
-/obj/machinery/body_scanconsole,
+/obj/machinery/computer/body_scanconsole,
 /turf/open/floor/mainship/sterile/corner{
 	dir = 4
 	},
@@ -12343,7 +12340,7 @@
 /turf/open/floor/mainship/floor,
 /area/mainship/squads/general)
 "ksC" = (
-/obj/machinery/cloning_console/vats,
+/obj/machinery/computer/cloning_console/vats,
 /turf/open/floor/mainship/sterile,
 /area/mainship/medical/lower_medical)
 "ksL" = (
@@ -13265,7 +13262,7 @@
 /turf/open/floor/mainship/black,
 /area/mainship/squads/general)
 "lbs" = (
-/obj/machinery/autodoc_console,
+/obj/machinery/computer/autodoc_console,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/mainship/sterile/corner,
@@ -20843,7 +20840,7 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/lounge)
 "rlz" = (
-/obj/machinery/body_scanconsole,
+/obj/machinery/computer/body_scanconsole,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
 	dir = 8

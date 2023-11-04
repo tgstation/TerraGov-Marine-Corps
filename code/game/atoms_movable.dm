@@ -15,6 +15,8 @@
 	var/drag_windup = 1.5 SECONDS
 	var/throwing = FALSE
 	var/thrower = null
+	///Speed of the current throw. 0 When not throwing.
+	var/thrown_speed = 0
 	var/turf/throw_source = null
 	var/throw_speed = 2
 	var/throw_range = 7
@@ -311,7 +313,7 @@
 		return COMPONENT_BUMP_RESOLVED
 	. = ..()
 	if(throwing)
-		. = throw_impact(A)
+		. = !throw_impact(A, thrown_speed)
 	if(QDELETED(A))
 		return
 	A.Bumped(src)
@@ -469,19 +471,16 @@
 			for(var/atom/movable/location AS in nested_locs)
 				LAZYORASSOCLIST(location.important_recursive_contents, channel, arrived.important_recursive_contents[channel])
 
-//called when src is thrown into hit_atom
+///called when src is thrown into hit_atom
 /atom/movable/proc/throw_impact(atom/hit_atom, speed, bounce = TRUE)
-	if(isliving(hit_atom))
-		var/mob/living/M = hit_atom
-		M.hitby(src, speed)
-
-	else
-		var/old_throw_source = throw_source
-		hit_atom.hitby(src, speed)
-		if(bounce && hit_atom.density)
+	var/hit_successful
+	var/old_throw_source = throw_source
+	hit_successful = hit_atom.hitby(src, speed)
+	if(hit_successful)
+		SEND_SIGNAL(src, COMSIG_MOVABLE_IMPACT, hit_atom)
+		if(bounce && hit_atom.density && !isliving(hit_atom))
 			INVOKE_NEXT_TICK(src, PROC_REF(throw_bounce), hit_atom, old_throw_source)
-
-	SEND_SIGNAL(src, COMSIG_MOVABLE_IMPACT, hit_atom)
+	return hit_successful //if the throw missed, it continues
 
 ///Bounces the AM off hit_atom
 /atom/movable/proc/throw_bounce(atom/hit_atom, turf/old_throw_source)
@@ -534,6 +533,7 @@
 
 	set_throwing(TRUE)
 	src.thrower = thrower
+	thrown_speed = speed
 
 	var/original_layer = layer
 	if(flying)
@@ -628,6 +628,7 @@
 	if(flying)
 		set_flying(FALSE, original_layer)
 	thrower = null
+	thrown_speed = 0
 	throw_source = null
 
 /atom/movable/proc/handle_buckled_mob_movement(NewLoc, direct)

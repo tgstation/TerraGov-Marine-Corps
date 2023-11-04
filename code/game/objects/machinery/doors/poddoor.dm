@@ -323,7 +323,7 @@ GLOBAL_LIST_INIT(faction_to_campaign_door_signal, list(
 	var/code_color = MISSION_CODE_BLUE
 
 /obj/machinery/door/poddoor/nt_lockdown/Initialize(mapload)
-	RegisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_NT_OVERRIDE_CODE, PROC_REF(open))
+	RegisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_NT_OVERRIDE_CODE, PROC_REF(receive_code))
 	return ..()
 
 ///Opens if the correct code color is received

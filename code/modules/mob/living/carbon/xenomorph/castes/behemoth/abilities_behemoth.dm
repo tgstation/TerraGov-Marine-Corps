@@ -90,7 +90,6 @@
 		for(var/mob/living/target_living in target_turf)
 			if(xeno_owner.issamexenohive(target_living) || target_living.stat == DEAD || CHECK_BITFIELD(target_living.status_flags, INCORPOREAL|GODMODE))
 				continue
-			shake_camera(target_living, max(1, duration), 0.5)
 
 
 // ***************************************
@@ -403,7 +402,8 @@
 				if(affected_living.stat == DEAD)
 					continue
 				if(xeno_owner.issamexenohive(affected_living) && !affected_living.lying_angle)
-					step_away(affected_living, xeno_owner, 2, 1)
+					if(affected_living in direct_turf)
+						step_away(affected_living, xeno_owner, 2, 1)
 					continue
 				hit_living(affected_living, damage)
 			if(isobj(affected_atom))
@@ -422,7 +422,6 @@
 	if(LinkBlocked(owner_turf, direct_turf))
 		playsound(direct_turf, 'sound/effects/behemoth/behemoth_stomp.ogg', 40, TRUE)
 		xeno_owner.do_attack_animation(direct_turf)
-		shake_camera(xeno_owner, 1, 0.5)
 		addtimer(CALLBACK(src, PROC_REF(end_charge)), LANDSLIDE_ENDING_COLLISION_DELAY)
 		return
 	which_step = !which_step
@@ -455,7 +454,6 @@
 		if(LinkBlocked(owner_turf, direct_turf))
 			playsound(direct_turf, 'sound/effects/behemoth/behemoth_stomp.ogg', 40, TRUE)
 			xeno_owner.do_attack_animation(direct_turf)
-			shake_camera(xeno_owner, 1, 0.5)
 		new /obj/effect/temp_visual/behemoth/crack/landslide(get_turf(owner), direction, pick(1, 2))
 		end_charge()
 		return
@@ -524,7 +522,7 @@
 		new /obj/effect/temp_visual/behemoth/landslide/hit(get_turf(living_target))
 		playsound(living_target, 'sound/effects/behemoth/landslide_hit_mob.ogg', 30, TRUE)
 	living_target.emote("scream")
-	shake_camera(living_target, LANDSLIDE_KNOCKDOWN_DURATION, 0.8)
+	shake_camera(living_target, 1, 0.8)
 	living_target.apply_damage(damage, BRUTE, blocked = MELEE)
 
 /**
@@ -544,6 +542,10 @@
 	if(istype(object_target, /obj/structure/reagent_dispensers/fueltank))
 		var/obj/structure/reagent_dispensers/fueltank/tank_target = object_target
 		tank_target.explode()
+		return
+	if(istype(object_target, /obj/structure/mineral_door/resin))
+		var/obj/structure/mineral_door/resin/resin_door = object_target
+		resin_door.toggle_state()
 		return
 	if(object_target.obj_integrity <= LANDSLIDE_OBJECT_INTEGRITY_THRESHOLD || istype(object_target, /obj/structure/closet))
 		playsound(object_turf, 'sound/effects/meteorimpact.ogg', 30, TRUE)
@@ -593,7 +595,7 @@
 	name = "Earth Riser"
 	ability_name = "Earth Riser"
 	action_icon_state = "earth_riser"
-	desc = "Raise a pillar of earth at the selected location. This solid structure can be used for defense, and it interacts with other abilities for offensive usage. Alternate use destroys active pillars, starting with the oldest one."
+	desc = "Raise a pillar of earth at the selected location. This solid structure can be used for defense, and it interacts with other abilities for offensive usage. The pillar can be launched by click-dragging it in a direction. Alternate use destroys active pillars, starting with the oldest one."
 	plasma_cost = 30
 	cooldown_timer = 15 SECONDS
 	keybinding_signals = list(
@@ -671,7 +673,6 @@
 	for(var/mob/living/affected_living in target_turf)
 		if(xeno_owner.issamexenohive(affected_living) || affected_living.stat == DEAD)
 			continue
-		shake_camera(affected_living, 1, 0.5)
 		step_away(affected_living, target_turf, 1, 2)
 	active_pillars += new /obj/structure/earth_pillar(target_turf, xeno_owner)
 	update_button_icon()
@@ -856,7 +857,7 @@
 				if(xeno_owner.issamexenohive(affected_living) || affected_living.stat == DEAD || CHECK_BITFIELD(affected_living.status_flags, INCORPOREAL|GODMODE))
 					continue
 				affected_living.emote("scream")
-				shake_camera(affected_living, SEISMIC_FRACTURE_PARALYZE_DURATION, 0.8)
+				shake_camera(affected_living, 1, 0.8)
 				affected_living.Paralyze(SEISMIC_FRACTURE_PARALYZE_DURATION)
 				affected_living.apply_damage(damage, BRUTE, blocked = MELEE)
 				if(instant)
@@ -932,7 +933,7 @@
 #define PRIMAL_WRATH_SPEED_BONUS -0.3
 #define PRIMAL_WRATH_DECAY_MULTIPLIER 1.2
 #define PRIMAL_WRATH_ACTIVE_DECAY_DIVISION 40
-#define PRIMAL_WRATH_GAIN_MULTIPLIER 0.5
+#define PRIMAL_WRATH_GAIN_MULTIPLIER 0.3
 
 /particles/primal_wrath
 	icon = 'icons/effects/particles/generic_particles.dmi'
@@ -1056,15 +1057,14 @@
 	if(!currently_roaring)
 		return
 	new /obj/effect/temp_visual/shockwave/primal_wrath(get_turf(owner), 4, owner.dir)
-	for(var/mob/living/affected_living in cheap_get_humans_near(owner, PRIMAL_WRATH_RANGE) + cheap_get_xenos_near(owner, PRIMAL_WRATH_RANGE))
+	for(var/mob/living/affected_living in cheap_get_humans_near(owner, PRIMAL_WRATH_RANGE) + owner)
 		if(!affected_living.hud_used)
 			continue
-		shake_camera(affected_living, 1, 0.1)
 		var/atom/movable/screen/plane_master/floor/floor_plane = affected_living.hud_used.plane_masters["[FLOOR_PLANE]"]
 		var/atom/movable/screen/plane_master/game_world/world_plane = affected_living.hud_used.plane_masters["[GAME_PLANE]"]
 		if(floor_plane.get_filter("primal_wrath") || world_plane.get_filter("primal_wrath"))
 			continue
-		var/filter_size = 0.02
+		var/filter_size = 0.01
 		world_plane.add_filter("primal_wrath", 2, radial_blur_filter(filter_size))
 		animate(world_plane.get_filter("primal_wrath"), size = filter_size * 2, time = 0.5 SECONDS, loop = -1)
 		floor_plane.add_filter("primal_wrath", 2, radial_blur_filter(filter_size))

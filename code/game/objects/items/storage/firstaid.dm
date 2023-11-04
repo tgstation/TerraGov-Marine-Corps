@@ -158,6 +158,12 @@
 		/obj/item/reagent_containers/syringe,
 	)
 
+/obj/item/storage/syringe_case/empty/Initialize(mapload, ...)
+	. = ..()
+	new /obj/item/reagent_containers/syringe(src)
+	new /obj/item/reagent_containers/glass/bottle/empty(src)
+	new /obj/item/reagent_containers/glass/bottle/empty(src)
+
 /obj/item/storage/syringe_case/regular
 	name = "basic syringe case"
 	desc = "It's a medical case for storing syringes and bottles. This one contains basic meds."

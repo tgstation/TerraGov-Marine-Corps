@@ -190,6 +190,8 @@
 		return COMPONENT_PROJECTILE_DODGE
 	if(proj.ammo.flags_ammo_behavior & AMMO_FLAME) //We can't dodge literal fire
 		return FALSE
+	if(proj.original_target == xeno_owner && proj.distance_travelled < 2) //Pointblank shot.
+		return FALSE
 	if(!(proj.ammo.flags_ammo_behavior & AMMO_SENTRY) && !xeno_owner.fire_stacks) //We ignore projectiles from automated sources/sentries for the purpose of contributions towards our cooldown refresh; also fire prevents accumulation of evasion stacks
 		evasion_stacks += proj.damage //Add to evasion stacks for the purposes of determining whether or not our cooldown refreshes
 	evasion_dodge_fx(proj)

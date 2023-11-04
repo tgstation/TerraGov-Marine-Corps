@@ -7,10 +7,13 @@
 	density = TRUE
 	max_integrity = 350
 	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 100, BOMB = 0, BIO = 100, FIRE = 30, ACID = 30)
-	layer = ABOVE_WINDOW_LAYER
+	layer = ABOVE_MOB_LAYER
 	pipe_flags = PIPING_ONE_PER_TURF|PIPING_DEFAULT_LAYER_ONLY
 	interaction_flags = INTERACT_MACHINE_TGUI
 	can_see_pipes = FALSE
+	light_range = 2
+	light_power = 0.5
+	light_color = LIGHT_COLOR_EMISSIVE_GREEN
 
 	var/autoeject = FALSE
 	var/release_notice = FALSE
@@ -42,6 +45,7 @@
 	initialize_directions = dir
 	beaker = new /obj/item/reagent_containers/glass/beaker/cryomix
 	radio = new(src)
+	update_icon()
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/proc/process_occupant()
 	if(!occupant)
@@ -109,14 +113,26 @@
 		beaker = null
 		updateUsrDialog()
 
+/obj/machinery/atmospherics/components/unary/cryo_cell/update_icon()
+	. = ..()
+	if(!on)
+		set_light(0)
+	else
+		set_light(initial(light_range))
+
 /obj/machinery/atmospherics/components/unary/cryo_cell/update_icon_state()
 	if(!on)
-		icon_state = "cell-off"
-		return
+		icon_state = "cell_off"
+	else
+		icon_state = "cell_on"
 	if(occupant)
-		icon_state = "cell-occupied"
+		icon_state += "_occupied"
+
+/obj/machinery/atmospherics/components/unary/cryo_cell/update_overlays()
+	. = ..()
+	if(!on)
 		return
-	icon_state = "cell-on"
+	. += emissive_appearance(icon, "cell_emissive", alpha = src.alpha)
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/proc/run_anim(anim_up, image/occupant_overlay)
 	if(!on || !occupant || !is_operational())

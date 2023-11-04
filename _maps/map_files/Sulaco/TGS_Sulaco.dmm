@@ -662,7 +662,7 @@
 /obj/machinery/light/mainship{
 	dir = 1
 	},
-/obj/machinery/body_scanconsole,
+/obj/machinery/computer/body_scanconsole,
 /turf/open/floor/prison/whitegreen/corner,
 /area/sulaco/medbay/west)
 "acv" = (
@@ -762,7 +762,7 @@
 	},
 /area/sulaco/medbay)
 "acK" = (
-/obj/machinery/autodoc_console,
+/obj/machinery/computer/autodoc_console,
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 4
 	},
@@ -1029,7 +1029,7 @@
 /turf/open/floor/prison/whitegreen/corner,
 /area/sulaco/medbay/surgery_one)
 "adH" = (
-/obj/machinery/body_scanconsole,
+/obj/machinery/computer/body_scanconsole,
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 4
 	},
@@ -8208,7 +8208,7 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
 	dir = 1
 	},
-/obj/machinery/body_scanconsole,
+/obj/machinery/computer/body_scanconsole,
 /turf/open/floor/prison/sterilewhite,
 /area/sulaco/medbay/hangar)
 "aTk" = (
@@ -9321,8 +9321,6 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
-/obj/machinery/atmospherics/pipe/simple/yellow/hidden,
-/obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
 /obj/machinery/door/airlock/mainship/command/officer{
 	dir = 2
 	},
@@ -13746,7 +13744,7 @@
 /turf/open/floor/prison,
 /area/sulaco/marine)
 "gXI" = (
-/obj/machinery/body_scanconsole,
+/obj/machinery/computer/body_scanconsole,
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 1
 	},
@@ -18404,7 +18402,7 @@
 /turf/open/floor/prison,
 /area/sulaco/hallway/evac)
 "mJk" = (
-/obj/machinery/cloning_console/vats,
+/obj/machinery/computer/cloning_console/vats,
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 1
 	},
@@ -26292,7 +26290,7 @@
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/sulaco/hallway/central_hall)
 "wUm" = (
-/obj/machinery/sleep_console,
+/obj/machinery/computer/sleep_console,
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 1
 	},
