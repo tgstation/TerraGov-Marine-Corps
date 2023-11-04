@@ -92,6 +92,8 @@
 			log_hivemind(log_text)
 		if(LOG_DSAY)
 			log_dsay(log_text)
+		if(LOG_PRAYER)
+			log_prayer(log_text)
 		if(LOG_TELECOMMS)
 			log_telecomms(log_text)
 		if(LOG_OOC)
