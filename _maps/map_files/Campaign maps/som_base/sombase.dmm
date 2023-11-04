@@ -1881,7 +1881,7 @@
 /turf/open/floor/plating/ground/dirt_alt,
 /area/rocinante_base/ground/base_n)
 "cxt" = (
-/obj/machinery/autodoc_console,
+/obj/machinery/computer/autodoc_console,
 /turf/open/floor/mainship/sterile/dark,
 /area/rocinante_base/surface/building/medical)
 "cxF" = (
@@ -11652,7 +11652,7 @@
 	},
 /area/rocinante_base/surface/building/living/barracks)
 "qsX" = (
-/obj/machinery/body_scanconsole,
+/obj/machinery/computer/body_scanconsole,
 /obj/structure/cable,
 /obj/machinery/light{
 	dir = 1

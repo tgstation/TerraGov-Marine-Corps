@@ -1,0 +1,5 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - imageadd: "Updated the sprites of some medical equipment, mainly with emissives"
+  - qol: "Cryotubes visually show the occupant even if turned off"

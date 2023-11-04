@@ -1995,7 +1995,7 @@
 /turf/open/floor/mainship/sterile,
 /area/whiskey_outpost)
 "jR" = (
-/obj/machinery/body_scanconsole,
+/obj/machinery/computer/body_scanconsole,
 /obj/structure/sign/safety/medical_supplies{
 	dir = 1
 	},
@@ -2006,7 +2006,7 @@
 /turf/open/floor/mainship/sterile,
 /area/whiskey_outpost)
 "jW" = (
-/obj/machinery/sleep_console,
+/obj/machinery/computer/sleep_console,
 /obj/machinery/light{
 	dir = 4
 	},
@@ -2449,7 +2449,7 @@
 /turf/open/floor/plating/asteroidplating,
 /area/whiskey_outpost/outside/north)
 "lX" = (
-/obj/machinery/autodoc_console,
+/obj/machinery/computer/autodoc_console,
 /turf/open/floor/mainship/sterile,
 /area/whiskey_outpost)
 "lZ" = (
@@ -2521,7 +2521,7 @@
 /turf/open/floor/mainship/sterile,
 /area/whiskey_outpost)
 "ms" = (
-/obj/machinery/body_scanconsole,
+/obj/machinery/computer/body_scanconsole,
 /turf/open/floor/mainship/sterile,
 /area/whiskey_outpost)
 "mt" = (
@@ -3708,7 +3708,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost/outside/south)
 "sv" = (
-/obj/machinery/body_scanconsole,
+/obj/machinery/computer/body_scanconsole,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/mainship/sterile,
 /area/whiskey_outpost)
@@ -6854,7 +6854,7 @@
 /area/whiskey_outpost/outside/south)
 "OO" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/autodoc_console,
+/obj/machinery/computer/autodoc_console,
 /turf/open/floor/mainship/sterile,
 /area/whiskey_outpost)
 "OP" = (

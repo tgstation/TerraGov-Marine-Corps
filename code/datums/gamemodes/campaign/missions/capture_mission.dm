@@ -1,38 +1,7 @@
 //Loot capture mission
 /datum/campaign_mission/capture_mission
-	name = "Phoron retrieval"
-	mission_icon = "phoron_raid"
-	map_name = "Jungle outpost SR-422"
-	map_file = '_maps/map_files/Campaign maps/jungle_outpost/jungle_outpost.dmm'
-	map_traits = list(ZTRAIT_AWAY = TRUE, ZTRAIT_RAIN = TRUE)
-	map_light_colours = list(LIGHT_COLOR_PALE_GREEN, LIGHT_COLOR_PALE_GREEN, LIGHT_COLOR_PALE_GREEN, LIGHT_COLOR_PALE_GREEN)
+	name = "BASE CAPTURE MISSION"
 	max_game_time = 12 MINUTES
-	mission_flags = MISSION_DISALLOW_DROPPODS|MISSION_DISALLOW_TELEPORT
-	victory_point_rewards = list(
-		MISSION_OUTCOME_MAJOR_VICTORY = list(3, 0),
-		MISSION_OUTCOME_MINOR_VICTORY = list(1, 0),
-		MISSION_OUTCOME_DRAW = list(0, 0),
-		MISSION_OUTCOME_MINOR_LOSS = list(0, 1),
-		MISSION_OUTCOME_MAJOR_LOSS = list(0, 3),
-	)
-	attrition_point_rewards = list(
-		MISSION_OUTCOME_MAJOR_VICTORY = list(10, 0),
-		MISSION_OUTCOME_MINOR_VICTORY = list(5, 0),
-		MISSION_OUTCOME_DRAW = list(0, 0),
-		MISSION_OUTCOME_MINOR_LOSS = list(0, 10),
-		MISSION_OUTCOME_MAJOR_LOSS = list(0, 15),
-	)
-	intro_message = list(
-		MISSION_STARTING_FACTION = "Locate and extract all phoron crates in the ao before the enemy does.",
-		MISSION_HOSTILE_FACTION = "Locate and extract all phoron crates in the ao before the enemy does.",
-	)
-	starting_faction_mission_brief = "Hostile forces have been building a stock pile of valuable phoron in this location. \
-		Before they have the chance to ship it out, your forces are being sent to intercept and liberate these supplies to hamper the enemy's war effort. \
-		Hostile forces will likely be aiming to evacuate as much phoron out of the ao as well. Get to the phoron first and fulton out as much as you can."
-	hostile_faction_mission_brief = "Enemy forces are moving to steal a stockpile of valuable phoron. \
-		Send in your forces to fulton out the phoron as quickly as possible, before they can get to it first."
-	starting_faction_additional_rewards = "Additional supplies for every phoron crate captured"
-	hostile_faction_additional_rewards = "Additional supplies for every phoron crate captured"
 	///Total number of objectives at round start
 	var/objectives_total = 11
 	///number of targets to capture for a minor victory
@@ -98,23 +67,7 @@
 		outcome = MISSION_OUTCOME_DRAW
 	return TRUE
 
-/datum/campaign_mission/capture_mission/apply_major_victory()
-	. = ..()
-	objective_reward_bonus()
-
-/datum/campaign_mission/capture_mission/apply_minor_victory()
-	. = ..()
-	objective_reward_bonus()
-
-/datum/campaign_mission/capture_mission/apply_minor_loss()
-	. = ..()
-	objective_reward_bonus()
-
-/datum/campaign_mission/capture_mission/apply_major_loss()
-	. = ..()
-	objective_reward_bonus()
-
-/datum/campaign_mission/capture_mission/apply_draw()
+/datum/campaign_mission/capture_mission/apply_outcome()
 	. = ..()
 	objective_reward_bonus()
 
@@ -152,8 +105,8 @@
 
 ///The addition rewards for capturing objectives, regardless of outcome
 /datum/campaign_mission/capture_mission/proc/objective_reward_bonus()
-	var/starting_team_bonus = capture_count[MISSION_STARTING_FACTION] * 4
-	var/hostile_team_bonus = capture_count[MISSION_HOSTILE_FACTION] * 2
+	var/starting_team_bonus = capture_count[MISSION_STARTING_FACTION] * 3
+	var/hostile_team_bonus = capture_count[MISSION_HOSTILE_FACTION] * 3
 
 	modify_attrition_points(starting_team_bonus, hostile_team_bonus)
 	map_text_broadcast(starting_faction, "[starting_team_bonus] bonus attrition points awarded for the capture of [capture_count[MISSION_STARTING_FACTION]] objectives", "Bonus reward")
