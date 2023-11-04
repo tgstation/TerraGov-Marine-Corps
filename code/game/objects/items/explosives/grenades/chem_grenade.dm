@@ -199,8 +199,7 @@
 	if(nadeassembly)
 		var/mob/M = get_mob_by_ckey(assemblyattacher)
 
-		log_explosion("[key_name(M)] primed [src] at [AREACOORD(loc)].")
-		log_combat(M, src, "primed")
+		log_bomber(M, "primed", src)
 
 	if(ismob(loc))
 		var/mob/M = loc
