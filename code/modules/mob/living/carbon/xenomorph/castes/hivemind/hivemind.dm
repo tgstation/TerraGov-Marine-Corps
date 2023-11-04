@@ -200,10 +200,10 @@
 	if(!check_weeds(T, TRUE))
 		balloon_alert(src, "No weeds in destination")
 		return
-	forceMove(T)
-	TIMER_COOLDOWN_START(src, COOLDOWN_HIVEMIND_MANIFESTATION, 5 SECONDS)
-	flick("Hivemind_[initial(loc_weeds_type.color_variant)]_materialisation", src)
-	setDir(SOUTH)
+	else
+		forceMove(T)
+		flick("Hivemind_[initial(loc_weeds_type.color_variant)]_materialisation", src)
+		setDir(SOUTH)
 
 /mob/living/carbon/xenomorph/hivemind/Move(NewLoc, Dir = 0)
 	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_HIVEMIND_MANIFESTATION))
