@@ -5,6 +5,7 @@
 /obj/item/beacon/orbital_bombardment_beacon
 	name = "orbital beacon"
 	desc = "A bulky device that fires a beam up to an orbiting vessel to send local coordinates."
+	icon = 'modular_RUtgmc/icons/Marine/marine-navigation.dmi'
 	icon_state = "motion4"
 	icon_activated = "motion1"
 	underground_signal = FALSE

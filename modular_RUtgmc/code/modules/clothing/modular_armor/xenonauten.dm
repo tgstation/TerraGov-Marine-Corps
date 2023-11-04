@@ -1,3 +1,15 @@
+/obj/item/clothing/suit/modular/xenonauten/light
+	soft_armor = list(MELEE = 40, BULLET = 60, LASER = 60, ENERGY = 50, BOMB = 50, BIO = 50, FIRE = 50, ACID = 50)
+
+/obj/item/clothing/suit/modular/xenonauten/heavy
+	soft_armor = list(MELEE = 50, BULLET = 70, LASER = 70, ENERGY = 60, BOMB = 50, BIO = 50, FIRE = 50, ACID = 60)
+
+/obj/item/clothing/head/modular/m10x
+	soft_armor = list(MELEE = 50, BULLET = 70, LASER = 70, ENERGY = 60, BOMB = 50, BIO = 50, FIRE = 50, ACID = 60)
+
+/obj/item/clothing/head/modular/m10x/leader
+	soft_armor = list(MELEE = 75, BULLET = 75, LASER = 75, ENERGY = 65, BOMB = 55, BIO = 50, FIRE = 50, ACID = 60)
+
 /obj/item/clothing/suit/modular/xenonauten/pilot
 	attachments_allowed = list(
 		/obj/item/armor_module/module/better_shoulder_lamp,

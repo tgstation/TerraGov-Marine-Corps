@@ -5,7 +5,7 @@
 		if(INTENT_HELP, INTENT_GRAB) //Try to hug target if this is a human
 			if(ishuman(src))
 				F.visible_message(null, span_notice("We're starting to climb on [src]"), null, 5)
-				if(!do_after(F, 2 SECONDS, TRUE, F, BUSY_ICON_HOSTILE, BUSY_ICON_HOSTILE, extra_checks = CALLBACK(F, /datum/.proc/Adjacent, src)))
+				if(!do_after(F, 2 SECONDS, TRUE, F, BUSY_ICON_HOSTILE, BUSY_ICON_HOSTILE, extra_checks = CALLBACK(F, TYPE_PROC_REF(/datum, Adjacent), src)))
 					F.balloon_alert(F, "Climbing interrupted")
 					return FALSE
 				F.try_attach(src)
