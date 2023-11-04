@@ -42,7 +42,8 @@
 		src.throw_at(get_edge_target_turf(src, get_dir(AM.throw_source, src)), 1, speed * 0.5)
 
 /mob/living/turf_collision(turf/T, speed)
-	take_limb_damage(speed*5)
+	take_overall_damage(speed * 5, BRUTE, MELEE, FALSE, FALSE, TRUE, 0, 2)
+	playsound(src, 'sound/weapons/heavyhit.ogg', 40)
 
 /mob/living/proc/near_wall(direction,distance=1)
 	var/turf/T = get_step(get_turf(src),direction)
