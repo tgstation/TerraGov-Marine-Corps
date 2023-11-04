@@ -190,7 +190,7 @@
 	if(!isopenturf(T))
 		balloon_alert(src, "Can't teleport into a wall")
 		return
-	TIMER_COOLDOWN_START(src, COOLDOWN_HIVEMIND_MANIFESTATION, TIME_TO_TRANSFORM)
+	TIMER_COOLDOWN_START(src, COOLDOWN_HIVEMIND_MANIFESTATION, TIME_TO_TRANSFORM * 2)
 	flick("Hivemind_[initial(loc_weeds_type.color_variant)]_materialisation_reverse", src)
 	setDir(SOUTH)
 	addtimer(CALLBACK(src, PROC_REF(end_teleport), T), TIME_TO_TRANSFORM)
