@@ -1,4 +1,0 @@
-author: "DeltaFire15"
-delete-after: True
-changes:
-  - bugfix: "throw_impact() now actually receives the speed arg."
