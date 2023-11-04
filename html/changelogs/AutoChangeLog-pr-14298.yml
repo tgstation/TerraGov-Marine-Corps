@@ -1,0 +1,5 @@
+author: "Barnet2"
+delete-after: True
+changes:
+  - rscadd: "Big Red now has a library disk"
+  - balance: "Big Red ETA disk is now guaranteed."
