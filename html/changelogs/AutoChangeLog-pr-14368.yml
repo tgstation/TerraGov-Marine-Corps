@@ -1,0 +1,8 @@
+author: "Lewdcifer"
+delete-after: True
+changes:
+  - rscadd: "With Runner QoL changes introduced before, a missing commit caused some changes to be missing. This has been amended with the following changes:"
+  - balance: "All ability cooldown sounds are now played locally, meaning only the user will hear them. Go do some stealth!"
+  - balance: "Re-added Savage's cooldown. The cooldown now has a duration indicator on the ability icon."
+  - balance: "Fixed an issue with Savage's plasma cost being half of what it should actually be."
+  - bugfix: "Fixed an issue where Runner's Evasion duration HUD indicator would persist sometimes. The indicator will now correctly disappear when it should."
