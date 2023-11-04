@@ -110,15 +110,6 @@
 	update_fire()
 	UnregisterSignal(src, COMSIG_LIVING_DO_RESIST)
 
-
-/mob/living/carbon/xenomorph/ExtinguishMob()
-	. = ..()
-	set_light_on(FALSE) //Reset lighting
-
-/mob/living/carbon/xenomorph/boiler/ExtinguishMob()
-	. = ..()
-	update_boiler_glow()
-
 /mob/living/proc/update_fire()
 	return
 
@@ -167,20 +158,19 @@
 /mob/living/proc/resist_fire(datum/source)
 	SIGNAL_HANDLER
 	fire_stacks = max(fire_stacks - rand(3, 6), 0)
-	Paralyze(3 SECONDS)
 	var/turf/T = get_turf(src)
 	if(istype(T, /turf/open/floor/plating/ground/snow))
 		visible_message(span_danger("[src] rolls in the snow, putting themselves out!"), \
 		span_notice("You extinguish yourself in the snow!"), null, 5)
 		ExtinguishMob()
-		return
-
-	visible_message(span_danger("[src] rolls on the floor, trying to put themselves out!"), \
-	span_notice("You stop, drop, and roll!"), null, 5)
-	if(fire_stacks <= 0)
-		visible_message(span_danger("[src] has successfully extinguished themselves!"), \
-		span_notice("You extinguish yourself."), null, 5)
-		ExtinguishMob()
+	else
+		visible_message(span_danger("[src] rolls on the floor, trying to put themselves out!"), \
+		span_notice("You stop, drop, and roll!"), null, 5)
+		if(fire_stacks <= 0)
+			visible_message(span_danger("[src] has successfully extinguished themselves!"), \
+			span_notice("You extinguish yourself."), null, 5)
+			ExtinguishMob()
+	Paralyze(3 SECONDS)
 
 
 //Mobs on Fire end
