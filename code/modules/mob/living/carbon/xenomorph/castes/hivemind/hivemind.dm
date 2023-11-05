@@ -136,7 +136,7 @@
 		set_datum(FALSE)
 		hive.xenos_by_upgrade[upgrade] += src
 		update_wounds()
-		update_icon()
+		update_icon_state()
 		update_action_buttons()
 		return
 	status_flags = initial(status_flags)
@@ -149,7 +149,7 @@
 	hive.xenos_by_upgrade[upgrade] += src
 	setDir(SOUTH)
 	update_wounds()
-	update_icon()
+	update_icon_state()
 	update_action_buttons()
 	handle_weeds_adjacent_removed()
 
@@ -248,7 +248,7 @@
 	abstract_move(get_turf(xeno))
 
 // handles hivemind updating with their respective weedtype
-/mob/living/carbon/xenomorph/hivemind/update_icon()
+/mob/living/carbon/xenomorph/hivemind/update_icon_state()
 	if(status_flags & INCORPOREAL)
 		icon_state = "hivemind_marker"
 		return
