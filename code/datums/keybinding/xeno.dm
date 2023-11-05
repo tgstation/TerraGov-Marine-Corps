@@ -513,7 +513,7 @@
 /datum/keybinding/xeno/psychic_link
 	name = "psychic link"
 	full_name = "Gorger: Psychic Link"
-	description = "Link to a xenomorph and take some damage in their place. During this time, you can't move. Use rest action to cancel."
+	description = "Link to a xenomorph and take some damage in their place."
 	keybind_signal = COMSIG_XENOABILITY_PSYCHIC_LINK
 	hotkey_keys = list("Q")
 

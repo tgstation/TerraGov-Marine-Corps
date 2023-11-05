@@ -287,8 +287,8 @@
 /datum/action/xeno_action/activable/psychic_link
 	name = "Psychic Link"
 	action_icon_state = "psychic_link"
-	desc = "Link to a xenomorph and take some damage in their place. Unrest to cancel."
-	cooldown_timer = 50 SECONDS
+	desc = "Link to a xenomorph and take some damage in their place."
+	cooldown_timer = 15 SECONDS
 	plasma_cost = 0
 	target_flags = XABB_MOB_TARGET
 	keybinding_signals = list(
@@ -334,6 +334,10 @@
 	return TRUE
 
 /datum/action/xeno_action/activable/psychic_link/use_ability(atom/target)
+	if(HAS_TRAIT(owner, TRAIT_PSY_LINKED))
+		to_chat(owner, span_notice("Cancelled link to [target]."))
+		cancel_psychic_link()
+		return
 	apply_psychic_link_timer = addtimer(CALLBACK(src, PROC_REF(apply_psychic_link), target), GORGER_PSYCHIC_LINK_CHANNEL, TIMER_UNIQUE|TIMER_STOPPABLE)
 	target_overlay = new (target, BUSY_ICON_MEDICAL)
 	owner.balloon_alert(owner, "linking...")
@@ -349,14 +353,10 @@
 	RegisterSignal(psychic_link, COMSIG_XENO_PSYCHIC_LINK_REMOVED, PROC_REF(status_removed))
 	target.balloon_alert(owner_xeno, "link successul")
 	owner_xeno.balloon_alert(target, "linked to [owner_xeno]")
-	if(!owner_xeno.resting)
-		owner_xeno.set_resting(TRUE, TRUE)
-	RegisterSignal(owner_xeno, COMSIG_XENOMORPH_UNREST, PROC_REF(cancel_psychic_link))
 	succeed_activate()
 
 ///Removes the status effect on unrest
 /datum/action/xeno_action/activable/psychic_link/proc/cancel_psychic_link(datum/source)
-	SIGNAL_HANDLER
 	var/mob/living/carbon/xenomorph/owner_xeno = owner
 	owner_xeno.remove_status_effect(STATUS_EFFECT_XENO_PSYCHIC_LINK)
 
@@ -364,7 +364,6 @@
 /datum/action/xeno_action/activable/psychic_link/proc/status_removed(datum/source)
 	SIGNAL_HANDLER
 	UnregisterSignal(source, COMSIG_XENO_PSYCHIC_LINK_REMOVED)
-	UnregisterSignal(owner, COMSIG_XENOMORPH_UNREST)
 	add_cooldown()
 
 ///Clears up things used for the linking
