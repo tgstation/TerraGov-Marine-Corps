@@ -416,7 +416,7 @@
 	name = "Feast"
 	action_icon_state = "feast"
 	desc = "Enter a state of rejuvenation. During this time you use a small amount of blood and heal. You can cancel this early."
-	cooldown_timer = 180 SECONDS
+	cooldown_timer = 30 SECONDS
 	plasma_cost = 0
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_FEAST,

@@ -616,15 +616,20 @@
 	owner.remove_filter(list("[id]1", "[id]2"))
 
 /datum/status_effect/xeno_feast/tick()
-	var/mob/living/carbon/xenomorph/X = owner
-	if(X.plasma_stored < plasma_drain)
-		to_chat(X, span_notice("Our feast has come to an end..."))
-		X.remove_status_effect(STATUS_EFFECT_XENO_FEAST)
+	var/mob/living/carbon/xenomorph/xeno_caster = owner
+	if(xeno_caster.plasma_stored < plasma_drain)
+		to_chat(xeno_caster, span_notice("Our feast has come to an end..."))
+		xeno_caster.remove_status_effect(STATUS_EFFECT_XENO_FEAST)
 		return
-	var/heal_amount = X.maxHealth*0.08
-	HEAL_XENO_DAMAGE(X, heal_amount, FALSE)
-	adjustOverheal(X, heal_amount / 2)
-	X.use_plasma(plasma_drain)
+	var/heal_amount = xeno_caster.maxHealth*0.08
+	for(var/mob/living/carbon/xenomorph/affected_xeno AS in GLOB.hive_datums[xeno_caster.hivenumber].xenos_by_zlevel["[X.z]"])
+		if(affected_xeno.faction != xeno_caster.faction)
+			continue
+		if(!line_of_sight(xeno_caster, affected_xeno, 4))
+			continue
+		HEAL_XENO_DAMAGE(xeno_caster, heal_amount, FALSE)
+		adjustOverheal(xeno_caster, heal_amount / 2)
+	xeno_caster.use_plasma(plasma_drain)
 
 // ***************************************
 // *********** Plasma Fruit buff
@@ -835,7 +840,7 @@
 	/// The owner of this buff.
 	var/mob/living/carbon/xenomorph/buff_owner
 	///Aura strength of the puppeteer who gave this effect
-	var/strength = 1	
+	var/strength = 1
 	///weakref to the puppeteer to set strength
 	var/datum/weakref/puppeteer
 
