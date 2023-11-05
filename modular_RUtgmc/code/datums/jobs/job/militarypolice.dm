@@ -98,23 +98,6 @@ In addition, you are tasked with the security of high-ranking personnel, includi
 	. = ..()
 	AddComponent(/datum/component/clothing_tint, TINT_NONE)
 
-/obj/item/reagent_containers/hypospray/attack(mob/living/carbon/M as mob, mob/user as mob)
-	. = ..()
-	var/mob/living/carbon/human/H = M
-	var/datum/limb/affecting = user.client.prefs.toggles_gameplay & RADIAL_MEDICAL ? radial_medical(H, user) : H.get_limb(user.zone_selected)
-
-	if(!affecting)
-		return TRUE
-
-	if(affecting.body_part == HEAD)
-		if(H.head && istype(H.head,/obj/item/clothing/head/beret/sec/mp))
-			to_chat(user, span_warning("You can't apply [src] through [H.head]!"))
-			return TRUE
-	else
-		if(H.wear_suit && istype(H.wear_suit,/obj/item/clothing/suit/armor/bulletproof/mp))
-			to_chat(user, span_warning("You can't apply [src] through [H.wear_suit]!"))
-			return TRUE
-
 /obj/item/clothing/suit/armor/bulletproof/mp
 	name = "security bulletproof vest"
 	soft_armor = list(MELEE = 35, BULLET = 95, LASER = 95, ENERGY = 0, BOMB = 30, BIO = 95, FIRE = 0, ACID = 15)
@@ -129,3 +112,16 @@ In addition, you are tasked with the security of high-ranking personnel, includi
 	name = "security combat gloves"
 	desc = "Standard issue military police tactical gloves. It reads: 'knit by Marine Widows Association'."
 	soft_armor = list(MELEE = 15, BULLET = 80, LASER = 80, ENERGY = 0, BOMB = 0, BIO = 90, FIRE = 0, ACID = 0)
+
+/obj/item/reagent_containers/hypospray/attack(mob/living/carbon/M as mob, mob/user as mob)
+	var/mob/living/carbon/human/H = M
+	var/datum/limb/affecting =  H.get_limb(user.zone_selected)
+	if(H != user)
+		if(affecting.body_part == HEAD)
+			if(H.head && istype(H.head,/obj/item/clothing/head/beret/sec/mp))
+				to_chat(user, span_warning("You can't apply [src] through [H.head]!"))
+				return TRUE
+		else
+			if(H.wear_suit && istype(H.wear_suit,/obj/item/clothing/suit/armor/bulletproof/mp))
+				to_chat(user, span_warning("You can't apply [src] through [H.wear_suit]!"))
+				return TRUE

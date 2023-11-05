@@ -1,5 +1,9 @@
 /datum/xeno_caste/queen
 
+	max_health = 600
+
+	sunder_recover = 1.5
+
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/activable/psydrain,

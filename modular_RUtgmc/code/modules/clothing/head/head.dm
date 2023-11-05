@@ -22,6 +22,10 @@
 	name = "\improper Delta squad headband"
 	icon_state = "dsquadhb"
 
+/obj/item/clothing/head/squadhb/fl
+	name = "\improper Foreign Legion headband"
+	icon_state = "flsquadhb"
+
 /obj/item/clothing/head/tgmcberet/squad
 	name = "\improper Charlie squad beret"
 	icon_state = "csberet"
@@ -44,6 +48,11 @@
 	name = "\improper Bravo Squad beret"
 	desc = "Military beret with TGMC marine squad insignia. This one belongs to the Bravo Squad."
 	icon_state = "bsberet"
+
+/obj/item/clothing/head/tgmcberet/squad/foreign
+	name = "\improper Foreign Legion beret"
+	desc = "Military beret with TGMC marine squad insignia. This one belongs to the Foreign Legion."
+	icon_state = "flsberet"
 
 /obj/item/clothing/head/tgmcberet/commando
 	name = "\improper Marines Commando beret"
