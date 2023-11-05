@@ -1,5 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - bugfix: "fixed wall throws not respecting armour"
-  - soundadd: "added a sound effect when you're thrown into a wall"

@@ -166,7 +166,7 @@
 		return fail_activate()
 	RegisterSignals(X, list(COMSIG_MOVABLE_POST_THROW, COMSIG_XENO_OBJ_THROW_HIT), PROC_REF(charge_complete))
 	RegisterSignal(X, COMSIG_XENO_LIVING_THROW_HIT, PROC_REF(mob_hit))
-	X.throw_at(A, range, 70, X)
+	X.throw_at(A, range, 7, X)
 
 /// Whenever we hit something living, if its a human we knock them down for 2 seconds and keep throwing ourselves. If we hit xeno, we get blocked and explode on them
 /datum/action/xeno_action/activable/dash_explosion/proc/mob_hit(datum/source, mob/M)

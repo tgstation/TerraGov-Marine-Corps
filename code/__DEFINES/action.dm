@@ -30,6 +30,8 @@
 #define VREF_MUTABLE_LANDSLIDE "VREF_LANDSLIDE"
 // extra reference for the amount of earth pillars we have
 #define VREF_MUTABLE_EARTH_PILLAR "VREF_EARTH_PILLAR"
+// extra reference for savage's cooldown
+#define VREF_MUTABLE_SAVAGE_COOLDOWN "VREF_SAVAGE_COOLDOWN"
 
 
 /// Actions that toggle on click/trigger

@@ -191,6 +191,18 @@
 	icon_state = "bottle-5"
 	list_reagents = list(/datum/reagent/medicine/tricordrazine = 60)
 
+/obj/item/reagent_containers/glass/bottle/paracetamol
+	name = "\improper Paracetamol bottle"
+	desc = "A small bottle. Contains paracetamol - a mild, simple painkiller, good for enduring heavy labor."
+	icon_state = "bottle-1"
+	list_reagents = list(/datum/reagent/medicine/paracetamol = 60)
+
+/obj/item/reagent_containers/glass/bottle/isotonic
+	name = "\improper Saline-Glucose bottle"
+	desc = "A small bottle. Contains saline-glucose, also known as isotonic - used to aid the body in blood restoration."
+	icon_state = "bottle-1"
+	list_reagents = list(/datum/reagent/medicine/saline_glucose = 60)
+
 /obj/item/reagent_containers/glass/bottle/meralyne
 	name = "\improper Meralyne bottle"
 	desc = "A small bottle. Contains meralyne - used as a potent treatment against brute damage."

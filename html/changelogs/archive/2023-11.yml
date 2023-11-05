@@ -76,3 +76,38 @@
   - code_imp: Removed some vestigial ravager code from before the primo rework.
   - rscadd: You can now continue to wait in/join the xeno larva queue while playing
       as a minion
+2023-11-05:
+  Barnet2:
+  - rscadd: Big Red now has a library disk
+  - balance: Big Red ETA disk is now guaranteed.
+  DeltaFire15:
+  - bugfix: Some throw speeds that were extremely high have been normalized.
+  Helg2:
+  - bugfix: Deleted stacking pipes on Arachne.
+  - bugfix: Deleted stacking pipes on Magmoor.
+  - bugfix: Deleted stacking pipes on Sulaco.
+  - bugfix: Deleted stacking pipes on Ice Colony.
+  - bugfix: deleted stacking pipes on Pillar of Spring.
+  - bugfix: Deleted stacking pipes from Theseus.
+  - bugfix: Deleted stacking pipes on Iteron.
+  - bugfix: Deleted stacking pipes on Prison Station.
+  Lewdcifer:
+  - rscadd: 'With Runner QoL changes introduced before, a missing commit caused some
+      changes to be missing. This has been amended with the following changes:'
+  - balance: All ability cooldown sounds are now played locally, meaning only the
+      user will hear them. Go do some stealth!
+  - balance: Re-added Savage's cooldown. The cooldown now has a duration indicator
+      on the ability icon.
+  - balance: Fixed an issue with Savage's plasma cost being half of what it should
+      actually be.
+  - bugfix: Fixed an issue where Runner's Evasion duration HUD indicator would persist
+      sometimes. The indicator will now correctly disappear when it should.
+  Lumipharon:
+  - imageadd: added some new computer sprite and other icons for campaign
+  - bugfix: fixed wall throws not respecting armour
+  - soundadd: added a sound effect when you're thrown into a wall
+  - bugfix: fixed xeno fire overlays getting stuck when resisting
+  vilereaver41:
+  - balance: Lz2 is more open and less cluttered.
+  - balance: cantabury no longer crashes right besides discs or fog.
+  - balance: north monorail disc will be better to defend and attack.
