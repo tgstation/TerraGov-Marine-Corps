@@ -1,0 +1,453 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"aD" = (
+/obj/structure/dropship_piece/two/corner/rearleft{
+	dir = 1
+	},
+/obj/structure/dropship_piece/one/corner/middleleft,
+/turf/template_noop,
+/area/shuttle/dropship/alamo)
+"bS" = (
+/turf/closed/shuttle/dropship1/enginefour,
+/area/shuttle/dropship/alamo)
+"cM" = (
+/turf/closed/shuttle/dropship1/enginefour{
+	dir = 4
+	},
+/area/shuttle/dropship/alamo)
+"dT" = (
+/obj/machinery/door/poddoor/shutters/transit,
+/obj/machinery/door/airlock/dropship_hatch/right,
+/turf/open/shuttle/dropship/floor,
+/area/shuttle/dropship/alamo)
+"eN" = (
+/turf/closed/shuttle/dropship1/enginethree{
+	dir = 4
+	},
+/area/shuttle/dropship/alamo)
+"gb" = (
+/obj/structure/bed/chair/dropship/pilot{
+	dir = 1
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/machinery/camera/autoname/mainship/dropship_one{
+	dir = 4;
+	pixel_x = -16
+	},
+/turf/open/shuttle/dropship/floor,
+/area/shuttle/dropship/alamo)
+"gj" = (
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 8
+	},
+/obj/machinery/vending/nanomed{
+	dir = 8
+	},
+/turf/open/shuttle/dropship/three,
+/area/shuttle/dropship/alamo)
+"gt" = (
+/turf/closed/shuttle/dropship1/enginethree{
+	dir = 1
+	},
+/area/shuttle/dropship/alamo)
+"gO" = (
+/obj/structure/dropship_piece/one/front/left,
+/turf/template_noop,
+/area/shuttle/dropship/alamo)
+"hm" = (
+/turf/closed/shuttle/dropship1/edge/alt,
+/area/shuttle/dropship/alamo)
+"iS" = (
+/turf/closed/shuttle/dropship1/edge/alt{
+	dir = 1
+	},
+/area/shuttle/dropship/alamo)
+"jb" = (
+/obj/structure/dropship_piece/one/cockpit/right,
+/turf/template_noop,
+/area/shuttle/dropship/alamo)
+"jJ" = (
+/turf/closed/shuttle/dropship1/enginethree{
+	dir = 8
+	},
+/area/shuttle/dropship/alamo)
+"jM" = (
+/turf/open/shuttle/dropship/three,
+/area/shuttle/dropship/alamo)
+"lG" = (
+/turf/open/shuttle/dropship/five,
+/area/shuttle/dropship/alamo)
+"mS" = (
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 4
+	},
+/turf/open/shuttle/dropship/three,
+/area/shuttle/dropship/alamo)
+"nu" = (
+/obj/machinery/door/airlock/hatch/cockpit,
+/turf/open/shuttle/dropship/floor,
+/area/shuttle/dropship/alamo)
+"pe" = (
+/obj/structure/dropship_piece/one/engine/lefttop,
+/turf/template_noop,
+/area/shuttle/dropship/alamo)
+"ql" = (
+/turf/closed/shuttle/dropship1/cornersalt{
+	dir = 8
+	},
+/area/shuttle/dropship/alamo)
+"qr" = (
+/turf/closed/shuttle/dropship1/enginetwo{
+	dir = 8
+	},
+/area/shuttle/dropship/alamo)
+"rg" = (
+/turf/open/shuttle/dropship/floor,
+/area/shuttle/dropship/alamo)
+"rj" = (
+/turf/template_noop,
+/area/template_noop)
+"rs" = (
+/obj/structure/dropship_piece/one/front/right,
+/turf/template_noop,
+/area/shuttle/dropship/alamo)
+"sY" = (
+/obj/machinery/telecomms/relay/preset/telecomms/onboard,
+/turf/closed/shuttle/dropship1/edge,
+/area/shuttle/dropship/alamo)
+"tg" = (
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 8
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/shuttle/dropship/three,
+/area/shuttle/dropship/alamo)
+"vR" = (
+/obj/structure/dropship_piece/one/engine/rightbottom,
+/turf/template_noop,
+/area/shuttle/dropship/alamo)
+"xH" = (
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 8
+	},
+/turf/open/shuttle/dropship/three,
+/area/shuttle/dropship/alamo)
+"xK" = (
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 8
+	},
+/turf/open/shuttle/dropship/eight,
+/area/shuttle/dropship/alamo)
+"zr" = (
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 8
+	},
+/obj/machinery/camera/autoname/mainship/dropship_one{
+	dir = 8;
+	pixel_x = 16
+	},
+/turf/open/shuttle/dropship/three,
+/area/shuttle/dropship/alamo)
+"At" = (
+/obj/structure/bed/chair/dropship/passenger,
+/obj/docking_port/mobile/marine_dropship/one,
+/turf/open/shuttle/dropship/floor,
+/area/shuttle/dropship/alamo)
+"Au" = (
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 4
+	},
+/obj/machinery/vending/nanomed{
+	dir = 4
+	},
+/turf/open/shuttle/dropship/three,
+/area/shuttle/dropship/alamo)
+"Bb" = (
+/turf/closed/shuttle/dropship1/window{
+	dir = 1
+	},
+/area/shuttle/dropship/alamo)
+"BG" = (
+/turf/closed/shuttle/dropship1/wall{
+	dir = 1
+	},
+/area/shuttle/dropship/alamo)
+"Cr" = (
+/turf/closed/shuttle/dropship1/wall{
+	dir = 8
+	},
+/area/shuttle/dropship/alamo)
+"Dc" = (
+/turf/closed/shuttle/dropship1/wall{
+	dir = 4
+	},
+/area/shuttle/dropship/alamo)
+"Dt" = (
+/obj/structure/dropship_piece/one/engine/righttop,
+/turf/template_noop,
+/area/shuttle/dropship/alamo)
+"Dw" = (
+/obj/structure/dropship_piece/two/corner/rearright{
+	dir = 1
+	},
+/obj/structure/dropship_piece/one/corner/middleright,
+/turf/template_noop,
+/area/shuttle/dropship/alamo)
+"Eb" = (
+/turf/closed/shuttle/dropship1/interiorwindow{
+	dir = 8
+	},
+/area/shuttle/dropship/alamo)
+"Fy" = (
+/turf/closed/shuttle/dropship1/enginetwo{
+	dir = 4
+	},
+/area/shuttle/dropship/alamo)
+"Gf" = (
+/obj/machinery/door/poddoor/shutters/transit{
+	dir = 1
+	},
+/turf/open/shuttle/dropship/floor/alt,
+/area/shuttle/dropship/alamo)
+"Hg" = (
+/obj/machinery/door/poddoor/shutters/transit{
+	dir = 1
+	},
+/obj/machinery/door/airlock/multi_tile/mainship/dropshiprear/ds1,
+/turf/open/shuttle/dropship/floor/alt,
+/area/shuttle/dropship/alamo)
+"Hj" = (
+/obj/machinery/computer/shuttle/marine_dropship/one{
+	icon_state = "console2"
+	},
+/turf/open/shuttle/dropship/floor,
+/area/shuttle/dropship/alamo)
+"HK" = (
+/obj/machinery/door/poddoor/shutters/transit{
+	dir = 8
+	},
+/obj/machinery/door/airlock/dropship_hatch/left,
+/turf/open/shuttle/dropship/floor,
+/area/shuttle/dropship/alamo)
+"Ix" = (
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 4
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/shuttle/dropship/three,
+/area/shuttle/dropship/alamo)
+"Kd" = (
+/turf/closed/shuttle/dropship1/cornersalt2,
+/area/shuttle/dropship/alamo)
+"Kl" = (
+/turf/closed/shuttle/dropship1/edge,
+/area/shuttle/dropship/alamo)
+"Kr" = (
+/obj/structure/bed/chair/dropship/passenger,
+/turf/open/shuttle/dropship/seven,
+/area/shuttle/dropship/alamo)
+"Kx" = (
+/turf/closed/shuttle/dropship1/cornersalt2{
+	dir = 1
+	},
+/area/shuttle/dropship/alamo)
+"Mb" = (
+/turf/closed/shuttle/dropship1/enginethree,
+/area/shuttle/dropship/alamo)
+"Nl" = (
+/obj/effect/attach_point/crew_weapon/dropship1,
+/turf/open/shuttle/dropship/floor,
+/area/shuttle/dropship/alamo)
+"Ov" = (
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 4
+	},
+/turf/open/shuttle/dropship/four,
+/area/shuttle/dropship/alamo)
+"OK" = (
+/turf/closed/shuttle/dropship1/enginetwo,
+/area/shuttle/dropship/alamo)
+"RC" = (
+/obj/structure/dropship_piece/one/cockpit/left,
+/turf/template_noop,
+/area/shuttle/dropship/alamo)
+"RS" = (
+/turf/closed/shuttle/dropship1/enginefour{
+	dir = 8
+	},
+/area/shuttle/dropship/alamo)
+"Ta" = (
+/turf/closed/shuttle/dropship1/enginetwo{
+	dir = 1
+	},
+/area/shuttle/dropship/alamo)
+"Ug" = (
+/turf/closed/shuttle/dropship1/cornersalt{
+	dir = 4
+	},
+/area/shuttle/dropship/alamo)
+"Vf" = (
+/turf/closed/shuttle/dropship1/interiorwindow,
+/area/shuttle/dropship/alamo)
+"WT" = (
+/turf/closed/shuttle/dropship1/wall,
+/area/shuttle/dropship/alamo)
+"Xc" = (
+/obj/structure/bed/chair/dropship/passenger,
+/obj/item/radio/intercom/dropship,
+/turf/open/shuttle/dropship/six,
+/area/shuttle/dropship/alamo)
+"Yf" = (
+/turf/closed/shuttle/dropship1/enginefour{
+	dir = 1
+	},
+/area/shuttle/dropship/alamo)
+"Yp" = (
+/obj/structure/dropship_piece/one/front,
+/turf/template_noop,
+/area/shuttle/dropship/alamo)
+"YX" = (
+/obj/structure/dropship_piece/one/engine/leftbottom,
+/turf/template_noop,
+/area/shuttle/dropship/alamo)
+
+(1,1,1) = {"
+rj
+rj
+rj
+rj
+rj
+rj
+rj
+pe
+bS
+Mb
+OK
+YX
+rj
+"}
+(2,1,1) = {"
+rj
+rj
+rj
+rj
+rj
+rj
+rj
+Dt
+Yf
+gt
+Ta
+vR
+rj
+"}
+(3,1,1) = {"
+rj
+rj
+rj
+rj
+Kd
+iS
+HK
+iS
+iS
+Dc
+WT
+iS
+aD
+"}
+(4,1,1) = {"
+gO
+RC
+Ug
+Vf
+Kl
+Xc
+jM
+mS
+Ix
+Au
+mS
+Ov
+Hg
+"}
+(5,1,1) = {"
+Yp
+Bb
+Hj
+gb
+nu
+lG
+At
+Nl
+rg
+rg
+rg
+lG
+Gf
+"}
+(6,1,1) = {"
+rs
+jb
+ql
+Eb
+sY
+Kr
+jM
+zr
+tg
+gj
+xH
+xK
+Gf
+"}
+(7,1,1) = {"
+rj
+rj
+rj
+rj
+Kx
+hm
+dT
+hm
+hm
+Cr
+BG
+hm
+Dw
+"}
+(8,1,1) = {"
+rj
+rj
+rj
+rj
+rj
+rj
+rj
+pe
+cM
+jJ
+Fy
+YX
+rj
+"}
+(9,1,1) = {"
+rj
+rj
+rj
+rj
+rj
+rj
+rj
+Dt
+RS
+eN
+qr
+vR
+rj
+"}
