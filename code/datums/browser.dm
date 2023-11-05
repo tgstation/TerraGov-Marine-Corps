@@ -78,7 +78,7 @@
 		head_content += "<script type='text/javascript' src='[SSassets.transport.get_asset_url(file)]'></script>"
 
 	return {"<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<html><meta charset='UTF-8'>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<head>

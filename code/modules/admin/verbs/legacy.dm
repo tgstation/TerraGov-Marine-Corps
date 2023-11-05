@@ -181,7 +181,7 @@
 
 	var/key = usr.key
 
-	var/dat = "<html><head><title>Info on [key]</title></head>"
+	var/dat = "<html><meta charset='UTF-8'><head><title>Info on [key]</title></head>"
 	dat += "<body>"
 
 	key = ckey(key)

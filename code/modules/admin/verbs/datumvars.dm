@@ -292,7 +292,7 @@
 				variable_html += D.vv_get_var(V)
 
 	var/html = {"
-<html>
+<html><meta charset='UTF-8'>
 	<head>
 		<title>[title]</title>
 		<style>

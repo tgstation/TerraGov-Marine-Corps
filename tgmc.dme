@@ -1976,3 +1976,6 @@
 #include "interface\stylesheet.dm"
 #include "interface\skin.dmf"
 // END_INCLUDE
+
+#include "modular_RUtgmc\code\__HELPERS\text.dm"
+#include "modular_RUtgmc\code\datums\keybinding\communication.dm"
