@@ -10,6 +10,22 @@
 /obj/item/clothing/head/modular/m10x/leader
 	soft_armor = list(MELEE = 75, BULLET = 75, LASER = 75, ENERGY = 65, BOMB = 55, BIO = 50, FIRE = 50, ACID = 60)
 
+/obj/item/clothing/suit/modular/xenonauten/light/mk1
+	name = "\improper Xenonauten-L-MK1 pattern armored vest"
+	greyscale_config = /datum/greyscale_config/xenonaut/mk1/light
+
+/obj/item/clothing/suit/modular/xenonauten/mk1
+	name = "\improper Xenonauten-M-MK1 pattern armored vest"
+	greyscale_config = /datum/greyscale_config/xenonaut/mk1/medium
+
+/obj/item/clothing/suit/modular/xenonauten/heavy/mk1
+	name = "\improper Xenonauten-H-MK1 pattern armored vest"
+	greyscale_config = /datum/greyscale_config/xenonaut/mk1/heavy
+
+/obj/item/clothing/head/modular/m10x/mk1
+	name = "\improper M10X1 pattern marine helmet"
+	greyscale_config = /datum/greyscale_config/xenonaut/helm/mk1
+
 /obj/item/clothing/suit/modular/xenonauten/pilot
 	attachments_allowed = list(
 		/obj/item/armor_module/module/better_shoulder_lamp,

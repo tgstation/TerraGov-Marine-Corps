@@ -7,7 +7,7 @@
 	adjustment_variants = list()
 
 /obj/item/clothing/under/marine/squad/neck/foreign
-	name = "Foreign Legion turtleneck"
+	name = "TGMC Foreign Legion turtleneck"
 	desc = "Tacticool looking, squad issued uniform. This one belongs to the Foreign Legion, smells like fast food."
 	icon = 'modular_RUtgmc/icons/obj/clothing/uniform.dmi'
 	icon_state = "foreign_merc"
