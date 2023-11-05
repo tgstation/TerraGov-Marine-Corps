@@ -449,9 +449,14 @@
 /mob/living/carbon/xenomorph/proc/handle_weeds_on_movement(datum/source)
 	SIGNAL_HANDLER
 	var/obj/alien/weeds/found_weed = locate(/obj/alien/weeds) in loc
-	if(loc_weeds_type == found_weed?.type)
+	if(isnull(found_weed))
+		if(!(isnull(loc_weeds_type)))
+			loc_weeds_type = null
+			return TRUE
 		return FALSE
-	loc_weeds_type = found_weed?.type
+	if(loc_weeds_type == found_weed.type)
+		return FALSE
+	loc_weeds_type = found_weed.type
 	return TRUE
 
 /mob/living/carbon/xenomorph/hivemind/handle_weeds_on_movement(datum/source)
