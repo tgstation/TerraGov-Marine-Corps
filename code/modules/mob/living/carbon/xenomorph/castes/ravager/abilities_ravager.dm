@@ -121,15 +121,15 @@
 		if(!ishuman(ravaged))
 			ravaged.attack_alien(X, X.xeno_caste.melee_damage)
 			if(!ravaged.anchored)
-				step_away(ravaged, X, 1, 2)
+				ravaged.throw_at(get_step(ravaged, get_dir(X, ravaged)), RAV_RAVAGE_THROW_RANGE, RAV_CHARGESPEED, X)
 			continue
-		var/mob/living/carbon/human/attacking = ravaged
-		if(attacking.stat == DEAD)
+		var/mob/living/carbon/human/human_victim = ravaged
+		if(human_victim.stat == DEAD)
 			continue
-		step_away(attacking, X, 1, 2)
-		attacking.attack_alien_harm(X, X.xeno_caste.melee_damage * X.xeno_melee_damage_modifier * 0.25, FALSE, TRUE, FALSE, TRUE)
-		shake_camera(attacking, 2, 1)
-		attacking.Paralyze(1 SECONDS)
+		human_victim.attack_alien_harm(X, X.xeno_caste.melee_damage * X.xeno_melee_damage_modifier * 0.25, FALSE, TRUE, FALSE, TRUE)
+		human_victim.throw_at(get_step(human_victim, get_dir(X, human_victim)), RAV_RAVAGE_THROW_RANGE, RAV_CHARGESPEED, X)
+		shake_camera(human_victim, 2, 1)
+		human_victim.Paralyze(1 SECONDS)
 
 	succeed_activate()
 	add_cooldown()
