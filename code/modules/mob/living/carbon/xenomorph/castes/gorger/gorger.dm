@@ -1,6 +1,6 @@
 /mob/living/carbon/xenomorph/gorger
 	caste_base_type = /mob/living/carbon/xenomorph/gorger
-	name = "Gorger"
+	name = "Voreger"
 	desc = "A large, powerfully muscled xeno with seemingly more vitality than others."
 	icon = 'icons/Xeno/castes/gorger.dmi'
 	icon_state = "Gorger Walking"
