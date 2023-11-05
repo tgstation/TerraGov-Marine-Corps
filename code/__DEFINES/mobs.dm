@@ -670,6 +670,9 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define DRONE_ESSENCE_LINK_REGEN 0.012 // Amount of health regen given as a percentage.
 #define DRONE_ESSENCE_LINK_SHARED_HEAL 0.1 // The effectiveness of heals when applied to the other linked xeno, as a percentage
 
+//Defender defines
+#define DEFENDER_CHARGE_RANGE 4
+
 //Baneling defines
 #define BANELING_CHARGE_MAX 2
 #define BANELING_CHARGE_GAIN_TIME 240 SECONDS

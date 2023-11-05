@@ -96,8 +96,6 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_FORWARD_CHARGE,
 	)
-	///How far can we charge
-	var/range = 4
 	///How long is the windup before charging
 	var/windup_time = 0.5 SECONDS
 
@@ -156,7 +154,7 @@
 	RegisterSignal(X, COMSIG_XENO_LIVING_THROW_HIT, PROC_REF(mob_hit))
 	RegisterSignal(X, COMSIG_MOVABLE_POST_THROW, PROC_REF(charge_complete))
 
-	X.throw_at(A, range, 70, X)
+	X.throw_at(A, DEFENDER_CHARGE_RANGE, 5, X)
 
 	add_cooldown()
 
@@ -166,7 +164,7 @@
 /datum/action/xeno_action/activable/forward_charge/ai_should_use(atom/target)
 	if(!iscarbon(target))
 		return FALSE
-	if(!line_of_sight(owner, target, range))
+	if(!line_of_sight(owner, target, DEFENDER_CHARGE_RANGE))
 		return FALSE
 	if(!can_use_action(override_flags = XACT_IGNORE_SELECTED_ABILITY))
 		return FALSE

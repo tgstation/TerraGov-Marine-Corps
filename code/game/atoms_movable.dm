@@ -509,7 +509,7 @@
 
 	step(src, angle_to_dir(new_angle))
 
-/atom/movable/proc/throw_at(atom/target, range, speed, thrower, spin, flying = FALSE, targetted_throw = TRUE)
+/atom/movable/proc/throw_at(atom/target, range, speed = 5, thrower, spin, flying = FALSE, targetted_throw = TRUE)
 	set waitfor = FALSE
 	if(!target || !src)
 		return FALSE
