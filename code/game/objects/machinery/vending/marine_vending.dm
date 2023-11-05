@@ -1145,6 +1145,7 @@
 	icon_vend = "surplus-vend"
 	icon_deny = "surplus_clothes-deny"
 	isshared = TRUE
+	wrenchable = FALSE
 	product_ads = "Be the musician that you parents never approve you of.;You gotta look good when you're in the battlefield.;We have all types of hats here!;What did one hat say to the other on the hiking trip? I'll wait here, you go on ahead;Sometimes, a beret is better than a helmet.;Drip is the priority, marine."
 	products = list(
 		"Standard" = list(
