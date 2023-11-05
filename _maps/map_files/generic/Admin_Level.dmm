@@ -1059,6 +1059,10 @@
 	dir = 5
 	},
 /area/centcom/valhalla/bridge)
+"ble" = (
+/obj/machinery/vending/medical/valhalla,
+/turf/open/floor/tile/dark/gray,
+/area/centcom/valhalla/security/brig/interiorcavern)
 "blf" = (
 /turf/open/floor/tile/neutral/corner{
 	dir = 4
@@ -22849,7 +22853,7 @@ fvw
 pqM
 duo
 uOI
-etk
+ble
 etk
 hTv
 oUq
