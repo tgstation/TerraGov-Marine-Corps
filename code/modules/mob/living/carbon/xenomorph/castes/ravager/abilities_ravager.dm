@@ -121,13 +121,13 @@
 		if(!ishuman(ravaged))
 			ravaged.attack_alien(X, X.xeno_caste.melee_damage)
 			if(!ravaged.anchored)
-				ravaged.throw_at(get_ranged_target_turf(ravaged, get_dir(X, ravaged), RAV_RAVAGE_THROW_RANGE), RAV_RAVAGE_THROW_RANGE, RAV_CHARGESPEED, X)
+				ravaged.knockback(X, RAV_RAVAGE_THROW_RANGE, RAV_CHARGESPEED)
 			continue
 		var/mob/living/carbon/human/human_victim = ravaged
 		if(human_victim.stat == DEAD)
 			continue
 		human_victim.attack_alien_harm(X, X.xeno_caste.melee_damage * X.xeno_melee_damage_modifier * 0.25, FALSE, TRUE, FALSE, TRUE)
-		human_victim.throw_at(get_ranged_target_turf(human_victim, get_dir(X, human_victim), RAV_RAVAGE_THROW_RANGE), RAV_RAVAGE_THROW_RANGE, RAV_CHARGESPEED, X)
+		human_victim.knockback(X, RAV_RAVAGE_THROW_RANGE, RAV_CHARGESPEED)
 		shake_camera(human_victim, 2, 1)
 		human_victim.Paralyze(1 SECONDS)
 
