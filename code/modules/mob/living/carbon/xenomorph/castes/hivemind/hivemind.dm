@@ -136,7 +136,7 @@
 		set_datum(FALSE)
 		hive.xenos_by_upgrade[upgrade] += src
 		update_wounds()
-		update_icon_state()
+		update_icon()
 		update_action_buttons()
 		return
 	status_flags = initial(status_flags)
@@ -149,7 +149,7 @@
 	hive.xenos_by_upgrade[upgrade] += src
 	setDir(SOUTH)
 	update_wounds()
-	update_icon_state()
+	update_icon()
 	update_action_buttons()
 	handle_weeds_adjacent_removed()
 
