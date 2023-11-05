@@ -44,8 +44,8 @@
 
 	// *** Gorger Abilities *** //
 	overheal_max = 275
-	drain_plasma_gain = 40
-	carnage_plasma_gain = 40
+	drain_plasma_gain = 75
+	carnage_plasma_gain = 150
 	feast_plasma_drain = 20
 
 	actions = list(
