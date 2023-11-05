@@ -185,3 +185,4 @@
 #include "code\modules\projectiles\guns\specialist.dm"
 #include "code\modules\clothing\modular_armor\jaeger.dm"
 #include "code\modules\clothing\modular_armor\attachments\chest_plates.dm"
+#include "code\modules\reagents\reactions\medical.dm"
