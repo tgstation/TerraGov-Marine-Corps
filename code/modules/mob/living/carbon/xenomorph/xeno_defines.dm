@@ -173,6 +173,8 @@
 	var/carnage_plasma_gain = 0
 	///Amount of plasma drained each tick while feast buff is actuve
 	var/feast_plasma_drain = 0
+	///Amount of blood we drain from our target when draining blood
+	var/blood_drained = 0
 
 	// *** Queen Abilities *** //
 	///Amount of leaders allowed

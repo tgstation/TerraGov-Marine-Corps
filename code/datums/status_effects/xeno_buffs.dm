@@ -571,6 +571,7 @@
 
 		if(do_after(owner_xeno, KNOCKDOWN_DURATION, FALSE, target, ignore_turf_checks = FALSE))
 			owner_xeno.gain_plasma(plasma_gain_on_hit)
+			target.blood_volume -= blood_drained
 
 	if(owner_xeno.has_status_effect(STATUS_EFFECT_XENO_FEAST))
 		for(var/mob/living/carbon/xenomorph/target_xeno AS in cheap_get_xenos_near(owner_xeno, 4))
@@ -835,7 +836,7 @@
 	/// The owner of this buff.
 	var/mob/living/carbon/xenomorph/buff_owner
 	///Aura strength of the puppeteer who gave this effect
-	var/strength = 1	
+	var/strength = 1
 	///weakref to the puppeteer to set strength
 	var/datum/weakref/puppeteer
 
