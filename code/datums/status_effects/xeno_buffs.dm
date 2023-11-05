@@ -627,8 +627,8 @@
 			continue
 		if(!line_of_sight(xeno_caster, affected_xeno, 4))
 			continue
-		HEAL_XENO_DAMAGE(xeno_caster, heal_amount, FALSE)
-		adjustOverheal(xeno_caster, heal_amount / 2)
+		HEAL_XENO_DAMAGE(affected_xeno, heal_amount, FALSE)
+		adjustOverheal(affected_xeno, heal_amount / 2)
 	xeno_caster.use_plasma(plasma_drain)
 
 // ***************************************
