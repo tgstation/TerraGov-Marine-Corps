@@ -29,9 +29,9 @@
 		return ..()
 	var/mob/living/carbon/human/H = A
 	H.attack_alien_harm(src, xeno_caste.melee_damage * xeno_melee_damage_modifier * 0.25, FALSE, TRUE, FALSE, TRUE, INTENT_HARM) //Location is always random, cannot crit, harm only
-	var/target_turf = get_step_away(src, H, rand(1, 3)) //This is where we blast our target
+	var/target_turf = get_step_away(src, H, rand(1, 3)) //we blast our victim behind us
 	target_turf = get_step_rand(target_turf) //Scatter
-	H.throw_at(get_turf(target_turf), RAV_CHARGEDISTANCE, RAV_CHARGESPEED, H)
+	H.throw_at(get_turf(target_turf), RAV_CHARGEDISTANCE, RAV_CHARGESPEED, src)
 	H.Paralyze(2 SECONDS)
 
 /mob/living/carbon/xenomorph/ravager/flamer_fire_act(burnlevel)
