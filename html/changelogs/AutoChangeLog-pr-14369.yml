@@ -1,4 +1,0 @@
-author: "DeltaFire15"
-delete-after: True
-changes:
-  - bugfix: "Some throw speeds that were extremely high have been normalized."
