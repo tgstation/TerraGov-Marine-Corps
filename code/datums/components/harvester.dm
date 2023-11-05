@@ -10,6 +10,7 @@
 		/datum/reagent/medicine/bicaridine = 5,
 		/datum/reagent/medicine/tramadol = 5,
 		/datum/reagent/medicine/kelotane = 5,
+		/datum/reagent/medicine/tricordrazine = 5,
 	)
 	///Amount of reagents loaded into the blade
 	var/list/loaded_reagents = list()
@@ -146,16 +147,6 @@
 		loaded_reagents -= selected_reagent
 	user.balloon_alert(user, "loaded")
 
-///Handles behavior when attacking a mob
-/datum/component/harvester/proc/attack_async(datum/source, mob/living/target, mob/living/user, obj/item/weapon)
-	to_chat(user, span_rose("You prepare to stab <b>[target != user ? "[target]" : "yourself"]</b>!"))
-	new /obj/effect/temp_visual/telekinesis(get_turf(target))
-	if((target != user) && do_after(user, 2 SECONDS, TRUE, target, BUSY_ICON_DANGER))
-		target.heal_overall_damage(12.5, 0, updating_health = TRUE)
-	else
-		target.adjustStaminaLoss(-30)
-		target.heal_overall_damage(6, 0, updating_health = TRUE)
-
 ///Signal handler calling when user is filling the harvester
 /datum/component/harvester/proc/attackby(datum/source, obj/item/cont, mob/user)
 	SIGNAL_HANDLER
@@ -177,26 +168,23 @@
 	if(target.status_flags & INCORPOREAL || user.status_flags & INCORPOREAL) //Incorporeal beings cannot attack or be attacked
 		return
 
+	if(isxeno(target))
+		target.apply_damage(weapon.force*0.6, BRUTE, user.zone_selected)
 	switch(loaded_reagent)
 		if(/datum/reagent/medicine/tramadol)
-			target.apply_damage(weapon.force*0.6, BRUTE, user.zone_selected)
 			target.apply_status_effect(/datum/status_effect/incapacitating/harvester_slowdown, 1 SECONDS)
 
 		if(/datum/reagent/medicine/kelotane)
 			target.adjust_sunder(7.5) //Same amount as a shotgun slug
 			target.flamer_fire_act(10)
-			target.apply_damage(max(0, 20 - 20*target.hard_armor.getRating("fire")), BURN, user.zone_selected, FIRE)
-			var/list/cone_turfs = generate_cone(target, 1, 0, 181, Get_Angle(user, target.loc))
-			for(var/turf/checked_turf AS in cone_turfs)
-				for(var/mob/living/victim in checked_turf)
-					victim.flamer_fire_act(10)
-					victim.apply_damage(max(0, 20 - 20*victim.hard_armor.getRating("fire")), BURN, user.zone_selected, FIRE)
 
 		if(/datum/reagent/medicine/bicaridine)
-			if(isxeno(target))
-				return
-			INVOKE_ASYNC(src, PROC_REF(attack_async), source, target, user, weapon)
-			. = COMPONENT_ITEM_NO_ATTACK
+			INVOKE_ASYNC(src, PROC_REF(attack_bicaridine), source, target, user, weapon)
+			if(!(isxeno(target)))
+				. = COMPONENT_ITEM_NO_ATTACK
+
+		if(/datum/reagent/medicine/tricordrazine)
+			target.apply_status_effect(/datum/status_effect/shatter, 3 SECONDS)
 
 	if(!loaded_reagents[loaded_reagent])
 		update_selected_reagent(null)
@@ -205,6 +193,24 @@
 
 	if(loadup_on_attack)
 		INVOKE_ASYNC(src, PROC_REF(activate_blade_async), source, user)
+
+///Handles behavior when attacking a mob with bicaridine
+/datum/component/harvester/proc/attack_bicaridine(datum/source, mob/living/target, mob/living/user, obj/item/weapon)
+	if(isxeno(target)) //Self-heal on xeno strike
+		new /obj/effect/temp_visual/telekinesis(get_turf(user))
+		user.adjustStaminaLoss(-30)
+		user.heal_overall_damage(5, 0, updating_health = TRUE)
+		return
+
+	to_chat(user, span_rose("You prepare to stab <b>[target != user ? "[target]" : "yourself"]</b>!"))
+	new /obj/effect/temp_visual/telekinesis(get_turf(target))
+
+	if(do_after(user, 2 SECONDS, TRUE, target, BUSY_ICON_DANGER)) //Channeled heal on human strike
+		var/skill_heal_amt = user.skills.getRating(SKILL_MEDICAL) * 5
+		target.heal_overall_damage(10 + skill_heal_amt, 0, updating_health = TRUE) //5u of Bica will normally heal 25 damage. Medics get this full amount
+	else
+		target.adjustStaminaLoss(-30)
+		target.heal_overall_damage(5, 0, updating_health = TRUE)
 
 /datum/component/harvester/proc/select_reagent(datum/source)
 	var/list/options = list()

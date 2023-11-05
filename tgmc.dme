@@ -863,6 +863,7 @@
 #include "code\game\objects\items\toys\toys.dm"
 #include "code\game\objects\items\weapons\blades.dm"
 #include "code\game\objects\items\weapons\energy.dm"
+#include "code\game\objects\items\weapons\harvester.dm"
 #include "code\game\objects\items\weapons\holo_weapons.dm"
 #include "code\game\objects\items\weapons\misc.dm"
 #include "code\game\objects\items\weapons\shields.dm"
