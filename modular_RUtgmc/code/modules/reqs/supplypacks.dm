@@ -180,3 +180,11 @@
 	name = "SG-85 Minigun Powerpack"
 	contains = list(/obj/item/ammo_magazine/minigun_powerpack/smartgun)
 	cost = 150
+
+/datum/supply_packs/weapons/smarttarget_rifle_ammo
+	cost = 25
+
+/datum/supply_packs/weapons/box_10x27mm
+	name = "SG-62 smart target rifle ammo box"
+	contains = list(/obj/item/ammo_magazine/packet/sg62_rifle)
+	cost = 50

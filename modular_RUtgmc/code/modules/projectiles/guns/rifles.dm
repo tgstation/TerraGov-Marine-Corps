@@ -54,3 +54,59 @@
 	accuracy_mult = 1.2
 	scatter = -5
 	scatter_unwielded = 60
+
+//SG Target Rifle, has underbarreled spotting rifle that applies effects.
+
+/obj/item/weapon/gun/rifle/standard_smarttargetrifle
+	fire_delay = 0.4 SECONDS
+
+/obj/item/weapon/gun/rifle/standard_spottingrifle
+	accuracy_mult = 1.5
+	scatter = -5
+
+/datum/ammo/bullet/spottingrifle
+	accurate_range = 10
+	max_range = 12
+
+/datum/ammo/bullet/spottingrifle/highimpact/on_hit_mob(mob/M,obj/projectile/P)
+	staggerstun(M, P, stagger = 3 SECONDS, slowdown = 1, max_range = 12)
+
+/datum/ammo/bullet/spottingrifle/heavyrubber/on_hit_mob(mob/M,obj/projectile/P)
+	staggerstun(M, P, slowdown = 3, max_range = 12)
+
+/datum/ammo/bullet/spottingrifle/plasmaloss
+	var/datum/effect_system/smoke_spread/smoke_system
+
+/datum/ammo/bullet/spottingrifle/plasmaloss/on_hit_mob(mob/living/victim, obj/projectile/proj)
+	if(isxeno(victim))
+		var/mob/living/carbon/xenomorph/X = victim
+		X.use_plasma(20 + 0.2 * X.xeno_caste.plasma_max * X.xeno_caste.plasma_regen_limit) // This is draining 20%+20 flat per hit.
+	var/datum/effect_system/smoke_spread/plasmaloss/S = new
+	S.set_up(0, victim, 3)
+	S.start()
+
+/datum/ammo/bullet/spottingrifle/plasmaloss/on_hit_obj(obj/O, obj/projectile/P)
+	var/turf/T = get_turf(O)
+	drop_tg_smoke(T.density ? P.loc : T)
+
+/datum/ammo/bullet/spottingrifle/plasmaloss/on_hit_turf(turf/T, obj/projectile/P)
+	drop_tg_smoke(T.density ? P.loc : T)
+
+/datum/ammo/bullet/spottingrifle/plasmaloss/do_at_max_range(turf/T, obj/projectile/P)
+	drop_tg_smoke(T.density ? P.loc : T)
+
+/datum/ammo/bullet/spottingrifle/plasmaloss/set_smoke()
+	smoke_system = new /datum/effect_system/smoke_spread/plasmaloss()
+
+/datum/ammo/bullet/spottingrifle/plasmaloss/proc/drop_tg_smoke(turf/T)
+	if(T.density)
+		return
+
+	set_smoke()
+	smoke_system.set_up(0, T, 3)
+	smoke_system.start()
+	smoke_system = null
+
+/datum/ammo/bullet/spottingrifle/tungsten/on_hit_mob(mob/M,obj/projectile/P)
+	staggerstun(M, P, weaken = 2 SECONDS, stagger = 2 SECONDS, knockback = 1, max_range = 12)
+
