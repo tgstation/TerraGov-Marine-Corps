@@ -622,7 +622,7 @@
 		xeno_caster.remove_status_effect(STATUS_EFFECT_XENO_FEAST)
 		return
 	var/heal_amount = xeno_caster.maxHealth*0.08
-	for(var/mob/living/carbon/xenomorph/affected_xeno AS in GLOB.hive_datums[xeno_caster.hivenumber].xenos_by_zlevel["[X.z]"])
+	for(var/mob/living/carbon/xenomorph/affected_xeno AS in GLOB.hive_datums[xeno_caster.hivenumber].xenos_by_zlevel["[xeno_caster.z]"])
 		if(affected_xeno.faction != xeno_caster.faction)
 			continue
 		if(!line_of_sight(xeno_caster, affected_xeno, 4))
