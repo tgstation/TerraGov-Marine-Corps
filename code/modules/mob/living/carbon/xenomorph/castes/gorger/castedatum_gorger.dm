@@ -19,8 +19,8 @@
 
 	// *** Plasma *** //
 	plasma_max = 400
-	plasma_gain = 0
-	plasma_regen_limit = 0
+	plasma_gain = 5
+	plasma_regen_limit = 0.1
 	plasma_icon_state = "fury"
 
 	// *** Health *** //
