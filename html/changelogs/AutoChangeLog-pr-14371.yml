@@ -1,0 +1,5 @@
+author: "Wisemonster"
+delete-after: True
+changes:
+  - rscdel: "Removed a weapon from the surplus clothing vendor."
+  - code_imp: "Added a space"
