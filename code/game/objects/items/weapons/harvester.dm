@@ -36,6 +36,10 @@
 	. = ..()
 	. += jointext(codex_info, "<br>")
 
+/obj/item/weapon/harvester/update_overlays()
+	. = ..()
+	
+
 //Vali Sword
 /obj/item/weapon/harvester/sword
 	name = "\improper HP-S Harvester blade"
