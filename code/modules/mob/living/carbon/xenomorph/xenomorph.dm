@@ -450,15 +450,16 @@ Returns TRUE when loc_weeds_type changes. Returns FALSE when it doesn’t change
 /mob/living/carbon/xenomorph/proc/handle_weeds_on_movement(datum/source)
 	SIGNAL_HANDLER
 	var/obj/alien/weeds/found_weed = locate(/obj/alien/weeds) in loc
-	if(isnull(found_weed))
-		if(!(isnull(loc_weeds_type)))
-			loc_weeds_type = null
-			return TRUE
+	if(loc_weeds_type == found_weed?.type)
 		return FALSE
-	if(loc_weeds_type == found_weed.type)
-		return FALSE
-	loc_weeds_type = found_weed.type
+	loc_weeds_type = found_weed?.type
 	return TRUE
+
+/mob/living/carbon/xenomorph/hivemind/handle_weeds_on_movement(datum/source)
+	. = ..()
+	if(!.)
+		return
+	update_icon()
 
 /mob/living/carbon/xenomorph/hivemind/handle_weeds_on_movement(datum/source)
 	. = ..()
