@@ -249,6 +249,10 @@
 		/obj/item/armor_module/armor/arms/marine/syndicate_markthree,
 		/obj/item/armor_module/armor/legs/marine/syndicate_markthree,
 
+		/obj/item/armor_module/armor/chest/marine/syndicate_markone,
+		/obj/item/armor_module/armor/arms/marine/syndicate_markone,
+		/obj/item/armor_module/armor/legs/marine/syndicate_markone,
+
         /obj/item/armor_module/module/better_shoulder_lamp,
         /obj/item/armor_module/module/valkyrie_autodoc,
         /obj/item/armor_module/module/fire_proof,
