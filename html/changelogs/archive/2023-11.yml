@@ -111,3 +111,21 @@
   - balance: Lz2 is more open and less cluttered.
   - balance: cantabury no longer crashes right besides discs or fog.
   - balance: north monorail disc will be better to defend and attack.
+2023-11-06:
+  Barnet2:
+  - rscdel: LV is now only voteable on HvH gamemodes.
+  - code_imp: Sets Debugdalus and Vapor Processing to the default maps
+  Lumipharon:
+  - balance: Throwing things into windows will no longer stop the throw if the window
+      breaks from the impact
+  - balance: Throwing mobs into windows hurts like a wall throw
+  - balance: Throwing mobs into a window scales damage to the window based on mob
+      size
+  Waselon:
+  - rscadd: 'New xeno support minion: Nymph'
+  Xander3359:
+  - rscadd: Tricord, Paracetamol and Isotonic to NTMed
+  - rscadd: NTMED in Valhalla with more stock
+  ZeWaka:
+  - bugfix: You should no longer get the 'You left the Larva queue.' message when
+      returning to your corpse.

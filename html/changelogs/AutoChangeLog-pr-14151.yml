@@ -1,5 +1,0 @@
-author: "Barnet2"
-delete-after: True
-changes:
-  - rscdel: "LV is now only voteable on HvH gamemodes."
-  - code_imp: "Sets Debugdalus and Vapor Processing to the default maps"
