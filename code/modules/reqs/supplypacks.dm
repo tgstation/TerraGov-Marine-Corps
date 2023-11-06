@@ -789,6 +789,12 @@ EXPLOSIVES
 	containertype = /obj/structure/closet/crate/ammo
 	group = "Explosives"
 
+/datum/supply_packs/explosives/flare
+	name = "Flare supply crate (140x)"
+	notes = "Contains ten flare packs"
+	contains = list(/obj/structure/largecrate/supply/supplies/flares)
+	cost = 250
+
 /datum/supply_packs/explosives/explosives_mines
 	name = "claymore mines"
 	notes = "Contains 5 mines"
@@ -835,12 +841,6 @@ EXPLOSIVES
 	notes = "Contains 15 grenades"
 	contains = list(/obj/item/storage/box/visual/grenade/M15)
 	cost = 500
-
-/datum/supply_packs/explosives/explosives_fldp
-	name = "M40 FLDP flare grenade box crate"
-	notes = "Contains 45 flares"
-	contains = list(/obj/item/storage/box/visual/grenade/flare)
-	cost = 250
 
 /datum/supply_packs/explosives/explosives_trailblazer
 	name = "M45 Trailblazer grenade box crate"

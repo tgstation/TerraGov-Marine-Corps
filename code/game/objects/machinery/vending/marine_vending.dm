@@ -120,7 +120,7 @@
 			/obj/item/explosive/grenade/sticky/cloaker = 10,
 			/obj/item/explosive/grenade/smokebomb/drain = 10,
 			/obj/item/explosive/grenade/mirage = 100,
-			/obj/item/storage/box/m94 = 200,
+			/obj/item/storage/box/m94 = 150,
 			/obj/item/storage/box/m94/cas = 30,
 		),
 		"Specialized" = list(
@@ -730,7 +730,7 @@
 			/obj/item/storage/box/visual/grenade/incendiary = 2,
 			/obj/item/storage/box/visual/grenade/M15 = 2,
 			/obj/item/storage/box/visual/grenade/cloak = 1,
-			/obj/item/storage/box/visual/grenade/flare = 1,
+			/obj/item/storage/box/visual/grenade/flare = 2,
 		),
 		"Ammo Boxes" = list(
 			/obj/item/big_ammo_box = -1,
