@@ -1,6 +1,17 @@
 /obj/machinery/vending
 	vend_delay = 10
 
+/obj/machinery/vending/weapon/Initialize(mapload, ...)
+	//Really unsafe, but it works
+	products["Marksman"] += list(
+		/obj/item/weapon/gun/revolver/standard_revolver/coltrifle = -1,
+		/obj/item/ammo_magazine/revolver/rifle = -1,
+	)
+	products["Boxes"] += list(
+		/obj/item/ammo_magazine/packet/long_special = -1,
+	)
+	return ..()
+
 /obj/machinery/vending/armor_supply
 	products = list(
 		"Xenonauten" = list(
