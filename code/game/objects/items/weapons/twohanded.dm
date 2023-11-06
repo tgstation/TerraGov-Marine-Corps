@@ -443,7 +443,7 @@
 
 /obj/item/weapon/twohanded/rocketsledge
 	name = "rocket sledge"
-	desc = "Fitted with a rocket booster at the head, the rocket sledge would deliver a tremendously powerful impact, easily crushing your enemies. Uses fuel to power itself. AltClick to tighten your grip."
+	desc = "Fitted with a rocket booster at the head, the rocket sledge would deliver a tremendously powerful impact, easily crushing your enemies. Uses fuel to power itself. Press AltClick to tighten your grip. Press Spacebar to change modes."
 	icon_state = "rocketsledge"
 	item_state = "rocketsledge"
 	force = 30
@@ -464,15 +464,26 @@
 	var/fuel_used = 5
 	///additional damage when weapon is active
 	var/additional_damage = 75
+	///stun value in crush mode
+	var/crush_stun_amount = 2 SECONDS
+	///weaken value in crush mode
+	var/crush_weaken_amount = 4 SECONDS
+	///stun value in knockback mode
+	var/knockback_stun_amount = 2 SECONDS
+	///weaken value in knockback mode
+	var/knockback_weaken_amount = 2 SECONDS
 	///stun value
-	var/stun = 1
+	var/stun
 	///weaken value
-	var/weaken = 2
-	///knockback value
-	var/knockback = 0
+	var/weaken
+	///knockback value; 0 = crush mode, 1 = knockback mode
+	var/knockback
 
 /obj/item/weapon/twohanded/rocketsledge/Initialize(mapload)
 	. = ..()
+	stun = crush_stun_amount
+	weaken = crush_weaken_amount
+	knockback = 0
 	create_reagents(max_fuel, null, list(/datum/reagent/fuel = max_fuel))
 	AddElement(/datum/element/strappable)
 
@@ -524,15 +535,15 @@
 /obj/item/weapon/twohanded/rocketsledge/unique_action(mob/user)
 	. = ..()
 	if (knockback)
-		stun = 2 SECONDS
-		weaken = 4 SECONDS
+		stun = crush_stun_amount
+		weaken = crush_weaken_amount
 		knockback = 0
 		balloon_alert(user, "Selected mode: CRUSH.")
 		playsound(loc, 'sound/machines/switch.ogg', 25)
 		return
 
-	stun = 2 SECONDS
-	weaken = 2 SECONDS
+	stun = knockback_stun_amount
+	weaken = knockback_weaken_amount
 	knockback = 1
 	balloon_alert(user, "Selected mode: KNOCKBACK.")
 	playsound(loc, 'sound/machines/switch.ogg', 25)
@@ -574,7 +585,7 @@
 		if(xeno_victim.crest_defense) //Crest defense protects us from the stun.
 			stun = 0
 		else
-			stun = 2 SECONDS
+			stun = knockback ? knockback_stun_amount : crush_stun_amount
 
 	if(!M.IsStun() && !M.IsParalyzed() && !isxenoqueen(M)) //Prevent chain stunning. Queen is protected.
 		M.apply_effects(stun,weaken)
