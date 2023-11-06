@@ -241,9 +241,13 @@
     allowed_uniform_type = /obj/item/clothing/under
     attachments_allowed = list(
 
-		/obj/item/armor_module/armor/chest/marine/placeholder_heavy_syndie,
-		/obj/item/armor_module/armor/arms/marine/placeholder_heavy_syndie,
-		/obj/item/armor_module/armor/legs/marine/placeholder_heavy_syndie,
+		/obj/item/armor_module/armor/chest/marine/syndicate_markfive,
+		/obj/item/armor_module/armor/arms/marine/syndicate_markfive,
+		/obj/item/armor_module/armor/legs/marine/syndicate_markfive,
+
+		/obj/item/armor_module/armor/chest/marine/syndicate_markthree,
+		/obj/item/armor_module/armor/arms/marine/syndicate_markthree,
+		/obj/item/armor_module/armor/legs/marine/syndicate_markthree,
 
         /obj/item/armor_module/module/better_shoulder_lamp,
         /obj/item/armor_module/module/valkyrie_autodoc,

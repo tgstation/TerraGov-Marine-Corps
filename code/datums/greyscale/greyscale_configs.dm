@@ -108,17 +108,17 @@
 
 //Hardsuits
 
-/datum/greyscale_config/armor_mk1/syndicate_heavy
+/datum/greyscale_config/armor_mk1/syndicate_markfive
     icon_file =	'icons/mob/modular/Syndicate_Expansion.dmi'
-    prefix = "heavy_"
+    prefix = "markfive_"
 
-/datum/greyscale_config/armor_mk1/syndicate_medium
+/datum/greyscale_config/armor_mk1/syndicate_markthree
     icon_file = 'icons/mob/modular/Syndicate_Expansion.dmi'
-    prefix = "medium_"
+    prefix = "markthree_"
 
-/datum/greyscale_config/armor_mk1/syndicate_light
+/datum/greyscale_config/armor_mk1/syndicate_markone
     icon_file = 'icons/mob/modular/Syndicate_Expansion.dmi'
-    prefix = "light_"
+    prefix = "markone_"
 
 //Mark 2
 

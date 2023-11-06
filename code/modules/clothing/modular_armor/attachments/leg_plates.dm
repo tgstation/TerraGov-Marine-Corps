@@ -69,7 +69,19 @@
 	desc = "Designed for use with the Jaeger Combat Exoskeleton. It provides high protection and encumbrance when attached and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. This armor appears to be marked as a Dashe armor piece."
 	greyscale_config = /datum/greyscale_config/armor_mk1/dashe
 
-/obj/item/armor_module/armor/legs/marine/placeholder_heavy_syndie
+// Hardsuit Leg Plates
+/obj/item/armor_module/armor/legs/marine/syndicate_markfive
 	name = "\improper Heavy Syndie Legs"
 	desc = "Designed for use with the Jaeger Combat Exoskeleton. It provides high protection and encumbrance when attached and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. All arm plates have the same armor and slowdown, meaning that only changing the chestplate makes significant armor difference. This armor appears to be marked as a Dashe armor piece."
-	greyscale_config = /datum/greyscale_config/armor_mk1/syndicate_heavy
+	greyscale_config = /datum/greyscale_config/armor_mk1/syndicate_markfive
+
+/obj/item/armor_module/armor/legs/marine/syndicate_markthree
+	name = "\improper Heavy Syndie Legs"
+	desc = "Designed for use with the Jaeger Combat Exoskeleton. It provides high protection and encumbrance when attached and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. All arm plates have the same armor and slowdown, meaning that only changing the chestplate makes significant armor difference. This armor appears to be marked as a Dashe armor piece."
+	greyscale_config = /datum/greyscale_config/armor_mk1/syndicate_markthree
+
+/obj/item/armor_module/armor/legs/marine/syndicate_markone
+	name = "\improper Heavy Syndie Legs"
+	desc = "Designed for use with the Jaeger Combat Exoskeleton. It provides high protection and encumbrance when attached and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. All arm plates have the same armor and slowdown, meaning that only changing the chestplate makes significant armor difference. This armor appears to be marked as a Dashe armor piece."
+	greyscale_config = /datum/greyscale_config/armor_mk1/syndicate_markone
+

@@ -1085,11 +1085,6 @@
 			/obj/item/armor_module/armor/chest/marine/dashe = -1,
 			/obj/item/armor_module/armor/arms/marine/dashe = -1,
 			/obj/item/armor_module/armor/legs/marine/dashe = -1,
-			/obj/item/clothing/suit/modular/syndie_exo = -1,
-			/obj/item/clothing/head/modular/marine/heavy_helmet = -1,
-			/obj/item/armor_module/armor/chest/marine/placeholder_heavy_syndie = -1,
-			/obj/item/armor_module/armor/arms/marine/placeholder_heavy_syndie = -1,
-			/obj/item/armor_module/armor/legs/marine/placeholder_heavy_syndie = -1,
 		),
 		"Jaeger Mk.I chestpieces" = list(
 			/obj/item/armor_module/armor/chest/marine/skirmisher = -1,
@@ -1134,6 +1129,19 @@
 			/obj/item/clothing/head/modular/marine/old/eva/skull = -1,
 			/obj/item/clothing/head/modular/marine/old/assault = -1,
 			/obj/item/clothing/head/modular/marine/old/eod = -1,
+		),
+		"Hardsuits" = list(
+			/obj/item/clothing/suit/modular/syndie_exo = -1,
+			/obj/item/clothing/head/modular/marine/markfive_helmet = -1,
+			/obj/item/armor_module/armor/chest/marine/syndicate_markfive = -1,
+			/obj/item/armor_module/armor/arms/marine/syndicate_markfive = -1,
+			/obj/item/armor_module/armor/legs/marine/syndicate_markfive = -1,
+			/obj/item/armor_module/armor/chest/marine/syndicate_markthree = -1,
+			/obj/item/armor_module/armor/arms/marine/syndicate_markthree = -1,
+			/obj/item/armor_module/armor/legs/marine/syndicate_markthree = -1,
+			/obj/item/armor_module/armor/chest/marine/syndicate_markone = -1,
+			/obj/item/armor_module/armor/arms/marine/syndicate_markone = -1,
+			/obj/item/armor_module/armor/legs/marine/syndicate_markone = -1,
 		),
 	)
 
