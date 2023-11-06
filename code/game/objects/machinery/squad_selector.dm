@@ -2,7 +2,9 @@
 	name = "squad selection console"
 	desc = "A console for squad management. Allows users to join a squad."
 	icon = 'icons/obj/machines/computer.dmi'
-	icon_state = "syndishuttle"
+	icon_state = "computer"
+	screen_overlay = "syndishuttle"
+	broken_icon = "computer_red_broken"
 	interaction_flags = INTERACT_OBJ_UI
 
 /obj/machinery/computer/squad_selector/ui_interact(mob/user, datum/tgui/ui)
