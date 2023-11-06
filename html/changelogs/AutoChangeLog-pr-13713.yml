@@ -1,0 +1,15 @@
+author: "breadhunt"
+delete-after: True
+changes:
+  - bugfix: "Spiderlings will no longer wander aimlessly after destroying something, instead returning to the widow. This was big, spiderlings should be a lot more responsive now"
+  - rscadd: "Attach Spiderlings will now command spiderlings to follow you"
+  - bugfix: "This should fix a lot of AI bugginess, especially regarding the Mark Spiderlings ability"
+  - bugfix: "Commanding spiderlings to follow you now actually commands spiderlings to follow you"
+  - bugfix: "Missing spiderling mark no longer gives spiderlings a midlife crisis, instead just cancelling the ability"
+  - bugfix: "Fixed spiderlings de-syncing with their parent widow's rest mode"
+  - rscadd: "If spiderling mark is targeted at a turf/weeds, and there is a human on that turf, the mark will now target that human. Targeting anything else is unchanged."
+  - rscadd: "If a widow goes crit, instead of fluoride staring at their beloved mother bleeding out, its spiderlings will now attempt to shield it from harm by latching on to its body and physically covering up its sprite"
+  - rscadd: "If spiderlings are on the same time as widow, any friendly clicks (grabs/abilities/etc) will pass through to the widow. So don't worry, spiderling guard won't block you from saving your widow buddies"
+  - bugfix: "Humans can no longer unbuckle a widow's spiderlings from them"
+  - rscadd: "Spiderlings now turn red when enraged, and blue when guarding"
+  - imageadd: "Spiderling red and blue colours"
