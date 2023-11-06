@@ -111,7 +111,6 @@
 	. = ..()
 	if(A == beaker)
 		beaker = null
-		updateUsrDialog()
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/update_icon()
 	. = ..()
@@ -180,11 +179,9 @@
 	..()
 	if(machine_stat & (NOPOWER|BROKEN))
 		turn_off()
-		updateUsrDialog()
 		return
 
 	if(!on)
-		updateUsrDialog()
 		stop_processing()
 		return
 
@@ -200,7 +197,6 @@
 			turn_off()
 			idle_ticks_until_shutdown = 60 //reset idle ticks
 
-	updateUsrDialog()
 	return TRUE
 
 
@@ -297,8 +293,6 @@
 		return
 
 	put_mob(M, TRUE)
-
-	updateUsrDialog()
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/proc/put_mob(mob/living/carbon/M as mob, put_in = null)
 	if (machine_stat & (NOPOWER|BROKEN))
@@ -434,7 +428,6 @@
 		if("notice")
 			release_notice = !release_notice
 			. = TRUE
-	updateUsrDialog()
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/proc/turn_on()
 	if (machine_stat & (NOPOWER|BROKEN))
