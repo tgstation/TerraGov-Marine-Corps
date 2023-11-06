@@ -39,6 +39,7 @@
 	RegisterSignal(parent, COMSIG_ITEM_ATTACK, PROC_REF(attack))
 	RegisterSignal(parent, COMSIG_ATOM_ATTACKBY, PROC_REF(attackby))
 	RegisterSignal(reagent_select_action, COMSIG_ACTION_TRIGGER, PROC_REF(select_reagent))
+	RegisterSignal(parent, COMSIG_ATOM_UPDATE_OVERLAYS, PROC_REF(update_loaded_color))
 
 /datum/component/harvester/Destroy(force, silent)
 	var/obj/item/item_parent = parent
@@ -145,7 +146,28 @@
 	loaded_reagents[selected_reagent] -= use_amount
 	if(!loaded_reagents[selected_reagent])
 		loaded_reagents -= selected_reagent
+	INVOKE_ASYNC(src, PROC_REF(update_loaded_color), source, loaded_reagent)
 	user.balloon_alert(user, "loaded")
+
+///Updates the color of the weapon based on what chem is loaded in
+/datum/component/harvester/proc/update_loaded_color(datum/source, loaded_reagent)
+	var/color_of_blade
+	if(!loaded_reagent)
+		color_of_blade = COLOR_ALMOST_BLACK
+		return
+	switch(loaded_reagent)
+		if(/datum/reagent/medicine/bicaridine)
+			color_of_blade = COLOR_PACKET_BICARIDINE
+		if(/datum/reagent/medicine/kelotane)
+			color_of_blade = COLOR_PACKET_KELOTANE
+		if(/datum/reagent/medicine/tramadol)
+			color_of_blade = COLOR_PACKET_TRAMADOL
+		if(/datum/reagent/medicine/tricordrazine)
+			color_of_blade = COLOR_PACKET_TRICORDRAZINE
+	var/obj/harvester_icon = parent
+	var/image/overlay = image('icons/obj/items/vali.dmi', harvester_icon, "[initial(harvester_icon.icon_state)]_loaded")
+	overlay.color = color_of_blade
+	harvester_icon.overlays += overlay
 
 ///Signal handler calling when user is filling the harvester
 /datum/component/harvester/proc/attackby(datum/source, obj/item/cont, mob/user)

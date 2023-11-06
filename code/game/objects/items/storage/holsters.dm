@@ -373,11 +373,11 @@
 	flags_equip_slot = ITEM_SLOT_BELT|ITEM_SLOT_BACK
 	holsterable_allowed = list(
 		/obj/item/weapon/claymore/mercsword/machete,
-		/obj/item/weapon/claymore/harvester,
+		/obj/item/weapon/harvester/sword,
 	)
 	can_hold = list(
 		/obj/item/weapon/claymore/mercsword/machete,
-		/obj/item/weapon/claymore/harvester,
+		/obj/item/weapon/harvester/sword,
 	)
 
 /obj/item/storage/holster/blade/machete/full/Initialize(mapload)
@@ -390,7 +390,7 @@
 
 /obj/item/storage/holster/blade/machete/full_harvester/Initialize(mapload)
 	. = ..()
-	var/obj/item/new_item = new /obj/item/weapon/claymore/harvester(src)
+	var/obj/item/new_item = new /obj/item/weapon/harvester/sword(src)
 	INVOKE_ASYNC(src, PROC_REF(handle_item_insertion), new_item)
 
 /obj/item/storage/holster/blade/katana
