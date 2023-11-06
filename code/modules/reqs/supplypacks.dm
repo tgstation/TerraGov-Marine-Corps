@@ -793,7 +793,7 @@ EXPLOSIVES
 	name = "Flare supply crate (140x)"
 	notes = "Contains ten flare packs"
 	contains = list(/obj/structure/largecrate/supply/supplies/flares)
-	cost = 250
+	cost = 300
 
 /datum/supply_packs/explosives/explosives_mines
 	name = "claymore mines"
@@ -805,6 +805,12 @@ EXPLOSIVES
 	name = "M21 APRDS \"Minelayer\""
 	contains = list(/obj/item/minelayer)
 	cost = 50
+
+/datum/supply_packs/explosives/explosives_fldp
+	name = "M40 FLDP flare grenade box crate"
+	notes = "Contains 45 flares"
+	contains = list(/obj/item/storage/box/visual/grenade/flare)
+	cost = 150
 
 /datum/supply_packs/explosives/explosives_razor
 	name = "Razorburn grenade box crate"
