@@ -107,11 +107,6 @@
 	desc = "The visor attachment of the Jaeger modular helmets. This one is designed for the Dashe class of helmet."
 	icon_state = "dashe_visor"
 
-/obj/item/armor_module/armor/visor/marine/fourvisor
-	name = "\improper Syndicate pattern Visor"
-	desc = "The visor attachment of the Jaeger modular helmets. This one is designed for the Dashe class of helmet."
-	icon_state = "fourvisor_visor"
-
 /obj/item/armor_module/armor/visor/marine/eva
 	name = "\improper Jaeger Pattern EVA visor"
 	desc = "The visor attachment of the Jaeger modular helmets. This one is designed for the EVA class of helmet."
@@ -208,3 +203,14 @@
 	desc = "The visor attachment of the Jaeger modular helmets. This one is designed for the EOD class of helmet."
 	icon_state = "eod_visor_old"
 	colorable_allowed = COLOR_WHEEL_ALLOWED|PRESET_COLORS_ALLOWED
+
+//Hardsuit Helmet Visors
+/obj/item/armor_module/armor/visor/marine/fourvisor
+	name = "\improper Syndicate pattern Visor"
+	desc = "The visor attachment of the Jaeger modular helmets. This one is designed for the Dashe class of helmet."
+	icon_state = "fourvisor_visor"
+
+/obj/item/armor_module/armor/visor/marine/foureyevisor
+	name = "\improper Syndicate foureye pattern Visor"
+	desc = "The visor attachment of the Jaeger modular helmets. This one is designed for the Dashe class of helmet."
+	icon_state = "foureye_visor"

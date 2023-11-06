@@ -1136,6 +1136,7 @@
 			/obj/item/armor_module/armor/chest/marine/assault/syndicate_markfive = -1,
 			/obj/item/armor_module/armor/arms/marine/syndicate_markfive = -1,
 			/obj/item/armor_module/armor/legs/marine/syndicate_markfive = -1,
+			/obj/item/clothing/head/modular/marine/markthree_helmet = -1,
 			/obj/item/armor_module/armor/chest/marine/syndicate_markthree = -1,
 			/obj/item/armor_module/armor/arms/marine/syndicate_markthree = -1,
 			/obj/item/armor_module/armor/legs/marine/syndicate_markthree = -1,

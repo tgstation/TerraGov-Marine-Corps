@@ -151,6 +151,7 @@
 		/obj/item/armor_module/armor/visor/marine/hotaru,
 		/obj/item/armor_module/armor/visor/marine/dashe,
 		/obj/item/armor_module/armor/visor/marine/fourvisor,
+		/obj/item/armor_module/armor/visor/marine/foureyevisor,
 	)
 
 	starting_attachments = list(/obj/item/armor_module/armor/visor/marine, /obj/item/armor_module/storage/helmet)
@@ -240,12 +241,17 @@
 	starting_attachments = list(/obj/item/armor_module/armor/visor/marine/dashe, /obj/item/armor_module/storage/helmet)
 	greyscale_config = /datum/greyscale_config/armor_mk1/dashe
 
-
 // Hardsuit Helmets
 /obj/item/clothing/head/modular/marine/markfive_helmet
 	name = "syndie mark five helmet"
 	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has Dashe markings"
 	starting_attachments = list(/obj/item/armor_module/armor/visor/marine/fourvisor, /obj/item/armor_module/storage/helmet)
 	greyscale_config = /datum/greyscale_config/armor_mk1/syndicate_markfive
+
+/obj/item/clothing/head/modular/marine/markthree_helmet
+	name = "syndie mark three helmet"
+	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has Dashe markings"
+	starting_attachments = list(/obj/item/armor_module/armor/visor/marine/foureyevisor, /obj/item/armor_module/storage/helmet)
+	greyscale_config = /datum/greyscale_config/armor_mk1/syndicate_markthree
 
 
