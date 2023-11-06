@@ -75,7 +75,8 @@
 	greyscale_config = /datum/greyscale_config/armor_mk1/dashe
 
 // Hardsuit Chest Plates
-/obj/item/armor_module/armor/chest/marine/syndicate_markfive
+
+/obj/item/armor_module/armor/chest/marine/assault/syndicate_markfive
 	name = "\improper Mark 5 chest"
 	desc = "Designed for use with the Jaeger Combat Exoskeleton. It provides high protection and encumbrance when attached and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. All arm plates have the same armor and slowdown, meaning that only changing the chestplate makes significant armor difference. This armor appears to be marked as a Dashe armor piece."
 	greyscale_config = /datum/greyscale_config/armor_mk1/syndicate_markfive
@@ -85,7 +86,7 @@
 	desc = "Designed for use with the Jaeger Combat Exoskeleton. It provides high protection and encumbrance when attached and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. All arm plates have the same armor and slowdown, meaning that only changing the chestplate makes significant armor difference. This armor appears to be marked as a Dashe armor piece."
 	greyscale_config = /datum/greyscale_config/armor_mk1/syndicate_markthree
 
-/obj/item/armor_module/armor/chest/marine/syndicate_markone
+/obj/item/armor_module/armor/chest/marine/skirmisher/syndicate_markone
 	name = "\improper Mark 1 chest"
 	desc = "Designed for use with the Jaeger Combat Exoskeleton. It provides high protection and encumbrance when attached and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. All arm plates have the same armor and slowdown, meaning that only changing the chestplate makes significant armor difference. This armor appears to be marked as a Dashe armor piece."
 	greyscale_config = /datum/greyscale_config/armor_mk1/syndicate_markone

@@ -249,7 +249,7 @@
 		/obj/item/armor_module/armor/arms/marine/syndicate_markthree,
 		/obj/item/armor_module/armor/legs/marine/syndicate_markthree,
 
-		/obj/item/armor_module/armor/chest/marine/syndicate_markone,
+		/obj/item/armor_module/armor/chest/marine/skirmisher/syndicate_markone,
 		/obj/item/armor_module/armor/arms/marine/syndicate_markone,
 		/obj/item/armor_module/armor/legs/marine/syndicate_markone,
 
