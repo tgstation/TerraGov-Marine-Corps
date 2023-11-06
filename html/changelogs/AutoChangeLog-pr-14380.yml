@@ -1,0 +1,6 @@
+author: "vvvv-vvvv"
+delete-after: True
+changes:
+  - bugfix: "Fix invisible squad selection console"
+  - bugfix: "Fix invisible mech bay power console screen"
+  - bugfix: "Fix tacmap console emissive"
