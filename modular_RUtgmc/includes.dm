@@ -136,7 +136,6 @@
 #include "code\modules\xenomorph\xeno_structures.dm"
 #include "code\modules\mob\living\carbon\xenomorph\life.dm"
 #include "code\modules\mob\living\carbon\xenomorph\death.dm"
-#include "code\modules\mob\living\carbon\human\life\death.dm"
 #include "code\_onclick\hud\screen_objects\screen_objects.dm"
 #include "code\controllers\subsystem\points.dm"
 #include "code\modules\reqs\supply.dm"
