@@ -241,7 +241,7 @@
     allowed_uniform_type = /obj/item/clothing/under
     attachments_allowed = list(
 
-		/obj/item/armor_module/armor/chest/marine/assault/syndicate_markfive
+		/obj/item/armor_module/armor/chest/marine/assault/syndicate_markfive,
 		/obj/item/armor_module/armor/arms/marine/syndicate_markfive,
 		/obj/item/armor_module/armor/legs/marine/syndicate_markfive,
 
