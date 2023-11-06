@@ -1,0 +1,4 @@
+author: "Waselon"
+delete-after: True
+changes:
+  - bugfix: "fixed rocket sledgehammer having incorrect stun values"
