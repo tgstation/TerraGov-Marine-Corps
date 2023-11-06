@@ -157,23 +157,21 @@
 	var/mutable_appearance/loaded_chem = mutable_appearance('icons/mob/inhands/weapons/vali_left.dmi', harvester_weapon, "[initial(harvester_weapon.icon_state)]_loaded")
 	if(!loaded_reagent)
 		color_of_blade = COLOR_ALMOST_BLACK
-		return
-	switch(loaded_reagent)
-		if(/datum/reagent/medicine/bicaridine)
-			color_of_blade = COLOR_PACKET_BICARIDINE
-		if(/datum/reagent/medicine/kelotane)
-			color_of_blade = COLOR_PACKET_KELOTANE
-		if(/datum/reagent/medicine/tramadol)
-			color_of_blade = COLOR_PACKET_TRAMADOL
-		if(/datum/reagent/medicine/tricordrazine)
-			color_of_blade = COLOR_PACKET_TRICORDRAZINE
+	else
+		switch(loaded_reagent)
+			if(/datum/reagent/medicine/bicaridine)
+				color_of_blade = COLOR_PACKET_BICARIDINE
+			if(/datum/reagent/medicine/kelotane)
+				color_of_blade = COLOR_PACKET_KELOTANE
+			if(/datum/reagent/medicine/tramadol)
+				color_of_blade = COLOR_PACKET_TRAMADOL
+			if(/datum/reagent/medicine/tricordrazine)
+				color_of_blade = COLOR_PACKET_TRICORDRAZINE
 	harvester_weapon.overlays.Cut()
 	loaded_chem.color = color_of_blade
 	user.overlays += loaded_chem
 	overlay.color = color_of_blade
 	harvester_weapon.overlays += overlay
-	user.update_icon()
-	harvester_weapon.update_icon()
 
 ///Signal handler calling when user is filling the harvester
 /datum/component/harvester/proc/attackby(datum/source, obj/item/cont, mob/user)
@@ -218,7 +216,7 @@
 		update_selected_reagent(null)
 		user.balloon_alert(user, "[initial(loaded_reagent.name)]: empty")
 	loaded_reagent = null
-
+	INVOKE_ASYNC(src, PROC_REF(update_loaded_color), source, user, loaded_reagent)
 	if(loadup_on_attack)
 		INVOKE_ASYNC(src, PROC_REF(activate_blade_async), source, user)
 
