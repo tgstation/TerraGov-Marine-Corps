@@ -730,6 +730,7 @@
 			/obj/item/storage/box/visual/grenade/incendiary = 2,
 			/obj/item/storage/box/visual/grenade/M15 = 2,
 			/obj/item/storage/box/visual/grenade/cloak = 1,
+			/obj/item/storage/box/visual/grenade/flare = 1,
 		),
 		"Ammo Boxes" = list(
 			/obj/item/big_ammo_box = -1,

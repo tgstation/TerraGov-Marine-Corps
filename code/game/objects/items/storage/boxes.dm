@@ -1208,6 +1208,13 @@
 	spawn_type = /obj/item/explosive/grenade/training
 	closed_overlay = "grenade_box_overlay_training"
 
+/obj/item/storage/box/visual/grenade/flare
+	name = "\improper M40 FLDP flare box"
+	desc = "A secure box holding 45 M40 flares. Illuminates dark areas."
+	spawn_number = 45
+	spawn_type = /obj/item/explosive/grenade/flare
+	closed_overlay = "grenade_box_overlay_flare"
+
 #undef BOX_OVERLAY_SHIFT_X
 #undef BOX_OVERLAY_SHIFT_Y
 
