@@ -181,6 +181,7 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 		existing_asset.reapply()
 	else
 		faction_assets[new_asset] = new new_asset(src)
+		RegisterSignals(faction_assets[new_asset], list(COMSIG_CAMPAIGN_ASSET_ACTIVATION, COMSIG_CAMPAIGN_DISABLER_ACTIVATION), PROC_REF(force_update_static_data))
 
 ///handles post mission wrap up for the faction
 /datum/faction_stats/proc/mission_end(datum/source, datum/campaign_mission/completed_mission, winning_faction)
@@ -232,6 +233,11 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 		return TRUE
 	if(ismarinecommandjob(user.job) || issommarinecommandjob(user.job))
 		return TRUE
+
+///force updates static data when something changes externally
+/datum/faction_stats/proc/force_update_static_data()
+	SIGNAL_HANDLER
+	update_static_data_for_all_viewers()
 
 //UI stuff//
 
@@ -369,7 +375,7 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 			if(!is_leadership_role(user))
 				to_chat(user, "<span class='warning'>Only leadership roles can do this.")
 				return
-			if(current_mode.current_mission?.mission_state != MISSION_STATE_NEW)
+			if((current_mode.current_mission?.mission_state != MISSION_STATE_NEW) && (current_mode.current_mission?.mission_state != MISSION_STATE_LOADED))
 				to_chat(user, "<span class='warning'>Current mission already ongoing, unable to assign more personnel at this time.")
 				return
 			total_attrition_points += active_attrition_points
@@ -420,13 +426,12 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 				if(!(ismarineleaderjob(user.job) || issommarineleaderjob(user.job)))
 					to_chat(user, "<span class='warning'>Only squad leaders and above can do this.")
 					return
-			if(!choice.attempt_activatation())
+			if(!choice.attempt_activatation(user))
 				return
 			for(var/mob/living/carbon/human/faction_member AS in GLOB.alive_human_list_faction[faction])
 				faction_member.playsound_local(null, 'sound/effects/CIC_order.ogg', 30, 1)
 				faction_member.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>OVERWATCH</u></span><br>" + "[choice.name] asset activated", faction_portrait)
 				to_chat(faction_member, "<span class='warning'>[user] has activated the [choice.name] campaign asset.")
-			update_static_data_for_all_viewers()
 			return TRUE
 
 		if("purchase_reward")
