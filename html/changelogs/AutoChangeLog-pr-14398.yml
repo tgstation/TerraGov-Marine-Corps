@@ -1,4 +1,0 @@
-author: "vvvv-vvvv"
-delete-after: True
-changes:
-  - bugfix: "Fix cryo pod and some other UIs opening their window when they shouldn't"
