@@ -2477,15 +2477,6 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/patrol_base)
-"FK" = (
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
-	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer2{
-	dir = 1
-	},
-/turf/open/floor/plating/plating_catwalk,
-/area/mainship/patrol_base)
 "FL" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
 	dir = 4
@@ -3800,7 +3791,9 @@
 /turf/open/floor/prison/sterilewhite,
 /area/mainship/patrol_base)
 "WP" = (
-/obj/machinery/atmospherics/components/unary/cryo_cell,
+/obj/machinery/atmospherics/components/unary/cryo_cell{
+	dir = 1
+	},
 /turf/open/floor/prison/sterilewhite,
 /area/mainship/patrol_base)
 "WU" = (
@@ -3819,9 +3812,11 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/patrol_base/barracks)
 "WY" = (
-/obj/machinery/atmospherics/components/unary/cryo_cell,
 /obj/machinery/light/mainship{
 	light_color = "#da2f1b"
+	},
+/obj/machinery/atmospherics/components/unary/cryo_cell{
+	dir = 1
 	},
 /turf/open/floor/prison/sterilewhite,
 /area/mainship/patrol_base)
@@ -24553,7 +24548,7 @@ bu
 bu
 zS
 fV
-FK
+Fs
 Jp
 KN
 KN
