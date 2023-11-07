@@ -167,10 +167,9 @@
 	item_parent.overlays.Add(item_overlay)
 
 ///Updates the mob sprite
-/datum/component/harvester/proc/upate_mob_overlay(datum/source, mutable_appearance/standing, inhands, icon_used)
+/datum/component/harvester/proc/upate_mob_overlay(datum/source, mutable_appearance/standing, inhands, icon_used, state_used)
 	SIGNAL_HANDLER
-	var/obj/item/item_parent = parent
-	var/mutable_appearance/blade_overlay = mutable_appearance(icon_used, "[initial(item_parent.icon_state)]_loaded")
+	var/mutable_appearance/blade_overlay = mutable_appearance(icon_used, "[state_used]_loaded")
 	if(!loaded_reagent)
 		blade_overlay.color = COLOR_ALMOST_BLACK
 	else
