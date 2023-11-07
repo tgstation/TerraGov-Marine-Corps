@@ -648,26 +648,6 @@
 	span_xenowarning("We vomit globs of vile stuff all over \the [A]. It begins to sizzle and melt under the bubbling mess of acid!"), null, 5)
 	playsound(X.loc, "sound/bullets/acid_impact1.ogg", 25)
 
-/datum/action/xeno_action/activable/corrosive_acid/proc/acid_progress_transfer(acid_type, obj/O, turf/T)
-	if(!O && !T)
-		return
-
-	var/obj/effect/xenomorph/acid/new_acid = acid_type
-
-	var/obj/effect/xenomorph/acid/current_acid
-
-	if(T)
-		current_acid = T.current_acid
-
-	else if(O)
-		current_acid = O.current_acid
-
-	if(!current_acid) //Sanity check. No acid
-		return
-	new_acid.ticks = current_acid.ticks //Inherit the old acid's progress
-	qdel(current_acid)
-
-
 // ***************************************
 // *********** Super strong acid
 // ***************************************
