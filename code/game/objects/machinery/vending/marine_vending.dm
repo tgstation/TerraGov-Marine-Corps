@@ -1196,7 +1196,7 @@
 			/obj/item/storage/holster/blade/machete/full = -1,
 			/obj/item/storage/holster/blade/machete/full_harvester = -1,
 			/obj/item/weapon/twohanded/harvester/claymore = -1,
-			/obj/item/storage/belt/utility/full =-1,
+			/obj/item/storage/belt/utility/full = -1,
 			/obj/item/storage/belt/medical_small = -1,
 			/obj/item/storage/belt/protein_pack = -1,
 		),
