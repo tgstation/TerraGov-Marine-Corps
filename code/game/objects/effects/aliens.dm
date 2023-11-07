@@ -153,7 +153,7 @@
 	. = ..()
 	acid_melt_multiplier = melting_rate
 	acid_t = target
-	ticks = existing_ticks
+	ticks += existing_ticks
 	if(!acid_t)
 		return INITIALIZE_HINT_QDEL
 	layer = acid_t.layer

@@ -596,6 +596,10 @@
 	use_state_flags = XACT_USE_BUCKLED
 
 /datum/action/xeno_action/activable/corrosive_acid/can_use_ability(atom/A, silent = FALSE, override_flags)
+	// Check if it's an acid object we're upgrading
+	if (istype(A, /obj/effect/xenomorph/acid))
+		var/obj/effect/xenomorph/acid/existing_acid = A
+		A = existing_acid.acid_t // Swap the target to the target of the acid
 	. = ..()
 	if(!.)
 		return FALSE
@@ -636,7 +640,7 @@
 	if(!can_use_ability(A, TRUE))
 		return fail_activate()
 
-	var/old_acid_ticks = A.current_acid.ticks
+	var/old_acid_ticks = A.current_acid?.ticks
 	QDEL_NULL(A.current_acid)
 	A.current_acid = new acid_type(get_turf(A), A, A.dissolvability(initial(acid_type.acid_strength)), old_acid_ticks)
 
