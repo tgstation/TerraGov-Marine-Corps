@@ -42,6 +42,8 @@
 	RegisterSignal(parent, COMSIG_ATOM_UPDATE_OVERLAYS, PROC_REF(update_loaded_color))
 	RegisterSignal(parent, COMSIG_ITEM_APPLY_CUSTOM_OVERLAY, PROC_REF(upate_mob_overlay))
 
+	item_parent.update_icon() //So that our sprite realizes it's empty when it spawns
+
 /datum/component/harvester/Destroy(force, silent)
 	var/obj/item/item_parent = parent
 	LAZYREMOVE(item_parent.actions, reagent_select_action)
@@ -161,7 +163,7 @@
 	var/obj/item/item_parent = parent
 	var/image/item_overlay = image('icons/obj/items/vali.dmi', item_parent, "[initial(item_parent.icon_state)]_loaded")
 	if(!loaded_reagent)
-		item_overlay.color = COLOR_ALMOST_BLACK
+		item_overlay.color = COLOR_GREEN
 	else
 		item_overlay.color = initial(loaded_reagent.color)
 	item_parent.overlays.Add(item_overlay)
@@ -171,7 +173,7 @@
 	SIGNAL_HANDLER
 	var/mutable_appearance/blade_overlay = mutable_appearance(icon_used, "[state_used]_loaded")
 	if(!loaded_reagent)
-		blade_overlay.color = COLOR_ALMOST_BLACK
+		blade_overlay.color = COLOR_GREEN
 	else
 		blade_overlay.color = initial(loaded_reagent.color)
 	standing.overlays.Add(blade_overlay)
