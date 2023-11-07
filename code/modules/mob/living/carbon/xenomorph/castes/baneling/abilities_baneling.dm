@@ -44,6 +44,15 @@
 	button.cut_overlay(visual_references[VREF_MUTABLE_BANE_CHARGES])
 	visual_references[VREF_MUTABLE_BANE_CHARGES] = null
 
+
+/datum/action/xeno_action/baneling_explode/can_use_action()
+	. = ..()
+	var/mob/living/carbon/xenomorph/X = owner
+	var/datum/action/xeno_action/spawn_pod/pod_action = X.actions_by_path[/datum/action/xeno_action/spawn_pod]
+	if(SSmonitor.gamestate == SHUTTERS_CLOSED && isnull(pod_action.the_pod))
+		X.balloon_alert(owner, span_notice("Can't explode before shutters without a pod!"))
+		return FALSE
+
 /datum/action/xeno_action/baneling_explode/action_activate()
 	. = ..()
 	var/mob/living/carbon/xenomorph/X = owner
@@ -130,16 +139,19 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_BANELING_SPAWN_POD,
 	)
+	var/obj/structure/xeno/baneling_pod/the_pod
 
 /datum/action/xeno_action/spawn_pod/action_activate()
 	. = ..()
 	var/mob/living/carbon/xenomorph/X = owner
-	RegisterSignal(new /obj/structure/xeno/baneling_pod(get_turf(X.loc), X.hivenumber, X, src), COMSIG_QDELETING, PROC_REF(notify_owner))
+	the_pod = new /obj/structure/xeno/baneling_pod(get_turf(X.loc), X.hivenumber, X, src)
+	RegisterSignal(the_pod, COMSIG_QDELETING, PROC_REF(notify_owner))
 	succeed_activate()
 
 /// Proc to notify the owner of the pod that it has been destroyed
 /datum/action/xeno_action/spawn_pod/proc/notify_owner()
 	SIGNAL_HANDLER
+	the_pod = null
 	var/mob/living/carbon/xenomorph/X = owner
 	X.balloon_alert(X, "YOUR POD IS DESTROYED")
 	to_chat(X, span_xenohighdanger("Our POD IS DESTROYED! Rebuild it if we can!"))
