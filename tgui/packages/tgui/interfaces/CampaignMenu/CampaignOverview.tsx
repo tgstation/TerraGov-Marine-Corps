@@ -18,6 +18,7 @@ export const CampaignOverview = (props, context) => {
     map_name,
     objective_description,
     mission_brief,
+    mission_parameters,
     vp_major_reward,
     ap_major_reward,
     vp_minor_reward,
@@ -50,6 +51,9 @@ export const CampaignOverview = (props, context) => {
           </LabeledList.Item>
           <LabeledList.Item label="Mission Brief">
             {mission_brief}
+          </LabeledList.Item>
+          <LabeledList.Item label="Mission Parameters">
+            {mission_parameters}
           </LabeledList.Item>
           <LabeledList.Item label="Current Attrition">
             {active_attrition_points}
