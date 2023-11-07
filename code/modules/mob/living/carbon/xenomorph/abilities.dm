@@ -636,8 +636,9 @@
 	if(!can_use_ability(A, TRUE))
 		return fail_activate()
 
+	var/old_acid_ticks = A.current_acid.ticks
 	QDEL_NULL(A.current_acid)
-	A.current_acid = new acid_type(get_turf(A), A, A.dissolvability(initial(acid_type.acid_strength)))
+	A.current_acid = new acid_type(get_turf(A), A, A.dissolvability(initial(acid_type.acid_strength)), old_acid_ticks)
 
 	succeed_activate()
 
