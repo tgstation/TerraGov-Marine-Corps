@@ -1279,7 +1279,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 	SHOULD_CALL_PARENT(TRUE)
 	if(blocks_emissive != EMISSIVE_BLOCK_NONE)
 		standing.overlays += emissive_blocker(icon_used, state_used, alpha = standing.alpha)
-	SEND_SIGNAL(src, COMSIG_ITEM_APPLY_CUSTOM_OVERLAY, standing, inhands)
+	SEND_SIGNAL(src, COMSIG_ITEM_APPLY_CUSTOM_OVERLAY, standing, inhands, icon_used, state_used)
 	return standing
 
 ///applies blood on the item, called by make_worn_icon().

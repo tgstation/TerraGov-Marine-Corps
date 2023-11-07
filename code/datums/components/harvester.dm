@@ -40,6 +40,7 @@
 	RegisterSignal(parent, COMSIG_ATOM_ATTACKBY, PROC_REF(attackby))
 	RegisterSignal(reagent_select_action, COMSIG_ACTION_TRIGGER, PROC_REF(select_reagent))
 	RegisterSignal(parent, COMSIG_ATOM_UPDATE_OVERLAYS, PROC_REF(update_loaded_color))
+	RegisterSignal(parent, COMSIG_ITEM_APPLY_CUSTOM_OVERLAY, PROC_REF(upate_mob_overlay))
 
 /datum/component/harvester/Destroy(force, silent)
 	var/obj/item/item_parent = parent
@@ -146,32 +147,35 @@
 	loaded_reagents[selected_reagent] -= use_amount
 	if(!loaded_reagents[selected_reagent])
 		loaded_reagents -= selected_reagent
-	INVOKE_ASYNC(src, PROC_REF(update_loaded_color), source, user, loaded_reagent)
+
+	var/obj/item/item_parent = parent
+	item_parent.update_icon()
+	user.update_inv_r_hand()
+	user.update_inv_l_hand()
+
 	user.balloon_alert(user, "loaded")
 
 ///Updates the color of the weapon based on what chem is loaded in. Updates both the item sprite and mob sprite
-/datum/component/harvester/proc/update_loaded_color(datum/source, mob/user, loaded_reagent)
-	var/color_of_blade
-	var/obj/harvester_weapon = parent
-	var/image/overlay = image('icons/obj/items/vali.dmi', harvester_weapon, "[initial(harvester_weapon.icon_state)]_loaded")
-	var/mutable_appearance/loaded_chem = mutable_appearance('icons/mob/inhands/weapons/vali_left.dmi', harvester_weapon, "[initial(harvester_weapon.icon_state)]_loaded")
+/datum/component/harvester/proc/update_loaded_color(datum/source)
+	SIGNAL_HANDLER
+	var/obj/item/item_parent = parent
+	var/image/item_overlay = image('icons/obj/items/vali.dmi', item_parent, "[initial(item_parent.icon_state)]_loaded")
 	if(!loaded_reagent)
-		color_of_blade = COLOR_ALMOST_BLACK
+		item_overlay.color = COLOR_ALMOST_BLACK
 	else
-		switch(loaded_reagent)
-			if(/datum/reagent/medicine/bicaridine)
-				color_of_blade = COLOR_PACKET_BICARIDINE
-			if(/datum/reagent/medicine/kelotane)
-				color_of_blade = COLOR_PACKET_KELOTANE
-			if(/datum/reagent/medicine/tramadol)
-				color_of_blade = COLOR_PACKET_TRAMADOL
-			if(/datum/reagent/medicine/tricordrazine)
-				color_of_blade = COLOR_PACKET_TRICORDRAZINE
-	harvester_weapon.overlays.Cut()
-	loaded_chem.color = color_of_blade
-	user.overlays += loaded_chem
-	overlay.color = color_of_blade
-	harvester_weapon.overlays += overlay
+		item_overlay.color = initial(loaded_reagent.color)
+	item_parent.overlays.Add(item_overlay)
+
+///Updates the mob sprite
+/datum/component/harvester/proc/upate_mob_overlay(datum/source, mutable_appearance/standing, inhands, icon_used)
+	SIGNAL_HANDLER
+	var/obj/item/item_parent = parent
+	var/mutable_appearance/blade_overlay = mutable_appearance(icon_used, "[initial(item_parent.icon_state)]_loaded")
+	if(!loaded_reagent)
+		blade_overlay.color = COLOR_ALMOST_BLACK
+	else
+		blade_overlay.color = initial(loaded_reagent.color)
+	standing.overlays.Add(blade_overlay)
 
 ///Signal handler calling when user is filling the harvester
 /datum/component/harvester/proc/attackby(datum/source, obj/item/cont, mob/user)
@@ -216,7 +220,12 @@
 		update_selected_reagent(null)
 		user.balloon_alert(user, "[initial(loaded_reagent.name)]: empty")
 	loaded_reagent = null
-	INVOKE_ASYNC(src, PROC_REF(update_loaded_color), source, user, loaded_reagent)
+
+	var/obj/item/item_parent = parent
+	item_parent.update_icon()
+	user.update_inv_r_hand()
+	user.update_inv_l_hand()
+
 	if(loadup_on_attack)
 		INVOKE_ASYNC(src, PROC_REF(activate_blade_async), source, user)
 
