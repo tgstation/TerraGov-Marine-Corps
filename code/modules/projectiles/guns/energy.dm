@@ -694,6 +694,7 @@
 		"Spread" = /datum/lasrifle/energy_carbine_mode/base/spread,
 		"Impact" = /datum/lasrifle/energy_carbine_mode/base/impact,
 		"Cripple" = /datum/lasrifle/energy_carbine_mode/base/cripple,
+		"Shatter" = /datum/lasrifle/energy_carbine_mode/shatter,
 	)
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_carbine/scout
