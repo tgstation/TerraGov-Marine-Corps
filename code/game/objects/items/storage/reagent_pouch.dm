@@ -36,6 +36,13 @@
 			dat += "\n \t <b>Unknown:</b> [R.volume]|[percent]%</br>"
 	return span_notice("[src]'s contents: [dat.Join(" ")]")
 
+/obj/item/reagent_containers/hypospray/autoinjector/r_pouch //Custom empty autoinjector that we will manually fill the contents of
+	name = "custom autoinjector"
+	desc = "An autoinjector loaded with a custom mix. Useful whenever you need the rapid injection"
+	icon_state = "RedGreen"
+	amount_per_transfer_from_this = 30
+	list_reagents = null //This injector gets filled up by the pouch on Initialize()
+
 /obj/item/storage/pouch/pressurized_reagent_pouch //The actual pouch itself and all its function
 	name = "pressurized reagent pouch"
 	w_class = WEIGHT_CLASS_BULKY
@@ -49,12 +56,31 @@
 	flags_item = NOBLUDGEON
 	///The internal container of the pouch. Holds the reagent that you use to refill the connected injector
 	var/obj/item/reagent_containers/glass/reagent_canister/inner
+	///List of chemicals we fill up our pouch with on Initialize()
+	var/list/chemicals_to_fill = list(
+		/datum/reagent/consumable/sodiumchloride = 1200,
+	)
 
 /obj/item/storage/pouch/pressurized_reagent_pouch/Initialize(mapload)
 	. = ..()
 	inner = new /obj/item/reagent_containers/glass/reagent_canister
-	new /obj/item/reagent_containers/hypospray/advanced(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/r_pouch(src)
+	for(var/datum/reagent/chem_type AS in chemicals_to_fill)
+		if(!chem_type)
+			continue
+		inner.reagents.add_reagent(chem_type, chemicals_to_fill[chem_type])
+	if(length(contents) > 0)
+		var/obj/item/reagent_containers/hypospray/autoinjector/hypo_to_fill = locate() in src
+		if(!hypo_to_fill)
+			update_icon()
+			return
+		for(var/datum/reagent/chem_type AS in chemicals_to_fill)
+			if(!chem_type)
+				continue
+			hypo_to_fill.reagents.add_reagent(chem_type, (chemicals_to_fill[chem_type])/inner.volume*hypo_to_fill.volume)
+		hypo_to_fill.update_icon()
 	update_icon()
+
 
 /obj/item/storage/pouch/pressurized_reagent_pouch/Destroy()
 	if(inner)
@@ -77,23 +103,6 @@
 			. += image('icons/Marine/marine-pouches.dmi', src, "reagent_pouch_2")
 		if(67 to 100)
 			. += image('icons/Marine/marine-pouches.dmi', src, "reagent_pouch_3")
-
-/obj/item/storage/pouch/pressurized_reagent_pouch/bktt/Initialize()
-	. = ..()
-	var/amount_to_fill = inner.volume/4
-	inner.reagents.add_reagent(/datum/reagent/medicine/bicaridine, amount_to_fill)
-	inner.reagents.add_reagent(/datum/reagent/medicine/kelotane, amount_to_fill)
-	inner.reagents.add_reagent(/datum/reagent/medicine/tramadol, amount_to_fill)
-	inner.reagents.add_reagent(/datum/reagent/medicine/tricordrazine, amount_to_fill)
-	if(length(contents) > 0)
-		var/obj/item/reagent_containers/hypospray/advanced/hypo_to_fill = contents[1]
-		amount_to_fill = hypo_to_fill.volume/4
-		hypo_to_fill.reagents.add_reagent(/datum/reagent/medicine/bicaridine, amount_to_fill)
-		hypo_to_fill.reagents.add_reagent(/datum/reagent/medicine/kelotane, amount_to_fill)
-		hypo_to_fill.reagents.add_reagent(/datum/reagent/medicine/tramadol, amount_to_fill)
-		hypo_to_fill.reagents.add_reagent(/datum/reagent/medicine/tricordrazine, amount_to_fill)
-		hypo_to_fill.update_icon()
-	update_icon()
 
 /obj/item/storage/pouch/pressurized_reagent_pouch/AltClick(mob/user)
 	if(!remove_canister(user))
@@ -169,4 +178,12 @@
 			else
 				dat += "\n \t <b>Unknown:</b> [R.volume]|[percent]%</br>"
 	return span_notice("[src]'s reagent display shows the following contents: [dat.Join(" ")]")
+
+/obj/item/storage/pouch/pressurized_reagent_pouch/bktt //Pre-filled with equal parts BKTT and a basic auto injector
+	chemicals_to_fill = list(
+		/datum/reagent/medicine/bicaridine = 300,
+		/datum/reagent/medicine/kelotane = 300,
+		/datum/reagent/medicine/tramadol = 300,
+		/datum/reagent/medicine/tricordrazine = 300,
+	)
 
