@@ -55,6 +55,54 @@
 	scatter = -5
 	scatter_unwielded = 60
 
+
+//-------------------------------------------------------
+//AR-18 Carbine
+
+/obj/item/weapon/gun/rifle/standard_carbine
+	allowed_ammo_types = list(
+		/obj/item/ammo_magazine/rifle/standard_carbine,
+		/obj/item/ammo_magazine/rifle/standard_carbine/ap,
+		)
+
+//-------------------------------------------------------
+//AR-12 Assault Rifle
+
+/obj/item/weapon/gun/rifle/standard_assaultrifle
+	allowed_ammo_types = list(
+		/obj/item/ammo_magazine/rifle/standard_assaultrifle,
+		/obj/item/ammo_magazine/rifle/standard_assaultrifle/ap,
+		)
+
+//-------------------------------------------------------
+//BR-64 BR
+
+/obj/item/weapon/gun/rifle/standard_br
+	allowed_ammo_types = list(
+		/obj/item/ammo_magazine/rifle/standard_br,
+		/obj/item/ammo_magazine/rifle/standard_br/ap,
+		)
+
+
+//-------------------------------------------------------
+//AR-21 Assault Rifle
+
+/obj/item/weapon/gun/rifle/standard_skirmishrifle
+	allowed_ammo_types = list(
+		/obj/item/ammo_magazine/rifle/standard_skirmishrifle,
+		/obj/item/ammo_magazine/rifle/standard_skirmishrifle/ap,
+		)
+
+//-------------------------------------------------------
+// AR-55 rifle
+
+/obj/item/weapon/gun/rifle/tx55
+	allowed_ammo_types = list(
+		/obj/item/ammo_magazine/rifle/standard_carbine,
+		/obj/item/ammo_magazine/rifle/standard_carbine/ap,
+		)
+
+//-------------------------------------------------------
 //SG Target Rifle, has underbarreled spotting rifle that applies effects.
 
 /obj/item/weapon/gun/rifle/standard_smarttargetrifle
