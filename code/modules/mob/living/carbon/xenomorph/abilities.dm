@@ -596,6 +596,10 @@
 	use_state_flags = XACT_USE_BUCKLED
 
 /datum/action/xeno_action/activable/corrosive_acid/can_use_ability(atom/A, silent = FALSE, override_flags)
+	// Check if it's an acid object we're upgrading
+	if (istype(A, /obj/effect/xenomorph/acid))
+		var/obj/effect/xenomorph/acid/existing_acid = A
+		A = existing_acid.acid_t // Swap the target to the target of the acid
 	. = ..()
 	if(!.)
 		return FALSE
@@ -618,6 +622,12 @@
 
 /datum/action/xeno_action/activable/corrosive_acid/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/X = owner
+
+	// Check if it's an acid object we're upgrading
+	if (istype(A, /obj/effect/xenomorph/acid))
+		var/obj/effect/xenomorph/acid/existing_acid = A
+		A = existing_acid.acid_t // Swap the target to the target of the acid
+
 	if(!A.dissolvability(initial(acid_type.acid_strength)))
 		return fail_activate()
 
@@ -630,8 +640,9 @@
 	if(!can_use_ability(A, TRUE))
 		return fail_activate()
 
+	var/old_acid_ticks = A.current_acid?.ticks
 	QDEL_NULL(A.current_acid)
-	A.current_acid = new acid_type(get_turf(A), A, A.dissolvability(initial(acid_type.acid_strength)))
+	A.current_acid = new acid_type(get_turf(A), A, A.dissolvability(initial(acid_type.acid_strength)), old_acid_ticks)
 
 	succeed_activate()
 
@@ -640,26 +651,6 @@
 	X.visible_message(span_xenowarning("\The [X] vomits globs of vile stuff all over \the [A]. It begins to sizzle and melt under the bubbling mess of acid!"), \
 	span_xenowarning("We vomit globs of vile stuff all over \the [A]. It begins to sizzle and melt under the bubbling mess of acid!"), null, 5)
 	playsound(X.loc, "sound/bullets/acid_impact1.ogg", 25)
-
-/datum/action/xeno_action/activable/corrosive_acid/proc/acid_progress_transfer(acid_type, obj/O, turf/T)
-	if(!O && !T)
-		return
-
-	var/obj/effect/xenomorph/acid/new_acid = acid_type
-
-	var/obj/effect/xenomorph/acid/current_acid
-
-	if(T)
-		current_acid = T.current_acid
-
-	else if(O)
-		current_acid = O.current_acid
-
-	if(!current_acid) //Sanity check. No acid
-		return
-	new_acid.ticks = current_acid.ticks //Inherit the old acid's progress
-	qdel(current_acid)
-
 
 // ***************************************
 // *********** Super strong acid
