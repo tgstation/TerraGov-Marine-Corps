@@ -58,7 +58,7 @@
 
 /obj/item/storage/pouch/pressurized_reagent_pouch/Destroy()
 	if(inner)
-		qdel(inner)
+		QDEL_NULL(inner)
 	return ..()
 
 /obj/item/storage/pouch/pressurized_reagent_pouch/update_overlays()
