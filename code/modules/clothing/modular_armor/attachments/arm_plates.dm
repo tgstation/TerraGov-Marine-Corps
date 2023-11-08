@@ -73,7 +73,7 @@
 /obj/item/armor_module/armor/arms/marine/syndicate_markfive
 	name = "\improper Mark 5 Heavy  Hardsuit arm plates"
 	desc = "Designed for use with the Hardsuit Combat Exoskeleton. It provides high protection and encumbrance when attached and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. All arm plates have the same armor and slowdown, meaning that only changing the chestplate makes significant armor difference. This armor appears to be marked as a Dashe armor piece."
-	greyscale_config = /datum/greyscale_config/hardsuit_variant/syndicate_markfive
+	greyscale_config = /datum/greyscale_config/hardsuit_variant
 
 /obj/item/armor_module/armor/arms/marine/syndicate_markthree
 	name = "\improper Mark 3 arm plates"

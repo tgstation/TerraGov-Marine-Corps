@@ -107,20 +107,16 @@
 	icon_file = 'icons/mob/modular/mark_one/dashe.dmi'
 
 //Hardsuits
-/datum/greyscale_config/hardsuit_variant
-	icon_file = 'icons/mob/modular/Syndicate_Expansion.dmi'
-	json_config = 'code/datums/greyscale/json_configs/hardsuit_variant.json'
 
-/datum/greyscale_config/hardsuit_variant/syndicate_markfive
+
+/datum/greyscale_config/hardsuit_variant
     icon_file =	'icons/mob/modular/Syndicate_Expansion.dmi'
     prefix = "markfive_"
 
 /datum/greyscale_config/hardsuit_variant/syndicate_markthree
-    icon_file = 'icons/mob/modular/Syndicate_Expansion.dmi'
     prefix = "markthree_"
 
 /datum/greyscale_config/hardsuit_variant/syndicate_markone
-    icon_file = 'icons/mob/modular/Syndicate_Expansion.dmi'
     prefix = "markone_"
 
 //Mark 2

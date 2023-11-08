@@ -246,7 +246,7 @@
 	name = "syndie mark five helmet"
 	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has Dashe markings"
 	starting_attachments = list(/obj/item/armor_module/armor/visor/marine/fourvisor, /obj/item/armor_module/storage/helmet)
-	greyscale_config = /datum/greyscale_config/hardsuit_variant/syndicate_markfive
+	greyscale_config = /datum/greyscale_config/hardsuit_variant
 
 /obj/item/clothing/head/modular/marine/markthree_helmet
 	name = "syndie mark three helmet"
