@@ -114,3 +114,43 @@
 	icon_state = "drought"
 	density = FALSE
 	icon_variants = 32
+
+//crystal
+/obj/structure/rock/crystal
+	name = "strange crystal"
+	desc = "A strange glowing crystal. Not sure if you should touch it."
+	icon = 'icons/obj/flora/crystals.dmi'
+	icon_state = "big_crystal"
+	light_range = 2
+	light_power = 0.5
+	light_color = LIGHT_COLOR_EMISSIVE_GREEN
+
+/obj/structure/rock/crystal/Initialize(mapload)
+	. = ..()
+	update_icon()
+
+/obj/structure/rock/crystal/update_overlays()
+	. = ..()
+	. += emissive_appearance(icon, "[icon_state]_emissive", alpha = src.alpha)
+
+/obj/structure/rock/crystal/small
+	icon_state = "small_crystal"
+	light_range = 1
+
+/obj/structure/rock/variable/crystal_mound
+	name = "strange crystal"
+	desc = "Some strange crystals seem to be pushing out of the ground here..."
+	icon = 'icons/obj/flora/crystals.dmi'
+	icon_state = "crystal_mound"
+	icon_variants = 3
+	light_range = 0.5
+	light_power = 0.5
+	light_color = LIGHT_COLOR_EMISSIVE_GREEN
+
+/obj/structure/rock/variable/crystal_mound/Initialize(mapload)
+	. = ..()
+	update_icon()
+
+/obj/structure/rock/variable/crystal_mound/update_overlays()
+	. = ..()
+	. += emissive_appearance(icon, "[icon_state]_emissive", alpha = src.alpha)

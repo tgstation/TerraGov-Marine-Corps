@@ -19,6 +19,7 @@
 /turf/closed/hitby(atom/movable/AM, speed = 5)
 	AM.stop_throw()
 	AM.turf_collision(src, speed)
+	return TRUE
 
 /turf/closed/mineral
 	name = "rock"
@@ -49,6 +50,23 @@
 			if(!isspaceturf(turf_to_check))
 				minimap_color = MINIMAP_SOLID
 			overlays += rock_side
+
+/turf/closed/mineral/attack_alien(mob/living/carbon/xenomorph/xeno_user, isrightclick = FALSE)
+	. = ..()
+	if(isxenobehemoth(xeno_user))
+		xeno_user.do_attack_animation(src)
+		playsound(src, 'sound/effects/behemoth/earth_pillar_eating.ogg', 10, TRUE)
+		xeno_user.visible_message(span_xenowarning("\The [xeno_user] eats away at the [src.name]!"), \
+		span_xenonotice(pick(
+			"We eat away at the stone. It tastes good, as expected of our primary diet.",
+			"Mmmmm... Delicious rock. A fitting meal for the hardiest of creatures.",
+			"This boulder -- its flavor fills us with glee. Our palate is thoroughly satisfied.",
+			"These minerals are tasty! We want more!",
+			"Eating this stone makes us think; is our hide tougher? It is. It must be...",
+			"A delectable flavor. Just one bite is not enough...",
+			"One bite, two bites... why not just finish the whole rock?",
+			"The stone. The rock. The boulder. Its name matters not when we consume it.",
+			"Delicious, delectable, simply exquisite. Just a few more minerals and it'd be perfect...")), null, 5)
 
 /turf/closed/mineral/smooth
 	name = "rock"

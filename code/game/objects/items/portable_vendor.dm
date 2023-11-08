@@ -135,8 +135,6 @@
 			update_overlays()
 			addtimer(CALLBACK(src, PROC_REF(do_vend), L[3], user), 1 SECONDS)
 
-	updateUsrDialog()
-
 /obj/item/portable_vendor/proc/do_vend(thing, mob/user)
 	var/obj/IT = new thing(get_turf(src))
 	if(loc == user)

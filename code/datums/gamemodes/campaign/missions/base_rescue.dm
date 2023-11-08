@@ -1,12 +1,13 @@
-//disabling some of the enemy's firesupport options
+//protecting an NT installation
 /datum/campaign_mission/destroy_mission/base_rescue
 	name = "NT base rescue"
 	mission_icon = "nt_rescue"
 	mission_flags = MISSION_DISALLOW_TELEPORT
-	map_name = "Jungle outpost SR-422"
-	map_file = '_maps/map_files/Campaign maps/jungle_outpost/jungle_outpost.dmm'
-	map_traits = list(ZTRAIT_AWAY = TRUE, ZTRAIT_RAIN = TRUE)
-	map_light_colours = list(LIGHT_COLOR_PALE_GREEN, LIGHT_COLOR_PALE_GREEN, LIGHT_COLOR_PALE_GREEN, LIGHT_COLOR_PALE_GREEN)
+	map_name = "NT site B-403"
+	map_file = '_maps/map_files/Campaign maps/nt_base/nt_base.dmm'
+	map_traits = list(ZTRAIT_AWAY = TRUE, ZTRAIT_SNOWSTORM = TRUE)
+	map_light_colours = list(COLOR_MISSION_BLUE, COLOR_MISSION_BLUE, COLOR_MISSION_BLUE, COLOR_MISSION_BLUE)
+	map_light_levels = list(225, 150, 100, 75)
 	objectives_total = 1
 	min_destruction_amount = 1
 	shutter_open_delay = list(
@@ -41,6 +42,10 @@
 	. = ..()
 	RegisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_NT_OVERRIDE_CODE, PROC_REF(override_code_received))
 
+/datum/campaign_mission/destroy_mission/base_rescue/set_factions()
+	attacking_faction = hostile_faction
+	defending_faction = starting_faction
+
 /datum/campaign_mission/destroy_mission/base_rescue/unregister_mission_signals()
 	. = ..()
 	UnregisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_NT_OVERRIDE_CODE)
@@ -64,6 +69,10 @@
 	hostile_faction_mission_brief = "Recon forces have led us to this secure Nanotrasen facility in the Western Ayolan Ranges. Sympathetic native elements suggest NT have been conducting secret research here to the detriment of the local ecosystem and human settlements. \
 		Find the security override terminals to override the facility's emergency lockdown. \
 		Once the lockdown is lifted, destroy what they're working on inside."
+
+/datum/campaign_mission/destroy_mission/base_rescue/load_objective_description()
+	starting_faction_objective_description = "Major Victory:Protect the NT base from SOM attack. Do not allow them to override the security lockdown and destroy NT's sensitive equipment"
+	hostile_faction_objective_description = "Major Victory: Override the security lockdown on the NT facility and destroy whatever secrets they are working on"
 
 /datum/campaign_mission/destroy_mission/base_rescue/apply_major_victory()
 	. = ..()
@@ -157,3 +166,9 @@
 	occupant = null
 	update_icon()
 	playsound(src, 'sound/effects/airhiss.ogg', 60, 1)
+
+/obj/effect/landmark/campaign_structure/weapon_x/red
+	spawn_object = /obj/structure/weapon_x_pod/red
+
+/obj/structure/weapon_x_pod/red
+	code_color = MISSION_CODE_RED

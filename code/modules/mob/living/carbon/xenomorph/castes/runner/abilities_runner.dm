@@ -3,6 +3,7 @@
 // ***************************************
 #define RUNNER_POUNCE_RANGE 6 // in tiles
 #define RUNNER_SAVAGE_DAMAGE_MINIMUM 15
+#define RUNNER_SAVAGE_COOLDOWN 30 SECONDS
 
 /datum/action/xeno_action/activable/pounce/runner
 	desc = "Leap at your target, tackling and disarming them. Alternate use toggles Savage off or on."
@@ -15,6 +16,15 @@
 	pounce_range = RUNNER_POUNCE_RANGE
 	/// Whether Savage is active or not.
 	var/savage_activated = TRUE
+	/// Savage's cooldown.
+	COOLDOWN_DECLARE(savage_cooldown)
+
+/datum/action/xeno_action/activable/pounce/runner/give_action(mob/living/L)
+	. = ..()
+	var/mutable_appearance/savage_maptext = mutable_appearance(icon = null, icon_state = null, layer = ACTION_LAYER_MAPTEXT)
+	savage_maptext.pixel_x = 12
+	savage_maptext.pixel_y = -5
+	visual_references[VREF_MUTABLE_SAVAGE_COOLDOWN] = savage_maptext
 
 /datum/action/xeno_action/activable/pounce/runner/alternate_action_activate()
 	savage_activated = !savage_activated
@@ -26,15 +36,34 @@
 	. = ..()
 	if(!savage_activated)
 		return
-	var/mob/living/carbon/xenomorph/xeno_owner = owner
-	var/savage_cost = RUNNER_SAVAGE_DAMAGE_MINIMUM * 2
-	if(xeno_owner.plasma_stored < savage_cost)
-		owner.balloon_alert(owner, "Not enough plasma to Savage")
+	if(!COOLDOWN_CHECK(src, savage_cooldown))
+		owner.balloon_alert(owner, "Savage on cooldown ([COOLDOWN_TIMELEFT(src, savage_cooldown) * 0.1]s)")
 		return
-	living_target.attack_alien_harm(xeno_owner, max(RUNNER_SAVAGE_DAMAGE_MINIMUM, xeno_owner.plasma_stored * 0.15))
+	var/mob/living/carbon/xenomorph/xeno_owner = owner
+	var/savage_damage = max(RUNNER_SAVAGE_DAMAGE_MINIMUM, xeno_owner.plasma_stored * 0.15)
+	var/savage_cost = savage_damage * 2
+	if(xeno_owner.plasma_stored < savage_cost)
+		owner.balloon_alert(owner, "Not enough plasma to Savage ([savage_cost])")
+		return
+	living_target.attack_alien_harm(xeno_owner, savage_damage)
 	xeno_owner.use_plasma(savage_cost)
+	COOLDOWN_START(src, savage_cooldown, RUNNER_SAVAGE_COOLDOWN)
+	START_PROCESSING(SSprocessing, src)
 	GLOB.round_statistics.runner_savage_attacks++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "runner_savage_attacks")
+
+/datum/action/xeno_action/activable/pounce/runner/process()
+	if(COOLDOWN_CHECK(src, savage_cooldown))
+		button.cut_overlay(visual_references[VREF_MUTABLE_SAVAGE_COOLDOWN])
+		owner.balloon_alert(owner, "Savage ready")
+		owner.playsound_local(owner, 'sound/effects/xeno_newlarva.ogg', 25, 0, 1)
+		STOP_PROCESSING(SSprocessing, src)
+		return
+	button.cut_overlay(visual_references[VREF_MUTABLE_SAVAGE_COOLDOWN])
+	var/mutable_appearance/cooldown = visual_references[VREF_MUTABLE_SAVAGE_COOLDOWN]
+	cooldown.maptext = MAPTEXT("[round(COOLDOWN_TIMELEFT(src, savage_cooldown) * 0.1)]s")
+	visual_references[VREF_MUTABLE_SAVAGE_COOLDOWN] = cooldown
+	button.add_overlay(visual_references[VREF_MUTABLE_SAVAGE_COOLDOWN])
 
 
 // ***************************************
@@ -110,12 +139,12 @@
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "runner_evasions")
 
 /datum/action/xeno_action/evasion/process()
+	var/mob/living/carbon/xenomorph/runner/runner_owner = owner
+	runner_owner.hud_set_evasion(evasion_duration)
 	if(evasion_duration <= 0)
 		evasion_deactivate()
 		return
 	evasion_duration--
-	var/mob/living/carbon/xenomorph/runner/runner_owner = owner
-	runner_owner.hud_set_evasion(evasion_duration)
 
 /**
  * Called when the owner is hit by a flamethrower projectile.
@@ -189,6 +218,8 @@
 	if(xeno_owner.issamexenohive(proj.firer)) //We automatically dodge allied projectiles at no cost, and no benefit to our evasion stacks
 		return COMPONENT_PROJECTILE_DODGE
 	if(proj.ammo.flags_ammo_behavior & AMMO_FLAME) //We can't dodge literal fire
+		return FALSE
+	if(proj.original_target == xeno_owner && proj.distance_travelled < 2) //Pointblank shot.
 		return FALSE
 	if(!(proj.ammo.flags_ammo_behavior & AMMO_SENTRY) && !xeno_owner.fire_stacks) //We ignore projectiles from automated sources/sentries for the purpose of contributions towards our cooldown refresh; also fire prevents accumulation of evasion stacks
 		evasion_stacks += proj.damage //Add to evasion stacks for the purposes of determining whether or not our cooldown refreshes

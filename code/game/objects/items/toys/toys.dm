@@ -84,6 +84,9 @@
 
 
 /obj/item/toy/balloon/throw_impact(atom/hit_atom)
+	. = ..()
+	if(!.)
+		return
 	if(src.reagents.total_volume >= 1)
 		src.visible_message(span_warning(" The [src] bursts!"),"You hear a pop and a splash.")
 		src.reagents.reaction(get_turf(hit_atom), TOUCH)
@@ -174,7 +177,9 @@
 	AddElement(/datum/element/connect_loc, connections)
 
 /obj/item/toy/snappop/throw_impact(atom/hit_atom)
-	..()
+	. = ..()
+	if(!.)
+		return
 	var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
 	s.set_up(3, 1, src)
 	s.start()

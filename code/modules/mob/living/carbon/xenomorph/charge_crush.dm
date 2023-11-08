@@ -5,6 +5,7 @@
 #define CHARGE_BULL (1<<1)
 #define CHARGE_BULL_HEADBUTT (1<<2)
 #define CHARGE_BULL_GORE (1<<3)
+#define CHARGE_BEHEMOTH (1<<4)
 
 #define STOP_CRUSHER_ON_DEL (1<<0)
 
@@ -36,11 +37,14 @@
 	var/plasma_use_multiplier = 1
 	///If this charge should keep momentum on dir change and if it can charge diagonally
 	var/agile_charge = FALSE
+	/// Whether this ability should be activated when given.
+	var/should_start_on = TRUE
 
 
 /datum/action/xeno_action/ready_charge/give_action(mob/living/L)
 	. = ..()
-	action_activate()
+	if(should_start_on)
+		action_activate()
 
 
 /datum/action/xeno_action/ready_charge/Destroy()
@@ -224,6 +228,9 @@
 			if(CHARGE_BULL, CHARGE_BULL_HEADBUTT, CHARGE_BULL_GORE) //Xeno Bull
 				if(MODULUS(valid_steps_taken, 4) == 0)
 					playsound(charger, "alien_footstep_large", 50)
+			if(CHARGE_BEHEMOTH)
+				if(MODULUS(valid_steps_taken, 2) == 0)
+					playsound(charger, "behemoth_rolling", 30)
 
 	lastturf = charger.loc
 
@@ -260,7 +267,7 @@
 	if(charger.incapacitated() || charger.now_pushing)
 		return NONE
 
-	if(charge_type & (CHARGE_BULL|CHARGE_BULL_HEADBUTT|CHARGE_BULL_GORE) && !isliving(crushed))
+	if(charge_type & (CHARGE_BULL|CHARGE_BULL_HEADBUTT|CHARGE_BULL_GORE|CHARGE_BEHEMOTH) && !isliving(crushed))
 		do_stop_momentum()
 		return COMPONENT_MOVABLE_PREBUMP_STOPPED
 
@@ -563,7 +570,7 @@
 		return PRECRUSH_STOPPED
 
 	switch(charge_datum.charge_type)
-		if(CHARGE_CRUSH, CHARGE_BULL)
+		if(CHARGE_CRUSH, CHARGE_BULL, CHARGE_BEHEMOTH)
 			var/fling_dir = pick((charger.dir & (NORTH|SOUTH)) ? list(WEST, EAST, charger.dir|WEST, charger.dir|EAST) : list(NORTH, SOUTH, charger.dir|NORTH, charger.dir|SOUTH)) //Fling them somewhere not behind nor ahead of the charger.
 			var/fling_dist = min(round(CHARGE_SPEED(charge_datum)) + 1, 3)
 			var/turf/destination = loc

@@ -1059,6 +1059,10 @@
 	dir = 5
 	},
 /area/centcom/valhalla/bridge)
+"ble" = (
+/obj/machinery/vending/medical/valhalla,
+/turf/open/floor/tile/dark/gray,
+/area/centcom/valhalla/security/brig/interiorcavern)
 "blf" = (
 /turf/open/floor/tile/neutral/corner{
 	dir = 4
@@ -10575,7 +10579,7 @@
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla/security/brig/interiorcavern)
 "obe" = (
-/obj/machinery/body_scanconsole,
+/obj/machinery/computer/body_scanconsole,
 /turf/open/floor/mainship/sterile/corner{
 	dir = 8
 	},
@@ -11690,7 +11694,7 @@
 /turf/open/floor/wood,
 /area/centcom/valhalla/port)
 "pFR" = (
-/obj/machinery/autodoc_console,
+/obj/machinery/computer/autodoc_console,
 /turf/open/floor/mainship/sterile/side{
 	dir = 8
 	},
@@ -21464,7 +21468,7 @@ xrI
 xrI
 xrI
 xrI
-xrI
+wQi
 xrI
 xrI
 xrI
@@ -21740,7 +21744,7 @@ xrI
 xrI
 xrI
 xrI
-wQi
+xrI
 xXc
 xXc
 xrI
@@ -21868,7 +21872,7 @@ xrI
 xrI
 xrI
 xrI
-xrI
+wQi
 xrI
 xrI
 xXc
@@ -22146,7 +22150,7 @@ xrI
 xrI
 xrI
 xrI
-wQi
+xrI
 jYG
 jYG
 hTv
@@ -22849,7 +22853,7 @@ fvw
 pqM
 duo
 uOI
-etk
+ble
 etk
 hTv
 oUq

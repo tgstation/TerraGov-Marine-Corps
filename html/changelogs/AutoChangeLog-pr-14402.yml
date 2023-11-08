@@ -1,0 +1,4 @@
+author: "Barnet2"
+delete-after: True
+changes:
+  - bugfix: "LV is no longer voteable on Crash."

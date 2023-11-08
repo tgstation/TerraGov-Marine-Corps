@@ -1298,6 +1298,7 @@
 	pixel_y = -4
 	},
 /obj/effect/landmark/weed_node,
+/obj/effect/landmark/campaign_structure/tele_blocker,
 /turf/open/ground/grass/weedable,
 /area/lawankaoutpost/outside/west)
 "bdf" = (
@@ -2791,8 +2792,8 @@
 /area/lawankaoutpost/colony/marshalls)
 "cqC" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic/canteen{
-	name = "\improper Mineral Processing";
-	dir = 1
+	dir = 1;
+	name = "\improper Mineral Processing"
 	},
 /obj/structure/cable,
 /turf/open/floor/tile/dark2,
@@ -3476,6 +3477,10 @@
 	},
 /turf/open/floor/tile/darkgreen/darkgreen2/corner,
 /area/lawankaoutpost/colony/marshalls)
+"cXI" = (
+/obj/effect/landmark/campaign_structure/asat_system,
+/turf/open/floor/plating/ground/dirtgrassborder/autosmooth/buildable,
+/area/lawankaoutpost/outside/west)
 "cXS" = (
 /obj/effect/spawner/random/misc/plant,
 /turf/open/floor/tile/dark2,
@@ -3596,8 +3601,8 @@
 /area/lawankaoutpost/colony/northdorms)
 "dcs" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic/canteen{
-	name = "\improper Northern Dormitories";
-	dir = 1
+	dir = 1;
+	name = "\improper Northern Dormitories"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -3661,8 +3666,8 @@
 /area/lawankaoutpost/colony/biologics)
 "del" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic/noglass{
-	name = "\improper Women's Restroom";
-	dir = 1
+	dir = 1;
+	name = "\improper Women's Restroom"
 	},
 /turf/open/floor/freezer,
 /area/lawankaoutpost/colony/northdorms)
@@ -3819,8 +3824,8 @@
 /area/lawankaoutpost/colony/mining)
 "dkI" = (
 /obj/machinery/door/airlock/mainship/research/glass/free_access{
-	name = "\improper Eta Lab Director's Office";
-	dir = 1
+	dir = 1;
+	name = "\improper Eta Lab Director's Office"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark,
@@ -4167,8 +4172,8 @@
 /area/lawankaoutpost/caves/nanotrasen_lab)
 "dDg" = (
 /obj/machinery/door/airlock/multi_tile/research{
-	name = "\improper Biological Research Facility";
-	dir = 1
+	dir = 1;
+	name = "\improper Biological Research Facility"
 	},
 /turf/open/floor,
 /area/lawankaoutpost/colony/biologics)
@@ -6082,8 +6087,8 @@
 /area/lawankaoutpost/outside/northeast)
 "fkb" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic/noglass{
-	name = "\improper Men's Restroom";
-	dir = 1
+	dir = 1;
+	name = "\improper Men's Restroom"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -6183,8 +6188,8 @@
 /area/lawankaoutpost/colony/marshalls)
 "fnT" = (
 /obj/machinery/door/airlock/mainship/medical/glass/free_access{
-	name = "\improper Medical Clinic Storage";
-	dir = 1
+	dir = 1;
+	name = "\improper Medical Clinic Storage"
 	},
 /turf/open/floor/tile/white,
 /area/lawankaoutpost/colony/medbay)
@@ -6259,8 +6264,8 @@
 /area/lawankaoutpost/colony/operations_administration)
 "fqj" = (
 /obj/machinery/door/airlock/multi_tile/mainship/comdoor/free_access{
-	name = "\improper Operations Office";
-	dir = 2
+	dir = 2;
+	name = "\improper Operations Office"
 	},
 /turf/open/floor/tile/dark2,
 /area/lawankaoutpost/colony/operations_administration)
@@ -6918,8 +6923,8 @@
 /area/lawankaoutpost/outside/central)
 "fPR" = (
 /obj/machinery/door/airlock/multi_tile/mainship/engineering{
-	name = "\improper Engineering Break Room";
-	dir = 1
+	dir = 1;
+	name = "\improper Engineering Break Room"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -7227,8 +7232,8 @@
 /area/lawankaoutpost/colony/operations_hall)
 "gcX" = (
 /obj/machinery/door/airlock/mainship/security/glass/free_access{
-	name = "\improper Security Prep";
-	dir = 1
+	dir = 1;
+	name = "\improper Security Prep"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark2,
@@ -7374,8 +7379,8 @@
 /area/lawankaoutpost/colony/operations_hall)
 "ghN" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic/noglass{
-	name = "\improper Women's Restroom";
-	dir = 1
+	dir = 1;
+	name = "\improper Women's Restroom"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -7451,6 +7456,10 @@
 	},
 /turf/open/floor/tile/white,
 /area/lawankaoutpost/colony/operations_hall)
+"gjD" = (
+/obj/effect/landmark/campaign_structure/asat_system,
+/turf/open/floor,
+/area/lawankaoutpost/colony/landingzonetwo)
 "gjR" = (
 /turf/open/floor/freezer,
 /area/lawankaoutpost/colony/biologics)
@@ -7603,8 +7612,8 @@
 /area/lawankaoutpost/colony/biologics)
 "gqU" = (
 /obj/machinery/door/airlock/multi_tile/research{
-	name = "\improper Biological Research Facility";
-	dir = 1
+	dir = 1;
+	name = "\improper Biological Research Facility"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -9043,8 +9052,8 @@
 /area/lawankaoutpost/colony/cargo)
 "hOl" = (
 /obj/machinery/door/airlock/mainship/medical/glass/free_access{
-	name = "\improper Medical Clinic Operating Theatre";
-	dir = 1
+	dir = 1;
+	name = "\improper Medical Clinic Operating Theatre"
 	},
 /turf/open/floor/tile/white,
 /area/lawankaoutpost/colony/medbay)
@@ -9409,8 +9418,8 @@
 /area/lawankaoutpost/colony/operations_hall)
 "ibF" = (
 /obj/machinery/door/airlock/multi_tile/mainship/blackgeneric{
-	name = "\improper Morgue";
-	dir = 1
+	dir = 1;
+	name = "\improper Morgue"
 	},
 /turf/open/floor/tile/white,
 /area/lawankaoutpost/colony/medbay)
@@ -9766,8 +9775,8 @@
 /area/lawankaoutpost/caves/nanotrasen_lab)
 "isS" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic/garden{
-	name = "\improper Hydroponics";
-	dir = 1
+	dir = 1;
+	name = "\improper Hydroponics"
 	},
 /turf/open/floor/tile/green/full,
 /area/lawankaoutpost/colony/hydroponics)
@@ -9845,8 +9854,8 @@
 /area/lawankaoutpost/outside/central)
 "ixI" = (
 /obj/machinery/door/airlock/multi_tile/mainship/medidoor{
-	name = "\improper Eta Storage";
-	dir = 1
+	dir = 1;
+	name = "\improper Eta Storage"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -10106,8 +10115,8 @@
 /area/lawankaoutpost/colony/mining)
 "iHn" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
-	name = "\improper Robotics";
-	dir = 1
+	dir = 1;
+	name = "\improper Robotics"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -10411,8 +10420,8 @@
 /area/lawankaoutpost/colony/operations_kitchen)
 "iWB" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic/noglass{
-	name = "\improper Men's Restroom";
-	dir = 1
+	dir = 1;
+	name = "\improper Men's Restroom"
 	},
 /turf/open/floor/freezer,
 /area/lawankaoutpost/colony/northdorms)
@@ -11241,7 +11250,7 @@
 /turf/open/ground/grass/weedable,
 /area/lawankaoutpost/outside/southeast)
 "jEj" = (
-/obj/machinery/sleep_console,
+/obj/machinery/computer/sleep_console,
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
 /turf/open/floor/tile/white,
 /area/lawankaoutpost/colony/medbay)
@@ -12176,8 +12185,8 @@
 	},
 /obj/effect/mapping_helpers/airlock/locked,
 /obj/machinery/door/airlock/multi_tile/mainship/medidoor{
-	name = "\improper Medical Clinic Psychology";
-	dir = 1
+	dir = 1;
+	name = "\improper Medical Clinic Psychology"
 	},
 /turf/open/floor/tile/white,
 /area/lawankaoutpost/colony/medbay)
@@ -12878,7 +12887,7 @@
 /turf/open/floor/wood,
 /area/lawankaoutpost/colony/chapel)
 "lbk" = (
-/obj/machinery/sleep_console,
+/obj/machinery/computer/sleep_console,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
@@ -13278,8 +13287,8 @@
 /area/lawankaoutpost/colony/marshalls)
 "lqA" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic/canteen{
-	name = "\improper Southern Dormitories";
-	dir = 1
+	dir = 1;
+	name = "\improper Southern Dormitories"
 	},
 /turf/open/floor,
 /area/lawankaoutpost/colony/southdorms)
@@ -14066,8 +14075,8 @@
 /area/lawankaoutpost/colony/northdorms)
 "lXJ" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic/noglass{
-	name = "\improper Women's Restroom";
-	dir = 1
+	dir = 1;
+	name = "\improper Women's Restroom"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -14141,7 +14150,7 @@
 /turf/open/floor/mainship/orange/full,
 /area/lawankaoutpost/caves/nanotrasen_lab)
 "mbV" = (
-/obj/machinery/body_scanconsole,
+/obj/machinery/computer/body_scanconsole,
 /turf/open/floor/tile/white,
 /area/lawankaoutpost/colony/medbay)
 "mbW" = (
@@ -14782,8 +14791,8 @@
 /area/lawankaoutpost/colony/engineering)
 "mEF" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic/garden{
-	name = "\improper Hydroponics";
-	dir = 1
+	dir = 1;
+	name = "\improper Hydroponics"
 	},
 /turf/open/floor/plating,
 /area/lawankaoutpost/colony/hydroponics)
@@ -15981,8 +15990,8 @@
 /area/lawankaoutpost/colony/medbay)
 "nDw" = (
 /obj/machinery/door/airlock/multi_tile/mainship/medidoor{
-	name = "\improper Eta Lab";
-	dir = 1
+	dir = 1;
+	name = "\improper Eta Lab"
 	},
 /turf/open/floor/tile/dark2,
 /area/lawankaoutpost/caves/nanotrasen_lab)
@@ -16177,8 +16186,8 @@
 /area/lawankaoutpost/colony/operations_administration)
 "nKn" = (
 /obj/machinery/door/airlock/mainship/medical/glass/free_access{
-	name = "\improper Medical Clinic Scanner Room";
-	dir = 1
+	dir = 1;
+	name = "\improper Medical Clinic Scanner Room"
 	},
 /turf/open/floor/tile/white,
 /area/lawankaoutpost/colony/medbay)
@@ -17285,7 +17294,7 @@
 	},
 /area/lawankaoutpost/colony/operations_hall)
 "oFP" = (
-/obj/machinery/body_scanconsole,
+/obj/machinery/computer/body_scanconsole,
 /turf/open/floor/tile/red/whitered{
 	dir = 1
 	},
@@ -17789,6 +17798,10 @@
 	dir = 4
 	},
 /area/lawankaoutpost/colony/northdorms)
+"pbK" = (
+/obj/effect/landmark/campaign_structure/asat_system,
+/turf/open/floor/plating/ground/dirt,
+/area/lawankaoutpost/outside/central)
 "pcm" = (
 /turf/open/floor/mainship/blue,
 /area/lawankaoutpost/colony/biologics)
@@ -18193,8 +18206,8 @@
 /area/lawankaoutpost/colony/marshalls)
 "psq" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic/garden{
-	name = "\improper Hydroponics Break Room";
-	dir = 1
+	dir = 1;
+	name = "\improper Hydroponics Break Room"
 	},
 /turf/open/floor,
 /area/lawankaoutpost/colony/hydroponics)
@@ -18513,6 +18526,10 @@
 	},
 /turf/open/floor/freezer,
 /area/lawankaoutpost/colony/northdorms)
+"pEo" = (
+/obj/effect/landmark/campaign_structure/asat_system,
+/turf/open/ground/grass/weedable,
+/area/lawankaoutpost/outside/northwest)
 "pEq" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating,
@@ -18706,8 +18723,8 @@
 /area/lawankaoutpost/outside/northeast)
 "pLT" = (
 /obj/machinery/door/airlock/multi_tile/mainship/medidoor{
-	name = "\improper Medical Clinic Storage";
-	dir = 1
+	dir = 1;
+	name = "\improper Medical Clinic Storage"
 	},
 /turf/open/floor/tile/white,
 /area/lawankaoutpost/colony/medbay)
@@ -19801,8 +19818,8 @@
 /area/lawankaoutpost/caves/nanotrasen_lab)
 "qLJ" = (
 /obj/machinery/door/airlock/mainship/medical/glass/free_access{
-	name = "\improper Basketball Court";
-	dir = 1
+	dir = 1;
+	name = "\improper Basketball Court"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor,
@@ -19817,7 +19834,7 @@
 /turf/open/ground/grass/weedable,
 /area/lawankaoutpost/outside/north)
 "qML" = (
-/obj/machinery/sleep_console,
+/obj/machinery/computer/sleep_console,
 /turf/open/floor/tile/green/whitegreen,
 /area/lawankaoutpost/colony/medbay)
 "qMM" = (
@@ -20089,8 +20106,8 @@
 /area/lawankaoutpost/caves/nanotrasen_lab)
 "qYa" = (
 /obj/machinery/door/airlock/multi_tile/mainship/engineering{
-	name = "\improper Engineering Break Room";
-	dir = 1
+	dir = 1;
+	name = "\improper Engineering Break Room"
 	},
 /turf/open/floor/tile/dark2,
 /area/lawankaoutpost/colony/engineering)
@@ -21250,8 +21267,8 @@
 /area/lawankaoutpost/outside/southeast)
 "rTK" = (
 /obj/machinery/door/airlock/colony/research{
-	name = "\improper Robotics";
-	dir = 1
+	dir = 1;
+	name = "\improper Robotics"
 	},
 /turf/open/floor,
 /area/lawankaoutpost/colony/robotics)
@@ -21565,8 +21582,8 @@
 /area/lawankaoutpost/outside/northwest)
 "sjb" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic/noglass{
-	name = "\improper Men's Restroom";
-	dir = 1
+	dir = 1;
+	name = "\improper Men's Restroom"
 	},
 /obj/effect/turf_decal/tracks/wheels/bloody{
 	dir = 4
@@ -21972,8 +21989,8 @@
 /area/lawankaoutpost/colony/engineering)
 "szg" = (
 /obj/machinery/door/airlock/multi_tile/mainship/medidoor{
-	name = "\improper Medical Clinic Cryo";
-	dir = 1
+	dir = 1;
+	name = "\improper Medical Clinic Cryo"
 	},
 /turf/open/floor/tile/white,
 /area/lawankaoutpost/colony/medbay)
@@ -22559,8 +22576,8 @@
 /area/lawankaoutpost/colony/medbay)
 "sZJ" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
-	name = "\improper Chapel";
-	dir = 1
+	dir = 1;
+	name = "\improper Chapel"
 	},
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -24103,8 +24120,8 @@
 /area/lawankaoutpost/colony/bar)
 "unX" = (
 /obj/machinery/door/airlock/multi_tile/mainship/engineering{
-	name = "\improper Engineering";
-	dir = 1
+	dir = 1;
+	name = "\improper Engineering"
 	},
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -24148,8 +24165,8 @@
 /area/lawankaoutpost/outside/northeast)
 "upq" = (
 /obj/machinery/door/airlock/multi_tile/mainship/comdoor/free_access{
-	name = "\improper Operations Storage";
-	dir = 1
+	dir = 1;
+	name = "\improper Operations Storage"
 	},
 /turf/open/floor/tile/dark,
 /area/lawankaoutpost/colony/operations_storage)
@@ -24648,8 +24665,8 @@
 /area/lawankaoutpost/colony/operations_kitchen)
 "uKA" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic/noglass{
-	name = "\improper Men's Restroom";
-	dir = 1
+	dir = 1;
+	name = "\improper Men's Restroom"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -24846,8 +24863,8 @@
 /area/lawankaoutpost/outside/north)
 "uTl" = (
 /obj/machinery/door/airlock/multi_tile/mainship/medidoor{
-	name = "\improper Medical Clinic Scanner Room";
-	dir = 1
+	dir = 1;
+	name = "\improper Medical Clinic Scanner Room"
 	},
 /turf/open/floor/tile/white,
 /area/lawankaoutpost/colony/medbay)
@@ -25326,8 +25343,8 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/machinery/door/airlock/colony/research{
-	name = "\improper Cargo";
-	dir = 1
+	dir = 1;
+	name = "\improper Cargo"
 	},
 /turf/open/floor/tile/dark2,
 /area/lawankaoutpost/colony/cargo)
@@ -26224,6 +26241,7 @@
 /area/lawankaoutpost/colony/medbay)
 "wca" = (
 /obj/structure/flora/ausbushes/ppflowers,
+/obj/effect/landmark/campaign_structure/asat_system,
 /turf/open/ground/grass/weedable,
 /area/lawankaoutpost/colony/operations_hall)
 "wce" = (
@@ -26255,8 +26273,8 @@
 "wde" = (
 /obj/structure/cable,
 /obj/machinery/door/airlock/multi_tile/mainship/engineering{
-	name = "\improper Engineering Generators";
-	dir = 1
+	dir = 1;
+	name = "\improper Engineering Generators"
 	},
 /turf/open/floor/tile/dark2,
 /area/lawankaoutpost/colony/engineering)
@@ -26874,8 +26892,8 @@
 /area/lawankaoutpost/colony/operations_kitchen)
 "wzv" = (
 /obj/machinery/door/airlock/colony/research{
-	name = "\improper Robotics";
-	dir = 1
+	dir = 1;
+	name = "\improper Robotics"
 	},
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -26901,8 +26919,8 @@
 /area/lawankaoutpost/colony/engineering)
 "wAF" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic/canteen{
-	name = "\improper Dormitories Recreation";
-	dir = 1
+	dir = 1;
+	name = "\improper Dormitories Recreation"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -27154,8 +27172,8 @@
 /area/lawankaoutpost/outside/east)
 "wLT" = (
 /obj/machinery/door/airlock/mainship/medical/glass/free_access{
-	name = "\improper Medical Clinic Cryo";
-	dir = 1
+	dir = 1;
+	name = "\improper Medical Clinic Cryo"
 	},
 /turf/open/floor/tile/white,
 /area/lawankaoutpost/colony/medbay)
@@ -27402,8 +27420,8 @@
 /area/lawankaoutpost/colony/hydroponics)
 "xaD" = (
 /obj/machinery/door/airlock/multi_tile/mainship/comdoor/free_access{
-	name = "\improper Operations Office";
-	dir = 2
+	dir = 2;
+	name = "\improper Operations Office"
 	},
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -27665,8 +27683,8 @@
 /area/lawankaoutpost/colony/biologics)
 "xhZ" = (
 /obj/machinery/door/airlock/multi_tile/research{
-	name = "\improper Biological Research Facility";
-	dir = 1
+	dir = 1;
+	name = "\improper Biological Research Facility"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -47520,7 +47538,7 @@ vuj
 ewf
 qyR
 lNL
-vuj
+cXI
 oxj
 iJs
 ulZ
@@ -50728,7 +50746,7 @@ nQk
 amB
 uPN
 xQt
-xQt
+pEo
 oRz
 xuZ
 sdr
@@ -63408,7 +63426,7 @@ uJt
 dxV
 sUR
 hoS
-wQV
+pbK
 iBn
 wQV
 pCP
@@ -71260,7 +71278,7 @@ uaC
 wEk
 wEk
 hYh
-wEk
+gjD
 wEk
 wEk
 xRX

@@ -70,6 +70,9 @@
 	interaction_flags = INTERACT_MACHINE_TGUI|INTERACT_POWERLOADER_PICKUP_ALLOWED
 	wrenchable = TRUE
 	voice_filter = "alimiter=0.9,acompressor=threshold=0.2:ratio=20:attack=10:release=50:makeup=2,highpass=f=1000"
+	light_range = 1
+	light_power = 0.5
+	light_color = LIGHT_COLOR_BLUE
 
 	///Whether this vendor is active or not.
 	var/active = TRUE
@@ -203,6 +206,7 @@
 	products = null
 	contraband = null
 	start_processing()
+	update_icon()
 	return INITIALIZE_HINT_LATELOAD
 
 
@@ -326,6 +330,7 @@
 	transform = A
 
 	tipped_level = 2
+	density = FALSE
 	allow_pass_flags |= (PASS_LOW_STRUCTURE|PASS_MOB)
 	coverage = 50
 
@@ -350,7 +355,6 @@
 		overlays.Cut()
 		if(CHECK_BITFIELD(machine_stat, PANEL_OPEN))
 			overlays += image(icon, "[initial(icon_state)]-panel")
-		updateUsrDialog()
 
 	else if(ismultitool(I) || iswirecutter(I))
 		if(!CHECK_BITFIELD(machine_stat, PANEL_OPEN))
@@ -570,8 +574,6 @@
 			scan_card(H.wear_id)
 			. = TRUE
 
-	updateUsrDialog()
-
 /obj/machinery/vending/proc/vend(datum/vending_product/R, mob/user)
 	if(!allowed(user) && (!wires.is_cut(WIRE_IDSCAN) || hacking_safety)) //For SECURE VENDING MACHINES YEAH
 		to_chat(user, span_warning("Access denied."))
@@ -594,7 +596,6 @@
 	if(istype(new_item))
 		new_item.on_vend(user, faction, fill_container = TRUE)
 	vend_ready = 1
-	updateUsrDialog()
 
 /obj/machinery/vending/proc/release_item(datum/vending_product/R, delay_vending = 0, dump_product = 0)
 	if(delay_vending)
@@ -741,7 +742,6 @@
 	if(record.amount >= 0) //R negative means infinite item, no need to restock
 		record.amount++
 
-	updateUsrDialog()
 	return TRUE //Item restocked, no reason to go on.
 
 /// Vending machine tries to restock all of the loose item on it's location onto itself.
@@ -811,12 +811,25 @@
 	say(message)
 
 /obj/machinery/vending/update_icon()
+	. = ..()
+	if(machine_stat & (BROKEN|NOPOWER))
+		set_light(0)
+	else
+		set_light(initial(light_range))
+
+/obj/machinery/vending/update_icon_state()
 	if(machine_stat & BROKEN)
 		icon_state = "[initial(icon_state)]-broken"
-	else if( !(machine_stat & NOPOWER) )
-		icon_state = initial(icon_state)
-	else
+	else if(machine_stat & NOPOWER)
 		icon_state = "[initial(icon_state)]-off"
+	else
+		icon_state = initial(icon_state)
+
+/obj/machinery/vending/update_overlays()
+	. = ..()
+	if(machine_stat & (NOPOWER|BROKEN))
+		return
+	. += emissive_appearance(icon, "[icon_state]_emissive")
 
 //Oh no we're malfunctioning!  Dump out some product and break.
 /obj/machinery/vending/proc/malfunction()

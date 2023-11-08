@@ -97,12 +97,16 @@
 /datum/action/xeno_action/activable/cresttoss/use_ability(atom/movable/A)
 	var/mob/living/carbon/xenomorph/X = owner
 	X.face_atom(A) //Face towards the target so we don't look silly
-	var/facing = get_dir(X, A)
+	var/facing
 	var/toss_distance = X.xeno_caste.crest_toss_distance
-	var/turf/T = X.loc
-	var/turf/temp = X.loc
+	var/turf/throw_origin = get_turf(X)
+	var/turf/target_turf = throw_origin //throw distance is measured from the xeno itself
 	var/big_mob_message
 
+	if(!X.issamexenohive(A)) //xenos should be able to fling xenos into xeno passable areas!
+		for(var/obj/effect/forcefield/fog/fog in throw_origin)
+			A.balloon_alert(X, "Cannot, fog")
+			return fail_activate()
 	if(isliving(A))
 		var/mob/living/L = A
 		if(L.mob_size >= MOB_SIZE_BIG) //Penalize toss distance for big creatures
@@ -113,32 +117,16 @@
 		big_mob_message = ", struggling mightily to heft its bulk"
 
 	if(X.a_intent == INTENT_HARM) //If we use the ability on hurt intent, we throw them in front; otherwise we throw them behind.
-		for(var/x in 1 to toss_distance)
-			temp = get_step(T, facing)
-			if (!temp)
-				break
-			T = temp
+		facing = get_dir(X, A)
 	else
 		facing = get_dir(A, X)
-		var/turf/throw_origin = get_step(T, facing)
-		if(isclosedturf(throw_origin)) //Make sure the victim can actually go to the target turf
-			to_chat(X, span_xenowarning("We try to fling [A] behind us, but there's no room!"))
-			return fail_activate()
-		if(!X.issamexenohive(A)) //xenos should be able to fling xenos into xeno passable areas!
-			for(var/obj/effect/forcefield/fog/fog in T)
-				A.balloon_alert(X, "cannot, fog")
-				return fail_activate()
-		for(var/obj/O in throw_origin)
-			if(!O.CanPass(A, get_turf(X)) && !istype(O, /obj/structure/barricade)) //Ignore barricades because they will once thrown anyway
-				to_chat(X, span_xenowarning("We try to fling [A] behind us, but there's no room!"))
-				return fail_activate()
 
-		A.forceMove(throw_origin) //Move the victim behind us before flinging
-		for(var/x = 0, x < toss_distance, x++)
-			temp = get_step(T, facing)
-			if (!temp)
-				break
-			T = temp //Throw target
+	var/turf/temp
+	for(var/x in 1 to toss_distance)
+		temp = get_step(target_turf, facing)
+		if(!temp)
+			break
+		target_turf = temp
 
 	X.icon_state = "Crusher Charging"  //Momentarily lower the crest for visual effect
 
@@ -147,7 +135,8 @@
 
 	succeed_activate()
 
-	A.throw_at(T, toss_distance, 1, X, TRUE)
+	A.forceMove(throw_origin)
+	A.throw_at(target_turf, toss_distance, 1, X, TRUE, TRUE)
 
 	//Handle the damage
 	if(!X.issamexenohive(A) && isliving(A)) //Friendly xenos don't take damage.

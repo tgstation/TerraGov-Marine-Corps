@@ -2932,9 +2932,6 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/command)
 "auc" = (
@@ -5187,7 +5184,7 @@
 /turf/open/floor/tile/green/whitegreen,
 /area/ice_colony/surface/clinic/treatment)
 "aFs" = (
-/obj/machinery/body_scanconsole,
+/obj/machinery/computer/body_scanconsole,
 /turf/open/floor/tile/green/whitegreen,
 /area/ice_colony/surface/clinic/treatment)
 "aFt" = (
@@ -23417,9 +23414,6 @@
 	},
 /obj/structure/cable,
 /obj/effect/landmark/excavation_site_spawner,
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
 /obj/effect/ai_node,
 /turf/open/floor/tile/white,
 /area/ice_colony/underground/medical/treatment/garbledradio)
@@ -23432,7 +23426,7 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/dorms)
 "ksV" = (
-/obj/machinery/body_scanconsole,
+/obj/machinery/computer/body_scanconsole,
 /turf/open/floor/tile/red/whitered,
 /area/ice_colony/underground/medical/treatment/garbledradio)
 "ksZ" = (
@@ -30049,7 +30043,7 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/hallway/south_east)
 "tqS" = (
-/obj/machinery/sleep_console,
+/obj/machinery/computer/sleep_console,
 /turf/open/floor/tile/white,
 /area/ice_colony/underground/medical/treatment/garbledradio)
 "trk" = (

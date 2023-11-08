@@ -4675,7 +4675,6 @@
 /area/bigredv2/outside/hydroponics)
 "aRs" = (
 /obj/machinery/light,
-/obj/docking_port/stationary/crashmode,
 /turf/open/floor/tile/yellow/full,
 /area/bigredv2/outside/hydroponics)
 "aRx" = (
@@ -8517,7 +8516,9 @@
 	},
 /area/bigredv2/caves/lambda_lab)
 "eIX" = (
-/obj/structure/nuke_disk_candidate,
+/obj/structure/nuke_disk_candidate{
+	force_for_sets = list("basic")
+	},
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "eKb" = (

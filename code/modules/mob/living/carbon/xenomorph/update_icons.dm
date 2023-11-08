@@ -1,4 +1,3 @@
-
 /mob/living/carbon/xenomorph/apply_overlay(cache_index)
 	var/image/I = overlays_standing[cache_index]
 	if(I)
@@ -95,17 +94,11 @@
 /mob/living/carbon/xenomorph/update_fire()
 	if(!fire_overlay)
 		return
-	if(!on_fire)
-		fire_overlay.icon_state = ""
+	var/fire_light = min(fire_stacks * 0.2 , 3)
+	if(fire_light == fire_luminosity)
 		return
-	if(HAS_TRAIT(src, TRAIT_BURROWED))
-		fire_overlay.icon_state = ""
-		return
-	fire_overlay.layer = layer + 0.4
-	if(mob_size!= MOB_SIZE_BIG || ((!initial(pixel_y) || lying_angle) && !resting && !IsSleeping()))
-		fire_overlay.icon_state = "alien_fire"
-	else
-		fire_overlay.icon_state = "alien_fire_lying"
+	fire_luminosity = fire_light
+	fire_overlay.update_icon()
 
 /mob/living/carbon/xenomorph/proc/apply_alpha_channel(image/I)
 	return I
@@ -153,7 +146,56 @@
 	vis_flags = VIS_INHERIT_DIR
 
 /atom/movable/vis_obj/xeno_wounds/fire_overlay
-	icon = 'icons/Xeno/64x64_Xeno_overlays.dmi'
+	light_system = MOVABLE_LIGHT
+	///The xeno this belongs to
+	var/mob/living/carbon/xenomorph/owner
 
-/atom/movable/vis_obj/xeno_wounds/fire_overlay/small
-	icon = 'icons/Xeno/Effects.dmi'
+/atom/movable/vis_obj/xeno_wounds/fire_overlay/Initialize(mapload, new_owner)
+	owner = new_owner
+	if(!owner)
+		return INITIALIZE_HINT_QDEL
+	icon = owner.icon
+	light_pixel_x = owner.light_pixel_x
+	light_pixel_y = owner.light_pixel_y
+	. = ..()
+	update_icon()
+
+/atom/movable/vis_obj/xeno_wounds/fire_overlay/Destroy()
+	owner = null
+	return ..()
+
+/atom/movable/vis_obj/xeno_wounds/fire_overlay/update_icon()
+	. = ..()
+	if(!owner.on_fire || HAS_TRAIT(owner, TRAIT_BURROWED))
+		update_flame_light(0)
+	else
+		update_flame_light(owner.fire_luminosity)
+
+/atom/movable/vis_obj/xeno_wounds/fire_overlay/update_icon_state()
+	if(!owner.on_fire)
+		icon_state = ""
+		return
+	if(HAS_TRAIT(owner, TRAIT_BURROWED))
+		icon_state = ""
+		return
+	layer = layer + 0.4
+	if((!owner.lying_angle && !owner.resting && !owner.IsSleeping()))
+		icon_state = "alien_fire"
+	else
+		icon_state = "alien_fire_lying"
+
+/atom/movable/vis_obj/xeno_wounds/fire_overlay/update_overlays()
+	. = ..()
+	if(!owner.on_fire || HAS_TRAIT(owner, TRAIT_BURROWED))
+		return
+	. += emissive_appearance(icon, icon_state)
+
+///Adjusts the light emitted by the flame
+/atom/movable/vis_obj/xeno_wounds/fire_overlay/proc/update_flame_light(intensity)
+	if(!intensity)
+		set_light_on(FALSE)
+	else
+		set_light_range_power_color(intensity, 0.5, LIGHT_COLOR_FIRE)
+		set_light_on(TRUE)
+
+
