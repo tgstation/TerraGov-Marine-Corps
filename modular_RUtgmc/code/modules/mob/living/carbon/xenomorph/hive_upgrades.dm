@@ -34,3 +34,15 @@
 
 
 	return ..()
+
+/datum/hive_upgrade/building/silo
+	psypoint_cost = 600
+
+/datum/hive_upgrade/building/pherotower
+	psypoint_cost = 100
+
+/datum/hive_upgrade/defence/turret
+	psypoint_cost = 50
+
+/datum/hive_upgrade/defence/turret/sticky
+	psypoint_cost = 25

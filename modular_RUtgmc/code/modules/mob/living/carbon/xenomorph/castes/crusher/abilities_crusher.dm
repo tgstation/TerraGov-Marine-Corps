@@ -1,7 +1,7 @@
 // ***************************************
 // *********** Regenerate Skin
 // ***************************************
-/datum/action/xeno_action/regenerate_skin
+/datum/action/xeno_action/regenerate_skin/crusher
 	name = "Regenerate Armor"
 	action_icon_state = "regenerate_skin"
 	desc = "Regenerate your hard exoskeleton armor, removing all sunder."
@@ -14,12 +14,12 @@
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_REGENERATE_SKIN,
 	)
 
-/datum/action/xeno_action/regenerate_skin/on_cooldown_finish()
+/datum/action/xeno_action/regenerate_skin/crusher/on_cooldown_finish()
 	var/mob/living/carbon/xenomorph/X = owner
 	to_chat(X, span_notice("We feel we are ready to shred our armor and grow another."))
 	return ..()
 
-/datum/action/xeno_action/regenerate_skin/action_activate()
+/datum/action/xeno_action/regenerate_skin/crusher/action_activate()
 	var/mob/living/carbon/xenomorph/crusher/X = owner
 
 	if(!can_use_action(TRUE))
