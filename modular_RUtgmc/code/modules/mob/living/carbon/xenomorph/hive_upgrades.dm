@@ -39,10 +39,10 @@
 	psypoint_cost = 600
 
 /datum/hive_upgrade/building/pherotower
-	psypoint_cost = 100
+	psypoint_cost = 150
 
 /datum/hive_upgrade/defence/turret
-	psypoint_cost = 50
+	psypoint_cost = 80
 
 /datum/hive_upgrade/defence/turret/sticky
-	psypoint_cost = 25
+	psypoint_cost = 50
