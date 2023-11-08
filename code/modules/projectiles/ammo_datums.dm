@@ -3030,20 +3030,9 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	else
 		living_victim.apply_status_effect(STATUS_EFFECT_MELTING, melt_stacks)
 
-/datum/ammo/energy/lasgun/marine/sniper
-	name = "sniper laser bolt"
-	hud_state = "laser_sniper"
-	damage = 60
-	penetration = 30
-	accurate_range_min = 5
-	flags_ammo_behavior = AMMO_ENERGY|AMMO_SUNDERING|AMMO_HITSCAN|AMMO_SNIPER
-	sundering = 5
-	max_range = 40
-	damage_falloff = 0
-	hitscan_effect_icon = "beam_heavy"
 
-/datum/ammo/energy/lasgun/marine/sniper_heat
-	name = "sniper heat bolt"
+/datum/ammo/energy/lasgun/marine/rifle_heat
+	name = "laser heat bolt"
 	icon_state = "microwavelaser"
 	hud_state = "laser_heat"
 	damage = 40
@@ -3055,7 +3044,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	bullet_color = COLOR_DISABLER_BLUE
 
 /datum/ammo/energy/lasgun/marine/shatter
-	name = "sniper shattering bolt"
+	name = "laser shattering bolt"
 	icon_state = "microwavelaser"
 	hud_state = "laser_heat"
 	damage = 40
@@ -3073,40 +3062,6 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 	var/mob/living/living_victim = M
 	living_victim.apply_status_effect(STATUS_EFFECT_SHATTER, shatter_duration)
-
-/datum/ammo/energy/lasgun/marine/ricochet
-	name = "sniper laser bolt"
-	icon_state = "microwavelaser"
-	hud_state = "laser_heat"
-	damage = 100
-	penetration = 30
-	flags_ammo_behavior = AMMO_ENERGY|AMMO_SUNDERING|AMMO_HITSCAN|AMMO_SNIPER
-	sundering = 1
-	hitscan_effect_icon = "u_laser_beam"
-	bonus_projectiles_scatter = 0
-	bullet_color = COLOR_DISABLER_BLUE
-
-/datum/ammo/energy/lasgun/marine/ricochet/one
-	damage = 80
-	bonus_projectiles_type = /datum/ammo/energy/lasgun/marine/ricochet
-
-/datum/ammo/energy/lasgun/marine/ricochet/two
-	damage = 65
-	bonus_projectiles_type = /datum/ammo/energy/lasgun/marine/ricochet/one
-
-/datum/ammo/energy/lasgun/marine/ricochet/three
-	damage = 50
-	bonus_projectiles_type = /datum/ammo/energy/lasgun/marine/ricochet/two
-
-/datum/ammo/energy/lasgun/marine/ricochet/four
-	damage = 40
-	bonus_projectiles_type = /datum/ammo/energy/lasgun/marine/ricochet/three
-
-/datum/ammo/energy/lasgun/marine/ricochet/on_hit_turf(turf/T, obj/projectile/proj)
-	reflect(T, proj, 5)
-
-/datum/ammo/energy/lasgun/marine/ricochet/on_hit_obj(obj/O, obj/projectile/proj)
-	reflect(get_turf(O), proj, 5)
 
 /datum/ammo/energy/lasgun/marine/pistol
 	name = "pistol laser bolt"

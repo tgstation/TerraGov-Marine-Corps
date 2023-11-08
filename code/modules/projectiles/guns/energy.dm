@@ -477,6 +477,7 @@
 		"Overcharge" = /datum/lasrifle/energy_rifle_mode/overcharge,
 		"Weakening" = /datum/lasrifle/energy_rifle_mode/weakening,
 		"Microwave" = /datum/lasrifle/energy_rifle_mode/microwave,
+		"Heat" = /datum/lasrifle/energy_rifle_mode/heat,
 	)
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_rifle/rifleman
@@ -529,6 +530,17 @@
 	icon_state = GUN_ICONSTATE_LOADED
 	radial_icon_state = "laser_microwave"
 	description = "Fires a deadly pulse of microwave radiation, dealing moderate damage but applying a 'microwave' effect that deals strong damage over time."
+
+/datum/lasrifle/energy_rifle_mode/heat
+	rounds_per_shot = 100
+	fire_delay = 1 SECONDS
+	ammo_datum_type = /datum/ammo/energy/lasgun/marine/rifle_heat
+	fire_sound = 'sound/weapons/guns/fire/laser3.ogg'
+	message_to_user = "You set the laser rifle's charge mode to wave heat."
+	fire_mode = GUN_FIREMODE_SEMIAUTO
+	icon_state = GUN_ICONSTATE_LOADED
+	radial_icon_state = "laser_heat"
+	description = "Fires an incendiary laser pulse, designed to ignite victims at range."
 
 ///TE Standard Laser Pistol
 
@@ -750,114 +762,16 @@
 	radial_icon_state = "laser_disabler"
 	description = "Fires a laser pulse dealing moderate damage and slowdown."
 
-//TE Standard Sniper
-
-/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_sniper
-	name = "\improper Terra Experimental laser sniper rifle"
-	desc = "The T-ES, a Terra Experimental standard issue laser sniper rifle, has multiple powerful firemodes, although the lack of aim mode can limit its tactical flexibility. Uses standard Terra Experimental (abbreviated as TE) power cells. As with all TE Laser weapons, they use a lightweight alloy combined without the need for bullets any longer decreases their weight and aiming speed quite some vs their ballistic counterparts."
-	reload_sound = 'sound/weapons/guns/interact/standard_laser_sniper_reload.ogg'
-	fire_sound = 'sound/weapons/guns/fire/Laser Sniper Standard.ogg'
-	icon_state = GUN_ICONSTATE_LOADED
-	item_state = GUN_ICONSTATE_LOADED
-	w_class = WEIGHT_CLASS_BULKY
-	max_shots = 20
-	ammo_datum_type = /datum/ammo/energy/lasgun/marine/sniper
-	rounds_per_shot = 30
-	damage_falloff_mult = 0
-	gun_firemode = GUN_FIREMODE_SEMIAUTO
-	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO)
-
-	ammo_level_icon = "te"
-	icon_overlay_x_offset = -1
-	icon_overlay_y_offset = -3
-	greyscale_config = /datum/greyscale_config/gun/gun64/lasgun/tes
-	colorable_allowed = PRESET_COLORS_ALLOWED
-	item_icons = list(
-		slot_l_hand_str = /datum/greyscale_config/gun_inhand/tes,
-		slot_r_hand_str = /datum/greyscale_config/gun_inhand/r_hand/tes,
-		slot_back_str = /datum/greyscale_config/worn_gun/tes,
-		slot_s_store_str = /datum/greyscale_config/worn_gun/suit/tes,
-	)
-	attachable_allowed = list(
-		/obj/item/attachable/bayonet,
-		/obj/item/attachable/bayonetknife,
-		/obj/item/attachable/bayonetknife/som,
-		/obj/item/attachable/magnetic_harness,
-		/obj/item/attachable/scope/unremovable/laser_sniper_scope,
-		/obj/item/weapon/gun/grenade_launcher/underslung,
-		/obj/item/weapon/gun/flamer/mini_flamer,
-		/obj/item/attachable/motiondetector,
-		/obj/item/attachable/buildasentry,
-		/obj/item/weapon/gun/rifle/pepperball/pepperball_mini,
-		/obj/item/attachable/shoulder_mount,
-		/obj/item/attachable/gyro,
-		/obj/item/attachable/verticalgrip,
-		/obj/item/attachable/angledgrip,
-		/obj/item/attachable/flashlight/under,
-		/obj/item/attachable/foldable/bipod,
-	)
-
-	flags_gun_features = GUN_CAN_POINTBLANK|GUN_ENERGY|GUN_AMMO_COUNTER|GUN_NO_PITCH_SHIFT_NEAR_EMPTY|GUN_AMMO_COUNT_BY_SHOTS_REMAINING
-	attachable_offset = list("muzzle_x" = 41, "muzzle_y" = 18,"rail_x" = 19, "rail_y" = 19, "under_x" = 28, "under_y" = 8, "stock_x" = 22, "stock_y" = 12)
-	starting_attachment_types = list(/obj/item/attachable/scope/unremovable/laser_sniper_scope)
-
-	aim_slowdown = 0.7
-	wield_delay = 0.7 SECONDS
-	scatter = -4
-	scatter_unwielded = 10
-	fire_delay = 0.8 SECONDS
-	accuracy_mult = 1.2
-	accuracy_mult_unwielded = 0.5
-	movement_acc_penalty_mult = 6
-	mode_list = list(
-		"Standard" = /datum/lasrifle/energy_sniper_mode/standard,
-		"Heat" = /datum/lasrifle/energy_sniper_mode/heat,
-		"Shatter" = /datum/lasrifle/energy_sniper_mode/shatter,
-		"Ricochet" = /datum/lasrifle/energy_sniper_mode/ricochet,
-	)
-
-/datum/lasrifle/energy_sniper_mode/standard
-	rounds_per_shot = 30
-	fire_delay = 0.8 SECONDS
-	ammo_datum_type = /datum/ammo/energy/lasgun/marine/sniper
-	fire_sound = 'sound/weapons/guns/fire/Laser Sniper Standard.ogg'
-	message_to_user = "You set the sniper rifle's charge mode to standard fire."
-	fire_mode = GUN_FIREMODE_SEMIAUTO
-	icon_state = GUN_ICONSTATE_LOADED
-	description = "Fires a single strong laser pulse, with good damage and penetration, and no falloff."
-
-/datum/lasrifle/energy_sniper_mode/heat
-	rounds_per_shot = 100
-	fire_delay = 1 SECONDS
-	ammo_datum_type = /datum/ammo/energy/lasgun/marine/sniper_heat
-	fire_sound = 'sound/weapons/guns/fire/laser3.ogg'
-	message_to_user = "You set the sniper rifle's charge mode to wave heat."
-	fire_mode = GUN_FIREMODE_SEMIAUTO
-	icon_state = GUN_ICONSTATE_LOADED
-	radial_icon_state = "laser_heat"
-	description = "Fires an incendiary laser pulse, designed to ignite victims at range."
-
-/datum/lasrifle/energy_sniper_mode/shatter
+/datum/lasrifle/energy_carbine_mode/shatter
 	rounds_per_shot = 100
 	fire_delay = 1 SECONDS
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine/shatter
 	fire_sound = 'sound/weapons/guns/fire/laser_rifle_2.ogg'
-	message_to_user = "You set the sniper rifle's charge mode to shatter."
+	message_to_user = "You set the laser carbine's charge mode to shatter."
 	fire_mode = GUN_FIREMODE_SEMIAUTO
 	icon_state = GUN_ICONSTATE_LOADED
 	radial_icon_state = "laser_charge"
 	description = "Fires a devestating laser pulse that significantly degrades the victims armor, at the cost of lower direct damage."
-
-/datum/lasrifle/energy_sniper_mode/ricochet
-	rounds_per_shot = 45
-	fire_delay = 0.8 SECONDS
-	ammo_datum_type = /datum/ammo/energy/lasgun/marine/ricochet/four
-	fire_sound = 'sound/weapons/guns/fire/laser3.ogg'
-	message_to_user = "You set the sniper rifle's charge mode to ricochet."
-	fire_mode = GUN_FIREMODE_SEMIAUTO
-	icon_state = GUN_ICONSTATE_LOADED
-	radial_icon_state = "laser_ricochet"
-	description = "Fires an experiment laser pulse capable of bouncing off many wall surfaces. The laser increases in potency when bouncing, before collapsing entirely after exceeding its threshold."
 
 // TE Standard MG
 

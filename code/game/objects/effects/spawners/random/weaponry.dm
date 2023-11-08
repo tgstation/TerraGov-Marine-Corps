@@ -55,7 +55,6 @@
 	icon_state = "random_egun"
 	loot = list(
 		/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_rifle = 25,
-		/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_sniper = 25,
 		/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_carbine = 25,
 		/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_mlaser = 25,
 		/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_pistol = 25,
