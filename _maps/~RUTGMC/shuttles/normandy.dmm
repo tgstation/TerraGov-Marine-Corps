@@ -172,9 +172,7 @@
 	},
 /area/shuttle/dropship/normandy)
 "pm" = (
-/obj/machinery/computer/shuttle/marine_dropship/two{
-	icon_state = "console"
-	},
+/obj/machinery/computer/shuttle/marine_dropship/one,
 /turf/closed/shuttle/dropship2/panel{
 	opacity = 0;
 	dir = 1

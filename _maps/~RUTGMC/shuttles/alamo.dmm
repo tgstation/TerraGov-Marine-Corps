@@ -220,9 +220,7 @@
 /turf/open/shuttle/dropship/floor/alt,
 /area/shuttle/dropship/alamo)
 "Hj" = (
-/obj/machinery/computer/shuttle/marine_dropship/one{
-	icon_state = "console2"
-	},
+/obj/machinery/computer/shuttle/marine_dropship/two,
 /turf/open/shuttle/dropship/floor,
 /area/shuttle/dropship/alamo)
 "HK" = (
