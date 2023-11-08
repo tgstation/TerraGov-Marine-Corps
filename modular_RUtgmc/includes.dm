@@ -109,6 +109,7 @@
 #include "code\modules\mob\living\carbon\xenomorph\castes\panther\abilities_panther.dm"
 #include "code\modules\mob\living\carbon\xenomorph\castes\praetorian\abilities_praetorian.dm"
 #include "code\modules\mob\living\carbon\xenomorph\castes\praetorian\castedatum_praetorian.dm"
+#include "code\modules\mob\living\carbon\xenomorph\castes\praetorian\praetorian.dm"
 // #include "code\modules\mob\living\carbon\xenomorph\castes\predalien\castedatum_predalien.dm"
 // #include "code\modules\mob\living\carbon\xenomorph\castes\predalien\predalien.dm"
 // #include "code\modules\mob\living\carbon\xenomorph\castes\predalien\abilities_predalien.dm"
