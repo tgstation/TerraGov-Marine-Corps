@@ -23,8 +23,8 @@
 	if(isxeno(user))
 		return
 	if(!(user.skills.getRating(SKILL_MEDICAL) >= SKILL_MEDICAL_NOVICE)) //Failed skill check
-		return "You don't know what's in it."
-	if(isnull(reagents.total_volume))
+		return span_notice("You don't know what's in it.")
+	if(!reagents.total_volume)
 		return span_notice("[src] is empty!")
 	var/list/dat = list()
 	dat += "\n \t [span_notice("<b>Total Reagents:</b> [reagents.total_volume]/[volume].")]</br>"
@@ -34,7 +34,7 @@
 			dat += "\n \t <b>[R]:</b> [R.volume]|[percent]%</br>"
 		else
 			dat += "\n \t <b>Unknown:</b> [R.volume]|[percent]%</br>"
-	return span_notice("[src]'s contains: [dat.Join(" ")]")
+	return span_notice("[src]'s contents: [dat.Join(" ")]")
 
 /obj/item/storage/pouch/pressurized_reagent_pouch //The actual pouch itself and all its function
 	name = "pressurized reagent pouch"
@@ -55,6 +55,11 @@
 	inner = new /obj/item/reagent_containers/glass/reagent_canister
 	new /obj/item/reagent_containers/hypospray/advanced(src)
 	update_icon()
+
+/obj/item/storage/pouch/pressurized_reagent_pouch/Destroy()
+	if(inner)
+		qdel(inner)
+	return ..()
 
 /obj/item/storage/pouch/pressurized_reagent_pouch/update_overlays()
 	. = ..()
@@ -80,7 +85,7 @@
 	inner.reagents.add_reagent(/datum/reagent/medicine/kelotane, amount_to_fill)
 	inner.reagents.add_reagent(/datum/reagent/medicine/tramadol, amount_to_fill)
 	inner.reagents.add_reagent(/datum/reagent/medicine/tricordrazine, amount_to_fill)
-	if(contents.len > 0)
+	if(length(contents) > 0)
 		var/obj/item/reagent_containers/hypospray/advanced/hypo_to_fill = contents[1]
 		amount_to_fill = hypo_to_fill.volume/4
 		hypo_to_fill.reagents.add_reagent(/datum/reagent/medicine/bicaridine, amount_to_fill)
@@ -94,7 +99,7 @@
 	if(!remove_canister(user))
 		return ..()
 
-///Removes the reagent canister from the pouch. Returns FALSE if there is no canister to remove
+///Attempts to remove the reagent canister from the pouch. Returns FALSE if there is no canister to remove
 /obj/item/storage/pouch/pressurized_reagent_pouch/proc/remove_canister(mob/user)
 	if(!inner)
 		to_chat(user, span_warning("There is no container inside this pouch!"))
@@ -117,7 +122,8 @@
 			to_chat(user, span_notice("You insert [held_item] into [src]!"))
 			update_icon()
 			return
-		return to_chat(user, span_warning("There already is a container inside [src]!"))
+		to_chat(user, span_warning("There already is a container inside [src]!"))
+		return
 
 	return ..()
 
@@ -131,14 +137,13 @@
 	if(!inner)
 		user.balloon_alert(user, "No container")
 		return FALSE
-	if(inner.reagents.total_volume == 0)
+	if(!inner.reagents.total_volume)
 		user.balloon_alert(user, "No reagent left")
 		return FALSE
-	if(inner.reagents.total_volume > 0)
-		inner.reagents.trans_to(autoinjector, autoinjector.volume)
-		playsound(loc, 'sound/effects/refill.ogg', 25, TRUE, 3)
-		autoinjector.update_icon()
-		update_icon()
+	inner.reagents.trans_to(autoinjector, autoinjector.volume)
+	playsound(loc, 'sound/effects/refill.ogg', 25, TRUE, 3)
+	autoinjector.update_icon()
+	update_icon()
 
 /obj/item/storage/pouch/pressurized_reagent_pouch/examine(mob/user)
 	. = ..()
@@ -149,10 +154,10 @@
 	if(isxeno(user))
 		return
 	if(!(user.skills.getRating(SKILL_MEDICAL) >= SKILL_MEDICAL_NOVICE)) //Failed skill check
-		return "You don't know what's in it."
-	if(isnull(inner))
-		return "[src] has no container inside!"
-	if(isnull(inner.reagents.total_volume))
+		return span_notice("You don't know what's in it.")
+	if(!inner)
+		return span_notice("[src] has no container inside!")
+	if(!inner.reagents.total_volume)
 		return span_notice("[src] is empty!")
 	var/list/dat = list()
 	dat += "\n \t [span_notice("<b>Total Reagents:</b> [inner.reagents.total_volume]/[inner.volume].")]</br>"
