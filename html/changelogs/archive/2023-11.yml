@@ -166,3 +166,6 @@
   - bugfix: Fix invisible mech bay power console screen
   - bugfix: Fix tacmap console emissive
   - bugfix: Fix recoil not working properly with a scope
+2023-11-08:
+  ZeWaka:
+  - qol: Banelings can no longer explode before shutters unless they have a pod placed.
