@@ -38,6 +38,14 @@
 #define CAPE_HIGHLIGHT_NONE "cape_highlight_none"
 #define LEATHER_JACKET_WEBBING "leather_jacket_webbing"
 
+// Hardsuit Helmet Variants
+#define FOUR_EYE_FACEPLATE "four_eye_faceplate"
+#define FOUR_EYE_FACEPLATE_VISOR "four_eye_faceplate_visor"
+
+// Hardsuit Variants
+#define MARK_FIVE_WEBBING "mark_five_webbing"
+#define MARK_THREE_WEBBING "mark_three_webbing"
+#define MARK_ONE_WEBBING "mark_one_webbing"
 
 ///saved loadout key = icon_state, AGAIN DO NOT EDIT THE KEYS IT WILL BREAK LOADOUTS
 GLOBAL_LIST_INIT(loadout_variant_keys, list(
@@ -77,4 +85,9 @@ GLOBAL_LIST_INIT(loadout_variant_keys, list(
 	LEATHER_JACKET_WEBBING = "webbing",
 	SOM_BLACK = "black",
 	CAPE_HIGHLIGHT_NORMAL_ALT = "normal (alt)",
+	MARK_FIVE_WEBBING = "webbing",
+	MARK_THREE_WEBBING = "webbing",
+	MARK_ONE_WEBBING = "webbing",
+	FOUR_EYE_FACEPLATE = "Four Eye",
+	FOUR_EYE_FACEPLATE_VISOR = "Four Eye",
 ))
