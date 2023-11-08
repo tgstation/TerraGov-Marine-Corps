@@ -241,15 +241,15 @@
     allowed_uniform_type = /obj/item/clothing/under
     attachments_allowed = list(
 
-		/obj/item/armor_module/armor/chest/marine/assault/syndicate_markfive,
+		/obj/item/armor_module/armor/chest/marine/hardsuit/syndicate_markfive,
 		/obj/item/armor_module/armor/arms/marine/syndicate_markfive,
 		/obj/item/armor_module/armor/legs/marine/syndicate_markfive,
 
-		/obj/item/armor_module/armor/chest/marine/syndicate_markthree,
+		/obj/item/armor_module/armor/chest/marine/hardsuit/syndicate_markthree,
 		/obj/item/armor_module/armor/arms/marine/syndicate_markthree,
 		/obj/item/armor_module/armor/legs/marine/syndicate_markthree,
 
-		/obj/item/armor_module/armor/chest/marine/skirmisher/syndicate_markone,
+		/obj/item/armor_module/armor/chest/marine/hardsuit/skirmisher/syndicate_markone,
 		/obj/item/armor_module/armor/arms/marine/syndicate_markone,
 		/obj/item/armor_module/armor/legs/marine/syndicate_markone,
 
