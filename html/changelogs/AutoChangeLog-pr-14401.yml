@@ -1,0 +1,5 @@
+author: "ZeWaka"
+delete-after: True
+changes:
+  - rscadd: "If you have a stronger acid, you can now click on weaker acid directly to upgrade it."
+  - bugfix: "Fixed acid upgrading not inheriting the existing melt progress"
