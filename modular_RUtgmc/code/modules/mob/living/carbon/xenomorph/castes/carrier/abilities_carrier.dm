@@ -26,4 +26,7 @@
 /datum/action/xeno_action/place_trap
 	desc = "Place a hole on weeds that can be filled with a hugger, liquid acid, acid or neurotoxin gas. Activates when a marine steps on it."
 	action_icon_state = "small_trap"
+	plasma_cost = 200
 
+/datum/action/xeno_action/spawn_hugger
+	plasma_cost = 100

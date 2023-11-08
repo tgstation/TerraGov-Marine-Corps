@@ -49,6 +49,7 @@
 		/datum/action/xeno_action/activable/stomp,
 		/datum/action/xeno_action/ready_charge,
 		/datum/action/xeno_action/activable/cresttoss,
+		/datum/action/xeno_action/regenerate_skin,
 	)
 
 /datum/xeno_caste/crusher/on_caste_applied(mob/xenomorph)
@@ -77,5 +78,6 @@
 		/datum/action/xeno_action/activable/stomp,
 		/datum/action/xeno_action/ready_charge,
 		/datum/action/xeno_action/activable/cresttoss,
+		/datum/action/xeno_action/regenerate_skin,
 		/datum/action/xeno_action/activable/advance,
 	)

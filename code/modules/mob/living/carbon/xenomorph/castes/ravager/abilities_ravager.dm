@@ -347,7 +347,7 @@
 		//rage_power = 0.5 //ORIGINAL
 		rage_power = 1 //RUTGMC EDIT CHANGE
 
-	var/rage_power_radius = CEILING(rage_power * 7, 1) //Define radius of the SFX
+	var/rage_power_radius = CEILING(rage_power * 3, 1) //Define radius of the SFX //RUTGMC EDIT
 
 	X.visible_message(span_danger("\The [X] becomes frenzied, bellowing with a shuddering roar!"), \
 	span_highdanger("We bellow as our fury overtakes us! RIP AND TEAR!"))
