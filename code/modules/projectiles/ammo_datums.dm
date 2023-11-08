@@ -3035,9 +3035,8 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	name = "laser heat bolt"
 	icon_state = "microwavelaser"
 	hud_state = "laser_heat"
-	damage = 40
+	damage = 30
 	penetration = 10
-	accurate_range_min = 5
 	flags_ammo_behavior = AMMO_ENERGY|AMMO_INCENDIARY|AMMO_SUNDERING|AMMO_HITSCAN|AMMO_SNIPER
 	sundering = 1
 	hitscan_effect_icon = "u_laser_beam"
@@ -3047,9 +3046,8 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	name = "laser shattering bolt"
 	icon_state = "microwavelaser"
 	hud_state = "laser_heat"
-	damage = 40
-	penetration = 30
-	accurate_range_min = 5
+	damage = 30
+	penetration = 10
 	sundering = 10
 	hitscan_effect_icon = "pu_laser"
 	bullet_color = LIGHT_COLOR_PURPLE
