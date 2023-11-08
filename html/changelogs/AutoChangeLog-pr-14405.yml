@@ -1,0 +1,4 @@
+author: "ZeWaka"
+delete-after: True
+changes:
+  - bugfix: "Banelings will no longer bring sticky nades back to their pod upon dying."
