@@ -25,9 +25,6 @@
 	. = ..()
 	attack(user, user)
 
-/obj/item/reagent_containers/pill/interact(mob/user)
-	return
-
 /obj/item/reagent_containers/pill/attack(mob/M, mob/user, def_zone)
 	if(M == user)
 
