@@ -169,3 +169,21 @@
 2023-11-08:
   ZeWaka:
   - qol: Banelings can no longer explode before shutters unless they have a pod placed.
+2023-11-09:
+  Barnet2:
+  - bugfix: LV is no longer voteable on Crash.
+  Helg2:
+  - bugfix: Full pouches now don't look empty on spawn.
+  Lumipharon:
+  - bugfix: Certain cryo tubes will no longer eject their occupant into a wall
+  - imageadd: Slight updates to cryo and cloner tube sprites
+  - bugfix: fixed flares not hitting weed nodes
+  Xander3359:
+  - rscadd: Port the CM Reagent Canister Pouch
+  ZeWaka:
+  - rscadd: If you have a stronger acid, you can now click on weaker acid directly
+      to upgrade it.
+  - bugfix: Fixed acid upgrading not inheriting the existing melt progress
+  - bugfix: Banelings will no longer bring sticky nades back to their pod upon dying.
+  coldironwarrior:
+  - balance: made resin walls have 70 bullet armor (up from 60)

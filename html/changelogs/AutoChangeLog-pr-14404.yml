@@ -1,5 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - bugfix: "Certain cryo tubes will no longer eject their occupant into a wall"
-  - imageadd: "Slight updates to cryo and cloner tube sprites"
