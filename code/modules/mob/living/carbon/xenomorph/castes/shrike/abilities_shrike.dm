@@ -398,13 +398,13 @@
 
 
 /**
-  * Checks for any non-anchored movable atom, throwing them towards the shrike/owner using the ability. 
-  * While causing shake to anything in range with effects applied to humans affected.
-  */
+ * Checks for any non-anchored movable atom, throwing them towards the shrike/owner using the ability. 
+ * While causing shake to anything in range with effects applied to humans affected.
+ */
 /datum/action/xeno_action/activable/psychic_vortex/proc/vortex_pull()
 	playsound(owner, 'sound/effects/seedling_chargeup.ogg', 60)
-	for(var/atom/movable/movable_victim AS in range(VORTEX_RANGE, owner.loc))
-		if(!ismovableatom(movable_victim) || movable_victim.anchored || isxeno(movable_victim) || movable_victim.move_resist == INFINITY)
+	for(var/atom/movable/movable_victim in range(VORTEX_RANGE, owner.loc))
+		if(movable_victim.anchored || isxeno(movable_victim) || movable_victim.move_resist == INFINITY)
 			continue
 		if(ishuman(movable_victim))
 			var/mob/living/carbon/human/H = movable_victim
@@ -421,8 +421,8 @@
 
 /// Randomly throws movable atoms in the radius of the vortex abilites range, different each use.
 /datum/action/xeno_action/activable/psychic_vortex/proc/vortex_push()
-	for(var/atom/movable/movable_victim AS in range(VORTEX_RANGE, owner.loc))
-		if(!ismovableatom(movable_victim) || movable_victim.anchored || isxeno(movable_victim) || movable_victim.move_resist == INFINITY)
+	for(var/atom/movable/movable_victim in range(VORTEX_RANGE, owner.loc))
+		if(movable_victim.anchored || isxeno(movable_victim) || movable_victim.move_resist == INFINITY)
 			continue
 		if(ishuman(movable_victim))
 			var/mob/living/carbon/human/human_victim = movable_victim
