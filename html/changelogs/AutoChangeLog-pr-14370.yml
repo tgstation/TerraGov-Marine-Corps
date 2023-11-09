@@ -1,0 +1,7 @@
+author: "ClosetedSkeletonGH"
+delete-after: True
+changes:
+  - rscadd: "Hivemind sprite changes depending on the type of weed it is on"
+  - balance: "Hivemind demanifestation and remanifestation"
+  - bugfix: "Hivemind no longer flickers on tele"
+  - bugfix: "Hivemind direction of manifestation is normalized"
