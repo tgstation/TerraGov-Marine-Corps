@@ -156,6 +156,16 @@
 
 	user.balloon_alert(user, "loaded")
 
+///Handles behavior when attacking a mob
+/datum/component/harvester/proc/attack_async(datum/source, mob/living/target, mob/living/user, obj/item/weapon)
+	to_chat(user, span_rose("You prepare to stab <b>[target != user ? "[target]" : "yourself"]</b>!"))
+	new /obj/effect/temp_visual/telekinesis(get_turf(target))
+	if((target != user) && do_after(user, 2 SECONDS, TRUE, target, BUSY_ICON_DANGER))
+		target.heal_overall_damage(12.5, 0, updating_health = TRUE)
+	else
+		target.adjustStaminaLoss(-30)
+		target.heal_overall_damage(6, 0, updating_health = TRUE)
+
 ///Updates the color of the weapon based on what chem is loaded in. Updates both the item sprite and mob sprite
 /datum/component/harvester/proc/update_loaded_color(datum/source)
 	SIGNAL_HANDLER
@@ -200,8 +210,8 @@
 
 	switch(loaded_reagent)
 		if(/datum/reagent/medicine/tramadol)
-			target.apply_status_effect(/datum/status_effect/incapacitating/harvester_slowdown, 1 SECONDS)
 			target.apply_damage(weapon.force*0.6, BRUTE, user.zone_selected)
+			target.apply_status_effect(/datum/status_effect/incapacitating/harvester_slowdown, 1 SECONDS)
 
 		if(/datum/reagent/medicine/kelotane)
 			target.adjust_sunder(7.5) //Same amount as a shotgun slug
@@ -231,13 +241,6 @@
 
 	if(loadup_on_attack)
 		INVOKE_ASYNC(src, PROC_REF(activate_blade_async), source, user)
-
-///Handles behavior when attacking a mob
-/datum/component/harvester/proc/attack_async(datum/source, mob/living/target, mob/living/user, obj/item/weapon)
-	to_chat(user, span_rose("You prepare to stab <b>[target != user ? "[target]" : "yourself"]</b>!"))
-	new /obj/effect/temp_visual/telekinesis(get_turf(target))
-	if((target != user) && do_after(user, 2 SECONDS, TRUE, target, BUSY_ICON_DANGER))
-		target.heal_overall_damage(12.5, 0, updating_health = TRUE)
 
 /datum/component/harvester/proc/select_reagent(datum/source)
 	var/list/options = list()
