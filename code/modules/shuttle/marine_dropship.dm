@@ -755,7 +755,8 @@
 	. = ..()
 	for(var/trait in SSmapping.configs[SHIP_MAP].environment_traits)
 		if(ZTRAIT_DOUBLE_SHIPS in trait)
-			possible_destinations = "lz2;alamo"
+			//possible_destinations = "lz2;alamo" // RUTGMC CHANGE, it is now Normandy
+			possible_destinations = "lz2;normandy"
 
 /obj/machinery/computer/shuttle/marine_dropship/two
 	name = "\improper 'Normandy' flight controls"
