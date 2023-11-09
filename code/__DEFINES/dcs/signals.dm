@@ -913,11 +913,6 @@
 #define COMSIG_XENOABILITY_SENDORDERS "xenoability_sendorders"
 #define COMSIG_XENOABILITY_BESTOWBLESSINGS "xenoability_giveblessings"
 
-#define COMSIG_XENOABILITY_BANELING_EXPLODE "xenoability_baneling_explode"
-#define COMSIG_XENOABILITY_BANELING_SPAWN_POD "xenoability_baneling_spawn_pod"
-#define COMSIG_XENOABILITY_BANELING_CHOOSE_REAGENT "xenoability_baneling_choose_reagent"
-#define COMSIG_XENOABILITY_BANELING_DASH_EXPLOSION "xenoability_baneling_dash_explosion"
-
 #define COMSIG_XENOABILITY_BEHEMOTH_ROLL "xenoability_behemoth_roll"
 #define COMSIG_XENOABILITY_LANDSLIDE "xenoability_landslide"
 #define COMSIG_XENOABILITY_EARTH_RISER "xenoability_earth_riser"
