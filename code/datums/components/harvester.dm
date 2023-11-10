@@ -1,15 +1,13 @@
 #define NO_REAGENT_COLOR "#FFFFFF"
 
 #define VALI_CODEX "<b>Reagent info:</b><BR>\
-	All chems will do 60% armor-piercing damage, and also:<BR>\
-	Bicaridine - Heals brute and stamina. Channel the heal for a larger heal, works better with medical skill.<BR>\
-	Kelotane - Set your target aflame and sunder their armor<BR>\
-	Tramadol - Slow your target for 1 second<BR>\
-	Tricordrazine - Shatter your targets armor for 3 seconds<BR>\
+	Bicaridine - heals somebody else for 12.5 brute, or when used on yourself heal 6 brute and 30 stamina<BR>\
+	Kelotane - set your target and any adjacent mobs aflame<BR>\
+	Tramadol - slow your target for 1 second and deal 60% more armor-piercing damage<BR>\
 	<BR>\
 	<b>Tips:</b><BR>\
 	> Needs to be connected to the Vali system to collect green blood. You can connect it though the Vali system's configurations menu.<BR>\
-	> Filled by liquid reagent containers or pills. Emptied by using an empty liquid reagent container.<BR>\
+	> Filled by liquid reagent containers. Emptied by using an empty liquid reagent container. Can also be filled by pills.<BR>\
 	> Press your unique action key (SPACE by default) to load a single-use of the reagent effect after the blade has been filled up.<BR>"
 
 /datum/component/harvester
