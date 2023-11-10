@@ -101,7 +101,7 @@
 				to_chat(usr, "[icon2html(src, usr)] [span_warning("There wasn't any supplies found on the squads supply pad. Double check the pad.")]")
 				return
 
-			if(!istype(supply_beacon.drop_location))
+			if(!istype(supply_beacon.drop_location) || !is_ground_level(supply_beacon.drop_location.z))
 				to_chat(usr, "[icon2html(src, usr)] [span_warning("The [supply_beacon.name] was not detected on the ground.")]")
 				return
 			if(isspaceturf(supply_beacon.drop_location) || supply_beacon.drop_location.density)
