@@ -26,6 +26,8 @@
 	throw_range = 1
 	worn_layer = FACEHUGGER_LAYER
 	layer = FACEHUGGER_LAYER
+	item_state_slots = list(slot_w_uniform_str = "facehugger_crotch")
+	item_icons = list(slot_w_uniform_str = 'icons/Xeno/Effects.dmi')
 
 	///Whether the hugger is dead, active or inactive
 	var/stat = CONSCIOUS
@@ -445,7 +447,9 @@
 					return FALSE
 	else if (wear_mask && wear_mask != F)
 		return FALSE
-
+	if(!H.w_uniform && attempt_lewd_attach(H))
+		H.equip_to_slot(src, SLOT_W_UNIFORM)
+		return TRUE
 	return TRUE
 
 /mob/living/carbon/human/species/monkey/can_be_facehugged(obj/item/clothing/mask/facehugger/F, check_death = TRUE, check_mask = TRUE, provoked = FALSE)
@@ -497,6 +501,10 @@
 			visible_message(span_warning("[src] looks for a face to hug on [H], but finds none!"))
 			return FALSE
 
+				if(!H.w_uniform && attempt_lewd_attach(H))
+		H.equip_to_slot(src, SLOT_W_UNIFORM)
+		return TRUE
+
 		if(H.head)
 			var/obj/item/clothing/head/D = H.head
 			if(istype(D))
@@ -534,6 +542,20 @@
 	M.equip_to_slot(src, SLOT_WEAR_MASK)
 	return TRUE
 
+/obj/item/clothing/mask/facehugger/proc/attempt_lewd_attach(mob/living/carbon/human/target)
+	. = FALSE
+	var/attach_target = FALSE
+	if(target.client.prefs.preferred_hugger_target_area == HUGGER_TARGET_CHEST && !target.wear_mask)
+		return FALSE
+	for(var/option in list(ALLOW_HUGGER_ASS_TARGET, ALLOW_HUGGER_GROIN_TARGET))
+		if(target.client.prefs.toggles_lewd & option)
+			attach_target = TRUE
+			break
+	if(!attach_target)
+		return FALSE
+	visible_message("<span class='warning'>[src] latches onto [target]'s pelvis!</span>")
+	return TRUE
+
 /obj/item/clothing/mask/facehugger/equipped(mob/living/user, slot)
 	. = ..()
 	if(slot != SLOT_WEAR_MASK || stat == DEAD)
@@ -554,6 +576,14 @@
 /obj/item/clothing/mask/facehugger/proc/Impregnate(mob/living/carbon/target)
 	var/as_planned = target?.wear_mask == src ? TRUE : FALSE
 	if(target.can_be_facehugged(src, FALSE, FALSE) && !sterile && as_planned) //is hugger still on face and can they still be impregnated
+			if(target?.wear_mask == src)
+			emerge_target = HUGGER_TARGET_CHEST
+		else
+		// on groin
+			for(var/option in shuffle(list(ALLOW_HUGGER_ASS_TARGET, ALLOW_HUGGER_GROIN_TARGET)))
+				if(target.client.prefs.toggles_lewd & option)
+					emerge_target = (option == ALLOW_HUGGER_ASS_TARGET) ? HUGGER_TARGET_ASS : HUGGER_TARGET_GROIN
+					break
 		if(!(locate(/obj/item/alien_embryo) in target))
 			var/obj/item/alien_embryo/embryo = new(target)
 			embryo.hivenumber = hivenumber
@@ -572,10 +602,18 @@
 
 	if(as_planned)
 		if(sterile || target.status_flags & XENO_HOST)
-			target.visible_message(span_danger("[src] falls limp after violating [target]'s face!"))
+			var/flavor_text
+			switch(emerge_target)
+				if(HUGGER_TARGET_CHEST)
+					flavor_text = "<span class='danger'>[src] falls limp after fucking [target]'s face with it's proboscis!</span>"
+				if(HUGGER_TARGET_ASS)
+					flavor_text = "<span class='danger'>[src] falls limp after fucking [target]'s ass!</span>"
+				if(HUGGER_TARGET_GROIN)
+					flavor_text = "<span class='danger'>[src] falls limp after violating [target]'s [target.gender==MALE ? "cock" : "vagina"]!</span>"
+			target.visible_message(flavor_text)
 		else //Huggered but not impregnated, deal damage.
-			target.visible_message(span_danger("[src] frantically claws at [target]'s face before falling down!"),span_danger("[src] frantically claws at your face before falling down! Auugh!"))
-			target.apply_damage(15, BRUTE, BODY_ZONE_HEAD, updating_health = TRUE)
+			target.visible_message("<span class='danger'>[src] frantically claws at [target]'s face before falling down!</span>","<span class='danger'>[src] frantically claws at your face before falling down! Auugh!</span>")
+			target.apply_damage(10, BRUTE, "head", updating_health = TRUE)
 
 
 /obj/item/clothing/mask/facehugger/proc/kill_hugger(melt_timer = 1 MINUTES)
