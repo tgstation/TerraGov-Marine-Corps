@@ -404,7 +404,7 @@
 /datum/action/xeno_action/activable/psychic_vortex/proc/vortex_pull()
 	playsound(owner, 'sound/effects/seedling_chargeup.ogg', 60)
 	for(var/atom/movable/movable_victim in range(VORTEX_RANGE, owner.loc))
-		if(movable_victim.anchored || isxeno(movable_victim) || movable_victim.move_resist == INFINITY)
+		if(movable_victim.anchored || isxeno(movable_victim) || movable_victim.move_resist > MOVE_FORCE_STRONG)
 			continue
 		if(ishuman(movable_victim))
 			var/mob/living/carbon/human/H = movable_victim
