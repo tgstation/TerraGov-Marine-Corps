@@ -1,5 +1,17 @@
 #define NO_REAGENT_COLOR "#FFFFFF"
 
+#define VALI_CODEX "<b>Reagent info:</b><BR>\
+	All chems will do 60% armor-piercing damage, and also:<BR>\
+	Bicaridine - Heals brute and stamina. Channel the heal for a larger heal, works better with medical skill.<BR>\
+	Kelotane - Set your target aflame and sunder their armor<BR>\
+	Tramadol - Slow your target for 1 second<BR>\
+	Tricordrazine - Shatter your targets armor for 3 seconds<BR>\
+	<BR>\
+	<b>Tips:</b><BR>\
+	> Needs to be connected to the Vali system to collect green blood. You can connect it though the Vali system's configurations menu.<BR>\
+	> Filled by liquid reagent containers or pills. Emptied by using an empty liquid reagent container.<BR>\
+	> Press your unique action key (SPACE by default) to load a single-use of the reagent effect after the blade has been filled up.<BR>"
+
 /datum/component/harvester
 	///reagent selected for actions
 	var/datum/reagent/selected_reagent
@@ -40,6 +52,7 @@
 	RegisterSignal(reagent_select_action, COMSIG_ACTION_TRIGGER, PROC_REF(select_reagent))
 	RegisterSignal(parent, COMSIG_ATOM_UPDATE_OVERLAYS, PROC_REF(update_loaded_color))
 	RegisterSignal(parent, COMSIG_ITEM_APPLY_CUSTOM_OVERLAY, PROC_REF(upate_mob_overlay))
+	RegisterSignal(parent, COMSIG_ATOM_GET_MECHANICS_INFO, PROC_REF(get_mechanics_info))
 
 	item_parent.update_icon() //So that our sprite realizes it's empty when it spawns
 
@@ -74,6 +87,12 @@
 		output += "<span style='color:[initial(reagent.color)];font-weight:bold'>[initial(reagent.name)]</span>\n"
 
 	to_chat(user, output)
+
+///Adds mechanics info to the weapon
+/datum/component/harvester/proc/get_mechanics_info(datum/source, list/mechanics_text)
+	SIGNAL_HANDLER
+	mechanics_text += (VALI_CODEX)
+	return COMPONENT_MECHANICS_CHANGE
 
 ///Handles behavior for when item is clicked on
 /datum/component/harvester/proc/attackby_async(datum/source, obj/item/cont, mob/user)
@@ -166,8 +185,8 @@
 		target.adjustStaminaLoss(-30)
 		target.heal_overall_damage(6, 0, updating_health = TRUE)
 
-///Updates the color of the weapon based on what chem is loaded in. Updates both the item sprite and mob sprite
-/datum/component/harvester/proc/update_loaded_color(datum/source)
+///Updates the color of the overlay on top of the item sprite based on what chem is loaded in
+/datum/component/harvester/proc/update_loaded_color(datum/source, list/overlays_list)
 	SIGNAL_HANDLER
 	var/obj/item/item_parent = parent
 	var/image/item_overlay = image('icons/obj/items/vali.dmi', item_parent, "[initial(item_parent.icon_state)]_loaded")
@@ -175,7 +194,7 @@
 		item_overlay.color = COLOR_GREEN
 	else
 		item_overlay.color = initial(loaded_reagent.color)
-	item_parent.overlays.Add(item_overlay)
+	overlays_list.Add(item_overlay)
 
 ///Updates the mob sprite
 /datum/component/harvester/proc/upate_mob_overlay(datum/source, mutable_appearance/standing, inhands, icon_used, state_used)
@@ -281,3 +300,4 @@
 	button.overlays += selected_reagent_overlay
 
 #undef NO_REAGENT_COLOR
+#undef VALI_CODEX
