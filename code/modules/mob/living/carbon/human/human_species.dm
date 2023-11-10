@@ -17,6 +17,36 @@
 /mob/living/carbon/human/species/monkey/yiren
 	race = "Yiren"
 
+	/mob/living/carbon/human/species/skrell
+		race = "Skrell"
+
+	/mob/living/carbon/human/species/tajaran
+		race = "Tajara"
+
+	/mob/living/carbon/human/species/unathi
+		race = "Unathi"
+
+	/mob/living/carbon/human/species/vox
+		race = "Vox"
+
+	/datum/species/vox/handle_post_spawn(mob/living/carbon/human/H)
+		. = ..()
+		H.h_style = "Short Vox Quills"
+
+	/mob/living/carbon/human/species/voxarmalis
+		race = "Vox Armalis"
+
+	/datum/species/vox/armalis/handle_post_spawn(mob/living/carbon/human/H)
+		. = ..()
+		H.h_style = "Bald"
+
+	/mob/living/carbon/human/species/machine
+		race = "Machine"
+
+	/datum/species/machine/handle_post_spawn(mob/living/carbon/human/H)
+		. = ..()
+		H.h_style = "blue IPC screen"
+
 /mob/living/carbon/human/species/synthetic
 	race = "Synthetic"
 
