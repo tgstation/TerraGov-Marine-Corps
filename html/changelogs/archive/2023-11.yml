@@ -187,3 +187,9 @@
   - bugfix: Banelings will no longer bring sticky nades back to their pod upon dying.
   coldironwarrior:
   - balance: made resin walls have 70 bullet armor (up from 60)
+2023-11-10:
+  ClosetedSkeletonGH:
+  - rscadd: Hivemind sprite changes depending on the type of weed it is on
+  - balance: Hivemind demanifestation and remanifestation
+  - bugfix: Hivemind no longer flickers on tele
+  - bugfix: Hivemind direction of manifestation is normalized
