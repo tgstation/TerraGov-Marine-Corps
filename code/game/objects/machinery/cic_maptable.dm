@@ -10,6 +10,7 @@
 	light_range = 2
 	light_power = 0.5
 	light_color = LIGHT_COLOR_BLUE
+	var/screen_overlay = "maptable_screen"
 	///flags that we want to be shown when you interact with this table
 	var/minimap_flag = MINIMAP_FLAG_MARINE
 	///by default Zlevel 2, groundside is targetted
@@ -39,7 +40,8 @@
 	. = ..()
 	if(machine_stat & (BROKEN|DISABLED|NOPOWER))
 		return
-	. += emissive_appearance(icon, "[initial(icon_state)]_emissive", alpha = src.alpha)
+	. += emissive_appearance(icon, screen_overlay, alpha = src.alpha)
+	. += mutable_appearance(icon, screen_overlay, alpha = src.alpha)
 
 /obj/machinery/cic_maptable/interact(mob/user)
 	. = ..()
@@ -88,9 +90,13 @@
 	name = "Athena tactical map console"
 	desc = "A map that display the planetside AO, specialized in revealing potential areas to drop pod. This is especially useful to see where the frontlines and marines are at so that anyone droppodding can decide where to land. Pray that your land nav skills are robust to not get lost!"
 	icon_state = "droppodtable"
+	screen_overlay = "droppodtable_emissive"
 
 /obj/machinery/cic_maptable/som_maptable
+	icon_state = "som_console"
+	screen_overlay = "som_maptable_screen"
 	minimap_flag = MINIMAP_FLAG_MARINE_SOM
+	light_color = LIGHT_COLOR_FLARE
 
 /obj/machinery/cic_maptable/no_flags
 	minimap_flag = NONE
@@ -163,7 +169,6 @@
 
 /obj/machinery/cic_maptable/drawable/big
 	icon = 'icons/Marine/mainship_props96.dmi'
-	icon_state = "maptable"
 	layer = ABOVE_OBJ_LAYER
 	pixel_x = -16
 	pixel_y = -14
@@ -172,3 +177,6 @@
 
 /obj/machinery/cic_maptable/drawable/big/som
 	minimap_flag = MINIMAP_FLAG_MARINE_SOM
+	screen_overlay = "som_maptable_screen"
+	light_color = LIGHT_COLOR_FLARE
+	light_range = 3

@@ -15,6 +15,8 @@
 	var/drag_windup = 1.5 SECONDS
 	var/throwing = FALSE
 	var/thrower = null
+	///Speed of the current throw. 0 When not throwing.
+	var/thrown_speed = 0
 	var/turf/throw_source = null
 	var/throw_speed = 2
 	var/throw_range = 7
@@ -311,7 +313,7 @@
 		return COMPONENT_BUMP_RESOLVED
 	. = ..()
 	if(throwing)
-		. = !throw_impact(A)
+		. = !throw_impact(A, thrown_speed)
 	if(QDELETED(A))
 		return
 	A.Bumped(src)
@@ -531,6 +533,7 @@
 
 	set_throwing(TRUE)
 	src.thrower = thrower
+	thrown_speed = speed
 
 	var/original_layer = layer
 	if(flying)
@@ -625,6 +628,7 @@
 	if(flying)
 		set_flying(FALSE, original_layer)
 	thrower = null
+	thrown_speed = 0
 	throw_source = null
 
 /atom/movable/proc/handle_buckled_mob_movement(NewLoc, direct)

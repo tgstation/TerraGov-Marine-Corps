@@ -8596,7 +8596,7 @@
 /turf/open/floor/plating/dmg1,
 /area/lv624/lazarus/spaceport)
 "RW" = (
-/obj/machinery/sleep_console,
+/obj/machinery/computer/sleep_console,
 /turf/open/floor/tile/blue,
 /area/lv624/lazarus/medbay)
 "RX" = (
@@ -8691,7 +8691,7 @@
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth/buildable,
 /area/lv624/ground/jungle10)
 "St" = (
-/obj/machinery/sleep_console,
+/obj/machinery/computer/sleep_console,
 /turf/open/floor/tile/blue/taupebluecorner,
 /area/lv624/lazarus/medbay)
 "Su" = (

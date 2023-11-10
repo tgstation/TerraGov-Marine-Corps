@@ -1,5 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - bugfix: "fixed various throw bugs"
-  - bugfix: "Missing a throw because you tried to hit a missing limb will now properly miss and keep going"

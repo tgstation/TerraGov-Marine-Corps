@@ -1,5 +1,5 @@
 //Color variant defines
-#define SPEED_COLOR ""
+#define NORMAL_COLOR ""
 #define RESTING_COLOR "white"
 #define STICKY_COLOR "green"
 
@@ -22,7 +22,7 @@
 
 	var/obj/alien/weeds/node/parent_node
 	///The color variant of the sprite
-	var/color_variant = SPEED_COLOR
+	var/color_variant = NORMAL_COLOR
 	///The healing buff when resting on this weed
 	var/resting_buff = 1
 	///If these weeds are not destroyed but just swapped

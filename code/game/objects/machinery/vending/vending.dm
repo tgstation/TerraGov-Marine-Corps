@@ -355,7 +355,6 @@
 		overlays.Cut()
 		if(CHECK_BITFIELD(machine_stat, PANEL_OPEN))
 			overlays += image(icon, "[initial(icon_state)]-panel")
-		updateUsrDialog()
 
 	else if(ismultitool(I) || iswirecutter(I))
 		if(!CHECK_BITFIELD(machine_stat, PANEL_OPEN))
@@ -575,8 +574,6 @@
 			scan_card(H.wear_id)
 			. = TRUE
 
-	updateUsrDialog()
-
 /obj/machinery/vending/proc/vend(datum/vending_product/R, mob/user)
 	if(!allowed(user) && (!wires.is_cut(WIRE_IDSCAN) || hacking_safety)) //For SECURE VENDING MACHINES YEAH
 		to_chat(user, span_warning("Access denied."))
@@ -599,7 +596,6 @@
 	if(istype(new_item))
 		new_item.on_vend(user, faction, fill_container = TRUE)
 	vend_ready = 1
-	updateUsrDialog()
 
 /obj/machinery/vending/proc/release_item(datum/vending_product/R, delay_vending = 0, dump_product = 0)
 	if(delay_vending)
@@ -746,7 +742,6 @@
 	if(record.amount >= 0) //R negative means infinite item, no need to restock
 		record.amount++
 
-	updateUsrDialog()
 	return TRUE //Item restocked, no reason to go on.
 
 /// Vending machine tries to restock all of the loose item on it's location onto itself.

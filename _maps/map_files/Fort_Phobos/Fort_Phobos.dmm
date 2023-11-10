@@ -222,7 +222,9 @@
 /turf/open/floor/plating/ground/concrete,
 /area/mainship/patrol_base/som)
 "cs" = (
-/obj/structure/prop/mainship/mapping_computer,
+/obj/machinery/computer/som{
+	dir = 8
+	},
 /turf/open/floor/mainship/red{
 	dir = 6
 	},
@@ -341,7 +343,9 @@
 /turf/open/shuttle/dropship/seven,
 /area/mainship/patrol_base/som)
 "dV" = (
-/obj/machinery/cic_maptable/som_maptable,
+/obj/machinery/cic_maptable/som_maptable{
+	dir = 8
+	},
 /turf/open/floor/mainship/red{
 	dir = 4
 	},
@@ -451,8 +455,10 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/patrol_base/som/hanger)
 "eW" = (
-/obj/structure/table/mainship/nometal,
-/obj/machinery/computer/emails,
+/obj/machinery/computer/som_two,
+/obj/machinery/light/red{
+	dir = 1
+	},
 /turf/open/floor/mainship/silver{
 	dir = 1
 	},
@@ -1179,6 +1185,10 @@
 	dir = 1
 	},
 /area/mainship/patrol_base/som/command)
+"oV" = (
+/obj/machinery/light/red,
+/turf/open/floor/mainship/red,
+/area/mainship/patrol_base/som/command)
 "oY" = (
 /obj/structure/reagent_dispensers/fueltank/barrel,
 /turf/open/floor/plating/ground/concrete,
@@ -1726,7 +1736,9 @@
 /turf/open/floor/plating/ground/concrete,
 /area/mainship/patrol_base/som)
 "vi" = (
-/obj/structure/prop/mainship/sensor_computer2,
+/obj/machinery/computer/som{
+	dir = 4
+	},
 /turf/open/floor/mainship/red{
 	dir = 10
 	},
@@ -1746,6 +1758,9 @@
 /area/mainship/patrol_base/som)
 "vB" = (
 /obj/machinery/cic_maptable/som_maptable,
+/obj/machinery/light/red{
+	dir = 1
+	},
 /turf/open/floor/mainship/red{
 	dir = 1
 	},
@@ -2018,15 +2033,6 @@
 /obj/effect/spawner/random/misc/soap/deluxeweighted,
 /turf/open/floor/freezer,
 /area/mainship/patrol_base/som/barracks)
-"yp" = (
-/obj/structure/prop/mainship/sensor_computer2,
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/floor/mainship/silver{
-	dir = 1
-	},
-/area/mainship/patrol_base/som/command)
 "yq" = (
 /obj/machinery/light{
 	dir = 4
@@ -2454,7 +2460,7 @@
 /turf/open/floor/mainship/office,
 /area/mainship/patrol_base/som/barracks)
 "Dg" = (
-/obj/machinery/light,
+/obj/machinery/light/red,
 /turf/open/floor/mainship/silver,
 /area/mainship/patrol_base/som/command)
 "Dj" = (
@@ -2530,10 +2536,7 @@
 /turf/open/floor/mainship_hull/gray,
 /area/mainship/patrol_base/som)
 "DE" = (
-/obj/structure/prop/mainship/sensor_computer1,
-/obj/machinery/light{
-	dir = 1
-	},
+/obj/machinery/computer/som,
 /turf/open/floor/mainship/silver{
 	dir = 1
 	},
@@ -2603,7 +2606,9 @@
 /turf/open/floor/mainship/office,
 /area/mainship/patrol_base/som/prep)
 "Ev" = (
-/obj/machinery/cic_maptable/som_maptable,
+/obj/machinery/cic_maptable/som_maptable{
+	dir = 4
+	},
 /turf/open/floor/mainship/red{
 	dir = 8
 	},
@@ -2878,11 +2883,7 @@
 	},
 /area/mainship/patrol_base/som)
 "HR" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/structure/table/mainship/nometal,
-/obj/machinery/prop/computer/communications,
+/obj/machinery/computer/som,
 /turf/open/floor/mainship/red{
 	dir = 1
 	},
@@ -2948,13 +2949,10 @@
 /turf/open/floor/mainship_hull,
 /area/mainship/patrol_base/som/hanger)
 "Iw" = (
+/obj/structure/prop/nt_computer,
 /turf/open/floor/mainship/silver{
 	dir = 9
 	},
-/area/mainship/patrol_base/som/command)
-"Iy" = (
-/obj/machinery/light,
-/turf/open/floor/mainship/red,
 /area/mainship/patrol_base/som/command)
 "IC" = (
 /obj/structure/reagent_dispensers/watertank,
@@ -3165,14 +3163,6 @@
 /obj/structure/reagent_dispensers/watertank,
 /turf/open/floor/mainship/red,
 /area/mainship/patrol_base/som)
-"Lq" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/floor/mainship/red{
-	dir = 1
-	},
-/area/mainship/patrol_base/som/command)
 "Lt" = (
 /obj/machinery/telecomms/server/presets/command/som,
 /turf/open/floor/mainship,
@@ -3318,8 +3308,11 @@
 	},
 /area/mainship/patrol_base/som)
 "Ne" = (
-/obj/structure/prop/mainship/sensor_computer3,
 /obj/machinery/camera/autoname/mainship/somship,
+/obj/machinery/computer/camera_advanced/overwatch/main/som,
+/obj/machinery/light/red{
+	dir = 1
+	},
 /turf/open/floor/mainship/silver{
 	dir = 1
 	},
@@ -3467,9 +3460,8 @@
 /turf/closed/wall/r_wall/prison_unmeltable,
 /area/mainship/patrol_base/som/barracks)
 "Ox" = (
-/obj/machinery/computer/camera_advanced/overwatch/som/xray,
-/obj/machinery/light{
-	dir = 4
+/obj/machinery/computer/camera_advanced/overwatch/som/xray{
+	dir = 8
 	},
 /turf/open/floor/mainship/red{
 	dir = 4
@@ -3493,9 +3485,8 @@
 /turf/open/shuttle/dropship/floor,
 /area/mainship/patrol_base/som)
 "OG" = (
-/obj/machinery/computer/camera_advanced/overwatch/som/zulu,
-/obj/machinery/light{
-	dir = 8
+/obj/machinery/computer/camera_advanced/overwatch/som/zulu{
+	dir = 4
 	},
 /turf/open/floor/mainship/red{
 	dir = 8
@@ -4071,7 +4062,9 @@
 /turf/open/floor/mainship,
 /area/mainship/patrol_base/som)
 "VS" = (
-/obj/structure/prop/mainship/mapping_computer,
+/obj/machinery/computer/som{
+	dir = 8
+	},
 /turf/open/floor/mainship/silver{
 	dir = 4
 	},
@@ -4165,7 +4158,9 @@
 /turf/open/floor/mainship_hull,
 /area/mainship/patrol_base/som)
 "WO" = (
-/obj/machinery/computer/general_air_control,
+/obj/machinery/cic_maptable/som_maptable{
+	dir = 8
+	},
 /turf/open/floor/mainship/silver{
 	dir = 4
 	},
@@ -8996,7 +8991,7 @@ Uk
 Uk
 Uk
 RO
-yp
+DE
 VN
 Sy
 iz
@@ -9972,7 +9967,7 @@ Sy
 Sy
 EE
 Sy
-Va
+oV
 RO
 vz
 Aw
@@ -10094,7 +10089,7 @@ Sy
 Sy
 Sy
 Sy
-Iy
+Va
 RO
 vz
 ys
@@ -10455,12 +10450,12 @@ Uk
 Uk
 Uk
 RO
-Lq
+HR
 Sy
 Sy
 Sy
 Sy
-Iy
+Va
 RO
 vz
 WQ
@@ -10582,7 +10577,7 @@ Sy
 Sy
 bl
 Sy
-Va
+oV
 RO
 vz
 hi

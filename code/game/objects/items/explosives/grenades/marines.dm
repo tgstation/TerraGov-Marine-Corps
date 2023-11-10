@@ -527,6 +527,11 @@
 		set_light_on(FALSE)
 
 /obj/item/explosive/grenade/flare/throw_impact(atom/hit_atom, speed)
+	if(isopenturf(hit_atom))
+		var/obj/alien/weeds/node/N = locate() in loc
+		if(N)
+			qdel(N)
+			turn_off()
 	. = ..()
 	if(!.)
 		return
@@ -541,12 +546,6 @@
 			target_zone = "chest"
 		if(launched && CHECK_BITFIELD(resistance_flags, ON_FIRE) && !L.on_fire)
 			L.apply_damage(rand(throwforce*0.75,throwforce*1.25), BURN, target_zone, FIRE, updating_health = TRUE) //Do more damage if launched from a proper launcher and active
-
-	// Flares instantly burn out nodes when thrown at them.
-	var/obj/alien/weeds/node/N = locate() in loc
-	if(N)
-		qdel(N)
-		turn_off()
 
 /obj/item/explosive/grenade/flare/civilian
 	name = "flare"

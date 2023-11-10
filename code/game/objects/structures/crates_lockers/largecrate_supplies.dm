@@ -406,7 +406,7 @@
 			return
 
 		var/obj/machinery/autodoc/event/E = new (T)
-		var/obj/machinery/autodoc_console/C = new (T)
+		var/obj/machinery/computer/autodoc_console/C = new (T)
 		C.loc = get_step(T, EAST)
 		E.connected = C
 		C.connected = E
@@ -426,7 +426,7 @@
 			return
 
 		var/obj/machinery/bodyscanner/E = new (T)
-		var/obj/machinery/body_scanconsole/C = new (T)
+		var/obj/machinery/computer/body_scanconsole/C = new (T)
 		C.loc = get_step(T, EAST)
 		C.connected = E
 
@@ -445,7 +445,7 @@
 			return
 
 		var/obj/machinery/sleeper/E = new (T)
-		var/obj/machinery/sleep_console/C = new (T)
+		var/obj/machinery/computer/sleep_console/C = new (T)
 		C.loc = get_step(T, EAST)
 		E.connected = C
 		C.connected = E

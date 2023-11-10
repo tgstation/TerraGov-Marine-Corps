@@ -5,8 +5,8 @@
 	icon = 'icons/Xeno/castes/behemoth.dmi'
 	icon_state = "Behemoth Walking"
 	bubble_icon = "alienleft"
-	health = 800
-	maxHealth = 800
+	health = 750
+	maxHealth = 750
 	plasma_stored = 200
 	tier = XENO_TIER_THREE
 	upgrade = XENO_UPGRADE_NORMAL

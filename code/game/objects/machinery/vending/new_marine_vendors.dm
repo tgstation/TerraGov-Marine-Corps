@@ -204,7 +204,6 @@
 				user_id.marine_points[item_category] -= cost
 			. = TRUE
 			user_id.flags_id |= USED_GHMME
-	updateUsrDialog()
 
 /obj/machinery/marine_selector/clothes
 	name = "GHMME Automated Closet"
