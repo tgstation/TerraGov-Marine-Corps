@@ -1,4 +1,4 @@
-#define TIME_TO_TRANSFORM 1.6 SECONDS
+#define TIME_TO_TRANSFORM 1 SECONDS
 
 /mob/living/carbon/xenomorph/hivemind
 	caste_base_type = /mob/living/carbon/xenomorph/hivemind
@@ -115,7 +115,8 @@
 	wound_overlay.icon_state = "none"
 	TIMER_COOLDOWN_START(src, COOLDOWN_HIVEMIND_MANIFESTATION, TIME_TO_TRANSFORM)
 	invisibility = 0
-	flick(status_flags & INCORPOREAL ? "Hivemind_materialisation" : "Hivemind_materialisation_reverse", src)
+	flick(status_flags & INCORPOREAL ? "Hivemind_[initial(loc_weeds_type.color_variant)]_materialisation" : "Hivemind_[initial(loc_weeds_type.color_variant)]_materialisation_reverse", src)
+	setDir(SOUTH)
 	addtimer(CALLBACK(src, PROC_REF(do_change_form)), TIME_TO_TRANSFORM)
 
 /mob/living/carbon/xenomorph/hivemind/set_jump_component(duration = 0.5 SECONDS, cooldown = 2 SECONDS, cost = 0, height = 16, sound = null, flags = JUMP_SHADOW, flags_pass = PASS_LOW_STRUCTURE|PASS_FIRE)
@@ -146,6 +147,7 @@
 	upgrade = XENO_UPGRADE_BASETYPE
 	set_datum(FALSE)
 	hive.xenos_by_upgrade[upgrade] += src
+	setDir(SOUTH)
 	update_wounds()
 	update_icon()
 	update_action_buttons()
@@ -188,17 +190,19 @@
 	if(!isopenturf(T))
 		balloon_alert(src, "Can't teleport into a wall")
 		return
-	TIMER_COOLDOWN_START(src, COOLDOWN_HIVEMIND_MANIFESTATION, TIME_TO_TRANSFORM)
-	flick("Hivemind_materialisation_fast_reverse", src)
-	addtimer(CALLBACK(src, PROC_REF(end_teleport), T), TIME_TO_TRANSFORM / 2)
+	TIMER_COOLDOWN_START(src, COOLDOWN_HIVEMIND_MANIFESTATION, TIME_TO_TRANSFORM * 2)
+	flick("Hivemind_[initial(loc_weeds_type.color_variant)]_materialisation_reverse", src)
+	setDir(SOUTH)
+	addtimer(CALLBACK(src, PROC_REF(end_teleport), T), TIME_TO_TRANSFORM)
 
 ///Finish the teleportation process to send the hivemind manifestation to the selected turf
 /mob/living/carbon/xenomorph/hivemind/proc/end_teleport(turf/T)
-	flick("Hivemind_materialisation_fast", src)
 	if(!check_weeds(T, TRUE))
 		balloon_alert(src, "No weeds in destination")
-	else
-		forceMove(T)
+		return
+	forceMove(T)
+	flick("Hivemind_[initial(loc_weeds_type.color_variant)]_materialisation", src)
+	setDir(SOUTH)
 
 /mob/living/carbon/xenomorph/hivemind/Move(NewLoc, Dir = 0)
 	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_HIVEMIND_MANIFESTATION))
@@ -242,12 +246,12 @@
 		return
 	abstract_move(get_turf(xeno))
 
-/// Hivemind just doesn't have any icons to update, disabled for now
-/mob/living/carbon/xenomorph/hivemind/update_icon()
+/// handles hivemind updating with their respective weedtype
+/mob/living/carbon/xenomorph/hivemind/update_icon_state()
 	if(status_flags & INCORPOREAL)
 		icon_state = "hivemind_marker"
 		return
-	icon_state = "Hivemind"
+	icon_state = "Hivemind_[initial(loc_weeds_type.color_variant)]"
 
 /mob/living/carbon/xenomorph/hivemind/update_icons()
 	return
@@ -277,6 +281,7 @@
 	if(!(status_flags & INCORPOREAL))
 		start_teleport(target_turf)
 		return
+	setDir(SOUTH)
 	abstract_move(target_turf)
 
 /mob/living/carbon/xenomorph/hivemind/CtrlClick(mob/user)

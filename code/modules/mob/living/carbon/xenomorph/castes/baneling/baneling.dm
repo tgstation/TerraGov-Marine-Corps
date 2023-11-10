@@ -71,6 +71,7 @@
 	if(isnull(source))
 		return
 	var/mob/living/carbon/xenomorph/xeno_ref = source
+	cleanup_baneling(xeno_ref)
 	xeno_ref.forceMove(src)
 	ADD_TRAIT(xeno_ref, TRAIT_STASIS, BANELING_STASIS_TRAIT)
 	if(xeno_ref.stored_charge >= BANELING_CHARGE_MAX)
@@ -84,6 +85,15 @@
 		to_chat(xeno_ref.client, span_xenohighdanger("We have perished and detonated. We will reform in [(BANELING_CHARGE_RESPAWN_TIME*4)/10] seconds in our pod..."))
 		addtimer(CALLBACK(src, PROC_REF(spawn_baneling), xeno_ref), BANELING_CHARGE_RESPAWN_TIME*4)
 	return COMPONENT_CANCEL_DEATH
+
+/// Handles cleaning up the baneling before teleporting it back to the pod
+/obj/structure/xeno/baneling_pod/proc/cleanup_baneling(mob/living/carbon/xenomorph/baneling)
+	// Sticky grenades
+	for (var/obj/item/explosive/grenade/sticky/nade in baneling)
+		nade.clean_refs()
+		nade.forceMove(get_turf(baneling))
+	// Fire
+	baneling.ExtinguishMob()
 
 /// Increase our current charge
 /obj/structure/xeno/baneling_pod/proc/increase_charge(datum/source)

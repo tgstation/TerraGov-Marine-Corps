@@ -16,6 +16,7 @@
 	refill_types = null
 	refill_sound = null
 	flags_storage = BYPASS_VENDOR_CHECK
+	access_delay = 0
 
 /obj/item/storage/pill_bottle/packet/remove_from_storage(obj/item/item, atom/new_location, mob/user)
 	. = ..()
@@ -65,7 +66,7 @@
 	pip_color = COLOR_PACKET_DYLOVENE
 
 /obj/item/storage/pill_bottle/packet/paracetamol
-	name = "paracematol pill packet"
+	name = "paracetamol pill packet"
 	desc = "This packet contains paracetamol pills, also known as tylenol. A long lasting but minor painkiller. Once you take them out they don't go back in. No more than 4 pills in a long period."
 	pill_type_to_fill = /obj/item/reagent_containers/pill/paracetamol
 	pip_color = COLOR_PACKET_PARACETAMOL
