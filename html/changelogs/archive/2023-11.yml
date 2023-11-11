@@ -193,3 +193,7 @@
   - balance: Hivemind demanifestation and remanifestation
   - bugfix: Hivemind no longer flickers on tele
   - bugfix: Hivemind direction of manifestation is normalized
+2023-11-11:
+  Xander3359:
+  - balance: pills no longer input-lock you
+  - qol: You can use a pill in-hand to eat it.

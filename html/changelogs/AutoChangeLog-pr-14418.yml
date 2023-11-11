@@ -1,5 +1,0 @@
-author: "Xander3359"
-delete-after: True
-changes:
-  - balance: "pills no longer input-lock you"
-  - qol: "You can use a pill in-hand to eat it."
