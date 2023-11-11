@@ -50,7 +50,7 @@
 
 /obj/item/weapon/gun/revolver/standard_revolver/coltrifle/Initialize(mapload, spawn_empty)
 	. = ..()
-	base_gun_icon = icon_state
+	base_gun_icon = "coltrifle"
 	update_icon()
 
 //////////////////////////////////////////////////////////////////////////
