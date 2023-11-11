@@ -1,0 +1,5 @@
+author: "SiegeB0t"
+delete-after: True
+changes:
+  - qol: "req can be confident that crates to a supply beacon on tad will arrive on tad."
+  - bugfix: "A supply beacon on tad will work after tad moves."
