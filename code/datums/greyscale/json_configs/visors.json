@@ -143,6 +143,12 @@
 			"icon_state": "fourvisor"
 		}
 	],
+	"markone_visor": [
+	{
+		"type": "hyperscale",
+		"icon_state": "markonevisor"
+	}
+],
 	"foureye_visor": [
 		{
 			"type": "hyperscale",
