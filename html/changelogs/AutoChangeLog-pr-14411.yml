@@ -1,0 +1,4 @@
+author: "Bobthe28th"
+delete-after: True
+changes:
+  - bugfix: "Defiler can only inject eggs adjacent to them."
