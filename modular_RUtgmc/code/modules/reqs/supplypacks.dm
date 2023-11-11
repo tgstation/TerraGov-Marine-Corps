@@ -188,3 +188,8 @@
 	name = "SG-62 smart target rifle ammo box"
 	contains = list(/obj/item/ammo_magazine/packet/sg62_rifle)
 	cost = 50
+
+/datum/supply_packs/factory/pizzarefill
+	name = "Nanotrasen \"Eat healthy!\" margerita pizza kit refill"
+	contains = list(/obj/item/factory_refill/pizza_refill)
+	cost = 890 //fuck you

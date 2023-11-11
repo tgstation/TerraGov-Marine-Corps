@@ -29,3 +29,6 @@
 /mob/living/carbon/human/species/robot/supply_export(faction_selling)
 	SSpoints.supply_points[faction_selling] += 45
 	return new /datum/export_report(45, name, faction_selling)
+
+/obj/item/reagent_containers/food/snacks/req_pizza/get_export_value()
+	return 30
