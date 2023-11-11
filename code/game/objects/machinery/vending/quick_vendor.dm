@@ -219,6 +219,10 @@ GLOBAL_LIST_INIT(quick_loadouts, init_quick_loadouts())
 			if(user_id.flags_id & CAN_BUY_LOADOUT)
 				user_id.flags_id &= ~CAN_BUY_LOADOUT
 				selected_loadout.quantity --
+				for(var/obj/item/inventory_items in ui.user)
+					if(inventory_items.flags_equip_slot == ITEM_SLOT_ID)
+						continue
+					ui.user.dropItemToGround(inventory_items)
 				selected_loadout.equip(ui.user) //actually equips the loadout
 				//After vending a quick loadout, remove points and GHMME options so that you can't vend them via loadout vendor
 				for(var/points in user_id.marine_points)
