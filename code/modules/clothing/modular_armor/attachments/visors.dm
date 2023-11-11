@@ -206,11 +206,17 @@
 
 //Hardsuit Helmet Visors
 /obj/item/armor_module/armor/visor/marine/fourvisor
-	name = "\improper Syndicate pattern Visor"
-	desc = "The visor attachment of the Jaeger modular helmets. This one is designed for the Dashe class of helmet."
+	name = "\improper FleckTex Mark V helmet visor"
+	desc = "The visor attachment of the FleckTex WY-01 series modular helmets. This one is designed for the Mark V Breacher class of helmet."
 	icon_state = "fourvisor_visor"
 
 /obj/item/armor_module/armor/visor/marine/foureyevisor
-	name = "\improper Syndicate foureye pattern Visor"
-	desc = "The visor attachment of the Jaeger modular helmets. This one is designed for the Dashe class of helmet."
+	name = "\improper FleckTex Mark III helmet visor"
+	desc = "The visor attachment of the FleckTex WY-01 series modular helmets. This one is designed for the Mark III Marauder class of helmet."
 	icon_state = "foureye_visor"
+
+/obj/item/armor_module/armor/visor/marine/markonevisor
+	name = "\improper FleckTex Mark I helmet visor"
+	desc = "The visor attachment of the FleckTex WY-01 series modular helmets. This one is designed for the Mark I Raider class of helmet."
+	icon_state = "markone_visor"
+
