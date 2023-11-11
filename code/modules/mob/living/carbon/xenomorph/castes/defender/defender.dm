@@ -53,13 +53,13 @@
 		return ..()
 	if(!ishuman(A))
 		return ..()
-	var/mob/living/carbon/human/H = A
+	var/mob/living/carbon/human/human_victim = A
 	var/extra_dmg = xeno_caste.melee_damage * xeno_melee_damage_modifier * 0.5 // 50% dmg reduction
-	H.attack_alien_harm(src, extra_dmg, FALSE, TRUE, FALSE, TRUE) //Location is always random, cannot crit, harm only
-	var/target_turf = get_step_away(src, H, rand(1, 2)) //This is where we blast our target
+	human_victim.attack_alien_harm(src, extra_dmg, FALSE, TRUE, FALSE, TRUE) //Location is always random, cannot crit, harm only
+	var/target_turf = get_ranged_target_turf(human_victim, get_dir(src, human_victim), rand(1, 2)) //we blast our victim behind us
 	target_turf = get_step_rand(target_turf) //Scatter
-	H.throw_at(get_turf(target_turf), 4, 5, src)
-	H.Paralyze(4 SECONDS)
+	human_victim.throw_at(get_turf(target_turf), DEFENDER_CHARGE_RANGE, 5, src)
+	human_victim.Paralyze(4 SECONDS)
 
 /mob/living/carbon/xenomorph/defender/Initialize(mapload)
 	. = ..()
