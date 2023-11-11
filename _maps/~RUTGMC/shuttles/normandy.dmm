@@ -95,7 +95,6 @@
 	},
 /obj/machinery/computer/dropship_weapons/dropship2,
 /turf/closed/shuttle/dropship2/panel{
-	opacity = 0;
 	dir = 4
 	},
 /area/shuttle/dropship/normandy)
@@ -174,7 +173,6 @@
 "pm" = (
 /obj/machinery/computer/shuttle/marine_dropship/one,
 /turf/closed/shuttle/dropship2/panel{
-	opacity = 0;
 	dir = 1
 	},
 /area/shuttle/dropship/normandy)
@@ -218,9 +216,7 @@
 /turf/template_noop,
 /area/shuttle/dropship/normandy)
 "tE" = (
-/turf/closed/shuttle/dropship2/glassthree{
-	opacity = 0
-	},
+/turf/closed/shuttle/dropship2/glassthree,
 /area/shuttle/dropship/normandy)
 "ur" = (
 /turf/closed/shuttle/dropship2/enginethree{
@@ -400,7 +396,7 @@
 "NN" = (
 /turf/closed/shuttle/dropship2/interiorwindow{
 	dir = 8;
-	opacity = 0
+	
 	},
 /area/shuttle/dropship/normandy)
 "Od" = (
@@ -417,9 +413,7 @@
 /area/shuttle/dropship/normandy)
 "PH" = (
 /obj/machinery/computer/security/dropship/two,
-/turf/closed/shuttle/dropship2/panel{
-	opacity = 0
-	},
+/turf/closed/shuttle/dropship2/panel,
 /area/shuttle/dropship/normandy)
 "PI" = (
 /turf/closed/shuttle/dropship2/enginetwo{
@@ -455,9 +449,7 @@
 /turf/closed/shuttle/dropship2/cornersalt2,
 /area/shuttle/dropship/normandy)
 "RG" = (
-/turf/closed/shuttle/dropship2/glassfour{
-	opacity = 0
-	},
+/turf/closed/shuttle/dropship2/glassfour,
 /area/shuttle/dropship/normandy)
 "RK" = (
 /turf/closed/shuttle/dropship2/engineone/alt{
@@ -530,9 +522,7 @@
 /turf/open/shuttle/dropship/floor,
 /area/shuttle/dropship/normandy)
 "XN" = (
-/turf/closed/shuttle/dropship2/interiorwindow{
-	opacity = 0
-	},
+/turf/closed/shuttle/dropship2/interiorwindow,
 /area/shuttle/dropship/normandy)
 "Yi" = (
 /turf/closed/shuttle/dropship2/interiormisc{
