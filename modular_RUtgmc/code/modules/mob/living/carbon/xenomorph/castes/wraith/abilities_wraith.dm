@@ -52,6 +52,31 @@
 // *********** Rewind
 // ***************************************
 
+/datum/action/xeno_action/activable/rewind
+	/// Initial fire stacks of the target
+	var/target_initial_fire_stacks = 0
+	/// Initial on_fire value
+	var/target_initial_on_fire = FALSE
+
+/datum/action/xeno_action/activable/rewind/use_ability(atom/A)
+	targeted = A
+	last_target_locs_list = list(get_turf(A))
+	target_initial_brute_damage = targeted.getBruteLoss()
+	target_initial_burn_damage = targeted.getFireLoss()
+	target_initial_fire_stacks = targeted.fire_stacks
+	target_initial_on_fire = targeted.on_fire
+	if(isxeno(A))
+		var/mob/living/carbon/xenomorph/xeno_target = targeted
+		target_initial_sunder = xeno_target.sunder
+	addtimer(CALLBACK(src, PROC_REF(start_rewinding)), start_rewinding)
+	RegisterSignal(targeted, COMSIG_MOVABLE_MOVED, PROC_REF(save_move))
+	targeted.add_filter("prerewind_blur", 1, radial_blur_filter(0.04))
+	targeted.balloon_alert(targeted, "You feel anchored to the past!")
+	ADD_TRAIT(targeted, TRAIT_TIME_SHIFTED, XENO_TRAIT)
+	add_cooldown()
+	succeed_activate()
+	return
+
 /// Move the target two tiles per tick
 /datum/action/xeno_action/activable/rewind/rewind()
 	var/turf/loc_a = pop(last_target_locs_list)
@@ -64,6 +89,7 @@
 		REMOVE_TRAIT(owner, TRAIT_IMMOBILE, TIMESHIFT_TRAIT)
 		if(isxeno(targeted))
 			targeted.heal_overall_damage(targeted.getBruteLoss() - target_initial_brute_damage, targeted.getFireLoss() - target_initial_burn_damage, updating_health = TRUE)
+			handle_fire()
 			var/mob/living/carbon/xenomorph/xeno_target = targeted
 			xeno_target.sunder = target_initial_sunder
 		targeted.remove_filter("rewind_blur")
@@ -74,3 +100,10 @@
 	targeted.Move(loc_b, get_dir(loc_b, loc_a))
 	new /obj/effect/temp_visual/xenomorph/afterimage(loc_a, targeted)
 	INVOKE_NEXT_TICK(src, PROC_REF(rewind))
+
+/datum/action/xeno_action/activable/rewind/proc/handle_fire()
+	if(target_initial_on_fire == TRUE && target_initial_fire_stacks >= 0)
+		targeted.fire_stacks = target_initial_fire_stacks
+		targeted.IgniteMob()
+	else
+		targeted.ExtinguishMob()
