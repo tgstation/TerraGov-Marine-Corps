@@ -1,0 +1,5 @@
+author: "ivanmixo"
+delete-after: True
+changes:
+  - bugfix: "Shrike vortex doesn't throw around things it shouldn't anymore (decals)"
+  - code_imp: "Smol shrike vortex code improvement"
