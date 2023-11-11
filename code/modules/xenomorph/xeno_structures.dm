@@ -1277,7 +1277,8 @@ TUNNEL
 	set_light(4, 2, LIGHT_COLOR_WHITE)
 
 /obj/structure/xeno/pherotower/omni/attack_alien(mob/living/carbon/xenomorph/X, damage_amount, damage_type, damage_flag, effects, armor_penetration, isrightclick)
-	return X.balloon_alert(X, "Cannot change") //We're already emitting all the pheros.
+	X.balloon_alert(X, "Cannot change") //We're already emitting all the pheros.
+	return FALSE
 
 /obj/structure/xeno/spawner
 	name = "spawner"
