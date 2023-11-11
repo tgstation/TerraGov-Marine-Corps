@@ -42,6 +42,10 @@
 	var/starting_faction_mission_brief = "starting faction mission brief here"
 	///Detailed mission description for the hostile faction
 	var/hostile_faction_mission_brief = "hostile faction mission brief here"
+	///Optional mission parameters for the starting faction. Some are autopopulated
+	var/starting_faction_mission_parameters
+	///Optional mission parameters for the hostile faction. Some are autopopulated
+	var/hostile_faction_mission_parameters
 	///Any additional rewards for the starting faction, for display purposes
 	var/starting_faction_additional_rewards = "starting faction mission rewards here"
 	///Any additional rewards for the hostile faction, for display purposes

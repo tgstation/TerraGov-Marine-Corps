@@ -270,6 +270,7 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 	current_mission_data["outcome"] = current_mission.outcome
 	current_mission_data["objective_description"] = (faction == current_mission.starting_faction ? current_mission.starting_faction_objective_description : current_mission.hostile_faction_objective_description)
 	current_mission_data["mission_brief"] = (faction == current_mission.starting_faction ? current_mission.starting_faction_mission_brief : current_mission.hostile_faction_mission_brief)
+	current_mission_data["mission_parameters"] = (faction == current_mission.starting_faction ? current_mission.starting_faction_mission_parameters : current_mission.hostile_faction_mission_parameters)
 	current_mission_data["mission_rewards"] = (faction == current_mission.starting_faction ? current_mission.starting_faction_additional_rewards : current_mission.hostile_faction_additional_rewards)
 	current_mission_data["vp_major_reward"] = (faction == current_mission.starting_faction ? current_mission.victory_point_rewards[MISSION_OUTCOME_MAJOR_VICTORY][1] : current_mission.victory_point_rewards[MISSION_OUTCOME_MAJOR_LOSS][2])
 	current_mission_data["vp_minor_reward"] = (faction == current_mission.starting_faction ? current_mission.victory_point_rewards[MISSION_OUTCOME_MINOR_VICTORY][1] : current_mission.victory_point_rewards[MISSION_OUTCOME_MINOR_LOSS][2])
@@ -308,6 +309,7 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 		mission_data["outcome"] = finished_mission.outcome
 		mission_data["objective_description"] = (faction == finished_mission.starting_faction ? finished_mission.starting_faction_objective_description : finished_mission.hostile_faction_objective_description)
 		mission_data["mission_brief"] = (faction == finished_mission.starting_faction ? finished_mission.starting_faction_mission_brief : finished_mission.hostile_faction_mission_brief)
+		mission_data["mission_parameters"] = (faction == finished_mission.starting_faction ? finished_mission.starting_faction_mission_parameters : finished_mission.hostile_faction_mission_parameters)
 		mission_data["mission_rewards"] = (faction == finished_mission.starting_faction ? finished_mission.starting_faction_additional_rewards : finished_mission.hostile_faction_additional_rewards)
 		finished_missions_data += list(mission_data)
 	data["finished_missions"] = finished_missions_data
