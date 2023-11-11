@@ -303,7 +303,7 @@
 	var/mob/living/carbon/xenomorph/defiler/X = owner
 
 	if(!owner.Adjacent(A))
-		A.balloon_alert(X, "Cannot reach")
+		A.balloon_alert(X, "Out of reach")
 		return fail_activate()
 
 	if(istype(A, /obj/alien/egg/gas))
