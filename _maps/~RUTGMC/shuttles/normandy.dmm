@@ -395,8 +395,7 @@
 /area/shuttle/dropship/normandy)
 "NN" = (
 /turf/closed/shuttle/dropship2/interiorwindow{
-	dir = 8;
-	
+	dir = 8
 	},
 /area/shuttle/dropship/normandy)
 "Od" = (
