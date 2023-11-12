@@ -201,7 +201,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 
 		switch(tgui_alert(ghost, "What would you like to do?", "Burrowed larva source available", list("Join as Larva", "Cancel"), 0))
 			if("Join as Larva")
-				SSticker.mode.attempt_to_join_as_larva(ghost)
+				SSticker.mode.attempt_to_join_as_larva(ghost.client)
 		return
 
 	else if(href_list["preference"])
