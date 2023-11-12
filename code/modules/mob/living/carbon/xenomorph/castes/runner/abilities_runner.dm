@@ -188,6 +188,7 @@
 		))
 	evade_active = FALSE
 	evasion_stacks = 0
+	evasion_duration = 0
 	owner.balloon_alert(owner, "Evasion ended")
 	owner.playsound_local(owner, 'sound/voice/hiss5.ogg', 50)
 	var/mob/living/carbon/xenomorph/runner/runner_owner = owner
