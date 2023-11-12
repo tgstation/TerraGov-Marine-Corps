@@ -1137,7 +1137,7 @@ to_chat will check for valid clients itself already so no need to double check f
 	while(stored_larva > 0 && LAZYLEN(candidates))
 		for(var/i in 1 to LAZYLEN(candidates))
 			client_in_queue = LAZYACCESS(candidates, i)
-			if(!XENODEATHTIME_CHECK(client_in_queue.key))
+			if(!XENODEATHTIME_CHECK(client_in_queue.mob))
 				break
 			var/candidate_death_time = (GLOB.key_to_time_of_xeno_death[client_in_queue.key] + SSticker.mode?.xenorespawn_time) - world.time
 			if(oldest_death > candidate_death_time || !oldest_death)
