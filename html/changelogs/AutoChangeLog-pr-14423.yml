@@ -1,5 +1,0 @@
-author: "Xander3359"
-delete-after: True
-changes:
-  - rscadd: "Added an empty reagent pouch to the clothing vendor."
-  - balance: "Adjust reagent pouch to 2:2:1:2 BKTT"

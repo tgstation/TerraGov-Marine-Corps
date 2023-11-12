@@ -1,5 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - qol: "failure to activate a campaign asset now provided more feedback to the user"
-  - bugfix: "fixed a few issues with activating some campaign assets"

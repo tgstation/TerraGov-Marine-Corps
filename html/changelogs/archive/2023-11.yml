@@ -197,3 +197,29 @@
   Xander3359:
   - balance: pills no longer input-lock you
   - qol: You can use a pill in-hand to eat it.
+2023-11-12:
+  Barnet2:
+  - bugfix: Removes unopenable blast door on smallbury CIC
+  Bobthe28th:
+  - bugfix: Defiler can only inject eggs adjacent to them.
+  Dgeen:
+  - bugfix: Rouny runner is back
+  Lumipharon:
+  - qol: Campaign missions will specify if a teleport or drop pod blocker is active
+      in the current mission
+  - qol: failure to activate a campaign asset now provided more feedback to the user
+  - bugfix: fixed a few issues with activating some campaign assets
+  - rscadd: Ammo knockback, as well as that caused by defender charge and rav abilities
+      now use throw mechanics
+  SiegeB0t:
+  - qol: req can be confident that crates to a supply beacon on tad will arrive on
+      tad.
+  - bugfix: A supply beacon on tad will work after tad moves.
+  Xander3359:
+  - rscadd: Added an empty reagent pouch to the clothing vendor.
+  - balance: Adjust reagent pouch to 2:2:1:2 BKTT
+  ivanmixo:
+  - bugfix: Shrike vortex doesn't throw around things it shouldn't anymore (decals)
+  - code_imp: Smol shrike vortex code improvement
+  vvvv-vvvv:
+  - bugfix: Fix missing nuke disk candidate icon

@@ -1,4 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - rscadd: "Ammo knockback, as well as that caused by defender charge and rav abilities now use throw mechanics"
