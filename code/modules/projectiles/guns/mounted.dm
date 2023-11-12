@@ -16,6 +16,24 @@
 	new /obj/item/weapon/gun/tl102(src) //gun itself
 	new /obj/item/ammo_magazine/tl102(src) //ammo for the gun
 
+///box for storage of the non-TGMC HMG
+/obj/item/storage/box/tl102/icc_hsg
+	name = "\improper KRD-61 crate"
+	desc = "A large and rusted metal case. It has not seen much use. Written in faded letters on its top, it says, \"This is a KRD-61 HSG\". There are many other warning labels atop that are too faded to read."
+	icon = 'icons/Marine/marine-hmg.dmi'
+	icon_state = "crate"
+	w_class = WEIGHT_CLASS_HUGE
+	storage_slots = 7
+	bypass_w_limit = list(
+		/obj/item/weapon/gun/tl102/icc_hsg,
+		/obj/item/ammo_magazine/icc_hsg,
+	)
+
+/obj/item/storage/box/tl102/Initialize(mapload)
+	. = ..()
+	new /obj/item/weapon/gun/tl102/icc_hsg/export(src) //gun itself
+	new /obj/item/ammo_magazine/icc_hsg(src) //ammo for the gun
+
 ///HSG-102, now with full auto. It is not a superclass of deployed guns, however there are a few varients.
 /obj/item/weapon/gun/tl102
 	name = "\improper HSG-102 mounted heavy smartgun"
@@ -88,6 +106,23 @@
 
 /obj/item/weapon/gun/tl102/hsg_nest/sandless
 	icon_state = "entrenched_sandless"
+
+// Non-TGMC IFF HSG
+
+/obj/item/weapon/gun/tl102/icc_hsg
+	name = "\improper ML-91ES mounted heavy smartgun"
+	desc = "The ML-91 heavy machinegun used by forces inside ICC space, some rarely find themselves in TGMC space as the export variant. It's too heavy to be wielded or operated without the tripod. This upated version is IFF capable. No extra work required, just deploy it with Ctrl-Click. Can be repaired with a blowtorch once deployed."
+	icon = 'icons/Marine/marine-mmg.dmi'
+	icon_state = "kord"
+
+	allowed_ammo_types = list(
+		/obj/item/ammo_magazine/icc_hsg,
+		/obj/item/ammo_magazine/icc_hsg/export,
+	)
+
+/obj/item/weapon/gun/tl102/icc_hsg/export
+	name = "\improper KRD-61ES mounted heavy smartgun"
+	desc = "The KRD-61ES machinegun is the export variant of the ML-91 HMG. It's too heavy to be wielded or operated without the tripod. This upated version is IFF capable. No extra work required, just deploy it with Ctrl-Click. Can be repaired with a blowtorch once deployed."
 
 //-------------------------------------------------------
 //MG-2005 mounted minigun

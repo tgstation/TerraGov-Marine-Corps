@@ -293,6 +293,7 @@
 	outfits = list(
 		/datum/outfit/job/clf/specialist/dpm,
 		/datum/outfit/job/clf/specialist/clf_heavyrifle,
+		/datum/outfit/job/clf/specialist/clf_heavymachinegun,
 	)
 
 //The base loadout for all CLF Specialists
@@ -358,6 +359,24 @@
 
 /datum/outfit/job/clf/specialist/clf_heavyrifle/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
+
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/stick, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/stick, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/stick, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/stick, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb, SLOT_IN_ACCESSORY)
+
+/datum/outfit/job/clf/specialist/clf_heavymachinegun
+	suit_store = /obj/item/storage/belt/sparepouch
+	back = /obj/item/weapon/gun/tl102/icc_hsg/export
+	belt = /obj/item/storage/belt/utility/full
+	back = /obj/item/storage/backpack/lightpack
+
+/datum/outfit/job/clf/specialist/clf_heavymachinegun/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	. = ..()
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/icc_hsg/export, SLOT_S_STORE)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/icc_hsg/export, SLOT_S_STORE)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/icc_hsg/export, SLOT_S_STORE)
 
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/stick, SLOT_IN_ACCESSORY)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/stick, SLOT_IN_ACCESSORY)
