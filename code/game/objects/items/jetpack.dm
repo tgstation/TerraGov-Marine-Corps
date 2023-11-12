@@ -91,11 +91,11 @@
 /obj/item/jetpack_marine/proc/use_jetpack(atom/A, mob/living/carbon/human/human_user)
 	if(human_user.buckled)
 		balloon_alert(human_user, "Cannot fly while buckled")
-		return
+		return FALSE
 	if(human_user.do_actions)
-		return
+		return FALSE
 	if(!do_after(user = human_user, delay = 0.3 SECONDS, needhand = FALSE, target = A, ignore_turf_checks = TRUE))
-		return
+		return FALSE
 	TIMER_COOLDOWN_START(src, COOLDOWN_JETPACK, JETPACK_COOLDOWN_TIME)
 	lit = TRUE
 	playsound(human_user,'sound/items/jetpack_sound.ogg',45)
@@ -106,6 +106,7 @@
 	new /obj/effect/temp_visual/smoke(get_turf(human_user))
 	human_user.fly_at(A, calculate_range(human_user), speed, hovering_time)
 	addtimer(CALLBACK(src,PROC_REF(reset_flame), human_user), hovering_time)
+	return TRUE
 
 ///Calculate the max range of the jetpack, changed by some item slowdown
 /obj/item/jetpack_marine/proc/calculate_range(mob/living/carbon/human/human_user)
@@ -202,3 +203,41 @@
 	playsound(loc, 'sound/effects/refill.ogg', 25, 1, 3)
 	balloon_alert(user, "Refilled")
 	update_icon()
+
+
+//
+/obj/item/jetpack_marine/heavy/use_jetpack(atom/A, mob/living/carbon/human/human_user)
+	. = ..()
+	if(!.)
+		return
+	if(human_user.a_intent != INTENT_HELP)
+		human_user.pass_flags &= ~PASS_MOB //we explicitly want to hit people
+	RegisterSignal(human_user, COMSIG_MOVABLE_PREBUMP_MOVABLE, PROC_REF(mob_hit))
+
+/obj/item/jetpack_marine/heavy/reset_flame(mob/living/carbon/human/human_user)
+	. = ..()
+	UnregisterSignal(human_user, COMSIG_MOVABLE_PREBUMP_MOVABLE)
+
+///Handles the user colliding with a mob
+/obj/item/jetpack_marine/heavy/proc/mob_hit(mob/living/carbon/human/owner, mob/living/hit_mob)
+	SIGNAL_HANDLER
+	if(!istype(hit_mob))
+		return
+	if(hit_mob.lying_angle)
+		return
+
+	if(ishuman(hit_mob) && (hit_mob.dir in reverse_nearby_direction(hit_mob.dir)))
+		var/mob/living/carbon/human/human_target = hit_mob
+		if(!human_target.check_shields(COMBAT_TOUCH_ATTACK, 30, MELEE))
+			owner.Paralyze(1 SECONDS)
+			owner.set_throwing(FALSE)
+			return COMPONENT_MOVABLE_PREBUMP_STOPPED
+
+	owner.forceMove(get_turf(hit_mob))
+	hit_mob.Knockdown(1 SECONDS)
+	hit_mob.apply_damage(40, BRUTE, BODY_ZONE_CHEST, MELEE, updating_health = TRUE)
+	playsound(hit_mob, 'sound/weapons/heavyhit.ogg', 40)
+
+	owner.set_throwing(FALSE)
+	reset_flame(owner)
+	return COMPONENT_MOVABLE_PREBUMP_STOPPED
