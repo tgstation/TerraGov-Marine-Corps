@@ -24,8 +24,6 @@
 	var/fuel_indicator = FUEL_INDICATOR_FULL
 	///How quick you will fly (warning, it rounds up to the nearest integer)
 	var/speed = 1
-	///How long the jetpack allows you to fly over things
-	var/hovering_time = 1 SECONDS
 	///True when jetpack has flame overlay
 	var/lit = FALSE
 	///True if you can use shift click/middle click to use it
@@ -84,6 +82,7 @@
 
 ///remove the flame overlay
 /obj/item/jetpack_marine/proc/reset_flame(mob/living/carbon/human/human_user)
+	UnregisterSignal(human_user, COMSIG_MOVABLE_POST_THROW)
 	lit = FALSE
 	update_icon()
 	human_user.update_inv_back()
@@ -97,7 +96,7 @@
 		return FALSE
 	if(!do_after(user = human_user, delay = 0.3 SECONDS, needhand = FALSE, target = A, ignore_turf_checks = TRUE))
 		return FALSE
-	TIMER_COOLDOWN_START(src, COOLDOWN_JETPACK, cooldown_time)
+	S_TIMER_COOLDOWN_START(src, COOLDOWN_JETPACK, cooldown_time)
 	lit = TRUE
 	playsound(human_user,'sound/items/jetpack_sound.ogg',45)
 	fuel_left -= FUEL_USE
@@ -105,8 +104,8 @@
 	human_user.update_inv_back()
 	update_icon()
 	new /obj/effect/temp_visual/smoke(get_turf(human_user))
-	human_user.fly_at(A, calculate_range(human_user), speed, hovering_time)
-	addtimer(CALLBACK(src,PROC_REF(reset_flame), human_user), hovering_time)
+	human_user.fly_at(A, calculate_range(human_user), speed)
+	RegisterSignal(human_user, COMSIG_MOVABLE_POST_THROW, PROC_REF(reset_flame))
 	return TRUE
 
 ///Calculate the max range of the jetpack, changed by some item slowdown
@@ -128,8 +127,9 @@
 	var/mob/living/carbon/human/human_user = usr
 	if(human_user.incapacitated() || human_user.lying_angle)
 		return
-	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_JETPACK))
-		to_chat(human_user,span_warning("You cannot use the jetpack yet!"))
+	var/time_left = S_TIMER_COOLDOWN_TIMELEFT(src, COOLDOWN_JETPACK)
+	if(time_left)
+		balloon_alert(human_user, "[time_left * 0.1] seconds")
 		return
 	if(fuel_left < FUEL_USE)
 		balloon_alert(human_user, "No fuel")
@@ -207,7 +207,21 @@
 
 
 /obj/item/jetpack_marine/heavy
+	name = "marine heavy jetpack"
+	desc = "A upgraded jetpack with enough fuel to send a person flying for a short while with extreme force. It provides better mobility for heavy users and enough thrust to be used in an aggressive manner. <b>Alt right click or middleclick to fly to a destination when the jetpack is equipped.</b>"
 	cooldown_time = 5 SECONDS
+
+/obj/item/jetpack_marine/heavy/calculate_range(mob/living/carbon/human/human_user)
+	var/range_limiting_factor = human_user.additive_flagged_slowdown(SLOWDOWN_IMPEDE_JETPACK)
+	switch(range_limiting_factor)
+		if(0 to 0.35) //light armor or above
+			return 7
+		if(0.35 to 0.75)//medium armor with shield
+			return 6
+		if(0.75 to 1.2)//heavy armor with shield
+			return 5
+		if(1.2 to INFINITY)//heavy armor with shield and tyr mk2
+			return 4
 
 /obj/item/jetpack_marine/heavy/use_jetpack(atom/A, mob/living/carbon/human/human_user)
 	. = ..()
@@ -232,15 +246,14 @@
 	if(ishuman(hit_mob) && (hit_mob.dir in reverse_nearby_direction(hit_mob.dir)))
 		var/mob/living/carbon/human/human_target = hit_mob
 		if(!human_target.check_shields(COMBAT_TOUCH_ATTACK, 30, MELEE))
-			owner.Paralyze(1 SECONDS)
+			owner.Paralyze(0.5 SECONDS)
 			owner.set_throwing(FALSE)
 			return COMPONENT_MOVABLE_PREBUMP_STOPPED
 
 	owner.forceMove(get_turf(hit_mob))
-	hit_mob.Knockdown(1 SECONDS)
+	hit_mob.Knockdown(0.5 SECONDS)
 	hit_mob.apply_damage(40, BRUTE, BODY_ZONE_CHEST, MELEE, updating_health = TRUE)
 	playsound(hit_mob, 'sound/weapons/heavyhit.ogg', 40)
 
 	owner.set_throwing(FALSE)
-	reset_flame(owner)
 	return COMPONENT_MOVABLE_PREBUMP_STOPPED
