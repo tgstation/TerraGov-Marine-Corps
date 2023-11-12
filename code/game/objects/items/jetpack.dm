@@ -1,7 +1,6 @@
 #define FUEL_USE 5
 #define FUEL_INDICATOR_FULL 35
 #define FUEL_INDICATOR_HALF_FULL 20
-#define JETPACK_COOLDOWN_TIME 10 SECONDS
 
 /obj/item/jetpack_marine
 	name = "marine jetpack"
@@ -15,6 +14,8 @@
 	w_class = WEIGHT_CLASS_BULKY
 	flags_equip_slot = ITEM_SLOT_BACK
 	obj_flags = CAN_BE_HIT
+	///Time between uses
+	var/cooldown_time = 10 SECONDS
 	///maximum amount of fuel in the jetpack
 	var/fuel_max = 75
 	///current amount of fuel in the jetpack
@@ -96,7 +97,7 @@
 		return FALSE
 	if(!do_after(user = human_user, delay = 0.3 SECONDS, needhand = FALSE, target = A, ignore_turf_checks = TRUE))
 		return FALSE
-	TIMER_COOLDOWN_START(src, COOLDOWN_JETPACK, JETPACK_COOLDOWN_TIME)
+	TIMER_COOLDOWN_START(src, COOLDOWN_JETPACK, cooldown_time)
 	lit = TRUE
 	playsound(human_user,'sound/items/jetpack_sound.ogg',45)
 	fuel_left -= FUEL_USE
@@ -205,7 +206,9 @@
 	update_icon()
 
 
-//
+/obj/item/jetpack_marine/heavy
+	cooldown_time = 5 SECONDS
+
 /obj/item/jetpack_marine/heavy/use_jetpack(atom/A, mob/living/carbon/human/human_user)
 	. = ..()
 	if(!.)
