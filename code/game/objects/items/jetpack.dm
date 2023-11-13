@@ -210,6 +210,7 @@
 	name = "marine heavy jetpack"
 	desc = "A upgraded jetpack with enough fuel to send a person flying for a short while with extreme force. It provides better mobility for heavy users and enough thrust to be used in an aggressive manner. <b>Alt right click or middleclick to fly to a destination when the jetpack is equipped.</b>"
 	cooldown_time = 5 SECONDS
+	speed = 2
 
 /obj/item/jetpack_marine/heavy/calculate_range(mob/living/carbon/human/human_user)
 	var/range_limiting_factor = human_user.additive_flagged_slowdown(SLOWDOWN_IMPEDE_JETPACK)
