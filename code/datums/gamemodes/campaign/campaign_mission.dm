@@ -42,6 +42,10 @@
 	var/starting_faction_mission_brief = "starting faction mission brief here"
 	///Detailed mission description for the hostile faction
 	var/hostile_faction_mission_brief = "hostile faction mission brief here"
+	///Optional mission parameters for the starting faction. Some are autopopulated
+	var/starting_faction_mission_parameters
+	///Optional mission parameters for the hostile faction. Some are autopopulated
+	var/hostile_faction_mission_parameters
 	///Any additional rewards for the starting faction, for display purposes
 	var/starting_faction_additional_rewards = "starting faction mission rewards here"
 	///Any additional rewards for the hostile faction, for display purposes
@@ -157,7 +161,7 @@
 /datum/campaign_mission/proc/load_map()
 	mission_z_level = load_new_z_level(map_file, map_name, TRUE, map_traits)
 	set_z_lighting(mission_z_level.z_value, map_light_colours[1], map_light_levels[1], map_light_colours[2], map_light_levels[2], map_light_colours[3], map_light_levels[3], map_light_colours[4], map_light_levels[4])
-
+	mission_state = MISSION_STATE_LOADED
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_CAMPAIGN_MISSION_LOADED, mission_z_level.z_value)
 
 ///Generates the mission brief for the mission if it needs to be late loaded

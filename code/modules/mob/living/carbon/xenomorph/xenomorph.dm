@@ -445,11 +445,27 @@
 		return
 	loc_weeds_type = null
 
-/// Handles logic for the xeno moving to a new weeds tile
+/**  Handles logic for the xeno moving to a new weeds tile.
+Returns TRUE when loc_weeds_type changes. Returns FALSE when it doesn’t change */
 /mob/living/carbon/xenomorph/proc/handle_weeds_on_movement(datum/source)
 	SIGNAL_HANDLER
 	var/obj/alien/weeds/found_weed = locate(/obj/alien/weeds) in loc
+	if(loc_weeds_type == found_weed?.type)
+		return FALSE
 	loc_weeds_type = found_weed?.type
+	return TRUE
+
+/mob/living/carbon/xenomorph/hivemind/handle_weeds_on_movement(datum/source)
+	. = ..()
+	if(!.)
+		return
+	update_icon()
+
+/mob/living/carbon/xenomorph/hivemind/handle_weeds_on_movement(datum/source)
+	. = ..()
+	if(!.)
+		return
+	update_icon()
 
 /mob/living/carbon/xenomorph/lay_down()
 	var/datum/action/xeno_action/xeno_resting/resting_action = actions_by_path[/datum/action/xeno_action/xeno_resting]

@@ -1,0 +1,5 @@
+author: "Xander3359"
+delete-after: True
+changes:
+  - imageadd: "Harvesters will now have a visual based on whichever reagent is loaded"
+  - code_imp: "Harvesters now have sprites + code in their own separate file"

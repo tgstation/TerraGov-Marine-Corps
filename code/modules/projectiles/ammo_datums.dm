@@ -157,8 +157,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 				impact_message += span_xenodanger("The blast knocks you off your feet!")
 			else
 				impact_message += span_highdanger("The blast knocks you off your feet!")
-			for(var/i in 1 to knockback)
-				step_away(victim, proj)
+			victim.knockback(proj, knockback, 5)
 
 	//Check for and apply soft CC
 	if(iscarbon(victim))

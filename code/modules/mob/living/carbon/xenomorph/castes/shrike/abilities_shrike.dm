@@ -313,7 +313,7 @@
 	plasma_cost = 400
 	cooldown_timer = 2 MINUTES
 	keybinding_signals = list(
-	    KEYBINDING_NORMAL = COMSIG_XENOABILITY_PLACE_ACID_WELL,
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PLACE_ACID_WELL,
 	)
 
 /datum/action/xeno_action/place_acidwell/can_use_action(silent = FALSE, override_flags)
@@ -397,18 +397,14 @@
 	return
 
 
-///checks for any non-anchored movable atom, throwing them towards the shrike/owner using the ability. While causing shake to anything in range with effects applied to humans affected.
+/**
+ * Checks for any non-anchored movable atom, throwing them towards the shrike/owner using the ability. 
+ * While causing shake to anything in range with effects applied to humans affected.
+ */
 /datum/action/xeno_action/activable/psychic_vortex/proc/vortex_pull()
 	playsound(owner, 'sound/effects/seedling_chargeup.ogg', 60)
-	for(var/atom/victim AS in range(VORTEX_RANGE, owner.loc))
-		if(isturf(victim))
-			continue
-		if(!ismovableatom(victim))
-			continue
-		var/atom/movable/movable_victim = victim
-		if(movable_victim.anchored)
-			continue
-		if(isxeno(movable_victim))
+	for(var/atom/movable/movable_victim in range(VORTEX_RANGE, owner.loc))
+		if(movable_victim.anchored || isxeno(movable_victim) || movable_victim.move_resist > MOVE_FORCE_STRONG)
 			continue
 		if(ishuman(movable_victim))
 			var/mob/living/carbon/human/H = movable_victim
@@ -423,20 +419,15 @@
 			movable_victim.throw_at(targetturf, 4, 1, owner, FALSE, FALSE)
 		movable_victim.throw_at(owner, 4, 1, owner, FALSE, FALSE)
 
-///randomly throws movable atoms in the radius of the vortex abilites range, different each use.
+/// Randomly throws movable atoms in the radius of the vortex abilites range, different each use.
 /datum/action/xeno_action/activable/psychic_vortex/proc/vortex_push()
-	for(var/atom/victim in range(VORTEX_RANGE, owner.loc))
-		if(!ismovableatom(victim))
-			continue
-		var/atom/movable/movable_victim = victim
-		if(movable_victim.anchored || isxeno(movable_victim))
+	for(var/atom/movable/movable_victim in range(VORTEX_RANGE, owner.loc))
+		if(movable_victim.anchored || isxeno(movable_victim) || movable_victim.move_resist == INFINITY)
 			continue
 		if(ishuman(movable_victim))
-			var/mob/living/carbon/human/H = movable_victim
-			if(H.stat == DEAD)
+			var/mob/living/carbon/human/human_victim = movable_victim
+			if(human_victim.stat == DEAD)
 				continue
-		if(movable_victim)
-			var/turf/targetturf = get_turf(owner)
-			targetturf = locate(targetturf.x + rand(1, 4), targetturf.y + rand(1, 4), targetturf.z)
-			movable_victim.throw_at(targetturf, 4, 1, owner, FALSE, FALSE)
-
+		var/turf/targetturf = get_turf(owner)
+		targetturf = locate(targetturf.x + rand(1, 4), targetturf.y + rand(1, 4), targetturf.z)
+		movable_victim.throw_at(targetturf, 4, 1, owner, FALSE, FALSE)

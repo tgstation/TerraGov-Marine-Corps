@@ -1,5 +1,15 @@
 #define NO_REAGENT_COLOR "#FFFFFF"
 
+#define VALI_CODEX "<b>Reagent info:</b><BR>\
+	Bicaridine - heals somebody else for 12.5 brute, or when used on yourself heal 6 brute and 30 stamina<BR>\
+	Kelotane - set your target and any adjacent mobs aflame<BR>\
+	Tramadol - slow your target for 1 second and deal 60% more armor-piercing damage<BR>\
+	<BR>\
+	<b>Tips:</b><BR>\
+	> Needs to be connected to the Vali system to collect green blood. You can connect it though the Vali system's configurations menu.<BR>\
+	> Filled by liquid reagent containers. Emptied by using an empty liquid reagent container. Can also be filled by pills.<BR>\
+	> Press your unique action key (SPACE by default) to load a single-use of the reagent effect after the blade has been filled up.<BR>"
+
 /datum/component/harvester
 	///reagent selected for actions
 	var/datum/reagent/selected_reagent
@@ -41,6 +51,7 @@
 	RegisterSignal(reagent_select_action, COMSIG_ACTION_TRIGGER, PROC_REF(select_reagent))
 	RegisterSignal(parent, COMSIG_ATOM_UPDATE_OVERLAYS, PROC_REF(update_loaded_color))
 	RegisterSignal(parent, COMSIG_ITEM_APPLY_CUSTOM_OVERLAY, PROC_REF(upate_mob_overlay))
+	RegisterSignal(parent, COMSIG_ATOM_GET_MECHANICS_INFO, PROC_REF(get_mechanics_info))
 
 	item_parent.update_icon() //So that our sprite realizes it's empty when it spawns
 
@@ -75,6 +86,12 @@
 		output += "<span style='color:[initial(reagent.color)];font-weight:bold'>[initial(reagent.name)]</span>\n"
 
 	to_chat(user, output)
+
+///Adds mechanics info to the weapon
+/datum/component/harvester/proc/get_mechanics_info(datum/source, list/mechanics_text)
+	SIGNAL_HANDLER
+	mechanics_text += (VALI_CODEX)
+	return COMPONENT_MECHANICS_CHANGE
 
 ///Handles behavior for when item is clicked on
 /datum/component/harvester/proc/attackby_async(datum/source, obj/item/cont, mob/user)
@@ -167,6 +184,16 @@
 	else
 		item_overlay.color = initial(loaded_reagent.color)
 	item_parent.overlays.Add(item_overlay)
+
+///Updates the mob sprite
+/datum/component/harvester/proc/upate_mob_overlay(datum/source, mutable_appearance/standing, inhands, icon_used, state_used)
+	SIGNAL_HANDLER
+	var/mutable_appearance/blade_overlay = mutable_appearance(icon_used, "[state_used]_loaded")
+	if(!loaded_reagent)
+		blade_overlay.color = COLOR_GREEN
+	else
+		blade_overlay.color = initial(loaded_reagent.color)
+	standing.overlays.Add(blade_overlay)
 
 ///Updates the mob sprite
 /datum/component/harvester/proc/upate_mob_overlay(datum/source, mutable_appearance/standing, inhands, icon_used, state_used)
@@ -287,3 +314,4 @@
 	button.overlays += selected_reagent_overlay
 
 #undef NO_REAGENT_COLOR
+#undef VALI_CODEX

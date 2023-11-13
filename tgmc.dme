@@ -836,6 +836,7 @@
 #include "code\game\objects\items\storage\misc.dm"
 #include "code\game\objects\items\storage\pill_packets.dm"
 #include "code\game\objects\items\storage\pouch.dm"
+#include "code\game\objects\items\storage\reagent_pouch.dm"
 #include "code\game\objects\items\storage\secure.dm"
 #include "code\game\objects\items\storage\storage.dm"
 #include "code\game\objects\items\storage\surgical_tray.dm"

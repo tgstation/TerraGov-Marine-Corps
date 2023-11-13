@@ -65,8 +65,8 @@
 		immediate_effect()
 
 ///Handles the activated asset process
-/datum/campaign_asset/proc/attempt_activatation()
-	if(activation_checks())
+/datum/campaign_asset/proc/attempt_activatation(mob/user)
+	if(activation_checks(user))
 		return FALSE
 
 	activated_effect()
@@ -78,26 +78,34 @@
 	uses --
 	if(uses <= 0)
 		asset_flags |= ASSET_CONSUMED
+	SEND_SIGNAL(src, COMSIG_CAMPAIGN_ASSET_ACTIVATION)
 	return TRUE
 
 ///Returns TRUE if unable to be activated
-/datum/campaign_asset/proc/activation_checks()
+/datum/campaign_asset/proc/activation_checks(mob/user)
 	SHOULD_CALL_PARENT(TRUE)
-	if((asset_flags & ASSET_CONSUMED) || asset_flags & ASSET_DISABLED || uses <= 0)
+	if(!(asset_flags & ASSET_ACTIVATED_EFFECT))
 		return TRUE
-
+	if((asset_flags & ASSET_CONSUMED))
+		to_chat(user, span_warning("This asset is inactive."))
+		return TRUE
+	if(uses <= 0)
+		to_chat(user, span_warning("No further uses of this assets available."))
+		return TRUE
+	if(asset_flags & ASSET_DISABLED)
+		to_chat(user, span_warning("External interferance prevents the activation of this asset."))
+		return TRUE
 	if((asset_flags & ASSET_DISALLOW_REPEAT_USE) && (asset_flags & ASSET_ACTIVE))
-		to_chat(faction.faction_leader, span_warning(already_active_message))
+		to_chat(user, span_warning(already_active_message))
 		return TRUE
-
 	if(asset_flags & ASSET_ACTIVE_MISSION_ONLY)
 		var/datum/game_mode/hvh/campaign/mode = SSticker.mode
 		var/datum/campaign_mission/current_mission = mode.current_mission
-		if(!current_mission || (current_mission.mission_state == MISSION_STATE_FINISHED))
-			to_chat(faction.faction_leader, span_warning("Unavailable until next mission confirmed."))
+		if(!current_mission || (current_mission.mission_state == MISSION_STATE_NEW) || (current_mission.mission_state == MISSION_STATE_FINISHED))
+			to_chat(user, span_warning("Unavailable until next mission confirmed."))
 			return TRUE
 		if(blacklist_mission_flags & current_mission.mission_flags)
-			to_chat(faction.faction_leader, span_warning(blacklist_message))
+			to_chat(user, span_warning(blacklist_message))
 			return TRUE
 
 	return FALSE

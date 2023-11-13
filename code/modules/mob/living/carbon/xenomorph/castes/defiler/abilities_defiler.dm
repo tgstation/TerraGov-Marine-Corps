@@ -302,6 +302,10 @@
 /datum/action/xeno_action/activable/inject_egg_neurogas/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/defiler/X = owner
 
+	if(!owner.Adjacent(A))
+		A.balloon_alert(X, "Out of reach")
+		return fail_activate()
+
 	if(istype(A, /obj/alien/egg/gas))
 		A.balloon_alert(X, "Egg already injected")
 		return fail_activate()

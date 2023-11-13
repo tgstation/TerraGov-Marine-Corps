@@ -1,8 +1,9 @@
-//Delays the mob's next click/action by num deciseconds
-// eg: 10 - 3 = 7 deciseconds of delay
-// eg: 10 * 0.5 = 5 deciseconds of delay
-// DOES NOT EFFECT THE BASE 1 DECISECOND DELAY OF NEXT_CLICK
-
+/**
+ * Delays the mob's next click/action by num deciseconds
+ * eg: 10 - 3 = 7 deciseconds of delay
+ * eg: 10 * 0.5 = 5 deciseconds of delay
+ * DOES NOT EFFECT THE BASE 1 DECISECOND DELAY OF NEXT_CLICK
+ */
 /mob/proc/changeNext_move(num)
 	next_move = world.time + ((num + next_move_adjust) * next_move_modifier)
 
