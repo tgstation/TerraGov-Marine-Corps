@@ -61,6 +61,7 @@
 	ceiling = CEILING_NONE
 	outside = FALSE
 	always_unpowered = TRUE
+	sound_environment = SOUND_ENVIRONMENT_CAVE
 
 /area/outpost/caves/central
 	name = "Central Caves"

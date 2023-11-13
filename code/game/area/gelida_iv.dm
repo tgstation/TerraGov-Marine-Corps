@@ -439,6 +439,7 @@
 	ceiling = CEILING_DEEP_UNDERGROUND
 	minimap_color = MINIMAP_AREA_CAVES
 	always_unpowered = TRUE
+	sound_environment = SOUND_ENVIRONMENT_CAVE
 
 /area/gelida/caves/west_caves
 	name = "Western Caves"

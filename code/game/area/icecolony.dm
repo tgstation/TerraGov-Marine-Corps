@@ -168,6 +168,7 @@
 /area/ice_colony/exterior/underground/caves
 	name = "Underground Caves"
 	icon_state = "cave"
+	sound_environment = SOUND_ENVIRONMENT_CAVE
 
 /area/ice_colony/exterior/underground/caves/ice_nw
 	name = "North Western Ice Caves"

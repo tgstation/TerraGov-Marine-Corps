@@ -8,6 +8,7 @@
 	ceiling = CEILING_UNDERGROUND
 	minimap_color = MINIMAP_AREA_CAVES
 	always_unpowered = TRUE
+	sound_environment = SOUND_ENVIRONMENT_CAVE
 
 /area/icy_caves/caves/northern
 	name = "Northern Caves"

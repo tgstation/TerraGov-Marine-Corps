@@ -8,6 +8,7 @@
 	outside = FALSE
 	minimap_color = MINIMAP_AREA_CAVES
 	always_unpowered = TRUE
+	sound_environment = SOUND_ENVIRONMENT_CAVE
 
 /area/lawankaoutpost/caves/rock
 	name = "Enclosed Area"

@@ -32,6 +32,7 @@
 	ambience = list('sound/ambience/ambicave.ogg', 'sound/ambience/ambilava1.ogg', 'sound/ambience/ambilava2.ogg', 'sound/ambience/ambilava3.ogg')
 	minimap_color = MINIMAP_AREA_CAVES
 	always_unpowered = TRUE
+	sound_environment = SOUND_ENVIRONMENT_CAVE
 
 /area/magmoor/cave/central
 	name = "Central Caves"
