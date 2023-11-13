@@ -224,16 +224,6 @@
 	spawner_width = 54
 	spawner_height = 22
 
-/obj/effect/spawner/modularmap/bigred/landingzonetwo
-	mapid = "brlz2"
-	spawner_width = 43
-	spawner_height = 38
-
-/obj/effect/spawner/modularmap/bigred/landingzoneone
-	mapid = "brlz1"
-	spawner_width = 85
-	spawner_height = 38
-
 /************OSCAR OUTPOST**********/
 /obj/effect/spawner/modularmap/oscaroutposttophalf
 	mapid = "oscartop"
