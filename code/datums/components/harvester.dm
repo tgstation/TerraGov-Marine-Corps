@@ -174,8 +174,8 @@
 
 	user.balloon_alert(user, "loaded")
 
-///Updates the color of the weapon based on what chem is loaded in. Updates both the item sprite and mob sprite
-/datum/component/harvester/proc/update_loaded_color(datum/source)
+///Updates the color of the overlay on top of the item sprite based on what chem is loaded in
+/datum/component/harvester/proc/update_loaded_color(datum/source, list/overlays_list)
 	SIGNAL_HANDLER
 	var/obj/item/item_parent = parent
 	var/image/item_overlay = image('icons/obj/items/vali.dmi', item_parent, "[initial(item_parent.icon_state)]_loaded")
@@ -183,17 +183,7 @@
 		item_overlay.color = COLOR_GREEN
 	else
 		item_overlay.color = initial(loaded_reagent.color)
-	item_parent.overlays.Add(item_overlay)
-
-///Updates the mob sprite
-/datum/component/harvester/proc/upate_mob_overlay(datum/source, mutable_appearance/standing, inhands, icon_used, state_used)
-	SIGNAL_HANDLER
-	var/mutable_appearance/blade_overlay = mutable_appearance(icon_used, "[state_used]_loaded")
-	if(!loaded_reagent)
-		blade_overlay.color = COLOR_GREEN
-	else
-		blade_overlay.color = initial(loaded_reagent.color)
-	standing.overlays.Add(blade_overlay)
+	overlays_list.Add(item_overlay)
 
 ///Updates the mob sprite
 /datum/component/harvester/proc/upate_mob_overlay(datum/source, mutable_appearance/standing, inhands, icon_used, state_used)
