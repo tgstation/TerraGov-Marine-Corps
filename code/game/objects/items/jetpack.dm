@@ -236,7 +236,7 @@
 	UnregisterSignal(human_user, COMSIG_MOVABLE_PREBUMP_MOVABLE)
 
 ///Handles the user colliding with a mob
-/obj/item/jetpack_marine/heavy/proc/mob_hit(mob/living/carbon/human/owner, mob/living/hit_mob)
+/obj/item/jetpack_marine/heavy/proc/mob_hit(mob/living/carbon/human/human_user, mob/living/hit_mob)
 	SIGNAL_HANDLER
 	if(!istype(hit_mob))
 		return
@@ -246,14 +246,16 @@
 	if(ishuman(hit_mob) && (hit_mob.dir in reverse_nearby_direction(hit_mob.dir)))
 		var/mob/living/carbon/human/human_target = hit_mob
 		if(!human_target.check_shields(COMBAT_TOUCH_ATTACK, 30, MELEE))
-			owner.Paralyze(0.5 SECONDS)
-			owner.set_throwing(FALSE)
+			human_user.Knockdown(0.5 SECONDS)
+			human_user.set_throwing(FALSE)
+			human_user.visible_message(span_danger("[human_user] crashes into [hit_mob]!"))
 			return COMPONENT_MOVABLE_PREBUMP_STOPPED
 
-	owner.forceMove(get_turf(hit_mob))
+	human_user.forceMove(get_turf(hit_mob))
 	hit_mob.Knockdown(0.5 SECONDS)
 	hit_mob.apply_damage(40, BRUTE, BODY_ZONE_CHEST, MELEE, updating_health = TRUE)
+	hit_mob.visible_message(span_danger("[human_user] slams into [hit_mob]!"))
 	playsound(hit_mob, 'sound/weapons/heavyhit.ogg', 40)
 
-	owner.set_throwing(FALSE)
+	human_user.set_throwing(FALSE)
 	return COMPONENT_MOVABLE_PREBUMP_STOPPED
