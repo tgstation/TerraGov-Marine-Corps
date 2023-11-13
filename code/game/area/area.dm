@@ -60,8 +60,8 @@
 	///Used to decide what the maximum time between ambience is
 	var/max_ambience_cooldown = 120 SECONDS
 
-	///What sound eviroment to use
-	var/sound_environment = SOUND_ENVIRONMENT_ROOM
+	///What sound environment to use
+	var/sound_environment = SOUND_ENVIRONMENT_NONE
 
 	///Boolean to limit the areas (subtypes included) that atoms in this area can smooth with. Used for shuttles.
 	var/area_limited_icon_smoothing = FALSE
