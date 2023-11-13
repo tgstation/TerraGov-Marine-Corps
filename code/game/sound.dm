@@ -106,7 +106,9 @@ A good representation is: 'byond applies a volume reduction to the sound every X
 		S.falloff = falloff ? falloff : FALLOFF_SOUNDS * max(round(S.volume * 0.05), 1)
 
 	if(!is_global)
-		S.environment = SOUND_ENVIRONMENT_ROOM
+		//get area sound enviroment and use it for sound
+		var/area/A = get_area(src)
+		S.environment = A.sound_environment
 
 	SEND_SOUND(src, S)
 
