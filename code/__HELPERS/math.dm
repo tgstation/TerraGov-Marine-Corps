@@ -125,5 +125,5 @@
 	return TRUE
 
 
-/// rand() but for floats, returns a random floating point number between L and H
-#define randfloat(L, H) ((L) + rand() * ((H) - (L)))
+/// rand() but for floats, returns a random floating point number between low and high
+#define randfloat(low, high) ((low) + rand() * ((high) - (low)))
