@@ -1,4 +1,5 @@
 //All the harvester weapons go in here
+#define VALI_CHEM_STORAGE 30
 
 //Vali Sword
 /obj/item/weapon/claymore/harvester
@@ -14,11 +15,10 @@
 	force = 60
 	attack_speed = 12
 	w_class = WEIGHT_CLASS_BULKY
-	max_shots = 30
 
 /obj/item/weapon/claymore/harvester/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/harvester, max_shots)
+	AddComponent(/datum/component/harvester)
 
 /obj/item/weapon/claymore/harvester/equipped(mob/user, slot)
 	. = ..()
@@ -47,11 +47,10 @@
 	attack_speed = 8
 	sharp = IS_SHARP_ITEM_ACCURATE
 	hitsound = 'sound/weapons/slash.ogg'
-	max_shots = 5
 
 /obj/item/weapon/combat_knife/harvester/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/harvester, max_shots)
+	AddComponent(/datum/component/harvester, VALI_CHEM_STORAGE/6)
 
 /obj/item/weapon/combat_knife/harvester/equipped(mob/user, slot)
 	. = ..()
@@ -75,11 +74,10 @@
 	force = 32
 	force_wielded = 60
 	throwforce = 60
-	max_shots = 30
 
 /obj/item/weapon/twohanded/spear/tactical/harvester/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/harvester, max_shots)
+	AddComponent(/datum/component/harvester)
 
 //Vali Claymore (That thing was too big to be called a sword. Too big, too thick, too heavy, and too rough, it was more like a large hunk of iron.)
 /obj/item/weapon/twohanded/glaive/harvester
@@ -94,11 +92,10 @@
 	item_state = "vali_claymore"
 	attack_speed = 24
 	resistance_flags = NONE
-	max_shots = 60
 
 /obj/item/weapon/twohanded/glaive/harvester/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/harvester, max_shots, TRUE)
+	AddComponent(/datum/component/harvester, VALI_CHEM_STORAGE*2, TRUE)
 
 /obj/item/weapon/twohanded/glaive/harvester/wield(mob/user)
 	. = ..()
@@ -111,3 +108,5 @@
 	if(!.)
 		return
 	toggle_item_bump_attack(user, FALSE)
+
+#undef VALI_CHEM_STORAGE
