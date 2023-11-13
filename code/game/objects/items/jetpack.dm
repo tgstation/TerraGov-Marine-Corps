@@ -208,7 +208,7 @@
 
 /obj/item/jetpack_marine/heavy
 	name = "heavy lift jetpack"
-	desc = "An upgraded jetpack with enough fuel to send a person flying for a short while with extreme force. It provides better mobility for heavy users and enough thrust to be used in an aggressive manner. <b>Alt right click or middleclick to fly to a destination when the jetpack is equipped.</b>"
+	desc = "An upgraded jetpack with enough fuel to send a person flying for a short while with extreme force. It provides better mobility for heavy users and enough thrust to be used in an aggressive manner. <b>Alt right click or middleclick to fly to a destination when the jetpack is equipped. Will collide with hostiles</b>"
 	cooldown_time = 5 SECONDS
 	speed = 2
 
@@ -244,7 +244,9 @@
 	if(hit_mob.lying_angle)
 		return
 
-	if(ishuman(hit_mob) && (hit_mob.dir in reverse_nearby_direction(hit_mob.dir)))
+	playsound(hit_mob, 'sound/weapons/heavyhit.ogg', 40)
+
+	if(ishuman(hit_mob) && (human_user.dir in reverse_nearby_direction(hit_mob.dir)))
 		var/mob/living/carbon/human/human_target = hit_mob
 		if(!human_target.check_shields(COMBAT_TOUCH_ATTACK, 30, MELEE))
 			human_user.Knockdown(0.5 SECONDS)
@@ -252,11 +254,17 @@
 			human_user.visible_message(span_danger("[human_user] crashes into [hit_mob]!"))
 			return COMPONENT_MOVABLE_PREBUMP_STOPPED
 
+	var/knockdown_duration = 0.5 SECONDS
+	var/list/stunlist = list(0, knockdown_duration, 0, 0)
+	if(SEND_SIGNAL(hit_mob, COMSIG_LIVING_JETPACK_STUN, stunlist, MELEE))
+		knockdown_duration = stunlist[2]
+		hit_mob.adjust_stagger(stunlist[3])
+		hit_mob.add_slowdown(stunlist[4])
+
+	hit_mob.Knockdown(knockdown_duration)
 	human_user.forceMove(get_turf(hit_mob))
-	hit_mob.Knockdown(0.5 SECONDS)
 	hit_mob.apply_damage(40, BRUTE, BODY_ZONE_CHEST, MELEE, updating_health = TRUE)
 	hit_mob.visible_message(span_danger("[human_user] slams into [hit_mob]!"))
-	playsound(hit_mob, 'sound/weapons/heavyhit.ogg', 40)
 
 	human_user.set_throwing(FALSE)
 	return COMPONENT_MOVABLE_PREBUMP_STOPPED
