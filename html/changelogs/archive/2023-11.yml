@@ -223,3 +223,6 @@
   - code_imp: Smol shrike vortex code improvement
   vvvv-vvvv:
   - bugfix: Fix missing nuke disk candidate icon
+2023-11-13:
+  Lewdcifer:
+  - bugfix: Fixed some weird behavior in the larva queue.
