@@ -82,6 +82,7 @@
 
 ///remove the flame overlay
 /obj/item/jetpack_marine/proc/reset_flame(mob/living/carbon/human/human_user)
+	SIGNAL_HANDLER
 	UnregisterSignal(human_user, COMSIG_MOVABLE_POST_THROW)
 	lit = FALSE
 	update_icon()
