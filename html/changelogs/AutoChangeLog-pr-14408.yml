@@ -1,0 +1,4 @@
+author: "novaepee"
+delete-after: True
+changes:
+  - rscdel: "remove miniscope on recoilless rocket"
