@@ -139,7 +139,7 @@
 			change_action(ESCORTING_ATOM, escorted_atom)
 			return
 	mob_parent.face_atom(atom_to_walk_to)
-	addtimer(CALLBACK(mob_parent, TYPE_PROC_REF(/mob, UnarmedAttack), atom_to_walk_to, mob_parent), rand(0.1, 1.5))
+	addtimer(CALLBACK(mob_parent, TYPE_PROC_REF(/mob, UnarmedAttack), atom_to_walk_to, mob_parent), randfloat(0.1, 1.5))
 
 /// Check if escorted_atom moves away from the spiderling while it's attacking something, this is to always keep them close to escorted_atom
 /datum/ai_behavior/spiderling/look_for_new_state()
