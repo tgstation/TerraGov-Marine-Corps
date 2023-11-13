@@ -146,7 +146,8 @@
 		icon_state = "[initial(icon_state)]_open"
 
 /obj/structure/weapon_x_pod/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
-	if(X.loc != src)
+	if(X != occupant)
+	    return
 		return
 	release_occupant()
 
