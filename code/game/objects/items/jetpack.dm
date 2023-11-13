@@ -251,18 +251,19 @@
 		if(!human_target.check_shields(COMBAT_TOUCH_ATTACK, 30, MELEE))
 			human_user.Knockdown(0.5 SECONDS)
 			human_user.set_throwing(FALSE)
+			INVOKE_NEXT_TICK(human_user, TYPE_PROC_REF(/atom/movable, knockback), human_target, 1, 5)
 			human_user.visible_message(span_danger("[human_user] crashes into [hit_mob]!"))
 			return COMPONENT_MOVABLE_PREBUMP_STOPPED
 
 	var/knockdown_duration = 0.5 SECONDS
 	var/list/stunlist = list(0, knockdown_duration, 0, 0)
 	if(SEND_SIGNAL(hit_mob, COMSIG_LIVING_JETPACK_STUN, stunlist, MELEE))
-		knockdown_duration = stunlist[2]
 		hit_mob.adjust_stagger(stunlist[3])
 		hit_mob.add_slowdown(stunlist[4])
-
-	hit_mob.Knockdown(knockdown_duration)
-	human_user.forceMove(get_turf(hit_mob))
+		hit_mob.knockback(human_user, 1, 5) //if we don't stun, we knockback
+	else
+		hit_mob.Knockdown(knockdown_duration)
+		human_user.forceMove(get_turf(hit_mob))
 	hit_mob.apply_damage(40, BRUTE, BODY_ZONE_CHEST, MELEE, updating_health = TRUE)
 	hit_mob.visible_message(span_danger("[human_user] slams into [hit_mob]!"))
 
