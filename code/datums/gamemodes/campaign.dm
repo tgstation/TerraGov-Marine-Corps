@@ -63,11 +63,10 @@
 	if(!(respawnee.faction in factions) && (current_mission?.mission_state == MISSION_STATE_ACTIVE))
 		return respawnee.respawn()
 
-	if(current_mission?.mission_state == MISSION_STATE_ACTIVE)
-		var/respawn_delay = CAMPAIGN_RESPAWN_TIME + stat_list[respawnee.faction]?.respawn_delay_modifier
-		if((player_death_times[respawnee.key] + respawn_delay) > world.time)
-			to_chat(respawnee, "<span class='warning'>Respawn timer has [round((player_death_times[respawnee.key] + respawn_delay - world.time) / 10)] seconds remaining.<spawn>")
-			return
+	var/respawn_delay = CAMPAIGN_RESPAWN_TIME + stat_list[respawnee.faction]?.respawn_delay_modifier
+	if((player_death_times[respawnee.key] + respawn_delay) > world.time)
+		to_chat(respawnee, "<span class='warning'>Respawn timer has [round((player_death_times[respawnee.key] + respawn_delay - world.time) / 10)] seconds remaining.<spawn>")
+		return
 
 	attempt_attrition_respawn(respawnee)
 
