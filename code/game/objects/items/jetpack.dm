@@ -207,8 +207,8 @@
 
 
 /obj/item/jetpack_marine/heavy
-	name = "marine heavy jetpack"
-	desc = "A upgraded jetpack with enough fuel to send a person flying for a short while with extreme force. It provides better mobility for heavy users and enough thrust to be used in an aggressive manner. <b>Alt right click or middleclick to fly to a destination when the jetpack is equipped.</b>"
+	name = "heavy lift jetpack"
+	desc = "An upgraded jetpack with enough fuel to send a person flying for a short while with extreme force. It provides better mobility for heavy users and enough thrust to be used in an aggressive manner. <b>Alt right click or middleclick to fly to a destination when the jetpack is equipped.</b>"
 	cooldown_time = 5 SECONDS
 	speed = 2
 
