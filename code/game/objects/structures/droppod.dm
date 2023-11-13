@@ -24,8 +24,6 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 	light_range = 1
 	light_power = 0.5
 	light_color = LIGHT_COLOR_EMISSIVE_GREEN
-	///The emissive mask for this structure
-	//var/emissive_overlay = "singlepod_emissive"
 	//todo make these just use a turf?
 	///X target coordinate
 	var/target_x = 1
@@ -110,8 +108,6 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 
 /obj/structure/droppod/update_overlays()
 	. = ..()
-	//if(!emissive_overlay)
-	//	return
 	if(operation_started && launch_allowed)
 		. += emissive_appearance(icon, "[icon_state]_emissive")
 
