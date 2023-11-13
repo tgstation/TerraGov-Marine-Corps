@@ -1,0 +1,4 @@
+author: "Lewdcifer"
+delete-after: True
+changes:
+  - bugfix: "Fixed an issue with the Runner HUD not updating properly when cancelled."
