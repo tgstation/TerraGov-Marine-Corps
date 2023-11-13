@@ -1024,7 +1024,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 			if(istype(user.buckled, /obj/structure/bed/chair))
 				C = user.buckled
 			var/obj/B = user.buckled
-			var/movementdirection = turn(direction,180)
+			var/movementdirection = REVERSE_DIR(direction)
 			if(C)
 				C.propelled = 4
 			B.Move(get_step(user,movementdirection), movementdirection)

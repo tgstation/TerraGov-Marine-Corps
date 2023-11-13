@@ -290,10 +290,10 @@ GLOBAL_LIST_INIT(armorvic_dmg_distributions, list(
 		return
 	if(loc == C.loc) // treaded over.
 		ParalyzeNoChain(2 SECONDS)
-		var/target_dir = turn(C.dir, 180)
+		var/target_dir = REVERSE_DIR(C.dir)
 		temp = get_step(C.loc, target_dir)
 		T = temp
-		target_dir = turn(C.dir, 180)
+		target_dir = REVERSE_DIR(C.dir)
 		T = get_step(T, target_dir)
 		face_atom(T)
 		throw_at(T, 3, 2, C, 1)
