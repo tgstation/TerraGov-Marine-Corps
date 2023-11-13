@@ -1,5 +1,4 @@
 //All the harvester weapons go in here
-#define VALI_CHEM_STORAGE 30
 
 //Vali Sword
 /obj/item/weapon/claymore/harvester
@@ -50,7 +49,7 @@
 
 /obj/item/weapon/combat_knife/harvester/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/harvester, VALI_CHEM_STORAGE/6)
+	AddComponent(/datum/component/harvester, 5)
 
 /obj/item/weapon/combat_knife/harvester/equipped(mob/user, slot)
 	. = ..()
@@ -95,7 +94,7 @@
 
 /obj/item/weapon/twohanded/glaive/harvester/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/harvester, VALI_CHEM_STORAGE*2, TRUE)
+	AddComponent(/datum/component/harvester, 60, TRUE)
 
 /obj/item/weapon/twohanded/glaive/harvester/wield(mob/user)
 	. = ..()
@@ -108,5 +107,3 @@
 	if(!.)
 		return
 	toggle_item_bump_attack(user, FALSE)
-
-#undef VALI_CHEM_STORAGE
