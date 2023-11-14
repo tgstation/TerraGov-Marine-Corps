@@ -1229,6 +1229,7 @@
 			/obj/item/storage/pouch/explosive = -1,
 			/obj/item/storage/pouch/medkit = -1,
 			/obj/item/storage/pouch/medical_injectors = -1,
+			/obj/item/storage/pouch/pressurized_reagent_pouch/empty = -1,
 			/obj/item/storage/pouch/pressurized_reagent_pouch/bktt = -1,
 			/obj/item/storage/pouch/med_lolipops = -1,
 			/obj/item/storage/pouch/berrypouch = -1,

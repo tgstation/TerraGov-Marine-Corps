@@ -187,3 +187,62 @@
   - bugfix: Banelings will no longer bring sticky nades back to their pod upon dying.
   coldironwarrior:
   - balance: made resin walls have 70 bullet armor (up from 60)
+2023-11-10:
+  ClosetedSkeletonGH:
+  - rscadd: Hivemind sprite changes depending on the type of weed it is on
+  - balance: Hivemind demanifestation and remanifestation
+  - bugfix: Hivemind no longer flickers on tele
+  - bugfix: Hivemind direction of manifestation is normalized
+2023-11-11:
+  Xander3359:
+  - balance: pills no longer input-lock you
+  - qol: You can use a pill in-hand to eat it.
+2023-11-12:
+  Barnet2:
+  - bugfix: Removes unopenable blast door on smallbury CIC
+  Bobthe28th:
+  - bugfix: Defiler can only inject eggs adjacent to them.
+  Dgeen:
+  - bugfix: Rouny runner is back
+  Lumipharon:
+  - qol: Campaign missions will specify if a teleport or drop pod blocker is active
+      in the current mission
+  - qol: failure to activate a campaign asset now provided more feedback to the user
+  - bugfix: fixed a few issues with activating some campaign assets
+  - rscadd: Ammo knockback, as well as that caused by defender charge and rav abilities
+      now use throw mechanics
+  SiegeB0t:
+  - qol: req can be confident that crates to a supply beacon on tad will arrive on
+      tad.
+  - bugfix: A supply beacon on tad will work after tad moves.
+  Xander3359:
+  - rscadd: Added an empty reagent pouch to the clothing vendor.
+  - balance: Adjust reagent pouch to 2:2:1:2 BKTT
+  ivanmixo:
+  - bugfix: Shrike vortex doesn't throw around things it shouldn't anymore (decals)
+  - code_imp: Smol shrike vortex code improvement
+  vvvv-vvvv:
+  - bugfix: Fix missing nuke disk candidate icon
+2023-11-13:
+  Lewdcifer:
+  - bugfix: Fixed some weird behavior in the larva queue.
+2023-11-14:
+  Barnet2:
+  - rscdel: Removed all Big Red LZ modulars, replaces them with a static LZ for each
+      spot.
+  Lewdcifer:
+  - bugfix: Fixed an issue with the Runner HUD not updating properly when cancelled.
+  - bugfix: Fixes a runtime related to AI movement.
+  Pariah919:
+  - balance: You no longer need to wind up the FK-88 to fire.
+  Xander3359:
+  - balance: Light medical belt holds pill bottles
+  - imageadd: Harvesters will now have a visual based on whichever reagent is loaded
+  - code_imp: Harvesters now have sprites + code in their own separate file
+  ZeWaka:
+  - bugfix: Spiderlings and some assorted damage rolls should now actually work instead
+      of being super weird
+  novaepee:
+  - rscdel: remove miniscope on recoilless rocket
+  vvvv-vvvv:
+  - bugfix: Fix orders not being shown in chat

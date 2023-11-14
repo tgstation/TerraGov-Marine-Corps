@@ -23,7 +23,7 @@
 			initialize_directions = WEST|EAST
 
 /obj/machinery/atmospherics/pipe/heat_exchanging/junction/getNodeConnects()
-	return list(turn(dir, 180), dir)
+	return list(REVERSE_DIR(dir), dir)
 
 /obj/machinery/atmospherics/pipe/heat_exchanging/junction/isConnectable(obj/machinery/atmospherics/target, given_layer, he_type_check)
 	if(dir == get_dir(target, src))

@@ -101,6 +101,11 @@
 ///Override code for NT base rescue mission
 #define COMSIG_GLOB_CAMPAIGN_NT_OVERRIDE_CODE "!campaign_nt_override_code"
 
+///Campaign asset activation successful
+#define COMSIG_CAMPAIGN_ASSET_ACTIVATION "campaign_asset_activation"
+///Campaign asset disabler activated
+#define COMSIG_CAMPAIGN_DISABLER_ACTIVATION "campaign_disabler_activation"
+
 //////////////////////////////////////////////////////////////////
 
 // /datum signals
@@ -229,6 +234,9 @@
 	#define EXAMINE_POSITION_BEFORE (1<<1)
 	//End positions
 	#define COMPONENT_EXNAME_CHANGED (1<<0)
+///from base of atom/get_mechanics_info(): (/mob)
+#define COMSIG_ATOM_GET_MECHANICS_INFO "atom_mechanics_info"
+	#define COMPONENT_MECHANICS_CHANGE (1<<0)
 #define COMSIG_ATOM_UPDATE_ICON "atom_update_icon"				//from base of atom/update_icon(): ()
 	#define COMSIG_ATOM_NO_UPDATE_ICON_STATE (1<<0)
 	#define COMSIG_ATOM_NO_UPDATE_OVERLAYS (1<<1)

@@ -1,0 +1,4 @@
+author: "vvvv-vvvv"
+delete-after: True
+changes:
+  - qol: "You can now toggle auto aim mode while trying to wield a gun"

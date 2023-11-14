@@ -1,0 +1,5 @@
+author: "vvvv-vvvv"
+delete-after: True
+changes:
+  - bugfix: "Fix SOM breacher ERT scaling the amount of specs incorrectly"
+  - bugfix: "Fix player-controlled puppets being able to feed on non-adjacent humans"

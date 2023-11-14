@@ -18,8 +18,13 @@
 #define CAMPAIGN_MAX_LOSS_BONUS 0.45
 
 //mission defines
+///Mission has not been loaded
 #define MISSION_STATE_NEW "mission state new"
+///Mission loaded but not yet active
+#define MISSION_STATE_LOADED "mission state loaded"
+///Mission actively running
 #define MISSION_STATE_ACTIVE "mission state active"
+///Mission ended
 #define MISSION_STATE_FINISHED "mission state finished"
 
 #define MISSION_OUTCOME_MAJOR_VICTORY "major victory"
