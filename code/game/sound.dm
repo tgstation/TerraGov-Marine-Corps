@@ -109,9 +109,10 @@ A good representation is: 'byond applies a volume reduction to the sound every X
 		//get area sound enviroment and use it for sound
 		var/area/A = get_area(src)
 		S.environment = A.sound_environment
-		//need room and roomHF to be not -10000 for reverb to work
-		S.echo[3] = 0
-		S.echo[4] = 0
+		if(S.environment != SOUND_ENVIRONMENT_NONE)
+			//need room and roomHF to be not -10000 for reverb to work
+			S.echo[3] = 0
+			S.echo[4] = 0
 
 	SEND_SOUND(src, S)
 
