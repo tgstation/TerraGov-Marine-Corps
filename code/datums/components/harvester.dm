@@ -216,13 +216,13 @@
 	if(target.status_flags & INCORPOREAL || user.status_flags & INCORPOREAL) //Incorporeal beings cannot attack or be attacked
 		return
 
-	if(isxeno(target))
-		target.apply_damage(weapon.force*0.6, BRUTE, user.zone_selected)
 	switch(loaded_reagent)
 		if(/datum/reagent/medicine/tramadol)
+			target.apply_damage(weapon.force*0.6, BRUTE, user.zone_selected)
 			target.apply_status_effect(/datum/status_effect/incapacitating/harvester_slowdown, 1 SECONDS)
 
 		if(/datum/reagent/medicine/kelotane)
+			target.apply_damage(weapon.force*0.6, BRUTE, user.zone_selected)
 			target.adjust_sunder(7.5) //Same amount as a shotgun slug
 			target.flamer_fire_act(10)
 
@@ -232,6 +232,7 @@
 				. = COMPONENT_ITEM_NO_ATTACK
 
 		if(/datum/reagent/medicine/tricordrazine)
+			target.apply_damage(weapon.force*0.6, BRUTE, user.zone_selected)
 			target.apply_status_effect(/datum/status_effect/shatter, 3 SECONDS)
 
 	if(!loaded_reagents[loaded_reagent])
@@ -251,6 +252,7 @@
 /datum/component/harvester/proc/attack_bicaridine(datum/source, mob/living/target, mob/living/user, obj/item/weapon)
 	if(isxeno(target)) //Self-heal on xeno strike
 		new /obj/effect/temp_visual/telekinesis(get_turf(user))
+		target.apply_damage(weapon.force*0.6, BRUTE, user.zone_selected)
 		user.adjustStaminaLoss(-30)
 		user.heal_overall_damage(5, 0, updating_health = TRUE)
 		return
