@@ -239,12 +239,17 @@
 			H.dropItemToGround(thing)
 	for(var/newtrait in inherent_traits)
 		ADD_TRAIT(H, newtrait, SPECIES_TRAIT)
+	//if(!old_species)
+	//	H.maxHealth += total_health - initial(H.maxHealth)
+	//else
+	H.maxHealth += total_health - (old_species ? old_species.total_health : initial(H.maxHealth))
 
 //special things to change after we're no longer that species
 /datum/species/proc/post_species_loss(mob/living/carbon/human/H)
 	SHOULD_CALL_PARENT(TRUE)
 	for(var/oldtrait in inherent_traits)
 		REMOVE_TRAIT(H, oldtrait, SPECIES_TRAIT)
+	//H.maxHealth -= total_health
 
 /// Removes all species-specific verbs and actions
 /datum/species/proc/remove_inherent_abilities(mob/living/carbon/human/H)

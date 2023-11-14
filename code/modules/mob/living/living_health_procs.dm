@@ -234,7 +234,7 @@
 
 ///Heal limbs until the total mob health went up by health_to_heal
 /mob/living/carbon/human/proc/heal_limbs(health_to_heal)
-	var/proportion_to_heal = (health_to_heal < (species.total_health - health)) ? (health_to_heal / (species.total_health - health)) : 1
+	var/proportion_to_heal = (health_to_heal < (maxHealth - health)) ? (health_to_heal / (maxHealth - health)) : 1
 	for(var/datum/limb/limb AS in limbs)
 		limb.heal_limb_damage(limb.brute_dam * proportion_to_heal, limb.burn_dam * proportion_to_heal, robo_repair = TRUE)
 	updatehealth()
