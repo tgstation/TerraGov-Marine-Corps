@@ -1,4 +1,0 @@
-author: "ZeWaka"
-delete-after: True
-changes:
-  - bugfix: "Spiderlings and some assorted damage rolls should now actually work instead of being super weird"

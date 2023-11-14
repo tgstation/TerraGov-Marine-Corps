@@ -1,4 +1,0 @@
-author: "Barnet2"
-delete-after: True
-changes:
-  - rscdel: "Removed all Big Red LZ modulars, replaces them with a static LZ for each spot."

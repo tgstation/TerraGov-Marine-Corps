@@ -226,3 +226,23 @@
 2023-11-13:
   Lewdcifer:
   - bugfix: Fixed some weird behavior in the larva queue.
+2023-11-14:
+  Barnet2:
+  - rscdel: Removed all Big Red LZ modulars, replaces them with a static LZ for each
+      spot.
+  Lewdcifer:
+  - bugfix: Fixed an issue with the Runner HUD not updating properly when cancelled.
+  - bugfix: Fixes a runtime related to AI movement.
+  Pariah919:
+  - balance: You no longer need to wind up the FK-88 to fire.
+  Xander3359:
+  - balance: Light medical belt holds pill bottles
+  - imageadd: Harvesters will now have a visual based on whichever reagent is loaded
+  - code_imp: Harvesters now have sprites + code in their own separate file
+  ZeWaka:
+  - bugfix: Spiderlings and some assorted damage rolls should now actually work instead
+      of being super weird
+  novaepee:
+  - rscdel: remove miniscope on recoilless rocket
+  vvvv-vvvv:
+  - bugfix: Fix orders not being shown in chat
