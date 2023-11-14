@@ -333,6 +333,10 @@
 		/obj/item/ammo_magazine/flamer_tank/large/X,
 	)
 	attachable_allowed = list(
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/motiondetector,
+		/obj/item/attachable/buildasentry,
 		/obj/item/attachable/stock/t84stock,
 		/obj/item/attachable/flamer_nozzle,
 		/obj/item/attachable/flamer_nozzle/wide,
