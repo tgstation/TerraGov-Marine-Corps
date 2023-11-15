@@ -41,7 +41,6 @@
 	. = ..()
 	for(var/faction in factions)
 		stat_list[faction] = new /datum/faction_stats(faction)
-	RegisterSignal(SSdcs, COMSIG_LIVING_JOB_SET, PROC_REF(register_faction_member))
 	RegisterSignals(SSdcs, list(COMSIG_GLOB_MOB_DEATH, COMSIG_MOB_GHOSTIZE), PROC_REF(set_death_time))
 	RegisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_MISSION_ENDED, PROC_REF(cut_death_list_timer))
 	addtimer(CALLBACK(SSticker.mode, TYPE_PROC_REF(/datum/game_mode/hvh/campaign, intro_sequence)), SSticker.round_start_time + 1 MINUTES)
@@ -263,21 +262,3 @@
 	if(!job.special_check_latejoin(candidate.client))
 		return FALSE
 	return TRUE
-
-///Sets up newly spawned players with the campaign status verb
-/datum/game_mode/hvh/campaign/proc/register_faction_member(datum/source, mob/living/carbon/human/new_member)
-	SIGNAL_HANDLER
-	if(!(new_member.faction in factions))
-		return
-	add_verb(new_member, /mob/living/proc/open_faction_stats_ui)
-
-///Opens up the players campaign status UI
-/mob/living/proc/open_faction_stats_ui()
-	set name = "Campaign Status"
-	set desc = "Check the status of your faction in the campaign."
-	set category = "IC"
-
-	var/datum/faction_stats/your_faction = GLOB.faction_stats_datums[faction]
-	if(!your_faction)
-		return
-	your_faction.interact(src)

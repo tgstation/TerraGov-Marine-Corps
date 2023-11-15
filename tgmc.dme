@@ -466,6 +466,7 @@
 #include "code\datums\gamemodes\campaign\campaign_assets.dm"
 #include "code\datums\gamemodes\campaign\campaign_mission.dm"
 #include "code\datums\gamemodes\campaign\faction_stats.dm"
+#include "code\datums\gamemodes\campaign\individual_stats.dm"
 #include "code\datums\gamemodes\campaign\missions\airbase_raid.dm"
 #include "code\datums\gamemodes\campaign\missions\asat_capture.dm"
 #include "code\datums\gamemodes\campaign\missions\base_rescue.dm"
