@@ -2,6 +2,9 @@
     "map_name": "Big Red",
     "map_path": "map_files/BigRed_v2",
     "map_file": "BigRed_v2.dmm",
+	"disk_sets": {
+		"basic": 1
+	},
 	"quickbuilds": 1800,
 	"announce_text": "A second generation colony has had a beacon transmitting the same signal, nonstop. Attempts to hail the colony over comms have proved futile. Because the ship was at a nearby drydock, it has been dispatched to figure out what's wrong. TGMC, prepare to deploy!",
 	"traits":[{

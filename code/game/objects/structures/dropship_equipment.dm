@@ -487,7 +487,8 @@
 	held_deployable = new_deployable.loc //new_deployable.loc, since it deploys on new(), is located within the held_deployable. Therefore new_deployable.loc = held_deployable.
 
 /obj/structure/dropship_equipment/shuttle/weapon_holder/Destroy()
-	QDEL_NULL(held_deployable)
+	if(held_deployable)
+		QDEL_NULL(held_deployable)
 	return ..()
 
 /obj/structure/dropship_equipment/shuttle/weapon_holder/examine(mob/user)
@@ -509,11 +510,6 @@
 		icon_state = deployed_icon_state
 	else
 		icon_state = undeployed_icon_state
-
-/obj/structure/dropship_equipment/shuttle/weapon_holder/Destroy()
-	if(held_deployable)
-		QDEL_NULL(held_deployable)
-	return ..()
 
 /obj/structure/dropship_equipment/shuttle/weapon_holder/CanAllowThrough(atom/movable/mover, turf/target)
 	. = ..()
@@ -542,14 +538,6 @@
 	point_cost = 0 //this removes it from the fabricator
 	deployable_type = /obj/item/weapon/gun/heavy_laser
 	undeployed_icon_state = "hl_system"
-
-/obj/structure/dropship_equipment/shuttle/weapon_holder/heavy_rr
-	name = "heavy recoilless rifle deployment system"
-	desc = "A box that deploys a modified RR-15 crewserved recoilless rifle. Fits on the crewserved weapon attach points of dropships. You need a powerloader to lift it."
-	icon_state = "rr_system"
-	point_cost = 0 //this removes it from the fabricator
-	deployable_type = /obj/item/weapon/gun/launcher/rocket/heavy_rr
-	undeployed_icon_state = "rr_system"
 
 /obj/structure/dropship_equipment/shuttle/weapon_holder/mortar_holder
 	name = "mortar deployment system"

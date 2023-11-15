@@ -72,11 +72,21 @@
 // *********** Name
 // ***************************************
 /mob/living/carbon/xenomorph/queen/generate_name()
-	switch(upgrade)
-		if(XENO_UPGRADE_NORMAL)
-			name = "[hive.prefix]Empress ([nicknumber])"			 //Normal
-		if(XENO_UPGRADE_PRIMO)
-			name = "[hive.prefix]Primordial Empress ([nicknumber])"
+	var/playtime_mins = client?.get_exp(xeno_caste.caste_name)
+	var/prefix = (hive.prefix || xeno_caste.upgrade_name) ? "[hive.prefix][xeno_caste.upgrade_name] " : ""
+	switch(playtime_mins)
+		if(0 to 600)
+			name = prefix + "Hatchling Queen ([nicknumber])"
+		if(601 to 3000)
+			name = prefix + "Young Queen ([nicknumber])"
+		if(3001 to 9000)
+			name = prefix + "Mature Empress ([nicknumber])"
+		if(9001 to 18000)
+			name = prefix + "Elder Empress ([nicknumber])"
+		if(18001 to INFINITY)
+			name = prefix + "Ancient Empress ([nicknumber])"
+		else
+			name = prefix + "Hatchling Queen ([nicknumber])"
 
 	real_name = name
 	if(mind)

@@ -1,6 +1,7 @@
 /obj/item/tool/rcd
 	name = "rapid-construction-device (RCD)"
 	desc = "A device used to rapidly build walls/floor."
+	icon = 'icons/obj/items/tools.dmi'
 	icon_state = "rcd"
 	opacity = FALSE
 	density = FALSE

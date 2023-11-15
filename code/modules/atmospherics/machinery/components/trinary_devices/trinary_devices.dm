@@ -42,7 +42,7 @@ Housekeeping and pipe network stuff
 	var/node3_connect = dir
 
 	if(flipped)
-		node1_connect = turn(node1_connect, 180)
-		node3_connect = turn(node3_connect, 180)
+		node1_connect = REVERSE_DIR(node1_connect)
+		node3_connect = REVERSE_DIR(node3_connect)
 
 	return list(node1_connect, node2_connect, node3_connect)

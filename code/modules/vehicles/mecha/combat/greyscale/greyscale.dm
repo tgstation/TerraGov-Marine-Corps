@@ -21,7 +21,7 @@
 	layer = ABOVE_ALL_MOB_LAYER
 	mech_type = EXOSUIT_MODULE_GREYSCALE
 	pixel_x = -16
-	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 5, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
+	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
 	move_delay = 3
 	max_equip_by_category = MECH_GREYSCALE_MAX_EQUIP
 	internal_damage_threshold = 15
@@ -57,6 +57,8 @@
 		limb.attach(src, key)
 
 /obj/vehicle/sealed/mecha/combat/greyscale/Destroy()
+	var/obj/effect/temp_visual/explosion/explosion = new /obj/effect/temp_visual/explosion(loc, 4, LIGHT_COLOR_LAVA, FALSE, TRUE)
+	explosion.pixel_x = 16
 	for(var/key in limbs)
 		var/datum/mech_limb/limb = limbs[key]
 		limb?.detach(src)
@@ -144,6 +146,9 @@
 		MECH_GREY_L_ARM = /datum/mech_limb/arm/recon,
 	)
 
+/obj/vehicle/sealed/mecha/combat/greyscale/recon/noskill
+	mecha_flags = ADDING_ACCESS_POSSIBLE|CANSTRAFE|IS_ENCLOSED|HAS_HEADLIGHTS
+
 /obj/vehicle/sealed/mecha/combat/greyscale/assault
 	name = "Assault Mecha"
 	limbs = list(
@@ -153,6 +158,9 @@
 		MECH_GREY_R_ARM = /datum/mech_limb/arm/assault,
 		MECH_GREY_L_ARM = /datum/mech_limb/arm/assault,
 	)
+
+/obj/vehicle/sealed/mecha/combat/greyscale/assault/noskill
+	mecha_flags = ADDING_ACCESS_POSSIBLE|CANSTRAFE|IS_ENCLOSED|HAS_HEADLIGHTS
 
 /obj/vehicle/sealed/mecha/combat/greyscale/vanguard
 	name = "Vanguard Mecha"

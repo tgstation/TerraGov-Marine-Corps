@@ -845,10 +845,7 @@
 /turf/open/floor/plating/ground/dirtgrassborder,
 /area/oscar_outpost/outside/east)
 "eH" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_13";
-	name = "SOM exit point 13"
-	},
+/obj/effect/landmark/patrol_point/som/som_13,
 /turf/open/floor/plating/ground/dirt,
 /area/oscar_outpost/outside/north)
 "eI" = (
@@ -1340,13 +1337,6 @@
 "hP" = (
 /turf/open/floor/plating/ground/dirtgrassborder/corner2,
 /area/oscar_outpost/outside/east)
-"hQ" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_14";
-	name = "SOM exit point 14"
-	},
-/turf/open/floor/plating/ground/dirt,
-/area/oscar_outpost/outside/north)
 "hV" = (
 /obj/structure/fence,
 /obj/effect/ai_node,
@@ -1651,10 +1641,7 @@
 /turf/open/ground/grass,
 /area/oscar_outpost/outside/east)
 "jZ" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_22";
-	name = "SOM exit point 22"
-	},
+/obj/effect/landmark/patrol_point/som/som_22,
 /turf/open/floor/plating/ground/dirt,
 /area/oscar_outpost/outside/north)
 "kk" = (
@@ -1973,21 +1960,6 @@
 	},
 /turf/open/ground/grass,
 /area/oscar_outpost/outside/northeast)
-"mW" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_21";
-	name = "SOM exit point 21"
-	},
-/obj/structure/platform/trench{
-	dir = 4
-	},
-/obj/structure/barricade/sandbags{
-	dir = 4;
-	name = "trench lining";
-	pixel_x = -6
-	},
-/turf/open/floor/plating/ground/dirt,
-/area/oscar_outpost/outside/north)
 "nf" = (
 /obj/machinery/floodlight/outpost/oscar,
 /turf/open/floor/plating/ground/dirtgrassborder{
@@ -2849,10 +2821,7 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/oscar_outpost)
 "sr" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_23";
-	name = "SOM exit point 23"
-	},
+/obj/effect/landmark/patrol_point/som/som_23,
 /turf/open/floor/plating/ground/dirt,
 /area/oscar_outpost/outside/north)
 "st" = (
@@ -3240,6 +3209,10 @@
 	dir = 2
 	},
 /area/oscar_outpost)
+"vM" = (
+/obj/effect/landmark/patrol_point/som/som_14,
+/turf/open/floor/plating/ground/dirt,
+/area/oscar_outpost/outside/north)
 "vP" = (
 /obj/structure/fence,
 /obj/structure/platform/trench{
@@ -3270,10 +3243,7 @@
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/west)
 "vX" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_12";
-	name = "SOM exit point 12"
-	},
+/obj/effect/landmark/patrol_point/som/som_12,
 /turf/open/floor/plating/ground/dirt,
 /area/oscar_outpost/outside/north)
 "vY" = (
@@ -3788,7 +3758,7 @@
 /turf/open/floor/mainship/sterile,
 /area/oscar_outpost)
 "zG" = (
-/obj/machinery/sleep_console{
+/obj/machinery/computer/sleep_console{
 	dir = 8
 	},
 /turf/open/floor/mainship/sterile,
@@ -3915,10 +3885,7 @@
 	},
 /area/oscar_outpost/outside/road)
 "Bi" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_11";
-	name = "SOM exit point 11"
-	},
+/obj/effect/landmark/patrol_point/som/som_11,
 /turf/open/floor/plating/ground/dirt,
 /area/oscar_outpost/outside/north)
 "Bm" = (
@@ -4010,7 +3977,7 @@
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/east)
 "Ck" = (
-/obj/machinery/autodoc_console,
+/obj/machinery/computer/autodoc_console,
 /turf/open/floor/mainship/sterile,
 /area/oscar_outpost)
 "Cm" = (
@@ -5026,10 +4993,7 @@
 	},
 /area/oscar_outpost/outside/east)
 "IP" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_21";
-	name = "SOM exit point 21"
-	},
+/obj/effect/landmark/patrol_point/som/som_21,
 /turf/open/floor/plating/ground/dirt,
 /area/oscar_outpost/outside/north)
 "IQ" = (
@@ -5526,10 +5490,7 @@
 	},
 /area/oscar_outpost)
 "Nf" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_24";
-	name = "SOM exit point 24"
-	},
+/obj/effect/landmark/patrol_point/som/som_24,
 /turf/open/floor/plating/ground/dirt,
 /area/oscar_outpost/outside/north)
 "Nm" = (
@@ -6347,7 +6308,7 @@
 /turf/open/floor,
 /area/oscar_outpost)
 "Rp" = (
-/obj/machinery/body_scanconsole,
+/obj/machinery/computer/body_scanconsole,
 /turf/open/floor/mainship/sterile/dark,
 /area/oscar_outpost)
 "Rq" = (
@@ -10626,7 +10587,7 @@ ZE
 ZE
 ZE
 ZE
-Nf
+ZE
 ZE
 ZE
 ZE
@@ -10931,7 +10892,7 @@ ZE
 ZE
 ZE
 ZE
-ZE
+vM
 ZE
 ZE
 ZE
@@ -13411,9 +13372,9 @@ ZE
 sV
 ZE
 ZE
-jZ
 ZE
-sr
+ZE
+ZE
 ZE
 ZE
 ZE
@@ -13719,7 +13680,7 @@ ZE
 ZE
 ZE
 ZE
-hQ
+ZE
 ZE
 ZE
 ZE
@@ -14031,7 +13992,7 @@ ZE
 ZE
 ZE
 bb
-mW
+bb
 bb
 ZE
 ZE

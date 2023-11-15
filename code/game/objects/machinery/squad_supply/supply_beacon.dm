@@ -96,6 +96,7 @@
 /obj/item/beacon/supply_beacon
 	name = "supply beacon"
 	desc = "A rugged, glorified laser pointer capable of sending a beam into space. Activate and throw this to call for a supply drop."
+	icon = 'icons/Marine/marine-navigation.dmi'
 	icon_state = "motion0"
 	icon_activated = "motion2"
 	activation_time = 60
@@ -112,6 +113,11 @@
 /obj/item/beacon/supply_beacon/proc/clean_beacon_datum()
 	SIGNAL_HANDLER
 	beacon_datum = null
+
+/obj/item/beacon/supply_beacon/onTransitZ(old_z,new_z)
+	. = ..()
+	//Assumes doMove sets loc before onTransitZ
+	beacon_datum.drop_location = loc
 
 /obj/item/beacon/supply_beacon/activate(mob/living/carbon/human/H)
 	var/area/A = get_area(H)

@@ -569,7 +569,7 @@
 				if(!(comment_to_add) || usr.stat || usr.restrained() || !(hasHUD(usr,"medical")))
 					return
 				var/counter = 1
-				while(medical_record.fields[text("com_[]", counter)])
+				while(medical_record.fields["com_[counter]"])
 					counter++
 				if(istype(usr, /mob/living/carbon/human))
 					var/mob/living/carbon/human/U = usr
@@ -1079,7 +1079,8 @@
 	if(QDELETED(H?.camera) || oldloc == get_turf(src))
 		return
 
-	GLOB.cameranet.updatePortableCamera(H.camera)
+	var/datum/cameranet/net = H.camera.parent_cameranet
+	net.updatePortableCamera(H.camera)
 
 
 /mob/living/carbon/human/update_camera_location(oldloc)

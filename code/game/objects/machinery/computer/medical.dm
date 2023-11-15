@@ -1,7 +1,8 @@
 /obj/machinery/computer/med_data
 	name = "Medical Records"
 	desc = "This can be used to check medical records."
-	icon_state = "medcomp"
+	icon_state = "computer"
+	screen_overlay = "medcomp"
 	req_one_access = list(ACCESS_MARINE_MEDBAY, ACCESS_NT_CORPORATE)
 	circuit = /obj/item/circuitboard/computer/med_data
 	var/obj/item/card/id/scan = null
@@ -396,13 +397,13 @@
 			if ((!( t1 ) || !( src.authenticated ) || usr.stat || usr.restrained() || (!in_range(src, usr) && !issilicon(usr)) || src.active2 != a2))
 				return
 			var/counter = 1
-			while(src.active2.fields[text("com_[]", counter)])
+			while(src.active2.fields["com_[counter]"])
 				counter++
 			src.active2.fields["com_[counter]"] = "Made by [authenticated] ([rank]) on [time2text(world.realtime, "DDD MMM DD hh:mm:ss")], [GAME_YEAR]<BR>[t1]"
 
 		if (href_list["del_c"])
-			if ((istype(src.active2, /datum/data/record) && src.active2.fields[text("com_[]", href_list["del_c"])]))
-				src.active2.fields[text("com_[]", href_list["del_c"])] = "<B>Deleted</B>"
+			if ((istype(src.active2, /datum/data/record) && src.active2.fields["com_[href_list["del_c"]]"]))
+				src.active2.fields["com_[href_list["del_c"]]"] = "<B>Deleted</B>"
 
 		if (href_list["search"])
 			var/t1 = stripped_input(usr, "Search String: (Name, DNA, or ID)", "Med. records")
@@ -490,5 +491,6 @@
 /obj/machinery/computer/med_data/laptop
 	name = "Medical Laptop"
 	desc = "Cheap Nanotrasen Laptop."
-	icon_state = "medlaptop"
+	icon_state = "computer_small"
+	screen_overlay = "medlaptop"
 	density = FALSE

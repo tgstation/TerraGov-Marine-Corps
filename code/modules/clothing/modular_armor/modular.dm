@@ -101,6 +101,10 @@
 		/obj/item/armor_module/armor/legs/marine/hotaru,
 		/obj/item/armor_module/armor/arms/marine/hotaru,
 
+		/obj/item/armor_module/armor/chest/marine/dashe,
+		/obj/item/armor_module/armor/arms/marine/dashe,
+		/obj/item/armor_module/armor/legs/marine/dashe,
+
 		/obj/item/armor_module/module/better_shoulder_lamp,
 		/obj/item/armor_module/module/valkyrie_autodoc,
 		/obj/item/armor_module/module/fire_proof,
@@ -130,7 +134,9 @@
 	///Uniform type that is allowed to be worn with this.
 	var/allowed_uniform_type = /obj/item/clothing/under/marine
 
-/obj/item/clothing/suit/modular/apply_custom(mutable_appearance/standing)
+/obj/item/clothing/suit/modular/apply_custom(mutable_appearance/standing, inhands, icon_used, state_used)
+	if(inhands)
+		return
 	. = ..()
 	if(!attachments_by_slot[ATTACHMENT_SLOT_STORAGE] || !istype(attachments_by_slot[ATTACHMENT_SLOT_STORAGE], /obj/item/armor_module/storage))
 		return standing
@@ -276,7 +282,9 @@
 	///Pixel offset on the Y axis for how the helmet sits on the mob without a visor.
 	var/visorless_offset_y = -1
 
-/obj/item/clothing/head/modular/apply_custom(mutable_appearance/standing)
+/obj/item/clothing/head/modular/apply_custom(mutable_appearance/standing, inhands, icon_used, state_used)
+	if(inhands)
+		return
 	. = ..()
 	if(attachments_by_slot[ATTACHMENT_SLOT_STORAGE] && istype(attachments_by_slot[ATTACHMENT_SLOT_STORAGE], /obj/item/armor_module/storage))
 		var/obj/item/armor_module/storage/storage_module = attachments_by_slot[ATTACHMENT_SLOT_STORAGE]
@@ -310,6 +318,7 @@
 	name = "style mask"
 	desc = "A cool sylish mask that through some arcane magic blocks gas attacks. How? Who knows. How did you even get this?"
 	breathy = FALSE
+	voice_filter = null
 	icon_state = "gas_alt"
 	item_state = "gas_alt"
 	item_icons = list(slot_wear_mask_str)

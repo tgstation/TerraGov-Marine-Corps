@@ -91,7 +91,10 @@
 ///Adds or removes underlay sprites, checks holstered_item to see which underlay to add
 /obj/item/storage/holster/proc/update_underlays()
 	if(holstered_item && !holstered_item_underlay)
-		holstered_item_underlay = image(icon, src, holstered_item.icon_state)
+		if(holstered_item.greyscale_config && holstered_item.greyscale_colors)
+			holstered_item_underlay = image(SSgreyscale.GetColoredIconByType(holstered_item.greyscale_config, holstered_item.greyscale_colors), "belt")
+		else
+			holstered_item_underlay = image(icon, src, holstered_item.icon_state)
 		underlays += holstered_item_underlay
 	else
 		underlays -= holstered_item_underlay
@@ -187,6 +190,15 @@
 	var/obj/item/new_item = new /obj/item/weapon/gun/launcher/rocket/recoillessrifle/low_impact(src)
 	INVOKE_ASYNC(src, PROC_REF(handle_item_insertion), new_item)
 
+/obj/item/storage/holster/backholster/rpg/heam/Initialize(mapload)
+	. = ..()
+	new /obj/item/ammo_magazine/rocket/recoilless/heam(src)
+	new /obj/item/ammo_magazine/rocket/recoilless/heam(src)
+	new /obj/item/ammo_magazine/rocket/recoilless/heam(src)
+	new /obj/item/ammo_magazine/rocket/recoilless/heam(src)
+	var/obj/item/new_item = new /obj/item/weapon/gun/launcher/rocket/recoillessrifle/heam(src)
+	INVOKE_ASYNC(src, PROC_REF(handle_item_insertion), new_item)
+
 /obj/item/storage/holster/backholster/rpg/som
 	name = "\improper SOM RPG bag"
 	desc = "This backpack can hold 4 RPGs, in addition to a RPG launcher."
@@ -218,6 +230,15 @@
 	new /obj/item/ammo_magazine/rocket/som/heat(src)
 	new /obj/item/ammo_magazine/rocket/som/rad(src)
 	var/obj/item/new_item = new /obj/item/weapon/gun/launcher/rocket/som/rad(src)
+	INVOKE_ASYNC(src, PROC_REF(handle_item_insertion), new_item)
+
+/obj/item/storage/holster/backholster/rpg/som/heat/Initialize(mapload)
+	. = ..()
+	new /obj/item/ammo_magazine/rocket/som/heat(src)
+	new /obj/item/ammo_magazine/rocket/som/heat(src)
+	new /obj/item/ammo_magazine/rocket/som/heat(src)
+	new /obj/item/ammo_magazine/rocket/som/heat(src)
+	var/obj/item/new_item = new /obj/item/weapon/gun/launcher/rocket/som/heat(src)
 	INVOKE_ASYNC(src, PROC_REF(handle_item_insertion), new_item)
 
 /obj/item/storage/holster/backholster/mortar
@@ -392,12 +413,12 @@
 	desc = "A large leather scabbard used to carry a sword. Appears to be a reproduction, rather than original. It can be strapped to the waist or armor."
 	icon_state = "officer_sheath"
 	flags_equip_slot = ITEM_SLOT_BELT
-	holsterable_allowed = list(/obj/item/weapon/claymore/mercsword/officersword)
-	can_hold = list(/obj/item/weapon/claymore/mercsword/officersword)
+	holsterable_allowed = list(/obj/item/weapon/claymore/mercsword/machete/officersword)
+	can_hold = list(/obj/item/weapon/claymore/mercsword/machete/officersword)
 
 /obj/item/storage/holster/blade/officer/full/Initialize(mapload)
 	. = ..()
-	var/obj/item/new_item = new /obj/item/weapon/claymore/mercsword/officersword(src)
+	var/obj/item/new_item = new /obj/item/weapon/claymore/mercsword/machete/officersword(src)
 	INVOKE_ASYNC(src, PROC_REF(handle_item_insertion), new_item)
 
 //guns
@@ -638,6 +659,17 @@
 		/obj/item/cell/lasgun/lasrifle,
 		/obj/item/cell/lasgun/volkite/small,
 	)
+
+/obj/item/storage/holster/belt/pistol/m4a3/som/serpenta/Initialize(mapload, ...)
+	. = ..()
+	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/serpenta(src)
+	new /obj/item/cell/lasgun/volkite/small(src)
+	new /obj/item/cell/lasgun/volkite/small(src)
+	new /obj/item/cell/lasgun/volkite/small(src)
+	new /obj/item/cell/lasgun/volkite/small(src)
+	new /obj/item/cell/lasgun/volkite/small(src)
+	new /obj/item/cell/lasgun/volkite/small(src)
+	INVOKE_ASYNC(src, PROC_REF(handle_item_insertion), new_gun)
 
 /obj/item/storage/holster/belt/pistol/m4a3/som/fancy
 	name = "\improper S19-B holster rig"

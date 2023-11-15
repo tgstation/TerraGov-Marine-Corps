@@ -105,6 +105,7 @@ SUBSYSTEM_DEF(aura)
 		aura_types = list(aura_names)
 	else
 		aura_types = aura_names
+
 	for(var/aura_type in aura_types)
 		if(human_auras.Find(aura_type))
 			affects_humans = TRUE
@@ -152,6 +153,8 @@ SUBSYSTEM_DEF(aura)
 		if(potential_hearer.faction != faction)
 			continue
 		for(var/aura in aura_types)
+			if(!potential_hearer.can_receive_aura(aura, emitter, src))
+				continue
 			potential_hearer.receive_aura(aura, strength)
 
 ///Send out our aura to all xenos close enough and on the same z-level
@@ -162,9 +165,7 @@ SUBSYSTEM_DEF(aura)
 	for(var/mob/living/carbon/xenomorph/potential_hearer AS in GLOB.hive_datums[hive_number].xenos_by_zlevel["[aura_center.z]"])
 		if(get_dist(aura_center, potential_hearer) > range)
 			continue
-		if(potential_hearer.faction != faction)
-			continue
-		if(!(potential_hearer.xeno_caste.caste_flags & CASTE_FIRE_IMMUNE) && potential_hearer.on_fire) //Xenos on fire cannot receive pheros.
-			continue
 		for(var/aura in aura_types)
+			if(!potential_hearer.can_receive_aura(aura, emitter, src))
+				continue
 			potential_hearer.receive_aura(aura, strength)

@@ -751,6 +751,8 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	default_ammo_type = /obj/item/ammo_magazine/rocket/m57a4
 	allowed_ammo_types = list(/obj/item/ammo_magazine/rocket/m57a4)
 
+/obj/item/weapon/gun/launcher/rocket/m57a4/t57/unloaded
+	default_ammo_type = null
 
 //-------------------------------------------------------
 //RL-160 Recoilless Rifle. Its effectively an RPG codewise.
@@ -773,6 +775,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 		/obj/item/ammo_magazine/rocket/recoilless/cloak,
 		/obj/item/ammo_magazine/rocket/recoilless/plasmaloss,
 		/obj/item/ammo_magazine/rocket/recoilless/heat,
+		/obj/item/ammo_magazine/rocket/recoilless/heam,
 	)
 	flags_equip_slot = NONE
 	w_class = WEIGHT_CLASS_HUGE
@@ -784,7 +787,6 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	general_codex_key = "explosive weapons"
 	attachable_allowed = list(
 		/obj/item/attachable/magnetic_harness,
-		/obj/item/attachable/scope/mini,
 		/obj/item/attachable/buildasentry,
 		/obj/item/attachable/shoulder_mount,
 	)
@@ -798,6 +800,9 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 
 /obj/item/weapon/gun/launcher/rocket/recoillessrifle/low_impact
 	default_ammo_type = /obj/item/ammo_magazine/rocket/recoilless/low_impact
+
+/obj/item/weapon/gun/launcher/rocket/recoillessrifle/heam
+	default_ammo_type = /obj/item/ammo_magazine/rocket/recoilless/heam
 
 //-------------------------------------------------------
 //Disposable RPG
@@ -907,6 +912,9 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 /obj/item/weapon/gun/launcher/rocket/som/rad
 	default_ammo_type = /obj/item/ammo_magazine/rocket/som/rad
 
+/obj/item/weapon/gun/launcher/rocket/som/heat
+	default_ammo_type = /obj/item/ammo_magazine/rocket/som/heat
+
 //ICC RPG
 /obj/item/weapon/gun/launcher/rocket/icc
 	name = "\improper MP-IRL rocket launcher"
@@ -984,6 +992,9 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	recoil = 3
 	scatter = 0
 	movement_acc_penalty_mult = 6
+
+/obj/item/weapon/gun/rifle/railgun/unloaded
+	default_ammo_type = null
 
 //-------------------------------------------------------
 //ML-120 Coilgun

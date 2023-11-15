@@ -49,11 +49,9 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	var/ghost_squadhud = FALSE
 	var/ghost_xenohud = FALSE
 	var/ghost_orderhud = FALSE
+	///If you can see things only ghosts see, like other ghosts
 	var/ghost_vision = TRUE
 	var/ghost_orbit = GHOST_ORBIT_CIRCLE
-	///Position in the larva queue
-	var/larva_position = 0
-
 
 /mob/dead/observer/Initialize(mapload)
 	invisibility = GLOB.observer_default_invisibility
@@ -197,13 +195,13 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 		var/mob/dead/observer/ghost = usr
 
 		var/datum/hive_status/normal/HS = GLOB.hive_datums[XENO_HIVE_NORMAL]
-		if(LAZYFIND(HS.candidate, ghost))
+		if(LAZYFIND(HS.candidates, ghost.client))
 			to_chat(ghost, span_warning("You are already in the queue to become a Xenomorph."))
 			return
 
 		switch(tgui_alert(ghost, "What would you like to do?", "Burrowed larva source available", list("Join as Larva", "Cancel"), 0))
 			if("Join as Larva")
-				SSticker.mode.attempt_to_join_as_larva(ghost)
+				SSticker.mode.attempt_to_join_as_larva(ghost.client)
 		return
 
 	else if(href_list["preference"])
@@ -236,6 +234,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 /mob/proc/ghostize(can_reenter_corpse = TRUE, aghosting = FALSE)
 	if(!key || isaghost(src))
 		return FALSE
+	SEND_SIGNAL(SSdcs, COMSIG_MOB_GHOSTIZE, src, can_reenter_corpse)
 	var/mob/dead/observer/ghost = new(src)
 	var/turf/T = get_turf(src)
 
@@ -347,12 +346,6 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 			. += "Respawn timer: READY"
 		else
 			. += "Respawn timer: [(status_value / 60) % 60]:[add_leading(num2text(status_value % 60), 2, "0")]"
-	if(GLOB.respawn_allowed)
-		status_value = ((GLOB.key_to_time_of_xeno_death[key] ? GLOB.key_to_time_of_xeno_death[key] : -INFINITY)  + SSticker.mode?.xenorespawn_time - world.time) * 0.1 //If xeno_death is null, use -INFINITY
-		if(status_value <= 0)
-			. += "Xeno respawn timer: READY"
-		else
-			. += "Xeno respawn timer: [(status_value / 60) % 60]:[add_leading(num2text(status_value % 60), 2, "0")]"
 
 /mob/dead/observer/verb/reenter_corpse()
 	set category = "Ghost"
@@ -964,3 +957,14 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	if(!..())
 		return FALSE
 	visible_message(span_deadsay("[span_name("[src]")] points at [pointed_atom]."))
+
+/mob/dead/observer/CtrlShiftClickOn(mob/dead/observer/target_ghost)
+	if(!istype(target_ghost))
+		return
+	if(!check_rights(R_SPAWN))
+		return
+
+	if(src == target_ghost)
+		client.holder.spatial_agent()
+	else
+		target_ghost.change_mob_type(/mob/living/carbon/human, delete_old_mob = TRUE)

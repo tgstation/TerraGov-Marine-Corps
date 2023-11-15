@@ -1,7 +1,6 @@
 /obj/item/tool/wrench
 	name = "wrench"
 	desc = "A wrench with many common uses. Can be usually found in your hand."
-	icon = 'icons/obj/items/items.dmi'
 	icon_state = "wrench"
 	flags_atom = CONDUCT
 	flags_equip_slot = ITEM_SLOT_BELT
@@ -16,7 +15,6 @@
 /obj/item/tool/screwdriver
 	name = "screwdriver"
 	desc = "You can be totally screwwy with this."
-	icon = 'icons/obj/items/screwdriver.dmi'
 	icon_state = "screwdriver_map"
 	flags_atom = CONDUCT
 	flags_equip_slot = ITEM_SLOT_BELT
@@ -66,7 +64,6 @@
 /obj/item/tool/wirecutters
 	name = "wirecutters"
 	desc = "This cuts wires."
-	icon = 'icons/obj/items/items.dmi'
 	icon_state = "cutters"
 	flags_atom = CONDUCT
 	flags_equip_slot = ITEM_SLOT_BELT
@@ -100,7 +97,6 @@
 
 /obj/item/tool/weldingtool
 	name = "blowtorch"
-	icon = 'icons/obj/items/items.dmi'
 	desc = "Used for welding and repairing various things."
 	icon_state = "welder"
 	flags_atom = CONDUCT
@@ -332,7 +328,6 @@
 /obj/item/tool/crowbar
 	name = "crowbar"
 	desc = "Used to remove floors and to pry open doors."
-	icon = 'icons/obj/items/items.dmi'
 	icon_state = "crowbar"
 	flags_atom = CONDUCT
 	flags_equip_slot = ITEM_SLOT_BELT
@@ -347,7 +342,6 @@
 
 
 /obj/item/tool/crowbar/red
-	icon = 'icons/obj/items/items.dmi'
 	icon_state = "red_crowbar"
 	item_state = "crowbar_red"
 
@@ -357,7 +351,7 @@
 	name = "Welding kit"
 	desc = "A heavy-duty, portable fuel carrier. Welder and flamer compatible."
 	flags_equip_slot = ITEM_SLOT_BACK
-	icon = 'icons/obj/items/items.dmi'
+	icon = 'icons/obj/items/tank.dmi'
 	icon_state = "welderpack"
 	w_class = WEIGHT_CLASS_BULKY
 	var/max_fuel = 500 //Because the marine backpack can carry 260, and still allows you to take items, there should be a reason to still use this one.
@@ -449,7 +443,7 @@
 /obj/item/tool/handheld_charger
 	name = "handheld charger"
 	desc = "A hand-held, lightweight cell charger. It isn't going to give you tons of power, but it can help in a pinch."
-	icon = 'icons/obj/items/items.dmi'
+	icon = 'icons/obj/items/tools.dmi'
 	icon_state = "handheldcharger_black_empty"
 	item_state = "handheldcharger_black_empty"
 	w_class = WEIGHT_CLASS_SMALL

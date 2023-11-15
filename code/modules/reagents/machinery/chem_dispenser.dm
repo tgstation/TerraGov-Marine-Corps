@@ -339,7 +339,7 @@
 			beaker = I
 			balloon_alert(user, "Sets [I] on the machine")
 			update_icon()
-			updateUsrDialog()
+			ui_interact(user)
 			return
 
 		if(istype(I, /obj/item/reagent_containers/glass))

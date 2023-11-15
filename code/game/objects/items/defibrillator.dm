@@ -1,6 +1,7 @@
 /obj/item/defibrillator
 	name = "emergency defibrillator"
 	desc = "A handheld emergency defibrillator, used to restore fibrillating patients. Can optionally bring people back from the dead."
+	icon = 'icons/obj/items/defibrillator.dmi'
 	icon_state = "defib_full"
 	item_state = "defib"
 	flags_atom = CONDUCT

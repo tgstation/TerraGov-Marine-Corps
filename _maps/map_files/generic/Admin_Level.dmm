@@ -1079,6 +1079,10 @@
 	dir = 5
 	},
 /area/centcom/valhalla/bridge)
+"ble" = (
+/obj/machinery/vending/medical/valhalla,
+/turf/open/floor/tile/dark/gray,
+/area/centcom/valhalla/security/brig/interiorcavern)
 "blf" = (
 /turf/open/floor/tile/neutral/corner{
 	dir = 4
@@ -2955,13 +2959,13 @@
 	dir = 8
 	},
 /obj/item/reagent_containers/food/drinks/bottle/whiskey{
-	pixel_y = 15;
-	pixel_x = 1
+	pixel_x = 1;
+	pixel_y = 15
 	},
 /obj/structure/table/fancywoodentable,
 /obj/item/reagent_containers/food/drinks/bottle/whiskey{
-	pixel_y = 15;
-	pixel_x = 9
+	pixel_x = 9;
+	pixel_y = 15
 	},
 /obj/item/storage/fancy/cigar,
 /turf/open/floor/tile/dark/gray,
@@ -3876,7 +3880,7 @@
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla/primary/fore/port)
 "eSN" = (
-/obj/machinery/prop/mainship/computer,
+/obj/machinery/prop/computer,
 /obj/structure/table/reinforced,
 /obj/structure/window/reinforced{
 	dir = 1
@@ -6883,7 +6887,7 @@
 /obj/effect/turf_decal/tile/gray{
 	dir = 8
 	},
-/obj/machinery/roomba/valhalla,
+/obj/machinery/bot/roomba/valhalla,
 /turf/open/floor/tile/neutral/full,
 /area/centcom/valhalla/security/brig)
 "jdQ" = (
@@ -7941,7 +7945,7 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/centcom/valhalla/xenocave)
 "kov" = (
-/obj/machinery/prop/mainship/computer,
+/obj/machinery/prop/computer,
 /obj/structure/table/reinforced,
 /obj/structure/window/reinforced{
 	dir = 1
@@ -10741,7 +10745,7 @@
 /turf/closed/wall/mainship,
 /area/tdome)
 "obe" = (
-/obj/machinery/body_scanconsole,
+/obj/machinery/computer/body_scanconsole,
 /turf/open/floor/mainship/sterile/corner{
 	dir = 8
 	},
@@ -11870,7 +11874,7 @@
 /turf/open/floor/wood,
 /area/centcom/valhalla/port)
 "pFR" = (
-/obj/machinery/autodoc_console,
+/obj/machinery/computer/autodoc_console,
 /turf/open/floor/mainship/sterile/side{
 	dir = 8
 	},
@@ -11888,8 +11892,8 @@
 	},
 /obj/effect/turf_decal/warning_stripes/box/arrow{
 	dir = 8;
-	pixel_y = -11;
-	pixel_x = 8
+	pixel_x = 8;
+	pixel_y = -11
 	},
 /obj/effect/turf_decal/warning_stripes/box/small{
 	dir = 1
@@ -17320,7 +17324,7 @@
 /obj/item/reagent_containers/food/drinks/bottle/holywater,
 /obj/item/explosive/grenade/sectoid,
 /obj/item/explosive/grenade/sectoid,
-/obj/item/toy/plush/gnome,
+/obj/effect/spawner/random/misc/gnome/fiftyfifty,
 /turf/open/floor/tile/dark,
 /area/centcom/valhalla/chapel/main)
 "wll" = (
@@ -21737,7 +21741,7 @@ xrI
 xrI
 xrI
 xrI
-xrI
+wQi
 xrI
 xrI
 xrI
@@ -22013,7 +22017,7 @@ xrI
 xrI
 xrI
 xrI
-wQi
+xrI
 xXc
 xXc
 xrI
@@ -22141,7 +22145,7 @@ xrI
 xrI
 xrI
 xrI
-xrI
+wQi
 xrI
 xrI
 xXc
@@ -22419,7 +22423,7 @@ xrI
 xrI
 xrI
 xrI
-wQi
+xrI
 jYG
 jYG
 hTv
@@ -23122,7 +23126,7 @@ fvw
 pqM
 duo
 uOI
-etk
+ble
 etk
 hTv
 oUq

@@ -53,6 +53,12 @@
 			"icon_state": "hotaru"
 		}
 	],
+	"dashe_visor": [
+		{
+			"type": "hyperscale",
+			"icon_state": "dashe"
+		}
+	],
 	"eva_visor": [
 		{
 			"type": "hyperscale",

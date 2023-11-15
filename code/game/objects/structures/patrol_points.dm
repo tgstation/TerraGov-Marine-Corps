@@ -42,11 +42,10 @@
 
 	activate_point(user)
 
-/obj/structure/patrol_point/mech_melee_attack(obj/vehicle/sealed/mecha/mecha_attacker, mob/living/user)
-	SHOULD_CALL_PARENT(FALSE)
+/obj/structure/patrol_point/mech_shift_click(obj/vehicle/sealed/mecha/mecha_clicker, mob/living/user)
 	if(!Adjacent(user))
 		return
-	activate_point(user, mecha_attacker)
+	activate_point(user, mecha_clicker)
 
 ///Handles sending someone and/or something through the patrol_point
 /obj/structure/patrol_point/proc/activate_point(mob/living/user, obj/obj_mover)
@@ -75,19 +74,34 @@
 	user.playsound_local(user, "sound/effects/CIC_order.ogg", 10, 1)
 	var/message
 	if(issensorcapturegamemode(SSticker.mode))
-		if(user.faction == FACTION_TERRAGOV)
-			message = "Reactivate all sensor towers, good luck team."
-		else
-			message = "Prevent reactivation of the sensor towers, glory to Mars!"
-	else if(user.faction == FACTION_TERRAGOV)
-		message = "Eliminate all hostile forces in the ao, good luck team."
-	else
-		message = "Eliminate the TerraGov imperialists in the ao, glory to Mars!"
+		switch(user.faction)
+			if(FACTION_TERRAGOV)
+				message = "Reactivate all sensor towers, good luck team."
+			if(FACTION_SOM)
+				message = "Prevent reactivation of the sensor towers, glory to Mars!"
+	else if(iscombatpatrolgamemode(SSticker.mode))
+		switch(user.faction)
+			if(FACTION_TERRAGOV)
+				message = "Eliminate all hostile forces in the ao, good luck team."
+			if(FACTION_SOM)
+				message = "Eliminate the TerraGov imperialists in the ao, glory to Mars!"
+	else if(iscampaigngamemode(SSticker.mode))
+		switch(user.faction)
+			if(FACTION_TERRAGOV)
+				message = "Stick together and achieve those objectives marines. Good luck."
+			if(FACTION_SOM)
+				message = "Remember your training marines, show those Terrans the strength of the SOM, glory to Mars!"
 
-	if(user.faction == FACTION_TERRAGOV)
-		user.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>OVERWATCH</u></span><br>" + message, /atom/movable/screen/text/screen_text/picture/potrait)
-	else
-		user.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>OVERWATCH</u></span><br>" + message, /atom/movable/screen/text/screen_text/picture/potrait/som_over)
+	if(!message)
+		return
+
+	switch(user.faction)
+		if(FACTION_TERRAGOV)
+			user.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>OVERWATCH</u></span><br>" + message, /atom/movable/screen/text/screen_text/picture/potrait)
+		if(FACTION_SOM)
+			user.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>OVERWATCH</u></span><br>" + message, /atom/movable/screen/text/screen_text/picture/potrait/som_over)
+		else
+			user.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>UNKNOWN</u></span><br>" + message, /atom/movable/screen/text/screen_text/picture/potrait/unknown)
 
 /obj/structure/patrol_point/attack_ghost(mob/dead/observer/user)
 	. = ..()
@@ -104,6 +118,54 @@
 ///Removes spawn protection godmode
 /obj/structure/patrol_point/proc/remove_spawn_protection(mob/user)
 	user.status_flags &= ~GODMODE
+
+/obj/structure/patrol_point/tgmc_11
+	id = "TGMC_11"
+
+/obj/structure/patrol_point/tgmc_12
+	id = "TGMC_12"
+
+/obj/structure/patrol_point/tgmc_13
+	id = "TGMC_13"
+
+/obj/structure/patrol_point/tgmc_14
+	id = "TGMC_14"
+
+/obj/structure/patrol_point/tgmc_21
+	id = "TGMC_21"
+
+/obj/structure/patrol_point/tgmc_22
+	id = "TGMC_22"
+
+/obj/structure/patrol_point/tgmc_23
+	id = "TGMC_23"
+
+/obj/structure/patrol_point/tgmc_24
+	id = "TGMC_24"
+
+/obj/structure/patrol_point/som_11
+	id = "SOM_11"
+
+/obj/structure/patrol_point/som_12
+	id = "SOM_12"
+
+/obj/structure/patrol_point/som_13
+	id = "SOM_13"
+
+/obj/structure/patrol_point/som_14
+	id = "SOM_14"
+
+/obj/structure/patrol_point/som_21
+	id = "SOM_21"
+
+/obj/structure/patrol_point/som_22
+	id = "SOM_22"
+
+/obj/structure/patrol_point/som_23
+	id = "SOM_23"
+
+/obj/structure/patrol_point/som_24
+	id = "SOM_24"
 
 /atom/movable/effect/rappel_rope
 	name = "rope"

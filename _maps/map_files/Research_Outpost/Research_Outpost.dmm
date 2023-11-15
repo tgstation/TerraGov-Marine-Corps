@@ -742,10 +742,7 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/outpost/caves/north_west)
 "dX" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_14";
-	name = "SOM exit point 14"
-	},
+/obj/effect/landmark/patrol_point/som/som_14,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/outpost/caves/south_west)
 "dY" = (
@@ -1096,10 +1093,7 @@
 /turf/open/floor/tile/dark,
 /area/outpost/science/rd_office)
 "fy" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_14";
-	name = "TGMC exit point 14"
-	},
+/obj/effect/landmark/patrol_point/tgmc_14,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/outpost/caves/south_east)
 "fz" = (
@@ -1609,10 +1603,7 @@
 	},
 /area/outpost/lz1)
 "hU" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_24";
-	name = "SOM exit point 24"
-	},
+/obj/effect/landmark/patrol_point/som/som_24,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/outpost/caves/north_east)
 "hV" = (
@@ -1849,10 +1840,7 @@
 /turf/open/floor/tile/dark,
 /area/outpost/hallway/central)
 "iS" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_22";
-	name = "SOM exit point 22"
-	},
+/obj/effect/landmark/patrol_point/som/som_22,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/outpost/caves/north_east)
 "iT" = (
@@ -3194,10 +3182,7 @@
 /turf/open/floor/tile/dark/brown2/corner,
 /area/outpost/hallway/central)
 "oS" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_11";
-	name = "SOM exit point 11"
-	},
+/obj/effect/landmark/patrol_point/som/som_11,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/outpost/caves/south_west)
 "oV" = (
@@ -3286,10 +3271,7 @@
 	},
 /area/outpost/hallway/south_west)
 "po" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_12";
-	name = "SOM exit point 12"
-	},
+/obj/effect/landmark/patrol_point/som/som_12,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/outpost/caves/south_west)
 "pp" = (
@@ -4499,10 +4481,7 @@
 	},
 /area/outpost/hallway/south_west)
 "uT" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_12";
-	name = "TGMC exit point 12"
-	},
+/obj/effect/landmark/patrol_point/tgmc_12,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/outpost/caves/south_east)
 "uU" = (
@@ -5113,10 +5092,7 @@
 /turf/open/floor/tile/damaged/three,
 /area/outpost/cargo)
 "xE" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_13";
-	name = "TGMC exit point 13"
-	},
+/obj/effect/landmark/patrol_point/tgmc_13,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/outpost/caves/south_east)
 "xF" = (
@@ -6350,10 +6326,7 @@
 /turf/open/floor/marking/asteroidwarning,
 /area/outpost/lz1)
 "DI" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_22";
-	name = "TGMC exit point 22"
-	},
+/obj/effect/landmark/patrol_point/tgmc_22,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/outpost/caves/north_west)
 "DJ" = (
@@ -6532,7 +6505,7 @@
 	},
 /area/outpost/hallway/south_east)
 "Ey" = (
-/obj/machinery/autodoc_console,
+/obj/machinery/computer/autodoc_console,
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 8
 	},
@@ -6856,10 +6829,7 @@
 	},
 /area/outpost/caves/north_west)
 "FU" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_13";
-	name = "SOM exit point 13"
-	},
+/obj/effect/landmark/patrol_point/som/som_13,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/outpost/caves/south_west)
 "FX" = (
@@ -7135,10 +7105,7 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/outpost/caves/south_east)
 "Hu" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_24";
-	name = "TGMC exit point 24"
-	},
+/obj/effect/landmark/patrol_point/tgmc_24,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/outpost/caves/north_west)
 "Hw" = (
@@ -7849,10 +7816,7 @@
 /turf/open/floor/tile/dark,
 /area/outpost/engineering)
 "KN" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_23";
-	name = "SOM exit point 23"
-	},
+/obj/effect/landmark/patrol_point/som/som_23,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/outpost/caves/north_east)
 "KO" = (
@@ -8347,7 +8311,7 @@
 /turf/open/floor/plating/dmg2,
 /area/outpost/science/xenobiology)
 "Nb" = (
-/obj/machinery/sleep_console,
+/obj/machinery/computer/sleep_console,
 /turf/open/floor/tile/dark/blue2{
 	dir = 9
 	},
@@ -8724,10 +8688,7 @@
 	},
 /area/outpost/cargo)
 "OM" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_11";
-	name = "TGMC exit point 11"
-	},
+/obj/effect/landmark/patrol_point/tgmc_11,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/outpost/caves/south_east)
 "ON" = (
@@ -8954,7 +8915,7 @@
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/outpost/yard/central)
 "PX" = (
-/obj/machinery/body_scanconsole,
+/obj/machinery/computer/body_scanconsole,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark,
 /area/outpost/medbay)
@@ -9443,10 +9404,7 @@
 /turf/open/floor/tile/dark,
 /area/outpost/arrivals)
 "Sh" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_21";
-	name = "TGMC exit point 21"
-	},
+/obj/effect/landmark/patrol_point/tgmc_21,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/outpost/caves/north_west)
 "Si" = (
@@ -9546,10 +9504,7 @@
 /turf/open/floor/tile/dark/brown2,
 /area/outpost/hallway/west)
 "SE" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_23";
-	name = "TGMC exit point 23"
-	},
+/obj/effect/landmark/patrol_point/tgmc_23,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/outpost/caves/north_west)
 "SJ" = (
@@ -9638,7 +9593,7 @@
 	},
 /area/outpost/medbay/storage)
 "SY" = (
-/obj/machinery/sleep_console,
+/obj/machinery/computer/sleep_console,
 /turf/open/floor/tile/dark,
 /area/outpost/medbay)
 "Tb" = (
@@ -10390,10 +10345,7 @@
 	},
 /area/outpost/caves/south)
 "WF" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_21";
-	name = "SOM exit point 21"
-	},
+/obj/effect/landmark/patrol_point/som/som_21,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/outpost/caves/north_east)
 "WH" = (

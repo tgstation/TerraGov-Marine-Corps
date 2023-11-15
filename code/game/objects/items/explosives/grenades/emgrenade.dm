@@ -1,5 +1,6 @@
 /obj/item/explosive/grenade/empgrenade
 	name = "classic emp grenade"
+	icon = 'icons/obj/device.dmi'
 	icon_state = "emp"
 	item_state = "emp"
 

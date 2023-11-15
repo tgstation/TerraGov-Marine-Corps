@@ -86,8 +86,10 @@
 
 /obj/item/explosive/grenade/sticky/throw_impact(atom/hit_atom, speed)
 	. = ..()
+	if(!.)
+		return
 	if(!active || stuck_to || isturf(hit_atom))
-		return TRUE
+		return
 	var/image/stuck_overlay = image(icon, hit_atom, initial(icon_state) + "_stuck")
 	stuck_overlay.pixel_x = rand(-5, 5)
 	stuck_overlay.pixel_y = rand(-7, 7)
@@ -129,7 +131,7 @@
 
 /obj/item/explosive/grenade/sticky/trailblazer/throw_impact(atom/hit_atom, speed)
 	. = ..()
-	if(.)
+	if(!.)
 		return
 	RegisterSignal(stuck_to, COMSIG_MOVABLE_MOVED, PROC_REF(make_fire))
 	var/turf/T = get_turf(src)
@@ -171,7 +173,7 @@
 
 /obj/item/explosive/grenade/sticky/cloaker/throw_impact(atom/hit_atom, speed)
 	. = ..()
-	if(.)
+	if(!.)
 		return
 	RegisterSignal(stuck_to, COMSIG_MOVABLE_MOVED, PROC_REF(make_smoke))
 
@@ -208,12 +210,12 @@
 	radius = clamp(radius, 1, 50) //Sanitize inputs
 	int_var = clamp(int_var, 0.1,0.5)
 	dur_var = clamp(int_var, 0.1,0.5)
-	fire_stacks = rand(burn_damage*(0.5-int_var),burn_damage*(0.5+int_var) ) + rand(burn_damage*(0.5-int_var),burn_damage*(0.5+int_var) )
-	burn_damage = rand(burn_damage*(0.5-int_var),burn_damage*(0.5+int_var) ) + rand(burn_damage*(0.5-int_var),burn_damage*(0.5+int_var) )
+	fire_stacks = randfloat(burn_damage*(0.5-int_var),burn_damage*(0.5+int_var) ) + randfloat(burn_damage*(0.5-int_var),burn_damage*(0.5+int_var) )
+	burn_damage = randfloat(burn_damage*(0.5-int_var),burn_damage*(0.5+int_var) ) + randfloat(burn_damage*(0.5-int_var),burn_damage*(0.5+int_var) )
 
 	for(var/t in filled_turfs(epicenter, radius, "circle", air_pass = TRUE))
 		var/turf/turf_to_flame = t
-		turf_to_flame.ignite(rand(burn_intensity*(0.5-int_var), burn_intensity*(0.5+int_var)) + rand(burn_intensity*(0.5-int_var), burn_intensity*(0.5+int_var)), rand(burn_duration*(0.5-int_var), burn_duration*(0.5-int_var)) + rand(burn_duration*(0.5-int_var), burn_duration*(0.5-int_var)), colour, burn_damage, fire_stacks)
+		turf_to_flame.ignite(randfloat(burn_intensity*(0.5-int_var), burn_intensity*(0.5+int_var)) + randfloat(burn_intensity*(0.5-int_var), burn_intensity*(0.5+int_var)), randfloat(burn_duration*(0.5-int_var), burn_duration*(0.5-int_var)) + randfloat(burn_duration*(0.5-int_var), burn_duration*(0.5-int_var)), colour, burn_damage, fire_stacks)
 
 /obj/item/explosive/grenade/incendiary/som
 	name = "\improper S30-I incendiary grenade"
@@ -236,6 +238,14 @@
 	flame_radius(2, get_turf(src))
 	playsound(loc, "molotov", 35)
 	qdel(src)
+
+/obj/item/explosive/grenade/incendiary/molotov/throw_impact(atom/hit_atom, speed, bounce = TRUE)
+	. = ..()
+	if(!.)
+		return
+	if(!hit_atom.density || prob(35))
+		return
+	prime()
 
 /obj/item/explosive/grenade/ags
 	name = "\improper AGLS-37 HEDP grenade"
@@ -405,6 +415,8 @@
 
 /obj/item/explosive/grenade/impact/throw_impact(atom/hit_atom, speed)
 	. = ..()
+	if(!.)
+		return
 	if(launched && active && !istype(hit_atom, /turf/open)) //Only contact det if active, we actually hit something, and we're fired from a grenade launcher.
 		explosion(loc, light_impact_range = 1, flash_range = 2)
 		qdel(src)
@@ -515,7 +527,14 @@
 		set_light_on(FALSE)
 
 /obj/item/explosive/grenade/flare/throw_impact(atom/hit_atom, speed)
+	if(isopenturf(hit_atom))
+		var/obj/alien/weeds/node/N = locate() in loc
+		if(N)
+			qdel(N)
+			turn_off()
 	. = ..()
+	if(!.)
+		return
 	if(!active)
 		return
 
@@ -526,13 +545,7 @@
 		if(!target_zone || rand(40))
 			target_zone = "chest"
 		if(launched && CHECK_BITFIELD(resistance_flags, ON_FIRE) && !L.on_fire)
-			L.apply_damage(rand(throwforce*0.75,throwforce*1.25), BURN, target_zone, FIRE, updating_health = TRUE) //Do more damage if launched from a proper launcher and active
-
-	// Flares instantly burn out nodes when thrown at them.
-	var/obj/alien/weeds/node/N = locate() in loc
-	if(N)
-		qdel(N)
-		turn_off()
+			L.apply_damage(randfloat(throwforce * 0.75, throwforce * 1.25), BURN, target_zone, FIRE, updating_health = TRUE) //Do more damage if launched from a proper launcher and active
 
 /obj/item/explosive/grenade/flare/civilian
 	name = "flare"
@@ -586,6 +599,8 @@
 
 /obj/item/explosive/grenade/flare/strongerflare/throw_impact(atom/hit_atom, speed)
 	. = ..()
+	if(!.)
+		return
 	anchored = TRUE//prevents marines from picking up and running around with a stronger flare
 
 /obj/item/explosive/grenade/flare/strongerflare/update_brightness()

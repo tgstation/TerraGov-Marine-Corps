@@ -140,6 +140,8 @@
 
 /obj/item/assembly/infra/throw_impact(atom/hit_atom)
 	. = ..()
+	if(!.)
+		return
 	if(!olddir)
 		return
 	setDir(olddir)

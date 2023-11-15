@@ -226,7 +226,7 @@ GLOBAL_LIST_EMPTY(tagger_locations)
 
 /obj/item/packageWrap
 	name = "package wrapper"
-	icon = 'icons/obj/items/items.dmi'
+	icon = 'icons/obj/stack_objects.dmi'
 	icon_state = "deliveryPaper"
 	w_class = WEIGHT_CLASS_NORMAL
 	var/amount = 25
@@ -319,6 +319,7 @@ GLOBAL_LIST_EMPTY(tagger_locations)
 /obj/item/destTagger
 	name = "destination tagger"
 	desc = "Used to set the destination of properly wrapped packages."
+	icon = 'icons/obj/device.dmi'
 	icon_state = "dest_tagger"
 	var/currTag = 0
 

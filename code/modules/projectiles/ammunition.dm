@@ -563,6 +563,14 @@ Turn() or Shift() as there is virtually no overhead. ~N
 	base_icon_state = "ammoboxflechette"
 	ammo_type = /datum/ammo/bullet/shotgun/flechette
 
+/obj/item/shotgunbox/clf_heavyrifle
+	name = "big ammo box (14.5mm API)"
+	caliber = CALIBER_14X5
+	icon_state = "ammobox_145"
+	item_state = "ammobox_145"
+	base_icon_state = "ammobox_145"
+	ammo_type = /datum/ammo/bullet/sniper/clf_heavyrifle
+
 /obj/item/shotgunbox/tracker
 	name = "Tracking Ammo Box"
 	icon_state = "ammoboxtracking"

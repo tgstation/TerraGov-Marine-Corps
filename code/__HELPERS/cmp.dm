@@ -16,6 +16,12 @@
 /proc/cmp_name_dsc(atom/a, atom/b)
 	return sorttext(a.name, b.name)
 
+/proc/cmp_list_numeric_asc(list/a, list/b, sortkey)
+	return cmp_numeric_asc(a[sortkey], b[sortkey])
+
+/proc/cmp_list_numeric_dsc(list/a, list/b, sortkey)
+	return cmp_numeric_dsc(a[sortkey], b[sortkey])
+
 /proc/cmp_list_asc(list/a, list/b, sortkey)
 	return sorttext(b[sortkey], a[sortkey])
 

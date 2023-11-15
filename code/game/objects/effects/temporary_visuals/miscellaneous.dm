@@ -122,6 +122,7 @@ GLOBAL_LIST_EMPTY(blood_particles)
 	alpha = initial(alpha)
 	layer = initial(layer)
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	animate(src, alpha = 0, time = duration)
 
 /obj/effect/temp_visual/ob_impact
 	name = "ob impact animation"

@@ -32,6 +32,7 @@ GLOBAL_LIST_INIT(quick_loadouts, init_quick_loadouts())
 		/datum/outfit/quick/tgmc/corpsman/laser_carbine,
 		/datum/outfit/quick/tgmc/smartgunner/standard_sg,
 		/datum/outfit/quick/tgmc/smartgunner/minigun_sg,
+		/datum/outfit/quick/tgmc/smartgunner/target_rifle,
 		/datum/outfit/quick/tgmc/leader/standard_assaultrifle,
 		/datum/outfit/quick/tgmc/leader/standard_carbine,
 		/datum/outfit/quick/tgmc/leader/combat_rifle,
@@ -92,6 +93,9 @@ GLOBAL_LIST_INIT(quick_loadouts, init_quick_loadouts())
 	req_access = null
 	req_one_access = null
 	interaction_flags = INTERACT_MACHINE_TGUI
+	light_range = 1
+	light_power = 0.5
+	light_color = LIGHT_COLOR_BLUE
 	///The faction of this quick load vendor
 	var/faction = FACTION_NEUTRAL
 	//the different tabs in the vendor
@@ -103,15 +107,28 @@ GLOBAL_LIST_INIT(quick_loadouts, init_quick_loadouts())
 		"Squad Leader",
 	)
 
-/obj/machinery/quick_vendor/som
-	faction = FACTION_SOM
-	categories = list(
-		"SOM Squad Standard",
-		"SOM Squad Engineer",
-		"SOM Squad Medic",
-		"SOM Squad Veteran",
-		"SOM Squad Leader",
-	)
+/obj/machinery/quick_vendor/Initialize(mapload)
+	. = ..()
+	update_icon()
+
+/obj/machinery/quick_vendor/update_icon()
+	. = ..()
+	if(is_operational())
+		set_light(initial(light_range))
+	else
+		set_light(0)
+
+/obj/machinery/quick_vendor/update_icon_state()
+	if(is_operational())
+		icon_state = initial(icon_state)
+	else
+		icon_state = "[initial(icon_state)]-off"
+
+/obj/machinery/quick_vendor/update_overlays()
+	. = ..()
+	if(!is_operational())
+		return
+	. += emissive_appearance(icon, "[icon_state]_emissive")
 
 /obj/machinery/quick_vendor/can_interact(mob/user)
 	. = ..()
@@ -191,3 +208,13 @@ GLOBAL_LIST_INIT(quick_loadouts, init_quick_loadouts())
 				selected_loadout.equip(ui.user) //actually equips the loadout
 			else
 				to_chat(usr, span_warning("You can't buy things from this category anymore."))
+
+/obj/machinery/quick_vendor/som
+	faction = FACTION_SOM
+	categories = list(
+		"SOM Squad Standard",
+		"SOM Squad Engineer",
+		"SOM Squad Medic",
+		"SOM Squad Veteran",
+		"SOM Squad Leader",
+	)

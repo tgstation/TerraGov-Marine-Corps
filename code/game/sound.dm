@@ -106,7 +106,7 @@ A good representation is: 'byond applies a volume reduction to the sound every X
 		S.falloff = falloff ? falloff : FALLOFF_SOUNDS * max(round(S.volume * 0.05), 1)
 
 	if(!is_global)
-		S.environment = 2
+		S.environment = SOUND_ENVIRONMENT_ROOM
 
 	SEND_SOUND(src, S)
 
@@ -297,6 +297,12 @@ A good representation is: 'byond applies a volume reduction to the sound every X
 			S = pick('sound/voice/alien_queen_command.ogg','sound/voice/alien_queen_command2.ogg','sound/voice/alien_queen_command3.ogg')
 		if("alien_ventpass")
 			S = pick('sound/effects/alien_ventpass1.ogg', 'sound/effects/alien_ventpass2.ogg')
+		if("behemoth_step_sounds")
+			S = pick('sound/effects/alien_footstep_large1.ogg', 'sound/effects/alien_footstep_large2.ogg', 'sound/effects/alien_footstep_large3.ogg')
+		if("behemoth_rolling")
+			S = 'sound/effects/behemoth/behemoth_roll.ogg'
+		if("behemoth_earth_pillar_hit")
+			S = pick('sound/effects/behemoth/earth_pillar_hit_1.ogg', 'sound/effects/behemoth/earth_pillar_hit_2.ogg', 'sound/effects/behemoth/earth_pillar_hit_3.ogg', 'sound/effects/behemoth/earth_pillar_hit_4.ogg', 'sound/effects/behemoth/earth_pillar_hit_5.ogg', 'sound/effects/behemoth/earth_pillar_hit_6.ogg')
 
 		// Human
 		if("male_scream")

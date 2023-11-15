@@ -1,6 +1,6 @@
 import { CampaignData, FactionReward, AssetIcon } from './index';
 import { useBackend, useLocalState } from '../../backend';
-import { LabeledList, Button, Stack, Section } from '../../components';
+import { LabeledList, Button, Stack, Section, Flex, Box } from '../../components';
 
 export const CampaignPurchase = (props, context) => {
   const { act, data } = useBackend<CampaignData>(context);
@@ -39,16 +39,18 @@ export const CampaignPurchase = (props, context) => {
                         ? 'red'
                         : 'grey'
                 }>
-                {!!reward.icon && (
-                  <AssetIcon
-                    icon={
-                      selectedReward.name === reward.name
-                        ? reward.icon + '_red'
-                        : reward.icon + '_blue'
-                    }
-                  />
-                )}
-                {reward.name}
+                <Flex align="center">
+                  {!!reward.icon && (
+                    <AssetIcon
+                      icon={
+                        selectedReward.name === reward.name
+                          ? reward.icon + '_red'
+                          : reward.icon + '_blue'
+                      }
+                    />
+                  )}
+                  {reward.name}
+                </Flex>
               </Button>
             </Stack.Item>
           ))}
@@ -56,13 +58,34 @@ export const CampaignPurchase = (props, context) => {
       </Stack.Item>
       <Stack.Item>
         <Section
-          title={selectedReward ? selectedReward.name : 'No reward selected'}
-          buttons={
-            <Button
-              onClick={() => setPurchasedAsset(selectedReward)}
-              icon={'check'}>
-              Purchase
-            </Button>
+          title={
+            selectedReward ? (
+              <Box>
+                <Flex align="center">
+                  <Flex.Item>
+                    {
+                      <AssetIcon
+                        icon={selectedReward.icon + '_orange'}
+                        icon_width={'36px'}
+                        icon_height={'36px'}
+                      />
+                    }
+                  </Flex.Item>
+                  <Flex.Item fontSize="150%" grow={1}>
+                    {selectedReward.name}
+                  </Flex.Item>
+                  <Flex.Item alight="right" position="end">
+                    <Button
+                      onClick={() => setPurchasedAsset(selectedReward)}
+                      icon={'check'}>
+                      Select
+                    </Button>
+                  </Flex.Item>
+                </Flex>
+              </Box>
+            ) : (
+              'No asset selected'
+            )
           }>
           <LabeledList>
             <LabeledList.Item label="Name">

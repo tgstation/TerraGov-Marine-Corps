@@ -1,6 +1,0 @@
-author: "Blundir"
-delete-after: True
-changes:
-  - bugfix: "id card having no mob icon when spawning on mob"
-  - bugfix: "fixed backpack prefs overriding spawn of job assigned backpacks"
-  - code_imp: "made it possible to specify to spawn without backpack or id in job datums"
