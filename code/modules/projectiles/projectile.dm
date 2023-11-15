@@ -685,6 +685,11 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	hit_chance = min(hit_chance , hit_chance + 100 - proj.accuracy)
 	return prob(hit_chance)
 
+/obj/machinery/deployable/mounted/sentry/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
+	if(proj.iff_signal & iff_signal)
+		return FALSE
+	return ..()
+
 /obj/machinery/door/poddoor/railing/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
 	return src == proj.original_target
 
@@ -766,6 +771,9 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 		evasion_bonus = (100 - evasion_bonus) / 100 //turn it into a multiplier
 		BULLET_DEBUG("Moving (*[evasion_bonus]).")
 		hit_chance = round(hit_chance * evasion_bonus)
+
+	if(proj.ammo.flags_ammo_behavior & AMMO_UNWIELDY)
+		hit_chance *= 0.5
 
 	hit_chance = max(5, hit_chance) //It's never impossible to hit
 

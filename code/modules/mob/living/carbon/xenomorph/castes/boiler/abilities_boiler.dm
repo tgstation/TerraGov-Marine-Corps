@@ -295,6 +295,10 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 		set_rooted(FALSE)
 		return
 
+	if(HAS_TRAIT_FROM(owner, TRAIT_FLOORED, RESTING_TRAIT))
+		owner.balloon_alert(owner, "Cannot while lying down!")
+		return
+
 	owner.balloon_alert_to_viewers("Rooting into place...")
 	if(!do_after(owner, 3 SECONDS, FALSE, null, BUSY_ICON_HOSTILE))
 		owner.balloon_alert(owner, "Interrupted!")

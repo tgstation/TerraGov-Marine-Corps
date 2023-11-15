@@ -2,7 +2,7 @@
 	caste_name = "Runner"
 	display_name = "Runner"
 	upgrade_name = ""
-	caste_desc = "A fast, four-legged terror, but weak in sustained combat."
+	caste_desc = "A fast, four-legged terror. Weak in sustained combat."
 	caste_type_path = /mob/living/carbon/xenomorph/runner
 	tier = XENO_TIER_ONE
 	upgrade = XENO_UPGRADE_BASETYPE
@@ -14,8 +14,6 @@
 	// *** Melee Attacks *** //
 	melee_damage = 21
 	attack_delay = 6
-
-	savage_cooldown = 30 SECONDS
 
 	// *** Speed *** //
 	speed = -1.5
@@ -45,9 +43,6 @@
 	// *** Defense *** //
 	soft_armor = list(MELEE = 20, BULLET = 20, LASER = 20, ENERGY = 20, BOMB = 0, BIO = 5, FIRE = 19, ACID = 5)
 
-	// *** Ranged Attack *** //
-	pounce_delay = 13 SECONDS
-
 	// *** Minimap Icon *** //
 	minimap_icon = "runner"
 
@@ -57,9 +52,8 @@
 		/datum/action/xeno_action/watch_xeno,
 		/datum/action/xeno_action/activable/psydrain,
 		/datum/action/xeno_action/xenohide,
-		/datum/action/xeno_action/activable/pounce,
-		/datum/action/xeno_action/toggle_savage,
 		/datum/action/xeno_action/evasion,
+		/datum/action/xeno_action/activable/pounce/runner,
 	)
 
 /datum/xeno_caste/runner/normal
@@ -76,8 +70,7 @@
 		/datum/action/xeno_action/watch_xeno,
 		/datum/action/xeno_action/activable/psydrain,
 		/datum/action/xeno_action/xenohide,
-		/datum/action/xeno_action/activable/pounce,
-		/datum/action/xeno_action/toggle_savage,
 		/datum/action/xeno_action/evasion,
+		/datum/action/xeno_action/activable/pounce/runner,
 		/datum/action/xeno_action/activable/snatch,
 	)

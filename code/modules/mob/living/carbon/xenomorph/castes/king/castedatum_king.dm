@@ -1,6 +1,7 @@
 /datum/xeno_caste/king
 	caste_name = "King"
 	display_name = "King"
+	upgrade_name = ""
 	caste_type_path = /mob/living/carbon/xenomorph/king
 	caste_desc = "A primordial creature, evolved to smash the hardiest of defences and hunt the hardiest of prey."
 
@@ -68,6 +69,7 @@
 	upgrade = XENO_UPGRADE_NORMAL
 
 /datum/xeno_caste/king/primordial
+	upgrade_name = "Primordial"
 	caste_desc = "An avatar of death. Running won't help you now."
 	primordial_message = "Death cannot create, but you definitely know how to destroy."
 	upgrade = XENO_UPGRADE_PRIMO

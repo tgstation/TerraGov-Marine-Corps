@@ -16,6 +16,7 @@ GLOBAL_VAR_INIT(current_orbit,STANDARD_ORBIT)
 /obj/machinery/computer/navigation
 	name = "\improper Helms computer"
 	icon_state = "shuttlecomputer"
+	screen_overlay = "shuttlecomputer_screen"
 	density = TRUE
 	anchored = TRUE
 	idle_power_usage = 10

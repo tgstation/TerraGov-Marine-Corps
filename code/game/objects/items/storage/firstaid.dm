@@ -158,6 +158,12 @@
 		/obj/item/reagent_containers/syringe,
 	)
 
+/obj/item/storage/syringe_case/empty/Initialize(mapload, ...)
+	. = ..()
+	new /obj/item/reagent_containers/syringe(src)
+	new /obj/item/reagent_containers/glass/bottle/empty(src)
+	new /obj/item/reagent_containers/glass/bottle/empty(src)
+
 /obj/item/storage/syringe_case/regular
 	name = "basic syringe case"
 	desc = "It's a medical case for storing syringes and bottles. This one contains basic meds."
@@ -282,6 +288,7 @@
 	var/description_overlay = ""
 	refill_types = list(/obj/item/storage/pill_bottle)
 	refill_sound = 'sound/items/pills.ogg'
+	access_delay = 1.5 SECONDS
 
 /obj/item/storage/pill_bottle/Initialize(mapload, ...)
 	. = ..()
@@ -289,6 +296,15 @@
 		for(var/i in 1 to max_storage_space)
 			new pill_type_to_fill(src)
 	update_icon()
+
+/obj/item/storage/pill_bottle/should_access_delay(obj/item/item, mob/user, taking_out)
+	if(!user)
+		return FALSE
+	if(!taking_out) // Always allow items to be tossed in instantly
+		return FALSE
+	if(user.skills.getRating(SKILL_MEDICAL) >= SKILL_MEDICAL_PRACTICED) //No delay for corps+
+		return FALSE
+	return TRUE
 
 /obj/item/storage/pill_bottle/attack_self(mob/living/user)
 	if(user.get_inactive_held_item())

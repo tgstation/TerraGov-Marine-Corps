@@ -1,6 +1,7 @@
 /obj/item/binoculars/fire_support
 	name = "tactical binoculars"
 	desc = "A pair of binoculars, used to mark targets for airstrikes and cruise missiles. Unique action to toggle mode. Ctrl+Click when using to target something."
+	icon = 'icons/Marine/marine-navigation.dmi'
 	icon_state = "range_finders"
 	w_class = WEIGHT_CLASS_SMALL
 	///Faction locks this item if specified
@@ -32,7 +33,12 @@
 
 /obj/item/binoculars/fire_support/examine(mob/user)
 	. = ..()
-	. += span_notice("They are currently set to [mode.name] targeting mode.")
+	if(!mode)
+		return
+	. += span_boldnotice("They are currently set to [mode.name] mode: [mode.uses == -1 ? "unlimited" : "[mode.uses]"] uses remaining.")
+	if(!mode.cooldown_timer)
+		return
+	. += span_warning("Available in [round(timeleft(mode.cooldown_timer) MILLISECONDS)] seconds.")
 
 /obj/item/binoculars/fire_support/Destroy()
 	if(laser)
@@ -189,10 +195,13 @@
 		FIRESUPPORT_TYPE_GUN,
 		FIRESUPPORT_TYPE_ROCKETS,
 		FIRESUPPORT_TYPE_CRUISE_MISSILE,
+		FIRESUPPORT_TYPE_LASER,
 		FIRESUPPORT_TYPE_HE_MORTAR,
 		FIRESUPPORT_TYPE_INCENDIARY_MORTAR,
-		FIRESUPPORT_TYPE_SMOKE_MORTAR,
 		FIRESUPPORT_TYPE_ACID_SMOKE_MORTAR,
+		FIRESUPPORT_TYPE_SMOKE_MORTAR,
+		FIRESUPPORT_TYPE_SENTRY_POD,
+		FIRESUPPORT_TYPE_SUPPLY_POD,
 	)
 
 /obj/item/binoculars/fire_support/campaign/som
@@ -203,6 +212,6 @@
 		FIRESUPPORT_TYPE_RAD_MISSILE,
 		FIRESUPPORT_TYPE_HE_MORTAR_SOM,
 		FIRESUPPORT_TYPE_INCENDIARY_MORTAR_SOM,
-		FIRESUPPORT_TYPE_SMOKE_MORTAR_SOM,
 		FIRESUPPORT_TYPE_SATRAPINE_SMOKE_MORTAR,
+		FIRESUPPORT_TYPE_SMOKE_MORTAR_SOM,
 	)

@@ -31,18 +31,6 @@
 		return FALSE
 	check_hive_status(usr)
 
-/datum/action/observer_action/join_larva_queue
-	name = "Join Larva Queue"
-	action_icon_state = "larva_queue"
-	action_type = ACTION_TOGGLE
-
-/datum/action/observer_action/join_larva_queue/action_activate()
-	var/datum/hive_status/normal/HS = GLOB.hive_datums[XENO_HIVE_NORMAL]
-	if(HS.add_to_larva_candidate_queue(owner))
-		set_toggle(TRUE)
-		return
-	set_toggle(FALSE)
-
 /datum/action/observer_action/take_ssd_mob
 	name = "Take SSD mob"
 	action_icon_state = "take_ssd"

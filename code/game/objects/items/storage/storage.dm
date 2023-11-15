@@ -76,6 +76,8 @@
 	var/list/obj/item/storage/refill_types
 	///What sound gets played when the item is tactical refilled
 	var/refill_sound = null
+	///Flags for specifically storage items
+	var/flags_storage = NONE
 
 /obj/item/storage/MouseDrop(obj/over_object as obj)
 	if(!ishuman(usr))
@@ -855,7 +857,7 @@
 
 /**
  * Attempts to get the first possible object from this container
- * 
+ *
  * Arguments:
  * * mob/living/user - The mob attempting to draw from this container
  * * start_from_left - If true we draw the leftmost object instead of the rightmost. FALSE by default.

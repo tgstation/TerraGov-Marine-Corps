@@ -4,6 +4,7 @@
 
 /obj/item/chameleon
 	name = "chameleon-projector"
+	icon = 'icons/obj/device.dmi'
 	icon_state = "shield0"
 	flags_atom = CONDUCT
 	flags_equip_slot = ITEM_SLOT_BELT
@@ -31,6 +32,7 @@
 	return ..()
 
 /obj/item/chameleon/dropped(mob/user)
+	. = ..()
 	disrupt(user)
 
 /obj/item/chameleon/equipped(mob/user, slot)

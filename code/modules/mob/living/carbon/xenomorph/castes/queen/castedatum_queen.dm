@@ -1,6 +1,7 @@
 /datum/xeno_caste/queen
 	caste_name = "Queen"
 	display_name = "Queen"
+	upgrade_name = ""
 	caste_type_path = /mob/living/carbon/xenomorph/queen
 	caste_desc = "The biggest and baddest xeno. The Queen controls the hive."
 	job_type = /datum/job/xenomorph/queen
@@ -82,6 +83,7 @@
 	upgrade = XENO_UPGRADE_NORMAL
 
 /datum/xeno_caste/queen/primordial
+	upgrade_name = "Primordial"
 	caste_desc = "A fearsome Xeno hulk of titanic proportions. Nothing can stand in it's way."
 	primordial_message = "Destiny bows to our will as the universe trembles before us."
 	upgrade = XENO_UPGRADE_PRIMO
@@ -109,6 +111,7 @@
 		/datum/action/xeno_action/watch_xeno,
 		/datum/action/xeno_action/set_xeno_lead,
 		/datum/action/xeno_action/activable/queen_give_plasma,
+		/datum/action/xeno_action/sow,
 		/datum/action/xeno_action/hive_message,
 		/datum/action/xeno_action/rally_hive,
 		/datum/action/xeno_action/activable/command_minions,

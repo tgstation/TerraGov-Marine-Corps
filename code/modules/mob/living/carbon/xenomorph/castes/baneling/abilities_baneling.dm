@@ -4,7 +4,7 @@
 /datum/action/xeno_action/baneling_explode
 	name = "Baneling Explode"
 	action_icon_state = "baneling_explode"
-	desc = "Explode and spread dangerous toxins to hinder or kill your foes. You will respawn in your pod after you detonate, should your pod be planted."
+	desc = "Explode and spread dangerous toxins to hinder or kill your foes. You will respawn in your pod after you detonate, should your pod be planted. By staying alive, you gain charges to respawn quicker."
 	ability_name = "baneling explode"
 	var/static/list/baneling_smoke_list = list(
 		/datum/reagent/toxin/xeno_neurotoxin = /datum/effect_system/smoke_spread/xeno/neuro/medium,
@@ -17,10 +17,41 @@
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_BANELING_EXPLODE,
 	)
 
+/datum/action/xeno_action/baneling_explode/handle_button_status_visuals()
+	var/mob/living/carbon/xenomorph/baneling = owner
+	button.cut_overlay(visual_references[VREF_MUTABLE_BANE_CHARGES])
+	var/mutable_appearance/number = visual_references[VREF_MUTABLE_BANE_CHARGES]
+	number.maptext = MAPTEXT("[baneling.stored_charge]")
+	visual_references[VREF_MUTABLE_BANE_CHARGES] = number
+	button.add_overlay(visual_references[VREF_MUTABLE_BANE_CHARGES])
+	return ..()
+
 /datum/action/xeno_action/baneling_explode/give_action(mob/living/L)
 	. = ..()
 	var/mob/living/carbon/xenomorph/X = L
+	var/mutable_appearance/charge_maptext = mutable_appearance(icon = null, icon_state = null, layer = ACTION_LAYER_MAPTEXT)
+	charge_maptext.pixel_x = 12
+	charge_maptext.pixel_y = -5
+	visual_references[VREF_MUTABLE_BANE_CHARGES] = charge_maptext
 	RegisterSignal(X, COMSIG_MOB_PRE_DEATH, PROC_REF(handle_smoke))
+
+/datum/action/xeno_action/baneling_explode/remove_action(mob/living/L)
+	. = ..()
+	var/mob/living/carbon/xenomorph/X = L
+	UnregisterSignal(X, COMSIG_MOB_PRE_DEATH)
+
+/datum/action/xeno_action/baneling_explode/clean_action()
+	button.cut_overlay(visual_references[VREF_MUTABLE_BANE_CHARGES])
+	visual_references[VREF_MUTABLE_BANE_CHARGES] = null
+
+
+/datum/action/xeno_action/baneling_explode/can_use_action()
+	. = ..()
+	var/mob/living/carbon/xenomorph/X = owner
+	var/datum/action/xeno_action/spawn_pod/pod_action = X.actions_by_path[/datum/action/xeno_action/spawn_pod]
+	if(SSmonitor.gamestate == SHUTTERS_CLOSED && isnull(pod_action.the_pod))
+		X.balloon_alert(owner, span_notice("Can't explode before shutters without a pod!"))
+		return FALSE
 
 /datum/action/xeno_action/baneling_explode/action_activate()
 	. = ..()
@@ -108,16 +139,19 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_BANELING_SPAWN_POD,
 	)
+	var/obj/structure/xeno/baneling_pod/the_pod
 
 /datum/action/xeno_action/spawn_pod/action_activate()
 	. = ..()
 	var/mob/living/carbon/xenomorph/X = owner
-	RegisterSignal(new /obj/structure/xeno/baneling_pod(get_turf(X.loc), X.hivenumber, X, src), COMSIG_QDELETING, PROC_REF(notify_owner))
+	the_pod = new /obj/structure/xeno/baneling_pod(get_turf(X.loc), X.hivenumber, X, src)
+	RegisterSignal(the_pod, COMSIG_QDELETING, PROC_REF(notify_owner))
 	succeed_activate()
 
 /// Proc to notify the owner of the pod that it has been destroyed
 /datum/action/xeno_action/spawn_pod/proc/notify_owner()
 	SIGNAL_HANDLER
+	the_pod = null
 	var/mob/living/carbon/xenomorph/X = owner
 	X.balloon_alert(X, "YOUR POD IS DESTROYED")
 	to_chat(X, span_xenohighdanger("Our POD IS DESTROYED! Rebuild it if we can!"))
@@ -144,7 +178,7 @@
 		return fail_activate()
 	RegisterSignals(X, list(COMSIG_MOVABLE_POST_THROW, COMSIG_XENO_OBJ_THROW_HIT), PROC_REF(charge_complete))
 	RegisterSignal(X, COMSIG_XENO_LIVING_THROW_HIT, PROC_REF(mob_hit))
-	X.throw_at(A, range, 70, X)
+	X.throw_at(A, range, 7, X)
 
 /// Whenever we hit something living, if its a human we knock them down for 2 seconds and keep throwing ourselves. If we hit xeno, we get blocked and explode on them
 /datum/action/xeno_action/activable/dash_explosion/proc/mob_hit(datum/source, mob/M)
@@ -164,3 +198,5 @@
 	X.record_tactical_unalive()
 	X.death(FALSE)
 
+/datum/action/xeno_action/watch_xeno/baneling
+	use_state_flags = XACT_USE_LYING|XACT_USE_NOTTURF|XACT_USE_INCAP

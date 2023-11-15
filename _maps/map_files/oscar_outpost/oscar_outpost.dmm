@@ -201,7 +201,7 @@
 /turf/open/floor/plating/ground/dirtgrassborder,
 /area/oscar_outpost/outside/road)
 "br" = (
-/obj/machinery/autodoc_console,
+/obj/machinery/computer/autodoc_console,
 /obj/structure/reagent_dispensers/fueltank,
 /turf/open/floor/mainship/sterile,
 /area/oscar_outpost/base)
@@ -475,14 +475,11 @@
 /turf/open/floor/tile/dark,
 /area/oscar_outpost)
 "do" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_14";
-	name = "TGMC exit point 14"
-	},
+/obj/effect/landmark/patrol_point/tgmc_14,
 /turf/open/floor,
 /area/oscar_outpost/village/south)
 "dq" = (
-/obj/machinery/body_scanconsole,
+/obj/machinery/computer/body_scanconsole,
 /turf/open/floor/mainship/sterile,
 /area/oscar_outpost/base)
 "ds" = (
@@ -1197,7 +1194,7 @@
 /turf/open/liquid/water/river/desertdam/clean/deep_water_clean,
 /area/oscar_outpost/village/fairgrounds)
 "ig" = (
-/obj/machinery/autodoc_console,
+/obj/machinery/computer/autodoc_console,
 /turf/open/floor/mainship/sterile,
 /area/oscar_outpost/village/central)
 "ij" = (
@@ -2251,11 +2248,11 @@
 /turf/open/floor/mainship/sterile,
 /area/oscar_outpost/base)
 "pX" = (
-/obj/item/ammo_magazine/heavy_rr,
-/obj/item/ammo_magazine/heavy_rr,
-/obj/item/ammo_magazine/heavy_rr,
-/obj/item/ammo_magazine/heavy_rr,
-/obj/item/ammo_magazine/heavy_rr,
+/obj/item/ammo_magazine/heavy_isg/he,
+/obj/item/ammo_magazine/heavy_isg/he,
+/obj/item/ammo_magazine/heavy_isg/he,
+/obj/item/ammo_magazine/heavy_isg/he,
+/obj/item/ammo_magazine/heavy_isg/he,
 /obj/structure/barricade/sandbags{
 	dir = 8;
 	name = "trench lining";
@@ -3163,7 +3160,7 @@
 /turf/open/floor/wood,
 /area/oscar_outpost/village/east)
 "vy" = (
-/obj/machinery/body_scanconsole,
+/obj/machinery/computer/body_scanconsole,
 /turf/open/floor/mainship/sterile,
 /area/oscar_outpost/village/central)
 "vz" = (
@@ -3424,10 +3421,7 @@
 	},
 /area/oscar_outpost)
 "xj" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_24";
-	name = "TGMC exit point 24"
-	},
+/obj/effect/landmark/patrol_point/tgmc_24,
 /turf/open/floor/plating/ground/dirt,
 /area/oscar_outpost/village/fairgrounds)
 "xk" = (
@@ -3720,7 +3714,7 @@
 /turf/open/floor/tile/dark,
 /area/oscar_outpost)
 "yQ" = (
-/obj/machinery/roomba,
+/obj/machinery/bot/roomba,
 /obj/effect/ai_node,
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
@@ -4218,10 +4212,7 @@
 /turf/open/floor/tile/dark,
 /area/oscar_outpost/base)
 "Bl" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_11";
-	name = "TGMC exit point 11"
-	},
+/obj/effect/landmark/patrol_point/tgmc_11,
 /turf/open/floor/plating/ground/dirt,
 /area/oscar_outpost/village/fairgrounds)
 "Bo" = (
@@ -4528,10 +4519,7 @@
 /turf/open/floor/prison,
 /area/oscar_outpost/base)
 "CF" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_22";
-	name = "TGMC exit point 22"
-	},
+/obj/effect/landmark/patrol_point/tgmc_22,
 /turf/open/floor,
 /area/oscar_outpost/village/south)
 "CH" = (
@@ -5230,7 +5218,7 @@
 /turf/open/floor,
 /area/oscar_outpost/village/south)
 "FR" = (
-/obj/machinery/body_scanconsole,
+/obj/machinery/computer/body_scanconsole,
 /obj/structure/sign/safety/medical_supplies{
 	dir = 1
 	},
@@ -5836,7 +5824,7 @@
 /turf/open/floor,
 /area/oscar_outpost/village)
 "Ir" = (
-/obj/item/weapon/gun/launcher/rocket/heavy_rr{
+/obj/item/weapon/gun/heavy_isg{
 	dir = 4
 	},
 /turf/open/floor/plating/ground/dirt2,
@@ -5974,10 +5962,7 @@
 /turf/open/floor,
 /area/oscar_outpost/village)
 "IH" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_21";
-	name = "TGMC exit point 21"
-	},
+/obj/effect/landmark/patrol_point/tgmc_21,
 /turf/open/floor,
 /area/oscar_outpost/village/south)
 "II" = (
@@ -7206,7 +7191,7 @@
 /turf/open/floor,
 /area/oscar_outpost/village)
 "Or" = (
-/obj/machinery/sleep_console,
+/obj/machinery/computer/sleep_console,
 /obj/machinery/light{
 	dir = 4
 	},
@@ -7712,10 +7697,7 @@
 /turf/open/floor,
 /area/oscar_outpost/village)
 "Qk" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_12";
-	name = "TGMC exit point 12"
-	},
+/obj/effect/landmark/patrol_point/tgmc_12,
 /turf/open/floor/plating/ground/dirt,
 /area/oscar_outpost/village/fairgrounds)
 "Ql" = (
@@ -8850,10 +8832,7 @@
 	},
 /area/oscar_outpost/outside/west)
 "Vl" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_23";
-	name = "TGMC exit point 23"
-	},
+/obj/effect/landmark/patrol_point/tgmc_23,
 /turf/open/floor,
 /area/oscar_outpost/village/south)
 "Vm" = (
@@ -9003,11 +8982,11 @@
 /turf/open/floor/mainship/sterile,
 /area/oscar_outpost/base)
 "Wc" = (
-/obj/item/ammo_magazine/heavy_rr,
-/obj/item/ammo_magazine/heavy_rr,
-/obj/item/ammo_magazine/heavy_rr,
-/obj/item/ammo_magazine/heavy_rr,
-/obj/item/ammo_magazine/heavy_rr,
+/obj/item/ammo_magazine/heavy_isg/he,
+/obj/item/ammo_magazine/heavy_isg/he,
+/obj/item/ammo_magazine/heavy_isg/he,
+/obj/item/ammo_magazine/heavy_isg/he,
+/obj/item/ammo_magazine/heavy_isg/he,
 /obj/structure/barricade/sandbags{
 	dir = 8;
 	name = "trench lining";
@@ -9613,10 +9592,7 @@
 /turf/open/floor/mainship/sterile,
 /area/oscar_outpost/village/central)
 "Yw" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_13";
-	name = "TGMC exit point 13"
-	},
+/obj/effect/landmark/patrol_point/tgmc_13,
 /turf/open/floor/plating/ground/dirt,
 /area/oscar_outpost/village/fairgrounds)
 "Yx" = (
@@ -9645,7 +9621,7 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/oscar_outpost/village/central)
 "YC" = (
-/obj/machinery/cloning_console/vats,
+/obj/machinery/computer/cloning_console/vats,
 /turf/open/floor/mainship/sterile/dark,
 /area/oscar_outpost/village/central)
 "YD" = (

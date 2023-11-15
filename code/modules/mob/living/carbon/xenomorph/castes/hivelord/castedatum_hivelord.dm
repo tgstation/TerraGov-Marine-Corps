@@ -88,6 +88,8 @@
 	primordial_message = "We are the master architect of the hive. Let the world be covered in resin."
 	upgrade = XENO_UPGRADE_PRIMO
 
+	spit_types = list(/datum/ammo/xeno/sticky, /datum/ammo/xeno/sticky/globe)
+
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/watch_xeno,

@@ -240,7 +240,7 @@ GLOBAL_LIST_INIT(organ_rel_size, list(
 	//get pixels to move the camera in an angle
 	var/mpx = sin(angle) * strength
 	var/mpy = cos(angle) * strength
-	animate(M.client, pixel_x = oldx+mpx, pixel_y = oldy+mpy, time = duration, flags = ANIMATION_RELATIVE)
+	animate(M.client, pixel_x = mpx-oldx, pixel_y = mpy-oldy, time = duration, flags = ANIMATION_RELATIVE)
 	animate(pixel_x = oldx, pixel_y = oldy, time = backtime_duration, easing = BACK_EASING)
 
 

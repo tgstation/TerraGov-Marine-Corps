@@ -557,3 +557,6 @@
 		return
 	set_light_range_power_color(range, power, color)
 	set_light_on(TRUE)
+
+/mob/living/carbon/xenomorph/on_eord(turf/destination)
+	revive(TRUE)

@@ -1,4 +1,0 @@
-author: "Barnet2"
-delete-after: True
-changes:
-  - balance: "Hold order gives 5% damage resist per leadership level instead of 10%."

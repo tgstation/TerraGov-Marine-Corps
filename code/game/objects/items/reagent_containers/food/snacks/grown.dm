@@ -287,7 +287,6 @@
 /obj/item/reagent_containers/food/snacks/grown/banana
 	name = "banana"
 	desc = "It's an excellent prop for a comedy."
-	icon = 'icons/obj/items/items.dmi'
 	icon_state = "banana"
 	item_state = "banana"
 	filling_color = "#FCF695"
@@ -325,7 +324,9 @@
 	plantname = "tomato"
 
 /obj/item/reagent_containers/food/snacks/grown/tomato/throw_impact(atom/hit_atom)
-	..()
+	. = ..()
+	if(!.)
+		return
 	new/obj/effect/decal/cleanable/tomato_smudge(src.loc)
 	src.visible_message(span_notice("The [src.name] has been squashed."),span_moderate("You hear a smack."))
 	qdel(src)
@@ -349,7 +350,9 @@
 	plantname = "bloodtomato"
 
 /obj/item/reagent_containers/food/snacks/grown/bloodtomato/throw_impact(atom/hit_atom)
-	..()
+	. = ..()
+	if(!.)
+		return
 	new/obj/effect/decal/cleanable/blood/splatter(src.loc)
 	src.visible_message(span_notice("The [src.name] has been squashed."),span_moderate("You hear a smack."))
 	src.reagents.reaction(get_turf(hit_atom))
@@ -371,7 +374,9 @@
 	AddComponent(/datum/component/slippery, 0.8 SECONDS, 0.5 SECONDS)
 
 /obj/item/reagent_containers/food/snacks/grown/bluetomato/throw_impact(atom/hit_atom)
-	..()
+	. = ..()
+	if(!.)
+		return
 	new/obj/effect/decal/cleanable/blood/oil(src.loc)
 	src.visible_message(span_notice("The [src.name] has been squashed."),span_moderate("You hear a smack."))
 	src.reagents.reaction(get_turf(hit_atom))
@@ -507,7 +512,9 @@
 	plantname = "bluespacetomato"
 
 /obj/item/reagent_containers/food/snacks/grown/bluespacetomato/throw_impact(atom/hit_atom)
-	..()
+	. = ..()
+	if(!.)
+		return
 	var/mob/M = usr
 	var/outer_teleport_radius = potency/10 //Plant potency determines radius of teleport.
 	var/inner_teleport_radius = potency/15

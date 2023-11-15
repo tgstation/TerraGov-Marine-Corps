@@ -616,6 +616,7 @@
 /datum/reagent/medicine/alkysine/on_mob_life(mob/living/L, metabolism)
 	L.reagent_shock_modifier += PAIN_REDUCTION_VERY_LIGHT
 	L.adjustBrainLoss(-1.5*effect_str)
+	L.adjust_ear_damage(-2 * effect_str, -2 * effect_str)
 	return ..()
 
 /datum/reagent/medicine/alkysine/overdose_process(mob/living/L, metabolism)
@@ -1347,8 +1348,8 @@
 
 /datum/reagent/medicine/research/stimulon/on_mob_life(mob/living/L, metabolism)
 	L.adjustStaminaLoss(1*effect_str)
-	L.take_limb_damage(rand(0.5*effect_str, 4*effect_str), 0)
-	L.adjustCloneLoss(rand (0, 5) * effect_str * current_cycle * 0.02)
+	L.take_limb_damage(randfloat(0.5 * effect_str, 4 * effect_str), 0)
+	L.adjustCloneLoss(rand(0, 5) * effect_str * current_cycle * 0.02)
 	if(prob(20))
 		L.emote(pick("twitch","blink_r","shiver"))
 	if(volume < 100) //THERE IS NO "MINIMUM SAFE DOSE" MUAHAHAHA!

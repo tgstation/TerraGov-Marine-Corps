@@ -100,8 +100,8 @@
 	name = "\improper SMG-90 submachinegun"
 	desc = "The SMG-90 is the TerraGov Marine Corps standard issue SMG. Its known for it's compact size and ease of use inside the field. It's usually carried by troops who want a lightweight firearm to rush with. It uses 10x20mm caseless rounds."
 	fire_sound = 'sound/weapons/guns/fire/tgmc/kinetic/gun_smg90.ogg'
-	icon_state = "t90"
-	item_state = "t90"
+	icon_state = GUN_ICONSTATE_LOADED
+	item_state = GUN_ICONSTATE_LOADED
 	caliber = CALIBER_10X20_CASELESS //codex
 	max_shells = 50 //codex
 	flags_equip_slot = ITEM_SLOT_BACK
@@ -110,6 +110,14 @@
 	type_of_casings = null
 	default_ammo_type = /obj/item/ammo_magazine/smg/standard_smg
 	allowed_ammo_types = list(/obj/item/ammo_magazine/smg/standard_smg)
+	greyscale_config = /datum/greyscale_config/gun/t90
+	colorable_allowed = PRESET_COLORS_ALLOWED
+	item_icons = list(
+		slot_l_hand_str = /datum/greyscale_config/gun_inhand/t90,
+		slot_r_hand_str = /datum/greyscale_config/gun_inhand/r_hand/t90,
+		slot_back_str = /datum/greyscale_config/worn_gun/t90,
+		slot_s_store_str = /datum/greyscale_config/worn_gun/suit/t90,
+	)
 	attachable_allowed = list(
 		/obj/item/attachable/suppressor,
 		/obj/item/attachable/reddot,

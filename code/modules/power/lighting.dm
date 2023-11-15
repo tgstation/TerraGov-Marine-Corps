@@ -166,6 +166,14 @@
 	desc = "A small lighting fixture."
 	light_type = /obj/item/light_bulb/bulb
 
+/obj/machinery/light/red
+	base_state = "tubered"
+	icon_state = "tubered1"
+	light_color = LIGHT_COLOR_FLARE
+	brightness = 3
+	bulb_power = 0.5
+	bulb_colour = LIGHT_COLOR_FLARE
+
 // the smaller bulb light fixture
 
 /obj/machinery/light/small
@@ -210,11 +218,9 @@
 
 	switch(fitting)
 		if("tube")
-			brightness = 8
 			if(prob(2))
 				broken(TRUE)
 		if("bulb")
-			brightness = 4
 			if(prob(5))
 				broken(TRUE)
 
@@ -570,7 +576,9 @@
 	var/brightness = 2 //how much light it gives off
 
 /obj/item/light_bulb/throw_impact(atom/hit_atom)
-	..()
+	. = ..()
+	if(!.)
+		return
 	shatter()
 
 /obj/item/light_bulb/tube

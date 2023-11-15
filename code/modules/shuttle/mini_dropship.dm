@@ -16,6 +16,7 @@
 	name = "Tadpole navigation computer"
 	desc = "Used to designate a precise transit location for the Tadpole."
 	icon_state = "shuttlecomputer"
+	screen_overlay = "shuttlecomputer_screen"
 	req_one_access = list(ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LEADER)
 	density = FALSE
 	interaction_flags = INTERACT_OBJ_UI
@@ -50,7 +51,7 @@
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/Initialize(mapload)
 	..()
 	start_processing()
-	set_light(3,3)
+	set_light(3,3, LIGHT_COLOR_RED)
 	land_action = new
 	tadmap = new
 	return INITIALIZE_HINT_LATELOAD

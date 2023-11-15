@@ -352,7 +352,7 @@
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	alpha = 0
 	vis_flags = NONE
-	blocks_emissive = NONE
+	blocks_emissive = EMISSIVE_BLOCK_NONE
 
 /obj/effect/overlay/temp/timestop_effect
 	icon = 'icons/effects/160x160.dmi'
@@ -365,5 +365,11 @@
 	layer = ABOVE_MOB_LAYER
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	icon_state = "eye_open"
+	pixel_x = 16
+	pixel_y = 16
+
+/obj/effect/overlay/dread
+	layer = ABOVE_MOB_LAYER
+	icon_state = "spooky"
 	pixel_x = 16
 	pixel_y = 16

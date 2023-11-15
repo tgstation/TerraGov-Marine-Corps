@@ -1,14 +1,15 @@
 /obj/item/radio/intercom
 	name = "station intercom"
 	desc = "Talk through this. To speak directly into an intercom next to you, use :i."
-	icon = 'icons/obj/wallframes.dmi'
+	icon = 'icons/obj/machines/radio.dmi'
 	icon_state = "intercom"
-	pixel_x = -16
-	pixel_y = -16
 	anchored = TRUE
 	w_class = WEIGHT_CLASS_BULKY
 	canhear_range = 2
 	flags_atom = CONDUCT|NOBLOODY
+	light_range = 1.5
+	light_power = 0.5
+	light_color = LIGHT_COLOR_EMISSIVE_YELLOW
 	var/number = 0
 	var/anyai = 1
 	var/mob/living/silicon/ai/ai = list()
@@ -18,21 +19,41 @@
 	. = ..()
 	switch(dir)
 		if(NORTH)
-			pixel_y -= 32
+			pixel_y = -32
 		if(SOUTH)
-			pixel_y += 32
+			pixel_y = 32
 		if(EAST)
-			pixel_x -= 32
+			pixel_x = -32
 		if(WEST)
-			pixel_x += 32
+			pixel_x = 32
 	START_PROCESSING(SSobj, src)
 	become_hearing_sensitive()
+	update_icon()
 
 
 /obj/item/radio/intercom/Destroy()
 	STOP_PROCESSING(SSobj, src)
 	return ..()
 
+/obj/item/radio/intercom/update_icon()
+	. = ..()
+	if(!on)
+		set_light(0)
+		return
+
+	set_light(initial(light_range))
+
+/obj/item/radio/intercom/update_icon_state()
+	if(!on)
+		icon_state = "intercom_unpowered"
+	else
+		icon_state = "intercom"
+
+/obj/item/radio/intercom/update_overlays()
+	. = ..()
+	if(!on)
+		return
+	. += emissive_appearance(icon, "[icon_state]_emissive")
 
 /obj/item/radio/intercom/attack_ai(mob/user as mob)
 	spawn (0)
@@ -69,18 +90,17 @@
 /obj/item/radio/intercom/process()
 	if(((world.timeofday - last_tick) > 30) || ((world.timeofday - last_tick) < 0))
 		last_tick = world.timeofday
-
+		var/new_state
 		var/area/A = get_area(src)
 		if(!A)
-			on = FALSE
+			new_state = FALSE
 		else
-			on = A.powered(EQUIP) // set "on" to the power status
-
-		if(!on)
-			icon_state = "intercom-p"
+			new_state = A.powered(EQUIP) // set "on" to the power status
+		if(on == new_state)
+			return
 		else
-			icon_state = initial(icon_state)
-
+			on = new_state
+			update_icon()
 
 /obj/item/radio/intercom/general
 	name = "General Listening Channel"

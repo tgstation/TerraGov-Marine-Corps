@@ -386,3 +386,23 @@
 
 //----BANELING END----//
 //============//
+//----PUPPETEER START----//
+/mob/living/carbon/xenomorph/puppeteer
+	upgrade = XENO_UPGRADE_NORMAL
+
+/mob/living/carbon/xenomorph/puppeteer/primordial
+	upgrade = XENO_UPGRADE_PRIMO
+	upgrade_stored = TIER_TWO_THRESHOLD
+
+//----PUPPETEER END----//
+//============//
+//----BEHEMOTH START----//
+
+/mob/living/carbon/xenomorph/behemoth
+	upgrade = XENO_UPGRADE_NORMAL
+
+/mob/living/carbon/xenomorph/behemoth/primordial
+	upgrade = XENO_UPGRADE_PRIMO
+
+//----BEHEMOTH END----//
+//============//

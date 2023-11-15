@@ -192,3 +192,12 @@ Important note: colors can end up significantly different from the basic html pi
 
 //Campaign map lighting
 #define LIGHT_COLOR_PALE_GREEN "#ebffc6"
+#define COLOR_MISSION_RED "#ffdfd6"
+#define COLOR_MISSION_YELLOW "#fffbd6"
+#define COLOR_MISSION_BLUE "#d6f2ff"
+
+//less saturated colours intended for lighting effects
+#define LIGHT_COLOR_EMISSIVE_GREEN "#69fa64"
+#define LIGHT_COLOR_EMISSIVE_RED "#fa6464"
+#define LIGHT_COLOR_EMISSIVE_YELLOW "#f0fa64"
+#define LIGHT_COLOR_EMISSIVE_ORANGE "#faac64"

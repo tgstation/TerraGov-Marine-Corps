@@ -1420,7 +1420,7 @@
 /turf/closed/wall,
 /area/bigredv2/outside/medical)
 "LA" = (
-/obj/machinery/body_scanconsole,
+/obj/machinery/computer/body_scanconsole,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/green/whitegreen,
 /area/bigredv2/outside/medical)
@@ -1530,7 +1530,7 @@
 	},
 /area/bigredv2/outside/medical)
 "OW" = (
-/obj/machinery/body_scanconsole,
+/obj/machinery/computer/body_scanconsole,
 /turf/open/floor/tile/green/whitegreen{
 	dir = 6
 	},

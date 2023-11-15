@@ -323,6 +323,32 @@ WEAPONS
 	)
 	cost = 20
 
+/datum/supply_packs/weapons/flak_gun
+	name = "FK-88 Flak Gun"
+	contains = list(/obj/item/weapon/gun/heavy_isg)
+	cost = 1200
+
+/datum/supply_packs/weapons/flak_he
+	name = "ISG-15 HE Shell"
+	contains = list(/obj/item/ammo_magazine/heavy_isg/he)
+	cost = 100
+
+/datum/supply_packs/weapons/flak_sabot
+	name = "ISG-15 APFDS Shell"
+	contains = list(/obj/item/ammo_magazine/heavy_isg/sabot)
+	cost = 120
+
+/datum/supply_packs/weapons/heayvlaser_emplacement
+	name = "Mounted Heavy Laser"
+	contains = list(/obj/item/weapon/gun/heavy_laser/deployable)
+	cost = 800
+
+
+/datum/supply_packs/weapons/heayvlaser_ammo
+	name = "Mounted Heavy Laser Ammo (x1)"
+	contains = list(/obj/item/ammo_magazine/heavy_laser)
+	cost = 15
+
 /datum/supply_packs/weapons/tesla
 	name = "Tesla Shock Rifle"
 	contains = list(/obj/item/weapon/gun/energy/lasgun/lasrifle/tesla)
@@ -415,6 +441,11 @@ WEAPONS
 	name = "PB-12 pepperball gun"
 	contains = list(/obj/item/weapon/gun/rifle/pepperball)
 	cost = 100
+
+/datum/supply_packs/weapons/bricks
+	name = "Brick"
+	contains = list(/obj/item/weapon/brick)
+	cost = 10
 
 /datum/supply_packs/weapons/railgun
 	name = "SR-220 Railgun"
@@ -1747,6 +1778,16 @@ Imports
 	contains = list(/obj/item/ammo_magazine/rifle/famas)
 	cost = 5
 
+/datum/supply_packs/imports/aug	//Vietnam time
+	name = "L&S EM-88 Assault Carbine"
+	contains = list(/obj/item/weapon/gun/rifle/icc_assaultcarbine/export)
+	cost = 120
+
+/datum/supply_packs/imports/aug/ammo
+	name = "EM-88 Assault Carbine Ammo"
+	contains = list(/obj/item/ammo_magazine/rifle/icc_assaultcarbine/export)
+	cost = 5
+
 /datum/supply_packs/imports/rev357
 	name = "'Rebota' Revolver"
 	contains = list(/obj/item/weapon/gun/revolver/small)
@@ -1930,11 +1971,6 @@ VEHICLES
 	contains = list(/obj/structure/dropship_equipment/shuttle/weapon_holder/heavylaser)
 	cost = 900
 
-/datum/supply_packs/vehicles/mounted_rr
-	name = "Mounted Heavy Recoilless Rifle"
-	contains = list(/obj/structure/dropship_equipment/shuttle/weapon_holder/heavy_rr)
-	cost = 1800
-
 /datum/supply_packs/vehicles/hsg_ammo
 	name = "Mounted HSG ammo"
 	contains = list(/obj/item/ammo_magazine/tl102/hsg_nest)
@@ -1951,12 +1987,6 @@ VEHICLES
 	name = "Mounted Heavy Laser ammo (x3)"
 	contains = list(/obj/item/ammo_magazine/heavy_laser, /obj/item/ammo_magazine/heavy_laser, /obj/item/ammo_magazine/heavy_laser)
 	cost = 50
-	containertype = /obj/structure/closet/crate/ammo
-
-/datum/supply_packs/vehicles/rr_ammo
-	name = "Mounted Recoilless Rifle shell (x2)"
-	contains = list(/obj/item/ammo_magazine/heavy_rr, /obj/item/ammo_magazine/heavy_rr)
-	cost = 70
 	containertype = /obj/structure/closet/crate/ammo
 
 /*******************************************************************************

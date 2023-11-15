@@ -34,11 +34,11 @@
 		if(XENO_TIER_MINION)
 			. = 50
 		if(XENO_TIER_ZERO)
-			. = 150
+			. = 70
 		if(XENO_TIER_ONE)
-			. = 300
+			. = 150
 		if(XENO_TIER_TWO)
-			. = 400
+			. = 300
 		if(XENO_TIER_THREE)
 			. = 500
 		if(XENO_TIER_FOUR)

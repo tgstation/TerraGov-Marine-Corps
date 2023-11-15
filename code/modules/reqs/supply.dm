@@ -208,7 +208,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 /obj/item/supplytablet
 	name = "ASRS tablet"
 	desc = "A tablet for an Automated Storage and Retrieval System"
-	icon = 'icons/obj/items/req_tablet.dmi'
+	icon = 'icons/Marine/marine-navigation.dmi'
 	icon_state = "req_tablet_off"
 	req_access = list(ACCESS_MARINE_CARGO)
 	flags_equip_slot = ITEM_SLOT_POCKET
@@ -238,7 +238,8 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 	name = "ASRS console"
 	desc = "A console for an Automated Storage and Retrieval System"
 	icon = 'icons/obj/machines/computer.dmi'
-	icon_state = SHUTTLE_SUPPLY
+	icon_state = "computer"
+	screen_overlay = "supply"
 	req_access = list(ACCESS_MARINE_CARGO)
 	circuit = /obj/item/circuitboard/computer/supplycomp
 	var/datum/supply_ui/SU
@@ -579,7 +580,9 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 /obj/machinery/computer/ordercomp
 	name = "Supply ordering console"
 	icon = 'icons/obj/machines/computer.dmi'
-	icon_state = "request"
+	icon_state = "computer"
+	screen_overlay = "request"
+	broken_icon = "computer_orange_broken"
 	circuit = /obj/item/circuitboard/computer/ordercomp
 	var/datum/supply_ui/requests/SU
 
@@ -595,7 +598,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 
 /obj/item/storage/backpack/marine/radiopack
 	name = "\improper TGMC radio operator backpack"
-	desc = "A backpack that resembles the ones old-age radio operator marines would use."
+	desc = "A backpack that resembles the ones old-age radio operator marines would use. It has a supply ordering console installed on it, and a retractable antenna to receive supply drops."
 	icon_state = "radiopack"
 	item_state = "radiopack"
 	///Var for the window pop-up

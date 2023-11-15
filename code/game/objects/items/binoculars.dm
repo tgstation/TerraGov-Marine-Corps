@@ -1,7 +1,7 @@
 /obj/item/binoculars
-
 	name = "binoculars"
 	desc = "A pair of binoculars."
+	icon = 'icons/Marine/marine-navigation.dmi'
 	icon_state = "binoculars"
 	item_icons = list(
 		slot_l_hand_str = 'icons/mob/inhands/equipment/binoculars_left.dmi',
@@ -31,6 +31,7 @@
 /obj/item/binoculars/tactical
 	name = "tactical binoculars"
 	desc = "A pair of binoculars, with a laser targeting function. Unique action to toggle mode. Alt+Click to change selected linked artillery. Ctrl+Click when using to target something. Shift+Click to get coordinates. Ctrl+Shift+Click to fire OB when lasing in OB mode"
+	icon = 'icons/Marine/marine-navigation.dmi'
 	icon_state = "range_finders"
 	var/laser_cooldown = 0
 	var/cooldown_duration = 200 //20 seconds
@@ -212,14 +213,8 @@
 	if(!istype(TU))
 		return
 	var/is_outside = FALSE
-	if(is_ground_level(TU.z))
-		switch(targ_area.ceiling)
-			if(CEILING_NONE)
-				is_outside = TRUE
-			if(CEILING_GLASS)
-				is_outside = TRUE
-			if(CEILING_METAL)
-				is_outside = TRUE
+	if(is_ground_level(TU.z) && (targ_area.ceiling <= CEILING_OBSTRUCTED))
+		is_outside = TRUE
 	if(!is_outside)
 		to_chat(user, span_warning("DEPTH WARNING: Target too deep for ordnance."))
 		return

@@ -225,9 +225,9 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 	if(C)
 		C.set_operable(dir, id, 0)
 
-	C = locate() in get_step(src, turn(dir,180))
+	C = locate() in get_step(src, REVERSE_DIR(dir))
 	if(C)
-		C.set_operable(turn(dir,180), id, 0)
+		C.set_operable(REVERSE_DIR(dir), id, 0)
 
 
 //set the operable var if ID matches, propagating in the given direction

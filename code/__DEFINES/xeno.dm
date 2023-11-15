@@ -47,6 +47,11 @@
 #define REGULAR_ACID_STRENGTH 0.04
 #define STRONG_ACID_STRENGTH 0.1
 
+#define PUPPET_RECALL "recall puppet"
+#define PUPPET_SEEK_CLOSEST "seeking closest and attack order" //not xeno-usable
+#define PUPPET_ATTACK "seek and attack order"
+#define PUPPET_SCOUT "scouting order"
+
 //List of weed types
 GLOBAL_LIST_INIT(weed_type_list, typecacheof(list(
 		/obj/alien/weeds/node,
@@ -126,6 +131,20 @@ GLOBAL_LIST_INIT(resin_images_list, list(
 		RESIN_DOOR = image('icons/Xeno/actions.dmi', icon_state = RESIN_DOOR)
 		))
 
+//List of puppeteer order images
+GLOBAL_LIST_INIT(puppeteer_order_images_list, list(
+		PUPPET_ATTACK = image('icons/Xeno/actions.dmi', icon_state = "enrage"),
+		PUPPET_SCOUT = image('icons/mob/actions.dmi', icon_state = "66"),
+		PUPPET_RECALL = image('icons/mob/actions.dmi', icon_state = "rally")
+		))
+
+//List of puppeteer pheromone images
+GLOBAL_LIST_INIT(puppeteer_phero_images_list, list(
+		AURA_XENO_BLESSFURY = image('icons/mob/actions.dmi', icon_state = "Fury"),
+		AURA_XENO_BLESSWARDING = image('icons/mob/actions.dmi', icon_state = "Warding"),
+		AURA_XENO_BLESSFRENZY = image('icons/mob/actions.dmi', icon_state = "Frenzy"),
+		))
+
 //xeno upgrade flags
 ///Message the hive when we buy this upgrade
 #define UPGRADE_FLAG_MESSAGE_HIVE (1<<0)
@@ -135,6 +154,7 @@ GLOBAL_LIST_INIT(xeno_ai_spawnable, list(
 	/mob/living/carbon/xenomorph/beetle/ai,
 	/mob/living/carbon/xenomorph/mantis/ai,
 	/mob/living/carbon/xenomorph/scorpion/ai,
+	/mob/living/carbon/xenomorph/nymph/ai,
 ))
 
 ///Heals a xeno, respecting different types of damage
@@ -180,3 +200,5 @@ GLOBAL_LIST_INIT(xeno_ai_spawnable, list(
 #define ERROR_NO_SUPPORT 7
 /// Failed to other blockers such as egg, power plant , coocon , traps
 #define ERROR_CONSTRUCT 8
+
+#define PUPPET_WITHER_RANGE 15
