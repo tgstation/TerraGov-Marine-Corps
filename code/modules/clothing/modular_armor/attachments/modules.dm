@@ -42,7 +42,6 @@
 	desc = "Designed for mounting on modular armor. This module has advanced medical systems that inject tricordrazine and hydrocodone based on the user's needs. Will definitely impact mobility."
 	icon_state = "mod_autodoc"
 	item_state = "mod_autodoc_a"
-	slowdown = 0.25
 	slot = ATTACHMENT_SLOT_MODULE
 	variants_by_parent_type = list(/obj/item/clothing/suit/modular/xenonauten = "mod_autodoc_xn")
 
