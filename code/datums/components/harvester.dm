@@ -227,9 +227,9 @@
 			target.flamer_fire_act(10)
 
 		if(/datum/reagent/medicine/bicaridine)
-			INVOKE_ASYNC(src, PROC_REF(attack_bicaridine), source, target, user, weapon)
-			if(!(isxeno(target)))
+			if(user.a_intent == INTENT_HELP)
 				. = COMPONENT_ITEM_NO_ATTACK
+			INVOKE_ASYNC(src, PROC_REF(attack_bicaridine), source, target, user, weapon)
 
 		if(/datum/reagent/medicine/tricordrazine)
 			target.apply_damage(weapon.force*0.6, BRUTE, user.zone_selected)
@@ -250,7 +250,7 @@
 
 ///Handles behavior when attacking a mob with bicaridine
 /datum/component/harvester/proc/attack_bicaridine(datum/source, mob/living/target, mob/living/user, obj/item/weapon)
-	if(isxeno(target)) //Self-heal on xeno strike
+	if(target.faction != user.faction) //Self-heal on attacking an enemy
 		new /obj/effect/temp_visual/telekinesis(get_turf(user))
 		target.apply_damage(weapon.force*0.6, BRUTE, user.zone_selected)
 		user.adjustStaminaLoss(-30)
