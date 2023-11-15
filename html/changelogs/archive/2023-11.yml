@@ -246,3 +246,8 @@
   - rscdel: remove miniscope on recoilless rocket
   vvvv-vvvv:
   - bugfix: Fix orders not being shown in chat
+2023-11-15:
+  vvvv-vvvv:
+  - bugfix: Fix SOM breacher ERT scaling the amount of specs incorrectly
+  - bugfix: Fix player-controlled puppets being able to feed on non-adjacent humans
+  - qol: You can now toggle auto aim mode while trying to wield a gun
