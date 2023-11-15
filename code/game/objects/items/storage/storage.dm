@@ -378,7 +378,7 @@
 
 ///This proc return 1 if the item can be picked up and 0 if it can't. Set the warning to stop it from printing messages
 /obj/item/storage/proc/can_be_inserted(obj/item/W as obj, warning = TRUE)
-	if(!istype(W) || (W.flags_item & NODROP))
+	if(!istype(W) || HAS_TRAIT(W, TRAIT_NODROP))
 		return //Not an item
 
 	if(loc == W)
