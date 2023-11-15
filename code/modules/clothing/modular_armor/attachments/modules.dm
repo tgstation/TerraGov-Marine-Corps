@@ -39,25 +39,22 @@
 /obj/item/armor_module/module/valkyrie_autodoc
 	name = "\improper Valkyrie Automedical Armor System"
 	icon = 'icons/mob/modular/modular_armor_modules.dmi'
-	desc = "Designed for mounting on modular armor. This module has advanced medical systems that inject tricordrazine and tramadol based on the user's needs, as well as automatically securing the bones and body of the wearer, effectively splinting them until professional medical attention can be admistered. Will definitely impact mobility."
+	desc = "Designed for mounting on modular armor. This module has advanced medical systems that inject tricordrazine and hydrocodone based on the user's needs. Will definitely impact mobility."
 	icon_state = "mod_autodoc"
 	item_state = "mod_autodoc_a"
-	slowdown = 0.3
+	slowdown = 0.25
 	slot = ATTACHMENT_SLOT_MODULE
 	variants_by_parent_type = list(/obj/item/clothing/suit/modular/xenonauten = "mod_autodoc_xn")
-	var/static/list/supported_limbs = list(CHEST, GROIN, ARM_LEFT, ARM_RIGHT, HAND_LEFT, HAND_RIGHT, LEG_LEFT, LEG_RIGHT, FOOT_LEFT, FOOT_RIGHT)
 
 /obj/item/armor_module/module/valkyrie_autodoc/on_attach(obj/item/attaching_to, mob/user)
 	. = ..()
 	var/list/tricord = list(/datum/reagent/medicine/tricordrazine)
-	var/list/tramadol = list(/datum/reagent/medicine/tramadol)
+	var/list/hydrocodone = list(/datum/reagent/medicine/hydrocodone)
 	/// This will do nothing without the autodoc update
-	parent.AddComponent(/datum/component/suit_autodoc, 4 MINUTES, tricord, tricord, tricord, tricord, tramadol, 0.5)
-	parent.AddElement(/datum/element/limb_support, supported_limbs)
+	parent.AddComponent(/datum/component/suit_autodoc, 4 MINUTES, tricord, tricord, tricord, tricord, hydrocodone, 0.5)
 
 /obj/item/armor_module/module/valkyrie_autodoc/on_detach(obj/item/detaching_from, mob/user)
 	qdel(parent.GetComponent(/datum/component/suit_autodoc))
-	parent.RemoveElement(/datum/element/limb_support, supported_limbs)
 	return ..()
 
 /obj/item/armor_module/module/valkyrie_autodoc/som
