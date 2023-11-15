@@ -7363,13 +7363,7 @@
 /obj/structure/disposalpipe/junction/yjunc{
 	dir = 1
 	},
-<<<<<<< HEAD
-/obj/structure/prop/holidays/string_lights{
-	dir = 1
-	},
-=======
 /obj/machinery/computer/squad_selector,
->>>>>>> master
 /turf/open/floor/mainship/black,
 /area/mainship/squads/general)
 "gfy" = (
@@ -16070,13 +16064,7 @@
 /obj/machinery/light/mainship{
 	dir = 4
 	},
-<<<<<<< HEAD
-/obj/structure/prop/holidays/string_lights{
-	dir = 1
-	},
-=======
 /obj/machinery/computer/squad_selector,
->>>>>>> master
 /turf/open/floor/mainship/black{
 	dir = 6
 	},
@@ -41200,13 +41188,8 @@ lqg
 lqg
 sqT
 qtC
-<<<<<<< HEAD
-jNz
-lxu
-=======
 oTv
 eQh
->>>>>>> master
 sqT
 oUI
 qNG

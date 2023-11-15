@@ -5061,7 +5061,6 @@
 	pixel_x = 5;
 	pixel_y = 10
 	},
-/obj/effect/spawner/random/misc/present,
 /obj/item/toy/plush/rouny,
 /turf/open/floor/mainship/orange/full,
 /area/mainship/command/cic)
@@ -6898,7 +6897,6 @@
 /area/mainship/squads/general)
 "isK" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/effect/spawner/random/misc/present,
 /turf/open/floor/mainship/black{
 	dir = 8
 	},
@@ -16199,6 +16197,11 @@
 	dir = 1
 	},
 /area/space)
+"tvY" = (
+/obj/structure/computerframe,
+/obj/effect/spawner/random/misc/present,
+/turf/open/floor/plating,
+/area/mainship/squads/general)
 "txW" = (
 /obj/docking_port/stationary/ert_big,
 /turf/open/space,
@@ -58546,7 +58549,7 @@ aAX
 eDg
 mng
 xmJ
-xmJ
+tvY
 mng
 buS
 fLM
