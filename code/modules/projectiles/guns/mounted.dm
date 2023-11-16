@@ -210,6 +210,7 @@
 	reload_sound = 'sound/weapons/guns/interact/minigun_cocked.ogg'
 
 	default_ammo_type = /obj/item/cell/lasgun/heavy_laser
+	ammo_datum_type = /datum/ammo/energy/lasgun/marine/heavy_laser
 
 	scatter = 10
 	deployed_scatter_change = -10
@@ -246,6 +247,7 @@
 	fire_sound = 'sound/weapons/guns/fire/tank_flamethrower.ogg'
 	message_to_user = "You set the heavy laser to glob mode."
 	fire_mode = GUN_FIREMODE_SEMIAUTO
+	radial_icon_state = "laser_overcharge"
 	description = "Fires a laser glob that ignites things on hit."
 
 /datum/lasrifle/heavy_laser/burst
