@@ -687,9 +687,17 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/bullet/rifle/heavy
 	name = "heavy rifle bullet"
 	hud_state = "rifle_heavy"
-	damage = 32.5
+	damage = 30
 	penetration = 10
 	sundering = 1.25
+
+/datum/ammo/bullet/rifle/heavy/skirmish
+    name = "skirmish rifle bullet"
+    hud_state = "rifle_heavy"
+    damage = 30
+    damage = 32.5
+    penetration = 10
+    sundering = 1.25
 
 /datum/ammo/bullet/rifle/repeater
 	name = "heavy impact rifle bullet"

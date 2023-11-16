@@ -182,6 +182,7 @@
 			/obj/item/ammo_magazine/packet/p10x20mm = -1,
 			/obj/item/ammo_magazine/packet/p10x24mm = -1,
 			/obj/item/ammo_magazine/packet/p10x25mm = -1,
+			/obj/item/ammo_magazine/packet/p10x25smm = -1,
 			/obj/item/ammo_magazine/packet/p10x26mm = -1,
 			/obj/item/ammo_magazine/packet/p10x265mm = -1,
 			/obj/item/ammo_magazine/packet/p10x27mm = -1,

@@ -67,6 +67,15 @@
 	current_rounds = 125
 	max_rounds = 125
 
+/obj/item/ammo_magazine/packet/p10x25smm
+	name = "box of 10x25smm"
+	desc = "A box containing 125 rounds of 10x25smm caseless."
+	caliber = CALIBER_10X25_CASELESS
+	icon_state = "box_10x25mm"
+	default_ammo = /datum/ammo/bullet/rifle/heavy/skirmish
+	current_rounds = 125
+	max_rounds = 125
+
 /obj/item/ammo_magazine/packet/p492x34mm
 	name = "box of 4.92x34mm"
 	desc = "A box containing 210 rounds of 4.92x34mm caseless."
