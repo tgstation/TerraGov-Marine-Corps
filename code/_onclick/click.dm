@@ -138,7 +138,7 @@
 		return
 
 	//Standard reach turf to turf or reaching inside storage
-	if(CanReach(A, W))
+	if(CanReach(A, W, usr))
 		if(W)
 			W.melee_attack_chain(src, A, params, modifiers["right"])
 		else
@@ -154,7 +154,7 @@
 			RangedAttack(A, params)
 
 
-/atom/movable/proc/CanReach(atom/ultimate_target, obj/item/tool, view_only = FALSE)
+/atom/movable/proc/CanReach(atom/ultimate_target, obj/item/tool, mob/living/carbon/xenomorph/attacker, view_only = FALSE)
 	// A backwards depth-limited breadth-first-search to see if the target is
 	// logically "in" anything adjacent to us.
 	var/list/direct_access = DirectAccess()
@@ -172,8 +172,7 @@
 			closed[target] = TRUE
 			if(isturf(target) || isturf(target.loc) || (target in direct_access)) //Directly accessible atoms
 				if(isxeno(usr))
-					var/mob/living/carbon/xenomorph/slasher = usr
-					if(Adjacent(target) || target.Adjacent(src) || CheckToolReach(src, target, slasher.xeno_caste.slash_reach))
+					if(Adjacent(target) || target.Adjacent(src) || (attacker && CheckToolReach(src, target, attacker.xeno_caste.slash_reach)))
 						return TRUE
 				if(Adjacent(target) || target.Adjacent(src) || (tool && CheckToolReach(src, target, tool.reach))) //Adjacent or reaching attacks
 					return TRUE
@@ -248,7 +247,6 @@
 					qdel(dummy)
 					return
 			qdel(dummy)
-
 
 /**
  *Translates into attack_hand, etc.
