@@ -209,7 +209,7 @@
 	fire_sound = 'sound/weapons/guns/fire/tank_flamethrower.ogg'
 	reload_sound = 'sound/weapons/guns/interact/minigun_cocked.ogg'
 
-	default_ammo_type = /obj/item/ammo_magazine/heavy_laser
+	default_ammo_type = /obj/item/cell/lasgun/heavy_laser
 
 	scatter = 10
 	deployed_scatter_change = -10
@@ -221,9 +221,9 @@
 
 	attachable_allowed = list(/obj/item/attachable/scope/unremovable/tl102/nest)
 
-	starting_attachment_types = list(/obj/item/attachable/scope/unremovable/tl102/nest,)
+	starting_attachment_types = list(/obj/item/attachable/scope/unremovable/tl102/nest)
 
-	allowed_ammo_types = list(/obj/item/ammo_magazine/heavy_laser)
+	allowed_ammo_types = list(/obj/item/cell/lasgun/heavy_laser)
 
 	deploy_time = 5 SECONDS
 	undeploy_time = 3 SECONDS
@@ -248,7 +248,7 @@
 	fire_mode = GUN_FIREMODE_SEMIAUTO
 	description = "Fires a laser glob that ignites things on hit."
 
-/datum/lasrifle/heavy_laser/auto_burst
+/datum/lasrifle/heavy_laser/burst
 	rounds_per_shot = 5
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine/shatter/heavy_laser
 	fire_delay = 1 SECONDS
