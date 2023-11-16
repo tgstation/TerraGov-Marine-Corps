@@ -258,10 +258,10 @@
 	desc = "An autoinjector loaded with a single use of Russian Red. Restores a significant amount of stamina and heals a large amount of damage, but causes slight permanent damage."
 	icon_state = "Redwood"
 	amount_per_transfer_from_this = 15
-	volume = 15
+	volume = 30
 	list_reagents = list(
-		/datum/reagent/medicine/russian_red = 10,
-		/datum/reagent/medicine/oxycodone = 5,
+		/datum/reagent/medicine/russian_red = 20,
+		/datum/reagent/medicine/oxycodone = 10,
 	)
 	description_overlay = "Rr"
 	free_refills = FALSE
