@@ -349,10 +349,7 @@
 		living_user.temporarilyRemoveItemFromInventory(src)
 		forceMove(get_turf(src))
 		throw_at(current_target, throw_range, throw_speed, living_user, TRUE)
-	else if(!iscoal)
-		var/obj/item/stack/throwing_knife/knife_to_throw = new(get_turf(src))
-		current_target = null
-	else
+	if(!iscoal)
 		var/obj/item/stack/throwing_knife/knife_to_throw = new type(get_turf(src))
 		knife_to_throw.amount = 1
 		knife_to_throw.update_icon()

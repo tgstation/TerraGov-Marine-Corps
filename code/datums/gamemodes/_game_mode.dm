@@ -468,11 +468,11 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 	if(GLOB.round_statistics.points_from_research)
 		parts += "[GLOB.round_statistics.points_from_research] requisitions points gained from research."
 	if(GLOB.round_statistics.presents_delivered)
-		dat += "[GLOB.round_statistics.presents_delivered] people had presents delivered to them."
+		parts  += "[GLOB.round_statistics.presents_delivered] people had presents delivered to them."
 	if(GLOB.round_statistics.presents_grinched)
-		dat += "[GLOB.round_statistics.presents_grinched] presents were opened by somebody they didn't belong to."
+		parts  += "[GLOB.round_statistics.presents_grinched] presents were opened by somebody they didn't belong to."
 	if(GLOB.round_statistics.number_of_grinches)
-		dat += "[GLOB.round_statistics.number_of_grinches] players ruined the spirit of Christmas during the round."
+		parts  += "[GLOB.round_statistics.number_of_grinches] players ruined the spirit of Christmas during the round."
 	if(length(GLOB.round_statistics.req_items_produced))
 		parts += "Requisitions produced: "
 		for(var/atom/movable/path AS in GLOB.round_statistics.req_items_produced)
