@@ -60,6 +60,8 @@ The Grenade Launchers
 
 	///the maximum range the launcher can fling the grenade, by default 15 tiles
 	var/max_range = 15
+	///The maximum amount of time the grenade will take to explode after being launched.
+	var/launched_detonation_time = 1 SECONDS
 
 /obj/item/weapon/gun/grenade_launcher/able_to_fire(mob/user)
 	. = ..()
@@ -80,7 +82,7 @@ The Grenade Launchers
 	log_explosion("[key_name(gun_user)] fired a grenade ([grenade_to_launch]) from [src] at [AREACOORD(user_turf)].")
 	log_combat(gun_user, src, "fired a grenade ([grenade_to_launch]) from [src]")
 	play_fire_sound(loc)
-	grenade_to_launch.launched_det_time()
+	grenade_to_launch.launched_det_time(launched_detonation_time)
 	grenade_to_launch.launched = TRUE
 	grenade_to_launch.activate(gun_user)
 	grenade_to_launch.throwforce += grenade_to_launch.launchforce
@@ -130,6 +132,7 @@ The Grenade Launchers
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 14, "rail_y" = 22, "under_x" = 19, "under_y" = 14, "stock_x" = 11, "stock_y" = 12)
 	fire_delay = 1.5 SECONDS
 	max_chamber_items = 5
+	launched_detonation_time = 1.5 SECONDS
 
 /obj/item/weapon/gun/grenade_launcher/multinade_launcher/unloaded
 	default_ammo_type = null

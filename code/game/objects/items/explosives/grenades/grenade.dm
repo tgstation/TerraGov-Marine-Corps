@@ -106,8 +106,8 @@
 	return
 
 ///Adjusts det time, used for grenade launchers
-/obj/item/explosive/grenade/proc/launched_det_time()
-	det_time = min(15, det_time)
+/obj/item/explosive/grenade/proc/launched_det_time(min_delay)
+	det_time = min(min_delay, det_time)
 
 ////RAD GRENADE - TOTALLY RAD MAN
 
