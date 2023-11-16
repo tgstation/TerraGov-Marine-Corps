@@ -138,7 +138,7 @@
 		return
 
 	//Standard reach turf to turf or reaching inside storage
-	if(CanReach(A, W, usr))
+	if(CanReach(A, W, src))
 		if(W)
 			W.melee_attack_chain(src, A, params, modifiers["right"])
 		else
@@ -171,7 +171,7 @@
 				continue
 			closed[target] = TRUE
 			if(isturf(target) || isturf(target.loc) || (target in direct_access)) //Directly accessible atoms
-				if(isxeno(usr))
+				if(isxeno(attacker))
 					if(Adjacent(target) || target.Adjacent(src) || (attacker && CheckToolReach(src, target, attacker.xeno_caste.slash_reach)))
 						return TRUE
 				if(Adjacent(target) || target.Adjacent(src) || (tool && CheckToolReach(src, target, tool.reach))) //Adjacent or reaching attacks
