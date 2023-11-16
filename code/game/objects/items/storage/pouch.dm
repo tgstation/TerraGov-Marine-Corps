@@ -529,7 +529,7 @@
 	new /obj/item/reagent_containers/hypospray/autoinjector/dylovene (src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/inaprovaline(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/synaptizine (src)
-	new /obj/item/reagent_containers/hypospray/autoinjector/russian_red (src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/synaptizine (src)
 
 /obj/item/storage/pouch/medical_injectors/medic/Initialize(mapload) //corpsman autoinjector pouch gets upgraded, but more general chems.
 	. = ..()
