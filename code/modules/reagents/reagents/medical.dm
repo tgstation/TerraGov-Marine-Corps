@@ -576,6 +576,7 @@
 	overdose_threshold = REAGENTS_OVERDOSE/2   //so it makes the OD threshold effectively 15 so two pills is too much but one is fine
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL/2.5 //and this makes the Critical OD 20
 	scannable = TRUE
+	effect_str = 0.7
 
 /datum/reagent/medicine/russian_red/on_mob_add(mob/living/L, metabolism)
 	var/mob/living/carbon/human/H = L
