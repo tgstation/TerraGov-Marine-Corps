@@ -316,14 +316,7 @@ if(selected_ability.target_flags & flagname && !istype(A, typepath)){\
 	if(.){\
 		return;}}
 
-/mob/living/carbon/proc/ability_target(atom/A) //note after adjustments this can probs just be the xeno version now
-	if(selected_ability.target_flags & XABB_MOB_TARGET && !isliving(A))
-		A = locate(/mob/living) in get_turf(A)
-	else if(selected_ability.target_flags & XABB_TURF_TARGET)
-		A = get_turf(A)
-	return A
-
-/mob/living/carbon/xenomorph/ability_target(atom/A)
+/mob/living/carbon/proc/ability_target(atom/A)
 	TARGET_FLAGS_MACRO(XABB_MOB_TARGET, /mob/living)
 	if(selected_ability.target_flags & XABB_TURF_TARGET)
 		return get_turf(A)
