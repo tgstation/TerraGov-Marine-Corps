@@ -173,7 +173,6 @@
 	name = "heavy-duty weapon laser cell"
 	desc = "A cell with enough charge to contain energy for the TE-9001. This cannot be recharged."
 	w_class = WEIGHT_CLASS_BULKY
-	flags_magazine = NONE
 	maxcharge = 225
 	reload_delay = 5 SECONDS
 	icon = 'icons/Marine/marine-hmg.dmi'
