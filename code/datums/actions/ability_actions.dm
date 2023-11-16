@@ -190,7 +190,7 @@
 
 /datum/action/ability/activable/Destroy()
 	var/mob/living/carbon/carbon_owner = owner
-	if(carbon_owner.selected_ability_action == src)
+	if(carbon_owner.selected_ability == src)
 		deselect()
 	return ..()
 
@@ -202,10 +202,10 @@
 	if(!.)
 		return
 	var/mob/living/carbon/carbon_owner = owner
-	if(carbon_owner.selected_ability_action == src)
+	if(carbon_owner.selected_ability == src)
 		return
-	if(carbon_owner.selected_ability_action)
-		carbon_owner.selected_ability_action.deselect()
+	if(carbon_owner.selected_ability)
+		carbon_owner.selected_ability.deselect()
 	select()
 
 /datum/action/ability/activable/keybind_activation()
@@ -221,19 +221,19 @@
 /datum/action/ability/activable/proc/deselect()
 	var/mob/living/carbon/carbon_owner = owner
 	set_toggle(FALSE)
-	carbon_owner.selected_ability_action = null
+	carbon_owner.selected_ability = null
 	on_deactivation()
 
 /datum/action/ability/activable/proc/select()
 	var/mob/living/carbon/carbon_owner = owner
 	set_toggle(TRUE)
-	carbon_owner.selected_ability_action = src
+	carbon_owner.selected_ability = src
 	on_activation()
 
 
 /datum/action/ability/activable/remove_action(mob/living/carbon/carbon_owner)
-	if(carbon_owner.selected_ability_action == src)
-		carbon_owner.selected_ability_action = null
+	if(carbon_owner.selected_ability == src)
+		carbon_owner.selected_ability = null
 	return ..()
 
 
@@ -254,7 +254,7 @@
 	var/flags_to_check = use_state_flags|override_flags
 
 	var/mob/living/carbon/carbon_owner = owner
-	if(!CHECK_BITFIELD(flags_to_check, XACT_IGNORE_SELECTED_ABILITY) && carbon_owner.selected_ability_action != src)
+	if(!CHECK_BITFIELD(flags_to_check, XACT_IGNORE_SELECTED_ABILITY) && carbon_owner.selected_ability != src)
 		return FALSE
 	. = can_use_action(silent, override_flags)
 	if(!CHECK_BITFIELD(flags_to_check, XACT_TARGET_SELF) && A == owner)
@@ -274,7 +274,7 @@
 //////
 /mob/living/carbon
 	var/list/datum/action/mob_abilities = list()
-	var/datum/action/ability/activable/selected_ability_action
+	var/datum/action/ability/activable/selected_ability
 
 /mob/living/carbon/proc/deduct_ability_cost(amount)
 	return
@@ -343,7 +343,7 @@
 			continue
 		carbon_owner.do_attack_animation(living_victim, ATTACK_EFFECT_CLAW)
 		playsound(living_victim, "alien_claw_metal", 25, 1)
-		living_victim.apply_damage(40, BRUTE, living_victim.get_limb(ran_zone(carbon_owner.zone_selected, 70)), MELEE, TRUE, TRUE, TRUE, 0)
+		living_victim.apply_damage(40, BRUTE, null, MELEE, TRUE, TRUE, TRUE, 0)
 		living_victim.knockback(carbon_owner, RAV_RAVAGE_THROW_RANGE, RAV_CHARGESPEED)
 		shake_camera(living_victim, 2, 1)
 		living_victim.Paralyze(1 SECONDS)

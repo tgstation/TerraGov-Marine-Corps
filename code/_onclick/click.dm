@@ -304,11 +304,11 @@
 	if(held_thing && SEND_SIGNAL(held_thing, COMSIG_ITEM_MIDDLECLICKON, A, src) & COMPONENT_ITEM_CLICKON_BYPASS)
 		return FALSE
 
-	if(!selected_ability_action)
+	if(!selected_ability)
 		return FALSE
 	A = ability_target(A)
-	if(selected_ability_action.can_use_ability(A))
-		selected_ability_action.use_ability(A)
+	if(selected_ability.can_use_ability(A))
+		selected_ability.use_ability(A)
 
 #define TARGET_FLAGS_MACRO(flagname, typepath) \
 if(selected_ability.target_flags & flagname && !istype(A, typepath)){\
@@ -317,9 +317,9 @@ if(selected_ability.target_flags & flagname && !istype(A, typepath)){\
 		return;}}
 
 /mob/living/carbon/proc/ability_target(atom/A)
-	if(selected_ability_action.target_flags & XABB_MOB_TARGET && !isliving(A))
+	if(selected_ability.target_flags & XABB_MOB_TARGET && !isliving(A))
 		A = locate(/mob/living) in get_turf(A)
-	else if(selected_ability_action.target_flags & XABB_TURF_TARGET)
+	else if(selected_ability.target_flags & XABB_TURF_TARGET)
 		A = get_turf(A)
 	return A
 
