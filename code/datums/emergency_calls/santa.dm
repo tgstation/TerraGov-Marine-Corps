@@ -61,7 +61,7 @@
 
 /datum/action/innate/summon_present
 	name = "Summon Present"
-	action_icon_state = "aim_mode"
+	action_icon_state = "present"
 
 /datum/action/innate/summon_present/Activate()
 	var/mob/living/carbon/human/santamob = usr
@@ -74,7 +74,7 @@
 
 /datum/action/innate/summon_present_bomb
 	name = "Summon Explosive Present"
-	action_icon_state = "aim_mode"
+	action_icon_state = "dangerpresent"
 
 /datum/action/innate/summon_present_bomb/Activate()
 	var/mob/living/carbon/human/santamob = usr
