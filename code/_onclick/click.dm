@@ -171,6 +171,10 @@
 				continue
 			closed[target] = TRUE
 			if(isturf(target) || isturf(target.loc) || (target in direct_access)) //Directly accessible atoms
+				if(isxeno(usr))
+					var/mob/living/carbon/xenomorph/slasher = usr
+					if(Adjacent(target) || target.Adjacent(src) || CheckToolReach(src, target, slasher.xeno_caste.slash_reach))
+						return TRUE
 				if(Adjacent(target) || target.Adjacent(src) || (tool && CheckToolReach(src, target, tool.reach))) //Adjacent or reaching attacks
 					return TRUE
 
