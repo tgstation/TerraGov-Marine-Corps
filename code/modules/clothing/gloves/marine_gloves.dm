@@ -103,7 +103,7 @@
 	soft_armor = list(MELEE = 40, BULLET = 20, LASER = 20, ENERGY = 20, BOMB = 30, BIO = 20, FIRE = 20, ACID = 25)
 	resistance_flags = UNACIDABLE
 
-/obj/item/clothing/gloves/marine/veteran/PMC/commando/santa
+/obj/item/clothing/gloves/marine/veteran/pmc/commando/santa
 	name = "\improper reindeer gloves"
 	desc = "A pair of wooly insulated gloves worn exclusively by Santa Claus."
 	icon_state = "christmas"

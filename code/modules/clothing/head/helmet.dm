@@ -487,7 +487,7 @@
 	name = "elf hat"
 	desc = "A slightly floppy hat worn by Santa's workforce, a careful look reveals a tag with the words 'Made on Mars' inside."
 	icon_state = "elfhat"
-	soft_armor = list(MELEE = 20, BULLET = 25, LASER = 25, ENERGY = 20, BOMB = 15, BIO = 15, FIRE = 15, ACID = 15)
+	soft_armor = list(MELEE = 20, BULLET = 25, LASER = 25, ENERGY = 20, BOMB = 85, BIO = 15, FIRE = 15, ACID = 15)
 	flags_armor_features = ARMOR_NO_DECAP
 
 /obj/item/clothing/head/helmet/space/elf/regular

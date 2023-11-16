@@ -350,5 +350,5 @@
 	desc = "Festive!"
 	icon_state = "elfcostume"
 	item_state = "elfcostume"
-	soft_armor = list(MELEE = 35, BULLET = 15, LASER = 15, ENERGY = 10, BOMB = 20, BIO = 30, FIRE = 20, ACID = 10)
+	soft_armor = list(MELEE = 35, BULLET = 15, LASER = 15, ENERGY = 10, BOMB = 80, BIO = 30, FIRE = 20, ACID = 10)
 	flags_item = NODROP|DELONDROP

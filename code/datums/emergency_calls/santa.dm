@@ -64,13 +64,23 @@
 	action_icon_state = "aim_mode"
 
 /datum/action/innate/summon_present/Activate()
-	var/obj/item/a_gift/free/spawnedpresent = new contains_type(get_turf(usr))
-	usr.put_in_hands(spawnedpresent)
+	var/mob/living/carbon/human/santamob = usr
+	to_chat(santamob, "You begin rifling through your bag, looking for a present.")
+	if(!do_after(santamob, 10 SECONDS))
+		to_chat(santamob, "You give up looking for a present.")
+		return
+	var/obj/item/a_gift/free/spawnedpresent = new (get_turf(santamob))
+	santamob.put_in_hands(spawnedpresent)
 
 /datum/action/innate/summon_present_bomb
 	name = "Summon Explosive Present"
 	action_icon_state = "aim_mode"
 
 /datum/action/innate/summon_present_bomb/Activate()
-	var/obj/item/explosive/grenade/gift/spawnedpresentbomb = new contains_type(get_turf(usr))
-	usr.put_in_hands(spawnedpresentbomb)
+	var/mob/living/carbon/human/santamob = usr
+	to_chat(santamob, "You begin rifling through your bag, looking for a present bomb.")
+	if(!do_after(santamob, 5 SECONDS))
+		to_chat(santamob, "You stop searching for a present grenade.")
+		return
+	var/obj/item/explosive/grenade/gift/spawnedpresentbomb = new (get_turf(santamob))
+	santamob.put_in_hands(spawnedpresentbomb)

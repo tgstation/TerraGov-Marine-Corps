@@ -143,10 +143,10 @@
 
 	belt = /obj/item/storage/belt/coalbelt/full
 	ears = /obj/item/radio/headset/distress/commando
-	w_uniform = /obj/item/clothing/under/marine/veteran/PMC/commando
+	w_uniform = /obj/item/clothing/under/marine/veteran/pmc/commando
 	shoes = /obj/item/clothing/shoes/galoshes/santa
 	wear_suit = /obj/item/clothing/suit/space/santa/special
-	gloves = /obj/item/clothing/gloves/marine/veteran/PMC/commando/santa
+	gloves = /obj/item/clothing/gloves/marine/veteran/pmc/commando/santa
 	mask = /obj/item/clothing/mask/gas/swat/santa
 	head = /obj/item/clothing/head/helmet/space/santahat/special
 	glasses = /obj/item/clothing/glasses/thermal/eyepatch //santa lost one of his eyes in a vicious reindeer accident circa '32

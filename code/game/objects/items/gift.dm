@@ -17,18 +17,20 @@ GLOBAL_LIST_EMPTY(possible_gifts)
 	icon = 'icons/obj/items/items.dmi'
 	icon_state = "gift0"
 	hud_state = "gift0"
-	light_impact_range = 7
+	light_impact_range = 6
 
 /obj/item/explosive/grenade/gift/Initialize(mapload)
 	. = ..()
 	icon_state = "gift[rand(0,10)]"
+	item_state = icon_state
 	hud_state = icon_state
+	icon_state_mini = icon_state
 
 /obj/item/explosive/grenade/gift/attack_self(mob/user)
 	if(HAS_TRAIT(user, TRAIT_SANTA_CLAUS)) //santa uses the present as a grenade
 		to_chat(user, "This present is now live, toss it at somebody naughty!")
 		. = ..()
-	else //anyone else opening the present gets an explosion
+	else //anyone else opening the present gets an explosion, yes this also affects elves
 		explosion(loc, light_impact_range = src.light_impact_range, weak_impact_range = src.weak_impact_range)
 		qdel(src)
 
@@ -61,6 +63,9 @@ GLOBAL_LIST_EMPTY(possible_gifts)
 		. += "This present is addressed to [present_receiver_name]."
 
 /obj/item/a_gift/attack_self(mob/M)
+	if(HAS_TRAIT(user, TRAIT_SANTA_CLAUS)) //santa uses the present as a grenade
+		to_chat(user, "You're supposed to deliver presents, not open them.")
+		return
 	if(present_receiver == null && !freepresent)
 		get_recipient() //generate owner of gift
 	to_chat(M, span_warning("You start unwrapping the present, trying to locate any sign of who the present belongs to..."))
@@ -77,6 +82,7 @@ GLOBAL_LIST_EMPTY(possible_gifts)
 					GLOB.round_statistics.number_of_grinches += 1
 					ADD_TRAIT(M, TRAIT_CHRISTMAS_GRINCH, TRAIT_CHRISTMAS_GRINCH) //bad present openers are effectively cursed to receive nothing but coal for the rest of the round
 					to_chat(M, span_boldannounce("Your heart feels three sizes smaller..."))
+					M.color = COLOR_LIME
 				spawnpresent(M) //they have the grinch trait, the presents will always spawn coal
 			else
 				spawnpresent(M, TRUE) //they got lucky, the present will open as normal but with a STOLEN label in the desc
