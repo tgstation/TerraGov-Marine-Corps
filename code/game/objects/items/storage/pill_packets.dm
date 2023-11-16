@@ -83,6 +83,12 @@
 	pill_type_to_fill = /obj/item/reagent_containers/pill/leporazine
 	pip_color = COLOR_PACKET_LEPORAZINE
 
+/obj/item/storage/pill_bottle/packet/russian_red
+	name = "russian red pill packet"
+	desc = "This packet contains Russian Red pills. Used for field treatment of critical cases without a medic. Once you take them out they don't go back in.."
+	pill_type_to_fill = /obj/item/reagent_containers/pill/russian_red
+	pip_color = COLOR_PACKET_RUSSIAN_RED
+
 /obj/item/storage/pill_bottle/packet/ryetalyn
 	name = "ryetalyn pill packet"
 	desc = "This packet contains Ryetalyn pills. Used to provide a shield against bloodstream toxins. Once you take them out they don't go back in. No more than 2 pills at once."
