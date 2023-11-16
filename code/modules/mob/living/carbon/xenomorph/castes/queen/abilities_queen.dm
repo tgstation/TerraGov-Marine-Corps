@@ -1,18 +1,18 @@
 // ***************************************
 // *********** Hive message
 // ***************************************
-/datum/action/xeno_action/hive_message
+/datum/action/ability/xeno_action/hive_message
 	name = "Hive Message" // Also known as Word of Queen.
 	action_icon_state = "queen_order"
 	desc = "Announces a message to the hive."
-	plasma_cost = 50
+	ability_cost = 50
 	cooldown_timer = 10 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_QUEEN_HIVE_MESSAGE,
 	)
 	use_state_flags = XACT_USE_LYING
 
-/datum/action/xeno_action/hive_message/action_activate()
+/datum/action/ability/xeno_action/hive_message/action_activate()
 	var/mob/living/carbon/xenomorph/queen/Q = owner
 
 	//Preferring the use of multiline input as the message box is larger and easier to quickly proofread before sending to hive.
@@ -60,23 +60,23 @@
 // ***************************************
 // *********** Screech
 // ***************************************
-/datum/action/xeno_action/activable/screech
+/datum/action/ability/activable/xeno_action/screech
 	name = "Screech"
 	action_icon_state = "screech"
 	desc = "A large area knockdown that causes pain and screen-shake."
 	ability_name = "screech"
-	plasma_cost = 250
+	ability_cost = 250
 	cooldown_timer = 100 SECONDS
 	keybind_flags = XACT_KEYBIND_USE_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_SCREECH,
 	)
 
-/datum/action/xeno_action/activable/screech/on_cooldown_finish()
+/datum/action/ability/activable/xeno_action/screech/on_cooldown_finish()
 	to_chat(owner, span_warning("We feel our throat muscles vibrate. We are ready to screech again."))
 	return ..()
 
-/datum/action/xeno_action/activable/screech/use_ability(atom/A)
+/datum/action/ability/activable/xeno_action/screech/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/queen/X = owner
 
 	//screech is so powerful it kills huggers in our hands
@@ -110,10 +110,10 @@
 			continue
 		L.screech_act(X, WORLD_VIEW_NUM, L in nearby_living)
 
-/datum/action/xeno_action/activable/screech/ai_should_start_consider()
+/datum/action/ability/activable/xeno_action/screech/ai_should_start_consider()
 	return TRUE
 
-/datum/action/xeno_action/activable/screech/ai_should_use(atom/target)
+/datum/action/ability/activable/xeno_action/screech/ai_should_use(atom/target)
 	if(!iscarbon(target))
 		return FALSE
 	if(get_dist(target, owner) > 4)
@@ -127,29 +127,29 @@
 // ***************************************
 // *********** Overwatch
 // ***************************************
-/datum/action/xeno_action/watch_xeno
+/datum/action/ability/xeno_action/watch_xeno
 	name = "Watch Xenomorph"
 	action_icon_state = "watch_xeno"
 	desc = "See from the target Xenomorphs vision. Click again the ability to stop observing"
-	plasma_cost = 0
+	ability_cost = 0
 	use_state_flags = XACT_USE_LYING
 	var/overwatch_active = FALSE
 
-/datum/action/xeno_action/watch_xeno/give_action(mob/living/L)
+/datum/action/ability/xeno_action/watch_xeno/give_action(mob/living/L)
 	. = ..()
 	RegisterSignal(L, COMSIG_MOB_DEATH, PROC_REF(on_owner_death))
 	RegisterSignal(L, COMSIG_XENOMORPH_WATCHXENO, PROC_REF(on_list_xeno_selection))
 
-/datum/action/xeno_action/watch_xeno/remove_action(mob/living/L)
+/datum/action/ability/xeno_action/watch_xeno/remove_action(mob/living/L)
 	if(overwatch_active)
 		stop_overwatch()
 	UnregisterSignal(L, list(COMSIG_MOB_DEATH, COMSIG_XENOMORPH_WATCHXENO))
 	return ..()
 
-/datum/action/xeno_action/watch_xeno/should_show()
+/datum/action/ability/xeno_action/watch_xeno/should_show()
 	return FALSE // Overwatching now done through hive status UI!
 
-/datum/action/xeno_action/watch_xeno/proc/start_overwatch(mob/living/carbon/xenomorph/target)
+/datum/action/ability/xeno_action/watch_xeno/proc/start_overwatch(mob/living/carbon/xenomorph/target)
 	if(!can_use_action()) // Check for action now done here as action_activate pipeline has been bypassed with signal activation.
 		return
 
@@ -171,7 +171,7 @@
 	overwatch_active = TRUE
 	set_toggle(TRUE)
 
-/datum/action/xeno_action/watch_xeno/proc/stop_overwatch(do_reset_perspective = TRUE)
+/datum/action/ability/xeno_action/watch_xeno/proc/stop_overwatch(do_reset_perspective = TRUE)
 	var/mob/living/carbon/xenomorph/watcher = owner
 	var/mob/living/carbon/xenomorph/observed = watcher.observed_xeno
 	watcher.observed_xeno = null
@@ -185,30 +185,30 @@
 	overwatch_active = FALSE
 	set_toggle(FALSE)
 
-/datum/action/xeno_action/watch_xeno/proc/on_list_xeno_selection(datum/source, mob/living/carbon/xenomorph/selected_xeno)
+/datum/action/ability/xeno_action/watch_xeno/proc/on_list_xeno_selection(datum/source, mob/living/carbon/xenomorph/selected_xeno)
 	SIGNAL_HANDLER
 	INVOKE_ASYNC(src, PROC_REF(start_overwatch), selected_xeno)
 
-/datum/action/xeno_action/watch_xeno/proc/on_xeno_evolution(datum/source, mob/living/carbon/xenomorph/new_xeno)
+/datum/action/ability/xeno_action/watch_xeno/proc/on_xeno_evolution(datum/source, mob/living/carbon/xenomorph/new_xeno)
 	SIGNAL_HANDLER
 	start_overwatch(new_xeno)
 
-/datum/action/xeno_action/watch_xeno/proc/on_xeno_death(datum/source, mob/living/carbon/xenomorph/dead_xeno)
+/datum/action/ability/xeno_action/watch_xeno/proc/on_xeno_death(datum/source, mob/living/carbon/xenomorph/dead_xeno)
 	SIGNAL_HANDLER
 	if(overwatch_active)
 		stop_overwatch()
 
-/datum/action/xeno_action/watch_xeno/proc/on_owner_death(mob/source, gibbing)
+/datum/action/ability/xeno_action/watch_xeno/proc/on_owner_death(mob/source, gibbing)
 	SIGNAL_HANDLER
 	if(overwatch_active)
 		stop_overwatch()
 
-/datum/action/xeno_action/watch_xeno/proc/on_movement(datum/source, atom/oldloc, direction, Forced)
+/datum/action/ability/xeno_action/watch_xeno/proc/on_movement(datum/source, atom/oldloc, direction, Forced)
 	SIGNAL_HANDLER
 	if(overwatch_active)
 		stop_overwatch()
 
-/datum/action/xeno_action/watch_xeno/proc/on_damage_taken(datum/source, damage)
+/datum/action/ability/xeno_action/watch_xeno/proc/on_damage_taken(datum/source, damage)
 	SIGNAL_HANDLER
 	if(overwatch_active)
 		stop_overwatch()
@@ -217,17 +217,17 @@
 // ***************************************
 // *********** Queen zoom
 // ***************************************
-/datum/action/xeno_action/toggle_queen_zoom
+/datum/action/ability/xeno_action/toggle_queen_zoom
 	name = "Toggle Queen Zoom"
 	action_icon_state = "toggle_queen_zoom"
 	desc = "Zoom out for a larger view around wherever you are looking."
-	plasma_cost = 0
+	ability_cost = 0
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TOGGLE_QUEEN_ZOOM,
 	)
 
 
-/datum/action/xeno_action/toggle_queen_zoom/action_activate()
+/datum/action/ability/xeno_action/toggle_queen_zoom/action_activate()
 	var/mob/living/carbon/xenomorph/queen/xeno = owner
 	if(xeno.do_actions)
 		return
@@ -239,7 +239,7 @@
 	zoom_xeno_in(xeno.observed_xeno ? FALSE : TRUE) //No need for feedback message if our eye is elsewhere.
 
 
-/datum/action/xeno_action/toggle_queen_zoom/proc/zoom_xeno_in(message = TRUE)
+/datum/action/ability/xeno_action/toggle_queen_zoom/proc/zoom_xeno_in(message = TRUE)
 	var/mob/living/carbon/xenomorph/xeno = owner
 	RegisterSignal(xeno, COMSIG_MOVABLE_MOVED, PROC_REF(on_movement))
 	if(message)
@@ -248,7 +248,7 @@
 	xeno.zoom_in(0, 12)
 
 
-/datum/action/xeno_action/toggle_queen_zoom/proc/zoom_xeno_out(message = TRUE)
+/datum/action/ability/xeno_action/toggle_queen_zoom/proc/zoom_xeno_out(message = TRUE)
 	var/mob/living/carbon/xenomorph/xeno = owner
 	UnregisterSignal(xeno, COMSIG_MOVABLE_MOVED)
 	if(message)
@@ -257,40 +257,40 @@
 	xeno.zoom_out()
 
 
-/datum/action/xeno_action/toggle_queen_zoom/proc/on_movement(datum/source, atom/oldloc, direction, Forced)
+/datum/action/ability/xeno_action/toggle_queen_zoom/proc/on_movement(datum/source, atom/oldloc, direction, Forced)
 	zoom_xeno_out()
 
 
 // ***************************************
 // *********** Set leader
 // ***************************************
-/datum/action/xeno_action/set_xeno_lead
+/datum/action/ability/xeno_action/set_xeno_lead
 	name = "Choose/Follow Xenomorph Leaders"
 	action_icon_state = "xeno_lead"
 	desc = "Make a target Xenomorph a leader."
-	plasma_cost = 200
+	ability_cost = 200
 	use_state_flags = XACT_USE_LYING
 
-/datum/action/xeno_action/set_xeno_lead/should_show()
+/datum/action/ability/xeno_action/set_xeno_lead/should_show()
 	return FALSE // Leadership now set through hive status UI!
 
-/datum/action/xeno_action/set_xeno_lead/give_action(mob/living/L)
+/datum/action/ability/xeno_action/set_xeno_lead/give_action(mob/living/L)
 	. = ..()
 	RegisterSignal(L, COMSIG_XENOMORPH_LEADERSHIP, PROC_REF(try_use_action))
 
-/datum/action/xeno_action/set_xeno_lead/remove_action(mob/living/L)
+/datum/action/ability/xeno_action/set_xeno_lead/remove_action(mob/living/L)
 	. = ..()
 	UnregisterSignal(L, COMSIG_XENOMORPH_LEADERSHIP)
 
 /// Signal handler for the set_xeno_lead action that checks can_use
-/datum/action/xeno_action/set_xeno_lead/proc/try_use_action(datum/source, mob/living/carbon/xenomorph/target)
+/datum/action/ability/xeno_action/set_xeno_lead/proc/try_use_action(datum/source, mob/living/carbon/xenomorph/target)
 	SIGNAL_HANDLER
 	if(!can_use_action())
 		return
 	INVOKE_ASYNC(src, PROC_REF(select_xeno_leader), target)
 
 /// Check if there is an empty slot and promote the passed xeno to a hive leader
-/datum/action/xeno_action/set_xeno_lead/proc/select_xeno_leader(mob/living/carbon/xenomorph/selected_xeno)
+/datum/action/ability/xeno_action/set_xeno_lead/proc/select_xeno_leader(mob/living/carbon/xenomorph/selected_xeno)
 	var/mob/living/carbon/xenomorph/queen/xeno_ruler = owner
 
 	if(selected_xeno.queen_chosen_lead)
@@ -304,7 +304,7 @@
 	set_xeno_leader(selected_xeno)
 
 /// Remove the passed xeno's leadership
-/datum/action/xeno_action/set_xeno_lead/proc/unset_xeno_leader(mob/living/carbon/xenomorph/selected_xeno)
+/datum/action/ability/xeno_action/set_xeno_lead/proc/unset_xeno_leader(mob/living/carbon/xenomorph/selected_xeno)
 	var/mob/living/carbon/xenomorph/xeno_ruler = owner
 	xeno_ruler.balloon_alert(xeno_ruler, "Xeno demoted")
 	selected_xeno.balloon_alert(selected_xeno, "Leadership removed")
@@ -315,7 +315,7 @@
 	selected_xeno.update_leader_icon(FALSE)
 
 /// Promote the passed xeno to a hive leader, should not be called direct
-/datum/action/xeno_action/set_xeno_lead/proc/set_xeno_leader(mob/living/carbon/xenomorph/selected_xeno)
+/datum/action/ability/xeno_action/set_xeno_lead/proc/set_xeno_leader(mob/living/carbon/xenomorph/selected_xeno)
 	var/mob/living/carbon/xenomorph/xeno_ruler = owner
 	if(!(selected_xeno.xeno_caste.can_flags & CASTE_CAN_BE_LEADER))
 		xeno_ruler.balloon_alert(xeno_ruler, "Xeno cannot lead")
@@ -334,19 +334,19 @@
 // ***************************************
 // *********** Queen Acidic Salve
 // ***************************************
-/datum/action/xeno_action/activable/psychic_cure/queen_give_heal
+/datum/action/ability/activable/xeno_action/psychic_cure/queen_give_heal
 	name = "Heal"
 	action_icon_state = "heal_xeno"
 	desc = "Apply a minor heal to the target."
 	cooldown_timer = 5 SECONDS
-	plasma_cost = 150
+	ability_cost = 150
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_QUEEN_HEAL,
 	)
 	heal_range = HIVELORD_HEAL_RANGE
 	target_flags = XABB_MOB_TARGET
 
-/datum/action/xeno_action/activable/psychic_cure/queen_give_heal/use_ability(atom/target)
+/datum/action/ability/activable/xeno_action/psychic_cure/queen_give_heal/use_ability(atom/target)
 	if(owner.do_actions)
 		return FALSE
 	if(!do_mob(owner, target, 1 SECONDS, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
@@ -376,11 +376,11 @@
 // ***************************************
 // *********** Queen plasma
 // ***************************************
-/datum/action/xeno_action/activable/queen_give_plasma
+/datum/action/ability/activable/xeno_action/queen_give_plasma
 	name = "Give Plasma"
 	action_icon_state = "queen_give_plasma"
 	desc = "Give plasma to a target Xenomorph (you must be overwatching them.)"
-	plasma_cost = 150
+	ability_cost = 150
 	cooldown_timer = 8 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_QUEEN_GIVE_PLASMA,
@@ -388,7 +388,7 @@
 	use_state_flags = XACT_USE_LYING
 	target_flags = XABB_MOB_TARGET
 
-/datum/action/xeno_action/activable/queen_give_plasma/can_use_ability(atom/target, silent = FALSE, override_flags)
+/datum/action/ability/activable/xeno_action/queen_give_plasma/can_use_ability(atom/target, silent = FALSE, override_flags)
 	. = ..()
 	if(!.)
 		return FALSE
@@ -414,22 +414,22 @@
 		return FALSE
 
 
-/datum/action/xeno_action/activable/queen_give_plasma/give_action(mob/living/L)
+/datum/action/ability/activable/xeno_action/queen_give_plasma/give_action(mob/living/L)
 	. = ..()
 	RegisterSignal(L, COMSIG_XENOMORPH_QUEEN_PLASMA, PROC_REF(try_use_ability))
 
-/datum/action/xeno_action/activable/queen_give_plasma/remove_action(mob/living/L)
+/datum/action/ability/activable/xeno_action/queen_give_plasma/remove_action(mob/living/L)
 	. = ..()
 	UnregisterSignal(L, COMSIG_XENOMORPH_QUEEN_PLASMA)
 
 /// Signal handler for the queen_give_plasma action that checks can_use
-/datum/action/xeno_action/activable/queen_give_plasma/proc/try_use_ability(datum/source, mob/living/carbon/xenomorph/target)
+/datum/action/ability/activable/xeno_action/queen_give_plasma/proc/try_use_ability(datum/source, mob/living/carbon/xenomorph/target)
 	SIGNAL_HANDLER
 	if(!can_use_ability(target, FALSE, XACT_IGNORE_SELECTED_ABILITY))
 		return
 	use_ability(target)
 
-/datum/action/xeno_action/activable/queen_give_plasma/use_ability(atom/target)
+/datum/action/ability/activable/xeno_action/queen_give_plasma/use_ability(atom/target)
 	var/mob/living/carbon/xenomorph/receiver = target
 	add_cooldown()
 	receiver.gain_plasma(300)
@@ -444,11 +444,11 @@
 #define BULWARK_RADIUS 4
 #define BULWARK_ARMOR_MULTIPLIER 0.25
 
-/datum/action/xeno_action/bulwark
+/datum/action/ability/xeno_action/bulwark
 	name = "Royal Bulwark"
 	action_icon_state = "bulwark"
 	desc = "Creates a field of defensive energy, filling chinks in the armor of nearby sisters, making them more resilient."
-	plasma_cost = 100
+	ability_cost = 100
 	cooldown_timer = 20 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_QUEEN_BULWARK,
@@ -456,7 +456,7 @@
 	/// assoc list xeno = armor_diff
 	var/list/armor_mod_keys = list()
 
-/datum/action/xeno_action/bulwark/action_activate()
+/datum/action/ability/xeno_action/bulwark/action_activate()
 	var/list/turf/affected_turfs = RANGE_TURFS(BULWARK_RADIUS, owner)
 	add_cooldown()
 
@@ -485,7 +485,7 @@
 	affected_turfs = null
 
 ///adds buff to xenos
-/datum/action/xeno_action/bulwark/proc/apply_buff(datum/source, mob/living/carbon/xenomorph/xeno, direction)
+/datum/action/ability/xeno_action/bulwark/proc/apply_buff(datum/source, mob/living/carbon/xenomorph/xeno, direction)
 	SIGNAL_HANDLER
 	if(!isxeno(xeno) || armor_mod_keys[xeno] || !owner.issamexenohive(xeno))
 		return
@@ -495,7 +495,7 @@
 	armor_mod_keys[xeno] = armordiff
 
 ///removes the buff from xenos
-/datum/action/xeno_action/bulwark/proc/remove_buff(datum/source, mob/living/carbon/xenomorph/xeno, direction)
+/datum/action/ability/xeno_action/bulwark/proc/remove_buff(datum/source, mob/living/carbon/xenomorph/xeno, direction)
 	SIGNAL_HANDLER
 	if(direction) // triggered by moving signal, check if next turf is in bulwark
 		var/turf/next = get_step(source, direction)

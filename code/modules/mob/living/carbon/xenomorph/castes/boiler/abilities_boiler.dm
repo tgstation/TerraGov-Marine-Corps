@@ -25,17 +25,17 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 // *********** Long range sight
 // ***************************************
 
-/datum/action/xeno_action/toggle_long_range
+/datum/action/ability/xeno_action/toggle_long_range
 	name = "Toggle Long Range Sight"
 	action_icon_state = "toggle_long_range"
 	desc = "Activates your weapon sight in the direction you are facing. Must remain stationary to use."
-	plasma_cost = 20
+	ability_cost = 20
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_LONG_RANGE_SIGHT,
 	)
 	use_state_flags = XACT_USE_ROOTED
 
-/datum/action/xeno_action/toggle_long_range/action_activate()
+/datum/action/ability/xeno_action/toggle_long_range/action_activate()
 	var/mob/living/carbon/xenomorph/boiler/X = owner
 	if(X.is_zoomed)
 		X.zoom_out()
@@ -53,7 +53,7 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 // *********** Gas type toggle
 // ***************************************
 
-/datum/action/xeno_action/toggle_bomb
+/datum/action/ability/xeno_action/toggle_bomb
 	name = "Toggle Bombard Type"
 	action_icon_state = "toggle_bomb0"
 	desc = "Switches Boiler Bombard type between available glob types."
@@ -63,7 +63,7 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_TOGGLE_BOMB_RADIAL,
 	)
 
-/datum/action/xeno_action/toggle_bomb/can_use_action(silent = FALSE, override_flags)
+/datum/action/ability/xeno_action/toggle_bomb/can_use_action(silent = FALSE, override_flags)
 	. = ..()
 	var/mob/living/carbon/xenomorph/boiler/X = owner
 	if(length(X.xeno_caste.spit_types) > 2)
@@ -74,7 +74,7 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 				to_chat(X, span_warning("We won't be able to carry this kind of globule"))
 			return FALSE
 
-/datum/action/xeno_action/toggle_bomb/action_activate()
+/datum/action/ability/xeno_action/toggle_bomb/action_activate()
 	var/mob/living/carbon/xenomorph/boiler/X = owner
 	var/list/spit_types = X.xeno_caste.spit_types
 	var/found_pos = spit_types.Find(X.ammo?.type)
@@ -86,7 +86,7 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 	to_chat(X, span_notice(boiler_glob.select_text))
 	update_button_icon()
 
-/datum/action/xeno_action/toggle_bomb/alternate_action_activate()
+/datum/action/ability/xeno_action/toggle_bomb/alternate_action_activate()
 	. = COMSIG_KB_ACTIVATED
 	var/mob/living/carbon/xenomorph/boiler/X = owner
 	if(!can_use_action())
@@ -101,7 +101,7 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
  * * On selecting nothing, merely keeps current ammo.
  * * Dynamically adjusts depending on which globs a boiler has access to, provided the global lists are maintained, though this fact isn't too relevant unless someone adds more.
 **/
-/datum/action/xeno_action/toggle_bomb/proc/select_glob_radial()
+/datum/action/ability/xeno_action/toggle_bomb/proc/select_glob_radial()
 	var/mob/living/carbon/xenomorph/boiler/X = owner
 	var/list/available_globs = list()
 	for(var/datum/ammo/xeno/boiler_gas/glob_type AS in X.xeno_caste.spit_types)
@@ -119,7 +119,7 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 	to_chat(X, span_notice(boiler_glob.select_text))
 	update_button_icon()
 
-/datum/action/xeno_action/toggle_bomb/update_button_icon()
+/datum/action/ability/xeno_action/toggle_bomb/update_button_icon()
 	var/mob/living/carbon/xenomorph/boiler/X = owner
 	var/datum/ammo/xeno/boiler_gas/boiler_glob = X.ammo	//Should be safe as this always selects a ammo.
 	action_icon_state = boiler_glob.icon_key
@@ -129,22 +129,22 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 // *********** Gas cloud bomb maker
 // ***************************************
 
-/datum/action/xeno_action/create_boiler_bomb
+/datum/action/ability/xeno_action/create_boiler_bomb
 	name = "Create bomb"
 	action_icon_state = "toggle_bomb0" //to be changed
 	action_icon = 'icons/xeno/actions_boiler_glob.dmi'
 	desc = "Creates a Boiler Bombard of the type currently selected."
-	plasma_cost = 200
+	ability_cost = 200
 	use_state_flags = XACT_USE_BUSY|XACT_USE_LYING|XACT_USE_ROOTED
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_CREATE_BOMB,
 	)
 
-/datum/action/xeno_action/create_boiler_bomb/New(Target)
+/datum/action/ability/xeno_action/create_boiler_bomb/New(Target)
 	. = ..()
 	desc = "Creates a Boiler Bombard of the type currently selected. Reduces bombard cooldown by [BOILER_BOMBARD_COOLDOWN_REDUCTION] seconds for each stored. Begins to emit light when surpassing [BOILER_LUMINOSITY_THRESHOLD] globs stored."
 
-/datum/action/xeno_action/create_boiler_bomb/action_activate()
+/datum/action/ability/xeno_action/create_boiler_bomb/action_activate()
 	var/mob/living/carbon/xenomorph/boiler/X = owner
 
 	if(X.is_zoomed)
@@ -166,7 +166,7 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 	X.update_boiler_glow()
 	update_button_icon()
 
-/datum/action/xeno_action/create_boiler_bomb/update_button_icon()
+/datum/action/ability/xeno_action/create_boiler_bomb/update_button_icon()
 	var/mob/living/carbon/xenomorph/boiler/X = owner
 	action_icon_state = "bomb_count_[X.corrosive_ammo][X.neuro_ammo]"
 	return ..()
@@ -174,7 +174,7 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 // ***************************************
 // *********** Gas cloud bombs
 // ***************************************
-/datum/action/xeno_action/activable/bombard
+/datum/action/ability/activable/xeno_action/bombard
 	name = "Bombard/Root"
 	action_icon_state = "bombard"
 	desc = "Launch a glob of neurotoxin or acid. Must be rooted to use."
@@ -186,27 +186,27 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 	target_flags = XABB_TURF_TARGET
 	use_state_flags = XACT_USE_ROOTED
 
-/datum/action/xeno_action/activable/bombard/get_cooldown()
+/datum/action/ability/activable/xeno_action/bombard/get_cooldown()
 	var/mob/living/carbon/xenomorph/boiler/X = owner
 	return X.xeno_caste.bomb_delay - ((X.neuro_ammo + X.corrosive_ammo) * (BOILER_BOMBARD_COOLDOWN_REDUCTION SECONDS))
 
-/datum/action/xeno_action/activable/bombard/on_cooldown_finish()
+/datum/action/ability/activable/xeno_action/bombard/on_cooldown_finish()
 	to_chat(owner, span_notice("We feel your toxin glands swell. We are able to bombard an area again."))
 	return ..()
 
-/datum/action/xeno_action/activable/bombard/on_activation()
-	RegisterSignal(owner, COMSIG_MOB_ATTACK_RANGED, TYPE_PROC_REF(/datum/action/xeno_action/activable/bombard, on_ranged_attack))
+/datum/action/ability/activable/xeno_action/bombard/on_activation()
+	RegisterSignal(owner, COMSIG_MOB_ATTACK_RANGED, TYPE_PROC_REF(/datum/action/ability/activable/xeno_action/bombard, on_ranged_attack))
 
-/datum/action/xeno_action/activable/bombard/on_deactivation()
+/datum/action/ability/activable/xeno_action/bombard/on_deactivation()
 	UnregisterSignal(owner, COMSIG_MOB_ATTACK_RANGED)
 
 /// Signal proc for clicking at a distance
-/datum/action/xeno_action/activable/bombard/proc/on_ranged_attack(mob/living/carbon/xenomorph/X, atom/A, params)
+/datum/action/ability/activable/xeno_action/bombard/proc/on_ranged_attack(mob/living/carbon/xenomorph/X, atom/A, params)
 	SIGNAL_HANDLER
 	if(can_use_ability(A, TRUE))
 		INVOKE_ASYNC(src, PROC_REF(use_ability), A)
 
-/datum/action/xeno_action/activable/bombard/can_use_ability(atom/A, silent = FALSE, override_flags)
+/datum/action/ability/activable/xeno_action/bombard/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
 	if(!.)
 		return FALSE
@@ -242,7 +242,7 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 			boiler_owner.balloon_alert(boiler_owner, "Too close!")
 		return FALSE
 
-/datum/action/xeno_action/activable/bombard/use_ability(atom/A)
+/datum/action/ability/activable/xeno_action/bombard/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/boiler/boiler_owner = owner
 	var/turf/target = get_turf(A)
 
@@ -280,12 +280,12 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 	add_cooldown()
 
 
-/datum/action/xeno_action/activable/bombard/alternate_action_activate()
+/datum/action/ability/activable/xeno_action/bombard/alternate_action_activate()
 	INVOKE_ASYNC(src, PROC_REF(root))
 	return COMSIG_KB_ACTIVATED
 
 /// The alternative action of bombard, rooting. It begins the rooting/unrooting process.
-/datum/action/xeno_action/activable/bombard/proc/root()
+/datum/action/ability/activable/xeno_action/bombard/proc/root()
 	if(HAS_TRAIT_FROM(owner, TRAIT_IMMOBILE, BOILER_ROOTED_TRAIT))
 		owner.balloon_alert_to_viewers("Rooting out of place...")
 		if(!do_after(owner, 3 SECONDS, FALSE, null, BUSY_ICON_HOSTILE))
@@ -308,7 +308,7 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 	set_rooted(TRUE)
 
 /// Proc that actually does the rooting, makes us immobile and anchors us in place. Similar to defender's fortify.
-/datum/action/xeno_action/activable/bombard/proc/set_rooted(on)
+/datum/action/ability/activable/xeno_action/bombard/proc/set_rooted(on)
 	var/mob/living/carbon/xenomorph/boiler/boiler_owner = owner
 	if(on)
 		ADD_TRAIT(boiler_owner, TRAIT_IMMOBILE, BOILER_ROOTED_TRAIT)
@@ -325,6 +325,6 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 // ***************************************
 // *********** Acid spray
 // ***************************************
-/datum/action/xeno_action/activable/spray_acid/line/boiler
+/datum/action/ability/activable/xeno_action/spray_acid/line/boiler
 	cooldown_timer = 9 SECONDS
 	use_state_flags = XACT_USE_ROOTED

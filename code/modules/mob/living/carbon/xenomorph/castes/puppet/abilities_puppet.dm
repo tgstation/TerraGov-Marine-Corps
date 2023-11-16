@@ -1,13 +1,13 @@
-/datum/action/xeno_action/activable/feed
+/datum/action/ability/activable/xeno_action/feed
 	name = "Feed"
 	action_icon_state = "lunge"
 	desc = "Assault an organic, restoring health through the use of the their biomass."
 	ability_name = "feed"
-	plasma_cost = 0
+	ability_cost = 0
 	cooldown_timer = 35 SECONDS
 	target_flags = XABB_MOB_TARGET
 
-/datum/action/xeno_action/activable/feed/use_ability(mob/living/carbon/human/target_human)
+/datum/action/ability/activable/xeno_action/feed/use_ability(mob/living/carbon/human/target_human)
 	var/mob/living/carbon/xenomorph/owner_xeno = owner
 	owner_xeno.face_atom(target_human)
 	owner_xeno.do_attack_animation(target_human, ATTACK_EFFECT_REDSLASH)
@@ -19,7 +19,7 @@
 	HEAL_XENO_DAMAGE(owner_xeno, amount, FALSE)
 	add_cooldown()
 
-/datum/action/xeno_action/activable/flay/can_use_ability(mob/living/target, silent = FALSE, override_flags)
+/datum/action/ability/activable/xeno_action/flay/can_use_ability(mob/living/target, silent = FALSE, override_flags)
 	. = ..()
 	if(!ishuman(target))
 		return FALSE

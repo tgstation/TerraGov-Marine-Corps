@@ -229,7 +229,7 @@
 		set_trap_type(null)
 		balloon_alert(X, "Removed facehugger")
 		return
-	var/datum/action/xeno_action/activable/corrosive_acid/acid_action = locate(/datum/action/xeno_action/activable/corrosive_acid) in X.actions
+	var/datum/action/ability/activable/xeno_action/corrosive_acid/acid_action = locate(/datum/action/ability/activable/xeno_action/corrosive_acid) in X.actions
 	if(istype(X.ammo, /datum/ammo/xeno/boiler_gas))
 		var/datum/ammo/xeno/boiler_gas/boiler_glob = X.ammo
 		if(!boiler_glob.enhance_trap(src, X))

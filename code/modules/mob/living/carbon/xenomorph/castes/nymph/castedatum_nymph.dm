@@ -33,7 +33,7 @@
 	minimap_icon = "xenominion"
 
 	actions = list(
-		/datum/action/xeno_action/xeno_resting,
-		/datum/action/xeno_action/activable/secrete_resin,
-		/datum/action/xeno_action/activable/plant_weeds,
+		/datum/action/ability/xeno_action/xeno_resting,
+		/datum/action/ability/activable/xeno_action/secrete_resin,
+		/datum/action/ability/activable/xeno_action/plant_weeds,
 	)

@@ -1,19 +1,19 @@
 // ***************************************
 // *********** Flay
 // ***************************************
-/datum/action/xeno_action/activable/flay
+/datum/action/ability/activable/xeno_action/flay
 	name = "Flay"
 	action_icon_state = "flay"
 	desc = "Takes a chunk of flesh from the victim marine through a quick swiping motion, adding 100 biomass to your biomass collection."
 	ability_name = "flay"
-	plasma_cost = 0
+	ability_cost = 0
 	cooldown_timer = 20 SECONDS
 	target_flags = XABB_MOB_TARGET
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_FLAY,
 	)
 
-/datum/action/xeno_action/activable/flay/can_use_ability(atom/target, silent = FALSE, override_flags)
+/datum/action/ability/activable/xeno_action/flay/can_use_ability(atom/target, silent = FALSE, override_flags)
 	. = ..()
 	if(!.)
 		return
@@ -35,7 +35,7 @@
 			owner_xeno.balloon_alert(owner_xeno, "dead!")
 		return FALSE
 
-/datum/action/xeno_action/activable/flay/use_ability(mob/living/carbon/human/target_human)
+/datum/action/ability/activable/xeno_action/flay/use_ability(mob/living/carbon/human/target_human)
 	var/mob/living/carbon/xenomorph/owner_xeno = owner
 	owner_xeno.face_atom(target_human)
 	owner_xeno.do_attack_animation(target_human, ATTACK_EFFECT_REDSLASH)
@@ -53,7 +53,7 @@
 // ***************************************
 // *********** Pincushion
 // ***************************************
-/datum/action/xeno_action/activable/pincushion
+/datum/action/ability/activable/xeno_action/pincushion
 	name = "Pincushion"
 	action_icon_state = "pincushion"
 	desc = "Launch a spine from your tail. This attack will help deter any organic as well as support your puppets and teammates in direct combat."
@@ -62,7 +62,7 @@
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PINCUSHION,
 	)
 
-/datum/action/xeno_action/activable/pincushion/can_use_ability(atom/victim, silent = FALSE, override_flags)
+/datum/action/ability/activable/xeno_action/pincushion/can_use_ability(atom/victim, silent = FALSE, override_flags)
 	. = ..()
 	if(!.)
 		return
@@ -74,7 +74,7 @@
 		return FALSE
 	succeed_activate()
 
-/datum/action/xeno_action/activable/pincushion/use_ability(atom/victim)
+/datum/action/ability/activable/xeno_action/pincushion/use_ability(atom/victim)
 	var/mob/living/carbon/xenomorph/xeno = owner
 	var/turf/current_turf = get_turf(owner)
 	playsound(xeno.loc, 'sound/bullets/spear_armor1.ogg', 25, 1)
@@ -90,17 +90,17 @@
 // *********** Dreadful Presence
 // ***************************************
 #define DREAD_RANGE 6
-/datum/action/xeno_action/dreadful_presence
+/datum/action/ability/xeno_action/dreadful_presence
 	name = "Dreadful Presence"
 	action_icon_state = "dreadful_presence"
 	desc = "Emit a menacing presence, striking fear into the organics and slowing them for a short duration."
-	plasma_cost = 50
+	ability_cost = 50
 	cooldown_timer = 20 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_DREADFULPRESENCE,
 	)
 
-/datum/action/xeno_action/dreadful_presence/action_activate()
+/datum/action/ability/xeno_action/dreadful_presence/action_activate()
 	var/obj/effect/overlay/dread/effect = new
 	owner.vis_contents += effect
 	for(var/mob/living/carbon/human/human in view(DREAD_RANGE, owner.loc))
@@ -111,7 +111,7 @@
 	add_cooldown()
 	succeed_activate()
 
-/datum/action/xeno_action/dreadful_presence/proc/clear_effect(atom/effect)
+/datum/action/ability/xeno_action/dreadful_presence/proc/clear_effect(atom/effect)
 	owner.vis_contents -= effect
 	qdel(effect)
 
@@ -119,7 +119,7 @@
 // ***************************************
 // *********** Refurbish Husk
 // ***************************************
-/datum/action/xeno_action/activable/refurbish_husk
+/datum/action/ability/activable/xeno_action/refurbish_husk
 	name = "Refurbish Husk"
 	action_icon_state = "refurbish_husk"
 	desc = "Harvest the biomass and organs of a body in order to create a meat puppet to do your bidding."
@@ -131,7 +131,7 @@
 	/// List of all our puppets
 	var/list/mob/living/carbon/xenomorph/puppet/puppets = list()
 
-/datum/action/xeno_action/activable/refurbish_husk/can_use_ability(atom/target, silent = FALSE, override_flags)
+/datum/action/ability/activable/xeno_action/refurbish_husk/can_use_ability(atom/target, silent = FALSE, override_flags)
 	. = ..()
 	if(!.)
 		return
@@ -167,7 +167,7 @@
 		return FALSE
 	succeed_activate()
 
-/datum/action/xeno_action/activable/refurbish_husk/use_ability(mob/living/carbon/human/victim)
+/datum/action/ability/activable/xeno_action/refurbish_husk/use_ability(mob/living/carbon/human/victim)
 	var/turf/victim_turf = get_turf(victim)
 
 	ADD_TRAIT(victim, TRAIT_HOLLOW, TRAIT_GENERIC)
@@ -178,18 +178,18 @@
 	add_cooldown()
 
 /// Adds a puppet to our list
-/datum/action/xeno_action/activable/refurbish_husk/proc/add_puppet(mob/living/carbon/xenomorph/puppet/new_puppet)
+/datum/action/ability/activable/xeno_action/refurbish_husk/proc/add_puppet(mob/living/carbon/xenomorph/puppet/new_puppet)
 	RegisterSignals(new_puppet, list(COMSIG_MOB_DEATH, COMSIG_QDELETING), PROC_REF(remove_puppet))
 	RegisterSignal(new_puppet, COMSIG_XENOMORPH_POSTATTACK_LIVING, PROC_REF(postattack))
 	puppets += new_puppet
 
 /// Cleans up puppet from our list
-/datum/action/xeno_action/activable/refurbish_husk/proc/remove_puppet(datum/source)
+/datum/action/ability/activable/xeno_action/refurbish_husk/proc/remove_puppet(datum/source)
 	SIGNAL_HANDLER
 	puppets -= source
 	UnregisterSignal(source, list(COMSIG_MOB_DEATH, COMSIG_QDELETING, COMSIG_XENOMORPH_POSTATTACK_LIVING))
 
-/datum/action/xeno_action/activable/refurbish_husk/proc/postattack(mob/living/source, mob/living/target, damage)
+/datum/action/ability/activable/xeno_action/refurbish_husk/proc/postattack(mob/living/source, mob/living/target, damage)
 	SIGNAL_HANDLER
 	var/mob/living/carbon/xenomorph/owner_xeno = owner
 	if(target.stat == DEAD)
@@ -199,18 +199,18 @@
 // ***************************************
 // *********** Stitch Puppet
 // ***************************************
-/datum/action/xeno_action/activable/puppet
+/datum/action/ability/activable/xeno_action/puppet
 	name = "Stitch Puppet"
 	action_icon_state = "stitch_puppet"
 	desc = "Uses 125 biomass to create a flesh homunculus to do your bidding, at an adjacent target location."
-	plasma_cost = 125
+	ability_cost = 125
 	cooldown_timer = 25 SECONDS
 	target_flags = XABB_TURF_TARGET
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PUPPET,
 	)
 
-/datum/action/xeno_action/activable/puppet/can_use_ability(atom/target, silent = FALSE, override_flags)
+/datum/action/ability/activable/xeno_action/puppet/can_use_ability(atom/target, silent = FALSE, override_flags)
 	. = ..()
 	if(!.)
 		return
@@ -221,7 +221,7 @@
 			target.balloon_alert(owner_xeno, "dense area")
 		return FALSE
 
-	var/datum/action/xeno_action/activable/refurbish_husk/huskaction = owner.actions_by_path[/datum/action/xeno_action/activable/refurbish_husk]
+	var/datum/action/ability/activable/xeno_action/refurbish_husk/huskaction = owner.actions_by_path[/datum/action/ability/activable/xeno_action/refurbish_husk]
 	if(length(huskaction.puppets) >= owner_xeno.xeno_caste.max_puppets)
 		if(!silent)
 			owner_xeno.balloon_alert(owner_xeno, "too many puppets! (max: [owner_xeno.xeno_caste.max_puppets])")
@@ -240,30 +240,30 @@
 	owner_xeno.visible_message(span_warning("[owner_xeno] forms a repulsive puppet!"))
 	succeed_activate()
 
-/datum/action/xeno_action/activable/puppet/use_ability(atom/target)
+/datum/action/ability/activable/xeno_action/puppet/use_ability(atom/target)
 	var/turf/target_turf = get_turf(target)
 
-	var/datum/action/xeno_action/activable/refurbish_husk/huskaction = owner.actions_by_path[/datum/action/xeno_action/activable/refurbish_husk]
+	var/datum/action/ability/activable/xeno_action/refurbish_husk/huskaction = owner.actions_by_path[/datum/action/ability/activable/xeno_action/refurbish_husk]
 	huskaction.add_puppet(new /mob/living/carbon/xenomorph/puppet(target_turf, owner))
 	add_cooldown()
 
 // ***************************************
 // *********** Organic Bomb
 // ***************************************
-/datum/action/xeno_action/activable/organic_bomb
+/datum/action/ability/activable/xeno_action/organic_bomb
 	name = "Organic Bomb"
 	action_icon_state = "organic_bomb"
 	desc = "Causes one of our puppets to detonate on selection, spewing acid out of the puppet's body in all directions, gibbing the puppet."
 	cooldown_timer = 30 SECONDS
-	plasma_cost = 100
+	ability_cost = 100
 	target_flags = XABB_MOB_TARGET
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_ORGANICBOMB,
 	)
 
-/datum/action/xeno_action/activable/organic_bomb/use_ability(mob/living/victim)
+/datum/action/ability/activable/xeno_action/organic_bomb/use_ability(mob/living/victim)
 	. = ..()
-	var/datum/action/xeno_action/activable/refurbish_husk/huskaction = owner.actions_by_path[/datum/action/xeno_action/activable/refurbish_husk]
+	var/datum/action/ability/activable/xeno_action/refurbish_husk/huskaction = owner.actions_by_path[/datum/action/ability/activable/xeno_action/refurbish_husk]
 	if(length(huskaction.puppets) <= 0)
 		owner.balloon_alert(owner, "no puppets")
 		return fail_activate()
@@ -279,18 +279,18 @@
 	add_cooldown()
 
 ///asynchronous signal handler for start_exploding_async
-/datum/action/xeno_action/activable/organic_bomb/proc/start_exploding(mob/living/puppet)
+/datum/action/ability/activable/xeno_action/organic_bomb/proc/start_exploding(mob/living/puppet)
 	SIGNAL_HANDLER
 	INVOKE_ASYNC(src, PROC_REF(start_exploding_async), puppet)
 
 ///makes a puppet start a do_after to dexplode
-/datum/action/xeno_action/activable/organic_bomb/proc/start_exploding_async(mob/living/puppet)
+/datum/action/ability/activable/xeno_action/organic_bomb/proc/start_exploding_async(mob/living/puppet)
 	puppet.visible_message(span_danger("[puppet] bloats and slowly unfurls its stitched body!"))
 	if(do_after(puppet, 1.5 SECONDS, FALSE, puppet, BUSY_ICON_DANGER))
 		detonate(puppet)
 
 ///detonates a puppet causing a spray of acid
-/datum/action/xeno_action/activable/organic_bomb/proc/detonate(mob/living/puppet)
+/datum/action/ability/activable/xeno_action/organic_bomb/proc/detonate(mob/living/puppet)
 	SIGNAL_HANDLER
 	UnregisterSignal(puppet, list(COMSIG_XENOMORPH_ATTACK_LIVING, COMSIG_MOB_DEATH))
 	var/turf/our_turf = get_turf(puppet)
@@ -308,7 +308,7 @@
 // ***************************************
 // *********** Articulate
 // ***************************************
-/datum/action/xeno_action/activable/articulate
+/datum/action/ability/activable/xeno_action/articulate
 	name = "Articulate"
 	action_icon_state = "mimicry"
 	desc = "Takes direct control of a Puppet’s vocal chords. Allows you to speak directly through your puppet to the talls."
@@ -319,11 +319,11 @@
 	///our current target
 	var/mob/living/carbon/active_target
 
-/datum/action/xeno_action/activable/articulate/use_ability(mob/living/victim)
+/datum/action/ability/activable/xeno_action/articulate/use_ability(mob/living/victim)
 	if(talking)
 		cancel(owner)
 		return fail_activate()
-	var/datum/action/xeno_action/activable/refurbish_husk/huskaction = owner.actions_by_path[/datum/action/xeno_action/activable/refurbish_husk]
+	var/datum/action/ability/activable/xeno_action/refurbish_husk/huskaction = owner.actions_by_path[/datum/action/ability/activable/xeno_action/refurbish_husk]
 	if(!istype(victim, /mob/living/carbon/xenomorph/puppet) || !(victim in huskaction.puppets))
 		victim.balloon_alert(owner, "not our puppet")
 		return fail_activate()
@@ -335,14 +335,14 @@
 	talking = TRUE
 	add_cooldown()
 
-/datum/action/xeno_action/activable/articulate/proc/relay_speech(mob/living/carbon/source, arguments)
+/datum/action/ability/activable/xeno_action/articulate/proc/relay_speech(mob/living/carbon/source, arguments)
 	SIGNAL_HANDLER
 	INVOKE_ASYNC(src, PROC_REF(relay_speech_async), active_target, arguments[SPEECH_MESSAGE])
 
-/datum/action/xeno_action/activable/articulate/proc/relay_speech_async(mob/living/carbon/target, text)
+/datum/action/ability/activable/xeno_action/articulate/proc/relay_speech_async(mob/living/carbon/target, text)
 	target.say(text, language = /datum/language/common, forced = "puppeteer articulate ability")
 
-/datum/action/xeno_action/activable/articulate/proc/cancel(atom/target)
+/datum/action/ability/activable/xeno_action/articulate/proc/cancel(atom/target)
 	SIGNAL_HANDLER
 	if(talking)
 		owner.balloon_alert(owner, "cancelled!")
@@ -353,17 +353,17 @@
 // ***************************************
 // *********** Tendrils (Primordial)
 // ***************************************
-/datum/action/xeno_action/activable/tendril_patch
+/datum/action/ability/activable/xeno_action/tendril_patch
 	name = "Tendrils"
 	action_icon_state = "living_construct"
 	desc = "Burrow freshly created tendrils to tangle organics in a 3x3 patch."
-	plasma_cost = 175
+	ability_cost = 175
 	cooldown_timer = 40 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TENDRILS,
 	)
 
-/datum/action/xeno_action/activable/tendril_patch/use_ability(atom/movable/victim)
+/datum/action/ability/activable/xeno_action/tendril_patch/use_ability(atom/movable/victim)
 	var/turf/their_turf = get_turf(victim)
 	var/mob/living/living_owner = owner
 	living_owner.face_atom(victim)
@@ -414,10 +414,10 @@
 // ***************************************
 // *********** Blessing
 // ***************************************
-/datum/action/xeno_action/activable/puppet_blessings
+/datum/action/ability/activable/xeno_action/puppet_blessings
 	name = "Bestow Blessing"
 	action_icon_state = "emit_pheromones"
-	plasma_cost = 200
+	ability_cost = 200
 	desc = "Give a permanent upgrade to a puppet."
 	cooldown_timer = 30 SECONDS
 	use_state_flags = XACT_USE_STAGGERED|XACT_USE_NOTTURF|XACT_USE_BUSY|XACT_USE_LYING
@@ -426,7 +426,7 @@
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_BESTOWBLESSINGS,
 	)
 
-/datum/action/xeno_action/activable/puppet_blessings/can_use_ability(mob/target, silent = FALSE, override_flags)
+/datum/action/ability/activable/xeno_action/puppet_blessings/can_use_ability(mob/target, silent = FALSE, override_flags)
 	. = ..()
 	if(!.)
 		return fail_activate()
@@ -435,7 +435,7 @@
 		return fail_activate()
 	succeed_activate()
 
-/datum/action/xeno_action/activable/puppet_blessings/use_ability(mob/living/victim)
+/datum/action/ability/activable/xeno_action/puppet_blessings/use_ability(mob/living/victim)
 	var/mob/living/carbon/xenomorph/xeno = owner
 	var/choice = show_radial_menu(owner, owner, GLOB.puppeteer_phero_images_list, radius = 35)
 	if(!choice)
@@ -461,7 +461,7 @@
 // *********** Orders
 // ***************************************
 
-/datum/action/xeno_action/puppeteer_orders
+/datum/action/ability/xeno_action/puppeteer_orders
 	name = "Give Orders to Puppets"
 	action_icon_state = "orders"
 	desc = "Give orders to your puppets, altering their behaviour."
@@ -469,7 +469,7 @@
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_SENDORDERS,
 	)
 
-/datum/action/xeno_action/puppeteer_orders/action_activate(mob/living/victim)
+/datum/action/ability/xeno_action/puppeteer_orders/action_activate(mob/living/victim)
 	var/choice = show_radial_menu(owner, owner, GLOB.puppeteer_order_images_list, radius = 35)
 	if(!choice)
 		return

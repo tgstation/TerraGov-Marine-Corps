@@ -36,16 +36,6 @@
 	carbon_owner.mob_abilities -= src
 	return ..()
 
-///datum/action/ability/proc/on_xeno_upgrade()
-//	return
-
-///Adds an outline around the ability button
-///datum/action/ability/proc/add_empowered_frame()
-//	button.add_overlay(visual_references[VREF_MUTABLE_EMPOWERED_FRAME])
-
-///datum/action/ability/proc/remove_empowered_frame()
-//	button.cut_overlay(visual_references[VREF_MUTABLE_EMPOWERED_FRAME])
-
 /datum/action/ability/can_use_action(silent = FALSE, override_flags)
 	var/mob/living/carbon/carbon_owner = owner
 	if(!carbon_owner)
@@ -77,21 +67,6 @@
 			carbon_owner.balloon_alert(carbon_owner, "Cannot while staggered")
 		return FALSE
 
-	//if(!(flags_to_check & XACT_USE_FORTIFIED) && carbon_owner.fortify)
-	//	if(!silent)
-	//		carbon_owner.balloon_alert(carbon_owner, "Cannot while fortified")
-	//	return FALSE
-
-	//if(!(flags_to_check & XACT_USE_CRESTED) && carbon_owner.crest_defense)
-	//	if(!silent)
-	//		carbon_owner.balloon_alert(carbon_owner, "Cannot while in crest defense")
-	//	return FALSE
-
-	//if(!(flags_to_check & XACT_USE_ROOTED) && HAS_TRAIT_FROM(carbon_owner, TRAIT_IMMOBILE, BOILER_ROOTED_TRAIT))
-	//	if(!silent)
-	//		carbon_owner.balloon_alert(carbon_owner, "Cannot while rooted")
-	//	return FALSE
-
 	if(!(flags_to_check & XACT_USE_NOTTURF) && !isturf(carbon_owner.loc))
 		if(!silent)
 			carbon_owner.balloon_alert(carbon_owner, "Cannot do this here")
@@ -102,20 +77,11 @@
 			carbon_owner.balloon_alert(carbon_owner, "Cannot, busy")
 		return FALSE
 
-	//if(!(flags_to_check & XACT_USE_AGILITY) && carbon_owner.agility)
-	//	if(!silent)
-	//		carbon_owner.balloon_alert(carbon_owner, "Cannot in agility mode")
-	//	return FALSE
-
 	if(!(flags_to_check & XACT_USE_BURROWED) && HAS_TRAIT(carbon_owner, TRAIT_BURROWED))
 		if(!silent)
 			carbon_owner.balloon_alert(carbon_owner, "Cannot while burrowed")
 		return FALSE
 
-	//if(!(flags_to_check & XACT_IGNORE_PLASMA) && carbon_owner.plasma_stored < ability_cost)
-	//	if(!silent)
-	//		carbon_owner.balloon_alert(carbon_owner, "Need [ability_cost - carbon_owner.plasma_stored] more plasma")
-	//	return FALSE
 	if(!(flags_to_check & XACT_USE_CLOSEDTURF) && isclosedturf(get_turf(carbon_owner)))
 		if(!silent)
 			//Not converted to balloon alert as xeno.dm's balloon alert is simultaneously called and will overlap.
@@ -132,8 +98,6 @@
 	if(QDELETED(owner))
 		return
 	ability_cost_override = ability_cost_override? ability_cost_override : ability_cost
-	//if(SEND_SIGNAL(owner, COMSIG_XENO_ACTION_SUCCEED_ACTIVATE, src, ability_cost_override) & SUCCEED_ACTIVATE_CANCEL)
-	//	return
 	if(ability_cost_override > 0)
 		var/mob/living/carbon/carbon_owner = owner
 		carbon_owner.deduct_ability_cost(ability_cost_override)
@@ -142,17 +106,14 @@
 /datum/action/ability/proc/action_cooldown_check()
 	return !cooldown_id
 
-
 /datum/action/ability/proc/clear_cooldown()
 	if(!cooldown_id)
 		return
 	deltimer(cooldown_id)
 	on_cooldown_finish()
 
-
 /datum/action/ability/proc/get_cooldown()
 	return cooldown_timer
-
 
 /datum/action/ability/proc/add_cooldown(cooldown_override = 0)
 	SIGNAL_HANDLER
@@ -165,10 +126,8 @@
 	cooldown_id = addtimer(CALLBACK(src, PROC_REF(on_cooldown_finish)), cooldown_length, TIMER_STOPPABLE)
 	button.add_overlay(visual_references[VREF_IMAGE_XENO_CLOCK])
 
-
 /datum/action/ability/proc/cooldown_remaining()
 	return timeleft(cooldown_id) * 0.1
-
 
 ///override this for cooldown completion.
 /datum/action/ability/proc/on_cooldown_finish()
@@ -184,6 +143,16 @@
 		button.color = "#f0b400c8" // rgb(240,180,0,200)
 	else
 		button.color = "#ffffffff" // rgb(255,255,255,255)
+
+/datum/action/ability/proc/on_xeno_upgrade()
+	return
+
+///Adds an outline around the ability button
+/datum/action/ability/proc/add_empowered_frame()
+	button.add_overlay(visual_references[VREF_MUTABLE_EMPOWERED_FRAME])
+
+/datum/action/ability/proc/remove_empowered_frame()
+	button.cut_overlay(visual_references[VREF_MUTABLE_EMPOWERED_FRAME])
 
 /datum/action/ability/activable
 	action_type = ACTION_SELECT
@@ -278,6 +247,9 @@
 
 /mob/living/carbon/proc/deduct_ability_cost(amount)
 	return
+
+/mob/living/carbon/xenomorph/deduct_ability_cost(amount)
+	use_plasma(amount)
 
 /mob/living/carbon/proc/add_ability(datum/action/ability/new_ability)
 	new_ability = new new_ability
