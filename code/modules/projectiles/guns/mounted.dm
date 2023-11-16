@@ -197,9 +197,9 @@
 //-------------------------------------------------------
 //TE-9001 mounted heavy laser
 
-/obj/item/weapon/gun/heavy_laser
+/obj/item/weapon/gun/energy/lasgun/lasrifle/heavy_laser
 	name = "\improper TE-9001 mounted heavy laser"
-	desc = "The TE-9001 mounted heavy laser is a non-IFF heavy laser that is powerful enough to start a sizeable fire on its impact, this weapon is exceptional at area denial."
+	desc = "The TE-9001 mounted heavy laser is a non-IFF heavy laser that is powerful enough to start a sizeable fire on its impact, this weapon is exceptional at area denial and has direct fire capability on the side."
 
 	w_class = WEIGHT_CLASS_HUGE
 	flags_equip_slot = ITEM_SLOT_BACK
@@ -232,7 +232,46 @@
 	max_integrity = 400
 	soft_armor = list(MELEE = 0, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 100, FIRE = 0, ACID = 0)
 
-/obj/item/weapon/gun/heavy_laser/deployable
+	mode_list = list(
+		"Standard" = /datum/lasrifle/heavy_laser/standard,
+		"Shatter Burst" = /datum/lasrifle/heavy_laser/burst,
+		"Ricochet" = /datum/lasrifle/heavy_laser/ricochet,
+	)
+
+/datum/lasrifle/heavy_laser/standard
+	rounds_per_shot = 15
+	ammo_datum_type = /datum/ammo/energy/lasgun/marine/heavy_laser
+	fire_delay = 0.7 SECONDS
+	burst_amount = 1
+	fire_sound = 'sound/weapons/guns/fire/tank_flamethrower.ogg'
+	message_to_user = "You set the heavy laser to glob mode."
+	fire_mode = GUN_FIREMODE_SEMIAUTO
+	description = "Fires a laser glob that ignites things on hit."
+
+/datum/lasrifle/heavy_laser/auto_burst
+	rounds_per_shot = 5
+	ammo_datum_type = /datum/ammo/energy/lasgun/marine/shatter/heavy_laser
+	fire_delay = 1 SECONDS
+	burst_amount = 3
+	fire_sound = 'sound/weapons/guns/fire/Laser Rifle Standard.ogg'
+	message_to_user = "You set the heavy laser to burst fire mode."
+	fire_mode = GUN_FIREMODE_AUTOBURST
+	icon_state = GUN_ICONSTATE_LOADED
+	description = "Fires a rapid pulse laser, dealing mediocre damage and shattering armor, but suffers from increased scatter and poorer falloff."
+
+/datum/lasrifle/heavy_laser/ricochet
+	rounds_per_shot = 15
+	fire_delay = 0.5 SECONDS
+	ammo_datum_type = /datum/ammo/energy/lasgun/marine/ricochet/four
+	fire_sound = 'sound/weapons/guns/fire/laser3.ogg'
+	message_to_user = "You set the heavy laser to ricochet mode."
+	fire_mode = GUN_FIREMODE_SEMIAUTO
+	icon_state = GUN_ICONSTATE_LOADED
+	radial_icon_state = "laser_ricochet"
+	description = "Fires an experiment laser pulse capable of bouncing off many wall surfaces. The laser increases in potency when bouncing, before collapsing entirely after exceeding its threshold."
+
+
+/obj/item/weapon/gun/energy/lasgun/lasrifle/heavy_laser/deployable
 	icon_state = "heavylaser_deployable"
 	flags_item = IS_DEPLOYABLE|TWOHANDED
 
