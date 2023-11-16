@@ -251,3 +251,11 @@
   - bugfix: Fix SOM breacher ERT scaling the amount of specs incorrectly
   - bugfix: Fix player-controlled puppets being able to feed on non-adjacent humans
   - qol: You can now toggle auto aim mode while trying to wield a gun
+2023-11-16:
+  Barnet2:
+  - bugfix: Icy Caves now has one APC per area and passes unit tests.
+  Xander3359:
+  - qol: Flamethrower backtank can be refilled from welding kits
+  - imageadd: Ports deathsquad sprites from TG
+  psykzz:
+  - admin: add flags_area to bitfields for VV.
