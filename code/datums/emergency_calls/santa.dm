@@ -41,6 +41,11 @@
 		H.apply_assigned_role_to_spawn(J)
 		H.set_nutrition(NUTRITION_OVERFED * 2)
 		H.grant_language(/datum/language/xenocommon)
+		ADD_TRAIT(H, TRAIT_SANTA_CLAUS, TRAIT_SANTA_CLAUS)
+		var/datum/action/innate/summon_present/present_spawn = new(H)
+		present_spawn.give_action(H)
+		var/datum/action/innate/summon_present_bomb/present_bomb_spawn = new(H)
+		present_bomb_spawn.give_action(H)
 		if(GLOB.round_statistics.number_of_grinches >= 3)
 			to_chat(H, "<p style='font-size:1.5em'>[span_notice("You are Santa Claus! Punish all naughty </b>marines and aliens</b> with overwhelming firepower, starting with their commanders hiding on the ship.")]</p>")
 		else
@@ -53,3 +58,19 @@
 	H.real_name = H.name
 	print_backstory(H)
 	to_chat(H, span_notice("You are a member of Santa's loyal workforce, assist Santa in whatever way you can!"))
+
+/datum/action/innate/summon_present
+	name = "Summon Present"
+	action_icon_state = "aim_mode"
+
+/datum/action/innate/summon_present/Activate()
+	var/obj/item/a_gift/free/spawnedpresent = new contains_type(get_turf(usr))
+	usr.put_in_hands(spawnedpresent)
+
+/datum/action/innate/summon_present_bomb
+	name = "Summon Explosive Present"
+	action_icon_state = "aim_mode"
+
+/datum/action/innate/summon_present_bomb/Activate()
+	var/obj/item/explosive/grenade/gift/spawnedpresentbomb = new contains_type(get_turf(usr))
+	usr.put_in_hands(spawnedpresentbomb)

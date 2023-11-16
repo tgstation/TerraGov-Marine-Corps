@@ -10,6 +10,28 @@
 
 GLOBAL_LIST_EMPTY(possible_gifts)
 
+///special grenade that looks like a present, santa spawn only
+/obj/item/explosive/grenade/gift
+	name = "gift"
+	desc = "A wrapped bundle of joy, you'll have to get closer to see who it's addressed to."
+	icon = 'icons/obj/items/items.dmi'
+	icon_state = "gift0"
+	hud_state = "gift0"
+	light_impact_range = 7
+
+/obj/item/explosive/grenade/gift/Initialize(mapload)
+	. = ..()
+	icon_state = "gift[rand(0,10)]"
+	hud_state = icon_state
+
+/obj/item/explosive/grenade/gift/attack_self(mob/user)
+	if(HAS_TRAIT(user, TRAIT_SANTA_CLAUS)) //santa uses the present as a grenade
+		to_chat(user, "This present is now live, toss it at somebody naughty!")
+		. = ..()
+	else //anyone else opening the present gets an explosion
+		explosion(loc, light_impact_range = src.light_impact_range, weak_impact_range = src.weak_impact_range)
+		qdel(src)
+
 /obj/item/a_gift
 	name = "gift"
 	desc = "A wrapped bundle of joy, you'll have to get closer to see who it's addressed to."
