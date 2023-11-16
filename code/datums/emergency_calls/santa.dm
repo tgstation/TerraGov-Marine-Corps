@@ -46,7 +46,7 @@
 		present_spawn.give_action(H)
 		var/datum/action/innate/summon_present_bomb/present_bomb_spawn = new(H)
 		present_bomb_spawn.give_action(H)
-		if(GLOB.round_statistics.number_of_grinches >= 3)
+		if(GLOB.round_statistics.number_of_grinches >= 1)
 			to_chat(H, "<p style='font-size:1.5em'>[span_notice("You are Santa Claus! Punish all naughty </b>marines and aliens</b> with overwhelming firepower, starting with their commanders hiding on the ship.")]</p>")
 		else
 			to_chat(H, "<p style='font-size:1.5em'>[span_notice("You are Santa Claus! Punish all the naughty </b>aliens</b> with overwhelming firepower, starting with their cowardly queen hiding on the ship.")]</p>")
