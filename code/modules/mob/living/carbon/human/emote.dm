@@ -254,13 +254,6 @@
 	emote_type = EMOTE_AUDIBLE
 
 
-/datum/emote/living/carbon/human/sigh
-	key = "sigh"
-	key_third_person = "sighs"
-	message = "sighs."
-	emote_type = EMOTE_AUDIBLE
-
-
 /datum/emote/living/carbon/human/sit
 	key = "sit"
 	key_third_person = "sits"
@@ -572,3 +565,17 @@
 		return
 	var/image/pain = image('icons/mob/talk.dmi', user, icon_state = "pain")
 	user.add_emote_overlay(pain)
+
+
+/datum/emote/living/carbon/human/sigh
+    key = "sigh"
+    key_third_person = "sighs"
+    message = "sighs."
+    emote_type = EMOTE_AUDIBLE
+
+
+/datum/emote/living/carbon/human/sigh/get_sound(mob/living/user)
+    if(user.gender == FEMALE)
+	    return 'sound/voice/human_female_sigh_1.ogg'
+	else
+	    return 'sound/voice/human_male_sigh_1.ogg'
