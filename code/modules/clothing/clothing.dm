@@ -336,7 +336,7 @@
 
 /obj/item/clothing/suit/space/santa/special //for ERT, when santa has to give presents to REALLY naughty children
 	desc = "That's not red dye. That's red blood."
-	soft_armor = list(MELEE = 85, BULLET = 90, LASER = 90, ENERGY = 85, BOMB = 120, BIO = 85, FIRE = 75, ACID = 40)
+	soft_armor = list(MELEE = 90, BULLET = 90, LASER = 90, ENERGY = 85, BOMB = 120, BIO = 85, FIRE = 75, ACID = 40)
 	slowdown = 1
 	flags_item = NODROP|DELONDROP
 	flags_armor_protection = CHEST|GROIN|ARMS|LEGS|FEET|HANDS
@@ -344,6 +344,9 @@
 	flags_heat_protection = CHEST|GROIN|ARMS|LEGS|FEET|HANDS
 	supporting_limbs = CHEST | GROIN | ARM_LEFT | ARM_RIGHT | HAND_LEFT | HAND_RIGHT | LEG_LEFT | LEG_RIGHT | FOOT_LEFT | FOOT_RIGHT | HEAD
 	resistance_flags = UNACIDABLE
+
+/obj/item/clothing/suit/space/santa/special/eventspawn //lesser version of above suit, still mostly bomb proof
+	soft_armor = list(MELEE = 75, BULLET = 90, LASER = 90, ENERGY = 65, BOMB = 120, BIO = 70, FIRE = 55, ACID = 25)
 
 /obj/item/clothing/suit/space/elf
 	name = "Elf suit"

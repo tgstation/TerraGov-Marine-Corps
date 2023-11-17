@@ -117,6 +117,9 @@
 	flags_inventory = COVERMOUTH|BLOCKGASEFFECT
 	soft_armor = list(MELEE = 25, BULLET = 35, LASER = 25, ENERGY = 25, BOMB = 95, BIO = 85, FIRE = 25, ACID = 25) //if he ever shaved you could use santa's facial hair as a bombvest
 
+/obj/item/clothing/mask/gas/swat/santa/eventspawn
+	anti_hug = 1
+
 /obj/item/clothing/mask/gas/syndicate
 	name = "syndicate mask"
 	desc = "A close-fitting tactical mask that can be connected to an air supply."

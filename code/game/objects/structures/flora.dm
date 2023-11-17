@@ -147,6 +147,7 @@
 
 /obj/structure/flora/tree/pine/xmas/presents/Initialize(mapload)
 	. = ..()
+	GLOB.christmastrees += src
 	icon_state = "pinepresents"
 	if(!took_presents)
 		took_presents = list()
@@ -179,6 +180,10 @@
 /obj/structure/flora/tree/pine/xmas/presents/unlimited
 	desc = "A wonderous decorated Christmas tree. It has an endless supply of presents!"
 	unlimited = TRUE
+
+/obj/structure/flora/tree/pine/xmas/presents/Destroy()
+	. = ..()
+	GLOB.christmastrees -= src
 
 /obj/structure/flora/tree/dead
 	icon = 'icons/obj/flora/deadtrees.dmi'
