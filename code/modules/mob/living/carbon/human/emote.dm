@@ -94,6 +94,13 @@
 	emote_type = EMOTE_AUDIBLE
 
 
+/datum/emote/living/carbon/human/cry/get_sound(mob/living/user)
+	if(user.gender == FEMALE)
+		return pick ('sound/voice/human_female_cry_1.ogg', 'human_female_cry_2.ogg')
+	else
+		return 'sound/voice/human_male_cry_1.ogg'
+
+
 /datum/emote/living/carbon/human/drool
 	key = "drool"
 	key_third_person = "drools"
@@ -147,6 +154,12 @@
 	emote_type = EMOTE_AUDIBLE
 
 
+/datum/emote/living/carbon/human/giggle/get_sound(mob/living/user)
+	if(user.gender == FEMALE)
+		return 'sound/voice/human_female_giggle_1.ogg'
+	else
+		return 'sound/voice/human_male_giggle_1.ogg'
+
 /datum/emote/living/carbon/human/glare
 	key = "glare"
 	key_third_person = "glares"
@@ -160,6 +173,13 @@
 	key_third_person = "yawns"
 	message = "yawns."
 	emote_type = EMOTE_AUDIBLE
+
+
+/datum/emote/living/carbon/human/yawn/get_sound(mob/living/user)
+	if(user.gender == FEMALE)
+		return 'sound/voice/human_female_yawn_1.ogg'
+	else
+		return 'sound/voice/human_male_yawn_1.ogg'
 
 
 /datum/emote/living/carbon/human/wave
@@ -231,6 +251,7 @@
 	key_third_person = "sneezes"
 	message = "sneezes."
 	emote_type = EMOTE_AUDIBLE
+	sound = 'sound/misc/sneeze.ogg'
 
 
 /datum/emote/living/carbon/human/sniff
@@ -354,6 +375,13 @@
 	key_third_person = "moans"
 	message = "moans!"
 	emote_type = EMOTE_AUDIBLE
+
+
+/datum/emote/living/carbon/human/moan/get_sound(mob/living/user)
+	if(user.gender == FEMALE)
+		return 'sound/voice/human_female_moan_1.ogg'
+	else
+		return 'sound/voice/human_male_moan_1.ogg'
 
 
 /datum/emote/living/carbon/human/laugh
