@@ -737,6 +737,7 @@
 	var/list/sectoid_abilities = list(
 		/datum/action/ability/activable/mindfray,
 		/datum/action/ability/activable/psy_blast_sectoid,
+		/datum/action/ability/activable/mindmeld,
 	)
 
 /datum/species/sectoid/on_species_gain(mob/living/carbon/human/H, datum/species/old_species)

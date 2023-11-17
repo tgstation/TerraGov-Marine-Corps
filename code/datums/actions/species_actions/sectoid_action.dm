@@ -1,3 +1,82 @@
+#define MINDMELD_RANGE 8
+
+/datum/action/ability/activable/mindmeld
+	name = "Mindmeld"
+	action_icon_state = "healing_infusion"
+	desc = "Merge minds with the target, empowering both."
+	cooldown_duration = 60 SECONDS
+	target_flags = XABB_MOB_TARGET
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_ENHANCEMENT,
+	)
+	/// Used to determine whether Enhancement is already active or not. Also allows access to its vars.
+	//var/datum/status_effect/mindmeld/existing_mindmeld
+	var/mob/living/carbon/melded_mob
+	/// Damage bonus given by this ability.
+	//var/damage_multiplier = 1.15
+	/// Speed bonus given by this ability.
+	var/speed_addition = -0.4
+
+	var/health_mod = 50
+
+/datum/action/ability/activable/mindmeld/can_use_action()
+	var/mob/living/carbon/carbon_owner = owner
+	if(melded_mob)
+		return FALSE
+	if(HAS_TRAIT(carbon_owner, TRAIT_MINDMELDED))
+		return FALSE
+	return ..()
+
+/datum/action/ability/activable/mindmeld/can_use_ability(atom/A, silent = FALSE, override_flags)
+	. = ..()
+	if(!.)
+		return
+	if(!iscarbon(A))
+		if(!silent)
+			A.balloon_alert(owner, "not living")
+		return FALSE
+	var/mob/living/carbon/carbon_target = A
+	if(owner.faction != carbon_target.faction)
+		if(!silent)
+			A.balloon_alert(owner, "hostile!")
+		return FALSE
+	if(HAS_TRAIT(carbon_target, TRAIT_MINDMELDED))
+		if(!silent)
+			A.balloon_alert(owner, "already melded!")
+		return FALSE
+	if((A.z != owner.z) || !line_of_sight(owner, A, MINDMELD_RANGE))
+		if(!silent)
+			owner.balloon_alert(owner, "Out of sight!")
+		return FALSE
+
+	if(carbon_target.stat == DEAD)
+		if(!silent)
+			carbon_target.balloon_alert(owner, "already dead")
+		return FALSE
+
+/datum/action/ability/activable/mindmeld/use_ability(atom/target)
+	var/mob/living/carbon/carbon_owner = owner
+	melded_mob = target
+	melded_mob.balloon_alert_to_viewers("mindmelded")
+	owner.balloon_alert_to_viewers("mindmelded")
+	playsound(melded_mob, 'sound/effects/off_guard_ability.ogg', 50)
+
+	melded_mob.apply_status_effect(STATUS_EFFECT_MINDMEND, carbon_owner, src)
+	carbon_owner.apply_status_effect(STATUS_EFFECT_MINDMEND, melded_mob, src)
+
+	add_cooldown()
+
+/// Ends the ability if the Enhancement buff is removed.
+/datum/action/ability/activable/mindmeld/proc/end_ability()
+	var/mob/living/carbon/carbon_owner = owner
+	add_cooldown()
+	carbon_owner.remove_status_effect(STATUS_EFFECT_MINDMEND)
+	if(!melded_mob)
+		return
+	melded_mob.remove_status_effect(STATUS_EFFECT_MINDMEND)
+	melded_mob = null
+
+
 #define MINDFRAY_RANGE 8
 /datum/action/ability/activable/mindfray
 	name = "Mindfray"

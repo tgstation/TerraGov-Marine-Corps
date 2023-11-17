@@ -39,6 +39,7 @@
 
 #define STATUS_EFFECT_DRAIN_SURGE /datum/status_effect/drain_surge
 
+#define STATUS_EFFECT_MINDMEND /datum/status_effect/mindmeld
 /////////////
 // DEBUFFS //
 /////////////
