@@ -130,7 +130,7 @@ The Grenade Launchers
 	)
 	starting_attachment_types = list(/obj/item/attachable/stock/t70stock)
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 14, "rail_y" = 22, "under_x" = 19, "under_y" = 14, "stock_x" = 11, "stock_y" = 12)
-	fire_delay = 1.5 SECONDS
+	fire_delay = 1.4 SECONDS
 	max_chamber_items = 5
 	launched_detonation_time = 1.2 SECONDS
 
