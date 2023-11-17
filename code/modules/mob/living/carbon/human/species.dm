@@ -719,6 +719,7 @@
 	eyes = "blank_eyes"
 	speech_verb_override = "transmits"
 	count_human = TRUE
+	total_health = 80
 
 	species_flags = HAS_NO_HAIR|NO_BREATHE|NO_POISON|NO_PAIN|USES_ALIEN_WEAPONS|NO_DAMAGE_OVERLAY
 
@@ -733,6 +734,15 @@
 	namepool = /datum/namepool/sectoid
 	special_death_message = "You have perished."
 
+/datum/species/sectoid/on_species_gain(mob/living/carbon/human/H, datum/species/old_species)
+	. = ..()
+	//H.health_threshold_crit = -100 //note, maybe add for mindmeld
+	H.add_ability(/datum/action/ability/activable/mindfray)
+
+/datum/species/sectoid/post_species_loss(mob/living/carbon/human/H)
+	. = ..()
+	//H.health_threshold_crit = -50
+	H.remove_ability(/datum/action/ability/activable/mindfray)
 
 /datum/species/moth
 	name = "Moth"

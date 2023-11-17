@@ -379,7 +379,7 @@
 		holder.icon_state = "hudhealth-100"
 		return TRUE
 
-	var/perceived_health = health
+	var/perceived_health = health / maxHealth * 100
 	if(!(species.species_flags & NO_PAIN))
 		perceived_health -= PAIN_RATIO_PAIN_HUD * traumatic_shock
 	if(!(species.species_flags & NO_STAMINA) && staminaloss > 0)
