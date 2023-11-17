@@ -130,26 +130,6 @@
 	soft_armor = list(MELEE = 10, BULLET = 10, LASER = 10, ENERGY = 10, BOMB = 10, BIO = 10, FIRE = 10, ACID = 10)
 	slowdown = 0.4
 
-/obj/item/armor_module/module/tyr_extra_armor/test
-	name = "\improper Mark 1 Tyr Armor Reinforcement"
-	desc = "Designed for mounting on modular armor. A substantial amount of additional armor plating designed to grant the user extra protection against threats, ranging from xeno slashes to friendly fire incidents. This older version has worse protection. Will greatly impact mobility."
-	soft_armor = list(MELEE = 10, BULLET = 10, LASER = 10, ENERGY = 10, BOMB = 10, BIO = 10, FIRE = 10, ACID = 10)
-	slowdown = 0.4
-	var/health_mod = 100
-
-/obj/item/armor_module/module/tyr_extra_armor/test/on_attach(obj/item/attaching_to, mob/user)
-	. = ..()
-	if(isclothing(attaching_to))
-		var/obj/item/clothing/clothing_parent = attaching_to
-		clothing_parent.health_mod += health_mod
-
-/// Called when the module is removed from the armor.
-/obj/item/armor_module/module/tyr_extra_armor/test/on_detach(obj/item/detaching_from, mob/user)
-	. = ..()
-	if(isclothing(detaching_from))
-		var/obj/item/clothing/clothing_parent = detaching_from
-		clothing_parent.health_mod += health_mod
-
 /obj/item/armor_module/module/tyr_extra_armor/som
 	name = "\improper Lorica Armor Reinforcement"
 	desc = "Designed for mounting on modular SOM armor. A substantial amount of additional armor plating designed to grant the user extra protection against all forms of damage. Will definitely impact mobility."
