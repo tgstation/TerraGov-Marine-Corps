@@ -87,6 +87,8 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_OFFGUARD,
 	)
+	///damage of this ability
+	var/damage = 20
 
 /datum/action/ability/activable/mindfray/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
@@ -114,7 +116,8 @@
 	var/mob/living/carbon/carbon_target = target
 	carbon_target.apply_status_effect(STATUS_EFFECT_GUN_SKILL_SCATTER_DEBUFF, 100)
 	carbon_target.apply_status_effect(STATUS_EFFECT_CONFUSED, 40)
-	carbon_target.log_message("has been off-guarded by [owner]", LOG_ATTACK, color="pink")
+	carbon_target.apply_damage(damage, BURN, updating_health = TRUE)
+	carbon_target.log_message("has been mindfrayed by [owner]", LOG_ATTACK, color="pink")
 	carbon_target.balloon_alert_to_viewers("confused")
 	playsound(carbon_target, 'sound/effects/off_guard_ability.ogg', 50)
 
