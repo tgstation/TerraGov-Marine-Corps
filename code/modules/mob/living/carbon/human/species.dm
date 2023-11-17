@@ -94,7 +94,6 @@
 	var/list/coughs = list()
 	var/list/burstscreams = list()
 	var/list/warcries = list()
-	var/list/sighs = list ()
 
 	var/blood_color = "#A10808" //Red.
 	var/flesh_color = "#FFC896" //Pink.
@@ -342,7 +341,6 @@
 	coughs = list(MALE = "male_cough", FEMALE = "female_cough")
 	burstscreams = list(MALE = "male_preburst", FEMALE = "female_preburst")
 	warcries = list(MALE = "male_warcry", FEMALE = "female_warcry")
-	sighs = list(MALE = "male_sigh", FEMALE = "female_sigh")
 	special_death_message = "<big>You have perished.</big><br><small>But it is not the end of you yet... if you still have your body with your head still attached, wait until somebody can resurrect you...</small>"
 	joinable_roundstart = TRUE
 
