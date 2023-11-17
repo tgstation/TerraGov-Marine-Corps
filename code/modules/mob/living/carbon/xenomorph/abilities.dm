@@ -917,7 +917,7 @@
 
 /datum/action/ability/activable/xeno_action/neurotox_sting/on_cooldown_finish()
 	playsound(owner.loc, 'sound/voice/alien_drool1.ogg', 50, 1)
-	to_chat(owner, span_xenodanger("We feel our toxic glands refill. We can use our [name] again."))
+	to_chat(owner, span_xenodanger("We feel our toxic glands refill. We can use our [initial(name)] again."))
 	return ..()
 
 /datum/action/ability/activable/xeno_action/neurotox_sting/use_ability(atom/A)

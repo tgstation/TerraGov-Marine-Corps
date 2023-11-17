@@ -237,7 +237,7 @@
 /datum/action/ability/xeno_action/endure/proc/endure_warning()
 	if(QDELETED(owner))
 		return
-	to_chat(owner,span_highdanger("We feel the plasma draining from our veins... [name] will last for only [timeleft(endure_duration) * 0.1] more seconds!"))
+	to_chat(owner,span_highdanger("We feel the plasma draining from our veins... [initial(name)] will last for only [timeleft(endure_duration) * 0.1] more seconds!"))
 	owner.playsound_local(owner, 'sound/voice/hiss4.ogg', 50, 0, 1)
 
 ///Turns off the Endure buff
@@ -418,7 +418,7 @@
 /datum/action/ability/xeno_action/rage/proc/rage_warning(bonus_duration = 0)
 	if(QDELETED(owner))
 		return
-	to_chat(owner,span_highdanger("Our rage begins to subside... [name] will only last for only [(RAVAGER_RAGE_DURATION + bonus_duration) * (1-RAVAGER_RAGE_WARNING) * 0.1] more seconds!"))
+	to_chat(owner,span_highdanger("Our rage begins to subside... [initial(name)] will only last for only [(RAVAGER_RAGE_DURATION + bonus_duration) * (1-RAVAGER_RAGE_WARNING) * 0.1] more seconds!"))
 	owner.playsound_local(owner, 'sound/voice/hiss4.ogg', 50, 0, 1)
 
 ///Warns the user when his rage is about to end.

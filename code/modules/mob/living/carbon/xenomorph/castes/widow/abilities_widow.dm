@@ -275,7 +275,7 @@
 		INVOKE_ASYNC(src, PROC_REF(xeno_burrow_doafter))
 		return
 	UnregisterSignal(X, COMSIG_XENOMORPH_TAKING_DAMAGE)
-	ADD_TRAIT(X, TRAIT_NON_FLAMMABLE, name)
+	ADD_TRAIT(X, TRAIT_NON_FLAMMABLE, initial(name))
 	X.soft_armor = X.soft_armor.modifyRating(fire = 100)
 	X.hard_armor = X.hard_armor.modifyRating(fire = 100)
 	X.mouse_opacity = initial(X.mouse_opacity)
@@ -305,7 +305,7 @@
 	var/mob/living/carbon/xenomorph/X = owner
 	X.soft_armor = X.soft_armor.modifyRating(fire = -100)
 	X.hard_armor = X.hard_armor.modifyRating(fire = -100)
-	REMOVE_TRAIT(X, TRAIT_NON_FLAMMABLE, name)
+	REMOVE_TRAIT(X, TRAIT_NON_FLAMMABLE, initial(name))
 	// Update here without waiting for life
 	X.update_icons()
 	RegisterSignal(X, COMSIG_XENOMORPH_TAKING_DAMAGE, PROC_REF(xeno_burrow))
