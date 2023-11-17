@@ -634,7 +634,7 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 
 /obj/item/weapon/gun/proc/toggle_auto_aim_mode(mob/living/carbon/human/user) //determines whether toggle_aim_mode activates at the end of gun/wield proc
 
-	if((flags_item & WIELDED) || (flags_item & IS_DEPLOYED)) //if gun is wielded it toggles aim mode directly instead
+	if((flags_item & FULLY_WIELDED) || (flags_item & IS_DEPLOYED)) //if gun is wielded it toggles aim mode directly instead
 		toggle_aim_mode(user)
 		return
 

@@ -78,7 +78,7 @@
 	var/mob_dir = get_dir(user, src)
 	var/crawl_dir = dir & mob_dir
 	if(!crawl_dir)
-		crawl_dir = turn(dir,180) & mob_dir
+		crawl_dir = REVERSE_DIR(dir) & mob_dir
 	if(!crawl_dir)
 		return
 
@@ -129,7 +129,7 @@
 	var/mob_dir = get_dir(user, src)
 	var/crawl_dir = dir & mob_dir
 	if(!crawl_dir)
-		crawl_dir = turn(dir, 180) & mob_dir
+		crawl_dir = REVERSE_DIR(dir) & mob_dir
 	if(!crawl_dir)
 		return
 

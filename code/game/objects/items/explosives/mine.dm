@@ -244,5 +244,5 @@ Stepping directly on the mine will also blow it up
 	QDEL_NULL(tripwire)
 	qdel(src)
 
-/obj/item/explosive/mine/ex_act()
+/obj/item/explosive/mine/anti_tank/ex_act()
 	qdel(src)

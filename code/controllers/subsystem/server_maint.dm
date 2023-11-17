@@ -63,7 +63,7 @@ SUBSYSTEM_DEF(server_maint)
 				cleanup_ticker++
 			if(30)
 				var/found = FALSE
-				for(var/zlevel in SSmobs.dead_players_by_zlevel)
+				for(var/list/zlevel AS in SSmobs.dead_players_by_zlevel)
 					if(listclearnulls(zlevel))
 						found = TRUE
 				if(found)

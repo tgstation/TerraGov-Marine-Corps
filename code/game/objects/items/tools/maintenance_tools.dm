@@ -400,6 +400,17 @@
 		balloon_alert(user, "Refills with [lowertext(FT.caliber)]")
 		FT.update_icon()
 
+	else if(istype(I, /obj/item/storage/holster/backholster/flamer))
+		var/obj/item/storage/holster/backholster/flamer/flamer_bag = I
+		var/obj/item/ammo_magazine/flamer_tank/internal/internal_tank = flamer_bag.tank
+		if(internal_tank.current_rounds == internal_tank.max_rounds)
+			return ..()
+		var/fuel_to_transfer = min(reagents.total_volume, (internal_tank.max_rounds - internal_tank.current_rounds))
+		reagents.remove_reagent(/datum/reagent/fuel, fuel_to_transfer)
+		internal_tank.current_rounds += fuel_to_transfer
+		playsound(loc, 'sound/effects/refill.ogg', 25, 1, 3)
+		balloon_alert(user, "Refills")
+
 	else if(istype(I, /obj/item/weapon/twohanded/rocketsledge))
 		var/obj/item/weapon/twohanded/rocketsledge/RS = I
 		if(RS.reagents.get_reagent_amount(/datum/reagent/fuel) == RS.max_fuel || !reagents.total_volume)

@@ -18,7 +18,7 @@
 
 	// update iconstate and dpdir due to dir and type
 /obj/structure/disposalconstruct/proc/update()
-	var/flip = turn(dir, 180)
+	var/flip = REVERSE_DIR(dir)
 	var/left = turn(dir, 90)
 	var/right = turn(dir, -90)
 
@@ -123,7 +123,7 @@
 		to_chat(usr, "You must unfasten the pipe before flipping it.")
 		return
 
-	setDir(turn(dir, 180))
+	setDir(REVERSE_DIR(dir))
 	switch(ptype)
 		if(2)
 			ptype = 3
