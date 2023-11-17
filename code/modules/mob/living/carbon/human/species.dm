@@ -734,15 +734,22 @@
 	namepool = /datum/namepool/sectoid
 	special_death_message = "You have perished."
 
+	var/list/sectoid_abilities = list(
+		/datum/action/ability/activable/mindfray,
+		/datum/action/ability/activable/psy_blast_sectoid,
+	)
+
 /datum/species/sectoid/on_species_gain(mob/living/carbon/human/H, datum/species/old_species)
 	. = ..()
 	//H.health_threshold_crit = -100 //note, maybe add for mindmeld
-	H.add_ability(/datum/action/ability/activable/mindfray)
+	for(var/ability in sectoid_abilities)
+		H.add_ability(ability)
 
 /datum/species/sectoid/post_species_loss(mob/living/carbon/human/H)
 	. = ..()
 	//H.health_threshold_crit = -50
-	H.remove_ability(/datum/action/ability/activable/mindfray)
+	for(var/ability in sectoid_abilities)
+		H.remove_ability(ability)
 
 /datum/species/moth
 	name = "Moth"

@@ -368,7 +368,7 @@
 #include "code\datums\actions\order_action.dm"
 #include "code\datums\actions\skill.dm"
 #include "code\datums\actions\xeno_action.dm"
-#include "code\datums\actions\species_abilities\sectoid_action.dm"
+#include "code\datums\actions\species_actions\sectoid_action.dm"
 #include "code\datums\changelog\changelog.dm"
 #include "code\datums\components\_component.dm"
 #include "code\datums\components\admin_popup.dm"
