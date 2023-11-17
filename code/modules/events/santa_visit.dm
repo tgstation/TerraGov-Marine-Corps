@@ -2,8 +2,9 @@
 /datum/round_event_control/santa_visit
 	name = "Santa Visit"
 	typepath = /datum/round_event/santa_visit
-	weight = 10
+	weight = 12
 	earliest_start = 50 MINUTES
+	max_occurrences = 1
 
 	gamemode_blacklist = list("Crash")
 
@@ -11,8 +12,11 @@
 	///upper limits of how many presents we spawn
 	var/maxpresents = 30
 	announce_when = 0
+	///used to hold location of christmas tree for spawning purposes
 	var/turf/targetturf
+	///how many santas we should spawn, normally set to 1
 	var/maxsanta = 1
+	///how many elves we should attempt to spawn, note due to prob in elf spawning function this number won't always be hit, it's just the max
 	var/maxelves = 4
 
 /datum/round_event_control/santa_visit/can_spawn_event(players_amt, gamemode)
@@ -59,6 +63,7 @@
 		else if(prob(25))
 			new /obj/item/a_gift(target)
 
+///proc for spawning santa(s) around christmas tree
 /datum/round_event/santa_visit/proc/place_santa()
 	for(var/placedsanta = 1 to maxsanta)
 		var/turf/target = locate(targetturf.x + rand(-3, 3), targetturf.y + rand(-3, 3), targetturf.z)
@@ -74,6 +79,7 @@
 		present_spawn.give_action(spawnedhuman)
 		spawnedhuman.offer_mob()
 
+///proc for spawning elves around christmas tree
 /datum/round_event/santa_visit/proc/place_elves()
 	for(var/placedelves = 1 to maxelves)
 		if(prob(25))
