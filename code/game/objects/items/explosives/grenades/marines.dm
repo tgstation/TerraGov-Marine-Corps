@@ -99,6 +99,21 @@
 	stuck_to = hit_atom
 	RegisterSignal(stuck_to, COMSIG_QDELETING, PROC_REF(clean_refs))
 
+/obj/item/explosive/grenade/sticky/afterattack(atom/target, mob/user)
+	. = ..()
+	if(target != user)
+		return
+	user.drop_held_item()
+	activate()
+	var/image/stuck_overlay = image(icon, user, initial(icon_state) + "_stuck")
+	stuck_overlay.pixel_x = rand(-5, 5)
+	stuck_overlay.pixel_y = rand(-7, 7)
+	user.add_overlay(stuck_overlay)
+	forceMove(user)
+	saved_overlay = stuck_overlay
+	stuck_to = user
+	RegisterSignal(stuck_to, COMSIG_QDELETING, PROC_REF(clean_refs))
+
 /obj/item/explosive/grenade/sticky/prime()
 	if(stuck_to)
 		clean_refs()
@@ -132,6 +147,14 @@
 /obj/item/explosive/grenade/sticky/trailblazer/throw_impact(atom/hit_atom, speed)
 	. = ..()
 	if(!.)
+		return
+	RegisterSignal(stuck_to, COMSIG_MOVABLE_MOVED, PROC_REF(make_fire))
+	var/turf/T = get_turf(src)
+	T.ignite(25, 25)
+
+/obj/item/explosive/grenade/sticky/trailblazer/afterattack(atom/target, mob/user)
+	. = ..()
+	if(target != user)
 		return
 	RegisterSignal(stuck_to, COMSIG_MOVABLE_MOVED, PROC_REF(make_fire))
 	var/turf/T = get_turf(src)
@@ -174,6 +197,12 @@
 /obj/item/explosive/grenade/sticky/cloaker/throw_impact(atom/hit_atom, speed)
 	. = ..()
 	if(!.)
+		return
+	RegisterSignal(stuck_to, COMSIG_MOVABLE_MOVED, PROC_REF(make_smoke))
+
+/obj/item/explosive/grenade/sticky/cloaker/afterattack(atom/target, mob/user)
+	. = ..()
+	if(target != user)
 		return
 	RegisterSignal(stuck_to, COMSIG_MOVABLE_MOVED, PROC_REF(make_smoke))
 
