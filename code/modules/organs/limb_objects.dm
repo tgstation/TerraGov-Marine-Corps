@@ -126,6 +126,7 @@
 		H.mind.transfer_to(brainmob)
 	brainmob.container = src
 	brainmob.copy_known_languages_from(H, TRUE)
+	brainmob.job = H.job
 
 //synthetic head, allowing brain mob inside to talk
 /obj/item/limb/head/synth
