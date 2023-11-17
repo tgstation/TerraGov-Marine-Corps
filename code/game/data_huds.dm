@@ -127,7 +127,7 @@
 		holder.icon_state = "hudhealth-100"
 		return
 
-	var/percentage = round(health * 100 / species.total_health)
+	var/percentage = round(health * 100 / maxHealth)
 	switch(percentage)
 		if(100 to INFINITY)
 			holder.icon_state = "hudhealth100"
