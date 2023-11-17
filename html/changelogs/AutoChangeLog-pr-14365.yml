@@ -1,0 +1,4 @@
+author: "yyzsong"
+delete-after: True
+changes:
+  - rscadd: "adds refills for unguided sadar rockets and SG-62 magazines to req"
