@@ -385,8 +385,6 @@
 	if(!(species.species_flags & NO_STAMINA) && staminaloss > 0)
 		perceived_health -= STAMINA_RATIO_PAIN_HUD * staminaloss
 
-	switch(perceived_health)
-
 	if(perceived_health >= 100)
 		holder.icon_state = "hudhealth100"
 	else if(perceived_health > 0)
