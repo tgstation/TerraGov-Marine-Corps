@@ -461,12 +461,6 @@ Returns TRUE when loc_weeds_type changes. Returns FALSE when it doesn’t change
 		return
 	update_icon()
 
-/mob/living/carbon/xenomorph/hivemind/handle_weeds_on_movement(datum/source)
-	. = ..()
-	if(!.)
-		return
-	update_icon()
-
 /mob/living/carbon/xenomorph/lay_down()
 	var/datum/action/ability/xeno_action/xeno_resting/resting_action = actions_by_path[/datum/action/ability/xeno_action/xeno_resting]
 	if(!resting_action || !resting_action.can_use_action())

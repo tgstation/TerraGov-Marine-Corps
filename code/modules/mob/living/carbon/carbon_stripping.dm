@@ -63,7 +63,7 @@
 
 	var/mob/mob_source = source
 
-	if(!do_after(user, equipping.equip_delay_other, source, BUSY_ICON_FRIENDLY))
+	if(!do_after(user, equipping.equip_delay_other, TRUE, source, BUSY_ICON_FRIENDLY))
 		return FALSE
 
 	if(!mob_source.can_put_in_hand(equipping, hand_index))

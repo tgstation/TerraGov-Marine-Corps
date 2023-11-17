@@ -49,7 +49,6 @@
 #define EWCOMPONENT(d) (d&(EAST|WEST))
 #define NSDIRFLIP(d) (d^(NORTH|SOUTH))
 #define EWDIRFLIP(d) (d^(EAST|WEST))
-#define DIRFLIP(d) turn(d, 180)
 
 //update_state
 #define UPSTATE_OPENED1 (1<<0)

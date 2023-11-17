@@ -511,7 +511,7 @@
 	if(!T)
 		return null
 
-	var/fdir = turn(dir, 180) //Flip the movement direction
+	var/fdir = REVERSE_DIR(dir) //Flip the movement direction
 	for(var/obj/structure/disposalpipe/P in T)
 		if(fdir & P.dpdir) //Find pipe direction mask that matches flipped dir
 			return P
@@ -607,7 +607,7 @@
 
 //Returns the direction of the next pipe object, given the entrance dir by default, returns the bitmask of remaining directions
 /obj/structure/disposalpipe/proc/nextdir(fromdir)
-	return dpdir & (~turn(fromdir, 180))
+	return dpdir & (~REVERSE_DIR(fromdir))
 
 //Transfer the holder through this pipe segment, overriden for special behaviour
 /obj/structure/disposalpipe/proc/transfer(obj/structure/disposalholder/H)
@@ -773,7 +773,7 @@
 	. = ..()
 
 	if(icon_state == "pipe-s")
-		dpdir = dir|turn(dir, 180)
+		dpdir = dir|REVERSE_DIR(dir)
 	else
 		dpdir = dir|turn(dir, -90)
 	update()
@@ -945,9 +945,9 @@
 /obj/structure/disposalpipe/junction/Initialize(mapload)
 	. = ..()
 	if(icon_state == "pipe-j1")
-		dpdir = dir|turn(dir, -90)|turn(dir, 180)
+		dpdir = dir|turn(dir, -90)|REVERSE_DIR(dir)
 	else if(icon_state == "pipe-j2")
-		dpdir = dir|turn(dir, 90)|turn(dir, 180)
+		dpdir = dir|turn(dir, 90)|REVERSE_DIR(dir)
 	else //Pipe-y
 		dpdir = dir|turn(dir,90)|turn(dir, -90)
 	update()
@@ -960,7 +960,7 @@
 
 //Next direction to move, if coming in from secondary dirs, then next is primary dir, if coming in from primary dir, then next is equal chance of other dirs
 /obj/structure/disposalpipe/junction/nextdir(fromdir)
-	var/flipdir = turn(fromdir, 180)
+	var/flipdir = REVERSE_DIR(fromdir)
 	if(flipdir != dir)	//Came from secondary dir
 		return dir		//So exit through primary
 	else				//Came from primary
@@ -991,7 +991,7 @@
 
 /obj/structure/disposalpipe/tagger/Initialize(mapload)
 	. = ..()
-	dpdir = dir|turn(dir, 180)
+	dpdir = dir|REVERSE_DIR(dir)
 	if(sort_tag)
 		GLOB.tagger_locations |= sort_tag
 	updatename()
@@ -1071,7 +1071,7 @@
 
 /obj/structure/disposalpipe/sortjunction/proc/updatedir()
 	posdir = dir
-	negdir = turn(posdir, 180)
+	negdir = REVERSE_DIR(posdir)
 
 	if(icon_state == "pipe-j1s")
 		sortdir = turn(posdir, -90)

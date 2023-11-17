@@ -183,8 +183,8 @@
 /obj/item/reagent_containers/glass/fertilizer/Initialize(mapload)
 	. = ..()
 
-	pixel_x = rand(-5.0, 5)
-	pixel_y = rand(-5.0, 5)
+	pixel_x = rand(-5, 5)
+	pixel_y = rand(-5, 5)
 
 	if(fertilizer)
 		reagents.add_reagent(fertilizer,10)

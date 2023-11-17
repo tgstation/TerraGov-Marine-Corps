@@ -366,7 +366,7 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 				break
 			if(!affected_limbs.Find(X.name) )
 				continue
-			if(istype(X) && X.take_damage_limb(0, H.modify_by_armor(raw_damage * rand(0.75, 1.25), ACID, def_zone = X.name)))
+			if(istype(X) && X.take_damage_limb(0, H.modify_by_armor(raw_damage * randfloat(0.75, 1.25), ACID, def_zone = X.name)))
 				H.UpdateDamageIcon()
 			limb_count++
 		UPDATEHEALTH(H)
@@ -1024,7 +1024,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 			if(istype(user.buckled, /obj/structure/bed/chair))
 				C = user.buckled
 			var/obj/B = user.buckled
-			var/movementdirection = turn(direction,180)
+			var/movementdirection = REVERSE_DIR(direction)
 			if(C)
 				C.propelled = 4
 			B.Move(get_step(user,movementdirection), movementdirection)
@@ -1279,7 +1279,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 	SHOULD_CALL_PARENT(TRUE)
 	if(blocks_emissive != EMISSIVE_BLOCK_NONE)
 		standing.overlays += emissive_blocker(icon_used, state_used, alpha = standing.alpha)
-	SEND_SIGNAL(src, COMSIG_ITEM_APPLY_CUSTOM_OVERLAY, standing, inhands)
+	SEND_SIGNAL(src, COMSIG_ITEM_APPLY_CUSTOM_OVERLAY, standing, inhands, icon_used, state_used)
 	return standing
 
 ///applies blood on the item, called by make_worn_icon().

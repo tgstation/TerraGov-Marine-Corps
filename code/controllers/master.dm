@@ -772,7 +772,6 @@ GLOBAL_REAL(Master, /datum/controller/master)
 		skip_ticks = TRUE
 
 
-/datum/controller/master/stat_entry()
 /datum/controller/master/stat_entry(msg)
 	msg = "(TickRate:[Master.processing]) (Iteration:[Master.iteration]) (TickLimit: [round(Master.current_ticklimit, 0.1)])"
 	return msg

@@ -18,7 +18,7 @@
 	HEAL_XENO_DAMAGE(owner_xeno, amount, FALSE)
 	add_cooldown()
 
-/datum/action/ability/activable/xeno_action/flay/can_use_ability(mob/living/target, silent = FALSE, override_flags)
+/datum/action/ability/activable/xeno_action/feed/can_use_ability(mob/living/target, silent = FALSE, override_flags)
 	. = ..()
 	if(!ishuman(target))
 		return FALSE

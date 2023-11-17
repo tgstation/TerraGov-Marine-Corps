@@ -257,7 +257,6 @@
 
 	scatter = 10
 	deployed_scatter_change = -10
-	windup_delay = 8 SECONDS
 	fire_delay = 10 SECONDS
 
 	flags_item = IS_DEPLOYABLE|TWOHANDED|DEPLOYED_NO_PICKUP|DEPLOY_ON_INITIALIZE|DEPLOYED_ANCHORED_FIRING_ONLY
