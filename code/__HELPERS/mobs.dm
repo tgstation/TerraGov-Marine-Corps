@@ -145,7 +145,7 @@
 			. = FALSE
 			break
 
-		if(!QDELETED(Tloc) && (QDELETED(target) || (Tloc != target.loc && target != user)))
+		if(!QDELETED(Tloc) && (QDELETED(target) || Tloc != target.loc))
 			if((!ignore_turf_checks && Uloc != Tloc) || Tloc != user)
 				. = FALSE
 				break
