@@ -1,6 +1,6 @@
 #define MINDMELD_RANGE 8
 
-/datum/action/ability/activable/mindmeld
+/datum/action/ability/activable/sectoid/mindmeld
 	name = "Mindmeld"
 	action_icon_state = "healing_infusion"
 	desc = "Merge minds with the target, empowering both."
@@ -19,7 +19,7 @@
 
 	var/health_mod = 50
 
-/datum/action/ability/activable/mindmeld/can_use_action()
+/datum/action/ability/activable/sectoid/mindmeld/can_use_action()
 	var/mob/living/carbon/carbon_owner = owner
 	if(melded_mob)
 		return FALSE
@@ -27,7 +27,7 @@
 		return FALSE
 	return ..()
 
-/datum/action/ability/activable/mindmeld/can_use_ability(atom/A, silent = FALSE, override_flags)
+/datum/action/ability/activable/sectoid/mindmeld/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
 	if(!.)
 		return
@@ -54,7 +54,7 @@
 			carbon_target.balloon_alert(owner, "already dead")
 		return FALSE
 
-/datum/action/ability/activable/mindmeld/use_ability(atom/target)
+/datum/action/ability/activable/sectoid/mindmeld/use_ability(atom/target)
 	var/mob/living/carbon/carbon_owner = owner
 	melded_mob = target
 	melded_mob.balloon_alert_to_viewers("mindmelded")
@@ -67,7 +67,7 @@
 	add_cooldown()
 
 /// Ends the ability if the Enhancement buff is removed.
-/datum/action/ability/activable/mindmeld/proc/end_ability()
+/datum/action/ability/activable/sectoid/mindmeld/proc/end_ability()
 	var/mob/living/carbon/carbon_owner = owner
 	add_cooldown()
 	carbon_owner.remove_status_effect(STATUS_EFFECT_MINDMEND)
@@ -78,7 +78,7 @@
 
 
 #define MINDFRAY_RANGE 8
-/datum/action/ability/activable/mindfray
+/datum/action/ability/activable/sectoid/mindfray
 	name = "Mindfray"
 	action_icon_state = "off_guard"
 	desc = "Muddles the mind of an enemy, making it harder for them to focus their aim for a while."
@@ -90,7 +90,7 @@
 	///damage of this ability
 	var/damage = 20
 
-/datum/action/ability/activable/mindfray/can_use_ability(atom/A, silent = FALSE, override_flags)
+/datum/action/ability/activable/sectoid/mindfray/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
 	if(!.)
 		return
@@ -112,7 +112,7 @@
 			carbon_target.balloon_alert(owner, "already dead")
 		return FALSE
 
-/datum/action/ability/activable/mindfray/use_ability(atom/target)
+/datum/action/ability/activable/sectoid/mindfray/use_ability(atom/target)
 	var/mob/living/carbon/carbon_target = target
 	carbon_target.apply_status_effect(STATUS_EFFECT_GUN_SKILL_SCATTER_DEBUFF, 100)
 	carbon_target.apply_status_effect(STATUS_EFFECT_CONFUSED, 40)
@@ -124,7 +124,7 @@
 	add_cooldown()
 
 ///knockoff psyblast
-/datum/action/ability/activable/psy_blast_sectoid
+/datum/action/ability/activable/sectoid/psyblast
 	name = "Psychic Blast"
 	action_icon_state = "psy_blast"
 	desc = "Launch a blast of psychic energy that deals light damage and knocks back enemies in its AOE. Must remain stationary for a few seconds to use."
@@ -145,15 +145,15 @@
 	///currently loaded
 	var/datum/ammo/energy/xeno/selected_ammo
 
-/datum/action/ability/activable/psy_blast_sectoid/New(Target)
+/datum/action/ability/activable/sectoid/psyblast/New(Target)
 	selected_ammo = GLOB.ammo_list[ammo_types[1]]
 	return ..()
 
-/datum/action/ability/activable/psy_blast_sectoid/on_cooldown_finish()
+/datum/action/ability/activable/sectoid/psyblast/on_cooldown_finish()
 	owner.balloon_alert(owner, "Psy blast ready")
 	return ..()
 
-/datum/action/ability/activable/psy_blast_sectoid/action_activate()
+/datum/action/ability/activable/sectoid/psyblast/action_activate()
 	var/mob/living/carbon/carbon_owner = owner
 	if(carbon_owner.selected_ability == src)
 		if(length(ammo_types) <= 1)
@@ -170,7 +170,7 @@
 	return ..()
 
 
-/datum/action/ability/activable/psy_blast_sectoid/can_use_ability(atom/A, silent = FALSE, override_flags)
+/datum/action/ability/activable/sectoid/psyblast/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
 	if(!.)
 		return FALSE
@@ -178,7 +178,7 @@
 	if(carbon_owner.incapacitated() || carbon_owner.lying_angle)
 		return FALSE
 
-/datum/action/ability/activable/psy_blast_sectoid/use_ability(atom/A)
+/datum/action/ability/activable/sectoid/psyblast/use_ability(atom/A)
 	var/mob/living/carbon/carbon_owner = owner
 	var/turf/target_turf = get_turf(A)
 
@@ -207,12 +207,12 @@
 	REMOVE_TRAIT(carbon_owner, TRAIT_IMMOBILE, PSYCHIC_BLAST_ABILITY_TRAIT)
 	addtimer(CALLBACK(src, PROC_REF(end_channel)), 5)
 
-/datum/action/ability/activable/psy_blast_sectoid/update_button_icon()
+/datum/action/ability/activable/sectoid/psyblast/update_button_icon()
 	action_icon_state = selected_ammo.icon_state
 	return ..()
 
 //Generates particles and directs them towards target
-/datum/action/ability/activable/psy_blast_sectoid/proc/generate_particles(atom/target, velocity)
+/datum/action/ability/activable/sectoid/psyblast/proc/generate_particles(atom/target, velocity)
 	var/angle = Get_Angle(get_turf(owner), get_turf(target)) //pixel offsets effect angles
 	var/x_component = sin(angle) * velocity
 	var/y_component = cos(angle) * velocity
@@ -224,7 +224,98 @@
 	particle_holder.particles.rotation = angle
 
 ///Cleans up when the channel finishes or is cancelled
-/datum/action/ability/activable/psy_blast_sectoid/proc/end_channel()
+/datum/action/ability/activable/sectoid/psyblast/proc/end_channel()
 	QDEL_NULL(particle_holder)
 	//var/mob/living/carbon/carbon_owner = owner
 	//carbon_owner.update_glow()
+
+
+// ***************************************
+// *********** Stasis
+// ***************************************
+
+#define SECTOID_STASIS_RANGE 7
+/datum/action/ability/activable/sectoid/stasis
+	name = "stasis"
+	action_icon_state = "off_guard"
+	desc = "Muddles the mind of an enemy, making it harder for them to focus their aim for a while."
+	cooldown_duration = 20 SECONDS
+	target_flags = XABB_MOB_TARGET
+	use_state_flags = XACT_TARGET_SELF
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_OFFGUARD,
+	)
+	///damage of this ability
+	var/stasis_duration = 5 SECONDS
+	/// Used for particles. Holds the particles instead of the mob. See particle_holder for documentation.
+	var/obj/effect/abstract/particle_holder/particle_holder
+
+/datum/action/ability/activable/sectoid/stasis/can_use_ability(atom/A, silent = FALSE, override_flags)
+	. = ..()
+	if(!.)
+		return
+	if(!iscarbon(A))
+		if(!silent)
+			A.balloon_alert(owner, "not living")
+		return FALSE
+	if((A.z != owner.z) || get_dist(owner, A) > SECTOID_STASIS_RANGE)
+		if(!silent)
+			A.balloon_alert(owner, "too far")
+		return FALSE
+	if(!line_of_sight(owner, A, SECTOID_STASIS_RANGE))
+		if(!silent)
+			owner.balloon_alert(owner, "Out of sight!")
+		return FALSE
+	var/mob/living/carbon/carbon_target = A
+	if(carbon_target.stat == DEAD)
+		if(!silent)
+			carbon_target.balloon_alert(owner, "already dead")
+		return FALSE
+
+/datum/action/ability/activable/sectoid/stasis/use_ability(atom/target)
+	particle_holder = new(owner, /particles/drone_enhancement)
+	particle_holder.pixel_x = 0
+	particle_holder.pixel_y = -3
+	particle_holder.particles.velocity = list(0, 1.5)
+	particle_holder.particles.gravity = list(0, 2)
+
+	if(!do_after(owner, 1 SECONDS, FALSE, target, BUSY_ICON_DANGER, ignore_turf_checks = TRUE) || !can_use_ability(target))
+		owner.balloon_alert(owner, "Our focus is disrupted")
+		QDEL_NULL(particle_holder)
+		return fail_activate()
+
+	var/mob/living/carbon/carbon_target = target
+	playsound(owner, 'sound/effects/petrify_activate.ogg', 50)
+
+	carbon_target.notransform = TRUE
+	carbon_target.status_flags |= GODMODE
+	ADD_TRAIT(carbon_target, TRAIT_HANDS_BLOCKED, REF(src))
+	carbon_target.move_resist = MOVE_FORCE_OVERPOWERING
+	carbon_target.add_atom_colour(COLOR_GRAY, TEMPORARY_COLOUR_PRIORITY)
+	carbon_target.log_message("has been petrified by [owner] for [stasis_duration] ticks", LOG_ATTACK, color="pink")
+
+	var/image/stone_overlay = image('icons/effects/effects.dmi', null, "petrified_overlay")
+	stone_overlay.filters += filter(arglist(alpha_mask_filter(render_source="*[REF(carbon_target)]",flags=MASK_INVERSE)))
+
+	var/mutable_appearance/mask = mutable_appearance()
+	mask.appearance = carbon_target.appearance
+	mask.render_target = "*[REF(carbon_target)]"
+	mask.alpha = 125
+	stone_overlay.overlays += mask
+
+	carbon_target.overlays += stone_overlay
+	addtimer(CALLBACK(src, PROC_REF(end_effects), carbon_target, stone_overlay), stasis_duration)
+	add_cooldown()
+	update_button_icon()
+	succeed_activate()
+
+///ends all combat-relazted effects
+/datum/action/ability/activable/sectoid/stasis/proc/end_effects(mob/living/carbon/carbon_target, image/stone_overlay)
+	QDEL_NULL(particle_holder)
+
+	carbon_target.notransform = FALSE
+	carbon_target.status_flags &= ~GODMODE
+	REMOVE_TRAIT(carbon_target, TRAIT_HANDS_BLOCKED, REF(src))
+	carbon_target.move_resist = initial(carbon_target.move_resist)
+	carbon_target.remove_atom_colour(TEMPORARY_COLOUR_PRIORITY, COLOR_GRAY)
+	carbon_target.overlays -= stone_overlay

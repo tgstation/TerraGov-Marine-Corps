@@ -10,13 +10,13 @@
 	/// Used for particles. Holds the particles instead of the mob. See particle_holder for documentation.
 	var/obj/effect/abstract/particle_holder/particle_holder
 	/// References the Enhancement action and its vars.
-	var/datum/action/ability/activable/mindmeld/mindmeld_action
+	var/datum/action/ability/activable/sectoid/mindmeld/mindmeld_action
 	/// If the target xeno was within range.
 	var/was_within_range = TRUE
 
 	var/health_bonus = 50
 
-/datum/status_effect/mindmeld/on_creation(mob/living/new_owner, mob/living/carbon/new_target, datum/action/ability/activable/mindmeld/new_mindmeld_action)
+/datum/status_effect/mindmeld/on_creation(mob/living/new_owner, mob/living/carbon/new_target, datum/action/ability/activable/sectoid/mindmeld/new_mindmeld_action)
 	link_target = new_owner
 	linkee = new_target
 	mindmeld_action = new_mindmeld_action
