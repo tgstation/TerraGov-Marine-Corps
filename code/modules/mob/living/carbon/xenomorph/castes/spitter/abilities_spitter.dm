@@ -5,9 +5,8 @@
 	name = "Spray Acid"
 	action_icon_state = "spray_acid"
 	desc = "Spray a line of dangerous acid at your target."
-	ability_name = "spray acid"
 	ability_cost = 250
-	cooldown_timer = 30 SECONDS
+	cooldown_duration = 30 SECONDS
 
 /datum/action/ability/activable/xeno_action/spray_acid/line/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/X = owner
@@ -105,9 +104,8 @@
 	name = "Scatter Spit"
 	action_icon_state = "scatter_spit"
 	desc = "Spits a spread of acid projectiles that splatter on the ground."
-	ability_name = "scatter spit"
 	ability_cost = 280
-	cooldown_timer = 5 SECONDS
+	cooldown_duration = 5 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_SCATTER_SPIT,
 	)

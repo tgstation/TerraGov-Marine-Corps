@@ -5,9 +5,8 @@
 	name = "Flay"
 	action_icon_state = "flay"
 	desc = "Takes a chunk of flesh from the victim marine through a quick swiping motion, adding 100 biomass to your biomass collection."
-	ability_name = "flay"
 	ability_cost = 0
-	cooldown_timer = 20 SECONDS
+	cooldown_duration = 20 SECONDS
 	target_flags = XABB_MOB_TARGET
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_FLAY,
@@ -57,7 +56,7 @@
 	name = "Pincushion"
 	action_icon_state = "pincushion"
 	desc = "Launch a spine from your tail. This attack will help deter any organic as well as support your puppets and teammates in direct combat."
-	cooldown_timer = 5 SECONDS
+	cooldown_duration = 5 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PINCUSHION,
 	)
@@ -95,7 +94,7 @@
 	action_icon_state = "dreadful_presence"
 	desc = "Emit a menacing presence, striking fear into the organics and slowing them for a short duration."
 	ability_cost = 50
-	cooldown_timer = 20 SECONDS
+	cooldown_duration = 20 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_DREADFULPRESENCE,
 	)
@@ -123,7 +122,7 @@
 	name = "Refurbish Husk"
 	action_icon_state = "refurbish_husk"
 	desc = "Harvest the biomass and organs of a body in order to create a meat puppet to do your bidding."
-	cooldown_timer = 25 SECONDS
+	cooldown_duration = 25 SECONDS
 	target_flags = XABB_MOB_TARGET
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_REFURBISHHUSK,
@@ -204,7 +203,7 @@
 	action_icon_state = "stitch_puppet"
 	desc = "Uses 125 biomass to create a flesh homunculus to do your bidding, at an adjacent target location."
 	ability_cost = 125
-	cooldown_timer = 25 SECONDS
+	cooldown_duration = 25 SECONDS
 	target_flags = XABB_TURF_TARGET
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PUPPET,
@@ -254,7 +253,7 @@
 	name = "Organic Bomb"
 	action_icon_state = "organic_bomb"
 	desc = "Causes one of our puppets to detonate on selection, spewing acid out of the puppet's body in all directions, gibbing the puppet."
-	cooldown_timer = 30 SECONDS
+	cooldown_duration = 30 SECONDS
 	ability_cost = 100
 	target_flags = XABB_MOB_TARGET
 	keybinding_signals = list(
@@ -312,7 +311,7 @@
 	name = "Articulate"
 	action_icon_state = "mimicry"
 	desc = "Takes direct control of a Puppet’s vocal chords. Allows you to speak directly through your puppet to the talls."
-	cooldown_timer = 10 SECONDS
+	cooldown_duration = 10 SECONDS
 	target_flags = XABB_MOB_TARGET
 	///Whether we should cancel instead of doing the thing when activated
 	var/talking = FALSE
@@ -358,7 +357,7 @@
 	action_icon_state = "living_construct"
 	desc = "Burrow freshly created tendrils to tangle organics in a 3x3 patch."
 	ability_cost = 175
-	cooldown_timer = 40 SECONDS
+	cooldown_duration = 40 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TENDRILS,
 	)
@@ -419,7 +418,7 @@
 	action_icon_state = "emit_pheromones"
 	ability_cost = 200
 	desc = "Give a permanent upgrade to a puppet."
-	cooldown_timer = 30 SECONDS
+	cooldown_duration = 30 SECONDS
 	use_state_flags = XACT_USE_STAGGERED|XACT_USE_NOTTURF|XACT_USE_BUSY|XACT_USE_LYING
 	target_flags = XABB_MOB_TARGET
 	keybinding_signals = list(

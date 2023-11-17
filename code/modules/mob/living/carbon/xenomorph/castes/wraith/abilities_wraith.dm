@@ -9,11 +9,10 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 /datum/action/ability/activable/xeno_action/blink
 	name = "Blink"
 	action_icon_state = "blink"
-	ability_name = "Blink"
 	desc = "We teleport ourselves a short distance to a location within line of sight."
 	use_state_flags = XABB_TURF_TARGET
 	ability_cost = 30
-	cooldown_timer = 0.5 SECONDS
+	cooldown_duration = 0.5 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_BLINK,
 	)
@@ -104,7 +103,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 					if(!H.adjustOxyLoss(critdamage))
 						H.adjustBruteLoss(critdamage)
 
-		to_chat(X, span_xenodanger("We bring [pulled_target] with us. We won't be ready to blink again for [cooldown_timer * cooldown_mod * 0.1] seconds due to the strain of doing so."))
+		to_chat(X, span_xenodanger("We bring [pulled_target] with us. We won't be ready to blink again for [cooldown_duration * cooldown_mod * 0.1] seconds due to the strain of doing so."))
 
 	teleport_debuff_aoe(X) //Debuff when we vanish
 
@@ -115,7 +114,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	teleport_debuff_aoe(X) //Debuff when we reappear
 
 	succeed_activate()
-	add_cooldown(cooldown_timer * cooldown_mod)
+	add_cooldown(cooldown_duration * cooldown_mod)
 
 	GLOB.round_statistics.wraith_blinks++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "wraith_blinks") //Statistics
@@ -156,11 +155,10 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 /datum/action/ability/activable/xeno_action/banish
 	name = "Banish"
 	action_icon_state = "Banish"
-	ability_name = "Banish"
 	desc = "We banish a target object or creature within line of sight to nullspace for a short duration. Can target onself and allies. Non-friendlies are banished for half as long."
 	use_state_flags = XACT_TARGET_SELF
 	ability_cost = 50
-	cooldown_timer = 20 SECONDS
+	cooldown_duration = 20 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_BANISH,
 	)
@@ -276,7 +274,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	banish_duration_timer_id = addtimer(CALLBACK(src, PROC_REF(banish_deactivate)), duration, TIMER_STOPPABLE) //store the timer ID
 
 	succeed_activate(ability_cost * plasma_mod)
-	add_cooldown(cooldown_timer * cooldown_mod)
+	add_cooldown(cooldown_duration * cooldown_mod)
 
 	GLOB.round_statistics.wraith_banishes++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "wraith_banishes") //Statistics
@@ -347,11 +345,10 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 // ***************************************
 /datum/action/ability/xeno_action/recall
 	name = "Recall"
-	ability_name = "Recall"
 	action_icon_state = "Recall"
 	desc = "We recall a target we've banished back from the depths of nullspace."
 	use_state_flags = XACT_USE_NOTTURF|XACT_USE_CLOSEDTURF|XACT_USE_STAGGERED|XACT_USE_INCAP|XACT_USE_LYING //So we can recall ourselves from nether Brazil
-	cooldown_timer = 1 SECONDS //Token for anti-spam
+	cooldown_duration = 1 SECONDS //Token for anti-spam
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_RECALL,
 	)
@@ -408,11 +405,10 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 
 /datum/action/ability/xeno_action/timestop
 	name = "Time stop"
-	ability_name = "Time stop"
 	action_icon_state = "time_stop"
 	desc = "Freezes bullets in their course, and they will start to move again only after a certain time"
 	ability_cost = 100
-	cooldown_timer = 1 MINUTES
+	cooldown_duration = 1 MINUTES
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TIMESTOP,
 	)
@@ -451,11 +447,10 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 
 /datum/action/ability/xeno_action/portal
 	name = "Portal"
-	ability_name = "Portal"
 	action_icon_state = "portal"
 	desc = "Place a portal on your location. You can travel from portal to portal. Left click to create portal one, right click to create portal two"
 	ability_cost = 50
-	cooldown_timer = 5 SECONDS
+	cooldown_duration = 5 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PORTAL,
 		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_PORTAL_ALTERNATE,
@@ -644,11 +639,10 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 
 /datum/action/ability/activable/xeno_action/rewind
 	name = "Time Shift"
-	ability_name = "Time Shift"
 	action_icon_state = "rewind"
 	desc = "Save the location and status of the target. When the time is up, the target location and status are restored, unless the target is dead or unconscious."
 	ability_cost = 100
-	cooldown_timer = 30 SECONDS
+	cooldown_duration = 30 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_REWIND,
 	)

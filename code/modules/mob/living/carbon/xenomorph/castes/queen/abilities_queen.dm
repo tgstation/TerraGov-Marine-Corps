@@ -6,7 +6,7 @@
 	action_icon_state = "queen_order"
 	desc = "Announces a message to the hive."
 	ability_cost = 50
-	cooldown_timer = 10 SECONDS
+	cooldown_duration = 10 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_QUEEN_HIVE_MESSAGE,
 	)
@@ -64,9 +64,8 @@
 	name = "Screech"
 	action_icon_state = "screech"
 	desc = "A large area knockdown that causes pain and screen-shake."
-	ability_name = "screech"
 	ability_cost = 250
-	cooldown_timer = 100 SECONDS
+	cooldown_duration = 100 SECONDS
 	keybind_flags = XACT_KEYBIND_USE_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_SCREECH,
@@ -338,7 +337,7 @@
 	name = "Heal"
 	action_icon_state = "heal_xeno"
 	desc = "Apply a minor heal to the target."
-	cooldown_timer = 5 SECONDS
+	cooldown_duration = 5 SECONDS
 	ability_cost = 150
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_QUEEN_HEAL,
@@ -381,7 +380,7 @@
 	action_icon_state = "queen_give_plasma"
 	desc = "Give plasma to a target Xenomorph (you must be overwatching them.)"
 	ability_cost = 150
-	cooldown_timer = 8 SECONDS
+	cooldown_duration = 8 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_QUEEN_GIVE_PLASMA,
 	)
@@ -449,7 +448,7 @@
 	action_icon_state = "bulwark"
 	desc = "Creates a field of defensive energy, filling chinks in the armor of nearby sisters, making them more resilient."
 	ability_cost = 100
-	cooldown_timer = 20 SECONDS
+	cooldown_duration = 20 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_QUEEN_BULWARK,
 	)

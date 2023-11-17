@@ -4,7 +4,6 @@
 /datum/action/ability/activable/xeno_action/xeno_spit/toxic_spit
 	name = "Toxic Spit"
 	desc = "Spit a toxin at your target up to 7 tiles away, inflicting the Intoxicated debuff and dealing damage over time."
-	ability_name = "toxic spit"
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TOXIC_SPIT,
 	)
@@ -38,8 +37,7 @@
 	name = "Toxic Slash"
 	action_icon_state = "neuroclaws_off"
 	desc = "Imbue your claws with acid for a short duration, inflicting lasting effects on your victims."
-	ability_name = "toxic slash"
-	cooldown_timer = 10 SECONDS
+	cooldown_duration = 10 SECONDS
 	ability_cost = 100
 	//use_state_flags = XACT_USE_BUCKLED
 	keybinding_signals = list(
@@ -129,8 +127,7 @@
 	name = "Drain Sting"
 	action_icon_state = "neuro_sting"
 	desc = "Sting your victim, draining them and gaining benefits if they are Intoxicated."
-	ability_name = "drain sting"
-	cooldown_timer = 25 SECONDS
+	cooldown_duration = 25 SECONDS
 	ability_cost = 75
 	target_flags = XABB_MOB_TARGET
 	use_state_flags = XACT_USE_BUCKLED
@@ -200,7 +197,7 @@
 	action_icon_state = "gas mine"
 	desc = "Throws a lump of compressed acidic gases, which will inflict damage over time and Intoxicate victims."
 	ability_cost = 200
-	cooldown_timer = 50 SECONDS
+	cooldown_duration = 50 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TOXIC_GRENADE,
 	)

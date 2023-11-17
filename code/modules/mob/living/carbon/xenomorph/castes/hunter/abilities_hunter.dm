@@ -5,12 +5,11 @@
 	name = "Toggle Stealth"
 	action_icon_state = "hunter_invisibility"
 	desc = "Become harder to see, almost invisible if you stand still, and ready a sneak attack. Uses plasma to move."
-	ability_name = "stealth"
 	ability_cost = 10
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TOGGLE_STEALTH,
 	)
-	cooldown_timer = HUNTER_STEALTH_COOLDOWN
+	cooldown_duration = HUNTER_STEALTH_COOLDOWN
 	var/last_stealth = null
 	var/stealth = FALSE
 	var/can_sneak_attack = FALSE
@@ -269,11 +268,10 @@
 
 /datum/action/ability/activable/xeno_action/pounce
 	name = "Pounce"
-	ability_name = "Pounce"
 	desc = "Leap at your target, tackling and disarming them."
 	action_icon_state = "pounce"
 	ability_cost = 20
-	cooldown_timer = 10 SECONDS
+	cooldown_duration = 10 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_HUNTER_POUNCE,
 	)
@@ -376,7 +374,7 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_HUNTER_MARK,
 	)
-	cooldown_timer = 60 SECONDS
+	cooldown_duration = 60 SECONDS
 	///the target marked
 	var/atom/movable/marked_target
 
@@ -459,7 +457,7 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PSYCHIC_TRACE,
 	)
-	cooldown_timer = HUNTER_PSYCHIC_TRACE_COOLDOWN
+	cooldown_duration = HUNTER_PSYCHIC_TRACE_COOLDOWN
 
 /datum/action/ability/xeno_action/psychic_trace/can_use_action(silent = FALSE, override_flags)
 	. = ..()
@@ -524,12 +522,11 @@
 	name = "Mirage"
 	action_icon_state = "mirror_image"
 	desc = "Create mirror images of ourselves. Reactivate to swap with an illusion."
-	ability_name = "mirage"
 	ability_cost = 50
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_MIRAGE,
 	)
-	cooldown_timer = 30 SECONDS
+	cooldown_duration = 30 SECONDS
 	///How long will the illusions live
 	var/illusion_life_time = 10 SECONDS
 	///How many illusions are created
@@ -594,12 +591,11 @@
 	name = "Silence"
 	action_icon_state = "silence"
 	desc = "Impairs the ability of hostile living creatures we can see in a 5x5 area. Targets will be unable to speak and hear for 10 seconds, or 15 seconds if they're your Hunter Mark target."
-	ability_name = "silence"
 	ability_cost = 50
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_SILENCE,
 	)
-	cooldown_timer = HUNTER_SILENCE_COOLDOWN
+	cooldown_duration = HUNTER_SILENCE_COOLDOWN
 
 /datum/action/ability/activable/xeno_action/silence/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
@@ -668,5 +664,5 @@
 /datum/action/ability/activable/xeno_action/silence/on_cooldown_finish()
 	to_chat(owner, span_xenowarning("<b>We refocus our psionic energies, allowing us to impose silence again.</b>") )
 	owner.playsound_local(owner, 'sound/effects/xeno_newlarva.ogg', 25, 0, 1)
-	cooldown_timer = initial(cooldown_timer) //Reset the cooldown timer to its initial state in the event of a whiffed Silence.
+	cooldown_duration = initial(cooldown_duration) //Reset the cooldown timer to its initial state in the event of a whiffed Silence.
 	return ..()

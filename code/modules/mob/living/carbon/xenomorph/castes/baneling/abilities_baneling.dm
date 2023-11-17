@@ -5,7 +5,6 @@
 	name = "Baneling Explode"
 	action_icon_state = "baneling_explode"
 	desc = "Explode and spread dangerous toxins to hinder or kill your foes. You will respawn in your pod after you detonate, should your pod be planted. By staying alive, you gain charges to respawn quicker."
-	ability_name = "baneling explode"
 	var/static/list/baneling_smoke_list = list(
 		/datum/reagent/toxin/xeno_neurotoxin = /datum/effect_system/smoke_spread/xeno/neuro/medium,
 		/datum/reagent/toxin/xeno_hemodile = /datum/effect_system/smoke_spread/xeno/hemodile,
@@ -134,7 +133,6 @@
 	name = "Spawn pod"
 	action_icon_state = "spawn_pod"
 	desc = "Spawn a pod that you will respawn inside of upon death. You will NOT respawn if the pod is destroyed!"
-	ability_name = "spawn pod"
 	ability_cost = 150
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_BANELING_SPAWN_POD,
@@ -163,7 +161,6 @@
 	name = "Dash Explosion"
 	action_icon_state = "dash_explosion"
 	desc = "Wind up and charge in a direction, detonating yourself on impact."
-	ability_name = "dash explosion"
 	ability_cost = 0
 	///How far can we charge
 	var/range = 6

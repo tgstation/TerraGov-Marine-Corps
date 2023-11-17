@@ -79,7 +79,7 @@
 	action_icon_state = "evasion_on"
 	desc = "Take evasive action, forcing non-friendly projectiles that would hit you to miss for a short duration so long as you keep moving. Alternate use toggles Auto Evasion off or on."
 	ability_cost = 75
-	cooldown_timer = 10 SECONDS
+	cooldown_duration = 10 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_EVASION,
 		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_AUTO_EVASION,
@@ -254,7 +254,7 @@
 	action_icon_state = "snatch"
 	desc = "Take an item equipped by your target in your mouth, and carry it away."
 	ability_cost = 75
-	cooldown_timer = 60 SECONDS
+	cooldown_duration = 60 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_SNATCH,
 	)

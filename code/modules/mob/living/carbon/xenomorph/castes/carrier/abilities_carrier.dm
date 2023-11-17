@@ -37,11 +37,10 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	name = "Use/Throw Facehugger"
 	action_icon_state = "throw_hugger"
 	desc = "Click on a non tile and non mob to bring a facehugger into your hand. Click at a target or tile to throw a facehugger."
-	ability_name = "throw facehugger"
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_THROW_HUGGER,
 	)
-	cooldown_timer = 3 SECONDS
+	cooldown_duration = 3 SECONDS
 
 /datum/action/ability/activable/xeno_action/throw_hugger/get_cooldown()
 	var/mob/living/carbon/xenomorph/carrier/caster = owner
@@ -80,7 +79,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 		caster.put_in_active_hand(F)
 		to_chat(caster, span_xenonotice("We grab one of the facehuggers in our storage. Now sheltering: [caster.huggers] / [caster.xeno_caste.huggers_max]."))
 
-	if(!cooldown_id)
+	if(!cooldown_timer)
 		caster.dropItemToGround(F)
 		playsound(caster, 'sound/effects/throw.ogg', 30, TRUE)
 		F.stat = CONSCIOUS //Hugger is conscious
@@ -154,7 +153,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	action_icon_state = "spawn_hugger"
 	desc = "Spawn a facehugger that is stored on your body."
 	ability_cost = 200
-	cooldown_timer = 10 SECONDS
+	cooldown_duration = 10 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_SPAWN_HUGGER,
 	)
@@ -195,7 +194,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	action_icon_state = "carrier_panic"
 	desc = "Drop all stored huggers in a fit of panic. Uses all remaining plasma!"
 	ability_cost = 10
-	cooldown_timer = 50 SECONDS
+	cooldown_duration = 50 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_DROP_ALL_HUGGER,
 	)
@@ -303,7 +302,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	action_icon_state = "hugger_turret"
 	desc = "Build a hugger turret"
 	ability_cost = 800
-	cooldown_timer = 5 MINUTES
+	cooldown_duration = 5 MINUTES
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_BUILD_HUGGER_TURRET,
 	)
@@ -356,9 +355,8 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	name = "Call of Younger"
 	action_icon_state = "call_younger"
 	desc = "Appeals to the larva inside the Marine. The Marine loses his balance, and larva's progress accelerates."
-	ability_name = "call younger"
 	ability_cost = 150
-	cooldown_timer = 20 SECONDS
+	cooldown_duration = 20 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_CALL_YOUNGER,
 	)

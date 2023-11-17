@@ -30,14 +30,13 @@
 	name = "Command minions"
 	action_icon_state = "minion_agressive"
 	desc = "Command all minions, ordering them to converge on this location. Rightclick to change minion behaviour."
-	ability_name = "command minions"
 	ability_cost = 100
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_RALLY_MINION,
 		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_MINION_BEHAVIOUR,
 	)
 	keybind_flags = XACT_KEYBIND_USE_ABILITY
-	cooldown_timer = 60 SECONDS
+	cooldown_duration = 60 SECONDS
 	use_state_flags = XACT_USE_LYING|XACT_USE_BUCKLED
 	///If minions should be agressive
 	var/minions_agressive = TRUE

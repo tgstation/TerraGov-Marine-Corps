@@ -1,7 +1,7 @@
 /datum/action/ability/activable/xeno_action/ravage/slow
 	///How long is the windup before ravaging
 	var/windup_time = 0.5 SECONDS
-	cooldown_timer = 30 SECONDS
+	cooldown_duration = 30 SECONDS
 
 /datum/action/ability/activable/xeno_action/ravage/slow/use_ability(atom/A)
 	if(!do_after(owner, windup_time, FALSE, owner, BUSY_ICON_GENERIC, extra_checks = CALLBACK(src, PROC_REF(can_use_action), FALSE, XACT_USE_BUSY)))

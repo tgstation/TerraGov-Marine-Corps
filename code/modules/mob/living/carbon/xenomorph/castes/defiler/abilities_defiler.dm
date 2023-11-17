@@ -65,9 +65,8 @@
 	name = "Defile"
 	action_icon_state = "defiler_sting"
 	desc = "Channel to inject an adjacent target with an accelerant that violently reacts with xeno toxins, releasing gas and dealing heavy tox damage in proportion to the amount in their system."
-	ability_name = "defiler sting"
 	ability_cost = 100
-	cooldown_timer = 20 SECONDS
+	cooldown_duration = 20 SECONDS
 	target_flags = XABB_MOB_TARGET
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_DEFILE,
@@ -167,9 +166,8 @@
 	name = "Emit Noxious Gas"
 	action_icon_state = "emit_neurogas"
 	desc = "Channel for 3 seconds to emit a cloud of noxious smoke, based on selected reagent, that follows the Defiler. You must remain stationary while channeling; moving will cancel the ability but will still cost plasma."
-	ability_name = "emit neurogas"
 	ability_cost = 200
-	cooldown_timer = 40 SECONDS
+	cooldown_duration = 40 SECONDS
 	keybind_flags = XACT_KEYBIND_USE_ABILITY|XACT_IGNORE_SELECTED_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_EMIT_NEUROGAS,
@@ -286,9 +284,8 @@
 	name = "Inject Gas"
 	action_icon_state = "inject_egg"
 	desc = "Inject an egg with toxins, killing the larva, but filling it full with gas ready to explode."
-	ability_name = "inject neurogas"
 	ability_cost = 100
-	cooldown_timer = 5 SECONDS
+	cooldown_duration = 5 SECONDS
 	keybind_flags = XACT_KEYBIND_USE_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_INJECT_EGG_NEUROGAS,
@@ -418,8 +415,7 @@
 	name = "Reagent Slash"
 	action_icon_state = "reagent_slash"
 	desc = "For a short duration the next 3 slashes made will inject a small amount of selected toxin."
-	ability_name = "reagent slash"
-	cooldown_timer = 6 SECONDS
+	cooldown_duration = 6 SECONDS
 	ability_cost = 100
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_REAGENT_SLASH,
@@ -520,8 +516,7 @@
 	name = "Tentacle"
 	action_icon_state = "tail_attack"
 	desc = "Throw one of your tentacles forward to grab a tallhost or item."
-	ability_name = "Tentacle"
-	cooldown_timer = 20 SECONDS
+	cooldown_duration = 20 SECONDS
 	ability_cost = 175
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TENTACLE,

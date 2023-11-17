@@ -6,11 +6,13 @@
 	var/ability_cost = 0
 	///bypass use limitations checked by can_use_action()
 	var/use_state_flags = NONE
-	var/last_use
-	var/cooldown_timer
-	var/ability_name
+	///Standard cooldown for this ability
+	var/cooldown_duration
+	///special behavior flags for how this ability is used
 	var/keybind_flags
-	var/cooldown_id
+	///the actual cooldown timer
+	var/cooldown_timer
+	///any special flags for what this ability targets
 	var/target_flags = NONE
 	/// flags to restrict an ability to certain gamemode
 	var/gamemode_flags = ABILITY_ALL_GAMEMODE
@@ -30,11 +32,19 @@
 	carbon_owner.mob_abilities += src
 
 /datum/action/ability/remove_action(mob/living/L)
-	if(cooldown_id)
-		deltimer(cooldown_id)
+	if(cooldown_timer)
+		deltimer(cooldown_timer)
 	var/mob/living/carbon/carbon_owner = L
 	carbon_owner.mob_abilities -= src
 	return ..()
+
+/datum/action/ability/handle_button_status_visuals()
+	if(!can_use_action(TRUE, XACT_IGNORE_COOLDOWN))
+		button.color = "#80000080" // rgb(128,0,0,128)
+	else if(!action_cooldown_check())
+		button.color = "#f0b400c8" // rgb(240,180,0,200)
+	else
+		button.color = "#ffffffff" // rgb(255,255,255,255)
 
 /datum/action/ability/can_use_action(silent = FALSE, override_flags)
 	var/mob/living/carbon/carbon_owner = owner
@@ -93,7 +103,7 @@
 /datum/action/ability/fail_activate()
 	update_button_icon()
 
-///Plasma cost override allows for actions/abilities to override the normal plasma costs
+///ability cost override allows for actions/abilities to override the normal ability costs
 /datum/action/ability/proc/succeed_activate(ability_cost_override)
 	if(QDELETED(owner))
 		return
@@ -104,46 +114,42 @@
 
 ///checks if the linked ability is on some cooldown. The action can still be activated by clicking the button
 /datum/action/ability/proc/action_cooldown_check()
-	return !cooldown_id
+	return !cooldown_timer
 
+///Removes the cooldown
 /datum/action/ability/proc/clear_cooldown()
-	if(!cooldown_id)
+	if(!cooldown_timer)
 		return
-	deltimer(cooldown_id)
+	deltimer(cooldown_timer)
 	on_cooldown_finish()
 
+///Returns the cooldown timer
 /datum/action/ability/proc/get_cooldown()
-	return cooldown_timer
+	return cooldown_duration
 
+///Adds a cooldown to this ability
 /datum/action/ability/proc/add_cooldown(cooldown_override = 0)
 	SIGNAL_HANDLER
 	var/cooldown_length = get_cooldown()
 	if(cooldown_override)
 		cooldown_length = cooldown_override
-	if(cooldown_id || !cooldown_length) // stop doubling up or waiting on zero
+	if(cooldown_timer || !cooldown_length) // stop doubling up or waiting on zero
 		return
-	last_use = world.time
-	cooldown_id = addtimer(CALLBACK(src, PROC_REF(on_cooldown_finish)), cooldown_length, TIMER_STOPPABLE)
+	cooldown_timer = addtimer(CALLBACK(src, PROC_REF(on_cooldown_finish)), cooldown_length, TIMER_STOPPABLE)
 	button.add_overlay(visual_references[VREF_IMAGE_XENO_CLOCK])
 
+///Time remaining on cooldown
 /datum/action/ability/proc/cooldown_remaining()
-	return timeleft(cooldown_id) * 0.1
+	return timeleft(cooldown_timer) * 0.1
 
-///override this for cooldown completion.
+///override this for cooldown completion
 /datum/action/ability/proc/on_cooldown_finish()
-	cooldown_id = null
+	cooldown_timer = null
 	if(!button)
 		CRASH("no button object on finishing ability action cooldown")
 	button.cut_overlay(visual_references[VREF_IMAGE_XENO_CLOCK])
 
-/datum/action/ability/handle_button_status_visuals()
-	if(!can_use_action(TRUE, XACT_IGNORE_COOLDOWN))
-		button.color = "#80000080" // rgb(128,0,0,128)
-	else if(!action_cooldown_check())
-		button.color = "#f0b400c8" // rgb(240,180,0,200)
-	else
-		button.color = "#ffffffff" // rgb(255,255,255,255)
-
+///Any changes when a xeno with this ability evolves
 /datum/action/ability/proc/on_xeno_upgrade()
 	return
 
@@ -151,8 +157,10 @@
 /datum/action/ability/proc/add_empowered_frame()
 	button.add_overlay(visual_references[VREF_MUTABLE_EMPOWERED_FRAME])
 
+///Removes an outline around the ability button
 /datum/action/ability/proc/remove_empowered_frame()
 	button.cut_overlay(visual_references[VREF_MUTABLE_EMPOWERED_FRAME])
+
 
 /datum/action/ability/activable
 	action_type = ACTION_SELECT
@@ -187,28 +195,10 @@
 	if(can_use_action(FALSE, NONE, TRUE)) // just for selecting
 		action_activate()
 
-/datum/action/ability/activable/proc/deselect()
-	var/mob/living/carbon/carbon_owner = owner
-	set_toggle(FALSE)
-	carbon_owner.selected_ability = null
-	on_deactivation()
-
-/datum/action/ability/activable/proc/select()
-	var/mob/living/carbon/carbon_owner = owner
-	set_toggle(TRUE)
-	carbon_owner.selected_ability = src
-	on_activation()
-
-
 /datum/action/ability/activable/remove_action(mob/living/carbon/carbon_owner)
 	if(carbon_owner.selected_ability == src)
 		carbon_owner.selected_ability = null
 	return ..()
-
-
-///the thing to do when the selected action ability is selected and triggered by middle_click
-/datum/action/ability/activable/proc/use_ability(atom/A)
-	return
 
 /datum/action/ability/activable/can_use_action(silent = FALSE, override_flags, selecting = FALSE)
 	if(selecting)
@@ -229,32 +219,52 @@
 	if(!CHECK_BITFIELD(flags_to_check, XACT_TARGET_SELF) && A == owner)
 		return FALSE
 
-/datum/action/ability/activable/proc/can_activate()
-	return TRUE
-
-/datum/action/ability/activable/proc/on_activation()
+///the thing to do when the selected action ability is selected and triggered by middle_click
+/datum/action/ability/activable/proc/use_ability(atom/A)
 	return
 
-/datum/action/ability/activable/proc/on_deactivation()
+///Setting this ability as the active ability
+/datum/action/ability/activable/proc/select()
+	var/mob/living/carbon/carbon_owner = owner
+	set_toggle(TRUE)
+	carbon_owner.selected_ability = src
+	on_selection()
+
+///Deselecting this ability for use
+/datum/action/ability/activable/proc/deselect()
+	var/mob/living/carbon/carbon_owner = owner
+	set_toggle(FALSE)
+	carbon_owner.selected_ability = null
+	on_deselection()
+
+///Any effects on selecting this ability
+/datum/action/ability/activable/proc/on_selection()
 	return
 
-
+///Any effects on deselecting this ability
+/datum/action/ability/activable/proc/on_deselection()
+	return
 
 //////
 /mob/living/carbon
 	var/list/datum/action/mob_abilities = list()
 	var/datum/action/ability/activable/selected_ability
 
+///deducts the cost of using an ability
 /mob/living/carbon/proc/deduct_ability_cost(amount)
 	return
 
 /mob/living/carbon/xenomorph/deduct_ability_cost(amount)
 	use_plasma(amount)
 
+///adds an ability to the mob
 /mob/living/carbon/proc/add_ability(datum/action/ability/new_ability)
+	if(!new_ability)
+		return
 	new_ability = new new_ability
 	new_ability.give_action(src)
 
+///Removes an ability from a mob
 /mob/living/carbon/proc/remove_ability(datum/action/ability/old_ability)
 	for(var/datum/action/ability/action_datum in mob_abilities)
 		if(action_datum.type != old_ability)
@@ -269,9 +279,8 @@
 	name = "Ravage"
 	action_icon_state = "ravage"
 	desc = "Attacks and knockbacks enemies in the direction your facing."
-	ability_name = "ravage"
 	ability_cost = 0
-	cooldown_timer = 6 SECONDS
+	cooldown_duration = 6 SECONDS
 	keybind_flags = XACT_KEYBIND_USE_ABILITY | XACT_IGNORE_SELECTED_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_RAVAGE,

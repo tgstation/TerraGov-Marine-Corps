@@ -5,9 +5,8 @@
 /datum/action/ability/activable/xeno_action/nightfall
 	name = "Nightfall"
 	action_icon_state = "nightfall"
-	ability_name = "Nightfall"
 	desc = "Shut down all electrical lights nearby for 10 seconds."
-	cooldown_timer = 45 SECONDS
+	cooldown_duration = 45 SECONDS
 	ability_cost = 100
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_NIGHTFALL,
@@ -41,9 +40,8 @@
 	name = "Petrify"
 	action_icon_state = "petrify"
 	desc = "After a windup, petrifies all humans looking at you. While petrified humans are immune to damage, but also can't attack."
-	ability_name = "petrify"
 	ability_cost = 100
-	cooldown_timer = 30 SECONDS
+	cooldown_duration = 30 SECONDS
 	keybind_flags = XACT_KEYBIND_USE_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PETRIFY,
@@ -132,9 +130,8 @@
 	name = "Off-guard"
 	action_icon_state = "off_guard"
 	desc = "Muddles the mind of an enemy, making it harder for them to focus their aim for a while."
-	ability_name = "off guard"
 	ability_cost = 100
-	cooldown_timer = 20 SECONDS
+	cooldown_duration = 20 SECONDS
 	target_flags = XABB_MOB_TARGET
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_OFFGUARD,
@@ -188,9 +185,8 @@
 	name = "Shattering roar"
 	action_icon_state = "shattering_roar"
 	desc = "Unleash a mighty psychic roar, knocking down any foes in your path and weakening them."
-	ability_name = "shattering roar"
 	ability_cost = 225
-	cooldown_timer = 45 SECONDS
+	cooldown_duration = 45 SECONDS
 	target_flags = XABB_TURF_TARGET
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_SHATTERING_ROAR,
@@ -299,9 +295,8 @@
 	name = "Zero-Form Energy Beam"
 	action_icon_state = "zero_form_beam"
 	desc = "After a windup, concentrates the hives energy into a forward-facing beam that pierces everything, but only hurts living beings."
-	ability_name = "zero form energy beam"
 	ability_cost = 25
-	cooldown_timer = 10 SECONDS
+	cooldown_duration = 10 SECONDS
 	keybind_flags = XACT_KEYBIND_USE_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_ZEROFORMBEAM,
@@ -462,9 +457,8 @@
 	name = "Psychic Summon"
 	action_icon_state = "stomp"
 	desc = "Summons all xenos in a hive to the caller's location, uses all plasma to activate."
-	ability_name = "Psychic summon"
-	ability_cost = 900 //uses all an young kings plasma
-	cooldown_timer = 10 MINUTES
+	ability_cost = 900
+	cooldown_duration = 10 MINUTES
 	keybind_flags = XACT_KEYBIND_USE_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_HIVE_SUMMON,

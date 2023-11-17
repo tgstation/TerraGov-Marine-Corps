@@ -5,10 +5,9 @@
 	name = "Tail Sweep"
 	action_icon_state = "tail_sweep"
 	desc = "Hit all adjacent units around you, knocking them away and down."
-	ability_name = "tail sweep"
 	ability_cost = 35
 	use_state_flags = XACT_USE_CRESTED
-	cooldown_timer = 12 SECONDS
+	cooldown_duration = 12 SECONDS
 	keybind_flags = XACT_KEYBIND_USE_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TAIL_SWEEP,
@@ -89,8 +88,7 @@
 	name = "Forward Charge"
 	action_icon_state = "pounce"
 	desc = "Charge up to 4 tiles and knockdown any targets in our way."
-	ability_name = "charge"
-	cooldown_timer = 10 SECONDS
+	cooldown_duration = 10 SECONDS
 	ability_cost = 80
 	use_state_flags = XACT_USE_CRESTED|XACT_USE_FORTIFIED
 	keybinding_signals = list(
@@ -186,9 +184,8 @@
 	name = "Toggle Crest Defense"
 	action_icon_state = "crest_defense"
 	desc = "Increase your resistance to projectiles at the cost of move speed. Can use abilities while in Crest Defense."
-	ability_name = "toggle crest defense"
 	use_state_flags = XACT_USE_FORTIFIED|XACT_USE_CRESTED // duh
-	cooldown_timer = 1 SECONDS
+	cooldown_duration = 1 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_CREST_DEFENSE,
 	)
@@ -225,7 +222,7 @@
 	var/was_fortified = X.fortify
 	if(X.fortify)
 		var/datum/action/ability/xeno_action/fortify/FT = X.actions_by_path[/datum/action/ability/xeno_action/fortify]
-		if(FT.cooldown_id)
+		if(FT.cooldown_timer)
 			to_chat(X, span_xenowarning("We cannot yet untuck ourselves!"))
 			return fail_activate()
 		FT.set_fortify(FALSE, TRUE)
@@ -265,9 +262,8 @@
 	name = "Fortify"
 	action_icon_state = "fortify"	// TODO
 	desc = "Plant yourself for a large defensive boost."
-	ability_name = "fortify"
 	use_state_flags = XACT_USE_FORTIFIED|XACT_USE_CRESTED // duh
-	cooldown_timer = 1 SECONDS
+	cooldown_duration = 1 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_FORTIFY,
 	)
@@ -307,7 +303,7 @@
 	var/was_crested = X.crest_defense
 	if(X.crest_defense)
 		var/datum/action/ability/xeno_action/toggle_crest_defense/CD = X.actions_by_path[/datum/action/ability/xeno_action/toggle_crest_defense]
-		if(CD.cooldown_id)
+		if(CD.cooldown_timer)
 			to_chat(X, span_xenowarning("We cannot yet transition to a defensive stance!"))
 			return fail_activate()
 		CD.set_crest_defense(FALSE, TRUE)
@@ -315,7 +311,7 @@
 		to_chat(X, span_xenowarning("We tuck our lowered crest into ourselves."))
 
 	var/datum/action/ability/activable/xeno_action/forward_charge/combo_cooldown = X.actions_by_path[/datum/action/ability/activable/xeno_action/forward_charge]
-	combo_cooldown.add_cooldown(cooldown_timer)
+	combo_cooldown.add_cooldown(cooldown_duration)
 
 	set_fortify(TRUE, was_crested)
 	add_cooldown()
@@ -350,10 +346,9 @@
 	name = "Regenerate Skin"
 	action_icon_state = "regenerate_skin"
 	desc = "Regenerate your hard exoskeleton skin, restoring some health and removing all sunder."
-	ability_name = "regenerate skin"
 	use_state_flags = XACT_USE_FORTIFIED|XACT_USE_CRESTED|XACT_TARGET_SELF|XACT_IGNORE_SELECTED_ABILITY|XACT_KEYBIND_USE_ABILITY
 	ability_cost = 160
-	cooldown_timer = 1 MINUTES
+	cooldown_duration = 1 MINUTES
 	keybind_flags = XACT_KEYBIND_USE_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_REGENERATE_SKIN,
@@ -392,10 +387,9 @@
 	name = "Centrifugal force"
 	action_icon_state = "centrifugal_force"
 	desc = "Rapidly spin and hit all adjacent humans around you, knocking them away and down. Uses double plasma when crest is active."
-	ability_name = "centrifugal force"
 	ability_cost = 15
 	use_state_flags = XACT_USE_CRESTED
-	cooldown_timer = 30 SECONDS
+	cooldown_duration = 30 SECONDS
 	keybind_flags = XACT_KEYBIND_USE_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_CENTRIFUGAL_FORCE,

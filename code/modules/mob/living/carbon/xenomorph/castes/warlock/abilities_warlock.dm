@@ -50,10 +50,9 @@
 // ***************************************
 /datum/action/ability/activable/xeno_action/psychic_shield
 	name = "Psychic Shield"
-	ability_name = "psychic shield"
 	action_icon_state = "psy_shield"
 	desc = "Channel a psychic shield at your current location that can reflect most projectiles. Activate again while the shield is active to detonate the shield forcibly, producing knockback. Must remain static to use."
-	cooldown_timer = 10 SECONDS
+	cooldown_duration = 10 SECONDS
 	ability_cost = 200
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PSYCHIC_SHIELD,
@@ -266,9 +265,8 @@
 	name = "Psychic Crush"
 	action_icon_state = "psy_crush"
 	desc = "Channel an expanding AOE crush effect, activating it again pre-maturely crushes enemies over an area. The longer it is channeled, the larger area it will affect, but will consume more plasma."
-	ability_name = "psychic crush"
 	ability_cost = 40
-	cooldown_timer = 12 SECONDS
+	cooldown_duration = 12 SECONDS
 	keybind_flags = XACT_KEYBIND_USE_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PSYCHIC_CRUSH,
@@ -495,8 +493,7 @@
 	name = "Psychic Blast"
 	action_icon_state = "psy_blast"
 	desc = "Launch a blast of psychic energy that deals light damage and knocks back enemies in its AOE. Must remain stationary for a few seconds to use."
-	ability_name = "psychic blast"
-	cooldown_timer = 6 SECONDS
+	cooldown_duration = 6 SECONDS
 	ability_cost = 230
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PSYCHIC_BLAST,

@@ -30,7 +30,7 @@
 			"name" = initial(xeno_ability.name),
 			"desc" = initial(xeno_ability.desc),
 			"cost" = initial(xeno_ability.ability_cost),
-			"cooldown" = (initial(xeno_ability.cooldown_timer) / 10)
+			"cooldown" = (initial(xeno_ability.cooldown_duration) / 10)
 		)
 	.["evolves_to"] = list()
 	for(var/evolves_into in xeno.xeno_caste.evolves_to)
@@ -49,7 +49,7 @@
 				"name" = initial(xeno_ability.name),
 				"desc" = initial(xeno_ability.desc),
 				"cost" = initial(xeno_ability.ability_cost),
-				"cooldown" = (initial(xeno_ability.cooldown_timer) / 10)
+				"cooldown" = (initial(xeno_ability.cooldown_duration) / 10)
 			)
 		.["evolves_to"]["[caste.caste_type_path]"] = caste_data
 

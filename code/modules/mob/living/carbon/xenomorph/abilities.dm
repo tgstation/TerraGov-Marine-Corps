@@ -177,7 +177,6 @@
 	name = "Secrete Resin"
 	action_icon_state = RESIN_WALL
 	desc = "Builds whatever resin you selected"
-	ability_name = "secrete resin"
 	target_flags = XABB_TURF_TARGET
 	ability_cost = 75
 	action_type = ACTION_TOGGLE
@@ -511,7 +510,6 @@
 	name = "Transfer Plasma"
 	action_icon_state = "transfer_plasma"
 	desc = "Give some of your plasma to a teammate."
-	ability_name = "transfer plasma"
 	var/plasma_transfer_amount = PLASMA_TRANSFER_AMOUNT
 	var/transfer_delay = 2 SECONDS
 	var/max_range = 2
@@ -587,7 +585,6 @@
 	name = "Corrosive Acid"
 	action_icon_state = "corrosive_acid"
 	desc = "Cover an object with acid to slowly melt it. Takes a few seconds."
-	ability_name = "corrosive acid"
 	ability_cost = 100
 	var/obj/effect/xenomorph/acid/acid_type = /obj/effect/xenomorph/acid
 	keybinding_signals = list(
@@ -706,7 +703,6 @@
 	name = "Xeno Spit"
 	action_icon_state = "shift_spit_neurotoxin"
 	desc = "Spit neurotoxin or acid at your target up to 7 tiles away."
-	ability_name = "xeno spit"
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_XENO_SPIT,
 	)
@@ -888,8 +884,7 @@
 	name = "Neurotoxin Sting"
 	action_icon_state = "neuro_sting"
 	desc = "A channeled melee attack that injects the target with neurotoxin over a few seconds, temporarily stunning them."
-	ability_name = "neurotoxin sting"
-	cooldown_timer = 12 SECONDS
+	cooldown_duration = 12 SECONDS
 	ability_cost = 150
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_NEUROTOX_STING,
@@ -922,7 +917,7 @@
 
 /datum/action/ability/activable/xeno_action/neurotox_sting/on_cooldown_finish()
 	playsound(owner.loc, 'sound/voice/alien_drool1.ogg', 50, 1)
-	to_chat(owner, span_xenodanger("We feel our toxic glands refill. We can use our [ability_name] again."))
+	to_chat(owner, span_xenodanger("We feel our toxic glands refill. We can use our [name] again."))
 	return ..()
 
 /datum/action/ability/activable/xeno_action/neurotox_sting/use_ability(atom/A)
@@ -945,8 +940,7 @@
 	name = "Ozelomelyn Sting"
 	action_icon_state = "drone_sting"
 	desc = "A channeled melee attack that injects the target with Ozelomelyn over a few seconds, purging chemicals and dealing minor toxin damage to a moderate cap while inside them."
-	ability_name = "ozelomelyn sting"
-	cooldown_timer = 25 SECONDS
+	cooldown_duration = 25 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_OZELOMELYN_STING,
 	)
@@ -1007,7 +1001,7 @@
 	action_icon_state = "lay_egg"
 	desc = "Create an egg that will grow a larval hugger after a short delay. Empty eggs can have huggers inserted into them."
 	ability_cost = 200
-	cooldown_timer = 12 SECONDS
+	cooldown_duration = 12 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_LAY_EGG,
 	)
@@ -1048,13 +1042,12 @@
 	name = "Rally Hive"
 	action_icon_state = "rally_hive"
 	desc = "Rallies the hive to a congregate at a target location, along with an arrow pointer. Gives the Hive your current health status. 60 second cooldown."
-	ability_name = "rally hive"
 	ability_cost = 0
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_RALLY_HIVE,
 	)
 	keybind_flags = XACT_KEYBIND_USE_ABILITY
-	cooldown_timer = 60 SECONDS
+	cooldown_duration = 60 SECONDS
 	use_state_flags = XACT_USE_LYING|XACT_USE_BUCKLED
 
 /datum/action/ability/xeno_action/rally_hive/action_activate()
@@ -1073,14 +1066,13 @@
 	name = "Rally Minions"
 	action_icon_state = "minion_agressive"
 	desc = "Rallies the minions around you, asking them to follow you if they don't have a leader already. Rightclick to change minion behaviour."
-	ability_name = "rally minions"
 	ability_cost = 0
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_RALLY_MINION,
 		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_MINION_BEHAVIOUR,
 	)
 	keybind_flags = XACT_KEYBIND_USE_ABILITY
-	cooldown_timer = 10 SECONDS
+	cooldown_duration = 10 SECONDS
 	use_state_flags = XACT_USE_LYING|XACT_USE_BUCKLED
 	///If minions should be agressive
 	var/minions_agressive = TRUE
@@ -1115,7 +1107,7 @@
 		qdel(action_datum)
 
 /datum/action/ability/xeno_action/rally_hive/hivemind //Halve the cooldown for Hiveminds as their relative omnipresence means they can actually make use of this lower cooldown.
-	cooldown_timer = 30 SECONDS
+	cooldown_duration = 30 SECONDS
 
 //*********
 // Psy Drain

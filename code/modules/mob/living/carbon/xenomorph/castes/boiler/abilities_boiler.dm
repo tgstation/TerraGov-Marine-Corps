@@ -175,10 +175,9 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 // *********** Gas cloud bombs
 // ***************************************
 /datum/action/ability/activable/xeno_action/bombard
-	name = "Bombard/Root"
+	name = "Bombard"
 	action_icon_state = "bombard"
 	desc = "Launch a glob of neurotoxin or acid. Must be rooted to use."
-	ability_name = "bombard"
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_BOMBARD,
 		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_ROOT,
@@ -194,10 +193,10 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 	to_chat(owner, span_notice("We feel your toxin glands swell. We are able to bombard an area again."))
 	return ..()
 
-/datum/action/ability/activable/xeno_action/bombard/on_activation()
+/datum/action/ability/activable/xeno_action/bombard/on_selection()
 	RegisterSignal(owner, COMSIG_MOB_ATTACK_RANGED, TYPE_PROC_REF(/datum/action/ability/activable/xeno_action/bombard, on_ranged_attack))
 
-/datum/action/ability/activable/xeno_action/bombard/on_deactivation()
+/datum/action/ability/activable/xeno_action/bombard/on_deselection()
 	UnregisterSignal(owner, COMSIG_MOB_ATTACK_RANGED)
 
 /// Signal proc for clicking at a distance
@@ -326,5 +325,5 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 // *********** Acid spray
 // ***************************************
 /datum/action/ability/activable/xeno_action/spray_acid/line/boiler
-	cooldown_timer = 9 SECONDS
+	cooldown_duration = 9 SECONDS
 	use_state_flags = XACT_USE_ROOTED

@@ -246,11 +246,10 @@
 
 /datum/action/ability/activable/xeno_action/landslide
 	name = "Landslide"
-	ability_name = "Landslide"
 	action_icon_state = "landslide"
 	desc = "Rush forward in the selected direction, damaging enemies caught in a wide path."
 	ability_cost = 3 // This is deducted per step taken during the ability.
-	cooldown_timer = 20 SECONDS
+	cooldown_duration = 20 SECONDS
 	target_flags = XABB_TURF_TARGET
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_LANDSLIDE,
@@ -289,16 +288,16 @@
 	return ..()
 
 /datum/action/ability/activable/xeno_action/landslide/action_cooldown_check()
-	if(cooldown_id && current_charges > 0)
+	if(cooldown_timer && current_charges > 0)
 		return TRUE
 	return ..()
 
 /datum/action/ability/activable/xeno_action/landslide/on_cooldown_finish()
 	current_charges = min(maximum_charges, current_charges + 1)
 	update_button_icon()
-	owner.balloon_alert(owner, "[ability_name] ready ([current_charges]/[maximum_charges])")
+	owner.balloon_alert(owner, "[name] ready ([current_charges]/[maximum_charges])")
 	if(current_charges < maximum_charges)
-		cooldown_id = addtimer(CALLBACK(src, PROC_REF(on_cooldown_finish)), cooldown_timer, TIMER_STOPPABLE)
+		cooldown_timer = addtimer(CALLBACK(src, PROC_REF(on_cooldown_finish)), cooldown_duration, TIMER_STOPPABLE)
 		return
 	return ..()
 
@@ -335,7 +334,7 @@
 		animate(pixel_y = xeno_owner.pixel_y + (LANDSLIDE_RANGE / 2), time = animation_time / 2, easing = CIRCULAR_EASING|EASE_OUT)
 		animate(pixel_y = initial(xeno_owner.pixel_y), time = animation_time / 2, easing = CIRCULAR_EASING|EASE_IN)
 		return
-	addtimer(CALLBACK(owner, TYPE_PROC_REF(/atom, balloon_alert), owner, "Use [ability_name] again to cancel"), LANDSLIDE_WIND_UP)
+	addtimer(CALLBACK(owner, TYPE_PROC_REF(/atom, balloon_alert), owner, "Use [name] again to cancel"), LANDSLIDE_WIND_UP)
 	addtimer(CALLBACK(src, PROC_REF(RegisterSignals), owner, list(COMSIG_MOB_CLICK_RIGHT, COMSIG_MOB_CLICK_SHIFT, COMSIG_MOB_MIDDLE_CLICK), PROC_REF(cancel_charge)), LANDSLIDE_WIND_UP)
 	addtimer(CALLBACK(src, PROC_REF(do_charge), owner_turf, direction, charge_damage, which_step), LANDSLIDE_WIND_UP)
 
@@ -593,11 +592,10 @@
 
 /datum/action/ability/activable/xeno_action/earth_riser
 	name = "Earth Riser"
-	ability_name = "Earth Riser"
 	action_icon_state = "earth_riser"
 	desc = "Raise a pillar of earth at the selected location. This solid structure can be used for defense, and it interacts with other abilities for offensive usage. The pillar can be launched by click-dragging it in a direction. Alternate use destroys active pillars, starting with the oldest one."
 	ability_cost = 30
-	cooldown_timer = 15 SECONDS
+	cooldown_duration = 15 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_EARTH_RISER,
 		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_EARTH_RISER_ALTERNATE,
@@ -608,7 +606,7 @@
 	var/list/obj/structure/earth_pillar/active_pillars = list()
 
 /datum/action/ability/activable/xeno_action/earth_riser/on_cooldown_finish()
-	owner.balloon_alert(owner, "[ability_name] ready ([length(active_pillars)]/[maximum_pillars])")
+	owner.balloon_alert(owner, "[name] ready ([length(active_pillars)]/[maximum_pillars])")
 	return ..()
 
 /datum/action/ability/activable/xeno_action/earth_riser/give_action(mob/living/L)
@@ -763,18 +761,17 @@
 
 /datum/action/ability/activable/xeno_action/seismic_fracture
 	name = "Seismic Fracture"
-	ability_name = "Seismic Fracture"
 	action_icon_state = "seismic_fracture"
 	desc = "Blast the earth around the selected location, inflicting heavy damage in a large radius."
 	ability_cost = 50
-	cooldown_timer = 20 SECONDS
+	cooldown_duration = 20 SECONDS
 	target_flags = XABB_TURF_TARGET
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_SEISMIC_FRACTURE,
 	)
 
 /datum/action/ability/activable/xeno_action/seismic_fracture/on_cooldown_finish()
-	owner.balloon_alert(owner, "[ability_name] ready")
+	owner.balloon_alert(owner, "[name] ready")
 	return ..()
 
 /datum/action/ability/activable/xeno_action/seismic_fracture/use_ability(atom/target)
@@ -972,10 +969,9 @@
 
 /datum/action/ability/xeno_action/primal_wrath
 	name = "Primal Wrath"
-	ability_name = "Primal Wrath"
 	action_icon_state = "primal_wrath"
 	desc = "Unleash your wrath. Enhances your abilities, changing their functionality and allowing them to apply a damage over time debuff."
-	cooldown_timer = 1 SECONDS
+	cooldown_duration = 1 SECONDS
 	keybind_flags = XACT_KEYBIND_USE_ABILITY|XACT_IGNORE_SELECTED_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PRIMAL_WRATH,

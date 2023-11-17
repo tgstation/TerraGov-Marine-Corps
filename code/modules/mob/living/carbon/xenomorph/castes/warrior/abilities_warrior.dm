@@ -5,8 +5,7 @@
 	name = "Toggle Agility"
 	action_icon_state = "agility_on"
 	desc = "Move an all fours for greater speed. Cannot use abilities while in this mode."
-	ability_name = "toggle agility"
-	cooldown_timer = 0.5 SECONDS
+	cooldown_duration = 0.5 SECONDS
 	use_state_flags = XACT_USE_AGILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TOGGLE_AGILITY,
@@ -62,9 +61,8 @@
 	name = "Lunge"
 	action_icon_state = "lunge"
 	desc = "Pounce up to 5 tiles and grab a target, knocking them down and putting them in your grasp."
-	ability_name = "lunge"
 	ability_cost = 25
-	cooldown_timer = 20 SECONDS
+	cooldown_duration = 20 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_LUNGE,
 	)
@@ -89,13 +87,13 @@
 
 	if(!isliving(A)) //We can only lunge at the living; expanded to xenos in order to allow for supportive applications; lunging > throwing to safety
 		if(!silent)
-			to_chat(owner, span_xenodanger("We can't [ability_name] at that!"))
+			to_chat(owner, span_xenodanger("We can't [name] at that!"))
 		return FALSE
 
 	var/mob/living/living_target = A
 	if(living_target.stat == DEAD)
 		if(!silent)
-			to_chat(owner, span_xenodanger("We can't [ability_name] at that!"))
+			to_chat(owner, span_xenodanger("We can't [name] at that!"))
 		return FALSE
 
 /datum/action/ability/activable/xeno_action/lunge/ai_should_start_consider()
@@ -175,9 +173,8 @@
 	name = "Fling"
 	action_icon_state = "fling"
 	desc = "Knock a target flying up to 5 tiles away."
-	ability_name = "fling"
 	ability_cost = 18
-	cooldown_timer = 20 SECONDS //Shared cooldown with Grapple Toss
+	cooldown_duration = 20 SECONDS //Shared cooldown with Grapple Toss
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_FLING,
 	)
@@ -276,9 +273,8 @@
 	name = "Grapple Toss"
 	action_icon_state = "grapple_toss"
 	desc = "Throw a creature you're grappling up to 3 tiles away."
-	ability_name = "grapple toss"
 	ability_cost = 18
-	cooldown_timer = 20 SECONDS //Shared cooldown with Fling
+	cooldown_duration = 20 SECONDS //Shared cooldown with Fling
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_GRAPPLE_TOSS,
 	)
@@ -354,9 +350,8 @@
 	name = "Punch"
 	action_icon_state = "punch"
 	desc = "Strike a target, inflicting stamina damage, stagger and slowdown. Deals double damage, stagger and slowdown to grappled targets. Deals quadruple damage to structures and machinery."
-	ability_name = "punch"
 	ability_cost = 12
-	cooldown_timer = 10 SECONDS
+	cooldown_duration = 10 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PUNCH,
 	)

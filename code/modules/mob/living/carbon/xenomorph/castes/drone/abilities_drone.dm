@@ -7,7 +7,7 @@
 	plasma_transfer_amount = PLASMA_TRANSFER_AMOUNT * 2
 
 /datum/action/ability/xeno_action/create_jelly/slow
-	cooldown_timer = 45 SECONDS
+	cooldown_duration = 45 SECONDS
 
 // ***************************************
 // *********** Essence Link
@@ -16,7 +16,7 @@
 	name = "Essence Link"
 	action_icon_state = "healing_infusion"
 	desc = "Link to a xenomorph. This changes some of your abilities, and grants them and you both various bonuses."
-	cooldown_timer = 5 SECONDS
+	cooldown_duration = 5 SECONDS
 	ability_cost = 0
 	target_flags = XABB_MOB_TARGET
 	keybinding_signals = list(
@@ -90,7 +90,7 @@
 	name = "Acidic Salve"
 	action_icon_state = "heal_xeno"
 	desc = "Apply a minor heal to the target. If applied to a linked sister, it will also apply a regenerative buff. Additionally, if that linked sister is near death, the heal's potency is increased"
-	cooldown_timer = 5 SECONDS
+	cooldown_duration = 5 SECONDS
 	ability_cost = 150
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_ACIDIC_SALVE,
@@ -140,7 +140,7 @@
 	name = "Enhancement"
 	action_icon_state = "enhancement"
 	desc = "Apply an enhancement to the linked xeno, increasing their capabilities beyond their limits."
-	cooldown_timer = 120 SECONDS
+	cooldown_duration = 120 SECONDS
 	ability_cost = 0
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_ENHANCEMENT,
