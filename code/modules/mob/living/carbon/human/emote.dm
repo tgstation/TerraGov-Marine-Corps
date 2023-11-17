@@ -96,7 +96,7 @@
 
 /datum/emote/living/carbon/human/cry/get_sound(mob/living/user)
 	if(user.gender == FEMALE)
-		return pick ('sound/voice/human_female_cry_1.ogg', 'human_female_cry_2.ogg')
+		return 'sound/voice/human_female_cry_1.ogg'
 	else
 		return 'sound/voice/human_male_cry_1.ogg'
 
