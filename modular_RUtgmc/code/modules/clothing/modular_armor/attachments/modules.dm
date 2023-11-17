@@ -148,3 +148,24 @@
 
 /obj/item/armor_module/storage/medical/som
 	icon = 'modular_RUtgmc/icons/mob/modular/modular_armor_modules.dmi'
+
+/obj/item/armor_module/module/valkyrie_autodoc
+	variants_by_parent_type = list(/obj/item/clothing/suit/modular/xenonauten = "mod_autodoc_xn", /obj/item/clothing/suit/modular = "mod_autodoc_jg")
+
+/obj/item/armor_module/module/fire_proof
+	variants_by_parent_type = list(/obj/item/clothing/suit/modular/xenonauten = "mod_fire_xn", /obj/item/clothing/suit/modular = "mod_fire_jg")
+
+/obj/item/armor_module/module/tyr_extra_armor
+	variants_by_parent_type = list(/obj/item/clothing/suit/modular/xenonauten = "mod_armor_xn", /obj/item/clothing/suit/modular = "mod_armor_jg")
+
+/obj/item/armor_module/module/mimir_environment_protection
+	variants_by_parent_type = list(/obj/item/clothing/suit/modular/xenonauten = "mod_biohazard_xn", /obj/item/clothing/suit/modular = "mod_biohazard_jg")
+
+/obj/item/armor_module/module/hlin_explosive_armor
+	variants_by_parent_type = list(/obj/item/clothing/suit/modular/xenonauten = "mod_bombimmune_xn", /obj/item/clothing/suit/modular = "mod_bombimmune_jg")
+
+/obj/item/armor_module/module/ballistic_armor
+	variants_by_parent_type = list(/obj/item/clothing/suit/modular/xenonauten = "mod_ff_xn", /obj/item/clothing/suit/modular = "mod_ff_jg")
+
+/obj/item/armor_module/module/eshield
+	variants_by_parent_type = list(/obj/item/clothing/suit/modular/xenonauten = "mod_eshield_xn", /obj/item/clothing/suit/modular = "mod_eshield_jg")
