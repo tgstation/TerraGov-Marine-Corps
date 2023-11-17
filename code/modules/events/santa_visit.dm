@@ -13,7 +13,7 @@
 	var/maxpresents = 30
 	announce_when = 0
 	///used to hold location of christmas tree for spawning purposes
-	var/turf/targetturf
+	var/turf/christmastreeturf
 	///how many santas we should spawn, normally set to 1
 	var/maxsanta = 1
 	///how many elves we should attempt to spawn, note due to prob in elf spawning function this number won't always be hit, it's just the max
@@ -32,19 +32,10 @@
 		if(christmastree.unlimited)
 			continue
 		else
-			targetturf = christmastree
+			christmastreeturf = christmastree
 	populate_presents()
 	place_santa()
 	place_elves()
-	/* for(var/z in z_levels)
-		while(!target_turf)
-			var/turf/potential_turf = locate(rand(0, world.maxx), rand(0,world.maxy), z)
-			if(isclosedturf(potential_turf) || isspaceturf(potential_turf))
-				continue
-			target_turf = potential_turf
-			set_target(target_turf)
-			return
-		*/
 
 /datum/round_event/santa_visit/announce()
 	var/alert = pick( "Excessive Christmas cheer detected, please check all equipment for the prescence of magical creatures",
@@ -55,9 +46,10 @@
 	)
 	priority_announce(alert)
 
+///randomly places some gifts around christmas tree during santa's arrival
 /datum/round_event/santa_visit/proc/populate_presents()
 	for(var/placedpresents = 1 to maxpresents)
-		var/turf/target = locate(targetturf.x + rand(-3, 3), targetturf.y + rand(-3, 3), targetturf.z)
+		var/turf/target = locate(christmastreeturf.x + rand(-3, 3), christmastreeturf.y + rand(-3, 3), christmastreeturf.z)
 		if(is_blocked_turf(target))
 			continue
 		else if(prob(25))
@@ -66,7 +58,7 @@
 ///proc for spawning santa(s) around christmas tree
 /datum/round_event/santa_visit/proc/place_santa()
 	for(var/placedsanta = 1 to maxsanta)
-		var/turf/target = locate(targetturf.x + rand(-3, 3), targetturf.y + rand(-3, 3), targetturf.z)
+		var/turf/target = locate(christmastreeturf.x + rand(-3, 3), christmastreeturf.y + rand(-3, 3), christmastreeturf.z)
 		var/mob/living/carbon/human/spawnedhuman = new /mob/living/carbon/human(target)
 		var/datum/job/J = SSjob.GetJobType(/datum/job/santa/eventspawn)
 		spawnedhuman.name = "Santa Claus"
@@ -84,7 +76,7 @@
 	for(var/placedelves = 1 to maxelves)
 		if(prob(25))
 			return
-		var/turf/target = locate(targetturf.x + rand(-3, 3), targetturf.y + rand(-3, 3), targetturf.z)
+		var/turf/target = locate(christmastreeturf.x + rand(-3, 3), christmastreeturf.y + rand(-3, 3), christmastreeturf.z)
 		var/mob/living/carbon/human/spawnedhuman = new /mob/living/carbon/human(target)
 		spawnedhuman.name = "Elf [rand(1,999)]"
 		spawnedhuman.real_name = spawnedhuman.name
