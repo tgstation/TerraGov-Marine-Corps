@@ -1,0 +1,4 @@
+author: "ZeWaka"
+delete-after: True
+changes:
+  - qol: "Banelings can no longer explode before shutters unless they have a pod placed."

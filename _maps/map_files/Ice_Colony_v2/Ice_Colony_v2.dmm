@@ -18919,6 +18919,13 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/plating,
 /area/ice_colony/underground/maintenance/central)
+"dKp" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/tile/dark2,
+/area/ice_colony/surface/command)
 "dKq" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /obj/structure/cable,
@@ -27129,9 +27136,7 @@
 /turf/open/floor/plating,
 /area/ice_colony/underground/maintenance/north)
 "pCL" = (
-/obj/machinery/atmospherics/components/unary/cryo_cell{
-	dir = 1
-	},
+/obj/machinery/atmospherics/components/unary/cryo_cell,
 /turf/open/floor/tile/green/whitegreen,
 /area/ice_colony/surface/clinic/treatment)
 "pDQ" = (
@@ -64070,7 +64075,7 @@ auX
 sdW
 iPL
 haC
-aua
+dKp
 iPL
 haC
 apL
@@ -64492,7 +64497,7 @@ cXX
 mId
 auX
 odY
-aua
+dKp
 mId
 auX
 auS
@@ -64704,7 +64709,7 @@ jos
 asd
 auX
 pDQ
-aua
+dKp
 apL
 uoG
 cIs
@@ -65548,7 +65553,7 @@ aug
 aqw
 haC
 haC
-aua
+dKp
 ltl
 uLL
 kWN
@@ -65760,7 +65765,7 @@ aJe
 nZl
 aqC
 haC
-aua
+dKp
 haC
 haC
 haC
