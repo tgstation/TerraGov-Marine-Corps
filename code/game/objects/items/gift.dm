@@ -34,6 +34,11 @@ GLOBAL_LIST_EMPTY(possible_gifts)
 		explosion(loc, light_impact_range = src.light_impact_range, weak_impact_range = src.weak_impact_range)
 		qdel(src)
 
+/obj/item/explosive/grenade/gift/examine(mob/user)
+	. = ..()
+	if(HAS_TRAIT(user, TRAIT_SANTA_CLAUS))
+		. += "This present is rigged to blow! Activate it yourself to throw it like a grenade, or give it to somebody on the naughty list and watch it blow up in their face."
+
 /obj/item/a_gift
 	name = "gift"
 	desc = "A wrapped bundle of joy, you'll have to get closer to see who it's addressed to."
