@@ -576,14 +576,7 @@
 
 /datum/emote/living/carbon/human/sigh/get_sound(mob/living/user)
     if(user.gender == FEMALE)
-        return 'sound/voice/human_female_sigh_1.ogg'
-	else
-        return 'sound/voice/human_male_sigh_1.ogg'
+        return () 'sound/voice/human_female_sigh_1.ogg'
+    else
+        return () 'sound/voice/human_male_sigh_1.ogg'
 
-
-/datum/emote/living/carbon/human/warcry/run_emote(mob/user, params, type_override, intentional = FALSE, prefix)
-	. = ..()
-	if(!.)
-		return
-	var/image/sigh = image('icons/mob/talk.dmi', user, icon_state = "sigh")
-	user.add_emote_overlay(sigh)
