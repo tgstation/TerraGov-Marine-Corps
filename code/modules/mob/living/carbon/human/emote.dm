@@ -575,8 +575,7 @@
 
 
 /datum/emote/living/carbon/human/sigh/get_sound(mob/living/user)
-    if(user.gender == FEMALE)
-        return () 'sound/voice/human_female_sigh_1.ogg'
-    else
-        return () 'sound/voice/human_male_sigh_1.ogg'
-
+	if(user.gender == FEMALE)
+		return 'sound/voice/human_female_sigh_1.ogg'
+	else
+		return sound/voice/human_male_sigh_1.ogg
