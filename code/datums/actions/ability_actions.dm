@@ -245,10 +245,7 @@
 /datum/action/ability/activable/proc/on_deselection()
 	return
 
-//////
-/mob/living/carbon
-	var/list/datum/action/mob_abilities = list()
-	var/datum/action/ability/activable/selected_ability
+//related mob procs
 
 ///deducts the cost of using an ability
 /mob/living/carbon/proc/deduct_ability_cost(amount)
@@ -279,7 +276,6 @@
 	name = "Ravage"
 	action_icon_state = "ravage"
 	desc = "Attacks and knockbacks enemies in the direction your facing."
-	ability_cost = 0
 	cooldown_duration = 6 SECONDS
 	keybind_flags = XACT_KEYBIND_USE_ABILITY | XACT_IGNORE_SELECTED_ABILITY
 	keybinding_signals = list(
