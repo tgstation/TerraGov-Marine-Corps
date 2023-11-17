@@ -9,15 +9,15 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_ENHANCEMENT,
 	)
-	/// Used to determine whether Enhancement is already active or not. Also allows access to its vars.
-	//var/datum/status_effect/mindmeld/existing_mindmeld
 	var/mob/living/carbon/melded_mob
-	/// Damage bonus given by this ability.
-	//var/damage_multiplier = 1.15
-	/// Speed bonus given by this ability.
+	/// Damage bonus given by this ability
+	var/accuracy_boost = 25
+	/// Speed bonus given by this ability
 	var/speed_addition = -0.4
-
+	///maxhp boost given by this ability
 	var/health_mod = 50
+
+	var/stun_resistance = FALSE
 
 /datum/action/ability/activable/sectoid/mindmeld/can_use_action()
 	var/mob/living/carbon/carbon_owner = owner
@@ -61,8 +61,8 @@
 	owner.balloon_alert_to_viewers("mindmelded")
 	playsound(melded_mob, 'sound/effects/off_guard_ability.ogg', 50)
 
-	melded_mob.apply_status_effect(STATUS_EFFECT_MINDMEND, carbon_owner, src)
-	carbon_owner.apply_status_effect(STATUS_EFFECT_MINDMEND, melded_mob, src)
+	melded_mob.apply_status_effect(STATUS_EFFECT_MINDMEND, carbon_owner, src, stun_resistance)
+	carbon_owner.apply_status_effect(STATUS_EFFECT_MINDMEND, melded_mob, src, stun_resistance)
 
 	add_cooldown()
 
@@ -76,6 +76,13 @@
 	melded_mob.remove_status_effect(STATUS_EFFECT_MINDMEND)
 	melded_mob = null
 
+/datum/action/ability/activable/sectoid/mindmeld/greater
+	name = "Greater Mindmeld"
+	desc = "Merge minds with the target, greatly empowering both."
+	accuracy_boost = 40
+	speed_addition = -0.5
+	health_mod = 70
+	stun_resistance = TRUE
 
 #define MINDFRAY_RANGE 8
 /datum/action/ability/activable/sectoid/mindfray
@@ -279,7 +286,7 @@
 	particle_holder.particles.velocity = list(0, 1.5)
 	particle_holder.particles.gravity = list(0, 2)
 
-	if(!do_after(owner, 1 SECONDS, FALSE, target, BUSY_ICON_DANGER, ignore_turf_checks = TRUE) || !can_use_ability(target))
+	if(!do_after(owner, 0.5 SECONDS, FALSE, target, BUSY_ICON_DANGER, ignore_turf_checks = TRUE) || !can_use_ability(target))
 		owner.balloon_alert(owner, "Our focus is disrupted")
 		QDEL_NULL(particle_holder)
 		return fail_activate()
