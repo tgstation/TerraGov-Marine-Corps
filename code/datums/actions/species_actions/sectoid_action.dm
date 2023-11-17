@@ -137,14 +137,12 @@
 
 	particle_holder = new(owner, particle_type)
 
-	particle_holder.pixel_x = 16
-	particle_holder.pixel_y = 0
 	particle_holder.particles.velocity = list(x_component * 0.5, y_component * 0.5)
 	particle_holder.particles.gravity = list(x_component, y_component)
 	particle_holder.particles.rotation = angle
 
 ///Cleans up when the channel finishes or is cancelled
 /datum/action/ability/activable/psy_blast_sectoid/proc/end_channel()
-	var/mob/living/carbon/carbon_owner = owner
 	QDEL_NULL(particle_holder)
+	//var/mob/living/carbon/carbon_owner = owner
 	//carbon_owner.update_glow()
