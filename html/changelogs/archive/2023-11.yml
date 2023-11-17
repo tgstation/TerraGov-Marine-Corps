@@ -259,3 +259,6 @@
   - imageadd: Ports deathsquad sprites from TG
   psykzz:
   - admin: add flags_area to bitfields for VV.
+2023-11-17:
+  Lumipharon:
+  - imageadd: drop pods are now emissive
