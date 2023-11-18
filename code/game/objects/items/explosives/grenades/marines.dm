@@ -83,6 +83,8 @@
 	var/atom/stuck_to
 	///Current image overlay applied to stuck_to, used to remove the overlay after detonation.
 	var/image/saved_overlay
+	///if this specific grenade should be allowed to self sticky
+	var/self_sticky = FALSE
 
 /obj/item/explosive/grenade/sticky/throw_impact(atom/hit_atom, speed)
 	. = ..()
@@ -97,6 +99,23 @@
 	forceMove(hit_atom)
 	saved_overlay = stuck_overlay
 	stuck_to = hit_atom
+	RegisterSignal(stuck_to, COMSIG_QDELETING, PROC_REF(clean_refs))
+
+/obj/item/explosive/grenade/sticky/afterattack(atom/target, mob/user, has_proximity, click_parameters)
+	. = ..()
+	if(target != user)
+		return
+	if(self_sticky == FALSE)
+		return
+	user.drop_held_item()
+	activate()
+	var/image/stuck_overlay = image(icon, user, initial(icon_state) + "_stuck")
+	stuck_overlay.pixel_x = rand(-5, 5)
+	stuck_overlay.pixel_y = rand(-7, 7)
+	user.add_overlay(stuck_overlay)
+	forceMove(user)
+	saved_overlay = stuck_overlay
+	stuck_to = user
 	RegisterSignal(stuck_to, COMSIG_QDELETING, PROC_REF(clean_refs))
 
 /obj/item/explosive/grenade/sticky/prime()
@@ -121,6 +140,7 @@
 	icon_state = "grenade_sticky_fire"
 	item_state = "grenade_sticky_fire"
 	det_time = 5 SECONDS
+	self_sticky = TRUE
 
 /obj/item/explosive/grenade/sticky/trailblazer/prime()
 	flame_radius(0.5, get_turf(src))
@@ -141,19 +161,11 @@
 	. = ..()
 	if(target != user)
 		return
-	user.drop_held_item()
-	activate()
-	var/image/stuck_overlay = image(icon, user, initial(icon_state) + "_stuck")
-	stuck_overlay.pixel_x = rand(-5, 5)
-	stuck_overlay.pixel_y = rand(-7, 7)
-	user.add_overlay(stuck_overlay)
-	forceMove(user)
-	saved_overlay = stuck_overlay
-	stuck_to = user
+	if(self_sticky == FALSE)
+		return
 	RegisterSignal(stuck_to, COMSIG_MOVABLE_MOVED, PROC_REF(make_fire))
 	var/turf/T = get_turf(src)
 	T.ignite(25, 25)
-	RegisterSignal(stuck_to, COMSIG_QDELETING, PROC_REF(clean_refs))
 
 ///causes fire tiles underneath target when stuck_to
 /obj/item/explosive/grenade/sticky/trailblazer/proc/make_fire(datum/source, old_loc, movement_dir, forced, old_locs)
@@ -173,6 +185,7 @@
 	item_state = "grenade_sticky_cloak"
 	det_time = 5 SECONDS
 	light_impact_range = 1
+	self_sticky = TRUE
 	/// smoke type created when the grenade is primed
 	var/datum/effect_system/smoke_spread/smoketype = /datum/effect_system/smoke_spread/tactical
 	///radius this smoke grenade will encompass
@@ -199,17 +212,9 @@
 	. = ..()
 	if(target != user)
 		return
-	user.drop_held_item()
-	activate()
-	var/image/stuck_overlay = image(icon, user, initial(icon_state) + "_stuck")
-	stuck_overlay.pixel_x = rand(-5, 5)
-	stuck_overlay.pixel_y = rand(-7, 7)
-	user.add_overlay(stuck_overlay)
-	forceMove(user)
-	saved_overlay = stuck_overlay
-	stuck_to = user
+	if(self_sticky == FALSE)
+		return
 	RegisterSignal(stuck_to, COMSIG_MOVABLE_MOVED, PROC_REF(make_smoke))
-	RegisterSignal(stuck_to, COMSIG_QDELETING, PROC_REF(clean_refs))
 
 ///causes fire tiles underneath target when stuck_to
 /obj/item/explosive/grenade/sticky/cloaker/proc/make_smoke(datum/source, old_loc, movement_dir, forced, old_locs)
