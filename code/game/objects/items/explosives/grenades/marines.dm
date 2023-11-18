@@ -99,21 +99,6 @@
 	stuck_to = hit_atom
 	RegisterSignal(stuck_to, COMSIG_QDELETING, PROC_REF(clean_refs))
 
-/obj/item/explosive/grenade/sticky/afterattack(atom/target, mob/user)
-	. = ..()
-	if(target != user)
-		return
-	user.drop_held_item()
-	activate()
-	var/image/stuck_overlay = image(icon, user, initial(icon_state) + "_stuck")
-	stuck_overlay.pixel_x = rand(-5, 5)
-	stuck_overlay.pixel_y = rand(-7, 7)
-	user.add_overlay(stuck_overlay)
-	forceMove(user)
-	saved_overlay = stuck_overlay
-	stuck_to = user
-	RegisterSignal(stuck_to, COMSIG_QDELETING, PROC_REF(clean_refs))
-
 /obj/item/explosive/grenade/sticky/prime()
 	if(stuck_to)
 		clean_refs()
@@ -156,9 +141,19 @@
 	. = ..()
 	if(target != user)
 		return
+	user.drop_held_item()
+	activate()
+	var/image/stuck_overlay = image(icon, user, initial(icon_state) + "_stuck")
+	stuck_overlay.pixel_x = rand(-5, 5)
+	stuck_overlay.pixel_y = rand(-7, 7)
+	user.add_overlay(stuck_overlay)
+	forceMove(user)
+	saved_overlay = stuck_overlay
+	stuck_to = user
 	RegisterSignal(stuck_to, COMSIG_MOVABLE_MOVED, PROC_REF(make_fire))
 	var/turf/T = get_turf(src)
 	T.ignite(25, 25)
+	RegisterSignal(stuck_to, COMSIG_QDELETING, PROC_REF(clean_refs))
 
 ///causes fire tiles underneath target when stuck_to
 /obj/item/explosive/grenade/sticky/trailblazer/proc/make_fire(datum/source, old_loc, movement_dir, forced, old_locs)
@@ -204,7 +199,17 @@
 	. = ..()
 	if(target != user)
 		return
+	user.drop_held_item()
+	activate()
+	var/image/stuck_overlay = image(icon, user, initial(icon_state) + "_stuck")
+	stuck_overlay.pixel_x = rand(-5, 5)
+	stuck_overlay.pixel_y = rand(-7, 7)
+	user.add_overlay(stuck_overlay)
+	forceMove(user)
+	saved_overlay = stuck_overlay
+	stuck_to = user
 	RegisterSignal(stuck_to, COMSIG_MOVABLE_MOVED, PROC_REF(make_smoke))
+	RegisterSignal(stuck_to, COMSIG_QDELETING, PROC_REF(clean_refs))
 
 ///causes fire tiles underneath target when stuck_to
 /obj/item/explosive/grenade/sticky/cloaker/proc/make_smoke(datum/source, old_loc, movement_dir, forced, old_locs)
