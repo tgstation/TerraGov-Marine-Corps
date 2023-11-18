@@ -1,5 +1,3 @@
-#define MINDMELD_RANGE 8
-
 /datum/action/ability/activable/sectoid/mindmeld
 	name = "Mindmeld"
 	action_icon_state = "healing_infusion"
@@ -10,14 +8,20 @@
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_ENHANCEMENT,
 	)
 	var/mob/living/carbon/melded_mob
-	/// Damage bonus given by this ability
-	var/accuracy_boost = 25
-	/// Speed bonus given by this ability
-	var/speed_addition = -0.4
-	///maxhp boost given by this ability
+	///Range the linkees must be to each other to benefit
+	var/max_range = 6
+	///Projectile accuracy buff
+	var/accuracy_mod = 25
+	///Max health buff
 	var/health_mod = 50
+	///Movement speed buff
+	var/speed_mod = -0.4
+	///% chance to ignore stuns
+	var/stun_resistance = 0
 
-	var/stun_resistance = FALSE
+/datum/action/ability/activable/sectoid/mindmeld/remove_action(mob/living/carbon/carbon_owner)
+	end_ability()
+	return ..()
 
 /datum/action/ability/activable/sectoid/mindmeld/can_use_action()
 	var/mob/living/carbon/carbon_owner = owner
@@ -44,11 +48,10 @@
 		if(!silent)
 			A.balloon_alert(owner, "already melded!")
 		return FALSE
-	if((A.z != owner.z) || !line_of_sight(owner, A, MINDMELD_RANGE))
+	if((A.z != owner.z) || !line_of_sight(owner, A, max_range))
 		if(!silent)
 			owner.balloon_alert(owner, "Out of sight!")
 		return FALSE
-
 	if(carbon_target.stat == DEAD)
 		if(!silent)
 			carbon_target.balloon_alert(owner, "already dead")
@@ -61,13 +64,17 @@
 	owner.balloon_alert_to_viewers("mindmelded")
 	playsound(melded_mob, 'sound/effects/off_guard_ability.ogg', 50)
 
-	melded_mob.apply_status_effect(STATUS_EFFECT_MINDMEND, carbon_owner, src, stun_resistance)
-	carbon_owner.apply_status_effect(STATUS_EFFECT_MINDMEND, melded_mob, src, stun_resistance)
+	melded_mob.apply_status_effect(STATUS_EFFECT_MINDMEND, carbon_owner, max_range, accuracy_mod, health_mod, speed_mod, stun_resistance)
+	carbon_owner.apply_status_effect(STATUS_EFFECT_MINDMEND, carbon_owner, max_range, accuracy_mod, health_mod, speed_mod, stun_resistance)
+	RegisterSignal(melded_mob, COMSIG_MOB_DEATH, PROC_REF(end_ability))
+	RegisterSignal(carbon_owner, COMSIG_MOB_DEATH, PROC_REF(end_ability))
 
+	succeed_activate()
 	add_cooldown()
 
 /// Ends the ability if the Enhancement buff is removed.
 /datum/action/ability/activable/sectoid/mindmeld/proc/end_ability()
+	SIGNAL_HANDLER
 	var/mob/living/carbon/carbon_owner = owner
 	add_cooldown()
 	carbon_owner.remove_status_effect(STATUS_EFFECT_MINDMEND)
@@ -79,10 +86,11 @@
 /datum/action/ability/activable/sectoid/mindmeld/greater
 	name = "Greater Mindmeld"
 	desc = "Merge minds with the target, greatly empowering both."
-	accuracy_boost = 40
-	speed_addition = -0.5
+	max_range = 12
+	accuracy_mod = 40
 	health_mod = 70
-	stun_resistance = TRUE
+	speed_mod = -0.5
+	stun_resistance = 50
 
 #define MINDFRAY_RANGE 8
 /datum/action/ability/activable/sectoid/mindfray

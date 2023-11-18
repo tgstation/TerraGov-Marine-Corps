@@ -1,26 +1,37 @@
 /datum/status_effect/mindmeld
 	id = "drone enhancement"
 	duration = -1
-	tick_interval = 0
+	tick_interval = 2 SECONDS
 	alert_type = null
-	/// Used to track who is giving this buff to the owner.
-	var/mob/living/carbon/linkee //can probs kill this unless I readd the range check
 	/// Used to track who is the owner of this buff.
 	var/mob/living/carbon/link_target
+	/// Used to track who is giving this buff to the owner.
+	var/mob/living/carbon/link_partner
 	/// Used for particles. Holds the particles instead of the mob. See particle_holder for documentation.
 	var/obj/effect/abstract/particle_holder/particle_holder
-	/// References the Enhancement action and its vars.
-	var/datum/action/ability/activable/sectoid/mindmeld/mindmeld_action
 	/// If the target xeno was within range.
 	var/was_within_range = TRUE
+	///Range the linkees must be to each other to benefit
+	var/max_range = 6
+	///Projectile accuracy buff
+	var/accuracy_mod = 0
+	///Max health buff
+	var/health_mod = 0
+	///Movement speed buff
+	var/speed_mod = 0
+	///% chance to ignore stuns
+	var/stun_resistance = 0
 
-/datum/status_effect/mindmeld/on_creation(mob/living/new_owner, mob/living/carbon/new_target, datum/action/ability/activable/sectoid/mindmeld/new_mindmeld_action, stun_protection = FALSE)
+/datum/status_effect/mindmeld/on_creation(mob/living/new_owner, mob/living/carbon/partner, new_max_range, new_accuracy_mod, new_health_mod, new_speed_mod,  new_stun_resistance)
 	link_target = new_owner
-	linkee = new_target
-	mindmeld_action = new_mindmeld_action
+	link_partner = partner
 	ADD_TRAIT(link_target, TRAIT_MINDMELDED, TRAIT_STATUS_EFFECT(id))
-	RegisterSignal(link_target, COMSIG_MOB_DEATH, PROC_REF(handle_death))
-	if(stun_protection)
+	max_range = new_max_range
+	accuracy_mod = new_accuracy_mod
+	health_mod = new_health_mod
+	speed_mod = new_speed_mod
+	if(new_stun_resistance)
+		stun_resistance = new_stun_resistance
 		RegisterSignals(link_target, list(
 			COMSIG_LIVING_STATUS_STUN,
 			COMSIG_LIVING_STATUS_KNOCKDOWN,
@@ -39,23 +50,23 @@
 	toggle_buff(FALSE)
 	return ..()
 
-///datum/status_effect/mindmeld/tick()
-//	var/within_range = get_dist(link_target, linkee) <= DRONE_ESSENCE_LINK_RANGE
-//	if(within_range != was_within_range)
-//		was_within_range = within_range
-//		toggle_buff(was_within_range)
+/datum/status_effect/mindmeld/tick()
+	var/within_range = get_dist(link_target, link_partner) <= max_range
+	if(within_range != was_within_range)
+		was_within_range = within_range
+		toggle_buff(was_within_range)
 
 /// Toggles the buff on or off.
 /datum/status_effect/mindmeld/proc/toggle_buff(toggle)
 	if(!toggle)
-		link_target.adjust_mob_accuracy(-mindmeld_action.accuracy_boost)
-		link_target.maxHealth -= mindmeld_action.health_mod
+		link_target.adjust_mob_accuracy(-accuracy_mod)
+		link_target.maxHealth -= health_mod
 		link_target.remove_movespeed_modifier(MOVESPEED_ID_ENHANCEMENT)
 		toggle_particles(FALSE)
 		return
-	link_target.adjust_mob_accuracy(mindmeld_action.accuracy_boost)
-	link_target.maxHealth += mindmeld_action.health_mod
-	link_target.add_movespeed_modifier(MOVESPEED_ID_ENHANCEMENT, TRUE, 0, NONE, FALSE, mindmeld_action.speed_addition) //todo replace the id with anew one
+	link_target.adjust_mob_accuracy(accuracy_mod)
+	link_target.maxHealth += health_mod
+	link_target.add_movespeed_modifier(MOVESPEED_ID_ENHANCEMENT, TRUE, 0, NONE, FALSE, speed_mod) //todo replace the id with anew one
 	toggle_particles(TRUE)
 
 /// Toggles particles on or off, adjusting their positioning to fit the buff's owner.
@@ -69,14 +80,9 @@
 	particle_holder.pixel_y = -3
 
 /// Removes the status effect on death.
-/datum/status_effect/mindmeld/proc/handle_death()
-	SIGNAL_HANDLER
-	mindmeld_action.end_ability()
-
-/// Removes the status effect on death.
-/datum/status_effect/mindmeld/proc/handle_stun()
+/datum/status_effect/mindmeld/proc/handle_stun(/mob/living/source, amount, ignore_canstun)
 	SIGNAL_HANDLER
 	if(amount >= 3)
 		return
-	if(prob(50))
+	if(prob(stun_resistance))
 		return COMPONENT_NO_STUN
