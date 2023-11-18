@@ -16,6 +16,7 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_BANELING_EXPLODE,
 	)
+	var/died_due_to_ability = FALSE
 
 /datum/action/xeno_action/baneling_explode/handle_button_status_visuals()
 	var/mob/living/carbon/xenomorph/baneling = owner
@@ -72,6 +73,9 @@
 	var/smoke_range = X.plasma_stored/60
 	/// Use up all plasma so that we dont smoke twice because we die.
 	X.use_plasma(X.plasma_stored)
+	// If the smoke was triggered via ability, flag that
+	if (ability)
+		died_due_to_ability = TRUE
 	/// If this proc is triggered by signal, we want to divide range by 4
 	if(!ability)
 		smoke_range = smoke_range*0.25

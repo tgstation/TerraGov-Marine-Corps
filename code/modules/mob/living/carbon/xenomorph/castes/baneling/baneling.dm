@@ -71,8 +71,13 @@
 	if(isnull(source))
 		return
 	var/mob/living/carbon/xenomorph/xeno_ref = source
+	var/datum/action/xeno_action/baneling_explode/explode_action = xeno_ref.actions_by_path[/datum/action/xeno_action/baneling_explode]
+	if (!explode_action.died_due_to_ability) // Did we die in a manner other than using our explode ability?
+		to_chat(xeno_ref.client, span_xenohighdanger("We have died without successfully detonating. We will not reform in our pod."))
+		return 0 // Don't cancel the death
 	cleanup_baneling(xeno_ref)
 	xeno_ref.forceMove(src)
+	explode_action.died_due_to_ability = FALSE // Reset the dying method flag
 	ADD_TRAIT(xeno_ref, TRAIT_STASIS, BANELING_STASIS_TRAIT)
 	if(xeno_ref.stored_charge >= BANELING_CHARGE_MAX)
 		addtimer(CALLBACK(src, PROC_REF(increase_charge), xeno_ref), BANELING_CHARGE_GAIN_TIME)
