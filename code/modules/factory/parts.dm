@@ -117,6 +117,15 @@ GLOBAL_LIST_INIT(sadar_ammo_recipe, list(
 	. = ..()
 	recipe = GLOB.sadar_ammo_recipe
 
+/obj/item/factory_part/sadar_unguided
+	name = "SADAR HE unguided missile assembly"
+	desc = "An unfinished squat missile with less electrical bits."
+	result = /obj/item/ammo_magazine/rocket/sadar/unguided
+
+/obj/item/factory_part/sadar_unguided/Initialize(mapload)
+	. = ..()
+	recipe = GLOB.sadar_ammo_recipe
+
 GLOBAL_LIST_INIT(recoilless_missile_recipe, list(
 	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_CUTTER, STEP_ICON_STATE = "uncutplate"),
 	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_HEATER, STEP_ICON_STATE = "cutplate"),
@@ -211,6 +220,15 @@ GLOBAL_LIST_INIT(IFF_ammo, list(
 	result = /obj/item/ammo_magazine/standard_smartmachinegun
 
 /obj/item/factory_part/smartgunner_machinegun_magazine/Initialize(mapload)
+	. = ..()
+	recipe = GLOB.IFF_ammo
+
+/obj/item/factory_part/smartgunner_targetrifle_magazine
+	name = "\improper IFF magazines box"
+	desc = "A box with unfinished smart-rounds inside and empty magazines inside."
+	result = /obj/item/ammo_magazine/rifle/standard_smarttargetrifle
+
+/obj/item/factory_part/smartgunner_targetrifle_magazine/Initialize(mapload)
 	. = ..()
 	recipe = GLOB.IFF_ammo
 

@@ -15,6 +15,7 @@ GLOBAL_DATUM_INIT(datacore, /datum/datacore, new)
 	var/list/security = list()
 
 
+// TODO: cleanup
 /datum/datacore/proc/get_manifest(monochrome, ooc)
 	var/list/eng = list()
 	var/list/med = list()
@@ -87,7 +88,7 @@ GLOBAL_DATUM_INIT(datacore, /datum/datacore, new)
 			even = !even
 	if(length(mar) > 0)
 		dat += "<tr><th colspan=3>Marine Personnel</th></tr>"
-		for(var/j in list("Alpha","Bravo","Charlie", "Delta"))
+		for(var/j in LAZYACCESS(SSjob.squads_by_name, FACTION_TERRAGOV))
 			if(length(squads[j]))
 				dat += "<tr><th colspan=3>[j]</th></tr>"
 			for(var/name in mar)

@@ -18,7 +18,7 @@ GLOBAL_VAR(common_report) //Contains common part of roundend report
 
 	var/round_time_fog
 	var/flags_round_type = NONE
-	var/flags_mob_abilities = NONE
+	var/flags_xeno_abilities = NONE
 
 	///Determines whether rounds with the gamemode will be factored in when it comes to persistency
 	var/allow_persistence_save = TRUE
