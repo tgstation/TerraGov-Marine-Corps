@@ -86,12 +86,7 @@
 	///if this specific grenade should be allowed to self sticky
 	var/self_sticky = FALSE
 
-/obj/item/explosive/grenade/sticky/throw_impact(atom/hit_atom, speed)
-	. = ..()
-	if(!.)
-		return
-	if(!active || stuck_to || isturf(hit_atom))
-		return
+/obj/item/explosive/grenade/sticky/proc/stuck_to(atom/hit_atom)
 	var/image/stuck_overlay = image(icon, hit_atom, initial(icon_state) + "_stuck")
 	stuck_overlay.pixel_x = rand(-5, 5)
 	stuck_overlay.pixel_y = rand(-7, 7)
@@ -101,22 +96,24 @@
 	stuck_to = hit_atom
 	RegisterSignal(stuck_to, COMSIG_QDELETING, PROC_REF(clean_refs))
 
+/obj/item/explosive/grenade/sticky/throw_impact(atom/hit_atom, speed)
+	. = ..()
+	if(!.)
+		return
+	if(!active || stuck_to || isturf(hit_atom))
+		return
+	stuck_to(hit_atom)
+
 /obj/item/explosive/grenade/sticky/afterattack(atom/target, mob/user, has_proximity, click_parameters)
 	. = ..()
 	if(target != user)
 		return
-	if(self_sticky == FALSE)
-		return
+	if(!self_sticky)
+		return FALSE
 	user.drop_held_item()
 	activate()
-	var/image/stuck_overlay = image(icon, user, initial(icon_state) + "_stuck")
-	stuck_overlay.pixel_x = rand(-5, 5)
-	stuck_overlay.pixel_y = rand(-7, 7)
-	user.add_overlay(stuck_overlay)
-	forceMove(user)
-	saved_overlay = stuck_overlay
-	stuck_to = user
-	RegisterSignal(stuck_to, COMSIG_QDELETING, PROC_REF(clean_refs))
+	var/hit_atom = target
+	stuck_to(hit_atom)
 
 /obj/item/explosive/grenade/sticky/prime()
 	if(stuck_to)
@@ -159,9 +156,7 @@
 
 /obj/item/explosive/grenade/sticky/trailblazer/afterattack(atom/target, mob/user)
 	. = ..()
-	if(target != user)
-		return
-	if(self_sticky == FALSE)
+	if(!.)
 		return
 	RegisterSignal(stuck_to, COMSIG_MOVABLE_MOVED, PROC_REF(make_fire))
 	var/turf/T = get_turf(src)
@@ -210,9 +205,7 @@
 
 /obj/item/explosive/grenade/sticky/cloaker/afterattack(atom/target, mob/user)
 	. = ..()
-	if(target != user)
-		return
-	if(self_sticky == FALSE)
+	if(!.)
 		return
 	RegisterSignal(stuck_to, COMSIG_MOVABLE_MOVED, PROC_REF(make_smoke))
 
