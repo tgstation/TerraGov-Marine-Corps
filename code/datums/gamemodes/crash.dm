@@ -95,6 +95,7 @@
 		computer_to_disable.update_icon()
 
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_CRASH)
+	RegisterSignal(SSdcs, COMSIG_GLOBAL_XENO_DEATH, PROC_REF(regain_larva))
 	RegisterSignal(SSdcs, COMSIG_GLOB_NUKE_EXPLODED, PROC_REF(on_nuclear_explosion))
 	RegisterSignal(SSdcs, COMSIG_GLOB_NUKE_DIFFUSED, PROC_REF(on_nuclear_diffuse))
 	RegisterSignal(SSdcs, COMSIG_GLOB_NUKE_START, PROC_REF(on_nuke_started))
@@ -208,3 +209,10 @@
 			continue
 		. += H.job.jobworth[/datum/job/xenomorph]
 
+///Refunds 1 larva whenever any xeno dies
+/datum/game_mode/infestation/crash/proc/regain_larva()
+	SIGNAL_HANDLER
+	var/datum/hive_status/normal/xeno_hive = GLOB.hive_datums[XENO_HIVE_NORMAL]
+	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
+	xeno_job.add_job_positions(1)
+	xeno_hive.update_tier_limits()

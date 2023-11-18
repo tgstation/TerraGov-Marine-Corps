@@ -689,6 +689,7 @@
 	dead_xenos += X
 
 	SEND_SIGNAL(X, COMSIG_HIVE_XENO_DEATH)
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOBAL_XENO_DEATH, X)
 
 	if(X == living_xeno_ruler)
 		on_ruler_death(X)

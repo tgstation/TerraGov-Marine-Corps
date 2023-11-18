@@ -23,6 +23,7 @@
 #define COMSIG_GLOB_NUKE_EXPLODED "!nuke_exploded"
 #define COMSIG_GLOB_NUKE_DIFFUSED "!nuke_diffused"
 #define COMSIG_GLOB_DISK_GENERATED "!disk_produced"
+#define COMSIG_GLOBAL_XENO_DEATH "!xeno_death"
 
 #define COMSIG_GLOB_SHIP_SELF_DESTRUCT_ACTIVATED "!ship_self_destruct_activated"
 
