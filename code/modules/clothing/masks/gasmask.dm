@@ -117,6 +117,57 @@
 	flags_inventory = COVERMOUTH|BLOCKGASEFFECT
 	soft_armor = list(MELEE = 25, BULLET = 35, LASER = 25, ENERGY = 25, BOMB = 95, BIO = 85, FIRE = 25, ACID = 25) //if he ever shaved you could use santa's facial hair as a bombvest
 
+/obj/item/clothing/mask/gas/swat/santa/proc/handle_speech(datum/source, list/speech_args)
+	var/message = speech_args[SPEECH_MESSAGE]
+	if(message[1] != "*")
+		message = replacetext(message, "marines", "little boys")
+		message = replacetext(message, "marine", "little boy")
+		message = replacetext(message, "bad", "naughty")
+		message = replacetext(message, "friend", "jingle buddy")
+		message = replacetext(message, "friends", "jingle buddies")
+		message = replacetext(message, "evil", "naughty")
+		message = replacetext(message, "awful", "naughty")
+		message = replacetext(message, "shuttle", "sleigh")
+		message = replacetext(message, "friend", "pal")
+		message = replacetext(message, "slave", "elf")
+		message = replacetext(message, "new", "freshly wrapped")
+		message = replacetext(message, "slaves", "elves")
+		message = replacetext(message, "bullet", "coal")
+		message = replacetext(message, "fuck", "fudge")
+		message = replacetext(message, "shit", "poo")
+		message = replacetext(message, "ass", "caboose")
+		message = replacetext(message, "bitch", "cow")
+		message = replacetext(message, "winter", "Christmas")
+		message = replacetext(message, "present", "gift")
+		message = replacetext(message, "star", "guiding light")
+		message = replacetext(message, "pill", "candy")
+		message = replacetext(message, "alcohol", "hot cocoa")
+		message = replacetext(message, "beer", "hot cocoa")
+		message = replacetext(message, "tequila", "hot cocoa")
+		message = replacetext(message, "vodka", "hot cocoa")
+		message = replacetext(message, "rum", "hot cocoa")
+		message = replacetext(message, "wine", "eggnog")
+		message = replacetext(message, "whiskey", "eggnog")
+		message = replacetext(message, "liquor", "eggnog")
+		message = replacetext(message, "gin", "eggnog")
+		message = replacetext(message, "sing", "carol")
+		message = replacetext(message, "funny", "jolly")
+		message = replacetext(message, "happy", "merry")
+		message = replacetext(message, "acid", "naughty juice")
+		message = replacetext(message, "xmas", "Christmas")
+		message = replacetext(message, "tiny", "christmas-light-sized")
+		message = replacetext(message, "small", "elf-sized")
+		message = replacetext(message, "big", "santa-sized")
+		message = replacetext(message, "huge", "north-pole-sized")
+		message = replacetext(message, "wife", "Mrs. Claus")
+		if(prob(30))
+			message += " Ho ho ho!"
+	speech_args[SPEECH_MESSAGE] = message
+
+/obj/item/clothing/mask/gas/swat/santa/equipped(mob/M, slot)
+	. = ..()
+	RegisterSignal(M, COMSIG_MOB_SAY, PROC_REF(handle_speech))
+
 /obj/item/clothing/mask/gas/swat/santa/eventspawn
 	anti_hug = 1
 
