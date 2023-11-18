@@ -131,8 +131,8 @@
 /obj/machinery/camera/wirecutter_act(mob/living/user, obj/item/I)
 	if(!CHECK_BITFIELD(machine_stat, PANEL_OPEN))
 		return FALSE
-	toggle_cam(user, TRUE)
 	repair_damage(max_integrity, user)
+	toggle_cam(user, TRUE)
 	I.play_tool_sound(src)
 	update_icon()
 	return TRUE
@@ -230,13 +230,14 @@
 		if(isturf(loc))
 			myarea = get_area(src)
 			LAZYADD(myarea.cameras, src)
+			set_light(initial(light_range), initial(light_power))
 		else
 			myarea = null
 	else
-		set_light(0)
 		parent_cameranet.removeCamera(src)
 		if(isarea(myarea))
 			LAZYREMOVE(myarea.cameras, src)
+		deactivate()
 	parent_cameranet.updateChunk(x, y, z)
 
 	var/change_msg = "deactivates"
@@ -313,11 +314,6 @@
 	light_range = 1
 	light_power = 0.2
 	var/number = 0 //camera number in area
-
-/obj/machinery/camera/autoname/wirecutter_act(mob/living/user, obj/item/I)
-	. = ..()
-	if(.)
-		set_light(0)
 
 /obj/machinery/camera/autoname/update_overlays()
 	. = ..()
