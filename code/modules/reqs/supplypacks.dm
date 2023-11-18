@@ -329,13 +329,13 @@ WEAPONS
 
 /datum/supply_packs/weapons/heayvlaser_emplacement
 	name = "Mounted Heavy Laser"
-	contains = list(/obj/item/weapon/gun/heavy_laser/deployable)
+	contains = list(/obj/item/weapon/gun/energy/lasgun/lasrifle/heavy_laser/deployable)
 	cost = 800
 
 
 /datum/supply_packs/weapons/heayvlaser_ammo
 	name = "Mounted Heavy Laser Ammo (x1)"
-	contains = list(/obj/item/ammo_magazine/heavy_laser)
+	contains = list(/obj/item/cell/lasgun/heavy_laser)
 	cost = 15
 
 /datum/supply_packs/weapons/tesla
@@ -1974,7 +1974,7 @@ VEHICLES
 
 /datum/supply_packs/vehicles/hl_ammo
 	name = "Mounted Heavy Laser ammo (x3)"
-	contains = list(/obj/item/ammo_magazine/heavy_laser, /obj/item/ammo_magazine/heavy_laser, /obj/item/ammo_magazine/heavy_laser)
+	contains = list(/obj/item/cell/lasgun/heavy_laser, /obj/item/cell/lasgun/heavy_laser, /obj/item/cell/lasgun/heavy_laser)
 	cost = 50
 	containertype = /obj/structure/closet/crate/ammo
 
