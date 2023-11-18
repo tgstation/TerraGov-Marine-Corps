@@ -8575,10 +8575,11 @@
 /obj/structure/ob_ammo/ob_fuel,
 /obj/structure/ob_ammo/ob_fuel,
 /obj/structure/ob_ammo/ob_fuel,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/structure/ob_ammo/ob_fuel,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 9
 	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/mainship/red{
 	dir = 4
 	},
