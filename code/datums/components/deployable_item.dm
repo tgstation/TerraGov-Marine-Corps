@@ -62,7 +62,7 @@
 	var/obj/deployed_machine
 
 	if(user)
-		if(!ishuman(user) || CHECK_BITFIELD(item_to_deploy.flags_item, NODROP))
+		if(!ishuman(user) || HAS_TRAIT(item_to_deploy, TRAIT_NODROP))
 			return
 
 		if(LinkBlocked(get_turf(user), location))
