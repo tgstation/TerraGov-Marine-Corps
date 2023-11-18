@@ -334,3 +334,63 @@
 	carbon_target.move_resist = initial(carbon_target.move_resist)
 	carbon_target.remove_atom_colour(TEMPORARY_COLOUR_PRIORITY, COLOR_GRAY)
 	carbon_target.overlays -= stone_overlay
+
+// ***************************************
+// *********** Reknit form
+// ***************************************
+
+#define SECTOID_REKNIT_RANGE 4
+/datum/action/ability/activable/sectoid/reknit_form
+	name = "Reknit Form"
+	action_icon_state = "off_guard"
+	desc = "Flesh and bone runs like water at our will, healing horrendous damage with the power of our mind."
+	cooldown_duration = 35 SECONDS
+	target_flags = XABB_MOB_TARGET
+	use_state_flags = XACT_TARGET_SELF
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_OFFGUARD,
+	)
+	///damage of this ability
+	var/reknit_duration = 3 SECONDS
+	/// Used for particles. Holds the particles instead of the mob. See particle_holder for documentation.
+	var/obj/effect/abstract/particle_holder/particle_holder
+
+/datum/action/ability/activable/sectoid/reknit_form/can_use_ability(atom/A, silent = FALSE, override_flags)
+	. = ..()
+	if(!.)
+		return
+	if(!isliving(A))
+		if(!silent)
+			A.balloon_alert(owner, "not living")
+		return FALSE
+	if((A.z != owner.z) || get_dist(owner, A) > SECTOID_REKNIT_RANGE)
+		if(!silent)
+			A.balloon_alert(owner, "too far")
+		return FALSE
+	if(!line_of_sight(owner, A, SECTOID_REKNIT_RANGE))
+		if(!silent)
+			owner.balloon_alert(owner, "Out of sight!")
+		return FALSE
+
+/datum/action/ability/activable/sectoid/reknit_form/use_ability(atom/target)
+	particle_holder = new(owner, /particles/drone_enhancement)
+	particle_holder.pixel_x = 0
+	particle_holder.pixel_y = -3
+	particle_holder.particles.velocity = list(0, 1.5)
+	particle_holder.particles.gravity = list(0, 2)
+
+	if(!do_after(owner, 0.5 SECONDS, FALSE, target, BUSY_ICON_DANGER, ignore_turf_checks = TRUE) || !can_use_ability(target))
+		owner.balloon_alert(owner, "Our focus is disrupted")
+		QDEL_NULL(particle_holder)
+		return fail_activate()
+
+	var/mob/living/living_target = target
+	living_target.apply_status_effect(STATUS_EFFECT_REKNIT_FORM, reknit_duration)
+	playsound(owner, 'sound/effects/petrify_activate.ogg', 50)
+	add_cooldown()
+	update_button_icon()
+	succeed_activate()
+
+/datum/action/ability/activable/sectoid/reknit_form/greater
+	name = "Greater Reknit Form"
+	reknit_duration = 6 SECONDS

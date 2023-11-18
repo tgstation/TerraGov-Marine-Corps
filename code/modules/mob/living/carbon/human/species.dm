@@ -739,6 +739,9 @@
 		/datum/action/ability/activable/sectoid/psyblast,
 		/datum/action/ability/activable/sectoid/mindmeld,
 		/datum/action/ability/activable/sectoid/stasis,
+		/datum/action/ability/activable/sectoid/mindmeld/greater,
+		/datum/action/ability/activable/sectoid/reknit_form,
+		/datum/action/ability/activable/sectoid/reknit_form/greater,
 	)
 
 /datum/species/sectoid/on_species_gain(mob/living/carbon/human/H, datum/species/old_species)

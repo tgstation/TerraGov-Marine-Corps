@@ -1,5 +1,5 @@
 /datum/status_effect/mindmeld
-	id = "drone enhancement"
+	id = "mindmeld"
 	duration = -1
 	tick_interval = 2 SECONDS
 	alert_type = null
@@ -45,7 +45,7 @@
 	return ..()
 
 /datum/status_effect/mindmeld/on_remove()
-	link_target.balloon_alert(link_target, "Enhancement inactive")
+	link_target.balloon_alert(link_target, "mindmeld inactive")
 	UnregisterSignal(link_target, COMSIG_MOB_DEATH)
 	toggle_buff(FALSE)
 	return ..()
@@ -61,12 +61,12 @@
 	if(!toggle)
 		link_target.adjust_mob_accuracy(-accuracy_mod)
 		link_target.maxHealth -= health_mod
-		link_target.remove_movespeed_modifier(MOVESPEED_ID_ENHANCEMENT)
+		link_target.remove_movespeed_modifier(MOVESPEED_ID_MINDMELD)
 		toggle_particles(FALSE)
 		return
 	link_target.adjust_mob_accuracy(accuracy_mod)
 	link_target.maxHealth += health_mod
-	link_target.add_movespeed_modifier(MOVESPEED_ID_ENHANCEMENT, TRUE, 0, NONE, FALSE, speed_mod) //todo replace the id with anew one
+	link_target.add_movespeed_modifier(MOVESPEED_ID_MINDMELD, TRUE, 0, NONE, FALSE, speed_mod) //todo replace the id with anew one
 	toggle_particles(TRUE)
 
 /// Toggles particles on or off, adjusting their positioning to fit the buff's owner.
@@ -80,9 +80,44 @@
 	particle_holder.pixel_y = -3
 
 /// Removes the status effect on death.
-/datum/status_effect/mindmeld/proc/handle_stun(/mob/living/source, amount, ignore_canstun)
+/datum/status_effect/mindmeld/proc/handle_stun(datum/source, amount, ignore_canstun)
 	SIGNAL_HANDLER
 	if(amount >= 3)
 		return
 	if(prob(stun_resistance))
 		return COMPONENT_NO_STUN
+
+// ***************************************
+// *********** Reknit form
+// ***************************************
+/datum/status_effect/reknit_form
+	id = "reknit_form"
+	tick_interval = 0.5 SECONDS
+	alert_type = /atom/movable/screen/alert/status_effect/xeno_rejuvenate
+
+/datum/status_effect/reknit_form/on_creation(mob/living/new_owner, set_duration)
+	owner = new_owner
+	duration = set_duration
+	owner.add_filter("[id]m", 0, outline_filter(2, "#455d5762"))
+	return ..()
+
+/datum/status_effect/reknit_form/on_remove()
+	. = ..()
+	owner.remove_filter("[id]m")
+
+/datum/status_effect/reknit_form/tick()
+	if(ishuman(owner))
+		var/mob/living/carbon/human/human_owner = owner
+		human_owner.reagent_shock_modifier -= PAIN_REDUCTION_VERY_HEAVY //oof ow ouch
+		for(var/datum/limb/limb_to_fix AS in human_owner.limbs)
+			if(limb_to_fix.limb_status & (LIMB_BROKEN | LIMB_SPLINTED | LIMB_STABILIZED))
+				if((prob(50) || limb_to_fix.brute_dam > limb_to_fix.min_broken_damage))
+					continue
+				limb_to_fix.remove_limb_flags(LIMB_BROKEN | LIMB_SPLINTED | LIMB_STABILIZED)
+				limb_to_fix.add_limb_flags(LIMB_REPAIRED)
+				break
+
+	owner.adjustCloneLoss(-3)
+	owner.adjustOxyLoss(-6)
+	owner.heal_overall_damage(6, 6)
+	owner.adjustToxLoss(-3)
