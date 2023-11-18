@@ -742,6 +742,7 @@
 		/datum/action/ability/activable/sectoid/mindmeld/greater,
 		/datum/action/ability/activable/sectoid/reknit_form,
 		/datum/action/ability/activable/sectoid/reknit_form/greater,
+		/datum/action/ability/activable/sectoid/fuse,
 	)
 
 /datum/species/sectoid/on_species_gain(mob/living/carbon/human/H, datum/species/old_species)

@@ -320,14 +320,13 @@
 
 	carbon_target.overlays += stone_overlay
 	addtimer(CALLBACK(src, PROC_REF(end_effects), carbon_target, stone_overlay), stasis_duration)
+	QDEL_NULL(particle_holder)
 	add_cooldown()
 	update_button_icon()
 	succeed_activate()
 
 ///ends all combat-relazted effects
 /datum/action/ability/activable/sectoid/stasis/proc/end_effects(mob/living/carbon/carbon_target, image/stone_overlay)
-	QDEL_NULL(particle_holder)
-
 	carbon_target.notransform = FALSE
 	carbon_target.status_flags &= ~GODMODE
 	REMOVE_TRAIT(carbon_target, TRAIT_HANDS_BLOCKED, REF(src))
@@ -386,6 +385,7 @@
 
 	var/mob/living/living_target = target
 	living_target.apply_status_effect(STATUS_EFFECT_REKNIT_FORM, reknit_duration)
+	QDEL_NULL(particle_holder)
 	playsound(owner, 'sound/effects/petrify_activate.ogg', 50)
 	add_cooldown()
 	update_button_icon()
@@ -394,3 +394,65 @@
 /datum/action/ability/activable/sectoid/reknit_form/greater
 	name = "Greater Reknit Form"
 	reknit_duration = 6 SECONDS
+
+// ***************************************
+// *********** Fuse
+// ***************************************
+
+#define SECTOID_FUSE_RANGE 6
+/datum/action/ability/activable/sectoid/fuse
+	name = "Fuse"
+	action_icon_state = "off_guard"
+	desc = "We reach out with our mind to trigger an explosive device."
+	cooldown_duration = 45 SECONDS
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_OFFGUARD,
+	)
+	/// Used for particles. Holds the particles instead of the mob. See particle_holder for documentation.
+	var/obj/effect/abstract/particle_holder/particle_holder
+
+/datum/action/ability/activable/sectoid/fuse/can_use_ability(atom/A, silent = FALSE, override_flags)
+	. = ..()
+	if(!.)
+		return
+	if((A.z != owner.z) || get_dist(owner, A) > SECTOID_FUSE_RANGE)
+		if(!silent)
+			A.balloon_alert(owner, "too far")
+		return FALSE
+	if(!line_of_sight(owner, A, SECTOID_FUSE_RANGE))
+		if(!silent)
+			owner.balloon_alert(owner, "Out of sight!")
+		return FALSE
+
+/datum/action/ability/activable/sectoid/fuse/use_ability(atom/target)
+	particle_holder = new(owner, /particles/drone_enhancement)
+	particle_holder.pixel_x = 0
+	particle_holder.pixel_y = -3
+	particle_holder.particles.velocity = list(0, 1.5)
+	particle_holder.particles.gravity = list(0, 2)
+
+	if(!do_after(owner, 0.5 SECONDS, FALSE, target, BUSY_ICON_DANGER, ignore_turf_checks = TRUE) || !can_use_ability(target))
+		owner.balloon_alert(owner, "Our focus is disrupted")
+		QDEL_NULL(particle_holder)
+		return fail_activate()
+
+	var/obj/item/explosive/grenade/grenade_target
+	if(isgrenade(target))
+		grenade_target = target
+	else
+		grenade_target = locate(/obj/item/explosive) in target
+		if(!grenade_target)
+			for(var/obj/item/storage/target_storage in target)
+				grenade_target = locate(/obj/item/explosive) in target_storage
+				if(grenade_target)
+					break
+			if(!grenade_target)
+				target.balloon_alert(owner, "no grenade found")
+				return fail_activate()
+
+	grenade_target.activate(owner)
+	QDEL_NULL(particle_holder)
+	playsound(owner, 'sound/effects/petrify_activate.ogg', 50)
+	add_cooldown()
+	update_button_icon()
+	succeed_activate()

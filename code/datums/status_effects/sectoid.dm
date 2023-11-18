@@ -118,6 +118,6 @@
 				break
 
 	owner.adjustCloneLoss(-3)
-	owner.adjustOxyLoss(-6)
-	owner.heal_overall_damage(6, 6)
+	owner.adjustOxyLoss(-5)
+	owner.heal_overall_damage(5, 5)
 	owner.adjustToxLoss(-3)
