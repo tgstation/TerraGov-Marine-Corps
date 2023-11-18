@@ -48,18 +48,26 @@
 
 /datum/action/xeno_action/baneling_explode/can_use_action()
 	. = ..()
-	var/mob/living/carbon/xenomorph/X = owner
-	var/datum/action/xeno_action/spawn_pod/pod_action = X.actions_by_path[/datum/action/xeno_action/spawn_pod]
-	if(SSmonitor.gamestate == SHUTTERS_CLOSED && isnull(pod_action.the_pod))
-		X.balloon_alert(owner, span_notice("Can't explode before shutters without a pod!"))
+	if(!can_currently_explode())
 		return FALSE
 
 /datum/action/xeno_action/baneling_explode/action_activate()
 	. = ..()
 	var/mob/living/carbon/xenomorph/X = owner
+	if(!can_currently_explode())
+		X.balloon_alert(owner, span_notice("Can't explode before shutters without a pod!"))
+		return FALSE
 	handle_smoke(ability = TRUE)
 	X.record_tactical_unalive()
 	X.death(FALSE)
+
+/datum/action/xeno_action/baneling_explode/proc/can_currently_explode()
+	. = TRUE
+	if (SSmonitor.gamestate == SHUTTERS_CLOSED) // Split for faster exit
+		var/mob/living/carbon/xenomorph/X = owner
+		var/datum/action/xeno_action/spawn_pod/pod_action = X.actions_by_path[/datum/action/xeno_action/spawn_pod]
+		if (isnull(pod_action.the_pod))
+			return FALSE
 
 /// This proc defines, and sets up and then lastly starts the smoke, if ability is false we divide range by 4.
 /datum/action/xeno_action/baneling_explode/proc/handle_smoke(datum/source, ability = FALSE)
