@@ -28,7 +28,7 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 		var/datum/hive_upgrade/upgrade = new type
 		if(upgrade.name == "Error upgrade") //defaultname just skip it its probably organisation
 			continue
-		if(!(SSticker.mode.flags_mob_abilities & upgrade.flags_gamemode))
+		if(!(SSticker.mode.flags_xeno_abilities & upgrade.flags_gamemode))
 			continue
 		buyable_upgrades += upgrade
 		upgrades_by_name[upgrade.name] = upgrade
