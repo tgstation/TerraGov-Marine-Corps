@@ -13935,7 +13935,6 @@
 /obj/structure/rack,
 /obj/structure/ob_ammo/warhead/explosive,
 /obj/structure/ob_ammo/warhead/explosive,
-/obj/structure/ob_ammo/warhead/explosive,
 /turf/open/floor/mainship/red{
 	dir = 4
 	},
@@ -14022,7 +14021,6 @@
 /area/mainship/hallways/starboard_hallway)
 "mRZ" = (
 /obj/structure/rack,
-/obj/structure/ob_ammo/warhead/incendiary,
 /obj/structure/ob_ammo/warhead/incendiary,
 /obj/structure/ob_ammo/warhead/incendiary,
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -15254,7 +15252,6 @@
 /obj/machinery/light/mainship{
 	dir = 4
 	},
-/obj/structure/ob_ammo/warhead/cluster,
 /obj/structure/ob_ammo/warhead/cluster,
 /turf/open/floor/mainship/red{
 	dir = 4
@@ -18857,7 +18854,6 @@
 /area/mainship/hallways/bow_hallway)
 "uSG" = (
 /obj/structure/rack,
-/obj/structure/ob_ammo/warhead/plasmaloss,
 /obj/structure/ob_ammo/warhead/plasmaloss,
 /obj/structure/ob_ammo/warhead/plasmaloss,
 /turf/open/floor/mainship/red{
