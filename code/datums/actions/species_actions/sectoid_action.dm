@@ -129,7 +129,7 @@
 
 /datum/action/ability/activable/sectoid/mindfray/use_ability(atom/target)
 	var/mob/living/carbon/carbon_target = target
-	carbon_target.apply_status_effect(STATUS_EFFECT_GUN_SKILL_SCATTER_DEBUFF, 100)
+	carbon_target.apply_status_effect(STATUS_EFFECT_GUN_SKILL_SCATTER_DEBUFF, 10 SECPMDS)
 	carbon_target.apply_status_effect(STATUS_EFFECT_CONFUSED, 40)
 	carbon_target.apply_damage(damage, BURN, updating_health = TRUE)
 	carbon_target.log_message("has been mindfrayed by [owner]", LOG_ATTACK, color="pink")
@@ -137,6 +137,8 @@
 	playsound(carbon_target, 'sound/effects/off_guard_ability.ogg', 50)
 
 	add_cooldown()
+	succeed_activate()
+	update_button_icon()
 
 ///knockoff psyblast
 /datum/action/ability/activable/sectoid/psyblast
@@ -209,8 +211,6 @@
 		REMOVE_TRAIT(carbon_owner, TRAIT_IMMOBILE, PSYCHIC_BLAST_ABILITY_TRAIT)
 		return fail_activate()
 
-	succeed_activate()
-
 	var/obj/projectile/hitscan/projectile = new /obj/projectile/hitscan(carbon_owner.loc)
 	projectile.effect_icon = initial(selected_ammo.hitscan_effect_icon)
 	projectile.generate_bullet(selected_ammo)
@@ -218,6 +218,7 @@
 	playsound(carbon_owner, 'sound/weapons/guns/fire/volkite_4.ogg', 40)
 
 	add_cooldown()
+	succeed_activate()
 	update_button_icon()
 	REMOVE_TRAIT(carbon_owner, TRAIT_IMMOBILE, PSYCHIC_BLAST_ABILITY_TRAIT)
 	addtimer(CALLBACK(src, PROC_REF(end_channel)), 5)
@@ -260,7 +261,7 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_OFFGUARD,
 	)
-	///damage of this ability
+	///Duration of effect
 	var/stasis_duration = 5 SECONDS
 	/// Used for particles. Holds the particles instead of the mob. See particle_holder for documentation.
 	var/obj/effect/abstract/particle_holder/particle_holder
@@ -343,7 +344,7 @@
 	name = "Reknit Form"
 	action_icon_state = "off_guard"
 	desc = "Flesh and bone runs like water at our will, healing horrendous damage with the power of our mind."
-	cooldown_duration = 35 SECONDS
+	cooldown_duration = 60 SECONDS
 	target_flags = XABB_MOB_TARGET
 	use_state_flags = XACT_TARGET_SELF
 	keybinding_signals = list(
