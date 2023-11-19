@@ -133,20 +133,10 @@
 
 /datum/game_mode/infestation/crash/proc/on_shuttle_takeoff(shuttleID, shuttle)
 	// Signal picks up the movement of any shuttle, so make sure it's the canterbury
-	if(shuttle_id != SHUTTLE_CANTERBURY)
+	if(shuttleID != shuttle_id)
 		return
-	log_admin("[key_name(usr)] is launching the canterbury[!length(GLOB.active_nuke_list)? " early" : ""].")
-	message_admins("[ADMIN_TPMONTY(usr)] is launching the canterbury[!length(GLOB.active_nuke_list)? " early" : ""].")
 
 	var/obj/docking_port/mobile/M = SSshuttle.getShuttle(shuttleID)
-
-	if(!M.can_move_topic(usr))
-		return TRUE
-
-	M.destination = null
-	M.mode = SHUTTLE_IGNITING
-	M.setTimer(M.ignitionTime)
-
 	addtimer(VARSET_CALLBACK(src, marines_evac, CRASH_EVAC_INPROGRESS), M.ignitionTime + 10 SECONDS)
 	addtimer(VARSET_CALLBACK(src, marines_evac, CRASH_EVAC_COMPLETED), 2 MINUTES)
 

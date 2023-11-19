@@ -1474,6 +1474,20 @@
 	confirm_message = ""
 	SStgui.update_uis(src)
 
+/obj/machinery/computer/shuttle/shuttle_control/canterbury/proc/launch_shuttle(obj/docking_port/mobile/port, destination, mob/user)
+	log_admin("[key_name(usr)] is launching the canterbury[!length(GLOB.active_nuke_list)? " early" : ""].")
+	message_admins("[ADMIN_TPMONTY(usr)] is launching the canterbury[!length(GLOB.active_nuke_list)? " early" : ""].")
+	
+	var/obj/docking_port/mobile/M = SSshuttle.getShuttle(shuttleID)
+	M.destination = null
+	M.mode = SHUTTLE_IGNITING
+	M.setTimer(M.ignitionTime)
+	SStgui.update_uis(src)
+
+	var/datum/game_mode/infestation/crash/crash_mode = SSticker.mode
+	addtimer(VARSET_CALLBACK(crash_mode, marines_evac, CRASH_EVAC_INPROGRESS), M.ignitionTime + 10 SECONDS)
+	addtimer(VARSET_CALLBACK(crash_mode, marines_evac, CRASH_EVAC_COMPLETED), 2 MINUTES)
+
 /obj/machinery/computer/shuttle/shuttle_control/canterbury/ui_interact(mob/user, datum/tgui/ui)
 	if(!allowed(user))
 		balloon_alert(user, "Access Denied!")
