@@ -86,17 +86,6 @@
 	///if this specific grenade should be allowed to self sticky
 	var/self_sticky = FALSE
 
-///handles sticky overlay and attaching the grenade itself to the target
-/obj/item/explosive/grenade/sticky/proc/stuck_to(atom/hit_atom)
-	var/image/stuck_overlay = image(icon, hit_atom, initial(icon_state) + "_stuck")
-	stuck_overlay.pixel_x = rand(-5, 5)
-	stuck_overlay.pixel_y = rand(-7, 7)
-	hit_atom.add_overlay(stuck_overlay)
-	forceMove(hit_atom)
-	saved_overlay = stuck_overlay
-	stuck_to = hit_atom
-	RegisterSignal(stuck_to, COMSIG_QDELETING, PROC_REF(clean_refs))
-
 /obj/item/explosive/grenade/sticky/throw_impact(atom/hit_atom, speed)
 	. = ..()
 	if(!.)
@@ -130,6 +119,17 @@
 	UnregisterSignal(stuck_to, COMSIG_QDELETING)
 	stuck_to = null
 	saved_overlay = null
+
+///handles sticky overlay and attaching the grenade itself to the target
+/obj/item/explosive/grenade/sticky/proc/stuck_to(atom/hit_atom)
+	var/image/stuck_overlay = image(icon, hit_atom, initial(icon_state) + "_stuck")
+	stuck_overlay.pixel_x = rand(-5, 5)
+	stuck_overlay.pixel_y = rand(-7, 7)
+	hit_atom.add_overlay(stuck_overlay)
+	forceMove(hit_atom)
+	saved_overlay = stuck_overlay
+	stuck_to = hit_atom
+	RegisterSignal(stuck_to, COMSIG_QDELETING, PROC_REF(clean_refs))
 
 /obj/item/explosive/grenade/sticky/trailblazer
 	name = "\improper M45 Trailblazer grenade"
