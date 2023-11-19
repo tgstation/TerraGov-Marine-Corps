@@ -98,7 +98,10 @@
 		stoplag(1)
 		progbar?.update(world.time - starttime)
 
-		if(QDELETED(user) || user.incapacitated(TRUE))
+		if(QDELETED(user) || (QDELETED(target)))
+			. = FALSE
+			break
+		if(!(timed_action_flags & IGNORE_INCAPACITATED) && user.incapacitated(TRUE))
 			. = FALSE
 			break
 		if(!(timed_action_flags & IGNORE_HELD_ITEM) && user.get_active_held_item() != holding)
@@ -107,7 +110,7 @@
 		if(!(timed_action_flags & IGNORE_USER_LOC_CHANGE) && (user.loc != user_loc))
 			. = FALSE
 			break
-		if(!(timed_action_flags & IGNORE_TARGET_LOC_CHANGE) && (QDELETED(target_loc) || (QDELETED(target) || target_loc != target.loc)))
+		if(!(timed_action_flags & IGNORE_TARGET_LOC_CHANGE) && (QDELETED(target_loc) || target_loc != target.loc))
 			. = FALSE
 			break
 		if(extra_checks && !extra_checks.Invoke())
