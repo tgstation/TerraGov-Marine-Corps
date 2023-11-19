@@ -18,7 +18,7 @@
 /area/shuttle/canterbury/cic)
 "ae" = (
 /obj/structure/table/mainship,
-/obj/machinery/computer/shuttle/shuttle_control/delayed_takeoff/canterbury,
+/obj/machinery/computer/shuttle/shuttle_control/canterbury,
 /turf/open/floor/mainship/blue{
 	dir = 1
 	},

@@ -89,7 +89,7 @@
 		new /obj/machinery/nuclearbomb(i)
 
 	for(var/obj/machinery/computer/shuttle/shuttle_control/computer_to_disable AS in GLOB.shuttle_controls_list)
-		if(istype(computer_to_disable, /obj/machinery/computer/shuttle/shuttle_control/delayed_takeoff/canterbury))
+		if(istype(computer_to_disable, /obj/machinery/computer/shuttle/shuttle_control/canterbury))
 			continue
 		computer_to_disable.machine_stat |= BROKEN
 		computer_to_disable.update_icon()
@@ -98,6 +98,7 @@
 	RegisterSignal(SSdcs, COMSIG_GLOB_NUKE_EXPLODED, PROC_REF(on_nuclear_explosion))
 	RegisterSignal(SSdcs, COMSIG_GLOB_NUKE_DIFFUSED, PROC_REF(on_nuclear_diffuse))
 	RegisterSignal(SSdcs, COMSIG_GLOB_NUKE_START, PROC_REF(on_nuke_started))
+	RegisterSignal(SSdcs, COMSIG_GLOB_SHUTTLE_BEGIN_TAKEOFF, PROC_REF(on_shuttle_takeoff))
 
 	if(!(flags_round_type & MODE_INFESTATION))
 		return
@@ -129,6 +130,25 @@
 	shuttle.crashing = FALSE
 
 	generate_nuke_disk_spawners()
+
+/datum/game_mode/infestation/crash/proc/on_shuttle_takeoff(shuttleID, shuttle)
+	// Signal picks up the movement of any shuttle, so make sure it's the canterbury
+	if(shuttle_id != SHUTTLE_CANTERBURY)
+		return
+	log_admin("[key_name(usr)] is launching the canterbury[!length(GLOB.active_nuke_list)? " early" : ""].")
+	message_admins("[ADMIN_TPMONTY(usr)] is launching the canterbury[!length(GLOB.active_nuke_list)? " early" : ""].")
+
+	var/obj/docking_port/mobile/M = SSshuttle.getShuttle(shuttleID)
+
+	if(!M.can_move_topic(usr))
+		return TRUE
+
+	M.destination = null
+	M.mode = SHUTTLE_IGNITING
+	M.setTimer(M.ignitionTime)
+
+	addtimer(VARSET_CALLBACK(src, marines_evac, CRASH_EVAC_INPROGRESS), M.ignitionTime + 10 SECONDS)
+	addtimer(VARSET_CALLBACK(src, marines_evac, CRASH_EVAC_COMPLETED), 2 MINUTES)
 
 /datum/game_mode/infestation/crash/check_finished(force_end)
 	if(round_finished)

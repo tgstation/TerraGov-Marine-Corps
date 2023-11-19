@@ -1275,6 +1275,8 @@
 	///Able to auto-relink to any shuttle with at least one of the flags in common if shuttleId is invalid.
 	var/compatible_control_flags = NONE
 	var/confirm_message = ""
+	/// The amount of time it takes before it tells the shuttle to takeoff
+	var/takeoff_delay = 0
 
 
 /obj/machinery/computer/shuttle/shuttle_control/Initialize(mapload)
@@ -1325,8 +1327,11 @@
 
 	var/previous_status = M.mode
 	log_game("[key_name(usr)] has sent the shuttle [M] to [params["destination"]]")
+	launch_shuttle(M, params["destination"], usr)
+	return TRUE
 
-	switch(SSshuttle.moveShuttle(shuttleId, params["destination"], 1))
+/obj/machinery/computer/shuttle/shuttle_control/proc/launch_shuttle(obj/docking_port/mobile/port, destination, mob/user)
+	switch(SSshuttle.moveShuttle(shuttleId, destination, TRUE))
 		if(0)
 			if(previous_status != SHUTTLE_IDLE)
 				visible_message(span_notice("Destination updated, recalculating route."))
@@ -1338,11 +1343,11 @@
 					to_chat(AI, span_info("[src] was commanded remotely to take off."))
 			return TRUE
 		if(1)
-			to_chat(usr, span_warning("Invalid shuttle requested."))
-			return TRUE
+			to_chat(user, span_warning("Invalid shuttle requested."))
+			return FALSE
 		else
-			to_chat(usr, span_notice("Unable to comply."))
-			return TRUE
+			to_chat(user, span_notice("Unable to comply."))
+			return FALSE
 
 /obj/machinery/computer/shuttle/shuttle_control/ui_data(mob/user)
 	var/list/data = list()
@@ -1353,6 +1358,9 @@
 	data["confirm_message"] = confirm_message
 	data["linked_shuttle_name"] = M.name
 	data["shuttle_status"] = M.getStatusText()
+	data["takeoff_delay"] = takeoff_delay
+	data["takeoff_time_left"] = M.timer ? timeleft(M.timer) : 0
+	data["shuttle_mode"] = M.mode
 	for(var/option in options)
 		for(var/obj/docking_port/stationary/S AS in SSshuttle.stationary)
 			if(option != S.id)
@@ -1445,7 +1453,7 @@
 	shuttleId = SHUTTLE_NORMANDY
 	possible_destinations = "lz1;lz2;alamo;normandy"
 
-/obj/machinery/computer/shuttle/shuttle_control/delayed_takeoff/canterbury
+/obj/machinery/computer/shuttle/shuttle_control/canterbury
 	name = "\improper 'Canterbury' shuttle console"
 	desc = "The remote controls for the 'Canterbury' shuttle."
 	icon = 'icons/obj/machines/computer.dmi'
@@ -1456,111 +1464,35 @@
 	possible_destinations = "canterbury_loadingdock"
 	confirm_message = "Are you sure you want to launch the shuttle? \
 	 Without sufficiently dealing with the threat, you will be in direct violation of your orders!"
+	var/custom_ignition_time = 1 MINUTES
 
-/obj/machinery/computer/shuttle/shuttle_control/delayed_takeoff
-	var/takeoff_delay = 5 SECONDS
-
-/obj/machinery/computer/shuttle/shuttle_control/delayed_takeoff/ui_data(mob/user)
-	. = ..()
-	.["takeoff_delay"] = takeoff_delay
-
-/obj/machinery/computer/shuttle/shuttle_control/delayed_takeoff/canterbury/Initialize(mapload)
+/obj/machinery/computer/shuttle/shuttle_control/canterbury/Initialize(mapload)
 	. = ..()
 	RegisterSignal(src, COMSIG_GLOB_NUKE_START, PROC_REF(remove_confirmation))
 
-/obj/machinery/computer/shuttle/shuttle_control/delayed_takeoff/canterbury/proc/remove_confirmation()
+/obj/machinery/computer/shuttle/shuttle_control/canterbury/proc/remove_confirmation()
 	confirm_message = ""
+	SStgui.update_uis(src)
 
-/obj/machinery/computer/shuttle/shuttle_control/delayed_takeoff/canterbury/ui_interact(mob/user)
+/obj/machinery/computer/shuttle/shuttle_control/canterbury/ui_interact(mob/user, datum/tgui/ui)
 	if(!allowed(user))
-		to_chat(user, span_warning("Access Denied!"))
+		balloon_alert(user, "Access Denied!")
+		return
+	. = ..()
+
+/obj/machinery/computer/shuttle/shuttle_control/canterbury/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
+	if(action != "selectDestination")
 		return
 	var/obj/docking_port/mobile/M = SSshuttle.getShuttle(shuttleId)
-	var/dat = "Status: [M ? M.getStatusText() : "*Missing*"]<br><br>"
-	if(M)
-		dat += "<A href='?src=[REF(src)];move=crash-infinite-transit'>Initiate Evacuation</A><br>"
-
-	var/datum/browser/popup = new(user, "computer", M ? M.name : "shuttle", 300, 200)
-	popup.set_content("<center>[dat]</center>")
-	popup.open()
-
-/obj/machinery/computer/shuttle/shuttle_control/delayed_takeoff/canterbury/ui_interact(mob/user, datum/tgui/ui)
-	ui = SStgui.try_update_ui(user, src, ui)
-	if (!ui)
-		ui = new(user, src, "ShuttleComputer")
-		ui.open()
-
-/obj/machinery/computer/shuttle/shuttle_control/delayed_takeoff/canterbury/ui_data(mob/user)
-	. = ..()
-	.["is_allowed"] = allowed(user)
-
-/obj/machinery/computer/shuttle/shuttle_control/delayed_takeoff/canterbury/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
-	if(action == "move")
-		if(!can_interact(usr) && isxeno(usr) && !allowed(usr))
-			return
-		if(action != ["move"] || !iscrashgamemode(SSticker.mode))
-			to_chat(usr, span_warning("[src] is unresponsive."))
-			return
-		evacuvate()
-		return TRUE
-
-/obj/machinery/computer/shuttle/shuttle_control/delayed_takeoff/canterbury/proc/evacuvate(mob/user)
-	log_admin("[key_name(usr)] is launching the canterbury[!length(GLOB.active_nuke_list)? " early" : ""].")
-	message_admins("[ADMIN_TPMONTY(usr)] is launching the canterbury[!length(GLOB.active_nuke_list)? " early" : ""].")
-
-	var/obj/docking_port/mobile/M = SSshuttle.getShuttle(shuttleId)
-	#ifndef TESTING
-	if(!(M.shuttle_flags & GAMEMODE_IMMUNE) && world.time < SSticker.round_start_time + SSticker.mode.deploy_time_lock)
-		to_chat(usr, span_warning("The engines are still refueling."))
-		return TRUE
-	#endif
-	if(!M.can_move_topic(usr))
-		return TRUE
-
-	visible_message(span_notice("Shuttle departing. Please stand away from the doors."))
-	M.destination = null
-	M.mode = SHUTTLE_IGNITING
-	M.setTimer(M.ignitionTime)
-
-	var/datum/game_mode/infestation/crash/C = SSticker.mode
-	addtimer(VARSET_CALLBACK(C, marines_evac, CRASH_EVAC_INPROGRESS), M.ignitionTime + 10 SECONDS)
-	addtimer(VARSET_CALLBACK(C, marines_evac, CRASH_EVAC_COMPLETED), 2 MINUTES)
-
-/obj/machinery/computer/shuttle/shuttle_control/delayed_takeoff/canterbury/Topic(href, href_list)
-	// Since we want to avoid the standard move topic, we are just gonna override everything.
-	add_fingerprint(usr, "topic")
-	if(!can_interact(usr))
-		return TRUE
-	if(isxeno(usr))
-		return TRUE
-	if(!allowed(usr))
-		to_chat(usr, span_danger("Access denied."))
-		return TRUE
-	if(!href_list["move"] || !iscrashgamemode(SSticker.mode))
+	M.ignitionTime = custom_ignition_time
+	if(!can_interact(usr) && isxeno(usr) && !allowed(usr))
+		return
+	if(action != "selectDestination" || !iscrashgamemode(SSticker.mode))
 		to_chat(usr, span_warning("[src] is unresponsive."))
-		return FALSE
-
-	if(!length(GLOB.active_nuke_list) && tgui_alert(usr, "Are you sure you want to launch the shuttle? Without sufficiently dealing with the threat, you will be in direct violation of your orders!", "Are you sure?", list("Yes", "Cancel")) != "Yes")
-		return TRUE
-
-	log_admin("[key_name(usr)] is launching the canterbury[!length(GLOB.active_nuke_list)? " early" : ""].")
-	message_admins("[ADMIN_TPMONTY(usr)] is launching the canterbury[!length(GLOB.active_nuke_list)? " early" : ""].")
-
-	var/obj/docking_port/mobile/M = SSshuttle.getShuttle(shuttleId)
+		return
 	#ifndef TESTING
 	if(!(M.shuttle_flags & GAMEMODE_IMMUNE) && world.time < SSticker.round_start_time + SSticker.mode.deploy_time_lock)
 		to_chat(usr, span_warning("The engines are still refueling."))
-		return TRUE
+		return
 	#endif
-	if(!M.can_move_topic(usr))
-		return TRUE
-
-	visible_message(span_notice("Shuttle departing. Please stand away from the doors."))
-	M.destination = null
-	M.mode = SHUTTLE_IGNITING
-	M.setTimer(M.ignitionTime)
-
-	var/datum/game_mode/infestation/crash/C = SSticker.mode
-	addtimer(VARSET_CALLBACK(C, marines_evac, CRASH_EVAC_INPROGRESS), M.ignitionTime + 10 SECONDS)
-	addtimer(VARSET_CALLBACK(C, marines_evac, CRASH_EVAC_COMPLETED), 2 MINUTES)
-	return TRUE
+	. = ..()
