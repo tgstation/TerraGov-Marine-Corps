@@ -89,7 +89,7 @@
 		new /obj/machinery/nuclearbomb(i)
 
 	for(var/obj/machinery/computer/shuttle/shuttle_control/computer_to_disable AS in GLOB.shuttle_controls_list)
-		if(istype(computer_to_disable, /obj/machinery/computer/shuttle/shuttle_control/canterbury))
+		if(istype(computer_to_disable, /obj/machinery/computer/shuttle/shuttle_control/delayed_takeoff/canterbury))
 			continue
 		computer_to_disable.machine_stat |= BROKEN
 		computer_to_disable.update_icon()

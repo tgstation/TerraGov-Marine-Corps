@@ -1274,6 +1274,7 @@
 	screen_overlay = "shuttle"
 	///Able to auto-relink to any shuttle with at least one of the flags in common if shuttleId is invalid.
 	var/compatible_control_flags = NONE
+	var/confirm_message = ""
 
 
 /obj/machinery/computer/shuttle/shuttle_control/Initialize(mapload)
@@ -1349,7 +1350,7 @@
 	var/obj/docking_port/mobile/M = SSshuttle.getShuttle(shuttleId)
 	if(!M)
 		return data //empty but oh well
-
+	data["confirm_message"] = confirm_message
 	data["linked_shuttle_name"] = M.name
 	data["shuttle_status"] = M.getStatusText()
 	for(var/option in options)
@@ -1444,7 +1445,7 @@
 	shuttleId = SHUTTLE_NORMANDY
 	possible_destinations = "lz1;lz2;alamo;normandy"
 
-/obj/machinery/computer/shuttle/shuttle_control/canterbury
+/obj/machinery/computer/shuttle/shuttle_control/delayed_takeoff/canterbury
 	name = "\improper 'Canterbury' shuttle console"
 	desc = "The remote controls for the 'Canterbury' shuttle."
 	icon = 'icons/obj/machines/computer.dmi'
@@ -1453,8 +1454,23 @@
 	resistance_flags = RESIST_ALL
 	shuttleId = SHUTTLE_CANTERBURY
 	possible_destinations = "canterbury_loadingdock"
+	confirm_message = "Are you sure you want to launch the shuttle? \
+	 Without sufficiently dealing with the threat, you will be in direct violation of your orders!"
 
-/obj/machinery/computer/shuttle/shuttle_control/canterbury/ui_interact(mob/user)
+/obj/machinery/computer/shuttle/shuttle_control/delayed_takeoff
+	var/takeoff_delay = 5 SECONDS
+
+/obj/machinery/computer/shuttle/shuttle_control/delayed_takeoff
+v 
+
+/obj/machinery/computer/shuttle/shuttle_control/delayed_takeoff/canterbury/Initialize(mapload)
+	. = ..()
+	RegisterSignal(src, COMSIG_GLOB_NUKE_START, PROC_REF(remove_confirmation))
+
+/obj/machinery/computer/shuttle/shuttle_control/delayed_takeoff/canterbury/proc/remove_confirmation()
+	confirm_message = ""
+
+/obj/machinery/computer/shuttle/shuttle_control/delayed_takeoff/canterbury/ui_interact(mob/user)
 	if(!allowed(user))
 		to_chat(user, span_warning("Access Denied!"))
 		return
@@ -1467,8 +1483,30 @@
 	popup.set_content("<center>[dat]</center>")
 	popup.open()
 
+/obj/machinery/computer/shuttle/shuttle_control/delayed_takeoff/canterbury/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if (!ui)
+		ui = new(user, src, "ShuttleComputer")
+		ui.open()
 
-/obj/machinery/computer/shuttle/shuttle_control/canterbury/Topic(href, href_list)
+/obj/machinery/computer/shuttle/shuttle_control/delayed_takeoff/canterbury/ui_data(mob/user)
+	. = ..()
+	.["is_allowed"] = allowed(user)
+
+/obj/machinery/computer/shuttle/shuttle_control/delayed_takeoff/canterbury/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
+	. = ..()
+	if(!can_interact(usr))
+		return TRUE
+	if(isxeno(usr))
+		return TRUE
+	if(!allowed(usr))
+		to_chat(usr, span_danger("Access denied."))
+		return TRUE
+	if(!href_list["move"] || !iscrashgamemode(SSticker.mode))
+		to_chat(usr, span_warning("[src] is unresponsive."))
+		return FALSE
+
+/obj/machinery/computer/shuttle/shuttle_control/delayed_takeoff/canterbury/Topic(href, href_list)
 	// Since we want to avoid the standard move topic, we are just gonna override everything.
 	add_fingerprint(usr, "topic")
 	if(!can_interact(usr))
