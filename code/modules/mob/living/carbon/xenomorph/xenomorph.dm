@@ -154,13 +154,13 @@
 	switch(playtime_mins)
 		if(0 to 600)
 			rank_name = "Hatchling"
-		if(601 to 3000)
+		if(601 to 1500) //10 hours
 			rank_name = "Young"
-		if(3001 to 9000)
+		if(1501 to 4200) //25 hours
 			rank_name = "Mature"
-		if(9001 to 18000)
+		if(4201 to 10500) //70 hours
 			rank_name = "Elder"
-		if(18001 to INFINITY)
+		if(10501 to INFINITY) //175 hours
 			rank_name = "Ancient"
 		else
 			rank_name = "Hatchling"
@@ -187,13 +187,13 @@
 	switch(playtime_mins)
 		if(0 to 600)
 			return 0
-		if(601 to 3000)
+		if(601 to 1500)
 			return 1
-		if(3001 to 9000)
+		if(1501 to 4200)
 			return 2
-		if(9001 to 18000)
+		if(4201 to 10500)
 			return 3
-		if(18001 to INFINITY)
+		if(10501 to INFINITY)
 			return 4
 		else
 			return 0
