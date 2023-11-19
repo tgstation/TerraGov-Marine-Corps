@@ -805,10 +805,25 @@ GLOBAL_LIST_INIT(human_body_parts, list(BODY_ZONE_HEAD,
 #define SCREWYHUD_HEALTHY 3
 
 //do_mob() flags
-#define IGNORE_LOC_CHANGE (IGNORE_USER_LOC_CHANGE|IGNORE_TARGET_LOC_CHANGE)
 #define IGNORE_USER_LOC_CHANGE (1<<0)
 #define IGNORE_TARGET_LOC_CHANGE (1<<1)
 #define IGNORE_HAND (1<<2)
+
+
+// timed_action_flags parameter for `/proc/do_after`
+
+/// Can do the action even if mob moves location
+#define IGNORE_USER_LOC_CHANGE (1<<0)
+/// Can do the action even if the target moves location
+#define IGNORE_TARGET_LOC_CHANGE (1<<1)
+/// Can do the action even if the item is no longer being held
+#define IGNORE_HELD_ITEM (1<<2)
+/// Can do the action even if the mob is incapacitated (ex. handcuffed)
+#define IGNORE_INCAPACITATED (1<<3)
+/// Used to prevent important slowdowns from being abused by drugs like kronkaine
+#define IGNORE_SLOWDOWNS (1<<4)
+
+#define IGNORE_LOC_CHANGE (IGNORE_USER_LOC_CHANGE|IGNORE_TARGET_LOC_CHANGE)
 
 #define TIER_ONE_THRESHOLD 420
 
