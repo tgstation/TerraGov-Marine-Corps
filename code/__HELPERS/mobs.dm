@@ -114,10 +114,13 @@
 		checked_health["health"] = health
 	return ..()
 
+//proc/do_after(mob/user, delay, needhand = TRUE, atom/target, user_display, target_display, prog_bar = PROGRESS_GENERIC, datum/callback/extra_checks, ignore_turf_checks = FALSE)
 
-/proc/do_after(mob/user, delay, needhand = TRUE, atom/target, user_display, target_display, prog_bar = PROGRESS_GENERIC, datum/callback/extra_checks, ignore_turf_checks = FALSE)
+/proc/do_after(mob/user, delay, timed_action_flags = NONE, atom/target, user_display, target_display, prog_bar = PROGRESS_GENERIC, datum/callback/extra_checks)
 	if(!user)
 		return FALSE
+	if(!isnum(delay))
+		CRASH("do_after was passed a non-number delay: [delay || "null"].")
 
 	var/atom/Tloc
 	if(target && !isturf(target))
@@ -131,7 +134,7 @@
 	var/atom/progtarget = target
 	if(!target || Tloc == user)
 		progtarget = user
-	var/datum/progressbar/P = prog_bar ? new prog_bar(user, delay, progtarget, user_display, target_display) : null
+	var/datum/progressbar/progbar = prog_bar ? new prog_bar(user, delay, progtarget, user_display, target_display) : null
 
 	LAZYINCREMENT(user.do_actions, target)
 	var/endtime = world.time + delay
@@ -139,22 +142,26 @@
 	. = TRUE
 	while (world.time < endtime)
 		stoplag(1)
-		P?.update(world.time - starttime)
+		progbar?.update(world.time - starttime)
 
-		if(QDELETED(user) || user.incapacitated(TRUE) || (!ignore_turf_checks && user.loc != Uloc) || (extra_checks && !extra_checks.Invoke()))
+		if(QDELETED(user) || user.incapacitated(TRUE))
+			. = FALSE
+			break
+		if(!(timed_action_flags & IGNORE_HELD_ITEM) && user.get_active_held_item() != holding)
+			. = FALSE
+			break
+		if(!(timed_action_flags & IGNORE_USER_LOC_CHANGE) && (user.loc != Uloc))
+			. = FALSE
+			break
+		if(!(timed_action_flags & IGNORE_TARGET_LOC_CHANGE) && (QDELETED(Tloc) || (QDELETED(target) || Tloc != target.loc)))
+			. = FALSE
+			break
+		if(extra_checks && !extra_checks.Invoke())
 			. = FALSE
 			break
 
-		if(!QDELETED(Tloc) && (QDELETED(target) || Tloc != target.loc))
-			if((!ignore_turf_checks && Uloc != Tloc) || Tloc != user)
-				. = FALSE
-				break
-
-		if(needhand && user.get_active_held_item() != holding)
-			. = FALSE
-			break
-	if(P)
-		qdel(P)
+	if(progbar)
+		qdel(progbar)
 	LAZYDECREMENT(user.do_actions, target)
 
 
