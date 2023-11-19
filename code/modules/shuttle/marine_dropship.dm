@@ -1460,8 +1460,9 @@
 /obj/machinery/computer/shuttle/shuttle_control/delayed_takeoff
 	var/takeoff_delay = 5 SECONDS
 
-/obj/machinery/computer/shuttle/shuttle_control/delayed_takeoff
-v 
+/obj/machinery/computer/shuttle/shuttle_control/delayed_takeoff/ui_data(mob/user)
+	. = ..()
+	.["takeoff_delay"] = takeoff_delay
 
 /obj/machinery/computer/shuttle/shuttle_control/delayed_takeoff/canterbury/Initialize(mapload)
 	. = ..()
@@ -1494,17 +1495,36 @@ v
 	.["is_allowed"] = allowed(user)
 
 /obj/machinery/computer/shuttle/shuttle_control/delayed_takeoff/canterbury/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
-	. = ..()
-	if(!can_interact(usr))
+	if(action == "move")
+		if(!can_interact(usr) && isxeno(usr) && !allowed(usr))
+			return
+		if(action != ["move"] || !iscrashgamemode(SSticker.mode))
+			to_chat(usr, span_warning("[src] is unresponsive."))
+			return
+		evacuvate()
 		return TRUE
-	if(isxeno(usr))
+
+/obj/machinery/computer/shuttle/shuttle_control/delayed_takeoff/canterbury/proc/evacuvate(mob/user)
+	log_admin("[key_name(usr)] is launching the canterbury[!length(GLOB.active_nuke_list)? " early" : ""].")
+	message_admins("[ADMIN_TPMONTY(usr)] is launching the canterbury[!length(GLOB.active_nuke_list)? " early" : ""].")
+
+	var/obj/docking_port/mobile/M = SSshuttle.getShuttle(shuttleId)
+	#ifndef TESTING
+	if(!(M.shuttle_flags & GAMEMODE_IMMUNE) && world.time < SSticker.round_start_time + SSticker.mode.deploy_time_lock)
+		to_chat(usr, span_warning("The engines are still refueling."))
 		return TRUE
-	if(!allowed(usr))
-		to_chat(usr, span_danger("Access denied."))
+	#endif
+	if(!M.can_move_topic(usr))
 		return TRUE
-	if(!href_list["move"] || !iscrashgamemode(SSticker.mode))
-		to_chat(usr, span_warning("[src] is unresponsive."))
-		return FALSE
+
+	visible_message(span_notice("Shuttle departing. Please stand away from the doors."))
+	M.destination = null
+	M.mode = SHUTTLE_IGNITING
+	M.setTimer(M.ignitionTime)
+
+	var/datum/game_mode/infestation/crash/C = SSticker.mode
+	addtimer(VARSET_CALLBACK(C, marines_evac, CRASH_EVAC_INPROGRESS), M.ignitionTime + 10 SECONDS)
+	addtimer(VARSET_CALLBACK(C, marines_evac, CRASH_EVAC_COMPLETED), 2 MINUTES)
 
 /obj/machinery/computer/shuttle/shuttle_control/delayed_takeoff/canterbury/Topic(href, href_list)
 	// Since we want to avoid the standard move topic, we are just gonna override everything.
