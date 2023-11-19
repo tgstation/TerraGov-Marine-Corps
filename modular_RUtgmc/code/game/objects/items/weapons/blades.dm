@@ -15,13 +15,6 @@
 	throw_speed = 2
 	throw_range = 8
 
-/obj/item/attachable/bayonetknife
-	icon = 'modular_RUtgmc/icons/obj/items/weapons.dmi'
-	item_icons = list(
-		slot_l_hand_str = 'modular_RUtgmc/icons/mob/inhands/weapons/melee_left.dmi',
-		slot_r_hand_str = 'modular_RUtgmc/icons/mob/inhands/weapons/melee_right.dmi',
-	)
-
 /obj/item/weapon/claymore/mercsword/machete
 	icon = 'modular_RUtgmc/icons/obj/items/weapons.dmi'
 
