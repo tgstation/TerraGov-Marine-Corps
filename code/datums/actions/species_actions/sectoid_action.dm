@@ -132,7 +132,7 @@
 
 /datum/action/ability/activable/sectoid/mindfray/use_ability(atom/target)
 	var/mob/living/carbon/carbon_target = target
-	carbon_target.apply_status_effect(STATUS_EFFECT_GUN_SKILL_SCATTER_DEBUFF, 10 SECPMDS)
+	carbon_target.apply_status_effect(STATUS_EFFECT_GUN_SKILL_SCATTER_DEBUFF, 10 SECONDS)
 	carbon_target.apply_status_effect(STATUS_EFFECT_CONFUSED, 40)
 	carbon_target.apply_damage(damage, BURN, updating_health = TRUE)
 	carbon_target.log_message("has been mindfrayed by [owner]", LOG_ATTACK, color="pink")
@@ -334,6 +334,7 @@
 		QDEL_NULL(particle_holder)
 		return fail_activate()
 
+	QDEL_NULL(particle_holder)
 	var/obj/item/explosive/grenade/grenade_target
 	if(isgrenade(target))
 		grenade_target = target
@@ -349,8 +350,111 @@
 				return fail_activate()
 
 	grenade_target.activate(owner)
-	QDEL_NULL(particle_holder)
 	playsound(owner, 'sound/effects/petrify_activate.ogg', 50)
 	add_cooldown()
 	update_button_icon()
 	succeed_activate()
+
+// ***************************************
+// *********** Psionic Interact
+// ***************************************
+
+/datum/action/ability/activable/psionic_interact
+	name = "Telekinesis"
+	action_icon_state = "off_guard"
+	desc = "Manipulate things from a distance."
+	cooldown_duration = 20 SECONDS
+	target_flags = XABB_MOB_TARGET
+	use_state_flags = XACT_TARGET_SELF
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_OFFGUARD,
+	)
+	///Ability range
+	var/range = 9
+	///Power of psi interactions
+	var/psi_strength = 2
+	/// Used for particles. Holds the particles instead of the mob. See particle_holder for documentation.
+	var/obj/effect/abstract/particle_holder/particle_holder
+
+/datum/action/ability/activable/psionic_interact/can_use_ability(atom/A, silent = FALSE, override_flags)
+	. = ..()
+	if(!.)
+		return
+	if((A.z != owner.z) || get_dist(owner, A) > range)
+		if(!silent)
+			A.balloon_alert(owner, "too far")
+		return FALSE
+	if(!line_of_sight(owner, A, range))
+		if(!silent)
+			owner.balloon_alert(owner, "Out of sight!")
+		return FALSE
+
+/datum/action/ability/activable/psionic_interact/use_ability(atom/target)
+	particle_holder = new(owner, /particles/drone_enhancement)
+	particle_holder.pixel_x = 0
+	particle_holder.pixel_y = -3
+	particle_holder.particles.velocity = list(0, 1.5)
+	particle_holder.particles.gravity = list(0, 2)
+
+	if(!do_after(owner, 0.5 SECONDS, FALSE, target, BUSY_ICON_DANGER, ignore_turf_checks = TRUE) || !can_use_ability(target))
+		owner.balloon_alert(owner, "Our focus is disrupted")
+		QDEL_NULL(particle_holder)
+		return fail_activate()
+
+	QDEL_NULL(particle_holder)
+	var/mob/living/carbon/carbon_target = target
+	playsound(owner, 'sound/effects/petrify_activate.ogg', 50)
+
+	var/list/outcome = target.psi_act(psi_strength, owner)
+	if(!outcome)
+		return fail_activate()
+
+	add_cooldown(outcome[1])
+	succeed_activate(outcome[2])
+	update_button_icon()
+
+
+/obj/machinery/door/psi_act(psi_power, mob/living/user)
+	if(density)
+		open(TRUE)
+	else
+		close(TRUE)
+	return list(0.1 SECONDS, 5)
+
+/obj/machinery/door/airlock/psi_act(psi_power, mob/living/user)
+	if(operating)
+		to_chat(user, span_warning("The airlock is already in motion."))
+		return
+	if(welded)
+		to_chat(user, span_warning("The airlock is welded shut."))
+		return
+	if(locked)
+		to_chat(user, span_warning("The airlock's bolts prevent it from being forced."))
+		return
+	if(psi_power < PSIONIC_INTERACTION_STRENGTH_STANDARD && hasPower())
+		to_chat(user, span_warning("The airlock's motors resist your efforts to force it."))
+		return
+
+	return ..()
+
+/obj/machinery/door/firedoor/psi_act(psi_power, mob/living/user)
+	if(operating)
+		to_chat(user, span_warning("The firelock is already in motion."))
+		return
+	if(blocked)
+		to_chat(user, span_warning("The firelock is welded shut."))
+		return
+
+	return ..()
+
+/obj/machinery/button/psi_act(psi_power, mob/living/user)
+	pulsed()
+	return list(0.1 SECONDS, 1)
+
+/obj/item/psi_act(psi_power, mob/living/user)
+	if(user.a_intent == INTENT_HELP)
+		throw_at(user, 4 + psi_power, psi_power, user, TRUE)
+	else
+		var/target = get_turf_in_angle(Get_Angle(user, src), src, 7)
+		throw_at(target, 4 + psi_power, psi_power, user, TRUE)
+	return list(3 SECONDS, 10)
