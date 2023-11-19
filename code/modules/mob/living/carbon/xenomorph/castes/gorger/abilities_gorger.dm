@@ -206,7 +206,7 @@
 			to_chat(owner, span_notice("We can only help living sisters."))
 		return FALSE
 	target_health = target_xeno.health
-	if(!do_after(owner, 1 SECONDS, NONE, target_xeno, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL, ignore_flags = IGNORE_TARGET_LOC_CHANGE, extra_checks = CALLBACK(src, PROC_REF(extra_health_check), target_xeno)))
+	if(!do_after(owner, 1 SECONDS, IGNORE_TARGET_LOC_CHANGE, target_xeno, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL, extra_checks = CALLBACK(src, PROC_REF(extra_health_check), target_xeno)))
 		return FALSE
 	return TRUE
 
