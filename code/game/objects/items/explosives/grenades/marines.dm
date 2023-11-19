@@ -146,18 +146,8 @@
 		clean_refs()
 	qdel(src)
 
-/obj/item/explosive/grenade/sticky/trailblazer/throw_impact(atom/hit_atom, speed)
+/obj/item/explosive/grenade/sticky/trailblazer/stuck_to(atom/hit_atom)
 	. = ..()
-	if(!.)
-		return
-	RegisterSignal(stuck_to, COMSIG_MOVABLE_MOVED, PROC_REF(make_fire))
-	var/turf/T = get_turf(src)
-	T.ignite(25, 25)
-
-/obj/item/explosive/grenade/sticky/trailblazer/afterattack(atom/target, mob/user)
-	. = ..()
-	if(!self_sticky || target != user)
-		return
 	RegisterSignal(stuck_to, COMSIG_MOVABLE_MOVED, PROC_REF(make_fire))
 	var/turf/T = get_turf(src)
 	T.ignite(25, 25)
@@ -197,16 +187,8 @@
 		clean_refs()
 	qdel(src)
 
-/obj/item/explosive/grenade/sticky/cloaker/throw_impact(atom/hit_atom, speed)
+/obj/item/explosive/grenade/sticky/cloaker/stuck_to(atom/hit_atom)
 	. = ..()
-	if(!.)
-		return
-	RegisterSignal(stuck_to, COMSIG_MOVABLE_MOVED, PROC_REF(make_smoke))
-
-/obj/item/explosive/grenade/sticky/cloaker/afterattack(atom/target, mob/user)
-	. = ..()
-	if(!self_sticky || target != user)
-		return
 	RegisterSignal(stuck_to, COMSIG_MOVABLE_MOVED, PROC_REF(make_smoke))
 
 ///causes fire tiles underneath target when stuck_to
