@@ -267,3 +267,14 @@
   - bugfix: Getting decapped should no longer bypass the respawn timer
   yyzsong:
   - rscadd: adds refills for unguided sadar rockets and SG-62 magazines to req
+2023-11-19:
+  Lumipharon:
+  - imageadd: Updated some map blips, mainly for HvH
+  Pariah919:
+  - rscadd: Added new Heavy Laser fire modes.
+  Xander3359:
+  - code_imp: made chem colors defines
+  vvvv-vvvv:
+  - bugfix: Fix custom squad members not showing in manifest
+  - bugfix: Fix evolving when the game hasn't started
+  - refactor: Refactor NODROP into TRAIT_NODROP
