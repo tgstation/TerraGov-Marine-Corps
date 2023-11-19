@@ -182,11 +182,6 @@
 	//tgmc changes end
 	chassis = null
 
-/obj/item/mecha_parts/mecha_equipment/log_message(message, message_type=LOG_GAME, color=null, log_globally)
-	if(chassis)
-		return chassis.log_message("ATTACHMENT: [src] [message]", message_type, color)
-	return ..()
-
 /**
  * ## get_snowflake_data
  * handles the returning of snowflake data required by the UI of the mecha
