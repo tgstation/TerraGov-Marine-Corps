@@ -70,6 +70,7 @@
 		var/datum/action/innate/summon_present/present_spawn = new(spawnedhuman)
 		present_spawn.give_action(spawnedhuman)
 		spawnedhuman.offer_mob()
+		set_target(pick(spawnedhuman))
 
 ///proc for spawning elves around christmas tree
 /datum/round_event/santa_visit/proc/place_elves()
@@ -83,3 +84,43 @@
 		var/datum/job/J = SSjob.GetJobType(/datum/job/santa)
 		spawnedhuman.apply_assigned_role_to_spawn(J)
 		spawnedhuman.offer_mob()
+
+///sets the target for this event, and notifies the hive
+/datum/round_event/santa_visit/proc/set_target(mob/living/carbon/human/target)
+	hive_target = target
+	ADD_TRAIT(hive_target, TRAIT_HIVE_TARGET, TRAIT_HIVE_TARGET)
+	hive_target.med_hud_set_status()
+	RegisterSignal(SSdcs, COMSIG_GLOB_HIVE_TARGET_DRAINED, PROC_REF(handle_reward))
+	xeno_message("The Queen Mother senses an outpouring of Christmas Spirit on the metal bird, concentrated in a man in red. Psydrain them for the Queen Mother's blessing!", force = TRUE)
+	for(var/mob/living/carbon/xenomorph/xeno_sound_reciever in GLOB.alive_xeno_list_hive[XENO_HIVE_NORMAL])
+		SEND_SOUND(xeno_sound_reciever, sound(get_sfx("queen"), channel = CHANNEL_ANNOUNCEMENTS, volume = 50))
+
+
+//manages the hive reward and clean up
+/datum/round_event/santa_visit/proc/handle_reward(datum/source, mob/living/carbon/xenomorph/drainer)
+	SIGNAL_HANDLER
+	xeno_message("[drainer] has killed the horrible man in red, ruining Christmas for the tallhosts. The Queen Mother empowers us for our success!", force = TRUE)
+	bless_hive(drainer)
+	REMOVE_TRAIT(hive_target, TRAIT_HIVE_TARGET, TRAIT_HIVE_TARGET)
+	hive_target.med_hud_set_status()
+	hive_target = null
+	UnregisterSignal(SSdcs, COMSIG_GLOB_HIVE_TARGET_DRAINED)
+
+///Actually applies the buff to the hive
+/datum/round_event/santa_visit/proc/bless_hive(mob/living/carbon/xenomorph/drainer)
+	for(var/mob/living/carbon/xenomorph/receiving_xeno AS in GLOB.alive_xeno_list_hive[XENO_HIVE_NORMAL])
+		receiving_xeno.add_movespeed_modifier(MOVESPEED_ID_BLESSED_HIVE, TRUE, 0, NONE, TRUE, -0.2)
+		receiving_xeno.gain_plasma(receiving_xeno.xeno_caste.plasma_max)
+		receiving_xeno.salve_healing()
+		if(receiving_xeno == drainer)
+			receiving_xeno.evolution_stored = receiving_xeno.xeno_caste.evolution_threshold
+			receiving_xeno.upgrade_stored += 1000
+	for(var/mob/living/carbon/xenomorph/xeno_sound_reciever in GLOB.alive_xeno_list_hive[XENO_HIVE_NORMAL])
+		SEND_SOUND(xeno_sound_reciever, sound(get_sfx("queen"), channel = CHANNEL_ANNOUNCEMENTS, volume = 50))
+	addtimer(CALLBACK(src, PROC_REF(remove_blessing)), 4 MINUTES)
+
+///debuffs the hive when the blessing expires
+/datum/round_event/santa_visit/proc/remove_blessing()
+	xeno_message("We feel the Queen Mother's blessing fade", force = TRUE)
+	for(var/mob/living/carbon/xenomorph/receiving_xeno in GLOB.alive_xeno_list_hive[XENO_HIVE_NORMAL])
+		receiving_xeno.remove_movespeed_modifier(MOVESPEED_ID_BLESSED_HIVE)
