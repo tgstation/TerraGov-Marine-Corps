@@ -16,6 +16,7 @@
 	if(fill_number && fill_type)
 		for(var/i in 1 to fill_number)
 			new fill_type(src)
+	return INITIALIZE_HINT_LATELOAD
 
 /obj/item/storage/pouch/LateInitialize()
 	. = ..()
