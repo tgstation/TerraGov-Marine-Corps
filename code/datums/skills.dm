@@ -122,7 +122,7 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 
 /// returns/gets a new skills datum with values changed according to the args passed
 /datum/skills/proc/modifyRating(cqc, melee_weapons,\
-firearms, pistols, shotguns, rifles, smgs, heavy_weapons, smartgun,\
+firearms, pistols, shotguns, rifles, smgs, heavy_weapons, swordplay, smartgun,\
 engineer, construction, leadership, medical, surgery, pilot, police, powerloader, large_vehicle)
 	return getSkills(src.cqc+cqc,\
 	src.melee_weapons+melee_weapons,\
@@ -154,7 +154,7 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	src.rifles+difference,\
 	src.smgs+difference,\
 	src.heavy_weapons+difference,\
-	src.swordplay+swordplay,\
+	src.swordplay+difference,\
 	src.smartgun+difference,\
 	src.engineer+difference,\
 	src.construction+difference,\
