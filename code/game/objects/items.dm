@@ -1126,7 +1126,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 			if(do_mob(user, target, delay, extra_checks=tool_check))
 				return
 
-		else if(!do_after(user, delay, target=target, extra_checks=tool_check))
+		else if(!do_after(user, delay, target = target, extra_checks = tool_check))
 			return
 
 	else if(extra_checks && !extra_checks.Invoke()) // Invoke the extra checks once, just in case.
@@ -1433,7 +1433,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 			if(!variant)
 				return
 
-			if(!do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
+			if(!do_after(user, 1 SECONDS, NONE, src, BUSY_ICON_GENERIC))
 				return
 
 			current_variant = variant
@@ -1456,7 +1456,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		if(COLOR_WHEEL)
 			new_color = input(user, "Pick a color", "Pick color") as null|color
 
-	if(!new_color || !do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
+	if(!new_color || !do_after(user, 1 SECONDS, NONE, src, BUSY_ICON_GENERIC))
 		return
 
 	set_greyscale_colors(new_color)

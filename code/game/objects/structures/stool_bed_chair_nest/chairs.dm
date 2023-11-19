@@ -95,7 +95,7 @@
 			user.visible_message(span_notice("[user] fumbles around figuring out how to weld down \the [src]."),
 			span_notice("You fumble around figuring out how to weld down \the [src]."))
 			var/fumbling_time = 5 SECONDS * (SKILL_ENGINEER_METAL - user.skills.getRating(SKILL_ENGINEER))
-			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED, extra_checks = CALLBACK(WT, /obj/item/tool/weldingtool/proc/isOn)))
+			if(!do_after(user, fumbling_time, NONE, src, BUSY_ICON_UNSKILLED, extra_checks = CALLBACK(WT, /obj/item/tool/weldingtool/proc/isOn)))
 				return
 
 		if(!WT.remove_fuel(0, user))
@@ -105,7 +105,7 @@
 		span_notice("You begin welding down \the [src]."))
 		add_overlay(GLOB.welding_sparks)
 		playsound(loc, 'sound/items/welder2.ogg', 25, 1)
-		if(!do_after(user, 50, TRUE, src, BUSY_ICON_FRIENDLY))
+		if(!do_after(user, 5 SECONDS, NONE, src, BUSY_ICON_FRIENDLY))
 			cut_overlay(GLOB.welding_sparks)
 			to_chat(user, span_warning("You need to stand still!"))
 			return
@@ -356,7 +356,7 @@
 				span_warning("You begin loosening the bolts on \the [src]."))
 				playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
 
-				if(!do_after(user, 20, TRUE, src, BUSY_ICON_BUILD))
+				if(!do_after(user, 2 SECONDS, NONE, src, BUSY_ICON_BUILD))
 					return
 
 				user.visible_message(span_warning("[user] loosens the bolts on \the [src], folding it into the decking."),
@@ -368,7 +368,7 @@
 				span_warning("You begin unfolding \the [src]."))
 				playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
 
-				if(!do_after(user, 20, TRUE, src, BUSY_ICON_BUILD))
+				if(!do_after(user, 2 SECONDS, NONE, src, BUSY_ICON_BUILD))
 					return
 
 				user.visible_message(span_warning("[user] unfolds \the [src] from the floor and tightens the bolts."),
@@ -388,7 +388,7 @@
 		user.visible_message(span_warning("[user] begins repairing \the [src]."),
 		span_warning("You begin repairing \the [src]."))
 		add_overlay(GLOB.welding_sparks)
-		if(!do_after(user, 20, TRUE, src, BUSY_ICON_BUILD))
+		if(!do_after(user, 2 SECONDS, NONE, src, BUSY_ICON_BUILD))
 			cut_overlay(GLOB.welding_sparks)
 			return
 

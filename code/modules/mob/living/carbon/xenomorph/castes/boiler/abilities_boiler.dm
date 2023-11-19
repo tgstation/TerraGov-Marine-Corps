@@ -44,7 +44,7 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 	else
 		X.visible_message(span_notice("[X] starts looking off into the distance."), \
 			span_notice("We start focusing your sight to look off into the distance."), null, 5)
-		if(!do_after(X, 1 SECONDS, FALSE, null, BUSY_ICON_GENERIC) || X.is_zoomed)
+		if(!do_after(X, 1 SECONDS, IGNORE_HELD_ITEM, null, BUSY_ICON_GENERIC) || X.is_zoomed)
 			return
 		X.zoom_in(11)
 		..()
@@ -251,7 +251,7 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 
 	to_chat(boiler_owner, span_xenonotice("We begin building up pressure."))
 
-	if(!do_after(boiler_owner, 2 SECONDS, FALSE, target, BUSY_ICON_DANGER))
+	if(!do_after(boiler_owner, 2 SECONDS, IGNORE_HELD_ITEM, target, BUSY_ICON_DANGER))
 		to_chat(boiler_owner, span_warning("We decide not to launch."))
 		return fail_activate()
 
@@ -288,7 +288,7 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 /datum/action/xeno_action/activable/bombard/proc/root()
 	if(HAS_TRAIT_FROM(owner, TRAIT_IMMOBILE, BOILER_ROOTED_TRAIT))
 		owner.balloon_alert_to_viewers("Rooting out of place...")
-		if(!do_after(owner, 3 SECONDS, FALSE, null, BUSY_ICON_HOSTILE))
+		if(!do_after(owner, 3 SECONDS, IGNORE_HELD_ITEM, null, BUSY_ICON_HOSTILE))
 			owner.balloon_alert(owner, "Interrupted!")
 			return
 		owner.balloon_alert(owner, "Unrooted!")
@@ -300,7 +300,7 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 		return
 
 	owner.balloon_alert_to_viewers("Rooting into place...")
-	if(!do_after(owner, 3 SECONDS, FALSE, null, BUSY_ICON_HOSTILE))
+	if(!do_after(owner, 3 SECONDS, IGNORE_HELD_ITEM, null, BUSY_ICON_HOSTILE))
 		owner.balloon_alert(owner, "Interrupted!")
 		return
 

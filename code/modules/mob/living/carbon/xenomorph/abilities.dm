@@ -387,7 +387,7 @@
 	if(!line_of_sight(owner, T))
 		to_chat(owner, span_warning("You cannot secrete resin without line of sight!"))
 		return fail_activate()
-	if(!do_after(X, get_wait(), TRUE, T, BUSY_ICON_BUILD))
+	if(!do_after(X, get_wait(), NONE, T, BUSY_ICON_BUILD))
 		return fail_activate()
 	switch(is_valid_for_resin_structure(T, X.selected_resin == /obj/structure/mineral_door/resin))
 		if(ERROR_CANT_WEED)
@@ -555,7 +555,7 @@
 
 	X.face_atom(target) //Face our target so we don't look silly
 
-	if(!do_after(X, transfer_delay, TRUE, null, BUSY_ICON_FRIENDLY))
+	if(!do_after(X, transfer_delay, NONE, null, BUSY_ICON_FRIENDLY))
 		return fail_activate()
 
 	if(!can_use_ability(A))
@@ -634,7 +634,7 @@
 	X.face_atom(A)
 	to_chat(X, span_xenowarning("We begin generating enough acid to melt through the [A]"))
 
-	if(!do_after(X, A.get_acid_delay(), TRUE, A, BUSY_ICON_HOSTILE))
+	if(!do_after(X, A.get_acid_delay(), NONE, A, BUSY_ICON_HOSTILE))
 		return fail_activate()
 
 	if(!can_use_ability(A, TRUE))
@@ -1026,7 +1026,7 @@
 	owner.visible_message(span_xenonotice("[owner] starts planting an egg."), \
 		span_xenonotice("We start planting an egg."), null, 5)
 
-	if(!do_after(owner, 2.5 SECONDS, TRUE, current_turf, BUSY_ICON_BUILD, extra_checks = CALLBACK(current_turf, TYPE_PROC_REF(/turf, check_alien_construction), owner)))
+	if(!do_after(owner, 2.5 SECONDS, NONE, current_turf, BUSY_ICON_BUILD, extra_checks = CALLBACK(current_turf, TYPE_PROC_REF(/turf, check_alien_construction), owner)))
 		return fail_activate()
 
 	if(!xeno.loc_weeds_type)
@@ -1170,7 +1170,7 @@
 	span_danger("We slowly drain \the [victim]'s life force!"), null, 20)
 	var/channel = SSsounds.random_available_channel()
 	playsound(X, 'sound/magic/nightfall.ogg', 40, channel = channel)
-	if(!do_after(X, 5 SECONDS, FALSE, victim, BUSY_ICON_DANGER, extra_checks = CALLBACK(X, TYPE_PROC_REF(/mob, break_do_after_checks), list("health" = X.health))))
+	if(!do_after(X, 5 SECONDS, IGNORE_HELD_ITEM, victim, BUSY_ICON_DANGER, extra_checks = CALLBACK(X, TYPE_PROC_REF(/mob, break_do_after_checks), list("health" = X.health))))
 		X.visible_message(span_xenowarning("\The [X] retracts its inner jaw."), \
 		span_danger("We retract our inner jaw."), null, 20)
 		X.stop_sound_channel(channel)
@@ -1278,7 +1278,7 @@
 	var/mob/living/carbon/human/victim = A
 	var/channel = SSsounds.random_available_channel()
 	playsound(X, 'sound/vore/struggle.ogg', 40, channel = channel)
-	if(!do_after(X, 7 SECONDS, FALSE, victim, BUSY_ICON_DANGER, extra_checks = CALLBACK(owner, TYPE_PROC_REF(/mob, break_do_after_checks), list("health" = X.health))))
+	if(!do_after(X, 7 SECONDS, IGNORE_HELD_ITEM, victim, BUSY_ICON_DANGER, extra_checks = CALLBACK(owner, TYPE_PROC_REF(/mob, break_do_after_checks), list("health" = X.health))))
 		to_chat(owner, span_warning("We stop devouring \the [victim]. They probably tasted gross anyways."))
 		X.stop_sound_channel(channel)
 		return fail_activate()
@@ -1295,7 +1295,7 @@
 	succeed_activate()
 	channel = SSsounds.random_available_channel()
 	playsound(X, 'sound/vore/escape.ogg', 40, channel = channel)
-	if(!do_after(X, cocoon_production_time, FALSE, null, BUSY_ICON_DANGER))
+	if(!do_after(X, cocoon_production_time, IGNORE_HELD_ITEM, null, BUSY_ICON_DANGER))
 		to_chat(owner, span_warning("We moved too soon and we will have to devour our victim again!"))
 		X.eject_victim(FALSE, starting_turf)
 		X.stop_sound_channel(channel)

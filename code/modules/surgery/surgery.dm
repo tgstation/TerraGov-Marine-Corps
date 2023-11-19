@@ -151,7 +151,7 @@ GLOBAL_LIST_INIT(surgery_steps, init_surgery())
 			user.visible_message(span_notice("[user] fumbles around figuring out how to operate [M]."),
 			span_notice("You fumble around figuring out how to operate [M]."))
 			var/fumbling_time = max(0, SKILL_TASK_FORMIDABLE - ( 8 SECONDS * user.skills.getRating(SKILL_SURGERY) )) // 20 secs non-trained, 12 amateur, 4 trained, 0 prof
-			if(fumbling_time && !do_after(user, fumbling_time, TRUE, M, BUSY_ICON_UNSKILLED))
+			if(fumbling_time && !do_after(user, fumbling_time, NONE, M, BUSY_ICON_UNSKILLED))
 				return TRUE
 
 		affected.in_surgery_op = TRUE

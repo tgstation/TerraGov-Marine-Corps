@@ -38,17 +38,17 @@
 	if(skill < SKILL_MEDICAL_PRACTICED)
 		user.visible_message(span_notice("[user] fumbles around with the [removaltool]."),
 		span_notice("You fumble around figuring out how to use [removaltool]."))
-		if(!do_after(user, fumble_duration * (SKILL_MEDICAL_PRACTICED - skill), TRUE, target, BUSY_ICON_UNSKILLED))
+		if(!do_after(user, fumble_duration * (SKILL_MEDICAL_PRACTICED - skill), NONE, target, BUSY_ICON_UNSKILLED))
 			return
 	user.visible_message(span_notice("[user] starts searching for shrapnel in [target] with the [removaltool]."), span_notice("You start searching for shrapnel in [target] with the [removaltool]."))
-	if(!do_after(user, do_after_time, TRUE, target, BUSY_ICON_MEDICAL))
+	if(!do_after(user, do_after_time, NONE, target, BUSY_ICON_MEDICAL))
 		to_chat(user, span_notice("You stop searching for shrapnel in [target]"))
 		return
 	remove_shrapnel(user, target, targetlimb, skill)
 	//iterates over the rest of the patient's limbs, attempting to remove shrapnel
 	for(targetlimb AS in target.limbs)
 		while(has_shrapnel(targetlimb))
-			if(!do_after(user, do_after_time, TRUE, target, BUSY_ICON_MEDICAL))
+			if(!do_after(user, do_after_time, NONE, target, BUSY_ICON_MEDICAL))
 				to_chat(user, span_notice("You stop searching for shrapnel in [target]"))
 				return
 			remove_shrapnel(user, target, targetlimb, skill)

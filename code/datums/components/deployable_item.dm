@@ -74,7 +74,7 @@
 		user.balloon_alert(user, "You start deploying...")
 		user.setDir(get_dir(user, location)) //Face towards deploy location for ease of deploy.
 		var/newdir = user.dir //Save direction before the doafter for ease of deploy
-		if(!do_after(user, deploy_time, TRUE, item_to_deploy, BUSY_ICON_BUILD))
+		if(!do_after(user, deploy_time, NONE, item_to_deploy, BUSY_ICON_BUILD))
 			return
 		if(LinkBlocked(get_turf(user), location))
 			location.balloon_alert(user, "No room to deploy")
@@ -135,7 +135,7 @@
 		sentry = deployed_machine
 	sentry?.set_on(FALSE)
 	user.balloon_alert(user, "You start disassembling [undeployed_item]")
-	if(!do_after(user, deploy_time, TRUE, deployed_machine, BUSY_ICON_BUILD))
+	if(!do_after(user, deploy_time, NONE, deployed_machine, BUSY_ICON_BUILD))
 		sentry?.set_on(TRUE)
 		return
 

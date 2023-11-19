@@ -40,7 +40,7 @@
 	var/turf/target = get_turf(A)
 	var/mob/living/carbon/xenomorph/X = owner
 	X.face_atom(target)
-	if(!do_after(X, 1 SECONDS, TRUE, X, BUSY_ICON_DANGER))
+	if(!do_after(X, 1 SECONDS, NONE, X, BUSY_ICON_DANGER))
 		return fail_activate()
 	var/datum/ammo/xeno/leash_ball = GLOB.ammo_list[/datum/ammo/xeno/leash_ball]
 	leash_ball.hivenumber = X.hivenumber
@@ -114,7 +114,7 @@
 		return
 	X.visible_message(span_xenonotice("\The [X] starts tearing down \the [src]!"), \
 	span_xenonotice("We start to tear down \the [src]."))
-	if(!do_after(X, 1 SECONDS, TRUE, X, BUSY_ICON_GENERIC) || QDELETED(src))
+	if(!do_after(X, 1 SECONDS, NONE, X, BUSY_ICON_GENERIC) || QDELETED(src))
 		return
 	X.do_attack_animation(src, ATTACK_EFFECT_CLAW)
 	X.visible_message(span_xenonotice("\The [X] tears down \the [src]!"), \
@@ -162,7 +162,7 @@
 /// The action to create spiderlings
 /datum/action/xeno_action/create_spiderling/action_activate()
 	. = ..()
-	if(!do_after(owner, 0.5 SECONDS, TRUE, owner, BUSY_ICON_DANGER))
+	if(!do_after(owner, 0.5 SECONDS, NONE, owner, BUSY_ICON_DANGER))
 		return fail_activate()
 	add_spiderling()
 	succeed_activate()
@@ -181,7 +181,7 @@
 
 /// Birth a spiderling and use up a charge of cannibalise
 /datum/action/xeno_action/create_spiderling/proc/use_cannibalise()
-	if(!do_after(owner, 0.5 SECONDS, TRUE, owner, BUSY_ICON_DANGER))
+	if(!do_after(owner, 0.5 SECONDS, NONE, owner, BUSY_ICON_DANGER))
 		return FALSE
 	add_spiderling()
 	cannibalise_charges -= 1
@@ -295,7 +295,7 @@
 
 /// Called by xeno_burrow only when burrowing
 /datum/action/xeno_action/burrow/proc/xeno_burrow_doafter()
-	if(!do_after(owner, 3 SECONDS, TRUE, null, BUSY_ICON_DANGER))
+	if(!do_after(owner, 3 SECONDS, NONE, null, BUSY_ICON_DANGER))
 		return
 	to_chat(owner, span_xenowarning("We are now burrowed, hidden in plain sight and ready to strike."))
 	// This part here actually burrows the xeno
@@ -392,7 +392,7 @@
 	return TRUE
 
 /datum/action/xeno_action/activable/cannibalise/use_ability(atom/A)
-	if(!do_after(owner, 0.5 SECONDS, TRUE, A, BUSY_ICON_DANGER))
+	if(!do_after(owner, 0.5 SECONDS, NONE, A, BUSY_ICON_DANGER))
 		return fail_activate()
 
 	var/mob/living/carbon/xenomorph/spiderling/to_cannibalise = A

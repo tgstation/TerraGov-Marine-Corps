@@ -234,7 +234,7 @@
 	if(xeno.is_zoomed)
 		zoom_xeno_out(xeno.observed_xeno ? FALSE : TRUE)
 		return
-	if(!do_after(xeno, 1 SECONDS, FALSE, null, BUSY_ICON_GENERIC) || xeno.is_zoomed)
+	if(!do_after(xeno, 1 SECONDS, IGNORE_HELD_ITEM, null, BUSY_ICON_GENERIC) || xeno.is_zoomed)
 		return
 	zoom_xeno_in(xeno.observed_xeno ? FALSE : TRUE) //No need for feedback message if our eye is elsewhere.
 
@@ -471,7 +471,7 @@
 
 	var/obj/effect/abstract/particle_holder/aoe_particles = new(owner.loc, /particles/bulwark_aoe)
 	aoe_particles.particles.position = generator(GEN_SQUARE, 0, 16 + (BULWARK_RADIUS-1)*32, LINEAR_RAND)
-	while(do_after(owner, BULWARK_LOOP_TIME, BUSY_ICON_MEDICAL, extra_checks = CALLBACK(src, TYPE_PROC_REF(/datum/action, can_use_action), FALSE, XACT_IGNORE_COOLDOWN|XACT_USE_BUSY)))
+	while(do_after(owner, BULWARK_LOOP_TIME, IGNORE_HELD_ITEM, user_display = BUSY_ICON_MEDICAL, extra_checks = CALLBACK(src, TYPE_PROC_REF(/datum/action, can_use_action), FALSE, XACT_IGNORE_COOLDOWN|XACT_USE_BUSY)))
 		succeed_activate()
 
 	aoe_particles.particles.spawning = 0

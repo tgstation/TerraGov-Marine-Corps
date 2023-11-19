@@ -94,7 +94,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 		if(pulled_target.issamexenohive(X))
 			cooldown_mod = X.xeno_caste.wraith_blink_drag_friendly_multiplier
 		else
-			if(!do_after(owner, 0.5 SECONDS, TRUE, owner, BUSY_ICON_HOSTILE)) //Grap-porting hostiles has a slight wind up
+			if(!do_after(owner, 0.5 SECONDS, NONE, owner, BUSY_ICON_HOSTILE)) //Grap-porting hostiles has a slight wind up
 				return fail_activate()
 			cooldown_mod = X.xeno_caste.wraith_blink_drag_nonfriendly_living_multiplier
 			if(ishuman(pulled_target))

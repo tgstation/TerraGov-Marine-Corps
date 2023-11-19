@@ -16,7 +16,7 @@
 	if(!istype(target)) //Something went horribly wrong. Clicked off edge of map probably
 		return
 
-	if(!do_after(X, 5, TRUE, target, BUSY_ICON_DANGER))
+	if(!do_after(X, 5, NONE, target, BUSY_ICON_DANGER))
 		return fail_activate()
 
 	if(!can_use_ability(A, TRUE, override_flags = XACT_IGNORE_SELECTED_ABILITY))

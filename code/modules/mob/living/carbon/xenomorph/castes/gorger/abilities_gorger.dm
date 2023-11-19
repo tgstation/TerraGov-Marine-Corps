@@ -58,7 +58,7 @@
 
 	var/channel = SSsounds.random_available_channel()
 	playsound(owner_xeno, 'sound/vore/escape.ogg', 40, channel = channel)
-	if(!do_after(owner_xeno, GORGER_REGURGITATE_DELAY, FALSE, null, BUSY_ICON_DANGER))
+	if(!do_after(owner_xeno, GORGER_REGURGITATE_DELAY, IGNORE_HELD_ITEM, null, BUSY_ICON_DANGER))
 		to_chat(owner, span_warning("We moved too soon!"))
 		owner_xeno.stop_sound_channel(channel)
 		return
@@ -71,7 +71,7 @@
 	owner_xeno.visible_message(span_danger("[owner_xeno] starts to devour [victim]!"), span_danger("We start to devour [victim]!"), null, 5)
 	var/channel = SSsounds.random_available_channel()
 	playsound(owner_xeno, 'sound/vore/struggle.ogg', 40, channel = channel)
-	if(!do_after(owner_xeno, GORGER_DEVOUR_DELAY, FALSE, victim, BUSY_ICON_DANGER, extra_checks = CALLBACK(owner, TYPE_PROC_REF(/mob, break_do_after_checks), list("health" = owner_xeno.health))))
+	if(!do_after(owner_xeno, GORGER_DEVOUR_DELAY, IGNORE_HELD_ITEM, victim, BUSY_ICON_DANGER, extra_checks = CALLBACK(owner, TYPE_PROC_REF(/mob, break_do_after_checks), list("health" = owner_xeno.health))))
 		to_chat(owner, span_warning("We stop devouring \the [victim]. They probably tasted gross anyways."))
 		owner_xeno.stop_sound_channel(channel)
 		return
@@ -141,7 +141,7 @@
 	var/mob/living/carbon/xenomorph/owner_xeno = owner
 	if(target_human.stat == DEAD)
 		var/overheal_gain = 0
-		while((owner_xeno.health < owner_xeno.maxHealth || owner_xeno.overheal < owner_xeno.xeno_caste.overheal_max) &&do_after(owner_xeno, 2 SECONDS, TRUE, target_human, BUSY_ICON_HOSTILE))
+		while((owner_xeno.health < owner_xeno.maxHealth || owner_xeno.overheal < owner_xeno.xeno_caste.overheal_max) &&do_after(owner_xeno, 2 SECONDS, NONE, target_human, BUSY_ICON_HOSTILE))
 			overheal_gain = owner_xeno.heal_wounds(2.2)
 			adjustOverheal(owner_xeno, overheal_gain)
 			owner_xeno.adjust_sunder(-2.5)
@@ -152,7 +152,7 @@
 	ADD_TRAIT(owner_xeno, TRAIT_HANDS_BLOCKED, src)
 	for(var/i = 0; i < GORGER_DRAIN_INSTANCES; i++)
 		target_human.Immobilize(GORGER_DRAIN_DELAY)
-		if(!do_after(owner_xeno, GORGER_DRAIN_DELAY, FALSE, target_human, ignore_turf_checks = FALSE))
+		if(!do_after(owner_xeno, GORGER_DRAIN_DELAY, IGNORE_HELD_ITEM, target_human))
 			break
 		DO_DRAIN_ACTION(owner_xeno, target_human)
 

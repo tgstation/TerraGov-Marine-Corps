@@ -336,7 +336,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 			return FALSE
 
 /datum/action/xeno_action/build_hugger_turret/action_activate()
-	if(!do_after(owner, 10 SECONDS, TRUE, owner, BUSY_ICON_BUILD))
+	if(!do_after(owner, 10 SECONDS, NONE, owner, BUSY_ICON_BUILD))
 		return FALSE
 
 	if(!can_use_action())
@@ -398,7 +398,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 
 	owner.face_atom(victim)
 
-	if(!do_after(caster, 0.5 SECONDS, TRUE, caster, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(can_use_ability), A, FALSE, XACT_USE_BUSY)))
+	if(!do_after(caster, 0.5 SECONDS, NONE, caster, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(can_use_ability), A, FALSE, XACT_USE_BUSY)))
 		return fail_activate()
 	if(!can_use_ability(A))
 		return fail_activate()

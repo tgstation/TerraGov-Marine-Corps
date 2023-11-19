@@ -122,7 +122,7 @@
 		return
 
 	user.balloon_alert(user, "filling up...")
-	if(!do_after(user, 1 SECONDS, TRUE, source, BUSY_ICON_BAR, null, PROGRESS_BRASS))
+	if(!do_after(user, 1 SECONDS, NONE, source, BUSY_ICON_BAR, null, PROGRESS_BRASS))
 		return
 
 	if(!loaded_reagents[reagent_to_load])
@@ -157,7 +157,7 @@
 		return
 
 	to_chat(user, span_rose("You start filling up the small chambers along the blade's edge."))
-	if(!do_after(user, 2 SECONDS, TRUE, source, BUSY_ICON_BAR, ignore_turf_checks = TRUE))
+	if(!do_after(user, 2 SECONDS, IGNORE_USER_LOC_CHANGE, source, BUSY_ICON_BAR))
 		to_chat(user, span_rose("Due to the sudden movement, the safety mechanism siphons the substance back."))
 		return
 
@@ -177,7 +177,7 @@
 /datum/component/harvester/proc/attack_async(datum/source, mob/living/target, mob/living/user, obj/item/weapon)
 	to_chat(user, span_rose("You prepare to stab <b>[target != user ? "[target]" : "yourself"]</b>!"))
 	new /obj/effect/temp_visual/telekinesis(get_turf(target))
-	if((target != user) && do_after(user, 2 SECONDS, TRUE, target, BUSY_ICON_DANGER))
+	if((target != user) && do_after(user, 2 SECONDS, NONE, target, BUSY_ICON_DANGER))
 		target.heal_overall_damage(12.5, 0, updating_health = TRUE)
 	else
 		target.adjustStaminaLoss(-30)

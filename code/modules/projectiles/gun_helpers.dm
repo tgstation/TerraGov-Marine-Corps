@@ -117,10 +117,10 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 	to_chat(user, span_notice("You start a tactical reload."))
 	var/tac_reload_time = max(0.25 SECONDS, 0.75 SECONDS - user.skills.getRating(SKILL_FIREARMS) * 5)
 	if(length(chamber_items))
-		if(!do_after(user, tac_reload_time, TRUE, new_magazine, ignore_turf_checks = TRUE) && loc == user)
+		if(!do_after(user, tac_reload_time, IGNORE_USER_LOC_CHANGE, new_magazine) && loc == user)
 			return
 		unload(user)
-	if(!do_after(user, tac_reload_time, TRUE, new_magazine, ignore_turf_checks = TRUE) && loc == user)
+	if(!do_after(user, tac_reload_time, IGNORE_USER_LOC_CHANGE, new_magazine) && loc == user)
 		return
 	if(istype(new_magazine.loc, /obj/item/storage))
 		var/obj/item/storage/S = new_magazine.loc
@@ -672,7 +672,7 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 	if(user.do_actions)
 		return
 	if(!user.marksman_aura)
-		if(!do_after(user, aim_time, TRUE, (flags_item & IS_DEPLOYED) ? loc : src, BUSY_ICON_BAR, ignore_turf_checks = (flags_item & IS_DEPLOYED) ? FALSE : TRUE))
+		if(!do_after(user, aim_time, (flags_item & IS_DEPLOYED) ? NONE : IGNORE_USER_LOC_CHANGE, (flags_item & IS_DEPLOYED) ? loc : src, BUSY_ICON_BAR))
 			to_chat(user, span_warning("<b>Your concentration is interrupted!</b>"))
 			return
 	if(!(flags_item & WIELDED) && !(flags_item & IS_DEPLOYED))

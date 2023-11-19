@@ -96,7 +96,7 @@
 	if(skill < SKILL_MEDICAL_PRACTICED)
 		user.visible_message(span_notice("[user] fumbles around figuring out how to use [src]."),
 		span_notice("You fumble around figuring out how to use [src]."))
-		if(!do_after(user, SKILL_TASK_AVERAGE - (SKILL_TASK_VERY_EASY * skill), TRUE, src, BUSY_ICON_UNSKILLED)) // 3 seconds with medical skill, 5 without
+		if(!do_after(user, SKILL_TASK_AVERAGE - (SKILL_TASK_VERY_EASY * skill), NONE, src, BUSY_ICON_UNSKILLED)) // 3 seconds with medical skill, 5 without
 			return
 
 	defib_cooldown = world.time + 2 SECONDS
@@ -169,7 +169,7 @@
 		user.visible_message(span_notice("[user] fumbles around figuring out how to use [src]."),
 		span_notice("You fumble around figuring out how to use [src]."))
 		var/fumbling_time = SKILL_TASK_AVERAGE - (SKILL_TASK_VERY_EASY * skill) // 3 seconds with medical skill, 5 without
-		if(!do_after(user, fumbling_time, TRUE, H, BUSY_ICON_UNSKILLED))
+		if(!do_after(user, fumbling_time, NONE, H, BUSY_ICON_UNSKILLED))
 			return
 	else
 		defib_heal_amt *= skill * 0.5 //more healing power when used by a doctor (this means non-trained don't heal)

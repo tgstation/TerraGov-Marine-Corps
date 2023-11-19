@@ -94,7 +94,7 @@
 		return
 	if(human_user.do_actions)
 		return
-	if(!do_after(user = human_user, delay = 0.3 SECONDS, needhand = FALSE, target = A, ignore_turf_checks = TRUE))
+	if(!do_after(human_user, 0.3 SECONDS, IGNORE_HELD_ITEM|IGNORE_USER_LOC_CHANGE, A, ignore_turf_checks = TRUE))
 		return
 	TIMER_COOLDOWN_START(src, COOLDOWN_JETPACK, JETPACK_COOLDOWN_TIME)
 	lit = TRUE
