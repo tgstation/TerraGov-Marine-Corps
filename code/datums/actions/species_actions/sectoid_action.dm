@@ -1,3 +1,6 @@
+// ***************************************
+// *********** Mindmeld
+// ***************************************
 /datum/action/ability/activable/sectoid/mindmeld
 	name = "Mindmeld"
 	action_icon_state = "healing_infusion"
@@ -139,112 +142,6 @@
 	add_cooldown()
 	succeed_activate()
 	update_button_icon()
-
-///knockoff psyblast
-/datum/action/ability/activable/sectoid/psyblast
-	name = "Psychic Blast"
-	action_icon_state = "psy_blast"
-	desc = "Launch a blast of psychic energy that deals light damage and knocks back enemies in its AOE. Must remain stationary for a few seconds to use."
-	cooldown_duration = 6 SECONDS
-	ability_cost = 230
-	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PSYCHIC_BLAST,
-	)
-	/// Used for particles. Holds the particles instead of the mob. See particle_holder for documentation.
-	var/obj/effect/abstract/particle_holder/particle_holder
-	///The particle type that will be created when using this ability
-	var/particles/particle_type = /particles/warlock_charge/psy_blast
-	///ammo types available
-	var/list/ammo_types = list(
-		/datum/ammo/energy/xeno/psy_blast,
-		/datum/ammo/energy/xeno/psy_blast/psy_lance,
-	)
-	///currently loaded
-	var/datum/ammo/energy/xeno/selected_ammo
-
-/datum/action/ability/activable/sectoid/psyblast/New(Target)
-	selected_ammo = GLOB.ammo_list[ammo_types[1]]
-	return ..()
-
-/datum/action/ability/activable/sectoid/psyblast/on_cooldown_finish()
-	owner.balloon_alert(owner, "Psy blast ready")
-	return ..()
-
-/datum/action/ability/activable/sectoid/psyblast/action_activate()
-	var/mob/living/carbon/carbon_owner = owner
-	if(carbon_owner.selected_ability == src)
-		if(length(ammo_types) <= 1)
-			return ..()
-		var/found_pos = ammo_types.Find(selected_ammo.type)
-		if(!found_pos)
-			selected_ammo = GLOB.ammo_list[ammo_types[1]]
-		else
-			selected_ammo = GLOB.ammo_list[ammo_types[(found_pos%length(ammo_types))+1]]	//Loop around if we would exceed the length
-		ability_cost = selected_ammo.ability_cost
-		particle_type = selected_ammo.channel_particle
-		owner.balloon_alert(owner, "[selected_ammo]")
-		update_button_icon()
-	return ..()
-
-
-/datum/action/ability/activable/sectoid/psyblast/can_use_ability(atom/A, silent = FALSE, override_flags)
-	. = ..()
-	if(!.)
-		return FALSE
-	var/mob/living/carbon/carbon_owner = owner
-	if(carbon_owner.incapacitated() || carbon_owner.lying_angle)
-		return FALSE
-
-/datum/action/ability/activable/sectoid/psyblast/use_ability(atom/A)
-	var/mob/living/carbon/carbon_owner = owner
-	var/turf/target_turf = get_turf(A)
-
-	owner.balloon_alert(owner, "We channel our psychic power")
-
-	generate_particles(A, 7)
-	ADD_TRAIT(carbon_owner, TRAIT_IMMOBILE, PSYCHIC_BLAST_ABILITY_TRAIT)
-	//carbon_owner.update_glow(3, 3, selected_ammo.glow_color)
-
-	if(!do_after(carbon_owner, 1 SECONDS, FALSE, target_turf, BUSY_ICON_DANGER) || !can_use_ability(A, FALSE))
-		owner.balloon_alert(owner, "Our focus is disrupted")
-		end_channel()
-		REMOVE_TRAIT(carbon_owner, TRAIT_IMMOBILE, PSYCHIC_BLAST_ABILITY_TRAIT)
-		return fail_activate()
-
-	var/obj/projectile/hitscan/projectile = new /obj/projectile/hitscan(carbon_owner.loc)
-	projectile.effect_icon = initial(selected_ammo.hitscan_effect_icon)
-	projectile.generate_bullet(selected_ammo)
-	projectile.fire_at(A, carbon_owner, null, projectile.ammo.max_range, projectile.ammo.shell_speed)
-	playsound(carbon_owner, 'sound/weapons/guns/fire/volkite_4.ogg', 40)
-
-	add_cooldown()
-	succeed_activate()
-	update_button_icon()
-	REMOVE_TRAIT(carbon_owner, TRAIT_IMMOBILE, PSYCHIC_BLAST_ABILITY_TRAIT)
-	addtimer(CALLBACK(src, PROC_REF(end_channel)), 5)
-
-/datum/action/ability/activable/sectoid/psyblast/update_button_icon()
-	action_icon_state = selected_ammo.icon_state
-	return ..()
-
-//Generates particles and directs them towards target
-/datum/action/ability/activable/sectoid/psyblast/proc/generate_particles(atom/target, velocity)
-	var/angle = Get_Angle(get_turf(owner), get_turf(target)) //pixel offsets effect angles
-	var/x_component = sin(angle) * velocity
-	var/y_component = cos(angle) * velocity
-
-	particle_holder = new(owner, particle_type)
-
-	particle_holder.particles.velocity = list(x_component * 0.5, y_component * 0.5)
-	particle_holder.particles.gravity = list(x_component, y_component)
-	particle_holder.particles.rotation = angle
-
-///Cleans up when the channel finishes or is cancelled
-/datum/action/ability/activable/sectoid/psyblast/proc/end_channel()
-	QDEL_NULL(particle_holder)
-	//var/mob/living/carbon/carbon_owner = owner
-	//carbon_owner.update_glow()
-
 
 // ***************************************
 // *********** Stasis
