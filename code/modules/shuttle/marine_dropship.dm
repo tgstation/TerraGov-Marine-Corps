@@ -1474,20 +1474,6 @@
 	confirm_message = ""
 	SStgui.update_uis(src)
 
-/obj/machinery/computer/shuttle/shuttle_control/canterbury/proc/launch_shuttle(obj/docking_port/mobile/port, destination, mob/user)
-	log_admin("[key_name(usr)] is launching the canterbury[!length(GLOB.active_nuke_list)? " early" : ""].")
-	message_admins("[ADMIN_TPMONTY(usr)] is launching the canterbury[!length(GLOB.active_nuke_list)? " early" : ""].")
-	
-	var/obj/docking_port/mobile/M = SSshuttle.getShuttle(shuttleID)
-	M.destination = null
-	M.mode = SHUTTLE_IGNITING
-	M.setTimer(M.ignitionTime)
-	SStgui.update_uis(src)
-
-	var/datum/game_mode/infestation/crash/crash_mode = SSticker.mode
-	addtimer(VARSET_CALLBACK(crash_mode, marines_evac, CRASH_EVAC_INPROGRESS), M.ignitionTime + 10 SECONDS)
-	addtimer(VARSET_CALLBACK(crash_mode, marines_evac, CRASH_EVAC_COMPLETED), 2 MINUTES)
-
 /obj/machinery/computer/shuttle/shuttle_control/canterbury/ui_interact(mob/user, datum/tgui/ui)
 	if(!allowed(user))
 		balloon_alert(user, "Access Denied!")
@@ -1495,14 +1481,12 @@
 	. = ..()
 
 /obj/machinery/computer/shuttle/shuttle_control/canterbury/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
-	if(action != "selectDestination")
+	if(action != "selectDestination" || !iscrashgamemode(SSticker.mode))
+		to_chat(usr, span_warning("[src] is unresponsive."))
 		return
 	var/obj/docking_port/mobile/M = SSshuttle.getShuttle(shuttleId)
 	M.ignitionTime = custom_ignition_time
 	if(!can_interact(usr) && isxeno(usr) && !allowed(usr))
-		return
-	if(action != "selectDestination" || !iscrashgamemode(SSticker.mode))
-		to_chat(usr, span_warning("[src] is unresponsive."))
 		return
 	#ifndef TESTING
 	if(!(M.shuttle_flags & GAMEMODE_IMMUNE) && world.time < SSticker.round_start_time + SSticker.mode.deploy_time_lock)
@@ -1510,3 +1494,19 @@
 		return
 	#endif
 	. = ..()
+
+/obj/machinery/computer/shuttle/shuttle_control/canterbury/proc/launch_shuttle(obj/docking_port/mobile/port, destination, mob/user)
+	log_admin("[key_name(user)] is launching the canterbury[!length(GLOB.active_nuke_list)? " early" : ""].")
+	message_admins("[ADMIN_TPMONTY(user)] is launching the canterbury[!length(GLOB.active_nuke_list)? " early" : ""].")
+
+	var/obj/docking_port/mobile/M = SSshuttle.getShuttle(shuttleID)
+	if(!M.can_move_topic(user))
+		return TRUE
+	M.destination = null
+	M.mode = SHUTTLE_IGNITING
+	M.setTimer(M.ignitionTime)
+	SStgui.update_uis(user)
+
+	var/datum/game_mode/infestation/crash/crash_mode = SSticker.mode
+	addtimer(VARSET_CALLBACK(crash_mode, marines_evac, CRASH_EVAC_INPROGRESS), M.ignitionTime + 10 SECONDS)
+	addtimer(VARSET_CALLBACK(crash_mode, marines_evac, CRASH_EVAC_COMPLETED), 2 MINUTES)
