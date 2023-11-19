@@ -80,7 +80,7 @@
 	var/list/patient_limbs = patient.limbs.Copy()
 	patient_limbs -= affecting
 	while(affecting)
-		if(!do_mob(user, patient, SKILL_TASK_VERY_EASY / (unskilled_penalty ** 2), BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL, extra_checks = CALLBACK(src, PROC_REF(can_affect_limb), affecting)))
+		if(!do_after(user, SKILL_TASK_VERY_EASY / (unskilled_penalty ** 2), NONE, patient, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL, extra_checks = CALLBACK(src, PROC_REF(can_affect_limb), affecting)))
 			patient.balloon_alert(user, "Stopped tending")
 			return
 		var/affected = heal_limb(affecting, unskilled_penalty)
@@ -249,7 +249,7 @@
 		if(user.do_actions)
 			M.balloon_alert(user, "already busy")
 			return FALSE
-		if(!do_mob(user, M, unskilled_delay, BUSY_ICON_UNSKILLED, BUSY_ICON_MEDICAL))
+		if(!do_after(user, unskilled_delay, NONE, M, BUSY_ICON_UNSKILLED, BUSY_ICON_MEDICAL))
 			return FALSE
 
 	var/datum/limb/affecting = .

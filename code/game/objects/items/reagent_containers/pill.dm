@@ -55,7 +55,7 @@
 
 		var/ingestion_time = max(1 SECONDS, 3 SECONDS - 1 SECONDS * user.skills.getRating(SKILL_MEDICAL))
 
-		if(!do_mob(user, M, ingestion_time, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
+		if(!do_after(user, ingestion_time, NONE, M, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
 			return
 
 		user.dropItemToGround(src) //icon update

@@ -212,7 +212,7 @@
 	span_notice("You start setting up the paddles on [H]'s chest."))
 	playsound(get_turf(src),'sound/items/defib_charge.ogg', 25, 0) //Do NOT vary this tune, it needs to be precisely 7 seconds
 
-	if(!do_mob(user, H, 7 SECONDS, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
+	if(!do_after(user, 7 SECONDS, NONE, H, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
 		user.visible_message(span_warning("[user] stops setting up the paddles on [H]'s chest."),
 		span_warning("You stop setting up the paddles on [H]'s chest."))
 		return

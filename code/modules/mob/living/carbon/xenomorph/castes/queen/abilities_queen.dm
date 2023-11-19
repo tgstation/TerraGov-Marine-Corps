@@ -349,7 +349,7 @@
 /datum/action/xeno_action/activable/psychic_cure/queen_give_heal/use_ability(atom/target)
 	if(owner.do_actions)
 		return FALSE
-	if(!do_mob(owner, target, 1 SECONDS, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
+	if(!do_after(owner, 1 SECONDS, NONE, target, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
 		return FALSE
 	target.visible_message(span_xenowarning("\the [owner] vomits acid over [target], mending their wounds!"))
 	playsound(target, "alien_drool", 25)

@@ -1123,7 +1123,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		var/datum/callback/tool_check = CALLBACK(src, PROC_REF(tool_check_callback), user, amount, extra_checks)
 
 		if(ismob(target))
-			if(do_mob(user, target, delay, extra_checks=tool_check))
+			if(do_after(user, delay, NONE, target, extra_checks = tool_check))
 				return
 
 		else if(!do_after(user, delay, target = target, extra_checks = tool_check))

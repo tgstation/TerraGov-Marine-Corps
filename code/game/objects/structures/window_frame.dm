@@ -102,8 +102,7 @@
 
 		user.visible_message(span_notice("[user] starts pulling [M] onto [src]."),
 		span_notice("You start pulling [M] onto [src]!"))
-		var/oldloc = loc
-		if(!do_mob(user, M, 20, BUSY_ICON_GENERIC) || loc != oldloc)
+		if(!do_after(user, 2 SECONDS, NONE, M, BUSY_ICON_GENERIC))
 			return
 		M.Paralyze(4 SECONDS)
 		user.visible_message(span_warning("[user] pulls [M] onto [src]."),
