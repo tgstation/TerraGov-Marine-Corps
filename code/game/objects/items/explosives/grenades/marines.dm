@@ -86,6 +86,7 @@
 	///if this specific grenade should be allowed to self sticky
 	var/self_sticky = FALSE
 
+///handles sticky overlay and attaching the grenade itself to the target
 /obj/item/explosive/grenade/sticky/proc/stuck_to(atom/hit_atom)
 	var/image/stuck_overlay = image(icon, hit_atom, initial(icon_state) + "_stuck")
 	stuck_overlay.pixel_x = rand(-5, 5)
@@ -109,11 +110,10 @@
 	if(target != user)
 		return
 	if(!self_sticky)
-		return FALSE
+		return
 	user.drop_held_item()
 	activate()
-	var/hit_atom = target
-	stuck_to(hit_atom)
+	stuck_to(target)
 
 /obj/item/explosive/grenade/sticky/prime()
 	if(stuck_to)
@@ -156,7 +156,7 @@
 
 /obj/item/explosive/grenade/sticky/trailblazer/afterattack(atom/target, mob/user)
 	. = ..()
-	if(!.)
+	if(!self_sticky || target != user)
 		return
 	RegisterSignal(stuck_to, COMSIG_MOVABLE_MOVED, PROC_REF(make_fire))
 	var/turf/T = get_turf(src)
@@ -205,7 +205,7 @@
 
 /obj/item/explosive/grenade/sticky/cloaker/afterattack(atom/target, mob/user)
 	. = ..()
-	if(!.)
+	if(!self_sticky || target != user)
 		return
 	RegisterSignal(stuck_to, COMSIG_MOVABLE_MOVED, PROC_REF(make_smoke))
 
