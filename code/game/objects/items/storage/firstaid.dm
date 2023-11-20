@@ -288,7 +288,7 @@
 	var/description_overlay = ""
 	refill_types = list(/obj/item/storage/pill_bottle)
 	refill_sound = 'sound/items/pills.ogg'
-	access_delay = 1.5 SECONDS
+	access_delay = 0 SECONDS
 
 /obj/item/storage/pill_bottle/Initialize(mapload, ...)
 	. = ..()
