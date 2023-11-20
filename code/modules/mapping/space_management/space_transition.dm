@@ -116,7 +116,7 @@
 				D = D.neigbours["[dirside]"]
 				zdestination = D.z_value
 			else
-				dirside = turn(dirside, 180)
+				dirside = REVERSE_DIR(dirside)
 				while(D.neigbours["[dirside]"] && D.neigbours["[dirside]"] != D)
 					D = D.neigbours["[dirside]"]
 				zdestination = D.z_value

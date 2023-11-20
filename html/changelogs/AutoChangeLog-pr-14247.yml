@@ -1,6 +1,0 @@
-author: "Waselon"
-delete-after: True
-changes:
-  - rscadd: "New hivelord primo: Resin Globe."
-  - balance: "Sow was added to all builder castes as primo ability."
-  - bugfix: "Plasma fruit now respects special plasma options (ravager, gorger, puppeteer)"

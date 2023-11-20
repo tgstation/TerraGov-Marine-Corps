@@ -201,8 +201,6 @@
 				I.marine_points[item_category] -= cost
 			. = TRUE
 
-	updateUsrDialog()
-
 /obj/machinery/marine_selector/clothes
 	name = "GHMME Automated Closet"
 	desc = "An automated closet hooked up to a colossal storage unit of standard-issue uniform and armor."

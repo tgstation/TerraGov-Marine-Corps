@@ -226,7 +226,7 @@ GLOBAL_LIST_INIT(nuke_disk_generator_types, list(/obj/machinery/computer/nuke_di
 /obj/structure/nuke_disk_candidate/Initialize(mapload)
 	. = ..()
 	GLOB.nuke_disk_spawn_locs += src
-	icon_state = "tank0"
+	icon_state = "computer"
 
 /obj/structure/nuke_disk_candidate/Destroy()
 	GLOB.nuke_disk_spawn_locs -= src

@@ -437,7 +437,7 @@
 	if(check_mask)
 		if(wear_mask)
 			var/obj/item/W = wear_mask
-			if(W.flags_item & NODROP)
+			if(HAS_TRAIT(W, TRAIT_NODROP))
 				return FALSE
 			if(istype(W, /obj/item/clothing/mask/facehugger))
 				var/obj/item/clothing/mask/facehugger/hugger = W
@@ -500,7 +500,7 @@
 		if(H.head)
 			var/obj/item/clothing/head/D = H.head
 			if(istype(D))
-				if(D.anti_hug > 0 || D.flags_item & NODROP)
+				if(D.anti_hug > 0 || HAS_TRAIT(D, TRAIT_NODROP))
 					blocked = D
 					D.anti_hug = max(0, --D.anti_hug)
 					H.visible_message("<span class='danger'>[src] smashes against [H]'s [D.name], damaging it!")
@@ -516,7 +516,7 @@
 				if(hugger.stat != DEAD)
 					return FALSE
 
-			if(W.anti_hug > 0 || W.flags_item & NODROP)
+			if(W.anti_hug > 0 || HAS_TRAIT(W, TRAIT_NODROP))
 				if(!blocked)
 					blocked = W
 				W.anti_hug = max(0, --W.anti_hug)
@@ -546,12 +546,12 @@
 		var/stamina_dmg = user.maxHealth + user.max_stamina
 		user.apply_damage(stamina_dmg, STAMINA) // complete winds the target
 		user.Unconscious(2 SECONDS)
-	addtimer(VARSET_CALLBACK(src, flags_item, flags_item|NODROP), IMPREGNATION_TIME) // becomes stuck after min-impreg time
 	attached = TRUE
 	go_idle(FALSE, TRUE)
 	addtimer(CALLBACK(src, PROC_REF(Impregnate), user), IMPREGNATION_TIME)
 
 /obj/item/clothing/mask/facehugger/proc/Impregnate(mob/living/carbon/target)
+	ADD_TRAIT(src, TRAIT_NODROP, HUGGER_TRAIT)
 	var/as_planned = target?.wear_mask == src ? TRUE : FALSE
 	if(target.can_be_facehugged(src, FALSE, FALSE) && !sterile && as_planned) //is hugger still on face and can they still be impregnated
 		if(!(locate(/obj/item/alien_embryo) in target))
@@ -598,7 +598,7 @@
 	addtimer(CALLBACK(src, PROC_REF(melt_away)), melt_timer)
 
 /obj/item/clothing/mask/facehugger/proc/reset_attach_status(forcedrop = TRUE)
-	flags_item &= ~NODROP
+	REMOVE_TRAIT(src, TRAIT_NODROP, HUGGER_TRAIT)
 	attached = FALSE
 	if(isliving(loc) && forcedrop) //Make it fall off the person so we can update their icons. Won't update if they're in containers thou
 		var/mob/living/M = loc

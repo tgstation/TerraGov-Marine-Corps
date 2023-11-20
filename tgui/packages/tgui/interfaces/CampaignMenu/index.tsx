@@ -31,6 +31,7 @@ export type MissionData = {
 
   objective_description: string;
   mission_brief: string;
+  mission_parameters: string;
   mission_rewards: string;
   vp_major_reward: number;
   vp_minor_reward: number;

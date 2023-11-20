@@ -148,7 +148,6 @@
 	try
 		structure = json_decode(json)
 	catch
-		log_debug("Jatum failed to deserialize, the json in question was : [json]")
 		return
 	if(!structure)
 		CRASH("Invalid JSON!")

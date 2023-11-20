@@ -3744,9 +3744,6 @@
 /obj/machinery/atmospherics/pipe/manifold/supply/visible/layer1{
 	dir = 1
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},

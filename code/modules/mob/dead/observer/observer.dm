@@ -201,7 +201,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 
 		switch(tgui_alert(ghost, "What would you like to do?", "Burrowed larva source available", list("Join as Larva", "Cancel"), 0))
 			if("Join as Larva")
-				SSticker.mode.attempt_to_join_as_larva(ghost)
+				SSticker.mode.attempt_to_join_as_larva(ghost.client)
 		return
 
 	else if(href_list["preference"])
@@ -958,9 +958,13 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 		return FALSE
 	visible_message(span_deadsay("[span_name("[src]")] points at [pointed_atom]."))
 
-/mob/dead/observer/CtrlShiftClickOn(mob/target_ghost)
-	if(ghost_vision && check_rights(R_SPAWN))
-		if(src == target_ghost)
-			client.holder.spatial_agent()
-		else
-			target_ghost.change_mob_type(/mob/living/carbon/human , null, null, TRUE) //always delmob, ghosts shouldn't be left lingering
+/mob/dead/observer/CtrlShiftClickOn(mob/dead/observer/target_ghost)
+	if(!istype(target_ghost))
+		return
+	if(!check_rights(R_SPAWN))
+		return
+
+	if(src == target_ghost)
+		client.holder.spatial_agent()
+	else
+		target_ghost.change_mob_type(/mob/living/carbon/human, delete_old_mob = TRUE)

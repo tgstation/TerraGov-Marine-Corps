@@ -101,6 +101,11 @@
 ///Override code for NT base rescue mission
 #define COMSIG_GLOB_CAMPAIGN_NT_OVERRIDE_CODE "!campaign_nt_override_code"
 
+///Campaign asset activation successful
+#define COMSIG_CAMPAIGN_ASSET_ACTIVATION "campaign_asset_activation"
+///Campaign asset disabler activated
+#define COMSIG_CAMPAIGN_DISABLER_ACTIVATION "campaign_disabler_activation"
+
 //////////////////////////////////////////////////////////////////
 
 // /datum signals
@@ -114,10 +119,6 @@
 #define COMSIG_QDELETING "parent_qdeleting"
 /// generic topic handler (usr, href_list)
 #define COMSIG_TOPIC "handle_topic"
-
-/// generic topic handler (usr, href_list)
-#define COMSIG_COMBAT_LOG "combat_log"
-	#define DONT_LOG (1<<0)
 
 /// fires on the target datum when an element is attached to it (/datum/element)
 #define COMSIG_ELEMENT_ATTACH "element_attach"
@@ -229,6 +230,9 @@
 	#define EXAMINE_POSITION_BEFORE (1<<1)
 	//End positions
 	#define COMPONENT_EXNAME_CHANGED (1<<0)
+///from base of atom/get_mechanics_info(): (/mob)
+#define COMSIG_ATOM_GET_MECHANICS_INFO "atom_mechanics_info"
+	#define COMPONENT_MECHANICS_CHANGE (1<<0)
 #define COMSIG_ATOM_UPDATE_ICON "atom_update_icon"				//from base of atom/update_icon(): ()
 	#define COMSIG_ATOM_NO_UPDATE_ICON_STATE (1<<0)
 	#define COMSIG_ATOM_NO_UPDATE_OVERLAYS (1<<1)
@@ -1038,8 +1042,13 @@
 ///Called from base of /datum/controller/subsystem/spatial_grid/proc/exit_cell: (/atom/movable)
 #define SPATIAL_GRID_CELL_EXITED(contents_type) "spatial_grid_cell_exited_[contents_type]"
 
-// widow spiderling mark signals
+// widow spiderling signals
 #define COMSIG_SPIDERLING_MARK "spiderling_mark"
+#define COMSIG_SPIDERLING_RETURN "spiderling_return"
+#define COMSIG_SPIDERLING_GUARD "spiderling_guard"
+#define COMSIG_SPIDERLING_UNGUARD "spiderling_unguard"
+
 //puppet
 #define COMSIG_PUPPET_CHANGE_ORDER "puppetchangeorder"
 #define COMSIG_PUPPET_CHANGE_ALL_ORDER "puppetglobalorder"
+

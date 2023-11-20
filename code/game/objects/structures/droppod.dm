@@ -21,6 +21,9 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 	flags_atom = PREVENT_CONTENTS_EXPLOSION
 	coverage = 75
 	buckle_flags = CAN_BUCKLE|BUCKLE_PREVENTS_PULL
+	light_range = 1
+	light_power = 0.5
+	light_color = LIGHT_COLOR_EMISSIVE_GREEN
 	//todo make these just use a turf?
 	///X target coordinate
 	var/target_x = 1
@@ -88,6 +91,13 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 	update_icon()
 	UnregisterSignal(SSdcs, list(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_XENO_HIVEMIND, COMSIG_GLOB_OPEN_SHUTTERS_EARLY, COMSIG_GLOB_TADPOLE_LAUNCHED))
 
+/obj/structure/droppod/update_icon()
+	. = ..()
+	if(operation_started && launch_allowed)
+		set_light(initial(light_range))
+	else
+		set_light(0)
+
 /obj/structure/droppod/update_icon_state()
 	if(drop_state == DROPPOD_ACTIVE)
 		icon_state = initial(icon_state)
@@ -95,6 +105,11 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 		icon_state = initial(icon_state) + "_active"
 	else
 		icon_state = initial(icon_state) + "_inactive"
+
+/obj/structure/droppod/update_overlays()
+	. = ..()
+	if(operation_started && launch_allowed)
+		. += emissive_appearance(icon, "[icon_state]_emissive")
 
 /obj/structure/droppod/user_buckle_mob(mob/living/M, mob/user, check_loc = TRUE)
 	if(!in_range(user, src) || !in_range(M, src))
@@ -282,6 +297,7 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 	name = "\improper TGMC Zeus command drop pod"
 	desc = "A menacing metal hunk of steel that is used by the TGMC for quick tactical redeployment. This one comes with command capabilities."
 	icon_state = "singlepod_red"
+	light_color = LIGHT_COLOR_EMISSIVE_RED
 
 /obj/structure/droppod/leader/buckle_mob(mob/living/buckling_mob, force, check_loc, lying_buckle, hands_needed, target_hands_needed, silent)
 	if(buckling_mob.skills.getRating(SKILL_LEADERSHIP) < SKILL_LEAD_TRAINED)
@@ -397,6 +413,7 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 	name = "\improper TGMC Zeus supply drop pod"
 	desc = "A menacing metal hunk of steel that is used by the TGMC for quick tactical redeployment. This one is designed to carry supplies."
 	icon_state = "supplypod"
+	light_color = LIGHT_COLOR_EMISSIVE_ORANGE
 
 /obj/structure/droppod/nonmob/supply_pod/completedrop(mob/user)
 	layer = DOOR_OPEN_LAYER //so anything inside layers over it
@@ -438,6 +455,7 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 	name = "\improper TGMC Zeus sentry drop pod"
 	desc = "A menacing metal hunk of steel that is used by the TGMC for quick tactical redeployment. This one carries a self deploying sentry system."
 	icon_state = "sentrypod"
+	light_color = LIGHT_COLOR_EMISSIVE_RED
 
 /obj/structure/droppod/nonmob/turret_pod/Initialize(mapload)
 	. = ..()
@@ -451,6 +469,8 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 	desc = "A menacing metal hunk of steel that is used by the TGMC for quick tactical redeployment. This is a larger model designed specifically to carry mechs."
 	icon = 'icons/obj/structures/big_droppod.dmi'
 	icon_state = "mechpod"
+	light_range = 2
+	light_color = LIGHT_COLOR_BLUE
 	pixel_x = -9
 	max_integrity = 150
 

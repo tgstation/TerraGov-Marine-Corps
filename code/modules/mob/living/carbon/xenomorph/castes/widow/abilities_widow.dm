@@ -226,13 +226,20 @@
 	if(length(create_spiderling_action.spiderlings) <= 0)
 		owner.balloon_alert(owner, "No spiderlings")
 		return fail_activate()
-	if(!isturf(A))
+	if(!isturf(A) && !istype(A, /obj/alien/weeds))
 		owner.balloon_alert(owner, "Spiderlings attacking " + A.name)
-		succeed_activate()
 	else
-		A = null
-		owner.balloon_alert(owner, "Nothing to attack")
-		fail_activate()
+		for(var/item in A) //Autoaim at humans if weeds or turfs are clicked
+			if(!ishuman(item))
+				continue
+			A = item
+			owner.balloon_alert(owner, "Spiderlings attacking " + A.name)
+			break
+		if(!ishuman(A)) //If no human found, cancel ability
+			owner.balloon_alert(owner, "Nothing to attack, cancelled")
+			return fail_activate()
+
+	succeed_activate()
 	SEND_SIGNAL(owner, COMSIG_SPIDERLING_MARK, A)
 	add_cooldown()
 
@@ -350,6 +357,7 @@
 	if(number_of_attempts_left <= 0)
 		return
 	for(var/mob/living/carbon/xenomorph/spiderling/remaining_spiderling AS in remaining_list)
+		SEND_SIGNAL(owner, COMSIG_SPIDERLING_RETURN) //So spiderlings move towards the buckle
 		if(!owner.Adjacent(remaining_spiderling))
 			continue
 		remaining_list -= remaining_spiderling

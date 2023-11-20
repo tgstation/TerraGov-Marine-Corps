@@ -78,7 +78,7 @@
 
 	//else if(IS_EDIBLE(I))
 	else if(istype(I, /obj/item/reagent_containers/food))
-		if(I.flags_item & (ITEM_ABSTRACT|DELONDROP|NODROP))
+		if(HAS_TRAIT(I, TRAIT_NODROP) || (I.flags_item & (ITEM_ABSTRACT|DELONDROP)))
 			return ..()
 		else if(HAS_TRAIT(I, TRAIT_FOOD_GRILLED))
 			to_chat(user, span_notice("[I] has already been grilled!"))
