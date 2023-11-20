@@ -258,7 +258,7 @@
 	fire_sound = 'sound/weapons/guns/fire/Laser Rifle Standard.ogg'
 	message_to_user = "You set the heavy laser to burst fire mode."
 	fire_mode = GUN_FIREMODE_AUTOBURST
-	icon_state = GUN_ICONSTATE_LOADED
+	icon_state = "heavylaser"
 	description = "Fires a rapid pulse laser, dealing mediocre damage and shattering armor, but suffers from increased scatter and poorer falloff."
 
 /datum/lasrifle/heavy_laser/ricochet
@@ -268,7 +268,7 @@
 	fire_sound = 'sound/weapons/guns/fire/laser3.ogg'
 	message_to_user = "You set the heavy laser to ricochet mode."
 	fire_mode = GUN_FIREMODE_SEMIAUTO
-	icon_state = GUN_ICONSTATE_LOADED
+	icon_state = "heavylaser"
 	radial_icon_state = "laser_ricochet"
 	description = "Fires an experiment laser pulse capable of bouncing off many wall surfaces. The laser increases in potency when bouncing, before collapsing entirely after exceeding its threshold."
 
