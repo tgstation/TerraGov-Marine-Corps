@@ -961,7 +961,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 
 		//If we have the the right kind of ammo, we can fire several projectiles at once.
 		if(ammo.bonus_projectiles_amount)
-			ammo.fire_bonus_projectiles(src, shooter, source, range, speed, dir_angle)
+			ammo.fire_bonus_projectiles(src, shooter, source, range, speed, dir_angle, target)
 
 	if(shooter.Adjacent(target) && ismob(target))
 		var/mob/mob_to_hit = target
