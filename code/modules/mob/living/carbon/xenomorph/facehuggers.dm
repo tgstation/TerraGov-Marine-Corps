@@ -264,10 +264,7 @@
 		if(M.can_be_facehugged(src))
 			visible_message(span_warning("\The scuttling [src] leaps at [M]!"), null, null, 4)
 			leaping = TRUE
-			if(M.loc == loc)
-				throw_impact(M, 1)
-			else
-				throw_at(M, 4, 1)
+			throw_at(M, 4, 1)
 			return //We found a target and will jump towards it; cancel out. If we didn't find anything, continue and try again later
 		--i
 
@@ -358,9 +355,16 @@
 
 /obj/item/clothing/mask/facehugger/throw_impact(atom/hit_atom, speed)
 	if(isopenturf(hit_atom))
-		leaping = FALSE
-		go_idle()
-		return FALSE
+		var/valid_victim
+		for(var/mob/living/carbon/M in hit_atom)
+			if(!M.can_be_facehugged(src))
+				continue
+			valid_victim = TRUE
+			hit_atom = M
+		if(!valid_victim)
+			leaping = FALSE
+			go_idle()
+			return FALSE
 	. = ..()
 	if(!.)
 		return
@@ -371,17 +375,17 @@
 		go_idle()
 		return
 
-	var/mob/living/carbon/M = hit_atom
-	if(loc == M) //Caught
+	var/mob/living/carbon/carbon_victim = hit_atom
+	if(loc == carbon_victim) //Caught
 		pre_leap(impact_time)
-	else if(leaping && M.can_be_facehugged(src)) //Standard leaping behaviour, not attributable to being _thrown_ such as by a Carrier.
-		if(!Attach(M))
+	else if(leaping && carbon_victim.can_be_facehugged(src)) //Standard leaping behaviour, not attributable to being _thrown_ such as by a Carrier.
+		if(!Attach(carbon_victim))
 			go_idle()
 	else
 		step(src, REVERSE_DIR(dir))
-		if(!issamexenohive(M))
-			M.adjust_stagger(3 SECONDS)
-			M.add_slowdown(3)
+		if(!issamexenohive(carbon_victim))
+			carbon_victim.adjust_stagger(3 SECONDS)
+			carbon_victim.add_slowdown(3)
 		pre_leap(activate_time)
 
 	leaping = FALSE
