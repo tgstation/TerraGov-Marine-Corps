@@ -54,7 +54,7 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 	//We always use the escorted atom as our reference point for looking for target. So if we don't have any escorted atom, we take ourselve as the reference
 	START_PROCESSING(SSprocessing, src)
 	if(is_offered_on_creation)
-		LAZYDISTINCTADD(GLOB.ssd_living_mobs, mob_parent)
+		LAZYOR(GLOB.ssd_living_mobs, mob_parent)
 
 /datum/ai_behavior/Destroy(force, ...)
 	. = ..()

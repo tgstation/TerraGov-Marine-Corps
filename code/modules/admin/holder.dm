@@ -22,7 +22,8 @@
 	var/ghost_interact = FALSE
 	///Whether this admin is invisiminning
 	var/invisimined = FALSE
-
+	/// A lazylist of tagged datums, for quick reference with the View Tags verb
+	var/list/tagged_datums
 
 /datum/admins/New(datum/admin_rank/R, ckey, protected)
 	if(IsAdminAdvancedProcCall())
@@ -347,8 +348,8 @@ GLOBAL_PROTECT(admin_verbs_asay)
 
 /world/proc/AVdebug()
 	return list(
-	/datum/admins/proc/proccall_advanced,
-	/datum/admins/proc/proccall_atom,
+	/client/proc/callproc,
+	/client/proc/callproc_datum,
 	/datum/admins/proc/delete_all,
 	/datum/admins/proc/generate_powernets,
 	/datum/admins/proc/debug_mob_lists,
