@@ -264,7 +264,10 @@
 		if(M.can_be_facehugged(src))
 			visible_message(span_warning("\The scuttling [src] leaps at [M]!"), null, null, 4)
 			leaping = TRUE
-			throw_at(M, 4, 1)
+			if(M.loc == loc)
+				throw_impact(M, 1)
+			else
+				throw_at(M, 4, 1)
 			return //We found a target and will jump towards it; cancel out. If we didn't find anything, continue and try again later
 		--i
 
