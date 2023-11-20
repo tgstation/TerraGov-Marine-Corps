@@ -55,7 +55,7 @@
 
 	var/obj/item/owner = master_item
 
-	if(owner.flags_item & NODROP)
+	if(HAS_TRAIT(owner, TRAIT_NODROP))
 		return FALSE
 
 	if(!istype(over_object, /atom/movable/screen))

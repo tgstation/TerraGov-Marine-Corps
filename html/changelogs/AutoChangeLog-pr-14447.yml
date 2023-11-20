@@ -1,4 +1,0 @@
-author: "Barnet2"
-delete-after: True
-changes:
-  - bugfix: "Icy Caves now has one APC per area and passes unit tests."

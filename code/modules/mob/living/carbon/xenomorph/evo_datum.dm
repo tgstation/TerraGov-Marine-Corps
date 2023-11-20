@@ -24,7 +24,7 @@
 	.["abilities"] = list()
 	for(var/ability in xeno.xeno_caste.actions)
 		var/datum/action/xeno_action/xeno_ability = ability
-		if(!(SSticker.mode.flags_xeno_abilities & initial(xeno_ability.gamemode_flags)))
+		if(SSticker.mode && !(SSticker.mode.flags_xeno_abilities & initial(xeno_ability.gamemode_flags)))
 			continue
 		.["abilities"]["[ability]"] = list(
 			"name" = initial(xeno_ability.name),
@@ -43,7 +43,7 @@
 		)
 		for(var/ability in caste.actions)
 			var/datum/action/xeno_action/xeno_ability = ability
-			if(!(SSticker.mode.flags_xeno_abilities & initial(xeno_ability.gamemode_flags)))
+			if(SSticker.mode && !(SSticker.mode.flags_xeno_abilities & initial(xeno_ability.gamemode_flags)))
 				continue
 			caste_data["abilities"]["[ability]"] = list(
 				"name" = initial(xeno_ability.name),

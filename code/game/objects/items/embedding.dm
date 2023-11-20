@@ -78,8 +78,8 @@
 		stack_trace("limb_embed called for QDELETED [embedding]")
 		embedding?.unembed_ourself()
 		return FALSE
-	if(embedding.flags_item & (NODROP|DELONDROP))
-		stack_trace("limb_embed called for NODROP|DELONDROP [embedding]")
+	if(HAS_TRAIT(embedding, TRAIT_NODROP) || (embedding.flags_item & DELONDROP))
+		stack_trace("limb_embed called for TRAIT_NODROP or DELONDROP [embedding]")
 		embedding.unembed_ourself()
 		return FALSE
 	if(limb_status & LIMB_DESTROYED)
