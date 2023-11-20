@@ -273,6 +273,18 @@
 	. -= "Update Icon"
 	.["Regenerate Icons"] = "?_src_=vars;[HrefToken()];regenerateicons=[REF(src)]"
 
+/mob/living/carbon/vv_edit_var(var_name, var_value)
+	switch(var_name)
+		if(NAMEOF(src, nutrition))
+			set_nutrition(var_value)
+			. = TRUE
+
+	if(!isnull(.))
+		datum_flags |= DF_VAR_EDITED
+		return
+
+	return ..()
+
 /mob/living/carbon/update_tracking(mob/living/carbon/C)
 	var/atom/movable/screen/LL_dir = hud_used.SL_locator
 

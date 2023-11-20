@@ -75,7 +75,7 @@
 
 			var/amount = input("Deal how much damage to mob? (Negative values here heal)","Adjust [Text]loss",0) as num|null
 
-			if (isnull(amount))
+			if(isnull(amount))
 				return
 
 			if(!L)
