@@ -491,6 +491,7 @@
 			/obj/item/storage/holster/blade/machete/full = -1,
 			/obj/item/storage/holster/blade/machete/full_harvester = -1,
 			/obj/item/weapon/twohanded/spear/tactical = -1,
+			/obj/item/weapon/twohanded/glaive/harvester = -1,
 			/obj/item/weapon/powerfist = -1,
 			/obj/item/weapon/shield/riot/marine = -1,
 			/obj/item/weapon/shield/riot/marine/deployable = -1,
