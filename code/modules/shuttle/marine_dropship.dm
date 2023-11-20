@@ -1324,13 +1324,13 @@
 		log_admin("[key_name(usr)] may be attempting a href dock exploit on [src] with target location \"[html_encode(params["destination"])]\"")
 		message_admins("[ADMIN_TPMONTY(usr)] may be attempting a href dock exploit on [src] with target location \"[html_encode(params["destination"])]\"")
 		return TRUE
-
-	var/previous_status = M.mode
-	log_game("[key_name(usr)] has sent the shuttle [M] to [params["destination"]]")
-	launch_shuttle(M, params["destination"], usr)
+	begin_takeoff(M, params["destination"], usr)
 	return TRUE
 
-/obj/machinery/computer/shuttle/shuttle_control/proc/launch_shuttle(obj/docking_port/mobile/port, destination, mob/user)
+/obj/machinery/computer/shuttle/shuttle_control/proc/begin_takeoff(obj/docking_port/mobile/port, destination, mob/user)
+	var/previous_status = port.mode
+	log_game("[key_name(user)] has sent the shuttle [port] to [destination]")
+
 	switch(SSshuttle.moveShuttle(shuttleId, destination, TRUE))
 		if(0)
 			if(previous_status != SHUTTLE_IDLE)
@@ -1465,6 +1465,7 @@
 	confirm_message = "Are you sure you want to launch the shuttle? \
 	 Without sufficiently dealing with the threat, you will be in direct violation of your orders!"
 	var/custom_ignition_time = 1 MINUTES
+	var/takeoff_timer
 
 /obj/machinery/computer/shuttle/shuttle_control/canterbury/Initialize(mapload)
 	. = ..()
@@ -1485,7 +1486,7 @@
 		to_chat(usr, span_warning("[src] is unresponsive."))
 		return
 	var/obj/docking_port/mobile/M = SSshuttle.getShuttle(shuttleId)
-	M.ignitionTime = custom_ignition_time
+	// M.ignitionTime = custom_ignition_time
 	if(!can_interact(usr) && isxeno(usr) && !allowed(usr))
 		return
 	#ifndef TESTING
@@ -1495,18 +1496,29 @@
 	#endif
 	. = ..()
 
-/obj/machinery/computer/shuttle/shuttle_control/canterbury/proc/launch_shuttle(obj/docking_port/mobile/port, destination, mob/user)
+/obj/machinery/computer/shuttle/shuttle_control/canterbury/proc/begin_takeoff(obj/docking_port/mobile/port, destination, mob/user)
 	log_admin("[key_name(user)] is launching the canterbury[!length(GLOB.active_nuke_list)? " early" : ""].")
 	message_admins("[ADMIN_TPMONTY(user)] is launching the canterbury[!length(GLOB.active_nuke_list)? " early" : ""].")
 
-	var/obj/docking_port/mobile/M = SSshuttle.getShuttle(shuttleID)
-	if(!M.can_move_topic(user))
+	if(!port.can_move_topic(user))
 		return TRUE
-	M.destination = null
-	M.mode = SHUTTLE_IGNITING
-	M.setTimer(M.ignitionTime)
+	port.destination = null
+	port.mode = SHUTTLE_IGNITING
+	port.setTimer(custom_ignition_time)
+	takeoff_timer = addtimer(CALLBACK(src, PROC_REF(launch_shuttle)), custom_ignition_time, TIMER_STOPPABLE)
 	SStgui.update_uis(user)
+	// Same position as the orphan timer as it is disabled on crash
+	setup_hud_timer_all_hives(takeoff_timer, "Canterbury taking off in ${timer}", 150, -80)
 
 	var/datum/game_mode/infestation/crash/crash_mode = SSticker.mode
-	addtimer(VARSET_CALLBACK(crash_mode, marines_evac, CRASH_EVAC_INPROGRESS), M.ignitionTime + 10 SECONDS)
-	addtimer(VARSET_CALLBACK(crash_mode, marines_evac, CRASH_EVAC_COMPLETED), 2 MINUTES)
+	VARSET_CALLBACK(crash_mode, marines_evac, CRASH_EVAC_INPROGRESS)
+
+/obj/machinery/computer/shuttle/shuttle_control/canterbury/proc/launch_shuttle()
+	deltimer(takeoff_timer)
+	takeoff_timer = null
+	// port.destination = null
+	// port.mode = SHUTTLE_IGNITING
+	// port.setTimer(port.ignitionTime)
+
+	var/datum/game_mode/infestation/crash/crash_mode = SSticker.mode
+	addtimer(VARSET_CALLBACK(crash_mode, marines_evac, CRASH_EVAC_COMPLETED), 1 MINUTES)

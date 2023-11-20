@@ -88,12 +88,15 @@
 			started_at = world.time
 			SSevacuation.initiate_self_destruct()
 			timer = addtimer(VARSET_CALLBACK(src, timer, null), SELF_DESTRUCT_ROD_STARTUP_TIME, TIMER_DELETE_ME|TIMER_STOPPABLE)
+			setup_hud_timer_all_hives(timer, "Nuke ACTIVE: ${timer}")
 
 			SEND_GLOBAL_SIGNAL(COMSIG_GLOB_SHIP_SELF_DESTRUCT_ACTIVATED, src)
 			. = TRUE
 
 		if("dest_trigger")
 			if(SSevacuation.initiate_self_destruct())
+				deltimer(timer)
+				timer = null
 				SStgui.close_user_uis(usr, src, "main")
 
 		if("dest_cancel")
@@ -104,6 +107,8 @@
 				to_chat(usr, span_notice("You don't have the necessary clearance to cancel the emergency destruct system."))
 				return
 			if(SSevacuation.cancel_self_destruct())
+				deltimer(timer)
+				timer = null
 				SStgui.close_user_uis(usr, src, "main")
 
 

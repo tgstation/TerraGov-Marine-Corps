@@ -61,9 +61,6 @@
 #define COMSIG_GLOB_RAILGUN_LASER_CREATED "!railgun_laser_sent"
 
 //Signals for shuttle
-// When the shuttle starts taking off, before the spool up timer is finished if it has one
-#define COMSIG_GLOB_SHUTTLE_BEGIN_TAKEOFF "!shuttle_begin_takeoff"
-// After the spool up timer has finished, and it is about to take off
 #define COMSIG_GLOB_SHUTTLE_TAKEOFF "!shuttle_take_off"
 
 

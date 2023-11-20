@@ -30,8 +30,8 @@
 
 	///Reference to upgrades available and purchased by this hive.
 	var/datum/hive_purchases/purchases = new
-	/// The nuke HUD timer datum, shown on each xeno's screen
-	var/atom/movable/screen/text/screen_timer/nuke_hud_timer
+	// Any active HUD timers that you want to display on a xeno's screen
+	var/list/hud_timers = list()
 
 // ***************************************
 // *********** Init
@@ -52,7 +52,6 @@
 
 	SSdirection.set_leader(hivenumber, null)
 
-	RegisterSignals(SSdcs, list(COMSIG_GLOB_NUKE_START, COMSIG_GLOB_SHIP_SELF_DESTRUCT_ACTIVATED), PROC_REF(setup_nuke_hud_timer))
 // ***************************************
 // *********** UI for Hive Status
 // ***************************************
@@ -384,7 +383,7 @@
 		add_to_lists(X)
 
 	post_add(X)
-	nuke_hud_timer?.apply_to(X)
+	add_hud_timers(X)
 	return TRUE
 
 // helper function
@@ -403,6 +402,10 @@
 	update_tier_limits() //Update our tier limits.
 
 	return TRUE
+
+/datum/hive_status/proc/add_hud_timers(mob/living/carbon/xenomorph/X)
+	for(var/atom/movable/screen/text/screen_timer/timer in hud_timers)
+		timer.apply_to(X)
 
 /mob/living/carbon/xenomorph/proc/add_to_hive(datum/hive_status/HS, force=FALSE)
 	if(!force && hivenumber != XENO_HIVE_NONE)
@@ -488,7 +491,7 @@
 	else
 		remove_from_lists(X)
 
-	nuke_hud_timer?.remove_from(X)
+	remove_hud_timers(X)
 	post_removal(X)
 	return TRUE
 
@@ -521,6 +524,10 @@
 
 	return TRUE
 
+/datum/hive_status/proc/remove_hud_timers(mob/living/carbon/xenomorph/X)
+	for(var/atom/movable/screen/text/screen_timer/timer in hud_timers)
+		timer.remove_from(X)
+
 /mob/living/carbon/xenomorph/proc/remove_from_hive()
 	if(!istype(hive))
 		CRASH("tried to remove a xeno from a hive that didnt have a hive to be removed from")
@@ -538,16 +545,15 @@
 	hivenumber = XENO_HIVE_NONE // failsafe value
 	reference_hive.update_tier_limits() //Update our tier limits.
 
-/datum/hive_status/proc/setup_nuke_hud_timer(source, thing)
-	SIGNAL_HANDLER
-	var/obj/machinery/nuclearbomb/nuke = thing
-	if(!nuke.timer)
-		CRASH("hive_status's setup_nuke_hud_timer called with invalid nuke object")
-	nuke_hud_timer = new(null, get_all_xenos() , nuke.timer, "Nuke ACTIVE: ${timer}")
+/// setups hud timers on ALL hive datums
+/proc/setup_hud_timer_all_hives(timer, text)
+	for(var/datum/hive_status/HS in GLOB.hive_datums)
+		HS.setup_hud_timer(timer, text)
 
-/datum/hive_status/Destroy(force, ...)
-	. = ..()
-	UnregisterSignal(SSdcs, COMSIG_GLOB_NUKE_START)
+/// setups hud timers only on xenos of THIS hive datum
+/datum/hive_status/proc/setup_hud_timer(list/arguments)
+	var/atom/movable/screen/text/screen_timer/hud_timer = new(null, arglist(arguments))
+	hud_timers[hud_timer.timer_id] = hud_timer
 
 /mob/living/carbon/xenomorph/queen/remove_from_hive() // override to ensure proper queen/hive behaviour
 	var/datum/hive_status/hive_removed_from = hive
@@ -878,16 +884,6 @@ to_chat will check for valid clients itself already so no need to double check f
 // ***************************************
 /datum/hive_status/normal // subtype for easier typechecking and overrides
 	hive_flags = HIVE_CAN_HIJACK
-	/// Timer ID for the orphan hive timer
-	var/atom/movable/screen/text/screen_timer/orphan_hud_timer
-
-/datum/hive_status/normal/add_xeno(mob/living/carbon/xenomorph/X)
-	. = ..()
-	orphan_hud_timer?.apply_to(X)
-
-/datum/hive_status/normal/remove_xeno(mob/living/carbon/xenomorph/X)
-	. = ..()
-	orphan_hud_timer?.remove_from(X)
 
 /datum/hive_status/normal/handle_ruler_timer()
 	if(!isinfestationgamemode(SSticker.mode)) //Check just need for unit test
@@ -902,15 +898,14 @@ to_chat will check for valid clients itself already so no need to double check f
 		if(D.orphan_hive_timer)
 			deltimer(D.orphan_hive_timer)
 			D.orphan_hive_timer = null
-			QDEL_NULL(orphan_hud_timer)
+			hud_timers.Remove(D.orphan_hive_timer)
 		return
 
 	if(D.orphan_hive_timer)
 		return
 
 	D.orphan_hive_timer = addtimer(CALLBACK(D, TYPE_PROC_REF(/datum/game_mode, orphan_hivemind_collapse)), NUCLEAR_WAR_ORPHAN_HIVEMIND, TIMER_STOPPABLE)
-
-	orphan_hud_timer = new(null, get_all_xenos(), D.orphan_hive_timer, "Orphan Hivemind Collapse: ${timer}", 150, -80)
+	setup_hud_timer(D.orphan_hive_timer, "Orphan Hivemind Collapse: ${timer}", 150, -80)
 
 /datum/hive_status/normal/burrow_larva(mob/living/carbon/xenomorph/larva/L)
 	if(!is_ground_level(L.z))
