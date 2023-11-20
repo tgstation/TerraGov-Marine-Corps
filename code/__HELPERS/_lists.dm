@@ -329,15 +329,11 @@
 
 	return L
 
-
-//Return a list with no duplicate entries
-/proc/uniquelist(list/L)
-	var/list/K = list()
-	for(var/item in L)
-		if((item in K))
-			continue
-		K += item
-	return K
+///Return a list with no duplicate entries
+/proc/unique_list(list/inserted_list)
+	. = list()
+	for(var/i in inserted_list)
+		. |= LIST_VALUE_WRAP_LISTS(i)
 
 ///same as unique_list, but returns nothing and acts on list in place (also handles associated values properly)
 /proc/unique_list_in_place(list/inserted_list)
@@ -620,14 +616,6 @@
 			.[i] = key
 			.[key] = value
 
-
-//Return a list with no duplicate entries
-/proc/uniqueList(list/L)
-	. = list()
-	for(var/i in L)
-		. |= i
-
-
 //same, but returns nothing and acts on list in place
 /proc/shuffle_inplace(list/L)
 	if(!L)
@@ -635,18 +623,6 @@
 
 	for(var/i in 1 to length(L)-1)
 		L.Swap(i, rand(i, length(L)))
-
-
-//same, but returns nothing and acts on list in place (also handles associated values properly)
-/proc/uniqueList_inplace(list/L)
-	var/temp = L.Copy()
-	L.len = 0
-	for(var/key in temp)
-		if (isnum(key))
-			L |= key
-		else
-			L[key] = temp[key]
-
 
 /proc/typecache_filter_list_reverse(list/atoms, list/typecache)
 	RETURN_TYPE(/list)

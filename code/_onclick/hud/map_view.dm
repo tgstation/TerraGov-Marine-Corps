@@ -32,7 +32,7 @@ INITIALIZE_IMMEDIATE(/atom/movable/screen/map_view)
 	assigned_map = map_key
 	set_position(1, 1)
 
-/atom/movable/screen/map_view/proc/display_to(mob/show_to)
+/*/atom/movable/screen/map_view/proc/display_to(mob/show_to)
 	show_to.client.register_map_obj(src)
 	// We need to add planesmasters to the popup, otherwise
 	// blending fucks up massively. Any planesmaster on the main screen does
@@ -50,10 +50,11 @@ INITIALIZE_IMMEDIATE(/atom/movable/screen/map_view)
 
 	// Generate a new plane group for this case
 	var/datum/plane_master_group/popup/pop_planes = new(PLANE_GROUP_POPUP_WINDOW(src), assigned_map)
+
 	viewers_to_huds[client_ref] = WEAKREF(show_to.hud_used)
 	pop_planes.attach_to(show_to.hud_used)
 
-	return pop_planes
+	return pop_planes */
 
 /atom/movable/screen/map_view/proc/hide_from(mob/hide_from)
 	hide_from?.canon_client.clear_map(assigned_map)
@@ -66,5 +67,5 @@ INITIALIZE_IMMEDIATE(/atom/movable/screen/map_view)
 	if(!clear_from)
 		return
 
-	var/datum/plane_master_group/popup/pop_planes = clear_from.get_plane_group(PLANE_GROUP_POPUP_WINDOW(src))
-	qdel(pop_planes)
+	//var/datum/plane_master_group/popup/pop_planes = clear_from.get_plane_group(PLANE_GROUP_POPUP_WINDOW(src))
+	//qdel(pop_planes)
