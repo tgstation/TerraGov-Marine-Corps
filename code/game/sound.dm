@@ -111,8 +111,8 @@ A good representation is: 'byond applies a volume reduction to the sound every X
 		S.environment = A.sound_environment
 		if(S.environment != SOUND_ENVIRONMENT_NONE)
 			//need room and roomHF to be not -10000 for reverb to work
-			S.echo[3] = 0
-			S.echo[4] = 0
+			S.echo[3] = -1250
+			S.echo[4] = -1250
 
 	SEND_SOUND(src, S)
 
