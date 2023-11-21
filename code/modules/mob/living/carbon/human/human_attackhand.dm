@@ -234,13 +234,13 @@
 			if(100 to INFINITY)
 				status += "mutilated"
 
-		if((org.limb_status & LIMB_BLEEDING) && (brutedamage > 0 && burndamage > 0))   
+		if((org.limb_status & LIMB_BLEEDING) && (brutedamage > 0 && burndamage > 0))
 			status += ", bleeding"
-		else if((org.limb_status & LIMB_BLEEDING) && (brutedamage > 0 || burndamage > 0))   
+		else if((org.limb_status & LIMB_BLEEDING) && (brutedamage > 0 || burndamage > 0))
 			status += " and bleeding"
 		else if(org.limb_status & LIMB_BLEEDING)
 			status += "bleeding"
-			
+
 
 
 		if(brutedamage > 0 && burndamage > 0)

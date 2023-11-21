@@ -83,13 +83,6 @@
 		var/mob/M = A
 		if(!M.can_inject(user, TRUE, user.zone_selected, TRUE))
 			return
-		if(M != user && M.stat != DEAD && M.a_intent != INTENT_HELP && !M.incapacitated() && M.skills.getRating(SKILL_CQC) >= SKILL_CQC_MP)
-			user.Paralyze(6 SECONDS)
-			log_combat(M, user, "blocked", addition="using their cqc skill (hypospray injection)")
-			M.visible_message(span_danger("[M]'s reflexes kick in and knock [user] to the ground before they could use \the [src]'!"), \
-				span_warning("You knock [user] to the ground before they could inject you!"), null, 5)
-			playsound(user.loc, 'sound/weapons/thudswoosh.ogg', 25, 1, 7)
-			return FALSE
 
 	var/list/injected = list()
 	for(var/datum/reagent/R in reagents.reagent_list)
