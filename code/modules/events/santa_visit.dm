@@ -18,6 +18,8 @@
 	var/maxsanta = 1
 	///how many elves we should attempt to spawn, note due to prob in elf spawning function this number won't always be hit, it's just the max
 	var/maxelves = 4
+	///The human target for this event
+	var/mob/living/carbon/human/hive_target
 
 /datum/round_event_control/santa_visit/can_spawn_event(players_amt, gamemode)
 	var/list/eligible_targets = list()
