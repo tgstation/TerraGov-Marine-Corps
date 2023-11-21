@@ -119,10 +119,6 @@
 /datum/greyscale_config/hardsuit_variant/syndicate_markone
 	prefix = "markone_"
 
-// /datum/greyscale_config/leg_highlight
-// 	icon_file = 'icons/mob/modular/Syndicate_Expansion.dmi'
-// 	json_config = 'code/datums/greyscale/json_configs/leg_highlight.json'
-
 //Mark 2
 
 /datum/greyscale_config/armor_mk2

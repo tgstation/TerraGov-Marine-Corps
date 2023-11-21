@@ -59,5 +59,11 @@
 			"type": "hyperscale",
 			"icon_state": "leg_highlight"
 		}
+	],
+	"chest_highlight": [
+		{
+			"type": "hyperscale",
+			"icon_state": "chest_highlight"
+		}
 	]
 }
