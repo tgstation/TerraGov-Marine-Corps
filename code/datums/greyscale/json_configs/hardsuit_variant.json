@@ -65,5 +65,11 @@
 			"type": "hyperscale",
 			"icon_state": "chest_highlight"
 		}
+	],
+	"helm_highlight": [
+		{
+			"type": "hyperscale",
+			"icon_state": "helm_highlight"
+		}
 	]
 }
