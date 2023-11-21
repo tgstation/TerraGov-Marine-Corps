@@ -282,11 +282,11 @@ GLOBAL_LIST_INIT(department_radio_keys_som, list(
 		if(ishuman(src))
 			var/mob/living/carbon/human/human_speaker = src
 			if(human_speaker.wear_mask)
-				var/obj/item/clothing/mask/worn_mask = human_speaker?.wear_mask
-				if(istype(worn_mask, /obj/item/clothing/mask))
-					if(worn_mask?.voice_override)
+				var/obj/item/clothing/mask/worn_mask = human_speaker.wear_mask
+				if(istype(worn_mask))
+					if(worn_mask.voice_override)
 						voice_to_use = worn_mask.voice_override
-					if(worn_mask?.voice_filter)
+					if(worn_mask.voice_filter)
 						filter += worn_mask.voice_filter
 					use_radio = worn_mask.use_radio_beeps_tts
 		if(use_radio)
