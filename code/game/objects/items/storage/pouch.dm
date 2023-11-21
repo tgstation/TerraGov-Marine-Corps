@@ -485,11 +485,11 @@
 
 /obj/item/storage/pouch/medkit/firstaid/Initialize(mapload)
 	. = ..()
-	new /obj/item/storage/pill_bottle/packet/bicaridine(src)
-	new /obj/item/storage/pill_bottle/packet/kelotane(src)
-	new /obj/item/storage/pill_bottle/packet/tramadol(src)
-	new /obj/item/storage/pill_bottle/packet/tricordrazine(src)
-	new /obj/item/storage/pill_bottle/packet/dylovene(src)
+	new /obj/item/storage/pill_bottle/bicaridine(src)
+	new /obj/item/storage/pill_bottle/kelotane(src)
+	new /obj/item/storage/pill_bottle/tramadol(src)
+	new /obj/item/storage/pill_bottle/tricordrazine(src)
+	new /obj/item/storage/pill_bottle/dylovene(src)
 	new /obj/item/stack/medical/splint(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/inaprovaline(src)
 
