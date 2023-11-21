@@ -289,3 +289,9 @@
   - imageadd: Adds camera emissives
   vvvv-vvvv:
   - admin: Added JSON logging. Use the new View-Round-Logs verb for a nicer UI
+2023-11-21:
+  Lewdcifer:
+  - imageadd: Added a new unique icon for Behemoth on the minimap. It is now used
+      instead of borrowing the Crusher's.
+  Xander3359:
+  - qol: reagent pouch defaults to draw mode enabled (left click to draw)
