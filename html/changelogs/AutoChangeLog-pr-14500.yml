@@ -1,0 +1,4 @@
+author: "ivanmixo"
+delete-after: True
+changes:
+  - bugfix: "Fixed lobby button runtimes and bugs (you shouldn't get 'Unknown Character' anymore)"
