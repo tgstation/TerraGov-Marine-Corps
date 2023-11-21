@@ -341,3 +341,33 @@ GLOBAL_LIST_INIT(ghost_others_options, list(GHOST_OTHERS_SIMPLE, GHOST_OTHERS_DE
 	usr.client.prefs.save_preferences()
 	SStgui.update_user_uis(usr)
 	to_chat(src, span_interface("TGUI compatibility mode is now [usr.client.prefs.tgui_fancy ? "dis" : "en"]abled."))
+
+/client/verb/cycle_hugger_target()
+	set name = "Cycle preferred hugger target"
+	set category = "IC"
+
+	switch(prefs.preferred_hugger_target_area)
+		if(HUGGER_TARGET_CHEST)
+			prefs.preferred_hugger_target_area = HUGGER_TARGET_GROIN
+		if(HUGGER_TARGET_GROIN)
+			prefs.preferred_hugger_target_area = HUGGER_TARGET_ASS
+		if(HUGGER_TARGET_ASS)
+			prefs.preferred_hugger_target_area = HUGGER_TARGET_CHEST
+	prefs.save_preferences()
+	to_chat(src, "<span class='interface'>Prefered hugger target is now set to: [prefs.preferred_hugger_target_area].</span>")
+
+/client/verb/toggle_hugger_ass_target()
+	set category = "IC"
+	set name = "Toggle hugger ass targetting"
+
+	TOGGLE_BITFIELD(prefs.toggles_lewd, ALLOW_HUGGER_ASS_TARGET)
+	prefs.save_preferences()
+	to_chat(usr, "<span class='notice'>Hugger ass targetting has been [(prefs.toggles_lewd & ALLOW_HUGGER_ASS_TARGET) ? "enabled" : "disabled"].</span>")
+
+/client/verb/toggle_hugger_groin_target()
+	set category = "IC"
+	set name = "Toggle hugger groin targetting"
+
+	TOGGLE_BITFIELD(prefs.toggles_lewd, ALLOW_HUGGER_GROIN_TARGET)
+	prefs.save_preferences()
+	to_chat(usr, "<span class='notice'>Hugger groin targetting has been [(prefs.toggles_lewd & ALLOW_HUGGER_GROIN_TARGET) ? "enabled" : "disabled"].</span>")

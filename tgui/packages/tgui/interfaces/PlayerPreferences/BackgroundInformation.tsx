@@ -196,6 +196,34 @@ export const BackgroundInformation = (props, context) => {
           </Section>
         </Stack.Item>
       </Stack>
+      <Stack>
+        <Stack.Item>
+          <Section
+            title="Xenomorph Description"
+            buttons={
+              <Box>
+                <Button
+                  icon="save"
+                  disabled={xenoDesc === xeno_desc}
+                  onClick={() => act('xeno_desc', { xenoDesc })}>
+                  Save
+                </Button>
+                <Button
+                  icon="times"
+                  onClick={() => setXenoDesc(xeno_desc)}>
+                  Reset
+                </Button>
+              </Box>
+            }>
+            <TextArea
+              height="100px"
+              maxLength={1024}
+              value={xenoDesc}
+              onChange={(e, value) => setXenoDesc(value)}
+            />
+          </Section>
+        </Stack.Item>
+      </Stack>
     </Section>
   );
 };
