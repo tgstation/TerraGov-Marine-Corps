@@ -249,10 +249,10 @@
 	name = "FleckTex Mark V Breacher Helmet"
 	desc = "Usually paired with the FleckTex WY-01 modular exoskeleton. Can mount utility functions on the helmet hard points. Has Breacher markings"
 	starting_attachments = list(/obj/item/armor_module/armor/visor/marine/fourvisor, /obj/item/armor_module/storage/helmet, /obj/item/armor_module/armor/helm_highlight)
-	greyscale_config = /datum/greyscale_config/hardsuit_variant/syndicate_markfive
+	greyscale_config = /datum/greyscale_config/hardsuit_variant
 
 /obj/item/armor_module/armor/helm_highlight/markfive
-	greyscale_config = /datum/greyscale_config/hardsuit_variant/syndicate_markfive
+	greyscale_config = /datum/greyscale_config/hardsuit_variant
 
 /obj/item/clothing/head/modular/marine/markthree_helmet
 	name = "FleckTex Mark III Marauder Helmet"
