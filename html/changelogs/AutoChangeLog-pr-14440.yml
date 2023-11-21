@@ -1,0 +1,5 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - bugfix: "fixed a few campaign bugs"
+  - qol: "3rd party faction are not locked behind the 30 min respawn timer in campaign, when between missions"

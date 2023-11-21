@@ -54,6 +54,7 @@
 	can_hold = list(/obj/item/reagent_containers/hypospray)
 	cant_hold = list(/obj/item/reagent_containers/glass/reagent_canister) //To prevent chat spam when you try to put the container in
 	flags_item = NOBLUDGEON
+	draw_mode = TRUE
 	///The internal container of the pouch. Holds the reagent that you use to refill the connected injector
 	var/obj/item/reagent_containers/glass/reagent_canister/inner
 	///List of chemicals we fill up our pouch with on Initialize()

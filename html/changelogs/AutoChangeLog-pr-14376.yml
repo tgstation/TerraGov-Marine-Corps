@@ -1,4 +1,0 @@
-author: "vvvv-vvvv"
-delete-after: True
-changes:
-  - admin: "Added JSON logging. Use the new View-Round-Logs verb for a nicer UI"
