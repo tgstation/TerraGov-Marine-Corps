@@ -241,6 +241,9 @@
 	. = ..()
 	. += xeno_caste.caste_desc
 
+	if(xeno_desc)
+		. += "<span class='info'>[xeno_desc]</span>"
+
 	if(stat == DEAD)
 		. += "It is DEAD. Kicked the bucket. Off to that great hive in the sky."
 	else if(stat == UNCONSCIOUS)
@@ -264,8 +267,6 @@
 		. += "It appears to belong to the [hive.prefix]hive"
 	return
 
-	if(xeno_desc)
-		. += "<span class='info'>[xeno_desc]</span>"
 
 /mob/living/carbon/xenomorph/Destroy()
 	if(mind) mind.name = name //Grabs the name when the xeno is getting deleted, to reference through hive status later.
