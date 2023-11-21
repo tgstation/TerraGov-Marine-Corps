@@ -53,5 +53,11 @@
 			"icon_state": "chest_webbing",
 			"blend_mode": "overlay"
 		}
+	],
+	"leg_highlight": [
+		{
+			"type": "hyperscale",
+			"icon_state": "leg_highlight"
+		}
 	]
 }

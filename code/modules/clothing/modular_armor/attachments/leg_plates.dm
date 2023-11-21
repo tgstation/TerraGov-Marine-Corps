@@ -78,7 +78,22 @@
 /obj/item/armor_module/armor/legs/marine/syndicate_markthree
 	name = "\improper FleckTex Mark III Marauder leg plates"
 	desc = "Designed for use with the FleckTex WY-01 Exoskeleton. It provides high protection and encumbrance when attached and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. All arm plates have the same armor and slowdown, meaning that only changing the chestplate makes significant armor difference. This armor appears to be marked as a Mark III armor piece."
+	starting_attachments = list(/obj/item/armor_module/armor/leg_highlight)
+	attachments_allowed = list(/obj/item/armor_module/armor/leg_highlight)
+	attachments_by_slot = list(ATTACHMENT_SLOT_KNEE_HIGHLIGHT)
 	greyscale_config = /datum/greyscale_config/hardsuit_variant/syndicate_markthree
+
+/obj/item/armor_module/armor/leg_highlight
+	name = "leg highlight"
+	icon_state = "leg_highlight"
+	slot = ATTACHMENT_SLOT_KNEE_HIGHLIGHT
+	flags_attach_features = ATTACH_SAME_ICON|ATTACH_APPLY_ON_MOB
+	greyscale_config = /datum/greyscale_config/hardsuit_variant/syndicate_markthree
+	// greyscale_colors = 
+	// colorable_colors = 
+	secondary_color = TRUE
+	flags_item_map_variant = NONE
+	// colorable_allowed = PRESET_COLORS_ALLOWED
 
 /obj/item/armor_module/armor/legs/marine/syndicate_markone
 	name = "\improper FleckTex Mark I Raider leg plates"
