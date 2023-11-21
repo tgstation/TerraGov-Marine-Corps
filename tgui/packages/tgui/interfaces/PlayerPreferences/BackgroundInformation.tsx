@@ -10,6 +10,7 @@ export const BackgroundInformation = (props, context) => {
     gen_record,
     sec_record,
     exploit_record,
+    xeno_desc,
   } = data;
 
   const [characterDesc, setCharacterDesc] = useLocalState(
@@ -37,6 +38,11 @@ export const BackgroundInformation = (props, context) => {
     'exploitsDesc' + slot,
     exploit_record
   );
+  const [xenoDesc, setXenoDesc] = useLocalState(
+    context,
+    'xenoDesc' + slot,
+    xeno_desc
+  );
   return (
     <Section title="Background information">
       <Section
@@ -59,6 +65,28 @@ export const BackgroundInformation = (props, context) => {
           height="100px"
           value={characterDesc}
           onChange={(e, value) => setCharacterDesc(value)}
+        />
+      </Section>
+      <Section
+        title="Xenomorph Description"
+        buttons={
+          <Box>
+            <Button
+              icon="save"
+              disabled={xenoDesc === xeno_desc}
+              onClick={() => act('xeno_desc', { xenoDesc })}>
+              Save
+            </Button>
+            <Button icon="times" onClick={() => setXenoDesc(xeno_desc)}>
+              Reset
+            </Button>
+          </Box>
+        }>
+        <TextArea
+          key="xeno"
+          height="100px"
+          value={xenoDesc}
+          onChange={(e, value) => setXenoDesc(value)}
         />
       </Section>
 

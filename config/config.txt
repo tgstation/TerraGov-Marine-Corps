@@ -5,13 +5,13 @@ $include dbconfig.txt
 $include resources.txt
 
 ## Server name: This appears at the top of the screen in-game.
-SERVER_NAME Something
+SERVER_NAME NTF vs Alien
 
 ## Hosted by name for unix platforms.
-HOSTEDBY yournamehere
+HOSTEDBY VideNoir
 
 ## The title of the main window.
-TITLE Change Me
+TITLE Nine Tailed Fox vs Alien
 
 ## Put on byond hub: Uncomment this to put your server on the byond hub.
 #HUB
@@ -201,8 +201,8 @@ GUEST_BAN
 CHECK_RANDOMIZER
 
 ## Uncomment these to set a custom respawn timer; the delay is in ticks.
-#MARINE_RESPAWN 18000
-#XENO_RESPAWN 1200
+MARINE_RESPAWN 8
+XENO_RESPAWN 8
 
 ## Automatic balance system
 IS_AUTOMATIC_BALANCE_ON
@@ -212,7 +212,7 @@ IS_AUTOMATIC_BALANCE_ON
 ##  15x15 would be the standard square view. 21x15 is what goonstation uses for widescreen.
 ##  Setting this to something different from DEFAULT_VIEW_SQUARE will enable widescreen toggles
 ##	Do note that changing this value will affect the title screen. The title screen will have to be updated manually if this is changed.
-DEFAULT_VIEW 19x15
+DEFAULT_VIEW 21x15
 
 ##Default view size, in tiles. Should *always* be square.
 ## The alternative square viewport size if you're using a widescreen view size

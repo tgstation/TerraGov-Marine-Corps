@@ -246,7 +246,7 @@
 /obj/item/clothing/head/helmet/marine/mech_pilot
 	name = "\improper M12C pattern neurolink helmet"
 	icon_state = "mech_pilot_helmet"
-	desc = "A lightweight helmet with a small port in the back. Offers lower response times for TGMC mech pilots by integrating them directly into their mech suit's systems, though it certainly doesn't make them smarter."
+	desc = "A lightweight helmet with a small port in the back. Offers lower response times for NTC mech pilots by integrating them directly into their mech suit's systems, though it certainly doesn't make them smarter."
 	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
 
 /obj/item/clothing/head/helmet/marine/riot
@@ -305,7 +305,7 @@
 
 /obj/item/clothing/head/helmet/marine/veteran/pmc/commando
 	name = "\improper PMC commando helmet"
-	desc = "A fully enclosed, armored helmet made for Nanotrasen elite commandos."
+	desc = "A fully enclosed, armored helmet made for Corporate elite commandos."
 	icon_state = "commando_helmet"
 	flags_armor_protection = HEAD|FACE|EYES
 	soft_armor = list(MELEE = 95, BULLET = 120, LASER = 200, ENERGY = 200, BOMB = 90, BIO = 100, FIRE = 90, ACID = 95)

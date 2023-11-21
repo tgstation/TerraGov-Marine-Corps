@@ -371,6 +371,24 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	heavy_weapons = SKILL_HEAVY_WEAPONS_TRAINED
 	smartgun = SKILL_SMART_TRAINED
 
+/datum/skills/ceo
+	name = CHIEF_EXECUTIVE_OFFICER
+	leadership = SKILL_LEAD_MASTER
+	police = SKILL_POLICE_MP
+	medical = SKILL_MEDICAL_MASTER
+	surgery = SKILL_SURGERY_MASTER
+	engineer = SKILL_ENGINEER_ENGI
+	construction = SKILL_CONSTRUCTION_ADVANCED
+	powerloader = SKILL_POWERLOADER_MASTER
+	cqc = SKILL_CQC_MASTER
+	melee_weapons = SKILL_MELEE_SUPER
+	firearms = SKILL_FIREARMS_TRAINED
+	pistols = SKILL_PISTOLS_TRAINED
+	shotguns = SKILL_SHOTGUNS_TRAINED
+	rifles = SKILL_RIFLES_TRAINED
+	smgs = SKILL_SMGS_TRAINED
+	heavy_weapons = SKILL_HEAVY_WEAPONS_TRAINED
+	smartgun = SKILL_SMART_TRAINED
 
 /datum/skills/fo
 	name = FIELD_COMMANDER

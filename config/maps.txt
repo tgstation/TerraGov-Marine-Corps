@@ -13,7 +13,7 @@ Format:
 endmap
 
 map lv624
-	minplayers 25
+	minplayers 0
 endmap
 
 map bigred_v2

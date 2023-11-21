@@ -9,7 +9,7 @@ import { Component, InfernoNode, RefObject, createRef } from 'inferno';
 import { addScrollableNode, removeScrollableNode } from '../events';
 import { canRender, classes } from 'common/react';
 
-export type SectionProps = BoxProps & {
+type SectionProps = BoxProps & {
   className?: string;
   title?: InfernoNode;
   buttons?: InfernoNode;

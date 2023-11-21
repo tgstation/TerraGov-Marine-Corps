@@ -1000,6 +1000,65 @@
 	message_admins("[X] has sent [L] this psychic message: \"[msg]\" at [ADMIN_VERBOSEJMP(X)].")
 
 // ***************************************
+// *********** Psychic Influence
+// ***************************************
+/datum/action/xeno_action/psychic_influence
+	name = "Psychic Influence"
+	action_icon_state = "psychic_whisper"
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PSYCHIC_INFLUENCE,
+	)
+	use_state_flags = XACT_USE_LYING
+	target_flags = XABB_MOB_TARGET
+
+
+/datum/action/xeno_action/psychic_influence/action_activate()
+	var/mob/living/carbon/xenomorph/X = owner
+	var/list/target_list = list()
+	for(var/mob/living/possible_target in view(WORLD_VIEW, X))
+		if(possible_target == X || !possible_target.client) // Removed the Isxeno; time for some xeno on xeno psychic shenanigans ;
+			continue
+		target_list += possible_target
+
+	if(!length(target_list))
+		to_chat(X, "<span class='warning'>There's nobody nearby to influence.</span>")
+		return
+
+	var/mob/living/L = tgui_input_list(X, "Target", "Send a Psychic Influence to whom?", target_list)
+	if(!L)
+		return
+
+	if(!X.check_state())
+		return
+
+	var/msg = stripped_input("Message:", "Psychic Influence")
+	if(!msg)
+		return
+
+	log_directed_talk(X, L, msg, LOG_SAY, "psychic influence")
+	to_chat(L, "<span class='alien'><i>[msg]</i></span>")
+	to_chat(X, "<span class='xenonotice'>We influenced: [msg] to [L]</span>")
+	for(var/_M in GLOB.observer_list) // it's the xeno's main method of S M U T, so it should be visible
+		var/mob/M = _M
+		if(M == L || M == X)
+			continue
+		if(M.stat != DEAD) //not dead, not important
+			continue
+		if(!M.client)
+			continue
+		if(get_dist(M, X) > 7 || M.z != X.z) //they're out of range of normal S M U T
+			if(!(M.client.prefs.toggles_chat & CHAT_GHOSTEARS))
+				continue
+		if((istype(M.remote_control, /mob/camera/aiEye) || isAI(M))) // Not sure why this is here really, but better S M U T than sorry
+			continue
+
+		if(check_other_rights(M.client, R_ADMIN, FALSE))
+			to_chat(M, "<span class='alien'>Psychic Influence: <b>[ADMIN_LOOKUP(X)] > [ADMIN_LOOKUP(L)]:</b> <i>\"[msg]\"</i></span>")
+		else
+			to_chat(M, "<span class='alien'>Psychic Influence: <b>[X] > [L]:</b> <i>\"[msg]\"</i></span>")
+
+
+// ***************************************
 // *********** Lay Egg
 // ***************************************
 /datum/action/xeno_action/lay_egg

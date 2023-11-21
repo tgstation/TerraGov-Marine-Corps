@@ -39,7 +39,7 @@
 		if(0)
 			return ALL_ACCESS
 		if(1)
-			return list(ACCESS_MARINE_CAPTAIN, ACCESS_MARINE_COMMANDER, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_PILOT, ACCESS_MARINE_MECH, ACCESS_MARINE_BRIDGE)//command
+			return list(ACCESS_MARINE_CAPTAIN, ACCESS_CEO, ACCESS_MARINE_COMMANDER, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_PILOT, ACCESS_MARINE_MECH, ACCESS_MARINE_BRIDGE)//command
 		if(2)
 			return list(ACCESS_MARINE_CE, ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_REMOTEBUILD)//engineering and maintenance
 		if(3)
@@ -102,6 +102,8 @@
 			return "FOB Construction Drone"
 		if(ACCESS_MARINE_CAPTAIN)
 			return "Captain's Quarters"
+		if(ACCESS_CEO)
+			return "CEO Office"
 		if(ACCESS_MARINE_COMMANDER)
 			return "Field Commander's Quarters"
 		if(ACCESS_MARINE_LOGISTICS)
@@ -277,6 +279,8 @@
 			. = size ? "PO1" : "Petty Officer First Class"
 		if("CPO")
 			. = size ? "CPO" : "Chief Petty Officer"
+		if("CEO")
+			. = size ? "CEO " : "Chief Executive Officer"
 		if("MO4")
 			. = size ? "MAJ" : "Major"
 		if("MO5")

@@ -31,13 +31,13 @@
 	switch(playtime_mins)
 		if(0 to 600)
 			name = prefix + "Hatchling King ([nicknumber])"
-		if(601 to 1500)
+		if(601 to 3000)
 			name = prefix + "Young King ([nicknumber])"
-		if(1501 to 4200)
+		if(3001 to 9000)
 			name = prefix + "Mature Emperor ([nicknumber])"
-		if(4201 to 10500)
+		if(9001 to 18000)
 			name = prefix + "Elder Emperor ([nicknumber])"
-		if(10501 to INFINITY)
+		if(18001 to INFINITY)
 			name = prefix + "Ancient Emperor ([nicknumber])"
 		else
 			name = prefix + "Hatchling King ([nicknumber])"

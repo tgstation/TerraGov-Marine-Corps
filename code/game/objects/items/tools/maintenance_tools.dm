@@ -373,7 +373,7 @@
 		var/obj/item/tool/weldingtool/T = I
 		if(T.welding)
 			balloon_alert(user, "That was stupid")
-			log_bomber(user, "triggered a weldpack explosion", src)
+			log_explosion("[key_name(user)] triggered a weldpack explosion at [AREACOORD(user.loc)].")
 			explosion(src, light_impact_range = 3)
 			qdel(src)
 		if(T.get_fuel() == T.max_fuel || !reagents.total_volume)

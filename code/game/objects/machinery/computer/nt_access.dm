@@ -50,10 +50,10 @@
 	. = ..()
 	update_icon()
 	update_minimap_icon()
-	GLOB.campaign_structures += src
+	GLOB.campaign_objectives += src
 
 /obj/machinery/computer/nt_access/Destroy()
-	GLOB.campaign_structures -= src
+	GLOB.campaign_objectives -= src
 	return ..()
 
 /obj/machinery/computer/nt_access/process()

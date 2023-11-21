@@ -85,36 +85,32 @@ SUBSYSTEM_DEF(garbage)
 
 /datum/controller/subsystem/garbage/Shutdown()
 	//Adds the del() log to the qdel log file
-	var/list/del_log = list()
+	var/list/dellog = list()
 
 	//sort by how long it's wasted hard deleting
 	sortTim(items, cmp=/proc/cmp_qdel_item_time, associative = TRUE)
 	for(var/path in items)
 		var/datum/qdel_item/I = items[path]
-		var/list/entry = list()
-		del_log[path] = entry
-
+		dellog += "Path: [path]"
 		if (I.qdel_flags & QDEL_ITEM_SUSPENDED_FOR_LAG)
-			entry["SUSPENDED FOR LAG"] = TRUE
+			dellog += "\tSUSPENDED FOR LAG"
 		if (I.failures)
-			entry["Failures"] = I.failures
-		entry["qdel() Count"] = I.qdels
-		entry["Destroy() Cost (ms)"] = I.destroy_time
-
+			dellog += "\tFailures: [I.failures]"
+		dellog += "\tqdel() Count: [I.qdels]"
+		dellog += "\tDestroy() Cost: [I.destroy_time]ms"
 		if (I.hard_deletes)
-			entry["Total Hard Deletes"] = I.hard_deletes
-			entry["Time Spend Hard Deleting (ms)"] = I.hard_delete_time
-			entry["Highest Time Spend Hard Deleting (ms)"] = I.hard_delete_max
+			dellog += "\tTotal Hard Deletes: [I.hard_deletes]"
+			dellog += "\tTime Spent Hard Deleting: [I.hard_delete_time]ms"
+			dellog += "\tHighest Time Spent Hard Deleting: [I.hard_delete_max]ms"
 			if (I.hard_deletes_over_threshold)
-				entry["Hard Deletes Over Threshold"] = I.hard_deletes_over_threshold
+				dellog += "\tHard Deletes Over Threshold: [I.hard_deletes_over_threshold]"
 		if (I.slept_destroy)
-			entry["Total Sleeps"] = I.slept_destroy
+			dellog += "\tSleeps: [I.slept_destroy]"
 		if (I.no_respect_force)
-			entry["Total Ignored Force"] = I.no_respect_force
+			dellog += "\tIgnored force: [I.no_respect_force] times"
 		if (I.no_hint)
-			entry["Total No Hint"] = I.no_hint
-
-	log_qdel("", del_log)
+			dellog += "\tNo hint: [I.no_hint] times"
+	log_qdel(dellog.Join("\n"))
 
 /datum/controller/subsystem/garbage/fire()
 	//the fact that this resets its processing each fire (rather then resume where it left off) is intentional.
@@ -261,7 +257,6 @@ SUBSYSTEM_DEF(garbage)
 
 	if (D.gc_destroyed <= 0)
 		D.gc_destroyed = queue_time
-
 	var/list/queue = queues[level]
 
 	queue[++queue.len] = list(queue_time, refid, D.gc_destroyed) // not += for byond reasons

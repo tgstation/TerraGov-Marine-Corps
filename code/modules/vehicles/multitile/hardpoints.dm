@@ -275,7 +275,8 @@ Currently only has the tank hardpoints
 		T = get_step(T, pick(GLOB.cardinals))
 	var/obj/projectile/P = new
 	P.generate_bullet(new ammo.default_ammo)
-	log_bomber(usr, "fired", src)
+	log_combat(usr, usr, "fired the [src].")
+	log_explosion("[usr] fired the [src] at [AREACOORD(loc)].")
 	P.fire_at(T, owner, src, P.ammo.max_range, P.ammo.shell_speed)
 	playsound(get_turf(src), pick('sound/weapons/guns/fire/tank_cannon1.ogg', 'sound/weapons/guns/fire/tank_cannon2.ogg'), 60, 1)
 	ammo.current_rounds--
@@ -437,7 +438,8 @@ Currently only has the tank hardpoints
 		T = get_step(T, pick(GLOB.cardinals))
 	var/obj/projectile/P = new
 	P.generate_bullet(new ammo.default_ammo)
-	log_bomber(usr, "fired", src)
+	log_combat(usr, usr, "fired the [src].")
+	log_explosion("[usr] fired the [src] at [AREACOORD(loc)].")
 	P.fire_at(T, owner, src, P.ammo.max_range, P.ammo.shell_speed)
 	ammo.current_rounds--
 
@@ -495,7 +497,8 @@ Currently only has the tank hardpoints
 		A = get_step(A, pick(GLOB.cardinals))
 	var/obj/projectile/P = new
 	P.generate_bullet(new ammo.default_ammo)
-	log_bomber(usr, "fired", src)
+	log_combat(usr, usr, "fired the [src].")
+	log_explosion("[usr] fired the [src] at [AREACOORD(loc)].")
 	P.fire_at(A, owner, src, P.ammo.max_range, P.ammo.shell_speed)
 	playsound(get_turf(src), 'sound/weapons/guns/fire/grenadelauncher.ogg', 60, 1)
 	ammo.current_rounds--

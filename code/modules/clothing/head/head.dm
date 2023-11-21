@@ -34,7 +34,7 @@
 		return ..()
 
 /obj/item/clothing/head/beanie
-	name = "\improper TGMC beanie"
+	name = "\improper NTC beanie"
 	desc = "A standard military beanie, often worn by non-combat military personnel and support crews, though the occasional one finds its way to the front line. Popular due to being comfortable and snug."
 	icon = 'icons/obj/clothing/headwear/marine_hats.dmi'
 	item_icons = list(
@@ -43,7 +43,7 @@
 		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',)
 	icon_state = "beanie_cargo"
 	flags_inv_hide = HIDETOPHAIR
-	soft_armor = list(MELEE = 15, BULLET = 15, LASER = 15, ENERGY = 15, BOMB = 10, BIO = 5, FIRE = 5, ACID = 5)
+	soft_armor = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 50, FIRE = 50, ACID = 50)
 
 
 /obj/item/clothing/head/tgmcberet
@@ -55,7 +55,7 @@
 		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
 		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',)
 	icon_state = "beret"
-	soft_armor = list(MELEE = 15, BULLET = 15, LASER = 15, ENERGY = 15, BOMB = 10, BIO = 5, FIRE = 5, ACID = 5)
+	soft_armor = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 50, FIRE = 50, ACID = 50)
 	flags_item_map_variant = NONE
 	flags_armor_features = ARMOR_NO_DECAP
 
@@ -115,7 +115,7 @@
 
 
 /obj/item/clothing/head/tgmccap
-	name = "\improper TGMC cap"
+	name = "\improper NTC cap"
 	desc = "A casual cap occasionally worn by Squad-leaders and Combat-Engineers. While it has limited combat functionality, some prefer to wear it instead of the standard issue helmet."
 	icon_state = "cap"
 	icon = 'icons/obj/clothing/headwear/marine_hats.dmi'
@@ -123,7 +123,7 @@
 		slot_head_str = 'icons/mob/clothing/headwear/marine_hats.dmi',
 		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
 		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',)
-	soft_armor = list(MELEE = 15, BULLET = 15, LASER = 15, ENERGY = 15, BOMB = 10, BIO = 5, FIRE = 5, ACID = 5)
+	soft_armor = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 50, FIRE = 50, ACID = 50)
 	var/flipped_cap = FALSE
 	var/base_cap_icon
 	flags_item_map_variant = (ITEM_ICE_VARIANT)
@@ -150,17 +150,17 @@
 
 
 /obj/item/clothing/head/tgmccap/ro
-	name = "\improper TGMC officer cap"
+	name = "\improper NTC officer cap"
 	desc = "A hat usually worn by officers in the TGMC. While it has limited combat functionality, some prefer to wear it instead of the standard issue helmet."
 	icon_state = "rocap"
 
 /obj/item/clothing/head/tgmccap/ro/navy
-	name = "\improper TGMC navy officer cap"
+	name = "\improper NTC navy officer cap"
 	desc = "A hat usually worn by officers in the TGMC. This time in a nice shade of navy blue."
 	icon_state = "navycap"
 
 /obj/item/clothing/head/tgmccap/req
-	name = "\improper TGMC requisition cap"
+	name = "\improper NTC requisition cap"
 	desc = "It's a fancy hat for a not-so-fancy military supply clerk."
 	icon_state = "cargocap"
 	flags_item_map_variant = null
@@ -171,7 +171,7 @@
 	desc = "The pinnacle of tacticool technology."
 	icon_state = "booniehat"
 	item_state = "booniehat"
-	soft_armor = list(MELEE = 15, BULLET = 15, LASER = 15, ENERGY = 15, BOMB = 10, BIO = 5, FIRE = 5, ACID = 5)
+	soft_armor = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 50, FIRE = 50, ACID = 50)
 
 /obj/item/clothing/head/ornamented_cap
 	name = "\improper ornamented cap"
@@ -180,18 +180,18 @@
 	icon = 'icons/obj/clothing/headwear/marine_hats.dmi'
 	item_icons = list(
 		slot_head_str = 'icons/mob/clothing/headwear/marine_hats.dmi',)
-	soft_armor = list(MELEE = 15, BULLET = 15, LASER = 15, ENERGY = 15, BOMB = 10, BIO = 5, FIRE = 5, ACID = 5)
+	soft_armor = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 50, FIRE = 50, ACID = 50)
 	flags_armor_features = ARMOR_NO_DECAP
 
 /obj/item/clothing/head/slouch
-	name = "\improper TGMC slouch hat"
-	desc = "A nice slouch hat worn by some TGMC troopers while on planets with hot weather, or just for style. While it has limited combat functionality, some prefer to wear it instead of the standard issue helmet."
+	name = "\improper NTC slouch hat"
+	desc = "A nice slouch hat worn by some NTC troopers while on planets with hot weather, or just for style. While it has limited combat functionality, some prefer to wear it instead of the standard issue helmet."
 	icon_state = "slouch_hat"
 	icon = 'icons/obj/clothing/headwear/marine_hats.dmi'
 	item_icons = list(
 		slot_head_str = 'icons/mob/clothing/headwear/marine_hats.dmi',
 	)
-	soft_armor = list(MELEE = 15, BULLET = 15, LASER = 15, ENERGY = 15, BOMB = 10, BIO = 5, FIRE = 5, ACID = 5)
+	soft_armor = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 50, FIRE = 50, ACID = 50)
 
 /obj/item/clothing/head/headband
 	name = "\improper Cyan headband"
@@ -202,7 +202,7 @@
 		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
 		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',)
 	icon_state = "headband"
-	soft_armor = list(MELEE = 15, BULLET = 15, LASER = 15, ENERGY = 15, BOMB = 10, BIO = 5, FIRE = 5, ACID = 5)
+	soft_armor = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 50, FIRE = 50, ACID = 50)
 	flags_armor_features = ARMOR_NO_DECAP
 
 /obj/item/clothing/head/headband/red
@@ -221,7 +221,7 @@
 
 
 /obj/item/clothing/head/headset
-	name = "\improper TGMC headset"
+	name = "\improper NTC headset"
 	desc = "A headset typically found in use by radio-operators and officers. This one appears to be malfunctioning."
 	icon_state = "headset"
 	icon = 'icons/obj/clothing/headwear/marine_hats.dmi'
@@ -240,10 +240,10 @@
 //Berets have armor, so they have their own category. PMC caps are helmets, so they're in helmets.dm.
 
 /obj/item/clothing/head/beret/marine
-	name = "marine officer beret"
-	desc = "A beret with the TGMC insignia emblazoned on it. It radiates respect and authority."
+	name = "Operative officer beret"
+	desc = "A beret with the NTC insignia emblazoned on it. It radiates respect and authority."
 	icon_state = "hosberet"
-	soft_armor = list(MELEE = 15, BULLET = 15, LASER = 15, ENERGY = 15, BOMB = 10, BIO = 5, FIRE = 5, ACID = 5)
+	soft_armor = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 50, FIRE = 50, ACID = 50)
 	flags_inventory = BLOCKSHARPOBJ
 
 /obj/item/clothing/head/beret/marine/captain

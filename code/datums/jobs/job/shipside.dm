@@ -237,6 +237,141 @@ Make the TGMC proud!"})
 	H.equip_to_slot_or_del(new /obj/item/tool/extinguisher/mini, SLOT_IN_BACKPACK)
 
 
+//CEO
+/datum/job/terragov/command/ceo
+  title = CHIEF_EXECUTIVE_OFFICER
+  req_admin_notify = TRUE
+  paygrade = "CEO"
+  comm_title = "CEO"
+  supervisors = "Your conscience."
+  selection_color = "#80000"
+  total_positions = 1
+  skills_type = /datum/skills/ceo
+  access = ALL_ACCESS
+  minimal_access = ALL_ACCESS
+  display_order = JOB_DISPLAY_ORDER_CHIEF_EXECUTIVE_OFFICER
+  outfit = /datum/outfit/job/command/ceo
+  exp_requirements = XP_REQ_EXPERT
+  exp_type = EXP_TYPE_REGULAR_ALL
+  job_flags = JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_ISCOMMAND|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_ALWAYS_VISIBLE_ON_MINIMAP
+  jobworth = list(
+		/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE,
+		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
+		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR,
+		/datum/job/terragov/command/mech_pilot = MECH_POINTS_REGULAR,
+  )
+  html_description = {"
+  	<b>Difficulty</b>: Hard<br /><br />
+  	<b>You answer to</b> NTC High Command<br /><br />
+  	<b>Unlock Requirement</b>: Being the CEO in lore.<br /><br />
+  	<b>Gamemode Availability</b>: All<br /><br /><br />
+  	<b>Duty</b>: Lead your corporation to ensure the operations go flawlessly
+  	"}
+  minimap_icon = "captain"
+
+/datum/outfit/job/command/ceo
+ name = CHIEF_EXECUTIVE_OFFICER
+ jobtype = /datum/job/terragov/command/ceo
+
+ id = /obj/item/card/id/gold
+ belt = /obj/item/storage/holster/belt/mateba/full
+ ears = /obj/item/radio/headset/mainship/mcom
+ w_uniform = /obj/item/clothing/under/suit_jacket/charcoal
+ shoes = /obj/item/clothing/shoes/marine/full
+ gloves = /obj/item/clothing/gloves/marine/officer
+ r_store = /obj/item/storage/pouch/general/large/command
+ l_store = /obj/item/hud_tablet/leadership
+ back = /obj/item/storage/backpack/satchel
+
+//Corpsec Commander
+/datum/job/terragov/command/corpseccommander
+	title = CORPSEC_COMMANDER
+	req_admin_notify = TRUE
+	paygrade = "O3"
+	comm_title = "CCDR"
+	total_positions = 1
+	selection_color = "#80000"
+	skills_type = /datum/skills/fo
+	access = ALL_MARINE_ACCESS
+	minimal_access = ALL_MARINE_ACCESS
+	display_order = JOB_DISPLAY_ORDER_CORPSEC_COMMANDER
+	outfit = /datum/outfit/job/command/corpseccommander
+	exp_requirements = XP_REQ_EXPERIENCED
+	exp_type = EXP_TYPE_REGULAR_ALL
+	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_ISCOMMAND|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS|JOB_FLAG_ALWAYS_VISIBLE_ON_MINIMAP
+	jobworth = list(
+		/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE,
+		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
+		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR,
+		/datum/job/terragov/command/mech_pilot = MECH_POINTS_REGULAR,
+	)
+	html_description = {"
+		<b>Difficulty</b>:Very Hard<br /><br />
+		<b>You answer to the</b> Captain and the CEO<br /><br />
+		<b>Unlock Requirement</b>: Starting Role<br /><br />
+		<b>Gamemode Availability</b>: Crash, Distress<br /><br /><br />
+		<b>Duty</b>: Ensure base security, enforce the law, make sure corpsec is not acting like a legal gang.
+	"}
+	minimap_icon = "fieldcommander"
+
+/datum/job/terragov/command/corpseccommander/after_spawn(mob/living/L, mob/M, latejoin)
+	. = ..()
+	SSdirection.set_leader(TRACKING_ID_MARINE_COMMANDER, L)
+
+
+/datum/job/terragov/command/corpseccommander/radio_help_message(mob/M)
+	. = ..()
+	to_chat(M, {"You are a veteran, elite operative with leadership skills and experience
+	trusted to keep the law and base protection within the front operations of Ninetails Corporation,
+	do not let them down."})
+
+/datum/job/terragov/command/corpseccommander/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
+	. = ..()
+	if(!ishuman(new_mob))
+		return
+	var/mob/living/carbon/human/new_human = new_mob
+	var/playtime_mins = user?.client?.get_exp(title)
+	if(!playtime_mins || playtime_mins < 1 )
+		return
+	switch(playtime_mins)
+		if(0 to 1500) //starting
+			new_human.wear_id.paygrade = "O4"
+		if(1500 to 7500) // 25 hrs
+			new_human.wear_id.paygrade = "MO4"
+		if(7501 to INFINITY) // 125 hrs
+			new_human.wear_id.paygrade = "MO5"
+
+
+/datum/outfit/job/command/corpseccommander
+	name = CORPSEC_COMMANDER
+	jobtype = /datum/job/terragov/command/corpseccommander
+
+	id = /obj/item/card/id/dogtag
+	belt = /obj/item/storage/holster/blade/officer/full
+	glasses = /obj/item/clothing/glasses/hud/security/jensenshades
+	ears = /obj/item/radio/headset/mainship/mcom
+	w_uniform = /obj/item/clothing/under/hosformalmale
+	wear_suit = /obj/item/clothing/suit/armor/hos
+	shoes = /obj/item/clothing/shoes/swat
+	gloves =/obj/item/clothing/gloves/swat
+	head = /obj/item/clothing/head/helmet/swat
+	r_store = /obj/item/storage/pouch/general/large/command
+	l_store = /obj/item/hud_tablet/fieldcommand
+	back = /obj/item/storage/backpack/security
+	suit_store = /obj/item/storage/holster/belt/pistol/m4a3/fieldcommander
+
+/datum/outfit/job/command/corpseccomander/robot
+	species = SPECIES_COMBAT_ROBOT
+
+	w_uniform = /obj/item/clothing/under/marine/robotic
+	wear_suit = /obj/item/clothing/suit/modular/robot
+	shoes = null
+	gloves = null
+	head = /obj/item/clothing/head/modular/robot
+	r_store = /obj/item/storage/pouch/general/large/command
+	l_store = /obj/item/hud_tablet/fieldcommand
+	suit_store = /obj/item/storage/holster/belt/pistol/m4a3/fieldcommander
+
 //Staff Officer
 /datum/job/terragov/command/staffofficer
 	title = STAFF_OFFICER

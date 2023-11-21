@@ -2,8 +2,8 @@
 
 
 /obj/item/clothing/suit/storage/marine
-	name = "\improper M3 pattern marine armor"
-	desc = "A standard TerraGov Marine Corps M3 Pattern Chestplate. Protects the chest from ballistic rounds, bladed objects and accidents. It has a small leather pouch strapped to it for limited storage."
+	name = "\improper M3 pattern operative armor"
+	desc = "A standard Ninetails M3 Pattern Chestplate. Protects the chest from ballistic rounds, bladed objects and accidents. It has a small leather pouch strapped to it for limited storage."
 	icon = 'icons/obj/clothing/suits/marine_armor.dmi'
 	icon_state = ""
 	item_state = "armor"
@@ -208,7 +208,7 @@
 
 /obj/item/clothing/suit/storage/marine/officer/req
 	name = "\improper PAS-N2 pattern MA armor"
-	desc = "A standard TerraGov Navy N2 Personal Armor System. Protects the chest from ballistic rounds, bladed objects and accidents. It has a small leather pouch strapped to it for limited storage."
+	desc = "A standard Ninetails Navy N2 Personal Armor System. Protects the chest from ballistic rounds, bladed objects and accidents. It has a small leather pouch strapped to it for limited storage."
 	icon_state = "mp"
 
 /*=============================PMCS==================================*/
@@ -571,7 +571,7 @@
 
 /obj/item/clothing/suit/storage/RO
 	name = "\improper RO jacket"
-	desc = "A green jacket worn by TGMC personnel. The back has the flag of the TerraGov on it."
+	desc = "A green jacket worn by TGMC personnel. The back has the emblem of the Ninetails on it."
 	icon_state = "RO_jacket"
 	blood_overlay_type = "coat"
 	flags_armor_protection = CHEST|GROIN|ARMS|LEGS|FEET|HANDS
