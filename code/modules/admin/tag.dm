@@ -55,13 +55,15 @@
 	set category = "Admin.Game"
 	set name = "View Tags"
 
+	var/datum/admins/holdersrc = src
 	if (!istype(src, /datum/admins))
-		var/holdersrc = src
 		holdersrc = usr.client.holder
 	if (!istype(src, /datum/admins))
 		to_chat(usr, "Error: you are not an admin!", confidential = TRUE)
 		return
+	holdersrc.index_tags()
 
+/datum/admins/proc/index_tags()
 	var/index = 0
 	var/list/dat = list("<center><B>Tag Menu</B></center><hr>")
 
