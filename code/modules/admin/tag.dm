@@ -56,7 +56,8 @@
 	set name = "View Tags"
 
 	if (!istype(src, /datum/admins))
-		src = usr.client.holder
+		var/holdersrc = src
+		holdersrc = usr.client.holder
 	if (!istype(src, /datum/admins))
 		to_chat(usr, "Error: you are not an admin!", confidential = TRUE)
 		return
