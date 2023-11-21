@@ -1,0 +1,4 @@
+author: "vvvv-vvvv"
+delete-after: True
+changes:
+  - bugfix: "Fix lascarbine spread pointblanks shooting past the target"
