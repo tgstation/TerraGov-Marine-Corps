@@ -154,6 +154,9 @@
 		/obj/item/armor_module/armor/visor/marine/foureyevisor,
 		/obj/item/armor_module/armor/visor/marine/markonevisor,
 		/obj/item/armor_module/armor/helm_highlight,
+		/obj/item/armor_module/armor/helm_highlight/markfive,
+		/obj/item/armor_module/armor/helm_highlight/markthree,
+		/obj/item/armor_module/armor/helm_highlight/markone,
 	)
 
 	starting_attachments = list(/obj/item/armor_module/armor/visor/marine, /obj/item/armor_module/storage/helmet)
