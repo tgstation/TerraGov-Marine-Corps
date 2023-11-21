@@ -114,10 +114,10 @@
 	prefix = "markfive_"
 
 /datum/greyscale_config/hardsuit_variant/syndicate_markthree
-    prefix = "markthree_"
+	prefix = "markthree_"
 
 /datum/greyscale_config/hardsuit_variant/syndicate_markone
-    prefix = "markone_"
+	prefix = "markone_"
 
 //Mark 2
 
