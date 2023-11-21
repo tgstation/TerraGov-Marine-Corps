@@ -4,6 +4,9 @@
 	name = "Enclosed Area"
 	icon_state = "transparent"
 	always_unpowered = TRUE
+	ceiling = CEILING_DEEP_UNDERGROUND
+	outside = FALSE
+	always_unpowered = TRUE
 
 /area/slumbridge/rock/nearlz
 	icon_state = "blue"
