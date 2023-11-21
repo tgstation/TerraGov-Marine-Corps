@@ -34,6 +34,36 @@
 	span_warning("We shove [src]!"), null, 5)
 	return TRUE
 
+/mob/living/carbon/human/attack_alien_disarm(mob/living/carbon/xenomorph/X, dam_bonus)
+	var/randn = rand(1, 100)
+
+	X.do_attack_animation(src, ATTACK_EFFECT_DISARM2)
+	if(randn <= 30) // 30% chance
+		apply_effect(30, WEAKEN)
+		playsound(loc, 'sound/weapons/alien_knockdown.ogg', 25, TRUE)
+		X.visible_message("<span class='danger'>[X] slams [src] to the ground!</span>",
+		"<span class='danger'>We slam [src] to the ground!</span>", null, 5)
+		log_combat(X, src, "pushed")
+		return
+
+	if(randn <= 40) // 40% chance
+		if(pulling)
+			X.visible_message("<span class='danger'>[X] has broken [src]'s grip on [pulling]!</span>",
+			"<span class='danger'>We break [src]'s grip on [pulling]!</span>", null, 5)
+			stop_pulling()
+		else if(drop_held_item())
+			X.visible_message("<span class='danger'>[X] has disarmed [src]!</span>",
+			"<span class='danger'>We disarm [src]!</span>", null, 5)
+		playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, TRUE, 7)
+		log_combat(X, src, "disarmed")
+		return
+
+	playsound(loc, 'sound/weapons/punchmiss.ogg', 25, TRUE, 7)
+	X.visible_message("<span class='danger'>[X] attempted to disarm [src]!</span>",
+	"<span class='danger'>We attempt to disarm [src]!</span>", null, 5)
+	log_combat(X, src, "missed a disarm")
+
+
 /mob/living/proc/can_xeno_slash(mob/living/carbon/xenomorph/X)
 	return !(status_flags & INCORPOREAL)
 
@@ -210,8 +240,11 @@
 		if(INTENT_GRAB)
 			return attack_alien_grab(X)
 
-		if(INTENT_HARM, INTENT_DISARM)
+		if(INTENT_HARM)
 			return attack_alien_harm(X)
+
+		if(INTENT_HARM, INTENT_DISARM)
+			return attack_alien_disarm(X)
 	return FALSE
 
 /mob/living/attack_larva(mob/living/carbon/xenomorph/larva/M)

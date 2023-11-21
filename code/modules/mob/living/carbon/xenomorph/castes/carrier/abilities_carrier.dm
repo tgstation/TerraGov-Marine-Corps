@@ -358,7 +358,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	desc = "Appeals to the larva inside the Marine. The Marine loses his balance, and larva's progress accelerates."
 	ability_name = "call younger"
 	plasma_cost = 150
-	cooldown_timer = 20 SECONDS
+	cooldown_timer = 10 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_CALL_YOUNGER,
 	)
@@ -412,17 +412,12 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	owner.visible_message(span_xenowarning("\the [owner] emits an unusual roar!"), \
 	span_xenowarning("We called out to the younger one inside [victim]!"))
 	victim.visible_message(span_xenowarning("\The [victim] loses his balance, falling to the side!"), \
-	span_xenowarning("You feel like something inside you is tearing out!"))
+	span_xenowarning("You feel like something inside you is growing!"))
 
 	victim.apply_effects(2 SECONDS, 1 SECONDS)
 	victim.adjust_stagger(debuff SECONDS)
 	victim.adjust_slowdown(debuff)
 	victim.apply_damage(stamina_dmg, STAMINA)
-
-	var/datum/internal_organ/O
-	for(var/i in list("heart", "lungs", "liver"))
-		O = victim.internal_organs_by_name[i]
-		O.take_damage(debuff, TRUE)
 
 	young.adjust_boost_timer(20, 40)
 

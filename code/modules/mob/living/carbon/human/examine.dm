@@ -444,9 +444,7 @@
 
 	if(chestburst == 2)
 		if(isxeno(user))
-			msg += "[span_xenowarning("A larva escaped from [t_him]!")]\n"
-		else
-			msg += "[span_warning("[t_He] has a giant hole in [t_his] chest!")]\n"
+			msg += "[span_xenowarning("A larva was born from [t_him]!")]\n"
 
 	for(var/i in embedded_objects)
 		var/obj/item/embedded = i

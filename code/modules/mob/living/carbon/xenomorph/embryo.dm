@@ -152,7 +152,6 @@
 	if(victim.chestburst || loc != victim)
 		return
 
-	victim.chestburst = 1
 	ADD_TRAIT(victim, TRAIT_PSY_DRAINED, TRAIT_PSY_DRAINED)
 	to_chat(src, span_danger("We start slithering out of [victim]!"))
 
@@ -190,7 +189,6 @@
 		qdel(AE)
 
 
-	victim.chestburst = 2
 	victim.update_burst()
 	log_combat(src, null, "was born as a larva.")
 	log_game("[key_name(src)] was born as a larva at [AREACOORD(src)].")
