@@ -111,6 +111,8 @@
 /datum/greyscale_config/hardsuit_variant
 	icon_file = 'icons/mob/modular/Syndicate_Expansion.dmi'
 	json_config = 'code/datums/greyscale/json_configs/hardsuit_variant.json'
+
+/datum/greyscale_config/hardsuit_variant/syndicate_markfive
 	prefix = "markfive_"
 
 /datum/greyscale_config/hardsuit_variant/syndicate_markthree

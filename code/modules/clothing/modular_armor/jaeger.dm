@@ -276,10 +276,11 @@
 	secondary_color = TRUE
 	flags_item_map_variant = NONE
 
-/obj/item/clothing/head/modular/marine/markone_helmet
+/obj/item/clothing/head/modular/marine/markthree_helmet/markone_helmet
 	name = "FleckTex Mark I Raider Helmet"
 	desc = "Usually paired with the FleckTex WY-01 modular exoskeleton. Can mount utility functions on the helmet hard points. Has Raider markings"
-	starting_attachments = list(/obj/item/armor_module/armor/visor/marine/markonevisor, /obj/item/armor_module/storage/helmet)
+	starting_attachments = list(/obj/item/armor_module/armor/visor/marine/markonevisor, /obj/item/armor_module/storage/helmet, /obj/item/armor_module/armor/helm_highlight)
 	greyscale_config = /datum/greyscale_config/hardsuit_variant/syndicate_markone
 
-
+/obj/item/armor_module/armor/helm_highlight/markone
+	greyscale_config = /datum/greyscale_config/hardsuit_variant/syndicate_markone

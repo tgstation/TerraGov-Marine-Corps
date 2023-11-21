@@ -62,5 +62,6 @@
 #define ATTACHMENT_SLOT_KAMA "kama"
 
 #define ATTACHMENT_SLOT_KNEE_HIGHLIGHT "knee_highlight"
+#define ATTACHMENT_SLOT_ARM_HIGHLIGHT "arm_highlight"
 #define ATTACHMENT_SLOT_CHEST_HIGHLIGHT "chest_highlight"
 #define ATTACHMENT_SLOT_HELM_HIGHLIGHT "helm_highlight"

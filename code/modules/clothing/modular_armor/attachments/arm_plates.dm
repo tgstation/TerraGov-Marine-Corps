@@ -70,19 +70,45 @@
 	greyscale_config = /datum/greyscale_config/armor_mk1/dashe
 
 // Hardsuit Arm Plates
-/obj/item/armor_module/armor/arms/marine/syndicate_markfive
-	name = "\improper FleckTex Mark V Breacher arm plates"
-	desc = "Designed for use with the FleckTex WY-01 Exoskeleton. It provides high protection and encumbrance when attached and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. All arm plates have the same armor and slowdown, meaning that only changing the chestplate makes significant armor difference. This armor appears to be marked as a Mark V armor piece."
+/obj/item/armor_module/armor/arms/marine/hardsuit_arms
+	name = "\improper FleckTex Base arm plates"
+	desc = "Designed for use with the FleckTex WY-01 Exoskeleton. It provides high protection and encumbrance when attached and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. All arm plates have the same armor and slowdown, meaning that only changing the chestplate makes significant armor difference. This armor appears to be marked as a Base armor piece."
+	starting_attachments = list(/obj/item/armor_module/armor/arm_highlight)
+	attachments_allowed = list(/obj/item/armor_module/armor/arm_highlight)
+	attachments_by_slot = list(ATTACHMENT_SLOT_ARM_HIGHLIGHT)
 	greyscale_config = /datum/greyscale_config/hardsuit_variant
 
-/obj/item/armor_module/armor/arms/marine/syndicate_markthree
+/obj/item/armor_module/armor/arm_highlight
+	name = "arm highlight"
+	icon_state = "arm_highlight"
+	slot = ATTACHMENT_SLOT_ARM_HIGHLIGHT
+	flags_attach_features = ATTACH_SAME_ICON|ATTACH_APPLY_ON_MOB
+	greyscale_config = /datum/greyscale_config/hardsuit_variant
+	secondary_color = TRUE
+	flags_item_map_variant = NONE
+
+/obj/item/armor_module/armor/arms/marine/hardsuit_arms/syndicate_markfive
+	name = "\improper FleckTex Mark V Breacher arm plates"
+	desc = "Designed for use with the FleckTex WY-01 Exoskeleton. It provides high protection and encumbrance when attached and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. All arm plates have the same armor and slowdown, meaning that only changing the chestplate makes significant armor difference. This armor appears to be marked as a Mark V armor piece."
+	greyscale_config = /datum/greyscale_config/hardsuit_variant/syndicate_markfive
+
+/obj/item/armor_module/armor/arm_highlight/markfive
+	greyscale_config = /datum/greyscale_config/hardsuit_variant/syndicate_markfive
+
+/obj/item/armor_module/armor/arms/marine/hardsuit_arms/syndicate_markthree
 	name = "\improper FleckTex Mark III marauder arm plates"
 	desc = "Designed for use with the FleckTex WY-01 Exoskeleton. It provides high protection and encumbrance when attached and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. All arm plates have the same armor and slowdown, meaning that only changing the chestplate makes significant armor difference. This armor appears to be marked as a Mark III armor piece."
 	greyscale_config = /datum/greyscale_config/hardsuit_variant/syndicate_markthree
 
-/obj/item/armor_module/armor/arms/marine/syndicate_markone
+/obj/item/armor_module/armor/arm_highlight/markthree
+	greyscale_config = /datum/greyscale_config/hardsuit_variant/syndicate_markthree
+
+/obj/item/armor_module/armor/arms/marine/hardsuit_arms/syndicate_markone
 	name = "\improper FleckTex Mark I raider arm plates"
 	desc = "Designed for use with the FleckTex WY-01 Exoskeleton. It provides high protection and encumbrance when attached and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. All arm plates have the same armor and slowdown, meaning that only changing the chestplate makes significant armor difference. This armor appears to be marked as a Mark I armor piece."
+	greyscale_config = /datum/greyscale_config/hardsuit_variant/syndicate_markone
+
+/obj/item/armor_module/armor/arm_highlight/markone
 	greyscale_config = /datum/greyscale_config/hardsuit_variant/syndicate_markone
 
 
