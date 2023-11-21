@@ -22,16 +22,23 @@
 	///allow_pass_flags flags applied to the jumper on jump
 	var/jumper_allow_pass_flags
 
-/datum/component/jump/Initialize(_jump_duration, _jump_cooldown, _stamina_cost, _jump_height, _jump_sound, _jump_flags, _jumper_allow_pass_flags)
+	var/external_user
+
+/datum/component/jump/Initialize(_jump_duration, _jump_cooldown, _stamina_cost, _jump_height, _jump_sound, _jump_flags, _jumper_allow_pass_flags, mob/living/_external_user)
 	. = ..()
-	if(!isliving(parent))
-		return COMPONENT_INCOMPATIBLE
+	//if(!isliving(parent))
+	//	return COMPONENT_INCOMPATIBLE
+
+	if(_external_user)
+		set_external_user(new_user = _external_user)
 
 	set_vars(_jump_duration, _jump_cooldown, _stamina_cost, _jump_height, _jump_sound, _jump_flags, _jumper_allow_pass_flags)
 	RegisterSignal(parent, COMSIG_KB_LIVING_JUMP, PROC_REF(do_jump))
+	RegisterSignal(parent, COMSIG_KB_VEHICLE_NEW_OCCUPANT, PROC_REF(set_external_user))
 
 /datum/component/jump/UnregisterFromParent()
-	UnregisterSignal(parent, list(COMSIG_KB_LIVING_JUMP, COMSIG_MOB_THROW))
+	UnregisterSignal(parent, list(COMSIG_KB_LIVING_JUMP, COMSIG_MOB_THROW, COMSIG_KB_VEHICLE_NEW_OCCUPANT))
+	set_external_user()
 
 /datum/component/jump/InheritComponent(datum/component/new_component, original_component, _jump_duration, _jump_cooldown, _stamina_cost, _jump_height, _jump_sound, _jump_flags, _jumper_allow_pass_flags)
 	set_vars(_jump_duration, _jump_cooldown, _stamina_cost, _jump_height, _jump_sound, _jump_flags, _jumper_allow_pass_flags)
@@ -46,27 +53,47 @@
 	jump_flags = _jump_flags
 	jumper_allow_pass_flags = _jumper_allow_pass_flags
 
-///Performs the jump
-/datum/component/jump/proc/do_jump(mob/living/jumper)
+///Sets an external controller, such as a vehicle driver
+/datum/component/jump/proc/set_external_user(datum/source, mob/living/new_user)
 	SIGNAL_HANDLER
+	if(external_user)
+		remove_external_user()
+	if(new_user)
+		external_user = new_user
+		RegisterSignal(external_user, COMSIG_KB_LIVING_JUMP, PROC_REF(do_jump))
+		RegisterSignal(external_user, COMSIG_KB_VEHICLE_OCCUPANT_LEFT, PROC_REF(remove_external_user))
+
+///Unsets an external controller
+/datum/component/jump/proc/remove_external_user(datum/source, mob/living/old_user)
+	SIGNAL_HANDLER
+	UnregisterSignal(external_user, list(COMSIG_KB_LIVING_JUMP, COMSIG_KB_VEHICLE_OCCUPANT_LEFT))
+	external_user = null
+
+///Performs the jump
+/datum/component/jump/proc/do_jump(atom/movable/jumper)
+	SIGNAL_HANDLER
+	if(jumper == external_user)
+		jumper = parent
 	if(TIMER_COOLDOWN_CHECK(jumper, JUMP_COMPONENT_COOLDOWN))
 		return
-	if(jumper.buckled)
-		return
-	if(jumper.incapacitated())
-		return
+	if(isliving(jumper))
+		var/mob/living/living_jumper = jumper
+		if(living_jumper.buckled)
+			return
+		if(living_jumper.incapacitated())
+			return
 
-	if(stamina_cost && (jumper.getStaminaLoss() > -stamina_cost))
-		to_chat(jumper, span_warning("Catch your breath!"))
-		return
+		if(stamina_cost && (living_jumper.getStaminaLoss() > -stamina_cost))
+			to_chat(living_jumper, span_warning("Catch your breath!"))
+			return
+
+		living_jumper.adjustStaminaLoss(stamina_cost)
 
 	if(jump_sound)
 		playsound(jumper, jump_sound, 65)
 
 	jumper.layer = ABOVE_MOB_LAYER
-
 	SEND_SIGNAL(jumper, COMSIG_ELEMENT_JUMP_STARTED)
-	jumper.adjustStaminaLoss(stamina_cost)
 	jumper.pass_flags |= jumper_allow_pass_flags
 	ADD_TRAIT(jumper, TRAIT_SILENT_FOOTSTEPS, JUMP_COMPONENT)
 	RegisterSignal(parent, COMSIG_MOB_THROW, PROC_REF(jump_throw))
@@ -90,7 +117,7 @@
 	TIMER_COOLDOWN_START(jumper, JUMP_COMPONENT_COOLDOWN, jump_cooldown)
 
 ///Ends the jump
-/datum/component/jump/proc/end_jump(mob/living/jumper)
+/datum/component/jump/proc/end_jump(atom/movable/jumper)
 	jumper.remove_filter(JUMP_COMPONENT)
 	jumper.layer = initial(jumper.layer)
 	jumper.pass_flags = initial(jumper.pass_flags)
@@ -100,7 +127,7 @@
 	UnregisterSignal(parent, COMSIG_MOB_THROW)
 
 ///Jump throw bonuses
-/datum/component/jump/proc/jump_throw(mob/living/thrower, target, thrown_thing, list/throw_modifiers)
+/datum/component/jump/proc/jump_throw(atom/movable/thrower, target, thrown_thing, list/throw_modifiers)
 	SIGNAL_HANDLER
 	var/obj/item/throw_item = thrown_thing
 	if(!istype(throw_item))

@@ -992,6 +992,10 @@
 
 // /obj/vehicle/sealed/mecha signals
 
+#define COMSIG_KB_VEHICLE_NEW_OCCUPANT "vehicle_new_occupant"
+
+#define COMSIG_KB_VEHICLE_OCCUPANT_LEFT "vehicle_occupant_left"
+
 ///sent from mecha action buttons to the mecha they're linked to
 #define COMSIG_MECHA_ACTION_TRIGGER "mecha_action_activate"
 

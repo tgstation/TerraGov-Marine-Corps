@@ -48,6 +48,8 @@
 	holder_right.layer = layer+0.001
 	. = ..()
 
+	set_jump_component()
+
 	for(var/key in limbs)
 		if(!limbs[key])
 			continue
@@ -174,3 +176,22 @@
 
 /obj/vehicle/sealed/mecha/combat/greyscale/vanguard/noskill
 	mecha_flags = ADDING_ACCESS_POSSIBLE|CANSTRAFE|IS_ENCLOSED|HAS_HEADLIGHTS
+
+
+///Sets up the jump component for the mob. Proc args can be altered so different mobs have different 'default' jump settings
+/obj/vehicle/sealed/mecha/combat/greyscale/proc/set_jump_component(duration = 0.5 SECONDS, cooldown = 1 SECONDS, cost = 8, height = 16, sound = null, flags = JUMP_SHADOW, flags_pass = PASS_LOW_STRUCTURE|PASS_FIRE)
+	var/gravity = get_gravity()
+	if(gravity < 1) //low grav
+		duration *= 2.5 - gravity
+		cooldown *= 2 - gravity
+		cost *= gravity * 0.5
+		height *= 2 - gravity
+		if(gravity <= 0.75)
+			flags_pass |= PASS_DEFENSIVE_STRUCTURE
+	else if(gravity > 1) //high grav
+		duration *= gravity * 0.5
+		cooldown *= gravity
+		cost *= gravity
+		height *= gravity * 0.5
+
+	AddComponent(/datum/component/jump, _jump_duration = duration, _jump_cooldown = cooldown, _stamina_cost = cost, _jump_height = height, _jump_sound = sound, _jump_flags = flags, _jumper_allow_pass_flags = flags_pass)

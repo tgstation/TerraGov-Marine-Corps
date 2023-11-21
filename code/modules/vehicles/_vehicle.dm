@@ -98,7 +98,7 @@
 /obj/vehicle/proc/add_occupant(mob/M, control_flags)
 	if(!istype(M) || is_occupant(M))
 		return FALSE
-
+	SEND_SIGNAL(src, COMSIG_KB_VEHICLE_NEW_OCCUPANT, M)
 	LAZYSET(occupants, M, NONE)
 	add_control_flags(M, control_flags)
 	after_add_occupant(M)
@@ -114,6 +114,7 @@
 
 /obj/vehicle/proc/remove_occupant(mob/M)
 	SHOULD_CALL_PARENT(TRUE)
+	SEND_SIGNAL(src, COMSIG_KB_VEHICLE_OCCUPANT_LEFT, M)
 	if(!istype(M))
 		return FALSE
 	remove_control_flags(M, ALL)
