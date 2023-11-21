@@ -5,7 +5,7 @@ $include dbconfig.txt
 $include resources.txt
 
 ## Server name: This appears at the top of the screen in-game.
-SERVER_NAME NTF vs Alien
+SERVER_NAME SoL|NTC - NTF vs Alien
 
 ## Hosted by name for unix platforms.
 HOSTEDBY VideNoir
