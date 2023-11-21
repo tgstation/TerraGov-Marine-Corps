@@ -231,15 +231,15 @@
 	)
 
 /obj/item/clothing/suit/modular/syndie_exo
-    name = "FleckTex WY-01 modular exoskeleton"
-    desc = "FleckTex Dynamics brand new modular hardsuit exoskeleto, designed for full compatiability with jaeger modules. Comes with pre-installed light armour-plating and a shoulder lamp. Mount armor pieces to it by clicking on the frame with the components. Use Alt-Click to remove any attached items."
-    icon = 'icons/mob/modular/Syndicate_Expansion.dmi'
-    icon_state = "exoskeleton"
-    item_state = "exoskeleton"
-    item_state_worn = TRUE
-    item_icons = list(slot_wear_suit_str = 'icons/mob/modular/Syndicate_Expansion.dmi')
-    allowed_uniform_type = /obj/item/clothing/under
-    attachments_allowed = list(
+	name = "FleckTex WY-01 modular exoskeleton"
+	desc = "FleckTex Dynamics brand new modular hardsuit exoskeleto, designed for full compatiability with jaeger modules. Comes with pre-installed light armour-plating and a shoulder lamp. Mount armor pieces to it by clicking on the frame with the components. Use Alt-Click to remove any attached items."
+	icon = 'icons/mob/modular/Syndicate_Expansion.dmi'
+	icon_state = "exoskeleton"
+	item_state = "exoskeleton"
+	item_state_worn = TRUE
+	item_icons = list(slot_wear_suit_str = 'icons/mob/modular/Syndicate_Expansion.dmi')
+	allowed_uniform_type = /obj/item/clothing/under
+	attachments_allowed = list(
 
 		/obj/item/armor_module/armor/chest/marine/hardsuit/syndicate_markfive,
 		/obj/item/armor_module/armor/arms/marine/syndicate_markfive,
