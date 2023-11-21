@@ -257,7 +257,7 @@
 	greyscale_config = /datum/greyscale_config/hardsuit_variant/syndicate_markthree
 	starting_attachments = list(/obj/item/armor_module/armor/helm_highlight)
 	attachments_allowed = list(/obj/item/armor_module/armor/helm_highlight)
-	attachments_by_slot = list(ATTACHMENT_SLOT_KNEE_HIGHLIGHT)
+	attachments_by_slot = list(ATTACHMENT_SLOT_HELM_HIGHLIGHT)
 
 /obj/item/armor_module/armor/helm_highlight
 	name = "helm highlight"
