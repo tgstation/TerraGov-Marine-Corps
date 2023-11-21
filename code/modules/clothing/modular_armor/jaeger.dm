@@ -252,7 +252,7 @@
 	greyscale_config = /datum/greyscale_config/hardsuit_variant/syndicate_markfive
 
 /obj/item/armor_module/armor/helm_highlight/markfive
-greyscale_config = /datum/greyscale_config/hardsuit_variant/syndicate_markfive
+	greyscale_config = /datum/greyscale_config/hardsuit_variant/syndicate_markfive
 
 /obj/item/clothing/head/modular/marine/markthree_helmet
 	name = "FleckTex Mark III Marauder Helmet"
