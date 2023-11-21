@@ -283,7 +283,7 @@
 /obj/item/armor_module/armor/helm_highlight/markthree
 	greyscale_config = /datum/greyscale_config/hardsuit_variant/syndicate_markthree
 
-/obj/item/clothing/head/modular/marine/markthree_helmet/markone_helmet
+/obj/item/clothing/head/modular/marine/hardsuit_helm/markone
 	name = "FleckTex Mark I Raider Helmet"
 	desc = "Usually paired with the FleckTex WY-01 modular exoskeleton. Can mount utility functions on the helmet hard points. Has Raider markings"
 	starting_attachments = list(/obj/item/armor_module/armor/visor/marine/markonevisor, /obj/item/armor_module/storage/helmet, /obj/item/armor_module/armor/helm_highlight)
