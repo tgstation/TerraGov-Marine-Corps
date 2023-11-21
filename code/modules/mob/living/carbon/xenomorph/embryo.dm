@@ -93,26 +93,20 @@
 	switch(stage)
 		if(2)
 			if(prob(2))
-				to_chat(affected_mob, span_warning("[pick("Your chest hurts a little bit", "Your stomach hurts")]."))
+				to_chat(affected_mob, span_warning("[pick("Your stomach hurts a little bit", "Your stomach hurts a bit")]."))
 		if(3)
 			if(prob(2))
-				to_chat(affected_mob, span_warning("[pick("Your throat feels sore", "Mucous runs down the back of your throat")]."))
+				to_chat(affected_mob, span_warning("[pick("Your stomach feels sore", "Your belly hurts a little.")]."))
 			else if(prob(1))
-				to_chat(affected_mob, span_warning("Your muscles ache."))
-				if(prob(20))
-					affected_mob.take_limb_damage(1)
-			else if(prob(2))
-				affected_mob.emote("[pick("sneeze", "cough")]")
+				to_chat(affected_mob, span_warning("Your stomach ache a bit."))
 		if(4)
 			if(prob(1))
 				if(!affected_mob.IsUnconscious())
 					affected_mob.visible_message(span_danger("\The [affected_mob] starts shaking uncontrollably!"), \
 												span_danger("You start shaking uncontrollably!"))
-					affected_mob.Unconscious(20 SECONDS)
 					affected_mob.jitter(105)
-					affected_mob.take_limb_damage(1)
 			if(prob(2))
-				to_chat(affected_mob, span_warning("[pick("Your chest hurts badly", "It becomes difficult to breathe", "Your heart starts beating rapidly, and each beat is painful")]."))
+				to_chat(affected_mob, span_warning("[pick("Your stomach hurts badly", "It becomes difficult to breathe")]."))
 		if(5)
 			become_larva()
 		if(6)
@@ -164,11 +158,11 @@
 	to_chat(src, "<span class='danger'>We start slithering out of [victim]!</span>")
 	var/obj/item/alien_embryo/birth_owner = locate() in victim
 
+	victim.Unconscious(40 SECONDS)
 	victim.visible_message(span_danger("\The [victim] starts shaking uncontrollably!"), \
-								"<span class='danger'>You feel something wiggling in your [birth_owner ? birth_owner.emerge_target : "throat"]!</span>")
 	victim.jitter(300)
 
-	playsound(victim, 'modular_skyrat/sound/weapons/gagging.ogg', 25, TRUE)
+	victim.emote_burstscream()
 
 	addtimer(CALLBACK(src, PROC_REF(burst), victim), 3 SECONDS)
 
@@ -196,10 +190,6 @@
 	if(AE)
 		qdel(AE)
 
-	if(ishuman(victim))
-		var/mob/living/carbon/human/H = victim
-		H.adjustOxyLoss(50)
-		H.stuttering = 50
 
 	victim.chestburst = 2
 	victim.update_burst()
