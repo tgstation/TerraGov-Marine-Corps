@@ -129,8 +129,6 @@
 
 	//If the bursted person themselves has Xeno enabled, they get the honor of first dibs on the new larva.
 	if(affected_mob.client?.prefs && (affected_mob.client.prefs.be_special & (BE_ALIEN|BE_ALIEN_UNREVIVABLE)) && !is_banned_from(affected_mob.ckey, ROLE_XENOMORPH))
-		picked = affected_mob
-	else //Get a candidate from observers.
 		picked = get_alien_candidate()
 
 	//Spawn the larva.
@@ -144,7 +142,7 @@
 	//If we have a candidate, transfer it over.
 	if(picked)
 		picked.mind.transfer_to(new_xeno, TRUE)
-		to_chat(new_xeno, span_xenoannounce("We are a xenomorph larva inside a host! Move to squirm out of it!"))
+		to_chat(new_xeno, span_xenoannounce("We are a xenomorph larva inside a host! Move to burst out of it!"))
 		new_xeno << sound('sound/effects/xeno_newlarva.ogg')
 
 	stage = 6
@@ -155,11 +153,12 @@
 		return
 
 	victim.chestburst = 1
-	to_chat(src, "<span class='danger'>We start slithering out of [victim]!</span>")
-	var/obj/item/alien_embryo/birth_owner = locate() in victim
+	ADD_TRAIT(victim, TRAIT_PSY_DRAINED, TRAIT_PSY_DRAINED)
+	to_chat(src, span_danger("We start slithering out of [victim]!"))
 
 	victim.Unconscious(40 SECONDS)
 	victim.visible_message(span_danger("\The [victim] starts shaking uncontrollably!"), \
+								span_danger("You feel something wiggling out of your insides!"))
 	victim.jitter(300)
 
 	victim.emote_burstscream()
