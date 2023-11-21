@@ -60,3 +60,5 @@
 #define ATTACHMENT_SLOT_CAPE "cape"
 #define ATTACHMENT_SLOT_CAPE_HIGHLIGHT "cape_highlight"
 #define ATTACHMENT_SLOT_KAMA "kama"
+
+#define ATTACHMENT_SLOT_KNEE_HIGHLIGHT "knee_highlight"
