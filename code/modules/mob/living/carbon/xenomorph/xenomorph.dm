@@ -154,13 +154,13 @@
 	switch(playtime_mins)
 		if(0 to 600)
 			rank_name = "Hatchling"
-		if(601 to 1500) //10 hours
+		if(601 to 3000)
 			rank_name = "Young"
-		if(1501 to 4200) //25 hours
+		if(3001 to 9000)
 			rank_name = "Mature"
-		if(4201 to 10500) //70 hours
+		if(9001 to 18000)
 			rank_name = "Elder"
-		if(10501 to INFINITY) //175 hours
+		if(18001 to INFINITY)
 			rank_name = "Ancient"
 		else
 			rank_name = "Hatchling"
@@ -187,13 +187,13 @@
 	switch(playtime_mins)
 		if(0 to 600)
 			return 0
-		if(601 to 1500)
+		if(601 to 3000)
 			return 1
-		if(1501 to 4200)
+		if(3001 to 9000)
 			return 2
-		if(4201 to 10500)
+		if(9001 to 18000)
 			return 3
-		if(10501 to INFINITY)
+		if(18001 to INFINITY)
 			return 4
 		else
 			return 0
@@ -445,21 +445,11 @@
 		return
 	loc_weeds_type = null
 
-/**  Handles logic for the xeno moving to a new weeds tile.
-Returns TRUE when loc_weeds_type changes. Returns FALSE when it doesn’t change */
+/// Handles logic for the xeno moving to a new weeds tile
 /mob/living/carbon/xenomorph/proc/handle_weeds_on_movement(datum/source)
 	SIGNAL_HANDLER
 	var/obj/alien/weeds/found_weed = locate(/obj/alien/weeds) in loc
-	if(loc_weeds_type == found_weed?.type)
-		return FALSE
 	loc_weeds_type = found_weed?.type
-	return TRUE
-
-/mob/living/carbon/xenomorph/hivemind/handle_weeds_on_movement(datum/source)
-	. = ..()
-	if(!.)
-		return
-	update_icon()
 
 /mob/living/carbon/xenomorph/lay_down()
 	var/datum/action/xeno_action/xeno_resting/resting_action = actions_by_path[/datum/action/xeno_action/xeno_resting]

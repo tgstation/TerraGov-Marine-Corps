@@ -50,6 +50,8 @@
 
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
+    /datum/action/xeno_action/psychic_whisper,
+    /datum/action/xeno_action/psychic_influence,
 		/datum/action/xeno_action/watch_xeno,
 		/datum/action/xeno_action/activable/psydrain/free,
 		/datum/action/xeno_action/activable/psychic_link,
@@ -70,6 +72,8 @@
 
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
+    /datum/action/xeno_action/psychic_whisper,
+    /datum/action/xeno_action/psychic_influence,
 		/datum/action/xeno_action/watch_xeno,
 		/datum/action/xeno_action/activable/psydrain/free,
 		/datum/action/xeno_action/activable/psychic_link,

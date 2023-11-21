@@ -363,7 +363,7 @@
 	return path
 
 
-/datum/admins/proc/browse_files(root = "data/logs/", max_iterations = 20, list/valid_extensions = list("txt", "log", "htm", "html", "json"))
+/datum/admins/proc/browse_files(root = "data/logs/", max_iterations = 20, list/valid_extensions = list("txt", "log", "htm", "html"))
 	if(!check_rights(R_LOG))
 		return
 
@@ -407,8 +407,6 @@
 	if(M.client)
 		dat += "<center><p>Client</p></center>"
 		dat += "<center>"
-		dat += individual_logging_panel_link(M, INDIVIDUAL_GAME_LOG, LOGSRC_CLIENT, "Game Log", source, ntype)
-		dat += " | "
 		dat += individual_logging_panel_link(M, INDIVIDUAL_ATTACK_LOG, LOGSRC_CLIENT, "Attack Log", source, ntype)
 		dat += " | "
 		dat += individual_logging_panel_link(M, INDIVIDUAL_SAY_LOG, LOGSRC_CLIENT, "Say Log", source, ntype)
@@ -428,8 +426,6 @@
 	dat += "<center><p>Mob</p></center>"
 
 	dat += "<center>"
-	dat += individual_logging_panel_link(M, INDIVIDUAL_GAME_LOG, LOGSRC_MOB, "Game Log", source, ntype)
-	dat += " | "
 	dat += individual_logging_panel_link(M, INDIVIDUAL_ATTACK_LOG, LOGSRC_MOB, "Attack Log", source, ntype)
 	dat += " | "
 	dat += individual_logging_panel_link(M, INDIVIDUAL_SAY_LOG, LOGSRC_MOB, "Say Log", source, ntype)
@@ -505,7 +501,7 @@
 		window_flash(iter_admin_client)
 		SEND_SOUND(iter_admin_client.mob, sound('sound/misc/bloop.ogg'))
 
-	mob.log_talk(msg, LOG_ASAY)
+	log_admin_private_asay("[key_name(src)]: [msg]")
 
 	var/color = "asay"
 	if(check_other_rights(src, R_DBRANKS, FALSE))
@@ -537,7 +533,7 @@
 	if(!msg)
 		return
 
-	mob.log_talk(msg, LOG_MSAY)
+	log_admin_private_msay("[key_name(src)]: [msg]")
 
 	var/color = "msay"
 	if(check_other_rights(src, R_DBRANKS, FALSE))
@@ -601,7 +597,7 @@
 	if(handle_spam_prevention(msg, MUTE_DEADCHAT))
 		return
 
-	mob.log_talk(msg, LOG_DSAY)
+	log_dsay("[key_name(src)]: [msg]")
 	msg = "<span class='game deadsay'><span class='prefix'>DEAD:</span> <span class='name'>[holder.fakekey ? "" : "([holder.rank.name]) "][holder.fakekey ? "Administrator" : key]</span> says, \"<span class='message'>[msg]</span>\"</span>"
 
 	for(var/i in GLOB.clients)

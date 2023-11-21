@@ -300,6 +300,8 @@
 	var/plasma_stored = 0
 	var/time_of_birth
 
+	var/xeno_desc = ""
+
 	///A mob the xeno ate
 	var/mob/living/carbon/eaten_mob
 	///How much evolution they have stored

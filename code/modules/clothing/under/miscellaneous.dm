@@ -32,7 +32,7 @@
 
 /obj/item/clothing/under/rank/prisoner
 	name = "prison jumpsuit"
-	desc = "It's standardised Nanotrasen prisoner-wear. Its suit sensors are stuck in the \"Fully On\" position."
+	desc = "It's standardised NTC prisoner-wear. Its suit sensors are stuck in the \"Fully On\" position."
 	icon_state = "prisoner"
 	item_state = "prisoner"
 	has_sensor = LOCKED_SENSORS
@@ -368,17 +368,17 @@
 	icon_state = "mechanic_s"
 
 /obj/item/clothing/under/spec_operative
-	name = "Special Operations Uniform"
-	desc = "Created by an unknown corporation for high risk missions, made with several layers of a unknown nano-fiber that, while light, molds to the wearer's body shape and hardens protecting them."
-	icon_state = "pilot_spec"
-	item_state = "pilot_spec"
+	name = "NTC Spec-Ops Uniform"
+	desc = "An extremely expensive suit created by an Ninetails Corporation for high risk missions, made with several layers of a nano-fiber that, while light, molds to the wearer's body shape and hardens protecting them. Only provided rarely to most successful Senior Operatives or higher."
+	icon_state = "syndicate"
+	item_state = "syndicate"
 	resistance_flags = UNACIDABLE
 	flags_armor_protection = CHEST|GROIN|LEGS|ARMS
-	soft_armor = list(MELEE = 70, BULLET = 70, LASER = 70, ENERGY = 70, BOMB = 70, BIO = 70, FIRE = 70, ACID = 70)
+	soft_armor = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 70, BOMB = 70, BIO = 70, FIRE = 70, ACID = 70)
 	flags_cold_protection = CHEST|GROIN|LEGS|ARMS
 	min_cold_protection_temperature = SPACE_SUIT_MIN_COLD_PROTECTION_TEMPERATURE
 	siemens_coefficient = 0
-	slowdown= -1
+	slowdown= -0.5
 	gas_transfer_coefficient = 0.01
 	permeability_coefficient = 0.01
 
@@ -388,4 +388,3 @@
 	icon_state = "tp_bodyrobes"
 	item_state = "tp_bodyrobes"
 	flags_armor_protection = CHEST|GROIN|LEGS|ARMS
-

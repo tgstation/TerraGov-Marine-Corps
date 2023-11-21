@@ -596,10 +596,6 @@
 	use_state_flags = XACT_USE_BUCKLED
 
 /datum/action/xeno_action/activable/corrosive_acid/can_use_ability(atom/A, silent = FALSE, override_flags)
-	// Check if it's an acid object we're upgrading
-	if (istype(A, /obj/effect/xenomorph/acid))
-		var/obj/effect/xenomorph/acid/existing_acid = A
-		A = existing_acid.acid_t // Swap the target to the target of the acid
 	. = ..()
 	if(!.)
 		return FALSE
@@ -622,12 +618,6 @@
 
 /datum/action/xeno_action/activable/corrosive_acid/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/X = owner
-
-	// Check if it's an acid object we're upgrading
-	if (istype(A, /obj/effect/xenomorph/acid))
-		var/obj/effect/xenomorph/acid/existing_acid = A
-		A = existing_acid.acid_t // Swap the target to the target of the acid
-
 	if(!A.dissolvability(initial(acid_type.acid_strength)))
 		return fail_activate()
 
@@ -640,9 +630,8 @@
 	if(!can_use_ability(A, TRUE))
 		return fail_activate()
 
-	var/old_acid_ticks = A.current_acid?.ticks
 	QDEL_NULL(A.current_acid)
-	A.current_acid = new acid_type(get_turf(A), A, A.dissolvability(initial(acid_type.acid_strength)), old_acid_ticks)
+	A.current_acid = new acid_type(get_turf(A), A, A.dissolvability(initial(acid_type.acid_strength)))
 
 	succeed_activate()
 
@@ -651,6 +640,26 @@
 	X.visible_message(span_xenowarning("\The [X] vomits globs of vile stuff all over \the [A]. It begins to sizzle and melt under the bubbling mess of acid!"), \
 	span_xenowarning("We vomit globs of vile stuff all over \the [A]. It begins to sizzle and melt under the bubbling mess of acid!"), null, 5)
 	playsound(X.loc, "sound/bullets/acid_impact1.ogg", 25)
+
+/datum/action/xeno_action/activable/corrosive_acid/proc/acid_progress_transfer(acid_type, obj/O, turf/T)
+	if(!O && !T)
+		return
+
+	var/obj/effect/xenomorph/acid/new_acid = acid_type
+
+	var/obj/effect/xenomorph/acid/current_acid
+
+	if(T)
+		current_acid = T.current_acid
+
+	else if(O)
+		current_acid = O.current_acid
+
+	if(!current_acid) //Sanity check. No acid
+		return
+	new_acid.ticks = current_acid.ticks //Inherit the old acid's progress
+	qdel(current_acid)
+
 
 // ***************************************
 // *********** Super strong acid
@@ -998,6 +1007,65 @@
 	to_chat(L, span_alien("You hear a strange, alien voice in your head. <i>\"[msg]\"</i>"))
 	to_chat(X, span_xenonotice("We said: \"[msg]\" to [L]"))
 	message_admins("[X] has sent [L] this psychic message: \"[msg]\" at [ADMIN_VERBOSEJMP(X)].")
+
+// ***************************************
+// *********** Psychic Influence
+// ***************************************
+/datum/action/xeno_action/psychic_influence
+	name = "Psychic Influence"
+	action_icon_state = "psychic_whisper"
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PSYCHIC_INFLUENCE,
+	)
+	use_state_flags = XACT_USE_LYING
+	target_flags = XABB_MOB_TARGET
+
+
+/datum/action/xeno_action/psychic_influence/action_activate()
+	var/mob/living/carbon/xenomorph/X = owner
+	var/list/target_list = list()
+	for(var/mob/living/possible_target in view(WORLD_VIEW, X))
+		if(possible_target == X || !possible_target.client) // Removed the Isxeno; time for some xeno on xeno psychic shenanigans ;
+			continue
+		target_list += possible_target
+
+	if(!length(target_list))
+		to_chat(X, "<span class='warning'>There's nobody nearby to influence.</span>")
+		return
+
+	var/mob/living/L = tgui_input_list(X, "Target", "Send a Psychic Influence to whom?", target_list)
+	if(!L)
+		return
+
+	if(!X.check_state())
+		return
+
+	var/msg = stripped_input("Message:", "Psychic Influence")
+	if(!msg)
+		return
+
+	log_directed_talk(X, L, msg, LOG_SAY, "psychic influence")
+	to_chat(L, "<span class='alien'><i>[msg]</i></span>")
+	to_chat(X, "<span class='xenonotice'>We influenced: [msg] to [L]</span>")
+	for(var/_M in GLOB.observer_list) // it's the xeno's main method of S M U T, so it should be visible
+		var/mob/M = _M
+		if(M == L || M == X)
+			continue
+		if(M.stat != DEAD) //not dead, not important
+			continue
+		if(!M.client)
+			continue
+		if(get_dist(M, X) > 7 || M.z != X.z) //they're out of range of normal S M U T
+			if(!(M.client.prefs.toggles_chat & CHAT_GHOSTEARS))
+				continue
+		if((istype(M.remote_control, /mob/camera/aiEye) || isAI(M))) // Not sure why this is here really, but better S M U T than sorry
+			continue
+
+		if(check_other_rights(M.client, R_ADMIN, FALSE))
+			to_chat(M, "<span class='alien'>Psychic Influence: <b>[ADMIN_LOOKUP(X)] > [ADMIN_LOOKUP(L)]:</b> <i>\"[msg]\"</i></span>")
+		else
+			to_chat(M, "<span class='alien'>Psychic Influence: <b>[X] > [L]:</b> <i>\"[msg]\"</i></span>")
+
 
 // ***************************************
 // *********** Lay Egg

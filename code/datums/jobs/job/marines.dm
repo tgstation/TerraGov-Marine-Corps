@@ -23,7 +23,7 @@ Make your way to the cafeteria for some post-cryosleep chow, and then get equipp
 /datum/job/terragov/squad/standard
 	title = SQUAD_MARINE
 	paygrade = "E1"
-	comm_title = "Mar"
+	comm_title = "Opr"
 	access = list(ACCESS_MARINE_PREP)
 	minimal_access = list(ACCESS_MARINE_PREP, ACCESS_MARINE_DROPSHIP)
 	display_order = JOB_DISPLAY_ORDER_SQUAD_MARINE
@@ -389,3 +389,68 @@ You are also in charge of communicating with command and letting them know about
 	name = SQUAD_VATGROWN
 	jobtype = /datum/job/terragov/squad/vatgrown
 	id = /obj/item/card/id/dogtag
+
+//security officer
+/datum/job/terragov/security/security_officer
+	title = SECURITY_OFFICER
+	paygrade = "E3"
+	comm_title = "CSec"
+	access = ALL_MARINE_ACCESS
+	selection_color = "#a91101"
+	minimal_access = ALL_MARINE_ACCESS
+	display_order = JOB_DISPLAY_ORDER_SECURITY_OFFICER
+	outfit = /datum/outfit/job/security_officer
+	total_positions = -1
+	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
+	jobworth = list(
+		/datum/job/xenomorph = LARVA_POINTS_REGULAR,
+		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
+		/datum/job/terragov/squad/corpsman = SMARTIE_POINTS_REGULAR,
+		/datum/job/terragov/squad/engineer = SMARTIE_POINTS_REGULAR,
+		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR,
+		/datum/job/terragov/command/mech_pilot = MECH_POINTS_REGULAR,
+	)
+	html_description = {"
+		<b>Difficulty</b>: Medium<br /><br />
+		<b>You answer to the</b> Corpsec Commander and above.<br /><br />
+		<b>Unlock Requirement</b>: Starting Role<br /><br />
+		<b>Gamemode Availability</b>: Crash, Distress<br /><br /><br />
+		Maintain order in the base.
+		<br />You are a security officer, what else to say?<br />
+		<b>Duty</b>: Maintain the law in the base and chase infiltrating xenomorphs. Listen to FC.	"}
+	minimap_icon = "private"
+
+/datum/job/terragov/security/security_officer/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
+ . = ..()
+ if(!ishuman(new_mob))
+  return
+ var/mob/living/carbon/human/new_human = new_mob
+ var/playtime_mins = user?.client?.get_exp(title)
+ if(!playtime_mins || playtime_mins < 1 )
+  return
+ switch(playtime_mins)
+  if(0 to 1500)
+   new_human.wear_id.paygrade = "E3"
+  if(1501 to 6000)
+   new_human.wear_id.paygrade = "E4"
+  if(6001 to 18000)
+   new_human.wear_id.paygrade = "E5"
+  if(18001 to 60000)
+   new_human.wear_id.paygrade = "E6"
+  if(60001 to INFINITY)
+   new_human.wear_id.paygrade = "E8E"
+
+/datum/outfit/job/security_officer
+	name = SECURITY_OFFICER
+	jobtype = /datum/job/terragov/security/security_officer
+
+	id = /obj/item/card/id/dogtag
+	back = /obj/item/storage/backpack/security
+	glasses = /obj/item/clothing/glasses/hud/security/jensenshades
+	belt = /obj/item/storage/belt/security
+	head = /obj/item/clothing/head/helmet/swat
+	ears = /obj/item/radio/headset/mainship/marine
+	w_uniform = /obj/item/clothing/under/rank/security/corp
+	wear_suit = /obj/item/clothing/suit/armor/bulletproof
+	shoes = /obj/item/clothing/shoes/swat
+	gloves =/obj/item/clothing/gloves/swat

@@ -60,8 +60,11 @@
 
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
+    /datum/action/xeno_action/psychic_whisper,
+    /datum/action/xeno_action/psychic_influence,
 		/datum/action/xeno_action/watch_xeno,
 		/datum/action/xeno_action/activable/psydrain,
+		/datum/action/xeno_action/activable/devour,
 		/datum/action/xeno_action/place_acidwell,
 		/datum/action/xeno_action/activable/corrosive_acid/strong,
 		/datum/action/xeno_action/create_boiler_bomb,
@@ -85,8 +88,11 @@
 
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
+    /datum/action/xeno_action/psychic_whisper,
+    /datum/action/xeno_action/psychic_influence,
 		/datum/action/xeno_action/watch_xeno,
 		/datum/action/xeno_action/activable/psydrain,
+		/datum/action/xeno_action/activable/devour,
 		/datum/action/xeno_action/place_acidwell,
 		/datum/action/xeno_action/activable/corrosive_acid/strong,
 		/datum/action/xeno_action/create_boiler_bomb,

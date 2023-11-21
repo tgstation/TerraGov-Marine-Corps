@@ -1,5 +1,5 @@
 /obj/item/clothing/shoes/marine
-	name = "marine combat boots"
+	name = "Operative combat boots"
 	desc = "Standard issue combat boots for combat scenarios or combat situations. All combat, all the time."
 	icon_state = "marine"
 	item_state = "marine"
@@ -40,7 +40,7 @@
 	starting_attachments = list(/obj/item/armor_module/storage/boot/full)
 
 /obj/item/clothing/shoes/marine/brown
-	name = "brown marine combat boots"
+	name = "brown Operative combat boots"
 	icon_state = "marine_brown"
 	item_state = "marine_brown"
 

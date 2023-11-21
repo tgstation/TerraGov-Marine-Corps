@@ -10,6 +10,10 @@
 	icon_state = "CAP"
 	job = /datum/job/terragov/command/captain
 
+/obj/effect/landmark/start/job/ceo
+	icon_state = "CAP"
+	job = /datum/job/terragov/command/ceo
+
 /obj/effect/landmark/start/job/captain/campaign
 	icon_state = "CAP"
 	job = /datum/job/terragov/command/captain/campaign
@@ -18,9 +22,17 @@
 	icon_state = "FC"
 	job = /datum/job/terragov/command/fieldcommander
 
+/obj/effect/landmark/start/job/corpseccommander
+	icon_state = "FC"
+	job = /datum/job/terragov/command/corpseccommander
+
 /obj/effect/landmark/start/job/fieldcommander/campaign
 	icon_state = "FC"
 	job = /datum/job/terragov/command/fieldcommander/campaign
+
+/obj/effect/landmark/start/job/security_officer
+	icon_state = "PFC"
+	job = /datum/job/terragov/security/security_officer
 
 /obj/effect/landmark/start/job/staffofficer
 	icon_state = "IO"

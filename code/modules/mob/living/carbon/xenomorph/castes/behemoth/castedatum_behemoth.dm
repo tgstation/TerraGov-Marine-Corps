@@ -37,13 +37,16 @@
 	hard_armor = list(MELEE = 10, BULLET = 10, LASER = 10, ENERGY = 10, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
 
 	// *** Minimap Icon *** //
-	minimap_icon = "behemoth"
+	minimap_icon = "crusher"
 
 	// *** Abilities *** ///
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
+    /datum/action/xeno_action/psychic_whisper,
+    /datum/action/xeno_action/psychic_influence,
 		/datum/action/xeno_action/watch_xeno,
 		/datum/action/xeno_action/activable/psydrain,
+		/datum/action/xeno_action/activable/devour,
 		/datum/action/xeno_action/ready_charge/behemoth_roll,
 		/datum/action/xeno_action/activable/landslide,
 		/datum/action/xeno_action/activable/earth_riser,
@@ -64,8 +67,11 @@
 	// *** Abilities *** ///
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
+    /datum/action/xeno_action/psychic_whisper,
+    /datum/action/xeno_action/psychic_influence,
 		/datum/action/xeno_action/watch_xeno,
 		/datum/action/xeno_action/activable/psydrain,
+		/datum/action/xeno_action/activable/devour,
 		/datum/action/xeno_action/ready_charge/behemoth_roll,
 		/datum/action/xeno_action/activable/landslide,
 		/datum/action/xeno_action/activable/earth_riser,
