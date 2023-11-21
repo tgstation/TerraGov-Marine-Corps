@@ -245,18 +245,27 @@
 
 // Hardsuit Helmets
 
-/obj/item/clothing/head/modular/marine/markfive_helmet
+/obj/item/clothing/head/modular/marine/markthree_helmet/markfive_helmet
 	name = "FleckTex Mark V Breacher Helmet"
 	desc = "Usually paired with the FleckTex WY-01 modular exoskeleton. Can mount utility functions on the helmet hard points. Has Breacher markings"
-	starting_attachments = list(/obj/item/armor_module/armor/visor/marine/fourvisor, /obj/item/armor_module/storage/helmet)
-	greyscale_config = /datum/greyscale_config/hardsuit_variant
+	starting_attachments = list(/obj/item/armor_module/armor/visor/marine/fourvisor, /obj/item/armor_module/storage/helmet, /obj/item/armor_module/armor/helm_highlight)
+	greyscale_config = /datum/greyscale_config/hardsuit_variant/syndicate_markfive
+
+/obj/item/armor_module/armor/helm_highlight/markfive
+greyscale_config = /datum/greyscale_config/hardsuit_variant/syndicate_markfive
 
 /obj/item/clothing/head/modular/marine/markthree_helmet
 	name = "FleckTex Mark III Marauder Helmet"
 	desc = "Usually paired with the FleckTex WY-01 modular exoskeleton. Can mount utility functions on the helmet hard points. Has Marauder markings"
 	starting_attachments = list(/obj/item/armor_module/armor/visor/marine/foureyevisor, /obj/item/armor_module/storage/helmet, /obj/item/armor_module/armor/helm_highlight)
 	greyscale_config = /datum/greyscale_config/hardsuit_variant/syndicate_markthree
-	attachments_by_slot = list(ATTACHMENT_SLOT_HELM_HIGHLIGHT)
+	attachments_by_slot = list(
+		ATTACHMENT_SLOT_VISOR,
+		ATTACHMENT_SLOT_STORAGE,
+		ATTACHMENT_SLOT_HEAD_MODULE,
+		ATTACHMENT_SLOT_BADGE,
+		ATTACHMENT_SLOT_HELM_HIGHLIGHT
+	)
 
 /obj/item/armor_module/armor/helm_highlight
 	name = "helm highlight"
@@ -266,7 +275,6 @@
 	greyscale_config = /datum/greyscale_config/hardsuit_variant/syndicate_markthree
 	secondary_color = TRUE
 	flags_item_map_variant = NONE
-
 
 /obj/item/clothing/head/modular/marine/markone_helmet
 	name = "FleckTex Mark I Raider Helmet"
