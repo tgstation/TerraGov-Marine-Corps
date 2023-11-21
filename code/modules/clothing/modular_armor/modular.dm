@@ -232,7 +232,7 @@
 
 /obj/item/clothing/suit/modular/syndie_exo
 	name = "FleckTex WY-01 modular exoskeleton"
-	desc = "FleckTex Dynamics brand new modular hardsuit exoskeleto, designed for full compatiability with jaeger modules. Comes with pre-installed light armour-plating and a shoulder lamp. Mount armor pieces to it by clicking on the frame with the components. Use Alt-Click to remove any attached items."
+	desc = "FleckTex Dynamics brand new modular hardsuit exoskeleton, designed for full compatiability with jaeger modules. Comes with pre-installed light armour-plating and a shoulder lamp. Mount armor pieces to it by clicking on the frame with the components. Use Alt-Click to remove any attached items."
 	icon = 'icons/mob/modular/Syndicate_Expansion.dmi'
 	icon_state = "exoskeleton"
 	item_state = "exoskeleton"
@@ -242,16 +242,16 @@
 	attachments_allowed = list(
 
 		/obj/item/armor_module/armor/chest/marine/hardsuit/syndicate_markfive,
-		/obj/item/armor_module/armor/arms/marine/syndicate_markfive,
-		/obj/item/armor_module/armor/legs/marine/syndicate_markfive,
+		/obj/item/armor_module/armor/arms/marine/hardsuit_arms/syndicate_markfive,
+		/obj/item/armor_module/armor/legs/marine/hardsuit_legs/syndicate_markfive,
 
 		/obj/item/armor_module/armor/chest/marine/hardsuit/syndicate_markthree,
-		/obj/item/armor_module/armor/arms/marine/syndicate_markthree,
-		/obj/item/armor_module/armor/legs/marine/syndicate_markthree,
+		/obj/item/armor_module/armor/arms/marine/hardsuit_arms/syndicate_markthree,
+		/obj/item/armor_module/armor/legs/marine/hardsuit_legs/syndicate_markthree,
 
 		/obj/item/armor_module/armor/chest/marine/hardsuit/syndicate_markone,
-		/obj/item/armor_module/armor/arms/marine/syndicate_markone,
-		/obj/item/armor_module/armor/legs/marine/syndicate_markone,
+		/obj/item/armor_module/armor/arms/marine/hardsuit_arms/syndicate_markone,
+		/obj/item/armor_module/armor/legs/marine/hardsuit_legs/syndicate_markone,
 
 		/obj/item/armor_module/module/better_shoulder_lamp,
 		/obj/item/armor_module/module/valkyrie_autodoc,
