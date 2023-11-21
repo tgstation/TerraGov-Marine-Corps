@@ -1132,7 +1132,7 @@
 		),
 		"Hardsuits" = list(
 			/obj/item/clothing/suit/modular/syndie_exo = -1,
-			/obj/item/clothing/head/modular/marine/markfive_helmet = -1,
+			/obj/item/clothing/head/modular/marine/markthree_helmet/markfive_helmet = -1,
 			/obj/item/armor_module/armor/chest/marine/hardsuit/syndicate_markfive = -1,
 			/obj/item/armor_module/armor/arms/marine/syndicate_markfive = -1,
 			/obj/item/armor_module/armor/legs/marine/syndicate_markfive = -1,
