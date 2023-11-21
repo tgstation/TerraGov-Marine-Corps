@@ -264,11 +264,9 @@
 	slot = ATTACHMENT_SLOT_HELM_HIGHLIGHT
 	flags_attach_features = ATTACH_SAME_ICON|ATTACH_APPLY_ON_MOB
 	greyscale_config = /datum/greyscale_config/hardsuit_variant/syndicate_markthree
-	// greyscale_colors =
-	// colorable_colors =
 	secondary_color = TRUE
 	flags_item_map_variant = NONE
-	// colorable_allowed = PRESET_COLORS_ALLOWED
+
 
 /obj/item/clothing/head/modular/marine/markone_helmet
 	name = "FleckTex Mark I Raider Helmet"
