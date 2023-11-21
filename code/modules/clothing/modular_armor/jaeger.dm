@@ -152,6 +152,7 @@
 		/obj/item/armor_module/armor/visor/marine/dashe,
 		/obj/item/armor_module/armor/visor/marine/fourvisor,
 		/obj/item/armor_module/armor/visor/marine/foureyevisor,
+		/obj/item/armor_module/armor/visor/marine/markonevisor,
 	)
 
 	starting_attachments = list(/obj/item/armor_module/armor/visor/marine, /obj/item/armor_module/storage/helmet)

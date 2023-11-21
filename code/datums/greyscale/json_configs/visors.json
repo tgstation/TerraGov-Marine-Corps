@@ -146,7 +146,7 @@
 	"markone_visor": [
 	{
 		"type": "hyperscale",
-		"icon_state": "markonevisor"
+		"icon_state": "markone"
 	}
 ],
 	"foureye_visor": [
