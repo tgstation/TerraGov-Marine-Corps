@@ -128,11 +128,14 @@
 #define SKILL_LEAD_MASTER 4 //XO, CO
 
 //melee_weapons skill
-//buff to melee weapon attack damage(+30% dmg per level)
+//buff to melee weapon attack damage
 #define SKILL_MELEE_WEAK -1
 #define SKILL_MELEE_DEFAULT 0
 #define SKILL_MELEE_TRAINED 1
 #define SKILL_MELEE_SUPER 2
+
+///The amount of extra damage per melee skill level
+#define MELEE_DAM_BUFF 0.15
 
 //pilot skill, hidden
 #define SKILL_PILOT_DEFAULT 0
