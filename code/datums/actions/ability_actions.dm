@@ -35,6 +35,8 @@
 	if(cooldown_timer)
 		deltimer(cooldown_timer)
 	var/mob/living/carbon/carbon_owner = L
+	if(!istype(carbon_owner)) 
+	    stack_trace("/datum/action/ability/remove_action called with [L], expecting /mob/living/carbon.")
 	carbon_owner.mob_abilities -= src
 	return ..()
 
