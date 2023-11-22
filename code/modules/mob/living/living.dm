@@ -98,7 +98,6 @@
 	set_armor_datum()
 	AddElement(/datum/element/gesture)
 	AddElement(/datum/element/keybinding_update)
-	stamina_regen_modifiers = list()
 	received_auras = list()
 	emitted_auras = list()
 	RegisterSignal(src, COMSIG_AURA_STARTED, PROC_REF(add_emitted_auras))

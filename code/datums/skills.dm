@@ -35,6 +35,7 @@ engineer = 0, construction = 0, leadership = 0, medical = 0, surgery = 0, pilot 
 	var/police = initial(new_skill.police)
 	var/powerloader = initial(new_skill.powerloader)
 	var/large_vehicle = initial(new_skill.large_vehicle)
+	var/stamina = initial(new_skill.stamina)
 	. = locate(SKILLSID)
 	if(!.)
 		. = new skills_type
@@ -63,10 +64,12 @@ engineer = 0, construction = 0, leadership = 0, medical = 0, surgery = 0, pilot 
 	var/powerloader = SKILL_POWERLOADER_DEFAULT
 	var/large_vehicle = SKILL_LARGE_VEHICLE_DEFAULT
 
+	var/stamina = SKILL_STAMINA_DEFAULT
+
 
 /datum/skills/New(cqc, melee_weapons,\
 firearms, pistols, shotguns, rifles, smgs, heavy_weapons, smartgun,\
-engineer, construction, leadership, medical, surgery, pilot, police, powerloader, large_vehicle)
+engineer, construction, leadership, medical, surgery, pilot, police, powerloader, large_vehicle, stamina)
 	if(!isnull(cqc))
 		src.cqc = cqc
 	if(!isnull(melee_weapons))
@@ -103,12 +106,14 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 		src.powerloader = powerloader
 	if(!isnull(large_vehicle))
 		src.large_vehicle = large_vehicle
+	if(!isnull(stamina))
+		src.stamina = stamina
 	tag = SKILLSIDSRC(src)
 
 /// returns/gets a new skills datum with values changed according to the args passed
 /datum/skills/proc/modifyRating(cqc, melee_weapons,\
 firearms, pistols, shotguns, rifles, smgs, heavy_weapons, smartgun,\
-engineer, construction, leadership, medical, surgery, pilot, police, powerloader, large_vehicle)
+engineer, construction, leadership, medical, surgery, pilot, police, powerloader, large_vehicle, stamina)
 	return getSkills(src.cqc+cqc,\
 	src.melee_weapons+melee_weapons,\
 	src.firearms+firearms,\
@@ -126,7 +131,8 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	src.pilot+pilot,\
 	src.police+police,\
 	src.powerloader+powerloader,\
-	src.large_vehicle+large_vehicle)
+	src.large_vehicle+large_vehicle,\
+	src.stamina+stamina)
 
 /// acts as [/proc/modifyRating] but instead modifies all values rather than several specific ones
 /datum/skills/proc/modifyAllRatings(difference)
@@ -147,12 +153,13 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	src.pilot+difference,\
 	src.police+difference,\
 	src.powerloader+difference,\
-	src.large_vehicle+difference)
+	src.large_vehicle+difference,\
+	src.stamina+difference)
 
 /// acts as [/proc/modifyRating] but sets the rating directly rather than modify it
 /datum/skills/proc/setRating(cqc, melee_weapons,\
 firearms, pistols, shotguns, rifles, smgs, heavy_weapons, smartgun,\
-engineer, construction, leadership, medical, surgery, pilot, police, powerloader, large_vehicle)
+engineer, construction, leadership, medical, surgery, pilot, police, powerloader, large_vehicle, stamina)
 	return getSkills((isnull(cqc) ? src.cqc : cqc),\
 		(isnull(melee_weapons) ? src.melee_weapons : melee_weapons),\
 		(isnull(firearms) ? src.firearms : firearms),\
@@ -170,7 +177,8 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 		(isnull(pilot) ? src.pilot : pilot),\
 		(isnull(police) ? src.police : police),\
 		(isnull(powerloader) ? src.powerloader : powerloader),\
-		(isnull(large_vehicle) ? src.large_vehicle : large_vehicle))
+		(isnull(large_vehicle) ? src.large_vehicle : large_vehicle),\
+		(isnull(stamina) ? src.stamina : stamina))
 
 /datum/skills/vv_edit_var(var_name, var_value)
 	if(var_name == NAMEOF(src, tag))
@@ -209,6 +217,7 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 		SKILL_POLICE = police,
 		SKILL_POWERLOADER = powerloader,
 		SKILL_LARGE_VEHICLE = large_vehicle,
+		SKILL_STAMINA = stamina,
 	)
 
 /datum/skills/civilian

@@ -21,6 +21,7 @@
 #define SKILL_POLICE "police"
 #define SKILL_POWERLOADER "powerloader"
 #define SKILL_LARGE_VEHICLE "large_vehicle"
+#define SKILL_STAMINA "stamina"
 ////////////////////////////////////////////////
 
 //firearms skill (general knowledge of guns) (hidden skill)
@@ -144,6 +145,16 @@
 //multitile and mech vehicle skills
 #define SKILL_LARGE_VEHICLE_DEFAULT 0
 #define SKILL_LARGE_VEHICLE_TRAINED 1
+
+//stamina skill - you do cardio, right?
+//buff stamina related things
+#define SKILL_STAMINA_WEAK -1
+#define SKILL_STAMINA_DEFAULT 0
+#define SKILL_STAMINA_TRAINED 1
+#define SKILL_STAMINA_SUPER 2
+
+#define STAMINA_SKILL_COOLDOWN_MOD 2
+#define STAMINA_SKILL_REGEN_MOD 0.15
 
 ////////////////////////////////////////////////
 
