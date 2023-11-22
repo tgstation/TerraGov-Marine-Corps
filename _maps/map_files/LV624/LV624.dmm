@@ -22497,6 +22497,18 @@
 /area/mainship/squads/req{
 	outside = 0
 	})
+"lGx" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 1
+	},
+/obj/structure/cable,
+/obj/machinery/door/airlock/mainship/medical/morgue{
+	dir = 2
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/centcom/practice/medical{
+	outside = 0
+	})
 "lGD" = (
 /obj/structure/table/woodentable,
 /obj/item/toy/deck,
@@ -60478,7 +60490,7 @@ evP
 jZg
 jZg
 lju
-slx
+lGx
 slx
 slx
 slx
