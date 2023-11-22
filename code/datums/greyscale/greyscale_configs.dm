@@ -110,7 +110,7 @@
 
 /datum/greyscale_config/hardsuit_variant
 	prefix = "markone_"
-	icon_file = 'icons/mob/modular/syndicate_expansion.dmi'
+	icon_file = 'icons/mob/modular/syndicate_hardsuits.dmi'
 	json_config = 'code/datums/greyscale/json_configs/hardsuit_variant.json'
 
 /datum/greyscale_config/hardsuit_variant/syndicate_markthree
