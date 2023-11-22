@@ -739,6 +739,38 @@
 	.["Update Icon"] = "?_src_=vars;[HrefToken()];updateicon=[REF(src)]"
 	.["Edit Particles"] = "?_src_=vars;[HrefToken()];modify_particles=[REF(src)]"
 
+/atom/movable/vv_get_dropdown()
+	. = ..()
+	VV_DROPDOWN_OPTION(VV_HK_FOLLOW, "Follow")
+	VV_DROPDOWN_OPTION(VV_HK_GET, "Get")
+	VV_DROPDOWN_OPTION(VV_HK_SEND, "Send")
+	VV_DROPDOWN_OPTION(VV_HK_DELETE_ALL_INSTANCES, "Delete All Instances")
+	VV_DROPDOWN_OPTION(VV_HK_UPDATE_ICONS, "Update Icon")
+	VV_DROPDOWN_OPTION(VV_HK_EDIT_PARTICLES, "Edit Particles")
+
+/atom/movable/vv_do_topic(list/href_list)
+	. = ..()
+
+	if(!.)
+		return
+	if(href_list[VV_HK_FOLLOW])
+		if(!check_rights(NONE))
+			return
+	if(href_list[VV_HK_GET])
+		if(!check_rights(NONE))
+			return
+	if(href_list[VV_HK_SEND])
+		if(!check_rights(NONE))
+			return
+	if(href_list[VV_HK_DELETE_ALL_INSTANCES])
+		if(!check_rights(NONE))
+			return
+	if(href_list[VV_HK_UPDATE_ICONS])
+		if(!check_rights(NONE))
+			return
+	if(href_list[VV_HK_EDIT_PARTICLES])
+		if(!check_rights(NONE))
+			return
 
 /atom/movable/proc/get_language_holder(shadow = TRUE)
 	if(language_holder)

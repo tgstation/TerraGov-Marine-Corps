@@ -102,6 +102,14 @@
 #define VV_HK_ADD_AI "add_ai"
 #define VV_HK_ARMOR_MOD "mod_obj_armor"
 
+// /atom/movable
+#define VV_HK_FOLLOW "follow"
+#define VV_HK_GET "get"
+#define VV_HK_SEND "send"
+#define VV_HK_DELETE_ALL_INSTANCES "delete_all_instances"
+#define VV_HK_UPDATE_ICONS "update_icon"
+#define VV_HK_EDIT_PARTICLES "edit_particles"
+
 // /obj
 #define VV_HK_OSAY "osay"
 #define VV_HK_MASS_DEL_TYPE "mass_delete_type"
@@ -131,7 +139,6 @@
 // /mob/living/carbon
 #define VV_HK_UPDATE_ICON "update_icon"
 #define VV_HK_REGENERATE_ICON "regenerate_icon"
-#define VV_HK_MAKE_AI "aiify"
 #define VV_HK_MODIFY_BODYPART "mod_bodypart"
 #define VV_HK_MODIFY_ORGANS "organs_modify"
 #define VV_HK_MARTIAL_ART "give_martial_art"

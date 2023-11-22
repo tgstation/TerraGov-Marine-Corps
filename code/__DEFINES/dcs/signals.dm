@@ -654,11 +654,7 @@
 
 #define COMSIG_KB_ACTIVATED (1<<0)
 #define COMSIG_KB_NOT_ACTIVATED (1<<1) //used in unique action
-#define COMSIG_KB_ADMIN_ASAY_DOWN "keybinding_admin_asay_down"
-#define COMSIG_KB_ADMIN_MSAY_DOWN "keybinding_admin_msay_down"
-#define COMSIG_KB_ADMIN_DSAY_DOWN "keybinding_admin_dsay_down"
 #define COMSIG_KB_CARBON_HOLDRUNMOVEINTENT_DOWN "keybinding_carbon_holdrunmoveintent_down"
-#define COMSIG_KB_ADMIN_TOGGLEBUILDMODE_DOWN "keybinding_admin_togglebuildmode_down"
 #define COMSIG_KB_CARBON_TOGGLETHROWMODE_DOWN "keybinding_carbon_togglethrowmode_down"
 #define COMSIG_KB_CARBON_TOGGLEREST_DOWN "kebinding_carbon_togglerest_down"
 #define COMSIG_KB_CARBON_SELECTHELPINTENT_DOWN "keybinding_carbon_selecthelpintent_down"
@@ -701,6 +697,20 @@
 #define COMSIG_KB_MOVEMENT_SOUTH_DOWN "keybinding_movement_south_down"
 #define COMSIG_KB_MOVEMENT_WEST_DOWN "keybinding_movement_west_down"
 #define COMSIG_KB_MOVEMENT_EAST_DOWN "keybinding_movement_east_down"
+
+//Admin
+#define COMSIG_KB_ADMIN_ASAY_DOWN "keybinding_admin_asay_down"
+#define COMSIG_KB_ADMIN_DSAY_DOWN "keybinding_admin_dsay_down"
+#define COMSIG_KB_ADMIN_MSAY_DOWN "keybinding_admin_msay_down"
+#define COMSIG_KB_ADMIN_TOGGLEBUILDMODE_DOWN "keybinding_admin_togglebuildmode_down"
+#define COMSIG_KB_ADMIN_VIEWTAGS_DOWN "keybinding_admin_viewtags_down"
+
+/*#define COMSIG_KB_ADMIN_AGHOST_DOWN "keybinding_admin_aghost_down"
+#define COMSIG_KB_ADMIN_PLAYERPANELNEW_DOWN "keybinding_admin_playerpanelnew_down"
+#define COMSIG_KB_ADMIN_STEALTHMODETOGGLE_DOWN "keybinding_admin_stealthmodetoggle_down"
+#define COMSIG_KB_ADMIN_INVISIMINTOGGLE_DOWN "keybinding_admin_invisimintoggle_down"
+#define COMSIG_KB_ADMIN_DEADMIN_DOWN "keybinding_admin_deadmin_down"
+#define COMSIG_KB_ADMIN_READMIN_DOWN "keybinding_admin_readmin_down"*/ //These are from TG, unused, feel free to implement them
 
 // mob keybinds
 #define COMSIG_KB_HOLD_RUN_MOVE_INTENT_UP "keybinding_hold_run_move_intent_up"

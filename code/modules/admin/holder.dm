@@ -296,6 +296,10 @@ GLOBAL_PROTECT(admin_verbs_default)
 	/datum/admins/proc/toggle_adminhelp_sound,
 	/datum/admins/proc/toggle_prayers,
 	/datum/admins/proc/check_fingerprints,
+	/datum/admins/proc/display_tags,
+	/client/proc/mark_datum_mapview,
+	/client/proc/tag_datum_mapview,
+	/client/proc/cmd_admin_check_contents, /*displays the contents of an instance*/
 	/client/proc/smite,
 	/client/proc/show_traitor_panel,
 	/client/proc/cmd_select_equipment,
