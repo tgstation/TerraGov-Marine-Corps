@@ -615,6 +615,17 @@
 		else if(C.mob.stat == DEAD && (C.prefs.toggles_chat & CHAT_DEAD))
 			to_chat(C, msg)
 
+/client/proc/object_say(obj/O in world)
+	set category = "Admin.Events"
+	set name = "OSay"
+	set desc = "Makes an object say something."
+	var/message = tgui_input_text(usr, "What do you want the message to be?", "Make Sound", encode = FALSE)
+	if(!message)
+		return
+	O.say(message, sanitize = FALSE)
+	log_admin("[key_name(usr)] made [O] at [AREACOORD(O)] say \"[message]\"")
+	message_admins(span_adminnotice("[key_name_admin(usr)] made [O] at [AREACOORD(O)]. say \"[message]\""))
+	SSblackbox.record_feedback("tally", "admin_verb", 1, "Object Say") // If you are copy-pasting this, ensure the 4th parameter is unique to the new proc!
 
 /datum/admins/proc/jump()
 	set category = "Admin"

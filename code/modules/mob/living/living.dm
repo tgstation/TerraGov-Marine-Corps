@@ -260,14 +260,6 @@
 /mob/living/proc/update_camera_location(oldLoc)
 	return
 
-
-/mob/living/vv_get_dropdown()
-	. = ..()
-	. += "---"
-	.["Add Language"] = "?_src_=vars;[HrefToken()];addlanguage=[REF(src)]"
-	.["Remove Language"] = "?_src_=vars;[HrefToken()];remlanguage=[REF(src)]"
-
-
 /mob/proc/resist_grab()
 	return //returning 1 means we successfully broke free
 
@@ -1022,11 +1014,20 @@ below 100 is not dizzy
 /mob/living/vv_get_dropdown()
 	. = ..()
 	VV_DROPDOWN_OPTION("", "---------")
+	VV_DROPDOWN_OPTION(VV_HK_ADD_LANGUAGE, "Add Language")
+	VV_DROPDOWN_OPTION(VV_HK_REMOVE_LANGUAGE, "Remove Language")
 	VV_DROPDOWN_OPTION(VV_HK_GIVE_SPEECH_IMPEDIMENT, "Impede Speech (Slurring, stuttering, etc)")
 
 /mob/living/vv_do_topic(list/href_list)
 	. = ..()
-
+	if(href_list[VV_HK_ADD_LANGUAGE])
+		if(!check_rights(NONE))
+			return
+		grant_language()
+	if(href_list[VV_HK_REMOVE_LANGUAGE])
+		if(!check_rights(NONE))
+			return
+		remove_language()
 	if(href_list[VV_HK_GIVE_SPEECH_IMPEDIMENT])
 		if(!check_rights(NONE))
 			return

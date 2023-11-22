@@ -102,6 +102,10 @@
 #define VV_HK_ADD_AI "add_ai"
 #define VV_HK_ARMOR_MOD "mod_obj_armor"
 
+// /obj
+#define VV_HK_OSAY "osay"
+#define VV_HK_MASS_DEL_TYPE "mass_delete_type"
+
 // /mob
 #define VV_HK_GIB "gib"
 #define VV_HK_GIVE_MOB_ACTION "give_mob_action"
@@ -120,9 +124,13 @@
 #define VV_HK_VIEW_PLANES "view_planes"
 
 // /mob/living
+#define VV_HK_ADD_LANGUAGE "add_language"
+#define VV_HK_REMOVE_LANGUAGE "remove_language"
 #define VV_HK_GIVE_SPEECH_IMPEDIMENT "impede_speech"
 
 // /mob/living/carbon
+#define VV_HK_UPDATE_ICON "update_icon"
+#define VV_HK_REGENERATE_ICON "regenerate_icon"
 #define VV_HK_MAKE_AI "aiify"
 #define VV_HK_MODIFY_BODYPART "mod_bodypart"
 #define VV_HK_MODIFY_ORGANS "organs_modify"
@@ -131,6 +139,11 @@
 // /mob/living/carbon/human
 #define VV_HK_COPY_OUTFIT "copy_outfit"
 #define VV_HK_SET_SPECIES "setspecies"
+
+//outfits
+#define VV_HK_TO_OUTFIT_EDITOR "outfit_editor"
+
+#define VV_HK_WEAKREF_RESOLVE "weakref_resolve"
 
 /// ALWAYS render a reduced list, useful for fuckoff big datums that need to be condensed for the sake of client load
 #define VV_ALWAYS_CONTRACT_LIST (1<<0)
