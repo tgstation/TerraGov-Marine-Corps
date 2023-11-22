@@ -1440,7 +1440,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 			current_variant = variant
 			update_icon()
 			update_greyscale()
-			return
+			SEND_SIGNAL(src, COMSIG_ITEM_VARIANT_CHANGE, user, variant)
 		if(PRESET_COLORS)
 			var/color_selection
 			color_selection = tgui_input_list(user, "Pick a color", "Pick color", colorable_colors)
