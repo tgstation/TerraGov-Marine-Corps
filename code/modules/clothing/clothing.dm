@@ -44,7 +44,6 @@
 		human_user.adjust_mob_accuracy(accuracy_mod)
 	if(flags_armor_features & ARMOR_FIRE_RESISTANT)
 		ADD_TRAIT(human_user, TRAIT_NON_FLAMMABLE, src)
-	human_user.maxHealth += health_mod
 
 
 /obj/item/clothing/unequipped(mob/unequipper, slot)
@@ -57,7 +56,6 @@
 		human_unequipper.adjust_mob_accuracy(-accuracy_mod)
 	if(flags_armor_features & ARMOR_FIRE_RESISTANT)
 		REMOVE_TRAIT(human_unequipper, TRAIT_NON_FLAMMABLE, src)
-	human_unequipper.maxHealth -= health_mod
 	return ..()
 
 /obj/item/clothing/vendor_equip(mob/user)
