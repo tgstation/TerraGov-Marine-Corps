@@ -45286,6 +45286,9 @@
 	name = "Ground Combat Information Center"
 	})
 "xMR" = (
+/obj/machinery/camera/autoname/mainship{
+	dir = 8
+	},
 /turf/open/floor/mainship/research/containment/floor2{
 	dir = 4
 	},
@@ -45764,6 +45767,7 @@
 /area/lv624/lazarus/fitness)
 "xZr" = (
 /obj/effect/ai_node,
+/obj/effect/landmark/corpsespawner/marine/burst,
 /turf/open/floor/mainship/research/containment/floor1,
 /area/mainship/medical/medical_science{
 	outside = 0
