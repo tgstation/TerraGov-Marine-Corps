@@ -63,7 +63,7 @@ engineer = 0, construction = 0, leadership = 0, medical = 0, surgery = 0, pilot 
 	var/police = SKILL_POLICE_DEFAULT
 	var/powerloader = SKILL_POWERLOADER_DEFAULT
 	var/large_vehicle = SKILL_LARGE_VEHICLE_DEFAULT
-
+	///Effects stamina regen rate and regen delay
 	var/stamina = SKILL_STAMINA_DEFAULT
 
 

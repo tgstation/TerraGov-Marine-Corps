@@ -30,6 +30,9 @@
 #define SKILL_FIREARMS_DEFAULT 1	//marines (allow tactical reloads)
 #define SKILL_FIREARMS_TRAINED 2	//special training
 
+///Damage mod for having the weapon specific skill above 0
+#define FIREARM_SKILL_DAM_MOD 0.05
+
 //pistols skill
 //increase or decrase accuracy, recoil, and firing delay of pistols and revolvers.
 #define SKILL_PISTOLS_DEFAULT 0	//marines
@@ -112,6 +115,9 @@
 #define SKILL_CQC_MP 2 //no risk of accidental weapon discharge upon disarming (MP)
 #define SKILL_CQC_MASTER 5
 
+///disarm chance mod from CQC skill
+#define CQC_SKILL_DISARM_MOD 5
+
 //powerloader skill
 //hidden
 //proficiency with powerloader, changes powerloader speed.
@@ -136,7 +142,7 @@
 #define SKILL_MELEE_SUPER 2
 
 ///The amount of extra damage per melee skill level
-#define MELEE_DAM_BUFF 0.15
+#define MELEE_SKILL_DAM_BUFF 0.15
 
 //pilot skill, hidden
 #define SKILL_PILOT_DEFAULT 0
