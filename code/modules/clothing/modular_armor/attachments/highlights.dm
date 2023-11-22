@@ -28,41 +28,12 @@
 	icon_state = "leg_highlight"
 	slot = ATTACHMENT_SLOT_KNEE_HIGHLIGHT
 
-// /obj/item/armor_module/armor/leg_highlight/markone
-// 	greyscale_config = /datum/greyscale_config/hardsuit_variant/syndicate_markone
-
-// /obj/item/armor_module/armor/leg_highlight/markthree
-// 	greyscale_config = /datum/greyscale_config/hardsuit_variant/syndicate_markthree
-
-// /obj/item/armor_module/armor/leg_highlight/markfive
-// 	greyscale_config = /datum/greyscale_config/hardsuit_variant/syndicate_markfive
-
-
 /obj/item/armor_module/armor/highlight/arm_highlight
 	name = "arm highlight"
 	icon_state = "arm_highlight"
 	slot = ATTACHMENT_SLOT_ARM_HIGHLIGHT
 
-// /obj/item/armor_module/armor/arm_highlight/markone
-// 	greyscale_config = /datum/greyscale_config/hardsuit_variant/syndicate_markone
-
-// /obj/item/armor_module/armor/arm_highlight/markthree
-// 	greyscale_config = /datum/greyscale_config/hardsuit_variant/syndicate_markthree
-
-// /obj/item/armor_module/armor/arm_highlight/markfive
-// 	greyscale_config = /datum/greyscale_config/hardsuit_variant/syndicate_markfive
-
-
 /obj/item/armor_module/armor/highlight/helm_highlight
 	name = "helm highlight"
 	icon_state = "helm_highlight"
 	slot = ATTACHMENT_SLOT_HELM_HIGHLIGHT
-
-// /obj/item/armor_module/armor/helm_highlight/markone
-// 	greyscale_config = /datum/greyscale_config/hardsuit_variant/syndicate_markone
-
-// /obj/item/armor_module/armor/helm_highlight/markthree
-// 	greyscale_config = /datum/greyscale_config/hardsuit_variant/syndicate_markthree
-
-// /obj/item/armor_module/armor/helm_highlight/markfive
-// 	greyscale_config = /datum/greyscale_config/hardsuit_variant/syndicate_markfive
