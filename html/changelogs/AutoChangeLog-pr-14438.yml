@@ -1,6 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - rscadd: "Added a heavy lift jetpack to HvH, capable of travelling further with a heavy load, or smashing directly into mobs"
-  - qol: "Jetpacks say how long is left on CD if you try use it"
-  - code_imp: "minor code improvements for jetpacks"
