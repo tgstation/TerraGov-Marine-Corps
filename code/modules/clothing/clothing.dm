@@ -23,8 +23,6 @@
 
 	/// Used by headgear mostly to affect accuracy
 	var/accuracy_mod = 0
-	///Modifies the wearer's max health
-	var/health_mod = 0
 
 /obj/item/clothing/Initialize(mapload)
 	. = ..()

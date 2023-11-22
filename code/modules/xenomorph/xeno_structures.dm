@@ -460,7 +460,7 @@ TUNNEL
 	name = "acid well"
 	desc = "An acid well. It stores acid to put out fires."
 	icon = 'icons/Xeno/acid_pool.dmi'
-	icon_state = "fullwell"
+	icon_state = "well"
 	density = FALSE
 	opacity = FALSE
 	anchored = TRUE
@@ -524,8 +524,14 @@ TUNNEL
 
 /obj/structure/xeno/acidwell/update_icon()
 	. = ..()
-	icon_state = "well[charges]"
 	set_light(charges , charges / 2, LIGHT_COLOR_GREEN)
+
+/obj/structure/xeno/acidwell/update_overlays()
+	. = ..()
+	if(!charges)
+		return
+	. += mutable_appearance(icon, "[charges]", alpha = src.alpha)
+	. += emissive_appearance(icon, "[charges]", alpha = src.alpha)
 
 /obj/structure/xeno/acidwell/flamer_fire_act(burnlevel) //Removes a charge of acid, but fire is extinguished
 	acid_well_fire_interaction()

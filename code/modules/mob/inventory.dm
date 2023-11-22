@@ -287,8 +287,8 @@
 	if(!I)
 		return
 
-	if((I.flags_item & NODROP) && !force)
-		return FALSE //UnEquip() only fails if item has NODROP
+	if(HAS_TRAIT(I, TRAIT_NODROP) && !force)
+		return FALSE //UnEquip() only fails if item has TRAIT_NODROP
 
 	doUnEquip(I)
 

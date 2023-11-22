@@ -18,13 +18,6 @@
 
 /* This comment bypasses grep checks */ /var/__rust_g
 
-// Handle 515 call() -> call_ext() changes
-#if DM_VERSION >= 515
-#define RUSTG_CALL call_ext
-#else
-#define RUSTG_CALL call
-#endif
-
 /proc/__detect_rust_g()
 	if (world.system_type == UNIX)
 		if (fexists("./librust_g.so"))
@@ -43,6 +36,13 @@
 		return __rust_g = "rust_g"
 
 #define RUST_G (__rust_g || __detect_rust_g())
+#endif
+
+// Handle 515 call() -> call_ext() changes
+#if DM_VERSION >= 515
+#define RUSTG_CALL call_ext
+#else
+#define RUSTG_CALL call
 #endif
 
 /// Gets the version of rust_g
@@ -110,6 +110,12 @@
 #define rustg_dmi_strip_metadata(fname) RUSTG_CALL(RUST_G, "dmi_strip_metadata")(fname)
 #define rustg_dmi_create_png(path, width, height, data) RUSTG_CALL(RUST_G, "dmi_create_png")(path, width, height, data)
 #define rustg_dmi_resize_png(path, width, height, resizetype) RUSTG_CALL(RUST_G, "dmi_resize_png")(path, width, height, resizetype)
+/**
+ * input: must be a path, not an /icon; you have to do your own handling if it is one, as icon objects can't be directly passed to rustg.
+ *
+ * output: json_encode'd list. json_decode to get a flat list with icon states in the order they're in inside the .dmi
+ */
+#define rustg_dmi_icon_states(fname) RUSTG_CALL(RUST_G, "dmi_icon_states")(fname)
 
 #define rustg_file_read(fname) RUSTG_CALL(RUST_G, "file_read")(fname)
 #define rustg_file_exists(fname) RUSTG_CALL(RUST_G, "file_exists")(fname)
@@ -191,10 +197,23 @@
 #define rustg_time_milliseconds(id) text2num(RUSTG_CALL(RUST_G, "time_milliseconds")(id))
 #define rustg_time_reset(id) RUSTG_CALL(RUST_G, "time_reset")(id)
 
+/// Returns the timestamp as a string
+/proc/rustg_unix_timestamp()
+	return RUSTG_CALL(RUST_G, "unix_timestamp")()
+
 #define rustg_raw_read_toml_file(path) json_decode(RUSTG_CALL(RUST_G, "toml_file_to_json")(path) || "null")
 
 /proc/rustg_read_toml_file(path)
 	var/list/output = rustg_raw_read_toml_file(path)
+	if (output["success"])
+		return json_decode(output["content"])
+	else
+		CRASH(output["content"])
+
+#define rustg_raw_toml_encode(value) json_decode(RUSTG_CALL(RUST_G, "toml_encode")(json_encode(value)))
+
+/proc/rustg_toml_encode(value)
+	var/list/output = rustg_raw_toml_encode(value)
 	if (output["success"])
 		return output["content"]
 	else
@@ -207,3 +226,4 @@
 	#define url_encode(text) rustg_url_encode(text)
 	#define url_decode(text) rustg_url_decode(text)
 #endif
+

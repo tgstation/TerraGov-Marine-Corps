@@ -516,7 +516,6 @@
 
 /obj/docking_port/mobile/proc/transit_failure()
 	message_admins("Shuttle [src] repeatedly failed to create transit zone.")
-	log_debug("Setting [src]/[src.id] idle")
 	set_idle()
 
 //call the shuttle to destination S

@@ -172,6 +172,7 @@ GLOBAL_VAR(common_report) //Contains common part of roundend report
 		qdel(player)
 		living.client.init_verbs()
 		living.notransform = TRUE
+		log_manifest(living.ckey, living.mind, living)
 		livings += living
 
 	if(length(livings))
@@ -583,6 +584,7 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 	player.create_character()
 	SSjob.spawn_character(player, TRUE)
 	player.mind.transfer_to(player.new_character, TRUE)
+	log_manifest(player.new_character.ckey, player.new_character.mind, player.new_character, latejoin = TRUE)
 	var/datum/job/job = player.assigned_role
 	job.on_late_spawn(player.new_character)
 	player.new_character.client?.init_verbs()

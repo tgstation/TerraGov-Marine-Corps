@@ -35,21 +35,21 @@
 	if(!ishuman(target))
 		return FALSE
 	if(!imp)
-		to_chat(user, span_warning(" There is no implant in the [src]!"))
+		to_chat(user, span_warning("There is no implant in the [src]!"))
 		return FALSE
 	user.visible_message(span_warning("[user] is attemping to implant [target]."), span_notice("You're attemping to implant [target]."))
 
 	if(!do_after(user, 5 SECONDS, TRUE, target, BUSY_ICON_GENERIC) || !imp)
-		to_chat(user, span_notice(" You failed to implant [target]."))
+		to_chat(user, span_notice("You failed to implant [target]."))
 		return
 
 	if(imp.try_implant(target, user))
 		target.visible_message(span_warning("[target] has been implanted by [user]."))
-		log_game(user, target, "implanted", src)
+		log_combat(user, target, "implanted", src)
 		imp = null
 		update_icon()
 		return TRUE
-	to_chat(user, span_notice(" You fail to implant [target]."))
+	to_chat(user, span_notice("You fail to implant [target]."))
 
 /obj/item/implanter/neurostim
 	name = "neurostim implanter"

@@ -15,15 +15,9 @@
 	maptext_x = 24
 	maptext_y = 9
 
-/**
- * What the hell is this proc? you might be asking
- * Well this is the answer to a wierd ass bug where the hud datum passes null to Initialize instead of a reference to itself
- * Why does this happen? I'd love to know but noone else has so far
- * Please fix it so you dont have to manually set the owner and this junk to make it work
- *
- * This proc sets the maptext of the screen obj when it's updated
- */
-/atom/movable/screen/text/lobby/proc/set_text()
+
+///This proc updates the maptext of the buttons.
+/atom/movable/screen/text/lobby/proc/update_text()
 	SIGNAL_HANDLER
 	return
 
@@ -39,6 +33,8 @@
 
 /atom/movable/screen/text/lobby/clickable/MouseEntered(location, control, params)
 	. = ..()
+	if(!(flags_atom & INITIALIZED)) //yes this can happen, fuck me
+		return
 	color = COLOR_ORANGE
 	var/mob/new_player/player = usr
 	player.playsound_local(player, 'sound/effects/menu_click.ogg', 50)
@@ -48,6 +44,9 @@
 	color = initial(color)
 
 /atom/movable/screen/text/lobby/clickable/Click()
+	if(!(flags_atom & INITIALIZED)) //yes this can happen, fuck me
+		to_chat(usr, span_warning("The game is still setting up, please try again later."))
+		return
 	var/mob/new_player/player = usr
 	player.playsound_local(player, 'sound/effects/menu_select.ogg', 50)
 
@@ -59,22 +58,16 @@
 	var/registered = FALSE
 	maptext_y = 11
 
-/atom/movable/screen/text/lobby/clickable/setup_character/Initialize(mapload)
-	. = ..()
-	if(!mapload)
-		INVOKE_NEXT_TICK(src, PROC_REF(set_text))//stupid fucking initialize bug fuck you
-		return
-	set_text()
-
 /atom/movable/screen/text/lobby/clickable/setup_character/Click()
 	. = ..()
 	hud.mymob.client?.prefs.ShowChoices(hud.mymob)
 
-/atom/movable/screen/text/lobby/clickable/setup_character/set_text()
+/atom/movable/screen/text/lobby/clickable/setup_character/update_text()
 	maptext = "<span class='maptext' style=font-size:6px>CHARACTER: [hud?.mymob.client ? hud.mymob.client.prefs.real_name : "Unknown User"]</span>"
-	if(!registered)
-		RegisterSignal(hud.mymob.client, COMSIG_CLIENT_PREFERENCES_UIACTED, PROC_REF(set_text))
-		registered = TRUE
+	if(registered)
+		return
+	RegisterSignal(hud.mymob.client, COMSIG_CLIENT_PREFERENCES_UIACTED, PROC_REF(update_text))
+	registered = TRUE
 
 /atom/movable/screen/text/lobby/clickable/join_game
 	maptext = "<span class='maptext' style=font-size:8px>JOIN GAME</span>"
@@ -99,14 +92,7 @@
 	maptext = "<span class='maptext' style=font-size:8px>YOU ARE: NOT READY</span>"
 	icon_state = "unready"
 
-/atom/movable/screen/text/lobby/clickable/ready/Initialize(mapload)
-	. = ..()
-	if(!mapload)
-		INVOKE_NEXT_TICK(src, PROC_REF(set_text))//stupid fucking initialize bug fuck you
-		return
-	set_text()
-
-/atom/movable/screen/text/lobby/clickable/ready/set_text()
+/atom/movable/screen/text/lobby/clickable/ready/update_text()
 	var/mob/new_player/player = hud.mymob
 	maptext = "<span class='maptext' style=font-size:8px>YOU ARE: [player.ready ? "" : "NOT "]READY</span>"
 
@@ -115,7 +101,7 @@
 	var/mob/new_player/player = hud.mymob
 	player.toggle_ready()
 	icon_state = player.ready ? "ready" : "unready"
-	set_text()
+	update_text()
 
 /atom/movable/screen/text/lobby/clickable/manifest
 	maptext = "<span class='maptext' style=font-size:8px>VIEW MANIFEST</span>"
@@ -149,14 +135,10 @@
 	maptext = "<span class='maptext' style=font-size:8px>POLLS</span>"
 	icon_state = "poll"
 
-/atom/movable/screen/text/lobby/clickable/polls/Initialize(mapload, atom/one, atom/two)
-	. = ..()
-	if(!mapload)
-		INVOKE_NEXT_TICK(src, PROC_REF(fetch_polls))//stupid fucking initialize bug fuck you
-		return
-	INVOKE_ASYNC(src, PROC_REF(fetch_polls))
+/atom/movable/screen/text/lobby/clickable/polls/update_text()
+	INVOKE_ASYNC(src, PROC_REF(fetch_polls)) //this sleeps and it shouldn't because update_text uses a signal sometimes
 
-///This proc is invoked async to avoid sleeping in Initialize and fetches polls from the DB
+///Proc that fetches the polls, exists so we can async it in update_text 
 /atom/movable/screen/text/lobby/clickable/polls/proc/fetch_polls()
 	var/mob/new_player/player = hud.mymob
 	var/hasnewpolls = player.check_playerpolls()

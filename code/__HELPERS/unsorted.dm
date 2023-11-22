@@ -807,6 +807,18 @@ GLOBAL_LIST_INIT(wallitems, typecacheof(list(
 		else
 			. = ""
 
+/// Converts a semver string into a list of numbers
+/proc/semver_to_list(semver_string)
+	var/static/regex/semver_regex = regex(@"(\d+)\.(\d+)\.(\d+)", "")
+	if(!semver_regex.Find(semver_string))
+		return null
+
+	return list(
+		text2num(semver_regex.group[1]),
+		text2num(semver_regex.group[2]),
+		text2num(semver_regex.group[3]),
+	)
+
 //Reasonably Optimized Bresenham's Line Drawing
 /proc/getline(atom/start, atom/end)
 	var/x = start.x
