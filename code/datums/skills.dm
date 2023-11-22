@@ -8,12 +8,12 @@
 
 /proc/getSkills(cqc = 0, melee_weapons = 0,\
 firearms = 0, pistols = 0, shotguns = 0, rifles = 0, smgs = 0, heavy_weapons = 0, smartgun = 0,\
-engineer = 0, construction = 0, leadership = 0, medical = 0, surgery = 0, pilot = 0, police = 0, powerloader = 0, large_vehicle = 0)
+engineer = 0, construction = 0, leadership = 0, medical = 0, surgery = 0, pilot = 0, police = 0, powerloader = 0, large_vehicle = 0, stamina = 0)
 	. = locate(SKILLSID)
 	if(!.)
 		. = new /datum/skills(cqc, melee_weapons,\
 			firearms, pistols, shotguns, rifles, smgs, heavy_weapons, smartgun,\
-			engineer, construction, leadership, medical, surgery, pilot, police, powerloader, large_vehicle)
+			engineer, construction, leadership, medical, surgery, pilot, police, powerloader, large_vehicle, stamina)
 
 /proc/getSkillsType(skills_type = /datum/skills)
 	var/datum/skills/new_skill = skills_type
