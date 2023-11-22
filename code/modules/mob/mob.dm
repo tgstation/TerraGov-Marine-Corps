@@ -215,7 +215,7 @@
  * set del_on_fail to have it delete W if it fails to equip
  * unset redraw_mob to prevent the mob from being redrawn at the end.
  */
-/mob/proc/equip_to_slot_if_possible(obj/item/W, slot, ignore_delay = TRUE, del_on_fail = FALSE, warning = TRUE, redraw_mob = TRUE, permanent = FALSE, override_nodrop = FALSE)
+/mob/proc/equip_to_slot_if_possible(obj/item/W, slot, ignore_delay = TRUE, del_on_fail = FALSE, warning = TRUE, redraw_mob = TRUE, override_nodrop = FALSE)
 	if(!istype(W) || QDELETED(W)) //This qdeleted is to prevent stupid behavior with things that qdel during init, like say stacks
 		return FALSE
 	if(!W.mob_can_equip(src, slot, warning, override_nodrop))
@@ -230,16 +230,12 @@
 			to_chat(src, "You stop putting on \the [W]")
 			return FALSE
 		equip_to_slot(W, slot) //This proc should not ever fail.
-		if(permanent)
-			W.flags_item |= NODROP
-			//This will unwield items -without- triggering lights.
+		//This will unwield items -without- triggering lights.
 		if(CHECK_BITFIELD(W.flags_item, TWOHANDED))
 			W.unwield(src)
 		return TRUE
 	else
 		equip_to_slot(W, slot) //This proc should not ever fail.
-		if(permanent)
-			W.flags_item |= NODROP
 		//This will unwield items -without- triggering lights.
 		if(CHECK_BITFIELD(W.flags_item, TWOHANDED))
 			W.unwield(src)
@@ -253,12 +249,12 @@
 	return
 
 ///This is just a commonly used configuration for the equip_to_slot_if_possible() proc, used to equip people when the rounds starts and when events happen and such.
-/mob/proc/equip_to_slot_or_del(obj/item/W, slot, permanent = FALSE, override_nodrop = FALSE)
-	return equip_to_slot_if_possible(W, slot, TRUE, TRUE, FALSE, FALSE, permanent, override_nodrop)
+/mob/proc/equip_to_slot_or_del(obj/item/W, slot, override_nodrop = FALSE)
+	return equip_to_slot_if_possible(W, slot, TRUE, TRUE, FALSE, FALSE, override_nodrop)
 
 /// Tries to equip an item to the slot provided, otherwise tries to put it in hands, if hands are full the item is deleted
-/mob/proc/equip_to_slot_or_hand(obj/item/W, slot, permanent = FALSE, override_nodrop = FALSE)
-	if(!equip_to_slot_if_possible(W, slot, TRUE, FALSE, FALSE, FALSE, permanent, override_nodrop))
+/mob/proc/equip_to_slot_or_hand(obj/item/W, slot, override_nodrop = FALSE)
+	if(!equip_to_slot_if_possible(W, slot, TRUE, FALSE, FALSE, FALSE, override_nodrop))
 		put_in_any_hand_if_possible(W, TRUE, FALSE)
 
 ///Attempts to store an item in a valid location based on SLOT_EQUIP_ORDER
@@ -457,6 +453,16 @@
 /mob/GenerateTag()
 	tag = "mob_[next_mob_id++]"
 
+/mob/serialize_list(list/options, list/semvers)
+	. = ..()
+
+	.["tag"] = tag
+	.["name"] = name
+	.["ckey"] = ckey
+	.["key"] = key
+
+	SET_SERIALIZATION_SEMVER(semvers, "1.0.0")
+	return .
 
 /mob/proc/get_paygrade()
 	return ""

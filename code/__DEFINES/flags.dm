@@ -1,6 +1,11 @@
 #define ALL (~0) //For convenience.
 #define NONE 0
 
+#define MAX_BITFIELD_SIZE 24
+
+/// 33554431 (2^24 - 1) is the maximum value our bitflags can reach.
+#define MAX_BITFLAG_DIGITS 8
+
 #define ENABLE_BITFIELD(variable, flag) ((variable) |= (flag))
 #define DISABLE_BITFIELD(variable, flag) ((variable) &= ~(flag))
 #define CHECK_BITFIELD(variable, flag) ((variable) & (flag))

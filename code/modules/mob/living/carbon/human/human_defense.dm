@@ -201,7 +201,7 @@ Contains most of the procs that are called when a mob is attacked by something
 	//Melee weapon embedded object code.
 	if(affecting.limb_status & LIMB_DESTROYED)
 		hit_report += "(delimbed [affecting.display_name])"
-	else if(I.damtype == BRUTE && !(I.flags_item & (NODROP|DELONDROP)))
+	else if(I.damtype == BRUTE && !(HAS_TRAIT(I, TRAIT_NODROP) || (I.flags_item & DELONDROP)))
 		if (percentage_penetration && weapon_sharp && prob(I.embedding.embed_chance))
 			I.embed_into(src, affecting)
 			hit_report += "(embedded in [affecting.display_name])"

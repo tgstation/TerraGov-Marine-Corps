@@ -59,6 +59,7 @@
 
 /obj/item/weapon/powerfist/Initialize(mapload)
 	. = ..()
+	AddElement(/datum/element/strappable)
 	update_icon()
 
 /obj/item/weapon/powerfist/Destroy()
@@ -86,21 +87,6 @@
 	else
 		setting += 1
 	balloon_alert(user, "Power level [setting].")
-
-/obj/item/weapon/powerfist/AltClick(mob/user)
-	if(!can_interact(user))
-		return ..()
-	if(!ishuman(user))
-		return ..()
-	if(!(user.l_hand == src || user.r_hand == src))
-		return ..()
-	TOGGLE_BITFIELD(flags_item, NODROP)
-	if(CHECK_BITFIELD(flags_item, NODROP))
-		to_chat(user, span_warning("You feel the [src] clamp shut around your hand!"))
-		playsound(user, 'sound/weapons/fistclamp.ogg', 25, 1, 7)
-	else
-		to_chat(user, span_notice("You feel the [src] loosen around your hand!"))
-		playsound(user, 'sound/weapons/fistunclamp.ogg', 25, 1, 7)
 
 /obj/item/weapon/powerfist/attack(mob/living/carbon/M, mob/living/carbon/user)
 	if(!cell)

@@ -104,11 +104,15 @@
 	sharp = IS_SHARP_ITEM_BIG
 	edge = TRUE
 	attack_verb = list("clawed", "slashed", "torn", "ripped", "diced", "cut", "bit")
-	flags_item = NODROP|CAN_BUMP_ATTACK|DELONDROP
+	flags_item = CAN_BUMP_ATTACK|DELONDROP
 	attack_speed = 8 //Same as unarmed delay
 	pry_capable = IS_PRY_CAPABLE_FORCE
 	///How much zombium are transferred per hit. Set to zero to remove transmission
 	var/zombium_per_hit = 5
+
+/obj/item/weapon/zombie_claw/Initialize(mapload)
+	. = ..()
+	ADD_TRAIT(src, TRAIT_NODROP, ABSTRACT_ITEM_TRAIT)
 
 /obj/item/weapon/zombie_claw/melee_attack_chain(mob/user, atom/target, params, rightclick)
 	if(ishuman(target))
