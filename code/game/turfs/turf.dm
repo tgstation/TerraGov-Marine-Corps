@@ -933,7 +933,6 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 /turf/proc/can_teleport_here()
 	if(density)
 		return FALSE
-	//var/signalreturn = SEND_SIGNAL(src, COMSIG_TURF_TELEPORT_CHECK)
 	if(SEND_SIGNAL(src, COMSIG_TURF_TELEPORT_CHECK))
 		return FALSE
 	return TRUE
