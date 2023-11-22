@@ -431,7 +431,7 @@
 
 /obj/item/storage/pill_bottle/alkysine
 	name = "alkysine pill bottle"
-	desc = "Contains pills that heal brain damage."
+	desc = "Contains pills that heal brain and ear damage."
 	icon_state = "pill_canistercomplete"
 	pill_type_to_fill = /obj/item/reagent_containers/pill/alkysine
 	greyscale_config = /datum/greyscale_config/pillbottlebubble

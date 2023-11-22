@@ -4671,7 +4671,6 @@
 /area/slumbridge/inside/sombase/west)
 "dyt" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/flasher/portable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
@@ -49668,7 +49667,7 @@ fCq
 iAS
 iAS
 fCq
-lRh
+qFT
 nHy
 fCq
 gZN
