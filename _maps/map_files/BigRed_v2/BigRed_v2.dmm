@@ -12289,12 +12289,6 @@
 /obj/effect/ai_node,
 /turf/open/floor,
 /area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
-"mlh" = (
-/obj/machinery/flasher/portable,
-/turf/open/floor/tile/vault{
-	dir = 8
-	},
-/area/bigredv2/outside/marshal_office)
 "mmd" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/decal/cleanable/dirt,
@@ -35442,7 +35436,7 @@ gCQ
 gzM
 gzM
 acp
-mlh
+pUl
 nQj
 pUl
 nQj

@@ -165,7 +165,7 @@
 
 /obj/item/reagent_containers/hypospray/autoinjector/alkysine
 	name = "alkysine autoinjector"
-	desc = "An auto-injector loaded with 3 doses of alkysine, long-living medicine for fixing brain damage."
+	desc = "An auto-injector loaded with 3 doses of alkysine, long-living medicine for fixing brain and ear damage."
 	icon_state = "autoinjector-12"
 	volume = 15
 	amount_per_transfer_from_this = 5
