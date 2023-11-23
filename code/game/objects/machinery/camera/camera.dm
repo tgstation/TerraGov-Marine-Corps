@@ -215,7 +215,7 @@
 	for(var/mob/living/silicon/ai/AI AS in GLOB.ai_list)
 		if(!AI.client)
 			continue
-		to_chat(AI, span_notice("[src] has been desactived at [myarea]"))
+		to_chat(AI, span_notice("[src] has been deactivated at [myarea]"))
 
 /obj/machinery/camera/update_icon_state()
 	if(obj_integrity <= 0)

@@ -295,3 +295,35 @@
       instead of borrowing the Crusher's.
   Xander3359:
   - qol: reagent pouch defaults to draw mode enabled (left click to draw)
+2023-11-22:
+  Helg2:
+  - bugfix: pouches now properly update, for real this time.
+  Lumipharon:
+  - rscadd: Added a heavy lift jetpack to HvH, capable of travelling further with
+      a heavy load, or smashing directly into mobs
+  - qol: Jetpacks say how long is left on CD if you try use it
+  - code_imp: minor code improvements for jetpacks
+  - bugfix: fixed a few campaign bugs
+  - qol: 3rd party faction are not locked behind the 30 min respawn timer in campaign,
+      when between missions
+  - balance: Replaced packets with pill bottles for all marine use
+  - bugfix: fixed huggers not hugging people in some cases
+  ivanmixo:
+  - bugfix: Cocoon doesn't try to process after it releases its victim
+  - bugfix: Fixed lobby button runtimes and bugs (you shouldn't get 'Unknown Character'
+      anymore)
+  - bugfix: TTS mask runtime fix
+  - bugfix: Fixed SSresinshaping and ping not returning their stat panel entry
+  novaepee:
+  - rscadd: update alky meds' desc to include healing ear damage
+  vvvv-vvvv:
+  - bugfix: Fix lascarbine spread pointblanks shooting past the target
+  yyzsong:
+  - balance: kills portaflashers
+2023-11-23:
+  Lumipharon:
+  - code_imp: Removed some hardcoded limitations around max health
+  - imageadd: acidwells are now emissive
+  - balance: stalemates no longer provide insane amounts of larva
+  novaepee:
+  - spellcheck: fixed desactived to deactivated in camera code

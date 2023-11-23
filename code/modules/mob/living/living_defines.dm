@@ -92,9 +92,9 @@
 	///a list of all status effects the mob has
 	var/list/status_effects
 	///Assoc list mapping aura types to strength, based on what we've received since the last life tick. Handled in handle_status_effects()
-	var/list/received_auras
+	var/list/received_auras = list()
 	///List of strings for auras this mob is currently emitting via ssAura
-	var/list/emitted_auras
+	var/list/emitted_auras = list()
 	///lazy list
 	var/list/stun_absorption
 
