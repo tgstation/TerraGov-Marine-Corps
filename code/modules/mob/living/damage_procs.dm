@@ -4,10 +4,6 @@
 /mob/living/get_hard_armor(armor_type, proj_def_zone)
 	return hard_armor.getRating(armor_type)
 
-/mob/living/modify_by_armor(damage_amount, armor_type, penetration, def_zone, attack_dir)
-	penetration = max(0, penetration - get_hard_armor(armor_type, def_zone))
-	return clamp((damage_amount * (1 - ((get_soft_armor(armor_type, def_zone) - penetration) * 0.01))), 0, damage_amount)
-
 /*
 	apply_damage(a,b,c)
 	args
