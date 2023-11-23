@@ -1,4 +1,4 @@
-/datum/game_mode/extended
+/datum/game_mode/extendedplus
 	name = "Extended Plus"
 	config_tag = "Extendedplus"
 	silo_scaling = 1.5
@@ -27,6 +27,19 @@
 		/datum/job/terragov/squad/smartgunner = 4,
 		/datum/job/terragov/squad/leader = 4,
 		/datum/job/terragov/squad/standard = -1,
+		/datum/job/som/command/commander = 1,
+		/datum/job/som/command/fieldcommander = 1,
+		/datum/job/som/command/staffofficer = 2,
+		/datum/job/som/command/pilot = 1,
+		/datum/job/job/som/squad/corpsman = 2,
+		/datum/job/job/som/squad/engineer = 2,
+		/datum/job/job/som/squad/leader = 2,
+		/datum/job/job/som/squad/veteran = 2,
+		/datum/job/som/squad/standard = 10,
+		/datum/job/clf/leader = 1,
+		/datum/job/clf/medic = 2,
+		/datum/job/clf/specialist = 2,
+		/datum/outfit/job/clf/standard = 5,
 		/datum/job/survivor = -1,
 		/datum/job/xenomorph = FREE_XENO_AT_START,
 		/datum/job/xenomorph/queen = 1
@@ -36,6 +49,16 @@
 
 	/// Time between two bioscan
 	var/bioscan_interval = 15 MINUTES
+
+//sets TGMC and SOM squads
+/datum/game_mode/hvh/set_valid_squads()
+	SSjob.active_squads[FACTION_TERRAGOV] = list()
+	SSjob.active_squads[FACTION_SOM] = list()
+	for(var/key in SSjob.squads)
+		var/datum/squad/squad = SSjob.squads[key]
+		if(squad.faction == FACTION_TERRAGOV || squad.faction == FACTION_SOM) //We only want Marine and SOM squads, future proofs if more faction squads are added
+			SSjob.active_squads[squad.faction] += squad
+	return TRUE
 
 /datum/game_mode/extended/announce()
 	to_chat(world, "<b>The current game mode is - Extended Role-Playing!</b>")

@@ -156,3 +156,19 @@
 /obj/effect/landmark/start/job/som/staff_officer
 	icon_state = "som_staff_officer"
 	job = /datum/job/som/command/staffofficer
+
+/obj/effect/landmark/start/job/clf/leader
+	icon_state = "Shaft Miner"
+	job = /datum/job/clf/leader
+
+/obj/effect/landmark/start/job/clf/medic
+	icon_state = "Shaft Miner"
+	job = /datum/job/clf/medic
+
+/obj/effect/landmark/start/job/clf/specialist
+    icon_state = "Shaft Miner"
+    job = /datum/job/clf/specialist
+
+/obj/effect/landmark/start/job/clf/standard
+    icon_state = "Shaft Miner"
+    job = /datum/outfit/job/clf/standard
