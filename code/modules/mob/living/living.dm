@@ -1020,14 +1020,24 @@ below 100 is not dizzy
 
 /mob/living/vv_do_topic(list/href_list)
 	. = ..()
+
+	if(!.)
+		return
+
 	if(href_list[VV_HK_ADD_LANGUAGE])
 		if(!check_rights(NONE))
 			return
-		grant_language()
+		var/choice = tgui_input_list(usr, "Grant which language?", "Languages", GLOB.all_languages)
+		if(!choice)
+			return
+		grant_language(choice)
 	if(href_list[VV_HK_REMOVE_LANGUAGE])
 		if(!check_rights(NONE))
 			return
-		remove_language()
+		var/choice = tgui_input_list(usr, "Remove which language?", "Known Languages", src.language_holder.languages)
+		if(!choice)
+			return
+		remove_language(choice)
 	if(href_list[VV_HK_GIVE_SPEECH_IMPEDIMENT])
 		if(!check_rights(NONE))
 			return

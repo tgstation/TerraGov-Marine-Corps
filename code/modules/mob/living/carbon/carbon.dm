@@ -269,7 +269,6 @@
 /mob/living/carbon/vv_get_dropdown() //From TG, TODO: Make shit work
 	. = ..()
 	VV_DROPDOWN_OPTION("", "---------")
-	VV_DROPDOWN_OPTION(VV_HK_UPDATE_ICON, "Update Icon")
 	VV_DROPDOWN_OPTION(VV_HK_REGENERATE_ICON, "Regenerate Icons")
 	//VV_DROPDOWN_OPTION(VV_HK_MODIFY_BODYPART, "Modify bodypart")
 	//VV_DROPDOWN_OPTION(VV_HK_MODIFY_ORGANS, "Modify organs")
@@ -279,10 +278,10 @@
 
 /mob/living/carbon/vv_do_topic(list/href_list)
 	. = ..()
-	if(href_list[VV_HK_UPDATE_ICON])
-		if(!check_rights(NONE))
-			return
-		update_icon()
+
+	if(!.)
+		return
+
 	if(href_list[VV_HK_REGENERATE_ICON])
 		if(!check_rights(NONE))
 			return
