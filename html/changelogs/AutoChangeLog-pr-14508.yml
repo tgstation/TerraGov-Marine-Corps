@@ -1,0 +1,5 @@
+author: "Barnet2"
+delete-after: True
+changes:
+  - code_imp: "Re-organized the Slumbridge area file."
+  - bugfix: "CAS can now no longer hit inside of Slumbridge caves in PC'd tiles."
