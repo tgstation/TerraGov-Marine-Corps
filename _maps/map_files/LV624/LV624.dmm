@@ -11,12 +11,6 @@
 /obj/effect/spawner/random/weaponry/ammo/sidearm,
 /turf/open/floor/plating,
 /area/lv624/lazarus/tablefort)
-"aao" = (
-/obj/effect/landmark/start/job/som/squadstandard,
-/turf/open/floor/mainship/purple{
-	dir = 6
-	},
-/area/mainship/patrol_base/som)
 "aax" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt,
@@ -113,17 +107,6 @@
 	},
 /turf/open/floor/plating,
 /area/lv624/lazarus/tablefort)
-"adh" = (
-/obj/structure/barricade/plasteel{
-	dir = 1;
-	is_wired = 1;
-	can_wire = 0;
-	closed = 0
-	},
-/turf/open/floor/mainship/silver{
-	dir = 8
-	},
-/area/mainship/patrol_base/som)
 "adp" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -176,6 +159,13 @@
 /area/mainship/living/pilotbunks{
 	outside = 0
 	})
+"aeK" = (
+/obj/effect/ai_node,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/turf/open/floor/mainship/orange{
+	dir = 8
+	},
+/area/mainship/patrol_base/som)
 "aeU" = (
 /obj/structure/foamedmetal,
 /turf/open/floor/plating,
@@ -184,11 +174,6 @@
 /obj/structure/foamedmetal,
 /turf/open/floor/vault,
 /area/lv624/lazarus/crashed_ship)
-"aeY" = (
-/turf/open/floor/mainship/sterile/corner{
-	dir = 8
-	},
-/area/mainship/patrol_base/som)
 "afe" = (
 /obj/structure/foamedmetal,
 /turf/open/floor/tile/dark,
@@ -214,6 +199,16 @@
 "afJ" = (
 /turf/open/floor,
 /area/lv624/ground/caves/central1/garbledradio)
+"afK" = (
+/obj/structure/flora/pottedplant/three,
+/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+	dir = 8;
+	on = 1
+	},
+/turf/open/floor/mainship/orange{
+	dir = 4
+	},
+/area/mainship/patrol_base/som)
 "afR" = (
 /obj/machinery/door/airlock/mainship/research/locked/free_access{
 	dir = 4;
@@ -849,6 +844,11 @@
 	dir = 2
 	},
 /area/lv624/ground/caves/central1/garbledradio)
+"apN" = (
+/turf/open/floor/mainship/silver{
+	dir = 5
+	},
+/area/mainship/patrol_base/som)
 "apT" = (
 /turf/closed/wall/sulaco,
 /area/lv624/ground/sand5)
@@ -1323,10 +1323,6 @@
 /area/mainship/living/captain_mess{
 	outside = 0
 	})
-"axA" = (
-/obj/structure/flora/jungle/vines/heavy,
-/turf/closed/wall/r_wall/chigusa,
-/area/mainship/patrol_base/som)
 "axB" = (
 /obj/structure/cargo_container/nt{
 	dir = 4
@@ -1345,12 +1341,6 @@
 /obj/item/stack/sheet/metal,
 /turf/open/floor/plating,
 /area/lv624/ground/sand6)
-"axK" = (
-/obj/machinery/vending/snack,
-/turf/open/floor/mainship/orange{
-	dir = 8
-	},
-/area/mainship/patrol_base/som)
 "axL" = (
 /obj/structure/shuttle/engine/propulsion,
 /turf/open/floor/plating/ground/dirt,
@@ -1379,10 +1369,6 @@
 /obj/structure/cable,
 /turf/open/floor/tile/blue/whiteblue,
 /area/lv624/lazarus/corporate_affairs)
-"ayd" = (
-/obj/structure/cable,
-/turf/open/floor/mainship/silver/full,
-/area/mainship/patrol_base/som)
 "ayf" = (
 /turf/open/floor/marking/loadingarea{
 	dir = 8
@@ -1633,6 +1619,13 @@
 	},
 /turf/open/floor,
 /area/lv624/ground/sand2)
+"aBP" = (
+/obj/structure/bed/bunkbed,
+/obj/effect/landmark/start/job/som/squadveteran,
+/turf/open/floor/mainship/purple{
+	dir = 8
+	},
+/area/mainship/patrol_base/som)
 "aCv" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
@@ -1815,6 +1808,11 @@
 "aFB" = (
 /turf/closed/gm/dense,
 /area/lv624/ground/jungle9)
+"aFD" = (
+/turf/open/floor/mainship/silver{
+	dir = 4
+	},
+/area/mainship/patrol_base/som)
 "aFF" = (
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/river3)
@@ -1848,6 +1846,15 @@
 /obj/structure/cable,
 /turf/open/floor,
 /area/lv624/ground/compound/n)
+"aGR" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 9
+	},
+/turf/open/floor/mainship/orange{
+	dir = 1
+	},
+/area/mainship/patrol_base/som)
 "aGV" = (
 /obj/structure/showcase/yaut{
 	desc = "An ancient, dusty tomb with strange alien writing. It's best not to touch it.";
@@ -2329,6 +2336,15 @@
 "aOj" = (
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/river2)
+"aOl" = (
+/obj/effect/landmark/start/job/som/squadleader,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/turf/open/floor/mainship/purple{
+	dir = 4
+	},
+/area/mainship/patrol_base/som)
 "aOm" = (
 /obj/item/weapon/gun/pistol/rt3,
 /turf/open/floor/tile/dark,
@@ -2826,6 +2842,15 @@
 	dir = 4
 	},
 /area/lv624/lazarus/internal_affairs)
+"aYl" = (
+/obj/machinery/door/poddoor/shutters{
+	dir = 2;
+	name = "\improper Cargo Shutters";
+	id = "somcargodoor"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/turf/open/floor,
+/area/mainship/patrol_base/som)
 "aYm" = (
 /obj/structure/flora/jungle/vines,
 /obj/structure/flora/jungle/vines/heavy,
@@ -2839,11 +2864,6 @@
 /obj/structure/catwalk,
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
 /area/lv624/ground/jungle7)
-"aYr" = (
-/obj/structure/cable,
-/obj/machinery/door/airlock/glass,
-/turf/open/floor/mainship/plate,
-/area/mainship/patrol_base/som)
 "aYI" = (
 /turf/open/ground/grass/beach,
 /area/lv624/ground/jungle9)
@@ -3415,12 +3435,6 @@
 	dir = 1
 	},
 /area/lv624/lazarus/tablefort)
-"bjc" = (
-/obj/machinery/vending/medical,
-/turf/open/floor/mainship/sterile/side{
-	dir = 1
-	},
-/area/mainship/patrol_base/som)
 "bjf" = (
 /obj/machinery/door/airlock/mainship/generic,
 /obj/structure/cable,
@@ -3443,9 +3457,6 @@
 /obj/structure/flora/jungle/vines,
 /turf/closed/wall/r_wall,
 /area/lv624/lazarus/captain)
-"bjw" = (
-/turf/open/floor/mainship/silver/corner,
-/area/mainship/patrol_base/som)
 "bjy" = (
 /obj/structure/window/framed/colony,
 /turf/open/floor/plating,
@@ -4010,9 +4021,6 @@
 /area/mainship/squads/bravo{
 	outside = 0
 	})
-"buI" = (
-/turf/open/floor/mainship/sterile/white,
-/area/mainship/patrol_base/som)
 "buJ" = (
 /obj/effect/decal/cleanable/blood/splatter/animated,
 /obj/structure/cable,
@@ -4127,6 +4135,10 @@
 /obj/structure/flora/ausbushes/sunnybush,
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
 /area/lv624/ground/jungle9)
+"bya" = (
+/obj/structure/largecrate/guns/russian,
+/turf/open/floor/mainship/cargo,
+/area/mainship/patrol_base/som)
 "byd" = (
 /obj/effect/landmark/corpsespawner/security,
 /turf/open/floor/plating/ground/dirt,
@@ -4273,6 +4285,9 @@
 	},
 /turf/open/floor/plating,
 /area/lv624/lazarus/quartstorage/dome)
+"bAO" = (
+/turf/open/floor/mainship/silver/corner,
+/area/mainship/patrol_base/som)
 "bAP" = (
 /obj/machinery/door/airlock/mainship/generic{
 	name = "\improper Toilet"
@@ -4596,6 +4611,13 @@
 "bIw" = (
 /turf/closed/wall/r_wall,
 /area/lv624/ground/jungle2)
+"bIC" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/structure/cable,
+/turf/open/floor/mainship/mono,
+/area/mainship/squads/req{
+	outside = 0
+	})
 "bID" = (
 /obj/structure/bed/chair/office/dark,
 /obj/item/clothing/mask/facehugger/lamarr,
@@ -4760,6 +4782,11 @@
 "bNu" = (
 /turf/open/floor/plating,
 /area/lv624/ground/sand7)
+"bNG" = (
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/mainship/silver/full,
+/area/mainship/patrol_base/som)
 "bNN" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
@@ -5029,6 +5056,10 @@
 	dir = 5
 	},
 /area/lv624/lazarus/hydroponics)
+"bVp" = (
+/obj/machinery/vending/MarineMed/Blood,
+/turf/open/floor/mainship/sterile/corner,
+/area/mainship/patrol_base/som)
 "bVy" = (
 /turf/open/floor/tile/barber,
 /area/lv624/lazarus/kitchen)
@@ -5067,6 +5098,15 @@
 /area/centcom/practice/medical{
 	outside = 0
 	})
+"bXs" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 5
+	},
+/turf/open/floor/mainship/orange/corner{
+	dir = 1
+	},
+/area/mainship/patrol_base/som)
 "bXC" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
@@ -6067,12 +6107,6 @@
 /area/mainship/living/commandbunks{
 	outside = 0
 	})
-"cAF" = (
-/obj/structure/flora/pottedplant/twenty,
-/turf/open/floor/mainship/sterile/side{
-	dir = 1
-	},
-/area/mainship/patrol_base/som)
 "cAM" = (
 /obj/structure/table,
 /obj/item/trash/cheesie,
@@ -6353,10 +6387,6 @@
 /obj/structure/flora/ausbushes/fullgrass,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle6)
-"cJV" = (
-/obj/structure/cable,
-/turf/open/floor/mainship/plate,
-/area/mainship/patrol_base/som)
 "cKf" = (
 /obj/machinery/door/airlock/mainship/generic{
 	name = "\improper Construction Room"
@@ -6395,12 +6425,6 @@
 /area/mainship/living/grunt_rnr{
 	outside = 0
 	})
-"cKL" = (
-/obj/structure/flora/jungle/vines,
-/turf/open/floor/mainship/silver/corner{
-	dir = 8
-	},
-/area/mainship/patrol_base/som)
 "cKM" = (
 /obj/effect/landmark/corpsespawner/chef{
 	corpsesuit = null;
@@ -6442,11 +6466,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating,
 /area/lv624/lazarus/engineering)
-"cLP" = (
-/obj/structure/cable,
-/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/cope/predeployed,
-/turf/open/floor/mainship/silver/full,
-/area/mainship/patrol_base/som)
 "cLZ" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -7157,14 +7176,6 @@
 /area/centcom/practice/medical{
 	outside = 0
 	})
-"dev" = (
-/obj/machinery/door/poddoor/shutters{
-	dir = 2;
-	name = "\improper Cargo Shutters";
-	id = "somcargodoor"
-	},
-/turf/open/floor,
-/area/mainship/patrol_base/som)
 "dex" = (
 /obj/structure/largecrate,
 /turf/open/floor/plating,
@@ -7255,10 +7266,6 @@
 /obj/structure/flora/ausbushes/fullgrass,
 /turf/open/ground/grass/grass2,
 /area/lv624/ground/jungle6)
-"dhE" = (
-/obj/structure/largecrate/supply/supplies/metal,
-/turf/open/floor/mainship/cargo,
-/area/mainship/patrol_base/som)
 "dia" = (
 /obj/effect/spawner/random/misc/structure/girder/regularweighted,
 /turf/open/floor/plating/platebotc,
@@ -7368,6 +7375,13 @@
 /obj/structure/flora/jungle/vines/heavy,
 /turf/open/ground/grass/grass2,
 /area/lv624/ground/jungle9)
+"dkF" = (
+/obj/machinery/door/airlock/medical{
+	dir = 2
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/turf/open/floor/mainship/plate,
+/area/mainship/patrol_base/som)
 "dkV" = (
 /obj/machinery/door/airlock/mainship/engineering/free_access{
 	name = "\improper Storage Dome"
@@ -7790,6 +7804,15 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor,
 /area/lv624/ground/compound/n)
+"dvV" = (
+/obj/structure/flora/jungle/vines,
+/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+	on = 1
+	},
+/turf/open/floor/mainship/silver/corner{
+	dir = 8
+	},
+/area/mainship/patrol_base/som)
 "dwa" = (
 /obj/structure/flora/ausbushes/reedbush,
 /turf/open/floor/plating/ground/dirt,
@@ -8319,11 +8342,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/main_hall)
-"dIv" = (
-/turf/open/floor/mainship/sterile/side{
-	dir = 6
-	},
-/area/mainship/patrol_base/som)
 "dIM" = (
 /obj/structure/table,
 /turf/open/floor/tile/white,
@@ -8637,6 +8655,22 @@
 	name = "HQ Northeast hallways";
 	outside = 0
 	})
+"dQB" = (
+/obj/structure/rack,
+/obj/item/stack/sheet/mineral/phoron{
+	amount = 50
+	},
+/obj/item/stack/sheet/mineral/phoron{
+	amount = 50
+	},
+/obj/item/stack/sheet/mineral/phoron{
+	amount = 50
+	},
+/obj/item/stack/sheet/mineral/phoron{
+	amount = 50
+	},
+/turf/open/floor/plating/catwalk,
+/area/mainship/patrol_base/som)
 "dQR" = (
 /obj/effect/ai_node,
 /turf/open/floor/mainship/mono,
@@ -8653,6 +8687,15 @@
 	},
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/main_hall)
+"dRb" = (
+/obj/machinery/quick_vendor/som,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/mainship/orange{
+	dir = 4
+	},
+/area/mainship/patrol_base/som)
 "dRH" = (
 /turf/open/floor/mainship/cargo/arrow{
 	dir = 1
@@ -8847,6 +8890,15 @@
 	dir = 1
 	},
 /area/lv624/lazarus/fitness)
+"dWj" = (
+/obj/structure/flora/pottedplant/twenty,
+/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+	on = 1
+	},
+/turf/open/floor/mainship/sterile/side{
+	dir = 1
+	},
+/area/mainship/patrol_base/som)
 "dWr" = (
 /obj/structure/bed/chair/sofa/corner{
 	dir = 1
@@ -8875,6 +8927,13 @@
 	},
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/quart)
+"dXu" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 5
+	},
+/turf/open/floor/mainship/silver/full,
+/area/mainship/patrol_base/som)
 "dXz" = (
 /turf/open/floor/mainship/green/corner,
 /area/mainship/powered{
@@ -9155,21 +9214,6 @@
 	dir = 5
 	},
 /area/lv624/lazarus/research)
-"egT" = (
-/obj/item/weapon/gun/sentry/premade{
-	dir = 1
-	},
-/obj/structure/barricade/sandbags{
-	dir = 4
-	},
-/obj/structure/barricade/sandbags{
-	dir = 1
-	},
-/obj/structure/barricade/sandbags{
-	dir = 8
-	},
-/turf/open/floor/grass,
-/area/lv624/ground/caves)
 "egX" = (
 /obj/structure/table/woodentable,
 /obj/item/pinpointer,
@@ -9232,10 +9276,6 @@
 /obj/effect/spawner/random/misc/structure/girder/regularweighted,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle5)
-"ejm" = (
-/obj/structure/largecrate/supply/supplies/flares,
-/turf/open/floor/mainship/cargo,
-/area/mainship/patrol_base/som)
 "ejy" = (
 /obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /turf/open/floor/plating,
@@ -9406,6 +9446,22 @@
 	outside = 0;
 	name = "Tad Hangar"
 	})
+"enC" = (
+/obj/structure/bed/bunkbed,
+/obj/effect/landmark/start/job/som/staff_officer,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/mainship/purple{
+	dir = 4
+	},
+/area/mainship/patrol_base/som)
+"enO" = (
+/obj/machinery/door/airlock/multi_tile/mainship/generic/prep{
+	dir = 2
+	},
+/turf/open/floor/mainship/plate,
+/area/mainship/patrol_base/som)
 "enS" = (
 /obj/effect/decal/remains/xeno,
 /turf/open/floor/engine/cult{
@@ -9503,12 +9559,6 @@
 /area/centcom/practice/medical{
 	outside = 0
 	})
-"epH" = (
-/obj/structure/bed/bunkbed,
-/turf/open/floor/mainship/purple{
-	dir = 9
-	},
-/area/mainship/patrol_base/som)
 "epX" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /obj/effect/ai_node,
@@ -9561,6 +9611,12 @@
 /obj/effect/landmark/corpsespawner/prisoner,
 /turf/open/floor/wood,
 /area/lv624/lazarus/chapel)
+"esb" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/turf/open/floor/mainship/orange{
+	dir = 8
+	},
+/area/mainship/patrol_base/som)
 "esh" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/grille/smoothing,
@@ -9743,6 +9799,13 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/port_hallway{
 	name = "HQ hallway northwest";
+	outside = 0
+	})
+"exX" = (
+/obj/structure/cable,
+/turf/open/floor/mainship/cargo,
+/area/mainship/powered{
+	name = "Hangar 2";
 	outside = 0
 	})
 "eye" = (
@@ -9978,20 +10041,16 @@
 	outside = 0;
 	name = "Ground Combat Information Center"
 	})
-"eGg" = (
-/obj/machinery/door/airlock/medical{
-	dir = 2
+"eFG" = (
+/obj/structure/cable,
+/obj/machinery/computer/arcade,
+/turf/open/floor/mainship/orange{
+	dir = 9
 	},
-/turf/open/floor/mainship/plate,
 /area/mainship/patrol_base/som)
 "eGl" = (
 /turf/open/floor/plating/ground/dirtgrassborder/corner,
 /area/lv624/ground/caves)
-"eGq" = (
-/obj/structure/flora/ausbushes/fullgrass,
-/obj/structure/flora/jungle/vines/heavy,
-/turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
-/area/lv624/ground/jungle8)
 "eGv" = (
 /obj/structure/cable,
 /obj/structure/bed/chair/sofa/corner{
@@ -10001,15 +10060,6 @@
 /area/mainship/squads/alpha{
 	outside = 0
 	})
-"eGI" = (
-/obj/structure/flora/pottedplant/three,
-/turf/open/floor/mainship/orange{
-	dir = 4
-	},
-/area/mainship/patrol_base/som)
-"eGL" = (
-/turf/open/floor/mainship/silver/full,
-/area/mainship/patrol_base/som)
 "eGX" = (
 /obj/structure/table/reinforced,
 /obj/item/tool/kitchen/rollingpin,
@@ -10034,10 +10084,34 @@
 /area/mainship/living/grunt_rnr{
 	outside = 0
 	})
+"eHR" = (
+/obj/structure/barricade/metal{
+	is_wired = 1;
+	can_wire = 0;
+	dir = 8
+	},
+/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/cope/predeployed,
+/turf/open/floor/mainship/silver/full,
+/area/mainship/patrol_base/som)
 "eHW" = (
 /obj/docking_port/stationary/crashmode,
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
 /area/lv624/lazarus/spaceport)
+"eIc" = (
+/obj/item/weapon/gun/sentry/premade{
+	dir = 1
+	},
+/obj/structure/barricade/sandbags{
+	dir = 1
+	},
+/obj/structure/barricade/sandbags{
+	dir = 8
+	},
+/obj/structure/barricade/sandbags{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/caves)
 "eIi" = (
 /obj/machinery/bioprinter,
 /turf/open/floor/mainship/sterile/corner{
@@ -10083,10 +10157,6 @@
 	},
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/quartstorage)
-"eIT" = (
-/obj/structure/largecrate/random,
-/turf/open/floor/mainship/cargo,
-/area/mainship/patrol_base/som)
 "eJK" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -10153,6 +10223,21 @@
 	dir = 8
 	},
 /area/lv624/lazarus/main_hall)
+"eLl" = (
+/obj/item/weapon/gun/sentry/premade{
+	dir = 1
+	},
+/obj/structure/barricade/sandbags{
+	dir = 4
+	},
+/obj/structure/barricade/sandbags{
+	dir = 1
+	},
+/obj/structure/barricade/sandbags{
+	dir = 8
+	},
+/turf/open/floor/grass,
+/area/lv624/ground/caves)
 "eLr" = (
 /obj/machinery/light,
 /turf/open/floor/tile/purple/whitepurple{
@@ -10211,6 +10296,18 @@
 	},
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/main_hall)
+"eMx" = (
+/obj/structure/barricade/metal{
+	is_wired = 1;
+	can_wire = 0;
+	dir = 8
+	},
+/obj/structure/barricade/metal{
+	is_wired = 1;
+	can_wire = 0
+	},
+/turf/open/floor/mainship/silver/full,
+/area/mainship/patrol_base/som)
 "eMA" = (
 /obj/structure/noticeboard{
 	pixel_y = 30
@@ -10249,10 +10346,6 @@
 /area/mainship/hallways/hangar{
 	outside = 0
 	})
-"eNB" = (
-/obj/structure/closet/crate/mortar_ammo/mortar_kit,
-/turf/open/floor/mainship/cargo,
-/area/mainship/patrol_base/som)
 "eNK" = (
 /obj/machinery/camera/autoname/mainship{
 	dir = 4
@@ -10290,6 +10383,11 @@
 /obj/structure/barricade/wooden,
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/main_hall)
+"eOW" = (
+/obj/effect/ai_node,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/turf/open/floor/mainship/sterile/white,
+/area/mainship/patrol_base/som)
 "ePg" = (
 /obj/structure/bed,
 /obj/item/bedsheet/yellow,
@@ -10519,10 +10617,6 @@
 "eUI" = (
 /turf/open/beach/coastline,
 /area/lv624/ground/caves)
-"eUS" = (
-/obj/structure/largecrate/supply/supplies/water,
-/turf/open/floor/mainship/cargo,
-/area/mainship/patrol_base/som)
 "eUV" = (
 /obj/structure/bed/chair/wood/normal{
 	dir = 8
@@ -10655,21 +10749,6 @@
 /obj/structure/flora/jungle/vines,
 /turf/open/floor/plating,
 /area/lv624/ground/jungle9)
-"eYO" = (
-/obj/item/weapon/gun/sentry/premade{
-	dir = 1
-	},
-/obj/structure/barricade/sandbags{
-	dir = 1
-	},
-/obj/structure/barricade/sandbags{
-	dir = 8
-	},
-/obj/structure/barricade/sandbags{
-	dir = 4
-	},
-/turf/open/floor/grass,
-/area/lv624/ground/caves)
 "eYU" = (
 /obj/machinery/vending/MarineMed,
 /turf/open/floor/mainship/sterile/corner,
@@ -10989,20 +11068,15 @@
 /obj/effect/spawner/random/weaponry/gun/shotgun,
 /turf/open/floor/vault,
 /area/lv624/lazarus/crashed_ship)
-"fhA" = (
-/obj/structure/barricade/plasteel{
-	dir = 1;
-	is_wired = 1;
-	can_wire = 0;
-	closed = 0
-	},
-/turf/open/floor/mainship/silver/full,
-/area/mainship/patrol_base/som)
 "fhK" = (
 /turf/open/floor/tile/red/redtaupe{
 	dir = 5
 	},
 /area/lv624/lazarus/security)
+"fhV" = (
+/obj/structure/flora/jungle/vines/heavy,
+/turf/closed/gm/dense,
+/area/lv624/ground/river3)
 "fij" = (
 /obj/structure/table,
 /obj/item/clothing/shoes/sandal,
@@ -11137,10 +11211,6 @@
 /obj/effect/spawner/random/misc/structure/supplycrate,
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/quart)
-"flV" = (
-/obj/effect/landmark/start/job/som/squadcorpsman,
-/turf/open/floor/mainship/plate,
-/area/mainship/patrol_base/som)
 "flZ" = (
 /obj/machinery/door/airlock/mainship/command/free_access{
 	name = "\improper Nexus Dome Command Quarter"
@@ -11208,6 +11278,11 @@
 	},
 /turf/open/floor/tile/blue/whitebluefull,
 /area/lv624/lazarus/internal_affairs)
+"fnq" = (
+/obj/machinery/power/smes/preset,
+/obj/structure/cable,
+/turf/open/floor/plating/catwalk,
+/area/mainship/patrol_base/som)
 "fnB" = (
 /obj/structure/lazarus_sign,
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
@@ -11263,10 +11338,6 @@
 	dir = 4
 	},
 /area/lv624/lazarus/atmos)
-"foY" = (
-/obj/effect/ai_node,
-/turf/open/floor/mainship/cargo,
-/area/mainship/patrol_base/som)
 "fpt" = (
 /obj/structure/cable,
 /turf/open/floor/mainship/sterile/side{
@@ -11623,12 +11694,6 @@
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central3/garbledradio)
-"fyc" = (
-/obj/machinery/vending/tool,
-/turf/open/floor/mainship/orange{
-	dir = 4
-	},
-/area/mainship/patrol_base/som)
 "fye" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/dirt,
@@ -12048,12 +12113,6 @@
 	},
 /turf/open/ground/grass,
 /area/lv624/ground/jungle6)
-"fKp" = (
-/obj/machinery/autodoc,
-/turf/open/floor/mainship/sterile/corner{
-	dir = 1
-	},
-/area/mainship/patrol_base/som)
 "fKy" = (
 /obj/machinery/door/airlock/mainship/marine/general/corps,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -12075,6 +12134,15 @@
 "fLi" = (
 /turf/open/floor/grass,
 /area/lv624/ground/caves)
+"fLx" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/machinery/cic_maptable/som_maptable,
+/turf/open/floor/mainship/orange{
+	dir = 4
+	},
+/area/mainship/patrol_base/som)
 "fLK" = (
 /obj/structure/closet/secure_closet/guncabinet/riot_control,
 /turf/open/floor/mainship,
@@ -12359,7 +12427,6 @@
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/quart)
 "fVr" = (
-/obj/machinery/light,
 /turf/open/floor/mainship/cargo,
 /area/mainship/powered{
 	name = "Hangar 2";
@@ -12496,11 +12563,6 @@
 	dir = 1
 	},
 /area/lv624/lazarus/engineering)
-"fZo" = (
-/obj/structure/cable,
-/obj/effect/ai_node,
-/turf/open/floor/plating/catwalk,
-/area/mainship/patrol_base/som)
 "fZv" = (
 /obj/structure/flora/grass/green,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -13544,6 +13606,15 @@
 /obj/effect/landmark/patrol_point/som/som_13,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle3)
+"gAL" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/mainship/cargo,
+/area/mainship/powered{
+	name = "Hangar 2";
+	outside = 0
+	})
 "gAM" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 4;
@@ -13559,6 +13630,14 @@
 /obj/structure/flora/jungle/vines/heavy,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle5)
+"gBp" = (
+/obj/structure/cable,
+/obj/structure/largecrate/supply/generator,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plating/catwalk,
+/area/mainship/patrol_base/som)
 "gBs" = (
 /obj/machinery/shower,
 /turf/open/floor/mainship/sterile/side{
@@ -13648,10 +13727,6 @@
 	},
 /turf/open/floor/wood,
 /area/lv624/lazarus/internal_affairs)
-"gDZ" = (
-/obj/structure/largecrate/supply/supplies/mre,
-/turf/open/floor/mainship/cargo,
-/area/mainship/patrol_base/som)
 "gEa" = (
 /obj/machinery/landinglight/lz2{
 	dir = 4
@@ -13673,6 +13748,13 @@
 	dir = 8
 	},
 /area/lv624/lazarus/atmos)
+"gEE" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
+	dir = 1
+	},
+/turf/open/floor/mainship/plate,
+/area/mainship/patrol_base/som)
 "gEU" = (
 /obj/structure/bed,
 /mob/living/simple_animal/corgi/lisa,
@@ -14034,12 +14116,6 @@
 /area/mainship/living/basketball{
 	outside = 0
 	})
-"gOD" = (
-/obj/machinery/computer/camera_advanced/overwatch/som,
-/turf/open/floor/mainship/orange{
-	dir = 4
-	},
-/area/mainship/patrol_base/som)
 "gOJ" = (
 /obj/effect/spawner/random/misc/structure/girder/regularweighted,
 /turf/open/floor/plating/ground/dirt,
@@ -14154,21 +14230,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/sand2/garbledradio)
-"gSc" = (
-/obj/structure/barricade/sandbags{
-	dir = 1
-	},
-/obj/item/weapon/gun/sentry/premade{
-	dir = 1
-	},
-/obj/structure/barricade/sandbags{
-	dir = 8
-	},
-/obj/structure/barricade/sandbags{
-	dir = 4
-	},
-/turf/open/floor/grass,
-/area/lv624/ground/caves)
 "gSh" = (
 /obj/machinery/camera/autoname/mainship{
 	dir = 1
@@ -14272,15 +14333,6 @@
 /area/mainship/engineering/lower_engineering{
 	outside = 0
 	})
-"gUF" = (
-/obj/structure/barricade/metal{
-	is_wired = 1;
-	can_wire = 0;
-	dir = 8
-	},
-/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/cope/predeployed,
-/turf/open/floor/mainship/silver/full,
-/area/mainship/patrol_base/som)
 "gUJ" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -14447,6 +14499,14 @@
 	dir = 9
 	},
 /area/lv624/lazarus/sleep_female)
+"gYK" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/stern_hallway{
+	name = "HQ hallway southwest";
+	outside = 0
+	})
 "gYS" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/dirt,
@@ -14476,6 +14536,12 @@
 	dir = 2
 	},
 /area/lv624/lazarus/main_hall)
+"gZx" = (
+/obj/machinery/quick_vendor/som,
+/turf/open/floor/mainship/orange{
+	dir = 4
+	},
+/area/mainship/patrol_base/som)
 "gZB" = (
 /obj/machinery/floodlight/landing/testroom,
 /turf/open/ground/grass,
@@ -14503,13 +14569,6 @@
 /area/mainship/command/airoom{
 	outside = 0
 	})
-"hav" = (
-/obj/structure/cable,
-/obj/machinery/door/airlock/engineering{
-	dir = 2
-	},
-/turf/open/floor,
-/area/mainship/patrol_base/som)
 "hax" = (
 /obj/effect/landmark/xeno_tunnel_spawn,
 /turf/open/floor/plating/ground/dirt,
@@ -14547,11 +14606,6 @@
 	outside = 0;
 	name = "Ground Combat Information Center"
 	})
-"hbj" = (
-/turf/open/floor/mainship/silver{
-	dir = 3
-	},
-/area/mainship/patrol_base/som)
 "hbF" = (
 /obj/machinery/prop/autolathe,
 /turf/open/floor/tile/vault,
@@ -15003,6 +15057,14 @@
 /obj/structure/flora/ausbushes/reedbush,
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
 /area/lv624/ground/jungle5)
+"hmp" = (
+/obj/machinery/door/poddoor/shutters{
+	dir = 2;
+	name = "\improper Cargo Shutters";
+	id = "somcargodoor"
+	},
+/turf/open/floor,
+/area/mainship/patrol_base/som)
 "hmu" = (
 /obj/structure/window/framed/colony/reinforced,
 /turf/open/floor/plating,
@@ -15116,16 +15178,6 @@
 /obj/structure/fence,
 /turf/open/ground/grass/grass2,
 /area/lv624/ground/compound/c)
-"hre" = (
-/obj/structure/table/reinforced,
-/obj/item/tweezers,
-/obj/item/reagent_containers/spray/cleaner,
-/obj/item/cell/high,
-/obj/machinery/cell_charger,
-/obj/item/storage/firstaid/adv,
-/obj/item/storage/surgical_tray,
-/turf/open/floor/mainship/sterile/side,
-/area/mainship/patrol_base/som)
 "hrf" = (
 /obj/item/ore,
 /turf/open/floor/plating/ground/dirt,
@@ -15613,6 +15665,14 @@
 "hFf" = (
 /turf/closed/gm/dense,
 /area/lv624/ground/jungle4)
+"hFA" = (
+/obj/structure/largecrate/random/case/double,
+/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+	dir = 4;
+	on = 1
+	},
+/turf/open/floor/mainship/cargo,
+/area/mainship/patrol_base/som)
 "hFP" = (
 /turf/open/liquid/water/river/autosmooth/deep,
 /area/lv624/ground/river1)
@@ -15770,16 +15830,6 @@
 	name = "HQ Hallways";
 	outside = 0
 	})
-"hIP" = (
-/obj/machinery/door/airlock/multi_tile/mainship/generic{
-	dir = 1;
-	name = "\improper Nexus Dome"
-	},
-/turf/open/floor/mainship,
-/area/mainship/hallways/port_hallway{
-	name = "HQ hallway northwest";
-	outside = 0
-	})
 "hIR" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/whiteyellow/full,
@@ -15845,12 +15895,6 @@
 /area/mainship/living/starboard_emb{
 	outside = 0
 	})
-"hKy" = (
-/obj/effect/landmark/start/job/som/squadleader,
-/turf/open/floor/mainship/purple{
-	dir = 4
-	},
-/area/mainship/patrol_base/som)
 "hKX" = (
 /obj/structure/bed/chair/office/light{
 	dir = 1
@@ -15870,18 +15914,6 @@
 	},
 /turf/open/floor/plating,
 /area/lv624/ground/sand6)
-"hLH" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 1
-	},
-/obj/structure/disposalpipe/segment,
-/obj/structure/largecrate/supply/supplies/tables_racks,
-/turf/open/floor/mainship/cargo,
-/area/mainship/powered{
-	name = "Hangar 2";
-	outside = 0
-	})
 "hLN" = (
 /obj/structure/bed,
 /obj/item/bedsheet/captain,
@@ -15937,12 +15969,6 @@
 	},
 /turf/open/ground/grass,
 /area/lv624/lazarus/overgrown)
-"hNp" = (
-/obj/machinery/power/terminal{
-	dir = 1
-	},
-/turf/open/floor/plating/catwalk,
-/area/mainship/patrol_base/som)
 "hNv" = (
 /obj/machinery/light{
 	dir = 1
@@ -16376,6 +16402,14 @@
 	outside = 0;
 	name = "Ground Combat Information Center"
 	})
+"hYt" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 10
+	},
+/turf/open/floor/mainship/sterile/corner{
+	dir = 4
+	},
+/area/mainship/patrol_base/som)
 "hYw" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -16441,6 +16475,12 @@
 /obj/effect/landmark/corpsespawner/PMC,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/secure_storage)
+"iai" = (
+/obj/machinery/vending/snack,
+/turf/open/floor/mainship/orange{
+	dir = 8
+	},
+/area/mainship/patrol_base/som)
 "iak" = (
 /obj/machinery/door/airlock/mainship/marine/general/smart,
 /turf/open/floor/mainship,
@@ -16465,6 +16505,18 @@
 	},
 /turf/open/floor/mainship,
 /area/mainship/squads/general{
+	outside = 0
+	})
+"iaC" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 1
+	},
+/obj/structure/disposalpipe/segment,
+/obj/structure/largecrate/supply/supplies/tables_racks,
+/turf/open/floor/mainship/cargo,
+/area/mainship/powered{
+	name = "Hangar 2";
 	outside = 0
 	})
 "iaQ" = (
@@ -16597,6 +16649,10 @@
 	},
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/secure_storage)
+"idn" = (
+/obj/effect/ai_node,
+/turf/open/floor/mainship/cargo,
+/area/mainship/patrol_base/som)
 "idA" = (
 /obj/structure/cargo_container/green{
 	dir = 4
@@ -16653,10 +16709,16 @@
 	outside = 0
 	})
 "ieY" = (
+/obj/machinery/door/airlock/mainship/security/glass/free_access{
+	dir = 2;
+	req_access = list(3)
+	},
 /obj/structure/cable,
-/obj/structure/catwalk,
-/turf/open/floor/mainship/plate,
-/area/mainship/patrol_base/som)
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/stern_hallway{
+	name = "HQ hallway southwest";
+	outside = 0
+	})
 "ifa" = (
 /obj/item/tool/shovel/spade,
 /turf/open/floor/engine,
@@ -16843,6 +16905,11 @@
 /area/mainship/squads/req{
 	outside = 0
 	})
+"imt" = (
+/obj/structure/cable,
+/obj/structure/catwalk,
+/turf/open/floor/mainship/plate,
+/area/mainship/patrol_base/som)
 "imz" = (
 /turf/closed/wall/wood,
 /area/lv624/lazarus/security)
@@ -17028,6 +17095,16 @@
 "iqt" = (
 /turf/closed/wall,
 /area/lv624/lazarus/toilet)
+"iqC" = (
+/obj/machinery/iv_drip,
+/obj/structure/sink{
+	dir = 4;
+	pixel_x = 11
+	},
+/turf/open/floor/mainship/sterile/side{
+	dir = 4
+	},
+/area/mainship/patrol_base/som)
 "iqD" = (
 /obj/structure/table/woodentable,
 /obj/item/storage/fancy/cigar,
@@ -17138,13 +17215,6 @@
 /area/mainship/living/starboard_garden{
 	outside = 0
 	})
-"ivh" = (
-/obj/effect/landmark/start/job/som/squadengineer,
-/obj/effect/landmark/start/job/som,
-/turf/open/floor/mainship/purple{
-	dir = 7
-	},
-/area/mainship/patrol_base/som)
 "ivp" = (
 /obj/structure/table,
 /obj/item/weapon/gun/pistol/holdout,
@@ -17605,16 +17675,6 @@
 /area/mainship/living/grunt_rnr{
 	outside = 0
 	})
-"iIo" = (
-/obj/machinery/power/apc,
-/obj/structure/cable,
-/obj/structure/barricade/metal{
-	is_wired = 1;
-	can_wire = 0;
-	dir = 8
-	},
-/turf/open/floor/mainship/silver/corner,
-/area/mainship/patrol_base/som)
 "iIU" = (
 /turf/open/floor/tile/green/whitegreen{
 	dir = 2
@@ -18064,6 +18124,13 @@
 	outside = 0;
 	name = "Ground Combat Information Center"
 	})
+"iUk" = (
+/obj/structure/barricade/metal{
+	is_wired = 1;
+	can_wire = 0
+	},
+/turf/open/floor/mainship/silver/full,
+/area/mainship/patrol_base/som)
 "iUR" = (
 /obj/structure/window_frame/wood,
 /obj/structure/flora/jungle/vines,
@@ -18131,13 +18198,6 @@
 /obj/item/mecha_parts/part/gygax_head,
 /turf/open/floor/wood,
 /area/lv624/lazarus/internal_affairs)
-"iWR" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/structure/cable,
-/turf/open/floor/mainship/mono,
-/area/mainship/squads/req{
-	outside = 0
-	})
 "iXd" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment,
@@ -18232,15 +18292,6 @@
 /obj/structure/flora/ausbushes/lavendergrass,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle10)
-"iZP" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/machinery/cic_maptable/som_maptable,
-/turf/open/floor/mainship/orange{
-	dir = 4
-	},
-/area/mainship/patrol_base/som)
 "jah" = (
 /obj/structure/flora/ausbushes/reedbush,
 /turf/open/liquid/water/river/autosmooth,
@@ -18351,6 +18402,12 @@
 /area/mainship/squads/general{
 	outside = 0
 	})
+"jdE" = (
+/obj/structure/bed/bunkbed,
+/turf/open/floor/mainship/purple{
+	dir = 9
+	},
+/area/mainship/patrol_base/som)
 "jdL" = (
 /obj/structure/flora/jungle/vines,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
@@ -18680,11 +18737,6 @@
 "jnU" = (
 /turf/open/floor/cult,
 /area/lv624/lazarus/bar)
-"jot" = (
-/turf/open/floor/mainship/silver/corner{
-	dir = 4
-	},
-/area/mainship/patrol_base/som)
 "jou" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -18698,15 +18750,6 @@
 /obj/structure/cable,
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/research)
-"joU" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor/mainship/cargo,
-/area/mainship/powered{
-	name = "Hangar 2";
-	outside = 0
-	})
 "jpt" = (
 /obj/machinery/door/airlock/mainship/maint{
 	dir = 2
@@ -19030,16 +19073,6 @@
 /area/mainship/squads/req{
 	outside = 0
 	})
-"jwZ" = (
-/obj/structure/bed/bunkbed,
-/obj/effect/landmark/start/job/som/staff_officer,
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor/mainship/purple{
-	dir = 4
-	},
-/area/mainship/patrol_base/som)
 "jxo" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt,
@@ -19179,18 +19212,6 @@
 	dir = 1
 	},
 /area/lv624/lazarus/quartstorage)
-"jAJ" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/structure/barricade/metal{
-	is_wired = 1;
-	can_wire = 0
-	},
-/turf/open/floor/mainship/silver{
-	dir = 8
-	},
-/area/mainship/patrol_base/som)
 "jAL" = (
 /obj/structure/table/mainship,
 /obj/item/stack/sheet/glass/reinforced{
@@ -19483,18 +19504,6 @@
 /area/mainship/hallways/stern_hallway{
 	outside = 0
 	})
-"jIx" = (
-/obj/structure/barricade/metal{
-	is_wired = 1;
-	can_wire = 0
-	},
-/obj/structure/barricade/metal{
-	is_wired = 1;
-	can_wire = 0;
-	dir = 8
-	},
-/turf/open/floor/mainship/silver/full,
-/area/mainship/patrol_base/som)
 "jIK" = (
 /obj/structure/flora/jungle/plantbot1,
 /obj/structure/flora/ausbushes/fullgrass,
@@ -19538,6 +19547,17 @@
 	dir = 1
 	},
 /area/lv624/lazarus/corporate_affairs)
+"jJR" = (
+/obj/structure/barricade/plasteel{
+	dir = 1;
+	is_wired = 1;
+	can_wire = 0;
+	closed = 0
+	},
+/turf/open/floor/mainship/silver{
+	dir = 4
+	},
+/area/mainship/patrol_base/som)
 "jJZ" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
@@ -19555,11 +19575,6 @@
 /obj/structure/largecrate/supply/supplies/mre,
 /turf/open/floor/wood,
 /area/lv624/lazarus/security)
-"jKL" = (
-/obj/structure/cable,
-/obj/effect/ai_node,
-/turf/open/floor/mainship/silver/full,
-/area/mainship/patrol_base/som)
 "jKW" = (
 /obj/machinery/light/small{
 	dir = 8
@@ -19586,15 +19601,6 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar{
 	outside = 0
-	})
-"jLj" = (
-/obj/structure/cable,
-/turf/open/floor/mainship/silver{
-	dir = 8
-	},
-/area/mainship/patrol_base/som{
-	outside = 0;
-	ceiling = 6
 	})
 "jLr" = (
 /obj/machinery/door_control{
@@ -19846,6 +19852,11 @@
 /area/mainship/medical/medical_science{
 	outside = 0
 	})
+"jPU" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/obj/structure/flora/jungle/vines/heavy,
+/turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
+/area/lv624/ground/jungle8)
 "jPZ" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/catwalk,
@@ -20095,21 +20106,6 @@
 /area/mainship/living/grunt_rnr{
 	outside = 0
 	})
-"jXO" = (
-/obj/item/weapon/gun/sentry/premade{
-	dir = 1
-	},
-/obj/structure/barricade/sandbags{
-	dir = 1
-	},
-/obj/structure/barricade/sandbags{
-	dir = 8
-	},
-/obj/structure/barricade/sandbags{
-	dir = 4
-	},
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/caves)
 "jYc" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 1;
@@ -20348,6 +20344,11 @@
 	},
 /turf/open/floor/grass,
 /area/lv624/ground/caves)
+"kdM" = (
+/turf/open/floor/mainship/sterile/side{
+	dir = 6
+	},
+/area/mainship/patrol_base/som)
 "kdO" = (
 /obj/structure/bed/chair{
 	dir = 1
@@ -20364,11 +20365,6 @@
 "keK" = (
 /turf/open/floor/grimy,
 /area/lv624/lazarus/bar)
-"keQ" = (
-/obj/effect/landmark/start/job/som/fieldcommander,
-/obj/effect/ai_node,
-/turf/open/floor/mainship/plate,
-/area/mainship/patrol_base/som)
 "kfk" = (
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/wood,
@@ -20436,6 +20432,11 @@
 /area/mainship/living/grunt_rnr{
 	outside = 0
 	})
+"khc" = (
+/obj/structure/largecrate/supply/explosives/grenades,
+/obj/machinery/light,
+/turf/open/floor/mainship/cargo,
+/area/mainship/patrol_base/som)
 "khr" = (
 /obj/structure/window/framed/mainship/requisitions,
 /turf/open/floor/mainship/mono,
@@ -20761,12 +20762,21 @@
 /area/mainship/medical/medical_science{
 	outside = 0
 	})
+"kqJ" = (
+/turf/open/floor/mainship/sterile/side{
+	dir = 8
+	},
+/area/mainship/patrol_base/som)
 "kqW" = (
 /obj/structure/cargo_container/green{
 	dir = 1
 	},
 /turf/open/floor,
 /area/lv624/lazarus/spaceport)
+"krr" = (
+/obj/structure/flora/jungle/vines,
+/turf/closed/wall/r_wall/chigusa,
+/area/mainship/patrol_base/som)
 "kry" = (
 /obj/structure/flora/jungle/vines,
 /turf/open/floor/plating/ground/dirt,
@@ -20897,9 +20907,12 @@
 /turf/open/space/basic,
 /area/space)
 "kuk" = (
-/obj/structure/flora/jungle/vines,
-/turf/closed/wall/r_wall/chigusa,
-/area/mainship/patrol_base/som)
+/obj/machinery/light,
+/turf/open/floor/mainship/cargo,
+/area/mainship/powered{
+	name = "Hangar 2";
+	outside = 0
+	})
 "kuB" = (
 /obj/effect/decal/cleanable/blood/gibs,
 /obj/item/ammo_casing,
@@ -21201,12 +21214,6 @@
 /area/mainship/living/captain_mess{
 	outside = 0
 	})
-"kDu" = (
-/obj/structure/cable,
-/turf/open/floor/mainship/orange/corner{
-	dir = 1
-	},
-/area/mainship/patrol_base/som)
 "kDw" = (
 /turf/open/ground/grass/beach/corner{
 	dir = 8
@@ -21267,12 +21274,6 @@
 	name = "HQ Hallways Center";
 	outside = 0
 	})
-"kEz" = (
-/obj/machinery/bot/roomba{
-	name = "A roomba"
-	},
-/turf/open/floor/mainship/plate,
-/area/mainship/patrol_base/som)
 "kEB" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
@@ -21679,15 +21680,6 @@
 "kRe" = (
 /turf/open/floor/plating,
 /area/lv624/lazarus/kitchen)
-"kRG" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/machinery/vending/MarineMed,
-/turf/open/floor/mainship/sterile/side{
-	dir = 1
-	},
-/area/mainship/patrol_base/som)
 "kRJ" = (
 /turf/open/floor/tile/barber,
 /area/lv624/lazarus/fitness)
@@ -21702,6 +21694,21 @@
 "kSi" = (
 /turf/closed/wall,
 /area/lv624/ground/jungle10)
+"kSu" = (
+/obj/structure/barricade/sandbags{
+	dir = 1
+	},
+/obj/item/weapon/gun/sentry/premade{
+	dir = 1
+	},
+/obj/structure/barricade/sandbags{
+	dir = 8
+	},
+/obj/structure/barricade/sandbags{
+	dir = 4
+	},
+/turf/open/floor/grass,
+/area/lv624/ground/caves)
 "kSE" = (
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 8
@@ -21831,13 +21838,6 @@
 /area/mainship/living/briefing{
 	outside = 0
 	})
-"kVw" = (
-/obj/structure/cable,
-/obj/machinery/computer/arcade,
-/turf/open/floor/mainship/orange{
-	dir = 9
-	},
-/area/mainship/patrol_base/som)
 "kVC" = (
 /obj/structure/barricade/wooden{
 	dir = 1
@@ -21913,6 +21913,12 @@
 /area/mainship/living/grunt_rnr{
 	outside = 0
 	})
+"kXo" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 5
+	},
+/turf/open/floor/mainship/sterile/side,
+/area/mainship/patrol_base/som)
 "kXt" = (
 /obj/machinery/door/poddoor/mainship/open/cic{
 	dir = 2
@@ -21942,6 +21948,12 @@
 /area/mainship/engineering/engine_core{
 	outside = 0
 	})
+"kYp" = (
+/obj/machinery/vending/marineFood/som,
+/turf/open/floor/mainship/purple{
+	dir = 10
+	},
+/area/mainship/patrol_base/som)
 "kYv" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/landmark/weed_node,
@@ -22000,10 +22012,6 @@
 /obj/effect/spawner/random/weaponry/melee,
 /turf/open/floor/plating,
 /area/lv624/lazarus/quartstorage)
-"laJ" = (
-/obj/structure/flora/ausbushes/fullgrass,
-/turf/closed/wall/r_wall/chigusa,
-/area/mainship/patrol_base/som)
 "laT" = (
 /obj/structure/closet/lasertag/blue,
 /turf/open/floor/tile/purple/whitepurplecorner{
@@ -22214,11 +22222,6 @@
 /area/mainship/squads/general{
 	name = "Groundside Common Squads Preparation"
 	})
-"lhL" = (
-/turf/open/floor/mainship/orange{
-	dir = 9
-	},
-/area/mainship/patrol_base/som)
 "lhN" = (
 /obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /obj/machinery/door/poddoor/mainship/open{
@@ -22527,6 +22530,11 @@
 /obj/item/ammo_casing,
 /turf/open/floor/tile/barber,
 /area/lv624/lazarus/main_hall)
+"lsg" = (
+/turf/open/floor/mainship/silver{
+	dir = 8
+	},
+/area/mainship/patrol_base/som)
 "lsH" = (
 /turf/open/floor/plating/ground/dirtgrassborder/corner{
 	dir = 1
@@ -22537,9 +22545,6 @@
 /obj/item/clothing/under/overalls,
 /turf/open/floor/plating,
 /area/lv624/lazarus/quartstorage)
-"ltW" = (
-/turf/open/floor/mainship/cargo,
-/area/mainship/patrol_base/som)
 "luK" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
@@ -22593,14 +22598,6 @@
 /area/mainship/living/basketball{
 	outside = 0
 	})
-"lwv" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor/mainship/orange{
-	dir = 5
-	},
-/area/mainship/patrol_base/som)
 "lwx" = (
 /obj/structure/cable,
 /obj/effect/ai_node,
@@ -22671,6 +22668,12 @@
 	name = "HQ hallway northwest";
 	outside = 0
 	})
+"lye" = (
+/obj/machinery/vending/tool,
+/turf/open/floor/mainship/orange{
+	dir = 4
+	},
+/area/mainship/patrol_base/som)
 "lyx" = (
 /obj/machinery/door/airlock/mainship/generic/bathroom{
 	dir = 1
@@ -22820,9 +22823,6 @@
 /area/mainship/squads/general{
 	outside = 0
 	})
-"lCV" = (
-/turf/open/floor/mainship/plate,
-/area/mainship/patrol_base/som)
 "lDf" = (
 /obj/structure/cable,
 /obj/effect/decal/cleanable/dirt,
@@ -22867,6 +22867,13 @@
 /area/mainship/squads/charlie{
 	outside = 0
 	})
+"lDK" = (
+/obj/effect/landmark/start/job/som/squadcorpsman,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 5
+	},
+/turf/open/floor/mainship/plate,
+/area/mainship/patrol_base/som)
 "lDP" = (
 /turf/closed/wall,
 /area/mainship/living/chapel{
@@ -22946,10 +22953,6 @@
 /area/mainship/living/briefing{
 	outside = 0
 	})
-"lGj" = (
-/obj/effect/ai_node,
-/turf/open/floor/mainship/sterile/white,
-/area/mainship/patrol_base/som)
 "lGv" = (
 /obj/structure/noticeboard,
 /turf/closed/wall/mainship,
@@ -23436,6 +23439,14 @@
 	dir = 2
 	},
 /area/lv624/ground/filtration)
+"lRT" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/mainship/orange{
+	dir = 5
+	},
+/area/mainship/patrol_base/som)
 "lSc" = (
 /obj/structure/flora/jungle/vines,
 /turf/closed/wall,
@@ -23990,6 +24001,17 @@
 	},
 /turf/open/ground/grass,
 /area/lv624/ground/jungle5)
+"mki" = (
+/obj/structure/barricade/plasteel{
+	dir = 1;
+	is_wired = 1;
+	can_wire = 0;
+	closed = 0
+	},
+/turf/open/floor/mainship/silver{
+	dir = 8
+	},
+/area/mainship/patrol_base/som)
 "mkk" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 1
@@ -24272,14 +24294,6 @@
 /area/mainship/squads/alpha{
 	outside = 0
 	})
-"mrI" = (
-/obj/structure/cable,
-/obj/structure/largecrate/supply/generator,
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/floor/plating/catwalk,
-/area/mainship/patrol_base/som)
 "mrP" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /obj/structure/flora/jungle/vines,
@@ -24291,6 +24305,15 @@
 	},
 /turf/open/floor,
 /area/lv624/ground/sand9)
+"msd" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/turf/open/floor/mainship/orange{
+	dir = 8
+	},
+/area/mainship/patrol_base/som)
 "mst" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/dirt,
@@ -24392,11 +24415,6 @@
 	name = "HQ hallway southwest";
 	outside = 0
 	})
-"muE" = (
-/turf/open/floor/mainship/silver/corner{
-	dir = 1
-	},
-/area/mainship/patrol_base/som)
 "muO" = (
 /obj/structure/cable,
 /obj/structure/bed/chair/sofa/right,
@@ -24589,6 +24607,18 @@
 	},
 /turf/open/floor/engine,
 /area/lv624/lazarus/atmos)
+"mzD" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/structure/barricade/metal{
+	is_wired = 1;
+	can_wire = 0
+	},
+/turf/open/floor/mainship/silver{
+	dir = 8
+	},
+/area/mainship/patrol_base/som)
 "mAi" = (
 /turf/open/floor/tile/green/whitegreencorner{
 	dir = 1
@@ -24622,6 +24652,12 @@
 /area/mainship/squads/bravo{
 	outside = 0
 	})
+"mCh" = (
+/obj/machinery/vending/engivend,
+/turf/open/floor/mainship/orange{
+	dir = 8
+	},
+/area/mainship/patrol_base/som)
 "mDd" = (
 /obj/structure/window/reinforced/toughened{
 	dir = 1
@@ -24635,6 +24671,12 @@
 	outside = 0;
 	name = "Ground Combat Information Center"
 	})
+"mDe" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 9
+	},
+/turf/open/floor/mainship/cargo,
+/area/mainship/patrol_base/som)
 "mDp" = (
 /obj/effect/landmark/weed_node,
 /obj/effect/landmark/lv624/fog_blocker,
@@ -24750,11 +24792,6 @@
 /obj/structure/window/framed/colony/reinforced,
 /turf/open/floor/plating,
 /area/lv624/lazarus/atmos)
-"mGj" = (
-/turf/open/floor/mainship/silver{
-	dir = 8
-	},
-/area/mainship/patrol_base/som)
 "mGr" = (
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 10
@@ -24853,6 +24890,15 @@
 	name = "HQ hallway northwest";
 	outside = 0
 	})
+"mIN" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/machinery/vending/MarineMed,
+/turf/open/floor/mainship/sterile/side{
+	dir = 1
+	},
+/area/mainship/patrol_base/som)
 "mIZ" = (
 /obj/structure/table,
 /obj/effect/spawner/random/engineering/tool,
@@ -24860,6 +24906,10 @@
 	dir = 5
 	},
 /area/lv624/lazarus/hydroponics)
+"mJd" = (
+/obj/structure/cable,
+/turf/open/floor/mainship/silver/full,
+/area/mainship/patrol_base/som)
 "mJw" = (
 /obj/structure/barricade/wooden,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -25093,12 +25143,6 @@
 /obj/structure/flora/jungle/vines,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle3)
-"mPB" = (
-/obj/machinery/quick_vendor/som,
-/turf/open/floor/mainship/orange{
-	dir = 4
-	},
-/area/mainship/patrol_base/som)
 "mPT" = (
 /obj/structure/cable,
 /obj/effect/ai_node,
@@ -25663,6 +25707,12 @@
 /obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central1/garbledradio)
+"ndS" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+	dir = 4
+	},
+/turf/open/floor/plating/catwalk,
+/area/mainship/patrol_base/som)
 "ndZ" = (
 /obj/structure/sink/bathroom{
 	dir = 1
@@ -26331,6 +26381,12 @@
 /area/mainship/squads/general{
 	name = "Groundside Common Squads Preparation"
 	})
+"nyi" = (
+/obj/effect/landmark/start/job/som/fieldcommander,
+/obj/effect/ai_node,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/turf/open/floor/mainship/plate,
+/area/mainship/patrol_base/som)
 "nys" = (
 /obj/structure/table/reinforced,
 /obj/machinery/recharger,
@@ -26370,6 +26426,9 @@
 "nzi" = (
 /turf/closed/gm/dense,
 /area/lv624/ground/jungle7)
+"nzu" = (
+/turf/open/floor/mainship/orange,
+/area/mainship/patrol_base/som)
 "nAd" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment{
@@ -26616,6 +26675,13 @@
 /obj/structure/flora/jungle/vines,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle7)
+"nIC" = (
+/obj/structure/flora/jungle/vines/heavy,
+/obj/machinery/door/airlock/hatch{
+	dir = 2
+	},
+/turf/open/floor,
+/area/mainship/patrol_base/som)
 "nIO" = (
 /obj/effect/turf_decal/warning_stripes/thick,
 /obj/effect/turf_decal/warning_stripes/thick{
@@ -26769,6 +26835,10 @@
 	dir = 4
 	},
 /area/lv624/ground/caves)
+"nNA" = (
+/obj/effect/ai_node,
+/turf/open/floor/mainship/plate,
+/area/mainship/patrol_base/som)
 "nNN" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /obj/effect/ai_node,
@@ -26956,9 +27026,6 @@
 	},
 /turf/open/floor/tile/neutral,
 /area/lv624/lazarus/spaceport)
-"nUT" = (
-/turf/open/floor/plating/catwalk,
-/area/mainship/patrol_base/som)
 "nUW" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 1
@@ -26967,13 +27034,6 @@
 /area/mainship/living/bridgebunks{
 	outside = 0
 	})
-"nUY" = (
-/obj/structure/bed/bunkbed,
-/obj/effect/landmark/start/job/som/squadveteran,
-/turf/open/floor/mainship/purple{
-	dir = 8
-	},
-/area/mainship/patrol_base/som)
 "nVb" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /turf/open/floor/plating/ground/dirt,
@@ -27087,11 +27147,6 @@
 /area/mainship/living/numbertwobunks{
 	outside = 0
 	})
-"nYL" = (
-/turf/open/floor/mainship/silver{
-	dir = 1
-	},
-/area/mainship/patrol_base/som)
 "nYP" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment/corner{
@@ -27349,6 +27404,11 @@
 	},
 /turf/open/floor,
 /area/lv624/lazarus/spaceport)
+"ofy" = (
+/turf/open/floor/mainship/sterile/corner{
+	dir = 8
+	},
+/area/mainship/patrol_base/som)
 "ofB" = (
 /obj/structure/bed/chair/comfy{
 	dir = 1
@@ -27830,6 +27890,11 @@
 	},
 /turf/open/ground/grass,
 /area/lv624/ground/jungle3)
+"owa" = (
+/turf/open/floor/mainship/silver/corner{
+	dir = 4
+	},
+/area/mainship/patrol_base/som)
 "owu" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -27915,10 +27980,9 @@
 	},
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/quartstorage)
-"oxS" = (
-/turf/open/floor/mainship/sterile/side{
-	dir = 8
-	},
+"oxL" = (
+/obj/machinery/door/airlock/hatch,
+/turf/open/floor,
 /area/mainship/patrol_base/som)
 "oyi" = (
 /obj/structure/cable,
@@ -28011,6 +28075,21 @@
 	dir = 1
 	},
 /area/lv624/lazarus/hydroponics/aux)
+"oAz" = (
+/obj/item/weapon/gun/sentry/premade{
+	dir = 1
+	},
+/obj/structure/barricade/sandbags{
+	dir = 1
+	},
+/obj/structure/barricade/sandbags{
+	dir = 8
+	},
+/obj/structure/barricade/sandbags{
+	dir = 4
+	},
+/turf/open/floor/grass,
+/area/lv624/ground/caves)
 "oAB" = (
 /obj/structure/closet/lasertag/blue,
 /turf/open/floor/mainship/green{
@@ -28143,6 +28222,15 @@
 /obj/structure/window/framed/colony/reinforced,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/atmos)
+"oDa" = (
+/obj/effect/landmark/start/job/som/commander,
+/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+	on = 1
+	},
+/turf/open/floor/mainship/purple{
+	dir = 1
+	},
+/area/mainship/patrol_base/som)
 "oDF" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment,
@@ -28284,6 +28372,10 @@
 /obj/item/mecha_parts/part/gygax_head,
 /turf/open/floor/wood,
 /area/lv624/lazarus/corporate_affairs)
+"oGR" = (
+/obj/structure/largecrate/random,
+/turf/open/floor/mainship/cargo,
+/area/mainship/patrol_base/som)
 "oGS" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /turf/open/floor/plating/ground/dirt,
@@ -28347,6 +28439,11 @@
 	},
 /turf/open/floor/plating,
 /area/lv624/lazarus/corporate_affairs)
+"oIp" = (
+/obj/structure/cable,
+/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/cope/predeployed,
+/turf/open/floor/mainship/silver/full,
+/area/mainship/patrol_base/som)
 "oIN" = (
 /obj/item/clothing/mask/facehugger/dead,
 /obj/machinery/door/poddoor/mainship/open{
@@ -28439,12 +28536,6 @@
 	outside = 0;
 	name = "Ground Combat Information Center"
 	})
-"oKF" = (
-/obj/effect/ai_node,
-/turf/open/floor/mainship/orange{
-	dir = 8
-	},
-/area/mainship/patrol_base/som)
 "oKI" = (
 /obj/structure/closet/secure_closet/military_police{
 	locked = 0
@@ -28822,11 +28913,6 @@
 /obj/structure/cable,
 /turf/open/floor/tile/blue/whitebluefull,
 /area/lv624/lazarus/corporate_affairs)
-"oUF" = (
-/turf/open/floor/mainship/silver{
-	dir = 5
-	},
-/area/mainship/patrol_base/som)
 "oUH" = (
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/plating/ground/dirt,
@@ -29348,6 +29434,10 @@
 "pgQ" = (
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle4)
+"pgW" = (
+/obj/structure/largecrate/supply/supplies/flares,
+/turf/open/floor/mainship/cargo,
+/area/mainship/patrol_base/som)
 "pha" = (
 /obj/machinery/photocopier,
 /turf/open/floor/wood,
@@ -29360,15 +29450,6 @@
 	outside = 0;
 	name = "Ground Combat Information Center"
 	})
-"phn" = (
-/obj/machinery/button/door{
-	id = "somcargodoor"
-	},
-/turf/closed/wall/indestructible/bulkhead{
-	name = ""You fucked up" monument.";
-	desc = "To make a mistake is human, to blame it on someone else is even more human."
-	},
-/area/mainship/patrol_base/som)
 "phC" = (
 /obj/structure/window/reinforced{
 	dir = 8
@@ -29843,8 +29924,16 @@
 /area/mainship/hallways/hangar{
 	outside = 0
 	})
-"puh" = (
-/turf/open/floor/mainship/sterile/side,
+"ptY" = (
+/obj/structure/barricade/plasteel{
+	is_wired = 1;
+	can_wire = 0;
+	closed = 0;
+	dir = 8
+	},
+/turf/open/floor/mainship/silver{
+	dir = 1
+	},
 /area/mainship/patrol_base/som)
 "puy" = (
 /obj/structure/cable,
@@ -30728,10 +30817,6 @@
 	},
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/main_hall)
-"pTu" = (
-/obj/structure/largecrate/random/case,
-/turf/open/floor/mainship/cargo,
-/area/mainship/patrol_base/som)
 "pTC" = (
 /obj/structure/barricade/wooden{
 	dir = 1
@@ -31121,6 +31206,16 @@
 /obj/structure/flora/jungle/vines,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle1)
+"qdV" = (
+/obj/machinery/door/airlock/multi_tile/mainship/generic{
+	dir = 1;
+	name = "\improper Nexus Dome"
+	},
+/turf/open/floor/mainship,
+/area/mainship/hallways/port_hallway{
+	name = "HQ hallway northwest";
+	outside = 0
+	})
 "qef" = (
 /turf/open/floor/mainship/cargo/arrow,
 /area/mainship/hallways/hangar{
@@ -31300,6 +31395,10 @@
 /obj/effect/spawner/random/weaponry/gun/sidearms,
 /turf/open/floor/plating,
 /area/lv624/lazarus/tablefort)
+"qjP" = (
+/obj/structure/largecrate/supply/supplies/metal,
+/turf/open/floor/mainship/cargo,
+/area/mainship/patrol_base/som)
 "qki" = (
 /obj/structure/disposalpipe/segment/corner{
 	dir = 1
@@ -31416,13 +31515,6 @@
 /obj/structure/flora/jungle/vines,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle7)
-"qnU" = (
-/obj/structure/barricade/metal{
-	is_wired = 1;
-	can_wire = 0
-	},
-/turf/open/floor/mainship/silver/full,
-/area/mainship/patrol_base/som)
 "qoc" = (
 /obj/machinery/door/airlock/mainship/generic{
 	dir = 2;
@@ -31609,10 +31701,6 @@
 /area/mainship/medical/medical_science{
 	outside = 0
 	})
-"qtl" = (
-/obj/effect/ai_node,
-/turf/open/floor/mainship/plate,
-/area/mainship/patrol_base/som)
 "qtp" = (
 /turf/closed/wall,
 /area/mainship/engineering/engineering_workshop{
@@ -31971,12 +32059,6 @@
 	},
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/ground/ruin)
-"qCp" = (
-/obj/machinery/door/airlock/multi_tile/mainship/generic/prep{
-	dir = 2
-	},
-/turf/open/floor/mainship/plate,
-/area/mainship/patrol_base/som)
 "qCw" = (
 /obj/structure/cable,
 /obj/machinery/marine_selector/gear/smartgun,
@@ -32093,6 +32175,10 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central3/garbledradio)
+"qFR" = (
+/obj/structure/largecrate/supply/supplies/mre,
+/turf/open/floor/mainship/cargo,
+/area/mainship/patrol_base/som)
 "qFS" = (
 /obj/structure/flora/ausbushes/ppflowers,
 /turf/open/floor/grass,
@@ -32304,16 +32390,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/lazarus/overgrown)
-"qNp" = (
-/obj/machinery/iv_drip,
-/obj/structure/sink{
-	dir = 4;
-	pixel_x = 11
-	},
-/turf/open/floor/mainship/sterile/side{
-	dir = 4
-	},
-/area/mainship/patrol_base/som)
 "qNs" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 5
@@ -32574,12 +32650,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating,
 /area/lv624/lazarus/engineering)
-"qTP" = (
-/obj/structure/cable,
-/turf/open/floor/mainship/orange{
-	dir = 1
-	},
-/area/mainship/patrol_base/som)
 "qTR" = (
 /obj/item/ore/osmium,
 /turf/closed/mineral,
@@ -32703,15 +32773,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/west1)
 "qWA" = (
-/obj/structure/barricade/plasteel{
-	is_wired = 1;
-	can_wire = 0;
-	closed = 0;
-	dir = 8
-	},
-/turf/open/floor/mainship/silver{
-	dir = 1
-	},
+/turf/closed/wall/r_wall/chigusa,
 /area/mainship/patrol_base/som)
 "qWE" = (
 /obj/structure/cable,
@@ -33026,6 +33088,16 @@
 	dir = 1
 	},
 /area/lv624/lazarus/hydroponics)
+"rcB" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/turf/closed/wall/r_wall/chigusa,
+/area/mainship/patrol_base/som)
+"rcH" = (
+/obj/machinery/vending/sovietsoda,
+/turf/open/floor/mainship/orange{
+	dir = 10
+	},
+/area/mainship/patrol_base/som)
 "rcL" = (
 /obj/structure/disposalpipe/segment/corner{
 	dir = 1
@@ -33074,10 +33146,6 @@
 /obj/machinery/hydroponics,
 /turf/open/floor/engine,
 /area/lv624/lazarus/hydroponics/aux)
-"rdM" = (
-/obj/structure/largecrate/supply/medicine,
-/turf/open/floor/mainship/cargo,
-/area/mainship/patrol_base/som)
 "rdQ" = (
 /obj/structure/window/framed/colony,
 /turf/open/floor/plating,
@@ -33260,11 +33328,6 @@
 	},
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/quartstorage)
-"rhK" = (
-/obj/structure/largecrate/supply/explosives/grenades,
-/obj/machinery/light,
-/turf/open/floor/mainship/cargo,
-/area/mainship/patrol_base/som)
 "rhL" = (
 /obj/machinery/door/airlock/mainship/generic{
 	dir = 1;
@@ -33312,17 +33375,6 @@
 /area/mainship/living/chapel{
 	outside = 0
 	})
-"riy" = (
-/obj/structure/cable,
-/obj/structure/barricade/metal{
-	is_wired = 1;
-	can_wire = 0;
-	dir = 8
-	},
-/turf/open/floor/mainship/silver{
-	dir = 6
-	},
-/area/mainship/patrol_base/som)
 "riM" = (
 /obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/plating/ground/dirt,
@@ -33455,6 +33507,9 @@
 /obj/structure/window_frame/colony/reinforced,
 /turf/open/floor/plating,
 /area/lv624/lazarus/comms)
+"rnm" = (
+/turf/closed/gm/dense,
+/area/mainship/patrol_base/som)
 "rnp" = (
 /turf/open/floor/tile/white/warningstripe{
 	dir = 4
@@ -34035,6 +34090,16 @@
 	dir = 1
 	},
 /area/lv624/lazarus/corporate_affairs)
+"rAW" = (
+/obj/structure/table/reinforced,
+/obj/item/tweezers,
+/obj/item/reagent_containers/spray/cleaner,
+/obj/item/cell/high,
+/obj/machinery/cell_charger,
+/obj/item/storage/firstaid/adv,
+/obj/item/storage/surgical_tray,
+/turf/open/floor/mainship/sterile/side,
+/area/mainship/patrol_base/som)
 "rAY" = (
 /obj/structure/flora/ausbushes/grassybush,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
@@ -34336,6 +34401,9 @@
 	name = "HQ hallway southwest";
 	outside = 0
 	})
+"rIx" = (
+/turf/open/floor/mainship/silver/full,
+/area/mainship/patrol_base/som)
 "rIA" = (
 /turf/open/floor/mainship/floor,
 /area/mainship/hallways/hangar{
@@ -34350,6 +34418,16 @@
 	dir = 8
 	},
 /area/lv624/lazarus/atmos)
+"rIX" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
+/turf/open/floor/mainship/silver{
+	dir = 8
+	},
+/area/mainship/patrol_base/som{
+	outside = 0;
+	ceiling = 6
+	})
 "rJe" = (
 /obj/item/tool/crowbar,
 /turf/open/floor,
@@ -34388,6 +34466,10 @@
 /area/mainship/squads/delta{
 	outside = 0
 	})
+"rJP" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/turf/open/floor/mainship/orange,
+/area/mainship/patrol_base/som)
 "rKh" = (
 /obj/structure/closet/radiation,
 /obj/machinery/light/small{
@@ -34684,6 +34766,10 @@
 /obj/machinery/computer/intel_computer,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/armory)
+"rQS" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/turf/open/floor/mainship/plate,
+/area/mainship/patrol_base/som)
 "rRx" = (
 /turf/closed/gm/dense,
 /area/lv624/lazarus/spaceport2)
@@ -34700,6 +34786,12 @@
 /obj/effect/spawner/random/misc/structure/flavorvending/cigaretteweighted/colony,
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/main_hall)
+"rRN" = (
+/obj/machinery/vending/medical,
+/turf/open/floor/mainship/sterile/side{
+	dir = 1
+	},
+/area/mainship/patrol_base/som)
 "rSm" = (
 /obj/structure/cable,
 /turf/open/floor/prison/kitchen,
@@ -34773,6 +34865,12 @@
 /obj/structure/cable,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle3)
+"rUg" = (
+/obj/machinery/sleeper,
+/turf/open/floor/mainship/sterile/side{
+	dir = 8
+	},
+/area/mainship/patrol_base/som)
 "rUq" = (
 /obj/structure/flora/ausbushes/brflowers,
 /obj/structure/flora/jungle/vines,
@@ -34968,12 +35066,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle10)
-"rZY" = (
-/obj/machinery/vending/engivend,
-/turf/open/floor/mainship/orange{
-	dir = 8
-	},
-/area/mainship/patrol_base/som)
 "sab" = (
 /obj/structure/platform_decoration{
 	dir = 1
@@ -35193,12 +35285,6 @@
 /area/mainship/squads/general{
 	name = "Groundside Common Squads Preparation"
 	})
-"sfA" = (
-/obj/structure/flora/pottedplant/thirteen,
-/turf/open/floor/mainship/orange{
-	dir = 4
-	},
-/area/mainship/patrol_base/som)
 "sgf" = (
 /obj/structure/flora/jungle/plantbot1,
 /turf/open/ground/grass,
@@ -35559,6 +35645,14 @@
 /obj/structure/cable,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle3)
+"sqh" = (
+/obj/machinery/optable,
+/obj/item/tank/anesthetic,
+/obj/item/clothing/mask/breath/medical,
+/turf/open/floor/mainship/sterile/corner{
+	dir = 4
+	},
+/area/mainship/patrol_base/som)
 "sqo" = (
 /turf/open/floor/mainship/green{
 	dir = 10
@@ -35683,11 +35777,6 @@
 	},
 /turf/open/floor/plating/asteroidfloor,
 /area/lv624/lazarus/spaceport)
-"sun" = (
-/turf/open/floor/mainship/orange{
-	dir = 8
-	},
-/area/mainship/patrol_base/som)
 "suH" = (
 /obj/structure/bed/chair,
 /obj/effect/landmark/weed_node,
@@ -35805,9 +35894,6 @@
 	},
 /turf/open/floor,
 /area/lv624/ground/sand2)
-"sxS" = (
-/turf/open/floor/mainship/orange,
-/area/mainship/patrol_base/som)
 "sxT" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -35929,9 +36015,6 @@
 /area/mainship/command/corporateliaison{
 	outside = 0
 	})
-"szq" = (
-/turf/closed/gm/dense,
-/area/mainship/patrol_base/som)
 "szs" = (
 /turf/open/floor/plating/icefloor,
 /area/shuttle/drop2/lz2)
@@ -35981,7 +36064,9 @@
 /turf/closed/wall,
 /area/lv624/ground/river1)
 "sBh" = (
-/turf/closed/wall/r_wall/chigusa,
+/turf/open/floor/mainship/silver{
+	dir = 3
+	},
 /area/mainship/patrol_base/som)
 "sBs" = (
 /obj/machinery/camera/autoname/mainship,
@@ -36076,6 +36161,14 @@
 /obj/item/clothing/under/colonist,
 /turf/open/floor/tile/green/whitegreen,
 /area/lv624/lazarus/hydroponics/aux)
+"sEr" = (
+/obj/structure/cable,
+/obj/machinery/door/airlock/engineering{
+	dir = 2
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/turf/open/floor,
+/area/mainship/patrol_base/som)
 "sEB" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 9
@@ -36173,6 +36266,18 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/stern_hallway{
 	name = "HQ hallway southwest";
+	outside = 0
+	})
+"sGL" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 1
+	},
+/obj/structure/cable,
+/obj/machinery/door/airlock/mainship/medical/morgue{
+	dir = 2
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/centcom/practice/medical{
 	outside = 0
 	})
 "sHd" = (
@@ -36290,6 +36395,12 @@
 	dir = 9
 	},
 /area/lv624/lazarus/sleep_female)
+"sKN" = (
+/obj/structure/bed/bunkbed,
+/turf/open/floor/mainship/purple{
+	dir = 5
+	},
+/area/mainship/patrol_base/som)
 "sLc" = (
 /obj/structure/closet/cabinet,
 /turf/open/floor/wood,
@@ -37041,15 +37152,6 @@
 /obj/structure/flora/jungle/vines,
 /turf/open/ground/grass/grass2,
 /area/lv624/ground/jungle7)
-"tht" = (
-/obj/machinery/quick_vendor/som,
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor/mainship/orange{
-	dir = 4
-	},
-/area/mainship/patrol_base/som)
 "thD" = (
 /obj/structure/disposalpipe/segment{
 	dir = 1
@@ -37136,10 +37238,6 @@
 /area/mainship/living/numbertwobunks{
 	outside = 0
 	})
-"tjf" = (
-/obj/machinery/vending/MarineMed/Blood,
-/turf/open/floor/mainship/sterile/corner,
-/area/mainship/patrol_base/som)
 "tjj" = (
 /obj/structure/bed/chair/wood/wings{
 	dir = 1
@@ -37474,6 +37572,12 @@
 /obj/effect/decal/cleanable/blood/oil,
 /turf/open/floor/plating/warning,
 /area/lv624/lazarus/robotics)
+"tsP" = (
+/obj/machinery/power/terminal{
+	dir = 1
+	},
+/turf/open/floor/plating/catwalk,
+/area/mainship/patrol_base/som)
 "ttJ" = (
 /obj/structure/table/mainship,
 /obj/item/storage/toolbox/mechanical,
@@ -37641,6 +37745,10 @@
 /obj/structure/largecrate/random/secure,
 /turf/open/floor,
 /area/lv624/lazarus/spaceport2)
+"txB" = (
+/obj/structure/cable,
+/turf/open/floor/mainship/plate,
+/area/mainship/patrol_base/som)
 "txH" = (
 /obj/structure/table,
 /obj/item/stack/sheet/plasteel{
@@ -38062,17 +38170,6 @@
 "tMe" = (
 /turf/closed/wall/r_wall,
 /area/lv624/lazarus/quartstorage)
-"tMm" = (
-/obj/structure/barricade/plasteel{
-	dir = 1;
-	is_wired = 1;
-	can_wire = 0;
-	closed = 0
-	},
-/turf/open/floor/mainship/silver{
-	dir = 4
-	},
-/area/mainship/patrol_base/som)
 "tMC" = (
 /obj/structure/window/framed/mainship,
 /turf/open/floor/mainship/mono,
@@ -38230,12 +38327,6 @@
 /obj/item/clothing/under/rank/security/corp,
 /turf/open/floor/plating,
 /area/lv624/lazarus/quartstorage)
-"tSH" = (
-/obj/machinery/vending/sovietsoda,
-/turf/open/floor/mainship/orange{
-	dir = 10
-	},
-/area/mainship/patrol_base/som)
 "tSL" = (
 /obj/structure/cable,
 /turf/closed/wall,
@@ -38435,6 +38526,12 @@
 	dir = 2
 	},
 /area/lv624/ground/sand8)
+"tYu" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 9
+	},
+/turf/open/floor/mainship/plate,
+/area/mainship/patrol_base/som)
 "tYv" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 10
@@ -38754,10 +38851,6 @@
 /area/mainship/squads/alpha{
 	outside = 0
 	})
-"uhq" = (
-/obj/structure/flora/jungle/vines/heavy,
-/turf/closed/gm/dense,
-/area/lv624/ground/river3)
 "uhr" = (
 /obj/machinery/door/airlock/mainship/marine/general/corps,
 /turf/open/floor/mainship,
@@ -38921,6 +39014,10 @@
 	name = "HQ hallway southwest";
 	outside = 0
 	})
+"uli" = (
+/obj/structure/flora/jungle/vines/heavy,
+/turf/closed/wall/r_wall/chigusa,
+/area/mainship/patrol_base/som)
 "ulD" = (
 /obj/effect/ai_node,
 /turf/open/floor/tile/purple/taupepurple{
@@ -38936,6 +39033,10 @@
 /area/mainship/living/bridgebunks{
 	outside = 0
 	})
+"ulQ" = (
+/obj/structure/closet/crate/mortar_ammo/mortar_kit,
+/turf/open/floor/mainship/cargo,
+/area/mainship/patrol_base/som)
 "ulW" = (
 /obj/structure/filingcabinet,
 /obj/machinery/light/small{
@@ -39156,9 +39257,12 @@
 /turf/open/ground/grass,
 /area/lv624/ground/jungle5)
 "usw" = (
-/obj/machinery/vending/marineFood/som,
-/turf/open/floor/mainship/purple{
-	dir = 10
+/obj/machinery/button/door{
+	id = "somcargodoor"
+	},
+/turf/closed/wall/indestructible/bulkhead{
+	name = ""You fucked up" monument.";
+	desc = "To make a mistake is human, to blame it on someone else is even more human."
 	},
 /area/mainship/patrol_base/som)
 "usH" = (
@@ -39839,6 +39943,12 @@
 	outside = 0;
 	icon_state = "red"
 	})
+"uIg" = (
+/obj/structure/cable,
+/turf/open/floor/mainship/orange{
+	dir = 8
+	},
+/area/mainship/patrol_base/som)
 "uIh" = (
 /obj/structure/bed/chair,
 /obj/structure/disposalpipe/segment{
@@ -39908,6 +40018,16 @@
 	},
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/lazarus/quartstorage/outdoors)
+"uJd" = (
+/obj/machinery/power/apc,
+/obj/structure/cable,
+/obj/structure/barricade/metal{
+	is_wired = 1;
+	can_wire = 0;
+	dir = 8
+	},
+/turf/open/floor/mainship/silver/corner,
+/area/mainship/patrol_base/som)
 "uJr" = (
 /obj/structure/closet/secure_closet/military_police{
 	locked = 0
@@ -39933,18 +40053,6 @@
 	},
 /turf/open/floor,
 /area/lv624/ground/caves/central3/garbledradio)
-"uJY" = (
-/obj/structure/barricade/metal{
-	is_wired = 1;
-	can_wire = 0;
-	dir = 8
-	},
-/obj/structure/barricade/metal{
-	is_wired = 1;
-	can_wire = 0
-	},
-/turf/open/floor/mainship/silver/full,
-/area/mainship/patrol_base/som)
 "uKf" = (
 /obj/structure/flora/jungle/vines,
 /turf/closed/wall/r_wall,
@@ -40178,16 +40286,16 @@
 	},
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/sandtemple/garbledradio)
+"uQL" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/turf/open/floor/mainship/silver{
+	dir = 3
+	},
+/area/mainship/patrol_base/som)
 "uQN" = (
 /obj/effect/spawner/random/misc/structure/girder/regularweighted,
 /turf/open/ground/grass,
 /area/lv624/lazarus/overgrown)
-"uRo" = (
-/obj/structure/bed/bunkbed,
-/turf/open/floor/mainship/purple{
-	dir = 5
-	},
-/area/mainship/patrol_base/som)
 "uRK" = (
 /obj/machinery/light{
 	dir = 8
@@ -41007,10 +41115,6 @@
 /area/centcom/practice/medical{
 	outside = 0
 	})
-"vob" = (
-/obj/structure/largecrate/guns/russian,
-/turf/open/floor/mainship/cargo,
-/area/mainship/patrol_base/som)
 "voH" = (
 /obj/structure/table/mainship,
 /obj/item/folder/blue,
@@ -41115,14 +41219,6 @@
 "vqf" = (
 /turf/closed/mineral,
 /area/lv624/ground/caves)
-"vqs" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/floor/mainship/mono,
-/area/mainship/hallways/stern_hallway{
-	name = "HQ hallway southwest";
-	outside = 0
-	})
 "vqx" = (
 /obj/structure/flora/ausbushes/reedbush,
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
@@ -41158,11 +41254,6 @@
 	dir = 9
 	},
 /area/lv624/lazarus/comms)
-"vqX" = (
-/turf/open/floor/mainship/silver{
-	dir = 4
-	},
-/area/mainship/patrol_base/som)
 "vrh" = (
 /obj/structure/kitchenspike,
 /obj/machinery/light/small{
@@ -41455,6 +41546,12 @@
 	name = "HQ Hallways Center";
 	outside = 0
 	})
+"vzm" = (
+/obj/structure/flora/pottedplant/thirteen,
+/turf/open/floor/mainship/orange{
+	dir = 4
+	},
+/area/mainship/patrol_base/som)
 "vzp" = (
 /turf/open/floor/engine/cult{
 	dir = 2
@@ -41504,6 +41601,14 @@
 "vAe" = (
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
 /area/lv624/ground/jungle4)
+"vAo" = (
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
+	dir = 1
+	},
+/turf/open/floor/mainship/orange{
+	dir = 9
+	},
+/area/mainship/patrol_base/som)
 "vAv" = (
 /obj/structure/bed/chair{
 	dir = 1
@@ -41850,6 +41955,13 @@
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central1/garbledradio)
+"vIN" = (
+/obj/effect/landmark/start/job/som/squadengineer,
+/obj/effect/landmark/start/job/som,
+/turf/open/floor/mainship/purple{
+	dir = 7
+	},
+/area/mainship/patrol_base/som)
 "vJB" = (
 /obj/docking_port/stationary/crashmode,
 /turf/open/floor/plating/platebotc,
@@ -42156,13 +42268,6 @@
 	outside = 0;
 	name = "Tad Hangar"
 	})
-"vQu" = (
-/obj/structure/bed/bunkbed,
-/obj/effect/landmark/start/latejoinsom,
-/turf/open/floor/mainship/purple{
-	dir = 8
-	},
-/area/mainship/patrol_base/som)
 "vQA" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -42379,6 +42484,17 @@
 /area/mainship/engineering/engineering_workshop{
 	outside = 0
 	})
+"vVg" = (
+/obj/structure/cable,
+/obj/structure/barricade/metal{
+	is_wired = 1;
+	can_wire = 0;
+	dir = 8
+	},
+/turf/open/floor/mainship/silver{
+	dir = 6
+	},
+/area/mainship/patrol_base/som)
 "vVq" = (
 /turf/open/floor/marking/bot,
 /area/lv624/lazarus/spaceport2)
@@ -42480,6 +42596,11 @@
 "vYj" = (
 /turf/open/liquid/water/river/autosmooth,
 /area/lv624/ground/sand3)
+"vYn" = (
+/turf/open/floor/mainship/silver/corner{
+	dir = 1
+	},
+/area/mainship/patrol_base/som)
 "vYz" = (
 /obj/machinery/camera/autoname/mainship{
 	dir = 4
@@ -42711,22 +42832,6 @@
 /area/mainship/living/briefing{
 	outside = 0
 	})
-"wfh" = (
-/obj/structure/rack,
-/obj/item/stack/sheet/mineral/phoron{
-	amount = 50
-	},
-/obj/item/stack/sheet/mineral/phoron{
-	amount = 50
-	},
-/obj/item/stack/sheet/mineral/phoron{
-	amount = 50
-	},
-/obj/item/stack/sheet/mineral/phoron{
-	amount = 50
-	},
-/turf/open/floor/plating/catwalk,
-/area/mainship/patrol_base/som)
 "wft" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
@@ -42809,11 +42914,6 @@
 /area/mainship/living/pilotbunks{
 	outside = 0
 	})
-"wha" = (
-/obj/machinery/power/smes/preset,
-/obj/structure/cable,
-/turf/open/floor/plating/catwalk,
-/area/mainship/patrol_base/som)
 "whe" = (
 /obj/item/reagent_containers/food/snacks/worm,
 /turf/open/floor/plating/ground/dirt,
@@ -42906,12 +43006,24 @@
 /obj/structure/cable,
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/main_hall)
+"wke" = (
+/obj/machinery/autodoc,
+/turf/open/floor/mainship/sterile/corner{
+	dir = 1
+	},
+/area/mainship/patrol_base/som)
 "wku" = (
 /obj/structure/cable,
 /turf/open/floor/prison/bright_clean,
 /area/sulaco/hydro{
 	outside = 0
 	})
+"wkw" = (
+/obj/machinery/computer/camera_advanced/overwatch/som,
+/turf/open/floor/mainship/orange{
+	dir = 4
+	},
+/area/mainship/patrol_base/som)
 "wkA" = (
 /turf/open/floor/wood,
 /area/mainship/squads/alpha{
@@ -42985,12 +43097,8 @@
 /area/mainship/living/starboard_emb{
 	outside = 0
 	})
-"wmK" = (
-/obj/structure/flora/jungle/vines/heavy,
-/obj/machinery/door/airlock/hatch{
-	dir = 2
-	},
-/turf/open/floor,
+"wmC" = (
+/turf/open/floor/mainship/sterile/white,
 /area/mainship/patrol_base/som)
 "wmN" = (
 /obj/structure/bed/chair/sofa/corner{
@@ -43174,12 +43282,6 @@
 "wsX" = (
 /turf/closed/wall/r_wall/chigusa,
 /area/lv624/ground/caves/east1/garbledradio)
-"wsZ" = (
-/turf/open/floor/mainship/cargo,
-/area/mainship/powered{
-	name = "Hangar 2";
-	outside = 0
-	})
 "wtu" = (
 /obj/machinery/floodlight/colony{
 	dir = 4
@@ -43294,6 +43396,12 @@
 	dir = 8
 	},
 /area/lv624/lazarus/internal_affairs)
+"wxm" = (
+/obj/effect/landmark/start/job/som/squadstandard,
+/turf/open/floor/mainship/purple{
+	dir = 6
+	},
+/area/mainship/patrol_base/som)
 "wxO" = (
 /obj/machinery/camera/autoname{
 	dir = 1
@@ -43392,6 +43500,10 @@
 	dir = 8
 	},
 /area/lv624/ground/jungle5)
+"wAm" = (
+/obj/structure/largecrate/supply/supplies/water,
+/turf/open/floor/mainship/cargo,
+/area/mainship/patrol_base/som)
 "wAp" = (
 /obj/structure/table/woodentable,
 /obj/item/storage/bible,
@@ -43461,6 +43573,15 @@
 	outside = 0;
 	name = "Ground Combat Information Center"
 	})
+"wCA" = (
+/obj/machinery/bot/roomba{
+	name = "A roomba"
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
+	dir = 1
+	},
+/turf/open/floor/mainship/plate,
+/area/mainship/patrol_base/som)
 "wCI" = (
 /obj/item/stack/sheet/wood{
 	amount = 50
@@ -43547,6 +43668,15 @@
 	dir = 1
 	},
 /area/lv624/ground/filtration)
+"wEl" = (
+/obj/structure/barricade/plasteel{
+	dir = 1;
+	is_wired = 1;
+	can_wire = 0;
+	closed = 0
+	},
+/turf/open/floor/mainship/silver/full,
+/area/mainship/patrol_base/som)
 "wEq" = (
 /obj/structure/flora/ausbushes/pointybush,
 /turf/open/liquid/water/river/autosmooth,
@@ -43795,6 +43925,14 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
 /area/lv624/ground/jungle7)
+"wJZ" = (
+/obj/structure/cable,
+/obj/effect/ai_node,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 10
+	},
+/turf/open/floor/plating/catwalk,
+/area/mainship/patrol_base/som)
 "wKH" = (
 /obj/machinery/door/airlock/mainship/generic{
 	dir = 1
@@ -44058,6 +44196,12 @@
 /area/centcom/practice/medical{
 	outside = 0
 	})
+"wQJ" = (
+/obj/machinery/door/airlock/medical{
+	dir = 2
+	},
+/turf/open/floor/mainship/plate,
+/area/mainship/patrol_base/som)
 "wQP" = (
 /obj/structure/table,
 /obj/item/tool/weldingtool,
@@ -44080,6 +44224,11 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/platebotc,
 /area/lv624/ground/jungle9)
+"wRk" = (
+/turf/open/floor/mainship/silver{
+	dir = 1
+	},
+/area/mainship/patrol_base/som)
 "wRx" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/purple/whitepurple{
@@ -44097,12 +44246,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/main_hall)
-"wSj" = (
-/obj/structure/cable,
-/turf/open/floor/mainship/orange{
-	dir = 8
-	},
-/area/mainship/patrol_base/som)
 "wSk" = (
 /obj/machinery/door/airlock/mainship/research/glass{
 	id = "Containment Cell 3";
@@ -44295,6 +44438,10 @@
 	outside = 0;
 	name = "Ground Combat Information Center"
 	})
+"wWc" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/turf/open/floor/mainship/sterile/white,
+/area/mainship/patrol_base/som)
 "wWk" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt,
@@ -44317,18 +44464,6 @@
 /obj/structure/flora/ausbushes/ywflowers,
 /turf/open/liquid/water/river/autosmooth,
 /area/lv624/ground/jungle6)
-"wWM" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 1
-	},
-/obj/structure/cable,
-/obj/machinery/door/airlock/mainship/medical/morgue{
-	dir = 2
-	},
-/turf/open/floor/plating/plating_catwalk,
-/area/centcom/practice/medical{
-	outside = 0
-	})
 "wWN" = (
 /obj/structure/flora/grass/green,
 /turf/open/ground/grass,
@@ -44394,12 +44529,6 @@
 /area/mainship/living/tankerbunks{
 	outside = 0
 	})
-"wYK" = (
-/obj/effect/landmark/start/job/som/commander,
-/turf/open/floor/mainship/purple{
-	dir = 1
-	},
-/area/mainship/patrol_base/som)
 "wYO" = (
 /obj/machinery/door/airlock/mainship/generic{
 	dir = 1
@@ -44577,11 +44706,10 @@
 /turf/open/ground/grass,
 /area/lv624/ground/compound/c)
 "xcI" = (
-/obj/machinery/optable,
-/obj/item/tank/anesthetic,
-/obj/item/clothing/mask/breath/medical,
-/turf/open/floor/mainship/sterile/corner{
-	dir = 4
+/obj/structure/bed/bunkbed,
+/obj/effect/landmark/start/latejoinsom,
+/turf/open/floor/mainship/purple{
+	dir = 8
 	},
 /area/mainship/patrol_base/som)
 "xcL" = (
@@ -45014,11 +45142,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/compound/n)
-"xmQ" = (
-/turf/open/floor/mainship/sterile/corner{
-	dir = 4
-	},
-/area/mainship/patrol_base/som)
 "xnp" = (
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/plating/ground/dirt,
@@ -45080,6 +45203,10 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/compound/se)
+"xod" = (
+/obj/structure/largecrate/random/case,
+/turf/open/floor/mainship/cargo,
+/area/mainship/patrol_base/som)
 "xoi" = (
 /obj/structure/table/woodentable,
 /turf/open/floor/plating,
@@ -45433,10 +45560,6 @@
 	dir = 8
 	},
 /area/lv624/ground/jungle5)
-"xxp" = (
-/obj/machinery/door/airlock/hatch,
-/turf/open/floor,
-/area/mainship/patrol_base/som)
 "xxr" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -45485,13 +45608,6 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/centcom/practice/medical{
-	outside = 0
-	})
-"xzl" = (
-/obj/structure/cable,
-/turf/open/floor/mainship/cargo,
-/area/mainship/powered{
-	name = "Hangar 2";
 	outside = 0
 	})
 "xzo" = (
@@ -46194,6 +46310,12 @@
 /obj/structure/flora/ausbushes/fullgrass,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle2)
+"xQl" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/turf/open/floor/mainship/plate,
+/area/mainship/patrol_base/som)
 "xQq" = (
 /obj/machinery/light/small{
 	dir = 4
@@ -46373,12 +46495,6 @@
 "xVG" = (
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/sand1)
-"xVK" = (
-/obj/machinery/sleeper,
-/turf/open/floor/mainship/sterile/side{
-	dir = 8
-	},
-/area/mainship/patrol_base/som)
 "xVL" = (
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
 /area/lv624/ground/jungle9)
@@ -46452,6 +46568,10 @@
 	},
 /turf/open/floor/grass,
 /area/lv624/ground/caves)
+"xYv" = (
+/obj/structure/largecrate/supply/medicine,
+/turf/open/floor/mainship/cargo,
+/area/mainship/patrol_base/som)
 "xYy" = (
 /turf/open/ground/coast/corner{
 	dir = 1
@@ -46592,10 +46712,6 @@
 /obj/effect/turf_decal/riverdecal,
 /turf/open/floor/plating,
 /area/lv624/ground/river1)
-"ybl" = (
-/obj/structure/largecrate/random/case/double,
-/turf/open/floor/mainship/cargo,
-/area/mainship/patrol_base/som)
 "ybr" = (
 /obj/machinery/light{
 	dir = 4
@@ -46868,6 +46984,18 @@
 /obj/machinery/floodlight/colony,
 /turf/open/floor,
 /area/lv624/lazarus/spaceport)
+"yio" = (
+/obj/structure/barricade/metal{
+	is_wired = 1;
+	can_wire = 0
+	},
+/obj/structure/barricade/metal{
+	is_wired = 1;
+	can_wire = 0;
+	dir = 8
+	},
+/turf/open/floor/mainship/silver/full,
+/area/mainship/patrol_base/som)
 "yiq" = (
 /obj/effect/ai_node,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
@@ -46882,6 +47010,14 @@
 "yiA" = (
 /turf/open/floor/plating,
 /area/lv624/lazarus/engineering)
+"yiB" = (
+/obj/structure/cable,
+/obj/machinery/door/airlock/glass,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/turf/open/floor/mainship/plate,
+/area/mainship/patrol_base/som)
 "yiF" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/effect/ai_node,
@@ -53958,11 +54094,11 @@ hGQ
 fvH
 hGQ
 rlN
-evP
-evP
-evP
-evP
-evP
+hGQ
+hGQ
+hGQ
+hGQ
+rlN
 evP
 evP
 evP
@@ -54246,13 +54382,13 @@ tvh
 aoz
 aoz
 sqL
-hGQ
-rlN
-evP
-evP
-evP
-evP
-evP
+sGG
+ieY
+cSk
+cSk
+cSk
+cSk
+ieY
 evP
 evP
 evP
@@ -61238,7 +61374,7 @@ evP
 jZg
 jZg
 lju
-wWM
+sGL
 slx
 slx
 slx
@@ -62949,9 +63085,9 @@ cOZ
 cOZ
 uYe
 nvQ
-iWR
+bIC
 lDv
-vqs
+gYK
 qYh
 hGQ
 qzc
@@ -64676,7 +64812,7 @@ pAO
 pAO
 pAO
 pAO
-hLH
+iaC
 pAO
 pAO
 gxC
@@ -64970,7 +65106,7 @@ xRs
 rVt
 qVU
 suQ
-wsZ
+fVr
 brY
 xPs
 nAR
@@ -65260,7 +65396,7 @@ mVr
 mVr
 rVt
 vMQ
-wsZ
+fVr
 brY
 nAR
 nAR
@@ -65550,7 +65686,7 @@ mVr
 mVr
 qVU
 vMQ
-wsZ
+fVr
 brY
 brY
 cqA
@@ -65840,7 +65976,7 @@ mVr
 mVr
 rVt
 qCW
-fVr
+kuk
 brY
 pCL
 mOX
@@ -66130,7 +66266,7 @@ mVr
 mVr
 rVt
 qCW
-wsZ
+fVr
 brY
 kwQ
 wTd
@@ -66710,7 +66846,7 @@ mVr
 mVr
 dRH
 wFm
-wsZ
+fVr
 brY
 qWi
 iSe
@@ -67000,7 +67136,7 @@ mVr
 mVr
 dRH
 vMQ
-fVr
+kuk
 brY
 brY
 brY
@@ -67870,7 +68006,7 @@ mVr
 mVr
 khB
 mIb
-fVr
+kuk
 brY
 brY
 brY
@@ -68160,7 +68296,7 @@ mVr
 mVr
 rVt
 mIb
-wsZ
+fVr
 nqp
 dmg
 dmg
@@ -68450,7 +68586,7 @@ xRs
 rVt
 khB
 ecn
-wsZ
+fVr
 nqp
 vqf
 vqf
@@ -68740,7 +68876,7 @@ ecn
 mIb
 mIb
 ecn
-wsZ
+fVr
 nqp
 fLi
 vqf
@@ -69022,15 +69158,15 @@ juN
 rVt
 rVt
 hHZ
-joU
-wsZ
-wsZ
-joU
-wsZ
-xzl
-wsZ
-joU
-wsZ
+gAL
+fVr
+fVr
+gAL
+fVr
+exX
+fVr
+gAL
+fVr
 nqp
 fLi
 nSg
@@ -69318,7 +69454,7 @@ edE
 edE
 edE
 eDz
-hIP
+qdV
 nqp
 nqp
 nqp
@@ -73357,7 +73493,7 @@ cWy
 fLi
 qXv
 fLi
-gSc
+kSu
 fLi
 fLi
 fLi
@@ -75669,7 +75805,7 @@ kEq
 udy
 kEq
 kEq
-jXO
+eIc
 evP
 evP
 evP
@@ -77128,7 +77264,7 @@ tsy
 qQY
 fLi
 fLi
-egT
+eLl
 fLi
 fLi
 fLi
@@ -78859,7 +78995,7 @@ kEq
 fMA
 fpy
 pXf
-eYO
+oAz
 evP
 evP
 evP
@@ -81783,7 +81919,7 @@ fLi
 fLi
 qXv
 quP
-eYO
+oAz
 quP
 vru
 vqf
@@ -106318,7 +106454,7 @@ iSZ
 jxq
 gma
 pDg
-eGq
+jPU
 pDg
 pDg
 pDM
@@ -106606,11 +106742,11 @@ gpQ
 hOY
 iUR
 jxG
-sBh
-laJ
-xxp
-sBh
-sBh
+qWA
+rcB
+oxL
+qWA
+qWA
 mOs
 mOs
 mOs
@@ -106895,12 +107031,12 @@ mOs
 mOs
 crr
 crr
-kuk
-sBh
-bjw
-vqX
-jot
-sBh
+krr
+qWA
+bAO
+aFD
+owa
+qWA
 mOs
 mOs
 mOs
@@ -107185,12 +107321,12 @@ mOs
 mOs
 cmI
 dRM
-sBh
-iIo
-riy
-jIx
 qWA
-szq
+uJd
+vVg
+yio
+ptY
+rnm
 mOs
 mOs
 mOs
@@ -107470,17 +107606,17 @@ crr
 crr
 mOs
 mOs
+qWA
+krr
+krr
+krr
+qWA
+qWA
 sBh
-kuk
-kuk
-kuk
-sBh
-sBh
-hbj
-cLP
-qnU
-nYL
-kuk
+oIp
+iUk
+wRk
+krr
 mOs
 mOs
 crr
@@ -107760,20 +107896,20 @@ mOs
 mOs
 mOs
 mOs
+qWA
+wke
+kqJ
+rUg
+ofy
+wQJ
 sBh
-fKp
-oxS
-xVK
-aeY
-eGg
-hbj
-ayd
-qnU
-nYL
-sBh
-szq
-axA
-kuk
+mJd
+iUk
+wRk
+qWA
+rnm
+uli
+krr
 crr
 rQD
 tKa
@@ -108045,25 +108181,25 @@ boD
 boD
 mOs
 mOs
-sBh
-sBh
-sBh
-kuk
-kuk
-sBh
-cAF
-buI
-lGj
-puh
-kuk
+qWA
+qWA
+qWA
+krr
+krr
+qWA
+dWj
+wWc
+eOW
+kXo
+krr
 kso
-jKL
-fhA
-oUF
-tMm
-vqX
-jot
-wmK
+bNG
+wEl
+apN
+jJR
+aFD
+owa
+nIC
 crr
 sEL
 nmM
@@ -108335,25 +108471,25 @@ boD
 boD
 boD
 mOs
-sBh
-epH
-vQu
-nUY
-usw
-sBh
-kRG
-buI
-dIv
-xmQ
-eGg
-hbj
-ayd
-uJY
-gUF
-jIx
-eGL
-nYL
-sBh
+qWA
+jdE
+xcI
+aBP
+kYp
+qWA
+mIN
+wmC
+kdM
+hYt
+dkF
+uQL
+dXu
+eMx
+eHR
+yio
+rIx
+wRk
+qWA
 crr
 dRM
 tKa
@@ -108625,28 +108761,28 @@ blF
 blF
 blF
 mOs
-kuk
-wYK
-keQ
-flV
-ivh
-sBh
-bjc
-buI
-hre
-kuk
-kuk
-cKL
-jLj
-adh
-mGj
-jAJ
-mGj
-muE
-szq
+krr
+oDa
+nyi
+lDK
+vIN
+qWA
+rRN
+wmC
+rAW
+krr
+krr
+dvV
+rIX
+mki
+lsg
+mzD
+lsg
+vYn
+rnm
 mOs
 crr
-nmM
+dRM
 nmM
 kml
 kml
@@ -108913,29 +109049,29 @@ blF
 aVO
 blF
 blF
-uhq
+fhV
 mOs
-kuk
-uRo
-jwZ
-hKy
-aao
-sBh
-tjf
-qNp
-xcI
-sBh
-kuk
-kuk
-aYr
-sBh
-sBh
-kuk
-kuk
-sBh
-sBh
-sBh
-sBh
+krr
+sKN
+enC
+aOl
+wxm
+qWA
+bVp
+iqC
+sqh
+qWA
+krr
+krr
+yiB
+qWA
+qWA
+krr
+krr
+qWA
+qWA
+qWA
+qWA
 cmI
 cmI
 wrP
@@ -109204,28 +109340,28 @@ blF
 boD
 blF
 mOs
-sBh
-sBh
-sBh
-sBh
-lCV
-qCp
-sBh
-sBh
-sBh
-sBh
-sBh
-kVw
-wSj
-wSj
-axK
-tSH
-kuk
-ybl
-rdM
-dhE
-pTu
-sBh
+qWA
+qWA
+qWA
+qWA
+xQl
+enO
+qWA
+qWA
+qWA
+qWA
+qWA
+eFG
+uIg
+msd
+iai
+rcH
+krr
+hFA
+xYv
+qjP
+xod
+qWA
 mOs
 cmI
 agZ
@@ -109494,28 +109630,28 @@ blF
 blF
 blF
 mOs
-sBh
-wfh
-nUT
-sBh
-lhL
-sun
-sun
-oKF
-sun
-sun
-sun
-kDu
-phn
-kEz
-lCV
-sxS
-dev
-ltW
-eIT
-eIT
-eUS
-sBh
+qWA
+dQB
+ndS
+qWA
+vAo
+esb
+esb
+aeK
+esb
+esb
+esb
+bXs
+usw
+wCA
+rQS
+rJP
+aYl
+mDe
+oGR
+oGR
+wAm
+qWA
 mOs
 mOs
 mOs
@@ -109784,28 +109920,28 @@ blF
 aVO
 mOs
 mOs
-sBh
-mrI
-fZo
-hav
-qTP
-cJV
-ieY
-ieY
-ieY
-ieY
-ieY
-cJV
-lCV
-lCV
-qtl
-sxS
-dev
-eNB
-foY
-ejm
-rhK
-sBh
+qWA
+gBp
+wJZ
+sEr
+aGR
+txB
+imt
+imt
+imt
+imt
+imt
+gEE
+rQS
+tYu
+nNA
+nzu
+hmp
+ulQ
+idn
+pgW
+khc
+qWA
 mOs
 mOs
 mOs
@@ -110074,28 +110210,28 @@ mOs
 vXZ
 mOs
 mOs
-sBh
-wha
-hNp
-kuk
-lwv
-sfA
-mPB
-mPB
-tht
-mPB
-mPB
-eGI
-gOD
-iZP
-fyc
-rZY
-sBh
-vob
-eIT
-gDZ
-eIT
-sBh
+qWA
+fnq
+tsP
+krr
+lRT
+vzm
+gZx
+gZx
+dRb
+gZx
+gZx
+afK
+wkw
+fLx
+lye
+mCh
+qWA
+bya
+oGR
+qFR
+oGR
+qWA
 mOs
 mOs
 mOs
@@ -110364,28 +110500,28 @@ mOs
 mOs
 mOs
 mOs
-sBh
-sBh
-sBh
-kuk
-kuk
-sBh
-sBh
-sBh
-sBh
-sBh
-kuk
-kuk
-kuk
-sBh
-sBh
-sBh
-sBh
-sBh
-sBh
-sBh
-sBh
-sBh
+qWA
+qWA
+qWA
+krr
+krr
+qWA
+qWA
+qWA
+qWA
+qWA
+krr
+krr
+krr
+qWA
+qWA
+qWA
+qWA
+qWA
+qWA
+qWA
+qWA
+qWA
 mOs
 mOs
 mOs
