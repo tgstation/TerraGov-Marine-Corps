@@ -1208,3 +1208,10 @@
 	modular_id = "EORG"
 	template_width = 46
 	template_height = 46
+
+/datum/map_template/modular/factionbase/ntcgroundhq
+	name = "NTC ground hq"
+	mappath = "_maps/modularmaps/groundhq/ntcgroundhq.dmm"
+	modular_id = "ntcgroundhq"
+	template_width = 166
+	template_height = 105
