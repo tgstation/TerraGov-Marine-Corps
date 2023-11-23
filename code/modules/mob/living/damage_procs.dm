@@ -1,9 +1,7 @@
-///Returns the soft armor for the given mob. If human and a limb is specified, gets the armor for that specific limb.
-/mob/living/proc/get_soft_armor(armor_type, proj_def_zone)
+/mob/living/get_soft_armor(armor_type, proj_def_zone)
 	return soft_armor.getRating(armor_type)
 
-///Returns the hard armor for the given mob. If human and a limb is specified, gets the armor for that specific limb.
-/mob/living/proc/get_hard_armor(armor_type, proj_def_zone)
+/mob/living/get_hard_armor(armor_type, proj_def_zone)
 	return hard_armor.getRating(armor_type)
 
 /mob/living/modify_by_armor(damage_amount, armor_type, penetration, def_zone, attack_dir)

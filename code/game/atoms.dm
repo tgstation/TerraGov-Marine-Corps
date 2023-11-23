@@ -959,11 +959,20 @@ directive is properly returned.
 	* armor_type: The type of armor by which the damage will be modified
 	* penetration: How much the damage source might bypass the armour value (optional)
 	* def_zone: What part of the body we want to check the armor of (optional)
+	* attack_dir: What direction the attack was from (optional)
 
 	Hard armor reduces penetration by a flat amount, and sunder in the case of xenos
 	Penetration reduces soft armor by a flat amount.
 	Damage cannot go into the negative, or exceed the original amount.
 */
 /atom/proc/modify_by_armor(damage_amount, armor_type, penetration, def_zone, attack_dir)
-	penetration = max(0, penetration - hard_armor.getRating(armor_type))
-	return clamp((damage_amount * (1 - ((soft_armor.getRating(armor_type) - penetration) * 0.01))), 0, damage_amount)
+	penetration = max(0, penetration - get_hard_armor(armor_type, def_zone))
+	return clamp((damage_amount * (1 - ((get_soft_armor(armor_type, def_zone) - penetration) * 0.01))), 0, damage_amount)
+
+///Returns the soft armor for the given atom. If human and a limb is specified, gets the armor for that specific limb.
+/atom/proc/get_soft_armor(armor_type, proj_def_zone)
+	return
+
+///Returns the hard armor for the given atom. If human and a limb is specified, gets the armor for that specific limb.
+/atom/proc/get_hard_armor(armor_type, proj_def_zone)
+	return

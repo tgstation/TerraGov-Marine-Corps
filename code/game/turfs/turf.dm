@@ -207,6 +207,12 @@
 	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_CHEM))
 		S.reagents?.reaction(src, VAPOR, S.fraction)
 
+/turf/get_soft_armor(armor_type, proj_def_zone)
+	return soft_armor.getRating(armor_type)
+
+/turf/get_hard_armor(armor_type, proj_def_zone)
+	return hard_armor.getRating(armor_type)
+
 /turf/proc/levelupdate()
 	for(var/obj/O in src)
 		if(O.flags_atom & INITIALIZED)
