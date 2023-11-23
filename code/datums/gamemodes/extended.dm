@@ -7,7 +7,6 @@
 	valid_job_types = list(
 		/datum/job/terragov/command/captain = 1,
 		/datum/job/terragov/command/fieldcommander = 1,
-		/datum/job/terragov/command/ceo = 1,
 		/datum/job/terragov/command/corpseccommander = 1,
 		/datum/job/terragov/command/staffofficer = 4,
 		/datum/job/terragov/command/pilot = 2,
@@ -28,6 +27,13 @@
 		/datum/job/terragov/squad/leader = 4,
 		/datum/job/terragov/squad/standard = -1,
 		/datum/job/survivor = -1,
+		/obj/effect/landmark/start/job/som/commander = 1,
+		/obj/effect/landmark/start/job/som/fieldcommander = 1,
+		/obj/effect/landmark/start/job/som/squadcorpsman = 1,
+		/obj/effect/landmark/start/job/som/squadengineer = 1,
+		/obj/effect/landmark/start/job/som/squadleader = 1,
+		/obj/effect/landmark/start/job/som/squadveteran = 1,
+		/obj/effect/landmark/start/job/som/squadstandard = 5,
 		/datum/job/xenomorph = FREE_XENO_AT_START,
 		/datum/job/xenomorph/queen = 1
 	)
