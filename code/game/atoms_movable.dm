@@ -763,14 +763,59 @@
 		if(!check_rights(NONE))
 			return
 	if(href_list[VV_HK_DELETE_ALL_INSTANCES])
-		if(!check_rights(NONE))
+		if(!check_rights(R_DEBUG|R_SERVER))
 			return
+
+		var/obj/O = locate(href_list["delall"])
+		if(!isobj(O))
+			return
+
+		var/action_type = alert("Strict type ([O.type]) or type and all subtypes?", "Type", "Strict type", "Type and subtypes", "Cancel")
+		if(action_type == "Cancel" || !action_type)
+			return
+
+		if(alert("Are you really sure you want to delete all objects of type [O.type]?", "Warning", "Yes", "No") != "Yes")
+			return
+
+		if(alert("Second confirmation required. Delete?", "Warning", "Yes", "No") != "Yes")
+			return
+
+		var/O_type = O.type
+		var/i = 0
+		var/strict
+		switch(action_type)
+			if("Strict type")
+				strict = TRUE
+				for(var/obj/Obj in world)
+					if(Obj.type == O_type)
+						i++
+						qdel(Obj)
+					CHECK_TICK
+				if(!i)
+					to_chat(usr, "No objects of this type exist")
+					return
+			if("Type and subtypes")
+				for(var/obj/Obj in world)
+					if(istype(Obj,O_type))
+						i++
+						qdel(Obj)
+					CHECK_TICK
+				if(!i)
+					to_chat(usr, "No objects of this type exist")
+					return
+
+		log_admin("[key_name(usr)] deleted all objects of type[strict ? "" : " and subtypes"] of [O_type] ([i] objects deleted).")
+		message_admins("[ADMIN_TPMONTY(usr)] deleted all objects of type[strict ? "" : " and subtypes"] of [O_type] ([i] objects deleted).")
 	if(href_list[VV_HK_UPDATE_ICONS])
-		if(!check_rights(NONE))
+		if(!check_rights(R_DEBUG))
 			return
+		update_icon()
+		log_admin("[key_name(usr)] updated the icon of [src].")
 	if(href_list[VV_HK_EDIT_PARTICLES])
-		if(!check_rights(NONE))
+		if(!check_rights(R_VAREDIT))
 			return
+		var/client/C = usr.client
+		C?.open_particle_editor(src)
 
 /atom/movable/proc/get_language_holder(shadow = TRUE)
 	if(language_holder)
