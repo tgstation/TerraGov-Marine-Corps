@@ -8,7 +8,7 @@
 /obj/item/armor_module/armor/highlight/on_attach(obj/item/attaching_to, mob/user)
 	icon = attaching_to.icon
 	greyscale_config = attaching_to.greyscale_config
-	RegisterSignal(attaching_to, COMSIG_ITEM_VARIANT_CHANGE, PROC_REF(on_variant_change)())
+	RegisterSignal(attaching_to, COMSIG_ITEM_VARIANT_CHANGE, PROC_REF(on_variant_change))
 	. = ..()
 
 /obj/item/armor_module/armor/highlight/proc/on_variant_change(mob/user, variant)
