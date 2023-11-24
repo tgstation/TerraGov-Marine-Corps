@@ -315,17 +315,17 @@ WEAPONS
 /datum/supply_packs/weapons/flak_gun
 	name = "FK-88 Flak Gun"
 	contains = list(/obj/item/weapon/gun/heavy_isg)
-	cost = 1200
+	cost = 1000
 
 /datum/supply_packs/weapons/flak_he
 	name = "ISG-15 HE Shell"
 	contains = list(/obj/item/ammo_magazine/heavy_isg/he)
-	cost = 100
+	cost = 60
 
 /datum/supply_packs/weapons/flak_sabot
 	name = "ISG-15 APFDS Shell"
 	contains = list(/obj/item/ammo_magazine/heavy_isg/sabot)
-	cost = 120
+	cost = 60
 
 /datum/supply_packs/weapons/heayvlaser_emplacement
 	name = "Mounted Heavy Laser"

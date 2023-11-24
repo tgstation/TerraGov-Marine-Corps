@@ -2128,7 +2128,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	hud_state = "bigshell_he"
 	hud_state_empty = "shell_empty"
 	flags_ammo_behavior = AMMO_ROCKET|AMMO_EXPLOSIVE
-	damage = 50
+	damage = 175
 	penetration = 200
 	max_range = 30
 	shell_speed = 0.75
@@ -2148,8 +2148,8 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	icon_state = "apfds"
 	hud_state = "bigshell_apfds"
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_PASS_THROUGH_TURF|AMMO_PASS_THROUGH_MOVABLE
-	damage = 200
-	penetration = 75
+	damage = 300
+	penetration = 50
 	shell_speed = 7
 	accurate_range = 24
 	accurate_range_min = 6
@@ -2160,7 +2160,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/bullet/isg_apfds/on_hit_mob(mob/M, obj/projectile/P)
 	P.proj_max_range -= 2
-	staggerstun(M, P, max_range = 20, slowdown = 0.5)
+	staggerstun(M, P, max_range = 20, slowdown = 1)
 
 /datum/ammo/bullet/isg_apfds/on_hit_obj(obj/O, obj/projectile/P)
 	P.proj_max_range -= 5
