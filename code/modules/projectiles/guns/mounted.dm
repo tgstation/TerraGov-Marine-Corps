@@ -16,24 +16,6 @@
 	new /obj/item/weapon/gun/tl102(src) //gun itself
 	new /obj/item/ammo_magazine/tl102(src) //ammo for the gun
 
-///box for storage of the non-TGMC HMG
-/obj/item/storage/box/tl102/icc_hsg
-	name = "\improper KRD-61 crate"
-	desc = "A large and rusted metal case. It has not seen much use. Written in faded letters on its top, it says, \"This is a KRD-61 HSG\". There are many other warning labels atop that are too faded to read."
-	icon = 'icons/Marine/marine-hmg.dmi'
-	icon_state = "crate"
-	w_class = WEIGHT_CLASS_HUGE
-	storage_slots = 7
-	bypass_w_limit = list(
-		/obj/item/weapon/gun/tl102/icc_hsg,
-		/obj/item/ammo_magazine/icc_hsg,
-	)
-
-/obj/item/storage/box/tl102/Initialize(mapload)
-	. = ..()
-	new /obj/item/weapon/gun/tl102/icc_hsg/export(src) //gun itself
-	new /obj/item/ammo_magazine/icc_hsg(src) //ammo for the gun
-
 ///HSG-102, now with full auto. It is not a superclass of deployed guns, however there are a few varients.
 /obj/item/weapon/gun/tl102
 	name = "\improper HSG-102 mounted heavy smartgun"
@@ -106,23 +88,6 @@
 
 /obj/item/weapon/gun/tl102/hsg_nest/sandless
 	icon_state = "entrenched_sandless"
-
-// Non-TGMC IFF HSG
-
-/obj/item/weapon/gun/tl102/icc_hsg
-	name = "\improper ML-91ES mounted heavy smartgun"
-	desc = "The ML-91 heavy machinegun used by forces inside ICC space, some rarely find themselves in TGMC space as the export variant. It's too heavy to be wielded or operated without the tripod. This upated version is IFF capable. No extra work required, just deploy it with Ctrl-Click. Can be repaired with a blowtorch once deployed."
-	icon = 'icons/Marine/marine-mmg.dmi'
-	icon_state = "kord"
-
-	allowed_ammo_types = list(
-		/obj/item/ammo_magazine/icc_hsg,
-		/obj/item/ammo_magazine/icc_hsg/export,
-	)
-
-/obj/item/weapon/gun/tl102/icc_hsg/export
-	name = "\improper KRD-61ES mounted heavy smartgun"
-	desc = "The KRD-61ES machinegun is the export variant of the ML-91 HMG. It's too heavy to be wielded or operated without the tripod. This upated version is IFF capable. No extra work required, just deploy it with Ctrl-Click. Can be repaired with a blowtorch once deployed."
 
 //-------------------------------------------------------
 //MG-2005 mounted minigun
@@ -700,3 +665,60 @@
 		gun_user?.record_war_crime()
 
 
+// Non-TGMC HMG
+
+/obj/item/weapon/gun/icc_hmg
+	name = "\improper ML-91ES mounted heavy smartgun"
+	desc = "The ML-91 heavy machinegun used by forces inside ICC space, some rarely find themselves in TGMC space as the export variant. It's too heavy to be wielded or operated without the tripod. This upated version is IFF capable. No extra work required, just deploy it with Ctrl-Click. Can be repaired with a blowtorch once deployed."
+	icon = 'icons/Marine/marine-mmg.dmi'
+	icon_state = "kord"
+
+	fire_sound = 'sound/weapons/guns/fire/hmg2.ogg'
+	reload_sound = 'sound/weapons/guns/interact/minigun_cocked.ogg'
+
+	w_class = WEIGHT_CLASS_HUGE
+	flags_equip_slot = ITEM_SLOT_BACK
+
+	scatter = 10
+	deployed_scatter_change = -10
+	accuracy_mult = 1.2 //it's got a bipod
+	fire_delay = 0.25 SECONDS
+
+	default_ammo_type = /obj/item/ammo_magazine/icc_hmg
+
+	allowed_ammo_types = list(
+		/obj/item/ammo_magazine/icc_hmg,
+		/obj/item/ammo_magazine/icc_hmg/export,
+	)
+
+	flags_item = IS_DEPLOYABLE|TWOHANDED
+	flags_gun_features = GUN_AMMO_COUNTER|GUN_DEPLOYED_FIRE_ONLY|GUN_WIELDED_FIRING_ONLY|GUN_IFF|GUN_SMOKE_PARTICLES
+	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
+	actions_types = list(/datum/action/item_action/aim_mode)
+	aim_fire_delay = 0.05 SECONDS
+	aim_speed_modifier = 5
+
+	attachable_allowed = list(
+		/obj/item/attachable/scope/unremovable/tl102,
+	)
+
+	starting_attachment_types = list(
+		/obj/item/attachable/scope/unremovable/tl102,
+	)
+
+	deploy_time = 1.5 SECONDS
+	undeploy_time = 0.5 SECONDS
+	deployable_item = /obj/machinery/deployable/mounted
+
+	max_integrity = 200
+	soft_armor = list(MELEE = 0, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 100, FIRE = 0, ACID = 20)
+
+	allowed_ammo_types = list(
+		/obj/item/ammo_magazine/icc_hmg,
+		/obj/item/ammo_magazine/icc_hmg/export,
+	)
+
+/obj/item/weapon/gun/icc_hmg/export
+	name = "\improper KRD-61ES mounted heavy smartgun"
+	desc = "The KRD-61ES machinegun is the export variant of the ML-91 HMG. It's too heavy to be wielded or operated without the tripod. No extra work required, just deploy it with Ctrl-Click. Can be repaired with a blowtorch once deployed."
+	default_ammo_type = /obj/item/ammo_magazine/icc_hmg/export

@@ -16,24 +16,6 @@
 /obj/item/ammo_magazine/tl102/hsg_nest
 	max_rounds = 500
 
-///Default ammo for the ML-91 and its export variants.
-/obj/item/ammo_magazine/icc_hsg
-	name = "ML-91 box magazine (10x30mm Caseless)"
-	desc = "A box of 300, 10x30mm caseless tungsten rounds for the ML-91E3 mounted heavy smartgun."
-	w_class = WEIGHT_CLASS_NORMAL
-	icon = 'icons/Marine/marine-hmg.dmi'
-	icon_state = "mag"
-	flags_magazine = NONE
-	caliber = CALIBER_10X30
-	max_rounds = 300
-	default_ammo = /datum/ammo/bullet/machinegun
-	reload_delay = 5 SECONDS
-	icon_state_mini = "mag_hmg"
-
-/obj/item/ammo_magazine/icc_hsg/export
-	name = "KRD-61ES box magazine (10x30mm Caseless)"
-	desc = "A box of 300, 10x30mm caseless tungsten rounds for the ML-91E3 mounted heavy smartgun."
-
 /obj/item/ammo_magazine/heavymachinegun
 	name = "HMG-08 drum magazine (10x30mm Caseless)"
 	desc = "A box of 500, 10x28mm caseless tungsten rounds for the HMG-08 mounted heavy machinegun. Is probably not going to fit in your backpack. Put it on your belt or back."
@@ -230,3 +212,21 @@
 	desc = "A 15cm APFDS shell for the FK-88 mounted flak gun containing a large metal dart fired at hypersonic speeds, will pierce through basically anything and onto the other side with ease. Requires a minimum range before it stabilizes to properly hit anything, will rip a clean hole through basically anything."
 	icon_state = "isg_ammo_sabot"
 	default_ammo = /datum/ammo/bullet/heavy_isg_apfds
+
+///Default ammo for the ML-91 and its export variants.
+/obj/item/ammo_magazine/icc_hmg
+	name = "ML-91 box magazine (10x30mm Caseless)"
+	desc = "A box of 300, 10x30mm caseless tungsten rounds for the ML-91E3 mounted heavy smartgun."
+	w_class = WEIGHT_CLASS_NORMAL
+	icon = 'icons/Marine/marine-mmg.dmi'
+	icon_state = "kord_mag"
+	flags_magazine = NONE
+	caliber = CALIBER_10X30
+	max_rounds = 300
+	default_ammo = /datum/ammo/bullet/machinegun
+	reload_delay = 5 SECONDS
+	icon_state_mini = "mag_hmg"
+
+/obj/item/ammo_magazine/icc_hmg/export
+	name = "KRD-61ES box magazine (10x30mm Caseless)"
+	desc = "A box of 300, 10x30mm caseless tungsten rounds for the ML-91E3 mounted heavy smartgun."
