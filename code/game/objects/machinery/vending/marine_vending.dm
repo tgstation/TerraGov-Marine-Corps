@@ -110,7 +110,7 @@
 			/obj/item/ammo_magazine/rifle/tx54/incendiary = 4,
 			/obj/item/ammo_magazine/rifle/tx54/smoke = 4,
 			/obj/item/ammo_magazine/rifle/tx54/smoke/tangle = 2,
-			/obj/item/explosive/grenade = 600,
+			/obj/item/explosive/grenade = 200,
 			/obj/item/explosive/grenade/m15 = 30,
 			/obj/item/explosive/grenade/sticky = 125,
 			/obj/item/explosive/grenade/sticky/trailblazer = 75,
@@ -322,7 +322,7 @@
 		"Grenades" = list(
 			/obj/item/weapon/gun/grenade_launcher/single_shot = -1,
 			/obj/item/weapon/gun/grenade_launcher/multinade_launcher/unloaded = -1,
-			/obj/item/explosive/grenade = 600,
+			/obj/item/explosive/grenade = 200,
 			/obj/item/explosive/grenade/m15 = 30,
 			/obj/item/explosive/grenade/sticky = 125,
 			/obj/item/explosive/grenade/incendiary = 50,
