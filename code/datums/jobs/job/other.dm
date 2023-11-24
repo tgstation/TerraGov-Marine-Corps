@@ -102,3 +102,14 @@
 
 /datum/job/zombie
 	title = "Oh god run"
+
+/datum/job/prisoner
+	title = "Prisoner"
+	paygrade = "Psnr"
+	outfit = /datum/outfit/job/other/prisoner
+
+/datum/outfit/job/other/prisoner
+	id = /obj/item/card/id
+	w_uniform = /obj/item/clothing/under/rank/prisoner
+	shoes = /obj/item/clothing/shoes/orange
+	r_store = /obj/item/radio

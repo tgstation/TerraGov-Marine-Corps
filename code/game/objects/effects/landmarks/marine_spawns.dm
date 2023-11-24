@@ -112,7 +112,7 @@
 
 /obj/effect/landmark/start/job/survivor
 	icon_state = "Shaft Miner"
-	job = /datum/job/survivor/rambo
+	job = /datum/job/survivor
 
 /obj/effect/landmark/start/job/fallen
 	job = /datum/job/fallen/marine
@@ -172,3 +172,7 @@
 /obj/effect/landmark/start/job/clf/standard
     icon_state = "Shaft Miner"
     job = /datum/outfit/job/clf/standard
+
+/obj/effect/landmark/start/job/prisoner
+    icon_state = "Shaft Miner"
+    job = /datum/outfit/job/other/prisoner
