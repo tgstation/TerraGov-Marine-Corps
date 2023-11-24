@@ -77,7 +77,7 @@
 			"icon_state": "chest_highlight"
 		}
 	],
-"chest_webbing_highlight": [
+	"chest_webbing_highlight": [
 	{
 		"type": "hyperscale",
 		"icon_state": "chest_webbing_highlight"
