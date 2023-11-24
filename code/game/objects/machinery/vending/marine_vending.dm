@@ -1469,20 +1469,6 @@
 			/obj/item/implanter/chem/blood = -1,
 			/obj/item/implanter/blade = -1,
 		),
-		"Reqtorio" = list(
-			/obj/item/paper/factoryhowto = -1,
-			/obj/machinery/factory/cutter = -1,
-			/obj/machinery/factory/heater = -1,
-			/obj/machinery/factory/flatter = -1,
-			/obj/machinery/factory/former = -1,
-			/obj/machinery/factory/reconstructor = -1,
-			/obj/machinery/unboxer = -1,
-			/obj/machinery/factory/driller = -1,
-			/obj/machinery/factory/galvanizer = -1,
-			/obj/machinery/factory/compressor = -1,
-			/obj/item/stack/conveyor/thirty = 10,
-			/obj/item/conveyor_switch_construct = 10,
-		),
 	)
 
 /obj/machinery/vending/valhalla_seasonal_req
