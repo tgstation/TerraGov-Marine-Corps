@@ -320,12 +320,12 @@ WEAPONS
 /datum/supply_packs/weapons/flak_he
 	name = "ISG-15 HE Shell"
 	contains = list(/obj/item/ammo_magazine/heavy_isg/he)
-	cost = 60
+	cost = 50
 
 /datum/supply_packs/weapons/flak_sabot
 	name = "ISG-15 APFDS Shell"
 	contains = list(/obj/item/ammo_magazine/heavy_isg/sabot)
-	cost = 60
+	cost = 50
 
 /datum/supply_packs/weapons/heayvlaser_emplacement
 	name = "Mounted Heavy Laser"

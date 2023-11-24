@@ -2128,7 +2128,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	hud_state = "bigshell_he"
 	hud_state_empty = "shell_empty"
 	flags_ammo_behavior = AMMO_ROCKET|AMMO_EXPLOSIVE
-	damage = 175
+	damage = 100
 	penetration = 200
 	max_range = 30
 	shell_speed = 0.75
