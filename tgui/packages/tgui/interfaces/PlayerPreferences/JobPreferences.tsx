@@ -23,6 +23,7 @@ export const JobPreferences = (props, context) => {
   const commandRoles = [
     'Captain',
     'Field Commander',
+    'Corpsec Commander',
     'Staff Officer',
     'Pilot Officer',
     'Synthetic',
@@ -38,6 +39,7 @@ export const JobPreferences = (props, context) => {
   ];
   const marineJobs = [
     'Squad Marine',
+    'Corpsec Officer',
     'Squad Engineer',
     'Squad Corpsman',
     'Squad Smartgunner',
@@ -54,7 +56,7 @@ export const JobPreferences = (props, context) => {
     'SOM Staff Officer',
     'SOM Commander',
   ];
-  const flavourJobs = ['Corporate Liaison'];
+  const flavourJobs = ['Corporate Liaison', 'Survivor'];
 
   const JobList = ({ name, jobs }) => (
     <Section title={name}>
