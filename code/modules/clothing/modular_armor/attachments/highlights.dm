@@ -5,23 +5,29 @@
 	secondary_color = TRUE
 	flags_item_map_variant = NONE
 
-/obj/item/armor_module/armor/highlight/on_attach(obj/item/attaching_to, mob/user)
-	icon = attaching_to.icon
-	greyscale_config = attaching_to.greyscale_config
-	RegisterSignal(attaching_to, COMSIG_ITEM_VARIANT_CHANGE, PROC_REF(on_variant_change))
-	. = ..()
+// /obj/item/armor_module/armor/highlight/on_attach(obj/item/attaching_to, mob/user)
+//	icon = attaching_to.icon
+//	greyscale_config = attaching_to.greyscale_config
+//	RegisterSignal(attaching_to, COMSIG_ITEM_VARIANT_CHANGE, PROC_REF(on_variant_change))
+//	. = ..()
 
-/obj/item/armor_module/armor/highlight/proc/on_variant_change(mob/user, variant)
-	SIGNAL_HANDLER
-	if(variant in icon_state_variants)
-		current_variant = variant
-		update_icon()
-		update_greyscale()
+// /obj/item/armor_module/armor/highlight/proc/on_variant_change(mob/user, variant)
+//	SIGNAL_HANDLER
+//	if(variant in icon_state_variants)
+//		current_variant = variant
+//		update_icon()
+//		update_greyscale()
 
 /obj/item/armor_module/armor/highlight/chest_highlight
 	name = "chest highlight"
 	icon_state = "chest_highlight"
 	slot = ATTACHMENT_SLOT_CHEST_HIGHLIGHT
+
+/obj/item/armor_module/armor/highlight/chest_highlight/syndicate
+    icon_state_variants = list(
+        "normal",
+        "webbing",
+    )
 
 /obj/item/armor_module/armor/highlight/leg_highlight
 	name = "leg highlight"
