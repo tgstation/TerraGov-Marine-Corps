@@ -157,7 +157,7 @@
 	evasion_stacks = max(0, evasion_stacks - proj.damage) // We lose evasion stacks equal to the burn damage.
 	if(evasion_stacks)
 		owner.balloon_alert(owner, "Evasion reduced, damaged")
-		to_chat(owner, span_danger("The searing fire compromises our ability to dodge![RUNNER_EVASION_COOLDOWN_REFRESH_THRESHOLD - evasion_stacks > 0 ? " We must dodge [RUNNER_EVASION_COOLDOWN_REFRESH_THRESHOLD - evasion_stacks] more projectile damage before Evasion's cooldown refreshes." : ""]"))
+		to_chat(owner, span_danger("The searing fire compromises our ability to dodge!"))
 	else // If we have no stacks left, disable Evasion.
 		evasion_deactivate()
 
@@ -222,8 +222,8 @@
 		return FALSE
 	if(proj.original_target == xeno_owner && proj.distance_travelled < 2) //Pointblank shot.
 		return FALSE
-	if(!(proj.ammo.flags_ammo_behavior & AMMO_SENTRY) && !xeno_owner.fire_stacks) //We ignore projectiles from automated sources/sentries for the purpose of contributions towards our cooldown refresh; also fire prevents accumulation of evasion stacks
-		evasion_stacks += proj.damage //Add to evasion stacks for the purposes of determining whether or not our cooldown refreshes
+	if(!(proj.ammo.flags_ammo_behavior & AMMO_SENTRY) && !xeno_owner.fire_stacks) //Fire prevents accumulation of evasion stacks
+		evasion_stacks += proj.damage
 	evasion_dodge_fx(proj)
 	return COMPONENT_PROJECTILE_DODGE
 
@@ -231,14 +231,12 @@
 /datum/action/xeno_action/evasion/proc/evasion_dodge_fx(atom/movable/proj)
 	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	xeno_owner.visible_message(span_warning("[xeno_owner] effortlessly dodges the [proj.name]!"), \
-	span_xenodanger("We effortlessly dodge the [proj.name]![(RUNNER_EVASION_COOLDOWN_REFRESH_THRESHOLD - evasion_stacks) > 0 && evasion_stacks > 0 ? " We must dodge [RUNNER_EVASION_COOLDOWN_REFRESH_THRESHOLD - evasion_stacks] more projectile damage before [src]'s cooldown refreshes." : ""]"))
+	span_xenodanger("We effortlessly dodge the [proj.name]!"))
 	xeno_owner.add_filter("runner_evasion", 2, gauss_blur_filter(5))
 	addtimer(CALLBACK(xeno_owner, TYPE_PROC_REF(/atom, remove_filter), "runner_evasion"), 0.5 SECONDS)
 	xeno_owner.do_jitter_animation(4000)
-	if(evasion_stacks >= RUNNER_EVASION_COOLDOWN_REFRESH_THRESHOLD && cooldown_remaining()) //We have more evasion stacks than needed to refresh our cooldown, while being on cooldown.
-		clear_cooldown()
-		if(auto_evasion && xeno_owner.plasma_stored >= plasma_cost)
-			action_activate()
+	if(auto_evasion && xeno_owner.plasma_stored >= plasma_cost)
+		action_activate()
 	var/turf/current_turf = get_turf(xeno_owner) //location of after image SFX
 	playsound(current_turf, pick('sound/effects/throw.ogg','sound/effects/alien_tail_swipe1.ogg', 'sound/effects/alien_tail_swipe2.ogg'), 25, 1) //sound effects
 	var/obj/effect/temp_visual/xenomorph/afterimage/after_image
