@@ -250,6 +250,9 @@
 			mortar.recieve_target(TU,user)
 			return
 		if(MODE_RAILGUN)
+			if(SSticker?.mode?.flags_round_type & MODE_DISALLOW_RAILGUN)
+				to_chat(user, span_notice("ERROR. NO LINKED RAILGUN DETECTED. UNABLE TO FIRE."))
+				return
 			to_chat(user, span_notice("ACQUIRING TARGET. RAILGUN TRIANGULATING. DON'T MOVE."))
 			if((GLOB.marine_main_ship?.rail_gun?.last_firing + COOLDOWN_RAILGUN_FIRE) > world.time)
 				to_chat(user, "[icon2html(src, user)] [span_warning("The Rail Gun hasn't cooled down yet!")]")
