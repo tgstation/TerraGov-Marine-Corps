@@ -216,7 +216,7 @@
 	proj.flags_projectile_behavior |= PROJECTILE_FROZEN
 	proj.iff_signal = null
 	frozen_projectiles += proj
-	take_damage(proj.damage, proj.ammo.damage_type, proj.ammo.armor_type, 0, turn(proj.dir, 180), proj.ammo.penetration)
+	take_damage(proj.damage, proj.ammo.damage_type, proj.ammo.armor_type, 0, REVERSE_DIR(proj.dir), proj.ammo.penetration)
 	alpha = obj_integrity * 255 / max_integrity
 	if(obj_integrity <= 0)
 		release_projectiles()

@@ -157,11 +157,6 @@
 	name = "\improper Command Cockpit"
 	},
 /obj/structure/cable,
-/obj/machinery/door/poddoor/mainship{
-	dir = 2;
-	id = "Interior_Emergency_umbilical";
-	name = "\improper Umbillical Airlock"
-	},
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury/cic)
 "ax" = (

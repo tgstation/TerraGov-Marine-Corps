@@ -181,6 +181,7 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 		existing_asset.reapply()
 	else
 		faction_assets[new_asset] = new new_asset(src)
+		RegisterSignals(faction_assets[new_asset], list(COMSIG_CAMPAIGN_ASSET_ACTIVATION, COMSIG_CAMPAIGN_DISABLER_ACTIVATION), PROC_REF(force_update_static_data))
 
 ///handles post mission wrap up for the faction
 /datum/faction_stats/proc/mission_end(datum/source, datum/campaign_mission/completed_mission, winning_faction)
@@ -233,6 +234,11 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 	if(ismarinecommandjob(user.job) || issommarinecommandjob(user.job))
 		return TRUE
 
+///force updates static data when something changes externally
+/datum/faction_stats/proc/force_update_static_data()
+	SIGNAL_HANDLER
+	update_static_data_for_all_viewers()
+
 //UI stuff//
 
 /datum/faction_stats/ui_interact(mob/living/user, datum/tgui/ui)
@@ -270,6 +276,7 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 	current_mission_data["outcome"] = current_mission.outcome
 	current_mission_data["objective_description"] = (faction == current_mission.starting_faction ? current_mission.starting_faction_objective_description : current_mission.hostile_faction_objective_description)
 	current_mission_data["mission_brief"] = (faction == current_mission.starting_faction ? current_mission.starting_faction_mission_brief : current_mission.hostile_faction_mission_brief)
+	current_mission_data["mission_parameters"] = (faction == current_mission.starting_faction ? current_mission.starting_faction_mission_parameters : current_mission.hostile_faction_mission_parameters)
 	current_mission_data["mission_rewards"] = (faction == current_mission.starting_faction ? current_mission.starting_faction_additional_rewards : current_mission.hostile_faction_additional_rewards)
 	current_mission_data["vp_major_reward"] = (faction == current_mission.starting_faction ? current_mission.victory_point_rewards[MISSION_OUTCOME_MAJOR_VICTORY][1] : current_mission.victory_point_rewards[MISSION_OUTCOME_MAJOR_LOSS][2])
 	current_mission_data["vp_minor_reward"] = (faction == current_mission.starting_faction ? current_mission.victory_point_rewards[MISSION_OUTCOME_MINOR_VICTORY][1] : current_mission.victory_point_rewards[MISSION_OUTCOME_MINOR_LOSS][2])
@@ -308,6 +315,7 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 		mission_data["outcome"] = finished_mission.outcome
 		mission_data["objective_description"] = (faction == finished_mission.starting_faction ? finished_mission.starting_faction_objective_description : finished_mission.hostile_faction_objective_description)
 		mission_data["mission_brief"] = (faction == finished_mission.starting_faction ? finished_mission.starting_faction_mission_brief : finished_mission.hostile_faction_mission_brief)
+		mission_data["mission_parameters"] = (faction == finished_mission.starting_faction ? finished_mission.starting_faction_mission_parameters : finished_mission.hostile_faction_mission_parameters)
 		mission_data["mission_rewards"] = (faction == finished_mission.starting_faction ? finished_mission.starting_faction_additional_rewards : finished_mission.hostile_faction_additional_rewards)
 		finished_missions_data += list(mission_data)
 	data["finished_missions"] = finished_missions_data
@@ -369,7 +377,7 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 			if(!is_leadership_role(user))
 				to_chat(user, "<span class='warning'>Only leadership roles can do this.")
 				return
-			if(current_mode.current_mission?.mission_state != MISSION_STATE_NEW)
+			if((current_mode.current_mission?.mission_state != MISSION_STATE_NEW) && (current_mode.current_mission?.mission_state != MISSION_STATE_LOADED))
 				to_chat(user, "<span class='warning'>Current mission already ongoing, unable to assign more personnel at this time.")
 				return
 			total_attrition_points += active_attrition_points
@@ -420,13 +428,12 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 				if(!(ismarineleaderjob(user.job) || issommarineleaderjob(user.job)))
 					to_chat(user, "<span class='warning'>Only squad leaders and above can do this.")
 					return
-			if(!choice.attempt_activatation())
+			if(!choice.attempt_activatation(user))
 				return
 			for(var/mob/living/carbon/human/faction_member AS in GLOB.alive_human_list_faction[faction])
 				faction_member.playsound_local(null, 'sound/effects/CIC_order.ogg', 30, 1)
 				faction_member.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>OVERWATCH</u></span><br>" + "[choice.name] asset activated", faction_portrait)
 				to_chat(faction_member, "<span class='warning'>[user] has activated the [choice.name] campaign asset.")
-			update_static_data_for_all_viewers()
 			return TRUE
 
 		if("purchase_reward")

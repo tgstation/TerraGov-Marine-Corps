@@ -447,9 +447,13 @@
 	desc = "A field of invisible energy, it protects the wearer but prevents any clothing from being worn."
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "shield-blue"
-	flags_item = NODROP|DELONDROP
+	flags_item = DELONDROP
 	soft_armor = list(MELEE = 65, BULLET = 60, LASER = 30, ENERGY = 20, BOMB = 25, BIO = 40, FIRE = 20, ACID = 20)
 	anti_hug = 5
+
+/obj/item/clothing/head/helmet/sectoid/Initialize(mapload)
+	. = ..()
+	ADD_TRAIT(src, TRAIT_NODROP, SECTOID_TRAIT)
 
 /obj/item/clothing/head/helmet/marine/icc
 	name = "\improper Modelle/20 combat helmet"

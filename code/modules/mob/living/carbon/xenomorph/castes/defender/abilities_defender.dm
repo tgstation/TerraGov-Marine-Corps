@@ -38,7 +38,7 @@
 	var/list/L = orange(sweep_range, X)		// Not actually the fruit
 
 	for (var/mob/living/carbon/human/H in L)
-		step_away(H, src, sweep_range, 2)
+		H.knockback(X, sweep_range, 4)
 		H.add_filter("defender_tail_sweep", 2, gauss_blur_filter(1)) //Add cool SFX; motion blur
 		addtimer(CALLBACK(H, TYPE_PROC_REF(/atom, remove_filter), "defender_tail_sweep"), 0.5 SECONDS) //Remove cool SFX
 		if(H.stat != DEAD && !isnestedhost(H) ) //No bully
@@ -96,8 +96,6 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_FORWARD_CHARGE,
 	)
-	///How far can we charge
-	var/range = 4
 	///How long is the windup before charging
 	var/windup_time = 0.5 SECONDS
 
@@ -156,7 +154,7 @@
 	RegisterSignal(X, COMSIG_XENO_LIVING_THROW_HIT, PROC_REF(mob_hit))
 	RegisterSignal(X, COMSIG_MOVABLE_POST_THROW, PROC_REF(charge_complete))
 
-	X.throw_at(A, range, 5, X)
+	X.throw_at(A, DEFENDER_CHARGE_RANGE, 5, X)
 
 	add_cooldown()
 
@@ -166,7 +164,7 @@
 /datum/action/xeno_action/activable/forward_charge/ai_should_use(atom/target)
 	if(!iscarbon(target))
 		return FALSE
-	if(!line_of_sight(owner, target, range))
+	if(!line_of_sight(owner, target, DEFENDER_CHARGE_RANGE))
 		return FALSE
 	if(!can_use_action(override_flags = XACT_IGNORE_SELECTED_ABILITY))
 		return FALSE
@@ -441,7 +439,7 @@
 	playsound(X, pick('sound/effects/alien_tail_swipe1.ogg','sound/effects/alien_tail_swipe2.ogg','sound/effects/alien_tail_swipe3.ogg'), 25, 1) //Sound effects
 
 	for(var/mob/living/carbon/human/slapped in orange(1, X))
-		step_away(slapped, src, 1, 2)
+		slapped.knockback(X, 1, 4)
 		if(slapped.stat == DEAD)
 			continue
 		var/damage = X.xeno_caste.melee_damage/2
