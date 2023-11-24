@@ -16,7 +16,8 @@
 #warn WARNING! your byond version is over the recommended version! There may be unexpected byond bugs!
 #endif
 
-// So we want to have compile time guarantees these methods exist on local type, unfortunately 515 killed the .proc/procname and .verb/verbname syntax so we have to use nameof()
+// So we want to have compile time guarantees these methods exist on local type
+// We use wrappers for this in case some part of the api ever changes, and to make their function more clear
 // For the record: GLOBAL_VERB_REF would be useless as verbs can't be global.
 
 /// Call by name proc references, checks if the proc exists on either this type or as a global proc.
