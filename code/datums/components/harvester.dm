@@ -1,9 +1,11 @@
 #define NO_REAGENT_COLOR "#FFFFFF"
 
 #define VALI_CODEX "<b>Reagent info:</b><BR>\
-	Bicaridine - heals somebody else for 12.5 brute, or when used on yourself heal 6 brute and 30 stamina<BR>\
-	Kelotane - set your target and any adjacent mobs aflame<BR>\
-	Tramadol - slow your target for 1 second and deal 60% more armor-piercing damage<BR>\
+	All chems - Deal an additional 60% of the weapons damage as true damage<BR>\
+	Bicaridine - Heals yourself and restores stamina upon attacking an enemy. Channel a heal on help intent to restore more health to allies<BR>\
+	Kelotane - Set your target aflame<BR>\
+	Tramadol - Slow your target for 1 second<BR>\
+	Tricordrazine - Sunders and shatters your targets armor<BR>\
 	<BR>\
 	<b>Tips:</b><BR>\
 	> Needs to be connected to the Vali system to collect green blood. You can connect it though the Vali system's configurations menu.<BR>\
@@ -217,22 +219,22 @@
 		return
 
 	switch(loaded_reagent)
-		if(/datum/reagent/medicine/tramadol)
-			target.apply_damage(weapon.force*0.6, BRUTE, user.zone_selected)
-			target.apply_status_effect(/datum/status_effect/incapacitating/harvester_slowdown, 1 SECONDS)
-
-		if(/datum/reagent/medicine/kelotane)
-			target.apply_damage(weapon.force*0.6, BRUTE, user.zone_selected)
-			target.adjust_sunder(7.5) //Same amount as a shotgun slug
-			target.flamer_fire_act(10)
-
 		if(/datum/reagent/medicine/bicaridine)
 			if(user.a_intent == INTENT_HELP)
 				. = COMPONENT_ITEM_NO_ATTACK
 			INVOKE_ASYNC(src, PROC_REF(attack_bicaridine), source, target, user, weapon)
 
+		if(/datum/reagent/medicine/kelotane)
+			target.apply_damage(weapon.force*0.6, BRUTE, user.zone_selected)
+			target.flamer_fire_act(10)
+
+		if(/datum/reagent/medicine/tramadol)
+			target.apply_damage(weapon.force*0.6, BRUTE, user.zone_selected)
+			target.apply_status_effect(/datum/status_effect/incapacitating/harvester_slowdown, 1 SECONDS)
+
 		if(/datum/reagent/medicine/tricordrazine)
 			target.apply_damage(weapon.force*0.6, BRUTE, user.zone_selected)
+			target.adjust_sunder(7.5) //Same amount as a shotgun slug
 			target.apply_status_effect(/datum/status_effect/shatter, 3 SECONDS)
 
 	if(!loaded_reagents[loaded_reagent])
@@ -250,7 +252,7 @@
 
 ///Handles behavior when attacking a mob with bicaridine
 /datum/component/harvester/proc/attack_bicaridine(datum/source, mob/living/target, mob/living/user, obj/item/weapon)
-	if(user.a_intent == INTENT_HARM) //Self-heal on attacking
+	if(user.a_intent != INTENT_HELP) //Self-heal on attacking
 		new /obj/effect/temp_visual/telekinesis(get_turf(user))
 		target.apply_damage(weapon.force*0.6, BRUTE, user.zone_selected)
 		user.adjustStaminaLoss(-30)
@@ -260,7 +262,7 @@
 	to_chat(user, span_rose("You prepare to stab <b>[target != user ? "[target]" : "yourself"]</b>!"))
 	new /obj/effect/temp_visual/telekinesis(get_turf(target))
 
-	if(do_after(user, 2 SECONDS, TRUE, target, BUSY_ICON_DANGER)) //Channeled heal on human strike
+	if(do_after(user, 2 SECONDS, TRUE, target, BUSY_ICON_DANGER)) //Channeled heal on help intent
 		var/skill_heal_amt = user.skills.getRating(SKILL_MEDICAL) * 5
 		target.heal_overall_damage(10 + skill_heal_amt, 0, updating_health = TRUE) //5u of Bica will normally heal 25 damage. Medics get this full amount
 	else
