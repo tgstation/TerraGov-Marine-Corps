@@ -4,6 +4,7 @@
 	access = list(ACCESS_CIVILIAN_PUBLIC, ACCESS_CIVILIAN_RESEARCH, ACCESS_CIVILIAN_ENGINEERING, ACCESS_CIVILIAN_LOGISTICS)
 	minimal_access = list(ACCESS_CIVILIAN_PUBLIC, ACCESS_CIVILIAN_RESEARCH, ACCESS_CIVILIAN_ENGINEERING, ACCESS_CIVILIAN_LOGISTICS)
 	display_order = JOB_DISPLAY_ORDER_SURVIVOR
+	total_positions = -1
 	skills_type = /datum/skills/civilian/survivor
 	faction = FACTION_TERRAGOV
 
@@ -285,6 +286,8 @@ Good luck, but do not expect to survive."})
 /datum/outfit/job/survivor/rambo
 	name = "Survivor"
 	jobtype = /datum/job/survivor/rambo
+
+	id = /obj/item/card/id
 	w_uniform = /obj/item/clothing/under/color/grey
 	wear_suit = /obj/item/clothing/suit/armor/rugged
 	shoes = /obj/item/clothing/shoes/ruggedboot

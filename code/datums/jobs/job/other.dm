@@ -103,17 +103,21 @@
 /datum/job/zombie
 	title = "Oh god run"
 
-/datum/job/prisoner
+/datum/job/other/prisoner
 	title = "Prisoner"
 	paygrade = "Psnr"
-	outfit = /datum/outfit/job/other/prisoner
+	outfit = /datum/outfit/job/prisoner
 	supervisors = "Corpsec Officers"
-	display_order = JOB_DISPLAY_ORDER_SURVIVOR
+	display_order = JOB_DISPLAY_ORDER_PRISONER
 	skills_type = /datum/skills/civilian
-	outfit = /datum/outfit/job/other/prisoner
-	job_flags = JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_OVERRIDELATEJOINSPAWN|JOB_FLAG_LATEJOINABLE
-	
-/datum/outfit/job/other/prisoner
+	total_positions = -1
+	selection_color = "#a91101"
+	job_flags = JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_LATEJOINABLE|JOB_FLAG_OVERRIDELATEJOINSPAWN
+
+/datum/job/prisoner/after_spawn(mob/living/carbon/C, mob/M, latejoin = FALSE)
+	. = ..()
+
+/datum/outfit/job/prisoner
 	id = /obj/item/card/id
 	w_uniform = /obj/item/clothing/under/rank/prisoner
 	shoes = /obj/item/clothing/shoes/orange

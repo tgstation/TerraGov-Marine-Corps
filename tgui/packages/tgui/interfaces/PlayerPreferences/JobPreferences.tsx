@@ -23,7 +23,6 @@ export const JobPreferences = (props, context) => {
   const commandRoles = [
     'Captain',
     'Field Commander',
-    'Corpsec Commander',
     'Staff Officer',
     'Pilot Officer',
     'Synthetic',
@@ -39,7 +38,6 @@ export const JobPreferences = (props, context) => {
   ];
   const marineJobs = [
     'Squad Marine',
-    'Corpsec Officer',
     'Squad Engineer',
     'Squad Corpsman',
     'Squad Smartgunner',

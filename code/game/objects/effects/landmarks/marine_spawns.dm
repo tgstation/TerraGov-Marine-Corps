@@ -175,4 +175,4 @@
 
 /obj/effect/landmark/start/job/prisoner
     icon_state = "Shaft Miner"
-    job = /datum/outfit/job/other/prisoner
+    job = /datum/job/other/prisoner
