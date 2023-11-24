@@ -354,7 +354,7 @@
 /datum/component/chem_booster/proc/manage_weapon_connection(obj/item/weapon_to_connect)
 	if(connected_weapon)
 		wearer.balloon_alert(wearer, "Disconnected [connected_weapon]")
-		DISABLE_BITFIELD(connected_weapon.flags_item, NODROP)
+		REMOVE_TRAIT(connected_weapon, TRAIT_NODROP, VALI_TRAIT)
 		UnregisterSignal(connected_weapon, COMSIG_ITEM_ATTACK)
 		UnregisterSignal(connected_weapon, list(COMSIG_ITEM_EQUIPPED_NOT_IN_SLOT, COMSIG_ITEM_DROPPED))
 		connected_weapon = null
@@ -364,7 +364,7 @@
 		return FALSE
 
 	connected_weapon = weapon_to_connect
-	ENABLE_BITFIELD(connected_weapon.flags_item, NODROP)
+	ADD_TRAIT(connected_weapon, TRAIT_NODROP, VALI_TRAIT)
 	RegisterSignal(connected_weapon, COMSIG_ITEM_ATTACK, PROC_REF(drain_resource))
 	RegisterSignals(connected_weapon, list(COMSIG_ITEM_EQUIPPED_NOT_IN_SLOT, COMSIG_ITEM_DROPPED), PROC_REF(vali_connect))
 	return TRUE

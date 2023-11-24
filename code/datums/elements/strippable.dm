@@ -90,7 +90,7 @@
 		return FALSE
 	if(!equipping)
 		return
-	if(CHECK_BITFIELD(equipping.flags_item, NODROP))
+	if(HAS_TRAIT(equipping, TRAIT_NODROP))
 		to_chat(user, "<span class='warning'>You can't put [equipping] on [source], it's stuck to your hand!</span>")
 		return FALSE
 	//This is important due to the fact otherwise it will be equipped without a proper existing icon, because it's forced on through the strip menu
