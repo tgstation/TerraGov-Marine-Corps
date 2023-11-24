@@ -77,7 +77,7 @@
 		CRASH("do_after was passed a non-number delay: [delay || "null"].")
 
 	var/atom/target_loc
-	if(target && !isturf(target))
+	if(target)
 		target_loc = target.loc
 
 	var/atom/user_loc = user.loc
@@ -98,7 +98,7 @@
 		stoplag(1)
 		progbar?.update(world.time - starttime)
 
-		if(QDELETED(user) || (QDELETED(target)))
+		if(QDELETED(user) || (target && (QDELETED(target))))
 			. = FALSE
 			break
 		if(!(timed_action_flags & IGNORE_INCAPACITATED) && user.incapacitated(TRUE))
@@ -110,7 +110,7 @@
 		if(!(timed_action_flags & IGNORE_USER_LOC_CHANGE) && (user.loc != user_loc))
 			. = FALSE
 			break
-		if(!(timed_action_flags & IGNORE_TARGET_LOC_CHANGE) && (QDELETED(target_loc) || target_loc != target.loc))
+		if(!(timed_action_flags & IGNORE_TARGET_LOC_CHANGE) && target && (QDELETED(target_loc) || target_loc != target.loc))
 			. = FALSE
 			break
 		if(extra_checks && !extra_checks.Invoke())
