@@ -327,3 +327,9 @@
   - balance: stalemates no longer provide insane amounts of larva
   novaepee:
   - spellcheck: fixed desactived to deactivated in camera code
+2023-11-24:
+  Barnet2:
+  - code_imp: Re-organized the Slumbridge area file.
+  - bugfix: CAS can now no longer hit inside of Slumbridge caves in PC'd tiles.
+  Lumipharon:
+  - code_imp: some code clean up for living mob init
