@@ -69,7 +69,7 @@
 	desc = "The king of suppressive fire. Uses the MG-60, a fully automatic 200 round machine gun with a bipod attached. \
 	Excels at denying large areas to the enemy and eliminating those who refuse to leave."
 
-	wear_suit = /obj/item/clothing/suit/modular/xenonauten/heavy/tyrgeneral
+	wear_suit = /obj/item/clothing/suit/modular/xenonauten/heavy/tyr_onegeneral
 	head = /obj/item/clothing/head/modular/m10x/tyr
 	w_uniform = /obj/item/clothing/under/marine/black_vest
 	back = /obj/item/storage/backpack/marine/standard

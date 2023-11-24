@@ -130,9 +130,9 @@
 		/obj/item/armor_module/storage/medical,
 	)
 
-/obj/item/clothing/suit/modular/xenonauten/heavy/tyrgeneral
+/obj/item/clothing/suit/modular/xenonauten/heavy/tyr_onegeneral
 	starting_attachments = list(
-		/obj/item/armor_module/module/tyr_extra_armor,
+		/obj/item/armor_module/module/tyr_extra_armor/mark1,
 		/obj/item/armor_module/storage/general,
 	)
 
@@ -247,6 +247,9 @@
 
 /obj/item/clothing/head/modular/m10x/tyr
 	starting_attachments = list(/obj/item/armor_module/storage/helmet, /obj/item/armor_module/module/tyr_head)
+
+/obj/item/clothing/head/modular/m10x/tyrmkone
+	starting_attachments = list(/obj/item/armor_module/storage/helmet, /obj/item/armor_module/module/tyr_head/mark1)
 
 /obj/item/clothing/head/modular/m10x/surt
 	starting_attachments = list(/obj/item/armor_module/storage/helmet, /obj/item/armor_module/module/fire_proof_helmet)

@@ -33,6 +33,7 @@ GLOBAL_LIST_INIT(beginner_loadouts, init_beginner_loadouts())
 		"Squad Corpsman",
 		"Squad Smartgunner",
 	)
+	drop_worn_items = TRUE
 
 /obj/machinery/quick_vendor/beginner/set_stock_list()
 	global_list_to_use = GLOB.beginner_loadouts
