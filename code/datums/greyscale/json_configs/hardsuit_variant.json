@@ -1,4 +1,15 @@
 {
+	"chest":[
+		{
+			"type": "hyperscale",
+			"icon_state": "chest"
+		},
+		{
+			"type":"icon_state",
+			"icon_state":"chest_no_color",
+			"blend_mode":"overlay"
+		}
+	],
 	"chest_normal":[
 		{
 			"type": "hyperscale",
