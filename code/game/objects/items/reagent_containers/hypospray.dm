@@ -607,7 +607,7 @@
 
 /obj/item/reagent_containers/hypospray/advanced/imialky
 	name = "big imialky hypospray"
-	desc = "A hypospray loaded with a mixture of imidazoline and alkysine. Chemicals that will heal the brain and eyes."
+	desc = "A hypospray loaded with a mixture of imidazoline and alkysine. Chemicals that will heal brain, eyes, and ears."
 	amount_per_transfer_from_this = 5
 	list_reagents = list(
 		/datum/reagent/medicine/imidazoline = 48,

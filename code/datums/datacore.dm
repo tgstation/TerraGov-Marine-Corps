@@ -15,6 +15,7 @@ GLOBAL_DATUM_INIT(datacore, /datum/datacore, new)
 	var/list/security = list()
 
 
+// TODO: cleanup
 /datum/datacore/proc/get_manifest(monochrome, ooc)
 	var/list/eng = list()
 	var/list/med = list()
@@ -87,7 +88,7 @@ GLOBAL_DATUM_INIT(datacore, /datum/datacore, new)
 			even = !even
 	if(length(mar) > 0)
 		dat += "<tr><th colspan=3>Marine Personnel</th></tr>"
-		for(var/j in list("Alpha","Bravo","Charlie", "Delta"))
+		for(var/j in LAZYACCESS(SSjob.squads_by_name, FACTION_TERRAGOV))
 			if(length(squads[j]))
 				dat += "<tr><th colspan=3>[j]</th></tr>"
 			for(var/name in mar)
@@ -169,7 +170,7 @@ GLOBAL_DATUM_INIT(datacore, /datum/datacore, new)
 	else
 		assignment = "Unassigned"
 
-	var/id = add_leading("[num2hex(rand(1, 1.6777215E7))]", 6, "0")	//this was the best they could come up with? A large random number? *sigh*
+	var/id = add_leading("[num2hex(randfloat(1, 1.6777215E7))]", 6, "0")	//this was the best they could come up with? A large random number? *sigh* - actual 4407 code lol
 
 	//General Record
 	var/datum/data/record/G = new()
@@ -232,7 +233,7 @@ GLOBAL_DATUM_INIT(datacore, /datum/datacore, new)
 /proc/CreateGeneralRecord()
 	var/datum/data/record/G = new /datum/data/record()
 	G.fields["name"] = "New Record"
-	G.fields["id"] = "[num2hex(rand(1, 1.6777215E7), 6)]"
+	G.fields["id"] = "[num2hex(randfloat(1, 1.6777215E7), 6)]"
 	G.fields["rank"] = "Unassigned"
 	G.fields["real_rank"] = "Unassigned"
 	G.fields["sex"] = "Male"

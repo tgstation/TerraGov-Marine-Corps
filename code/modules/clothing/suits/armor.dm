@@ -162,10 +162,14 @@
 	desc = "A field of invisible energy, it protects the wearer but prevents any clothing from being worn."
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "shield-blue"
-	flags_item = NODROP|DELONDROP
+	flags_item = DELONDROP
 	flags_armor_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	soft_armor = list(MELEE = 55, BULLET = 55, LASER = 35, ENERGY = 20, BOMB = 40, BIO = 40, FIRE = 40, ACID = 40)
 	allowed = list()//how would you put a gun onto a field of energy?
+
+/obj/item/clothing/suit/armor/sectoid/Initialize(mapload)
+	. = ..()
+	ADD_TRAIT(src, TRAIT_NODROP, SECTOID_TRAIT)
 
 /obj/item/clothing/suit/armor/sectoid/shield
 	name = "powerful psionic field"

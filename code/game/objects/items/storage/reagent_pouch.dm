@@ -54,6 +54,7 @@
 	can_hold = list(/obj/item/reagent_containers/hypospray)
 	cant_hold = list(/obj/item/reagent_containers/glass/reagent_canister) //To prevent chat spam when you try to put the container in
 	flags_item = NOBLUDGEON
+	draw_mode = TRUE
 	///The internal container of the pouch. Holds the reagent that you use to refill the connected injector
 	var/obj/item/reagent_containers/glass/reagent_canister/inner
 	///List of chemicals we fill up our pouch with on Initialize()
@@ -179,11 +180,20 @@
 				dat += "\n \t <b>Unknown:</b> [R.volume]|[percent]%</br>"
 	return span_notice("[src]'s reagent display shows the following contents: [dat.Join(" ")]")
 
+/obj/item/storage/pouch/pressurized_reagent_pouch/empty //So you can mix to your hearts content
+	desc = "A very large reagent pouch. It is used to refill custom injectors, and can also store one. \
+	You can Alt-Click to remove the canister in order to refill it. \
+	This one is empty, allowing you to freely mix whatever you want."
+	chemicals_to_fill = null
+
 /obj/item/storage/pouch/pressurized_reagent_pouch/bktt //Pre-filled with equal parts BKTT and a basic auto injector
+	name = "bktt reagent pouch"
+	desc = "A very large reagent pouch. It is used to refill custom injectors, and can also store one.\
+	You can Alt-Click to remove the canister in order to refill it. \
+	This one comes preloaded with BKTT."
 	chemicals_to_fill = list(
 		/datum/reagent/medicine/bicaridine = 300,
 		/datum/reagent/medicine/kelotane = 300,
-		/datum/reagent/medicine/tramadol = 300,
+		/datum/reagent/medicine/tramadol = 150, //Half metabolism
 		/datum/reagent/medicine/tricordrazine = 300,
 	)
-

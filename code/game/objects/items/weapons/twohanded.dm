@@ -310,29 +310,6 @@
 	. = ..()
 	AddElement(/datum/element/strappable)
 
-/obj/item/weapon/twohanded/spear/tactical/harvester
-	name = "\improper HP-S Harvester spear"
-	desc = "TerraGov Marine Corps' experimental High Point-Singularity 'Harvester' spear. An advanced weapon that trades sheer force for the ability to apply a variety of debilitating effects when loaded with certain reagents. Activate after loading to prime a single use of an effect. It also harvests substances from alien lifeforms it strikes when connected to the Vali system."
-	icon_state = "vali_spear"
-	item_state = "vali_spear"
-	force = 32
-	force_wielded = 60
-	throwforce = 60
-	flags_item = TWOHANDED
-	var/codex_info = {"<b>Reagent info:</b><BR>
-	Bicaridine - heals somebody else for 12.5 brute, or when used on yourself heal 6 brute and 30 stamina<BR>
-	Kelotane - set your target and any adjacent mobs aflame<BR>
-	Tramadol - slow your target for 1 second and deal 60% more armor-piercing damage<BR>
-	<BR>
-	<b>Tips:</b><BR>
-	> Needs to be connected to the Vali system to collect green blood. You can connect it though the Vali system's configurations menu.<BR>
-	> Filled by liquid reagent containers. Emptied by using an empty liquid reagent container. Can also be filled by pills.<BR>
-	> Press your unique action key (SPACE by default) to load a single-use of the reagent effect after the blade has been filled up."}
-
-/obj/item/weapon/twohanded/spear/tactical/harvester/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/harvester)
-
 /obj/item/weapon/twohanded/spear/tactical/tacticool
 	name = "M-23 TACTICOOL spear"
 	icon = 'icons/Marine/gun64.dmi'
@@ -389,51 +366,6 @@
 	attack_verb = list("sliced", "slashed", "jabbed", "torn", "gored")
 	resistance_flags = UNACIDABLE
 	attack_speed = 12 //Default is 7.
-
-/obj/item/weapon/twohanded/glaive/harvester
-	name = "\improper HP-S Harvester claymore"
-	desc = "TerraGov Marine Corps' experimental High Point-Singularity 'Harvester' blade. An advanced weapon that trades sheer force for the ability to apply a variety of debilitating effects when loaded with certain reagents. Activate after loading to prime a single use of an effect. It also harvests substances from alien lifeforms it strikes when connected to the Vali system. This specific version is enlarged to fit the design of an old world claymore. Simply squeeze the hilt to activate."
-	icon_state = "vali_claymore"
-	item_state = "vali_claymore"
-	force = 28
-	force_wielded = 90
-	throwforce = 65
-	throw_speed = 3
-	edge = 1
-	attack_speed = 24
-	sharp = IS_SHARP_ITEM_BIG
-	w_class = WEIGHT_CLASS_BULKY
-	flags_item = TWOHANDED
-	resistance_flags = NONE
-	var/codex_info = {"<b>Reagent info:</b><BR>
-	Bicaridine - heals somebody else for 12.5 brute, or when used on yourself heal 6 brute and 30 stamina<BR>
-	Kelotane - set your target and any adjacent mobs aflame<BR>
-	Tramadol - slow your target for 1 second and deal 60% more armor-piercing damage<BR>
-	<BR>
-	<b>Tips:</b><BR>
-	> Needs to be connected to the Vali system to collect green blood. You can connect it though the Vali system's configurations menu.<BR>
-	> Filled by liquid reagent containers. Emptied by using an empty liquid reagent container. Can also be filled by pills.<BR>
-	> Press your unique action key (SPACE by default) to load a single-use of the reagent effect after the blade has been filled up."}
-
-/obj/item/weapon/twohanded/glaive/harvester/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/harvester, 60, TRUE)
-
-/obj/item/weapon/twohanded/glaive/harvester/wield(mob/user)
-	. = ..()
-	if(!.)
-		return
-	toggle_item_bump_attack(user, TRUE)
-
-/obj/item/weapon/twohanded/glaive/harvester/unwield(mob/user)
-	. = ..()
-	if(!.)
-		return
-	toggle_item_bump_attack(user, FALSE)
-
-/obj/item/weapon/twohanded/glaive/harvester/get_mechanics_info()
-	. = ..()
-	. += jointext(codex_info, "<br>")
 
 /obj/item/weapon/twohanded/glaive/damaged
 	name = "war glaive"

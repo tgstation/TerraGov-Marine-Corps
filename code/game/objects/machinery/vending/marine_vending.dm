@@ -78,7 +78,6 @@
 			/obj/item/storage/holster/blade/machete/full = -1,
 			/obj/item/storage/holster/blade/machete/full_harvester = -1,
 			/obj/item/weapon/twohanded/spear/tactical = -1,
-			/obj/item/weapon/twohanded/spear/tactical/harvester = -1,
 			/obj/item/weapon/twohanded/glaive/harvester = -1,
 			/obj/item/weapon/powerfist = -1,
 			/obj/item/weapon/shield/riot/marine = 6,
@@ -294,7 +293,6 @@
 			/obj/item/storage/holster/blade/machete/full = -1,
 			/obj/item/storage/holster/blade/machete/full_harvester = -1,
 			/obj/item/weapon/twohanded/spear/tactical = -1,
-			/obj/item/weapon/twohanded/spear/tactical/harvester = -1,
 			/obj/item/weapon/twohanded/glaive/harvester = -1,
 			/obj/item/weapon/powerfist = -1,
 			/obj/item/weapon/shield/riot/marine = 6,
@@ -493,7 +491,6 @@
 			/obj/item/storage/holster/blade/machete/full = -1,
 			/obj/item/storage/holster/blade/machete/full_harvester = -1,
 			/obj/item/weapon/twohanded/spear/tactical = -1,
-			/obj/item/weapon/twohanded/spear/tactical/harvester = -1,
 			/obj/item/weapon/twohanded/glaive/harvester = -1,
 			/obj/item/weapon/powerfist = -1,
 			/obj/item/weapon/shield/riot/marine = -1,
@@ -866,15 +863,6 @@
 	wrenchable = FALSE
 	isshared = TRUE
 	products = list(
-		"Pill Packet" = list(
-			/obj/item/storage/pill_bottle/packet/bicaridine = -1,
-			/obj/item/storage/pill_bottle/packet/kelotane = -1,
-			/obj/item/storage/pill_bottle/packet/tramadol = -1,
-			/obj/item/storage/pill_bottle/packet/tricordrazine = -1,
-			/obj/item/storage/pill_bottle/packet/dylovene = -1,
-			/obj/item/storage/pill_bottle/packet/paracetamol = -1,
-			/obj/item/storage/pill_bottle/packet/isotonic = -1,
-		),
 		"Pill Bottles" = list(
 			/obj/item/storage/pill_bottle/bicaridine = -1,
 			/obj/item/storage/pill_bottle/kelotane = -1,
@@ -883,7 +871,7 @@
 			/obj/item/storage/pill_bottle/dylovene = -1,
 			/obj/item/storage/pill_bottle/paracetamol = -1,
 			/obj/item/storage/pill_bottle/isotonic = -1,
-			/obj/item/storage/pill_bottle = -1, //These ones are empty, so you can customize
+			/obj/item/storage/pill_bottle = -1,
 		),
 		"Auto Injector" = list(
 			/obj/item/reagent_containers/hypospray/autoinjector/bicaridine = -1,
@@ -921,15 +909,6 @@
 	resistance_flags = INDESTRUCTIBLE
 	use_power = NO_POWER_USE
 	products = list(
-		"Pill Packet" = list(
-			/obj/item/storage/pill_bottle/packet/bicaridine = -1,
-			/obj/item/storage/pill_bottle/packet/kelotane = -1,
-			/obj/item/storage/pill_bottle/packet/tramadol = -1,
-			/obj/item/storage/pill_bottle/packet/tricordrazine = -1,
-			/obj/item/storage/pill_bottle/packet/dylovene = -1,
-			/obj/item/storage/pill_bottle/packet/paracetamol = -1,
-			/obj/item/storage/pill_bottle/packet/isotonic = -1,
-		),
 		"Pill Bottles" = list(
 			/obj/item/storage/pill_bottle/bicaridine = -1,
 			/obj/item/storage/pill_bottle/kelotane = -1,
@@ -938,7 +917,7 @@
 			/obj/item/storage/pill_bottle/dylovene = -1,
 			/obj/item/storage/pill_bottle/paracetamol = -1,
 			/obj/item/storage/pill_bottle/isotonic = -1,
-			/obj/item/storage/pill_bottle = -1, //These ones are empty, so you can customize
+			/obj/item/storage/pill_bottle = -1,
 		),
 		"Auto Injector" = list(
 			/obj/item/reagent_containers/hypospray/autoinjector/bicaridine = -1,
@@ -1229,6 +1208,7 @@
 			/obj/item/storage/pouch/explosive = -1,
 			/obj/item/storage/pouch/medkit = -1,
 			/obj/item/storage/pouch/medical_injectors = -1,
+			/obj/item/storage/pouch/pressurized_reagent_pouch/empty = -1,
 			/obj/item/storage/pouch/pressurized_reagent_pouch/bktt = -1,
 			/obj/item/storage/pouch/med_lolipops = -1,
 			/obj/item/storage/pouch/berrypouch = -1,

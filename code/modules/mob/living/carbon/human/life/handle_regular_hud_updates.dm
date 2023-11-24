@@ -212,7 +212,7 @@
 		hud_used.healths.icon_state = "health6"
 		return
 
-	var/perceived_health = health
+	var/perceived_health = health / maxHealth * 100
 	if(!(species.species_flags & NO_PAIN))
 		perceived_health -= traumatic_shock
 	if(!(species.species_flags & NO_STAMINA) && staminaloss > 0)

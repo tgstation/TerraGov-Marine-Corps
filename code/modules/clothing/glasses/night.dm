@@ -54,7 +54,11 @@
 	item_state = "alien_lens"
 	darkness_view = 7
 	lighting_alpha = LIGHTING_PLANE_ALPHA_INVISIBLE
-	flags_item = NODROP|DELONDROP
+	flags_item = DELONDROP
+
+/obj/item/clothing/glasses/night/sectoid/Initialize(mapload)
+	. = ..()
+	ADD_TRAIT(src, TRAIT_NODROP, SECTOID_TRAIT)
 
 /obj/item/clothing/glasses/night/m56_goggles
 	name = "\improper KTLD head mounted sight"

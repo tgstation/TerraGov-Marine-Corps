@@ -288,10 +288,8 @@
 	holsterable_allowed = list(/obj/item/weapon/gun/flamer/big_flamer/marinestandard/engineer,)
 	bypass_w_limit = list(/obj/item/weapon/gun/flamer/big_flamer/marinestandard/engineer,)
 	storage_type_limits = list(/obj/item/weapon/gun/flamer/big_flamer/marinestandard/engineer = 1,)
-		///The internal fuel tank
+	///The internal fuel tank
 	var/obj/item/ammo_magazine/flamer_tank/internal/tank
-
-	///The linked flamerthrower that cannot be dropped
 
 	sprite_sheets = list(
 		"Combat Robot" = 'icons/mob/species/robot/backpack.dmi',
@@ -301,7 +299,7 @@
 		"Ratcher Combat Robot" = 'icons/mob/species/robot/backpack.dmi',
 		)
 
-/obj/item/storage/holster/backholster/flamer/Initialize()
+/obj/item/storage/holster/backholster/flamer/Initialize(mapload)
 	. = ..()
 	tank = new
 	update_icon()
@@ -353,7 +351,7 @@
 	. = ..()
 	. += "[tank.current_rounds] units of fuel left!"
 
-/obj/item/storage/holster/backholster/flamer/full/Initialize()
+/obj/item/storage/holster/backholster/flamer/full/Initialize(mapload)
 	. = ..()
 	var/flamer = new /obj/item/weapon/gun/flamer/big_flamer/marinestandard/engineer(src)
 	INVOKE_ASYNC(src, PROC_REF(handle_item_insertion), flamer)
