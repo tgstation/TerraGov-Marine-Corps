@@ -112,7 +112,7 @@
 
 /obj/effect/landmark/start/job/survivor
 	icon_state = "Shaft Miner"
-	job = /datum/job/survivor
+	job = /datum/job/survivor/civilian
 
 /obj/effect/landmark/start/job/fallen
 	job = /datum/job/fallen/marine

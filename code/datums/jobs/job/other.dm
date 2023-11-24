@@ -107,7 +107,12 @@
 	title = "Prisoner"
 	paygrade = "Psnr"
 	outfit = /datum/outfit/job/other/prisoner
-
+	supervisors = "Corpsec Officers"
+	display_order = JOB_DISPLAY_ORDER_SURVIVOR
+	skills_type = /datum/skills/civilian
+	outfit = /datum/outfit/job/other/prisoner
+	job_flags = JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_OVERRIDELATEJOINSPAWN|JOB_FLAG_LATEJOINABLE
+	
 /datum/outfit/job/other/prisoner
 	id = /obj/item/card/id
 	w_uniform = /obj/item/clothing/under/rank/prisoner
