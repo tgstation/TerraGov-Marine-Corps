@@ -2160,7 +2160,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/bullet/isg_apfds/on_hit_mob(mob/M, obj/projectile/P)
 	P.proj_max_range -= 2
-	staggerstun(M, P, max_range = 20, slowdown = 1)
+	staggerstun(M, P, max_range = 20, slowdown = 0.5)
 
 /datum/ammo/bullet/isg_apfds/on_hit_obj(obj/O, obj/projectile/P)
 	P.proj_max_range -= 5
