@@ -631,6 +631,8 @@
 			/obj/item/assembly/signaler = -1,
 			/obj/item/binoculars = -1,
 			/obj/item/compass = -1,
+			/obj/item/tool/hand_labeler = -1,
+			/obj/item/toy/deck/kotahi = -1,
 			/obj/item/deployable_floodlight = -1,
 		),
 	)
