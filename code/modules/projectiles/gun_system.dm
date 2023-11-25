@@ -1084,7 +1084,7 @@
 			user.apply_damage(200, OXY)
 			if(ishuman(user) && user == M)
 				var/mob/living/carbon/human/HM = user
-				HM.set_undefibbable() //can't be defibbed back from self inflicted gunshot to head
+				HM.set_undefibbable(TRUE) //can't be defibbed back from self inflicted gunshot to head
 			user.death()
 
 	user.log_message("commited suicide with [src]", LOG_ATTACK, "red") //Apply the attack log.
