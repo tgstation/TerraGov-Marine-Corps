@@ -314,7 +314,7 @@
 /// A version of build_resin with the plasma drain and distance checks removed.
 /datum/action/xeno_action/activable/secrete_resin/proc/preshutter_build_resin(turf/T)
 	if(!SSresinshaping.active)
-		stack_trace("[src] ([key_name(src)]) didn't have their quickbuild signals unregistered properly and tried using quickbuild after the subsystem was off!")
+		stack_trace("[owner] ([key_name(owner)]) didn't have their quickbuild signals unregistered properly and tried using quickbuild after the subsystem was off!")
 		end_resin_drag()
 		return
 
