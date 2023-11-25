@@ -2,9 +2,10 @@
 	name = "Extended Plus"
 	config_tag = "Extendedplus"
 	silo_scaling = 1.5
-	flags_round_type = MODE_INFESTATION|MODE_PSY_POINTS|MODE_PSY_POINTS_ADVANCED|MODE_HIJACK_POSSIBLE|MODE_SILO_RESPAWN|MODE_ALLOW_XENO_QUICKBUILD
+	flags_round_type = MODE_TWO_HUMAN_FACTIONS|MODE_INFESTATION|MODE_PSY_POINTS|MODE_PSY_POINTS_ADVANCED|MODE_HIJACK_POSSIBLE|MODE_SILO_RESPAWN|MODE_ALLOW_XENO_QUICKBUILD
 	shutters_drop_time = 3 MINUTES
 	flags_xeno_abilities = ABILITY_NUCLEARWAR
+	factions = list(FACTION_TERRAGOV, FACTION_SOM)
 	valid_job_types = list(
 		/datum/job/terragov/command/captain = 1,
 		/datum/job/terragov/command/ceo = 1,
@@ -53,7 +54,7 @@
 	var/bioscan_interval = 15 MINUTES
 
 //sets TGMC and SOM squads
-/datum/game_mode/hvh/set_valid_squads()
+/datum/game_mode/extendedplus/set_valid_squads()
 	SSjob.active_squads[FACTION_TERRAGOV] = list()
 	SSjob.active_squads[FACTION_SOM] = list()
 	for(var/key in SSjob.squads)
@@ -62,16 +63,16 @@
 			SSjob.active_squads[squad.faction] += squad
 	return TRUE
 
-/datum/game_mode/extended/announce()
+/datum/game_mode/extendedplus/announce()
 	to_chat(world, "<b>The current game mode is - Extended Role-Playing!</b>")
 	to_chat(world, "<b>Just have fun and role-play!</b>")
 
-/datum/game_mode/extended/check_finished()
+/datum/game_mode/extendedplus/check_finished()
 	if(!round_finished)
 		return FALSE
 	return TRUE
 
-/datum/game_mode/extended/declare_completion()
+/datum/game_mode/extendedplus/declare_completion()
 	. = ..()
 	to_chat(world, span_round_header("|[round_finished]|"))
 	var/sound/S = sound(pick('sound/theme/neutral_hopeful1.ogg','sound/theme/neutral_hopeful2.ogg'), channel = CHANNEL_CINEMATIC)

@@ -293,3 +293,4 @@ Good luck, but do not expect to survive."})
 	shoes = /obj/item/clothing/shoes/ruggedboot
 	back = /obj/item/storage/backpack/satchel/rugged
 	gloves = /obj/item/clothing/gloves/ruggedgloves
+	r_store = /obj/item/flashlight
