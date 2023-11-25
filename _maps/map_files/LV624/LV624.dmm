@@ -1564,6 +1564,7 @@
 	id = "science_blast";
 	name = "Science Wing Lockdown"
 	},
+/obj/effect/landmark/mob_spawner/monkey,
 /turf/open/floor/tile/purple/whitepurple{
 	dir = 5
 	},
@@ -3290,6 +3291,7 @@
 /obj/structure/cable,
 /obj/effect/ai_node,
 /obj/effect/landmark/weed_node,
+/obj/effect/landmark/mob_spawner/monkey,
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/research)
 "bPO" = (
@@ -5688,6 +5690,10 @@
 /obj/effect/turf_decal/sandytile,
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/sandtemple/garbledradio)
+"ewG" = (
+/obj/effect/landmark/mob_spawner/monkey,
+/turf/open/floor/prison/redfloor,
+/area/lv624/lazarus/sandtemple)
 "exf" = (
 /obj/machinery/gibber,
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
@@ -6064,6 +6070,7 @@
 /area/lv624/ground/compound/c)
 "eXB" = (
 /obj/structure/largecrate/supply/medicine/iv,
+/obj/effect/landmark/mob_spawner/monkey,
 /turf/open/floor/plating,
 /area/lv624/lazarus/quartstorage)
 "eXI" = (
@@ -7018,6 +7025,10 @@
 /obj/structure/cable,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/compound/n)
+"gbn" = (
+/obj/effect/landmark/mob_spawner/monkey,
+/turf/open/floor/wood,
+/area/lv624/lazarus/captain)
 "gbp" = (
 /obj/effect/ai_node,
 /turf/open/floor/tile/blue/whiteblue{
@@ -12387,6 +12398,11 @@
 /obj/structure/flora/jungle/vines,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle10)
+"lTQ" = (
+/obj/structure/cable,
+/obj/effect/landmark/mob_spawner/monkey,
+/turf/open/floor/wood,
+/area/lv624/lazarus/chapel)
 "lTT" = (
 /obj/effect/landmark/weed_node,
 /obj/effect/landmark/xeno_resin_wall,
@@ -15256,6 +15272,10 @@
 	dir = 8
 	},
 /area/lv624/lazarus/engineering)
+"piJ" = (
+/obj/effect/landmark/mob_spawner/monkey,
+/turf/open/floor/tile/dark,
+/area/lv624/lazarus/crashed_ship)
 "pjS" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -16934,6 +16954,7 @@
 "rfG" = (
 /obj/structure/cable,
 /obj/effect/landmark/weed_node,
+/obj/effect/landmark/mob_spawner/monkey,
 /turf/open/floor/tile/green/greentaupe{
 	dir = 1
 	},
@@ -17481,6 +17502,10 @@
 	dir = 9
 	},
 /area/lv624/lazarus/hydroponics)
+"rGp" = (
+/obj/effect/landmark/mob_spawner/monkey,
+/turf/open/floor/plating,
+/area/lv624/lazarus/engineering)
 "rGR" = (
 /obj/structure/table,
 /obj/item/reagent_containers/food/snacks/grown/tomato,
@@ -20245,6 +20270,10 @@
 /obj/structure/catwalk,
 /turf/open/liquid/water/river/deep,
 /area/lv624/ground/river2)
+"uCj" = (
+/obj/effect/landmark/mob_spawner/monkey,
+/turf/open/floor,
+/area/lv624/lazarus/spaceport2)
 "uCk" = (
 /obj/item/spacecash/c200{
 	pixel_y = 4
@@ -20991,6 +21020,15 @@
 /obj/effect/turf_decal/tracks/human1/wet,
 /turf/open/floor,
 /area/lv624/lazarus/spaceport)
+"vuA" = (
+/obj/structure/bed/chair/wood/wings{
+	dir = 1
+	},
+/obj/effect/landmark/mob_spawner/monkey,
+/turf/open/floor/tile/blue/taupebluecorner{
+	dir = 2
+	},
+/area/lv624/lazarus/sleep_male)
 "vuO" = (
 /turf/closed/wall/r_wall,
 /area/lv624/ground/jungle3)
@@ -21011,6 +21049,12 @@
 /obj/structure/table,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/atmos)
+"vvw" = (
+/obj/effect/landmark/mob_spawner/monkey,
+/turf/open/floor/tile/purple/whitepurplecorner{
+	dir = 4
+	},
+/area/lv624/lazarus/fitness)
 "vvV" = (
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/compound/se)
@@ -48300,7 +48344,7 @@ iLF
 pSL
 vvX
 vvX
-vvX
+uCj
 jHo
 rmk
 tUL
@@ -62283,7 +62327,7 @@ ygV
 ygV
 ygV
 tmt
-yiA
+rGp
 tjl
 ygV
 gAb
@@ -64350,7 +64394,7 @@ iEv
 kRJ
 swL
 wgH
-wgH
+vvw
 wgH
 wgH
 jUW
@@ -68663,7 +68707,7 @@ vso
 aRT
 mKv
 gvj
-tjj
+vuA
 aSB
 jOV
 xsY
@@ -68688,7 +68732,7 @@ vgu
 xuv
 sZl
 hle
-iyl
+gbn
 hGO
 qVK
 qVK
@@ -68957,7 +69001,7 @@ xsY
 wAp
 erS
 waQ
-waQ
+lTQ
 waQ
 waQ
 njT
@@ -72298,7 +72342,7 @@ afx
 wID
 yhE
 wID
-wID
+piJ
 aiD
 wID
 wID
@@ -76046,7 +76090,7 @@ jTp
 hxa
 eYX
 fqC
-eYX
+ewG
 yiv
 sNO
 bUv
