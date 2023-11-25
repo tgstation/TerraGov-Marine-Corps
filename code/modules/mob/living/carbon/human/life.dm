@@ -33,7 +33,8 @@
 
 		else //Dead
 			dead_ticks ++
-			if(dead_ticks > TIME_BEFORE_DNR)
+			var/mob/dead/observer/related_ghost = get_ghost()
+			if(dead_ticks > TIME_BEFORE_DNR || (!client && !related_ghost?.can_reenter_corpse))
 				set_undefibbable()
 			else
 				med_hud_set_status()
