@@ -1,5 +1,5 @@
 ///After how much time of being active we die
-#define FACEHUGGER_DEATH 10 SECONDS
+#define FACEHUGGER_DEATH 120 SECONDS
 ///Time it takes to impregnate someone
 #define IMPREGNATION_TIME 10 SECONDS
 
@@ -456,9 +456,7 @@
 	return TRUE
 
 /mob/living/carbon/human/species/monkey/can_be_facehugged(obj/item/clothing/mask/facehugger/F, check_death = TRUE, check_mask = TRUE, provoked = FALSE)
-	if(mind)
-		return ..() //facehuggers still attack player monkeys
-	return FALSE //ai monkeys are ignored by facehuggers
+return ..() //facehuggers still attack player monkeys
 
 /////////////////////////////
 // ATTACHING AND IMPREGNATION
@@ -552,7 +550,7 @@
 	if(!sterile && !issynth(user))
 		var/stamina_dmg = user.maxHealth + user.max_stamina
 		user.apply_damage(stamina_dmg, STAMINA) // complete winds the target
-		user.Unconscious(2 SECONDS)
+		user.Unconscious(20 SECONDS)
 	attached = TRUE
 	go_idle(FALSE, TRUE)
 	addtimer(CALLBACK(src, PROC_REF(Impregnate), user), IMPREGNATION_TIME)
@@ -581,7 +579,7 @@
 		if(sterile || target.status_flags & XENO_HOST)
 			target.visible_message(span_danger("[src] falls limp after fucking [target]!"))
 		else //Huggered but not impregnated, deal damage.
-			target.visible_message(span_danger("[src] frantically claws at [target]'s face before falling down!"),span_danger("[src] frantically claws at your face before falling down! Auugh!"))
+			target.visible_message(span_danger("[src] frantically claws and fucks [target]'s face before falling down!"),span_danger("[src] frantically claws and fucks your face before falling down! Auugh!"))
 			target.apply_damage(15, BRUTE, BODY_ZONE_HEAD, updating_health = TRUE)
 
 

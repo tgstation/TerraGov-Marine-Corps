@@ -58,7 +58,7 @@
 /datum/config_entry/flag/limbs_can_break
 
 /datum/config_entry/number/revive_grace_period
-	config_entry_value = 5 MINUTES
+	config_entry_value = 5 HOURS
 	min_val = 0
 
 /datum/config_entry/flag/bones_can_break
