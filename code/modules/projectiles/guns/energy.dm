@@ -970,7 +970,7 @@
 /datum/lasrifle/energy_mg_mode/standard/melting
 	rounds_per_shot = 20
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine/autolaser/melting
-	fire_delay = 0.7 SECONDS
+	fire_delay = 0.4 SECONDS
 	fire_sound = 'sound/weapons/guns/fire/laser_rifle_2.ogg'
 	windup_delay = 0.3 SECONDS
 	fire_mode = GUN_FIREMODE_SEMIAUTO
