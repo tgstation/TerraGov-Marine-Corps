@@ -77,7 +77,13 @@
 			"icon_state": "chest_highlight"
 		}
 	],
-	"chest_webbing_highlight": [
+	"chest_highlight_normal": [
+		{
+			"type": "hyperscale",
+			"icon_state": "chest_highlight"
+		}
+	],
+	"chest_highlight_webbing": [
 		{
 			"type": "hyperscale",
 			"icon_state": "chest_webbing_highlight"
