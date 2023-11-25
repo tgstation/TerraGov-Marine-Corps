@@ -75,7 +75,7 @@
 
 	if(src == X)
 		return TRUE
-	
+
 	if(isxenolarva(X)) //Larvas can't eat people
 		X.visible_message(span_danger("[X] nudges its head against \the [src]."), \
 		span_danger("We nudge our head against \the [src]."))
@@ -132,3 +132,13 @@
 			X.do_attack_animation(src, ATTACK_EFFECT_REDSLASH)
 			playsound(loc, "alien_claw_flesh", 25, 1)
 			apply_damage(damage, BRUTE, blocked = MELEE, updating_health = TRUE)
+
+/mob/living/carbon/xenomorph/RangedAttack(atom/A, params)
+	. = ..()
+	if(!(client && client.prefs && client.prefs.toggles_gameplay & TOGGLE_DIRECTIONAL_ATTACK) || a_intent == INTENT_HELP)
+		return
+	var/turf/turf_attacking = get_step(src, get_compass_dir(src, A))
+	if(turf_attacking)
+		var/mob/living/target = locate() in turf_attacking
+		if(target && Adjacent(target) && (target != src))
+			return UnarmedAttack(target, TRUE)
