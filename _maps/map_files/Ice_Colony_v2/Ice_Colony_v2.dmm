@@ -27630,10 +27630,6 @@
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/wall/r_wall,
 /area/ice_colony/underground/hallway/south_east)
-"qiI" = (
-/obj/effect/spawner/modularmap/factionbase/ntcgroundhq,
-/turf/closed/mineral/smooth/darkfrostwall/indestructible,
-/area/space)
 "qjb" = (
 /obj/machinery/atmospherics/components/unary/vent_pump,
 /turf/open/floor/tile/dark2,
@@ -34284,7 +34280,7 @@ aaa
 aaa
 aaa
 aaa
-qiI
+aaa
 "}
 (2,1,1) = {"
 aaa
