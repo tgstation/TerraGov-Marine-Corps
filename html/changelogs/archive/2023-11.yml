@@ -333,3 +333,9 @@
   - bugfix: CAS can now no longer hit inside of Slumbridge caves in PC'd tiles.
   Lumipharon:
   - code_imp: some code clean up for living mob init
+2023-11-25:
+  Lumipharon:
+  - bugfix: Can no longer teleport to the objective on Base Rescue in campaign
+  - balance: Ship railgun is no longer available in Crash
+  Pariah919:
+  - rscdel: Vali spear has been removed.
