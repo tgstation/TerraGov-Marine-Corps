@@ -4706,7 +4706,7 @@
 /area/ice_colony/surface/clinic/lobby)
 "aCM" = (
 /turf/closed/gm/dense,
-/area/space)
+/area/ice_colony/underground/maintenance/east)
 "aCO" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -19372,7 +19372,7 @@
 /area/ice_colony/surface/excavation)
 "erN" = (
 /turf/open/floor/plating/ground/dirtgrassborder,
-/area/space)
+/area/ice_colony/underground/maintenance/east)
 "esB" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/disposalpipe/segment{
@@ -22602,7 +22602,7 @@
 "jjZ" = (
 /obj/effect/landmark/weed_node,
 /turf/closed/mineral/smooth/darkfrostwall,
-/area/space)
+/area/ice_colony/underground/maintenance/east)
 "jkn" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -23028,7 +23028,7 @@
 /turf/open/floor/plating/ground/dirtgrassborder/corner{
 	dir = 1
 	},
-/area/space)
+/area/ice_colony/underground/maintenance/east)
 "jPw" = (
 /obj/machinery/miner/damaged,
 /turf/open/floor/plating/ground/snow/layer2,
@@ -26908,8 +26908,8 @@
 /turf/open/floor/tile/dark,
 /area/ice_colony/surface/excavationbarracks)
 "pcC" = (
-/turf/open/floor/plating/ground/ice,
-/area/space)
+/turf/closed/mineral/smooth/darkfrostwall/indestructible,
+/area/ice_colony/underground/maintenance/east)
 "pcI" = (
 /obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /turf/open/floor/plating,
@@ -26929,8 +26929,8 @@
 /turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/valley/northwest)
 "peY" = (
-/turf/open/floor/plating,
-/area/space)
+/turf/closed/mineral/smooth/darkfrostwall,
+/area/ice_colony/underground/maintenance/east)
 "pfx" = (
 /obj/structure/bed/chair/wood/normal{
 	dir = 1
@@ -29298,6 +29298,10 @@
 	dir = 5
 	},
 /area/ice_colony/underground/engineering)
+"spk" = (
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/turf/closed/mineral/smooth/darkfrostwall,
+/area/ice_colony/underground/maintenance/east)
 "spB" = (
 /obj/structure/bed/chair{
 	dir = 1
@@ -29884,7 +29888,7 @@
 /area/ice_colony/underground/reception/checkpoint_north)
 "tbm" = (
 /turf/open/floor/plating/ground/dirtgrassborder/corner,
-/area/space)
+/area/ice_colony/underground/maintenance/east)
 "tbw" = (
 /obj/machinery/light{
 	dir = 8
@@ -66047,8 +66051,8 @@ oBz
 oBz
 oBz
 bQw
-hHB
-aaa
+peY
+pcC
 aua
 aua
 aua
@@ -66369,8 +66373,8 @@ bTZ
 bTN
 gOA
 oBz
-peY
-aaa
+oBz
+pcC
 aua
 aua
 aua
@@ -66691,8 +66695,8 @@ bOV
 hwO
 oBz
 oBz
-peY
-pcC
+oBz
+bFH
 aua
 aua
 aua
@@ -67013,8 +67017,8 @@ bOV
 hwO
 oBz
 oBz
-peY
-pcC
+oBz
+bFH
 aua
 aua
 aua
@@ -67335,8 +67339,8 @@ bOV
 efV
 oBz
 oBz
-peY
-pcC
+oBz
+bFH
 aua
 aua
 aua
@@ -67657,8 +67661,8 @@ bOV
 hwO
 oBz
 oBz
-peY
-pcC
+oBz
+bFH
 aua
 aua
 aua
@@ -67979,8 +67983,8 @@ bOV
 hwO
 gOA
 oBz
-peY
-pcC
+oBz
+bFH
 aua
 aua
 aua
@@ -68301,8 +68305,8 @@ bOV
 hwO
 oBz
 oBz
-peY
-pcC
+oBz
+bFH
 aua
 aua
 aua
@@ -68623,8 +68627,8 @@ bOV
 uzL
 oBz
 oBz
-peY
-pcC
+oBz
+bFH
 aua
 aua
 aua
@@ -68945,8 +68949,8 @@ bOX
 hwO
 oBz
 oBz
-peY
-pcC
+oBz
+bFH
 aua
 aua
 aua
@@ -69267,8 +69271,8 @@ bOX
 hwO
 gOA
 oBz
-peY
-aaa
+oBz
+pcC
 aua
 aua
 aua
@@ -69589,8 +69593,8 @@ bOX
 hwO
 oBz
 oBz
-hHB
-aaa
+peY
+pcC
 aua
 aua
 aua
@@ -69911,8 +69915,8 @@ bOX
 efV
 oBz
 bQw
-hHB
-aaa
+peY
+pcC
 aua
 aua
 aua
@@ -70233,8 +70237,8 @@ bOX
 hwO
 oBz
 bQw
-hHB
-aaa
+peY
+pcC
 aua
 aua
 aua
@@ -70555,8 +70559,8 @@ bOX
 hwO
 gOA
 bQw
-hHB
-aaa
+peY
+pcC
 aua
 aua
 aua
@@ -70877,7 +70881,7 @@ bOX
 hwO
 oBz
 bQw
-hHB
+peY
 aCM
 aua
 aua
@@ -71199,7 +71203,7 @@ bOX
 hwO
 gOA
 bQw
-pcC
+bFH
 tbm
 aua
 aua
@@ -71521,7 +71525,7 @@ bOX
 uzL
 oBz
 pSk
-pcC
+bFH
 erN
 aua
 aua
@@ -71843,7 +71847,7 @@ bOX
 hwO
 oBz
 bQw
-pcC
+bFH
 jPh
 aua
 aua
@@ -72165,8 +72169,8 @@ bCg
 hwO
 gOA
 bQw
-hHB
-aaa
+peY
+pcC
 aua
 aua
 aua
@@ -72487,8 +72491,8 @@ bCg
 hwO
 oBz
 bQw
-hHB
-aaa
+peY
+pcC
 aua
 aua
 aua
@@ -72809,8 +72813,8 @@ bCg
 cak
 gOA
 bQw
-hHB
-aaa
+peY
+pcC
 aua
 aua
 aua
@@ -73131,8 +73135,8 @@ bCg
 hwO
 oBz
 bQw
-hHB
-aaa
+peY
+pcC
 aua
 aua
 aua
@@ -73453,8 +73457,8 @@ bCg
 hwO
 gOA
 pSk
-hHB
-aaa
+peY
+pcC
 aua
 aua
 aua
@@ -73775,8 +73779,8 @@ bCg
 uzL
 gOA
 pSk
+bFH
 pcC
-aaa
 aua
 aua
 aua
@@ -74097,7 +74101,7 @@ bCg
 hwO
 oBz
 pSk
-pcC
+bFH
 erN
 aua
 aua
@@ -74419,7 +74423,7 @@ bCg
 baK
 oBz
 pSk
-pcC
+bFH
 erN
 aua
 aua
@@ -74741,7 +74745,7 @@ bCg
 baM
 oBz
 pSk
-pcC
+bFH
 erN
 aua
 aua
@@ -75063,7 +75067,7 @@ bSJ
 qJg
 gOA
 bQw
-pcC
+bFH
 erN
 aua
 aua
@@ -75385,8 +75389,8 @@ rIK
 bST
 oBz
 bQw
-hHB
-aaa
+peY
+pcC
 aua
 aua
 aua
@@ -75707,8 +75711,8 @@ lKo
 lKo
 lKo
 bQw
-hHB
-aaa
+peY
+pcC
 aua
 aua
 aua
@@ -76029,8 +76033,8 @@ ePo
 ePo
 ePo
 ePo
-hHB
-aaa
+peY
+pcC
 aua
 aua
 aua
@@ -76351,8 +76355,8 @@ ePo
 oKP
 ePo
 ePo
-hHB
-aaa
+peY
+pcC
 aua
 aua
 aua
@@ -76673,8 +76677,8 @@ emN
 emN
 nGZ
 emN
-ezU
-aaa
+spk
+pcC
 aua
 aua
 aua
@@ -76995,8 +76999,8 @@ ePo
 ePo
 ePo
 hKV
-hHB
-aaa
+peY
+pcC
 aua
 aua
 aua
@@ -77317,8 +77321,8 @@ ePo
 ePo
 hKV
 ePo
-hHB
-aaa
+peY
+pcC
 aua
 aua
 aua
@@ -77640,7 +77644,7 @@ ePo
 vYE
 ePo
 jjZ
-aaa
+pcC
 aua
 aua
 aua
@@ -77961,8 +77965,8 @@ iBD
 ePo
 gLN
 ePo
-hHB
-aaa
+peY
+pcC
 aua
 aua
 aua
@@ -78283,8 +78287,8 @@ ePo
 ePo
 ePo
 ePo
-hHB
-aaa
+peY
+pcC
 aua
 aua
 aua
@@ -78605,8 +78609,8 @@ ePo
 vYE
 ePo
 uSg
-hHB
-aaa
+peY
+pcC
 aua
 aua
 aua
@@ -78927,8 +78931,8 @@ ePo
 ePo
 ePo
 uSg
-hHB
-aaa
+peY
+pcC
 aua
 aua
 aua
@@ -79249,8 +79253,8 @@ ePo
 uQB
 uSg
 uQB
-hHB
-aaa
+peY
+pcC
 aua
 aua
 aua
@@ -79571,8 +79575,8 @@ psJ
 xxV
 tbJ
 xxV
-ezU
-pcC
+spk
+bFH
 aua
 aua
 aua
@@ -79893,8 +79897,8 @@ ePo
 uQB
 uSg
 uQB
-pcC
-pcC
+bFH
+bFH
 aua
 aua
 aua
@@ -80215,8 +80219,8 @@ igm
 uQB
 uSg
 bwK
-pcC
-pcC
+bFH
+bFH
 aua
 aua
 aua
@@ -80537,8 +80541,8 @@ ePo
 ePo
 ePo
 bwK
-pcC
-pcC
+bFH
+bFH
 aua
 aua
 aua
@@ -80859,8 +80863,8 @@ ePo
 ePo
 ePo
 bwK
-hHB
-aaa
+peY
+pcC
 aua
 aua
 aua
@@ -81181,8 +81185,8 @@ ePo
 ePo
 ePo
 uQB
-hHB
-aaa
+peY
+pcC
 aua
 aua
 aua
