@@ -1106,7 +1106,7 @@ It is also recommended that you gear up like a regular marine, or your 'internsh
 	skills_type = /datum/skills/civilian
 	display_order = JOB_DISPLAY_ORDER_CORPORATE_LIAISON
 	outfit = /datum/outfit/job/civilian/liaison
-	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_PROVIDES_SQUAD_HUD
+	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_PROVIDES_SQUAD_HUD
 	jobworth = list(
 		/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE,
 		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,

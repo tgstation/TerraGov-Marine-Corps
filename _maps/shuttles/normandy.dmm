@@ -51,7 +51,10 @@
 /area/shuttle/dropship/normandy)
 "iq" = (
 /obj/structure/bed/chair/dropship/passenger,
-/obj/docking_port/mobile/marine_dropship/two,
+/obj/docking_port/mobile/marine_dropship/two{
+	callTime = 240;
+	ignitionTime = 50
+	},
 /turf/open/shuttle/dropship/floor,
 /area/shuttle/dropship/normandy)
 "jx" = (
@@ -71,17 +74,22 @@
 /turf/open/shuttle/dropship/floor/alt,
 /area/shuttle/dropship/normandy)
 "mf" = (
-/obj/machinery/telecomms/relay/preset/telecomms/onboard,
-/turf/closed/shuttle/dropship2/edge{
-	dir = 1
+/obj/machinery/light{
+	dir = 4
 	},
-/area/shuttle/dropship/normandy)
+/turf/template_noop,
+/area/template_noop)
 "nu" = (
 /obj/structure/bed/chair/dropship/passenger{
 	dir = 4
 	},
 /turf/open/shuttle/dropship/three,
 /area/shuttle/dropship/normandy)
+"nM" = (
+/turf/closed/shuttle/dropship2/enginetwo{
+	dir = 1
+	},
+/area/template_noop)
 "oe" = (
 /obj/structure/bed/chair/dropship/passenger{
 	dir = 8
@@ -94,6 +102,9 @@
 "oB" = (
 /obj/structure/bed/chair/dropship/passenger,
 /obj/item/radio/intercom/dropship/normandy,
+/obj/structure/closet/walllocker/hydrant/extinguisher{
+	dir = 4
+	},
 /turf/open/shuttle/dropship/six,
 /area/shuttle/dropship/normandy)
 "pB" = (
@@ -142,6 +153,12 @@
 	},
 /turf/open/shuttle/dropship/floor,
 /area/shuttle/dropship/normandy)
+"uD" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/template_noop,
+/area/template_noop)
 "xX" = (
 /turf/closed/shuttle/dropship2/singlewindow{
 	dir = 1
@@ -154,15 +171,25 @@
 /turf/template_noop,
 /area/shuttle/dropship/normandy)
 "yT" = (
-/obj/machinery/door/poddoor/shutters/transit,
-/obj/machinery/door/airlock/dropship_hatch/right/two,
-/turf/open/shuttle/dropship/floor,
-/area/shuttle/dropship/normandy)
+/obj/structure/dropship_piece/two/wing/right/top,
+/turf/template_noop,
+/area/template_noop)
 "zF" = (
 /obj/structure/dropship_piece/two/front/left{
 	dir = 1
 	},
 /turf/template_noop,
+/area/shuttle/dropship/normandy)
+"zK" = (
+/obj/effect/attach_point/electronics/dropship2,
+/turf/template_noop,
+/area/template_noop)
+"AC" = (
+/obj/machinery/door/airlock/dropship_hatch/left/two,
+/obj/machinery/door/poddoor/shutters/transit{
+	dir = 8
+	},
+/turf/open/shuttle/dropship/floor,
 /area/shuttle/dropship/normandy)
 "AM" = (
 /turf/closed/shuttle/dropship2/enginetwo,
@@ -175,12 +202,9 @@
 /turf/open/shuttle/dropship/floor/alt,
 /area/shuttle/dropship/normandy)
 "Cq" = (
-/obj/machinery/door/poddoor/shutters/transit{
-	dir = 8
-	},
-/obj/machinery/door/airlock/dropship_hatch/left/two,
-/turf/open/shuttle/dropship/floor,
-/area/shuttle/dropship/normandy)
+/obj/structure/dropship_piece/two/wing/left/bottom,
+/turf/template_noop,
+/area/template_noop)
 "CN" = (
 /turf/closed/shuttle/dropship2/engineone/alt{
 	dir = 1
@@ -221,6 +245,11 @@
 /area/shuttle/dropship/normandy)
 "Js" = (
 /turf/closed/shuttle/dropship2/glasstwo,
+/area/shuttle/dropship/normandy)
+"Jx" = (
+/obj/machinery/door/airlock/dropship_hatch/right/two,
+/obj/machinery/door/poddoor/shutters/transit,
+/turf/open/shuttle/dropship/floor,
 /area/shuttle/dropship/normandy)
 "JK" = (
 /turf/closed/shuttle/dropship2/enginethree{
@@ -286,6 +315,10 @@
 	},
 /turf/template_noop,
 /area/shuttle/dropship/normandy)
+"UZ" = (
+/obj/structure/dropship_piece/two/wing/right/bottom,
+/turf/template_noop,
+/area/template_noop)
 "Wg" = (
 /turf/closed/shuttle/dropship2/rearcorner/alt{
 	dir = 1
@@ -310,8 +343,15 @@
 	dir = 1
 	},
 /area/shuttle/dropship/normandy)
+"Yu" = (
+/turf/closed/shuttle/dropship2/finleft,
+/area/template_noop)
 "Zp" = (
 /turf/template_noop,
+/area/template_noop)
+"ZC" = (
+/obj/structure/dropship_piece/two/wing/left/top,
+/turf/open/space/basic,
 /area/template_noop)
 "ZF" = (
 /obj/machinery/door/airlock/hatch/cockpit/two,
@@ -324,7 +364,7 @@ Zp
 Zp
 Zp
 Zp
-Zp
+mf
 Zp
 Zp
 ud
@@ -338,9 +378,9 @@ Zp
 Zp
 Zp
 Zp
-Zp
-Zp
-Zp
+ZC
+Yu
+Cq
 Zp
 CN
 JK
@@ -352,11 +392,11 @@ Zp
 Zp
 Zp
 Zp
-Zp
+zK
 Wg
 DH
-Cq
 DH
+AC
 DH
 JT
 gx
@@ -388,7 +428,7 @@ th
 iq
 gA
 LS
-LS
+gA
 LS
 th
 lI
@@ -398,7 +438,7 @@ Ph
 hz
 pB
 cK
-mf
+rG
 cW
 eY
 oe
@@ -412,11 +452,11 @@ lI
 Zp
 Zp
 Zp
-Zp
+zK
 Wk
 OZ
-yT
 OZ
+Jx
 OZ
 Ye
 Iv
@@ -428,9 +468,9 @@ Zp
 Zp
 Zp
 Zp
-Zp
-Zp
-Zp
+yT
+nM
+UZ
 Zp
 FH
 Su
@@ -444,7 +484,7 @@ Zp
 Zp
 Zp
 Zp
-Zp
+uD
 Zp
 Zp
 Gg

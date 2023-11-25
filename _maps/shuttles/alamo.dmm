@@ -229,7 +229,7 @@
 /area/shuttle/dropship/alamo)
 "aX" = (
 /obj/effect/attach_point/weapon/dropship1{
-	dir = 8;
+	dir = 8
 	},
 /obj/structure/dropship_piece/one/wing/left/bottom,
 /turf/template_noop,
@@ -247,7 +247,7 @@
 /area/shuttle/dropship/alamo)
 "bb" = (
 /obj/effect/attach_point/weapon/dropship1{
-	dir = 4;
+	dir = 4
 	},
 /obj/structure/dropship_piece/one/wing/right/bottom,
 /turf/template_noop,
@@ -531,6 +531,12 @@
 	},
 /turf/open/shuttle/dropship/floor,
 /area/shuttle/dropship/alamo)
+"rs" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/template_noop,
+/area/template_noop)
 "vw" = (
 /obj/structure/dropship_piece/one/engine/leftbottom,
 /turf/template_noop,
@@ -567,20 +573,26 @@
 	dir = 1
 	},
 /area/shuttle/dropship/alamo)
+"ZT" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/template_noop,
+/area/template_noop)
 
 (1,1,1) = {"
 ao
 ao
 ao
 ao
-ao
+rs
 aG
 aQ
 aX
 ao
 ao
 ao
-ao
+rs
 ao
 ao
 bE
@@ -700,7 +712,7 @@ bp
 bw
 bI
 al
-al
+bI
 al
 bZ
 ao
@@ -803,14 +815,14 @@ ao
 ao
 ao
 ao
-ao
+ZT
 aP
 aW
 bb
 ao
 ao
 ao
-ao
+ZT
 ao
 ao
 bF
