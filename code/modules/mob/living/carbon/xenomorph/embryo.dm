@@ -152,10 +152,10 @@
 	if(victim.chestburst || loc != victim)
 		return
 
-	ADD_TRAIT(victim, TRAIT_PSY_DRAINED, TRAIT_PSY_DRAINED)
+	victim.chestburst = 1
 	to_chat(src, span_danger("We start slithering out of [victim]!"))
 
-	victim.Unconscious(40 SECONDS)
+	victim.Unconscious(10 SECONDS)
 	victim.visible_message(span_danger("\The [victim] starts shaking uncontrollably!"), \
 								span_danger("You feel something wiggling out of your insides!"))
 	victim.jitter(300)
@@ -173,7 +173,6 @@
 		victim.chestburst = 0
 		return
 
-	victim.update_burst()
 
 	if(istype(victim.loc, /obj/vehicle/multitile/root))
 		var/obj/vehicle/multitile/root/V = victim.loc
@@ -189,9 +188,10 @@
 		qdel(AE)
 
 
-	victim.update_burst()
+	victim.chestburst = 2
 	log_combat(src, null, "was born as a larva.")
 	log_game("[key_name(src)] was born as a larva at [AREACOORD(src)].")
+	victim.chestburst = 0
 
 	if(((locate(/obj/structure/bed/nest) in loc) && hive.living_xeno_ruler?.z == loc.z) || (!mind))
 		burrow()

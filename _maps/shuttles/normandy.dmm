@@ -88,9 +88,6 @@
 /turf/open/shuttle/dropship/three,
 /area/shuttle/dropship/normandy)
 "oe" = (
-/obj/structure/bed/chair/dropship/passenger{
-	dir = 8
-	},
 /obj/machinery/camera/autoname/mainship/dropship_two{
 	dir = 8
 	},
@@ -100,7 +97,8 @@
 /obj/structure/bed/chair/dropship/passenger,
 /obj/item/radio/intercom/dropship/normandy,
 /obj/structure/closet/walllocker/hydrant/extinguisher{
-	dir = 4
+	dir = 4;
+	pixel_x = -50
 	},
 /turf/open/shuttle/dropship/six,
 /area/shuttle/dropship/normandy)
@@ -434,8 +432,8 @@ pB
 cK
 rG
 cW
-eY
 oe
+jY
 Dz
 XK
 jY

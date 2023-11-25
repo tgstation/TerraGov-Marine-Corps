@@ -522,15 +522,6 @@
 	dir = 4
 	},
 /area/shuttle/dropship/alamo)
-"iV" = (
-/obj/structure/bed/chair/dropship/passenger{
-	dir = 4
-	},
-/obj/structure/closet/walllocker/hydrant/extinguisher{
-	dir = 4
-	},
-/turf/open/shuttle/dropship/floor,
-/area/shuttle/dropship/alamo)
 "rs" = (
 /obj/machinery/light{
 	dir = 4
@@ -546,7 +537,8 @@
 	dir = 8
 	},
 /obj/structure/closet/walllocker/hydrant/extinguisher{
-	dir = 8
+	dir = 8;
+	pixel_x = 16
 	},
 /turf/open/shuttle/dropship/floor,
 /area/shuttle/dropship/alamo)
@@ -667,7 +659,7 @@ aS
 bo
 aI
 bx
-iV
+aI
 bl
 aI
 bX
@@ -730,7 +722,7 @@ aK
 bl
 aI
 be
-iV
+aI
 aI
 bl
 Dp
