@@ -141,4 +141,5 @@
 	if(turf_attacking)
 		var/mob/living/target = locate() in turf_attacking
 		if(target && Adjacent(target) && (target != src))
+			changeNext_move(CLICK_CD_MELEE)
 			return UnarmedAttack(target, TRUE)
