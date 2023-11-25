@@ -111,7 +111,6 @@
 "fA" = (/obj/structure/bed/bunkbed,/obj/effect/landmark/start/job/mechpilot,/obj/effect/landmark/start/job/mechpilot,/turf/open/floor/wood,/area/mainship/living/tankerbunks)
 "fC" = (/obj/machinery/camera/autoname/mainship{dir = 1},/obj/structure/cable,/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{dir = 4},/turf/open/floor/plating/plating_catwalk,/area/mainship/hallways/hangar{outside = 0})
 "fJ" = (/obj/structure/window/framed/mainship/requisitions,/turf/open/floor/mainship/mono,/area/mainship/shipboard/brig)
-"fN" = (/obj/machinery/door_control/mainship/ammo{id = "cargohold"; name = "Cargo Bay Doors"},/turf/open/floor/mainship/mono,/area/mainship/hallways/hangar{outside = 0})
 "fP" = (/obj/effect/landmark/start/job/cmo,/obj/structure/cable,/turf/open/floor/mainship/sterile/side,/area/mainship/medical/lower_medical{outside = 0})
 "fV" = (/obj/structure/ship_ammo/cas/heavygun,/turf/open/floor/mainship/cargo,/area/mainship/hallways/hangar{outside = 0})
 "fW" = (/obj/structure/bed,/obj/item/bedsheet/brown,/obj/effect/landmark/start/job/pilotofficer,/turf/open/floor/wood,/area/mainship/living/pilotbunks{outside = 0})
@@ -127,6 +126,7 @@
 "gu" = (/obj/effect/turf_decal/warning_stripes/thick{dir = 1},/turf/open/floor/plating,/area/mainship/hallways/hangar{outside = 0})
 "gw" = (/obj/structure/table/mainship/nometal,/obj/effect/spawner/random/food_or_drink/packagedbar,/obj/effect/spawner/random/food_or_drink/sugary_snack,/turf/open/floor/mainship,/area/mainship/living/cafeteria_starboard)
 "gC" = (/turf/open/floor/mainship_hull/dir{dir = 6},/area/mainship/hull/lower_hull)
+"gD" = (/obj/effect/ai_node,/turf/open/floor/mainship,/area/mainship/living/cafeteria_starboard)
 "gF" = (/obj/structure/table/mainship,/obj/item/tool/kitchen/utensil/fork,/turf/open/floor/freezer,/area/mainship/living/cafeteria_starboard)
 "gI" = (/obj/item/trash/buritto,/turf/open/floor/wood,/area/mainship/living/cryo_cells)
 "gM" = (/obj/machinery/power/smes{output_level = 200000},/turf/open/floor/plating/plating_catwalk,/area/mainship/engineering/engine_core)
@@ -139,6 +139,7 @@
 "ha" = (/obj/structure/cable,/obj/effect/ai_node,/turf/open/floor/plating/plating_catwalk,/area/mainship/hull/lower_hull)
 "hb" = (/obj/docking_port/stationary/marine_dropship/hangar/two{name = "NTF LZ2"},/turf/open/floor/plating,/area/mainship/hallways/hangar{outside = 0})
 "hc" = (/turf/open/floor/mainship/mono,/area/mainship/living/port_emb)
+"hd" = (/obj/machinery/vending/nanomed{dir = 4},/turf/open/floor/mainship/black/full,/area/mainship/living/tankerbunks)
 "hf" = (/obj/machinery/door/airlock/multi_tile/mainship/generic{name = "\improper Firing Range"},/turf/open/floor/mainship/red{dir = 8},/area/mainship/shipboard/firing_range)
 "hk" = (/obj/machinery/vending/armor_supply,/turf/open/floor/mainship/floor,/area/mainship/squads/general)
 "hm" = (/turf/open/floor/mainship/cargo/arrow{dir = 8},/area/mainship/living/cryo_cells)
@@ -152,7 +153,7 @@
 "hA" = (/obj/structure/cable,/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,/turf/open/floor/plating/plating_catwalk,/area/mainship/hallways/hangar{outside = 0})
 "hB" = (/obj/structure/cable,/turf/open/floor/plating/plating_catwalk,/area/mainship/engineering/engine_core)
 "hD" = (/obj/machinery/atmospherics/components/unary/vent_pump/layer1{dir = 8; on = 1},/obj/structure/cable,/turf/open/floor/mainship/floor,/area/mainship/hallways/hangar{outside = 0})
-"hI" = (/turf/open/floor/mainship,/area/mainship/living/cafeteria_starboard)
+"hI" = (/obj/machinery/door_control/mainship/ammo,/turf/open/floor/mainship/mono,/area/mainship/hallways/hangar{outside = 0})
 "hK" = (/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{dir = 4},/obj/structure/cable,/turf/closed/wall/mainship,/area/mainship/hallways/port_hallway)
 "hM" = (/obj/effect/turf_decal/warning_stripes/medical,/obj/effect/turf_decal/warning_stripes/box/small{dir = 1},/obj/effect/turf_decal/warning_stripes/box/small,/obj/effect/ai_node,/turf/open/floor/mainship/black{dir = 8},/area/mainship/squads/general)
 "hO" = (/turf/open/floor/mainship/ntlogo/nt3,/area/mainship/squads/general)
@@ -216,7 +217,6 @@
 "kI" = (/obj/effect/ai_node,/turf/open/floor/plating,/area/mainship/living/tankerbunks)
 "kK" = (/obj/structure/target_stake,/obj/item/target,/turf/open/floor/plating/mainship/striped{dir = 1},/area/mainship/shipboard/firing_range)
 "kT" = (/obj/structure/cable,/obj/structure/disposalpipe/segment,/obj/machinery/light/mainship/small{dir = 4},/turf/open/floor/plating/plating_catwalk,/area/mainship/hull/lower_hull)
-"kU" = (/obj/effect/ai_node,/turf/open/floor/mainship,/area/mainship/living/cafeteria_starboard)
 "lb" = (/obj/structure/window/framed/mainship/requisitions,/obj/structure/sign/ROsign{dir = 1},/obj/machinery/door/poddoor/shutters/mainship/req/ro,/turf/open/floor/plating,/area/mainship/squads/req)
 "le" = (/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{dir = 4},/obj/structure/disposalpipe/segment{dir = 4},/obj/machinery/door/firedoor/mainship,/obj/machinery/door/airlock/mainship/marine/general/smart,/turf/open/floor/mainship,/area/mainship/squads/general)
 "lh" = (/obj/machinery/door/airlock/mainship/generic/mech_pilot/bunk,/turf/open/floor/mainship/mono,/area/mainship/living/tankerbunks)
@@ -301,7 +301,7 @@
 "oD" = (/obj/structure/largecrate/guns,/turf/open/floor/mainship/cargo,/area/mainship/hallways/port_hallway)
 "oG" = (/obj/machinery/light/small{dir = 1},/obj/structure/cable,/obj/machinery/power/smes{output_level = 200000},/turf/open/floor/plating/plating_catwalk,/area/mainship/engineering/engine_core)
 "oJ" = (/obj/machinery/vending/weapon,/turf/open/floor/mainship/black{dir = 1},/area/mainship/living/tankerbunks)
-"oK" = (/obj/machinery/telecomms/allinone,/turf/open/floor/mainship/mono,/area/mainship/command/cic)
+"oK" = (/obj/machinery/telecomms/allinone{id = "NTC"},/turf/open/floor/mainship/mono,/area/mainship/command/cic)
 "oN" = (/turf/closed/wall/mainship,/area/mainship/shipboard/brig)
 "oO" = (/obj/structure/bed/bunkbed,/obj/effect/landmark/start/job/squadmarine,/obj/effect/landmark/start/job/squadmarine,/turf/open/floor/wood,/area/mainship/living/cryo_cells)
 "oS" = (/obj/machinery/vending/weapon,/turf/open/floor/mainship,/area/mainship/squads/general)
@@ -399,7 +399,6 @@
 "tc" = (/obj/structure/bed,/obj/item/bedsheet/medical,/turf/open/floor/mainship/sterile{dir = 8},/area/mainship/medical/lower_medical{outside = 0})
 "td" = (/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{dir = 4},/turf/open/floor/mainship/mono,/area/mainship/hallways/hangar{outside = 0})
 "ti" = (/turf/open/floor/mainship/mono,/area/mainship/hallways/hangar{outside = 0})
-"tk" = (/obj/machinery/door_control/mainship/ammo{id = "cargohold"; name = "Cargo Bay Doors"; req_one_access = null},/turf/open/floor/mainship/mono,/area/mainship/hallways/port_hallway)
 "tl" = (/turf/open/floor/mainship/black{dir = 5},/area/mainship/living/cryo_cells)
 "tp" = (/obj/structure/cable,/obj/machinery/power/geothermal,/turf/open/floor/plating/plating_catwalk,/area/mainship/engineering/engine_core)
 "tq" = (/obj/machinery/light{dir = 1},/turf/open/floor/mainship,/area/mainship/shipboard/brig)
@@ -525,7 +524,7 @@
 "yS" = (/obj/machinery/vending/marineFood,/turf/open/floor/mainship/mono,/area/mainship/hallways/port_hallway)
 "yY" = (/obj/structure/largecrate/supply/supplies/plasteel,/turf/open/floor/mainship/cargo,/area/mainship/hallways/hangar{outside = 0})
 "yZ" = (/obj/effect/ai_node,/turf/open/floor/mainship/black,/area/mainship/squads/general)
-"za" = (/obj/machinery/light/mainship{dir = 4},/obj/machinery/computer/cryopod,/turf/open/floor/mainship/black{dir = 4},/area/mainship/living/cafeteria_starboard)
+"za" = (/obj/machinery/vending/nanomed,/turf/open/floor/mainship/mono,/area/mainship/hallways/hangar{outside = 0})
 "zc" = (/obj/effect/soundplayer,/turf/closed/wall/mainship,/area/mainship/squads/general)
 "zf" = (/obj/structure/table/mainship,/obj/machinery/computer/security/marinemainship{dir = 4; pixel_x = 17},/turf/open/floor/mainship/red{dir = 5},/area/mainship/command/cic)
 "zg" = (/obj/structure/target_stake,/obj/item/target,/obj/item/clothing/suit/replica,/turf/open/floor/plating/mainship,/area/mainship/shipboard/firing_range)
@@ -600,7 +599,6 @@
 "CG" = (/obj/structure/cable,/turf/open/floor/mainship/mono,/area/mainship/living/pilotbunks{outside = 0})
 "CH" = (/obj/machinery/light,/obj/machinery/atmospherics/components/unary/vent_pump/layer1{dir = 8; on = 1},/obj/structure/cable,/turf/open/floor/mainship,/area/mainship/squads/general)
 "CR" = (/obj/structure/window/framed/mainship/requisitions,/obj/machinery/door/poddoor/shutters/mainship/req/ro,/turf/open/floor/plating,/area/mainship/squads/req)
-"CT" = (/obj/machinery/door_control/mainship/ammo,/turf/open/floor/mainship/mono,/area/mainship/hallways/hangar{outside = 0})
 "CU" = (/obj/machinery/door/airlock/mainship/marine/general/engi,/obj/structure/disposalpipe/segment{dir = 4},/obj/machinery/door/firedoor/mainship,/turf/open/floor/mainship,/area/mainship/squads/general)
 "CX" = (/turf/open/floor/mainship/cargo,/area/mainship/shipboard/firing_range)
 "CZ" = (/obj/structure/cable,/obj/structure/disposalpipe/segment,/turf/open/floor/plating/plating_catwalk,/area/mainship/hull/lower_hull)
@@ -713,6 +711,7 @@
 "HO" = (/turf/closed/wall/mainship,/area/mainship/hallways/hangar{outside = 0})
 "HR" = (/obj/structure/dropship_equipment/electronics/spotlights,/turf/open/floor/mainship/orange{dir = 4},/area/mainship/hallways/hangar{outside = 0})
 "HY" = (/obj/effect/landmark/start/job/captain,/turf/open/floor/mainship/mono,/area/mainship/command/cic)
+"Ia" = (/obj/machinery/door_control/mainship/ammo{id = "cargohold"; name = "Cargo Bay Doors"; req_one_access = null},/turf/open/floor/mainship/mono,/area/mainship/hallways/port_hallway)
 "Ib" = (/obj/machinery/camera/autoname/mainship,/turf/open/floor/mainship/cargo/arrow{dir = 8},/area/mainship/squads/general)
 "Ic" = (/obj/machinery/vending/tool,/obj/machinery/light{dir = 8},/turf/open/floor/mainship/black{dir = 9},/area/mainship/squads/general)
 "Ii" = (/obj/machinery/door/airlock/mainship/security{name = "\improper Corpsec Office"; req_access = list(5)},/turf/open/floor/mainship,/area/mainship/shipboard/brig)
@@ -762,7 +761,6 @@
 "JT" = (/turf/open/floor/mainship/black{dir = 10},/area/mainship/living/tankerbunks)
 "JZ" = (/obj/machinery/light{dir = 8},/turf/open/floor/plating/plating_catwalk,/area/mainship/living/port_emb)
 "Kb" = (/obj/item/trash/candy,/turf/open/floor/wood,/area/mainship/living/cryo_cells)
-"Kc" = (/obj/machinery/vending/nanomed{dir = 4},/turf/open/floor/mainship/black/full,/area/mainship/living/tankerbunks)
 "Kd" = (/obj/machinery/vending/MarineMed/Blood,/turf/open/floor/mainship/sterile/corner{dir = 8},/area/mainship/medical/lower_medical{outside = 0})
 "Kj" = (/obj/machinery/light/mainship{dir = 8},/obj/machinery/vending/weapon,/turf/open/floor/mainship/floor,/area/mainship/squads/general)
 "Kn" = (/obj/structure/cable,/obj/structure/disposalpipe/segment/corner{dir = 1},/obj/effect/ai_node,/turf/open/floor/plating/plating_catwalk,/area/mainship/hull/lower_hull)
@@ -844,8 +842,10 @@
 "NN" = (/obj/structure/disposalpipe/segment,/obj/structure/cable,/turf/open/floor/plating/plating_catwalk,/area/mainship/hull/lower_hull)
 "NP" = (/turf/open/floor/mainship/red{dir = 8},/area/mainship/shipboard/brig)
 "NQ" = (/turf/closed/wall/mainship,/area/mainship/shipboard/firing_range)
+"NR" = (/obj/machinery/light/mainship{dir = 4},/obj/machinery/computer/cryopod,/turf/open/floor/mainship/black{dir = 4},/area/mainship/living/cafeteria_starboard)
 "NT" = (/obj/machinery/door/poddoor/railing{dir = 8; id = "supply_elevator_railing"},/turf/open/floor/mainship/floor,/area/mainship/squads/req)
 "NU" = (/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,/obj/structure/disposalpipe/segment,/obj/machinery/power/apc/mainship{dir = 4},/obj/structure/cable,/turf/open/floor/plating/plating_catwalk,/area/mainship/squads/req)
+"NV" = (/turf/open/floor/mainship,/area/mainship/living/cafeteria_starboard)
 "NX" = (/turf/open/floor/mainship/cargo/arrow,/area/mainship/hallways/hangar{outside = 0})
 "NZ" = (/obj/structure/disposalpipe/segment{dir = 4},/obj/effect/ai_node,/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,/turf/open/floor/mainship/cargo/arrow{dir = 8},/area/mainship/squads/general)
 "Ob" = (/obj/machinery/door/airlock/mainship/medical/glass,/obj/structure/cable,/turf/open/floor/mainship/mono,/area/mainship/medical/lower_medical{outside = 0})
@@ -1075,7 +1075,7 @@
 "Ym" = (/obj/structure/cable,/turf/open/floor/mainship/sterile/side{dir = 1},/area/mainship/medical/lower_medical{outside = 0})
 "Yn" = (/obj/structure/window/framed/mainship/requisitions,/turf/open/floor/plating,/area/mainship/shipboard/brig)
 "Yo" = (/obj/machinery/camera/autoname/mainship,/turf/open/floor/plating/mainship/striped{dir = 1},/area/mainship/shipboard/firing_range)
-"Yq" = (/obj/machinery/vending/nanomed,/turf/open/floor/mainship/mono,/area/mainship/hallways/hangar{outside = 0})
+"Yq" = (/obj/machinery/door_control/mainship/ammo{id = "cargohold"; name = "Cargo Bay Doors"},/turf/open/floor/mainship/mono,/area/mainship/hallways/hangar{outside = 0})
 "Yt" = (/obj/structure/table/mainship,/obj/machinery/computer/shuttle/shuttle_control/dropship{possible_destinations = "lz1;lz2;hqlz1;hqlz2;normandy;alamo"},/turf/open/floor/mainship/mono,/area/mainship/command/cic)
 "Yu" = (/obj/machinery/light/small{dir = 4},/turf/open/floor/mainship/stripesquare,/area/mainship/hallways/port_umbilical)
 "Yv" = (/obj/structure/cable,/obj/machinery/light/small{dir = 8},/obj/structure/disposalpipe/segment,/turf/open/floor/plating/plating_catwalk,/area/mainship/hull/lower_hull)
@@ -1154,7 +1154,7 @@ bnEBEBEBEBEBEBEBTeTeJlSRSRSRWNAMEdhZBOcmNnANSgwPrCIRhSxexKyHvlueGTMbGWRTGWobjPFi
 bnEBEBEBEBEBEBEBzKTePmjKBNSpWNAMEdpjNnQuNnpZpZpZpZpZpZpZpZpZpZpZjPbqGWRTGWbqjPvTvqCnUYiRkyDLkyDLCnpJGllNMSEdEdEdEdEdEdEdEdEdEdJlTeuyEBEBEBEBEBEBEBEBbn
 bnEBEBEBEBEBEBEBzKTeEdXKZBZBnZhahoRhRhMXolpZUZuHlhBkpZBJrHrHEmpZFWbqGWRTGWbqjPlNTJnEHtDaDaDaDaDagNGkBBlNKnzoMoMozoLUXULUzoMoDzJlTeuyEBEBEBEBEBEBEBEBbn
 bnEBEBEBEBEBEBEBzKTeEdzkoNoNoNoNoNoNoNMNoNpZpdBdpZBkpZZijjIKvipZjPbqjPjPjPbqjPlNTPnEocyZYktAtAtAaKwVlFlNEdVVEdEdEdEdEdEdEdEdNNJlTeuyEBEBEBEBEBEBEBEBbn
-bnEBEBEBEBEBEBEBzKTeEdlOoNjOZkICDRxNoNGsExpZQqfApZKclqFspCpCwDpZCqpgZwCjCjfyIFlNIcnEUYkybtUuUuUuCnVetrxrGMtrCnqjJqZGZGDDZGZGAMJlTeuyEBEBEBEBEBEBEBEBbn
+bnEBEBEBEBEBEBEBzKTeEdlOoNjOZkICDRxNoNGsExpZQqfApZhdlqFspCpCwDpZCqpgZwCjCjfyIFlNIcnEUYkybtUuUuUuCnVetrxrGMtrCnqjJqZGZGDDZGZGAMJlTeuyEBEBEBEBEBEBEBEBbn
 bnEBEBEBEBEBEBEBzKTeEdhyoNxNxNxNwHZuoNuwMppZpZpZpZsTrHXipSxWkdEIGTMbjPjPjPjPjPlNeWnEocYkDatAtAtAgNHtDaDaDaXuFIZGQxhToOoqRVZGAMJlTeuyEBEBEBEBEBEBEBEBbn
 bnEBEBEBEBEBEBEBzKTeEdlOoNoNoNoNyNvIoNuwMppZKGoJtUfkLRIZaSaSkIZPjPbqjPzclNlNlQzclNlNzcgZDanEcSnEeEUYKynEnEkybztlhmdyJEgIGIqWgPJlTeuyEBEBEBEBEBEBEBEBbn
 bnEBEBEBEBEBEBEBzKTeEdENoNksrBFaPdEyOhuwMppZJTGbGbGbZpUDFKcJImZPjPbqjPlNASZfAhXnYUGVlNSsquEMEMYVgNEvzxzxFdxoDaEYrLTpzzGIGoPULGJlTeuyEBEBEBEBEBEBEBEBbn
@@ -1170,9 +1170,9 @@ bnEBEBEBEBEBEBEBzKTeEdlOEdjPyKZwZwZwZwZwZwZwZwZwZwZwZwZwZwZwZwKtZwPBjPCUZOXAZOQF
 bnEBEBEBEBEBEBEBzKTeEdlOEdjPLnjPjPjPjPjPjPjPjPjPjPjPjPjPjPjPjPjPjPbqjPlNxlrwpWxlNqWplNHzdPsqEMYVgNDfzxzxFdxoDayauKGIVkGIGIPUKuJlTeuyEBEBEBEBEBEBEBEBbn
 bnEBEBEBEBEBEBEBzKTeEdlOEdjPcfjPuJuJuJuJuJuJuJnpnpnpnpomnpnpnpnpFWbqjPlNlNlNlQlNlNlNPhlNlNzcDaDagNQLDaDaDaDaDaEYJqiwfroOoOZGCZJlTeuyEBEBEBEBEBEBEBEBbn
 bnEBEBEBEBEBEBEBzKTeEdlOEdFWcfjPuJZLuJZLuJaFaFnpiAiAiAsjiAiAiAnpjPbqjPlNKoNggrsOYGlnsOsolnlNDaDagNHtDaOHDaDaDayaZGZGZGDDZGZGDoJlTeuyEBEBEBEBEBEBEBEBbn
-bnEBEBEBEBEBEBEBzKTeEdlOEdjPcfjPuJPPuJPPuJJZsBnpiAiAiAiAiAiAiAnpjPPjYNlexZUGxZjgNZjgxZoTxZleEloBqrxuGngwOrrlkUzaPHPHPHEdEdEdCZJlTeuyEBEBEBEBEBEBEBEBbn
-bnEBEBEBEBEBEBEBzKTeEdlOEdjPmHQMVtByVsTZhcTjsBnpiAiAiAiAiAiAiAnpjPbqjPlNhkHvwmsONklnsOvnlnvTTRmZukrvGnHigwrlhIbJxbBcSQEdIBMolKJlTeuyEBEBEBEBEBEBEBEBbn
-bnEBEBEBEBEBEBEBzKTeEdqnEdjPPojPuJivmDWauJnYnYnpiAiAiAiAiAiAiAnpjPbqjPiUiUiUzclNlNlNPhlNzclNlNlNzcSshIhIhIhIhIbJXCXCZWEdNNJlAMJlTeuyEBEBEBEBEBEBEBEBbn
+bnEBEBEBEBEBEBEBzKTeEdlOEdjPcfjPuJPPuJPPuJJZsBnpiAiAiAiAiAiAiAnpjPPjYNlexZUGxZjgNZjgxZoTxZleEloBqrxuGngwOrrlgDNRPHPHPHEdEdEdCZJlTeuyEBEBEBEBEBEBEBEBbn
+bnEBEBEBEBEBEBEBzKTeEdlOEdjPmHQMVtByVsTZhcTjsBnpiAiAiAiAiAiAiAnpjPbqjPlNhkHvwmsONklnsOvnlnvTTRmZukrvGnHigwrlNVbJxbBcSQEdIBMolKJlTeuyEBEBEBEBEBEBEBEBbn
+bnEBEBEBEBEBEBEBzKTeEdqnEdjPPojPuJivmDWauJnYnYnpiAiAiAiAiAiAiAnpjPbqjPiUiUiUzclNlNlNPhlNzclNlNlNzcSsNVNVNVNVNVbJXCXCZWEdNNJlAMJlTeuyEBEBEBEBEBEBEBEBbn
 bnEBEBEBEBEBEBEBzKTeEdENEdjPPojPuJuJuJuJuJuJuJnpiAiAiAiAiAiAiAnpFWbqGTVZjPjPRoiXkEiXNGiXIbDazGDaRoPlXCccccJmccccccccXCEdCZrEcLLeEduyEBEBEBEBEBEBEBEBbn
 bnEBEBEBEBEBEBEBzKTeEdlOjMjPPojPHamJktIAmJmJFGnpiAiAiACliAiAiAnpjPbqeoeoeoeolNDawgOHUpJinEVUrTfmlNPlQOwFVoGQblzpZRVoPXEdMSrEvhKKEduyEBEBEBEBEBEBEBEBbn
 bnEBEBEBEBEBEBEBzKTeEdlOEdjPyujPHaNDXwieCbieNBnpiAiAiAiAiAiAiAnpjPSbeoeoFleolNDaIyyooSJinEVUrTmTlNPlQOzpYOOozpAkgFtaPXEdCZrElsJFEduyEBEBEBEBEBEBEBEBbn
@@ -1180,14 +1180,14 @@ bnEBEBEBEBEBEBEBzKTeEdlOEdFWPojPHaEsxjieydiertnpiAiAiAiAiAiAiAnpjPPjZeZeZeZebMbD
 bnEBEBEBEBEBEBEBzKTeEdlOEdjPPojPHaYjnQCbCbieNDnpiAiAiAiAiAiAiAnpjPPoeooDeozMlNlNlNlNlNlNlNlNlNlNwjwjwjwjwjwjwjwjwjwjwjJlCZrEejJFEduyEBEBEBEBEBEBEBEBbn
 bnEBEBEBEBEBEBEBzKTeEdlOEdjPPojPHaEsTtEsFoEsFonpiAiAiAiAiAiAiAnpjPPoNfeoeoeoeoDFFziUcqcqcqcqcqcqcqtYAcscohvPfVfVLmDkxJJlCZrEejzIEduyEBEBEBEBEBEBEBEBbn
 bnEBEBEBEBEBEBEBzKTeEdqnEdjPPojPecUyREieUyececnpnpspspnpspspnpSjjPPoeorIeoSvlkeoMriUeuQIqicqMnPrcqeVLktikrLwfVfVYyBobkJlCZrELeUKEduyEBEBEBEBEBEBEBEBbn
-bnEBEBEBEBEBEBEBzKTeEdlOEdFWPojPjPjPGTjPjPlVjPjPjPwWxvtkDjgmGjjPjPPoaQeoeoaIlUmieohKxxZZCGMcXmXmJHActiVAkrLwnKfVYyBoRGJlCZrEUwYuEduyEBEBEBEBEBEBEBEBbn
+bnEBEBEBEBEBEBEBzKTeEdlOEdFWPojPjPjPGTjPjPlVjPjPjPwWxvIaDjgmGjjPjPPoaQeoeoaIlUmieohKxxZZCGMcXmXmJHActiVAkrLwnKfVYyBoRGJlCZrEUwYuEduyEBEBEBEBEBEBEBEBbn
 bnEBEBEBEBEBEBEBzKTeEdhyEdjPPoyuPoPoPoPoPoPoPoPoPoPoPoPoPoPoPoPoPoPoPoPoPoPoPoPoPokpJISKSKcqFFFFcqActitikrtiNXcMtiBoHLJlMSrErEUKEduyEBEBEBEBEBEBEBEBbn
 bnEBEBEBEBEBEBEBzKTeEdlOEdjPjPjPjPjPjPjPjPjPjPRFjPjPjPjPjPjPjPjPjPjPjPCcjPRFjPjPjPPWShTBqicqfWXZcqJenAtiJhtddwNXtirjJoJlCZJlTeTeTeuyEBEBEBEBEBEBEBEBbn
 bnEBEBEBEBEBEBEBzKTeEdlOEdEdeooDeoeoeoeooDeoeoeoeoiUZoZoZoZoiUeooDeoeomAeooDeoeoeoEdEdEdEdEdEdEdEdarpiXGHOnUpTnUnUHOWWJlCZJlTeTeTeuyEBEBEBEBEBEBEBEBbn
 bnEBEBEBEBEBEBEBzKTeEdENEdEdEdEdEdEdEdEdEdEdEdEdEdiUQyQyQyQyiUEdEdEdEdEdEdEdEdEdEdEdEdEdEdEdEdEdEdEdEdEdHOBrUhBrBrHOJlJlCZJlTeTeTeuyEBEBEBEBEBEBEBEBbn
 bnEBEBEBEBEBEBEBzKTeEdlOmvEgAMswAMAMAMswhaAMswAMAMYbPoyuPoPoYbswAMAMAMcsAMswAMXrAMswAMAMAMswAMhatuAMswAMPzCfhAjhCfPzAMcsCZJlTeTeTeuyEBEBEBEBEBEBEBEBbn
 bnEBEBEBEBEBEBzKTeTeEdEdEdprEdEdEdEdEdEdEdVVEdEdEdiUjbQyQyjYiUEdEdEdEdEdEdEdEdFxEdEdEdEdEdEdEdEdEdEdEdEdHOTxUhBrwtHOEdEdGrJlTeTeTeTeoAEBEBEBEBEBEBEBbn
-bnEBEBEBEBEBEBzKaNYhTeTeEdAMJltitititiRPtititititiYqtitititifNtitititiRPtititiUFUFiikeVQkePbDxymPugQkekeYqtivLtitiCTtiEdCZJlTeTeYhaNuyEBEBEBEBEBEBEBbn
+bnEBEBEBEBEBEBzKaNYhTeTeEdAMJltitititiRPtititititizatitititiYqtitititiRPtititiUFUFiikeVQkePbDxymPugQkekezativLtitihItiEdCZJlTeTeYhaNuyEBEBEBEBEBEBEBbn
 bnEBEBEBEBEBEByzOxXETeTeEdIOJltiBDQkQEQkQkQkQkQkAaQkBDtitiBDQkQEQkQkQkQkQkAaQkBDtiUFtititigesISTtitititititiMjtiAcCBETEdCZJlTeTeXEOxgCEBEBEBEBEBEBEBbn
 bnEBEBEBEBEBEBEBEBEBzKTeEdAMJltiQkQkQEQkQkQkQkQkAaQkQktitiQkQkQEQkQkQkQkQkAaQkQktiwxwdwdwdwdwdwdwdwdwdwdwdwdLatititiETEdCZJlTeuyEBEBEBEBEBEBEBEBEBEBbn
 bnEBEBEBEBEBEBEBEBEBzKTeEdAMJlHALhwcYYQkQkQkQkQkTAwcOititiLhwcYYQkQkQkQkQkTAwcOitiRCtitiultitititititiJQtitititinCtiRAEdCZJlTeuyEBEBEBEBEBEBEBEBEBEBbn

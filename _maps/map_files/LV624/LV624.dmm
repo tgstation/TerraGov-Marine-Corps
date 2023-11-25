@@ -15385,7 +15385,6 @@
 /obj/structure/barricade/plasteel{
 	is_wired = 1;
 	can_wire = 0;
-	closed = 0;
 	dir = 8
 	},
 /turf/open/floor/mainship/silver{

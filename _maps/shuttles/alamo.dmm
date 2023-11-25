@@ -559,7 +559,9 @@
 	},
 /area/shuttle/dropship/alamo)
 "Ki" = (
-/obj/machinery/computer/shuttle/marine_dropship/one,
+/obj/machinery/computer/shuttle/marine_dropship/one{
+	possible_destinations = "lz1;lz2;hqlz1;hqlz2;normandy;alamo"
+	},
 /turf/closed/shuttle/dropship1/panel{
 	dir = 1
 	},
