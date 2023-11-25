@@ -85,11 +85,6 @@
 	},
 /turf/open/shuttle/dropship/three,
 /area/shuttle/dropship/normandy)
-"nM" = (
-/turf/closed/shuttle/dropship2/enginetwo{
-	dir = 1
-	},
-/area/template_noop)
 "oe" = (
 /obj/structure/bed/chair/dropship/passenger{
 	dir = 8
@@ -173,7 +168,7 @@
 "yT" = (
 /obj/structure/dropship_piece/two/wing/right/top,
 /turf/template_noop,
-/area/template_noop)
+/area/shuttle/dropship/normandy)
 "zF" = (
 /obj/structure/dropship_piece/two/front/left{
 	dir = 1
@@ -204,7 +199,7 @@
 "Cq" = (
 /obj/structure/dropship_piece/two/wing/left/bottom,
 /turf/template_noop,
-/area/template_noop)
+/area/shuttle/dropship/normandy)
 "CN" = (
 /turf/closed/shuttle/dropship2/engineone/alt{
 	dir = 1
@@ -318,7 +313,7 @@
 "UZ" = (
 /obj/structure/dropship_piece/two/wing/right/bottom,
 /turf/template_noop,
-/area/template_noop)
+/area/shuttle/dropship/normandy)
 "Wg" = (
 /turf/closed/shuttle/dropship2/rearcorner/alt{
 	dir = 1
@@ -343,16 +338,13 @@
 	dir = 1
 	},
 /area/shuttle/dropship/normandy)
-"Yu" = (
-/turf/closed/shuttle/dropship2/finleft,
-/area/template_noop)
 "Zp" = (
 /turf/template_noop,
 /area/template_noop)
 "ZC" = (
 /obj/structure/dropship_piece/two/wing/left/top,
-/turf/open/space/basic,
-/area/template_noop)
+/turf/template_noop,
+/area/shuttle/dropship/normandy)
 "ZF" = (
 /obj/machinery/door/airlock/hatch/cockpit/two,
 /turf/open/shuttle/dropship/floor,
@@ -379,7 +371,7 @@ Zp
 Zp
 Zp
 ZC
-Yu
+sh
 Cq
 Zp
 CN
@@ -469,7 +461,7 @@ Zp
 Zp
 Zp
 yT
-nM
+qP
 UZ
 Zp
 FH

@@ -274,7 +274,7 @@ Make the TGMC proud!"})
  jobtype = /datum/job/terragov/command/ceo
 
  id = /obj/item/card/id/gold
- belt = /obj/item/storage/holster/belt/mateba/full
+ belt = /obj/item/storage/holster/belt/mateba/officer/full 
  ears = /obj/item/radio/headset/mainship/mcom
  w_uniform = /obj/item/clothing/under/suit_jacket/charcoal
  shoes = /obj/item/clothing/shoes/marine/full
