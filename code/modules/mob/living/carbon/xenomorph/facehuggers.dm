@@ -455,9 +455,6 @@
 
 	return TRUE
 
-/mob/living/carbon/human/species/monkey/can_be_facehugged(obj/item/clothing/mask/facehugger/F, check_death = TRUE, check_mask = TRUE, provoked = FALSE)
-..() //facehuggers still attack player monkeys
-
 /////////////////////////////
 // ATTACHING AND IMPREGNATION
 //////////////////////////////
