@@ -1,6 +1,6 @@
 /datum/game_mode/extended
-	name = "Extended Plus"
-	config_tag = "Extendedplus"
+	name = "Extended"
+	config_tag = "Extended"
 	silo_scaling = 1.5
 	flags_round_type = MODE_INFESTATION|MODE_PSY_POINTS|MODE_PSY_POINTS_ADVANCED|MODE_HIJACK_POSSIBLE|MODE_SILO_RESPAWN|MODE_ALLOW_XENO_QUICKBUILD
 	shutters_drop_time = 3 MINUTES

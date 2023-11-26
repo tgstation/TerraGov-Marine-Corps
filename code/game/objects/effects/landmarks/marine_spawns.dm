@@ -166,13 +166,13 @@
 	job = /datum/job/clf/medic
 
 /obj/effect/landmark/start/job/clf/specialist
-    icon_state = "Shaft Miner"
-    job = /datum/job/clf/specialist
+	icon_state = "Shaft Miner"
+	job = /datum/job/clf/specialist
 
 /obj/effect/landmark/start/job/clf/standard
-    icon_state = "Shaft Miner"
-    job = /datum/outfit/job/clf/standard
+	icon_state = "Shaft Miner"
+	job = /datum/outfit/job/clf/standard
 
 /obj/effect/landmark/start/job/prisoner
-    icon_state = "Shaft Miner"
-    job = /datum/job/other/prisoner
+	icon_state = "Shaft Miner"
+	job = /datum/job/other/prisoner

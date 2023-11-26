@@ -1172,7 +1172,7 @@
 "jRT" = (/obj/structure/supply_drop,/turf/open/floor/mainship/mono,/area/mainship/squads/req{outside = 0})
 "jSp" = (/obj/structure/window/reinforced{dir = 1; layer = 2},/obj/structure/toilet{dir = 8},/obj/machinery/shower{dir = 1; layer = 3},/obj/effect/ai_node,/turf/open/floor/plating/plating_catwalk,/area/mainship/shipboard/brig_cells{outside = 0})
 "jSF" = (/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{dir = 4},/turf/closed/wall/mainship/white,/area/mainship/medical/medical_science{outside = 0})
-"jST" = (/obj/machinery/computer/camera_advanced{dir = 6},/obj/structure/window/reinforced/tinted{dir = 1; layer = 2},/obj/structure/table/reinforced,/turf/open/floor/wood,/area/mainship/shipboard/brig{outside = 0})
+"jST" = (/obj/machinery/computer/camera_advanced,/obj/structure/window/reinforced/tinted{dir = 1; layer = 2},/obj/structure/table/reinforced,/turf/open/floor/wood,/area/mainship/shipboard/brig{outside = 0})
 "jTt" = (/obj/effect/ai_node,/turf/open/floor/wood,/area/mainship/living/numbertwobunks{outside = 0})
 "jTG" = (/obj/structure/reagent_dispensers/water_cooler,/turf/open/floor/mainship/red{dir = 8},/area/mainship/shipboard/brig{outside = 0})
 "jUq" = (/turf/open/floor/plating/ground/dirtgrassborder/corner{dir = 1},/area/lv624/ground/caves{ceiling = 2; name = "HQ Tunnels"})
