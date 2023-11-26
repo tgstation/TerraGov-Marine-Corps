@@ -1311,23 +1311,3 @@ GLOBAL_LIST_INIT(survivor_outfits, typecacheof(/datum/outfit/job/survivor))
 			return FALSE
 		line_count ++
 	return TRUE
-
-
-/proc/get_compass_dir(atom/start, atom/end)
-	if(!start || !end)
-		return 0
-	if(!start.z || !end.z)
-		return 0
-
-	var/dy = end.y - start.y
-	var/dx = end.x - start.x
-	if(!dy)
-		return (dx >= 0) ? 4 : 8
-
-	var/angle = arctan(dx / dy)
-	if(dy < 0)
-		angle += 180
-	else if(dx < 0)
-		angle += 360
-
-	return angle_to_dir(angle)

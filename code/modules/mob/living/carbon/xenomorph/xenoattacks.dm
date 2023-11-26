@@ -137,7 +137,7 @@
 	. = ..()
 	if(!(client && client.prefs && client.prefs.toggles_gameplay & TOGGLE_DIRECTIONAL_ATTACK) || a_intent == INTENT_HELP)
 		return
-	var/turf/turf_attacking = get_step(src, get_compass_dir(src, A))
+	var/turf/turf_attacking = get_step(src, angle_to_dir(Get_Angle(src, A)))
 	if(turf_attacking)
 		var/mob/living/target = locate() in turf_attacking
 		if(target && Adjacent(target) && (target != src))
