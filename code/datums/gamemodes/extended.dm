@@ -1,16 +1,13 @@
 /datum/game_mode/extended
 	name = "Extended"
 	config_tag = "Extended"
-	silo_scaling = 1
+	silo_scaling = 1.5
 	flags_round_type = MODE_INFESTATION|MODE_PSY_POINTS|MODE_PSY_POINTS_ADVANCED|MODE_HIJACK_POSSIBLE|MODE_SILO_RESPAWN|MODE_ALLOW_XENO_QUICKBUILD
 	shutters_drop_time = 3 MINUTES
 	flags_xeno_abilities = ABILITY_NUCLEARWAR
-	factions = list(FACTION_TERRAGOV, FACTION_SOM, FACTION_ALIEN)
 	valid_job_types = list(
 		/datum/job/terragov/command/captain = 1,
-		/datum/job/terragov/command/ceo = 1,
 		/datum/job/terragov/command/fieldcommander = 1,
-		/datum/job/terragov/command/corpseccommander = 1,
 		/datum/job/terragov/command/staffofficer = 4,
 		/datum/job/terragov/command/pilot = 2,
 		/datum/job/terragov/command/mech_pilot = 1,
@@ -19,7 +16,6 @@
 		/datum/job/terragov/requisitions/officer = 2,
 		/datum/job/terragov/medical/professor = 1,
 		/datum/job/terragov/medical/medicalofficer = 6,
-		/datum/job/terragov/security/security_officer = 8,
 		/datum/job/terragov/medical/researcher = 3,
 		/datum/job/terragov/civilian/liaison = 1,
 		/datum/job/terragov/silicon/synthetic = 4,
@@ -30,39 +26,14 @@
 		/datum/job/terragov/squad/leader = 4,
 		/datum/job/terragov/squad/standard = -1,
 		/datum/job/survivor/rambo = -1,
-		/datum/job/other/prisoner = -1,
 		/datum/job/xenomorph = FREE_XENO_AT_START,
-		/datum/job/xenomorph/queen = 1,
-		/datum/job/som/command/commander = 1,
-		/datum/job/som/command/fieldcommander = 1,
-		/datum/job/som/command/staffofficer = 2,
-		/datum/job/som/command/pilot = 1,
-		/datum/job/som/squad/medic = 1,
-		/datum/job/som/squad/engineer = 1,
-		/datum/job/som/squad/leader = 1,
-		/datum/job/som/squad/veteran = 2,
-		/datum/job/som/squad/standard = 10,
-		/datum/job/clf/leader = 1,
-		/datum/job/clf/specialist = 1,
-		/datum/job/clf/medic = 2,
-		/datum/job/clf/standard = 5
+		/datum/job/xenomorph/queen = 1
 	)
 	enable_fun_tads = TRUE
 	xenorespawn_time = 15 SECONDS
-	respawn_time = 15 SECONDS
 
 	/// Time between two bioscan
 	var/bioscan_interval = 15 MINUTES
-
-//sets TGMC and SOM squads
-/datum/game_mode/extended/set_valid_squads()
-	SSjob.active_squads[FACTION_TERRAGOV] = list()
-	SSjob.active_squads[FACTION_SOM] = list()
-	for(var/key in SSjob.squads)
-		var/datum/squad/squad = SSjob.squads[key]
-		if(squad.faction == FACTION_TERRAGOV || squad.faction == FACTION_SOM) //We only want Marine and SOM squads, future proofs if more faction squads are added
-			SSjob.active_squads[squad.faction] += squad
-	return TRUE
 
 /datum/game_mode/extended/announce()
 	to_chat(world, "<b>The current game mode is - Extended Role-Playing!</b>")
