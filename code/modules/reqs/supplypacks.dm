@@ -213,17 +213,17 @@ WEAPONS
 	cost = 30
 
 /datum/supply_packs/weapons/autocannon_emplacement
-	name = "Mounted Autocannon"
+	name = "ATR-22 Mounted Flak Cannon"
 	contains = list(/obj/item/weapon/gun/standard_auto_cannon)
 	cost = 700
 
 /datum/supply_packs/weapons/ac_hv
-	name = "Mounted Autocannon HV ammo"
+	name = "ATR-22 High-Velocity ammo"
 	contains = list(/obj/item/ammo_magazine/auto_cannon)
 	cost = 40
 
 /datum/supply_packs/weapons/ac_flak
-	name = "Mounted Autocannon Smart-Detonating ammo"
+	name = "ATR-22 Smart-Detonating ammo"
 	contains = list(/obj/item/ammo_magazine/auto_cannon/flak)
 	cost = 40
 
@@ -318,12 +318,12 @@ WEAPONS
 	cost = 1200
 
 /datum/supply_packs/weapons/flak_he
-	name = "ISG-15 HE Shell"
+	name = "FK-88 HE Shell"
 	contains = list(/obj/item/ammo_magazine/heavy_isg/he)
 	cost = 100
 
 /datum/supply_packs/weapons/flak_sabot
-	name = "ISG-15 APFDS Shell"
+	name = "FK-88 APFDS Shell"
 	contains = list(/obj/item/ammo_magazine/heavy_isg/sabot)
 	cost = 120
 
