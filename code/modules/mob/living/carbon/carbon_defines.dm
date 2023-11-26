@@ -41,7 +41,7 @@
 	/// % Chance of exploding on death, incremented by total damage taken if not initially zero.
 	var/gib_chance = 0
 	///list of abilities this mob has access to
-	var/list/datum/action/mob_abilities = list()
+	var/list/datum/action/ability/mob_abilities = list()
 	///Currently selected ability
 	var/datum/action/ability/activable/selected_ability
 
