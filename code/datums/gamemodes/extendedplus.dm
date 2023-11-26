@@ -1,6 +1,6 @@
-/datum/game_mode/extendedplus
+/datum/game_mode/extended_plus
 	name = "Extended Plus"
-	config_tag = "Extendedplus"
+	config_tag = "Extended Plus"
 	silo_scaling = 1
 	flags_round_type = MODE_INFESTATION|MODE_PSY_POINTS|MODE_PSY_POINTS_ADVANCED|MODE_HIJACK_POSSIBLE|MODE_SILO_RESPAWN|MODE_ALLOW_XENO_QUICKBUILD
 	shutters_drop_time = 3 MINUTES
@@ -29,19 +29,23 @@
 		/datum/job/terragov/squad/smartgunner = 4,
 		/datum/job/terragov/squad/leader = 4,
 		/datum/job/terragov/squad/standard = -1,
-		/datum/job/survivor = -1,
-		/datum/job/prisoner = -1,
+		/datum/job/survivor/rambo = -1,
+		/datum/job/other/prisoner = -1,
 		/datum/job/xenomorph = FREE_XENO_AT_START,
 		/datum/job/xenomorph/queen = 1,
 		/datum/job/som/command/commander = 1,
 		/datum/job/som/command/fieldcommander = 1,
 		/datum/job/som/command/staffofficer = 2,
 		/datum/job/som/command/pilot = 1,
-		/datum/job/job/som/squad/corpsman = 1,
-		/datum/job/job/som/squad/engineer = 1,
-		/datum/job/job/som/squad/leader = 1,
-		/datum/job/job/som/squad/veteran = 2,
-		/datum/job/som/squad/standard = 5,
+		/datum/job/som/squad/medic = 1,
+		/datum/job/som/squad/engineer = 1,
+		/datum/job/som/squad/leader = 1,
+		/datum/job/som/squad/veteran = 2,
+		/datum/job/som/squad/standard = 10,
+		/datum/job/clf/leader = 1,
+		/datum/job/clf/specialist = 1,
+		/datum/job/clf/medic = 2,
+		/datum/job/clf/standard = 5
 	)
 	enable_fun_tads = TRUE
 	xenorespawn_time = 15 SECONDS
@@ -51,7 +55,7 @@
 	var/bioscan_interval = 15 MINUTES
 
 //sets TGMC and SOM squads
-/datum/game_mode/extendedplus/set_valid_squads()
+/datum/game_mode/extended_plus/set_valid_squads()
 	SSjob.active_squads[FACTION_TERRAGOV] = list()
 	SSjob.active_squads[FACTION_SOM] = list()
 	for(var/key in SSjob.squads)
@@ -60,16 +64,16 @@
 			SSjob.active_squads[squad.faction] += squad
 	return TRUE
 
-/datum/game_mode/extendedplus/announce()
+/datum/game_mode/extended_plus/announce()
 	to_chat(world, "<b>The current game mode is - Extended Role-Playing!</b>")
 	to_chat(world, "<b>Just have fun and role-play!</b>")
 
-/datum/game_mode/extendedplus/check_finished()
+/datum/game_mode/extended_plus/check_finished()
 	if(!round_finished)
 		return FALSE
 	return TRUE
 
-/datum/game_mode/extendedplus/declare_completion()
+/datum/game_mode/extended_plus/declare_completion()
 	. = ..()
 	to_chat(world, span_round_header("|[round_finished]|"))
 	var/sound/S = sound(pick('sound/theme/neutral_hopeful1.ogg','sound/theme/neutral_hopeful2.ogg'), channel = CHANNEL_CINEMATIC)

@@ -269,7 +269,7 @@
 /turf/open/floor/plating/platebotc,
 /area/lv624/ground/caves/central1/garbledradio)
 "ajy" = (
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/sand6)
 "ajz" = (
@@ -301,7 +301,7 @@
 /area/lv624/ground/caves/central1/garbledradio)
 "akj" = (
 /obj/effect/landmark/xeno_resin_door,
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/west1)
@@ -356,7 +356,7 @@
 /turf/closed/mineral/smooth,
 /area/lv624/ground/caves/rock)
 "alD" = (
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/plating,
 /area/lv624/ground/river1)
 "alR" = (
@@ -638,7 +638,7 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor,
 /area/lv624/ground/sand5)
 "asG" = (
@@ -756,7 +756,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/sand5)
 "avM" = (
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /obj/effect/ai_node,
 /turf/open/floor/engine/cult{
 	dir = 2
@@ -806,7 +806,7 @@
 /area/lv624/ground/river1)
 "awD" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/carpet/side{
 	dir = 5
 	},
@@ -897,7 +897,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/plating/warning{
 	dir = 8
 	},
@@ -932,7 +932,7 @@
 /turf/closed/wall/cult,
 /area/lv624/ground/caves/rock)
 "ayp" = (
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /obj/item/trash/candy,
 /turf/open/floor/plating,
 /area/lv624/lazarus/engineering)
@@ -978,7 +978,7 @@
 /turf/open/floor/marking/bot,
 /area/lv624/ground/sand2)
 "azA" = (
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /obj/structure/stairs/seamless{
 	dir = 8
 	},
@@ -1059,7 +1059,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/sand2)
 "aAN" = (
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/engine/cult{
 	dir = 2
 	},
@@ -1182,7 +1182,7 @@
 /area/lv624/lazarus/hydroponics)
 "aDZ" = (
 /obj/structure/cable,
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/plating,
 /area/lv624/lazarus/engineering)
 "aEc" = (
@@ -1340,7 +1340,7 @@
 /area/lv624/lazarus/main_hall)
 "aIj" = (
 /mob/living/simple_animal/mouse,
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/freezer,
 /area/lv624/lazarus/kitchen)
 "aIm" = (
@@ -1372,7 +1372,7 @@
 "aJp" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/tile/purple/whitepurplecorner{
 	dir = 4
 	},
@@ -1425,12 +1425,12 @@
 	},
 /area/lv624/ground/sand8)
 "aKO" = (
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/lv624/lazarus/engineering)
 "aLd" = (
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /obj/structure/flora/jungle/vines,
 /turf/open/floor,
 /area/lv624/ground/river1)
@@ -1441,7 +1441,7 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 2
 	},
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor,
 /area/lv624/ground/sand5)
 "aLt" = (
@@ -1646,7 +1646,7 @@
 /turf/open/floor/freezer,
 /area/lv624/lazarus/kitchen)
 "aPE" = (
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/marking/bot,
 /area/lv624/ground/sand5)
 "aPL" = (
@@ -1803,7 +1803,7 @@
 /turf/open/floor/plating,
 /area/lv624/lazarus/engineering)
 "aSP" = (
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/tile/green/whitegreencorner{
 	dir = 2
 	},
@@ -1870,7 +1870,7 @@
 /area/lv624/lazarus/spaceport)
 "aUW" = (
 /obj/effect/decal/cleanable/blood/oil,
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /obj/structure/cable,
 /obj/effect/ai_node,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -1896,7 +1896,7 @@
 /area/lv624/ground/sand7)
 "aVI" = (
 /obj/effect/decal/remains/xeno,
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle10)
 "aVL" = (
@@ -2137,7 +2137,7 @@
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/research)
 "bbw" = (
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /obj/item/ammo_casing,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/sand7)
@@ -2156,7 +2156,7 @@
 /area/lv624/ground/river2)
 "bcd" = (
 /obj/effect/ai_node,
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/sand2/garbledradio)
 "bce" = (
@@ -2308,7 +2308,7 @@
 "bfw" = (
 /obj/effect/turf_decal/sandytile,
 /obj/effect/turf_decal/sandytile,
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/sandtemple)
 "bfR" = (
@@ -2549,7 +2549,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/main_hall)
 "bmb" = (
@@ -2644,7 +2644,7 @@
 "boL" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/research)
 "boT" = (
@@ -2846,7 +2846,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/plating,
 /area/lv624/lazarus/captain)
 "bvb" = (
@@ -2857,7 +2857,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/compound/n)
@@ -2951,7 +2951,7 @@
 /turf/open/floor/plating,
 /area/lv624/lazarus/quartstorage)
 "bzf" = (
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/west1)
@@ -2962,7 +2962,7 @@
 /turf/closed/wall/r_wall/chigusa,
 /area/lv624/lazarus/sandtemple/garbledradio)
 "bzw" = (
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 2
 	},
@@ -3126,7 +3126,7 @@
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/research)
 "bFX" = (
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/lazarus/quartstorage/outdoors)
 "bGe" = (
@@ -3223,7 +3223,7 @@
 /area/lv624/lazarus/main_hall)
 "bMK" = (
 /obj/item/weapon/claymore/mercsword/machete,
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle6)
 "bMV" = (
@@ -3290,7 +3290,7 @@
 /obj/machinery/atmospherics/pipe/manifold4w/supply/hidden/layer1,
 /obj/structure/cable,
 /obj/effect/ai_node,
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /obj/effect/landmark/mob_spawner/monkey,
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/research)
@@ -3299,7 +3299,7 @@
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/plating,
 /area/lv624/lazarus/engineering)
 "bPQ" = (
@@ -3395,11 +3395,11 @@
 /turf/open/floor/tile/barber,
 /area/lv624/lazarus/kitchen)
 "bWM" = (
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/tile/bar,
 /area/lv624/lazarus/canteen)
 "bWZ" = (
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/ground/ruin)
 "bXs" = (
@@ -3419,7 +3419,7 @@
 /turf/open/floor,
 /area/lv624/ground/compound/n)
 "bYe" = (
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/prison/redfloor,
 /area/lv624/lazarus/sandtemple)
 "bYj" = (
@@ -3477,7 +3477,7 @@
 /turf/open/floor/plating,
 /area/lv624/lazarus/engineering)
 "caQ" = (
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle3)
 "cba" = (
@@ -3490,7 +3490,7 @@
 /area/space)
 "cbv" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/cult,
 /area/lv624/lazarus/bar)
 "cbx" = (
@@ -3586,7 +3586,7 @@
 /turf/open/floor/plating,
 /area/lv624/lazarus/tablefort)
 "ckd" = (
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/quartstorage)
 "cke" = (
@@ -3646,7 +3646,7 @@
 /area/lv624/ground/jungle8)
 "cny" = (
 /obj/structure/cable,
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 9
 	},
@@ -3733,7 +3733,7 @@
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/main_hall)
 "csk" = (
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /obj/item/stack/sheet/wood,
 /turf/open/floor/marking/bot,
 /area/lv624/ground/sand5)
@@ -3972,7 +3972,7 @@
 	},
 /obj/structure/cable,
 /obj/effect/ai_node,
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/freezer,
 /area/lv624/lazarus/toilet)
 "cGW" = (
@@ -4108,7 +4108,7 @@
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/quart)
 "cOf" = (
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
@@ -4139,7 +4139,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/tile/bar,
 /area/lv624/lazarus/canteen)
 "cQC" = (
@@ -4196,7 +4196,7 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 2
 	},
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor,
 /area/lv624/ground/sand9)
 "cUg" = (
@@ -4205,7 +4205,7 @@
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
 /area/lv624/ground/jungle5)
 "cUj" = (
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/plating/warning{
 	dir = 1
 	},
@@ -4276,7 +4276,7 @@
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/quart)
 "cVR" = (
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /obj/effect/ai_node,
 /turf/open/floor/tile/red/yellowfull,
 /area/lv624/ground/sand4)
@@ -4289,7 +4289,7 @@
 /area/lv624/ground/jungle3)
 "cXu" = (
 /obj/structure/catwalk,
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/liquid/water/river/autosmooth,
 /area/lv624/ground/river2)
 "cZk" = (
@@ -4299,7 +4299,7 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/tile/purple/taupepurple{
 	dir = 9
 	},
@@ -4348,7 +4348,7 @@
 /turf/open/floor/grimy,
 /area/lv624/lazarus/captain)
 "dcQ" = (
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/compound/ne)
 "dcS" = (
@@ -4373,7 +4373,7 @@
 	pixel_y = 26
 	},
 /obj/item/reagent_containers/hypospray/autoinjector/dexalinplus,
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/grimy,
 /area/lv624/lazarus/captain)
 "ddP" = (
@@ -4414,7 +4414,7 @@
 	dir = 4
 	},
 /obj/structure/cable,
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/quart)
 "dgm" = (
@@ -4439,7 +4439,7 @@
 	},
 /obj/structure/cable,
 /obj/effect/ai_node,
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle9)
 "diA" = (
@@ -4509,7 +4509,7 @@
 /area/lv624/lazarus/security)
 "dlN" = (
 /obj/effect/ai_node,
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/lazarus/sandtemple)
 "dmb" = (
@@ -4525,7 +4525,7 @@
 	dir = 4
 	},
 /obj/structure/cable,
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle10)
 "dou" = (
@@ -4554,7 +4554,7 @@
 /area/lv624/ground/jungle6)
 "dpV" = (
 /obj/structure/catwalk,
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/liquid/water/river/deep,
 /area/lv624/ground/river2)
 "dpY" = (
@@ -4603,7 +4603,7 @@
 /turf/open/liquid/water/river/deep,
 /area/lv624/ground/river1)
 "dqS" = (
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/sand2)
 "dre" = (
@@ -4655,7 +4655,7 @@
 /area/lv624/ground/sand5)
 "dss" = (
 /obj/structure/cable,
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/tile/blue/taupebluecorner{
 	dir = 2
 	},
@@ -4696,7 +4696,7 @@
 	},
 /obj/machinery/atmospherics/pipe/manifold4w/supply/hidden/layer1,
 /obj/effect/ai_node,
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor,
 /area/lv624/ground/compound/n)
 "dvV" = (
@@ -4720,7 +4720,7 @@
 	dir = 8
 	},
 /obj/machinery/power/apc/hyper,
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/secure_storage)
@@ -4759,7 +4759,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/plating,
 /area/lv624/ground/sand8)
 "dzb" = (
@@ -4799,7 +4799,7 @@
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/sandtemple)
 "dAB" = (
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/tile/chapel{
 	dir = 4
 	},
@@ -4930,7 +4930,7 @@
 	},
 /obj/item/ammo_casing,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /obj/effect/ai_node,
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/main_hall)
@@ -4967,7 +4967,7 @@
 /area/lv624/lazarus/spaceport2)
 "dLj" = (
 /obj/effect/spawner/random/misc/structure/supplycrate,
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/plating/platebotc,
 /area/lv624/lazarus/quartstorage/outdoors)
 "dLo" = (
@@ -5014,7 +5014,7 @@
 /area/lv624/lazarus/secure_storage)
 "dNt" = (
 /obj/effect/ai_node,
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/tile/bar,
 /area/lv624/lazarus/canteen)
 "dNz" = (
@@ -5025,7 +5025,7 @@
 	},
 /area/lv624/lazarus/research)
 "dOp" = (
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central4)
 "dOO" = (
@@ -5166,7 +5166,7 @@
 /area/lv624/lazarus/spaceport)
 "dTk" = (
 /obj/structure/table/gamblingtable,
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/wood,
 /area/lv624/lazarus/bar)
 "dTv" = (
@@ -5178,7 +5178,7 @@
 /obj/item/folder/blue,
 /obj/structure/cable,
 /obj/effect/ai_node,
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/tile/blue/whitebluefull,
 /area/lv624/lazarus/corporate_affairs)
 "dUf" = (
@@ -5427,7 +5427,7 @@
 	pixel_y = 26
 	},
 /obj/effect/decal/cleanable/cobweb,
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/ruin)
 "egy" = (
@@ -5530,7 +5530,7 @@
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
 /area/lv624/ground/jungle10)
 "emx" = (
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/tile/chapel,
 /area/lv624/lazarus/chapel)
 "ens" = (
@@ -5585,7 +5585,7 @@
 	},
 /area/lv624/lazarus/hydroponics/aux)
 "eoN" = (
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /obj/effect/ai_node,
 /turf/open/floor/tile/green/greentaupe{
 	dir = 5
@@ -5633,7 +5633,7 @@
 "esF" = (
 /obj/structure/barricade/wooden,
 /obj/effect/ai_node,
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/main_hall)
 "esY" = (
@@ -5780,7 +5780,7 @@
 /turf/open/floor/plating,
 /area/lv624/ground/filtration)
 "eDK" = (
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /obj/effect/ai_node,
 /turf/open/floor/marking/bot,
 /area/lv624/ground/sand2)
@@ -5996,7 +5996,7 @@
 	pixel_y = 30
 	},
 /obj/item/trash/cheesie,
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/wood,
 /area/lv624/lazarus/captain)
 "eRC" = (
@@ -6089,7 +6089,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/quartstorage)
 "eYJ" = (
@@ -6133,7 +6133,7 @@
 /turf/open/floor/plating,
 /area/lv624/lazarus/engineering)
 "fbf" = (
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/plating/platebotc,
 /area/lv624/lazarus/quartstorage/outdoors)
 "fbm" = (
@@ -6263,7 +6263,7 @@
 /area/lv624/lazarus/robotics)
 "fhs" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/compound/n)
 "fht" = (
@@ -6307,7 +6307,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
 /obj/effect/ai_node,
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle10)
 "fjp" = (
@@ -6395,7 +6395,7 @@
 /area/lv624/lazarus/spaceport)
 "fnP" = (
 /obj/effect/turf_decal/sandytile,
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/sandtemple/garbledradio)
 "fof" = (
@@ -6550,7 +6550,7 @@
 	},
 /area/lv624/lazarus/tablefort)
 "fxm" = (
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /obj/structure/flora/jungle/vines,
 /turf/open/floor/plating,
 /area/lv624/ground/river1)
@@ -6576,7 +6576,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central3/garbledradio)
 "fye" = (
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/compound/c)
 "fyf" = (
@@ -6620,7 +6620,7 @@
 	},
 /area/lv624/ground/filtration)
 "fzB" = (
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central1/garbledradio)
 "fzJ" = (
@@ -6680,13 +6680,13 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/tile/purple/taupepurple{
 	dir = 9
 	},
 /area/lv624/lazarus/sleep_female)
 "fDn" = (
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle8)
 "fEz" = (
@@ -6786,7 +6786,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle3)
@@ -6962,7 +6962,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/sand6)
 "fXE" = (
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/east1/garbledradio)
 "fYu" = (
@@ -7048,7 +7048,7 @@
 "gbA" = (
 /obj/structure/bed,
 /obj/item/bedsheet/brown,
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/tile/blue/taupebluecorner{
 	dir = 2
 	},
@@ -7225,7 +7225,7 @@
 /area/lv624/ground/river2)
 "ghD" = (
 /obj/effect/spawner/random/medical/heal_pack/bruteweighted,
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/tile/blue/taupebluecorner{
 	dir = 2
 	},
@@ -7321,7 +7321,7 @@
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/sandtemple/garbledradio)
 "gnk" = (
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central3)
 "goy" = (
@@ -7337,7 +7337,7 @@
 /turf/closed/wall/wood,
 /area/lv624/ground/jungle8)
 "gqa" = (
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor,
 /area/lv624/ground/sand2)
 "gqy" = (
@@ -7381,7 +7381,7 @@
 	},
 /area/lv624/ground/river3)
 "gsZ" = (
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/sand7)
 "gtS" = (
@@ -7391,7 +7391,7 @@
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
 /area/lv624/ground/jungle6)
 "guH" = (
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/tile/blue/whiteblue,
 /area/lv624/lazarus/corporate_affairs)
 "guJ" = (
@@ -7418,7 +7418,7 @@
 	},
 /area/lv624/lazarus/sleep_male)
 "gvo" = (
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/engineering)
 "gvw" = (
@@ -7442,7 +7442,7 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor,
 /area/lv624/ground/sand8)
 "gxf" = (
@@ -7665,7 +7665,7 @@
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
 /area/lv624/ground/compound/n)
 "gMF" = (
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/bcircuit/off,
 /area/lv624/lazarus/sandtemple)
 "gMJ" = (
@@ -7761,12 +7761,12 @@
 	},
 /area/lv624/lazarus/sleep_female)
 "gRB" = (
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/sand2/garbledradio)
 "gSs" = (
 /obj/effect/ai_node,
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle3)
 "gSY" = (
@@ -7855,7 +7855,7 @@
 	},
 /area/lv624/lazarus/sleep_female)
 "gYS" = (
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central1)
 "gYV" = (
@@ -7865,7 +7865,7 @@
 /turf/open/floor/plating,
 /area/lv624/lazarus/tablefort)
 "gZm" = (
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle7)
 "gZn" = (
@@ -7898,7 +7898,7 @@
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/sandtemple/garbledradio)
 "hbg" = (
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/plating,
 /area/lv624/ground/sand6)
 "hbF" = (
@@ -7906,7 +7906,7 @@
 /turf/open/floor/tile/vault,
 /area/lv624/lazarus/robotics)
 "hcU" = (
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/marking/loadingarea{
 	dir = 4
 	},
@@ -7937,12 +7937,12 @@
 /obj/structure/rack,
 /obj/machinery/light,
 /obj/effect/spawner/random/engineering/technology_scanner,
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/quart)
 "hdI" = (
 /obj/structure/barricade/wooden,
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/main_hall)
 "hdJ" = (
@@ -8133,7 +8133,7 @@
 	dir = 4
 	},
 /obj/item/clothing/mask/facehugger/dead,
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/tile/purple/whitepurple{
 	dir = 5
 	},
@@ -8235,7 +8235,7 @@
 /turf/open/floor/plating/warning,
 /area/lv624/lazarus/robotics)
 "hur" = (
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/tile/chapel{
 	dir = 8
 	},
@@ -8510,7 +8510,7 @@
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/engineering)
 "hIR" = (
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/quart)
 "hJt" = (
@@ -8872,7 +8872,7 @@
 /turf/open/ground/grass,
 /area/lv624/ground/jungle4)
 "iaQ" = (
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/tile/red/redtaupe{
 	dir = 9
 	},
@@ -8970,7 +8970,7 @@
 /turf/open/floor/engine,
 /area/lv624/lazarus/hydroponics/aux)
 "ifX" = (
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central5/garbledradio)
 "igl" = (
@@ -9039,7 +9039,7 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/quartstorage)
 "ilh" = (
@@ -9050,7 +9050,7 @@
 /area/lv624/lazarus/sleep_male)
 "ilt" = (
 /obj/structure/cable,
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/main_hall)
 "imt" = (
@@ -9089,7 +9089,7 @@
 	},
 /area/lv624/lazarus/atmos)
 "iok" = (
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/freezer,
 /area/lv624/lazarus/kitchen)
 "iol" = (
@@ -9269,7 +9269,7 @@
 	},
 /obj/structure/cable,
 /obj/effect/ai_node,
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/tile/green/whitegreen{
 	dir = 2
 	},
@@ -9410,7 +9410,7 @@
 /turf/open/ground/grass,
 /area/lv624/ground/jungle6)
 "iEH" = (
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
 /turf/open/floor,
@@ -9468,7 +9468,7 @@
 /area/lv624/ground/jungle9)
 "iJC" = (
 /obj/vehicle/train/cargo/engine,
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/marking/bot,
 /area/lv624/ground/sand2)
 "iJN" = (
@@ -9488,7 +9488,7 @@
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/secure_storage)
 "iKa" = (
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor,
 /area/lv624/ground/river2)
 "iKK" = (
@@ -9579,7 +9579,7 @@
 /turf/open/ground/grass/grass2,
 /area/lv624/ground/jungle6)
 "iPi" = (
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/tile/barber,
 /area/lv624/lazarus/kitchen)
 "iPZ" = (
@@ -9635,7 +9635,7 @@
 	pixel_y = 3
 	},
 /obj/item/reagent_containers/hypospray/autoinjector/tricordrazine,
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/armory)
 "iSL" = (
@@ -9773,7 +9773,7 @@
 /area/lv624/ground/river2)
 "jaj" = (
 /obj/effect/landmark/xeno_resin_door,
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central3/garbledradio)
 "jal" = (
@@ -9808,7 +9808,7 @@
 /turf/closed/wall/r_wall,
 /area/lv624/lazarus/secure_storage)
 "jcX" = (
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central2)
 "jdg" = (
@@ -9911,7 +9911,7 @@
 /area/lv624/lazarus/hydroponics/aux)
 "jjr" = (
 /obj/effect/ai_node,
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/armory)
 "jjR" = (
@@ -10154,7 +10154,7 @@
 /area/lv624/ground/sand7)
 "jya" = (
 /obj/effect/ai_node,
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central3/garbledradio)
 "jyO" = (
@@ -10256,7 +10256,7 @@
 "jEE" = (
 /obj/structure/table,
 /obj/item/reagent_containers/food/snacks/grown/banana,
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/tile/bar,
 /area/lv624/lazarus/canteen)
 "jEX" = (
@@ -10294,7 +10294,7 @@
 	},
 /area/lv624/lazarus/main_hall)
 "jGU" = (
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /obj/effect/ai_node,
 /turf/open/floor/tile/green/greentaupe{
 	dir = 9
@@ -10374,7 +10374,7 @@
 /turf/open/liquid/water/river/autosmooth,
 /area/lv624/ground/sand7)
 "jJI" = (
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/tile/blue/whiteblue{
 	dir = 1
 	},
@@ -10389,7 +10389,7 @@
 /area/lv624/lazarus/hydroponics/aux)
 "jKd" = (
 /obj/effect/ai_node,
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/wood,
 /area/lv624/lazarus/bar)
 "jKX" = (
@@ -10417,7 +10417,7 @@
 /turf/open/ground/grass,
 /area/lv624/ground/jungle3)
 "jLM" = (
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/west1)
@@ -10454,7 +10454,7 @@
 /obj/structure/barricade/wooden{
 	dir = 1
 	},
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/tile/blue/taupebluecorner{
 	dir = 2
 	},
@@ -10478,7 +10478,7 @@
 /area/lv624/lazarus/quartstorage/dome)
 "jOu" = (
 /obj/effect/landmark/start/job/survivor,
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /obj/effect/ai_node,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plating/ground/dirt,
@@ -10506,7 +10506,7 @@
 	},
 /area/lv624/lazarus/sleep_male)
 "jPb" = (
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/east1/garbledradio)
@@ -10539,7 +10539,7 @@
 /area/lv624/ground/sand8)
 "jRu" = (
 /obj/item/trash/popcorn,
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/wood,
 /area/lv624/lazarus/captain)
 "jRy" = (
@@ -10725,7 +10725,7 @@
 /turf/open/ground/grass/grass2,
 /area/lv624/ground/jungle7)
 "kdn" = (
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/lazarus/quartstorage/outdoors)
@@ -10858,7 +10858,7 @@
 	},
 /area/lv624/lazarus/fitness)
 "kjU" = (
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/wood,
 /area/lv624/lazarus/bar)
 "kkP" = (
@@ -11019,7 +11019,7 @@
 	dir = 4
 	},
 /obj/structure/cable,
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/compound/se)
 "krO" = (
@@ -11143,7 +11143,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/lazarus/quartstorage/outdoors)
 "kwI" = (
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central1)
@@ -11171,7 +11171,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central5/garbledradio)
 "kzO" = (
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/marking/bot,
 /area/lv624/ground/sand2)
 "kAc" = (
@@ -11198,7 +11198,7 @@
 /turf/open/ground/grass,
 /area/lv624/ground/jungle5)
 "kCI" = (
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /obj/structure/flora/jungle/vines,
 /turf/open/floor/plating/dmg3,
 /area/lv624/ground/river1)
@@ -11304,7 +11304,7 @@
 	},
 /area/lv624/ground/jungle7)
 "kIm" = (
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /obj/structure/stairs/seamless{
 	dir = 4
 	},
@@ -11318,7 +11318,7 @@
 	dir = 1
 	},
 /obj/structure/cable,
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
@@ -11351,11 +11351,11 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/quartstorage)
 "kLK" = (
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/west1)
 "kLN" = (
@@ -11484,7 +11484,7 @@
 	dir = 8
 	},
 /obj/effect/ai_node,
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/grimy,
 /area/lv624/lazarus/bar)
 "kTb" = (
@@ -11545,7 +11545,7 @@
 	},
 /obj/effect/decal/cleanable/blood/splatter/animated,
 /obj/effect/ai_node,
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/tile/purple/whitepurple{
 	dir = 5
 	},
@@ -11582,7 +11582,7 @@
 /area/mainship/patrol_base/som)
 "kYv" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/wood/broken,
 /area/lv624/lazarus/bar)
 "kYG" = (
@@ -11694,7 +11694,7 @@
 	},
 /obj/structure/cable,
 /obj/effect/ai_node,
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor,
 /area/lv624/lazarus/research)
 "lex" = (
@@ -11909,7 +11909,7 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 9
 	},
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/secure_storage)
 "luP" = (
@@ -11925,7 +11925,7 @@
 /turf/open/ground/grass,
 /area/lv624/ground/jungle6)
 "lwf" = (
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/sand8)
 "lwx" = (
@@ -12065,7 +12065,7 @@
 "lDB" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/compound/se)
 "lDK" = (
@@ -12092,7 +12092,7 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor,
 /area/lv624/ground/jungle7)
 "lFv" = (
@@ -12130,7 +12130,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /obj/effect/turf_decal/riverdecal/edge{
 	dir = 8
 	},
@@ -12183,7 +12183,7 @@
 /area/lv624/lazarus/engineering)
 "lJS" = (
 /obj/structure/flora/ausbushes/fullgrass,
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle4)
 "lKn" = (
@@ -12340,7 +12340,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle10)
 "lRN" = (
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/plating/warning{
 	dir = 2
 	},
@@ -12373,7 +12373,7 @@
 /obj/structure/sign/redcross{
 	dir = 1
 	},
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/compound/n)
 "lTr" = (
@@ -12391,7 +12391,7 @@
 "lTI" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/effect/ai_node,
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/main_hall)
 "lTN" = (
@@ -12404,7 +12404,7 @@
 /turf/open/floor/wood,
 /area/lv624/lazarus/chapel)
 "lTT" = (
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/east1/garbledradio)
@@ -12462,7 +12462,7 @@
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
 /area/lv624/ground/jungle6)
 "lZC" = (
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor,
 /area/lv624/ground/sand8)
 "lZZ" = (
@@ -12487,7 +12487,7 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/secure_storage)
 "maW" = (
@@ -12547,7 +12547,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle5)
 "mcN" = (
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/east1)
 "mcU" = (
@@ -12568,7 +12568,7 @@
 "mex" = (
 /obj/machinery/power/apc/drained,
 /obj/structure/cable,
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/tile/chapel{
 	dir = 1
 	},
@@ -12685,7 +12685,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/tile/purple/whitepurplecorner{
 	dir = 4
 	},
@@ -12694,7 +12694,7 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/quartstorage)
 "mkK" = (
@@ -12709,7 +12709,7 @@
 /area/lv624/ground/jungle6)
 "mlg" = (
 /obj/effect/spawner/random/engineering/powercell,
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/engineering)
 "mlp" = (
@@ -12852,11 +12852,11 @@
 	},
 /area/mainship/patrol_base/som)
 "mst" = (
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/sand4)
 "msx" = (
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central3/garbledradio)
@@ -12958,7 +12958,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/compound/n)
 "myO" = (
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/tile/blue/whiteblue{
 	dir = 8
 	},
@@ -13031,7 +13031,7 @@
 /turf/open/floor/mainship/cargo,
 /area/mainship/patrol_base/som)
 "mDp" = (
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/east1/garbledradio)
@@ -13268,7 +13268,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle3)
 "mOP" = (
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/lazarus/sandtemple/garbledradio)
 "mPb" = (
@@ -13404,7 +13404,7 @@
 /obj/structure/sign/science{
 	dir = 1
 	},
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/compound/c)
 "mXs" = (
@@ -13441,7 +13441,7 @@
 "mYW" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/wood,
 /area/lv624/lazarus/captain)
 "mZo" = (
@@ -13507,7 +13507,7 @@
 /area/lv624/lazarus/robotics)
 "nck" = (
 /obj/machinery/light,
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/plating,
 /area/lv624/lazarus/engineering)
 "ncx" = (
@@ -13614,7 +13614,7 @@
 /area/lv624/lazarus/hydroponics/aux)
 "nhr" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/wood,
 /area/lv624/lazarus/bar)
 "niS" = (
@@ -13632,7 +13632,7 @@
 	dir = 4
 	},
 /obj/structure/cable,
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/grimy,
 /area/lv624/lazarus/captain)
 "njF" = (
@@ -13644,7 +13644,7 @@
 	},
 /area/lv624/lazarus/internal_affairs)
 "njH" = (
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle1)
 "njT" = (
@@ -13688,7 +13688,7 @@
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/secure_storage)
 "not" = (
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /obj/structure/cable,
 /turf/open/floor/tile/red/redtaupe{
 	dir = 10
@@ -13759,13 +13759,13 @@
 /turf/open/floor/tile/bar,
 /area/lv624/lazarus/canteen)
 "nvX" = (
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/tile/purple/whitepurplecorner{
 	dir = 4
 	},
 /area/lv624/lazarus/fitness)
 "nwb" = (
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor,
 /area/lv624/ground/sand5)
 "nwe" = (
@@ -13813,7 +13813,7 @@
 	dir = 1
 	},
 /obj/structure/cable,
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/compound/n)
 "nyi" = (
@@ -13905,7 +13905,7 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor,
 /area/lv624/ground/caves/central1/garbledradio)
 "nDX" = (
@@ -13915,7 +13915,7 @@
 "nEr" = (
 /obj/structure/bed,
 /obj/item/bedsheet/yellow,
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/tile/purple/taupepurple{
 	dir = 9
 	},
@@ -13942,7 +13942,7 @@
 /area/lv624/ground/jungle7)
 "nFP" = (
 /obj/effect/ai_node,
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/tile/blue/taupebluecorner{
 	dir = 2
 	},
@@ -14012,7 +14012,7 @@
 /obj/machinery/power/apc/drained{
 	dir = 1
 	},
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/wood,
 /area/lv624/lazarus/bar)
 "nKS" = (
@@ -14074,7 +14074,7 @@
 /area/lv624/lazarus/main_hall)
 "nOE" = (
 /obj/machinery/vending/security,
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/tile/red/redtaupe{
 	dir = 4
 	},
@@ -14136,7 +14136,7 @@
 /area/lv624/lazarus/comms)
 "nSI" = (
 /obj/structure/cable,
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/lazarus/quartstorage/outdoors)
@@ -14279,7 +14279,7 @@
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
 /area/lv624/ground/jungle3)
 "obI" = (
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
@@ -14361,7 +14361,7 @@
 	},
 /area/mainship/patrol_base/som)
 "ofP" = (
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /obj/effect/turf_decal/riverdecal/edge,
 /turf/open/floor/plating,
 /area/lv624/ground/river2)
@@ -14381,7 +14381,7 @@
 	},
 /area/lv624/lazarus/hydroponics/aux)
 "ohj" = (
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
@@ -14474,7 +14474,7 @@
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/engineering)
 "oqd" = (
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 6
 	},
@@ -14504,7 +14504,7 @@
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/engineering)
 "oqF" = (
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /obj/effect/landmark/start/job/xenomorph,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/west1)
@@ -14554,7 +14554,7 @@
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
 /obj/structure/cable,
 /obj/effect/ai_node,
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/compound/n)
 "ovM" = (
@@ -14700,7 +14700,7 @@
 /area/lv624/ground/compound/c)
 "oCt" = (
 /obj/item/stack/sheet/wood,
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/main_hall)
 "oCR" = (
@@ -14802,7 +14802,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /obj/effect/turf_decal/riverdecal,
 /turf/open/floor,
 /area/lv624/ground/sand8)
@@ -14870,7 +14870,7 @@
 /obj/machinery/light/small{
 	dir = 1
 	},
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/tile/bar,
 /area/lv624/lazarus/canteen)
 "oKX" = (
@@ -14896,7 +14896,7 @@
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/ground/ruin)
 "oMX" = (
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/sand6/garbledradio)
 "oNa" = (
@@ -15121,7 +15121,7 @@
 /area/lv624/lazarus/toilet)
 "pac" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /obj/structure/cable,
 /turf/open/floor/wood,
 /area/lv624/lazarus/chapel)
@@ -15176,7 +15176,7 @@
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
 /area/lv624/ground/jungle2)
 "pes" = (
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/ruin)
 "pew" = (
@@ -15315,7 +15315,7 @@
 /area/lv624/ground/filtration)
 "pnb" = (
 /obj/structure/flora/ausbushes/fullgrass,
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle10)
 "pnA" = (
@@ -15354,7 +15354,7 @@
 /obj/item/stack/sheet/wood{
 	amount = 2
 	},
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/quartstorage)
 "pqp" = (
@@ -15507,7 +15507,7 @@
 	},
 /area/lv624/lazarus/robotics)
 "pAx" = (
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/plating/warning{
 	dir = 6
 	},
@@ -15517,7 +15517,7 @@
 	dir = 4
 	},
 /obj/structure/cable,
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/compound/c)
 "pAE" = (
@@ -15604,7 +15604,7 @@
 	},
 /area/lv624/lazarus/sleep_male)
 "pGM" = (
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/sand4)
@@ -15647,7 +15647,7 @@
 "pLK" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/effect/ai_node,
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /obj/structure/cable,
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/main_hall)
@@ -15684,13 +15684,13 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
 /obj/effect/ai_node,
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle9)
 "pPj" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/wood/broken,
 /area/lv624/lazarus/bar)
 "pPF" = (
@@ -15807,7 +15807,7 @@
 /obj/structure/extinguisher_cabinet{
 	dir = 1
 	},
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/main_hall)
 "pTs" = (
@@ -15823,7 +15823,7 @@
 /obj/structure/barricade/wooden{
 	dir = 1
 	},
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/main_hall)
 "pUa" = (
@@ -15874,7 +15874,7 @@
 	},
 /area/shuttle/drop2/lz2)
 "pWW" = (
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/river2)
 "pXh" = (
@@ -15916,7 +15916,7 @@
 "pXS" = (
 /obj/structure/cable,
 /obj/effect/ai_node,
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
@@ -15927,14 +15927,14 @@
 	dir = 2
 	},
 /obj/effect/ai_node,
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/quartstorage)
 "pYM" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor,
 /area/lv624/ground/sand8)
 "pZy" = (
@@ -15963,7 +15963,7 @@
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
 /area/lv624/ground/jungle1)
 "qbo" = (
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/sand1)
 "qbE" = (
@@ -15972,7 +15972,7 @@
 /obj/structure/toilet{
 	dir = 4
 	},
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/freezer,
 /area/lv624/lazarus/toilet)
 "qbI" = (
@@ -16073,7 +16073,7 @@
 	dir = 4
 	},
 /obj/effect/ai_node,
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/plating,
 /area/lv624/ground/sand8)
 "qhY" = (
@@ -16115,7 +16115,7 @@
 "qnw" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/tile/bar,
 /area/lv624/lazarus/canteen)
 "qnx" = (
@@ -16137,7 +16137,7 @@
 /turf/open/ground/grass,
 /area/lv624/ground/jungle7)
 "qof" = (
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/plating,
 /area/lv624/ground/sand7)
 "qoH" = (
@@ -16172,7 +16172,7 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 6
 	},
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/secure_storage)
 "qqj" = (
@@ -16182,7 +16182,7 @@
 /area/shuttle/drop2/lz2)
 "qqt" = (
 /obj/structure/cable,
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/tile/purple/taupepurple{
 	dir = 9
 	},
@@ -16235,7 +16235,7 @@
 	},
 /obj/structure/cable,
 /obj/effect/ai_node,
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/research)
 "quz" = (
@@ -16286,7 +16286,7 @@
 /turf/open/floor/plating,
 /area/lv624/lazarus/crashed_ship)
 "qwy" = (
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/plating/warning{
 	dir = 2
 	},
@@ -16399,7 +16399,7 @@
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/ground/ruin)
 "qCI" = (
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/freezer,
 /area/lv624/lazarus/toilet)
 "qDY" = (
@@ -16431,7 +16431,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/compound/c)
 "qFt" = (
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central3/garbledradio)
 "qFR" = (
@@ -16536,7 +16536,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/sand2)
 "qNl" = (
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/lazarus/overgrown)
 "qNs" = (
@@ -16641,7 +16641,7 @@
 	},
 /area/lv624/lazarus/spaceport)
 "qSi" = (
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/engine/cult{
 	dir = 2
 	},
@@ -16781,13 +16781,13 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/plating/warning{
 	dir = 2
 	},
 /area/lv624/ground/filtration)
 "qYg" = (
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/sand9)
 "qYi" = (
@@ -16804,7 +16804,7 @@
 	dir = 4
 	},
 /obj/structure/cable,
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/tile/whiteyellow/corner{
 	dir = 4
 	},
@@ -16837,7 +16837,7 @@
 /turf/open/floor/wood,
 /area/lv624/lazarus/corporate_affairs)
 "raM" = (
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/marking/loadingarea{
 	dir = 4
 	},
@@ -16894,7 +16894,7 @@
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
 /area/lv624/lazarus/overgrown)
 "rdh" = (
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/compound/n)
 "rds" = (
@@ -16953,7 +16953,7 @@
 /area/lv624/lazarus/atmos)
 "rfG" = (
 /obj/structure/cable,
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /obj/effect/landmark/mob_spawner/monkey,
 /turf/open/floor/tile/green/greentaupe{
 	dir = 1
@@ -16966,7 +16966,7 @@
 /area/lv624/ground/jungle7)
 "rfS" = (
 /obj/effect/ai_node,
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/tile/green/greentaupe{
 	dir = 1
 	},
@@ -17096,7 +17096,7 @@
 /obj/item/flashlight,
 /obj/item/ammo_magazine/smg/m25,
 /obj/structure/cable,
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
@@ -17180,7 +17180,7 @@
 /turf/open/floor/plating,
 /area/lv624/lazarus/quartstorage/dome)
 "rqN" = (
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/compound/se)
 "rqQ" = (
@@ -17215,7 +17215,7 @@
 /obj/machinery/shower{
 	dir = 8
 	},
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /obj/effect/ai_node,
 /turf/open/floor/freezer,
 /area/lv624/lazarus/toilet)
@@ -17229,7 +17229,7 @@
 /turf/open/ground/grass,
 /area/lv624/ground/jungle6)
 "rtU" = (
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle10)
 "ruh" = (
@@ -17351,7 +17351,7 @@
 /area/lv624/lazarus/hydroponics/aux)
 "rAx" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/tile/blue/whiteblue{
 	dir = 1
 	},
@@ -17411,7 +17411,7 @@
 /turf/open/floor/wood,
 /area/lv624/lazarus/bar)
 "rCO" = (
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/tile/green/greentaupe{
 	dir = 9
 	},
@@ -17470,7 +17470,7 @@
 /area/lv624/lazarus/hydroponics)
 "rFd" = (
 /obj/effect/ai_node,
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /obj/structure/cable,
 /turf/open/floor/tile/red/redtaupe{
 	dir = 5
@@ -17490,7 +17490,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle3)
 "rGl" = (
@@ -17691,7 +17691,7 @@
 /area/lv624/ground/jungle1)
 "rPh" = (
 /obj/docking_port/stationary/crashmode,
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor,
 /area/lv624/ground/river2)
 "rPF" = (
@@ -17892,7 +17892,7 @@
 /obj/item/ammo_magazine/pistol,
 /obj/item/weapon/gun/pistol/rt3,
 /obj/item/weapon/gun/pistol/rt3,
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/armory)
 "rXP" = (
@@ -17923,7 +17923,7 @@
 /area/lv624/ground/jungle1)
 "rYU" = (
 /obj/effect/ai_node,
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/tile/green/greentaupe{
 	dir = 5
 	},
@@ -17940,7 +17940,7 @@
 "rZE" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle10)
@@ -17973,7 +17973,7 @@
 	},
 /area/lv624/lazarus/hydroponics/aux)
 "sak" = (
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/tile/green/greentaupe{
 	dir = 5
 	},
@@ -18053,7 +18053,7 @@
 /turf/open/floor/grass,
 /area/lv624/lazarus/main_hall)
 "sdI" = (
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/west1)
@@ -18064,7 +18064,7 @@
 /turf/open/floor,
 /area/lv624/lazarus/spaceport)
 "seL" = (
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /obj/effect/landmark/xeno_tunnel_spawn,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central4/garbledradio)
@@ -18207,7 +18207,7 @@
 "sog" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/compound/c)
 "soz" = (
@@ -18219,7 +18219,7 @@
 /turf/open/floor/grimy,
 /area/lv624/lazarus/captain)
 "sqa" = (
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
@@ -18294,7 +18294,7 @@
 /area/lv624/lazarus/spaceport)
 "suH" = (
 /obj/structure/bed/chair,
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/main_hall)
 "svN" = (
@@ -18334,7 +18334,7 @@
 "syt" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/spawner/random/misc/trash,
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/wood,
 /area/lv624/lazarus/bar)
 "syE" = (
@@ -18472,7 +18472,7 @@
 "sHd" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/freezer,
 /area/lv624/lazarus/kitchen)
 "sHm" = (
@@ -18509,7 +18509,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle6)
 "sIA" = (
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/wood,
 /area/lv624/lazarus/captain)
 "sJh" = (
@@ -18553,7 +18553,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/wood,
 /area/lv624/lazarus/bar)
 "sLv" = (
@@ -18563,7 +18563,7 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 2
 	},
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor,
 /area/lv624/ground/jungle6)
 "sNO" = (
@@ -18718,7 +18718,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/west1)
 "sYe" = (
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central4/garbledradio)
 "sYh" = (
@@ -18963,7 +18963,7 @@
 "tjL" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/effect/ai_node,
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle9)
 "tjU" = (
@@ -18991,7 +18991,7 @@
 	},
 /area/lv624/lazarus/hydroponics/aux)
 "tle" = (
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/sand3)
 "tli" = (
@@ -19010,7 +19010,7 @@
 /turf/open/floor/cult/clock,
 /area/lv624/lazarus/bar)
 "tlt" = (
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle6)
 "tlM" = (
@@ -19036,7 +19036,7 @@
 /area/lv624/lazarus/engineering)
 "tmG" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle3)
 "tnH" = (
@@ -19054,7 +19054,7 @@
 /turf/closed/wall/r_wall/chigusa,
 /area/lv624/lazarus/sandtemple/garbledradio)
 "tpt" = (
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central4/garbledradio)
@@ -19074,7 +19074,7 @@
 /turf/open/floor/plating,
 /area/lv624/lazarus/tablefort)
 "tpS" = (
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/engine/cult{
 	dir = 2
 	},
@@ -19097,7 +19097,7 @@
 	id = "nexus_blast";
 	name = "\improper Nexus Blast Door"
 	},
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/tile/whiteyellow/corner{
 	dir = 4
 	},
@@ -19271,7 +19271,7 @@
 	dir = 8
 	},
 /obj/structure/cable,
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/quartstorage)
 "tzb" = (
@@ -19324,7 +19324,7 @@
 /turf/closed/gm/dense,
 /area/lv624/lazarus/spaceport2)
 "tBS" = (
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/tile/barber,
 /area/lv624/lazarus/fitness)
 "tCc" = (
@@ -19376,7 +19376,7 @@
 "tGp" = (
 /obj/structure/table/woodentable,
 /obj/item/megaphone,
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/grimy,
 /area/lv624/lazarus/captain)
 "tGP" = (
@@ -19407,7 +19407,7 @@
 /area/lv624/lazarus/main_hall)
 "tHO" = (
 /obj/effect/ai_node,
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle10)
 "tIf" = (
@@ -19497,7 +19497,7 @@
 	},
 /obj/structure/cable,
 /obj/effect/ai_node,
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/compound/se)
 "tKy" = (
@@ -19627,7 +19627,7 @@
 	},
 /area/lv624/lazarus/fitness)
 "tTV" = (
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/marking/bot,
 /area/lv624/lazarus/quartstorage)
 "tTX" = (
@@ -19636,7 +19636,7 @@
 /area/lv624/ground/caves/east1/garbledradio)
 "tUj" = (
 /obj/effect/ai_node,
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central4/garbledradio)
 "tUl" = (
@@ -19711,7 +19711,7 @@
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
 /area/lv624/ground/jungle5)
 "tYf" = (
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /obj/effect/landmark/start/job/clf/medic,
 /turf/open/floor/prison/redfloor,
 /area/lv624/lazarus/sandtemple)
@@ -19812,7 +19812,7 @@
 /turf/open/floor/tile/darkish,
 /area/lv624/lazarus/sandtemple)
 "udH" = (
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/secure_storage)
 "udV" = (
@@ -19869,7 +19869,7 @@
 	dir = 4
 	},
 /obj/effect/ai_node,
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor,
 /area/lv624/ground/sand8)
 "ujI" = (
@@ -20016,7 +20016,7 @@
 /turf/open/ground/grass,
 /area/lv624/ground/jungle3)
 "uqf" = (
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /obj/effect/ai_node,
 /turf/open/floor/plating,
 /area/lv624/ground/river2)
@@ -20093,7 +20093,7 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 4
 	},
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/secure_storage)
 "utf" = (
@@ -20112,7 +20112,7 @@
 	dir = 4
 	},
 /obj/structure/cable,
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/main_hall)
 "utE" = (
@@ -20292,7 +20292,7 @@
 /turf/open/floor/freezer,
 /area/lv624/lazarus/kitchen)
 "uDk" = (
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/compound/sw)
 "uDo" = (
@@ -20403,7 +20403,7 @@
 /area/lv624/ground/compound/se)
 "uLA" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /obj/structure/cable,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle7)
@@ -20441,7 +20441,7 @@
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/secure_storage)
 "uON" = (
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/tile/green/greentaupe{
 	dir = 1
 	},
@@ -20588,7 +20588,7 @@
 	},
 /obj/structure/cable,
 /obj/effect/ai_node,
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle2)
 "uWG" = (
@@ -20937,7 +20937,7 @@
 /turf/open/floor/plating,
 /area/lv624/lazarus/engineering)
 "vqK" = (
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 10
 	},
@@ -20980,7 +20980,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/tile/blue/taupebluecorner{
 	dir = 2
 	},
@@ -20990,7 +20990,7 @@
 	dir = 4
 	},
 /obj/structure/bed/chair/comfy/black,
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/tile/purple/taupepurple{
 	dir = 9
 	},
@@ -21098,7 +21098,7 @@
 /obj/structure/bed/chair{
 	dir = 8
 	},
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/tile/bar,
 /area/lv624/lazarus/canteen)
 "vyJ" = (
@@ -21174,7 +21174,7 @@
 /turf/open/floor/plating,
 /area/lv624/lazarus/quartstorage)
 "vBM" = (
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/research)
 "vBV" = (
@@ -21217,7 +21217,7 @@
 	name = "\improper Storage Dome"
 	},
 /obj/structure/cable,
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
@@ -21288,11 +21288,11 @@
 /turf/open/ground/grass,
 /area/lv624/ground/jungle3)
 "vGr" = (
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/main_hall)
 "vGx" = (
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor,
 /area/lv624/ground/sand6)
 "vHb" = (
@@ -21517,7 +21517,7 @@
 /obj/item/clothing/mask/facehugger/dead,
 /obj/effect/decal/cleanable/blood/splatter/animated,
 /obj/effect/ai_node,
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/research)
 "vRW" = (
@@ -21554,7 +21554,7 @@
 	},
 /area/lv624/lazarus/main_hall)
 "vUk" = (
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/east1)
@@ -21649,7 +21649,7 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 8
 	},
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/tile/green/greentaupe{
 	dir = 1
 	},
@@ -21663,7 +21663,7 @@
 /area/lv624/ground/jungle7)
 "vZz" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /obj/structure/cable,
 /turf/open/floor,
 /area/lv624/ground/jungle7)
@@ -21953,7 +21953,7 @@
 /obj/item/ammo_casing,
 /obj/item/ammo_magazine/smg/uzi/extended,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/grass,
 /area/lv624/lazarus/main_hall)
 "wpF" = (
@@ -21976,7 +21976,7 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 2
 	},
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/secure_storage)
 "wqE" = (
@@ -22065,7 +22065,7 @@
 /turf/open/ground/grass,
 /area/lv624/ground/jungle3)
 "wwb" = (
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/east1)
@@ -22138,7 +22138,7 @@
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/main_hall)
 "wyB" = (
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central4)
@@ -22284,7 +22284,7 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 8
 	},
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/tile/purple/taupepurple{
 	dir = 9
 	},
@@ -22336,7 +22336,7 @@
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/canteen)
 "wGb" = (
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/plating/warning,
 /area/lv624/lazarus/engineering)
 "wGw" = (
@@ -22362,7 +22362,7 @@
 "wGX" = (
 /obj/structure/cable,
 /obj/effect/ai_node,
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/tile/green/greentaupe{
 	dir = 1
 	},
@@ -22392,7 +22392,7 @@
 /area/lv624/ground/sand8)
 "wIe" = (
 /obj/effect/decal/cleanable/blood/splatter/animated,
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/grimy,
 /area/lv624/lazarus/captain)
 "wIo" = (
@@ -22420,7 +22420,7 @@
 /turf/open/floor/plating,
 /area/lv624/lazarus/research)
 "wJW" = (
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
 /area/lv624/ground/jungle7)
 "wJZ" = (
@@ -22466,7 +22466,7 @@
 /turf/open/floor/plating,
 /area/lv624/ground/caves/central1/garbledradio)
 "wNs" = (
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle9)
 "wNt" = (
@@ -22549,7 +22549,7 @@
 /turf/open/liquid/water/river/autosmooth,
 /area/lv624/ground/jungle4)
 "wRf" = (
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/plating/platebotc,
 /area/lv624/ground/jungle9)
 "wRk" = (
@@ -22558,7 +22558,7 @@
 	},
 /area/mainship/patrol_base/som)
 "wRx" = (
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/tile/purple/whitepurple{
 	dir = 5
 	},
@@ -22569,7 +22569,7 @@
 /area/lv624/lazarus/main_hall)
 "wSl" = (
 /obj/item/clothing/head/warning_cone,
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/lazarus/quartstorage/outdoors)
 "wSm" = (
@@ -22686,7 +22686,7 @@
 /obj/structure/bed/chair{
 	dir = 1
 	},
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/main_hall)
 "wWc" = (
@@ -22728,7 +22728,7 @@
 /turf/open/floor/tile/red/full,
 /area/lv624/lazarus/security)
 "wZd" = (
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/tile/white/warningstripe{
 	dir = 8
 	},
@@ -22831,7 +22831,7 @@
 	},
 /obj/structure/cable,
 /obj/effect/ai_node,
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle10)
 "xeA" = (
@@ -23044,7 +23044,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/compound/n)
 "xnp" = (
@@ -23124,7 +23124,7 @@
 /turf/open/liquid/water/river/autosmooth,
 /area/lv624/ground/river3)
 "xpE" = (
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/east1)
@@ -23274,7 +23274,7 @@
 /area/lv624/ground/jungle5)
 "xyJ" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/main_hall)
 "xzo" = (
@@ -23340,7 +23340,7 @@
 "xCe" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle10)
 "xCC" = (
@@ -23371,7 +23371,7 @@
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
 /area/lv624/ground/jungle5)
 "xFy" = (
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/sand5)
 "xFB" = (
@@ -23400,7 +23400,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/grimy,
 /area/lv624/lazarus/bar)
 "xGM" = (
@@ -23422,7 +23422,7 @@
 /turf/open/floor/plating,
 /area/lv624/ground/sand6)
 "xGT" = (
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle5)
 "xHa" = (
@@ -23471,7 +23471,7 @@
 /area/lv624/ground/river1)
 "xIW" = (
 /obj/effect/landmark/xeno_resin_door,
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central1)
 "xJa" = (
@@ -23728,7 +23728,7 @@
 "xXy" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle9)
 "xYe" = (
@@ -23760,7 +23760,7 @@
 /area/lv624/lazarus/fitness)
 "xZE" = (
 /obj/structure/bed/stool,
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/tile/bar,
 /area/lv624/lazarus/canteen)
 "xZG" = (
@@ -23800,7 +23800,7 @@
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
 /area/lv624/lazarus/spaceport2)
 "ybg" = (
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /obj/effect/turf_decal/riverdecal,
 /turf/open/floor/plating,
 /area/lv624/ground/river1)
@@ -23869,7 +23869,7 @@
 /turf/open/floor/plating,
 /area/shuttle/drop1/lz1)
 "yem" = (
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
 /area/lv624/ground/jungle6)
 "yeG" = (
@@ -23988,7 +23988,7 @@
 /turf/open/floor/plating/ground/dirtgrassborder/corner2,
 /area/lv624/ground/jungle5)
 "yjF" = (
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/plating,
 /area/lv624/lazarus/engineering)
 "yjT" = (
@@ -24042,7 +24042,7 @@
 "yle" = (
 /obj/effect/decal/remains/human,
 /obj/effect/ai_node,
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/freezer,
 /area/lv624/lazarus/research)
 "ylh" = (
@@ -24058,7 +24058,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle3)
 "ylq" = (
-/obj/effect/landmark/weed_node,
+/obj/alien/weeds/node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle4)
 "yls" = (

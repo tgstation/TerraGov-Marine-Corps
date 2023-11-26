@@ -114,9 +114,6 @@
 	selection_color = "#a91101"
 	job_flags = JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_LATEJOINABLE|JOB_FLAG_OVERRIDELATEJOINSPAWN
 
-/datum/job/prisoner/after_spawn(mob/living/carbon/C, mob/M, latejoin = FALSE)
-	. = ..()
-
 /datum/outfit/job/prisoner
 	id = /obj/item/card/id
 	w_uniform = /obj/item/clothing/under/rank/prisoner

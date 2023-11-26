@@ -421,24 +421,24 @@ You are also in charge of communicating with command and letting them know about
 	minimap_icon = "private"
 
 /datum/job/terragov/security/security_officer/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
- . = ..()
- if(!ishuman(new_mob))
-  return
- var/mob/living/carbon/human/new_human = new_mob
- var/playtime_mins = user?.client?.get_exp(title)
- if(!playtime_mins || playtime_mins < 1 )
-  return
- switch(playtime_mins)
-  if(0 to 1500)
-   new_human.wear_id.paygrade = "E3"
-  if(1501 to 6000)
-   new_human.wear_id.paygrade = "E4"
-  if(6001 to 18000)
-   new_human.wear_id.paygrade = "E5"
-  if(18001 to 60000)
-   new_human.wear_id.paygrade = "E6"
-  if(60001 to INFINITY)
-   new_human.wear_id.paygrade = "E8E"
+	. = ..()
+	if(!ishuman(new_mob))
+		return
+	var/mob/living/carbon/human/new_human = new_mob
+	var/playtime_mins = user?.client?.get_exp(title)
+	if(!playtime_mins || playtime_mins < 1 )
+		return
+	switch(playtime_mins)
+		if(0 to 1500)
+			new_human.wear_id.paygrade = "E3"
+		if(1501 to 6000)
+			new_human.wear_id.paygrade = "E4"
+		if(6001 to 18000)
+			new_human.wear_id.paygrade = "E5"
+		if(18001 to 60000)
+			new_human.wear_id.paygrade = "E6"
+		if(60001 to INFINITY)
+			new_human.wear_id.paygrade = "E8E"
 
 /datum/outfit/job/security_officer
 	name = SECURITY_OFFICER

@@ -1,6 +1,6 @@
 /datum/game_mode/extended
-	name = "Extended Plus"
-	config_tag = "Extendedplus"
+	name = "Extended"
+	config_tag = "Extended"
 	silo_scaling = 1.5
 	flags_round_type = MODE_INFESTATION|MODE_PSY_POINTS|MODE_PSY_POINTS_ADVANCED|MODE_HIJACK_POSSIBLE|MODE_SILO_RESPAWN|MODE_ALLOW_XENO_QUICKBUILD
 	shutters_drop_time = 3 MINUTES
@@ -8,7 +8,6 @@
 	valid_job_types = list(
 		/datum/job/terragov/command/captain = 1,
 		/datum/job/terragov/command/fieldcommander = 1,
-		/datum/job/terragov/command/corpseccommander = 1,
 		/datum/job/terragov/command/staffofficer = 4,
 		/datum/job/terragov/command/pilot = 2,
 		/datum/job/terragov/command/mech_pilot = 1,
@@ -17,7 +16,6 @@
 		/datum/job/terragov/requisitions/officer = 2,
 		/datum/job/terragov/medical/professor = 1,
 		/datum/job/terragov/medical/medicalofficer = 6,
-		/datum/job/terragov/security/security_officer = 8,
 		/datum/job/terragov/medical/researcher = 3,
 		/datum/job/terragov/civilian/liaison = 1,
 		/datum/job/terragov/silicon/synthetic = 4,
@@ -27,7 +25,7 @@
 		/datum/job/terragov/squad/smartgunner = 4,
 		/datum/job/terragov/squad/leader = 4,
 		/datum/job/terragov/squad/standard = -1,
-		/datum/job/survivor = -1,
+		/datum/job/survivor/rambo = -1,
 		/datum/job/xenomorph = FREE_XENO_AT_START,
 		/datum/job/xenomorph/queen = 1
 	)
