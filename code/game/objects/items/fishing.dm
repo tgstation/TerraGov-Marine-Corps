@@ -61,7 +61,7 @@
 	desc = "It's buyoant and has bait attached."
 	icon_state = "lure"
 
-/obj/item/fishing_rod
+/obj/item/fishing/rod
 	name = "fishing rod"
 	desc = "You can fish with this."
 	icon_state = "fishing_rod"
@@ -74,7 +74,7 @@
 	force = 8
 	w_class = WEIGHT_CLASS_HUGE
 
-/obj/item/fishing_rod/telescopic
+/obj/item/fishing/rod/telescopic
 	name = "telescopic fishing rod"
 	icon_state = "telescopic_fishing_rod"
 
