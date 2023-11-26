@@ -35,5 +35,5 @@
 
 	actions = list(
 		/datum/action/ability/xeno_action/xeno_resting,
-		/datum/action/ability/activable/xeno_action/ravage/slow,
+		/datum/action/ability/activable/xeno/ravage/slow,
 	)

@@ -6,7 +6,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 // ***************************************
 // *********** Blink
 // ***************************************
-/datum/action/ability/activable/xeno_action/blink
+/datum/action/ability/activable/xeno/blink
 	name = "Blink"
 	action_icon_state = "blink"
 	desc = "We teleport ourselves a short distance to a location within line of sight."
@@ -18,7 +18,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	)
 
 ///Check target Blink turf to see if it can be blinked to
-/datum/action/ability/activable/xeno_action/blink/proc/check_blink_tile(turf/T, ignore_blocker = FALSE, silent = FALSE)
+/datum/action/ability/activable/xeno/blink/proc/check_blink_tile(turf/T, ignore_blocker = FALSE, silent = FALSE)
 	if(isclosedturf(T) || isspaceturf(T) || isspacearea(T))
 		if(!silent)
 			to_chat(owner, span_xenowarning("We cannot blink here!"))
@@ -52,7 +52,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	return TRUE
 
 ///Check for whether the target turf has dense objects inside
-/datum/action/ability/activable/xeno_action/blink/proc/check_blink_target_turf_density(turf/T, silent = FALSE)
+/datum/action/ability/activable/xeno/blink/proc/check_blink_target_turf_density(turf/T, silent = FALSE)
 	for(var/atom/blocker AS in T)
 		if(!blocker.CanPass(owner, T))
 			if(!silent)
@@ -61,7 +61,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 
 	return TRUE
 
-/datum/action/ability/activable/xeno_action/blink/use_ability(atom/A)
+/datum/action/ability/activable/xeno/blink/use_ability(atom/A)
 	. = ..()
 	var/mob/living/carbon/xenomorph/wraith/X = owner
 	var/turf/T = X.loc
@@ -120,7 +120,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "wraith_blinks") //Statistics
 
 ///Called by many of the Wraith's teleportation effects
-/datum/action/ability/activable/xeno_action/proc/teleport_debuff_aoe(atom/movable/teleporter, silent = FALSE)
+/datum/action/ability/activable/xeno/proc/teleport_debuff_aoe(atom/movable/teleporter, silent = FALSE)
 	var/mob/living/carbon/xenomorph/ghost = owner
 
 	if(!silent) //Sound effects
@@ -144,7 +144,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 		living_target.add_slowdown(WRAITH_TELEPORT_DEBUFF_SLOWDOWN_STACKS)
 		to_chat(living_target, span_warning("You feel nauseous as reality warps around you!"))
 
-/datum/action/ability/activable/xeno_action/blink/on_cooldown_finish()
+/datum/action/ability/activable/xeno/blink/on_cooldown_finish()
 	to_chat(owner, span_xenodanger("We are able to blink again."))
 	owner.playsound_local(owner, 'sound/effects/xeno_newlarva.ogg', 25, 0, 1)
 	return ..()
@@ -152,7 +152,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 // ***************************************
 // *********** Banish
 // ***************************************
-/datum/action/ability/activable/xeno_action/banish
+/datum/action/ability/activable/xeno/banish
 	name = "Banish"
 	action_icon_state = "Banish"
 	desc = "We banish a target object or creature within line of sight to nullspace for a short duration. Can target onself and allies. Non-friendlies are banished for half as long."
@@ -177,11 +177,11 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	/// How far can you banish
 	var/range = 3
 
-/datum/action/ability/activable/xeno_action/banish/Destroy()
+/datum/action/ability/activable/xeno/banish/Destroy()
 	QDEL_NULL(reserved_area) //clean up
 	return ..()
 
-/datum/action/ability/activable/xeno_action/banish/can_use_ability(atom/A, silent = FALSE, override_flags)
+/datum/action/ability/activable/xeno/banish/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
 
 	if(!ismovableatom(A) || iseffect(A) || istype(A, /obj/alien) || CHECK_BITFIELD(A.resistance_flags, INDESTRUCTIBLE) || CHECK_BITFIELD(A.resistance_flags, BANISH_IMMUNE)) //Cannot banish non-movables/things that are supposed to be invul; also we ignore effects
@@ -205,7 +205,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 		return FALSE
 
 
-/datum/action/ability/activable/xeno_action/banish/use_ability(atom/movable/A)
+/datum/action/ability/activable/xeno/banish/use_ability(atom/movable/A)
 	. = ..()
 	var/mob/living/carbon/xenomorph/wraith/ghost = owner
 	var/banished_turf = get_turf(A) //Set the banishment turf.
@@ -280,7 +280,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "wraith_banishes") //Statistics
 
 ///Warns the user when Banish's duration is about to lapse.
-/datum/action/ability/activable/xeno_action/banish/proc/banish_warning()
+/datum/action/ability/activable/xeno/banish/proc/banish_warning()
 
 	if(!banishment_target)
 		return
@@ -289,7 +289,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	owner.playsound_local(owner, 'sound/voice/hiss4.ogg', 50, 0, 1)
 
 ///Ends the effect of the Banish ability
-/datum/action/ability/activable/xeno_action/banish/proc/banish_deactivate()
+/datum/action/ability/activable/xeno/banish/proc/banish_deactivate()
 	SIGNAL_HANDLER
 	if(QDELETED(banishment_target))
 		return
@@ -335,7 +335,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 
 	return TRUE //For the recall sub-ability
 
-/datum/action/ability/activable/xeno_action/banish/on_cooldown_finish()
+/datum/action/ability/activable/xeno/banish/on_cooldown_finish()
 	to_chat(owner, span_xenodanger("We are able to banish again."))
 	owner.playsound_local(owner, 'sound/effects/xeno_newlarva.ogg', 25, 0, 1)
 	return ..()
@@ -356,7 +356,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 /datum/action/ability/xeno_action/recall/can_use_action(silent = FALSE, override_flags)
 	. = ..()
 
-	var/datum/action/ability/activable/xeno_action/banish/banish_check = owner.actions_by_path[/datum/action/ability/activable/xeno_action/banish]
+	var/datum/action/ability/activable/xeno/banish/banish_check = owner.actions_by_path[/datum/action/ability/activable/xeno/banish]
 	if(!banish_check) //Mainly for when we transition on upgrading
 		return FALSE
 
@@ -368,7 +368,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 
 /datum/action/ability/xeno_action/recall/action_activate()
 	. = ..()
-	var/datum/action/ability/activable/xeno_action/banish/banish_check = owner.actions_by_path[/datum/action/ability/activable/xeno_action/banish]
+	var/datum/action/ability/activable/xeno/banish/banish_check = owner.actions_by_path[/datum/action/ability/activable/xeno/banish]
 	banish_check.banish_deactivate()
 	succeed_activate()
 	add_cooldown()
@@ -637,7 +637,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 /obj/effect/wraith_portal/ex_act()
 	qdel(src)
 
-/datum/action/ability/activable/xeno_action/rewind
+/datum/action/ability/activable/xeno/rewind
 	name = "Time Shift"
 	action_icon_state = "rewind"
 	desc = "Save the location and status of the target. When the time is up, the target location and status are restored, unless the target is dead or unconscious."
@@ -663,7 +663,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	var/range = 5
 
 
-/datum/action/ability/activable/xeno_action/rewind/can_use_ability(atom/A, silent, override_flags)
+/datum/action/ability/activable/xeno/rewind/can_use_ability(atom/A, silent, override_flags)
 	. = ..()
 
 	var/distance = get_dist(owner, A)
@@ -685,7 +685,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	if(living_target.stat != CONSCIOUS)
 		to_chat(owner, span_xenowarning("The target is not in good enough shape!"))
 
-/datum/action/ability/activable/xeno_action/rewind/use_ability(atom/A)
+/datum/action/ability/activable/xeno/rewind/use_ability(atom/A)
 	targeted = A
 	last_target_locs_list = list(get_turf(A))
 	target_initial_brute_damage = targeted.getBruteLoss()
@@ -703,12 +703,12 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	return
 
 /// Signal handler
-/datum/action/ability/activable/xeno_action/rewind/proc/save_move(atom/movable/source, oldloc)
+/datum/action/ability/activable/xeno/rewind/proc/save_move(atom/movable/source, oldloc)
 	SIGNAL_HANDLER
 	last_target_locs_list += get_turf(oldloc)
 
 /// Start the reset process
-/datum/action/ability/activable/xeno_action/rewind/proc/start_rewinding()
+/datum/action/ability/activable/xeno/rewind/proc/start_rewinding()
 	targeted.remove_filter("prerewind_blur")
 	UnregisterSignal(targeted, COMSIG_MOVABLE_MOVED)
 	if(QDELETED(targeted) || targeted.stat != CONSCIOUS)
@@ -722,7 +722,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	playsound(targeted, 'sound/effects/woosh_swoosh.ogg', 50)
 
 /// Move the target two tiles per tick
-/datum/action/ability/activable/xeno_action/rewind/proc/rewind()
+/datum/action/ability/activable/xeno/rewind/proc/rewind()
 	var/turf/loc_a = pop(last_target_locs_list)
 	if(loc_a)
 		new /obj/effect/temp_visual/xenomorph/afterimage(targeted.loc, targeted)

@@ -33,7 +33,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 // ***************************************
 // *********** Hugger throw
 // ***************************************
-/datum/action/ability/activable/xeno_action/throw_hugger
+/datum/action/ability/activable/xeno/throw_hugger
 	name = "Use/Throw Facehugger"
 	action_icon_state = "throw_hugger"
 	desc = "Click on a non tile and non mob to bring a facehugger into your hand. Click at a target or tile to throw a facehugger."
@@ -42,18 +42,18 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	)
 	cooldown_duration = 3 SECONDS
 
-/datum/action/ability/activable/xeno_action/throw_hugger/get_cooldown()
+/datum/action/ability/activable/xeno/throw_hugger/get_cooldown()
 	var/mob/living/carbon/xenomorph/carrier/caster = owner
 	return caster.xeno_caste.hugger_delay
 
-/datum/action/ability/activable/xeno_action/throw_hugger/can_use_ability(atom/A, silent = FALSE, override_flags) // true
+/datum/action/ability/activable/xeno/throw_hugger/can_use_ability(atom/A, silent = FALSE, override_flags) // true
 	. = ..()
 	if(!.)
 		return FALSE
 	if(!A)
 		return FALSE
 
-/datum/action/ability/activable/xeno_action/throw_hugger/use_ability(atom/A)
+/datum/action/ability/activable/xeno/throw_hugger/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/carrier/caster = owner
 
 	//target a hugger on the ground to store it directly
@@ -351,7 +351,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 // *********** Call of Younger
 // ***************************************
 
-/datum/action/ability/activable/xeno_action/call_younger
+/datum/action/ability/activable/xeno/call_younger
 	name = "Call of Younger"
 	action_icon_state = "call_younger"
 	desc = "Appeals to the larva inside the Marine. The Marine loses his balance, and larva's progress accelerates."
@@ -362,7 +362,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	)
 
 
-/datum/action/ability/activable/xeno_action/call_younger/can_use_ability(atom/A, silent, override_flags)
+/datum/action/ability/activable/xeno/call_younger/can_use_ability(atom/A, silent, override_flags)
 	. = ..()
 	if(!.)
 		return
@@ -390,7 +390,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 		return FALSE
 	return TRUE
 
-/datum/action/ability/activable/xeno_action/call_younger/use_ability(atom/A)
+/datum/action/ability/activable/xeno/call_younger/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/caster = owner
 	var/mob/living/carbon/human/victim = A
 

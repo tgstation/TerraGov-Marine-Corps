@@ -60,7 +60,7 @@
 // ***************************************
 // *********** Screech
 // ***************************************
-/datum/action/ability/activable/xeno_action/screech
+/datum/action/ability/activable/xeno/screech
 	name = "Screech"
 	action_icon_state = "screech"
 	desc = "A large area knockdown that causes pain and screen-shake."
@@ -71,11 +71,11 @@
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_SCREECH,
 	)
 
-/datum/action/ability/activable/xeno_action/screech/on_cooldown_finish()
+/datum/action/ability/activable/xeno/screech/on_cooldown_finish()
 	to_chat(owner, span_warning("We feel our throat muscles vibrate. We are ready to screech again."))
 	return ..()
 
-/datum/action/ability/activable/xeno_action/screech/use_ability(atom/A)
+/datum/action/ability/activable/xeno/screech/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/queen/X = owner
 
 	//screech is so powerful it kills huggers in our hands
@@ -109,10 +109,10 @@
 			continue
 		L.screech_act(X, WORLD_VIEW_NUM, L in nearby_living)
 
-/datum/action/ability/activable/xeno_action/screech/ai_should_start_consider()
+/datum/action/ability/activable/xeno/screech/ai_should_start_consider()
 	return TRUE
 
-/datum/action/ability/activable/xeno_action/screech/ai_should_use(atom/target)
+/datum/action/ability/activable/xeno/screech/ai_should_use(atom/target)
 	if(!iscarbon(target))
 		return FALSE
 	if(get_dist(target, owner) > 4)
@@ -333,7 +333,7 @@
 // ***************************************
 // *********** Queen Acidic Salve
 // ***************************************
-/datum/action/ability/activable/xeno_action/psychic_cure/queen_give_heal
+/datum/action/ability/activable/xeno/psychic_cure/queen_give_heal
 	name = "Heal"
 	action_icon_state = "heal_xeno"
 	desc = "Apply a minor heal to the target."
@@ -345,7 +345,7 @@
 	heal_range = HIVELORD_HEAL_RANGE
 	target_flags = XABB_MOB_TARGET
 
-/datum/action/ability/activable/xeno_action/psychic_cure/queen_give_heal/use_ability(atom/target)
+/datum/action/ability/activable/xeno/psychic_cure/queen_give_heal/use_ability(atom/target)
 	if(owner.do_actions)
 		return FALSE
 	if(!do_mob(owner, target, 1 SECONDS, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
@@ -375,7 +375,7 @@
 // ***************************************
 // *********** Queen plasma
 // ***************************************
-/datum/action/ability/activable/xeno_action/queen_give_plasma
+/datum/action/ability/activable/xeno/queen_give_plasma
 	name = "Give Plasma"
 	action_icon_state = "queen_give_plasma"
 	desc = "Give plasma to a target Xenomorph (you must be overwatching them.)"
@@ -387,7 +387,7 @@
 	use_state_flags = XACT_USE_LYING
 	target_flags = XABB_MOB_TARGET
 
-/datum/action/ability/activable/xeno_action/queen_give_plasma/can_use_ability(atom/target, silent = FALSE, override_flags)
+/datum/action/ability/activable/xeno/queen_give_plasma/can_use_ability(atom/target, silent = FALSE, override_flags)
 	. = ..()
 	if(!.)
 		return FALSE
@@ -413,22 +413,22 @@
 		return FALSE
 
 
-/datum/action/ability/activable/xeno_action/queen_give_plasma/give_action(mob/living/L)
+/datum/action/ability/activable/xeno/queen_give_plasma/give_action(mob/living/L)
 	. = ..()
 	RegisterSignal(L, COMSIG_XENOMORPH_QUEEN_PLASMA, PROC_REF(try_use_ability))
 
-/datum/action/ability/activable/xeno_action/queen_give_plasma/remove_action(mob/living/L)
+/datum/action/ability/activable/xeno/queen_give_plasma/remove_action(mob/living/L)
 	. = ..()
 	UnregisterSignal(L, COMSIG_XENOMORPH_QUEEN_PLASMA)
 
 /// Signal handler for the queen_give_plasma action that checks can_use
-/datum/action/ability/activable/xeno_action/queen_give_plasma/proc/try_use_ability(datum/source, mob/living/carbon/xenomorph/target)
+/datum/action/ability/activable/xeno/queen_give_plasma/proc/try_use_ability(datum/source, mob/living/carbon/xenomorph/target)
 	SIGNAL_HANDLER
 	if(!can_use_ability(target, FALSE, XACT_IGNORE_SELECTED_ABILITY))
 		return
 	use_ability(target)
 
-/datum/action/ability/activable/xeno_action/queen_give_plasma/use_ability(atom/target)
+/datum/action/ability/activable/xeno/queen_give_plasma/use_ability(atom/target)
 	var/mob/living/carbon/xenomorph/receiver = target
 	add_cooldown()
 	receiver.gain_plasma(300)

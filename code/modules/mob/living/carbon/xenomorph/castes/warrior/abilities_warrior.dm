@@ -57,7 +57,7 @@
 // ***************************************
 // *********** Lunge
 // ***************************************
-/datum/action/ability/activable/xeno_action/lunge
+/datum/action/ability/activable/xeno/lunge
 	name = "Lunge"
 	action_icon_state = "lunge"
 	desc = "Pounce up to 5 tiles and grab a target, knocking them down and putting them in your grasp."
@@ -70,12 +70,12 @@
 	/// The target of our lunge, we keep it to check if we are adjacent everytime we move
 	var/atom/lunge_target
 
-/datum/action/ability/activable/xeno_action/lunge/on_cooldown_finish()
+/datum/action/ability/activable/xeno/lunge/on_cooldown_finish()
 	to_chat(owner, span_xenodanger("We ready ourselves to lunge again."))
 	owner.playsound_local(owner, 'sound/effects/xeno_newlarva.ogg', 25, 0, 1)
 	return ..()
 
-/datum/action/ability/activable/xeno_action/lunge/can_use_ability(atom/A, silent = FALSE, override_flags)
+/datum/action/ability/activable/xeno/lunge/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
 	if(!.)
 		return FALSE
@@ -96,10 +96,10 @@
 			to_chat(owner, span_xenodanger("We can't [initial(name)] at that!"))
 		return FALSE
 
-/datum/action/ability/activable/xeno_action/lunge/ai_should_start_consider()
+/datum/action/ability/activable/xeno/lunge/ai_should_start_consider()
 	return TRUE
 
-/datum/action/ability/activable/xeno_action/lunge/ai_should_use(atom/target)
+/datum/action/ability/activable/xeno/lunge/ai_should_use(atom/target)
 	if(!iscarbon(target))
 		return FALSE
 	if(!line_of_sight(owner, target, 2))
@@ -110,7 +110,7 @@
 		return FALSE
 	return TRUE
 
-/datum/action/ability/activable/xeno_action/lunge/use_ability(atom/A)
+/datum/action/ability/activable/xeno/lunge/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/X = owner
 
 	GLOB.round_statistics.warrior_lunges++
@@ -136,21 +136,21 @@
 	return TRUE
 
 ///Check if we are close enough to lunge, and if yes, grab neck
-/datum/action/ability/activable/xeno_action/lunge/proc/check_if_lunge_possible(datum/source)
+/datum/action/ability/activable/xeno/lunge/proc/check_if_lunge_possible(datum/source)
 	SIGNAL_HANDLER
 	if(!lunge_target.Adjacent(source))
 		return
 	INVOKE_ASYNC(src, PROC_REF(lunge_grab), source, lunge_target)
 
 ///Do a last check to see if we can grab the target, and then clean up after the throw. Handles an in-place lunge.
-/datum/action/ability/activable/xeno_action/lunge/proc/finish_lunge(datum/source)
+/datum/action/ability/activable/xeno/lunge/proc/finish_lunge(datum/source)
 	SIGNAL_HANDLER
 	check_if_lunge_possible(source)
 	if(lunge_target) //Still couldn't get them.
 		clean_lunge_target()
 
 /// Null lunge target and reset throw vars
-/datum/action/ability/activable/xeno_action/lunge/proc/clean_lunge_target()
+/datum/action/ability/activable/xeno/lunge/proc/clean_lunge_target()
 	SIGNAL_HANDLER
 	UnregisterSignal(lunge_target, COMSIG_QDELETING)
 	UnregisterSignal(owner, COMSIG_MOVABLE_POST_THROW)
@@ -160,7 +160,7 @@
 	owner.stop_throw()
 
 ///Do the grab on the target, and clean all previous vars
-/datum/action/ability/activable/xeno_action/lunge/proc/lunge_grab(mob/living/carbon/xenomorph/warrior/X, atom/A)
+/datum/action/ability/activable/xeno/lunge/proc/lunge_grab(mob/living/carbon/xenomorph/warrior/X, atom/A)
 	clean_lunge_target()
 	X.swap_hand()
 	X.start_pulling(A, lunge = TRUE)
@@ -169,7 +169,7 @@
 // ***************************************
 // *********** Fling
 // ***************************************
-/datum/action/ability/activable/xeno_action/fling
+/datum/action/ability/activable/xeno/fling
 	name = "Fling"
 	action_icon_state = "fling"
 	desc = "Knock a target flying up to 5 tiles away."
@@ -180,12 +180,12 @@
 	)
 	target_flags = XABB_MOB_TARGET
 
-/datum/action/ability/activable/xeno_action/fling/on_cooldown_finish()
+/datum/action/ability/activable/xeno/fling/on_cooldown_finish()
 	to_chat(owner, span_xenodanger("We gather enough strength to fling something again."))
 	owner.playsound_local(owner, 'sound/effects/xeno_newlarva.ogg', 25, 0, 1)
 	return ..()
 
-/datum/action/ability/activable/xeno_action/fling/can_use_ability(atom/A, silent = FALSE, override_flags)
+/datum/action/ability/activable/xeno/fling/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
 	if(!.)
 		return FALSE
@@ -201,7 +201,7 @@
 	if(L.stat == DEAD)
 		return FALSE
 
-/datum/action/ability/activable/xeno_action/fling/use_ability(atom/A)
+/datum/action/ability/activable/xeno/fling/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/X = owner
 	var/mob/living/victim = A
 	var/facing = get_dir(X, victim)
@@ -240,7 +240,7 @@
 	succeed_activate()
 	add_cooldown()
 
-	var/datum/action/ability/xeno_action/toss = X.actions_by_path[/datum/action/ability/activable/xeno_action/toss]
+	var/datum/action/ability/xeno_action/toss = X.actions_by_path[/datum/action/ability/activable/xeno/toss]
 	if(toss)
 		toss.add_cooldown()
 
@@ -252,10 +252,10 @@
 	victim.ParalyzeNoChain(0.5 SECONDS)
 
 
-/datum/action/ability/activable/xeno_action/fling/ai_should_start_consider()
+/datum/action/ability/activable/xeno/fling/ai_should_start_consider()
 	return TRUE
 
-/datum/action/ability/activable/xeno_action/fling/ai_should_use(atom/target)
+/datum/action/ability/activable/xeno/fling/ai_should_use(atom/target)
 	if(!iscarbon(target))
 		return FALSE
 	if(get_dist(target, owner) > 1)
@@ -269,7 +269,7 @@
 // ***************************************
 // *********** Grapple Toss
 // ***************************************
-/datum/action/ability/activable/xeno_action/toss
+/datum/action/ability/activable/xeno/toss
 	name = "Grapple Toss"
 	action_icon_state = "grapple_toss"
 	desc = "Throw a creature you're grappling up to 3 tiles away."
@@ -280,12 +280,12 @@
 	)
 	target_flags = XABB_TURF_TARGET
 
-/datum/action/ability/activable/xeno_action/toss/on_cooldown_finish()
+/datum/action/ability/activable/xeno/toss/on_cooldown_finish()
 	to_chat(owner, span_xenodanger("We gather enough strength to toss something again."))
 	owner.playsound_local(owner, 'sound/effects/xeno_newlarva.ogg', 25, 0, 1)
 	return ..()
 
-/datum/action/ability/activable/xeno_action/toss/can_use_ability(atom/A, silent = FALSE, override_flags)
+/datum/action/ability/activable/xeno/toss/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
 	if(!.)
 		return
@@ -295,7 +295,7 @@
 			to_chat(owner, span_xenodanger("We have nothing to toss!"))
 		return FALSE
 
-/datum/action/ability/activable/xeno_action/toss/use_ability(atom/A)
+/datum/action/ability/activable/xeno/toss/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/X = owner
 	var/atom/movable/target = owner.pulling
 	var/fling_distance = 4
@@ -339,14 +339,14 @@
 	succeed_activate()
 	add_cooldown()
 
-	var/datum/action/ability/xeno_action/fling = X.actions_by_path[/datum/action/ability/activable/xeno_action/fling]
+	var/datum/action/ability/xeno_action/fling = X.actions_by_path[/datum/action/ability/activable/xeno/fling]
 	if(fling)
 		fling.add_cooldown()
 
 // ***************************************
 // *********** Punch
 // ***************************************
-/datum/action/ability/activable/xeno_action/punch
+/datum/action/ability/activable/xeno/punch
 	name = "Punch"
 	action_icon_state = "punch"
 	desc = "Strike a target, inflicting stamina damage, stagger and slowdown. Deals double damage, stagger and slowdown to grappled targets. Deals quadruple damage to structures and machinery."
@@ -359,13 +359,13 @@
 	///The punch range, 1 would be adjacent.
 	var/range = 1
 
-/datum/action/ability/activable/xeno_action/punch/on_cooldown_finish()
+/datum/action/ability/activable/xeno/punch/on_cooldown_finish()
 	var/mob/living/carbon/xenomorph/X = owner
 	to_chat(X, span_xenodanger("We gather enough strength to punch again."))
 	owner.playsound_local(owner, 'sound/effects/xeno_newlarva.ogg', 25, 0, 1)
 	return ..()
 
-/datum/action/ability/activable/xeno_action/punch/can_use_ability(atom/A, silent = FALSE, override_flags)
+/datum/action/ability/activable/xeno/punch/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
 	if(!.)
 		return
@@ -398,7 +398,7 @@
 		return FALSE
 
 
-/datum/action/ability/activable/xeno_action/punch/use_ability(atom/A)
+/datum/action/ability/activable/xeno/punch/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/X = owner
 	var/damage = X.xeno_caste.melee_damage * X.xeno_melee_damage_modifier
 	var/target_zone = check_zone(X.zone_selected)
@@ -542,10 +542,10 @@
 	shake_camera(src, 2, 1)
 	Shake(duration = 0.5 SECONDS)
 
-/datum/action/ability/activable/xeno_action/punch/ai_should_start_consider()
+/datum/action/ability/activable/xeno/punch/ai_should_start_consider()
 	return TRUE
 
-/datum/action/ability/activable/xeno_action/punch/ai_should_use(atom/target)
+/datum/action/ability/activable/xeno/punch/ai_should_use(atom/target)
 	if(!iscarbon(target))
 		return FALSE
 	if(get_dist(target, owner) > 1)
@@ -559,7 +559,7 @@
 // ***************************************
 // *********** Jab
 // ***************************************
-/datum/action/ability/activable/xeno_action/punch/jab
+/datum/action/ability/activable/xeno/punch/jab
 	name = "Jab"
 	action_icon_state = "jab"
 	desc = "Precisely strike your target from further away, heavily slowing them."
@@ -569,7 +569,7 @@
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_JAB,
 	)
 
-/datum/action/ability/activable/xeno_action/punch/jab/use_ability(atom/A)
+/datum/action/ability/activable/xeno/punch/jab/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/X = owner
 	var/mob/living/carbon/human/target = A
 	var/target_zone = check_zone(X.zone_selected)
@@ -587,7 +587,7 @@
 	succeed_activate()
 	add_cooldown()
 
-/datum/action/ability/activable/xeno_action/punch/jab/on_cooldown_finish()
+/datum/action/ability/activable/xeno/punch/jab/on_cooldown_finish()
 	var/mob/living/carbon/xenomorph/X = owner
 	to_chat(X, span_xenodanger("We gather enough strength to jab again."))
 	owner.playsound_local(owner, 'sound/effects/xeno_newlarva.ogg', 25, 0, 1)

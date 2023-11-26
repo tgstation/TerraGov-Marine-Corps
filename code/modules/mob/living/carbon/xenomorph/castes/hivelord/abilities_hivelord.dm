@@ -6,7 +6,7 @@
 // ***************************************
 // *********** Recycle
 // ***************************************
-/datum/action/ability/activable/xeno_action/recycle
+/datum/action/ability/activable/xeno/recycle
 	name = "Recycle"
 	action_icon_state = "recycle"
 	desc = "We deconstruct the body of a fellow fallen xenomorph to avoid marines from harvesting our sisters in arms."
@@ -17,7 +17,7 @@
 	ability_cost = 750
 	gamemode_flags = ABILITY_NUCLEARWAR
 
-/datum/action/ability/activable/xeno_action/recycle/can_use_ability(atom/target, silent = FALSE, override_flags)
+/datum/action/ability/activable/xeno/recycle/can_use_ability(atom/target, silent = FALSE, override_flags)
 	. = ..()
 	var/mob/living/carbon/xenomorph/hivelord = owner
 	var/mob/living/carbon/xenomorph/victim = target
@@ -40,7 +40,7 @@
 			hivelord.balloon_alert(hivelord, "Sister isn't dead")
 		return FALSE
 
-/datum/action/ability/activable/xeno_action/recycle/use_ability(atom/target)
+/datum/action/ability/activable/xeno/recycle/use_ability(atom/target)
 	var/mob/living/carbon/xenomorph/recycled_xeno = target
 	var/mob/living/carbon/xenomorph/hivelord = owner
 	hivelord.face_atom(recycled_xeno) //Face towards the target so we don't look silly
@@ -61,7 +61,7 @@
 // ***************************************
 // *********** Resin building
 // ***************************************
-/datum/action/ability/activable/xeno_action/secrete_resin/hivelord
+/datum/action/ability/activable/xeno/secrete_resin/hivelord
 	ability_cost = 100
 	buildable_structures = list(
 		/turf/closed/wall/resin/regenerating/thick,
@@ -230,7 +230,7 @@
 // ***************************************
 // *********** plasma transfer
 // ***************************************
-/datum/action/ability/activable/xeno_action/transfer_plasma/improved
+/datum/action/ability/activable/xeno/transfer_plasma/improved
 	plasma_transfer_amount = PLASMA_TRANSFER_AMOUNT * 4
 	transfer_delay = 0.5 SECONDS
 	max_range = 7
@@ -305,7 +305,7 @@
 // ***************************************
 // *********** Healing Infusion
 // ***************************************
-/datum/action/ability/activable/xeno_action/healing_infusion
+/datum/action/ability/activable/xeno/healing_infusion
 	name = "Healing Infusion"
 	action_icon_state = "healing_infusion"
 	desc = "Psychically infuses a friendly xeno with regenerative energies, greatly improving its natural healing. Doesn't work if the target can't naturally heal."
@@ -318,7 +318,7 @@
 	target_flags = XABB_MOB_TARGET
 	var/heal_range = HIVELORD_HEAL_RANGE
 
-/datum/action/ability/activable/xeno_action/healing_infusion/can_use_ability(atom/target, silent = FALSE, override_flags)
+/datum/action/ability/activable/xeno/healing_infusion/can_use_ability(atom/target, silent = FALSE, override_flags)
 	. = ..()
 	if(!.)
 		return
@@ -343,7 +343,7 @@
 		return FALSE
 
 
-/datum/action/ability/activable/xeno_action/healing_infusion/proc/check_distance(atom/target, silent)
+/datum/action/ability/activable/xeno/healing_infusion/proc/check_distance(atom/target, silent)
 	var/dist = get_dist(owner, target)
 	if(dist > heal_range)
 		if(!silent)
@@ -357,7 +357,7 @@
 	return TRUE
 
 
-/datum/action/ability/activable/xeno_action/healing_infusion/use_ability(atom/target)
+/datum/action/ability/activable/xeno/healing_infusion/use_ability(atom/target)
 	if(owner.do_actions)
 		return FALSE
 

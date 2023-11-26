@@ -174,7 +174,7 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 // ***************************************
 // *********** Gas cloud bombs
 // ***************************************
-/datum/action/ability/activable/xeno_action/bombard
+/datum/action/ability/activable/xeno/bombard
 	name = "Bombard"
 	action_icon_state = "bombard"
 	desc = "Launch a glob of neurotoxin or acid. Must be rooted to use."
@@ -185,27 +185,27 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 	target_flags = XABB_TURF_TARGET
 	use_state_flags = XACT_USE_ROOTED
 
-/datum/action/ability/activable/xeno_action/bombard/get_cooldown()
+/datum/action/ability/activable/xeno/bombard/get_cooldown()
 	var/mob/living/carbon/xenomorph/boiler/X = owner
 	return X.xeno_caste.bomb_delay - ((X.neuro_ammo + X.corrosive_ammo) * (BOILER_BOMBARD_COOLDOWN_REDUCTION SECONDS))
 
-/datum/action/ability/activable/xeno_action/bombard/on_cooldown_finish()
+/datum/action/ability/activable/xeno/bombard/on_cooldown_finish()
 	to_chat(owner, span_notice("We feel your toxin glands swell. We are able to bombard an area again."))
 	return ..()
 
-/datum/action/ability/activable/xeno_action/bombard/on_selection()
-	RegisterSignal(owner, COMSIG_MOB_ATTACK_RANGED, TYPE_PROC_REF(/datum/action/ability/activable/xeno_action/bombard, on_ranged_attack))
+/datum/action/ability/activable/xeno/bombard/on_selection()
+	RegisterSignal(owner, COMSIG_MOB_ATTACK_RANGED, TYPE_PROC_REF(/datum/action/ability/activable/xeno/bombard, on_ranged_attack))
 
-/datum/action/ability/activable/xeno_action/bombard/on_deselection()
+/datum/action/ability/activable/xeno/bombard/on_deselection()
 	UnregisterSignal(owner, COMSIG_MOB_ATTACK_RANGED)
 
 /// Signal proc for clicking at a distance
-/datum/action/ability/activable/xeno_action/bombard/proc/on_ranged_attack(mob/living/carbon/xenomorph/X, atom/A, params)
+/datum/action/ability/activable/xeno/bombard/proc/on_ranged_attack(mob/living/carbon/xenomorph/X, atom/A, params)
 	SIGNAL_HANDLER
 	if(can_use_ability(A, TRUE))
 		INVOKE_ASYNC(src, PROC_REF(use_ability), A)
 
-/datum/action/ability/activable/xeno_action/bombard/can_use_ability(atom/A, silent = FALSE, override_flags)
+/datum/action/ability/activable/xeno/bombard/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
 	if(!.)
 		return FALSE
@@ -241,7 +241,7 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 			boiler_owner.balloon_alert(boiler_owner, "Too close!")
 		return FALSE
 
-/datum/action/ability/activable/xeno_action/bombard/use_ability(atom/A)
+/datum/action/ability/activable/xeno/bombard/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/boiler/boiler_owner = owner
 	var/turf/target = get_turf(A)
 
@@ -279,12 +279,12 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 	add_cooldown()
 
 
-/datum/action/ability/activable/xeno_action/bombard/alternate_action_activate()
+/datum/action/ability/activable/xeno/bombard/alternate_action_activate()
 	INVOKE_ASYNC(src, PROC_REF(root))
 	return COMSIG_KB_ACTIVATED
 
 /// The alternative action of bombard, rooting. It begins the rooting/unrooting process.
-/datum/action/ability/activable/xeno_action/bombard/proc/root()
+/datum/action/ability/activable/xeno/bombard/proc/root()
 	if(HAS_TRAIT_FROM(owner, TRAIT_IMMOBILE, BOILER_ROOTED_TRAIT))
 		owner.balloon_alert_to_viewers("Rooting out of place...")
 		if(!do_after(owner, 3 SECONDS, FALSE, null, BUSY_ICON_HOSTILE))
@@ -307,7 +307,7 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 	set_rooted(TRUE)
 
 /// Proc that actually does the rooting, makes us immobile and anchors us in place. Similar to defender's fortify.
-/datum/action/ability/activable/xeno_action/bombard/proc/set_rooted(on)
+/datum/action/ability/activable/xeno/bombard/proc/set_rooted(on)
 	var/mob/living/carbon/xenomorph/boiler/boiler_owner = owner
 	if(on)
 		ADD_TRAIT(boiler_owner, TRAIT_IMMOBILE, BOILER_ROOTED_TRAIT)
@@ -324,6 +324,6 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 // ***************************************
 // *********** Acid spray
 // ***************************************
-/datum/action/ability/activable/xeno_action/spray_acid/line/boiler
+/datum/action/ability/activable/xeno/spray_acid/line/boiler
 	cooldown_duration = 9 SECONDS
 	use_state_flags = XACT_USE_ROOTED

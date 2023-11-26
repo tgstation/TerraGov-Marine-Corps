@@ -17,10 +17,10 @@
 	var/combo = 0
 	///Abilities with empowered interactions
 	var/list/empowerable_actions = list(
-		/datum/action/ability/activable/xeno_action/fling,
-		/datum/action/ability/activable/xeno_action/toss,
-		/datum/action/ability/activable/xeno_action/punch,
-		/datum/action/ability/activable/xeno_action/punch/jab,
+		/datum/action/ability/activable/xeno/fling,
+		/datum/action/ability/activable/xeno/toss,
+		/datum/action/ability/activable/xeno/punch,
+		/datum/action/ability/activable/xeno/punch/jab,
 	)
 // ***************************************
 // *********** Icons

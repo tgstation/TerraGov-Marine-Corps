@@ -1,7 +1,7 @@
 // ***************************************
 // *********** Toxic Spit
 // ***************************************
-/datum/action/ability/activable/xeno_action/xeno_spit/toxic_spit
+/datum/action/ability/activable/xeno/xeno_spit/toxic_spit
 	name = "Toxic Spit"
 	desc = "Spit a toxin at your target up to 7 tiles away, inflicting the Intoxicated debuff and dealing damage over time."
 	keybinding_signals = list(
@@ -123,7 +123,7 @@
 // ***************************************
 // *********** Drain Sting
 // ***************************************
-/datum/action/ability/activable/xeno_action/drain_sting
+/datum/action/ability/activable/xeno/drain_sting
 	name = "Drain Sting"
 	action_icon_state = "neuro_sting"
 	desc = "Sting your victim, draining them and gaining benefits if they are Intoxicated."
@@ -135,7 +135,7 @@
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_DRAIN_STING,
 	)
 
-/datum/action/ability/activable/xeno_action/drain_sting/can_use_ability(atom/A, silent = FALSE, override_flags)
+/datum/action/ability/activable/xeno/drain_sting/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
 	if(!.)
 		return FALSE
@@ -154,7 +154,7 @@
 		target.balloon_alert(owner, "Not intoxicated")
 		return FALSE
 
-/datum/action/ability/activable/xeno_action/drain_sting/use_ability(atom/A)
+/datum/action/ability/activable/xeno/drain_sting/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	var/mob/living/carbon/xeno_target = A
 	var/datum/status_effect/stacking/intoxicated/debuff = xeno_target.has_status_effect(STATUS_EFFECT_INTOXICATED)
@@ -176,7 +176,7 @@
 	GLOB.round_statistics.sentinel_drain_stings++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "sentinel_drain_stings")
 
-/datum/action/ability/activable/xeno_action/drain_sting/on_cooldown_finish()
+/datum/action/ability/activable/xeno/drain_sting/on_cooldown_finish()
 	playsound(owner.loc, 'sound/voice/alien_drool1.ogg', 50, 1)
 	owner.balloon_alert(owner, "Drain Sting ready")
 	return ..()
@@ -192,7 +192,7 @@
 // ***************************************
 // *********** Toxic Grenade
 // ***************************************
-/datum/action/ability/activable/xeno_action/toxic_grenade
+/datum/action/ability/activable/xeno/toxic_grenade
 	name = "Toxic grenade"
 	action_icon_state = "gas mine"
 	desc = "Throws a lump of compressed acidic gases, which will inflict damage over time and Intoxicate victims."
@@ -202,7 +202,7 @@
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TOXIC_GRENADE,
 	)
 
-/datum/action/ability/activable/xeno_action/toxic_grenade/use_ability(atom/A)
+/datum/action/ability/activable/xeno/toxic_grenade/use_ability(atom/A)
 	. = ..()
 	succeed_activate()
 	add_cooldown()

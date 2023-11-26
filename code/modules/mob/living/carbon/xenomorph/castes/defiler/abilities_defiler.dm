@@ -61,7 +61,7 @@
 // ***************************************
 // *********** Defile
 // ***************************************
-/datum/action/ability/activable/xeno_action/defile
+/datum/action/ability/activable/xeno/defile
 	name = "Defile"
 	action_icon_state = "defiler_sting"
 	desc = "Channel to inject an adjacent target with an accelerant that violently reacts with xeno toxins, releasing gas and dealing heavy tox damage in proportion to the amount in their system."
@@ -72,12 +72,12 @@
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_DEFILE,
 	)
 
-/datum/action/ability/activable/xeno_action/defile/on_cooldown_finish()
+/datum/action/ability/activable/xeno/defile/on_cooldown_finish()
 	playsound(owner.loc, 'sound/voice/alien_drool1.ogg', 50, 1)
 	to_chat(owner, span_xenodanger("You feel your toxin accelerant glands refill. You can use Defile again."))
 	return ..()
 
-/datum/action/ability/activable/xeno_action/defile/can_use_ability(atom/A, silent = FALSE, override_flags)
+/datum/action/ability/activable/xeno/defile/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
 	if(!.)
 		return
@@ -94,7 +94,7 @@
 		return FALSE
 
 
-/datum/action/ability/activable/xeno_action/defile/use_ability(atom/A)
+/datum/action/ability/activable/xeno/defile/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/X = owner
 	var/mob/living/carbon/living_target = A
 	if(living_target.status_flags & GODMODE)
@@ -280,7 +280,7 @@
 // ***************************************
 // *********** Inject Egg Neurogas
 // ***************************************
-/datum/action/ability/activable/xeno_action/inject_egg_neurogas
+/datum/action/ability/activable/xeno/inject_egg_neurogas
 	name = "Inject Gas"
 	action_icon_state = "inject_egg"
 	desc = "Inject an egg with toxins, killing the larva, but filling it full with gas ready to explode."
@@ -291,12 +291,12 @@
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_INJECT_EGG_NEUROGAS,
 	)
 
-/datum/action/ability/activable/xeno_action/inject_egg_neurogas/on_cooldown_finish()
+/datum/action/ability/activable/xeno/inject_egg_neurogas/on_cooldown_finish()
 	playsound(owner.loc, 'sound/effects/xeno_newlarva.ogg', 50, 0)
 	to_chat(owner, span_xenodanger("We feel our stinger fill with toxins. We can inject an egg with gas again."))
 	return ..()
 
-/datum/action/ability/activable/xeno_action/inject_egg_neurogas/use_ability(atom/A)
+/datum/action/ability/activable/xeno/inject_egg_neurogas/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/defiler/X = owner
 
 	if(!owner.Adjacent(A))
@@ -512,7 +512,7 @@
 // ***************************************
 // *********** Tentacle
 // ***************************************
-/datum/action/ability/activable/xeno_action/tentacle
+/datum/action/ability/activable/xeno/tentacle
 	name = "Tentacle"
 	action_icon_state = "tail_attack"
 	desc = "Throw one of your tentacles forward to grab a tallhost or item."
@@ -524,7 +524,7 @@
 	///reference to beam tentacle
 	var/datum/beam/tentacle
 
-/datum/action/ability/activable/xeno_action/tentacle/can_use_ability(atom/A, silent = FALSE, override_flags)
+/datum/action/ability/activable/xeno/tentacle/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
 	if(!.)
 		return
@@ -559,7 +559,7 @@
 		current = get_step_towards(current, target_turf)
 
 
-/datum/action/ability/activable/xeno_action/tentacle/use_ability(atom/movable/target)
+/datum/action/ability/activable/xeno/tentacle/use_ability(atom/movable/target)
 	var/atom/movable/tentacle_end/tentacle_end = new (get_turf(owner))
 	tentacle = owner.beam(tentacle_end,"curse0",'icons/effects/beam.dmi')
 	RegisterSignals(tentacle_end, list(COMSIG_MOVABLE_POST_THROW, COMSIG_MOVABLE_IMPACT), PROC_REF(finish_grab))
@@ -568,7 +568,7 @@
 	add_cooldown()
 
 ///Signal handler to grab the target when we thentacle head hit something
-/datum/action/ability/activable/xeno_action/tentacle/proc/finish_grab(datum/source, atom/movable/target)
+/datum/action/ability/activable/xeno/tentacle/proc/finish_grab(datum/source, atom/movable/target)
 	SIGNAL_HANDLER
 	QDEL_NULL(tentacle)
 	qdel(source)
@@ -588,7 +588,7 @@
 		loser.adjust_stagger(5 SECONDS)
 
 ///signal handler to delete tetacle after we are done draggging owner along
-/datum/action/ability/activable/xeno_action/tentacle/proc/delete_beam(datum/source, atom/impacted)
+/datum/action/ability/activable/xeno/tentacle/proc/delete_beam(datum/source, atom/impacted)
 	SIGNAL_HANDLER
 	UnregisterSignal(source, COMSIG_MOVABLE_POST_THROW)
 	QDEL_NULL(tentacle)

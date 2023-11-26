@@ -67,20 +67,20 @@
 		xeno_owner.deduct_ability_cost(ability_cost_override)
 
 //activatable
-/datum/action/ability/activable/xeno_action/New(Target)
+/datum/action/ability/activable/xeno/New(Target)
 	. = ..()
 	var/mutable_appearance/empowered_appearence = mutable_appearance('icons/Xeno/actions.dmi', "borders_center", ACTION_LAYER_EMPOWERED, FLOAT_PLANE)
 	visual_references[VREF_MUTABLE_EMPOWERED_FRAME] = empowered_appearence
 
-/datum/action/ability/activable/xeno_action/give_action(mob/living/L)
+/datum/action/ability/activable/xeno/give_action(mob/living/L)
 	. = ..()
 	RegisterSignal(L, COMSIG_XENOMORPH_ABILITY_ON_UPGRADE, TYPE_PROC_REF(/datum/action/ability, on_xeno_upgrade))
 
-/datum/action/ability/activable/xeno_action/remove_action(mob/living/L)
+/datum/action/ability/activable/xeno/remove_action(mob/living/L)
 	UnregisterSignal(L, COMSIG_XENOMORPH_ABILITY_ON_UPGRADE)
 	return ..()
 
-/datum/action/ability/activable/xeno_action/can_use_action(silent = FALSE, override_flags)
+/datum/action/ability/activable/xeno/can_use_action(silent = FALSE, override_flags)
 	. = ..()
 	if(!.)
 		return

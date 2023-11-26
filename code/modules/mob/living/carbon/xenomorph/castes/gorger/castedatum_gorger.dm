@@ -51,13 +51,13 @@
 	actions = list(
 		/datum/action/ability/xeno_action/xeno_resting,
 		/datum/action/ability/xeno_action/watch_xeno,
-		/datum/action/ability/activable/xeno_action/psydrain/free,
-		/datum/action/ability/activable/xeno_action/psychic_link,
-		/datum/action/ability/activable/xeno_action/drain,
-		/datum/action/ability/activable/xeno_action/transfusion,
-		/datum/action/ability/activable/xeno_action/carnage,
-		/datum/action/ability/activable/xeno_action/feast,
-		/datum/action/ability/activable/xeno_action/devour,
+		/datum/action/ability/activable/xeno/psydrain/free,
+		/datum/action/ability/activable/xeno/psychic_link,
+		/datum/action/ability/activable/xeno/drain,
+		/datum/action/ability/activable/xeno/transfusion,
+		/datum/action/ability/activable/xeno/carnage,
+		/datum/action/ability/activable/xeno/feast,
+		/datum/action/ability/activable/xeno/devour,
 	)
 
 /datum/xeno_caste/gorger/normal
@@ -71,12 +71,12 @@
 	actions = list(
 		/datum/action/ability/xeno_action/xeno_resting,
 		/datum/action/ability/xeno_action/watch_xeno,
-		/datum/action/ability/activable/xeno_action/psydrain/free,
-		/datum/action/ability/activable/xeno_action/psychic_link,
-		/datum/action/ability/activable/xeno_action/drain,
-		/datum/action/ability/activable/xeno_action/transfusion,
-		/datum/action/ability/activable/xeno_action/rejuvenate,
-		/datum/action/ability/activable/xeno_action/carnage,
-		/datum/action/ability/activable/xeno_action/feast,
-		/datum/action/ability/activable/xeno_action/devour,
+		/datum/action/ability/activable/xeno/psydrain/free,
+		/datum/action/ability/activable/xeno/psychic_link,
+		/datum/action/ability/activable/xeno/drain,
+		/datum/action/ability/activable/xeno/transfusion,
+		/datum/action/ability/activable/xeno/rejuvenate,
+		/datum/action/ability/activable/xeno/carnage,
+		/datum/action/ability/activable/xeno/feast,
+		/datum/action/ability/activable/xeno/devour,
 	)

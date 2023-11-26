@@ -8,7 +8,7 @@
 	SEND_SIGNAL(owner, COMSIG_XENOMORPH_CORE_RETURN)
 	return ..()
 
-/datum/action/ability/activable/xeno_action/secrete_resin/hivemind/can_use_action(silent = FALSE, override_flags, selecting = FALSE)
+/datum/action/ability/activable/xeno/secrete_resin/hivemind/can_use_action(silent = FALSE, override_flags, selecting = FALSE)
 	if (owner.status_flags & INCORPOREAL)
 		return FALSE
 	return ..()
@@ -26,7 +26,7 @@
 	var/mob/living/carbon/xenomorph/xenomorph_owner = owner
 	xenomorph_owner.change_form()
 
-/datum/action/ability/activable/xeno_action/command_minions
+/datum/action/ability/activable/xeno/command_minions
 	name = "Command minions"
 	action_icon_state = "minion_agressive"
 	desc = "Command all minions, ordering them to converge on this location. Rightclick to change minion behaviour."
@@ -41,11 +41,11 @@
 	///If minions should be agressive
 	var/minions_agressive = TRUE
 
-/datum/action/ability/activable/xeno_action/command_minions/update_button_icon()
+/datum/action/ability/activable/xeno/command_minions/update_button_icon()
 	action_icon_state = minions_agressive ? "minion_agressive" : "minion_passive"
 	return ..()
 
-/datum/action/ability/activable/xeno_action/command_minions/use_ability(atom/target)
+/datum/action/ability/activable/xeno/command_minions/use_ability(atom/target)
 	var/turf_targeted = get_turf(target)
 	if(!turf_targeted)
 		return
@@ -53,20 +53,20 @@
 	succeed_activate()
 	add_cooldown()
 
-/datum/action/ability/activable/xeno_action/command_minions/alternate_action_activate()
+/datum/action/ability/activable/xeno/command_minions/alternate_action_activate()
 	minions_agressive = !minions_agressive
 	SEND_SIGNAL(owner, COMSIG_ESCORTING_ATOM_BEHAVIOUR_CHANGED, minions_agressive)
 	update_button_icon()
 
-/datum/action/ability/activable/xeno_action/psychic_cure/queen_give_heal/hivemind/can_use_action(silent = FALSE, override_flags, selecting = FALSE)
+/datum/action/ability/activable/xeno/psychic_cure/queen_give_heal/hivemind/can_use_action(silent = FALSE, override_flags, selecting = FALSE)
 	if (owner.status_flags & INCORPOREAL)
 		return FALSE
 	return ..()
 
-/datum/action/ability/activable/xeno_action/transfer_plasma/hivemind
+/datum/action/ability/activable/xeno/transfer_plasma/hivemind
 	plasma_transfer_amount = PLASMA_TRANSFER_AMOUNT * 2
 
-/datum/action/ability/activable/xeno_action/transfer_plasma/hivemind/can_use_action(silent = FALSE, override_flags, selecting = FALSE)
+/datum/action/ability/activable/xeno/transfer_plasma/hivemind/can_use_action(silent = FALSE, override_flags, selecting = FALSE)
 	if (owner.status_flags & INCORPOREAL)
 		return FALSE
 	return ..()

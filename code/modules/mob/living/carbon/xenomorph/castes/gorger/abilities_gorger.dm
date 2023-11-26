@@ -1,10 +1,10 @@
-/datum/action/ability/activable/xeno_action/psydrain/free
+/datum/action/ability/activable/xeno/psydrain/free
 	ability_cost = 0
 
 /////////////////////////////////
 // Devour
 /////////////////////////////////
-/datum/action/ability/activable/xeno_action/devour
+/datum/action/ability/activable/xeno/devour
 	name = "Devour"
 	action_icon_state = "abduct"
 	desc = "Devour your victim to be able to carry it faster."
@@ -15,7 +15,7 @@
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_DEVOUR,
 	)
 
-/datum/action/ability/activable/xeno_action/devour/can_use_ability(atom/target, silent, override_flags)
+/datum/action/ability/activable/xeno/devour/can_use_ability(atom/target, silent, override_flags)
 	. = ..()
 	if(!.)
 		return
@@ -50,7 +50,7 @@
 			to_chat(owner_xeno, span_warning("We are too close to the fog."))
 		return FALSE
 
-/datum/action/ability/activable/xeno_action/devour/action_activate()
+/datum/action/ability/activable/xeno/devour/action_activate()
 	. = ..()
 	var/mob/living/carbon/xenomorph/owner_xeno = owner
 	if(!owner_xeno.eaten_mob)
@@ -64,7 +64,7 @@
 		return
 	owner_xeno.eject_victim()
 
-/datum/action/ability/activable/xeno_action/devour/use_ability(atom/target)
+/datum/action/ability/activable/xeno/devour/use_ability(atom/target)
 	var/mob/living/carbon/human/victim = target
 	var/mob/living/carbon/xenomorph/owner_xeno = owner
 	owner_xeno.face_atom(victim)
@@ -80,13 +80,13 @@
 	owner_xeno.eaten_mob = victim
 	add_cooldown()
 
-/datum/action/ability/activable/xeno_action/devour/ai_should_use(atom/target)
+/datum/action/ability/activable/xeno/devour/ai_should_use(atom/target)
 	return FALSE
 
 // ***************************************
 // *********** Drain blood
 // ***************************************
-/datum/action/ability/activable/xeno_action/drain
+/datum/action/ability/activable/xeno/drain
 	name = "Drain"
 	action_icon_state = "drain"
 	desc = "Hold a marine for some time and drain their blood, while healing. You can't attack during this time and can be shot by the marine. When used on a dead human, you heal, or gain overheal, gradually and don't gain blood."
@@ -98,7 +98,7 @@
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_DRAIN,
 	)
 
-/datum/action/ability/activable/xeno_action/drain/can_use_ability(atom/target, silent = FALSE, override_flags)
+/datum/action/ability/activable/xeno/drain/can_use_ability(atom/target, silent = FALSE, override_flags)
 	. = ..()
 	if(!ishuman(target) || issynth(target))
 		if(!silent)
@@ -137,7 +137,7 @@
 	adjustOverheal(owner_xeno, drain_healing);\
 	owner_xeno.gain_plasma(owner_xeno.xeno_caste.drain_plasma_gain)
 
-/datum/action/ability/activable/xeno_action/drain/use_ability(mob/living/carbon/human/target_human)
+/datum/action/ability/activable/xeno/drain/use_ability(mob/living/carbon/human/target_human)
 	var/mob/living/carbon/xenomorph/owner_xeno = owner
 	if(target_human.stat == DEAD)
 		var/overheal_gain = 0
@@ -162,13 +162,13 @@
 
 #undef DO_DRAIN_ACTION
 
-/datum/action/ability/activable/xeno_action/drain/ai_should_use(atom/target)
+/datum/action/ability/activable/xeno/drain/ai_should_use(atom/target)
 	return can_use_ability(target, TRUE)
 
 // ***************************************
 // *********** Transfusion
 // ***************************************
-/datum/action/ability/activable/xeno_action/transfusion
+/datum/action/ability/activable/xeno/transfusion
 	name = "Transfusion"
 	action_icon_state = "transfusion"
 	desc = "Restores some of the health of another xenomorph, or overheals, at the cost of blood."
@@ -183,7 +183,7 @@
 	///Used to keep track of the target's previous health for extra_health_check()
 	var/target_health
 
-/datum/action/ability/activable/xeno_action/transfusion/can_use_ability(atom/target, silent = FALSE, override_flags) //it is set up to only return true on specific xeno or human targets
+/datum/action/ability/activable/xeno/transfusion/can_use_ability(atom/target, silent = FALSE, override_flags) //it is set up to only return true on specific xeno or human targets
 	. = ..()
 	if(!.)
 		return
@@ -211,13 +211,13 @@
 	return TRUE
 
 ///An extra check for the do_mob in can_use_ability. If the target isn't immobile and has lost health, the ability is cancelled. The ability is also cancelled if the target is knocked into crit DURING the do_mob.
-/datum/action/ability/activable/xeno_action/transfusion/proc/extra_health_check(mob/living/target)
+/datum/action/ability/activable/xeno/transfusion/proc/extra_health_check(mob/living/target)
 	if((target.health < target_health && !HAS_TRAIT(target, TRAIT_IMMOBILE)) || (target.InCritical() && target_health > target.get_crit_threshold()))
 		return FALSE
 	target_health = target.health
 	return TRUE
 
-/datum/action/ability/activable/xeno_action/transfusion/use_ability(atom/target)
+/datum/action/ability/activable/xeno/transfusion/use_ability(atom/target)
 	var/mob/living/carbon/xenomorph/owner_xeno = owner
 	var/mob/living/carbon/xenomorph/target_xeno = target
 	var/heal_amount = target_xeno.maxHealth * GORGER_TRANSFUSION_HEAL
@@ -228,7 +228,7 @@
 	add_cooldown()
 	succeed_activate()
 
-/datum/action/ability/activable/xeno_action/transfusion/ai_should_use(atom/target)
+/datum/action/ability/activable/xeno/transfusion/ai_should_use(atom/target)
 	// no healing non-xeno
 	if(!isxeno(target))
 		return FALSE
@@ -244,7 +244,7 @@
 // *********** Rejuvenate
 // ***************************************
 #define REJUVENATE_MISCLICK_CD "rejuvenate_misclick"
-/datum/action/ability/activable/xeno_action/rejuvenate
+/datum/action/ability/activable/xeno/rejuvenate
 	name = "Rejuvenate"
 	action_icon_state = "rejuvenation"
 	desc = "Drains blood continuosly, slows you down and reduces damage taken, while restoring some health over time. Cancel by activating again."
@@ -257,14 +257,14 @@
 	keybind_flags = XACT_KEYBIND_USE_ABILITY
 	use_state_flags = XACT_USE_STAGGERED
 
-/datum/action/ability/activable/xeno_action/rejuvenate/can_use_ability(atom/A, silent, override_flags)
+/datum/action/ability/activable/xeno/rejuvenate/can_use_ability(atom/A, silent, override_flags)
 	. = ..()
 	if(!.)
 		return
 	if(TIMER_COOLDOWN_CHECK(owner, REJUVENATE_MISCLICK_CD))
 		return FALSE
 
-/datum/action/ability/activable/xeno_action/rejuvenate/use_ability(atom/A)
+/datum/action/ability/activable/xeno/rejuvenate/use_ability(atom/A)
 	. = ..()
 	var/mob/living/carbon/xenomorph/owner_xeno = owner
 	if(owner_xeno.has_status_effect(STATUS_EFFECT_XENO_REJUVENATE))
@@ -276,7 +276,7 @@
 	succeed_activate()
 	TIMER_COOLDOWN_START(owner_xeno, REJUVENATE_MISCLICK_CD, 1 SECONDS)
 
-/datum/action/ability/activable/xeno_action/rejuvenate/ai_should_use(atom/target)
+/datum/action/ability/activable/xeno/rejuvenate/ai_should_use(atom/target)
 	return FALSE
 
 #undef REJUVENATE_MISCLICK_CD
@@ -284,7 +284,7 @@
 // ***************************************
 // *********** Psychic Link
 // ***************************************
-/datum/action/ability/activable/xeno_action/psychic_link
+/datum/action/ability/activable/xeno/psychic_link
 	name = "Psychic Link"
 	action_icon_state = "psychic_link"
 	desc = "Link to a xenomorph and take some damage in their place. Unrest to cancel."
@@ -299,7 +299,7 @@
 	///Overlay applied on the target xeno while linking
 	var/datum/progressicon/target_overlay
 
-/datum/action/ability/activable/xeno_action/psychic_link/can_use_ability(atom/target, silent = FALSE, override_flags)
+/datum/action/ability/activable/xeno/psychic_link/can_use_ability(atom/target, silent = FALSE, override_flags)
 	. = ..()
 	if(!.)
 		return
@@ -333,13 +333,13 @@
 		return FALSE
 	return TRUE
 
-/datum/action/ability/activable/xeno_action/psychic_link/use_ability(atom/target)
+/datum/action/ability/activable/xeno/psychic_link/use_ability(atom/target)
 	apply_psychic_link_timer = addtimer(CALLBACK(src, PROC_REF(apply_psychic_link), target), GORGER_PSYCHIC_LINK_CHANNEL, TIMER_UNIQUE|TIMER_STOPPABLE)
 	target_overlay = new (target, BUSY_ICON_MEDICAL)
 	owner.balloon_alert(owner, "linking...")
 
 ///Activates the link
-/datum/action/ability/activable/xeno_action/psychic_link/proc/apply_psychic_link(atom/target)
+/datum/action/ability/activable/xeno/psychic_link/proc/apply_psychic_link(atom/target)
 	link_cleanup()
 	if(HAS_TRAIT(owner, TRAIT_PSY_LINKED) || HAS_TRAIT(target, TRAIT_PSY_LINKED))
 		return fail_activate()
@@ -355,32 +355,32 @@
 	succeed_activate()
 
 ///Removes the status effect on unrest
-/datum/action/ability/activable/xeno_action/psychic_link/proc/cancel_psychic_link(datum/source)
+/datum/action/ability/activable/xeno/psychic_link/proc/cancel_psychic_link(datum/source)
 	SIGNAL_HANDLER
 	var/mob/living/carbon/xenomorph/owner_xeno = owner
 	owner_xeno.remove_status_effect(STATUS_EFFECT_XENO_PSYCHIC_LINK)
 
 ///Cancels the status effect
-/datum/action/ability/activable/xeno_action/psychic_link/proc/status_removed(datum/source)
+/datum/action/ability/activable/xeno/psychic_link/proc/status_removed(datum/source)
 	SIGNAL_HANDLER
 	UnregisterSignal(source, COMSIG_XENO_PSYCHIC_LINK_REMOVED)
 	UnregisterSignal(owner, COMSIG_XENOMORPH_UNREST)
 	add_cooldown()
 
 ///Clears up things used for the linking
-/datum/action/ability/activable/xeno_action/psychic_link/proc/link_cleanup()
+/datum/action/ability/activable/xeno/psychic_link/proc/link_cleanup()
 	QDEL_NULL(target_overlay)
 	deltimer(apply_psychic_link_timer)
 	apply_psychic_link_timer = null
 
 
-/datum/action/ability/activable/xeno_action/psychic_link/ai_should_use(atom/target)
+/datum/action/ability/activable/xeno/psychic_link/ai_should_use(atom/target)
 	return FALSE
 
 // ***************************************
 // *********** Carnage
 // ***************************************
-/datum/action/ability/activable/xeno_action/carnage
+/datum/action/ability/activable/xeno/carnage
 	name = "Carnage"
 	action_icon_state = "carnage"
 	desc = "Enter a state of thirst, gaining movement and healing on your next attack, scaling with missing blood. If your blood is below a certain %, you also knockdown your victim and drain some blood, during which you can't move."
@@ -391,13 +391,13 @@
 	)
 	keybind_flags = XACT_KEYBIND_USE_ABILITY
 
-/datum/action/ability/activable/xeno_action/carnage/use_ability(atom/A)
+/datum/action/ability/activable/xeno/carnage/use_ability(atom/A)
 	. = ..()
 	var/mob/living/carbon/xenomorph/owner_xeno = owner
 	owner_xeno.apply_status_effect(STATUS_EFFECT_XENO_CARNAGE, 10 SECONDS, owner_xeno.xeno_caste.carnage_plasma_gain, owner_xeno.maxHealth * GORGER_CARNAGE_HEAL, GORGER_CARNAGE_MOVEMENT)
 	add_cooldown()
 
-/datum/action/ability/activable/xeno_action/carnage/ai_should_use(atom/target)
+/datum/action/ability/activable/xeno/carnage/ai_should_use(atom/target)
 	if(!iscarbon(target))
 		return FALSE
 	var/mob/living/carbon/xenomorph/owner_xeno = owner
@@ -412,7 +412,7 @@
 // *********** Feast
 // ***************************************
 #define FEAST_MISCLICK_CD "feast_misclick"
-/datum/action/ability/activable/xeno_action/feast
+/datum/action/ability/activable/xeno/feast
 	name = "Feast"
 	action_icon_state = "feast"
 	desc = "Enter a state of rejuvenation. During this time you use a small amount of blood and heal. You can cancel this early."
@@ -424,7 +424,7 @@
 	keybind_flags = XACT_KEYBIND_USE_ABILITY
 	use_state_flags = XACT_USE_STAGGERED
 
-/datum/action/ability/activable/xeno_action/feast/can_use_ability(atom/target, silent, override_flags)
+/datum/action/ability/activable/xeno/feast/can_use_ability(atom/target, silent, override_flags)
 	. = ..()
 	var/mob/living/carbon/xenomorph/owner_xeno = owner
 	if(TIMER_COOLDOWN_CHECK(owner_xeno, FEAST_MISCLICK_CD))
@@ -436,7 +436,7 @@
 			to_chat(owner_xeno, span_notice("Not enough to begin a feast. We need [owner_xeno.xeno_caste.feast_plasma_drain * 10] blood."))
 		return FALSE
 
-/datum/action/ability/activable/xeno_action/feast/use_ability(atom/A)
+/datum/action/ability/activable/xeno/feast/use_ability(atom/A)
 	. = ..()
 	var/mob/living/carbon/xenomorph/owner_xeno = owner
 	if(owner_xeno.has_status_effect(STATUS_EFFECT_XENO_FEAST))
@@ -450,7 +450,7 @@
 	TIMER_COOLDOWN_START(src, FEAST_MISCLICK_CD, 2 SECONDS)
 	add_cooldown()
 
-/datum/action/ability/activable/xeno_action/feast/ai_should_use(atom/target)
+/datum/action/ability/activable/xeno/feast/ai_should_use(atom/target)
 	var/mob/living/carbon/xenomorph/owner_xeno = owner
 	// cancel the buff when at full health to conserve plasma, otherwise don't cancel
 	if(owner_xeno.has_status_effect(STATUS_EFFECT_XENO_FEAST))

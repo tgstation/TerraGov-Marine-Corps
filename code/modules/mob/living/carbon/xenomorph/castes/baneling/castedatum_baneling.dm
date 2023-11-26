@@ -46,7 +46,7 @@
 	actions = list(
 		/datum/action/ability/xeno_action/xeno_resting,
 		/datum/action/ability/xeno_action/watch_xeno/baneling,
-		/datum/action/ability/activable/xeno_action/psydrain,
+		/datum/action/ability/activable/xeno/psydrain,
 		/datum/action/ability/xeno_action/spawn_pod,
 		/datum/action/ability/xeno_action/select_reagent/baneling,
 		/datum/action/ability/xeno_action/baneling_explode,
@@ -65,9 +65,9 @@
 	actions = list(
 		/datum/action/ability/xeno_action/xeno_resting,
 		/datum/action/ability/xeno_action/watch_xeno/baneling,
-		/datum/action/ability/activable/xeno_action/psydrain,
+		/datum/action/ability/activable/xeno/psydrain,
 		/datum/action/ability/xeno_action/spawn_pod,
 		/datum/action/ability/xeno_action/select_reagent/baneling,
 		/datum/action/ability/xeno_action/baneling_explode,
-		/datum/action/ability/activable/xeno_action/dash_explosion,
+		/datum/action/ability/activable/xeno/dash_explosion,
 	)
