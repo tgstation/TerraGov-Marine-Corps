@@ -1,11 +1,6 @@
 /obj/item/fishing
 	name = "fishing prop"
 	icon = 'icons/obj/items/fishing.dmi'
-	icon_state = "worm"
-	item_icons = list(
-		slot_l_hand_str = 'icons/mob/inhands/items/toys_left.dmi',
-		slot_r_hand_str = 'icons/mob/inhands/items/toys_right.dmi',
-		)
 	force = 0
 
 /obj/item/fishing/reel
