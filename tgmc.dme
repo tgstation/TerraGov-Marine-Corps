@@ -641,6 +641,7 @@
 #include "code\game\objects\effects\proximity.dm"
 #include "code\game\objects\effects\spiders.dm"
 #include "code\game\objects\effects\step_triggers.dm"
+#include "code\game\objects\effects\tele_blocker.dm"
 #include "code\game\objects\effects\turf_overunderlays.dm"
 #include "code\game\objects\effects\weeds.dm"
 #include "code\game\objects\effects\decals\cleanable.dm"
