@@ -136,7 +136,7 @@
 		return
 
 
-	var/customname = tgui_input_text(usr, "Pick a title for the report.", "Title", "TGMC Update", encode = FALSE)
+	var/customname = tgui_input_text(usr, "Pick a title for the report.", "Title", "NTC Update", encode = FALSE)
 	var/input = tgui_input_text(usr, "Please enter anything you want. Anything. Serious.", "What?", "", multiline = TRUE, encode = FALSE)
 
 	if(!input || !customname)
