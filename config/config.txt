@@ -201,8 +201,8 @@ GUEST_BAN
 CHECK_RANDOMIZER
 
 ## Uncomment these to set a custom respawn timer; the delay is in ticks.
-MARINE_RESPAWN 5
-XENO_RESPAWN 5
+MARINE_RESPAWN 10
+XENO_RESPAWN 10
 
 ## Automatic balance system
 IS_AUTOMATIC_BALANCE_ON

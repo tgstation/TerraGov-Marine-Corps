@@ -91,6 +91,9 @@
 /obj/machinery/camera/autoname/mainship/dropship_two{
 	dir = 8
 	},
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 8
+	},
 /turf/open/shuttle/dropship/three,
 /area/shuttle/dropship/normandy)
 "oB" = (
@@ -175,10 +178,6 @@
 	},
 /turf/template_noop,
 /area/shuttle/dropship/normandy)
-"zK" = (
-/obj/effect/attach_point/electronics/dropship2,
-/turf/template_noop,
-/area/template_noop)
 "AC" = (
 /obj/machinery/door/airlock/dropship_hatch/left/two,
 /obj/machinery/door/poddoor/shutters/transit{
@@ -384,7 +383,7 @@ Zp
 Zp
 Zp
 Zp
-zK
+Zp
 Wg
 DH
 DH
@@ -402,8 +401,8 @@ Fn
 Js
 rG
 oB
-eY
 nu
+eY
 fJ
 SV
 nu
@@ -433,7 +432,7 @@ cK
 rG
 cW
 oe
-jY
+eY
 Dz
 XK
 jY
@@ -444,7 +443,7 @@ lI
 Zp
 Zp
 Zp
-zK
+Zp
 Wk
 OZ
 OZ
