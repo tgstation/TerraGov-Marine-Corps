@@ -5,7 +5,7 @@
 	flags_round_type = MODE_INFESTATION|MODE_PSY_POINTS|MODE_PSY_POINTS_ADVANCED|MODE_HIJACK_POSSIBLE|MODE_SILO_RESPAWN|MODE_ALLOW_XENO_QUICKBUILD
 	shutters_drop_time = 3 MINUTES
 	flags_xeno_abilities = ABILITY_NUCLEARWAR
-	factions = list(FACTION_TERRAGOV, FACTION_SOM)
+	factions = list(FACTION_TERRAGOV, FACTION_SOM, FACTION_ALIEN, FACTION_CLF)
 	valid_job_types = list(
 		/datum/job/terragov/command/captain = 1,
 		/datum/job/terragov/command/ceo = 1,
@@ -49,6 +49,7 @@
 	)
 	enable_fun_tads = TRUE
 	xenorespawn_time = 15 SECONDS
+	respawn_time = 15 SECONDS
 
 	/// Time between two bioscan
 	var/bioscan_interval = 15 MINUTES
