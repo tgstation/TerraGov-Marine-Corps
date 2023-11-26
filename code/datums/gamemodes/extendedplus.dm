@@ -37,7 +37,7 @@
 		/datum/job/som/command/fieldcommander = 1,
 		/datum/job/som/command/staffofficer = 2,
 		/datum/job/som/command/pilot = 1,
-		/datum/job/som/squad/corpsman = 1,
+		/datum/job/som/squad/medic = 1,
 		/datum/job/som/squad/engineer = 1,
 		/datum/job/som/squad/leader = 1,
 		/datum/job/som/squad/veteran = 2,
