@@ -65,9 +65,10 @@
 	name = "fishing rod"
 	desc = "You can fish with this."
 	icon_state = "fishing_rod"
-	lefthand_file = 'icons/mob/inhands/equipment/fishing_rod_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/equipment/fishing_rod_righthand.dmi'
-	inhand_icon_state = "rod"
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/equipment/fishing_rod_lefthand.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/equipment/fishing_rod_righthand.dmi',
+	)
 	inhand_x_dimension = 64
 	inhand_y_dimension = 64
 	force = 8
@@ -82,9 +83,6 @@
 	desc = "It tastes funny."
 	icon_state = "goldfish"
 	force = 2
-	attack_verb_continuous = list("slaps", "whacks")
-	attack_verb_simple = list("slap", "whack")
-	hitsound = 'sound/weapons/slap.ogg'
 
 /obj/item/fishing/fish/guppy
 	name = "guppyfish"
