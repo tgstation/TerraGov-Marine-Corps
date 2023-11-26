@@ -192,7 +192,6 @@
 "bEC" = (/obj/structure/table/woodentable,/obj/structure/barricade/metal{dir = 8},/obj/item/weapon/gun/energy/lasgun/M43/practice,/obj/structure/window/reinforced/toughened,/obj/structure/window/reinforced/toughened{dir = 1},/obj/item/weapon/gun/energy/lasgun/M43/practice,/turf/open/floor/grass,/area/lv624/ground/caves{ceiling = 2; name = "HQ Tunnels"})
 "bES" = (/obj/structure/disposalpipe/segment{dir = 4},/obj/structure/cable,/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{dir = 4},/turf/open/floor/mainship,/area/mainship/hallways/hangar{outside = 0})
 "bFa" = (/obj/structure/table/mainship,/obj/machinery/computer/squad_changer,/turf/open/floor/mainship/mono,/area/mainship/command/cic{outside = 0; name = "Ground Combat Information Center"})
-"bFb" = (/obj/machinery/door_control{id = 1003},/turf/closed/wall,/area/mainship/living/tankerbunks{outside = 0})
 "bFN" = (/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{dir = 6},/turf/open/floor/mainship/orange{dir = 4},/area/mainship/command/cic{outside = 0; name = "Ground Combat Information Center"})
 "bGi" = (/turf/open/floor/plating,/area/mainship/living/grunt_rnr{outside = 0})
 "bGC" = (/turf/closed/mineral/smooth,/area/lv624/lazarus/armory)
@@ -401,7 +400,6 @@
 "dpG" = (/obj/structure/bed,/obj/item/bedsheet/hos,/obj/effect/ai_node,/turf/open/floor/mainship/red{dir = 4},/area/mainship/shipboard/brig_cells{outside = 0})
 "dpW" = (/obj/machinery/door/airlock/mainship/maint{dir = 1; name = "\improper Core Hatch"},/obj/structure/cable,/turf/open/floor/mainship/mono,/area/mainship/engineering/engine_core{outside = 0})
 "dqV" = (/obj/structure/table/mainship,/obj/structure/paper_bin{pixel_y = 5},/obj/item/folder/yellow,/obj/item/tool/pen,/turf/open/floor/mainship/mono,/area/mainship/engineering/upper_engineering{outside = 0})
-"drN" = (/obj/machinery/door_control{id = 1004},/turf/closed/wall,/area/mainship/living/pilotbunks{outside = 0})
 "dsj" = (/obj/structure/benchpress,/turf/open/floor/prison,/area/mainship/shipboard/brig_cells{outside = 0})
 "dsW" = (/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{dir = 4},/obj/structure/cable,/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{dir = 4},/turf/open/floor/plating/plating_catwalk,/area/mainship/hallways/aft_hallway{name = "HQ Northeast hallways"; outside = 0})
 "dto" = (/turf/open/floor/freezer,/area/mainship/living/captain_mess{outside = 0})
@@ -735,7 +733,7 @@
 "giF" = (/obj/machinery/photocopier,/obj/machinery/light{dir = 8},/turf/open/floor/mainship/mono,/area/mainship/living/numbertwobunks{outside = 0})
 "gjN" = (/obj/structure/cable,/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{dir = 1},/turf/open/floor/prison/rampbottom{dir = 1},/area/centcom/practice/medical{outside = 0; base_lighting_alpha = 0; static_lighting = 1})
 "gkw" = (/obj/machinery/door/airlock/mainship/security{dir = 1; name = "\improper Corpsec Office"; req_access = list(5)},/obj/structure/cable,/turf/open/floor/mainship/mono,/area/mainship/shipboard/brig{outside = 0})
-"glb" = (/obj/machinery/light{dir = 1},/obj/effect/ai_node,/obj/machinery/door_control{id = "insidedorm3"; pixel_y = 8},/turf/open/floor/wood,/area/mainship/living/bridgebunks{outside = 0})
+"glb" = (/obj/machinery/light{dir = 1},/obj/machinery/door_control{id = "insidedorm3"; pixel_y = 8},/turf/open/floor/wood,/area/mainship/living/bridgebunks{outside = 0})
 "glY" = (/obj/structure/cable,/obj/machinery/camera/autoname/mainship{dir = 1},/turf/open/floor/mainship/orange/corner{dir = 8},/area/mainship/engineering/engine_core{outside = 0})
 "gmb" = (/turf/open/floor/mainship/mono,/area/mainship/living/basketball{outside = 0})
 "gmg" = (/turf/closed/wall,/area/mainship/living/chapel{outside = 0})
@@ -1048,7 +1046,7 @@
 "iRS" = (/obj/structure/cable,/turf/open/floor/wood,/area/mainship/living/grunt_rnr{outside = 0})
 "iSR" = (/obj/structure/cable,/obj/machinery/power/apc/mainship,/obj/structure/bed/chair,/turf/open/floor/wood,/area/sulaco/liaison/quarters{outside = 0; name = "CEO Office"})
 "iSX" = (/obj/structure/cable,/obj/machinery/power/smes{output_level = 200000},/turf/open/floor/mainship/tcomms,/area/mainship/engineering/lower_engineering{outside = 0})
-"iTd" = (/obj/machinery/door_control{id = 1005},/turf/closed/wall,/area/mainship/squads/delta{outside = 0})
+"iTd" = (/obj/structure/cable,/obj/machinery/door_control{id = 1004},/turf/open/floor/wood,/area/mainship/living/pilotbunks{outside = 0})
 "iTs" = (/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{dir = 6},/obj/structure/largecrate/supply/ammo/standard_ammo,/obj/structure/disposalpipe/segment/corner{dir = 4},/turf/open/floor/plating/plating_catwalk,/area/mainship/squads/req{outside = 0})
 "iTD" = (/obj/effect/landmark/start/job/squadsmartgunner,/turf/open/floor/wood,/area/mainship/living/numbertwobunks{outside = 0})
 "iTZ" = (/turf/closed/mineral/smooth,/area/mainship/hallways/hangar{outside = 0; name = "Tad Hangar"})
@@ -2334,7 +2332,7 @@
 "tMF" = (/obj/structure/flora/tree/jungle/small,/turf/open/floor/grass,/area/lv624/ground/caves{ceiling = 2; name = "HQ Tunnels"})
 "tNi" = (/obj/machinery/vending/tool,/turf/open/floor/mainship/mono,/area/mainship/hallways/port_hallway{name = "HQ hallway northwest"; outside = 0})
 "tNT" = (/obj/structure/toilet{dir = 1},/turf/open/floor/mainship/sterile/dark,/area/mainship/living/pilotbunks{outside = 0})
-"tOk" = (/obj/structure/cable,/turf/open/floor/wood,/area/mainship/squads/charlie{outside = 0})
+"tOk" = (/obj/structure/cable,/obj/machinery/door_control{id = 1002},/turf/open/floor/wood,/area/mainship/squads/charlie{outside = 0})
 "tPr" = (/obj/structure/disposalpipe/segment{dir = 4},/turf/closed/wall/mainship,/area/sulaco/liaison/quarters{outside = 0; name = "CEO Office"})
 "tPQ" = (/obj/structure/window/reinforced/toughened{dir = 1},/obj/structure/window/reinforced/toughened{dir = 4},/obj/structure/table/mainship,/obj/machinery/computer/communications,/turf/open/floor/plating/mainship,/area/mainship/command/cic{outside = 0; name = "Ground Combat Information Center"})
 "tQw" = (/obj/structure/bed/chair{dir = 4},/turf/open/floor/mainship/red/full,/area/lv624/lazarus/armory)
@@ -2544,7 +2542,7 @@
 "vFI" = (/obj/structure/table/mainship,/obj/item/storage/firstaid/o2{pixel_x = 6; pixel_y = 6},/obj/item/storage/firstaid/adv{pixel_x = 6; pixel_y = 6},/obj/item/storage/firstaid/adv,/obj/machinery/vending/nanomed{pixel_y = 25},/obj/item/storage/firstaid/toxin{pixel_x = -4; pixel_y = 3},/obj/item/storage/firstaid/rad,/turf/open/floor/mainship/blue/full,/area/mainship/command/cic{outside = 0; name = "Ground Combat Information Center"})
 "vFN" = (/obj/machinery/door/poddoor/shutters/mainship/req/ro{dir = 2},/obj/structure/window/framed/mainship/requisitions,/turf/open/floor/plating,/area/mainship/squads/req{outside = 0})
 "vGb" = (/obj/structure/table/woodentable,/obj/item/flashlight/lamp,/turf/open/floor/carpet{dir = 6; icon_state = "carpetside"},/area/sulaco/liaison/quarters{outside = 0; name = "CEO Office"})
-"vGh" = (/obj/structure/cable,/turf/open/floor/wood,/area/mainship/living/tankerbunks{outside = 0})
+"vGh" = (/obj/structure/cable,/obj/machinery/door_control{id = 1003},/turf/open/floor/wood,/area/mainship/living/tankerbunks{outside = 0})
 "vGu" = (/obj/machinery/door/airlock/mainship/maint{dir = 2},/obj/structure/cable,/obj/structure/disposalpipe/segment,/turf/open/floor/plating/plating_catwalk,/area/mainship/hallways/stern_hallway{name = "HQ hallway southwest"; outside = 0})
 "vGA" = (/obj/structure/sign/goldenplaque,/turf/closed/wall,/area/mainship/squads/general{outside = 0})
 "vHj" = (/obj/machinery/vending/MarineMed/Blood,/turf/open/floor/mainship/sterile,/area/centcom/practice/medical{outside = 0; base_lighting_alpha = 0; static_lighting = 1})
@@ -2622,7 +2620,6 @@
 "wmk" = (/turf/open/floor/mainship/green{dir = 4},/area/mainship/living/basketball{outside = 0})
 "wmO" = (/obj/structure/mirror{dir = 1},/turf/open/floor/mainship/floor,/area/mainship/squads/general{outside = 0})
 "wmQ" = (/turf/closed/wall,/area/mainship/living/starboard_garden{outside = 0})
-"wmT" = (/obj/machinery/door_control{id = 1002},/turf/closed/wall,/area/mainship/squads/charlie{outside = 0})
 "wnk" = (/obj/structure/closet/firecloset,/turf/open/floor/mainship/cargo,/area/mainship/living/briefing{outside = 0})
 "wnM" = (/turf/open/floor/prison/kitchen,/area/mainship/living/captain_mess{outside = 0})
 "wov" = (/obj/machinery/door/airlock/mainship/generic{name = "\improper Barracks"},/turf/open/floor/mainship/mono,/area/mainship/hallways/stern_hallway{name = "HQ hallway southwest"; outside = 0})
@@ -2837,7 +2834,7 @@
 "ygd" = (/obj/structure/sink/bathroom{dir = 8; pixel_x = 12; pixel_y = 2},/obj/machinery/atmospherics/components/unary/vent_pump/layer1{dir = 8; on = 1},/turf/open/floor/mainship/sterile/dark,/area/mainship/living/grunt_rnr{outside = 0})
 "ygm" = (/obj/structure/cable,/obj/effect/ai_node,/turf/open/floor/mainship/stripesquare,/area/mainship/powered{name = "Hangar 2"; outside = 0})
 "yhq" = (/obj/structure/table/mainship,/obj/machinery/keycard_auth,/turf/open/floor/mainship/emerald{dir = 4},/area/mainship/command/cic{outside = 0; name = "Ground Combat Information Center"})
-"yhs" = (/obj/structure/cable,/turf/open/floor/wood,/area/mainship/squads/delta{outside = 0})
+"yhs" = (/obj/structure/cable,/obj/machinery/door_control{id = 1005},/turf/open/floor/wood,/area/mainship/squads/delta{outside = 0})
 "yhx" = (/obj/effect/landmark/start/job/synthetic,/turf/open/floor/mainship/cargo,/area/mainship/engineering/engineering_workshop{outside = 0})
 "yhH" = (/obj/machinery/camera/autoname/mainship{dir = 1},/turf/open/floor/mainship,/area/mainship/hallways/starboard_hallway{name = "HQ Hallways Center"; outside = 0})
 "yib" = (/obj/machinery/light{dir = 8},/obj/machinery/atmospherics/components/unary/vent_pump/layer1,/turf/open/floor/mainship/orange/corner,/area/mainship/engineering/ce_room{outside = 0})
@@ -2907,8 +2904,8 @@ iaZiaZiaZiaZiaZiaZiaZiaZiaZiaZiaZiaZiaZiaZiaZiaZiAXiAXiAXiAXiAXiAXwFFiAXiAXiAXiA
 iaZiaZiaZiaZiaZiaZiaZiaZiaZiaZiaZiaZiaZiaZiaZiaZepKiSXiSXiSXnAwjyQoSVnUZnAwiSXiSXiSXepKxTmxTmxTmmbnxTmqtfcxoqtfohobucrPQpzVhgEoTqrPQroSfpZpzVfzNmgsmgsmgssmdnZQnJjnJjnJjnJjnJjnJjnJjnJjnJjnJjnJjrGEwtseMJqaKjfctXAhsyhkEtedaEqtedwKyhkEwEymdxtedjXqhkExsjeYStedoBhnxDtedtedwtwtedhkEtedgCutedtedhkEaUFwtakvYddxiaIdxcdxcdxcdxcdxcdxcdxcdxcdxcdxcdxcdxckNkmxUwkTaZzhUReolnWdpSSbQHbQHqPYbQHnWdpSSbQHbQHqPYbQHnWdpSSbQHbQHqPYbQHnWdpSSbQHbQHqPYbQHbQHjXblLkrsIxJyurCwtaeokeokeokeokeokwtawtawtawtaseyiaZiaZiaZiaZiaZ
 iaZiaZiaZiaZiaZiaZiaZiaZiaZiaZiaZiaZiaZiaZiaZiaZepKluwoYriksraWvxIvzAmwrlOWiksoYrfzuepKcKIqtfqtfqtfwovqtfcxoqtferChdvrPQrPQhgEbUxkNdxaHnVhrPQfzNmgsmgsmgsoyXmgsnJjnJjnJjnJjnJjikjnJjnJjnJjnJjnJjmgscBajDbbjpyjhvvPkkknseafYkoYpQZeKksPGpQZihNpQZuULpQZtVLkoYafYafYafYafYpQZihNafYhWXnseqTjpQZnseafYouDlRneWOalEvzViZChAFrsIqVceSXkObrsIrsIrsIrsIrsIrsIiOvkVewtaeNVmpsnyTlNpiBcqOzvJovJohiYksniBcqOzqOzvJovJoksnpyVqOzqOzqOzvJoksntuUfKBbWHbWHbWHfKBfBcfOSbLNxJyurCaWRgFKctSctSgFKctSoyTgFKaWRdoPiaZiaZiaZiaZiaZiaZ
 iaZiaZiaZiaZiaZiaZiaZiaZiaZiaZiaZiaZiaZiaZiaZiaZepKnAwnAwnAwepKepKlyhepKepKnAwnAwnAwepKxTmxTmxTmmbnxTmqtfcxoqtflTgtGqrPQenrgKBwwhbUxbUxbUxbmlohooyOrzumgssmdmgsnJjnJjnJjnJjnJjnJjnJjnJjnJjnJjnJjmgsfcXfAfpaevvatedtedmTNwEytedtedtedgCutedwEytedjXqsYntedwEytedaUFppcaUFyhHtedtedwEywpetedtedgCusYnpmPwtarsIpaQtwVrzhtwVtwVtwVtwVtwVtwVtwVtwVtwVtwVtwVtwViOvnKdgblgblvWyvWybqtvWyvWymGAvWyvWybqtvWyvWymGAuHfvWybqtnhGvWymGAvWyvWytfqrpErpEaWyrpErpExwdttScsacsaetyrsIrsIrsIrsIrsIrsIrsIrsIrsIdoPiaZiaZiaZiaZiaZiaZ
-iaZiaZiaZiaZiaZiaZiaZiaZiaZiaZiaZiaZiaZiaZiaZiaZepKhTssaScwWrtnlOWfFHlOWrtnrtnvPqauTepKdKwdKwdKwqtfxTmlvkcxoqtfohoohokQTohooholQxohoohoohohduohooyOmgsmgscWuxJSnJjnJjnJjnJjnJjnJjnJjnJjnJjnJjnJjxJScrXmgsoyOlpmlpmlpmnNKbkSmiImiImiIabpnNKdpWtfVtfVtfVtfVeOTsVMaUFppcaUFgNjgNjgNjcDCgNjgNjgNjnNDgNjwtawtaoLPpaQwtaiAlcoScoScoScoScoScoScoScoScoScoSwtaoLPrsIwtalxmlxmgPMgPMeZObFbgPMgPMgPMenvlqgwmTenvenvenveQpxFodrNeQpeQpeQpwvmkpxiTdwvmwvmwvmeokeokwtabaHmdPmdPmdPmdPmdPmdPmdPmdPmdPmdPmdPdoPiaZiaZiaZiaZiaZiaZ
-iaZiaZiaZiaZiaZiaZiaZiaZiaZiaZiaZiaZiaZiaZiaZiaZepKiSXiSXiSXiSXnAwfFHnAwiSXiSXiSXiSXepKqtfqtfqtfnRbqUOqtfrvMqtfohoqKbamZkJXiSRiPAaRhvSOohoelpxTmoyOkSCmgscWuxJSnJjnJjnJjnJjnJjnJjnJjnJjnJjnJjnJjxJScrXmgsoyOqjQqjQsAinNKuTpaFaeCauUZsUWnNKnAXxUugAWrpYtfVaLCtfVaUFhASnEbgNjqpobcVwXMdoXgNjvPGudyobWwtannBiOvpaQwIcsGaxJyxJyxJydKvckfjqvikadKvhcpjqvwIcxJyrsIwtahQfqjQgPMxzybcZvGhnJNktGgPMjezaAbtOkhJBxUKenvtuOtiDrfNbVEbTGeQpudgxcNyhscnmoaWwvmdximdPiPVmdPmdPmdPpUymdPmdPmdPmdPmdPmdPmdPmdPdoPiaZiaZiaZiaZiaZiaZ
+iaZiaZiaZiaZiaZiaZiaZiaZiaZiaZiaZiaZiaZiaZiaZiaZepKhTssaScwWrtnlOWfFHlOWrtnrtnvPqauTepKdKwdKwdKwqtfxTmlvkcxoqtfohoohokQTohooholQxohoohoohohduohooyOmgsmgscWuxJSnJjnJjnJjnJjnJjnJjnJjnJjnJjnJjnJjxJScrXmgsoyOlpmlpmlpmnNKbkSmiImiImiIabpnNKdpWtfVtfVtfVtfVeOTsVMaUFppcaUFgNjgNjgNjcDCgNjgNjgNjnNDgNjwtawtaoLPpaQwtaiAlcoScoScoScoScoScoScoScoScoScoSwtaoLPrsIwtalxmlxmgPMgPMeZOgPMgPMgPMgPMenvlqgenvenvenvenveQpxFoeQpeQpeQpeQpwvmkpxwvmwvmwvmwvmeokeokwtabaHmdPmdPmdPmdPmdPmdPmdPmdPmdPmdPmdPdoPiaZiaZiaZiaZiaZiaZ
+iaZiaZiaZiaZiaZiaZiaZiaZiaZiaZiaZiaZiaZiaZiaZiaZepKiSXiSXiSXiSXnAwfFHnAwiSXiSXiSXiSXepKqtfqtfqtfnRbqUOqtfrvMqtfohoqKbamZkJXiSRiPAaRhvSOohoelpxTmoyOkSCmgscWuxJSnJjnJjnJjnJjnJjnJjnJjnJjnJjnJjnJjxJScrXmgsoyOqjQqjQsAinNKuTpaFaeCauUZsUWnNKnAXxUugAWrpYtfVaLCtfVaUFhASnEbgNjqpobcVwXMdoXgNjvPGudyobWwtannBiOvpaQwIcsGaxJyxJyxJydKvckfjqvikadKvhcpjqvwIcxJyrsIwtahQfqjQgPMxzybcZvGhnJNktGgPMjezaAbtOkhJBxUKenvtuOtiDiTdbVEbTGeQpudgxcNyhscnmoaWwvmdximdPiPVmdPmdPmdPpUymdPmdPmdPmdPmdPmdPmdPmdPdoPiaZiaZiaZiaZiaZiaZ
 iaZiaZiaZiaZiaZiaZiaZiaZiaZiaZiaZiaZiaZiaZiaZiaZlqUlqUlqUlqUlqUlqUsAWlqUlqUlqUlqUlqUlqUdKwdKwdKwdKwxTmqtfcxoqtfqLfezrgutdWTrPQhgEgRgsJQtPrbykxTmoyOmgsmgssmdmgsnJjnJjnJjnJjnJjnJjnJjnJjnJjnJjnJjmgsfcXfKmoyOqjQmDSqjQnNKpwpcjZdWRnaMgxznNKdAUvFGoTlhGOtfVclItfVnqmppccJQgNjshveRGhFTemYgNjxUouYotIRwtaebucfKwYidKvsJkjqvxJyxJyxJyxJyxJyxJyxJyxJyjqvxJyxJyeptqvpqjQmDSgPMcosuLWhtOuOkwqWgPMqyiovjcIMrkpvVyenvaAKkRAiXwiyIifzeQpbUEjWfddIofjwZTwvmdximdPmdPmdPmdPmdPmdPmdPmdPmdPmdPmdPmdPmdPmdPdoPiaZiaZiaZiaZiaZiaZ
 iaZiaZiaZiaZiaZiaZiaZiaZiaZiaZxfviaZiaZiaZiaZiaZlqUoxhmUJtrKlqUfQlkKetDxlqUsCtqduqdulqUxTmxTmxTmxTmxTmqtfcxoqtfkmdqyKfbpjVVcJAsFrpRwuOVohopTVxTmoyOmgsmgsdRhmgsnJjnJjnJjnJjnJjnRGnJjnJjnJjnJjnJjmgsfcXmgsoyOqjQqjQqjQnNKnNKnNKpAvvAZjrBnNKqzpviqarRglYrBYqAptfVtedppcsMkgNjmNKpbAlRVqgklTbwXMudyobWwtadRIrsIwYidKvdoWjqvxJyxJydKvgFKjqvxJydKvgFKjqvxJyhuhnvRwtaualqjQgPMbCduLWgdpuLWsWjgPMmytovjscqovjcokenvaUrkRAtMakRArTBeQpoUIjWfkmNjWfeVgwvmlnteofmdPmdPmdPmdPkQmmdPxqEmdPpWEmdPmdPmdPmdPdoPiaZiaZiaZiaZiaZiaZ
 iaZiaZiaZiaZiaZiaZiaZiaZiaZiaZiaZiaZiaZiaZiaZiaZlqUbrxavlckllqUyhxnHtxowsFxncnhfZncnxUOraBeGLkRtraBdbHwLTkLFqtfwZSeJrhgErPQuRCnzQgdiluXohowhrxTmoyOkSCmgssmdmgsnJjnJjnJjnJjnJjnJjnJjnJjnJjnJjnJjmgsciWmgsoyOqjQfuxqjQqjQuVJnNKnNKnNKuQFnNKtfVtfVtfVtfVtfVtfVtfVaUFaeovMfgNjgNjgNjbKvgNjgNjoLugBugNjwtatczhWawYixJysGaxJyxJyxJydKvdozsNTxJydKvnRHjqvxJyxJywaswtadLvdLvgPMgPMvyLgPMlUugPMgPMenvjRcenvmSsenvenveQpcHOeQpesleQpeQpwvmvXhwvmxQzwvmwvmdximdPmdPmdPtoHgppmdPmdPmdPmdPmdPmdPmdPmKumdPdoPiaZiaZiaZiaZiaZiaZ
