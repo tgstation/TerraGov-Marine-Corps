@@ -15,10 +15,10 @@ GLOBAL_LIST_EMPTY(facial_hair_styles_list)	//stores /datum/sprite_accessory/faci
 	//Underwear
 GLOBAL_LIST_EMPTY(underwear_list)		//stores /datum/sprite_accessory/underwear indexed by name
 GLOBAL_LIST_INIT(underwear_m, list("None", "Briefs"))
-GLOBAL_LIST_INIT(underwear_f, list("None", "Sports bra and briefs", "Bra and brief", "Bra and panties"))
+GLOBAL_LIST_INIT(underwear_f, list("None", "Bra and brief", "Bra and panties"))
 	//Undershirts
-GLOBAL_LIST_INIT(undershirt_m, list("None","Black undershirt", "White undershirt", "Beige undershirt", "Fitness shirt", "Beige undershirt(sleeveless)"))
-GLOBAL_LIST_INIT(undershirt_f, list("None","Black undershirt", "White undershirt", "Beige undershirt", "Beige undershirt(sleeveless)"))
+GLOBAL_LIST_INIT(undershirt_m, list("None", "Black undershirt", "White undershirt", "Beige undershirt", "Fitness shirt", "Beige undershirt(sleeveless)"))
+GLOBAL_LIST_INIT(undershirt_f, list("None"," Black undershirt", "White undershirt", "Beige undershirt", "Beige undershirt(sleeveless)"))
 	//Mutant Human bits
 GLOBAL_LIST_EMPTY(moth_wings_list)
 GLOBAL_LIST_EMPTY(tails_list_monkey)
