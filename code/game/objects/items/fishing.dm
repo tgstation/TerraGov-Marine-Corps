@@ -68,6 +68,7 @@
 	item_icons = list(
 		slot_l_hand_str = 'icons/mob/inhands/equipment/fishing_rod_lefthand.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/equipment/fishing_rod_righthand.dmi',
+	item_state = "rod"
 	)
 	inhand_x_dimension = 64
 	inhand_y_dimension = 64
