@@ -699,6 +699,7 @@
 #include "code\game\objects\items\disks.dm"
 #include "code\game\objects\items\embedding.dm"
 #include "code\game\objects\items\firesupport_binoculars.dm"
+#include "code\game\objects\items\fishing.dm"
 #include "code\game\objects\items\flash.dm"
 #include "code\game\objects\items\flashlight.dm"
 #include "code\game\objects\items\floor_painter.dm"
