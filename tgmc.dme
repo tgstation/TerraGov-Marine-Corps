@@ -457,7 +457,6 @@
 #include "code\datums\gamemodes\combat_patrol.dm"
 #include "code\datums\gamemodes\crash.dm"
 #include "code\datums\gamemodes\extended.dm"
-#include "code\datums\gamemodes\extendedplus.dm"
 #include "code\datums\gamemodes\hvh.dm"
 #include "code\datums\gamemodes\infestation.dm"
 #include "code\datums\gamemodes\nuclear_war.dm"
