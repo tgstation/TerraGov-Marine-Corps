@@ -108,6 +108,7 @@
 		/datum/action/xeno_action/call_of_the_burrowed,
 		/datum/action/xeno_action/activable/screech,
 		/datum/action/xeno_action/bulwark,
+		/datum/action/xeno_action/activable/larval_growth_sting,
 		/datum/action/xeno_action/activable/corrosive_acid/strong,
 		/datum/action/xeno_action/activable/xeno_spit,
 		/datum/action/xeno_action/activable/psychic_cure/queen_give_heal,
