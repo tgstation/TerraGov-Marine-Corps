@@ -3552,9 +3552,6 @@
 /obj/structure/window/reinforced/toughened{
 	dir = 8
 	},
-/obj/machinery/computer/navigation{
-	dir = 4
-	},
 /turf/open/floor/mainship/silver{
 	dir = 8
 	},

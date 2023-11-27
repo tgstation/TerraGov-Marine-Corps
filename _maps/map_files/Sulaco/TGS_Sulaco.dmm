@@ -3479,9 +3479,6 @@
 /turf/open/floor/prison,
 /area/sulaco/briefing)
 "asU" = (
-/obj/machinery/computer/navigation{
-	dir = 4
-	},
 /obj/structure/window/reinforced/toughened{
 	dir = 8
 	},

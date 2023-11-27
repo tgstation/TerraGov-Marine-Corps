@@ -24416,7 +24416,6 @@
 /obj/structure/window/reinforced/toughened{
 	dir = 1
 	},
-/obj/machinery/computer/navigation,
 /obj/structure/table/mainship/nometal,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/command/cic)
