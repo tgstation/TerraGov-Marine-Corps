@@ -560,18 +560,3 @@
 
 /mob/living/carbon/xenomorph/on_eord(turf/destination)
 	revive(TRUE)
-
-/mob/living/carbon/xenomorph/verb/directional_attack_toggle()
-	set name = "Toggle Directional Attacks"
-	set desc = "Toggles the use of directional assist attacks."
-	set category = "Alien"
-
-	if (!client || !client.prefs)
-		return
-
-	client.prefs.toggles_gameplay ^= TOGGLE_DIRECTIONAL_ATTACK
-	client.prefs.save_preferences()
-	if(client.prefs.toggles_gameplay & TOGGLE_DIRECTIONAL_ATTACK)
-		to_chat(usr, span_notice("Attacks will now use directional assist."))
-	else
-		to_chat(usr, span_notice("Attacks will no longer use directional assist."))

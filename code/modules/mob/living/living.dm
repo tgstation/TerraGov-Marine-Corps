@@ -963,3 +963,14 @@ below 100 is not dizzy
 		height *= gravity * 0.5
 
 	AddComponent(/datum/component/jump, _jump_duration = duration, _jump_cooldown = cooldown, _stamina_cost = cost, _jump_height = height, _jump_sound = sound, _jump_flags = flags, _jumper_allow_pass_flags = flags_pass)
+
+/mob/living/RangedAttack(atom/A, params)
+	. = ..()
+	if(!(client && client.prefs && client.prefs.toggles_gameplay & TOGGLE_DIRECTIONAL_ATTACK) || a_intent == INTENT_HELP)
+		return
+	var/turf/turf_attacking = get_step(src, angle_to_dir(Get_Angle(src, A)))
+	if(turf_attacking)
+		var/mob/living/target = locate() in turf_attacking
+		if(target && Adjacent(target) && (target != src))
+			changeNext_move(CLICK_CD_MELEE)
+			return UnarmedAttack(target, TRUE)

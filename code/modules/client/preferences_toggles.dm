@@ -341,3 +341,15 @@ GLOBAL_LIST_INIT(ghost_others_options, list(GHOST_OTHERS_SIMPLE, GHOST_OTHERS_DE
 	usr.client.prefs.save_preferences()
 	SStgui.update_user_uis(usr)
 	to_chat(src, span_interface("TGUI compatibility mode is now [usr.client.prefs.tgui_fancy ? "dis" : "en"]abled."))
+
+/client/verb/directional_attack_toggle()
+	set name = "Toggle Directional Attacks"
+	set desc = "Toggles the use of directional assist attacks."
+	set category = "Preferences"
+
+	prefs.toggles_gameplay ^= TOGGLE_DIRECTIONAL_ATTACK
+	prefs.save_preferences()
+	if(prefs.toggles_gameplay & TOGGLE_DIRECTIONAL_ATTACK)
+		to_chat(usr, span_notice("Attacks will now use directional assist."))
+	else
+		to_chat(usr, span_notice("Attacks will no longer use directional assist."))

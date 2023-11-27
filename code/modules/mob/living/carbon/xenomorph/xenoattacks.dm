@@ -132,14 +132,3 @@
 			X.do_attack_animation(src, ATTACK_EFFECT_REDSLASH)
 			playsound(loc, "alien_claw_flesh", 25, 1)
 			apply_damage(damage, BRUTE, blocked = MELEE, updating_health = TRUE)
-
-/mob/living/carbon/xenomorph/RangedAttack(atom/A, params)
-	. = ..()
-	if(!(client && client.prefs && client.prefs.toggles_gameplay & TOGGLE_DIRECTIONAL_ATTACK) || a_intent == INTENT_HELP)
-		return
-	var/turf/turf_attacking = get_step(src, angle_to_dir(Get_Angle(src, A)))
-	if(turf_attacking)
-		var/mob/living/target = locate() in turf_attacking
-		if(target && Adjacent(target) && (target != src))
-			changeNext_move(CLICK_CD_MELEE)
-			return UnarmedAttack(target, TRUE)
