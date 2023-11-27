@@ -1,0 +1,6 @@
+author: "yyzsong"
+delete-after: True
+changes:
+  - rscadd: "adds hand labelers and KOTAHI decks to valhalla weapons vendors"
+  - bugfix: "Unguided rockets are now unlimited in valhalla (whoops)"
+  - rscdel: "removes the valhalla reqtorio section"

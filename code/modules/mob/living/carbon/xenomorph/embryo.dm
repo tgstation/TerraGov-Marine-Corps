@@ -193,7 +193,7 @@
 	log_game("[key_name(src)] was born as a larva at [AREACOORD(src)].")
 	victim.chestburst = 0
 
-	if(((locate(/obj/structure/bed/nest) in loc) && hive.living_xeno_ruler?.z == loc.z) || (!mind))
+	if(((locate(/obj/structure/bed/nest) in loc) && hive.living_xeno_ruler?.z == loc.z))
 		burrow()
 
 

@@ -222,7 +222,7 @@
 /// Extra handling for adding the action for draggin functionality (for instant building)
 /datum/action/xeno_action/activable/secrete_resin/give_action(mob/living/L)
 	. = ..()
-	if(!CHECK_BITFIELD(SSticker.mode?.flags_round_type, MODE_ALLOW_XENO_QUICKBUILD) && SSresinshaping.active)
+	if(!CHECK_BITFIELD(SSticker.mode?.flags_round_type, MODE_ALLOW_XENO_QUICKBUILD) || !SSresinshaping.active)
 		return
 
 	var/mutable_appearance/build_maptext = mutable_appearance(icon = null,icon_state = null, layer = ACTION_LAYER_MAPTEXT)
@@ -313,9 +313,15 @@
 
 /// A version of build_resin with the plasma drain and distance checks removed.
 /datum/action/xeno_action/activable/secrete_resin/proc/preshutter_build_resin(turf/T)
+	if(!SSresinshaping.active)
+		stack_trace("[owner] ([key_name(owner)]) didn't have their quickbuild signals unregistered properly and tried using quickbuild after the subsystem was off!")
+		end_resin_drag()
+		return
+
 	if(!SSresinshaping.quickbuild_points_by_hive[owner.get_xeno_hivenumber()])
 		owner.balloon_alert(owner, "The hive has ran out of quickbuilding points! Wait until more sisters awaken or the marines land!")
 		return
+
 	var/mob/living/carbon/xenomorph/X = owner
 	switch(is_valid_for_resin_structure(T, X.selected_resin == /obj/structure/mineral_door/resin))
 		if(ERROR_CANT_WEED)
@@ -1065,6 +1071,134 @@
 			to_chat(M, "<span class='alien'>Psychic Influence: <b>[ADMIN_LOOKUP(X)] > [ADMIN_LOOKUP(L)]:</b> <i>\"[msg]\"</i></span>")
 		else
 			to_chat(M, "<span class='alien'>Psychic Influence: <b>[X] > [L]:</b> <i>\"[msg]\"</i></span>")
+
+/////////////////////////////////
+// Devour
+/////////////////////////////////
+/datum/action/xeno_action/activable/devour
+	name = "Devour"
+	action_icon_state = "abduct"
+	desc = "Devour your victim to be able to carry it faster."
+	use_state_flags = XACT_USE_STAGGERED|XACT_USE_FORTIFIED|XACT_USE_CRESTED //can't use while staggered, defender fortified or crest down
+	plasma_cost = 0
+	target_flags = XABB_MOB_TARGET
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_DEVOUR,
+	)
+
+/datum/action/xeno_action/activable/devour/can_use_ability(atom/target, silent, override_flags)
+	. = ..()
+	if(!.)
+		return
+	if(!ishuman(target) || issynth(target))
+		if(!silent)
+			to_chat(owner, span_warning("That wouldn't taste very good."))
+		return FALSE
+	var/mob/living/carbon/human/victim = target
+	if(owner.do_actions) //can't use if busy
+		return FALSE
+	if(!owner.Adjacent(victim)) //checks if owner next to target
+		return FALSE
+	if(victim.buckled)
+		if(!silent)
+			to_chat(owner, span_warning("[victim] is buckled to something."))
+		return FALSE
+	var/mob/living/carbon/xenomorph/owner_xeno = owner
+	if(owner_xeno.eaten_mob)
+		if(!silent)
+			to_chat(owner_xeno, span_warning("You have already swallowed one."))
+		return FALSE
+	if(owner_xeno.on_fire)
+		if(!silent)
+			to_chat(owner_xeno, span_warning("We're too busy being on fire to do this!"))
+		return FALSE
+	for(var/obj/effect/forcefield/fog in range(1, owner_xeno))
+		if(!silent)
+			to_chat(owner_xeno, span_warning("We are too close to the fog."))
+		return FALSE
+
+/datum/action/xeno_action/activable/devour/action_activate()
+	. = ..()
+	var/mob/living/carbon/xenomorph/owner_xeno = owner
+	if(!owner_xeno.eaten_mob)
+		return
+
+	var/channel = SSsounds.random_available_channel()
+	playsound(owner_xeno, 'sound/vore/escape.ogg', 40, channel = channel)
+	if(!do_after(owner_xeno, GORGER_REGURGITATE_DELAY, FALSE, null, BUSY_ICON_DANGER))
+		to_chat(owner, span_warning("We moved too soon!"))
+		owner_xeno.stop_sound_channel(channel)
+		return
+	owner_xeno.eject_victim()
+
+/datum/action/xeno_action/activable/devour/use_ability(atom/target)
+	var/mob/living/carbon/human/victim = target
+	var/mob/living/carbon/xenomorph/owner_xeno = owner
+	owner_xeno.face_atom(victim)
+	owner_xeno.visible_message(span_danger("[owner_xeno] starts to devour [victim]!"), span_danger("We start to devour [victim]!"), null, 5)
+	var/channel = SSsounds.random_available_channel()
+	playsound(owner_xeno, 'sound/vore/struggle.ogg', 40, channel = channel)
+	if(!do_after(owner_xeno, GORGER_DEVOUR_DELAY, FALSE, victim, BUSY_ICON_DANGER, extra_checks = CALLBACK(owner, TYPE_PROC_REF(/mob, break_do_after_checks), list("health" = owner_xeno.health))))
+		to_chat(owner, span_warning("We stop devouring \the [victim]. They probably tasted gross anyways."))
+		owner_xeno.stop_sound_channel(channel)
+		return
+	owner.visible_message(span_warning("[owner_xeno] devours [victim]!"), span_warning("We devour [victim]!"), null, 5)
+	victim.forceMove(owner_xeno)
+	owner_xeno.eaten_mob = victim
+	add_cooldown()
+
+/datum/action/xeno_action/activable/devour/ai_should_use(atom/target)
+	return FALSE
+
+//Xeno Larval Growth Sting
+/datum/action/xeno_action/activable/larval_growth_sting
+	name = "Larval Growth Sting"
+	action_icon_state = "drone_sting"
+	desc = "Inject an impregnated host with growth serum, causing the larva inside to grow quicker."
+	ability_name = "larval growth sting"
+	plasma_cost = 150
+	cooldown_timer = 12 SECONDS
+	keybinding_signals = COMSIG_XENOABILITY_LARVAL_GROWTH_STING
+	target_flags = XABB_MOB_TARGET
+
+/datum/action/xeno_action/activable/larval_growth_sting/on_cooldown_finish()
+	playsound(owner.loc, 'sound/voice/alien_drool1.ogg', 50, 1)
+	to_chat(owner, "<span class='xenodanger'>We feel our growth toxin glands refill. We can use Growth Sting again.</span>")
+	return ..()
+
+/datum/action/xeno_action/activable/larval_growth_sting/can_use_ability(atom/A, silent = FALSE, override_flags)
+	. = ..()
+	if(!.)
+		return FALSE
+
+	if(QDELETED(A))
+		return FALSE
+
+	if(!A?.can_sting())
+		if(!silent)
+			to_chat(owner, "<span class='warning'>Our sting won't affect this target!</span>")
+		return FALSE
+
+	if(!owner.Adjacent(A))
+		var/mob/living/carbon/xenomorph/X = owner
+		if(!silent && world.time > (X.recent_notice + X.notice_delay))
+			to_chat(X, "<span class='warning'>We can't reach this target!</span>")
+			X.recent_notice = world.time //anti-notice spam
+		return FALSE
+
+	var/mob/living/carbon/C = A
+	if (isnestedhost(C))
+		if(!silent)
+			to_chat(owner, "<span class='warning'>Ashamed, we reconsider bullying the poor, nested host with our stinger.</span>")
+		return FALSE
+
+/datum/action/xeno_action/activable/larval_growth_sting/use_ability(atom/A)
+	var/mob/living/carbon/xenomorph/X = owner
+
+	succeed_activate()
+
+	add_cooldown()
+	X.recurring_injection(A, /datum/reagent/consumable/larvajelly, XENO_LARVAL_CHANNEL_TIME, XENO_LARVAL_AMOUNT_RECURRING)
 
 
 // ***************************************

@@ -35,33 +35,44 @@
 	return TRUE
 
 /mob/living/carbon/human/attack_alien_disarm(mob/living/carbon/xenomorph/X, dam_bonus)
-	var/randn = rand(1, 100)
+//	var/randn = rand(1, 100) unused random miss chance
+	var/stamina_loss = getStaminaLoss()
+	var/disarmdamage = X.xeno_caste.melee_damage * X.xeno_melee_damage_modifier
+	var/damage_to_deal = clamp(disarmdamage, 0, maxHealth - stamina_loss)
+	var/sound = 'sound/weapons/alien_knockdown.ogg'
 
-	X.do_attack_animation(src, ATTACK_EFFECT_DISARM2)
-	if(randn <= 30) // 30% chance
-		apply_effect(30, WEAKEN)
-		playsound(loc, 'sound/weapons/alien_knockdown.ogg', 25, TRUE)
-		X.visible_message("<span class='danger'>[X] slams [src] to the ground!</span>",
-		"<span class='danger'>We slam [src] to the ground!</span>", null, 5)
-		log_combat(X, src, "pushed")
-		return
-
-	if(randn <= 40) // 40% chance
+	if(IsParalyzed())
+		X.visible_message(null, "<span class='info'>We could not do much to [src], they are already down.</span>", null)
+		sound = 'sound/weapons/punchmiss.ogg'
+	else
+		X.do_attack_animation(src, ATTACK_EFFECT_DISARM2)
 		if(pulling)
 			X.visible_message("<span class='danger'>[X] has broken [src]'s grip on [pulling]!</span>",
 			"<span class='danger'>We break [src]'s grip on [pulling]!</span>", null, 5)
+			sound = 'sound/weapons/thudswoosh.ogg'
 			stop_pulling()
-		else if(drop_held_item())
+		else if(prob(60) && drop_held_item())
 			X.visible_message("<span class='danger'>[X] has disarmed [src]!</span>",
 			"<span class='danger'>We disarm [src]!</span>", null, 5)
-		playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, TRUE, 7)
-		log_combat(X, src, "disarmed")
-		return
+			sound = 'sound/weapons/thudswoosh.ogg'
+			return
+		apply_damage(damage_to_deal, STAMINA)
+		X.visible_message("<span class='danger'>[X] shoves and presses [src] down!</span>",
+		"<span class='danger'>We shove and press [src] down!</span>", null, 5)
+		if(stamina_loss >= maxHealth)
+			if(!IsParalyzed())
+				visible_message(null, "<span class='danger'>You are too weakened to keep resisting [X], you slump to the ground!</span>")
+				X.visible_message("<span class='danger'>[X] slams [src] to the ground!</span>",
+				"<span class='danger'>We slam [src] to the ground!</span>", null, 5)
+				Paralyze(10 SECONDS)
 
-	playsound(loc, 'sound/weapons/punchmiss.ogg', 25, TRUE, 7)
-	X.visible_message("<span class='danger'>[X] attempted to disarm [src]!</span>",
-	"<span class='danger'>We attempt to disarm [src]!</span>", null, 5)
-	log_combat(X, src, "missed a disarm")
+	log_combat(X, src, "disarmed")
+	playsound(loc, sound, 25, TRUE, 7)
+//	else;
+//		playsound(loc, 'sound/weapons/punchmiss.ogg', 25, TRUE, 7)
+//		X.visible_message("<span class='danger'>[X] attempted to disarm [src]!</span>",
+//		"<span class='danger'>We attempt to disarm [src]!</span>", null, 5)
+//		return
 
 
 /mob/living/proc/can_xeno_slash(mob/living/carbon/xenomorph/X)
@@ -243,7 +254,7 @@
 		if(INTENT_HARM)
 			return attack_alien_harm(X)
 
-		if(INTENT_HARM, INTENT_DISARM)
+		if(INTENT_DISARM)
 			return attack_alien_disarm(X)
 	return FALSE
 

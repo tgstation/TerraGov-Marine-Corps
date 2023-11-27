@@ -6,9 +6,9 @@ SUBSYSTEM_DEF(points)
 	name = "Points"
 
 	priority = FIRE_PRIORITY_POINTS
-	flags = SS_KEEP_TIMING
+	flags = SS_KEEP_TIMING|SS_NO_FIRE
 
-	wait = 10 SECONDS
+	//wait = 10 SECONDS
 	var/dropship_points = 0
 	///Assoc list of supply points
 	var/supply_points = list()
@@ -72,11 +72,11 @@ SUBSYSTEM_DEF(points)
 				containsname[path]["count"]++
 		supply_packs_contents[pack] = list("name" = P.name, "container_name" = initial(P.containertype.name), "cost" = P.cost, "contains" = containsname)
 
-/datum/controller/subsystem/points/fire(resumed = FALSE)
-	dropship_points += DROPSHIP_POINT_RATE / (1 MINUTES / wait)
+///datum/controller/subsystem/points/fire(resumed = FALSE)
+//	dropship_points += DROPSHIP_POINT_RATE / (1 MINUTES / wait)
 
-	for(var/key in supply_points)
-		supply_points[key] += SUPPLY_POINT_RATE / (1 MINUTES / wait)
+//	for(var/key in supply_points)
+//		supply_points[key] += SUPPLY_POINT_RATE / (1 MINUTES / wait)
 
 ///Add amount of psy points to the selected hive only if the gamemode support psypoints
 /datum/controller/subsystem/points/proc/add_psy_points(hivenumber, amount)
