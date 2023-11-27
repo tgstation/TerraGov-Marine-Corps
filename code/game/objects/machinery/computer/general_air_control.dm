@@ -86,9 +86,6 @@
 
 
 /obj/machinery/computer/general_air_control/large_tank_control
-	icon = 'icons/obj/machines/computer.dmi'
-	icon_state = "tank"
-
 	frequency = 1441
 	var/input_tag
 	var/output_tag
@@ -199,9 +196,6 @@ Max Output Pressure: [output_pressure] kPa<BR>"}
 	addtimer(CALLBACK(src, PROC_REF(updateUsrDialog)), 5)
 
 /obj/machinery/computer/general_air_control/supermatter_core
-	icon = 'icons/obj/machines/computer.dmi'
-	icon_state = "tank"
-
 	frequency = 1438
 	var/input_tag
 	var/output_tag
