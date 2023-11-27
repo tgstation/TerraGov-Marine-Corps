@@ -13,6 +13,12 @@
 	keybind_signal = COMSIG_XENOABILITY_HEADBITE
 	hotkey_keys = list("J")
 
+/datum/keybinding/xeno/larval_growth_sting
+	name = "larval_growth_sting"
+	full_name = "Larval Growth Sting"
+	description = "Inject an impregnated host with growth serum, causing the larva inside to grow quicker."
+	keybind_signal = COMSIG_XENOABILITY_LARVAL_GROWTH_STING
+
 /datum/keybinding/xeno/regurgitate
 	name = "regurgitate"
 	full_name = "Regurgitate / Cocoon"
@@ -484,10 +490,10 @@
 
 /datum/keybinding/xeno/devour
 	name = "devour"
-	full_name = "Gorger: Devour"
+	full_name = "Devour"
 	description = "Devour your victim to be able to carry it faster."
 	keybind_signal = COMSIG_XENOABILITY_DEVOUR
-	hotkey_keys = list("X")
+	hotkey_keys = null
 
 /datum/keybinding/xeno/drain
 	name = "drain"

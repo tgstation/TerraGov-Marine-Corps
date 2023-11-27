@@ -497,17 +497,18 @@
 
 	msg += "[flavor_text]<br>"
 
+// removed hollow examine from humans
 	if(HAS_TRAIT(src, TRAIT_HOLLOW))
 		if(isxeno(user))
 			msg += "<span style='font-weight: bold; color: purple;'>[t_He] is hollow. Useless.</span>\n"
-		else
-			msg += "[span_warning("<b>[t_He] is hollowed out!</b>")]\n"
+//		else
+//			msg += "[span_warning("<b>[t_He] is hollowed out!</b>")]\n"
 
 	if(isxeno(user))
 		if(species.species_flags & IS_SYNTHETIC)
 			msg += "[span_xenowarning("You sense [t_he] is not organic.")]\n"
 		if(status_flags & XENO_HOST)
-			msg += "[t_He] is impregnated.\n"
+			msg += "[t_He] is impregnated and[reagents.get_reagent_amount(/datum/reagent/consumable/larvajelly) > 0 ? "" : "not"] inoculated with Larval Accelerant. \n"
 		if(reagents.get_reagent_amount(/datum/reagent/toxin/xeno_neurotoxin))
 			msg += "Neurotoxin: Causes increasingly intense pain and stamina damage over time, increasing in intensity at the 40 second and the minute and a half mark of metabolism.\n"
 		if(reagents.get_reagent_amount(/datum/reagent/toxin/xeno_hemodile))

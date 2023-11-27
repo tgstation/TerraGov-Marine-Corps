@@ -36,5 +36,5 @@
 		"editor.defaultFormatter": "esbenp.prettier-vscode",
 		"editor.formatOnSave": true
 	},
-	"tgstationTestExplorer.project.DMEName": "tgmc.dme"
+	"tgstationTestExplorer.project.DMEName": "tgmc.dme",
 }
