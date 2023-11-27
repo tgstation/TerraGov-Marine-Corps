@@ -1233,7 +1233,7 @@
 			/obj/item/storage/pouch/protein_pack = -1,
 		),
 		"Headwear" = list(
-     		/obj/item/clothing/head/helmet/space/elf/regular = -1,
+			/obj/item/clothing/head/helmet/space/elf/regular = -1,
 			/obj/item/clothing/head/helmet/space/santahat = -1,
 			/obj/item/clothing/head/modular/style/beret = -1,
 			/obj/item/clothing/head/modular/style/classic_beret = -1,
