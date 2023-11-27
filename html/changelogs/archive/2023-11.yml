@@ -339,3 +339,19 @@
   - balance: Ship railgun is no longer available in Crash
   Pariah919:
   - rscdel: Vali spear has been removed.
+2023-11-27:
+  Pariah919:
+  - balance: Amount of free roundstart HEDPs reduced to 200 from 600.
+  - balance: Most grenade boxes are now cheaper, lower tier grenades have went from
+      500 to 310, and higher tier grenades to 350. Razorburn and white phos are untouched.
+  TiviPlus:
+  - rscdel: Removes the context menu toggle
+  ivanmixo:
+  - bugfix: Fixed some AI runtimes
+  - bugfix: Fixed a bunch of spiderling runtimes
+  - bugfix: Xenos should no longer have quickbuild outside of prep
+  yyzsong:
+  - bugfix: fixes the names of the FK-88 and ATR-22 ammos in req
+  - rscadd: adds hand labelers and KOTAHI decks to valhalla weapons vendors
+  - bugfix: Unguided rockets are now unlimited in valhalla (whoops)
+  - rscdel: removes the valhalla reqtorio section
