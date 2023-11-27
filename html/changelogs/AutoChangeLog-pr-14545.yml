@@ -1,0 +1,4 @@
+author: "vvvv-vvvv"
+delete-after: True
+changes:
+  - bugfix: "Fix tadpole being able to land on disks"
