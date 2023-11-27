@@ -71,7 +71,7 @@ GLOBAL_LIST_EMPTY(possible_gifts)
 		. += "This present is addressed to [present_receiver_name]."
 
 /obj/item/a_gift/attack_self(mob/M)
-	if(HAS_TRAIT(M, TRAIT_SANTA_CLAUS) || HAS_TRAIT(user, TRAIT_CHRISTMAS_ELF))
+	if(HAS_TRAIT(M, TRAIT_SANTA_CLAUS) || HAS_TRAIT(M, TRAIT_CHRISTMAS_ELF))
 		to_chat(M, "You're supposed to deliver presents, not open them.")
 		return
 	if(present_receiver == null && !freepresent)
