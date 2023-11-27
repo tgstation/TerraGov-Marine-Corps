@@ -1,8 +1,9 @@
 /obj/item/clothing
 	name = "clothing"
 
-	/// Resets the armor on clothing since by default /objs get 100 bio armor
+	// Resets the armor on clothing since by default /objs get 100 bio armor
 	soft_armor = list()
+	flags_inventory = NOQUICKEQUIP
 
 	///Assoc list of available slots. Since this keeps track of all currently equiped attachments per object, this cannot be a string_list()
 	var/list/attachments_by_slot = list()
@@ -22,7 +23,6 @@
 
 	/// Used by headgear mostly to affect accuracy
 	var/accuracy_mod = 0
-	flags_inventory = NOQUICKEQUIP
 
 /obj/item/clothing/Initialize(mapload)
 	. = ..()

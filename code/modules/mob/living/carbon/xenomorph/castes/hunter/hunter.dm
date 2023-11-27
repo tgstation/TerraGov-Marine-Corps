@@ -24,3 +24,13 @@
 
 /mob/living/carbon/xenomorph/hunter/weapon_x
 	caste_base_type = /mob/living/carbon/xenomorph/hunter/weapon_x
+
+/mob/living/carbon/xenomorph/hunter/weapon_x/Initialize(mapload)
+	. = ..()
+	RegisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_MISSION_ENDED, PROC_REF(terminate_specimen))
+
+///Removed the xeno after the mission ends
+/mob/living/carbon/xenomorph/hunter/weapon_x/proc/terminate_specimen()
+	SIGNAL_HANDLER
+	qdel(src)
+

@@ -536,7 +536,7 @@
 	desc = "A box that deploys a modified TE-9001 crewserved heavylaser. Fits on the crewserved weapon attach points of dropships. You need a powerloader to lift it."
 	icon_state = "hl_system"
 	point_cost = 0 //this removes it from the fabricator
-	deployable_type = /obj/item/weapon/gun/heavy_laser
+	deployable_type = /obj/item/weapon/gun/energy/lasgun/lasrifle/heavy_laser
 	undeployed_icon_state = "hl_system"
 
 /obj/structure/dropship_equipment/shuttle/weapon_holder/mortar_holder
