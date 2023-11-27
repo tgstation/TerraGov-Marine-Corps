@@ -402,7 +402,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 
 /obj/item/clothing/mask/cigarette/emergency
 	name = "Red Comrade"
-	desc = "A red cigarrete. With some writings in it. Some of it is in russian, but,the Red Russian warning, is in indistinguishable."
+	desc = "A bright red cigarette with what appears to be russian branding on it. The words \"RUSSIAN RED\", however are unmistakable."
 	icon_state = "rrcigoff"
 	item_state = "rrcigoff"
 	icon_on = "rrcigon"
