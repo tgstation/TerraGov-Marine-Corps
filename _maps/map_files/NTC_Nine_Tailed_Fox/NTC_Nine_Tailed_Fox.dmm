@@ -23,7 +23,7 @@
 "ba" = (/obj/structure/largecrate/supply/ammo/standard_ammo,/turf/open/floor/mainship/office,/area/mainship/hallways/hangar{outside = 0})
 "bc" = (/obj/machinery/light{dir = 1},/turf/open/floor/mainship/black{dir = 9},/area/mainship/squads/general)
 "bd" = (/obj/structure/rack,/obj/item/storage/box/flashbangs,/obj/item/storage/box/flashbangs,/turf/open/floor/mainship/red,/area/mainship/shipboard/brig)
-"bh" = (/obj/item/frame/table,/obj/item/frame/table,/obj/item/frame/table,/obj/structure/rack,/turf/open/floor/mainship/mono,/area/mainship/squads/req)
+"bh" = (/obj/item/frame/table,/obj/item/frame/table,/obj/item/frame/table,/obj/structure/rack,/obj/machinery/camera/autoname/mainship{dir = 8},/turf/open/floor/mainship/mono,/area/mainship/squads/req)
 "bi" = (/obj/item/trash/cigbutt{pixel_x = -8; pixel_y = 3},/turf/open/floor/mainship/cargo,/area/mainship/squads/general)
 "bk" = (/obj/effect/turf_decal/warning_stripes/thin{dir = 8},/obj/structure/ship_ammo/cas/rocket/widowmaker,/turf/open/floor/mainship/mono,/area/mainship/hallways/hangar{outside = 0})
 "bl" = (/obj/structure/table/mainship,/obj/item/reagent_containers/food/snacks/chocolatebar,/obj/effect/ai_node,/turf/open/floor/freezer,/area/mainship/living/cafeteria_starboard)
@@ -540,7 +540,7 @@
 "xb" = (/obj/item/coin/iron,/obj/machinery/vending/cola,/turf/open/floor/freezer,/area/mainship/living/cafeteria_starboard)
 "xe" = (/obj/machinery/light/small,/obj/structure/largecrate/guns,/turf/open/floor/mainship/cargo,/area/mainship/squads/req)
 "xh" = (/obj/machinery/light{dir = 4},/turf/open/floor/mainship/mono,/area/mainship/hallways/port_hallway)
-"xi" = (/obj/effect/turf_decal/warning_stripes/thick{dir = 4},/obj/machinery/landinglight{id = "normandy"; dir = 8},/obj/machinery/light{dir = 1},/turf/open/floor/plating,/area/mainship/hallways/hangar{outside = 0})
+"xi" = (/obj/structure/cable,/obj/structure/disposalpipe/segment{dir = 4},/obj/item/reagent_containers/jerrycan,/turf/open/floor/plating/plating_catwalk,/area/mainship/squads/req)
 "xj" = (/obj/structure/prop/mainship/ship_memorial,/obj/structure/cable,/turf/open/floor/mainship/mono,/area/mainship/living/port_garden)
 "xk" = (/obj/machinery/gear{id = "supply_elevator_gear"},/turf/open/floor/mainship/mono,/area/mainship/squads/req)
 "xl" = (/obj/machinery/marine_selector/gear/engi,/turf/open/floor/mainship,/area/mainship/squads/general)
@@ -842,7 +842,7 @@
 "Jw" = (/obj/effect/landmark/start/job/security_officer,/obj/effect/landmark/start/job/security_officer,/obj/effect/landmark/start/job/security_officer,/obj/effect/landmark/start/job/security_officer,/obj/effect/landmark/start/job/security_officer,/obj/effect/landmark/start/job/security_officer,/obj/structure/cable,/turf/open/floor/plating/plating_catwalk,/area/mainship/living/cryo_cells)
 "Jx" = (/obj/machinery/marine_selector/clothes/engi,/obj/machinery/light/mainship{dir = 1},/turf/open/floor/mainship,/area/mainship/squads/general)
 "Jy" = (/obj/machinery/telecomms/processor/preset_two,/turf/open/floor/mainship/tcomms,/area/mainship/command/telecomms{outside = 0})
-"JA" = (/obj/effect/turf_decal/warning_stripes/thick{dir = 4},/obj/machinery/landinglight{id = "normandy"; dir = 8},/obj/machinery/light,/turf/open/floor/plating,/area/mainship/hallways/hangar{outside = 0})
+"JA" = (/obj/structure/cable,/obj/structure/disposalpipe/segment{dir = 4},/obj/vehicle/ridden/motorbike{dir = 4},/turf/open/floor/plating/plating_catwalk,/area/mainship/squads/req)
 "JC" = (/obj/effect/turf_decal/warning_stripes/thick/corner{dir = 4},/obj/machinery/landinglight/cas{dir = 1},/turf/open/floor/plating,/area/mainship/hallways/hangar{outside = 0})
 "JE" = (/obj/item/trash/chips,/turf/open/floor/wood,/area/mainship/living/cryo_cells)
 "JF" = (/obj/machinery/light/small{dir = 4},/turf/open/floor/mainship/mono,/area/mainship/hallways/port_umbilical)
@@ -1092,7 +1092,7 @@
 "TE" = (/obj/item/big_ammo_box/ap,/turf/open/floor/mainship/red{dir = 9},/area/mainship/shipboard/brig)
 "TJ" = (/obj/machinery/vending/MarineMed,/turf/open/floor/mainship/black{dir = 8},/area/mainship/squads/general)
 "TK" = (/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{dir = 4},/obj/effect/turf_decal/warning_stripes/medical,/obj/effect/turf_decal/warning_stripes/box/small{dir = 1},/obj/effect/turf_decal/warning_stripes/box/small,/turf/open/floor/mainship/black{dir = 8},/area/mainship/squads/general)
-"TM" = (/obj/machinery/camera/autoname/mainship{dir = 8},/obj/vehicle/ridden/motorbike{dir = 4},/obj/item/reagent_containers/jerrycan,/turf/open/floor/mainship/mono,/area/mainship/squads/req)
+"TM" = (/obj/structure/supply_drop,/turf/open/floor/mainship/mono,/area/mainship/squads/req)
 "TP" = (/obj/machinery/vending/MarineMed,/turf/open/floor/mainship/black{dir = 10},/area/mainship/squads/general)
 "TR" = (/obj/machinery/disposal,/obj/structure/disposalpipe/trunk{dir = 1},/obj/machinery/light/mainship,/turf/open/floor/mainship/black{dir = 10},/area/mainship/squads/general)
 "TS" = (/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,/turf/open/floor/mainship/mono,/area/mainship/hallways/port_hallway)
@@ -1295,7 +1295,7 @@ bnEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBzKTeTeJllOEdCilmlDtcLbRKzUvxvxTkvx
 bnEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBzKTeTeJllOEdvmahahahLbUcGqvxvxvxvxvxNTuhMyjPCJjPjPjPbqjPjPjPjPjPjPGTIWGTGTjPjPjPiUjsEdrpSRSRSRSRSRSRSRJluyEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBbn
 bnEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBWuTeTeTeJllOEdZbbXFCVnLbcpGqvxvxvxvxvxNTipLbFWCJGWRTGWbqIFlNrllNaCRlrllNrlwIRllNlNlNCZEdwGSRSRSRSRPESRSRJluyEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBbn
 bnEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBWuTeTeTeTeJlKUEdEONnNnNnLbcIjxbIbIAibIbIxkKqCRjPCJGWRTGWbqjPvTQfnwUYkykyplkytrCnbcaVlNCZmvrpSRSRSRSRSRSRSRJlTeoAEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBbn
-bnEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBWuTeJlJlJlJlJlXsEdLFVMNnNnLbNUvlxzxzxzxzxzxzxyCRjPCJGWRTGWFbGTsKVFQQHtlEDaIyDaIygNPLiqlNCZEdrpSRSRSRSRSRSRSRJlTeTeoAEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBbn
+bnEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBWuTeJlJlJlJlJlXsEdLFVMNnNnLbNUvlxzxzxiJAxzxzxyCRjPCJGWRTGWFbGTsKVFQQHtlEDaIyDaIygNPLiqlNCZEdrpSRSRSRSRSRSRSRJlTeTeoAEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBbn
 bnEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBTeTeJlSRSRSRWNdJEdhZBOcmNnANSgwPrCIRhSxexKyHvluegSkZGWRTGWobjPFiocFqwViCQGxHvefjFqwVRulNCZNurpSRSRSRSRSRSRSRJlTeTeuyEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBbn
 bnEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBzKTePmjKBNSpWNAMEdpjNnQuNnpZpZpZpZpZpZpZpZpZpZpZjPbqGWRTGWbqjPvTvqCnUYiRkyDLkyDLCnpJGllNMSEdEdEdEdEdEdEdEdEdJlJlTeuyEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBbn
 bnEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBzKTeJlXKZBZBnZhahoRhRhMXolpZUZuHlhBkpZrKrHrHEmpZFWbqGWRTGWbqjPlNTJnEHtDaDaDaDaDagNGkBBlNKnzoMoMozoLUXULUzoMoDzJlTeuyEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBbn
@@ -1337,15 +1337,15 @@ bnEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBzKaNYhTeTeJlELEdtitititiRPtititititidhtiti
 bnEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEByzOxXETeTeJlIOEdtiQbWMknWMWMWMWMWMnlWMKwtitiBDDIilDIDIDIDIDImKDISEtiUFtititigesISTtitititititiMjtiAcCBETEdCZJlTeTeXEOxgCEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBbn
 bnEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBzKTeJlAMEdtiNvQkQEQkQkQkQkQkAaQkVxtitiwNQkQEQkQkQkQkQkAaQkXctiwxwdwdwdwdwdwdwdwdwdwdwdwdLatititiETEdCZJlTeuyEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBbn
 bnEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBzKTeJlAMEdHAWxwcYYQkQkQkQkQkTAwcxxtitiwMwcYYQkQkQkQkQkTAwcxRtiRCtitiultitititititiJQtitititinCtiRAEdCZJlTeuyEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBbn
-bnEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBzKTeJlAMEdtiBUdMRaQkQkQkQkQkRadMzqtitidVdMRaQkQkQkQkQkRadMBPtiRCMgkeultiyfMTMTMTEtDnJCMTMTMTdWtiGpEdCZJlTeuyEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBbn
+bnEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBzKTeJlAMEdtiBUdMRaQkQkQkQkQkRadMzqtitidVQkQkQkQkQkQkQkQkQkBPtiRCMgkeultiyfMTMTMTEtDnJCMTMTMTdWtiGpEdCZJlTeuyEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBbn
 bnEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBzKTeJlAMEdtiDhQkQkQkQkQkQkQkQkQkUttitiPsQkQkQkQkQkQkQkQkQkgytiRCNXNXultimcQkQkQkQEQkAaQkQkQkoVtiIPEdCZJlTeuyEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBbn
 bnEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBzKTeJlAMEdtiNvQkQkQkQkQkQkQkQkQkVxtitiwNQkQkQkQkQkQkQkQkQkXctiRCtitiultimcQkQkQkQEQkAaQkQkQkoVtikeEdYvJlTeuyEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBbn
 bnEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBzKTeJlAMEdtiNvQkQkQkQkQkQkQkQkQkVxtitiwNQkQkQkQkQkQkQkQkQkXctiRCmuuuulnCmcQkQkQkpbQknLQkQkQkoVtikeEdCZJlTeuyEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBbn
 bnEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBzKTeJlAMEdtiNvQkQkQkQkQkQkQkQkQkVxtitiwNQkQkQkQkQkQkQkQkQkXctiJNHOHOTutidxwcwcwcYYQkTAwcwcwcuFtikeEdvrJlTeuyEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBbn
 bnEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBzKTeJlyQEdHAfiQkQkQkQkQkQkQkQkQkxItitipkQkQkQkQkQkQkQkQkQkjWtiRCEqQVultilAQkQkQkQkpKQkQkQkQkUrtikeEdCZJlTeuyEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBbn
-bnEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBzKTeJlAMEdtiBUQkQkQkQkQkZcQkQkQkzqtitiJAQkQkQkQkQkZcQkQkQkBPtiRCNXNXultimcQkQkQkQkHdQkQkQkQkoVtiuLEdCZJlTeuyEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBbn
+bnEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBzKTeJlAMEdtiBUQkQkQkQkQkZcQkQkQkzqtitiyVQkQkQkQkQkZcQkQkQkBPtiRCNXNXultimcQkQkQkQkHdQkQkQkQkoVtiuLEdCZJlTeuyEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBbn
 bnEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBzKTeJlhaEdtiBUQkQkQkQkqMQkQkQkQkzqtiIPtnmwQkQkQkhbQkQkQkQkBPtijGwoulultiExgubBQkQkQkZcQkadguqNtihuEdCZJlTeuyEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBbn
-bnEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBzKTeJlAMEdtiBUQkQkQkQkQkQkQkQkQkzqtitixiQkQkQkQkQkQkQkQkQkBPtiAcsDticEtiKCQkpbQkQkQkQkQknLQkPYtikeEdCZJlTeuyEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBbn
+bnEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBzKTeJlAMEdtiBUQkQkQkQkQkQkQkQkQkzqtitiyVQkQkQkQkQkQkQkQkQkBPtiAcsDticEtiKCQkpbQkQkQkQkQknLQkPYtikeEdCZJlTeuyEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBbn
 bnEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBzKTeJlAMEdtiBUQkQkQkQkQkQkQkQkQkzqtitiyVQkQkQkQkQkQkQkQkQkBPtiAcsDtiActimcLhYYQkQkQkQkQkTAOioVtikeEdCZJlTeuyEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBbn
 bnEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBzKTeJlIOEdtiDhQkQkQkQkQkQkQkQkQkUttitiPsQkQkQkQkQkQkQkQkQkgytiwAssErHRtimcQEQkQkQkQkQkQkQkAaoVtikeEdCrJlTeuyEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBbn
 bnEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBzKTeJlAMEdtiNvQkQkQkQkQkQkQkQkQkVxtitiwNQkQkQkQkQkQkQkQkQkXctirkpDwscCtimcQEQkQkQkQkQkQkQkAaoVtikeEdCZJlTeuyEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBbn
