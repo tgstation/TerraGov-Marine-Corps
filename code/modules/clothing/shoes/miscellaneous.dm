@@ -89,7 +89,7 @@
 	soft_armor = list(MELEE = 80, BULLET = 90, LASER = 90, ENERGY = 85, BOMB = 120, BIO = 85, FIRE = 75, ACID = 40)
 	flags_armor_protection = FEET
 	slowdown = SLOWDOWN_ARMOR_VERY_LIGHT
-	flags_item = NODROP|DELONDROP
+	flags_item = DELONDROP
 	min_cold_protection_temperature = SHOE_MIN_COLD_PROTECTION_TEMPERATURE
 	max_heat_protection_temperature = SHOE_MAX_HEAT_PROTECTION_TEMPERATURE
 	flags_cold_protection = FEET

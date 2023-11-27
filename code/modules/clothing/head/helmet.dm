@@ -501,7 +501,7 @@
 	name = "Santa's hat"
 	desc = "Ho ho ho. Merrry X-mas to all! Now you're all gonna die!"
 	soft_armor = list(MELEE = 85, BULLET = 90, LASER = 90, ENERGY = 85, BOMB = 120, BIO = 85, FIRE = 75, ACID = 40)
-	flags_item = NODROP|DELONDROP
+	flags_item = DELONDROP
 	flags_inventory = COVEREYES|COVERMOUTH|BLOCKSHARPOBJ|BLOCKGASEFFECT
 
 /obj/item/clothing/head/helmet/space/santahat/special/Initialize(mapload)

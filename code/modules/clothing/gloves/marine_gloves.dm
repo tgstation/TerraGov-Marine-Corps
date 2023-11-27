@@ -109,7 +109,7 @@
 	icon_state = "christmas"
 	item_state = "greengloves"
 	soft_armor = list(MELEE = 35, BULLET = 30, LASER = 20, ENERGY = 20, BOMB = 80, BIO = 20, FIRE = 20, ACID = 25)
-	flags_item = NODROP|DELONDROP
+	flags_item = DELONDROP
 
 /obj/item/clothing/gloves/marine/veteran/pmc/commando/santa/Initialize(mapload)
 	. = ..()
