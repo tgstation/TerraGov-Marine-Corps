@@ -579,7 +579,6 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	slot = ATTACHMENT_SLOT_RAIL
 	accuracy_mod = 0.15
 	accuracy_unwielded_mod = 0.1
-	aim_mode_delay_mod = -0.5
 	variants_by_parent_type = list(/obj/item/weapon/gun/rifle/som = "", /obj/item/weapon/gun/shotgun/som = "")
 
 /obj/item/attachable/m16sight
