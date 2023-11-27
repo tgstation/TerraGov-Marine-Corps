@@ -287,7 +287,6 @@
 			/obj/item/ammo_magazine/standard_mmg = -1,
 		),
 		"Melee" = list(
-      /obj/item/weapon/twohanded/spear/tactical/harvester = -1,
 			/obj/item/weapon/twohanded/spear/candycane = -1,
 			/obj/item/weapon/combat_knife = -1,
 			/obj/item/attachable/bayonetknife = -1,
@@ -487,7 +486,6 @@
 			/obj/item/ammo_magazine/standard_mmg = -1,
 		),
 		"Melee" = list(
-      /obj/item/weapon/twohanded/spear/tactical/harvester = -1,
 			/obj/item/weapon/twohanded/spear/candycane = -1,
 			/obj/item/weapon/combat_knife = -1,
 			/obj/item/attachable/bayonetknife = -1,
@@ -1235,7 +1233,7 @@
 			/obj/item/storage/pouch/protein_pack = -1,
 		),
 		"Headwear" = list(
-      /obj/item/clothing/head/helmet/space/elf/regular = -1,
+     		/obj/item/clothing/head/helmet/space/elf/regular = -1,
 			/obj/item/clothing/head/helmet/space/santahat = -1,
 			/obj/item/clothing/head/modular/style/beret = -1,
 			/obj/item/clothing/head/modular/style/classic_beret = -1,

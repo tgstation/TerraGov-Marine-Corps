@@ -356,7 +356,7 @@
 	spawn_loot_chance = 90
 	loot = list(
 		/obj/item/a_gift,
-		/obj/item/a_gift/free
+		/obj/item/a_gift/free,
 	)
 
 /obj/effect/spawner/random_set/christmas_costume
