@@ -39,7 +39,7 @@
 	desc = "Imbue your claws with acid for a short duration, inflicting lasting effects on your victims."
 	cooldown_duration = 10 SECONDS
 	ability_cost = 100
-	//use_state_flags = XACT_USE_BUCKLED
+	//use_state_flags = ABILITY_USE_BUCKLED
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TOXIC_SLASH,
 	)
@@ -129,8 +129,8 @@
 	desc = "Sting your victim, draining them and gaining benefits if they are Intoxicated."
 	cooldown_duration = 25 SECONDS
 	ability_cost = 75
-	target_flags = XABB_MOB_TARGET
-	use_state_flags = XACT_USE_BUCKLED
+	target_flags = ABILITY_MOB_TARGET
+	use_state_flags = ABILITY_USE_BUCKLED
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_DRAIN_STING,
 	)

@@ -42,7 +42,7 @@
 	return ..()
 
 /datum/action/ability/handle_button_status_visuals()
-	if(!can_use_action(TRUE, XACT_IGNORE_COOLDOWN))
+	if(!can_use_action(TRUE, ABILITY_IGNORE_COOLDOWN))
 		button.color = "#80000080" // rgb(128,0,0,128)
 	else if(!action_cooldown_check())
 		button.color = "#f0b400c8" // rgb(240,180,0,200)
@@ -55,47 +55,47 @@
 		return FALSE
 	var/flags_to_check = use_state_flags|override_flags
 
-	if(!(flags_to_check & XACT_IGNORE_COOLDOWN) && !action_cooldown_check())
+	if(!(flags_to_check & ABILITY_IGNORE_COOLDOWN) && !action_cooldown_check())
 		if(!silent)
 			carbon_owner.balloon_alert(carbon_owner, "Wait [cooldown_remaining()] sec")
 		return FALSE
 
-	if(!(flags_to_check & XACT_USE_INCAP) && carbon_owner.incapacitated())
+	if(!(flags_to_check & ABILITY_USE_INCAP) && carbon_owner.incapacitated())
 		if(!silent)
 			carbon_owner.balloon_alert(carbon_owner, "Cannot while incapacitated")
 		return FALSE
 
-	if(!(flags_to_check & XACT_USE_LYING) && carbon_owner.lying_angle)
+	if(!(flags_to_check & ABILITY_USE_LYING) && carbon_owner.lying_angle)
 		if(!silent)
 			carbon_owner.balloon_alert(carbon_owner, "Cannot while lying down")
 		return FALSE
 
-	if(!(flags_to_check & XACT_USE_BUCKLED) && carbon_owner.buckled)
+	if(!(flags_to_check & ABILITY_USE_BUCKLED) && carbon_owner.buckled)
 		if(!silent)
 			carbon_owner.balloon_alert(carbon_owner, "Cannot while buckled")
 		return FALSE
 
-	if(!(flags_to_check & XACT_USE_STAGGERED) && carbon_owner.IsStaggered())
+	if(!(flags_to_check & ABILITY_USE_STAGGERED) && carbon_owner.IsStaggered())
 		if(!silent)
 			carbon_owner.balloon_alert(carbon_owner, "Cannot while staggered")
 		return FALSE
 
-	if(!(flags_to_check & XACT_USE_NOTTURF) && !isturf(carbon_owner.loc))
+	if(!(flags_to_check & ABILITY_USE_NOTTURF) && !isturf(carbon_owner.loc))
 		if(!silent)
 			carbon_owner.balloon_alert(carbon_owner, "Cannot do this here")
 		return FALSE
 
-	if(!(flags_to_check & XACT_USE_BUSY) && carbon_owner.do_actions)
+	if(!(flags_to_check & ABILITY_USE_BUSY) && carbon_owner.do_actions)
 		if(!silent)
 			carbon_owner.balloon_alert(carbon_owner, "Cannot, busy")
 		return FALSE
 
-	if(!(flags_to_check & XACT_USE_BURROWED) && HAS_TRAIT(carbon_owner, TRAIT_BURROWED))
+	if(!(flags_to_check & ABILITY_USE_BURROWED) && HAS_TRAIT(carbon_owner, TRAIT_BURROWED))
 		if(!silent)
 			carbon_owner.balloon_alert(carbon_owner, "Cannot while burrowed")
 		return FALSE
 
-	if(!(flags_to_check & XACT_USE_CLOSEDTURF) && isclosedturf(get_turf(carbon_owner)))
+	if(!(flags_to_check & ABILITY_USE_CLOSEDTURF) && isclosedturf(get_turf(carbon_owner)))
 		if(!silent)
 			//Not converted to balloon alert as xeno.dm's balloon alert is simultaneously called and will overlap.
 			to_chat(owner, span_warning("We can't do this while in a solid object!"))
@@ -190,8 +190,8 @@
 
 /datum/action/ability/activable/keybind_activation()
 	. = COMSIG_KB_ACTIVATED
-	if(CHECK_BITFIELD(keybind_flags, XACT_KEYBIND_USE_ABILITY))
-		if(can_use_ability(null, FALSE, XACT_IGNORE_SELECTED_ABILITY))
+	if(CHECK_BITFIELD(keybind_flags, ABILITY_KEYBIND_USE_ABILITY))
+		if(can_use_ability(null, FALSE, ABILITY_IGNORE_SELECTED_ABILITY))
 			use_ability()
 		return
 
@@ -205,7 +205,7 @@
 
 /datum/action/ability/activable/can_use_action(silent = FALSE, override_flags, selecting = FALSE)
 	if(selecting)
-		return ..(silent, XACT_IGNORE_COOLDOWN|XACT_IGNORE_PLASMA|XACT_USE_STAGGERED)
+		return ..(silent, ABILITY_IGNORE_COOLDOWN|ABILITY_IGNORE_PLASMA|ABILITY_USE_STAGGERED)
 	return ..()
 
 ///override this
@@ -216,10 +216,10 @@
 	var/flags_to_check = use_state_flags|override_flags
 
 	var/mob/living/carbon/carbon_owner = owner
-	if(!CHECK_BITFIELD(flags_to_check, XACT_IGNORE_SELECTED_ABILITY) && carbon_owner.selected_ability != src)
+	if(!CHECK_BITFIELD(flags_to_check, ABILITY_IGNORE_SELECTED_ABILITY) && carbon_owner.selected_ability != src)
 		return FALSE
 	. = can_use_action(silent, override_flags)
-	if(!CHECK_BITFIELD(flags_to_check, XACT_TARGET_SELF) && A == owner)
+	if(!CHECK_BITFIELD(flags_to_check, ABILITY_TARGET_SELF) && A == owner)
 		return FALSE
 
 ///the thing to do when the selected action ability is selected and triggered by middle_click

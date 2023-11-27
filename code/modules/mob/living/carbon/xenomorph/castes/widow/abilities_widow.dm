@@ -252,7 +252,7 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_BURROW,
 	)
-	use_state_flags = XACT_USE_BURROWED
+	use_state_flags = ABILITY_USE_BURROWED
 
 /datum/action/ability/xeno_action/burrow/action_activate()
 	. = ..()

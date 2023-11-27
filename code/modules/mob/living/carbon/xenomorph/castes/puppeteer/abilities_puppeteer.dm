@@ -7,7 +7,7 @@
 	desc = "Takes a chunk of flesh from the victim marine through a quick swiping motion, adding 100 biomass to your biomass collection."
 	ability_cost = 0
 	cooldown_duration = 20 SECONDS
-	target_flags = XABB_MOB_TARGET
+	target_flags = ABILITY_MOB_TARGET
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_FLAY,
 	)
@@ -123,7 +123,7 @@
 	action_icon_state = "refurbish_husk"
 	desc = "Harvest the biomass and organs of a body in order to create a meat puppet to do your bidding."
 	cooldown_duration = 25 SECONDS
-	target_flags = XABB_MOB_TARGET
+	target_flags = ABILITY_MOB_TARGET
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_REFURBISHHUSK,
 	)
@@ -204,7 +204,7 @@
 	desc = "Uses 125 biomass to create a flesh homunculus to do your bidding, at an adjacent target location."
 	ability_cost = 125
 	cooldown_duration = 25 SECONDS
-	target_flags = XABB_TURF_TARGET
+	target_flags = ABILITY_TURF_TARGET
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PUPPET,
 	)
@@ -255,7 +255,7 @@
 	desc = "Causes one of our puppets to detonate on selection, spewing acid out of the puppet's body in all directions, gibbing the puppet."
 	cooldown_duration = 30 SECONDS
 	ability_cost = 100
-	target_flags = XABB_MOB_TARGET
+	target_flags = ABILITY_MOB_TARGET
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_ORGANICBOMB,
 	)
@@ -312,7 +312,7 @@
 	action_icon_state = "mimicry"
 	desc = "Takes direct control of a Puppet’s vocal chords. Allows you to speak directly through your puppet to the talls."
 	cooldown_duration = 10 SECONDS
-	target_flags = XABB_MOB_TARGET
+	target_flags = ABILITY_MOB_TARGET
 	///Whether we should cancel instead of doing the thing when activated
 	var/talking = FALSE
 	///our current target
@@ -419,8 +419,8 @@
 	ability_cost = 200
 	desc = "Give a permanent upgrade to a puppet."
 	cooldown_duration = 30 SECONDS
-	use_state_flags = XACT_USE_STAGGERED|XACT_USE_NOTTURF|XACT_USE_BUSY|XACT_USE_LYING
-	target_flags = XABB_MOB_TARGET
+	use_state_flags = ABILITY_USE_STAGGERED|ABILITY_USE_NOTTURF|ABILITY_USE_BUSY|ABILITY_USE_LYING
+	target_flags = ABILITY_MOB_TARGET
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_BESTOWBLESSINGS,
 	)

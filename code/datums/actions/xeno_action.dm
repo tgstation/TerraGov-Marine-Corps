@@ -27,27 +27,27 @@
 		return FALSE
 	var/flags_to_check = use_state_flags|override_flags
 
-	if(!(flags_to_check & XACT_USE_FORTIFIED) && X.fortify)
+	if(!(flags_to_check & ABILITY_USE_FORTIFIED) && X.fortify)
 		if(!silent)
 			X.balloon_alert(X, "Cannot while fortified")
 		return FALSE
 
-	if(!(flags_to_check & XACT_USE_CRESTED) && X.crest_defense)
+	if(!(flags_to_check & ABILITY_USE_CRESTED) && X.crest_defense)
 		if(!silent)
 			X.balloon_alert(X, "Cannot while in crest defense")
 		return FALSE
 
-	if(!(flags_to_check & XACT_USE_ROOTED) && HAS_TRAIT_FROM(X, TRAIT_IMMOBILE, BOILER_ROOTED_TRAIT))
+	if(!(flags_to_check & ABILITY_USE_ROOTED) && HAS_TRAIT_FROM(X, TRAIT_IMMOBILE, BOILER_ROOTED_TRAIT))
 		if(!silent)
 			X.balloon_alert(X, "Cannot while rooted")
 		return FALSE
 
-	if(!(flags_to_check & XACT_USE_AGILITY) && X.agility)
+	if(!(flags_to_check & ABILITY_USE_AGILITY) && X.agility)
 		if(!silent)
 			X.balloon_alert(X, "Cannot in agility mode")
 		return FALSE
 
-	if(!(flags_to_check & XACT_IGNORE_PLASMA) && X.plasma_stored < ability_cost)
+	if(!(flags_to_check & ABILITY_IGNORE_PLASMA) && X.plasma_stored < ability_cost)
 		if(!silent)
 			X.balloon_alert(X, "Need [ability_cost - X.plasma_stored] more plasma")
 		return FALSE
@@ -90,27 +90,27 @@
 		return FALSE
 	var/flags_to_check = use_state_flags|override_flags
 
-	if(!(flags_to_check & XACT_USE_FORTIFIED) && X.fortify)
+	if(!(flags_to_check & ABILITY_USE_FORTIFIED) && X.fortify)
 		if(!silent)
 			X.balloon_alert(X, "Cannot while fortified")
 		return FALSE
 
-	if(!(flags_to_check & XACT_USE_CRESTED) && X.crest_defense)
+	if(!(flags_to_check & ABILITY_USE_CRESTED) && X.crest_defense)
 		if(!silent)
 			X.balloon_alert(X, "Cannot while in crest defense")
 		return FALSE
 
-	if(!(flags_to_check & XACT_USE_ROOTED) && HAS_TRAIT_FROM(X, TRAIT_IMMOBILE, BOILER_ROOTED_TRAIT))
+	if(!(flags_to_check & ABILITY_USE_ROOTED) && HAS_TRAIT_FROM(X, TRAIT_IMMOBILE, BOILER_ROOTED_TRAIT))
 		if(!silent)
 			X.balloon_alert(X, "Cannot while rooted")
 		return FALSE
 
-	if(!(flags_to_check & XACT_USE_AGILITY) && X.agility)
+	if(!(flags_to_check & ABILITY_USE_AGILITY) && X.agility)
 		if(!silent)
 			X.balloon_alert(X, "Cannot in agility mode")
 		return FALSE
 
-	if(!(flags_to_check & XACT_IGNORE_PLASMA) && X.plasma_stored < ability_cost)
+	if(!(flags_to_check & ABILITY_IGNORE_PLASMA) && X.plasma_stored < ability_cost)
 		if(!silent)
 			X.balloon_alert(X, "Need [ability_cost - X.plasma_stored] more plasma")
 		return FALSE

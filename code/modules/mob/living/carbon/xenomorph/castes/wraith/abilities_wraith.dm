@@ -10,7 +10,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	name = "Blink"
 	action_icon_state = "blink"
 	desc = "We teleport ourselves a short distance to a location within line of sight."
-	use_state_flags = XABB_TURF_TARGET
+	use_state_flags = ABILITY_TURF_TARGET
 	ability_cost = 30
 	cooldown_duration = 0.5 SECONDS
 	keybinding_signals = list(
@@ -156,7 +156,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	name = "Banish"
 	action_icon_state = "Banish"
 	desc = "We banish a target object or creature within line of sight to nullspace for a short duration. Can target onself and allies. Non-friendlies are banished for half as long."
-	use_state_flags = XACT_TARGET_SELF
+	use_state_flags = ABILITY_TARGET_SELF
 	ability_cost = 50
 	cooldown_duration = 20 SECONDS
 	keybinding_signals = list(
@@ -347,7 +347,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	name = "Recall"
 	action_icon_state = "Recall"
 	desc = "We recall a target we've banished back from the depths of nullspace."
-	use_state_flags = XACT_USE_NOTTURF|XACT_USE_CLOSEDTURF|XACT_USE_STAGGERED|XACT_USE_INCAP|XACT_USE_LYING //So we can recall ourselves from nether Brazil
+	use_state_flags = ABILITY_USE_NOTTURF|ABILITY_USE_CLOSEDTURF|ABILITY_USE_STAGGERED|ABILITY_USE_INCAP|ABILITY_USE_LYING //So we can recall ourselves from nether Brazil
 	cooldown_duration = 1 SECONDS //Token for anti-spam
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_RECALL,
@@ -646,7 +646,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_REWIND,
 	)
-	use_state_flags = XACT_TARGET_SELF
+	use_state_flags = ABILITY_TARGET_SELF
 	/// How long till the time rewinds
 	var/start_rewinding = 5 SECONDS
 	/// The targeted atom

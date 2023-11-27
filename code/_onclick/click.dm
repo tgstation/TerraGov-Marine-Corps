@@ -317,8 +317,8 @@ if(selected_ability.target_flags & flagname && !istype(A, typepath)){\
 		return;}}
 
 /mob/living/carbon/proc/ability_target(atom/A)
-	TARGET_FLAGS_MACRO(XABB_MOB_TARGET, /mob/living)
-	if(selected_ability.target_flags & XABB_TURF_TARGET)
+	TARGET_FLAGS_MACRO(ABILITY_MOB_TARGET, /mob/living)
+	if(selected_ability.target_flags & ABILITY_TURF_TARGET)
 		return get_turf(A)
 	return A
 
@@ -336,7 +336,7 @@ if(selected_ability.target_flags & flagname && !istype(A, typepath)){\
 		A = ability_target(A)
 		if(selected_ability.can_use_ability(A))
 			selected_ability.use_ability(A)
-			return !CHECK_BITFIELD(selected_ability.use_state_flags, XACT_DO_AFTER_ATTACK)
+			return !CHECK_BITFIELD(selected_ability.use_state_flags, ABILITY_DO_AFTER_ATTACK)
 
 /*
 	Right click

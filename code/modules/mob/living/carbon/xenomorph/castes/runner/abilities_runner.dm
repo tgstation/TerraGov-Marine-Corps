@@ -259,7 +259,7 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_SNATCH,
 	)
-	target_flags = XABB_MOB_TARGET
+	target_flags = ABILITY_MOB_TARGET
 	///If the runner have an item
 	var/obj/item/stolen_item = FALSE
 	///Mutable appearance of the stolen item

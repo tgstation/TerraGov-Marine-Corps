@@ -8,9 +8,9 @@
 	name = "Devour"
 	action_icon_state = "abduct"
 	desc = "Devour your victim to be able to carry it faster."
-	use_state_flags = XACT_USE_STAGGERED|XACT_USE_FORTIFIED|XACT_USE_CRESTED //can't use while staggered, defender fortified or crest down
+	use_state_flags = ABILITY_USE_STAGGERED|ABILITY_USE_FORTIFIED|ABILITY_USE_CRESTED //can't use while staggered, defender fortified or crest down
 	ability_cost = 0
-	target_flags = XABB_MOB_TARGET
+	target_flags = ABILITY_MOB_TARGET
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_DEVOUR,
 	)
@@ -90,10 +90,10 @@
 	name = "Drain"
 	action_icon_state = "drain"
 	desc = "Hold a marine for some time and drain their blood, while healing. You can't attack during this time and can be shot by the marine. When used on a dead human, you heal, or gain overheal, gradually and don't gain blood."
-	use_state_flags = XACT_KEYBIND_USE_ABILITY
+	use_state_flags = ABILITY_KEYBIND_USE_ABILITY
 	cooldown_duration = 15 SECONDS
 	ability_cost = 0
-	target_flags = XABB_MOB_TARGET
+	target_flags = ABILITY_MOB_TARGET
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_DRAIN,
 	)
@@ -175,7 +175,7 @@
 	//When used on self, drains blood continuosly, slows you down and reduces damage taken, while restoring health over time.
 	cooldown_duration = 2 SECONDS
 	ability_cost = 20
-	target_flags = XABB_MOB_TARGET
+	target_flags = ABILITY_MOB_TARGET
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TRANSFUSION,
 	)
@@ -250,12 +250,12 @@
 	desc = "Drains blood continuosly, slows you down and reduces damage taken, while restoring some health over time. Cancel by activating again."
 	cooldown_duration = 4 SECONDS
 	ability_cost = GORGER_REJUVENATE_COST
-	target_flags = XABB_MOB_TARGET
+	target_flags = ABILITY_MOB_TARGET
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_REJUVENATE,
 	)
-	keybind_flags = XACT_KEYBIND_USE_ABILITY
-	use_state_flags = XACT_USE_STAGGERED
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
+	use_state_flags = ABILITY_USE_STAGGERED
 
 /datum/action/ability/activable/xeno/rejuvenate/can_use_ability(atom/A, silent, override_flags)
 	. = ..()
@@ -290,7 +290,7 @@
 	desc = "Link to a xenomorph and take some damage in their place. Unrest to cancel."
 	cooldown_duration = 50 SECONDS
 	ability_cost = 0
-	target_flags = XABB_MOB_TARGET
+	target_flags = ABILITY_MOB_TARGET
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PSYCHIC_LINK,
 	)
@@ -389,7 +389,7 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_CARNAGE,
 	)
-	keybind_flags = XACT_KEYBIND_USE_ABILITY
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
 
 /datum/action/ability/activable/xeno/carnage/use_ability(atom/A)
 	. = ..()
@@ -421,8 +421,8 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_FEAST,
 	)
-	keybind_flags = XACT_KEYBIND_USE_ABILITY
-	use_state_flags = XACT_USE_STAGGERED
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
+	use_state_flags = ABILITY_USE_STAGGERED
 
 /datum/action/ability/activable/xeno/feast/can_use_ability(atom/target, silent, override_flags)
 	. = ..()

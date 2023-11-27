@@ -21,7 +21,7 @@
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TOGGLE_CHARGE,
 	)
 	action_type = ACTION_TOGGLE
-	use_state_flags = XACT_USE_LYING
+	use_state_flags = ABILITY_USE_LYING
 	var/charge_type = CHARGE_CRUSH
 	var/next_move_limit = 0
 	var/turf/lastturf = null

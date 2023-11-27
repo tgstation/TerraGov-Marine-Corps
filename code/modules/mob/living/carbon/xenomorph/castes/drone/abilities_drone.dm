@@ -18,7 +18,7 @@
 	desc = "Link to a xenomorph. This changes some of your abilities, and grants them and you both various bonuses."
 	cooldown_duration = 5 SECONDS
 	ability_cost = 0
-	target_flags = XABB_MOB_TARGET
+	target_flags = ABILITY_MOB_TARGET
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_ESSENCE_LINK,
 		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_ESSENCE_LINK_REMOVE,
@@ -96,7 +96,7 @@
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_ACIDIC_SALVE,
 	)
 	heal_range = DRONE_HEAL_RANGE
-	target_flags = XABB_MOB_TARGET
+	target_flags = ABILITY_MOB_TARGET
 
 /datum/action/ability/activable/xeno/psychic_cure/acidic_salve/use_ability(atom/target)
 	var/mob/living/carbon/xenomorph/X = owner
