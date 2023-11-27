@@ -33,7 +33,7 @@
 
 	SEND_SIGNAL(src, COMSIG_XENOMORPH_ABILITY_ON_UPGRADE)
 	if(selected_ability_type)
-		for(var/datum/action/ability/activable/xeno_action/activable_ability in actions)
+		for(var/datum/action/ability/activable/xeno/activable_ability in actions)
 			if(selected_ability_type != activable_ability.type)
 				continue
 			activable_ability.select()

@@ -5,7 +5,7 @@
 #define RUNNER_SAVAGE_DAMAGE_MINIMUM 15
 #define RUNNER_SAVAGE_COOLDOWN 30 SECONDS
 
-/datum/action/ability/activable/xeno_action/pounce/runner
+/datum/action/ability/activable/xeno/pounce/runner
 	desc = "Leap at your target, tackling and disarming them. Alternate use toggles Savage off or on."
 	action_icon_state = "pounce_savage_on"
 	ability_cost = 10
@@ -19,20 +19,20 @@
 	/// Savage's cooldown.
 	COOLDOWN_DECLARE(savage_cooldown)
 
-/datum/action/ability/activable/xeno_action/pounce/runner/give_action(mob/living/L)
+/datum/action/ability/activable/xeno/pounce/runner/give_action(mob/living/L)
 	. = ..()
 	var/mutable_appearance/savage_maptext = mutable_appearance(icon = null, icon_state = null, layer = ACTION_LAYER_MAPTEXT)
 	savage_maptext.pixel_x = 12
 	savage_maptext.pixel_y = -5
 	visual_references[VREF_MUTABLE_SAVAGE_COOLDOWN] = savage_maptext
 
-/datum/action/ability/activable/xeno_action/pounce/runner/alternate_action_activate()
+/datum/action/ability/activable/xeno/pounce/runner/alternate_action_activate()
 	savage_activated = !savage_activated
 	owner.balloon_alert(owner, "Savage [savage_activated ? "activated" : "deactivated"]")
 	action_icon_state = "pounce_savage_[savage_activated? "on" : "off"]"
 	update_button_icon()
 
-/datum/action/ability/activable/xeno_action/pounce/runner/mob_hit(datum/source, mob/living/living_target)
+/datum/action/ability/activable/xeno/pounce/runner/mob_hit(datum/source, mob/living/living_target)
 	. = ..()
 	if(!savage_activated)
 		return
@@ -52,7 +52,7 @@
 	GLOB.round_statistics.runner_savage_attacks++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "runner_savage_attacks")
 
-/datum/action/ability/activable/xeno_action/pounce/runner/process()
+/datum/action/ability/activable/xeno/pounce/runner/process()
 	if(COOLDOWN_CHECK(src, savage_cooldown))
 		button.cut_overlay(visual_references[VREF_MUTABLE_SAVAGE_COOLDOWN])
 		owner.balloon_alert(owner, "Savage ready")
@@ -250,7 +250,7 @@
 // ***************************************
 // *********** Snatch
 // ***************************************
-/datum/action/ability/activable/xeno_action/snatch
+/datum/action/ability/activable/xeno/snatch
 	name = "Snatch"
 	action_icon_state = "snatch"
 	desc = "Take an item equipped by your target in your mouth, and carry it away."
@@ -259,7 +259,7 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_SNATCH,
 	)
-	target_flags = XABB_MOB_TARGET
+	target_flags = ABILITY_MOB_TARGET
 	///If the runner have an item
 	var/obj/item/stolen_item = FALSE
 	///Mutable appearance of the stolen item
@@ -271,12 +271,12 @@
 		SLOT_SHOES,
 	)
 
-/datum/action/ability/activable/xeno_action/snatch/action_activate()
+/datum/action/ability/activable/xeno/snatch/action_activate()
 	if(!stolen_item)
 		return ..()
 	drop_item()
 
-/datum/action/ability/activable/xeno_action/snatch/can_use_ability(atom/A, silent, override_flags)
+/datum/action/ability/activable/xeno/snatch/can_use_ability(atom/A, silent, override_flags)
 	. = ..()
 	if(!.)
 		return
@@ -298,7 +298,7 @@
 			owner.balloon_alert(owner, "Cannot snatch")
 		return FALSE
 
-/datum/action/ability/activable/xeno_action/snatch/use_ability(atom/A)
+/datum/action/ability/activable/xeno/snatch/use_ability(atom/A)
 	succeed_activate()
 	var/mob/living/carbon/xenomorph/X = owner
 	if(!do_after(owner, 0.5 SECONDS, FALSE, A, BUSY_ICON_DANGER, extra_checks = CALLBACK(owner, TYPE_PROC_REF(/mob, break_do_after_checks), list("health" = X.health))))
@@ -326,7 +326,7 @@
 	add_cooldown()
 
 ///Signal handler to update the item overlay when the owner is changing dir
-/datum/action/ability/activable/xeno_action/snatch/proc/owner_turned(datum/source, old_dir, new_dir)
+/datum/action/ability/activable/xeno/snatch/proc/owner_turned(datum/source, old_dir, new_dir)
 	SIGNAL_HANDLER
 	if(!new_dir || new_dir == old_dir)
 		return
@@ -354,7 +354,7 @@
 	owner.overlays += stolen_appearance
 
 ///Force the xeno owner to drop the stolen item
-/datum/action/ability/activable/xeno_action/snatch/proc/drop_item()
+/datum/action/ability/activable/xeno/snatch/proc/drop_item()
 	if(!stolen_item)
 		return
 	owner.remove_movespeed_modifier(MOVESPEED_ID_SNATCH)

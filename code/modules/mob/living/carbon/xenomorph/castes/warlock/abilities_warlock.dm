@@ -48,7 +48,7 @@
 // ***************************************
 // *********** Psychic shield
 // ***************************************
-/datum/action/ability/activable/xeno_action/psychic_shield
+/datum/action/ability/activable/xeno/psychic_shield
 	name = "Psychic Shield"
 	action_icon_state = "psy_shield"
 	desc = "Channel a psychic shield at your current location that can reflect most projectiles. Activate again while the shield is active to detonate the shield forcibly, producing knockback. Must remain static to use."
@@ -58,33 +58,33 @@
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PSYCHIC_SHIELD,
 		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_TRIGGER_PSYCHIC_SHIELD,
 	)
-	use_state_flags = XACT_USE_BUSY
+	use_state_flags = ABILITY_USE_BUSY
 	/// The actual shield object created by this ability
 	var/obj/effect/xeno/shield/active_shield
 
-/datum/action/ability/activable/xeno_action/psychic_shield/remove_action(mob/M)
+/datum/action/ability/activable/xeno/psychic_shield/remove_action(mob/M)
 	if(active_shield)
 		active_shield.release_projectiles()
 		QDEL_NULL(active_shield)
 	return ..()
 
-/datum/action/ability/activable/xeno_action/psychic_shield/on_cooldown_finish()
+/datum/action/ability/activable/xeno/psychic_shield/on_cooldown_finish()
 	owner.balloon_alert(owner, "Shield ready")
 	return ..()
 
 //Overrides parent.
-/datum/action/ability/activable/xeno_action/psychic_shield/alternate_action_activate()
-	if(can_use_ability(null, FALSE, XACT_IGNORE_SELECTED_ABILITY))
+/datum/action/ability/activable/xeno/psychic_shield/alternate_action_activate()
+	if(can_use_ability(null, FALSE, ABILITY_IGNORE_SELECTED_ABILITY))
 		INVOKE_ASYNC(src, PROC_REF(use_ability))
 
 
-/datum/action/ability/activable/xeno_action/psychic_shield/use_ability(atom/A)
+/datum/action/ability/activable/xeno/psychic_shield/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	if(active_shield)
 		if(ability_cost > xeno_owner.plasma_stored)
 			owner.balloon_alert(owner, "[ability_cost - xeno_owner.plasma_stored] more plasma!")
 			return FALSE
-		if(can_use_action(FALSE, XACT_USE_BUSY))
+		if(can_use_action(FALSE, ABILITY_USE_BUSY))
 			shield_blast()
 			cancel_shield()
 		return
@@ -113,13 +113,13 @@
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "psy_shields")
 
 	active_shield = new(target_turf, owner)
-	if(!do_after(owner, 6 SECONDS, TRUE, owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(can_use_action), FALSE, XACT_USE_BUSY)))
+	if(!do_after(owner, 6 SECONDS, TRUE, owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(can_use_action), FALSE, ABILITY_USE_BUSY)))
 		cancel_shield()
 		return
 	cancel_shield()
 
 ///Removes the shield and resets the ability
-/datum/action/ability/activable/xeno_action/psychic_shield/proc/cancel_shield()
+/datum/action/ability/activable/xeno/psychic_shield/proc/cancel_shield()
 	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	action_icon_state = "psy_shield"
 	xeno_owner.update_glow()
@@ -131,7 +131,7 @@
 		QDEL_NULL(active_shield)
 
 ///AOE knockback triggerable by ending the shield early
-/datum/action/ability/activable/xeno_action/psychic_shield/proc/shield_blast()
+/datum/action/ability/activable/xeno/psychic_shield/proc/shield_blast()
 	succeed_activate()
 
 	active_shield.reflect_projectiles()
@@ -261,13 +261,13 @@
 // ***************************************
 // *********** psychic crush
 // ***************************************
-/datum/action/ability/activable/xeno_action/psy_crush
+/datum/action/ability/activable/xeno/psy_crush
 	name = "Psychic Crush"
 	action_icon_state = "psy_crush"
 	desc = "Channel an expanding AOE crush effect, activating it again pre-maturely crushes enemies over an area. The longer it is channeled, the larger area it will affect, but will consume more plasma."
 	ability_cost = 40
 	cooldown_duration = 12 SECONDS
-	keybind_flags = XACT_KEYBIND_USE_ABILITY
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PSYCHIC_CRUSH,
 	)
@@ -292,7 +292,7 @@
 	///The particle type this ability uses
 	var/channel_particle = /particles/warlock_charge
 
-/datum/action/ability/activable/xeno_action/psy_crush/use_ability(atom/target)
+/datum/action/ability/activable/xeno/psy_crush/use_ability(atom/target)
 	if(channel_loop_timer)
 		if(length(target_turfs)) //it shouldn't be possible to do this without any turfs, but just in case
 			crush(target_turfs[1])
@@ -306,7 +306,7 @@
 		return fail_activate()
 
 	ADD_TRAIT(xeno_owner, TRAIT_IMMOBILE, PSYCHIC_CRUSH_ABILITY_TRAIT)
-	if(!do_after(owner, 0.8 SECONDS, TRUE, owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(can_use_action), FALSE, XACT_USE_BUSY)))
+	if(!do_after(owner, 0.8 SECONDS, TRUE, owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(can_use_action), FALSE, ABILITY_USE_BUSY)))
 		REMOVE_TRAIT(xeno_owner, TRAIT_IMMOBILE, PSYCHIC_CRUSH_ABILITY_TRAIT)
 		return fail_activate()
 
@@ -333,7 +333,7 @@
 	do_channel(target_turf)
 
 ///Checks if the owner is close enough/can see the target
-/datum/action/ability/activable/xeno_action/psy_crush/proc/check_distance(atom/target, sight_needed)
+/datum/action/ability/activable/xeno/psy_crush/proc/check_distance(atom/target, sight_needed)
 	if(get_dist(owner, target) > ability_range)
 		owner.balloon_alert(owner, "Too far!")
 		return FALSE
@@ -343,7 +343,7 @@
 	return TRUE
 
 ///Increases the area of effect, or triggers the crush if we've reached max iterations
-/datum/action/ability/activable/xeno_action/psy_crush/proc/do_channel(turf/target)
+/datum/action/ability/activable/xeno/psy_crush/proc/do_channel(turf/target)
 	channel_loop_timer = null
 	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	if(!check_distance(target) || isnull(xeno_owner) || xeno_owner.stat == DEAD)
@@ -368,14 +368,14 @@
 			effect_list += new /obj/effect/xeno/crush_warning(turf_to_check)
 	target_turfs += turfs_to_add
 	current_iterations ++
-	if(can_use_action(xeno_owner, XACT_IGNORE_COOLDOWN))
+	if(can_use_action(xeno_owner, ABILITY_IGNORE_COOLDOWN))
 		channel_loop_timer = addtimer(CALLBACK(src, PROC_REF(do_channel), target), 0.6 SECONDS, TIMER_STOPPABLE)
 		return
 
 	stop_crush()
 
 ///crushes all turfs in the AOE
-/datum/action/ability/activable/xeno_action/psy_crush/proc/crush(turf/target)
+/datum/action/ability/activable/xeno/psy_crush/proc/crush(turf/target)
 	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	var/crush_cost = ability_cost * current_iterations
 	if(crush_cost > xeno_owner.plasma_stored)
@@ -409,7 +409,7 @@
 	stop_crush()
 
 /// stops channeling and unregisters all listeners, resetting the ability
-/datum/action/ability/activable/xeno_action/psy_crush/proc/stop_crush()
+/datum/action/ability/activable/xeno/psy_crush/proc/stop_crush()
 	SIGNAL_HANDLER
 	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	if(channel_loop_timer)
@@ -433,7 +433,7 @@
 	UnregisterSignal(owner, list(SIGNAL_ADDTRAIT(TRAIT_FLOORED), SIGNAL_ADDTRAIT(TRAIT_INCAPACITATED)))
 
 ///Apply a filter on all items in the list of turfs
-/datum/action/ability/activable/xeno_action/psy_crush/proc/apply_filters(list/turfs)
+/datum/action/ability/activable/xeno/psy_crush/proc/apply_filters(list/turfs)
 	LAZYINITLIST(filters_applied)
 	for(var/turf/targeted AS in turfs)
 		targeted.add_filter("crushblur", 1, radial_blur_filter(0.3))
@@ -445,14 +445,14 @@
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "psy_crushes")
 
 ///Remove all filters of items in filters_applied
-/datum/action/ability/activable/xeno_action/psy_crush/proc/remove_all_filters()
+/datum/action/ability/activable/xeno/psy_crush/proc/remove_all_filters()
 	for(var/atom/thing AS in filters_applied)
 		if(QDELETED(thing))
 			continue
 		thing.remove_filter("crushblur")
 	filters_applied = null
 
-/datum/action/ability/activable/xeno_action/psy_crush/on_cooldown_finish()
+/datum/action/ability/activable/xeno/psy_crush/on_cooldown_finish()
 	owner.balloon_alert(owner, "Crush ready")
 	return ..()
 
@@ -489,7 +489,7 @@
 // ***************************************
 // *********** Psyblast
 // ***************************************
-/datum/action/ability/activable/xeno_action/psy_blast
+/datum/action/ability/activable/xeno/psy_blast
 	name = "Psychic Blast"
 	action_icon_state = "psy_blast"
 	desc = "Launch a blast of psychic energy that deals light damage and knocks back enemies in its AOE. Must remain stationary for a few seconds to use."
@@ -503,11 +503,11 @@
 	///The particle type that will be created when using this ability
 	var/particles/particle_type = /particles/warlock_charge/psy_blast
 
-/datum/action/ability/activable/xeno_action/psy_blast/on_cooldown_finish()
+/datum/action/ability/activable/xeno/psy_blast/on_cooldown_finish()
 	owner.balloon_alert(owner, "Psy blast ready")
 	return ..()
 
-/datum/action/ability/activable/xeno_action/psy_blast/action_activate()
+/datum/action/ability/activable/xeno/psy_blast/action_activate()
 	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	if(xeno_owner.selected_ability == src)
 		var/list/spit_types = xeno_owner.xeno_caste.spit_types
@@ -526,7 +526,7 @@
 	return ..()
 
 
-/datum/action/ability/activable/xeno_action/psy_blast/can_use_ability(atom/A, silent = FALSE, override_flags)
+/datum/action/ability/activable/xeno/psy_blast/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
 	if(!.)
 		return FALSE
@@ -540,7 +540,7 @@
 
 		return FALSE
 
-/datum/action/ability/activable/xeno_action/psy_blast/use_ability(atom/A)
+/datum/action/ability/activable/xeno/psy_blast/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	var/turf/target_turf = get_turf(A)
 
@@ -577,14 +577,14 @@
 	REMOVE_TRAIT(xeno_owner, TRAIT_IMMOBILE, PSYCHIC_BLAST_ABILITY_TRAIT)
 	addtimer(CALLBACK(src, PROC_REF(end_channel)), 5)
 
-/datum/action/ability/activable/xeno_action/psy_blast/update_button_icon()
+/datum/action/ability/activable/xeno/psy_blast/update_button_icon()
 	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	var/datum/ammo/energy/xeno/ammo_type = xeno_owner.ammo
 	action_icon_state = ammo_type.icon_state
 	return ..()
 
 //Generates particles and directs them towards target
-/datum/action/ability/activable/xeno_action/psy_blast/proc/generate_particles(atom/target, velocity)
+/datum/action/ability/activable/xeno/psy_blast/proc/generate_particles(atom/target, velocity)
 	var/angle = Get_Angle(get_turf(owner), get_turf(target)) //pixel offsets effect angles
 	var/x_component = sin(angle) * velocity
 	var/y_component = cos(angle) * velocity
@@ -598,7 +598,7 @@
 	particle_holder.particles.rotation = angle
 
 ///Cleans up when the channel finishes or is cancelled
-/datum/action/ability/activable/xeno_action/psy_blast/proc/end_channel()
+/datum/action/ability/activable/xeno/psy_blast/proc/end_channel()
 	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	QDEL_NULL(particle_holder)
 	xeno_owner.update_glow()

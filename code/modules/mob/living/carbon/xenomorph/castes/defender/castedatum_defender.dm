@@ -52,10 +52,10 @@
 	actions = list(
 		/datum/action/ability/xeno_action/xeno_resting,
 		/datum/action/ability/xeno_action/watch_xeno,
-		/datum/action/ability/activable/xeno_action/psydrain,
+		/datum/action/ability/activable/xeno/psydrain,
 		/datum/action/ability/xeno_action/toggle_crest_defense,
 		/datum/action/ability/xeno_action/fortify,
-		/datum/action/ability/activable/xeno_action/forward_charge,
+		/datum/action/ability/activable/xeno/forward_charge,
 		/datum/action/ability/xeno_action/tail_sweep,
 		/datum/action/ability/xeno_action/regenerate_skin,
 	)
@@ -72,10 +72,10 @@
 	actions = list(
 		/datum/action/ability/xeno_action/xeno_resting,
 		/datum/action/ability/xeno_action/watch_xeno,
-		/datum/action/ability/activable/xeno_action/psydrain,
+		/datum/action/ability/activable/xeno/psydrain,
 		/datum/action/ability/xeno_action/toggle_crest_defense,
 		/datum/action/ability/xeno_action/fortify,
-		/datum/action/ability/activable/xeno_action/forward_charge,
+		/datum/action/ability/activable/xeno/forward_charge,
 		/datum/action/ability/xeno_action/tail_sweep,
 		/datum/action/ability/xeno_action/regenerate_skin,
 		/datum/action/ability/xeno_action/centrifugal_force,

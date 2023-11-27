@@ -309,6 +309,7 @@
 #define COMSIG_TURF_RESUME_PROJECTILE_MOVE "resume_projetile"
 #define COMSIG_TURF_PROJECTILE_MANIPULATED "projectile_manipulated"
 #define COMSIG_TURF_CHECK_COVERED "turf_check_covered" //from /turf/open/liquid/Entered checking if something is covering the turf
+#define COMSIG_TURF_TELEPORT_CHECK "turf_teleport_check" //from /turf/proc/can_teleport_here()
 
 // /obj signals
 #define COMSIG_OBJ_SETANCHORED "obj_setanchored"				//called in /obj/structure/setAnchored(): (value)

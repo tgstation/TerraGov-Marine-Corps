@@ -10,7 +10,7 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_QUEEN_HIVE_MESSAGE,
 	)
-	use_state_flags = XACT_USE_LYING
+	use_state_flags = ABILITY_USE_LYING
 
 /datum/action/ability/xeno_action/hive_message/action_activate()
 	var/mob/living/carbon/xenomorph/queen/Q = owner
@@ -60,22 +60,22 @@
 // ***************************************
 // *********** Screech
 // ***************************************
-/datum/action/ability/activable/xeno_action/screech
+/datum/action/ability/activable/xeno/screech
 	name = "Screech"
 	action_icon_state = "screech"
 	desc = "A large area knockdown that causes pain and screen-shake."
 	ability_cost = 250
 	cooldown_duration = 100 SECONDS
-	keybind_flags = XACT_KEYBIND_USE_ABILITY
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_SCREECH,
 	)
 
-/datum/action/ability/activable/xeno_action/screech/on_cooldown_finish()
+/datum/action/ability/activable/xeno/screech/on_cooldown_finish()
 	to_chat(owner, span_warning("We feel our throat muscles vibrate. We are ready to screech again."))
 	return ..()
 
-/datum/action/ability/activable/xeno_action/screech/use_ability(atom/A)
+/datum/action/ability/activable/xeno/screech/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/queen/X = owner
 
 	//screech is so powerful it kills huggers in our hands
@@ -109,15 +109,15 @@
 			continue
 		L.screech_act(X, WORLD_VIEW_NUM, L in nearby_living)
 
-/datum/action/ability/activable/xeno_action/screech/ai_should_start_consider()
+/datum/action/ability/activable/xeno/screech/ai_should_start_consider()
 	return TRUE
 
-/datum/action/ability/activable/xeno_action/screech/ai_should_use(atom/target)
+/datum/action/ability/activable/xeno/screech/ai_should_use(atom/target)
 	if(!iscarbon(target))
 		return FALSE
 	if(get_dist(target, owner) > 4)
 		return FALSE
-	if(!can_use_ability(target, override_flags = XACT_IGNORE_SELECTED_ABILITY))
+	if(!can_use_ability(target, override_flags = ABILITY_IGNORE_SELECTED_ABILITY))
 		return FALSE
 	if(target.get_xeno_hivenumber() == owner.get_xeno_hivenumber())
 		return FALSE
@@ -131,7 +131,7 @@
 	action_icon_state = "watch_xeno"
 	desc = "See from the target Xenomorphs vision. Click again the ability to stop observing"
 	ability_cost = 0
-	use_state_flags = XACT_USE_LYING
+	use_state_flags = ABILITY_USE_LYING
 	var/overwatch_active = FALSE
 
 /datum/action/ability/xeno_action/watch_xeno/give_action(mob/living/L)
@@ -268,7 +268,7 @@
 	action_icon_state = "xeno_lead"
 	desc = "Make a target Xenomorph a leader."
 	ability_cost = 200
-	use_state_flags = XACT_USE_LYING
+	use_state_flags = ABILITY_USE_LYING
 
 /datum/action/ability/xeno_action/set_xeno_lead/should_show()
 	return FALSE // Leadership now set through hive status UI!
@@ -333,7 +333,7 @@
 // ***************************************
 // *********** Queen Acidic Salve
 // ***************************************
-/datum/action/ability/activable/xeno_action/psychic_cure/queen_give_heal
+/datum/action/ability/activable/xeno/psychic_cure/queen_give_heal
 	name = "Heal"
 	action_icon_state = "heal_xeno"
 	desc = "Apply a minor heal to the target."
@@ -343,9 +343,9 @@
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_QUEEN_HEAL,
 	)
 	heal_range = HIVELORD_HEAL_RANGE
-	target_flags = XABB_MOB_TARGET
+	target_flags = ABILITY_MOB_TARGET
 
-/datum/action/ability/activable/xeno_action/psychic_cure/queen_give_heal/use_ability(atom/target)
+/datum/action/ability/activable/xeno/psychic_cure/queen_give_heal/use_ability(atom/target)
 	if(owner.do_actions)
 		return FALSE
 	if(!do_mob(owner, target, 1 SECONDS, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
@@ -375,7 +375,7 @@
 // ***************************************
 // *********** Queen plasma
 // ***************************************
-/datum/action/ability/activable/xeno_action/queen_give_plasma
+/datum/action/ability/activable/xeno/queen_give_plasma
 	name = "Give Plasma"
 	action_icon_state = "queen_give_plasma"
 	desc = "Give plasma to a target Xenomorph (you must be overwatching them.)"
@@ -384,17 +384,17 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_QUEEN_GIVE_PLASMA,
 	)
-	use_state_flags = XACT_USE_LYING
-	target_flags = XABB_MOB_TARGET
+	use_state_flags = ABILITY_USE_LYING
+	target_flags = ABILITY_MOB_TARGET
 
-/datum/action/ability/activable/xeno_action/queen_give_plasma/can_use_ability(atom/target, silent = FALSE, override_flags)
+/datum/action/ability/activable/xeno/queen_give_plasma/can_use_ability(atom/target, silent = FALSE, override_flags)
 	. = ..()
 	if(!.)
 		return FALSE
 	if(!isxeno(target))
 		return FALSE
 	var/mob/living/carbon/xenomorph/receiver = target
-	if(!CHECK_BITFIELD(use_state_flags|override_flags, XACT_IGNORE_DEAD_TARGET) && receiver.stat == DEAD)
+	if(!CHECK_BITFIELD(use_state_flags|override_flags, ABILITY_IGNORE_DEAD_TARGET) && receiver.stat == DEAD)
 		if(!silent)
 			receiver.balloon_alert(owner, "Cannot give plasma, dead")
 		return FALSE
@@ -413,22 +413,22 @@
 		return FALSE
 
 
-/datum/action/ability/activable/xeno_action/queen_give_plasma/give_action(mob/living/L)
+/datum/action/ability/activable/xeno/queen_give_plasma/give_action(mob/living/L)
 	. = ..()
 	RegisterSignal(L, COMSIG_XENOMORPH_QUEEN_PLASMA, PROC_REF(try_use_ability))
 
-/datum/action/ability/activable/xeno_action/queen_give_plasma/remove_action(mob/living/L)
+/datum/action/ability/activable/xeno/queen_give_plasma/remove_action(mob/living/L)
 	. = ..()
 	UnregisterSignal(L, COMSIG_XENOMORPH_QUEEN_PLASMA)
 
 /// Signal handler for the queen_give_plasma action that checks can_use
-/datum/action/ability/activable/xeno_action/queen_give_plasma/proc/try_use_ability(datum/source, mob/living/carbon/xenomorph/target)
+/datum/action/ability/activable/xeno/queen_give_plasma/proc/try_use_ability(datum/source, mob/living/carbon/xenomorph/target)
 	SIGNAL_HANDLER
-	if(!can_use_ability(target, FALSE, XACT_IGNORE_SELECTED_ABILITY))
+	if(!can_use_ability(target, FALSE, ABILITY_IGNORE_SELECTED_ABILITY))
 		return
 	use_ability(target)
 
-/datum/action/ability/activable/xeno_action/queen_give_plasma/use_ability(atom/target)
+/datum/action/ability/activable/xeno/queen_give_plasma/use_ability(atom/target)
 	var/mob/living/carbon/xenomorph/receiver = target
 	add_cooldown()
 	receiver.gain_plasma(300)
@@ -470,7 +470,7 @@
 
 	var/obj/effect/abstract/particle_holder/aoe_particles = new(owner.loc, /particles/bulwark_aoe)
 	aoe_particles.particles.position = generator(GEN_SQUARE, 0, 16 + (BULWARK_RADIUS-1)*32, LINEAR_RAND)
-	while(do_after(owner, BULWARK_LOOP_TIME, BUSY_ICON_MEDICAL, extra_checks = CALLBACK(src, TYPE_PROC_REF(/datum/action, can_use_action), FALSE, XACT_IGNORE_COOLDOWN|XACT_USE_BUSY)))
+	while(do_after(owner, BULWARK_LOOP_TIME, BUSY_ICON_MEDICAL, extra_checks = CALLBACK(src, TYPE_PROC_REF(/datum/action, can_use_action), FALSE, ABILITY_IGNORE_COOLDOWN|ABILITY_USE_BUSY)))
 		succeed_activate()
 
 	aoe_particles.particles.spawning = 0

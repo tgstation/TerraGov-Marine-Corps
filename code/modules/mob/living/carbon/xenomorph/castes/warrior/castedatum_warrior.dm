@@ -46,12 +46,12 @@
 	actions = list(
 		/datum/action/ability/xeno_action/xeno_resting,
 		/datum/action/ability/xeno_action/watch_xeno,
-		/datum/action/ability/activable/xeno_action/psydrain,
+		/datum/action/ability/activable/xeno/psydrain,
 		/datum/action/ability/xeno_action/toggle_agility,
-		/datum/action/ability/activable/xeno_action/lunge,
-		/datum/action/ability/activable/xeno_action/fling,
-		/datum/action/ability/activable/xeno_action/toss,
-		/datum/action/ability/activable/xeno_action/punch,
+		/datum/action/ability/activable/xeno/lunge,
+		/datum/action/ability/activable/xeno/fling,
+		/datum/action/ability/activable/xeno/toss,
+		/datum/action/ability/activable/xeno/punch,
 	)
 
 /datum/xeno_caste/warrior/normal
@@ -66,11 +66,11 @@
 	actions = list(
 		/datum/action/ability/xeno_action/xeno_resting,
 		/datum/action/ability/xeno_action/watch_xeno,
-		/datum/action/ability/activable/xeno_action/psydrain,
+		/datum/action/ability/activable/xeno/psydrain,
 		/datum/action/ability/xeno_action/toggle_agility,
-		/datum/action/ability/activable/xeno_action/lunge,
-		/datum/action/ability/activable/xeno_action/fling,
-		/datum/action/ability/activable/xeno_action/toss,
-		/datum/action/ability/activable/xeno_action/punch,
-		/datum/action/ability/activable/xeno_action/punch/jab,
+		/datum/action/ability/activable/xeno/lunge,
+		/datum/action/ability/activable/xeno/fling,
+		/datum/action/ability/activable/xeno/toss,
+		/datum/action/ability/activable/xeno/punch,
+		/datum/action/ability/activable/xeno/punch/jab,
 	)

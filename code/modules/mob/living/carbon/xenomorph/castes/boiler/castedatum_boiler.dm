@@ -61,14 +61,14 @@
 	actions = list(
 		/datum/action/ability/xeno_action/xeno_resting,
 		/datum/action/ability/xeno_action/watch_xeno,
-		/datum/action/ability/activable/xeno_action/psydrain,
+		/datum/action/ability/activable/xeno/psydrain,
 		/datum/action/ability/xeno_action/place_acidwell,
-		/datum/action/ability/activable/xeno_action/corrosive_acid/strong,
+		/datum/action/ability/activable/xeno/corrosive_acid/strong,
 		/datum/action/ability/xeno_action/create_boiler_bomb,
-		/datum/action/ability/activable/xeno_action/bombard,
+		/datum/action/ability/activable/xeno/bombard,
 		/datum/action/ability/xeno_action/toggle_long_range,
 		/datum/action/ability/xeno_action/toggle_bomb,
-		/datum/action/ability/activable/xeno_action/spray_acid/line/boiler,
+		/datum/action/ability/activable/xeno/spray_acid/line/boiler,
 	)
 
 /datum/xeno_caste/boiler/normal
@@ -86,12 +86,12 @@
 	actions = list(
 		/datum/action/ability/xeno_action/xeno_resting,
 		/datum/action/ability/xeno_action/watch_xeno,
-		/datum/action/ability/activable/xeno_action/psydrain,
+		/datum/action/ability/activable/xeno/psydrain,
 		/datum/action/ability/xeno_action/place_acidwell,
-		/datum/action/ability/activable/xeno_action/corrosive_acid/strong,
+		/datum/action/ability/activable/xeno/corrosive_acid/strong,
 		/datum/action/ability/xeno_action/create_boiler_bomb,
-		/datum/action/ability/activable/xeno_action/bombard,
+		/datum/action/ability/activable/xeno/bombard,
 		/datum/action/ability/xeno_action/toggle_long_range,
 		/datum/action/ability/xeno_action/toggle_bomb,
-		/datum/action/ability/activable/xeno_action/spray_acid/line/boiler,
+		/datum/action/ability/activable/xeno/spray_acid/line/boiler,
 	)

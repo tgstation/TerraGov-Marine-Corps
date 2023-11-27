@@ -390,9 +390,9 @@
 		. += "Railgun status: Railgun is ready to fire."
 
 		if(last_ai_bioscan + COOLDOWN_AI_BIOSCAN > world.time)
-			stat("AI bioscan status:", "Instruments recalibrating, next scan in [(last_ai_bioscan  + COOLDOWN_AI_BIOSCAN - world.time)/10] seconds.") //about 10 minutes
+			. += "AI bioscan status: Instruments recalibrating, next scan in [(last_ai_bioscan  + COOLDOWN_AI_BIOSCAN - world.time)/10] seconds." //about 10 minutes
 		else
-			stat("AI bioscan status:", "Instruments are ready to scan the planet.")
+			. += "AI bioscan status: Instruments are ready to scan the planet."
 
 /mob/living/silicon/ai/fully_replace_character_name(oldname, newname)
 	. = ..()

@@ -44,9 +44,9 @@
 	actions = list(
 		/datum/action/ability/xeno_action/xeno_resting,
 		/datum/action/ability/xeno_action/watch_xeno,
-		/datum/action/ability/activable/xeno_action/psydrain,
-		/datum/action/ability/activable/xeno_action/charge,
-		/datum/action/ability/activable/xeno_action/ravage,
+		/datum/action/ability/activable/xeno/psydrain,
+		/datum/action/ability/activable/xeno/charge,
+		/datum/action/ability/activable/xeno/ravage,
 		/datum/action/ability/xeno_action/endure,
 		/datum/action/ability/xeno_action/rage,
 	)
@@ -74,9 +74,9 @@
 	actions = list(
 		/datum/action/ability/xeno_action/xeno_resting,
 		/datum/action/ability/xeno_action/watch_xeno,
-		/datum/action/ability/activable/xeno_action/psydrain,
-		/datum/action/ability/activable/xeno_action/charge,
-		/datum/action/ability/activable/xeno_action/ravage,
+		/datum/action/ability/activable/xeno/psydrain,
+		/datum/action/ability/activable/xeno/charge,
+		/datum/action/ability/activable/xeno/ravage,
 		/datum/action/ability/xeno_action/endure,
 		/datum/action/ability/xeno_action/rage,
 		/datum/action/ability/xeno_action/vampirism,

@@ -45,10 +45,10 @@
 	actions = list(
 		/datum/action/ability/xeno_action/xeno_resting,
 		/datum/action/ability/xeno_action/watch_xeno,
-		/datum/action/ability/activable/xeno_action/psydrain,
-		/datum/action/ability/activable/xeno_action/stomp,
+		/datum/action/ability/activable/xeno/psydrain,
+		/datum/action/ability/activable/xeno/stomp,
 		/datum/action/ability/xeno_action/ready_charge,
-		/datum/action/ability/activable/xeno_action/cresttoss,
+		/datum/action/ability/activable/xeno/cresttoss,
 	)
 
 /datum/xeno_caste/crusher/on_caste_applied(mob/xenomorph)
@@ -73,9 +73,9 @@
 	actions = list(
 		/datum/action/ability/xeno_action/xeno_resting,
 		/datum/action/ability/xeno_action/watch_xeno,
-		/datum/action/ability/activable/xeno_action/psydrain,
-		/datum/action/ability/activable/xeno_action/stomp,
+		/datum/action/ability/activable/xeno/psydrain,
+		/datum/action/ability/activable/xeno/stomp,
 		/datum/action/ability/xeno_action/ready_charge,
-		/datum/action/ability/activable/xeno_action/cresttoss,
-		/datum/action/ability/activable/xeno_action/advance,
+		/datum/action/ability/activable/xeno/cresttoss,
+		/datum/action/ability/activable/xeno/advance,
 	)

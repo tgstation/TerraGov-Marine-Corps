@@ -1,7 +1,7 @@
 // ***************************************
 // *********** Charge
 // ***************************************
-/datum/action/ability/activable/xeno_action/charge
+/datum/action/ability/activable/xeno/charge
 	name = "Eviscerating Charge"
 	action_icon_state = "pounce"
 	desc = "Charge up to 4 tiles and viciously attack your target."
@@ -11,11 +11,11 @@
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_RAVAGER_CHARGE,
 	)
 
-/datum/action/ability/activable/xeno_action/charge/proc/charge_complete()
+/datum/action/ability/activable/xeno/charge/proc/charge_complete()
 	SIGNAL_HANDLER
 	UnregisterSignal(owner, list(COMSIG_XENO_OBJ_THROW_HIT, COMSIG_MOVABLE_POST_THROW, COMSIG_XENO_LIVING_THROW_HIT))
 
-/datum/action/ability/activable/xeno_action/charge/proc/obj_hit(datum/source, obj/target, speed)
+/datum/action/ability/activable/xeno/charge/proc/obj_hit(datum/source, obj/target, speed)
 	SIGNAL_HANDLER
 	if(istype(target, /obj/structure/table))
 		var/obj/structure/S = target
@@ -26,27 +26,27 @@
 	target.hitby(owner, speed) //This resets throwing.
 	charge_complete()
 
-/datum/action/ability/activable/xeno_action/charge/proc/mob_hit(datum/source, mob/M)
+/datum/action/ability/activable/xeno/charge/proc/mob_hit(datum/source, mob/M)
 	SIGNAL_HANDLER
 	if(M.stat || isxeno(M))
 		return
 	return COMPONENT_KEEP_THROWING //Ravagers plow straight through humans; we only stop on hitting a dense turf
 
-/datum/action/ability/activable/xeno_action/charge/can_use_ability(atom/A, silent = FALSE, override_flags)
+/datum/action/ability/activable/xeno/charge/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
 	if(!.)
 		return FALSE
 	if(!A)
 		return FALSE
 
-/datum/action/ability/activable/xeno_action/charge/on_cooldown_finish()
+/datum/action/ability/activable/xeno/charge/on_cooldown_finish()
 	to_chat(owner, span_xenodanger("Our exoskeleton quivers as we get ready to use Eviscerating Charge again."))
 	playsound(owner, "sound/effects/xeno_newlarva.ogg", 50, 0, 1)
 	var/mob/living/carbon/xenomorph/ravager/X = owner
 	X.usedPounce = FALSE
 	return ..()
 
-/datum/action/ability/activable/xeno_action/charge/use_ability(atom/A)
+/datum/action/ability/activable/xeno/charge/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/ravager/X = owner
 
 	RegisterSignal(X, COMSIG_XENO_OBJ_THROW_HIT, PROC_REF(obj_hit))
@@ -63,15 +63,15 @@
 
 	add_cooldown()
 
-/datum/action/ability/activable/xeno_action/charge/ai_should_start_consider()
+/datum/action/ability/activable/xeno/charge/ai_should_start_consider()
 	return TRUE
 
-/datum/action/ability/activable/xeno_action/charge/ai_should_use(atom/target)
+/datum/action/ability/activable/xeno/charge/ai_should_use(atom/target)
 	if(!iscarbon(target))
 		return FALSE
 	if(!line_of_sight(owner, target, 4))
 		return FALSE
-	if(!can_use_ability(target, override_flags = XACT_IGNORE_SELECTED_ABILITY))
+	if(!can_use_ability(target, override_flags = ABILITY_IGNORE_SELECTED_ABILITY))
 		return FALSE
 	if(target.get_xeno_hivenumber() == owner.get_xeno_hivenumber())
 		return FALSE
@@ -81,13 +81,13 @@
 // ***************************************
 // *********** Ravage
 // ***************************************
-/datum/action/ability/activable/xeno_action/ravage
+/datum/action/ability/activable/xeno/ravage
 	name = "Ravage"
 	action_icon_state = "ravage"
 	desc = "Attacks and knockbacks enemies in the direction your facing."
 	ability_cost = 200
 	cooldown_duration = 6 SECONDS
-	keybind_flags = XACT_KEYBIND_USE_ABILITY | XACT_IGNORE_SELECTED_ABILITY
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY | ABILITY_IGNORE_SELECTED_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_RAVAGE,
 		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_RAVAGE_SELECT,
@@ -95,12 +95,12 @@
 	/// Used for particles. Holds the particles instead of the mob. See particle_holder for documentation.
 	var/obj/effect/abstract/particle_holder/particle_holder
 
-/datum/action/ability/activable/xeno_action/ravage/on_cooldown_finish()
+/datum/action/ability/activable/xeno/ravage/on_cooldown_finish()
 	to_chat(owner, span_xenodanger("We gather enough strength to Ravage again."))
 	playsound(owner, "sound/effects/xeno_newlarva.ogg", 50, 0, 1)
 	return ..()
 
-/datum/action/ability/activable/xeno_action/ravage/use_ability(atom/A)
+/datum/action/ability/activable/xeno/ravage/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/ravager/X = owner
 
 	X.emote("roar")
@@ -133,7 +133,7 @@
 	add_cooldown()
 
 /// Handles the activation and deactivation of particles, as well as their appearance.
-/datum/action/ability/activable/xeno_action/ravage/proc/activate_particles(direction) // This could've been an animate()!
+/datum/action/ability/activable/xeno/ravage/proc/activate_particles(direction) // This could've been an animate()!
 	particle_holder = new(get_turf(owner), /particles/ravager_slash)
 	QDEL_NULL_IN(src, particle_holder, 5)
 	particle_holder.particles.rotation += dir2angle(direction)
@@ -151,15 +151,15 @@
 			particle_holder.particles.position = list(-4, 9)
 			particle_holder.particles.velocity = list(-20, 0)
 
-/datum/action/ability/activable/xeno_action/ravage/ai_should_start_consider()
+/datum/action/ability/activable/xeno/ravage/ai_should_start_consider()
 	return TRUE
 
-/datum/action/ability/activable/xeno_action/ravage/ai_should_use(atom/target)
+/datum/action/ability/activable/xeno/ravage/ai_should_use(atom/target)
 	if(!iscarbon(target))
 		return FALSE
 	if(get_dist(target, owner) > 1)
 		return FALSE
-	if(!can_use_ability(target, override_flags = XACT_IGNORE_SELECTED_ABILITY))
+	if(!can_use_ability(target, override_flags = ABILITY_IGNORE_SELECTED_ABILITY))
 		return FALSE
 	if(target.get_xeno_hivenumber() == owner.get_xeno_hivenumber())
 		return FALSE
@@ -191,7 +191,7 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_ENDURE,
 	)
-	use_state_flags = XACT_USE_STAGGERED //Can use this while staggered
+	use_state_flags = ABILITY_USE_STAGGERED //Can use this while staggered
 	///How low the Ravager's health can go while under the effects of Endure before it dies
 	var/endure_threshold = RAVAGER_ENDURE_HP_LIMIT
 	///Timer for Endure's duration
@@ -292,7 +292,7 @@
 		return FALSE
 	if(X.health > 50)
 		return FALSE
-	if(!can_use_action(override_flags = XACT_IGNORE_SELECTED_ABILITY))
+	if(!can_use_action(override_flags = ABILITY_IGNORE_SELECTED_ABILITY))
 		return FALSE
 	return TRUE
 
@@ -305,7 +305,7 @@
 	desc = "Use while at 50% health or lower to gain extra slash damage, resistances and speed in proportion to your missing hit points. This bonus is increased and you regain plasma while your HP is negative."
 	ability_cost = 0 //We're limited by cooldowns, not plasma
 	cooldown_duration = 60 SECONDS
-	keybind_flags = XACT_KEYBIND_USE_ABILITY | XACT_IGNORE_SELECTED_ABILITY
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY | ABILITY_IGNORE_SELECTED_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_RAGE,
 	)
@@ -354,8 +354,8 @@
 
 	var/bonus_duration
 	if(rage_power >= RAVAGER_RAGE_SUPER_RAGE_THRESHOLD) //If we're super pissed it's time to get crazy
-		var/datum/action/ability/xeno_action/charge = X.actions_by_path[/datum/action/ability/activable/xeno_action/charge]
-		var/datum/action/ability/xeno_action/ravage = X.actions_by_path[/datum/action/ability/activable/xeno_action/ravage]
+		var/datum/action/ability/xeno_action/charge = X.actions_by_path[/datum/action/ability/activable/xeno/charge]
+		var/datum/action/ability/xeno_action/ravage = X.actions_by_path[/datum/action/ability/activable/xeno/ravage]
 		var/datum/action/ability/xeno_action/endure/endure_ability = X.actions_by_path[/datum/action/ability/xeno_action/endure]
 
 		if(endure_ability.endure_duration) //Check if Endure is active
@@ -497,7 +497,7 @@
 	desc = "Toggle on to enable boosting on "
 	ability_cost = 0 //We're limited by nothing, rip and tear
 	cooldown_duration = 1 SECONDS
-	keybind_flags = XACT_KEYBIND_USE_ABILITY | XACT_IGNORE_SELECTED_ABILITY
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY | ABILITY_IGNORE_SELECTED_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_VAMPIRISM,
 	)

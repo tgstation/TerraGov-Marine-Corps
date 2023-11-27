@@ -33,16 +33,16 @@
 	actions = list(
 		/datum/action/ability/xeno_action/xeno_resting,
 		/datum/action/ability/xeno_action/watch_xeno,
-		/datum/action/ability/activable/xeno_action/psydrain/free,
-		/datum/action/ability/activable/xeno_action/flay,
-		/datum/action/ability/activable/xeno_action/pincushion,
+		/datum/action/ability/activable/xeno/psydrain/free,
+		/datum/action/ability/activable/xeno/flay,
+		/datum/action/ability/activable/xeno/pincushion,
 		/datum/action/ability/xeno_action/dreadful_presence,
-		/datum/action/ability/activable/xeno_action/refurbish_husk,
-		/datum/action/ability/activable/xeno_action/puppet,
-		/datum/action/ability/activable/xeno_action/organic_bomb,
+		/datum/action/ability/activable/xeno/refurbish_husk,
+		/datum/action/ability/activable/xeno/puppet,
+		/datum/action/ability/activable/xeno/organic_bomb,
 		/datum/action/ability/xeno_action/puppeteer_orders,
-		/datum/action/ability/activable/xeno_action/articulate,
-		/datum/action/ability/activable/xeno_action/puppet_blessings,
+		/datum/action/ability/activable/xeno/articulate,
+		/datum/action/ability/activable/xeno/puppet_blessings,
 	)
 
 /datum/xeno_caste/puppeteer/normal
@@ -62,17 +62,17 @@
 	actions = list(
 		/datum/action/ability/xeno_action/xeno_resting,
 		/datum/action/ability/xeno_action/watch_xeno,
-		/datum/action/ability/activable/xeno_action/psydrain/free,
-		/datum/action/ability/activable/xeno_action/flay,
-		/datum/action/ability/activable/xeno_action/pincushion,
+		/datum/action/ability/activable/xeno/psydrain/free,
+		/datum/action/ability/activable/xeno/flay,
+		/datum/action/ability/activable/xeno/pincushion,
 		/datum/action/ability/xeno_action/dreadful_presence,
-		/datum/action/ability/activable/xeno_action/refurbish_husk,
-		/datum/action/ability/activable/xeno_action/puppet,
-		/datum/action/ability/activable/xeno_action/organic_bomb,
-		/datum/action/ability/activable/xeno_action/tendril_patch,
+		/datum/action/ability/activable/xeno/refurbish_husk,
+		/datum/action/ability/activable/xeno/puppet,
+		/datum/action/ability/activable/xeno/organic_bomb,
+		/datum/action/ability/activable/xeno/tendril_patch,
 		/datum/action/ability/xeno_action/puppeteer_orders,
-		/datum/action/ability/activable/xeno_action/articulate,
-		/datum/action/ability/activable/xeno_action/puppet_blessings,
+		/datum/action/ability/activable/xeno/articulate,
+		/datum/action/ability/activable/xeno/puppet_blessings,
 	)
 
 	aura_strength = 3

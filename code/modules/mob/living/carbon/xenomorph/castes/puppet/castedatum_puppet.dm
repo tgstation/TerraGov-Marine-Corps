@@ -20,5 +20,5 @@
 
 	actions = list(
 		/datum/action/ability/xeno_action/xeno_resting,
-		/datum/action/ability/activable/xeno_action/feed,
+		/datum/action/ability/activable/xeno/feed,
 	)

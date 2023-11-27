@@ -6,18 +6,18 @@
 // ***************************************
 // *********** Recycle
 // ***************************************
-/datum/action/ability/activable/xeno_action/recycle
+/datum/action/ability/activable/xeno/recycle
 	name = "Recycle"
 	action_icon_state = "recycle"
 	desc = "We deconstruct the body of a fellow fallen xenomorph to avoid marines from harvesting our sisters in arms."
-	use_state_flags = XACT_USE_STAGGERED //can't use while staggered, defender fortified or crest down
+	use_state_flags = ABILITY_USE_STAGGERED //can't use while staggered, defender fortified or crest down
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_RECYCLE,
 	)
 	ability_cost = 750
 	gamemode_flags = ABILITY_NUCLEARWAR
 
-/datum/action/ability/activable/xeno_action/recycle/can_use_ability(atom/target, silent = FALSE, override_flags)
+/datum/action/ability/activable/xeno/recycle/can_use_ability(atom/target, silent = FALSE, override_flags)
 	. = ..()
 	var/mob/living/carbon/xenomorph/hivelord = owner
 	var/mob/living/carbon/xenomorph/victim = target
@@ -40,13 +40,13 @@
 			hivelord.balloon_alert(hivelord, "Sister isn't dead")
 		return FALSE
 
-/datum/action/ability/activable/xeno_action/recycle/use_ability(atom/target)
+/datum/action/ability/activable/xeno/recycle/use_ability(atom/target)
 	var/mob/living/carbon/xenomorph/recycled_xeno = target
 	var/mob/living/carbon/xenomorph/hivelord = owner
 	hivelord.face_atom(recycled_xeno) //Face towards the target so we don't look silly
 	hivelord.visible_message(span_warning("\The [hivelord] starts breaking apart \the [recycled_xeno]'s carcass."), \
 	span_danger("We slowly deconstruct upon \the [recycled_xeno]'s carcass!"), null, 20)
-	if(!do_after(owner, 7 SECONDS, FALSE, recycled_xeno, BUSY_ICON_GENERIC, extra_checks = CALLBACK(src, PROC_REF(can_use_ability), target, TRUE, XACT_USE_BUSY)))
+	if(!do_after(owner, 7 SECONDS, FALSE, recycled_xeno, BUSY_ICON_GENERIC, extra_checks = CALLBACK(src, PROC_REF(can_use_ability), target, TRUE, ABILITY_USE_BUSY)))
 		return
 
 	hivelord.record_recycle_points(recycled_xeno)
@@ -61,7 +61,7 @@
 // ***************************************
 // *********** Resin building
 // ***************************************
-/datum/action/ability/activable/xeno_action/secrete_resin/hivelord
+/datum/action/ability/activable/xeno/secrete_resin/hivelord
 	ability_cost = 100
 	buildable_structures = list(
 		/turf/closed/wall/resin/regenerating/thick,
@@ -80,7 +80,7 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_RESIN_WALKER,
 	)
-	use_state_flags = XACT_USE_LYING
+	use_state_flags = ABILITY_USE_LYING
 	action_type = ACTION_TOGGLE
 	var/speed_activated = FALSE
 	var/speed_bonus_active = FALSE
@@ -230,7 +230,7 @@
 // ***************************************
 // *********** plasma transfer
 // ***************************************
-/datum/action/ability/activable/xeno_action/transfer_plasma/improved
+/datum/action/ability/activable/xeno/transfer_plasma/improved
 	plasma_transfer_amount = PLASMA_TRANSFER_AMOUNT * 4
 	transfer_delay = 0.5 SECONDS
 	max_range = 7
@@ -305,7 +305,7 @@
 // ***************************************
 // *********** Healing Infusion
 // ***************************************
-/datum/action/ability/activable/xeno_action/healing_infusion
+/datum/action/ability/activable/xeno/healing_infusion
 	name = "Healing Infusion"
 	action_icon_state = "healing_infusion"
 	desc = "Psychically infuses a friendly xeno with regenerative energies, greatly improving its natural healing. Doesn't work if the target can't naturally heal."
@@ -314,11 +314,11 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_HEALING_INFUSION,
 	)
-	use_state_flags = XACT_USE_LYING
-	target_flags = XABB_MOB_TARGET
+	use_state_flags = ABILITY_USE_LYING
+	target_flags = ABILITY_MOB_TARGET
 	var/heal_range = HIVELORD_HEAL_RANGE
 
-/datum/action/ability/activable/xeno_action/healing_infusion/can_use_ability(atom/target, silent = FALSE, override_flags)
+/datum/action/ability/activable/xeno/healing_infusion/can_use_ability(atom/target, silent = FALSE, override_flags)
 	. = ..()
 	if(!.)
 		return
@@ -329,7 +329,7 @@
 		return FALSE
 	var/mob/living/carbon/xenomorph/patient = target
 
-	if(!CHECK_BITFIELD(use_state_flags|override_flags, XACT_IGNORE_DEAD_TARGET) && patient.stat == DEAD)
+	if(!CHECK_BITFIELD(use_state_flags|override_flags, ABILITY_IGNORE_DEAD_TARGET) && patient.stat == DEAD)
 		if(!silent)
 			target.balloon_alert(owner, "Cannot heal, dead")
 		return FALSE
@@ -343,7 +343,7 @@
 		return FALSE
 
 
-/datum/action/ability/activable/xeno_action/healing_infusion/proc/check_distance(atom/target, silent)
+/datum/action/ability/activable/xeno/healing_infusion/proc/check_distance(atom/target, silent)
 	var/dist = get_dist(owner, target)
 	if(dist > heal_range)
 		if(!silent)
@@ -357,7 +357,7 @@
 	return TRUE
 
 
-/datum/action/ability/activable/xeno_action/healing_infusion/use_ability(atom/target)
+/datum/action/ability/activable/xeno/healing_infusion/use_ability(atom/target)
 	if(owner.do_actions)
 		return FALSE
 
@@ -395,7 +395,7 @@
 	desc = "Sow the seeds of an alien plant."
 	ability_cost = 200
 	cooldown_duration = 45 SECONDS
-	use_state_flags = XACT_USE_LYING
+	use_state_flags = ABILITY_USE_LYING
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_DROP_PLANT,
 		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_CHOOSE_PLANT,

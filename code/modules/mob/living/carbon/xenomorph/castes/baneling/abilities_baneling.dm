@@ -157,7 +157,7 @@
 // ***************************************
 // *********** Dash explosion
 // ***************************************
-/datum/action/ability/activable/xeno_action/dash_explosion
+/datum/action/ability/activable/xeno/dash_explosion
 	name = "Dash Explosion"
 	action_icon_state = "dash_explosion"
 	desc = "Wind up and charge in a direction, detonating yourself on impact."
@@ -168,17 +168,17 @@
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_BANELING_DASH_EXPLOSION,
 	)
 
-/datum/action/ability/activable/xeno_action/dash_explosion/use_ability(atom/A)
+/datum/action/ability/activable/xeno/dash_explosion/use_ability(atom/A)
 	. = ..()
 	var/mob/living/carbon/xenomorph/X = owner
-	if(!do_after(X, 1 SECONDS, FALSE, X, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(can_use_ability), A, FALSE, XACT_USE_BUSY)))
+	if(!do_after(X, 1 SECONDS, FALSE, X, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(can_use_ability), A, FALSE, ABILITY_USE_BUSY)))
 		return fail_activate()
 	RegisterSignals(X, list(COMSIG_MOVABLE_POST_THROW, COMSIG_XENO_OBJ_THROW_HIT), PROC_REF(charge_complete))
 	RegisterSignal(X, COMSIG_XENO_LIVING_THROW_HIT, PROC_REF(mob_hit))
 	X.throw_at(A, range, 7, X)
 
 /// Whenever we hit something living, if its a human we knock them down for 2 seconds and keep throwing ourselves. If we hit xeno, we get blocked and explode on them
-/datum/action/ability/activable/xeno_action/dash_explosion/proc/mob_hit(datum/source, mob/M)
+/datum/action/ability/activable/xeno/dash_explosion/proc/mob_hit(datum/source, mob/M)
 	SIGNAL_HANDLER
 	if(ishuman(M))
 		var/mob/living/carbon/human/victim = M
@@ -186,7 +186,7 @@
 	return COMPONENT_KEEP_THROWING
 
 /// In here we finish the charge and unregister signals, then we emit smoke and then we kill ourselves
-/datum/action/ability/activable/xeno_action/dash_explosion/proc/charge_complete()
+/datum/action/ability/activable/xeno/dash_explosion/proc/charge_complete()
 	SIGNAL_HANDLER
 	var/mob/living/carbon/xenomorph/X = owner
 	UnregisterSignal(X, list(COMSIG_XENO_OBJ_THROW_HIT, COMSIG_XENO_LIVING_THROW_HIT, COMSIG_MOVABLE_POST_THROW))
@@ -196,4 +196,4 @@
 	X.death(FALSE)
 
 /datum/action/ability/xeno_action/watch_xeno/baneling
-	use_state_flags = XACT_USE_LYING|XACT_USE_NOTTURF|XACT_USE_INCAP
+	use_state_flags = ABILITY_USE_LYING|ABILITY_USE_NOTTURF|ABILITY_USE_INCAP

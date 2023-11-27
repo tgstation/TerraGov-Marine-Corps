@@ -12,7 +12,7 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_CALL_OF_THE_BURROWED,
 	)
-	use_state_flags = XACT_USE_LYING
+	use_state_flags = ABILITY_USE_LYING
 
 
 /datum/action/ability/xeno_action/call_of_the_burrowed/action_activate()
@@ -54,7 +54,7 @@
 // ***************************************
 // *********** Psychic Fling
 // ***************************************
-/datum/action/ability/activable/xeno_action/psychic_fling
+/datum/action/ability/activable/xeno/psychic_fling
 	name = "Psychic Fling"
 	action_icon_state = "fling"
 	desc = "Sends an enemy or an item flying. A close ranged ability."
@@ -63,15 +63,15 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PSYCHIC_FLING,
 	)
-	target_flags = XABB_MOB_TARGET
+	target_flags = ABILITY_MOB_TARGET
 
 
-/datum/action/ability/activable/xeno_action/psychic_fling/on_cooldown_finish()
+/datum/action/ability/activable/xeno/psychic_fling/on_cooldown_finish()
 	to_chat(owner, span_notice("We gather enough mental strength to fling something again."))
 	return ..()
 
 
-/datum/action/ability/activable/xeno_action/psychic_fling/can_use_ability(atom/target, silent = FALSE, override_flags)
+/datum/action/ability/activable/xeno/psychic_fling/can_use_ability(atom/target, silent = FALSE, override_flags)
 	. = ..()
 	if(!.)
 		return FALSE
@@ -88,11 +88,11 @@
 		var/mob/living/carbon/human/victim = target
 		if(isnestedhost(victim))
 			return FALSE
-		if(!CHECK_BITFIELD(use_state_flags|override_flags, XACT_IGNORE_DEAD_TARGET) && victim.stat == DEAD)
+		if(!CHECK_BITFIELD(use_state_flags|override_flags, ABILITY_IGNORE_DEAD_TARGET) && victim.stat == DEAD)
 			return FALSE
 
 
-/datum/action/ability/activable/xeno_action/psychic_fling/use_ability(atom/target)
+/datum/action/ability/activable/xeno/psychic_fling/use_ability(atom/target)
 	var/mob/living/victim = target
 	GLOB.round_statistics.psychic_flings++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "psychic_flings")
@@ -137,25 +137,25 @@
 // ***************************************
 // *********** Unrelenting Force
 // ***************************************
-/datum/action/ability/activable/xeno_action/unrelenting_force
+/datum/action/ability/activable/xeno/unrelenting_force
 	name = "Unrelenting Force"
 	action_icon_state = "screech"
 	desc = "Unleashes our raw psychic power, pushing aside anyone who stands in our path."
 	cooldown_duration = 50 SECONDS
 	ability_cost = 300
-	keybind_flags = XACT_KEYBIND_USE_ABILITY | XACT_IGNORE_SELECTED_ABILITY
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY | ABILITY_IGNORE_SELECTED_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_UNRELENTING_FORCE,
 		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_UNRELENTING_FORCE_SELECT,
 	)
 
 
-/datum/action/ability/activable/xeno_action/unrelenting_force/on_cooldown_finish()
+/datum/action/ability/activable/xeno/unrelenting_force/on_cooldown_finish()
 	to_chat(owner, span_notice("Our mind is ready to unleash another blast of force."))
 	return ..()
 
 
-/datum/action/ability/activable/xeno_action/unrelenting_force/use_ability(atom/target)
+/datum/action/ability/activable/xeno/unrelenting_force/use_ability(atom/target)
 	succeed_activate()
 	add_cooldown()
 	addtimer(CALLBACK(owner, TYPE_PROC_REF(/mob, update_icons)), 1 SECONDS)
@@ -219,7 +219,7 @@
 // ***************************************
 // *********** Psychic Cure
 // ***************************************
-/datum/action/ability/activable/xeno_action/psychic_cure
+/datum/action/ability/activable/xeno/psychic_cure
 	name = "Psychic Cure"
 	action_icon_state = "heal_xeno"
 	desc = "Heal and remove debuffs from a target."
@@ -229,15 +229,15 @@
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PSYCHIC_CURE,
 	)
 	var/heal_range = SHRIKE_HEAL_RANGE
-	target_flags = XABB_MOB_TARGET
+	target_flags = ABILITY_MOB_TARGET
 
 
-/datum/action/ability/activable/xeno_action/psychic_cure/on_cooldown_finish()
+/datum/action/ability/activable/xeno/psychic_cure/on_cooldown_finish()
 	to_chat(owner, span_notice("We gather enough mental strength to cure sisters again."))
 	return ..()
 
 
-/datum/action/ability/activable/xeno_action/psychic_cure/can_use_ability(atom/target, silent = FALSE, override_flags)
+/datum/action/ability/activable/xeno/psychic_cure/can_use_ability(atom/target, silent = FALSE, override_flags)
 	. = ..()
 	if(!.)
 		return FALSE
@@ -248,13 +248,13 @@
 	if(!isxeno(target))
 		return FALSE
 	var/mob/living/carbon/xenomorph/patient = target
-	if(!CHECK_BITFIELD(use_state_flags|override_flags, XACT_IGNORE_DEAD_TARGET) && patient.stat == DEAD)
+	if(!CHECK_BITFIELD(use_state_flags|override_flags, ABILITY_IGNORE_DEAD_TARGET) && patient.stat == DEAD)
 		if(!silent)
 			to_chat(owner, span_warning("It's too late. This sister won't be coming back."))
 		return FALSE
 
 
-/datum/action/ability/activable/xeno_action/psychic_cure/proc/check_distance(atom/target, silent)
+/datum/action/ability/activable/xeno/psychic_cure/proc/check_distance(atom/target, silent)
 	var/dist = get_dist(owner, target)
 	if(dist > heal_range)
 		to_chat(owner, span_warning("Too far for our reach... We need to be [dist - heal_range] steps closer!"))
@@ -265,7 +265,7 @@
 	return TRUE
 
 
-/datum/action/ability/activable/xeno_action/psychic_cure/use_ability(atom/target)
+/datum/action/ability/activable/xeno/psychic_cure/use_ability(atom/target)
 	if(owner.do_actions)
 		return FALSE
 
@@ -355,13 +355,13 @@
 #define VORTEX_RANGE 4
 #define VORTEX_INITIAL_CHARGE 2 SECONDS
 #define VORTEX_POST_INITIAL_CHARGE 0.5 SECONDS
-/datum/action/ability/activable/xeno_action/psychic_vortex
+/datum/action/ability/activable/xeno/psychic_vortex
 	name = "Pyschic vortex"
 	action_icon_state = "vortex"
 	desc = "Channel a sizable vortex of psychic energy, drawing in nearby enemies."
 	ability_cost = 600
 	cooldown_duration = 2 MINUTES
-	keybind_flags = XACT_KEYBIND_USE_ABILITY
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PSYCHIC_VORTEX,
 	)
@@ -370,11 +370,11 @@
 	///The particle type this ability uses
 	var/channel_particle = /particles/warlock_charge
 
-/datum/action/ability/activable/xeno_action/psychic_vortex/on_cooldown_finish()
+/datum/action/ability/activable/xeno/psychic_vortex/on_cooldown_finish()
 	to_chat(owner, span_notice("Our mind is ready to unleash another chaotic vortex of energy."))
 	return ..()
 
-/datum/action/ability/activable/xeno_action/psychic_vortex/use_ability(atom/target)
+/datum/action/ability/activable/xeno/psychic_vortex/use_ability(atom/target)
 	succeed_activate()
 	add_cooldown()
 
@@ -400,7 +400,7 @@
  * Checks for any non-anchored movable atom, throwing them towards the shrike/owner using the ability.
  * While causing shake to anything in range with effects applied to humans affected.
  */
-/datum/action/ability/activable/xeno_action/psychic_vortex/proc/vortex_pull()
+/datum/action/ability/activable/xeno/psychic_vortex/proc/vortex_pull()
 	playsound(owner, 'sound/effects/seedling_chargeup.ogg', 60)
 	for(var/atom/movable/movable_victim in range(VORTEX_RANGE, owner.loc))
 		if(movable_victim.anchored || isxeno(movable_victim) || movable_victim.move_resist > MOVE_FORCE_STRONG)
@@ -419,7 +419,7 @@
 		movable_victim.throw_at(owner, 4, 1, owner, FALSE, FALSE)
 
 /// Randomly throws movable atoms in the radius of the vortex abilites range, different each use.
-/datum/action/ability/activable/xeno_action/psychic_vortex/proc/vortex_push()
+/datum/action/ability/activable/xeno/psychic_vortex/proc/vortex_push()
 	for(var/atom/movable/movable_victim in range(VORTEX_RANGE, owner.loc))
 		if(movable_victim.anchored || isxeno(movable_victim) || movable_victim.move_resist == INFINITY)
 			continue

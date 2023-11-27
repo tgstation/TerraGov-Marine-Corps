@@ -1,4 +1,4 @@
-/datum/action/ability/activable/xeno_action/web_spit
+/datum/action/ability/activable/xeno/web_spit
 	name = "Web Spit"
 	desc = "Spit a web to your target, this causes different effects depending on where you hit. Spitting the head causes the target to be temporarily blind, body and arms will cause the target to be weakened, and legs will snare the target for a brief while."
 	action_icon_state = "web_spit"
@@ -8,7 +8,7 @@
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_WEB_SPIT,
 	)
 
-/datum/action/ability/activable/xeno_action/web_spit/use_ability(atom/target)
+/datum/action/ability/activable/xeno/web_spit/use_ability(atom/target)
 	var/mob/living/carbon/xenomorph/X = owner
 	var/datum/ammo/xeno/web/web_spit = GLOB.ammo_list[/datum/ammo/xeno/web]
 	var/obj/projectile/newspit = new /obj/projectile(get_turf(X))
@@ -24,7 +24,7 @@
 // *********** Leash Ball
 // ***************************************
 
-/datum/action/ability/activable/xeno_action/leash_ball
+/datum/action/ability/activable/xeno/leash_ball
 	name = "Leash Ball"
 	desc = "Spit a huge web ball that snares groups of targets for a brief while."
 	action_icon_state = "leash_ball"
@@ -34,7 +34,7 @@
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_LEASH_BALL,
 	)
 
-/datum/action/ability/activable/xeno_action/leash_ball/use_ability(atom/A)
+/datum/action/ability/activable/xeno/leash_ball/use_ability(atom/A)
 	var/turf/target = get_turf(A)
 	var/mob/living/carbon/xenomorph/X = owner
 	X.face_atom(target)
@@ -204,7 +204,7 @@
 // *********** Spiderling mark
 // ***************************************
 
-/datum/action/ability/activable/xeno_action/spiderling_mark
+/datum/action/ability/activable/xeno/spiderling_mark
 	name = "Spiderling Mark"
 	desc = "Send your spawn on a valid target, they will automatically destroy themselves out of sheer fury after 15 seconds."
 	action_icon_state = "spiderling_mark"
@@ -214,7 +214,7 @@
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_SPIDERLING_MARK,
 	)
 
-/datum/action/ability/activable/xeno_action/spiderling_mark/use_ability(atom/A)
+/datum/action/ability/activable/xeno/spiderling_mark/use_ability(atom/A)
 	. = ..()
 	// So the spiderlings can actually attack
 	owner.unbuckle_all_mobs(TRUE)
@@ -252,7 +252,7 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_BURROW,
 	)
-	use_state_flags = XACT_USE_BURROWED
+	use_state_flags = ABILITY_USE_BURROWED
 
 /datum/action/ability/xeno_action/burrow/action_activate()
 	. = ..()
@@ -362,7 +362,7 @@
 // ***************************************
 // *********** Cannibalise
 // ***************************************
-/datum/action/ability/activable/xeno_action/cannibalise
+/datum/action/ability/activable/xeno/cannibalise
 	name = "Cannibalise Spiderling"
 	desc = "Consume one of your children, storing their biomass for future use. If any charges of Cannibalise are stored, alt-use of Birth Spiderling will create one spiderling in exchange for one charge of Cannibalise. Up to three charges of Cannibalise may be stored at once."
 	action_icon_state = "cannibalise_spiderling"
@@ -372,7 +372,7 @@
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_CANNIBALISE_SPIDERLING,
 	)
 
-/datum/action/ability/activable/xeno_action/cannibalise/can_use_ability(atom/A, silent = FALSE, override_flags)
+/datum/action/ability/activable/xeno/cannibalise/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
 	if(!.)
 		return
@@ -384,7 +384,7 @@
 		return FALSE
 	return TRUE
 
-/datum/action/ability/activable/xeno_action/cannibalise/use_ability(atom/A)
+/datum/action/ability/activable/xeno/cannibalise/use_ability(atom/A)
 	if(!do_after(owner, 0.5 SECONDS, TRUE, A, BUSY_ICON_DANGER))
 		return fail_activate()
 
@@ -406,7 +406,7 @@
 // ***************************************
 // *********** Web Hook
 // ***************************************
-/datum/action/ability/activable/xeno_action/web_hook
+/datum/action/ability/activable/xeno/web_hook
 	name = "Web Hook"
 	desc = "Shoot out a web and pull it to traverse forward"
 	action_icon_state = "web_hook"
@@ -418,7 +418,7 @@
 	//ref to beam for web hook
 	var/datum/beam/web_beam
 
-/datum/action/ability/activable/xeno_action/web_hook/can_use_ability(atom/A)
+/datum/action/ability/activable/xeno/web_hook/can_use_ability(atom/A)
 	. = ..()
 	if(!.)
 		return
@@ -437,7 +437,7 @@
 		return FALSE
 	current = get_step_towards(current, target_turf)
 
-/datum/action/ability/activable/xeno_action/web_hook/use_ability(atom/A)
+/datum/action/ability/activable/xeno/web_hook/use_ability(atom/A)
 	var/atom/movable/web_hook/web_hook = new (get_turf(owner))
 	web_beam = owner.beam(web_hook,"beam_web",'icons/effects/beam.dmi')
 	RegisterSignals(web_hook, list(COMSIG_MOVABLE_POST_THROW, COMSIG_MOVABLE_IMPACT), PROC_REF(drag_widow), TRUE)
@@ -446,7 +446,7 @@
 	add_cooldown()
 
 /// This throws widow wherever the web_hook landed, distance is dependant on if the web_hook hit a wall or just ground
-/datum/action/ability/activable/xeno_action/web_hook/proc/drag_widow(datum/source, turf/target_turf)
+/datum/action/ability/activable/xeno/web_hook/proc/drag_widow(datum/source, turf/target_turf)
 	SIGNAL_HANDLER
 	QDEL_NULL(web_beam)
 	if(target_turf)
@@ -458,7 +458,7 @@
 	RegisterSignal(owner, COMSIG_MOVABLE_POST_THROW, PROC_REF(delete_beam))
 
 ///signal handler to delete the web_hook after we are done draggging owner along
-/datum/action/ability/activable/xeno_action/web_hook/proc/delete_beam(datum/source)
+/datum/action/ability/activable/xeno/web_hook/proc/delete_beam(datum/source)
 	SIGNAL_HANDLER
 	UnregisterSignal(source, COMSIG_MOVABLE_POST_THROW)
 	QDEL_NULL(web_beam)

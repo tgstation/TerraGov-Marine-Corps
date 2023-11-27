@@ -58,11 +58,11 @@
 	actions = list(
 		/datum/action/ability/xeno_action/xeno_resting,
 		/datum/action/ability/xeno_action/watch_xeno,
-		/datum/action/ability/activable/xeno_action/psydrain,
-		/datum/action/ability/activable/xeno_action/corrosive_acid,
-		/datum/action/ability/activable/xeno_action/xeno_spit,
-		/datum/action/ability/activable/xeno_action/scatter_spit,
-		/datum/action/ability/activable/xeno_action/spray_acid/line,
+		/datum/action/ability/activable/xeno/psydrain,
+		/datum/action/ability/activable/xeno/corrosive_acid,
+		/datum/action/ability/activable/xeno/xeno_spit,
+		/datum/action/ability/activable/xeno/scatter_spit,
+		/datum/action/ability/activable/xeno/spray_acid/line,
 	)
 
 /datum/xeno_caste/spitter/normal
