@@ -54,7 +54,7 @@
 	. = ..()
 	if(.)
 		return
-	SSticker.mode.announce_bioscans(FALSE, GLOB.current_orbit, TRUE, FALSE, FALSE)
+	SSticker.mode.announce_bioscans(FALSE, 2, TRUE, FALSE, FALSE)
 
 /atom/movable/screen/ai/camera_list/Click()
 	. = ..()

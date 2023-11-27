@@ -39,7 +39,6 @@
 
 	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_BIOSCAN) || bioscan_interval == 0)
 		return
-	announce_bioscans(GLOB.current_orbit)
 
 // make sure you don't turn 0 into a false positive
 #define BIOSCAN_DELTA(count, delta) count ? max(0, count + rand(-delta, delta)) : 0
@@ -118,16 +117,6 @@
 	if(ai_operator)
 		priority_announce(input, ai_name, sound = 'sound/AI/bioscan.ogg')
 		log_game("Bioscan. Humans: [numHostsPlanet] on the planet[hostLocationP ? " Location:[hostLocationP]":""] and [numHostsShip] on the ship.[hostLocationS ? " Location: [hostLocationS].":""] Xenos: [numXenosPlanetr] on the planet and [numXenosShip] on the ship[xenoLocationP ? " Location:[xenoLocationP]":""] and [numXenosTransit] in transit.")
-
-		switch(GLOB.current_orbit)
-			if(1)
-				to_chat(usr, span_warning("Signal analysis reveals excellent detail about hostile movements and numbers."))
-				return
-			if(3)
-				to_chat(usr, span_warning("Minor corruption detected in our bioscan instruments, some information about hostile activity may be incorrect."))
-				return
-			if(5)
-				to_chat(usr, span_warning("Major corruption detected in our bioscan readings, information heavily corrupted."))
 		return
 
 	if(announce_humans)

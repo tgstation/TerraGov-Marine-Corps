@@ -20,7 +20,6 @@
 #define COOLDOWN_ARMOR_ACTION "armor_action"
 #define COOLDOWN_FRIENDLY_FIRE_CAUSED "friendly_fire_caused"
 #define COOLDOWN_FRIENDLY_FIRE_TAKEN "friendly_fire_taken"
-#define COOLDOWN_ORBIT_CHANGE "cooldown_orbit_change"
 #define COOLDOWN_TOGGLE "toggle"
 #define COOLDOWN_CPR "CPR"
 #define COOLDOWN_IV_PING "iv_ping"

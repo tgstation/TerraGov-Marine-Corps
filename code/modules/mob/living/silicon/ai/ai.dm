@@ -369,7 +369,6 @@
 	. += "System integrity: [(health + 100) / 2]%"
 	. += ""
 	. += "- Operation information -"
-	. += "Current orbit: [GLOB.current_orbit]"
 
 	if(!GLOB.marine_main_ship?.orbital_cannon?.chambered_tray)
 		. += "Orbital bombardment status: No ammo chambered in the cannon."

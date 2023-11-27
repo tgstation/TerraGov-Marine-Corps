@@ -725,7 +725,7 @@
 	if(SSticker.mode?.flags_round_type & MODE_HIJACK_POSSIBLE)
 		var/datum/game_mode/infestation/infestation_mode = SSticker.mode
 		infestation_mode.round_stage = INFESTATION_MARINE_CRASHING
-	crashing_dropship.callTime = 120 * (GLOB.current_orbit/3) SECONDS
+	crashing_dropship.callTime = 120 SECONDS
 	crashing_dropship.crashing = TRUE
 	crashing_dropship.unlock_all()
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_DROPSHIP_HIJACKED)

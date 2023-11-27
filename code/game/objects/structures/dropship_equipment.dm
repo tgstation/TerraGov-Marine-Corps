@@ -683,7 +683,7 @@
 	if(firing_sound)
 		playsound(loc, firing_sound, 70, 1)
 	var/obj/structure/ship_ammo/SA = ammo_equipped //necessary because we nullify ammo_equipped when firing big rockets
-	var/ammo_travelling_time = SA.travelling_time * ((GLOB.current_orbit+3)/6) //how long the rockets/bullets take to reach the ground target.
+	var/ammo_travelling_time = SA.travelling_time //how long the rockets/bullets take to reach the ground target.
 	var/ammo_warn_sound = SA.warning_sound
 	deplete_ammo()
 	COOLDOWN_START(src, last_fired, firing_delay)
