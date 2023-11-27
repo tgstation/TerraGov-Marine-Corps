@@ -6,7 +6,7 @@
 	action_icon_state = "healing_infusion"
 	desc = "Merge minds with the target, empowering both."
 	cooldown_duration = 60 SECONDS
-	target_flags = XABB_MOB_TARGET
+	target_flags = ABILITY_MOB_TARGET
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_ENHANCEMENT,
 	)
@@ -101,7 +101,7 @@
 	action_icon_state = "off_guard"
 	desc = "Muddles the mind of an enemy, making it harder for them to focus their aim for a while."
 	cooldown_duration = 20 SECONDS
-	target_flags = XABB_MOB_TARGET
+	target_flags = ABILITY_MOB_TARGET
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_OFFGUARD,
 	)
@@ -153,8 +153,8 @@
 	action_icon_state = "off_guard"
 	desc = "Muddles the mind of an enemy, making it harder for them to focus their aim for a while."
 	cooldown_duration = 20 SECONDS
-	target_flags = XABB_MOB_TARGET
-	use_state_flags = XACT_TARGET_SELF
+	target_flags = ABILITY_MOB_TARGET
+	use_state_flags = ABILITY_TARGET_SELF
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_OFFGUARD,
 	)
@@ -242,8 +242,8 @@
 	action_icon_state = "off_guard"
 	desc = "Flesh and bone runs like water at our will, healing horrendous damage with the power of our mind."
 	cooldown_duration = 60 SECONDS
-	target_flags = XABB_MOB_TARGET
-	use_state_flags = XACT_TARGET_SELF
+	target_flags = ABILITY_MOB_TARGET
+	use_state_flags = ABILITY_TARGET_SELF
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_OFFGUARD,
 	)
@@ -364,8 +364,8 @@
 	action_icon_state = "off_guard"
 	desc = "Manipulate things from a distance."
 	cooldown_duration = 20 SECONDS
-	target_flags = XABB_MOB_TARGET
-	use_state_flags = XACT_TARGET_SELF
+	target_flags = ABILITY_MOB_TARGET
+	use_state_flags = ABILITY_TARGET_SELF
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_OFFGUARD,
 	)
