@@ -1,0 +1,4 @@
+author: "efzapa"
+delete-after: True
+changes:
+  - imageadd: "Added working coffee sprite"
