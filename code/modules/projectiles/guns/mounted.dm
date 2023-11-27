@@ -450,7 +450,7 @@
 	fire_delay = 0.15 SECONDS
 	burst_amount = 1
 	deploy_time = 1 SECONDS
-	damage_falloff_mult = 0.5
+	damage_falloff_mult = 0.4
 	undeploy_time = 0.5 SECONDS
 	max_integrity = 200
 
