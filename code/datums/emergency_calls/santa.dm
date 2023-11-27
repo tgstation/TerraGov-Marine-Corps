@@ -52,6 +52,7 @@
 			to_chat(H, "<p style='font-size:1.5em'>[span_notice("You are Santa Claus! Punish all the naughty </b>aliens</b> with overwhelming firepower, starting with their cowardly queen hiding on the ship.")]</p>")
 		return
 
+	ADD_TRAIT(H, TRAIT_CHRISTMAS_ELF, TRAIT_CHRISTMAS_ELF)
 	var/datum/job/J = SSjob.GetJobType(/datum/job/santa)
 	H.apply_assigned_role_to_spawn(J)
 	H.name = "Elf [rand(1,999)]"

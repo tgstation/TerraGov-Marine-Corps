@@ -81,6 +81,7 @@
 			return
 		var/turf/target = locate(christmastreeturf.x + rand(-3, 3), christmastreeturf.y + rand(-3, 3), christmastreeturf.z)
 		var/mob/living/carbon/human/spawnedhuman = new /mob/living/carbon/human(target)
+		ADD_TRAIT(spawnedhuman, TRAIT_CHRISTMAS_ELF, TRAIT_CHRISTMAS_ELF)
 		spawnedhuman.name = "Elf [rand(1,999)]"
 		spawnedhuman.real_name = spawnedhuman.name
 		var/datum/job/J = SSjob.GetJobType(/datum/job/santa)

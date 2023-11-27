@@ -117,6 +117,10 @@
 	flags_inventory = COVERMOUTH|BLOCKGASEFFECT
 	soft_armor = list(MELEE = 25, BULLET = 35, LASER = 25, ENERGY = 25, BOMB = 95, BIO = 85, FIRE = 25, ACID = 25) //if he ever shaved you could use santa's facial hair as a bombvest
 
+/obj/item/clothing/mask/gas/swat/santa/Initialize(mapload)
+	. = ..()
+	ADD_TRAIT(src, TRAIT_NODROP, TRAIT_SANTA_CLAUS)
+
 /obj/item/clothing/mask/gas/swat/santa/proc/handle_speech(datum/source, list/speech_args)
 	var/message = speech_args[SPEECH_MESSAGE]
 	if(message[1] != "*")

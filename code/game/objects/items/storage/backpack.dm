@@ -103,6 +103,10 @@
 		/obj/item/weapon/gun/launcher/rocket/m57a4,
 	)
 
+/obj/item/storage/backpack/santabag/Initialize(mapload)
+	. = ..()
+	ADD_TRAIT(src, TRAIT_NODROP, TRAIT_SANTA_CLAUS)
+
 /obj/item/storage/backpack/cultpack
 	name = "trophy rack"
 	desc = "It's useful for both carrying extra gear and proudly declaring your insanity."

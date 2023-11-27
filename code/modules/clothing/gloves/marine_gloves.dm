@@ -111,6 +111,10 @@
 	soft_armor = list(MELEE = 35, BULLET = 30, LASER = 20, ENERGY = 20, BOMB = 80, BIO = 20, FIRE = 20, ACID = 25)
 	flags_item = NODROP|DELONDROP
 
+/obj/item/clothing/gloves/marine/veteran/pmc/commando/santa/Initialize(mapload)
+	. = ..()
+	ADD_TRAIT(src, TRAIT_NODROP, TRAIT_SANTA_CLAUS)
+
 /obj/item/clothing/gloves/marine/som
 	name = "\improper SOM gloves"
 	desc = "Gloves with origins dating back to the old mining colonies, they look pretty tough."

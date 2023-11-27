@@ -345,6 +345,10 @@
 	supporting_limbs = CHEST | GROIN | ARM_LEFT | ARM_RIGHT | HAND_LEFT | HAND_RIGHT | LEG_LEFT | LEG_RIGHT | FOOT_LEFT | FOOT_RIGHT | HEAD
 	resistance_flags = UNACIDABLE
 
+/obj/item/clothing/suit/space/santa/special/Initialize(mapload)
+	. = ..()
+	ADD_TRAIT(src, TRAIT_NODROP, TRAIT_SANTA_CLAUS)
+
 /obj/item/clothing/suit/space/santa/special/eventspawn //lesser version of above suit, still mostly bomb proof
 	soft_armor = list(MELEE = 75, BULLET = 90, LASER = 90, ENERGY = 65, BOMB = 120, BIO = 70, FIRE = 55, ACID = 25)
 
@@ -355,3 +359,7 @@
 	item_state = "elfcostume"
 	soft_armor = list(MELEE = 35, BULLET = 15, LASER = 15, ENERGY = 10, BOMB = 80, BIO = 30, FIRE = 20, ACID = 10)
 	flags_item = NODROP|DELONDROP
+
+/obj/item/clothing/suit/space/elf/Initialize(mapload)
+	. = ..()
+	ADD_TRAIT(src, TRAIT_NODROP, TRAIT_CHRISTMAS_ELF)

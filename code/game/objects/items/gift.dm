@@ -38,6 +38,9 @@ GLOBAL_LIST_EMPTY(possible_gifts)
 	. = ..()
 	if(HAS_TRAIT(user, TRAIT_SANTA_CLAUS))
 		. += "This present is rigged to blow! Activate it yourself to throw it like a grenade, or give it to somebody on the naughty list and watch it blow up in their face."
+	if(HAS_TRAIT(user, TRAIT_CHRISTMAS_ELF))
+		. += "One of the boss' presents, this one is explosive and will go off if you open it."
+
 
 /obj/item/a_gift
 	name = "gift"
@@ -68,7 +71,7 @@ GLOBAL_LIST_EMPTY(possible_gifts)
 		. += "This present is addressed to [present_receiver_name]."
 
 /obj/item/a_gift/attack_self(mob/M)
-	if(HAS_TRAIT(M, TRAIT_SANTA_CLAUS)) //santa uses the present as a grenade
+	if(HAS_TRAIT(M, TRAIT_SANTA_CLAUS) || HAS_TRAIT(user, TRAIT_CHRISTMAS_ELF))
 		to_chat(M, "You're supposed to deliver presents, not open them.")
 		return
 	if(present_receiver == null && !freepresent)

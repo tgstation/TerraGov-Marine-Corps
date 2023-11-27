@@ -97,6 +97,10 @@
 	siemens_coefficient = 0.2
 	resistance_flags = UNACIDABLE
 
+/obj/item/clothing/shoes/galoshes/santa/Initialize(mapload)
+	. = ..()
+	ADD_TRAIT(src, TRAIT_NODROP, TRAIT_SANTA_CLAUS)
+
 /obj/item/clothing/shoes/clown_shoes
 	desc = "The prankster's standard-issue clowning shoes. Damn they're huge!"
 	name = "clown shoes"
