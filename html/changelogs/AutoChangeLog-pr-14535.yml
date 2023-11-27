@@ -1,0 +1,4 @@
+author: "yyzsong"
+delete-after: True
+changes:
+  - bugfix: "fixes the names of the FK-88 and ATR-22 ammos in req"
