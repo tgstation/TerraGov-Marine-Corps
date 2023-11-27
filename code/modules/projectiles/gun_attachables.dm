@@ -574,7 +574,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 
 /obj/item/attachable/reddot
 	name = "red-dot sight"
-	desc = "A red-dot sight for short to medium range. Does not have a zoom feature, but does increase weapon accuracy and fire rate while aiming by a good amount. \nNo drawbacks."
+	desc = "A red-dot sight for short to medium range. Does not have a zoom feature, but does increase weapon accuracy. \nNo drawbacks."
 	icon_state = "reddot"
 	slot = ATTACHMENT_SLOT_RAIL
 	accuracy_mod = 0.15
