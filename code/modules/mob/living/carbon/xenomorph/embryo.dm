@@ -193,8 +193,8 @@
 	log_game("[key_name(src)] was born as a larva at [AREACOORD(src)].")
 	victim.chestburst = 0
 
-	if(((locate(/obj/structure/bed/nest) in loc) && hive.living_xeno_ruler?.z == loc.z))
-		burrow()
+	if((locate(/obj/structure/bed/nest) in loc) || loc_weeds_type) && hive.living_xeno_ruler?.z == loc.z)
+		addtimer(CALLBACK(src, PROC_REF(burrow)), 2 SECONDS)
 
 
 /mob/living/proc/emote_burstscream()
