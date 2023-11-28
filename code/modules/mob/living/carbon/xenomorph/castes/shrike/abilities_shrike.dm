@@ -229,7 +229,7 @@
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PSYCHIC_CURE,
 	)
 	var/heal_range = SHRIKE_HEAL_RANGE
-	target_flags = XABB_MOB_TARGET
+	target_flags = XABB_XENO_TARGET|XABB_HUMAN_TARGET
 
 
 /datum/action/xeno_action/activable/psychic_cure/on_cooldown_finish()

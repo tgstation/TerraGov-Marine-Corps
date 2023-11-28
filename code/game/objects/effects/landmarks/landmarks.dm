@@ -69,7 +69,7 @@
 	GLOB.latejoinsom += loc
 	return INITIALIZE_HINT_QDEL
 
-/obj/effect/landmark/start/latejoinsom/Initialize(mapload)
+/obj/effect/landmark/start/latejoinclf/Initialize(mapload)
 	. = ..()
 	GLOB.latejoinclf += loc
 	return INITIALIZE_HINT_QDEL

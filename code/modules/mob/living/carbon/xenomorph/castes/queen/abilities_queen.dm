@@ -344,9 +344,9 @@
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_QUEEN_HEAL,
 	)
 	heal_range = HIVELORD_HEAL_RANGE
-	target_flags = XABB_MOB_TARGET
+	target_flags = XABB_XENO_TARGET|XABB_HUMAN_TARGET
 
-/datum/action/xeno_action/activable/psychic_cure/queen_give_heal/use_ability(atom/target)
+/datum/action/xeno_action/activable/psychic_cure/queen_give_heal/use_ability(mob/living/target)
 	if(owner.do_actions)
 		return FALSE
 	if(!do_mob(owner, target, 1 SECONDS, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
@@ -364,11 +364,15 @@
 		personal_statistics.heals++
 
 /// Heals the target.
-/mob/living/carbon/xenomorph/proc/salve_healing()
+/mob/living/carbon/xenomorph/proc/salve_healing(mob/living/target)
 	var/amount = 50
+	var/mob/living/carbon/xenomorph/X = target
+	var/recovery_aura = isxeno(target) ? X.recovery_aura : 2
 	if(recovery_aura)
 		amount += recovery_aura * maxHealth * 0.01
 	var/remainder = max(0, amount - getBruteLoss())
+	if(!isxeno(target))
+		amount = amount/4
 	adjustBruteLoss(-amount)
 	adjustFireLoss(-remainder, updating_health = TRUE)
 	adjust_sunder(-amount/10)

@@ -89,7 +89,7 @@
 /datum/action/xeno_action/activable/psychic_cure/resin_salve
 	name = "Resin Salve"
 	action_icon_state = "heal_xeno"
-	desc = "Apply a minor heal to the target. If applied to a linked sister, it will also apply a regenerative buff. Additionally, if that linked sister is near death, the heal's potency is increased. This makes non-xenos sleepy for a while."
+	desc = "Apply a minor heal to the target. If applied to a linked sister, it will also apply a regenerative buff. Additionally, if that linked sister is near death, the heal's potency is increased. This heals humans but makes them sleepy for a while."
 	cooldown_timer = 5 SECONDS
 	plasma_cost = 150
 	keybinding_signals = list(
@@ -126,8 +126,10 @@
 	playsound(target, "alien_drool", 25)
 	new /obj/effect/temp_visual/telekinesis(get_turf(target))
 	var/mob/living/carbon/xenomorph/X = target
-	var/recovery_aura = isxeno(target) ? X.recovery_aura : -0.5
+	var/recovery_aura = isxeno(target) ? X.recovery_aura : 2
 	var/heal_amount = (DRONE_BASE_SALVE_HEAL + recovery_aura * target.maxHealth * 0.01) * heal_multiplier
+	if(!isxeno(target))
+		heal_amount = heal_amount/4
 	target.adjustFireLoss(-max(0, heal_amount - target.getBruteLoss()), TRUE)
 	target.adjustBruteLoss(-heal_amount)
 	target.adjust_sunder(-heal_amount/10)

@@ -605,7 +605,7 @@
 "eYN" = (/obj/structure/cable,/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,/obj/structure/disposalpipe/junction{dir = 8},/turf/open/floor/plating/plating_catwalk,/area/mainship/hallways/port_hallway{name = "HQ hallway northwest"; outside = 0})
 "eYS" = (/obj/structure/disposalpipe/segment,/turf/open/floor/mainship,/area/mainship/hallways/starboard_hallway{name = "HQ Hallways Center"; outside = 0})
 "eYT" = (/obj/machinery/fuelcell_recycler,/turf/open/floor/mainship/mono,/area/mainship/engineering/engine_core{outside = 0})
-"eZI" = (/obj/machinery/door/airlock/mainship/ai/glass,/obj/structure/curtain/open/black,/turf/open/floor/mainship/mono,/area/mainship/command/cic{outside = 0; name = "Ground Combat Information Center"})
+"eZI" = (/obj/machinery/door/airlock/mainship/ai/glass{name = "\improper CIC Lounge"},/obj/structure/curtain/open/black,/turf/open/floor/mainship/mono,/area/mainship/command/cic{outside = 0; name = "Ground Combat Information Center"})
 "eZO" = (/obj/machinery/door/airlock/mainship/generic{dir = 1; id = 5; name = "\improper Quarters 5"},/obj/structure/cable,/obj/structure/disposalpipe/segment{dir = 1},/obj/machinery/door/poddoor/shutters/mainship/open/indestructible{dir = 2; id = 1002; name = "\improper Quarters Privacy Shutters"},/turf/open/floor/wood,/area/mainship/living/tankerbunks{outside = 0})
 "fav" = (/turf/closed/wall,/area/mainship/hallways/port_hallway{name = "HQ hallway northwest"; outside = 0})
 "faw" = (/obj/machinery/light{dir = 8; id = "celllights"},/turf/open/floor/mainship/red{dir = 8},/area/mainship/shipboard/brig_cells{outside = 0})
