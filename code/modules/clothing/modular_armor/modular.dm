@@ -238,6 +238,7 @@
 	item_state = "exoskeleton"
 	item_state_worn = TRUE
 	item_icons = list(slot_wear_suit_str = 'icons/mob/modular/syndicate_hardsuits.dmi')
+	greyscale_config = /datum/greyscale_config/hardsuit_variant/exoskeleton
 	allowed_uniform_type = /obj/item/clothing/under
 	attachments_allowed = list(
 
