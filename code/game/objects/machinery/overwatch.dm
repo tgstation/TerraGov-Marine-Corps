@@ -181,11 +181,6 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	req_access = list(ACCESS_MARINE_BRIDGE)
 	map_flags = MINIMAP_FLAG_MARINE_SOM
 
-/obj/machinery/computer/camera_advanced/overwatch/CreateEye()
-	eyeobj = new(null, parent_cameranet, faction)
-	eyeobj.origin = src
-	RegisterSignal(eyeobj, COMSIG_QDELETING, PROC_REF(clear_eye_ref))
-
 /obj/machinery/computer/camera_advanced/overwatch/som/zulu
 	name = "\improper Zulu Overwatch Console"
 
@@ -199,7 +194,9 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	name = "\improper Whiskey Overwatch Console"
 
 /obj/machinery/computer/camera_advanced/overwatch/CreateEye()
-	. = ..()
+	eyeobj = new(null, parent_cameranet, faction)
+	eyeobj.origin = src
+	RegisterSignal(eyeobj, COMSIG_QDELETING, PROC_REF(clear_eye_ref))
 	eyeobj.visible_icon = TRUE
 	eyeobj.icon = 'icons/mob/cameramob.dmi'
 	eyeobj.icon_state = "generic_camera"

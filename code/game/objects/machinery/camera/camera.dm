@@ -8,6 +8,7 @@
 	active_power_usage = 10
 	layer = WALL_OBJ_LAYER
 	anchored = TRUE
+	light_power = 0
 
 	var/datum/cameranet/parent_cameranet
 	var/list/network = list("marinemainship")
@@ -130,8 +131,8 @@
 /obj/machinery/camera/wirecutter_act(mob/living/user, obj/item/I)
 	if(!CHECK_BITFIELD(machine_stat, PANEL_OPEN))
 		return FALSE
-	toggle_cam(user, TRUE)
 	repair_damage(max_integrity, user)
+	toggle_cam(user, TRUE)
 	I.play_tool_sound(src)
 	update_icon()
 	return TRUE
@@ -214,15 +215,13 @@
 	for(var/mob/living/silicon/ai/AI AS in GLOB.ai_list)
 		if(!AI.client)
 			continue
-		to_chat(AI, span_notice("[src] has been desactived at [myarea]"))
+		to_chat(AI, span_notice("[src] has been deactivated at [myarea]"))
 
-
-/obj/machinery/camera/update_icon()
+/obj/machinery/camera/update_icon_state()
 	if(obj_integrity <= 0)
 		icon_state = "camera_assembly"
 	else
 		icon_state = "camera"
-
 
 /obj/machinery/camera/proc/toggle_cam(mob/user, displaymessage = TRUE)
 	status = !status
@@ -231,13 +230,14 @@
 		if(isturf(loc))
 			myarea = get_area(src)
 			LAZYADD(myarea.cameras, src)
+			set_light(initial(light_range), initial(light_power))
 		else
 			myarea = null
 	else
-		set_light(0)
 		parent_cameranet.removeCamera(src)
 		if(isarea(myarea))
 			LAZYREMOVE(myarea.cameras, src)
+		deactivate()
 	parent_cameranet.updateChunk(x, y, z)
 
 	var/change_msg = "deactivates"
@@ -296,7 +296,7 @@
 	if(on)
 		set_light(AI_CAMERA_LUMINOSITY, AI_CAMERA_LUMINOSITY)
 	else
-		set_light(0)
+		set_light(initial(light_range), initial(light_power))
 
 
 /obj/machinery/camera/get_remote_view_fullscreens(mob/user)
@@ -310,10 +310,16 @@
 	user.see_in_dark = 2
 	return TRUE
 
-
 /obj/machinery/camera/autoname
+	light_range = 1
+	light_power = 0.2
 	var/number = 0 //camera number in area
 
+/obj/machinery/camera/autoname/update_overlays()
+	. = ..()
+	if(obj_integrity <= 0)
+		return
+	. += emissive_appearance(icon, "[icon_state]_emissive")
 
 //This camera type automatically sets it's name to whatever the area that it's in is called.
 /obj/machinery/camera/autoname/Initialize(mapload)

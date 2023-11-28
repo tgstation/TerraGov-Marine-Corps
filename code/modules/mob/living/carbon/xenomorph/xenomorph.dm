@@ -77,12 +77,15 @@
 		replace_by_ai()
 	if(z) //Larva are initiated in null space
 		SSminimaps.add_marker(src, MINIMAP_FLAG_XENO, image('icons/UI_icons/map_blips.dmi', null, xeno_caste.minimap_icon))
-	RegisterSignal(src, COMSIG_LIVING_WEEDS_ADJACENT_REMOVED, PROC_REF(handle_weeds_adjacent_removed))
-	RegisterSignal(src, COMSIG_LIVING_WEEDS_AT_LOC_CREATED, PROC_REF(handle_weeds_on_movement))
 	handle_weeds_on_movement()
 
 	AddElement(/datum/element/footstep, footstep_type, mob_size >= MOB_SIZE_BIG ? 0.8 : 0.5)
 	set_jump_component()
+
+/mob/living/carbon/xenomorph/register_init_signals()
+	. = ..()
+	RegisterSignal(src, COMSIG_LIVING_WEEDS_ADJACENT_REMOVED, PROC_REF(handle_weeds_adjacent_removed))
+	RegisterSignal(src, COMSIG_LIVING_WEEDS_AT_LOC_CREATED, PROC_REF(handle_weeds_on_movement))
 
 ///Change the caste of the xeno. If restore health is true, then health is set to the new max health
 /mob/living/carbon/xenomorph/proc/set_datum(restore_health_and_plasma = TRUE)
@@ -154,13 +157,13 @@
 	switch(playtime_mins)
 		if(0 to 600)
 			rank_name = "Hatchling"
-		if(601 to 3000)
+		if(601 to 1500) //10 hours
 			rank_name = "Young"
-		if(3001 to 9000)
+		if(1501 to 4200) //25 hours
 			rank_name = "Mature"
-		if(9001 to 18000)
+		if(4201 to 10500) //70 hours
 			rank_name = "Elder"
-		if(18001 to INFINITY)
+		if(10501 to INFINITY) //175 hours
 			rank_name = "Ancient"
 		else
 			rank_name = "Hatchling"
@@ -187,13 +190,13 @@
 	switch(playtime_mins)
 		if(0 to 600)
 			return 0
-		if(601 to 3000)
+		if(601 to 1500)
 			return 1
-		if(3001 to 9000)
+		if(1501 to 4200)
 			return 2
-		if(9001 to 18000)
+		if(4201 to 10500)
 			return 3
-		if(18001 to INFINITY)
+		if(10501 to INFINITY)
 			return 4
 		else
 			return 0
@@ -454,12 +457,6 @@ Returns TRUE when loc_weeds_type changes. Returns FALSE when it doesn’t change
 		return FALSE
 	loc_weeds_type = found_weed?.type
 	return TRUE
-
-/mob/living/carbon/xenomorph/hivemind/handle_weeds_on_movement(datum/source)
-	. = ..()
-	if(!.)
-		return
-	update_icon()
 
 /mob/living/carbon/xenomorph/hivemind/handle_weeds_on_movement(datum/source)
 	. = ..()

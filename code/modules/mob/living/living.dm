@@ -99,10 +99,6 @@
 	AddElement(/datum/element/gesture)
 	AddElement(/datum/element/keybinding_update)
 	stamina_regen_modifiers = list()
-	received_auras = list()
-	emitted_auras = list()
-	RegisterSignal(src, COMSIG_AURA_STARTED, PROC_REF(add_emitted_auras))
-	RegisterSignal(src, COMSIG_AURA_FINISHED, PROC_REF(remove_emitted_auras))
 
 /mob/living/Destroy()
 	for(var/datum/status_effect/effect AS in status_effects)

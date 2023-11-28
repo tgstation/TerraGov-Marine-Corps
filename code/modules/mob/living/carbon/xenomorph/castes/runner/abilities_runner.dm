@@ -188,6 +188,7 @@
 		))
 	evade_active = FALSE
 	evasion_stacks = 0
+	evasion_duration = 0
 	owner.balloon_alert(owner, "Evasion ended")
 	owner.playsound_local(owner, 'sound/voice/hiss5.ogg', 50)
 	var/mob/living/carbon/xenomorph/runner/runner_owner = owner
@@ -243,7 +244,7 @@
 	var/obj/effect/temp_visual/xenomorph/afterimage/after_image
 	for(var/i=0 to 2) //number of after images
 		after_image = new /obj/effect/temp_visual/xenomorph/afterimage(current_turf, owner) //Create the after image.
-		after_image.pixel_x = pick(rand(xeno_owner.pixel_x * 3, xeno_owner.pixel_x * 1.5), rand(0, xeno_owner.pixel_x * -1)) //Variation on the X position
+		after_image.pixel_x = pick(randfloat(xeno_owner.pixel_x * 3, xeno_owner.pixel_x * 1.5), rand(0, xeno_owner.pixel_x * -1)) //Variation on the X position
 
 
 // ***************************************

@@ -78,7 +78,6 @@
 			/obj/item/storage/holster/blade/machete/full = -1,
 			/obj/item/storage/holster/blade/machete/full_harvester = -1,
 			/obj/item/weapon/twohanded/spear/tactical = -1,
-			/obj/item/weapon/twohanded/spear/tactical/harvester = -1,
 			/obj/item/weapon/twohanded/glaive/harvester = -1,
 			/obj/item/weapon/powerfist = -1,
 			/obj/item/weapon/shield/riot/marine = 6,
@@ -110,7 +109,7 @@
 			/obj/item/ammo_magazine/rifle/tx54/incendiary = 4,
 			/obj/item/ammo_magazine/rifle/tx54/smoke = 4,
 			/obj/item/ammo_magazine/rifle/tx54/smoke/tangle = 2,
-			/obj/item/explosive/grenade = 600,
+			/obj/item/explosive/grenade = 200,
 			/obj/item/explosive/grenade/m15 = 30,
 			/obj/item/explosive/grenade/sticky = 125,
 			/obj/item/explosive/grenade/sticky/trailblazer = 75,
@@ -294,7 +293,6 @@
 			/obj/item/storage/holster/blade/machete/full = -1,
 			/obj/item/storage/holster/blade/machete/full_harvester = -1,
 			/obj/item/weapon/twohanded/spear/tactical = -1,
-			/obj/item/weapon/twohanded/spear/tactical/harvester = -1,
 			/obj/item/weapon/twohanded/glaive/harvester = -1,
 			/obj/item/weapon/powerfist = -1,
 			/obj/item/weapon/shield/riot/marine = 6,
@@ -322,7 +320,7 @@
 		"Grenades" = list(
 			/obj/item/weapon/gun/grenade_launcher/single_shot = -1,
 			/obj/item/weapon/gun/grenade_launcher/multinade_launcher/unloaded = -1,
-			/obj/item/explosive/grenade = 600,
+			/obj/item/explosive/grenade = 200,
 			/obj/item/explosive/grenade/m15 = 30,
 			/obj/item/explosive/grenade/sticky = 125,
 			/obj/item/explosive/grenade/incendiary = 50,
@@ -493,7 +491,6 @@
 			/obj/item/storage/holster/blade/machete/full = -1,
 			/obj/item/storage/holster/blade/machete/full_harvester = -1,
 			/obj/item/weapon/twohanded/spear/tactical = -1,
-			/obj/item/weapon/twohanded/spear/tactical/harvester = -1,
 			/obj/item/weapon/twohanded/glaive/harvester = -1,
 			/obj/item/weapon/powerfist = -1,
 			/obj/item/weapon/shield/riot/marine = -1,
@@ -634,6 +631,8 @@
 			/obj/item/assembly/signaler = -1,
 			/obj/item/binoculars = -1,
 			/obj/item/compass = -1,
+			/obj/item/tool/hand_labeler = -1,
+			/obj/item/toy/deck/kotahi = -1,
 			/obj/item/deployable_floodlight = -1,
 		),
 	)
@@ -866,15 +865,6 @@
 	wrenchable = FALSE
 	isshared = TRUE
 	products = list(
-		"Pill Packet" = list(
-			/obj/item/storage/pill_bottle/packet/bicaridine = -1,
-			/obj/item/storage/pill_bottle/packet/kelotane = -1,
-			/obj/item/storage/pill_bottle/packet/tramadol = -1,
-			/obj/item/storage/pill_bottle/packet/tricordrazine = -1,
-			/obj/item/storage/pill_bottle/packet/dylovene = -1,
-			/obj/item/storage/pill_bottle/packet/paracetamol = -1,
-			/obj/item/storage/pill_bottle/packet/isotonic = -1,
-		),
 		"Pill Bottles" = list(
 			/obj/item/storage/pill_bottle/bicaridine = -1,
 			/obj/item/storage/pill_bottle/kelotane = -1,
@@ -883,7 +873,7 @@
 			/obj/item/storage/pill_bottle/dylovene = -1,
 			/obj/item/storage/pill_bottle/paracetamol = -1,
 			/obj/item/storage/pill_bottle/isotonic = -1,
-			/obj/item/storage/pill_bottle = -1, //These ones are empty, so you can customize
+			/obj/item/storage/pill_bottle = -1,
 		),
 		"Auto Injector" = list(
 			/obj/item/reagent_containers/hypospray/autoinjector/bicaridine = -1,
@@ -901,7 +891,7 @@
 			/obj/item/reagent_containers/hypospray/autoinjector/imidazoline = 20,
 			/obj/item/reagent_containers/hypospray/autoinjector/quickclot = 10,
 			/obj/item/reagent_containers/hypospray/autoinjector/medicalnanites = 20,
-			/obj/item/reagent_containers/hypospray/autoinjector/russian_red = 30,
+			/obj/item/reagent_containers/hypospray/autoinjector/russian_red = 10,
 		),
 		"Heal Pack" = list(
 			/obj/item/stack/medical/heal_pack/gauze = -1,
@@ -921,15 +911,6 @@
 	resistance_flags = INDESTRUCTIBLE
 	use_power = NO_POWER_USE
 	products = list(
-		"Pill Packet" = list(
-			/obj/item/storage/pill_bottle/packet/bicaridine = -1,
-			/obj/item/storage/pill_bottle/packet/kelotane = -1,
-			/obj/item/storage/pill_bottle/packet/tramadol = -1,
-			/obj/item/storage/pill_bottle/packet/tricordrazine = -1,
-			/obj/item/storage/pill_bottle/packet/dylovene = -1,
-			/obj/item/storage/pill_bottle/packet/paracetamol = -1,
-			/obj/item/storage/pill_bottle/packet/isotonic = -1,
-		),
 		"Pill Bottles" = list(
 			/obj/item/storage/pill_bottle/bicaridine = -1,
 			/obj/item/storage/pill_bottle/kelotane = -1,
@@ -938,7 +919,7 @@
 			/obj/item/storage/pill_bottle/dylovene = -1,
 			/obj/item/storage/pill_bottle/paracetamol = -1,
 			/obj/item/storage/pill_bottle/isotonic = -1,
-			/obj/item/storage/pill_bottle = -1, //These ones are empty, so you can customize
+			/obj/item/storage/pill_bottle = -1,
 		),
 		"Auto Injector" = list(
 			/obj/item/reagent_containers/hypospray/autoinjector/bicaridine = -1,
@@ -1406,10 +1387,10 @@
 			/obj/item/ammo_magazine/rocket/m57a4 = -1,
 			/obj/item/weapon/gun/launcher/rocket/sadar/valhalla = -1,
 			/obj/item/ammo_magazine/rocket/sadar = -1,
-			/obj/item/ammo_magazine/rocket/sadar/unguided = 1,
+			/obj/item/ammo_magazine/rocket/sadar/unguided = -1,
 			/obj/item/ammo_magazine/rocket/sadar/ap = -1,
 			/obj/item/ammo_magazine/rocket/sadar/wp = -1,
-			/obj/item/ammo_magazine/rocket/sadar/wp/unguided = 1,
+			/obj/item/ammo_magazine/rocket/sadar/wp/unguided = -1,
 			/obj/item/weapon/gun/shotgun/zx76 = -1,
 			/obj/item/ammo_magazine/shotgun/incendiary = -1,
 			/obj/item/weapon/gun/rifle/standard_autosniper = -1,
@@ -1487,20 +1468,6 @@
 			/obj/item/implanter/cloak = -1,
 			/obj/item/implanter/chem/blood = -1,
 			/obj/item/implanter/blade = -1,
-		),
-		"Reqtorio" = list(
-			/obj/item/paper/factoryhowto = -1,
-			/obj/machinery/factory/cutter = -1,
-			/obj/machinery/factory/heater = -1,
-			/obj/machinery/factory/flatter = -1,
-			/obj/machinery/factory/former = -1,
-			/obj/machinery/factory/reconstructor = -1,
-			/obj/machinery/unboxer = -1,
-			/obj/machinery/factory/driller = -1,
-			/obj/machinery/factory/galvanizer = -1,
-			/obj/machinery/factory/compressor = -1,
-			/obj/item/stack/conveyor/thirty = 10,
-			/obj/item/conveyor_switch_construct = 10,
 		),
 	)
 

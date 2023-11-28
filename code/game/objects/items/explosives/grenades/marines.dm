@@ -83,6 +83,8 @@
 	var/atom/stuck_to
 	///Current image overlay applied to stuck_to, used to remove the overlay after detonation.
 	var/image/saved_overlay
+	///if this specific grenade should be allowed to self sticky
+	var/self_sticky = FALSE
 
 /obj/item/explosive/grenade/sticky/throw_impact(atom/hit_atom, speed)
 	. = ..()
@@ -90,14 +92,17 @@
 		return
 	if(!active || stuck_to || isturf(hit_atom))
 		return
-	var/image/stuck_overlay = image(icon, hit_atom, initial(icon_state) + "_stuck")
-	stuck_overlay.pixel_x = rand(-5, 5)
-	stuck_overlay.pixel_y = rand(-7, 7)
-	hit_atom.add_overlay(stuck_overlay)
-	forceMove(hit_atom)
-	saved_overlay = stuck_overlay
-	stuck_to = hit_atom
-	RegisterSignal(stuck_to, COMSIG_QDELETING, PROC_REF(clean_refs))
+	stuck_to(hit_atom)
+
+/obj/item/explosive/grenade/sticky/afterattack(atom/target, mob/user, has_proximity, click_parameters)
+	. = ..()
+	if(target != user)
+		return
+	if(!self_sticky)
+		return
+	user.drop_held_item()
+	activate()
+	stuck_to(target)
 
 /obj/item/explosive/grenade/sticky/prime()
 	if(stuck_to)
@@ -115,12 +120,24 @@
 	stuck_to = null
 	saved_overlay = null
 
+///handles sticky overlay and attaching the grenade itself to the target
+/obj/item/explosive/grenade/sticky/proc/stuck_to(atom/hit_atom)
+	var/image/stuck_overlay = image(icon, hit_atom, initial(icon_state) + "_stuck")
+	stuck_overlay.pixel_x = rand(-5, 5)
+	stuck_overlay.pixel_y = rand(-7, 7)
+	hit_atom.add_overlay(stuck_overlay)
+	forceMove(hit_atom)
+	saved_overlay = stuck_overlay
+	stuck_to = hit_atom
+	RegisterSignal(stuck_to, COMSIG_QDELETING, PROC_REF(clean_refs))
+
 /obj/item/explosive/grenade/sticky/trailblazer
 	name = "\improper M45 Trailblazer grenade"
 	desc = "Capsule based grenade that sticks to sufficiently hard surfaces, causing a trail of air combustable gel to form. It is set to detonate in 5 seconds."
 	icon_state = "grenade_sticky_fire"
 	item_state = "grenade_sticky_fire"
 	det_time = 5 SECONDS
+	self_sticky = TRUE
 
 /obj/item/explosive/grenade/sticky/trailblazer/prime()
 	flame_radius(0.5, get_turf(src))
@@ -129,10 +146,8 @@
 		clean_refs()
 	qdel(src)
 
-/obj/item/explosive/grenade/sticky/trailblazer/throw_impact(atom/hit_atom, speed)
+/obj/item/explosive/grenade/sticky/trailblazer/stuck_to(atom/hit_atom)
 	. = ..()
-	if(!.)
-		return
 	RegisterSignal(stuck_to, COMSIG_MOVABLE_MOVED, PROC_REF(make_fire))
 	var/turf/T = get_turf(src)
 	T.ignite(25, 25)
@@ -155,6 +170,7 @@
 	item_state = "grenade_sticky_cloak"
 	det_time = 5 SECONDS
 	light_impact_range = 1
+	self_sticky = TRUE
 	/// smoke type created when the grenade is primed
 	var/datum/effect_system/smoke_spread/smoketype = /datum/effect_system/smoke_spread/tactical
 	///radius this smoke grenade will encompass
@@ -171,10 +187,8 @@
 		clean_refs()
 	qdel(src)
 
-/obj/item/explosive/grenade/sticky/cloaker/throw_impact(atom/hit_atom, speed)
+/obj/item/explosive/grenade/sticky/cloaker/stuck_to(atom/hit_atom)
 	. = ..()
-	if(!.)
-		return
 	RegisterSignal(stuck_to, COMSIG_MOVABLE_MOVED, PROC_REF(make_smoke))
 
 ///causes fire tiles underneath target when stuck_to
@@ -210,12 +224,12 @@
 	radius = clamp(radius, 1, 50) //Sanitize inputs
 	int_var = clamp(int_var, 0.1,0.5)
 	dur_var = clamp(int_var, 0.1,0.5)
-	fire_stacks = rand(burn_damage*(0.5-int_var),burn_damage*(0.5+int_var) ) + rand(burn_damage*(0.5-int_var),burn_damage*(0.5+int_var) )
-	burn_damage = rand(burn_damage*(0.5-int_var),burn_damage*(0.5+int_var) ) + rand(burn_damage*(0.5-int_var),burn_damage*(0.5+int_var) )
+	fire_stacks = randfloat(burn_damage*(0.5-int_var),burn_damage*(0.5+int_var) ) + randfloat(burn_damage*(0.5-int_var),burn_damage*(0.5+int_var) )
+	burn_damage = randfloat(burn_damage*(0.5-int_var),burn_damage*(0.5+int_var) ) + randfloat(burn_damage*(0.5-int_var),burn_damage*(0.5+int_var) )
 
 	for(var/t in filled_turfs(epicenter, radius, "circle", air_pass = TRUE))
 		var/turf/turf_to_flame = t
-		turf_to_flame.ignite(rand(burn_intensity*(0.5-int_var), burn_intensity*(0.5+int_var)) + rand(burn_intensity*(0.5-int_var), burn_intensity*(0.5+int_var)), rand(burn_duration*(0.5-int_var), burn_duration*(0.5-int_var)) + rand(burn_duration*(0.5-int_var), burn_duration*(0.5-int_var)), colour, burn_damage, fire_stacks)
+		turf_to_flame.ignite(randfloat(burn_intensity*(0.5-int_var), burn_intensity*(0.5+int_var)) + randfloat(burn_intensity*(0.5-int_var), burn_intensity*(0.5+int_var)), randfloat(burn_duration*(0.5-int_var), burn_duration*(0.5-int_var)) + randfloat(burn_duration*(0.5-int_var), burn_duration*(0.5-int_var)), colour, burn_damage, fire_stacks)
 
 /obj/item/explosive/grenade/incendiary/som
 	name = "\improper S30-I incendiary grenade"
@@ -545,7 +559,7 @@
 		if(!target_zone || rand(40))
 			target_zone = "chest"
 		if(launched && CHECK_BITFIELD(resistance_flags, ON_FIRE) && !L.on_fire)
-			L.apply_damage(rand(throwforce*0.75,throwforce*1.25), BURN, target_zone, FIRE, updating_health = TRUE) //Do more damage if launched from a proper launcher and active
+			L.apply_damage(randfloat(throwforce * 0.75, throwforce * 1.25), BURN, target_zone, FIRE, updating_health = TRUE) //Do more damage if launched from a proper launcher and active
 
 /obj/item/explosive/grenade/flare/civilian
 	name = "flare"

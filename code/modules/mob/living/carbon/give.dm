@@ -31,7 +31,7 @@
 		item = l_hand
 	else if(!hand)
 		item = r_hand
-	if(!istype(item) || (item.flags_item & (DELONDROP|NODROP)))
+	if(!istype(item) || HAS_TRAIT(src, TRAIT_NODROP) || (item.flags_item & DELONDROP))
 		return
 	if(to_give_to.r_hand && to_give_to.l_hand)
 		to_chat(src, span_warning("[to_give_to]'s hands are full."))

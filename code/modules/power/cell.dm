@@ -84,8 +84,7 @@
 		if(issynth(user) && !CONFIG_GET(flag/allow_synthetic_gun_use))
 			to_chat(user, span_warning("Your programming restricts using rigged power cells."))
 			return
-		log_explosion("[key_name(user)] primed a rigged [src] at [AREACOORD(user.loc)].")
-		log_combat(user, src, "primed a rigged")
+		log_bomber(user, "primed a rigged", src)
 		user.visible_message(span_danger("[user] destabilizes [src]; it will detonate shortly!"),
 		span_danger("You destabilize [src]; it will detonate shortly!"))
 		var/datum/effect_system/spark_spread/spark_system = new /datum/effect_system/spark_spread()
