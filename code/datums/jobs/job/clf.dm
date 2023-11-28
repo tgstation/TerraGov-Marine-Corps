@@ -10,6 +10,7 @@
 	title = "CLF Standard"
 	paygrade = "CLF1"
 	outfit = /datum/outfit/job/clf/standard/uzi
+	job_flags = JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_LATEJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_OVERRIDELATEJOINSPAWN
 	multiple_outfits = TRUE
 	outfits = list(
 		/datum/outfit/job/clf/standard/uzi,
@@ -183,6 +184,7 @@
 /datum/job/clf/medic
 	title = "CLF Medic"
 	paygrade = "CLF2"
+	job_flags = JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_LATEJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_OVERRIDELATEJOINSPAWN
 	skills_type = /datum/skills/combat_medic/crafty
 	outfit = /datum/outfit/job/clf/medic/uzi
 	multiple_outfits = TRUE
@@ -288,6 +290,7 @@
 /datum/job/clf/specialist
 	title = "CLF Specialist"
 	skills_type = /datum/skills/crafty
+	job_flags = JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_LATEJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_OVERRIDELATEJOINSPAWN
 	outfit = /datum/outfit/job/clf/specialist
 	multiple_outfits = TRUE
 	outfits = list(
@@ -370,6 +373,7 @@
 /datum/job/clf/leader
 	title = "CLF Leader"
 	paygrade = "CLF3"
+	job_flags = JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_LATEJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_OVERRIDELATEJOINSPAWN
 	skills_type = /datum/skills/sl/clf
 	outfit = /datum/outfit/job/clf/leader/assault_rifle
 	multiple_outfits = TRUE

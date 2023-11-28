@@ -29,6 +29,7 @@
 		/datum/job/terragov/squad/smartgunner = 4,
 		/datum/job/terragov/squad/leader = 4,
 		/datum/job/terragov/squad/standard = -1,
+		/datum/job/worker = -1,
 		/datum/job/survivor/rambo = -1,
 		/datum/job/other/prisoner = -1,
 		/datum/job/xenomorph = FREE_XENO_AT_START,
@@ -37,15 +38,15 @@
 		/datum/job/som/command/fieldcommander = 1,
 		/datum/job/som/command/staffofficer = 2,
 		/datum/job/som/command/pilot = 1,
-		/datum/job/som/squad/medic = 1,
-		/datum/job/som/squad/engineer = 1,
-		/datum/job/som/squad/leader = 1,
+		/datum/job/som/squad/medic = 4,
+		/datum/job/som/squad/engineer = 4,
+		/datum/job/som/squad/leader = 2,
 		/datum/job/som/squad/veteran = 2,
 		/datum/job/som/squad/standard = 10,
 		/datum/job/clf/leader = 1,
 		/datum/job/clf/specialist = 1,
 		/datum/job/clf/medic = 2,
-		/datum/job/clf/standard = 5
+		/datum/job/clf/standard = 8
 	)
 	enable_fun_tads = TRUE
 	xenorespawn_time = 15 SECONDS
