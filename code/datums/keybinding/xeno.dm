@@ -169,11 +169,12 @@
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_PSYCHIC_WHISPER
 
-/datum/keybinding/xeno/psychic_whisper
+/datum/keybinding/xeno/impregnate
 	name = "Impregnate"
 	full_name = "Impregnate"
-	description = "Impregnate an host without needing a hugger, the old fashioned way."
+	description = "Infect an adjacent host with a larva without needing a hugger."
 	keybind_signal = COMSIG_XENOABILITY_IMPREGNATE
+
 /datum/keybinding/xeno/lay_egg
 	name = "lay_egg"
 	full_name = "Lay Egg"

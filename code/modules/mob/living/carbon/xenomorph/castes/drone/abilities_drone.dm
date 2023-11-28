@@ -141,9 +141,7 @@
 	var/heal_amount = (DRONE_BASE_SALVE_HEAL * target.maxHealth * 0.01)
 	playsound(target, "alien_drool", 25)
 	target.adjustDrowsyness(15)
-	target.adjustFireLoss(-max(0, heal_amount - target.getBruteLoss()), TRUE)
-	target.adjustBruteLoss(-heal_amount)
-	target.adjust_sunder(-heal_amount/10)
+	X.recurring_injection(A, /datum/reagent/medicine/tricordrazine, 2, 3)
 
 // ***************************************
 // *********** Enhancement

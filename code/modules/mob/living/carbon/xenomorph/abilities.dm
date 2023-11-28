@@ -1189,12 +1189,6 @@
 			X.recent_notice = world.time //anti-notice spam
 		return FALSE
 
-	var/mob/living/carbon/C = A
-	if (isnestedhost(C))
-		if(!silent)
-			to_chat(owner, "<span class='warning'>Ashamed, we reconsider bullying the poor, nested host with our stinger.</span>")
-		return FALSE
-
 /datum/action/xeno_action/activable/larval_growth_sting/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/X = owner
 
@@ -1418,6 +1412,8 @@
 		personal_statistics.drained++
 	log_combat(victim, owner, "was drained.")
 	log_game("[key_name(victim)] was drained at [AREACOORD(victim.loc)].")
+
+
 /////////////////////////////////
 // Impregnate
 /////////////////////////////////
@@ -1426,6 +1422,7 @@
 	name = "Impregnate"
 	action_icon_state = "drone_sting"
 	desc = "Fill your victim with your acidic cum to impregnate them."
+	cooldown_timer = 30 SECONDS
 	use_state_flags = XACT_USE_STAGGERED
 	plasma_cost = 50
 	gamemode_flags = ABILITY_NUCLEARWAR
@@ -1434,6 +1431,9 @@
 	)
 
 /datum/action/xeno_action/activable/impregnate/can_use_ability(atom/A, silent, override_flags)
+    . = ..()
+    if(!.)
+        return FALSE
 	var/mob/living/carbon/xenomorph/X = owner
 	var/mob/living/carbon/human/victim = A
 	if(!ishuman(A) || issynth(A))
