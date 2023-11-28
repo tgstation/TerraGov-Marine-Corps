@@ -1431,9 +1431,9 @@
 	)
 
 /datum/action/xeno_action/activable/impregnate/can_use_ability(atom/A, silent, override_flags)
-    . = ..()
-    if(!.)
-        return FALSE
+	. = ..()
+	if(!.)
+		return FALSE
 	var/mob/living/carbon/xenomorph/X = owner
 	var/mob/living/carbon/human/victim = A
 	if(!ishuman(A) || issynth(A))

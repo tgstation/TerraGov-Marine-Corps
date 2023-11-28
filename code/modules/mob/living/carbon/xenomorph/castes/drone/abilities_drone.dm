@@ -137,11 +137,12 @@
 		essence_link_action.existing_link.add_stacks(-1)
 
 /datum/action/xeno_action/activable/psychic_cure/acidic_salve/proc/humansalve_healing(mob/living/carbon/human/target)
+	var/mob/living/carbon/xenomorph/X = owner
 	new /obj/effect/temp_visual/telekinesis(get_turf(target))
-	var/heal_amount = (DRONE_BASE_SALVE_HEAL * target.maxHealth * 0.01)
 	playsound(target, "alien_drool", 25)
 	target.adjustDrowsyness(15)
-	X.recurring_injection(A, /datum/reagent/medicine/tricordrazine, 2, 3)
+	X.recurring_injection(target, /datum/reagent/medicine/tricordrazine, 2, 3)
+	patient.updatehealth()
 
 // ***************************************
 // *********** Enhancement
