@@ -230,7 +230,7 @@
 		/obj/item/armor_module/armor/badge,
 	)
 
-/obj/item/clothing/suit/modular/syndie_exo
+/obj/item/clothing/suit/modular/hardsuit_exoskeleton
 	name = "FleckTex WY-01 modular exoskeleton"
 	desc = "FleckTex Dynamics brand new modular hardsuit exoskeleton, designed for full compatiability with jaeger modules. Comes with pre-installed light armour-plating and a shoulder lamp. Mount armor pieces to it by clicking on the frame with the components. Use Alt-Click to remove any attached items."
 	icon = 'icons/mob/modular/syndicate_hardsuits.dmi'
@@ -238,10 +238,10 @@
 	item_state = "exoskeleton"
 	item_state_worn = TRUE
 	item_icons = list(slot_wear_suit_str = 'icons/mob/modular/syndicate_hardsuits.dmi')
-	greyscale_colors = ARMOR_PALETTE_BLACK
 	greyscale_config = /datum/greyscale_config/exoskeleton
+	colorable_allowed = PRESET_COLORS_ALLOWED
 	colorable_colors = ARMOR_PALETTES_LIST
-	colorable_allowed = ICON_STATE_VARIANTS_ALLOWED|PRESET_COLORS_ALLOWED
+	greyscale_colors = ARMOR_PALETTE_DRAB
 	allowed_uniform_type = /obj/item/clothing/under
 	attachments_allowed = list(
 

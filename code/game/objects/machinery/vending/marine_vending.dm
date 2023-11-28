@@ -1131,7 +1131,7 @@
 			/obj/item/clothing/head/modular/marine/old/eod = -1,
 		),
 		"Hardsuits" = list(
-			/obj/item/clothing/suit/modular/syndie_exo = -1,
+			/obj/item/clothing/suit/modular/hardsuit_exoskeleton = -1,
 			/obj/item/clothing/head/modular/marine/hardsuit_helm/markfive = -1,
 			/obj/item/armor_module/armor/chest/marine/hardsuit/syndicate_markfive = -1,
 			/obj/item/armor_module/armor/arms/marine/hardsuit_arms/syndicate_markfive = -1,
