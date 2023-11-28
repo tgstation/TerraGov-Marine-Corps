@@ -14,7 +14,9 @@
 /area/shuttle/dropship/normandy)
 "cW" = (
 /obj/structure/bed/chair/dropship/passenger,
-/obj/structure/closet/walllocker/hydrant/extinguisher,
+/obj/structure/closet/walllocker/hydrant/extinguisher{
+	pixel_y = 16
+	},
 /turf/open/shuttle/dropship/seven,
 /area/shuttle/dropship/normandy)
 "eY" = (

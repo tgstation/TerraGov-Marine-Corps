@@ -537,8 +537,7 @@
 	dir = 8
 	},
 /obj/structure/closet/walllocker/hydrant/extinguisher{
-	dir = 8;
-	pixel_x = 16
+	dir = 8
 	},
 /turf/open/shuttle/dropship/floor,
 /area/shuttle/dropship/alamo)
