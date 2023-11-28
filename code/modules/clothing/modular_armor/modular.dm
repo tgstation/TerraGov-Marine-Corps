@@ -235,7 +235,7 @@
 	desc = "FleckTex Dynamics brand new modular hardsuit exoskeleton, designed for full compatiability with jaeger modules. Comes with pre-installed light armour-plating and a shoulder lamp. Mount armor pieces to it by clicking on the frame with the components. Use Alt-Click to remove any attached items."
 	icon_state = "exoskeleton"
 	item_state = "exoskeleton"
-	greyscale_config = /datum/greyscale_config/exoskeleton/hardsuit_exo
+	greyscale_config = /datum/greyscale_config/exoskeleton
 	colorable_allowed = PRESET_COLORS_ALLOWED
 	colorable_colors = ARMOR_PALETTES_LIST
 	greyscale_colors = ARMOR_PALETTE_DRAB
