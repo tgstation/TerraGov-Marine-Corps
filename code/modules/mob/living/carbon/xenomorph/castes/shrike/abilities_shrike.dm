@@ -247,7 +247,7 @@
 		return FALSE
 	if(!isxeno(target))
 		return FALSE
-	var/mob/living/carbon/xenomorph/patient = target
+	var/mob/living/carbon/patient = target
 	if(!CHECK_BITFIELD(use_state_flags|override_flags, XACT_IGNORE_DEAD_TARGET) && patient.stat == DEAD)
 		if(!silent)
 			to_chat(owner, span_warning("It's too late. This sister won't be coming back."))
@@ -284,7 +284,7 @@
 
 	playsound(target,'sound/effects/magic.ogg', 75, 1)
 	new /obj/effect/temp_visual/telekinesis(get_turf(target))
-	var/mob/living/carbon/xenomorph/patient = target
+	var/mob/living/carbon/patient = target
 	patient.heal_wounds(SHRIKE_CURE_HEAL_MULTIPLIER)
 	patient.adjust_sunder(-SHRIKE_CURE_HEAL_MULTIPLIER)
 	if(patient.health > 0) //If they are not in crit after the heal, let's remove evil debuffs.
@@ -398,7 +398,7 @@
 
 
 /**
- * Checks for any non-anchored movable atom, throwing them towards the shrike/owner using the ability. 
+ * Checks for any non-anchored movable atom, throwing them towards the shrike/owner using the ability.
  * While causing shake to anything in range with effects applied to humans affected.
  */
 /datum/action/xeno_action/activable/psychic_vortex/proc/vortex_pull()

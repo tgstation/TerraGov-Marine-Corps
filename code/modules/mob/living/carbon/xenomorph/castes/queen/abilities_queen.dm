@@ -354,7 +354,7 @@
 	target.visible_message(span_xenowarning("\the [owner] vomits acid over [target], mending their wounds!"))
 	playsound(target, "alien_drool", 25)
 	new /obj/effect/temp_visual/telekinesis(get_turf(target))
-	var/mob/living/carbon/xenomorph/patient = target
+	var/mob/living/carbon/patient = target
 	patient.salve_healing()
 	owner.changeNext_move(CLICK_CD_RANGE)
 	succeed_activate()
