@@ -13,23 +13,11 @@
 	name = "toxic spit"
 	icon_state = "xeno_toxic"
 	bullet_color = COLOR_PALE_GREEN_GRAY
-	damage = 12
+	damage = 16
 	spit_cost = 30
 	flags_ammo_behavior = AMMO_XENO|AMMO_SKIPS_ALIENS
 	/// The amount of stacks applied on hit.
-	var/intoxication_stacks = SENTINEL_TOXIC_SPIT_STACKS_PER
-
-/datum/ammo/xeno/acid/toxic_spit/upgrade1
-	damage = 14
-	intoxication_stacks = SENTINEL_TOXIC_SPIT_STACKS_PER + 1
-
-/datum/ammo/xeno/acid/toxic_spit/upgrade2
-	damage = 15
-	intoxication_stacks = SENTINEL_TOXIC_SPIT_STACKS_PER + 2
-
-/datum/ammo/xeno/acid/toxic_spit/upgrade3
-	damage = 16
-	intoxication_stacks = SENTINEL_TOXIC_SPIT_STACKS_PER + 3
+	var/intoxication_stacks = 5
 
 /datum/ammo/xeno/acid/toxic_spit/on_hit_mob(mob/M, obj/projectile/P)
 	if(istype(M,/mob/living/carbon))

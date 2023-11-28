@@ -41,11 +41,12 @@
 	if(damage_taken <= 0 || obj_integrity < 0)
 		return damage_taken
 
+	log_message("Took [damage_taken] points of damage. Damage type: [damage_type]", LOG_MECHA)
+	if(damage_taken < 5)
+		return damage_taken //its only a scratch
 	spark_system.start()
 	try_deal_internal_damage(damage_taken)
-	if(damage_taken >= 5 || prob(33))
-		to_chat(occupants, "[icon2html(src, occupants)][span_userdanger("Taking damage!")]")
-	log_message("Took [damage_taken] points of damage. Damage type: [damage_type]", LOG_MECHA)
+	to_chat(occupants, "[icon2html(src, occupants)][span_userdanger("Taking damage!")]")
 
 	return damage_taken
 
@@ -78,11 +79,25 @@
 	), hitting_projectile.def_zone)
 	return ..()
 
-/obj/vehicle/sealed/mecha/ex_act(severity, target)
+/obj/vehicle/sealed/mecha/ex_act(severity)
 	log_message("Affected by explosion of severity: [severity].", LOG_MECHA, color="red")
-	return ..()
+	if(CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE))
+		return
+	if(!(flags_atom & PREVENT_CONTENTS_EXPLOSION))
+		contents_explosion(severity)
+	if(QDELETED(src))
+		return
+	switch(severity)
+		if(EXPLODE_DEVASTATE)
+			take_damage(rand(1200, 1800), BRUTE, BOMB, 0)
+		if(EXPLODE_HEAVY)
+			take_damage(rand(400, 600), BRUTE, BOMB, 0)
+		if(EXPLODE_LIGHT)
+			take_damage(rand(150, 300), BRUTE, BOMB, 0)
+		if(EXPLODE_WEAK)
+			take_damage(rand(50, 100), BRUTE, BOMB, 0)
 
-/obj/vehicle/sealed/mecha/contents_explosion(severity, target)
+/obj/vehicle/sealed/mecha/contents_explosion(severity)
 	severity--
 
 	switch(severity)

@@ -23,6 +23,20 @@
 	QDEL_NULL(soundloop)
 	return ..()
 
+/obj/machinery/power/port_gen/attacked_by(obj/item/I, mob/living/user, def_zone)
+	. = ..()
+	if(!.)
+		return FALSE
+	record_generator_sabotages(user)
+	return TRUE
+
+/obj/machinery/power/port_gen/attack_alien(mob/living/carbon/xenomorph/X, damage_amount, damage_type, damage_flag, effects, armor_penetration, isrightclick)
+	. = ..()
+	if(!.)
+		return FALSE
+	record_generator_sabotages(X)
+	return TRUE
+
 /obj/machinery/power/port_gen/should_have_node()
 	return anchored
 

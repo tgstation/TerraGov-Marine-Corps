@@ -39,8 +39,8 @@
 		return
 
 	var/dat
-	dat += "Oxygen tanks: [oxygentanks] - [oxygentanks ? "<A href='?src=\ref[src];oxygen=1'>Dispense</A>" : "empty"]<br>"
-	dat += "Phoron tanks: [phorontanks] - [phorontanks ? "<A href='?src=\ref[src];phoron=1'>Dispense</A>" : "empty"]"
+	dat += "Oxygen tanks: [oxygentanks] - [oxygentanks ? "<A href='?src=[text_ref(src)];oxygen=1'>Dispense</A>" : "empty"]<br>"
+	dat += "Phoron tanks: [phorontanks] - [phorontanks ? "<A href='?src=[text_ref(src)];phoron=1'>Dispense</A>" : "empty"]"
 
 	var/datum/browser/popup = new(user, "dispense", "<div align='center'>[src]</div>")
 	popup.set_content(dat)

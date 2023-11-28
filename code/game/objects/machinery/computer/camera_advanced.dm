@@ -1,13 +1,16 @@
 /obj/machinery/computer/camera_advanced
 	name = "advanced camera console"
 	desc = "Used to access the various cameras on the ship."
-	icon_state = "cameras"
+	icon_state = "computer_small"
+	screen_overlay = "cameras"
+	broken_icon = "computer_small_red_broken"
 	interaction_flags = INTERACT_MACHINE_NOSILICON
 	var/list/z_lock = list() // Lock use to these z levels
 	var/lock_override = NONE
 	var/open_prompt = TRUE
 	var/mob/camera/aiEye/remote/hud/overwatch/eyeobj
 	var/mob/living/current_user
+	var/datum/cameranet/parent_cameranet
 	var/list/networks = list("marinemainship")
 	var/datum/action/innate/camera_off/off_action
 	var/datum/action/innate/camera_jump/jump_action
@@ -19,12 +22,16 @@
 
 /obj/machinery/computer/camera_advanced/Initialize(mapload)
 	. = ..()
-	off_action = new
-	jump_action = new
 	actions = list()
 	for(var/i in networks)
 		networks -= i
 		networks += lowertext(i)
+	if(SOM_CAMERA_NETWORK in networks)
+		parent_cameranet = GLOB.som_cameranet
+	else
+		parent_cameranet = GLOB.cameranet
+	off_action = new
+	jump_action = new(null, parent_cameranet)
 	if(lock_override)
 		if(lock_override & CAMERA_LOCK_SHIP)
 			z_lock |= SSmapping.levels_by_trait(ZTRAITS_MAIN_SHIP)
@@ -35,7 +42,7 @@
 
 ///Creates this computer's eye object and sets up its references.
 /obj/machinery/computer/camera_advanced/proc/CreateEye()
-	eyeobj = new()
+	eyeobj = new(null, parent_cameranet)
 	eyeobj.origin = src
 	RegisterSignal(eyeobj, COMSIG_QDELETING, PROC_REF(clear_eye_ref))
 
@@ -145,10 +152,10 @@
 		var/camera_location
 		var/turf/myturf = get_turf(src)
 		if(eyeobj.use_static)
-			if((!length(z_lock) || (myturf.z in z_lock)) && GLOB.cameranet.checkTurfVis(myturf))
+			if((!length(z_lock) || (myturf.z in z_lock)) && parent_cameranet.checkTurfVis(myturf))
 				camera_location = myturf
 			else
-				for(var/i in GLOB.cameranet.cameras)
+				for(var/i in parent_cameranet.cameras)
 					var/obj/machinery/camera/C = i
 					if(!C.can_use() || length(z_lock) && !(C.z in z_lock))
 						continue
@@ -262,11 +269,11 @@
 	if(!T)
 		return
 	if(T.z != z && use_static)
-		GLOB.cameranet.visibility(src, GetViewerClient(), null, use_static)
+		parent_cameranet.visibility(src, GetViewerClient(), null, use_static)
 	direction_moved = get_dir(src, target)
 	abstract_move(T)
 	if(use_static)
-		GLOB.cameranet.visibility(src, GetViewerClient(), null, use_static)
+		parent_cameranet.visibility(src, GetViewerClient(), null, use_static)
 	if(visible_icon && eye_user.client)
 		eye_user.client.images -= user_image
 		var/atom/top
@@ -304,20 +311,29 @@
 //This one's for CAS
 /mob/camera/aiEye/remote/hud
 	icon_state = "nothing"
+	faction = FACTION_TERRAGOV
+	///Visible icon state
 	var/icon_state_on = "cas_camera"
-	hud_possible = list(SQUAD_HUD_TERRAGOV)
 
-/mob/camera/aiEye/remote/hud/Initialize(mapload)
+/mob/camera/aiEye/remote/hud/Initialize(mapload, cameranet, new_faction)
 	. = ..()
+	if(new_faction)
+		faction = new_faction
+	hud_possible = list(GLOB.faction_to_squad_hud[faction])
 	prepare_huds()
-	var/datum/atom_hud/squad/squad_hud = GLOB.huds[DATA_HUD_SQUAD_TERRAGOV]
+	var/datum/atom_hud/squad/squad_hud = GLOB.huds[GLOB.faction_to_data_hud[faction]]
 	squad_hud.add_to_hud(src)
 
-	var/image/holder = hud_list[SQUAD_HUD_TERRAGOV]
+	var/image/holder = hud_list[hud_possible[1]]
 	if(!holder)
 		return
 	holder.icon = icon
 	holder.icon_state = icon_state_on
+
+/mob/camera/aiEye/remote/hud/Destroy()
+	var/datum/atom_hud/squad/squad_hud = GLOB.huds[GLOB.faction_to_data_hud[faction]]
+	squad_hud.remove_from_hud(src)
+	return ..()
 
 //This one's for overwatch/CIC
 /mob/camera/aiEye/remote/hud/overwatch
@@ -325,8 +341,8 @@
 	///List of current aura defines we're emitting, for overlay purposes
 	var/list/current_aura_list = list()
 
-/mob/camera/aiEye/remote/hud/overwatch/Initialize(mapload)
-	..()
+/mob/camera/aiEye/remote/hud/overwatch/Initialize(mapload, cameranet, new_faction)
+	. = ..()
 	RegisterSignal(src, COMSIG_AURA_STARTED, PROC_REF(add_emitted_auras))
 	RegisterSignal(src, COMSIG_AURA_FINISHED, PROC_REF(remove_emitted_auras))
 
@@ -344,14 +360,13 @@
 
 ///Applies order overlays (hold/move/focus) depending on what we have. Only visible to marines.
 /mob/camera/aiEye/remote/hud/overwatch/proc/update_aura_overlays(source, list/new_auras)
-	var/image/holder = hud_list[SQUAD_HUD_TERRAGOV]
+	var/image/holder = hud_list[GLOB.faction_to_squad_hud[faction]]
 	if(!holder)
 		return
 	holder.overlays.Cut()
 	for(var/aura_type in current_aura_list)
 		holder.overlays += image('icons/mob/hud.dmi', src, "hud[aura_type]")
 		holder.overlays += image('icons/mob/hud.dmi', src, "hud[aura_type]aura")
-
 
 /datum/action/innate/camera_off
 	name = "End Camera View"
@@ -372,7 +387,11 @@
 	name = "Jump To Camera"
 	background_icon_state = "template2"
 	action_icon_state = "camera_jump"
+	var/datum/cameranet/parent_cameranet
 
+/datum/action/innate/camera_jump/New(Target, cameranet)
+	. = ..()
+	parent_cameranet = cameranet ? cameranet : GLOB.cameranet
 
 /datum/action/innate/camera_jump/Activate()
 	if(!isliving(target))
@@ -383,7 +402,7 @@
 
 	var/list/valid_cams = list()
 
-	for(var/i in GLOB.cameranet.cameras)
+	for(var/i in parent_cameranet.cameras)
 		var/obj/machinery/camera/C = i
 		if(length(origin.z_lock) && !(C.z in origin.z_lock))
 			continue

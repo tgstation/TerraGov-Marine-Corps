@@ -30,10 +30,8 @@
 #define EMPED (1<<4)		// temporary broken by EMP pulse
 #define PANEL_OPEN (1<<5)
 #define DISABLED (1<<6)		// can be fixed with a welder; removes density. Used primary to stop otherwise indestructible computers from obstructing pathing.
-#define MACHINE_DO_NOT_PROCESS 32768 //Do not added these to processing queue.
 #define KNOCKED_DOWN (1<<7) //Is knocked over, does not affect operational capacity.
-
-#define ENGINE_EJECT_Z 3
+#define MACHINE_DO_NOT_PROCESS (1<<8) //Do not added these to processing queue.
 
 //metal, glass, rod stacks
 #define MAX_STACK_AMOUNT_METAL 50
@@ -258,3 +256,16 @@ GLOBAL_LIST_INIT(restricted_camera_networks, list( //Those networks can only be 
 #define LIGHT_TILE_FLICKERING 1
 #define LIGHT_TILE_BREAKING 2
 #define LIGHT_TILE_BROKEN 3
+
+//Teleporter array defines
+#define TELEPORTER_ARRAY_INOPERABLE "teleporter_array_inoperable"
+#define TELEPORTER_ARRAY_INACTIVE "teleporter_array_inactive"
+#define TELEPORTER_ARRAY_READY "teleporter_array_ready"
+#define TELEPORTER_ARRAY_IN_USE "teleporter_array_in_use"
+
+#define DROPPOD_READY 1
+#define DROPPOD_ACTIVE 2
+#define DROPPOD_LANDED 3
+
+//cameras
+#define SOM_CAMERA_NETWORK "som_camera_network"

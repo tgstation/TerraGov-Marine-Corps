@@ -8,6 +8,27 @@
 	var/datum/radio_frequency/radio_connection
 	var/cur_command = null	//the command the door is currently attempting to complete
 
+/obj/machinery/door/airlock/Initialize(mapload)
+	. = ..()
+	if(frequency)
+		set_frequency(frequency)
+
+	wires = new /datum/wires/airlock(src)
+
+	if(closeOtherId != null)
+		for(var/obj/machinery/door/airlock/A in GLOB.machines)
+			if(A.closeOtherId == src.closeOtherId && A != src)
+				src.closeOther = A
+				break
+
+	update_icon()
+
+/obj/machinery/door/airlock/Destroy()
+	SSradio.remove_object(src, frequency)
+	radio_connection?.devices -= src
+	radio_connection = null
+	return ..()
+
 /obj/machinery/door/airlock/proc/can_radio()
 	return hasPower()
 
@@ -110,102 +131,6 @@
 		frequency = new_frequency
 		radio_connection = SSradio.add_object(src, frequency, RADIO_AIRLOCK)
 
-
-/obj/machinery/door/airlock/Initialize(mapload)
-	. = ..()
-	if(frequency)
-		set_frequency(frequency)
-
-	wires = new /datum/wires/airlock(src)
-
-	if(closeOtherId != null)
-		for(var/obj/machinery/door/airlock/A in GLOB.machines)
-			if(A.closeOtherId == src.closeOtherId && A != src)
-				src.closeOther = A
-				break
-
-	update_icon()
-
-/obj/machinery/airlock_sensor
-	icon = 'icons/obj/airlock_machines.dmi'
-	icon_state = "airlock_sensor_off"
-	name = "airlock sensor"
-
-	anchored = TRUE
-	power_channel = ENVIRON
-
-	var/id_tag
-	var/master_tag
-	var/frequency = 1379
-	var/command = "cycle"
-
-	var/datum/radio_frequency/radio_connection
-
-	var/on = 1
-	var/alert = 0
-	var/previousPressure
-
-/obj/machinery/airlock_sensor/update_icon_state()
-	if(on)
-		icon_state = "airlock_sensor_off"
-		return
-	if(alert)
-		icon_state = "airlock_sensor_alert"
-	else
-		icon_state = "airlock_sensor_standby"
-
-
-/obj/machinery/airlock_sensor/attack_hand(mob/living/user)
-	. = ..()
-	if(.)
-		return
-	var/datum/signal/signal = new
-	signal.transmission_method = 1 //radio signal
-	signal.data["tag"] = master_tag
-	signal.data["command"] = command
-
-	radio_connection.post_signal(src, signal, range = AIRLOCK_CONTROL_RANGE, filter = RADIO_AIRLOCK)
-	flick("airlock_sensor_cycle", src)
-
-/obj/machinery/airlock_sensor/process()
-	if(on)
-		var/air_pressure = return_air()
-		var/pressure = round(air_pressure,0.1)
-
-		if(abs(pressure - previousPressure) > 0.001 || previousPressure == null)
-			var/datum/signal/signal = new
-			signal.transmission_method = 1 //radio signal
-			signal.data["tag"] = id_tag
-			signal.data["timestamp"] = world.time
-			signal.data["pressure"] = num2text(pressure)
-
-			radio_connection.post_signal(src, signal, range = AIRLOCK_CONTROL_RANGE, filter = RADIO_AIRLOCK)
-
-			previousPressure = pressure
-
-			alert = (pressure < ONE_ATMOSPHERE*0.8)
-
-			update_icon()
-
-/obj/machinery/airlock_sensor/proc/set_frequency(new_frequency)
-	SSradio.remove_object(src, frequency)
-	frequency = new_frequency
-	radio_connection = SSradio.add_object(src, frequency, RADIO_AIRLOCK)
-
-/obj/machinery/airlock_sensor/Initialize(mapload)
-	. = ..()
-	set_frequency(frequency)
-	start_processing()
-
-/obj/machinery/airlock_sensor/New()
-	..()
-
-/obj/machinery/airlock_sensor/airlock_interior
-	command = "cycle_interior"
-
-/obj/machinery/airlock_sensor/airlock_exterior
-	command = "cycle_exterior"
-
 /obj/machinery/access_button
 	icon = 'icons/obj/airlock_machines.dmi'
 	icon_state = "access_button_standby"
@@ -262,9 +187,11 @@
 	. = ..()
 	set_frequency(frequency)
 
-
-/obj/machinery/access_button/New()
-	..()
+/obj/machinery/access_button/Destroy()
+	SSradio.remove_object(src, frequency)
+	radio_connection?.devices -= src
+	radio_connection = null
+	return ..()
 
 /obj/machinery/access_button/airlock_interior
 	frequency = 1379

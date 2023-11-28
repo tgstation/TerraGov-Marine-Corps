@@ -1,5 +1,15 @@
 #define NO_REAGENT_COLOR "#FFFFFF"
 
+#define VALI_CODEX "<b>Reagent info:</b><BR>\
+	Bicaridine - heals somebody else for 12.5 brute, or when used on yourself heal 6 brute and 30 stamina<BR>\
+	Kelotane - set your target and any adjacent mobs aflame<BR>\
+	Tramadol - slow your target for 1 second and deal 60% more armor-piercing damage<BR>\
+	<BR>\
+	<b>Tips:</b><BR>\
+	> Needs to be connected to the Vali system to collect green blood. You can connect it though the Vali system's configurations menu.<BR>\
+	> Filled by liquid reagent containers. Emptied by using an empty liquid reagent container. Can also be filled by pills.<BR>\
+	> Press your unique action key (SPACE by default) to load a single-use of the reagent effect after the blade has been filled up.<BR>"
+
 /datum/component/harvester
 	///reagent selected for actions
 	var/datum/reagent/selected_reagent
@@ -38,6 +48,11 @@
 	RegisterSignal(parent, COMSIG_ITEM_ATTACK, PROC_REF(attack))
 	RegisterSignal(parent, COMSIG_ATOM_ATTACKBY, PROC_REF(attackby))
 	RegisterSignal(reagent_select_action, COMSIG_ACTION_TRIGGER, PROC_REF(select_reagent))
+	RegisterSignal(parent, COMSIG_ATOM_UPDATE_OVERLAYS, PROC_REF(update_loaded_color))
+	RegisterSignal(parent, COMSIG_ITEM_APPLY_CUSTOM_OVERLAY, PROC_REF(upate_mob_overlay))
+	RegisterSignal(parent, COMSIG_ATOM_GET_MECHANICS_INFO, PROC_REF(get_mechanics_info))
+
+	item_parent.update_icon() //So that our sprite realizes it's empty when it spawns
 
 /datum/component/harvester/Destroy(force, silent)
 	var/obj/item/item_parent = parent
@@ -70,6 +85,12 @@
 		output += "<span style='color:[initial(reagent.color)];font-weight:bold'>[initial(reagent.name)]</span>\n"
 
 	to_chat(user, output)
+
+///Adds mechanics info to the weapon
+/datum/component/harvester/proc/get_mechanics_info(datum/source, list/mechanics_text)
+	SIGNAL_HANDLER
+	mechanics_text += (VALI_CODEX)
+	return COMPONENT_MECHANICS_CHANGE
 
 ///Handles behavior for when item is clicked on
 /datum/component/harvester/proc/attackby_async(datum/source, obj/item/cont, mob/user)
@@ -144,6 +165,12 @@
 	loaded_reagents[selected_reagent] -= use_amount
 	if(!loaded_reagents[selected_reagent])
 		loaded_reagents -= selected_reagent
+
+	var/obj/item/item_parent = parent
+	item_parent.update_icon()
+	user.update_inv_r_hand()
+	user.update_inv_l_hand()
+
 	user.balloon_alert(user, "loaded")
 
 ///Handles behavior when attacking a mob
@@ -155,6 +182,27 @@
 	else
 		target.adjustStaminaLoss(-30)
 		target.heal_overall_damage(6, 0, updating_health = TRUE)
+
+///Updates the color of the overlay on top of the item sprite based on what chem is loaded in
+/datum/component/harvester/proc/update_loaded_color(datum/source, list/overlays_list)
+	SIGNAL_HANDLER
+	var/obj/item/item_parent = parent
+	var/image/item_overlay = image('icons/obj/items/vali.dmi', item_parent, "[initial(item_parent.icon_state)]_loaded")
+	if(!loaded_reagent)
+		item_overlay.color = COLOR_GREEN
+	else
+		item_overlay.color = initial(loaded_reagent.color)
+	overlays_list.Add(item_overlay)
+
+///Updates the mob sprite
+/datum/component/harvester/proc/upate_mob_overlay(datum/source, mutable_appearance/standing, inhands, icon_used, state_used)
+	SIGNAL_HANDLER
+	var/mutable_appearance/blade_overlay = mutable_appearance(icon_used, "[state_used]_loaded")
+	if(!loaded_reagent)
+		blade_overlay.color = COLOR_GREEN
+	else
+		blade_overlay.color = initial(loaded_reagent.color)
+	standing.overlays.Add(blade_overlay)
 
 ///Signal handler calling when user is filling the harvester
 /datum/component/harvester/proc/attackby(datum/source, obj/item/cont, mob/user)
@@ -183,6 +231,7 @@
 			target.apply_status_effect(/datum/status_effect/incapacitating/harvester_slowdown, 1 SECONDS)
 
 		if(/datum/reagent/medicine/kelotane)
+			target.adjust_sunder(7.5) //Same amount as a shotgun slug
 			target.flamer_fire_act(10)
 			target.apply_damage(max(0, 20 - 20*target.hard_armor.getRating("fire")), BURN, user.zone_selected, FIRE)
 			var/list/cone_turfs = generate_cone(target, 1, 0, 181, Get_Angle(user, target.loc))
@@ -201,6 +250,11 @@
 		update_selected_reagent(null)
 		user.balloon_alert(user, "[initial(loaded_reagent.name)]: empty")
 	loaded_reagent = null
+
+	var/obj/item/item_parent = parent
+	item_parent.update_icon()
+	user.update_inv_r_hand()
+	user.update_inv_l_hand()
 
 	if(loadup_on_attack)
 		INVOKE_ASYNC(src, PROC_REF(activate_blade_async), source, user)
@@ -244,3 +298,4 @@
 	button.overlays += selected_reagent_overlay
 
 #undef NO_REAGENT_COLOR
+#undef VALI_CODEX

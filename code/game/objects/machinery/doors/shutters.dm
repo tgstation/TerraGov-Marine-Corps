@@ -76,7 +76,7 @@
 
 
 /obj/machinery/door/poddoor/shutters/timed_late/Initialize(mapload)
-	RegisterSignals(SSdcs, list(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_CRASH, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_XENO_HIVEMIND), PROC_REF(open))
+	RegisterSignals(SSdcs, list(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_CRASH, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_XENO_HIVEMIND, COMSIG_GLOB_CAMPAIGN_MISSION_STARTED), PROC_REF(open))
 	return ..()
 
 
@@ -145,6 +145,9 @@
 /obj/machinery/door/poddoor/shutters/mainship/open/checkpoint/south
 	id = "southcheckpoint"
 
+/obj/machinery/door/poddoor/shutters/mainship/open/medical
+	name = "Medbay Lockdown Shutters"
+	id = "medbay_lockdown"
 
 /obj/machinery/door/poddoor/shutters/mainship/open/indestructible
 	resistance_flags = RESIST_ALL|DROPSHIP_IMMUNE

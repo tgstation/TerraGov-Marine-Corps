@@ -31,10 +31,12 @@
 	///How much fuel we can hold maximum
 	var/fuel_max = 40
 	///Our currently selected weapon we will fire
-	var/obj/structure/dropship_equipment/weapon/active_weapon
+	var/obj/structure/dropship_equipment/cas/weapon/active_weapon
 	///Minimap for the pilot to know where the marines have ran off to
 	var/datum/action/minimap/marine/external/cas_mini
 
+	///If the shuttle is currently returning to the hangar.
+	var/currently_returning = FALSE
 	/// Jump to Lase action for active firemissions
 	var/datum/action/innate/jump_to_lase/jump_action
 
@@ -58,6 +60,7 @@
 	if((fuel_left <= LOW_FUEL_LANDING_THRESHOLD) && (state == PLANE_STATE_FLYING))
 		to_chat(chair.occupant, span_warning("Out of fuel, landing."))
 		SSshuttle.moveShuttle(id, SHUTTLE_CAS_DOCK, TRUE)
+		currently_returning = TRUE
 		end_cas_mission(chair.occupant)
 	if (fuel_left <= 0)
 		fuel_left = 0
@@ -131,8 +134,11 @@
 	if(!fuel_left)
 		to_chat(user, span_warning("No fuel remaining!"))
 		return
-	if(state != PLANE_STATE_FLYING)
+	if(state != PLANE_STATE_FLYING || is_mainship_level(z))
 		to_chat(user, span_warning("You are not in-flight!"))
+		return
+	if(currently_returning)
+		to_chat(user, span_warning("You are currently on your return flight!"))
 		return
 	if(!eyeobj)
 		eyeobj = new()
@@ -169,6 +175,24 @@
 
 	if(!starting_point)
 		return
+
+	if(state != PLANE_STATE_FLYING || is_mainship_level(z)) //Secondary safety due to input being able to delay time.
+		to_chat(user, span_warning("You are not in-flight!"))
+		return
+	if(currently_returning)
+		to_chat(user, span_warning("You are currently on your return flight!"))
+		return
+	if(eyeobj.eye_user)
+		to_chat(user, span_warning("CAS mode is already in-use!"))
+		return
+
+	SSmonitor.process_human_positions()
+	#ifndef TESTING
+	if(SSmonitor.human_on_ground <= 5)
+		to_chat(user, span_warning("The signal from the area of operations is too weak, you cannot route towards the battlefield."))
+		return
+	#endif
+
 	to_chat(user, span_warning("Targets detected, routing to area of operations."))
 	give_eye_control(user)
 	eyeobj.setLoc(get_turf(starting_point))
@@ -225,7 +249,7 @@
 
 ///Handles clicking on a target while in CAS mode
 /obj/docking_port/mobile/marine_dropship/casplane/proc/fire_weapons_at(datum/source, atom/target, turf/location, control, params)
-	if(state != PLANE_STATE_FLYING)
+	if(state != PLANE_STATE_FLYING || is_mainship_level(z))
 		end_cas_mission(source)
 		return
 	if(!GLOB.cameranet.checkTurfVis(get_turf_pixel(target)))
@@ -247,50 +271,31 @@
 		to_chat(source, span_warning("[active_weapon] just fired, wait for it to cool down."))
 		return
 	active_weapon.open_fire(target, attackdir)
+	record_cas_activity(active_weapon)
 
 /obj/docking_port/mobile/marine_dropship/casplane/ui_data(mob/user)
 	. = list()
 	.["plane_state"] = state
+	.["location_state"] = !is_mainship_level(z)
 	.["plane_mode"] = mode
 	.["fuel_left"] = fuel_left
 	.["fuel_max"] = fuel_max
-	.["ship_status"] = getStatusText()
 	.["attackdir"] = uppertext(dir2text(attackdir))
+	.["active_lasers"] = length(GLOB.active_cas_targets)
+
 	var/element_nbr = 1
 	.["all_weapons"] = list()
-	for(var/i in equipments)
-		var/obj/structure/dropship_equipment/weapon/weapon = i
-		.["all_weapons"] += list(list("name"= sanitize(copytext(weapon.name,1,MAX_MESSAGE_LEN)), "ammo" = weapon?.ammo_equipped?.ammo_count, "eqp_tag" = element_nbr))
+	for(var/obj/structure/dropship_equipment/cas/weapon/weapon in equipments)
+		.["all_weapons"] += list(list(
+			"name"= sanitize(copytext(weapon.name,1,MAX_MESSAGE_LEN)),
+			"ammo" = weapon.ammo_equipped?.ammo_count,
+			"max_ammo" = weapon.ammo_equipped?.max_ammo_count,
+			"ammo_name" = weapon.ammo_equipped?.name,
+			"eqp_tag" = element_nbr,
+		))
 		if(weapon == active_weapon)
 			.["active_weapon_tag"] = element_nbr
 		element_nbr++
-	.["active_lasers"] = length(GLOB.active_cas_targets)
-	.["active_weapon_name"] = null
-	.["active_weapon_ammo"] = null
-	.["active_weapon_max_ammo"] = null
-	.["active_weapon_ammo_name"] = null
-	if(active_weapon)
-		.["active_weapon_name"] = sanitize(copytext(active_weapon?.name,1,MAX_MESSAGE_LEN))
-		if(active_weapon.ammo_equipped)
-			.["active_weapon_ammo"] = active_weapon.ammo_equipped.ammo_count
-			.["active_weapon_max_ammo"] = active_weapon.ammo_equipped.max_ammo_count
-			.["active_weapon_ammo_name"] = active_weapon.ammo_equipped.name
-
-/obj/docking_port/mobile/marine_dropship/casplane/getStatusText()
-	switch(mode)
-		if(SHUTTLE_IDLE, SHUTTLE_RECHARGING)
-			switch(state)
-				if(PLANE_STATE_FLYING)
-					return "In-mission"
-				if(PLANE_STATE_PREPARED)
-					return "Engines online and ready for launch."
-				if(PLANE_STATE_ACTIVATED)
-					return "Engines Offline. Idle mode engaged."
-		if(SHUTTLE_IGNITING)
-			return "Accelerating to new destination."
-		if(SHUTTLE_PREARRIVAL)
-			return "Decelerating."
-	return "Unknown status"
 
 /// Used to intercept JUMP links.
 /obj/docking_port/mobile/marine_dropship/casplane/proc/handle_topic(datum/source, mob/user, list/href_list)

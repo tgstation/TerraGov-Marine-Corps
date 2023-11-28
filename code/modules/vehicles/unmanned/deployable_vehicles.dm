@@ -31,6 +31,8 @@
 	var/obj/item/deployable_vehicle/internal_item
 
 /obj/vehicle/unmanned/deployable/Initialize(mapload, _internal_item, deployer)
+	if(!internal_item && !_internal_item)
+		return INITIALIZE_HINT_QDEL
 	internal_item = _internal_item
 	spawn_equipped_type = internal_item.stored_turret_type
 	. = ..()

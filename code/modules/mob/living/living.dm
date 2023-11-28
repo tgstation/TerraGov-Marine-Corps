@@ -23,6 +23,13 @@
 /mob/living/proc/finish_aura_cycle()
 	received_auras.Cut() //Living, of course, doesn't care about any
 
+///Can we receive this aura? returns bool
+/mob/living/proc/can_receive_aura(aura_type, atom/source, datum/aura_bearer/bearer)
+	SHOULD_CALL_PARENT(TRUE)
+	. = TRUE
+	if(faction != bearer.faction)
+		return FALSE
+
 ///Update what auras we'll receive this life tick if it's either new or stronger than current. aura_type as AURA_ define, strength as number.
 /mob/living/proc/receive_aura(aura_type, strength)
 	if(received_auras[aura_type] > strength)
@@ -92,10 +99,6 @@
 	AddElement(/datum/element/gesture)
 	AddElement(/datum/element/keybinding_update)
 	stamina_regen_modifiers = list()
-	received_auras = list()
-	emitted_auras = list()
-	RegisterSignal(src, COMSIG_AURA_STARTED, PROC_REF(add_emitted_auras))
-	RegisterSignal(src, COMSIG_AURA_FINISHED, PROC_REF(remove_emitted_auras))
 
 /mob/living/Destroy()
 	for(var/datum/status_effect/effect AS in status_effects)
@@ -429,6 +432,9 @@
 		return
 	if(!client)
 		return
+	var/mob/mob_to_push = AM
+	if(istype(mob_to_push) && mob_to_push.lying_angle)
+		return
 	now_pushing = TRUE
 	var/dir_to_target = get_dir(src, AM)
 
@@ -449,7 +455,6 @@
 		if(force_push(AM, move_force, dir_to_target, push_anchored))
 			push_anchored = TRUE
 	if(ismob(AM))
-		var/mob/mob_to_push = AM
 		var/atom/movable/mob_buckle = mob_to_push.buckled
 		// If we can't pull them because of what they're buckled to, make sure we can push the thing they're buckled to instead.
 		// If neither are true, we're not pushing anymore.
@@ -582,15 +587,6 @@
 	else
 		smokecloak_off()
 
-/mob/living/proc/do_jitter_animation(jitteriness)
-	var/amplitude = min(4, (jitteriness/100) + 1)
-	var/pixel_x_diff = rand(-amplitude, amplitude)
-	var/pixel_y_diff = rand(-amplitude/3, amplitude/3)
-	var/final_pixel_x = initial(pixel_x)
-	var/final_pixel_y = initial(pixel_y)
-	animate(src, pixel_x = pixel_x + pixel_x_diff, pixel_y = pixel_y + pixel_y_diff , time = 2, loop = 6)
-	animate(pixel_x = final_pixel_x , pixel_y = final_pixel_y , time = 2)
-
 
 /*
 adds a dizziness amount to a mob
@@ -713,19 +709,6 @@ below 100 is not dizzy
 
 /mob/living/proc/get_visible_name()
 	return name
-
-
-/mob/living/proc/point_to_atom(atom/A, turf/T)
-	var/turf/tile = get_turf(A)
-	if (!tile)
-		return FALSE
-	var/turf/our_tile = get_turf(src)
-	TIMER_COOLDOWN_START(src, COOLDOWN_POINT, 1 SECONDS)
-	var/obj/visual = new /obj/effect/overlay/temp/point/big(our_tile, 0, invisibility)
-	animate(visual, pixel_x = (tile.x - our_tile.x) * world.icon_size + A.pixel_x, pixel_y = (tile.y - our_tile.y) * world.icon_size + A.pixel_y, time = 1.7, easing = EASE_OUT)
-	visible_message("<b>[src]</b> points to [A]")
-	SEND_SIGNAL(src, COMSIG_POINT_TO_ATOM, A)
-	return TRUE
 
 
 /mob/living/get_photo_description(obj/item/camera/camera)

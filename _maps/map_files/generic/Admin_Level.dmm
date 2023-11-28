@@ -110,7 +110,7 @@
 /area/centcom/supplypod/loading/ert)
 "akp" = (
 /obj/effect/turf_decal/tile/blue,
-/obj/effect/turf_decal/tile{
+/obj/effect/turf_decal/tile/white{
 	dir = 1
 	},
 /turf/open/floor/tile/neutral{
@@ -410,7 +410,7 @@
 /obj/effect/turf_decal/tile/blue{
 	dir = 8
 	},
-/obj/effect/turf_decal/tile{
+/obj/effect/turf_decal/tile/white{
 	dir = 4
 	},
 /turf/open/floor/tile/neutral,
@@ -1059,6 +1059,10 @@
 	dir = 5
 	},
 /area/centcom/valhalla/bridge)
+"ble" = (
+/obj/machinery/vending/medical/valhalla,
+/turf/open/floor/tile/dark/gray,
+/area/centcom/valhalla/security/brig/interiorcavern)
 "blf" = (
 /turf/open/floor/tile/neutral/corner{
 	dir = 4
@@ -2770,10 +2774,6 @@
 "dBD" = (
 /turf/open/floor/plating/dmg2,
 /area/centcom/valhalla/security/brig/interiorcavern)
-"dCk" = (
-/obj/structure/lattice,
-/turf/closed/mineral/smooth,
-/area/space)
 "dDv" = (
 /obj/machinery/camera/autoname/thunderdome/hidden,
 /turf/open/floor/tile/red/redtaupe{
@@ -2901,13 +2901,13 @@
 	dir = 8
 	},
 /obj/item/reagent_containers/food/drinks/bottle/whiskey{
-	pixel_y = 15;
-	pixel_x = 1
+	pixel_x = 1;
+	pixel_y = 15
 	},
 /obj/structure/table/fancywoodentable,
 /obj/item/reagent_containers/food/drinks/bottle/whiskey{
-	pixel_y = 15;
-	pixel_x = 9
+	pixel_x = 9;
+	pixel_y = 15
 	},
 /obj/item/storage/fancy/cigar,
 /turf/open/floor/tile/dark/gray,
@@ -3199,7 +3199,7 @@
 /area/centcom/valhalla/engine/break_room)
 "dTC" = (
 /obj/machinery/smartfridge/nopower,
-/turf/closed/wall,
+/turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla/hydroponics)
 "dTJ" = (
 /obj/structure/closet/crate,
@@ -3364,7 +3364,7 @@
 	},
 /obj/structure/table,
 /obj/machinery/recharger/nopower,
-/turf/open/floor/wood/variable/damaged/standard,
+/turf/open/floor/wood/broken,
 /area/centcom/valhalla/crew_quarters/captain)
 "egz" = (
 /obj/effect/turf_decal/warning_stripes/thick/corner{
@@ -3441,7 +3441,7 @@
 "elO" = (
 /obj/structure/table,
 /obj/item/taperecorder,
-/turf/open/floor/wood/variable/damaged/standard,
+/turf/open/floor/wood/broken,
 /area/centcom/valhalla/library)
 "epz" = (
 /obj/machinery/vending/uniform_supply/valhalla,
@@ -3801,7 +3801,7 @@
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla/primary/fore/port)
 "eSN" = (
-/obj/machinery/prop/mainship/computer,
+/obj/machinery/prop/computer,
 /obj/structure/table/reinforced,
 /obj/structure/window/reinforced{
 	dir = 1
@@ -3821,7 +3821,7 @@
 /obj/effect/turf_decal/tile/blue{
 	dir = 8
 	},
-/obj/effect/turf_decal/tile{
+/obj/effect/turf_decal/tile/white{
 	dir = 4
 	},
 /obj/structure/closet/emcloset,
@@ -4366,7 +4366,7 @@
 /area/centcom/valhalla/quartermaster/storage)
 "fKX" = (
 /obj/structure/closet/cabinet,
-/turf/open/floor/wood/variable/damaged/standard,
+/turf/open/floor/wood/broken,
 /area/centcom/valhalla/crew_quarters)
 "fLl" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
@@ -4525,7 +4525,7 @@
 	pixel_x = 42;
 	pixel_y = -42
 	},
-/turf/open/floor/wood/variable/damaged/standard,
+/turf/open/floor/wood/broken,
 /area/centcom/valhalla/crew_quarters/heads/hop)
 "fTg" = (
 /obj/effect/turf_decal/warning_stripes/thick,
@@ -5627,7 +5627,7 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/centcom/valhalla/medical/medbay)
 "hrC" = (
-/turf/open/floor/wood/variable/damaged/standard,
+/turf/open/floor/wood/broken,
 /area/centcom/valhalla/port)
 "htq" = (
 /obj/structure/table/reinforced,
@@ -6777,7 +6777,7 @@
 /obj/effect/turf_decal/tile/gray{
 	dir = 8
 	},
-/obj/machinery/roomba/valhalla,
+/obj/machinery/bot/roomba/valhalla,
 /turf/open/floor/tile/neutral/full,
 /area/centcom/valhalla/security/brig)
 "jdQ" = (
@@ -7337,7 +7337,7 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/tile/blue,
-/obj/effect/turf_decal/tile{
+/obj/effect/turf_decal/tile/white{
 	dir = 1
 	},
 /turf/open/floor/tile/neutral{
@@ -7387,7 +7387,7 @@
 	dir = 4
 	},
 /obj/machinery/portable_atmospherics/pump,
-/obj/effect/turf_decal/tile{
+/obj/effect/turf_decal/tile/white{
 	dir = 4
 	},
 /obj/effect/turf_decal/tile/blue,
@@ -7819,7 +7819,7 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/centcom/valhalla/xenocave)
 "kov" = (
-/obj/machinery/prop/mainship/computer,
+/obj/machinery/prop/computer,
 /obj/structure/table/reinforced,
 /obj/structure/window/reinforced{
 	dir = 1
@@ -7980,7 +7980,7 @@
 /area/centcom/valhalla/medical/chemistry)
 "kyR" = (
 /obj/effect/turf_decal/tile/blue,
-/obj/effect/turf_decal/tile{
+/obj/effect/turf_decal/tile/white{
 	dir = 1
 	},
 /turf/open/floor/tile/neutral{
@@ -8363,7 +8363,7 @@
 /obj/structure/extinguisher_cabinet{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile{
+/obj/effect/turf_decal/tile/white{
 	dir = 4
 	},
 /obj/effect/turf_decal/tile/blue,
@@ -8440,7 +8440,7 @@
 /area/centcom/valhalla/security/brig)
 "lhY" = (
 /obj/effect/turf_decal/tile/blue,
-/obj/effect/turf_decal/tile{
+/obj/effect/turf_decal/tile/white{
 	dir = 1
 	},
 /obj/effect/ai_node,
@@ -8470,7 +8470,7 @@
 /obj/effect/turf_decal/tile/blue{
 	dir = 8
 	},
-/obj/effect/turf_decal/tile{
+/obj/effect/turf_decal/tile/white{
 	dir = 4
 	},
 /turf/open/floor/tile/neutral,
@@ -8641,7 +8641,7 @@
 "lrW" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/ai_node,
-/turf/open/floor/wood/variable/damaged/standard,
+/turf/open/floor/wood/broken,
 /area/centcom/valhalla/port)
 "lsy" = (
 /obj/machinery/firealarm{
@@ -9063,7 +9063,7 @@
 	pixel_y = 3
 	},
 /obj/item/storage/box/handcuffs,
-/obj/item/storage/box/flashbangs{
+/obj/effect/spawner/random/weaponry/explosive/grenade/multiplefour{
 	pixel_x = -3;
 	pixel_y = -3
 	},
@@ -10579,7 +10579,7 @@
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla/security/brig/interiorcavern)
 "obe" = (
-/obj/machinery/body_scanconsole,
+/obj/machinery/computer/body_scanconsole,
 /turf/open/floor/mainship/sterile/corner{
 	dir = 8
 	},
@@ -11471,7 +11471,7 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 1
 	},
-/turf/open/floor/wood/variable/damaged/standard,
+/turf/open/floor/wood/broken,
 /area/centcom/valhalla/library)
 "pio" = (
 /obj/effect/decal/cleanable/dirt,
@@ -11694,7 +11694,7 @@
 /turf/open/floor/wood,
 /area/centcom/valhalla/port)
 "pFR" = (
-/obj/machinery/autodoc_console,
+/obj/machinery/computer/autodoc_console,
 /turf/open/floor/mainship/sterile/side{
 	dir = 8
 	},
@@ -11712,8 +11712,8 @@
 	},
 /obj/effect/turf_decal/warning_stripes/box/arrow{
 	dir = 8;
-	pixel_y = -11;
-	pixel_x = 8
+	pixel_x = 8;
+	pixel_y = -11
 	},
 /obj/effect/turf_decal/warning_stripes/box/small{
 	dir = 1
@@ -11921,7 +11921,7 @@
 /area/centcom/valhalla/engine/engineering)
 "pZK" = (
 /obj/structure/bed/stool,
-/turf/open/floor/wood/variable/damaged/standard,
+/turf/open/floor/wood/broken,
 /area/centcom/valhalla/port)
 "pZY" = (
 /obj/structure/window/framed/colony/reinforced,
@@ -12074,7 +12074,7 @@
 "qhV" = (
 /obj/structure/bed/stool,
 /obj/effect/ai_node,
-/turf/open/floor/wood/variable/damaged/standard,
+/turf/open/floor/wood/broken,
 /area/centcom/valhalla/port)
 "qia" = (
 /obj/structure/prop/mainship/propcarp{
@@ -12087,7 +12087,7 @@
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla/primary/central_one)
 "qjg" = (
-/obj/effect/turf_decal/tile{
+/obj/effect/turf_decal/tile/white{
 	dir = 4
 	},
 /obj/effect/turf_decal/tile/blue{
@@ -13112,7 +13112,7 @@
 /area/centcom/valhalla/medical/medbay)
 "ruB" = (
 /obj/machinery/smartfridge/chemistry/nopower,
-/turf/closed/wall,
+/turf/open/floor/tile/white,
 /area/centcom/valhalla/medical/chemistry)
 "rvz" = (
 /obj/machinery/door/firedoor,
@@ -13288,7 +13288,7 @@
 /obj/machinery/air_alarm{
 	dir = 1
 	},
-/turf/open/floor/wood/variable/damaged/standard,
+/turf/open/floor/wood/broken,
 /area/centcom/valhalla/crew_quarters/theatre)
 "rIl" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
@@ -13558,7 +13558,7 @@
 	},
 /area/centcom/valhalla/crew_quarters/theatre)
 "scd" = (
-/turf/open/floor/wood/variable/damaged/standard,
+/turf/open/floor/wood/broken,
 /area/centcom/valhalla/library)
 "sch" = (
 /obj/effect/decal/cleanable/dirt,
@@ -14102,7 +14102,7 @@
 	dir = 4
 	},
 /obj/machinery/portable_atmospherics/scrubber,
-/obj/effect/turf_decal/tile{
+/obj/effect/turf_decal/tile/white{
 	dir = 4
 	},
 /obj/effect/turf_decal/tile/red,
@@ -15430,7 +15430,7 @@
 /turf/open/floor/plating,
 /area/centcom/valhalla/security/checkpoint)
 "usm" = (
-/turf/open/floor/wood/variable/damaged/standard,
+/turf/open/floor/wood/broken,
 /area/centcom/valhalla/crew_quarters/theatre)
 "usE" = (
 /obj/effect/decal/cleanable/cobweb,
@@ -16806,7 +16806,7 @@
 	},
 /obj/machinery/door/poddoor/shutters/mainship{
 	id = "brigfront";
-	name = "Brig Blast door"
+	name = "Brig Blast Door"
 	},
 /turf/open/floor/plating,
 /area/centcom/valhalla/security/brig)
@@ -17075,7 +17075,7 @@
 /obj/item/reagent_containers/food/drinks/bottle/holywater,
 /obj/item/explosive/grenade/sectoid,
 /obj/item/explosive/grenade/sectoid,
-/obj/item/toy/plush/gnome,
+/obj/effect/spawner/random/misc/gnome/fiftyfifty,
 /turf/open/floor/tile/dark,
 /area/centcom/valhalla/chapel/main)
 "wll" = (
@@ -17496,7 +17496,7 @@
 /obj/effect/spawner/random/misc/paperbin,
 /obj/item/tool/pen,
 /obj/item/tool/stamp/hop,
-/turf/open/floor/wood/variable/damaged/standard,
+/turf/open/floor/wood/broken,
 /area/centcom/valhalla/crew_quarters/heads/hop)
 "wKu" = (
 /turf/open/floor/tile/dark/gray,
@@ -17601,7 +17601,7 @@
 /area/centcom/valhalla/primary/port)
 "wQr" = (
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/wood/variable/damaged/standard,
+/turf/open/floor/wood/broken,
 /area/centcom/valhalla/port)
 "wQw" = (
 /obj/structure/noticeboard{
@@ -17969,7 +17969,7 @@
 /area/centcom/valhalla/port)
 "xiF" = (
 /obj/effect/ai_node,
-/turf/open/floor/wood/variable/damaged/standard,
+/turf/open/floor/wood/broken,
 /area/centcom/valhalla/crew_quarters/theatre)
 "xjs" = (
 /obj/structure/table/reinforced,
@@ -18032,7 +18032,7 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
 	dir = 8
 	},
-/turf/open/floor/wood/variable/damaged/standard,
+/turf/open/floor/wood/broken,
 /area/centcom/valhalla/port)
 "xlK" = (
 /obj/machinery/air_alarm{
@@ -18205,7 +18205,7 @@
 /turf/closed/wall/r_wall/unmeltable,
 /area/centcom/valhalla/engine/engineering)
 "xyy" = (
-/obj/effect/turf_decal/tile{
+/obj/effect/turf_decal/tile/white{
 	dir = 4
 	},
 /turf/open/floor/tile/neutral/full,
@@ -18775,7 +18775,7 @@
 	dir = 4
 	},
 /obj/machinery/portable_atmospherics/scrubber,
-/obj/effect/turf_decal/tile{
+/obj/effect/turf_decal/tile/white{
 	dir = 4
 	},
 /obj/effect/turf_decal/tile/red,
@@ -21468,7 +21468,7 @@ xrI
 xrI
 xrI
 xrI
-xrI
+wQi
 xrI
 xrI
 xrI
@@ -21744,7 +21744,7 @@ xrI
 xrI
 xrI
 xrI
-wQi
+xrI
 xXc
 xXc
 xrI
@@ -21872,7 +21872,7 @@ xrI
 xrI
 xrI
 xrI
-xrI
+wQi
 xrI
 xrI
 xXc
@@ -22150,7 +22150,7 @@ xrI
 xrI
 xrI
 xrI
-wQi
+xrI
 jYG
 jYG
 hTv
@@ -22566,7 +22566,7 @@ xXc
 vQc
 vQc
 jYG
-dCk
+jYG
 hTv
 lPX
 oNZ
@@ -22853,7 +22853,7 @@ fvw
 pqM
 duo
 uOI
-etk
+ble
 etk
 hTv
 oUq

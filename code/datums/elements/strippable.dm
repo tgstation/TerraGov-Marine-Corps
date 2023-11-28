@@ -90,7 +90,7 @@
 		return FALSE
 	if(!equipping)
 		return
-	if(CHECK_BITFIELD(equipping.flags_item, NODROP))
+	if(HAS_TRAIT(equipping, TRAIT_NODROP))
 		to_chat(user, "<span class='warning'>You can't put [equipping] on [source], it's stuck to your hand!</span>")
 		return FALSE
 	//This is important due to the fact otherwise it will be equipped without a proper existing icon, because it's forced on through the strip menu
@@ -136,7 +136,6 @@
 	if(ismob(source))
 		var/mob/mob_source = source
 		if(!item.canStrip(user, mob_source))
-			user.balloon_alert(user, "[item] is stuck!")
 			return FALSE
 
 	return TRUE
@@ -278,6 +277,8 @@
 
 /// A utility function for `/datum/strippable_item`s to finish unequipping an item from a mob.
 /datum/strippable_item/proc/finish_unequip_mob(obj/item/item, mob/source, mob/user)
+	if(item.special_stripped_behavior(user, source))
+		return FALSE
 	if(!source.dropItemToGround(item))
 		return FALSE
 

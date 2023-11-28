@@ -239,6 +239,10 @@
 /obj/docking_port/stationary/crashmode,
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/west)
+"bD" = (
+/obj/effect/landmark/patrol_point/som/som_14,
+/turf/open/floor/plating/ground/dirt,
+/area/oscar_outpost/outside/north)
 "bI" = (
 /obj/structure/platform/trench{
 	dir = 4
@@ -344,23 +348,13 @@
 	dir = 1
 	},
 /area/oscar_outpost/outside/north)
-"da" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_14";
-	name = "SOM exit point 14"
-	},
-/turf/open/floor/plating/ground/dirt,
-/area/oscar_outpost/outside/north)
 "dc" = (
 /obj/effect/ai_node,
 /obj/structure/platform/trench,
 /turf/open/ground/grass,
 /area/oscar_outpost/outside/northwest)
 "dd" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_22";
-	name = "SOM exit point 22"
-	},
+/obj/effect/landmark/patrol_point/som/som_22,
 /turf/open/floor/plating/ground/dirt,
 /area/oscar_outpost/outside/north)
 "de" = (
@@ -416,10 +410,7 @@
 /turf/open/floor,
 /area/oscar_outpost)
 "dF" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_21";
-	name = "SOM exit point 21"
-	},
+/obj/effect/landmark/patrol_point/som/som_21,
 /turf/open/floor/plating/ground/dirt,
 /area/oscar_outpost/outside/north)
 "dN" = (
@@ -453,10 +444,7 @@
 /turf/open/floor/plating/ground/dirtgrassborder/corner2,
 /area/oscar_outpost/outside/northeast)
 "el" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_23";
-	name = "SOM exit point 23"
-	},
+/obj/effect/landmark/patrol_point/som/som_23,
 /turf/open/floor/plating/ground/dirt,
 /area/oscar_outpost/outside/north)
 "en" = (
@@ -488,10 +476,7 @@
 /turf/open/floor,
 /area/oscar_outpost)
 "eB" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_11";
-	name = "SOM exit point 11"
-	},
+/obj/effect/landmark/patrol_point/som/som_11,
 /turf/open/floor/plating/ground/dirt,
 /area/oscar_outpost/outside/north)
 "eC" = (
@@ -599,10 +584,7 @@
 /turf/open/floor,
 /area/oscar_outpost)
 "fe" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_24";
-	name = "SOM exit point 24"
-	},
+/obj/effect/landmark/patrol_point/som/som_24,
 /turf/open/floor/plating/ground/dirt,
 /area/oscar_outpost/outside/north)
 "ff" = (
@@ -623,10 +605,7 @@
 	},
 /area/oscar_outpost/outside/road)
 "fm" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_12";
-	name = "SOM exit point 12"
-	},
+/obj/effect/landmark/patrol_point/som/som_12,
 /turf/open/floor/plating/ground/dirt,
 /area/oscar_outpost/outside/north)
 "fx" = (
@@ -657,10 +636,7 @@
 /turf/open/floor/mainship/sterile,
 /area/oscar_outpost)
 "fL" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_13";
-	name = "SOM exit point 13"
-	},
+/obj/effect/landmark/patrol_point/som/som_13,
 /turf/open/floor/plating/ground/dirt,
 /area/oscar_outpost/outside/north)
 "fM" = (
@@ -1087,7 +1063,7 @@
 	},
 /area/oscar_outpost/outside/road)
 "lf" = (
-/obj/machinery/body_scanconsole,
+/obj/machinery/computer/body_scanconsole,
 /obj/effect/ai_node,
 /turf/open/floor/mainship/sterile/dark,
 /area/oscar_outpost)
@@ -1192,11 +1168,11 @@
 	},
 /area/oscar_outpost)
 "mx" = (
-/obj/item/ammo_magazine/heavy_laser,
-/obj/item/ammo_magazine/heavy_laser,
-/obj/item/ammo_magazine/heavy_laser,
-/obj/item/ammo_magazine/heavy_laser,
-/obj/item/ammo_magazine/heavy_laser,
+/obj/item/cell/lasgun/heavy_laser,
+/obj/item/cell/lasgun/heavy_laser,
+/obj/item/cell/lasgun/heavy_laser,
+/obj/item/cell/lasgun/heavy_laser,
+/obj/item/cell/lasgun/heavy_laser,
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/northeast)
 "mC" = (
@@ -2186,7 +2162,7 @@
 /turf/open/floor/tile/dark,
 /area/oscar_outpost)
 "uM" = (
-/obj/item/weapon/gun/launcher/rocket/heavy_rr{
+/obj/item/weapon/gun/heavy_isg{
 	dir = 1
 	},
 /turf/open/floor/engine/cult{
@@ -2684,7 +2660,7 @@
 /turf/open/ground/grass,
 /area/oscar_outpost/outside/northwest)
 "AJ" = (
-/obj/item/weapon/gun/heavy_laser{
+/obj/item/weapon/gun/energy/lasgun/lasrifle/heavy_laser{
 	dir = 1;
 	pixel_y = 13
 	},
@@ -2744,11 +2720,11 @@
 /area/oscar_outpost)
 "AU" = (
 /obj/structure/rack,
-/obj/item/ammo_magazine/heavy_rr,
-/obj/item/ammo_magazine/heavy_rr,
-/obj/item/ammo_magazine/heavy_rr,
-/obj/item/ammo_magazine/heavy_rr,
-/obj/item/ammo_magazine/heavy_rr,
+/obj/item/ammo_magazine/heavy_isg/he,
+/obj/item/ammo_magazine/heavy_isg/he,
+/obj/item/ammo_magazine/heavy_isg/he,
+/obj/item/ammo_magazine/heavy_isg/he,
+/obj/item/ammo_magazine/heavy_isg/he,
 /obj/machinery/light{
 	dir = 8
 	},
@@ -2809,7 +2785,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/oscar_outpost/outside/west)
 "Ck" = (
-/obj/machinery/autodoc_console,
+/obj/machinery/computer/autodoc_console,
 /turf/open/floor/mainship/sterile,
 /area/oscar_outpost)
 "CC" = (
@@ -2978,11 +2954,11 @@
 /area/oscar_outpost)
 "Dn" = (
 /obj/structure/rack,
-/obj/item/ammo_magazine/heavy_rr,
-/obj/item/ammo_magazine/heavy_rr,
-/obj/item/ammo_magazine/heavy_rr,
-/obj/item/ammo_magazine/heavy_rr,
-/obj/item/ammo_magazine/heavy_rr,
+/obj/item/ammo_magazine/heavy_isg/he,
+/obj/item/ammo_magazine/heavy_isg/he,
+/obj/item/ammo_magazine/heavy_isg/he,
+/obj/item/ammo_magazine/heavy_isg/he,
+/obj/item/ammo_magazine/heavy_isg/he,
 /turf/open/floor/engine/cult{
 	dir = 2
 	},
@@ -3142,7 +3118,7 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/oscar_outpost)
 "EG" = (
-/obj/item/weapon/gun/launcher/rocket/heavy_rr{
+/obj/item/weapon/gun/heavy_isg{
 	dir = 1;
 	pixel_y = -2
 	},
@@ -3343,9 +3319,6 @@
 /obj/machinery/vending/MarineMed/Blood,
 /turf/open/floor/mainship/sterile,
 /area/oscar_outpost)
-"Gv" = (
-/turf/open/floor/plating/ground/dirt2,
-/area/oscar_outpost/outside/northeast)
 "GA" = (
 /obj/structure/platform/trench{
 	dir = 4
@@ -3425,11 +3398,11 @@
 	},
 /area/oscar_outpost/outside/east)
 "Ie" = (
-/obj/item/ammo_magazine/heavy_laser,
-/obj/item/ammo_magazine/heavy_laser,
-/obj/item/ammo_magazine/heavy_laser,
-/obj/item/ammo_magazine/heavy_laser,
-/obj/item/ammo_magazine/heavy_laser,
+/obj/item/cell/lasgun/heavy_laser,
+/obj/item/cell/lasgun/heavy_laser,
+/obj/item/cell/lasgun/heavy_laser,
+/obj/item/cell/lasgun/heavy_laser,
+/obj/item/cell/lasgun/heavy_laser,
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/northwest)
 "If" = (
@@ -4286,21 +4259,6 @@
 	},
 /turf/open/floor,
 /area/oscar_outpost)
-"OO" = (
-/obj/structure/platform/trench{
-	dir = 4
-	},
-/obj/structure/barricade/sandbags{
-	dir = 4;
-	name = "trench lining";
-	pixel_x = -6
-	},
-/obj/effect/landmark/patrol_point{
-	id = "SOM_21";
-	name = "SOM exit point 21"
-	},
-/turf/open/floor/plating/ground/dirt,
-/area/oscar_outpost/outside/north)
 "Pk" = (
 /obj/structure/barricade/sandbags{
 	dir = 1;
@@ -4564,7 +4522,7 @@
 	},
 /area/oscar_outpost/outside/northeast)
 "Rp" = (
-/obj/machinery/body_scanconsole,
+/obj/machinery/computer/body_scanconsole,
 /turf/open/floor/mainship/sterile/dark,
 /area/oscar_outpost)
 "Rs" = (
@@ -4658,7 +4616,7 @@
 /turf/open/ground/grass,
 /area/oscar_outpost/outside/northeast)
 "RN" = (
-/obj/item/weapon/gun/heavy_laser{
+/obj/item/weapon/gun/energy/lasgun/lasrifle/heavy_laser{
 	dir = 1;
 	pixel_y = 13
 	},
@@ -7848,7 +7806,7 @@ ZE
 ZE
 ZE
 ZE
-fe
+ZE
 ZE
 ZE
 ZE
@@ -8308,7 +8266,7 @@ th
 th
 th
 uc
-ZE
+bD
 ZE
 cy
 ZE
@@ -11563,9 +11521,9 @@ ZE
 ZE
 ZE
 ZE
-dd
 ZE
-el
+ZE
+ZE
 ZE
 ZE
 ZE
@@ -11871,7 +11829,7 @@ ZE
 ZE
 ZE
 ZE
-da
+ZE
 ZE
 ZE
 ZE
@@ -12183,7 +12141,7 @@ ZE
 ZE
 ZE
 uB
-OO
+uB
 uB
 ZE
 ZE
@@ -19056,7 +19014,7 @@ RI
 RI
 Om
 yw
-Gv
+yw
 yw
 iC
 yw

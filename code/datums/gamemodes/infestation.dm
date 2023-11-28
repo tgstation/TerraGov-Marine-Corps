@@ -29,7 +29,7 @@
 	for(var/i in GLOB.xeno_tunnel_spawn_turfs)
 		var/obj/structure/xeno/tunnel/new_tunnel = new /obj/structure/xeno/tunnel(i, XENO_HIVE_NORMAL)
 		new_tunnel.name = "[get_area_name(new_tunnel)] tunnel"
-		new_tunnel.tunnel_desc = "["An old tunnel dug by a former member of the hive prior to our awakening at [get_area_name(new_tunnel)]"] (X: [new_tunnel.x], Y: [new_tunnel.y])"
+		new_tunnel.tunnel_desc = "["[get_area_name(new_tunnel)]"] (X: [new_tunnel.x], Y: [new_tunnel.y])"
 	for(var/i in GLOB.xeno_jelly_pod_turfs)
 		new /obj/structure/xeno/resin_jelly_pod(i, XENO_HIVE_NORMAL)
 
@@ -58,12 +58,13 @@
 		if((bioscanning_ai.last_ai_bioscan + COOLDOWN_AI_BIOSCAN) > world.time)
 			to_chat(bioscanning_ai, "Bioscan instruments are still recalibrating from their last use.")
 			return
+		bioscanning_ai.last_ai_bioscan = world.time
 		to_chat(bioscanning_ai, span_warning("Scanning for hostile lifeforms..."))
 		if(!do_after(usr, AI_SCAN_DELAY, TRUE, usr, BUSY_ICON_GENERIC)) //initial windup time until firing begins
+			bioscanning_ai.last_ai_bioscan = 0
 			return
 
 		#endif
-		bioscanning_ai.last_ai_bioscan = world.time
 
 	else
 		TIMER_COOLDOWN_START(src, COOLDOWN_BIOSCAN, bioscan_interval)
@@ -294,9 +295,9 @@
 /datum/game_mode/infestation/announce()
 	to_chat(world, span_round_header("The current map is - [SSmapping.configs[GROUND_MAP].map_name]!"))
 
-/datum/game_mode/infestation/attempt_to_join_as_larva(mob/dead/observer/observer)
+/datum/game_mode/infestation/attempt_to_join_as_larva(client/waiter)
 	var/datum/hive_status/normal/HS = GLOB.hive_datums[XENO_HIVE_NORMAL]
-	return HS.add_to_larva_candidate_queue(observer)
+	return HS.add_to_larva_candidate_queue(waiter)
 
 
 /datum/game_mode/infestation/spawn_larva(mob/xeno_candidate, mob/living/carbon/xenomorph/mother)

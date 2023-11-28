@@ -582,10 +582,7 @@
 	},
 /area/oscar_outpost)
 "eH" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_13";
-	name = "SOM exit point 13"
-	},
+/obj/effect/landmark/patrol_point/som/som_13,
 /turf/open/floor/plating/ground/dirt,
 /area/oscar_outpost/outside/north)
 "eI" = (
@@ -900,10 +897,7 @@
 /turf/open/floor/plating/ground/dirtgrassborder/corner2,
 /area/oscar_outpost/outside/east)
 "hQ" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_14";
-	name = "SOM exit point 14"
-	},
+/obj/effect/landmark/patrol_point/som/som_14,
 /turf/open/floor/plating/ground/dirt,
 /area/oscar_outpost/outside/north)
 "hV" = (
@@ -1083,10 +1077,7 @@
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/road)
 "jZ" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_22";
-	name = "SOM exit point 22"
-	},
+/obj/effect/landmark/patrol_point/som/som_22,
 /turf/open/floor/plating/ground/dirt,
 /area/oscar_outpost/outside/north)
 "kk" = (
@@ -1927,10 +1918,7 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/oscar_outpost)
 "sr" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_23";
-	name = "SOM exit point 23"
-	},
+/obj/effect/landmark/patrol_point/som/som_23,
 /turf/open/floor/plating/ground/dirt,
 /area/oscar_outpost/outside/north)
 "st" = (
@@ -2326,10 +2314,7 @@
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/north)
 "vX" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_12";
-	name = "SOM exit point 12"
-	},
+/obj/effect/landmark/patrol_point/som/som_12,
 /turf/open/floor/plating/ground/dirt,
 /area/oscar_outpost/outside/north)
 "wf" = (
@@ -2750,7 +2735,7 @@
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/northeast)
 "zG" = (
-/obj/machinery/sleep_console{
+/obj/machinery/computer/sleep_console{
 	dir = 8
 	},
 /turf/open/floor/mainship/sterile,
@@ -2848,10 +2833,7 @@
 	},
 /area/oscar_outpost/outside/road)
 "Bi" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_11";
-	name = "SOM exit point 11"
-	},
+/obj/effect/landmark/patrol_point/som/som_11,
 /turf/open/floor/plating/ground/dirt,
 /area/oscar_outpost/outside/north)
 "Bo" = (
@@ -2883,7 +2865,7 @@
 	},
 /area/oscar_outpost/outside/northwest)
 "Ck" = (
-/obj/machinery/autodoc_console,
+/obj/machinery/computer/autodoc_console,
 /turf/open/floor/mainship/sterile,
 /area/oscar_outpost)
 "Cr" = (
@@ -3612,10 +3594,7 @@
 	},
 /area/oscar_outpost/outside/east)
 "IP" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_21";
-	name = "SOM exit point 21"
-	},
+/obj/effect/landmark/patrol_point/som/som_21,
 /turf/open/floor/plating/ground/dirt,
 /area/oscar_outpost/outside/north)
 "IQ" = (
@@ -3973,10 +3952,7 @@
 	},
 /area/oscar_outpost)
 "Nf" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_24";
-	name = "SOM exit point 24"
-	},
+/obj/effect/landmark/patrol_point/som/som_24,
 /turf/open/floor/plating/ground/dirt,
 /area/oscar_outpost/outside/north)
 "Nh" = (
@@ -4685,7 +4661,7 @@
 /turf/open/floor,
 /area/oscar_outpost)
 "Rp" = (
-/obj/machinery/body_scanconsole,
+/obj/machinery/computer/body_scanconsole,
 /turf/open/floor/mainship/sterile/dark,
 /area/oscar_outpost)
 "Rt" = (

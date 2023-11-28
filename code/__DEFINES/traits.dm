@@ -77,6 +77,7 @@
 #define ROUNDSTART_TRAIT "roundstart" //cannot be removed without admin intervention
 #define SLEEPER_TRAIT "sleeper"
 #define STASIS_BAG_TRAIT "stasis_bag"
+#define BANELING_STASIS_TRAIT "baneling_stasis_trait"
 #define SPECIES_TRAIT "species" // /datum/species innate trait
 #define CRYOPOD_TRAIT "cryopod"
 #define XENO_TRAIT "xeno"
@@ -112,7 +113,13 @@
 #define WEIGHTBENCH_TRAIT "weightbench"
 #define BOILER_ROOTED_TRAIT "boiler_rooted"
 #define STRAPPABLE_ITEM_TRAIT "strappable_item"
+#define VALI_TRAIT "vali"
+#define HELDGLOVE_TRAIT "heldglove"
+#define SECTOID_TRAIT "sectoid"
+#define HUGGER_TRAIT "hugger"
+#define PISTOL_LACE_TRAIT "pistol_lace"
 
+#define ABSTRACT_ITEM_TRAIT "abstract_item"
 /// A trait given by any status effect
 #define STATUS_EFFECT_TRAIT "status-effect"
 /// A trait given by a specific status effect (not sure why we need both but whatever!)
@@ -149,6 +156,8 @@
 #define TRAIT_LIGHT_STEP "light_step"
 ///noisier footsteps
 #define TRAIT_HEAVY_STEP "heavy_step"
+///indicates this mob was spawned by a corpse spawner
+#define TRAIT_MAPSPAWNED "mapspawned"
 
 /// Prevents usage of manipulation appendages (picking, holding or using items, manipulating storage).
 #define TRAIT_HANDS_BLOCKED "handsblocked"
@@ -160,6 +169,7 @@
 #define TRAIT_LEGLESS "legless" //Has lost all the appendages needed to stay standing up.
 #define TRAIT_NOPLASMAREGEN "noplasmaregen"//xeno plasma wont recharge
 #define TRAIT_UNDEFIBBABLE "undefibbable"//human can't be revived
+#define TRAIT_HOLLOW "hollowedout" //examine trait for puppeteer
 #define TRAIT_IMMEDIATE_DEFIB "immediate_defib"//immediately revives when defibbed, rather than just healing
 #define TRAIT_HEALING_INFUSION "healing_infusion"//greatly improves natural healing for xenos
 #define TRAIT_PSY_DRAINED "psy_drained"//mob was drained of life force by a xenos
@@ -203,6 +213,7 @@
 #define TRAIT_GUN_RELOADING "reloading"
 
 // item traits
+#define TRAIT_NODROP "nodrop" // Cannot be dropped/unequipped at all, only deleted.
 #define TRAIT_T_RAY_VISIBLE "t-ray-visible" // Visible on t-ray scanners if the atom/var/level == 1
 #define TRAIT_STRAPPABLE "strappable"
 // turf traits

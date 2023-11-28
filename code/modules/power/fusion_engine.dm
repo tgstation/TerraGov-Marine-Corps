@@ -193,6 +193,7 @@
 	balloon_alert_to_viewers("[user] starts welds some damage")
 	cut_overlay(GLOB.welding_sparks)
 	update_icon()
+	record_generator_repairs(user)
 	return TRUE
 
 /obj/machinery/power/fusion_engine/wirecutter_act(mob/living/user, obj/item/O)
@@ -223,13 +224,14 @@
 	buildstate = FUSION_ENGINE_LIGHT_DAMAGE
 	balloon_alert_to_viewers("Secures [src]'s wiring")
 	update_icon()
+	record_generator_repairs(user)
 	return TRUE
 
 /obj/machinery/power/fusion_engine/wrench_act(mob/living/user, obj/item/O)
 	. = ..()
 	if(!iswrench(O))
 		return FALSE
-	
+
 	if(buildstate != FUSION_ENGINE_LIGHT_DAMAGE)
 		balloon_alert(user, "Doesn't need pipe adjustments")
 		return FALSE
@@ -247,6 +249,7 @@
 	buildstate = FUSION_ENGINE_NO_DAMAGE
 	balloon_alert_to_viewers("Repairs [src]'s tubing")
 	update_icon()
+	record_generator_repairs(user)
 	return TRUE
 
 /obj/machinery/power/fusion_engine/crowbar_act(mob/living/user, obj/item/O)

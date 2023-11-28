@@ -32,7 +32,7 @@ SUBSYSTEM_DEF(automatedfire)
 	/// List of buckets, each bucket holds every shooter that has to shoot this byond tick
 	var/list/bucket_list = list()
 	/// Reference to the next shooter before we clean shooter.next
-	var/var/datum/component/automatedfire/next_shooter
+	var/datum/component/automatedfire/next_shooter
 
 /datum/controller/subsystem/automatedfire/PreInit()
 	bucket_list.len = BUCKET_LEN

@@ -10,13 +10,25 @@
 	icon_state = "CAP"
 	job = /datum/job/terragov/command/captain
 
+/obj/effect/landmark/start/job/captain/campaign
+	icon_state = "CAP"
+	job = /datum/job/terragov/command/captain/campaign
+
 /obj/effect/landmark/start/job/fieldcommander
 	icon_state = "FC"
 	job = /datum/job/terragov/command/fieldcommander
 
+/obj/effect/landmark/start/job/fieldcommander/campaign
+	icon_state = "FC"
+	job = /datum/job/terragov/command/fieldcommander/campaign
+
 /obj/effect/landmark/start/job/staffofficer
 	icon_state = "IO"
 	job = /datum/job/terragov/command/staffofficer
+
+/obj/effect/landmark/start/job/staffofficer/campaign
+	icon_state = "IO"
+	job = /datum/job/terragov/command/staffofficer/campaign
 
 /obj/effect/landmark/start/job/pilotofficer
 	icon_state = "PO"
@@ -102,21 +114,33 @@
 
 //SOM
 /obj/effect/landmark/start/job/som/squadstandard
-	icon_state = "PFC"
+	icon_state = "som_standard"
 	job = /datum/job/som/squad/standard
 
 /obj/effect/landmark/start/job/som/squadveteran
-	icon_state = "SGnr"
+	icon_state = "som_veteran"
 	job = /datum/job/som/squad/veteran
 
 /obj/effect/landmark/start/job/som/squadengineer
-	icon_state = "Eng"
+	icon_state = "som_engineer"
 	job = /datum/job/som/squad/engineer
 
 /obj/effect/landmark/start/job/som/squadcorpsman
-	icon_state = "HM"
+	icon_state = "som_medic"
 	job = /datum/job/som/squad/medic
 
 /obj/effect/landmark/start/job/som/squadleader
-	icon_state = "SL"
+	icon_state = "som_squad_leader"
 	job = /datum/job/som/squad/leader
+
+/obj/effect/landmark/start/job/som/fieldcommander
+	icon_state = "som_field_commander"
+	job = /datum/job/som/command/fieldcommander
+
+/obj/effect/landmark/start/job/som/commander
+	icon_state = "som_commander"
+	job = /datum/job/som/command/commander
+
+/obj/effect/landmark/start/job/som/staff_officer
+	icon_state = "som_staff_officer"
+	job = /datum/job/som/command/staffofficer

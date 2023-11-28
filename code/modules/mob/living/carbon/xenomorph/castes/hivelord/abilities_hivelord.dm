@@ -49,6 +49,8 @@
 	if(!do_after(owner, 7 SECONDS, FALSE, recycled_xeno, BUSY_ICON_GENERIC, extra_checks = CALLBACK(src, PROC_REF(can_use_ability), target, TRUE, XACT_USE_BUSY)))
 		return
 
+	hivelord.record_recycle_points(recycled_xeno)
+
 	recycled_xeno.gib()
 
 	playsound(hivelord, 'sound/effects/alien_recycler.ogg', 40)
@@ -378,6 +380,9 @@
 	succeed_activate()
 	add_cooldown()
 
+	if(owner.client)
+		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[owner.ckey]
+		personal_statistics.heals++
 	GLOB.round_statistics.hivelord_healing_infusions++ //Statistics
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "hivelord_healing_infusions")
 
@@ -421,7 +426,7 @@
 /datum/action/xeno_action/sow/update_button_icon()
 	var/mob/living/carbon/xenomorph/X = owner
 	button.overlays.Cut()
-	button.overlays += image('icons/mob/actions.dmi', button, initial(X.selected_plant.name))
+	button.overlays += image('icons/Xeno/actions.dmi', button, initial(X.selected_plant.name))
 	return ..()
 
 ///Shows a radial menu to pick the plant they wish to put down when they use the ability

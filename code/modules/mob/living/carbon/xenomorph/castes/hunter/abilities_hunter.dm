@@ -3,7 +3,7 @@
 // ***************************************
 /datum/action/xeno_action/stealth
 	name = "Toggle Stealth"
-	action_icon_state = "stealth_on"
+	action_icon_state = "hunter_invisibility"
 	desc = "Become harder to see, almost invisible if you stand still, and ready a sneak attack. Uses plasma to move."
 	ability_name = "stealth"
 	plasma_cost = 10
@@ -207,6 +207,7 @@
 
 /datum/action/xeno_action/stealth/disguise
 	name = "Disguise"
+	action_icon_state = "xenohide"
 	desc = "Disguise yourself as the enemy. Uses plasma to move. Select your disguise with Hunter's Mark."
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TOGGLE_DISGUISE,
@@ -256,12 +257,113 @@
 		to_chat(xenoowner, span_xenodanger("We lack sufficient plasma to remain disguised."))
 		cancel_stealth()
 
+
 // ***************************************
-// *********** Pounce/sneak attack
+// *********** Hunter's Pounce
 // ***************************************
-/datum/action/xeno_action/activable/pounce/hunter
+#define HUNTER_POUNCE_RANGE 7 // in tiles
+#define XENO_POUNCE_SPEED 2
+#define XENO_POUNCE_STUN_DURATION 2 SECONDS
+#define XENO_POUNCE_STANDBY_DURATION 0.5 SECONDS
+#define XENO_POUNCE_SHIELD_STUN_DURATION 6 SECONDS
+
+/datum/action/xeno_action/activable/pounce
+	name = "Pounce"
+	ability_name = "Pounce"
+	desc = "Leap at your target, tackling and disarming them."
+	action_icon_state = "pounce"
 	plasma_cost = 20
-	range = 7
+	cooldown_timer = 10 SECONDS
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_HUNTER_POUNCE,
+	)
+	use_state_flags = XACT_USE_BUCKLED
+	/// The range of this ability.
+	var/pounce_range = HUNTER_POUNCE_RANGE
+
+/datum/action/xeno_action/activable/pounce/on_cooldown_finish()
+	owner.balloon_alert(owner, "Pounce ready")
+	owner.playsound_local(owner, 'sound/effects/xeno_newlarva.ogg', 25, 0, 1)
+	var/mob/living/carbon/xenomorph/xeno_owner = owner
+	xeno_owner.usedPounce = FALSE
+	return ..()
+
+/datum/action/xeno_action/activable/pounce/can_use_ability(atom/A, silent = FALSE, override_flags)
+	. = ..()
+	if(!.)
+		return FALSE
+	if(!A || A.layer >= FLY_LAYER)
+		return FALSE
+
+/datum/action/xeno_action/activable/pounce/use_ability(atom/A)
+	if(owner.layer != MOB_LAYER)
+		owner.layer = MOB_LAYER
+		var/datum/action/xeno_action/xenohide/hide_action = owner.actions_by_path[/datum/action/xeno_action/xenohide]
+		hide_action?.button?.cut_overlay(mutable_appearance('icons/Xeno/actions.dmi', "selected_purple_frame", ACTION_LAYER_ACTION_ICON_STATE, FLOAT_PLANE)) // Removes Hide action icon border
+	if(owner.buckled)
+		owner.buckled.unbuckle_mob(owner)
+	RegisterSignal(owner, COMSIG_MOVABLE_MOVED, PROC_REF(movement_fx))
+	RegisterSignal(owner, COMSIG_XENO_OBJ_THROW_HIT, PROC_REF(object_hit))
+	RegisterSignal(owner, COMSIG_XENO_LIVING_THROW_HIT, PROC_REF(mob_hit))
+	RegisterSignal(owner, COMSIG_MOVABLE_POST_THROW, PROC_REF(pounce_complete))
+	SEND_SIGNAL(owner, COMSIG_XENOMORPH_POUNCE)
+	var/mob/living/carbon/xenomorph/xeno_owner = owner
+	xeno_owner.usedPounce = TRUE
+	xeno_owner.pass_flags |= PASS_LOW_STRUCTURE|PASS_FIRE|PASS_XENO
+	xeno_owner.throw_at(A, pounce_range, XENO_POUNCE_SPEED, xeno_owner)
+	addtimer(CALLBACK(src, PROC_REF(reset_pass_flags)), 0.6 SECONDS)
+	succeed_activate()
+	add_cooldown()
+
+/datum/action/xeno_action/activable/pounce/proc/movement_fx()
+	SIGNAL_HANDLER
+	new /obj/effect/temp_visual/xenomorph/afterimage(get_turf(owner), owner) //Create the after image.
+
+/datum/action/xeno_action/activable/pounce/proc/object_hit(datum/source, obj/object_target, speed)
+	SIGNAL_HANDLER
+	object_target.hitby(owner, speed)
+	pounce_complete()
+
+/datum/action/xeno_action/activable/pounce/proc/mob_hit(datum/source, mob/living/living_target)
+	SIGNAL_HANDLER
+	if(living_target.stat)
+		return
+	var/mob/living/carbon/xenomorph/xeno_owner = owner
+	if(ishuman(living_target) && (living_target.dir in reverse_nearby_direction(living_target.dir)))
+		var/mob/living/carbon/human/human_target = living_target
+		if(!human_target.check_shields(COMBAT_TOUCH_ATTACK, 30, "melee"))
+			xeno_owner.Paralyze(XENO_POUNCE_SHIELD_STUN_DURATION)
+			xeno_owner.set_throwing(FALSE)
+			return COMPONENT_KEEP_THROWING
+	playsound(living_target.loc, 'sound/voice/alien_pounce.ogg', 25, TRUE)
+	xeno_owner.Immobilize(XENO_POUNCE_STANDBY_DURATION)
+	xeno_owner.forceMove(get_turf(living_target))
+	living_target.Knockdown(XENO_POUNCE_STUN_DURATION)
+	pounce_complete()
+
+/datum/action/xeno_action/activable/pounce/proc/pounce_complete()
+	SIGNAL_HANDLER
+	UnregisterSignal(owner, list(COMSIG_MOVABLE_MOVED, COMSIG_XENO_OBJ_THROW_HIT, COMSIG_XENO_LIVING_THROW_HIT, COMSIG_MOVABLE_POST_THROW))
+	SEND_SIGNAL(owner, COMSIG_XENOMORPH_POUNCE_END)
+
+/datum/action/xeno_action/activable/pounce/proc/reset_pass_flags()
+	var/mob/living/carbon/xenomorph/xeno_owner = owner
+	xeno_owner.pass_flags = initial(xeno_owner.pass_flags)
+
+/datum/action/xeno_action/activable/pounce/ai_should_start_consider()
+	return TRUE
+
+/datum/action/xeno_action/activable/pounce/ai_should_use(atom/target)
+	if(!iscarbon(target))
+		return FALSE
+	if(!line_of_sight(owner, target, pounce_range))
+		return FALSE
+	if(!can_use_ability(target, override_flags = XACT_IGNORE_SELECTED_ABILITY))
+		return FALSE
+	if(target.get_xeno_hivenumber() == owner.get_xeno_hivenumber())
+		return FALSE
+	return TRUE
+
 
 // ***************************************
 // *********** Hunter's Mark
@@ -285,7 +387,7 @@
 
 	var/mob/living/carbon/xenomorph/X = owner
 
-	if(!isliving(A) && (X.xeno_caste.upgrade != XENO_UPGRADE_FOUR) || !ismovable(A))
+	if(!isliving(A) && (X.xeno_caste.upgrade != XENO_UPGRADE_PRIMO) || !ismovable(A))
 		if(!silent)
 			to_chat(X, span_xenowarning("We cannot psychically mark this target!"))
 		return FALSE
@@ -484,3 +586,87 @@
 	var/mob/selected_illusion = illusions[1]
 	X.forceMove(get_turf(selected_illusion.loc))
 	selected_illusion.forceMove(current_turf)
+
+// ***************************************
+// *********** Silence
+// ***************************************
+/datum/action/xeno_action/activable/silence
+	name = "Silence"
+	action_icon_state = "silence"
+	desc = "Impairs the ability of hostile living creatures we can see in a 5x5 area. Targets will be unable to speak and hear for 10 seconds, or 15 seconds if they're your Hunter Mark target."
+	ability_name = "silence"
+	plasma_cost = 50
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_SILENCE,
+	)
+	cooldown_timer = HUNTER_SILENCE_COOLDOWN
+
+/datum/action/xeno_action/activable/silence/can_use_ability(atom/A, silent = FALSE, override_flags)
+	. = ..()
+	if(!.)
+		return
+
+	var/mob/living/carbon/xenomorph/impairer = owner //Type cast this for on_fire
+
+	var/distance = get_dist(impairer, A)
+	if(distance > HUNTER_SILENCE_RANGE)
+		if(!silent)
+			to_chat(impairer, span_xenodanger("The target location is too far! We must be [distance - HUNTER_SILENCE_RANGE] tiles closer!"))
+		return FALSE
+
+	if(!line_of_sight(impairer, A)) //Need line of sight.
+		if(!silent)
+			to_chat(impairer, span_xenowarning("We require line of sight to the target location!") )
+		return FALSE
+
+	return TRUE
+
+
+/datum/action/xeno_action/activable/silence/use_ability(atom/A)
+	var/mob/living/carbon/xenomorph/X = owner
+
+	X.face_atom(A)
+
+	var/victim_count
+	for(var/mob/living/target AS in cheap_get_humans_near(A, HUNTER_SILENCE_AOE))
+		if(!isliving(target)) //Filter out non-living
+			continue
+		if(target.stat == DEAD) //Ignore the dead
+			continue
+		if(!line_of_sight(X, target)) //Need line of sight
+			continue
+		if(isxeno(target)) //Ignore friendlies
+			var/mob/living/carbon/xenomorph/xeno_victim = target
+			if(X.issamexenohive(xeno_victim))
+				continue
+
+		var/silence_multiplier = 1
+		var/datum/action/xeno_action/activable/hunter_mark/mark_action = X.actions_by_path[/datum/action/xeno_action/activable/hunter_mark]
+		if(mark_action?.marked_target == target) //Double debuff stacks for the marked target
+			silence_multiplier = HUNTER_SILENCE_MULTIPLIER
+		to_chat(target, span_danger("Your mind convulses at the touch of something ominous as the world seems to blur, your voice dies in your throat, and everything falls silent!") ) //Notify privately
+		target.playsound_local(target, 'sound/effects/ghost.ogg', 25, 0, 1)
+		target.adjust_stagger(HUNTER_SILENCE_STAGGER_STACKS * silence_multiplier)
+		target.adjust_blurriness(HUNTER_SILENCE_SENSORY_STACKS * silence_multiplier)
+		target.adjust_ear_damage(HUNTER_SILENCE_SENSORY_STACKS * silence_multiplier, HUNTER_SILENCE_SENSORY_STACKS * silence_multiplier)
+		target.apply_status_effect(/datum/status_effect/mute, HUNTER_SILENCE_MUTE_DURATION * silence_multiplier)
+		victim_count++
+
+	if(!victim_count)
+		to_chat(X, span_xenodanger("We were unable to violate the minds of any victims."))
+		add_cooldown(HUNTER_SILENCE_WHIFF_COOLDOWN) //We cooldown to prevent spam, but only for a short duration
+		return fail_activate()
+
+	X.playsound_local(X, 'sound/effects/ghost.ogg', 25, 0, 1)
+	to_chat(X, span_xenodanger("We invade the mind of [victim_count] [victim_count > 1 ? "victims" : "victim"], silencing and muting them...") )
+	succeed_activate()
+	add_cooldown()
+
+	GLOB.round_statistics.hunter_silence_targets += victim_count //Increment by victim count
+	SSblackbox.record_feedback("tally", "round_statistics", victim_count, "hunter_silence_targets") //Statistics
+
+/datum/action/xeno_action/activable/silence/on_cooldown_finish()
+	to_chat(owner, span_xenowarning("<b>We refocus our psionic energies, allowing us to impose silence again.</b>") )
+	owner.playsound_local(owner, 'sound/effects/xeno_newlarva.ogg', 25, 0, 1)
+	cooldown_timer = initial(cooldown_timer) //Reset the cooldown timer to its initial state in the event of a whiffed Silence.
+	return ..()

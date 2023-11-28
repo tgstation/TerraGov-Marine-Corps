@@ -166,6 +166,14 @@
 	desc = "A small lighting fixture."
 	light_type = /obj/item/light_bulb/bulb
 
+/obj/machinery/light/red
+	base_state = "tubered"
+	icon_state = "tubered1"
+	light_color = LIGHT_COLOR_FLARE
+	brightness = 3
+	bulb_power = 0.5
+	bulb_colour = LIGHT_COLOR_FLARE
+
 // the smaller bulb light fixture
 
 /obj/machinery/light/small
@@ -210,11 +218,9 @@
 
 	switch(fitting)
 		if("tube")
-			brightness = 8
 			if(prob(2))
 				broken(TRUE)
 		if("bulb")
-			brightness = 4
 			if(prob(5))
 				broken(TRUE)
 
@@ -570,7 +576,9 @@
 	var/brightness = 2 //how much light it gives off
 
 /obj/item/light_bulb/throw_impact(atom/hit_atom)
-	..()
+	. = ..()
+	if(!.)
+		return
 	shatter()
 
 /obj/item/light_bulb/tube
@@ -687,65 +695,48 @@
 	icon = 'icons/obj/landinglights.dmi'
 	icon_state = "landingstripe"
 	desc = "A landing light, if it's flashing stay clear!"
-	var/id = "" // ID for landing zone
 	anchored = TRUE
 	density = FALSE
 	layer = BELOW_TABLE_LAYER
 	use_power = ACTIVE_POWER_USE
 	idle_power_usage = 2
 	active_power_usage = 20
-	power_channel = LIGHT //Lights are calc'd via area so they dont need to be in the machine list
-	resistance_flags = RESIST_ALL
+	resistance_flags = RESIST_ALL|DROPSHIP_IMMUNE
+	///ID of dropship
+	var/id
+	///port its linked to
+	var/obj/docking_port/stationary/marine_dropship/linked_port = null
 
 /obj/machinery/landinglight/Initialize(mapload)
 	. = ..()
-	turn_off()
+	GLOB.landing_lights += src
+
+/obj/machinery/landinglight/Destroy()
+	GLOB.landing_lights -= src
+	return ..()
+
+/obj/machinery/landinglight/proc/turn_on()
+	icon_state = "landingstripe1"
+	set_light(2, 2, LIGHT_COLOR_RED)
 
 /obj/machinery/landinglight/proc/turn_off()
 	icon_state = "landingstripe"
 	set_light(0)
 
-/obj/machinery/landinglight/ds1
-
-
-/obj/machinery/landinglight/ds1/Initialize(mapload, ...)
-	. = ..()
+/obj/machinery/landinglight/alamo
 	id = SHUTTLE_ALAMO
 
-/obj/machinery/landinglight/ds2
+/obj/machinery/landinglight/lz1
+	id = "lz1"
 
+/obj/machinery/landinglight/lz2
+	id = "lz2"
 
-/obj/machinery/landinglight/ds2/Initialize(mapload, ...)
-	. = ..()
-	id = SHUTTLE_NORMANDY // ID for landing zone
+/obj/machinery/landinglight/cas
+	id = SHUTTLE_CAS_DOCK
 
-/obj/machinery/landinglight/proc/turn_on()
-	icon_state = "landingstripe0"
-	set_light(2,2)
-
-/obj/machinery/landinglight/ds1/delayone/turn_on()
-	icon_state = "landingstripe1"
-	set_light(2,2)
-
-/obj/machinery/landinglight/ds1/delaytwo/turn_on()
-	icon_state = "landingstripe2"
-	set_light(2,2)
-
-/obj/machinery/landinglight/ds1/delaythree/turn_on()
-	icon_state = "landingstripe3"
-	set_light(2,2)
-
-/obj/machinery/landinglight/ds2/delayone/turn_on()
-	icon_state = "landingstripe1"
-	set_light(2,2)
-
-/obj/machinery/landinglight/ds2/delaytwo/turn_on()
-	icon_state = "landingstripe2"
-	set_light(2,2)
-
-/obj/machinery/landinglight/ds2/delaythree/turn_on()
-	icon_state = "landingstripe3"
-	set_light(2,2)
+/obj/machinery/landinglight/tadpole
+	id = SHUTTLE_TADPOLE
 
 /obj/machinery/floor_warn_light
 	name = "alarm light"

@@ -34,6 +34,7 @@
 		/obj/item/armor_module/storage/uniform/holster/freelancer,
 		/obj/item/armor_module/storage/uniform/holster/vp,
 		/obj/item/armor_module/storage/uniform/holster/highpower,
+		/obj/item/armor_module/storage/uniform/holster/deathsquad,
 		/obj/item/armor_module/armor/badge,
 		/obj/item/armor_module/armor/cape,
 		/obj/item/armor_module/armor/cape/kama,
@@ -115,7 +116,7 @@
 	if(!ishuman(usr))
 		return
 	//makes sure that the clothing is equipped so that we can't drag it into our hand from miles away.
-	if ((flags_item & NODROP) || loc != usr)
+	if(HAS_TRAIT(src, TRAIT_NODROP) || loc != usr)
 		return
 	if(usr.incapacitated() || usr.buckled || usr.lying_angle)
 		return

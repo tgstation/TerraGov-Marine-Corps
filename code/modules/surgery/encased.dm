@@ -36,6 +36,7 @@
 	span_notice("You have cut [target]'s [affected.encased] open with \the [tool]."))
 	target.balloon_alert_to_viewers("Success")
 	affected.surgery_open_stage = 2.5
+	return ..()
 
 /datum/surgery_step/open_encased/saw/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
 	user.visible_message(span_warning("[user]'s hand slips, cracking [target]'s [affected.encased] with \the [tool]!") , \
@@ -74,6 +75,8 @@
 	if(prob(10))
 		affected.fracture()
 
+	return ..()
+
 /datum/surgery_step/open_encased/retract/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
 	user.visible_message(span_warning("[user]'s hand slips, cracking [target]'s [affected.encased]!"), \
 	span_warning("Your hand slips, cracking [target]'s  [affected.encased]!"))
@@ -106,6 +109,7 @@
 	span_notice("You bend [target]'s [affected.encased] back into place with \the [tool]."))
 	target.balloon_alert_to_viewers("Success")
 	affected.surgery_open_stage = 2.5
+	return ..()
 
 /datum/surgery_step/open_encased/close/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
 	user.visible_message(span_warning("[user]'s hand slips, bending [target]'s [affected.encased] the wrong way!"), \
@@ -138,6 +142,7 @@
 	span_notice("You applied \the [tool] to [target]'s [affected.encased]."))
 	target.balloon_alert_to_viewers("Success")
 	affected.surgery_open_stage = 2
+	return ..()
 
 /datum/surgery_step/fat_removal
 	allowed_tools = list(

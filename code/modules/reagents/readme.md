@@ -118,7 +118,7 @@ NOTE: IF YOU UPDATE THE REAGENT-SYSTEM, ALSO UPDATE THIS README.
 				This is the maximum volume of the holder.
 
 			my_atom
-				This is the atom the holder is 'in'. Useful if you need to find the location.
+				This is the weakref to the atom the holder is 'in'. Useful if you need to find the location.
 				(i.e. for explosions)
 
 

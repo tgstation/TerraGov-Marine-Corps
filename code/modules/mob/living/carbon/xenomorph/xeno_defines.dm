@@ -7,12 +7,11 @@
 
 	var/caste_type_path = null
 
-	var/ancient_message = ""
 	///primordial message that is shown when a caste becomes primordial
 	var/primordial_message = ""
 
 	var/tier = XENO_TIER_ZERO
-	var/upgrade = XENO_UPGRADE_ZERO
+	var/upgrade = XENO_UPGRADE_NORMAL
 	///used to match appropriate wound overlays
 	var/wound_type = "alien"
 	var/language = "Xenomorph"
@@ -25,9 +24,6 @@
 	var/melee_damage = 10
 	///number of ticks between attacks for a caste.
 	var/attack_delay = CLICK_CD_MELEE
-
-	///The amount of time between the 'savage' ability activations
-	var/savage_cooldown = 30 SECONDS
 
 	// *** Tackle *** //
 	///The minimum amount of random paralyze applied to a human upon being 'pulled' multiplied by 20 ticks
@@ -58,9 +54,6 @@
 	var/max_health = 100
 	///What negative health amount they die at.
 	var/crit_health = -100
-
-	///Set to TRUE in New() when Whiskey Outpost is active. Prevents healing and queen evolution
-	var/hardcore = FALSE
 
 	// *** Evolution *** //
 	///Threshold amount of evo points to next evolution
@@ -105,11 +98,6 @@
 	var/spit_delay = 6 SECONDS
 	///list of datum projectile types the xeno can use.
 	var/list/spit_types
-
-	///numerical type of charge for a xenomorph caste
-	var/charge_type = 0
-	///amount of time between pounce ability uses
-	var/pounce_delay = 4 SECONDS
 
 	// *** Acid spray *** //
 	///Number of tiles of the acid spray cone extends outward to. Not recommended to go beyond 4.
@@ -166,6 +154,10 @@
 	///amount of slowdown to apply when the crest defense is active. trading defense for speed. Positive numbers makes it slower.
 	var/crest_defense_slowdown = 0
 
+	// *** Puppeteer Abilities *** //
+	var/flay_plasma_gain = 0
+	var/max_puppets = 0
+
 	// *** Crusher Abilities *** //
 	///The damage the stomp causes, counts armor
 	var/stomp_damage = 0
@@ -215,6 +207,10 @@
 	/// The additional amount of stacks that the Sentinel will apply on eligible abilities.
 	var/additional_stacks = 0
 
+	// *** Behemoth Abilities ***
+	/// The maximum amount of Wrath that we can have stored at a time.
+	var/wrath_max = 0
+
 	///the 'abilities' available to a caste.
 	var/list/actions
 
@@ -255,7 +251,7 @@
 /mob/living/carbon/xenomorph
 	name = "Drone"
 	desc = "What the hell is THAT?"
-	icon = 'icons/Xeno/1x1_Xenos.dmi'
+	icon = 'icons/Xeno/castes/larva.dmi'
 	icon_state = "Drone Walking"
 	speak_emote = list("hisses")
 	melee_damage = 5 //Arbitrary damage value
@@ -276,7 +272,7 @@
 	appearance_flags = TILE_BOUND|PIXEL_SCALE|KEEP_TOGETHER
 	see_infrared = TRUE
 	hud_type = /datum/hud/alien
-	hud_possible = list(HEALTH_HUD_XENO, PLASMA_HUD, PHEROMONE_HUD, QUEEN_OVERWATCH_HUD, ARMOR_SUNDER_HUD, XENO_DEBUFF_HUD, XENO_FIRE_HUD)
+	hud_possible = list(HEALTH_HUD_XENO, PLASMA_HUD, PHEROMONE_HUD, XENO_RANK_HUD, QUEEN_OVERWATCH_HUD, ARMOR_SUNDER_HUD, XENO_DEBUFF_HUD, XENO_FIRE_HUD, XENO_BLESSING_HUD, XENO_EVASION_HUD)
 	buckle_flags = NONE
 	faction = FACTION_XENO
 	initial_language_holder = /datum/language_holder/xeno
@@ -314,8 +310,6 @@
 	var/upgrade = XENO_UPGRADE_INVALID
 	///sunder affects armour values and does a % removal before dmg is applied. 50 sunder == 50% effective armour values
 	var/sunder = 0
-
-	var/obj/structure/xeno/tunnel/start_dig = null
 	///The ammo datum for our spit projectiles. We're born with this, it changes sometimes.
 	var/datum/ammo/xeno/ammo = null
 
@@ -395,9 +389,9 @@
 	var/fortify = 0
 	var/crest_defense = 0
 
-	//Runner vars
-	var/savage = FALSE
-	var/savage_used = FALSE
+	// Baneling vars
+	/// Respawn charges, each charge makes respawn take 30 seconds. Maximum of 2 charges. If there is no charge the respawn takes 120 seconds.
+	var/stored_charge = 0
 
 	// *** Ravager vars *** //
 	/// when true the rav will not go into crit or take crit damage.
@@ -407,6 +401,12 @@
 
 	// *** Carrier vars *** //
 	var/selected_hugger_type = /obj/item/clothing/mask/facehugger
+
+	// *** Behemoth vars *** //
+	/// Whether we are currently charging or not.
+	var/behemoth_charging = FALSE
+	/// The amount of Wrath currently stored.
+	var/wrath_stored = 0
 
 	//Notification spam controls
 	var/recent_notice = 0
@@ -419,5 +419,8 @@
 
 	///Are we the roony version of this xeno
 	var/is_a_rouny = FALSE
+
+	/// The type of footstep this xeno has.
+	var/footstep_type = FOOTSTEP_XENO_MEDIUM
 
 	COOLDOWN_DECLARE(xeno_health_alert_cooldown)

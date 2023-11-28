@@ -469,9 +469,12 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 
 /datum/action/xeno_action/portal/remove_action(mob/M)
 	clean_portals()
+	return ..()
 
 /// Destroy the portals when the wraith is no longer supporting them
 /datum/action/xeno_action/portal/proc/clean_portals()
+	SIGNAL_HANDLER
+
 	QDEL_NULL(portal_one)
 	QDEL_NULL(portal_two)
 
@@ -552,6 +555,12 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	vis_contents -= portal_visuals
 	QDEL_NULL(portal_visuals)
 	return ..()
+
+/obj/effect/wraith_portal/attack_ghost(mob/dead/observer/user)
+	. = ..()
+	if(!linked_portal)
+		return
+	user.forceMove(get_turf(linked_portal))
 
 /// Link two portals
 /obj/effect/wraith_portal/proc/link_portal(obj/effect/wraith_portal/portal_to_link)

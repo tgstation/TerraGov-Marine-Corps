@@ -6,6 +6,8 @@
 	icon_state = "0"
 	can_bloody = FALSE
 	light_power = 0.25
+	///What type of debuff do we apply when someone walks through this tile?
+	var/debuff_type = /datum/status_effect/spacefreeze
 
 /turf/open/space/basic/New()	//Do not convert to Initialize
 	//This is used to optimize the map loader
@@ -42,14 +44,14 @@
 	. = ..()
 	if(isliving(arrived))
 		var/mob/living/spaceman = arrived
-		if(!spaceman.has_status_effect(/datum/status_effect/spacefreeze) && !(spaceman.status_flags & INCORPOREAL))
-			spaceman.apply_status_effect(/datum/status_effect/spacefreeze)
+		if(!spaceman.has_status_effect(debuff_type) && !(spaceman.status_flags & INCORPOREAL))
+			spaceman.apply_status_effect(debuff_type)
 
 /area/space/Exited(atom/movable/leaver, direction)
 	. = ..()
 	if(isliving(leaver))
 		var/mob/living/spaceman = leaver
-		spaceman.remove_status_effect(/datum/status_effect/spacefreeze)
+		spaceman.remove_status_effect(debuff_type)
 
 /turf/open/space/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -85,16 +87,18 @@
 	. = ..()
 	if(isliving(arrived))
 		var/mob/living/spaceman = arrived
-		if(!spaceman.has_status_effect(/datum/status_effect/spacefreeze))
-			spaceman.apply_status_effect(/datum/status_effect/spacefreeze)
+		if(!spaceman.has_status_effect(debuff_type))
+			spaceman.apply_status_effect(debuff_type)
 
 /turf/open/space/Exited(atom/movable/leaver, direction)
 	if(isliving(leaver))
 		var/step = get_step(src, direction)
 		if(!istype(step, /turf/open/space))
 			var/mob/living/spaceman = leaver
-			spaceman.remove_status_effect(/datum/status_effect/spacefreeze)
+			spaceman.remove_status_effect(debuff_type)
 
+/turf/open/space/can_teleport_here()
+	return FALSE
 
 /turf/open/space/sea //used on prison for flavor
 	icon = 'icons/misc/beach.dmi'
@@ -105,3 +109,7 @@
 /turf/open/space/sea/Initialize(mapload, ...)
 	. = ..()
 	icon_state = "seadeep"
+
+//Same as regular space, but it applies a debuff type that doesn't hurt as much
+/turf/open/space/basic/light
+	debuff_type = /datum/status_effect/spacefreeze/light

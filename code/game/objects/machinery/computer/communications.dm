@@ -16,7 +16,8 @@
 /obj/machinery/computer/communications
 	name = "communications console"
 	desc = "This can be used for various important functions."
-	icon_state = "comm"
+	icon_state = "computer_small"
+	screen_overlay = "comm"
 	req_access = list(ACCESS_MARINE_BRIDGE)
 	circuit = /obj/item/circuitboard/computer/communications
 	var/prints_intercept = TRUE
@@ -341,45 +342,45 @@
 	switch(state)
 		if(STATE_DEFAULT)
 			if(authenticated)
-				dat += "<BR>\[ <A HREF='?src=\ref[src];operation=logout'>LOG OUT</A> \]"
-				dat += "<BR>\[ <A HREF='?src=\ref[src];operation=changeseclevel'>Change alert level</A> \]"
-				dat += "<BR>\[ <A HREF='?src=\ref[src];operation=status'>Set status display</A> \]"
-				dat += "<BR>\[ <A HREF='?src=\ref[src];operation=messagelist'>Message list</A> \]"
+				dat += "<BR>\[ <A HREF='?src=[text_ref(src)];operation=logout'>LOG OUT</A> \]"
+				dat += "<BR>\[ <A HREF='?src=[text_ref(src)];operation=changeseclevel'>Change alert level</A> \]"
+				dat += "<BR>\[ <A HREF='?src=[text_ref(src)];operation=status'>Set status display</A> \]"
+				dat += "<BR>\[ <A HREF='?src=[text_ref(src)];operation=messagelist'>Message list</A> \]"
 				dat += "<BR><hr>"
 
 				if(authenticated == 2)
-					dat += "<BR>\[ <A HREF='?src=\ref[src];operation=announce'>Make an announcement</A> \]"
-					dat += length(GLOB.admins) > 0 ? "<BR>\[ <A HREF='?src=\ref[src];operation=messageTGMC'>Send a message to TGMC</A> \]" : "<BR>\[ TGMC communication offline \]"
-					dat += "<BR>\[ <A HREF='?src=\ref[src];operation=award'>Award a medal</A> \]"
+					dat += "<BR>\[ <A HREF='?src=[text_ref(src)];operation=announce'>Make an announcement</A> \]"
+					dat += length(GLOB.admins) > 0 ? "<BR>\[ <A HREF='?src=[text_ref(src)];operation=messageTGMC'>Send a message to TGMC</A> \]" : "<BR>\[ TGMC communication offline \]"
+					dat += "<BR>\[ <A HREF='?src=[text_ref(src)];operation=award'>Award a medal</A> \]"
 					if(CONFIG_GET(flag/infestation_ert_allowed)) // We only add the UI if the flag is allowed
-						dat += "<BR>\[ <A HREF='?src=\ref[src];operation=distress'>Send Distress Beacon</A> \]"
+						dat += "<BR>\[ <A HREF='?src=[text_ref(src)];operation=distress'>Send Distress Beacon</A> \]"
 					switch(SSevacuation.evac_status)
-						if(EVACUATION_STATUS_STANDING_BY) dat += "<BR>\[ <A HREF='?src=\ref[src];operation=evacuation_start'>Initiate emergency evacuation</A> \]"
-						if(EVACUATION_STATUS_INITIATING) dat += "<BR>\[ <A HREF='?src=\ref[src];operation=evacuation_cancel'>Cancel emergency evacuation</A> \]"
+						if(EVACUATION_STATUS_STANDING_BY) dat += "<BR>\[ <A HREF='?src=[text_ref(src)];operation=evacuation_start'>Initiate emergency evacuation</A> \]"
+						if(EVACUATION_STATUS_INITIATING) dat += "<BR>\[ <A HREF='?src=[text_ref(src)];operation=evacuation_cancel'>Cancel emergency evacuation</A> \]"
 
 			else
-				dat += "<BR>\[ <A HREF='?src=\ref[src];operation=login'>LOG IN</A> \]"
+				dat += "<BR>\[ <A HREF='?src=[text_ref(src)];operation=login'>LOG IN</A> \]"
 
 		if(STATE_EVACUATION)
-			dat += "Are you sure you want to evacuate the [SSmapping.configs[SHIP_MAP].map_name]? \[ <A HREF='?src=\ref[src];operation=evacuation_start'>Confirm</A>\]"
+			dat += "Are you sure you want to evacuate the [SSmapping.configs[SHIP_MAP].map_name]? \[ <A HREF='?src=[text_ref(src)];operation=evacuation_start'>Confirm</A>\]"
 
 		if(STATE_EVACUATION_CANCEL)
-			dat += "Are you sure you want to cancel the evacuation of the [SSmapping.configs[SHIP_MAP].map_name]? \[ <A HREF='?src=\ref[src];operation=evacuation_cancel'>Confirm</A>\]"
+			dat += "Are you sure you want to cancel the evacuation of the [SSmapping.configs[SHIP_MAP].map_name]? \[ <A HREF='?src=[text_ref(src)];operation=evacuation_cancel'>Confirm</A>\]"
 
 		if(STATE_DISTRESS)
 			if(CONFIG_GET(flag/infestation_ert_allowed))
-				dat += "Are you sure you want to trigger a distress signal? The signal can be picked up by anyone listening, friendly or not. \[ <A HREF='?src=\ref[src];operation=distress'>Confirm</A>\]"
+				dat += "Are you sure you want to trigger a distress signal? The signal can be picked up by anyone listening, friendly or not. \[ <A HREF='?src=[text_ref(src)];operation=distress'>Confirm</A>\]"
 
 		if(STATE_MESSAGELIST)
 			dat += "Messages:"
 			for(var/i = 1; length(i<=messagetitle); i++)
-				dat += "<BR><A HREF='?src=\ref[src];operation=viewmessage;message-num=[i]'>[messagetitle[i]]</A>"
+				dat += "<BR><A HREF='?src=[text_ref(src)];operation=viewmessage;message-num=[i]'>[messagetitle[i]]</A>"
 
 		if(STATE_VIEWMESSAGE)
 			if (currmsg)
 				dat += "<B>[messagetitle[currmsg]]</B><BR><BR>[messagetext[currmsg]]"
 				if (authenticated)
-					dat += "<BR><BR>\[ <A HREF='?src=\ref[src];operation=delmessage'>Delete \]"
+					dat += "<BR><BR>\[ <A HREF='?src=[text_ref(src)];operation=delmessage'>Delete \]"
 			else
 				state = STATE_MESSAGELIST
 				attack_hand(user)
@@ -387,7 +388,7 @@
 
 		if(STATE_DELMESSAGE)
 			if (currmsg)
-				dat += "Are you sure you want to delete this message? \[ <A HREF='?src=\ref[src];operation=delmessage2'>OK</A>|<A HREF='?src=\ref[src];operation=viewmessage'>Cancel</A> \]"
+				dat += "Are you sure you want to delete this message? \[ <A HREF='?src=[text_ref(src)];operation=delmessage2'>OK</A>|<A HREF='?src=[text_ref(src)];operation=viewmessage'>Cancel</A> \]"
 			else
 				state = STATE_MESSAGELIST
 				attack_hand(user)
@@ -395,16 +396,16 @@
 
 		if(STATE_STATUSDISPLAY)
 			dat += "Set Status Displays<BR>"
-			dat += "\[ <A HREF='?src=\ref[src];operation=setstat;statdisp=blank'>Clear</A> \]<BR>"
-			dat += "\[ <A HREF='?src=\ref[src];operation=setstat;statdisp=time'>Station Time</A> \]<BR>"
-			dat += "\[ <A HREF='?src=\ref[src];operation=setstat;statdisp=shuttle'>Shuttle ETA</A> \]<BR>"
-			dat += "\[ <A HREF='?src=\ref[src];operation=setstat;statdisp=message'>Message</A> \]"
-			dat += "<ul><li> Line 1: <A HREF='?src=\ref[src];operation=setmsg1'>[ stat_msg1 ? stat_msg1 : "(none)"]</A>"
-			dat += "<li> Line 2: <A HREF='?src=\ref[src];operation=setmsg2'>[ stat_msg2 ? stat_msg2 : "(none)"]</A></ul><br>"
-			dat += "\[ Alert: <A HREF='?src=\ref[src];operation=setstat;statdisp=alert;alert=default'>None</A> |"
-			dat += " <A HREF='?src=\ref[src];operation=setstat;statdisp=alert;alert=redalert'>Red Alert</A> |"
-			dat += " <A HREF='?src=\ref[src];operation=setstat;statdisp=alert;alert=lockdown'>Lockdown</A> |"
-			dat += " <A HREF='?src=\ref[src];operation=setstat;statdisp=alert;alert=biohazard'>Biohazard</A> \]<BR><HR>"
+			dat += "\[ <A HREF='?src=[text_ref(src)];operation=setstat;statdisp=blank'>Clear</A> \]<BR>"
+			dat += "\[ <A HREF='?src=[text_ref(src)];operation=setstat;statdisp=time'>Station Time</A> \]<BR>"
+			dat += "\[ <A HREF='?src=[text_ref(src)];operation=setstat;statdisp=shuttle'>Shuttle ETA</A> \]<BR>"
+			dat += "\[ <A HREF='?src=[text_ref(src)];operation=setstat;statdisp=message'>Message</A> \]"
+			dat += "<ul><li> Line 1: <A HREF='?src=[text_ref(src)];operation=setmsg1'>[ stat_msg1 ? stat_msg1 : "(none)"]</A>"
+			dat += "<li> Line 2: <A HREF='?src=[text_ref(src)];operation=setmsg2'>[ stat_msg2 ? stat_msg2 : "(none)"]</A></ul><br>"
+			dat += "\[ Alert: <A HREF='?src=[text_ref(src)];operation=setstat;statdisp=alert;alert=default'>None</A> |"
+			dat += " <A HREF='?src=[text_ref(src)];operation=setstat;statdisp=alert;alert=redalert'>Red Alert</A> |"
+			dat += " <A HREF='?src=[text_ref(src)];operation=setstat;statdisp=alert;alert=lockdown'>Lockdown</A> |"
+			dat += " <A HREF='?src=[text_ref(src)];operation=setstat;statdisp=alert;alert=biohazard'>Biohazard</A> \]<BR><HR>"
 
 		if(STATE_ALERT_LEVEL)
 			dat += "Current alert level: [GLOB.marine_main_ship.get_security_level()]<BR>"
@@ -419,15 +420,15 @@
 					if(EVACUATION_STATUS_COMPLETE)
 						dat += "<font color='red'><b>Evacuation complete.</b></font>"
 			else
-				dat += "<A HREF='?src=\ref[src];operation=securitylevel;newalertlevel=[SEC_LEVEL_BLUE]'>Blue</A><BR>"
-				dat += "<A HREF='?src=\ref[src];operation=securitylevel;newalertlevel=[SEC_LEVEL_GREEN]'>Green</A>"
+				dat += "<A HREF='?src=[text_ref(src)];operation=securitylevel;newalertlevel=[SEC_LEVEL_BLUE]'>Blue</A><BR>"
+				dat += "<A HREF='?src=[text_ref(src)];operation=securitylevel;newalertlevel=[SEC_LEVEL_GREEN]'>Green</A>"
 
 		if(STATE_CONFIRM_LEVEL)
 			dat += "Current alert level: [GLOB.marine_main_ship.get_security_level()]<BR>"
 			dat += "Confirm the change to: [GLOB.marine_main_ship.get_security_level(tmp_alertlevel)]<BR>"
-			dat += "<A HREF='?src=\ref[src];operation=swipeidseclevel'>Swipe ID</A> to confirm change.<BR>"
+			dat += "<A HREF='?src=[text_ref(src)];operation=swipeidseclevel'>Swipe ID</A> to confirm change.<BR>"
 
-	dat += "<BR>\[ [(state != STATE_DEFAULT) ? "<A HREF='?src=\ref[src];operation=main'>Main Menu</A>|" : ""]\]"
+	dat += "<BR>\[ [(state != STATE_DEFAULT) ? "<A HREF='?src=[text_ref(src)];operation=main'>Main Menu</A>|" : ""]\]"
 
 	var/datum/browser/popup = new(user, "communications", "<div align='center'>Communications Console</div>", 400, 500)
 	popup.set_content(dat)

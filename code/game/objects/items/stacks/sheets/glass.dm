@@ -14,6 +14,7 @@
 	desc = "Glass is a non-crystalline solid, made out of silicate, the primary constituent of sand. It is valued for its transparency, albeit it is not too resistant to damage."
 	singular_name = "glass sheet"
 	icon_state = "sheet-glass"
+	item_state = "sheet-glass"
 	merge_type = /obj/item/stack/sheet/glass
 	var/created_window = /obj/structure/window
 	var/reinforced_type = /obj/item/stack/sheet/glass/reinforced
@@ -86,6 +87,7 @@ GLOBAL_LIST_INIT(glass_radial_images, list(
 	desc = "Reinforced glass is made out of squares of regular silicate glass layered on a metallic rod matrice. This glass is more resistant to direct impacts, even if it may crack."
 	singular_name = "reinforced glass sheet"
 	icon_state = "sheet-rglass"
+	item_state = "sheet-rglass"
 
 	created_window = /obj/structure/window/reinforced
 	is_reinforced = TRUE

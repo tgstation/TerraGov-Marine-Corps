@@ -62,7 +62,7 @@
 	var/obj/deployed_machine
 
 	if(user)
-		if(!ishuman(user) || CHECK_BITFIELD(item_to_deploy.flags_item, NODROP))
+		if(!ishuman(user) || HAS_TRAIT(item_to_deploy, TRAIT_NODROP))
 			return
 
 		if(LinkBlocked(get_turf(user), location))
@@ -122,6 +122,9 @@
 /datum/component/deployable_item/proc/finish_undeploy(datum/source, mob/user)
 	var/obj/deployed_machine = source //The machinethat is undeploying should be the the one sending the Signal
 	var/obj/item/undeployed_item = deployed_machine.get_internal_item() //Item the machine is undeploying
+
+	if(!undeployed_item)
+		CRASH("[src] is missing it's internal item.")
 
 	if(!user)
 		CRASH("[source] has sent the signal COMSIG_ITEM_UNDEPLOY to [undeployed_item] without the arg 'user'")

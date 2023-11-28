@@ -8,6 +8,15 @@
 	width = 11
 	height = 21
 
+/obj/docking_port/stationary/marine_dropship/Initialize()
+	. = ..()
+	return INITIALIZE_HINT_LATELOAD
+
+/obj/docking_port/stationary/marine_dropship/LateInitialize()
+	for(var/obj/machinery/landinglight/light AS in GLOB.landing_lights)
+		if(light.id == id)
+			light.linked_port = src
+
 /obj/docking_port/stationary/marine_dropship/on_crash()
 	for(var/obj/machinery/power/apc/A AS in GLOB.apcs_list) //break APCs
 		if(!is_mainship_level(A.z))
@@ -236,7 +245,9 @@
 		if(cycle_timer)
 			deltimer(cycle_timer)
 		cycle_timer = addtimer(CALLBACK(src, PROC_REF(prepare_going_to_previous_destination)), rechargeTime + time_between_cycle SECONDS - 20 SECONDS, TIMER_STOPPABLE)
-
+	for(var/obj/machinery/landinglight/light AS in GLOB.landing_lights)
+		if(light.linked_port == destination)
+			light.turn_off()
 	return ..()
 
 ///Announce that the dropship will departure soon
@@ -309,7 +320,10 @@
 /obj/docking_port/mobile/marine_dropship/on_prearrival()
 	. = ..()
 	if(hijack_state == HIJACK_STATE_CRASHING)
-		priority_announce("DROPSHIP ON COLLISION COURSE. CRASH IMMINENT." , "EMERGENCY", sound = 'sound/AI/dropship_emergency.ogg')
+		priority_announce("DROPSHIP ON COLLISION COURSE. CRASH IMMINENT.", "EMERGENCY", sound = 'sound/AI/dropship_emergency.ogg')
+	for(var/obj/machinery/landinglight/light AS in GLOB.landing_lights)
+		if(light.linked_port == destination)
+			light.turn_on()
 
 
 /obj/docking_port/mobile/marine_dropship/getStatusText()
@@ -475,6 +489,7 @@
 /obj/machinery/computer/shuttle/marine_dropship
 	icon = 'icons/Marine/shuttle-parts.dmi'
 	icon_state = "console"
+	screen_overlay = "console_emissive"
 	resistance_flags = RESIST_ALL
 	req_one_access = list(ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LEADER) // TLs can only operate the remote console
 	possible_destinations = "lz1;lz2;alamo"
@@ -998,6 +1013,7 @@
 /obj/structure/dropship_piece/singlewindow/tadpole
 	icon = 'icons/turf/dropship2.dmi'
 	icon_state = "shuttle_single_window"
+	allow_pass_flags = PASS_GLASS
 	resistance_flags = NONE
 	opacity = FALSE
 
@@ -1254,7 +1270,8 @@
 /obj/machinery/computer/shuttle/shuttle_control
 	name = "shuttle control console"
 	icon = 'icons/obj/machines/computer.dmi'
-	icon_state = "shuttle"
+	icon_state = "computer_small"
+	screen_overlay = "shuttle"
 	///Able to auto-relink to any shuttle with at least one of the flags in common if shuttleId is invalid.
 	var/compatible_control_flags = NONE
 
@@ -1301,8 +1318,8 @@
 		return TRUE
 
 	if(!(params["destination"] in valid_destinations()))
-		log_admin("[key_name(usr)] may be attempting a href dock exploit on [src] with target location \"[params["destination"]]\"")
-		message_admins("[ADMIN_TPMONTY(usr)] may be attempting a href dock exploit on [src] with target location \"[params["destination"]]\"")
+		log_admin("[key_name(usr)] may be attempting a href dock exploit on [src] with target location \"[html_encode(params["destination"])]\"")
+		message_admins("[ADMIN_TPMONTY(usr)] may be attempting a href dock exploit on [src] with target location \"[html_encode(params["destination"])]\"")
 		return TRUE
 
 	var/previous_status = M.mode
@@ -1346,6 +1363,32 @@
 			data["destinations"] += list(dataset)
 	return data
 
+/obj/machinery/computer/shuttle/shuttle_control/attack_ghost(mob/dead/observer/user)
+	var/list/all_destinations = splittext(possible_destinations,";")
+
+	if(length(all_destinations) < 2)
+		return
+
+	// Getting all valid destinations into an assoc list with "name" = "portid"
+	var/list/port_assoc = list()
+	for(var/destination in all_destinations)
+		for(var/obj/docking_port/port AS in SSshuttle.stationary)
+			if(destination != port.id)
+				continue
+			port_assoc["[port.name]"] = destination
+
+	var/list/destinations = list()
+	for(var/destination in port_assoc)
+		destinations += destination
+	var/input = tgui_input_list(user, "Choose a port to teleport to:", "Ghost Shuttle teleport", destinations, null, 0)
+	if(!input)
+		return
+	var/obj/docking_port/mobile/target_port = SSshuttle.getDock(port_assoc[input])
+
+	if(!target_port || QDELETED(target_port) || !target_port.loc)
+		return
+	user.forceMove(get_turf(target_port))
+
 /// Relinks the shuttleId in the console to a valid shuttle currently existing. Will only relink to a shuttle with a matching control_flags flag. Returns true if successfully relinked
 /obj/machinery/computer/shuttle/shuttle_control/proc/RelinkShuttleId(forcedId)
 	var/newId = null
@@ -1386,7 +1429,8 @@
 	name = "\improper 'Alamo' dropship console"
 	desc = "The remote controls for the 'Alamo' Dropship. Named after the Alamo Mission, stage of the Battle of the Alamo in the United States' state of Texas in the Spring of 1836. The defenders held to the last, encouraging other Texans to rally to the flag."
 	icon = 'icons/obj/machines/computer.dmi'
-	icon_state = "shuttle"
+	icon_state = "computer_small"
+	screen_overlay = "shuttle"
 	resistance_flags = RESIST_ALL
 	req_one_access = list(ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LEADER) // TLs can only operate the remote console
 	shuttleId = SHUTTLE_ALAMO
@@ -1404,7 +1448,8 @@
 	name = "\improper 'Canterbury' shuttle console"
 	desc = "The remote controls for the 'Canterbury' shuttle."
 	icon = 'icons/obj/machines/computer.dmi'
-	icon_state = "shuttle"
+	icon_state = "computer_small"
+	screen_overlay = "shuttle"
 	resistance_flags = RESIST_ALL
 	shuttleId = SHUTTLE_CANTERBURY
 	possible_destinations = "canterbury_loadingdock"

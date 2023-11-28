@@ -40,3 +40,12 @@
 
 /mob/living/carbon/xenomorph/get_liquid_slowdown()
 	return XENO_WATER_SLOWDOWN
+
+/**
+ * This handles checking for a xenomorph's potential IFF signals carried by components
+ * Currently, IFF tags attach a component listening for this.
+ */
+/mob/living/carbon/xenomorph/proc/xeno_iff_check()
+	var/list/inplace_iff = list(NONE)
+	SEND_SIGNAL(src, COMSIG_XENO_IFF_CHECK, inplace_iff) //Inplace list magic to allow for multiple potential listeners to all do their things on the same variable.
+	return inplace_iff[1]

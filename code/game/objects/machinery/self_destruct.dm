@@ -116,7 +116,7 @@
 
 
 /obj/machinery/self_destruct/rod/Destroy()
-	if(SSevacuation)
+	if(SSevacuation?.dest_rods)
 		SSevacuation.dest_rods -= src
 	return ..()
 

@@ -1,6 +1,0 @@
-author: "Barnet2"
-delete-after: True
-changes:
-  - qol: "All shipside medbays now have a map table."
-  - qol: "All shipside medbays now have a blood vendor in the main lobby."
-  - qol: "Rechargers in medbay on Pillar of Spring are now more visible."

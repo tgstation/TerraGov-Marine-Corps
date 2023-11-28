@@ -83,7 +83,7 @@
 /obj/item/clothing/gloves/heldgloves/unequipped(mob/unequipper, slot)
 	. = ..()
 	remove_gloves(unequipper)
-	DISABLE_BITFIELD(flags_item, NODROP)
+	REMOVE_TRAIT(src, TRAIT_NODROP, HELDGLOVE_TRAIT)
 
 //We use alt-click to activate/deactive the gloves in-hand
 /obj/item/clothing/gloves/heldgloves/AltClick(mob/user)
@@ -92,12 +92,12 @@
 		return
 
 	if(remove_gloves(user))
-		DISABLE_BITFIELD(flags_item, NODROP)
+		REMOVE_TRAIT(src, TRAIT_NODROP, HELDGLOVE_TRAIT)
 		return
 
 	user.drop_all_held_items() //Gloves require free hands
 	if(create_gloves(user))
-		ENABLE_BITFIELD(flags_item, NODROP) //Make sure the gloves aren't able to be taken off
+		ADD_TRAIT(src, TRAIT_NODROP, HELDGLOVE_TRAIT) //Make sure the gloves aren't able to be taken off
 
 /// Creates the held items for user and puts it in their hand
 /obj/item/clothing/gloves/heldgloves/proc/create_gloves(mob/user)
@@ -123,7 +123,10 @@
 
 /obj/item/weapon/heldglove
 	name = "glove"
-	flags_item = NODROP
+
+/obj/item/weapon/heldglove/Initialize(mapload)
+	. = ..()
+	ADD_TRAIT(src, TRAIT_NODROP, HELDGLOVE_TRAIT)
 
 //Boxing gloves
 /obj/item/clothing/gloves/heldgloves/boxing

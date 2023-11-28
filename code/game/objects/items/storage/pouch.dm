@@ -16,6 +16,10 @@
 	if(fill_number && fill_type)
 		for(var/i in 1 to fill_number)
 			new fill_type(src)
+	return INITIALIZE_HINT_LATELOAD
+
+/obj/item/storage/pouch/LateInitialize()
+	. = ..()
 	update_icon()
 
 /obj/item/storage/pouch/examine(mob/user)
@@ -138,6 +142,15 @@
 	. = ..()
 	new /obj/item/reagent_containers/hypospray/autoinjector/bicaridine(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/kelotane(src)
+	new /obj/item/storage/pill_bottle/packet/tramadol(src)
+	new /obj/item/storage/pill_bottle/packet/tricordrazine(src)
+	new /obj/item/stack/medical/splint(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/inaprovaline(src)
+
+/obj/item/storage/pouch/firstaid/basic/Initialize(mapload)
+	. = ..()
+	new /obj/item/storage/pill_bottle/packet/bicaridine(src)
+	new /obj/item/storage/pill_bottle/packet/kelotane(src)
 	new /obj/item/storage/pill_bottle/packet/tramadol(src)
 	new /obj/item/storage/pill_bottle/packet/tricordrazine(src)
 	new /obj/item/stack/medical/splint(src)
@@ -343,12 +356,12 @@
 
 /obj/item/storage/pouch/magazine/drum
 	name = "drum magazine pouch"
-	desc = "It can contain one drum magazine."
+	desc = "It can contain four drum magazines."
 	icon_state = "large_ammo_drum"
-	sprite_slots = 1
-	storage_slots = 1
+	storage_slots = 4
+	sprite_slots = null
 	can_hold = list(
-		/obj/item/ammo_magazine/standard_smartmachinegun,
+		/obj/item/ammo_magazine/,
 	)
 
 
@@ -473,11 +486,11 @@
 
 /obj/item/storage/pouch/medkit/firstaid/Initialize(mapload)
 	. = ..()
-	new /obj/item/storage/pill_bottle/packet/bicaridine(src)
-	new /obj/item/storage/pill_bottle/packet/kelotane(src)
-	new /obj/item/storage/pill_bottle/packet/tramadol(src)
-	new /obj/item/storage/pill_bottle/packet/tricordrazine(src)
-	new /obj/item/storage/pill_bottle/packet/dylovene(src)
+	new /obj/item/storage/pill_bottle/bicaridine(src)
+	new /obj/item/storage/pill_bottle/kelotane(src)
+	new /obj/item/storage/pill_bottle/tramadol(src)
+	new /obj/item/storage/pill_bottle/tricordrazine(src)
+	new /obj/item/storage/pill_bottle/dylovene(src)
 	new /obj/item/stack/medical/splint(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/inaprovaline(src)
 
@@ -589,7 +602,25 @@
 	new /obj/item/storage/box/combat_lolipop/tricord(src)
 	new /obj/item/storage/box/combat_lolipop/tramadol(src)
 
+/obj/item/storage/pouch/berrypouch
+	name = "berry bar pouch"
+	desc = "A pouch containing all of your berry needs."
+	icon_state = "barpouch"
+	sprite_slots = 3
+	storage_slots = 6
+	can_hold = list(/obj/item/reagent_containers/food/snacks/wrapped/berrybar)
+
+/obj/item/storage/pouch/berrypouch/Initialize(mapload)
+	. = ..()
+	new /obj/item/reagent_containers/food/snacks/wrapped/berrybar(src)
+	new /obj/item/reagent_containers/food/snacks/wrapped/berrybar(src)
+	new /obj/item/reagent_containers/food/snacks/wrapped/berrybar(src)
+	new /obj/item/reagent_containers/food/snacks/wrapped/berrybar(src)
+	new /obj/item/reagent_containers/food/snacks/wrapped/berrybar(src)
+	new /obj/item/reagent_containers/food/snacks/wrapped/berrybar(src)
+
 /obj/item/storage/pouch/surgery
+
 	name = "surgery tools pouch"
 	desc = "An eye catching white medical pouch capable of holding all your surgical tools."
 	icon_state = "surgery"
@@ -600,6 +631,7 @@
 		/obj/item/tool/surgery,
 		/obj/item/stack/nanopaste,
 		/obj/item/tweezers,
+		/obj/item/tweezers_advanced,
 	)
 
 /obj/item/storage/pouch/surgery/Initialize(mapload)
@@ -625,16 +657,6 @@
 		/obj/item/paper,
 		/obj/item/clipboard,
 	)
-
-/obj/item/storage/pouch/radio
-	name = "radio pouch"
-	storage_slots = 2
-	icon_state = "radio"
-	draw_mode = 1
-	desc = "It can contain two handheld radios."
-	can_hold = list(/obj/item/radio)
-
-
 /obj/item/storage/pouch/field_pouch
 	name = "field utility pouch"
 	storage_slots = 5
@@ -836,3 +858,19 @@
 	desc = "A pouch specialized for holding shotgun ammo. Made with traditional SOM leather."
 	icon_state = "shotshells_som"
 	sprite_slots = null
+
+/obj/item/storage/pouch/protein_pack
+	name = "\improper protein pack pouch"
+	desc = "A storage pouch designed to hold a moderate amount of protein packs."
+	icon_state = "p_pouch"
+	item_state = "survival"
+	storage_slots = 10
+	max_storage_space = 10
+	sprite_slots = 1
+	max_w_class = WEIGHT_CLASS_TINY
+	can_hold = list(/obj/item/reagent_containers/food/snacks/protein_pack)
+
+/obj/item/storage/pouch/protein_pack/Initialize(mapload)
+	. = ..()
+	for(var/i in 1 to storage_slots)
+		new /obj/item/reagent_containers/food/snacks/protein_pack(src)

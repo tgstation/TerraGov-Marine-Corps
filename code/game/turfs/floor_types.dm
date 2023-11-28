@@ -321,21 +321,22 @@
 /turf/open/floor/wood/broken_states()
 	if(!damaged_states)
 		return icon_state
-	return "[icon_state]_damaged_[rand(1, damaged_states)]"
+	return "[initial(icon_state)]_damaged_[rand(1, damaged_states)]"
 
 /turf/open/floor/wood/burnt_states()
 	if(!damaged_states)
 		return icon_state
-	return "[icon_state]_[rand(1, damaged_states)]"
+	return "[initial(icon_state)]_damaged_[rand(1, damaged_states)]"
 
-//todo: replaced in a later pr
 /turf/open/floor/wood/broken
-	icon_state = "wood-broken1"
 	burnt = TRUE
 
 /turf/open/floor/wood/fancy
 	icon_state = "wood_fancy"
 	damaged_states = 6
+
+/turf/open/floor/wood/fancy/damaged
+	burnt = TRUE
 
 /turf/open/floor/wood/darker
 	icon_state = "wood_darker"
@@ -391,36 +392,23 @@
 /turf/open/floor/wood/variable
 	icon_state = "wood_common"
 	damaged_states = 6
-	var/icon_variants = 3
 
-/turf/open/floor/wood/variable/Initialize(mapload)
-	. = ..()
-	icon_state = "[icon_state]_[rand(1, icon_variants)]"
+/turf/open/floor/wood/variable/damaged
+	burnt = TRUE
 
 /turf/open/floor/wood/variable/wide
 	icon_state = "wood_wide"
 	damaged_states = 6
 
+/turf/open/floor/wood/variable/wide/damaged
+	burnt = TRUE
+
 /turf/open/floor/wood/variable/mosaic
 	icon_state = "wood_mosaic"
 	damaged_states = 6
 
-/turf/open/floor/wood/variable/damaged
-	icon_state = "wood_common_damaged"
-	icon_variants = 6
-
-/turf/open/floor/wood/variable/damaged/standard
-	icon_state = "wood_damaged"
-	icon_variants = 7
-
-/turf/open/floor/wood/variable/damaged/wide
-	icon_state = "wood_wide_damaged"
-
-/turf/open/floor/wood/variable/damaged/fancy
-	icon_state = "wood_fancy_damaged"
-
-/turf/open/floor/wood/variable/damaged/mosaic
-	icon_state = "wood_mosaic_damaged"
+/turf/open/floor/wood/variable/mosaic/damaged
+	burnt = TRUE
 
 /turf/open/floor/vault
 	icon_state = "rockvault"
@@ -537,21 +525,20 @@
 
 /turf/open/floor/grass
 	name = "Grass patch"
-	icon_state = "grass1"
+	icon_state = "grass"
 	floor_tile = /obj/item/stack/tile/grass
 	shoefootstep = FOOTSTEP_GRASS
 	barefootstep = FOOTSTEP_GRASS
 	mediumxenofootstep = FOOTSTEP_GRASS
+	icon_variants = 4
 
 
 /turf/open/floor/grass/Initialize(mapload)
 	. = ..()
-	icon_state = "grass[pick("1","2","3","4")]"
 	return INITIALIZE_HINT_LATELOAD
 
 
 /turf/open/floor/grass/LateInitialize()
-	update_icon()
 	for(var/direction in GLOB.cardinals)
 		if(!istype(get_step(src,direction), /turf/open/floor))
 			continue

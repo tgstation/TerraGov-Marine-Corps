@@ -2,14 +2,14 @@
 	caste_base_type = /mob/living/carbon/xenomorph/crusher
 	name = "Crusher"
 	desc = "A huge alien with an enormous armored head crest."
-	icon = 'icons/Xeno/2x2_Xenos.dmi'
+	icon = 'icons/Xeno/castes/crusher.dmi'
 	icon_state = "Crusher Walking"
 	bubble_icon = "alienleft"
 	health = 300
 	maxHealth = 300
 	plasma_stored = 200
 	tier = XENO_TIER_THREE
-	upgrade = XENO_UPGRADE_ZERO
+	upgrade = XENO_UPGRADE_NORMAL
 	drag_delay = 6 //pulling a big dead xeno is hard
 	mob_size = MOB_SIZE_BIG
 	buckle_flags = CAN_BUCKLE

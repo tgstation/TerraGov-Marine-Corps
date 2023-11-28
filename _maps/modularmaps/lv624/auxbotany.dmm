@@ -124,14 +124,6 @@
 "iN" = (
 /turf/closed/wall,
 /area/lv624/lazarus/hydroponics/aux)
-"jW" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/obj/structure/cable,
-/obj/structure/cable,
-/turf/open/floor/tile/white,
-/area/lv624/lazarus/hydroponics/aux)
 "kA" = (
 /turf/open/floor/tile/green/whitegreen{
 	dir = 10
@@ -418,7 +410,6 @@
 	},
 /area/lv624/lazarus/hydroponics/aux)
 "Hy" = (
-/obj/structure/cable,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold4w/supply/hidden/layer1,
 /obj/effect/ai_node,
@@ -722,7 +713,7 @@ NM
 iN
 iN
 Kw
-jW
+BW
 wH
 iN
 iN

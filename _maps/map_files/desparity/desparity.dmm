@@ -155,12 +155,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle9)
-"bb" = (
-/obj/machinery/landinglight/ds1/delaythree{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/lv624/lazarus/spaceport2)
 "bd" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/decal/cleanable/dirt,
@@ -289,9 +283,10 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/turf/open/floor/stairs/rampbottom{
+/obj/structure/stairs{
 	dir = 4
 	},
+/turf/open/floor/tile/barber,
 /area/lv624/lazarus/canteen)
 "bS" = (
 /obj/structure/bed/chair/sofa/corsat/verticalsouth,
@@ -494,7 +489,7 @@
 /area/lv624/ground/jungle5)
 "db" = (
 /obj/structure/cable,
-/turf/open/floor/wood/variable/damaged/standard,
+/turf/open/floor/wood/broken,
 /area/lv624/lazarus/bar)
 "df" = (
 /obj/structure/table,
@@ -670,6 +665,14 @@
 	},
 /turf/open/floor/plating/dmg3,
 /area/lv624/lazarus/crashed_ship/desparity)
+"dW" = (
+/obj/machinery/floodlight/landing,
+/obj/effect/turf_decal/warning_stripes,
+/obj/machinery/landinglight/lz1{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/lv624/lazarus/spaceport)
 "dX" = (
 /obj/machinery/miner/damaged/platinum,
 /turf/open/floor/plating/ground/dirt,
@@ -682,10 +685,10 @@
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/research/caves)
 "dZ" = (
-/obj/machinery/landinglight/ds1/delaythree{
+/obj/item/shard,
+/obj/machinery/landinglight/lz1{
 	dir = 8
 	},
-/obj/item/shard,
 /turf/open/floor/plating,
 /area/lv624/lazarus/spaceport)
 "eb" = (
@@ -809,7 +812,7 @@
 /turf/open/floor/plating,
 /area/lv624/lazarus/captain)
 "eH" = (
-/obj/machinery/landinglight/ds1/delaytwo{
+/obj/machinery/landinglight/lz2{
 	dir = 4
 	},
 /turf/open/floor/plating,
@@ -880,8 +883,8 @@
 	name = "Privacy Shutters"
 	},
 /obj/structure/table,
-/obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
-/obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
+/obj/effect/spawner/random/weaponry/gun,
+/obj/effect/spawner/random/weaponry/gun,
 /turf/open/floor/tile/dark/purple2{
 	dir = 4
 	},
@@ -960,10 +963,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle7)
 "fm" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_21";
-	name = "SOM exit point 21"
-	},
+/obj/effect/landmark/patrol_point/som/som_21,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/east1)
 "fn" = (
@@ -1013,7 +1013,7 @@
 	},
 /area/lv624/lazarus/research/caves)
 "fw" = (
-/obj/machinery/landinglight/ds1/delaythree{
+/obj/machinery/landinglight/lz1{
 	dir = 1
 	},
 /turf/open/floor/plating,
@@ -1213,12 +1213,6 @@
 "gx" = (
 /turf/open/floor/tile/green,
 /area/lv624/lazarus/medbay)
-"gz" = (
-/obj/machinery/landinglight/ds1/delaytwo{
-	dir = 1
-	},
-/turf/open/floor/plating,
-/area/lv624/lazarus/spaceport2)
 "gA" = (
 /obj/structure/hoop{
 	dir = 4;
@@ -1338,10 +1332,7 @@
 /turf/open/shuttle/dropship/floor,
 /area/lv624/ground/jungle9)
 "hk" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_22";
-	name = "SOM exit point 22"
-	},
+/obj/effect/landmark/patrol_point/som/som_22,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/east1)
 "hm" = (
@@ -1438,12 +1429,6 @@
 /obj/structure/closet/secure_closet/engineering_welding,
 /turf/open/floor/plating,
 /area/lv624/lazarus/engineering)
-"hH" = (
-/obj/machinery/landinglight/ds1/delayone{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/lv624/lazarus/spaceport2)
 "hJ" = (
 /obj/structure/flora/grass/tallgrass/tallgrasscorner{
 	color = "#798963";
@@ -1552,7 +1537,7 @@
 /area/lv624/lazarus/sleep_male)
 "if" = (
 /obj/structure/rack,
-/obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
+/obj/effect/spawner/random/weaponry/gun,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/dark/red2/corner,
 /area/lv624/lazarus/research/caves)
@@ -1573,10 +1558,7 @@
 /turf/open/ground/grass/weedable,
 /area/lv624/lazarus/spaceport)
 "io" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_24";
-	name = "SOM exit point 24"
-	},
+/obj/effect/landmark/patrol_point/som/som_24,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/east1)
 "ip" = (
@@ -1854,7 +1836,7 @@
 /obj/structure/cable,
 /obj/structure/table/gamblingtable,
 /obj/item/toy/deck/kotahi,
-/turf/open/floor/wood/variable/damaged/standard,
+/turf/open/floor/wood/broken,
 /area/lv624/lazarus/bar)
 "jD" = (
 /turf/open/floor/tile/blue/taupeblue{
@@ -1901,12 +1883,6 @@
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/research/caves)
-"jR" = (
-/obj/machinery/landinglight/ds1{
-	dir = 1
-	},
-/turf/open/floor/plating,
-/area/lv624/lazarus/spaceport2)
 "jU" = (
 /obj/structure/table/gamblingtable,
 /obj/item/toy/dice/d20,
@@ -1955,12 +1931,6 @@
 	},
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth/buildable,
 /area/lv624/ground/jungle5)
-"ki" = (
-/obj/machinery/landinglight/ds1{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/lv624/lazarus/spaceport2)
 "kj" = (
 /obj/structure/cargo_container{
 	dir = 1
@@ -1994,14 +1964,8 @@
 /area/lv624/ground/jungle9)
 "ks" = (
 /obj/machinery/light/small,
-/turf/open/floor/wood/variable/damaged/standard,
+/turf/open/floor/wood/broken,
 /area/lv624/lazarus/spaceport)
-"kt" = (
-/obj/machinery/landinglight/ds1/delayone{
-	dir = 1
-	},
-/turf/open/floor/plating,
-/area/lv624/lazarus/spaceport2)
 "kw" = (
 /turf/open/floor/plating,
 /area/lv624/lazarus/research/caves)
@@ -2545,7 +2509,7 @@
 /turf/open/floor,
 /area/lv624/lazarus/spaceport)
 "nq" = (
-/obj/machinery/landinglight/ds1/delaytwo,
+/obj/machinery/landinglight/lz2,
 /turf/open/floor/plating,
 /area/lv624/lazarus/spaceport2)
 "ns" = (
@@ -2662,7 +2626,7 @@
 	pixel_x = 5;
 	pixel_y = 5
 	},
-/obj/item/storage/box/flashbangs,
+/obj/effect/spawner/random/weaponry/explosive/grenade/multiplefour,
 /obj/item/storage/box/zipcuffs{
 	pixel_x = -5;
 	pixel_y = -4
@@ -2747,7 +2711,7 @@
 /turf/open/ground/grass/weedable,
 /area/lv624/ground/jungle10)
 "ov" = (
-/obj/machinery/landinglight/ds1/delaytwo,
+/obj/machinery/landinglight/lz1,
 /turf/open/floor/plating,
 /area/lv624/lazarus/spaceport)
 "ox" = (
@@ -2793,7 +2757,7 @@
 /area/lv624/ground/jungle5)
 "oH" = (
 /obj/structure/closet/crate/secure,
-/obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
+/obj/effect/spawner/random/weaponry/gun,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/research/caves)
 "oI" = (
@@ -3105,6 +3069,14 @@
 	},
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth/buildable,
 /area/lv624/ground/jungle5)
+"qs" = (
+/obj/machinery/floodlight/landing,
+/obj/effect/turf_decal/warning_stripes,
+/obj/machinery/landinglight/lz2{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/lv624/lazarus/spaceport2)
 "qt" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
@@ -3333,12 +3305,6 @@
 	},
 /turf/open/floor/tile/green/whitegreenfull,
 /area/lv624/lazarus/medbay)
-"rw" = (
-/obj/machinery/landinglight/ds1{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/lv624/lazarus/spaceport)
 "rz" = (
 /obj/docking_port/stationary/marine_dropship/lz2,
 /turf/open/floor/plating/icefloor,
@@ -3355,7 +3321,7 @@
 "rD" = (
 /obj/machinery/door/window,
 /obj/effect/landmark/weed_node,
-/turf/open/floor/wood/variable/damaged/standard,
+/turf/open/floor/wood/broken,
 /area/lv624/lazarus/bar)
 "rE" = (
 /obj/structure/cable,
@@ -3484,7 +3450,7 @@
 /turf/open/ground/grass/weedable,
 /area/lv624/ground/jungle10)
 "so" = (
-/obj/machinery/landinglight/ds1/delaytwo{
+/obj/machinery/landinglight/lz1{
 	dir = 8
 	},
 /turf/open/floor/plating,
@@ -3601,10 +3567,7 @@
 	},
 /area/lv624/lazarus/hydroponics)
 "sL" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_23";
-	name = "TGMC exit point 23"
-	},
+/obj/effect/landmark/patrol_point/tgmc_23,
 /turf/open/floor/plating/mainship,
 /area/lv624/lazarus/crashed_ship/desparity)
 "sM" = (
@@ -3679,10 +3642,6 @@
 /obj/machinery/chem_master,
 /turf/open/floor/tile/dark/blue2/corner,
 /area/lv624/lazarus/research/caves)
-"tf" = (
-/obj/machinery/landinglight/ds1,
-/turf/open/floor/plating,
-/area/lv624/lazarus/spaceport2)
 "th" = (
 /obj/structure/table,
 /obj/effect/spawner/random/engineering/technology_scanner,
@@ -4013,13 +3972,7 @@
 /obj/machinery/light/small{
 	dir = 1
 	},
-/turf/open/floor/wood/variable/damaged/standard,
-/area/lv624/lazarus/spaceport)
-"uQ" = (
-/obj/machinery/landinglight/ds1/delaytwo{
-	dir = 1
-	},
-/turf/open/floor/plating,
+/turf/open/floor/wood/broken,
 /area/lv624/lazarus/spaceport)
 "uR" = (
 /obj/structure/closet,
@@ -4106,6 +4059,14 @@
 	dir = 8
 	},
 /area/lv624/lazarus/sleep_male)
+"vk" = (
+/obj/machinery/floodlight/landing,
+/obj/effect/turf_decal/warning_stripes,
+/obj/machinery/landinglight/lz1{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/lv624/lazarus/spaceport)
 "vl" = (
 /obj/structure/largecrate/random/barrel/yellow,
 /obj/structure/cable,
@@ -4170,10 +4131,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle7)
 "vD" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_21";
-	name = "TGMC exit point 21"
-	},
+/obj/effect/landmark/patrol_point/tgmc_21,
 /turf/open/floor/plating/mainship,
 /area/lv624/lazarus/crashed_ship/desparity)
 "vE" = (
@@ -4357,6 +4315,14 @@
 	dir = 10
 	},
 /area/lv624/lazarus/spaceport)
+"wH" = (
+/obj/machinery/floodlight/landing,
+/obj/effect/turf_decal/warning_stripes,
+/obj/machinery/landinglight/lz2{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/lv624/lazarus/spaceport2)
 "wK" = (
 /obj/structure/table,
 /turf/open/floor/tile/green/greentaupe{
@@ -4426,10 +4392,7 @@
 /turf/open/floor/tile/dark/blue2/corner,
 /area/lv624/lazarus/research/caves)
 "wZ" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_24";
-	name = "TGMC exit point 24"
-	},
+/obj/effect/landmark/patrol_point/tgmc_24,
 /turf/open/floor/plating/dmg3,
 /area/lv624/lazarus/crashed_ship/desparity)
 "xc" = (
@@ -4478,12 +4441,6 @@
 	},
 /turf/open/floor,
 /area/lv624/lazarus/spaceport)
-"xn" = (
-/obj/machinery/landinglight/ds1{
-	dir = 1
-	},
-/turf/open/floor/plating,
-/area/lv624/lazarus/spaceport)
 "xo" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 9
@@ -4521,7 +4478,7 @@
 /turf/open/floor/plating,
 /area/lv624/lazarus/chapel)
 "xF" = (
-/turf/open/floor/wood/variable/damaged/standard,
+/turf/open/floor/wood/broken,
 /area/lv624/lazarus/spaceport)
 "xH" = (
 /obj/structure/cable,
@@ -4587,10 +4544,7 @@
 /turf/open/floor/tile/bar,
 /area/lv624/lazarus/canteen)
 "xT" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_14";
-	name = "SOM exit point 14"
-	},
+/obj/effect/landmark/patrol_point/som/som_14,
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 10
 	},
@@ -4671,6 +4625,10 @@
 	dir = 8
 	},
 /area/lv624/lazarus/research/caves)
+"ym" = (
+/obj/effect/landmark/campaign_structure/sensor_tower,
+/turf/open/ground/grass/weedable,
+/area/lv624/ground/jungle10)
 "yn" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -4729,7 +4687,7 @@
 	pixel_x = -7;
 	pixel_y = -1
 	},
-/turf/open/floor/wood/variable/damaged/standard,
+/turf/open/floor/wood/broken,
 /area/lv624/lazarus/bar)
 "yB" = (
 /obj/machinery/door/airlock/mainship/engineering/free_access{
@@ -4813,7 +4771,7 @@
 /area/lv624/lazarus/spaceport)
 "yV" = (
 /obj/structure/table/mainship,
-/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
+/obj/effect/spawner/random/weaponry/gun,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/research/caves)
 "yX" = (
@@ -4920,10 +4878,7 @@
 /turf/open/ground/grass/weedable,
 /area/lv624/ground/jungle7)
 "zu" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_23";
-	name = "SOM exit point 23"
-	},
+/obj/effect/landmark/patrol_point/som/som_23,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/east1)
 "zv" = (
@@ -5021,6 +4976,10 @@
 /obj/structure/fence,
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth/buildable,
 /area/lv624/ground/jungle7)
+"zL" = (
+/obj/effect/landmark/campaign_structure/sensor_tower,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/jungle7)
 "zO" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating/ground/dirt,
@@ -5089,7 +5048,7 @@
 	},
 /obj/structure/table/woodentable,
 /obj/item/weapon/nullrod,
-/obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
+/obj/effect/spawner/random/weaponry/gun,
 /turf/open/floor/wood,
 /area/lv624/lazarus/chapel)
 "Ad" = (
@@ -5230,12 +5189,6 @@
 /obj/structure/fence,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle10)
-"AR" = (
-/obj/machinery/landinglight/ds1/delayone{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/lv624/lazarus/spaceport2)
 "AT" = (
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/research/caves)
@@ -5475,12 +5428,6 @@
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/engineering)
-"BY" = (
-/obj/machinery/landinglight/ds1/delayone{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/lv624/lazarus/spaceport)
 "BZ" = (
 /obj/structure/table/reinforced/flipped{
 	dir = 1
@@ -5533,12 +5480,6 @@
 	dir = 1
 	},
 /area/lv624/lazarus/fitness)
-"Cl" = (
-/obj/machinery/landinglight/ds1/delaythree{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/lv624/lazarus/spaceport)
 "Cn" = (
 /obj/machinery/floodlight,
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth/buildable,
@@ -5643,12 +5584,6 @@
 	},
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/research/caves)
-"CO" = (
-/obj/machinery/landinglight/ds1/delaythree{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/lv624/lazarus/spaceport)
 "CS" = (
 /obj/effect/ai_node,
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
@@ -5719,7 +5654,7 @@
 /area/lv624/ground/jungle9)
 "Dn" = (
 /obj/structure/rack,
-/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
+/obj/effect/spawner/random/weaponry/gun,
 /turf/open/floor/tile/dark/red2/corner,
 /area/lv624/lazarus/research/caves)
 "Do" = (
@@ -5731,10 +5666,7 @@
 "Dp" = (
 /obj/structure/flora/jungle/vines,
 /obj/structure/cable,
-/obj/effect/landmark/patrol_point{
-	id = "SOM_13";
-	name = "SOM exit point 13"
-	},
+/obj/effect/landmark/patrol_point/som/som_13,
 /turf/open/ground/grass/weedable,
 /area/lv624/lazarus/spaceport2)
 "Dq" = (
@@ -6021,12 +5953,9 @@
 /turf/closed/wall/wood,
 /area/lv624/lazarus/bar)
 "EQ" = (
-/obj/machinery/landinglight/ds1/delayone{
+/obj/effect/landmark/patrol_point/tgmc_12,
+/obj/machinery/landinglight/lz1{
 	dir = 8
-	},
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_12";
-	name = "TGMC exit point 12"
 	},
 /turf/open/floor/plating,
 /area/lv624/lazarus/spaceport)
@@ -6047,10 +5976,7 @@
 /turf/open/floor/podhatch/floor,
 /area/lv624/ground/jungle9)
 "Fc" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_22";
-	name = "TGMC exit point 22"
-	},
+/obj/effect/landmark/patrol_point/tgmc_22,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/west1)
 "Fe" = (
@@ -6158,12 +6084,6 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle9)
-"FB" = (
-/obj/machinery/landinglight/ds1{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/lv624/lazarus/spaceport2)
 "FC" = (
 /turf/closed/mineral/smooth,
 /area/lv624/ground/caves/rock)
@@ -6275,7 +6195,7 @@
 /area/lv624/lazarus/engineering)
 "Gh" = (
 /obj/structure/table,
-/obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
+/obj/effect/spawner/random/weaponry/gun,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle7)
 "Gi" = (
@@ -6342,10 +6262,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle7)
 "GA" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_11";
-	name = "TGMC exit point 11"
-	},
+/obj/effect/landmark/patrol_point/tgmc_11,
 /turf/open/floor/wood,
 /area/lv624/lazarus/spaceport)
 "GC" = (
@@ -6444,7 +6361,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
+/obj/effect/spawner/random/weaponry/gun,
 /turf/open/floor/tile/lightred/full,
 /area/lv624/lazarus/security)
 "GW" = (
@@ -6486,10 +6403,7 @@
 /turf/open/floor/plating,
 /area/lv624/lazarus/captain)
 "He" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_13";
-	name = "TGMC exit point 13"
-	},
+/obj/effect/landmark/patrol_point/tgmc_13,
 /turf/open/ground/grass/weedable,
 /area/lv624/lazarus/spaceport)
 "Hg" = (
@@ -6503,12 +6417,6 @@
 "Hi" = (
 /turf/closed/shuttle/dropship_regular/interior_corner,
 /area/lv624/ground/jungle9)
-"Hj" = (
-/obj/machinery/landinglight/ds1{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/lv624/lazarus/spaceport)
 "Hk" = (
 /obj/structure/table,
 /obj/item/trash/buritto,
@@ -6555,11 +6463,6 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth/buildable,
 /area/lv624/ground/jungle10)
-"Hy" = (
-/obj/structure/table,
-/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/jungle7)
 "HA" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -6711,12 +6614,6 @@
 	dir = 6
 	},
 /area/lv624/lazarus/hydroponics)
-"Is" = (
-/obj/machinery/landinglight/ds1/delayone{
-	dir = 1
-	},
-/turf/open/floor/plating,
-/area/lv624/lazarus/spaceport)
 "It" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -7085,10 +6982,6 @@
 /obj/structure/flora/ausbushes/lavendergrass,
 /turf/open/ground/grass/weedable,
 /area/lv624/ground/jungle9)
-"JT" = (
-/obj/machinery/landinglight/ds1/delaythree,
-/turf/open/floor/plating,
-/area/lv624/lazarus/spaceport)
 "JU" = (
 /obj/structure/barricade/metal{
 	dir = 1
@@ -7114,7 +7007,7 @@
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth/buildable,
 /area/lv624/ground/jungle10)
 "Kb" = (
-/obj/machinery/landinglight/ds1/delaytwo{
+/obj/machinery/landinglight/lz1{
 	dir = 4
 	},
 /turf/open/floor/plating,
@@ -7139,7 +7032,7 @@
 /area/lv624/lazarus/spaceport)
 "Ki" = (
 /obj/structure/closet/secure_closet/marshal,
-/obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
+/obj/effect/spawner/random/weaponry/gun,
 /turf/open/floor/tile/lightred/full,
 /area/lv624/lazarus/security)
 "Kj" = (
@@ -7191,12 +7084,6 @@
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle9)
-"Kz" = (
-/obj/machinery/landinglight/ds1/delayone{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/lv624/lazarus/spaceport)
 "KB" = (
 /obj/machinery/door/airlock/multi_tile/mainship/medidoor/medbay/free_access,
 /turf/open/floor/plating,
@@ -7280,10 +7167,6 @@
 	},
 /turf/open/floor/wood,
 /area/lv624/lazarus/captain)
-"La" = (
-/obj/machinery/landinglight/ds1/delayone,
-/turf/open/floor/plating,
-/area/lv624/lazarus/spaceport)
 "Lb" = (
 /obj/structure/flora/ausbushes/lavendergrass,
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth/buildable,
@@ -7389,12 +7272,6 @@
 	dir = 9
 	},
 /area/lv624/lazarus/sleep_male)
-"LC" = (
-/obj/structure/table,
-/obj/structure/table,
-/obj/item/stack/sheet/metal/small_stack,
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/jungle7)
 "LE" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/dirt,
@@ -7554,6 +7431,14 @@
 "Mm" = (
 /obj/structure/flora/ausbushes/fernybush,
 /turf/open/ground/grass/weedable,
+/area/lv624/ground/jungle9)
+"Mn" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/effect/landmark/campaign_structure/sensor_tower,
+/turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle9)
 "Mo" = (
 /obj/structure/bed/chair{
@@ -7748,10 +7633,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle9)
 "Na" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_14";
-	name = "TGMC exit point 14"
-	},
+/obj/effect/landmark/patrol_point/tgmc_14,
 /obj/effect/turf_decal/riverdecal,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/lazarus/spaceport)
@@ -8458,10 +8340,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
 /area/lv624/lazarus/research/caves)
-"QI" = (
-/obj/machinery/landinglight/ds1/delaythree,
-/turf/open/floor/plating,
-/area/lv624/lazarus/spaceport2)
 "QK" = (
 /obj/structure/window/framed/colony,
 /turf/open/floor/plating,
@@ -8495,7 +8373,7 @@
 /turf/open/ground/grass/weedable,
 /area/lv624/lazarus/spaceport)
 "QU" = (
-/obj/machinery/landinglight/ds1/delaytwo{
+/obj/machinery/landinglight/lz2{
 	dir = 8
 	},
 /turf/open/floor/plating,
@@ -8637,10 +8515,6 @@
 	dir = 9
 	},
 /area/lv624/lazarus/hydroponics)
-"RA" = (
-/obj/machinery/landinglight/ds1/delayone,
-/turf/open/floor/plating,
-/area/lv624/lazarus/spaceport2)
 "RB" = (
 /obj/structure/window/framed/colony/reinforced,
 /turf/open/floor/plating,
@@ -8722,7 +8596,7 @@
 /turf/open/floor/plating/dmg1,
 /area/lv624/lazarus/spaceport)
 "RW" = (
-/obj/machinery/sleep_console,
+/obj/machinery/computer/sleep_console,
 /turf/open/floor/tile/blue,
 /area/lv624/lazarus/medbay)
 "RX" = (
@@ -8755,10 +8629,6 @@
 /obj/item/reagent_containers/food/snacks/muffin,
 /turf/open/floor/tile/bar,
 /area/lv624/lazarus/canteen)
-"Se" = (
-/obj/machinery/landinglight/ds1,
-/turf/open/floor/plating,
-/area/lv624/lazarus/spaceport)
 "Sf" = (
 /obj/structure/flora/ausbushes/genericbush{
 	pixel_x = -5
@@ -8810,10 +8680,7 @@
 /turf/open/floor/tile/blue/taupebluecorner,
 /area/lv624/lazarus/medbay)
 "Sr" = (
-/obj/effect/landmark/patrol_point{
-	id = "SOM_12";
-	name = "SOM exit point 12"
-	},
+/obj/effect/landmark/patrol_point/som/som_12,
 /turf/open/floor,
 /area/lv624/lazarus/spaceport2)
 "Ss" = (
@@ -8824,7 +8691,7 @@
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth/buildable,
 /area/lv624/ground/jungle10)
 "St" = (
-/obj/machinery/sleep_console,
+/obj/machinery/computer/sleep_console,
 /turf/open/floor/tile/blue/taupebluecorner,
 /area/lv624/lazarus/medbay)
 "Su" = (
@@ -8870,10 +8737,7 @@
 /area/lv624/lazarus/research/caves)
 "SE" = (
 /obj/structure/cable,
-/obj/effect/landmark/patrol_point{
-	id = "SOM_11";
-	name = "SOM exit point 11"
-	},
+/obj/effect/landmark/patrol_point/som/som_11,
 /turf/open/floor/plating,
 /area/lv624/lazarus/spaceport2)
 "SF" = (
@@ -9023,6 +8887,10 @@
 	},
 /turf/open/floor/plating,
 /area/lv624/lazarus/medbay)
+"To" = (
+/obj/effect/landmark/campaign_structure/sensor_tower,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/jungle9)
 "Tp" = (
 /obj/machinery/computer/intel_computer,
 /turf/open/floor/tile/bar,
@@ -9200,7 +9068,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle5)
 "Um" = (
-/obj/machinery/landinglight/ds1/delaythree{
+/obj/machinery/landinglight/lz2{
 	dir = 1
 	},
 /turf/open/floor/plating,
@@ -10275,12 +10143,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/medbay)
-"ZD" = (
-/obj/machinery/landinglight/ds1/delaythree{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/lv624/lazarus/spaceport2)
 "ZE" = (
 /turf/open/floor/tile/blue,
 /area/lv624/lazarus/medbay)
@@ -10351,6 +10213,10 @@
 /obj/structure/cable,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle9)
+"ZY" = (
+/obj/effect/landmark/campaign_structure/sensor_tower,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/jungle5)
 
 (1,1,1) = {"
 wh
@@ -11054,26 +10920,26 @@ Om
 fn
 fn
 jI
-ZD
-ZD
-FB
-hH
 eH
-ZD
-FB
-hH
 eH
-ZD
-jI
-hH
 eH
-ZD
-FB
-hH
 eH
-ZD
-FB
-hH
+eH
+eH
+eH
+eH
+eH
+eH
+wH
+eH
+eH
+eH
+eH
+eH
+eH
+eH
+eH
+eH
 eH
 jI
 TA
@@ -11132,7 +10998,7 @@ wM
 JY
 Zj
 Zj
-Zj
+ym
 Zj
 km
 kT
@@ -11261,7 +11127,7 @@ Uw
 Om
 fn
 fn
-RA
+nq
 pf
 GF
 GF
@@ -11283,7 +11149,7 @@ Ux
 GF
 GF
 YP
-jR
+Um
 jJ
 xz
 wh
@@ -11365,7 +11231,7 @@ Om
 fn
 TV
 fn
-tf
+nq
 pf
 GF
 GF
@@ -11387,7 +11253,7 @@ Ux
 Ux
 GF
 YP
-kt
+Um
 jJ
 Uw
 wh
@@ -11469,7 +11335,7 @@ Hh
 fn
 fn
 fn
-QI
+nq
 IW
 Ux
 Ux
@@ -11491,7 +11357,7 @@ Ux
 Ux
 Ux
 YP
-gz
+Um
 Dp
 Uw
 wh
@@ -11677,7 +11543,7 @@ fn
 fn
 fn
 fn
-RA
+nq
 IW
 KT
 KT
@@ -11699,7 +11565,7 @@ KT
 KT
 iu
 wz
-jR
+Um
 SQ
 xz
 wh
@@ -11781,7 +11647,7 @@ Hh
 fn
 fn
 fn
-tf
+nq
 IW
 Ux
 Ux
@@ -11803,7 +11669,7 @@ Ux
 Ux
 GF
 wz
-kt
+Um
 jJ
 xz
 wh
@@ -11885,7 +11751,7 @@ Hh
 fn
 fn
 fn
-QI
+nq
 IW
 Ux
 Ux
@@ -11907,7 +11773,7 @@ Ux
 Ux
 Ux
 YP
-gz
+Um
 SQ
 xz
 wh
@@ -12093,7 +11959,7 @@ fn
 TV
 fn
 fn
-RA
+nq
 pf
 GF
 GF
@@ -12115,7 +11981,7 @@ Ux
 GF
 GF
 YP
-jR
+Um
 SQ
 xz
 wh
@@ -12197,7 +12063,7 @@ uw
 fn
 fn
 fn
-tf
+nq
 qw
 Kn
 Kn
@@ -12219,7 +12085,7 @@ mB
 Kn
 Kn
 qy
-kt
+Um
 vA
 Uw
 wh
@@ -12302,26 +12168,26 @@ fn
 fn
 TV
 jI
-AR
-AR
-ki
-bb
 QU
-AR
-ki
-bb
 QU
-AR
-jI
-bb
 QU
-AR
-ki
-bb
 QU
-AR
-ki
-bb
+QU
+QU
+QU
+QU
+QU
+QU
+qs
+QU
+QU
+QU
+QU
+QU
+QU
+QU
+QU
+QU
 QU
 jI
 jJ
@@ -14450,7 +14316,7 @@ Rw
 Rw
 Rw
 Rw
-Hy
+Gh
 Rw
 EH
 Dk
@@ -14554,7 +14420,7 @@ Rw
 Yp
 Rw
 CU
-LC
+Gz
 Rw
 EH
 Kg
@@ -15008,7 +14874,7 @@ Om
 Om
 Om
 EH
-GQ
+Mn
 ft
 ft
 EH
@@ -15298,7 +15164,7 @@ Du
 ft
 ft
 ft
-ft
+To
 ft
 Du
 br
@@ -15784,7 +15650,7 @@ ua
 FC
 FC
 Rw
-Rw
+zL
 OM
 Ww
 Ww
@@ -18749,26 +18615,26 @@ np
 np
 jj
 hL
-CO
-CO
-Hj
-BY
 Kb
-CO
-Hj
-BY
 Kb
-CO
-Xf
-BY
 Kb
-CO
-Hj
-BY
 Kb
-CO
-Hj
-BY
+Kb
+Kb
+Kb
+Kb
+Kb
+Kb
+vk
+Kb
+Kb
+Kb
+Kb
+Kb
+Kb
+Kb
+Kb
+Kb
 Kb
 Xf
 np
@@ -18956,7 +18822,7 @@ jj
 np
 yq
 jj
-La
+ov
 jY
 tI
 tI
@@ -18978,7 +18844,7 @@ OP
 tI
 tI
 KE
-xn
+fw
 jj
 np
 MG
@@ -19060,7 +18926,7 @@ ZU
 Kh
 Au
 jj
-Se
+ov
 jY
 tI
 tI
@@ -19082,7 +18948,7 @@ OP
 OP
 tI
 KE
-Is
+fw
 jj
 np
 MG
@@ -19164,7 +19030,7 @@ Zt
 jj
 CW
 jj
-JT
+ov
 SP
 OP
 OP
@@ -19186,7 +19052,7 @@ OP
 OP
 OP
 KE
-uQ
+fw
 jj
 np
 MG
@@ -19372,7 +19238,7 @@ yF
 jj
 yq
 jj
-La
+ov
 SP
 OP
 OP
@@ -19394,7 +19260,7 @@ OP
 OP
 tI
 rj
-xn
+fw
 jj
 jj
 MG
@@ -19476,7 +19342,7 @@ np
 np
 jj
 np
-Se
+ov
 SP
 OP
 OP
@@ -19498,7 +19364,7 @@ OP
 OP
 tI
 rj
-Is
+fw
 jj
 jj
 MG
@@ -19554,7 +19420,7 @@ Up
 UI
 UI
 WX
-WX
+ZY
 Nj
 UI
 UI
@@ -19580,7 +19446,7 @@ jj
 tI
 yq
 np
-JT
+ov
 SP
 OP
 OP
@@ -19602,7 +19468,7 @@ OP
 OP
 OP
 KE
-uQ
+fw
 jj
 jj
 MG
@@ -19788,7 +19654,7 @@ ZV
 ZV
 yF
 jj
-La
+ov
 jY
 tI
 tI
@@ -19810,7 +19676,7 @@ OP
 tI
 tI
 KE
-xn
+fw
 np
 jj
 MG
@@ -19914,7 +19780,7 @@ BA
 YH
 YH
 mE
-Is
+fw
 np
 jj
 MG
@@ -20003,20 +19869,20 @@ ZV
 ZV
 ZV
 ZV
-rw
-Cl
 so
-Kz
-Xf
-Cl
+so
+so
+so
+dW
+so
 so
 EQ
-rw
+so
 dZ
 so
-Kz
-rw
-Cl
+so
+so
+so
 so
 Xf
 np

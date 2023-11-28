@@ -92,3 +92,21 @@ GLOBAL_LIST_INIT(faction_to_squad_hud, list(
 	FACTION_TERRAGOV = SQUAD_HUD_TERRAGOV,
 	FACTION_SOM = SQUAD_HUD_SOM,
 ))
+
+GLOBAL_LIST_INIT(faction_to_portrait, list(
+	FACTION_TERRAGOV = /atom/movable/screen/text/screen_text/picture/potrait,
+	FACTION_SOM = /atom/movable/screen/text/screen_text/picture/potrait/som_over,
+))
+
+GLOBAL_LIST_INIT(faction_to_mech_spawner, list(
+	FACTION_TERRAGOV = list(
+		"heavy" = /obj/effect/landmark/campaign/mech_spawner/heavy,
+		"medium" = /obj/effect/landmark/campaign/mech_spawner,
+		"light" = /obj/effect/landmark/campaign/mech_spawner/light,
+	),
+	FACTION_SOM = list(
+		"heavy" = /obj/effect/landmark/campaign/mech_spawner/som/heavy,
+		"medium" = /obj/effect/landmark/campaign/mech_spawner/som,
+		"light" = /obj/effect/landmark/campaign/mech_spawner/som/light,
+	),
+))

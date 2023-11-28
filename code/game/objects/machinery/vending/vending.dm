@@ -70,6 +70,9 @@
 	interaction_flags = INTERACT_MACHINE_TGUI|INTERACT_POWERLOADER_PICKUP_ALLOWED
 	wrenchable = TRUE
 	voice_filter = "alimiter=0.9,acompressor=threshold=0.2:ratio=20:attack=10:release=50:makeup=2,highpass=f=1000"
+	light_range = 1
+	light_power = 0.5
+	light_color = LIGHT_COLOR_BLUE
 
 	///Whether this vendor is active or not.
 	var/active = TRUE
@@ -203,6 +206,7 @@
 	products = null
 	contraband = null
 	start_processing()
+	update_icon()
 	return INITIALIZE_HINT_LATELOAD
 
 
@@ -326,6 +330,7 @@
 	transform = A
 
 	tipped_level = 2
+	density = FALSE
 	allow_pass_flags |= (PASS_LOW_STRUCTURE|PASS_MOB)
 	coverage = 50
 
@@ -350,7 +355,6 @@
 		overlays.Cut()
 		if(CHECK_BITFIELD(machine_stat, PANEL_OPEN))
 			overlays += image(icon, "[initial(icon_state)]-panel")
-		updateUsrDialog()
 
 	else if(ismultitool(I) || iswirecutter(I))
 		if(!CHECK_BITFIELD(machine_stat, PANEL_OPEN))
@@ -570,8 +574,6 @@
 			scan_card(H.wear_id)
 			. = TRUE
 
-	updateUsrDialog()
-
 /obj/machinery/vending/proc/vend(datum/vending_product/R, mob/user)
 	if(!allowed(user) && (!wires.is_cut(WIRE_IDSCAN) || hacking_safety)) //For SECURE VENDING MACHINES YEAH
 		to_chat(user, span_warning("Access denied."))
@@ -594,7 +596,6 @@
 	if(istype(new_item))
 		new_item.on_vend(user, faction, fill_container = TRUE)
 	vend_ready = 1
-	updateUsrDialog()
 
 /obj/machinery/vending/proc/release_item(datum/vending_product/R, delay_vending = 0, dump_product = 0)
 	if(delay_vending)
@@ -664,8 +665,10 @@
 
 	//More accurate comparison between absolute paths.
 	if(isstorage(item_to_stock)) //Nice try, specialists/engis
-		display_message_and_visuals(user, show_feedback, "Can't restock containers!", VENDING_RESTOCK_DENY)
-		return FALSE
+		var/obj/item/storage/storage_to_stock = item_to_stock
+		if(!(storage_to_stock.flags_storage & BYPASS_VENDOR_CHECK)) //If your storage has this flag, it can be restocked
+			display_message_and_visuals(user, show_feedback, "Can't restock containers!", VENDING_RESTOCK_DENY)
+			return FALSE
 
 	else if(isgrenade(item_to_stock))
 		var/obj/item/explosive/grenade/grenade = item_to_stock
@@ -739,15 +742,14 @@
 	if(record.amount >= 0) //R negative means infinite item, no need to restock
 		record.amount++
 
-	updateUsrDialog()
 	return TRUE //Item restocked, no reason to go on.
 
 /// Vending machine tries to restock all of the loose item on it's location onto itself.
 /obj/machinery/vending/proc/stock_vacuum(mob/user)
 	var/stocked = FALSE
 
-	for(var/obj/item/I in loc)
-		stocked = stock(I, null, FALSE) ? TRUE : stocked
+	for(var/obj/item/item_being_restocked in range(1, src))
+		stocked = stock(item_to_stock = item_being_restocked, user = null, show_feedback = FALSE) ? TRUE : stocked
 
 	stocked ? display_message_and_visuals(user, TRUE, "Automatically restocked all items from outlet.", VENDING_RESTOCK_ACCEPT) : null
 
@@ -809,12 +811,25 @@
 	say(message)
 
 /obj/machinery/vending/update_icon()
+	. = ..()
+	if(machine_stat & (BROKEN|NOPOWER))
+		set_light(0)
+	else
+		set_light(initial(light_range))
+
+/obj/machinery/vending/update_icon_state()
 	if(machine_stat & BROKEN)
 		icon_state = "[initial(icon_state)]-broken"
-	else if( !(machine_stat & NOPOWER) )
-		icon_state = initial(icon_state)
-	else
+	else if(machine_stat & NOPOWER)
 		icon_state = "[initial(icon_state)]-off"
+	else
+		icon_state = initial(icon_state)
+
+/obj/machinery/vending/update_overlays()
+	. = ..()
+	if(machine_stat & (NOPOWER|BROKEN))
+		return
+	. += emissive_appearance(icon, "[icon_state]_emissive")
 
 //Oh no we're malfunctioning!  Dump out some product and break.
 /obj/machinery/vending/proc/malfunction()

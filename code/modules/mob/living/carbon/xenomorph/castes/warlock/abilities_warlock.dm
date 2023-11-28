@@ -60,7 +60,7 @@
 		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_TRIGGER_PSYCHIC_SHIELD,
 	)
 	use_state_flags = XACT_USE_BUSY
-	///The actual shield object created by this ability
+	/// The actual shield object created by this ability
 	var/obj/effect/xeno/shield/active_shield
 
 /datum/action/xeno_action/activable/psychic_shield/remove_action(mob/M)
@@ -108,6 +108,7 @@
 	action_icon_state = "psy_shield_reflect"
 	update_button_icon()
 	xeno_owner.update_glow(3, 3, "#5999b3")
+	xeno_owner.move_resist = MOVE_FORCE_EXTREMELY_STRONG
 
 	GLOB.round_statistics.psy_shields++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "psy_shields")
@@ -123,6 +124,7 @@
 	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	action_icon_state = "psy_shield"
 	xeno_owner.update_glow()
+	xeno_owner.move_resist = initial(xeno_owner.move_resist)
 	update_button_icon()
 	add_cooldown()
 	if(active_shield)
@@ -190,6 +192,8 @@
 
 /obj/effect/xeno/shield/Initialize(mapload, creator)
 	. = ..()
+	if(!creator)
+		return INITIALIZE_HINT_QDEL
 	owner = creator
 	dir = owner.dir
 	max_integrity = owner.xeno_caste.shield_strength
@@ -212,7 +216,7 @@
 	proj.flags_projectile_behavior |= PROJECTILE_FROZEN
 	proj.iff_signal = null
 	frozen_projectiles += proj
-	take_damage(proj.damage, proj.ammo.damage_type, proj.ammo.armor_type, 0, turn(proj.dir, 180), proj.ammo.penetration)
+	take_damage(proj.damage, proj.ammo.damage_type, proj.ammo.armor_type, 0, REVERSE_DIR(proj.dir), proj.ammo.penetration)
 	alpha = obj_integrity * 255 / max_integrity
 	if(obj_integrity <= 0)
 		release_projectiles()
@@ -228,6 +232,7 @@
 	for(var/obj/projectile/proj AS in frozen_projectiles)
 		proj.flags_projectile_behavior &= ~PROJECTILE_FROZEN
 		proj.resume_move()
+	record_projectiles_frozen(owner, LAZYLEN(frozen_projectiles))
 
 ///Reflects projectiles based on their relative incoming angle
 /obj/effect/xeno/shield/proc/reflect_projectiles()
@@ -243,6 +248,14 @@
 			new_angle -= 360
 		proj.firer = src
 		proj.fire_at(shooter = src, source = src, angle = new_angle, recursivity = TRUE)
+
+		//Record those sick rocket shots
+		//Is not part of record_projectiles_frozen() because it is probably bad to be running that for every bullet!
+		if(istype(proj.ammo, /datum/ammo/rocket) && owner.client)
+			var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[owner.ckey]
+			personal_statistics.rockets_reflected++
+
+	record_projectiles_frozen(owner, LAZYLEN(frozen_projectiles), TRUE)
 	frozen_projectiles.Cut()
 
 

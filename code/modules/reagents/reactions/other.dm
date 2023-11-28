@@ -69,12 +69,12 @@
 
 /datum/chemical_reaction/chemsmoke/on_reaction(datum/reagents/holder, created_volume)
 	var/smoke_radius = round(sqrt(created_volume * 0.8), 1)
-	var/location = get_turf(holder.my_atom)
+	var/location = get_turf(holder.get_holder())
 	var/datum/effect_system/smoke_spread/chem/S = new(location)
 	playsound(location, 'sound/effects/smoke.ogg', 50, 1, -3)
 	S?.set_up(holder, smoke_radius, location)
 	S?.start()
-	if(holder?.my_atom)
+	if(holder?.get_holder())
 		holder.clear_reagents()
 
 /datum/chemical_reaction/chloralhydrate
@@ -117,7 +117,7 @@
 	required_reagents = list(/datum/reagent/iron = 5, /datum/reagent/consumable/frostoil = 5, /datum/reagent/toxin/phoron = 20)
 
 /datum/chemical_reaction/phoronsolidification/on_reaction(datum/reagents/holder, created_volume)
-	var/location = get_turf(holder.my_atom)
+	var/location = get_turf(holder.get_holder())
 	new /obj/item/stack/sheet/mineral/phoron(location)
 
 /datum/chemical_reaction/plastication
@@ -125,7 +125,7 @@
 	required_reagents = list(/datum/reagent/toxin/acid/polyacid = 10, /datum/reagent/toxin/plasticide = 20)
 
 /datum/chemical_reaction/plastication/on_reaction(datum/reagents/holder)
-	new /obj/item/stack/sheet/mineral/plastic(get_turf(holder.my_atom),10)
+	new /obj/item/stack/sheet/mineral/plastic(get_turf(holder.get_holder()),10)
 
 /datum/chemical_reaction/virus_food
 	name = "Virus Food"
@@ -148,7 +148,7 @@
 	mob_react = FALSE
 
 /datum/chemical_reaction/foam/on_reaction(datum/reagents/holder, created_volume)
-	var/turf/location = get_turf(holder.my_atom)
+	var/turf/location = get_turf(holder.get_holder())
 	location.visible_message(span_warning("The solution spews out foam!"))
 	var/datum/effect_system/foam_spread/s = new()
 	s.set_up(created_volume, location, holder, NONE)
@@ -162,7 +162,7 @@
 	mob_react = FALSE
 
 /datum/chemical_reaction/metalfoam/on_reaction(datum/reagents/holder, created_volume)
-	var/turf/location = get_turf(holder.my_atom)
+	var/turf/location = get_turf(holder.get_holder())
 	location.visible_message(span_warning("The solution spews out a metalic foam!"))
 
 	var/datum/effect_system/foam_spread/s = new()
@@ -177,7 +177,7 @@
 	mob_react = FALSE
 
 /datum/chemical_reaction/ironfoam/on_reaction(datum/reagents/holder, created_volume)
-	var/turf/location = get_turf(holder.my_atom)
+	var/turf/location = get_turf(holder.get_holder())
 	location.visible_message(span_warning("The solution spews out a metallic foam!"))
 	var/datum/effect_system/foam_spread/s = new()
 	s.set_up(created_volume, location, holder, METAL_FOAM)
@@ -190,7 +190,7 @@
 	required_catalysts = list(/datum/reagent/toxin/nanites = 7)
 
 /datum/chemical_reaction/razorburn/on_reaction(datum/reagents/holder, created_volume)
-	var/turf/location = get_turf(holder.my_atom)
+	var/turf/location = get_turf(holder.get_holder())
 	location.visible_message(span_danger("The solution spews out a dense, ground-hugging gas! Get away!"))
 	var/datum/effect_system/foam_spread/s = new()
 	s.set_up(created_volume, location, holder, RAZOR_FOAM)
@@ -235,7 +235,7 @@
 	required_reagents = list(/datum/reagent/aluminum = 1, /datum/reagent/potassium = 1, /datum/reagent/sulfur = 1)
 
 /datum/chemical_reaction/flash_powder/on_reaction(datum/reagents/holder, created_volume)
-	var/location = get_turf(holder.my_atom)
+	var/location = get_turf(holder.get_holder())
 	var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
 	s.set_up(2, 1, location)
 	s.start()
@@ -256,7 +256,7 @@
 
 /datum/chemical_reaction/napalm/on_reaction(datum/reagents/holder, created_volume, radius)
 	radius = round(sqrt(created_volume * 0.15)) //allows a nice, healthy 3-tile fire if using 2 120u beakers fully filled up.
-	flame_radius(radius, get_turf(holder.my_atom))
+	flame_radius(radius, get_turf(holder.get_holder()))
 
 /datum/chemical_reaction/wpsmoke
 	name = "White Phosphorous smoke"
@@ -265,9 +265,9 @@
 /datum/chemical_reaction/wpsmoke/on_reaction(datum/reagents/holder, created_volume)
 	var/smoke_radius = round(sqrt(created_volume * 0.66), 1)
 	var/datum/effect_system/smoke_spread/phosphorus/smoke = new
-	smoke.set_up(smoke_radius, get_turf(holder.my_atom), 11)
+	smoke.set_up(smoke_radius, get_turf(holder.get_holder()), 11)
 	smoke.start()
-	playsound(get_turf(holder.my_atom), 'sound/effects/smoke.ogg', 50, 1, -3)
+	playsound(get_turf(holder.get_holder()), 'sound/effects/smoke.ogg', 50, 1, -3)
 
 /datum/chemical_reaction/plasmalosssmoke
 	name = "Tanglefoot smoke"
@@ -276,9 +276,9 @@
 /datum/chemical_reaction/plasmalosssmoke/on_reaction(datum/reagents/holder, created_volume)
 	var/smoke_radius = round(sqrt(created_volume), 1)
 	var/datum/effect_system/smoke_spread/plasmaloss/smoke = new
-	smoke.set_up(smoke_radius, get_turf(holder.my_atom), 11)
+	smoke.set_up(smoke_radius, get_turf(holder.get_holder()), 11)
 	smoke.start()
-	playsound(get_turf(holder.my_atom), 'sound/effects/smoke.ogg', 50, 1, -3)
+	playsound(get_turf(holder.get_holder()), 'sound/effects/smoke.ogg', 50, 1, -3)
 
 /datum/chemical_reaction/explosive/gunpowder
 	name = "Gunpowder"
@@ -287,9 +287,9 @@
 /datum/chemical_reaction/explosive/gunpowder/on_reaction(datum/reagents/holder, created_volume)
 	var/radius = round(sqrt(created_volume* 0.5), 1) // should be about equal to the M15, maybe one tile more
 	var/datum/effect_system/smoke_spread/bad/smoke = new
-	smoke.set_up((radius - 1), get_turf(holder.my_atom), 2)
+	smoke.set_up((radius - 1), get_turf(holder.get_holder()), 2)
 	smoke.start()
-	explosion(get_turf(holder.my_atom), light_impact_range = radius)
+	explosion(get_turf(holder.get_holder()), light_impact_range = radius)
 
 
 /datum/chemical_reaction/explosive/anfo
@@ -300,5 +300,5 @@
 	var/radius = round(sqrt(created_volume* 0.25), 1) // should be a max of 2 tiles
 	if(radius > 2)
 		radius = 2 //enforced by a hardcap. Sorry!
-	explosion(get_turf(holder.my_atom), heavy_impact_range = radius)
+	explosion(get_turf(holder.get_holder()), heavy_impact_range = radius)
 

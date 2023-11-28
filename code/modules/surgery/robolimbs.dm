@@ -42,6 +42,7 @@
 	span_notice("You cut away flesh where [target]'s [affected.display_name] used to be with \the [tool]."))
 	target.balloon_alert_to_viewers("Success")
 	affected.limb_replacement_stage = 1
+	return ..()
 
 /datum/surgery_step/limb/cut/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
 	if(affected.parent)
@@ -76,6 +77,7 @@
 	span_notice("You have finished repositioning flesh and nerve endings where [target]'s [affected.display_name] used to be with [tool]."))
 	target.balloon_alert_to_viewers("Success")
 	affected.limb_replacement_stage = 2
+	return ..()
 
 /datum/surgery_step/limb/mend/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
 	if(affected.parent)
@@ -111,6 +113,7 @@
 	affected.add_limb_flags(LIMB_AMPUTATED)
 	affected.setAmputatedTree()
 	affected.limb_replacement_stage = 0
+	return ..()
 
 /datum/surgery_step/limb/prepare/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
 	if(affected.parent)
@@ -161,6 +164,7 @@
 	//Deal with the limb item properly
 	user.temporarilyRemoveItemFromInventory(tool)
 	qdel(tool)
+	return ..()
 
 /datum/surgery_step/limb/attach/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
 	user.visible_message(span_warning("[user]'s hand slips, damaging connectors on [target]'s [affected.display_name]!"), \
