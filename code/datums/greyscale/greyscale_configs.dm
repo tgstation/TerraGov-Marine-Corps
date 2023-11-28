@@ -123,9 +123,6 @@
 	icon_file = 'icons/mob/modular/syndicate_hardsuits.dmi'
 	json_config = 'code/datums/greyscale/json_configs/exoskeleton.json'
 
-/datum/greyscale_config/exoskeleton/hardsuit_exo
-	prefix = "exo_"
-
 //Mark 2
 
 /datum/greyscale_config/armor_mk2
