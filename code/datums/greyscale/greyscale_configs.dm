@@ -120,6 +120,7 @@
 	prefix = "markfive_"
 
 /datum/greyscale_config/hardsuit_variant/exoskeleton
+	prefix = "exo_"
 
 //Mark 2
 
