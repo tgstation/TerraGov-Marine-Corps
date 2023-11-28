@@ -176,3 +176,7 @@
 /obj/effect/landmark/start/job/prisoner
 	icon_state = "Shaft Miner"
 	job = /datum/job/other/prisoner
+
+/obj/effect/landmark/start/job/worker
+	icon_state = "Shaft Miner"
+	job = /datum/job/worker

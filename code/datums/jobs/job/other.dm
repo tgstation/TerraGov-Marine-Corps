@@ -105,17 +105,35 @@
 
 /datum/job/other/prisoner
 	title = "Prisoner"
-	paygrade = "Psnr"
+	paygrade = "Psr"
 	outfit = /datum/outfit/job/prisoner
 	supervisors = "Corpsec Officers"
 	display_order = JOB_DISPLAY_ORDER_PRISONER
 	skills_type = /datum/skills/civilian
 	total_positions = -1
-	selection_color = "#a91101"
-	job_flags = JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_LATEJOINABLE|JOB_FLAG_OVERRIDELATEJOINSPAWN
+	selection_color = "#e69704"
+	job_flags = JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_LATEJOINABLE|JOB_FLAG_OVERRIDELATEJOINSPAWN|JOB_FLAG_ADDTOMANIFEST
 
 /datum/outfit/job/prisoner
 	id = /obj/item/card/id
 	w_uniform = /obj/item/clothing/under/rank/prisoner
 	shoes = /obj/item/clothing/shoes/orange
-	r_store = /obj/item/radio
+	ears = /obj/item/radio/headset/mainship
+
+/datum/job/worker
+	title = "Worker"
+	paygrade = "Wkr"
+	outfit = /datum/outfit/job/worker
+	supervisors = "Ninetails Corp"
+	skills_type = /datum/skills/civilian
+	total_positions = -1
+	selection_color = "#f3f70c"
+	job_flags = JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_LATEJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST
+	faction = FACTION_TERRAGOV
+
+/datum/outfit/job/worker
+	id = /obj/item/card/id
+	w_uniform = /obj/item/clothing/under/colonist
+	shoes = /obj/item/clothing/shoes/marine
+	l_store = /obj/item/storage/pouch/survival/full
+	ears = /obj/item/radio/headset/mainship
