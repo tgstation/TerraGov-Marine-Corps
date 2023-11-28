@@ -203,6 +203,7 @@ Contains most of the procs that are called when a mob is attacked by something
 		hit_report += "(delimbed [affecting.display_name])"
 	else if(I.damtype == BRUTE && !(HAS_TRAIT(I, TRAIT_NODROP) || (I.flags_item & DELONDROP)))
 		if (percentage_penetration && weapon_sharp && prob(I.embedding.embed_chance))
+			user.dropItemToGround(I, TRUE)
 			I.embed_into(src, affecting)
 			hit_report += "(embedded in [affecting.display_name])"
 
