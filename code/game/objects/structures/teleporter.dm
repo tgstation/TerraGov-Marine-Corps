@@ -4,14 +4,9 @@
 	max_integrity = 200
 	resistance_flags = XENO_DAMAGEABLE
 	idle_power_usage = 50
-	///List of all teleportable types
-	var/static/list/teleportable_types = list(
-		/obj/structure/closet,
-		/mob/living/carbon/human,
-		/obj/machinery,
-	)
 	///List of banned teleportable types
 	var/static/list/blacklisted_types = list(
+		/mob/living/carbon/human,
 		/obj/machinery/nuclearbomb
 	)
 
@@ -67,10 +62,17 @@
 
 	var/list/atom/movable/teleporting = list()
 	for(var/atom/movable/thing in loc)
-		if(is_type_in_list(thing, blacklisted_types))
+		if(is_type_in_list(thing, blacklisted_types) || thing.anchored)
 			continue
-		if(is_type_in_list(thing, teleportable_types) && !thing.anchored)
-			teleporting += thing
+		var/can_teleport = TRUE
+		if(thing.contents && length(thing.contents))
+			for(var/atom/movable/thing_inside in thing.contents)
+				if(is_type_in_list(thing_inside, blacklisted_types))
+					can_teleport = FALSE
+		if(!can_teleport)
+			to_chat(user, span_warning("Unable to teleport [thing] due to safety protocols."))
+			continue
+		teleporting += thing
 
 	if(!length(teleporting))
 		to_chat(user, span_warning("No teleportable content was detected on [src]!"))
