@@ -86,7 +86,7 @@
 	"chest_secondary_color_webbing": [
 		{
 			"type": "hyperscale",
-			"icon_state": "chest_webbing_highlight"
+			"icon_state": "chest_webbing_secondary_color"
 		}
 	],
 	"helm_secondary_color": [
