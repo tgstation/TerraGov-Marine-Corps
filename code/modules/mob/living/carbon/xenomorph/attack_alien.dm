@@ -35,36 +35,57 @@
 	return TRUE
 
 /mob/living/carbon/human/attack_alien_disarm(mob/living/carbon/xenomorph/X, dam_bonus)
-//	var/randn = rand(1, 100) unused random miss chance
+	var/randn = rand(1, 100)
 	var/stamina_loss = getStaminaLoss()
-	var/disarmdamage = X.xeno_caste.melee_damage * X.xeno_melee_damage_modifier
+	var/disarmdamage = X.xeno_caste.melee_damage * X.xeno_melee_damage_modifier + 20
 	var/damage_to_deal = clamp(disarmdamage, 0, maxHealth - stamina_loss)
 	var/sound = 'sound/weapons/alien_knockdown.ogg'
 
-	if(IsParalyzed())
-		X.visible_message(null, "<span class='info'>We could not do much to [src], they are already down.</span>", null)
-		sound = 'sound/weapons/punchmiss.ogg'
-	else
-		X.do_attack_animation(src, ATTACK_EFFECT_DISARM2)
-		if(pulling)
-			X.visible_message("<span class='danger'>[X] has broken [src]'s grip on [pulling]!</span>",
-			"<span class='danger'>We break [src]'s grip on [pulling]!</span>", null, 5)
-			sound = 'sound/weapons/thudswoosh.ogg'
-			stop_pulling()
-		else if(prob(60) && drop_held_item())
-			X.visible_message("<span class='danger'>[X] has disarmed [src]!</span>",
-			"<span class='danger'>We disarm [src]!</span>", null, 5)
-			sound = 'sound/weapons/thudswoosh.ogg'
-			return
-		apply_damage(damage_to_deal, STAMINA)
-		X.visible_message("<span class='danger'>[X] shoves and presses [src] down!</span>",
-		"<span class='danger'>We shove and press [src] down!</span>", null, 5)
-		if(stamina_loss >= maxHealth)
+	if ishumanbasic(src)
+		if(IsParalyzed())
+			X.visible_message(null, "<span class='info'>We could not do much to [src], they are already down.</span>", null)
+			sound = 'sound/weapons/punchmiss.ogg'
+		else
+			X.do_attack_animation(src, ATTACK_EFFECT_DISARM2)
+			if(pulling)
+				X.visible_message("<span class='danger'>[X] has broken [src]'s grip on [pulling]!</span>",
+				"<span class='danger'>We break [src]'s grip on [pulling]!</span>", null, 5)
+				sound = 'sound/weapons/thudswoosh.ogg'
+				stop_pulling()
+			else if(prob(60) && drop_held_item())
+				X.visible_message("<span class='danger'>[X] has disarmed [src]!</span>",
+				"<span class='danger'>We disarm [src]!</span>", null, 5)
+				sound = 'sound/weapons/thudswoosh.ogg'
+				return
+			apply_damage(damage_to_deal, STAMINA)
+			X.visible_message("<span class='danger'>[X] shoves and presses [src] down!</span>",
+			"<span class='danger'>We shove and press [src] down!</span>", null, 5)
+			Stagger(2 SECONDS)
+			if(stamina_loss >= maxHealth)
+				if(!IsParalyzed())
+					apply_damage(90, STAMINA)
+					visible_message(null, "<span class='danger'>You are too weakened to keep resisting [X], you slump to the ground!</span>")
+					X.visible_message("<span class='danger'>[X] slams [src] to the ground!</span>",
+					"<span class='danger'>We slam [src] to the ground!</span>", null, 5)
+					Paralyze(15 SECONDS)
+	else if(!ishumanbasic(src))
+		if(randn <= 60)
 			if(!IsParalyzed())
+				X.do_attack_animation(src, ATTACK_EFFECT_DISARM2)
+				X.visible_message("<span class='danger'>[X] shoves and presses [src] down!</span>",
+				"<span class='danger'>We shove and press [src] down!</span>", null, 5)
 				visible_message(null, "<span class='danger'>You are too weakened to keep resisting [X], you slump to the ground!</span>")
 				X.visible_message("<span class='danger'>[X] slams [src] to the ground!</span>",
 				"<span class='danger'>We slam [src] to the ground!</span>", null, 5)
 				Paralyze(10 SECONDS)
+			else if(IsParalyzed())
+				X.visible_message(null, "<span class='info'>We could not do much to [src], they are already down.</span>", null)
+				sound = 'sound/weapons/punchmiss.ogg'
+		else if(randn > 20)
+			sound = 'sound/weapons/punchmiss.ogg'
+			X.visible_message("<span class='danger'>[X] attempted to disarm [src]!</span>",
+			"<span class='danger'>We attempt to disarm [src]!</span>", null, 5)
+
 
 	log_combat(X, src, "disarmed")
 	playsound(loc, sound, 25, TRUE, 7)
