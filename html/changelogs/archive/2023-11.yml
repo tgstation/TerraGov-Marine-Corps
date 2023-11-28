@@ -355,3 +355,23 @@
   - rscadd: adds hand labelers and KOTAHI decks to valhalla weapons vendors
   - bugfix: Unguided rockets are now unlimited in valhalla (whoops)
   - rscdel: removes the valhalla reqtorio section
+2023-11-28:
+  Lewdcifer:
+  - balance: Removed Russian Red pill bottles and packets from most vendors (including
+      the Tadpole med vendor) except Valhalla's.
+  - balance: Russian Red storage options have been replaced in first aid kits where
+      appropriate.
+  - balance: Reduced the amount of Russian Red autoinjectors in normal vendors from
+      30 to 10.
+  Lumipharon:
+  - bugfix: fixed embedded objects not being correctly put into the victim in some
+      cases
+  dopamiin0:
+  - balance: The dropship fabricator now recieves 10% of the value of exports, rather
+      than 5%.
+  efzapa:
+  - imageadd: Added working coffee sprite
+  - spellcheck: Updated Red Comrade Cigarette description.
+  vvvv-vvvv:
+  - bugfix: Fix some computer emissives
+  - bugfix: Fix tadpole being able to land on disks
