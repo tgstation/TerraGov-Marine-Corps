@@ -30,15 +30,6 @@
 "abc" = (
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/west1)
-"abm" = (
-/obj/machinery/button{
-	id = "clfbasething"
-	},
-/turf/closed/wall/brick,
-/area/deltastation/ai_monitored/security/armory{
-	outside = 0;
-	name = "\improper CLF Armory"
-	})
 "abp" = (
 /obj/structure/cargo_container/horizontal,
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
@@ -9765,10 +9756,8 @@
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/quartstorage)
 "irb" = (
-/obj/machinery/floodlight/colony{
-	dir = 8
-	},
 /obj/structure/cable,
+/obj/machinery/floodlight/outpost,
 /turf/open/floor/plating/ground/desertdam/asphalt/threeside/regular{
 	dir = 1
 	},
@@ -11558,11 +11547,9 @@
 /turf/open/floor/plating/platebotc,
 /area/lv624/lazarus/quartstorage/outdoors)
 "kge" = (
-/obj/machinery/floodlight/colony{
-	dir = 8
-	},
 /obj/structure/cable,
 /obj/effect/turf_decal/stripes/asteroid/box,
+/obj/machinery/floodlight/outpost,
 /turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
 /area/deltastation/hallway/primary{
 	outside = 0;
@@ -12931,12 +12918,10 @@
 /turf/open/floor/mainship/plate,
 /area/mainship/patrol_base/som)
 "lDS" = (
-/obj/machinery/floodlight/colony{
-	dir = 4
+/obj/machinery/button{
+	id = "clfbasething"
 	},
-/obj/structure/cable,
-/obj/effect/turf_decal/stripes/asteroid/box,
-/turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
+/turf/open/floor/plating/ground/desertdam/asphalt/tile,
 /area/deltastation/hallway/primary{
 	outside = 0;
 	name = "\improper CLF Main Hallway"
@@ -21362,8 +21347,12 @@
 /turf/open/ground/grass,
 /area/lv624/ground/jungle10)
 "ucd" = (
-/obj/structure/largecrate/supply/floodlights,
 /obj/effect/turf_decal/stripes/asteroid/box,
+/obj/item/deployable_floodlight,
+/obj/item/deployable_floodlight,
+/obj/item/deployable_floodlight,
+/obj/item/deployable_floodlight,
+/obj/item/storage/box/crate,
 /turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
 /area/deltastation/hallway/primary{
 	outside = 0;
@@ -75874,7 +75863,7 @@ psZ
 psZ
 plr
 plr
-plr
+pAj
 fYa
 fYa
 pbx
@@ -76161,8 +76150,8 @@ psZ
 psZ
 plr
 plr
-plr
-lDS
+pAj
+kge
 eit
 fNK
 apt
@@ -76448,7 +76437,7 @@ psZ
 psZ
 plr
 plr
-plr
+pAj
 jPG
 jPG
 apt
@@ -76735,7 +76724,7 @@ psZ
 psZ
 plr
 plr
-plr
+pAj
 qnA
 jPG
 apt
@@ -77022,7 +77011,7 @@ psZ
 psZ
 plr
 plr
-plr
+pAj
 jPG
 jPG
 apt
@@ -77309,7 +77298,7 @@ psZ
 psZ
 plr
 plr
-plr
+pAj
 jPG
 jPG
 apt
@@ -77596,7 +77585,7 @@ psZ
 psZ
 plr
 plr
-plr
+pAj
 qnA
 jPG
 apt
@@ -77883,7 +77872,7 @@ psZ
 psZ
 plr
 plr
-plr
+pAj
 jPG
 jPG
 gkU
@@ -78170,7 +78159,7 @@ psZ
 psZ
 plr
 plr
-plr
+pAj
 jPG
 jPG
 apt
@@ -78457,7 +78446,7 @@ psZ
 psZ
 plr
 plr
-plr
+pAj
 qnA
 jPG
 rrz
@@ -78744,7 +78733,7 @@ psZ
 psZ
 plr
 plr
-plr
+pAj
 jPG
 apt
 kge
@@ -79031,7 +79020,7 @@ psZ
 psZ
 plr
 plr
-plr
+pAj
 fYa
 dtg
 fYa
@@ -81329,9 +81318,9 @@ plr
 plr
 plr
 fYa
-iwQ
+lDS
 psb
-abm
+nJW
 mjz
 rfN
 nJW
