@@ -1451,9 +1451,9 @@
 	X.visible_message(span_danger("[X] starts to fuck [victim]!"), \
 	span_danger("We start to fuck [victim]!"), null, 5)
 	succeed_activate()
+	add_cooldown()
 
 /datum/action/xeno_action/activable/impregnate/use_ability(atom/A)
-	add_cooldown()
 	var/channel = SSsounds.random_available_channel()
 	var/mob/living/carbon/xenomorph/X = owner
 	var/mob/living/carbon/human/victim = A
