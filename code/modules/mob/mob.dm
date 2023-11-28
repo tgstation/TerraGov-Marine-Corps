@@ -226,7 +226,7 @@
 			to_chat(src, span_warning("You are unable to equip that."))
 		return FALSE
 	if(W.equip_delay_self && !ignore_delay)
-		if(!do_after(src, W.equip_delay_self, TRUE, W, BUSY_ICON_FRIENDLY))
+		if(!do_after(src, W.equip_delay_self, NONE, W, BUSY_ICON_FRIENDLY))
 			to_chat(src, "You stop putting on \the [W]")
 			return FALSE
 		equip_to_slot(W, slot) //This proc should not ever fail.

@@ -569,7 +569,7 @@
 		ADD_TRAIT(owner_xeno, TRAIT_HANDS_BLOCKED, src)
 		target.AdjustKnockdown(KNOCKDOWN_DURATION)
 
-		if(do_after(owner_xeno, KNOCKDOWN_DURATION, FALSE, target, ignore_turf_checks = FALSE))
+		if(do_after(owner_xeno, KNOCKDOWN_DURATION, IGNORE_HELD_ITEM, target))
 			owner_xeno.gain_plasma(plasma_gain_on_hit)
 
 	if(owner_xeno.has_status_effect(STATUS_EFFECT_XENO_FEAST))
@@ -835,7 +835,7 @@
 	/// The owner of this buff.
 	var/mob/living/carbon/xenomorph/buff_owner
 	///Aura strength of the puppeteer who gave this effect
-	var/strength = 1	
+	var/strength = 1
 	///weakref to the puppeteer to set strength
 	var/datum/weakref/puppeteer
 

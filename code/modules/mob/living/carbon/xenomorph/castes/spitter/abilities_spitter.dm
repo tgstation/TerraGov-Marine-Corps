@@ -18,7 +18,7 @@
 
 	X.face_atom(target) //Face target so we don't look stupid
 
-	if(X.do_actions || !do_after(X, 5, TRUE, target, BUSY_ICON_DANGER))
+	if(X.do_actions || !do_after(X, 5, NONE, target, BUSY_ICON_DANGER))
 		return
 
 	if(!can_use_ability(A, TRUE, override_flags = XACT_IGNORE_SELECTED_ABILITY))
@@ -115,7 +115,7 @@
 /datum/action/xeno_action/activable/scatter_spit/use_ability(atom/target)
 	var/mob/living/carbon/xenomorph/X = owner
 
-	if(!do_after(X, 0.5 SECONDS, TRUE, target, BUSY_ICON_DANGER))
+	if(!do_after(X, 0.5 SECONDS, NONE, target, BUSY_ICON_DANGER))
 		return fail_activate()
 
 	//Shoot at the thing

@@ -19,7 +19,7 @@
 	else if(do_actions)
 		to_chat(src, span_warning("You are still in the process of standing up."))
 		return
-	else if(do_mob(src, src, 2 SECONDS, ignore_flags = (IGNORE_LOC_CHANGE|IGNORE_HAND)))
+	else if(do_after(src, 2 SECONDS, IGNORE_LOC_CHANGE|IGNORE_HELD_ITEM, src))
 		get_up()
 
 /mob/living/proc/get_up()

@@ -114,7 +114,7 @@
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "psy_shields")
 
 	active_shield = new(target_turf, owner)
-	if(!do_after(owner, 6 SECONDS, TRUE, owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(can_use_action), FALSE, XACT_USE_BUSY)))
+	if(!do_after(owner, 6 SECONDS, NONE, owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(can_use_action), FALSE, XACT_USE_BUSY)))
 		cancel_shield()
 		return
 	cancel_shield()
@@ -308,7 +308,7 @@
 		return fail_activate()
 
 	ADD_TRAIT(xeno_owner, TRAIT_IMMOBILE, PSYCHIC_CRUSH_ABILITY_TRAIT)
-	if(!do_after(owner, 0.8 SECONDS, TRUE, owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(can_use_action), FALSE, XACT_USE_BUSY)))
+	if(!do_after(owner, 0.8 SECONDS, NONE, owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(can_use_action), FALSE, XACT_USE_BUSY)))
 		REMOVE_TRAIT(xeno_owner, TRAIT_IMMOBILE, PSYCHIC_CRUSH_ABILITY_TRAIT)
 		return fail_activate()
 
@@ -554,7 +554,7 @@
 	var/datum/ammo/energy/xeno/ammo_type = xeno_owner.ammo
 	xeno_owner.update_glow(3, 3, ammo_type.glow_color)
 
-	if(!do_after(xeno_owner, 1 SECONDS, FALSE, target_turf, BUSY_ICON_DANGER) || !can_use_ability(A, FALSE))
+	if(!do_after(xeno_owner, 1 SECONDS, NONE, target_turf, BUSY_ICON_DANGER) || !can_use_ability(A, FALSE))
 		owner.balloon_alert(owner, "Our focus is disrupted")
 		end_channel()
 		REMOVE_TRAIT(xeno_owner, TRAIT_IMMOBILE, PSYCHIC_BLAST_ABILITY_TRAIT)

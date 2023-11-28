@@ -270,7 +270,7 @@
 		if(H)
 			to_chat(user, span_warning("There is already a catwalk here!"))
 			return
-		if(!do_after(user, 5 SECONDS, FALSE))
+		if(!do_after(user, 5 SECONDS, IGNORE_HELD_ITEM))
 			to_chat(user, span_warning("It takes time to construct a catwalk!"))
 			return
 		if(R.use(4))

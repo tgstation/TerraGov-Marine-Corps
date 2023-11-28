@@ -134,7 +134,7 @@
 /datum/action/xeno_action/activable/forward_charge/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/X = owner
 
-	if(!do_after(X, windup_time, FALSE, X, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(can_use_ability), A, FALSE, XACT_USE_BUSY)))
+	if(!do_after(X, windup_time, IGNORE_HELD_ITEM, X, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(can_use_ability), A, FALSE, XACT_USE_BUSY)))
 		return fail_activate()
 
 	var/mob/living/carbon/xenomorph/defender/defender = X
@@ -420,7 +420,7 @@
 		return
 	if(!can_use_action(TRUE))
 		return fail_activate()
-	if(!do_after(owner, 0.5 SECONDS, TRUE, owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(can_use_action), FALSE, XACT_USE_BUSY)))
+	if(!do_after(owner, 0.5 SECONDS, NONE, owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(can_use_action), FALSE, XACT_USE_BUSY)))
 		return fail_activate()
 	owner.visible_message(span_xenowarning("\The [owner] starts swinging its tail in a circle!"), \
 		span_xenowarning("We start swinging our tail in a wide circle!"))
