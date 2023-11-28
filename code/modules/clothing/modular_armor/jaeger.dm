@@ -153,7 +153,7 @@
 		/obj/item/armor_module/armor/visor/marine/fourvisor,
 		/obj/item/armor_module/armor/visor/marine/foureyevisor,
 		/obj/item/armor_module/armor/visor/marine/markonevisor,
-		/obj/item/armor_module/armor/highlight/helm_highlight,
+		/obj/item/armor_module/armor/secondary_color/helm,
 	)
 
 	starting_attachments = list(/obj/item/armor_module/armor/visor/marine, /obj/item/armor_module/storage/helmet)
@@ -249,13 +249,13 @@
 	name = "FleckTex Base Hardsuit Helmet"
 	desc = "Usually paired with the FleckTex WY-01 modular exoskeleton. Can mount utility functions on the helmet hard points. Has Base markings"
 	greyscale_config = /datum/greyscale_config/hardsuit_variant
-	starting_attachments = list(/obj/item/armor_module/armor/visor/marine, /obj/item/armor_module/storage/helmet, /obj/item/armor_module/armor/highlight/helm_highlight)
+	starting_attachments = list(/obj/item/armor_module/armor/visor/marine, /obj/item/armor_module/storage/helmet, /obj/item/armor_module/armor/secondary_color/helm)
 	attachments_by_slot = list(
 		ATTACHMENT_SLOT_VISOR,
 		ATTACHMENT_SLOT_STORAGE,
 		ATTACHMENT_SLOT_HEAD_MODULE,
 		ATTACHMENT_SLOT_BADGE,
-		ATTACHMENT_SLOT_HELM_HIGHLIGHT,
+		ATTACHMENT_SLOT_HELM_SECONDARY_COLOR,
 	)
 
 /obj/item/clothing/head/modular/marine/hardsuit_helm/markfive

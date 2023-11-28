@@ -75,9 +75,9 @@
 /obj/item/armor_module/armor/legs/marine/hardsuit_legs
 	name = "\improper FleckTex Base leg plates"
 	desc = "Designed for use with the FleckTex WY-01 Exoskeleton. It provides high protection and encumbrance when attached and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. All arm plates have the same armor and slowdown, meaning that only changing the chestplate makes significant armor difference. This armor appears to be marked as a Base armor piece."
-	starting_attachments = list(/obj/item/armor_module/armor/highlight/leg_highlight)
-	attachments_allowed = list(/obj/item/armor_module/armor/highlight/leg_highlight)
-	attachments_by_slot = list(ATTACHMENT_SLOT_KNEE_HIGHLIGHT)
+	starting_attachments = list(/obj/item/armor_module/armor/secondary_color/leg)
+	attachments_allowed = list(/obj/item/armor_module/armor/secondary_color/leg)
+	attachments_by_slot = list(ATTACHMENT_SLOT_KNEE_SECONDARY_COLOR)
 	greyscale_config = /datum/greyscale_config/hardsuit_variant
 
 /obj/item/armor_module/armor/legs/marine/hardsuit_legs/syndicate_markfive

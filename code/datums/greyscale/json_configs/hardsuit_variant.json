@@ -65,34 +65,34 @@
 			"blend_mode": "overlay"
 		}
 	],
-	"leg_highlight": [
+	"leg_secondary_color": [
 		{
 			"type": "hyperscale",
-			"icon_state": "leg_highlight"
+			"icon_state": "leg_secondary_color"
 		}
 	],
-	"chest_highlight": [
+	"chest_secondary_color": [
 		{
 			"type": "hyperscale",
-			"icon_state": "chest_highlight"
+			"icon_state": "chest_secondary_color"
 		}
 	],
-	"chest_highlight_normal": [
+	"chest_secondary_color_normal": [
 		{
 			"type": "hyperscale",
-			"icon_state": "chest_highlight"
+			"icon_state": "chest_secondary_color"
 		}
 	],
-	"chest_highlight_webbing": [
+	"chest_secondary_color_webbing": [
 		{
 			"type": "hyperscale",
 			"icon_state": "chest_webbing_highlight"
 		}
 	],
-	"helm_highlight": [
+	"helm_secondary_color": [
 		{
 			"type": "hyperscale",
-			"icon_state": "helm_highlight"
+			"icon_state": "helm_secondary_color"
 		}
 	]
 }
