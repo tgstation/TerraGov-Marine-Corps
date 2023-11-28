@@ -119,6 +119,8 @@
 /datum/greyscale_config/hardsuit_variant/syndicate_markfive
 	prefix = "markfive_"
 
+/datum/greyscale_config/hardsuit_variant/exoskeleton
+
 //Mark 2
 
 /datum/greyscale_config/armor_mk2
