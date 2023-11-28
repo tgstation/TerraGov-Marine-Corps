@@ -30,6 +30,13 @@
 "abc" = (
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/west1)
+"abm" = (
+/turf/closed/mineral/smooth/indestructible,
+/area/deltastation/hallway/primary{
+	outside = 0;
+	name = "\improper CLF Main Hallway";
+	ceiling = 6
+	})
 "abp" = (
 /obj/structure/cargo_container/horizontal,
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
@@ -434,7 +441,8 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/tile,
 /area/deltastation/hallway/primary{
 	outside = 0;
-	name = "\improper CLF Main Hallway"
+	name = "\improper CLF Main Hallway";
+	ceiling = 6
 	})
 "anp" = (
 /obj/structure/extinguisher_cabinet{
@@ -463,7 +471,8 @@
 	},
 /area/deltastation/commons/dorms{
 	outside = 0;
-	name = "\improper CLF Bunks"
+	name = "\improper CLF Bunks";
+	ceiling = 6
 	})
 "aoc" = (
 /turf/open/floor/plating/platebot,
@@ -547,7 +556,8 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
 /area/deltastation/hallway/primary{
 	outside = 0;
-	name = "\improper CLF Main Hallway"
+	name = "\improper CLF Main Hallway";
+	ceiling = 6
 	})
 "apz" = (
 /obj/structure/fence,
@@ -597,7 +607,8 @@
 /turf/open/floor/grayscale/edge,
 /area/deltastation/commons/toilet/restrooms{
 	name = "\improper CLF Public Restrooms";
-	outside = 0
+	outside = 0;
+	ceiling = 6
 	})
 "aqF" = (
 /turf/open/floor/marking/loadingarea{
@@ -621,7 +632,8 @@
 /turf/open/floor/plating/asteroidfloor,
 /area/deltastation/medical{
 	outside = 0;
-	name = "\improper CLF Medical"
+	name = "\improper CLF Medical";
+	ceiling = 6
 	})
 "arA" = (
 /obj/item/tool/kitchen/utensil/fork{
@@ -2361,7 +2373,8 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/threeside,
 /area/deltastation/hallway/primary{
 	outside = 0;
-	name = "\improper CLF Main Hallway"
+	name = "\improper CLF Main Hallway";
+	ceiling = 6
 	})
 "bfQ" = (
 /obj/structure/largecrate/supply/supplies/coifs,
@@ -2438,7 +2451,8 @@
 /turf/open/floor/plating/ground/dirt,
 /area/deltastation/hallway/primary{
 	outside = 0;
-	name = "\improper CLF Main Hallway"
+	name = "\improper CLF Main Hallway";
+	ceiling = 6
 	})
 "bhp" = (
 /obj/structure/table/woodentable,
@@ -2743,7 +2757,8 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/deltastation/commons/toilet/restrooms{
 	name = "\improper CLF Public Restrooms";
-	outside = 0
+	outside = 0;
+	ceiling = 6
 	})
 "bps" = (
 /obj/structure/flora/ausbushes/fullgrass,
@@ -2759,7 +2774,8 @@
 /turf/open/floor/plating/ground/dirt,
 /area/deltastation/hallway/primary{
 	outside = 0;
-	name = "\improper CLF Main Hallway"
+	name = "\improper CLF Main Hallway";
+	ceiling = 6
 	})
 "bpQ" = (
 /obj/effect/spawner/random/engineering/ore_box,
@@ -3286,7 +3302,8 @@
 	},
 /area/deltastation/hallway/primary{
 	outside = 0;
-	name = "\improper CLF Main Hallway"
+	name = "\improper CLF Main Hallway";
+	ceiling = 6
 	})
 "bLS" = (
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -3437,7 +3454,8 @@
 	},
 /area/deltastation/commons/dorms{
 	outside = 0;
-	name = "\improper CLF Bunks"
+	name = "\improper CLF Bunks";
+	ceiling = 6
 	})
 "bSe" = (
 /obj/effect/ai_node,
@@ -4190,7 +4208,8 @@
 	},
 /area/deltastation/commons/dorms{
 	outside = 0;
-	name = "\improper CLF Bunks"
+	name = "\improper CLF Bunks";
+	ceiling = 6
 	})
 "cLG" = (
 /obj/effect/turf_decal/tile/transparent/dark_green/half/contrasted{
@@ -4199,7 +4218,8 @@
 /turf/open/floor/plating/asteroidfloor,
 /area/deltastation/medical{
 	outside = 0;
-	name = "\improper CLF Medical"
+	name = "\improper CLF Medical";
+	ceiling = 6
 	})
 "cLI" = (
 /obj/structure/bed/stool,
@@ -4413,7 +4433,8 @@
 /turf/open/floor/plating/asteroidfloor,
 /area/deltastation/medical{
 	outside = 0;
-	name = "\improper CLF Medical"
+	name = "\improper CLF Medical";
+	ceiling = 6
 	})
 "cVx" = (
 /obj/machinery/door_control{
@@ -4682,7 +4703,8 @@
 	},
 /area/deltastation/hallway/primary{
 	outside = 0;
-	name = "\improper CLF Main Hallway"
+	name = "\improper CLF Main Hallway";
+	ceiling = 6
 	})
 "dos" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -4717,7 +4739,8 @@
 /turf/closed/shuttle,
 /area/deltastation/commons/toilet/restrooms{
 	name = "\improper CLF Public Restrooms";
-	outside = 0
+	outside = 0;
+	ceiling = 6
 	})
 "dpL" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1,
@@ -4845,7 +4868,8 @@
 	},
 /area/deltastation/hallway/primary{
 	outside = 0;
-	name = "\improper CLF Main Hallway"
+	name = "\improper CLF Main Hallway";
+	ceiling = 6
 	})
 "dtn" = (
 /obj/docking_port/stationary/crashmode,
@@ -4950,7 +4974,8 @@
 	},
 /area/deltastation/commons/dorms{
 	outside = 0;
-	name = "\improper CLF Bunks"
+	name = "\improper CLF Bunks";
+	ceiling = 6
 	})
 "dys" = (
 /turf/open/floor/plating/warning{
@@ -5058,7 +5083,8 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/tile,
 /area/deltastation/hallway/primary{
 	outside = 0;
-	name = "\improper CLF Main Hallway"
+	name = "\improper CLF Main Hallway";
+	ceiling = 6
 	})
 "dDC" = (
 /obj/structure/foamedmetal,
@@ -5285,7 +5311,8 @@
 	},
 /area/deltastation/commons/dorms{
 	outside = 0;
-	name = "\improper CLF Bunks"
+	name = "\improper CLF Bunks";
+	ceiling = 6
 	})
 "dPP" = (
 /turf/open/floor/tile/neutral,
@@ -5567,7 +5594,8 @@
 /turf/open/floor/plating/asteroidwarning/down,
 /area/deltastation/commons/dorms{
 	outside = 0;
-	name = "\improper CLF Bunks"
+	name = "\improper CLF Bunks";
+	ceiling = 6
 	})
 "ebP" = (
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -5622,7 +5650,8 @@
 /turf/open/floor/plating/asteroidfloor,
 /area/deltastation/medical{
 	outside = 0;
-	name = "\improper CLF Medical"
+	name = "\improper CLF Medical";
+	ceiling = 6
 	})
 "edi" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -5694,7 +5723,8 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
 /area/deltastation/hallway/primary{
 	outside = 0;
-	name = "\improper CLF Main Hallway"
+	name = "\improper CLF Main Hallway";
+	ceiling = 6
 	})
 "eiY" = (
 /obj/structure/largecrate/supply/generator,
@@ -5703,7 +5733,8 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
 /area/deltastation/hallway/primary{
 	outside = 0;
-	name = "\improper CLF Main Hallway"
+	name = "\improper CLF Main Hallway";
+	ceiling = 6
 	})
 "ejj" = (
 /obj/effect/spawner/random/misc/structure/girder/regularweighted,
@@ -5862,7 +5893,8 @@
 /turf/open/floor/plating/asteroidfloor,
 /area/deltastation/commons/dorms{
 	outside = 0;
-	name = "\improper CLF Bunks"
+	name = "\improper CLF Bunks";
+	ceiling = 6
 	})
 "eqC" = (
 /turf/open/floor/plating/ground/dirtgrassborder/corner{
@@ -5942,6 +5974,13 @@
 "evH" = (
 /turf/open/ground/grass/grass2,
 /area/lv624/lazarus/overgrown)
+"evK" = (
+/turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
+/area/deltastation/hallway/primary{
+	outside = 0;
+	name = "\improper CLF Main Hallway";
+	ceiling = 4
+	})
 "evV" = (
 /obj/structure/flora/ausbushes/fernybush,
 /obj/structure/flora/jungle/vines,
@@ -5986,7 +6025,8 @@
 /turf/open/floor/grayscale/edge,
 /area/deltastation/commons/toilet/restrooms{
 	name = "\improper CLF Public Restrooms";
-	outside = 0
+	outside = 0;
+	ceiling = 6
 	})
 "exE" = (
 /obj/structure/flora/jungle/vines,
@@ -6090,7 +6130,8 @@
 	},
 /area/deltastation/commons/dorms{
 	outside = 0;
-	name = "\improper CLF Bunks"
+	name = "\improper CLF Bunks";
+	ceiling = 6
 	})
 "eEC" = (
 /obj/effect/spawner/random/misc/plushie/nospawnninetyfive,
@@ -6117,7 +6158,8 @@
 /turf/open/floor/grayscale/edge,
 /area/deltastation/commons/toilet/restrooms{
 	name = "\improper CLF Public Restrooms";
-	outside = 0
+	outside = 0;
+	ceiling = 6
 	})
 "eHR" = (
 /obj/structure/barricade/metal{
@@ -6139,7 +6181,8 @@
 /turf/open/floor/plating/ground/dirt,
 /area/deltastation/hallway/primary{
 	outside = 0;
-	name = "\improper CLF Main Hallway"
+	name = "\improper CLF Main Hallway";
+	ceiling = 6
 	})
 "eIy" = (
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -6305,7 +6348,8 @@
 	},
 /area/deltastation/hallway/primary{
 	outside = 0;
-	name = "\improper CLF Main Hallway"
+	name = "\improper CLF Main Hallway";
+	ceiling = 6
 	})
 "eQx" = (
 /obj/machinery/door/airlock/mainship/medical/glass/free_access{
@@ -6412,7 +6456,8 @@
 /turf/open/floor/grayscale/edge,
 /area/deltastation/commons/toilet/restrooms{
 	name = "\improper CLF Public Restrooms";
-	outside = 0
+	outside = 0;
+	ceiling = 6
 	})
 "eYh" = (
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -6462,7 +6507,8 @@
 	},
 /area/deltastation/commons/dorms{
 	outside = 0;
-	name = "\improper CLF Bunks"
+	name = "\improper CLF Bunks";
+	ceiling = 6
 	})
 "eZJ" = (
 /obj/item/reagent_containers/food/snacks/worm,
@@ -6476,7 +6522,8 @@
 /turf/open/floor/grayscale/edge,
 /area/deltastation/commons/toilet/restrooms{
 	name = "\improper CLF Public Restrooms";
-	outside = 0
+	outside = 0;
+	ceiling = 6
 	})
 "faL" = (
 /obj/structure/cable,
@@ -6768,7 +6815,8 @@
 	},
 /area/deltastation/commons/dorms{
 	outside = 0;
-	name = "\improper CLF Bunks"
+	name = "\improper CLF Bunks";
+	ceiling = 6
 	})
 "fqc" = (
 /obj/machinery/light/small,
@@ -6831,7 +6879,8 @@
 	},
 /area/deltastation/commons/dorms{
 	outside = 0;
-	name = "\improper CLF Bunks"
+	name = "\improper CLF Bunks";
+	ceiling = 6
 	})
 "fui" = (
 /obj/structure/closet/lawcloset,
@@ -7160,7 +7209,8 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/threeside,
 /area/deltastation/commons/dorms{
 	outside = 0;
-	name = "\improper CLF Bunks"
+	name = "\improper CLF Bunks";
+	ceiling = 6
 	})
 "fLY" = (
 /obj/structure/cable,
@@ -7194,7 +7244,8 @@
 	},
 /area/deltastation/hallway/primary{
 	outside = 0;
-	name = "\improper CLF Main Hallway"
+	name = "\improper CLF Main Hallway";
+	ceiling = 6
 	})
 "fOi" = (
 /obj/structure/flora/ausbushes/sparsegrass,
@@ -7235,7 +7286,8 @@
 /turf/open/floor/plating/asteroidfloor,
 /area/deltastation/medical{
 	outside = 0;
-	name = "\improper CLF Medical"
+	name = "\improper CLF Medical";
+	ceiling = 6
 	})
 "fRf" = (
 /obj/effect/spawner/random/engineering/ore_box,
@@ -7289,7 +7341,8 @@
 	},
 /area/deltastation/hallway/primary{
 	outside = 0;
-	name = "\improper CLF Main Hallway"
+	name = "\improper CLF Main Hallway";
+	ceiling = 6
 	})
 "fUe" = (
 /obj/structure/cable,
@@ -7298,7 +7351,8 @@
 	},
 /area/deltastation/hallway/primary{
 	outside = 0;
-	name = "\improper CLF Main Hallway"
+	name = "\improper CLF Main Hallway";
+	ceiling = 6
 	})
 "fUp" = (
 /obj/structure/flora/jungle/plantbot1/alien,
@@ -7386,7 +7440,8 @@
 /turf/closed/wall/brick,
 /area/deltastation/hallway/primary{
 	outside = 0;
-	name = "\improper CLF Main Hallway"
+	name = "\improper CLF Main Hallway";
+	ceiling = 6
 	})
 "fYu" = (
 /obj/structure/flora/ausbushes/fullgrass,
@@ -7438,7 +7493,8 @@
 /turf/open/floor/plating/ground/dirt,
 /area/deltastation/hallway/primary{
 	outside = 0;
-	name = "\improper CLF Main Hallway"
+	name = "\improper CLF Main Hallway";
+	ceiling = 6
 	})
 "gaI" = (
 /obj/structure/flora/ausbushes/fullgrass,
@@ -7673,7 +7729,8 @@
 /turf/open/floor/plating/asteroidfloor,
 /area/deltastation/medical{
 	outside = 0;
-	name = "\improper CLF Medical"
+	name = "\improper CLF Medical";
+	ceiling = 6
 	})
 "ghR" = (
 /obj/structure/disposalpipe/junction/flipped{
@@ -7720,7 +7777,8 @@
 	},
 /area/deltastation/commons/dorms{
 	outside = 0;
-	name = "\improper CLF Bunks"
+	name = "\improper CLF Bunks";
+	ceiling = 6
 	})
 "gix" = (
 /obj/effect/landmark/start/job/clf/leader,
@@ -7732,7 +7790,8 @@
 /turf/open/floor/plating/asteroidfloor,
 /area/deltastation/commons/dorms{
 	outside = 0;
-	name = "\improper CLF Bunks"
+	name = "\improper CLF Bunks";
+	ceiling = 6
 	})
 "giC" = (
 /obj/machinery/door_control{
@@ -7768,7 +7827,8 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
 /area/deltastation/hallway/primary{
 	outside = 0;
-	name = "\improper CLF Main Hallway"
+	name = "\improper CLF Main Hallway";
+	ceiling = 6
 	})
 "gkV" = (
 /obj/effect/turf_decal/warning_stripes/thick{
@@ -7819,7 +7879,8 @@
 /turf/closed/wall/brick,
 /area/deltastation/medical{
 	outside = 0;
-	name = "\improper CLF Medical"
+	name = "\improper CLF Medical";
+	ceiling = 6
 	})
 "gpQ" = (
 /obj/structure/flora/jungle/vines,
@@ -8085,7 +8146,8 @@
 	},
 /area/deltastation/commons/dorms{
 	outside = 0;
-	name = "\improper CLF Bunks"
+	name = "\improper CLF Bunks";
+	ceiling = 6
 	})
 "gIu" = (
 /obj/structure/flora/tree/jungle,
@@ -8167,7 +8229,8 @@
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/deltastation/commons/dorms{
 	outside = 0;
-	name = "\improper CLF Bunks"
+	name = "\improper CLF Bunks";
+	ceiling = 6
 	})
 "gMc" = (
 /obj/structure/flora/jungle/plantbot1,
@@ -8180,7 +8243,8 @@
 	},
 /area/deltastation/commons/dorms{
 	outside = 0;
-	name = "\improper CLF Bunks"
+	name = "\improper CLF Bunks";
+	ceiling = 6
 	})
 "gMF" = (
 /obj/alien/weeds/node,
@@ -8294,7 +8358,8 @@
 	},
 /area/deltastation/hallway/primary{
 	outside = 0;
-	name = "\improper CLF Main Hallway"
+	name = "\improper CLF Main Hallway";
+	ceiling = 6
 	})
 "gSY" = (
 /obj/structure/flora/jungle/vines,
@@ -8412,7 +8477,8 @@
 /turf/open/floor/plating/asteroidfloor,
 /area/deltastation/medical{
 	outside = 0;
-	name = "\improper CLF Medical"
+	name = "\improper CLF Medical";
+	ceiling = 6
 	})
 "gZm" = (
 /obj/alien/weeds/node,
@@ -8461,7 +8527,8 @@
 	},
 /area/deltastation/commons/dorms{
 	outside = 0;
-	name = "\improper CLF Bunks"
+	name = "\improper CLF Bunks";
+	ceiling = 6
 	})
 "hbF" = (
 /obj/machinery/prop/autolathe,
@@ -8734,7 +8801,8 @@
 	},
 /area/deltastation/commons/dorms{
 	outside = 0;
-	name = "\improper CLF Bunks"
+	name = "\improper CLF Bunks";
+	ceiling = 6
 	})
 "hoP" = (
 /turf/open/floor/wood/broken,
@@ -8992,7 +9060,8 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/threeside/regular,
 /area/deltastation/hallway/primary{
 	outside = 0;
-	name = "\improper CLF Main Hallway"
+	name = "\improper CLF Main Hallway";
+	ceiling = 6
 	})
 "hDS" = (
 /obj/structure/table,
@@ -9613,7 +9682,8 @@
 /turf/open/floor/plating/ground/dirt,
 /area/deltastation/hallway/primary{
 	outside = 0;
-	name = "\improper CLF Main Hallway"
+	name = "\improper CLF Main Hallway";
+	ceiling = 6
 	})
 "ijX" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
@@ -9763,7 +9833,8 @@
 	},
 /area/deltastation/hallway/primary{
 	outside = 0;
-	name = "\improper CLF Main Hallway"
+	name = "\improper CLF Main Hallway";
+	ceiling = 6
 	})
 "irl" = (
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -9803,7 +9874,8 @@
 	},
 /area/deltastation/hallway/primary{
 	outside = 0;
-	name = "\improper CLF Main Hallway"
+	name = "\improper CLF Main Hallway";
+	ceiling = 6
 	})
 "ivp" = (
 /obj/structure/table,
@@ -9824,7 +9896,8 @@
 	},
 /area/deltastation/commons/toilet/restrooms{
 	name = "\improper CLF Public Restrooms";
-	outside = 0
+	outside = 0;
+	ceiling = 6
 	})
 "iwP" = (
 /obj/effect/spawner/random/misc/structure/barrel,
@@ -9836,7 +9909,8 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/tile,
 /area/deltastation/hallway/primary{
 	outside = 0;
-	name = "\improper CLF Main Hallway"
+	name = "\improper CLF Main Hallway";
+	ceiling = 6
 	})
 "iwX" = (
 /obj/structure/stairs/seamless{
@@ -9875,7 +9949,8 @@
 	},
 /area/deltastation/commons/dorms{
 	outside = 0;
-	name = "\improper CLF Bunks"
+	name = "\improper CLF Bunks";
+	ceiling = 6
 	})
 "iyS" = (
 /obj/structure/stairs/seamless{
@@ -9917,7 +9992,8 @@
 /turf/open/floor/plating/asteroidfloor,
 /area/deltastation/medical{
 	outside = 0;
-	name = "\improper CLF Medical"
+	name = "\improper CLF Medical";
+	ceiling = 6
 	})
 "izA" = (
 /obj/structure/window_frame/wood,
@@ -10107,7 +10183,8 @@
 	},
 /area/deltastation/commons/dorms{
 	outside = 0;
-	name = "\improper CLF Bunks"
+	name = "\improper CLF Bunks";
+	ceiling = 6
 	})
 "iIU" = (
 /turf/open/floor/tile/green/whitegreen{
@@ -10159,7 +10236,8 @@
 /turf/closed/wall/brick,
 /area/deltastation/medical{
 	outside = 0;
-	name = "\improper CLF Medical"
+	name = "\improper CLF Medical";
+	ceiling = 6
 	})
 "iLn" = (
 /obj/effect/landmark/lv624/fog_blocker,
@@ -10187,7 +10265,8 @@
 	},
 /area/deltastation/commons/dorms{
 	outside = 0;
-	name = "\improper CLF Bunks"
+	name = "\improper CLF Bunks";
+	ceiling = 6
 	})
 "iMr" = (
 /obj/structure/table,
@@ -10222,7 +10301,8 @@
 	},
 /area/deltastation/hallway/primary{
 	outside = 0;
-	name = "\improper CLF Main Hallway"
+	name = "\improper CLF Main Hallway";
+	ceiling = 6
 	})
 "iNo" = (
 /obj/item/weapon/claymore/mercsword/machete,
@@ -10294,7 +10374,8 @@
 /turf/open/floor/plating/ground/dirt,
 /area/deltastation/hallway/primary{
 	outside = 0;
-	name = "\improper CLF Main Hallway"
+	name = "\improper CLF Main Hallway";
+	ceiling = 6
 	})
 "iRH" = (
 /obj/machinery/light{
@@ -10442,7 +10523,8 @@
 	},
 /area/deltastation/commons/dorms{
 	outside = 0;
-	name = "\improper CLF Bunks"
+	name = "\improper CLF Bunks";
+	ceiling = 6
 	})
 "iYw" = (
 /obj/structure/disposalpipe/junction{
@@ -10609,7 +10691,8 @@
 	},
 /area/deltastation/commons/dorms{
 	outside = 0;
-	name = "\improper CLF Bunks"
+	name = "\improper CLF Bunks";
+	ceiling = 6
 	})
 "jiJ" = (
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -10735,7 +10818,8 @@
 /turf/open/floor/plating/asteroidfloor,
 /area/deltastation/commons/dorms{
 	outside = 0;
-	name = "\improper CLF Bunks"
+	name = "\improper CLF Bunks";
+	ceiling = 6
 	})
 "jro" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
@@ -10980,7 +11064,8 @@
 	},
 /area/deltastation/commons/dorms{
 	outside = 0;
-	name = "\improper CLF Bunks"
+	name = "\improper CLF Bunks";
+	ceiling = 6
 	})
 "jDV" = (
 /obj/machinery/vending/coffee,
@@ -11023,7 +11108,8 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/tile,
 /area/deltastation/hallway/primary{
 	outside = 0;
-	name = "\improper CLF Main Hallway"
+	name = "\improper CLF Main Hallway";
+	ceiling = 6
 	})
 "jGv" = (
 /obj/item/bedsheet/rd,
@@ -11273,7 +11359,8 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
 /area/deltastation/hallway/primary{
 	outside = 0;
-	name = "\improper CLF Main Hallway"
+	name = "\improper CLF Main Hallway";
+	ceiling = 6
 	})
 "jPU" = (
 /obj/structure/flora/ausbushes/fullgrass,
@@ -11377,7 +11464,8 @@
 	},
 /area/deltastation/commons/dorms{
 	outside = 0;
-	name = "\improper CLF Bunks"
+	name = "\improper CLF Bunks";
+	ceiling = 6
 	})
 "jWo" = (
 /obj/structure/flora/bush,
@@ -11547,13 +11635,14 @@
 /turf/open/floor/plating/platebotc,
 /area/lv624/lazarus/quartstorage/outdoors)
 "kge" = (
-/obj/structure/cable,
-/obj/effect/turf_decal/stripes/asteroid/box,
-/obj/machinery/floodlight/outpost,
-/turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
+/obj/machinery/button{
+	id = "clfbasething"
+	},
+/turf/open/floor/plating/ground/desertdam/asphalt/tile,
 /area/deltastation/hallway/primary{
 	outside = 0;
-	name = "\improper CLF Main Hallway"
+	name = "\improper CLF Main Hallway";
+	ceiling = 6
 	})
 "kgy" = (
 /obj/item/reagent_containers/food/drinks/flask/barflask,
@@ -11568,7 +11657,8 @@
 /turf/open/floor/plating/asteroidwarning/down,
 /area/deltastation/commons/dorms{
 	outside = 0;
-	name = "\improper CLF Bunks"
+	name = "\improper CLF Bunks";
+	ceiling = 6
 	})
 "kgY" = (
 /obj/machinery/power/apc/drained{
@@ -11753,7 +11843,8 @@
 /turf/open/floor/plating/asteroidwarning/down,
 /area/deltastation/commons/dorms{
 	outside = 0;
-	name = "\improper CLF Bunks"
+	name = "\improper CLF Bunks";
+	ceiling = 6
 	})
 "koS" = (
 /turf/open/floor,
@@ -11762,7 +11853,8 @@
 /turf/open/floor/plating/ground/dirt,
 /area/deltastation/hallway/primary{
 	outside = 0;
-	name = "\improper CLF Main Hallway"
+	name = "\improper CLF Main Hallway";
+	ceiling = 6
 	})
 "kpi" = (
 /obj/structure/fence,
@@ -12011,7 +12103,8 @@
 /turf/closed/wall/brick,
 /area/deltastation/commons/dorms{
 	outside = 0;
-	name = "\improper CLF Bunks"
+	name = "\improper CLF Bunks";
+	ceiling = 6
 	})
 "kDe" = (
 /obj/structure/catwalk,
@@ -12316,7 +12409,8 @@
 /turf/closed/mineral/smooth/indestructible,
 /area/deltastation/medical{
 	outside = 0;
-	name = "\improper CLF Medical"
+	name = "\improper CLF Medical";
+	ceiling = 6
 	})
 "kTF" = (
 /obj/machinery/door/airlock/mainship/generic{
@@ -12700,7 +12794,8 @@
 /turf/open/floor/plating/asteroidfloor,
 /area/deltastation/medical{
 	outside = 0;
-	name = "\improper CLF Medical"
+	name = "\improper CLF Medical";
+	ceiling = 6
 	})
 "lqJ" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -12918,13 +13013,14 @@
 /turf/open/floor/mainship/plate,
 /area/mainship/patrol_base/som)
 "lDS" = (
-/obj/machinery/button{
-	id = "clfbasething"
-	},
-/turf/open/floor/plating/ground/desertdam/asphalt/tile,
+/obj/structure/cable,
+/obj/effect/turf_decal/stripes/asteroid/box,
+/obj/machinery/floodlight/outpost,
+/turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
 /area/deltastation/hallway/primary{
 	outside = 0;
-	name = "\improper CLF Main Hallway"
+	name = "\improper CLF Main Hallway";
+	ceiling = 6
 	})
 "lEg" = (
 /obj/structure/cargo_container{
@@ -13107,7 +13203,8 @@
 	},
 /area/deltastation/commons/dorms{
 	outside = 0;
-	name = "\improper CLF Bunks"
+	name = "\improper CLF Bunks";
+	ceiling = 6
 	})
 "lOy" = (
 /obj/structure/stairs/corner_seamless{
@@ -13278,7 +13375,8 @@
 /turf/open/floor/plating/asteroidwarning/down,
 /area/deltastation/commons/dorms{
 	outside = 0;
-	name = "\improper CLF Bunks"
+	name = "\improper CLF Bunks";
+	ceiling = 6
 	})
 "lUd" = (
 /obj/machinery/door/poddoor/shutters{
@@ -13344,7 +13442,8 @@
 /turf/open/floor/plating/asteroidfloor,
 /area/deltastation/commons/dorms{
 	outside = 0;
-	name = "\improper CLF Bunks"
+	name = "\improper CLF Bunks";
+	ceiling = 6
 	})
 "lYS" = (
 /obj/structure/flora/jungle/planttop1,
@@ -13421,7 +13520,8 @@
 /turf/open/floor/plating/ground/dirt,
 /area/deltastation/hallway/primary{
 	outside = 0;
-	name = "\improper CLF Main Hallway"
+	name = "\improper CLF Main Hallway";
+	ceiling = 6
 	})
 "mbP" = (
 /turf/closed/wall/wood,
@@ -13692,7 +13792,8 @@
 	},
 /area/deltastation/commons/dorms{
 	outside = 0;
-	name = "\improper CLF Bunks"
+	name = "\improper CLF Bunks";
+	ceiling = 6
 	})
 "mnT" = (
 /turf/open/floor/marking/warning/corner{
@@ -13887,6 +13988,14 @@
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle10)
+"myW" = (
+/obj/alien/egg/hugger,
+/turf/open/floor/plating/ground/dirt,
+/area/deltastation/hallway/primary{
+	outside = 0;
+	name = "\improper CLF Main Hallway";
+	ceiling = 6
+	})
 "mzj" = (
 /obj/structure/table,
 /obj/item/stack/medical/heal_pack/ointment,
@@ -13933,7 +14042,8 @@
 	},
 /area/deltastation/hallway/primary{
 	outside = 0;
-	name = "\improper CLF Main Hallway"
+	name = "\improper CLF Main Hallway";
+	ceiling = 6
 	})
 "mBO" = (
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -13964,7 +14074,8 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/deltastation/commons/toilet/restrooms{
 	name = "\improper CLF Public Restrooms";
-	outside = 0
+	outside = 0;
+	ceiling = 6
 	})
 "mDe" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -14217,7 +14328,8 @@
 	},
 /area/deltastation/hallway/primary{
 	outside = 0;
-	name = "\improper CLF Main Hallway"
+	name = "\improper CLF Main Hallway";
+	ceiling = 6
 	})
 "mOO" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
@@ -14312,7 +14424,8 @@
 /turf/open/floor/grayscale/edge,
 /area/deltastation/commons/toilet/restrooms{
 	name = "\improper CLF Public Restrooms";
-	outside = 0
+	outside = 0;
+	ceiling = 6
 	})
 "mTN" = (
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -14416,7 +14529,8 @@
 /turf/closed/wall/brick,
 /area/deltastation/commons/dorms{
 	outside = 0;
-	name = "\improper CLF Bunks"
+	name = "\improper CLF Bunks";
+	ceiling = 6
 	})
 "mZo" = (
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -14562,7 +14676,8 @@
 	},
 /area/deltastation/hallway/primary{
 	outside = 0;
-	name = "\improper CLF Main Hallway"
+	name = "\improper CLF Main Hallway";
+	ceiling = 6
 	})
 "ngA" = (
 /turf/open/floor/tile/dark,
@@ -14604,7 +14719,8 @@
 /turf/open/floor/plating/asteroidfloor,
 /area/deltastation/medical{
 	outside = 0;
-	name = "\improper CLF Medical"
+	name = "\improper CLF Medical";
+	ceiling = 6
 	})
 "niS" = (
 /obj/structure/flora/jungle/vines,
@@ -14645,7 +14761,8 @@
 	},
 /area/deltastation/hallway/primary{
 	outside = 0;
-	name = "\improper CLF Main Hallway"
+	name = "\improper CLF Main Hallway";
+	ceiling = 6
 	})
 "nkE" = (
 /obj/structure/flora/jungle/planttop1,
@@ -14829,7 +14946,8 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/deltastation/commons/toilet/restrooms{
 	name = "\improper CLF Public Restrooms";
-	outside = 0
+	outside = 0;
+	ceiling = 6
 	})
 "nyG" = (
 /obj/machinery/door/poddoor/mainship{
@@ -14891,7 +15009,8 @@
 	},
 /area/deltastation/hallway/primary{
 	outside = 0;
-	name = "\improper CLF Main Hallway"
+	name = "\improper CLF Main Hallway";
+	ceiling = 4
 	})
 "nBJ" = (
 /obj/structure/platform_decoration{
@@ -14996,7 +15115,8 @@
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/deltastation/commons/dorms{
 	outside = 0;
-	name = "\improper CLF Bunks"
+	name = "\improper CLF Bunks";
+	ceiling = 6
 	})
 "nIb" = (
 /obj/structure/bedsheetbin,
@@ -15007,7 +15127,8 @@
 /turf/open/floor/grayscale/edge,
 /area/deltastation/commons/toilet/restrooms{
 	name = "\improper CLF Public Restrooms";
-	outside = 0
+	outside = 0;
+	ceiling = 6
 	})
 "nIs" = (
 /obj/structure/flora/jungle/vines,
@@ -15062,7 +15183,8 @@
 /turf/open/floor/plating/asteroidfloor,
 /area/deltastation/commons/dorms{
 	outside = 0;
-	name = "\improper CLF Bunks"
+	name = "\improper CLF Bunks";
+	ceiling = 6
 	})
 "nKA" = (
 /obj/structure/flora/jungle/vines,
@@ -15097,10 +15219,12 @@
 /area/lv624/lazarus/atmos)
 "nLU" = (
 /obj/alien/egg/hugger,
+/obj/alien/weeds/node/resting,
 /turf/open/floor/plating/ground/dirt,
 /area/deltastation/hallway/primary{
 	outside = 0;
-	name = "\improper CLF Main Hallway"
+	name = "\improper CLF Main Hallway";
+	ceiling = 6
 	})
 "nMg" = (
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -15437,7 +15561,8 @@
 /turf/open/floor/plating/asteroidfloor,
 /area/deltastation/medical{
 	outside = 0;
-	name = "\improper CLF Medical"
+	name = "\improper CLF Medical";
+	ceiling = 6
 	})
 "ofw" = (
 /obj/item/stack/sheet/wood{
@@ -15523,7 +15648,8 @@
 /turf/open/floor/plating/asteroidfloor,
 /area/deltastation/medical{
 	outside = 0;
-	name = "\improper CLF Medical"
+	name = "\improper CLF Medical";
+	ceiling = 6
 	})
 "ojP" = (
 /obj/structure/flora/ausbushes/ppflowers,
@@ -15593,7 +15719,8 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
 /area/deltastation/hallway/primary{
 	outside = 0;
-	name = "\improper CLF Main Hallway"
+	name = "\improper CLF Main Hallway";
+	ceiling = 6
 	})
 "oqd" = (
 /obj/alien/weeds/node,
@@ -15689,7 +15816,8 @@
 /turf/open/floor/plating/ground/dirt,
 /area/deltastation/hallway/primary{
 	outside = 0;
-	name = "\improper CLF Main Hallway"
+	name = "\improper CLF Main Hallway";
+	ceiling = 6
 	})
 "ovm" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
@@ -15883,7 +16011,8 @@
 	},
 /area/deltastation/commons/dorms{
 	outside = 0;
-	name = "\improper CLF Bunks"
+	name = "\improper CLF Bunks";
+	ceiling = 6
 	})
 "oEq" = (
 /obj/structure/flora/jungle/vines,
@@ -16039,7 +16168,8 @@
 /turf/closed/wall/brick,
 /area/deltastation/medical{
 	outside = 0;
-	name = "\improper CLF Medical"
+	name = "\improper CLF Medical";
+	ceiling = 6
 	})
 "oLn" = (
 /obj/structure/catwalk,
@@ -16067,7 +16197,8 @@
 /turf/open/floor/plating/ground/dirt,
 /area/deltastation/hallway/primary{
 	outside = 0;
-	name = "\improper CLF Main Hallway"
+	name = "\improper CLF Main Hallway";
+	ceiling = 6
 	})
 "oOc" = (
 /obj/structure/flora/jungle/vines,
@@ -16109,7 +16240,8 @@
 /turf/open/floor/plating/asteroidfloor,
 /area/deltastation/medical{
 	outside = 0;
-	name = "\improper CLF Medical"
+	name = "\improper CLF Medical";
+	ceiling = 6
 	})
 "oQK" = (
 /obj/structure/bed/chair/office/light{
@@ -16167,7 +16299,8 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/threeside,
 /area/deltastation/commons/dorms{
 	outside = 0;
-	name = "\improper CLF Bunks"
+	name = "\improper CLF Bunks";
+	ceiling = 6
 	})
 "oUH" = (
 /obj/effect/landmark/excavation_site_spawner,
@@ -16331,7 +16464,8 @@
 	},
 /area/deltastation/hallway/primary{
 	outside = 0;
-	name = "\improper CLF Main Hallway"
+	name = "\improper CLF Main Hallway";
+	ceiling = 6
 	})
 "pbz" = (
 /obj/machinery/door/airlock/mainship/generic{
@@ -16447,7 +16581,8 @@
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/deltastation/commons/dorms{
 	outside = 0;
-	name = "\improper CLF Bunks"
+	name = "\improper CLF Bunks";
+	ceiling = 6
 	})
 "phC" = (
 /obj/structure/window/reinforced{
@@ -16534,7 +16669,8 @@
 	},
 /area/deltastation/hallway/primary{
 	outside = 0;
-	name = "\improper CLF Main Hallway"
+	name = "\improper CLF Main Hallway";
+	ceiling = 6
 	})
 "poe" = (
 /obj/structure/rack,
@@ -16591,7 +16727,8 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/tile,
 /area/deltastation/hallway/primary{
 	outside = 0;
-	name = "\improper CLF Main Hallway"
+	name = "\improper CLF Main Hallway";
+	ceiling = 6
 	})
 "psp" = (
 /obj/effect/ai_node,
@@ -16602,7 +16739,8 @@
 /turf/open/floor/grayscale/edge,
 /area/deltastation/commons/toilet/restrooms{
 	name = "\improper CLF Public Restrooms";
-	outside = 0
+	outside = 0;
+	ceiling = 6
 	})
 "psA" = (
 /obj/effect/turf_decal/siding/wideplating_new/light{
@@ -16618,7 +16756,8 @@
 /turf/open/floor/grayscale/edge,
 /area/deltastation/commons/toilet/restrooms{
 	name = "\improper CLF Public Restrooms";
-	outside = 0
+	outside = 0;
+	ceiling = 6
 	})
 "psJ" = (
 /obj/structure/window_frame/colony/reinforced,
@@ -16749,7 +16888,8 @@
 /turf/closed/mineral/smooth,
 /area/deltastation/hallway/primary{
 	outside = 0;
-	name = "\improper CLF Main Hallway"
+	name = "\improper CLF Main Hallway";
+	ceiling = 6
 	})
 "pAx" = (
 /obj/alien/weeds/node,
@@ -16785,7 +16925,8 @@
 /turf/closed/wall/brick,
 /area/deltastation/commons/dorms{
 	outside = 0;
-	name = "\improper CLF Bunks"
+	name = "\improper CLF Bunks";
+	ceiling = 6
 	})
 "pCF" = (
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -17191,7 +17332,8 @@
 	},
 /area/deltastation/hallway/primary{
 	outside = 0;
-	name = "\improper CLF Main Hallway"
+	name = "\improper CLF Main Hallway";
+	ceiling = 6
 	})
 "pYA" = (
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -17252,6 +17394,13 @@
 "qbR" = (
 /turf/closed/wall,
 /area/lv624/ground/river1)
+"qcn" = (
+/turf/open/floor/plating/ground/dirt,
+/area/deltastation/hallway/primary{
+	outside = 0;
+	name = "\improper CLF Main Hallway";
+	ceiling = 4
+	})
 "qcX" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
@@ -17361,7 +17510,8 @@
 /turf/open/floor/plating/asteroidfloor,
 /area/deltastation/commons/dorms{
 	outside = 0;
-	name = "\improper CLF Bunks"
+	name = "\improper CLF Bunks";
+	ceiling = 6
 	})
 "qjM" = (
 /obj/structure/table,
@@ -17412,7 +17562,8 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
 /area/deltastation/hallway/primary{
 	outside = 0;
-	name = "\improper CLF Main Hallway"
+	name = "\improper CLF Main Hallway";
+	ceiling = 6
 	})
 "qnE" = (
 /obj/structure/flora/jungle/planttop1,
@@ -17434,7 +17585,8 @@
 	},
 /area/deltastation/commons/dorms{
 	outside = 0;
-	name = "\improper CLF Bunks"
+	name = "\improper CLF Bunks";
+	ceiling = 6
 	})
 "qof" = (
 /obj/alien/weeds/node,
@@ -17566,7 +17718,8 @@
 	},
 /area/deltastation/commons/dorms{
 	outside = 0;
-	name = "\improper CLF Bunks"
+	name = "\improper CLF Bunks";
+	ceiling = 6
 	})
 "qwf" = (
 /obj/machinery/door/poddoor/mainship/open{
@@ -17607,7 +17760,8 @@
 	},
 /area/deltastation/hallway/primary{
 	outside = 0;
-	name = "\improper CLF Main Hallway"
+	name = "\improper CLF Main Hallway";
+	ceiling = 6
 	})
 "qyg" = (
 /obj/structure/table/reinforced,
@@ -17685,6 +17839,9 @@
 	},
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/main_hall)
+"qAD" = (
+/turf/closed/wall/resin,
+/area/lv624/ground/caves/central1)
 "qAT" = (
 /obj/structure/flora/jungle/vines,
 /turf/open/ground/grass,
@@ -17725,7 +17882,8 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/edge,
 /area/deltastation/commons/dorms{
 	outside = 0;
-	name = "\improper CLF Bunks"
+	name = "\improper CLF Bunks";
+	ceiling = 6
 	})
 "qDY" = (
 /turf/open/floor/tile/blue/whiteblue{
@@ -18117,7 +18275,8 @@
 	},
 /area/deltastation/hallway/primary{
 	outside = 0;
-	name = "\improper CLF Main Hallway"
+	name = "\improper CLF Main Hallway";
+	ceiling = 6
 	})
 "qYg" = (
 /obj/alien/weeds/node,
@@ -18164,7 +18323,8 @@
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/deltastation/commons/dorms{
 	outside = 0;
-	name = "\improper CLF Bunks"
+	name = "\improper CLF Bunks";
+	ceiling = 6
 	})
 "qZD" = (
 /obj/structure/cable,
@@ -18252,7 +18412,8 @@
 	},
 /area/deltastation/commons/dorms{
 	outside = 0;
-	name = "\improper CLF Bunks"
+	name = "\improper CLF Bunks";
+	ceiling = 6
 	})
 "rdL" = (
 /obj/effect/turf_decal/warning_stripes/thick{
@@ -18278,7 +18439,8 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/deltastation/commons/toilet/restrooms{
 	name = "\improper CLF Public Restrooms";
-	outside = 0
+	outside = 0;
+	ceiling = 6
 	})
 "ren" = (
 /turf/open/floor/tile/green/whitegreencorner{
@@ -18320,7 +18482,8 @@
 	},
 /area/deltastation/commons/dorms{
 	outside = 0;
-	name = "\improper CLF Bunks"
+	name = "\improper CLF Bunks";
+	ceiling = 6
 	})
 "rfG" = (
 /obj/structure/cable,
@@ -18412,7 +18575,8 @@
 /turf/closed/wall/brick,
 /area/deltastation/medical{
 	outside = 0;
-	name = "\improper CLF Medical"
+	name = "\improper CLF Medical";
+	ceiling = 6
 	})
 "rij" = (
 /obj/structure/window_frame/colony,
@@ -18592,7 +18756,8 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
 /area/deltastation/hallway/primary{
 	outside = 0;
-	name = "\improper CLF Main Hallway"
+	name = "\improper CLF Main Hallway";
+	ceiling = 6
 	})
 "rrH" = (
 /obj/effect/ai_node,
@@ -18651,7 +18816,8 @@
 	},
 /area/deltastation/commons/dorms{
 	outside = 0;
-	name = "\improper CLF Bunks"
+	name = "\improper CLF Bunks";
+	ceiling = 6
 	})
 "ruA" = (
 /obj/structure/table,
@@ -19333,7 +19499,8 @@
 	},
 /area/deltastation/commons/dorms{
 	outside = 0;
-	name = "\improper CLF Bunks"
+	name = "\improper CLF Bunks";
+	ceiling = 6
 	})
 "rYQ" = (
 /obj/structure/flora/ausbushes/fullgrass,
@@ -19420,7 +19587,8 @@
 /turf/open/floor/plating/asteroidfloor,
 /area/deltastation/medical{
 	outside = 0;
-	name = "\improper CLF Medical"
+	name = "\improper CLF Medical";
+	ceiling = 6
 	})
 "sbj" = (
 /obj/structure/flora/ausbushes/fullgrass,
@@ -19438,7 +19606,8 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/threeside/regular,
 /area/deltastation/hallway/primary{
 	outside = 0;
-	name = "\improper CLF Main Hallway"
+	name = "\improper CLF Main Hallway";
+	ceiling = 6
 	})
 "sct" = (
 /obj/structure/table,
@@ -19548,7 +19717,8 @@
 /turf/open/floor/plating/asteroidfloor,
 /area/deltastation/medical{
 	outside = 0;
-	name = "\improper CLF Medical"
+	name = "\improper CLF Medical";
+	ceiling = 6
 	})
 "sib" = (
 /obj/effect/decal/remains/human,
@@ -19656,7 +19826,8 @@
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/deltastation/commons/dorms{
 	outside = 0;
-	name = "\improper CLF Bunks"
+	name = "\improper CLF Bunks";
+	ceiling = 6
 	})
 "sog" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -19713,7 +19884,8 @@
 	},
 /area/deltastation/hallway/primary{
 	outside = 0;
-	name = "\improper CLF Main Hallway"
+	name = "\improper CLF Main Hallway";
+	ceiling = 6
 	})
 "srR" = (
 /obj/structure/cargo_container/nt{
@@ -19890,7 +20062,8 @@
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/deltastation/commons/dorms{
 	outside = 0;
-	name = "\improper CLF Bunks"
+	name = "\improper CLF Bunks";
+	ceiling = 6
 	})
 "sDY" = (
 /turf/closed/mineral/smooth,
@@ -19947,7 +20120,8 @@
 /turf/closed/wall/brick,
 /area/deltastation/hallway/primary{
 	outside = 0;
-	name = "\improper CLF Main Hallway"
+	name = "\improper CLF Main Hallway";
+	ceiling = 6
 	})
 "sHd" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -20056,7 +20230,8 @@
 /turf/open/floor/grayscale/edge,
 /area/deltastation/commons/toilet/restrooms{
 	name = "\improper CLF Public Restrooms";
-	outside = 0
+	outside = 0;
+	ceiling = 6
 	})
 "sNO" = (
 /obj/effect/decal/cleanable/blood/gibs/robot/limb,
@@ -20105,7 +20280,8 @@
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/deltastation/commons/dorms{
 	outside = 0;
-	name = "\improper CLF Bunks"
+	name = "\improper CLF Bunks";
+	ceiling = 6
 	})
 "sPT" = (
 /obj/structure/flora/jungle/vines,
@@ -20546,7 +20722,8 @@
 /turf/open/floor/grayscale/edge,
 /area/deltastation/commons/toilet/restrooms{
 	name = "\improper CLF Public Restrooms";
-	outside = 0
+	outside = 0;
+	ceiling = 6
 	})
 "tlM" = (
 /obj/structure/platform,
@@ -20891,7 +21068,8 @@
 /turf/open/floor/grayscale/edge,
 /area/deltastation/commons/toilet/restrooms{
 	name = "\improper CLF Public Restrooms";
-	outside = 0
+	outside = 0;
+	ceiling = 6
 	})
 "tEj" = (
 /obj/structure/inflatable/wall,
@@ -21233,7 +21411,8 @@
 /turf/open/floor/grayscale/edge,
 /area/deltastation/commons/toilet/restrooms{
 	name = "\improper CLF Public Restrooms";
-	outside = 0
+	outside = 0;
+	ceiling = 6
 	})
 "tWd" = (
 /obj/structure/closet/crate/hydroponics/prespawned,
@@ -21356,7 +21535,8 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
 /area/deltastation/hallway/primary{
 	outside = 0;
-	name = "\improper CLF Main Hallway"
+	name = "\improper CLF Main Hallway";
+	ceiling = 6
 	})
 "ucr" = (
 /obj/structure/bed/chair/office/light,
@@ -21524,7 +21704,8 @@
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/deltastation/commons/dorms{
 	outside = 0;
-	name = "\improper CLF Bunks"
+	name = "\improper CLF Bunks";
+	ceiling = 6
 	})
 "ulW" = (
 /obj/structure/filingcabinet,
@@ -21836,7 +22017,8 @@
 	},
 /area/deltastation/commons/dorms{
 	outside = 0;
-	name = "\improper CLF Bunks"
+	name = "\improper CLF Bunks";
+	ceiling = 6
 	})
 "uBd" = (
 /obj/structure/cable,
@@ -21968,7 +22150,8 @@
 	},
 /area/deltastation/commons/dorms{
 	outside = 0;
-	name = "\improper CLF Bunks"
+	name = "\improper CLF Bunks";
+	ceiling = 6
 	})
 "uIT" = (
 /obj/structure/bed/chair/comfy/black,
@@ -22198,7 +22381,8 @@
 /turf/open/floor/grayscale/edge,
 /area/deltastation/commons/toilet/restrooms{
 	name = "\improper CLF Public Restrooms";
-	outside = 0
+	outside = 0;
+	ceiling = 6
 	})
 "uWm" = (
 /obj/effect/ai_node,
@@ -22298,7 +22482,8 @@
 /turf/open/floor/grayscale/edge,
 /area/deltastation/commons/toilet/restrooms{
 	name = "\improper CLF Public Restrooms";
-	outside = 0
+	outside = 0;
+	ceiling = 6
 	})
 "vcW" = (
 /obj/effect/ai_node,
@@ -22766,7 +22951,8 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/edge,
 /area/deltastation/commons/dorms{
 	outside = 0;
-	name = "\improper CLF Bunks"
+	name = "\improper CLF Bunks";
+	ceiling = 6
 	})
 "vzI" = (
 /obj/structure/flora/ausbushes/fullgrass,
@@ -22813,7 +22999,8 @@
 /turf/closed/mineral/smooth,
 /area/deltastation/commons/dorms{
 	outside = 0;
-	name = "\improper CLF Bunks"
+	name = "\improper CLF Bunks";
+	ceiling = 6
 	})
 "vBD" = (
 /obj/structure/rack,
@@ -22987,7 +23174,8 @@
 	},
 /area/deltastation/commons/dorms{
 	outside = 0;
-	name = "\improper CLF Bunks"
+	name = "\improper CLF Bunks";
+	ceiling = 6
 	})
 "vIs" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -23034,7 +23222,8 @@
 /turf/open/floor/plating/asteroidfloor,
 /area/deltastation/commons/dorms{
 	outside = 0;
-	name = "\improper CLF Bunks"
+	name = "\improper CLF Bunks";
+	ceiling = 6
 	})
 "vKS" = (
 /obj/structure/table/reinforced/flipped{
@@ -23324,7 +23513,8 @@
 	},
 /area/deltastation/hallway/primary{
 	outside = 0;
-	name = "\improper CLF Main Hallway"
+	name = "\improper CLF Main Hallway";
+	ceiling = 6
 	})
 "vYI" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
@@ -23356,7 +23546,8 @@
 	},
 /area/deltastation/hallway/primary{
 	outside = 0;
-	name = "\improper CLF Main Hallway"
+	name = "\improper CLF Main Hallway";
+	ceiling = 6
 	})
 "vZQ" = (
 /obj/effect/ai_node,
@@ -23585,7 +23776,8 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/threeside,
 /area/deltastation/hallway/primary{
 	outside = 0;
-	name = "\improper CLF Main Hallway"
+	name = "\improper CLF Main Hallway";
+	ceiling = 6
 	})
 "wla" = (
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -23646,7 +23838,8 @@
 /turf/open/floor/grayscale/edge,
 /area/deltastation/commons/toilet/restrooms{
 	name = "\improper CLF Public Restrooms";
-	outside = 0
+	outside = 0;
+	ceiling = 6
 	})
 "wpf" = (
 /obj/effect/ai_node,
@@ -23931,7 +24124,8 @@
 	},
 /area/deltastation/hallway/primary{
 	outside = 0;
-	name = "\improper CLF Main Hallway"
+	name = "\improper CLF Main Hallway";
+	ceiling = 6
 	})
 "wDa" = (
 /obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
@@ -24570,7 +24764,8 @@
 	},
 /area/deltastation/hallway/primary{
 	outside = 0;
-	name = "\improper CLF Main Hallway"
+	name = "\improper CLF Main Hallway";
+	ceiling = 6
 	})
 "xeA" = (
 /obj/structure/flora/ausbushes/reedbush,
@@ -24609,7 +24804,8 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
 /area/deltastation/commons/dorms{
 	outside = 0;
-	name = "\improper CLF Bunks"
+	name = "\improper CLF Bunks";
+	ceiling = 6
 	})
 "xfN" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -24756,7 +24952,8 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/tile,
 /area/deltastation/hallway/primary{
 	outside = 0;
-	name = "\improper CLF Main Hallway"
+	name = "\improper CLF Main Hallway";
+	ceiling = 6
 	})
 "xkI" = (
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -24804,7 +25001,8 @@
 /turf/open/floor/plating/ground/dirt,
 /area/deltastation/hallway/primary{
 	outside = 0;
-	name = "\improper CLF Main Hallway"
+	name = "\improper CLF Main Hallway";
+	ceiling = 6
 	})
 "xnp" = (
 /obj/effect/landmark/excavation_site_spawner,
@@ -24888,7 +25086,8 @@
 	},
 /area/deltastation/hallway/primary{
 	outside = 0;
-	name = "\improper CLF Main Hallway"
+	name = "\improper CLF Main Hallway";
+	ceiling = 6
 	})
 "xqx" = (
 /obj/structure/flora/ausbushes/grassybush,
@@ -24948,7 +25147,8 @@
 /turf/open/floor/plating/asteroidwarning/down,
 /area/deltastation/commons/dorms{
 	outside = 0;
-	name = "\improper CLF Bunks"
+	name = "\improper CLF Bunks";
+	ceiling = 6
 	})
 "xuv" = (
 /turf/closed/wall/r_wall,
@@ -25031,7 +25231,8 @@
 	},
 /area/deltastation/commons/dorms{
 	outside = 0;
-	name = "\improper CLF Bunks"
+	name = "\improper CLF Bunks";
+	ceiling = 6
 	})
 "xwu" = (
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -25061,7 +25262,8 @@
 /turf/open/floor/plating/asteroidfloor,
 /area/deltastation/medical{
 	outside = 0;
-	name = "\improper CLF Medical"
+	name = "\improper CLF Medical";
+	ceiling = 6
 	})
 "xzo" = (
 /obj/structure/device/broken_piano,
@@ -25235,7 +25437,8 @@
 	},
 /area/deltastation/commons/dorms{
 	outside = 0;
-	name = "\improper CLF Bunks"
+	name = "\improper CLF Bunks";
+	ceiling = 6
 	})
 "xHx" = (
 /obj/effect/turf_decal/trimline/dark_blue/line,
@@ -25244,7 +25447,8 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/edge,
 /area/deltastation/commons/dorms{
 	outside = 0;
-	name = "\improper CLF Bunks"
+	name = "\improper CLF Bunks";
+	ceiling = 6
 	})
 "xHD" = (
 /obj/structure/sign/redcross{
@@ -25472,7 +25676,8 @@
 /turf/open/floor/plating/asteroidfloor,
 /area/deltastation/medical{
 	outside = 0;
-	name = "\improper CLF Medical"
+	name = "\improper CLF Medical";
+	ceiling = 6
 	})
 "xTa" = (
 /obj/structure/flora/ausbushes/fullgrass,
@@ -25496,7 +25701,8 @@
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/deltastation/commons/dorms{
 	outside = 0;
-	name = "\improper CLF Bunks"
+	name = "\improper CLF Bunks";
+	ceiling = 6
 	})
 "xTV" = (
 /obj/structure/flora/ausbushes/fullgrass,
@@ -25735,7 +25941,8 @@
 	},
 /area/deltastation/commons/dorms{
 	outside = 0;
-	name = "\improper CLF Bunks"
+	name = "\improper CLF Bunks";
+	ceiling = 6
 	})
 "ygN" = (
 /obj/structure/rack,
@@ -73004,7 +73211,7 @@ vBo
 irq
 aia
 gYS
-irq
+qAD
 gKr
 gKr
 evp
@@ -76151,7 +76358,7 @@ psZ
 plr
 plr
 pAj
-kge
+lDS
 eit
 fNK
 apt
@@ -77300,7 +77507,7 @@ plr
 plr
 pAj
 jPG
-jPG
+evK
 apt
 opq
 pAj
@@ -78736,7 +78943,7 @@ plr
 pAj
 jPG
 apt
-kge
+lDS
 fYa
 sDq
 aah
@@ -81318,7 +81525,7 @@ plr
 plr
 plr
 fYa
-lDS
+kge
 psb
 nJW
 mjz
@@ -86772,7 +86979,7 @@ plr
 plr
 pAj
 pAj
-nLU
+myW
 nLU
 pAj
 pAj
@@ -87056,7 +87263,7 @@ psZ
 psZ
 plr
 plr
-plr
+pAj
 pAj
 bpD
 koZ
@@ -87064,7 +87271,7 @@ koZ
 koZ
 koZ
 koZ
-gKr
+pAj
 mcN
 aah
 aah
@@ -87343,15 +87550,15 @@ psZ
 psZ
 plr
 plr
-plr
+pAj
 ijV
 koZ
 iRu
-koZ
+qcn
 iRu
 koZ
 koZ
-gKr
+pAj
 dUK
 aah
 mcN
@@ -87630,7 +87837,7 @@ psZ
 psZ
 plr
 plr
-plr
+pAj
 oNV
 bhb
 iRu
@@ -87638,7 +87845,7 @@ koZ
 iRu
 bhb
 koZ
-gKr
+pAj
 gKr
 gKr
 sDq
@@ -87917,7 +88124,7 @@ psZ
 psZ
 plr
 plr
-plr
+pAj
 xmH
 koZ
 iRu
@@ -87925,7 +88132,7 @@ koZ
 iRu
 koZ
 koZ
-gKr
+pAj
 gKr
 gKr
 gKr
@@ -88204,15 +88411,15 @@ psZ
 psZ
 plr
 plr
-plr
+pAj
 ijV
 koZ
 koZ
 koZ
 koZ
 koZ
-nLU
-gKr
+myW
+pAj
 gKr
 gKr
 gKr
@@ -88491,7 +88698,7 @@ psZ
 psZ
 plr
 plr
-plr
+pAj
 gae
 ouu
 eIh
@@ -88499,7 +88706,7 @@ koZ
 koZ
 mbN
 pAj
-gKr
+pAj
 gKr
 gKr
 gKr
@@ -88778,15 +88985,15 @@ psZ
 psZ
 psZ
 psZ
-psZ
-psZ
-psZ
-psZ
-psZ
-psZ
-psZ
-psZ
-psZ
+abm
+abm
+abm
+abm
+abm
+abm
+abm
+abm
+abm
 psZ
 psZ
 psZ
