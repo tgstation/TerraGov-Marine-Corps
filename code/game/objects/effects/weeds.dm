@@ -251,7 +251,7 @@
 	/// What type of weeds this node spreads
 	var/obj/alien/weeds/weed_type = /obj/alien/weeds
 	///The plasma cost multiplier for this node
-	var/plasma_cost_mult = 1
+	var/ability_cost_mult = 1
 
 /obj/alien/weeds/node/Initialize(mapload, obj/alien/weeds/node/node)
 	var/swapped = FALSE
@@ -305,7 +305,7 @@
 	weed_type = /obj/alien/weeds/sticky
 	color_variant = STICKY_COLOR
 	node_icon = "weednodegreen"
-	plasma_cost_mult = 3
+	ability_cost_mult = 3
 
 /obj/alien/weeds/node/sticky/Initialize(mapload, obj/alien/weeds/node/node)
 	. = ..()
@@ -345,4 +345,4 @@
 	color_variant = RESTING_COLOR
 	node_icon = "weednodewhite"
 	resting_buff = RESTING_BUFF
-	plasma_cost_mult = 2
+	ability_cost_mult = 2
