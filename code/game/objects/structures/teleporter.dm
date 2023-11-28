@@ -6,7 +6,7 @@
 	idle_power_usage = 50
 	///List of banned teleportable types
 	var/static/list/blacklisted_types = list(
-		/mob/living/carbon/human,
+		/mob/living/carbon,
 		/obj/machinery/nuclearbomb
 	)
 
