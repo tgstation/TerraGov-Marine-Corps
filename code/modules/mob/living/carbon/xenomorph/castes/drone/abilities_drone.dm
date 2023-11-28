@@ -106,10 +106,7 @@
 		return FALSE
 	X.visible_message(span_xenowarning("\the [X] puts some glowing resin over [target], mending their wounds!"))
 	owner.changeNext_move(CLICK_CD_RANGE)
-	if(ishuman(target))
-		humansalve_healing(target)
-	if(isxeno(target))
-		salve_healing(target)
+	salve_healing(target)
 	succeed_activate()
 	add_cooldown()
 	if(owner.client)
@@ -135,14 +132,6 @@
 	if(heal_multiplier > 1) // A signal depends on the above heals, so this has to be done here.
 		playsound(target,'sound/effects/magic.ogg', 75, 1)
 		essence_link_action.existing_link.add_stacks(-1)
-
-/datum/action/xeno_action/activable/psychic_cure/acidic_salve/proc/humansalve_healing(mob/living/carbon/human/target)
-	var/mob/living/carbon/xenomorph/X = owner
-	new /obj/effect/temp_visual/telekinesis(get_turf(target))
-	playsound(target, "alien_drool", 25)
-	target.adjustDrowsyness(15)
-	X.recurring_injection(target, /datum/reagent/medicine/tricordrazine, 2, 3)
-	patient.updatehealth()
 
 // ***************************************
 // *********** Enhancement

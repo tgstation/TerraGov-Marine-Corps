@@ -1421,7 +1421,7 @@
 /datum/action/xeno_action/activable/impregnate
 	name = "Impregnate"
 	action_icon_state = "drone_sting"
-	desc = "Fill your victim with your acidic cum to impregnate them."
+	desc = "Infect your victim with a young one without a facehugger. This will burn them a bit."
 	cooldown_timer = 30 SECONDS
 	use_state_flags = XACT_USE_STAGGERED
 	plasma_cost = 50
@@ -1453,7 +1453,6 @@
 	succeed_activate()
 
 /datum/action/xeno_action/activable/impregnate/use_ability(atom/A)
-	add_cooldown()
 	var/channel = SSsounds.random_available_channel()
 	var/mob/living/carbon/xenomorph/X = owner
 	var/mob/living/carbon/human/victim = A
@@ -1478,6 +1477,7 @@
 		SSblackbox.record_feedback("tally", "round_statistics", 1, "now_pregnant")
 		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[X.ckey]
 		personal_statistics.impregnations++
+	add_cooldown()
 
 /////////////////////////////////
 // Cocoon

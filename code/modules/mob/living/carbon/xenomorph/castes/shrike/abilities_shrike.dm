@@ -245,9 +245,7 @@
 		return FALSE
 	if(!check_distance(target, silent))
 		return FALSE
-	if(!isxeno(target))
-		return FALSE
-	var/mob/living/carbon/patient = target
+	var/mob/living/carbon/xenomorph/patient = target
 	if(!CHECK_BITFIELD(use_state_flags|override_flags, XACT_IGNORE_DEAD_TARGET) && patient.stat == DEAD)
 		if(!silent)
 			to_chat(owner, span_warning("It's too late. This sister won't be coming back."))
@@ -284,7 +282,7 @@
 
 	playsound(target,'sound/effects/magic.ogg', 75, 1)
 	new /obj/effect/temp_visual/telekinesis(get_turf(target))
-	var/mob/living/carbon/patient = target
+	var/mob/living/carbon/xenomorph/patient = target
 	patient.heal_wounds(SHRIKE_CURE_HEAL_MULTIPLIER)
 	patient.adjust_sunder(-SHRIKE_CURE_HEAL_MULTIPLIER)
 	if(patient.health > 0) //If they are not in crit after the heal, let's remove evil debuffs.
