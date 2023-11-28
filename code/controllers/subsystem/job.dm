@@ -339,6 +339,11 @@ SUBSYSTEM_DEF(job)
 				SendToAtom(M, pick(GLOB.latejoinsom))
 				return
 		else
+			if(FACTION_CLF)
+				if(length(GLOB.latejoinclf))
+					SendToAtom(M, pick(GLOB.latejoinclf))
+					return
+		else
 			if(length(GLOB.latejoin))
 				SendToAtom(M, pick(GLOB.latejoin))
 				return

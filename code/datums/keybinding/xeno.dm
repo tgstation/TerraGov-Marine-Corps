@@ -466,11 +466,11 @@
 	description = "Inject an egg with neurogas, killing the little one inside"
 	keybind_signal = COMSIG_XENOABILITY_INJECT_EGG_NEUROGAS
 
-/datum/keybinding/xeno/acidic_salve
-	name = "acidic_salve"
-	full_name = "Drone: Acidic Salve"
+/datum/keybinding/xeno/resin_salve
+	name = "resin_salve"
+	full_name = "Drone: Resin Salve"
 	description = "Heal a xenomorph with this."
-	keybind_signal = COMSIG_XENOABILITY_ACIDIC_SALVE
+	keybind_signal = COMSIG_XENOABILITY_RESIN_SALVE
 	hotkey_keys = list("F")
 
 /datum/keybinding/xeno/essence_link
