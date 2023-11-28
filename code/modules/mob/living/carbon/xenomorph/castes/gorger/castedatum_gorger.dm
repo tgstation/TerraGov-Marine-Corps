@@ -60,6 +60,14 @@
 		/datum/action/xeno_action/activable/devour,
 	)
 
+/datum/xeno_caste/gorger/on_caste_applied(mob/xenomorph)
+	. = ..()
+	xenomorph.AddElement(/datum/element/plasma_on_attack, 1.5)
+
+/datum/xeno_caste/gorger/on_caste_removed(mob/xenomorph)
+	. = ..()
+	xenomorph.RemoveElement(/datum/element/plasma_on_attack, 1.5)
+
 /datum/xeno_caste/gorger/normal
 	upgrade = XENO_UPGRADE_NORMAL
 
