@@ -119,8 +119,9 @@
 /datum/greyscale_config/hardsuit_variant/syndicate_markfive
 	prefix = "markfive_"
 
-/datum/greyscale_config/hardsuit_variant/exoskeleton
-	prefix = "exo_"
+/datum/greyscale_config/exoskeleton
+	icon_file = 'icons/mob/modular/syndicate_hardsuits.dmi'
+	json_config = 'code/datums/greyscale/json_configs/exoskeleton.json'
 
 //Mark 2
 
