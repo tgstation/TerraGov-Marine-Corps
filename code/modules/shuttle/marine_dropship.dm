@@ -28,6 +28,9 @@
 			alarmplayer.deltalarm.stop(alarmplayer)	//quiet the delta klaxon alarms
 		CHECK_TICK
 
+	playsound_z(3, 'sound/effects/dropship_crash.ogg', 75) //plays crash sound for mainship
+	playsound_z(4, 'sound/effects/dropship_crash.ogg', 75) //plays crash sound for transhit ship (alamo)
+
 	for(var/i in GLOB.alive_living_list) //knock down mobs
 		var/mob/living/M = i
 		if(!is_mainship_level(M.z))
