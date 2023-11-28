@@ -13,7 +13,7 @@
 #define JUNGLE_VARIANT "jungle"
 #define SNOW_VARIANT "snow"
 #define PRISON_VARIANT "prison"
-#define DESERT_VARIANT "desrt"
+#define DESERT_VARIANT "desert"
 
 
 //Default
