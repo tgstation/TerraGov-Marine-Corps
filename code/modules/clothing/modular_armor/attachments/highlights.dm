@@ -11,18 +11,18 @@
 	. = ..()
 
 /obj/item/armor_module/armor/highlight/on_attach(obj/item/attaching_to, mob/user)
-    . = ..()
-    greyscale_config = attaching_to.greyscale_config
-    update_icon()
-    update_greyscale()
-    RegisterSignal(attaching_to, COMSIG_ITEM_VARIANT_CHANGE, PROC_REF(on_variant_change))
+	. = ..()
+	greyscale_config = attaching_to.greyscale_config
+	update_icon()
+	update_greyscale()
+	RegisterSignal(attaching_to, COMSIG_ITEM_VARIANT_CHANGE, PROC_REF(on_variant_change))
 
 /obj/item/armor_module/armor/highlight/proc/on_variant_change(mob/user, variant)
-    SIGNAL_HANDLER
-    if(variant in icon_state_variants)
-        current_variant = variant
-        update_icon()
-        update_greyscale()
+	SIGNAL_HANDLER
+	if(variant in icon_state_variants)
+		current_variant = variant
+		update_icon()
+		update_greyscale()
 
 /obj/item/armor_module/armor/highlight/chest_highlight
 	name = "chest highlight"
