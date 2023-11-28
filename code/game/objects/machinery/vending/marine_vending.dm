@@ -681,6 +681,19 @@
 /obj/machinery/vending/cigarette/nopower
 	use_power = NO_POWER_USE
 
+/obj/machinery/vending/cigarette/valhalla
+	resistance_flags = INDESTRUCTIBLE
+	use_power = NO_POWER_USE
+	products = list(
+		/obj/item/storage/fancy/cigarettes/luckystars = -1,
+		/obj/item/storage/fancy/chemrettes = -1,
+		/obj/item/storage/box/matches = -1,
+		/obj/item/tool/lighter/random = -1,
+		/obj/item/tool/lighter/zippo = -1,
+		/obj/item/clothing/mask/cigarette/cigar/havana = -1,
+		/obj/item/storage/fancy/cigar = -1,
+	)
+
 /obj/machinery/vending/cargo_supply
 	name = "\improper Operational Supplies Vendor"
 	desc = "A large vendor for dispensing specialty and bulk supplies. Restricted to cargo personnel only."
@@ -842,6 +855,10 @@
 					/obj/item/reagent_containers/food/snacks/mre_pack/xmas1 = 25,
 					/obj/item/reagent_containers/food/snacks/mre_pack/xmas2 = 25,
 					/obj/item/reagent_containers/food/snacks/mre_pack/xmas3 = 25)*/
+
+/obj/machinery/vending/marineFood/valhalla
+	resistance_flags = INDESTRUCTIBLE
+	use_power = NO_POWER_USE
 
 /obj/machinery/vending/marineFood/som
 	name = "\improper SOM Food and Drinks Vendor"
