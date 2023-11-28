@@ -1120,6 +1120,7 @@
 /datum/action/xeno_action/activable/devour/action_activate()
 	. = ..()
 	var/mob/living/carbon/xenomorph/owner_xeno = owner
+	var/mob/living/carbon/human/victim = target
 	if(!owner_xeno.eaten_mob)
 		return
 
@@ -1130,6 +1131,7 @@
 		owner_xeno.stop_sound_channel(channel)
 		return
 	owner_xeno.eject_victim()
+	REMOVE_TRAIT(victim, TRAIT_STASIS, TRAIT_STASIS)
 
 /datum/action/xeno_action/activable/devour/use_ability(atom/target)
 	var/mob/living/carbon/human/victim = target
@@ -1143,6 +1145,7 @@
 		owner_xeno.stop_sound_channel(channel)
 		return
 	owner.visible_message(span_warning("[owner_xeno] devours [victim]!"), span_warning("We devour [victim]!"), null, 5)
+	ADD_TRAIT(victim, TRAIT_STASIS, TRAIT_STASIS)
 	victim.forceMove(owner_xeno)
 	owner_xeno.eaten_mob = victim
 	add_cooldown()
@@ -1415,6 +1418,66 @@
 		personal_statistics.drained++
 	log_combat(victim, owner, "was drained.")
 	log_game("[key_name(victim)] was drained at [AREACOORD(victim.loc)].")
+/////////////////////////////////
+// Impregnate
+/////////////////////////////////
+
+/datum/action/xeno_action/activable/impregnate
+	name = "Impregnate"
+	action_icon_state = "drone_sting"
+	desc = "Fill your victim with your acidic cum to impregnate them."
+	use_state_flags = XACT_USE_STAGGERED
+	plasma_cost = 50
+	gamemode_flags = ABILITY_NUCLEARWAR
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_IMPREGNATE,
+	)
+
+/datum/action/xeno_action/activable/impregnate/can_use_ability(atom/A, silent, override_flags)
+	var/mob/living/carbon/xenomorph/X = owner
+	var/mob/living/carbon/human/victim = A
+	if(!ishuman(A) || issynth(A))
+		to_chat(owner, span_warning("That wouldn't be able to bear a larva."))
+		return FALSE
+	if(owner.do_actions) //can't use if busy
+		return FALSE
+	if(!owner.Adjacent(victim)) //checks if owner next to target
+		return FALSE
+	if(X.on_fire)
+		if(!silent)
+			to_chat(X, span_warning("We're too busy being on fire to do this!"))
+		return FALSE
+	X.face_atom(victim)
+	X.visible_message(span_danger("[X] starts to fuck [victim]!"), \
+	span_danger("We start to fuck [victim]!"), null, 5)
+	succeed_activate()
+
+/datum/action/xeno_action/activable/impregnate/use_ability(atom/A)
+	add_cooldown()
+	var/channel = SSsounds.random_available_channel()
+	var/mob/living/carbon/xenomorph/X = owner
+	var/mob/living/carbon/human/victim = A
+	var/hivenumber = XENO_HIVE_NORMAL
+	playsound(X, 'sound/effects/alien_plapping.ogg', 40, channel = channel)
+	if(!do_after(X, 7 SECONDS, FALSE, victim, BUSY_ICON_DANGER, extra_checks = CALLBACK(owner, TYPE_PROC_REF(/mob, break_do_after_checks), list("health" = X.health))))
+		to_chat(owner, span_warning("We stop fucking \the [victim]. They probably was loose anyways."))
+		X.stop_sound_channel(channel)
+		return fail_activate()
+	owner.visible_message(span_warning("[X] fucks [victim]!"), \
+	span_warning("We fuck [victim]!"), null, 5)
+	to_chat(owner, span_warning("We will cum in 6 seconds! Do not walk away until it is done."))
+	X.do_jitter_animation()
+	if(!do_after(X, 6, FALSE, null, BUSY_ICON_DANGER))
+		to_chat(owner, span_warning("We moved too soon and we will have to fuck our victim again!"))
+		return fail_activate()
+	if(!(locate(/obj/item/alien_embryo) in target))
+		victim.apply_damage(25, BURN, GROIN)
+		var/obj/item/alien_embryo/embryo = new(target)
+		embryo.hivenumber = hivenumber
+		GLOB.round_statistics.now_pregnant++
+		SSblackbox.record_feedback("tally", "round_statistics", 1, "now_pregnant")
+		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[X.ckey]
+		personal_statistics.impregnations++
 
 /////////////////////////////////
 // Cocoon

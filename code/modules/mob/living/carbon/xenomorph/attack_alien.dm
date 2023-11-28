@@ -263,11 +263,17 @@
 	switch(X.a_intent)
 		if(INTENT_HELP)
 			if(on_fire)
-				X.visible_message(span_danger("[X] stares at [src]."), span_notice("We stare at the roasting [src], toasty."), null, 5)
-				return FALSE
-			X.visible_message(span_notice("\The [X] caresses [src] with its scythe-like arm."), \
-			span_notice("We caress [src] with our scythe-like arm."), null, 5)
-			return FALSE
+				fire_stacks = max(fire_stacks - 1, 0)
+				playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, 1, 7)
+				X.visible_message(span_danger("[X] tries to put out the fire on [src]!"), \
+					span_warning("We try to put out the fire on [src]!"), null, 5)
+				if(fire_stacks <= 0)
+					X.visible_message(span_danger("[X] has successfully extinguished the fire on [src]!"), \
+						span_notice("We extinguished the fire on [src]."), null, 5)
+					ExtinguishMob()
+				return TRUE
+			X.visible_message(span_notice("\The [X] caresses \the [src] with its scythe-like arm."), \
+			span_notice("We caress \the [src] with our scythe-like arm."), null, 5)
 
 		if(INTENT_GRAB)
 			return attack_alien_grab(X)

@@ -87,9 +87,9 @@
 // *********** Acidic Salve
 // ***************************************
 /datum/action/xeno_action/activable/psychic_cure/acidic_salve
-	name = "Acidic Salve"
+	name = "Resin Salve"
 	action_icon_state = "heal_xeno"
-	desc = "Apply a minor heal to the target. If applied to a linked sister, it will also apply a regenerative buff. Additionally, if that linked sister is near death, the heal's potency is increased"
+	desc = "Apply a minor heal to the target. If applied to a linked sister, it will also apply a regenerative buff. Additionally, if that linked sister is near death, the heal's potency is increased. This makes non-xenos sleepy for a while."
 	cooldown_timer = 5 SECONDS
 	plasma_cost = 150
 	keybinding_signals = list(
@@ -104,9 +104,12 @@
 		return FALSE
 	if(!do_mob(X, target, 1 SECONDS, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
 		return FALSE
-	X.visible_message(span_xenowarning("\the [X] vomits acid over [target], mending their wounds!"))
+	X.visible_message(span_xenowarning("\the [X] puts some glowing resin over [target], mending their wounds!"))
 	owner.changeNext_move(CLICK_CD_RANGE)
-	salve_healing(target)
+	if(ishuman(target))
+		humansalve_healing(target)
+	if(isxeno(target))
+		salve_healing(target)
 	succeed_activate()
 	add_cooldown()
 	if(owner.client)
@@ -132,6 +135,15 @@
 	if(heal_multiplier > 1) // A signal depends on the above heals, so this has to be done here.
 		playsound(target,'sound/effects/magic.ogg', 75, 1)
 		essence_link_action.existing_link.add_stacks(-1)
+
+/datum/action/xeno_action/activable/psychic_cure/acidic_salve/proc/humansalve_healing(mob/living/carbon/human/target)
+	new /obj/effect/temp_visual/telekinesis(get_turf(target))
+	var/heal_amount = (DRONE_BASE_SALVE_HEAL * target.maxHealth * 0.01)
+	playsound(target, "alien_drool", 25)
+	target.adjustDrowsyness(15)
+	target.adjustFireLoss(-max(0, heal_amount - target.getBruteLoss()), TRUE)
+	target.adjustBruteLoss(-heal_amount)
+	target.adjust_sunder(-heal_amount/10)
 
 // ***************************************
 // *********** Enhancement
