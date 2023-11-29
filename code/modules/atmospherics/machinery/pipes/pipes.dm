@@ -15,6 +15,8 @@
 /obj/machinery/atmospherics/pipe/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/undertile, TRAIT_T_RAY_VISIBLE)
+	if(is_mainship_level(z))
+		GLOB.mainship_pipes += src
 
 /obj/machinery/atmospherics/pipe/nullifyNode(i)
 	var/obj/machinery/atmospherics/oldN = nodes[i]
@@ -55,6 +57,7 @@
 
 /obj/machinery/atmospherics/pipe/Destroy()
 	QDEL_NULL(parent)
+	GLOB.mainship_pipes -= src
 
 	var/turf/T = loc
 	for(var/obj/machinery/meter/meter in T)

@@ -373,3 +373,20 @@
 	icon_state = "spooky"
 	pixel_x = 16
 	pixel_y = 16
+
+/obj/effect/overlay/pipe_explosion_warning
+	icon = 'icons/effects/effects.dmi'
+	icon_state = "techpod_lz_marker"
+	var/time_until_explosion = 5 SECONDS
+
+/obj/effect/overlay/pipe_explosion_warning/Initialize(mapload, ...)
+	. = ..()
+	playsound(src, 'sound/effects/pipe_hissing.ogg', 25, 0, 10)
+	addtimer(CALLBACK(src, PROC_REF(explode)), time_until_explosion)
+	visible_message(span_highdanger("You hear a loud hissing noise!"))
+
+///Explodes the pipes after the timer.
+/obj/effect/overlay/pipe_explosion_warning/proc/explode()
+	new /obj/item/explosive/grenade/bursting_pipe(loc)
+	new /obj/item/explosive/grenade/incendiary/bursting_pipe(loc)
+	qdel(src)

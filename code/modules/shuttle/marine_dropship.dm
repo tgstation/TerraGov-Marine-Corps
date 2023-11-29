@@ -28,6 +28,9 @@
 			alarmplayer.deltalarm.stop(alarmplayer)	//quiet the delta klaxon alarms
 		CHECK_TICK
 
+	playsound_z(3, 'sound/effects/dropship_crash.ogg', 50) //plays crash sound for mainship
+	playsound_z(4, 'sound/effects/dropship_crash.ogg', 50) //plays crash sound in transit for xenos landing
+
 	for(var/i in GLOB.alive_living_list) //knock down mobs
 		var/mob/living/M = i
 		if(!is_mainship_level(M.z))
@@ -78,6 +81,27 @@
 	SSmonitor.process_human_positions()
 	SSevacuation.initial_human_on_ship = SSmonitor.human_on_ship
 
+	addtimer(CALLBACK(src, PROC_REF(check_hijack_explosions)), 15 SECONDS) //using a timer so the klaxon of the pipes exploding doesn't interfere with the crash sound.
+
+/// When Alamo crash lands on the ship, explodes 6 pipes in random locations.
+/obj/docking_port/stationary/marine_dropship/proc/check_hijack_explosions()
+	var/list/shortly_exploding_pipes = list()
+	for(var/i = 1 to 6) //6 pipe explosions on hijack crash
+		shortly_exploding_pipes += pick(GLOB.mainship_pipes)
+
+	for(var/obj/item/pipe/exploding_pipe AS in shortly_exploding_pipes)
+		var/turf/pipe_location = get_turf(exploding_pipe)
+		new /obj/effect/overlay/pipe_explosion_warning(pipe_location)
+
+	addtimer(CALLBACK(src, PROC_REF(shake_ship)), 5 SECONDS)
+
+///Shakes ship on crash during the pipe explosions.
+/obj/docking_port/stationary/marine_dropship/proc/shake_ship()
+	for(var/mob/current_mob in GLOB.mob_living_list)
+		if(!is_mainship_level(current_mob.z))
+			continue
+		shake_camera(current_mob, 7, 1)
+		playsound_z(3, 'sound/effects/double_klaxon.ogg', 5)
 /obj/docking_port/stationary/marine_dropship/crash_target
 	name = "dropshipcrash"
 	id = "dropshipcrash"
@@ -321,6 +345,8 @@
 	. = ..()
 	if(hijack_state == HIJACK_STATE_CRASHING)
 		priority_announce("DROPSHIP ON COLLISION COURSE. CRASH IMMINENT.", "EMERGENCY", sound = 'sound/AI/dropship_emergency.ogg')
+		var/turf/crash_landing = get_turf(destination)
+		explosion(crash_landing, 5, 8, 12, 0, 8, 12)
 	for(var/obj/machinery/landinglight/light AS in GLOB.landing_lights)
 		if(light.linked_port == destination)
 			light.turn_on()
