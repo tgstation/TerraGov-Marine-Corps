@@ -460,7 +460,7 @@
 		// use and if we're before the last chemical
 		var/last_chem = toxin[length(toxin)]
 		var/last_chem_index = toxin.Find(last_chem)
-		if(chem == toxin[last_chem_index - 1])
+		if(length(toxin) > 1 && chem == toxin[last_chem_index - 1])
 			string_append = " and "
 		else if(chem == toxin[last_chem_index])
 			string_append = ""
