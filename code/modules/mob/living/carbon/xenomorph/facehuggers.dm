@@ -251,14 +251,14 @@
 			return
 
 	if(ishuman(loc)) //Having an angry xeno in your hand is a bad idea.
-		var/mob/living/carbon/human/holder = loc
+		var/mob/living/holder = loc
 		holder.visible_message(span_warning("The facehugger [holder] is carrying leaps at [holder.p_them()]!") , "<span class ='danger'>The facehugger you're carrying leaps at you!</span>")
 		if(!Attach(holder))
 			go_idle()
 		return
 
 	var/i = 10//So if we have a pile of dead bodies around, it doesn't scan everything, just ten iterations.
-	for(var/mob/living/carbon/M in view(4,src))
+	for(var/mob/living/M in view(4,src))
 		if(!i)
 			break
 		if(M.can_be_facehugged(src))
@@ -375,17 +375,17 @@
 		go_idle()
 		return
 
-	var/mob/living/carbon/carbon_victim = hit_atom
-	if(loc == carbon_victim) //Caught
+	var/mob/living/victim = hit_atom
+	if(loc == victim) //Caught
 		pre_leap(impact_time)
-	else if(leaping && carbon_victim.can_be_facehugged(src)) //Standard leaping behaviour, not attributable to being _thrown_ such as by a Carrier.
-		if(!Attach(carbon_victim))
+	else if(leaping && victim.can_be_facehugged(src)) //Standard leaping behaviour, not attributable to being _thrown_ such as by a Carrier.
+		if(!Attach(victim))
 			go_idle()
 	else
 		step(src, REVERSE_DIR(dir))
-		if(!issamexenohive(carbon_victim))
-			carbon_victim.adjust_stagger(3 SECONDS)
-			carbon_victim.add_slowdown(3)
+		if(!issamexenohive(victim))
+			victim.adjust_stagger(3 SECONDS)
+			victim.add_slowdown(3)
 		pre_leap(activate_time)
 
 	leaping = FALSE
@@ -421,7 +421,7 @@
 
 	return ..()
 
-/mob/living/carbon/human/can_be_facehugged(obj/item/clothing/mask/facehugger/F, check_death = TRUE, check_mask = TRUE, provoked = FALSE)
+/mob/living/can_be_facehugged(obj/item/clothing/mask/facehugger/F, check_death = TRUE, check_mask = TRUE, provoked = FALSE)
 	if(check_death && stat == DEAD)
 		return FALSE
 
@@ -434,9 +434,9 @@
 	if((status_flags & (XENO_HOST|GODMODE)) || F.stat == DEAD)
 		return FALSE
 
-	if(!provoked)
-		if(species?.species_flags & (IS_SYNTHETIC|ROBOTIC_LIMBS))
-			return FALSE
+//	if(!provoked)
+//		if(species?.species_flags & (IS_SYNTHETIC|ROBOTIC_LIMBS))
+//			return FALSE
 
 	if(on_fire)
 		return FALSE
@@ -545,14 +545,14 @@
 		var/hugsound = user.gender == FEMALE ? get_sfx("female_hugged") : get_sfx("male_hugged")
 		playsound(loc, hugsound, 25, 0)
 	if(!sterile && !issynth(user))
-		var/stamina_dmg = user.maxHealth + user.max_stamina
+		var/stamina_dmg = 150 //user.maxHealth + user.max_stamina
 		user.apply_damage(stamina_dmg, STAMINA) // complete winds the target
 		user.Unconscious(20 SECONDS)
 	attached = TRUE
 	go_idle(FALSE, TRUE)
 	addtimer(CALLBACK(src, PROC_REF(Impregnate), user), IMPREGNATION_TIME)
 
-/obj/item/clothing/mask/facehugger/proc/Impregnate(mob/living/carbon/target)
+/obj/item/clothing/mask/facehugger/proc/Impregnate(mob/living/target)
 	ADD_TRAIT(src, TRAIT_NODROP, HUGGER_TRAIT)
 	var/as_planned = target?.wear_mask == src ? TRUE : FALSE
 	if(target.can_be_facehugged(src, FALSE, FALSE) && !sterile && as_planned) //is hugger still on face and can they still be impregnated

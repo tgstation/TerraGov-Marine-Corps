@@ -1437,8 +1437,11 @@
 		return FALSE
 	var/mob/living/carbon/xenomorph/X = owner
 	var/mob/living/victim = A
-	if(!ishuman(A) || issynth(A))
-		to_chat(owner, span_warning("That wouldn't be able to bear a larva."))
+	if(locate(/obj/item/alien_embryo) in victim)
+		to_chat(owner, span_warning("There is already a young one in this host."))
+		return FALSE
+	if(!ishuman(A))
+		to_chat(owner, span_warning("This one wouldn't be able to bear a young one."))
 		return FALSE
 	if(owner.do_actions) //can't use if busy
 		return FALSE

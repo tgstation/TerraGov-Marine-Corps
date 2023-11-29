@@ -26,18 +26,16 @@
 	affected_mob.status_flags |= XENO_HOST
 	log_combat(affected_mob, null, "been infected with an embryo")
 	START_PROCESSING(SSobj, src)
-	if(iscarbon(affected_mob))
-		var/mob/living/carbon/C = affected_mob
-		C.med_hud_set_status()
+	var/mob/living/C = affected_mob
+	C.med_hud_set_status()
 
 
 /obj/item/alien_embryo/Destroy()
 	if(affected_mob)
 		log_combat(affected_mob, null, "had their embryo removed")
 		affected_mob.status_flags &= ~(XENO_HOST)
-		if(iscarbon(affected_mob))
-			var/mob/living/carbon/C = affected_mob
-			C.med_hud_set_status()
+		var/mob/living/C = affected_mob
+		C.med_hud_set_status()
 		STOP_PROCESSING(SSobj, src)
 		affected_mob = null
 	return ..()
@@ -50,9 +48,8 @@
 
 	if(loc != affected_mob)
 		affected_mob.status_flags &= ~(XENO_HOST)
-		if(iscarbon(affected_mob))
-			var/mob/living/carbon/C = affected_mob
-			C.med_hud_set_status()
+		var/mob/living/C = affected_mob
+		C.med_hud_set_status()
 		affected_mob = null
 		return PROCESS_KILL
 
@@ -148,7 +145,7 @@
 	stage = 6
 
 
-/mob/living/carbon/xenomorph/larva/proc/initiate_burst(mob/living/carbon/victim)
+/mob/living/carbon/xenomorph/larva/proc/initiate_burst(mob/living/victim)
 	if(victim.chestburst || loc != victim)
 		return
 
@@ -158,14 +155,14 @@
 	victim.Unconscious(10 SECONDS)
 	victim.visible_message(span_danger("\The [victim] starts shaking uncontrollably!"), \
 								span_danger("You feel something wiggling out of your insides!"))
-	victim.jitter(300)
+	victim.jitter(150)
 
 	victim.emote_burstscream()
 
 	addtimer(CALLBACK(src, PROC_REF(burst), victim), 3 SECONDS)
 
 
-/mob/living/carbon/xenomorph/larva/proc/burst(mob/living/carbon/victim)
+/mob/living/carbon/xenomorph/larva/proc/burst(mob/living/victim)
 	if(QDELETED(victim))
 		return
 

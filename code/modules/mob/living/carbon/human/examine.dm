@@ -508,7 +508,7 @@
 		if(species.species_flags & IS_SYNTHETIC)
 			msg += "[span_xenowarning("You sense [t_he] is not organic.")]\n"
 		if(status_flags & XENO_HOST)
-			msg += "[t_He] is impregnated and[reagents.get_reagent_amount(/datum/reagent/consumable/larvajelly) > 0 ? " " : " not"] inoculated with Larval Accelerant. \n"
+			msg += "[t_He] is impregnated and[reagents.get_reagent_amount(/datum/reagent/consumable/larvajelly) > 0 ? "" : "not"] inoculated with Larval Accelerant. \n"
 		if(reagents.get_reagent_amount(/datum/reagent/toxin/xeno_neurotoxin))
 			msg += "Neurotoxin: Causes increasingly intense pain and stamina damage over time, increasing in intensity at the 40 second and the minute and a half mark of metabolism.\n"
 		if(reagents.get_reagent_amount(/datum/reagent/toxin/xeno_hemodile))
