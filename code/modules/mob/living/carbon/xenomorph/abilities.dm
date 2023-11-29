@@ -1158,7 +1158,7 @@
 /datum/action/xeno_action/activable/larval_growth_sting
 	name = "Larval Growth Sting"
 	action_icon_state = "drone_sting"
-	desc = "Inject an impregnated host with growth serum, causing the larva inside to grow quicker. Has harmful effects for non-hested non-infected hosts while stabilizing nested and larva-infected hosts."
+	desc = "Inject an impregnated host with growth serum, causing the larva inside to grow quicker. Has harmful effects for non-infected hosts while stabilizing larva-infected hosts."
 	ability_name = "larval growth sting"
 	plasma_cost = 150
 	cooldown_timer = 30 SECONDS
@@ -1196,10 +1196,10 @@
 	succeed_activate()
 
 	add_cooldown()
-	if(isnestedhost(A))
+	if(if(locate(/obj/item/alien_embryo) in A))
 		X.recurring_injection(A, list(/datum/reagent/consumable/larvajelly,/datum/reagent/medicine/tricordrazine,/datum/reagent/medicine/inaprovaline), XENO_LARVAL_CHANNEL_TIME, XENO_LARVAL_AMOUNT_RECURRING, 3)
 	else
-		X.recurring_injection(A, list(/datum/reagent/toxin/sleeptoxin, /datum/reagent/toxin/acid, /datum/reagent/consumable/larvajelly), XENO_LARVAL_CHANNEL_TIME, XENO_LARVAL_AMOUNT_RECURRING, 3)
+		X.recurring_injection(A, list(/datum/reagent/toxin/sleeptoxin,/datum/reagent/toxin/acid,/datum/reagent/consumable/larvajelly), XENO_LARVAL_CHANNEL_TIME, XENO_LARVAL_AMOUNT_RECURRING, 3)
 
 
 // ***************************************
@@ -1472,12 +1472,9 @@
 		to_chat(owner, span_warning("We stop fucking \the [victim]. They probably was loose anyways."))
 		X.stop_sound_channel(channel)
 		return fail_activate()
-    owner.visible_message(span_warning("[X] fucks [victim]!"), \
-                        span_warning("We fuck [victim]!"), \
-                        span_warning("You hear slapping."), \
-                        5, victim)
-    if(victim.stat == CONSCIOUS)
-        to_chat(victim, span_warning("[X] fucks you!"))
+	owner.visible_message(span_warning("[X] fucks [victim]!"), span_warning("We fuck [victim]!"), span_warning("You hear slapping."), 5, victim)
+	if(victim.stat == CONSCIOUS)
+		to_chat(victim, span_warning("[X] fucks you!"))
 	if(!do_after(X, 6, FALSE, null, BUSY_ICON_DANGER))
 		to_chat(owner, span_warning("We moved too soon and we will have to fuck our victim again!"))
 		return fail_activate()
