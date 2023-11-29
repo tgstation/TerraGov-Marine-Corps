@@ -1472,8 +1472,12 @@
 		to_chat(owner, span_warning("We stop fucking \the [victim]. They probably was loose anyways."))
 		X.stop_sound_channel(channel)
 		return fail_activate()
-	owner.visible_message(span_warning("[X] fucks [victim]!"), \
-	span_warning("We fuck [victim]!"), null, 5)
+    owner.visible_message(span_warning("[X] fucks [victim]!"), \
+                        span_warning("We fuck [victim]!"), \
+                        span_warning("You hear slapping."), \
+                        5, victim)
+    if(victim.stat == CONSCIOUS)
+        to_chat(victim, span_warning("[X] fucks you!"))
 	if(!do_after(X, 6, FALSE, null, BUSY_ICON_DANGER))
 		to_chat(owner, span_warning("We moved too soon and we will have to fuck our victim again!"))
 		return fail_activate()
