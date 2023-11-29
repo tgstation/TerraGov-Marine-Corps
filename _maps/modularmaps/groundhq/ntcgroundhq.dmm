@@ -2385,7 +2385,7 @@
 "uhq" = (/obj/machinery/computer/med_data,/turf/open/floor/mainship/red{dir = 4},/area/mainship/command/cic{outside = 0; name = "Ground Combat Information Center"})
 "uhM" = (/obj/structure/window/framed/mainship,/obj/structure/cable,/obj/structure/cable,/turf/open/floor/plating,/area/mainship/engineering/engine_core{outside = 0})
 "uhO" = (/obj/structure/table/mainship,/obj/item/binoculars,/turf/open/floor/mainship/red,/area/lv624/lazarus/security)
-"uiu" = (/obj/structure/table/reinforced,/obj/machinery/door/firedoor/mainship{dir = 2},/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{dir = 1},/obj/machinery/door/window/secure/engineering{dir = 2},/obj/machinery/door/window/secure/engineering{dir = 1},/turf/open/floor/mainship/mono,/area/mainship/engineering/upper_engineering{outside = 0})
+"uiu" = (/obj/structure/table/reinforced,/obj/machinery/door/firedoor/mainship{dir = 2},/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{dir = 1},/obj/machinery/door/window/secure/engineering{dir = 2},/obj/machinery/door/window/secure/engineering{dir = 1; req_access = null},/turf/open/floor/mainship/mono,/area/mainship/engineering/upper_engineering{outside = 0})
 "uiK" = (/obj/machinery/atmospherics/components/unary/vent_pump/layer1{dir = 4; on = 1},/turf/open/floor/mainship/mono,/area/mainship/living/starboard_garden{outside = 0})
 "ujx" = (/obj/structure/table/mainship,/obj/machinery/computer/security/marinemainship{dir = 8; pixel_x = -17},/obj/machinery/light{dir = 1},/turf/open/floor/mainship/orange{dir = 9},/area/mainship/command/cic{outside = 0; name = "Ground Combat Information Center"})
 "ujH" = (/obj/structure/flora/ausbushes/reedbush,/turf/open/floor/grass,/area/mainship/living/grunt_rnr{outside = 0})
