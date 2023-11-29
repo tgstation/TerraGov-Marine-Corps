@@ -1016,7 +1016,7 @@
 	starting_attachment_types = list(/obj/item/attachable/verticalgrip, /obj/item/attachable/reddot)
 
 /obj/item/weapon/gun/rifle/standard_gpmg/machinegunner
-	starting_attachment_types = list(/obj/item/attachable/stock/t60stock, /obj/item/attachable/foldable/bipod, /obj/item/attachable/extended_barrel)
+	starting_attachment_types = list(/obj/item/attachable/stock/t60stock, /obj/item/attachable/foldable/bipod, /obj/item/attachable/magnetic_harness, /obj/item/attachable/extended_barrel)
 
 //-------------------------------------------------------
 //M41AE2 Heavy Pulse Rifle
