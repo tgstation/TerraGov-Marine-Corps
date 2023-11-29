@@ -421,7 +421,7 @@
 
 	return ..()
 
-/mob/living/can_be_facehugged(obj/item/clothing/mask/facehugger/F, check_death = TRUE, check_mask = TRUE, provoked = FALSE)
+/mob/living/carbon/human/can_be_facehugged(obj/item/clothing/mask/facehugger/F, check_death = TRUE, check_mask = TRUE, provoked = FALSE)
 	if(check_death && stat == DEAD)
 		return FALSE
 
@@ -434,9 +434,9 @@
 	if((status_flags & (XENO_HOST|GODMODE)) || F.stat == DEAD)
 		return FALSE
 
-//	if(!provoked)
-//		if(species?.species_flags & (IS_SYNTHETIC|ROBOTIC_LIMBS))
-//			return FALSE
+	if(!provoked)
+		if(isrobot(src))
+			return FALSE
 
 	if(on_fire)
 		return FALSE
@@ -603,7 +603,7 @@
 	REMOVE_TRAIT(src, TRAIT_NODROP, HUGGER_TRAIT)
 	attached = FALSE
 	if(isliving(loc) && forcedrop) //Make it fall off the person so we can update their icons. Won't update if they're in containers thou
-		var/mob/living/M = loc
+		var/mob/living/carbon/human/M = loc
 		M.dropItemToGround(src)
 	update_icon()
 
@@ -692,7 +692,7 @@
 	if(!combat_hugger_check_target(M))
 		return FALSE
 
-	var/mob/living/victim = M
+	var/mob/living/carbon/human/victim = M
 	do_attack_animation(M)
 	victim.apply_damage(100, STAMINA, BODY_ZONE_HEAD, BIO) //This should prevent sprinting
 	victim.apply_damage(1, BRUTE, sharp = TRUE, updating_health = TRUE) //Token brute for the injection
@@ -753,7 +753,7 @@
 		if(!locate(/obj/effect/xenomorph/spray) in sticky_tile.contents)
 			new /obj/alien/resin/sticky/thin(sticky_tile)
 
-	for(var/mob/living/target in range(1, loc))
+	for(var/mob/living/carbon/human/target in range(1, loc))
 		if(isxeno(target)) //Xenos aren't affected by sticky resin
 			continue
 
@@ -779,7 +779,7 @@
 	if(!combat_hugger_check_target(M))
 		return FALSE
 
-	var/mob/living/victim = M
+	var/mob/living/carbon/human/victim = M
 	do_attack_animation(M, ATTACK_EFFECT_REDSLASH)
 	playsound(loc, "alien_claw_flesh", 25, 1)
 	var/affecting = ran_zone(null, 0)
