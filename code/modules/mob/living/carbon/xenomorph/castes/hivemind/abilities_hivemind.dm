@@ -59,6 +59,17 @@
 	SEND_SIGNAL(owner, COMSIG_ESCORTING_ATOM_BEHAVIOUR_CHANGED, minions_agressive)
 	update_button_icon()
 
+// ***************************************
+// *********** psychic heal
+// ***************************************
+/datum/action/xeno_action/activable/psychic_cure/queen_give_heal/hivemind
+	cooldown_timer = 10 SECONDS
+	plasma_cost = 150
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_QUEEN_HEAL,
+	)
+	heal_range = HIVELORD_HEAL_RANGE
+	target_flags = XABB_MOB_TARGET
 /datum/action/xeno_action/activable/psychic_cure/queen_give_heal/hivemind/can_use_action(silent = FALSE, override_flags, selecting = FALSE)
 	if (owner.status_flags & INCORPOREAL)
 		return FALSE
