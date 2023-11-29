@@ -15,7 +15,7 @@
 "cW" = (
 /obj/structure/bed/chair/dropship/passenger,
 /obj/structure/closet/walllocker/hydrant/extinguisher{
-	pixel_y = 16
+	pixel_y = 0
 	},
 /turf/open/shuttle/dropship/seven,
 /area/shuttle/dropship/normandy)

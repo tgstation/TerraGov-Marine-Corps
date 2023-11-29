@@ -92,11 +92,11 @@
 	return sound //by default just return this var.
 
 
-/datum/emote/proc/replace_pronoun(mob/user, message)
-	if(findtext(message, "their"))
-		message = replacetext(message, "their", user.p_their())
-	if(findtext(message, "them"))
-		message = replacetext(message, "them", user.p_them())
+datum/emote/proc/replace_pronoun(mob/user, message)
+//	if(findtext(message, "their"))
+//		message = replacetext(message, "their", user.p_their())
+//	if(findtext(message, "them"))
+//		message = replacetext(message, "them", user.p_them())
 	if(findtext(message, "%s"))
 		message = replacetext(message, "%s", user.p_s())
 	return message

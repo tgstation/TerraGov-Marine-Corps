@@ -193,6 +193,7 @@
 		/turf/closed/wall/resin/regenerating,
 		/obj/alien/resin/sticky,
 		/obj/structure/mineral_door/resin,
+		/obj/structure/bed/nest,
 		)
 	/// Used for the dragging functionality of pre-shuttter building
 	var/dragging = FALSE
@@ -1157,10 +1158,10 @@
 /datum/action/xeno_action/activable/larval_growth_sting
 	name = "Larval Growth Sting"
 	action_icon_state = "drone_sting"
-	desc = "Inject an impregnated host with growth serum, causing the larva inside to grow quicker."
+	desc = "Inject an impregnated host with growth serum, causing the larva inside to grow quicker. Has harmful effects for non-hested hosts while stabilizing nested hosts."
 	ability_name = "larval growth sting"
 	plasma_cost = 150
-	cooldown_timer = 12 SECONDS
+	cooldown_timer = 30 SECONDS
 	keybinding_signals = COMSIG_XENOABILITY_LARVAL_GROWTH_STING
 	target_flags = XABB_MOB_TARGET
 
@@ -1169,7 +1170,7 @@
 	to_chat(owner, "<span class='xenodanger'>We feel our growth toxin glands refill. We can use Growth Sting again.</span>")
 	return ..()
 
-/datum/action/xeno_action/activable/larval_growth_sting/can_use_ability(atom/A, silent = FALSE, override_flags)
+/datum/action/xeno_action/activable/larval_growth_sting/can_use_ability(mob/living/carbon/A, silent = FALSE, override_flags)
 	. = ..()
 	if(!.)
 		return FALSE
@@ -1189,13 +1190,16 @@
 			X.recent_notice = world.time //anti-notice spam
 		return FALSE
 
-/datum/action/xeno_action/activable/larval_growth_sting/use_ability(atom/A)
+/datum/action/xeno_action/activable/larval_growth_sting/use_ability(mob/living/carbon/A)
 	var/mob/living/carbon/xenomorph/X = owner
 
 	succeed_activate()
 
 	add_cooldown()
-	X.recurring_injection(A, /datum/reagent/consumable/larvajelly, XENO_LARVAL_CHANNEL_TIME, XENO_LARVAL_AMOUNT_RECURRING)
+	if(isnestedhost(A))
+		X.recurring_injection(A, list(/datum/reagent/consumable/larvajelly,/datum/reagent/medicine/tricordrazine,/datum/reagent/medicine/inaprovaline), XENO_LARVAL_CHANNEL_TIME, XENO_LARVAL_AMOUNT_RECURRING)
+	else
+		X.recurring_injection(A, list(/datum/reagent/toxin/sleeptoxin, /datum/reagent/toxin/acid, /datum/reagent/consumable/larvajelly), XENO_LARVAL_CHANNEL_TIME, XENO_LARVAL_AMOUNT_RECURRING, 2)
 
 
 // ***************************************
