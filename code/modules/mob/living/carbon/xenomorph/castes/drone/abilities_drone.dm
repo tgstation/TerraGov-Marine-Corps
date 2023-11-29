@@ -100,6 +100,8 @@
 
 /datum/action/xeno_action/activable/psychic_cure/resin_salve/use_ability(atom/target)
 	var/mob/living/carbon/xenomorph/X = owner
+	if(!ismob(target))
+		return FALSE
 	if(X.do_actions)
 		return FALSE
 	if(!do_mob(X, target, 1 SECONDS, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))

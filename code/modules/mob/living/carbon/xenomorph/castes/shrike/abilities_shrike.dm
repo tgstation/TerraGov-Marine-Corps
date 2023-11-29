@@ -241,6 +241,8 @@
 	. = ..()
 	if(!.)
 		return FALSE
+	if(!ismob(target))
+		return FALSE
 	if(QDELETED(target))
 		return FALSE
 	if(!check_distance(target, silent))

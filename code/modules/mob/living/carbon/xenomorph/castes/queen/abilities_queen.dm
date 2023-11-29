@@ -347,6 +347,8 @@
 	target_flags = XABB_XENO_TARGET|XABB_HUMAN_TARGET
 
 /datum/action/xeno_action/activable/psychic_cure/queen_give_heal/use_ability(mob/living/target)
+	if(!ismob(target))
+		return FALSE
 	if(owner.do_actions)
 		return FALSE
 	if(!do_mob(owner, target, 1 SECONDS, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))

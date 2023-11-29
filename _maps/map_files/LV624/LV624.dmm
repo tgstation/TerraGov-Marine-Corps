@@ -8864,10 +8864,6 @@
 	dir = 4
 	},
 /area/lv624/lazarus/tablefort)
-"hnP" = (
-/obj/effect/landmark/start/job/clf/leader,
-/turf/open/floor/prison/redfloor,
-/area/lv624/lazarus/sandtemple)
 "hnT" = (
 /turf/open/floor/plating/ground/desertdam/asphalt/tile,
 /area/deltastation/hallway/primary/tram{
@@ -16469,10 +16465,6 @@
 /obj/item/tool/minihoe,
 /turf/open/floor/engine,
 /area/lv624/lazarus/hydroponics/aux)
-"peG" = (
-/obj/effect/landmark/start/job/clf/medic,
-/turf/open/floor/prison/redfloor,
-/area/lv624/lazarus/sandtemple)
 "peU" = (
 /obj/structure/largecrate,
 /obj/item/explosive/grenade/stick,
@@ -16687,10 +16679,6 @@
 "psZ" = (
 /turf/closed/mineral/smooth/indestructible,
 /area/space)
-"pti" = (
-/obj/effect/landmark/start/job/clf/standard,
-/turf/open/floor/prison/redfloor,
-/area/lv624/lazarus/sandtemple)
 "ptl" = (
 /obj/effect/decal/remains/human,
 /turf/open/floor/plating,
@@ -21340,11 +21328,6 @@
 /obj/structure/flora/jungle/vines/heavy,
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
 /area/lv624/ground/jungle5)
-"tYf" = (
-/obj/alien/weeds/node,
-/obj/effect/landmark/start/job/clf/medic,
-/turf/open/floor/prison/redfloor,
-/area/lv624/lazarus/sandtemple)
 "tYg" = (
 /turf/open/liquid/water/river/autosmooth,
 /area/lv624/ground/jungle6)
@@ -22986,10 +22969,6 @@
 /obj/effect/landmark/start/job/survivor,
 /turf/open/floor/wood,
 /area/lv624/lazarus/internal_affairs)
-"vEk" = (
-/obj/effect/landmark/start/job/clf/specialist,
-/turf/open/floor/prison/redfloor,
-/area/lv624/lazarus/sandtemple)
 "vEl" = (
 /obj/machinery/light{
 	dir = 1
@@ -78293,7 +78272,7 @@ oRZ
 ucZ
 hxa
 eYX
-hnP
+eYX
 eYX
 hxa
 aGV
@@ -78579,9 +78558,9 @@ gKr
 oRZ
 jTp
 hxa
-peG
-vEk
-vEk
+eYX
+eYX
+eYX
 hxa
 tyv
 bUv
@@ -78866,9 +78845,9 @@ gKr
 oRZ
 ucZ
 hxa
-tYf
-pti
-pti
+bYe
+eYX
+eYX
 gMF
 ucZ
 bUv
@@ -79153,9 +79132,9 @@ gKr
 qfl
 tyv
 hxa
-pti
-pti
-pti
+eYX
+eYX
+eYX
 hxa
 jTp
 bUv

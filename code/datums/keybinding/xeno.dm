@@ -16,7 +16,7 @@
 /datum/keybinding/xeno/larval_growth_sting
 	name = "larval_growth_sting"
 	full_name = "Larval Growth Sting"
-	description = "Inject an impregnated host with growth serum, causing the larva inside to grow quicker. Has harmful effects for non-hested hosts while stabilizing nested hosts."
+	description = "Inject an impregnated host with growth serum, causing the larva inside to grow quicker. Has harmful effects for non-infected hosts while stabilizing larva-infected hosts."
 	keybind_signal = COMSIG_XENOABILITY_LARVAL_GROWTH_STING
 
 /datum/keybinding/xeno/regurgitate
