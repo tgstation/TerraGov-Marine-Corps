@@ -445,31 +445,31 @@
 
 
 /mob/living/carbon/xenomorph/proc/recurring_injection(mob/living/carbon/C, list/toxin = list(/datum/reagent/toxin/xeno_neurotoxin), channel_time = XENO_NEURO_CHANNEL_TIME, transfer_amount = XENO_NEURO_AMOUNT_RECURRING, count = 4)
-    if(!C?.can_sting() || !toxin)
-        return FALSE
-    if(!length(toxin) && islist(toxin))
-        return FALSE
-    if(!islist(toxin))
-        toxin = list(toxin)
-    var/chemical_string = ""
-    for(var/datum/reagent/chem in toxin)
-        toxin[chem] = transfer_amount
-        chemical_string += chem.name + ", "
-    if(!do_after(src, channel_time, TRUE, C, BUSY_ICON_HOSTILE))
-        return FALSE
-    var/i = 1
-    to_chat(C, span_danger("You feel a tiny prick."))
-    to_chat(src, span_xenowarning("Our stinger injects our victim with [chemical_string]!"))
-    playsound(C, 'sound/effects/spray3.ogg', 15, TRUE)
-    playsound(C, "alien_drool", 15, TRUE)
-    do
-        face_atom(C)
-        if(IsStaggered())
-            return FALSE
-        do_attack_animation(C)
-        C.reagents.add_reagent_list(toxin, transfer_amount)
-    while(i++ < count && do_after(src, channel_time, TRUE, C, BUSY_ICON_HOSTILE))
-    return TRUE
+	if(!C?.can_sting() || !toxin)
+		return FALSE
+	if(!length(toxin) && islist(toxin))
+		return FALSE
+	if(!islist(toxin))
+		toxin = list(toxin)
+	var/chemical_string = ""
+	for(var/datum/reagent/chem in toxin)
+		toxin[chem] = transfer_amount
+		chemical_string += chem.name + ", "
+	if(!do_after(src, channel_time, TRUE, C, BUSY_ICON_HOSTILE))
+		return FALSE
+	var/i = 1
+	to_chat(C, span_danger("You feel a tiny prick."))
+	to_chat(src, span_xenowarning("Our stinger injects our victim with [chemical_string]!"))
+	playsound(C, 'sound/effects/spray3.ogg', 15, TRUE)
+	playsound(C, "alien_drool", 15, TRUE)
+	do
+		face_atom(C)
+		if(IsStaggered())
+			return FALSE
+		do_attack_animation(C)
+		C.reagents.add_reagent_list(toxin, transfer_amount)
+	while(i++ < count && do_after(src, channel_time, TRUE, C, BUSY_ICON_HOSTILE))
+	return TRUE
 
 /atom/proc/can_sting()
 	return FALSE

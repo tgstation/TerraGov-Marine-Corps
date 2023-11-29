@@ -130,7 +130,7 @@ GLOBAL_LIST_INIT(resin_images_list, list(
 		RESIN_WALL = image('icons/Xeno/actions.dmi', icon_state = RESIN_WALL),
 		STICKY_RESIN = image('icons/Xeno/actions.dmi', icon_state = STICKY_RESIN),
 		RESIN_DOOR = image('icons/Xeno/actions.dmi', icon_state = RESIN_DOOR),
-		RESIN_NEST = image('icons/Xeno/Effects.dmi'), icon_state = NEST)
+		RESIN_NEST = image('icons/Xeno/Effects.dmi', icon_state = "nest")
 		))
 
 //List of puppeteer order images
