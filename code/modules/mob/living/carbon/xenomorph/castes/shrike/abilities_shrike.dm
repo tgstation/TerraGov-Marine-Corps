@@ -245,10 +245,10 @@
 		return FALSE
 	if(!check_distance(target, silent))
 		return FALSE
-	var/mob/living/carbon/xenomorph/patient = target
+	var/mob/living/patient = target
 	if(!CHECK_BITFIELD(use_state_flags|override_flags, XACT_IGNORE_DEAD_TARGET) && patient.stat == DEAD)
 		if(!silent)
-			to_chat(owner, span_warning("It's too late. This sister won't be coming back."))
+			to_chat(owner, span_warning("It's too late. This won't be coming back."))
 		return FALSE
 
 
@@ -283,15 +283,17 @@
 	playsound(target,'sound/effects/magic.ogg', 75, 1)
 	new /obj/effect/temp_visual/telekinesis(get_turf(target))
 	var/mob/living/carbon/xenomorph/patient = target
-	patient.heal_wounds(SHRIKE_CURE_HEAL_MULTIPLIER)
-	patient.adjust_sunder(-SHRIKE_CURE_HEAL_MULTIPLIER)
-	if(patient.health > 0) //If they are not in crit after the heal, let's remove evil debuffs.
-		patient.SetUnconscious(0)
-		patient.SetStun(0)
-		patient.SetParalyzed(0)
-		patient.set_stagger(0)
-		patient.set_slowdown(0)
-	patient.updatehealth()
+	if(isxeno(target))
+		patient.heal_wounds(SHRIKE_CURE_HEAL_MULTIPLIER)
+		patient.adjust_sunder(-SHRIKE_CURE_HEAL_MULTIPLIER)
+		if(patient.health > 0) //If they are not in crit after the heal, let's remove evil debuffs.
+			patient.SetUnconscious(0)
+			patient.SetStun(0)
+			patient.SetParalyzed(0)
+			patient.set_stagger(0)
+			patient.set_slowdown(0)
+	else
+		patient.psychic_cure()
 
 	owner.changeNext_move(CLICK_CD_RANGE)
 
@@ -299,6 +301,14 @@
 
 	succeed_activate()
 	add_cooldown()
+
+
+/mob/living/proc/psychic_cure()
+	var/amount = 100
+	var/remainder = max(0, amount - getBruteLoss())
+	if(ishuman(src))
+		adjustBruteLoss(-amount)
+		adjustFireLoss(-remainder, updating_health = TRUE)
 
 
 // ***************************************

@@ -20,8 +20,5 @@
 
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
-		/datum/action/xeno_action/psychic_whisper,
-		/datum/action/xeno_action/psychic_influence,
-		/datum/action/xeno_action/activable/impregnate,
 		/datum/action/xeno_action/activable/feed,
 	)

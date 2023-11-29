@@ -364,15 +364,15 @@
 		personal_statistics.heals++
 
 /// Heals the target.
-/mob/living/carbon/xenomorph/proc/salve_healing(mob/living/target)
+/mob/living/proc/salve_healing()
 	var/amount = 50
-	var/mob/living/carbon/xenomorph/X = target
-	var/recovery_aura = isxeno(target) ? X.recovery_aura : 2
+	var/mob/living/carbon/xenomorph/X = src
+	var/recovery_aura = isxeno(src) ? X.recovery_aura : 2
 	if(recovery_aura)
 		amount += recovery_aura * maxHealth * 0.01
 	var/remainder = max(0, amount - getBruteLoss())
-	if(!isxeno(target))
-		amount = amount/4
+	if(!isxeno(src))
+		amount = amount/2
 	adjustBruteLoss(-amount)
 	adjustFireLoss(-remainder, updating_health = TRUE)
 	adjust_sunder(-amount/10)

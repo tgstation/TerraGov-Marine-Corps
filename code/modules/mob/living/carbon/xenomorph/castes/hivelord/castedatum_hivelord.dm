@@ -100,6 +100,7 @@
 		/datum/action/xeno_action/psychic_whisper,
 		/datum/action/xeno_action/psychic_influence,
 		/datum/action/xeno_action/activable/impregnate,
+		/datum/action/xeno_action/activable/larval_growth_sting,
 		/datum/action/xeno_action/activable/psydrain,
 		/datum/action/xeno_action/activable/devour,
 		/datum/action/xeno_action/activable/psydrain,

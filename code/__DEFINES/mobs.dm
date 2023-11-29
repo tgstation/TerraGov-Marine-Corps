@@ -752,6 +752,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 
 
 #define BODY_ZONE_HEAD "head"
+#define BODY_ZONE_GROIN "groin"
 #define BODY_ZONE_CHEST "chest"
 #define BODY_ZONE_L_ARM "l_arm"
 #define BODY_ZONE_R_ARM "r_arm"
