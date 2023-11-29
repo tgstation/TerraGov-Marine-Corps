@@ -775,7 +775,7 @@
 #define COMSIG_XENOABILITY_DRAIN_STING "xenoability_drain_sting"
 #define COMSIG_XENOABILITY_TOXIC_GRENADE "xenoability_toxic_grenade"
 
-#define COMSIG_XENOABILITY_ACIDIC_SALVE "xenoability_acidic_salve"
+#define COMSIG_XENOABILITY_RESIN_SALVE "xenoability_resin_salve"
 #define COMSIG_XENOABILITY_ESSENCE_LINK "xenoability_essence_link"
 #define COMSIG_XENOABILITY_ESSENCE_LINK_REMOVE "xenoability_essence_link_remove"
 #define COMSIG_XENOABILITY_ENHANCEMENT "xenoability_enhancement"
@@ -840,6 +840,7 @@
 
 #define COMSIG_XENOABILITY_SCREECH "xenoability_screech"
 #define COMSIG_XENOABILITY_PSYCHIC_WHISPER "xenoability_psychic_whisper"
+#define COMSIG_XENOABILITY_IMPREGNATE "xenoability_impregnate"
 #define COMSIG_XENOABILITY_PSYCHIC_INFLUENCE "xenoability_psychic_influence"
 #define COMSIG_XENOABILITY_TOGGLE_QUEEN_ZOOM "xenoability_toggle_queen_zoom"
 #define COMSIG_XENOABILITY_XENO_LEADERS "xenoability_xeno_leaders"
