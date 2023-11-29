@@ -189,7 +189,9 @@
 	log_combat(src, null, "was born as a larva.")
 	log_game("[key_name(src)] was born as a larva at [AREACOORD(src)].")
 	victim.chestburst = 0
-
+	if(ismonkey(victim))
+		victim.apply_damage(25, BRUTE, BODY_ZONE_HEAD, updating_health = TRUE)
+		victim.adjustCloneLoss(25)
 	if((((locate(/obj/structure/bed/nest) in loc) || loc_weeds_type) && hive.living_xeno_ruler?.z == loc.z) && !mind)
 		addtimer(CALLBACK(src, PROC_REF(burrow)), 4 SECONDS)
 
