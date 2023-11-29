@@ -510,9 +510,15 @@
 		if(status_flags & XENO_HOST)
 			msg += "[t_He] is impregnated and[reagents.get_reagent_amount(/datum/reagent/consumable/larvajelly) > 0 ? "" : "not"] inoculated with Larval Accelerant.\n"
 			if(reagents.get_reagent_amount(/datum/reagent/medicine/tricordrazine))
-				msg += "[reagents.get_reagent_amount(/datum/reagent/medicine/tricordrazine)] doses of Tricordrazine is still inside the infected host, be careful not to overdose them with additional stings.\n"
+				msg += "[reagents.get_reagent_amount(/datum/reagent/medicine/tricordrazine)] doses of Tricordrazine is still inside the infected host, healing this one slowly.\n"
 			if(reagents.get_reagent_amount(/datum/reagent/medicine/inaprovaline))
-				msg += "[reagents.get_reagent_amount(/datum/reagent/medicine/inaprovaline)] doses of Inaprovaline is still inside the infected host, be careful not to overdose them with additional stings.\n"
+				msg += "[reagents.get_reagent_amount(/datum/reagent/medicine/inaprovaline)] doses of Inaprovaline is still inside the infected host, keeping this one stabilized for now.\n"
+			if(reagents.get_reagent_amount(/datum/reagent/medicine/dexalin))
+				msg += "[reagents.get_reagent_amount(/datum/reagent/medicine/dexalin)] doses of Dexalin is still inside the infected host, making this one breathe easier.\n"
+			if(reagents.get_reagent_amount(/datum/reagent/consumable/larvajelly))
+				msg += "[reagents.get_reagent_amount(/datum/reagent/consumable/larvajelly)] doses of Growth toxin is still inside the infected host, making the little one within grow faster.\n"
+		if(reagents.get_reagent_amount(/datum/reagent/toxin/acid))
+			msg += "[reagents.get_reagent_amount(/datum/reagent/toxin/acid)] doses of acid in their bloodstream, melting this one from within.\n"
 		if(reagents.get_reagent_amount(/datum/reagent/toxin/xeno_neurotoxin))
 			msg += "Neurotoxin: Causes increasingly intense pain and stamina damage over time, increasing in intensity at the 40 second and the minute and a half mark of metabolism.\n"
 		if(reagents.get_reagent_amount(/datum/reagent/toxin/xeno_hemodile))
