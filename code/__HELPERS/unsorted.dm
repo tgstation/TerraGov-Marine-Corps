@@ -34,11 +34,7 @@
  * NAMEOF that actually works in static definitions because src::type requires src to be defined
  */
 
-#if DM_VERSION >= 515
 #define NAMEOF_STATIC(datum, X) (nameof(type::##X))
-#else
-#define NAMEOF_STATIC(datum, X) (#X || ##datum.##X)
-#endif
 
 //gives us the stack trace from CRASH() without ending the current proc.
 /proc/stack_trace(msg)

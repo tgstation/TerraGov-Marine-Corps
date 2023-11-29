@@ -375,3 +375,8 @@
   vvvv-vvvv:
   - bugfix: Fix some computer emissives
   - bugfix: Fix tadpole being able to land on disks
+2023-11-29:
+  coldironwarrior:
+  - rscadd: 'adds two new armor colors: mountbatten pink and yellow (replaces the
+      old "yellow" which is now "olive")'
+  - bugfix: fixed a few color names
