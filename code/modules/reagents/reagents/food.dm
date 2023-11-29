@@ -401,7 +401,7 @@
 	name = "Larva Jelly"
 	description = "The blood and guts of a xenomorph larva blended into a paste. Drinking this is bad for you."
 	reagent_state = LIQUID
-	nutriment_factor = 15
+	nutriment_factor = 5
 	color = "#66801e"
 	taste_description = "sweetness"
 

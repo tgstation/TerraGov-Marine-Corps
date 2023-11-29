@@ -1158,7 +1158,7 @@
 /datum/action/xeno_action/activable/larval_growth_sting
 	name = "Larval Growth Sting"
 	action_icon_state = "drone_sting"
-	desc = "Inject an impregnated host with growth serum, causing the larva inside to grow quicker. Has harmful effects for non-hested hosts while stabilizing nested hosts."
+	desc = "Inject an impregnated host with growth serum, causing the larva inside to grow quicker. Has harmful effects for non-hested non-infected hosts while stabilizing nested and larva-infected hosts."
 	ability_name = "larval growth sting"
 	plasma_cost = 150
 	cooldown_timer = 30 SECONDS
@@ -1197,9 +1197,9 @@
 
 	add_cooldown()
 	if(isnestedhost(A))
-		X.recurring_injection(A, list(/datum/reagent/consumable/larvajelly,/datum/reagent/medicine/tricordrazine,/datum/reagent/medicine/inaprovaline), XENO_LARVAL_CHANNEL_TIME, XENO_LARVAL_AMOUNT_RECURRING)
+		X.recurring_injection(A, list(/datum/reagent/consumable/larvajelly,/datum/reagent/medicine/tricordrazine,/datum/reagent/medicine/inaprovaline), XENO_LARVAL_CHANNEL_TIME, XENO_LARVAL_AMOUNT_RECURRING, 3)
 	else
-		X.recurring_injection(A, list(/datum/reagent/toxin/sleeptoxin, /datum/reagent/toxin/acid, /datum/reagent/consumable/larvajelly), XENO_LARVAL_CHANNEL_TIME, XENO_LARVAL_AMOUNT_RECURRING, 2)
+		X.recurring_injection(A, list(/datum/reagent/toxin/sleeptoxin, /datum/reagent/toxin/acid, /datum/reagent/consumable/larvajelly), XENO_LARVAL_CHANNEL_TIME, XENO_LARVAL_AMOUNT_RECURRING, 3)
 
 
 // ***************************************
@@ -1478,7 +1478,9 @@
 		to_chat(owner, span_warning("We moved too soon and we will have to fuck our victim again!"))
 		return fail_activate()
 	if(!(locate(/obj/item/alien_embryo) in victim))
-		victim.apply_damage(25, BURN, BODY_ZONE_PRECISE_GROIN)
+		victim.apply_damage(25, BURN, BODY_ZONE_PRECISE_GROIN, updating_health = TRUE)
+		if(ismonkey(victim))
+			victim.apply_damage(25, BRUTE, BODY_ZONE_PRECISE_GROIN, updating_health = TRUE)
 		var/obj/item/alien_embryo/embryo = new(victim)
 		embryo.hivenumber = hivenumber
 		GLOB.round_statistics.now_pregnant++

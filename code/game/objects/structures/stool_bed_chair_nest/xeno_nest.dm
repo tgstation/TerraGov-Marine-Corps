@@ -1,4 +1,4 @@
-#define NEST_RESIST_TIME 2.5 SECONDS
+#define NEST_RESIST_TIME 30 SECONDS
 #define NEST_UNBUCKLED_COOLDOWN 5 SECONDS
 
 ///Alium nests. Essentially beds with an unbuckle delay that only aliums can buckle mobs to.

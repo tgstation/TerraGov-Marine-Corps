@@ -508,7 +508,11 @@
 		if(species.species_flags & IS_SYNTHETIC)
 			msg += "[span_xenowarning("You sense [t_he] is not organic.")]\n"
 		if(status_flags & XENO_HOST)
-			msg += "[t_He] is impregnated and[reagents.get_reagent_amount(/datum/reagent/consumable/larvajelly) > 0 ? "" : "not"] inoculated with Larval Accelerant. \n"
+			msg += "[t_He] is impregnated and[reagents.get_reagent_amount(/datum/reagent/consumable/larvajelly) > 0 ? "" : "not"] inoculated with Larval Accelerant.\n"
+			if(reagents.get_reagent_amount(/datum/reagent/medicine/tricordrazine))
+				msg += "[reagents.get_reagent_amount(/datum/reagent/medicine/tricordrazine)] doses of Tricordrazine is still inside the infected host, be careful not to overdose them with additional stings.\n"
+			if(reagents.get_reagent_amount(/datum/reagent/medicine/inaprovaline))
+				msg += "[reagents.get_reagent_amount(/datum/reagent/medicine/inaprovaline)] doses of Inaprovaline is still inside the infected host, be careful not to overdose them with additional stings.\n"
 		if(reagents.get_reagent_amount(/datum/reagent/toxin/xeno_neurotoxin))
 			msg += "Neurotoxin: Causes increasingly intense pain and stamina damage over time, increasing in intensity at the 40 second and the minute and a half mark of metabolism.\n"
 		if(reagents.get_reagent_amount(/datum/reagent/toxin/xeno_hemodile))
@@ -519,7 +523,6 @@
 			msg += "Ozelomelyn: Rapidly purges all medicine in the body, causes toxin damage capped at 40. Metabolizes very quickly.\n"
 		if(reagents.get_reagent_amount(/datum/reagent/toxin/xeno_sanguinal))
 			msg += "Sanguinal: Causes brute damage and bleeding from the brute damage. Does additional damage types in the presence of other xeno-based toxins. Toxin damage for Neuro, Stamina damage for Hemodile, and Burn damage for Transvitox.\n"
-
 	if(has_status_effect(STATUS_EFFECT_ADMINSLEEP))
 		msg += span_highdanger("<b>This player has been slept by staff. Best to leave them be.</b>\n")
 

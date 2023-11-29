@@ -575,6 +575,8 @@
 	if(as_planned)
 		if(sterile || target.status_flags & XENO_HOST)
 			target.visible_message(span_danger("[src] falls limp after fucking [target]!"))
+			if(ismonkey(target))
+				target.apply_damage(15, BRUTE, BODY_ZONE_PRECISE_GROIN, updating_health = TRUE)
 		else //Huggered but not impregnated, deal damage.
 			target.visible_message(span_danger("[src] frantically claws and fucks [target]'s face before falling down!"),span_danger("[src] frantically claws and fucks your face before falling down! Auugh!"))
 			target.apply_damage(15, BRUTE, BODY_ZONE_HEAD, updating_health = TRUE)
