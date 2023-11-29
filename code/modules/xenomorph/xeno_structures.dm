@@ -460,7 +460,7 @@ TUNNEL
 	name = "acid well"
 	desc = "An acid well. It stores acid to put out fires."
 	icon = 'icons/Xeno/acid_pool.dmi'
-	icon_state = "fullwell"
+	icon_state = "well"
 	density = FALSE
 	opacity = FALSE
 	anchored = TRUE
@@ -524,8 +524,14 @@ TUNNEL
 
 /obj/structure/xeno/acidwell/update_icon()
 	. = ..()
-	icon_state = "well[charges]"
 	set_light(charges , charges / 2, LIGHT_COLOR_GREEN)
+
+/obj/structure/xeno/acidwell/update_overlays()
+	. = ..()
+	if(!charges)
+		return
+	. += mutable_appearance(icon, "[charges]", alpha = src.alpha)
+	. += emissive_appearance(icon, "[charges]", alpha = src.alpha)
 
 /obj/structure/xeno/acidwell/flamer_fire_act(burnlevel) //Removes a charge of acid, but fire is extinguished
 	acid_well_fire_interaction()
@@ -1534,8 +1540,8 @@ TUNNEL
 		return TRUE
 
 	var/mob/living/carbon/xenomorph/X = user
-	if(isxenoravager(X)) //Ask if this should be made into a trait for xenos with special ressources
-		to_chat(X, span_xenowarning("But our body rejects the fruit, our fury does not build up with a healthy diet!"))
+	if(!(X.xeno_caste.can_flags & CASTE_CAN_BE_GIVEN_PLASMA))
+		to_chat(X, span_xenowarning("But our body rejects the fruit, we do not share the same plasma type!"))
 		return FALSE
 	X.apply_status_effect(/datum/status_effect/plasma_surge, X.xeno_caste.plasma_max, bonus_regen, duration)
 	balloon_alert(X, "Plasma restored")

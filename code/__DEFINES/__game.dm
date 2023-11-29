@@ -11,7 +11,6 @@
 #define MAP_RESEARCH_OUTPOST "Research Outpost"
 #define MAP_WHISKEY_OUTPOST "Whiskey Outpost"
 #define MAP_MAGMOOR_DIGSITE "Magmoor Digsite IV"
-#define MAP_CHIGUSA "Chigusa"
 #define MAP_GELIDA_IV "Gelida IV"
 #define MAP_DELTA_STATION "Delta Station"
 #define MAP_OSCAR_OUTPOST "Oscar Outpost"

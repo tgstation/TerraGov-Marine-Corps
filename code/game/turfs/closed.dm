@@ -37,7 +37,7 @@
 	for(var/direction in GLOB.cardinals)
 		var/turf/turf_to_check = get_step(src, direction)
 		if(!isnull(turf_to_check) && !turf_to_check.density)
-			var/image/rock_side = image(icon, "[icon_state]_side", dir = turn(direction, 180))
+			var/image/rock_side = image(icon, "[icon_state]_side", dir = REVERSE_DIR(direction))
 			switch(direction)
 				if(NORTH)
 					rock_side.pixel_y += world.icon_size
@@ -224,7 +224,7 @@
 	for(var/direction in GLOB.cardinals)
 		var/turf/turf_to_check = get_step(src, direction)
 		if(istype(turf_to_check, /turf/open))
-			var/image/rock_side = image(icon, "[icon_state]_side", dir = turn(direction, 180))
+			var/image/rock_side = image(icon, "[icon_state]_side", dir = REVERSE_DIR(direction))
 			switch(direction)
 				if(NORTH)
 					rock_side.pixel_y += world.icon_size

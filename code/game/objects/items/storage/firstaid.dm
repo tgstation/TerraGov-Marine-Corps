@@ -72,10 +72,10 @@
 	new /obj/item/healthanalyzer(src)
 	new /obj/item/stack/medical/heal_pack/gauze(src)
 	new /obj/item/stack/medical/heal_pack/ointment(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/combat(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/tricordrazine(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/tramadol(src)
 	new /obj/item/stack/medical/splint(src)
-	new /obj/item/storage/pill_bottle/packet/russian_red(src)
 
 
 /obj/item/storage/firstaid/toxin
@@ -133,8 +133,8 @@
 
 /obj/item/storage/firstaid/rad/fill_firstaid_kit()
 	new /obj/item/healthanalyzer(src)
-	new /obj/item/storage/pill_bottle/russian_red(src)
 	new /obj/item/storage/pill_bottle/dylovene(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/combat(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/tricordrazine(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/tricordrazine(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/bicaridine(src)
@@ -431,7 +431,7 @@
 
 /obj/item/storage/pill_bottle/alkysine
 	name = "alkysine pill bottle"
-	desc = "Contains pills that heal brain damage."
+	desc = "Contains pills that heal brain and ear damage."
 	icon_state = "pill_canistercomplete"
 	pill_type_to_fill = /obj/item/reagent_containers/pill/alkysine
 	greyscale_config = /datum/greyscale_config/pillbottlebubble

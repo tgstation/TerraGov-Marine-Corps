@@ -15,6 +15,8 @@
 	var/drag_windup = 1.5 SECONDS
 	var/throwing = FALSE
 	var/thrower = null
+	///Speed of the current throw. 0 When not throwing.
+	var/thrown_speed = 0
 	var/turf/throw_source = null
 	var/throw_speed = 2
 	var/throw_range = 7
@@ -311,7 +313,7 @@
 		return COMPONENT_BUMP_RESOLVED
 	. = ..()
 	if(throwing)
-		. = !throw_impact(A)
+		. = !throw_impact(A, thrown_speed)
 	if(QDELETED(A))
 		return
 	A.Bumped(src)
@@ -507,7 +509,7 @@
 
 	step(src, angle_to_dir(new_angle))
 
-/atom/movable/proc/throw_at(atom/target, range, speed, thrower, spin, flying = FALSE, targetted_throw = TRUE)
+/atom/movable/proc/throw_at(atom/target, range, speed = 5, thrower, spin, flying = FALSE, targetted_throw = TRUE)
 	set waitfor = FALSE
 	if(!target || !src)
 		return FALSE
@@ -531,6 +533,7 @@
 
 	set_throwing(TRUE)
 	src.thrower = thrower
+	thrown_speed = speed
 
 	var/original_layer = layer
 	if(flying)
@@ -625,6 +628,7 @@
 	if(flying)
 		set_flying(FALSE, original_layer)
 	thrower = null
+	thrown_speed = 0
 	throw_source = null
 
 /atom/movable/proc/handle_buckled_mob_movement(NewLoc, direct)
@@ -1203,6 +1207,10 @@
 		return SSmapping.gravity_by_z_level["[src_turf.z]"]
 	return 1 //if both fail we're in nullspace, just return a 1 as a fallback
 
-//This is called when the AM is thrown into a dense turf
+///This is called when the AM is thrown into a dense turf
 /atom/movable/proc/turf_collision(turf/T, speed)
 	return
+
+//Throws AM away from something
+/atom/movable/proc/knockback(source, distance, speed, dir)
+	throw_at(get_ranged_target_turf(src, dir ? dir : get_dir(source, src), distance), distance, speed, source)

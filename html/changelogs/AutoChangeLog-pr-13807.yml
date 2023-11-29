@@ -1,0 +1,5 @@
+author: "coldironwarrior"
+delete-after: True
+changes:
+  - rscadd: "adds two new armor colors: mountbatten pink and yellow (replaces the old \"yellow\" which is now \"olive\")"
+  - bugfix: "fixed a few color names"

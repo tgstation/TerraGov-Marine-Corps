@@ -27,7 +27,10 @@
 	if(current_mission.mission_flags & blacklist_mission_flags)
 		return
 
-	for(var/datum/campaign_asset/asset_type AS in faction.faction_assets)
+	for(var/i in faction.faction_assets)
+		var/datum/campaign_asset/asset_type = faction.faction_assets[i]
+		if(!asset_type)
+			continue
 		if(asset_type.type in types_disabled)
 			asset_type.asset_flags |= ASSET_DISABLED
 			types_currently_disabled += asset_type
@@ -37,6 +40,7 @@
 	if(!uses)
 		UnregisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_MISSION_LOADED)
 		asset_flags &= ~ASSET_DEBUFF
+	SEND_SIGNAL(src, COMSIG_CAMPAIGN_DISABLER_ACTIVATION)
 
 /datum/campaign_asset/asset_disabler/tgmc_cas
 	name = "CAS disabled"

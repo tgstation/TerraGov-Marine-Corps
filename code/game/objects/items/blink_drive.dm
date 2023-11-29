@@ -149,7 +149,7 @@
 		pulled_target.forceMove(target_turf)
 	teleport_debuff_aoe(user)
 
-	if(target_turf.density || isspaceturf(target_turf))
+	if(!target_turf.can_teleport_here())
 		user.emote("gored")
 		user.gib() //telegibbed
 		if(pulled_target && ismob(pulled_target))

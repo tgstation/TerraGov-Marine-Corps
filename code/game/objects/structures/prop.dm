@@ -844,8 +844,8 @@
 
 /obj/structure/prop/mainship/meterprop/random/Initialize(mapload)
 	. = ..()
-	kpa = rand(9.3, 21.4)
-	kelvin = rand(10.3, 28.4)
+	kpa = randfloat(9.3, 21.4)
+	kelvin = randfloat(10.3, 28.4)
 
 /obj/structure/prop/mainship/pipeprop //does not init and so doesn't generate lag at all
 	name = "pipe"

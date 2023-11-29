@@ -3,14 +3,17 @@
 /obj/machinery/atmospherics/components/unary/cryo_cell
 	name = "cryo cell"
 	icon = 'icons/obj/machines/cryogenics2.dmi'
-	icon_state = "cell-off"
+	icon_state = "cell_mapper"
 	density = TRUE
 	max_integrity = 350
 	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 100, BOMB = 0, BIO = 100, FIRE = 30, ACID = 30)
-	layer = ABOVE_WINDOW_LAYER
+	layer = ABOVE_MOB_LAYER
 	pipe_flags = PIPING_ONE_PER_TURF|PIPING_DEFAULT_LAYER_ONLY
 	interaction_flags = INTERACT_MACHINE_TGUI
 	can_see_pipes = FALSE
+	light_range = 2
+	light_power = 0.5
+	light_color = LIGHT_COLOR_EMISSIVE_GREEN
 
 	var/autoeject = FALSE
 	var/release_notice = FALSE
@@ -42,6 +45,7 @@
 	initialize_directions = dir
 	beaker = new /obj/item/reagent_containers/glass/beaker/cryomix
 	radio = new(src)
+	update_icon()
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/proc/process_occupant()
 	if(!occupant)
@@ -107,16 +111,27 @@
 	. = ..()
 	if(A == beaker)
 		beaker = null
-		updateUsrDialog()
+
+/obj/machinery/atmospherics/components/unary/cryo_cell/update_icon()
+	. = ..()
+	if(!on)
+		set_light(0)
+	else
+		set_light(initial(light_range))
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/update_icon_state()
 	if(!on)
-		icon_state = "cell-off"
-		return
+		icon_state = "cell_off"
+	else
+		icon_state = "cell_on"
 	if(occupant)
-		icon_state = "cell-occupied"
+		icon_state += "_occupied"
+
+/obj/machinery/atmospherics/components/unary/cryo_cell/update_overlays()
+	. = ..()
+	if(!on)
 		return
-	icon_state = "cell-on"
+	. += emissive_appearance(icon, "cell_emissive", alpha = src.alpha)
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/proc/run_anim(anim_up, image/occupant_overlay)
 	if(!on || !occupant || !is_operational())
@@ -140,7 +155,7 @@
 		occupant.client.eye = occupant.client.mob
 		occupant.client.perspective = MOB_PERSPECTIVE
 	if(occupant in contents)
-		occupant.forceMove(get_step(loc, SOUTH))	//this doesn't account for walls or anything, but i don't forsee that being a problem.
+		occupant.forceMove(get_step(loc, dir))
 	if (occupant.bodytemperature < 261 && occupant.bodytemperature >= 70) //Patch by Aranclanos to stop people from taking burn damage after being ejected
 		occupant.bodytemperature = 261									  // Changed to 70 from 140 by Zuhayr due to reoccurance of bug.
 	if(auto_eject) //Turn off and announce if auto-ejected because patient is recovered or dead.
@@ -164,11 +179,9 @@
 	..()
 	if(machine_stat & (NOPOWER|BROKEN))
 		turn_off()
-		updateUsrDialog()
 		return
 
 	if(!on)
-		updateUsrDialog()
 		stop_processing()
 		return
 
@@ -184,7 +197,6 @@
 			turn_off()
 			idle_ticks_until_shutdown = 60 //reset idle ticks
 
-	updateUsrDialog()
 	return TRUE
 
 
@@ -281,8 +293,6 @@
 		return
 
 	put_mob(M, TRUE)
-
-	updateUsrDialog()
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/proc/put_mob(mob/living/carbon/M as mob, put_in = null)
 	if (machine_stat & (NOPOWER|BROKEN))
@@ -418,7 +428,6 @@
 		if("notice")
 			release_notice = !release_notice
 			. = TRUE
-	updateUsrDialog()
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/proc/turn_on()
 	if (machine_stat & (NOPOWER|BROKEN))

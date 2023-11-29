@@ -14,7 +14,7 @@
 	to_chat(H, "<B>Today, a TerraGov vessel, [SSmapping.configs[SHIP_MAP].map_name], has sent out a distress signal on the orbit of [SSmapping.configs[GROUND_MAP].map_name]. This is our chance to attack without being intercepted!</b>")
 	to_chat(H, "<B>Eliminate the TerraGov personnel onboard, capture the ship. If there are fellow ICC contingents such as the ICCAF, then work with them in this goal. Take no prisoners. Take back what was once lost.</B>")
 
-/datum/emergency_call/som/do_activate(announce = TRUE)
+/datum/emergency_call/som_breachers/do_activate(announce = TRUE)
 	max_specialists = round(mob_max * 0.2)
 	return ..()
 

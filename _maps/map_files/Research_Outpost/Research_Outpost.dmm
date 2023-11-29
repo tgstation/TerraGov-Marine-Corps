@@ -6505,7 +6505,7 @@
 	},
 /area/outpost/hallway/south_east)
 "Ey" = (
-/obj/machinery/autodoc_console,
+/obj/machinery/computer/autodoc_console,
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 8
 	},
@@ -8311,7 +8311,7 @@
 /turf/open/floor/plating/dmg2,
 /area/outpost/science/xenobiology)
 "Nb" = (
-/obj/machinery/sleep_console,
+/obj/machinery/computer/sleep_console,
 /turf/open/floor/tile/dark/blue2{
 	dir = 9
 	},
@@ -8915,7 +8915,7 @@
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/outpost/yard/central)
 "PX" = (
-/obj/machinery/body_scanconsole,
+/obj/machinery/computer/body_scanconsole,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark,
 /area/outpost/medbay)
@@ -9593,7 +9593,7 @@
 	},
 /area/outpost/medbay/storage)
 "SY" = (
-/obj/machinery/sleep_console,
+/obj/machinery/computer/sleep_console,
 /turf/open/floor/tile/dark,
 /area/outpost/medbay)
 "Tb" = (

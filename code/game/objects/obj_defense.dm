@@ -111,7 +111,7 @@
 		return
 	playsound(loc, P.hitsound, 50, 1)
 	visible_message(span_warning("\the [src] is damaged by \the [P]!"), visible_message_flags = COMBAT_MESSAGE)
-	take_damage(P.damage, P.ammo.damage_type, P.ammo.armor_type, 0, turn(P.dir, 180), P.ammo.penetration)
+	take_damage(P.damage, P.ammo.damage_type, P.ammo.armor_type, 0, REVERSE_DIR(P.dir), P.ammo.penetration)
 
 
 /obj/proc/attack_generic(mob/user, damage_amount = 0, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0) //used by attack_alien, attack_animal, and attack_slime

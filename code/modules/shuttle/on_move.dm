@@ -129,7 +129,7 @@ All ShuttleMove procs go here
 		return
 	var/turf/target = get_edge_target_turf(src, move_dir)
 	var/range = throw_force * 10
-	range = CEILING(rand(range-(range*0.1), range+(range*0.1)), 10)/10
+	range = CEILING(randfloat(range-(range*0.1), range+(range*0.1)), 10)/10
 	var/speed = range/5
 	safe_throw_at(target, range, speed, force = MOVE_FORCE_EXTREMELY_STRONG)
 

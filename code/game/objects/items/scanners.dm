@@ -155,6 +155,7 @@ REAGENT SCANNER
 		"patient" = patient.name,
 		"dead" = (patient.stat == DEAD || HAS_TRAIT(patient, TRAIT_FAKEDEATH)),
 		"health" = patient.health,
+		"max_health" = patient.maxHealth,
 		"total_brute" = round(patient.getBruteLoss()),
 		"total_burn" = round(patient.getFireLoss()),
 		"toxin" = round(patient.getToxLoss()),

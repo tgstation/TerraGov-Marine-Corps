@@ -1,6 +1,7 @@
 /obj/item/proc/embed_into(mob/living/target, target_zone, silent)
 	if(!target.embed_item(src, target_zone, silent))
 		return FALSE
+	forceMove(target)
 	embedded_into = target
 	RegisterSignal(embedded_into, COMSIG_MOVABLE_MOVED, PROC_REF(embedded_on_carrier_move))
 	RegisterSignals(src, list(COMSIG_ITEM_DROPPED, COMSIG_MOVABLE_MOVED), PROC_REF(embedded_on_move))
@@ -78,8 +79,8 @@
 		stack_trace("limb_embed called for QDELETED [embedding]")
 		embedding?.unembed_ourself()
 		return FALSE
-	if(embedding.flags_item & (NODROP|DELONDROP))
-		stack_trace("limb_embed called for NODROP|DELONDROP [embedding]")
+	if(HAS_TRAIT(embedding, TRAIT_NODROP) || (embedding.flags_item & DELONDROP))
+		stack_trace("limb_embed called for TRAIT_NODROP or DELONDROP [embedding]")
 		embedding.unembed_ourself()
 		return FALSE
 	if(limb_status & LIMB_DESTROYED)

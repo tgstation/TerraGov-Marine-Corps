@@ -2433,9 +2433,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
 	dir = 4
 	},
@@ -2451,12 +2448,6 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/patrol_base)
 "Fn" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
-	dir = 4
-	},
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
 /turf/open/floor/plating/plating_catwalk,
@@ -2483,18 +2474,6 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
-	},
-/turf/open/floor/plating/plating_catwalk,
-/area/mainship/patrol_base)
-"FK" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
-	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer2{
-	dir = 1
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/patrol_base)
@@ -3797,7 +3776,7 @@
 	},
 /area/mainship/patrol_base)
 "Wu" = (
-/obj/machinery/body_scanconsole,
+/obj/machinery/computer/body_scanconsole,
 /turf/open/floor/prison/sterilewhite,
 /area/mainship/patrol_base)
 "Wv" = (
@@ -3805,14 +3784,16 @@
 /turf/open/floor/prison/sterilewhite,
 /area/mainship/patrol_base)
 "WM" = (
-/obj/machinery/autodoc_console,
+/obj/machinery/computer/autodoc_console,
 /obj/machinery/light/mainship{
 	light_color = "#da2f1b"
 	},
 /turf/open/floor/prison/sterilewhite,
 /area/mainship/patrol_base)
 "WP" = (
-/obj/machinery/atmospherics/components/unary/cryo_cell,
+/obj/machinery/atmospherics/components/unary/cryo_cell{
+	dir = 1
+	},
 /turf/open/floor/prison/sterilewhite,
 /area/mainship/patrol_base)
 "WU" = (
@@ -3831,9 +3812,11 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/patrol_base/barracks)
 "WY" = (
-/obj/machinery/atmospherics/components/unary/cryo_cell,
 /obj/machinery/light/mainship{
 	light_color = "#da2f1b"
+	},
+/obj/machinery/atmospherics/components/unary/cryo_cell{
+	dir = 1
 	},
 /turf/open/floor/prison/sterilewhite,
 /area/mainship/patrol_base)
@@ -24565,7 +24548,7 @@ bu
 bu
 zS
 fV
-FK
+Fs
 Jp
 KN
 KN

@@ -169,13 +169,11 @@
 	item_state = "ac_flak"
 	default_ammo = /datum/ammo/bullet/auto_cannon/flak
 
-/obj/item/ammo_magazine/heavy_laser
+/obj/item/cell/lasgun/heavy_laser
 	name = "heavy-duty weapon laser cell"
-	desc = "A cell with enough charge to contain 15 heavy laser shots for the TE-9001. This cannot be recharged."
+	desc = "A cell with enough charge to contain energy for the TE-9001. This cannot be recharged."
 	w_class = WEIGHT_CLASS_BULKY
-	flags_magazine = NONE
-	max_rounds = 15
-	default_ammo = /datum/ammo/energy/lasgun/marine/heavy_laser
+	maxcharge = 225
 	reload_delay = 5 SECONDS
 	icon = 'icons/Marine/marine-hmg.dmi'
 	icon_state = "hl_mag"
