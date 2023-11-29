@@ -67,9 +67,9 @@
 					visible_message(null, "<span class='danger'>You are too weakened to keep resisting [X], you slump to the ground!</span>")
 					X.visible_message("<span class='danger'>[X] slams [src] to the ground!</span>",
 					"<span class='danger'>We slam [src] to the ground!</span>", null, 5)
-					Paralyze(15 SECONDS)
+					Paralyze(20 SECONDS)
 	else if(!ishumanbasic(src))
-		if(randn <= 60)
+		if(randn <= 20)
 			if(!IsParalyzed())
 				X.do_attack_animation(src, ATTACK_EFFECT_DISARM2)
 				X.visible_message("<span class='danger'>[X] shoves and presses [src] down!</span>",
@@ -81,10 +81,11 @@
 			else if(IsParalyzed())
 				X.visible_message(null, "<span class='info'>We could not do much to [src], they are already down.</span>", null)
 				sound = 'sound/weapons/punchmiss.ogg'
-		else if(randn > 20)
+		else if(randn > 80)
 			sound = 'sound/weapons/punchmiss.ogg'
-			X.visible_message("<span class='danger'>[X] attempted to disarm [src]!</span>",
-			"<span class='danger'>We attempt to disarm [src]!</span>", null, 5)
+			X.visible_message("<span class='danger'>[X] attempted to disarm [src] but they resist!</span>",
+			"<span class='danger'>We attempt to disarm [src] but it resisted!</span>", null, 5)
+			Stagger(2 SECONDS)
 
 
 	log_combat(X, src, "disarmed")

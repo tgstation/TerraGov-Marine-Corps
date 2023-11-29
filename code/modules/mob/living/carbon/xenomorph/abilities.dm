@@ -1199,7 +1199,7 @@
 	if(isnestedhost(A))
 		X.recurring_injection(A, list(/datum/reagent/consumable/larvajelly,/datum/reagent/medicine/tricordrazine,/datum/reagent/medicine/inaprovaline), XENO_LARVAL_CHANNEL_TIME, XENO_LARVAL_AMOUNT_RECURRING)
 	else
-		X.recurring_injection(A, list(/datum/reagent/toxin/sleeptoxin, /datum/reagent/toxin/acid, /datum/reagent/consumable/larvajelly), XENO_LARVAL_CHANNEL_TIME, XENO_LARVAL_AMOUNT_RECURRING, 5)
+		X.recurring_injection(A, list(/datum/reagent/toxin/sleeptoxin, /datum/reagent/toxin/acid, /datum/reagent/consumable/larvajelly), XENO_LARVAL_CHANNEL_TIME, XENO_LARVAL_AMOUNT_RECURRING, 2)
 
 
 // ***************************************

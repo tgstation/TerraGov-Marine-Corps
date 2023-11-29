@@ -452,9 +452,19 @@
 	if(!islist(toxin))
 		toxin = list(toxin)
 	var/chemical_string = ""
-	for(var/datum/reagent/chem in toxin)
-		toxin[chem] = transfer_amount
-		chemical_string += chem.name + ", "
+	// populate the string and fill the assoc list transfer amounts
+	for(var/chem in toxin)
+		var/datum/reagent/chemical = chem
+		toxin[chemical] = transfer_amount
+		var/string_append = ", "
+		// use and if we're before the last chemical
+		var/last_chem = toxin[length(toxin)]
+		var/last_chem_index = toxin.Find(last_chem)
+		if(chem == toxin[last_chem_index - 1])
+			string_append = " and "
+		else if(chem == toxin[last_chem_index])
+			string_append = ""
+		chemical_string += "[initial(chemical.name)][string_append]"
 	if(!do_after(src, channel_time, TRUE, C, BUSY_ICON_HOSTILE))
 		return FALSE
 	var/i = 1
