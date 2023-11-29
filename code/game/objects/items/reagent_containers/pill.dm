@@ -208,7 +208,7 @@
 	pill_id = 17
 
 /obj/item/reagent_containers/pill/alkysine
-	pill_desc = "An Alkysine pill. Heals brain damage."
+	pill_desc = "An Alkysine pill. Heals brain and ear damage."
 	list_reagents = list(/datum/reagent/medicine/alkysine = 10)
 	pill_id = 18
 

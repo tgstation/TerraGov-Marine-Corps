@@ -1,0 +1,6 @@
+author: "Xander3359"
+delete-after: True
+changes:
+  - rscadd: "Harvesters can use tricordrazine, which applies a shatter effect"
+  - balance: "All chems in a harvester will do the same damage bonus"
+  - balance: "Bicaridine in a harvester will have more healing if you finish the channel with higher medical skill"

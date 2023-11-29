@@ -13,8 +13,15 @@ GLOBAL_REAL(GLOB, /datum/controller/global_vars)
 	GLOB = src
 
 	var/datum/controller/exclude_these = new
-	gvars_datum_in_built_vars = exclude_these.vars + list(NAMEOF(src, gvars_datum_protected_varlist), NAMEOF(src, gvars_datum_in_built_vars), NAMEOF(src, gvars_datum_init_order))
-	QDEL_IN(exclude_these, 1)	//signal logging isn't ready
+	// I know this is dumb but the nested vars list hangs a ref to the datum. This fixes that
+	var/list/controller_vars = exclude_these.vars.Copy()
+	controller_vars["vars"] = null
+	gvars_datum_in_built_vars = controller_vars + list(NAMEOF(src, gvars_datum_protected_varlist), NAMEOF(src, gvars_datum_in_built_vars), NAMEOF(src, gvars_datum_init_order))
+
+#if DM_VERSION >= 515 && DM_BUILD > 1620
+	#warn datum.vars hanging a ref should now be fixed, there should be no reason to remove the vars list from our controller's vars list anymore
+#endif
+	QDEL_IN(exclude_these, 1) //signal logging isn't ready
 
 	log_world("[length(vars) - length(gvars_datum_in_built_vars)] global variables")
 

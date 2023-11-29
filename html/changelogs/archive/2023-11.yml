@@ -295,3 +295,88 @@
       instead of borrowing the Crusher's.
   Xander3359:
   - qol: reagent pouch defaults to draw mode enabled (left click to draw)
+2023-11-22:
+  Helg2:
+  - bugfix: pouches now properly update, for real this time.
+  Lumipharon:
+  - rscadd: Added a heavy lift jetpack to HvH, capable of travelling further with
+      a heavy load, or smashing directly into mobs
+  - qol: Jetpacks say how long is left on CD if you try use it
+  - code_imp: minor code improvements for jetpacks
+  - bugfix: fixed a few campaign bugs
+  - qol: 3rd party faction are not locked behind the 30 min respawn timer in campaign,
+      when between missions
+  - balance: Replaced packets with pill bottles for all marine use
+  - bugfix: fixed huggers not hugging people in some cases
+  ivanmixo:
+  - bugfix: Cocoon doesn't try to process after it releases its victim
+  - bugfix: Fixed lobby button runtimes and bugs (you shouldn't get 'Unknown Character'
+      anymore)
+  - bugfix: TTS mask runtime fix
+  - bugfix: Fixed SSresinshaping and ping not returning their stat panel entry
+  novaepee:
+  - rscadd: update alky meds' desc to include healing ear damage
+  vvvv-vvvv:
+  - bugfix: Fix lascarbine spread pointblanks shooting past the target
+  yyzsong:
+  - balance: kills portaflashers
+2023-11-23:
+  Lumipharon:
+  - code_imp: Removed some hardcoded limitations around max health
+  - imageadd: acidwells are now emissive
+  - balance: stalemates no longer provide insane amounts of larva
+  novaepee:
+  - spellcheck: fixed desactived to deactivated in camera code
+2023-11-24:
+  Barnet2:
+  - code_imp: Re-organized the Slumbridge area file.
+  - bugfix: CAS can now no longer hit inside of Slumbridge caves in PC'd tiles.
+  Lumipharon:
+  - code_imp: some code clean up for living mob init
+2023-11-25:
+  Lumipharon:
+  - bugfix: Can no longer teleport to the objective on Base Rescue in campaign
+  - balance: Ship railgun is no longer available in Crash
+  Pariah919:
+  - rscdel: Vali spear has been removed.
+2023-11-27:
+  Pariah919:
+  - balance: Amount of free roundstart HEDPs reduced to 200 from 600.
+  - balance: Most grenade boxes are now cheaper, lower tier grenades have went from
+      500 to 310, and higher tier grenades to 350. Razorburn and white phos are untouched.
+  TiviPlus:
+  - rscdel: Removes the context menu toggle
+  ivanmixo:
+  - bugfix: Fixed some AI runtimes
+  - bugfix: Fixed a bunch of spiderling runtimes
+  - bugfix: Xenos should no longer have quickbuild outside of prep
+  yyzsong:
+  - bugfix: fixes the names of the FK-88 and ATR-22 ammos in req
+  - rscadd: adds hand labelers and KOTAHI decks to valhalla weapons vendors
+  - bugfix: Unguided rockets are now unlimited in valhalla (whoops)
+  - rscdel: removes the valhalla reqtorio section
+2023-11-28:
+  Lewdcifer:
+  - balance: Removed Russian Red pill bottles and packets from most vendors (including
+      the Tadpole med vendor) except Valhalla's.
+  - balance: Russian Red storage options have been replaced in first aid kits where
+      appropriate.
+  - balance: Reduced the amount of Russian Red autoinjectors in normal vendors from
+      30 to 10.
+  Lumipharon:
+  - bugfix: fixed embedded objects not being correctly put into the victim in some
+      cases
+  dopamiin0:
+  - balance: The dropship fabricator now recieves 10% of the value of exports, rather
+      than 5%.
+  efzapa:
+  - imageadd: Added working coffee sprite
+  - spellcheck: Updated Red Comrade Cigarette description.
+  vvvv-vvvv:
+  - bugfix: Fix some computer emissives
+  - bugfix: Fix tadpole being able to land on disks
+2023-11-29:
+  coldironwarrior:
+  - rscadd: 'adds two new armor colors: mountbatten pink and yellow (replaces the
+      old "yellow" which is now "olive")'
+  - bugfix: fixed a few color names

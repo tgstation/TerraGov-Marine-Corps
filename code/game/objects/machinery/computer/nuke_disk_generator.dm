@@ -13,7 +13,7 @@
 	interaction_flags = INTERACT_MACHINE_TGUI
 	circuit = /obj/item/circuitboard/computer/nuke_disk_generator
 
-	resistance_flags = INDESTRUCTIBLE|UNACIDABLE
+	resistance_flags = RESIST_ALL|DROPSHIP_IMMUNE
 
 	///Time needed for the machine to generate the disc
 	var/segment_time = 1.5 MINUTES

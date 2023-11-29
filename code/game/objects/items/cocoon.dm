@@ -93,6 +93,7 @@
 	if(gib)
 		victim.gib()
 	victim = null
+	STOP_PROCESSING(SSslowprocess, src)
 
 /obj/structure/cocoon/attacked_by(obj/item/I, mob/living/user, def_zone)
 	if(!anchored && victim)

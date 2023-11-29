@@ -78,7 +78,6 @@
 			/obj/item/storage/holster/blade/machete/full = -1,
 			/obj/item/storage/holster/blade/machete/full_harvester = -1,
 			/obj/item/weapon/twohanded/spear/tactical = -1,
-			/obj/item/weapon/twohanded/spear/tactical/harvester = -1,
 			/obj/item/weapon/twohanded/glaive/harvester = -1,
 			/obj/item/weapon/powerfist = -1,
 			/obj/item/weapon/shield/riot/marine = 6,
@@ -110,7 +109,7 @@
 			/obj/item/ammo_magazine/rifle/tx54/incendiary = 4,
 			/obj/item/ammo_magazine/rifle/tx54/smoke = 4,
 			/obj/item/ammo_magazine/rifle/tx54/smoke/tangle = 2,
-			/obj/item/explosive/grenade = 600,
+			/obj/item/explosive/grenade = 200,
 			/obj/item/explosive/grenade/m15 = 30,
 			/obj/item/explosive/grenade/sticky = 125,
 			/obj/item/explosive/grenade/sticky/trailblazer = 75,
@@ -294,7 +293,6 @@
 			/obj/item/storage/holster/blade/machete/full = -1,
 			/obj/item/storage/holster/blade/machete/full_harvester = -1,
 			/obj/item/weapon/twohanded/spear/tactical = -1,
-			/obj/item/weapon/twohanded/spear/tactical/harvester = -1,
 			/obj/item/weapon/twohanded/glaive/harvester = -1,
 			/obj/item/weapon/powerfist = -1,
 			/obj/item/weapon/shield/riot/marine = 6,
@@ -322,7 +320,7 @@
 		"Grenades" = list(
 			/obj/item/weapon/gun/grenade_launcher/single_shot = -1,
 			/obj/item/weapon/gun/grenade_launcher/multinade_launcher/unloaded = -1,
-			/obj/item/explosive/grenade = 600,
+			/obj/item/explosive/grenade = 200,
 			/obj/item/explosive/grenade/m15 = 30,
 			/obj/item/explosive/grenade/sticky = 125,
 			/obj/item/explosive/grenade/incendiary = 50,
@@ -493,7 +491,6 @@
 			/obj/item/storage/holster/blade/machete/full = -1,
 			/obj/item/storage/holster/blade/machete/full_harvester = -1,
 			/obj/item/weapon/twohanded/spear/tactical = -1,
-			/obj/item/weapon/twohanded/spear/tactical/harvester = -1,
 			/obj/item/weapon/twohanded/glaive/harvester = -1,
 			/obj/item/weapon/powerfist = -1,
 			/obj/item/weapon/shield/riot/marine = -1,
@@ -551,6 +548,11 @@
 			/obj/structure/closet/crate/mortar_ammo/mortar_kit = -1,
 			/obj/structure/closet/crate/mortar_ammo/howitzer_kit = -1,
 			/obj/structure/largecrate/supply/weapons/standard_atgun = -1,
+			/obj/item/ammo_magazine/standard_atgun = -1,
+			/obj/item/ammo_magazine/standard_atgun/apcr = -1,
+			/obj/item/ammo_magazine/standard_atgun/he = -1,
+			/obj/item/ammo_magazine/standard_atgun/beehive = -1,
+			/obj/item/ammo_magazine/standard_atgun/incend = -1,
 			/obj/item/storage/box/crate/sentry = -1,
 			/obj/item/storage/box/tl102 = -1,
 			/obj/item/weapon/gun/heavymachinegun = -1,
@@ -634,6 +636,8 @@
 			/obj/item/assembly/signaler = -1,
 			/obj/item/binoculars = -1,
 			/obj/item/compass = -1,
+			/obj/item/tool/hand_labeler = -1,
+			/obj/item/toy/deck/kotahi = -1,
 			/obj/item/deployable_floodlight = -1,
 		),
 	)
@@ -683,6 +687,19 @@
 
 /obj/machinery/vending/cigarette/nopower
 	use_power = NO_POWER_USE
+
+/obj/machinery/vending/cigarette/valhalla
+	resistance_flags = INDESTRUCTIBLE
+	use_power = NO_POWER_USE
+	products = list(
+		/obj/item/storage/fancy/cigarettes/luckystars = -1,
+		/obj/item/storage/fancy/chemrettes = -1,
+		/obj/item/storage/box/matches = -1,
+		/obj/item/tool/lighter/random = -1,
+		/obj/item/tool/lighter/zippo = -1,
+		/obj/item/clothing/mask/cigarette/cigar/havana = -1,
+		/obj/item/storage/fancy/cigar = -1,
+	)
 
 /obj/machinery/vending/cargo_supply
 	name = "\improper Operational Supplies Vendor"
@@ -846,6 +863,10 @@
 					/obj/item/reagent_containers/food/snacks/mre_pack/xmas2 = 25,
 					/obj/item/reagent_containers/food/snacks/mre_pack/xmas3 = 25)*/
 
+/obj/machinery/vending/marineFood/valhalla
+	resistance_flags = INDESTRUCTIBLE
+	use_power = NO_POWER_USE
+
 /obj/machinery/vending/marineFood/som
 	name = "\improper SOM Food and Drinks Vendor"
 	faction = FACTION_SOM
@@ -892,7 +913,7 @@
 			/obj/item/reagent_containers/hypospray/autoinjector/imidazoline = 20,
 			/obj/item/reagent_containers/hypospray/autoinjector/quickclot = 10,
 			/obj/item/reagent_containers/hypospray/autoinjector/medicalnanites = 20,
-			/obj/item/reagent_containers/hypospray/autoinjector/russian_red = 30,
+			/obj/item/reagent_containers/hypospray/autoinjector/russian_red = 10,
 		),
 		"Heal Pack" = list(
 			/obj/item/stack/medical/heal_pack/gauze = -1,
@@ -1388,10 +1409,10 @@
 			/obj/item/ammo_magazine/rocket/m57a4 = -1,
 			/obj/item/weapon/gun/launcher/rocket/sadar/valhalla = -1,
 			/obj/item/ammo_magazine/rocket/sadar = -1,
-			/obj/item/ammo_magazine/rocket/sadar/unguided = 1,
+			/obj/item/ammo_magazine/rocket/sadar/unguided = -1,
 			/obj/item/ammo_magazine/rocket/sadar/ap = -1,
 			/obj/item/ammo_magazine/rocket/sadar/wp = -1,
-			/obj/item/ammo_magazine/rocket/sadar/wp/unguided = 1,
+			/obj/item/ammo_magazine/rocket/sadar/wp/unguided = -1,
 			/obj/item/weapon/gun/shotgun/zx76 = -1,
 			/obj/item/ammo_magazine/shotgun/incendiary = -1,
 			/obj/item/weapon/gun/rifle/standard_autosniper = -1,
@@ -1438,6 +1459,9 @@
 			/obj/item/ammo_magazine/standard_agls/flare = -1,
 			/obj/item/ammo_magazine/standard_agls/cloak = -1,
 			/obj/item/ammo_magazine/standard_agls/tanglefoot = -1,
+			/obj/item/weapon/gun/heavy_isg = -1,
+			/obj/item/ammo_magazine/heavy_isg/he = -1,
+			/obj/item/ammo_magazine/heavy_isg/sabot = -1,
 		),
 		"Equipment" = list(
 			/obj/item/clothing/glasses/hud/xenohud = -1,
@@ -1469,20 +1493,6 @@
 			/obj/item/implanter/cloak = -1,
 			/obj/item/implanter/chem/blood = -1,
 			/obj/item/implanter/blade = -1,
-		),
-		"Reqtorio" = list(
-			/obj/item/paper/factoryhowto = -1,
-			/obj/machinery/factory/cutter = -1,
-			/obj/machinery/factory/heater = -1,
-			/obj/machinery/factory/flatter = -1,
-			/obj/machinery/factory/former = -1,
-			/obj/machinery/factory/reconstructor = -1,
-			/obj/machinery/unboxer = -1,
-			/obj/machinery/factory/driller = -1,
-			/obj/machinery/factory/galvanizer = -1,
-			/obj/machinery/factory/compressor = -1,
-			/obj/item/stack/conveyor/thirty = 10,
-			/obj/item/conveyor_switch_construct = 10,
 		),
 	)
 
