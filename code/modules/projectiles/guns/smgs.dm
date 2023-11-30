@@ -16,7 +16,7 @@
 		/obj/item/attachable/magnetic_harness,
 	)
 
-	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_SMOKE_PARTICLES
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOBURST)
 	gun_skill_category = SKILL_SMGS
 
@@ -34,6 +34,7 @@
 	desc = "The MP-19 is the TerraGov Marine Corps standard-issue machine pistol. It's known for it's low recoil and scatter when used one handed. It's usually carried by specialized troops who do not have the space to carry a much larger gun like medics and engineers. It uses 10x20mm caseless rounds."
 	icon_state = "t19"
 	item_state = "t19"
+	fire_sound = 'sound/weapons/guns/fire/tgmc/kinetic/gun_mp19.ogg'
 	caliber = CALIBER_10X20_CASELESS //codex
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
 	max_shells = 30 //codex
@@ -80,7 +81,7 @@
 	burst_amount = 1
 	autoburst_delay = 0.1 SECONDS
 	autoburst_delay = 0.1 SECONDS //this makes it fuller auto
-	burst_accuracy_mult = 0.3
+	burst_accuracy_bonus = -0.3
 	burst_scatter_mult = 25
 
 /obj/item/weapon/gun/smg/standard_machinepistol/compact
@@ -98,9 +99,9 @@
 /obj/item/weapon/gun/smg/standard_smg
 	name = "\improper SMG-90 submachinegun"
 	desc = "The SMG-90 is the TerraGov Marine Corps standard issue SMG. Its known for it's compact size and ease of use inside the field. It's usually carried by troops who want a lightweight firearm to rush with. It uses 10x20mm caseless rounds."
-	fire_sound = 'sound/weapons/guns/fire/t90.ogg'
-	icon_state = "t90"
-	item_state = "t90"
+	fire_sound = 'sound/weapons/guns/fire/tgmc/kinetic/gun_smg90.ogg'
+	icon_state = GUN_ICONSTATE_LOADED
+	item_state = GUN_ICONSTATE_LOADED
 	caliber = CALIBER_10X20_CASELESS //codex
 	max_shells = 50 //codex
 	flags_equip_slot = ITEM_SLOT_BACK
@@ -109,6 +110,14 @@
 	type_of_casings = null
 	default_ammo_type = /obj/item/ammo_magazine/smg/standard_smg
 	allowed_ammo_types = list(/obj/item/ammo_magazine/smg/standard_smg)
+	greyscale_config = /datum/greyscale_config/gun/t90
+	colorable_allowed = PRESET_COLORS_ALLOWED
+	item_icons = list(
+		slot_l_hand_str = /datum/greyscale_config/gun_inhand/t90,
+		slot_r_hand_str = /datum/greyscale_config/gun_inhand/r_hand/t90,
+		slot_back_str = /datum/greyscale_config/worn_gun/t90,
+		slot_s_store_str = /datum/greyscale_config/worn_gun/suit/t90,
+	)
 	attachable_allowed = list(
 		/obj/item/attachable/suppressor,
 		/obj/item/attachable/reddot,
@@ -125,7 +134,7 @@
 		/obj/item/attachable/shoulder_mount,
 	)
 
-	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_SMOKE_PARTICLES
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 15,"rail_x" = 22, "rail_y" = 22, "under_x" = 17, "under_y" = 15, "stock_x" = 24, "stock_y" = 10)
 	actions_types = list(/datum/action/item_action/aim_mode)
@@ -185,8 +194,12 @@
 		/obj/item/attachable/extended_barrel,
 		/obj/item/attachable/heavy_barrel,
 		/obj/item/attachable/scope/mini,
-		/obj/item/attachable/burstfire_assembly,
 		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/burstfire_assembly,
+		/obj/item/weapon/gun/pistol/plasma_pistol,
+		/obj/item/weapon/gun/shotgun/combat/masterkey,
+		/obj/item/weapon/gun/flamer/mini_flamer,
+		/obj/item/weapon/gun/grenade_launcher/underslung,
 		/obj/item/attachable/gyro,
 	)
 
@@ -199,6 +212,10 @@
 	scatter_unwielded = 10
 	aim_slowdown = 0.15
 	burst_amount = 3
+	akimbo_additional_delay = 0.4
+	upper_akimbo_accuracy = 5
+	lower_akimbo_accuracy = 3
+	damage_falloff_mult = 0.9
 
 /obj/item/weapon/gun/smg/m25/holstered
 	starting_attachment_types = list(/obj/item/attachable/reddot, /obj/item/attachable/compensator, /obj/item/attachable/gyro)
@@ -357,7 +374,7 @@
 		/obj/item/attachable/foldable/bipod,
 	)
 
-	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_SMOKE_PARTICLES
 	attachable_offset = list("muzzle_x" = 38, "muzzle_y" = 19,"rail_x" = 13, "rail_y" = 21, "under_x" = 26, "under_y" = 15, "stock_x" = 19, "stock_y" = 13)
 	actions_types = list(/datum/action/item_action/aim_mode)
 	aim_fire_delay = 0.15 SECONDS
@@ -367,15 +384,20 @@
 		/obj/item/attachable/stock/ppsh,
 	)
 
-	fire_delay = 0.15 SECONDS
-	burst_amount = 6
+	fire_delay = 0.1 SECONDS
+	burst_amount = 1
 	accuracy_mult = 1.05
 	accuracy_mult_unwielded = 0.8
-	scatter = 5
-	scatter_unwielded = 15
-	aim_slowdown = 0.3
-	wield_delay = 0.35 SECONDS
+	akimbo_additional_delay = 0.5
 
+	min_scatter = 2
+	min_scatter_unwielded = 3
+	max_scatter = 15
+	max_scatter_unwielded = 25
+	scatter_increase = 2
+	scatter_increase_unwielded = 8
+	scatter_decay = 0.5
+	scatter_decay_unwielded = 0.1
 
 //-------------------------------------------------------
 //GENERIC UZI //Based on the uzi submachinegun, of course.
@@ -421,7 +443,13 @@
 	flags_equip_slot = ITEM_SLOT_BACK
 	type_of_casings = null
 	default_ammo_type = /obj/item/ammo_magazine/smg/som
-	allowed_ammo_types = list(/obj/item/ammo_magazine/smg/som, /obj/item/ammo_magazine/smg/som/ap, /obj/item/ammo_magazine/smg/som/incendiary, /obj/item/ammo_magazine/smg/som/extended)
+	allowed_ammo_types = list(
+		/obj/item/ammo_magazine/smg/som,
+		/obj/item/ammo_magazine/smg/som/ap,
+		/obj/item/ammo_magazine/smg/som/incendiary,
+		/obj/item/ammo_magazine/smg/som/extended,
+		/obj/item/ammo_magazine/smg/som/rad,
+	)
 	fire_sound = 'sound/weapons/guns/fire/vector_fire.ogg'
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST) //full auto, fuller auto
 
@@ -458,7 +486,7 @@
 	burst_delay = 0.1 SECONDS
 	extra_delay = 0.1 SECONDS
 	autoburst_delay = 0.1 SECONDS //this makes it fuller auto
-	burst_accuracy_mult = -0.3
+	burst_accuracy_bonus = -0.3
 	burst_scatter_mult = 15
 
 	akimbo_additional_delay = 0.7

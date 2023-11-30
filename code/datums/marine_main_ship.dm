@@ -60,7 +60,7 @@ GLOBAL_DATUM_INIT(marine_main_ship, /datum/marine_main_ship, new)
 			if(!A.power_light || light.status != LIGHT_OK) //do not adjust unpowered or broken bulbs
 				continue
 			light.light_color = COLOR_SOMEWHAT_LIGHTER_RED
-			light.brightness = 3.0
+			light.brightness = 3
 			light.light_range = 7.5
 			if(prob(75)) //randomize light range on most lights, patchy lighting gives a sense of danger
 				var/rangelevel = pick(5.5,6.0,6.5,7.0)

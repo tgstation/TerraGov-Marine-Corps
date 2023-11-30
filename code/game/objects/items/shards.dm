@@ -28,7 +28,7 @@
 	return ..()
 
 
-/obj/item/shard/Initialize()
+/obj/item/shard/Initialize(mapload)
 	. = ..()
 	shardsize = pick("large", "medium", "small")
 	switch(shardsize)
@@ -84,7 +84,7 @@
 	var/mob/living/M = AM
 	if(M.status_flags & INCORPOREAL)  //Flying over shards doesn't break them
 		return
-	if (CHECK_MULTIPLE_BITFIELDS(M.flags_pass, HOVERING))
+	if (CHECK_MULTIPLE_BITFIELDS(M.pass_flags, HOVERING))
 		return
 
 	pick(playsound(loc, 'sound/effects/shard1.ogg', 35, TRUE), playsound(loc, 'sound/effects/shard2.ogg', 35, TRUE), playsound(loc, 'sound/effects/shard3.ogg', 35, TRUE), playsound(loc, 'sound/effects/shard4.ogg', 35, TRUE), playsound(loc, 'sound/effects/shard5.ogg', 35, TRUE))
@@ -110,7 +110,7 @@
 	var/datum/limb/affecting = target.get_limb(pick("l_foot", "r_foot"))
 	if(affecting.limb_status & LIMB_ROBOT)
 		return
-	target.Paralyze(60)
+	target.Paralyze(6 SECONDS)
 
 	if(affecting.take_damage_limb(5))
 		UPDATEHEALTH(target)

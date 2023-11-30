@@ -23,11 +23,11 @@ GLOBAL_LIST_INIT(hugger_to_ammo, list(
 
 //List of huggie images
 GLOBAL_LIST_INIT(hugger_images_list,  list(
-		LARVAL_HUGGER = image('icons/mob/actions.dmi', icon_state = LARVAL_HUGGER),
-		CLAWED_HUGGER = image('icons/mob/actions.dmi', icon_state = CLAWED_HUGGER),
-		NEURO_HUGGER = image('icons/mob/actions.dmi', icon_state = NEURO_HUGGER ),
-		ACID_HUGGER  = image('icons/mob/actions.dmi', icon_state = ACID_HUGGER),
-		RESIN_HUGGER = image('icons/mob/actions.dmi', icon_state = RESIN_HUGGER),
+		LARVAL_HUGGER = image('icons/Xeno/actions.dmi', icon_state = LARVAL_HUGGER),
+		CLAWED_HUGGER = image('icons/Xeno/actions.dmi', icon_state = CLAWED_HUGGER),
+		NEURO_HUGGER = image('icons/Xeno/actions.dmi', icon_state = NEURO_HUGGER ),
+		ACID_HUGGER = image('icons/Xeno/actions.dmi', icon_state = ACID_HUGGER),
+		RESIN_HUGGER = image('icons/Xeno/actions.dmi', icon_state = RESIN_HUGGER),
 		))
 
 // ***************************************
@@ -142,6 +142,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	playsound(T, "alien_resin_build", 25)
 	GLOB.round_statistics.trap_holes++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "carrier_traps")
+	owner.record_traps_created()
 	new /obj/structure/xeno/trap(T, owner.get_xeno_hivenumber())
 	to_chat(owner, span_xenonotice("We place a trap on the weeds, but it still needs to be filled."))
 
@@ -182,6 +183,9 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	playsound(caster, 'sound/voice/alien_drool2.ogg', 50, 0, 1)
 	succeed_activate()
 	add_cooldown()
+	if(owner.client)
+		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[owner.ckey]
+		personal_statistics.huggers_created++
 
 // ***************************************
 // *********** Drop all hugger, panic button
@@ -232,7 +236,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 
 	xeno_carrier.visible_message(span_xenowarning("A chittering mass of tiny aliens is trying to escape [xeno_carrier]!"))
 	while(xeno_carrier.huggers > 0)
-		var/obj/item/clothing/mask/facehugger/new_hugger = new /obj/item/clothing/mask/facehugger/larval(get_turf(xeno_carrier))
+		var/obj/item/clothing/mask/facehugger/new_hugger = new /obj/item/clothing/mask/facehugger/larval(get_turf(xeno_carrier), xeno_carrier.hivenumber, xeno_carrier)
 		step_away(new_hugger, xeno_carrier, 1)
 		addtimer(CALLBACK(new_hugger, TYPE_PROC_REF(/obj/item/clothing/mask/facehugger, go_active), TRUE), new_hugger.jump_cooldown)
 		xeno_carrier.huggers--
@@ -275,6 +279,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 
 	var/atom/A = caster.selected_hugger_type
 	to_chat(caster, span_notice("We will now spawn <b>[initial(A.name)]\s</b> when using the Spawn Hugger ability."))
+	caster.balloon_alert(caster,"[initial(A.name)]")
 	update_button_icon()
 	succeed_activate()
 	return COMSIG_KB_ACTIVATED
@@ -289,6 +294,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 			caster.selected_hugger_type = hugger_type
 			break
 	to_chat(caster, span_notice("We will now spawn <b>[hugger_choice]\s</b> when using the spawn hugger ability."))
+	caster.balloon_alert(caster, "[hugger_choice]")
 	update_button_icon()
 	return succeed_activate()
 
@@ -298,6 +304,9 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	desc = "Build a hugger turret"
 	plasma_cost = 800
 	cooldown_timer = 5 MINUTES
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_BUILD_HUGGER_TURRET,
+	)
 
 /datum/action/xeno_action/build_hugger_turret/can_use_action(silent, override_flags)
 	. = ..()
@@ -405,8 +414,8 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	victim.visible_message(span_xenowarning("\The [victim] loses his balance, falling to the side!"), \
 	span_xenowarning("You feel like something inside you is tearing out!"))
 
-	victim.apply_effects(1, 0.5)
-	victim.adjust_stagger(debuff)
+	victim.apply_effects(2 SECONDS, 1 SECONDS)
+	victim.adjust_stagger(debuff SECONDS)
 	victim.adjust_slowdown(debuff)
 	victim.apply_damage(stamina_dmg, STAMINA)
 

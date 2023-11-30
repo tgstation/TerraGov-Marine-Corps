@@ -4,7 +4,7 @@
 	var/list/items_to_spawn
 
 
-/obj/effect/landmark/itemspawner/Initialize()
+/obj/effect/landmark/itemspawner/Initialize(mapload)
 	. = ..()
 	for(var/path in items_to_spawn)
 		new path(loc)

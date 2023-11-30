@@ -31,6 +31,7 @@
 	r_store = /obj/item/storage/pouch/general/large
 	l_store = /obj/item/storage/pouch/medical_injectors/firstaid
 	back = /obj/item/storage/backpack/lightpack
+	implants = list(/obj/item/implant/suicide_dust)
 
 
 /datum/outfit/job/upp/commando/standard/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
@@ -84,6 +85,7 @@
 	r_store = /obj/item/storage/pouch/medical_injectors/firstaid
 	l_store = /obj/item/storage/pouch/general/large
 	back = /obj/item/storage/backpack/lightpack
+	implants = list(/obj/item/implant/suicide_dust)
 
 
 /datum/outfit/job/upp/commando/medic/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
@@ -129,7 +131,7 @@
 	jobtype = /datum/job/upp/commando/leader
 
 	id = /obj/item/card/id/silver
-	belt = /obj/item/storage/belt/gun/korovin/tranq
+	belt = /obj/item/storage/holster/belt/korovin/tranq
 	ears = /obj/item/radio/headset/distress/usl
 	w_uniform = /obj/item/clothing/under/marine/veteran/UPP
 	shoes = /obj/item/clothing/shoes/marine
@@ -142,6 +144,7 @@
 	r_store = /obj/item/storage/pouch/general/large
 	l_store = /obj/item/storage/pouch/medical_injectors/firstaid
 	back = /obj/item/storage/backpack/lightpack
+	implants = list(/obj/item/implant/suicide_dust)
 
 
 /datum/outfit/job/upp/commando/leader/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)

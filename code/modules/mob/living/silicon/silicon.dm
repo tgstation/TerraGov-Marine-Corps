@@ -8,6 +8,7 @@
 	dextrous = TRUE
 
 	initial_language_holder = /datum/language_holder/synthetic
+	voice_filter = "afftfilt=real='hypot(re,im)*sin(0)':imag='hypot(re,im)*cos(0)':win_size=512:overlap=1,rubberband=pitch=0.8"
 
 	var/obj/machinery/camera/builtInCamera = null
 	var/obj/item/radio/headset/mainship/mcom/silicon/radio = null
@@ -15,9 +16,11 @@
 	var/list/HUD_toggled = list(0, 0, 0)
 
 
-/mob/living/silicon/Initialize()
+/mob/living/silicon/Initialize(mapload)
 	. = ..()
 	radio = new(src)
+	if(SStts.tts_enabled)
+		voice = pick(SStts.available_speakers)
 
 
 /mob/living/silicon/Destroy()
@@ -53,10 +56,6 @@
 	return
 
 
-/mob/living/silicon/stripPanelEquip(obj/item/I, mob/M, slot)
-	return
-
-
 /mob/living/silicon/stripPanelUnequip(obj/item/I, mob/M, slot)
 	return
 
@@ -87,12 +86,7 @@
 	to_chat(src, span_warning("Warning: Electromagnetic pulse detected."))
 	return ..()
 
-
-/mob/living/silicon/stun_effect_act(stun_amount, agony_amount, def_zone)
-	return
-
-
-/mob/living/silicon/apply_effect(effect = 0, effecttype = STUN, blocked = 0, updating_health = FALSE)
+/mob/living/silicon/apply_effect(effect = 0, effecttype = STUN, updating_health = FALSE)
 	return FALSE
 
 
@@ -145,8 +139,6 @@
 		if("Squad HUD")
 			if(GLOB.huds[faction] == FACTION_TERRAGOV)
 				H = DATA_HUD_SQUAD_TERRAGOV
-			else if(GLOB.huds[faction] == FACTION_TERRAGOV_REBEL)
-				H = DATA_HUD_SQUAD_REBEL
 			else if(GLOB.huds[faction] == FACTION_SOM)
 				H = DATA_HUD_SQUAD_SOM
 			HUD_nbr = 3
@@ -165,41 +157,23 @@
 
 /mob/living/silicon/ex_act(severity)
 	flash_act()
-
+	if(stat == DEAD)
+		return
 	switch(severity)
 		if(EXPLODE_DEVASTATE)
-			if(stat == DEAD)
-				return
 			adjustBruteLoss(100)
 			adjustFireLoss(100)
 			if(!anchored)
 				gib()
 		if(EXPLODE_HEAVY)
-			if(stat == DEAD)
-				return
 			adjustBruteLoss(60)
 			adjustFireLoss(60)
 		if(EXPLODE_LIGHT)
-			if(stat == DEAD)
-				return
 			adjustBruteLoss(30)
+		if(EXPLODE_WEAK)
+			adjustBruteLoss(15)
 
 	UPDATEHEALTH(src)
-
-
-/mob/living/silicon/emp_act(severity)
-	. = ..()
-
-	to_chat(src, span_danger("Electromagnetic pulse detected."))
-
-	switch(severity)
-		if(1)
-			adjustBruteLoss(20)
-		if(2)
-			adjustBruteLoss(10)
-
-	to_chat(src, span_danger("*BZZZT*"))
-	flash_act()
 
 
 /mob/living/silicon/update_transform()

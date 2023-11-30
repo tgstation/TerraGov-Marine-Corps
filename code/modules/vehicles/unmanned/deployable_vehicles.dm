@@ -18,9 +18,9 @@
 	///Time to undeploy
 	var/undeploy_time = 1 SECONDS
 
-/obj/item/deployable_vehicle/Initialize()
+/obj/item/deployable_vehicle/Initialize(mapload)
 	. = ..()
-	AddElement(/datum/element/deployable_item, deployable_item, deploy_time, undeploy_time)
+	AddComponent(/datum/component/deployable_item, deployable_item, deploy_time, undeploy_time)
 
 /obj/vehicle/unmanned/deployable
 	name = "UV-L Iguana"
@@ -31,6 +31,8 @@
 	var/obj/item/deployable_vehicle/internal_item
 
 /obj/vehicle/unmanned/deployable/Initialize(mapload, _internal_item, deployer)
+	if(!internal_item && !_internal_item)
+		return INITIALIZE_HINT_QDEL
 	internal_item = _internal_item
 	spawn_equipped_type = internal_item.stored_turret_type
 	. = ..()

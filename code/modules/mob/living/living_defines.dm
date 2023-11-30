@@ -92,9 +92,9 @@
 	///a list of all status effects the mob has
 	var/list/status_effects
 	///Assoc list mapping aura types to strength, based on what we've received since the last life tick. Handled in handle_status_effects()
-	var/list/received_auras
+	var/list/received_auras = list()
 	///List of strings for auras this mob is currently emitting via ssAura
-	var/list/emitted_auras
+	var/list/emitted_auras = list()
 	///lazy list
 	var/list/stun_absorption
 
@@ -134,11 +134,8 @@
 	/// How much friendly fire damage has this mob done in the last 30 seconds.
 	var/list/friendly_fire = list()
 
-	///Stagger and slow vars; Stagger penalizes projectile damage for non-Xenos and disables ability use for Xenos. Slowdown is obvious.
 	///Temporary penalty on movement. Regenerates each tick.
 	var/slowdown = 0
-	///Temporary inability to use special actions; hurts projectile damage. Regenerates each tick.
-	var/stagger = 0
 	///Id of the timer to set the afk status to MOB_DISCONNECTED
 	var/afk_timer_id
 	///If this mob is afk
@@ -146,3 +143,12 @@
 
 	/// This is the cooldown on suffering additional effects for when we exhaust all stamina
 	COOLDOWN_DECLARE(last_stamina_exhaustion)
+
+	///The world.time of when this mob was last lying down
+	var/last_rested = 0
+	///The world.time of when this mob became unconscious
+	var/last_unconscious = 0
+	///The world.time of when this mob entered a stasis bag
+	var/time_entered_stasis = 0
+	///The world.time of when this mob entered a cryo tube
+	var/time_entered_cryo = 0

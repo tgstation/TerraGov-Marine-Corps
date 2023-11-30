@@ -1,6 +1,6 @@
 /datum/element/plasma_on_attack
 	element_flags = ELEMENT_BESPOKE
-	id_arg_index = 2
+	argument_hash_start_idx = 2
 
 	///the multiplier of plasma won via causing damage to living things.
 	var/damage_plasma_multiplier = 1

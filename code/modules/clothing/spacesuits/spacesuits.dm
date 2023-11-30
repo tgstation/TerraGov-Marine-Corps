@@ -5,7 +5,7 @@
 	name = "Space helmet"
 	icon = 'icons/obj/clothing/headwear/space_suit_helmets.dmi'
 	item_icons = list(slot_head_str = 'icons/mob/clothing/headwear/space_suit_helmets.dmi')
-	icon_state = "space-helm"
+	icon_state = "space_helm"
 	desc = "A special helmet designed for work in a hazardous, low-pressure environment."
 	permeability_coefficient = 0.01
 	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 100, FIRE = 0, ACID = 0)

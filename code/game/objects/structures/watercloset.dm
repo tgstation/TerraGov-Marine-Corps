@@ -15,7 +15,7 @@
 	var/w_items = 0			//the combined w_class of all the items in the cistern
 	var/mob/living/swirlie = null	//the mob being given a swirlie
 
-/obj/structure/toilet/Initialize()
+/obj/structure/toilet/Initialize(mapload)
 	. = ..()
 	open = round(rand(0, 1))
 	update_icon()
@@ -166,7 +166,7 @@
 	var/mobpresent = 0
 	var/is_washing = FALSE
 
-/obj/machinery/shower/Initialize()
+/obj/machinery/shower/Initialize(mapload)
 	. = ..()
 	create_reagents(2)
 	var/static/list/connections = list(
@@ -321,10 +321,10 @@
 	icon = 'icons/obj/watercloset.dmi'
 	icon_state = "sink"
 	desc = "A sink used for washing one's hands and face."
-	anchored = TRUE
-	var/busy = 0 	//Something's being washed at the moment
+	///is someone currently washing at this sink?
+	var/busy = FALSE
 
-/obj/structure/sink/Initialize()
+/obj/structure/sink/Initialize(mapload)
 	. = ..()
 	switch(dir)
 		if(WEST)
@@ -335,32 +335,32 @@
 			pixel_x = 11
 		if(SOUTH)
 			pixel_y = 25
+
 /obj/structure/sink/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
-	if(isAI(user))
-		return
 
-	if(!Adjacent(user))
+	if(!ishuman(user) || !Adjacent(user))
 		return
 
 	if(busy)
-		to_chat(user, span_warning("Someone's already washing here."))
+		balloon_alert_to_viewers("Someone else is washing")
 		return
 
-	to_chat(usr, span_notice("You start washing your hands."))
+	balloon_alert_to_viewers("Starts washing hands")
+	playsound(loc, 'sound/effects/sink_long.ogg', 25, 1)
 
-	busy = 1
-	sleep(4 SECONDS)
-	busy = 0
-
-	if(!Adjacent(user)) return		//Person has moved away from the sink
+	busy = TRUE
+	if(!do_after(user, 4 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
+		busy = FALSE
+		balloon_alert_to_viewers("Stops washing")
+		return
+	busy = FALSE
 
 	user.clean_blood()
-	if(ishuman(user))
-		user:update_inv_gloves()
-	visible_message(span_notice("[user] washes their hands using \the [src]."))
+	user:update_inv_gloves()
+	balloon_alert_to_viewers("Washes their hands")
 
 
 /obj/structure/sink/attackby(obj/item/I, mob/user, params)

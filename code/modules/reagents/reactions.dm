@@ -4,11 +4,11 @@
 	/// Name of the reaction
 	var/name
 	///Results of the chemical reactions
-	var/list/results = new/list()
+	var/list/results = list()
 	///Required chemicals that are USED in the reaction
-	var/list/required_reagents = new/list()
+	var/list/required_reagents = list()
 	///Required chemicals that must be present in the container but are not USED.
-	var/list/required_catalysts = new/list()
+	var/list/required_catalysts = list()
 
 	///Determines if a chemical reaction can occur inside a mob
 	var/mob_react = TRUE

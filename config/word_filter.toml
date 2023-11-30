@@ -1,0 +1,27 @@
+# This configuration file forms the in-game chat filter.
+# Values are stored as "word" = "reason for being banned".
+# Soft filter reasons should be kept short or the tgui gets messy.
+
+# Anything in here will be blocked from IC interactions, dead chat, and OOC
+[shared]
+"blockedinshared" = "This message is not allowed anywhere, please use a different weird test phrase."
+
+# Anything in here is blocked just from IC interactions, such as chat or names, but is allowed in dead chat and OOC
+[ic]
+"blockedinic" = "This message is not allowed IC, please use a different weird test phrase."
+
+# Anything in here is blocked when setting a warcry
+[bombvest]
+"<(0_0<)" = "Kirby dancing is strictly prohibited on this server."
+
+# Anything in here will warn the player if said in IC, dead chat or OOC, the player must approve their message to send it
+[soft_shared]
+"testsoftblocks" = "You risk being banned if this term is used improperly."
+
+# Anything in here will warn the player if said ICly, but is allowed in dead chat and OOC, the player must approve their message to send it
+[soft_ic]
+"testsofterblocks" = "This term is commonly considered OOC, only use it with context."
+
+# Anything in here will warn the player if said ICly when setting a warcry. the player must approve their message to send it
+[soft_bombvest]
+"testsoftestblocks" = "Stop saying debug phrases ICly."

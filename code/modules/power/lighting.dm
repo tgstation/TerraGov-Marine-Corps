@@ -16,7 +16,7 @@
 	var/sheets_refunded = 2
 	var/obj/machinery/light/newlight = null
 
-/obj/machinery/light_construct/Initialize()
+/obj/machinery/light_construct/Initialize(mapload)
 	. = ..()
 	if(fixture_type == "bulb")
 		icon_state = "bulb-construct-stage1"
@@ -150,7 +150,7 @@
 /obj/machinery/light/mainship
 	base_state = "tube"
 
-/obj/machinery/light/mainship/Initialize()
+/obj/machinery/light/mainship/Initialize(mapload)
 	. = ..()
 	GLOB.mainship_lights += src
 
@@ -165,6 +165,14 @@
 	brightness = 4
 	desc = "A small lighting fixture."
 	light_type = /obj/item/light_bulb/bulb
+
+/obj/machinery/light/red
+	base_state = "tubered"
+	icon_state = "tubered1"
+	light_color = LIGHT_COLOR_FLARE
+	brightness = 3
+	bulb_power = 0.5
+	bulb_colour = LIGHT_COLOR_FLARE
 
 // the smaller bulb light fixture
 
@@ -182,13 +190,13 @@
 	light_type = /obj/item/light_bulb/tube/large
 	brightness = 12
 
-/obj/machinery/light/built/Initialize()
+/obj/machinery/light/built/Initialize(mapload)
 	. = ..()
 	status = LIGHT_EMPTY
 	update(FALSE)
 
 
-/obj/machinery/light/small/built/Initialize()
+/obj/machinery/light/small/built/Initialize(mapload)
 	. = ..()
 	status = LIGHT_EMPTY
 	update(FALSE)
@@ -210,11 +218,9 @@
 
 	switch(fitting)
 		if("tube")
-			brightness = 8
 			if(prob(2))
 				broken(TRUE)
 		if("bulb")
-			brightness = 4
 			if(prob(5))
 				broken(TRUE)
 
@@ -514,6 +520,9 @@
 		if(EXPLODE_LIGHT)
 			if (prob(50))
 				broken()
+		if(EXPLODE_WEAK)
+			if (prob(25))
+				broken()
 
 
 //timed process
@@ -544,7 +553,7 @@
 	addtimer(CALLBACK(src, PROC_REF(delayed_explosion)), 0.5 SECONDS)
 
 /obj/machinery/light/proc/delayed_explosion()
-	explosion(loc, 0, 1, 3, 2)
+	explosion(loc, 0, 1, 3, 0, 2)
 	qdel(src)
 
 // the light item
@@ -567,7 +576,9 @@
 	var/brightness = 2 //how much light it gives off
 
 /obj/item/light_bulb/throw_impact(atom/hit_atom)
-	..()
+	. = ..()
+	if(!.)
+		return
 	shatter()
 
 /obj/item/light_bulb/tube
@@ -589,6 +600,24 @@
 	icon_state = "lbulb"
 	base_state = "lbulb"
 	brightness = 5
+
+/obj/item/light_bulb/bulb/attack_turf(turf/T, mob/living/user)
+	var/turf/open/floor/light/light_tile = T
+	if(!istype(light_tile))
+		return
+	if(status != LIGHT_OK)
+		to_chat(user, span_notice("The replacement bulb is broken."))
+		return
+	var/obj/item/stack/tile/light/existing_bulb = light_tile.floor_tile
+	if(existing_bulb.state == LIGHT_TILE_OK)
+		to_chat(user, span_notice("The lightbulb seems fine, no need to replace it."))
+		return
+
+	user.drop_held_item(src)
+	qdel(src)
+	existing_bulb.state = 0
+	light_tile.update_icon()
+	to_chat(user, span_notice("You replace the light bulb."))
 
 /obj/item/light_bulb/bulb/fire
 	name = "fire bulb"
@@ -613,7 +642,7 @@
 			desc = "A broken [name]."
 
 
-/obj/item/light_bulb/Initialize()
+/obj/item/light_bulb/Initialize(mapload)
 	. = ..()
 	switch(name)
 		if("light tube")
@@ -666,65 +695,48 @@
 	icon = 'icons/obj/landinglights.dmi'
 	icon_state = "landingstripe"
 	desc = "A landing light, if it's flashing stay clear!"
-	var/id = "" // ID for landing zone
 	anchored = TRUE
 	density = FALSE
 	layer = BELOW_TABLE_LAYER
 	use_power = ACTIVE_POWER_USE
 	idle_power_usage = 2
 	active_power_usage = 20
-	power_channel = LIGHT //Lights are calc'd via area so they dont need to be in the machine list
-	resistance_flags = RESIST_ALL
+	resistance_flags = RESIST_ALL|DROPSHIP_IMMUNE
+	///ID of dropship
+	var/id
+	///port its linked to
+	var/obj/docking_port/stationary/marine_dropship/linked_port = null
 
-/obj/machinery/landinglight/Initialize()
+/obj/machinery/landinglight/Initialize(mapload)
 	. = ..()
-	turn_off()
+	GLOB.landing_lights += src
+
+/obj/machinery/landinglight/Destroy()
+	GLOB.landing_lights -= src
+	return ..()
+
+/obj/machinery/landinglight/proc/turn_on()
+	icon_state = "landingstripe1"
+	set_light(2, 2, LIGHT_COLOR_RED)
 
 /obj/machinery/landinglight/proc/turn_off()
 	icon_state = "landingstripe"
 	set_light(0)
 
-/obj/machinery/landinglight/ds1
-
-
-/obj/machinery/landinglight/ds1/Initialize(mapload, ...)
-	. = ..()
+/obj/machinery/landinglight/alamo
 	id = SHUTTLE_ALAMO
 
-/obj/machinery/landinglight/ds2
+/obj/machinery/landinglight/lz1
+	id = "lz1"
 
+/obj/machinery/landinglight/lz2
+	id = "lz2"
 
-/obj/machinery/landinglight/ds2/Initialize(mapload, ...)
-	. = ..()
-	id = SHUTTLE_NORMANDY // ID for landing zone
+/obj/machinery/landinglight/cas
+	id = SHUTTLE_CAS_DOCK
 
-/obj/machinery/landinglight/proc/turn_on()
-	icon_state = "landingstripe0"
-	set_light(2,2)
-
-/obj/machinery/landinglight/ds1/delayone/turn_on()
-	icon_state = "landingstripe1"
-	set_light(2,2)
-
-/obj/machinery/landinglight/ds1/delaytwo/turn_on()
-	icon_state = "landingstripe2"
-	set_light(2,2)
-
-/obj/machinery/landinglight/ds1/delaythree/turn_on()
-	icon_state = "landingstripe3"
-	set_light(2,2)
-
-/obj/machinery/landinglight/ds2/delayone/turn_on()
-	icon_state = "landingstripe1"
-	set_light(2,2)
-
-/obj/machinery/landinglight/ds2/delaytwo/turn_on()
-	icon_state = "landingstripe2"
-	set_light(2,2)
-
-/obj/machinery/landinglight/ds2/delaythree/turn_on()
-	icon_state = "landingstripe3"
-	set_light(2,2)
+/obj/machinery/landinglight/tadpole
+	id = SHUTTLE_TADPOLE
 
 /obj/machinery/floor_warn_light
 	name = "alarm light"
@@ -743,7 +755,7 @@
 	light_power = 0
 	light_range = 0
 
-/obj/machinery/floor_warn_light/self_destruct/Initialize()
+/obj/machinery/floor_warn_light/self_destruct/Initialize(mapload)
 	. = ..()
 	SSevacuation.alarm_lights += src
 

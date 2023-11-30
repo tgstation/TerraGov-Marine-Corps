@@ -4,6 +4,7 @@
 
 /obj/item/chameleon
 	name = "chameleon-projector"
+	icon = 'icons/obj/device.dmi'
 	icon_state = "shield0"
 	flags_atom = CONDUCT
 	flags_equip_slot = ITEM_SLOT_BELT
@@ -12,7 +13,7 @@
 		slot_r_hand_str = 'icons/mob/inhands/equipment/engineering_right.dmi',
 	)
 	item_state = "electronic"
-	throwforce = 5.0
+	throwforce = 5
 	throw_speed = 1
 	throw_range = 5
 	w_class = WEIGHT_CLASS_SMALL
@@ -20,7 +21,7 @@
 	var/datum/effect_system/spark_spread/spark_system
 	var/chameleon_cooldown
 
-/obj/item/chameleon/Initialize()
+/obj/item/chameleon/Initialize(mapload)
 	. = ..()
 	spark_system = new
 	spark_system.set_up(5, 0, src)
@@ -31,6 +32,7 @@
 	return ..()
 
 /obj/item/chameleon/dropped(mob/user)
+	. = ..()
 	disrupt(user)
 
 /obj/item/chameleon/equipped(mob/user, slot)

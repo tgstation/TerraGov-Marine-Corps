@@ -12,7 +12,7 @@
 	var/card_type = "normal"
 	var/list/cards = list()
 
-/obj/item/toy/deck/Initialize()
+/obj/item/toy/deck/Initialize(mapload)
 	. = ..()
 	populate_deck()
 
@@ -271,7 +271,7 @@
 		overlays += I
 		return
 
-	var/offset = FLOOR(length(20/cards), 1)
+	var/offset = FLOOR(20/length(cards), 1)
 
 	var/matrix/M = matrix()
 	if(direction)

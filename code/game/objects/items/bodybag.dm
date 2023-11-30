@@ -123,7 +123,7 @@
 			name = "body bag"
 
 	else if(iswirecutter(I))
-		to_chat(user, span_notice("You cut the tag off the bodybag."))
+		balloon_alert(user, "cuts the tag off")
 		name = "body bag"
 		overlays.Cut()
 
@@ -217,23 +217,23 @@
 
 	if(!opened && bodybag_occupant)
 		bodybag_occupant.bullet_act(proj) //tarp isn't bullet proof; concealment, not cover; pass it on to the occupant.
-		to_chat(bodybag_occupant, span_danger("You jolt out of [name] upon being hit!"))
+		balloon_alert(bodybag_occupant, "[proj] jolts you out of the bag")
 		open()
 
 /obj/structure/closet/bodybag/flamer_fire_act(burnlevel)
 	if(!opened && bodybag_occupant)
-		to_chat(bodybag_occupant, span_danger("The intense heat forces you out of [name]!"))
-		open()
+		balloon_alert(bodybag_occupant, "The fire forces you out")
 		bodybag_occupant.flamer_fire_act(burnlevel)
+		open()
 
 /obj/structure/closet/bodybag/ex_act(severity)
 	if(!opened && bodybag_occupant)
-		to_chat(bodybag_occupant, span_danger("The shockwave blows [name] open!"))
-		open()
+		balloon_alert(bodybag_occupant, "The explosion blows you out")
 		bodybag_occupant.ex_act(severity)
+		open()
 	switch(severity)
 		if(EXPLODE_DEVASTATE)
-			visible_message(span_danger("\The shockwave blows [name] apart!"))
+			visible_message(span_danger("The shockwave blows [src] apart!"))
 			qdel(src) //blown apart
 
 /obj/structure/closet/bodybag/proc/acidspray_act(datum/source, obj/effect/xenomorph/spray/acid_puddle)
@@ -243,7 +243,7 @@
 			var/mob/living/carbon/human/H = bodybag_occupant
 			SEND_SIGNAL(H, COMSIG_ATOM_ACIDSPRAY_ACT, src, acid_puddle.acid_damage, acid_puddle.slow_amt) //tarp isn't acid proof; pass it on to the occupant
 
-		to_chat(bodybag_occupant, span_danger("The sizzling acid forces us out of [name]!"))
+		balloon_alert(bodybag_occupant, "acid forces you out")
 		open() //Get out
 
 /obj/structure/closet/bodybag/effect_smoke(obj/effect/particle_effect/smoke/S)
@@ -253,7 +253,7 @@
 
 	if((CHECK_BITFIELD(S.smoke_traits, SMOKE_BLISTERING) || CHECK_BITFIELD(S.smoke_traits, SMOKE_XENO_ACID)) && !opened && bodybag_occupant)
 		bodybag_occupant.effect_smoke(S) //tarp *definitely* isn't acid/phosphorous smoke proof, lol.
-		to_chat(bodybag_occupant, span_danger("The scathing smoke forces us out of [name]!"))
+		balloon_alert(bodybag_occupant, "smoke forces you out")
 		open() //Get out
 
 
@@ -288,7 +288,7 @@
 		return ..()
 
 	if(!bodybag_occupant)
-		to_chat(user, span_warning("The stasis bag is empty!"))
+		balloon_alert(user, "empty")
 		return TRUE
 
 	var/obj/item/healthanalyzer/J = I
@@ -299,7 +299,8 @@
 /obj/structure/closet/bodybag/cryobag/open()
 	if(bodybag_occupant)
 		REMOVE_TRAIT(bodybag_occupant, TRAIT_STASIS, STASIS_BAG_TRAIT)
-		UnregisterSignal(bodybag_occupant, list(COMSIG_MOB_DEATH, COMSIG_PARENT_PREQDELETED))
+		UnregisterSignal(bodybag_occupant, list(COMSIG_MOB_DEATH, COMSIG_PREQDELETED))
+		bodybag_occupant.record_time_in_stasis()
 	return ..()
 
 
@@ -313,8 +314,8 @@
 	. = ..()
 	if(bodybag_occupant)
 		ADD_TRAIT(bodybag_occupant, TRAIT_STASIS, STASIS_BAG_TRAIT)
-		RegisterSignal(bodybag_occupant, list(COMSIG_MOB_DEATH, COMSIG_PARENT_PREQDELETED), PROC_REF(on_bodybag_occupant_death))
-
+		RegisterSignals(bodybag_occupant, list(COMSIG_MOB_DEATH, COMSIG_PREQDELETED), PROC_REF(on_bodybag_occupant_death))
+		bodybag_occupant.time_entered_stasis = world.time
 
 /obj/structure/closet/bodybag/cryobag/proc/on_bodybag_occupant_death(mob/source, gibbing)
 	SIGNAL_HANDLER
@@ -335,7 +336,7 @@
 		if(!(medical_record.fields["last_scan_time"]))
 			. += "<span class = 'deptradio'>No scan report on record</span>"
 		else
-			. += "<span class = 'deptradio'><a href='?src=\ref[src];scanreport=1'>Scan from [medical_record.fields["last_scan_time"]]</a></span>"
+			. += "<span class = 'deptradio'><a href='?src=[text_ref(src)];scanreport=1'>Scan from [medical_record.fields["last_scan_time"]]</a></span>"
 		break
 
 
@@ -425,6 +426,7 @@
 		playsound(loc,'sound/effects/cloak_scout_on.ogg', 15, 1) //stealth mode engaged!
 		animate(src, alpha = 13, time = 3 SECONDS) //Fade out gradually.
 		bodybag_occupant.alpha = 0
+		RegisterSignals(bodybag_occupant, list(COMSIG_MOB_DEATH, COMSIG_PREQDELETED), PROC_REF(on_bodybag_occupant_death))
 
 
 /obj/structure/closet/bodybag/tarp/open()
@@ -434,7 +436,7 @@
 		alpha = initial(alpha) //stealth mode disengaged
 		animate(src) //Cancel the fade out if still ongoing.
 	if(bodybag_occupant)
-		UnregisterSignal(bodybag_occupant, list(COMSIG_MOB_DEATH, COMSIG_PARENT_PREQDELETED))
+		UnregisterSignal(bodybag_occupant, list(COMSIG_MOB_DEATH, COMSIG_PREQDELETED))
 		bodybag_occupant.alpha = initial(bodybag_occupant.alpha)
 	return ..()
 
@@ -445,12 +447,6 @@
 	if(mob_to_stuff.stat == DEAD) //Only the dead for bodybags.
 		return FALSE
 	return TRUE
-
-
-/obj/structure/closet/bodybag/tarp/close()
-	. = ..()
-	if(bodybag_occupant)
-		RegisterSignal(bodybag_occupant, list(COMSIG_MOB_DEATH, COMSIG_PARENT_PREQDELETED), PROC_REF(on_bodybag_occupant_death))
 
 
 /obj/structure/closet/bodybag/tarp/proc/on_bodybag_occupant_death(mob/source, gibbing)

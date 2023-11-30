@@ -16,7 +16,7 @@ SUBSYSTEM_DEF(events)
 	///the latest an event can happen after a previous event
 	var/frequency_upper = 15 MINUTES
 
-/datum/controller/subsystem/events/Initialize(time, zlevel)
+/datum/controller/subsystem/events/Initialize()
 	if(CONFIG_GET(flag/events_disallowed))
 		can_fire = 0
 	for(var/type in typesof(/datum/round_event_control))
@@ -25,8 +25,7 @@ SUBSYSTEM_DEF(events)
 			continue				//don't want this one! leave it for the garbage collector
 		control += E				//add it to the list of all events (controls)
 	reschedule()
-	return ..()
-
+	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/events/fire(resumed = 0)
 	if(!resumed)
@@ -98,7 +97,7 @@ SUBSYSTEM_DEF(events)
 //aka Badmin Central
 /client/proc/force_event()
 	set name = "Trigger Event"
-	set category = "Fun"
+	set category = "Admin.Fun"
 
 	if(!holder ||!check_rights(R_FUN))
 		return
@@ -106,8 +105,8 @@ SUBSYSTEM_DEF(events)
 	holder.force_event()
 
 /datum/admins/proc/force_event()
-	var/dat 	= ""
-	var/normal 	= ""
+	var/dat = ""
+	var/normal = ""
 
 	for(var/datum/round_event_control/E in SSevents.control)
 		dat = "<BR><A href='?src=[REF(src)];[HrefToken()];force_event=[REF(E)]'>[E]</A>"
@@ -121,7 +120,7 @@ SUBSYSTEM_DEF(events)
 
 /client/proc/toggle_events()
 	set name = "Toggle Events Subsystem"
-	set category = "Fun"
+	set category = "Admin.Fun"
 
 	if(!holder ||!check_rights(R_FUN))
 		return

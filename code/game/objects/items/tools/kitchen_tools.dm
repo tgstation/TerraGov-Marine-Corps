@@ -31,7 +31,7 @@
 	sharp = 0
 	var/loaded      //Descriptive string for currently loaded food object.
 
-/obj/item/tool/kitchen/utensil/Initialize()
+/obj/item/tool/kitchen/utensil/Initialize(mapload)
 	. = ..()
 	if (prob(60))
 		src.pixel_y = rand(0, 4)
@@ -94,8 +94,8 @@
 	name = "knife"
 	desc = "Can cut through any food."
 	icon_state = "knife"
-	force = 10.0
-	throwforce = 10.0
+	force = 10
+	throwforce = 10
 	sharp = IS_SHARP_ITEM_ACCURATE
 	edge = 1
 
@@ -113,12 +113,8 @@
 	name = "plastic knife"
 	desc = "The bluntest of blades."
 	icon_state = "pknife"
-	force = 10.0
-	throwforce = 10.0
-
-/obj/item/tool/kitchen/utensil/knife/attack(target as mob, mob/living/user as mob)
-	playsound(loc, 'sound/weapons/bladeslice.ogg', 25, 1, 5)
-	return ..()
+	force = 10
+	throwforce = 10
 
 /*
 * Kitchen knives
@@ -130,9 +126,9 @@
 	flags_atom = CONDUCT
 	sharp = IS_SHARP_ITEM_ACCURATE
 	edge = 1
-	force = 10.0
+	force = 10
 	w_class = WEIGHT_CLASS_NORMAL
-	throwforce = 6.0
+	throwforce = 6
 	throw_speed = 3
 	throw_range = 6
 	attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
@@ -157,9 +153,9 @@
 	icon_state = "butch"
 	desc = "A huge thing used for chopping and chopping up meat. This includes clowns and clown-by-products."
 	flags_atom = CONDUCT
-	force = 15.0
+	force = 15
 	w_class = WEIGHT_CLASS_SMALL
-	throwforce = 8.0
+	throwforce = 8
 	throw_speed = 3
 	throw_range = 6
 	attack_verb = list("cleaved", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
@@ -194,8 +190,8 @@
 	icon = 'icons/obj/items/kitchen_tools.dmi'
 	icon_state = "tray"
 	desc = "A metal tray to lay food on."
-	throwforce = 12.0
-	throwforce = 10.0
+	throwforce = 12
+	throwforce = 10
 	throw_speed = 1
 	throw_range = 5
 	w_class = WEIGHT_CLASS_NORMAL
@@ -248,7 +244,7 @@
 		log_combat(user, M, "attacked", src)
 
 		if(prob(15))
-			M.Paralyze(60)
+			M.Paralyze(6 SECONDS)
 			M.take_limb_damage(3)
 		else
 			M.take_limb_damage(5)
@@ -285,7 +281,7 @@
 			playsound(M, 'sound/items/trayhit2.ogg', 25, 1)  //sound playin'
 			visible_message(span_danger("[user] slams [M] with the tray!"))
 		if(prob(10))
-			M.Stun(rand(20,60))
+			M.Stun(rand(2 SECONDS, 6 SECONDS))
 			M.take_limb_damage(3)
 			return
 		else
@@ -307,13 +303,13 @@
 			playsound(M, 'sound/items/trayhit2.ogg', 25, 1)  //sound playin' again
 			visible_message(span_danger("[user] slams [M] in the face with the tray!"))
 		if(prob(30))
-			M.Stun(rand(40,80))
+			M.Stun(rand(4 SECONDS, 8 SECONDS))
 			M.take_limb_damage(4)
 			return
 		else
 			M.take_limb_damage(8)
 			if(prob(30))
-				M.Paralyze(40)
+				M.Paralyze(4 SECONDS)
 				return
 			return
 

@@ -3,7 +3,7 @@
 	buckle_flags = CAN_BUCKLE|BUCKLE_PREVENTS_PULL
 	max_buckled_mobs = 1
 	buckle_lying = -1
-	flags_pass = PASSTABLE
+	allow_pass_flags = PASS_LOW_STRUCTURE
 	COOLDOWN_DECLARE(message_cooldown)
 
 /obj/vehicle/ridden/examine(mob/user)

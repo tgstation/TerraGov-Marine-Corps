@@ -229,6 +229,7 @@
 
 /obj/item/stack/medical/splint
 	name = "medical splints"
+	desc = "Used to stabilize broken bones."
 	singular_name = "medical splint"
 	icon_state = "splint"
 	amount = 5

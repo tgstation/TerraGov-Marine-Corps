@@ -14,7 +14,7 @@
 	flags_equip_slot = ITEM_SLOT_EYES
 	flags_armor_protection = EYES
 	var/deactive_state = "degoggles"
-	var/vision_flags = 0
+	var/vision_flags = NONE
 	var/darkness_view = 2 //Base human is 2
 	var/invis_view = SEE_INVISIBLE_LIVING
 	var/invis_override = 0 //Override to allow glasses to set higher than normal see_invis
@@ -217,7 +217,7 @@
 	flags_inv_hide = HIDEEYES
 	eye_protection = 2
 
-/obj/item/clothing/glasses/welding/Initialize()
+/obj/item/clothing/glasses/welding/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/clothing_tint, TINT_5, TRUE)
 
@@ -275,7 +275,7 @@
 	icon_state = "rwelding-g"
 	item_state = "rwelding-g"
 
-/obj/item/clothing/glasses/welding/superior/Initialize()
+/obj/item/clothing/glasses/welding/superior/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/clothing_tint, TINT_4)
 
@@ -288,7 +288,7 @@
 	item_state = "sunglasses"
 	eye_protection = 1
 
-/obj/item/clothing/glasses/sunglasses/Initialize()
+/obj/item/clothing/glasses/sunglasses/Initialize(mapload)
 	. = ..()
 	if(eye_protection)
 		AddComponent(/datum/component/clothing_tint, TINT_3)
@@ -300,7 +300,7 @@
 	item_state = "blindfold"
 	eye_protection = 2
 
-/obj/item/clothing/glasses/sunglasses/blindfold/Initialize()
+/obj/item/clothing/glasses/sunglasses/blindfold/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/clothing_tint, TINT_BLIND)
 
@@ -336,6 +336,12 @@
 		qdel(I)
 		qdel(src)
 		user.put_in_hands(P)
+	else if(istype(I, /obj/item/clothing/glasses/night/m56_goggles))
+		var/obj/item/clothing/glasses/night/sunglasses/P = new
+		to_chat(user, span_notice("You fasten the KTLD sight to the inside of the glasses."))
+		qdel(I)
+		qdel(src)
+		user.put_in_hands(P)
 
 		update_icon(user)
 
@@ -360,7 +366,7 @@
 	vision_flags = SEE_TURFS|SEE_MOBS|SEE_OBJS
 	lighting_alpha = LIGHTING_PLANE_ALPHA_INVISIBLE
 
-/obj/item/clothing/glasses/sunglasses/sa/Initialize()
+/obj/item/clothing/glasses/sunglasses/sa/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/clothing_tint, TINT_NONE)
 

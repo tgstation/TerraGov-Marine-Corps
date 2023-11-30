@@ -38,6 +38,7 @@
 	desc = "A 10x20mm caseless machine pistol magazine."
 	caliber = CALIBER_10X20_CASELESS
 	icon_state = "t19"
+	icon_state_mini = "mag_smg"
 	max_rounds = 30
 	w_class = WEIGHT_CLASS_SMALL
 
@@ -62,6 +63,7 @@
 	default_ammo = /datum/ammo/bullet/smg/ap
 	caliber = CALIBER_46X30
 	icon_state = "mp7"
+	icon_state_mini = "mag_smg"
 	max_rounds = 30
 
 
@@ -73,6 +75,7 @@
 	desc = "A .32ACP caliber magazine for the CZ-81."
 	caliber = CALIBER_32ACP
 	icon_state = "skorpion"
+	icon_state_mini = "mag_rifle"
 	max_rounds = 20 //Can also be 10.
 
 
@@ -86,6 +89,7 @@
 	w_class = WEIGHT_CLASS_SMALL
 	caliber = CALIBER_762X25
 	icon_state = "ppsh"
+	icon_state_mini = "mag_smg"
 	max_rounds = 42
 	bonus_overlay = "ppsh_standard"
 
@@ -93,13 +97,11 @@
 /obj/item/ammo_magazine/smg/ppsh/extended
 	name = "\improper PPSh-17b drum magazine (7.62x25mm)"
 	icon_state = "ppsh_ext"
+	icon_state_mini = "mag_drum_yellow"
 	w_class = WEIGHT_CLASS_NORMAL
 	max_rounds = 78
 	bonus_overlay = "ppsh_ex"
-	scatter_mod = 5
-	scatter_unwielded_mod = 10
-	wield_delay_mod = 0.2 SECONDS
-	aim_speed_mod = 0.3
+	aim_speed_mod = 0.2
 
 //-------------------------------------------------------
 //GENERIC UZI //Based on the uzi submachinegun, of course.
@@ -109,6 +111,7 @@
 	desc = "A magazine for the SMG-2."
 	caliber = CALIBER_9X21
 	icon_state = "uzi"
+	icon_state_mini = "mag_smg_dark"
 	max_rounds = 32
 
 /obj/item/ammo_magazine/smg/uzi/extended
@@ -116,7 +119,7 @@
 	icon_state = "uzi_ext"
 	max_rounds = 50
 	bonus_overlay = "uzi_ex"
-	icon_state_mini = "mag_smg_yellow"
+	icon_state_mini = "mag_smg_dark"
 
 //-------------------------------------------------------
 //V-21 SOM SMG
@@ -126,6 +129,7 @@
 	desc = "A 10x20mm caseless submachinegun magazine."
 	caliber = CALIBER_10X20_CASELESS
 	icon_state = "v21"
+	icon_state_mini = "mag_smg"
 	max_rounds = 50
 	w_class = WEIGHT_CLASS_SMALL
 
@@ -141,7 +145,7 @@
 	desc = "A 10x20mm caseless submachinegun magazine, loaded in incendiary rounds."
 	icon_state = "v21_incend"
 	default_ammo = /datum/ammo/bullet/smg/incendiary
-	icon_state_mini = "mag_smg_green"
+	icon_state_mini = "mag_smg_red"
 
 /obj/item/ammo_magazine/smg/som/extended
 	name = "\improper V-21 extended submachinegun magazine (10x20mm)"
@@ -152,6 +156,13 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	aim_speed_mod = 0.1
 
+/obj/item/ammo_magazine/smg/som/rad
+	name = "\improper V-21 radioactive submachinegun magazine (10x20mm)"
+	desc = "A 10x20mm caseless submachinegun magazine, loaded with radioactive rounds. Handle with care."
+	icon_state = "v21_rad"
+	default_ammo = /datum/ammo/bullet/smg/rad
+	icon_state_mini = "mag_smg_greenyellow"
+
 //-------------------------------------------------------
 //PL-38, ICC Machinepistol
 
@@ -160,6 +171,7 @@
 	desc = "A 10x20mm caseless armor-piercing machine pistol magazine."
 	caliber = CALIBER_10X20_CASELESS
 	icon_state = "pl38"
+	icon_state_mini = "mag_smg_dark"
 	default_ammo = /datum/ammo/bullet/smg/ap
 	max_rounds = 32
 	w_class = WEIGHT_CLASS_SMALL
@@ -169,6 +181,7 @@
 	desc = "A 10x20mm caseless hollow point machine pistol magazine."
 	caliber = CALIBER_10X20_CASELESS
 	icon_state = "pl38_hp"
+	icon_state_mini = "mag_smg_dark_blue"
 	default_ammo = /datum/ammo/bullet/smg/hollow
 	max_rounds = 32
 	w_class = WEIGHT_CLASS_SMALL
@@ -181,6 +194,7 @@
 	desc = "A 4.6mm caseless armor-piercing PDW magazine."
 	caliber = CALIBER_46X30
 	icon_state = "l40"
+	icon_state_mini = "mag_smg_dark"
 	default_ammo = /datum/ammo/bullet/smg/ap/hv
 	max_rounds = 45
 	w_class = WEIGHT_CLASS_SMALL

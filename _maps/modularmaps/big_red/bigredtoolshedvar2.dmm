@@ -10,8 +10,8 @@
 /area/bigredv2/outside/c)
 "b" = (
 /obj/structure/table,
-/obj/effect/spawner/random/toolbox,
-/obj/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -34,8 +34,8 @@
 /area/bigredv2/outside/c)
 "e" = (
 /obj/structure/table,
-/obj/effect/spawner/random/toolbox,
-/obj/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
 /turf/open/floor,
 /area/bigredv2/outside/storage)
 "f" = (
@@ -84,8 +84,8 @@
 /area/bigredv2/outside/storage)
 "q" = (
 /obj/structure/table,
-/obj/effect/spawner/random/toolbox,
-/obj/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
 /obj/structure/cable,
 /obj/machinery/power/apc,
 /turf/open/floor,
@@ -109,8 +109,8 @@
 /area/bigredv2/outside/c)
 "v" = (
 /obj/structure/table,
-/obj/effect/spawner/random/toolbox,
-/obj/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
 /obj/machinery/light,
 /turf/open/floor,
 /area/bigredv2/outside/storage)

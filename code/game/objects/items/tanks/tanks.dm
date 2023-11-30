@@ -18,8 +18,8 @@
 	var/gas_type = GAS_TYPE_AIR
 	var/temperature = T20C
 
-	force = 5.0
-	throwforce = 10.0
+	force = 5
+	throwforce = 10
 	throw_speed = 1
 	throw_range = 4
 

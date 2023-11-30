@@ -15,8 +15,8 @@
 /datum/buildmode_mode/varedit/show_help(client/c)
 	to_chat(c, span_notice("***********************************************************"))
 	to_chat(c, span_notice("Right Mouse Button on buildmode button = Select var(type) & value"))
-	to_chat(c, span_notice("Left Mouse Button on turf/obj/mob      = Set var(type) & value"))
-	to_chat(c, span_notice("Right Mouse Button on turf/obj/mob     = Reset var's value"))
+	to_chat(c, span_notice("Left Mouse Button on turf/obj/mob = Set var(type) & value"))
+	to_chat(c, span_notice("Right Mouse Button on turf/obj/mob = Reset var's value"))
 	to_chat(c, span_notice("***********************************************************"))
 
 

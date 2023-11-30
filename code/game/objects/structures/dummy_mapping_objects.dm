@@ -14,29 +14,29 @@
 	name = "Laptop Computer"
 	desc = "A clamshell portable computer. It is open."
 
-	icon_state		= "laptop"
+	icon_state = "laptop"
 
 /obj/machinery/computer3/laptop/secure_data
 	icon_state = "laptop"
 
 /obj/machinery/computer3/server
-	name			= "server"
-	icon			= 'icons/obj/machines/computer3.dmi'
-	icon_state		= "serverframe"
+	name = "server"
+	icon = 'icons/obj/machines/computer3.dmi'
+	icon_state = "serverframe"
 
 /obj/machinery/computer3/server/rack
 	name = "server rack"
 	icon_state = "rackframe"
 
 /obj/item/laptop
-	name		= "Laptop Computer"
-	desc		= "A clamshell portable computer.  It is closed."
-	icon		= 'icons/obj/machines/computer3.dmi'
-	icon_state	=  "laptop-closed"
-	item_state	=  "laptop-inhand"
-	pixel_x		= 2
-	pixel_y		= -3
-	w_class		= 3
+	name = "Laptop Computer"
+	desc = "A clamshell portable computer.  It is closed."
+	icon = 'icons/obj/machines/computer3.dmi'
+	icon_state =  "laptop-closed"
+	item_state =  "laptop-inhand"
+	pixel_x = 2
+	pixel_y = -3
+	w_class = WEIGHT_CLASS_NORMAL
 
 /obj/machinery/lapvend
 	name = "Laptop Vendor"
@@ -56,8 +56,8 @@
 
 /obj/machinery/computer/atmoscontrol
 	name = "\improper Central Atmospherics Computer"
-	icon = 'icons/obj/machines/computer.dmi'
-	icon_state = "computer_generic"
+	icon_state = "computer"
+	screen_overlay = "computer_generic"
 	density = TRUE
 	anchored = TRUE
 

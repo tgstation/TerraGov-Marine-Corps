@@ -590,3 +590,35 @@
 		SSassets.transport.dont_mutate_filenames = TRUE
 		message_admins("[key_name_admin(usr)] disabled the CDN asset transport")
 		log_admin("[key_name(usr)] disabled the CDN asset transport")
+
+/**
+ * Toggles players' ability to join valhalla
+ */
+/datum/admins/proc/toggle_valhalla()
+	set category = "Server"
+	set name = "Toggle Valhalla joining"
+	set desc = "Allows players to join valhalla."
+
+	if(!check_rights(R_SERVER))
+		return
+
+	GLOB.valhalla_allowed = !GLOB.valhalla_allowed
+
+	log_admin("[key_name(usr)] [GLOB.valhalla_allowed ? "enabled" : "disabled"] valhalla joining.")
+	message_admins("[ADMIN_TPMONTY(usr)] [GLOB.valhalla_allowed ? "enabled" : "disabled"] valhalla joining.")
+
+/**
+ * Toggles players' ability to take over SSD mobs
+ */
+/datum/admins/proc/toggle_sdd_possesion()
+	set category = "Server"
+	set name = "Toggle taking over SSD mobs"
+	set desc = "Allows players to take over SSD mobs."
+
+	if(!check_rights(R_SERVER))
+		return
+
+	GLOB.ssd_posses_allowed = !GLOB.ssd_posses_allowed
+
+	log_admin("[key_name(usr)] [GLOB.ssd_posses_allowed ? "enabled" : "disabled"] taking over SSD mobs.")
+	message_admins("[ADMIN_TPMONTY(usr)] [GLOB.ssd_posses_allowed ? "enabled" : "disabled"] taking over SSD mobs.")

@@ -2,6 +2,7 @@
 /datum/action/xeno_action
 	///If you are going to add an explanation for an ability. don't use stats, give a very brief explanation of how to use it.
 	desc = "This ability can not be found in codex."
+	action_icon = 'icons/Xeno/actions.dmi'
 	var/plasma_cost = 0
 	///bypass use limitations checked by can_use_action()
 	var/use_state_flags = NONE
@@ -19,7 +20,7 @@
 	if(plasma_cost)
 		name = "[name] ([plasma_cost])"
 	var/image/cooldown_image = image('icons/effects/progressicons.dmi', null, "busy_clock", ACTION_LAYER_CLOCK)
-	var/mutable_appearance/empowered_appearence = mutable_appearance('icons/mob/actions.dmi', "borders_center", ACTION_LAYER_EMPOWERED, FLOAT_PLANE)
+	var/mutable_appearance/empowered_appearence = mutable_appearance('icons/Xeno/actions.dmi', "borders_center", ACTION_LAYER_EMPOWERED, FLOAT_PLANE)
 	cooldown_image.pixel_y = 7
 	cooldown_image.appearance_flags = RESET_COLOR|RESET_ALPHA
 	visual_references[VREF_IMAGE_XENO_CLOCK] = cooldown_image
@@ -75,7 +76,7 @@
 			X.balloon_alert(X, "Cannot while buckled")
 		return FALSE
 
-	if(!(flags_to_check & XACT_USE_STAGGERED) && X.stagger)
+	if(!(flags_to_check & XACT_USE_STAGGERED) && X.IsStaggered())
 		if(!silent)
 			X.balloon_alert(X, "Cannot while staggered")
 		return FALSE
@@ -88,6 +89,11 @@
 	if(!(flags_to_check & XACT_USE_CRESTED) && X.crest_defense)
 		if(!silent)
 			X.balloon_alert(X, "Cannot while in crest defense")
+		return FALSE
+
+	if(!(flags_to_check & XACT_USE_ROOTED) && HAS_TRAIT_FROM(X, TRAIT_IMMOBILE, BOILER_ROOTED_TRAIT))
+		if(!silent)
+			X.balloon_alert(X, "Cannot while rooted")
 		return FALSE
 
 	if(!(flags_to_check & XACT_USE_NOTTURF) && !isturf(X.loc))
@@ -129,12 +135,12 @@
 /datum/action/xeno_action/proc/succeed_activate(plasma_cost_override)
 	if(QDELETED(owner))
 		return
-	var/mob/living/carbon/xenomorph/X = owner
-	if(plasma_cost_override)
-		X.use_plasma(plasma_cost_override)
+	plasma_cost_override = plasma_cost_override? plasma_cost_override : plasma_cost
+	if(SEND_SIGNAL(owner, COMSIG_XENO_ACTION_SUCCEED_ACTIVATE, src, plasma_cost_override) & SUCCEED_ACTIVATE_CANCEL)
 		return
-	if(plasma_cost)
-		X.use_plasma(plasma_cost)
+	if(plasma_cost_override > 0)
+		var/mob/living/carbon/xenomorph/xeno_owner = owner
+		xeno_owner.use_plasma(plasma_cost_override)
 
 ///checks if the linked ability is on some cooldown. The action can still be activated by clicking the button
 /datum/action/xeno_action/proc/action_cooldown_check()
@@ -196,6 +202,9 @@
 	INVOKE_ASYNC(src, PROC_REF(action_activate))
 
 /datum/action/xeno_action/activable/action_activate()
+	. = ..()
+	if(!.)
+		return
 	var/mob/living/carbon/xenomorph/X = owner
 	if(X.selected_ability == src)
 		return
@@ -224,16 +233,6 @@
 	set_toggle(TRUE)
 	X.selected_ability = src
 	on_activation()
-
-/datum/action/xeno_action/activable/action_activate()
-	var/mob/living/carbon/xenomorph/X = owner
-	if(X.selected_ability == src)
-		deselect()
-	else
-		if(X.selected_ability)
-			X.selected_ability.deselect()
-		select()
-	return ..()
 
 
 /datum/action/xeno_action/activable/remove_action(mob/living/carbon/xenomorph/X)

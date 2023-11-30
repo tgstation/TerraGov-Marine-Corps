@@ -6,7 +6,6 @@
 	#ifdef ALL_MAPS
 		#include "map_files\BigRed_v2\BigRed_v2.dmm"
 		#include "map_files\Debugdalus\TGS_Debugdalus.dmm"
-		#include "map_files\desertdam\desertdam.dmm"
 		#include "map_files\Ice_Colony_v2\Ice_Colony_v2.dmm"
 		#include "map_files\LV624\LV624.dmm"
 		#include "map_files\Prison_Station_FOP\Prison_Station_FOP.dmm"
@@ -18,11 +17,12 @@
 		#include "map_files\Research_Outpost\Research_Outpost.dmm"
 		#include "map_files\Magmoor_Digsite_IV\Magmoor_Digsite_IV.dmm"
 		#include "map_files\Orion_Military_Outpost\orionoutpost.dmm"
-		#include "map_files\Twin_Pillars\Twin_Pillars.dmm"
-		#include "map_files\Minerva\TGS_Minerva.dmm"
+		#include "map_files\Arachne\TGS_Arachne.dmm"
 		#include "map_files\gelida_iv\gelida_iv.dmm"
 		#include "map_files\deltastation\deltastation.dmm"
 		#include "map_files\desparity\desparity.dmm"
+		#include "map_files\Lawanka_Outpost\LawankaOutpost.dmm"
+		#include "map_files\slumbridge\slumbridge.dmm"
 		#ifdef CIBUILDING
 			#include "templates.dm"
 		#endif

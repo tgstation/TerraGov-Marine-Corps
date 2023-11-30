@@ -157,7 +157,7 @@
 		/obj/item/clothing/head/hairflower = "flower_pin",
 	)
 
-/obj/item/clothing/head/helmet/marine/Initialize()
+/obj/item/clothing/head/helmet/marine/Initialize(mapload)
 	. = ..()
 	helmet_overlays = list("damage","band","item") //To make things simple.
 
@@ -193,7 +193,9 @@
 		var/mob/M = loc
 		M.update_inv_head()
 
-/obj/item/clothing/head/helmet/marine/apply_custom(mutable_appearance/standing)
+/obj/item/clothing/head/helmet/marine/apply_custom(mutable_appearance/standing, inhands, icon_used, state_used)
+	if(inhands)
+		return
 	. = ..()
 	var/mutable_appearance/M
 	for(var/i in helmet_overlays)
@@ -309,6 +311,7 @@
 	soft_armor = list(MELEE = 95, BULLET = 120, LASER = 200, ENERGY = 200, BOMB = 90, BIO = 100, FIRE = 90, ACID = 95)
 	flags_inventory = COVEREYES|COVERMOUTH|BLOCKSHARPOBJ|BLOCKGASEFFECT
 	flags_inv_hide = HIDEEARS|HIDEEYES|HIDEFACE|HIDEMASK|HIDEALLHAIR
+	eye_protection = 2
 	anti_hug = 50
 	resistance_flags = UNACIDABLE
 
@@ -444,9 +447,13 @@
 	desc = "A field of invisible energy, it protects the wearer but prevents any clothing from being worn."
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "shield-blue"
-	flags_item = NODROP|DELONDROP
+	flags_item = DELONDROP
 	soft_armor = list(MELEE = 65, BULLET = 60, LASER = 30, ENERGY = 20, BOMB = 25, BIO = 40, FIRE = 20, ACID = 20)
 	anti_hug = 5
+
+/obj/item/clothing/head/helmet/sectoid/Initialize(mapload)
+	. = ..()
+	ADD_TRAIT(src, TRAIT_NODROP, SECTOID_TRAIT)
 
 /obj/item/clothing/head/helmet/marine/icc
 	name = "\improper Modelle/20 combat helmet"

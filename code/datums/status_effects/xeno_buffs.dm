@@ -12,13 +12,22 @@
 	if(!isxeno(owner))
 		return FALSE
 	var/mob/living/carbon/xenomorph/X = owner
-	X.fire_resist_modifier -= 20
+	ADD_TRAIT(X, TRAIT_NON_FLAMMABLE, id)
+	X.soft_armor = X.soft_armor.modifyRating(fire = 100)
+	X.hard_armor = X.hard_armor.modifyRating(fire = 100)
 	X.add_filter("resin_jelly_outline", 2, outline_filter(1, COLOR_TAN_ORANGE))
+
+	var/datum/status_effect/stacking/melting/debuff = X.has_status_effect(STATUS_EFFECT_MELTING)
+	if(debuff)
+		qdel(debuff)
+
 	return TRUE
 
 /datum/status_effect/resin_jelly_coating/on_remove()
 	var/mob/living/carbon/xenomorph/X = owner
-	X.fire_resist_modifier += 20
+	REMOVE_TRAIT(X, TRAIT_NON_FLAMMABLE, id)
+	X.soft_armor = X.soft_armor.modifyRating(fire = -100)
+	X.hard_armor = X.hard_armor.modifyRating(fire = -100)
 	X.remove_filter("resin_jelly_outline")
 	owner.balloon_alert(owner, "We are vulnerable again")
 	return ..()
@@ -65,8 +74,8 @@
 	essence_link_action = link_owner.actions_by_path[/datum/action/xeno_action/activable/essence_link]
 	ADD_TRAIT(link_owner, TRAIT_ESSENCE_LINKED, TRAIT_STATUS_EFFECT(id))
 	ADD_TRAIT(link_target, TRAIT_ESSENCE_LINKED, TRAIT_STATUS_EFFECT(id))
-	RegisterSignal(link_owner, list(COMSIG_MOB_DEATH, COMSIG_XENOMORPH_EVOLVED, COMSIG_XENOMORPH_DEEVOLVED), PROC_REF(end_link))
-	RegisterSignal(link_target, list(COMSIG_MOB_DEATH, COMSIG_XENOMORPH_EVOLVED, COMSIG_XENOMORPH_DEEVOLVED), PROC_REF(end_link))
+	RegisterSignals(link_owner, list(COMSIG_MOB_DEATH, COMSIG_XENOMORPH_EVOLVED, COMSIG_XENOMORPH_DEEVOLVED), PROC_REF(end_link))
+	RegisterSignals(link_target, list(COMSIG_MOB_DEATH, COMSIG_XENOMORPH_EVOLVED, COMSIG_XENOMORPH_DEEVOLVED), PROC_REF(end_link))
 	toggle_link(TRUE)
 	to_chat(link_owner, span_xenonotice("We have established an Essence Link with [link_target]. Stay within [DRONE_ESSENCE_LINK_RANGE] tiles to maintain it."))
 	to_chat(link_target, span_xenonotice("[link_owner] has established an Essence Link with us. Stay within [DRONE_ESSENCE_LINK_RANGE] tiles to maintain it."))
@@ -170,8 +179,8 @@
 		return
 	RegisterSignal(link_owner, COMSIG_XENOMORPH_RESIN_JELLY_APPLIED, PROC_REF(share_jelly))
 	RegisterSignal(link_target, COMSIG_XENOMORPH_RESIN_JELLY_APPLIED, PROC_REF(share_jelly))
-	RegisterSignal(link_owner, list(COMSIG_XENOMORPH_BRUTE_DAMAGE, COMSIG_XENOMORPH_BURN_DAMAGE), PROC_REF(share_heal))
-	RegisterSignal(link_target, list(COMSIG_XENOMORPH_BRUTE_DAMAGE, COMSIG_XENOMORPH_BURN_DAMAGE), PROC_REF(share_heal))
+	RegisterSignals(link_owner, list(COMSIG_XENOMORPH_BRUTE_DAMAGE, COMSIG_XENOMORPH_BURN_DAMAGE), PROC_REF(share_heal))
+	RegisterSignals(link_target, list(COMSIG_XENOMORPH_BRUTE_DAMAGE, COMSIG_XENOMORPH_BURN_DAMAGE), PROC_REF(share_heal))
 	toggle_beam(TRUE)
 
 /// Toggles the effect beam on or off.
@@ -342,7 +351,7 @@
 	owner = new_owner
 	duration = set_duration
 	src.tick_damage_limit = tick_damage_limit
-	RegisterSignal(owner, list(COMSIG_XENOMORPH_BRUTE_DAMAGE, COMSIG_XENOMORPH_BURN_DAMAGE), PROC_REF(handle_damage_taken))
+	RegisterSignals(owner, list(COMSIG_XENOMORPH_BRUTE_DAMAGE, COMSIG_XENOMORPH_BURN_DAMAGE), PROC_REF(handle_damage_taken))
 	owner.add_movespeed_modifier(MOVESPEED_ID_GORGER_REJUVENATE, TRUE, 0, NONE, TRUE, GORGER_REJUVENATE_SLOWDOWN)
 	owner.add_filter("[id]m", 0, outline_filter(2, "#455d5762"))
 	return ..()
@@ -814,3 +823,79 @@
 	scale = 0.6
 	rotation = 0
 	spin = 0
+
+// ***************************************
+// *********** Blessings
+// ***************************************
+/datum/status_effect/blessing
+	duration = -1
+	tick_interval = 5 SECONDS
+	status_type = STATUS_EFFECT_REFRESH
+	alert_type = null
+	/// The owner of this buff.
+	var/mob/living/carbon/xenomorph/buff_owner
+	///Aura strength of the puppeteer who gave this effect
+	var/strength = 1	
+	///weakref to the puppeteer to set strength
+	var/datum/weakref/puppeteer
+
+/datum/status_effect/blessing/tick()
+	var/mob/living/carbon/xenomorph/xeno = puppeteer?.resolve()
+	if(!xeno)
+		return
+	strength = xeno.xeno_caste.aura_strength
+
+/datum/status_effect/blessing/on_creation(mob/living/new_owner, mob/living/carbon/xenomorph/caster)
+	owner = new_owner
+	puppeteer = WEAKREF(caster)
+	strength = caster.xeno_caste.aura_strength
+	return ..()
+
+/datum/status_effect/blessing/frenzy
+	id = "blessing of frenzy"
+
+/datum/status_effect/blessing/frenzy/on_apply()
+	buff_owner = owner
+	if(!isxeno(buff_owner))
+		return FALSE
+	buff_owner.add_movespeed_modifier(type, TRUE, 0, NONE, TRUE, strength * -0.2)
+	return TRUE
+
+/datum/status_effect/blessing/frenzy/on_remove()
+	buff_owner.remove_movespeed_modifier(type)
+	return ..()
+
+/datum/status_effect/blessing/fury
+	id = "blessing of fury"
+	///the modifier we apply to the xenos melee damage modifier
+	var/modifier
+
+/datum/status_effect/blessing/fury/on_apply()
+	buff_owner = owner
+	if(!isxeno(buff_owner))
+		return FALSE
+	modifier = strength * 0.07
+	buff_owner.xeno_melee_damage_modifier += modifier
+	return TRUE
+
+/datum/status_effect/blessing/fury/on_remove()
+	buff_owner.xeno_melee_damage_modifier -= modifier
+	return ..()
+
+/datum/status_effect/blessing/warding
+	id = "blessing of warding"
+	///A holder for the exact armor modified by this status effect
+	var/datum/armor/armor_modifier
+
+/datum/status_effect/blessing/warding/on_apply()
+	buff_owner = owner
+	if(!isxeno(buff_owner))
+		return FALSE
+	armor_modifier = buff_owner.soft_armor.scaleAllRatings(strength * 2.7)
+	buff_owner.soft_armor = buff_owner.soft_armor.attachArmor(armor_modifier)
+	return TRUE
+
+/datum/status_effect/blessing/warding/on_remove()
+	buff_owner.soft_armor = buff_owner.soft_armor.detachArmor(armor_modifier)
+	armor_modifier = null
+	return ..()

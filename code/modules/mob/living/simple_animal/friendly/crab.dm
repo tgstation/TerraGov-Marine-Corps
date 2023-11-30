@@ -9,9 +9,9 @@
 	emote_see = list("clacks.")
 	speak_chance = 1
 	turns_per_move = 5
-	response_help  = "pets"
+	response_help = "pets"
 	response_disarm = "gently pushes aside"
-	response_harm   = "stomps"
+	response_harm = "stomps"
 	stop_automated_movement = TRUE
 	friendly = "pinches"
 
@@ -21,9 +21,9 @@
 	real_name = "Coffee"
 	desc = "It's Coffee, the other pet!"
 	gender = FEMALE
-	response_help  = "pets"
+	response_help = "pets"
 	response_disarm = "gently pushes aside"
-	response_harm   = "stomps"
+	response_harm = "stomps"
 
 
 /mob/living/simple_animal/crab/evil
@@ -45,9 +45,9 @@
 	icon_state = "kreb"
 	icon_living = "kreb"
 	icon_dead = "kreb_dead"
-	response_help  = "pets"
+	response_help = "pets"
 	response_disarm = "gently pushes aside"
-	response_harm   = "stomps"
+	response_harm = "stomps"
 
 
 /mob/living/simple_animal/crab/evil/kreb

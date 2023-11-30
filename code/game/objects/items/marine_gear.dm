@@ -42,10 +42,11 @@
 	for(var/i in 1 to 7)
 		var/picked = pick(randompick)
 		new picked(src)
-/obj/item/reagent_containers/food/snacks/protein_pack
 
+/obj/item/reagent_containers/food/snacks/protein_pack
 	name = "TGMC protein bar"
 	desc = "The most fake looking protein bar you have ever laid eyes on, comes in many flavors"
+	icon = 'icons/obj/items/food/mre.dmi'
 	icon_state = "yummers"
 	filling_color = "#ED1169"
 	w_class = WEIGHT_CLASS_TINY
@@ -64,7 +65,8 @@
 			list("milk chocolate TGMC protein bar","A nice milky addition to a otherwise bland protein taste.","#efc296",list("off flavor milk chocolate"= 1)),
 			list("raspberry lime TGMC protein bar","A flavored protein bar, some might say a bit too strongly flavored for their tastes.","#ff0066",list("sour raspberry and lime" = 1)),
 			list("chicken TGMC protein bar","Protein bar covered with chicken powder one might find in ramen. Get some extra sodium with your protein.","#cccc00",list= ("powdered chicken")),
-			list("blueberry TGMC protein bar","A nice blueberry crunch into your otherwise stale and boring protein bar.","#4e39c5",list("blueberry" = 1))
+			list("blueberry TGMC protein bar","A nice blueberry crunch into your otherwise stale and boring protein bar.","#4e39c5",list("blueberry" = 1)),
+			list("cement TGMC protein bar", "A gray bar that's allegedly made of cement. It seems to have hardened up. Perhaps it'll make you harden up, too.", "#B2B2B2", list("cement" = 1))
 		),
 		FACTION_SOM = list(
 			list("stale SOM protein bar","The most fake looking protein bar you have ever laid eyes on, covered in the a subtitution chocolate. Its supposedly made with real Martian soil for that patriotic flavour. It has a grainy, metallic taste.","#f37d43",list("rust" = 1)),
@@ -80,7 +82,7 @@
 		),
 	)
 
-/obj/item/reagent_containers/food/snacks/protein_pack/Initialize()
+/obj/item/reagent_containers/food/snacks/protein_pack/Initialize(mapload)
 	. = ..()
 	//list of picked variables
 	var/list/picked = pick(flavor_list[faction])
@@ -94,11 +96,13 @@
 /obj/item/reagent_containers/food/snacks/protein_pack/som
 	name = "SOM protein bar"
 	desc = "The most fake looking protein bar you have ever laid eyes on, comes in many flavors"
+	icon = 'icons/obj/items/food/mre.dmi'
 	faction = FACTION_SOM
 
 /obj/item/reagent_containers/food/snacks/req_pizza
 	name = "\improper TGMC PFC Jim pizza"
 	desc = "You think that is a pizza. You definitely shouldn't eat this, but you can sell this for a PROFIT! While it certainly looks like one, the first, active, primary, and only ingredient that went into it was a rounded metal plate. Maybe it'll taste better after it sat in the ASRS for a while? Oh well, time to sell it to some poor customer in space."
+	icon = 'icons/obj/items/food/pizzaspaghetti.dmi'
 	icon_state = "mushroompizza"
 	list_reagents = list(/datum/reagent/iron = 8)
 	tastes = list("metal" = 3, "one of your teeth cracking" = 1)
@@ -108,6 +112,7 @@
 	//trash = /obj/item/trash/TGMCtray
 	trash = null
 	w_class = WEIGHT_CLASS_SMALL
+	icon = 'icons/obj/items/food/mre.dmi'
 
 /obj/item/reagent_containers/food/snacks/mre_pack/meal1
 	name = "\improper TGMC Prepared Meal (banana bread)"
@@ -185,6 +190,7 @@
 /obj/item/storage/box/pizza
 	name = "food delivery box"
 	desc = "A space-age food storage device, capable of keeping food extra fresh. Actually, it's just a box."
+	icon = 'icons/obj/items/storage/storage.dmi'
 
 /obj/item/storage/box/pizza/Initialize(mapload, ...)
 	. = ..()
@@ -195,8 +201,8 @@
 	var/list/randompick = list(
 		/obj/item/reagent_containers/food/snacks/fries,
 		/obj/item/reagent_containers/food/snacks/cheesyfries,
-		/obj/item/reagent_containers/food/snacks/bigbiteburger,
-		/obj/item/reagent_containers/food/snacks/taco,
+		/obj/item/reagent_containers/food/snacks/burger/bigbite,
+		/obj/item/reagent_containers/food/snacks/mexican/taco,
 		/obj/item/reagent_containers/food/snacks/hotdog)
 
 	for(var/i in 1 to 3)
@@ -244,8 +250,8 @@
 	item_state = "gun_sling"
 	flags_equip_slot = ITEM_SLOT_BELT
 	w_class = WEIGHT_CLASS_BULKY
-	time_to_equip = 2 SECONDS
-	time_to_unequip = 1 SECONDS
+	equip_delay_self = 2 SECONDS
+	unequip_delay_self = 1 SECONDS
 	flags_inventory = NOQUICKEQUIP
 	///The current attacher. Gets remade for every new item
 	var/datum/component/reequip/reequip_component
@@ -290,7 +296,7 @@
 ///Set up the link between belt and object
 /obj/item/belt_harness/proc/attach_item(obj/item/to_attach, mob/user)
 	reequip_component = to_attach.AddComponent(/datum/component/reequip, list(SLOT_S_STORE, SLOT_BACK))
-	RegisterSignal(reequip_component, list(COMSIG_REEQUIP_FAILURE, COMSIG_PARENT_QDELETING), PROC_REF(detach_item))
+	RegisterSignals(reequip_component, list(COMSIG_REEQUIP_FAILURE, COMSIG_QDELETING), PROC_REF(detach_item))
 	playsound(src,'sound/machines/click.ogg', 15, FALSE, 1)
 	to_chat(user, span_notice("[src] clicks as you hook \the [to_attach] into it."))
 	update_icon()
@@ -300,7 +306,7 @@
 	SIGNAL_HANDLER
 	if(!reequip_component)
 		return
-	UnregisterSignal(reequip_component, list(COMSIG_REEQUIP_FAILURE, COMSIG_PARENT_QDELETING))
+	UnregisterSignal(reequip_component, list(COMSIG_REEQUIP_FAILURE, COMSIG_QDELETING))
 	if(ishuman(loc))
 		to_chat(loc, span_notice("[src] clicks as \the [reequip_component.parent] unhook[reequip_component.parent.p_s()] from it."))
 		playsound(src,'sound/machines/click.ogg', 15, FALSE, 1)
@@ -328,6 +334,7 @@
 /obj/item/compass
 	name = "compass"
 	desc = "A small compass that can tell you your coordinates on use."
+	icon = 'icons/Marine/marine-navigation.dmi'
 	icon_state = "compass"
 	w_class = WEIGHT_CLASS_TINY
 

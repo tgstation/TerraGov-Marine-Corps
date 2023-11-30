@@ -23,7 +23,7 @@
 	var/casedesc = "This basic model accepts both beakers and bottles. It heats contents by 10°K upon ignition." // Appears when examining empty casings.
 
 
-/obj/item/explosive/grenade/chem_grenade/Initialize()
+/obj/item/explosive/grenade/chem_grenade/Initialize(mapload)
 	. = ..()
 	create_reagents(1000)
 	stage_change() // If no argument is set, it will change the stage to the current stage, useful for stock grenades that start READY.
@@ -199,8 +199,7 @@
 	if(nadeassembly)
 		var/mob/M = get_mob_by_ckey(assemblyattacher)
 
-		log_explosion("[key_name(M)] primed [src] at [AREACOORD(loc)].")
-		log_combat(M, src, "primed")
+		log_bomber(M, "primed", src)
 
 	if(ismob(loc))
 		var/mob/M = loc
@@ -243,6 +242,7 @@
 	desc = "Contains construction nanites ready to turn a small area into razorwire after a few seconds. DO NOT ENTER AREA WHILE ACTIVE."
 	icon_state = "grenade_razorburn"
 	item_state = "grenade_razorburn"
+	hud_state = "grenade_razor"
 	stage = CG_READY
 	icon_state_mini = "grenade_chem_yellow"
 

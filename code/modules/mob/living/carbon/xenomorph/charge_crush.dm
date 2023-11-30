@@ -5,6 +5,7 @@
 #define CHARGE_BULL (1<<1)
 #define CHARGE_BULL_HEADBUTT (1<<2)
 #define CHARGE_BULL_GORE (1<<3)
+#define CHARGE_BEHEMOTH (1<<4)
 
 #define STOP_CRUSHER_ON_DEL (1<<0)
 
@@ -36,11 +37,14 @@
 	var/plasma_use_multiplier = 1
 	///If this charge should keep momentum on dir change and if it can charge diagonally
 	var/agile_charge = FALSE
+	/// Whether this ability should be activated when given.
+	var/should_start_on = TRUE
 
 
 /datum/action/xeno_action/ready_charge/give_action(mob/living/L)
 	. = ..()
-	action_activate()
+	if(should_start_on)
+		action_activate()
 
 
 /datum/action/xeno_action/ready_charge/Destroy()
@@ -89,7 +93,10 @@
 	var/mob/living/carbon/xenomorph/charger = owner
 	if(charger.is_charging == CHARGE_OFF)
 		return
-	if(!old_dir || !new_dir || old_dir == new_dir || agile_charge) //Check for null direction from help shuffle signals
+	if(!old_dir || !new_dir || old_dir == new_dir) //Check for null direction from help shuffle signals
+		return
+	if(agile_charge)
+		speed_down(8)
 		return
 	do_stop_momentum()
 
@@ -123,7 +130,7 @@
 
 /datum/action/xeno_action/ready_charge/proc/do_start_crushing()
 	var/mob/living/carbon/xenomorph/charger = owner
-	RegisterSignal(charger, list(COMSIG_MOVABLE_PREBUMP_TURF, COMSIG_MOVABLE_PREBUMP_MOVABLE, COMSIG_MOVABLE_PREBUMP_EXIT_MOVABLE), PROC_REF(do_crush))
+	RegisterSignals(charger, list(COMSIG_MOVABLE_PREBUMP_TURF, COMSIG_MOVABLE_PREBUMP_MOVABLE, COMSIG_MOVABLE_PREBUMP_EXIT_MOVABLE), PROC_REF(do_crush))
 	charger.is_charging = CHARGE_ON
 	charger.update_icons()
 
@@ -221,6 +228,9 @@
 			if(CHARGE_BULL, CHARGE_BULL_HEADBUTT, CHARGE_BULL_GORE) //Xeno Bull
 				if(MODULUS(valid_steps_taken, 4) == 0)
 					playsound(charger, "alien_footstep_large", 50)
+			if(CHARGE_BEHEMOTH)
+				if(MODULUS(valid_steps_taken, 2) == 0)
+					playsound(charger, "behemoth_rolling", 30)
 
 	lastturf = charger.loc
 
@@ -257,7 +267,7 @@
 	if(charger.incapacitated() || charger.now_pushing)
 		return NONE
 
-	if(charge_type & (CHARGE_BULL|CHARGE_BULL_HEADBUTT|CHARGE_BULL_GORE) && !isliving(crushed))
+	if(charge_type & (CHARGE_BULL|CHARGE_BULL_HEADBUTT|CHARGE_BULL_GORE|CHARGE_BEHEMOTH) && !isliving(crushed))
 		do_stop_momentum()
 		return COMPONENT_MOVABLE_PREBUMP_STOPPED
 
@@ -298,7 +308,7 @@
 			return precrush2signal(crushed_obj.post_crush_act(charger, src))
 		playsound(crushed_obj.loc, "punch", 25, 1)
 		var/crushed_behavior = crushed_obj.crushed_special_behavior()
-		crushed_obj.take_damage(precrush, BRUTE, "melee")
+		crushed_obj.take_damage(precrush, BRUTE, MELEE)
 		if(QDELETED(crushed_obj))
 			charger.visible_message(span_danger("[charger] crushes [preserved_name]!"),
 			span_xenodanger("We crush [preserved_name]!"))
@@ -370,7 +380,7 @@
 
 /datum/action/xeno_action/ready_charge/bull_charge/on_xeno_upgrade()
 	var/mob/living/carbon/xenomorph/X = owner
-	agile_charge = (X.upgrade == XENO_UPGRADE_FOUR)
+	agile_charge = (X.upgrade == XENO_UPGRADE_PRIMO)
 
 /datum/action/xeno_action/ready_charge/queen_charge
 	action_icon_state = "queen_ready_charge"
@@ -510,7 +520,8 @@
 /obj/structure/mineral_door/post_crush_act(mob/living/carbon/xenomorph/charger, datum/action/xeno_action/ready_charge/charge_datum)
 	if(!anchored)
 		return ..()
-	TryToSwitchState(charger)
+	if(!open)
+		toggle_state(charger)
 	if(density)
 		return PRECRUSH_STOPPED
 	charger.visible_message(span_danger("[charger] slams [src] open!"),
@@ -548,9 +559,9 @@
 
 	switch(charge_datum.charge_type)
 		if(CHARGE_CRUSH)
-			Paralyze(CHARGE_SPEED(charge_datum) * 20)
+			Paralyze(CHARGE_SPEED(charge_datum) * 2 SECONDS)
 		if(CHARGE_BULL_HEADBUTT)
-			Paralyze(CHARGE_SPEED(charge_datum) * 25)
+			Paralyze(CHARGE_SPEED(charge_datum) * 2.5 SECONDS)
 
 	if(anchored)
 		charge_datum.do_stop_momentum(FALSE)
@@ -559,7 +570,7 @@
 		return PRECRUSH_STOPPED
 
 	switch(charge_datum.charge_type)
-		if(CHARGE_CRUSH, CHARGE_BULL)
+		if(CHARGE_CRUSH, CHARGE_BULL, CHARGE_BEHEMOTH)
 			var/fling_dir = pick((charger.dir & (NORTH|SOUTH)) ? list(WEST, EAST, charger.dir|WEST, charger.dir|EAST) : list(NORTH, SOUTH, charger.dir|NORTH, charger.dir|SOUTH)) //Fling them somewhere not behind nor ahead of the charger.
 			var/fling_dist = min(round(CHARGE_SPEED(charge_datum)) + 1, 3)
 			var/turf/destination = loc

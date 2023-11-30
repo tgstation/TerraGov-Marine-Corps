@@ -18,7 +18,6 @@
 	layer = ATMOS_DEVICE_LAYER
 	flags_atom = SHUTTLE_IMMUNE
 
-	var/id_tag = null
 	var/pump_direction = RELEASING
 
 	var/pressure_checks = EXT_BOUND
@@ -32,18 +31,6 @@
 	var/radio_filter_in
 
 	pipe_state = "uvent"
-
-/obj/machinery/atmospherics/components/unary/vent_pump/New()
-	. = ..()
-	if(!id_tag)
-		id_tag = assign_uid_vents()
-
-/obj/machinery/atmospherics/components/unary/vent_pump/Destroy()
-	var/area/A = get_area(src)
-	if (A)
-		A.air_vent_names -= id_tag
-		A.air_vent_info -= id_tag
-	return ..()
 
 /obj/machinery/atmospherics/components/unary/vent_pump/update_icon_nopipes()
 	cut_overlays()
@@ -178,6 +165,10 @@
 
 // mapping
 
+/obj/machinery/atmospherics/components/unary/vent_pump/Initialize(mapload)
+	. = ..()
+	GLOB.atmospumps += src
+
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1
 	piping_layer = 1
 	icon_state = "vent_map-1"
@@ -211,6 +202,10 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/siphon/on
 	on = TRUE
 	icon_state = "vent_map_siphon_on-2"
+
+/obj/machinery/atmospherics/components/unary/vent_pump/Destroy()
+	. = ..()
+	GLOB.atmospumps -= src
 
 #undef INT_BOUND
 #undef EXT_BOUND

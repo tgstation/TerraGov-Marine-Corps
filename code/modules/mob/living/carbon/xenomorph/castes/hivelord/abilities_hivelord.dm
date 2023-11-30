@@ -4,6 +4,61 @@
 //#endif
 
 // ***************************************
+// *********** Recycle
+// ***************************************
+/datum/action/xeno_action/activable/recycle
+	name = "Recycle"
+	action_icon_state = "recycle"
+	desc = "We deconstruct the body of a fellow fallen xenomorph to avoid marines from harvesting our sisters in arms."
+	use_state_flags = XACT_USE_STAGGERED //can't use while staggered, defender fortified or crest down
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_RECYCLE,
+	)
+	plasma_cost = 750
+	gamemode_flags = ABILITY_NUCLEARWAR
+
+/datum/action/xeno_action/activable/recycle/can_use_ability(atom/target, silent = FALSE, override_flags)
+	. = ..()
+	var/mob/living/carbon/xenomorph/hivelord = owner
+	var/mob/living/carbon/xenomorph/victim = target
+	if(!.)
+		return FALSE
+	if(!hivelord.Adjacent(victim))
+		if(!silent)
+			hivelord.balloon_alert(hivelord, "Too far")
+		return FALSE
+	if(hivelord.on_fire)
+		if(!silent)
+			hivelord.balloon_alert(hivelord, "Cannot while burning")
+		return FALSE
+	if(!isxeno(target))
+		if(!silent)
+			hivelord.balloon_alert(hivelord, "Cannot recycle")
+		return FALSE
+	if(victim.stat != DEAD)
+		if(!silent)
+			hivelord.balloon_alert(hivelord, "Sister isn't dead")
+		return FALSE
+
+/datum/action/xeno_action/activable/recycle/use_ability(atom/target)
+	var/mob/living/carbon/xenomorph/recycled_xeno = target
+	var/mob/living/carbon/xenomorph/hivelord = owner
+	hivelord.face_atom(recycled_xeno) //Face towards the target so we don't look silly
+	hivelord.visible_message(span_warning("\The [hivelord] starts breaking apart \the [recycled_xeno]'s carcass."), \
+	span_danger("We slowly deconstruct upon \the [recycled_xeno]'s carcass!"), null, 20)
+	if(!do_after(owner, 7 SECONDS, FALSE, recycled_xeno, BUSY_ICON_GENERIC, extra_checks = CALLBACK(src, PROC_REF(can_use_ability), target, TRUE, XACT_USE_BUSY)))
+		return
+
+	hivelord.record_recycle_points(recycled_xeno)
+
+	recycled_xeno.gib()
+
+	playsound(hivelord, 'sound/effects/alien_recycler.ogg', 40)
+	hivelord.visible_message(span_xenowarning("\The [hivelord] brushes xenomorphs' bits off its claws."), \
+	span_danger("We brush xenomorphs' bits off of our claws."), null, 20)
+	return succeed_activate() //dew it
+
+// ***************************************
 // *********** Resin building
 // ***************************************
 /datum/action/xeno_action/activable/secrete_resin/hivelord
@@ -148,7 +203,7 @@
 	playsound(T, 'sound/weapons/pierce.ogg', 25, 1)
 
 	newt.creator = X
-	newt.RegisterSignal(X, COMSIG_PARENT_QDELETING, TYPE_PROC_REF(/obj/structure/xeno/tunnel, clear_creator))
+	newt.RegisterSignal(X, COMSIG_QDELETING, TYPE_PROC_REF(/obj/structure/xeno/tunnel, clear_creator))
 
 	X.tunnels.Add(newt)
 
@@ -325,6 +380,9 @@
 	succeed_activate()
 	add_cooldown()
 
+	if(owner.client)
+		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[owner.ckey]
+		personal_statistics.heals++
 	GLOB.round_statistics.hivelord_healing_infusions++ //Statistics
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "hivelord_healing_infusions")
 
@@ -368,7 +426,7 @@
 /datum/action/xeno_action/sow/update_button_icon()
 	var/mob/living/carbon/xenomorph/X = owner
 	button.overlays.Cut()
-	button.overlays += image('icons/mob/actions.dmi', button, initial(X.selected_plant.name))
+	button.overlays += image('icons/Xeno/actions.dmi', button, initial(X.selected_plant.name))
 	return ..()
 
 ///Shows a radial menu to pick the plant they wish to put down when they use the ability

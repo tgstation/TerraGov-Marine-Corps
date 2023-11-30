@@ -6,7 +6,7 @@ SUBSYSTEM_DEF(greyscale)
 	var/list/datum/greyscale_config/configurations = list()
 	var/list/datum/greyscale_layer/layer_types = list()
 
-/datum/controller/subsystem/greyscale/Initialize(start_timeofday)
+/datum/controller/subsystem/greyscale/Initialize()
 	for(var/datum/greyscale_layer/fake_type AS in subtypesof(/datum/greyscale_layer))
 		layer_types[initial(fake_type.layer_type)] = fake_type
 
@@ -14,15 +14,7 @@ SUBSYSTEM_DEF(greyscale)
 		var/datum/greyscale_config/config = new greyscale_type()
 		configurations["[greyscale_type]"] = config
 
-	return ..()
-
-///Proc built to handle cacheing the nested lists of armor colors found in code/modules/clothing/modular_armor
-/datum/controller/subsystem/greyscale/proc/cache_list(list/colors, config)
-	for(var/key in colors)
-		if(islist(colors[key]))
-			cache_list(colors[key], config)
-			continue
-		GetColoredIconByType(config, colors[key])
+	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/greyscale/proc/RefreshConfigsFromFile()
 	for(var/i in configurations)

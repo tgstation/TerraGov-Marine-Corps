@@ -10,4 +10,4 @@
 	name = "chemicals"
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "chempuff"
-	flags_pass = PASSTABLE|PASSGRILLE
+	allow_pass_flags = PASS_LOW_STRUCTURE|PASS_GRILLE

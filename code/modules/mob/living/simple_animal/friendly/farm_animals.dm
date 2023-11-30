@@ -11,9 +11,9 @@
 	speak_chance = 1
 	turns_per_move = 5
 	see_in_dark = 6
-	response_help  = "pets"
+	response_help = "pets"
 	response_disarm = "gently pushes aside"
-	response_harm   = "kicks"
+	response_harm = "kicks"
 	faction = FACTION_NEUTRAL
 	attack_same = TRUE
 	attacktext = "kicks"
@@ -25,7 +25,7 @@
 	stop_automated_movement_when_pulled = TRUE
 
 
-/mob/living/simple_animal/hostile/retaliate/goat/Initialize()
+/mob/living/simple_animal/hostile/retaliate/goat/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/udder)
 
@@ -64,15 +64,15 @@
 	speak_chance = 1
 	turns_per_move = 5
 	see_in_dark = 6
-	response_help  = "pets"
+	response_help = "pets"
 	response_disarm = "gently pushes aside"
-	response_harm   = "kicks"
+	response_harm = "kicks"
 	attacktext = "kicks"
 	attack_sound = 'sound/weapons/punch1.ogg'
 	health = 50
 	maxHealth = 50
 
-/mob/living/simple_animal/cow/Initialize()
+/mob/living/simple_animal/cow/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/udder)
 
@@ -118,18 +118,19 @@
 	density = FALSE
 	speak_chance = 2
 	turns_per_move = 2
-	response_help  = "pets"
+	response_help = "pets"
 	response_disarm = "gently pushes aside"
-	response_harm   = "kicks"
+	response_harm = "kicks"
 	attacktext = "kicks"
 	health = 3
 	maxHealth = 3
 	var/amount_grown = 0
-	flags_pass = PASSTABLE|PASSGRILLE|PASSMOB
+	allow_pass_flags = PASS_MOB
+	pass_flags = PASS_LOW_STRUCTURE|PASS_GRILLE|PASS_MOB
 	mob_size = MOB_SIZE_SMALL
 
 
-/mob/living/simple_animal/chick/Initialize()
+/mob/living/simple_animal/chick/Initialize(mapload)
 	. = ..()
 	pixel_x = rand(-6, 6)
 	pixel_y = rand(0, 10)
@@ -167,9 +168,9 @@
 	turns_per_move = 3
 	var/egg_type = /obj/item/reagent_containers/food/snacks/egg
 	var/food_type = /obj/item/reagent_containers/food/snacks/grown/wheat
-	response_help  = "pets"
+	response_help = "pets"
 	response_disarm = "gently pushes aside"
-	response_harm   = "kicks"
+	response_harm = "kicks"
 	attacktext = "kicks"
 	health = 15
 	maxHealth = 15
@@ -177,7 +178,8 @@
 	var/eggsFertile = TRUE
 	var/body_color
 	var/icon_prefix = "chicken"
-	flags_pass = PASSTABLE|PASSMOB
+	allow_pass_flags = PASS_MOB
+	pass_flags = PASS_LOW_STRUCTURE|PASS_MOB
 	mob_size = MOB_SIZE_SMALL
 	var/list/feedMessages = list("It clucks happily.","It clucks happily.")
 	var/list/layMessage = list("lays an egg.","squats down and croons.","begins making a huge racket.","begins clucking raucously.")
@@ -185,7 +187,7 @@
 	var/static/chicken_count = 0
 
 
-/mob/living/simple_animal/chicken/Initialize()
+/mob/living/simple_animal/chicken/Initialize(mapload)
 	. = ..()
 	if(!body_color)
 		body_color = pick(validColors)

@@ -119,7 +119,7 @@
 		"name" = speaker.name,
 		"job" = speaker.job,
 		"message" = message,
-		"compression" = rand(35, 65),
+		"compression" = 0,
 		"language" = lang_instance.name,
 		"spans" = spans
 	)
@@ -145,7 +145,7 @@
 		return
 	var/compression = data["compression"]
 	if(compression > 0)
-		message = Gibberish(message, compression + 40)
+		message = Gibberish(message, TRUE, compression)
 
 	var/list/signal_reaches_every_z_level = levels
 

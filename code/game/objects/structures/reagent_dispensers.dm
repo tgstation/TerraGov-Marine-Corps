@@ -8,6 +8,8 @@
 	density = TRUE
 	anchored = FALSE
 	resistance_flags = XENO_DAMAGEABLE
+	interaction_flags = INTERACT_OBJ_DEFAULT|INTERACT_POWERLOADER_PICKUP_ALLOWED
+	allow_pass_flags = PASS_LOW_STRUCTURE|PASSABLE|PASS_WALKOVER
 	max_integrity = 100
 	///high chance to block bullets, offset by being unanchored
 	coverage = 80
@@ -33,8 +35,14 @@
 	if(result)
 		amount_per_transfer_from_this = result
 
-/obj/structure/reagent_dispensers/Initialize()
+/obj/structure/reagent_dispensers/Initialize(mapload)
 	. = ..()
+
+	var/static/list/connections = list(
+		COMSIG_OBJ_TRY_ALLOW_THROUGH = PROC_REF(can_climb_over),
+	)
+	AddElement(/datum/element/connect_loc, connections)
+
 	create_reagents(tank_volume, AMOUNT_VISIBLE|DRAINABLE, list_reagents)
 
 /obj/structure/reagent_dispensers/ex_act(severity)
@@ -49,12 +57,6 @@
 			if (prob(5))
 				new /obj/effect/particle_effect/water(loc)
 				qdel(src)
-
-
-/obj/structure/reagent_dispensers/CanAllowThrough(atom/movable/mover, turf/target)
-	. = ..()
-	if(CHECK_BITFIELD(mover.flags_pass, PASSTABLE))
-		return TRUE
 
 //Dispensers
 /obj/structure/reagent_dispensers/watertank
@@ -122,14 +124,17 @@
 	var/obj/item/tool/weldingtool/W = I
 	if(!W.welding)
 		if(W.reagents.has_reagent(/datum/reagent/fuel, W.max_fuel))
-			to_chat(user, span_warning("Your [W.name] is already full!"))
+			balloon_alert(user, "already full!")
+			return
+		if(!reagents.has_reagent(/datum/reagent/fuel, 1))
+			balloon_alert(user, "no valid fuel")
 			return
 		reagents.trans_to(W, W.max_fuel)
 		W.weld_tick = 0
 		user.visible_message(span_notice("[user] refills [W]."), span_notice("You refill [W]."))
 		playsound(loc, 'sound/effects/refill.ogg', 25, 1, 3)
 		return
-	log_explosion("[key_name(user)] triggered a fueltank explosion with a blowtorch at [AREACOORD(user.loc)].")
+	log_bomber(user, "triggered a fueltank explosion with", src, "using a welder")
 	var/self_message = user.a_intent != INTENT_HARM ? span_danger("You begin welding on the fueltank, and in a last moment of lucidity realize this might not have been the smartest thing you've ever done.") : span_danger("[src] catastrophically explodes in a wave of flames as you begin to weld it.")
 	user.visible_message(span_warning("[user] catastrophically fails at refilling \his [W.name]!"), self_message)
 	explode()
@@ -174,16 +179,16 @@
 
 ///Does what it says on the tin, blows up the fueltank with radius depending on fuel left
 /obj/structure/reagent_dispensers/fueltank/proc/explode()
-	log_explosion("[key_name(usr)] triggered a fueltank explosion at [AREACOORD(loc)].")
+	log_bomber(usr, "triggered a fueltank explosion with", src)
 	if(exploding)
 		return
 	exploding = TRUE
 	if (reagents.total_volume > 500)
-		explosion(loc, light_impact_range = 4, flame_range = 4, small_animation = TRUE)
+		explosion(loc, light_impact_range = 4, flame_range = 4)
 	else if (reagents.total_volume > 100)
-		explosion(loc, light_impact_range = 3, flame_range = 3, small_animation = TRUE)
+		explosion(loc, light_impact_range = 3, flame_range = 3)
 	else
-		explosion(loc, light_impact_range = 2, flame_range = 2, small_animation = TRUE)
+		explosion(loc, light_impact_range = 2, flame_range = 2)
 	qdel(src)
 
 /obj/structure/reagent_dispensers/fueltank/fire_act(temperature, volume)
@@ -193,8 +198,8 @@
 
 /obj/structure/reagent_dispensers/fueltank/Moved(atom/old_loc, movement_dir, forced, list/old_locs)
 	. = ..()
-	if (modded)
-		leak_fuel(amount_per_transfer_from_this/10.0)
+	if(modded)
+		leak_fuel(rand(3, amount_per_transfer_from_this))
 
 ///Leaks fuel when the valve is opened, leaving behind burnable splotches
 /obj/structure/reagent_dispensers/fueltank/proc/leak_fuel(amount)
@@ -202,10 +207,14 @@
 		return
 
 	amount = min(amount, reagents.total_volume)
-	reagents.remove_reagent(/datum/reagent/fuel,amount)
-	new /obj/effect/decal/cleanable/liquid_fuel(loc, amount, FALSE)
-	playsound(src, 'sound/effects/glob.ogg', 25, 1)
 
+	for(var/datum/reagent/leaked_reagent AS in reagents.reagent_list)
+		if(leaked_reagent.volume < amount)
+			continue
+		leaked_reagent.reaction_turf(loc, amount)
+		reagents.remove_reagent(leaked_reagent.type, amount)
+
+	playsound(src, 'sound/effects/glob.ogg', 25, 1)
 
 /obj/structure/reagent_dispensers/fueltank/flamer_fire_act(burnlevel)
 	explode()
@@ -215,6 +224,30 @@
 	desc = "A red fuel barrel"
 	icon = 'icons/obj/structures/crates.dmi'
 	icon_state = "barrel_red"
+
+/obj/structure/reagent_dispensers/fueltank/xfuel
+	name = "X-fueltank"
+	desc = "A tank filled with extremely dangerous Fuel type X. There are numerous no smoking signs on every side of the tank."
+	icon_state = "xweldtank"
+	list_reagents = list(/datum/reagent/fuel/xfuel = 1000)
+
+/obj/structure/reagent_dispensers/fueltank/xfuel/explode()
+	log_bomber(usr, "triggered a fueltank explosion with", src)
+	if(exploding)
+		return
+	exploding = TRUE
+
+	if(reagents.total_volume > 500)
+		flame_radius(5, loc, 46, 40, 31, 30, colour = "blue")
+		explosion(loc, light_impact_range = 5)
+	else if(reagents.total_volume > 100)
+		flame_radius(4, loc, 46, 40, 31, 30, colour = "blue")
+		explosion(loc, light_impact_range = 4)
+	else
+		flame_radius(3, loc, 46, 40, 31, 30, colour = "blue")
+		explosion(loc, light_impact_range = 3)
+
+	qdel(src)
 
 /obj/structure/reagent_dispensers/water_cooler
 	name = "water cooler"

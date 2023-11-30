@@ -1,0 +1,196 @@
+{
+	"ushanka":[
+		{
+			"type":"hyperscale",
+			"icon_state": "ushanka"
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "ushanka_no_color",
+			"blend_mode": "overlay"
+		}
+	],
+	"ushanka_inhand":[
+		{
+			"type":"hyperscale",
+			"icon_state": "ushanka_inhand"
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "ushanka_inhand_no_color",
+			"blend_mode": "overlay"
+		}
+	],
+	"cap":[
+		{
+			"type": "hyperscale",
+			"icon_state": "cap"
+		}
+	],
+	"cap_inhand":[
+		{
+			"type": "hyperscale",
+			"icon_state": "cap_inhand"
+		}
+	],
+	"boonie":[
+		{
+			"type":"hyperscale",
+			"icon_state": "boonie"
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "boonie_no_color",
+			"blend_mode": "overlay"
+		}
+	],
+	"boonie_inhand":[
+		{
+			"type":"hyperscale",
+			"icon_state": "boonie_inhand"
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "boonie_inhand_no_color",
+			"blend_mode": "overlay"
+		}
+	],
+	"slouch":[
+		{
+			"type": "hyperscale",
+			"icon_state": "slouch"
+		}
+	],
+	"slouch_inhand":[
+		{
+			"type": "hyperscale",
+			"icon_state": "slouch_inhand"
+		}
+	],
+	"campaign":[
+		{
+			"type":"hyperscale",
+			"icon_state": "campaign"
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "campaign_no_color",
+			"blend_mode": "overlay"
+		}
+	],
+	"campaign_inhand":[
+		{
+			"type":"hyperscale",
+			"icon_state": "campaign_inhand"
+		}
+	],
+	"ski":[
+		{
+			"type": "hyperscale",
+			"icon_state": "ski"
+		}
+	],
+	"ski_inhand":[
+		{
+			"type": "hyperscale",
+			"icon_state": "ski_inhand"
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "ski_inhand_no_color",
+			"blend_mode": "overlay"
+		}
+	],
+	"coof":[
+		{
+			"type": "hyperscale",
+			"icon_state": "coof"
+		}
+	],
+	"coof_inhand":[
+		{
+			"type": "hyperscale",
+			"icon_state": "coof_inhand"
+		}
+	],
+	"beanie":[
+		{
+			"type": "hyperscale",
+			"icon_state": "beanie"
+		}
+	],
+	"beanie_inhand":[
+		{
+			"type": "hyperscale",
+			"icon_state": "beanie_inhand"
+		}
+	],
+	"headbandana":[
+		{
+			"type": "hyperscale",
+			"icon_state": "headbandana"
+		}
+	],
+	"headbandana_inhand":[
+		{
+			"type": "hyperscale",
+			"icon_state": "headbandana_inhand"
+		}
+	],
+	"headband":[
+		{
+			"type": "hyperscale",
+			"icon_state": "headband"
+		}
+	],
+	"headband_inhand":[
+		{
+			"type": "hyperscale",
+			"icon_state": "headband_inhand"
+		}
+	],
+	"beret":[
+		{
+			"type":"hyperscale",
+			"icon_state": "beret"
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "beret_no_color",
+			"blend_mode": "overlay"
+		}
+	],
+	"beret_inhand":[
+		{
+			"type":"hyperscale",
+			"icon_state": "beret_inhand"
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "beret_inhand_no_color",
+			"blend_mode": "overlay"
+		}
+	],
+	"classic_beret":[
+		{
+			"type":"hyperscale",
+			"icon_state": "classic_beret"
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "classic_beret_no_color",
+			"blend_mode": "overlay"
+		}
+	],
+	"classic_beret_inhand":[
+		{
+			"type":"hyperscale",
+			"icon_state": "classic_beret_inhand"
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "classic_beret_inhand_no_color",
+			"blend_mode": "overlay"
+		}
+	]
+}

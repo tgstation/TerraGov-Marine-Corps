@@ -14,7 +14,7 @@
 
 	refresh_preview()
 
-	RegisterSignal(target, COMSIG_PARENT_QDELETING, PROC_REF(ui_close))
+	RegisterSignal(target, COMSIG_QDELETING, PROC_REF(ui_close))
 
 /datum/greyscale_modify_menu/Destroy()
 	target = null

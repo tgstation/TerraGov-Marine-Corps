@@ -8,6 +8,7 @@
 	anchored = TRUE
 	layer = WINDOW_LAYER
 	flags_atom = ON_BORDER|DIRLOCK
+	allow_pass_flags = PASS_GLASS
 	resistance_flags = XENO_DAMAGEABLE | DROPSHIP_IMMUNE
 	coverage = 20
 	var/dismantle = FALSE //If we're dismantling the window properly no smashy smashy
@@ -21,11 +22,14 @@
 	var/junction = 0 //Because everything is terrible, I'm making this a window-level var
 	var/damageable = TRUE
 	var/deconstructable = TRUE
-	flags_pass = PASSLASER
+
+/obj/structure/window/add_debris_element()
+	AddElement(/datum/element/debris, DEBRIS_GLASS, -10, 5)
 
 //I hate this as much as you do
 /obj/structure/window/full
 	dir = 10
+	flags_atom = DIRLOCK
 
 /obj/structure/window/Initialize(mapload, start_dir, constructed)
 	..()
@@ -60,11 +64,30 @@
 /obj/structure/window/ex_act(severity)
 	switch(severity)
 		if(EXPLODE_DEVASTATE)
-			take_damage(rand(125, 250))
+			take_damage(rand(125, 250), BRUTE, BOMB)
 		if(EXPLODE_HEAVY)
-			take_damage(rand(75, 125))
+			take_damage(rand(75, 125), BRUTE, BOMB)
 		if(EXPLODE_LIGHT)
-			take_damage(rand(25, 75))
+			take_damage(rand(25, 75), BRUTE, BOMB)
+		if(EXPLODE_WEAK)
+			take_damage(rand(15, 35), BRUTE, BOMB)
+
+/obj/structure/window/hitby(atom/movable/AM, speed = 5)
+	var/throw_damage = speed
+	var/mob/living/thrown_mob
+	if(isobj(AM))
+		var/obj/thrown_obj = AM
+		throw_damage = thrown_obj.throwforce
+	else if(isliving(AM))
+		thrown_mob = AM
+		throw_damage *= thrown_mob.mob_size * 8
+	take_damage(throw_damage)
+	if(obj_integrity > 0) //we only stop if we don't break the window
+		AM.stop_throw()
+		. = TRUE
+	if(thrown_mob)
+		thrown_mob.take_overall_damage(speed * 5, BRUTE, MELEE, !., FALSE, TRUE, 0, 4) //done here for dramatic effect, and to make the damage sharp if we broke the window
+
 
 //TODO: Make full windows a separate type of window.
 //Once a full window, it will always be a full window, so there's no point
@@ -73,22 +96,6 @@
 	if(!(flags_atom & ON_BORDER) || ISDIAGONALDIR(dir))
 		return TRUE
 	return FALSE
-
-
-/obj/structure/window/CanAllowThrough(atom/movable/mover, turf/target)
-	. = ..()
-	if(CHECK_BITFIELD(mover.flags_pass, PASSGLASS))
-		return TRUE
-	if(!is_full_window() && !(get_dir(loc, target) & dir))
-		return TRUE
-
-/obj/structure/window/proc/on_try_exit(datum/source, atom/movable/mover, direction, list/knownblockers)
-	if(CHECK_BITFIELD(mover.flags_pass, PASSGLASS))
-		return NONE
-	if(!density || !(flags_atom & ON_BORDER) || !(direction & dir) || (mover.status_flags & INCORPOREAL))
-		return NONE
-	knownblockers += src
-	return COMPONENT_ATOM_BLOCK_EXIT
 
 /obj/structure/window/attack_hand(mob/living/user)
 	. = ..()
@@ -137,22 +144,22 @@
 				log_combat(user, M, "slammed", "", "against \the [src]")
 				M.apply_damage(7, blocked = MELEE)
 				UPDATEHEALTH(M)
-				take_damage(10)
+				take_damage(10, BRUTE, MELEE)
 			if(GRAB_AGGRESSIVE)
 				M.visible_message(span_danger("[user] bashes [M] against \the [src]!"))
 				log_combat(user, M, "bashed", "", "against \the [src]")
 				if(prob(50))
-					M.Paralyze(20)
+					M.Paralyze(2 SECONDS)
 				M.apply_damage(10, blocked = MELEE)
 				UPDATEHEALTH(M)
-				take_damage(25)
+				take_damage(25, BRUTE, MELEE)
 			if(GRAB_NECK)
 				M.visible_message(span_danger("<big>[user] crushes [M] against \the [src]!</big>"))
 				log_combat(user, M, "crushed", "", "against \the [src]")
 				M.Paralyze(10 SECONDS)
 				M.apply_damage(20, blocked = MELEE)
 				UPDATEHEALTH(M)
-				take_damage(50)
+				take_damage(50, BRUTE, MELEE)
 
 	else if(I.flags_item & NOBLUDGEON)
 		return
@@ -261,7 +268,7 @@
 
 /obj/structure/window/fire_act(exposed_temperature, exposed_volume)
 	if(exposed_temperature > T0C + 800)
-		take_damage(round(exposed_volume / 100), BURN, "fire")
+		take_damage(round(exposed_volume / 100), BURN, FIRE)
 	return ..()
 
 /obj/structure/window/GetExplosionBlock(explosion_dir)
@@ -279,7 +286,7 @@
 
 /obj/structure/window/phoronbasic/fire_act(exposed_temperature, exposed_volume)
 	if(exposed_temperature > T0C + 32000)
-		take_damage(round(exposed_volume / 1000), BURN, "fire")
+		take_damage(round(exposed_volume / 1000), BURN, FIRE)
 	return ..()
 
 /obj/structure/window/phoronreinforced
@@ -356,7 +363,7 @@
 	basestate = "rwindow"
 	max_integrity = 1500
 	reinf = TRUE
-	resistance_flags = 10 // I have no clue what those are.
+	resistance_flags = UNACIDABLE|XENO_DAMAGEABLE
 
 /obj/structure/window/reinforced/tinted
 	name = "tinted window"
@@ -364,7 +371,7 @@
 	icon_state = "twindow"
 	basestate = "twindow"
 	opacity = TRUE
-	tinted =  TRUE
+	tinted = TRUE
 
 /obj/structure/window/reinforced/tinted/frosted
 	name = "frosted window"
@@ -417,8 +424,8 @@
 
 
 
-/obj/structure/window/framed/deconstruct(disassembled = TRUE)
-	if(window_frame)
+/obj/structure/window/framed/deconstruct(disassembled = TRUE, leave_frame = TRUE)
+	if(window_frame && leave_frame)
 		var/obj/structure/window_frame/WF = new window_frame(loc, TRUE)
 		WF.icon_state = "[WF.basestate][junction]_frame"
 		WF.setDir(dir)
@@ -457,7 +464,7 @@
 	icon_state = "ship_window-0"
 	basestate = "ship_window"
 
-/obj/structure/window/framed/mainship/spaceworthy/Initialize()
+/obj/structure/window/framed/mainship/spaceworthy/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/windowshutter/cokpitshutters)
 
@@ -561,7 +568,7 @@
 	window_frame = /obj/structure/window_frame/colony/reinforced
 
 /obj/structure/window/framed/colony/reinforced/tinted
-	name =  "tinted reinforced window"
+	name = "tinted reinforced window"
 	desc = "A glass window with a special rod matrice inside a wall frame. It looks rather strong. Might take a few good hits to shatter it. This one is opaque. You have an uneasy feeling someone might be watching from the other side."
 	opacity = TRUE
 
@@ -641,7 +648,7 @@
 	resistance_flags = BANISH_IMMUNE
 	icon_state = "window-invincible"
 
-/obj/structure/window/framed/prison/reinforced/hull/Initialize()
+/obj/structure/window/framed/prison/reinforced/hull/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/windowshutter)
 
@@ -674,3 +681,22 @@
 	//icon_state = "rwindow0_debug" //Uncomment to check hull in the map editor
 	deconstructable = FALSE
 	max_integrity = 300
+
+/obj/structure/window/framed/mainship/canterbury/dropship
+	name = "orbital insertion safety window"
+	desc = "A glass window with a reinforced rod matrice inside a wall frame, 3 times as strong as a normal window to be spaceworthy."
+	max_integrity = 300 // 13 hunter slashes
+	smoothing_groups = list(SMOOTH_GROUP_CANTERBURY)
+	canSmoothWith = list(
+		SMOOTH_GROUP_AIRLOCK,
+		SMOOTH_GROUP_WINDOW_FRAME,
+		SMOOTH_GROUP_WINDOW_FULLTILE,
+		SMOOTH_GROUP_SHUTTERS,
+		SMOOTH_GROUP_CANTERBURY,
+	)
+	window_frame = /obj/structure/window_frame/mainship/dropship
+
+/obj/structure/window/framed/mainship/canterbury/dropship/reinforced
+	name = "reinforced orbital insertion safety window"
+	desc = "A durable glass window with a specialized reinforced rod matrice inside a wall frame, 6 times as strong as a normal window to be spaceworthy and withstand impacts."
+	max_integrity = 600 // 25 hunter slashes

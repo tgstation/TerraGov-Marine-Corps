@@ -6,8 +6,10 @@ export const MedScanner = (props, context) => {
   const { act, data } = useBackend(context);
   const {
     patient,
+    species,
     dead,
     health,
+    max_health,
     total_brute,
     total_burn,
     toxin,
@@ -49,7 +51,7 @@ export const MedScanner = (props, context) => {
           <LabeledList>
             <LabeledList.Item label="Health">
               <ProgressBar
-                value={health / 100}
+                value={health / max_health}
                 ranges={{
                   good: [0.4, Infinity],
                   average: [0.2, 0.4],
@@ -126,7 +128,7 @@ export const MedScanner = (props, context) => {
                     average: [50, 100],
                     bad: [100, Infinity],
                   }}>
-                  Cloneloss:{clone}
+                  {species === 'robot' ? 'Integrity' : 'Cloneloss'}:{clone}
                 </ProgressBar>
               </Box>
             </LabeledList.Item>

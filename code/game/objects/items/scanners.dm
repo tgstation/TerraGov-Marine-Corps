@@ -13,6 +13,7 @@ REAGENT SCANNER
 /obj/item/t_scanner
 	name = "\improper T-ray scanner"
 	desc = "A terahertz-ray emitter and scanner used to detect underfloor objects such as cables and pipes."
+	icon = 'icons/obj/device.dmi'
 	icon_state = "t-ray0"
 	var/on = 0
 	flags_atom = CONDUCT
@@ -62,6 +63,7 @@ REAGENT SCANNER
 
 /obj/item/healthanalyzer
 	name = "\improper HF2 health analyzer"
+	icon = 'icons/obj/device.dmi'
 	icon_state = "health"
 	item_icons = list(
 		slot_l_hand_str = 'icons/mob/inhands/equipment/medical_left.dmi',
@@ -113,6 +115,7 @@ REAGENT SCANNER
 	patient = M
 	current_user = user
 	if(show_patient)
+		balloon_alert_to_viewers("Showed healthscan", vision_distance = 4)
 		ui_interact(M)
 	else
 		ui_interact(user)
@@ -152,6 +155,7 @@ REAGENT SCANNER
 		"patient" = patient.name,
 		"dead" = (patient.stat == DEAD || HAS_TRAIT(patient, TRAIT_FAKEDEATH)),
 		"health" = patient.health,
+		"max_health" = patient.maxHealth,
 		"total_brute" = round(patient.getBruteLoss()),
 		"total_burn" = round(patient.getFireLoss()),
 		"toxin" = round(patient.getToxLoss()),
@@ -163,7 +167,7 @@ REAGENT SCANNER
 		"blood_type" = patient.blood_type,
 		"blood_amount" = patient.blood_volume,
 
-		"hugged" = (locate(/obj/item/alien_embryo) in patient)
+		"hugged" = !!(patient.status_flags & XENO_HOST)
 	)
 	data["has_unknown_chemicals"] = FALSE
 	var/list/chemicals_lists = list()
@@ -179,6 +183,7 @@ REAGENT SCANNER
 		)
 	data["has_chemicals"] = length(patient.reagents.reagent_list)
 	data["chemicals_lists"] = chemicals_lists
+	data["species"] = patient.species.species_flags & ROBOTIC_LIMBS ? "robot" : "human"
 
 	var/list/limb_data_lists = list()
 	if(ishuman(patient))
@@ -295,17 +300,48 @@ REAGENT SCANNER
 	. = ..()
 	if(user.gloves == src)
 		RegisterSignal(user, COMSIG_HUMAN_MELEE_UNARMED_ATTACK, PROC_REF(on_unarmed_attack))
+		RegisterSignal(user, COMSIG_HUMAN_MELEE_UNARMED_ATTACK_ALTERNATE, PROC_REF(on_unarmed_attack_alternate))
+
 	else
 		UnregisterSignal(user, COMSIG_HUMAN_MELEE_UNARMED_ATTACK)
 
+/obj/item/healthanalyzer/gloves/unequipped(mob/living/carbon/human/user, slot)
+	. = ..()
+	UnregisterSignal(user, COMSIG_HUMAN_MELEE_UNARMED_ATTACK) //Unregisters in the case of getting delimbed
+	UnregisterSignal(user, COMSIG_HUMAN_MELEE_UNARMED_ATTACK_ALTERNATE) //Unregisters in the case of getting delimbed
+
+
 //when you are wearing these gloves, this will call the normal attack code to health scan the target
 /obj/item/healthanalyzer/gloves/proc/on_unarmed_attack(mob/living/carbon/human/user, mob/living/carbon/human/target)
+	if(user.a_intent != INTENT_HELP)
+		return
 	if(istype(user) && istype(target))
-		attack(target,user)
+		analyze_vitals(target, user)
+
+///Used for right click and showing the patient their scan
+/obj/item/healthanalyzer/gloves/proc/on_unarmed_attack_alternate(mob/living/carbon/human/user, mob/living/carbon/human/target)
+	if(user.a_intent != INTENT_HELP)
+		return
+	if(istype(user) && istype(target))
+		analyze_vitals(target, user, TRUE)
+
+/obj/item/healthanalyzer/gloves/attack(mob/living/carbon/M, mob/living/user)
+	. = ..()
+	if(user.a_intent != INTENT_HELP)
+		return
+	analyze_vitals(M, user)
+
+/obj/item/healthanalyzer/gloves/attack_alternate(mob/living/carbon/M, mob/living/user)
+	. = ..()
+	if(user.a_intent != INTENT_HELP)
+		return
+	analyze_vitals(M, user, TRUE)
+
 
 /obj/item/tool/analyzer
 	desc = "A hand-held environmental scanner which reports current gas levels."
 	name = "analyzer"
+	icon = 'icons/obj/device.dmi'
 	icon_state = "atmos"
 	item_state = "analyzer"
 	w_class = WEIGHT_CLASS_SMALL
@@ -355,6 +391,7 @@ REAGENT SCANNER
 /obj/item/mass_spectrometer
 	desc = "A hand-held mass spectrometer which identifies trace chemicals in a blood sample."
 	name = "mass-spectrometer"
+	icon = 'icons/obj/device.dmi'
 	icon_state = "spectrometer"
 	item_state = "analyzer"
 	w_class = WEIGHT_CLASS_SMALL

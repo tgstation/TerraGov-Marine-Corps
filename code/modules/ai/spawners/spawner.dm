@@ -14,7 +14,7 @@
 
 
 //Example implementation;
-/obj/effect/ai_node/spawner/Initialize()
+/obj/effect/ai_node/spawner/Initialize(mapload)
 	if(!spawntypes || !spawnamount)
 		stack_trace("Invalid spawn parameters on AI spawn node, deleting")
 		return INITIALIZE_HINT_QDEL

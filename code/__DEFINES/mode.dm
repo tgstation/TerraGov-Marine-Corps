@@ -45,10 +45,10 @@
 #define MODE_SILO_RESPAWN (1<<9)
 #define MODE_HUMAN_ONLY (1<<10)
 #define MODE_TWO_HUMAN_FACTIONS	(1<<11)
-#define MODE_WIN_POINTS (1<<12)
-#define MODE_NO_PERMANENT_WOUNDS (1<<13)
-#define MODE_SILOS_SPAWN_MINIONS (1<<14)
-#define MODE_ALLOW_XENO_QUICKBUILD (1<<15)
+#define MODE_NO_PERMANENT_WOUNDS (1<<12)
+#define MODE_SILOS_SPAWN_MINIONS (1<<13)
+#define MODE_ALLOW_XENO_QUICKBUILD (1<<14)
+#define MODE_DISALLOW_RAILGUN (1<<15)
 
 #define MODE_INFESTATION_X_MAJOR "Xenomorph Major Victory"
 #define MODE_INFESTATION_M_MAJOR "Marine Major Victory"
@@ -57,10 +57,6 @@
 #define MODE_INFESTATION_DRAW_DEATH "DRAW: Mutual Annihilation"
 
 #define MODE_GENERIC_DRAW_NUKE "DRAW: Nuclear Explosion"
-
-#define MODE_CIVIL_WAR_LOYALIST_MAJOR "Loyalist Major Victory"
-#define MODE_CIVIL_WAR_REBEL_MAJOR "Rebel Major Victory"
-#define MODE_CIVIL_WAR_DRAW "Civil War Draw"
 
 #define MODE_COMBAT_PATROL_MARINE_MAJOR "Marine Major Victory"
 #define MODE_COMBAT_PATROL_MARINE_MINOR "Marine Minor Victory"
@@ -75,6 +71,8 @@
 #define INFESTATION_NUKE_NONE "INFESTATION_NUKE_NONE"
 #define INFESTATION_NUKE_INPROGRESS "INFESTATION_NUKE_INPROGRESS"
 #define INFESTATION_NUKE_COMPLETED "INFESTATION_NUKE_COMPLETED"
+#define INFESTATION_NUKE_COMPLETED_SHIPSIDE "INFESTATION_NUKE_COMPLETED_SHIPSIDE"
+#define INFESTATION_NUKE_COMPLETED_OTHER "INFESTATION_NUKE_COMPLETED_OTHER"
 
 #define SURVIVOR_WEAPONS list(\
 				list(/obj/item/weapon/gun/smg/mp7, /obj/item/ammo_magazine/smg/mp7),\
@@ -85,10 +83,6 @@
 				list(/obj/item/weapon/gun/shotgun/pump/bolt, /obj/item/ammo_magazine/rifle/bolt),\
 				list(/obj/item/weapon/gun/shotgun/pump/lever, /obj/item/ammo_magazine/packet/magnum))
 
-
-#define LATEJOIN_LARVA_DISABLED 0
-
-
 //Balance defines
 #define MARINE_GEAR_SCALING 30
 
@@ -98,9 +92,8 @@
 
 #define EVACUATION_TIME_LOCK 30 MINUTES
 
-//Distress mode collapse duration
-#define DISTRESS_ORPHAN_HIVEMIND 5 MINUTES
-#define DISTRESS_SILO_COLLAPSE 5 MINUTES
+//Nuclear war mode collapse duration
+#define NUCLEAR_WAR_ORPHAN_HIVEMIND 5 MINUTES
 
 #define SHUTTLE_HIJACK_LOCK 30 MINUTES
 
@@ -116,6 +109,9 @@
 #define DEATHTIME_CHECK(M) ((world.time - GLOB.key_to_time_of_role_death[M.key]) < SSticker.mode?.respawn_time)
 #define DEATHTIME_MESSAGE(M) to_chat(M, span_warning("You have been dead for [(world.time - GLOB.key_to_time_of_role_death[M.key]) * 0.1] second\s.</span><br><span class='warning'>You must wait [SSticker.mode?.respawn_time * 0.1] seconds before rejoining the game!"))
 
+#define XENODEATHTIME_CHECK(M) ((world.time - (GLOB.key_to_time_of_xeno_death[M.key] ? GLOB.key_to_time_of_xeno_death[M.key] : -INFINITY) < SSticker.mode?.xenorespawn_time))
+#define XENODEATHTIME_MESSAGE(M) to_chat(M, span_warning("You have been dead for [(world.time - GLOB.key_to_time_of_xeno_death[M.key]) * 0.1] second\s.</span><br><span class ='warning'>You must wait [SSticker.mode?.xenorespawn_time * 0.1] seconds before rejoining the game as a Xenomorph! You can take a SSD minion without resetting your timer."))
+
 #define COUNT_IGNORE_HUMAN_SSD (1<<0)
 #define COUNT_IGNORE_XENO_SSD (1<<1)
 #define COUNT_IGNORE_XENO_SPECIAL_AREA (1<<2)
@@ -125,7 +121,7 @@
 #define SILO_PRICE 800
 #define XENO_TURRET_PRICE 100
 
-//How many psych point one gen gives every second
+//How many psy points a hive gets if all generators are corrupted
 #define GENERATOR_PSYCH_POINT_OUTPUT 1
 //How many psy points are gave for each marine psy drained at low pop
 #define PSY_DRAIN_REWARD_MAX 90
@@ -143,14 +139,12 @@
 #define SILO_BASE_OUTPUT_PER_MARINE 0.035
 /// This is used to ponderate the number of silo, so to reduces the diminishing returns of having more and more silos
 #define SILO_OUTPUT_PONDERATION 1.75
-//Time (after shutters open) before siloless timer can start
-#define MINIMUM_TIME_SILO_LESS_COLLAPSE 15 MINUTES
 
 #define INFESTATION_MARINE_DEPLOYMENT 0
 #define INFESTATION_MARINE_CRASHING 1
 #define INFESTATION_DROPSHIP_CAPTURED_XENOS 2
 
-#define DISTRESS_LARVA_POINTS_NEEDED 8
+#define NUCLEAR_WAR_LARVA_POINTS_NEEDED 8
 #define CRASH_LARVA_POINTS_NEEDED 10
 
 #define FREE_XENO_AT_START 2

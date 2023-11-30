@@ -45,7 +45,7 @@
 	var/can_hear_flags = NONE
 
 
-/obj/machinery/holopad/Initialize()
+/obj/machinery/holopad/Initialize(mapload)
 	. = ..()
 	if(on_network)
 		holopads += src
@@ -188,6 +188,7 @@
 					continue
 				to_chat(AI, span_info("Your presence is requested at <a href='?src=[REF(AI)];jumptoholopad=[REF(src)]'>\the [area]</a>."))
 				playsound(AI, 'sound/machines/two_tones_beep.ogg', 30, 1)
+				SEND_GLOBAL_SIGNAL(COMSIG_GLOB_HOLOPAD_AI_CALLED, src)
 		else
 			temp = "A request for AI presence was already sent recently.<BR>"
 			temp += "<A href='?src=[REF(src)];mainmenu=1'>Main Menu</A>"

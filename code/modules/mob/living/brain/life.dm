@@ -112,7 +112,7 @@
 
 	update_sight()
 
-	if (hud_used && hud_used.healths)
+	if (hud_used?.healths)
 		if (stat != DEAD)
 			switch(health)
 				if(100 to INFINITY)

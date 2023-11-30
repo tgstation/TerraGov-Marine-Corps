@@ -35,11 +35,11 @@
 		inv_box.color = ui_color
 		inv_box.alpha = ui_alpha
 
-		var/list/slot_data =  hud_data.gear[gear_slot]
-		inv_box.name =        gear_slot
-		inv_box.screen_loc =  slot_data["loc"]
-		inv_box.slot_id =     slot_data["slot"]
-		inv_box.icon_state =  slot_data["state"]
+		var/list/slot_data = hud_data.gear[gear_slot]
+		inv_box.name = gear_slot
+		inv_box.screen_loc = slot_data["loc"]
+		inv_box.slot_id = slot_data["slot"]
+		inv_box.icon_state = slot_data["state"]
 
 		if(slot_data["toggle"])
 			toggleable_inventory += inv_box

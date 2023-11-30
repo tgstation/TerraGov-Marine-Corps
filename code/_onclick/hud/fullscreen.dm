@@ -164,31 +164,16 @@
 	animate(src, alpha = initial(alpha)-30, time = 50, loop = -1)
 	animate(alpha = initial(alpha), time = 20, loop = -1)
 
+/atom/movable/screen/fullscreen/machine/robothalf
+	icon_state = "robothalf"
+	alpha = 60
+
+/atom/movable/screen/fullscreen/machine/robotlow
+	icon_state = "robotlow"
+
 /atom/movable/screen/fullscreen/ivanov_display
 	icon_state = "ivanov"
 	alpha = 180
-
-/atom/movable/screen/fullscreen/robothalf
-	icon_state = "robothalf"
-	alpha = 60
-	layer = FULLSCREEN_DRUGGY_LAYER
-	blend_mode = BLEND_MULTIPLY
-
-/atom/movable/screen/fullscreen/machine/update_for_view(client_view)
-	. = ..()
-	animate(src, alpha = initial(alpha)-30, time = 50, loop = -1)
-	animate(alpha = initial(alpha), time = 20, loop = -1)
-
-/atom/movable/screen/fullscreen/robotlow
-	icon_state = "robotlow"
-	alpha = 120
-	layer = FULLSCREEN_DRUGGY_LAYER
-	blend_mode = BLEND_MULTIPLY
-
-/atom/movable/screen/fullscreen/machine/update_for_view(client_view)
-	. = ..()
-	animate(src, alpha = initial(alpha)-30, time = 50, loop = -1)
-	animate(alpha = initial(alpha), time = 20, loop = -1)
 
 /atom/movable/screen/fullscreen/lighting_backdrop
 	icon = 'icons/mob/screen/generic.dmi'

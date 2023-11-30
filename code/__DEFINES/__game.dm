@@ -11,7 +11,6 @@
 #define MAP_RESEARCH_OUTPOST "Research Outpost"
 #define MAP_WHISKEY_OUTPOST "Whiskey Outpost"
 #define MAP_MAGMOOR_DIGSITE "Magmoor Digsite IV"
-#define MAP_CHIGUSA "Chigusa"
 #define MAP_GELIDA_IV "Gelida IV"
 #define MAP_DELTA_STATION "Delta Station"
 #define MAP_OSCAR_OUTPOST "Oscar Outpost"
@@ -19,9 +18,11 @@
 #define MAP_PILLAR_OF_SPRING "Pillar of Spring"
 #define MAP_SULACO "Sulaco"
 #define MAP_THESEUS "Theseus"
-#define MAP_MINERVA "Minerva"
-#define MAP_TWIN_PILLARS "Twin Pillars"
+#define MAP_ARACHNE "Arachne"
 #define MAP_COMBAT_PATROL_BASE "Combat Patrol Base"
+
+#define MAP_FORT_PHOBOS "Fort Phobos"
+#define MAP_ITERON "Iteron"
 
 
 #define SEE_INVISIBLE_MINIMUM 5
@@ -47,9 +48,6 @@
 #define SEC_LEVEL_DELTA 3
 
 
-//some arbitrary defines to be used by self-pruning global lists. (see master_controller)
-#define PROCESS_KILL 26	//Used to trigger removal from a processing list
-
 //=================================================
 #define HOSTILE_STANCE_IDLE 1
 #define HOSTILE_STANCE_ALERT 2
@@ -73,10 +71,12 @@
 #define CEILING_NONE 0
 #define CEILING_GLASS 1
 #define CEILING_METAL 2
-#define CEILING_UNDERGROUND 3
-#define CEILING_UNDERGROUND_METAL 4
-#define CEILING_DEEP_UNDERGROUND 5
-#define CEILING_DEEP_UNDERGROUND_METAL 5
+#define CEILING_OBSTRUCTED 3
+#define CEILING_UNDERGROUND 4
+#define CEILING_UNDERGROUND_METAL 5
+#define CEILING_DEEP_UNDERGROUND 6
+#define CEILING_DEEP_UNDERGROUND_METAL 6
+
 
 // Default font settings
 #define FONT_SIZE "5pt"
@@ -95,10 +95,8 @@
 #define MAX_BOOK_MESSAGE_LEN 9216
 #define MAX_NAME_LEN 26
 #define MAX_BROADCAST_LEN 512
+#define MAX_NAME_HYPO 3
 
-
-/// Is something in the IC chat filter? This is config dependent.
-#define CHAT_FILTER_CHECK(text) (config.ic_filter_regex && findtext(text, config.ic_filter_regex))
 
 //for whether AI eyes see static, and whether it is mouse-opaque or not
 #define USE_STATIC_NONE 0

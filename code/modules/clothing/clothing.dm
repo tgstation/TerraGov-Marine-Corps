@@ -1,8 +1,9 @@
 /obj/item/clothing
 	name = "clothing"
 
-	/// Resets the armor on clothing since by default /objs get 100 bio armor
+	// Resets the armor on clothing since by default /objs get 100 bio armor
 	soft_armor = list()
+	flags_inventory = NOQUICKEQUIP
 
 	///Assoc list of available slots. Since this keeps track of all currently equiped attachments per object, this cannot be a string_list()
 	var/list/attachments_by_slot = list()
@@ -22,9 +23,8 @@
 
 	/// Used by headgear mostly to affect accuracy
 	var/accuracy_mod = 0
-	flags_inventory = NOQUICKEQUIP
 
-/obj/item/clothing/Initialize()
+/obj/item/clothing/Initialize(mapload)
 	. = ..()
 	attachments_allowed = string_list(attachments_allowed)
 	starting_attachments = string_list(starting_attachments)
@@ -39,9 +39,11 @@
 		return
 	if(!ishuman(user))
 		return
+	var/mob/living/carbon/human/human_user = user
 	if(accuracy_mod)
-		var/mob/living/carbon/human/human_user = user
 		human_user.adjust_mob_accuracy(accuracy_mod)
+	if(flags_armor_features & ARMOR_FIRE_RESISTANT)
+		ADD_TRAIT(human_user, TRAIT_NON_FLAMMABLE, src)
 
 
 /obj/item/clothing/unequipped(mob/unequipper, slot)
@@ -49,9 +51,11 @@
 		return ..()
 	if(!ishuman(unequipper))
 		return ..()
+	var/mob/living/carbon/human/human_unequipper = unequipper
 	if(accuracy_mod)
-		var/mob/living/carbon/human/human_unequipper = unequipper
 		human_unequipper.adjust_mob_accuracy(-accuracy_mod)
+	if(flags_armor_features & ARMOR_FIRE_RESISTANT)
+		REMOVE_TRAIT(human_unequipper, TRAIT_NON_FLAMMABLE, src)
 	return ..()
 
 /obj/item/clothing/vendor_equip(mob/user)
@@ -77,18 +81,35 @@
 /obj/item/clothing/proc/update_clothing_icon()
 	return
 
+/obj/item/clothing/update_greyscale()
+	. = ..()
+	if(!greyscale_config)
+		return
+	for(var/key in item_icons)
+		if(key == slot_l_hand_str || key == slot_r_hand_str)
+			continue
+		item_icons[key] = icon
+
 /obj/item/clothing/apply_blood(mutable_appearance/standing)
 	if(blood_overlay && blood_sprite_state)
-		var/image/bloodsies	= mutable_appearance('icons/effects/blood.dmi', blood_sprite_state)
-		bloodsies.color	= blood_color
+		var/image/bloodsies = mutable_appearance('icons/effects/blood.dmi', blood_sprite_state)
+		bloodsies.color = blood_color
 		standing.add_overlay(bloodsies)
 
 /obj/item/clothing/suit/apply_blood(mutable_appearance/standing)
 	if(blood_overlay && blood_sprite_state)
 		blood_sprite_state = "[blood_overlay_type]blood"
-		var/image/bloodsies	= mutable_appearance('icons/effects/blood.dmi', blood_sprite_state)
+		var/image/bloodsies = mutable_appearance('icons/effects/blood.dmi', blood_sprite_state)
 		bloodsies.color = blood_color
 		standing.add_overlay(bloodsies)
+
+/obj/item/clothing/color_item(obj/item/facepaint/paint, mob/user)
+	.=..()
+	update_clothing_icon()
+
+/obj/item/clothing/alternate_color_item(obj/item/facepaint/paint, mob/user)
+	. = ..()
+	update_clothing_icon()
 
 ///////////////////////////////////////////////////////////////////////
 // Ears: headsets, earmuffs and tiny objects
@@ -106,6 +127,7 @@
 	if (ismob(src.loc))
 		var/mob/M = src.loc
 		M.update_inv_ears()
+
 
 /obj/item/clothing/ears/earmuffs
 	name = "earmuffs"
@@ -136,7 +158,7 @@
 	siemens_coefficient = 0.9
 	w_class = WEIGHT_CLASS_NORMAL
 	attachments_by_slot = list(ATTACHMENT_SLOT_BADGE)
-	attachments_allowed = list(/obj/item/armor_module/greyscale/badge)
+	attachments_allowed = list(/obj/item/armor_module/armor/badge)
 	var/supporting_limbs = NONE
 	var/blood_overlay_type = "suit"
 	var/shield_state = "shield-blue"
@@ -146,7 +168,7 @@
 	light_range = 4
 	light_system = MOVABLE_LIGHT
 
-/obj/item/clothing/suit/Initialize()
+/obj/item/clothing/suit/Initialize(mapload)
 	. = ..()
 	GLOB.nightfall_toggleable_lights += src
 
@@ -205,10 +227,11 @@
 	attack_verb = list("challenged")
 
 
-/obj/item/clothing/gloves/update_clothing_icon()
-	if (ismob(src.loc))
-		var/mob/M = src.loc
-		M.update_inv_gloves()
+/obj/item/clothing/gloves/update_greyscale(list/colors, update)
+	. = ..()
+	if(!greyscale_config)
+		return
+	item_icons = list(slot_gloves_str = icon)
 
 /obj/item/clothing/gloves/emp_act(severity)
 	if(cell)
@@ -257,11 +280,16 @@
 	var/anti_hug = 0
 	var/toggleable = FALSE
 	active = TRUE
+	/// If defined, what voice should we override with if TTS is active?
+	var/voice_override
+	/// If set to true, activates the radio effect on TTS.
+	var/use_radio_beeps_tts = FALSE
 
 /obj/item/clothing/mask/update_clothing_icon()
 	if (ismob(src.loc))
 		var/mob/M = src.loc
 		M.update_inv_wear_mask()
+
 
 ////////////////////////////////////////////////////////////////////////
 //Shoes
@@ -286,6 +314,7 @@
 	if (ismob(src.loc))
 		var/mob/M = src.loc
 		M.update_inv_shoes()
+
 
 /obj/item/clothing/shoes/MouseDrop(over_object, src_location, over_location)
 	if(!attachments_by_slot[ATTACHMENT_SLOT_STORAGE])

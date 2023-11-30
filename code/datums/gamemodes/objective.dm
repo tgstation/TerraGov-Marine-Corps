@@ -268,7 +268,7 @@ GLOBAL_LIST(admin_objective_list) //Prefilled admin assignable objective list
 		explanation_text = "Escape with somebody on a shuttle." //placeholder in case we can't find a real player
 		return
 	var/mob/living/livingtarget = target.current
-	if(target && target.current)
+	if(target?.current)
 		explanation_text = "Escape with [livingtarget.name], the [livingtarget.job.title], on a shuttle without being in custody."
 	else
 		explanation_text = "Free Objective"
@@ -313,7 +313,7 @@ GLOBAL_LIST(admin_objective_list) //Prefilled admin assignable objective list
 		explanation_text = "Strand somebody on the planet." //placeholder in case we can't find a real player
 		return
 	var/mob/living/livingtarget = target.current
-	if(target && target.current)
+	if(target?.current)
 		explanation_text = "Make sure [livingtarget.name], the [livingtarget.job.title], is planetside at the end of the operation."
 	else
 		explanation_text = "Free Objective"
@@ -342,7 +342,7 @@ GLOBAL_LIST(admin_objective_list) //Prefilled admin assignable objective list
 		explanation_text = "Kill somebody." //placeholder in case we can't find a real player
 		return
 	var/mob/living/livingtarget = target.current
-	if(target && target.current)
+	if(target?.current)
 		explanation_text = "Ensure [livingtarget.name], the [livingtarget.job.title] does not survive the operation."
 	else
 		explanation_text = "Free Objective"
@@ -466,7 +466,7 @@ GLOBAL_LIST_EMPTY(possible_items)
 
 /datum/objective/protect/update_explanation_text()
 	..()
-	if(target && target.current)
+	if(target?.current)
 		var/mob/living/livingtarget = target.current
 		explanation_text = "Protect [livingtarget.name], the [livingtarget.job.title]."
 	else

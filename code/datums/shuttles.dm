@@ -24,7 +24,7 @@
 	if(shuttle_id == "SHOULD NEVER EXIST")
 		stack_trace("invalid shuttle datum")
 	//shuttle_id = "[port_id]_[suffix]"
-	mappath = "[prefix][shuttle_id].dmm"
+	mappath = "[prefix][shuttle_id][suffix].dmm"
 	return ..()
 
 /datum/map_template/shuttle/preload_size(path, cache)
@@ -72,6 +72,7 @@
 		place.baseturfs.Insert(3, /turf/baseturf_skipover/shuttle)
 
 		for(var/obj/docking_port/mobile/port in place)
+			port.calculate_docking_port_information(src)
 			if(register)
 				port.register()
 			if(isnull(port_x_offset))
@@ -112,10 +113,6 @@
 	shuttle_id = SHUTTLE_NORMANDY
 	name = "Normandy"
 
-/datum/map_template/shuttle/dropship_three
-	shuttle_id = SHUTTLE_TRIUMPH
-	name = "Triumph"
-
 /datum/map_template/shuttle/cas
 	shuttle_id = SHUTTLE_CAS
 	name = "Condor Jet"
@@ -123,6 +120,43 @@
 /datum/map_template/shuttle/minidropship
 	shuttle_id = SHUTTLE_TADPOLE
 	name = "Tadpole Drop Shuttle"
+	suffix = "_standard" // remember to also add an image to icons/ui_icons/dropshippicker and /datum/asset/simple/dropshippicker
+	description = "The plain and simple old Tadpole-03 model."
+	///shuttle switch console name
+	var/display_name = "Tadpole Standard Model"
+	var/admin_enable = TRUE
+
+/datum/map_template/shuttle/minidropship/old
+	suffix = "_big"
+	description = "Tadpole-01, the old model barely in service for TGMC, replaced by the newer Tadpole-03. Much like an APC, is pretty armored. Very lacking in firing angle."
+	display_name = "Tadpole Carrier Model"
+
+/datum/map_template/shuttle/minidropship/food
+	suffix = "_food"
+	description = "A Tadpole modified to provide foods and services. Who the hell let this on the military catalogue? Bounty on that guy."
+	display_name = "Tadpole Food-truck Model"
+	admin_enable = FALSE
+
+/datum/map_template/shuttle/minidropship/factorio
+	suffix = "_factorio"
+	description = "A Tadpole model for hauling, engineering and general maintenance. Patented by Nakamura Engineering, and is a rather reliable way to transport goods."
+	display_name = "Tadpole NK-Haul Model"
+
+/datum/map_template/shuttle/minidropship/mobile_bar
+	suffix =	"_mobile_bar"
+	description =	"A Tadpole modified to provide drinks and disservices. God dammit it's him again, I thought we got rid of him."
+	display_name =	"Tadpole Mobile-Bar Model"
+	admin_enable = FALSE
+
+/datum/map_template/shuttle/minidropship/combat_tad
+	suffix = "_combat_tad"
+	description = "A Tadpole model modified to have three weapon hardpoints instead of just one, the majority of the other standard features had to be scrapped to fit all three of them on."
+	display_name = "Tadpole Combat Model"
+
+/datum/map_template/shuttle/minidropship/umbilical
+	suffix =	"_umbilical"
+	description = "A high-point orbital shuttle with a tactical umbilical airlock for insertion of ground troops."
+	display_name = "Tadpole Umbilical Model"
 
 /datum/map_template/shuttle/escape_pod
 	shuttle_id = SHUTTLE_ESCAPE_POD
@@ -140,7 +174,7 @@
 	shuttle_id = SHUTTLE_DISTRESS_UPP
 	name = "Distress UPP"
 
-/datum/map_template/shuttle/small_ert/ufo
+/datum/map_template/shuttle/small_ert/ufo 
 	shuttle_id = SHUTTLE_DISTRESS_UFO
 	name = "Small UFO"
 

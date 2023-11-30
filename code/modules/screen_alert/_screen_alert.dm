@@ -14,7 +14,6 @@
 	if(LAZYLEN(client.screen_texts) == 1) //lets only play one at a time, for thematic effect and prevent overlap
 		INVOKE_ASYNC(text_box, TYPE_PROC_REF(/atom/movable/screen/text/screen_text, play_to_client), client)
 		return
-	client.screen_texts += text_box
 
 
 /atom/movable/screen/text/screen_text

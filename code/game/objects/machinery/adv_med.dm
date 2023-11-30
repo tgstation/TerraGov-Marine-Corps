@@ -2,19 +2,49 @@
 
 
 /obj/machinery/bodyscanner
-	var/mob/living/carbon/occupant
-	var/locked
 	name = "Body Scanner"
 	icon = 'icons/obj/machines/cryogenics.dmi'
-	icon_state = "body_scanner_0"
+	icon_state = "body_scanner"
 	density = TRUE
 	anchored = TRUE
 	coverage = 20
-
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 60
 	active_power_usage = 16000	//16 kW. It's a big all-body scanner - This is used on scan / examine
+	light_range = 1
+	light_power = 0.5
+	light_color = LIGHT_COLOR_BLUE
+	dir = EAST
+	///mob inside
+	var/mob/living/carbon/occupant
+	///If its locked
+	var/locked
 
+/obj/machinery/bodyscanner/Initialize(mapload)
+	. = ..()
+	update_icon()
+
+/obj/machinery/bodyscanner/update_icon()
+	. = ..()
+	if((machine_stat & (BROKEN|DISABLED|NOPOWER)) || !occupant)
+		set_light(0)
+	else
+		set_light(initial(light_range))
+
+/obj/machinery/bodyscanner/update_icon_state()
+	if(occupant)
+		icon_state = "[initial(icon_state)]_occupied"
+	else
+		icon_state = initial(icon_state)
+
+/obj/machinery/bodyscanner/update_overlays()
+	. = ..()
+	if(machine_stat & (BROKEN|DISABLED|NOPOWER))
+		return
+	if(!occupant)
+		return
+	. += emissive_appearance(icon, "[icon_state]_emissive", alpha = src.alpha)
+	. += mutable_appearance(icon, "[icon_state]_emissive", alpha = src.alpha)
 
 /obj/machinery/bodyscanner/relaymove(mob/user)
 	if(user.incapacitated(TRUE))
@@ -31,24 +61,23 @@
 		return
 	go_out()
 
-/obj/machinery/bodyscanner/proc/move_inside_wrapper(mob/living/M, mob/user)
-	if (M.stat != CONSCIOUS || !ishuman(M))
+/obj/machinery/bodyscanner/proc/move_inside_wrapper(mob/living/target, mob/user)
+	if(!ishuman(target) || !ishuman(user) || user.incapacitated(TRUE))
 		return
-	if (occupant)
+	if(occupant)
 		to_chat(user, span_boldnotice("The scanner is already occupied!"))
 		return
-	if (M.abiotic())
+	if(target.abiotic())
 		to_chat(user, span_boldnotice("Subject cannot have abiotic items on."))
 		return
-	M.forceMove(src)
-	occupant = M
-	icon_state = "body_scanner_1"
+	target.forceMove(src)
+	occupant = target
+	update_icon()
 	for(var/obj/O in src)
 		qdel(O)
 
 /obj/machinery/bodyscanner/MouseDrop_T(mob/M, mob/user)
-	if(!isliving(M) || !ishuman(user))
-		return
+	. = ..()
 	move_inside_wrapper(M, user)
 
 /obj/machinery/bodyscanner/verb/move_inside()
@@ -70,7 +99,7 @@
 		O.loc = loc
 	occupant.forceMove(loc)
 	occupant = null
-	icon_state = "body_scanner_0"
+	update_icon()
 
 /obj/machinery/bodyscanner/attack_hand(mob/living/user)
 	. = ..()
@@ -116,7 +145,7 @@
 
 	M.forceMove(src)
 	occupant = M
-	icon_state = "body_scanner_1"
+	update_icon()
 	for(var/obj/O in src)
 		O.forceMove(loc)
 
@@ -156,8 +185,24 @@
 				ex_act(severity)
 			qdel(src)
 
-/obj/machinery/body_scanconsole/ex_act(severity)
+/obj/machinery/computer/body_scanconsole
+	name = "Body Scanner Console"
+	icon = 'icons/obj/machines/cryogenics.dmi'
+	icon_state = "body_scannerconsole"
+	screen_overlay = "body_scannerconsole_emissive"
+	density = FALSE
+	idle_power_usage = 3
+	light_color = LIGHT_COLOR_EMISSIVE_GREEN
+	dir = EAST
+	var/obj/machinery/bodyscanner/connected
+	var/delete
+	var/temphtml
 
+/obj/machinery/computer/body_scanconsole/Initialize(mapload)
+	. = ..()
+	set_connected(locate(/obj/machinery/bodyscanner, get_step(src, REVERSE_DIR(dir))))
+
+/obj/machinery/computer/body_scanconsole/ex_act(severity)
 	switch(severity)
 		if(EXPLODE_DEVASTATE)
 			qdel(src)
@@ -165,33 +210,7 @@
 			if (prob(50))
 				qdel(src)
 
-/obj/machinery/body_scanconsole
-	name = "Body Scanner Console"
-	icon = 'icons/obj/machines/cryogenics.dmi'
-	icon_state = "body_scannerconsole"
-	density = FALSE
-	anchored = TRUE
-	use_power = IDLE_POWER_USE
-	idle_power_usage = 3
-	var/obj/machinery/bodyscanner/connected
-	var/delete
-	var/temphtml
-
-/obj/machinery/body_scanconsole/Initialize()
-	. = ..()
-	set_connected(locate(/obj/machinery/bodyscanner, get_step(src, WEST)))
-
-
-/obj/machinery/body_scanconsole/update_icon()
-	if(machine_stat & BROKEN)
-		icon_state = "body_scannerconsole-p"
-	else if(machine_stat & NOPOWER)
-		icon_state = "body_scannerconsole-p"
-	else
-		icon_state = initial(icon_state)
-
-
-/obj/machinery/body_scanconsole/can_interact(mob/user)
+/obj/machinery/computer/body_scanconsole/can_interact(mob/user)
 	. = ..()
 	if(!.)
 		return FALSE
@@ -205,7 +224,7 @@
 	return TRUE
 
 
-/obj/machinery/body_scanconsole/interact(mob/user)
+/obj/machinery/computer/body_scanconsole/interact(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -236,20 +255,20 @@
 		if(!(R.fields["last_scan_time"]))
 			. += span_deptradio("No scan report on record")
 		else
-			. += span_deptradio("<a href='?src=\ref[src];scanreport=1'>It contains [occupant]: Scan from [R.fields["last_scan_time"]].</a>")
+			. += span_deptradio("<a href='?src=[text_ref(src)];scanreport=1'>It contains [occupant]: Scan from [R.fields["last_scan_time"]].</a>")
 		break
 
 
 ///Wrapper to guarantee connected bodyscanner references are properly nulled and avoid hard deletes.
-/obj/machinery/body_scanconsole/proc/set_connected(obj/machinery/bodyscanner/new_connected)
+/obj/machinery/computer/body_scanconsole/proc/set_connected(obj/machinery/bodyscanner/new_connected)
 	if(connected)
-		UnregisterSignal(connected, COMSIG_PARENT_QDELETING)
+		UnregisterSignal(connected, COMSIG_QDELETING)
 	connected = new_connected
 	if(connected)
-		RegisterSignal(connected, COMSIG_PARENT_QDELETING, PROC_REF(on_bodyscanner_deletion))
+		RegisterSignal(connected, COMSIG_QDELETING, PROC_REF(on_bodyscanner_deletion))
 
 
 ///Called by the deletion of the connected bodyscanner.
-/obj/machinery/body_scanconsole/proc/on_bodyscanner_deletion(obj/machinery/bodyscanner/source, force)
+/obj/machinery/computer/body_scanconsole/proc/on_bodyscanner_deletion(obj/machinery/bodyscanner/source, force)
 	SIGNAL_HANDLER
 	set_connected(null)

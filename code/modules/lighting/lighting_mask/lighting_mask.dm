@@ -6,7 +6,7 @@
 /atom/movable/lighting_mask
 	name = ""
 	icon = LIGHTING_ICON_BIG
-	icon_state  = "light_big"
+	icon_state = "light_big"
 
 	anchored = TRUE
 	plane = LIGHTING_PLANE

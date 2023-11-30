@@ -16,7 +16,7 @@
 	var/drying_timer
 
 
-/obj/effect/decal/cleanable/blood/Initialize()
+/obj/effect/decal/cleanable/blood/Initialize(mapload)
 	. = ..()
 	var/static/list/connections = list(
 		COMSIG_ATOM_ENTERED = PROC_REF(on_cross),
@@ -57,7 +57,7 @@
 		return
 	if(amount < 1)
 		return
-	if(CHECK_MULTIPLE_BITFIELDS(perp.flags_pass, HOVERING))
+	if(CHECK_MULTIPLE_BITFIELDS(perp.pass_flags, HOVERING))
 		return
 
 	var/datum/limb/foot/l_foot = perp.get_limb("l_foot")
@@ -146,7 +146,7 @@
 	amount = 0
 	var/message
 
-/obj/effect/decal/cleanable/blood/writing/Initialize()
+/obj/effect/decal/cleanable/blood/writing/Initialize(mapload)
 	. = ..()
 	if(length(random_icon_states))
 		for(var/obj/effect/decal/cleanable/blood/writing/W in loc)
@@ -227,10 +227,17 @@
 	icon_state = "mucus"
 	random_icon_states = list("mucus")
 	var/dry=0 // Keeps the lag down
+	///The dry timer id
+	var/dry_timer
 
-/obj/effect/decal/cleanable/mucus/Initialize()
+/obj/effect/decal/cleanable/mucus/Initialize(mapload)
 	. = ..()
-	addtimer(VARSET_CALLBACK(src, dry, TRUE), DRYING_TIME * 2)
+	dry_timer = addtimer(VARSET_CALLBACK(src, dry, TRUE), DRYING_TIME * 2, TIMER_STOPPABLE)
+
+/obj/effect/decal/cleanable/mucus/Destroy()
+	if(dry_timer)
+		deltimer(dry_timer)
+	return ..()
 
 /obj/effect/decal/cleanable/blood/humanimprint/one
 	icon_state = "u_madman"

@@ -13,7 +13,7 @@
 	var/overlay_icon = "wheelchair_overlay"
 	var/image/wheels_overlay
 
-/obj/vehicle/ridden/wheelchair/Initialize()
+/obj/vehicle/ridden/wheelchair/Initialize(mapload)
 	. = ..()
 	make_ridable()
 	wheels_overlay = image(icon, overlay_icon, FLY_LAYER)

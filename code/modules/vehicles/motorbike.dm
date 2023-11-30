@@ -11,7 +11,7 @@
 	flags_atom = PREVENT_CONTENTS_EXPLOSION
 	key_type = null
 	integrity_failure = 0.5
-	flags_pass = PASSABLE
+	allow_pass_flags = PASSABLE
 	coverage = 30	//It's just a bike, not hard to shoot over
 	buckle_flags = CAN_BUCKLE|BUCKLE_PREVENTS_PULL|BUCKLE_NEEDS_HAND
 	///Internal motorbick storage object
@@ -26,7 +26,7 @@
 	var/obj/item/sidecar/attached_sidecar
 	COOLDOWN_DECLARE(enginesound_cooldown)
 
-/obj/vehicle/ridden/motorbike/Initialize()
+/obj/vehicle/ridden/motorbike/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/ridable, /datum/component/riding/vehicle/motorbike)
 	motor_pack = new motor_pack(src)

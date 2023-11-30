@@ -1,13 +1,13 @@
 /obj/item/ashtray
 	icon = 'icons/obj/items/ashtray.dmi'
-	var/max_butts 	= 0
-	var/empty_desc 	= ""
-	var/icon_empty 	= ""
-	var/icon_half  	= ""
-	var/icon_full  	= ""
+	var/max_butts = 0
+	var/empty_desc = ""
+	var/icon_empty = ""
+	var/icon_half = ""
+	var/icon_full = ""
 
 
-/obj/item/ashtray/Initialize()
+/obj/item/ashtray/Initialize(mapload)
 	. = ..()
 	pixel_y = rand(-5, 5)
 	pixel_x = rand(-6, 6)
@@ -65,8 +65,8 @@
 	desc = "Cheap plastic ashtray."
 	icon_state = "ashtray_bl"
 	icon_empty = "ashtray_bl"
-	icon_half  = "ashtray_half_bl"
-	icon_full  = "ashtray_full_bl"
+	icon_half = "ashtray_half_bl"
+	icon_full = "ashtray_full_bl"
 	max_butts = 14
 	max_integrity = 24
 	empty_desc = "Cheap plastic ashtray."
@@ -78,8 +78,8 @@
 	desc = "Massive bronze ashtray."
 	icon_state = "ashtray_br"
 	icon_empty = "ashtray_br"
-	icon_half  = "ashtray_half_br"
-	icon_full  = "ashtray_full_br"
+	icon_half = "ashtray_half_br"
+	icon_full = "ashtray_full_br"
 	max_butts = 10
 	max_integrity = 72
 	empty_desc = "Massive bronze ashtray."
@@ -91,8 +91,8 @@
 	desc = "Glass ashtray. Looks fragile."
 	icon_state = "ashtray_gl"
 	icon_empty = "ashtray_gl"
-	icon_half  = "ashtray_half_gl"
-	icon_full  = "ashtray_full_gl"
+	icon_half = "ashtray_half_gl"
+	icon_full = "ashtray_full_gl"
 	max_butts = 12
 	max_integrity = 12
 	empty_desc = "Glass ashtray. Looks fragile."

@@ -17,7 +17,7 @@
 	///x offset of image
 	var/image_to_play_offset_x = 0
 
-/atom/movable/screen/text/screen_text/picture/Initialize()
+/atom/movable/screen/text/screen_text/picture/Initialize(mapload)
 	. = ..()
 	overlays += image('icons/UI_Icons/screen_alert_images.dmi', icon_state = image_to_play, pixel_y = image_to_play_offset_y, pixel_x = image_to_play_offset_x)
 
@@ -26,6 +26,12 @@
 
 /atom/movable/screen/text/screen_text/picture/shokk
 	image_to_play = "shokk"
+
+/atom/movable/screen/text/screen_text/picture/saf_four
+	image_to_play = "saf_4"
+
+/atom/movable/screen/text/screen_text/picture/rapid_response
+	image_to_play = "rapid_response"
 
 /atom/movable/screen/text/screen_text/picture/blackop
 	image_to_play = "blackops"
@@ -39,3 +45,9 @@
 
 /atom/movable/screen/text/screen_text/picture/potrait/som_over
 	image_to_play = "overwatch_som"
+
+/atom/movable/screen/text/screen_text/picture/potrait/unknown
+	image_to_play = "overwatch_unknown"
+
+/atom/movable/screen/text/screen_text/picture/potrait/pilot
+	image_to_play = "po"

@@ -1,15 +1,14 @@
 #define HYDRO_SPEED_MULTIPLIER 1
-
-/obj/machinery/portable_atmospherics/hydroponics
+/obj/machinery/hydroponics
 	name = "hydroponics tray"
 	icon = 'icons/obj/machines/hydroponics.dmi'
 	icon_state = "hydrotray3"
 	density = TRUE
 	anchored = TRUE
-	volume = 100
 	coverage = 40
 	layer = BELOW_OBJ_LAYER
 	resistance_flags = XENO_DAMAGEABLE
+	allow_pass_flags = PASS_LOW_STRUCTURE|PASSABLE|PASS_WALKOVER
 	max_integrity = 40
 	soft_armor = list(MELEE = 0, BULLET = 80, LASER = 80, ENERGY = 80, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
 
@@ -48,100 +47,99 @@
 	// Reagent information for process(), consider moving this to a controller along
 	// with cycle information under 'mechanical concerns' at some point.
 	var/global/list/toxic_reagents = list(
-		/datum/reagent/medicine/dylovene =     -2,
-		/datum/reagent/toxin =           2,
-		/datum/reagent/fluorine =        2.5,
-		/datum/reagent/chlorine =        1.5,
-		/datum/reagent/toxin/acid =           1.5,
-		/datum/reagent/toxin/acid/polyacid =           3,
-		/datum/reagent/toxin/plantbgone =      3,
-		/datum/reagent/medicine/cryoxadone =     -3,
-		/datum/reagent/radium =          2
+		/datum/reagent/medicine/dylovene = -2,
+		/datum/reagent/toxin = 2,
+		/datum/reagent/fluorine = 2.5,
+		/datum/reagent/chlorine = 1.5,
+		/datum/reagent/toxin/acid = 1.5,
+		/datum/reagent/toxin/acid/polyacid = 3,
+		/datum/reagent/toxin/plantbgone = 3,
+		/datum/reagent/medicine/cryoxadone = -3,
+		/datum/reagent/radium = 2
 		)
 	var/global/list/nutrient_reagents = list(
-		/datum/reagent/consumable/drink/milk =            0.1,
-		/datum/reagent/consumable/ethanol/beer =            0.25,
-		/datum/reagent/phosphorus =      0.1,
-		/datum/reagent/consumable/sugar =           0.1,
-		/datum/reagent/consumable/drink/cold/sodawater =       0.1,
-		/datum/reagent/ammonia =         1,
-		/datum/reagent/diethylamine =    2,
-		/datum/reagent/consumable/nutriment =       1,
-		/datum/reagent/medicine/adminordrazine =  1,
-		/datum/reagent/toxin/fertilizer/eznutrient =      1,
-		/datum/reagent/toxin/fertilizer/robustharvest =   1,
-		/datum/reagent/toxin/fertilizer/left4zed =        1
+		/datum/reagent/consumable/drink/milk = 0.1,
+		/datum/reagent/consumable/ethanol/beer = 0.25,
+		/datum/reagent/phosphorus = 0.1,
+		/datum/reagent/consumable/sugar = 0.1,
+		/datum/reagent/consumable/drink/cold/sodawater = 0.1,
+		/datum/reagent/ammonia = 1,
+		/datum/reagent/diethylamine = 2,
+		/datum/reagent/consumable/nutriment = 1,
+		/datum/reagent/medicine/adminordrazine = 1,
+		/datum/reagent/toxin/fertilizer/eznutrient = 1,
+		/datum/reagent/toxin/fertilizer/robustharvest = 1,
+		/datum/reagent/toxin/fertilizer/left4zed = 1
 		)
 	var/global/list/weedkiller_reagents = list(
-		/datum/reagent/fluorine =       -4,
-		/datum/reagent/chlorine =       -3,
-		/datum/reagent/phosphorus =     -2,
-		/datum/reagent/consumable/sugar =           2,
-		/datum/reagent/toxin/acid =          -2,
-		/datum/reagent/toxin/acid/polyacid =          -4,
-		/datum/reagent/toxin/plantbgone =     -8,
+		/datum/reagent/fluorine = -4,
+		/datum/reagent/chlorine = -3,
+		/datum/reagent/phosphorus = -2,
+		/datum/reagent/consumable/sugar = 2,
+		/datum/reagent/toxin/acid = -2,
+		/datum/reagent/toxin/acid/polyacid = -4,
+		/datum/reagent/toxin/plantbgone = -8,
 		/datum/reagent/medicine/adminordrazine = -5
 		)
 	var/global/list/pestkiller_reagents = list(
-		/datum/reagent/consumable/sugar =           2,
-		/datum/reagent/diethylamine =   -2,
+		/datum/reagent/consumable/sugar = 2,
+		/datum/reagent/diethylamine = -2,
 		/datum/reagent/medicine/adminordrazine = -5
 		)
 	var/global/list/water_reagents = list(
-		/datum/reagent/water =           1,
-		/datum/reagent/medicine/adminordrazine =  1,
-		/datum/reagent/consumable/drink/milk =            0.9,
-		/datum/reagent/consumable/ethanol/beer =            0.7,
-		/datum/reagent/fluorine =       -0.5,
-		/datum/reagent/chlorine =       -0.5,
-		/datum/reagent/phosphorus =     -0.5,
-		/datum/reagent/water =           1,
-		/datum/reagent/consumable/drink/cold/sodawater =       1,
+		/datum/reagent/water = 1,
+		/datum/reagent/medicine/adminordrazine = 1,
+		/datum/reagent/consumable/drink/milk = 0.9,
+		/datum/reagent/consumable/ethanol/beer = 0.7,
+		/datum/reagent/fluorine = -0.5,
+		/datum/reagent/chlorine = -0.5,
+		/datum/reagent/phosphorus = -0.5,
+		/datum/reagent/water = 1,
+		/datum/reagent/consumable/drink/cold/sodawater = 1,
 		)
 
 	// Beneficial reagents also have values for modifying yield_mod and mut_mod (in that order).
 	var/global/list/beneficial_reagents = list(
-		/datum/reagent/consumable/ethanol/beer =           list( -0.05, 0,   0   ),
-		/datum/reagent/fluorine =       list( -2,    0,   0   ),
-		/datum/reagent/chlorine =       list( -1,    0,   0   ),
-		/datum/reagent/phosphorus =     list( -0.75, 0,   0   ),
-		/datum/reagent/consumable/drink/cold/sodawater =      list(  0.1,  0,   0   ),
-		/datum/reagent/toxin/acid =          list( -1,    0,   0   ),
-		/datum/reagent/toxin/acid/polyacid =          list( -2,    0,   0   ),
-		/datum/reagent/toxin/plantbgone =     list( -2,    0,   0.2 ),
-		/datum/reagent/medicine/cryoxadone =     list(  3,    0,   0   ),
-		/datum/reagent/ammonia =        list(  0.5,  0,   0   ),
-		/datum/reagent/diethylamine =   list(  1,    0,   0   ),
-		/datum/reagent/consumable/nutriment =      list(  0.5,  0.1,   0 ),
-		/datum/reagent/radium =         list( -1.5,  0,   0.2 ),
+		/datum/reagent/consumable/ethanol/beer = list( -0.05, 0,   0   ),
+		/datum/reagent/fluorine = list( -2,    0,   0   ),
+		/datum/reagent/chlorine = list( -1,    0,   0   ),
+		/datum/reagent/phosphorus = list( -0.75, 0,   0   ),
+		/datum/reagent/consumable/drink/cold/sodawater = list(  0.1,  0,   0   ),
+		/datum/reagent/toxin/acid = list( -1,    0,   0   ),
+		/datum/reagent/toxin/acid/polyacid = list( -2,    0,   0   ),
+		/datum/reagent/toxin/plantbgone = list( -2,    0,   0.2 ),
+		/datum/reagent/medicine/cryoxadone = list(  3,    0,   0   ),
+		/datum/reagent/ammonia = list(  0.5,  0,   0   ),
+		/datum/reagent/diethylamine = list(  1,    0,   0   ),
+		/datum/reagent/consumable/nutriment = list(  0.5,  0.1,   0 ),
+		/datum/reagent/radium = list( -1.5,  0,   0.2 ),
 		/datum/reagent/medicine/adminordrazine = list(  1,    1,   1   ),
-		/datum/reagent/toxin/fertilizer/robustharvest =  list(  0,    0.2, 0   ),
-		/datum/reagent/toxin/fertilizer/left4zed =       list(  0,    0,   0.2 )
+		/datum/reagent/toxin/fertilizer/robustharvest = list(  0,    0.2, 0   ),
+		/datum/reagent/toxin/fertilizer/left4zed = list(  0,    0,   0.2 )
 		)
 
 	// Mutagen list specifies minimum value for the mutation to take place, rather
 	// than a bound as the lists above specify.
 	var/global/list/mutagenic_reagents = list(
-		/datum/reagent/radium =  8,
+		/datum/reagent/radium = 8,
 		/datum/reagent/toxin/mutagen = 15
 		)
 
-/obj/machinery/portable_atmospherics/hydroponics/Initialize()
+/obj/machinery/hydroponics/Initialize(mapload)
 	. = ..()
+
+	var/static/list/connections = list(
+		COMSIG_OBJ_TRY_ALLOW_THROUGH = PROC_REF(can_climb_over),
+	)
+	AddElement(/datum/element/connect_loc, connections)
+
 	temp_chem_holder = new()
 	temp_chem_holder.create_reagents(10)
 	create_reagents(200, AMOUNT_VISIBLE|REFILLABLE)
-	connect()
 	update_icon()
 	start_processing()
 
-
-/obj/machinery/portable_atmospherics/hydroponics/CanAllowThrough(atom/movable/mover, turf/target)
-	. = ..()
-	if(istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSTABLE))
-		return TRUE
-
-/obj/machinery/portable_atmospherics/hydroponics/process()
+/obj/machinery/hydroponics/process()
 
 	//Do this even if we're not ready for a plant cycle.
 	process_reagents()
@@ -266,7 +264,7 @@
 	update_icon()
 
 //Process reagents being input into the tray.
-/obj/machinery/portable_atmospherics/hydroponics/proc/process_reagents()
+/obj/machinery/hydroponics/proc/process_reagents()
 
 	if(!reagents)
 		return
@@ -319,7 +317,7 @@
 	update_icon()
 
 //Harvests the product of a plant.
-/obj/machinery/portable_atmospherics/hydroponics/proc/harvest(mob/user)
+/obj/machinery/hydroponics/proc/harvest(mob/user)
 
 	//Harvest the product of the plant,
 	if(!seed || !harvest || !user)
@@ -347,7 +345,7 @@
 	update_icon()
 
 //Clears out a dead plant.
-/obj/machinery/portable_atmospherics/hydroponics/proc/remove_dead(mob/user)
+/obj/machinery/hydroponics/proc/remove_dead(mob/user)
 	if(!user || !dead)
 		return
 
@@ -367,7 +365,7 @@
 	update_icon()
 
 //Refreshes the icon and sets the luminosity
-/obj/machinery/portable_atmospherics/hydroponics/update_icon()
+/obj/machinery/hydroponics/update_icon()
 
 	overlays.Cut()
 
@@ -422,7 +420,7 @@
 
 
 // If a weed growth is sufficient, this proc is called.
-/obj/machinery/portable_atmospherics/hydroponics/proc/weed_invasion()
+/obj/machinery/hydroponics/proc/weed_invasion()
 
 	//Remove the seed if something is already planted.
 	if(seed) seed = null
@@ -442,7 +440,7 @@
 	visible_message(span_notice(" [src] has been overtaken by [seed.display_name]."))
 
 
-/obj/machinery/portable_atmospherics/hydroponics/proc/mutate(severity)
+/obj/machinery/hydroponics/proc/mutate(severity)
 
 	// No seed, no mutations.
 	if(!seed)
@@ -461,22 +459,22 @@
 	seed.mutate(severity,get_turf(src))
 
 
-/obj/machinery/portable_atmospherics/hydroponics/proc/check_level_sanity()
+/obj/machinery/hydroponics/proc/check_level_sanity()
 	//Make sure various values are sane.
 	if(seed)
-		health =     max(0,min(seed.endurance,health))
+		health = max(0,min(seed.endurance,health))
 	else
 		health = 0
 		dead = 0
 
 	mutation_level = max(0,min(mutation_level,100))
-	nutrilevel =     max(0,min(nutrilevel,10))
-	waterlevel =     max(0,min(waterlevel,100))
-	pestlevel =      max(0,min(pestlevel,10))
-	weedlevel =      max(0,min(weedlevel,10))
-	toxins =         max(0,min(toxins,10))
+	nutrilevel = max(0,min(nutrilevel,10))
+	waterlevel = max(0,min(waterlevel,100))
+	pestlevel = max(0,min(pestlevel,10))
+	weedlevel = max(0,min(weedlevel,10))
+	toxins = max(0,min(toxins,10))
 
-/obj/machinery/portable_atmospherics/hydroponics/proc/mutate_species()
+/obj/machinery/hydroponics/proc/mutate_species()
 
 	var/previous_plant = seed.display_name
 	var/newseed = seed.get_mutant_variant()
@@ -494,7 +492,7 @@
 	visible_message(span_warning(" The <span class='notice'> [previous_plant] <span class='warning'> has suddenly mutated into <span class='notice'> [seed.display_name]!"))
 
 
-/obj/machinery/portable_atmospherics/hydroponics/attackby(obj/item/I, mob/user, params)
+/obj/machinery/hydroponics/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
 	if(I.is_open_container())
@@ -615,7 +613,7 @@
 		to_chat(user, "You [anchored ? "wrench" : "unwrench"] \the [src].")
 
 
-/obj/machinery/portable_atmospherics/hydroponics/attack_hand(mob/living/user)
+/obj/machinery/hydroponics/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
@@ -640,7 +638,7 @@
 			to_chat(usr, "[src] is [span_warning(" filled with tiny worms!")]")
 
 
-/obj/machinery/portable_atmospherics/hydroponics/verb/close_lid()
+/obj/machinery/hydroponics/verb/close_lid()
 	set name = "Toggle Tray Lid"
 	set category = "Object"
 	set src in view(1)
@@ -652,7 +650,7 @@
 	to_chat(usr, "You [closed_system ? "close" : "open"] the tray's lid.")
 	update_icon()
 
-/obj/machinery/portable_atmospherics/hydroponics/soil
+/obj/machinery/hydroponics/soil
 	name = "soil"
 	icon = 'icons/obj/machines/hydroponics.dmi'
 	icon_state = "soil"
@@ -660,18 +658,18 @@
 	use_power = 0
 	draw_warnings = 0
 
-/obj/machinery/portable_atmospherics/hydroponics/soil/attackby(obj/item/I, mob/user, params)
+/obj/machinery/hydroponics/soil/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
 	if(istype(I, /obj/item/tool/shovel))
 		to_chat(user, "You clear up [src]!")
 		qdel(src)
 
-/obj/machinery/portable_atmospherics/hydroponics/soil/Initialize()
+/obj/machinery/hydroponics/soil/Initialize(mapload)
 	. = ..()
-	verbs -= /obj/machinery/portable_atmospherics/hydroponics/verb/close_lid
+	verbs -= /obj/machinery/hydroponics/verb/close_lid
 
-/obj/machinery/portable_atmospherics/hydroponics/slashable
+/obj/machinery/hydroponics/slashable
 	resistance_flags = XENO_DAMAGEABLE
 	max_integrity = 80
 

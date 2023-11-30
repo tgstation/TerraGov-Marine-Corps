@@ -1,79 +1,140 @@
 {
 	"scout_visor": [
 		{
-			"type": "icon_state",
-			"icon_state": "scout_visor",
-			"blend_mode": "overlay",
-			"color_ids": [1]
+			"type": "hyperscale",
+			"icon_state": "scout"
 		}
 	],
 	"skirmisher_visor": [
 		{
-			"type": "icon_state",
-			"icon_state": "skirmisher_visor",
-			"blend_mode": "overlay",
-			"color_ids": [1]
+			"type": "hyperscale",
+			"icon_state": "skirmisher"
 		}
 	],
 	"infantry_visor": [
 		{
-			"type": "icon_state",
-			"icon_state": "infantry_visor",
-			"blend_mode": "overlay",
-			"color_ids": [1]
+			"type": "hyperscale",
+			"icon_state": "infantry"
 		}
 	],
 	"helljumper_visor": [
 		{
-			"type": "icon_state",
-			"icon_state": "helljumper_visor",
-			"blend_mode": "overlay",
-			"color_ids": [1]
+			"type": "hyperscale",
+			"icon_state": "helljumper"
+		}
+	],
+	"ranger_visor": [
+		{
+			"type": "hyperscale",
+			"icon_state": "ranger"
+		}
+	],
+	"traditional_visor": [
+		{
+			"type": "hyperscale",
+			"icon_state": "traditional"
+		}
+	],
+	"trooper_visor": [
+		{
+			"type": "hyperscale",
+			"icon_state": "trooper"
+		}
+	],
+	"kabuto_visor": [
+		{
+			"type": "hyperscale",
+			"icon_state": "kabuto"
+		}
+	],
+	"hotaru_visor": [
+		{
+			"type": "hyperscale",
+			"icon_state": "hotaru"
+		}
+	],
+	"dashe_visor": [
+		{
+			"type": "hyperscale",
+			"icon_state": "dashe"
 		}
 	],
 	"eva_visor": [
 		{
-			"type": "icon_state",
-			"icon_state": "eva_visor",
-			"blend_mode": "overlay",
-			"color_ids": [1]
-		}
-	],
-	"eva_skull_visor": [
-		{
-			"type": "icon_state",
-			"icon_state": "eva_visor",
-			"blend_mode": "overlay",
-			"color_ids": [1]
-		},
-		{
-			"type": "icon_state",
-			"icon_state": "skull_visor",
-			"blend_mode": "overlay"
+			"type": "hyperscale",
+			"icon_state": "eva"
 		}
 	],
 	"assault_visor": [
 		{
-			"type": "icon_state",
-			"icon_state": "assault_visor",
-			"blend_mode": "overlay",
-			"color_ids": [1]
+			"type": "hyperscale",
+			"icon_state": "assault"
 		}
 	],
 	"eod_visor": [
 		{
-			"type": "icon_state",
-			"icon_state": "eod_visor",
-			"blend_mode": "overlay",
-			"color_ids": [1]
+			"type": "hyperscale",
+			"icon_state": "eod"
 		}
 	],
-	"gungnir_visor": [
+	"r_light": [
 		{
-			"type": "icon_state",
-			"icon_state": "gungnir_visor",
-			"blend_mode": "overlay",
-			"color_ids": [1]
+			"type": "hyperscale",
+			"icon_state": "r_light"
+		}
+	],
+	"r_medium": [
+		{
+			"type": "hyperscale",
+			"icon_state": "r_medium"
+		}
+	],
+	"r_heavy": [
+		{
+			"type": "hyperscale",
+			"icon_state": "r_heavy"
+		}
+	],
+	"xenonaut": [
+		{
+			"type": "hyperscale",
+			"icon_state": "xenonaut"
+		}
+	],
+	"eva_visor_old": [
+		{
+			"type": "hyperscale",
+			"icon_state": "eva_old"
+		}
+	],
+	"infantry_visor_old": [
+		{
+			"type": "hyperscale",
+			"icon_state": "infantry_old"
+		}
+	],
+	"scout_visor_old": [
+		{
+			"type": "hyperscale",
+			"icon_state": "scout_old"
+		}
+	],
+	"eod_visor_old": [
+		{
+			"type": "hyperscale",
+			"icon_state": "eod_old"
+		}
+	],
+	"skirmisher_visor_old": [
+		{
+			"type": "hyperscale",
+			"icon_state": "skirmisher_old"
+		}
+	],
+	"assault_visor_old": [
+		{
+			"type": "hyperscale",
+			"icon_state": "assault_old"
 		}
 	]
 }

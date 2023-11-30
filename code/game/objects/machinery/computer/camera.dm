@@ -1,7 +1,9 @@
 /obj/machinery/computer/camera
 	name = "security camera console"
 	desc = "Used to access the various cameras on the station."
-	icon_state = "cameras"
+	icon_state = "computer_small"
+	screen_overlay = "cameras"
+	broken_icon = "computer_small_red_broken"
 	circuit = /obj/item/circuitboard/computer/security
 	light_color = COLOR_RED
 
@@ -19,7 +21,7 @@
 	var/list/cam_plane_masters
 	var/atom/movable/screen/background/cam_background
 
-/obj/machinery/computer/camera/Initialize()
+/obj/machinery/computer/camera/Initialize(mapload)
 	. = ..()
 	// Map name has to start and end with an A-Z character,
 	// and definitely NOT with a square bracket or even a number.

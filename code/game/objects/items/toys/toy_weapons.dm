@@ -18,7 +18,7 @@
 	w_class = WEIGHT_CLASS_NORMAL
 
 	attack_verb = list("struck", "pistol whipped", "hit", "bashed")
-	var/bullets = 7.0
+	var/bullets = 7
 
 /obj/item/toy/gun/examine(mob/user)
 	. = ..()

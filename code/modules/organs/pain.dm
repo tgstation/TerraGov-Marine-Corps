@@ -65,7 +65,7 @@
 /mob/living/carbon/human/proc/custom_pain(message, flash_strength)
 	if(stat >= UNCONSCIOUS)
 		return
-	if(species && species.species_flags & NO_PAIN)
+	if(species?.species_flags & NO_PAIN)
 		return
 	if(reagent_pain_modifier <= PAIN_REDUCTION_HEAVY)
 		return //anything as or more powerful than paracetamol
@@ -84,7 +84,7 @@
 /mob/living/carbon/human/proc/handle_pain()
 	if(stat >= UNCONSCIOUS)
 		return 	// not when sleeping
-	if(species && species.species_flags & NO_PAIN)
+	if(species?.species_flags & NO_PAIN)
 		return
 	if(reagent_pain_modifier <= PAIN_REDUCTION_HEAVY)
 		return //anything as or more powerful than paracetamol

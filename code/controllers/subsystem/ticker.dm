@@ -46,14 +46,14 @@ SUBSYSTEM_DEF(ticker)
 
 	var/list/datum/mind/minds = list() //The characters in the game. Used for objective tracking.
 
-/datum/controller/subsystem/ticker/Initialize(timeofday)
+/datum/controller/subsystem/ticker/Initialize()
 	load_mode()
 
 	login_music = choose_lobby_song()
 	for(var/client/player AS in GLOB.clients)
 		player.play_title_music()
 
-	return ..()
+	return SS_INIT_SUCCESS
 
 ///returns the string address of a random config lobby song
 /datum/controller/subsystem/ticker/proc/choose_lobby_song()
@@ -311,7 +311,7 @@ SUBSYSTEM_DEF(ticker)
 		return
 
 	if(!delay)
-		delay = CONFIG_GET(number/round_end_countdown) * 10
+		delay = CONFIG_GET(number/mission_end_countdown) * 10
 
 	var/skip_delay = check_rights()
 	if(delay_end && !skip_delay)

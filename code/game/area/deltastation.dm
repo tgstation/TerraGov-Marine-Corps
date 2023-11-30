@@ -220,6 +220,7 @@
 	ceiling = CEILING_DEEP_UNDERGROUND
 	minimap_color = MINIMAP_AREA_CAVES
 	outside = FALSE
+	requires_power = FALSE
 
 /area/deltastation/maintenance/space_hut/cabin
 	name = "Abandoned Cabin"
@@ -737,10 +738,12 @@
 	ceiling = CEILING_DEEP_UNDERGROUND
 	minimap_color = MINIMAP_AREA_ENGI_CAVE
 	outside = FALSE
+	requires_power = FALSE
 
 /area/deltastation/engineering/supermatter/room
 	name = "\improper Supermatter Engine Room"
 	icon_state = "engine_sm_room"
+	requires_power = TRUE
 
 /area/deltastation/engineering/break_room
 	name = "\improper Engineering Foyer"
@@ -1252,9 +1255,12 @@
 /area/deltastation/science/ordnance/burnchamber
 	name = "\improper Ordnance Burn Chamber"
 	icon_state = "ord_burn"
+	requires_power = FALSE
+
 /area/deltastation/science/ordnance/freezerchamber
 	name = "\improper Ordnance Freezer Chamber"
 	icon_state = "ord_freeze"
+	requires_power = FALSE
 
 // Room for equipments and such
 /area/deltastation/science/ordnance/testlab
@@ -1267,6 +1273,7 @@
 	ceiling = CEILING_DEEP_UNDERGROUND
 	minimap_color = MINIMAP_AREA_RESEARCH_CAVE
 	outside = FALSE
+	always_unpowered = TRUE
 
 /area/deltastation/science/genetics
 	name = "\improper Genetics Lab"
@@ -1374,20 +1381,29 @@
 
 /area/deltastation/asteroidcaves/northcaves
 
+/area/deltastation/asteroidcaves/northcaves/garbledradio
+
 /area/deltastation/asteroidcaves/northeastcaves
 
 /area/deltastation/asteroidcaves/westerncaves
 
+/area/deltastation/asteroidcaves/westerncaves/garbledradio
+	ceiling = CEILING_UNDERGROUND
+
 /area/deltastation/asteroidcaves/easterntunnel
+	ceiling = CEILING_UNDERGROUND
 
 /area/deltastation/asteroidcaves/securitycaves
+	ceiling = CEILING_UNDERGROUND
 
 /area/deltastation/asteroidcaves/southtunnel
+	ceiling = CEILING_UNDERGROUND
 
 /area/deltastation/asteroidcaves/exteriorasteroids
 	icon_state = "asteroidexterior"
 
 /area/deltastation/asteroidcaves/ship
+	name = "Abandoned Ship"
 	icon_state = "ship"
 	always_unpowered = FALSE
 	minimap_color = MINIMAP_AREA_SHIP
@@ -1407,5 +1423,5 @@
 
 /area/deltastation/asteroidcaves/southlz
 	ceiling = CEILING_NONE
-	always_unpowered = FALSE
+	requires_power = FALSE
 	outside = TRUE

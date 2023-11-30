@@ -12,11 +12,11 @@
 	buckle_flags = CAN_BUCKLE
 	//copypaste sorry
 	var/amount_per_transfer_from_this = 5 //shit I dunno, adding this so syringes stop runtime erroring. --NeoFite
-	var/obj/item/storage/bag/trash/mybag	= null
+	var/obj/item/storage/bag/trash/mybag = null
 	var/callme = "pimpin' ride"	//how do people refer to it?
 	var/move_delay = 2
 
-/obj/structure/bed/chair/janicart/Initialize()
+/obj/structure/bed/chair/janicart/Initialize(mapload)
 	. = ..()
 	create_reagents(100, OPENCONTAINER)
 

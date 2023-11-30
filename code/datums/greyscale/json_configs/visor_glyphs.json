@@ -1,0 +1,18 @@
+{
+	"skull": [
+		{
+			"type": "icon_state",
+			"icon_state": "skull",
+			"blend_mode": "overlay",
+			"color_ids": [1]
+		}
+	],
+	"skull_old": [
+		{
+			"type": "icon_state",
+			"icon_state": "skull_old",
+			"blend_mode": "overlay",
+			"color_ids": [1]
+		}
+	]
+}

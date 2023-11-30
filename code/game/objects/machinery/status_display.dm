@@ -129,7 +129,7 @@
 	var/emotion = "Neutral"
 
 
-/obj/machinery/status_display/ai/Initialize()
+/obj/machinery/status_display/ai/Initialize(mapload)
 	. = ..()
 	GLOB.ai_status_displays.Add(src)
 
@@ -172,14 +172,6 @@
 				set_picture("ai_trollface")
 			if("Awesome")
 				set_picture("ai_awesome")
-			if("Fish Tank")
-				set_picture("ai_fishtank")
-			if("Triumvirate")
-				set_picture("ai_tribunal")
-			if("Triumvirate Glitchy")
-				set_picture("ai_tribunal_malf")
-			if("Dorfy")
-				set_picture("ai_urist")
 			if("Thinking")
 				set_picture("ai_thinking")
 			if("Facepalm")

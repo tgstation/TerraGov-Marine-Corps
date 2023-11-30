@@ -1,15 +1,17 @@
 /obj/machinery/computer/pod
 	name = "Pod Launch Control"
 	desc = "A controll for launching pods. Some people prefer firing Mechas."
-	icon_state = "computer_generic"
+	icon_state = "computer"
+	screen_overlay = "computer_generic"
 	circuit = /obj/item/circuitboard/computer/pod
-	var/id = 1.0
-	var/timing = 0.0
-	var/time = 30.0
+	var/id = 1
+	var/timing = 0
+	var/time = 30
 	var/title = "Mass Driver Controls"
 
 /obj/machinery/computer/pod/old
 	icon_state = "old"
+	screen_overlay = "old_screen"
 	name = "DoorMex Control Computer"
 	title = "Door Controls"
 

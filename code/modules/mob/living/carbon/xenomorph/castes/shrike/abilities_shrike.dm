@@ -5,6 +5,7 @@
 // ***************************************
 /datum/action/xeno_action/call_of_the_burrowed
 	name = "Call of the Burrowed"
+	desc = "Attempts to summon all currently burrowed larva."
 	action_icon_state = "larva_growth"
 	plasma_cost = 400
 	cooldown_timer = 2 MINUTES
@@ -31,7 +32,7 @@
 	span_xenodanger("We call forth the larvas to rise from their slumber!"))
 
 	if(stored_larva)
-		RegisterSignal(caller.hive, list(COMSIG_HIVE_XENO_MOTHER_PRE_CHECK, COMSIG_HIVE_XENO_MOTHER_CHECK), PROC_REF(is_burrowed_larva_host))
+		RegisterSignals(caller.hive, list(COMSIG_HIVE_XENO_MOTHER_PRE_CHECK, COMSIG_HIVE_XENO_MOTHER_CHECK), PROC_REF(is_burrowed_larva_host))
 		caller.hive.give_larva_to_next_in_queue()
 		notify_ghosts("\The <b>[caller]</b> is calling for the burrowed larvas to wake up!", enter_link = "join_larva=1", enter_text = "Join as Larva", source = caller, action = NOTIFY_JOIN_AS_LARVA)
 		addtimer(CALLBACK(src, PROC_REF(calling_larvas_end), caller), CALLING_BURROWED_DURATION)
@@ -117,7 +118,7 @@
 	succeed_activate()
 	add_cooldown()
 	if(ishuman(victim))
-		victim.apply_effects(1, 0.1) 	// The fling stuns you enough to remove your gun, otherwise the marine effectively isn't stunned for long.
+		victim.apply_effects(2 SECONDS, 0.2 SECONDS) 	// The fling stuns you enough to remove your gun, otherwise the marine effectively isn't stunned for long.
 		shake_camera(victim, 2, 1)
 
 	var/facing = get_dir(owner, victim)
@@ -180,17 +181,17 @@
 			upper_right = locate(owner.x + 3, owner.y + 1, owner.z)
 
 	for(var/turf/affected_tile in block(lower_left, upper_right)) //everything in the 2x3 block is found.
-		affected_tile.Shake(4, 4, 2 SECONDS)
+		affected_tile.Shake(duration = 0.5 SECONDS)
 		for(var/i in affected_tile)
 			var/atom/movable/affected = i
 			if(!ishuman(affected) && !istype(affected, /obj/item) && !isdroid(affected))
-				affected.Shake(4, 4, 20)
+				affected.Shake(duration = 0.5 SECONDS)
 				continue
 			if(ishuman(affected)) //if they're human, they also should get knocked off their feet from the blast.
 				var/mob/living/carbon/human/H = affected
 				if(H.stat == DEAD) //unless they are dead, then the blast mysteriously ignores them.
 					continue
-				H.apply_effects(1, 1) 	// Stun
+				H.apply_effects(2 SECONDS, 2 SECONDS) 	// Stun
 				shake_camera(H, 2, 1)
 			var/throwlocation = affected.loc //first we get the target's location
 			for(var/x in 1 to 6)
@@ -271,6 +272,9 @@
 	if(!do_mob(owner, target, 1 SECONDS, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
 		return FALSE
 
+	if(owner.client)
+		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[owner.ckey]
+		personal_statistics.heals++
 	GLOB.round_statistics.psychic_cures++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "psychic_cures")
 	owner.visible_message(span_xenowarning("A strange psychic aura is suddenly emitted from \the [owner]!"), \
@@ -309,7 +313,7 @@
 	plasma_cost = 400
 	cooldown_timer = 2 MINUTES
 	keybinding_signals = list(
-	    KEYBINDING_NORMAL = COMSIG_XENOABILITY_PLACE_ACID_WELL,
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PLACE_ACID_WELL,
 	)
 
 /datum/action/xeno_action/place_acidwell/can_use_action(silent = FALSE, override_flags)
@@ -342,45 +346,88 @@
 	to_chat(owner, span_xenonotice("We place an acid well; it can be filled with more acid."))
 	GLOB.round_statistics.xeno_acid_wells++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "xeno_acid_wells")
+	owner.record_traps_created()
 
-/datum/action/xeno_action/activable/gravity_grenade
-	name = "Throw gravity grenade"
-	action_icon_state = "gas mine"
-	desc = "Throw a gravity grenades thats sucks everyone and everything in a radius inward."
-	plasma_cost = 500
+
+// ***************************************
+// *********** Psychic Vortex
+// ***************************************
+#define VORTEX_RANGE 4
+#define VORTEX_INITIAL_CHARGE 2 SECONDS
+#define VORTEX_POST_INITIAL_CHARGE 0.5 SECONDS
+/datum/action/xeno_action/activable/psychic_vortex
+	name = "Pyschic vortex"
+	action_icon_state = "vortex"
+	desc = "Channel a sizable vortex of psychic energy, drawing in nearby enemies."
+	ability_name = "Psychic vortex"
+	plasma_cost = 600
+	cooldown_timer = 2 MINUTES
+	keybind_flags = XACT_KEYBIND_USE_ABILITY
 	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_XENOABILITY_GRAV_NADE,
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PSYCHIC_VORTEX,
 	)
-	cooldown_timer = 1 MINUTES
+	/// Used for particles. Holds the particles instead of the mob. See particle_holder for documentation.
+	var/obj/effect/abstract/particle_holder/particle_holder
+	///The particle type this ability uses
+	var/channel_particle = /particles/warlock_charge
 
-/datum/action/xeno_action/activable/gravity_grenade/use_ability(atom/A)
-	var/turf/T = get_turf(owner)
+/datum/action/xeno_action/activable/psychic_vortex/on_cooldown_finish()
+	to_chat(owner, span_notice("Our mind is ready to unleash another chaotic vortex of energy."))
+	return ..()
+
+/datum/action/xeno_action/activable/psychic_vortex/use_ability(atom/target)
 	succeed_activate()
 	add_cooldown()
-	var/obj/item/explosive/grenade/gravity/nade = new(T)
-	nade.throw_at(A, 5, 1, owner, TRUE)
-	nade.activate(owner)
 
-	owner.visible_message(span_warning("[owner] vomits up a roaring fleshy lump and throws it at [A]!"), span_warning("We vomit up a roaring fleshy lump and throws it at [A]!"))
+	particle_holder = new(owner, channel_particle)
+	particle_holder.pixel_x = 15
+	particle_holder.pixel_y = 0
+
+	if(target) // Keybind use doesn't have a target
+		owner.face_atom(target)
+	ADD_TRAIT(owner, TRAIT_IMMOBILE, VORTEX_ABILITY_TRAIT)
+	if(do_after(owner, VORTEX_INITIAL_CHARGE, FALSE, owner, BUSY_ICON_DANGER))
+		vortex_pull()
+	if(do_after(owner, VORTEX_POST_INITIAL_CHARGE, FALSE, owner, BUSY_ICON_DANGER))
+		vortex_push()
+	if(do_after(owner, VORTEX_POST_INITIAL_CHARGE, FALSE, owner, BUSY_ICON_DANGER))
+		vortex_pull()
+	QDEL_NULL(particle_holder)
+	REMOVE_TRAIT(owner, TRAIT_IMMOBILE, VORTEX_ABILITY_TRAIT)
+	return
 
 
-/obj/item/explosive/grenade/gravity
-	name = "gravity grenade"
-	desc = "A fleshy mass that seems way too heavy for its size. It seems to be vibrating."
-	arm_sound = 'sound/voice/predalien_roar.ogg'
-	greyscale_colors = "#3aaacc"
-	greyscale_config = /datum/greyscale_config/xenogrenade
-	det_time = 20
-
-/obj/item/explosive/grenade/gravity/prime()
-	new /obj/effect/overlay/temp/emp_pulse(loc)
-	playsound(loc, 'sound/effects/EMPulse.ogg', 50)
-	for(var/atom/movable/victim in view(3, loc))//yes this throws EVERYONE
-		if(victim.anchored)
+/**
+ * Checks for any non-anchored movable atom, throwing them towards the shrike/owner using the ability. 
+ * While causing shake to anything in range with effects applied to humans affected.
+ */
+/datum/action/xeno_action/activable/psychic_vortex/proc/vortex_pull()
+	playsound(owner, 'sound/effects/seedling_chargeup.ogg', 60)
+	for(var/atom/movable/movable_victim in range(VORTEX_RANGE, owner.loc))
+		if(movable_victim.anchored || isxeno(movable_victim) || movable_victim.move_resist > MOVE_FORCE_STRONG)
 			continue
-		if(isliving(victim))
-			var/mob/living/livingtarget = victim
-			if(livingtarget.stat == DEAD)
+		if(ishuman(movable_victim))
+			var/mob/living/carbon/human/H = movable_victim
+			if(H.stat == DEAD)
 				continue
-		victim.throw_at(src, 5, 1, null, TRUE)
-	qdel(src)
+			H.apply_effects(1,1)
+			H.adjust_stagger(2 SECONDS)
+			shake_camera(H, 2, 1)
+		else if(isitem(movable_victim))
+			var/turf/targetturf = get_turf(owner)
+			targetturf = locate(targetturf.x + rand(1, 4), targetturf.y + rand(1, 4), targetturf.z)
+			movable_victim.throw_at(targetturf, 4, 1, owner, FALSE, FALSE)
+		movable_victim.throw_at(owner, 4, 1, owner, FALSE, FALSE)
+
+/// Randomly throws movable atoms in the radius of the vortex abilites range, different each use.
+/datum/action/xeno_action/activable/psychic_vortex/proc/vortex_push()
+	for(var/atom/movable/movable_victim in range(VORTEX_RANGE, owner.loc))
+		if(movable_victim.anchored || isxeno(movable_victim) || movable_victim.move_resist == INFINITY)
+			continue
+		if(ishuman(movable_victim))
+			var/mob/living/carbon/human/human_victim = movable_victim
+			if(human_victim.stat == DEAD)
+				continue
+		var/turf/targetturf = get_turf(owner)
+		targetturf = locate(targetturf.x + rand(1, 4), targetturf.y + rand(1, 4), targetturf.z)
+		movable_victim.throw_at(targetturf, 4, 1, owner, FALSE, FALSE)

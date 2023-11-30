@@ -51,22 +51,17 @@
 	name = "transmitting orbital beacon - [get_area(src)] - [H]"
 	activated = TRUE
 	anchored = TRUE
-	w_class = 10
+	w_class = WEIGHT_CLASS_GIGANTIC
 	layer = ABOVE_FLY_LAYER
 	set_light(2, 1)
 	playsound(src, 'sound/machines/twobeep.ogg', 15, 1)
 	H.visible_message("[H] activates [src].",
 	"You activate [src].")
-	var/marker_flags
-	if(H.faction == FACTION_TERRAGOV)
+
+	var/marker_flags = GLOB.faction_to_minimap_flag[H.faction]
+	if(!marker_flags)
 		marker_flags = MINIMAP_FLAG_MARINE
-	else if(H.faction == FACTION_TERRAGOV_REBEL)
-		marker_flags = MINIMAP_FLAG_MARINE_REBEL
-	else if(H.faction == FACTION_SOM)
-		marker_flags = MINIMAP_FLAG_MARINE_SOM
-	else
-		marker_flags = MINIMAP_FLAG_MARINE
-	SSminimaps.add_marker(src, z, marker_flags, "supply")
+	SSminimaps.add_marker(src, marker_flags, image('icons/UI_icons/map_blips.dmi', null, "supply"))
 	update_icon()
 	return TRUE
 
@@ -101,16 +96,16 @@
 /obj/item/beacon/supply_beacon
 	name = "supply beacon"
 	desc = "A rugged, glorified laser pointer capable of sending a beam into space. Activate and throw this to call for a supply drop."
+	icon = 'icons/Marine/marine-navigation.dmi'
 	icon_state = "motion0"
 	icon_activated = "motion2"
 	activation_time = 60
-	underground_signal = TRUE
 	/// Reference to the datum used by the supply drop console
 	var/datum/supply_beacon/beacon_datum
 
 /obj/item/beacon/supply_beacon/Destroy()
 	if(beacon_datum)
-		UnregisterSignal(beacon_datum, COMSIG_PARENT_QDELETING)
+		UnregisterSignal(beacon_datum, COMSIG_QDELETING)
 		QDEL_NULL(beacon_datum)
 	return ..()
 
@@ -119,19 +114,24 @@
 	SIGNAL_HANDLER
 	beacon_datum = null
 
+/obj/item/beacon/supply_beacon/onTransitZ(old_z,new_z)
+	. = ..()
+	//Assumes doMove sets loc before onTransitZ
+	beacon_datum.drop_location = loc
+
 /obj/item/beacon/supply_beacon/activate(mob/living/carbon/human/H)
 	var/area/A = get_area(H)
 	. = ..()
 	if(!.)
 		return
 	beacon_datum = new /datum/supply_beacon("[H.name] + [A]", loc, H.faction)
-	RegisterSignal(beacon_datum, COMSIG_PARENT_QDELETING, PROC_REF(clean_beacon_datum))
+	RegisterSignal(beacon_datum, COMSIG_QDELETING, PROC_REF(clean_beacon_datum))
 
 /obj/item/beacon/supply_beacon/deactivate(mob/living/carbon/human/H)
 	. = ..()
 	if(!.)
 		return
-	UnregisterSignal(beacon_datum, COMSIG_PARENT_QDELETING)
+	UnregisterSignal(beacon_datum, COMSIG_QDELETING)
 	QDEL_NULL(beacon_datum)
 
 /datum/supply_beacon
@@ -143,7 +143,7 @@
 	var/faction = ""
 
 /datum/supply_beacon/New(_name, turf/_drop_location, _faction, life_time = 0 SECONDS)
-	name= _name
+	name =  _name
 	drop_location = _drop_location
 	faction = _faction
 	GLOB.supply_beacon[name] = src
@@ -152,5 +152,5 @@
 
 /// Remove that beacon from the list of glob supply beacon
 /datum/supply_beacon/Destroy()
-	GLOB.supply_beacon[name] = null
+	GLOB.supply_beacon -= name
 	return ..()

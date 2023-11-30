@@ -139,7 +139,7 @@
 	return active_players
 
 /proc/considered_alive(datum/mind/M, enforce_human = TRUE)
-	if(M && M.current)
+	if(M?.current)
 		if(enforce_human)
 			return M.current.stat != DEAD && !issilicon(M.current) && !isbrain(M.current)
 		else if(isliving(M.current))

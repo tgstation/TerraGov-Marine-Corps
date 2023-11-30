@@ -121,7 +121,7 @@
 /area/bigredv2/outside/medical)
 "dF" = (
 /obj/item/shard,
-/obj/item/frame/table,
+/obj/effect/spawner/random/misc/table_parts,
 /turf/open/floor/tile/damaged/five,
 /area/bigredv2/outside/medical)
 "dL" = (
@@ -141,7 +141,7 @@
 /turf/open/floor/plating/dmg1,
 /area/bigredv2/outside/medical)
 "en" = (
-/obj/machinery/sleep_console,
+/obj/machinery/computer/sleep_console,
 /turf/open/floor/tile/blue/whiteblue,
 /area/bigredv2/outside/medical)
 "er" = (
@@ -161,7 +161,7 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/medical)
 "eD" = (
-/obj/machinery/sleep_console,
+/obj/machinery/computer/sleep_console,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "eM" = (
@@ -215,7 +215,7 @@
 /turf/open/floor/tile/green/whitegreenfull,
 /area/bigredv2/outside/medical)
 "gH" = (
-/obj/machinery/sleep_console,
+/obj/machinery/computer/sleep_console,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
@@ -256,7 +256,7 @@
 /area/bigredv2/outside/medical)
 "hD" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/alarm{
+/obj/machinery/air_alarm{
 	dir = 8
 	},
 /turf/open/floor/tile/green/whitegreen{
@@ -265,7 +265,7 @@
 /area/bigredv2/outside/medical)
 "hS" = (
 /obj/structure/table,
-/obj/effect/spawner/random/bomb_supply,
+/obj/effect/spawner/random/engineering/bomb_supply,
 /obj/item/stack/sheet/metal{
 	amount = 1
 	},
@@ -281,12 +281,12 @@
 /obj/machinery/optable,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/landmark/corpsespawner,
-/obj/item/reagent_containers/food/snacks/margheritaslice,
+/obj/item/reagent_containers/food/snacks/pizzapasta/margheritaslice,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "iH" = (
-/obj/machinery/door/airlock/glass_medical{
-	id_tag = "mbayexit";
+/obj/machinery/door/airlock/glass{
+	dir = 1;
 	name = "Medbay Reception"
 	},
 /turf/open/floor/tile/white,
@@ -456,7 +456,7 @@
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "pr" = (
-/obj/structure/window/framed/colony,
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /obj/machinery/door/poddoor/shutters/mainship{
 	id = "Medical";
 	name = "\improper Medical Storm Shutters"
@@ -688,7 +688,7 @@
 /turf/open/floor/plating/dmg3,
 /area/bigredv2/outside/medical)
 "vX" = (
-/obj/machinery/sleep_console,
+/obj/machinery/computer/sleep_console,
 /turf/open/floor/tile/blue/whiteblue{
 	dir = 5
 	},
@@ -737,7 +737,7 @@
 	},
 /area/bigredv2/outside/medical)
 "xJ" = (
-/obj/machinery/sleep_console,
+/obj/machinery/computer/sleep_console,
 /turf/open/floor/tile/blue/whiteblue{
 	dir = 1
 	},
@@ -805,7 +805,7 @@
 /turf/open/floor/tile/blue/whiteblue,
 /area/bigredv2/outside/medical)
 "zt" = (
-/obj/machinery/computer/crew,
+/obj/effect/spawner/random/machinery/random_broken_computer/crewmonitor,
 /turf/open/floor/tile/green/whitegreenfull,
 /area/bigredv2/outside/medical)
 "zx" = (
@@ -826,7 +826,7 @@
 /area/bigredv2/outside/medical)
 "zN" = (
 /obj/effect/decal/cleanable/blood,
-/obj/item/reagent_containers/food/snacks/margheritaslice,
+/obj/item/reagent_containers/food/snacks/pizzapasta/margheritaslice,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "zT" = (
@@ -948,11 +948,11 @@
 /area/bigredv2/outside/medical)
 "Ca" = (
 /obj/structure/table,
-/obj/item/reagent_containers/food/snacks/sliceable/pizza/margherita,
+/obj/item/reagent_containers/food/snacks/sliceable/pizzapasta/margherita,
 /turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/medical)
 "Cj" = (
-/obj/machinery/sleep_console,
+/obj/machinery/computer/sleep_console,
 /turf/open/floor/tile/blue/whiteblue{
 	dir = 6
 	},
@@ -1080,7 +1080,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/item/frame/table,
+/obj/effect/spawner/random/misc/table_parts,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "Fk" = (
@@ -1210,7 +1210,7 @@
 /area/bigredv2/outside/medical)
 "IV" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/item/tool/extinguisher,
+/obj/effect/spawner/random/engineering/extinguisher/regularweighted,
 /turf/open/floor/plating/dmg1,
 /area/bigredv2/outside/medical)
 "Jw" = (
@@ -1220,7 +1220,7 @@
 /area/bigredv2/outside/medical)
 "JV" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/item/frame/table,
+/obj/effect/spawner/random/misc/table_parts,
 /turf/open/floor/plating/dmg2,
 /area/bigredv2/outside/medical)
 "Km" = (
@@ -1290,7 +1290,7 @@
 /obj/structure/table,
 /obj/item/trash/burger,
 /obj/effect/decal/cleanable/dirt,
-/obj/item/frame/table,
+/obj/effect/spawner/random/misc/table_parts,
 /turf/open/floor/tile/green/whitegreen{
 	dir = 9
 	},
@@ -1349,7 +1349,7 @@
 /turf/open/floor/plating/dmg2,
 /area/bigredv2/outside/medical)
 "Ob" = (
-/obj/machinery/sleep_console,
+/obj/machinery/computer/sleep_console,
 /turf/open/floor/tile/blue/whiteblue{
 	dir = 4
 	},
@@ -1427,7 +1427,7 @@
 /turf/open/floor/plating/dmg3,
 /area/bigredv2/outside/medical)
 "Rw" = (
-/obj/machinery/body_scanconsole,
+/obj/machinery/computer/body_scanconsole,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/green/whitegreen{
 	dir = 6
@@ -1457,7 +1457,7 @@
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "Su" = (
-/obj/item/frame/table,
+/obj/effect/spawner/random/misc/table_parts,
 /turf/open/floor/plating/dmg1,
 /area/bigredv2/outside/medical)
 "Sz" = (
@@ -1473,7 +1473,7 @@
 /area/bigredv2/outside/medical)
 "SC" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/item/frame/table,
+/obj/effect/spawner/random/misc/table_parts,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "SE" = (
@@ -1493,7 +1493,7 @@
 /turf/open/floor/tile/damaged/five,
 /area/bigredv2/outside/medical)
 "Tl" = (
-/obj/structure/window/framed/colony,
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /turf/open/floor/plating,
 /area/bigredv2/outside/medical)
 "Tt" = (
@@ -1588,7 +1588,7 @@
 /area/bigredv2/outside/medical)
 "WC" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/item/frame/table,
+/obj/effect/spawner/random/misc/table_parts,
 /turf/open/floor/tile/purple/whitepurplecorner{
 	dir = 1
 	},

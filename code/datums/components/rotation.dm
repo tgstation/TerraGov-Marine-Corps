@@ -49,9 +49,9 @@
 /datum/component/simple_rotation/proc/add_signals()
 	if(rotation_flags & ROTATION_ALTCLICK)
 		RegisterSignal(parent, COMSIG_CLICK_ALT, PROC_REF(HandRot))
-		RegisterSignal(parent, COMSIG_PARENT_EXAMINE, PROC_REF(ExamineMessage))
+		RegisterSignal(parent, COMSIG_ATOM_EXAMINE, PROC_REF(ExamineMessage))
 	if(rotation_flags & ROTATION_WRENCH)
-		RegisterSignal(parent, COMSIG_PARENT_ATTACKBY, PROC_REF(WrenchRot))
+		RegisterSignal(parent, COMSIG_ATOM_ATTACKBY, PROC_REF(WrenchRot))
 
 
 /datum/component/simple_rotation/proc/add_verbs()
@@ -74,7 +74,7 @@
 
 
 /datum/component/simple_rotation/proc/remove_signals()
-	UnregisterSignal(parent, list(COMSIG_CLICK_ALT, COMSIG_PARENT_EXAMINE, COMSIG_PARENT_ATTACKBY))
+	UnregisterSignal(parent, list(COMSIG_CLICK_ALT, COMSIG_ATOM_EXAMINE, COMSIG_ATOM_ATTACKBY))
 
 
 /datum/component/simple_rotation/RegisterWithParent()
@@ -95,9 +95,9 @@
 	return ..()
 
 /datum/component/simple_rotation/Destroy()
-	QDEL_NULL(can_user_rotate)
-	QDEL_NULL(can_be_rotated)
-	QDEL_NULL(after_rotation)
+	can_user_rotate = null
+	can_be_rotated = null
+	after_rotation = null
 	return ..()
 
 

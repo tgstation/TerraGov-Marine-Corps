@@ -62,11 +62,13 @@
 	///Force of the weapon when activated
 	var/active_force = 40
 
-/obj/item/weapon/energy/sword/Initialize()
+/obj/item/weapon/energy/sword/Initialize(mapload)
 	. = ..()
 	if(!sword_color)
 		sword_color = pick("red","blue","green","purple")
 	AddComponent(/datum/component/shield, SHIELD_TOGGLE|SHIELD_PURE_BLOCKING, shield_cover = list(MELEE = 35, BULLET = 20, LASER = 20, ENERGY = 20, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0))
+	AddComponent(/datum/component/stun_mitigation, shield_cover = list(MELEE = 40, BULLET = 40, LASER = 40, ENERGY = 40, BOMB = 40, BIO = 40, FIRE = 40, ACID = 40))
+	AddElement(/datum/element/strappable)
 
 /obj/item/weapon/energy/sword/attack_self(mob/living/user)
 	switch_state(src, user)
@@ -91,7 +93,7 @@
 		icon_state = "[initial(icon_state)]_[sword_color]"
 		w_class = WEIGHT_CLASS_BULKY
 		playsound(src, 'sound/weapons/saberon.ogg', 25, 1)
-		RegisterSignal(src, list(COMSIG_ITEM_EQUIPPED_TO_SLOT, COMSIG_ITEM_EQUIPPED_NOT_IN_SLOT, COMSIG_ITEM_UNEQUIPPED), PROC_REF(switch_state))
+		RegisterSignals(src, list(COMSIG_ITEM_EQUIPPED_TO_SLOT, COMSIG_ITEM_EQUIPPED_NOT_IN_SLOT, COMSIG_ITEM_UNEQUIPPED), PROC_REF(switch_state))
 	else
 		toggle_item_bump_attack(user, FALSE)
 		hitsound = initial(hitsound)
@@ -119,13 +121,17 @@
 /obj/item/weapon/energy/sword/blue
 	sword_color = "blue"
 
+/obj/item/weapon/energy/sword/deathsquad
+	sword_color = "blue"
+	active_force = 55
+
 /obj/item/weapon/energy/sword/som
 	icon_state = "som_sword"
 	desc = "A SOM energy sword. Designed to cut through armored plate."
 	active_force = 50
 	sword_color = "on"
 
-/obj/item/weapon/energy/sword/som/Initialize()
+/obj/item/weapon/energy/sword/som/Initialize(mapload)
 	. = ..()
 	set_light_range_power_color(2, 1, COLOR_ORANGE)
 
@@ -137,3 +143,8 @@
 	else
 		flick("som_sword_close", src)
 		set_light_on(FALSE)
+
+/obj/item/weapon/energy/sword/som/apply_custom(mutable_appearance/standing, inhands, icon_used, state_used)
+	. = ..()
+	var/mutable_appearance/emissive_overlay = emissive_appearance(icon_used, "[state_used]_emissive")
+	standing.overlays.Add(emissive_overlay)

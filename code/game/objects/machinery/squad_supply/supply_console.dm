@@ -4,6 +4,7 @@
 	name = "supply drop console"
 	desc = "used by shipside staff to issue supply drops to squad beacons"
 	icon_state = "supplydrop"
+	screen_overlay = "supplydrop_screen"
 	interaction_flags = INTERACT_MACHINE_TGUI
 	circuit = /obj/item/circuitboard/computer/supplydrop
 	///Time between two supply drops
@@ -22,10 +23,7 @@
 	var/faction = FACTION_TERRAGOV
 	COOLDOWN_DECLARE(next_fire)
 
-/obj/machinery/computer/supplydrop_console/rebel
-	faction = FACTION_TERRAGOV_REBEL
-
-/obj/machinery/computer/supplydrop_console/Initialize()
+/obj/machinery/computer/supplydrop_console/Initialize(mapload)
 	. = ..()
 	return INITIALIZE_HINT_LATELOAD
 
@@ -74,17 +72,17 @@
 			if(!istype(supply_beacon_choice))
 				return
 			supply_beacon = supply_beacon_choice
-			RegisterSignal(supply_beacon, COMSIG_PARENT_QDELETING, PROC_REF(clean_supply_beacon))
+			RegisterSignal(supply_beacon, COMSIG_QDELETING, PROC_REF(clean_supply_beacon), override = TRUE)
 			refresh_pad()
 		if("set_x")
 			var/new_x = text2num(params["set_x"])
-			if(!new_x)
+			if(!isnum(new_x))
 				return
 			x_offset = new_x
 
 		if("set_y")
 			var/new_y = text2num(params["set_y"])
-			if(!new_y)
+			if(!isnum(new_y))
 				return
 			y_offset = new_y
 
@@ -103,7 +101,7 @@
 				to_chat(usr, "[icon2html(src, usr)] [span_warning("There wasn't any supplies found on the squads supply pad. Double check the pad.")]")
 				return
 
-			if(!istype(supply_beacon.drop_location))
+			if(!istype(supply_beacon.drop_location) || !is_ground_level(supply_beacon.drop_location.z))
 				to_chat(usr, "[icon2html(src, usr)] [span_warning("The [supply_beacon.name] was not detected on the ground.")]")
 				return
 			if(isspaceturf(supply_beacon.drop_location) || supply_beacon.drop_location.density)
@@ -167,6 +165,10 @@
 
 	if(QDELETED(supply_beacon))
 		visible_message("[icon2html(supply_pad, usr)] [span_warning("Launch aborted! Supply beacon signal lost.")]")
+		return
+
+	if(!is_ground_level(supply_beacon.drop_location.z))
+		visible_message("[icon2html(supply_pad, usr)] [span_warning("Launch aborted! Supply beacon is not groundside.")]")
 		return
 
 	if(!length(supplies))

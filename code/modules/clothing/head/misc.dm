@@ -66,7 +66,7 @@
 	desc = "A plastic replica of a syndicate agent's space helmet, you'll look just like a real murderous syndicate agent in this! This is a toy, it is not made for use in space!"
 	flags_inventory = COVEREYES|COVERMOUTH
 	flags_inv_hide = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDEALLHAIR
-	siemens_coefficient = 2.0
+	siemens_coefficient = 2
 	flags_armor_protection = HEAD|FACE|EYES
 	anti_hug = 1
 
@@ -77,7 +77,7 @@
 	flags_inventory = COVEREYES|COVERMOUTH
 	flags_inv_hide = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDEALLHAIR
 	item_state="cueball"
-	flags_inventory = 0
+	flags_inventory = NONE
 	flags_armor_protection = HEAD|FACE|EYES
 
 /obj/item/clothing/head/greenbandanna
@@ -202,7 +202,7 @@
 	item_state = "witch"
 	flags_inventory = NONE
 	flags_inv_hide = HIDEALLHAIR
-	siemens_coefficient = 2.0
+	siemens_coefficient = 2
 
 /obj/item/clothing/head/chicken
 	name = "chicken suit head"
@@ -211,7 +211,7 @@
 	item_state = "chickensuit"
 	flags_inventory = NONE
 	flags_inv_hide = HIDEALLHAIR
-	siemens_coefficient = 2.0
+	siemens_coefficient = 2
 	flags_armor_protection = HEAD|FACE|EYES
 
 /obj/item/clothing/head/xenos
@@ -221,7 +221,7 @@
 	desc = "A helmet made out of chitinous alien hide."
 	flags_inventory = COVERMOUTH|COVEREYES|BLOCKSHARPOBJ
 	flags_inv_hide = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDEALLHAIR
-	siemens_coefficient = 2.0
+	siemens_coefficient = 2
 	flags_armor_protection = HEAD|FACE|EYES
 	anti_hug = 10 //Lel
 
@@ -242,6 +242,24 @@
 	desc = "The service cap for your service uniform. Technically, this is for officers, but the BX is full of these cap, so why not grab one?"
 	icon_state = "servicecap" //with thanks to Fitz 'Pancake' Sholl
 	item_state = "servicecap" //with thanks to Fitz 'Pancake' Sholl
+
+/obj/item/clothing/head/serviceberet
+	name = "Service Beret"
+	desc = "The beret for your service uniform. This feels like something someone much higher speed than you would wear."
+	icon_state = "beret_service"
+	item_state = "beret_service"
+
+/obj/item/clothing/head/servicecampaignhat
+	name = "Service Campaign Hat"
+	desc = "The campaign hat for your service uniform. You can feel the menacing aura coming off it by just looking at it."
+	icon_state = "campaignhat_service"
+	item_state = "campaignhat_service"
+
+/obj/item/clothing/head/serviceushanka
+	name = "Service Ushanka"
+	desc = "The ushanka for your service uniform. For when you need to perform parade in subzero temperature."
+	icon_state = "ushanaka_service"
+	item_state = "ushanaka_service"
 
 /obj/item/clothing/head/techpriest
 	name = "Techpriest hood"

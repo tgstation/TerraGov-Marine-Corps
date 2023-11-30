@@ -30,7 +30,7 @@
 
 /datum/static_lighting_corner/New(turf/new_turf, diagonal)
 	. = ..()
-	save_master(new_turf, turn(diagonal, 180))
+	save_master(new_turf, REVERSE_DIR(diagonal))
 
 	var/vertical = diagonal & ~(diagonal - 1) // The horizontal directions (4 and 8) are bigger than the vertical ones (1 and 2), so we can reliably say the lsb is the horizontal direction.
 	var/horizontal = diagonal & ~vertical       // Now that we know the horizontal one we can get the vertical one.
@@ -113,13 +113,13 @@
 	else if (largest_color_luminosity < LIGHTING_SOFT_THRESHOLD)
 		. = 0 // 0 means soft lighting.
 
-	cache_r  = round(lum_r * ., LIGHTING_ROUND_VALUE) || LIGHTING_SOFT_THRESHOLD
-	cache_g  = round(lum_g * ., LIGHTING_ROUND_VALUE) || LIGHTING_SOFT_THRESHOLD
-	cache_b  = round(lum_b * ., LIGHTING_ROUND_VALUE) || LIGHTING_SOFT_THRESHOLD
+	cache_r = round(lum_r * ., LIGHTING_ROUND_VALUE) || LIGHTING_SOFT_THRESHOLD
+	cache_g = round(lum_g * ., LIGHTING_ROUND_VALUE) || LIGHTING_SOFT_THRESHOLD
+	cache_b = round(lum_b * ., LIGHTING_ROUND_VALUE) || LIGHTING_SOFT_THRESHOLD
 	#else
-	cache_r  = round(lum_r * ., LIGHTING_ROUND_VALUE)
-	cache_g  = round(lum_g * ., LIGHTING_ROUND_VALUE)
-	cache_b  = round(lum_b * ., LIGHTING_ROUND_VALUE)
+	cache_r = round(lum_r * ., LIGHTING_ROUND_VALUE)
+	cache_g = round(lum_g * ., LIGHTING_ROUND_VALUE)
+	cache_b = round(lum_b * ., LIGHTING_ROUND_VALUE)
 	#endif
 
 	src.largest_color_luminosity = round(largest_color_luminosity, LIGHTING_ROUND_VALUE)
@@ -171,6 +171,5 @@
 	if(master_NW)
 		master_NW.lighting_corner_SE = null
 		master_NW.lighting_corners_initialised = FALSE
-	if(needs_update)
-		SSlighting.corners_queue -= src
+	SSlighting.corners_queue -= src
 	return ..()

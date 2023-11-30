@@ -93,7 +93,7 @@ Redefine as needed.
 	var/mob/living/carbon/tk_user = null
 
 
-/obj/item/tk_grab/Initialize()
+/obj/item/tk_grab/Initialize(mapload)
 	. = ..()
 	START_PROCESSING(SSfastprocess, src)
 

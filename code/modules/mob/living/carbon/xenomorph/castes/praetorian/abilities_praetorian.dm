@@ -86,10 +86,10 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 		return
 	var/is_blocked = FALSE
 	for (var/obj/O in T)
-		if(is_type_in_typecache(O, GLOB.acid_spray_hit))
-			O.acid_spray_act(owner)
 		if(!O.CanPass(source_spray, get_turf(source_spray)))
 			is_blocked = TRUE
+			O.acid_spray_act(owner)
+			break
 	if(is_blocked)
 		return
 
@@ -99,7 +99,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	var/turf/next_normal_turf = get_step(T, facing)
 	for (var/atom/movable/A AS in T)
 		A.acid_spray_act(owner)
-		if(((A.density && !(A.flags_pass & PASSPROJECTILE) && !(A.flags_atom & ON_BORDER)) || !A.Exit(source_spray, facing)) && !isxeno(A))
+		if(((A.density && !(A.allow_pass_flags & PASS_PROJECTILE) && !(A.flags_atom & ON_BORDER)) || !A.Exit(source_spray, facing)) && !isxeno(A))
 			is_blocked = TRUE
 	if(!is_blocked)
 		if(!skip_timer)
@@ -129,7 +129,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 // ***************************************
 /datum/action/xeno_action/activable/acid_dash
 	name = "Acid Dash"
-	action_icon_state = "charge"
+	action_icon_state = "pounce"
 	desc = "Instantly dash, tackling the first marine in your path. If you manage to tackle someone, gain another weaker cast of the ability."
 	ability_name = "acid dash"
 	plasma_cost = 250
@@ -161,8 +161,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	else
 		recast = FALSE
 		add_cooldown()
-
-	X.reset_flags_pass()
+	X.pass_flags = initial(X.pass_flags)
 	recast_available = FALSE
 	UnregisterSignal(owner, list(COMSIG_XENO_OBJ_THROW_HIT, COMSIG_MOVABLE_POST_THROW, COMSIG_XENO_LIVING_THROW_HIT, COMSIG_MOVABLE_MOVED))
 
@@ -174,15 +173,15 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 
 	//Swapping part
 	var/mob/living/carbon/human/target = M
-	var/owner_passmob = (owner.flags_pass & PASSMOB)
-	var/target_passmob = (target.flags_pass & PASSMOB)
-	owner.flags_pass |= PASSMOB
-	target.flags_pass |= PASSMOB
+	var/owner_passmob = (owner.pass_flags & PASS_MOB)
+	var/target_passmob = (target.pass_flags & PASS_MOB)
+	owner.pass_flags |= PASS_MOB
+	target.pass_flags |= PASS_MOB
 	target.forceMove(last_turf)
 	if(!owner_passmob)
-		owner.flags_pass &= ~PASSMOB
+		owner.pass_flags &= ~PASS_MOB
 	if(!target_passmob)
-		target.flags_pass &= ~PASSMOB
+		target.pass_flags &= ~PASS_MOB
 
 	target.ParalyzeNoChain(0.5 SECONDS) //Extremely brief, we don't want them to take 289732 ticks of acid
 
@@ -195,11 +194,14 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 ///Called whenever the owner hits an object during the dash
 /datum/action/xeno_action/activable/acid_dash/proc/obj_hit(datum/source, obj/target, speed)
 	SIGNAL_HANDLER
-	if(!(istype(target, /obj/structure/table) || istype(target, /obj/structure/barricade) || istype(target, /obj/structure/razorwire)))
-		target.hitby(owner, speed)
+	if(istype(target, /obj/structure/table))
+		var/obj/structure/S = target
+		owner.visible_message(span_danger("[owner] plows straight through [S]!"), null, null, 5)
+		S.deconstruct(FALSE)
 		return
 
-	owner.visible_message(span_danger("[owner] effortlessly jumps over the [target]!"), null, null, 5) //Flavour only
+	target.hitby(owner, speed)
+	dash_complete()
 
 ///Drops an acid puddle on the current owner's tile, will do 0 damage if the owner has no acid_spray_damage
 /datum/action/xeno_action/activable/acid_dash/proc/acid_steps(atom/A, atom/OldLoc, Dir, Forced)
@@ -220,7 +222,8 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	span_danger("We dash towards \the [A], spraying acid down our path!") )
 	succeed_activate()
 
-	owner.flags_pass = HOVERING
+	last_turf = get_turf(owner)
+	owner.pass_flags = PASS_LOW_STRUCTURE|PASS_DEFENSIVE_STRUCTURE|PASS_FIRE
 	owner.throw_at(A, range, 2, owner)
 
 	return TRUE

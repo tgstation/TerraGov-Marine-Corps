@@ -9,7 +9,7 @@
 	icon_state = "lightstick_blue0"
 	var/s_color = "blue"
 
-/obj/item/lightstick/Initialize()
+/obj/item/lightstick/Initialize(mapload)
 	. = ..()
 	var/static/list/connections = list(
 		COMSIG_ATOM_ENTERED = PROC_REF(on_cross),

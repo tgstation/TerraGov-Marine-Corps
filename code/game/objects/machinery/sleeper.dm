@@ -2,25 +2,28 @@
 // SLEEPER CONSOLE
 /////////////////////////////////////////
 
-/obj/machinery/sleep_console
+/obj/machinery/computer/sleep_console
 	name = "Sleeper Console"
 	icon = 'icons/obj/machines/cryogenics.dmi'
 	icon_state = "sleeperconsole"
-	var/obj/machinery/sleeper/connected = null
-	anchored = TRUE //About time someone fixed this.
+	screen_overlay = "sleeperconsole_emissive"
+	dir = EAST
 	density = FALSE
-	var/orient = "LEFT" // "RIGHT" changes the dir suffix to "-r"
-
-	use_power = IDLE_POWER_USE
 	idle_power_usage = 40
+	///The connected sleeper
+	var/obj/machinery/sleeper/connected = null
 
-/obj/machinery/sleep_console/process()
+/obj/machinery/computer/sleep_console/Initialize(mapload)
+	. = ..()
+	set_connected(locate(/obj/machinery/sleeper, get_step(src, REVERSE_DIR(dir))))
+	connected?.set_connected(src)
+
+/obj/machinery/computer/sleep_console/process()
 	if(machine_stat & (NOPOWER|BROKEN))
 		return
 	updateUsrDialog()
 
-
-/obj/machinery/sleep_console/ex_act(severity)
+/obj/machinery/computer/sleep_console/ex_act(severity)
 	switch(severity)
 		if(EXPLODE_DEVASTATE)
 			qdel(src)
@@ -28,31 +31,21 @@
 			if (prob(50))
 				qdel(src)
 
-
-/obj/machinery/sleep_console/Initialize()
-	. = ..()
-	if(orient == "RIGHT")
-		icon_state = "sleeperconsole-r"
-		set_connected(locate(/obj/machinery/sleeper, get_step(src, EAST)))
-	else
-		set_connected(locate(/obj/machinery/sleeper, get_step(src, WEST)))
-	connected?.set_connected(src)
-
 ///Set the connected var
-/obj/machinery/sleep_console/proc/set_connected(obj/future_connected)
+/obj/machinery/computer/sleep_console/proc/set_connected(obj/future_connected)
 	if(connected)
-		UnregisterSignal(connected, COMSIG_PARENT_QDELETING)
+		UnregisterSignal(connected, COMSIG_QDELETING)
 	connected = null
 	if(future_connected)
 		connected = future_connected
-		RegisterSignal(connected, COMSIG_PARENT_QDELETING, PROC_REF(clean_connected))
+		RegisterSignal(connected, COMSIG_QDELETING, PROC_REF(clean_connected))
 
 ///Clean the connected var
-/obj/machinery/sleep_console/proc/clean_connected()
+/obj/machinery/computer/sleep_console/proc/clean_connected()
 	SIGNAL_HANDLER
 	set_connected(null)
 
-/obj/machinery/sleep_console/interact(mob/user)
+/obj/machinery/computer/sleep_console/interact(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -64,7 +57,7 @@
 		dat += "<font color='#487553'><B>Occupant Statistics:</B></FONT><BR>"
 		if(occupant)
 			var/t1
-			dat += text("<B>Name: [occupant.name]</B><BR>")
+			dat += "<B>Name: [occupant.name]</B><BR>"
 			switch(occupant.stat)
 				if(0)
 					t1 = "Conscious"
@@ -72,42 +65,41 @@
 					t1 = "<font color='#487553'>Unconscious</font>"
 				if(2)
 					t1 = "<font color='#b54646'>*dead*</font>"
-				else
-			dat += text("[]\tHealth %: [] ([])</FONT><BR>", (occupant.health > 50 ? "<font color='#487553'>" : "<font color='#b54646'>"), occupant.health, t1)
+			var/health_ratio = occupant.health * 100 / occupant.maxHealth
+			dat += "[health_ratio > 50 ? "<font color='#487553'>" : "<font color='#b54646'>"]\tHealth %: [health_ratio] ([t1])</FONT><BR>"
 			if(ishuman(occupant))
 				if(connected.filtering)
-					dat += "<A href='?src=\ref[src];togglefilter=1'>Stop Dialysis</A><BR>"
+					dat += "<A href='?src=[text_ref(src)];togglefilter=1'>Stop Dialysis</A><BR>"
 				else
-					dat += "<HR><A href='?src=\ref[src];togglefilter=1'>Start Dialysis</A><BR>"
+					dat += "<HR><A href='?src=[text_ref(src)];togglefilter=1'>Start Dialysis</A><BR>"
 				if(connected.stasis)
-					dat += "<HR><A href='?src=\ref[src];togglestasis=1'>Deactivate Cryostasis</A><BR><HR>"
+					dat += "<HR><A href='?src=[text_ref(src)];togglestasis=1'>Deactivate Cryostasis</A><BR><HR>"
 				else
-					dat += "<HR><A href='?src=\ref[src];togglestasis=1'>Activate Cryostasis</A><BR><HR>"
+					dat += "<HR><A href='?src=[text_ref(src)];togglestasis=1'>Activate Cryostasis</A><BR><HR>"
 			else
 				dat += "<HR>Dialysis Disabled - Non-human present.<BR><HR>"
 				var/mob/living/carbon/human/patient = occupant
 				var/pulse = patient.handle_pulse()
-				dat += text("[]\t-Pulse, bpm: []</FONT><BR>", (pulse == PULSE_NONE || pulse == PULSE_THREADY ? "<font color='#b54646'>" : "<font color='#487553'>"), patient.get_pulse(GETPULSE_TOOL))
-			dat += text("[]\t-Brute Damage %: []</FONT><BR>", (occupant.getBruteLoss() < 60 ? "<font color='#487553'>" : "<font color='#b54646'>"), occupant.getBruteLoss())
-			dat += text("[]\t-Respiratory Damage %: []</FONT><BR>", (occupant.getOxyLoss() < 60 ? "<font color='#487553'>" : "<font color='#b54646'>"), occupant.getOxyLoss())
-			dat += text("[]\t-Toxin Content %: []</FONT><BR>", (occupant.getToxLoss() < 60 ? "<font color='#487553'>" : "<font color='#b54646'>"), occupant.getToxLoss())
-			dat += text("[]\t-Burn Severity %: []</FONT><BR>", (occupant.getFireLoss() < 60 ? "<font color='#487553'>" : "<font color='#b54646'>"), occupant.getFireLoss())
-			dat += text("<HR>Knocked Out Summary %: [] ([] seconds left!)<BR>", occupant.AmountUnconscious(), round(occupant.AmountUnconscious() * 0.1))
+				dat += "[pulse == PULSE_NONE || pulse == PULSE_THREADY ? "<font color='#b54646'>" : "<font color='#487553'>"]\t-Pulse, bpm: [patient.get_pulse(GETPULSE_TOOL)]</FONT><BR>"
+			dat += "[occupant.getBruteLoss() < 60 ? "<font color='#487553'>" : "<font color='#b54646'>"]\t-Brute Damage %: [occupant.getBruteLoss()]</FONT><BR>"
+			dat += "[occupant.getOxyLoss() < 60 ? "<font color='#487553'>" : "<font color='#b54646'>"]\t-Respiratory Damage %: [occupant.getOxyLoss()]</FONT><BR>"
+			dat += "[occupant.getToxLoss() < 60 ? "<font color='#487553'>" : "<font color='#b54646'>"]\t-Toxin Content %: [occupant.getToxLoss()]</FONT><BR>"
+			dat += "[occupant.getFireLoss() < 60 ? "<font color='#487553'>" : "<font color='#b54646'>"]\t-Burn Severity %: [occupant.getFireLoss()]</FONT><BR>"
+			dat += "<HR>Knocked Out Summary %: [occupant.AmountUnconscious()] ([round(occupant.AmountUnconscious() * 0.1)] seconds left!)<BR>"
 			for(var/chemical in connected.available_chemicals)
 				dat += "<label style='width:180px; display: inline-block'>[connected.available_chemicals[chemical]] ([round(occupant.reagents.get_reagent_amount(chemical), 0.01)] units)</label> Inject:"
 				for(var/amount in connected.amounts)
-					dat += " <a href ='?src=\ref[src];chemical=[chemical];amount=[amount]'>[amount] units</a>"
+					dat += " <a href ='?src=[text_ref(src)];chemical=[chemical];amount=[amount]'>[amount] units</a>"
 				dat += "<br>"
-			dat += "<A href='?src=\ref[src];refresh=1'>Refresh Meter Readings</A><BR>"
-			dat += "<HR><A href='?src=\ref[src];ejectify=1'>Eject Patient</A>"
+			dat += "<A href='?src=[text_ref(src)];refresh=1'>Refresh Meter Readings</A><BR>"
+			dat += "<HR><A href='?src=[text_ref(src)];ejectify=1'>Eject Patient</A>"
 		else
 			dat += "The sleeper is empty."
 	var/datum/browser/popup = new(user, "sleeper", "<div align='center'>Sleeper Console</div>", 400, 670)
 	popup.set_content(dat)
 	popup.open()
 
-
-/obj/machinery/sleep_console/Topic(href, href_list)
+/obj/machinery/computer/sleep_console/Topic(href, href_list)
 	. = ..()
 	if(.)
 		return
@@ -117,7 +109,7 @@
 		if(connected.occupant.stat == DEAD)
 			to_chat(usr, span_warning("This person has no life for to preserve anymore."))
 		else if(ismonkey(connected.occupant))
-			to_chat(usr, span_scanner("Unknown biological subject detected, chemical injection not available. Please contact a licensed supplier for further assistance."))	
+			to_chat(usr, span_scanner("Unknown biological subject detected, chemical injection not available. Please contact a licensed supplier for further assistance."))
 		else if(!(R in connected.available_chemicals))
 			message_admins("[ADMIN_TPMONTY(usr)] has tried to inject an invalid chem with the sleeper. Looks like an exploit attempt, or a bug.")
 		else
@@ -133,15 +125,6 @@
 
 	updateUsrDialog()
 
-
-
-
-
-
-
-
-
-
 /////////////////////////////////////////
 // THE SLEEPER ITSELF
 /////////////////////////////////////////
@@ -150,27 +133,28 @@
 	name = "Sleeper"
 	desc = "A fancy bed with built-in injectors, a dialysis machine, and a limited health scanner."
 	icon = 'icons/obj/machines/cryogenics.dmi'
-	icon_state = "sleeper_0"
+	icon_state = "sleeper"
 	density = TRUE
-	anchored = TRUE
-	var/orient = "LEFT" // "RIGHT" changes the dir suffix to "-r"
+	light_range = 1
+	light_power = 0.5
+	light_color = LIGHT_COLOR_BLUE
+	dir = EAST
 	var/mob/living/carbon/human/occupant = null
 	var/available_chemicals = list(/datum/reagent/medicine/inaprovaline = "Inaprovaline", /datum/reagent/toxin/sleeptoxin = "Soporific", /datum/reagent/medicine/paracetamol = "Paracetamol", /datum/reagent/medicine/bicaridine = "Bicaridine", /datum/reagent/medicine/kelotane = "Kelotane", /datum/reagent/medicine/dylovene = "Dylovene", /datum/reagent/medicine/dexalin = "Dexalin", /datum/reagent/medicine/tricordrazine = "Tricordrazine", /datum/reagent/medicine/spaceacillin = "Spaceacillin")
 	var/amounts = list(5, 10)
 	var/filtering = FALSE
 	var/stasis = FALSE
-	var/obj/machinery/sleep_console/connected
+	var/obj/machinery/computer/sleep_console/connected
 
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 15
 	active_power_usage = 200 //builtin health analyzer, dialysis machine, injectors.
 
 
-/obj/machinery/sleeper/Initialize()
+/obj/machinery/sleeper/Initialize(mapload)
 	. = ..()
-	if(orient == "RIGHT")
-		icon_state = "sleeper_0-r"
 	RegisterSignal(src, COMSIG_MOVABLE_SHUTTLE_CRUSH, PROC_REF(shuttle_crush))
+	update_icon()
 
 /obj/machinery/sleeper/proc/shuttle_crush()
 	SIGNAL_HANDLER
@@ -182,11 +166,11 @@
 ///Set the connected var
 /obj/machinery/sleeper/proc/set_connected(obj/future_connected)
 	if(connected)
-		UnregisterSignal(connected, COMSIG_PARENT_QDELETING)
+		UnregisterSignal(connected, COMSIG_QDELETING)
 	connected = null
 	if(future_connected)
 		connected = future_connected
-		RegisterSignal(connected, COMSIG_PARENT_QDELETING, PROC_REF(clean_connected))
+		RegisterSignal(connected, COMSIG_QDELETING, PROC_REF(clean_connected))
 
 ///Clean the connected var
 /obj/machinery/sleeper/proc/clean_connected()
@@ -224,7 +208,7 @@
 		if(!(R.fields["last_scan_time"]))
 			. += span_deptradio("No scan report on record")
 		else
-			. += span_deptradio("<a href='?src=\ref[src];scanreport=1'>It contains [occupant]: Scan from [R.fields["last_scan_time"]].[feedback]</a>")
+			. += span_deptradio("<a href='?src=[text_ref(src)];scanreport=1'>It contains [occupant]: Scan from [R.fields["last_scan_time"]].[feedback]</a>")
 		break
 
 /obj/machinery/sleeper/Topic(href, href_list)
@@ -269,6 +253,27 @@
 
 	updateUsrDialog()
 
+/obj/machinery/sleeper/update_icon()
+	. = ..()
+	if((machine_stat & (BROKEN|DISABLED|NOPOWER)) || !occupant)
+		set_light(0)
+	else
+		set_light(initial(light_range))
+
+/obj/machinery/sleeper/update_icon_state()
+	if(occupant)
+		icon_state = "[initial(icon_state)]_occupied"
+	else
+		icon_state = initial(icon_state)
+
+/obj/machinery/sleeper/update_overlays()
+	. = ..()
+	if(machine_stat & (BROKEN|DISABLED|NOPOWER))
+		return
+	if(!occupant)
+		return
+	. += emissive_appearance(icon, "[icon_state]_emissive", alpha = src.alpha)
+	. += mutable_appearance(icon, "[icon_state]_emissive", alpha = src.alpha)
 
 /obj/machinery/sleeper/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -301,12 +306,7 @@
 	occupant = M
 	start_processing()
 	connected.start_processing()
-
-	if(orient == "RIGHT")
-		icon_state = "sleeper_1-r"
-	else
-		icon_state = "sleeper_1"
-
+	update_icon()
 
 /obj/machinery/sleeper/ex_act(severity)
 	if(filtering)
@@ -370,14 +370,11 @@
 	occupant = null
 	stop_processing()
 	connected.stop_processing()
-	if(orient == "RIGHT")
-		icon_state = "sleeper_0-r"
-	else
-		icon_state = "sleeper_0"
+	update_icon()
 
 
 /obj/machinery/sleeper/proc/inject_chemical(mob/living/user as mob, chemical, amount)
-	if(occupant && occupant.reagents)
+	if(occupant?.reagents)
 		if(occupant.reagents.get_reagent_amount(chemical) + amount <= 20)
 			occupant.reagents.add_reagent(chemical, amount)
 			to_chat(user, span_notice("Occupant now has [occupant.reagents.get_reagent_amount(chemical)] units of [available_chemicals[chemical]] in his/her bloodstream."))
@@ -397,12 +394,13 @@
 			if(2)
 				t1 = "*dead*"
 			else
-		to_chat(user, text("[]\t Health %: [] ([])</font>", (occupant.health > 50 ? "<font color='#487553'> " : "<font color='#b54646'> "), occupant.health, t1))
-		to_chat(user, text("[]\t -Core Temperature: []&deg;C ([]&deg;F)</FONT><BR>", (occupant.bodytemperature > 50 ? "<font color='#487553'>" : "<font color='#b54646'>"), occupant.bodytemperature-T0C, occupant.bodytemperature*1.8-459.67))
-		to_chat(user, text("[]\t -Brute Damage %: []</font>", (occupant.getBruteLoss() < 60 ? "<font color='#487553'> " : "<font class='#b54646'> "), occupant.getBruteLoss()))
-		to_chat(user, text("[]\t -Respiratory Damage %: []</font>", (occupant.getOxyLoss() < 60 ? "<span color='#487553'> " : "<font color='#b54646'> "), occupant.getOxyLoss()))
-		to_chat(user, text("[]\t -Toxin Content %: []</font>", (occupant.getToxLoss() < 60 ? "<font color='#487553'> " : "<font color='#b54646'> "), occupant.getToxLoss()))
-		to_chat(user, text("[]\t -Burn Severity %: []</font>", (occupant.getFireLoss() < 60 ? "<font color='#487553'> " : "<font color='#b54646'> "), occupant.getFireLoss()))
+		var/health_ratio = occupant.health * 100 / occupant.maxHealth
+		to_chat(user, "[health_ratio > 50 ? "<font color='#487553'> " : "<font color='#b54646'> "]\t Health %: [health_ratio] ([t1])</font>")
+		to_chat(user, "[occupant.bodytemperature > 50 ? "<font color='#487553'>" : "<font color='#b54646'>"]\t -Core Temperature: [occupant.bodytemperature-T0C]&deg;C ([occupant.bodytemperature*1.8-459.67]&deg;F)</FONT><BR>")
+		to_chat(user, "[occupant.getBruteLoss() < 60 ? "<font color='#487553'> " : "<font class='#b54646'> "]\t -Brute Damage %: [occupant.getBruteLoss()]</font>")
+		to_chat(user, "[occupant.getOxyLoss() < 60 ? "<span color='#487553'> " : "<font color='#b54646'> "]\t -Respiratory Damage %: [occupant.getOxyLoss()]</font>")
+		to_chat(user, "[occupant.getToxLoss() < 60 ? "<font color='#487553'> " : "<font color='#b54646'> "]\t -Toxin Content %: [occupant.getToxLoss()]</font>")
+		to_chat(user, "[occupant.getFireLoss() < 60 ? "<font color='#487553'> " : "<font color='#b54646'> "]\t -Burn Severity %: [occupant.getFireLoss()]</font>")
 		to_chat(user, span_notice("Expected time till occupant can safely awake: (note: If health is below 20% these times are inaccurate)"))
 		to_chat(user, span_notice("\t [occupant.AmountUnconscious() * 0.1] second\s (if around 1 or 2 the sleeper is keeping them asleep.)"))
 	else
@@ -436,38 +434,34 @@
 		return
 	go_out()
 
-/obj/machinery/sleeper/proc/move_inside_wrapper(mob/living/M, mob/user)
-	if(M.stat != CONSCIOUS || !ishuman(M))
+/obj/machinery/sleeper/proc/move_inside_wrapper(mob/living/target, mob/user)
+	if(!ishuman(target) || !ishuman(user) || user.incapacitated(TRUE))
 		return
 
 	if(occupant)
 		to_chat(user, span_notice("The sleeper is already occupied!"))
 		return
 
-	if(ismob(M.pulledby))
-		var/mob/grabmob = M.pulledby
+	if(ismob(target.pulledby))
+		var/mob/grabmob = target.pulledby
 		grabmob.stop_pulling()
-	M.stop_pulling()
+	target.stop_pulling()
 
-	if(!M.forceMove(src))
+	if(!target.forceMove(src))
 		return
 
-	visible_message("[M] climbs into the sleeper.", null, null, 3)
-	occupant = M
+	visible_message("[target] climbs into the sleeper.", null, null, 3)
+	occupant = target
 
 	start_processing()
 	connected.start_processing()
-
-	icon_state = "sleeper_1"
-	if(orient == "RIGHT")
-		icon_state = "sleeper_1-r"
+	update_icon()
 
 	for(var/obj/O in src)
 		qdel(O)
 
 /obj/machinery/sleeper/MouseDrop_T(mob/M, mob/user)
-	if(!isliving(M) || !ishuman(user))
-		return
+	. = ..()
 	move_inside_wrapper(M, user)
 
 /obj/machinery/sleeper/verb/move_inside()

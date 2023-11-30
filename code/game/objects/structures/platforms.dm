@@ -1,156 +1,133 @@
-/*
-* Platforms
-*/
 /obj/structure/platform
 	name = "platform"
 	desc = "A square metal surface resting on four legs."
 	icon = 'icons/obj/structures/platforms.dmi'
 	icon_state = "platform"
-	climbable = TRUE
-	anchored = TRUE
-	density = TRUE
 	coverage = 10
-	layer = OBJ_LAYER
-	climb_delay = 20 //Leaping a barricade is universally much faster than clumsily climbing on a table or rack
-	interaction_flags = INTERACT_CHECK_INCAPACITATED //no dexterity flag so xenos can climb them
+	density = TRUE
+	layer = BELOW_OBJ_LAYER
 	flags_atom = ON_BORDER
-	resistance_flags = XENO_DAMAGEABLE	//TEMP PATCH UNTIL XENO AI PATHFINDING IS BETTER, SET THIS TO INDESTRUCTIBLE ONCE IT IS - Tivi
-	obj_integrity = 1000	//Ditto
-	max_integrity = 1000	//Ditto
+	resistance_flags = RESIST_ALL
+	interaction_flags = INTERACT_CHECK_INCAPACITATED
+	allow_pass_flags = PASS_LOW_STRUCTURE|PASSABLE|PASS_WALKOVER
+	climbable = TRUE
+	climb_delay = 10
 
-/obj/structure/platform/gelida
-	coverage = 0
-	climb_delay = 5 //halved time because on gelida platforms are everywhere
-	obj_integrity = 50 //ditto
-	max_integrity = 50	//ditto
-
-/obj/structure/platform/Initialize()
+/obj/structure/platform/Initialize(mapload)
 	. = ..()
-	var/image/I = image(icon, src, "platform_overlay", LADDER_LAYER, dir)//ladder layer puts us just above weeds.
-	switch(dir)
-		if(SOUTH)
-			layer = ABOVE_MOB_LAYER
-			I.pixel_y = -16
-		if(NORTH)
-			I.pixel_y = 16
-		if(EAST)
-			I.pixel_x = 16
-		if(WEST)
-			I.pixel_x = -16
-	overlays += I
+	update_icon()
+	icon_state = null
+
 	var/static/list/connections = list(
-		COMSIG_ATOM_EXIT = PROC_REF(on_try_exit)
+		COMSIG_ATOM_EXIT = PROC_REF(on_try_exit),
+		COMSIG_OBJ_TRY_ALLOW_THROUGH = PROC_REF(can_climb_over),
 	)
 	AddElement(/datum/element/connect_loc, connections)
 
-/obj/structure/platform/proc/on_try_exit(datum/source, atom/movable/O, direction, list/knownblockers)
-	SIGNAL_HANDLER
-	if(O.throwing)
-		return NONE
-	if(!density || !(flags_atom & ON_BORDER) || !(direction & dir) || (O.status_flags & INCORPOREAL))
-		return NONE
-	knownblockers += src
-	return COMPONENT_ATOM_BLOCK_EXIT
-
-/obj/structure/platform/CanAllowThrough(atom/movable/mover, turf/target)
+/obj/structure/platform/update_overlays()
 	. = ..()
-	if(mover && mover.throwing)
-		return TRUE
+	var/image/new_overlay
 
-	var/obj/structure/S = locate(/obj/structure) in get_turf(mover)
-	if(S && S.climbable && !(S.flags_atom & ON_BORDER) && climbable && isliving(mover)) //Climbable objects allow you to universally climb over others
-		return TRUE
+	if(dir & EAST)
+		new_overlay = image(icon, src, "[initial(icon_state)]_overlay", layer, EAST)
+		new_overlay.pixel_x = 32
+		. += new_overlay
 
-	if(!(flags_atom & ON_BORDER) || !(get_dir(loc, target) & dir))
-		return TRUE
+	if(dir & WEST)
+		new_overlay = image(icon, src, "[initial(icon_state)]_overlay", layer, WEST)
+		new_overlay.pixel_x = -32
+		. += new_overlay
 
-/obj/structure/platform_decoration
-	name = "platform"
-	desc = "A square metal surface resting on four legs."
-	icon = 'icons/obj/structures/platforms.dmi'
-	icon_state = "platform_deco"
-	anchored = TRUE
-	density = FALSE
-	layer = 3.5
-	flags_atom = ON_BORDER
-	resistance_flags = UNACIDABLE
+	if(dir & NORTH)
+		new_overlay = image(icon, src, "[initial(icon_state)]_overlay", layer, NORTH)
+		new_overlay.pixel_y = 32
+		new_overlay.layer = ABOVE_MOB_LAYER //perspective
+		. += new_overlay
 
-/obj/structure/platform_decoration/Initialize()
-	. = ..()
-	switch(dir)
-		if (NORTH)
-			layer = ABOVE_MOB_LAYER
-		if (SOUTH)
-			layer = ABOVE_MOB_LAYER
-		if (SOUTHEAST)
-			layer = ABOVE_MOB_LAYER
-		if (SOUTHWEST)
-			layer = ABOVE_MOB_LAYER
+	if(dir & SOUTH)
+		new_overlay = image(icon, src, "[initial(icon_state)]_overlay", layer, SOUTH)
+		new_overlay.pixel_y = -32
+		. += new_overlay
+
+	if(CHECK_MULTIPLE_BITFIELDS(dir, NORTHEAST))
+		new_overlay = image(icon, src, "[initial(icon_state)]_overlay", layer, NORTHEAST)
+		new_overlay.pixel_y = 32
+		new_overlay.pixel_x = 32
+		new_overlay.layer = ABOVE_MOB_PLATFORM_LAYER
+		. += new_overlay
+
+	if(CHECK_MULTIPLE_BITFIELDS(dir, NORTHWEST))
+		new_overlay = image(icon, src, "[initial(icon_state)]_overlay", layer, NORTHWEST)
+		new_overlay.pixel_y = 32
+		new_overlay.pixel_x = -32
+		new_overlay.layer = ABOVE_MOB_PLATFORM_LAYER
+		. += new_overlay
+
+	if(CHECK_MULTIPLE_BITFIELDS(dir, SOUTHEAST))
+		new_overlay = image(icon, src, "[initial(icon_state)]_overlay", layer, SOUTHEAST)
+		new_overlay.pixel_y = -32
+		new_overlay.pixel_x = 32
+		. += new_overlay
+
+	if(CHECK_MULTIPLE_BITFIELDS(dir, SOUTHWEST))
+		new_overlay = image(icon, src, "[initial(icon_state)]_overlay", layer, SOUTHWEST)
+		new_overlay.pixel_y = -32
+		new_overlay.pixel_x = -32
+		. += new_overlay
 
 /obj/structure/platform/rockcliff
 	icon_state = "rockcliff"
 	name = "rock cliff"
 	desc = "A collection of stones and rocks that form a steep cliff, it looks climbable."
 
-/obj/structure/platform_decoration/rockcliff_deco
-	icon_state = "rockcliff_deco"
-	name = "rock cliff"
-	desc = "A collection of stones and rocks that form a steep cliff, it looks climbable."
-
 /obj/structure/platform/rockcliff/icycliff
 	icon_state = "icerock"
 
-/obj/structure/platform_decoration/rockcliff_deco/icycliff_deco
-	icon_state = "icerock_deco"
-
 /obj/structure/platform/metalplatform
 	icon_state = "metalplatform"
-
-/obj/structure/platform_decoration/metalplatform_deco
-	icon_state = "metalplatform_deco"
-
-/obj/structure/platform/platform2
-	icon_state = "platform2"
-
-/obj/structure/platform_decoration/platform2_deco
-	icon_state = "platform2_deco"
 
 /obj/structure/platform/trench
 	icon_state = "platformtrench"
 	name = "trench wall"
 	desc = "A group of roughly cut planks forming the side of a dug in trench."
-	obj_integrity = 400
-	max_integrity = 400
 
-/obj/structure/fakeplatform
+/obj/structure/platform/adobe
+	name = "brick wall"
+	desc = "A low adobe brick wall."
+	icon_state = "adobe"
+
+//decorative corner platform bits
+/obj/structure/platform_decoration
 	name = "platform"
 	desc = "A square metal surface resting on four legs."
 	icon = 'icons/obj/structures/platforms.dmi'
-	icon_state = "platform"
-	anchored = TRUE
-	density = FALSE //no density these platforms are for looks not for climbing
-	coverage = 0
-	layer = LATTICE_LAYER
-	climb_delay = 20 //Leaping a barricade is universally much faster than clumsily climbing on a table or rack
-	resistance_flags = XENO_DAMAGEABLE	//TEMP PATCH UNTIL XENO AI PATHFINDING IS BETTER, SET THIS TO INDESTRUCTIBLE ONCE IT IS - Tivi
-	obj_integrity = 50	//Ditto
-	max_integrity = 50	//Ditto
+	icon_state = "platform_deco"
+	flags_atom = ON_BORDER
+	resistance_flags = RESIST_ALL
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
-/obj/structure/fakeplatform/Initialize()
+/obj/structure/platform_decoration/Initialize(mapload)
 	. = ..()
-	var/image/I = image(icon, src, "platform_overlay", LADDER_LAYER, dir)//ladder layer puts us just above weeds.
 	switch(dir)
-		if(SOUTH)
-			layer = ABOVE_MOB_LAYER
-			I.pixel_y = -16
 		if(NORTH)
-			I.pixel_y = 16
-		if(EAST)
-			I.pixel_x = 16
-		if(WEST)
-			I.pixel_x = -16
-	overlays += I
+			layer = ABOVE_MOB_PLATFORM_LAYER
+		if(SOUTH)
+			layer = ABOVE_MOB_PLATFORM_LAYER
+		if(SOUTHEAST)
+			layer = ABOVE_MOB_PLATFORM_LAYER
+		if(SOUTHWEST)
+			layer = ABOVE_MOB_PLATFORM_LAYER
 
-/obj/structure/fakeplatform/magmoor
-	icon_state = "metalplatform"
-	layer = LATTICE_LAYER
+/obj/structure/platform_decoration/rockcliff_deco
+	icon_state = "rockcliff_deco"
+	name = "rock cliff"
+	desc = "A collection of stones and rocks that form a steep cliff, it looks climbable."
+
+/obj/structure/platform_decoration/rockcliff_deco/icycliff_deco
+	icon_state = "icerock_deco"
+
+/obj/structure/platform_decoration/metalplatform_deco
+	icon_state = "metalplatform_deco"
+
+/obj/structure/platform_decoration/adobe_deco
+	icon_state = "adobe_deco"

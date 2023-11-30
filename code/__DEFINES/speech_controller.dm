@@ -7,6 +7,6 @@
 
 #define MOB_INDEX 1
 
-#define MESSAGE_INDEX 2
+#define MESSAGE_INDEX_SPEECH 2
 
 #define CATEGORY_INDEX 3

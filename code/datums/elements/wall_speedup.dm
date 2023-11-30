@@ -1,7 +1,7 @@
 /// This element makes you move faster when opposite adjacent turfs are closed, you get a flat movement speed bonus
 /datum/element/wall_speedup
 	element_flags = ELEMENT_BESPOKE
-	id_arg_index = 2
+	argument_hash_start_idx = 2
 	///The amount of speed gained by being inbetween walls
 	var/wall_speed_amount = 1
 	///Half of all directions

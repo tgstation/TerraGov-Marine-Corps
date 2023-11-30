@@ -13,17 +13,18 @@
 	see_in_dark = 6
 	maxHealth = 5
 	health = 5
-	response_help  = "pets"
+	response_help = "pets"
 	response_disarm = "gently pushes aside"
-	response_harm   = "splats"
+	response_harm = "splats"
 	density = FALSE
-	flags_pass = PASSTABLE|PASSGRILLE|PASSMOB
+	allow_pass_flags = PASS_MOB
+	pass_flags = PASS_LOW_STRUCTURE|PASS_GRILLE|PASS_MOB
 	mob_size = MOB_SIZE_SMALL
 	var/body_color //brown, gray and white, leave blank for random
 	var/chew_probability = 1
 
 
-/mob/living/simple_animal/mouse/Initialize()
+/mob/living/simple_animal/mouse/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/squeak, 'sound/effects/mousesqueek.ogg', 100, 30)
 	if(!body_color)
@@ -79,6 +80,6 @@
 /mob/living/simple_animal/mouse/brown/Tom
 	name = "Tom"
 	desc = "Jerry the cat is not amused."
-	response_help  = "pets"
+	response_help = "pets"
 	response_disarm = "gently pushes aside"
-	response_harm   = "splats"
+	response_harm = "splats"

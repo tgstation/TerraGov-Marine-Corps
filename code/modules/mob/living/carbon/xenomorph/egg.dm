@@ -112,7 +112,7 @@
 		return
 	playsound(src.loc, "sound/effects/alien_egg_move.ogg", 25)
 	flick("egg opening", src)
-	var/obj/item/clothing/mask/facehugger/hugger = new hugger_type()
+	var/obj/item/clothing/mask/facehugger/hugger = new hugger_type(get_turf(src), hivenumber)
 	hugger_type = null
 	addtimer(CALLBACK(hugger, TYPE_PROC_REF(/atom/movable, forceMove), loc), 1 SECONDS)
 	hugger.go_active()

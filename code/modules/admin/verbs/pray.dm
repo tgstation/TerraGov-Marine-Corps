@@ -6,6 +6,7 @@
 
 	if(!msg)
 		return
+	mob.log_talk(msg, LOG_PRAYER)
 
 	if(usr.client.prefs.muted & MUTE_PRAY)
 		to_chat(usr, span_warning("You cannot pray (muted)."))
@@ -28,19 +29,17 @@
 	for(var/client/C in GLOB.admins)
 		if(check_other_rights(C, R_ADMIN, FALSE) && (C.prefs.toggles_chat & CHAT_PRAYER))
 			to_chat(C,
-				type = MESSAGE_TYPE_STAFFLOG,
+				type = MESSAGE_TYPE_PRAYER,
 				html = msg)
 		else if(C.mob.stat == DEAD && (C.prefs.toggles_chat & CHAT_PRAYER))
 			to_chat(C,
-				type = MESSAGE_TYPE_STAFFLOG,
+				type = MESSAGE_TYPE_PRAYER,
 				html = mentor_msg)
 
 	if(liaison)
 		to_chat(usr, "Your corporate overlords at Nanotrasen have received your message.")
 	else
 		to_chat(usr, "Your prayers have been received by the gods.")
-
-	log_prayer(msg)
 
 
 /proc/tgmc_message(text, mob/sender)

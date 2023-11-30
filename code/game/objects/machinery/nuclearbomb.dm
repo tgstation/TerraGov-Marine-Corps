@@ -20,11 +20,15 @@
 	var/deployable = TRUE
 	var/extended = FALSE
 	var/lighthack = FALSE
-	///Time currently left on the nuke
-	var/timeleft = 180
+	///Time to start the timer on
+	var/time = 360 SECONDS
+	///Min time for the nuke timer
+	var/timemin = 360 SECONDS
 	///Max time for the nuke timer
-	var/timemax = 180
+	var/timemax = 1200 SECONDS
 	var/timer_enabled = FALSE
+	///ID of timer
+	var/timer
 	var/safety = TRUE
 	var/exploded = FALSE
 	var/removal_stage = NUKE_STAGE_NONE
@@ -36,7 +40,7 @@
 	var/obj/item/disk/nuclear/green/g_auth
 	var/obj/item/disk/nuclear/blue/b_auth
 
-/obj/machinery/nuclearbomb/Initialize()
+/obj/machinery/nuclearbomb/Initialize(mapload)
 	. = ..()
 	GLOB.nuke_list += src
 	countdown = new(src)
@@ -45,45 +49,40 @@
 	RegisterSignal(SSdcs, COMSIG_GLOB_DROPSHIP_HIJACKED, PROC_REF(disable_on_hijack))
 
 /obj/machinery/nuclearbomb/Destroy()
+	if(timer_enabled)
+		disable()
 	GLOB.nuke_list -= src
 	QDEL_NULL(countdown)
 	return ..()
 
-/obj/machinery/nuclearbomb/process()
-	if(!timer_enabled)
-		stop_processing()
-		return
-	timeleft--
-	if(timeleft <= 0)
-		explode()
-		return
-	updateUsrDialog()
-
-/obj/machinery/nuclearbomb/start_processing()
-	. = ..()
+///Enables nuke timer
+/obj/machinery/nuclearbomb/proc/enable()
 	GLOB.active_nuke_list += src
 	countdown.start()
-	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_NUKE_START, src)
+	notify_ghosts("[usr] enabled the [src], it has [round(time MILLISECONDS)] seconds on the timer.", source = src, action = NOTIFY_ORBIT, extra_large = TRUE)
+	timer_enabled = TRUE
+	timer = addtimer(CALLBACK(src, PROC_REF(explode)), time, TIMER_STOPPABLE)
 	update_minimap_icon()
-	notify_ghosts("[usr] enabled the [src], it has [timeleft] seconds on the timer.", source = src, action = NOTIFY_ORBIT, extra_large = TRUE)
+	// The timer is needed for when the signal is sent
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_NUKE_START, src)
 
-/obj/machinery/nuclearbomb/stop_processing()
+///Disables nuke timer
+/obj/machinery/nuclearbomb/proc/disable()
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_NUKE_STOP, src)
 	countdown.stop()
 	GLOB.active_nuke_list -= src
-	timeleft = timemax
+	timer_enabled = FALSE
+	if(timer)
+		deltimer(timer)
+		timer = null
 	update_minimap_icon()
-	return ..()
 
 ///Handles the boom
 /obj/machinery/nuclearbomb/proc/explode()
-	stop_processing()
+	disable()
 
 	if(safety)
-		timer_enabled = FALSE
-		update_minimap_icon()
 		return
-
 	if(exploded)
 		return
 	exploded = TRUE
@@ -100,8 +99,7 @@
 	machine_stat |= BROKEN
 	anchored = FALSE
 	if(timer_enabled)
-		timer_enabled = FALSE
-		stop_processing()
+		disable()
 
 /obj/machinery/nuclearbomb/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -121,8 +119,6 @@
 	if(r_auth && g_auth && b_auth)
 		has_auth = TRUE
 
-	updateUsrDialog()
-
 /obj/machinery/nuclearbomb/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
 	if(X.status_flags & INCORPOREAL)
 		return FALSE
@@ -138,9 +134,7 @@
 	X.visible_message("[X] disabled the nuke",
 	"You disabled the nuke.")
 
-	timer_enabled = FALSE
-	stop_processing()
-	update_icon()
+	disable()
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_NUKE_DIFFUSED, src, X)
 
 /obj/machinery/nuclearbomb/can_interact(mob/user)
@@ -149,6 +143,9 @@
 		return FALSE
 
 	if(!extended)
+		return FALSE
+
+	if(machine_stat & BROKEN)
 		return FALSE
 
 	return TRUE
@@ -190,8 +187,8 @@
 /obj/machinery/nuclearbomb/ui_data(mob/user)
 	var/list/data = list()
 
-	data["time_left"] = timeleft
-	data["time_max"] = timemax
+	data["time"] = round(time MILLISECONDS)
+	data["time_left"] = get_time_left()
 	data["timer_enabled"] = timer_enabled
 	data["has_auth"] = has_auth
 	data["safety"] = safety
@@ -214,7 +211,7 @@
 		else
 			status = "Auth. S1-[safe_text]"
 
-	if(timeleft <= 5)
+	if(timer && timeleft(timer) <= 5 SECONDS)
 		status = "Initializing nuclear explosion. Have a nice day :)"
 
 	data["status"] = status
@@ -236,7 +233,7 @@
 				return
 			if(!isnum(params["seconds"]))
 				CRASH("non-number passed")
-			change_time(params["seconds"])
+			change_time(params["seconds"] SECONDS)
 		if("toggle_safety")
 			if(!has_auth)
 				return
@@ -259,31 +256,27 @@
 		balloon_alert(user, "anchors not set")
 		return
 
-	timer_enabled = !timer_enabled
-
-	if(timer_enabled)
-		start_processing()
+	if(!timer_enabled)
+		enable()
 		balloon_alert(user, "timer started")
 	else
+		disable()
 		balloon_alert(user, "timer stopped")
 
 	if(!lighthack)
 		icon_state = (timer_enabled) ? "nuclearbomb2" : "nuclearbomb1"
 
 ///Modifies the nuke timer
-/obj/machinery/nuclearbomb/proc/change_time(time)
+/obj/machinery/nuclearbomb/proc/change_time(change)
 	if(!timer_enabled)
-		timemax += time
-		timemax = clamp(timemax, initial(timemax), 600)
-		timeleft = timemax
+		time = clamp(time + change, timemin, timemax)
 
 ///Toggles the safety on or off
 /obj/machinery/nuclearbomb/proc/toggle_safety(mob/user)
 	safety = !safety
 	if(safety)
-		timer_enabled = FALSE
 		balloon_alert(user, "safety enabled")
-		stop_processing()
+		disable()
 	else
 		balloon_alert(user, "safety disabled")
 
@@ -304,8 +297,7 @@
 	else
 		balloon_alert(user, "unanchored")
 		visible_message(span_warning("The anchoring bolts slide back into the depths of [src]."))
-		timer_enabled = FALSE
-		stop_processing()
+		disable()
 
 ///Handles disk insertion and removal
 /obj/machinery/nuclearbomb/proc/toggle_disk(mob/user, disk_colour)
@@ -351,14 +343,14 @@
 		if(r_auth && g_auth && b_auth)
 			has_auth = TRUE
 
-///Returns time left on the nuke
+///Returns time left on the nuke in seconds
 /obj/machinery/nuclearbomb/proc/get_time_left()
-	return timeleft
+	return timer ? round(timeleft(timer) MILLISECONDS) : round(time MILLISECONDS)
 
 ///Change minimap icon if its on or off
 /obj/machinery/nuclearbomb/proc/update_minimap_icon()
 	SSminimaps.remove_marker(src)
-	SSminimaps.add_marker(src, z, MINIMAP_FLAG_ALL, "nuke[timer_enabled ? "_on" : "_off"]", 'icons/UI_icons/map_blips_large.dmi')
+	SSminimaps.add_marker(src, MINIMAP_FLAG_ALL, image('icons/UI_icons/map_blips_large.dmi', null, "nuke[timer_enabled ? "_on" : "_off"]"))
 
 #undef NUKE_STAGE_NONE
 #undef NUKE_STAGE_COVER_REMOVED

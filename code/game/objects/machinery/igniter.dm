@@ -25,7 +25,7 @@
 	icon_state = "igniter[on]"
 
 
-/obj/machinery/igniter/Initialize()
+/obj/machinery/igniter/Initialize(mapload)
 	. = ..()
 	icon_state = "igniter[on]"
 
@@ -133,7 +133,7 @@
 		if(M.id == src.id)
 			use_power(active_power_usage)
 			M.on = !( M.on )
-			M.icon_state = text("igniter[]", M.on)
+			M.icon_state = "igniter[M.on]"
 
 	sleep(5 SECONDS)
 

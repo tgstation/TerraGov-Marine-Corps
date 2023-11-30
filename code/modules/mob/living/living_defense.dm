@@ -1,30 +1,3 @@
-//Handles the effects of "stun" weapons
-/**
-	stun_effect_act(stun_amount, agony_amount, def_zone)
-
-	Handle the effects of a "stun" weapon
-
-	Arguments
-		stun_amount {int} applied as Stun and Paralyze
-		def_zone {enum} which body part to target
-*/
-/mob/living/proc/stun_effect_act(stun_amount, agony_amount, def_zone)
-	if(status_flags & GODMODE)
-		return FALSE
-
-	flash_pain()
-
-	if(stun_amount)
-		Stun(stun_amount * 20) // TODO: replace these amounts in stun_effect_stun() calls
-		Paralyze(stun_amount * 20)
-		apply_effect(STUTTER, stun_amount)
-		apply_effect(EYE_BLUR, stun_amount)
-
-	if(agony_amount)
-		apply_effect(STUTTER, agony_amount/10)
-		apply_effect(EYE_BLUR, agony_amount/10)
-
-
 /mob/living/proc/electrocute_act(shock_damage, obj/source, siemens_coeff = 1.0)
 	return 0 //only carbon liveforms have this proc
 
@@ -35,59 +8,42 @@
 	..()
 
 //this proc handles being hit by a thrown atom
-/mob/living/hitby(atom/movable/AM as mob|obj,speed = 5)//Standardization and logging -Sieve
-	if(istype(AM,/obj/))
+/mob/living/hitby(atom/movable/AM, speed = 5)
+	. = TRUE
+	if(isliving(AM))
+		var/mob/living/thrown_mob = AM
+		if(thrown_mob.mob_size >= mob_size)
+			apply_damage((thrown_mob.mob_size + 1 - mob_size) * speed, BRUTE, BODY_ZONE_CHEST, MELEE, updating_health = TRUE)
+		if(thrown_mob.mob_size <= mob_size)
+			thrown_mob.stop_throw()
+			thrown_mob.apply_damage(speed, BRUTE, BODY_ZONE_CHEST, MELEE, updating_health = TRUE)
+	else if(isobj(AM))
 		var/obj/O = AM
-		var/dtype = BRUTE
-		if(istype(O,/obj/item/weapon))
-			var/obj/item/weapon/W = O
-			dtype = W.damtype
-		var/throw_damage = O.throwforce*(speed/5)
-
-		var/miss_chance = 15
-		if (O.throw_source)
-			var/distance = get_dist(O.throw_source, loc)
-			miss_chance = min(15*(distance-2), 0)
-
-		if (prob(miss_chance))
-			visible_message(span_notice(" \The [O] misses [src] narrowly!"), null, null, 5)
-			return
-
-		src.visible_message(span_warning(" [src] has been hit by [O]."), null, null, 5)
-
-		apply_damage(throw_damage, dtype, BODY_ZONE_CHEST, MELEE, is_sharp(O), has_edge(O), TRUE, O.penetration)
-
+		O.stop_throw()
+		apply_damage(O.throwforce*(speed * 0.2), O.damtype, BODY_ZONE_CHEST, MELEE, is_sharp(O), has_edge(O), TRUE, O.penetration)
 		if(O.item_fire_stacks)
 			fire_stacks += O.item_fire_stacks
-		if(CHECK_BITFIELD(O.resistance_flags, ON_FIRE))
 			IgniteMob()
 
-		O.set_throwing(FALSE) //it hit, so stop moving
+	visible_message(span_warning(" [src] has been hit by [AM]."), null, null, 5)
+	if(ismob(AM.thrower))
+		var/mob/M = AM.thrower
+		if(M.client)
+			log_combat(M, src, "hit", AM, "(thrown)")
 
-		if(ismob(O.thrower))
-			var/mob/M = O.thrower
-			var/client/assailant = M.client
-			if(assailant)
-				log_combat(M, src, "hit", O, "(thrown)")
+	if(speed < 15)
+		return
+	if(isitem(AM))
+		var/obj/item/W = AM
+		if(W.sharp && prob(W.embedding.embed_chance))
+			W.embed_into(src)
+	if(AM.throw_source)
+		visible_message(span_warning(" [src] staggers under the impact!"),span_warning(" You stagger under the impact!"), null, 5)
+		src.throw_at(get_edge_target_turf(src, get_dir(AM.throw_source, src)), 1, speed * 0.5)
 
-		// Begin BS12 momentum-transfer code.
-		if(O.throw_source && speed >= 15)
-			var/obj/item/W = O
-			var/momentum = speed/2
-			var/dir = get_dir(O.throw_source, src)
-
-			visible_message(span_warning(" [src] staggers under the impact!"),span_warning(" You stagger under the impact!"), null, 5)
-			src.throw_at(get_edge_target_turf(src,dir),1,momentum)
-
-			if(!W || !src) return
-
-			if(W.sharp && prob(W.embedding.embed_chance)) //Projectile is suitable for pinning.
-				//Handles embedding for non-humans and simple_animals.
-				W.embed_into(src)
-
-//This is called when the mob is thrown into a dense turf
-/mob/living/proc/turf_collision(turf/T, speed)
-	src.take_limb_damage(speed*5)
+/mob/living/turf_collision(turf/T, speed)
+	take_overall_damage(speed * 5, BRUTE, MELEE, FALSE, FALSE, TRUE, 0, 2)
+	playsound(src, 'sound/weapons/heavyhit.ogg', 40)
 
 /mob/living/proc/near_wall(direction,distance=1)
 	var/turf/T = get_step(get_turf(src),direction)
@@ -114,14 +70,13 @@
 		return FALSE
 	if(!CHECK_BITFIELD(datum_flags, DF_ISPROCESSING))
 		return FALSE
-	if(get_fire_resist() <= 0 || get_hard_armor("fire", BODY_ZONE_CHEST) >= 100)	//having high fire resist makes you immune
-		return FALSE
 	if(fire_stacks > 0 && !on_fire)
 		on_fire = TRUE
 		RegisterSignal(src, COMSIG_LIVING_DO_RESIST, PROC_REF(resist_fire))
 		to_chat(src, span_danger("You are on fire! Use Resist to put yourself out!"))
 		visible_message(span_danger("[src] bursts into flames!"), isxeno(src) ? span_xenodanger("You burst into flames!") : span_highdanger("You burst into flames!"))
 		update_fire()
+		SEND_SIGNAL(src, COMSIG_LIVING_IGNITED, fire_stacks)
 		return TRUE
 
 /mob/living/carbon/human/IgniteMob()
@@ -136,13 +91,7 @@
 	. = ..()
 	if(!.)
 		return
-	var/fire_light = min(fire_stacks,5)
-	if(fire_light > fire_luminosity) // light up xenos if new light source thats bigger hits them
-		if(fire_light < light_range)
-			set_light_range(fire_light) //update range
-		set_light_color(BlendRGB(light_color, LIGHT_COLOR_LAVA))
-		fire_luminosity = fire_light
-		set_light_on(TRUE) //And activate it
+	update_fire()
 	var/obj/item/clothing/mask/facehugger/F = get_active_held_item()
 	var/obj/item/clothing/mask/facehugger/G = get_inactive_held_item()
 	if(istype(F))
@@ -162,23 +111,16 @@
 	update_fire()
 	UnregisterSignal(src, COMSIG_LIVING_DO_RESIST)
 
-
-/mob/living/carbon/xenomorph/ExtinguishMob()
-	. = ..()
-	set_light_on(FALSE) //Reset lighting
-
-/mob/living/carbon/xenomorph/boiler/ExtinguishMob()
-	. = ..()
-	update_boiler_glow()
-
 /mob/living/proc/update_fire()
 	return
 
 /mob/living/proc/adjust_fire_stacks(add_fire_stacks) //Adjusting the amount of fire_stacks we have on person
+	if(QDELETED(src))
+		return
 	if(status_flags & GODMODE) //Invulnerable mobs don't get fire stacks
 		return
 	if(add_fire_stacks > 0)	//Fire stack increases are affected by armor, end result rounded up.
-		add_fire_stacks = CEILING(add_fire_stacks * get_fire_resist(), 1)
+		add_fire_stacks = CEILING(modify_by_armor(add_fire_stacks, FIRE), 1)
 	fire_stacks = clamp(fire_stacks + add_fire_stacks, -20, 20)
 	if(on_fire && fire_stacks <= 0)
 		ExtinguishMob()
@@ -205,10 +147,10 @@
 		to_chat(src, span_warning("You are untouched by the flames."))
 		return
 
-	take_overall_damage(rand(10, burnlevel), BURN, FIRE, updating_health = TRUE)
+	take_overall_damage(rand(10, burnlevel), BURN, FIRE, updating_health = TRUE, max_limbs = 4)
 	to_chat(src, span_warning("You are burned!"))
 
-	if(flags_pass & PASSFIRE) //Pass fire allow to cross fire without being ignited
+	if(pass_flags & PASS_FIRE) //Pass fire allow to cross fire without being ignited
 		return
 
 	adjust_fire_stacks(burnlevel)
@@ -217,20 +159,19 @@
 /mob/living/proc/resist_fire(datum/source)
 	SIGNAL_HANDLER
 	fire_stacks = max(fire_stacks - rand(3, 6), 0)
-	Paralyze(30)
 	var/turf/T = get_turf(src)
 	if(istype(T, /turf/open/floor/plating/ground/snow))
 		visible_message(span_danger("[src] rolls in the snow, putting themselves out!"), \
 		span_notice("You extinguish yourself in the snow!"), null, 5)
 		ExtinguishMob()
-		return
-
-	visible_message(span_danger("[src] rolls on the floor, trying to put themselves out!"), \
-	span_notice("You stop, drop, and roll!"), null, 5)
-	if(fire_stacks <= 0)
-		visible_message(span_danger("[src] has successfully extinguished themselves!"), \
-		span_notice("You extinguish yourself."), null, 5)
-		ExtinguishMob()
+	else
+		visible_message(span_danger("[src] rolls on the floor, trying to put themselves out!"), \
+		span_notice("You stop, drop, and roll!"), null, 5)
+		if(fire_stacks <= 0)
+			visible_message(span_danger("[src] has successfully extinguished themselves!"), \
+			span_notice("You extinguish yourself."), null, 5)
+			ExtinguishMob()
+	Paralyze(3 SECONDS)
 
 
 //Mobs on Fire end
@@ -291,5 +232,16 @@
 		if(!.)
 			break
 
-/mob/living/proc/get_fire_resist()
-	return clamp((100 - get_soft_armor("fire", null)) * 0.01, 0, 1)
+///Applies radiation effects to a mob
+/mob/living/proc/apply_radiation(rad_strength = 7, sound_level = null)
+	var/datum/looping_sound/geiger/geiger_counter = new(null, TRUE)
+	geiger_counter.severity = sound_level ? sound_level : clamp(round(rad_strength * 0.15, 1), 1, 4)
+	geiger_counter.start(src)
+
+	adjustCloneLoss(rad_strength)
+	adjustStaminaLoss(rad_strength * 7)
+	adjust_stagger(rad_strength SECONDS * 0.5)
+	add_slowdown(rad_strength * 0.5)
+	blur_eyes(rad_strength) //adds a visual indicator that you've just been irradiated
+	adjust_radiation(rad_strength * 20) //Radiation status effect, duration is in deciseconds
+	to_chat(src, span_warning("Your body tingles as you suddenly feel the strength drain from your body!"))

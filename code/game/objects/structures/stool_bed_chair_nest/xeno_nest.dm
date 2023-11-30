@@ -134,10 +134,10 @@
 
 
 /obj/structure/bed/nest/flamer_fire_act(burnlevel)
-	take_damage(burnlevel * 2, BURN, "fire")
+	take_damage(burnlevel * 2, BURN, FIRE)
 
 /obj/structure/bed/nest/fire_act()
-	take_damage(50, BURN, "fire")
+	take_damage(50, BURN, FIRE)
 
 #undef NEST_RESIST_TIME
 #undef NEST_UNBUCKLED_COOLDOWN

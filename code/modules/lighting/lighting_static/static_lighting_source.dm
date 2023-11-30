@@ -68,8 +68,7 @@
 	if (top_atom)
 		LAZYREMOVE(top_atom.static_light_sources, src)
 
-	if (needs_update)
-		SSlighting.static_sources_queue -= src
+	SSlighting.static_sources_queue -= src
 	return ..()
 
 // Yes this doesn't align correctly on anything other than 4 width tabs.
@@ -79,7 +78,7 @@
 	if (needs_update == LIGHTING_NO_UPDATE) \
 		SSlighting.static_sources_queue += src; \
 	if (needs_update < level)               \
-		needs_update            = level;    \
+		needs_update = level;    \
 
 
 /// This proc will cause the light source to update the top atom, and add itself to the update queue.

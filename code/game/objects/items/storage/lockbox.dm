@@ -4,7 +4,7 @@
 	icon_state = "lockbox+l"
 	item_state = "syringe_kit"
 	w_class = WEIGHT_CLASS_BULKY
-	max_w_class = 3
+	max_w_class = WEIGHT_CLASS_NORMAL
 	max_storage_space = 14
 	storage_slots = 4
 	req_access = list(ACCESS_MARINE_CAPTAIN)
@@ -46,14 +46,3 @@
 		return
 
 	return ..()
-
-
-/obj/item/storage/lockbox/clusterbang
-	name = "lockbox of clusterbangs"
-	desc = "You have a bad feeling about opening this."
-	req_access = list(ACCESS_MARINE_BRIG)
-
-
-/obj/item/storage/lockbox/clusterbang/Initialize()
-	. = ..()
-	new /obj/item/explosive/grenade/flashbang/clusterbang(src)

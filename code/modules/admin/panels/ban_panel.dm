@@ -24,6 +24,8 @@
 			mute_string = "adminhelps and PMs"
 		if(MUTE_DEADCHAT)
 			mute_string = "deadchat"
+		if(MUTE_TTS)
+			mute_string = "text to speech"
 		if(MUTE_ALL)
 			mute_string = "everything"
 		else
@@ -316,7 +318,7 @@
 				break_counter++
 			output += "</div></div>"
 		//departments/groups that don't have command staff would throw a javascript error since there's no corresponding reference for toggle_head()
-		var/list/headless_job_lists = list("Abstract" = list("Appearance", "Emote", "OOC", "LOOC"))
+		var/list/headless_job_lists = list("Abstract" = list("Appearance", "IC", "TTS", "Emote", "OOC", "LOOC", "Deadchat"))
 		for(var/department in headless_job_lists)
 			output += "<div class='column'><label class='rolegroup long [ckey(department)]'><input type='checkbox' name='[department]' class='hidden'>[department]</label><div class='content'>"
 			var/break_counter = 0
@@ -720,7 +722,7 @@
 		while(query_unban_search_bans.NextRow())
 			var/ban_id = query_unban_search_bans.item[1]
 			var/ban_datetime = query_unban_search_bans.item[2]
-			var/ban_round_id  = query_unban_search_bans.item[3]
+			var/ban_round_id = query_unban_search_bans.item[3]
 			var/role = query_unban_search_bans.item[4]
 			//make the href for unban here so only the search parameters are passed
 			var/unban_href = "<a href='?src=[REF(usr.client.holder)];[HrefToken()];unbanid=[ban_id];unbankey=[player_key];unbanadminkey=[admin_key];unbanip=[player_ip];unbancid=[player_cid];unbanrole=[role];unbanpage=[page]'>Unban</a>"

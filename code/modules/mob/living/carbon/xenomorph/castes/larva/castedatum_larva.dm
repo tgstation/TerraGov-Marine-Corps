@@ -31,6 +31,7 @@
 		/mob/living/carbon/xenomorph/runner,
 		/mob/living/carbon/xenomorph/sentinel,
 		/mob/living/carbon/xenomorph/defender,
+		/mob/living/carbon/xenomorph/baneling,
 	)
 
 	// *** Flags *** //

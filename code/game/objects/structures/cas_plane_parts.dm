@@ -7,7 +7,7 @@
 	layer = OBJ_LAYER
 	plane = GAME_PLANE
 	opacity = FALSE
-	resistance_flags = PLASMACUTTER_IMMUNE
+	resistance_flags = RESIST_ALL
 
 /turf/closed/shuttle/cas/one
 	icon_state = "cas_plane_trim_one"
@@ -189,7 +189,7 @@
 /obj/structure/caspart/leftprong
 	icon_state = "28"
 
-/obj/structure/caspart/leftprong/Initialize()
+/obj/structure/caspart/leftprong/Initialize(mapload)
 	. = ..()
 	var/image/overlay = image('icons/Marine/casship.dmi', src, "29")
 	overlay.pixel_y = 32
@@ -198,7 +198,7 @@
 /obj/structure/caspart/rightprong
 	icon_state = "13"
 
-/obj/structure/caspart/rightprong/Initialize()
+/obj/structure/caspart/rightprong/Initialize(mapload)
 	. = ..()
 	var/image/overlay = image('icons/Marine/casship.dmi', src, "14")
 	overlay.pixel_y = 32
@@ -209,9 +209,9 @@
 	desc = " A terrifying radial-mounted GAU-30mm minigun. You don't want to be on the wrong end of this."
 	icon_state = "1"
 	///static weapon we start with at the tip
-	var/static_weapon_type = /obj/structure/dropship_equipment/weapon/heavygun/radial_cas
+	var/static_weapon_type = /obj/structure/dropship_equipment/cas/weapon/heavygun/radial_cas
 	///ref to the static weapon
-	var/obj/structure/dropship_equipment/weapon/static_weapon
+	var/obj/structure/dropship_equipment/cas/weapon/static_weapon
 
 /obj/structure/caspart/minigun/examine(mob/user)
 	. = ..()
@@ -230,6 +230,9 @@
 /obj/structure/caspart/minigun/Destroy()
 	static_weapon = null
 	return ..()
+
+/obj/structure/caspart/minigun/attack_powerloader(mob/living/user, obj/item/powerloader_clamp/attached_clamp)
+	return static_weapon.attack_powerloader(user, attached_clamp)
 
 /obj/structure/caspart/minigun/attackby(obj/item/I, mob/user, params)
 	return static_weapon.attackby(I, user, params)

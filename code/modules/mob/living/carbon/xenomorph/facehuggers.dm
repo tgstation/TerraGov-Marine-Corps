@@ -83,15 +83,15 @@
 ///Registers the source of our facehugger for the purpose of anti-shuffle mechanics
 /obj/item/clothing/mask/facehugger/proc/facehugger_register_source(mob/living/carbon/xenomorph/S)
 	if(source) //If we have an existing source, unregister
-		UnregisterSignal(source, COMSIG_PARENT_QDELETING)
+		UnregisterSignal(source, COMSIG_QDELETING)
 
 	source = S //set and register new source
-	RegisterSignal(S, COMSIG_PARENT_QDELETING, PROC_REF(clear_hugger_source))
+	RegisterSignal(S, COMSIG_QDELETING, PROC_REF(clear_hugger_source))
 
 ///Clears the source of our facehugger for the purpose of anti-shuffle mechanics
 /obj/item/clothing/mask/facehugger/proc/clear_hugger_source()
 	SIGNAL_HANDLER
-	UnregisterSignal(source, COMSIG_PARENT_QDELETING)
+	UnregisterSignal(source, COMSIG_QDELETING)
 	source = null
 
 /obj/item/clothing/mask/facehugger/Destroy()
@@ -187,11 +187,6 @@
 	if(initial(sterile))
 		. += span_warning("It looks like the proboscis has been removed.")
 
-/obj/item/clothing/mask/facehugger/dropped(mob/user)
-	. = ..()
-	// Whena  xeno removes the hugger from storage we don't want to start the active timer until they drop or throw it
-	if(isxeno(user)) //Set the source mob
-		facehugger_register_source(user)
 
 /obj/item/clothing/mask/facehugger/proc/go_idle(hybernate = FALSE, no_activate = FALSE)
 	if(stat == DEAD)
@@ -250,12 +245,8 @@
 	if(stat != CONSCIOUS) //need to be active to leap
 		return
 
-	for(var/check_smoke in get_turf(src)) //Check for pacifying smoke
-		if(!istype(check_smoke, /obj/effect/particle_effect/smoke/xeno))
-			continue
-
-		var/obj/effect/particle_effect/smoke/xeno/xeno_smoke = check_smoke
-		if(CHECK_BITFIELD(xeno_smoke.smoke_traits, SMOKE_HUGGER_PACIFY)) //Cancel out and make the hugger go idle if we have the xeno pacify tag
+	for(var/obj/effect/particle_effect/smoke/check_smoke in get_turf(src)) //Check for pacifying smoke
+		if(CHECK_BITFIELD(check_smoke.smoke_traits, SMOKE_HUGGER_PACIFY)) //Cancel out and make the hugger go idle if we have the xeno pacify tag
 			go_idle()
 			return
 
@@ -358,44 +349,50 @@
 		return TRUE
 	return FALSE
 
-/obj/item/clothing/mask/facehugger/throw_at(atom/target, range, speed)
+/obj/item/clothing/mask/facehugger/throw_at(atom/target, range, speed, thrower, spin, flying = FALSE, targetted_throw = TRUE)
 	. = ..()
 	update_icon()
 
 /obj/item/clothing/mask/facehugger/throw_impact(atom/hit_atom, speed)
+	if(isopenturf(hit_atom))
+		var/valid_victim
+		for(var/mob/living/carbon/M in hit_atom)
+			if(!M.can_be_facehugged(src))
+				continue
+			valid_victim = TRUE
+			hit_atom = M
+		if(!valid_victim)
+			leaping = FALSE
+			go_idle()
+			return FALSE
 	. = ..()
+	if(!.)
+		return
 	if(stat != CONSCIOUS)
-		return ..()
-	if(iscarbon(hit_atom))
-		var/mob/living/carbon/M = hit_atom
-		if(loc == M) //Caught
-			update_icon()
-			pre_leap(impact_time)
-		else if(leaping && M.can_be_facehugged(src)) //Standard leaping behaviour, not attributable to being _thrown_ such as by a Carrier.
-			if(!Attach(M))
-				go_idle()
-			return
-		else
-			step(src, REVERSE_DIR(dir)) //We want the hugger to bounce off if it hits a mob.
-			update_icon()
-			if(!issamexenohive(M)) //If the target is not friendly, stagger and slow it, and activate faster.
-				M.adjust_stagger(3) //Apply stagger and slowdown so the carrier doesn't have to suicide when going for direct hugger hits.
-				M.add_slowdown(3)
-				pre_leap(impact_time) //Go into the universal leap set up proc
-				return
+		return
+	if(!iscarbon(hit_atom))
+		leaping = FALSE
+		go_idle()
+		return
 
-			pre_leap(activate_time) //Go into the universal leap set up proc
-			return
+	var/mob/living/carbon/carbon_victim = hit_atom
+	if(loc == carbon_victim) //Caught
+		pre_leap(impact_time)
+	else if(leaping && carbon_victim.can_be_facehugged(src)) //Standard leaping behaviour, not attributable to being _thrown_ such as by a Carrier.
+		if(!Attach(carbon_victim))
+			go_idle()
 	else
-		if(leaping)
-			for(var/mob/living/carbon/M in loc)
-				if(M.can_be_facehugged(src))
-					if(!Attach(M))
-						go_idle()
-					return
-	leaping = FALSE
-	go_idle(FALSE)
+		step(src, REVERSE_DIR(dir))
+		if(!issamexenohive(carbon_victim))
+			carbon_victim.adjust_stagger(3 SECONDS)
+			carbon_victim.add_slowdown(3)
+		pre_leap(activate_time)
 
+	leaping = FALSE
+
+/obj/item/clothing/mask/facehugger/stop_throw(flying, original_layer)
+	. = ..()
+	update_icon()
 
 //////////////////////
 //  FACEHUG CHECKS
@@ -447,7 +444,7 @@
 	if(check_mask)
 		if(wear_mask)
 			var/obj/item/W = wear_mask
-			if(W.flags_item & NODROP)
+			if(HAS_TRAIT(W, TRAIT_NODROP))
 				return FALSE
 			if(istype(W, /obj/item/clothing/mask/facehugger))
 				var/obj/item/clothing/mask/facehugger/hugger = W
@@ -510,7 +507,7 @@
 		if(H.head)
 			var/obj/item/clothing/head/D = H.head
 			if(istype(D))
-				if(D.anti_hug > 0 || D.flags_item & NODROP)
+				if(D.anti_hug > 0 || HAS_TRAIT(D, TRAIT_NODROP))
 					blocked = D
 					D.anti_hug = max(0, --D.anti_hug)
 					H.visible_message("<span class='danger'>[src] smashes against [H]'s [D.name], damaging it!")
@@ -526,7 +523,7 @@
 				if(hugger.stat != DEAD)
 					return FALSE
 
-			if(W.anti_hug > 0 || W.flags_item & NODROP)
+			if(W.anti_hug > 0 || HAS_TRAIT(W, TRAIT_NODROP))
 				if(!blocked)
 					blocked = W
 				W.anti_hug = max(0, --W.anti_hug)
@@ -556,12 +553,12 @@
 		var/stamina_dmg = user.maxHealth + user.max_stamina
 		user.apply_damage(stamina_dmg, STAMINA) // complete winds the target
 		user.Unconscious(2 SECONDS)
-	addtimer(VARSET_CALLBACK(src, flags_item, flags_item|NODROP), IMPREGNATION_TIME) // becomes stuck after min-impreg time
 	attached = TRUE
 	go_idle(FALSE, TRUE)
 	addtimer(CALLBACK(src, PROC_REF(Impregnate), user), IMPREGNATION_TIME)
 
 /obj/item/clothing/mask/facehugger/proc/Impregnate(mob/living/carbon/target)
+	ADD_TRAIT(src, TRAIT_NODROP, HUGGER_TRAIT)
 	var/as_planned = target?.wear_mask == src ? TRUE : FALSE
 	if(target.can_be_facehugged(src, FALSE, FALSE) && !sterile && as_planned) //is hugger still on face and can they still be impregnated
 		if(!(locate(/obj/item/alien_embryo) in target))
@@ -569,12 +566,15 @@
 			embryo.hivenumber = hivenumber
 			GLOB.round_statistics.now_pregnant++
 			SSblackbox.record_feedback("tally", "round_statistics", 1, "now_pregnant")
+			if(source?.client)
+				var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[source.ckey]
+				personal_statistics.impregnations++
 			sterile = TRUE
 		kill_hugger()
 	else
 		reset_attach_status(as_planned)
 		playsound(loc, 'sound/voice/alien_facehugger_dies.ogg', 25, 1)
-		activetimer = addtimer(CALLBACK(src, PROC_REF(go_active)), activate_time)
+		activetimer = addtimer(CALLBACK(src, PROC_REF(go_active)), activate_time, TIMER_STOPPABLE|TIMER_UNIQUE)
 		update_icon()
 
 	if(as_planned)
@@ -582,7 +582,7 @@
 			target.visible_message(span_danger("[src] falls limp after violating [target]'s face!"))
 		else //Huggered but not impregnated, deal damage.
 			target.visible_message(span_danger("[src] frantically claws at [target]'s face before falling down!"),span_danger("[src] frantically claws at your face before falling down! Auugh!"))
-			target.apply_damage(15, BRUTE, "head", updating_health = TRUE)
+			target.apply_damage(15, BRUTE, BODY_ZONE_HEAD, updating_health = TRUE)
 
 
 /obj/item/clothing/mask/facehugger/proc/kill_hugger(melt_timer = 1 MINUTES)
@@ -598,7 +598,6 @@
 	remove_danger_overlay() //Remove the danger overlay
 
 	update_icon()
-	visible_message("\icon[src] [span_danger("\The [src] curls up into a ball!")]")
 	playsound(loc, 'sound/voice/alien_facehugger_dies.ogg', 25, 1)
 
 	layer = BELOW_MOB_LAYER //so dead hugger appears below live hugger if stacked on same tile.
@@ -606,7 +605,7 @@
 	addtimer(CALLBACK(src, PROC_REF(melt_away)), melt_timer)
 
 /obj/item/clothing/mask/facehugger/proc/reset_attach_status(forcedrop = TRUE)
-	flags_item &= ~NODROP
+	REMOVE_TRAIT(src, TRAIT_NODROP, HUGGER_TRAIT)
 	attached = FALSE
 	if(isliving(loc) && forcedrop) //Make it fall off the person so we can update their icons. Won't update if they're in containers thou
 		var/mob/living/M = loc
@@ -648,6 +647,8 @@
 /obj/item/clothing/mask/facehugger/dropped(mob/user)
 	. = ..()
 	go_idle()
+	if(isxeno(user)) //Set the source mob
+		facehugger_register_source(user)
 
 
 /////////////////////////////
@@ -657,7 +658,7 @@
 	stat = UNCONSCIOUS
 	stasis = TRUE
 
-/obj/item/clothing/mask/facehugger/stasis/Initialize()
+/obj/item/clothing/mask/facehugger/stasis/Initialize(mapload)
 	. = ..()
 	update_icon()
 
@@ -668,7 +669,7 @@
 	stat = DEAD
 	sterile = TRUE
 
-/obj/item/clothing/mask/facehugger/dead/Initialize()
+/obj/item/clothing/mask/facehugger/dead/Initialize(mapload)
 	. = ..()
 	update_icon()
 
@@ -698,9 +699,8 @@
 
 	var/mob/living/victim = M
 	do_attack_animation(M)
-	var/armor_block = victim.get_soft_armor("bio", BODY_ZONE_CHEST)
-	victim.apply_damage(100, STAMINA, BODY_ZONE_CHEST, armor_block) //This should prevent sprinting
-	victim.apply_damage(1, BRUTE, sharp = TRUE) //Token brute for the injection
+	victim.apply_damage(100, STAMINA, BODY_ZONE_HEAD, BIO) //This should prevent sprinting
+	victim.apply_damage(1, BRUTE, sharp = TRUE, updating_health = TRUE) //Token brute for the injection
 	victim.reagents.add_reagent(/datum/reagent/toxin/xeno_neurotoxin, 10, no_overdose = TRUE)
 	playsound(victim, 'sound/effects/spray3.ogg', 25, 1)
 	victim.visible_message(span_danger("[src] penetrates [victim] with its sharp probscius!"),span_danger("[src] penetrates you with a sharp probscius before falling down!"))
@@ -758,15 +758,13 @@
 		if(!locate(/obj/effect/xenomorph/spray) in sticky_tile.contents)
 			new /obj/alien/resin/sticky/thin(sticky_tile)
 
-	var/armor_block
 	for(var/mob/living/target in range(1, loc))
 		if(isxeno(target)) //Xenos aren't affected by sticky resin
 			continue
 
-		target.adjust_stagger(3)
+		target.adjust_stagger(3 SECONDS)
 		target.add_slowdown(15)
-		armor_block = target.get_soft_armor("bio", BODY_ZONE_CHEST)
-		target.apply_damage(100, STAMINA, BODY_ZONE_CHEST, armor_block) //Small amount of stamina damage; meant to stop sprinting.
+		target.apply_damage(100, STAMINA, BODY_ZONE_HEAD, BIO, updating_health = TRUE) //This should prevent sprinting
 
 	kill_hugger(0.5 SECONDS)
 

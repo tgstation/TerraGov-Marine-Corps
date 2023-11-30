@@ -120,9 +120,9 @@
 	flags_equip_slot = ITEM_SLOT_BELT
 
 
-/obj/item/tool/pen/sleepypen/Initialize()
+/obj/item/tool/pen/sleepypen/Initialize(mapload)
 	. = ..()
-	create_reagents(30, OPENCONTAINER, list("chloralhydrate" = 22))
+	create_reagents(30, OPENCONTAINER, list(/datum/reagent/toxin/chloralhydrate = 22))
 
 
 /obj/item/tool/pen/sleepypen/attack(mob/M as mob, mob/user as mob)
@@ -153,7 +153,7 @@
 
 
 
-/obj/item/tool/pen/paralysis/Initialize()
+/obj/item/tool/pen/paralysis/Initialize(mapload)
 	. = ..()
 	create_reagents(50, OPENCONTAINER, list(/datum/reagent/toxin/huskpowder = 10, /datum/reagent/cryptobiolin = 15))
 

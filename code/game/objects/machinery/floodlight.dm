@@ -10,7 +10,7 @@
 	///The brightness of the floodlight
 	var/brightness_on = 8
 
-/obj/machinery/floodlight/Initialize()
+/obj/machinery/floodlight/Initialize(mapload)
 	. = ..()
 	GLOB.nightfall_toggleable_lights += src
 
@@ -46,7 +46,7 @@
 	use_power = 0
 	brightness_on = 6
 
-/obj/machinery/floodlight/landing/Initialize()
+/obj/machinery/floodlight/landing/Initialize(mapload)
 	. = ..()
 	set_light(brightness_on)
 
@@ -59,7 +59,7 @@
 /obj/machinery/floodlight/outpost/oscar
 	brightness_on = 30
 
-/obj/machinery/floodlight/outpost/Initialize()
+/obj/machinery/floodlight/outpost/Initialize(mapload)
 	. = ..()
 	set_light(brightness_on)
 
@@ -67,9 +67,6 @@
 	name = "Installation Light"
 	desc = "A powerful light stationed on the base to provide better visibility."
 
-/obj/machinery/floodlight/landing/Initialize()
-	. = ..()
-	set_light(brightness_on)
 
 /obj/machinery/floodlight/landing/testroom
 	name = "Ambience Light"
@@ -79,128 +76,70 @@
 	resistance_flags = RESIST_ALL
 	brightness_on = 25
 
-/obj/machinery/floodlight/landing/testroom/Initialize()
+/obj/machinery/floodlight/landing/testroom/Initialize(mapload)
 	. = ..()
 	set_light(brightness_on)
 
-/obj/machinery/floodlight/combat
-	name = "armoured floodlight"
-	icon_state = "floodlightcombat_off"
-	anchored = FALSE
+/obj/machinery/deployable/floodlight
+	use_power = NO_POWER_USE
+	anchored = TRUE
+	density = TRUE
 	resistance_flags = UNACIDABLE|XENO_DAMAGEABLE
-	///the cell powering this floodlight
-	var/obj/item/cell/cell
-	/// The charge consumption every 2 seconds
-	var/energy_consummed = 6
+	allow_pass_flags = PASSABLE
 	/// The lighting power of the floodlight
 	var/floodlight_light_range = 15
 	/// The amount of integrity repaired with every welder act.
 	var/repair_amount = 100
 
-/obj/machinery/floodlight/combat/Initialize()
+/obj/machinery/deployable/floodlight/Initialize(mapload)
 	. = ..()
-	cell = new()
 	GLOB.nightfall_toggleable_lights += src
 
-/obj/machinery/floodlight/combat/Destroy()
-	QDEL_NULL(cell)
+/obj/machinery/deployable/floodlight/Destroy()
 	GLOB.nightfall_toggleable_lights -= src
 	return ..()
 
-/obj/machinery/floodlight/combat/examine(mob/user)
+/obj/machinery/deployable/floodlight/examine(mob/user)
 	. = ..()
-	if(!cell)
-		. += span_notice("It has no cell installed.")
-		return
-	. += span_notice("[cell] has [CEILING(cell.charge / cell.maxcharge * 100, 1)]% charge left.")
 	. += span_notice("It has [obj_integrity]/[max_integrity] integrity left.")
 
-/// Handles the wrench act .
-/obj/machinery/floodlight/combat/wrench_act(mob/living/user, obj/item/I)
-	. = ..()
-	to_chat(user , span_notice("You begin wrenching \the [src]'s bolts."))
-	playsound(loc, 'sound/items/ratchet.ogg', 60, FALSE)
-	if(!do_after(user, 2 SECONDS, TRUE, src))
-		return FALSE
-	if(anchored)
-		to_chat(user , span_notice("You unwrench \the [src]'s bolts."))
-		anchored = FALSE
-		if(light_on)
-			turn_light(user, FALSE, forced = TRUE)
-	else
-		to_chat(user , span_notice("You wrench down \the [src]'s bolts."))
-		anchored = TRUE
-
-/obj/machinery/floodlight/combat/crowbar_act(mob/living/user, obj/item/I)
-	. = ..()
-	if(!user)
-		return
-	if(!cell)
-		to_chat(user, span_warning("There is no cell to remove!"))
-		return
-	if(!do_after(user, 2 SECONDS, TRUE, src))
-		return FALSE
-	playsound(loc, 'sound/items/crowbar.ogg', 25, 1)
-	to_chat(user , span_notice("You remove [cell] from \the [src]."))
-	user.put_in_hands(cell)
-	cell = null
-	turn_light(user, FALSE, forced = TRUE)
-
-/obj/machinery/floodlight/combat/welder_act(mob/living/user, obj/item/I)
+/obj/machinery/deployable/floodlight/welder_act(mob/living/user, obj/item/I)
 	return welder_repair_act(user, I, repair_amount, 4 SECONDS)
 
-/obj/machinery/floodlight/combat/process()
-	cell.charge -= energy_consummed
-	if(cell.charge > 0)
-		return
-	cell.charge = 0
-	turn_light(null, FALSE, forced = TRUE)
-
-/obj/machinery/floodlight/combat/attackby(obj/item/I, mob/user, params)
-	if(!ishuman(user))
-		return FALSE
-	if(!istype(I, /obj/item/cell))
-		return FALSE
-	if(cell)
-		to_chat(user, span_warning("There is already a cell inside, use a crowbar to remove it."))
-		return
-	if(!do_after(user, 2 SECONDS, TRUE, src))
-		return FALSE
-	I.forceMove(src)
-	user.temporarilyRemoveItemFromInventory(I)
-	cell = I
-	playsound(loc, 'sound/items/deconstruct.ogg', 25, 1)
-
-/obj/machinery/floodlight/combat/turn_light(user, toggle_on , cooldown, sparks, forced)
+/obj/machinery/deployable/floodlight/turn_light(user, toggle_on)
 	. = ..()
 	if(. != CHECKS_PASSED)
 		return
 	if(toggle_on)
+		if(user)
+			to_chat(user, span_notice("You turn on the light."))
 		set_light(floodlight_light_range, 5, COLOR_WHITE)
-		start_processing()
 	else
-		set_light(0, 5, COLOR_WHITE)
-		stop_processing()
+		if(user)
+			to_chat(user, span_notice("You turn off the light."))
+		set_light(0)
 	playsound(src,'sound/machines/click.ogg', 15, 1)
 	update_icon()
 
-/obj/machinery/floodlight/combat/attack_hand(mob/living/user)
-	if(!ishuman(user))
-		return FALSE
-	if(!anchored)
-		to_chat(user, span_warning("You need to anchor \the [src] with a wrench before you can turn it on!"))
-		return
-	if(!cell)
-		to_chat(user, span_warning("There is no cell powering \the [src]!"))
-		return
-	if(cell.charge <= 0)
-		to_chat(user, span_warning("The cell inside is out of juice!"))
-		return
+/obj/machinery/deployable/floodlight/attack_hand(mob/living/user)
 	turn_light(user, !light_on)
-	return TRUE
 
-/obj/machinery/floodlight/combat/update_icon_state()
-	icon_state = "floodlightcombat" + (light_on ? "_on" : "_off")
+/obj/machinery/deployable/floodlight/update_icon_state()
+	icon_state = "floodlightcombat_deployed" + (light_on ? "_on" : "_off")
+
+/obj/item/deployable_floodlight
+	name = "\improper deployable floodlight"
+	desc = "A powerful light able to be transported and deployed easily for a very long lasting light."
+	icon = 'icons/obj/machines/floodlight.dmi'
+	icon_state = "floodlightcombat"
+	max_integrity = 200
+	flags_item = IS_DEPLOYABLE
+	w_class = WEIGHT_CLASS_NORMAL
+	var/deployable_item = /obj/machinery/deployable/floodlight
+
+/obj/item/deployable_floodlight/Initialize()
+	. = ..()
+	AddComponent(/datum/component/deployable_item, deployable_item, 5 SECONDS, 3 SECONDS)
 
 #define FLOODLIGHT_TICK_CONSUMPTION 800
 
@@ -210,7 +149,7 @@
 	brightness_on = 7
 	var/obj/machinery/colony_floodlight_switch/fswitch = null //Reverse lookup for power grabbing in area
 
-/obj/machinery/floodlight/colony/Initialize()
+/obj/machinery/floodlight/colony/Initialize(mapload)
 	. = ..()
 	RegisterSignal(SSdcs, COMSIG_GLOB_FLOODLIGHT_SWITCH, PROC_REF(floodswitch_powered))
 

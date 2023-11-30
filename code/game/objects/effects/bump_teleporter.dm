@@ -11,7 +11,7 @@ GLOBAL_LIST_EMPTY(bump_teleporters)
 	density = TRUE
 	opacity = FALSE
 
-/obj/effect/bump_teleporter/Initialize()
+/obj/effect/bump_teleporter/Initialize(mapload)
 	. = ..()
 	GLOB.bump_teleporters += src
 

@@ -1,6 +1,15 @@
 /* SURGERY STEPS */
 
-GLOBAL_LIST_EMPTY(surgery_steps)
+GLOBAL_LIST_INIT(surgery_steps, init_surgery())
+
+/// Surgery Steps - Initialize all /datum/surgery_step into a list
+/proc/init_surgery()
+	var/list/surgeries = list()
+	for(var/surgery_step_type in subtypesof(/datum/surgery_step))
+		var/datum/surgery_step/step = new surgery_step_type
+		surgeries += step
+
+	return sort_surgeries(surgeries)
 
 /datum/surgery_step
 	var/priority = 0 //Steps with higher priority will be attempted first. Accepts decimals
@@ -63,6 +72,7 @@ GLOBAL_LIST_EMPTY(surgery_steps)
 
 //Does stuff to end the step, which is normally print a message + do whatever this step changes
 /datum/surgery_step/proc/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
+	record_surgical_operation(user)
 	return
 
 //Stuff that happens when the step fails
@@ -74,34 +84,37 @@ GLOBAL_LIST_EMPTY(surgery_steps)
 	if(!istype(user) || !istype(E))
 		return
 
+	var/applied_germ_ratio = 0
 	//Gloves
 	if(user.gloves)
 		if(istype(user.gloves, /obj/item/clothing/gloves/latex))
-			E.germ_level += user.gloves.germ_level * 0.1
-		else if(user.gloves.germ_level && user.gloves.germ_level > 60)
-			E.germ_level += user.gloves.germ_level * 0.2
+			applied_germ_ratio += 0.1
+		else
+			applied_germ_ratio += 0.2
 	else
-		E.germ_level += user.germ_level * 0.33
+		applied_germ_ratio += 0.33
 
 	//Masks
 	if(user.wear_mask)
 		if(istype(user.wear_mask, /obj/item/clothing/mask/cigarette))
-			E.germ_level += user.germ_level * 1
+			applied_germ_ratio += 1
 		else if(istype(user.wear_mask, /obj/item/clothing/mask/surgical))
-			E.germ_level += user.wear_mask.germ_level * 0.1
+			applied_germ_ratio += 0.1
 		else
-			E.germ_level += user.wear_mask.germ_level * 0.2
+			applied_germ_ratio += 0.2
 	else
-		E.germ_level += user.germ_level * 0.33
+		applied_germ_ratio += 0.33
 
 	//Suits
 	if(user.wear_suit)
 		if(istype(user.wear_suit, /obj/item/clothing/suit/surgical))
-			E.germ_level += user.germ_level * 0.1
+			applied_germ_ratio += 0.1
 		else
-			E.germ_level += user.germ_level * 0.2
+			applied_germ_ratio += 0.2
 	else
-		E.germ_level += user.germ_level * 0.33
+		applied_germ_ratio += 0.33
+
+	E.germ_level += user.germ_level * applied_germ_ratio
 
 	if(locate(/obj/structure/bed/roller, E.owner.loc))
 		E.germ_level += 50
@@ -150,7 +163,7 @@ GLOBAL_LIST_EMPTY(surgery_steps)
 			multipler -= 0.10
 		else if(locate(/obj/structure/table/, M.loc))
 			multipler -= 0.20
-		if(M.stat == CONSCIOUS)//If not on anesthetics or not unconsious
+		if(M.stat == CONSCIOUS && !CHECK_BITFIELD(M.species.species_flags, NO_PAIN))//If not on anesthetics or not unconsious, and able to feel pain
 			multipler -= 0.5
 			switch(M.reagent_pain_modifier)
 				if(PAIN_REDUCTION_HEAVY to PAIN_REDUCTION_MEDIUM)
@@ -166,6 +179,8 @@ GLOBAL_LIST_EMPTY(surgery_steps)
 
 		//calculate step duration
 		var/step_duration = max(0.5 SECONDS, rand(surgery_step.min_duration, surgery_step.max_duration) - 1 SECONDS * user.skills.getRating(SKILL_SURGERY))
+		if(locate(/obj/machinery/optable) in M.loc)
+			step_duration = max(0.5 SECONDS, surgery_step.min_duration - 1 SECONDS * user.skills.getRating(SKILL_SURGERY))
 
 		//Multiply tool success rate with multipler
 		if(do_mob(user, M, step_duration, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL, extra_checks = CALLBACK(user, TYPE_PROC_REF(/mob, break_do_after_checks), null, null, user.zone_selected)) && prob(surgery_step.tool_quality(tool) * CLAMP01(multipler)))
@@ -176,11 +191,11 @@ GLOBAL_LIST_EMPTY(surgery_steps)
 
 		else if((tool in user.contents) && user.Adjacent(M)) //Or
 			if(M.stat == CONSCIOUS) //If not on anesthetics or not unconsious, warn player
-				if(ishuman(M))
-					var/mob/living/carbon/human/H = M
-					if(!(H.species.species_flags & NO_PAIN))
-						M.emote("pain")
-				to_chat(user, span_danger("[M] moved during the surgery! Use anesthetics!"))
+				if(!CHECK_BITFIELD(M.species.species_flags, NO_PAIN))
+					M.emote("pain")
+					to_chat(user, span_danger("[M] moved during the surgery! Use anesthetics!"))
+				else
+					to_chat(user, span_danger("[M] moved during the surgery!"))
 			surgery_step.fail_step(user, M, user.zone_selected, tool, affected) //Malpractice
 		else //This failing silently was a pain.
 			to_chat(user, span_warning("You must remain close to your patient to conduct surgery."))
@@ -189,8 +204,8 @@ GLOBAL_LIST_EMPTY(surgery_steps)
 
 
 //Comb Sort. This works apparently, so we're keeping it that way
-/proc/sort_surgeries()
-	var/gap = length(GLOB.surgery_steps)
+/proc/sort_surgeries(list/surgery_list)
+	var/gap = length(surgery_list)
 	var/swapped = 1
 	while(gap > 1 || swapped)
 		swapped = 0
@@ -198,16 +213,16 @@ GLOBAL_LIST_EMPTY(surgery_steps)
 			gap = round(gap / 1.247330950103979)
 		if(gap < 1)
 			gap = 1
-		for(var/i = 1; gap + i <= length(GLOB.surgery_steps); i++)
-			var/datum/surgery_step/l = GLOB.surgery_steps[i]		//Fucking hate
-			var/datum/surgery_step/r = GLOB.surgery_steps[gap+i]	//how lists work here
+		for(var/i = 1; gap + i <= length(surgery_list); i++)
+			var/datum/surgery_step/l = surgery_list[i]		//Fucking hate
+			var/datum/surgery_step/r = surgery_list[gap+i]	//how lists work here
 			if(l.priority < r.priority)
-				GLOB.surgery_steps.Swap(i, gap + i)
+				surgery_list.Swap(i, gap + i)
 				swapped = 1
 
+	return surgery_list
 
-
-/datum/surgery_status/
+/datum/surgery_status
 	var/eyes	=	0
 	var/face	=	0
 	var/head_reattach = 0

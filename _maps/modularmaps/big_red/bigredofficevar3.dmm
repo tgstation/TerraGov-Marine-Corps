@@ -41,6 +41,8 @@
 	on = 1
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/machinery/power/apc,
+/obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/office_complex)
 "bz" = (
@@ -268,7 +270,7 @@
 /area/bigredv2/outside/c)
 "mO" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/spawner/random/trash,
+/obj/effect/spawner/random/misc/trash,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/office_complex)
 "nL" = (
@@ -383,7 +385,7 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/office_complex)
 "sx" = (
-/obj/structure/window/framed/colony,
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /obj/machinery/door/poddoor/shutters/mainship{
 	dir = 2;
 	id = "Office Complex 1";
@@ -542,7 +544,7 @@
 	dir = 4
 	},
 /obj/structure/cable,
-/obj/effect/spawner/random/trash,
+/obj/effect/spawner/random/misc/trash,
 /turf/open/floor/tile/red/redtaupecorner,
 /area/bigredv2/outside/office_complex)
 "yN" = (
@@ -741,7 +743,7 @@
 /area/bigredv2/outside/office_complex)
 "HK" = (
 /obj/structure/table,
-/obj/structure/paper_bin,
+/obj/effect/spawner/random/misc/paperbin,
 /turf/open/floor,
 /area/bigredv2/outside/office_complex)
 "HM" = (
@@ -764,7 +766,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/office_complex)
 "Jd" = (
-/obj/structure/window/framed/colony,
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/office_complex)
 "Jh" = (
@@ -834,7 +836,7 @@
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/office_complex)
 "MX" = (
-/obj/structure/window/framed/colony,
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /obj/machinery/door/poddoor/shutters/mainship{
 	id = "Office Complex 1";
 	name = "\improper Office Complex Shutters"
@@ -870,7 +872,7 @@
 /turf/open/floor/tile/red/redtaupecorner,
 /area/bigredv2/outside/office_complex)
 "OQ" = (
-/obj/machinery/alarm{
+/obj/machinery/air_alarm{
 	dir = 4
 	},
 /turf/open/floor/tile/red/redtaupecorner{
@@ -881,6 +883,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
+/obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/office_complex)
 "Pg" = (
@@ -994,7 +997,7 @@
 /obj/structure/cable,
 /obj/effect/ai_node,
 /turf/open/floor,
-/area/bigredv2/outside/office_complex)
+/area/bigredv2/outside/e)
 "Vp" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable,

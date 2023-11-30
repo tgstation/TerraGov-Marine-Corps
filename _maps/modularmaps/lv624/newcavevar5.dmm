@@ -36,7 +36,7 @@
 /area/lv624/ground/caves/central2)
 "eE" = (
 /obj/item/ammo_casing/shell,
-/turf/open/floor/wood/broken/three,
+/turf/open/floor/wood/broken,
 /area/lv624/ground/caves/central2)
 "eF" = (
 /obj/structure/table/woodentable,
@@ -45,8 +45,8 @@
 /area/lv624/ground/caves/central2)
 "eH" = (
 /obj/structure/table/woodentable,
-/obj/item/tool/kitchen/knife/butcher,
-/obj/item/tool/kitchen/knife/butcher{
+/obj/effect/spawner/random/food_or_drink/kitchenknife/butcherweighted,
+/obj/effect/spawner/random/food_or_drink/kitchenknife/butcherweighted{
 	pixel_y = 6
 	},
 /turf/open/floor/wood,
@@ -56,9 +56,6 @@
 /obj/item/weapon/twohanded/fireaxe,
 /obj/effect/landmark/corpsespawner/colonist,
 /turf/open/floor/wood,
-/area/lv624/ground/caves/central2)
-"fJ" = (
-/turf/open/floor/wood/broken,
 /area/lv624/ground/caves/central2)
 "gF" = (
 /obj/structure/closet/crate,
@@ -87,10 +84,6 @@
 /obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central3)
-"iE" = (
-/obj/effect/decal/cleanable/blood/drip,
-/turf/open/floor/wood/broken/six,
-/area/lv624/ground/caves/central2)
 "iN" = (
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central3)
@@ -100,7 +93,7 @@
 /area/lv624/ground/caves/central2)
 "jb" = (
 /obj/structure/flora/ausbushes/reedbush,
-/turf/open/ground/river/autosmooth,
+/turf/open/liquid/water/river/autosmooth,
 /area/lv624/ground/caves/central2)
 "jl" = (
 /obj/structure/closet/cabinet,
@@ -146,7 +139,7 @@
 /area/lv624/ground/caves/central2)
 "lu" = (
 /obj/structure/closet/crate,
-/obj/effect/spawner/random/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
 /turf/open/floor/wood,
 /area/lv624/ground/caves/central2)
 "lF" = (
@@ -155,8 +148,8 @@
 /area/lv624/ground/caves/central2)
 "mh" = (
 /obj/structure/table/woodentable,
-/obj/effect/spawner/random/ammo/machinegun,
-/obj/effect/spawner/random/ammo/machinegun{
+/obj/effect/spawner/random/weaponry/ammo/machinegun,
+/obj/effect/spawner/random/weaponry/ammo/machinegun{
 	pixel_x = -5;
 	pixel_y = 6
 	},
@@ -164,13 +157,13 @@
 /area/lv624/ground/caves/central2)
 "ne" = (
 /obj/structure/table/woodentable,
-/obj/effect/spawner/random/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
 /turf/open/floor/carpet/side{
 	dir = 10
 	},
 /area/lv624/ground/caves/central2)
 "op" = (
-/obj/effect/spawner/random/trash,
+/obj/effect/spawner/random/misc/trash,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central2)
 "os" = (
@@ -187,9 +180,6 @@
 	dir = 8
 	},
 /area/lv624/ground/caves/central1)
-"ph" = (
-/turf/open/floor/wood/broken/two,
-/area/lv624/ground/caves/central2)
 "pD" = (
 /obj/effect/landmark/weed_node,
 /obj/effect/ai_node,
@@ -198,9 +188,6 @@
 "pE" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/caves/central2)
-"pJ" = (
-/turf/open/floor/wood/broken/three,
 /area/lv624/ground/caves/central2)
 "pP" = (
 /obj/item/flashlight/lantern,
@@ -224,14 +211,6 @@
 /obj/item/weapon/gun/shotgun/double,
 /turf/open/floor/wood,
 /area/lv624/ground/caves/central2)
-"qW" = (
-/obj/effect/ai_node,
-/turf/open/floor/wood/broken/six,
-/area/lv624/ground/caves/central2)
-"ro" = (
-/obj/item/ammo_casing/shell,
-/turf/open/floor/wood/broken/four,
-/area/lv624/ground/caves/central2)
 "sl" = (
 /obj/structure/rack,
 /obj/item/stack/sheet/mineral/gold{
@@ -246,7 +225,7 @@
 /area/lv624/ground/caves/central1)
 "sv" = (
 /obj/structure/closet/secure_closet/freezer/fridge,
-/turf/open/floor/wood/broken/three,
+/turf/open/floor/wood/broken,
 /area/lv624/ground/caves/central2)
 "sH" = (
 /obj/structure/barricade/sandbags{
@@ -255,7 +234,9 @@
 /turf/open/floor/wood,
 /area/lv624/ground/caves/central2)
 "sL" = (
-/obj/machinery/door/airlock/sandstone,
+/obj/machinery/door/airlock/mainship/generic{
+	dir = 2
+	},
 /turf/open/floor/wood,
 /area/lv624/ground/caves/central2)
 "sR" = (
@@ -277,7 +258,7 @@
 /area/lv624/ground/caves/central2)
 "uy" = (
 /obj/effect/decal/cleanable/blood/drip,
-/turf/open/floor/wood/broken/four,
+/turf/open/floor/wood/broken,
 /area/lv624/ground/caves/central2)
 "uV" = (
 /turf/closed/wall/wood,
@@ -285,10 +266,6 @@
 "vb" = (
 /obj/effect/ai_node,
 /turf/open/floor/wood/broken,
-/area/lv624/ground/caves/central2)
-"vi" = (
-/obj/item/ammo_casing/shell,
-/turf/open/floor/wood/broken/six,
 /area/lv624/ground/caves/central2)
 "vk" = (
 /turf/closed/mineral/smooth,
@@ -308,14 +285,11 @@
 	},
 /area/lv624/ground/caves/central1)
 "vz" = (
-/obj/structure/jungle/plantbot1/alien,
-/turf/open/ground/river/autosmooth,
-/area/lv624/ground/caves/central2)
-"vE" = (
-/turf/open/floor/wood/broken/four,
+/obj/structure/flora/jungle/plantbot1/alien,
+/turf/open/liquid/water/river/autosmooth,
 /area/lv624/ground/caves/central2)
 "vN" = (
-/obj/effect/spawner/random/clothing,
+/obj/effect/spawner/random/clothing/general,
 /turf/open/floor/wood,
 /area/lv624/ground/caves/central2)
 "wL" = (
@@ -329,8 +303,8 @@
 /area/lv624/ground/caves/central1)
 "xm" = (
 /obj/structure/table/woodentable,
-/obj/effect/spawner/random/ammo/machinegun,
-/obj/effect/spawner/random/gun/machineguns{
+/obj/effect/spawner/random/weaponry/ammo/machinegun,
+/obj/effect/spawner/random/weaponry/gun/machineguns{
 	pixel_x = -2;
 	pixel_y = 2
 	},
@@ -342,7 +316,7 @@
 /area/lv624/ground/caves/central2)
 "xI" = (
 /obj/structure/table/woodentable,
-/obj/effect/spawner/random/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
 /turf/open/floor/carpet/side{
 	dir = 1
 	},
@@ -358,7 +332,7 @@
 /area/lv624/ground/caves/central1)
 "zz" = (
 /obj/effect/ai_node,
-/turf/open/ground/river/autosmooth,
+/turf/open/liquid/water/river/autosmooth,
 /area/lv624/ground/caves/central2)
 "zK" = (
 /obj/machinery/miner/damaged/platinum,
@@ -382,12 +356,9 @@
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/wall/r_wall,
 /area/lv624/ground/caves/rock)
-"DD" = (
-/turf/open/floor/wood/broken/seven,
-/area/lv624/ground/caves/central2)
 "DE" = (
 /obj/structure/rack,
-/obj/item/tool/pickaxe,
+/obj/effect/spawner/random/engineering/pickaxe,
 /turf/open/floor/tile/vault{
 	dir = 8
 	},
@@ -403,7 +374,7 @@
 /area/lv624/ground/caves/central2)
 "Ge" = (
 /obj/structure/flora/ausbushes/fernybush,
-/turf/open/ground/river/autosmooth,
+/turf/open/liquid/water/river/autosmooth,
 /area/lv624/ground/caves/central2)
 "Gm" = (
 /obj/item/ammo_casing/shell,
@@ -465,11 +436,11 @@
 /area/lv624/ground/caves/central2)
 "Ik" = (
 /obj/structure/barricade/sandbags,
-/turf/open/floor/wood/broken/three,
+/turf/open/floor/wood/broken,
 /area/lv624/ground/caves/central2)
 "In" = (
 /turf/open/floor,
-/area/lv624/ground/caves/central1)
+/area/lv624/ground/caves/central1/garbledradio)
 "IL" = (
 /turf/closed/wall,
 /area/lv624/ground/caves/central1)
@@ -492,14 +463,14 @@
 /turf/open/floor/wood,
 /area/lv624/ground/caves/central2)
 "Ky" = (
-/obj/machinery/door/airlock/sandstone,
 /obj/effect/ai_node,
+/obj/machinery/door/airlock/mainship/generic,
 /turf/open/floor/wood,
 /area/lv624/ground/caves/central2)
 "Md" = (
 /obj/structure/table/woodentable,
-/obj/effect/spawner/random/ammo/machinegun,
-/obj/effect/spawner/random/gun/machineguns{
+/obj/effect/spawner/random/weaponry/ammo/machinegun,
+/obj/effect/spawner/random/weaponry/gun/machineguns{
 	pixel_x = -2;
 	pixel_y = 6
 	},
@@ -519,18 +490,18 @@
 "MQ" = (
 /obj/effect/landmark/corpsespawner/colonist,
 /obj/effect/decal/cleanable/blood/splatter,
-/turf/open/floor/wood/broken/six,
+/turf/open/floor/wood/broken,
 /area/lv624/ground/caves/central2)
 "NI" = (
-/obj/effect/spawner/random/gun/sidearms,
+/obj/effect/spawner/random/weaponry/gun/sidearms,
 /turf/open/floor/wood,
 /area/lv624/ground/caves/central2)
 "NO" = (
-/turf/open/floor/wood/broken/six,
+/turf/open/floor/wood/broken,
 /area/lv624/ground/caves/central2)
 "OX" = (
 /obj/effect/decal/cleanable/blood/drip,
-/obj/effect/spawner/random/gun/sidearms,
+/obj/effect/spawner/random/weaponry/gun/sidearms,
 /turf/open/floor/wood/broken,
 /area/lv624/ground/caves/central2)
 "Pl" = (
@@ -550,23 +521,19 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central1)
 "RA" = (
-/obj/effect/spawner/random/trash,
+/obj/effect/spawner/random/misc/trash,
 /turf/open/floor/wood,
 /area/lv624/ground/caves/central2)
 "RT" = (
-/obj/effect/spawner/random/clothing,
-/turf/open/floor/wood/broken/six,
+/obj/effect/spawner/random/clothing/general,
+/turf/open/floor/wood/broken,
 /area/lv624/ground/caves/central2)
 "Tp" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/mineral/smooth,
 /area/lv624/ground/caves/rock)
 "TR" = (
-/turf/open/ground/river/autosmooth,
-/area/lv624/ground/caves/central2)
-"UI" = (
-/obj/effect/decal/cleanable/blood/drip,
-/turf/open/floor/wood/broken/three,
+/turf/open/liquid/water/river/autosmooth,
 /area/lv624/ground/caves/central2)
 "UT" = (
 /obj/structure/rack,
@@ -583,8 +550,8 @@
 /area/lv624/ground/caves/central2)
 "UX" = (
 /obj/structure/table/woodentable,
-/obj/effect/spawner/random/ammo/machinegun,
-/obj/effect/spawner/random/gun/machineguns{
+/obj/effect/spawner/random/weaponry/ammo/machinegun,
+/obj/effect/spawner/random/weaponry/gun/machineguns{
 	pixel_x = 2;
 	pixel_y = 4
 	},
@@ -614,10 +581,6 @@
 	dir = 8
 	},
 /area/lv624/ground/caves/central1)
-"We" = (
-/obj/structure/barricade/sandbags,
-/turf/open/floor/wood/broken,
-/area/lv624/ground/caves/central2)
 "Wl" = (
 /obj/structure/barricade/sandbags,
 /obj/structure/table/woodentable,
@@ -629,12 +592,6 @@
 /obj/item/stack/sheet/wood,
 /turf/open/floor/wood,
 /area/lv624/ground/caves/central2)
-"WQ" = (
-/obj/structure/barricade/sandbags{
-	dir = 1
-	},
-/turf/open/floor/wood/broken/six,
-/area/lv624/ground/caves/central2)
 "Xu" = (
 /obj/structure/table/woodentable,
 /obj/item/tool/candle,
@@ -644,7 +601,7 @@
 /area/lv624/ground/caves/central2)
 "Yt" = (
 /turf/closed/wall/r_wall,
-/area/lv624/ground/caves/central1)
+/area/lv624/ground/caves/central1/garbledradio)
 "Yv" = (
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central2)
@@ -1274,7 +1231,7 @@ Yv
 Hy
 jn
 DG
-ph
+NO
 uV
 uV
 uV
@@ -1590,7 +1547,7 @@ Yv
 jn
 ut
 aC
-vE
+NO
 Gm
 Md
 uV
@@ -1695,7 +1652,7 @@ Yv
 jn
 DG
 MN
-DD
+NO
 MQ
 MN
 uV
@@ -1712,7 +1669,7 @@ vk
 vk
 uV
 Ke
-pJ
+NO
 MN
 MN
 Ke
@@ -1728,7 +1685,7 @@ Yv
 Yv
 Yv
 jn
-WQ
+ut
 IR
 us
 MN
@@ -1783,7 +1740,7 @@ vk
 uV
 kK
 MN
-vE
+NO
 MN
 os
 uV
@@ -1887,9 +1844,9 @@ vk
 vk
 uV
 qI
-vE
+NO
 MN
-ro
+eE
 MN
 eE
 ti
@@ -1925,7 +1882,7 @@ Vt
 eF
 MN
 MN
-vE
+NO
 MN
 ti
 jn
@@ -1957,7 +1914,7 @@ vk
 uV
 gM
 MN
-pJ
+NO
 MN
 HO
 MN
@@ -2026,12 +1983,12 @@ vk
 vk
 uV
 Hl
-qW
+vb
 MN
 MN
 bS
 MN
-fJ
+NO
 MN
 WG
 pE
@@ -2063,7 +2020,7 @@ uV
 MN
 MN
 MN
-pJ
+NO
 lu
 MN
 Gm
@@ -2131,7 +2088,7 @@ vk
 vk
 uV
 MN
-fJ
+NO
 xD
 xI
 qD
@@ -2165,7 +2122,7 @@ vk
 vk
 vk
 uV
-pJ
+NO
 MN
 xD
 Xu
@@ -2204,7 +2161,7 @@ MN
 Gm
 MN
 MN
-fJ
+NO
 MN
 MN
 MN
@@ -2241,7 +2198,7 @@ Kj
 fA
 MN
 MN
-vi
+eE
 MN
 uV
 Yv
@@ -2271,11 +2228,11 @@ vk
 vk
 uV
 MN
-fJ
+NO
 MN
 Kj
-UI
-iE
+uy
+uy
 MN
 ti
 jn
@@ -2305,10 +2262,10 @@ vk
 vk
 vk
 uV
-fJ
+NO
 MN
 lF
-fJ
+NO
 Gm
 MN
 MN
@@ -2345,9 +2302,9 @@ bS
 MN
 MN
 bS
-DD
+NO
 MN
-We
+Ik
 jn
 Yv
 Yv
@@ -2413,9 +2370,9 @@ vk
 uV
 iV
 MN
-vE
+NO
 uV
-pJ
+NO
 MN
 iV
 jn
@@ -2486,7 +2443,7 @@ MN
 RT
 uV
 MN
-fJ
+NO
 iV
 jn
 pE

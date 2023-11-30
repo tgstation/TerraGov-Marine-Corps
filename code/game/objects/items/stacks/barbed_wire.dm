@@ -34,14 +34,17 @@
 		return
 
 	var/obj/item/stack/rods/R = I
-	if(R.amount < 4)
-		to_chat(user, span_warning("You need [4 - R.amount] more [R] to make a razor wire obstacle!"))
+	if(R.amount < 8)
+		to_chat(user, span_warning("You need [8 - R.amount] more [R] to make a razor wire obstacle!"))
+		return
+	if(amount < 2)
+		to_chat(user, span_warning("You need at least [2 - amount] more [src] to make razorwire obstacles!"))
 		return
 
-	R.use(4)
-	use(1)
+	R.use(8)
+	use(2)
 
-	var/obj/structure/razorwire/M = new /obj/item/stack/razorwire(user.loc, 1)
+	var/obj/structure/razorwire/M = new /obj/item/stack/razorwire(user.loc, 2)
 	to_chat(user, span_notice("You combine the rods and barbed wire into [M]!"))
 
 /obj/item/stack/razorwire
@@ -54,6 +57,7 @@
 	throwforce = 10
 	throw_range = 5
 	attack_verb = list("hit", "whacked", "sliced")
+	singular_name = "bundle"
 	max_amount = 10
 	merge_type = /obj/item/stack/razorwire
 
@@ -103,3 +107,4 @@
 		playsound(src, 'sound/effects/barbed_wire_movement.ogg', 25, 1)
 		M.update_icon()
 		use(1)
+	user.record_structures_built()

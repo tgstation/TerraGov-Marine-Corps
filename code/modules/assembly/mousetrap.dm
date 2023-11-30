@@ -10,7 +10,7 @@
 	attachable = TRUE
 	var/armed = FALSE
 
-/obj/item/assembly/mousetrap/Initialize()
+/obj/item/assembly/mousetrap/Initialize(mapload)
 	. = ..()
 	var/static/list/connections = list(
 		COMSIG_ATOM_ENTERED = PROC_REF(on_cross),
@@ -48,11 +48,11 @@
 			if("feet")
 				if(!H.shoes)
 					affecting = H.get_limb(pick(BODY_ZONE_L_LEG, BODY_ZONE_R_LEG))
-					H.Paralyze(60)
+					H.Paralyze(6 SECONDS)
 			if(BODY_ZONE_PRECISE_L_HAND, BODY_ZONE_PRECISE_R_HAND)
 				if(!H.gloves)
 					affecting = H.get_limb(type)
-					H.Stun(60)
+					H.Stun(6 SECONDS)
 		affecting?.take_damage_limb(1, 0)
 	else if(ismouse(target))
 		var/mob/living/simple_animal/mouse/M = target
@@ -72,7 +72,7 @@
 	armed = !armed
 	update_icon()
 	playsound(src, 'sound/weapons/handcuffs.ogg', 30, TRUE, -3)
-
+	user.record_traps_created()
 
 /obj/item/assembly/mousetrap/proc/on_cross(atom/movable/AM)
 	SIGNAL_HANDLER
@@ -104,7 +104,7 @@
 	return FALSE
 
 
-/obj/item/assembly/mousetrap/hitby(atom/movable/AM)
+/obj/item/assembly/mousetrap/hitby(atom/movable/AM, speed = 5)
 	if(!armed)
 		return ..()
 	visible_message(span_warning("[src] is triggered by [AM]."))

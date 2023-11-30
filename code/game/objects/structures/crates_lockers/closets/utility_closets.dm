@@ -106,7 +106,7 @@
 	new /obj/item/storage/belt/utility/full(src)
 	new /obj/item/clothing/head/hardhat(src)
 	if(prob(10))
-		new /obj/item/clothing/gloves/yellow(src)
+		new /obj/item/clothing/gloves/insulated(src)
 
 
 /*

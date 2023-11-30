@@ -166,7 +166,7 @@ GLOBAL_LIST_INIT(mech_bodytypes, list(MECH_RECON, MECH_ASSAULT, MECH_VANGUARD))
 
 /datum/mech_limb/torso/vanguard
 	health_mod = 340
-	slowdown_mod = 1.0
+	slowdown_mod = 1
 	cell_type = /obj/item/cell/mecha/large
 	greyscale_type = /datum/greyscale_config/mech_vanguard/torso
 

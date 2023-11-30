@@ -33,6 +33,7 @@
 				to_chat(M, span_warning("You have a monitor for a head, where do you think you're going to put that?"))
 				return
 			to_chat(M,span_notice("You swallow a gulp from \the [src]."))
+			record_reagent_consumption(min(gulp_size, reagents.total_volume), reagents.reagent_list, user)
 			if(reagents.total_volume)
 				reagents.reaction(M, INGEST)
 				reagents.trans_to(M, gulp_size)
@@ -51,6 +52,7 @@
 			var/rgt_list_text = get_reagent_list_text()
 
 			log_combat(user, M, "fed", src, "Reagents: [rgt_list_text]")
+			record_reagent_consumption(min(gulp_size, reagents.total_volume), reagents.reagent_list, user, M)
 
 			if(reagents.total_volume)
 				reagents.reaction(M, INGEST)

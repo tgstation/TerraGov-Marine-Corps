@@ -38,7 +38,7 @@
 	if(CHECK_BITFIELD(machine_stat, PANEL_OPEN))
 		. += span_notice("The maintenance hatch is open.")
 
-/obj/machinery/power/smes/Initialize()
+/obj/machinery/power/smes/Initialize(mapload)
 	. = ..()
 	if(!powernet)
 		connect_to_network()
@@ -47,7 +47,7 @@
 		for(var/d in GLOB.cardinals)
 			var/turf/T = get_step(src, d)
 			for(var/obj/machinery/power/terminal/term in T)
-				if(term && term.dir == turn(d, 180))
+				if(term?.dir == REVERSE_DIR(d))
 					terminal = term
 					break dir_loop
 	if(!terminal)
@@ -181,7 +181,7 @@
 		machine_stat |= BROKEN
 
 /obj/machinery/power/smes/add_load(amount)
-	if(terminal && terminal.powernet)
+	if(terminal?.powernet)
 		return terminal.add_load(amount)
 	return FALSE
 
@@ -418,7 +418,7 @@
 	..()
 
 /proc/rate_control(S, V, C, Min=1, Max=5, Limit=null)
-	var/href = "<A href='?src=\ref[S];rate control=1;[V]"
+	var/href = "<A href='?src=[text_ref(S)];rate control=1;[V]"
 	var/rate = "[href]=-[Max]'>-</A>[href]=-[Min]'>-</A> [(C?C : 0)] [href]=[Min]'>+</A>[href]=[Max]'>+</A>"
 	if(Limit) return "[href]=-[Limit]'>-</A>"+rate+"[href]=[Limit]'>+</A>"
 	return rate

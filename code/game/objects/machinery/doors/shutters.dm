@@ -5,7 +5,7 @@
 	power_channel = ENVIRON
 	resistance_flags = DROPSHIP_IMMUNE
 
-/obj/machinery/door/poddoor/shutters/Initialize()
+/obj/machinery/door/poddoor/shutters/Initialize(mapload)
 	. = ..()
 	if(density && closed_layer)
 		layer = closed_layer
@@ -75,8 +75,8 @@
 	use_power = FALSE
 
 
-/obj/machinery/door/poddoor/shutters/timed_late/Initialize()
-	RegisterSignal(SSdcs, list(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_CRASH, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_XENO_HIVEMIND), PROC_REF(open))
+/obj/machinery/door/poddoor/shutters/timed_late/Initialize(mapload)
+	RegisterSignals(SSdcs, list(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_CRASH, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_XENO_HIVEMIND, COMSIG_GLOB_CAMPAIGN_MISSION_STARTED), PROC_REF(open))
 	return ..()
 
 
@@ -145,6 +145,9 @@
 /obj/machinery/door/poddoor/shutters/mainship/open/checkpoint/south
 	id = "southcheckpoint"
 
+/obj/machinery/door/poddoor/shutters/mainship/open/medical
+	name = "Medbay Lockdown Shutters"
+	id = "medbay_lockdown"
 
 /obj/machinery/door/poddoor/shutters/mainship/open/indestructible
 	resistance_flags = RESIST_ALL|DROPSHIP_IMMUNE
@@ -193,10 +196,6 @@
 /obj/machinery/door/poddoor/shutters/mainship/req/ro
 	name = "\improper RO Line"
 	id = "ROlobby"
-
-/obj/machinery/door/poddoor/shutters/mainship/req/ro/rebel
-	id = "ROlobby_rebel"
-
 /obj/machinery/door/poddoor/shutters/mainship/req/ro1
 	name = "\improper RO Line 1"
 	id = "ROlobby1"
@@ -230,9 +229,6 @@
 	name = "\improper Armory Shutters"
 	id = "cic_armory"
 	icon_state = "shutter1"
-
-/obj/machinery/door/poddoor/shutters/mainship/cic/armory/rebel
-	id = "cic_armory_rebel"
 
 /obj/machinery/door/poddoor/shutters/mainship/engineering/armory
 	name = "\improper Engineering Armory Shutters"

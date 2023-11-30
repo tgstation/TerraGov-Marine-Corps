@@ -14,7 +14,7 @@
 	icon = 'icons/obj/objects.dmi'
 	buckle_flags = CAN_BUCKLE|BUCKLE_PREVENTS_PULL
 	buckle_lying = 90
-	flags_pass = PASSABLE
+	allow_pass_flags = PASS_LOW_STRUCTURE|PASSABLE
 	resistance_flags = XENO_DAMAGEABLE
 	max_integrity = 40
 	resistance_flags = XENO_DAMAGEABLE
@@ -120,9 +120,10 @@
 	return FALSE
 
 /obj/structure/bed/roller/CanAllowThrough(atom/movable/mover, turf/target)
-	. = ..()
 	if(mover == buckled_bodybag)
 		return TRUE
+
+	return ..()
 
 /obj/structure/bed/MouseDrop_T(atom/dropping, mob/user)
 	if(accepts_bodybag && !buckled_bodybag && !LAZYLEN(buckled_mobs) && istype(dropping,/obj/structure/closet/bodybag) && ishuman(user))
@@ -146,13 +147,12 @@
 					var/obj/structure/bed/medevac_stretcher/B = src
 					if(B.last_teleport)
 						M.last_teleport = B.last_teleport
+						if(world.time < M.last_teleport)
+							START_PROCESSING(SSprocessing, M)
+							M.update_icon()
 					if(B.linked_beacon)
-						M.linked_beacon = B.linked_beacon
-						if(B.linked_beacon.linked_bed_deployed == B)
-							M.linked_beacon.linked_bed = M
-							B.linked_beacon.linked_bed_deployed = null
-				H.visible_message(span_warning("[H] grabs [src] from the floor!"),
-				span_warning("You grab [src] from the floor!"))
+						B.linked_beacon.add_stretcher(M, null, TRUE)
+						B.linked_beacon.remove_stretcher(src, null, TRUE)
 				qdel(src)
 
 /obj/structure/bed/ex_act(severity)
@@ -192,12 +192,6 @@
 		M.forceMove(loc)
 		return TRUE
 
-
-/obj/structure/bed/CanAllowThrough(atom/movable/mover, turf/target)
-	. = ..()
-	if(istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSTABLE))
-		return TRUE
-
 /obj/structure/bed/alien
 	icon_state = "abed"
 
@@ -235,7 +229,7 @@
 /obj/item/roller/attack_self(mob/user)
 	deploy_roller(user, user.loc)
 
-/obj/item/roller/afterattack(atom/target, mob/user , proximity)
+/obj/item/roller/afterattack(atom/target, mob/user, proximity)
 	if(!proximity || !isturf(target) || target.density)
 		return
 	var/turf/target_turf = target
@@ -266,10 +260,8 @@
 		if(I.last_teleport)
 			B.last_teleport = I.last_teleport
 		if(I.linked_beacon)
-			B.linked_beacon = I.linked_beacon
-			if(B.linked_beacon.linked_bed == I)
-				B.linked_beacon.linked_bed_deployed = B
-				B.linked_beacon.linked_bed = null
+			I.linked_beacon.add_stretcher(B, null, TRUE)
+			I.linked_beacon.remove_stretcher(I, null, TRUE)
 	qdel(src)
 
 /obj/item/roller_holder
@@ -279,7 +271,7 @@
 	icon_state = "folded"
 	var/obj/item/roller/held
 
-/obj/item/roller_holder/Initialize()
+/obj/item/roller_holder/Initialize(mapload)
 	. = ..()
 	held = new(src)
 
@@ -332,11 +324,16 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 	for(var/m in buckled_mobs)
 		user_unbuckle_mob(m, X, TRUE)
 
+/obj/structure/bed/medevac_stretcher/attack_ghost(mob/dead/observer/user)
+	. = ..()
+	if(!linked_beacon?.loc)
+		return
+	user.forceMove(get_turf(linked_beacon))
+
 /obj/structure/bed/medevac_stretcher/Destroy()
 	QDEL_NULL(radio)
 	if(linked_beacon)
-		linked_beacon.linked_bed_deployed = null
-		linked_beacon = null
+		linked_beacon.remove_stretcher(src)
 	return ..()
 
 /obj/structure/bed/medevac_stretcher/update_icon()
@@ -415,7 +412,7 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 	UnregisterSignal(src, COMSIG_MOVABLE_UNBUCKLE)
 	deltimer(teleport_timer)
 	playsound(loc,'sound/machines/buzz-two.ogg', 25, FALSE)
-	visible_message(span_warning("[src]'s safeties kick in, no longer detecting a buckled mob."))
+	visible_message(span_warning("[src]'s safeties kick in, no longer detecting a buckled user."))
 
 
 /obj/structure/bed/medevac_stretcher/proc/medevac_teleport(mob/user)
@@ -475,10 +472,7 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 
 	if(istype(I, /obj/item/medevac_beacon))
 		var/obj/item/medevac_beacon/B = I
-		linked_beacon = B
-		B.linked_bed = src
-		to_chat(user, span_notice("<b>You link the medvac beacon to the medvac stretcher.</b>"))
-		playsound(loc,'sound/machines/ping.ogg', 25, FALSE)
+		B.add_stretcher(src, user)
 
 	else if(istype(I, /obj/item/healthanalyzer)) //Allows us to use the analyzer on the occupant without taking him out.
 		var/mob/living/occupant
@@ -519,16 +513,44 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 	var/last_teleport = null
 	var/obj/item/medevac_beacon/linked_beacon = null
 	rollertype = /obj/structure/bed/medevac_stretcher
+	///Visual timer for the medevac cooldown
+	var/timer_cooldown
+	///Who is currently holding onto the medevac roller?
+	var/mob/holder
 
 /obj/item/roller/medevac/Destroy()
+	STOP_PROCESSING(SSprocessing, src)
+	holder = null
 	if(linked_beacon)
-		linked_beacon.linked_bed = null
-		linked_beacon = null
+		linked_beacon.remove_stretcher(src)
 	return ..()
+
+/obj/item/roller/medevac/process()
+	timer_cooldown = max(last_teleport - world.time, 0)
+	if(!timer_cooldown)
+		if(holder)
+			balloon_alert(holder, "Medevac charged!")
+		playsound(loc,'sound/machines/ping.ogg', 10, FALSE)
+		STOP_PROCESSING(SSprocessing, src)
+	update_icon()
 
 /obj/item/roller/medevac/attack_self(mob/user)
 	deploy_roller(user, user.loc)
 
+/obj/item/roller/medevac/attack_ghost(mob/dead/observer/user)
+	. = ..()
+	if(!linked_beacon?.loc)
+		return
+	user.forceMove(get_turf(linked_beacon))
+
+/obj/item/roller/medevac/dropped(mob/user)
+	. = ..()
+	holder = null
+	update_icon()
+
+/obj/item/roller/medevac/pickup(mob/user)
+	. = ..()
+	holder = user
 
 /obj/item/roller/medevac/examine(mob/user)
 	. = ..()
@@ -537,29 +559,36 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 		details += "It's linked to a beacon located at: [get_area(linked_beacon)]. Coordinates: (X: [linked_beacon.x], Y: [linked_beacon.y]).</br>"
 
 	if(world.time < last_teleport)
-		details += "[span_warning("It's bluespace engine is currently recharging. The interface estimates: [round(last_teleport - world.time) * 0.1] seconds until i has recharged.")]</br>"
+		details += "[span_warning("It's bluespace engine is currently recharging. The interface estimates: [round(last_teleport - world.time) * 0.1] seconds until it has recharged.")]</br>"
 
 	. += span_notice("[details.Join(" ")]")
 
+/obj/item/roller/medevac/update_overlays()
+	. = ..()
+	var/display_timer_cooldown = CEILING((timer_cooldown) * 0.1, 1)
+	if(isturf(loc) || !display_timer_cooldown)
+		return
+	var/mutable_appearance/desc = mutable_appearance('icons/misc/12x12.dmi')
+	desc.maptext = MAPTEXT("[display_timer_cooldown]s")
+
+	. += desc
 
 /obj/item/roller/medevac/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
 	if(istype(I, /obj/item/medevac_beacon))
 		var/obj/item/medevac_beacon/B = I
-		linked_beacon = B
-		B.linked_bed = src
-		to_chat(user, span_notice("<b>You link the medvac beacon to the medvac stretcher.</b>"))
-		playsound(loc,'sound/machines/ping.ogg', 25, FALSE)
+		B.add_stretcher(src, user)
 
 /obj/item/medevac_beacon
 	name = "medevac beacon"
 	desc = "A specialized teleportation beacon that links with a medvac stretcher; provides the target destination for the stretcher's displacement field. WARNING: Must be in a powered area to function."
+	icon = 'icons/Marine/marine-navigation.dmi'
 	icon_state = "med_beacon0"
 	var/planted = FALSE
 	var/locked = FALSE
-	var/obj/item/roller/medevac/linked_bed = null
-	var/obj/structure/bed/medevac_stretcher/linked_bed_deployed = null
+	var/list/obj/item/roller/medevac/linked_beds = list()
+	var/list/obj/structure/bed/medevac_stretcher/linked_beds_deployed = list()
 	req_one_access = list(ACCESS_MARINE_MEDPREP, ACCESS_MARINE_LEADER, ACCESS_MARINE_MEDBAY)
 	var/obj/item/radio/headset/mainship/doc/radio
 	///The faction this beacon belongs to
@@ -571,12 +600,12 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 
 /obj/item/medevac_beacon/Destroy()
 	QDEL_NULL(radio)
-	if(linked_bed)
-		linked_bed.linked_beacon = null
-		linked_bed = null
-	else if(linked_bed_deployed)
-		linked_bed_deployed.linked_beacon = null
-		linked_bed_deployed = null
+	for(var/obj/item/roller/medevac/rollerbed in linked_beds)
+		rollerbed.linked_beacon = null
+	for(var/obj/structure/bed/medevac_stretcher/stretcherbed in linked_beds)
+		stretcherbed.linked_beacon = null
+	linked_beds = null
+	linked_beds_deployed = null
 	return ..()
 
 /obj/item/medevac_beacon/examine(mob/user)
@@ -586,20 +615,21 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 		details += "<b>It's currently unpowered.</b></br>"
 	else
 		details += "<b>It's currently powered.</b></br>"
-	var/turf/bed_location
-	var/teleport_time
-	if(linked_bed_deployed)
-		bed_location = get_turf(linked_bed_deployed)
-		teleport_time = linked_bed_deployed.last_teleport
-	else if(linked_bed)
-		bed_location = get_turf(linked_bed)
-		teleport_time = linked_bed.last_teleport
-	if(bed_location)
-		details += "It's linked to a medvac bed located at: [get_area(bed_location)]. Coordinates: (X: [bed_location.x], Y: [bed_location.y]).</br>"
-		if(world.time < teleport_time)
-			details += "The linked bed's bluespace engine is currently recharging. <b>The interface displays: [round(teleport_time - world.time) * 0.1] seconds until it has recharged.</b></br>"
+	details += "It's currently linked to:</b></br>"
+	if(!linked_beds && !linked_beds_deployed)
+		details += "<b>No beds detected!</b></br>"
 	else
-		details += "It's not currently linked to a medvac bed.</br>"
+		for(var/obj/structure/bed/medevac_stretcher/stretcherbed in linked_beds_deployed)
+			var/turf/bed_turf = get_turf(stretcherbed)
+			details += "[world.time < stretcherbed.last_teleport ? "\[[round((stretcherbed.last_teleport - world.time) * 0.1)]s\]" : "\[READY\]"] Deployed medevac stretcher at: X:[bed_turf.x], Y:[bed_turf.y] - \[[get_area(bed_turf)]\]</br>"
+
+		for(var/obj/item/roller/medevac/rollerbed in linked_beds)
+			var/turf/bed_turf = get_turf(rollerbed)
+			details += "[world.time < rollerbed.last_teleport ? "\[[round((rollerbed.last_teleport - world.time) * 0.1)]s\]" : "\[READY\]"] Medevac roller at: X:[bed_turf.x], Y:[bed_turf.y] \[[get_area(bed_turf)]\]"
+			for(var/mob/M in bed_turf.contents)
+				if(M.contains(rollerbed))
+					details += "- \[<b>[M]</b>\]"
+			details += "</br>"
 
 	. += span_notice("[details.Join(" ")]")
 
@@ -612,7 +642,6 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 		to_chat(user, span_warning("[src]'s interface is locked! Only a Squad Leader, Corpsman, or Medical Officer can unlock it now."))
 		return
 	user.drop_held_item()
-	flags_item |= NO_VACUUM
 	anchored = TRUE
 	planted = TRUE
 	to_chat(user, span_warning("You plant and activate [src]."))
@@ -628,12 +657,37 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 		to_chat(user, span_warning("[src]'s interface is locked! Only a Squad Leader, Corpsman, or Medical Officer can unlock it now."))
 		return
 	if(planted)
-		flags_item &= ~NO_VACUUM
 		anchored = FALSE
 		planted = FALSE
 		to_chat(user, span_warning("You retrieve and deactivate [src]."))
 		icon_state = "med_beacon0"
 		playsound(loc,'sound/machines/click.ogg', 25, FALSE)
+
+/obj/item/medevac_beacon/attack_ghost(mob/dead/observer/user)
+	. = ..()
+	if(!linked_beds && !linked_beds_deployed)
+		return
+	var/list/obj/destinations = SANITIZE_LIST(linked_beds) + SANITIZE_LIST(linked_beds_deployed)
+	var/obj/target
+	if(length(linked_beds + linked_beds_deployed) > 1)
+		var/list/medevac_assoc = list()
+		for(var/obj/destination in destinations)
+			var/turf/T = get_turf(destination)
+			medevac_assoc["X:[T.x], Y:[T.y] - \[[get_area(destination)]\]"] = destination
+		destinations = list()
+		for(var/destination in medevac_assoc)
+			destinations += destination
+		var/input = tgui_input_list(user, "Choose a medevac to teleport to:", "Ghost Medevac teleport", destinations, null, 0)
+		if(!input)
+			return
+		target = medevac_assoc[input]
+		if(!input)
+			return
+	else
+		target = destinations[1]
+	if(!target || QDELETED(target) || !target.loc)
+		return
+	user.forceMove(get_turf(target))
 
 /obj/item/medevac_beacon/attackby(obj/item/I, mob/user, params) //Corpsmen can lock their beacons.
 	. = ..()
@@ -652,11 +706,7 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 			playsound(loc,'sound/machines/buzz-two.ogg', 25, FALSE)
 			return
 
-		var/obj/item/roller/medevac/R = I
-		linked_bed = R
-		R.linked_beacon = src
-		to_chat(user, span_notice("<b>You link the medvac beacon to the medvac stretcher.</b>"))
-		playsound(loc,'sound/machines/ping.ogg', 25, FALSE)
+		add_stretcher(I, user)
 
 
 /obj/item/medevac_beacon/proc/check_power()
@@ -664,3 +714,57 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 	if(!A || !isarea(A))
 		return FALSE
 	return(A.powered(1))
+
+/// Adds a medevac roller or stretcher to the medevac beacon. Returns TRUE if the beacon is in the linked_beds* list and false if it is not in there.
+/obj/item/medevac_beacon/proc/add_stretcher(obj/target_bed, mob/user, silent = FALSE)
+	var/obj/item/roller/medevac/rollerbed = target_bed
+	if(istype(rollerbed, /obj/item/roller/medevac))
+		if(rollerbed in linked_beds)
+			if(!silent)
+				if(user)
+					balloon_alert(user, "Already linked!")
+				playsound(loc,'sound/machines/buzz-sigh.ogg', 25, FALSE)
+			return TRUE
+		if(rollerbed.linked_beacon)
+			rollerbed.linked_beacon.remove_stretcher(rollerbed)
+		linked_beds += rollerbed
+		rollerbed.linked_beacon = src
+		if(!silent)
+			if(user)
+				balloon_alert(user, "Linked!")
+			playsound(loc,'sound/machines/ping.ogg', 25, FALSE)
+		return TRUE
+
+	var/obj/structure/bed/medevac_stretcher/stretcherbed = target_bed
+	if(istype(stretcherbed, /obj/structure/bed/medevac_stretcher))
+		if(stretcherbed in linked_beds_deployed)
+			if(!silent)
+				if(user)
+					balloon_alert(user, "Already linked!")
+				playsound(loc,'sound/machines/buzz-sigh.ogg', 25, FALSE)
+			return TRUE
+		if(stretcherbed.linked_beacon)
+			stretcherbed.linked_beacon.remove_stretcher(stretcherbed)
+		linked_beds_deployed += stretcherbed
+		stretcherbed.linked_beacon = src
+		if(!silent)
+			if(user)
+				balloon_alert(user, "Linked!")
+			playsound(loc,'sound/machines/ping.ogg', 25, FALSE)
+		return TRUE
+
+	return	FALSE
+
+/// Removes the stretcher from the linked_beds* list. Returns TRUE if the bed is not linked to the beacon and FALSE otherwise.
+/obj/item/medevac_beacon/proc/remove_stretcher(obj/target_bed)
+	var/obj/item/roller/medevac/rollerbed = target_bed
+	if(rollerbed && (rollerbed in linked_beds) && rollerbed.linked_beacon == src)
+		rollerbed.linked_beacon = null
+		linked_beds -= rollerbed
+		return TRUE
+	var/obj/structure/bed/medevac_stretcher/stretcherbed = target_bed
+	if(stretcherbed && (stretcherbed in linked_beds_deployed) && stretcherbed.linked_beacon == src)
+		stretcherbed.linked_beacon = null
+		linked_beds_deployed -= stretcherbed
+		return TRUE
+	return FALSE

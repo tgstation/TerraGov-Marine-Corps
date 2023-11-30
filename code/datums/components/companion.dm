@@ -30,18 +30,19 @@
 		commands_info = info
 
 /datum/component/companion/Destroy(force, silent)
-	unassign_mob_master()
+	if(mob_master)
+		unassign_mob_master()
 	return ..()
 
 /datum/component/companion/RegisterWithParent()
 	. = ..()
-	RegisterSignal(parent, COMSIG_PARENT_ATTACKBY, PROC_REF(handle_attackby))
+	RegisterSignal(parent, COMSIG_ATOM_ATTACKBY, PROC_REF(handle_attackby))
 
 /datum/component/companion/UnregisterFromParent()
 	. = ..()
 	if(mob_master)
 		unassign_mob_master()
-	UnregisterSignal(parent, COMSIG_PARENT_ATTACKBY)
+	UnregisterSignal(parent, COMSIG_ATOM_ATTACKBY)
 
 ///The mob gives a note to the mob_master containing available commands
 /datum/component/companion/proc/help()
@@ -87,7 +88,7 @@
 /datum/component/companion/proc/assign_mob_master(atom/movable/new_mob_master, hello_message)
 	mob_master = new_mob_master
 	RegisterSignal(parent, COMSIG_MOVABLE_HEAR, PROC_REF(handle_mob_master_speech))
-	RegisterSignal(mob_master, COMSIG_PARENT_QDELETING, PROC_REF(unassign_mob_master))
+	RegisterSignal(mob_master, COMSIG_QDELETING, PROC_REF(unassign_mob_master))
 	var/mob/living/mob_parent = parent
 	if(isanimal(parent))
 		var/mob/living/simple_animal/animal_parent = parent
@@ -101,7 +102,7 @@
 ///Handles unassigning a master mob and cleaning up things related to that
 /datum/component/companion/proc/unassign_mob_master(goodbye_message)
 	UnregisterSignal(parent, COMSIG_MOVABLE_HEAR)
-	UnregisterSignal(mob_master, COMSIG_PARENT_QDELETING)
+	UnregisterSignal(mob_master, COMSIG_QDELETING)
 	if(goodbye_message)
 		COMPANION_SAY(goodbye_message)
 	mob_master = null

@@ -2,7 +2,7 @@
 /obj/effect/turf_overlay
 	name = "abstract type"
 
-/obj/effect/turf_overlay/Initialize()
+/obj/effect/turf_overlay/Initialize(mapload)
 	. = ..()
 	var/turf/T = get_turf(src)
 	T.overlays += image(icon, T, icon_state, TURF_LAYER)
@@ -25,7 +25,7 @@
 /obj/effect/turf_underlay
 	name = "abstract type"
 
-/obj/effect/turf_underlay/Initialize()
+/obj/effect/turf_underlay/Initialize(mapload)
 	. = ..()
 	var/turf/T = get_turf(src)
 	T.underlays += image(icon, T, icon_state, TURF_LAYER)
@@ -50,7 +50,7 @@
 	icon = 'icons/turf/ice.dmi'
 	icon_state = "ice_floor"
 
-/obj/effect/turf_underlay/icefloor/Initialize()
+/obj/effect/turf_underlay/icefloor/Initialize(mapload)
 	setDir(pick(NORTH,SOUTH,EAST,WEST,NORTHEAST,NORTHWEST,SOUTHEAST,SOUTHWEST))
 	. = ..()
 

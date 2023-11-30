@@ -1,7 +1,6 @@
 /* Weapons
 * Contains:
 *		Claymore
-*		Harvester
 *		mercsword
 *		Energy Shield
 *		Energy Shield
@@ -32,51 +31,13 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 
-/obj/item/weapon/claymore/Initialize()
+/obj/item/weapon/claymore/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/scalping)
 
 /obj/item/weapon/claymore/suicide_act(mob/user)
 	user.visible_message(span_danger("[user] is falling on the [src.name]! It looks like [user.p_theyre()] trying to commit suicide."))
 	return(BRUTELOSS)
-
-//vali weapons
-
-/obj/item/weapon/claymore/harvester
-	name = "\improper HP-S Harvester blade"
-	desc = "TerraGov Marine Corps' experimental High Point-Singularity 'Harvester' blade. An advanced weapon that trades sheer force for the ability to apply a variety of debilitating effects when loaded with certain reagents. Activate after loading to prime a single use of an effect. It also harvests substances from alien lifeforms it strikes when connected to the Vali system."
-	icon_state = "energy_sword"
-	item_state = "energy_katana"
-	force = 60
-	attack_speed = 12
-	w_class = WEIGHT_CLASS_BULKY
-	flags_item = DRAINS_XENO
-
-	var/codex_info = {"<b>Reagent info:</b><BR>
-	Bicaridine - heal your target for 10 brute. Usable on both dead and living targets.<BR>
-	Kelotane - produce a cone of flames<BR>
-	Tramadol - slow your target for 2 seconds<BR>
-	<BR>
-	<b>Tips:</b><BR>
-	> Needs to be connected to the Vali system to collect green blood. You can connect it though the Vali system's configurations menu.<BR>
-	> Filled by liquid reagent containers. Emptied by using an empty liquid reagent container.<BR>
-	> Toggle unique action (SPACE by default) to load a single-use of the reagent effect after the blade has been filled up."}
-
-/obj/item/weapon/claymore/harvester/Initialize()
-	. = ..()
-	AddComponent(/datum/component/harvester)
-
-/obj/item/weapon/claymore/harvester/equipped(mob/user, slot)
-	. = ..()
-	toggle_item_bump_attack(user, TRUE)
-
-/obj/item/weapon/claymore/harvester/dropped(mob/user)
-	. = ..()
-	toggle_item_bump_attack(user, FALSE)
-
-/obj/item/weapon/claymore/harvester/get_mechanics_info()
-	. = ..()
-	. += jointext(codex_info, "<br>")
 
 /obj/item/weapon/claymore/mercsword
 	name = "combat sword"
@@ -100,6 +61,10 @@
 	attack_speed = 12
 	w_class = WEIGHT_CLASS_BULKY
 
+/obj/item/weapon/claymore/mercsword/machete/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/strappable)
+
 /obj/item/weapon/claymore/mercsword/machete/equipped(mob/user, slot)
 	. = ..()
 	toggle_item_bump_attack(user, TRUE)
@@ -108,24 +73,20 @@
 	. = ..()
 	toggle_item_bump_attack(user, FALSE)
 
+/obj/item/weapon/claymore/mercsword/machete/alt
+	name = "machete"
+	desc = "A nice looking machete. Great for clearing out jungle or brush on outlying colonies. Found commonly in the hands of scouts and trackers, but difficult to carry with the usual kit."
+	icon_state = "machete_alt"
+
 //FC's sword.
 
-/obj/item/weapon/claymore/mercsword/officersword
+/obj/item/weapon/claymore/mercsword/machete/officersword
 	name = "\improper Officers sword"
 	desc = "This appears to be a rather old blade that has been well taken care of, it is probably a family heirloom. Oddly despite its probable non-combat purpose it is sharpened and not blunt."
 	icon_state = "officer_sword"
 	item_state = "officer_sword"
-	force = 75
-	attack_speed = 12
-	w_class = WEIGHT_CLASS_BULKY
-
-/obj/item/weapon/claymore/mercsword/machete/equipped(mob/user, slot)
-	. = ..()
-	toggle_item_bump_attack(user, TRUE)
-
-/obj/item/weapon/claymore/mercsword/machete/dropped(mob/user)
-	. = ..()
-	toggle_item_bump_attack(user, FALSE)
+	attack_speed = 11
+	penetration = 15
 
 /obj/item/weapon/claymore/mercsword/commissar_sword
 	name = "\improper commissars sword"
@@ -176,6 +137,27 @@
 	playsound(loc, 'sound/weapons/bladeslice.ogg', 25, 1)
 	return ..()
 
+
+/obj/item/tool/kitchen/knife/shiv
+	name = "glass shiv"
+	icon = 'icons/obj/items/weapons.dmi'
+	icon_state = "shiv"
+	desc = "A makeshift glass shiv."
+	attack_verb = list("shanked", "shived")
+	hitsound = 'sound/weapons/slash.ogg'
+
+/obj/item/tool/kitchen/knife/shiv/plasma
+	icon_state = "plasmashiv"
+	desc = "A makeshift plasma glass shiv."
+
+/obj/item/tool/kitchen/knife/shiv/titanium
+	icon_state = "titaniumshiv"
+	desc = "A makeshift titanium shiv."
+
+/obj/item/tool/kitchen/knife/shiv/plastitanium
+	icon_state = "plastitaniumshiv"
+	desc = "A makeshift plastitanium glass shiv."
+
 /obj/item/weapon/combat_knife
 	name = "\improper M5 survival knife"
 	icon = 'icons/obj/items/weapons.dmi'
@@ -193,7 +175,6 @@
 	hitsound = 'sound/weapons/slash.ogg'
 	attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 
-
 /obj/item/weapon/combat_knife/attackby(obj/item/I, mob/user)
 	if(!istype(I,/obj/item/stack/cable_coil))
 		return ..()
@@ -210,7 +191,7 @@
 		F.loc = get_turf(src)
 	qdel(src) //Delete da old knife
 
-/obj/item/weapon/combat_knife/Initialize()
+/obj/item/weapon/combat_knife/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/scalping)
 
@@ -219,41 +200,6 @@
 							span_danger("[user] is slitting [user.p_their()] throat with the [name]! It looks like [user.p_theyre()] trying to commit suicide."), \
 							span_danger("[user] is slitting [user.p_their()] stomach open with the [name]! It looks like [user.p_theyre()] trying to commit seppuku.")))
 	return (BRUTELOSS)
-
-/obj/item/weapon/combat_knife/harvester
-	name = "\improper HP-S Harvester knife"
-	desc = "TerraGov Marine Corps' experimental High Point-Singularity 'Harvester' knife. An advanced version of the HP-S Harvester blade, shrunken down to the size of the standard issue boot knife. It trades the harvester blades size and power for a smaller form, with the side effect of a miniscule chemical storage, yet it still keeps its ability to apply debilitating effects to its targets. Activate after loading to prime a single use of an effect. It also harvests substances from alien lifeforms it strikes when connected to the Vali system."
-	icon_state = "vali_knife_icon"
-	item_state = "vali_knife"
-	force = 25
-	throwforce = 15
-	flags_item = DRAINS_XENO
-
-	var/codex_info = {"<b>Reagent info:</b><BR>
-	Bicaridine - heal your target for 10 brute. Usable on both dead and living targets.<BR>
-	Kelotane - produce a cone of flames<BR>
-	Tramadol - slow your target for 2 seconds<BR>
-	<BR>
-	<b>Tips:</b><BR>
-	> Needs to be connected to the Vali system to collect green blood. You can connect it though the Vali system's configurations menu.<BR>
-	> Filled by liquid reagent containers. Emptied by using an empty liquid reagent container.<BR>
-	> Toggle unique action (SPACE by default) to load a single-use of the reagent effect after the blade has been filled up."}
-
-/obj/item/weapon/combat_knife/harvester/Initialize()
-	. = ..()
-	AddComponent(/datum/component/harvester, 5)
-
-/obj/item/weapon/combat_knife/harvester/equipped(mob/user, slot)
-	. = ..()
-	toggle_item_bump_attack(user, FALSE)
-
-/obj/item/weapon/combat_knife/harvester/dropped(mob/user)
-	. = ..()
-	toggle_item_bump_attack(user, FALSE)
-
-/obj/item/weapon/combat_knife/harvester/get_mechanics_info()
-	. = ..()
-	. += jointext(codex_info, "<br>")
 
 /obj/item/weapon/combat_knife/upp
 	name = "\improper Type 30 survival knife"
@@ -342,6 +288,9 @@
 /obj/item/stack/throwing_knife/update_icon()
 	. = ..()
 	var/amount_to_show = amount > max_amount ? max_amount : amount
+	if(amount_to_show > 8)
+		setDir(8)
+		return
 	setDir(amount_to_show + round(amount_to_show / 3))
 
 /obj/item/stack/throwing_knife/equipped(mob/user, slot)
@@ -401,7 +350,7 @@
 		throw_at(current_target, throw_range, throw_speed, living_user, TRUE)
 		current_target = null
 	else
-		var/obj/item/stack/throwing_knife/knife_to_throw = new(get_turf(src))
+		var/obj/item/stack/throwing_knife/knife_to_throw = new type(get_turf(src))
 		knife_to_throw.amount = 1
 		knife_to_throw.update_icon()
 		knife_to_throw.throw_at(current_target, throw_range, throw_speed, living_user, TRUE)
@@ -430,7 +379,7 @@
 	if(object == current_target || object == living_user)
 		return
 	if(current_target)
-		UnregisterSignal(current_target, COMSIG_PARENT_QDELETING)
+		UnregisterSignal(current_target, COMSIG_QDELETING)
 	current_target = object
 
 /obj/item/weapon/chainsword

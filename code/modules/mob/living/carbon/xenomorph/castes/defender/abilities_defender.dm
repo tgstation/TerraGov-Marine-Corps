@@ -38,7 +38,7 @@
 	var/list/L = orange(sweep_range, X)		// Not actually the fruit
 
 	for (var/mob/living/carbon/human/H in L)
-		step_away(H, src, sweep_range, 2)
+		H.knockback(X, sweep_range, 4)
 		H.add_filter("defender_tail_sweep", 2, gauss_blur_filter(1)) //Add cool SFX; motion blur
 		addtimer(CALLBACK(H, TYPE_PROC_REF(/atom, remove_filter), "defender_tail_sweep"), 0.5 SECONDS) //Remove cool SFX
 		if(H.stat != DEAD && !isnestedhost(H) ) //No bully
@@ -48,7 +48,7 @@
 				affecting = H.get_limb("chest") //Gotta have a torso?!
 			H.apply_damage(damage, BRUTE, affecting, MELEE)
 			H.apply_damage(damage, STAMINA, updating_health = TRUE)
-			H.Paralyze(5) //trip and go
+			H.Paralyze(0.5 SECONDS) //trip and go
 		GLOB.round_statistics.defender_tail_sweep_hits++
 		SSblackbox.record_feedback("tally", "round_statistics", 1, "defender_tail_sweep_hits")
 		shake_camera(H, 2, 1)
@@ -87,7 +87,7 @@
 // ***************************************
 /datum/action/xeno_action/activable/forward_charge
 	name = "Forward Charge"
-	action_icon_state = "charge"
+	action_icon_state = "pounce"
 	desc = "Charge up to 4 tiles and knockdown any targets in our way."
 	ability_name = "charge"
 	cooldown_timer = 10 SECONDS
@@ -96,8 +96,6 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_FORWARD_CHARGE,
 	)
-	///How far can we charge
-	var/range = 4
 	///How long is the windup before charging
 	var/windup_time = 0.5 SECONDS
 
@@ -113,13 +111,12 @@
 
 /datum/action/xeno_action/activable/forward_charge/proc/obj_hit(datum/source, obj/target, speed)
 	SIGNAL_HANDLER
-	var/mob/living/carbon/xenomorph/X = owner
-	if(istype(target, /obj/structure/table) || istype(target, /obj/structure/rack))
+	if(istype(target, /obj/structure/table))
 		var/obj/structure/S = target
-		X.visible_message(span_danger("[X] plows straight through [S]!"), null, null, 5)
+		owner.visible_message(span_danger("[owner] plows straight through [S]!"), null, null, 5)
 		S.deconstruct(FALSE) //We want to continue moving, so we do not reset throwing.
 		return // stay registered
-	target.hitby(X, speed) //This resets throwing.
+	target.hitby(owner, speed) //This resets throwing.
 	charge_complete()
 
 /datum/action/xeno_action/activable/forward_charge/can_use_ability(atom/A, silent = FALSE, override_flags)
@@ -143,9 +140,6 @@
 	var/mob/living/carbon/xenomorph/defender/defender = X
 	if(defender.fortify)
 		var/datum/action/xeno_action/fortify/fortify_action = X.actions_by_path[/datum/action/xeno_action/fortify]
-		if(fortify_action.cooldown_id)
-			to_chat(X, span_xenowarning("We cannot yet untuck ourselves from our fortified stance!"))
-			return fail_activate()
 
 		fortify_action.set_fortify(FALSE, TRUE)
 		fortify_action.add_cooldown()
@@ -160,7 +154,7 @@
 	RegisterSignal(X, COMSIG_XENO_LIVING_THROW_HIT, PROC_REF(mob_hit))
 	RegisterSignal(X, COMSIG_MOVABLE_POST_THROW, PROC_REF(charge_complete))
 
-	X.throw_at(A, range, 70, X)
+	X.throw_at(A, DEFENDER_CHARGE_RANGE, 5, X)
 
 	add_cooldown()
 
@@ -170,7 +164,7 @@
 /datum/action/xeno_action/activable/forward_charge/ai_should_use(atom/target)
 	if(!iscarbon(target))
 		return FALSE
-	if(!line_of_sight(owner, target, range))
+	if(!line_of_sight(owner, target, DEFENDER_CHARGE_RANGE))
 		return FALSE
 	if(!can_use_action(override_flags = XACT_IGNORE_SELECTED_ABILITY))
 		return FALSE
@@ -200,14 +194,20 @@
 	)
 	var/last_crest_bonus = 0
 
+/datum/action/xeno_action/toggle_crest_defense/give_action()
+	. = ..()
+	var/mob/living/carbon/xenomorph/defender/X = owner
+	last_crest_bonus = X.xeno_caste.crest_defense_armor
+
 /datum/action/xeno_action/toggle_crest_defense/on_xeno_upgrade()
 	var/mob/living/carbon/xenomorph/X = owner
 	if(X.crest_defense)
-		var/defensebonus = X.xeno_caste.crest_defense_armor
-		X.soft_armor = X.soft_armor.modifyAllRatings(defensebonus)
-		X.soft_armor = X.soft_armor.setRating(bomb = 30)
-		last_crest_bonus = defensebonus
+		X.soft_armor = X.soft_armor.modifyAllRatings(-last_crest_bonus)
+		last_crest_bonus = X.xeno_caste.crest_defense_armor
+		X.soft_armor = X.soft_armor.modifyAllRatings(last_crest_bonus)
 		X.add_movespeed_modifier(MOVESPEED_ID_CRESTDEFENSE, TRUE, 0, NONE, TRUE, X.xeno_caste.crest_defense_slowdown)
+	else
+		last_crest_bonus = X.xeno_caste.crest_defense_armor
 
 /datum/action/xeno_action/toggle_crest_defense/on_cooldown_finish()
 	var/mob/living/carbon/xenomorph/defender/X = owner
@@ -238,17 +238,13 @@
 
 /datum/action/xeno_action/toggle_crest_defense/proc/set_crest_defense(on, silent = FALSE)
 	var/mob/living/carbon/xenomorph/defender/X = owner
-	X.crest_defense = on
 	if(on)
 		if(!silent)
 			to_chat(X, span_xenowarning("We tuck ourselves into a defensive stance."))
 		GLOB.round_statistics.defender_crest_lowerings++
 		SSblackbox.record_feedback("tally", "round_statistics", 1, "defender_crest_lowerings")
-		var/defensebonus = X.xeno_caste.crest_defense_armor
 		ADD_TRAIT(X, TRAIT_STAGGERIMMUNE, CREST_DEFENSE_TRAIT) //Can now endure impacts/damages that would make lesser xenos flinch
-		X.soft_armor = X.soft_armor.modifyAllRatings(defensebonus)
-		X.soft_armor = X.soft_armor.setRating(bomb = 30)
-		last_crest_bonus = defensebonus
+		X.soft_armor = X.soft_armor.modifyAllRatings(last_crest_bonus)
 		X.add_movespeed_modifier(MOVESPEED_ID_CRESTDEFENSE, TRUE, 0, NONE, TRUE, X.xeno_caste.crest_defense_slowdown)
 	else
 		if(!silent)
@@ -257,9 +253,9 @@
 		SSblackbox.record_feedback("tally", "round_statistics", 1, "defender_crest_raises")
 		REMOVE_TRAIT(X, TRAIT_STAGGERIMMUNE, CREST_DEFENSE_TRAIT)
 		X.soft_armor = X.soft_armor.modifyAllRatings(-last_crest_bonus)
-		X.soft_armor = X.soft_armor.setRating(bomb = 20)
-		last_crest_bonus = 0
 		X.remove_movespeed_modifier(MOVESPEED_ID_CRESTDEFENSE)
+
+	X.crest_defense = on
 	X.update_icons()
 
 // ***************************************
@@ -277,13 +273,23 @@
 	)
 	var/last_fortify_bonus = 0
 
+/datum/action/xeno_action/fortify/give_action()
+	. = ..()
+	var/mob/living/carbon/xenomorph/defender/X = owner
+	last_fortify_bonus = X.xeno_caste.fortify_armor
+
 /datum/action/xeno_action/fortify/on_xeno_upgrade()
 	var/mob/living/carbon/xenomorph/X = owner
 	if(X.fortify)
-		var/fortifyAB = X.xeno_caste.fortify_armor
-		X.soft_armor = X.soft_armor.modifyAllRatings(fortifyAB)
-		X.soft_armor = X.soft_armor.setRating(bomb = 130)
-		last_fortify_bonus = fortifyAB
+		X.soft_armor = X.soft_armor.modifyAllRatings(-last_fortify_bonus)
+		X.soft_armor = X.soft_armor.modifyRating(BOMB = -last_fortify_bonus)
+
+		last_fortify_bonus = X.xeno_caste.fortify_armor
+
+		X.soft_armor = X.soft_armor.modifyAllRatings(last_fortify_bonus)
+		X.soft_armor = X.soft_armor.modifyRating(BOMB = last_fortify_bonus)
+	else
+		last_fortify_bonus = X.xeno_caste.fortify_armor
 
 /datum/action/xeno_action/fortify/on_cooldown_finish()
 	var/mob/living/carbon/xenomorph/X = owner
@@ -308,6 +314,9 @@
 		CD.add_cooldown()
 		to_chat(X, span_xenowarning("We tuck our lowered crest into ourselves."))
 
+	var/datum/action/xeno_action/activable/forward_charge/combo_cooldown = X.actions_by_path[/datum/action/xeno_action/activable/forward_charge]
+	combo_cooldown.add_cooldown(cooldown_timer)
+
 	set_fortify(TRUE, was_crested)
 	add_cooldown()
 	return succeed_activate()
@@ -320,17 +329,15 @@
 		ADD_TRAIT(X, TRAIT_IMMOBILE, FORTIFY_TRAIT)
 		if(!silent)
 			to_chat(X, span_xenowarning("We tuck ourselves into a defensive stance."))
-		var/fortifyAB = X.xeno_caste.fortify_armor
-		X.soft_armor = X.soft_armor.modifyAllRatings(fortifyAB)
-		X.soft_armor = X.soft_armor.setRating(bomb = 100)
-		last_fortify_bonus = fortifyAB
+		X.soft_armor = X.soft_armor.modifyAllRatings(last_fortify_bonus)
+		X.soft_armor = X.soft_armor.modifyRating(BOMB = last_fortify_bonus) //double bomb bonus for explosion immunity
 	else
 		if(!silent)
 			to_chat(X, span_xenowarning("We resume our normal stance."))
 		X.soft_armor = X.soft_armor.modifyAllRatings(-last_fortify_bonus)
-		X.soft_armor = X.soft_armor.setRating(bomb = 20)
-		last_fortify_bonus = 0
+		X.soft_armor = X.soft_armor.modifyRating(BOMB = -last_fortify_bonus)
 		REMOVE_TRAIT(X, TRAIT_IMMOBILE, FORTIFY_TRAIT)
+
 	X.fortify = on
 	X.anchored = on
 	playsound(X.loc, 'sound/effects/stonedoor_openclose.ogg', 30, TRUE)
@@ -421,7 +428,7 @@
 
 	spin_loop_timer = addtimer(CALLBACK(src, PROC_REF(do_spin)), 5, TIMER_STOPPABLE)
 	add_cooldown()
-	RegisterSignal(owner, list(SIGNAL_ADDTRAIT(TRAIT_FLOORED), SIGNAL_ADDTRAIT(TRAIT_INCAPACITATED), SIGNAL_ADDTRAIT(TRAIT_IMMOBILE)), PROC_REF(stop_spin))
+	RegisterSignals(owner, list(SIGNAL_ADDTRAIT(TRAIT_FLOORED), SIGNAL_ADDTRAIT(TRAIT_INCAPACITATED), SIGNAL_ADDTRAIT(TRAIT_IMMOBILE)), PROC_REF(stop_spin))
 
 /// runs a spin, then starts the timer for a new spin if needed
 /datum/action/xeno_action/centrifugal_force/proc/do_spin()
@@ -432,7 +439,7 @@
 	playsound(X, pick('sound/effects/alien_tail_swipe1.ogg','sound/effects/alien_tail_swipe2.ogg','sound/effects/alien_tail_swipe3.ogg'), 25, 1) //Sound effects
 
 	for(var/mob/living/carbon/human/slapped in orange(1, X))
-		step_away(slapped, src, 1, 2)
+		slapped.knockback(X, 1, 4)
 		if(slapped.stat == DEAD)
 			continue
 		var/damage = X.xeno_caste.melee_damage/2
@@ -441,7 +448,7 @@
 			affecting = slapped.get_limb("chest")
 		slapped.apply_damage(damage, BRUTE, affecting, MELEE)
 		slapped.apply_damage(damage, STAMINA, updating_health = TRUE)
-		slapped.Paralyze(3)
+		slapped.Paralyze(0.3 SECONDS)
 		shake_camera(slapped, 2, 1)
 
 		to_chat(slapped, span_xenowarning("We are struck by \the [X]'s flying tail!"))

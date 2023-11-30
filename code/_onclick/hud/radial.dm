@@ -281,7 +281,7 @@ GLOBAL_LIST_EMPTY(radial_menus)
 /datum/radial_menu/Destroy()
 	Reset()
 	hide()
-	QDEL_NULL(custom_check_callback)
+	custom_check_callback = null
 	current_user = null
 	QDEL_LIST(elements)
 	QDEL_NULL(close_button)

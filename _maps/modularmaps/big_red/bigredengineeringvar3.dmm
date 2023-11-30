@@ -19,7 +19,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "bj" = (
-/obj/structure/window/framed/colony/reinforced,
+/obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /obj/machinery/door/poddoor/shutters/mainship{
 	dir = 2;
 	id = "Engineering";
@@ -29,12 +29,12 @@
 /area/bigredv2/outside/engineering)
 "bA" = (
 /obj/structure/table,
-/obj/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "bB" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/alarm{
+/obj/machinery/air_alarm{
 	dir = 1
 	},
 /turf/open/floor,
@@ -94,7 +94,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/bigredv2/outside/engineering)
 "ee" = (
 /obj/effect/decal/cleanable/dirt,
@@ -153,7 +153,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/structure/largecrate/random,
+/obj/effect/spawner/random/misc/structure/supplycrate,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "hQ" = (
@@ -318,7 +318,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "qg" = (
-/obj/structure/window/framed/colony/reinforced,
+/obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /obj/machinery/door/poddoor/shutters/mainship{
 	dir = 2;
 	id = "Engineering";
@@ -361,7 +361,7 @@
 /area/bigredv2/outside/engineering)
 "rt" = (
 /obj/structure/table,
-/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/engineering/tool,
 /obj/item/stack/sheet/metal{
 	amount = 30
 	},
@@ -392,7 +392,7 @@
 /area/bigredv2/outside/engineering)
 "sF" = (
 /obj/structure/table,
-/obj/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
@@ -451,7 +451,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/bigredv2/outside/engineering)
 "uU" = (
 /obj/machinery/atmospherics/components/unary/vent_pump,
@@ -472,7 +472,7 @@
 "vv" = (
 /obj/structure/table,
 /obj/machinery/light,
-/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/engineering/tool,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "vw" = (
@@ -498,7 +498,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "wL" = (
-/obj/structure/window/framed/colony/reinforced,
+/obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /obj/machinery/door/poddoor/mainship{
 	dir = 2;
 	id = "rad_door";
@@ -618,14 +618,14 @@
 /area/bigredv2/outside/s)
 "Cr" = (
 /obj/structure/table,
-/obj/item/clothing/ears/earmuffs,
+/obj/effect/spawner/random/misc/earmuffs,
 /obj/effect/landmark/weed_node,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "Cx" = (
 /obj/structure/table,
-/obj/effect/spawner/random/tool,
-/obj/effect/spawner/random/technology_scanner,
+/obj/effect/spawner/random/engineering/tool,
+/obj/effect/spawner/random/engineering/technology_scanner,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "CL" = (
@@ -639,7 +639,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "Di" = (
-/obj/machinery/constructable_frame/state_2,
+/obj/effect/spawner/random/machinery/machine_frame,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "DI" = (
@@ -693,7 +693,7 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/engineering)
 "GG" = (
-/obj/structure/window/framed/colony,
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /turf/open/floor/plating,
 /area/bigredv2/outside/engineering)
 "Ha" = (
@@ -704,7 +704,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "Hk" = (
-/turf/open/ground/river,
+/turf/open/liquid/water/river,
 /area/bigredv2/outside/engineering)
 "Hz" = (
 /turf/open/floor/plating/ground/mars/dirttosand/autosmooth{
@@ -726,7 +726,7 @@
 /area/bigredv2/outside/engineering)
 "HO" = (
 /obj/structure/table,
-/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/engineering/tool,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "HP" = (
@@ -846,7 +846,7 @@
 /area/bigredv2/outside/engineering)
 "Pk" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/constructable_frame,
+/obj/effect/spawner/random/machinery/machine_frame,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "Pu" = (
@@ -880,7 +880,7 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/engineering)
 "QH" = (
-/obj/structure/reagent_dispensers/fueltank,
+/obj/effect/spawner/random/engineering/structure/tank/fuelweighted,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "QO" = (
@@ -942,7 +942,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/effect/spawner/random/technology_scanner,
+/obj/effect/spawner/random/engineering/technology_scanner,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "Tt" = (
@@ -950,10 +950,6 @@
 /obj/machinery/power/apc/drained{
 	dir = 4
 	},
-/turf/open/floor,
-/area/bigredv2/outside/engineering)
-"TQ" = (
-/obj/machinery/power/breakerbox,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "TY" = (
@@ -974,13 +970,13 @@
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "VK" = (
-/obj/structure/reagent_dispensers/watertank,
+/obj/effect/spawner/random/engineering/structure/tank/waterweighted,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "Wq" = (
 /obj/structure/table,
-/obj/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
 /obj/effect/landmark/weed_node,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
@@ -1043,7 +1039,7 @@
 /area/bigredv2/outside/engineering)
 "ZE" = (
 /obj/structure/table,
-/obj/effect/spawner/random/powercell,
+/obj/effect/spawner/random/engineering/powercell,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "ZX" = (
@@ -1555,7 +1551,7 @@ HK
 vi
 nZ
 EV
-TQ
+lU
 Yk
 lU
 lU

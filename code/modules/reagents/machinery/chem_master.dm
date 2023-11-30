@@ -40,11 +40,11 @@
 	)
 
 
-/obj/machinery/chem_master/Initialize()
+/obj/machinery/chem_master/Initialize(mapload)
 	. = ..()
 	var/datum/reagents/R = new/datum/reagents(240)
 	reagents = R
-	R.my_atom = src
+	R.my_atom = WEAKREF(src)
 
 
 /obj/machinery/chem_master/Destroy()
@@ -68,28 +68,28 @@
 	if(istype(I,/obj/item/reagent_containers) && I.is_open_container())
 		for(var/datum/reagent/X in I.reagents.reagent_list)
 			if(X.medbayblacklist)
-				to_chat(user, span_warning("The chem master's automatic safety features beep softly, they must have detected a harmful substance in the beaker."))
+				balloon_alert(user, "Harmful substance detected")
 				return
 		if(beaker)
-			to_chat(user, span_warning("A beaker is already loaded into the machine."))
+			balloon_alert(user, "Beaker already loaded")
 			return
 		user.transferItemToLoc(I, src)
 		beaker = I
-		to_chat(user, span_notice("You add the beaker to the machine!"))
+		balloon_alert(user, "Adds beaker")
 		updateUsrDialog()
 		icon_state = "mixer1"
 
 	else if(istype(I,/obj/item/reagent_containers/glass))
-		to_chat(user, span_warning("Take off the lid first."))
+		balloon_alert(user, "Take off the lid first.")
 
 	else if(istype(I, /obj/item/storage/pill_bottle))
 		if(loaded_pill_bottle)
-			to_chat(user, span_warning("A pill bottle is already loaded into the machine."))
+			balloon_alert(user, "Pill bottle already loaded")
 			return
 
 		loaded_pill_bottle = I
 		user.transferItemToLoc(I, src)
-		to_chat(user, span_notice("You add the pill bottle into the dispenser slot!"))
+		balloon_alert(user, "Adds pill bottle into dispenser")
 		updateUsrDialog()
 
 /obj/machinery/chem_master/proc/transfer_chemicals(obj/dest, obj/source, amount, reagent_id)
@@ -140,11 +140,11 @@
 					var/A = G.name
 					var/B = G.data["blood_type"]
 					var/C = G.data["blood_DNA"]
-					dat += "Chemical infos:<BR><BR>Name:<BR>[A]<BR><BR>Description:<BR>Blood Type: [B]<br>DNA: [C]<BR><BR><BR><A href='?src=\ref[src];main=1'>(Back)</A>"
+					dat += "Chemical infos:<BR><BR>Name:<BR>[A]<BR><BR>Description:<BR>Blood Type: [B]<br>DNA: [C]<BR><BR><BR><A href='?src=[text_ref(src)];main=1'>(Back)</A>"
 				else
-					dat += "Chemical infos:<BR><BR>Name:<BR>[href_list["name"]]<BR><BR>Description:<BR>[href_list["desc"]]<BR><BR><BR><A href='?src=\ref[src];main=1'>(Back)</A>"
+					dat += "Chemical infos:<BR><BR>Name:<BR>[href_list["name"]]<BR><BR>Description:<BR>[href_list["desc"]]<BR><BR><BR><A href='?src=[text_ref(src)];main=1'>(Back)</A>"
 			else
-				dat += "Condiment infos:<BR><BR>Name:<BR>[href_list["name"]]<BR><BR>Description:<BR>[href_list["desc"]]<BR><BR><BR><A href='?src=\ref[src];main=1'>(Back)</A>"
+				dat += "Condiment infos:<BR><BR>Name:<BR>[href_list["name"]]<BR><BR>Description:<BR>[href_list["desc"]]<BR><BR><BR><A href='?src=[text_ref(src)];main=1'>(Back)</A>"
 			var/datum/browser/popup = new(user, "chem_master", "<div align='center'>Chemmaster 3000</div>", 575, 400)
 			popup.set_content(dat)
 			popup.open(FALSE)
@@ -203,7 +203,7 @@
 		else if (href_list["createpillbottle"])
 			if(!condi)
 				if(loaded_pill_bottle)
-					to_chat(user, span_warning("A pill bottle is already loaded into the machine."))
+					balloon_alert(user, "Pill bottle already loaded")
 					return
 				var/bottle_label = reject_bad_text(tgui_input_text(user, "Label:", "Enter desired bottle label", encode = FALSE))
 				var/obj/item/storage/pill_bottle/I = new/obj/item/storage/pill_bottle
@@ -211,7 +211,7 @@
 				if(bottle_label)
 					I.name = "[bottle_label] pill bottle"
 				loaded_pill_bottle = I
-				to_chat(user, span_notice("The Chemmaster 3000 sets a pill bottle into the dispenser slot."))
+				balloon_alert(user, "The chemmaster dispenses a pill bottle into its slot")
 				updateUsrDialog()
 
 		else if (href_list["createpill"] || href_list["createpill_multiple"])
@@ -286,7 +286,7 @@
 			#define MAX_PILL_BOTTLE_SPRITE 6 //max icon state of the pill sprites
 			var/dat = "<table>"
 			for(var/i = 1 to MAX_PILL_BOTTLE_SPRITE)
-				dat += "<tr><td><a href=\"?src=\ref[src]&pill_bottle_sprite=[i]\">Select</a><img src=\"[pill_bottle_names[i]].png\" /><br></td></tr>"
+				dat += "<tr><td><a href=\"?src=[text_ref(src)]&pill_bottle_sprite=[i]\">Select</a><img src=\"[pill_bottle_names[i]].png\" /><br></td></tr>"
 			dat += "</table>"
 			var/datum/browser/popup = new(user, "chem_master", "<div align='center'>Change Pill Bottle</div>")
 			popup.set_content(dat)
@@ -297,7 +297,7 @@
 			#define MAX_PILL_SPRITE 21 //max icon state of the pill sprites
 			var/dat = "<table>"
 			for(var/i = 1 to MAX_PILL_SPRITE)
-				dat += "<tr><td><a href=\"?src=\ref[src]&pill_sprite=[i]\">Select</a><img src=\"pill[i].png\" /><br></td></tr>"
+				dat += "<tr><td><a href=\"?src=[text_ref(src)]&pill_sprite=[i]\">Select</a><img src=\"pill[i].png\" /><br></td></tr>"
 			dat += "</table>"
 			var/datum/browser/popup = new(user, "chem_master", "<div align='center'>Change Pill</div>")
 			popup.set_content(dat)
@@ -308,7 +308,7 @@
 			#define MAX_BOTTLE_SPRITE 5 //max icon state of the bottle sprites
 			var/dat = "<table>"
 			for(var/i = 1 to MAX_BOTTLE_SPRITE)
-				dat += "<tr><td><a href=\"?src=\ref[src]&bottle_sprite=[i]\">Select</a><img src=\"bottle-[i].png\" /><br></td></tr>"
+				dat += "<tr><td><a href=\"?src=[text_ref(src)]&bottle_sprite=[i]\">Select</a><img src=\"bottle-[i].png\" /><br></td></tr>"
 			dat += "</table>"
 			var/datum/browser/popup = new(user, "chem_master", "<div align='center'>Change Bottle</div>")
 			popup.set_content(dat)
@@ -319,7 +319,7 @@
 			#define MAX_AUTOINJECTOR_SPRITE 12 //max icon state of the autoinjector sprites
 			var/dat = "<table>"
 			for(var/i = 1 to MAX_AUTOINJECTOR_SPRITE)
-				dat += "<tr><td><a href=\"?src=\ref[src]&autoinjector_sprite=[i]\">Select</a><img src=\"autoinjector-[i].png\" /><br></td></tr>"
+				dat += "<tr><td><a href=\"?src=[text_ref(src)]&autoinjector_sprite=[i]\">Select</a><img src=\"autoinjector-[i].png\" /><br></td></tr>"
 			dat += "</table>"
 			var/datum/browser/popup = new(user, "chem_master", "<div align='center'>Change Autoinjector</div>")
 			popup.set_content(dat)
@@ -361,13 +361,13 @@
 	if(!beaker)
 		dat = "Please insert beaker.<BR>"
 		if(loaded_pill_bottle)
-			dat += "<A href='?src=\ref[src];ejectp=1'>Eject Pill Bottle \[[length(loaded_pill_bottle.contents)]/[loaded_pill_bottle.max_storage_space]\]</A><BR><BR>"
+			dat += "<A href='?src=[text_ref(src)];ejectp=1'>Eject Pill Bottle \[[length(loaded_pill_bottle.contents)]/[loaded_pill_bottle.max_storage_space]\]</A><BR><BR>"
 		else
 			dat += "No pill bottle inserted.<BR><BR>"
 	else
-		dat += "<A href='?src=\ref[src];eject=1'>Eject beaker and Clear Buffer</A><BR>"
+		dat += "<A href='?src=[text_ref(src)];eject=1'>Eject beaker and Clear Buffer</A><BR>"
 		if(loaded_pill_bottle)
-			dat += "<A href='?src=\ref[src];ejectp=1'>Eject Pill Bottle \[[length(loaded_pill_bottle.contents)]/[loaded_pill_bottle.max_storage_space]\]</A><BR><BR>"
+			dat += "<A href='?src=[text_ref(src)];ejectp=1'>Eject Pill Bottle \[[length(loaded_pill_bottle.contents)]/[loaded_pill_bottle.max_storage_space]\]</A><BR><BR>"
 		else
 			dat += "No pill bottle inserted.<BR><BR>"
 		if(!beaker.reagents.total_volume)
@@ -376,33 +376,33 @@
 			dat += "Add to buffer:<BR>"
 			for(var/datum/reagent/G in beaker.reagents.reagent_list)
 				dat += "[G.name] , [G.volume] Units - "
-				dat += "<A href='?src=\ref[src];analyze=1;desc=[G.description];name=[G.name];reag_type=[G.type]'>(Analyze)</A> "
-				dat += "<A href='?src=\ref[src];add=[G.type];amount=1'>(1)</A> "
-				dat += "<A href='?src=\ref[src];add=[G.type];amount=5'>(5)</A> "
-				dat += "<A href='?src=\ref[src];add=[G.type];amount=10'>(10)</A> "
-				dat += "<A href='?src=\ref[src];add=[G.type];amount=[G.volume]'>(All)</A> "
-				dat += "<A href='?src=\ref[src];addcustom=[G.type]'>(Custom)</A><BR>"
+				dat += "<A href='?src=[text_ref(src)];analyze=1;desc=[G.description];name=[G.name];reag_type=[G.type]'>(Analyze)</A> "
+				dat += "<A href='?src=[text_ref(src)];add=[G.type];amount=1'>(1)</A> "
+				dat += "<A href='?src=[text_ref(src)];add=[G.type];amount=5'>(5)</A> "
+				dat += "<A href='?src=[text_ref(src)];add=[G.type];amount=10'>(10)</A> "
+				dat += "<A href='?src=[text_ref(src)];add=[G.type];amount=[G.volume]'>(All)</A> "
+				dat += "<A href='?src=[text_ref(src)];addcustom=[G.type]'>(Custom)</A><BR>"
 
-		dat += "<HR>Transfer to <A href='?src=\ref[src];toggle=1'>[(!mode ? "disposal" : "beaker")]:</A><BR>"
+		dat += "<HR>Transfer to <A href='?src=[text_ref(src)];toggle=1'>[(!mode ? "disposal" : "beaker")]:</A><BR>"
 		if(reagents.total_volume)
 			for(var/datum/reagent/N in reagents.reagent_list)
 				dat += "[N.name] , [N.volume] Units - "
-				dat += "<A href='?src=\ref[src];analyze=1;desc=[N.description];name=[N.name];reag_type=[N.type]'>(Analyze)</A> "
-				dat += "<A href='?src=\ref[src];remove=[N.type];amount=1'>(1)</A> "
-				dat += "<A href='?src=\ref[src];remove=[N.type];amount=5'>(5)</A> "
-				dat += "<A href='?src=\ref[src];remove=[N.type];amount=10'>(10)</A> "
-				dat += "<A href='?src=\ref[src];remove=[N.type];amount=[N.volume]'>(All)</A> "
-				dat += "<A href='?src=\ref[src];removecustom=[N.type]'>(Custom)</A><BR>"
+				dat += "<A href='?src=[text_ref(src)];analyze=1;desc=[N.description];name=[N.name];reag_type=[N.type]'>(Analyze)</A> "
+				dat += "<A href='?src=[text_ref(src)];remove=[N.type];amount=1'>(1)</A> "
+				dat += "<A href='?src=[text_ref(src)];remove=[N.type];amount=5'>(5)</A> "
+				dat += "<A href='?src=[text_ref(src)];remove=[N.type];amount=10'>(10)</A> "
+				dat += "<A href='?src=[text_ref(src)];remove=[N.type];amount=[N.volume]'>(All)</A> "
+				dat += "<A href='?src=[text_ref(src)];removecustom=[N.type]'>(Custom)</A><BR>"
 		else
 			dat += "Empty<BR>"
 		if(!condi)
-			dat += "<HR><BR><A href='?src=\ref[src];createpillbottle=1'>Load pill bottle</A><a href=\"?src=\ref[src]&change_pill_bottle=1\">Change</a><img src=\"[pill_bottle_names[text2num(pillbottlesprite)]].png\" /><BR>"
-			dat += "<A href='?src=\ref[src];createpill=1'>Create pill (15 units max)</A><a href=\"?src=\ref[src]&change_pill=1\">Change</a><img src=\"pill[pillsprite].png\" /><BR>"
-			dat += "<A href='?src=\ref[src];createpill_multiple=1'>Create multiple pills</A><BR>"
-			dat += "<A href='?src=\ref[src];createbottle=1'>Create bottle (60 units max)<a href=\"?src=\ref[src]&change_bottle=1\">Change</A><img src=\"bottle-[bottlesprite].png\" /><BR>"
-			dat += "<A href='?src=\ref[src];createautoinjector=1'>Create autoinjector (30 units max)<a href=\"?src=\ref[src]&change_autoinjector=1\">Change</A><img src=\"autoinjector-[autoinjectorsprite].png\" />"
+			dat += "<HR><BR><A href='?src=[text_ref(src)];createpillbottle=1'>Load pill bottle</A><a href=\"?src=[text_ref(src)]&change_pill_bottle=1\">Change</a><img src=\"[pill_bottle_names[text2num(pillbottlesprite)]].png\" /><BR>"
+			dat += "<A href='?src=[text_ref(src)];createpill=1'>Create pill (15 units max)</A><a href=\"?src=[text_ref(src)]&change_pill=1\">Change</a><img src=\"pill[pillsprite].png\" /><BR>"
+			dat += "<A href='?src=[text_ref(src)];createpill_multiple=1'>Create multiple pills</A><BR>"
+			dat += "<A href='?src=[text_ref(src)];createbottle=1'>Create bottle (60 units max)<a href=\"?src=[text_ref(src)]&change_bottle=1\">Change</A><img src=\"bottle-[bottlesprite].png\" /><BR>"
+			dat += "<A href='?src=[text_ref(src)];createautoinjector=1'>Create autoinjector (30 units max)<a href=\"?src=[text_ref(src)]&change_autoinjector=1\">Change</A><img src=\"autoinjector-[autoinjectorsprite].png\" />"
 		else
-			dat += "<A href='?src=\ref[src];createbottle=1'>Create bottle (50 units max)</A>"
+			dat += "<A href='?src=[text_ref(src)];createbottle=1'>Create bottle (50 units max)</A>"
 
 	var/datum/browser/popup = new(user, "chem_master", "<div align='center'>Chemmaster menu</div>", 575, 450)
 	popup.set_content(dat)
@@ -422,6 +422,9 @@
 
 /obj/machinery/chem_master/nopower
 	use_power = NO_POWER_USE
+
+/obj/machinery/chem_master/nopower/valhalla
+	resistance_flags = INDESTRUCTIBLE
 
 /obj/machinery/chem_master/condimaster/nopower
 	use_power = NO_POWER_USE

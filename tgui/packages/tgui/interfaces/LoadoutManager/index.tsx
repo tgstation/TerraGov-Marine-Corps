@@ -1,5 +1,5 @@
 import { useBackend, useLocalState } from '../../backend';
-import { Stack, Button, Section, LabeledList, Tabs, Flex } from '../../components';
+import { Box, Stack, Button, Section, LabeledList, Tabs, Flex } from '../../components';
 import { Window } from '../../layouts';
 import { LoadoutListData, LoadoutTabData, LoadoutManagerData, LoadoutItemData } from './Types';
 import { NameInputModal } from './NameInputModal';
@@ -9,22 +9,45 @@ const LoadoutItem = (props: LoadoutItemData, context) => {
   const { loadout } = props;
 
   return (
-    <LabeledList.Item
-      labelColor="white"
-      buttons={
-        <Button
-          onClick={() => {
-            act('selectLoadout', {
-              loadout_name: loadout.name,
-              loadout_job: loadout.job,
-            });
-          }}>
-          Select Loadout
-        </Button>
-      }
-      label={loadout.name}>
-      <div> </div>
-    </LabeledList.Item>
+    <Box>
+      <LabeledList.Item
+        labelColor="white"
+        buttons={
+          <>
+            <Button
+              icon="arrow-up"
+              onClick={() =>
+                act('edit_loadout_position', {
+                  direction: 'up',
+                  loadout_name: loadout.name,
+                  loadout_job: loadout.job,
+                })
+              }
+            />
+            <Button
+              icon="arrow-down"
+              onClick={() =>
+                act('edit_loadout_position', {
+                  direction: 'down',
+                  loadout_name: loadout.name,
+                  loadout_job: loadout.job,
+                })
+              }
+            />
+            <Button
+              onClick={() => {
+                act('selectLoadout', {
+                  loadout_name: loadout.name,
+                  loadout_job: loadout.job,
+                });
+              }}>
+              Select Loadout
+            </Button>
+          </>
+        }
+        label={loadout.name}
+      />
+    </Box>
   );
 };
 

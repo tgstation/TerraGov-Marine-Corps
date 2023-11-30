@@ -1,0 +1,36 @@
+{
+	"leather_jacket_normal":[
+		{
+			"type": "hyperscale",
+			"icon_state": "leather_jacket"
+		}
+	],
+	"leather_jacket_webbing":[
+		{
+			"type": "hyperscale",
+			"icon_state": "leather_jacket"
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "leather_jacket_webbing",
+			"blend_mode": "overlay"
+		}
+	],
+	"leather_jacket_worn_normal":[
+		{
+			"type": "hyperscale",
+			"icon_state": "leather_jacket_worn"
+		}
+	],
+	"leather_jacket_worn_webbing":[
+		{
+			"type": "hyperscale",
+			"icon_state": "leather_jacket_worn"
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "leather_jacket_webbing_w",
+			"blend_mode": "overlay"
+		}
+	]
+}

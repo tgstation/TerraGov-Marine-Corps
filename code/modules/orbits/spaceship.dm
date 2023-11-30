@@ -16,6 +16,7 @@ GLOBAL_VAR_INIT(current_orbit,STANDARD_ORBIT)
 /obj/machinery/computer/navigation
 	name = "\improper Helms computer"
 	icon_state = "shuttlecomputer"
+	screen_overlay = "shuttlecomputer_screen"
 	density = TRUE
 	anchored = TRUE
 	idle_power_usage = 10
@@ -47,7 +48,7 @@ GLOBAL_VAR_INIT(current_orbit,STANDARD_ORBIT)
 	to_chat(user, "The wires have been [CHECK_BITFIELD(machine_stat, PANEL_OPEN) ? "exposed" : "unexposed"]")
 
 
-/obj/machinery/computer/navigation/Initialize() //need anything special?
+/obj/machinery/computer/navigation/Initialize(mapload) //need anything special?
 	. = ..()
 	desc = "The navigation console for the [SSmapping.configs[SHIP_MAP].map_name]."
 	timer_id = addtimer(VARSET_CALLBACK(src, changing_orbit, FALSE), 10 MINUTES, TIMER_STOPPABLE) //ship is still heading to area cant change orbit yet if your not at the planet
@@ -88,14 +89,14 @@ GLOBAL_VAR_INIT(current_orbit,STANDARD_ORBIT)
 	var/dat
 
 	if(authenticated)
-		dat += "<BR>\[ <A HREF='?src=\ref[src];logout=1'>LOG OUT</A>]"
+		dat += "<BR>\[ <A HREF='?src=[text_ref(src)];logout=1'>LOG OUT</A>]"
 		dat += "<center><h4>[SSmapping.configs[SHIP_MAP].map_name]</h4></center>"//get the current ship map name
 
 		dat += "<br><center><h3>[GLOB.current_orbit]</h3></center>" //display the current orbit level
 		dat += "<br><center>Power Level: [get_power_amount()]|Engines prepared: [can_change_orbit(silent = TRUE) ? "Ready" : "Recalculating"]</center>" //display ship nav stats, power level, cooldown.
 
 		if(get_power_amount() >= REQUIRED_POWER_AMOUNT)
-			dat += "<center><b><a href='byond://?src=\ref[src];UP=1'>Increase orbital level</a>|" //move farther away, current_orbit++
+			dat += "<center><b><a href='byond://?src=[text_ref(src)];UP=1'>Increase orbital level</a>|" //move farther away, current_orbit++
 			dat += "<a href='byond://?src=[REF(src)];DOWN=1'>Decrease orbital level</a>|" //move closer in, current_orbit--
 		else
 			dat += "<center><h4>Insufficient Power Reserves to change orbit"
@@ -104,7 +105,7 @@ GLOBAL_VAR_INIT(current_orbit,STANDARD_ORBIT)
 		dat += "</b></center>"
 
 	else
-		dat += "<BR>\[ <A HREF='?src=\ref[src];login=1'>LOG IN</A> \]"
+		dat += "<BR>\[ <A HREF='?src=[text_ref(src)];login=1'>LOG IN</A> \]"
 
 	var/datum/browser/popup = new(user, "Navigation", "<div align='center'>Navigation</div>")
 	popup.set_content(dat)
@@ -142,12 +143,10 @@ GLOBAL_VAR_INIT(current_orbit,STANDARD_ORBIT)
 		authenticated = FALSE
 
 	if (href_list["UP"])
-		message_admins("[ADMIN_TPMONTY(usr)] Has sent the ship Upward in orbit")
 		do_orbit_checks("UP")
 		TIMER_COOLDOWN_START(src, COOLDOWN_ORBIT_CHANGE, 1 MINUTES)
 
 	else if (href_list["DOWN"])
-		message_admins("[ADMIN_TPMONTY(usr)] Has sent the ship Downward in orbit")
 		do_orbit_checks("DOWN")
 		TIMER_COOLDOWN_START(src, COOLDOWN_ORBIT_CHANGE, 1 MINUTES)
 
@@ -160,6 +159,7 @@ GLOBAL_VAR_INIT(current_orbit,STANDARD_ORBIT)
 	if(!can_change_orbit(current_orbit, direction))
 		return
 
+	message_admins("[ADMIN_TPMONTY(usr)] Has sent the ship [direction == "UP" ? "UPWARD" : "DOWNWARD"] in orbit")
 	var/message = "Prepare for orbital change in 10 seconds.\nMoving [direction] the gravity well.\nSecure all belongings and prepare for engine ignition."
 	priority_announce(message, title = "Orbit Change")
 	addtimer(CALLBACK(src, PROC_REF(do_change_orbit), current_orbit, direction), 10 SECONDS)
@@ -227,5 +227,5 @@ GLOBAL_VAR_INIT(current_orbit,STANDARD_ORBIT)
 		else
 			to_chat(M, span_warning("The floor jolts under your feet!"))
 			shake_camera(M, 10, 1)
-			M.Knockdown(3)
+			M.Knockdown(0.3 SECONDS)
 		CHECK_TICK

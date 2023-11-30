@@ -1,3 +1,11 @@
+///Returns the soft armor for the given mob. If human and a limb is specified, gets the armor for that specific limb.
+/mob/living/proc/get_soft_armor(armor_type, proj_def_zone)
+	return soft_armor.getRating(armor_type)
+
+///Returns the hard armor for the given mob. If human and a limb is specified, gets the armor for that specific limb.
+/mob/living/proc/get_hard_armor(armor_type, proj_def_zone)
+	return hard_armor.getRating(armor_type)
+
 /**
 	Returns a number after taking into account both soft and hard armor for the specified damage type, usually damage
 
@@ -7,15 +15,13 @@
 	* penetration: How much the damage source might bypass the armour value (optional)
 	* def_zone: What part of the body we want to check the armor of (optional)
 
-	Hard armor is calculated as a flat reduction before soft armor is applied as a multiplier.
-	Penetration reduces soft armor by a flat amount, but reduces hard armor as a multiplier.
+	Hard armor reduces penetration by a flat amount, and sunder in the case of xenos
+	Penetration reduces soft armor by a flat amount.
 	Damage cannot go into the negative, or exceed the original amount.
 */
 /mob/living/proc/modify_by_armor(damage_amount, armor_type, penetration, def_zone)
-	var/hard_armor_modifier = get_hard_armor(armor_type, def_zone)
-	hard_armor_modifier = hard_armor_modifier - (hard_armor_modifier * penetration * 0.01)
-	var/soft_armor_modifier = min((1 - ((get_soft_armor(armor_type, def_zone) - penetration) * 0.01)), 1)
-	return clamp(((damage_amount - hard_armor_modifier) * soft_armor_modifier), 0, damage_amount)
+	penetration = max(0, penetration - get_hard_armor(armor_type, def_zone))
+	return clamp((damage_amount * (1 - ((get_soft_armor(armor_type, def_zone) - penetration) * 0.01))), 0, damage_amount)
 
 /*
 	apply_damage(a,b,c)
@@ -76,54 +82,56 @@
 Apply status effect to mob
 
 Arguments
-	effect {int} how much of an effect to apply
-	effecttype {enum} which affect to apply
-	blocked {int} an amount of the effect that is blocked
-	updating_health {boolean} if we should update health [/mob/living/updatehealth]
+	*effect: duration or amount of effect
+	*effecttype which affect to apply
+	*updating_health if we should update health [/mob/living/updatehealth]
 */
-/mob/living/proc/apply_effect(effect = 0, effecttype = STUN, blocked = 0, updating_health = FALSE)
+/mob/living/proc/apply_effect(effect = 0, effecttype = STUN, updating_health = FALSE)
 	if(status_flags & GODMODE)
 		return FALSE
-	if(!effect || (blocked >= 2))
+	if(effect <= 0)
 		return FALSE
+
 	switch(effecttype)
 		if(STUN)
-			Stun(effect/(blocked+1) * 20) // TODO: replace these * 20 with proper amounts in apply_effect() calls
+			Stun(effect)
 		if(WEAKEN)
-			Paralyze(effect/(blocked+1) * 20)
+			Paralyze(effect)
 		if(PARALYZE)
-			Unconscious(effect/(blocked+1) * 20)
+			Unconscious(effect)
+		if(STAGGER)
+			Stagger(effect)
 		if(AGONY)
-			adjustStaminaLoss(effect/(blocked+1))
+			adjustStaminaLoss(effect)
 		if(STUTTER)
 			if(status_flags & CANSTUN) // stun is usually associated with stutter
-				set_timed_status_effect(effect/(blocked+1), /datum/status_effect/speech/stutter, only_if_higher = TRUE)
+				set_timed_status_effect(effect, /datum/status_effect/speech/stutter, only_if_higher = TRUE)
 		if(EYE_BLUR)
-			blur_eyes(effect/(blocked+1))
+			blur_eyes(effect)
 		if(DROWSY)
-			adjustDrowsyness(effect / (blocked + 1))
+			adjustDrowsyness(effect)
 	if(updating_health)
 		updatehealth()
 	return TRUE
 
-
-/mob/living/proc/apply_effects(stun = 0, weaken = 0, paralyze = 0, stutter = 0, eyeblur = 0, drowsy = 0, agony = 0, blocked = 0, updating_health = FALSE)
-	if(blocked >= 2)
-		return FALSE
+///Applies multiple negative effects to a mob
+/mob/living/proc/apply_effects(stun = 0, weaken = 0, paralyze = 0, stagger = 0,stutter = 0, eyeblur = 0, drowsy = 0, agony = 0, updating_health = FALSE)
 	if(stun)
-		apply_effect(stun, STUN, blocked)
+		apply_effect(stun, STUN)
 	if(weaken)
-		apply_effect(weaken, WEAKEN, blocked)
+		apply_effect(weaken, WEAKEN)
 	if(paralyze)
-		apply_effect(paralyze, PARALYZE, blocked)
+		apply_effect(paralyze, PARALYZE)
+	if(stagger)
+		apply_effect(stagger, STAGGER)
 	if(stutter)
-		apply_effect(stutter, STUTTER, blocked)
+		apply_effect(stutter, STUTTER)
 	if(eyeblur)
-		apply_effect(eyeblur, EYE_BLUR, blocked)
+		apply_effect(eyeblur, EYE_BLUR)
 	if(drowsy)
-		apply_effect(drowsy, DROWSY, blocked)
+		apply_effect(drowsy, DROWSY)
 	if(agony)
-		apply_effect(agony, AGONY, blocked)
+		apply_effect(agony, AGONY)
 	if(updating_health)
 		updatehealth()
 	return TRUE

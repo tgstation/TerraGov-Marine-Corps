@@ -8,7 +8,7 @@
 	invisibility = INVISIBILITY_ABSTRACT
 
 
-/obj/effect/landmark/Initialize()
+/obj/effect/landmark/Initialize(mapload)
 	. = ..()
 	GLOB.landmarks_list += src
 
@@ -32,7 +32,7 @@
 	var/used = FALSE
 
 
-/obj/effect/landmark/start/Initialize()
+/obj/effect/landmark/start/Initialize(mapload)
 	GLOB.start_landmarks_list += src
 	. = ..()
 	if(name != "start")
@@ -52,31 +52,29 @@
 /obj/effect/landmark/newplayer_start/New() //This can't be Initialize() or players will start in a wrong loc at roundstart.
 	GLOB.newplayer_start += src
 
+/obj/effect/landmark/newplayer_start/Destroy()
+	GLOB.newplayer_start -= src
+	return ..()
 
 /obj/effect/landmark/start/latejoin
 	icon_state = "latejoin"
 
-/obj/effect/landmark/start/latejoin/Initialize()
+/obj/effect/landmark/start/latejoin/Initialize(mapload)
 	. = ..()
 	GLOB.latejoin += loc
 	return INITIALIZE_HINT_QDEL
 
-/obj/effect/landmark/start/latejoinrebel/Initialize()
-	. = ..()
-	GLOB.latejoinrebel += loc
-	return INITIALIZE_HINT_QDEL
-
-/obj/effect/landmark/start/latejoinsom/Initialize()
+/obj/effect/landmark/start/latejoinsom/Initialize(mapload)
 	. = ..()
 	GLOB.latejoinsom += loc
 	return INITIALIZE_HINT_QDEL
 
-/obj/effect/landmark/start/latejoin_gateway/Initialize()
+/obj/effect/landmark/start/latejoin_gateway/Initialize(mapload)
 	. = ..()
 	GLOB.latejoin_gateway += loc
 	return INITIALIZE_HINT_QDEL
 
-/obj/effect/landmark/start/latejoin_cryo/Initialize()
+/obj/effect/landmark/start/latejoin_cryo/Initialize(mapload)
 	. = ..()
 	GLOB.latejoin_cryo += loc
 	return INITIALIZE_HINT_QDEL
@@ -85,7 +83,7 @@
 /obj/effect/landmark/thunderdome/one
 	icon_state = "tdome_t1"
 
-/obj/effect/landmark/thunderdome/one/Initialize()
+/obj/effect/landmark/thunderdome/one/Initialize(mapload)
 	. = ..()
 	GLOB.tdome1 += loc
 	return INITIALIZE_HINT_QDEL
@@ -93,7 +91,7 @@
 /obj/effect/landmark/thunderdome/two
 	icon_state = "tdome_t2"
 
-/obj/effect/landmark/thunderdome/two/Initialize()
+/obj/effect/landmark/thunderdome/two/Initialize(mapload)
 	. = ..()
 	GLOB.tdome2 += loc
 	return INITIALIZE_HINT_QDEL
@@ -101,18 +99,18 @@
 /obj/effect/landmark/thunderdome/observe
 	icon_state = "tdome_observer"
 
-/obj/effect/landmark/thunderdome/observe/Initialize()
+/obj/effect/landmark/thunderdome/observe/Initialize(mapload)
 	. = ..()
 	return INITIALIZE_HINT_QDEL // unused
 
 /obj/effect/landmark/thunderdome/admin
 	icon_state = "tdome_admin"
 
-/obj/effect/landmark/thunderdome/admin/Initialize()
+/obj/effect/landmark/thunderdome/admin/Initialize(mapload)
 	. = ..()
 	return INITIALIZE_HINT_QDEL // unused
 
-/obj/effect/landmark/deathmatch/Initialize()
+/obj/effect/landmark/deathmatch/Initialize(mapload)
 	. = ..()
 	GLOB.deathmatch += loc
 	return INITIALIZE_HINT_QDEL
@@ -126,7 +124,7 @@
 	icon = 'icons/Xeno/weeds.dmi'
 	icon_state = "weednode0"
 
-/obj/effect/landmark/weed_node/Initialize()
+/obj/effect/landmark/weed_node/Initialize(mapload)
 	GLOB.xeno_weed_node_turfs += loc
 	. = ..()
 	return INITIALIZE_HINT_QDEL
@@ -136,7 +134,7 @@
 	icon = 'icons/Xeno/Effects.dmi'
 	icon_state = "resin"
 
-/obj/effect/landmark/xeno_resin_door/Initialize()
+/obj/effect/landmark/xeno_resin_door/Initialize(mapload)
 	GLOB.xeno_resin_door_turfs += loc
 	. = ..()
 	return INITIALIZE_HINT_QDEL
@@ -146,7 +144,7 @@
 	icon = 'icons/Xeno/structures.dmi'
 	icon_state = "resin0"
 
-/obj/effect/landmark/xeno_resin_wall/Initialize()
+/obj/effect/landmark/xeno_resin_wall/Initialize(mapload)
 	GLOB.xeno_resin_wall_turfs += loc
 	..()
 	return INITIALIZE_HINT_QDEL
@@ -156,17 +154,36 @@
 	icon = 'icons/Xeno/resin_silo.dmi'
 	icon_state = "weed_silo"
 
-/obj/effect/landmark/xeno_silo_spawn/Initialize()
+/obj/effect/landmark/xeno_silo_spawn/Initialize(mapload)
 	GLOB.xeno_resin_silo_turfs += loc
 	. = ..()
 	return INITIALIZE_HINT_QDEL
 
+/obj/effect/landmark/xeno_tunnel_spawn
+	name = "xeno tunnel spawn landmark"
+	icon = 'icons/Xeno/Effects.dmi'
+	icon_state = "hole"
+
+/obj/effect/landmark/xeno_tunnel_spawn/Initialize(mapload)
+	GLOB.xeno_tunnel_spawn_turfs += loc
+	..()
+	return INITIALIZE_HINT_QDEL
+
+/obj/effect/landmark/resin_jelly_pod
+	name = "xeno jelly pod landmark"
+	icon = 'icons/Xeno/resinpod.dmi'
+	icon_state = "resinpod"
+
+/obj/effect/landmark/resin_jelly_pod/Initialize(mapload)
+	GLOB.xeno_tunnel_spawn_turfs += loc
+	..()
+	return INITIALIZE_HINT_QDEL
 
 /obj/effect/landmark/nuke_spawn
 	name = "nuke spawn landmark"
 	icon_state = "tdome_observer"
 
-/obj/effect/landmark/nuke_spawn/Initialize()
+/obj/effect/landmark/nuke_spawn/Initialize(mapload)
 	GLOB.nuke_spawn_locs += loc
 	. = ..()
 	return INITIALIZE_HINT_QDEL
@@ -174,7 +191,7 @@
 /obj/effect/landmark/dropship_start_location
 	name = "dropship_start_location"
 
-/obj/effect/landmark/dropship_start_location/Initialize()
+/obj/effect/landmark/dropship_start_location/Initialize(mapload)
 	GLOB.minidropship_start_loc = loc
 	..()
 	return INITIALIZE_HINT_QDEL
@@ -185,7 +202,7 @@
 	var/weapon_list = list()
 	var/weapon_to_spawn = null
 
-/obj/effect/landmark/weapon_spawn/Initialize()
+/obj/effect/landmark/weapon_spawn/Initialize(mapload)
 	choose_weapon()
 	. = ..()
 	return INITIALIZE_HINT_QDEL
@@ -229,6 +246,7 @@
 	weapon_list = list(
 		/obj/item/weapon/gun/energy/lasgun/M43/practice,
 		/obj/item/weapon/gun/energy/lasgun/lasrifle/tesla,
+		/obj/item/weapon/gun/rifle/pepperball,
 		/obj/item/weapon/gun/grenade_launcher/single_shot/flare,
 		/obj/item/weapon/gun/pistol/standard_pistol,
 		/obj/item/weapon/gun/pistol/standard_pocketpistol,
@@ -244,11 +262,15 @@
 		/obj/item/weapon/gun/pistol/highpower,
 		/obj/item/weapon/gun/pistol/vp70,
 		/obj/item/weapon/gun/pistol/vp78,
+		/obj/item/weapon/gun/pistol/som,
+		/obj/item/weapon/gun/pistol/icc_dpistol,
 		/obj/item/weapon/gun/revolver/standard_revolver,
 		/obj/item/weapon/gun/revolver/single_action/m44,
 		/obj/item/weapon/gun/revolver/upp,
 		/obj/item/weapon/gun/revolver/small,
 		/obj/item/weapon/gun/revolver/cmb,
+		/obj/item/weapon/gun/revolver/judge,
+		/obj/item/weapon/gun/shotgun/double/derringer,
 		/obj/item/weapon/claymore/mercsword/machete,
 		/obj/item/weapon/katana/replica,
 		/obj/item/weapon/combat_knife,
@@ -271,9 +293,11 @@
 		/obj/item/weapon/gun/shotgun/pump/lever,
 		/obj/item/weapon/gun/pistol/g22/tranq,
 		/obj/item/weapon/gun/pistol/m1911/custom,
+		/obj/item/weapon/gun/pistol/plasma_pistol,
 		/obj/item/weapon/gun/revolver/mateba,
 		/obj/item/weapon/gun/revolver/mateba/notmarine,
 		/obj/item/weapon/gun/revolver/mateba/custom,
+		/obj/item/weapon/gun/revolver/standard_magnum,
 		/obj/item/weapon/gun/smg/standard_machinepistol,
 		/obj/item/weapon/gun/smg/standard_smg,
 		/obj/item/weapon/gun/smg/m25,
@@ -281,6 +305,9 @@
 		/obj/item/weapon/gun/smg/skorpion,
 		/obj/item/weapon/gun/smg/ppsh,
 		/obj/item/weapon/gun/smg/uzi,
+		/obj/item/weapon/gun/smg/icc_machinepistol/medic,
+		/obj/item/weapon/gun/smg/icc_pdw/standard,
+		/obj/item/weapon/gun/smg/som/veteran,
 		/obj/item/weapon/claymore,
 		/obj/item/weapon/claymore/mercsword,
 		/obj/item/weapon/claymore/mercsword/captain,
@@ -289,6 +316,10 @@
 		/obj/item/weapon/twohanded/fireaxe,
 		/obj/item/weapon/twohanded/spear,
 		/obj/item/weapon/twohanded/glaive,
+		/obj/item/weapon/gun/rifle/garand,
+		/obj/item/weapon/gun/shotgun/pump/lever/repeater,
+		/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_pistol,
+		/obj/item/weapon/gun/shotgun/double/martini,
 	)
 
 /obj/effect/landmark/weapon_spawn/tier3_weapon_spawn
@@ -302,6 +333,7 @@
 		/obj/item/weapon/gun/rifle/m412,
 		/obj/item/weapon/gun/rifle/m41a,
 		/obj/item/weapon/gun/rifle/mpi_km,
+		/obj/item/weapon/gun/rifle/mpi_km/black,
 		/obj/item/weapon/gun/rifle/m16,
 		/obj/item/weapon/gun/rifle/famas,
 		/obj/item/weapon/gun/rifle/alf_machinecarbine,
@@ -316,16 +348,35 @@
 		/obj/item/weapon/gun/shotgun/pump/t35,
 		/obj/item/weapon/gun/shotgun/combat,
 		/obj/item/weapon/gun/shotgun/combat/standardmarine,
+		/obj/item/weapon/gun/shotgun/som/pointman,
+		/obj/item/weapon/gun/shotgun/som/support,
+		/obj/item/weapon/gun/shotgun/pump/trenchgun,
 		/obj/item/weapon/gun/flamer/big_flamer,
 		/obj/item/weapon/gun/pistol/auto9,
 		/obj/item/weapon/gun/rifle/chambered,
 		/obj/item/weapon/gun/rifle/tx11,
+		/obj/item/weapon/gun/rifle/standard_skirmishrifle,
+		/obj/item/weapon/gun/rifle/mkh,
+		/obj/item/weapon/gun/rifle/som,
+		/obj/item/weapon/gun/rifle/som_carbine,
+		/obj/item/weapon/gun/rifle/som_mg,
+		/obj/item/weapon/gun/rifle/icc_sharpshooter,
+		/obj/item/weapon/gun/rifle/icc_battlecarbine,
+		/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_rifle/rifleman,
+		/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_carbine/scout,
+		/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_sniper,
+		/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_mlaser,
+		/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/charger/standard,
+		/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/caliver/standard,
+		/obj/item/weapon/gun/standard_mmg,
+		/obj/item/weapon/gun/launcher/rocket/oneuse,
 	)
 
 /obj/effect/landmark/weapon_spawn/tier4_weapon_spawn
 	name = "Tier 4 Weapon Spawn"
 	icon_state = "weapon4"
 	weapon_list = list(
+		/obj/item/weapon/gun/rifle/lmg_d,
 		/obj/item/weapon/gun/rifle/type71/commando,
 		/obj/item/weapon/gun/rifle/m412/elite,
 		/obj/item/weapon/gun/rifle/sniper/elite,
@@ -333,6 +384,7 @@
 		/obj/item/weapon/gun/rifle/sniper/elite/xmas,
 		/obj/item/weapon/gun/rifle/sniper/antimaterial,
 		/obj/item/weapon/gun/rifle/railgun,
+		/obj/item/weapon/gun/rifle/icc_coilgun,
 		/obj/item/weapon/gun/rifle/sniper/svd,
 		/obj/item/weapon/gun/grenade_launcher/single_shot,
 		/obj/item/weapon/gun/rifle/standard_smartmachinegun,
@@ -343,9 +395,19 @@
 		/obj/item/weapon/gun/shotgun/pump/cmb,
 		/obj/item/weapon/gun/shotgun/double,
 		/obj/item/weapon/gun/shotgun/double/sawn,
+		/obj/item/weapon/gun/shotgun/zx76,
 		/obj/item/weapon/gun/flamer/big_flamer/marinestandard,
+		/obj/item/weapon/gun/flamer/som,
 		/obj/item/weapon/gun/rifle/standard_autosniper,
 		/obj/item/weapon/energy/axe,
+		/obj/item/weapon/gun/rifle/tx54,
+		/obj/item/weapon/gun/rifle/tx55,
+		/obj/item/weapon/gun/rifle/som/veteran,
+		/obj/item/weapon/gun/rifle/icc_confrontationrifle/leader,
+		/obj/item/weapon/gun/energy/lasgun/lasrifle/xray,
+		/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/serpenta,
+		/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/culverin,
+		/obj/item/weapon/gun/launcher/rocket/recoillessrifle,
 	)
 
 /obj/effect/landmark/weapon_spawn/tier5_weapon_spawn
@@ -354,9 +416,13 @@
 	weapon_list = list(
 		/obj/item/weapon/gun/launcher/rocket,
 		/obj/item/weapon/gun/launcher/rocket/m57a4,
+		/obj/item/weapon/gun/launcher/rocket/m57a4/t57,
+		/obj/item/weapon/gun/launcher/rocket/som,
+		/obj/item/weapon/gun/launcher/rocket/icc,
 		/obj/item/weapon/gun/minigun,
 		/obj/item/weapon/gun/grenade_launcher/multinade_launcher,
 		/obj/item/weapon/gun/energy/lasgun/pulse,
+		/obj/item/weapon/gun/tl102/death, // memes
 	)
 
 /obj/effect/landmark/weapon_spawn/tier6_weapon_spawn
@@ -367,65 +433,14 @@
 						/obj/item/weapon/chainsword,
 						)
 
-//used to spawn a different dropship control console groundside for HvH mode
-/obj/effect/landmark/dropship_console_spawn_lz1
-	name = "Dropship console spawn lz1"
-	icon = 'icons/obj/machines/computer.dmi'
-	icon_state = "shuttle"
-
-/obj/effect/landmark/dropship_console_spawn_lz1/Initialize()
-	. = ..()
-	GLOB.lz1_shuttle_console_turfs_list += loc
-	return INITIALIZE_HINT_QDEL
-
-/obj/effect/landmark/dropship_console_spawn_lz2
-	name = "Dropship console spawn lz1"
-	icon = 'icons/obj/machines/computer.dmi'
-	icon_state = "shuttle"
-
-/obj/effect/landmark/dropship_console_spawn_lz2/Initialize()
-	. = ..()
-	GLOB.lz2_shuttle_console_turfs_list += loc
-	return INITIALIZE_HINT_QDEL
-
-/obj/effect/landmark/fob_sentry
-	name = "Fob sentry"
-	icon = 'icons/Marine/sentry.dmi'
-	icon_state = "sentry"
-
-/obj/effect/landmark/fob_sentry/Initialize()
-	. = ..()
-	GLOB.fob_sentries_loc += loc
-	return INITIALIZE_HINT_QDEL
-
-/obj/effect/landmark/fob_sentry_rebel
-	name = "Rebel fob sentry"
-	icon = 'icons/Marine/sentry.dmi'
-	icon_state = "sentry"
-
-/obj/effect/landmark/fob_sentry_rebel/Initialize()
-	. = ..()
-	GLOB.fob_sentries_rebel_loc += loc
-	return INITIALIZE_HINT_QDEL
-
 /obj/effect/landmark/sensor_tower
-	name = "Sensor tower"
-	icon = 'icons/obj/structures/sensor.dmi'
-	icon_state = "sensor"
-
-/obj/effect/landmark/sensor_tower/Initialize()
-	. = ..()
-	GLOB.sensor_towers += loc
-	return INITIALIZE_HINT_QDEL
-
-/obj/effect/landmark/sensor_tower_patrol
 	name = "Sensor tower"
 	icon = 'icons/obj/structures/sensor.dmi'
 	icon_state = "sensor_loyalist"
 
-/obj/effect/landmark/sensor_tower_patrol/Initialize()
+/obj/effect/landmark/sensor_tower/Initialize(mapload)
 	..()
-	GLOB.sensor_towers_patrol += loc
+	GLOB.sensor_towers += loc
 	return INITIALIZE_HINT_QDEL
 
 /obj/effect/landmark/valhalla
@@ -435,7 +450,7 @@
 	///Where do we spawn?
 	var/where
 
-/obj/effect/landmark/valhalla/Initialize()
+/obj/effect/landmark/valhalla/Initialize(mapload)
 	. = ..()
 	GLOB.valhalla_button_spawn_landmark["[spawns][where]"] = src
 
@@ -451,14 +466,118 @@
 //Combat patrol spawn in spots
 /obj/effect/landmark/patrol_point
 	name = "Patrol exit point"
-	//ID to link with an associated start point
+	///ID to link with an associated start point
 	var/id = null
+	///Faction this belongs to for minimap purposes
+	var/faction = FACTION_TERRAGOV
+	///minimap icon state
+	var/minimap_icon = "patrol_1"
 
-/obj/effect/landmark/patrol_point/Initialize()
+/obj/effect/landmark/patrol_point/Initialize(mapload)
 	. = ..()
 	//adds the exit points to the glob, and the start points link to them in lateinit
 	GLOB.patrol_point_list += src
+	if(!(SSticker?.mode?.flags_round_type & MODE_TWO_HUMAN_FACTIONS))
+		return
+	SSminimaps.add_marker(src, GLOB.faction_to_minimap_flag[faction], image('icons/UI_icons/map_blips.dmi', null, minimap_icon))
 
 /obj/effect/landmark/patrol_point/Destroy()
 	GLOB.patrol_point_list -= src
 	return ..()
+
+/obj/effect/landmark/patrol_point/tgmc_11
+	name = "TGMC exit point 11"
+	id = "TGMC_11"
+
+/obj/effect/landmark/patrol_point/tgmc_12
+	name = "TGMC exit point 12"
+	id = "TGMC_12"
+
+/obj/effect/landmark/patrol_point/tgmc_13
+	name = "TGMC exit point 13"
+	id = "TGMC_13"
+
+/obj/effect/landmark/patrol_point/tgmc_14
+	name = "TGMC exit point 14"
+	id = "TGMC_14"
+
+/obj/effect/landmark/patrol_point/tgmc_21
+	name = "TGMC exit point 21"
+	id = "TGMC_21"
+	minimap_icon = "patrol_2"
+
+/obj/effect/landmark/patrol_point/tgmc_22
+	name = "TGMC exit point 22"
+	id = "TGMC_22"
+	minimap_icon = "patrol_2"
+
+/obj/effect/landmark/patrol_point/tgmc_23
+	name = "TGMC exit point 23"
+	id = "TGMC_23"
+	minimap_icon = "patrol_2"
+
+/obj/effect/landmark/patrol_point/tgmc_24
+	name = "TGMC exit point 24"
+	id = "TGMC_24"
+	minimap_icon = "patrol_2"
+
+/obj/effect/landmark/patrol_point/som
+	faction = FACTION_SOM
+	minimap_icon = "som_patrol_1"
+
+/obj/effect/landmark/patrol_point/som/som_11
+	name = "SOM exit point 11"
+	id = "SOM_11"
+
+/obj/effect/landmark/patrol_point/som/som_12
+	name = "SOM exit point 12"
+	id = "SOM_12"
+
+/obj/effect/landmark/patrol_point/som/som_13
+	name = "SOM exit point 13"
+	id = "SOM_13"
+
+/obj/effect/landmark/patrol_point/som/som_14
+	name = "SOM exit point 14"
+	id = "SOM_14"
+
+/obj/effect/landmark/patrol_point/som/som_21
+	name = "SOM exit point 21"
+	id = "SOM_21"
+	minimap_icon = "som_patrol_2"
+
+/obj/effect/landmark/patrol_point/som/som_22
+	name = "SOM exit point 22"
+	id = "SOM_22"
+	minimap_icon = "som_patrol_2"
+
+/obj/effect/landmark/patrol_point/som/som_23
+	name = "SOM exit point 23"
+	id = "SOM_23"
+	minimap_icon = "som_patrol_2"
+
+/obj/effect/landmark/patrol_point/som/som_24
+	name = "SOM exit point 24"
+	id = "SOM_24"
+	minimap_icon = "som_patrol_2"
+
+/obj/effect/landmark/eord_roomba
+	name = "EORD roomba spawn point"
+
+/obj/effect/landmark/eord_roomba/Initialize(mapload)
+	. = ..()
+	GLOB.eord_roomba_spawns += src
+
+/obj/effect/landmark/eord_roomba/Destroy()
+	GLOB.eord_roomba_spawns -= src
+	return ..()
+
+/// Marks the bottom left of the testing zone.
+/// In landmarks.dm and not unit_test.dm so it is always active in the mapping tools.
+/obj/effect/landmark/unit_test_bottom_left
+	name = "unit test zone bottom left"
+
+/// Marks the top right of the testing zone.
+/// In landmarks.dm and not unit_test.dm so it is always active in the mapping tools.
+/obj/effect/landmark/unit_test_top_right
+	name = "unit test zone top right"
