@@ -100,12 +100,6 @@
 	fire_luminosity = fire_light
 	fire_overlay.update_icon()
 
-/mob/living/carbon/xenomorph/proc/apply_alpha_channel(image/I)
-	return I
-
-
-/////////
-
 ///Updates the wound overlays on the xeno
 /mob/living/carbon/xenomorph/proc/update_wounds()
 	if(QDELETED(src))
@@ -147,7 +141,7 @@
 
 	wound_overlay.icon_state = "[xeno_caste.wound_type]_[overlay_to_show]"
 
-	if(xeno_caste.reductive_wound_overlay)
+	if(xeno_caste.caste_flags & CASTE_HAS_WOUND_MASK)
 		var/image/wounded_mask = image(icon, null, "alpha_[overlay_to_show]")
 		wounded_mask.render_target = "*[REF(src)]"
 		overlays_standing[X_WOUND_LAYER] = wounded_mask
