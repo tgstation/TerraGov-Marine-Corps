@@ -1,9 +1,11 @@
 #define NO_REAGENT_COLOR "#FFFFFF"
 
 #define VALI_CODEX "<b>Reagent info:</b><BR>\
-	Bicaridine - heals somebody else for 12.5 brute, or when used on yourself heal 6 brute and 30 stamina<BR>\
-	Kelotane - set your target and any adjacent mobs aflame<BR>\
-	Tramadol - slow your target for 1 second and deal 60% more armor-piercing damage<BR>\
+	All chems - Deal an additional 60% of the weapons damage as true damage<BR>\
+	Bicaridine - Heals yourself and restores stamina upon attacking an enemy. Channel a heal on help intent to restore more health to allies<BR>\
+	Kelotane - Set your target aflame<BR>\
+	Tramadol - Slow your target for 1 second<BR>\
+	Tricordrazine - Sunders and shatters your targets armor<BR>\
 	<BR>\
 	<b>Tips:</b><BR>\
 	> Needs to be connected to the Vali system to collect green blood. You can connect it though the Vali system's configurations menu.<BR>\
@@ -20,6 +22,7 @@
 		/datum/reagent/medicine/bicaridine = 5,
 		/datum/reagent/medicine/tramadol = 5,
 		/datum/reagent/medicine/kelotane = 5,
+		/datum/reagent/medicine/tricordrazine = 5,
 	)
 	///Amount of reagents loaded into the blade
 	var/list/loaded_reagents = list()
@@ -122,7 +125,7 @@
 		return
 
 	user.balloon_alert(user, "filling up...")
-	if(!do_after(user, 1 SECONDS, TRUE, source, BUSY_ICON_BAR, null, PROGRESS_BRASS))
+	if(!do_after(user, 1 SECONDS, NONE, source, BUSY_ICON_BAR, null, PROGRESS_BRASS))
 		return
 
 	if(!loaded_reagents[reagent_to_load])
@@ -157,7 +160,7 @@
 		return
 
 	to_chat(user, span_rose("You start filling up the small chambers along the blade's edge."))
-	if(!do_after(user, 2 SECONDS, TRUE, source, BUSY_ICON_BAR, ignore_turf_checks = TRUE))
+	if(!do_after(user, 2 SECONDS, IGNORE_USER_LOC_CHANGE, source, BUSY_ICON_BAR))
 		to_chat(user, span_rose("Due to the sudden movement, the safety mechanism siphons the substance back."))
 		return
 
@@ -172,16 +175,6 @@
 	user.update_inv_l_hand()
 
 	user.balloon_alert(user, "loaded")
-
-///Handles behavior when attacking a mob
-/datum/component/harvester/proc/attack_async(datum/source, mob/living/target, mob/living/user, obj/item/weapon)
-	to_chat(user, span_rose("You prepare to stab <b>[target != user ? "[target]" : "yourself"]</b>!"))
-	new /obj/effect/temp_visual/telekinesis(get_turf(target))
-	if((target != user) && do_after(user, 2 SECONDS, TRUE, target, BUSY_ICON_DANGER))
-		target.heal_overall_damage(12.5, 0, updating_health = TRUE)
-	else
-		target.adjustStaminaLoss(-30)
-		target.heal_overall_damage(6, 0, updating_health = TRUE)
 
 ///Updates the color of the overlay on top of the item sprite based on what chem is loaded in
 /datum/component/harvester/proc/update_loaded_color(datum/source, list/overlays_list)
@@ -226,25 +219,23 @@
 		return
 
 	switch(loaded_reagent)
+		if(/datum/reagent/medicine/bicaridine)
+			if(user.a_intent == INTENT_HELP)
+				. = COMPONENT_ITEM_NO_ATTACK
+			INVOKE_ASYNC(src, PROC_REF(attack_bicaridine), source, target, user, weapon)
+
+		if(/datum/reagent/medicine/kelotane)
+			target.apply_damage(weapon.force*0.6, BRUTE, user.zone_selected)
+			target.flamer_fire_act(10)
+
 		if(/datum/reagent/medicine/tramadol)
 			target.apply_damage(weapon.force*0.6, BRUTE, user.zone_selected)
 			target.apply_status_effect(/datum/status_effect/incapacitating/harvester_slowdown, 1 SECONDS)
 
-		if(/datum/reagent/medicine/kelotane)
+		if(/datum/reagent/medicine/tricordrazine)
+			target.apply_damage(weapon.force*0.6, BRUTE, user.zone_selected)
 			target.adjust_sunder(7.5) //Same amount as a shotgun slug
-			target.flamer_fire_act(10)
-			target.apply_damage(max(0, 20 - 20*target.hard_armor.getRating("fire")), BURN, user.zone_selected, FIRE)
-			var/list/cone_turfs = generate_cone(target, 1, 0, 181, Get_Angle(user, target.loc))
-			for(var/turf/checked_turf AS in cone_turfs)
-				for(var/mob/living/victim in checked_turf)
-					victim.flamer_fire_act(10)
-					victim.apply_damage(max(0, 20 - 20*victim.hard_armor.getRating("fire")), BURN, user.zone_selected, FIRE)
-
-		if(/datum/reagent/medicine/bicaridine)
-			if(isxeno(target))
-				return
-			INVOKE_ASYNC(src, PROC_REF(attack_async), source, target, user, weapon)
-			. = COMPONENT_ITEM_NO_ATTACK
+			target.apply_status_effect(/datum/status_effect/shatter, 3 SECONDS)
 
 	if(!loaded_reagents[loaded_reagent])
 		update_selected_reagent(null)
@@ -258,6 +249,25 @@
 
 	if(loadup_on_attack)
 		INVOKE_ASYNC(src, PROC_REF(activate_blade_async), source, user)
+
+///Handles behavior when attacking a mob with bicaridine
+/datum/component/harvester/proc/attack_bicaridine(datum/source, mob/living/target, mob/living/user, obj/item/weapon)
+	if(user.a_intent != INTENT_HELP) //Self-heal on attacking
+		new /obj/effect/temp_visual/telekinesis(get_turf(user))
+		target.apply_damage(weapon.force*0.6, BRUTE, user.zone_selected)
+		user.adjustStaminaLoss(-30)
+		user.heal_overall_damage(5, 0, updating_health = TRUE)
+		return
+
+	to_chat(user, span_rose("You prepare to stab <b>[target != user ? "[target]" : "yourself"]</b>!"))
+	new /obj/effect/temp_visual/telekinesis(get_turf(target))
+
+	if(do_after(user, 2 SECONDS, TRUE, target, BUSY_ICON_DANGER)) //Channeled heal on help intent
+		var/skill_heal_amt = user.skills.getRating(SKILL_MEDICAL) * 5
+		target.heal_overall_damage(10 + skill_heal_amt, 0, updating_health = TRUE) //5u of Bica will normally heal 25 damage. Medics get this full amount
+	else
+		target.adjustStaminaLoss(-30)
+		target.heal_overall_damage(5, 0, updating_health = TRUE)
 
 /datum/component/harvester/proc/select_reagent(datum/source)
 	var/list/options = list()

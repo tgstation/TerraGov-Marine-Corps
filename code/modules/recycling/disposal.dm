@@ -100,7 +100,7 @@
 
 			playsound(loc, 'sound/items/welder2.ogg', 25, 1)
 			to_chat(user, span_notice("You start slicing the floorweld off the disposal unit."))
-			if(!do_after(user, 20, TRUE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(W, /obj/item/tool/weldingtool/proc/isOn)))
+			if(!do_after(user, 20, NONE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(W, /obj/item/tool/weldingtool/proc/isOn)))
 				return
 
 			to_chat(user, span_notice("You sliced the floorweld off the disposal unit."))
@@ -128,7 +128,7 @@
 		user.visible_message(span_warning("[user] starts putting [GM] into [src]."),
 		span_warning("You start putting [GM] into [src]."))
 
-		if(!do_after(user, 20, TRUE, src, BUSY_ICON_HOSTILE) || G.grabbed_thing != GM)
+		if(!do_after(user, 20, NONE, src, BUSY_ICON_HOSTILE) || G.grabbed_thing != GM)
 			return
 
 		GM.forceMove(src)
@@ -161,7 +161,7 @@
 	else
 		visible_message("<span class ='warning'>[user] starts stuffing [target] into the disposal.</span>")
 
-	if(!do_after(user, 4 SECONDS, FALSE, target, BUSY_ICON_HOSTILE))
+	if(!do_after(user, 4 SECONDS, IGNORE_HELD_ITEM, target, BUSY_ICON_HOSTILE))
 		return
 
 	if(target == user)
@@ -1323,7 +1323,7 @@
 		playsound(loc, 'sound/items/welder2.ogg', 25, 1)
 		to_chat(user, span_notice("You start slicing the floorweld off the disposal outlet."))
 
-		if(!do_after(user, 20, TRUE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(W, /obj/item/tool/weldingtool/proc/isOn)))
+		if(!do_after(user, 20, NONE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(W, /obj/item/tool/weldingtool/proc/isOn)))
 			return
 
 		to_chat(user, span_notice("You sliced the floorweld off the disposal outlet."))

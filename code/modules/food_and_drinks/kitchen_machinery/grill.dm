@@ -63,7 +63,7 @@
 
 		user.visible_message(span_danger("[user] starts to press [living_victim] onto the [src]!"))
 
-		if(!do_after(user, 5, TRUE, living_victim, BUSY_ICON_DANGER) || QDELETED(src))
+		if(!do_after(user, 0.5 SECONDS, NONE, living_victim, BUSY_ICON_DANGER) || QDELETED(src))
 			return
 
 		user.visible_message(span_danger("[user] slams [living_victim] onto the [src]!"))

@@ -46,7 +46,7 @@
 		return
 	if(bomb_message)
 		activator.say("[bomb_message]!!")
-	if(!do_after(user, 2 SECONDS, TRUE, src, BUSY_ICON_DANGER, ignore_turf_checks = TRUE))
+	if(!do_after(user, 2 SECONDS, IGNORE_USER_LOC_CHANGE, src, BUSY_ICON_DANGER))
 		return FALSE
 	var/turf/target = get_turf(loc)
 	if(bomb_message) //Checks for a non null bomb message.
@@ -99,7 +99,7 @@
 		return FALSE
 	if(LAZYACCESS(user.do_actions, src))
 		return
-	if(!do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_DANGER, ignore_turf_checks = TRUE))
+	if(!do_after(user, 1 SECONDS, IGNORE_USER_LOC_CHANGE, src, BUSY_ICON_DANGER))
 		return FALSE
 	var/turf/target = get_turf(loc)
 	activator.say("I'M FIRING IT AS AN OB!!")

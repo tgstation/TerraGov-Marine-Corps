@@ -77,7 +77,7 @@
 
 	user.visible_message(span_danger("[user] starts to put [M] into the gibber!"))
 
-	if(!do_after(user, 30, TRUE, M, BUSY_ICON_DANGER) || QDELETED(src) || occupant)
+	if(!do_after(user, 30, NONE, M, BUSY_ICON_DANGER) || QDELETED(src) || occupant)
 		return
 
 	user.visible_message(span_danger("[user] stuffs [M] into the gibber!"))

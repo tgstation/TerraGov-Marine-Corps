@@ -64,7 +64,7 @@
 ///Starts the capture process
 /obj/structure/campaign_objective/capture_objective/proc/begin_capture(mob/living/user)
 	user.balloon_alert_to_viewers("Activating!")
-	if(!do_after(user, activation_time, TRUE, src))
+	if(!do_after(user, activation_time, NONE, src))
 		return
 	if(!capture_check(user))
 		return

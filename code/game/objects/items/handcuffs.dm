@@ -42,7 +42,7 @@
 	log_combat(user, H, "handcuffed", src, addition="(attempt)")
 
 	user.visible_message(span_notice("[user] tries to put [src] on [H]."))
-	if(do_mob(user, H, cuff_delay, BUSY_ICON_HOSTILE, BUSY_ICON_HOSTILE, extra_checks = CALLBACK(user, TYPE_PROC_REF(/datum, Adjacent), H)) && !H.handcuffed)
+	if(do_after(user, cuff_delay, NONE, H, BUSY_ICON_HOSTILE, BUSY_ICON_HOSTILE, extra_checks = CALLBACK(user, TYPE_PROC_REF(/datum, Adjacent), H)) && !H.handcuffed)
 		if(H.has_limb_for_slot(SLOT_HANDCUFFED))
 			user.dropItemToGround(src)
 			H.equip_to_slot_if_possible(src, SLOT_HANDCUFFED, 1, 0, 1, 1)

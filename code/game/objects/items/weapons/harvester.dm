@@ -59,7 +59,6 @@
 	. = ..()
 	toggle_item_bump_attack(user, FALSE)
 
-
 //Vali Claymore (That thing was too big to be called a sword. Too big, too thick, too heavy, and too rough, it was more like a large hunk of iron.)
 /obj/item/weapon/twohanded/glaive/harvester
 	name = "\improper HP-S Harvester claymore"

@@ -61,7 +61,7 @@
 		return
 
 	balloon_alert(user, "You begin to stop the activation process!")
-	if(!do_after(user, deactivate_time, TRUE, src))
+	if(!do_after(user, deactivate_time, NONE, src))
 		return
 	if(activated)
 		balloon_alert(user, "This sensor tower is already fully activated, you cannot deactivate it!")
@@ -77,7 +77,7 @@
 	if(!attacker_state_check(user))
 		return
 	balloon_alert_to_viewers("Activating sensor tower...")
-	if(!do_after(user, activate_time, TRUE, src))
+	if(!do_after(user, activate_time, NONE, src))
 		return
 	if(!attacker_state_check(user))
 		return

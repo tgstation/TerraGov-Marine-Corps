@@ -135,7 +135,7 @@
 	user.visible_message(span_notice("[user] begins to set [src] upright."),
 		span_notice("You begin to set [src] upright.</span>"))
 
-	if(!do_after(user, 2 SECONDS, TRUE, src, BUSY_ICON_BUILD))
+	if(!do_after(user, 2 SECONDS, NONE, src, BUSY_ICON_BUILD))
 		return
 
 	user.visible_message(span_notice("[user] sets [src] upright."),
@@ -555,7 +555,7 @@
 		return
 	set_on(FALSE)
 	user.balloon_alert(user, "You start disassembling [attached_item]")
-	if(!do_after(user, attached_item.undeploy_time, TRUE, src, BUSY_ICON_BUILD))
+	if(!do_after(user, attached_item.undeploy_time, NONE, src, BUSY_ICON_BUILD))
 		set_on(TRUE)
 		return
 

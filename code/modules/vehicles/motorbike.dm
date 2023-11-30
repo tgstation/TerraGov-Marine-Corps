@@ -105,7 +105,7 @@
 			balloon_alert("There is a rider already!")
 			return TRUE
 		balloon_alert(user, "You start attaching the sidecar...")
-		if(!do_after(user, 3 SECONDS, TRUE, src))
+		if(!do_after(user, 3 SECONDS, NONE, src))
 			return TRUE
 		user.temporarilyRemoveItemFromInventory(I)
 		I.forceMove(src)
@@ -145,7 +145,7 @@
 	if(user.do_actions)
 		balloon_alert(user, "Already busy!")
 		return FALSE
-	if(!do_after(user, 3 SECONDS, TRUE, src))
+	if(!do_after(user, 3 SECONDS, NONE, src))
 		return TRUE
 	attached_sidecar.forceMove(get_turf(src))
 	attached_sidecar = null

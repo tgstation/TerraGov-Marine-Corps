@@ -52,7 +52,7 @@
 	var/mob/living/carbon/xenomorph/X = owner
 	if(!HAS_TRAIT(X, TRAIT_ESSENCE_LINKED))
 		target.balloon_alert(X, "Linking...")
-		if(!do_after(X, DRONE_ESSENCE_LINK_WINDUP, TRUE, target, BUSY_ICON_FRIENDLY, BUSY_ICON_FRIENDLY))
+		if(!do_after(X, DRONE_ESSENCE_LINK_WINDUP, NONE, target, BUSY_ICON_FRIENDLY, BUSY_ICON_FRIENDLY))
 			X.balloon_alert(X, "Link cancelled")
 			return
 		X.apply_status_effect(STATUS_EFFECT_XENO_ESSENCE_LINK, 1, target)
@@ -102,7 +102,7 @@
 	var/mob/living/carbon/xenomorph/X = owner
 	if(X.do_actions)
 		return FALSE
-	if(!do_mob(X, target, 1 SECONDS, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
+	if(!do_after(X, 1 SECONDS, NONE, target, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
 		return FALSE
 	X.visible_message(span_xenowarning("\the [X] vomits acid over [target], mending their wounds!"))
 	owner.changeNext_move(CLICK_CD_RANGE)
