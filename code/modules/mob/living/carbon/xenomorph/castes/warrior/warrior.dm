@@ -34,7 +34,7 @@
 /mob/living/carbon/xenomorph/warrior/handle_special_wound_states(severity)
 	. = ..()
 	if(agility)
-		return "wounded_agility_[severity]"
+		return "warrior_wounded_agility_[severity]"
 
 // ***************************************
 // *********** Mob overrides
