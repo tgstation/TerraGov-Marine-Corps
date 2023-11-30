@@ -192,15 +192,15 @@
 				msg += "[span_warning("An infection has rotted [t_his] [o.display_name] into uselessness!")]\n"
 
 	if(holo_card_color)
-		msg += "[t_He] has a [holo_card_color] holo card on [t_his] chest.\n"
+		msg += "[t_He] [t_has] a [holo_card_color] holo card on [t_his] chest.\n"
 
 	if(suiciding)
-		msg += "[span_warning("[t_He] appears to have commited suicide... there is no hope of recovery.")]\n"
+		msg += "[span_warning("[t_He] appear[p_s()] to have commited suicide... there is no hope of recovery.")]\n"
 
 	if(stat)
-		msg += "[span_warning("[t_He] [t_is]n't responding to anything around [t_him] and seems to be asleep.")]\n"
+		msg += "[span_warning("[t_He] [t_is]n't responding to anything around [t_him] and seem[p_s()] to be asleep.")]\n"
 		if(stat == DEAD || health < get_crit_threshold())
-			msg += "[span_warning("[t_He] does not appear to be breathing.")]\n"
+			msg += "[span_warning("[t_He] [p_do()]n't appear to be breathing.")]\n"
 			if(HAS_TRAIT(src, TRAIT_UNDEFIBBABLE))
 				msg += "[span_deadsay("[t_He] [t_has] gone cold.")]\n"
 		if(ishuman(user) && !user.stat && Adjacent(user))
@@ -212,7 +212,7 @@
 	if(nutrition < NUTRITION_STARVING)
 		msg += "[t_He] [t_is] severely malnourished.\n"
 	else if(nutrition >= NUTRITION_OVERFED)
-		msg += "[t_He] looks a bit stuffed.\n"
+		msg += "[t_He] look[p_s()] a bit stuffed.\n"
 
 	msg += "</span>"
 
@@ -225,14 +225,14 @@
 				msg += "[span_deadsay("[t_He] [t_is] fast asleep. It doesn't look like they are waking up anytime soon.")]\n"
 		else if(!client)
 			if(isxeno(user))
-				msg += "[span_xenowarning("[t_He] doesn't seem responsive.")]\n"
+				msg += "[span_xenowarning("[t_He] [p_do()]n't seem responsive.")]\n"
 			else
 				msg += "[t_He] [t_has] suddenly fallen asleep.\n"
 
 	if(fire_stacks > 0)
 		msg += "[t_He] [t_is] covered in something flammable.\n"
 	if(fire_stacks < 0)
-		msg += "[t_He] looks a little soaked.\n"
+		msg += "[t_He] look[p_s()] a little soaked.\n"
 	if(on_fire)
 		msg += "[span_warning("[t_He] [t_is] on fire!")]\n"
 
@@ -242,15 +242,15 @@
 	for(var/datum/limb/temp AS in limbs)
 		if(temp.limb_status & LIMB_DESTROYED)
 			is_destroyed["[temp.display_name]"] = 1
-			wound_flavor_text["[temp.display_name]"] = "[span_warning("<b>[t_He] is missing [t_his] [temp.display_name].</b>")]\n"
+			wound_flavor_text["[temp.display_name]"] = "[span_warning("<b>[t_He] [t_is] missing [t_his] [temp.display_name].</b>")]\n"
 			continue
 		if(temp.limb_status & LIMB_ROBOT)
 			if(!(temp.brute_dam + temp.burn_dam))
 				if(!(species.species_flags & IS_SYNTHETIC))
-					wound_flavor_text["[temp.display_name]"] = "[span_warning("[t_He] has a robot [temp.display_name]!")]\n"
+					wound_flavor_text["[temp.display_name]"] = "[span_warning("[t_He] [t_has] a robot [temp.display_name]!")]\n"
 					continue
 			else
-				wound_flavor_text["[temp.display_name]"] = "<span class='warning'>[t_He] has a robot [temp.display_name]. It has"
+				wound_flavor_text["[temp.display_name]"] = "<span class='warning'>[t_He] [t_has] a robot [temp.display_name]. It has"
 			if(temp.brute_dam)
 				switch(temp.brute_dam)
 					if(0 to 20)
@@ -310,9 +310,9 @@
 
 			var/overall_desc = ""
 			if(healthy)
-				overall_desc = span_notice("[t_He] has a healthy [temp.display_name].")
+				overall_desc = span_notice("[t_He] [t_has] a healthy [temp.display_name].")
 			else
-				overall_desc = "[t_He] has a [germ_desc][temp.display_name]"
+				overall_desc = "[t_He] [t_has] a [germ_desc][temp.display_name]"
 				if(brute_desc || burn_desc)
 					overall_desc += " with [brute_desc]"
 					if(brute_desc && burn_desc)
@@ -381,68 +381,68 @@
 		display_foot_right = 1
 
 	if (display_head)
-		msg += "[span_warning("[t_He] has blood dripping from [t_his] <b>face</b>!")]\n"
+		msg += "[span_warning("[t_He] [t_has] blood dripping from [t_his] <b>face</b>!")]\n"
 
 	if (display_chest && display_groin && display_arm_left && display_arm_right && display_hand_left && display_hand_right && display_leg_left && display_leg_right && display_foot_left && display_foot_right)
-		msg += "[span_warning("[t_He] has blood soaking through [t_his] clothes from [t_his] <b>entire body</b>!")]\n"
+		msg += "[span_warning("[t_He] [t_has] blood soaking through [t_his] clothes from [t_his] <b>entire body</b>!")]\n"
 	else
 		if (display_chest && display_arm_left && display_arm_right && display_hand_left && display_hand_right)
-			msg += "[span_warning("[t_He] has blood soaking through [t_his] clothes from [t_his] <b>upper body</b>!")]\n"
+			msg += "[span_warning("[t_He] [t_has] blood soaking through [t_his] clothes from [t_his] <b>upper body</b>!")]\n"
 		else
 			if (display_chest)
-				msg += "[span_warning("[t_He] has blood soaking through [t_his] <b>shirt</b>!")]\n"
+				msg += "[span_warning("[t_He] [t_has] blood soaking through [t_his] <b>shirt</b>!")]\n"
 			if (display_arm_left && display_arm_right && display_hand_left && display_hand_left)
-				msg += "[span_warning("[t_He] has blood soaking through [t_his] <b>gloves</b> and <b>sleeves</b>!")]\n"
+				msg += "[span_warning("[t_He] [t_has] blood soaking through [t_his] <b>gloves</b> and <b>sleeves</b>!")]\n"
 			else
 				if (display_arm_left && display_arm_right)
-					msg += "[span_warning("[t_He] has blood soaking through [t_his] <b>sleeves</b>!")]\n"
+					msg += "[span_warning("[t_He] [t_has] blood soaking through [t_his] <b>sleeves</b>!")]\n"
 				else
 					if (display_arm_left)
-						msg += "[span_warning("[t_He] has soaking through [t_his] <b>left sleeve</b>!")]\n"
+						msg += "[span_warning("[t_He] [t_has] soaking through [t_his] <b>left sleeve</b>!")]\n"
 					if (display_arm_right)
-						msg += "[span_warning("[t_He] has soaking through [t_his] <b>right sleeve</b>!")]\n"
+						msg += "[span_warning("[t_He] [t_has] soaking through [t_his] <b>right sleeve</b>!")]\n"
 				if (display_hand_left && display_hand_right)
-					msg += "[span_warning("[t_He] has blood running out from under [t_his] <b>gloves</b>!")]\n"
+					msg += "[span_warning("[t_He] [t_has] blood running out from under [t_his] <b>gloves</b>!")]\n"
 				else
 					if (display_hand_left)
-						msg += "[span_warning("[t_He] has blood running out from under [t_his] <b>left glove</b>!")]\n"
+						msg += "[span_warning("[t_He] [t_has] blood running out from under [t_his] <b>left glove</b>!")]\n"
 					if (display_hand_right)
-						msg += "[span_warning("[t_He] has blood running out from under [t_his] <b>right glove</b>!")]\n"
+						msg += "[span_warning("[t_He] [t_has] blood running out from under [t_his] <b>right glove</b>!")]\n"
 
 		if (display_groin && display_leg_left && display_leg_right && display_foot_left && display_foot_right)
-			msg += "[span_warning("[t_He] has blood soaking through [t_his] clothes from [t_his] <b>lower body!</b>")]\n"
+			msg += "[span_warning("[t_He] [t_has] blood soaking through [t_his] clothes from [t_his] <b>lower body!</b>")]\n"
 		else
 			if (display_groin)
-				msg += "[span_warning("[t_He] has blood dripping from [t_his] <b>groin</b>!")]\n"
+				msg += "[span_warning("[t_He] [t_has] blood dripping from [t_his] <b>groin</b>!")]\n"
 			if (display_leg_left && display_leg_right && display_foot_left && display_foot_right)
-				msg += "[span_warning("[t_He] has blood soaking through [t_his] <b>pant legs</b> and <b>boots</b>!")]\n"
+				msg += "[span_warning("[t_He] [t_has] blood soaking through [t_his] <b>pant legs</b> and <b>boots</b>!")]\n"
 			else
 				if (display_leg_left && display_leg_right)
-					msg += "[span_warning("[t_He] has blood soaking through [t_his] <b>pant legs</b>!")]\n"
+					msg += "[span_warning("[t_He] [t_has] blood soaking through [t_his] <b>pant legs</b>!")]\n"
 				else
 					if (display_leg_left)
-						msg += "[span_warning("[t_He] has blood soaking through [t_his] <b>left pant leg</b>!")]\n"
+						msg += "[span_warning("[t_He] [t_has] blood soaking through [t_his] <b>left pant leg</b>!")]\n"
 					if (display_leg_right)
-						msg += "[span_warning("[t_He] has blood soaking through [t_his] <b>right pant leg</b>!")]\n"
+						msg += "[span_warning("[t_He] [t_has] blood soaking through [t_his] <b>right pant leg</b>!")]\n"
 				if (display_foot_left && display_foot_right)
-					msg += "[span_warning("[t_He] has blood pooling around[t_his] <b>boots</b>!")]\n"
+					msg += "[span_warning("[t_He] [t_has] blood pooling around[t_his] <b>boots</b>!")]\n"
 				else
 					if (display_foot_left)
-						msg += "[span_warning("[t_He] has blood pooling around [t_his] <b>left boot</b>!")]\n"
+						msg += "[span_warning("[t_He] [t_has] blood pooling around [t_his] <b>left boot</b>!")]\n"
 					if (display_foot_right)
-						msg += "[span_warning("[t_He] has blood pooling around [t_his] <b>right boot</b>!")]\n"
+						msg += "[span_warning("[t_He] [t_has] blood pooling around [t_his] <b>right boot</b>!")]\n"
 
 	if(chestburst == 2)
 		if(isxeno(user))
 			msg += "[span_xenowarning("A larva escaped from [t_him]!")]\n"
 		else
-			msg += "[span_warning("[t_He] has a giant hole in [t_his] chest!")]\n"
+			msg += "[span_warning("[t_He] [t_has] a giant hole in [t_his] chest!")]\n"
 
 	for(var/i in embedded_objects)
 		var/obj/item/embedded = i
 		if(!(embedded.embedding.embedded_flags & EMBEDDED_CAN_BE_YANKED_OUT))
 			continue
-		msg += "[span_warning("<b>[t_He] has \a [embedded] sticking out of [t_his] flesh!")]\n"
+		msg += "[span_warning("<b>[t_He] [t_has] \a [embedded] sticking out of [t_his] flesh!")]\n"
 
 	if(hasHUD(user,"security"))
 		var/perpname = "wot"
@@ -491,15 +491,15 @@
 
 	if(HAS_TRAIT(src, TRAIT_HOLLOW))
 		if(isxeno(user))
-			msg += "<span style='font-weight: bold; color: purple;'>[t_He] is hollow. Useless.</span>\n"
+			msg += "<span style='font-weight: bold; color: purple;'>[t_He] [t_is] hollow. Useless.</span>\n"
 		else
-			msg += "[span_warning("<b>[t_He] is hollowed out!</b>")]\n"
+			msg += "[span_warning("<b>[t_He] [t_is] hollowed out!</b>")]\n"
 
 	if(isxeno(user))
 		if(species.species_flags & IS_SYNTHETIC)
-			msg += "[span_xenowarning("You sense [t_he] is not organic.")]\n"
+			msg += "[span_xenowarning("You sense [t_he] [t_is] not organic.")]\n"
 		if(status_flags & XENO_HOST)
-			msg += "[t_He] is impregnated.\n"
+			msg += "[t_He] [t_is] impregnated.\n"
 		if(reagents.get_reagent_amount(/datum/reagent/toxin/xeno_neurotoxin))
 			msg += "Neurotoxin: Causes increasingly intense pain and stamina damage over time, increasing in intensity at the 40 second and the minute and a half mark of metabolism.\n"
 		if(reagents.get_reagent_amount(/datum/reagent/toxin/xeno_hemodile))
@@ -522,7 +522,7 @@
 		return
 	var/pulse_taken = get_pulse(GETPULSE_HAND)
 	if(pulse_taken == PULSE_NONE)
-		to_chat(user, span_deadsay("[p_they(TRUE)] has no pulse[client ? "" : " and [p_their()] soul has departed, although they may be revivable"]..."))
+		to_chat(user, span_deadsay("[p_they(TRUE)] [p_have()] no pulse[client ? "" : " and [p_their()] soul has departed, although they may be revivable"]..."))
 	else
 		to_chat(user, span_deadsay("[p_their(TRUE)] pulse is [pulse_taken]."))
 
