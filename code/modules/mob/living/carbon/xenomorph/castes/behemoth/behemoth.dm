@@ -22,7 +22,7 @@
 // *********** Special States
 // ***************************************
 /mob/living/carbon/xenomorph/behemoth/handle_special_state()
-	var/datum/action/xeno_action/ready_charge/behemoth_roll/behemoth_roll_action = actions_by_path[/datum/action/xeno_action/ready_charge/behemoth_roll]
+	var/datum/action/ability/xeno_action/ready_charge/behemoth_roll/behemoth_roll_action = actions_by_path[/datum/action/ability/xeno_action/ready_charge/behemoth_roll]
 	if(!behemoth_roll_action || !behemoth_roll_action.charge_ability_on)
 		return FALSE
 	if(behemoth_roll_action.valid_steps_taken == behemoth_roll_action.max_steps_buildup)
@@ -33,7 +33,7 @@
 
 /mob/living/carbon/xenomorph/behemoth/handle_special_wound_states(severity)
 	. = ..()
-	var/datum/action/xeno_action/ready_charge/behemoth_roll/behemoth_roll_action = actions_by_path[/datum/action/xeno_action/ready_charge/behemoth_roll]
+	var/datum/action/ability/xeno_action/ready_charge/behemoth_roll/behemoth_roll_action = actions_by_path[/datum/action/ability/xeno_action/ready_charge/behemoth_roll]
 	if(behemoth_roll_action?.charge_ability_on)
 		return "behemoth_wounded_charging_[severity]"
 

@@ -22,7 +22,7 @@
 	user.visible_message(span_notice("[user] starts attaching [src] to [xeno]."), span_notice("You start attaching [src] to [xeno]."), ignored_mob = xeno)
 	if(xeno.client)
 		to_chat(xeno, span_xenowarning("[user] starts attaching [src] to us!"))
-	if(!do_after(user, 5 SECONDS, FALSE, xeno, BUSY_ICON_FRIENDLY, BUSY_ICON_DANGER))
+	if(!do_after(user, 5 SECONDS, IGNORE_HELD_ITEM, xeno, BUSY_ICON_FRIENDLY, BUSY_ICON_DANGER))
 		return
 	if(xeno.GetComponent(/datum/component/xeno_iff))
 		to_chat(user, span_warning("Someone already attached a tag to [xeno] while you were busy!"))

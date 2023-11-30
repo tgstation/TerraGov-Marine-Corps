@@ -7,7 +7,7 @@
 	///weakref to our puppeteer
 	var/datum/weakref/master_ref
 	///the feed ability
-	var/datum/action/xeno_action/activable/feed
+	var/datum/action/ability/activable/xeno/feed
 
 
 /datum/ai_behavior/puppet/New(loc, parent_to_assign, escorted_atom)
@@ -15,7 +15,7 @@
 	master_ref = WEAKREF(escorted_atom)
 	RegisterSignals(escorted_atom, list(COMSIG_MOB_DEATH, COMSIG_QDELETING), PROC_REF(die_on_master_death))
 	change_order(null, PUPPET_RECALL)
-	feed = mob_parent.actions_by_path[/datum/action/xeno_action/activable/feed]
+	feed = mob_parent.actions_by_path[/datum/action/ability/activable/xeno/feed]
 
 ///starts AI and registers obstructed move signal
 /datum/ai_behavior/puppet/start_ai()
@@ -57,7 +57,7 @@
 			late_initialize()
 			return
 		do_feed(victim)
-		
+
 	mob_parent.face_atom(target)
 	mob_parent.UnarmedAttack(target, mob_parent)
 

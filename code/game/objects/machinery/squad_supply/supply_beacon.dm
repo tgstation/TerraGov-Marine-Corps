@@ -42,7 +42,7 @@
 	var/delay = max(1.5 SECONDS, activation_time - 2 SECONDS * H.skills.getRating(SKILL_LEADERSHIP))
 	H.visible_message(span_notice("[H] starts setting up [src] on the ground."),
 	span_notice("You start setting up [src] on the ground and inputting all the data it needs."))
-	if(!do_after(H, delay, TRUE, src, BUSY_ICON_GENERIC))
+	if(!do_after(H, delay, NONE, src, BUSY_ICON_GENERIC))
 		return FALSE
 	var/obj/machinery/camera/beacon_cam/BC = new(src, "[H.get_paygrade()] [H.name] [src]")
 	H.transferItemToLoc(src, H.loc)
@@ -70,7 +70,7 @@
 	var/delay = max(1 SECONDS, activation_time * 0.5 - 2 SECONDS * H.skills.getRating(SKILL_LEADERSHIP)) //Half as long as setting it up.
 	H.visible_message(span_notice("[H] starts removing [src] from the ground."),
 	span_notice("You start removing [src] from the ground, deactivating it."))
-	if(!do_after(H, delay, TRUE, src, BUSY_ICON_GENERIC))
+	if(!do_after(H, delay, NONE, src, BUSY_ICON_GENERIC))
 		return FALSE
 	QDEL_NULL(beacon_cam)
 	activated = FALSE

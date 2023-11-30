@@ -1,0 +1,4 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - balance: "Projectile stuns no longer work at a greater distance then expected when fired at diagonal angles"

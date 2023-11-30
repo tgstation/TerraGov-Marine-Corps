@@ -41,13 +41,13 @@
 
 	// *** Abilities *** ///
 	actions = list(
-		/datum/action/xeno_action/xeno_resting,
-		/datum/action/xeno_action/watch_xeno,
-		/datum/action/xeno_action/activable/psydrain,
-		/datum/action/xeno_action/ready_charge/behemoth_roll,
-		/datum/action/xeno_action/activable/landslide,
-		/datum/action/xeno_action/activable/earth_riser,
-		/datum/action/xeno_action/activable/seismic_fracture,
+		/datum/action/ability/xeno_action/xeno_resting,
+		/datum/action/ability/xeno_action/watch_xeno,
+		/datum/action/ability/activable/xeno/psydrain,
+		/datum/action/ability/xeno_action/ready_charge/behemoth_roll,
+		/datum/action/ability/activable/xeno/landslide,
+		/datum/action/ability/activable/xeno/earth_riser,
+		/datum/action/ability/activable/xeno/seismic_fracture,
 	)
 
 /datum/xeno_caste/behemoth/normal
@@ -63,12 +63,12 @@
 
 	// *** Abilities *** ///
 	actions = list(
-		/datum/action/xeno_action/xeno_resting,
-		/datum/action/xeno_action/watch_xeno,
-		/datum/action/xeno_action/activable/psydrain,
-		/datum/action/xeno_action/ready_charge/behemoth_roll,
-		/datum/action/xeno_action/activable/landslide,
-		/datum/action/xeno_action/activable/earth_riser,
-		/datum/action/xeno_action/activable/seismic_fracture,
-		/datum/action/xeno_action/primal_wrath,
+		/datum/action/ability/xeno_action/xeno_resting,
+		/datum/action/ability/xeno_action/watch_xeno,
+		/datum/action/ability/activable/xeno/psydrain,
+		/datum/action/ability/xeno_action/ready_charge/behemoth_roll,
+		/datum/action/ability/activable/xeno/landslide,
+		/datum/action/ability/activable/xeno/earth_riser,
+		/datum/action/ability/activable/xeno/seismic_fracture,
+		/datum/action/ability/xeno_action/primal_wrath,
 	)

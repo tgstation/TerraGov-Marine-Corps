@@ -100,7 +100,7 @@
 		to_chat(user, span_notice("Not with a missile inside!"))
 		return
 	to_chat(user, span_notice("You begin taking apart the empty tube frame..."))
-	if(!do_after(user, 10, TRUE, src))
+	if(!do_after(user, 10, NONE, src))
 		return
 	user.visible_message("[user] deconstructs the rocket tube frame.",span_notice("You take apart the empty frame."))
 	var/obj/item/stack/sheet/metal/metal = new(get_turf(user))

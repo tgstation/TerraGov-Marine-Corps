@@ -344,9 +344,6 @@
 	var/tier = XENO_TIER_ONE
 
 	var/emotedown = 0
-
-	var/list/datum/action/xeno_abilities = list()
-	var/datum/action/xeno_action/activable/selected_ability
 	///which resin structure to build when we secrete resin
 	var/selected_resin = /turf/closed/wall/resin/regenerating
 	///which reagent to slash with using reagent slash

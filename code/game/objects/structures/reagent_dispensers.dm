@@ -102,7 +102,7 @@
 	if(!rig)
 		return
 	user.visible_message("[user] begins to detach [rig] from \the [src].", "You begin to detach [rig] from \the [src]...")
-	if(!do_after(user, 2 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
+	if(!do_after(user, 2 SECONDS, NONE, src, BUSY_ICON_GENERIC))
 		return
 	user.visible_message(span_notice("[user] detaches [rig] from \the [src]."), span_notice("You detach [rig] from \the [src]."))
 	rig.forceMove(get_turf(user))
@@ -151,7 +151,7 @@
 		return
 
 	user.visible_message("[user] begins rigging [I] to \the [src].", "You begin rigging [I] to \the [src]")
-	if(!do_after(user, 20, TRUE, src, BUSY_ICON_HOSTILE) || rig)
+	if(!do_after(user, 2 SECONDS, NONE, src, BUSY_ICON_HOSTILE) || rig)
 		return
 
 	user.visible_message(span_notice("[user] rigs [I] to \the [src]."), span_notice("You rig [I] to \the [src]."))
