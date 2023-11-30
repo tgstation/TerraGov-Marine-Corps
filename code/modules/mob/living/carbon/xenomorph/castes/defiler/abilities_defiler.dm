@@ -101,7 +101,7 @@
 		owner.balloon_alert(owner, "Cannot defile")
 		return fail_activate()
 	X.face_atom(living_target)
-	if(!do_after(X, DEFILER_DEFILE_CHANNEL_TIME, TRUE, living_target, BUSY_ICON_HOSTILE))
+	if(!do_after(X, DEFILER_DEFILE_CHANNEL_TIME, NONE, living_target, BUSY_ICON_HOSTILE))
 		add_cooldown(DEFILER_DEFILE_FAIL_COOLDOWN)
 		return fail_activate()
 	if(!can_use_ability(A))
@@ -193,7 +193,7 @@
 
 	X.icon_state = "[X.xeno_caste.caste_name][X.is_a_rouny ? " rouny" : ""] Power Up"
 
-	if(!do_after(X, DEFILER_GAS_CHANNEL_TIME, TRUE, null, BUSY_ICON_HOSTILE))
+	if(!do_after(X, DEFILER_GAS_CHANNEL_TIME, NONE, null, BUSY_ICON_HOSTILE))
 		if(!QDELETED(src))
 			to_chat(X, span_xenodanger("We abort emitting fumes, our expended plasma resulting in nothing."))
 			X.emitting_gas = FALSE
@@ -318,7 +318,7 @@
 	alien_egg.balloon_alert_to_viewers("Injecting...")
 	X.visible_message(span_danger("[X] starts injecting the egg with neurogas, killing the little one inside!"), \
 		span_xenodanger("We extend our stinger into the egg, filling it with gas, killing the little one inside!"))
-	if(!do_after(X, 2 SECONDS, TRUE, alien_egg, BUSY_ICON_HOSTILE))
+	if(!do_after(X, 2 SECONDS, NONE, alien_egg, BUSY_ICON_HOSTILE))
 		alien_egg.balloon_alert_to_viewers("Canceled injection")
 		X.visible_message(span_danger("The stinger retracts from [X], leaving the egg and little one alive."), \
 			span_xenodanger("Our stinger retracts, leaving the egg and little one alive."))

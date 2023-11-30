@@ -147,12 +147,12 @@
 		dropped.visible_message(span_notice("[dropped] fumbles around figuring out how to get into \the [src]."),
 		span_notice("You fumble around figuring out how to get into \the [src]."))
 		var/fumbling_time = max(0 , SKILL_TASK_TOUGH - ( SKILL_TASK_EASY * dragger.skills.getRating(SKILL_ENGINEER) ))// 8 secs non-trained, 5 amateur
-		if(!do_after(dropped, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
+		if(!do_after(dropped, fumbling_time, NONE, src, BUSY_ICON_UNSKILLED))
 			return
 
 	dropped.visible_message(span_notice("[dropped] starts climbing into \the [src]."),
 	span_notice("You start climbing into \the [src]."))
-	if(!do_after(dropped, 1 SECONDS, FALSE, src, BUSY_ICON_GENERIC))
+	if(!do_after(dropped, 1 SECONDS, IGNORE_HELD_ITEM, src, BUSY_ICON_GENERIC))
 		return
 	if(occupant)
 		to_chat(dragger, span_notice("[src] is already occupied!"))
@@ -247,12 +247,12 @@
 		user.visible_message(span_notice("[user] fumbles around figuring out how to put [M] into [src]."),
 		span_notice("You fumble around figuring out how to put [M] into [src]."))
 		var/fumbling_time = max(0 , SKILL_TASK_TOUGH - ( SKILL_TASK_EASY * user.skills.getRating(SKILL_ENGINEER) ))// 8 secs non-trained, 5 amateur
-		if(!do_after(user, fumbling_time, TRUE, M, BUSY_ICON_UNSKILLED) || QDELETED(src))
+		if(!do_after(user, fumbling_time, NONE, M, BUSY_ICON_UNSKILLED) || QDELETED(src))
 			return
 
 	visible_message("[user] starts putting [M] into [src].", 3)
 
-	if(!do_after(user, 10, FALSE, M, BUSY_ICON_GENERIC) || QDELETED(src))
+	if(!do_after(user, 10, IGNORE_HELD_ITEM, M, BUSY_ICON_GENERIC) || QDELETED(src))
 		return
 
 	if(occupant)
@@ -308,7 +308,7 @@
 		usr.visible_message(span_notice("[usr] fumbles around figuring out how to use [src]."),
 		span_notice("You fumble around figuring out how to use [src]."))
 		var/fumbling_time = max(0 , SKILL_TASK_TOUGH - ( SKILL_TASK_EASY * usr.skills.getRating(SKILL_ENGINEER) ))// 8 secs non-trained, 5 amateur
-		if(!do_after(usr, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED) || !occupant)
+		if(!do_after(usr, fumbling_time, NONE, src, BUSY_ICON_UNSKILLED) || !occupant)
 			return
 	if(repairing)
 		repairing = 0

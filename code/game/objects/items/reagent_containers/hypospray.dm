@@ -76,7 +76,7 @@
 	if(skilllock && user.skills.getRating(SKILL_MEDICAL) < SKILL_MEDICAL_NOVICE)
 		user.visible_message(span_notice("[user] fumbles around figuring out how to use the [src]."),
 		span_notice("You fumble around figuring out how to use the [src]."))
-		if(!do_after(user, SKILL_TASK_EASY, TRUE, A, BUSY_ICON_UNSKILLED) || (!in_range(A, user) || !user.Adjacent(A)))
+		if(!do_after(user, SKILL_TASK_EASY, NONE, A, BUSY_ICON_UNSKILLED) || (!in_range(A, user) || !user.Adjacent(A)))
 			return
 
 	if(ismob(A))

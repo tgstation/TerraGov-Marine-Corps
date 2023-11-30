@@ -55,7 +55,7 @@
 	REMOVE_TRAIT(owner, TRAIT_STAGGER_RESISTANT, XENO_TRAIT)
 	ADD_TRAIT(owner, TRAIT_IMMOBILE, PETRIFY_ABILITY_TRAIT)
 
-	if(!do_after(owner, PETRIFY_WINDUP_TIME, FALSE, owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(can_use_action), FALSE, ABILITY_USE_BUSY)))
+	if(!do_after(owner, PETRIFY_WINDUP_TIME, IGNORE_HELD_ITEM, owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(can_use_action), FALSE, ABILITY_USE_BUSY)))
 		flick("eye_closing", eye)
 		addtimer(CALLBACK(src, PROC_REF(remove_eye), eye), 7, TIMER_CLIENT_TIME)
 		finish_charging()
@@ -206,7 +206,7 @@
 	REMOVE_TRAIT(owner, TRAIT_STAGGER_RESISTANT, XENO_TRAIT) //Vulnerable while charging up
 	ADD_TRAIT(owner, TRAIT_IMMOBILE, SHATTERING_ROAR_ABILITY_TRAIT)
 
-	if(!do_after(owner, SHATTERING_ROAR_CHARGE_TIME, TRUE, owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(can_use_action), FALSE, ABILITY_USE_BUSY)))
+	if(!do_after(owner, SHATTERING_ROAR_CHARGE_TIME, NONE, owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(can_use_action), FALSE, ABILITY_USE_BUSY)))
 		owner.balloon_alert(owner, "interrupted!")
 		finish_charging()
 		add_cooldown(10 SECONDS)
@@ -365,7 +365,7 @@
 	REMOVE_TRAIT(owner, TRAIT_STAGGER_RESISTANT, XENO_TRAIT)
 	ADD_TRAIT(owner, TRAIT_IMMOBILE, ZERO_FORM_BEAM_ABILITY_TRAIT)
 
-	if(!do_after(owner, ZEROFORM_CHARGE_TIME, FALSE, owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(can_use_action), FALSE, ABILITY_USE_BUSY)))
+	if(!do_after(owner, ZEROFORM_CHARGE_TIME, IGNORE_HELD_ITEM, owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(can_use_action), FALSE, ABILITY_USE_BUSY)))
 		QDEL_NULL(beam)
 		QDEL_NULL(particles)
 		targets = null
@@ -489,7 +489,7 @@
 			continue
 		sister.add_filter("summonoutline", 2, outline_filter(1, COLOR_VIOLET))
 
-	if(!do_after(X, 10 SECONDS, FALSE, X, BUSY_ICON_HOSTILE))
+	if(!do_after(X, 10 SECONDS, IGNORE_HELD_ITEM, X, BUSY_ICON_HOSTILE))
 		add_cooldown(5 SECONDS)
 		for(var/mob/living/carbon/xenomorph/sister AS in allxenos)
 			sister.remove_filter("summonoutline")

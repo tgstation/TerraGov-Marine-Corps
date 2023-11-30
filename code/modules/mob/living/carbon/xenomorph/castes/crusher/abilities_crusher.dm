@@ -192,7 +192,7 @@
 	var/mob/living/carbon/xenomorph/X = owner
 	X.face_atom(A)
 	X.set_canmove(FALSE)
-	if(!do_after(X, 10, TRUE, X, BUSY_ICON_DANGER))
+	if(!do_after(X, 10, NONE, X, BUSY_ICON_DANGER))
 		if(!X.stat)
 			X.set_canmove(TRUE)
 		return fail_activate()

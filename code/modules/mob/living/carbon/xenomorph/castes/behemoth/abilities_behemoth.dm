@@ -116,7 +116,7 @@
 	if(charge_ability_on)
 		charge_off()
 		return
-	if(!do_after(owner, BEHEMOTH_ROLL_WIND_UP, FALSE, owner, BUSY_ICON_HOSTILE, BUSY_ICON_HOSTILE))
+	if(!do_after(owner, BEHEMOTH_ROLL_WIND_UP, IGNORE_HELD_ITEM, owner, BUSY_ICON_HOSTILE, BUSY_ICON_HOSTILE))
 		return
 	charge_on()
 

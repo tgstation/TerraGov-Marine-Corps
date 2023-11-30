@@ -69,7 +69,7 @@
 	if(X.do_actions)
 		return FALSE
 	X.face_atom(victim)
-	if(!do_after(X, 0.3 SECONDS, FALSE, victim, BUSY_ICON_DANGER, extra_checks = CALLBACK(X, TYPE_PROC_REF(/mob, break_do_after_checks), list("health" = X.health)), ignore_turf_checks = TRUE))
+	if(!do_after(X, 0.3 SECONDS, IGNORE_HELD_ITEM|IGNORE_USER_LOC_CHANGE|IGNORE_TARGET_LOC_CHANGE, victim, BUSY_ICON_DANGER, extra_checks = CALLBACK(X, TYPE_PROC_REF(/mob, break_do_after_checks), list("health" = X.health))))
 		return FALSE
 	succeed_activate()
 
@@ -162,7 +162,7 @@
 
 	owner_xeno.face_atom(target_human)
 	owner_xeno.visible_message(target_human, span_danger("[owner_xeno] begins carving out, doing all sorts of horrible things to [target_human]!"))
-	if(!do_after(owner_xeno, 8 SECONDS, FALSE, target_human, BUSY_ICON_DANGER, extra_checks = CALLBACK(owner_xeno, TYPE_PROC_REF(/mob, break_do_after_checks), list("health" = owner_xeno.health))))
+	if(!do_after(owner_xeno, 8 SECONDS, IGNORE_HELD_ITEM, target_human, BUSY_ICON_DANGER, extra_checks = CALLBACK(owner_xeno, TYPE_PROC_REF(/mob, break_do_after_checks), list("health" = owner_xeno.health))))
 		return FALSE
 	succeed_activate()
 
@@ -234,7 +234,7 @@
 	owner_xeno.face_atom(target)
 	//reverse gib here
 	owner_xeno.visible_message(span_warning("[owner_xeno] begins to vomit out biomass and skillfully sews various bits and pieces together!"))
-	if(!do_after(owner_xeno, 8 SECONDS, FALSE, target, BUSY_ICON_CLOCK, extra_checks = CALLBACK(owner_xeno, TYPE_PROC_REF(/mob, break_do_after_checks), list("health" = owner_xeno.health))))
+	if(!do_after(owner_xeno, 8 SECONDS, IGNORE_HELD_ITEM, target, BUSY_ICON_CLOCK, extra_checks = CALLBACK(owner_xeno, TYPE_PROC_REF(/mob, break_do_after_checks), list("health" = owner_xeno.health))))
 		return FALSE
 	owner_xeno.visible_message(span_warning("[owner_xeno] forms a repulsive puppet!"))
 	succeed_activate()
@@ -285,7 +285,7 @@
 ///makes a puppet start a do_after to dexplode
 /datum/action/ability/activable/xeno/organic_bomb/proc/start_exploding_async(mob/living/puppet)
 	puppet.visible_message(span_danger("[puppet] bloats and slowly unfurls its stitched body!"))
-	if(do_after(puppet, 1.5 SECONDS, FALSE, puppet, BUSY_ICON_DANGER))
+	if(do_after(puppet, 1.5 SECONDS, IGNORE_HELD_ITEM, puppet, BUSY_ICON_DANGER))
 		detonate(puppet)
 
 ///detonates a puppet causing a spray of acid
@@ -367,7 +367,7 @@
 	var/mob/living/living_owner = owner
 	living_owner.face_atom(victim)
 	living_owner.visible_message(span_warning("[living_owner] begins to form biomass and force it into the ground!"))
-	if(!do_after(living_owner, 3 SECONDS, FALSE, victim, BUSY_ICON_DANGER, extra_checks = CALLBACK(living_owner, TYPE_PROC_REF(/mob, break_do_after_checks), list("health" = living_owner.health))))
+	if(!do_after(living_owner, 3 SECONDS, IGNORE_HELD_ITEM, victim, BUSY_ICON_DANGER, extra_checks = CALLBACK(living_owner, TYPE_PROC_REF(/mob, break_do_after_checks), list("health" = living_owner.health))))
 		return FALSE
 	their_turf.visible_message(span_warning("[living_owner]'s tendrils burst out from the ground!"))
 	for(var/turf/tile AS in RANGE_TURFS(1, their_turf))

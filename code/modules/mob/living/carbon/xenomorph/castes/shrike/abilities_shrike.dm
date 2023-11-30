@@ -269,7 +269,7 @@
 	if(owner.do_actions)
 		return FALSE
 
-	if(!do_mob(owner, target, 1 SECONDS, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
+	if(!do_after(owner, 1 SECONDS, NONE, target, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
 		return FALSE
 
 	if(owner.client)
@@ -385,11 +385,11 @@
 	if(target) // Keybind use doesn't have a target
 		owner.face_atom(target)
 	ADD_TRAIT(owner, TRAIT_IMMOBILE, VORTEX_ABILITY_TRAIT)
-	if(do_after(owner, VORTEX_INITIAL_CHARGE, FALSE, owner, BUSY_ICON_DANGER))
+	if(do_after(owner, VORTEX_INITIAL_CHARGE, IGNORE_HELD_ITEM, owner, BUSY_ICON_DANGER))
 		vortex_pull()
-	if(do_after(owner, VORTEX_POST_INITIAL_CHARGE, FALSE, owner, BUSY_ICON_DANGER))
+	if(do_after(owner, VORTEX_POST_INITIAL_CHARGE, IGNORE_HELD_ITEM, owner, BUSY_ICON_DANGER))
 		vortex_push()
-	if(do_after(owner, VORTEX_POST_INITIAL_CHARGE, FALSE, owner, BUSY_ICON_DANGER))
+	if(do_after(owner, VORTEX_POST_INITIAL_CHARGE, IGNORE_HELD_ITEM, owner, BUSY_ICON_DANGER))
 		vortex_pull()
 	QDEL_NULL(particle_holder)
 	REMOVE_TRAIT(owner, TRAIT_IMMOBILE, VORTEX_ABILITY_TRAIT)
