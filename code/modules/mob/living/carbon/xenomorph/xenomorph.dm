@@ -465,7 +465,7 @@ Returns TRUE when loc_weeds_type changes. Returns FALSE when it doesn’t change
 	update_icon()
 
 /mob/living/carbon/xenomorph/lay_down()
-	var/datum/action/xeno_action/xeno_resting/resting_action = actions_by_path[/datum/action/xeno_action/xeno_resting]
+	var/datum/action/ability/xeno_action/xeno_resting/resting_action = actions_by_path[/datum/action/ability/xeno_action/xeno_resting]
 	if(!resting_action || !resting_action.can_use_action())
 		return
 	return ..()

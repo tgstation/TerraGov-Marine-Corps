@@ -370,6 +370,7 @@
 #include "code\datums\view.dm"
 #include "code\datums\weakrefs.dm"
 #include "code\datums\world_topic.dm"
+#include "code\datums\actions\ability_actions.dm"
 #include "code\datums\actions\action.dm"
 #include "code\datums\actions\bump_attack_toggle.dm"
 #include "code\datums\actions\innate.dm"

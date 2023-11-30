@@ -2,7 +2,7 @@
 
 /datum/unit_test/weed_ability/Run()
 	var/mob/living/carbon/xenomorph/drone/drone = new(run_loc_floor_bottom_left)
-	var/datum/action/xeno_action/activable/plant_weeds/weed = drone.actions_by_path[/datum/action/xeno_action/activable/plant_weeds]
+	var/datum/action/ability/activable/xeno/plant_weeds/weed = drone.actions_by_path[/datum/action/ability/activable/xeno/plant_weeds]
 	if(!weed.can_use_action())
 		Fail("Drone could not activate weed ability!")
 

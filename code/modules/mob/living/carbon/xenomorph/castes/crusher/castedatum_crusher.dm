@@ -43,12 +43,12 @@
 	crest_toss_distance = 6
 
 	actions = list(
-		/datum/action/xeno_action/xeno_resting,
-		/datum/action/xeno_action/watch_xeno,
-		/datum/action/xeno_action/activable/psydrain,
-		/datum/action/xeno_action/activable/stomp,
-		/datum/action/xeno_action/ready_charge,
-		/datum/action/xeno_action/activable/cresttoss,
+		/datum/action/ability/xeno_action/xeno_resting,
+		/datum/action/ability/xeno_action/watch_xeno,
+		/datum/action/ability/activable/xeno/psydrain,
+		/datum/action/ability/activable/xeno/stomp,
+		/datum/action/ability/xeno_action/ready_charge,
+		/datum/action/ability/activable/xeno/cresttoss,
 	)
 
 /datum/xeno_caste/crusher/on_caste_applied(mob/xenomorph)
@@ -71,11 +71,11 @@
 	upgrade = XENO_UPGRADE_PRIMO
 
 	actions = list(
-		/datum/action/xeno_action/xeno_resting,
-		/datum/action/xeno_action/watch_xeno,
-		/datum/action/xeno_action/activable/psydrain,
-		/datum/action/xeno_action/activable/stomp,
-		/datum/action/xeno_action/ready_charge,
-		/datum/action/xeno_action/activable/cresttoss,
-		/datum/action/xeno_action/activable/advance,
+		/datum/action/ability/xeno_action/xeno_resting,
+		/datum/action/ability/xeno_action/watch_xeno,
+		/datum/action/ability/activable/xeno/psydrain,
+		/datum/action/ability/activable/xeno/stomp,
+		/datum/action/ability/xeno_action/ready_charge,
+		/datum/action/ability/activable/xeno/cresttoss,
+		/datum/action/ability/activable/xeno/advance,
 	)
