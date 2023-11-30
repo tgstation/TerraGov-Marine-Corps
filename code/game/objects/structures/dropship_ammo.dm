@@ -391,11 +391,11 @@
 //this one is air-to-air only
 /obj/structure/ship_ammo/cas/rocket/widowmaker
 	name = "\improper AIM-224 'Widowmaker'"
-	desc = "The AIM-224 is the latest in air to air missile technology. Earning the nickname of 'Widowmaker' from various dropship pilots after improvements to its guidence warhead prevents it from being jammed leading to its high kill rate. Not well suited for ground bombardment, but its high velocity makes it reach its target quickly. Moving this will require some sort of lifter."
+	desc = "The AIM-224 is the latest in air to air missile technology. Earning the nickname of 'Widowmaker' from various dropship pilots after improvements to its guidence warhead prevents it from being jammed leading to its high kill rate. Not well suited for ground bombardment. Moving this will require some sort of lifter."
 	icon_state = "single"
-	travelling_time = 3 SECONDS //not powerful, but reaches target fast
+	travelling_time = 6 SECONDS
 	ammo_id = ""
-	point_cost = 225
+	point_cost = 175
 	devastating_explosion_range = 2
 	heavy_explosion_range = 4
 	light_explosion_range = 7
