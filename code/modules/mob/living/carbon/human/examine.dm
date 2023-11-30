@@ -122,8 +122,6 @@
 		msg += "[span_warning("[t_He] [t_has] [(blood_color != "#030303") ? "blood" : "oil"]-stained hands!")]\n"
 
 	//handcuffed?
-
-	//handcuffed?
 	if(handcuffed)
 		if(istype(handcuffed, /obj/item/restraints/handcuffs/cable))
 			msg += "[span_warning("[t_He] [t_is] [icon2html(handcuffed, user)] restrained with cable!")]\n"
@@ -171,16 +169,6 @@
 
 	//ID
 	if(wear_id)
-		/*var/id
-		if(istype(wear_id, /obj/item/pda))
-			var/obj/item/pda/pda = wear_id
-			id = pda.owner
-		else if(istype(wear_id, /obj/item/card/id)) //just in case something other than a PDA/ID card somehow gets in the ID slot :[
-			var/obj/item/card/id/idcard = wear_id
-			id = idcard.registered_name
-		if(id && (id != real_name) && (get_dist(src, user) <= 1) && prob(10))
-			msg += "[span_warning("[t_He] [t_is] wearing \icon[wear_id] \a [wear_id] yet something doesn't seem right...")]\n"
-		else*/
 		msg += "[t_He] [t_is] wearing [icon2html(wear_id, user)] \a [wear_id].\n"
 
 	//jitters
@@ -263,18 +251,20 @@
 					continue
 			else
 				wound_flavor_text["[temp.display_name]"] = "<span class='warning'>[t_He] has a robot [temp.display_name]. It has"
-			if(temp.brute_dam) switch(temp.brute_dam)
-				if(0 to 20)
-					wound_flavor_text["[temp.display_name]"] += " some dents"
-				if(21 to INFINITY)
-					wound_flavor_text["[temp.display_name]"] += pick(" a lot of dents"," severe denting")
+			if(temp.brute_dam)
+				switch(temp.brute_dam)
+					if(0 to 20)
+						wound_flavor_text["[temp.display_name]"] += " some dents"
+					if(21 to INFINITY)
+						wound_flavor_text["[temp.display_name]"] += pick(" a lot of dents"," severe denting")
 			if(temp.brute_dam && temp.burn_dam)
 				wound_flavor_text["[temp.display_name]"] += " and"
-			if(temp.burn_dam) switch(temp.burn_dam)
-				if(0 to 20)
-					wound_flavor_text["[temp.display_name]"] += " some burns"
-				if(21 to INFINITY)
-					wound_flavor_text["[temp.display_name]"] += pick(" a lot of burns"," severe melting")
+			if(temp.burn_dam)
+				switch(temp.burn_dam)
+					if(0 to 20)
+						wound_flavor_text["[temp.display_name]"] += " some burns"
+					if(21 to INFINITY)
+						wound_flavor_text["[temp.display_name]"] += pick(" a lot of burns"," severe melting")
 			if(wound_flavor_text["[temp.display_name]"])
 				wound_flavor_text["[temp.display_name]"] += "!</span>\n"
 		else
@@ -377,7 +367,7 @@
 		msg += wound_flavor_text["left leg"]
 	else if(is_bleeding["left leg"])
 		display_leg_left = 1
-	if(wound_flavor_text["left foot"]&& (is_destroyed["left foot"] || (!shoes && !skipshoes)))
+	if(wound_flavor_text["left foot"] && (is_destroyed["left foot"] || (!shoes && !skipshoes)))
 		msg += wound_flavor_text["left foot"]
 	else if(is_bleeding["left foot"])
 		display_foot_left = 1
@@ -385,7 +375,7 @@
 		msg += wound_flavor_text["right leg"]
 	else if(is_bleeding["right leg"])
 		display_leg_right = 1
-	if(wound_flavor_text["right foot"]&& (is_destroyed["right foot"] || (!shoes  && !skipshoes)))
+	if(wound_flavor_text["right foot"] && (is_destroyed["right foot"] || (!shoes && !skipshoes)))
 		msg += wound_flavor_text["right foot"]
 	else if(is_bleeding["right foot"])
 		display_foot_right = 1
@@ -471,13 +461,13 @@
 						if(R.fields["id"] == E.fields["id"])
 							criminal = R.fields["criminal"]
 
-			msg += "<span class = 'deptradio'>Criminal status:</span> <a href='?src=[text_ref(src)];criminal=1'>\[[criminal]\]</a>\n"
-			msg += "<span class = 'deptradio'>Security records:</span> <a href='?src=[text_ref(src)];secrecord=`'>\[View\]</a>  <a href='?src=[text_ref(src)];secrecordadd=`'>\[Add comment\]</a>\n"
+			msg += "[span_deptradio("Criminal status:")] <a href='?src=[text_ref(src)];criminal=1'>\[[criminal]\]</a>\n"
+			msg += "[span_deptradio("Security records:")] <a href='?src=[text_ref(src)];secrecord=`'>\[View\]</a>  <a href='?src=[text_ref(src)];secrecordadd=`'>\[Add comment\]</a>\n"
 
 	if(hasHUD(user,"medical"))
 		var/cardcolor = holo_card_color
 		if(!cardcolor) cardcolor = "none"
-		msg += "<span class = 'deptradio'>Triage holo card:</span> <a href='?src=[text_ref(src)];medholocard=1'>\[[cardcolor]\]</a> - "
+		msg += "[span_deptradio("Triage holo card:")] <a href='?src=[text_ref(src)];medholocard=1'>\[[cardcolor]\]</a> - "
 
 		// scan reports
 		var/datum/data/record/N = null
@@ -487,9 +477,9 @@
 				break
 		if(!isnull(N))
 			if(!(N.fields["last_scan_time"]))
-				msg += "<span class = 'deptradio'>No scan report on record</span>\n"
+				msg += "[span_deptradio("No scan report on record")]\n"
 			else
-				msg += "<span class = 'deptradio'><a href='?src=[text_ref(src)];scanreport=1'>Scan from [N.fields["last_scan_time"]]</a></span>\n"
+				msg += "[span_deptradio("<a href='?src=[text_ref(src)];scanreport=1'>Scan from [N.fields["last_scan_time"]]</a>")]\n"
 
 	if(hasHUD(user,"squadleader"))
 		var/mob/living/carbon/human/H = user
