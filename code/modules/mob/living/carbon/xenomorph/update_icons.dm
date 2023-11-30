@@ -148,11 +148,11 @@
 	wound_overlay.icon_state = "[xeno_caste.wound_type]_[overlay_to_show]"
 
 	if(xeno_caste.reductive_wound_overlay)
-		var/image/wounded_mask = image('icons/Xeno/wound_alpha.dmi', null, "[xeno_caste.wound_type]_[overlay_to_show]")
+		var/image/wounded_mask = image(icon, null, "alpha_[overlay_to_show]")
 		wounded_mask.render_target = "*[REF(src)]"
 		overlays_standing[X_WOUND_LAYER] = wounded_mask
 		apply_overlay(X_WOUND_LAYER)
-		add_filter("wounded_filter", list(alpha_mask_filter(0, 0, null, "*[REF(src)]")))
+		add_filter("wounded_filter", 1, alpha_mask_filter(0, 0, null, "*[REF(src)]", MASK_INVERSE))
 
 	wound_overlay.vis_flags &= ~VIS_HIDE // Show the overlay
 
