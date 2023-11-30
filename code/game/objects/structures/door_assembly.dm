@@ -154,7 +154,7 @@
 		playsound(loc, 'sound/items/welder2.ogg', 25, 1)
 		if(istext(glass))
 			user.visible_message("[user] welds the [glass] plating off the airlock assembly.", "You start to weld the [glass] plating off the airlock assembly.")
-			if(!do_after(user, 40, TRUE, src, BUSY_ICON_BUILD))
+			if(!do_after(user, 40, NONE, src, BUSY_ICON_BUILD))
 				return
 
 			if(!WT.isOn())
@@ -166,7 +166,7 @@
 
 		else if(glass == 1)
 			user.visible_message("[user] welds the glass panel out of the airlock assembly.", "You start to weld the glass panel out of the airlock assembly.")
-			if(!do_after(user, 40, TRUE, src, BUSY_ICON_BUILD))
+			if(!do_after(user, 40, NONE, src, BUSY_ICON_BUILD))
 				return
 
 			if(!WT.isOn())
@@ -177,7 +177,7 @@
 
 		else if(!anchored)
 			user.visible_message("[user] dissassembles the airlock assembly.", "You start to dissassemble the airlock assembly.")
-			if(!do_after(user, 40, TRUE, src, BUSY_ICON_BUILD))
+			if(!do_after(user, 40, NONE, src, BUSY_ICON_BUILD))
 				return
 
 			if(!WT.isOn())
@@ -194,7 +194,7 @@
 		else
 			user.visible_message("[user] secures the airlock assembly to the floor.", "You start to secure the airlock assembly to the floor.")
 
-		if(!do_after(user, 40, TRUE, src, BUSY_ICON_BUILD))
+		if(!do_after(user, 40, NONE, src, BUSY_ICON_BUILD))
 			return
 
 		to_chat(user, span_notice("You [anchored ? "un" : ""]secured the airlock assembly!"))
@@ -208,7 +208,7 @@
 
 		user.visible_message("[user] wires the airlock assembly.", "You start to wire the airlock assembly.")
 
-		if(!do_after(user, 40, TRUE, src, BUSY_ICON_BUILD) || state != 0 || !anchored)
+		if(!do_after(user, 40, NONE, src, BUSY_ICON_BUILD) || state != 0 || !anchored)
 			return
 
 		if(!C.use(1))
@@ -221,7 +221,7 @@
 		playsound(loc, 'sound/items/wirecutter.ogg', 25, 1)
 		user.visible_message("[user] cuts the wires from the airlock assembly.", "You start to cut the wires from airlock assembly.")
 
-		if(!do_after(user, 40, TRUE, src, BUSY_ICON_BUILD))
+		if(!do_after(user, 40, NONE, src, BUSY_ICON_BUILD))
 			return
 
 		to_chat(user, span_notice("You cut the airlock wires.!"))
@@ -232,7 +232,7 @@
 		playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)
 		user.visible_message("[user] installs the electronics into the airlock assembly.", "You start to install electronics into the airlock assembly.")
 
-		if(!do_after(user, 40, TRUE, src, BUSY_ICON_BUILD))
+		if(!do_after(user, 40, NONE, src, BUSY_ICON_BUILD))
 			return
 
 		user.drop_held_item()
@@ -246,7 +246,7 @@
 		playsound(loc, 'sound/items/crowbar.ogg', 25, 1)
 		user.visible_message("[user] removes the electronics from the airlock assembly.", "You start to remove the electronics from the airlock assembly.")
 
-		if(!do_after(user, 40, TRUE, src, BUSY_ICON_BUILD))
+		if(!do_after(user, 40, NONE, src, BUSY_ICON_BUILD))
 			return
 
 		to_chat(user, span_notice("You removed the airlock electronics!"))
@@ -269,7 +269,7 @@
 		if(istype(S, /obj/item/stack/sheet/glass/reinforced))
 			playsound(loc, 'sound/items/crowbar.ogg', 25, 1)
 			user.visible_message("[user] adds [S.name] to the airlock assembly.", "You start to install [S.name] into the airlock assembly.")
-			if(!do_after(user, 40, TRUE, src, BUSY_ICON_BUILD) && !glass)
+			if(!do_after(user, 40, NONE, src, BUSY_ICON_BUILD) && !glass)
 				return
 
 			if(!S.use(1))
@@ -285,7 +285,7 @@
 
 			playsound(loc, 'sound/items/crowbar.ogg', 25, 1)
 			user.visible_message("[user] adds [S.name] to the airlock assembly.", "You start to install [S.name] into the airlock assembly.")
-			if(!do_after(user, 40, TRUE, src, BUSY_ICON_BUILD) && !glass)
+			if(!do_after(user, 40, NONE, src, BUSY_ICON_BUILD) && !glass)
 				return
 
 			if(!S.use(2))
@@ -298,7 +298,7 @@
 		playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)
 		to_chat(user, span_notice("Now finishing the airlock."))
 
-		if(!do_after(user, 40, TRUE, src, BUSY_ICON_BUILD))
+		if(!do_after(user, 40, NONE, src, BUSY_ICON_BUILD))
 			return
 
 		to_chat(user, span_notice("You finish the airlock!"))

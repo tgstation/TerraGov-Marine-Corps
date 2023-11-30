@@ -88,7 +88,7 @@
 	user.visible_message(span_notice("[user] begins to cut down [src] with [I]."),span_notice("You begin to cut down [src] with [I]."), "You hear the sound of sawing.")
 	var/cut_force = min(1, I.force)
 	var/cutting_time = clamp(10, 20, 100 / cut_force) SECONDS
-	if(!do_after(user, cutting_time , TRUE, src, BUSY_ICON_BUILD))
+	if(!do_after(user, cutting_time , NONE, src, BUSY_ICON_BUILD))
 		return
 	if(is_christmastree)
 		user.visible_message(span_notice("[user] has a change of heart and embraces the [src], vowing to be a better person for Christmas."),span_notice("You have a change of heart and decide to not be a grinch."), "You hear the sound of a gentle Christmas melodies.")

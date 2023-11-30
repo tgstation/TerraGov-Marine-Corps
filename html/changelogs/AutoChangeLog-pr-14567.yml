@@ -1,0 +1,4 @@
+author: "Barnet2"
+delete-after: True
+changes:
+  - code_imp: "Valhalla area code compressed for developer sanity."

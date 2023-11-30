@@ -190,7 +190,7 @@
 		return TRUE
 	to_chat(user, span_notice("You begin to unfasten \the [src]..."))
 
-	if(!do_after(user, 2 SECONDS, TRUE, src, BUSY_ICON_BUILD))
+	if(!do_after(user, 2 SECONDS, NONE, src, BUSY_ICON_BUILD))
 		return TRUE
 
 	user.visible_message( \
@@ -264,7 +264,7 @@
 	if(!silent_crawl) //Xenos with silent crawl can silently enter/exit/move through vents.
 		visible_message(span_warning("You hear something squeezing through the ducts."))
 	to_chat(user, span_notice("You begin to climb out of [src]"))
-	if(!do_after(user, vent_crawl_exit_time, FALSE, src))
+	if(!do_after(user, vent_crawl_exit_time, IGNORE_HELD_ITEM, src))
 		return FALSE
 	user.remove_ventcrawl()
 	user.forceMove(T)

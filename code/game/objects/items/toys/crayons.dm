@@ -88,7 +88,7 @@
 		drawtype = tgui_input_list(user, "Choose the letter.", "Crayon scribbles", list("a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"))
 
 	user.visible_message("[user] starts drawing something on \the [target.name]")
-	if(!instant && !do_after(user, 5 SECONDS, TRUE, target, BUSY_ICON_GENERIC))
+	if(!instant && !do_after(user, 5 SECONDS, NONE, target, BUSY_ICON_GENERIC))
 		return
 
 	new /obj/effect/decal/cleanable/crayon(target, colour, shadeColour, drawtype)

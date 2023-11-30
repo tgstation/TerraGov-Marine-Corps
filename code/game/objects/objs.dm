@@ -261,7 +261,7 @@
 	if(user.skills.getRating(SKILL_ENGINEER) < skill_required)
 		user.visible_message(span_notice("[user] fumbles around figuring out how to repair [src]."),
 		span_notice("You fumble around figuring out how to repair [src]."))
-		if(!do_after(user, (fumble_time ? fumble_time : repair_time) * (skill_required - user.skills.getRating(SKILL_ENGINEER)), TRUE, src, BUSY_ICON_BUILD))
+		if(!do_after(user, (fumble_time ? fumble_time : repair_time) * (skill_required - user.skills.getRating(SKILL_ENGINEER)), NONE, src, BUSY_ICON_BUILD))
 			return TRUE
 
 	repair_time *= welder.toolspeed
@@ -270,7 +270,7 @@
 	while(obj_integrity < max_integrity)
 		playsound(loc, 'sound/items/welder2.ogg', 25, TRUE)
 		welder.eyecheck(user)
-		if(!do_after(user, repair_time, TRUE, src, BUSY_ICON_FRIENDLY))
+		if(!do_after(user, repair_time, NONE, src, BUSY_ICON_FRIENDLY))
 			cut_overlay(GLOB.welding_sparks)
 			balloon_alert(user, "interrupted!")
 			return TRUE

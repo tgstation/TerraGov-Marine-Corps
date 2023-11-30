@@ -580,7 +580,7 @@ GLOBAL_LIST_INIT(armorvic_dmg_distributions, list(
 		user.visible_message(span_notice("[user] fumbles around figuring out what to do with [O] on the [src]."),
 		span_notice("You fumble around figuring out what to do with [O] on the [src]."))
 		var/fumbling_time = 5 SECONDS * (SKILL_ENGINEER_MASTER - user.skills.getRating(SKILL_ENGINEER))
-		if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
+		if(!do_after(user, fumbling_time, NONE, src, BUSY_ICON_UNSKILLED))
 			return
 
 	//Pick what to repair
@@ -647,7 +647,7 @@ GLOBAL_LIST_INIT(armorvic_dmg_distributions, list(
 	user.visible_message(span_notice("[user] starts repairing the [slot] slot on [src]."),
 		span_notice("You start repairing the [slot] slot on the [src]."))
 
-	if(!do_after(user, 30 * num_delays, TRUE, src, BUSY_ICON_BUILD, extra_checks = iswelder(O) ? CALLBACK(O, /obj/item/tool/weldingtool/proc/isOn) : null))
+	if(!do_after(user, 30 * num_delays, NONE, src, BUSY_ICON_BUILD, extra_checks = iswelder(O) ? CALLBACK(O, /obj/item/tool/weldingtool/proc/isOn) : null))
 		user.visible_message(span_notice("[user] stops repairing the [slot] slot on [src]."),
 			span_notice("You stop repairing the [slot] slot on the [src]."))
 		return
@@ -691,7 +691,7 @@ GLOBAL_LIST_INIT(armorvic_dmg_distributions, list(
 		user.visible_message(span_notice("[user] fumbles around figuring out what to do with [HP] on the [src]."),
 		span_notice("You fumble around figuring out what to do with [HP] on the [src]."))
 		var/fumbling_time = 5 SECONDS * ( SKILL_ENGINEER_MASTER - user.skills.getRating(SKILL_ENGINEER) )
-		if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
+		if(!do_after(user, fumbling_time, NONE, src, BUSY_ICON_UNSKILLED))
 			return
 
 	var/obj/item/hardpoint/occupied = hardpoints[HP.slot]
@@ -717,7 +717,7 @@ GLOBAL_LIST_INIT(armorvic_dmg_distributions, list(
 		if(HDPT_TREADS)
 			num_delays = 7
 
-	if(!do_after(user, 30 * num_delays, TRUE, src, BUSY_ICON_BUILD))
+	if(!do_after(user, 30 * num_delays, NONE, src, BUSY_ICON_BUILD))
 		user.visible_message(span_warning("[user] stops installing \the [HP] on [src]."), span_warning("You stop installing \the [HP] on [src]."))
 		return
 
@@ -738,7 +738,7 @@ GLOBAL_LIST_INIT(armorvic_dmg_distributions, list(
 		user.visible_message(span_notice("[user] fumbles around figuring out what to do with [O] on the [src]."),
 		span_notice("You fumble around figuring out what to do with [O] on the [src]."))
 		var/fumbling_time = 5 SECONDS * ( SKILL_ENGINEER_MASTER - user.skills.getRating(SKILL_ENGINEER) )
-		if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
+		if(!do_after(user, fumbling_time, NONE, src, BUSY_ICON_UNSKILLED))
 			return
 
 	var/slot = tgui_input_list(user, "Select a slot to try and remove", null, hardpoints)
@@ -768,7 +768,7 @@ GLOBAL_LIST_INIT(armorvic_dmg_distributions, list(
 		if(HDPT_TREADS)
 			num_delays = 7
 
-	if(!do_after(user, 30 * num_delays, TRUE, src, BUSY_ICON_BUILD))
+	if(!do_after(user, 30 * num_delays, NONE, src, BUSY_ICON_BUILD))
 		user.visible_message(span_warning("[user] stops removing \the [old] on [src]."), span_warning("You stop removing \the [old] on [src]."))
 		return
 	if(QDELETED(old) || old != hardpoints[slot])

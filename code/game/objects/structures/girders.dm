@@ -66,7 +66,7 @@
 				if(stack.amount < 2)
 					return
 				to_chat(user, span_notice("Now adding plating..."))
-				if(!do_after(user, 4 SECONDS, TRUE, src, BUSY_ICON_BUILD))
+				if(!do_after(user, 4 SECONDS, NONE, src, BUSY_ICON_BUILD))
 					return TRUE
 				if(QDELETED(stack) || stack.amount < 2 || girder_state != GIRDER_BROKEN)
 					return TRUE
@@ -80,7 +80,7 @@
 				if(stack.amount < (reinforced ? 15 : 2))
 					return TRUE
 				to_chat(user, span_notice("Now adding plating..."))
-				if(!do_after(user, 4 SECONDS * (reinforced ? 2 : 1), TRUE, src, BUSY_ICON_BUILD))
+				if(!do_after(user, 4 SECONDS * (reinforced ? 2 : 1), NONE, src, BUSY_ICON_BUILD))
 					return TRUE
 				if(QDELETED(stack) || stack.amount < (reinforced ? 15 : 2) || girder_state != GIRDER_NORMAL)
 					return TRUE
@@ -98,7 +98,7 @@
 					return TRUE
 				var/old_girder_state = girder_state
 				to_chat(user, span_notice("Now adding plating..."))
-				if(!do_after(user, 4 SECONDS * (reinforced ? 2 : 1), TRUE, src, BUSY_ICON_BUILD))
+				if(!do_after(user, 4 SECONDS * (reinforced ? 2 : 1), NONE, src, BUSY_ICON_BUILD))
 					return TRUE
 				if(QDELETED(stack) || stack.amount < (reinforced ? 15 : 2) || girder_state != old_girder_state)
 					return TRUE
@@ -121,7 +121,7 @@
 			var/work_time = 3 SECONDS
 			if(reinforcement == GIRDER_REINF_PLASTEEL)
 				work_time += 3 SECONDS
-			if(!do_after(user, work_time, TRUE, src, BUSY_ICON_BUILD))
+			if(!do_after(user, work_time, NONE, src, BUSY_ICON_BUILD))
 				return TRUE
 			if(girder_state != old_girder_state)
 				return TRUE
@@ -141,7 +141,7 @@
 		if(GIRDER_BROKEN)
 			playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
 			to_chat(user, span_notice("Now unbolting the remaining girder base."))
-			if(!do_after(user, 1.5 SECONDS, TRUE, src, BUSY_ICON_BUILD))
+			if(!do_after(user, 1.5 SECONDS, NONE, src, BUSY_ICON_BUILD))
 				return TRUE
 			if(girder_state != GIRDER_BROKEN)
 				return TRUE
@@ -158,7 +158,7 @@
 				return FALSE
 			playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
 			to_chat(user, span_notice("Now securing the girder"))
-			if(!do_after(user, 4 SECONDS, TRUE, src, BUSY_ICON_BUILD))
+			if(!do_after(user, 4 SECONDS, NONE, src, BUSY_ICON_BUILD))
 				return TRUE
 			if(anchored || girder_state != GIRDER_NORMAL)
 				return TRUE
@@ -178,7 +178,7 @@
 				return FALSE
 			playsound(loc, 'sound/items/crowbar.ogg', 25, 1)
 			to_chat(user, span_notice("Now dislodging the girder..."))
-			if(!do_after(user, 4 SECONDS, TRUE, src, BUSY_ICON_BUILD))
+			if(!do_after(user, 4 SECONDS, NONE, src, BUSY_ICON_BUILD))
 				return TRUE
 			if(!anchored || girder_state != GIRDER_NORMAL)
 				return TRUE
@@ -192,7 +192,7 @@
 			var/work_time = 3 SECONDS
 			if(reinforcement == GIRDER_REINF_PLASTEEL)
 				work_time += 3 SECONDS
-			if(!do_after(user, work_time, TRUE, src, BUSY_ICON_BUILD))
+			if(!do_after(user, work_time, NONE, src, BUSY_ICON_BUILD))
 				return TRUE
 			if(girder_state != old_girder_state)
 				return TRUE
@@ -213,7 +213,7 @@
 				return FALSE
 			playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)
 			to_chat(user, span_notice("Now dissassembling the girder"))
-			if(!do_after(user, 4 SECONDS, TRUE, src, BUSY_ICON_BUILD))
+			if(!do_after(user, 4 SECONDS, NONE, src, BUSY_ICON_BUILD))
 				return TRUE
 			if(anchored || girder_state != GIRDER_NORMAL)
 				return TRUE
@@ -227,7 +227,7 @@
 			var/work_time = 3 SECONDS
 			if(reinforcement == GIRDER_REINF_PLASTEEL)
 				work_time += 3 SECONDS
-			if(!do_after(user, work_time, TRUE, src, BUSY_ICON_BUILD))
+			if(!do_after(user, work_time, NONE, src, BUSY_ICON_BUILD))
 				return TRUE
 			if(girder_state != old_girder_state)
 				return TRUE
@@ -241,7 +241,7 @@
 			var/work_time = 3 SECONDS
 			if(reinforcement == GIRDER_REINF_PLASTEEL)
 				work_time += 3 SECONDS
-			if(!do_after(user, work_time, TRUE, src, BUSY_ICON_BUILD))
+			if(!do_after(user, work_time, NONE, src, BUSY_ICON_BUILD))
 				return TRUE
 			if(girder_state != old_girder_state)
 				return TRUE
@@ -259,7 +259,7 @@
 		if(GIRDER_BROKEN_PATCHED)
 			playsound(loc, 'sound/items/wirecutter.ogg', 25, 1)
 			to_chat(user, span_notice("Now cutting the metal plate..."))
-			if(!do_after(user, 4 SECONDS, TRUE, src, BUSY_ICON_BUILD))
+			if(!do_after(user, 4 SECONDS, NONE, src, BUSY_ICON_BUILD))
 				return TRUE
 			to_chat(user, span_notice("You finished cutting the metal plate!"))
 			deconstruct()
@@ -270,7 +270,7 @@
 			if(reinforcement == GIRDER_REINF_PLASTEEL)
 				work_time += 3 SECONDS
 			to_chat(user, span_notice("Now cutting the support struts..."))
-			if(!do_after(user, 4 SECONDS, TRUE, src, BUSY_ICON_BUILD))
+			if(!do_after(user, 4 SECONDS, NONE, src, BUSY_ICON_BUILD))
 				return
 			if(girder_state != old_girder_state)
 				return TRUE
