@@ -42,8 +42,8 @@ const TakeOffDisplay = (props, context) => {
   if (takeoff_delay <= 0) {
     return null;
   }
-
-  let takeoff_minutes = (takeoff_delay / 60).toFixed(2);
+  let takeoff_seconds = takeoff_delay * 0.1;
+  let takeoff_minutes = Math.round(takeoff_seconds / 60);
   if (shuttle_mode === 'igniting') {
     return (
       <Box textAlign="center">
@@ -59,15 +59,19 @@ const TakeOffDisplay = (props, context) => {
       </Box>
     );
   }
-
+  if (!takeoff_delay) {
+    return null;
+  }
   return (
-    <Box class="text-bold" textAlign="center">
-      This shuttle takes
-      {takeoff_delay > 60
-        ? `${takeoff_minutes} minutes`
-        : `${takeoff_delay} seconds`}{' '}
-      to spool up for takeoff.
-    </Box>
+    <Section class="text-bold" textAlign="center">
+      <Box>
+        This shuttle takes
+        {takeoff_delay > 60
+          ? ` ${takeoff_minutes} minutes`
+          : ` ${takeoff_delay} seconds`}{' '}
+        to spool up for takeoff.
+      </Box>
+    </Section>
   );
 };
 

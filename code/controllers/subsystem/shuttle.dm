@@ -166,7 +166,6 @@ SUBSYSTEM_DEF(shuttle)
  * timed: If FALSE, the shuttle will instantanly move to the destination dock
  */
 /datum/controller/subsystem/shuttle/proc/moveShuttleToDock(shuttleId, obj/docking_port/stationary/D, timed)
-	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_SHUTTLE_BEGIN_TAKEOFF, shuttleId, D)
 	var/obj/docking_port/mobile/M = getShuttle(shuttleId)
 	if(!M)
 		return 1
@@ -176,6 +175,7 @@ SUBSYSTEM_DEF(shuttle)
 	else
 		if(M.initiate_docking(D) != DOCKING_SUCCESS)
 			return 2
+	SEND_SIGNAL(D, COMSIG_SHUTTLE_TAKEOFF, shuttleId, D)
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_SHUTTLE_TAKEOFF, shuttleId, D)
 	return 0	//dock successful
 

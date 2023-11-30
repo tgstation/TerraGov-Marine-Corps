@@ -1461,11 +1461,10 @@
 	screen_overlay = "shuttle"
 	resistance_flags = RESIST_ALL
 	shuttleId = SHUTTLE_CANTERBURY
+	takeoff_delay = 2 MINUTES
 	possible_destinations = "canterbury_loadingdock"
 	confirm_message = "Are you sure you want to launch the shuttle? \
 	 Without sufficiently dealing with the threat, you will be in direct violation of your orders!"
-	var/custom_ignition_time = 1 MINUTES
-	var/takeoff_timer
 
 /obj/machinery/computer/shuttle/shuttle_control/canterbury/Initialize(mapload)
 	. = ..()
@@ -1486,7 +1485,6 @@
 		to_chat(usr, span_warning("[src] is unresponsive."))
 		return
 	var/obj/docking_port/mobile/M = SSshuttle.getShuttle(shuttleId)
-	// M.ignitionTime = custom_ignition_time
 	if(!can_interact(usr) && isxeno(usr) && !allowed(usr))
 		return
 	#ifndef TESTING
@@ -1496,28 +1494,29 @@
 	#endif
 	. = ..()
 
-/obj/machinery/computer/shuttle/shuttle_control/canterbury/proc/begin_takeoff(obj/docking_port/mobile/port, destination, mob/user)
+/obj/machinery/computer/shuttle/shuttle_control/canterbury/begin_takeoff(obj/docking_port/mobile/port, destination, mob/user)
 	log_admin("[key_name(user)] is launching the canterbury[!length(GLOB.active_nuke_list)? " early" : ""].")
-	message_admins("[ADMIN_TPMONTY(user)] is launching the canterbury[!length(GLOB.active_nuke_list)? " early" : ""].")
+	message_admins("[ADMIN_TPMONTY(user)] is launching the canterbury[!length(GLOB.active_nuke_list) ? " early" : ""].")
 
 	if(!port.can_move_topic(user))
 		return TRUE
 	port.destination = null
 	port.mode = SHUTTLE_IGNITING
-	port.setTimer(custom_ignition_time)
-	takeoff_timer = addtimer(CALLBACK(src, PROC_REF(launch_shuttle)), custom_ignition_time, TIMER_STOPPABLE)
+	port.setTimer(takeoff_delay)
+	RegisterSignal(port, COMSIG_SHUTTLE_TAKEOFF, PROC_REF(launch_shuttle))
+	addtimer(CALLBACK(src, PROC_REF(launch_shuttle)), takeoff_delay, TIMER_STOPPABLE)
 	SStgui.update_uis(user)
 	// Same position as the orphan timer as it is disabled on crash
-	setup_hud_timer_all_hives(takeoff_timer, "Canterbury taking off in ${timer}", 150, -80)
+	if(!port.timer)
+		CRASH("Shuttle port [port] has no timer set.")
+	setup_hud_timer_all_hives(port.timer, "Canterbury taking off in ${timer}", 150, -80)
 
 	var/datum/game_mode/infestation/crash/crash_mode = SSticker.mode
 	VARSET_CALLBACK(crash_mode, marines_evac, CRASH_EVAC_INPROGRESS)
 
-/obj/machinery/computer/shuttle/shuttle_control/canterbury/proc/launch_shuttle()
-	deltimer(takeoff_timer)
-	takeoff_timer = null
-	// port.destination = null
-	// port.mode = SHUTTLE_IGNITING
+/obj/machinery/computer/shuttle/shuttle_control/canterbury/proc/launch_shuttle(shuttleID, obj/docking_port/mobile/port)
+	port.destination = null
+	port.mode = SHUTTLE_IGNITING
 	// port.setTimer(port.ignitionTime)
 
 	var/datum/game_mode/infestation/crash/crash_mode = SSticker.mode
