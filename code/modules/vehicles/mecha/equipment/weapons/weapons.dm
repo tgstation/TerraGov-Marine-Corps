@@ -167,8 +167,8 @@
 	if(dir_target_diff > (MECH_FIRE_CONE_ALLOWED / 2))
 		return AUTOFIRE_CONTINUE
 
-	var/type_to_spawn = (initial(ammotype.flags_ammo_behavior) & AMMO_HITSCAN) ? /obj/projectile/hitscan : /obj/projectile
-	var/obj/projectile/projectile_to_fire = new type_to_spawn(get_turf(src))
+	var/type_to_spawn = CHECK_BITFIELD(initial(ammotype.flags_ammo_behavior), AMMO_HITSCAN) ? /obj/projectile/hitscan : /obj/projectile
+	var/obj/projectile/projectile_to_fire = new type_to_spawn(get_turf(src), initial(ammotype.hitscan_effect_icon))
 	projectile_to_fire.generate_bullet(GLOB.ammo_list[ammotype])
 
 	apply_weapon_modifiers(projectile_to_fire, current_firer)
