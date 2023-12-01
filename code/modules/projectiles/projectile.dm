@@ -96,7 +96,7 @@
 
 	var/proj_max_range = 30
 	///A damage multiplier applied when a mob from the same faction as the projectile firer is hit
-	var/friendly_fire_multiplier = 1
+	var/friendly_fire_multiplier = 0
 	///The "point blank" range of the projectile. Inside this range the projectile gets a bonus to hit
 	var/point_blank_range = 0
 	/// List of atoms already hit by that projectile. Will only matter for projectiles capable of passing through multiple atoms
