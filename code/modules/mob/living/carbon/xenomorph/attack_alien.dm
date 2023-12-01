@@ -78,7 +78,7 @@
 				visible_message(null, "<span class='danger'>You are too weakened to keep resisting [X], you slump to the ground!</span>")
 				X.visible_message("<span class='danger'>[X] slams [src] to the ground!</span>",
 				"<span class='danger'>We slam [src] to the ground!</span>", null, 5)
-				Paralyze(5 SECONDS)
+				Paralyze(8 SECONDS)
 			else if(IsParalyzed())
 				X.do_attack_animation(src, ATTACK_EFFECT_DISARM2)
 				X.visible_message(null, "<span class='info'>We could not do much to [src], they are already down.</span>", null)
