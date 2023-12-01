@@ -223,7 +223,7 @@
 	. += span_notice("You need something sharp to cut off the straps.")
 
 /obj/structure/largecrate/guns
-	name = "\improper TGMC firearms crate (x3)"
+	name = "\improper NTC firearms crate (x3)"
 	var/num_guns = 3
 	var/num_mags = 3
 	var/list/stuff = list(

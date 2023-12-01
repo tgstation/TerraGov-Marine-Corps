@@ -56,7 +56,7 @@
 /* Sigh, this part isn't working. - XSlayer300
 /datum/game_mode/offduty/proc/announce_deployment(announce_humans = TRUE)
 	var/name = "[MAIN_AI_SYSTEM] Signal Decrypted"
-	var/input = {"A TGMC distress signal has been decrypted in an unknown location.<br><br>Prepare for deployment and briefing."}
+	var/input = {"A NTC distress signal has been decrypted in an unknown location.<br><br>Prepare for deployment and briefing."}
 
 	if(var/round_end_stage == 2)
 		priority_announce(input, name, sound = 'sound/AI/bioscan.ogg')*/

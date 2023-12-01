@@ -7,8 +7,8 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 
 ///base marine drop pod. can be controlled by an attached [/obj/structure/droppod/leader] or [/obj/machinery/computer/droppod_control]
 /obj/structure/droppod
-	name = "\improper TGMC Zeus orbital drop pod"
-	desc = "A menacing metal hunk of steel that is used by the TGMC for quick tactical redeployment."
+	name = "\improper NTC Zeus orbital drop pod"
+	desc = "A menacing metal hunk of steel that is used by the NTC for quick tactical redeployment."
 	icon = 'icons/obj/structures/droppod.dmi'
 	icon_state = "singlepod_green"
 	density = TRUE
@@ -294,8 +294,8 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 
 
 /obj/structure/droppod/leader
-	name = "\improper TGMC Zeus command drop pod"
-	desc = "A menacing metal hunk of steel that is used by the TGMC for quick tactical redeployment. This one comes with command capabilities."
+	name = "\improper NTC Zeus command drop pod"
+	desc = "A menacing metal hunk of steel that is used by the NTC for quick tactical redeployment. This one comes with command capabilities."
 	icon_state = "singlepod_red"
 	light_color = LIGHT_COLOR_EMISSIVE_RED
 
@@ -410,8 +410,8 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 	update_icon()
 
 /obj/structure/droppod/nonmob/supply_pod
-	name = "\improper TGMC Zeus supply drop pod"
-	desc = "A menacing metal hunk of steel that is used by the TGMC for quick tactical redeployment. This one is designed to carry supplies."
+	name = "\improper NTC Zeus supply drop pod"
+	desc = "A menacing metal hunk of steel that is used by the NTC for quick tactical redeployment. This one is designed to carry supplies."
 	icon_state = "supplypod"
 	light_color = LIGHT_COLOR_EMISSIVE_ORANGE
 
@@ -452,8 +452,8 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 		return ..()
 
 /obj/structure/droppod/nonmob/turret_pod
-	name = "\improper TGMC Zeus sentry drop pod"
-	desc = "A menacing metal hunk of steel that is used by the TGMC for quick tactical redeployment. This one carries a self deploying sentry system."
+	name = "\improper NTC Zeus sentry drop pod"
+	desc = "A menacing metal hunk of steel that is used by the NTC for quick tactical redeployment. This one carries a self deploying sentry system."
 	icon_state = "sentrypod"
 	light_color = LIGHT_COLOR_EMISSIVE_RED
 
@@ -465,8 +465,8 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 	load_package(contents[1])
 
 /obj/structure/droppod/nonmob/mech_pod
-	name = "\improper TGMC Zeus mech drop pod"
-	desc = "A menacing metal hunk of steel that is used by the TGMC for quick tactical redeployment. This is a larger model designed specifically to carry mechs."
+	name = "\improper NTC Zeus mech drop pod"
+	desc = "A menacing metal hunk of steel that is used by the NTC for quick tactical redeployment. This is a larger model designed specifically to carry mechs."
 	icon = 'icons/obj/structures/big_droppod.dmi'
 	icon_state = "mechpod"
 	light_range = 2

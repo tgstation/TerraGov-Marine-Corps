@@ -9,7 +9,7 @@
 	throw_range = 4
 	w_class = WEIGHT_CLASS_SMALL
 	var/is_collapsed = TRUE
-	var/country_name = "TGMC" //presume it is prefaced with 'the'
+	var/country_name = "NTC" //presume it is prefaced with 'the'
 
 /obj/item/flag_base/examine(mob/user)
 	. = ..()
@@ -48,8 +48,8 @@
 		icon_state = "flag_collapsed"
 
 /obj/item/flag_base/tgmc_flag
-	name = "Flag of TGMC"
-	country_name = "TGMC"
+	name = "Flag of NTC"
+	country_name = "NTC"
 
 /obj/item/flag_base/upp_flag
 	name = "Flag of UPP"

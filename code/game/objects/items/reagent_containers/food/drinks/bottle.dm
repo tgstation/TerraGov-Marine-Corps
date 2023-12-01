@@ -94,7 +94,7 @@
 	list_reagents = list(/datum/reagent/consumable/ethanol/whiskey = 100)
 
 /obj/item/reagent_containers/food/drinks/bottle/specialwhiskey
-	name = "\improper Nanotrasen 'Space-Aged' 60-Year Old Whiskey"
+	name = "\improper Ninetails 'Space-Aged' 60-Year Old Whiskey"
 	desc = "This exquisite brand of whiskey has been aged in the hull of a colony ship since 2378. It's worth more than what you make in several months- and bold enough to state this fact on the bottle."
 	icon_state = "specialwhiskeybottle"
 	center_of_mass = list("x"=16, "y"=3)

@@ -39,6 +39,52 @@
 /obj/item/clothing/shoes/marine/full
 	starting_attachments = list(/obj/item/armor_module/storage/boot/full)
 
+/obj/item/clothing/shoes/marine/sneakingboots
+	name = "Operative sneaking boots"
+	desc = "An expensive specially-padded pair-of boots that eliminate footsteps, issued to Senior Operatives of NTC."
+	icon_state = "marine"
+	item_state = "marine"
+	flags_armor_protection = FEET
+	flags_cold_protection = FEET
+	flags_heat_protection = FEET
+	flags_inventory = NOQUICKEQUIP|NOSLIPPING
+	min_cold_protection_temperature = SHOE_MIN_COLD_PROTECTION_TEMPERATURE
+	max_heat_protection_temperature = SHOE_MAX_HEAT_PROTECTION_TEMPERATURE
+	siemens_coefficient = 0.7
+
+	attachments_by_slot = list(
+		ATTACHMENT_SLOT_STORAGE,
+	)
+	attachments_allowed = list(
+		/obj/item/armor_module/storage/boot,
+		/obj/item/armor_module/storage/boot/full,
+		/obj/item/armor_module/storage/boot/som_knife,
+	)
+	starting_attachments = list(/obj/item/armor_module/storage/boot/full)
+
+/obj/item/clothing/shoes/marine/sneakingboots/Initialize(mapload)
+	. = ..()
+	update_icon()
+
+/obj/item/clothing/shoes/marine/sneakingboots/update_icon_state()
+	icon_state = initial(icon_state)
+	if(!attachments_by_slot[ATTACHMENT_SLOT_STORAGE])
+		return
+	if(!istype(attachments_by_slot[ATTACHMENT_SLOT_STORAGE], /obj/item/armor_module/storage))
+		return
+	var/obj/item/armor_module/storage/armor_storage = attachments_by_slot[ATTACHMENT_SLOT_STORAGE]
+	for(var/atom/item_in_pocket AS in armor_storage.storage.contents)
+		if(istype(item_in_pocket, /obj/item/weapon/combat_knife) || istype(item_in_pocket, /obj/item/attachable/bayonetknife) || istype(item_in_pocket, /obj/item/stack/throwing_knife))
+			icon_state += "-knife"
+
+/obj/item/clothing/shoes/marine/sneakingboots/equipped(mob/user, slot)
+	. = ..()
+	ADD_TRAIT(src, TRAIT_SILENT_FOOTSTEPS, XENO_TRAIT)
+
+/obj/item/clothing/shoes/marine/sneakingboots/unequipped(mob/unequipper, slot)
+	. = ..()
+	REMOVE_TRAIT(src, TRAIT_SILENT_FOOTSTEPS, XENO_TRAIT)
+
 /obj/item/clothing/shoes/marine/brown
 	name = "brown Operative combat boots"
 	icon_state = "marine_brown"

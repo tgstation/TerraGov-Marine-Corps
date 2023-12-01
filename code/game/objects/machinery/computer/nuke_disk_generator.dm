@@ -43,7 +43,7 @@
 		"Booting up terminal-  -Terminal running",
 		"Establishing link to offsite mainframe- Link established",
 		"WARNING, DIRECTORY CORRUPTED, running search algorithms- nuke_fission_timing.exe found",
-		"Invalid credentials, upgrading permissions through TGMC military override- Permissions upgraded, nuke_fission_timing.exe available",
+		"Invalid credentials, upgrading permissions through NTC military override- Permissions upgraded, nuke_fission_timing.exe available",
 		"Downloading nuke_fission_timing.exe to removable storage- nuke_fission_timing.exe downloaded to floppy disk, getting ready to print",
 		"Program downloaded to disk. Have a nice day."
 	)

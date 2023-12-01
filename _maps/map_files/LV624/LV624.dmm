@@ -66,6 +66,7 @@
 /area/lv624/lazarus/tablefort)
 "adg" = (
 /obj/structure/cable,
+/obj/machinery/power/apc/hyper,
 /turf/open/floor/plating/asteroidfloor,
 /area/outpost/brig/armoury{
 	name = "CLF armoury";
@@ -1775,6 +1776,7 @@
 /obj/effect/turf_decal/siding/wideplating_new/light{
 	dir = 1
 	},
+/obj/effect/ai_node,
 /turf/open/floor/grayscale/edge,
 /area/deltastation/commons/toilet/restrooms{
 	name = "CLF restrooms";
@@ -1961,6 +1963,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle10)
 "aVJ" = (
+/obj/structure/cable,
 /turf/open/floor/plating/ground/desertdam/asphalt/edge{
 	dir = 10
 	},
@@ -2907,6 +2910,12 @@
 /obj/item/clothing/head/helmet/riot,
 /obj/item/facepaint/green,
 /obj/item/facepaint/brown,
+/obj/item/weapon/gun/launcher/rocket/oneuse,
+/obj/item/weapon/gun/launcher/rocket/oneuse,
+/obj/item/weapon/gun/launcher/rocket/oneuse,
+/obj/item/weapon/gun/launcher/rocket/oneuse,
+/obj/item/weapon/gun/launcher/rocket/oneuse,
+/obj/item/weapon/gun/launcher/rocket/oneuse,
 /turf/open/floor/plating/asteroidfloor,
 /area/outpost/brig/armoury{
 	name = "CLF armoury";
@@ -3292,6 +3301,7 @@
 /area/lv624/lazarus/tablefort)
 "bJo" = (
 /obj/effect/turf_decal/trimline/dark_blue,
+/obj/structure/sign/safety/medical,
 /turf/open/floor/plating/asteroidwarning/down,
 /area/deltastation/commons/dorms/barracks{
 	name = "CLF Bunks";
@@ -3726,6 +3736,14 @@
 	outside = 0;
 	ceiling = 6
 	})
+"cgF" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/asteroidwarning/down,
+/area/deltastation/commons/dorms/barracks{
+	name = "CLF Bunks";
+	outside = 0;
+	ceiling = 6
+	})
 "chF" = (
 /obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/plating/ground/dirt,
@@ -3828,12 +3846,11 @@
 /turf/open/ground/grass,
 /area/lv624/ground/jungle8)
 "cna" = (
-/obj/structure/sign/safety/medical,
+/obj/item/armor_module/storage/uniform/brown_vest,
 /obj/structure/cable,
-/turf/closed/wall/brick,
-/area/deltastation/commons/dorms/barracks{
-	name = "CLF Bunks";
-	outside = 0;
+/turf/open/floor/plating/asteroidfloor,
+/area/outpost/brig/armoury{
+	name = "CLF armoury";
 	ceiling = 6
 	})
 "cny" = (
@@ -4050,6 +4067,7 @@
 /turf/open/floor,
 /area/lv624/ground/sand5)
 "czQ" = (
+/obj/structure/cable,
 /turf/open/floor/plating/ground/desertdam/asphalt/threeside,
 /area/deltastation/engineering{
 	name = "CLF engineering";
@@ -4326,6 +4344,9 @@
 /obj/structure/bed/alien,
 /obj/item/bedsheet/blue,
 /obj/effect/landmark/start/job/clf/standard,
+/obj/machinery/light/small{
+	dir = 1
+	},
 /turf/open/floor/marking/asteroidwarning{
 	dir = 9
 	},
@@ -5161,14 +5182,6 @@
 /obj/structure/rack,
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/quart)
-"dHQ" = (
-/obj/machinery/light/red,
-/turf/closed/wall/brick,
-/area/deltastation/commons/dorms/barracks{
-	name = "CLF Bunks";
-	outside = 0;
-	ceiling = 6
-	})
 "dHY" = (
 /obj/effect/ai_node,
 /obj/effect/landmark/start/job/xenomorph,
@@ -5187,6 +5200,9 @@
 /area/lv624/lazarus/main_hall)
 "dIG" = (
 /obj/structure/bed/chair/sofa/corsat,
+/obj/machinery/light/small{
+	dir = 1
+	},
 /turf/open/floor/marking/asteroidwarning{
 	dir = 1
 	},
@@ -5361,10 +5377,10 @@
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/main_hall)
 "dRb" = (
-/obj/machinery/quick_vendor/som,
 /obj/machinery/light{
 	dir = 4
 	},
+/obj/machinery/loadout_vendor/valhalla,
 /turf/open/floor/mainship/orange{
 	dir = 4
 	},
@@ -5451,12 +5467,15 @@
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/sandtemple/garbledradio)
 "dUg" = (
-/obj/machinery/power/apc/hyper,
-/turf/closed/wall/mainship/research/containment/wall/connect_s1{
-	name = "white wall"
+/obj/structure/cable,
+/obj/effect/turf_decal/stripes/asteroid/box,
+/obj/machinery/floodlight/landing,
+/obj/machinery/power/apc/hyper{
+	dir = 8
 	},
-/area/deltastation/commons/toilet/restrooms{
-	name = "CLF restrooms";
+/turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
+/area/deltastation/commons/fitness{
+	name = "CLF training";
 	outside = 0;
 	ceiling = 6
 	})
@@ -5737,12 +5756,10 @@
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/quartstorage)
 "ein" = (
-/turf/open/floor/plating/ground/desertdam/asphalt/threeside/regular{
-	dir = 8
-	},
-/area/deltastation/engineering{
-	name = "CLF engineering";
-	outside = 0;
+/obj/structure/cable,
+/turf/open/floor/plating/asteroidfloor,
+/area/outpost/brig/armoury{
+	name = "CLF armoury";
 	ceiling = 6
 	})
 "eis" = (
@@ -5794,6 +5811,7 @@
 "ekv" = (
 /obj/effect/turf_decal/tile/transparent/dark_green/fourcorners,
 /obj/structure/cable,
+/obj/structure/sign/safety/medical,
 /turf/open/floor/plating/asteroidfloor,
 /area/ice_colony/underground/medical/treatment{
 	name = "CLF clinic"
@@ -6935,6 +6953,12 @@
 /area/lv624/ground/jungle3)
 "fwl" = (
 /obj/effect/turf_decal/trimline/dark_blue,
+/obj/structure/mirror{
+	dir = 2
+	},
+/obj/machinery/light/small{
+	dir = 1
+	},
 /turf/open/floor/marking/asteroidwarning{
 	dir = 1
 	},
@@ -7796,7 +7820,9 @@
 /area/lv624/lazarus/hydroponics/aux)
 "gma" = (
 /turf/closed/wall/wood,
-/area/lv624/ground/jungle8)
+/area/lv624/ground/jungle8{
+	outside = 0
+	})
 "gmf" = (
 /obj/effect/landmark/xeno_resin_door,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
@@ -7979,14 +8005,6 @@
 	dir = 8
 	},
 /area/mainship/patrol_base/som)
-"gyT" = (
-/obj/machinery/power/apc/hyper,
-/obj/structure/cable,
-/turf/closed/wall/brick,
-/area/outpost/brig/armoury{
-	name = "CLF armoury";
-	ceiling = 6
-	})
 "gzl" = (
 /obj/structure/cable,
 /turf/open/floor/tile/blue/whiteblue{
@@ -8012,6 +8030,14 @@
 	},
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/engineering)
+"gAs" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
+/area/deltastation/commons/fitness{
+	name = "CLF training";
+	outside = 0;
+	ceiling = 6
+	})
 "gAy" = (
 /obj/effect/landmark/patrol_point/som/som_13,
 /turf/open/ground/grass,
@@ -8167,14 +8193,6 @@
 	},
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/sand5)
-"gJx" = (
-/obj/structure/mineral_door/wood,
-/turf/open/floor/plating/ground/desertdam/asphalt/tile,
-/area/deltastation/engineering{
-	name = "CLF engineering";
-	outside = 0;
-	ceiling = 6
-	})
 "gJD" = (
 /turf/open/floor/plating/warning{
 	dir = 9
@@ -8823,7 +8841,9 @@
 /area/lv624/lazarus/fitness)
 "hoP" = (
 /turf/open/floor/wood/broken,
-/area/lv624/ground/jungle8)
+/area/lv624/ground/jungle8{
+	outside = 0
+	})
 "hpQ" = (
 /obj/effect/landmark/xeno_resin_wall,
 /turf/open/liquid/water/river/autosmooth,
@@ -9036,7 +9056,9 @@
 "hBi" = (
 /obj/structure/bed/chair/wood/wings,
 /turf/open/floor/wood,
-/area/lv624/ground/jungle8)
+/area/lv624/ground/jungle8{
+	outside = 0
+	})
 "hBm" = (
 /obj/structure/flora/jungle/vines,
 /obj/structure/flora/jungle/vines/heavy,
@@ -9285,7 +9307,9 @@
 	dir = 4
 	},
 /turf/open/floor/wood,
-/area/lv624/ground/jungle8)
+/area/lv624/ground/jungle8{
+	outside = 0
+	})
 "hOR" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 2
@@ -9398,7 +9422,9 @@
 	},
 /obj/item/binoculars,
 /turf/open/floor/wood,
-/area/lv624/ground/jungle8)
+/area/lv624/ground/jungle8{
+	outside = 0
+	})
 "hUE" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 6
@@ -9510,15 +9536,6 @@
 	dir = 4
 	},
 /area/mainship/patrol_base/som)
-"hYz" = (
-/obj/structure/sign/safety/storage,
-/obj/structure/cable,
-/obj/item/armor_module/storage/uniform/brown_vest,
-/turf/closed/wall/brick,
-/area/outpost/brig/armoury{
-	name = "CLF armoury";
-	ceiling = 6
-	})
 "hYJ" = (
 /obj/machinery/light,
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -9641,6 +9658,8 @@
 /area/lv624/lazarus/secure_storage)
 "idn" = (
 /obj/effect/ai_node,
+/obj/item/armor_module/module/fire_proof/som,
+/obj/item/armor_module/module/fire_proof/som,
 /turf/open/floor/mainship/cargo,
 /area/mainship/patrol_base/som)
 "idA" = (
@@ -9669,6 +9688,16 @@
 /obj/item/mecha_parts/part/gygax_torso,
 /turf/open/floor/tile/vault,
 /area/lv624/lazarus/robotics)
+"ieF" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/desertdam/asphalt/edge{
+	dir = 1
+	},
+/area/deltastation/commons/dorms/barracks{
+	name = "CLF Bunks";
+	outside = 0;
+	ceiling = 6
+	})
 "ieH" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 4
@@ -10010,7 +10039,9 @@
 "izA" = (
 /obj/structure/window_frame/wood,
 /turf/open/floor/wood/broken,
-/area/lv624/ground/jungle8)
+/area/lv624/ground/jungle8{
+	outside = 0
+	})
 "izL" = (
 /turf/closed/wall,
 /area/lv624/lazarus/chapel)
@@ -10134,7 +10165,9 @@
 	dir = 8
 	},
 /turf/open/floor/wood,
-/area/lv624/ground/jungle8)
+/area/lv624/ground/jungle8{
+	outside = 0
+	})
 "iDJ" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -10186,7 +10219,9 @@
 /area/lv624/ground/sand8)
 "iEJ" = (
 /turf/open/floor/wood,
-/area/lv624/ground/jungle8)
+/area/lv624/ground/jungle8{
+	outside = 0
+	})
 "iFC" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -10204,7 +10239,6 @@
 /turf/open/ground/grass,
 /area/lv624/ground/jungle9)
 "iGa" = (
-/obj/structure/cable,
 /obj/machinery/floodlight/landing,
 /turf/open/floor/plating/ground/dirt,
 /area/deltastation/engineering{
@@ -10471,7 +10505,9 @@
 	dir = 4
 	},
 /turf/open/floor/wood/broken,
-/area/lv624/ground/jungle8)
+/area/lv624/ground/jungle8{
+	outside = 0
+	})
 "iTu" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
@@ -10882,7 +10918,9 @@
 "jqf" = (
 /obj/structure/barricade/wooden,
 /turf/open/floor/wood,
-/area/lv624/ground/jungle8)
+/area/lv624/ground/jungle8{
+	outside = 0
+	})
 "jqp" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -10934,7 +10972,9 @@
 /obj/structure/table/woodentable,
 /obj/effect/spawner/random/misc/cigarettes,
 /turf/open/floor/wood,
-/area/lv624/ground/jungle8)
+/area/lv624/ground/jungle8{
+	outside = 0
+	})
 "jtZ" = (
 /obj/structure/rack,
 /obj/effect/spawner/random/medical/firstaid,
@@ -11015,7 +11055,9 @@
 "jxq" = (
 /obj/item/stack/sheet/wood,
 /turf/open/floor/wood,
-/area/lv624/ground/jungle8)
+/area/lv624/ground/jungle8{
+	outside = 0
+	})
 "jxw" = (
 /obj/structure/bed/chair/wood/normal{
 	dir = 1
@@ -11340,6 +11382,12 @@
 /obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/west1)
+"jMn" = (
+/obj/effect/ai_node,
+/turf/open/floor/mainship/silver{
+	dir = 4
+	},
+/area/mainship/patrol_base/som)
 "jMz" = (
 /obj/structure/barricade/wooden,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
@@ -11546,6 +11594,7 @@
 /area/lv624/lazarus/main_hall)
 "jWr" = (
 /obj/structure/cable,
+/obj/effect/ai_node,
 /turf/open/floor/plating/ground/desertdam/asphalt/threeside{
 	dir = 4
 	},
@@ -12197,6 +12246,14 @@
 	dir = 1
 	},
 /area/lv624/ground/jungle9)
+"kDm" = (
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/plating/asteroidfloor,
+/area/outpost/brig/armoury{
+	name = "CLF armoury";
+	ceiling = 6
+	})
 "kDo" = (
 /turf/closed/wall/cult,
 /area/lv624/ground/caves/central3)
@@ -12314,7 +12371,6 @@
 /obj/machinery/light/small{
 	dir = 8
 	},
-/obj/structure/cable,
 /turf/open/floor/plating/ground/dirt,
 /area/deltastation/engineering{
 	name = "CLF engineering";
@@ -12365,17 +12421,6 @@
 /obj/alien/weeds/node,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/quartstorage)
-"kLG" = (
-/obj/structure/cable,
-/obj/machinery/power/apc/hyper{
-	dir = 8
-	},
-/turf/closed/wall/brick,
-/area/deltastation/commons/fitness{
-	name = "CLF training";
-	outside = 0;
-	ceiling = 6
-	})
 "kLK" = (
 /obj/alien/weeds/node,
 /turf/open/floor/plating/ground/dirt,
@@ -12428,6 +12473,9 @@
 /turf/open/floor/plating/platebotc,
 /area/lv624/lazarus/quartstorage)
 "kOF" = (
+/obj/machinery/light/red{
+	dir = 1
+	},
 /turf/open/floor/plating/ground/desertdam/asphalt/edge{
 	dir = 5
 	},
@@ -12490,6 +12538,12 @@
 "kRe" = (
 /turf/open/floor/plating,
 /area/lv624/lazarus/kitchen)
+"kRF" = (
+/obj/machinery/vending/uniform_supply,
+/turf/open/floor/mainship/orange{
+	dir = 4
+	},
+/area/mainship/patrol_base/som)
 "kRJ" = (
 /turf/open/floor/tile/barber,
 /area/lv624/lazarus/fitness)
@@ -12716,6 +12770,19 @@
 	dir = 2
 	},
 /area/lv624/lazarus/security)
+"ldC" = (
+/obj/effect/turf_decal/trimline/dark_blue/line{
+	dir = 8
+	},
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/desertdam/asphalt/edge{
+	dir = 8
+	},
+/area/deltastation/commons/dorms/barracks{
+	name = "CLF Bunks";
+	outside = 0;
+	ceiling = 6
+	})
 "ldG" = (
 /obj/effect/decal/cleanable/blood,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -12750,10 +12817,13 @@
 /turf/open/ground/grass,
 /area/lv624/ground/jungle3)
 "leU" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
 /obj/structure/cable,
-/turf/open/floor/plating/ground/dirt,
-/area/deltastation/engineering{
-	name = "CLF engineering";
+/turf/open/floor/plating/ground/desertdam/asphalt/tile,
+/area/deltastation/hallway/primary/tram{
+	name = "CLF primary hallway";
 	outside = 0;
 	ceiling = 6
 	})
@@ -12769,7 +12839,9 @@
 "lfN" = (
 /obj/effect/ai_node,
 /turf/open/floor/wood,
-/area/lv624/ground/jungle8)
+/area/lv624/ground/jungle8{
+	outside = 0
+	})
 "lgz" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 5
@@ -13477,6 +13549,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
+/obj/machinery/vending/lasgun,
 /turf/open/floor/mainship/orange{
 	dir = 5
 	},
@@ -14237,6 +14310,9 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 9
 	},
+/obj/item/xeno_iff_tag/som,
+/obj/item/xeno_iff_tag/som,
+/obj/item/xeno_iff_tag/som,
 /turf/open/floor/mainship/cargo,
 /area/mainship/patrol_base/som)
 "mDp" = (
@@ -14288,6 +14364,7 @@
 "mFB" = (
 /obj/structure/cable,
 /obj/effect/turf_decal/trimline/dark_blue,
+/obj/machinery/power/apc/hyper,
 /turf/open/floor/marking/asteroidwarning{
 	dir = 1
 	},
@@ -15169,6 +15246,7 @@
 	},
 /area/lv624/lazarus/corporate_affairs)
 "nCY" = (
+/obj/effect/ai_node,
 /turf/open/floor/plating/ground/desertdam/asphalt/threeside{
 	dir = 4
 	},
@@ -15442,7 +15520,9 @@
 /obj/item/storage/box/matches,
 /obj/effect/spawner/random/weaponry/melee,
 /turf/open/floor/wood,
-/area/lv624/ground/jungle8)
+/area/lv624/ground/jungle8{
+	outside = 0
+	})
 "nRq" = (
 /obj/structure/table/reinforced,
 /obj/item/ashtray/bronze,
@@ -15533,20 +15613,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/lazarus/sandtemple/garbledradio)
-"nWj" = (
-/obj/machinery/light/small{
-	dir = 1
-	},
-/obj/structure/mirror{
-	dir = 2
-	},
-/obj/structure/cable,
-/turf/closed/wall/brick,
-/area/deltastation/commons/dorms/barracks{
-	name = "CLF Bunks";
-	outside = 0;
-	ceiling = 6
-	})
 "nWt" = (
 /obj/machinery/floodlight/colony,
 /turf/open/floor/plating/ground/dirt,
@@ -15569,6 +15635,9 @@
 "nXg" = (
 /obj/structure/bed/chair,
 /obj/effect/turf_decal/trimline/dark_blue,
+/obj/structure/mirror{
+	dir = 2
+	},
 /turf/open/floor/marking/asteroidwarning{
 	dir = 1
 	},
@@ -16089,7 +16158,6 @@
 	ceiling = 6
 	})
 "oBa" = (
-/obj/structure/sign/safety/medical,
 /obj/structure/cable,
 /turf/closed/wall/brick,
 /area/ice_colony/underground/medical/treatment{
@@ -16614,13 +16682,11 @@
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/quartstorage)
 "pdj" = (
-/obj/structure/cable,
-/turf/closed/mineral/smooth/indestructible,
-/area/deltastation/commons/dorms/barracks{
-	name = "CLF Bunks";
-	outside = 0;
-	ceiling = 6
-	})
+/obj/effect/ai_node,
+/turf/open/floor/mainship/silver/corner{
+	dir = 4
+	},
+/area/mainship/patrol_base/som)
 "pdN" = (
 /turf/open/floor/tile/purple/whitepurple{
 	dir = 5
@@ -16707,6 +16773,16 @@
 /obj/structure/largecrate/supply/supplies/flares,
 /turf/open/floor/mainship/cargo,
 /area/mainship/patrol_base/som)
+"phx" = (
+/obj/machinery/light/small,
+/obj/effect/turf_decal/trimline/dark_blue,
+/obj/effect/ai_node,
+/turf/open/floor/plating/asteroidwarning/down,
+/area/deltastation/commons/dorms/barracks{
+	name = "CLF Bunks";
+	outside = 0;
+	ceiling = 6
+	})
 "phC" = (
 /obj/structure/window/reinforced{
 	dir = 8
@@ -16847,12 +16923,11 @@
 /turf/closed/mineral/smooth/indestructible,
 /area/space)
 "pti" = (
-/obj/machinery/light/small{
-	dir = 1
-	},
-/turf/closed/wall/brick,
-/area/deltastation/commons/dorms/barracks{
-	name = "CLF Bunks";
+/obj/structure/bed/alien,
+/obj/alien/weeds/resting,
+/turf/open/floor/plating/ground/dirt,
+/area/deltastation/engineering{
+	name = "CLF engineering";
 	outside = 0;
 	ceiling = 6
 	})
@@ -16940,6 +17015,7 @@
 /area/lv624/lazarus/quartstorage/dome)
 "pyc" = (
 /obj/structure/mineral_door/wood,
+/obj/structure/cable,
 /obj/structure/cable,
 /obj/structure/cable,
 /turf/open/floor/plating/ground/desertdam/asphalt/tile,
@@ -17421,7 +17497,9 @@
 "pXz" = (
 /obj/effect/ai_node,
 /turf/open/floor/wood/broken,
-/area/lv624/ground/jungle8)
+/area/lv624/ground/jungle8{
+	outside = 0
+	})
 "pXE" = (
 /obj/machinery/computer/intel_computer,
 /obj/machinery/door_control{
@@ -17682,7 +17760,9 @@
 	},
 /obj/effect/ai_node,
 /turf/open/floor/wood,
-/area/lv624/ground/jungle8)
+/area/lv624/ground/jungle8{
+	outside = 0
+	})
 "qpz" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
@@ -18012,6 +18092,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle3)
 "qHx" = (
+/obj/structure/cable,
 /turf/open/floor/plating/ground/desertdam/asphalt/threeside/regular,
 /area/deltastation/engineering{
 	name = "CLF engineering";
@@ -18031,6 +18112,7 @@
 /obj/item/clothing/head/welding,
 /obj/item/clothing/head/welding,
 /obj/item/clothing/head/welding,
+/obj/machinery/power/apc/hyper,
 /turf/open/floor/plating/ground/desertdam/asphalt/threeside/regular{
 	dir = 8
 	},
@@ -18081,6 +18163,7 @@
 "qKO" = (
 /obj/structure/curtain/shower,
 /obj/structure/cable,
+/obj/machinery/power/apc/hyper,
 /turf/open/floor/grayscale/edge,
 /area/deltastation/commons/toilet/restrooms{
 	name = "CLF restrooms";
@@ -18711,7 +18794,9 @@
 /obj/item/weapon/gun/shotgun/double,
 /obj/effect/spawner/random/weaponry/ammo/shotgun,
 /turf/open/floor/wood,
-/area/lv624/ground/jungle8)
+/area/lv624/ground/jungle8{
+	outside = 0
+	})
 "rmQ" = (
 /obj/effect/turf_decal/riverdecal,
 /turf/open/floor/plating,
@@ -18745,14 +18830,18 @@
 /turf/open/floor/tile/darkish,
 /area/lv624/lazarus/sandtemple)
 "rnL" = (
-/obj/structure/mirror{
-	dir = 2
+/obj/structure/cable,
+/obj/machinery/door/poddoor/shutters{
+	dir = 2;
+	name = "Armoury";
+	id = "clfarmoury"
 	},
 /obj/structure/cable,
-/turf/closed/wall/brick,
-/area/deltastation/commons/dorms/barracks{
-	name = "CLF Bunks";
-	outside = 0;
+/turf/open/floor/plating/asteroidwarning{
+	dir = 1
+	},
+/area/outpost/brig/armoury{
+	name = "CLF armoury";
 	ceiling = 6
 	})
 "rog" = (
@@ -19796,10 +19885,12 @@
 /turf/open/floor/tile/red/full,
 /area/lv624/lazarus/security)
 "shO" = (
-/obj/machinery/button{
+/obj/machinery/button/door{
 	id = "clfarmoury";
-	pixel_y = -33
+	name = "Armory button"
 	},
+/obj/structure/cable,
+/obj/effect/ai_node,
 /turf/open/floor/plating/ground/desertdam/asphalt/tile,
 /area/deltastation/hallway/primary/tram{
 	name = "CLF primary hallway";
@@ -19982,6 +20073,12 @@
 	},
 /turf/open/floor/marking/bot,
 /area/lv624/lazarus/spaceport2)
+"srT" = (
+/obj/machinery/vending/armor_supply,
+/turf/open/floor/mainship/orange{
+	dir = 4
+	},
+/area/mainship/patrol_base/som)
 "ssc" = (
 /obj/structure/foamedmetal,
 /obj/structure/flora/jungle/vines/heavy,
@@ -20150,7 +20247,9 @@
 "sDw" = (
 /obj/effect/landmark/start/job/survivor,
 /turf/open/floor/wood,
-/area/lv624/ground/jungle8)
+/area/lv624/ground/jungle8{
+	outside = 0
+	})
 "sDY" = (
 /turf/closed/mineral/smooth,
 /area/lv624/lazarus/sandtemple/garbledradio)
@@ -20823,6 +20922,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle3)
 "tne" = (
+/obj/structure/cable,
 /turf/open/floor/plating/ground/desertdam/asphalt/threeside/regular{
 	dir = 1
 	},
@@ -20863,11 +20963,11 @@
 	ceiling = 6
 	})
 "tpd" = (
-/obj/machinery/power/apc/hyper,
+/obj/structure/sign/safety/storage,
 /obj/structure/cable,
-/turf/closed/wall/brick,
-/area/deltastation/engineering{
-	name = "CLF engineering";
+/turf/open/floor/plating/ground/desertdam/asphalt/tile,
+/area/deltastation/hallway/primary/tram{
+	name = "CLF primary hallway";
 	outside = 0;
 	ceiling = 6
 	})
@@ -21213,10 +21313,14 @@
 	},
 /area/lv624/lazarus/bar)
 "tGY" = (
-/obj/structure/cable,
-/turf/closed/mineral/smooth,
-/area/deltastation/engineering{
-	name = "CLF engineering";
+/obj/machinery/light/red{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/desertdam/asphalt/edge{
+	dir = 1
+	},
+/area/deltastation/commons/dorms/barracks{
+	name = "CLF Bunks";
 	outside = 0;
 	ceiling = 6
 	})
@@ -21412,6 +21516,7 @@
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/sandtemple/garbledradio)
 "tQp" = (
+/obj/structure/cable,
 /turf/open/floor/plating/asteroidwarning{
 	dir = 8
 	},
@@ -21465,6 +21570,14 @@
 	},
 /turf/open/floor/plating,
 /area/lv624/lazarus/quartstorage/dome)
+"tTg" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/dirt,
+/area/deltastation/engineering{
+	name = "CLF engineering";
+	outside = 0;
+	ceiling = 6
+	})
 "tTs" = (
 /turf/closed/wall/r_wall,
 /area/lv624/ground/caves/rock)
@@ -22395,6 +22508,14 @@
 /obj/item/ammo_magazine/rifle/mpi_km/black,
 /obj/item/ammo_magazine/rifle/mpi_km/black,
 /obj/item/ammo_magazine/rifle/mpi_km/black,
+/obj/item/ammo_magazine/rifle/mpi_km/extended,
+/obj/item/ammo_magazine/rifle/mpi_km/extended,
+/obj/item/ammo_magazine/rifle/mpi_km/extended,
+/obj/item/weapon/gun/rifle/mpi_km/black/magharness,
+/obj/item/weapon/gun/rifle/mpi_km/black/magharness,
+/obj/item/weapon/gun/rifle/mpi_km/black/magharness,
+/obj/item/weapon/gun/rifle/mpi_km/black/magharness,
+/obj/item/weapon/gun/rifle/mpi_km/black/magharness,
 /turf/open/floor/plating/asteroidfloor,
 /area/outpost/brig/armoury{
 	name = "CLF armoury";
@@ -22942,6 +23063,21 @@
 /obj/structure/largecrate/supply/generator,
 /turf/open/floor/plating,
 /area/lv624/lazarus/quartstorage/dome)
+"vpE" = (
+/obj/structure/rack,
+/obj/item/weapon/gun/launcher/rocket/oneuse,
+/obj/item/weapon/gun/launcher/rocket/oneuse,
+/obj/item/weapon/gun/launcher/rocket/oneuse,
+/obj/item/weapon/gun/launcher/rocket/oneuse,
+/obj/item/weapon/gun/launcher/rocket/oneuse,
+/obj/item/weapon/gun/launcher/rocket/oneuse,
+/obj/item/weapon/gun/launcher/rocket/oneuse,
+/obj/item/weapon/gun/launcher/rocket/oneuse,
+/obj/item/weapon/gun/launcher/rocket/oneuse,
+/obj/item/weapon/gun/launcher/rocket/oneuse,
+/obj/item/storage/holster/backholster/rpg/som,
+/turf/open/floor/mainship/cargo,
+/area/mainship/patrol_base/som)
 "vpO" = (
 /turf/closed/wall/r_wall,
 /area/lv624/lazarus/hydroponics/aux)
@@ -24274,8 +24410,7 @@
 	},
 /area/lv624/ground/jungle5)
 "wAa" = (
-/obj/alien/weeds/node/resting,
-/obj/structure/cable,
+/obj/alien/weeds/resting,
 /turf/open/floor/plating/ground/dirt,
 /area/deltastation/engineering{
 	name = "CLF engineering";
@@ -25562,6 +25697,13 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle3)
+"xFG" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/asteroidfloor,
+/area/outpost/brig/armoury{
+	name = "CLF armoury";
+	ceiling = 6
+	})
 "xFL" = (
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle3)
@@ -25702,6 +25844,14 @@
 /obj/item/stack/sheet/metal/large_stack,
 /obj/item/stack/sheet/plasteel/large_stack,
 /obj/item/stack/sheet/metal/large_stack,
+/obj/item/storage/box/crate/minisentry,
+/obj/item/storage/box/crate/minisentry,
+/obj/item/storage/box/crate/minisentry,
+/obj/item/storage/box/crate/minisentry,
+/obj/item/storage/box/crate/minisentry,
+/obj/item/storage/box/crate/minisentry,
+/obj/item/storage/box/crate/minisentry,
+/obj/item/storage/box/crate/minisentry,
 /turf/open/floor/plating/asteroidfloor,
 /area/outpost/brig/armoury{
 	name = "CLF armoury";
@@ -25908,6 +26058,7 @@
 /area/lv624/ground/jungle9)
 "xUA" = (
 /obj/effect/turf_decal/trimline/dark_blue/line,
+/obj/effect/ai_node,
 /turf/open/floor/plating/ground/desertdam/asphalt/edge{
 	dir = 8
 	},
@@ -26197,17 +26348,6 @@
 	},
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/crashed_ship)
-"yhP" = (
-/obj/machinery/light/small{
-	dir = 1
-	},
-/obj/structure/cable,
-/turf/closed/wall/brick,
-/area/deltastation/commons/dorms/barracks{
-	name = "CLF Bunks";
-	outside = 0;
-	ceiling = 6
-	})
 "yin" = (
 /obj/machinery/floodlight/colony,
 /turf/open/floor,
@@ -69709,7 +69849,7 @@ psZ
 plr
 eyk
 eyk
-dUg
+eyk
 qKO
 jWI
 eyk
@@ -70282,7 +70422,7 @@ psZ
 psZ
 plr
 psZ
-yhP
+lov
 cNu
 hZE
 gmx
@@ -70569,11 +70709,11 @@ psZ
 psZ
 plr
 psZ
-rnL
+lov
 nXg
 sDs
-clz
-pdj
+phx
+mfn
 qQs
 jGn
 jGn
@@ -70860,7 +71000,7 @@ lov
 fmE
 jhK
 eSG
-pdj
+mfn
 kbD
 jGn
 nMZ
@@ -71143,11 +71283,11 @@ psZ
 psZ
 plr
 psZ
-nWj
+lov
 fwl
 mdQ
 clz
-pdj
+mfn
 nOa
 fgg
 bMq
@@ -71717,11 +71857,11 @@ psZ
 psZ
 plr
 psZ
-vle
+lov
 mFB
 kHU
 bJo
-cna
+lov
 ekv
 oBa
 tXh
@@ -72007,11 +72147,11 @@ psZ
 gAE
 rRU
 iPY
-cTm
+cgF
 acI
 xUA
 saj
-aia
+vND
 aia
 vND
 aia
@@ -72291,7 +72431,7 @@ psZ
 psZ
 plr
 psZ
-pti
+gAE
 dIG
 hjJ
 cTm
@@ -73155,8 +73295,8 @@ psZ
 gAE
 gAE
 ogX
-dHQ
-chS
+gAE
+tGY
 gJR
 lov
 irq
@@ -74017,7 +74157,7 @@ gAE
 mLY
 cuP
 qpH
-chS
+ieF
 fyR
 lov
 aia
@@ -74877,7 +75017,7 @@ psZ
 gAE
 gAE
 gAE
-dHQ
+gAE
 kOF
 aDh
 lov
@@ -75165,7 +75305,7 @@ gAE
 uXM
 wlS
 wlS
-wlS
+ldC
 iAH
 lov
 gYS
@@ -77458,7 +77598,7 @@ psZ
 plr
 peG
 hdw
-hdw
+gAs
 mBJ
 hdw
 egB
@@ -79180,8 +79320,8 @@ psZ
 plr
 peG
 hdw
-hdw
-wMl
+mBJ
+dUg
 egB
 sDq
 aah
@@ -79468,7 +79608,7 @@ plr
 peG
 egB
 tQp
-kLG
+pRh
 pRh
 aah
 aah
@@ -79754,7 +79894,7 @@ psZ
 plr
 plr
 xSG
-vSx
+gtV
 oFu
 iWV
 aah
@@ -80041,7 +80181,7 @@ psZ
 plr
 plr
 xSG
-vSx
+gtV
 oFu
 iWV
 aah
@@ -80328,7 +80468,7 @@ psZ
 plr
 plr
 xSG
-vSx
+gtV
 gtV
 hnP
 wwb
@@ -80615,7 +80755,7 @@ psZ
 plr
 plr
 xSG
-alp
+leU
 oFu
 fXG
 tbO
@@ -80902,7 +81042,7 @@ psZ
 plr
 plr
 xSG
-vSx
+gtV
 oFu
 fXG
 tbO
@@ -81189,7 +81329,7 @@ psZ
 plr
 plr
 xSG
-vSx
+shO
 vSx
 iEz
 rXw
@@ -81476,10 +81616,10 @@ psZ
 plr
 plr
 xSG
-alp
-vSx
-iEz
-sJJ
+leU
+gtV
+rnL
+kDm
 hkZ
 tbO
 aah
@@ -81764,9 +81904,9 @@ plr
 plr
 xSG
 iDM
-shO
-fXG
-sJJ
+gtV
+tbO
+ein
 eNk
 tbO
 aah
@@ -82051,9 +82191,9 @@ plr
 plr
 xSG
 iDM
-vSx
-hYz
-sJJ
+tpd
+tbO
+cna
 tLM
 tbO
 tbO
@@ -82338,8 +82478,8 @@ plr
 plr
 xSG
 rwB
-vSx
-gyT
+gtV
+tbO
 adg
 sJJ
 cca
@@ -82625,10 +82765,10 @@ plr
 plr
 xSG
 iDM
-vSx
-fXG
+gtV
+tbO
 fMs
-sJJ
+xFG
 uNq
 tbO
 uzK
@@ -82912,8 +83052,8 @@ plr
 plr
 xSG
 iDM
-vSx
-fXG
+gtV
+tbO
 kBu
 sJJ
 bss
@@ -83199,8 +83339,8 @@ plr
 plr
 xSG
 alp
-vSx
-fXG
+gtV
+tbO
 uRQ
 oAL
 xJx
@@ -83486,8 +83626,8 @@ plr
 plr
 xSG
 vSx
-vSx
-fXG
+gtV
+tbO
 amx
 lKA
 tbO
@@ -83774,7 +83914,7 @@ plr
 vEk
 mBS
 pyc
-fXG
+tbO
 tbO
 tbO
 tbO
@@ -85206,12 +85346,12 @@ psZ
 psZ
 plr
 plr
-tpd
+vEk
 qIp
 jWr
-ein
-gJx
-aah
+hfk
+mBS
+dUK
 aah
 aah
 gKr
@@ -85585,7 +85725,7 @@ crr
 krr
 qWA
 bAO
-aFD
+jMn
 owa
 qWA
 mOs
@@ -86737,7 +86877,7 @@ wEl
 apN
 aFD
 tOd
-owa
+pdj
 nIC
 crr
 sEL
@@ -86929,7 +87069,7 @@ psZ
 plr
 psZ
 tYf
-vEk
+tYf
 tYf
 tYf
 tYf
@@ -87216,7 +87356,7 @@ psZ
 plr
 psZ
 iQH
-tGY
+iQH
 gCK
 gCK
 iQH
@@ -87504,11 +87644,11 @@ plr
 psZ
 iQH
 kIP
-leU
-leU
-leU
-leU
 nOG
+nOG
+nOG
+nOG
+tTg
 gKr
 mcN
 aah
@@ -87794,7 +87934,7 @@ nOG
 rFk
 nOG
 rFk
-leU
+nOG
 nOG
 gKr
 dUK
@@ -88078,7 +88218,7 @@ plr
 psZ
 soH
 lRR
-rFk
+pti
 nOG
 rFk
 wAa
@@ -88366,9 +88506,9 @@ psZ
 jRq
 mfk
 rFk
-nOG
+tTg
 rFk
-leU
+nOG
 nOG
 gKr
 gKr
@@ -88653,9 +88793,9 @@ psZ
 xyZ
 uiy
 nOG
+wAa
 nOG
 nOG
-leU
 gCK
 gKr
 gKr
@@ -88735,9 +88875,9 @@ krr
 lRT
 vzm
 gZx
-gZx
+srT
 dRb
-gZx
+kRF
 gZx
 afK
 wkw
@@ -88746,7 +88886,7 @@ lye
 mCh
 qWA
 bya
-oGR
+vpE
 qFR
 oGR
 qWA

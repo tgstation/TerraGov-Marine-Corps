@@ -1,11 +1,11 @@
 
 GLOBAL_LIST_INIT(pod_styles, list(\
-	list("supplypod", "supply pod", "A Nanotrasen supply drop pod.", STYLE_STANDARD),\
-	list("bluespacepod", "bluespace supply pod" , "A Nanotrasen Bluespace supply pod. Teleports back to CentCom after delivery.", STYLE_BLUESPACE),\
-	list("centcompod", "\improper Centcom supply pod", "A Nanotrasen supply pod, this one has been marked with Central Command's designations. Teleports back to Centcom after delivery.", STYLE_CENTCOM),\
+	list("supplypod", "supply pod", "A Ninetails supply drop pod.", STYLE_STANDARD),\
+	list("bluespacepod", "bluespace supply pod" , "A Ninetails Bluespace supply pod. Teleports back to CentCom after delivery.", STYLE_BLUESPACE),\
+	list("centcompod", "\improper Centcom supply pod", "A Ninetails supply pod, this one has been marked with Central Command's designations. Teleports back to Centcom after delivery.", STYLE_CENTCOM),\
 	list("syndiepod", "blood-red supply pod", "A dark, intimidating supply pod, covered in the blood-red markings of the Syndicate. It's probably best to stand back from this.", STYLE_SYNDICATE),\
-	list("squadpod", "\improper MK. II supply pod", "A Nanotrasen supply pod. This one has been marked the markings of some sort of elite strike team.", STYLE_BLUE),\
-	list("cultpod", "bloody supply pod", "A Nanotrasen supply pod covered in scratch-marks, blood, and strange runes.", STYLE_CULT),\
+	list("squadpod", "\improper MK. II supply pod", "A Ninetails supply pod. This one has been marked the markings of some sort of elite strike team.", STYLE_BLUE),\
+	list("cultpod", "bloody supply pod", "A Ninetails supply pod covered in scratch-marks, blood, and strange runes.", STYLE_CULT),\
 	list("missilepod", "cruise missile", "A big ass missile that didn't seem to fully detonate. It was likely launched from some far-off deep space missile silo. There appears to be an auxillery payload hatch on the side, though manually opening it is likely impossible.", STYLE_MISSILE),\
 	list("smissilepod", "\improper Syndicate cruise missile", "A big ass, blood-red missile that didn't seem to fully detonate. It was likely launched from some deep space Syndicate missile silo. There appears to be an auxillery payload hatch on the side, though manually opening it is likely impossible.", STYLE_RED_MISSILE),\
 	list("boxpod", "\improper Aussec supply crate", "An incredibly sturdy supply crate, designed to withstand orbital re-entry. Has 'Aussec Armory - 2532' engraved on the side.", STYLE_BOX),\
@@ -19,7 +19,7 @@ GLOBAL_LIST_INIT(pod_styles, list(\
 
 /obj/structure/closet/supplypod
 	name = "supply pod"
-	desc = "A Nanotrasen supply drop pod."
+	desc = "A Ninetails supply drop pod."
 	icon = 'icons/obj/supplypods.dmi'
 	icon_state = "supplypod"
 	pixel_x = -16

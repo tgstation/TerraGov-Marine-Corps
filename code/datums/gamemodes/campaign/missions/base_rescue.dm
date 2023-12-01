@@ -35,7 +35,7 @@
 		),
 	)
 
-	starting_faction_additional_rewards = "NanoTrasen has offered a level of corporate assistance if their facility can be protected."
+	starting_faction_additional_rewards = "Ninetails has offered a level of corporate assistance if their facility can be protected."
 	hostile_faction_additional_rewards = "Improved relations with local militias will allow us to call on their assistance in the future."
 
 /datum/campaign_mission/destroy_mission/base_rescue/load_mission()
@@ -63,10 +63,10 @@
 		new /obj/item/storage/box/explosive_mines(get_turf(pick(GLOB.campaign_reward_spawners[defending_faction])))
 
 /datum/campaign_mission/destroy_mission/base_rescue/load_mission_brief()
-	starting_faction_mission_brief = "NanoTrasen has issues an emergency request for assistance at an isolated medical facility located in the Western Ayolan Ranges. \
+	starting_faction_mission_brief = "Ninetails has issues an emergency request for assistance at an isolated medical facility located in the Western Ayolan Ranges. \
 		SOM forces are rapidly approaching the facility, which is currently on emergency lockdown. \
 		Move quickly prevent the SOM from lifting the lockdown and destroying the facility."
-	hostile_faction_mission_brief = "Recon forces have led us to this secure Nanotrasen facility in the Western Ayolan Ranges. Sympathetic native elements suggest NT have been conducting secret research here to the detriment of the local ecosystem and human settlements. \
+	hostile_faction_mission_brief = "Recon forces have led us to this secure Ninetails facility in the Western Ayolan Ranges. Sympathetic native elements suggest NT have been conducting secret research here to the detriment of the local ecosystem and human settlements. \
 		Find the security override terminals to override the facility's emergency lockdown. \
 		Once the lockdown is lifted, destroy what they're working on inside."
 

@@ -311,7 +311,7 @@ SUBSYSTEM_DEF(persistence)
 
 /datum/season_datum/weapons/guns/heavy_defualt
 	name = "Default Heavy Weapons"
-	description = "The generic set of roundstart TGMC heavy weapons, TAT and RR."
+	description = "The generic set of roundstart NTC heavy weapons, TAT and RR."
 	item_list = list(
 		/obj/structure/largecrate/supply/weapons/standard_atgun = 1,
 		/obj/item/storage/holster/backholster/rpg/full = 2,

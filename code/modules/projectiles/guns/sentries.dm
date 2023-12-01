@@ -82,7 +82,7 @@
 	icon_state = "podsentry"
 	turret_flags = TURRET_HAS_CAMERA|TURRET_ALERTS|TURRET_RADIAL
 	flags_item = IS_DEPLOYABLE|DEPLOY_ON_INITIALIZE|DEPLOYED_NO_PICKUP
-	sentry_iff_signal = TGMC_LOYALIST_IFF
+	sentry_iff_signal = NTC_LOYALIST_IFF
 	turret_range = 10
 	knockdown_threshold = 500
 	max_shells = 500
@@ -192,7 +192,7 @@
 	flags_item = IS_DEPLOYABLE|TWOHANDED|DEPLOY_ON_INITIALIZE|DEPLOYED_NO_PICKUP
 
 /obj/item/weapon/gun/sentry/big_sentry/premade
-	sentry_iff_signal = TGMC_LOYALIST_IFF
+	sentry_iff_signal = NTC_LOYALIST_IFF
 	flags_item = IS_DEPLOYABLE|TWOHANDED|DEPLOY_ON_INITIALIZE
 
 /obj/item/weapon/gun/sentry/big_sentry/premade/radial
@@ -202,7 +202,7 @@
 
 /obj/item/weapon/gun/sentry/big_sentry/dropship
 	ammo_datum_type = /datum/ammo/bullet/turret/gauss
-	sentry_iff_signal = TGMC_LOYALIST_IFF
+	sentry_iff_signal = NTC_LOYALIST_IFF
 	flags_item = IS_DEPLOYABLE|TWOHANDED|DEPLOY_ON_INITIALIZE|DEPLOYED_NO_PICKUP
 	var/obj/structure/dropship_equipment/shuttle/sentry_holder/deployment_system
 	turret_flags = TURRET_HAS_CAMERA|TURRET_IMMOBILE
@@ -212,7 +212,7 @@
 	max_integrity = INFINITY //Good luck killing it
 	fire_delay = 0.2 SECONDS
 	ammo_datum_type = /datum/ammo/bullet/turret/gauss
-	sentry_iff_signal = TGMC_LOYALIST_IFF
+	sentry_iff_signal = NTC_LOYALIST_IFF
 	flags_item = IS_DEPLOYABLE|DEPLOY_ON_INITIALIZE|DEPLOYED_NO_PICKUP
 	turret_flags = TURRET_IMMOBILE|TURRET_RADIAL|TURRET_LOCKED|TURRET_ON
 	default_ammo_type = /obj/item/ammo_magazine/sentry/fob_sentry
@@ -257,7 +257,7 @@
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
 
 /obj/item/weapon/gun/sentry/mini/combat_patrol
-	sentry_iff_signal = TGMC_LOYALIST_IFF
+	sentry_iff_signal = NTC_LOYALIST_IFF
 	turret_flags = TURRET_HAS_CAMERA|TURRET_ALERTS
 
 /obj/item/weapon/gun/sentry/premade
@@ -293,6 +293,6 @@
 /obj/item/weapon/gun/sentry/premade/canterbury
 	name = "SG-577 Gauss Dropship Turret"
 	ammo_datum_type = /datum/ammo/bullet/turret
-	sentry_iff_signal = TGMC_LOYALIST_IFF
+	sentry_iff_signal = NTC_LOYALIST_IFF
 
 

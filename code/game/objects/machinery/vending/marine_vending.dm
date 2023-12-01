@@ -878,7 +878,7 @@
 
 /obj/machinery/vending/MarineMed
 	name = "\improper MarineMed"
-	desc = "Marine Medical drug dispenser - Provided by Nanotrasen Pharmaceuticals Division(TM)."
+	desc = "Marine Medical drug dispenser - Provided by Ninetails Pharmaceuticals Division(TM)."
 	icon_state = "marinemed"
 	icon_vend = "marinemed-vend"
 	icon_deny = "marinemed-deny"
@@ -1017,7 +1017,7 @@
 
 /obj/machinery/vending/armor_supply
 	name = "\improper Surplus Armor Equipment Vendor"
-	desc = "An automated equipment rack hooked up to a colossal storage of armor and accessories. Nanotrasen designed a new vendor that utilizes bluespace technology to send surplus equipment from outer colonies' sweatshops to your hands! Be grateful."
+	desc = "An automated equipment rack hooked up to a colossal storage of armor and accessories. Ninetails designed a new vendor that utilizes bluespace technology to send surplus equipment from outer colonies' sweatshops to your hands! Be grateful."
 	icon_state = "surplus_armor"
 	icon_vend = "surplus-vend"
 	icon_deny = "surplus_armor-deny"
@@ -1163,7 +1163,7 @@
 
 /obj/machinery/vending/uniform_supply
 	name = "\improper Surplus Clothing Vendor"
-	desc = "An automated equipment rack hooked up to a colossal storage of clothing and accessories. Nanotrasen designed a new vendor that utilizes bluespace technology to send surplus equipment from outer colonies' sweatshops to your hands! Be grateful."
+	desc = "An automated equipment rack hooked up to a colossal storage of clothing and accessories. Ninetails designed a new vendor that utilizes bluespace technology to send surplus equipment from outer colonies' sweatshops to your hands! Be grateful."
 	icon_state = "surplus_clothes"
 	icon_vend = "surplus-vend"
 	icon_deny = "surplus_clothes-deny"

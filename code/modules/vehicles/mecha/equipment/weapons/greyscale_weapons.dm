@@ -117,7 +117,7 @@
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/assault_rifle
 	name = "\improper Cronus assault rifle"
 	icon = 'icons/mecha/mecha_equipment_64x32.dmi'
-	desc = "The stock-and-standard extra-sized multipurpose rifle for TGMC mech units."
+	desc = "The stock-and-standard extra-sized multipurpose rifle for NTC mech units."
 	icon_state = "assaultrifle"
 	fire_sound = 'sound/mecha/weapons/mech_rifle.ogg'
 	mech_flags = EXOSUIT_MODULE_GREYSCALE
@@ -141,7 +141,7 @@
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/shotgun
 	name = "\improper Phoebe shotgun"
 	icon = 'icons/mecha/mecha_equipment_64x32.dmi'
-	desc = "The TGMC classic weapon, but bigger and better! Fires plus-sized buckshot for high damage in close combat."
+	desc = "The NTC classic weapon, but bigger and better! Fires plus-sized buckshot for high damage in close combat."
 	icon_state = "shotgun"
 	fire_sound = 'sound/mecha/weapons/mech_shotgun.ogg'
 	mech_flags = EXOSUIT_MODULE_GREYSCALE
@@ -348,7 +348,7 @@
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/launcher/grenadelauncher
 	name = "\improper Hyperion grenade launcher"
-	desc = "The TGMC's definitive answer to whether a bigger boom is better. Fires standard HEDP grenades."
+	desc = "The NTC's definitive answer to whether a bigger boom is better. Fires standard HEDP grenades."
 	icon = 'icons/mecha/mecha_equipment_64x32.dmi'
 	icon_state = "grenadelauncher"
 	fire_sound = 'sound/weapons/guns/fire/grenadelauncher.ogg'
@@ -432,7 +432,7 @@
 /obj/item/mecha_parts/mecha_equipment/laser_sword
 	name = "\improper Moonlight particle cutter"
 	icon = 'icons/mecha/mecha_equipment_64x32.dmi'
-	desc = "A specialized mech laser blade made out of compressed energy with unimaginable power. Its compact size allows fast, short-ranged attacks. When activated, overloads the leg actuators to dash forward, before cutting with a superheated plasma beam. Melee core increases area cut and distance dashed. It is a top-of-the-line melee weapon of TGMC's fine line of mecha close-range offensive capability."
+	desc = "A specialized mech laser blade made out of compressed energy with unimaginable power. Its compact size allows fast, short-ranged attacks. When activated, overloads the leg actuators to dash forward, before cutting with a superheated plasma beam. Melee core increases area cut and distance dashed. It is a top-of-the-line melee weapon of NTC's fine line of mecha close-range offensive capability."
 	icon_state = "moonlight"
 	mech_flags = EXOSUIT_MODULE_GREYSCALE
 	max_integrity = 400
@@ -515,7 +515,7 @@
 
 /obj/item/mecha_parts/mecha_equipment/weapon/energy/laser_spear
 	name = "\improper Sunbeam particle piercer"
-	desc = "A spear made of compressed energy for the TGMC Combat Mech. A melee weapon for strong defense at short-to-medium range. Extends a spear of superheated plasma upon activation, piericing everything in its path. A melee core will increase both its range and power. It is a top-of-the-line melee weapon of TGMC's fine line of mecha close-range offensive capability."
+	desc = "A spear made of compressed energy for the NTC Combat Mech. A melee weapon for strong defense at short-to-medium range. Extends a spear of superheated plasma upon activation, piericing everything in its path. A melee core will increase both its range and power. It is a top-of-the-line melee weapon of NTC's fine line of mecha close-range offensive capability."
 	icon = 'icons/mecha/mecha_equipment_64x32.dmi'
 	icon_state = "lance"
 	fire_sound = 'sound/mecha/weapons/laser_sword.ogg'

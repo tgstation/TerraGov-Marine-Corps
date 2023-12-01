@@ -16,7 +16,7 @@
 	var/sendcooldown = FALSE
 
 	var/department = CORPORATE_LIAISON
-	var/selected = "Nanotrasen"
+	var/selected = "Ninetails"
 
 
 /obj/machinery/faxmachine/Initialize(mapload)
@@ -63,7 +63,7 @@
 	dat += "<hr>"
 
 	if(authenticated)
-		dat += "<b>Logged in to:</b> Nanotrasen Private Corporate Network<br><br>"
+		dat += "<b>Logged in to:</b> Ninetails Private Corporate Network<br><br>"
 		if(message)
 			dat += "<a href='byond://?src=[text_ref(src)];remove=1'>Remove Paper</a><br><br>"
 			if(sendcooldown)
@@ -126,7 +126,7 @@
 		authenticated = FALSE
 
 	if(href_list["dept"])
-		var/choice = tgui_input_list(usr, "Who do you want to message?", "Fax", list("Nanotrasen", "TGMC High Command", "TGMC Provost Marshall"))
+		var/choice = tgui_input_list(usr, "Who do you want to message?", "Fax", list("Ninetails Human Resources", "NTC Intel Division", "NTC Misc"))
 		if(!choice)
 			return
 		selected = choice

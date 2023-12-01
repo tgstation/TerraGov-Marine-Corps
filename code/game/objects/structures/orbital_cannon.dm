@@ -4,7 +4,7 @@
 
 /obj/structure/orbital_cannon
 	name = "\improper Orbital Cannon"
-	desc = "The TGMC Orbital Cannon System. Used for shooting large targets on the planet that is orbited. It accelerates its payload with solid fuel for devastating results upon impact."
+	desc = "The NTC Orbital Cannon System. Used for shooting large targets on the planet that is orbited. It accelerates its payload with solid fuel for devastating results upon impact."
 	icon = 'icons/obj/machines/artillery.dmi'
 	icon_state = "OBC_unloaded"
 	density = TRUE

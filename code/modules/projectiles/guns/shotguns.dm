@@ -38,7 +38,7 @@
 
 /obj/item/weapon/gun/shotgun/combat
 	name = "\improper SH-221 tactical shotgun"
-	desc = "The Nanotrasen SH-221 Shotgun, a quick-firing semi-automatic shotgun based on the centuries old Benelli M4 shotgun. Only issued to the TGMC in small numbers."
+	desc = "The Ninetails SH-221 Shotgun, a quick-firing semi-automatic shotgun based on the centuries old Benelli M4 shotgun. Only issued to the NTC in small numbers."
 	flags_equip_slot = ITEM_SLOT_BACK
 	icon_state = "mk221"
 	item_state = "mk221"
@@ -72,7 +72,7 @@
 
 /obj/item/weapon/gun/shotgun/combat/standardmarine
 	name = "\improper SH-39 combat shotgun"
-	desc = "The Terran Armories SH-39 combat shotgun is a semi automatic shotgun used by breachers and pointmen within the TGMC squads. Uses 12 gauge shells."
+	desc = "The Archercorp SH-39 combat shotgun is a semi automatic shotgun used by breachers and pointmen within the NTC squads. Uses 12 gauge shells."
 	force = 20 //Has a stock already
 	flags_equip_slot = ITEM_SLOT_BACK
 	icon = 'icons/Marine/gun64.dmi'
@@ -189,7 +189,7 @@
 
 /obj/item/weapon/gun/shotgun/double/marine
 	name = "\improper SH-34 double barrel shotgun"
-	desc = "A double barreled shotgun of archaic, but sturdy design used by the TGMC. Due to reports of barrel bursting, the abiility to fire both barrels has been disabled. Uses 12 gauge shells, but can only hold 2 at a time."
+	desc = "A double barreled shotgun of archaic, but sturdy design used by the NTC. Due to reports of barrel bursting, the abiility to fire both barrels has been disabled. Uses 12 gauge shells, but can only hold 2 at a time."
 	flags_equip_slot = ITEM_SLOT_BACK
 	icon_state = "ts34"
 	item_state = "ts34"
@@ -658,7 +658,7 @@
 //SH-35 Pump shotgun
 /obj/item/weapon/gun/shotgun/pump/t35
 	name = "\improper SH-35 pump shotgun"
-	desc = "The Terran Armories SH-35 is the shotgun used by the TerraGov Marine Corps. It's used as a close quarters tool when someone wants something more suited for close range than most people, or as an odd sidearm on your back for emergencies. Uses 12 gauge shells.\n<b>Requires a pump, which is the Unique Action key.</b>"
+	desc = "The Archercorp SH-35 is the shotgun used by the Nine Tailed Fox. It's used as a close quarters tool when someone wants something more suited for close range than most people, or as an odd sidearm on your back for emergencies. Uses 12 gauge shells.\n<b>Requires a pump, which is the Unique Action key.</b>"
 	flags_equip_slot = ITEM_SLOT_BACK
 	icon = 'icons/Marine/gun64.dmi'
 	icon_state = GUN_ICONSTATE_LOADED

@@ -268,17 +268,17 @@
 
 /obj/item/storage/backpack/marine
 	name = "\improper lightweight IMP backpack"
-	desc = "The standard-issue pack of the TGMC forces. Designed to slug gear into the battlefield."
+	desc = "The standard-issue pack of the NTC forces. Designed to slug gear into the battlefield."
 	icon_state = "marinepack"
 	item_state = "marinepack"
 
 /obj/item/storage/backpack/marine/standard
 	name = "\improper lightweight IMP backpack"
-	desc = "The standard-issue pack of the TGMC forces. Designed to slug gear into the battlefield."
+	desc = "The standard-issue pack of the NTC forces. Designed to slug gear into the battlefield."
 
 /obj/item/storage/backpack/marine/corpsman
-	name = "\improper TGMC corpsman backpack"
-	desc = "The standard-issue backpack worn by TGMC corpsmen. You can recharge defibrillators by plugging them in."
+	name = "\improper NTC corpsman backpack"
+	desc = "The standard-issue backpack worn by NTC corpsmen. You can recharge defibrillators by plugging them in."
 	icon_state = "marinepackm"
 	item_state = "marinepackm"
 	var/obj/item/cell/high/cell //Starts with a high capacity energy cell.
@@ -357,8 +357,8 @@
 
 
 /obj/item/storage/backpack/marine/tech
-	name = "\improper TGMC technician backpack"
-	desc = "The standard-issue backpack worn by TGMC technicians. Specially equipped to hold sentry gun and M56D emplacement parts."
+	name = "\improper NTC technician backpack"
+	desc = "The standard-issue backpack worn by NTC technicians. Specially equipped to hold sentry gun and M56D emplacement parts."
 	icon_state = "marinepackt"
 	item_state = "marinepackt"
 	bypass_w_limit = list(
@@ -375,8 +375,8 @@
 	)
 
 /obj/item/storage/backpack/marine/satchel
-	name = "\improper TGMC satchel"
-	desc = "A heavy-duty satchel carried by some TGMC soldiers and support personnel."
+	name = "\improper NTC satchel"
+	desc = "A heavy-duty satchel carried by some NTC soldiers and support personnel."
 	icon_state = "marinesat"
 	item_state = "marinesat"
 	storage_slots = null
@@ -384,13 +384,13 @@
 	access_delay = 0
 
 /obj/item/storage/backpack/marine/satchel/green
-	name = "\improper TGMC satchel"
+	name = "\improper NTC satchel"
 	icon_state = "marinesat_green"
 
 
 /obj/item/storage/backpack/marine/corpsman/satchel
-	name = "\improper TGMC corpsman satchel"
-	desc = "A heavy-duty satchel carried by some TGMC corpsmen. You can recharge defibrillators by plugging them in."
+	name = "\improper NTC corpsman satchel"
+	desc = "A heavy-duty satchel carried by some NTC corpsmen. You can recharge defibrillators by plugging them in."
 	icon_state = "marinesatm"
 	item_state = "marinesatm"
 	storage_slots = null
@@ -399,8 +399,8 @@
 	cell = /obj/item/cell/apc
 
 /obj/item/storage/backpack/marine/satchel/tech
-	name = "\improper TGMC technician satchel"
-	desc = "A heavy-duty satchel carried by some TGMC technicians. Can hold the ST-580 point defense sentry and ammo."
+	name = "\improper NTC technician satchel"
+	desc = "A heavy-duty satchel carried by some NTC technicians. Can hold the ST-580 point defense sentry and ammo."
 	icon_state = "marinesatt"
 	item_state = "marinesatt"
 	bypass_w_limit = list(
@@ -449,7 +449,7 @@
 // Scout Cloak
 /obj/item/storage/backpack/marine/satchel/scout_cloak
 	name = "\improper M68 Thermal Cloak"
-	desc = "The lightweight thermal dampeners and optical camouflage provided by this cloak are weaker than those found in standard TGMC ghillie suits. In exchange, the cloak can be worn over combat armor and offers the wearer high manueverability and adaptability to many environments. Serves as a satchel."
+	desc = "The lightweight thermal dampeners and optical camouflage provided by this cloak are weaker than those found in standard NTC ghillie suits. In exchange, the cloak can be worn over combat armor and offers the wearer high manueverability and adaptability to many environments. Serves as a satchel."
 	icon_state = "scout_cloak"
 	var/camo_active = 0
 	var/camo_active_timer = 0
@@ -706,8 +706,8 @@
 // Welder Backpacks //
 
 /obj/item/storage/backpack/marine/engineerpack
-	name = "\improper TGMC technician welderpack"
-	desc = "A specialized backpack worn by TGMC technicians. It carries a fueltank for quick welder refueling and use,"
+	name = "\improper NTC technician welderpack"
+	desc = "A specialized backpack worn by NTC technicians. It carries a fueltank for quick welder refueling and use,"
 	icon_state = "engineerpack"
 	item_state = "engineerpack"
 	var/max_fuel = 260
@@ -794,7 +794,7 @@
 
 /obj/item/storage/backpack/commando
 	name = "commando bag"
-	desc = "A heavy-duty bag carried by Nanotrasen commandos."
+	desc = "A heavy-duty bag carried by Ninetails commandos."
 	icon_state = "commandopack"
 	storage_slots = null
 	max_storage_space = 40

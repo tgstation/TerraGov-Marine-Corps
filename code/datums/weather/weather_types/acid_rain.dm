@@ -47,7 +47,7 @@
 	. = ..()
 	sound_active_acidrain.stop()
 
-/datum/weather/acid_rain/weather_act(mob/living/L)
+/datum/weather/acid_rain/weather_act(mob/living/carbon/human/L)
 	if(L.stat == DEAD)
 		return
 	if(prob(L.modify_by_armor(100, ACID)))

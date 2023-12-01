@@ -382,6 +382,14 @@
 	gas_transfer_coefficient = 0.01
 	permeability_coefficient = 0.01
 
+/obj/item/clothing/under/spec_operative/equipped(mob/user, slot)
+	. = ..()
+	RegisterSignal(user, COMSIG_LIVING_ADD_VENTCRAWL)
+
+/obj/item/clothing/under/spec_operative/unequipped(mob/unequipper, slot)
+	. = ..()
+	UnregisterSignal(unequipper, COMSIG_LIVING_ADD_VENTCRAWL)
+
 /obj/item/clothing/under/techpriest
 	name = "Techpriest Robes"
 	desc = "Praise the omnissiah!"

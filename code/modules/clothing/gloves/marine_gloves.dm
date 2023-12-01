@@ -4,7 +4,7 @@
 //marine gloves
 
 /obj/item/clothing/gloves/marine
-	name = "marine combat gloves"
+	name = "operative combat gloves"
 	desc = "Standard issue marine tactical gloves. It reads: 'knit by Marine Widows Association'."
 	icon_state = "gloves_marine"
 	siemens_coefficient = 0.6
@@ -17,19 +17,19 @@
 	soft_armor = list(MELEE = 25, BULLET = 15, LASER = 10, ENERGY = 15, BOMB = 15, BIO = 5, FIRE = 15, ACID = 15)
 
 /obj/item/clothing/gloves/marine/black
-	name = "black marine combat gloves"
+	name = "black operative combat gloves"
 	desc = "Standard issue marine tactical gloves but black! It reads: 'knit by Marine Widows Association'."
 	icon_state = "gloves_marine_black"
 	item_state = "black"
 
 /obj/item/clothing/gloves/marine/fingerless
-	name = "fingerless marine combat gloves"
+	name = "fingerless operative combat gloves"
 	desc = "Standard issue marine tactical gloves but fingerless! It reads: 'knit by Marine Widows Association'."
 	icon_state = "gloves_marine_fingerless"
 	item_state = "fingerless"
 
 /obj/item/clothing/gloves/marine/hyperscale
-	name = "8E Chameleon TGMC combat gloves"
+	name = "8E Chameleon NTC combat gloves"
 	desc = "Standard issue marine tactical gloves BUT colorable with a facepaint! It reads: 'knit by Marine Widows Association'."
 	icon_state = "hyperscale_glove_inhand"
 	item_state = "hyperscale_glove_mob"
@@ -48,7 +48,7 @@
 	human.regenerate_icons()
 
 /obj/item/clothing/gloves/marine/insulated
-	name = "insulated marine combat gloves"
+	name = "insulated operative combat gloves"
 	desc = "Insulated marine tactical gloves that protect against electrical shocks."
 	icon_state = "gloves_marine_insulated"
 	siemens_coefficient = 0

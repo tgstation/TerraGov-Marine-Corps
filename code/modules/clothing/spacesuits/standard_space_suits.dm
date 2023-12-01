@@ -1,14 +1,14 @@
 
 /obj/item/clothing/head/helmet/space/tgmc
-	name = "\improper TGMC Compression Helmet"
-	desc = "A high tech, TGMC designed, dark red space suit helmet. Used for maintenance in space."
+	name = "\improper NTC Compression Helmet"
+	desc = "A high tech, NTC designed, dark red space suit helmet. Used for maintenance in space."
 	icon_state = "void_helm"
 	anti_hug = 3
 
 /obj/item/clothing/suit/space/tgmc
-	name = "\improper TGMC Compression Suit"
+	name = "\improper NTC Compression Suit"
 	icon_state = "void"
-	desc = "A high tech, TGMC designed, dark red Space suit. Used for maintenance in space."
+	desc = "A high tech, NTC designed, dark red Space suit. Used for maintenance in space."
 	slowdown = 1
 
 
@@ -21,7 +21,7 @@
 
 /obj/item/clothing/suit/space/captain
 	name = "Captain's armor"
-	desc = "A bulky, heavy-duty piece of exclusive Nanotrasen armor. YOU are in charge!"
+	desc = "A bulky, heavy-duty piece of exclusive Ninetails armor. YOU are in charge!"
 	icon_state = "caparmor"
 	w_class = WEIGHT_CLASS_BULKY
 	gas_transfer_coefficient = 0.01

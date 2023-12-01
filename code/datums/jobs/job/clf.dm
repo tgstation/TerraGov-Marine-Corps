@@ -3,6 +3,7 @@
 	minimal_access = ALL_ANTAGONIST_ACCESS
 	skills_type = /datum/skills/crafty
 	faction = FACTION_CLF
+	shadow_languages = list(/datum/language/xenocommon)
 
 
 //CLF Standard

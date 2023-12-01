@@ -1,7 +1,7 @@
 
 /obj/vehicle/unmanned
 	name = "UV-L Iguana"
-	desc = "A small remote-controllable vehicle, usually owned by the TGMC and other major armies."
+	desc = "A small remote-controllable vehicle, usually owned by the NTC and other major armies."
 	icon = 'icons/obj/unmanned_vehicles.dmi'
 	icon_state = "light_uv"
 	anchored = FALSE
@@ -46,7 +46,7 @@
 	/// Flags for unmanned vehicules
 	var/unmanned_flags = OVERLAY_TURRET|HAS_LIGHTS
 	/// Iff flags, to prevent friendly fire from sg and aiming marines
-	var/iff_signal = TGMC_LOYALIST_IFF
+	var/iff_signal = NTC_LOYALIST_IFF
 	/// muzzleflash stuff
 	var/atom/movable/vis_obj/effect/muzzle_flash/flash
 	COOLDOWN_DECLARE(fire_cooldown)

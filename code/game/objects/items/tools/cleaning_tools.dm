@@ -116,7 +116,7 @@
 		return
 
 /obj/item/tool/soap/nanotrasen
-	desc = "A Nanotrasen brand bar of soap. Smells of phoron."
+	desc = "A Ninetails brand bar of soap. Smells of phoron."
 	icon_state = "soapnt"
 
 /obj/item/tool/soap/deluxe

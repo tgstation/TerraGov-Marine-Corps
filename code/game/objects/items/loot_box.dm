@@ -83,7 +83,7 @@
 //Supply drop boxes
 /obj/item/loot_box/supply_drop
 	name = "supply drop"
-	desc = "A TGMC-marked box full of valuable military tactical equipment."
+	desc = "A NTC-marked box full of valuable military tactical equipment."
 	icon = 'icons/obj/items/items.dmi'
 	w_class = WEIGHT_CLASS_GIGANTIC
 	slowdown = 1 //You won't be running off with this
@@ -406,8 +406,8 @@
 
 // 150 to 200 points of value packs, spend 100 points get 150 to 200 in value, basically. Ideally, commons are variety packs, uncommons maybe shake up the round a bit, rares a bit more. Legendaries make the round go wacko. You get a crate of stuff dropped on spawn.
 /obj/item/loot_box/tgmclootbox
-	name = "TGMC pack box"
-	desc = "A box of gear sent over by the TGMC on request, nobody knows what's in it. You just know it'll probably be good."
+	name = "NTC pack box"
+	desc = "A box of gear sent over by the NTC on request, nobody knows what's in it. You just know it'll probably be good."
 	icon = 'icons/obj/items/items.dmi'
 	icon_state = "lootbox"
 	item_state = "lootbox"

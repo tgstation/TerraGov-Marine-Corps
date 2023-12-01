@@ -601,7 +601,7 @@ What you lack in equipment and military training you make up in bravery and conv
 /datum/outfit/job/icc/leader/icc_confrontationrifle/campaign
 	ears = /obj/item/radio/headset/mainship/som
 
-//TGMC combat robots
+//NTC combat robots
 /datum/job/terragov/squad/standard/campaign_robot
 	title = SQUAD_ROBOT
 	outfit = /datum/outfit/job/tgmc/campaign_robot
@@ -616,9 +616,9 @@ What you lack in equipment and military training you make up in bravery and conv
 
 /datum/job/terragov/squad/standard/campaign_robot/radio_help_message(mob/M)
 	. = ..()
-	to_chat(M, {"\nYou are a cold, unfeeling machine built for war, controlled by TGMC.
+	to_chat(M, {"\nYou are a cold, unfeeling machine built for war, controlled by NTC.
 Your metal body is immune to pain and chemical warfare, and resistant against fire and radiation, although you lack the mobility of your human counterparts.
-Fight for TGMC, and attempt to achieve all objectives given to you."})
+Fight for NTC, and attempt to achieve all objectives given to you."})
 
 /datum/outfit/job/tgmc/campaign_robot
 	name = "Combat robot"

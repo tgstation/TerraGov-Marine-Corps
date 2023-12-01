@@ -1,12 +1,12 @@
 
 //These small little things allow you to give xenos an IFF signature. No more crying because your corrupted keep dying to smartgunners!
 /obj/item/xeno_iff_tag
-	name = "Terragov xenomorph IFF tag"
+	name = "NTC xenomorph IFF tag"
 	desc = "A small metallic card that can be clamped onto a xenomorph, allowing IFF systems to recognize the target as friendly."
 	icon = 'icons/obj/items/card.dmi'
 	icon_state = "guest" //Better I reuse this unused sprite for something that you'll see for ten seconds pre-attach than use my spriting "skills".
 	///The IFF signal this tag will create a component with
-	var/carried_iff = TGMC_LOYALIST_IFF
+	var/carried_iff = NTC_LOYALIST_IFF
 
 /obj/item/xeno_iff_tag/attack(mob/living/M, mob/living/user)
 	if(!isxeno(M))

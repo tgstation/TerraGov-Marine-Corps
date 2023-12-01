@@ -72,8 +72,8 @@
 ///called when an AI is requested by a holopad
 #define COMSIG_GLOB_HOLOPAD_AI_CALLED "!holopad_calling"
 
-///Opens the TGMC shipside shutters on campaign
-#define COMSIG_GLOB_OPEN_CAMPAIGN_SHUTTERS_TGMC "!open_campaign_shutters_tgmc"
+///Opens the NTC shipside shutters on campaign
+#define COMSIG_GLOB_OPEN_CAMPAIGN_SHUTTERS_NTC "!open_campaign_shutters_tgmc"
 ///Opens the SOM shipside shutters on campaign
 #define COMSIG_GLOB_OPEN_CAMPAIGN_SHUTTERS_SOM "!open_campaign_shutters_som"
 ///Sent when a new campaign mission is loaded

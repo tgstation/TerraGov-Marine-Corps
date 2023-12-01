@@ -49,7 +49,7 @@
 /obj/item/implant/deployitem/blade/get_data()
 	return {"
 	<b>Implant Specifications:</b><BR>
-	<b>Name:</b> Nanotrasen MA-12 Mantis Implant<BR>
+	<b>Name:</b> Novamed MA-12 Mantis Implant<BR>
 	<HR>
 	<b>Implant Details:</b><BR>
 	<b>Function:</b> Upon activation, the user deploys a large blade from the their arm.<BR>"}
@@ -75,7 +75,7 @@
 	sharp = IS_SHARP_ITEM_BIG
 	hitsound = 'sound/weapons/slash.ogg'
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
-	
+
 /obj/item/weapon/mantisblade/equipped(mob/user, slot)
 	. = ..()
 	toggle_item_bump_attack(user, TRUE)

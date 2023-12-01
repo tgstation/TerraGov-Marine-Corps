@@ -29,7 +29,7 @@
 	return (FIRELOSS)
 
 /obj/item/cell/crap
-	name = "\improper Nanotrasen brand rechargable AA battery"
+	name = "\improper Ninetails brand rechargable AA battery"
 	desc = "You can't top the plasma top." //TOTALLY TRADEMARK INFRINGEMENT
 	maxcharge = 500
 

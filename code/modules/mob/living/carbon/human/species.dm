@@ -345,7 +345,6 @@
 	special_death_message = "<big>You have perished.</big><br><small>But it is not the end of you yet... if you still have your body with your head still attached, wait until somebody can resurrect you...</small>"
 	joinable_roundstart = TRUE
 
-
 /datum/species/human/vatborn
 	name = "Vatborn"
 	name_plural = "Vatborns"

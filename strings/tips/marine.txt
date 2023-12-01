@@ -19,7 +19,7 @@ While medics and doctors are best at it, anyone can use a defibrillator and oper
 While engineers and synthetics are best at it, anyone can build barricades and razorsharp obstacles.
 Anyone can make razor wire by using three metal sheets, which is four metal rods and barbed wire from metal sheets. Stop that crusher and bull from charging!
 Terra Experimental standard batteries can be recharged in APCs and power cell rechargers if the generators are on.
-If you aren't a squad marine, then you have a special room in prep with special gear vendors.
+If you aren't a Squad Operative, then you have a special room in prep with special gear vendors.
 Sidearms aren't complete garbage. They are often faster than reloading if in a very tight situation, it may save your life.
 The Revolver and Service Pistol can be decent primary weapons if used properly, though with the short magazine capacity, expect to run dry on ammo quick!
 There is no "best" loadout. Experiment and find what works for you.
@@ -58,14 +58,14 @@ As a marine, if you are trained enough to do so, you can perform a tactical relo
 As a human, when you are already infected, facehuggers will ignore you. But you still need medical attention regardless.
 As a marine, please try not to aim for the head. It benefits the xenomorphs as they will not take more damage on the head and when you commit friendly-fire, you might break their head instead. Aim for the center of mass!
 Not being ready at the start of the round means xenos get more burrowed larva, and that you don't get to play as quickly.
-As a squad marine, you can vend seperate Jaeger Pattern armor pieces and modules for the XM-02 Combat Exoskeleton from a Surplus Equipment Vendor. It is a modular piece of equipment after all.
-As a squad marine, you can practice using your weapons on the Firing Range.
-As a squad marine, you can handle every type of weapon featured in the game.
-As a squad marine, when you are in a tight situation, do not be a hero! Whenever possible, recover and re-arm and leave the enemies for another try.
-As a squad marine, do not be afraid to take risks. See a xeno that is almost dead and slowly retreating? Take the chance to charge and kill it! You have better chances to survive with a squadmate with you.
-As a squad marine, you can help out your squad by bringing extra ammunition and food to share.
-As a squad marine, you can take two two-handed guns, one in the suit slot and one on your back.
-As a squad marine, you can get attachments from the weapons vendors, usually in preparations.
+As a Squad Operative, you can vend seperate Jaeger Pattern armor pieces and modules for the XM-02 Combat Exoskeleton from a Surplus Equipment Vendor. It is a modular piece of equipment after all.
+As a Squad Operative, you can practice using your weapons on the Firing Range.
+As a Squad Operative, you can handle every type of weapon featured in the game.
+As a Squad Operative, when you are in a tight situation, do not be a hero! Whenever possible, recover and re-arm and leave the enemies for another try.
+As a Squad Operative, do not be afraid to take risks. See a xeno that is almost dead and slowly retreating? Take the chance to charge and kill it! You have better chances to survive with a squadmate with you.
+As a Squad Operative, you can help out your squad by bringing extra ammunition and food to share.
+As a Squad Operative, you can take two two-handed guns, one in the suit slot and one on your back.
+As a Squad Operative, you can get attachments from the weapons vendors, usually in preparations.
 As a corpsman or engineer, your number one priority is NOT hunting down xenomorphs! Leave it to the combat marines. You have more essential and important tasks at hand.
 As a doctor, the cryotubes are excellent at dealing with basic damage.
 As a doctor, the cryotubes heal internal bleeding and fractures, although slowly.

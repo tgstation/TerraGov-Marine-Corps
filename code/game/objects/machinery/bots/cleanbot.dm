@@ -1,6 +1,6 @@
 /// A medical bot designed to clean up blood and other trash that accumulates in medbay
 /obj/machinery/bot/cleanbot
-	name = "Nanotrasen cleanbot"
+	name = "Ninetails cleanbot"
 	desc = "A robot cleaning automaton, an offshoot of the trash-cleaning roomba. The cleanbot is designed to clean dirt and blood from floors, and thankfully it does not touch items. It has an off and on switch."
 	icon = 'icons/obj/aibots.dmi'
 	icon_state = "cleanbot0"
@@ -121,7 +121,7 @@
 			highestdirtvalue = sampledirtvalue
 			destdir = dirn
 	if(!length(dirtyfloors)) //no viable turfs, we're entirely enclosed by dense objects
-		say("ERROR 401, PLEASE CONSULT YOUR INCLUDED NANOTRASEN OWNERS MANUAL")
+		say("ERROR 401, PLEASE CONSULT YOUR INCLUDED Ninetails OWNERS MANUAL")
 		stop_processing()
 		addtimer(CALLBACK(src, PROC_REF(reactivate)), 1 MINUTES)
 		return

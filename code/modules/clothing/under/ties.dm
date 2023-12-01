@@ -72,7 +72,7 @@
 
 /obj/item/clothing/tie/medal/conduct
 	name = "distinguished conduct medal"
-	desc = "A bronze medal awarded for distinguished conduct. Whilst a great honor, this is the most basic award given by the TGMC"
+	desc = "A bronze medal awarded for distinguished conduct. Whilst a great honor, this is the most basic award given by the NTC"
 
 /obj/item/clothing/tie/medal/bronze_heart
 	name = "bronze heart medal"
@@ -94,7 +94,7 @@
 
 /obj/item/clothing/tie/medal/silver/security
 	name = "robust security award"
-	desc = "An award for distinguished combat and sacrifice in defence of TGMC's interests. Often awarded to security staff."
+	desc = "An award for distinguished combat and sacrifice in defence of NTC's interests. Often awarded to security staff."
 
 /obj/item/clothing/tie/medal/gold
 	name = "gold medal"
@@ -103,11 +103,11 @@
 
 /obj/item/clothing/tie/medal/gold/captain
 	name = "medal of captaincy"
-	desc = "A golden medal awarded exclusively to those promoted to the rank of captain. It signifies the codified responsibilities of a captain to TGMC, and their undisputable authority over their crew."
+	desc = "A golden medal awarded exclusively to those promoted to the rank of captain. It signifies the codified responsibilities of a captain to NTC, and their undisputable authority over their crew."
 
 /obj/item/clothing/tie/medal/gold/heroism
 	name = "medal of exceptional heroism"
-	desc = "An extremely rare golden medal awarded only by the TGMC. To recieve such a medal is the highest honor and as such, very few exist."
+	desc = "An extremely rare golden medal awarded only by the NTC. To recieve such a medal is the highest honor and as such, very few exist."
 
 /obj/item/clothing/tie/medal/letter/commendation
 	name = "letter of commendation"
@@ -174,7 +174,7 @@
 		to_chat(user, "Waving around a badge before swiping an ID would be pretty pointless.")
 		return
 	if(isliving(user))
-		user.visible_message(span_warning(" [user] displays [user.p_their()] TGMC Internal Security Legal Authorization Badge.\nIt reads: [stored_name], TGMC Security."),span_warning(" You display your TGMC Internal Security Legal Authorization Badge.\nIt reads: [stored_name], TGMC Security."))
+		user.visible_message(span_warning(" [user] displays [user.p_their()] NTC Internal Security Legal Authorization Badge.\nIt reads: [stored_name], NTC Security."),span_warning(" You display your NTC Internal Security Legal Authorization Badge.\nIt reads: [stored_name], NTC Security."))
 
 /obj/item/clothing/tie/holobadge/attackby(obj/item/I, mob/user, params)
 	. = ..()

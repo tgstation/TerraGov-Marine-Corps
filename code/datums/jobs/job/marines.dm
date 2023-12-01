@@ -19,7 +19,7 @@
 Make your way to the cafeteria for some post-cryosleep chow, and then get equipped in your squad's prep room."})
 
 
-//Squad Marine
+//Squad Operative
 /datum/job/terragov/squad/standard
 	title = SQUAD_MARINE
 	paygrade = "E1"
@@ -43,9 +43,9 @@ Make your way to the cafeteria for some post-cryosleep chow, and then get equipp
 		<b>You answer to the</b> acting Squad Leader<br /><br />
 		<b>Unlock Requirement</b>: Starting Role<br /><br />
 		<b>Gamemode Availability</b>: Crash, Nuclear War<br /><br /><br />
-		TerraGov’s Squad Marines make up the bread and butter of Terra's fighting forces. They are fitted with the standard arsenal that the TGMC offers, and they can take up a variety of roles, being a sniper, a pyrotechnician, a machinegunner, rifleman and more. They’re often high in numbers and divided into squads, but they’re the lowest ranking individuals, with a low degree of skill, not adapt to engineering or medical roles. Still, they are not limited to the arsenal they can take on the field to deal whatever threat that lurks against Terra.
+		TerraGov’s Squad Operatives make up the bread and butter of Terra's fighting forces. They are fitted with the standard arsenal that the NTC offers, and they can take up a variety of roles, being a sniper, a pyrotechnician, a machinegunner, rifleman and more. They’re often high in numbers and divided into squads, but they’re the lowest ranking individuals, with a low degree of skill, not adapt to engineering or medical roles. Still, they are not limited to the arsenal they can take on the field to deal whatever threat that lurks against Terra.
 		<br /><br />
-		<b>Duty</b>: Carry out orders made by your acting Squad Leader, deal with any threats that oppose the TGMC.
+		<b>Duty</b>: Carry out orders made by your acting Squad Leader, deal with any threats that oppose the NTC.
 	"}
 	minimap_icon = "private"
 
@@ -67,12 +67,12 @@ Make your way to the cafeteria for some post-cryosleep chow, and then get equipp
 		if(18001 to 60000) // 300 hrs
 			new_human.wear_id.paygrade = "E3E"
 		if(60001 to INFINITY) // 1000 hrs
-			new_human.wear_id.paygrade = "E8" //If you play way too much TGMC. 1000 hours.
+			new_human.wear_id.paygrade = "E8" //If you play way too much NTC. 1000 hours.
 
 /datum/job/terragov/squad/standard/radio_help_message(mob/M)
 	. = ..()
-	to_chat(M, {"\nYou are a rank-and-file marine of the TGMC, and that is your strength.
-What you lack alone, you gain standing shoulder to shoulder with the men and women of the TerraGov Marine Corps. Ooh-rah!"})
+	to_chat(M, {"\nYou are a rank-and-file marine of the NTC, and that is your strength.
+What you lack alone, you gain standing shoulder to shoulder with the men and women of the Nine Tailed Fox. Ooh-rah!"})
 
 
 /datum/outfit/job/marine/standard
@@ -140,7 +140,7 @@ Your squaddies will look to you when it comes to construction in the field of ba
 		if(6001 to 60000) // 100 hrs
 			new_human.wear_id.paygrade = "E5"
 		if(60001 to INFINITY) // 1000 hrs
-			new_human.wear_id.paygrade = "E9" //If you play way too much TGMC. 1000 hours.
+			new_human.wear_id.paygrade = "E9" //If you play way too much NTC. 1000 hours.
 
 //Squad Corpsman
 /datum/job/terragov/squad/corpsman
@@ -200,7 +200,7 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 		if(6001 to 60000) // 100 hrs
 			new_human.wear_id.paygrade = "E5"
 		if(60001 to INFINITY) // 1000 hrs
-			new_human.wear_id.paygrade = "E9" //If you play way too much TGMC. 1000 hours.
+			new_human.wear_id.paygrade = "E9" //If you play way too much NTC. 1000 hours.
 
 //Squad Smartgunner
 /datum/job/terragov/squad/smartgunner
@@ -225,7 +225,7 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 		<b>You answer to the</b> acting Squad Leader<br /><br />
 		<b>Unlock Requirement</b>: Starting Role<br /><br />
 		<b>Gamemode Availability</b>: Crash, Nuclear War<br /><br /><br />
-		When it comes to heavy firepower during the early stages of an operation, TGMC has provided the squad with Smartgunners. They are those who trained to operate the SG-29 Smart Machine Gun, an IFF heavy weapon that provides cover fire even directly behind the marines. Squad Smartgunners are best when fighting behind marines, as they can act as shields or during a hectic crossfire.
+		When it comes to heavy firepower during the early stages of an operation, NTC has provided the squad with Smartgunners. They are those who trained to operate the SG-29 Smart Machine Gun, an IFF heavy weapon that provides cover fire even directly behind the marines. Squad Smartgunners are best when fighting behind marines, as they can act as shields or during a hectic crossfire.
 		<br /><br />
 		<b>Duty</b>: Be the backline of your pointmen, provide heavy weapons support with your smart machine gun.
 	"}
@@ -251,7 +251,7 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 		if(6001 to 60000) // 100 hrs
 			new_human.wear_id.paygrade = "E5"
 		if(60001 to INFINITY) // 1000 hrs
-			new_human.wear_id.paygrade = "E9" //If you play way too much TGMC. 1000 hours.
+			new_human.wear_id.paygrade = "E9" //If you play way too much NTC. 1000 hours.
 
 /datum/outfit/job/marine/smartgunner
 	name = SQUAD_SMARTGUNNER
@@ -263,27 +263,26 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 /datum/job/terragov/squad/specialist
 	title = SQUAD_SPECIALIST
 	req_admin_notify = TRUE
-	paygrade = "E4" // Dead
+	paygrade = "E4"
 	comm_title = "Spec"
 	total_positions = 0
 	max_positions = 0
-	access = list(ACCESS_MARINE_PREP)
+	access = list(ACCESS_MARINE_PREP, ACCESS_MARINE_SPECPREP)
 	minimal_access = list(ACCESS_MARINE_PREP, ACCESS_MARINE_DROPSHIP)
 	skills_type = /datum/skills/specialist
 	outfit = /datum/outfit/job/marine/specialist
 	exp_requirements = XP_REQ_UNSEASONED
 	exp_type = EXP_TYPE_REGULAR_ALL
-	job_flags = JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
+	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
 	jobworth = list(
 		/datum/job/xenomorph = LARVA_POINTS_STRONG,
 	)
-	job_points_needed = 10 //Redefined via config.
 
 
 /datum/job/terragov/squad/specialist/radio_help_message(mob/M)
 	. = ..()
-	to_chat(M, {"\nYou are the very rare and valuable weapon expert, trained to use special equipment.
-You can serve a variety of roles, so choose carefully."})
+	to_chat(M, {"\nYou are the very expensively trained and valuable operative and infiltration expert, trained to use special equipment and perform masterful CQC.
+	You are versatile and you can serve a variety of roles. Be careful building your loadout."})
 
 
 /datum/outfit/job/marine/specialist
@@ -353,7 +352,7 @@ You are also in charge of communicating with command and letting them know about
 		if(7501 to 60000) // 125 hrs
 			new_human.wear_id.paygrade = "E7"
 		if(60001 to INFINITY) // 1000 hrs
-			new_human.wear_id.paygrade = "E9E" //If you play way too much TGMC. 1000 hours.
+			new_human.wear_id.paygrade = "E9E" //If you play way too much NTC. 1000 hours.
 	if(!latejoin)
 		return
 	if(!new_human.assigned_squad)
@@ -399,6 +398,7 @@ You are also in charge of communicating with command and letting them know about
 	selection_color = "#a91101"
 	minimal_access = ALL_MARINE_ACCESS
 	display_order = JOB_DISPLAY_ORDER_SECURITY_OFFICER
+	skills_type = /datum/skills/security_officer
 	outfit = /datum/outfit/job/security_officer
 	total_positions = -1
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS

@@ -85,7 +85,7 @@
 
 /obj/item/ammo_magazine/flamer_tank/large/X/deathsquad
 	name = "Gargantuan flamethrower X-tank"
-	desc = "Using Bluespace technology, Nanotrasen has managed to fit in way more x-fuel than you would ever hope to need in a single lifetime into this specialized tank."
+	desc = "Using Bluespace technology, Ninetails has managed to fit in way more x-fuel than you would ever hope to need in a single lifetime into this specialized tank."
 	max_rounds = 225
 	current_rounds = 225
 	reload_delay = 2 SECONDS

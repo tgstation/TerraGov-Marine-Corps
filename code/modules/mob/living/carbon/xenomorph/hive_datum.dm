@@ -884,6 +884,7 @@ to_chat will check for valid clients itself already so no need to double check f
 /datum/hive_status/normal/add_xeno(mob/living/carbon/xenomorph/X)
 	. = ..()
 	orphan_hud_timer?.apply_to(X)
+	X.AddComponent(/datum/component/xeno_iff, CLF_IFF)
 
 /datum/hive_status/normal/remove_xeno(mob/living/carbon/xenomorph/X)
 	. = ..()
@@ -1574,4 +1575,10 @@ to_chat will check for valid clients itself already so no need to double check f
 /mob/living/carbon/human/get_xeno_hivenumber()
 	if(faction == FACTION_ZOMBIE)
 		return FACTION_ZOMBIE
+	if(faction == FACTION_CLF)
+		return XENO_HIVE_NORMAL
 	return FALSE
+
+/obj/machinery/deployable/mounted/sentry/get_xeno_hivenumber()
+	if(iff_signal == CLF_IFF)
+		return XENO_HIVE_NORMAL

@@ -491,39 +491,39 @@
 	return ..()
 
 /obj/effect/landmark/patrol_point/tgmc_11
-	name = "TGMC exit point 11"
-	id = "TGMC_11"
+	name = "NTC exit point 11"
+	id = "NTC_11"
 
 /obj/effect/landmark/patrol_point/tgmc_12
-	name = "TGMC exit point 12"
-	id = "TGMC_12"
+	name = "NTC exit point 12"
+	id = "NTC_12"
 
 /obj/effect/landmark/patrol_point/tgmc_13
-	name = "TGMC exit point 13"
-	id = "TGMC_13"
+	name = "NTC exit point 13"
+	id = "NTC_13"
 
 /obj/effect/landmark/patrol_point/tgmc_14
-	name = "TGMC exit point 14"
-	id = "TGMC_14"
+	name = "NTC exit point 14"
+	id = "NTC_14"
 
 /obj/effect/landmark/patrol_point/tgmc_21
-	name = "TGMC exit point 21"
-	id = "TGMC_21"
+	name = "NTC exit point 21"
+	id = "NTC_21"
 	minimap_icon = "patrol_2"
 
 /obj/effect/landmark/patrol_point/tgmc_22
-	name = "TGMC exit point 22"
-	id = "TGMC_22"
+	name = "NTC exit point 22"
+	id = "NTC_22"
 	minimap_icon = "patrol_2"
 
 /obj/effect/landmark/patrol_point/tgmc_23
-	name = "TGMC exit point 23"
-	id = "TGMC_23"
+	name = "NTC exit point 23"
+	id = "NTC_23"
 	minimap_icon = "patrol_2"
 
 /obj/effect/landmark/patrol_point/tgmc_24
-	name = "TGMC exit point 24"
-	id = "TGMC_24"
+	name = "NTC exit point 24"
+	id = "NTC_24"
 	minimap_icon = "patrol_2"
 
 /obj/effect/landmark/patrol_point/som

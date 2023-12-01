@@ -11,7 +11,7 @@
 	req_admin_notify = TRUE
 	paygrade = "O6"
 	comm_title = "CPT"
-	supervisors = "TGMC high command"
+	supervisors = "NTC high command"
 	selection_color = "#ccccff"
 	total_positions = 1
 	skills_type = /datum/skills/captain
@@ -35,17 +35,17 @@
 	)
 	html_description = {"
 		<b>Difficulty</b>: Hard<br /><br />
-		<b>You answer to</b> TGMC High Command<br /><br />
+		<b>You answer to</b> NTC High Command<br /><br />
 		<b>Unlock Requirement</b>: Starting Role<br /><br />
 		<b>Gamemode Availability</b>: Nuclear War<br /><br /><br />
-		<b>Duty</b>: Lead the TGMC platoon and complete your mission. Support the marines and communicate with your command staff, execute orders.
+		<b>Duty</b>: Lead the NTC platoon and complete your mission. Support the marines and communicate with your command staff, execute orders.
 	"}
 	minimap_icon = "captain"
 
 /datum/job/terragov/command/captain/radio_help_message(mob/M)
 	. = ..()
 	to_chat(M, {"As the captain of the [SSmapping.configs[SHIP_MAP].map_name] you are held by higher standard and are expected to act competently.
-While you may support Nanotrasen, you report to the TGMC High Command, not the corporate office.
+While you may support Ninetails, you report to the NTC High Command, not the corporate office.
 Your primary task is the safety of the ship and her crew, and ensuring the survival and success of the marines.
 Your first order of business should be briefing the marines on the mission they are about to undertake.
 You should not be voluntarily leaving your vessel under any circumstances. A captain goes down with their ship.
@@ -140,7 +140,7 @@ Godspeed, captain! And remember, you are not above the law."})
 	to_chat(M, {"You are charged with overseeing the operation on the ground, and are the highest-ranked deployed marine.
 Your duties are to ensure marines hold when ordered, and push when they are cowering behind barricades.
 Do not ask your men to do anything you would not do side by side with them.
-Make the TGMC proud!"})
+Make the NTC proud!"})
 
 /datum/job/terragov/command/fieldcommander/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
 	. = ..()
@@ -239,48 +239,49 @@ Make the TGMC proud!"})
 
 //CEO
 /datum/job/terragov/command/ceo
-  title = CHIEF_EXECUTIVE_OFFICER
-  req_admin_notify = TRUE
-  paygrade = "CEO"
-  comm_title = "CEO"
-  supervisors = "Your conscience."
-  total_positions = 1
-  skills_type = /datum/skills/ceo
-  access = ALL_ACCESS
-  minimal_access = ALL_ACCESS
-  display_order = JOB_DISPLAY_ORDER_CHIEF_EXECUTIVE_OFFICER
-  outfit = /datum/outfit/job/command/ceo
-  exp_requirements = XP_REQ_EXPERT
-  exp_type = EXP_TYPE_REGULAR_ALL
-  job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_ISCOMMAND|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_ALWAYS_VISIBLE_ON_MINIMAP
-  jobworth = list(
+	title = CHIEF_EXECUTIVE_OFFICER
+	req_admin_notify = TRUE
+	paygrade = "CEO"
+	comm_title = "CEO"
+	supervisors = "Your conscience."
+	total_positions = 1
+	skills_type = /datum/skills/ceo
+	access = ALL_ACCESS
+	shadow_languages = list(/datum/language/xenocommon)
+	minimal_access = ALL_ACCESS
+	display_order = JOB_DISPLAY_ORDER_CHIEF_EXECUTIVE_OFFICER
+	outfit = /datum/outfit/job/command/ceo
+	exp_requirements = XP_REQ_EXPERT
+	exp_type = EXP_TYPE_REGULAR_ALL
+	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_ISCOMMAND|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_ALWAYS_VISIBLE_ON_MINIMAP
+	jobworth = list(
 		/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE,
 		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
 		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR,
 		/datum/job/terragov/command/mech_pilot = MECH_POINTS_REGULAR,
-  )
-  html_description = {"
-  	<b>Difficulty</b>: Hard<br /><br />
-  	<b>You answer to</b> NTC High Command<br /><br />
-  	<b>Unlock Requirement</b>: Being the CEO in lore.<br /><br />
-  	<b>Gamemode Availability</b>: All<br /><br /><br />
-  	<b>Duty</b>: Lead your corporation to ensure the operations go flawlessly
-  	"}
-  minimap_icon = "captain"
+	)
+	html_description = {"
+		<b>Difficulty</b>: Hard<br /><br />
+		<b>You answer to</b> NTC High Command<br /><br />
+		<b>Unlock Requirement</b>: Being the CEO in lore.<br /><br />
+		<b>Gamemode Availability</b>: All<br /><br /><br />
+		<b>Duty</b>: Lead your corporation to ensure the operations go flawlessly
+		"}
+	minimap_icon = "captain"
 
 /datum/outfit/job/command/ceo
- name = CHIEF_EXECUTIVE_OFFICER
- jobtype = /datum/job/terragov/command/ceo
+	name = CHIEF_EXECUTIVE_OFFICER
+	jobtype = /datum/job/terragov/command/ceo
 
- id = /obj/item/card/id/gold
- belt = /obj/item/storage/holster/belt/mateba/officer/full
- ears = /obj/item/radio/headset/mainship/mcom
- w_uniform = /obj/item/clothing/under/suit_jacket/charcoal
- shoes = /obj/item/clothing/shoes/marine/full
- gloves = /obj/item/clothing/gloves/marine/officer
- r_store = /obj/item/storage/pouch/general/large/command
- l_store = /obj/item/hud_tablet/leadership
- back = /obj/item/storage/backpack/satchel
+	id = /obj/item/card/id/gold
+	belt = /obj/item/storage/holster/belt/mateba/officer/full
+	ears = /obj/item/radio/headset/mainship/mcom
+	w_uniform = /obj/item/clothing/under/suit_jacket/charcoal
+	shoes = /obj/item/clothing/shoes/marine/full
+	gloves = /obj/item/clothing/gloves/marine/officer
+	r_store = /obj/item/storage/pouch/general/large/command
+	l_store = /obj/item/hud_tablet/leadership
+	back = /obj/item/storage/backpack/satchel
 
 //Corpsec Commander
 /datum/job/terragov/command/corpseccommander
@@ -1028,17 +1029,17 @@ You are also an expert when it comes to medication and treatment. If you do not 
 	)
 	html_description = {"
 		<b>Difficulty</b>: Medium<br /><br />
-		<b>You answer to the</b> Nanotrasen Corporate Office<br /><br />
+		<b>You answer to the</b> Ninetails Corporate Office<br /><br />
 		<b>Unlock Requirement</b>: Starting Role<br /><br />
 		<b>Gamemode Availability</b>: Nuclear War<br /><br /><br />
-		<b>Duty</b>: Research extraterrestrial life aboard the ship if provided by Nanotrasen/TerraGov, synthesize chemicals for the benefit of the marines. Find out the cause of why and when. Learn new things for humankind. Act as a secondary medical officer in practice.
+		<b>Duty</b>: Research extraterrestrial life aboard the ship if provided by Ninetails/TerraGov, synthesize chemicals for the benefit of the marines. Find out the cause of why and when. Learn new things for humankind. Act as a secondary medical officer in practice.
 	"}
 	minimap_icon = "researcher"
 
 
 /datum/job/terragov/medical/researcher/radio_help_message(mob/M)
 	. = ..()
-	to_chat(M, {"You are a civilian, working for the Nanotrasen Corporation, but you are still subject to the military chain of command.
+	to_chat(M, {"You are a civilian, working for the Ninetails Corporation, but you are still subject to the military chain of command.
 You are tasked with deploying with the marines and researching the remains of the colony to get funding for Requisitions.
 You are free to use any new technology you discover as you want, or give them out to the marines.
 If shipside medbay is unstaffed, you should consider working as a regular doctor until someone else is available to take over.
@@ -1114,10 +1115,10 @@ It is also recommended that you gear up like a regular marine, or your 'internsh
 	)
 	html_description = {"
 		<b>Difficulty</b>: Hard (varies)<br /><br />
-		<b>You answer to the</b> Nanotrasen Corporate Office<br /><br />
+		<b>You answer to the</b> Ninetails Corporate Office<br /><br />
 		<b>Unlock Requirement</b>: Starting Role<br /><br />
 		<b>Gamemode Availability</b>: Nuclear War<br /><br /><br />
-		<b>Duty</b>: Manage relations between Nanotrasen and TerraGov Marine Corps. Report your findings via faxes. Reply if you’re called.
+		<b>Duty</b>: Manage relations between Ninetails and Nine Tailed Fox. Report your findings via faxes. Reply if you’re called.
 	"}
 	minimap_icon = "cl"
 
@@ -1144,9 +1145,9 @@ It is also recommended that you gear up like a regular marine, or your 'internsh
 
 /datum/job/terragov/civilian/liaison/radio_help_message(mob/M)
 	. = ..()
-	to_chat(M, {"As a representative of Nanotrasen Corporation you are expected to stay professional and loyal to the corporation at all times.
+	to_chat(M, {"As a representative of Ninetails Corporation you are expected to stay professional and loyal to the corporation at all times.
 You are not required to follow military orders; however, you cannot give military orders.
-Your primary job is to observe and report back your findings to Nanotrasen. Follow regular game rules unless told otherwise by your superiors.
+Your primary job is to observe and report back your findings to Ninetails. Follow regular game rules unless told otherwise by your superiors.
 Use your office fax machine to communicate with corporate headquarters or to acquire new directives. You may not receive anything back (especially if the game staff is absent or otherwise busy), and this is normal."})
 
 /datum/outfit/job/civilian/liaison
@@ -1191,7 +1192,7 @@ Use your office fax machine to communicate with corporate headquarters or to acq
 		<b>You answer to the</b> acting Command Staff and the human crew<br /><br />
 		<b>Unlock Requirement</b>: Starting Role<br /><br />
 		<b>Gamemode Availability</b>: Crash, Nuclear War<br /><br /><br />
-		<b>Duty</b>: Support and assist in every department of the TerraGov Marine Corps, use your incredibly developed skills to help the marines during their missions. You can talk to other synthetics or the AI on the :n channel. Serve your purpose.
+		<b>Duty</b>: Support and assist in every department of the Nine Tailed Fox, use your incredibly developed skills to help the marines during their missions. You can talk to other synthetics or the AI on the :n channel. Serve your purpose.
 	"}
 	minimap_icon = "synth"
 
@@ -1226,7 +1227,7 @@ Use your office fax machine to communicate with corporate headquarters or to acq
 
 /datum/job/terragov/silicon/synthetic/radio_help_message(mob/M)
 	. = ..()
-	to_chat(M, {"Your primary job is to support and assist all TGMC departments and personnel on-board.
+	to_chat(M, {"Your primary job is to support and assist all NTC departments and personnel on-board.
 In addition, being a Synthetic gives you knowledge in every field and specialization possible on-board the ship."})
 
 
@@ -1282,7 +1283,7 @@ In addition, being a Synthetic gives you knowledge in every field and specializa
 
 /datum/job/terragov/silicon/ai/radio_help_message(mob/M)
 	. = ..()
-	to_chat(M, {"Your primary job is to support and assist all TGMC departments and personnel on-board.
+	to_chat(M, {"Your primary job is to support and assist all NTC departments and personnel on-board.
 However, your vision is limited through cameras from the ship or to marines groundside.
 Recon any threats and report findings at various communication channels.
 If you require any help, use <b>mentorhelp</b> to ask mentors about what you're supposed to do."})
