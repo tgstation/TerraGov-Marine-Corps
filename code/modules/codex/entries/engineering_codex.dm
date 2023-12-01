@@ -38,6 +38,6 @@
 	6. Send a signal with your singaler to activate your explosive."
 
 	lore_text = "The Detonation pack is an improvement on the old Plastique Compound 4, commonly known as C4.<br><br>\
-	The demands of the TGMC required a device that could be used as both a breaching charge and also as explosive ordanence.<br><br>\
+	The demands of the NTC required a device that could be used as both a breaching charge and also as explosive ordanence.<br><br>\
 	Thus the now common det pack was produced with a two stage explosive package. An inner package surrounded by metal shaping plates for breaching and a connected larger outer package that is able to provide a bigger bang when activated by the electronic detonation channel.<br><br>\
 	There have been no incidents where the outer package was accidentally activated while the Det Pack was set on breaching mode."

@@ -79,7 +79,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 
 /datum/reagent/consumable/ethanol/nt_beer
 	name = "Aspen Beer"
-	description = "Pretty good when you get past the fact that it tastes like piss. Canned by the Nanotrasen Corporation."
+	description = "Pretty good when you get past the fact that it tastes like piss. Canned by the Ninetails Corporation."
 	color = "#ffcc66"
 	boozepwr = 5 //Space Europeans hate it
 	taste_description = "dish water"
@@ -638,7 +638,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 
 /datum/reagent/consumable/ethanol/grog
 	name = "Grog"
-	description = "Watered down rum, NanoTrasen approves!"
+	description = "Watered down rum, Ninetails approves!"
 	color = "#664300" // rgb: 102, 67, 0
 	taste_description = "a poor excuse for alcohol"
 	boozepwr = 1
@@ -673,7 +673,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 
 /datum/reagent/consumable/ethanol/amasec
 	name = "Amasec"
-	description = "Official drink of the NanoTrasen Gun-Club!"
+	description = "Official drink of the Ninetails Gun-Club!"
 	color = "#664300" // rgb: 102, 67, 0
 	taste_description = "dark and metallic"
 	boozepwr = 35

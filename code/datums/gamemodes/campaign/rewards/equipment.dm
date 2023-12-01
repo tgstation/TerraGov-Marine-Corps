@@ -13,7 +13,7 @@
 /datum/campaign_asset/equipment/power_armor
 	name = "B18 consignment"
 	desc = "Three sets of B18 power armor"
-	detailed_desc = "Activatable by squad leaders. Your battalion has been assigned a number of B18 power armor sets, available at your request. B18 is TGMC's premier infantry armor, providing superior protection, mobility and an advanced automedical system."
+	detailed_desc = "Activatable by squad leaders. Your battalion has been assigned a number of B18 power armor sets, available at your request. B18 is NTC's premier infantry armor, providing superior protection, mobility and an advanced automedical system."
 	ui_icon = "b18"
 	uses = 3
 	cost = 25

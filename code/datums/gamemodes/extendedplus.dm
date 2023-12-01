@@ -28,6 +28,7 @@
 		/datum/job/terragov/squad/corpsman = 8,
 		/datum/job/terragov/squad/smartgunner = 4,
 		/datum/job/terragov/squad/leader = 4,
+		/datum/job/terragov/squad/specialist = 4,
 		/datum/job/terragov/squad/standard = -1,
 		/datum/job/worker = -1,
 		/datum/job/survivor/rambo = -1,
@@ -55,7 +56,7 @@
 	/// Time between two bioscan
 	var/bioscan_interval = 15 MINUTES
 
-//sets TGMC and SOM squads
+//sets NTC and SOM squads
 /datum/game_mode/extended_plus/set_valid_squads()
 	SSjob.active_squads[FACTION_TERRAGOV] = list()
 	SSjob.active_squads[FACTION_SOM] = list()

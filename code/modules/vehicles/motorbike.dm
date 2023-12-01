@@ -3,7 +3,7 @@
 #define LOW_FUEL_LEFT_MESSAGE 100
 /obj/vehicle/ridden/motorbike
 	name = "all-terrain motorbike"
-	desc = "An all-terrain vehicle built for traversing rough terrain with ease. \"TGMC CAVALRY\" is stamped on the side of the engine."
+	desc = "An all-terrain vehicle built for traversing rough terrain with ease. \"NTC CAVALRY\" is stamped on the side of the engine."
 	icon_state = "motorbike"
 	max_integrity = 300
 	soft_armor = list(MELEE = 30, BULLET = 30, LASER = 30, ENERGY = 0, BOMB = 30, FIRE = 60, ACID = 60)
@@ -210,7 +210,7 @@
  */
 /obj/item/sidecar
 	name = "motorbike sidecar"
-	desc = "A detached sidecar for TGMC motorbikes, which can be attached to them, allowing a second passenger. Use a wrench to dettach the sidecar."
+	desc = "A detached sidecar for NTC motorbikes, which can be attached to them, allowing a second passenger. Use a wrench to dettach the sidecar."
 	icon = 'icons/obj/vehicles.dmi'
 	icon_state = "sidecar"
 

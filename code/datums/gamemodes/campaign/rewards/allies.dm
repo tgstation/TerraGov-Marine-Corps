@@ -59,7 +59,7 @@
 	name = "PMC security detail"
 	desc = "An elite PMC team to assist in a joint operation"
 	detailed_desc = "A small number of PMC job slots are opened at no attrition cost. \
-	NanoTrasen have authorised a small team of their PMC contractors to assist us in combat. With superior arms and armor, they a powerful tactical asset."
+	Ninetails have authorised a small team of their PMC contractors to assist us in combat. With superior arms and armor, they a powerful tactical asset."
 	ui_icon = "pmc"
 	bonus_job_list = list(
 		/datum/job/pmc/leader/campaign_bonus = 1,

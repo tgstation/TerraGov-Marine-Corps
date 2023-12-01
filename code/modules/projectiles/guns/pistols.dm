@@ -46,7 +46,7 @@
 
 /obj/item/weapon/gun/pistol/standard_pistol
 	name = "\improper P-14 pistol"
-	desc = "The P-14, produced by Terran Armories. A reliable sidearm that loads 9x19mm Parabellum Auto munitions. Capable of mounting a limited amount of attachments, and firing at a respectable rate of fire, often as fast as you can pull the trigger. Takes 21-round 9mm magazines."
+	desc = "The P-14, produced by Archercorp. A reliable sidearm that loads 9x19mm Parabellum Auto munitions. Capable of mounting a limited amount of attachments, and firing at a respectable rate of fire, often as fast as you can pull the trigger. Takes 21-round 9mm magazines."
 	icon_state = GUN_ICONSTATE_LOADED
 	item_state = GUN_ICONSTATE_LOADED
 	caliber = CALIBER_9X19 //codex
@@ -441,7 +441,7 @@
 
 /obj/item/weapon/gun/pistol/standard_pocketpistol
 	name = "\improper P-17 pocket pistol"
-	desc = "A tiny pistol used by the TGMC as an emergency handgun meant to be stored about anywhere. Fits in boots. Uses .380 ACP stored in an eight round magazine."
+	desc = "A tiny pistol used by the NTC as an emergency handgun meant to be stored about anywhere. Fits in boots. Uses .380 ACP stored in an eight round magazine."
 	icon_state = "tp17"
 	item_state = "tp17"
 	fire_animation = "tp17_fire"
@@ -553,7 +553,7 @@
 
 /obj/item/weapon/gun/pistol/vp78
 	name = "\improper VP78 combat pistol"
-	desc = "A massive, formidable automatic handgun chambered in 9mm squash-head rounds. Commonly seen in the hands of wealthy Nanotrasen members."
+	desc = "A massive, formidable automatic handgun chambered in 9mm squash-head rounds. Commonly seen in the hands of wealthy Ninetails members."
 	icon_state = "vp78"
 	item_state = "vp78"
 	caliber = CALIBER_9X19 //codex
@@ -710,7 +710,7 @@ It is a modified Beretta 93R, and can fire three round burst or single fire. Whe
 
 /obj/item/weapon/gun/pistol/knife
 	name = "\improper M6 'Eclipse Raider' ballistic knife"
-	desc = "The back issue survival knife issued to a few TerraGov Marine Corps marines. There are a surprisingly large amount of attachment points on this... knife."
+	desc = "The back issue survival knife issued to a few Nine Tailed Fox marines. There are a surprisingly large amount of attachment points on this... knife."
 	icon = 'icons/obj/items/weapons.dmi'
 	icon_state = "elite_knife"
 	reload_sound = 'sound/weapons/flipblade.ogg'
@@ -752,7 +752,7 @@ It is a modified Beretta 93R, and can fire three round burst or single fire. Whe
 // Smart pistol, based on Calico M-950
 /obj/item/weapon/gun/pistol/smart_pistol
 	name = "\improper SP-13 smart pistol"
-	desc = "The SP-13 is a IFF-capable sidearm used by the TerraGov Marine Corps. A cutting-edge miniaturization technology allows mounting of a KTLD IFF system on the pistol, albeit at high manufactoring cost and the usual specialized training required to use such a pistol. Unique design feature high-capacity mag on top of the barrel, with integrated sight."
+	desc = "The SP-13 is a IFF-capable sidearm used by the Nine Tailed Fox. A cutting-edge miniaturization technology allows mounting of a KTLD IFF system on the pistol, albeit at high manufactoring cost and the usual specialized training required to use such a pistol. Unique design feature high-capacity mag on top of the barrel, with integrated sight."
 	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "sp13"
 	item_state = "sp13"

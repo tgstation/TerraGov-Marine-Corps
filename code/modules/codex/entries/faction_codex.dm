@@ -13,9 +13,9 @@
 	--Navy is spread out thinly."
 
 /datum/codex_entry/nt_faction
-	display_name = "NanoTrasen (faction)"
-	lore_text = "NanoTrasen, known informally as NT, is the largest corporation in human space, with facilities mainly in TG space along with a few \
-	frontier outposts. They focus on phoron research and mining.<br><br> NanoTrasen was started in in 2057, their main invention back then being a phoron-engine design. \
+	display_name = "Ninetails (faction)"
+	lore_text = "Ninetails, known informally as NT, is the largest corporation in human space, with facilities mainly in TG space along with a few \
+	frontier outposts. They focus on phoron research and mining.<br><br> Ninetails was started in in 2057, their main invention back then being a phoron-engine design. \
 	Ever since, NT has gained the favor of the ISA and TG, allowing them to rapidly expand operations, eventually encompasssing most human space. \
 	Despite their generally good PR and wide acclaim, vocal critics of NT indicate their abuses of workers, as well as their controversial production of \
 	vatborns for the military. Despite this, NT is projected to keep growing, even with the TG-ICC war."

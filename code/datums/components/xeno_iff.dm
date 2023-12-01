@@ -8,7 +8,7 @@
 	///The IFF this component carries. SOM xenos? I got you.
 	var/iff_type
 
-/datum/component/xeno_iff/Initialize(_iff_type = TGMC_LOYALIST_IFF)
+/datum/component/xeno_iff/Initialize(_iff_type = NTC_LOYALIST_IFF)
 	. = ..()
 	if(!isxeno(parent))
 		return COMPONENT_INCOMPATIBLE //Only xenos should have a xeno IFF. Obviously.

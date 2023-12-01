@@ -338,6 +338,33 @@
 	resistance_flags = INDESTRUCTIBLE
 	lock_flags = JOB_LOCK
 
+/obj/machinery/marine_selector/clothes/specialist
+	name = "GHMME Automated Commander Closet"
+	req_access = list(ACCESS_MARINE_SPECPREP)
+	vendor_role = /datum/job/terragov/squad/specialist
+	lock_flags = JOB_LOCK
+	gives_webbing = FALSE
+
+/obj/machinery/marine_selector/clothes/specialist/Initialize(mapload)
+	. = ..()
+	listed_products = GLOB.specialist_clothes_listed_products
+
+/obj/machinery/marine_selector/clothes/specialist/alpha
+	squad_tag = "Alpha"
+	req_access = list(ACCESS_MARINE_SMARTPREP, ACCESS_MARINE_ALPHA)
+
+/obj/machinery/marine_selector/clothes/specialist/bravo
+	squad_tag = "Bravo"
+	req_access = list(ACCESS_MARINE_SMARTPREP, ACCESS_MARINE_BRAVO)
+
+/obj/machinery/marine_selector/clothes/specialist/charlie
+	squad_tag = "Charlie"
+	req_access = list(ACCESS_MARINE_SMARTPREP, ACCESS_MARINE_CHARLIE)
+
+/obj/machinery/marine_selector/clothes/specialist/delta
+	squad_tag = "Delta"
+	req_access = list(ACCESS_MARINE_SMARTPREP, ACCESS_MARINE_DELTA)
+
 /obj/machinery/marine_selector/clothes/leader
 	name = "GHMME Automated Leader Closet"
 	req_access = list(ACCESS_MARINE_LEADER)
@@ -489,6 +516,19 @@
 	vendor_role = /datum/job/fallen/marine/corpsman
 	resistance_flags = INDESTRUCTIBLE
 	lock_flags = JOB_LOCK
+
+/obj/machinery/marine_selector/gear/specialist
+	name = "NEXUS Automated Specialist Equipment Rack"
+	desc = "An automated specialist equipment rack hooked up to a colossal storage unit."
+	icon_state = "squadleader"
+	icon_vend = "squadleader-vend"
+	icon_deny = "squadleader-deny"
+	vendor_role = /datum/job/terragov/squad/specialist
+	req_access = list(ACCESS_MARINE_SPECPREP)
+
+/obj/machinery/marine_selector/gear/specialist/Initialize(mapload)
+	. = ..()
+	listed_products = GLOB.specialist_gear_listed_products
 
 /obj/machinery/marine_selector/gear/engi
 	name = "NEXUS Automated Engineer Equipment Rack"
@@ -673,6 +713,14 @@
 		/obj/item/storage/box/MRE,
 	)
 
+/obj/effect/vendor_bundle/basic_specialist
+	gear_to_spawn = list(
+		/obj/item/clothing/under/spec_operative,
+		/obj/item/clothing/shoes/marine/full,
+		/obj/item/clothing/gloves/marine,
+		/obj/item/storage/box/MRE,
+	)
+
 /obj/effect/vendor_bundle/basic_jaeger_commander
 	gear_to_spawn = list(
 		/obj/item/clothing/under/marine/jaeger,
@@ -761,8 +809,8 @@
 	)
 
 /obj/effect/vendor_bundle/white_dress
-	name = "Full set of TGMC white dress uniform"
-	desc = "A standard-issue TerraGov Marine Corps white dress uniform. The starch in the fabric chafes a small amount but it pales in comparison to the pride you feel when you first put it on during graduation from boot camp. Doesn't seem to fit perfectly around the waist though."
+	name = "Full set of NTC white dress uniform"
+	desc = "A standard-issue Nine Tailed Fox white dress uniform. The starch in the fabric chafes a small amount but it pales in comparison to the pride you feel when you first put it on during graduation from boot camp. Doesn't seem to fit perfectly around the waist though."
 	gear_to_spawn = list(
 		/obj/item/clothing/under/marine/whites,
 		/obj/item/clothing/suit/white_dress_jacket,
@@ -772,8 +820,8 @@
 	)
 
 /obj/effect/vendor_bundle/service_uniform
-	name = "Full set of TGMC service uniform"
-	desc = "A standard-issue TerraGov Marine Corps dress uniform. Sometimes, you hate wearing this since you remember wearing this to Infantry School and have to wear this when meeting a commissioned officer. This is what you wear when you are not deployed and are working in an office. Doesn't seem to fit perfectly around the waist."
+	name = "Full set of NTC service uniform"
+	desc = "A standard-issue Nine Tailed Fox dress uniform. Sometimes, you hate wearing this since you remember wearing this to Infantry School and have to wear this when meeting a commissioned officer. This is what you wear when you are not deployed and are working in an office. Doesn't seem to fit perfectly around the waist."
 	gear_to_spawn = list(
 		/obj/item/clothing/under/marine/service,
 		/obj/item/clothing/head/garrisoncap,

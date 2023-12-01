@@ -21,7 +21,7 @@
 	enclosed = FALSE //Normal ripley has an open cockpit design
 	enter_delay = 10 //can enter in a quarter of the time of other mechs
 	exit_delay = 10
-	/// Custom Ripley step and turning sounds (from TGMC)
+	/// Custom Ripley step and turning sounds (from NTC)
 	stepsound = 'sound/mecha/powerloader_step.ogg'
 	turnsound = 'sound/mecha/powerloader_turn2.ogg'
 	equip_by_category = list(

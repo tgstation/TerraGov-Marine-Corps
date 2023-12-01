@@ -527,7 +527,7 @@
 	dir = 4
 	},
 /turf/template_noop,
-/area/template_noop)
+/area/shuttle/dropship/normandy)
 "vw" = (
 /obj/structure/dropship_piece/one/engine/leftbottom,
 /turf/template_noop,
@@ -572,7 +572,7 @@
 	dir = 8
 	},
 /turf/template_noop,
-/area/template_noop)
+/area/shuttle/dropship/normandy)
 
 (1,1,1) = {"
 ao

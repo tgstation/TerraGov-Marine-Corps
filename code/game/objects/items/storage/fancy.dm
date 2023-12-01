@@ -164,7 +164,7 @@
 
 /obj/item/storage/fancy/chemrettes
 	name = "Chemrette packet"
-	desc = "Terragov, chem filled, cigarettes. Now with extra Flavors!"
+	desc = "NTC, chem filled, cigarettes. Now with extra Flavors!"
 	icon = 'icons/obj/items/cigarettes.dmi'
 	icon_state = "chempacketbox"
 	item_state = "chempacketbox"
@@ -199,8 +199,8 @@
 	icon_state = "[initial(icon_state)][length(contents)]"
 
 /obj/item/storage/fancy/cigarettes/dromedaryco
-	name = "\improper Nanotrasen Gold packet"
-	desc = "Building better worlds, and rolling better cigarettes. These fancy cigarettes are Nanotrasen's entry into the market. Comes backed by a fierce legal team."
+	name = "\improper Ninetails Gold packet"
+	desc = "Building better worlds, and rolling better cigarettes. Comes backed by a fierce legal team."
 	icon_state = "ntpacket"
 	item_state = "ntpacket"
 

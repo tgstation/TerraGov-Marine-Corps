@@ -35,7 +35,7 @@
 	var/datum/job/scaled_job = SSjob.GetJobType(/datum/job/som/squad/veteran)
 	scaled_job.job_points_needed = 5 //Every 5 non vets join, a new vet slot opens
 
-//sets TGMC and SOM squads
+//sets NTC and SOM squads
 /datum/game_mode/hvh/set_valid_squads()
 	SSjob.active_squads[FACTION_TERRAGOV] = list()
 	SSjob.active_squads[FACTION_SOM] = list()
@@ -76,10 +76,10 @@
 		som_accuracy_stat = ", for an accuracy of [(GLOB.round_statistics.total_projectile_hits[FACTION_TERRAGOV] / GLOB.round_statistics.total_projectiles_fired[FACTION_SOM]) * 100]%!."
 
 	var/list/dat = list({"[span_round_body("The end of round statistics are:")]<br>
-		<br>[GLOB.round_statistics.total_humans_created[FACTION_TERRAGOV]] TGMC personel deployed for the patrol, and [GLOB.round_statistics.total_human_deaths[FACTION_TERRAGOV] ? GLOB.round_statistics.total_human_deaths[FACTION_TERRAGOV] : "no"] TGMC personel were killed. [tgmc_survival_stat ? tgmc_survival_stat : ""]
+		<br>[GLOB.round_statistics.total_humans_created[FACTION_TERRAGOV]] NTC personel deployed for the patrol, and [GLOB.round_statistics.total_human_deaths[FACTION_TERRAGOV] ? GLOB.round_statistics.total_human_deaths[FACTION_TERRAGOV] : "no"] NTC personel were killed. [tgmc_survival_stat ? tgmc_survival_stat : ""]
 		<br>[GLOB.round_statistics.total_humans_created[FACTION_SOM]] SOM personel deployed for the patrol, and [GLOB.round_statistics.total_human_deaths[FACTION_SOM] ? GLOB.round_statistics.total_human_deaths[FACTION_SOM] : "no"] SOM personel were killed. [som_survival_stat ? som_survival_stat : ""]
-		<br>The TGMC fired [GLOB.round_statistics.total_projectiles_fired[FACTION_TERRAGOV] ? GLOB.round_statistics.total_projectiles_fired[FACTION_TERRAGOV] : "no"] projectiles. [GLOB.round_statistics.total_projectile_hits[FACTION_SOM] ? GLOB.round_statistics.total_projectile_hits[FACTION_SOM] : "No"] projectiles managed to hit members of the SOM[tgmc_accuracy_stat ? tgmc_accuracy_stat : "."]
-		<br>The SOM fired [GLOB.round_statistics.total_projectiles_fired[FACTION_SOM] ? GLOB.round_statistics.total_projectiles_fired[FACTION_SOM] : "no"] projectiles. [GLOB.round_statistics.total_projectile_hits[FACTION_TERRAGOV] ? GLOB.round_statistics.total_projectile_hits[FACTION_TERRAGOV] : "No"] projectiles managed to hit members of the TGMC[som_accuracy_stat ? som_accuracy_stat : "."]
+		<br>The NTC fired [GLOB.round_statistics.total_projectiles_fired[FACTION_TERRAGOV] ? GLOB.round_statistics.total_projectiles_fired[FACTION_TERRAGOV] : "no"] projectiles. [GLOB.round_statistics.total_projectile_hits[FACTION_SOM] ? GLOB.round_statistics.total_projectile_hits[FACTION_SOM] : "No"] projectiles managed to hit members of the SOM[tgmc_accuracy_stat ? tgmc_accuracy_stat : "."]
+		<br>The SOM fired [GLOB.round_statistics.total_projectiles_fired[FACTION_SOM] ? GLOB.round_statistics.total_projectiles_fired[FACTION_SOM] : "no"] projectiles. [GLOB.round_statistics.total_projectile_hits[FACTION_TERRAGOV] ? GLOB.round_statistics.total_projectile_hits[FACTION_TERRAGOV] : "No"] projectiles managed to hit members of the NTC[som_accuracy_stat ? som_accuracy_stat : "."]
 		"})
 	if(GLOB.round_statistics.grenades_thrown)
 		dat += "[GLOB.round_statistics.grenades_thrown] grenades were detonated."
@@ -159,7 +159,7 @@ Sensors indicate [num_tgmc_delta || "no"] unknown lifeform signature[num_tgmc_de
 	if(announce_som)
 		priority_announce(som_scan_input, som_scan_name, sound = 'sound/AI/bioscan.ogg', receivers = (som_list + GLOB.observer_list))
 
-	//announcement for TGMC
+	//announcement for NTC
 	var/marine_scan_name = "Long Range Tactical Bioscan Status"
 	var/marine_scan_input = {"Bioscan complete.
 
@@ -168,7 +168,7 @@ Sensors indicate [num_som_delta || "no"] unknown lifeform signature[num_som_delt
 	if(announce_marines)
 		priority_announce(marine_scan_input, marine_scan_name, sound = 'sound/AI/bioscan.ogg', receivers = (tgmc_list + GLOB.observer_list))
 
-	log_game("Bioscan. [num_tgmc] active TGMC personnel[tgmc_location ? " Location: [tgmc_location]":""] and [num_som] active SOM personnel[som_location ? " Location: [som_location]":""]")
+	log_game("Bioscan. [num_tgmc] active NTC personnel[tgmc_location ? " Location: [tgmc_location]":""] and [num_som] active SOM personnel[som_location ? " Location: [som_location]":""]")
 
 	for(var/i in GLOB.observer_list)
 		var/mob/M = i
@@ -176,7 +176,7 @@ Sensors indicate [num_som_delta || "no"] unknown lifeform signature[num_som_delt
 		to_chat(M, {"<span class='alert'>[num_som] SOM alive.
 [num_tgmc] Marine\s alive."})
 
-	message_admins("Bioscan - Marines: [num_tgmc] active TGMC personnel[tgmc_location ? " .Location:[tgmc_location]":""]")
+	message_admins("Bioscan - Marines: [num_tgmc] active NTC personnel[tgmc_location ? " .Location:[tgmc_location]":""]")
 	message_admins("Bioscan - SOM: [num_som] active SOM personnel[som_location ? " .Location:[som_location]":""]")
 
 #undef BIOSCAN_DELTA

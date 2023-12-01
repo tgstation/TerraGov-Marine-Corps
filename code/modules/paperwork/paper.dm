@@ -583,8 +583,8 @@ then, for every time you included a field, increment fields. */
 	Though, it seems there's another chamber in front of it. Scans show some kind of moving figures, though the scanner might just be broken or misinterpreting some basalt dust."}
 
 /obj/item/paper/chemistry
-	name = "Notice from Terragov"
-	info = {"After a routine inspection from the Terragov Chemical Regulatory comittee, we have found that this vessel has, one, an unlicensed access issue that must be amended, and two, nearly double the authorized deployment of chemical vendors. <BR>
+	name = "Notice from NTC"
+	info = {"After a routine inspection from the NTC Chemical Regulatory comittee, we have found that this vessel has, one, an unlicensed access issue that must be amended, and two, nearly double the authorized deployment of chemical vendors. <BR>
 	We are updating the access requirements on your chemistry bay, as well as confiscating the additional vendors until further notice. Have a nice day."}
 
 /obj/item/paper/memorial

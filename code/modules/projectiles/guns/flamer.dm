@@ -291,7 +291,7 @@
 
 /obj/item/weapon/gun/flamer/som
 	name = "\improper V-62 incinerator"
-	desc = "The V-62 is a deadly weapon employed in close quarter combat, favoured as much for the terror it inspires as the actual damage it inflicts. It has good range for a flamer, but lacks the integrated extinguisher of its TGMC equivalent."
+	desc = "The V-62 is a deadly weapon employed in close quarter combat, favoured as much for the terror it inspires as the actual damage it inflicts. It has good range for a flamer, but lacks the integrated extinguisher of its NTC equivalent."
 	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "v62"
 	item_state = "v62"
@@ -383,7 +383,7 @@
 
 /obj/item/weapon/gun/flamer/big_flamer/marinestandard
 	name = "\improper FL-84 flamethrower"
-	desc = "The FL-84 flamethrower is the current standard issue flamethrower of the TGMC, and is used for area control and urban combat. Use unique action to use hydro cannon"
+	desc = "The FL-84 flamethrower is the current standard issue flamethrower of the NTC, and is used for area control and urban combat. Use unique action to use hydro cannon"
 	default_ammo_type = /obj/item/ammo_magazine/flamer_tank/large
 	icon_state = "tl84"
 	item_state = "tl84"

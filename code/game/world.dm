@@ -348,7 +348,7 @@ GLOBAL_VAR(restart_counter)
 	// Note: Hub content is limited to 254 characters, including HTML/CSS. Image width is limited to 450 pixels.
 	// Current outputt should look like
 	/*
-	Something — Lost in space...	|	TerraGov Marine Corps — Sulaco
+	Something — Lost in space...	|	Nine Tailed Fox — Sulaco
 	Map: Loading...					|	Map: Icy Caves
 	Mode: Lobby						|	Mode: Crash
 	Round time: 0:0					|	Round time: 4:54

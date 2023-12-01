@@ -24719,7 +24719,7 @@
 /area/gelida/outdoors/colony_streets/north_west_street)
 "saH" = (
 /obj/structure/showcase{
-	desc = "The display model for a NanoTrasen generation one synthetic. It almost feels like the eyes on this one follow you.";
+	desc = "The display model for a Ninetails generation one synthetic. It almost feels like the eyes on this one follow you.";
 	name = "Display synthetic"
 	},
 /obj/structure/window/reinforced,

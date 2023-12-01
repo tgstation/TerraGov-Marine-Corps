@@ -74,7 +74,7 @@
 		return
 	var/marker_flags
 	switch(iff_signal)
-		if(TGMC_LOYALIST_IFF)
+		if(NTC_LOYALIST_IFF)
 			marker_flags = MINIMAP_FLAG_MARINE
 		if(SOM_IFF)
 			marker_flags = MINIMAP_FLAG_MARINE_SOM

@@ -91,7 +91,7 @@ GLOBAL_LIST_EMPTY_TYPED(custom_updating_encryptkeys, /obj/item/encryptionkey)
 
 
 /obj/item/encryptionkey/PMC
-	name = "\improper Nanotrasen encryption key"
+	name = "\improper Ninetails encryption key"
 	channels = list(RADIO_CHANNEL_PMC = TRUE)
 	independent = TRUE
 
