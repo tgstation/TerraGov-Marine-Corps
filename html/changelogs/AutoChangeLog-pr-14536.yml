@@ -1,0 +1,5 @@
+author: "ivanmixo"
+delete-after: True
+changes:
+  - bugfix: "Synth actually can DNR properly now"
+  - bugfix: "Unrevivable people shouldnt show up as revivable anymore"

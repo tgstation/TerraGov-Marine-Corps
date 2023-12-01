@@ -25,7 +25,7 @@
 		if(ismultitool(O))
 			to_chat(user, span_warning("Resetting circuitry..."))
 			playsound(user, 'sound/machines/lockreset.ogg', 25, 1)
-			if(do_after(user, 20, TRUE, src, BUSY_ICON_BUILD))
+			if(do_after(user, 20, NONE, src, BUSY_ICON_BUILD))
 				locked = FALSE
 				to_chat(user, "<span class = 'caution'>You disable the locking modules.</span>")
 				update_icon()
@@ -81,7 +81,7 @@
 			if(localopened)
 				localopened = 0
 				icon_state = "fireaxe[hasaxe][localopened][hitstaken][smashed]closing"
-				spawn(10) 
+				spawn(10)
 				update_icon()
 				return
 			else
@@ -90,7 +90,7 @@
 				src.locked = 1
 				to_chat(user, span_notice("You re-enable the locking modules."))
 				playsound(user, 'sound/machines/lockenable.ogg', 25, 1)
-				if(do_after(user,20, TRUE, src, BUSY_ICON_BUILD))
+				if(do_after(user,20, NONE, src, BUSY_ICON_BUILD))
 					locked = TRUE
 					to_chat(user, "<span class = 'caution'> You re-enable the locking modules.</span>")
 				return
@@ -98,11 +98,11 @@
 			localopened = !localopened
 			if(localopened)
 				icon_state = "fireaxe[hasaxe][localopened][hitstaken][smashed]opening"
-				spawn(10) 
+				spawn(10)
 				update_icon()
 			else
 				icon_state = "fireaxe[hasaxe][localopened][hitstaken][smashed]closing"
-				spawn(10) 
+				spawn(10)
 				update_icon()
 
 
@@ -133,7 +133,7 @@
 					update_icon()
 				else
 					src.icon_state = "fireaxe[hasaxe][localopened][hitstaken][smashed]closing"
-					spawn(10) 
+					spawn(10)
 					update_icon()
 
 	else

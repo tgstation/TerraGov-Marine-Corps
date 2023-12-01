@@ -71,7 +71,7 @@
 		span_notice("You start installing a new window on the frame."))
 		playsound(src, 'sound/items/deconstruct.ogg', 25, 1)
 
-		if(!do_after(user, 20, TRUE, src, BUSY_ICON_BUILD))
+		if(!do_after(user, 2 SECONDS, NONE, src, BUSY_ICON_BUILD))
 			return
 
 		user.visible_message(span_notice("[user] installs a new glass window on the frame."), \
@@ -102,8 +102,7 @@
 
 		user.visible_message(span_notice("[user] starts pulling [M] onto [src]."),
 		span_notice("You start pulling [M] onto [src]!"))
-		var/oldloc = loc
-		if(!do_mob(user, M, 20, BUSY_ICON_GENERIC) || loc != oldloc)
+		if(!do_after(user, 2 SECONDS, NONE, M, BUSY_ICON_GENERIC))
 			return
 		M.Paralyze(4 SECONDS)
 		user.visible_message(span_warning("[user] pulls [M] onto [src]."),

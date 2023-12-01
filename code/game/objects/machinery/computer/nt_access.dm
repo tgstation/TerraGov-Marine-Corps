@@ -128,7 +128,7 @@
 				busy = TRUE
 
 				usr.visible_message("[usr] started a program to send the [code_color] security override command.", "You started a program to send the [code_color] security override command.")
-				if(!do_after(usr, printing_time, TRUE, src, BUSY_ICON_GENERIC, null, null, CALLBACK(src, TYPE_PROC_REF(/datum, process))))
+				if(!do_after(usr, printing_time, NONE, src, BUSY_ICON_GENERIC, null, null, CALLBACK(src, TYPE_PROC_REF(/datum, process))))
 					busy = FALSE
 					return
 
@@ -140,7 +140,7 @@
 			busy = TRUE
 
 			usr.visible_message("[usr] started a program to generate a security override code.", "You started a program to generate a security override code.")
-			if(!do_after(usr, start_time, TRUE, src, BUSY_ICON_GENERIC, null, null, CALLBACK(src, TYPE_PROC_REF(/datum, process))))
+			if(!do_after(usr, start_time, NONE, src, BUSY_ICON_GENERIC, null, null, CALLBACK(src, TYPE_PROC_REF(/datum, process))))
 				busy = FALSE
 				return
 

@@ -73,7 +73,7 @@ Stepping directly on the mine will also blow it up
 
 	if(armed)
 		return
-	if(!do_after(user, 10, TRUE, src, BUSY_ICON_HOSTILE))
+	if(!do_after(user, 10, NONE, src, BUSY_ICON_HOSTILE))
 		user.visible_message(span_notice("[user] stops deploying [src]."), \
 	span_notice("You stop deploying \the [src]."))
 		return
@@ -108,7 +108,7 @@ Stepping directly on the mine will also blow it up
 	user.visible_message(span_notice("[user] starts disarming [src]."), \
 	span_notice("You start disarming [src]."))
 
-	if(!do_after(user, 8 SECONDS, TRUE, src, BUSY_ICON_FRIENDLY))
+	if(!do_after(user, 8 SECONDS, NONE, src, BUSY_ICON_FRIENDLY))
 		user.visible_message("<span class='warning'>[user] stops disarming [src].", \
 		"<span class='warning'>You stop disarming [src].")
 		return
