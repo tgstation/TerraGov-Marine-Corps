@@ -59,7 +59,7 @@
 		return FALSE
 	user.visible_message(span_notice("[user] starts attaching [src] to [spirited_away]."),\
 	span_notice("You start attaching the pack to [spirited_away]..."), null, 5)
-	if(!do_after(user, 5 SECONDS, TRUE, spirited_away))
+	if(!do_after(user, 5 SECONDS, NONE, spirited_away))
 		return FALSE
 	if(!isturf(spirited_away.loc))
 		balloon_alert(user, "Must extract on the ground")

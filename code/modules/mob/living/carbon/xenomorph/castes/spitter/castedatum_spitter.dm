@@ -56,17 +56,17 @@
 
 	// *** Abilities *** //
 	actions = list(
-		/datum/action/xeno_action/xeno_resting,
-		/datum/action/xeno_action/psychic_whisper,
-		/datum/action/xeno_action/psychic_influence,
-		/datum/action/xeno_action/activable/impregnate,
-		/datum/action/xeno_action/watch_xeno,
-		/datum/action/xeno_action/activable/psydrain,
-		/datum/action/xeno_action/activable/devour,
-		/datum/action/xeno_action/activable/corrosive_acid,
-		/datum/action/xeno_action/activable/xeno_spit,
-		/datum/action/xeno_action/activable/scatter_spit,
-		/datum/action/xeno_action/activable/spray_acid/line,
+		/datum/action/ability/xeno_action/xeno_resting,
+		/datum/action/ability/xeno_action/psychic_whisper,
+		/datum/action/ability/xeno_action/psychic_influence,
+		/datum/action/ability/xeno_action/activable/impregnate,
+		/datum/action/ability/xeno_action/watch_xeno,
+		/datum/action/ability/xeno_action/activable/psydrain,
+		/datum/action/ability/xeno_action/activable/devour,
+		/datum/action/ability/xeno_action/activable/corrosive_acid,
+		/datum/action/ability/xeno_action/activable/xeno_spit,
+		/datum/action/ability/xeno_action/activable/scatter_spit,
+		/datum/action/ability/xeno_action/activable/spray_acid/line,
 	)
 
 /datum/xeno_caste/spitter/normal

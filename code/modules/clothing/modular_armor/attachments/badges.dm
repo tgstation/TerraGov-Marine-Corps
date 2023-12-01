@@ -74,7 +74,7 @@
 	var/new_shape = tgui_input_list(living_user, "Pick a shape", "Pick shape", shape_list)
 	if(!new_style && !new_shape)
 		return
-	if(!do_after(living_user, 1 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
+	if(!do_after(living_user, 1 SECONDS, NONE, src, BUSY_ICON_GENERIC))
 		return
 	if(new_style)
 		current_style = new_style

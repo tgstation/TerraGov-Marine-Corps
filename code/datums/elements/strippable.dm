@@ -221,7 +221,7 @@
 	if(!ismob(source))
 		return FALSE
 
-	if(!do_after(user, get_equip_delay(equipping), TRUE, source, BUSY_ICON_FRIENDLY))
+	if(!do_after(user, get_equip_delay(equipping), NONE, source, BUSY_ICON_FRIENDLY))
 		return FALSE
 
 	if(!equipping.mob_can_equip(source, item_slot,warning = TRUE,override_nodrop = FALSE, bitslot = TRUE))
@@ -271,7 +271,7 @@
 
 /// A utility function for `/datum/strippable_item`s to start unequipping an item from a mob.
 /datum/strippable_item/proc/start_unequip_mob(obj/item/item, mob/source, mob/user, strip_delay)
-	if(!do_after(user, strip_delay || item.strip_delay, TRUE, source, BUSY_ICON_FRIENDLY))
+	if(!do_after(user, strip_delay || item.strip_delay, NONE, source, BUSY_ICON_FRIENDLY))
 		return FALSE
 	return TRUE
 

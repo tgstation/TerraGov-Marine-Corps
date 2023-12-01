@@ -303,7 +303,7 @@
 		return FALSE //Incorporeal things can't grab or be grabbed.
 	if(AM.anchored)
 		return FALSE //We cannot grab anchored items.
-	if(!isliving(AM) && AM.drag_windup && !do_after(src, AM.drag_windup, TRUE, AM, BUSY_ICON_HOSTILE, BUSY_ICON_HOSTILE, extra_checks = CALLBACK(src, TYPE_PROC_REF(/mob, break_do_after_checks), list("health" = src.health))))
+	if(!isliving(AM) && AM.drag_windup && !do_after(src, AM.drag_windup, NONE, AM, BUSY_ICON_HOSTILE, BUSY_ICON_HOSTILE, extra_checks = CALLBACK(src, TYPE_PROC_REF(/mob, break_do_after_checks), list("health" = src.health))))
 		return //If the target is not a living mob and has a drag_windup defined, calls a do_after. If all conditions are met, it returns. If the user takes damage during the windup, it breaks the channel.
 	var/mob/living/L = AM
 	if(L.buckled)
@@ -456,7 +456,7 @@
 	loc_weeds_type = found_weed?.type
 
 /mob/living/carbon/xenomorph/lay_down()
-	var/datum/action/xeno_action/xeno_resting/resting_action = actions_by_path[/datum/action/xeno_action/xeno_resting]
+	var/datum/action/ability/xeno_action/xeno_resting/resting_action = actions_by_path[/datum/action/ability/xeno_action/xeno_resting]
 	if(!resting_action || !resting_action.can_use_action())
 		return
 	return ..()

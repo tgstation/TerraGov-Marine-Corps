@@ -16,7 +16,7 @@
 	if(M.a_intent == INTENT_HARM)
 		return NONE
 	M.visible_message(span_notice("[user] starts to tear into [M] with \the [source]") ,span_notice("You start hacking away at [M] with \the [source]"))
-	if(!do_after(user, 2 SECONDS, TRUE, M))
+	if(!do_after(user, 2 SECONDS, NONE, M))
 		return NONE
 	M.visible_message(span_danger("[user] brutally scalps [M]!"), span_danger(" You brutally scalp [M] 	with \the [source]!"))
 	var/obj/item/scalp/scalp = new(get_turf(M))

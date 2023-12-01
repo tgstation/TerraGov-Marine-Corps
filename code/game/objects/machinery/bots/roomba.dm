@@ -78,7 +78,7 @@
 		return
 	visible_message(span_warning("[user] begins to try to attach [I] to [src]..."))
 	stop_processing()
-	if(!do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_HOSTILE))
+	if(!do_after(user, 1 SECONDS, NONE, src, BUSY_ICON_HOSTILE))
 		start_processing()
 		return
 	start_processing()

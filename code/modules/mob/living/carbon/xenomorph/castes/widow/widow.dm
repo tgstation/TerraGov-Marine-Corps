@@ -52,13 +52,13 @@
 /mob/living/carbon/xenomorph/widow/transfer_to_hive(hivenumber)
 	. = ..()
 	var/mob/living/carbon/xenomorph/widow/X = src
-	var/datum/action/xeno_action/create_spiderling/create_spiderling_action = X.actions_by_path[/datum/action/xeno_action/create_spiderling]
+	var/datum/action/ability/xeno_action/create_spiderling/create_spiderling_action = X.actions_by_path[/datum/action/ability/xeno_action/create_spiderling]
 	for(var/mob/living/carbon/xenomorph/spider AS in create_spiderling_action.spiderlings)
 		spider.transfer_to_hive(hivenumber)
 
 /mob/living/carbon/xenomorph/widow/on_eord(turf/destination)
 	..()
-	var/datum/action/xeno_action/create_spiderling/create_spiderling_action = actions_by_path[/datum/action/xeno_action/create_spiderling]
+	var/datum/action/ability/xeno_action/create_spiderling/create_spiderling_action = actions_by_path[/datum/action/ability/xeno_action/create_spiderling]
 	for(var/mob/living/carbon/xenomorph/spider AS in create_spiderling_action.spiderlings)
 		spider.revive(TRUE)
 		spider.forceMove(destination)

@@ -117,7 +117,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 		CRASH("staggerstun called without a mob target")
 	if(!isliving(victim))
 		return
-	if(proj.distance_travelled > max_range)
+	if(get_dist_euclide(proj.starting_turf, victim) > max_range)
 		return
 	var/impact_message = ""
 	if(isxeno(victim))
@@ -3192,7 +3192,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/energy/xeno
 	barricade_clear_distance = 0
 	///Plasma cost to fire this projectile
-	var/plasma_cost
+	var/ability_cost
 	///Particle type used when this ammo is used
 	var/particles/channel_particle
 	///The colour the xeno glows when using this ammo type
@@ -3208,7 +3208,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	accurate_range = 7
 	hitscan_effect_icon = "beam_cult"
 	icon_state = "psy_blast"
-	plasma_cost = 230
+	ability_cost = 230
 	channel_particle = /particles/warlock_charge/psy_blast
 	glow_color = "#9e1f1f"
 	///The AOE for drop_nade
@@ -3273,7 +3273,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	max_range = 12
 	hitscan_effect_icon = "beam_hcult"
 	icon_state = "psy_lance"
-	plasma_cost = 300
+	ability_cost = 300
 	channel_particle = /particles/warlock_charge/psy_blast/psy_lance
 	glow_color = "#CB0166"
 
@@ -3791,7 +3791,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
  * * Returns: TRUE on success, FALSE on failure.
 **/
 /datum/ammo/xeno/boiler_gas/proc/enhance_trap(obj/structure/xeno/trap/trap, mob/living/carbon/xenomorph/user_xeno)
-	if(!do_after(user_xeno, 2 SECONDS, TRUE, trap))
+	if(!do_after(user_xeno, 2 SECONDS, NONE, trap))
 		return FALSE
 	trap.set_trap_type(TRAP_SMOKE_NEURO)
 	trap.smoke = new /datum/effect_system/smoke_spread/xeno/neuro/medium
@@ -3879,7 +3879,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	reagent_transfer_amount = 0
 
 /datum/ammo/xeno/boiler_gas/corrosive/enhance_trap(obj/structure/xeno/trap/trap, mob/living/carbon/xenomorph/user_xeno)
-	if(!do_after(user_xeno, 3 SECONDS, TRUE, trap))
+	if(!do_after(user_xeno, 3 SECONDS, NONE, trap))
 		return FALSE
 	trap.set_trap_type(TRAP_SMOKE_ACID)
 	trap.smoke = new /datum/effect_system/smoke_spread/xeno/acid

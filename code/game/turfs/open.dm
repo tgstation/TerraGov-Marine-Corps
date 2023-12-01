@@ -303,7 +303,7 @@
 	if(deconstructing)
 		return
 	deconstructing = TRUE
-	if(!do_after(X, 10 SECONDS, TRUE, src, BUSY_ICON_BUILD))
+	if(!do_after(X, 10 SECONDS, NONE, src, BUSY_ICON_BUILD))
 		deconstructing = FALSE
 		return
 	deconstructing = FALSE

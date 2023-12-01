@@ -287,7 +287,7 @@
 		span_notice("You start climbing into [src]."))
 
 	var/mob/initiator = helper ? helper : user
-	if(!do_after(initiator, 20, TRUE, user, BUSY_ICON_GENERIC))
+	if(!do_after(initiator, 20, NONE, user, BUSY_ICON_GENERIC))
 		return FALSE
 
 	if(!QDELETED(occupant))

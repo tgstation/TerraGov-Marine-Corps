@@ -136,7 +136,7 @@
 	user.visible_message(span_notice("[user] begins to set [src] upright."),
 		span_notice("You begin to set [src] upright.</span>"))
 
-	if(!do_after(user, 2 SECONDS, TRUE, src, BUSY_ICON_BUILD))
+	if(!do_after(user, 2 SECONDS, NONE, src, BUSY_ICON_BUILD))
 		return
 
 	user.visible_message(span_notice("[user] sets [src] upright."),
@@ -287,7 +287,7 @@
 	RegisterSignal(gun, COMSIG_MOB_GUN_FIRED, PROC_REF(check_next_shot))
 	update_minimap_icon()
 
-///Bonks the sentry onto its side. This currently is used here, and in /living/carbon/xeno/warrior/xeno_abilities in punch
+///Bonks the sentry onto its side. This currently is used here, and in /living/carbon/xeno/warrior/mob_abilities in punch
 /obj/machinery/deployable/mounted/sentry/proc/knock_down()
 	if(CHECK_BITFIELD(machine_stat, KNOCKED_DOWN))
 		return
@@ -556,7 +556,7 @@
 		return
 	set_on(FALSE)
 	user.balloon_alert(user, "You start disassembling [attached_item]")
-	if(!do_after(user, attached_item.undeploy_time, TRUE, src, BUSY_ICON_BUILD))
+	if(!do_after(user, attached_item.undeploy_time, NONE, src, BUSY_ICON_BUILD))
 		set_on(TRUE)
 		return
 
