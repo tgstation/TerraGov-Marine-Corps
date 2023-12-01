@@ -180,6 +180,13 @@
 /datum/action/ability/xeno_action/create_spiderling/proc/use_cannibalise()
 	if(!do_after(owner, 0.5 SECONDS, NONE, owner, BUSY_ICON_DANGER))
 		return FALSE
+	var/mob/living/carbon/xenomorph/X = owner
+	if(cannibalise_charges <= 0)
+		X.balloon_alert(X, "No charges remaining!")
+		return
+	if(length(spiderlings) >= X.xeno_caste.max_spiderlings)
+		X.balloon_alert(X, "Max Spiderlings")
+		return
 	add_spiderling()
 	cannibalise_charges -= 1
 	owner.balloon_alert(owner, "[cannibalise_charges]/3 charges remaining")
