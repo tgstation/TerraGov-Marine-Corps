@@ -44,14 +44,14 @@
 
 	// *** Abilities *** ///
 	actions = list(
-		/datum/action/ability/xeno_action/xeno_resting,
-		/datum/action/ability/xeno_action/psychic_whisper,
-		/datum/action/ability/xeno_action/psychic_influence,
-		/datum/action/ability/xeno_action/watch_xeno/baneling,
-		/datum/action/ability/xeno_action/activable/psydrain,
-		/datum/action/ability/xeno_action/spawn_pod,
-		/datum/action/ability/xeno_action/select_reagent/baneling,
-		/datum/action/ability/xeno_action/baneling_explode,
+		/datum/action/xeno_action/xeno_resting,
+		/datum/action/xeno_action/psychic_whisper,
+		/datum/action/xeno_action/psychic_influence,
+		/datum/action/xeno_action/watch_xeno/baneling,
+		/datum/action/xeno_action/activable/psydrain,
+		/datum/action/xeno_action/spawn_pod,
+		/datum/action/xeno_action/select_reagent/baneling,
+		/datum/action/xeno_action/baneling_explode,
 	)
 
 /datum/xeno_caste/baneling/normal
@@ -65,13 +65,13 @@
 
 	// *** Abilities *** ///
 	actions = list(
-		/datum/action/ability/xeno_action/xeno_resting,
-		/datum/action/ability/xeno_action/psychic_whisper,
-    /datum/action/ability/xeno_action/psychic_influence,
-		/datum/action/ability/xeno_action/watch_xeno/baneling,
-		/datum/action/ability/xeno_action/activable/psydrain,
-		/datum/action/ability/xeno_action/spawn_pod,
-		/datum/action/ability/xeno_action/select_reagent/baneling,
-		/datum/action/ability/xeno_action/baneling_explode,
-		/datum/action/ability/xeno_action/activable/dash_explosion,
+		/datum/action/xeno_action/xeno_resting,
+		/datum/action/xeno_action/psychic_whisper,
+    	/datum/action/xeno_action/psychic_influence,
+		/datum/action/xeno_action/watch_xeno/baneling,
+		/datum/action/xeno_action/activable/psydrain,
+		/datum/action/xeno_action/spawn_pod,
+		/datum/action/xeno_action/select_reagent/baneling,
+		/datum/action/xeno_action/baneling_explode,
+		/datum/action/xeno_action/activable/dash_explosion,
 	)

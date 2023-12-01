@@ -44,18 +44,18 @@
 	agility_speed_armor = -30
 
 	actions = list(
-		/datum/action/ability/xeno_action/xeno_resting,
-		/datum/action/ability/xeno_action/psychic_whisper,
-		/datum/action/ability/xeno_action/psychic_influence,
-		/datum/action/ability/xeno_action/activable/impregnate,
-		/datum/action/ability/xeno_action/watch_xeno,
-		/datum/action/ability/xeno_action/activable/psydrain,
-		/datum/action/ability/xeno_action/activable/devour,
-		/datum/action/ability/xeno_action/toggle_agility,
-		/datum/action/ability/xeno_action/activable/lunge,
-		/datum/action/ability/xeno_action/activable/fling,
-		/datum/action/ability/xeno_action/activable/toss,
-		/datum/action/ability/xeno_action/activable/punch,
+		/datum/action/xeno_action/xeno_resting,
+		/datum/action/xeno_action/psychic_whisper,
+		/datum/action/xeno_action/psychic_influence,
+		/datum/action/xeno_action/activable/impregnate,
+		/datum/action/xeno_action/watch_xeno,
+		/datum/action/xeno_action/activable/psydrain,
+		/datum/action/xeno_action/activable/devour,
+		/datum/action/xeno_action/toggle_agility,
+		/datum/action/xeno_action/activable/lunge,
+		/datum/action/xeno_action/activable/fling,
+		/datum/action/xeno_action/activable/toss,
+		/datum/action/xeno_action/activable/punch,
 	)
 
 /datum/xeno_caste/warrior/normal
@@ -68,17 +68,17 @@
 	upgrade = XENO_UPGRADE_PRIMO
 
 	actions = list(
-		/datum/action/ability/xeno_action/xeno_resting,
-		/datum/action/ability/xeno_action/psychic_whisper,
-		/datum/action/ability/xeno_action/psychic_influence,
-		/datum/action/ability/xeno_action/activable/impregnate,
-		/datum/action/ability/xeno_action/watch_xeno,
-		/datum/action/ability/xeno_action/activable/psydrain,
-		/datum/action/ability/xeno_action/activable/devour,
-		/datum/action/ability/xeno_action/toggle_agility,
-		/datum/action/ability/xeno_action/activable/lunge,
-		/datum/action/ability/xeno_action/activable/fling,
-		/datum/action/ability/xeno_action/activable/toss,
-		/datum/action/ability/xeno_action/activable/punch,
-		/datum/action/ability/xeno_action/activable/punch/jab,
+		/datum/action/xeno_action/xeno_resting,
+		/datum/action/xeno_action/psychic_whisper,
+		/datum/action/xeno_action/psychic_influence,
+		/datum/action/xeno_action/activable/impregnate,
+		/datum/action/xeno_action/watch_xeno,
+		/datum/action/xeno_action/activable/psydrain,
+		/datum/action/xeno_action/activable/devour,
+		/datum/action/xeno_action/toggle_agility,
+		/datum/action/xeno_action/activable/lunge,
+		/datum/action/xeno_action/activable/fling,
+		/datum/action/xeno_action/activable/toss,
+		/datum/action/xeno_action/activable/punch,
+		/datum/action/xeno_action/activable/punch/jab,
 	)
