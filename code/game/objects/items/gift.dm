@@ -237,7 +237,7 @@ GLOBAL_LIST_EMPTY(possible_gifts)
 	gift_type_list += subtypesof(/obj/item/robot_parts)
 	gift_type_list += subtypesof(/obj/item/seeds)
 	gift_type_list += subtypesof(/obj/item/stock_parts)
-	gift_type_list += subtypesof(/obj/item/storage/pill_bottle)
+	gift_type_list += subtypesof(/obj/item/storage/pill_bottle) - /obj/item/reagent_containers/pill/adminordrazine - /obj/item/reagent_containers/pill/russian_red
 	gift_type_list += subtypesof(/obj/item/storage/toolbox)
 	gift_type_list += subtypesof(/obj/item/reagent_containers/glass)
 	gift_type_list += subtypesof(/obj/item/reagent_containers/pill)

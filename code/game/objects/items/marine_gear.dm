@@ -29,6 +29,9 @@
 	pixel_y = rand(-3,3)
 	pixel_x = rand(-3,3)
 	var/list/randompick = list(
+		/obj/item/reagent_containers/food/snacks/mre_pack/xmas1,
+		/obj/item/reagent_containers/food/snacks/mre_pack/xmas2,
+		/obj/item/reagent_containers/food/snacks/mre_pack/xmas3,
 		/obj/item/reagent_containers/food/snacks/protein_pack,
 		/obj/item/reagent_containers/food/snacks/protein_pack,
 		/obj/item/reagent_containers/food/snacks/protein_pack,
@@ -37,9 +40,6 @@
 		/obj/item/reagent_containers/food/snacks/mre_pack/meal3,
 		/obj/item/reagent_containers/food/snacks/mre_pack/meal4,
 		/obj/item/reagent_containers/food/snacks/mre_pack/meal5,
-		/obj/item/reagent_containers/food/snacks/mre_pack/xmas1,
-		/obj/item/reagent_containers/food/snacks/mre_pack/xmas2,
-		/obj/item/reagent_containers/food/snacks/mre_pack/xmas3,
 		/obj/item/reagent_containers/food/snacks/mre_pack/meal6)
 
 	for(var/i in 1 to 7)

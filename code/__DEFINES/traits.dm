@@ -183,6 +183,7 @@
 #define TRAIT_CHRISTMAS_GRINCH "christmas_grinch" //target has opened presents that don't belong to them
 #define TRAIT_SANTA_CLAUS "santa_claus" //target is santa claus
 #define TRAIT_CHRISTMAS_ELF "christmas_elf" //target is a christmas elf
+#define TRAIT_TOOK_COAL "taken coal" //target took coal from christmas tree
 #define TRAIT_TURRET_HIDDEN "turret_hidden" //target gets passed over by turrets choosing a victim
 #define TRAIT_MOB_ICON_UPDATE_BLOCKED "icon_blocked" //target should not update its icon_state
 #define TRAIT_VALHALLA_XENO "valhalla_xeno"

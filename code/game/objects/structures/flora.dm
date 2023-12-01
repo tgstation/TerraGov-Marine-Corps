@@ -162,7 +162,11 @@
 	if(!do_after(user, 3 SECONDS))
 		return
 	if(isxeno(user) || prob(1) || HAS_TRAIT(user, TRAIT_CHRISTMAS_GRINCH)) //Santa hates xenos, he also hates really unlucky marines and grinches
+		if(HAS_TRAIT(user, TRAIT_TOOK_COAL))
+			to_chat(user, span_warning("Santa already has punished you with coal, you should be less greedy."))
+			return
 		to_chat(user, span_warning("After a bit of rummaging, you locate a small parcel with your name on it, it splits open to reveal coal."))
+		ADD_TRAIT(user, TRAIT_TOOK_COAL , TRAIT_TOOK_COAL)
 		new /obj/item/ore/coal(get_turf(user))
 		took_presents[user.ckey] = TRUE
 		return
