@@ -1577,3 +1577,7 @@ to_chat will check for valid clients itself already so no need to double check f
 	if(faction == FACTION_CLF)
 		return XENO_HIVE_NORMAL
 	return FALSE
+
+/obj/machinery/deployable/mounted/sentry/get_xeno_hivenumber(deployer)
+	if(deployer == FACTION_CLF)
+		return XENO_HIVE_NORMAL

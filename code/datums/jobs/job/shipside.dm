@@ -239,48 +239,49 @@ Make the NTC proud!"})
 
 //CEO
 /datum/job/terragov/command/ceo
-  title = CHIEF_EXECUTIVE_OFFICER
-  req_admin_notify = TRUE
-  paygrade = "CEO"
-  comm_title = "CEO"
-  supervisors = "Your conscience."
-  total_positions = 1
-  skills_type = /datum/skills/ceo
-  access = ALL_ACCESS
-  minimal_access = ALL_ACCESS
-  display_order = JOB_DISPLAY_ORDER_CHIEF_EXECUTIVE_OFFICER
-  outfit = /datum/outfit/job/command/ceo
-  exp_requirements = XP_REQ_EXPERT
-  exp_type = EXP_TYPE_REGULAR_ALL
-  job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_ISCOMMAND|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_ALWAYS_VISIBLE_ON_MINIMAP
-  jobworth = list(
+	title = CHIEF_EXECUTIVE_OFFICER
+	req_admin_notify = TRUE
+	paygrade = "CEO"
+	comm_title = "CEO"
+	supervisors = "Your conscience."
+	total_positions = 1
+	skills_type = /datum/skills/ceo
+	access = ALL_ACCESS
+	shadow_languages = list(/datum/language/xenocommon)
+	minimal_access = ALL_ACCESS
+	display_order = JOB_DISPLAY_ORDER_CHIEF_EXECUTIVE_OFFICER
+	outfit = /datum/outfit/job/command/ceo
+	exp_requirements = XP_REQ_EXPERT
+	exp_type = EXP_TYPE_REGULAR_ALL
+	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_ISCOMMAND|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_ALWAYS_VISIBLE_ON_MINIMAP
+	jobworth = list(
 		/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE,
 		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
 		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR,
 		/datum/job/terragov/command/mech_pilot = MECH_POINTS_REGULAR,
-  )
-  html_description = {"
-  	<b>Difficulty</b>: Hard<br /><br />
-  	<b>You answer to</b> NTC High Command<br /><br />
-  	<b>Unlock Requirement</b>: Being the CEO in lore.<br /><br />
-  	<b>Gamemode Availability</b>: All<br /><br /><br />
-  	<b>Duty</b>: Lead your corporation to ensure the operations go flawlessly
-  	"}
-  minimap_icon = "captain"
+	)
+	html_description = {"
+		<b>Difficulty</b>: Hard<br /><br />
+		<b>You answer to</b> NTC High Command<br /><br />
+		<b>Unlock Requirement</b>: Being the CEO in lore.<br /><br />
+		<b>Gamemode Availability</b>: All<br /><br /><br />
+		<b>Duty</b>: Lead your corporation to ensure the operations go flawlessly
+		"}
+	minimap_icon = "captain"
 
 /datum/outfit/job/command/ceo
- name = CHIEF_EXECUTIVE_OFFICER
- jobtype = /datum/job/terragov/command/ceo
+	name = CHIEF_EXECUTIVE_OFFICER
+	jobtype = /datum/job/terragov/command/ceo
 
- id = /obj/item/card/id/gold
- belt = /obj/item/storage/holster/belt/mateba/officer/full
- ears = /obj/item/radio/headset/mainship/mcom
- w_uniform = /obj/item/clothing/under/suit_jacket/charcoal
- shoes = /obj/item/clothing/shoes/marine/full
- gloves = /obj/item/clothing/gloves/marine/officer
- r_store = /obj/item/storage/pouch/general/large/command
- l_store = /obj/item/hud_tablet/leadership
- back = /obj/item/storage/backpack/satchel
+	id = /obj/item/card/id/gold
+	belt = /obj/item/storage/holster/belt/mateba/officer/full
+	ears = /obj/item/radio/headset/mainship/mcom
+	w_uniform = /obj/item/clothing/under/suit_jacket/charcoal
+	shoes = /obj/item/clothing/shoes/marine/full
+	gloves = /obj/item/clothing/gloves/marine/officer
+	r_store = /obj/item/storage/pouch/general/large/command
+	l_store = /obj/item/hud_tablet/leadership
+	back = /obj/item/storage/backpack/satchel
 
 //Corpsec Commander
 /datum/job/terragov/command/corpseccommander
