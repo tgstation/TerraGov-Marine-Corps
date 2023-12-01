@@ -63,7 +63,7 @@
 // ***************************************
 /datum/action/xeno_action/activable/psychic_cure/queen_give_heal/hivemind
 	cooldown_timer = 10 SECONDS
-/datum/action/xeno_action/activable/psychic_cure/queen_give_heal/hivemind/can_use_action(silent = FALSE, override_flags, selecting = FALSE
+/datum/action/xeno_action/activable/psychic_cure/queen_give_heal/hivemind/can_use_action(silent = FALSE, override_flags, selecting = FALSE)
 	if (owner.status_flags & INCORPOREAL)
 		return FALSE
 	return ..()
