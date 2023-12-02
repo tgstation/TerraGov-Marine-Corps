@@ -274,7 +274,7 @@ GLOBAL_LIST_EMPTY(possible_gifts)
 	gift_type_list += subtypesof(/obj/item/clothing/head/beret)
 	gift_type_list += subtypesof(/obj/item/clothing/head/bio_hood)
 	gift_type_list += subtypesof(/obj/item/clothing/glasses/sunglasses) - /obj/item/clothing/glasses/sunglasses/sa - /obj/item/clothing/glasses/sunglasses/sa/nodrop
-	gift_type_list += subtypesof(/obj/item/clothing/under)
+	gift_type_list += subtypesof(/obj/item/clothing/under) - /obj/item/clothing/under/acj - /obj/item/clothing/under/spec_operative
 	gift_type_list += subtypesof(/obj/item/circuitboard/computer)
 	gift_type_list += subtypesof(/obj/item/attachable)
 	gift_type_list += subtypesof(/obj/item/bodybag)
