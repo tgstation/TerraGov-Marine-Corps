@@ -1,0 +1,20 @@
+2023-12-01:
+  Barnet2:
+  - code_imp: Valhalla area code compressed for developer sanity.
+  - soundadd: Ported CM landing and taking off dropship sounds
+  Lumipharon:
+  - bugfix: Border deployable objects can no longer be stacked
+  - code_imp: updated do_after and removed do_mob
+  - refactor: refactored some action code
+  - bugfix: fixed an exploit with autoweeding
+  - balance: Projectile stuns no longer work at a greater distance then expected when
+      fired at diagonal angles
+  - balance: Humans are now gibbed by dev explosions unless they have 90+ bomb armour
+  coldironwarrior:
+  - bugfix: fixed the persimmon color palette
+  yyzsong:
+  - rscadd: Engies may now buy autominer upgrades from their points vendor.
+2023-12-02:
+  ivanmixo:
+  - bugfix: Synth actually can DNR properly now
+  - bugfix: Unrevivable people shouldnt show up as revivable anymore

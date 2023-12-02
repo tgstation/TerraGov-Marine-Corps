@@ -44,14 +44,14 @@
 	agility_speed_armor = -30
 
 	actions = list(
-		/datum/action/xeno_action/xeno_resting,
-		/datum/action/xeno_action/watch_xeno,
-		/datum/action/xeno_action/activable/psydrain,
-		/datum/action/xeno_action/toggle_agility,
-		/datum/action/xeno_action/activable/lunge,
-		/datum/action/xeno_action/activable/fling,
-		/datum/action/xeno_action/activable/toss,
-		/datum/action/xeno_action/activable/punch,
+		/datum/action/ability/xeno_action/xeno_resting,
+		/datum/action/ability/xeno_action/watch_xeno,
+		/datum/action/ability/activable/xeno/psydrain,
+		/datum/action/ability/xeno_action/toggle_agility,
+		/datum/action/ability/activable/xeno/lunge,
+		/datum/action/ability/activable/xeno/fling,
+		/datum/action/ability/activable/xeno/toss,
+		/datum/action/ability/activable/xeno/punch,
 	)
 
 /datum/xeno_caste/warrior/normal
@@ -64,13 +64,13 @@
 	upgrade = XENO_UPGRADE_PRIMO
 
 	actions = list(
-		/datum/action/xeno_action/xeno_resting,
-		/datum/action/xeno_action/watch_xeno,
-		/datum/action/xeno_action/activable/psydrain,
-		/datum/action/xeno_action/toggle_agility,
-		/datum/action/xeno_action/activable/lunge,
-		/datum/action/xeno_action/activable/fling,
-		/datum/action/xeno_action/activable/toss,
-		/datum/action/xeno_action/activable/punch,
-		/datum/action/xeno_action/activable/punch/jab,
+		/datum/action/ability/xeno_action/xeno_resting,
+		/datum/action/ability/xeno_action/watch_xeno,
+		/datum/action/ability/activable/xeno/psydrain,
+		/datum/action/ability/xeno_action/toggle_agility,
+		/datum/action/ability/activable/xeno/lunge,
+		/datum/action/ability/activable/xeno/fling,
+		/datum/action/ability/activable/xeno/toss,
+		/datum/action/ability/activable/xeno/punch,
+		/datum/action/ability/activable/xeno/punch/jab,
 	)

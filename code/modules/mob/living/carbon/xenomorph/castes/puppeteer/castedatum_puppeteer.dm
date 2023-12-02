@@ -31,18 +31,18 @@
 	aura_strength = 2.8
 
 	actions = list(
-		/datum/action/xeno_action/xeno_resting,
-		/datum/action/xeno_action/watch_xeno,
-		/datum/action/xeno_action/activable/psydrain/free,
-		/datum/action/xeno_action/activable/flay,
-		/datum/action/xeno_action/activable/pincushion,
-		/datum/action/xeno_action/dreadful_presence,
-		/datum/action/xeno_action/activable/refurbish_husk,
-		/datum/action/xeno_action/activable/puppet,
-		/datum/action/xeno_action/activable/organic_bomb,
-		/datum/action/xeno_action/puppeteer_orders,
-		/datum/action/xeno_action/activable/articulate,
-		/datum/action/xeno_action/activable/puppet_blessings,
+		/datum/action/ability/xeno_action/xeno_resting,
+		/datum/action/ability/xeno_action/watch_xeno,
+		/datum/action/ability/activable/xeno/psydrain/free,
+		/datum/action/ability/activable/xeno/flay,
+		/datum/action/ability/activable/xeno/pincushion,
+		/datum/action/ability/xeno_action/dreadful_presence,
+		/datum/action/ability/activable/xeno/refurbish_husk,
+		/datum/action/ability/activable/xeno/puppet,
+		/datum/action/ability/activable/xeno/organic_bomb,
+		/datum/action/ability/xeno_action/puppeteer_orders,
+		/datum/action/ability/activable/xeno/articulate,
+		/datum/action/ability/activable/xeno/puppet_blessings,
 	)
 
 /datum/xeno_caste/puppeteer/normal
@@ -60,19 +60,19 @@
 	max_puppets = 3
 
 	actions = list(
-		/datum/action/xeno_action/xeno_resting,
-		/datum/action/xeno_action/watch_xeno,
-		/datum/action/xeno_action/activable/psydrain/free,
-		/datum/action/xeno_action/activable/flay,
-		/datum/action/xeno_action/activable/pincushion,
-		/datum/action/xeno_action/dreadful_presence,
-		/datum/action/xeno_action/activable/refurbish_husk,
-		/datum/action/xeno_action/activable/puppet,
-		/datum/action/xeno_action/activable/organic_bomb,
-		/datum/action/xeno_action/activable/tendril_patch,
-		/datum/action/xeno_action/puppeteer_orders,
-		/datum/action/xeno_action/activable/articulate,
-		/datum/action/xeno_action/activable/puppet_blessings,
+		/datum/action/ability/xeno_action/xeno_resting,
+		/datum/action/ability/xeno_action/watch_xeno,
+		/datum/action/ability/activable/xeno/psydrain/free,
+		/datum/action/ability/activable/xeno/flay,
+		/datum/action/ability/activable/xeno/pincushion,
+		/datum/action/ability/xeno_action/dreadful_presence,
+		/datum/action/ability/activable/xeno/refurbish_husk,
+		/datum/action/ability/activable/xeno/puppet,
+		/datum/action/ability/activable/xeno/organic_bomb,
+		/datum/action/ability/activable/xeno/tendril_patch,
+		/datum/action/ability/xeno_action/puppeteer_orders,
+		/datum/action/ability/activable/xeno/articulate,
+		/datum/action/ability/activable/xeno/puppet_blessings,
 	)
 
 	aura_strength = 3

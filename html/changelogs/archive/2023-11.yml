@@ -333,3 +333,61 @@
   - bugfix: CAS can now no longer hit inside of Slumbridge caves in PC'd tiles.
   Lumipharon:
   - code_imp: some code clean up for living mob init
+2023-11-25:
+  Lumipharon:
+  - bugfix: Can no longer teleport to the objective on Base Rescue in campaign
+  - balance: Ship railgun is no longer available in Crash
+  Pariah919:
+  - rscdel: Vali spear has been removed.
+2023-11-27:
+  Pariah919:
+  - balance: Amount of free roundstart HEDPs reduced to 200 from 600.
+  - balance: Most grenade boxes are now cheaper, lower tier grenades have went from
+      500 to 310, and higher tier grenades to 350. Razorburn and white phos are untouched.
+  TiviPlus:
+  - rscdel: Removes the context menu toggle
+  ivanmixo:
+  - bugfix: Fixed some AI runtimes
+  - bugfix: Fixed a bunch of spiderling runtimes
+  - bugfix: Xenos should no longer have quickbuild outside of prep
+  yyzsong:
+  - bugfix: fixes the names of the FK-88 and ATR-22 ammos in req
+  - rscadd: adds hand labelers and KOTAHI decks to valhalla weapons vendors
+  - bugfix: Unguided rockets are now unlimited in valhalla (whoops)
+  - rscdel: removes the valhalla reqtorio section
+2023-11-28:
+  Lewdcifer:
+  - balance: Removed Russian Red pill bottles and packets from most vendors (including
+      the Tadpole med vendor) except Valhalla's.
+  - balance: Russian Red storage options have been replaced in first aid kits where
+      appropriate.
+  - balance: Reduced the amount of Russian Red autoinjectors in normal vendors from
+      30 to 10.
+  Lumipharon:
+  - bugfix: fixed embedded objects not being correctly put into the victim in some
+      cases
+  dopamiin0:
+  - balance: The dropship fabricator now recieves 10% of the value of exports, rather
+      than 5%.
+  efzapa:
+  - imageadd: Added working coffee sprite
+  - spellcheck: Updated Red Comrade Cigarette description.
+  vvvv-vvvv:
+  - bugfix: Fix some computer emissives
+  - bugfix: Fix tadpole being able to land on disks
+2023-11-29:
+  coldironwarrior:
+  - rscadd: 'adds two new armor colors: mountbatten pink and yellow (replaces the
+      old "yellow" which is now "olive")'
+  - bugfix: fixed a few color names
+2023-11-30:
+  Xander3359:
+  - rscadd: Harvesters can use tricordrazine, which applies a shatter effect
+  - balance: All chems in a harvester will do the same damage bonus
+  - balance: Bicaridine in a harvester will have more healing if you finish the channel
+      with higher medical skill
+  ivanmixo:
+  - bugfix: Fixed valhalla loadout vendor not working in hvh
+  yyzsong:
+  - rscadd: Adds the FK-88 and TAT shells to valhalla
+  - rscadd: Adds soap and sterilizer spray to valhalla

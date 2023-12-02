@@ -55,7 +55,7 @@
 /obj/structure/xeno/attack_alien(mob/living/carbon/xenomorph/X, damage_amount, damage_type, damage_flag, effects, armor_penetration, isrightclick)
 	if(!(HAS_TRAIT(X, TRAIT_VALHALLA_XENO) && X.a_intent == INTENT_HARM && (tgui_alert(X, "Are you sure you want to tear down [src]?", "Tear down [src]?", list("Yes","No"))) == "Yes"))
 		return ..()
-	if(!do_after(X, 3 SECONDS, TRUE, src))
+	if(!do_after(X, 3 SECONDS, NONE, src))
 		return
 	X.do_attack_animation(src, ATTACK_EFFECT_CLAW)
 	balloon_alert_to_viewers("\The [X] tears down \the [src]!", "We tear down \the [src].")
@@ -229,13 +229,13 @@
 		set_trap_type(null)
 		balloon_alert(X, "Removed facehugger")
 		return
-	var/datum/action/xeno_action/activable/corrosive_acid/acid_action = locate(/datum/action/xeno_action/activable/corrosive_acid) in X.actions
+	var/datum/action/ability/activable/xeno/corrosive_acid/acid_action = locate(/datum/action/ability/activable/xeno/corrosive_acid) in X.actions
 	if(istype(X.ammo, /datum/ammo/xeno/boiler_gas))
 		var/datum/ammo/xeno/boiler_gas/boiler_glob = X.ammo
 		if(!boiler_glob.enhance_trap(src, X))
 			return
 	else if(acid_action)
-		if(!do_after(X, 2 SECONDS, TRUE, src))
+		if(!do_after(X, 2 SECONDS, NONE, src))
 			return
 		switch(acid_action.acid_type)
 			if(/obj/effect/xenomorph/acid/weak)
@@ -350,7 +350,7 @@ TUNNEL
 
 	if(X.a_intent == INTENT_HARM && X == creator)
 		balloon_alert(X, "Filling in tunnel...")
-		if(do_after(X, HIVELORD_TUNNEL_DISMANTLE_TIME, FALSE, src, BUSY_ICON_BUILD))
+		if(do_after(X, HIVELORD_TUNNEL_DISMANTLE_TIME, IGNORE_HELD_ITEM, src, BUSY_ICON_BUILD))
 			deconstruct(FALSE)
 		return
 
@@ -430,7 +430,7 @@ TUNNEL
 	if(isxenolarva(M)) //Larva can zip through near-instantly, they are wormlike after all
 		tunnel_time = 5
 
-	if(!do_after(M, tunnel_time, FALSE, src, BUSY_ICON_GENERIC))
+	if(!do_after(M, tunnel_time, IGNORE_HELD_ITEM, src, BUSY_ICON_GENERIC))
 		balloon_alert(M, "Crawling interrupted")
 		return
 	if(!targettunnel || !isturf(targettunnel.loc)) //Make sure the end tunnel is still there
@@ -563,7 +563,7 @@ TUNNEL
 /obj/structure/xeno/acidwell/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
 	if(X.a_intent == INTENT_HARM && (CHECK_BITFIELD(X.xeno_caste.caste_flags, CASTE_IS_BUILDER) || X == creator) ) //If we're a builder caste or the creator and we're on harm intent, deconstruct it.
 		balloon_alert(X, "Removing...")
-		if(!do_after(X, XENO_ACID_WELL_FILL_TIME, FALSE, src, BUSY_ICON_HOSTILE))
+		if(!do_after(X, XENO_ACID_WELL_FILL_TIME, IGNORE_HELD_ITEM, src, BUSY_ICON_HOSTILE))
 			balloon_alert(X, "Stopped removing")
 			return
 		playsound(src, "alien_resin_break", 25)
@@ -584,7 +584,7 @@ TUNNEL
 	charging = TRUE
 
 	balloon_alert(X, "Refilling...")
-	if(!do_after(X, XENO_ACID_WELL_FILL_TIME, FALSE, src, BUSY_ICON_BUILD))
+	if(!do_after(X, XENO_ACID_WELL_FILL_TIME, IGNORE_HELD_ITEM, src, BUSY_ICON_BUILD))
 		charging = FALSE
 		balloon_alert(X, "Aborted refilling")
 		return
@@ -706,7 +706,7 @@ TUNNEL
 
 	if((X.a_intent == INTENT_HARM && isxenohivelord(X)) || X.hivenumber != hivenumber)
 		balloon_alert(X, "Destroying...")
-		if(do_after(X, HIVELORD_TUNNEL_DISMANTLE_TIME, FALSE, src, BUSY_ICON_BUILD))
+		if(do_after(X, HIVELORD_TUNNEL_DISMANTLE_TIME, IGNORE_HELD_ITEM, src, BUSY_ICON_BUILD))
 			deconstruct(FALSE)
 		return
 
@@ -1453,7 +1453,7 @@ TUNNEL
 
 /obj/structure/xeno/plant/heal_fruit/on_use(mob/user)
 	balloon_alert(user, "Consuming...")
-	if(!do_after(user, 2 SECONDS, FALSE, src))
+	if(!do_after(user, 2 SECONDS, IGNORE_HELD_ITEM, src))
 		return FALSE
 	if(!isxeno(user))
 		var/datum/effect_system/smoke_spread/xeno/acid/plant_explosion = new(get_turf(src))
@@ -1482,7 +1482,7 @@ TUNNEL
 
 /obj/structure/xeno/plant/armor_fruit/on_use(mob/user)
 	balloon_alert(user, "Consuming...")
-	if(!do_after(user, 2 SECONDS, FALSE, src))
+	if(!do_after(user, 2 SECONDS, IGNORE_HELD_ITEM, src))
 		return FALSE
 	if(!isxeno(user))
 		var/turf/far_away_lands = get_turf(user)
@@ -1531,7 +1531,7 @@ TUNNEL
 
 /obj/structure/xeno/plant/plasma_fruit/on_use(mob/user)
 	balloon_alert(user, "Consuming...")
-	if(!do_after(user, 2 SECONDS, FALSE, src))
+	if(!do_after(user, 2 SECONDS, IGNORE_HELD_ITEM, src))
 		return FALSE
 	if(!isxeno(user))
 		visible_message(span_warning("[src] releases a sticky substance before spontaneously bursting into flames!"))
@@ -1605,7 +1605,7 @@ TUNNEL
 
 /obj/structure/xeno/plant/stealth_plant/on_use(mob/user)
 	balloon_alert(user, "Shaking...")
-	if(!do_after(user, 2 SECONDS, FALSE, src))
+	if(!do_after(user, 2 SECONDS, IGNORE_HELD_ITEM, src))
 		return FALSE
 	visible_message(span_danger("[src] releases a burst of glowing pollen!"))
 	veil()

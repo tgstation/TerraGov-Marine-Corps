@@ -336,7 +336,7 @@
 
 	if(anchor_time)
 		balloon_alert(user, "You begin [anchored ? "unanchoring" : "anchoring"] [src]")
-		if(!do_after(user, anchor_time, TRUE, src))
+		if(!do_after(user, anchor_time, NONE, src))
 			balloon_alert(user, "Interrupted!")
 			return
 

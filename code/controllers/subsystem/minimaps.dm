@@ -529,7 +529,7 @@ SUBSYSTEM_DEF(minimaps)
 		if(owner)
 			RegisterSignal(new_track, COMSIG_MOVABLE_Z_CHANGED, PROC_REF(on_owner_z_change))
 			var/turf/old_turf = get_turf(tracking)
-			if(old_turf.z != new_track.z)
+			if(!old_turf.z || old_turf.z != new_track.z)
 				on_owner_z_change(new_track, old_turf.z, new_track.z)
 		return
 	locator.UnregisterSignal(tracking, COMSIG_MOVABLE_MOVED)

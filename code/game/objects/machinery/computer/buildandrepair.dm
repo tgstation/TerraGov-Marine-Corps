@@ -12,7 +12,7 @@
 		if(0)
 			if(iswrench(I))
 				playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
-				if(!do_after(user, 20, TRUE, src, BUSY_ICON_BUILD))
+				if(!do_after(user, 20, NONE, src, BUSY_ICON_BUILD))
 					return
 
 				to_chat(user, span_notice("You wrench the frame into place."))
@@ -26,7 +26,7 @@
 					return
 
 				playsound(loc, 'sound/items/welder.ogg', 25, 1)
-				if(!do_after(user, 20, TRUE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(WT, /obj/item/tool/weldingtool/proc/isOn)))
+				if(!do_after(user, 20, NONE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(WT, /obj/item/tool/weldingtool/proc/isOn)))
 					return FALSE
 
 				to_chat(user, span_notice("You deconstruct the frame."))
@@ -35,7 +35,7 @@
 		if(1)
 			if(iswrench(I))
 				playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
-				if(!do_after(user, 20, TRUE, src, BUSY_ICON_BUILD))
+				if(!do_after(user, 20, NONE, src, BUSY_ICON_BUILD))
 					return
 
 				to_chat(user, span_notice("You unfasten the frame."))
@@ -81,7 +81,7 @@
 
 				playsound(loc, 'sound/items/deconstruct.ogg', 25, 1)
 
-				if(!do_after(user, 20, TRUE, src, BUSY_ICON_BUILD) || state != 2 || !C.use(5))
+				if(!do_after(user, 20, NONE, src, BUSY_ICON_BUILD) || state != 2 || !C.use(5))
 					return FALSE
 
 				to_chat(user, span_notice("You add cables to the frame."))
@@ -104,7 +104,7 @@
 				playsound(loc, 'sound/items/deconstruct.ogg', 25, 1)
 				to_chat(user, span_notice("You start to put in the glass panel."))
 
-				if(!do_after(user, 20, TRUE, src, BUSY_ICON_BUILD) || state != 3 || !G.use(2))
+				if(!do_after(user, 20, NONE, src, BUSY_ICON_BUILD) || state != 3 || !G.use(2))
 					return FALSE
 
 				to_chat(user, span_notice("You put in the glass panel."))
