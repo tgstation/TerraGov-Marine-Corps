@@ -532,16 +532,6 @@
 /obj/structure/dropship_piece/one/engine/leftbottom,
 /turf/template_noop,
 /area/shuttle/dropship/alamo)
-"yA" = (
-/obj/structure/bed/chair/dropship/passenger{
-	dir = 8
-	},
-/obj/structure/closet/walllocker/hydrant/extinguisher{
-	dir = 8;
-	pixel_x = -32
-	},
-/turf/open/shuttle/dropship/floor,
-/area/shuttle/dropship/alamo)
 "Dp" = (
 /turf/open/shuttle/dropship/ten,
 /area/shuttle/dropship/alamo)
@@ -676,7 +666,7 @@ aK
 bj
 aN
 bd
-yA
+aN
 aN
 bj
 Dp
@@ -751,7 +741,7 @@ aS
 bq
 aN
 bd
-yA
+aN
 bj
 aN
 ca

@@ -265,10 +265,10 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 	req_admin_notify = TRUE
 	paygrade = "E4"
 	comm_title = "Spec"
-	total_positions = 0
-	max_positions = 0
+	total_positions = 4
 	access = list(ACCESS_MARINE_PREP, ACCESS_MARINE_SPECPREP)
-	minimal_access = list(ACCESS_MARINE_PREP, ACCESS_MARINE_DROPSHIP)
+	minimal_access = list(ACCESS_MARINE_PREP, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_SPECPREP)
+	display_order = JOB_DISPLAY_ORDER_SQUAD_SPECIALIST
 	skills_type = /datum/skills/specialist
 	outfit = /datum/outfit/job/marine/specialist
 	exp_requirements = XP_REQ_UNSEASONED
@@ -277,13 +277,12 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 	jobworth = list(
 		/datum/job/xenomorph = LARVA_POINTS_STRONG,
 	)
-
+	minimap_icon = "smartgunner"
 
 /datum/job/terragov/squad/specialist/radio_help_message(mob/M)
 	. = ..()
 	to_chat(M, {"\nYou are the very expensively trained and valuable operative and infiltration expert, trained to use special equipment and perform masterful CQC.
 	You are versatile and you can serve a variety of roles. Be careful building your loadout."})
-
 
 /datum/outfit/job/marine/specialist
 	name = SQUAD_SPECIALIST
@@ -291,6 +290,26 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 
 	id = /obj/item/card/id/dogtag
 	head = /obj/item/clothing/head/helmet/specrag
+
+/datum/job/terragov/squad/specialist/after_spawn(mob/living/carbon/C, mob/user, latejoin = FALSE)
+	. = ..()
+	if(!ishuman(C))
+		return
+	var/mob/living/carbon/human/new_human = C
+	var/playtime_mins = user?.client?.get_exp(title)
+	switch(playtime_mins)
+		if(0 to 1500) // starting
+			new_human.wear_id.paygrade = "E5"
+		if(1501 to 7500) // 25 hrs
+			new_human.wear_id.paygrade = "E6"
+		if(7501 to 60000) // 125 hrs
+			new_human.wear_id.paygrade = "E7"
+		if(60001 to INFINITY) // 1000 hrs
+			new_human.wear_id.paygrade = "E9E" //If you play way too much NTC. 1000 hours.
+	if(!latejoin)
+		return
+	if(!new_human.assigned_squad)
+		return
 
 //Squad Leader
 /datum/job/terragov/squad/leader
