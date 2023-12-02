@@ -135,10 +135,10 @@
 	human.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70, SLOT_IN_ACCESSORY)
 	human.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/vp70/beginner(human), SLOT_IN_ACCESSORY)
 
-	human.equip_to_slot_or_del(new /obj/item/storage/pill_bottle/packet/bicaridine, SLOT_IN_SUIT)
-	human.equip_to_slot_or_del(new /obj/item/storage/pill_bottle/packet/kelotane, SLOT_IN_SUIT)
-	human.equip_to_slot_or_del(new /obj/item/storage/pill_bottle/packet/tricordrazine, SLOT_IN_SUIT)
-	human.equip_to_slot_or_del(new /obj/item/storage/pill_bottle/packet/tramadol, SLOT_IN_SUIT)
+	human.equip_to_slot_or_del(new /obj/item/storage/pill_bottle/bicaridine, SLOT_IN_SUIT)
+	human.equip_to_slot_or_del(new /obj/item/storage/pill_bottle/kelotane, SLOT_IN_SUIT)
+	human.equip_to_slot_or_del(new /obj/item/storage/pill_bottle/tricordrazine, SLOT_IN_SUIT)
+	human.equip_to_slot_or_del(new /obj/item/storage/pill_bottle/tramadol, SLOT_IN_SUIT)
 	human.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/dylovene, SLOT_IN_SUIT)
 
 /datum/outfit/quick/beginner/marine/shotgunner
@@ -215,7 +215,7 @@
 
 	human.equip_to_slot_or_del(new /obj/item/storage/box/MRE, SLOT_IN_BOOT)
 
-	human.equip_to_slot_or_del(new /obj/item/storage/pill_bottle/packet/dylovene, SLOT_IN_BACKPACK)
+	human.equip_to_slot_or_del(new /obj/item/storage/pill_bottle/dylovene, SLOT_IN_BACKPACK)
 	human.equip_to_slot_or_del(new /obj/item/ammo_magazine/flamer_tank/mini, SLOT_IN_BACKPACK)
 	human.equip_to_slot_or_del(new /obj/item/ammo_magazine/flamer_tank/mini, SLOT_IN_BACKPACK)
 	human.equip_to_slot_or_del(new /obj/item/ammo_magazine/flamer_tank/mini, SLOT_IN_BACKPACK)
@@ -227,10 +227,10 @@
 	human.equip_to_slot_or_del(new /obj/item/cell/lasgun/volkite/powerpack/marine, SLOT_IN_SUIT)
 	human.equip_to_slot_or_del(new /obj/item/storage/box/m94, SLOT_IN_SUIT)
 
-	human.equip_to_slot_or_del(new /obj/item/storage/pill_bottle/packet/bicaridine, SLOT_IN_ACCESSORY)
-	human.equip_to_slot_or_del(new /obj/item/storage/pill_bottle/packet/kelotane, SLOT_IN_ACCESSORY)
-	human.equip_to_slot_or_del(new /obj/item/storage/pill_bottle/packet/tricordrazine, SLOT_IN_ACCESSORY)
-	human.equip_to_slot_or_del(new /obj/item/storage/pill_bottle/packet/tramadol, SLOT_IN_ACCESSORY)
+	human.equip_to_slot_or_del(new /obj/item/storage/pill_bottle/bicaridine, SLOT_IN_ACCESSORY)
+	human.equip_to_slot_or_del(new /obj/item/storage/pill_bottle/kelotane, SLOT_IN_ACCESSORY)
+	human.equip_to_slot_or_del(new /obj/item/storage/pill_bottle/tricordrazine, SLOT_IN_ACCESSORY)
+	human.equip_to_slot_or_del(new /obj/item/storage/pill_bottle/tramadol, SLOT_IN_ACCESSORY)
 	human.equip_to_slot_or_del(new /obj/item/stack/medical/heal_pack/gauze, SLOT_IN_ACCESSORY)
 	human.equip_to_slot_or_del(new /obj/item/stack/medical/heal_pack/ointment, SLOT_IN_ACCESSORY)
 
@@ -363,10 +363,10 @@
 	human.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_SUIT)
 	human.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_SUIT)
 
-	human.equip_to_slot_or_del(new /obj/item/storage/pill_bottle/packet/bicaridine, SLOT_IN_ACCESSORY)
-	human.equip_to_slot_or_del(new /obj/item/storage/pill_bottle/packet/kelotane, SLOT_IN_ACCESSORY)
-	human.equip_to_slot_or_del(new /obj/item/storage/pill_bottle/packet/tricordrazine, SLOT_IN_ACCESSORY)
-	human.equip_to_slot_or_del(new /obj/item/storage/pill_bottle/packet/tramadol, SLOT_IN_ACCESSORY)
+	human.equip_to_slot_or_del(new /obj/item/storage/pill_bottle/bicaridine, SLOT_IN_ACCESSORY)
+	human.equip_to_slot_or_del(new /obj/item/storage/pill_bottle/kelotane, SLOT_IN_ACCESSORY)
+	human.equip_to_slot_or_del(new /obj/item/storage/pill_bottle/tricordrazine, SLOT_IN_ACCESSORY)
+	human.equip_to_slot_or_del(new /obj/item/storage/pill_bottle/tramadol, SLOT_IN_ACCESSORY)
 	human.equip_to_slot_or_del(new /obj/item/stack/medical/heal_pack/gauze, SLOT_IN_ACCESSORY)
 	human.equip_to_slot_or_del(new /obj/item/stack/medical/heal_pack/ointment, SLOT_IN_ACCESSORY)
 
