@@ -73,7 +73,7 @@
 	head = /obj/item/clothing/head/modular/m10x/tyr
 	w_uniform = /obj/item/clothing/under/marine/black_vest
 	back = /obj/item/storage/backpack/marine/standard
-	belt = /obj/item/belt_harness/marine
+	belt = /obj/item/storage/belt/sparepouch
 	suit_store = /obj/item/weapon/gun/rifle/standard_gpmg/beginner
 	mask = /obj/item/clothing/mask/rebreather
 	l_hand = /obj/item/paper/tutorial/beginner_machinegunner
@@ -88,6 +88,10 @@
 	human.equip_to_slot_or_del(new /obj/item/ammo_magazine/standard_gpmg, SLOT_IN_BACKPACK)
 	human.equip_to_slot_or_del(new /obj/item/ammo_magazine/standard_gpmg, SLOT_IN_BACKPACK)
 	human.equip_to_slot_or_del(new /obj/item/ammo_magazine/standard_gpmg, SLOT_IN_BACKPACK)
+
+	human.equip_to_slot_or_del(new /obj/item/ammo_magazine/standard_gpmg, SLOT_IN_BELT)
+	human.equip_to_slot_or_del(new /obj/item/ammo_magazine/standard_gpmg, SLOT_IN_BELT)
+	human.equip_to_slot_or_del(new /obj/item/ammo_magazine/standard_gpmg, SLOT_IN_BELT)
 
 	human.equip_to_slot_or_del(new /obj/item/storage/box/MRE, SLOT_IN_ACCESSORY)
 	human.equip_to_slot_or_del(new /obj/item/stack/medical/heal_pack/gauze, SLOT_IN_ACCESSORY)

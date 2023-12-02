@@ -946,6 +946,9 @@
 	scatter_unwielded = 80
 	movement_acc_penalty_mult = 6
 
+/obj/item/weapon/gun/rifle/standard_lmg/autorifleman
+	starting_attachment_types = list(/obj/item/attachable/verticalgrip, /obj/item/attachable/reddot)
+
 /obj/item/weapon/gun/rifle/standard_lmg/beginner
 	starting_attachment_types = list(/obj/item/attachable/extended_barrel, /obj/item/attachable/reddot, /obj/item/attachable/verticalgrip)
 
@@ -1020,14 +1023,11 @@
 
 	placed_overlay_iconstate = "lmg"
 
-/obj/item/weapon/gun/rifle/standard_lmg/autorifleman
-	starting_attachment_types = list(/obj/item/attachable/verticalgrip, /obj/item/attachable/reddot)
-
 /obj/item/weapon/gun/rifle/standard_gpmg/machinegunner
 	starting_attachment_types = list(/obj/item/attachable/stock/t60stock, /obj/item/attachable/foldable/bipod, /obj/item/attachable/magnetic_harness, /obj/item/attachable/extended_barrel)
 
 /obj/item/weapon/gun/rifle/standard_gpmg/beginner
-	starting_attachment_types = list(/obj/item/attachable/stock/t60stock, /obj/item/attachable/foldable/bipod, /obj/item/attachable/reddot, /obj/item/attachable/heavy_barrel)
+	starting_attachment_types = list(/obj/item/attachable/stock/t60stock, /obj/item/attachable/foldable/bipod, /obj/item/attachable/magnetic_harness, /obj/item/attachable/heavy_barrel)
 
 //-------------------------------------------------------
 //M41AE2 Heavy Pulse Rifle
