@@ -1,0 +1,4 @@
+author: "tyeagg"
+delete-after: True
+changes:
+  - bugfix: "mech laser weapons now show the correct beam icon"
