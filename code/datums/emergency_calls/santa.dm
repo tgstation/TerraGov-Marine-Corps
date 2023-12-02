@@ -90,7 +90,7 @@
 
 /datum/action/innate/rejuv_self
 	name = "Revitalize Self"
-	action_icon_state = "dangerpresent"
+	action_icon_state = "santa_heal"
 
 /datum/action/innate/rejuv_self/Activate()
 	var/mob/living/carbon/human/santamob = usr

@@ -3,7 +3,7 @@
 	name = "Santa Visit"
 	typepath = /datum/round_event/santa_visit
 	weight = 12
-	earliest_start = 50 MINUTES
+	earliest_start = 30 MINUTES
 	max_occurrences = 1
 
 	gamemode_blacklist = list("Crash")
