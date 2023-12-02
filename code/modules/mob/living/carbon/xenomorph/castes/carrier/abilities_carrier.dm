@@ -112,7 +112,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	name = "Place trap"
 	action_icon_state = "place_trap"
 	desc = "Place a hole on weeds that can be filled with a hugger or acid. Activates when a marine steps on it."
-	ability_cost = 400
+	plasma_cost = 400
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PLACE_TRAP,
 	)
@@ -153,7 +153,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	name = "Spawn Facehugger"
 	action_icon_state = "spawn_hugger"
 	desc = "Spawn a facehugger that is stored on your body."
-	ability_cost = 200
+	plasma_cost = 200
 	cooldown_timer = 10 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_SPAWN_HUGGER,
@@ -194,7 +194,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	name = "Drop All Facehuggers"
 	action_icon_state = "carrier_panic"
 	desc = "Drop all stored huggers in a fit of panic. Uses all remaining plasma!"
-	ability_cost = 10
+	plasma_cost = 10
 	cooldown_timer = 50 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_DROP_ALL_HUGGER,
@@ -302,7 +302,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	name = "build hugger turret"
 	action_icon_state = "hugger_turret"
 	desc = "Build a hugger turret"
-	ability_cost = 800
+	plasma_cost = 800
 	cooldown_timer = 5 MINUTES
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_BUILD_HUGGER_TURRET,
@@ -357,7 +357,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	action_icon_state = "call_younger"
 	desc = "Appeals to the larva inside the Marine. The Marine loses his balance, and larva's progress accelerates."
 	ability_name = "call younger"
-	ability_cost = 150
+	plasma_cost = 150
 	cooldown_timer = 10 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_CALL_YOUNGER,

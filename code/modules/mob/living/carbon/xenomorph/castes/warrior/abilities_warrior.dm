@@ -63,7 +63,7 @@
 	action_icon_state = "lunge"
 	desc = "Pounce up to 5 tiles and grab a target, knocking them down and putting them in your grasp."
 	ability_name = "lunge"
-	ability_cost = 25
+	plasma_cost = 25
 	cooldown_timer = 20 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_LUNGE,
@@ -176,7 +176,7 @@
 	action_icon_state = "fling"
 	desc = "Knock a target flying up to 5 tiles away."
 	ability_name = "fling"
-	ability_cost = 18
+	plasma_cost = 18
 	cooldown_timer = 20 SECONDS //Shared cooldown with Grapple Toss
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_FLING,
@@ -277,7 +277,7 @@
 	action_icon_state = "grapple_toss"
 	desc = "Throw a creature you're grappling up to 3 tiles away."
 	ability_name = "grapple toss"
-	ability_cost = 18
+	plasma_cost = 18
 	cooldown_timer = 20 SECONDS //Shared cooldown with Fling
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_GRAPPLE_TOSS,
@@ -355,7 +355,7 @@
 	action_icon_state = "punch"
 	desc = "Strike a target, inflicting stamina damage, stagger and slowdown. Deals double damage, stagger and slowdown to grappled targets. Deals quadruple damage to structures and machinery."
 	ability_name = "punch"
-	ability_cost = 12
+	plasma_cost = 12
 	cooldown_timer = 10 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PUNCH,
@@ -568,7 +568,7 @@
 	name = "Jab"
 	action_icon_state = "jab"
 	desc = "Precisely strike your target from further away, heavily slowing them."
-	ability_cost = 10
+	plasma_cost = 10
 	range = 2
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_JAB,

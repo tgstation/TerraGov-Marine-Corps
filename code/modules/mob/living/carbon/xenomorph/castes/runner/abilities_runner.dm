@@ -8,7 +8,7 @@
 /datum/action/xeno_action/activable/pounce/runner
 	desc = "Leap at your target, tackling and disarming them. Alternate use toggles Savage off or on."
 	action_icon_state = "pounce_savage_on"
-	ability_cost = 10
+	plasma_cost = 10
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_RUNNER_POUNCE,
 		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_TOGGLE_SAVAGE,
@@ -78,7 +78,7 @@
 	name = "Evasion"
 	action_icon_state = "evasion_on"
 	desc = "Take evasive action, forcing non-friendly projectiles that would hit you to miss for a short duration so long as you keep moving. Alternate use toggles Auto Evasion off or on."
-	ability_cost = 75
+	plasma_cost = 75
 	cooldown_timer = 10 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_EVASION,
@@ -237,7 +237,7 @@
 	xeno_owner.do_jitter_animation(4000)
 	if(evasion_stacks >= RUNNER_EVASION_COOLDOWN_REFRESH_THRESHOLD && cooldown_remaining()) //We have more evasion stacks than needed to refresh our cooldown, while being on cooldown.
 		clear_cooldown()
-		if(auto_evasion && xeno_owner.plasma_stored >= ability_cost)
+		if(auto_evasion && xeno_owner.plasma_stored >= plasma_cost)
 			action_activate()
 	var/turf/current_turf = get_turf(xeno_owner) //location of after image SFX
 	playsound(current_turf, pick('sound/effects/throw.ogg','sound/effects/alien_tail_swipe1.ogg', 'sound/effects/alien_tail_swipe2.ogg'), 25, 1) //sound effects
@@ -254,7 +254,7 @@
 	name = "Snatch"
 	action_icon_state = "snatch"
 	desc = "Take an item equipped by your target in your mouth, and carry it away."
-	ability_cost = 75
+	plasma_cost = 75
 	cooldown_timer = 60 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_SNATCH,

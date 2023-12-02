@@ -29,7 +29,7 @@
 		.["abilities"]["[ability]"] = list(
 			"name" = initial(xeno_ability.name),
 			"desc" = initial(xeno_ability.desc),
-			"cost" = initial(xeno_ability.ability_cost),
+			"cost" = initial(xeno_ability.plasma_cost),
 			"cooldown" = (initial(xeno_ability.cooldown_timer) / 10)
 		)
 	.["evolves_to"] = list()
@@ -48,7 +48,7 @@
 			caste_data["abilities"]["[ability]"] = list(
 				"name" = initial(xeno_ability.name),
 				"desc" = initial(xeno_ability.desc),
-				"cost" = initial(xeno_ability.ability_cost),
+				"cost" = initial(xeno_ability.plasma_cost),
 				"cooldown" = (initial(xeno_ability.cooldown_timer) / 10)
 			)
 		.["evolves_to"]["[caste.caste_type_path]"] = caste_data

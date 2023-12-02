@@ -14,7 +14,7 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_RECYCLE,
 	)
-	ability_cost = 750
+	plasma_cost = 750
 	gamemode_flags = ABILITY_NUCLEARWAR
 
 /datum/action/xeno_action/activable/recycle/can_use_ability(atom/target, silent = FALSE, override_flags)
@@ -62,7 +62,7 @@
 // *********** Resin building
 // ***************************************
 /datum/action/xeno_action/activable/secrete_resin/hivelord
-	ability_cost = 100
+	plasma_cost = 100
 	buildable_structures = list(
 		/turf/closed/wall/resin/regenerating/thick,
 		/obj/alien/resin/sticky,
@@ -77,7 +77,7 @@
 	name = "Resin Walker"
 	action_icon_state = "toggle_speed"
 	desc = "Move faster on resin."
-	ability_cost = 50
+	plasma_cost = 50
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_RESIN_WALKER,
 	)
@@ -153,7 +153,7 @@
 	name = "Dig Tunnel"
 	action_icon_state = "build_tunnel"
 	desc = "Create a tunnel entrance. Use again to create the tunnel exit."
-	ability_cost = 200
+	plasma_cost = 200
 	cooldown_timer = 120 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_BUILD_TUNNEL,
@@ -241,7 +241,7 @@
 	name = "Place Resin Jelly pod"
 	action_icon_state = "resin_jelly_pod"
 	desc = "Place down a dispenser that allows xenos to retrieve fireproof jelly."
-	ability_cost = 500
+	plasma_cost = 500
 	cooldown_timer = 1 MINUTES
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PLACE_JELLY_POD,
@@ -281,7 +281,7 @@
 	name = "Create Resin Jelly"
 	action_icon_state = "resin_jelly"
 	desc = "Create a fireproof jelly."
-	ability_cost = 100
+	plasma_cost = 100
 	cooldown_timer = 20 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_CREATE_JELLY,
@@ -311,7 +311,7 @@
 	action_icon_state = "healing_infusion"
 	desc = "Psychically infuses a friendly xeno with regenerative energies, greatly improving its natural healing. Doesn't work if the target can't naturally heal."
 	cooldown_timer = 12.5 SECONDS
-	ability_cost = 200
+	plasma_cost = 200
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_HEALING_INFUSION,
 	)
@@ -394,7 +394,7 @@
 	name = "Sow"
 	action_icon_state = "place_trap"
 	desc = "Sow the seeds of an alien plant."
-	ability_cost = 200
+	plasma_cost = 200
 	cooldown_timer = 45 SECONDS
 	use_state_flags = ABILITY_USE_LYING
 	keybinding_signals = list(

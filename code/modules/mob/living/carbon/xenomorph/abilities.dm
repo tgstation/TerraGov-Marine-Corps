@@ -24,7 +24,7 @@
 /datum/action/xeno_action/activable/plant_weeds
 	name = "Plant Weeds"
 	action_icon_state = "plant_weeds"
-	ability_cost = 75
+	plasma_cost = 75
 	desc = "Plant a weed node on your tile."
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_DROP_WEEDS,
@@ -41,7 +41,7 @@
 	var/turf/last_weeded_turf
 
 /datum/action/xeno_action/activable/plant_weeds/can_use_action(atom/A, silent = FALSE, override_flags)
-	ability_cost = initial(ability_cost) * initial(weed_type.ability_cost_mult)
+	plasma_cost = initial(plasma_cost) * initial(weed_type.plasma_cost_mult)
 	return ..()
 
 /datum/action/xeno_action/activable/plant_weeds/action_activate()
@@ -83,7 +83,7 @@
 		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[owner.ckey]
 		personal_statistics.weeds_planted++
 	add_cooldown()
-	return succeed_activate(SSmonitor.gamestate == SHUTTERS_CLOSED ? ability_cost/2 : ability_cost)
+	return succeed_activate(SSmonitor.gamestate == SHUTTERS_CLOSED ? plasma_cost/2 : plasma_cost)
 
 /datum/action/xeno_action/activable/plant_weeds/alternate_action_activate()
 	INVOKE_ASYNC(src, PROC_REF(choose_weed))
@@ -179,7 +179,7 @@
 	desc = "Builds whatever resin you selected"
 	ability_name = "secrete resin"
 	target_flags = ABILITY_TURF_tARGET
-	ability_cost = 75
+	plasma_cost = 75
 	action_type = ACTION_TOGGLE
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_SECRETE_RESIN,
@@ -434,17 +434,17 @@
 		new_resin = new X.selected_resin(T)
 	switch(X.selected_resin)
 		if(/obj/alien/resin/sticky)
-			ability_cost = initial(ability_cost) / 3
+			plasma_cost = initial(plasma_cost) / 3
 	if(new_resin)
 		add_cooldown(SSmonitor.gamestate == SHUTTERS_CLOSED ? get_cooldown()/2 : get_cooldown())
-		succeed_activate(SSmonitor.gamestate == SHUTTERS_CLOSED ? ability_cost/2 : ability_cost)
-	ability_cost = initial(ability_cost) //Reset the plasma cost
+		succeed_activate(SSmonitor.gamestate == SHUTTERS_CLOSED ? plasma_cost/2 : plasma_cost)
+	plasma_cost = initial(plasma_cost) //Reset the plasma cost
 	owner.record_structures_built()
 
 /datum/action/xeno_action/pheromones
 	name = "Emit Pheromones"
 	action_icon_state = "emit_pheromones"
-	ability_cost = 30
+	plasma_cost = 30
 	desc = "Opens your pheromone options."
 	use_state_flags = ABILITY_USE_STAGGERED|ABILITY_USE_NOTTURF|ABILITY_USE_BUSY|ABILITY_USE_LYING
 
@@ -595,7 +595,7 @@
 	action_icon_state = "corrosive_acid"
 	desc = "Cover an object with acid to slowly melt it. Takes a few seconds."
 	ability_name = "corrosive acid"
-	ability_cost = 100
+	plasma_cost = 100
 	var/obj/effect/xenomorph/acid/acid_type = /obj/effect/xenomorph/acid
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_CORROSIVE_ACID,
@@ -674,7 +674,7 @@
 
 /datum/action/xeno_action/activable/corrosive_acid/strong
 	name = "Corrosive Acid"
-	ability_cost = 200
+	plasma_cost = 200
 	acid_type = /obj/effect/xenomorph/acid/strong
 
 
@@ -818,7 +818,7 @@
 	playsound(X.loc, sound_to_play, 25, 1)
 
 	var/obj/projectile/newspit = new /obj/projectile(current_turf)
-	ability_cost = X.ammo.spit_cost
+	plasma_cost = X.ammo.spit_cost
 	newspit.generate_bullet(X.ammo, X.ammo.damage * SPIT_UPGRADE_BONUS(X))
 	newspit.def_zone = X.get_limbzone_target()
 	newspit.fire_at(current_target, X, null, X.ammo.max_range, X.ammo.shell_speed)
@@ -906,7 +906,7 @@
 	desc = "A channeled melee attack that injects the target with neurotoxin over a few seconds, temporarily stunning them."
 	ability_name = "neurotoxin sting"
 	cooldown_timer = 12 SECONDS
-	ability_cost = 150
+	plasma_cost = 150
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_NEUROTOX_STING,
 	)
@@ -966,7 +966,7 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_OZELOMELYN_STING,
 	)
-	ability_cost = 100
+	plasma_cost = 100
 	sting_chemical = /datum/reagent/toxin/xeno_ozelomelyn
 
 ///Adds ability tally to the end-round statistics.
@@ -1081,7 +1081,7 @@
 	action_icon_state = "abduct"
 	desc = "Devour your victim to be able to carry it faster."
 	use_state_flags = ABILITY_USE_STAGGERED|ABILITY_USE_FORTIFIED|ABILITY_USE_CRESTED //can't use while staggered, defender fortified or crest down
-	ability_cost = 0
+	plasma_cost = 0
 	target_flags = ABILITY_MOB_tARGET
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_DEVOUR,
@@ -1160,7 +1160,7 @@
 	action_icon_state = "drone_sting"
 	desc = "Inject an impregnated host with growth serum, causing the larva inside to grow quicker. Has harmful effects for non-infected hosts while stabilizing larva-infected hosts."
 	ability_name = "larval growth sting"
-	ability_cost = 150
+	plasma_cost = 150
 	cooldown_timer = 30 SECONDS
 	keybinding_signals = COMSIG_XENOABILITY_LARVAL_GROWTH_STING
 	target_flags = ABILITY_MOB_tARGET
@@ -1209,7 +1209,7 @@
 	name = "Lay Egg"
 	action_icon_state = "lay_egg"
 	desc = "Create an egg that will grow a larval hugger after a short delay. Empty eggs can have huggers inserted into them."
-	ability_cost = 200
+	plasma_cost = 200
 	cooldown_timer = 12 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_LAY_EGG,
@@ -1252,7 +1252,7 @@
 	action_icon_state = "rally_hive"
 	desc = "Rallies the hive to a congregate at a target location, along with an arrow pointer. Gives the Hive your current health status. 60 second cooldown."
 	ability_name = "rally hive"
-	ability_cost = 0
+	plasma_cost = 0
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_RALLY_HIVE,
 	)
@@ -1277,7 +1277,7 @@
 	action_icon_state = "minion_agressive"
 	desc = "Rallies the minions around you, asking them to follow you if they don't have a leader already. Rightclick to change minion behaviour."
 	ability_name = "rally minions"
-	ability_cost = 0
+	plasma_cost = 0
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_RALLY_MINION,
 		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_MINION_BEHAVIOUR,
@@ -1332,7 +1332,7 @@
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_HEADBITE,
 	)
 	gamemode_flags = ABILITY_NUCLEARWAR
-	ability_cost = 100
+	plasma_cost = 100
 	///How much larva points it gives (8 points for one larva in distress)
 	var/larva_point_reward = 1
 
@@ -1428,7 +1428,7 @@
 	desc = "Infect your victim with a young one without a facehugger. This will burn them a bit."
 	cooldown_timer = 30 SECONDS
 	use_state_flags = ABILITY_USE_STAGGERED
-	ability_cost = 50
+	plasma_cost = 50
 	gamemode_flags = ABILITY_NUCLEARWAR
 	target_flags = XABB_HUMAN_TARGET
 	keybinding_signals = list(
@@ -1502,7 +1502,7 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_REGURGITATE,
 	)
-	ability_cost = 100
+	plasma_cost = 100
 	gamemode_flags = ABILITY_NUCLEARWAR
 	///In how much time the cocoon will be ejected
 	var/cocoon_production_time = 3 SECONDS

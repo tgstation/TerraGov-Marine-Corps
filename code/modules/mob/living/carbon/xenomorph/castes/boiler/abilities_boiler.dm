@@ -29,7 +29,7 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 	name = "Toggle Long Range Sight"
 	action_icon_state = "toggle_long_range"
 	desc = "Activates your weapon sight in the direction you are facing. Must remain stationary to use."
-	ability_cost = 20
+	plasma_cost = 20
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_LONG_RANGE_SIGHT,
 	)
@@ -134,7 +134,7 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 	action_icon_state = "toggle_bomb0" //to be changed
 	action_icon = 'icons/xeno/actions_boiler_glob.dmi'
 	desc = "Creates a Boiler Bombard of the type currently selected."
-	ability_cost = 200
+	plasma_cost = 200
 	use_state_flags = ABILITY_USE_BUSY|ABILITY_USE_LYING|ABILITY_USE_ROOTED
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_CREATE_BOMB,

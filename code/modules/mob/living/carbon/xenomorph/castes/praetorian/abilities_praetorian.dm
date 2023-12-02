@@ -6,7 +6,7 @@
 	action_icon_state = "spray_acid"
 	desc = "Spray a cone of dangerous acid at your target."
 	ability_name = "spray acid"
-	ability_cost = 300
+	plasma_cost = 300
 	cooldown_timer = 40 SECONDS
 
 /datum/action/xeno_action/activable/spray_acid/cone/use_ability(atom/A)
@@ -132,7 +132,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	action_icon_state = "pounce"
 	desc = "Instantly dash, tackling the first marine in your path. If you manage to tackle someone, gain another weaker cast of the ability."
 	ability_name = "acid dash"
-	ability_cost = 250
+	plasma_cost = 250
 	cooldown_timer = 30 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_ACID_DASH,

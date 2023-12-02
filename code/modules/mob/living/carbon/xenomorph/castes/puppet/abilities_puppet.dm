@@ -3,7 +3,7 @@
 	action_icon_state = "lunge"
 	desc = "Assault an organic, restoring health through the use of the their biomass."
 	ability_name = "feed"
-	ability_cost = 0
+	plasma_cost = 0
 	cooldown_timer = 35 SECONDS
 	target_flags = ABILITY_MOB_tARGET
 

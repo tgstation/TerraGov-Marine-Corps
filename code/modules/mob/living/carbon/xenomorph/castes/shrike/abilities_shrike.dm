@@ -7,7 +7,7 @@
 	name = "Call of the Burrowed"
 	desc = "Attempts to summon all currently burrowed larva."
 	action_icon_state = "larva_growth"
-	ability_cost = 400
+	plasma_cost = 400
 	cooldown_timer = 2 MINUTES
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_CALL_OF_THE_BURROWED,
@@ -59,7 +59,7 @@
 	action_icon_state = "fling"
 	desc = "Sends an enemy or an item flying. A close ranged ability."
 	cooldown_timer = 12 SECONDS
-	ability_cost = 100
+	plasma_cost = 100
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PSYCHIC_FLING,
 	)
@@ -142,7 +142,7 @@
 	action_icon_state = "screech"
 	desc = "Unleashes our raw psychic power, pushing aside anyone who stands in our path."
 	cooldown_timer = 50 SECONDS
-	ability_cost = 300
+	plasma_cost = 300
 	keybind_flags = ABILITY_KEYBIND_USE_ABILITY | ABILITY_IGNORE_SELECTED_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_UNRELENTING_FORCE,
@@ -224,7 +224,7 @@
 	action_icon_state = "heal_xeno"
 	desc = "Heal and remove debuffs from a target."
 	cooldown_timer = 1 MINUTES
-	ability_cost = 200
+	plasma_cost = 200
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PSYCHIC_CURE,
 	)
@@ -320,7 +320,7 @@
 	name = "Place acid well"
 	action_icon_state = "place_trap"
 	desc = "Place an acid well that can put out fires."
-	ability_cost = 400
+	plasma_cost = 400
 	cooldown_timer = 2 MINUTES
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PLACE_ACID_WELL,
@@ -370,7 +370,7 @@
 	action_icon_state = "vortex"
 	desc = "Channel a sizable vortex of psychic energy, drawing in nearby enemies."
 	ability_name = "Psychic vortex"
-	ability_cost = 600
+	plasma_cost = 600
 	cooldown_timer = 2 MINUTES
 	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
 	keybinding_signals = list(

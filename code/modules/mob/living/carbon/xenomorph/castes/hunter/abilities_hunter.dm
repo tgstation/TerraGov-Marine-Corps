@@ -6,7 +6,7 @@
 	action_icon_state = "hunter_invisibility"
 	desc = "Become harder to see, almost invisible if you stand still, and ready a sneak attack. Uses plasma to move."
 	ability_name = "stealth"
-	ability_cost = 10
+	plasma_cost = 10
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TOGGLE_STEALTH,
 	)
@@ -272,7 +272,7 @@
 	ability_name = "Pounce"
 	desc = "Leap at your target, tackling and disarming them."
 	action_icon_state = "pounce"
-	ability_cost = 20
+	plasma_cost = 20
 	cooldown_timer = 10 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_HUNTER_POUNCE,
@@ -372,7 +372,7 @@
 	name = "Hunter's Mark"
 	action_icon_state = "hunter_mark"
 	desc = "Psychically mark a creature you have line of sight to, allowing you to sense its direction, distance and location with Psychic Trace."
-	ability_cost = 25
+	plasma_cost = 25
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_HUNTER_MARK,
 	)
@@ -455,7 +455,7 @@
 	name = "Psychic Trace"
 	action_icon_state = "toggle_queen_zoom"
 	desc = "Psychically ping the creature you marked, letting you know its direction, distance and location, and general condition."
-	ability_cost = 1 //Token amount
+	plasma_cost = 1 //Token amount
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PSYCHIC_TRACE,
 	)
@@ -525,7 +525,7 @@
 	action_icon_state = "mirror_image"
 	desc = "Create mirror images of ourselves. Reactivate to swap with an illusion."
 	ability_name = "mirage"
-	ability_cost = 50
+	plasma_cost = 50
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_MIRAGE,
 	)
@@ -595,7 +595,7 @@
 	action_icon_state = "silence"
 	desc = "Impairs the ability of hostile living creatures we can see in a 5x5 area. Targets will be unable to speak and hear for 10 seconds, or 15 seconds if they're your Hunter Mark target."
 	ability_name = "silence"
-	ability_cost = 50
+	plasma_cost = 50
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_SILENCE,
 	)

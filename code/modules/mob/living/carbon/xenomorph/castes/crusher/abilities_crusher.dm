@@ -6,7 +6,7 @@
 	action_icon_state = "stomp"
 	desc = "Knocks all adjacent targets away and down."
 	ability_name = "stomp"
-	ability_cost = 100
+	plasma_cost = 100
 	cooldown_timer = 20 SECONDS
 	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
 	keybinding_signals = list(
@@ -67,7 +67,7 @@
 	action_icon_state = "cresttoss"
 	desc = "Fling an adjacent target over and behind you, or away from you while on harm intent. Also works over barricades."
 	ability_name = "crest toss"
-	ability_cost = 75
+	plasma_cost = 75
 	cooldown_timer = 12 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_CRESTTOSS,
@@ -171,7 +171,7 @@
 	action_icon_state = "crest_defense"
 	desc = "Charges up the crushers charge in place, then unleashes the full bulk of the crusher at the target location. Does not crush in diagonal directions."
 	ability_name = "rapid advance"
-	ability_cost = 175
+	plasma_cost = 175
 	cooldown_timer = 30 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_ADVANCE,

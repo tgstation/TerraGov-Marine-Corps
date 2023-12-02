@@ -5,7 +5,7 @@
 	name = "Hive Message" // Also known as Word of Queen.
 	action_icon_state = "queen_order"
 	desc = "Announces a message to the hive."
-	ability_cost = 50
+	plasma_cost = 50
 	cooldown_timer = 10 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_QUEEN_HIVE_MESSAGE,
@@ -65,7 +65,7 @@
 	action_icon_state = "screech"
 	desc = "A large area knockdown that causes pain and screen-shake."
 	ability_name = "screech"
-	ability_cost = 250
+	plasma_cost = 250
 	cooldown_timer = 100 SECONDS
 	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
 	keybinding_signals = list(
@@ -131,7 +131,7 @@
 	name = "Watch Xenomorph"
 	action_icon_state = "watch_xeno"
 	desc = "See from the target Xenomorphs vision. Click again the ability to stop observing"
-	ability_cost = 0
+	plasma_cost = 0
 	use_state_flags = ABILITY_USE_LYING
 	var/overwatch_active = FALSE
 
@@ -221,7 +221,7 @@
 	name = "Toggle Queen Zoom"
 	action_icon_state = "toggle_queen_zoom"
 	desc = "Zoom out for a larger view around wherever you are looking."
-	ability_cost = 0
+	plasma_cost = 0
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TOGGLE_QUEEN_ZOOM,
 	)
@@ -268,7 +268,7 @@
 	name = "Choose/Follow Xenomorph Leaders"
 	action_icon_state = "xeno_lead"
 	desc = "Make a target Xenomorph a leader."
-	ability_cost = 200
+	plasma_cost = 200
 	use_state_flags = ABILITY_USE_LYING
 
 /datum/action/xeno_action/set_xeno_lead/should_show()
@@ -339,7 +339,7 @@
 	action_icon_state = "heal_xeno"
 	desc = "Apply a minor heal to the target."
 	cooldown_timer = 5 SECONDS
-	ability_cost = 150
+	plasma_cost = 150
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_QUEEN_HEAL,
 	)
@@ -386,7 +386,7 @@
 	name = "Give Plasma"
 	action_icon_state = "queen_give_plasma"
 	desc = "Give plasma to a target Xenomorph (you must be overwatching them.)"
-	ability_cost = 150
+	plasma_cost = 150
 	cooldown_timer = 8 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_QUEEN_GIVE_PLASMA,
@@ -454,7 +454,7 @@
 	name = "Royal Bulwark"
 	action_icon_state = "bulwark"
 	desc = "Creates a field of defensive energy, filling chinks in the armor of nearby sisters, making them more resilient."
-	ability_cost = 100
+	plasma_cost = 100
 	cooldown_timer = 20 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_QUEEN_BULWARK,

@@ -88,7 +88,7 @@
 	name = "Choose Explosion Reagent"
 	action_icon_state = "select_reagent0"
 	desc = "Select which reagent will be released when you explode."
-	ability_cost = 0
+	plasma_cost = 0
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_BANELING_CHOOSE_REAGENT,
 		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_RADIAL_SELECT_REAGENT,
@@ -135,7 +135,7 @@
 	action_icon_state = "spawn_pod"
 	desc = "Spawn a pod that you will respawn inside of upon death. You will NOT respawn if the pod is destroyed!"
 	ability_name = "spawn pod"
-	ability_cost = 150
+	plasma_cost = 150
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_BANELING_SPAWN_POD,
 	)
@@ -164,7 +164,7 @@
 	action_icon_state = "dash_explosion"
 	desc = "Wind up and charge in a direction, detonating yourself on impact."
 	ability_name = "dash explosion"
-	ability_cost = 0
+	plasma_cost = 0
 	///How far can we charge
 	var/range = 6
 	keybinding_signals = list(

@@ -54,7 +54,7 @@
 	action_icon_state = "psy_shield"
 	desc = "Channel a psychic shield at your current location that can reflect most projectiles. Activate again while the shield is active to detonate the shield forcibly, producing knockback. Must remain static to use."
 	cooldown_timer = 10 SECONDS
-	ability_cost = 200
+	plasma_cost = 200
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PSYCHIC_SHIELD,
 		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_TRIGGER_PSYCHIC_SHIELD,
@@ -82,8 +82,8 @@
 /datum/action/xeno_action/activable/psychic_shield/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	if(active_shield)
-		if(ability_cost > xeno_owner.plasma_stored)
-			owner.balloon_alert(owner, "[ability_cost - xeno_owner.plasma_stored] more plasma!")
+		if(plasma_cost > xeno_owner.plasma_stored)
+			owner.balloon_alert(owner, "[plasma_cost - xeno_owner.plasma_stored] more plasma!")
 			return FALSE
 		if(can_use_action(FALSE, ABILITY_USE_BUSY))
 			shield_blast()
@@ -267,7 +267,7 @@
 	action_icon_state = "psy_crush"
 	desc = "Channel an expanding AOE crush effect, activating it again pre-maturely crushes enemies over an area. The longer it is channeled, the larger area it will affect, but will consume more plasma."
 	ability_name = "psychic crush"
-	ability_cost = 40
+	plasma_cost = 40
 	cooldown_timer = 12 SECONDS
 	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
 	keybinding_signals = list(
@@ -379,7 +379,7 @@
 ///crushes all turfs in the AOE
 /datum/action/xeno_action/activable/psy_crush/proc/crush(turf/target)
 	var/mob/living/carbon/xenomorph/xeno_owner = owner
-	var/crush_cost = ability_cost * current_iterations
+	var/crush_cost = plasma_cost * current_iterations
 	if(crush_cost > xeno_owner.plasma_stored)
 		owner.balloon_alert(owner, "[crush_cost - xeno_owner.plasma_stored] more plasma!")
 		stop_crush()
@@ -497,7 +497,7 @@
 	desc = "Launch a blast of psychic energy that deals light damage and knocks back enemies in its AOE. Must remain stationary for a few seconds to use."
 	ability_name = "psychic blast"
 	cooldown_timer = 6 SECONDS
-	ability_cost = 230
+	plasma_cost = 230
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PSYCHIC_BLAST,
 	)
@@ -522,7 +522,7 @@
 		else
 			xeno_owner.ammo = GLOB.ammo_list[spit_types[(found_pos%length(spit_types))+1]]	//Loop around if we would exceed the length
 		var/datum/ammo/energy/xeno/selected_ammo = xeno_owner.ammo
-		ability_cost = selected_ammo.ability_cost
+		plasma_cost = selected_ammo.plasma_cost
 		particle_type = selected_ammo.channel_particle
 		owner.balloon_alert(owner, "[selected_ammo]")
 		update_button_icon()
@@ -537,9 +537,9 @@
 	if(!xeno_owner.check_state())
 		return FALSE
 	var/datum/ammo/energy/xeno/selected_ammo = xeno_owner.ammo
-	if(selected_ammo.ability_cost > xeno_owner.plasma_stored)
+	if(selected_ammo.plasma_cost > xeno_owner.plasma_stored)
 		if(!silent)
-			owner.balloon_alert(owner, "[selected_ammo.ability_cost - xeno_owner.plasma_stored] more plasma!")
+			owner.balloon_alert(owner, "[selected_ammo.plasma_cost - xeno_owner.plasma_stored] more plasma!")
 
 		return FALSE
 

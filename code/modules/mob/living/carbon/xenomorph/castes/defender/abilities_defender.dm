@@ -6,7 +6,7 @@
 	action_icon_state = "tail_sweep"
 	desc = "Hit all adjacent units around you, knocking them away and down."
 	ability_name = "tail sweep"
-	ability_cost = 35
+	plasma_cost = 35
 	use_state_flags = ABILITY_USE_CRESTED
 	cooldown_timer = 12 SECONDS
 	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
@@ -17,8 +17,8 @@
 /datum/action/xeno_action/tail_sweep/can_use_action(silent, override_flags)
 	. = ..()
 	var/mob/living/carbon/xenomorph/X = owner
-	if(X.crest_defense && X.plasma_stored < (ability_cost * 2))
-		to_chat(X, span_xenowarning("We don't have enough plasma, we need [(ability_cost * 2) - X.plasma_stored] more plasma!"))
+	if(X.crest_defense && X.plasma_stored < (plasma_cost * 2))
+		to_chat(X, span_xenowarning("We don't have enough plasma, we need [(plasma_cost * 2) - X.plasma_stored] more plasma!"))
 		return FALSE
 
 /datum/action/xeno_action/tail_sweep/action_activate()
@@ -59,7 +59,7 @@
 	addtimer(CALLBACK(X, TYPE_PROC_REF(/atom, remove_filter), "defender_tail_sweep"), 0.5 SECONDS) //Remove cool SFX
 	succeed_activate()
 	if(X.crest_defense)
-		X.use_plasma(ability_cost)
+		X.use_plasma(plasma_cost)
 	add_cooldown()
 
 /datum/action/xeno_action/tail_sweep/on_cooldown_finish()
@@ -91,7 +91,7 @@
 	desc = "Charge up to 4 tiles and knockdown any targets in our way."
 	ability_name = "charge"
 	cooldown_timer = 10 SECONDS
-	ability_cost = 80
+	plasma_cost = 80
 	use_state_flags = ABILITY_USE_CRESTED|ABILITY_USE_FORTIFIED
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_FORWARD_CHARGE,
@@ -352,7 +352,7 @@
 	desc = "Regenerate your hard exoskeleton skin, restoring some health and removing all sunder."
 	ability_name = "regenerate skin"
 	use_state_flags = ABILITY_USE_FORTIFIED|ABILITY_USE_CRESTED|ABILITY_TARGET_SELF|ABILITY_IGNORE_SELECTED_ABILITY|ABILITY_KEYBIND_USE_ABILITY
-	ability_cost = 160
+	plasma_cost = 160
 	cooldown_timer = 1 MINUTES
 	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
 	keybinding_signals = list(
@@ -393,7 +393,7 @@
 	action_icon_state = "centrifugal_force"
 	desc = "Rapidly spin and hit all adjacent humans around you, knocking them away and down. Uses double plasma when crest is active."
 	ability_name = "centrifugal force"
-	ability_cost = 15
+	plasma_cost = 15
 	use_state_flags = ABILITY_USE_CRESTED
 	cooldown_timer = 30 SECONDS
 	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
@@ -410,8 +410,8 @@
 		return TRUE
 	. = ..()
 	var/mob/living/carbon/xenomorph/X = owner
-	if(X.crest_defense && X.plasma_stored < (ability_cost * 2))
-		to_chat(X, span_xenowarning("We don't have enough plasma, we need [(ability_cost * 2) - X.plasma_stored] more plasma!"))
+	if(X.crest_defense && X.plasma_stored < (plasma_cost * 2))
+		to_chat(X, span_xenowarning("We don't have enough plasma, we need [(plasma_cost * 2) - X.plasma_stored] more plasma!"))
 		return FALSE
 
 /datum/action/xeno_action/centrifugal_force/action_activate()
@@ -454,7 +454,7 @@
 		to_chat(slapped, span_xenowarning("We are struck by \the [X]'s flying tail!"))
 		playsound(slapped, 'sound/weapons/alien_claw_block.ogg', 50, 1)
 
-	succeed_activate(X.crest_defense ? ability_cost * 2 : ability_cost)
+	succeed_activate(X.crest_defense ? plasma_cost * 2 : plasma_cost)
 	if(step_tick)
 		step(X, pick(GLOB.alldirs))
 	step_tick = !step_tick

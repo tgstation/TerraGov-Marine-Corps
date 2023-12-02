@@ -7,7 +7,7 @@
 	desc = "Charge up to 4 tiles and viciously attack your target."
 	ability_name = "charge"
 	cooldown_timer = 20 SECONDS
-	ability_cost = 500 //Can't ignore pain/Charge and ravage in the same timeframe, but you can combo one of them.
+	plasma_cost = 500 //Can't ignore pain/Charge and ravage in the same timeframe, but you can combo one of them.
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_RAVAGER_CHARGE,
 	)
@@ -87,7 +87,7 @@
 	action_icon_state = "ravage"
 	desc = "Attacks and knockbacks enemies in the direction your facing."
 	ability_name = "ravage"
-	ability_cost = 200
+	plasma_cost = 200
 	cooldown_timer = 6 SECONDS
 	keybind_flags = ABILITY_KEYBIND_USE_ABILITY | ABILITY_IGNORE_SELECTED_ABILITY
 	keybinding_signals = list(
@@ -189,7 +189,7 @@
 	action_icon_state = "ignore_pain"
 	desc = "For the next few moments you will not go into crit and become resistant to explosives and immune to stagger and slowdown, but you still die if you take damage exceeding your crit health."
 	ability_name = "Endure"
-	ability_cost = 200
+	plasma_cost = 200
 	cooldown_timer = 60 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_ENDURE,
@@ -307,7 +307,7 @@
 	action_icon_state = "rage"
 	desc = "Use while at 50% health or lower to gain extra slash damage, resistances and speed in proportion to your missing hit points. This bonus is increased and you regain plasma while your HP is negative."
 	ability_name = "Rage"
-	ability_cost = 0 //We're limited by cooldowns, not plasma
+	plasma_cost = 0 //We're limited by cooldowns, not plasma
 	cooldown_timer = 60 SECONDS
 	keybind_flags = ABILITY_KEYBIND_USE_ABILITY | ABILITY_IGNORE_SELECTED_ABILITY
 	keybinding_signals = list(
@@ -500,7 +500,7 @@
 	action_icon_state = "neuroclaws_off"
 	desc = "Toggle on to enable boosting on "
 	ability_name = "Vampirism"
-	ability_cost = 0 //We're limited by nothing, rip and tear
+	plasma_cost = 0 //We're limited by nothing, rip and tear
 	cooldown_timer = 1 SECONDS
 	keybind_flags = ABILITY_KEYBIND_USE_ABILITY | ABILITY_IGNORE_SELECTED_ABILITY
 	keybinding_signals = list(

@@ -12,7 +12,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	ability_name = "Blink"
 	desc = "We teleport ourselves a short distance to a location within line of sight."
 	use_state_flags = ABILITY_TURF_tARGET
-	ability_cost = 30
+	plasma_cost = 30
 	cooldown_timer = 0.5 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_BLINK,
@@ -159,7 +159,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	ability_name = "Banish"
 	desc = "We banish a target object or creature within line of sight to nullspace for a short duration. Can target onself and allies. Non-friendlies are banished for half as long."
 	use_state_flags = ABILITY_TARGET_SELF
-	ability_cost = 50
+	plasma_cost = 50
 	cooldown_timer = 20 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_BANISH,
@@ -275,7 +275,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	addtimer(CALLBACK(src, PROC_REF(banish_warning)), duration * 0.7) //Warn when Banish is about to end
 	banish_duration_timer_id = addtimer(CALLBACK(src, PROC_REF(banish_deactivate)), duration, TIMER_STOPPABLE) //store the timer ID
 
-	succeed_activate(ability_cost * plasma_mod)
+	succeed_activate(plasma_cost * plasma_mod)
 	add_cooldown(cooldown_timer * cooldown_mod)
 
 	GLOB.round_statistics.wraith_banishes++
@@ -411,7 +411,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	ability_name = "Time stop"
 	action_icon_state = "time_stop"
 	desc = "Freezes bullets in their course, and they will start to move again only after a certain time"
-	ability_cost = 100
+	plasma_cost = 100
 	cooldown_timer = 1 MINUTES
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TIMESTOP,
@@ -454,7 +454,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	ability_name = "Portal"
 	action_icon_state = "portal"
 	desc = "Place a portal on your location. You can travel from portal to portal. Left click to create portal one, right click to create portal two"
-	ability_cost = 50
+	plasma_cost = 50
 	cooldown_timer = 5 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PORTAL,
@@ -647,7 +647,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	ability_name = "Time Shift"
 	action_icon_state = "rewind"
 	desc = "Save the location and status of the target. When the time is up, the target location and status are restored, unless the target is dead or unconscious."
-	ability_cost = 100
+	plasma_cost = 100
 	cooldown_timer = 30 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_REWIND,
