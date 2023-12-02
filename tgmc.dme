@@ -1327,6 +1327,7 @@
 #include "code\modules\clothing\modular_armor\attachments\chest_plates.dm"
 #include "code\modules\clothing\modular_armor\attachments\leg_plates.dm"
 #include "code\modules\clothing\modular_armor\attachments\modules.dm"
+#include "code\modules\clothing\modular_armor\attachments\secondary_color.dm"
 #include "code\modules\clothing\modular_armor\attachments\storage.dm"
 #include "code\modules\clothing\modular_armor\attachments\uniform.dm"
 #include "code\modules\clothing\modular_armor\attachments\visors.dm"
