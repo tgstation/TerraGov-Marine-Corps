@@ -1,0 +1,6 @@
+author: "novaepee"
+delete-after: True
+changes:
+  - rscadd: "some shotguns get underbarreled flashlight"
+  - balance: "more ways to add attachments to some shotguns in light of freeing rail slot attachment"
+  - balance: "increase lighting for shotgun marines due to underbarrreled flashlight"
