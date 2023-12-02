@@ -336,7 +336,7 @@
 
 /obj/item/clothing/suit/space/santa/special //for ERT, when santa has to give presents to REALLY naughty children
 	desc = "That's not red dye. That's red blood."
-	soft_armor = list(MELEE = 90, BULLET = 90, LASER = 90, ENERGY = 85, BOMB = 120, BIO = 85, FIRE = 75, ACID = 40)
+	soft_armor = list(MELEE = 90, BULLET = 90, LASER = 90, ENERGY = 90, BOMB = 120, BIO = 85, FIRE = 120, ACID = 40)
 	slowdown = 1
 	flags_item = DELONDROP
 	flags_armor_protection = CHEST|GROIN|ARMS|LEGS|FEET|HANDS
@@ -357,7 +357,7 @@
 	desc = "Festive!"
 	icon_state = "elfcostume"
 	item_state = "elfcostume"
-	soft_armor = list(MELEE = 35, BULLET = 15, LASER = 15, ENERGY = 10, BOMB = 80, BIO = 30, FIRE = 20, ACID = 10)
+	soft_armor = list(MELEE = 55, BULLET = 15, LASER = 15, ENERGY = 10, BOMB = 100, BIO = 30, FIRE = 80, ACID = 10)
 	flags_item = DELONDROP
 
 /obj/item/clothing/suit/space/elf/Initialize(mapload)

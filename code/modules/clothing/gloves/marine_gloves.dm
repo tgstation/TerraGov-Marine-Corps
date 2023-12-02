@@ -108,7 +108,7 @@
 	desc = "A pair of wooly insulated gloves worn exclusively by Santa Claus."
 	icon_state = "christmas"
 	item_state = "greengloves"
-	soft_armor = list(MELEE = 35, BULLET = 30, LASER = 20, ENERGY = 20, BOMB = 80, BIO = 20, FIRE = 20, ACID = 25)
+	soft_armor = list(MELEE = 35, BULLET = 75, LASER = 75, ENERGY = 75, BOMB = 80, BIO = 20, FIRE = 20, ACID = 25)
 	flags_item = DELONDROP
 
 /obj/item/clothing/gloves/marine/veteran/pmc/commando/santa/Initialize(mapload)

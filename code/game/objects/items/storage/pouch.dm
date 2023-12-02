@@ -507,6 +507,9 @@
 		/obj/item/reagent_containers/food/drinks/bottle/eggnog/special,
 	)
 
+/obj/item/storage/pouch/santaspouch/Initialize(mapload)
+	. = ..()
+	ADD_TRAIT(src, TRAIT_NODROP, TRAIT_SANTA_CLAUS)
 
 /obj/item/storage/pouch/medkit/firstaid
 	desc = "Standard marine first-aid pouch. Contains basic pills, splints, and a stabilizing injector."
@@ -766,6 +769,12 @@
 	. = ..()
 	new /obj/item/stack/sandbags_empty/half (src)
 	new /obj/item/stack/sheet/metal/large_stack (src)
+	new /obj/item/stack/sheet/plasteel/medium_stack (src)
+
+/obj/item/storage/pouch/construction/equippedengineer/elf/Initialize(mapload)
+	. = ..()
+	new /obj/item/stack/sandbags_empty/half (src)
+	new /obj/item/stack/sheet/metal/small_stack (src)
 	new /obj/item/stack/sheet/plasteel/medium_stack (src)
 
 /obj/item/storage/pouch/construction/som

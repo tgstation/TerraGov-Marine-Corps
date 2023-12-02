@@ -111,6 +111,9 @@
 	faction = FACTION_SANTA
 	outfit = /datum/outfit/job/santa/elf
 
+/datum/job/santa/elf/eventspawn
+	outfit = /datum/outfit/job/santa/elf/eventspawn
+
 /datum/job/santa/leader
 	title = "Santa Claus"
 	access = ALL_ACCESS
@@ -136,7 +139,7 @@
 	shoes = /obj/item/clothing/shoes/ruggedboot
 	wear_suit = /obj/item/clothing/suit/space/elf
 	gloves = /obj/item/clothing/gloves/ruggedgloves
-	head = /obj/item/clothing/head/helmet/space/elf
+	head = /obj/item/clothing/head/helmet/space/elf/special
 	glasses = /obj/item/clothing/glasses/welding
 	l_store = /obj/item/storage/pouch/construction/equippedengineer
 	r_store = /obj/item/storage/pouch/pistol/vp70
@@ -144,6 +147,49 @@
 	suit_store = /obj/item/weapon/gun/pistol/vp70
 	r_hand = /obj/item/weapon/twohanded/spear/candycane/elf
 
+/datum/outfit/job/santa/elf/eventspawn
+	name = "Elf"
+	jobtype = /datum/job/santa
+
+	id = /obj/item/card/id/silver
+	belt = /obj/item/storage/belt/utility/full
+	ears = /obj/item/radio/headset/distress/commando
+	w_uniform = /obj/item/clothing/under/spec_operative
+	shoes = /obj/item/clothing/shoes/ruggedboot
+	wear_suit = /obj/item/clothing/suit/space/elf
+	gloves = /obj/item/clothing/gloves/ruggedgloves
+	head = /obj/item/clothing/head/helmet/space/elf/special
+	glasses = /obj/item/clothing/glasses/welding
+	l_store = /obj/item/storage/pouch/construction/equippedengineer/elf
+	r_store = /obj/item/storage/pouch/pistol/vp70
+	back = /obj/item/storage/backpack/industrial
+	suit_store = /obj/item/weapon/gun/pistol/vp70
+	r_hand = /obj/item/weapon/twohanded/spear/candycane/elf
+
+/datum/outfit/job/santa/elf/eventspawn/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	. = ..()
+
+
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/christmas_cookieone/special, SLOT_IN_HEAD)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/christmas_cookietwo/special, SLOT_IN_HEAD)
+
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70, SLOT_IN_R_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70, SLOT_IN_R_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70, SLOT_IN_R_POUCH)
+
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/pmc, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/pmc, SLOT_IN_BACKPACK)
+
+	H.equip_to_slot_or_del(new /obj/item/stack/sheet/metal/small_stack, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/stack/sheet/plasteel/small_stack, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/tool/crowbar/red, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/storage/box/m94, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/drinks/bottle/eggnog/special, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/pmc, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/pmc, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/standard_pistol, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new 	/obj/item/weapon/gun/pistol/vp70, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new 	/obj/item/weapon/gun/pistol/vp70, SLOT_IN_BACKPACK)
 
 /datum/outfit/job/santa/leader //he's done ho ho ho ing around
 	name = "Santa Claus"

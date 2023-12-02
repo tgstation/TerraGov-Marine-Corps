@@ -46,6 +46,8 @@
 		present_spawn.give_action(H)
 		var/datum/action/innate/summon_present_bomb/present_bomb_spawn = new(H)
 		present_bomb_spawn.give_action(H)
+		var/datum/action/innate/rejuv_self/selfhealing = new(H)
+		selfhealing.give_action(H)
 		if(GLOB.round_statistics.number_of_grinches >= 1)
 			to_chat(H, "<p style='font-size:1.5em'>[span_notice("You are Santa Claus! Punish all naughty </b>marines and aliens</b> with overwhelming firepower, starting with their commanders hiding on the ship.")]</p>")
 		else
@@ -67,7 +69,7 @@
 /datum/action/innate/summon_present/Activate()
 	var/mob/living/carbon/human/santamob = usr
 	to_chat(santamob, "You begin rifling through your bag, looking for a present.")
-	if(!do_after(santamob, 10 SECONDS))
+	if(!do_after(santamob, 7 SECONDS))
 		to_chat(santamob, "You give up looking for a present.")
 		return
 	var/obj/item/a_gift/free/spawnedpresent = new (get_turf(santamob))
@@ -80,8 +82,20 @@
 /datum/action/innate/summon_present_bomb/Activate()
 	var/mob/living/carbon/human/santamob = usr
 	to_chat(santamob, "You begin rifling through your bag, looking for a present bomb.")
-	if(!do_after(santamob, 5 SECONDS))
+	if(!do_after(santamob, 3 SECONDS))
 		to_chat(santamob, "You stop searching for a present grenade.")
 		return
 	var/obj/item/explosive/grenade/gift/spawnedpresentbomb = new (get_turf(santamob))
 	santamob.put_in_hands(spawnedpresentbomb)
+
+/datum/action/innate/rejuv_self
+	name = "Revitalize Self"
+	action_icon_state = "dangerpresent"
+
+/datum/action/innate/rejuv_self/Activate()
+	var/mob/living/carbon/human/santamob = usr
+	to_chat(santamob, "You begin summoning Christmas magic to heal your rounds.")
+	if(!do_after(santamob, 2 MINUTES))
+		to_chat(santamob, "With a burst of holiday spirit you heal your wounds, you're as good as new!")
+		return
+	santamob.revive()

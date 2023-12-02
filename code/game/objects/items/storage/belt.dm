@@ -422,6 +422,7 @@
 
 /obj/item/storage/belt/coalbelt/full/Initialize()
 	. = ..()
+	ADD_TRAIT(src, TRAIT_NODROP, TRAIT_SANTA_CLAUS)
 	new /obj/item/stack/throwing_knife/coal(src)
 	new /obj/item/stack/throwing_knife/coal(src)
 	new /obj/item/stack/throwing_knife/coal(src)

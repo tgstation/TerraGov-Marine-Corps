@@ -84,7 +84,7 @@
 		ADD_TRAIT(spawnedhuman, TRAIT_CHRISTMAS_ELF, TRAIT_CHRISTMAS_ELF)
 		spawnedhuman.name = "Elf [rand(1,999)]"
 		spawnedhuman.real_name = spawnedhuman.name
-		var/datum/job/J = SSjob.GetJobType(/datum/job/santa)
+		var/datum/job/J = SSjob.GetJobType(/datum/job/santa/elf/eventspawn)
 		spawnedhuman.apply_assigned_role_to_spawn(J)
 		spawnedhuman.offer_mob()
 

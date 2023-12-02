@@ -2226,7 +2226,7 @@
 
 /obj/structure/prop/holidays/string_lights
 	name = "M1 pattern festive bulb strings"
-	desc = "Strung from strut to strut, these standard issue M1 pattern 'festive bulb strings' flicker and shimmer to the tune of the output frequency of the Almayer's Engine... or the local power grid. Might want to ask the Bravo's to check which one it is for ya. Ya damn jarhead."
+	desc = "Strung from strut to strut, these standard issue M1 pattern 'festive bulb strings' flicker and shimmer to the tune of the output frequency of the engine... or the local power grid. Might want to ask the Bravo's to check which one it is for ya. Ya damn jarhead."
 	icon_state = "string_lights"
 
 

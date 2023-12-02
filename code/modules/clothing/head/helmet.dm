@@ -497,6 +497,13 @@
 /obj/item/clothing/head/helmet/space/elf/regular
 	soft_armor = list(MELEE = 15, BULLET = 10, LASER = 10, ENERGY = 15, BOMB = 15, BIO = 15, FIRE = 10, ACID = 10)
 
+/obj/item/clothing/head/helmet/space/elf/special
+	soft_armor = list(MELEE = 20, BULLET = 25, LASER = 25, ENERGY = 20, BOMB = 85, BIO = 15, FIRE = 15, ACID = 15)
+
+/obj/item/clothing/head/helmet/space/elf/special/Initialize(mapload)
+	. = ..()
+	ADD_TRAIT(src, TRAIT_NODROP, TRAIT_CHRISTMAS_ELF)
+
 /obj/item/clothing/head/helmet/space/santahat/special
 	name = "Santa's hat"
 	desc = "Ho ho ho. Merrry X-mas to all! Now you're all gonna die!"
