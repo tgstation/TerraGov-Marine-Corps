@@ -125,7 +125,7 @@
 		return
 	if(get_dist(owner, last_weeded_turf) < AUTO_WEEDING_MIN_DIST)
 		return
-	if(!can_use_ability(xeno_owner.loc, TRUE, ABILITY_IGNORE_SELECTED_ABILITY))
+	if(!can_use_ability(xeno_owner.loc, TRUE, XACT_IGNORE_SELECTED_ABILITY))
 		return
 	plant_weeds(owner)
 
@@ -1029,7 +1029,7 @@
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PSYCHIC_INFLUENCE,
 	)
 	use_state_flags = ABILITY_USE_LYING
-	target_flags = ABILITY_MOB_tARGET
+	target_flags = XABB_MOB_TARGET
 
 
 /datum/action/xeno_action/psychic_influence/action_activate()
@@ -1086,7 +1086,7 @@
 	desc = "Devour your victim to be able to carry it faster."
 	use_state_flags = ABILITY_USE_STAGGERED|ABILITY_USE_FORTIFIED|ABILITY_USE_CRESTED //can't use while staggered, defender fortified or crest down
 	plasma_cost = 0
-	target_flags = ABILITY_MOB_tARGET
+	target_flags = XABB_MOB_TARGET
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_DEVOUR,
 	)
@@ -1095,7 +1095,7 @@
 	. = ..()
 	if(!.)
 		return
-	if(!ishuman(target) || issynth(target))
+	if(!ismob(target))
 		if(!silent)
 			to_chat(owner, span_warning("That wouldn't taste very good."))
 		return FALSE
@@ -1167,7 +1167,7 @@
 	plasma_cost = 150
 	cooldown_timer = 30 SECONDS
 	keybinding_signals = COMSIG_XENOABILITY_LARVAL_GROWTH_STING
-	target_flags = ABILITY_MOB_tARGET
+	target_flags = XABB_MOB_TARGET
 
 /datum/action/xeno_action/activable/larval_growth_sting/on_cooldown_finish()
 	playsound(owner.loc, 'sound/voice/alien_drool1.ogg', 50, 1)

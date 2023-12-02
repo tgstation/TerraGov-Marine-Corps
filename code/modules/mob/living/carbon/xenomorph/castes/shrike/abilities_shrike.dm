@@ -248,7 +248,7 @@
 	if(!check_distance(target, silent))
 		return FALSE
 	var/mob/living/patient = target
-	if(!CHECK_BITFIELD(use_state_flags|override_flags, ABILITY_IGNORE_DEAD_TARGET) && patient.stat == DEAD)
+	if(!CHECK_BITFIELD(use_state_flags|override_flags, XACT_IGNORE_DEAD_TARGET) && patient.stat == DEAD)
 		if(!silent)
 			to_chat(owner, span_warning("It's too late. This won't be coming back."))
 		return FALSE

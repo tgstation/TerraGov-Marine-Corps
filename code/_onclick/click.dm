@@ -313,7 +313,7 @@ if(selected_ability.target_flags & flagname && !istype(A, typepath)){\
 	TARGET_FLAGS_MACRO(XABB_MOB_TARGET, /mob/living)
 	TARGET_FLAGS_MACRO(XABB_XENO_TARGET, /mob/living/carbon/xenomorph)
 	TARGET_FLAGS_MACRO(XABB_HUMAN_TARGET, /mob/living/carbon/human)
-	if(selected_ability.target_flags & ABILITY_TURF_tARGET)
+	if(selected_ability.target_flags & XABB_TURF_TARGET)
 		return get_turf(A)
 	return A
 

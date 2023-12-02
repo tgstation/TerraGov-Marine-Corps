@@ -68,7 +68,7 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_LUNGE,
 	)
-	target_flags = ABILITY_MOB_tARGET
+	target_flags = XABB_MOB_TARGET
 	/// The target of our lunge, we keep it to check if we are adjacent everytime we move
 	var/atom/lunge_target
 
@@ -106,7 +106,7 @@
 		return FALSE
 	if(!line_of_sight(owner, target, 2))
 		return FALSE
-	if(!can_use_ability(target, override_flags = ABILITY_IGNORE_SELECTED_ABILITY))
+	if(!can_use_ability(target, override_flags = XACT_IGNORE_SELECTED_ABILITY))
 		return FALSE
 	if(target.get_xeno_hivenumber() == owner.get_xeno_hivenumber())
 		return FALSE
@@ -181,7 +181,7 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_FLING,
 	)
-	target_flags = ABILITY_MOB_tARGET
+	target_flags = XABB_MOB_TARGET
 
 /datum/action/xeno_action/activable/fling/on_cooldown_finish()
 	to_chat(owner, span_xenodanger("We gather enough strength to fling something again."))
@@ -263,7 +263,7 @@
 		return FALSE
 	if(get_dist(target, owner) > 1)
 		return FALSE
-	if(!can_use_ability(target, override_flags = ABILITY_IGNORE_SELECTED_ABILITY))
+	if(!can_use_ability(target, override_flags = XACT_IGNORE_SELECTED_ABILITY))
 		return FALSE
 	if(target.get_xeno_hivenumber() == owner.get_xeno_hivenumber())
 		return FALSE
@@ -282,7 +282,7 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_GRAPPLE_TOSS,
 	)
-	target_flags = ABILITY_TURF_tARGET
+	target_flags = XABB_TURF_TARGET
 
 /datum/action/xeno_action/activable/toss/on_cooldown_finish()
 	to_chat(owner, span_xenodanger("We gather enough strength to toss something again."))
@@ -360,7 +360,7 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PUNCH,
 	)
-	target_flags = ABILITY_MOB_tARGET
+	target_flags = XABB_MOB_TARGET
 	///The punch range, 1 would be adjacent.
 	var/range = 1
 
@@ -555,7 +555,7 @@
 		return FALSE
 	if(get_dist(target, owner) > 1)
 		return FALSE
-	if(!can_use_ability(target, override_flags = ABILITY_IGNORE_SELECTED_ABILITY))
+	if(!can_use_ability(target, override_flags = XACT_IGNORE_SELECTED_ABILITY))
 		return FALSE
 	if(target.get_xeno_hivenumber() == owner.get_xeno_hivenumber())
 		return FALSE
