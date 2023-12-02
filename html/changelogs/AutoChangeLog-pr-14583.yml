@@ -1,0 +1,4 @@
+author: "ivanmixo"
+delete-after: True
+changes:
+  - balance: "Makes the two tile pod door (namely used on big red) acidable"
