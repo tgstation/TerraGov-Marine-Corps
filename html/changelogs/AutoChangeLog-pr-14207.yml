@@ -1,0 +1,12 @@
+author: "wirpy, artur"
+delete-after: True
+changes:
+  - rscadd: "Gorlex Red (Visor+Armor), Syndicate Red (Visor), Syndicate Black (Visor), Nightshade (Visor), Syndicate Green (Visor), Dark Blue (Visor), Space Cadet (Visor)"
+  - rscadd: "Mark V Breacher Armour (Heavy)"
+  - rscadd: "Mark III Marauder Armour (Medium)"
+  - rscadd: "Mark I Raider Armour (Light)"
+  - rscadd: "Webbing variant chest pieces"
+  - rscadd: "Hardsuit Exoskeleton (Hyperscaled)"
+  - rscadd: "Variant functionality for Armour (You can toggle a webbing on the chest pieces)"
+  - rscadd: "Secondary hyperscale colour layer for armour pieces (Currently only on legs and helmet)"
+  - qol: "Hardsuit vending tab"
