@@ -58,7 +58,6 @@
 		/datum/action/ability/activable/xeno/secrete_resin,
 		/datum/action/ability/xeno_action/blessing_menu,
 		/datum/action/ability/xeno_action/place_acidwell,
-		/datum/action/xeno_action/lay_egg,
 		/datum/action/ability/xeno_action/call_of_the_burrowed,
 		/datum/action/ability/activable/xeno/screech,
 		/datum/action/ability/xeno_action/bulwark,
