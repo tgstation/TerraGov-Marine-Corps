@@ -1,7 +1,7 @@
-"a" = (/turf/open/floor/elevatorshaft,/area/shuttle/dropship{name = "Ship Elevator"})
-"n" = (/turf/open/shuttle/elevator,/area/shuttle/dropship{name = "Ship Elevator"})
-"s" = (/obj/docking_port/mobile{id = "elevator"; height = 5; dir = 8; name = "Elevator"; ignition_sound = 'sound/effects/droppod_launch.ogg'; ignitionTime = 1; landing_sound = 'sound/effects/droppod_impact.ogg'; callTime = 1; rechargeTime = 1; prearrivalTime = 1; port_direction = 8; dwidth = 2; width = 5; dheight = 2},/turf/closed/wall/mainship/outer/reinforced,/area/shuttle/dropship{name = "Ship Elevator"})
-"C" = (/obj/machinery/computer/shuttle/shuttle_control/dropship{req_one_access = null; desc = "The remote controls for the elevator."; shuttleId = "elevator"; possible_destinations = "elevatorfloor2;elevator"; name = "\improper Elevator console"; pixel_y = 15},/turf/open/floor/elevatorshaft,/area/shuttle/dropship{name = "Ship Elevator"})
+"a" = (/turf/open/floor/elevatorshaft,/area/shuttle/dropship/elevator)
+"n" = (/turf/open/shuttle/elevator,/area/shuttle/dropship/elevator)
+"s" = (/obj/docking_port/mobile{id = "elevator"; height = 5; dir = 8; name = "Elevator"; ignition_sound = 'sound/effects/droppod_launch.ogg'; ignitionTime = 1; landing_sound = 'sound/effects/droppod_impact.ogg'; callTime = 1; rechargeTime = 1; prearrivalTime = 1; port_direction = 8; dwidth = 2; width = 5; dheight = 2},/turf/closed/wall/mainship/outer/reinforced,/area/shuttle/dropship/elevator)
+"C" = (/obj/machinery/computer/shuttle/shuttle_control/dropship{req_one_access = null; desc = "The remote controls for the elevator."; shuttleId = "elevator"; possible_destinations = "elevatorfloor2;elevator"; name = "\improper Elevator console"; pixel_y = 15},/turf/open/floor/elevatorshaft,/area/shuttle/dropship/elevator)
 
 (1,1,1) = {"
 nnann
