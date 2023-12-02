@@ -68,7 +68,7 @@
 	ability_name = "defiler sting"
 	plasma_cost = 100
 	cooldown_timer = 20 SECONDS
-	target_flags = ABILITY_MOB_tARGET
+	target_flags = XABB_MOB_TARGET
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_DEFILE,
 	)
@@ -170,7 +170,7 @@
 	ability_name = "emit neurogas"
 	plasma_cost = 200
 	cooldown_timer = 40 SECONDS
-	keybind_flags = ABILITY_KEYBIND_USE_ABILITY|ABILITY_IGNORE_SELECTED_ABILITY
+	keybind_flags = XACT_KEYBIND_USE_ABILITY|XACT_IGNORE_SELECTED_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_EMIT_NEUROGAS,
 	)
@@ -289,7 +289,7 @@
 	ability_name = "inject neurogas"
 	plasma_cost = 100
 	cooldown_timer = 5 SECONDS
-	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
+	keybind_flags = XACT_KEYBIND_USE_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_INJECT_EGG_NEUROGAS,
 	)
@@ -353,7 +353,7 @@
 	name = "Select Reagent"
 	action_icon_state = "select_reagent0"
 	desc = "Selects which reagent to use for reagent slash and noxious gas. Neuro causes increasing pain and stamina damage. Hemodile slows targets down, multiplied by each other xeno-based toxin. Transvitox converts burns to toxin, and causes additional toxin damage when they take brute damage, both effects multiplied by other xeno-based toxins. Ozelomelyn purges all medicines from their system rapidly and causes minor toxin damage."
-	use_state_flags = ABILITY_USE_BUSY|ABILITY_USE_LYING
+	use_state_flags = XACT_USE_BUSY|XACT_USE_LYING
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_SELECT_REAGENT,
 		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_RADIAL_SELECT_REAGENT,
@@ -424,7 +424,7 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_REAGENT_SLASH,
 	)
-	target_flags = ABILITY_MOB_tARGET
+	target_flags = XABB_MOB_TARGET
 	///How many remaining reagent slashes the Defiler has
 	var/reagent_slash_count = 0
 	///Timer ID for the Reagent Slashes timer; we reference this to delete the timer if the effect lapses before the timer does
@@ -577,7 +577,7 @@
 	SIGNAL_HANDLER
 	QDEL_NULL(tentacle)
 	qdel(source)
-	if(!can_use_ability(target, TRUE, ABILITY_IGNORE_COOLDOWN|ABILITY_IGNORE_PLASMA))
+	if(!can_use_ability(target, TRUE, XACT_IGNORE_COOLDOWN|XACT_IGNORE_PLASMA))
 		owner.balloon_alert(owner, "Grab failed")
 		clear_cooldown()
 		return

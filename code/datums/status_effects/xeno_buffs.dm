@@ -835,7 +835,7 @@
 	/// The owner of this buff.
 	var/mob/living/carbon/xenomorph/buff_owner
 	///Aura strength of the puppeteer who gave this effect
-	var/strength = 1
+	var/strength = 1	
 	///weakref to the puppeteer to set strength
 	var/datum/weakref/puppeteer
 

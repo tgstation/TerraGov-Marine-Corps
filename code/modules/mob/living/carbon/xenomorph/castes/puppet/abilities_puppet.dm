@@ -5,7 +5,7 @@
 	ability_name = "feed"
 	plasma_cost = 0
 	cooldown_timer = 35 SECONDS
-	target_flags = ABILITY_MOB_tARGET
+	target_flags = XABB_MOB_TARGET
 
 /datum/action/xeno_action/activable/feed/use_ability(mob/living/carbon/human/target_human)
 	var/mob/living/carbon/xenomorph/owner_xeno = owner

@@ -174,7 +174,7 @@
 /datum/action/xeno_action/activable/dash_explosion/use_ability(atom/A)
 	. = ..()
 	var/mob/living/carbon/xenomorph/X = owner
-	if(!do_after(X, 1 SECONDS, FALSE, X, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(can_use_ability), A, FALSE, ABILITY_USE_BUSY)))
+	if(!do_after(X, 1 SECONDS, FALSE, X, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(can_use_ability), A, FALSE, XACT_USE_BUSY)))
 		return fail_activate()
 	RegisterSignals(X, list(COMSIG_MOVABLE_POST_THROW, COMSIG_XENO_OBJ_THROW_HIT), PROC_REF(charge_complete))
 	RegisterSignal(X, COMSIG_XENO_LIVING_THROW_HIT, PROC_REF(mob_hit))
@@ -199,4 +199,4 @@
 	X.death(FALSE)
 
 /datum/action/xeno_action/watch_xeno/baneling
-	use_state_flags = ABILITY_USE_LYING|ABILITY_USE_NOTTURF|ABILITY_USE_INCAP
+	use_state_flags = XACT_USE_LYING|XACT_USE_NOTTURF|XACT_USE_INCAP

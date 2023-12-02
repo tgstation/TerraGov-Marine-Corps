@@ -8,7 +8,7 @@
 	ability_name = "stomp"
 	plasma_cost = 100
 	cooldown_timer = 20 SECONDS
-	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
+	keybind_flags = XACT_KEYBIND_USE_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_STOMP,
 	)
@@ -53,7 +53,7 @@
 		return FALSE
 	if(get_dist(target, owner) > 1)
 		return FALSE
-	if(!can_use_ability(target, override_flags = ABILITY_IGNORE_SELECTED_ABILITY))
+	if(!can_use_ability(target, override_flags = XACT_IGNORE_SELECTED_ABILITY))
 		return FALSE
 	if(target.get_xeno_hivenumber() == owner.get_xeno_hivenumber())
 		return FALSE
@@ -72,7 +72,7 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_CRESTTOSS,
 	)
-	target_flags = ABILITY_MOB_tARGET
+	target_flags = XABB_MOB_TARGET
 
 /datum/action/xeno_action/activable/cresttoss/on_cooldown_finish()
 	var/mob/living/carbon/xenomorph/X = owner
@@ -157,7 +157,7 @@
 		return FALSE
 	if(get_dist(target, owner) > 1)
 		return FALSE
-	if(!can_use_ability(target, override_flags = ABILITY_IGNORE_SELECTED_ABILITY))
+	if(!can_use_ability(target, override_flags = XACT_IGNORE_SELECTED_ABILITY))
 		return FALSE
 	if(target.get_xeno_hivenumber() == owner.get_xeno_hivenumber())
 		return FALSE
@@ -224,7 +224,7 @@
 /datum/action/xeno_action/activable/advance/ai_should_use(atom/target)
 	if(!iscarbon(target))
 		return FALSE
-	if(!can_use_ability(target, override_flags = ABILITY_IGNORE_SELECTED_ABILITY))
+	if(!can_use_ability(target, override_flags = XACT_IGNORE_SELECTED_ABILITY))
 		return FALSE
 	if(target.get_xeno_hivenumber() == owner.get_xeno_hivenumber())
 		return FALSE

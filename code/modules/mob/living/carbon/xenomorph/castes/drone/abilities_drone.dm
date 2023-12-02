@@ -18,7 +18,7 @@
 	desc = "Link to a xenomorph. This changes some of your abilities, and grants them and you both various bonuses."
 	cooldown_timer = 5 SECONDS
 	plasma_cost = 0
-	target_flags = ABILITY_MOB_tARGET
+	target_flags = XABB_MOB_TARGET
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_ESSENCE_LINK,
 		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_ESSENCE_LINK_REMOVE,

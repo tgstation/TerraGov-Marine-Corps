@@ -8,10 +8,10 @@
 	name = "Drain"
 	action_icon_state = "drain"
 	desc = "Hold a marine for some time and drain their blood, while healing. You can't attack during this time and can be shot by the marine. When used on a dead human, you heal, or gain overheal, gradually and don't gain blood."
-	use_state_flags = ABILITY_KEYBIND_USE_ABILITY
+	use_state_flags = XACT_KEYBIND_USE_ABILITY
 	cooldown_timer = 15 SECONDS
 	plasma_cost = 0
-	target_flags = ABILITY_MOB_tARGET
+	target_flags = XABB_MOB_TARGET
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_DRAIN,
 	)
@@ -93,7 +93,7 @@
 	//When used on self, drains blood continuosly, slows you down and reduces damage taken, while restoring health over time.
 	cooldown_timer = 2 SECONDS
 	plasma_cost = 20
-	target_flags = ABILITY_MOB_tARGET
+	target_flags = XABB_MOB_TARGET
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TRANSFUSION,
 	)
@@ -168,12 +168,12 @@
 	desc = "Drains blood continuosly, slows you down and reduces damage taken, while restoring some health over time. Cancel by activating again."
 	cooldown_timer = 4 SECONDS
 	plasma_cost = GORGER_REJUVENATE_COST
-	target_flags = ABILITY_MOB_tARGET
+	target_flags = XABB_MOB_TARGET
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_REJUVENATE,
 	)
-	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
-	use_state_flags = ABILITY_USE_STAGGERED
+	keybind_flags = XACT_KEYBIND_USE_ABILITY
+	use_state_flags = XACT_USE_STAGGERED
 
 /datum/action/xeno_action/activable/rejuvenate/can_use_ability(atom/A, silent, override_flags)
 	. = ..()
@@ -208,7 +208,7 @@
 	desc = "Link to a xenomorph and take some damage in their place. Unrest to cancel."
 	cooldown_timer = 50 SECONDS
 	plasma_cost = 0
-	target_flags = ABILITY_MOB_tARGET
+	target_flags = XABB_MOB_TARGET
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PSYCHIC_LINK,
 	)
@@ -307,7 +307,7 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_CARNAGE,
 	)
-	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
+	keybind_flags = XACT_KEYBIND_USE_ABILITY
 
 /datum/action/xeno_action/activable/carnage/use_ability(atom/A)
 	. = ..()
@@ -339,8 +339,8 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_FEAST,
 	)
-	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
-	use_state_flags = ABILITY_USE_STAGGERED
+	keybind_flags = XACT_KEYBIND_USE_ABILITY
+	use_state_flags = XACT_USE_STAGGERED
 
 /datum/action/xeno_action/activable/feast/can_use_ability(atom/target, silent, override_flags)
 	. = ..()

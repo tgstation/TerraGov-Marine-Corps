@@ -10,7 +10,7 @@
 	name = "Recycle"
 	action_icon_state = "recycle"
 	desc = "We deconstruct the body of a fellow fallen xenomorph to avoid marines from harvesting our sisters in arms."
-	use_state_flags = ABILITY_USE_STAGGERED //can't use while staggered, defender fortified or crest down
+	use_state_flags = XACT_USE_STAGGERED //can't use while staggered, defender fortified or crest down
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_RECYCLE,
 	)
@@ -46,7 +46,7 @@
 	hivelord.face_atom(recycled_xeno) //Face towards the target so we don't look silly
 	hivelord.visible_message(span_warning("\The [hivelord] starts breaking apart \the [recycled_xeno]'s carcass."), \
 	span_danger("We slowly deconstruct upon \the [recycled_xeno]'s carcass!"), null, 20)
-	if(!do_after(owner, 7 SECONDS, FALSE, recycled_xeno, BUSY_ICON_GENERIC, extra_checks = CALLBACK(src, PROC_REF(can_use_ability), target, TRUE, ABILITY_USE_BUSY)))
+	if(!do_after(owner, 7 SECONDS, FALSE, recycled_xeno, BUSY_ICON_GENERIC, extra_checks = CALLBACK(src, PROC_REF(can_use_ability), target, TRUE, XACT_USE_BUSY)))
 		return
 
 	hivelord.record_recycle_points(recycled_xeno)
@@ -81,7 +81,7 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_RESIN_WALKER,
 	)
-	use_state_flags = ABILITY_USE_LYING
+	use_state_flags = XACT_USE_LYING
 	action_type = ACTION_TOGGLE
 	var/speed_activated = FALSE
 	var/speed_bonus_active = FALSE
@@ -315,8 +315,8 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_HEALING_INFUSION,
 	)
-	use_state_flags = ABILITY_USE_LYING
-	target_flags = ABILITY_MOB_tARGET
+	use_state_flags = XACT_USE_LYING
+	target_flags = XABB_MOB_TARGET
 	var/heal_range = HIVELORD_HEAL_RANGE
 
 /datum/action/xeno_action/activable/healing_infusion/can_use_ability(atom/target, silent = FALSE, override_flags)
@@ -330,7 +330,7 @@
 		return FALSE
 	var/mob/living/carbon/xenomorph/patient = target
 
-	if(!CHECK_BITFIELD(use_state_flags|override_flags, ABILITY_IGNORE_DEAD_TARGET) && patient.stat == DEAD)
+	if(!CHECK_BITFIELD(use_state_flags|override_flags, XACT_IGNORE_DEAD_TARGET) && patient.stat == DEAD)
 		if(!silent)
 			target.balloon_alert(owner, "Cannot heal, dead")
 		return FALSE
@@ -396,7 +396,7 @@
 	desc = "Sow the seeds of an alien plant."
 	plasma_cost = 200
 	cooldown_timer = 45 SECONDS
-	use_state_flags = ABILITY_USE_LYING
+	use_state_flags = XACT_USE_LYING
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_DROP_PLANT,
 		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_CHOOSE_PLANT,

@@ -10,7 +10,7 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_QUEEN_HIVE_MESSAGE,
 	)
-	use_state_flags = ABILITY_USE_LYING
+	use_state_flags = XACT_USE_LYING
 
 /datum/action/xeno_action/hive_message/action_activate()
 	var/mob/living/carbon/xenomorph/queen/Q = owner
@@ -67,7 +67,7 @@
 	ability_name = "screech"
 	plasma_cost = 250
 	cooldown_timer = 100 SECONDS
-	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
+	keybind_flags = XACT_KEYBIND_USE_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_SCREECH,
 	)
@@ -118,7 +118,7 @@
 		return FALSE
 	if(get_dist(target, owner) > 4)
 		return FALSE
-	if(!can_use_ability(target, override_flags = ABILITY_IGNORE_SELECTED_ABILITY))
+	if(!can_use_ability(target, override_flags = XACT_IGNORE_SELECTED_ABILITY))
 		return FALSE
 	if(target.get_xeno_hivenumber() == owner.get_xeno_hivenumber())
 		return FALSE
@@ -132,7 +132,7 @@
 	action_icon_state = "watch_xeno"
 	desc = "See from the target Xenomorphs vision. Click again the ability to stop observing"
 	plasma_cost = 0
-	use_state_flags = ABILITY_USE_LYING
+	use_state_flags = XACT_USE_LYING
 	var/overwatch_active = FALSE
 
 /datum/action/xeno_action/watch_xeno/give_action(mob/living/L)
@@ -269,7 +269,7 @@
 	action_icon_state = "xeno_lead"
 	desc = "Make a target Xenomorph a leader."
 	plasma_cost = 200
-	use_state_flags = ABILITY_USE_LYING
+	use_state_flags = XACT_USE_LYING
 
 /datum/action/xeno_action/set_xeno_lead/should_show()
 	return FALSE // Leadership now set through hive status UI!
@@ -391,8 +391,8 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_QUEEN_GIVE_PLASMA,
 	)
-	use_state_flags = ABILITY_USE_LYING
-	target_flags = ABILITY_MOB_tARGET
+	use_state_flags = XACT_USE_LYING
+	target_flags = XABB_MOB_TARGET
 
 /datum/action/xeno_action/activable/queen_give_plasma/can_use_ability(atom/target, silent = FALSE, override_flags)
 	. = ..()
@@ -401,7 +401,7 @@
 	if(!isxeno(target))
 		return FALSE
 	var/mob/living/carbon/xenomorph/receiver = target
-	if(!CHECK_BITFIELD(use_state_flags|override_flags, ABILITY_IGNORE_DEAD_TARGET) && receiver.stat == DEAD)
+	if(!CHECK_BITFIELD(use_state_flags|override_flags, XACT_IGNORE_DEAD_TARGET) && receiver.stat == DEAD)
 		if(!silent)
 			receiver.balloon_alert(owner, "Cannot give plasma, dead")
 		return FALSE
@@ -431,7 +431,7 @@
 /// Signal handler for the queen_give_plasma action that checks can_use
 /datum/action/xeno_action/activable/queen_give_plasma/proc/try_use_ability(datum/source, mob/living/carbon/xenomorph/target)
 	SIGNAL_HANDLER
-	if(!can_use_ability(target, FALSE, ABILITY_IGNORE_SELECTED_ABILITY))
+	if(!can_use_ability(target, FALSE, XACT_IGNORE_SELECTED_ABILITY))
 		return
 	use_ability(target)
 
@@ -477,7 +477,7 @@
 
 	var/obj/effect/abstract/particle_holder/aoe_particles = new(owner.loc, /particles/bulwark_aoe)
 	aoe_particles.particles.position = generator(GEN_SQUARE, 0, 16 + (BULWARK_RADIUS-1)*32, LINEAR_RAND)
-	while(do_after(owner, BULWARK_LOOP_TIME, BUSY_ICON_MEDICAL, extra_checks = CALLBACK(src, TYPE_PROC_REF(/datum/action, can_use_action), FALSE, ABILITY_IGNORE_COOLDOWN|ABILITY_USE_BUSY)))
+	while(do_after(owner, BULWARK_LOOP_TIME, BUSY_ICON_MEDICAL, extra_checks = CALLBACK(src, TYPE_PROC_REF(/datum/action, can_use_action), FALSE, XACT_IGNORE_COOLDOWN|XACT_USE_BUSY)))
 		succeed_activate()
 
 	aoe_particles.particles.spawning = 0

@@ -72,7 +72,7 @@
 		return FALSE
 	if(!line_of_sight(owner, target, 4))
 		return FALSE
-	if(!can_use_ability(target, override_flags = ABILITY_IGNORE_SELECTED_ABILITY))
+	if(!can_use_ability(target, override_flags = XACT_IGNORE_SELECTED_ABILITY))
 		return FALSE
 	if(target.get_xeno_hivenumber() == owner.get_xeno_hivenumber())
 		return FALSE
@@ -89,7 +89,7 @@
 	ability_name = "ravage"
 	plasma_cost = 200
 	cooldown_timer = 6 SECONDS
-	keybind_flags = ABILITY_KEYBIND_USE_ABILITY | ABILITY_IGNORE_SELECTED_ABILITY
+	keybind_flags = XACT_KEYBIND_USE_ABILITY | XACT_IGNORE_SELECTED_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_RAVAGE,
 		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_RAVAGE_SELECT,
@@ -161,7 +161,7 @@
 		return FALSE
 	if(get_dist(target, owner) > 1)
 		return FALSE
-	if(!can_use_ability(target, override_flags = ABILITY_IGNORE_SELECTED_ABILITY))
+	if(!can_use_ability(target, override_flags = XACT_IGNORE_SELECTED_ABILITY))
 		return FALSE
 	if(target.get_xeno_hivenumber() == owner.get_xeno_hivenumber())
 		return FALSE
@@ -194,7 +194,7 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_ENDURE,
 	)
-	use_state_flags = ABILITY_USE_STAGGERED //Can use this while staggered
+	use_state_flags = XACT_USE_STAGGERED //Can use this while staggered
 	///How low the Ravager's health can go while under the effects of Endure before it dies
 	var/endure_threshold = RAVAGER_ENDURE_HP_LIMIT
 	///Timer for Endure's duration
@@ -295,7 +295,7 @@
 		return FALSE
 	if(X.health > 50)
 		return FALSE
-	if(!can_use_action(override_flags = ABILITY_IGNORE_SELECTED_ABILITY))
+	if(!can_use_action(override_flags = XACT_IGNORE_SELECTED_ABILITY))
 		return FALSE
 	return TRUE
 
@@ -309,7 +309,7 @@
 	ability_name = "Rage"
 	plasma_cost = 0 //We're limited by cooldowns, not plasma
 	cooldown_timer = 60 SECONDS
-	keybind_flags = ABILITY_KEYBIND_USE_ABILITY | ABILITY_IGNORE_SELECTED_ABILITY
+	keybind_flags = XACT_KEYBIND_USE_ABILITY | XACT_IGNORE_SELECTED_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_RAGE,
 	)
@@ -502,7 +502,7 @@
 	ability_name = "Vampirism"
 	plasma_cost = 0 //We're limited by nothing, rip and tear
 	cooldown_timer = 1 SECONDS
-	keybind_flags = ABILITY_KEYBIND_USE_ABILITY | ABILITY_IGNORE_SELECTED_ABILITY
+	keybind_flags = XACT_KEYBIND_USE_ABILITY | XACT_IGNORE_SELECTED_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_VAMPIRISM,
 	)

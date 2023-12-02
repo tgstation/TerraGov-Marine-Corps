@@ -158,7 +158,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_SPAWN_HUGGER,
 	)
-	use_state_flags = ABILITY_USE_LYING
+	use_state_flags = XACT_USE_LYING
 
 /datum/action/xeno_action/spawn_hugger/on_cooldown_finish()
 	to_chat(owner, span_xenodanger("We can now spawn another young one."))
@@ -199,7 +199,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_DROP_ALL_HUGGER,
 	)
-	use_state_flags = ABILITY_USE_LYING
+	use_state_flags = XACT_USE_LYING
 
 /datum/action/xeno_action/carrier_panic/give_action(mob/living/L)
 	. = ..()
@@ -255,7 +255,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_CHOOSE_HUGGER,
 		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_SWITCH_HUGGER,
 	)
-	use_state_flags = ABILITY_USE_LYING
+	use_state_flags = XACT_USE_LYING
 
 /datum/action/xeno_action/choose_hugger_type/give_action(mob/living/L)
 	. = ..()
@@ -398,7 +398,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 
 	owner.face_atom(victim)
 
-	if(!do_after(caster, 0.5 SECONDS, TRUE, caster, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(can_use_ability), A, FALSE, ABILITY_USE_BUSY)))
+	if(!do_after(caster, 0.5 SECONDS, TRUE, caster, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(can_use_ability), A, FALSE, XACT_USE_BUSY)))
 		return fail_activate()
 	if(!can_use_ability(A))
 		return fail_activate()

@@ -12,7 +12,7 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_CALL_OF_THE_BURROWED,
 	)
-	use_state_flags = ABILITY_USE_LYING
+	use_state_flags = XACT_USE_LYING
 
 
 /datum/action/xeno_action/call_of_the_burrowed/action_activate()
@@ -63,7 +63,7 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PSYCHIC_FLING,
 	)
-	target_flags = ABILITY_MOB_tARGET
+	target_flags = XABB_MOB_TARGET
 
 
 /datum/action/xeno_action/activable/psychic_fling/on_cooldown_finish()
@@ -88,7 +88,7 @@
 		var/mob/living/carbon/human/victim = target
 		if(isnestedhost(victim))
 			return FALSE
-		if(!CHECK_BITFIELD(use_state_flags|override_flags, ABILITY_IGNORE_DEAD_TARGET) && victim.stat == DEAD)
+		if(!CHECK_BITFIELD(use_state_flags|override_flags, XACT_IGNORE_DEAD_TARGET) && victim.stat == DEAD)
 			return FALSE
 
 
@@ -143,7 +143,7 @@
 	desc = "Unleashes our raw psychic power, pushing aside anyone who stands in our path."
 	cooldown_timer = 50 SECONDS
 	plasma_cost = 300
-	keybind_flags = ABILITY_KEYBIND_USE_ABILITY | ABILITY_IGNORE_SELECTED_ABILITY
+	keybind_flags = XACT_KEYBIND_USE_ABILITY | XACT_IGNORE_SELECTED_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_UNRELENTING_FORCE,
 		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_UNRELENTING_FORCE_SELECT,
@@ -372,7 +372,7 @@
 	ability_name = "Psychic vortex"
 	plasma_cost = 600
 	cooldown_timer = 2 MINUTES
-	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
+	keybind_flags = XACT_KEYBIND_USE_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PSYCHIC_VORTEX,
 	)

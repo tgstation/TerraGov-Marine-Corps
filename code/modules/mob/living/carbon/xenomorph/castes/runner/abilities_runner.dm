@@ -259,7 +259,7 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_SNATCH,
 	)
-	target_flags = ABILITY_MOB_tARGET
+	target_flags = XABB_MOB_TARGET
 	///If the runner have an item
 	var/obj/item/stolen_item = FALSE
 	///Mutable appearance of the stolen item
@@ -363,4 +363,3 @@
 	owner.overlays -= stolen_appearance
 	playsound(owner, 'sound/voice/alien_pounce2.ogg', 30, frequency = -1)
 	UnregisterSignal(owner, COMSIG_ATOM_DIR_CHANGE)
-

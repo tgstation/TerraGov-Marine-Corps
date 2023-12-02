@@ -19,7 +19,7 @@
 	if(!do_after(X, 5, TRUE, target, BUSY_ICON_DANGER))
 		return fail_activate()
 
-	if(!can_use_ability(A, TRUE, override_flags = ABILITY_IGNORE_SELECTED_ABILITY))
+	if(!can_use_ability(A, TRUE, override_flags = XACT_IGNORE_SELECTED_ABILITY))
 		return fail_activate()
 
 	GLOB.round_statistics.praetorian_acid_sprays++
@@ -52,7 +52,7 @@
 		return FALSE
 	if(!line_of_sight(owner, target, 3))
 		return FALSE
-	if(!can_use_ability(target, override_flags = ABILITY_IGNORE_SELECTED_ABILITY))
+	if(!can_use_ability(target, override_flags = XACT_IGNORE_SELECTED_ABILITY))
 		return FALSE
 	if(target.get_xeno_hivenumber() == owner.get_xeno_hivenumber())
 		return FALSE

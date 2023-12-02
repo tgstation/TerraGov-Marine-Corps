@@ -21,7 +21,7 @@
 	if(X.do_actions || !do_after(X, 5, TRUE, target, BUSY_ICON_DANGER))
 		return
 
-	if(!can_use_ability(A, TRUE, override_flags = ABILITY_IGNORE_SELECTED_ABILITY))
+	if(!can_use_ability(A, TRUE, override_flags = XACT_IGNORE_SELECTED_ABILITY))
 		return fail_activate()
 
 	succeed_activate()

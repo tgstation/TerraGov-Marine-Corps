@@ -41,7 +41,7 @@
 	ability_name = "toxic slash"
 	cooldown_timer = 10 SECONDS
 	plasma_cost = 100
-	//use_state_flags = ABILITY_USE_BUCKLED
+	//use_state_flags = XACT_USE_BUCKLED
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TOXIC_SLASH,
 	)
@@ -132,8 +132,8 @@
 	ability_name = "drain sting"
 	cooldown_timer = 25 SECONDS
 	plasma_cost = 75
-	target_flags = ABILITY_MOB_tARGET
-	use_state_flags = ABILITY_USE_BUCKLED
+	target_flags = XABB_MOB_TARGET
+	use_state_flags = XACT_USE_BUCKLED
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_DRAIN_STING,
 	)

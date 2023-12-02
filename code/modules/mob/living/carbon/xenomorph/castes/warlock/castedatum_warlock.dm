@@ -36,7 +36,6 @@
 		/datum/action/xeno_action/activable/psy_blast,
 		/datum/action/xeno_action/activable/psychic_shield,
 		/datum/action/xeno_action/activable/transfer_plasma/drone,
-				/datum/action/xeno_action/psychic_whisper,
 	)
 
 /datum/xeno_caste/warlock/normal
@@ -49,4 +48,3 @@
 	upgrade = XENO_UPGRADE_PRIMO
 
 	spit_types = list(/datum/ammo/energy/xeno/psy_blast, /datum/ammo/energy/xeno/psy_blast/psy_lance)
-

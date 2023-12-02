@@ -277,7 +277,7 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_HUNTER_POUNCE,
 	)
-	use_state_flags = ABILITY_USE_BUCKLED
+	use_state_flags = XACT_USE_BUCKLED
 	/// The range of this ability.
 	var/pounce_range = HUNTER_POUNCE_RANGE
 
@@ -358,7 +358,7 @@
 		return FALSE
 	if(!line_of_sight(owner, target, pounce_range))
 		return FALSE
-	if(!can_use_ability(target, override_flags = ABILITY_IGNORE_SELECTED_ABILITY))
+	if(!can_use_ability(target, override_flags = XACT_IGNORE_SELECTED_ABILITY))
 		return FALSE
 	if(target.get_xeno_hivenumber() == owner.get_xeno_hivenumber())
 		return FALSE
