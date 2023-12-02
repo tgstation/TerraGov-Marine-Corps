@@ -1,0 +1,4 @@
+author: "Lewdcifer"
+delete-after: True
+changes:
+  - balance: "CAS ordnance travelling times are no longer affected by spaceship orbit"
