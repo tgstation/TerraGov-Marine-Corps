@@ -1,0 +1,67 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/open/shuttle/elevator,
+/area/shuttle/transport)
+"b" = (
+/turf/open/shuttle/elevator,
+/area/shuttle/transport{
+	name = "Cargo Elevator"
+	})
+"c" = (
+/obj/docking_port/mobile{
+	name = "Cargo Elevator";
+	id = "Shipcargoelevator";
+	callTime = 1;
+	ignitionTime = 5;
+	ignition_sound = 'sound/effects/droppod_launch.ogg';
+	landing_sound = 'sound/effects/alien_footstep_large3.ogg'
+	},
+/obj/machinery/computer/shuttle/shuttle_control{
+	pixel_y = -10;
+	id = "shipcargoelevator";
+	desc = "A elevator control computer.";
+	name = "elevator control console";
+	req_access = null;
+	possible_destinations = "shipcargoelevatorfloor1;shipcargoelevatorfloor2"
+	},
+/turf/closed/wall/mainship/outer/reinforced,
+/area/shuttle/transport)
+"B" = (
+/turf/open/floor/elevatorshaft,
+/area/shuttle/transport)
+
+(1,1,1) = {"
+a
+a
+B
+a
+a
+"}
+(2,1,1) = {"
+a
+a
+B
+a
+a
+"}
+(3,1,1) = {"
+B
+B
+c
+B
+B
+"}
+(4,1,1) = {"
+a
+b
+B
+a
+a
+"}
+(5,1,1) = {"
+a
+a
+B
+a
+a
+"}
