@@ -1,0 +1,4 @@
+author: "Wisemonster"
+delete-after: True
+changes:
+  - spellcheck: "Adds clarification to the AI's bioscan that corruption is caused by the elevation of the ship."
