@@ -249,9 +249,9 @@
 	ability_name = "Landslide"
 	action_icon_state = "landslide"
 	desc = "Rush forward in the selected direction, damaging enemies caught in a wide path."
-	plasma_cost = 3 // This is deducted per step taken during the ability.
+	ability_cost = 3 // This is deducted per step taken during the ability.
 	cooldown_timer = 20 SECONDS
-	target_flags = XABB_TURF_TARGET
+	target_flags = ABILITY_TURF_tARGET
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_LANDSLIDE,
 	)
@@ -387,7 +387,7 @@
 	if(owner.pulling)
 		owner.stop_pulling()
 	var/mob/living/carbon/xenomorph/xeno_owner = owner
-	if(xeno_owner.plasma_stored < plasma_cost)
+	if(xeno_owner.plasma_stored < ability_cost)
 		end_charge(LANDSLIDE_ENDED_NO_PLASMA)
 		return
 	succeed_activate()
@@ -450,7 +450,7 @@
 	var/owner_turf = get_turf(owner)
 	var/direct_turf = get_step(owner, direction)
 	var/mob/living/carbon/xenomorph/xeno_owner = owner
-	if(steps_to_take <= 0 || xeno_owner.wrath_stored < plasma_cost)
+	if(steps_to_take <= 0 || xeno_owner.wrath_stored < ability_cost)
 		if(LinkBlocked(owner_turf, direct_turf))
 			playsound(direct_turf, 'sound/effects/behemoth/behemoth_stomp.ogg', 40, TRUE)
 			xeno_owner.do_attack_animation(direct_turf)
@@ -596,7 +596,7 @@
 	ability_name = "Earth Riser"
 	action_icon_state = "earth_riser"
 	desc = "Raise a pillar of earth at the selected location. This solid structure can be used for defense, and it interacts with other abilities for offensive usage. The pillar can be launched by click-dragging it in a direction. Alternate use destroys active pillars, starting with the oldest one."
-	plasma_cost = 30
+	ability_cost = 30
 	cooldown_timer = 15 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_EARTH_RISER,
@@ -766,9 +766,9 @@
 	ability_name = "Seismic Fracture"
 	action_icon_state = "seismic_fracture"
 	desc = "Blast the earth around the selected location, inflicting heavy damage in a large radius."
-	plasma_cost = 50
+	ability_cost = 50
 	cooldown_timer = 20 SECONDS
-	target_flags = XABB_TURF_TARGET
+	target_flags = ABILITY_TURF_tARGET
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_SEISMIC_FRACTURE,
 	)
@@ -976,7 +976,7 @@
 	action_icon_state = "primal_wrath"
 	desc = "Unleash your wrath. Enhances your abilities, changing their functionality and allowing them to apply a damage over time debuff."
 	cooldown_timer = 1 SECONDS
-	keybind_flags = XACT_KEYBIND_USE_ABILITY|XACT_IGNORE_SELECTED_ABILITY
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY|ABILITY_IGNORE_SELECTED_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PRIMAL_WRATH,
 	)

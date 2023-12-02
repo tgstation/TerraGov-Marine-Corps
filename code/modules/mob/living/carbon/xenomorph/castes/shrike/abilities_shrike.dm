@@ -7,12 +7,12 @@
 	name = "Call of the Burrowed"
 	desc = "Attempts to summon all currently burrowed larva."
 	action_icon_state = "larva_growth"
-	plasma_cost = 400
+	ability_cost = 400
 	cooldown_timer = 2 MINUTES
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_CALL_OF_THE_BURROWED,
 	)
-	use_state_flags = XACT_USE_LYING
+	use_state_flags = ABILITY_USE_LYING
 
 
 /datum/action/xeno_action/call_of_the_burrowed/action_activate()
@@ -59,11 +59,11 @@
 	action_icon_state = "fling"
 	desc = "Sends an enemy or an item flying. A close ranged ability."
 	cooldown_timer = 12 SECONDS
-	plasma_cost = 100
+	ability_cost = 100
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PSYCHIC_FLING,
 	)
-	target_flags = XABB_MOB_TARGET
+	target_flags = ABILITY_MOB_tARGET
 
 
 /datum/action/xeno_action/activable/psychic_fling/on_cooldown_finish()
@@ -88,7 +88,7 @@
 		var/mob/living/carbon/human/victim = target
 		if(isnestedhost(victim))
 			return FALSE
-		if(!CHECK_BITFIELD(use_state_flags|override_flags, XACT_IGNORE_DEAD_TARGET) && victim.stat == DEAD)
+		if(!CHECK_BITFIELD(use_state_flags|override_flags, ABILITY_IGNORE_DEAD_TARGET) && victim.stat == DEAD)
 			return FALSE
 
 
@@ -142,8 +142,8 @@
 	action_icon_state = "screech"
 	desc = "Unleashes our raw psychic power, pushing aside anyone who stands in our path."
 	cooldown_timer = 50 SECONDS
-	plasma_cost = 300
-	keybind_flags = XACT_KEYBIND_USE_ABILITY | XACT_IGNORE_SELECTED_ABILITY
+	ability_cost = 300
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY | ABILITY_IGNORE_SELECTED_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_UNRELENTING_FORCE,
 		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_UNRELENTING_FORCE_SELECT,
@@ -224,7 +224,7 @@
 	action_icon_state = "heal_xeno"
 	desc = "Heal and remove debuffs from a target."
 	cooldown_timer = 1 MINUTES
-	plasma_cost = 200
+	ability_cost = 200
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PSYCHIC_CURE,
 	)
@@ -248,7 +248,7 @@
 	if(!check_distance(target, silent))
 		return FALSE
 	var/mob/living/patient = target
-	if(!CHECK_BITFIELD(use_state_flags|override_flags, XACT_IGNORE_DEAD_TARGET) && patient.stat == DEAD)
+	if(!CHECK_BITFIELD(use_state_flags|override_flags, ABILITY_IGNORE_DEAD_TARGET) && patient.stat == DEAD)
 		if(!silent)
 			to_chat(owner, span_warning("It's too late. This won't be coming back."))
 		return FALSE
@@ -320,7 +320,7 @@
 	name = "Place acid well"
 	action_icon_state = "place_trap"
 	desc = "Place an acid well that can put out fires."
-	plasma_cost = 400
+	ability_cost = 400
 	cooldown_timer = 2 MINUTES
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PLACE_ACID_WELL,
@@ -370,9 +370,9 @@
 	action_icon_state = "vortex"
 	desc = "Channel a sizable vortex of psychic energy, drawing in nearby enemies."
 	ability_name = "Psychic vortex"
-	plasma_cost = 600
+	ability_cost = 600
 	cooldown_timer = 2 MINUTES
-	keybind_flags = XACT_KEYBIND_USE_ABILITY
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PSYCHIC_VORTEX,
 	)

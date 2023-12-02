@@ -2,7 +2,7 @@
 	name = "Return to Core"
 	action_icon_state = "lay_hivemind"
 	desc = "Teleport back to your core."
-	use_state_flags = XACT_USE_CLOSEDTURF
+	use_state_flags = ABILITY_USE_CLOSEDTURF
 
 /datum/action/xeno_action/return_to_core/action_activate()
 	SEND_SIGNAL(owner, COMSIG_XENOMORPH_CORE_RETURN)
@@ -20,7 +20,7 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOMORPH_HIVEMIND_CHANGE_FORM,
 	)
-	use_state_flags = XACT_USE_CLOSEDTURF
+	use_state_flags = ABILITY_USE_CLOSEDTURF
 
 /datum/action/xeno_action/change_form/action_activate()
 	var/mob/living/carbon/xenomorph/xenomorph_owner = owner
@@ -31,14 +31,14 @@
 	action_icon_state = "minion_agressive"
 	desc = "Command all minions, ordering them to converge on this location. Rightclick to change minion behaviour."
 	ability_name = "command minions"
-	plasma_cost = 100
+	ability_cost = 100
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_RALLY_MINION,
 		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_MINION_BEHAVIOUR,
 	)
-	keybind_flags = XACT_KEYBIND_USE_ABILITY
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
 	cooldown_timer = 60 SECONDS
-	use_state_flags = XACT_USE_LYING|XACT_USE_BUCKLED
+	use_state_flags = ABILITY_USE_LYING|ABILITY_USE_BUCKLED
 	///If minions should be agressive
 	var/minions_agressive = TRUE
 
@@ -95,7 +95,7 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMISG_XENOMORPH_HIVEMIND_TELEPORT,
 	)
-	use_state_flags = XACT_USE_CLOSEDTURF
+	use_state_flags = ABILITY_USE_CLOSEDTURF
 	///Is the map being shown to the player right now?
 	var/showing_map = FALSE
 
@@ -121,7 +121,7 @@
 	owner.client?.screen -= shown_map
 	showing_map = FALSE
 	var/turf/turf_to_teleport_to = locate(polled_coords[1], polled_coords[2], owner.z)
-	
+
 	if(!turf_to_teleport_to)
 		return
 

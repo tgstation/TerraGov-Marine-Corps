@@ -112,7 +112,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	name = "Place trap"
 	action_icon_state = "place_trap"
 	desc = "Place a hole on weeds that can be filled with a hugger or acid. Activates when a marine steps on it."
-	plasma_cost = 400
+	ability_cost = 400
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PLACE_TRAP,
 	)
@@ -153,12 +153,12 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	name = "Spawn Facehugger"
 	action_icon_state = "spawn_hugger"
 	desc = "Spawn a facehugger that is stored on your body."
-	plasma_cost = 200
+	ability_cost = 200
 	cooldown_timer = 10 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_SPAWN_HUGGER,
 	)
-	use_state_flags = XACT_USE_LYING
+	use_state_flags = ABILITY_USE_LYING
 
 /datum/action/xeno_action/spawn_hugger/on_cooldown_finish()
 	to_chat(owner, span_xenodanger("We can now spawn another young one."))
@@ -194,12 +194,12 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	name = "Drop All Facehuggers"
 	action_icon_state = "carrier_panic"
 	desc = "Drop all stored huggers in a fit of panic. Uses all remaining plasma!"
-	plasma_cost = 10
+	ability_cost = 10
 	cooldown_timer = 50 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_DROP_ALL_HUGGER,
 	)
-	use_state_flags = XACT_USE_LYING
+	use_state_flags = ABILITY_USE_LYING
 
 /datum/action/xeno_action/carrier_panic/give_action(mob/living/L)
 	. = ..()
@@ -255,7 +255,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_CHOOSE_HUGGER,
 		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_SWITCH_HUGGER,
 	)
-	use_state_flags = XACT_USE_LYING
+	use_state_flags = ABILITY_USE_LYING
 
 /datum/action/xeno_action/choose_hugger_type/give_action(mob/living/L)
 	. = ..()
@@ -302,7 +302,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	name = "build hugger turret"
 	action_icon_state = "hugger_turret"
 	desc = "Build a hugger turret"
-	plasma_cost = 800
+	ability_cost = 800
 	cooldown_timer = 5 MINUTES
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_BUILD_HUGGER_TURRET,
@@ -357,7 +357,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	action_icon_state = "call_younger"
 	desc = "Appeals to the larva inside the Marine. The Marine loses his balance, and larva's progress accelerates."
 	ability_name = "call younger"
-	plasma_cost = 150
+	ability_cost = 150
 	cooldown_timer = 10 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_CALL_YOUNGER,
@@ -398,7 +398,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 
 	owner.face_atom(victim)
 
-	if(!do_after(caster, 0.5 SECONDS, TRUE, caster, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(can_use_ability), A, FALSE, XACT_USE_BUSY)))
+	if(!do_after(caster, 0.5 SECONDS, TRUE, caster, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(can_use_ability), A, FALSE, ABILITY_USE_BUSY)))
 		return fail_activate()
 	if(!can_use_ability(A))
 		return fail_activate()

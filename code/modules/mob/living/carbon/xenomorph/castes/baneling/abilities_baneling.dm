@@ -88,7 +88,7 @@
 	name = "Choose Explosion Reagent"
 	action_icon_state = "select_reagent0"
 	desc = "Select which reagent will be released when you explode."
-	plasma_cost = 0
+	ability_cost = 0
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_BANELING_CHOOSE_REAGENT,
 		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_RADIAL_SELECT_REAGENT,
@@ -135,7 +135,7 @@
 	action_icon_state = "spawn_pod"
 	desc = "Spawn a pod that you will respawn inside of upon death. You will NOT respawn if the pod is destroyed!"
 	ability_name = "spawn pod"
-	plasma_cost = 150
+	ability_cost = 150
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_BANELING_SPAWN_POD,
 	)
@@ -164,7 +164,7 @@
 	action_icon_state = "dash_explosion"
 	desc = "Wind up and charge in a direction, detonating yourself on impact."
 	ability_name = "dash explosion"
-	plasma_cost = 0
+	ability_cost = 0
 	///How far can we charge
 	var/range = 6
 	keybinding_signals = list(
@@ -174,7 +174,7 @@
 /datum/action/xeno_action/activable/dash_explosion/use_ability(atom/A)
 	. = ..()
 	var/mob/living/carbon/xenomorph/X = owner
-	if(!do_after(X, 1 SECONDS, FALSE, X, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(can_use_ability), A, FALSE, XACT_USE_BUSY)))
+	if(!do_after(X, 1 SECONDS, FALSE, X, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(can_use_ability), A, FALSE, ABILITY_USE_BUSY)))
 		return fail_activate()
 	RegisterSignals(X, list(COMSIG_MOVABLE_POST_THROW, COMSIG_XENO_OBJ_THROW_HIT), PROC_REF(charge_complete))
 	RegisterSignal(X, COMSIG_XENO_LIVING_THROW_HIT, PROC_REF(mob_hit))
@@ -199,4 +199,4 @@
 	X.death(FALSE)
 
 /datum/action/xeno_action/watch_xeno/baneling
-	use_state_flags = XACT_USE_LYING|XACT_USE_NOTTURF|XACT_USE_INCAP
+	use_state_flags = ABILITY_USE_LYING|ABILITY_USE_NOTTURF|ABILITY_USE_INCAP

@@ -6,7 +6,7 @@
 	name = "Rest"
 	action_icon_state = "resting"
 	desc = "Rest on weeds to regenerate health and plasma."
-	use_state_flags = XACT_USE_LYING|XACT_USE_CRESTED|XACT_USE_AGILITY|XACT_USE_CLOSEDTURF
+	use_state_flags = ABILITY_USE_LYING|ABILITY_USE_CRESTED|ABILITY_USE_AGILITY|ABILITY_USE_CLOSEDTURF
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_REST,
 	)
@@ -24,13 +24,13 @@
 /datum/action/xeno_action/activable/plant_weeds
 	name = "Plant Weeds"
 	action_icon_state = "plant_weeds"
-	plasma_cost = 75
+	ability_cost = 75
 	desc = "Plant a weed node on your tile."
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_DROP_WEEDS,
 		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_CHOOSE_WEEDS,
 	)
-	use_state_flags = XACT_USE_LYING
+	use_state_flags = ABILITY_USE_LYING
 	///the maximum range of the ability
 	var/max_range = 0
 	///The seleted type of weeds
@@ -41,7 +41,7 @@
 	var/turf/last_weeded_turf
 
 /datum/action/xeno_action/activable/plant_weeds/can_use_action(atom/A, silent = FALSE, override_flags)
-	plasma_cost = initial(plasma_cost) * initial(weed_type.plasma_cost_mult)
+	ability_cost = initial(ability_cost) * initial(weed_type.ability_cost_mult)
 	return ..()
 
 /datum/action/xeno_action/activable/plant_weeds/action_activate()
@@ -83,7 +83,7 @@
 		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[owner.ckey]
 		personal_statistics.weeds_planted++
 	add_cooldown()
-	return succeed_activate(SSmonitor.gamestate == SHUTTERS_CLOSED ? plasma_cost/2 : plasma_cost)
+	return succeed_activate(SSmonitor.gamestate == SHUTTERS_CLOSED ? ability_cost/2 : ability_cost)
 
 /datum/action/xeno_action/activable/plant_weeds/alternate_action_activate()
 	INVOKE_ASYNC(src, PROC_REF(choose_weed))
@@ -146,7 +146,7 @@
 	return TRUE
 
 /datum/action/xeno_action/activable/plant_weeds/ai_should_use(target)
-	if(!can_use_action(override_flags = XACT_IGNORE_SELECTED_ABILITY))
+	if(!can_use_action(override_flags = ABILITY_IGNORE_SELECTED_ABILITY))
 		return FALSE
 	var/mob/living/carbon/xenomorph/owner_xeno = owner
 	if(owner_xeno.loc_weeds_type)
@@ -178,8 +178,8 @@
 	action_icon_state = RESIN_WALL
 	desc = "Builds whatever resin you selected"
 	ability_name = "secrete resin"
-	target_flags = XABB_TURF_TARGET
-	plasma_cost = 75
+	target_flags = ABILITY_TURF_tARGET
+	ability_cost = 75
 	action_type = ACTION_TOGGLE
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_SECRETE_RESIN,
@@ -434,19 +434,19 @@
 		new_resin = new X.selected_resin(T)
 	switch(X.selected_resin)
 		if(/obj/alien/resin/sticky)
-			plasma_cost = initial(plasma_cost) / 3
+			ability_cost = initial(ability_cost) / 3
 	if(new_resin)
 		add_cooldown(SSmonitor.gamestate == SHUTTERS_CLOSED ? get_cooldown()/2 : get_cooldown())
-		succeed_activate(SSmonitor.gamestate == SHUTTERS_CLOSED ? plasma_cost/2 : plasma_cost)
-	plasma_cost = initial(plasma_cost) //Reset the plasma cost
+		succeed_activate(SSmonitor.gamestate == SHUTTERS_CLOSED ? ability_cost/2 : ability_cost)
+	ability_cost = initial(ability_cost) //Reset the plasma cost
 	owner.record_structures_built()
 
 /datum/action/xeno_action/pheromones
 	name = "Emit Pheromones"
 	action_icon_state = "emit_pheromones"
-	plasma_cost = 30
+	ability_cost = 30
 	desc = "Opens your pheromone options."
-	use_state_flags = XACT_USE_STAGGERED|XACT_USE_NOTTURF|XACT_USE_BUSY|XACT_USE_LYING
+	use_state_flags = ABILITY_USE_STAGGERED|ABILITY_USE_NOTTURF|ABILITY_USE_BUSY|ABILITY_USE_LYING
 
 /datum/action/xeno_action/pheromones/proc/apply_pheros(phero_choice)
 	var/mob/living/carbon/xenomorph/X = owner
@@ -525,7 +525,7 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TRANSFER_PLASMA,
 	)
-	target_flags = XABB_MOB_TARGET
+	target_flags = ABILITY_MOB_tARGET
 
 /datum/action/xeno_action/activable/transfer_plasma/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
@@ -595,12 +595,12 @@
 	action_icon_state = "corrosive_acid"
 	desc = "Cover an object with acid to slowly melt it. Takes a few seconds."
 	ability_name = "corrosive acid"
-	plasma_cost = 100
+	ability_cost = 100
 	var/obj/effect/xenomorph/acid/acid_type = /obj/effect/xenomorph/acid
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_CORROSIVE_ACID,
 	)
-	use_state_flags = XACT_USE_BUCKLED
+	use_state_flags = ABILITY_USE_BUCKLED
 
 /datum/action/xeno_action/activable/corrosive_acid/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
@@ -674,7 +674,7 @@
 
 /datum/action/xeno_action/activable/corrosive_acid/strong
 	name = "Corrosive Acid"
-	plasma_cost = 200
+	ability_cost = 200
 	acid_type = /obj/effect/xenomorph/acid/strong
 
 
@@ -682,7 +682,7 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_SPRAY_ACID,
 	)
-	use_state_flags = XACT_USE_BUCKLED
+	use_state_flags = ABILITY_USE_BUCKLED
 
 /datum/action/xeno_action/activable/spray_acid/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
@@ -726,8 +726,8 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_XENO_SPIT,
 	)
-	use_state_flags = XACT_USE_LYING|XACT_USE_BUCKLED|XACT_DO_AFTER_ATTACK
-	target_flags = XABB_MOB_TARGET
+	use_state_flags = ABILITY_USE_LYING|ABILITY_USE_BUCKLED|ABILITY_DO_AFTER_ATTACK
+	target_flags = ABILITY_MOB_tARGET
 	///Current target that the xeno is targeting. This is for aiming.
 	var/current_target
 
@@ -790,7 +790,7 @@
 /datum/action/xeno_action/activable/xeno_spit/use_ability(atom/A)
 	if(!owner.GetComponent(/datum/component/ai_controller)) //If its not an ai it will register to listen for clicks instead of use this proc. We want to call start_fire from here only if the owner is an ai.
 		return
-	start_fire(object = A, can_use_ability_flags = XACT_IGNORE_SELECTED_ABILITY)
+	start_fire(object = A, can_use_ability_flags = ABILITY_IGNORE_SELECTED_ABILITY)
 
 ///Starts the xeno firing.
 /datum/action/xeno_action/activable/xeno_spit/proc/start_fire(datum/source, atom/object, turf/location, control, params, can_use_ability_flags)
@@ -818,7 +818,7 @@
 	playsound(X.loc, sound_to_play, 25, 1)
 
 	var/obj/projectile/newspit = new /obj/projectile(current_turf)
-	plasma_cost = X.ammo.spit_cost
+	ability_cost = X.ammo.spit_cost
 	newspit.generate_bullet(X.ammo, X.ammo.damage * SPIT_UPGRADE_BONUS(X))
 	newspit.def_zone = X.get_limbzone_target()
 	newspit.fire_at(current_target, X, null, X.ammo.max_range, X.ammo.shell_speed)
@@ -870,7 +870,7 @@
 		return FALSE
 	if(get_dist(target, owner) > 6)
 		return FALSE
-	if(!can_use_ability(target, override_flags = XACT_IGNORE_SELECTED_ABILITY))
+	if(!can_use_ability(target, override_flags = ABILITY_IGNORE_SELECTED_ABILITY))
 		return FALSE
 	if(!line_of_sight(owner, target))
 		return FALSE
@@ -906,12 +906,12 @@
 	desc = "A channeled melee attack that injects the target with neurotoxin over a few seconds, temporarily stunning them."
 	ability_name = "neurotoxin sting"
 	cooldown_timer = 12 SECONDS
-	plasma_cost = 150
+	ability_cost = 150
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_NEUROTOX_STING,
 	)
-	target_flags = XABB_MOB_TARGET
-	use_state_flags = XACT_USE_BUCKLED
+	target_flags = ABILITY_MOB_tARGET
+	use_state_flags = ABILITY_USE_BUCKLED
 	/// Whatever our victim is injected with.
 	var/sting_chemical = /datum/reagent/toxin/xeno_neurotoxin
 
@@ -966,7 +966,7 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_OZELOMELYN_STING,
 	)
-	plasma_cost = 100
+	ability_cost = 100
 	sting_chemical = /datum/reagent/toxin/xeno_ozelomelyn
 
 ///Adds ability tally to the end-round statistics.
@@ -983,8 +983,8 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PSYCHIC_WHISPER,
 	)
-	use_state_flags = XACT_USE_LYING
-	target_flags = XABB_MOB_TARGET
+	use_state_flags = ABILITY_USE_LYING
+	target_flags = ABILITY_MOB_tARGET
 
 
 /datum/action/xeno_action/psychic_whisper/action_activate()
@@ -1024,8 +1024,8 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PSYCHIC_INFLUENCE,
 	)
-	use_state_flags = XACT_USE_LYING
-	target_flags = XABB_MOB_TARGET
+	use_state_flags = ABILITY_USE_LYING
+	target_flags = ABILITY_MOB_tARGET
 
 
 /datum/action/xeno_action/psychic_influence/action_activate()
@@ -1080,9 +1080,9 @@
 	name = "Devour"
 	action_icon_state = "abduct"
 	desc = "Devour your victim to be able to carry it faster."
-	use_state_flags = XACT_USE_STAGGERED|XACT_USE_FORTIFIED|XACT_USE_CRESTED //can't use while staggered, defender fortified or crest down
-	plasma_cost = 0
-	target_flags = XABB_MOB_TARGET
+	use_state_flags = ABILITY_USE_STAGGERED|ABILITY_USE_FORTIFIED|ABILITY_USE_CRESTED //can't use while staggered, defender fortified or crest down
+	ability_cost = 0
+	target_flags = ABILITY_MOB_tARGET
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_DEVOUR,
 	)
@@ -1160,10 +1160,10 @@
 	action_icon_state = "drone_sting"
 	desc = "Inject an impregnated host with growth serum, causing the larva inside to grow quicker. Has harmful effects for non-infected hosts while stabilizing larva-infected hosts."
 	ability_name = "larval growth sting"
-	plasma_cost = 150
+	ability_cost = 150
 	cooldown_timer = 30 SECONDS
 	keybinding_signals = COMSIG_XENOABILITY_LARVAL_GROWTH_STING
-	target_flags = XABB_MOB_TARGET
+	target_flags = ABILITY_MOB_tARGET
 
 /datum/action/xeno_action/activable/larval_growth_sting/on_cooldown_finish()
 	playsound(owner.loc, 'sound/voice/alien_drool1.ogg', 50, 1)
@@ -1209,7 +1209,7 @@
 	name = "Lay Egg"
 	action_icon_state = "lay_egg"
 	desc = "Create an egg that will grow a larval hugger after a short delay. Empty eggs can have huggers inserted into them."
-	plasma_cost = 200
+	ability_cost = 200
 	cooldown_timer = 12 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_LAY_EGG,
@@ -1252,13 +1252,13 @@
 	action_icon_state = "rally_hive"
 	desc = "Rallies the hive to a congregate at a target location, along with an arrow pointer. Gives the Hive your current health status. 60 second cooldown."
 	ability_name = "rally hive"
-	plasma_cost = 0
+	ability_cost = 0
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_RALLY_HIVE,
 	)
-	keybind_flags = XACT_KEYBIND_USE_ABILITY
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
 	cooldown_timer = 60 SECONDS
-	use_state_flags = XACT_USE_LYING|XACT_USE_BUCKLED
+	use_state_flags = ABILITY_USE_LYING|ABILITY_USE_BUCKLED
 
 /datum/action/xeno_action/rally_hive/action_activate()
 	var/mob/living/carbon/xenomorph/X = owner
@@ -1277,14 +1277,14 @@
 	action_icon_state = "minion_agressive"
 	desc = "Rallies the minions around you, asking them to follow you if they don't have a leader already. Rightclick to change minion behaviour."
 	ability_name = "rally minions"
-	plasma_cost = 0
+	ability_cost = 0
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_RALLY_MINION,
 		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_MINION_BEHAVIOUR,
 	)
-	keybind_flags = XACT_KEYBIND_USE_ABILITY
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
 	cooldown_timer = 10 SECONDS
-	use_state_flags = XACT_USE_LYING|XACT_USE_BUCKLED
+	use_state_flags = ABILITY_USE_LYING|ABILITY_USE_BUCKLED
 	///If minions should be agressive
 	var/minions_agressive = TRUE
 
@@ -1327,12 +1327,12 @@
 	name = "Psy drain"
 	action_icon_state = "headbite"
 	desc = "Drain the victim of its life force to gain larva and psych points"
-	use_state_flags = XACT_USE_STAGGERED|XACT_USE_FORTIFIED|XACT_USE_CRESTED //can't use while staggered, defender fortified or crest down
+	use_state_flags = ABILITY_USE_STAGGERED|ABILITY_USE_FORTIFIED|ABILITY_USE_CRESTED //can't use while staggered, defender fortified or crest down
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_HEADBITE,
 	)
 	gamemode_flags = ABILITY_NUCLEARWAR
-	plasma_cost = 100
+	ability_cost = 100
 	///How much larva points it gives (8 points for one larva in distress)
 	var/larva_point_reward = 1
 
@@ -1427,8 +1427,8 @@
 	action_icon_state = "drone_sting"
 	desc = "Infect your victim with a young one without a facehugger. This will burn them a bit."
 	cooldown_timer = 30 SECONDS
-	use_state_flags = XACT_USE_STAGGERED
-	plasma_cost = 50
+	use_state_flags = ABILITY_USE_STAGGERED
+	ability_cost = 50
 	gamemode_flags = ABILITY_NUCLEARWAR
 	target_flags = XABB_HUMAN_TARGET
 	keybinding_signals = list(
@@ -1498,11 +1498,11 @@
 	name = "Cocoon"
 	action_icon_state = "regurgitate"
 	desc = "Devour your victim to cocoon it in your belly. This cocoon will automatically be ejected later, and while the marine inside it still has life force it will give psychic points."
-	use_state_flags = XACT_USE_STAGGERED|XACT_USE_FORTIFIED|XACT_USE_CRESTED //can't use while staggered, defender fortified or crest down
+	use_state_flags = ABILITY_USE_STAGGERED|ABILITY_USE_FORTIFIED|ABILITY_USE_CRESTED //can't use while staggered, defender fortified or crest down
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_REGURGITATE,
 	)
-	plasma_cost = 100
+	ability_cost = 100
 	gamemode_flags = ABILITY_NUCLEARWAR
 	///In how much time the cocoon will be ejected
 	var/cocoon_production_time = 3 SECONDS
@@ -1594,7 +1594,7 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_BLESSINGSMENU,
 	)
-	use_state_flags = XACT_USE_LYING|XACT_USE_CRESTED|XACT_USE_AGILITY
+	use_state_flags = ABILITY_USE_LYING|ABILITY_USE_CRESTED|ABILITY_USE_AGILITY
 
 /datum/action/xeno_action/blessing_menu/should_show()
 	return FALSE // Blessings meni now done through hive status UI!

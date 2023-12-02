@@ -29,11 +29,11 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 	name = "Toggle Long Range Sight"
 	action_icon_state = "toggle_long_range"
 	desc = "Activates your weapon sight in the direction you are facing. Must remain stationary to use."
-	plasma_cost = 20
+	ability_cost = 20
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_LONG_RANGE_SIGHT,
 	)
-	use_state_flags = XACT_USE_ROOTED
+	use_state_flags = ABILITY_USE_ROOTED
 
 /datum/action/xeno_action/toggle_long_range/action_activate()
 	var/mob/living/carbon/xenomorph/boiler/X = owner
@@ -57,7 +57,7 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 	name = "Toggle Bombard Type"
 	action_icon_state = "toggle_bomb0"
 	desc = "Switches Boiler Bombard type between available glob types."
-	use_state_flags = XACT_USE_BUSY|XACT_USE_LYING|XACT_USE_ROOTED
+	use_state_flags = ABILITY_USE_BUSY|ABILITY_USE_LYING|ABILITY_USE_ROOTED
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TOGGLE_BOMB,
 		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_TOGGLE_BOMB_RADIAL,
@@ -134,8 +134,8 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 	action_icon_state = "toggle_bomb0" //to be changed
 	action_icon = 'icons/xeno/actions_boiler_glob.dmi'
 	desc = "Creates a Boiler Bombard of the type currently selected."
-	plasma_cost = 200
-	use_state_flags = XACT_USE_BUSY|XACT_USE_LYING|XACT_USE_ROOTED
+	ability_cost = 200
+	use_state_flags = ABILITY_USE_BUSY|ABILITY_USE_LYING|ABILITY_USE_ROOTED
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_CREATE_BOMB,
 	)
@@ -183,8 +183,8 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_BOMBARD,
 		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_ROOT,
 	)
-	target_flags = XABB_TURF_TARGET
-	use_state_flags = XACT_USE_ROOTED
+	target_flags = ABILITY_TURF_tARGET
+	use_state_flags = ABILITY_USE_ROOTED
 
 /datum/action/xeno_action/activable/bombard/get_cooldown()
 	var/mob/living/carbon/xenomorph/boiler/X = owner
@@ -255,7 +255,7 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 		to_chat(boiler_owner, span_warning("We decide not to launch."))
 		return fail_activate()
 
-	if(!can_use_ability(target, FALSE, XACT_IGNORE_PLASMA))
+	if(!can_use_ability(target, FALSE, ABILITY_IGNORE_PLASMA))
 		return fail_activate()
 
 	boiler_owner.visible_message(span_xenowarning("\The [boiler_owner] launches a huge glob of acid hurling into the distance!"), \
@@ -327,4 +327,4 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 // ***************************************
 /datum/action/xeno_action/activable/spray_acid/line/boiler
 	cooldown_timer = 9 SECONDS
-	use_state_flags = XACT_USE_ROOTED
+	use_state_flags = ABILITY_USE_ROOTED

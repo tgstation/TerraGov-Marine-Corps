@@ -40,8 +40,8 @@
 	desc = "Imbue your claws with acid for a short duration, inflicting lasting effects on your victims."
 	ability_name = "toxic slash"
 	cooldown_timer = 10 SECONDS
-	plasma_cost = 100
-	//use_state_flags = XACT_USE_BUCKLED
+	ability_cost = 100
+	//use_state_flags = ABILITY_USE_BUCKLED
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TOXIC_SLASH,
 	)
@@ -131,9 +131,9 @@
 	desc = "Sting your victim, draining them and gaining benefits if they are Intoxicated."
 	ability_name = "drain sting"
 	cooldown_timer = 25 SECONDS
-	plasma_cost = 75
-	target_flags = XABB_MOB_TARGET
-	use_state_flags = XACT_USE_BUCKLED
+	ability_cost = 75
+	target_flags = ABILITY_MOB_tARGET
+	use_state_flags = ABILITY_USE_BUCKLED
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_DRAIN_STING,
 	)
@@ -199,7 +199,7 @@
 	name = "Toxic grenade"
 	action_icon_state = "gas mine"
 	desc = "Throws a lump of compressed acidic gases, which will inflict damage over time and Intoxicate victims."
-	plasma_cost = 200
+	ability_cost = 200
 	cooldown_timer = 50 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TOXIC_GRENADE,

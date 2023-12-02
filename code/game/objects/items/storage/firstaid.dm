@@ -511,7 +511,7 @@
 	bottle_color = input(user, "Pick a color", "Pick color") as null|color
 	label_color = input(user, "Pick a color", "Pick color") as null|color
 
-	if(!bottle_color || !label_color || !do_after(user, 1 SECONDS, NONE, src, BUSY_ICON_GENERIC))
+	if(!bottle_color || !label_color || !do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
 		return
 
 

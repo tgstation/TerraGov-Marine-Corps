@@ -6,7 +6,7 @@
 	action_icon_state = "spray_acid"
 	desc = "Spray a line of dangerous acid at your target."
 	ability_name = "spray acid"
-	plasma_cost = 250
+	ability_cost = 250
 	cooldown_timer = 30 SECONDS
 
 /datum/action/xeno_action/activable/spray_acid/line/use_ability(atom/A)
@@ -21,7 +21,7 @@
 	if(X.do_actions || !do_after(X, 5, TRUE, target, BUSY_ICON_DANGER))
 		return
 
-	if(!can_use_ability(A, TRUE, override_flags = XACT_IGNORE_SELECTED_ABILITY))
+	if(!can_use_ability(A, TRUE, override_flags = ABILITY_IGNORE_SELECTED_ABILITY))
 		return fail_activate()
 
 	succeed_activate()
@@ -106,7 +106,7 @@
 	action_icon_state = "scatter_spit"
 	desc = "Spits a spread of acid projectiles that splatter on the ground."
 	ability_name = "scatter spit"
-	plasma_cost = 280
+	ability_cost = 280
 	cooldown_timer = 5 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_SCATTER_SPIT,

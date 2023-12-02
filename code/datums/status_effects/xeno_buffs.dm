@@ -56,7 +56,7 @@
 	/// Whom the owner is linked to.
 	var/mob/living/carbon/xenomorph/link_target
 	/// References the Essence Link action and its vars.
-	var/datum/action/ability/activable/xeno/essence_link/essence_link_action
+	var/datum/action/xeno_action/activable/essence_link/essence_link_action
 	/// If the target xeno was within range.
 	var/was_within_range = TRUE
 	/// Cooldown for passive attunement increase.
@@ -71,7 +71,7 @@
 /datum/status_effect/stacking/essence_link/on_creation(mob/living/new_owner, stacks_to_apply, mob/living/carbon/link_target)
 	link_owner = new_owner
 	src.link_target = link_target
-	essence_link_action = link_owner.actions_by_path[/datum/action/ability/activable/xeno/essence_link]
+	essence_link_action = link_owner.actions_by_path[/datum/action/xeno_action/activable/essence_link]
 	ADD_TRAIT(link_owner, TRAIT_ESSENCE_LINKED, TRAIT_STATUS_EFFECT(id))
 	ADD_TRAIT(link_target, TRAIT_ESSENCE_LINKED, TRAIT_STATUS_EFFECT(id))
 	RegisterSignals(link_owner, list(COMSIG_MOB_DEATH, COMSIG_XENOMORPH_EVOLVED, COMSIG_XENOMORPH_DEEVOLVED), PROC_REF(end_link))
@@ -265,9 +265,9 @@
 	/// Used for particles. Holds the particles instead of the mob. See particle_holder for documentation.
 	var/obj/effect/abstract/particle_holder/particle_holder
 	/// References the Essence Link action and its vars.
-	var/datum/action/ability/activable/xeno/essence_link/essence_link_action
+	var/datum/action/xeno_action/activable/essence_link/essence_link_action
 	/// References the Enhancement action and its vars.
-	var/datum/action/ability/xeno_action/enhancement/enhancement_action
+	var/datum/action/xeno_action/enhancement/enhancement_action
 	/// If the target xeno was within range.
 	var/was_within_range = TRUE
 	/// The plasma cost per tick of this ability.
@@ -276,8 +276,8 @@
 /datum/status_effect/drone_enhancement/on_creation(mob/living/new_owner, mob/living/carbon/new_target)
 	buffed_xeno = new_owner
 	buffing_xeno = new_target
-	essence_link_action = buffing_xeno.actions_by_path[/datum/action/ability/activable/xeno/essence_link]
-	enhancement_action = buffing_xeno.actions_by_path[/datum/action/ability/xeno_action/enhancement]
+	essence_link_action = buffing_xeno.actions_by_path[/datum/action/xeno_action/activable/essence_link]
+	enhancement_action = buffing_xeno.actions_by_path[/datum/action/xeno_action/enhancement]
 	ability_cost = round(buffing_xeno.xeno_caste.plasma_max * 0.1)
 	RegisterSignal(buffed_xeno, COMSIG_MOB_DEATH, PROC_REF(handle_death))
 	RegisterSignal(buffing_xeno, COMSIG_MOB_DEATH, PROC_REF(handle_death))
@@ -569,7 +569,7 @@
 		ADD_TRAIT(owner_xeno, TRAIT_HANDS_BLOCKED, src)
 		target.AdjustKnockdown(KNOCKDOWN_DURATION)
 
-		if(do_after(owner_xeno, KNOCKDOWN_DURATION, IGNORE_HELD_ITEM, target))
+		if(do_after(owner_xeno, KNOCKDOWN_DURATION, FALSE, target, ignore_turf_checks = FALSE))
 			owner_xeno.gain_plasma(plasma_gain_on_hit)
 
 	if(owner_xeno.has_status_effect(STATUS_EFFECT_XENO_FEAST))

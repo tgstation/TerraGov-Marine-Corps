@@ -7,7 +7,7 @@
 	desc = "Move an all fours for greater speed. Cannot use abilities while in this mode."
 	ability_name = "toggle agility"
 	cooldown_timer = 0.5 SECONDS
-	use_state_flags = XACT_USE_AGILITY
+	use_state_flags = ABILITY_USE_AGILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TOGGLE_AGILITY,
 	)
@@ -63,12 +63,12 @@
 	action_icon_state = "lunge"
 	desc = "Pounce up to 5 tiles and grab a target, knocking them down and putting them in your grasp."
 	ability_name = "lunge"
-	plasma_cost = 25
+	ability_cost = 25
 	cooldown_timer = 20 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_LUNGE,
 	)
-	target_flags = XABB_MOB_TARGET
+	target_flags = ABILITY_MOB_tARGET
 	/// The target of our lunge, we keep it to check if we are adjacent everytime we move
 	var/atom/lunge_target
 
@@ -106,7 +106,7 @@
 		return FALSE
 	if(!line_of_sight(owner, target, 2))
 		return FALSE
-	if(!can_use_ability(target, override_flags = XACT_IGNORE_SELECTED_ABILITY))
+	if(!can_use_ability(target, override_flags = ABILITY_IGNORE_SELECTED_ABILITY))
 		return FALSE
 	if(target.get_xeno_hivenumber() == owner.get_xeno_hivenumber())
 		return FALSE
@@ -176,12 +176,12 @@
 	action_icon_state = "fling"
 	desc = "Knock a target flying up to 5 tiles away."
 	ability_name = "fling"
-	plasma_cost = 18
+	ability_cost = 18
 	cooldown_timer = 20 SECONDS //Shared cooldown with Grapple Toss
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_FLING,
 	)
-	target_flags = XABB_MOB_TARGET
+	target_flags = ABILITY_MOB_tARGET
 
 /datum/action/xeno_action/activable/fling/on_cooldown_finish()
 	to_chat(owner, span_xenodanger("We gather enough strength to fling something again."))
@@ -263,7 +263,7 @@
 		return FALSE
 	if(get_dist(target, owner) > 1)
 		return FALSE
-	if(!can_use_ability(target, override_flags = XACT_IGNORE_SELECTED_ABILITY))
+	if(!can_use_ability(target, override_flags = ABILITY_IGNORE_SELECTED_ABILITY))
 		return FALSE
 	if(target.get_xeno_hivenumber() == owner.get_xeno_hivenumber())
 		return FALSE
@@ -277,12 +277,12 @@
 	action_icon_state = "grapple_toss"
 	desc = "Throw a creature you're grappling up to 3 tiles away."
 	ability_name = "grapple toss"
-	plasma_cost = 18
+	ability_cost = 18
 	cooldown_timer = 20 SECONDS //Shared cooldown with Fling
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_GRAPPLE_TOSS,
 	)
-	target_flags = XABB_TURF_TARGET
+	target_flags = ABILITY_TURF_tARGET
 
 /datum/action/xeno_action/activable/toss/on_cooldown_finish()
 	to_chat(owner, span_xenodanger("We gather enough strength to toss something again."))
@@ -355,12 +355,12 @@
 	action_icon_state = "punch"
 	desc = "Strike a target, inflicting stamina damage, stagger and slowdown. Deals double damage, stagger and slowdown to grappled targets. Deals quadruple damage to structures and machinery."
 	ability_name = "punch"
-	plasma_cost = 12
+	ability_cost = 12
 	cooldown_timer = 10 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PUNCH,
 	)
-	target_flags = XABB_MOB_TARGET
+	target_flags = ABILITY_MOB_tARGET
 	///The punch range, 1 would be adjacent.
 	var/range = 1
 
@@ -555,7 +555,7 @@
 		return FALSE
 	if(get_dist(target, owner) > 1)
 		return FALSE
-	if(!can_use_ability(target, override_flags = XACT_IGNORE_SELECTED_ABILITY))
+	if(!can_use_ability(target, override_flags = ABILITY_IGNORE_SELECTED_ABILITY))
 		return FALSE
 	if(target.get_xeno_hivenumber() == owner.get_xeno_hivenumber())
 		return FALSE
@@ -568,7 +568,7 @@
 	name = "Jab"
 	action_icon_state = "jab"
 	desc = "Precisely strike your target from further away, heavily slowing them."
-	plasma_cost = 10
+	ability_cost = 10
 	range = 2
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_JAB,

@@ -1,6 +1,6 @@
 /datum/action/xeno_action/activable/corrosive_acid/drone
 	name = "Corrosive Acid"
-	plasma_cost = 75
+	ability_cost = 75
 	acid_type = /obj/effect/xenomorph/acid/weak
 
 /datum/action/xeno_action/activable/transfer_plasma/drone
@@ -17,8 +17,8 @@
 	action_icon_state = "healing_infusion"
 	desc = "Link to a xenomorph. This changes some of your abilities, and grants them and you both various bonuses."
 	cooldown_timer = 5 SECONDS
-	plasma_cost = 0
-	target_flags = XABB_MOB_TARGET
+	ability_cost = 0
+	target_flags = ABILITY_MOB_tARGET
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_ESSENCE_LINK,
 		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_ESSENCE_LINK_REMOVE,
@@ -91,7 +91,7 @@
 	action_icon_state = "heal_xeno"
 	desc = "Apply a minor heal to the target. If applied to a linked sister, it will also apply a regenerative buff. Additionally, if that linked sister is near death, the heal's potency is increased. This heals humans but makes them sleepy for a while."
 	cooldown_timer = 5 SECONDS
-	plasma_cost = 150
+	ability_cost = 150
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_RESIN_SALVE,
 	)
@@ -147,7 +147,7 @@
 	action_icon_state = "enhancement"
 	desc = "Apply an enhancement to the linked xeno, increasing their capabilities beyond their limits."
 	cooldown_timer = 120 SECONDS
-	plasma_cost = 0
+	ability_cost = 0
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_ENHANCEMENT,
 	)

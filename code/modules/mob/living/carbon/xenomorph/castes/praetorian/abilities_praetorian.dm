@@ -6,7 +6,7 @@
 	action_icon_state = "spray_acid"
 	desc = "Spray a cone of dangerous acid at your target."
 	ability_name = "spray acid"
-	plasma_cost = 300
+	ability_cost = 300
 	cooldown_timer = 40 SECONDS
 
 /datum/action/xeno_action/activable/spray_acid/cone/use_ability(atom/A)
@@ -19,7 +19,7 @@
 	if(!do_after(X, 5, TRUE, target, BUSY_ICON_DANGER))
 		return fail_activate()
 
-	if(!can_use_ability(A, TRUE, override_flags = XACT_IGNORE_SELECTED_ABILITY))
+	if(!can_use_ability(A, TRUE, override_flags = ABILITY_IGNORE_SELECTED_ABILITY))
 		return fail_activate()
 
 	GLOB.round_statistics.praetorian_acid_sprays++
@@ -52,7 +52,7 @@
 		return FALSE
 	if(!line_of_sight(owner, target, 3))
 		return FALSE
-	if(!can_use_ability(target, override_flags = XACT_IGNORE_SELECTED_ABILITY))
+	if(!can_use_ability(target, override_flags = ABILITY_IGNORE_SELECTED_ABILITY))
 		return FALSE
 	if(target.get_xeno_hivenumber() == owner.get_xeno_hivenumber())
 		return FALSE
@@ -132,7 +132,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	action_icon_state = "pounce"
 	desc = "Instantly dash, tackling the first marine in your path. If you manage to tackle someone, gain another weaker cast of the ability."
 	ability_name = "acid dash"
-	plasma_cost = 250
+	ability_cost = 250
 	cooldown_timer = 30 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_ACID_DASH,

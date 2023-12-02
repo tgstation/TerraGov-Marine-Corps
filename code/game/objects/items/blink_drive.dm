@@ -139,9 +139,7 @@
 
 	var/atom/movable/pulled_target = user.pulling
 	if(pulled_target)
-		if(!do_after(user, 0.5 SECONDS, IGNORE_USER_LOC_CHANGE|IGNORE_TARGET_LOC_CHANGE, user, BUSY_ICON_HOSTILE))
-			return
-		if(pulled_target != user.pulling)
+		if(!do_after(user, 0.5 SECONDS, TRUE, user, BUSY_ICON_HOSTILE))
 			return
 		user.balloon_alert(user, "pulled someone through")
 

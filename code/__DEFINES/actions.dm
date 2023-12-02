@@ -17,8 +17,8 @@
 #define ABILITY_USE_BURROWED (1 << 16) // ignore being burrowed
 #define ABILITY_USE_ROOTED (1 << 17) // ignore being currently rooted
 
-#define XABB_TURF_TARGET (1 << 0) // ability targets turfs
-#define XABB_MOB_TARGET (1 << 1) // ability targets mobs
+#define ABILITY_TURF_tARGET (1 << 0) // ability targets turfs
+#define ABILITY_MOB_tARGET (1 << 1) // ability targets mobs
 #define XABB_XENO_TARGET (1 << 2) // ability targets Xenos
 #define XABB_HUMAN_TARGET (1 << 3) // ability targets Humans
 

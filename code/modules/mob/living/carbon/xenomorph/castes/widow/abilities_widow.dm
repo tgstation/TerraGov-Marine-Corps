@@ -3,7 +3,7 @@
 	ability_name = "Web Spit"
 	desc = "Spit a web to your target, this causes different effects depending on where you hit. Spitting the head causes the target to be temporarily blind, body and arms will cause the target to be weakened, and legs will snare the target for a brief while."
 	action_icon_state = "web_spit"
-	plasma_cost = 125
+	ability_cost = 125
 	cooldown_timer = 10 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_WEB_SPIT,
@@ -30,7 +30,7 @@
 	ability_name = "Leash Ball"
 	desc = "Spit a huge web ball that snares groups of targets for a brief while."
 	action_icon_state = "leash_ball"
-	plasma_cost = 250
+	ability_cost = 250
 	cooldown_timer = 20 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_LEASH_BALL,
@@ -131,7 +131,7 @@
 	ability_name = "birth_spiderling"
 	desc = "Give birth to a spiderling after a short charge-up. The spiderlings will follow you until death. You can only deploy 5 spiderlings at one time. On alt-use, if any charges of Cannibalise are stored, create a spiderling at no plasma cost or cooldown."
 	action_icon_state = "spawn_spiderling"
-	plasma_cost = 100
+	ability_cost = 100
 	cooldown_timer = 15 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_CREATE_SPIDERLING,
@@ -212,7 +212,7 @@
 	ability_name = "spiderling_mark"
 	desc = "Send your spawn on a valid target, they will automatically destroy themselves out of sheer fury after 15 seconds."
 	action_icon_state = "spiderling_mark"
-	plasma_cost = 50
+	ability_cost = 50
 	cooldown_timer = 5 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_SPIDERLING_MARK,
@@ -252,12 +252,12 @@
 	ability_name = "Burrow"
 	desc = "Burrow into the ground, allowing you and your active spiderlings to hide in plain sight. You cannot use abilities, attack nor move while burrowed. Use the ability again to unburrow if you're already burrowed."
 	action_icon_state = "burrow"
-	plasma_cost = 0
+	ability_cost = 0
 	cooldown_timer = 20 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_BURROW,
 	)
-	use_state_flags = XACT_USE_BURROWED
+	use_state_flags = ABILITY_USE_BURROWED
 
 /datum/action/xeno_action/burrow/action_activate()
 	. = ..()
@@ -323,7 +323,7 @@
 	ability_name = "Attach Spiderlings"
 	desc = "Attach your current spiderlings to you "
 	action_icon_state = "attach_spiderling"
-	plasma_cost = 0
+	ability_cost = 0
 	cooldown_timer = 0 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_ATTACH_SPIDERLINGS,
@@ -373,7 +373,7 @@
 	ability_name = "Cannibalise Spiderling"
 	desc = "Consume one of your children, storing their biomass for future use. If any charges of Cannibalise are stored, alt-use of Birth Spiderling will create one spiderling in exchange for one charge of Cannibalise. Up to three charges of Cannibalise may be stored at once."
 	action_icon_state = "cannibalise_spiderling"
-	plasma_cost = 150
+	ability_cost = 150
 	cooldown_timer = 2 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_CANNIBALISE_SPIDERLING,
@@ -418,7 +418,7 @@
 	ability_name = "Web Hook"
 	desc = "Shoot out a web and pull it to traverse forward"
 	action_icon_state = "web_hook"
-	plasma_cost = 200
+	ability_cost = 200
 	cooldown_timer = 10 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_WEB_HOOK,

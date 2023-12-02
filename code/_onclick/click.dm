@@ -303,12 +303,6 @@
 	if(held_thing && SEND_SIGNAL(held_thing, COMSIG_ITEM_MIDDLECLICKON, A, src) & COMPONENT_ITEM_CLICKON_BYPASS)
 		return FALSE
 
-	if(!selected_ability)
-		return FALSE
-	A = ability_target(A)
-	if(selected_ability.can_use_ability(A))
-		selected_ability.use_ability(A)
-
 #define TARGET_FLAGS_MACRO(flagname, typepath) \
 if(selected_ability.target_flags & flagname && !istype(A, typepath)){\
 	. = locate(typepath) in get_turf(A);\
@@ -316,10 +310,10 @@ if(selected_ability.target_flags & flagname && !istype(A, typepath)){\
 		return;}}
 
 /mob/living/carbon/xenomorph/proc/ability_target(atom/A)
-	TARGET_FLAGS_MACRO(XABB_MOB_TARGET, /mob/living)
+	TARGET_FLAGS_MACRO(ABILITY_MOB_tARGET, /mob/living)
 	TARGET_FLAGS_MACRO(XABB_XENO_TARGET, /mob/living/carbon/xenomorph)
 	TARGET_FLAGS_MACRO(XABB_HUMAN_TARGET, /mob/living/carbon/human)
-	if(selected_ability.target_flags & XABB_TURF_TARGET)
+	if(selected_ability.target_flags & ABILITY_TURF_tARGET)
 		return get_turf(A)
 	return A
 
