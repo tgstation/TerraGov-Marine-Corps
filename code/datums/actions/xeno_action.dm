@@ -3,7 +3,7 @@
 	///If you are going to add an explanation for an ability. don't use stats, give a very brief explanation of how to use it.
 	desc = "This ability can not be found in codex."
 	action_icon = 'icons/Xeno/actions.dmi'
-	var/ability_cost = 0
+	var/plasma_cost = 0
 	///bypass use limitations checked by can_use_action()
 	var/use_state_flags = NONE
 	var/last_use
@@ -17,8 +17,8 @@
 
 /datum/action/xeno_action/New(Target)
 	. = ..()
-	if(ability_cost)
-		name = "[name] ([ability_cost])"
+	if(plasma_cost)
+		name = "[name] ([plasma_cost])"
 	var/image/cooldown_image = image('icons/effects/progressicons.dmi', null, "busy_clock", ACTION_LAYER_CLOCK)
 	var/mutable_appearance/empowered_appearence = mutable_appearance('icons/Xeno/actions.dmi', "borders_center", ACTION_LAYER_EMPOWERED, FLOAT_PLANE)
 	cooldown_image.pixel_y = 7
@@ -56,69 +56,74 @@
 		return FALSE
 	var/flags_to_check = use_state_flags|override_flags
 
-	if(!(flags_to_check & ABILITY_IGNORE_COOLDOWN) && !action_cooldown_check())
+	if(!(flags_to_check & XACT_IGNORE_COOLDOWN) && !action_cooldown_check())
 		if(!silent)
 			X.balloon_alert(X, "Wait [cooldown_remaining()] sec")
 		return FALSE
 
-	if(!(flags_to_check & ABILITY_USE_INCAP) && X.incapacitated())
+	if(!(flags_to_check & XACT_USE_INCAP) && X.incapacitated())
 		if(!silent)
 			X.balloon_alert(X, "Cannot while incapacitated")
 		return FALSE
 
-	if(!(flags_to_check & ABILITY_USE_LYING) && X.lying_angle)
+	if(!(flags_to_check & XACT_USE_LYING) && X.lying_angle)
 		if(!silent)
 			X.balloon_alert(X, "Cannot while lying down")
 		return FALSE
 
-	if(!(flags_to_check & ABILITY_USE_BUCKLED) && X.buckled)
+	if(!(flags_to_check & XACT_USE_BUCKLED) && X.buckled)
 		if(!silent)
 			X.balloon_alert(X, "Cannot while buckled")
 		return FALSE
 
-	if(!(flags_to_check & ABILITY_USE_STAGGERED) && X.IsStaggered())
+	if(!(flags_to_check & XACT_USE_STAGGERED) && X.IsStaggered())
 		if(!silent)
 			X.balloon_alert(X, "Cannot while staggered")
 		return FALSE
 
-	if(!(flags_to_check & ABILITY_USE_FORTIFIED) && X.fortify)
+	if(!(flags_to_check & XACT_USE_FORTIFIED) && X.fortify)
 		if(!silent)
 			X.balloon_alert(X, "Cannot while fortified")
 		return FALSE
 
-	if(!(flags_to_check & ABILITY_USE_CRESTED) && X.crest_defense)
+	if(!(flags_to_check & XACT_USE_CRESTED) && X.crest_defense)
 		if(!silent)
 			X.balloon_alert(X, "Cannot while in crest defense")
 		return FALSE
 
-	if(!(flags_to_check & ABILITY_USE_ROOTED) && HAS_TRAIT_FROM(X, TRAIT_IMMOBILE, BOILER_ROOTED_TRAIT))
+	if(!(flags_to_check & XACT_USE_ROOTED) && HAS_TRAIT_FROM(X, TRAIT_IMMOBILE, BOILER_ROOTED_TRAIT))
 		if(!silent)
 			X.balloon_alert(X, "Cannot while rooted")
 		return FALSE
 
-	if(!(flags_to_check & ABILITY_USE_NOTTURF) && !isturf(X.loc))
+	if(!(flags_to_check & XACT_USE_NOTTURF) && !isturf(X.loc))
 		if(!silent)
 			X.balloon_alert(X, "Cannot do this here")
 		return FALSE
 
-	if(!(flags_to_check & ABILITY_USE_BUSY) && X.do_actions)
+	if(!(flags_to_check & XACT_USE_BUSY) && X.do_actions)
 		if(!silent)
 			X.balloon_alert(X, "Cannot, busy")
 		return FALSE
 
-	if(!(flags_to_check & ABILITY_USE_AGILITY) && X.agility)
+	if(!(flags_to_check & XACT_USE_AGILITY) && X.agility)
 		if(!silent)
 			X.balloon_alert(X, "Cannot in agility mode")
 		return FALSE
 
-	if(!(flags_to_check & ABILITY_USE_BURROWED) && HAS_TRAIT(X, TRAIT_BURROWED))
+	if(!(flags_to_check & XACT_USE_BURROWED) && HAS_TRAIT(X, TRAIT_BURROWED))
 		if(!silent)
 			X.balloon_alert(X, "Cannot while burrowed")
 		return FALSE
 
-	if(!(flags_to_check & ABILITY_IGNORE_PLASMA) && X.plasma_stored < ability_cost)
+	if(!(flags_to_check & XACT_IGNORE_PLASMA) && X.plasma_stored < plasma_cost)
 		if(!silent)
-			X.balloon_alert(X, "Need [ability_cost - X.plasma_stored] more plasma")
+			X.balloon_alert(X, "Need [plasma_cost - X.plasma_stored] more plasma")
+		return FALSE
+	if(!(flags_to_check & XACT_USE_CLOSEDTURF) && isclosedturf(get_turf(X)))
+		if(!silent)
+			//Not converted to balloon alert as xeno.dm's balloon alert is simultaneously called and will overlap.
+			to_chat(owner, span_warning("We can't do this while in a solid object!"))
 		return FALSE
 	if(!(flags_to_check & ABILITY_USE_CLOSEDTURF) && isclosedturf(get_turf(X)))
 		if(!silent)
@@ -132,15 +137,15 @@
 	update_button_icon()
 
 ///Plasma cost override allows for actions/abilities to override the normal plasma costs
-/datum/action/xeno_action/proc/succeed_activate(ability_cost_override)
+/datum/action/xeno_action/proc/succeed_activate(plasma_cost_override)
 	if(QDELETED(owner))
 		return
-	ability_cost_override = ability_cost_override? ability_cost_override : ability_cost
-	if(SEND_SIGNAL(owner, COMSIG_XENO_ACTION_SUCCEED_ACTIVATE, src, ability_cost_override) & SUCCEED_ACTIVATE_CANCEL)
+	plasma_cost_override = plasma_cost_override? plasma_cost_override : plasma_cost
+	if(SEND_SIGNAL(owner, COMSIG_XENO_ACTION_SUCCEED_ACTIVATE, src, plasma_cost_override) & SUCCEED_ACTIVATE_CANCEL)
 		return
-	if(ability_cost_override > 0)
+	if(plasma_cost_override > 0)
 		var/mob/living/carbon/xenomorph/xeno_owner = owner
-		xeno_owner.use_plasma(ability_cost_override)
+		xeno_owner.use_plasma(plasma_cost_override)
 
 ///checks if the linked ability is on some cooldown. The action can still be activated by clicking the button
 /datum/action/xeno_action/proc/action_cooldown_check()
@@ -182,7 +187,7 @@
 	button.cut_overlay(visual_references[VREF_IMAGE_XENO_CLOCK])
 
 /datum/action/xeno_action/handle_button_status_visuals()
-	if(!can_use_action(TRUE, ABILITY_IGNORE_COOLDOWN))
+	if(!can_use_action(TRUE, XACT_IGNORE_COOLDOWN))
 		button.color = "#80000080" // rgb(128,0,0,128)
 	else if(!action_cooldown_check())
 		button.color = "#f0b400c8" // rgb(240,180,0,200)
@@ -214,8 +219,8 @@
 
 /datum/action/xeno_action/activable/keybind_activation()
 	. = COMSIG_KB_ACTIVATED
-	if(CHECK_BITFIELD(keybind_flags, ABILITY_KEYBIND_USE_ABILITY))
-		if(can_use_ability(null, FALSE, ABILITY_IGNORE_SELECTED_ABILITY))
+	if(CHECK_BITFIELD(keybind_flags, XACT_KEYBIND_USE_ABILITY))
+		if(can_use_ability(null, FALSE, XACT_IGNORE_SELECTED_ABILITY))
 			use_ability()
 		return
 
@@ -247,7 +252,7 @@
 
 /datum/action/xeno_action/activable/can_use_action(silent = FALSE, override_flags, selecting = FALSE)
 	if(selecting)
-		return ..(silent, ABILITY_IGNORE_COOLDOWN|ABILITY_IGNORE_PLASMA|ABILITY_USE_STAGGERED)
+		return ..(silent, XACT_IGNORE_COOLDOWN|XACT_IGNORE_PLASMA|XACT_USE_STAGGERED)
 	return ..()
 
 ///override this
@@ -258,10 +263,10 @@
 	var/flags_to_check = use_state_flags|override_flags
 
 	var/mob/living/carbon/xenomorph/X = owner
-	if(!CHECK_BITFIELD(flags_to_check, ABILITY_IGNORE_SELECTED_ABILITY) && X.selected_ability != src)
+	if(!CHECK_BITFIELD(flags_to_check, XACT_IGNORE_SELECTED_ABILITY) && X.selected_ability != src)
 		return FALSE
 	. = can_use_action(silent, override_flags)
-	if(!CHECK_BITFIELD(flags_to_check, ABILITY_TARGET_SELF) && A == owner)
+	if(!CHECK_BITFIELD(flags_to_check, XACT_TARGET_SELF) && A == owner)
 		return FALSE
 
 /datum/action/xeno_action/activable/proc/can_activate()

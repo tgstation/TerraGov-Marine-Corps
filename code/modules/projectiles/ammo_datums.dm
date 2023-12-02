@@ -3192,7 +3192,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/energy/xeno
 	barricade_clear_distance = 0
 	///Plasma cost to fire this projectile
-	var/ability_cost
+	var/plasma_cost
 	///Particle type used when this ammo is used
 	var/particles/channel_particle
 	///The colour the xeno glows when using this ammo type
@@ -3208,7 +3208,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	accurate_range = 7
 	hitscan_effect_icon = "beam_cult"
 	icon_state = "psy_blast"
-	ability_cost = 230
+	plasma_cost = 230
 	channel_particle = /particles/warlock_charge/psy_blast
 	glow_color = "#9e1f1f"
 	///The AOE for drop_nade
@@ -3273,7 +3273,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	max_range = 12
 	hitscan_effect_icon = "beam_hcult"
 	icon_state = "psy_lance"
-	ability_cost = 300
+	plasma_cost = 300
 	channel_particle = /particles/warlock_charge/psy_blast/psy_lance
 	glow_color = "#CB0166"
 

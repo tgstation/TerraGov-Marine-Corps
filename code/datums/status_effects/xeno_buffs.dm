@@ -114,8 +114,8 @@
 	if(stacks < 1 || !was_within_range || remaining_health >= link_target.maxHealth)
 		return
 	var/heal_amount = link_target.maxHealth * (DRONE_ESSENCE_LINK_REGEN * stacks)
-	var/ability_cost = heal_amount * 2
-	if(link_owner.plasma_stored < ability_cost)
+	var/plasma_cost = heal_amount * 2
+	if(link_owner.plasma_stored < plasma_cost)
 		if(!COOLDOWN_CHECK(src, plasma_warning))
 			return
 		link_owner.balloon_alert(link_owner, "No plasma for link")
@@ -124,7 +124,7 @@
 		return
 	link_target.adjustFireLoss(-max(0, heal_amount - link_target.getBruteLoss()), passive = TRUE)
 	link_target.adjustBruteLoss(-heal_amount, passive = TRUE)
-	link_owner.use_plasma(ability_cost)
+	link_owner.use_plasma(plasma_cost)
 
 /// Shares the Resin Jelly buff with the linked xeno.
 /datum/status_effect/stacking/essence_link/proc/share_jelly(datum/source)
@@ -271,14 +271,14 @@
 	/// If the target xeno was within range.
 	var/was_within_range = TRUE
 	/// The plasma cost per tick of this ability.
-	var/ability_cost
+	var/plasma_cost
 
 /datum/status_effect/drone_enhancement/on_creation(mob/living/new_owner, mob/living/carbon/new_target)
 	buffed_xeno = new_owner
 	buffing_xeno = new_target
 	essence_link_action = buffing_xeno.actions_by_path[/datum/action/xeno_action/activable/essence_link]
 	enhancement_action = buffing_xeno.actions_by_path[/datum/action/xeno_action/enhancement]
-	ability_cost = round(buffing_xeno.xeno_caste.plasma_max * 0.1)
+	plasma_cost = round(buffing_xeno.xeno_caste.plasma_max * 0.1)
 	RegisterSignal(buffed_xeno, COMSIG_MOB_DEATH, PROC_REF(handle_death))
 	RegisterSignal(buffing_xeno, COMSIG_MOB_DEATH, PROC_REF(handle_death))
 	INVOKE_ASYNC(buffed_xeno, TYPE_PROC_REF(/mob/living/carbon/xenomorph, emote), "roar2")
@@ -299,10 +299,10 @@
 		was_within_range = within_range
 		toggle_buff(was_within_range)
 
-	if(buffing_xeno.plasma_stored < ability_cost)
+	if(buffing_xeno.plasma_stored < plasma_cost)
 		enhancement_action.end_ability()
 		return
-	buffing_xeno.use_plasma(ability_cost)
+	buffing_xeno.use_plasma(plasma_cost)
 
 /// Toggles the buff on or off.
 /datum/status_effect/drone_enhancement/proc/toggle_buff(toggle)
