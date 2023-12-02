@@ -1663,7 +1663,7 @@
 "Li" = (/obj/machinery/door/airlock/mainship/maint,/obj/structure/disposalpipe/segment{dir = 4},/obj/structure/cable,/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{dir = 4},/turf/open/space/basic,/area/mainship/medical/surgery_hallway{name = "Research"; outside = 0})
 "Lj" = (/obj/machinery/telecomms/broadcaster/preset_left,/turf/open/floor/mainship/tcomms,/area/mainship/command/telecomms{outside = 0})
 "Lk" = (/obj/structure/dropship_equipment/cas/weapon/rocket_pod,/turf/open/floor/mainship/mono,/area/mainship/hallways/hangar/flight_control{outside = 0; name = "Shuttle Hanger"})
-"Ll" = (/obj/structure/orbital_cannon,/obj/vehicle/ridden/powerloader,/turf/open/floor/plating/mainship,/area/mainship/hull/upper_hull)
+"Ll" = (/obj/structure/orbital_cannon,/obj/structure/rack,/obj/structure/ob_ammo/ob_fuel,/obj/structure/ob_ammo/ob_fuel,/obj/structure/ob_ammo/ob_fuel,/obj/structure/ob_ammo/ob_fuel,/obj/structure/ob_ammo/ob_fuel,/turf/open/floor/plating/mainship,/area/mainship/hull/upper_hull)
 "Lm" = (/obj/item/radio/intercom/general,/turf/open/floor/mainship/cargo/arrow{dir = 8},/area/mainship/hallways/hangar/flight_control{outside = 0; name = "Shuttle Hanger"})
 "Ln" = (/obj/structure/cable,/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{dir = 1},/obj/effect/ai_node,/obj/structure/disposalpipe/segment,/turf/open/floor/plating/plating_catwalk,/area/mainship/hallways/port_umbilical{name = "Ship Floor 2 Hallways"})
 "Lo" = (/obj/structure/table/mainship/nometal,/turf/open/floor/wood,/area/mainship/living/officer_study)
@@ -1849,7 +1849,7 @@
 "Pj" = (/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{dir = 8},/obj/structure/cable,/turf/open/floor/plating/plating_catwalk,/area/mainship/hallways/port_umbilical{name = "Ship Floor 2 Hallways"})
 "Pk" = (/obj/structure/table/mainship/nometal,/obj/machinery/computer/med_data/laptop,/turf/open/floor/mainship/sterile/dark,/area/mainship/medical/surgery_hallway{name = "Research"; outside = 0})
 "Pl" = (/turf/open/floor/mainship/black/full,/area/mainship/squads{outside = 0})
-"Pm" = (/obj/structure/rack,/obj/machinery/light/mainship/small,/obj/structure/ob_ammo/ob_fuel,/obj/structure/ob_ammo/ob_fuel,/obj/structure/ob_ammo/ob_fuel,/obj/structure/ob_ammo/ob_fuel,/obj/structure/ob_ammo/ob_fuel,/obj/effect/turf_decal/warning_stripes/thin{dir = 1},/obj/effect/turf_decal/warning_stripes/thin,/turf/open/floor/mainship/mono,/area/mainship/hull/upper_hull)
+"Pm" = (/obj/effect/turf_decal/warning_stripes/thin{dir = 1},/obj/effect/turf_decal/warning_stripes/thin,/turf/closed/wall/mainship/outer,/area/mainship/hull/upper_hull)
 "Pn" = (/obj/structure/window/reinforced{dir = 4},/obj/structure/window/reinforced{dir = 1},/obj/structure/window/reinforced{dir = 8},/obj/machinery/loadout_vendor,/turf/open/floor/mainship/black{dir = 5},/area/orion_outpost/surface/building/prep{name = "Specialist Preperations"})
 "Po" = (/obj/structure/cable,/obj/structure/disposalpipe/segment/corner{dir = 8},/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,/turf/open/floor/plating/plating_catwalk,/area/mainship/hallways/bow_hallway{name = "Ship Floor 1 Hallways"})
 "Pp" = (/obj/machinery/telecomms/relay/preset/telecomms,/turf/open/floor/mainship/tcomms,/area/mainship/command/telecomms{outside = 0})
@@ -2010,7 +2010,7 @@
 "SI" = (/turf/open/space,/area/space)
 "SJ" = (/obj/machinery/suit_storage_unit/carbon_unit,/turf/open/floor/mainship/mono,/area/mainship/hull/lower_hull)
 "SK" = (/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{dir = 4},/turf/open/floor/mainship/mono,/area/mainship/living/pilotbunks{outside = 0})
-"SL" = (/obj/machinery/light/small{dir = 8},/turf/open/floor/plating/plating_catwalk,/area/mainship/hull/upper_hull)
+"SL" = (/obj/machinery/light/small{dir = 8},/obj/vehicle/ridden/powerloader,/turf/open/floor/plating/plating_catwalk,/area/mainship/hull/upper_hull)
 "SM" = (/obj/effect/turf_decal/warning_stripes/thick/corner{dir = 4},/obj/machinery/landinglight/cas{dir = 4},/turf/open/floor/plating,/area/mainship/hallways/hangar/flight_control{outside = 0; name = "Shuttle Hanger"})
 "SN" = (/obj/structure/cable,/obj/structure/disposalpipe/segment,/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{dir = 4},/turf/open/floor/plating/plating_catwalk,/area/mainship/hull/lower_hull)
 "SO" = (/obj/machinery/camera/autoname/mainship{dir = 4},/obj/machinery/sleeper,/turf/open/floor/mainship/sterile/corner{dir = 8},/area/mainship/medical/upper_medical{outside = 0; name = "Shipside Medbay"})
@@ -2385,7 +2385,7 @@ bnEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBWHdSLutsUtdjpLyjtFLbtMyRFYgW
 bnEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEByyxAdSaatsUtDciFyjczLbrJmGunzQctctZdctewCRVZCJGWRTGWbqxhYwuVvPvPvPvPDjPCoovPvPPpYwOqUtwGSRSRSRSRSRSRSRdSorEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBbn
 bnEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBWHxAdSoWtsUtKdmnfPLrLbGmnXQlVTpBVTfvxkbhCRVZCJGWRTGWbqVZYwYqbzUPkKacLjiYIavPzsOrYwGyUtkJSRSRSRSRSRSRSRdSorEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBbn
 bnEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBWHxAdSGstsUtahvHahahLbAjGqvxvxvxvxvxNTCyCRVZSbGWRTGWbqVZEcYwYwZNYwYwYwuVvPvPvPCXVbHQUtkJSRSRSRSRSRSRSRdSorEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBbn
-bnEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBdSdSdSdSdSdSdSSLUtXkaELzvjLbBWGqvxvxvxvxvxNTTMLbHMCJVZVZVZFbVZVZStIoGcVZVZYwhIJyDrzzWKYwEoUtkJSRSRSRSRSRSRSRdSorEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBbn
+bnEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBdSdSdSdSdSdSSLtsUtXkaELzvjLbBWGqvxvxvxvxvxNTTMLbHMCJVZVZVZFbVZVZStIoGcVZVZYwhIJyDrzzWKYwEoUtkJSRSRSRSRSRSRSRdSorEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBbn
 bnEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBNltsNlkaafafihtsUtCilmlDtcLbRKzUvxvxTkvxvxzVAlLbVZCJyByByBzmGhGhGhGhGhGhyBYwYaYaYaYaYaYwBnUtkJSRSRSRSRSRSRSRdSorEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBbn
 bnEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBNltsNlSRODSRNttsUtvmahahahLbUcGqvxvxvxvxvxNTuhMyVZCJVZVZVZbqVZVZVZVZVZVZGTIWGTGTVZVZVZjZXtUtkJSRSRSRSRSRSRSRdSorEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBbn
 bnEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBNltsNlLleISRWNGLUtZbbXFCVnLbcpGqvxvxKYvxvxNTipLbHMCJGWRTGWbqIFlNrllNaCRlrllNrlwIRllNlNlNzqUtwGSRSRSRSRPESRSRdSorEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBbn
