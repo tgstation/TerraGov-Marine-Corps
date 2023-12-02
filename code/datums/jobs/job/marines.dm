@@ -288,7 +288,7 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 	name = SQUAD_SPECIALIST
 	jobtype = /datum/job/terragov/squad/specialist
 
-	id = /obj/item/card/id/dogtag
+	id = /obj/item/card/id/dogtag/specialist
 	head = /obj/item/clothing/head/helmet/specrag
 
 /datum/job/terragov/squad/specialist/after_spawn(mob/living/carbon/C, mob/user, latejoin = FALSE)

@@ -278,7 +278,6 @@
 	width = 9
 
 // queen calldown
-
 /obj/docking_port/mobile/marine_dropship/afterShuttleMove(turf/oldT, rotation)
 	. = ..()
 	if(hijack_state != HIJACK_STATE_CALLED_DOWN)
@@ -1436,7 +1435,6 @@
 	shuttleId = SHUTTLE_ALAMO
 	possible_destinations = "lz1;lz2;alamo"
 	compatible_control_flags = SHUTTLE_MARINE_PRIMARY_DROPSHIP
-
 
 /obj/machinery/computer/shuttle/shuttle_control/dropship/two
 	name = "\improper 'Normandy' dropship console"
