@@ -99,7 +99,7 @@
 
 ///Plays effects and doafter effects for the drone
 /obj/vehicle/unmanned/droid/scout/proc/start_cloak(mob/user)
-	if(!do_after(user, 3 SECONDS, FALSE, src))
+	if(!do_after(user, 3 SECONDS, IGNORE_HELD_ITEM, src))
 		to_chat(user, span_warning(" WARNING. Cloak activation failed; Error code 423: Subject moved during activation."))
 		remove_wibbly_filters(src)
 		return

@@ -93,7 +93,7 @@
 				balloon_alert_to_viewers("tries to feed [M] but can't")
 				return FALSE
 
-			if(!do_mob(user, M, 30, BUSY_ICON_FRIENDLY))
+			if(!do_after(user, 3 SECONDS, NONE, M, BUSY_ICON_FRIENDLY))
 				return
 
 			var/rgt_list_text = get_reagent_list_text()

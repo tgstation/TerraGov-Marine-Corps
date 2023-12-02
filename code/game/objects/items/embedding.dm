@@ -192,7 +192,7 @@
 
 	balloon_alert(user, "attempts to grip [selection]")
 
-	if(!do_after(user, selection.embedding.embedded_unsafe_removal_time, TRUE, src, BUSY_ICON_GENERIC) || QDELETED(selection) || !(selection in embedded_objects))
+	if(!do_after(user, selection.embedding.embedded_unsafe_removal_time, NONE, src, BUSY_ICON_GENERIC) || QDELETED(selection) || !(selection in embedded_objects))
 		return
 
 	if(self)

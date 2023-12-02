@@ -49,10 +49,10 @@
 	if(user.skills.getRating(SKILL_MEDICAL) < SKILL_MEDICAL_EXPERT)
 		user.balloon_alert_to_viewers("Tries to find weak point on [target_xeno]")
 		var/fumbling_time = 15 SECONDS - 2 SECONDS * user.skills.getRating(SKILL_MEDICAL)
-		if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
+		if(!do_after(user, fumbling_time, NONE, src, BUSY_ICON_UNSKILLED))
 			return ..()
 	user.balloon_alert_to_viewers("Begins cutting [target_xeno]")
-	if(!do_after(user, 5 SECONDS, TRUE, src, BUSY_ICON_FRIENDLY))
+	if(!do_after(user, 5 SECONDS, NONE, src, BUSY_ICON_FRIENDLY))
 		return ..()
 
 	if(HAS_TRAIT(target_xeno, TRAIT_RESEARCHED))
@@ -80,7 +80,7 @@
 		balloon_alert(user, "Not skilled enough")
 		return
 
-	if(!do_after(user, 10 SECONDS, TRUE, user.loc, BUSY_ICON_FRIENDLY, null, PROGRESS_BRASS))
+	if(!do_after(user, 10 SECONDS, NONE, user.loc, BUSY_ICON_FRIENDLY, null, PROGRESS_BRASS))
 		return
 
 	var/spawner_located = FALSE

@@ -117,7 +117,7 @@
 			else
 				user.visible_message(span_warning("[user] begins to wipe [H]'s lipstick off with \the [src]."), \
 									span_notice("You begin to wipe off [H]'s lipstick."))
-				if(do_after(user, 10, TRUE, H, BUSY_ICON_FRIENDLY))
+				if(do_after(user, 10, NONE, H, BUSY_ICON_FRIENDLY))
 					user.visible_message(span_notice("[user] wipes [H]'s lipstick off with \the [src]."), \
 										span_notice("You wipe off [H]'s lipstick."))
 					H.lip_style = null

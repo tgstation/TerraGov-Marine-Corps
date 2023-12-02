@@ -840,7 +840,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 // Do a short windup, swap the extension status of the rocket if successful, then swap the flags.
 /obj/item/weapon/gun/launcher/rocket/oneuse/unique_action(mob/living/user)
 	playsound(user, 'sound/weapons/guns/misc/oneuse_deploy.ogg', 25, 1)
-	if(!do_after(user, 20, TRUE, src, BUSY_ICON_DANGER))
+	if(!do_after(user, 20, NONE, src, BUSY_ICON_DANGER))
 		return
 	extended = !extended
 	if(!extended)

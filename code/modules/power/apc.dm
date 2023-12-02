@@ -362,7 +362,7 @@
 			user.visible_message(span_notice("[user] fumbles around figuring out how to fit [I] into [src]."),
 			span_notice("You fumble around figuring out how to fit [I] into [src]."))
 			var/fumbling_time = 5 SECONDS * ( SKILL_ENGINEER_ENGI - user.skills.getRating(SKILL_ENGINEER) )
-			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
+			if(!do_after(user, fumbling_time, NONE, src, BUSY_ICON_UNSKILLED))
 				return
 
 		if(cell)
@@ -387,7 +387,7 @@
 			user.visible_message(span_notice("[user] fumbles around figuring out where to swipe [I] on [src]."),
 			span_notice("You fumble around figuring out where to swipe [I] on [src]."))
 			var/fumbling_time = 3 SECONDS * ( SKILL_ENGINEER_ENGI - user.skills.getRating(SKILL_ENGINEER) )
-			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
+			if(!do_after(user, fumbling_time, NONE, src, BUSY_ICON_UNSKILLED))
 				return
 
 		if(opened)
@@ -416,7 +416,7 @@
 		if(user.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_ENGI)
 			balloon_alert_to_viewers("fumbles")
 			var/fumbling_time = 5 SECONDS * ( SKILL_ENGINEER_ENGI - user.skills.getRating(SKILL_ENGINEER) )
-			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
+			if(!do_after(user, fumbling_time, NONE, src, BUSY_ICON_UNSKILLED))
 				return
 
 		var/turf/T = get_turf(src)
@@ -431,7 +431,7 @@
 		balloon_alert_to_viewers("starts wiring [src]")
 		playsound(loc, 'sound/items/deconstruct.ogg', 25, 1)
 
-		if(!do_after(user, 20, TRUE, src, BUSY_ICON_BUILD) || terminal || !opened || has_electronics == APC_ELECTRONICS_SECURED)
+		if(!do_after(user, 20, NONE, src, BUSY_ICON_BUILD) || terminal || !opened || has_electronics == APC_ELECTRONICS_SECURED)
 			return
 
 		var/obj/structure/cable/N = T.get_cable_node()
@@ -452,13 +452,13 @@
 		if(user.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_ENGI)
 			balloon_alert_to_viewers("fumbles")
 			var/fumbling_time = 5 SECONDS * ( SKILL_ENGINEER_ENGI - user.skills.getRating(SKILL_ENGINEER) )
-			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
+			if(!do_after(user, fumbling_time, NONE, src, BUSY_ICON_UNSKILLED))
 				return
 
 		balloon_alert_to_viewers("Tries to insert APC board into [src]")
 		playsound(loc, 'sound/items/deconstruct.ogg', 25, 1)
 
-		if(!do_after(user, 15, TRUE, src, BUSY_ICON_BUILD))
+		if(!do_after(user, 15, NONE, src, BUSY_ICON_BUILD))
 			return
 
 		has_electronics = APC_ELECTRONICS_INSTALLED
@@ -470,7 +470,7 @@
 		if(user.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_ENGI)
 			balloon_alert_to_viewers("fumbles")
 			var/fumbling_time = 5 SECONDS * ( SKILL_ENGINEER_ENGI - user.skills.getRating(SKILL_ENGINEER) )
-			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
+			if(!do_after(user, fumbling_time, NONE, src, BUSY_ICON_UNSKILLED))
 				return
 
 		balloon_alert(user, "Cannot, frame damaged")
@@ -479,7 +479,7 @@
 		if(user.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_ENGI)
 			balloon_alert_to_viewers("fumbles")
 			var/fumbling_time = 5 SECONDS * ( SKILL_ENGINEER_ENGI - user.skills.getRating(SKILL_ENGINEER) )
-			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
+			if(!do_after(user, fumbling_time, NONE, src, BUSY_ICON_UNSKILLED))
 				return
 
 		if(has_electronics)
@@ -488,7 +488,7 @@
 
 		balloon_alert_to_viewers("Begins replacing front panel")
 
-		if(!do_after(user, 50, TRUE, src, BUSY_ICON_BUILD))
+		if(!do_after(user, 50, NONE, src, BUSY_ICON_BUILD))
 			return
 
 		balloon_alert_to_viewers("Replaces front panel")
@@ -502,7 +502,7 @@
 		if(user.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_ENGI)
 			balloon_alert_to_viewers("fumbles")
 			var/fumbling_time = 5 SECONDS * ( SKILL_ENGINEER_ENGI - user.skills.getRating(SKILL_ENGINEER) )
-			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
+			if(!do_after(user, fumbling_time, NONE, src, BUSY_ICON_UNSKILLED))
 				return
 
 		if(opened == APC_COVER_REMOVED)
@@ -535,7 +535,7 @@
 			if(user.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_ENGI)
 				balloon_alert_to_viewers("Fumbles around removing cell from [src]")
 				var/fumbling_time = 5 SECONDS * ( SKILL_ENGINEER_ENGI - user.skills.getRating(SKILL_ENGINEER) )
-				if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
+				if(!do_after(user, fumbling_time, NONE, src, BUSY_ICON_UNSKILLED))
 					return
 			I.play_tool_sound(src)
 			balloon_alert(user, "Removing APC board")
@@ -577,7 +577,7 @@
 			if(user.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_ENGI)
 				balloon_alert_to_viewers("fumbles")
 				var/fumbling_time = 5 SECONDS * ( SKILL_ENGINEER_ENGI - user.skills.getRating(SKILL_ENGINEER) )
-				if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
+				if(!do_after(user, fumbling_time, NONE, src, BUSY_ICON_UNSKILLED))
 					return
 			balloon_alert_to_viewers("Removes cell")
 			var/turf/T = get_turf(user)
@@ -622,7 +622,7 @@
 	if(user.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_ENGI)
 		balloon_alert_to_viewers("fumbles")
 		var/fumbling_time = 5 SECONDS * ( SKILL_ENGINEER_ENGI - user.skills.getRating(SKILL_ENGINEER) )
-		if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
+		if(!do_after(user, fumbling_time, NONE, src, BUSY_ICON_UNSKILLED))
 			return
 
 	if(!I.tool_start_check(user, amount = 3))
@@ -652,7 +652,7 @@
 		if(user.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_ENGI)
 			balloon_alert_to_viewers("fumbles")
 			var/fumbling_time = 5 SECONDS * ( SKILL_ENGINEER_ENGI - user.skills.getRating(SKILL_ENGINEER) )
-			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
+			if(!do_after(user, fumbling_time, NONE, src, BUSY_ICON_UNSKILLED))
 				return
 		balloon_alert_to_viewers("removes [src] from [src]")
 		user.put_in_hands(cell)

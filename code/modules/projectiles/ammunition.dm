@@ -140,7 +140,7 @@
 	//using handfuls; and filling internal mags has no delay.
 	if(fill_delay)
 		to_chat(user, span_notice("You start refilling [src] with [source]."))
-		if(!do_after(user, fill_delay, TRUE, src, BUSY_ICON_GENERIC))
+		if(!do_after(user, fill_delay, NONE, src, BUSY_ICON_GENERIC))
 			return
 
 	to_chat(user, span_notice("You refill [src] with [source]."))
@@ -391,7 +391,7 @@ Turn() or Shift() as there is virtually no overhead. ~N
 				to_chat(user, span_warning("[AM] is already full."))
 				return
 
-			if(!do_after(user, 15, TRUE, src, BUSY_ICON_GENERIC))
+			if(!do_after(user, 15, NONE, src, BUSY_ICON_GENERIC))
 				return
 
 			playsound(loc, 'sound/weapons/guns/interact/revolver_load.ogg', 25, 1)

@@ -41,7 +41,7 @@
 		var/turf/T = get_turf(A)
 		user.visible_message(span_warning("[user] begins to clean \the [T]."))
 
-		if(do_after(user, 40, TRUE, T, BUSY_ICON_GENERIC))
+		if(do_after(user, 40, NONE, T, BUSY_ICON_GENERIC))
 			T.clean(src)
 			balloon_alert(user, "Finished mopping")
 
