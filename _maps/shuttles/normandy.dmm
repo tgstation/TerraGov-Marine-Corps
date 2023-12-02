@@ -13,7 +13,6 @@
 /turf/closed/shuttle/dropship2/glassone,
 /area/shuttle/dropship/normandy)
 "cW" = (
-/obj/structure/closet/walllocker/hydrant/extinguisher,
 /obj/structure/bed/chair/dropship/passenger{
 	dir = 8
 	},

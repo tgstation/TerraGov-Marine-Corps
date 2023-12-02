@@ -30,7 +30,7 @@
 //DRINKS
 
 /obj/item/reagent_containers/food/drinks/cans/cola
-	name = "\improper TGM Cola"
+	name = "\improper NT Cola"
 	desc = "A can of artificial flavors, sweeteners, and coloring, at least it's carbonated. Canned by Ninetails."
 	icon_state = "tgm_cola"
 	center_of_mass = list("x"=16, "y"=10)
