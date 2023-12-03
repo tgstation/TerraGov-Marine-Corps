@@ -12,6 +12,8 @@
 	var/variant
 	/// If it's allowed to bypass the vendor check
 	var/bypass_vendor_check = FALSE
+	/// If it has greyscale datum, it's saved here
+	var/greyscale_config
 
 /datum/item_representation/New(obj/item/item_to_copy)
 	if(!item_to_copy)
@@ -28,6 +30,7 @@
 	if(!item_to_copy.greyscale_config)
 		return
 	colors = item_to_copy.greyscale_colors
+	greyscale_config = item_to_copy.greyscale_config
 
 /**
  * This will attempt to instantiate an object.
@@ -46,6 +49,8 @@
 		to_chat(user, span_warning("[item_type] in your loadout is an invalid item, it has probably been changed or removed."))
 		return
 	var/obj/item/item = new item_type(master)
+	if(greyscale_config)
+		item.greyscale_config = greyscale_config
 	if(item.greyscale_config)
 		item.set_greyscale_colors(colors)
 	if(item.current_variant && item.colorable_allowed & ICON_STATE_VARIANTS_ALLOWED)
@@ -60,8 +65,8 @@
 	var/list/tgui_data = list()
 	var/icon/icon_to_convert
 	var/icon_state = initial(item_type.icon_state) + (variant ? "_[GLOB.loadout_variant_keys[variant]]" : "")
-	if(initial(item_type.greyscale_config))
-		icon_to_convert = icon(SSgreyscale.GetColoredIconByType(initial(item_type.greyscale_config), colors), icon_state,  dir = SOUTH)
+	if(initial(greyscale_config))
+		icon_to_convert = icon(SSgreyscale.GetColoredIconByType(initial(greyscale_config), colors), icon_state,  dir = SOUTH)
 	else
 		icon_to_convert = icon(initial(item_type.icon), icon_state, SOUTH)
 	tgui_data["icons"] = list(list(
