@@ -52,6 +52,8 @@
 		elfsummoning.give_action(H)
 		var/datum/action/innate/heal_elf/fixelfslave = new(H)
 		fixelfslave.give_action(H)
+		var/datum/action/innate/elf_swap/swapelf = new(H)
+		swapelf.give_action(H)
 		if(GLOB.round_statistics.number_of_grinches >= 2)
 			to_chat(H, "<p style='font-size:1.5em'>[span_notice("You are Santa Claus! Eradicate all </b>marines and aliens</b> with overwhelming firepower! </b>Leave none of them alive!!</b>.")]</p>")
 		else
@@ -174,3 +176,28 @@
 	santamob.put_in_hands(newcontract)
 	var/obj/item/tool/pen/newpen = new (get_turf(santamob))
 	santamob.put_in_hands(newpen)
+
+/datum/action/innate/elf_swap
+	name = "Swap with elf"
+	action_icon_state = "santaswap"
+
+/datum/action/innate/elf_swap/Activate()
+	var/list/elflist = list()
+	var/mob/living/carbon/human/santamob = usr
+	for(var/mob/living/carbon/human/elves in GLOB.alive_human_list)
+		if(HAS_TRAIT(elves, TRAIT_CHRISTMAS_ELF))
+			elflist += elves
+	var/mob/living/carbon/human/swappedelf = tgui_input_list(santamob , "Choose an elf to swap with", "Elf swapping", elflist)
+	to_chat(santamob, "You begin summoning your Christmas magic to swap places with an elf...")
+	to_chat(swappedelf, "You feel odd, as though you're in two places at once...")
+	if(!do_after(santamob, 5 SECONDS))
+		to_chat(santamob, "You stop preparing to switch places with a lowly elf...")
+		return
+	var/turf/elfturf = get_turf(swappedelf)
+	var/turf/santaturf = get_turf(santamob)
+	santamob.forceMove(elfturf)
+	swappedelf.forceMove(santaturf)
+	swappedelf.Stun(3 SECONDS)
+	santamob.Stun(3 SECONDS)
+	to_chat(santamob, "You struggle to get your bearings after the swap...")
+	to_chat(swappedelf, "As the world reels around you, you struggle to get your bearings...")

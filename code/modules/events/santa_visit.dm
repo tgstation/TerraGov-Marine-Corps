@@ -73,6 +73,8 @@
 		present_spawn.give_action(spawnedhuman)
 		var/datum/action/innate/summon_elves/elfsummoning = new(spawnedhuman)
 		elfsummoning.give_action(spawnedhuman)
+		var/datum/action/innate/elf_swap/swapelf = new(spawnedhuman)
+		swapelf.give_action(spawnedhuman)
 		var/datum/action/innate/summon_paperwork/summon_contract = new(spawnedhuman)
 		summon_contract.give_action(spawnedhuman)
 		spawnedhuman.offer_mob()
