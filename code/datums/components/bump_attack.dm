@@ -111,7 +111,7 @@
 	var/mob/living/bumper = parent
 	if(bumper.next_move > world.time)
 		return COMPONENT_BUMP_RESOLVED //We don't want to push people while on attack cooldown.
-	bumper.UnarmedAttack(target, TRUE)
+	bumper.UnarmedAttack(target, TRUE, bump_slash = TRUE)
 	TIMER_COOLDOWN_START(src, COOLDOWN_BUMP_ATTACK, CLICK_CD_MELEE)
 	return COMPONENT_BUMP_RESOLVED
 
@@ -122,7 +122,7 @@
 		return COMPONENT_BUMP_RESOLVED //We don't want to push people while on attack cooldown.
 	var/obj/item/held_item = bumper.get_active_held_item()
 	if(!held_item)
-		bumper.UnarmedAttack(target, TRUE)
+		bumper.UnarmedAttack(target, TRUE, bump_slash = TRUE)
 	else if(held_item.flags_item & CAN_BUMP_ATTACK)
 		held_item.melee_attack_chain(bumper, target)
 	else //disables pushing if you have bump attacks on, so you don't accidentally misplace your enemy when switching to an item that can't bump attack
@@ -137,7 +137,7 @@
 	var/mob/living/carbon/xenomorph/bumper = parent
 	if(bumper.next_move > world.time)
 		return COMPONENT_BUMP_RESOLVED //We don't want to push people while on attack cooldown.
-	bumper.UnarmedAttack(target, TRUE)
+	bumper.UnarmedAttack(target, TRUE, bump_slash = TRUE)
 	GLOB.round_statistics.xeno_bump_attacks++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "xeno_bump_attacks")
 	TIMER_COOLDOWN_START(src, COOLDOWN_BUMP_ATTACK, bumper.xeno_caste.attack_delay)

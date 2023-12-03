@@ -38,7 +38,7 @@
 	TIMER_COOLDOWN_START(src, COOLDOWN_CHEW, 7.5 SECONDS)
 
 
-/mob/living/carbon/human/UnarmedAttack(atom/A, proximity, list/modifiers)
+/mob/living/carbon/human/UnarmedAttack(atom/A, proximity, list/modifiers, bump_slash)
 	if(lying_angle) //No attacks while laying down
 		return FALSE
 	if(HAS_TRAIT(src, TRAIT_HANDS_BLOCKED))

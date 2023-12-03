@@ -1,4 +1,4 @@
-/mob/living/carbon/xenomorph/UnarmedAttack(atom/A, has_proximity, modifiers)
+/mob/living/carbon/xenomorph/UnarmedAttack(atom/A, has_proximity, modifiers, bump_slash)
 	if(lying_angle)
 		return FALSE
 	if(isclosedturf(get_turf(src)) && !iswallturf(A))	//If we are on a closed turf (e.g. in a wall) we can't attack anything, except walls (or well, resin walls really) so we can't make ourselves be stuck.
@@ -8,7 +8,7 @@
 		changeNext_move(xeno_caste ? xeno_caste.attack_delay : CLICK_CD_MELEE)
 	if(HAS_TRAIT(src, TRAIT_HANDS_BLOCKED))
 		return
-	if(isitem(A))
+	if(isitem(A) && !bump_slash)
 		var/obj/item/item = A
 		item.attack_hand(src)
 		return
@@ -23,7 +23,7 @@
 	return
 
 
-/mob/living/carbon/xenomorph/larva/UnarmedAttack(atom/A, has_proximity, modifiers)
+/mob/living/carbon/xenomorph/larva/UnarmedAttack(atom/A, has_proximity, modifiers, bump_slash)
 	if(lying_angle)
 		return FALSE
 	if(HAS_TRAIT(src, TRAIT_HANDS_BLOCKED))
@@ -36,7 +36,7 @@
 
 
 
-/mob/living/carbon/xenomorph/hivemind/UnarmedAttack(atom/A, has_proximity, modifiers)
+/mob/living/carbon/xenomorph/hivemind/UnarmedAttack(atom/A, has_proximity, modifiers, bump_slash)
 	if(HAS_TRAIT(src, TRAIT_HANDS_BLOCKED))
 		return
 	A.attack_hivemind(src)
