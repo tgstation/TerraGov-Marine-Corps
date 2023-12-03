@@ -365,10 +365,10 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	name = CAPTAIN
 	leadership = SKILL_LEAD_MASTER
 	police = SKILL_POLICE_MP
-	medical = SKILL_MEDICAL_PRACTICED
+	medical = SKILL_MEDICAL_COMPETENT
 	surgery = SKILL_SURGERY_AMATEUR
 	engineer = SKILL_ENGINEER_ENGI
-	construction = SKILL_CONSTRUCTION_PLASTEEL
+	construction = SKILL_CONSTRUCTION_ADVANCED
 	powerloader = SKILL_POWERLOADER_MASTER
 	firearms = SKILL_FIREARMS_TRAINED
 	smartgun = SKILL_SMART_TRAINED
