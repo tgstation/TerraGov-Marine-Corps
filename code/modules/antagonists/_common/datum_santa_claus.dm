@@ -99,7 +99,8 @@
 
 /datum/antagonist/event_santa/greet()
 	to_chat(owner, span_boldnotice("<br><B>You are Santa Claus!</B>"))
-	to_chat(owner, span_boldnotice("Complete your objectives and avoid collateral damage or harm to anyone not on your target list!"))
+	to_chat(owner, span_boldnotice("<br><B>You are not an antagonist, so don't act like one!</B>"))
+	to_chat(owner, span_boldnotice("Cooperate with the marines while you complete your objectives and avoid collateral damage or harm to anyone who is not a grinch!"))
 	owner.announce_objectives()
 
 //TODO Collate
