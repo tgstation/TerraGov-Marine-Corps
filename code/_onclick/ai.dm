@@ -96,7 +96,7 @@
 	The below is only really for safety, or you can alter the way
 	it functions and re-insert it above.
 */
-/mob/living/silicon/ai/UnarmedAttack(atom/A, has_proximity, modifiers, bump_slash)
+/mob/living/silicon/ai/UnarmedAttack(atom/A, has_proximity, modifiers)
 	if(HAS_TRAIT(src, TRAIT_HANDS_BLOCKED))
 		return
 	A.attack_ai(src)

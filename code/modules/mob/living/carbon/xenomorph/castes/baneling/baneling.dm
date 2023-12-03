@@ -13,7 +13,7 @@
 	pixel_x = -16
 	old_x = -16
 
-/mob/living/carbon/xenomorph/baneling/UnarmedAttack(atom/A, has_proximity, modifiers, bump_slash)
+/mob/living/carbon/xenomorph/baneling/UnarmedAttack(atom/A, has_proximity, modifiers)
 	/// We dont wanna be able to slash while balling
 	if(m_intent == MOVE_INTENT_RUN)
 		return

@@ -137,7 +137,7 @@
 	var/mob/living/carbon/xenomorph/bumper = parent
 	if(bumper.next_move > world.time)
 		return COMPONENT_BUMP_RESOLVED //We don't want to push people while on attack cooldown.
-	bumper.UnarmedAttack(target, TRUE, bump_slash = TRUE)
+	bumper.xeno_slash(target, TRUE = TRUE)
 	GLOB.round_statistics.xeno_bump_attacks++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "xeno_bump_attacks")
 	TIMER_COOLDOWN_START(src, COOLDOWN_BUMP_ATTACK, bumper.xeno_caste.attack_delay)
