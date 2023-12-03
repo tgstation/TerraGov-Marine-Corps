@@ -11,12 +11,12 @@ mode Nuclear War
 endmode
 
 mode Extended
-	disabled
+	requiredplayers 65
+	votable 0
 endmode
 
 mode Extended Plus
 	requiredplayers 0
-	votable 0
 endmode
 
 mode Combat Patrol
