@@ -56,7 +56,7 @@
 		to_chat(user, span_notice("You start to [cistern ? "replace the lid on the cistern" : "lift the lid off the cistern"]."))
 		playsound(loc, 'sound/effects/stonedoor_openclose.ogg', 25, 1)
 
-		if(!do_after(user, 30, TRUE, src, BUSY_ICON_BUILD))
+		if(!do_after(user, 3 SECONDS, NONE, src, BUSY_ICON_BUILD))
 			return
 
 		user.visible_message(span_notice("[user] [cistern ? "replaces the lid on the cistern" : "lifts the lid off the cistern"]!"), span_notice("You [cistern ? "replace the lid on the cistern" : "lift the lid off the cistern"]!"), "You hear grinding porcelain.")
@@ -84,7 +84,7 @@
 		if(open && !swirlie)
 			user.visible_message(span_danger("[user] starts to give [C] a swirlie!"), span_notice("You start to give [C] a swirlie!"))
 			swirlie = C
-			if(!do_after(user, 30, TRUE, src, BUSY_ICON_HOSTILE))
+			if(!do_after(user, 3 SECONDS, NONE, src, BUSY_ICON_HOSTILE))
 				return
 
 			user.visible_message(span_danger("[user] gives [C] a swirlie!"), span_notice("You give [C] a swirlie!"), "You hear a toilet flushing.")
@@ -209,7 +209,7 @@
 	else if(iswrench(I))
 		to_chat(user, span_notice("You begin to adjust the temperature valve with \the [I]."))
 
-		if(!do_after(user, 5 SECONDS, TRUE, src, BUSY_ICON_BUILD))
+		if(!do_after(user, 5 SECONDS, NONE, src, BUSY_ICON_BUILD))
 			return
 
 		switch(watertemp)
@@ -352,7 +352,7 @@
 	playsound(loc, 'sound/effects/sink_long.ogg', 25, 1)
 
 	busy = TRUE
-	if(!do_after(user, 4 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
+	if(!do_after(user, 4 SECONDS, NONE, src, BUSY_ICON_GENERIC))
 		busy = FALSE
 		balloon_alert_to_viewers("Stops washing")
 		return
@@ -404,7 +404,7 @@
 
 	to_chat(usr, span_notice("You start washing \the [I]."))
 
-	if(!do_after(user, 30, TRUE, src, BUSY_ICON_BUILD))
+	if(!do_after(user, 3 SECONDS, NONE, src, BUSY_ICON_BUILD))
 		return
 
 	if(user.loc != location || user.get_active_held_item() != I)

@@ -92,7 +92,7 @@
 	span_xenonotice("We begin to twist and contort."))
 	do_jitter_animation(1000)
 
-	if(!regression && !do_after(src, 25, FALSE, null, BUSY_ICON_CLOCK))
+	if(!regression && !do_after(src, 25, IGNORE_HELD_ITEM, null, BUSY_ICON_CLOCK))
 		balloon_alert(src, span_warning("We must hold still while evolving."))
 		return
 

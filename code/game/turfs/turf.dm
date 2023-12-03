@@ -207,6 +207,12 @@
 	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_CHEM))
 		S.reagents?.reaction(src, VAPOR, S.fraction)
 
+/turf/get_soft_armor(armor_type, proj_def_zone)
+	return soft_armor.getRating(armor_type)
+
+/turf/get_hard_armor(armor_type, proj_def_zone)
+	return hard_armor.getRating(armor_type)
+
 /turf/proc/levelupdate()
 	for(var/obj/O in src)
 		if(O.flags_atom & INITIALIZED)
@@ -927,4 +933,12 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 	underlay_appearance.icon = icon
 	underlay_appearance.icon_state = icon_state
 	underlay_appearance.dir = adjacency_dir
+	return TRUE
+
+///Are we able to teleport to this turf using in game teleport mechanics
+/turf/proc/can_teleport_here()
+	if(density)
+		return FALSE
+	if(SEND_SIGNAL(src, COMSIG_TURF_TELEPORT_CHECK))
+		return FALSE
 	return TRUE

@@ -1,4 +1,0 @@
-author: "Xander3359"
-delete-after: True
-changes:
-  - qol: "reagent pouch defaults to draw mode enabled (left click to draw)"

@@ -29,7 +29,7 @@
 	death_evolution_delay = 7 MINUTES
 
 	// *** Flags *** //
-	caste_flags = CASTE_IS_INTELLIGENT|CASTE_STAGGER_RESISTANT|CASTE_LEADER_TYPE|CASTE_INSTANT_EVOLUTION
+	caste_flags = CASTE_IS_INTELLIGENT|CASTE_STAGGER_RESISTANT|CASTE_LEADER_TYPE|CASTE_INSTANT_EVOLUTION|CASTE_HAS_WOUND_MASK
 	can_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER|CASTE_CAN_CORRUPT_GENERATOR
 	caste_traits = null
 
@@ -42,26 +42,26 @@
 	minimap_icon = "xenoking"
 
 	actions = list(
-		/datum/action/xeno_action/xeno_resting,
-		/datum/action/xeno_action/watch_xeno,
-		/datum/action/xeno_action/activable/psydrain,
-		/datum/action/xeno_action/activable/cocoon,
-		/datum/action/xeno_action/activable/plant_weeds,
-		/datum/action/xeno_action/call_of_the_burrowed,
-		/datum/action/xeno_action/activable/corrosive_acid/strong,
-		/datum/action/xeno_action/activable/nightfall,
-		/datum/action/xeno_action/petrify,
-		/datum/action/xeno_action/activable/off_guard,
-		/datum/action/xeno_action/activable/shattering_roar,
-		/datum/action/xeno_action/psychic_summon,
-		/datum/action/xeno_action/pheromones,
-		/datum/action/xeno_action/pheromones/emit_recovery,
-		/datum/action/xeno_action/pheromones/emit_warding,
-		/datum/action/xeno_action/pheromones/emit_frenzy,
-		/datum/action/xeno_action/hive_message,
-		/datum/action/xeno_action/rally_hive,
-		/datum/action/xeno_action/rally_minion,
-		/datum/action/xeno_action/blessing_menu,
+		/datum/action/ability/xeno_action/xeno_resting,
+		/datum/action/ability/xeno_action/watch_xeno,
+		/datum/action/ability/activable/xeno/psydrain,
+		/datum/action/ability/activable/xeno/cocoon,
+		/datum/action/ability/activable/xeno/plant_weeds,
+		/datum/action/ability/xeno_action/call_of_the_burrowed,
+		/datum/action/ability/activable/xeno/corrosive_acid/strong,
+		/datum/action/ability/activable/xeno/nightfall,
+		/datum/action/ability/xeno_action/petrify,
+		/datum/action/ability/activable/xeno/off_guard,
+		/datum/action/ability/activable/xeno/shattering_roar,
+		/datum/action/ability/xeno_action/psychic_summon,
+		/datum/action/ability/xeno_action/pheromones,
+		/datum/action/ability/xeno_action/pheromones/emit_recovery,
+		/datum/action/ability/xeno_action/pheromones/emit_warding,
+		/datum/action/ability/xeno_action/pheromones/emit_frenzy,
+		/datum/action/ability/xeno_action/hive_message,
+		/datum/action/ability/xeno_action/rally_hive,
+		/datum/action/ability/xeno_action/rally_minion,
+		/datum/action/ability/xeno_action/blessing_menu,
 	)
 
 
@@ -75,25 +75,25 @@
 	upgrade = XENO_UPGRADE_PRIMO
 
 	actions = list(
-		/datum/action/xeno_action/xeno_resting,
-		/datum/action/xeno_action/watch_xeno,
-		/datum/action/xeno_action/activable/psydrain,
-		/datum/action/xeno_action/activable/cocoon,
-		/datum/action/xeno_action/activable/plant_weeds,
-		/datum/action/xeno_action/call_of_the_burrowed,
-		/datum/action/xeno_action/activable/corrosive_acid/strong,
-		/datum/action/xeno_action/activable/nightfall,
-		/datum/action/xeno_action/petrify,
-		/datum/action/xeno_action/activable/off_guard,
-		/datum/action/xeno_action/activable/shattering_roar,
-		/datum/action/xeno_action/zero_form_beam,
-		/datum/action/xeno_action/psychic_summon,
-		/datum/action/xeno_action/pheromones,
-		/datum/action/xeno_action/pheromones/emit_recovery,
-		/datum/action/xeno_action/pheromones/emit_warding,
-		/datum/action/xeno_action/pheromones/emit_frenzy,
-		/datum/action/xeno_action/hive_message,
-		/datum/action/xeno_action/rally_hive,
-		/datum/action/xeno_action/rally_minion,
-		/datum/action/xeno_action/blessing_menu,
+		/datum/action/ability/xeno_action/xeno_resting,
+		/datum/action/ability/xeno_action/watch_xeno,
+		/datum/action/ability/activable/xeno/psydrain,
+		/datum/action/ability/activable/xeno/cocoon,
+		/datum/action/ability/activable/xeno/plant_weeds,
+		/datum/action/ability/xeno_action/call_of_the_burrowed,
+		/datum/action/ability/activable/xeno/corrosive_acid/strong,
+		/datum/action/ability/activable/xeno/nightfall,
+		/datum/action/ability/xeno_action/petrify,
+		/datum/action/ability/activable/xeno/off_guard,
+		/datum/action/ability/activable/xeno/shattering_roar,
+		/datum/action/ability/xeno_action/zero_form_beam,
+		/datum/action/ability/xeno_action/psychic_summon,
+		/datum/action/ability/xeno_action/pheromones,
+		/datum/action/ability/xeno_action/pheromones/emit_recovery,
+		/datum/action/ability/xeno_action/pheromones/emit_warding,
+		/datum/action/ability/xeno_action/pheromones/emit_frenzy,
+		/datum/action/ability/xeno_action/hive_message,
+		/datum/action/ability/xeno_action/rally_hive,
+		/datum/action/ability/xeno_action/rally_minion,
+		/datum/action/ability/xeno_action/blessing_menu,
 	)

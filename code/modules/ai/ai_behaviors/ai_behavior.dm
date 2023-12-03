@@ -108,6 +108,8 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 
 ///Cleanup old state vars, start the movement towards our new target
 /datum/ai_behavior/proc/change_action(next_action, atom/next_target, special_distance_to_maintain)
+	if(QDELETED(mob_parent))
+		return
 	cleanup_current_action(next_action)
 	#ifdef TESTING
 	switch(next_action)
@@ -324,6 +326,8 @@ These are parameter based so the ai behavior can choose to (un)register the sign
 
 /// Move the ai and schedule the next move
 /datum/ai_behavior/proc/scheduled_move()
+	if(QDELETED(mob_parent))
+		return
 	if(!atom_to_walk_to)
 		registered_for_move = FALSE
 		return

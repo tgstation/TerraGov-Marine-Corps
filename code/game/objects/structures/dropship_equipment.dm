@@ -47,7 +47,7 @@
 				balloon_alert(user, "Blocked by [thing_to_check]")
 				return
 	playsound(loc, 'sound/machines/hydraulics_1.ogg', 40, 1)
-	if(!do_after(user, 7 SECONDS, FALSE, src))
+	if(!do_after(user, 7 SECONDS, IGNORE_HELD_ITEM, src))
 		return
 	if(installed_equipment || attached_clamp.loaded != loaded_equipment)
 		return
@@ -213,7 +213,7 @@
 			to_chat(user, span_warning("[clamp_ammo] doesn't fit in [src]."))
 			return
 		playsound(src, 'sound/machines/hydraulics_1.ogg', 40, 1)
-		if(!do_after(user, 30, FALSE, src, BUSY_ICON_BUILD))
+		if(!do_after(user, 30, IGNORE_HELD_ITEM, src, BUSY_ICON_BUILD))
 			return
 		if(ammo_equipped || attached_clamp.loaded != clamp_ammo || !LAZYLEN(attached_clamp.linked_powerloader?.buckled_mobs) || attached_clamp.linked_powerloader.buckled_mobs[1] != user)
 			return
@@ -227,7 +227,7 @@
 		return //refilled dropship ammo
 	if((dropship_equipment_flags & USES_AMMO) && ammo_equipped)
 		playsound(src, 'sound/machines/hydraulics_2.ogg', 40, 1)
-		if(!do_after(user, 30, FALSE, src, BUSY_ICON_BUILD))
+		if(!do_after(user, 30, IGNORE_HELD_ITEM, src, BUSY_ICON_BUILD))
 			return
 		if(!ammo_equipped || !LAZYLEN(attached_clamp.linked_powerloader?.buckled_mobs) || attached_clamp.linked_powerloader.buckled_mobs[1] != user)
 			return
@@ -250,7 +250,7 @@
 	if(!current_acid)
 		playsound(loc, 'sound/machines/hydraulics_2.ogg', 40, 1)
 		var/duration_time = ship_base ? 70 : 10 //uninstalling equipment takes more time
-		if(!do_after(user, duration_time, FALSE, src, BUSY_ICON_BUILD))
+		if(!do_after(user, duration_time, IGNORE_HELD_ITEM, src, BUSY_ICON_BUILD))
 			return
 		if(attached_clamp.loaded || !LAZYLEN(attached_clamp.linked_powerloader?.buckled_mobs) || attached_clamp.linked_powerloader.buckled_mobs[1] != user)
 			return
@@ -683,7 +683,7 @@
 	if(firing_sound)
 		playsound(loc, firing_sound, 70, 1)
 	var/obj/structure/ship_ammo/SA = ammo_equipped //necessary because we nullify ammo_equipped when firing big rockets
-	var/ammo_travelling_time = SA.travelling_time * ((GLOB.current_orbit+3)/6) //how long the rockets/bullets take to reach the ground target.
+	var/ammo_travelling_time = SA.travelling_time //how long the rockets/bullets take to reach the ground target.
 	var/ammo_warn_sound = SA.warning_sound
 	deplete_ammo()
 	COOLDOWN_START(src, last_fired, firing_delay)

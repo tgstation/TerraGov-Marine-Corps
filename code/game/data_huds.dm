@@ -127,7 +127,7 @@
 		holder.icon_state = "hudhealth-100"
 		return
 
-	var/percentage = round(health * 100 / species.total_health)
+	var/percentage = round(health * 100 / maxHealth)
 	switch(percentage)
 		if(100 to INFINITY)
 			holder.icon_state = "hudhealth100"
@@ -379,21 +379,20 @@
 		holder.icon_state = "hudhealth-100"
 		return TRUE
 
-	var/perceived_health = health
+	var/perceived_health = health / maxHealth * 100
 	if(!(species.species_flags & NO_PAIN))
 		perceived_health -= PAIN_RATIO_PAIN_HUD * traumatic_shock
 	if(!(species.species_flags & NO_STAMINA) && staminaloss > 0)
 		perceived_health -= STAMINA_RATIO_PAIN_HUD * staminaloss
 
-	switch(perceived_health)
-		if(100 to INFINITY)
-			holder.icon_state = "hudhealth100"
-		if(0 to 100)
-			holder.icon_state = "hudhealth[round(perceived_health, 10)]"
-		if(-50 to 0)
-			holder.icon_state = "hudhealth-0"
-		else
-			holder.icon_state = "hudhealth-50"
+	if(perceived_health >= 100)
+		holder.icon_state = "hudhealth100"
+	else if(perceived_health > 0)
+		holder.icon_state = "hudhealth[round(perceived_health, 10)]"
+	else if(health > (health_threshold_dead * 0.5))
+		holder.icon_state = "hudhealth-0"
+	else
+		holder.icon_state = "hudhealth-50"
 
 	return TRUE
 

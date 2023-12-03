@@ -97,6 +97,8 @@
 			var/mob/living/spaceman = leaver
 			spaceman.remove_status_effect(debuff_type)
 
+/turf/open/space/can_teleport_here()
+	return FALSE
 
 /turf/open/space/sea //used on prison for flavor
 	icon = 'icons/misc/beach.dmi'

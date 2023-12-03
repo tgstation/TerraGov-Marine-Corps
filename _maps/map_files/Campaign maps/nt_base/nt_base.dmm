@@ -9,6 +9,7 @@
 "aai" = (
 /obj/effect/turf_decal/tile/full/black,
 /obj/effect/turf_decal/tile/full/black,
+/obj/effect/abstract/tele_blocker,
 /turf/open/floor/mainship/black/full,
 /area/gelida/indoors/c_block/mining)
 "aaz" = (
@@ -1918,6 +1919,7 @@
 /obj/effect/turf_decal/tile/full/black,
 /obj/effect/turf_decal/tile/full/black,
 /obj/effect/turf_decal/tile/full/black,
+/obj/effect/abstract/tele_blocker,
 /turf/open/floor/mainship/black/full,
 /area/gelida/indoors/c_block/mining)
 "buS" = (
@@ -3984,6 +3986,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
+/obj/effect/abstract/tele_blocker,
 /turf/open/floor/mainship/black/full,
 /area/gelida/indoors/c_block/mining)
 "cWO" = (
@@ -4557,6 +4560,7 @@
 "dsc" = (
 /obj/effect/turf_decal/tile/full/black,
 /obj/effect/landmark/campaign_structure/nt_pod,
+/obj/effect/abstract/tele_blocker,
 /turf/open/floor/mainship/black/full,
 /area/gelida/indoors/c_block/mining)
 "dsf" = (
@@ -6160,6 +6164,7 @@
 /area/gelida/indoors/a_block/corpo)
 "ezl" = (
 /obj/effect/turf_decal/tile/full/black,
+/obj/effect/abstract/tele_blocker,
 /turf/open/floor/mainship/black/full,
 /area/gelida/indoors/c_block/mining)
 "ezx" = (
@@ -14106,6 +14111,7 @@
 "kxK" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/tile/full/black,
+/obj/effect/abstract/tele_blocker,
 /turf/open/floor/mainship/black/full,
 /area/gelida/indoors/c_block/mining)
 "kxO" = (
@@ -14581,6 +14587,7 @@
 /obj/machinery/door/poddoor/nt_lockdown/red{
 	dir = 1
 	},
+/obj/effect/abstract/tele_blocker,
 /turf/open/floor/mainship/black/full,
 /area/gelida/indoors/c_block/mining)
 "kNR" = (
@@ -26507,6 +26514,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/tile/full/black,
 /obj/effect/turf_decal/tile/full/black,
+/obj/effect/abstract/tele_blocker,
 /turf/open/floor/mainship/black/full,
 /area/gelida/indoors/c_block/mining)
 "tmH" = (
@@ -30894,6 +30902,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
+/obj/effect/abstract/tele_blocker,
 /turf/open/floor/mainship/black/full,
 /area/gelida/indoors/c_block/mining)
 "wDw" = (
