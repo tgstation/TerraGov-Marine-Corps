@@ -204,6 +204,7 @@ GLOBAL_LIST(admin_objective_list) //Prefilled admin assignable objective list
 		/datum/objective/loseoperation,
 		/datum/objective/escape_with,
 		/datum/objective/gather_cash,
+		/datum/objective/kill_xenos,
 		/datum/objective/kill_zombies,
 		/datum/objective/seize_area,
 		/datum/objective/kill_other_factions,
@@ -277,6 +278,50 @@ GLOBAL_LIST(admin_objective_list) //Prefilled admin assignable objective list
 	admin_simple_target_pick(admin)
 	if(tgui_alert(admin, "Relax escape requirements (recommended for admin events)?", "Continue?", list("Yes", "No")) != "No")
 		admin_event = TRUE
+
+/datum/objective/deliver_gifts
+	name = "deliver gifts"
+	explanation_text = "Deliver gifts to good members of the Terragov marine corp."
+	team_explanation_text = "Deliver gifts to good members of the Terragov marine corp."
+	var/presents_to_be_given = 0
+
+/datum/objective/deliver_gifts/New()
+	. = ..()
+	presents_to_be_given = rand(1, length(GLOB.alive_human_list)/2)
+
+/datum/objective/deliver_gifts/check_completion()
+	if(GLOB.round_statistics.santa_presents_delivered >= presents_to_be_given)
+		return TRUE
+	return FALSE
+
+/datum/objective/deliver_gifts/update_explanation_text()
+	. = ..()
+	explanation_text = "Deliver [presents_to_be_given] gifts to good members of Terragov marine corp."
+
+/datum/objective/recruit_elves
+	name = "recruit elves"
+	explanation_text = "The North Pole is experiencing a labor strike! Recruit some marines to your little helpers."
+	team_explanation_text = "The North Pole is experiencing a labor strike! Recruit some marines to your little helpers."
+	var/elves_to_be_recruited = 0
+
+/datum/objective/recruit_elves/update_explanation_text()
+	. = ..()
+	explanation_text = "The North Pole is experiencing a labor strike! Recruit [elves_to_be_recruited] marines to be your little helpers."
+
+/datum/objective/recruit_elves/New()
+	. = ..()
+	elves_to_be_recruited = rand(1, 4)
+
+/datum/objective/recruit_elves/check_completion()
+	var/elves_recruited = 0
+	for(var/mob/living/carbon/human/potentialelf in GLOB.alive_human_list)
+		if(potentialelf.stat == DEAD)
+			continue
+		if(HAS_TRAIT(potentialelf, TRAIT_CHRISTMAS_ELF))
+			elves_recruited += 1
+	if(elves_recruited >= elves_to_be_recruited)
+		return TRUE
+	return FALSE
 
 /datum/objective/survive
 	name = "survive"
@@ -525,6 +570,17 @@ GLOBAL_LIST_EMPTY(possible_items)
 			for(var/datum/internal_organ/affectedorgan in affectedmob.internal_organs)
 				if(affectedorgan == affectedmob.internal_organs_by_name["heart"]) //zombies with hearts aren't truly dead
 					return FALSE
+	return TRUE
+
+/datum/objective/kill_xenos
+	name = "kill all xenos"
+	explanation_text = "Eliminate all xenos and destroy their silo. For the TGMC!"
+	team_explanation_text = "Eliminate all xenos and destroy their silo. For the TGMC!"
+
+/datum/objective/kill_xenos/check_completion()
+	for(var/mob/living/carbon/xenomorph/affectedmob in GLOB.mob_list)
+		if(isxeno(affectedmob))
+			return FALSE
 	return TRUE
 
 /datum/objective/seize_area

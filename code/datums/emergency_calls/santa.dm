@@ -76,7 +76,7 @@
 	if(!do_after(santamob, 7 SECONDS))
 		to_chat(santamob, "You give up looking for a present.")
 		return
-	var/obj/item/a_gift/free/spawnedpresent = new (get_turf(santamob))
+	var/obj/item/a_gift/santa/spawnedpresent = new (get_turf(santamob))
 	santamob.put_in_hands(spawnedpresent)
 
 /datum/action/innate/summon_present_bomb
@@ -159,3 +159,18 @@
 		blessedelf.adjustFireLoss(-50)
 		blessedelf.adjustToxLoss(-50)
 
+/datum/action/innate/summon_paperwork
+	name = "Summon Paperwork"
+	action_icon_state = "santa_summon"
+
+/datum/action/innate/summon_paperwork/Activate()
+	var/mob/living/carbon/human/santamob = usr
+	to_chat(santamob, "You begin producing a binding employment contract.")
+	if(!do_after(santamob, 3 SECONDS))
+		to_chat(santamob, "You stop producing a contract.")
+		return
+	to_chat(santamob, "With a flourish, you produce an employment contract and a pen.")
+	var/obj/item/paper/santacontract/newcontract = new (get_turf(santamob))
+	santamob.put_in_hands(newcontract)
+	var/obj/item/tool/pen/newpen = new (get_turf(santamob))
+	santamob.put_in_hands(newpen)

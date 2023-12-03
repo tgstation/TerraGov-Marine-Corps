@@ -56,6 +56,11 @@ GLOBAL_LIST_EMPTY(possible_gifts)
 	var/obj/item/contains_type
 	///real name of the present receiver
 	var/present_receiver_name = null
+	///is santa the giver of this present?
+	var/is_santa_present = FALSE
+
+/obj/item/a_gift/santa
+	is_santa_present = TRUE
 
 /obj/item/a_gift/Initialize(mapload)
 	. = ..()
@@ -129,6 +134,8 @@ GLOBAL_LIST_EMPTY(possible_gifts)
 			M.balloon_alert(M, "Nothing inside")
 			return
 		if(!freepresent)
+			if(is_santa_present)
+				GLOB.round_statistics.santa_presents_delivered += 1
 			GLOB.round_statistics.presents_delivered += 1
 		if(!stolen_gift)
 			I.desc += " Property of [M.real_name]."

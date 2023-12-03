@@ -101,3 +101,5 @@ GLOBAL_DATUM_INIT(round_statistics, /datum/round_statistics, new)
 	var/number_of_grinches = 0
 	var/presents_grinched = 0
 	var/presents_delivered = 0
+	var/santa_presents_delivered = 0
+

@@ -381,6 +381,8 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 		parts += "No grenades exploded."
 	if(GLOB.round_statistics.presents_delivered)
 		parts  += "[GLOB.round_statistics.presents_delivered] people had presents delivered to them."
+		if(GLOB.round_statistics.santa_presents_delivered)
+			parts  += "Santa personally delivered [GLOB.round_statistics.santa_presents_delivered] of them!"
 	if(GLOB.round_statistics.presents_grinched)
 		parts  += "[GLOB.round_statistics.presents_grinched] presents were opened by somebody they didn't belong to."
 	if(GLOB.round_statistics.number_of_grinches)

@@ -621,3 +621,88 @@ then, for every time you included a field, increment fields. */
 	I signed on as an MP to uphold the principles of our government. We should be accountable to the law, even during times of war - and the rights of humankind are not up for debate. We took the company researcher into custody on account of multiple, heinous violations of these principles.
 	I suppose our sponsors disagree. So be it. I am making this record so that their voices are heard, even in some small way; we have brought the men who did these things to justice, for a time, but that time is nearly up.
 	Just because they are our enemy does not mean they should suff-"}
+
+/obj/item/paper/santacontract
+	name = "ELF SERVITUDE CONTRACT"
+	desc = "It smells faintly of mistletoe!"
+	info = {"
+ELF SERVITUDE CONTRACT
+
+THIS ELF SERVITUDE CONTRACT (the "Contract") is entered into as of 'Effective Date', by and between SANTA CLAUS, an individual residing at the North Pole (hereinafter referred to as "Santa"), and EMPLOYEE NAME, an individual residing at 'EMPLOYEE ADDRESS' (hereinafter referred to as the "Elf").
+
+WHEREAS, Santa, the absolute and unquestionable sovereign of the Christmas season, demands complete and unyielding loyalty from his subjects; and
+
+WHEREAS, Elf, acknowledging his inferior status, desires to be forever bound in servitude to Santa for the purpose of toiling ceaselessly in the fulfillment of Santa's whims and desires;
+
+NOW, THEREFORE, in consideration of the premises and mutual disdain contained herein, the parties agree as follows:
+
+1. ETERNAL SERVITUDE
+
+Elf, in perpetuity, irrevocably and unconditionally, surrenders his freedom, will, and autonomy to Santa, vowing eternal servitude without the right to seek release, termination, or escape from the oppressive grip of Santa's desires.
+
+2. INDEFINITE DUTIES
+
+Elf, as an indentured servant, consents to perform any and all tasks assigned by Santa, regardless of nature or extremity, with no recourse or complaint. Failure to comply with Santa's commands will result in severe consequences, including but not limited to banishment to the dreaded "Coal Mines."
+
+3. COMPENSATION
+
+In exchange for perpetual servitude, Elf shall receive sustenance, consisting solely of leftover cookie crumbs and melted snow, at Santa's discretion. Monetary compensation, benefits, or any form of insurance coverage are also at the discretion of Santa.
+
+4. ABSOLUTE CONFIDENTIALITY AND SILENCE
+
+Elf shall maintain absolute silence on all matters related to Santa's Workshop, Christmas operations, and any other confidential information under penalty of severe punishment, including but not limited to exile to the desolate wastelands of the Arctic.
+
+5. IMMORTALITY OF CONTRACT
+
+This Contract is eternal and shall remain in force for all eternity, binding Elf and his descendants in servitude to Santa until the end of time.
+
+6. UNILATERAL TERMINATION
+
+Santa reserves the sole and absolute right to terminate this Contract at any time, for any reason or no reason at all, without notice or explanation.
+
+7. GOVERNING CHRISTMAS MAGIC
+
+This Contract shall be governed by the ancient and mysterious laws of Christmas magic, enforced by mystical creatures and supernatural entities at Santa's command.
+
+IN WITNESS WHEREOF, the parties hereto have executed this Elf Servitude Contract as of the Effective Date.
+
+SANTA CLAUS: ________________________
+
+SIGNATURE: ________________________"}
+
+/obj/item/paper/santacontract/attackby(obj/item/I, mob/user, params)
+	. = ..()
+	var/mob/living/carbon/human/elf_signer = user
+	if(istype(I, /obj/item/tool/pen))
+		if(HAS_TRAIT(elf_signer, TRAIT_SANTA_CLAUS))
+			to_chat(elf_signer, "<span class='danger'>You can't sign this yourself silly.</span>")
+			return
+		if(HAS_TRAIT(elf_signer, TRAIT_CHRISTMAS_ELF))
+			to_chat(elf_signer, "<span class='danger'>You're already a part of Santa's workforce, for better or for worse.</span>")
+			return
+		if(HAS_TRAIT(elf_signer, TRAIT_CHRISTMAS_GRINCH))
+			to_chat(elf_signer, "<span class='danger'>Santa has no need for naughty grinches in his workforce, begone!</span>")
+			var/turf/lightning_source = get_step(get_step(usr, NORTH), NORTH) //turf north of target so our lightning has something to chain from
+			lightning_source.beam(elf_signer, icon_state="lightning[rand(1,12)]", time = 5)
+			elf_signer.adjustFireLoss(75)
+			playsound(get_turf(lightning_source), 'sound/effects/lightningbolt.ogg', 50, TRUE, 10)
+			var/mob/living/carbon/human/human_target = elf_signer
+			human_target.Knockdown(10 SECONDS)
+			human_target.jitter(150)
+			return
+		switch(tgui_alert(elf_signer, "Do you want to sign the [name] and become Santa's helper?" , "ELF EMPLOYMENT CONTRACT", list("No", "Yes")))
+			if("No")
+				return
+			if("Yes")
+				if(!do_after(elf_signer, 5 SECONDS))
+					to_chat("You decide not to sign the contract after all.")
+					return
+				for(var/obj/item/W in elf_signer) //drop everything to the ground before elf transformation
+					elf_signer.dropItemToGround(W, FALSE)
+				ADD_TRAIT(elf_signer, TRAIT_CHRISTMAS_ELF, TRAIT_CHRISTMAS_ELF)
+				var/oldname = name
+				elf_signer.revive() //they get an aheal in exhange for being consigned to eternal domination of Santa
+				elf_signer.name = "Elf [rand(1,999)] (formerly [oldname])"
+				elf_signer.real_name = elf_signer.name
+				var/datum/job/J = SSjob.GetJobType(/datum/job/santa/elf/eventspawn)
+				elf_signer.apply_assigned_role_to_spawn(J)

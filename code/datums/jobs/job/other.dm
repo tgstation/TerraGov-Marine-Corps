@@ -160,7 +160,7 @@
 	gloves = /obj/item/clothing/gloves/ruggedgloves
 	head = /obj/item/clothing/head/helmet/space/elf/special
 	glasses = /obj/item/clothing/glasses/welding
-	l_store = /obj/item/storage/pouch/construction/equippedengineer/elf
+	l_store = /obj/item/storage/pouch/medkit/medic
 	r_store = /obj/item/storage/pouch/pistol/vp70
 	back = /obj/item/storage/backpack/industrial
 	suit_store = /obj/item/weapon/gun/pistol/vp70

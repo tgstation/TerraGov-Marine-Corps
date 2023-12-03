@@ -365,6 +365,15 @@
 	force_wielded = 90
 	reach = 2
 
+/obj/item/weapon/twohanded/spear/candycane/elf/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/strappable)
+
+/obj/item/weapon/twohanded/spear/candycane/elf/examine(mob/user)
+	. = ..()
+	. += "Alt click this item to prevent dropping it"
+
+
 /obj/item/weapon/twohanded/glaive
 	name = "war glaive"
 	icon_state = "glaive"

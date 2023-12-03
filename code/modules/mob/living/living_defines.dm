@@ -69,6 +69,8 @@
 
 	var/cameraFollow
 
+	var/objectivedatum
+
 	var/melee_damage = 0
 	var/attacktext = "attacks"
 	var/attack_sound
