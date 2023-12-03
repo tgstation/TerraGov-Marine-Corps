@@ -1,20 +1,19 @@
 /obj/proc/take_damage(damage_amount, damage_type = BRUTE, damage_flag = "", effects = TRUE, attack_dir, armour_penetration = 0)
 	if(QDELETED(src))
 		CRASH("[src] taking damage after deletion")
-
+	if(!damage_amount)
+		return
 	if(effects)
 		play_attack_sound(damage_amount, damage_type, damage_flag)
-
 	if((resistance_flags & INDESTRUCTIBLE) || obj_integrity <= 0)
 		return
-	damage_amount = run_obj_armor(damage_amount, damage_type, damage_flag, attack_dir, armour_penetration)
 
+	if(damage_flag)
+		damage_amount = round(modify_by_armor(damage_amount, damage_flag, armour_penetration), DAMAGE_PRECISION)
 	if(damage_amount < DAMAGE_PRECISION)
 		return
 	. = damage_amount
-
 	obj_integrity = max(obj_integrity - damage_amount, 0)
-
 	update_icon()
 
 	//BREAKING FIRST
@@ -33,26 +32,6 @@
 		personal_statistics.integrity_repaired += repair_amount
 		personal_statistics.times_repaired++
 	obj_integrity += repair_amount
-
-
-///returns the damage value of the attack after processing the obj's various armor protections
-/obj/proc/run_obj_armor(damage_amount, damage_type, damage_flag = "", attack_dir, armour_penetration = 0)
-	if(!damage_type)
-		return 0
-	if(damage_flag)
-		var/obj_hard_armor = hard_armor.getRating(damage_flag)
-		var/obj_soft_armor = soft_armor.getRating(damage_flag)
-		if(armour_penetration)
-			if(obj_hard_armor)
-				obj_hard_armor = max(0, obj_hard_armor - (obj_hard_armor * armour_penetration * 0.01)) //AP reduces a % of hard armor.
-			if(obj_soft_armor)
-				obj_soft_armor = max(0, obj_soft_armor - armour_penetration) //Flat removal.
-		if(obj_hard_armor)
-			damage_amount = max(0, damage_amount - obj_hard_armor)
-		if(obj_soft_armor)
-			damage_amount = max(0, damage_amount - (damage_amount * obj_soft_armor * 0.01))
-	return round(damage_amount, DAMAGE_PRECISION)
-
 
 ///the sound played when the obj is damaged.
 /obj/proc/play_attack_sound(damage_amount, damage_type = BRUTE, damage_flag = 0)
