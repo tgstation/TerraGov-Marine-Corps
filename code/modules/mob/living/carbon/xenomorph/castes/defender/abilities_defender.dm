@@ -37,7 +37,6 @@
 	var/list/L = orange(sweep_range, X)		// Not actually the fruit
 
 	for (var/mob/living/carbon/human/H in L)
-		H.knockback(X, sweep_range, 4)
 		H.add_filter("defender_tail_sweep", 2, gauss_blur_filter(1)) //Add cool SFX; motion blur
 		addtimer(CALLBACK(H, TYPE_PROC_REF(/atom, remove_filter), "defender_tail_sweep"), 0.5 SECONDS) //Remove cool SFX
 		if(H.stat != DEAD && !isnestedhost(H) ) //No bully
@@ -45,6 +44,7 @@
 			var/affecting = H.get_limb(ran_zone(null, 0))
 			if(!affecting) //Still nothing??
 				affecting = H.get_limb("chest") //Gotta have a torso?!
+			H.knockback(X, sweep_range, 4)
 			H.apply_damage(damage, BRUTE, affecting, MELEE)
 			H.apply_damage(damage, STAMINA, updating_health = TRUE)
 			H.Paralyze(0.5 SECONDS) //trip and go
@@ -433,13 +433,13 @@
 	playsound(X, pick('sound/effects/alien_tail_swipe1.ogg','sound/effects/alien_tail_swipe2.ogg','sound/effects/alien_tail_swipe3.ogg'), 25, 1) //Sound effects
 
 	for(var/mob/living/carbon/human/slapped in orange(1, X))
-		slapped.knockback(X, 1, 4)
 		if(slapped.stat == DEAD)
 			continue
 		var/damage = X.xeno_caste.melee_damage/2
 		var/affecting = slapped.get_limb(ran_zone(null, 0))
 		if(!affecting)
 			affecting = slapped.get_limb("chest")
+		slapped.knockback(X, 1, 4)
 		slapped.apply_damage(damage, BRUTE, affecting, MELEE)
 		slapped.apply_damage(damage, STAMINA, updating_health = TRUE)
 		slapped.Paralyze(0.3 SECONDS)
