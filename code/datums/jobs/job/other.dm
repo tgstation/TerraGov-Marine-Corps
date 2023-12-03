@@ -122,7 +122,7 @@
 	outfit = /datum/outfit/job/santa/leader
 
 /datum/job/santa/eventspawn
-	title = "Santa Claus"
+	title = "Event Santa Claus"
 	access = ALL_ACCESS
 	minimal_access = ALL_ACCESS
 	skills_type = /datum/skills/santaclause
@@ -130,10 +130,10 @@
 
 /datum/outfit/job/santa/elf
 	name = "Elf"
-	jobtype = /datum/job/santa
+	jobtype = /datum/outfit/job/santa/elf/eventspawn
 
 	id = /obj/item/card/id/silver
-	belt = /obj/item/storage/belt/utility/full
+	belt = /obj/item/storage/holster/belt/pistol/m4a3/vp70_pmc
 	ears = /obj/item/radio/headset/distress/commando
 	w_uniform = /obj/item/clothing/under/spec_operative
 	shoes = /obj/item/clothing/shoes/ruggedboot
@@ -142,13 +142,13 @@
 	head = /obj/item/clothing/head/helmet/space/elf/special
 	glasses = /obj/item/clothing/glasses/welding
 	l_store = /obj/item/storage/pouch/construction/equippedengineer
-	r_store = /obj/item/storage/pouch/pistol/vp70
+	r_store = /obj/item/storage/pouch/tools/full
 	back = /obj/item/storage/backpack/industrial
 	suit_store = /obj/item/weapon/gun/pistol/vp70
 	r_hand = /obj/item/weapon/twohanded/spear/candycane/elf
 
 /datum/outfit/job/santa/elf/eventspawn
-	name = "Elf"
+	name = "Event Elf"
 	jobtype = /datum/job/santa
 
 	id = /obj/item/card/id/silver
@@ -192,7 +192,7 @@
 	H.equip_to_slot_or_del(new 	/obj/item/weapon/gun/pistol/vp70, SLOT_IN_BACKPACK)
 
 /datum/outfit/job/santa/leader //he's done ho ho ho ing around
-	name = "Santa Claus"
+	name = "ERT Santa Claus"
 	jobtype = /datum/job/santa/leader
 
 	id = /obj/item/card/id/gold
@@ -206,7 +206,7 @@
 	head = /obj/item/clothing/head/helmet/space/santahat/special
 	glasses = /obj/item/clothing/glasses/thermal/eyepatch //santa lost one of his eyes in a vicious reindeer accident circa '32
 	r_store = /obj/item/storage/pouch/magazine/pistol/large
-	l_store = /obj/item/storage/pouch/santaspouch
+	l_store = /obj/item/storage/pouch/medkit/firstaid
 	back = /obj/item/storage/backpack/santabag
 	suit_store = /obj/item/weapon/gun/launcher/rocket/m57a4
 
@@ -266,7 +266,7 @@
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/mirage, SLOT_IN_BACKPACK)
 
 /datum/outfit/job/santa/eventspawn //like ERT santa, but less OP
-	name = "Santa Claus"
+	name = "Event Santa Claus"
 	jobtype = /datum/job/santa/eventspawn
 
 	id = /obj/item/card/id/gold
@@ -348,9 +348,9 @@
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/christmas_cookieone/special, SLOT_IN_HEAD)
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/christmas_cookietwo/special, SLOT_IN_HEAD)
 
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70, SLOT_IN_R_POUCH)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70, SLOT_IN_R_POUCH)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70, SLOT_IN_R_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70, SLOT_IN_BACKPACK)
 
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/pmc, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/pmc, SLOT_IN_BACKPACK)
@@ -362,6 +362,3 @@
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/drinks/bottle/eggnog/special, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/pmc, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/pmc, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/standard_pistol, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new 	/obj/item/weapon/gun/pistol/vp70, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new 	/obj/item/weapon/gun/pistol/vp70, SLOT_IN_BACKPACK)

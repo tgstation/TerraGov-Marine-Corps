@@ -1,7 +1,7 @@
 //Santa is back in town
 /datum/emergency_call/santa
 	name = "Santa's Workshop"
-	base_probability = 40
+	base_probability = 30
 	alignement_factor = 0
 
 
@@ -48,8 +48,12 @@
 		present_bomb_spawn.give_action(H)
 		var/datum/action/innate/rejuv_self/selfhealing = new(H)
 		selfhealing.give_action(H)
-		if(GLOB.round_statistics.number_of_grinches >= 1)
-			to_chat(H, "<p style='font-size:1.5em'>[span_notice("You are Santa Claus! Punish all naughty </b>marines and aliens</b> with overwhelming firepower, starting with their commanders hiding on the ship.")]</p>")
+		var/datum/action/innate/summon_elves/elfsummoning = new(H)
+		elfsummoning.give_action(H)
+		var/datum/action/innate/heal_elf/fixelfslave = new(H)
+		fixelfslave.give_action(H)
+		if(GLOB.round_statistics.number_of_grinches >= 2)
+			to_chat(H, "<p style='font-size:1.5em'>[span_notice("You are Santa Claus! Eradicate all </b>marines and aliens</b> with overwhelming firepower! </b>Leave none of them alive!!</b>.")]</p>")
 		else
 			to_chat(H, "<p style='font-size:1.5em'>[span_notice("You are Santa Claus! Punish all the naughty </b>aliens</b> with overwhelming firepower, starting with their cowardly queen hiding on the ship.")]</p>")
 		return
@@ -99,3 +103,59 @@
 		to_chat(santamob, "With a burst of holiday spirit you heal your wounds, you're as good as new!")
 		return
 	santamob.revive()
+
+/datum/action/innate/summon_elves
+	name = "Summon Elves"
+	action_icon_state = "santa_summon"
+
+/datum/action/innate/summon_elves/Activate()
+	var/mob/living/carbon/human/santamob = usr
+	to_chat(santamob, "You begin summoning your faithful workers to your side.")
+	if(!do_after(santamob, 15 SECONDS))
+		to_chat(santamob, "You decide not to summon your elves, they aren't much of a help anyway")
+		return
+	for(var/mob/living/carbon/human/elves in GLOB.humans_by_zlevel["[santamob.z]"])
+		if(HAS_TRAIT(elves, TRAIT_CHRISTMAS_ELF))
+			elves.forceMove(get_turf(santamob))
+
+/datum/action/innate/heal_elf
+	name = "Heal Elf"
+	action_icon_state = "heal_elf"
+
+/datum/action/innate/heal_elf/Activate()
+	var/list/elflist = list()
+	var/mob/living/carbon/human/santamob = usr
+	to_chat(santamob, "You concentrating on healing your elves...")
+	if(!do_after(santamob, 10 SECONDS))
+		to_chat(santamob, "You decide there are more important things to concentrate on...")
+		return
+	for(var/mob/living/carbon/human/elves in GLOB.human_mob_list)
+		if(HAS_TRAIT(elves, TRAIT_CHRISTMAS_ELF))
+			elflist += elves
+	var/mob/living/carbon/human/blessedelf = tgui_input_list(santamob , "Choose an elf to heal", "Elf healing", elflist)
+	if(blessedelf.stat == DEAD) //this is basically a copypaste of defib logic, but with magic not paddles
+		var/heal_target = blessedelf.get_death_threshold() - blessedelf.health + 1
+		var/all_loss = blessedelf.getBruteLoss() + blessedelf.getFireLoss() + blessedelf.getToxLoss()
+		blessedelf.setOxyLoss(0)
+		blessedelf.updatehealth()
+		if(all_loss && (heal_target > 0))
+			var/brute_ratio = blessedelf.getBruteLoss() / all_loss
+			var/burn_ratio = blessedelf.getFireLoss() / all_loss
+			var/tox_ratio = blessedelf.getToxLoss() / all_loss
+			blessedelf.adjustBruteLoss(-10)
+			blessedelf.adjustFireLoss(-10)
+			blessedelf.adjustToxLoss(-10)
+			blessedelf.setOxyLoss(0)
+			if(tox_ratio)
+				blessedelf.adjustToxLoss(-(tox_ratio * heal_target))
+			blessedelf.heal_overall_damage(brute_ratio*heal_target, burn_ratio*heal_target, TRUE)
+			blessedelf.updatehealth()
+			blessedelf.set_stat(UNCONSCIOUS)
+			blessedelf.emote("gasp")
+	else //if the elf is alive heal them some
+		to_chat(blessedelf, "You feel the chill of Christmas magic and your wounds are healed!")
+		blessedelf.setOxyLoss(0)
+		blessedelf.adjustBruteLoss(-50)
+		blessedelf.adjustFireLoss(-50)
+		blessedelf.adjustToxLoss(-50)
+

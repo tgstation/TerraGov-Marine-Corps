@@ -71,6 +71,8 @@
 		ADD_TRAIT(spawnedhuman, TRAIT_SANTA_CLAUS, TRAIT_SANTA_CLAUS)
 		var/datum/action/innate/summon_present/present_spawn = new(spawnedhuman)
 		present_spawn.give_action(spawnedhuman)
+		var/datum/action/innate/summon_elves/elfsummoning = new(spawnedhuman)
+		elfsummoning.give_action(spawnedhuman)
 		spawnedhuman.offer_mob()
 		set_target(pick(spawnedhuman))
 

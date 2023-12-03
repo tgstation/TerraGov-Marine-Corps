@@ -143,14 +143,49 @@
 	var/static/list/took_presents //shared between all xmas trees
 	///meme version of tree that only dispenses guns not presents
 	is_christmastree = TRUE
+	var/disable_slashing = FALSE
 	resistance_flags = RESIST_ALL
 
 /obj/structure/flora/tree/pine/xmas/presents/Initialize(mapload)
 	. = ..()
+	RegisterSignals(SSdcs, list(COMSIG_GLOB_DROPSHIP_HIJACKED, PROC_REF(disable_slashing)))
 	GLOB.christmastrees += src
 	icon_state = "pinepresents"
 	if(!took_presents)
 		took_presents = list()
+
+/obj/structure/flora/tree/pine/xmas/presents/proc/disable_slashing()
+	SIGNAL_HANDLER
+	disable_slashing = TRUE
+	UnregisterSignal(SSdcs, COMSIG_GLOB_DROPSHIP_HIJACKED)
+
+/obj/structure/flora/tree/pine/xmas/presents/attack_alien(mob/living/carbon/xenomorph/X, damage_amount, damage_type, damage_flag, effects, armor_penetration, isrightclick)
+	. = ..()
+	if(isxenolarva(X))
+		to_chat(X, "You don't have any appendages to cut down the tree, try evolving first.")
+		return
+	if(disable_slashing)
+		to_chat(X, "Destroying this tree now wouldn't dampen the tallhosts' Christmas spirit, if only you had damaged it earlier...")
+		return
+	X.visible_message(span_notice("[X] begins to cut down [src] with their claws."),span_notice("You begin to cut down [src] with your claws."), "You hear the sound of slashing and hacking.")
+	if(!do_after(X, 1 MINUTES , TRUE, src, BUSY_ICON_BUILD))
+		return
+	X.visible_message(span_notice("[X] fells [src] with their claws!"),span_notice("You fell [src] with the claws!."), "You hear the sound of a tree falling.")
+	playsound(get_turf(src), 'sound/effects/meteorimpact.ogg', 10 , 0, 0)
+	for(var/i in 1 to log_amount)
+		new /obj/item/grown/log(get_turf(src))
+	var/obj/structure/flora/stump/stump = new(loc)
+	stump.name = "[name] stump"
+	var/sound/S = sound(get_sfx("queen"), channel = CHANNEL_ANNOUNCEMENTS, volume = 50)
+	for(var/i in GLOB.alive_xeno_list_hive[XENO_HIVE_NORMAL])
+		var/mob/M = i
+		SEND_SOUND(M, S)
+		to_chat(M, span_xenoannounce("[X] has destroyed the tallhosts' present source and ruined Christmas! The Queen Mother is very pleased by this news and has rewarded [X] with a new color and name!"))
+	priority_announce("The cold hearted xenos have destroyed your Christmas tree in an attempt to ruin Christmas, pay them back with hot lead!", "High Command Festive Monitoring Station", sound = 'sound/AI/bioscan.ogg')
+	X.color = COLOR_LIME
+	X.name = "The Grinch"
+	qdel(src)
+
 
 /obj/structure/flora/tree/pine/xmas/presents/attack_hand(mob/living/user, list/modifiers)
 	. = ..()

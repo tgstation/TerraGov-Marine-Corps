@@ -336,7 +336,7 @@
 
 /obj/item/clothing/suit/space/santa/special //for ERT, when santa has to give presents to REALLY naughty children
 	desc = "That's not red dye. That's red blood."
-	soft_armor = list(MELEE = 90, BULLET = 90, LASER = 90, ENERGY = 90, BOMB = 120, BIO = 85, FIRE = 120, ACID = 40)
+	soft_armor = list(MELEE = 90, BULLET = 85, LASER = 120, ENERGY = 120, BOMB = 120, BIO = 85, FIRE = 120, ACID = 40)
 	slowdown = 1
 	flags_item = DELONDROP
 	flags_armor_protection = CHEST|GROIN|ARMS|LEGS|FEET|HANDS
@@ -352,13 +352,18 @@
 /obj/item/clothing/suit/space/santa/special/eventspawn //lesser version of above suit, still mostly bomb proof
 	soft_armor = list(MELEE = 75, BULLET = 90, LASER = 90, ENERGY = 65, BOMB = 120, BIO = 70, FIRE = 55, ACID = 25)
 
+/obj/item/clothing/suit/space/santa/special/eventspawn/Initialize(mapload)
+	. = ..()
+	ADD_TRAIT(src, TRAIT_NODROP, TRAIT_SANTA_CLAUS)
+
 /obj/item/clothing/suit/space/elf
 	name = "Elf suit"
 	desc = "Festive!"
 	icon_state = "elfcostume"
 	item_state = "elfcostume"
-	soft_armor = list(MELEE = 55, BULLET = 15, LASER = 15, ENERGY = 10, BOMB = 100, BIO = 30, FIRE = 80, ACID = 10)
+	soft_armor = list(MELEE = 55, BULLET = 35, LASER = 15, ENERGY = 15, BOMB = 100, BIO = 30, FIRE = 80, ACID = 10)
 	flags_item = DELONDROP
+	slowdown = 0
 
 /obj/item/clothing/suit/space/elf/Initialize(mapload)
 	. = ..()
