@@ -63,7 +63,7 @@ export const BackgroundInformation = (props, context) => {
         <TextArea
           key="character"
           height="200px"
-          maxLength={6000}
+          maxLength={12000}
           value={characterDesc}
           onChange={(e, value) => setCharacterDesc(value)}
         />
@@ -86,7 +86,7 @@ export const BackgroundInformation = (props, context) => {
         <TextArea
           key="xeno"
           height="200px"
-          maxLength={6000}
+          maxLength={12000}
           value={xenoDesc}
           onChange={(e, value) => setXenoDesc(value)}
         />
