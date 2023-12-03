@@ -187,6 +187,10 @@
 	qdel(src)
 
 
+/obj/structure/flora/tree/pine/xmas/presents/Destroy()
+	. = ..()
+	UnregisterSignal(SSdcs, COMSIG_GLOB_DROPSHIP_HIJACKED)
+
 /obj/structure/flora/tree/pine/xmas/presents/attack_hand(mob/living/user, list/modifiers)
 	. = ..()
 	if(.)
