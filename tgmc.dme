@@ -1217,7 +1217,7 @@
 #include "code\modules\ai\spawners\zombie.dm"
 #include "code\modules\animations\animation_library.dm"
 #include "code\modules\antagonists\_common\antag_datum.dm"
-#include "code\modules\antagonists\datum_santa_claus.dm"
+#include "code\modules\antagonists\_common\datum_santa_claus.dm"
 #include "code\modules\assembly\assembly.dm"
 #include "code\modules\assembly\helpers.dm"
 #include "code\modules\assembly\holder.dm"
