@@ -106,6 +106,23 @@
 /datum/greyscale_config/armor_mk1/dashe
 	icon_file = 'icons/mob/modular/mark_one/dashe.dmi'
 
+//Hardsuits
+
+/datum/greyscale_config/hardsuit_variant
+	prefix = "markone_"
+	icon_file = 'icons/mob/modular/syndicate_hardsuits.dmi'
+	json_config = 'code/datums/greyscale/json_configs/hardsuit_variant.json'
+
+/datum/greyscale_config/hardsuit_variant/syndicate_markthree
+	prefix = "markthree_"
+
+/datum/greyscale_config/hardsuit_variant/syndicate_markfive
+	prefix = "markfive_"
+
+/datum/greyscale_config/exoskeleton
+	icon_file = 'icons/mob/modular/syndicate_hardsuits.dmi'
+	json_config = 'code/datums/greyscale/json_configs/exoskeleton.json'
+
 //Mark 2
 
 /datum/greyscale_config/armor_mk2
