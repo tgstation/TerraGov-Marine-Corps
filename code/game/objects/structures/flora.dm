@@ -148,7 +148,6 @@
 
 /obj/structure/flora/tree/pine/xmas/presents/Initialize(mapload)
 	. = ..()
-	RegisterSignals(SSdcs, list(COMSIG_GLOB_DROPSHIP_HIJACKED, PROC_REF(disable_slashing)))
 	GLOB.christmastrees += src
 	icon_state = "pinepresents"
 	if(!took_presents)
@@ -157,7 +156,6 @@
 /obj/structure/flora/tree/pine/xmas/presents/proc/disable_slashing()
 	SIGNAL_HANDLER
 	disable_slashing = TRUE
-	UnregisterSignal(SSdcs, COMSIG_GLOB_DROPSHIP_HIJACKED)
 
 /obj/structure/flora/tree/pine/xmas/presents/attack_alien(mob/living/carbon/xenomorph/X, damage_amount, damage_type, damage_flag, effects, armor_penetration, isrightclick)
 	. = ..()
@@ -185,11 +183,6 @@
 	X.color = COLOR_LIME
 	X.name = "The Grinch"
 	qdel(src)
-
-
-/obj/structure/flora/tree/pine/xmas/presents/Destroy()
-	. = ..()
-	UnregisterSignal(SSdcs, COMSIG_GLOB_DROPSHIP_HIJACKED)
 
 /obj/structure/flora/tree/pine/xmas/presents/attack_hand(mob/living/user, list/modifiers)
 	. = ..()
