@@ -121,7 +121,7 @@
 	owner.client?.screen -= shown_map
 	showing_map = FALSE
 	var/turf/turf_to_teleport_to = locate(polled_coords[1], polled_coords[2], owner.z)
-	
+
 	if(!turf_to_teleport_to)
 		return
 

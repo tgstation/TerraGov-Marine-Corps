@@ -363,4 +363,3 @@
 	owner.overlays -= stolen_appearance
 	playsound(owner, 'sound/voice/alien_pounce2.ogg', 30, frequency = -1)
 	UnregisterSignal(owner, COMSIG_ATOM_DIR_CHANGE)
-

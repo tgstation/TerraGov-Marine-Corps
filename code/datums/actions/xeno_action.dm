@@ -125,6 +125,11 @@
 			//Not converted to balloon alert as xeno.dm's balloon alert is simultaneously called and will overlap.
 			to_chat(owner, span_warning("We can't do this while in a solid object!"))
 		return FALSE
+	if(!(flags_to_check & XACT_USE_CLOSEDTURF) && isclosedturf(get_turf(X)))
+		if(!silent)
+			//Not converted to balloon alert as xeno.dm's balloon alert is simultaneously called and will overlap.
+			to_chat(owner, span_warning("We can't do this while in a solid object!"))
+		return FALSE
 
 	return TRUE
 

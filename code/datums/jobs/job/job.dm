@@ -281,7 +281,7 @@ GLOBAL_PROTECT(exp_specialmap)
 // Spawning mobs.
 /mob/living/proc/apply_assigned_role_to_spawn(datum/job/assigned_role, /datum/language/dt, client/player, datum/squad/assigned_squad, admin_action = FALSE)
 	job = assigned_role
-	skills = getSkillsType(job.return_skills_type(player?.prefs))
+	set_skills(getSkillsType(job.return_skills_type(player?.prefs)))
 	for(var/shadowlang AS in assigned_role.shadow_languages)
 		language_holder.grant_language(shadowlang, TRUE)
 	faction = job.faction

@@ -7,7 +7,7 @@
 	desc = "Move an all fours for greater speed. Cannot use abilities while in this mode."
 	ability_name = "toggle agility"
 	cooldown_timer = 0.5 SECONDS
-	use_state_flags = XACT_USE_AGILITY
+	use_state_flags = ABILITY_USE_AGILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TOGGLE_AGILITY,
 	)

@@ -69,9 +69,8 @@
 /obj/structure/cable,
 /obj/machinery/power/apc/hyper,
 /turf/open/floor/plating/asteroidfloor,
-/area/outpost/brig/armoury{
-	name = "CLF armoury";
-	ceiling = 6
+/area/outpost/brig/gear_room{
+	name = "CLF armoury"
 	})
 "adx" = (
 /obj/machinery/miner/damaged/platinum,
@@ -107,7 +106,9 @@
 /turf/open/floor/mainship/orange{
 	dir = 8
 	},
-/area/mainship/patrol_base/som)
+/area/mainship/patrol_base/som{
+	outside = 0
+	})
 "aeU" = (
 /obj/structure/foamedmetal,
 /turf/open/floor/plating,
@@ -150,7 +151,9 @@
 /turf/open/floor/mainship/orange{
 	dir = 4
 	},
-/area/mainship/patrol_base/som)
+/area/mainship/patrol_base/som{
+	outside = 0
+	})
 "afR" = (
 /obj/machinery/door/airlock/mainship/research/locked/free_access{
 	dir = 4;
@@ -407,9 +410,8 @@
 /obj/item/clothing/under/colonist/webbing,
 /obj/item/clothing/under/colonist/webbing,
 /turf/open/floor/plating/asteroidfloor,
-/area/outpost/brig/armoury{
-	name = "CLF armoury";
-	ceiling = 6
+/area/outpost/brig/gear_room{
+	name = "CLF armoury"
 	})
 "amy" = (
 /obj/machinery/conveyor{
@@ -520,7 +522,9 @@
 	dir = 8
 	},
 /turf/open/floor/mainship/silver/full,
-/area/mainship/patrol_base/som)
+/area/mainship/patrol_base/som{
+	outside = 0
+	})
 "aoJ" = (
 /obj/structure/catwalk,
 /turf/open/liquid/water/river/deep,
@@ -583,7 +587,9 @@
 /turf/open/floor/mainship/silver{
 	dir = 5
 	},
-/area/mainship/patrol_base/som)
+/area/mainship/patrol_base/som{
+	outside = 0
+	})
 "apT" = (
 /turf/closed/wall/sulaco,
 /area/lv624/ground/sand5)
@@ -1164,7 +1170,9 @@
 /turf/open/floor/mainship/purple{
 	dir = 8
 	},
-/area/mainship/patrol_base/som)
+/area/mainship/patrol_base/som{
+	outside = 0
+	})
 "aCv" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
@@ -1301,7 +1309,9 @@
 /turf/open/floor/mainship/silver{
 	dir = 4
 	},
-/area/mainship/patrol_base/som)
+/area/mainship/patrol_base/som{
+	outside = 0
+	})
 "aFF" = (
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/river3)
@@ -1334,7 +1344,9 @@
 /turf/open/floor/mainship/orange{
 	dir = 1
 	},
-/area/mainship/patrol_base/som)
+/area/mainship/patrol_base/som{
+	outside = 0
+	})
 "aGV" = (
 /obj/structure/showcase/yaut{
 	desc = "An ancient, dusty tomb with strange alien writing. It's best not to touch it.";
@@ -1666,7 +1678,9 @@
 /turf/open/floor/mainship/purple{
 	dir = 4
 	},
-/area/mainship/patrol_base/som)
+/area/mainship/patrol_base/som{
+	outside = 0
+	})
 "aOm" = (
 /obj/item/weapon/gun/pistol/rt3,
 /turf/open/floor/tile/dark,
@@ -1969,10 +1983,9 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/edge{
 	dir = 10
 	},
-/area/deltastation/engineering{
+/area/deltastation/engineering/lobby{
 	name = "CLF engineering";
-	outside = 0;
-	ceiling = 6
+	outside = 0
 	})
 "aVL" = (
 /obj/structure/flora/jungle/vines/heavy,
@@ -2102,7 +2115,9 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor,
-/area/mainship/patrol_base/som)
+/area/mainship/patrol_base/som{
+	outside = 0
+	})
 "aYm" = (
 /obj/structure/flora/jungle/vines,
 /obj/structure/flora/jungle/vines/heavy,
@@ -2177,10 +2192,9 @@
 "baI" = (
 /obj/machinery/vending/coffee,
 /turf/open/floor/plating/ground/dirt,
-/area/deltastation/engineering{
+/area/deltastation/engineering/lobby{
 	name = "CLF engineering";
-	outside = 0;
-	ceiling = 6
+	outside = 0
 	})
 "baY" = (
 /obj/effect/spawner/random/engineering/structure/tank/waterweighted,
@@ -2919,9 +2933,8 @@
 /obj/item/weapon/gun/launcher/rocket/oneuse,
 /obj/item/weapon/gun/launcher/rocket/oneuse,
 /turf/open/floor/plating/asteroidfloor,
-/area/outpost/brig/armoury{
-	name = "CLF armoury";
-	ceiling = 6
+/area/outpost/brig/gear_room{
+	name = "CLF armoury"
 	})
 "bsG" = (
 /obj/effect/ai_node,
@@ -3038,7 +3051,9 @@
 "bya" = (
 /obj/structure/largecrate/guns/russian,
 /turf/open/floor/mainship/cargo,
-/area/mainship/patrol_base/som)
+/area/mainship/patrol_base/som{
+	outside = 0
+	})
 "byd" = (
 /obj/effect/landmark/corpsespawner/security,
 /turf/open/floor/plating/ground/dirt,
@@ -3124,7 +3139,9 @@
 /area/lv624/lazarus/quartstorage/dome)
 "bAO" = (
 /turf/open/floor/mainship/silver/corner,
-/area/mainship/patrol_base/som)
+/area/mainship/patrol_base/som{
+	outside = 0
+	})
 "bBg" = (
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plating/catwalk,
@@ -3392,7 +3409,9 @@
 /obj/structure/cable,
 /obj/effect/ai_node,
 /turf/open/floor/mainship/silver/full,
-/area/mainship/patrol_base/som)
+/area/mainship/patrol_base/som{
+	outside = 0
+	})
 "bNN" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
@@ -3541,7 +3560,9 @@
 "bVp" = (
 /obj/machinery/vending/MarineMed/Blood,
 /turf/open/floor/mainship/sterile/corner,
-/area/mainship/patrol_base/som)
+/area/mainship/patrol_base/som{
+	outside = 0
+	})
 "bVy" = (
 /turf/open/floor/tile/barber,
 /area/lv624/lazarus/kitchen)
@@ -3561,7 +3582,9 @@
 /turf/open/floor/mainship/orange/corner{
 	dir = 1
 	},
-/area/mainship/patrol_base/som)
+/area/mainship/patrol_base/som{
+	outside = 0
+	})
 "bXC" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
@@ -3677,9 +3700,8 @@
 /obj/item/clothing/mask/muzzle,
 /obj/structure/rack,
 /turf/open/floor/plating/asteroidfloor,
-/area/outpost/brig/armoury{
-	name = "CLF armoury";
-	ceiling = 6
+/area/outpost/brig/gear_room{
+	name = "CLF armoury"
 	})
 "cch" = (
 /obj/item/trash/cigbutt,
@@ -3734,10 +3756,9 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/threeside{
 	dir = 8
 	},
-/area/deltastation/engineering{
+/area/deltastation/engineering/lobby{
 	name = "CLF engineering";
-	outside = 0;
-	ceiling = 6
+	outside = 0
 	})
 "cgF" = (
 /obj/effect/ai_node,
@@ -3853,9 +3874,8 @@
 /obj/item/armor_module/storage/uniform/brown_vest,
 /obj/structure/cable,
 /turf/open/floor/plating/asteroidfloor,
-/area/outpost/brig/armoury{
-	name = "CLF armoury";
-	ceiling = 6
+/area/outpost/brig/gear_room{
+	name = "CLF armoury"
 	})
 "cny" = (
 /obj/structure/cable,
@@ -4073,10 +4093,9 @@
 "czQ" = (
 /obj/structure/cable,
 /turf/open/floor/plating/ground/desertdam/asphalt/threeside,
-/area/deltastation/engineering{
+/area/deltastation/engineering/lobby{
 	name = "CLF engineering";
-	outside = 0;
-	ceiling = 6
+	outside = 0
 	})
 "cAd" = (
 /obj/structure/bed/chair/office/light{
@@ -4749,7 +4768,9 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/mainship/plate,
-/area/mainship/patrol_base/som)
+/area/mainship/patrol_base/som{
+	outside = 0
+	})
 "dkV" = (
 /obj/machinery/door/airlock/mainship/engineering/free_access{
 	name = "\improper Storage Dome"
@@ -4798,10 +4819,9 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/threeside{
 	dir = 1
 	},
-/area/deltastation/engineering{
+/area/deltastation/engineering/lobby{
 	name = "CLF engineering";
-	outside = 0;
-	ceiling = 6
+	outside = 0
 	})
 "doz" = (
 /turf/open/floor/tile/blue/whiteblue{
@@ -4976,7 +4996,9 @@
 /turf/open/floor/mainship/silver/corner{
 	dir = 8
 	},
-/area/mainship/patrol_base/som)
+/area/mainship/patrol_base/som{
+	outside = 0
+	})
 "dwa" = (
 /obj/structure/flora/ausbushes/reedbush,
 /turf/open/floor/plating/ground/dirt,
@@ -5371,7 +5393,9 @@
 	amount = 50
 	},
 /turf/open/floor/plating/catwalk,
-/area/mainship/patrol_base/som)
+/area/mainship/patrol_base/som{
+	outside = 0
+	})
 "dQY" = (
 /obj/machinery/light/small{
 	dir = 1
@@ -5389,7 +5413,9 @@
 /turf/open/floor/mainship/orange{
 	dir = 4
 	},
-/area/mainship/patrol_base/som)
+/area/mainship/patrol_base/som{
+	outside = 0
+	})
 "dRI" = (
 /obj/effect/decal/remains/xeno{
 	pixel_x = 1;
@@ -5542,7 +5568,9 @@
 /turf/open/floor/mainship/sterile/side{
 	dir = 1
 	},
-/area/mainship/patrol_base/som)
+/area/mainship/patrol_base/som{
+	outside = 0
+	})
 "dWG" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
@@ -5561,7 +5589,9 @@
 	dir = 5
 	},
 /turf/open/floor/mainship/silver/full,
-/area/mainship/patrol_base/som)
+/area/mainship/patrol_base/som{
+	outside = 0
+	})
 "dXO" = (
 /obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/plating/ground/dirt,
@@ -5763,9 +5793,8 @@
 "ein" = (
 /obj/structure/cable,
 /turf/open/floor/plating/asteroidfloor,
-/area/outpost/brig/armoury{
-	name = "CLF armoury";
-	ceiling = 6
+/area/outpost/brig/gear_room{
+	name = "CLF armoury"
 	})
 "eis" = (
 /obj/structure/largecrate/supply/medicine/blood,
@@ -5887,13 +5916,17 @@
 /turf/open/floor/mainship/purple{
 	dir = 4
 	},
-/area/mainship/patrol_base/som)
+/area/mainship/patrol_base/som{
+	outside = 0
+	})
 "enO" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic/prep{
 	dir = 2
 	},
 /turf/open/floor/mainship/plate,
-/area/mainship/patrol_base/som)
+/area/mainship/patrol_base/som{
+	outside = 0
+	})
 "enS" = (
 /obj/effect/decal/remains/xeno,
 /turf/open/floor/engine/cult{
@@ -5957,7 +5990,9 @@
 /turf/open/floor/mainship/orange{
 	dir = 8
 	},
-/area/mainship/patrol_base/som)
+/area/mainship/patrol_base/som{
+	outside = 0
+	})
 "esh" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/grille/smoothing,
@@ -6176,7 +6211,9 @@
 /turf/open/floor/mainship/orange{
 	dir = 9
 	},
-/area/mainship/patrol_base/som)
+/area/mainship/patrol_base/som{
+	outside = 0
+	})
 "eHR" = (
 /obj/structure/barricade/metal{
 	is_wired = 1;
@@ -6185,7 +6222,9 @@
 	},
 /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/cope/predeployed,
 /turf/open/floor/mainship/silver/full,
-/area/mainship/patrol_base/som)
+/area/mainship/patrol_base/som{
+	outside = 0
+	})
 "eHW" = (
 /obj/docking_port/stationary/crashmode,
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
@@ -6265,7 +6304,9 @@
 	can_wire = 0
 	},
 /turf/open/floor/mainship/silver/full,
-/area/mainship/patrol_base/som)
+/area/mainship/patrol_base/som{
+	outside = 0
+	})
 "eMA" = (
 /obj/structure/noticeboard{
 	pixel_y = 30
@@ -6282,9 +6323,8 @@
 "eNk" = (
 /obj/structure/largecrate/supply/ammo/standard_smg,
 /turf/open/floor/plating/asteroidfloor,
-/area/outpost/brig/armoury{
-	name = "CLF armoury";
-	ceiling = 6
+/area/outpost/brig/gear_room{
+	name = "CLF armoury"
 	})
 "eOf" = (
 /obj/structure/flora/jungle/vines,
@@ -6318,7 +6358,9 @@
 /obj/effect/ai_node,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/mainship/sterile/white,
-/area/mainship/patrol_base/som)
+/area/mainship/patrol_base/som{
+	outside = 0
+	})
 "ePv" = (
 /obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /obj/machinery/door/poddoor/mainship/open{
@@ -6534,10 +6576,9 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/threeside/regular{
 	dir = 1
 	},
-/area/deltastation/engineering{
+/area/deltastation/engineering/lobby{
 	name = "CLF engineering";
-	outside = 0;
-	ceiling = 6
+	outside = 0
 	})
 "fbf" = (
 /obj/alien/weeds/node,
@@ -6822,7 +6863,9 @@
 /obj/machinery/power/smes/preset,
 /obj/structure/cable,
 /turf/open/floor/plating/catwalk,
-/area/mainship/patrol_base/som)
+/area/mainship/patrol_base/som{
+	outside = 0
+	})
 "fnB" = (
 /obj/structure/lazarus_sign,
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
@@ -7254,7 +7297,9 @@
 /turf/open/floor/mainship/orange{
 	dir = 4
 	},
-/area/mainship/patrol_base/som)
+/area/mainship/patrol_base/som{
+	outside = 0
+	})
 "fLY" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -7282,9 +7327,8 @@
 	pixel_y = 16
 	},
 /turf/open/floor/plating/asteroidfloor,
-/area/outpost/brig/armoury{
-	name = "CLF armoury";
-	ceiling = 6
+/area/outpost/brig/gear_room{
+	name = "CLF armoury"
 	})
 "fMv" = (
 /obj/structure/flora/jungle/plantbot1/alien,
@@ -7478,10 +7522,9 @@
 	dir = 4
 	},
 /turf/open/floor/plating/ground/dirt,
-/area/deltastation/engineering{
+/area/deltastation/engineering/lobby{
 	name = "CLF engineering";
-	outside = 0;
-	ceiling = 6
+	outside = 0
 	})
 "fYW" = (
 /obj/structure/cable,
@@ -8006,7 +8049,9 @@
 /turf/open/floor/mainship/silver{
 	dir = 8
 	},
-/area/mainship/patrol_base/som)
+/area/mainship/patrol_base/som{
+	outside = 0
+	})
 "gzl" = (
 /obj/structure/cable,
 /turf/open/floor/tile/blue/whiteblue{
@@ -8063,7 +8108,9 @@
 	dir = 1
 	},
 /turf/open/floor/plating/catwalk,
-/area/mainship/patrol_base/som)
+/area/mainship/patrol_base/som{
+	outside = 0
+	})
 "gCb" = (
 /obj/structure/bedsheetbin,
 /obj/effect/turf_decal/siding/wideplating_new/light{
@@ -8088,10 +8135,9 @@
 "gCK" = (
 /obj/alien/egg/hugger,
 /turf/open/floor/plating/ground/dirt,
-/area/deltastation/engineering{
+/area/deltastation/engineering/lobby{
 	name = "CLF engineering";
-	outside = 0;
-	ceiling = 6
+	outside = 0
 	})
 "gCL" = (
 /obj/structure/flora/jungle/vines,
@@ -8131,7 +8177,9 @@
 	dir = 1
 	},
 /turf/open/floor/mainship/plate,
-/area/mainship/patrol_base/som)
+/area/mainship/patrol_base/som{
+	outside = 0
+	})
 "gEU" = (
 /obj/structure/bed,
 /mob/living/simple_animal/corgi/lisa,
@@ -8483,7 +8531,9 @@
 /turf/open/floor/mainship/orange{
 	dir = 4
 	},
-/area/mainship/patrol_base/som)
+/area/mainship/patrol_base/som{
+	outside = 0
+	})
 "hax" = (
 /obj/effect/landmark/xeno_tunnel_spawn,
 /turf/open/floor/plating/ground/dirt,
@@ -8609,10 +8659,9 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/threeside/regular{
 	dir = 8
 	},
-/area/deltastation/engineering{
+/area/deltastation/engineering/lobby{
 	name = "CLF engineering";
-	outside = 0;
-	ceiling = 6
+	outside = 0
 	})
 "hfA" = (
 /obj/structure/closet/open,
@@ -8726,9 +8775,8 @@
 "hkZ" = (
 /obj/structure/largecrate/supply/weapons/standard_smg,
 /turf/open/floor/plating/asteroidfloor,
-/area/outpost/brig/armoury{
-	name = "CLF armoury";
-	ceiling = 6
+/area/outpost/brig/gear_room{
+	name = "CLF armoury"
 	})
 "hld" = (
 /obj/effect/landmark/start/job/survivor,
@@ -8780,7 +8828,9 @@
 	id = "somcargodoor"
 	},
 /turf/open/floor,
-/area/mainship/patrol_base/som)
+/area/mainship/patrol_base/som{
+	outside = 0
+	})
 "hmu" = (
 /obj/structure/window/framed/colony/reinforced,
 /turf/open/floor/plating,
@@ -9072,10 +9122,9 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/threeside{
 	dir = 1
 	},
-/area/deltastation/engineering{
+/area/deltastation/engineering/lobby{
 	name = "CLF engineering";
-	outside = 0;
-	ceiling = 6
+	outside = 0
 	})
 "hCC" = (
 /obj/structure/cable,
@@ -9153,7 +9202,9 @@
 	on = 1
 	},
 /turf/open/floor/mainship/cargo,
-/area/mainship/patrol_base/som)
+/area/mainship/patrol_base/som{
+	outside = 0
+	})
 "hFP" = (
 /turf/open/liquid/water/river/autosmooth/deep,
 /area/lv624/ground/river1)
@@ -9538,7 +9589,9 @@
 /turf/open/floor/mainship/sterile/corner{
 	dir = 4
 	},
-/area/mainship/patrol_base/som)
+/area/mainship/patrol_base/som{
+	outside = 0
+	})
 "hYJ" = (
 /obj/machinery/light,
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -9594,7 +9647,9 @@
 /turf/open/floor/mainship/orange{
 	dir = 8
 	},
-/area/mainship/patrol_base/som)
+/area/mainship/patrol_base/som{
+	outside = 0
+	})
 "iav" = (
 /obj/structure/barricade/wooden{
 	dir = 4
@@ -9665,7 +9720,9 @@
 /obj/item/armor_module/module/fire_proof/som,
 /obj/item/armor_module/module/fire_proof/som,
 /turf/open/floor/mainship/cargo,
-/area/mainship/patrol_base/som)
+/area/mainship/patrol_base/som{
+	outside = 0
+	})
 "idA" = (
 /obj/structure/cargo_container/green{
 	dir = 4
@@ -9812,7 +9869,9 @@
 /obj/structure/cable,
 /obj/structure/catwalk,
 /turf/open/floor/mainship/plate,
-/area/mainship/patrol_base/som)
+/area/mainship/patrol_base/som{
+	outside = 0
+	})
 "inx" = (
 /turf/open/floor/plating/warning{
 	dir = 4
@@ -9927,7 +9986,9 @@
 /turf/open/floor/mainship/sterile/side{
 	dir = 4
 	},
-/area/mainship/patrol_base/som)
+/area/mainship/patrol_base/som{
+	outside = 0
+	})
 "iqY" = (
 /obj/effect/spawner/random/engineering/structure/tank/fuelweighted,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
@@ -10247,10 +10308,9 @@
 "iGa" = (
 /obj/machinery/floodlight/landing,
 /turf/open/floor/plating/ground/dirt,
-/area/deltastation/engineering{
+/area/deltastation/engineering/lobby{
 	name = "CLF engineering";
-	outside = 0;
-	ceiling = 6
+	outside = 0
 	})
 "iGX" = (
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -10398,10 +10458,9 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/edge{
 	dir = 5
 	},
-/area/deltastation/engineering{
+/area/deltastation/engineering/lobby{
 	name = "CLF engineering";
-	outside = 0;
-	ceiling = 6
+	outside = 0
 	})
 "iOp" = (
 /obj/structure/rack,
@@ -10426,10 +10485,9 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/twoside/regular{
 	dir = 4
 	},
-/area/deltastation/engineering{
+/area/deltastation/engineering/lobby{
 	name = "CLF engineering";
-	outside = 0;
-	ceiling = 6
+	outside = 0
 	})
 "iPY" = (
 /turf/open/floor/plating/asteroidfloor,
@@ -10443,10 +10501,9 @@
 /area/lv624/lazarus/main_hall)
 "iQH" = (
 /turf/closed/mineral/smooth,
-/area/deltastation/engineering{
+/area/deltastation/engineering/lobby{
 	name = "CLF engineering";
-	outside = 0;
-	ceiling = 6
+	outside = 0
 	})
 "iQK" = (
 /obj/structure/flora/jungle/vines,
@@ -10538,7 +10595,9 @@
 	can_wire = 0
 	},
 /turf/open/floor/mainship/silver/full,
-/area/mainship/patrol_base/som)
+/area/mainship/patrol_base/som{
+	outside = 0
+	})
 "iUR" = (
 /obj/structure/window_frame/wood,
 /obj/structure/flora/jungle/vines,
@@ -10699,10 +10758,9 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/threeside{
 	dir = 8
 	},
-/area/deltastation/engineering{
+/area/deltastation/engineering/lobby{
 	name = "CLF engineering";
-	outside = 0;
-	ceiling = 6
+	outside = 0
 	})
 "jcF" = (
 /obj/structure/platform{
@@ -10731,7 +10789,9 @@
 /turf/open/floor/mainship/purple{
 	dir = 9
 	},
-/area/mainship/patrol_base/som)
+/area/mainship/patrol_base/som{
+	outside = 0
+	})
 "jdL" = (
 /obj/structure/flora/jungle/vines,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
@@ -11013,10 +11073,9 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/threeside{
 	dir = 8
 	},
-/area/deltastation/engineering{
+/area/deltastation/engineering/lobby{
 	name = "CLF engineering";
-	outside = 0;
-	ceiling = 6
+	outside = 0
 	})
 "jvj" = (
 /obj/structure/table,
@@ -11082,7 +11141,9 @@
 /obj/structure/window_frame/wood,
 /obj/structure/flora/jungle/vines/heavy,
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
-/area/mainship/patrol_base/som)
+/area/mainship/patrol_base/som{
+	outside = 0
+	})
 "jxI" = (
 /obj/structure/flora/jungle/vines/heavy,
 /turf/open/ground/grass,
@@ -11110,10 +11171,9 @@
 "jAd" = (
 /obj/structure/table,
 /turf/open/floor/plating/ground/desertdam/asphalt/threeside,
-/area/deltastation/engineering{
+/area/deltastation/engineering/lobby{
 	name = "CLF engineering";
-	outside = 0;
-	ceiling = 6
+	outside = 0
 	})
 "jAg" = (
 /obj/machinery/door/poddoor/mainship{
@@ -11395,7 +11455,9 @@
 /turf/open/floor/mainship/silver{
 	dir = 4
 	},
-/area/mainship/patrol_base/som)
+/area/mainship/patrol_base/som{
+	outside = 0
+	})
 "jMz" = (
 /obj/structure/barricade/wooden,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
@@ -11515,10 +11577,9 @@
 "jRq" = (
 /obj/structure/bed/chair/sofa/left,
 /turf/open/floor/plating/ground/dirt,
-/area/deltastation/engineering{
+/area/deltastation/engineering/lobby{
 	name = "CLF engineering";
-	outside = 0;
-	ceiling = 6
+	outside = 0
 	})
 "jRu" = (
 /obj/item/trash/popcorn,
@@ -11606,10 +11667,9 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/threeside{
 	dir = 4
 	},
-/area/deltastation/engineering{
+/area/deltastation/engineering/lobby{
 	name = "CLF engineering";
-	outside = 0;
-	ceiling = 6
+	outside = 0
 	})
 "jWw" = (
 /obj/item/clothing/shoes/jackboots,
@@ -11756,7 +11816,9 @@
 /turf/open/floor/mainship/sterile/side{
 	dir = 6
 	},
-/area/mainship/patrol_base/som)
+/area/mainship/patrol_base/som{
+	outside = 0
+	})
 "kdW" = (
 /obj/structure/flora/ausbushes/fernybush,
 /obj/structure/flora/jungle/vines,
@@ -11810,7 +11872,9 @@
 /obj/structure/largecrate/supply/explosives/grenades,
 /obj/machinery/light,
 /turf/open/floor/mainship/cargo,
-/area/mainship/patrol_base/som)
+/area/mainship/patrol_base/som{
+	outside = 0
+	})
 "khz" = (
 /obj/machinery/floodlight/colony,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -12008,7 +12072,9 @@
 /turf/open/floor/mainship/sterile/side{
 	dir = 8
 	},
-/area/mainship/patrol_base/som)
+/area/mainship/patrol_base/som{
+	outside = 0
+	})
 "kqW" = (
 /obj/structure/cargo_container/green{
 	dir = 1
@@ -12018,7 +12084,9 @@
 "krr" = (
 /obj/structure/flora/jungle/vines,
 /turf/closed/wall/r_wall/chigusa,
-/area/mainship/patrol_base/som)
+/area/mainship/patrol_base/som{
+	outside = 0
+	})
 "kry" = (
 /obj/structure/flora/jungle/vines,
 /turf/open/floor/plating/ground/dirt,
@@ -12070,7 +12138,9 @@
 /turf/open/floor/mainship/silver{
 	dir = 3
 	},
-/area/mainship/patrol_base/som)
+/area/mainship/patrol_base/som{
+	outside = 0
+	})
 "ksD" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /obj/machinery/floodlight/colony{
@@ -12183,10 +12253,9 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/threeside/regular{
 	dir = 1
 	},
-/area/deltastation/engineering{
+/area/deltastation/engineering/lobby{
 	name = "CLF engineering";
-	outside = 0;
-	ceiling = 6
+	outside = 0
 	})
 "kyP" = (
 /obj/structure/rack,
@@ -12228,9 +12297,8 @@
 	pixel_x = -1
 	},
 /turf/open/floor/plating/asteroidfloor,
-/area/outpost/brig/armoury{
-	name = "CLF armoury";
-	ceiling = 6
+/area/outpost/brig/gear_room{
+	name = "CLF armoury"
 	})
 "kBI" = (
 /obj/structure/flora/ausbushes/fullgrass,
@@ -12259,9 +12327,8 @@
 /obj/structure/cable,
 /obj/effect/ai_node,
 /turf/open/floor/plating/asteroidfloor,
-/area/outpost/brig/armoury{
-	name = "CLF armoury";
-	ceiling = 6
+/area/outpost/brig/gear_room{
+	name = "CLF armoury"
 	})
 "kDo" = (
 /turf/closed/wall/cult,
@@ -12382,10 +12449,9 @@
 	dir = 8
 	},
 /turf/open/floor/plating/ground/dirt,
-/area/deltastation/engineering{
+/area/deltastation/engineering/lobby{
 	name = "CLF engineering";
-	outside = 0;
-	ceiling = 6
+	outside = 0
 	})
 "kJH" = (
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -12553,7 +12619,9 @@
 /turf/open/floor/mainship/orange{
 	dir = 4
 	},
-/area/mainship/patrol_base/som)
+/area/mainship/patrol_base/som{
+	outside = 0
+	})
 "kRJ" = (
 /turf/open/floor/tile/barber,
 /area/lv624/lazarus/fitness)
@@ -12671,7 +12739,9 @@
 	dir = 5
 	},
 /turf/open/floor/mainship/sterile/side,
-/area/mainship/patrol_base/som)
+/area/mainship/patrol_base/som{
+	outside = 0
+	})
 "kXF" = (
 /obj/item/trash/cheesie,
 /obj/structure/window/reinforced{
@@ -12686,7 +12756,9 @@
 /turf/open/floor/mainship/purple{
 	dir = 10
 	},
-/area/mainship/patrol_base/som)
+/area/mainship/patrol_base/som{
+	outside = 0
+	})
 "kYv" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/alien/weeds/node,
@@ -13045,7 +13117,9 @@
 /turf/open/floor/mainship/silver{
 	dir = 8
 	},
-/area/mainship/patrol_base/som)
+/area/mainship/patrol_base/som{
+	outside = 0
+	})
 "lsH" = (
 /turf/open/floor/plating/ground/dirtgrassborder/corner{
 	dir = 1
@@ -13102,7 +13176,9 @@
 /turf/open/floor/mainship/orange{
 	dir = 4
 	},
-/area/mainship/patrol_base/som)
+/area/mainship/patrol_base/som{
+	outside = 0
+	})
 "lyK" = (
 /obj/structure/bed/chair/comfy/lime{
 	dir = 1
@@ -13245,7 +13321,9 @@
 	dir = 5
 	},
 /turf/open/floor/mainship/plate,
-/area/mainship/patrol_base/som)
+/area/mainship/patrol_base/som{
+	outside = 0
+	})
 "lEg" = (
 /obj/structure/cargo_container{
 	dir = 4
@@ -13381,9 +13459,8 @@
 /obj/item/armor_module/storage/uniform/white_vest,
 /obj/item/armor_module/storage/uniform/white_vest,
 /turf/open/floor/plating/asteroidfloor,
-/area/outpost/brig/armoury{
-	name = "CLF armoury";
-	ceiling = 6
+/area/outpost/brig/gear_room{
+	name = "CLF armoury"
 	})
 "lKP" = (
 /turf/open/floor/plating/asteroidfloor,
@@ -13551,10 +13628,9 @@
 	pixel_x = 15
 	},
 /turf/open/floor/plating/ground/dirt,
-/area/deltastation/engineering{
+/area/deltastation/engineering/lobby{
 	name = "CLF engineering";
-	outside = 0;
-	ceiling = 6
+	outside = 0
 	})
 "lRT" = (
 /obj/machinery/light{
@@ -13564,7 +13640,9 @@
 /turf/open/floor/mainship/orange{
 	dir = 5
 	},
-/area/mainship/patrol_base/som)
+/area/mainship/patrol_base/som{
+	outside = 0
+	})
 "lSc" = (
 /obj/structure/flora/jungle/vines,
 /turf/closed/wall,
@@ -13837,10 +13915,9 @@
 	pixel_y = 7
 	},
 /turf/open/floor/plating/ground/dirt,
-/area/deltastation/engineering{
+/area/deltastation/engineering/lobby{
 	name = "CLF engineering";
-	outside = 0;
-	ceiling = 6
+	outside = 0
 	})
 "mgb" = (
 /obj/machinery/door/airlock/mainship/generic/corporate{
@@ -13929,7 +14006,9 @@
 /turf/open/floor/mainship/silver{
 	dir = 8
 	},
-/area/mainship/patrol_base/som)
+/area/mainship/patrol_base/som{
+	outside = 0
+	})
 "mks" = (
 /obj/effect/spawner/random/misc/structure/closet/electrical,
 /turf/open/floor/plating/platebot,
@@ -14109,7 +14188,9 @@
 /turf/open/floor/mainship/orange{
 	dir = 8
 	},
-/area/mainship/patrol_base/som)
+/area/mainship/patrol_base/som{
+	outside = 0
+	})
 "mst" = (
 /obj/alien/weeds/node,
 /turf/open/floor/plating/ground/dirt,
@@ -14265,7 +14346,9 @@
 /turf/open/floor/mainship/silver{
 	dir = 8
 	},
-/area/mainship/patrol_base/som)
+/area/mainship/patrol_base/som{
+	outside = 0
+	})
 "mAi" = (
 /turf/open/floor/tile/green/whitegreencorner{
 	dir = 1
@@ -14294,10 +14377,9 @@
 /obj/structure/mineral_door/wood,
 /obj/structure/cable,
 /turf/open/floor/plating/ground/desertdam/asphalt/tile,
-/area/deltastation/engineering{
+/area/deltastation/engineering/lobby{
 	name = "CLF engineering";
-	outside = 0;
-	ceiling = 6
+	outside = 0
 	})
 "mBU" = (
 /obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
@@ -14308,7 +14390,9 @@
 /turf/open/floor/mainship/orange{
 	dir = 8
 	},
-/area/mainship/patrol_base/som)
+/area/mainship/patrol_base/som{
+	outside = 0
+	})
 "mDe" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 9
@@ -14317,7 +14401,9 @@
 /obj/item/xeno_iff_tag/som,
 /obj/item/xeno_iff_tag/som,
 /turf/open/floor/mainship/cargo,
-/area/mainship/patrol_base/som)
+/area/mainship/patrol_base/som{
+	outside = 0
+	})
 "mDp" = (
 /obj/alien/weeds/node,
 /obj/effect/landmark/lv624/fog_blocker,
@@ -14384,10 +14470,9 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/threeside{
 	dir = 8
 	},
-/area/deltastation/engineering{
+/area/deltastation/engineering/lobby{
 	name = "CLF engineering";
-	outside = 0;
-	ceiling = 6
+	outside = 0
 	})
 "mFE" = (
 /obj/effect/decal/remains/xeno,
@@ -14449,7 +14534,9 @@
 /turf/open/floor/mainship/sterile/side{
 	dir = 1
 	},
-/area/mainship/patrol_base/som)
+/area/mainship/patrol_base/som{
+	outside = 0
+	})
 "mIZ" = (
 /obj/structure/table,
 /obj/effect/spawner/random/engineering/tool,
@@ -14460,7 +14547,9 @@
 "mJd" = (
 /obj/structure/cable,
 /turf/open/floor/mainship/silver/full,
-/area/mainship/patrol_base/som)
+/area/mainship/patrol_base/som{
+	outside = 0
+	})
 "mJw" = (
 /obj/structure/barricade/wooden,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -14901,7 +14990,9 @@
 	dir = 4
 	},
 /turf/open/floor/plating/catwalk,
-/area/mainship/patrol_base/som)
+/area/mainship/patrol_base/som{
+	outside = 0
+	})
 "neQ" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
@@ -15178,7 +15269,9 @@
 /obj/effect/ai_node,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/mainship/plate,
-/area/mainship/patrol_base/som)
+/area/mainship/patrol_base/som{
+	outside = 0
+	})
 "nyG" = (
 /obj/machinery/door/poddoor/mainship{
 	id = "corporate_blast";
@@ -15198,7 +15291,9 @@
 /area/lv624/ground/jungle7)
 "nzu" = (
 /turf/open/floor/mainship/orange,
-/area/mainship/patrol_base/som)
+/area/mainship/patrol_base/som{
+	outside = 0
+	})
 "nAu" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -15344,7 +15439,9 @@
 	dir = 2
 	},
 /turf/open/floor,
-/area/mainship/patrol_base/som)
+/area/mainship/patrol_base/som{
+	outside = 0
+	})
 "nIO" = (
 /obj/effect/turf_decal/warning_stripes/thick,
 /obj/effect/turf_decal/warning_stripes/thick{
@@ -15422,7 +15519,10 @@
 "nNA" = (
 /obj/effect/ai_node,
 /turf/open/floor/mainship/plate,
-/area/mainship/patrol_base/som)
+/area/mainship/patrol_base/som{
+	outside = 0;
+	requires_power = 1
+	})
 "nNN" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /obj/effect/ai_node,
@@ -15465,10 +15565,9 @@
 /area/lv624/lazarus/security)
 "nOG" = (
 /turf/open/floor/plating/ground/dirt,
-/area/deltastation/engineering{
+/area/deltastation/engineering/lobby{
 	name = "CLF engineering";
-	outside = 0;
-	ceiling = 6
+	outside = 0
 	})
 "nOV" = (
 /obj/machinery/door/poddoor/mainship{
@@ -15563,10 +15662,9 @@
 	dir = 8
 	},
 /turf/open/floor/plating/ground/dirt,
-/area/deltastation/engineering{
+/area/deltastation/engineering/lobby{
 	name = "CLF engineering";
-	outside = 0;
-	ceiling = 6
+	outside = 0
 	})
 "nTA" = (
 /obj/structure/rack,
@@ -15683,9 +15781,8 @@
 "nZX" = (
 /obj/structure/largecrate/guns/russian,
 /turf/open/floor/plating/asteroidfloor,
-/area/outpost/brig/armoury{
-	name = "CLF armoury";
-	ceiling = 6
+/area/outpost/brig/gear_room{
+	name = "CLF armoury"
 	})
 "oah" = (
 /turf/closed/wall/r_wall,
@@ -15802,7 +15899,9 @@
 /turf/open/floor/mainship/sterile/corner{
 	dir = 8
 	},
-/area/mainship/patrol_base/som)
+/area/mainship/patrol_base/som{
+	outside = 0
+	})
 "ofP" = (
 /obj/alien/weeds/node,
 /obj/effect/turf_decal/riverdecal/edge,
@@ -16027,7 +16126,9 @@
 /turf/open/floor/mainship/silver/corner{
 	dir = 4
 	},
-/area/mainship/patrol_base/som)
+/area/mainship/patrol_base/som{
+	outside = 0
+	})
 "owl" = (
 /obj/structure/bed/chair/east{
 	dir = 2
@@ -16072,7 +16173,9 @@
 "oxL" = (
 /obj/machinery/door/airlock/hatch,
 /turf/open/floor,
-/area/mainship/patrol_base/som)
+/area/mainship/patrol_base/som{
+	outside = 0
+	})
 "oyu" = (
 /obj/machinery/shower{
 	dir = 8
@@ -16160,9 +16263,8 @@
 "oAL" = (
 /obj/item/storage/toolbox/mechanical,
 /turf/open/floor/plating/asteroidfloor,
-/area/outpost/brig/armoury{
-	name = "CLF armoury";
-	ceiling = 6
+/area/outpost/brig/gear_room{
+	name = "CLF armoury"
 	})
 "oBm" = (
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -16203,7 +16305,9 @@
 /turf/open/floor/mainship/purple{
 	dir = 1
 	},
-/area/mainship/patrol_base/som)
+/area/mainship/patrol_base/som{
+	outside = 0
+	})
 "oDM" = (
 /obj/machinery/light/small,
 /turf/open/floor/wood,
@@ -16285,7 +16389,9 @@
 "oGR" = (
 /obj/structure/largecrate/random,
 /turf/open/floor/mainship/cargo,
-/area/mainship/patrol_base/som)
+/area/mainship/patrol_base/som{
+	outside = 0
+	})
 "oGS" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /turf/open/floor/plating/ground/dirt,
@@ -16329,7 +16435,9 @@
 /obj/structure/cable,
 /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/cope/predeployed,
 /turf/open/floor/mainship/silver/full,
-/area/mainship/patrol_base/som)
+/area/mainship/patrol_base/som{
+	outside = 0
+	})
 "oIN" = (
 /obj/item/clothing/mask/facehugger/dead,
 /obj/machinery/door/poddoor/mainship/open{
@@ -16677,7 +16785,9 @@
 /turf/open/floor/mainship/silver/corner{
 	dir = 4
 	},
-/area/mainship/patrol_base/som)
+/area/mainship/patrol_base/som{
+	outside = 0
+	})
 "pdN" = (
 /turf/open/floor/tile/purple/whitepurple{
 	dir = 5
@@ -16763,7 +16873,9 @@
 "pgW" = (
 /obj/structure/largecrate/supply/supplies/flares,
 /turf/open/floor/mainship/cargo,
-/area/mainship/patrol_base/som)
+/area/mainship/patrol_base/som{
+	outside = 0
+	})
 "phx" = (
 /obj/machinery/light/small,
 /obj/effect/turf_decal/trimline/dark_blue,
@@ -16913,15 +17025,6 @@
 "psZ" = (
 /turf/closed/mineral/smooth/indestructible,
 /area/space)
-"pti" = (
-/obj/structure/bed/alien,
-/obj/alien/weeds/resting,
-/turf/open/floor/plating/ground/dirt,
-/area/deltastation/engineering{
-	name = "CLF engineering";
-	outside = 0;
-	ceiling = 6
-	})
 "ptl" = (
 /obj/effect/decal/remains/human,
 /turf/open/floor/plating,
@@ -16940,7 +17043,9 @@
 /turf/open/floor/mainship/silver{
 	dir = 1
 	},
-/area/mainship/patrol_base/som)
+/area/mainship/patrol_base/som{
+	outside = 0
+	})
 "puz" = (
 /obj/structure/bed/chair/comfy/black{
 	dir = 8
@@ -17010,10 +17115,9 @@
 /obj/structure/cable,
 /obj/structure/cable,
 /turf/open/floor/plating/ground/desertdam/asphalt/tile,
-/area/deltastation/engineering{
+/area/deltastation/engineering/lobby{
 	name = "CLF engineering";
-	outside = 0;
-	ceiling = 6
+	outside = 0
 	})
 "pyh" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -17670,7 +17774,9 @@
 "qjP" = (
 /obj/structure/largecrate/supply/supplies/metal,
 /turf/open/floor/mainship/cargo,
-/area/mainship/patrol_base/som)
+/area/mainship/patrol_base/som{
+	outside = 0
+	})
 "qkL" = (
 /obj/structure/flora/ausbushes/reedbush,
 /turf/open/floor/tile/whiteyellow/full,
@@ -18052,7 +18158,9 @@
 "qFR" = (
 /obj/structure/largecrate/supply/supplies/mre,
 /turf/open/floor/mainship/cargo,
-/area/mainship/patrol_base/som)
+/area/mainship/patrol_base/som{
+	outside = 0
+	})
 "qGk" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 5
@@ -18078,10 +18186,9 @@
 "qHx" = (
 /obj/structure/cable,
 /turf/open/floor/plating/ground/desertdam/asphalt/threeside/regular,
-/area/deltastation/engineering{
+/area/deltastation/engineering/lobby{
 	name = "CLF engineering";
-	outside = 0;
-	ceiling = 6
+	outside = 0
 	})
 "qHJ" = (
 /obj/structure/flora/jungle/plantbot1,
@@ -18100,10 +18207,9 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/threeside/regular{
 	dir = 8
 	},
-/area/deltastation/engineering{
+/area/deltastation/engineering/lobby{
 	name = "CLF engineering";
-	outside = 0;
-	ceiling = 6
+	outside = 0
 	})
 "qIB" = (
 /turf/open/floor/tile/chapel{
@@ -18411,7 +18517,9 @@
 /area/lv624/ground/caves/west1)
 "qWA" = (
 /turf/closed/wall/r_wall/chigusa,
-/area/mainship/patrol_base/som)
+/area/mainship/patrol_base/som{
+	outside = 0
+	})
 "qWH" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
@@ -18552,13 +18660,17 @@
 "rcB" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /turf/closed/wall/r_wall/chigusa,
-/area/mainship/patrol_base/som)
+/area/mainship/patrol_base/som{
+	outside = 0
+	})
 "rcH" = (
 /obj/machinery/vending/sovietsoda,
 /turf/open/floor/mainship/orange{
 	dir = 10
 	},
-/area/mainship/patrol_base/som)
+/area/mainship/patrol_base/som{
+	outside = 0
+	})
 "rcT" = (
 /obj/effect/spawner/random/misc/structure/girder/regularweighted,
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
@@ -18792,7 +18904,9 @@
 /area/lv624/lazarus/comms)
 "rnm" = (
 /turf/closed/gm/dense,
-/area/mainship/patrol_base/som)
+/area/mainship/patrol_base/som{
+	outside = 0
+	})
 "rnp" = (
 /turf/open/floor/tile/white/warningstripe{
 	dir = 4
@@ -19074,7 +19188,9 @@
 /obj/item/storage/firstaid/adv,
 /obj/item/storage/surgical_tray,
 /turf/open/floor/mainship/sterile/side,
-/area/mainship/patrol_base/som)
+/area/mainship/patrol_base/som{
+	outside = 0
+	})
 "rAY" = (
 /obj/structure/flora/ausbushes/grassybush,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
@@ -19178,10 +19294,9 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/edge/regular{
 	dir = 10
 	},
-/area/deltastation/engineering{
+/area/deltastation/engineering/lobby{
 	name = "CLF engineering";
-	outside = 0;
-	ceiling = 6
+	outside = 0
 	})
 "rEV" = (
 /obj/structure/table,
@@ -19201,10 +19316,9 @@
 "rFk" = (
 /obj/structure/bed/alien,
 /turf/open/floor/plating/ground/dirt,
-/area/deltastation/engineering{
+/area/deltastation/engineering/lobby{
 	name = "CLF engineering";
-	outside = 0;
-	ceiling = 6
+	outside = 0
 	})
 "rFH" = (
 /obj/effect/spawner/random/misc/structure/supplycrate,
@@ -19339,7 +19453,9 @@
 "rJP" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/mainship/orange,
-/area/mainship/patrol_base/som)
+/area/mainship/patrol_base/som{
+	outside = 0
+	})
 "rKh" = (
 /obj/structure/closet/radiation,
 /obj/machinery/light/small{
@@ -19479,7 +19595,9 @@
 "rQS" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/mainship/plate,
-/area/mainship/patrol_base/som)
+/area/mainship/patrol_base/som{
+	outside = 0
+	})
 "rRx" = (
 /turf/closed/gm/dense,
 /area/lv624/lazarus/spaceport2)
@@ -19501,7 +19619,9 @@
 /turf/open/floor/mainship/sterile/side{
 	dir = 1
 	},
-/area/mainship/patrol_base/som)
+/area/mainship/patrol_base/som{
+	outside = 0
+	})
 "rRU" = (
 /obj/structure/bed/chair/sofa/corsat/left,
 /turf/open/floor/marking/asteroidwarning{
@@ -19562,7 +19682,9 @@
 /turf/open/floor/mainship/sterile/side{
 	dir = 8
 	},
-/area/mainship/patrol_base/som)
+/area/mainship/patrol_base/som{
+	outside = 0
+	})
 "rUq" = (
 /obj/structure/flora/ausbushes/brflowers,
 /obj/structure/flora/jungle/vines,
@@ -19630,9 +19752,8 @@
 	dir = 8
 	},
 /turf/open/floor/plating/asteroidfloor,
-/area/outpost/brig/armoury{
-	name = "CLF armoury";
-	ceiling = 6
+/area/outpost/brig/gear_room{
+	name = "CLF armoury"
 	})
 "rXz" = (
 /obj/structure/flora/jungle/vines/heavy,
@@ -19998,10 +20119,9 @@
 "soH" = (
 /obj/structure/bed/chair/sofa,
 /turf/open/floor/plating/ground/dirt,
-/area/deltastation/engineering{
+/area/deltastation/engineering/lobby{
 	name = "CLF engineering";
-	outside = 0;
-	ceiling = 6
+	outside = 0
 	})
 "spq" = (
 /obj/effect/turf_decal/tile/transparent/dark_green/half/contrasted{
@@ -20030,7 +20150,9 @@
 /turf/open/floor/mainship/sterile/corner{
 	dir = 4
 	},
-/area/mainship/patrol_base/som)
+/area/mainship/patrol_base/som{
+	outside = 0
+	})
 "sqy" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
@@ -20063,7 +20185,9 @@
 /turf/open/floor/mainship/orange{
 	dir = 4
 	},
-/area/mainship/patrol_base/som)
+/area/mainship/patrol_base/som{
+	outside = 0
+	})
 "ssc" = (
 /obj/structure/foamedmetal,
 /obj/structure/flora/jungle/vines/heavy,
@@ -20187,7 +20311,9 @@
 /turf/open/floor/mainship/silver{
 	dir = 3
 	},
-/area/mainship/patrol_base/som)
+/area/mainship/patrol_base/som{
+	outside = 0
+	})
 "sBy" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -20251,10 +20377,9 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/threeside/regular{
 	dir = 4
 	},
-/area/deltastation/engineering{
+/area/deltastation/engineering/lobby{
 	name = "CLF engineering";
-	outside = 0;
-	ceiling = 6
+	outside = 0
 	})
 "sEr" = (
 /obj/structure/cable,
@@ -20263,7 +20388,9 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor,
-/area/mainship/patrol_base/som)
+/area/mainship/patrol_base/som{
+	outside = 0
+	})
 "sEE" = (
 /obj/structure/table/mainship,
 /turf/open/floor/plating/ground/dirt,
@@ -20342,10 +20469,9 @@
 "sJe" = (
 /obj/structure/bed/chair/sofa/corner,
 /turf/open/floor/plating/ground/dirt,
-/area/deltastation/engineering{
+/area/deltastation/engineering/lobby{
 	name = "CLF engineering";
-	outside = 0;
-	ceiling = 6
+	outside = 0
 	})
 "sJh" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
@@ -20362,9 +20488,8 @@
 /area/lv624/lazarus/secure_storage)
 "sJJ" = (
 /turf/open/floor/plating/asteroidfloor,
-/area/outpost/brig/armoury{
-	name = "CLF armoury";
-	ceiling = 6
+/area/outpost/brig/gear_room{
+	name = "CLF armoury"
 	})
 "sKq" = (
 /obj/structure/closet,
@@ -20392,7 +20517,9 @@
 /turf/open/floor/mainship/purple{
 	dir = 5
 	},
-/area/mainship/patrol_base/som)
+/area/mainship/patrol_base/som{
+	outside = 0
+	})
 "sLm" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 6
@@ -20422,10 +20549,9 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/threeside{
 	dir = 4
 	},
-/area/deltastation/engineering{
+/area/deltastation/engineering/lobby{
 	name = "CLF engineering";
-	outside = 0;
-	ceiling = 6
+	outside = 0
 	})
 "sNO" = (
 /obj/effect/decal/cleanable/blood/gibs/robot/limb,
@@ -20667,9 +20793,8 @@
 /area/lv624/lazarus/main_hall)
 "tbO" = (
 /turf/closed/wall/brick,
-/area/outpost/brig/armoury{
-	name = "CLF armoury";
-	ceiling = 6
+/area/outpost/brig/gear_room{
+	name = "CLF armoury"
 	})
 "tca" = (
 /obj/structure/flora/jungle/vines,
@@ -20911,10 +21036,9 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/threeside/regular{
 	dir = 1
 	},
-/area/deltastation/engineering{
+/area/deltastation/engineering/lobby{
 	name = "CLF engineering";
-	outside = 0;
-	ceiling = 6
+	outside = 0
 	})
 "tnH" = (
 /obj/structure/stairs/seamless,
@@ -20924,10 +21048,9 @@
 /obj/machinery/power/geothermal/reinforced,
 /obj/structure/cable,
 /turf/open/floor/plating/ground/desertdam/asphalt/threeside/regular,
-/area/deltastation/engineering{
+/area/deltastation/engineering/lobby{
 	name = "CLF engineering";
-	outside = 0;
-	ceiling = 6
+	outside = 0
 	})
 "tnW" = (
 /turf/open/floor/plating/ground/dirt,
@@ -21035,7 +21158,9 @@
 	dir = 1
 	},
 /turf/open/floor/plating/catwalk,
-/area/mainship/patrol_base/som)
+/area/mainship/patrol_base/som{
+	outside = 0
+	})
 "ttW" = (
 /obj/structure/flora/jungle/vines{
 	pixel_y = 1
@@ -21154,7 +21279,9 @@
 "txB" = (
 /obj/structure/cable,
 /turf/open/floor/mainship/plate,
-/area/mainship/patrol_base/som)
+/area/mainship/patrol_base/som{
+	outside = 0
+	})
 "txH" = (
 /obj/structure/table,
 /obj/item/stack/sheet/plasteel{
@@ -21441,9 +21568,8 @@
 "tLM" = (
 /obj/structure/largecrate/supply/supplies/coifs,
 /turf/open/floor/plating/asteroidfloor,
-/area/outpost/brig/armoury{
-	name = "CLF armoury";
-	ceiling = 6
+/area/outpost/brig/gear_room{
+	name = "CLF armoury"
 	})
 "tMe" = (
 /turf/closed/wall/r_wall,
@@ -21487,7 +21613,9 @@
 /turf/open/floor/mainship/silver{
 	dir = 4
 	},
-/area/mainship/patrol_base/som)
+/area/mainship/patrol_base/som{
+	outside = 0
+	})
 "tPT" = (
 /turf/open/floor/tile/green/whitegreen{
 	dir = 8
@@ -21558,10 +21686,9 @@
 "tTg" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt,
-/area/deltastation/engineering{
+/area/deltastation/engineering/lobby{
 	name = "CLF engineering";
-	outside = 0;
-	ceiling = 6
+	outside = 0
 	})
 "tTs" = (
 /turf/closed/wall/r_wall,
@@ -21681,10 +21808,9 @@
 /area/lv624/ground/jungle5)
 "tYf" = (
 /turf/closed/wall/brick,
-/area/deltastation/engineering{
+/area/deltastation/engineering/lobby{
 	name = "CLF engineering";
-	outside = 0;
-	ceiling = 6
+	outside = 0
 	})
 "tYg" = (
 /turf/open/liquid/water/river/autosmooth,
@@ -21700,7 +21826,9 @@
 	dir = 9
 	},
 /turf/open/floor/mainship/plate,
-/area/mainship/patrol_base/som)
+/area/mainship/patrol_base/som{
+	outside = 0
+	})
 "tYV" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 2
@@ -21765,10 +21893,9 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/threeside{
 	dir = 4
 	},
-/area/deltastation/engineering{
+/area/deltastation/engineering/lobby{
 	name = "CLF engineering";
-	outside = 0;
-	ceiling = 6
+	outside = 0
 	})
 "ucI" = (
 /obj/structure/rack,
@@ -21843,10 +21970,9 @@
 "uiy" = (
 /obj/structure/table/woodentable,
 /turf/open/floor/plating/ground/dirt,
-/area/deltastation/engineering{
+/area/deltastation/engineering/lobby{
 	name = "CLF engineering";
-	outside = 0;
-	ceiling = 6
+	outside = 0
 	})
 "uiY" = (
 /obj/effect/ai_node,
@@ -21918,7 +22044,9 @@
 "uli" = (
 /obj/structure/flora/jungle/vines/heavy,
 /turf/closed/wall/r_wall/chigusa,
-/area/mainship/patrol_base/som)
+/area/mainship/patrol_base/som{
+	outside = 0
+	})
 "ulD" = (
 /obj/effect/ai_node,
 /turf/open/floor/tile/purple/taupepurple{
@@ -21928,7 +22056,9 @@
 "ulQ" = (
 /obj/structure/closet/crate/mortar_ammo/mortar_kit,
 /turf/open/floor/mainship/cargo,
-/area/mainship/patrol_base/som)
+/area/mainship/patrol_base/som{
+	outside = 0
+	})
 "ulW" = (
 /obj/structure/filingcabinet,
 /obj/machinery/light/small{
@@ -22087,7 +22217,9 @@
 	name = ""Youfuckedup" monument.";
 	desc = "To make a mistake is human, to blame it on someone else is even more human."
 	},
-/area/mainship/patrol_base/som)
+/area/mainship/patrol_base/som{
+	outside = 0
+	})
 "usH" = (
 /obj/effect/landmark/start/job/survivor,
 /obj/structure/bed/chair/wood/wings{
@@ -22367,10 +22499,9 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/threeside/regular{
 	dir = 4
 	},
-/area/deltastation/engineering{
+/area/deltastation/engineering/lobby{
 	name = "CLF engineering";
-	outside = 0;
-	ceiling = 6
+	outside = 0
 	})
 "uFl" = (
 /obj/effect/decal/cleanable/blood/splatter/animated,
@@ -22393,7 +22524,9 @@
 /turf/open/floor/mainship/orange{
 	dir = 8
 	},
-/area/mainship/patrol_base/som)
+/area/mainship/patrol_base/som{
+	outside = 0
+	})
 "uIA" = (
 /obj/machinery/door/poddoor/mainship{
 	dir = 2;
@@ -22430,7 +22563,9 @@
 	dir = 8
 	},
 /turf/open/floor/mainship/silver/corner,
-/area/mainship/patrol_base/som)
+/area/mainship/patrol_base/som{
+	outside = 0
+	})
 "uJy" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 2
@@ -22502,9 +22637,8 @@
 /obj/item/weapon/gun/rifle/mpi_km/black/magharness,
 /obj/item/weapon/gun/rifle/mpi_km/black/magharness,
 /turf/open/floor/plating/asteroidfloor,
-/area/outpost/brig/armoury{
-	name = "CLF armoury";
-	ceiling = 6
+/area/outpost/brig/gear_room{
+	name = "CLF armoury"
 	})
 "uNz" = (
 /obj/effect/spawner/random/weaponry/explosive/grenade,
@@ -22549,7 +22683,9 @@
 /turf/open/floor/mainship/silver{
 	dir = 3
 	},
-/area/mainship/patrol_base/som)
+/area/mainship/patrol_base/som{
+	outside = 0
+	})
 "uQN" = (
 /obj/effect/spawner/random/misc/structure/girder/regularweighted,
 /turf/open/ground/grass,
@@ -22561,9 +22697,8 @@
 	},
 /obj/structure/largecrate/supply/medicine/medkits,
 /turf/open/floor/plating/asteroidfloor,
-/area/outpost/brig/armoury{
-	name = "CLF armoury";
-	ceiling = 6
+/area/outpost/brig/gear_room{
+	name = "CLF armoury"
 	})
 "uSd" = (
 /obj/structure/cable,
@@ -23054,7 +23189,9 @@
 /obj/item/weapon/gun/launcher/rocket/oneuse,
 /obj/item/storage/holster/backholster/rpg/som,
 /turf/open/floor/mainship/cargo,
-/area/mainship/patrol_base/som)
+/area/mainship/patrol_base/som{
+	outside = 0
+	})
 "vpO" = (
 /turf/closed/wall/r_wall,
 /area/lv624/lazarus/hydroponics/aux)
@@ -23106,10 +23243,9 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/edge/regular{
 	dir = 4
 	},
-/area/deltastation/engineering{
+/area/deltastation/engineering/lobby{
 	name = "CLF engineering";
-	outside = 0;
-	ceiling = 6
+	outside = 0
 	})
 "vrh" = (
 /obj/structure/kitchenspike,
@@ -23279,7 +23415,9 @@
 /turf/open/floor/mainship/orange{
 	dir = 4
 	},
-/area/mainship/patrol_base/som)
+/area/mainship/patrol_base/som{
+	outside = 0
+	})
 "vzp" = (
 /turf/open/floor/engine/cult{
 	dir = 2
@@ -23308,7 +23446,9 @@
 /turf/open/floor/mainship/orange{
 	dir = 9
 	},
-/area/mainship/patrol_base/som)
+/area/mainship/patrol_base/som{
+	outside = 0
+	})
 "vAz" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/catwalk,
@@ -23517,7 +23657,9 @@
 /turf/open/floor/mainship/purple{
 	dir = 7
 	},
-/area/mainship/patrol_base/som)
+/area/mainship/patrol_base/som{
+	outside = 0
+	})
 "vJB" = (
 /obj/docking_port/stationary/crashmode,
 /turf/open/floor/plating/platebotc,
@@ -23695,13 +23837,15 @@
 /area/lv624/lazarus/research)
 "vRE" = (
 /obj/structure/cable,
+/obj/machinery/power/terminal{
+	dir = 1
+	},
 /turf/open/floor/plating/ground/desertdam/asphalt/edge{
 	dir = 4
 	},
-/area/deltastation/engineering{
+/area/deltastation/engineering/lobby{
 	name = "CLF engineering";
-	outside = 0;
-	ceiling = 6
+	outside = 0
 	})
 "vRW" = (
 /obj/machinery/vending/engineering,
@@ -23771,7 +23915,9 @@
 /turf/open/floor/mainship/silver{
 	dir = 6
 	},
-/area/mainship/patrol_base/som)
+/area/mainship/patrol_base/som{
+	outside = 0
+	})
 "vVq" = (
 /turf/open/floor/marking/bot,
 /area/lv624/lazarus/spaceport2)
@@ -23858,7 +24004,9 @@
 /turf/open/floor/mainship/silver/corner{
 	dir = 1
 	},
-/area/mainship/patrol_base/som)
+/area/mainship/patrol_base/som{
+	outside = 0
+	})
 "vYI" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 8
@@ -23899,10 +24047,9 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/threeside{
 	dir = 4
 	},
-/area/deltastation/engineering{
+/area/deltastation/engineering/lobby{
 	name = "CLF engineering";
-	outside = 0;
-	ceiling = 6
+	outside = 0
 	})
 "waQ" = (
 /obj/structure/cable,
@@ -24084,13 +24231,17 @@
 /turf/open/floor/mainship/sterile/corner{
 	dir = 1
 	},
-/area/mainship/patrol_base/som)
+/area/mainship/patrol_base/som{
+	outside = 0
+	})
 "wkw" = (
 /obj/machinery/computer/camera_advanced/overwatch/som,
 /turf/open/floor/mainship/orange{
 	dir = 4
 	},
-/area/mainship/patrol_base/som)
+/area/mainship/patrol_base/som{
+	outside = 0
+	})
 "wkB" = (
 /obj/structure/disposalpipe/junction/flipped{
 	dir = 8
@@ -24150,7 +24301,9 @@
 /area/lv624/lazarus/secure_storage)
 "wmC" = (
 /turf/open/floor/mainship/sterile/white,
-/area/mainship/patrol_base/som)
+/area/mainship/patrol_base/som{
+	outside = 0
+	})
 "wmU" = (
 /turf/closed/wall,
 /area/lv624/ground/jungle4)
@@ -24350,7 +24503,9 @@
 /turf/open/floor/mainship/purple{
 	dir = 6
 	},
-/area/mainship/patrol_base/som)
+/area/mainship/patrol_base/som{
+	outside = 0
+	})
 "wxW" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /turf/open/floor/plating/ground/dirtgrassborder,
@@ -24387,17 +24542,18 @@
 	},
 /area/lv624/ground/jungle5)
 "wAa" = (
-/obj/alien/weeds/resting,
+/obj/alien/weeds/node/resting,
 /turf/open/floor/plating/ground/dirt,
-/area/deltastation/engineering{
+/area/deltastation/engineering/lobby{
 	name = "CLF engineering";
-	outside = 0;
-	ceiling = 6
+	outside = 0
 	})
 "wAm" = (
 /obj/structure/largecrate/supply/supplies/water,
 /turf/open/floor/mainship/cargo,
-/area/mainship/patrol_base/som)
+/area/mainship/patrol_base/som{
+	outside = 0
+	})
 "wAp" = (
 /obj/structure/table/woodentable,
 /obj/item/storage/bible,
@@ -24441,7 +24597,9 @@
 	id = "somcargodoor"
 	},
 /turf/open/floor/mainship/plate,
-/area/mainship/patrol_base/som)
+/area/mainship/patrol_base/som{
+	outside = 0
+	})
 "wCI" = (
 /obj/item/stack/sheet/wood{
 	amount = 50
@@ -24491,7 +24649,9 @@
 "wEl" = (
 /obj/structure/barricade/plasteel,
 /turf/open/floor/mainship/silver/full,
-/area/mainship/patrol_base/som)
+/area/mainship/patrol_base/som{
+	outside = 0
+	})
 "wEq" = (
 /obj/structure/flora/ausbushes/pointybush,
 /turf/open/liquid/water/river/autosmooth,
@@ -24573,10 +24733,9 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/threeside/regular{
 	dir = 4
 	},
-/area/deltastation/engineering{
+/area/deltastation/engineering/lobby{
 	name = "CLF engineering";
-	outside = 0;
-	ceiling = 6
+	outside = 0
 	})
 "wFE" = (
 /obj/effect/spawner/random/weaponry/melee,
@@ -24688,7 +24847,9 @@
 	dir = 10
 	},
 /turf/open/floor/plating/catwalk,
-/area/mainship/patrol_base/som)
+/area/mainship/patrol_base/som{
+	outside = 0
+	})
 "wKQ" = (
 /turf/open/floor/marking/warning{
 	dir = 8
@@ -24803,7 +24964,9 @@
 	dir = 2
 	},
 /turf/open/floor/mainship/plate,
-/area/mainship/patrol_base/som)
+/area/mainship/patrol_base/som{
+	outside = 0
+	})
 "wQP" = (
 /obj/structure/table,
 /obj/item/tool/weldingtool,
@@ -24824,7 +24987,9 @@
 /turf/open/floor/mainship/silver{
 	dir = 1
 	},
-/area/mainship/patrol_base/som)
+/area/mainship/patrol_base/som{
+	outside = 0
+	})
 "wRx" = (
 /obj/alien/weeds/node,
 /turf/open/floor/tile/purple/whitepurple{
@@ -24960,7 +25125,9 @@
 "wWc" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/mainship/sterile/white,
-/area/mainship/patrol_base/som)
+/area/mainship/patrol_base/som{
+	outside = 0
+	})
 "wWk" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt,
@@ -25078,7 +25245,9 @@
 /turf/open/floor/mainship/purple{
 	dir = 8
 	},
-/area/mainship/patrol_base/som)
+/area/mainship/patrol_base/som{
+	outside = 0
+	})
 "xdc" = (
 /turf/open/floor/plating/ground/dirtgrassborder{
 	dir = 8
@@ -25350,7 +25519,9 @@
 "xod" = (
 /obj/structure/largecrate/random/case,
 /turf/open/floor/mainship/cargo,
-/area/mainship/patrol_base/som)
+/area/mainship/patrol_base/som{
+	outside = 0
+	})
 "xop" = (
 /obj/structure/table/woodentable,
 /obj/item/reagent_containers/food/drinks/drinkingglass,
@@ -25403,10 +25574,9 @@
 "xpE" = (
 /obj/alien/weeds/node,
 /turf/closed/wall/brick,
-/area/deltastation/engineering{
+/area/deltastation/engineering/lobby{
 	name = "CLF engineering";
-	outside = 0;
-	ceiling = 6
+	outside = 0
 	})
 "xqx" = (
 /obj/structure/flora/ausbushes/grassybush,
@@ -25560,10 +25730,9 @@
 "xyZ" = (
 /obj/structure/bed/chair/sofa/right,
 /turf/open/floor/plating/ground/dirt,
-/area/deltastation/engineering{
+/area/deltastation/engineering/lobby{
 	name = "CLF engineering";
-	outside = 0;
-	ceiling = 6
+	outside = 0
 	})
 "xzo" = (
 /obj/structure/device/broken_piano,
@@ -25677,9 +25846,8 @@
 "xFG" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/asteroidfloor,
-/area/outpost/brig/armoury{
-	name = "CLF armoury";
-	ceiling = 6
+/area/outpost/brig/gear_room{
+	name = "CLF armoury"
 	})
 "xFL" = (
 /turf/open/floor/plating/ground/dirt,
@@ -25703,10 +25871,9 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/threeside{
 	dir = 8
 	},
-/area/deltastation/engineering{
+/area/deltastation/engineering/lobby{
 	name = "CLF engineering";
-	outside = 0;
-	ceiling = 6
+	outside = 0
 	})
 "xGM" = (
 /obj/structure/cable,
@@ -25830,9 +25997,8 @@
 /obj/item/storage/box/crate/minisentry,
 /obj/item/storage/box/crate/minisentry,
 /turf/open/floor/plating/asteroidfloor,
-/area/outpost/brig/armoury{
-	name = "CLF armoury";
-	ceiling = 6
+/area/outpost/brig/gear_room{
+	name = "CLF armoury"
 	})
 "xJV" = (
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -25961,7 +26127,9 @@
 	dir = 4
 	},
 /turf/open/floor/mainship/plate,
-/area/mainship/patrol_base/som)
+/area/mainship/patrol_base/som{
+	outside = 0
+	})
 "xQr" = (
 /obj/machinery/door/airlock/mainship/medical/glass/free_access{
 	dir = 1;
@@ -26106,7 +26274,9 @@
 "xYv" = (
 /obj/structure/largecrate/supply/medicine,
 /turf/open/floor/mainship/cargo,
-/area/mainship/patrol_base/som)
+/area/mainship/patrol_base/som{
+	outside = 0
+	})
 "xYV" = (
 /obj/structure/flora/jungle/vines,
 /obj/structure/flora/jungle/vines/heavy,
@@ -26341,7 +26511,9 @@
 	dir = 8
 	},
 /turf/open/floor/mainship/silver/full,
-/area/mainship/patrol_base/som)
+/area/mainship/patrol_base/som{
+	outside = 0
+	})
 "yiq" = (
 /obj/effect/ai_node,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
@@ -26363,7 +26535,9 @@
 	dir = 4
 	},
 /turf/open/floor/mainship/plate,
-/area/mainship/patrol_base/som)
+/area/mainship/patrol_base/som{
+	outside = 0
+	})
 "yiJ" = (
 /obj/structure/catwalk,
 /turf/open/ground/coast{
@@ -88196,7 +88370,7 @@ plr
 psZ
 soH
 lRR
-pti
+rFk
 nOG
 rFk
 wAa

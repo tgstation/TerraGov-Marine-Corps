@@ -150,8 +150,8 @@
 		update() //areas should be lit on startup
 
 		//Break few ACPs on the colony
-		if(!start_charge && is_ground_level(z) && prob(10))
-			addtimer(CALLBACK(src, PROC_REF(set_broken)), 5)
+		//if(!start_charge && is_ground_level(z) && prob(10))
+		//	addtimer(CALLBACK(src, PROC_REF(set_broken)), 5)
 
 /obj/machinery/power/apc/Destroy()
 	GLOB.apcs_list -= src

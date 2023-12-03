@@ -125,7 +125,7 @@
 		return
 	if(get_dist(owner, last_weeded_turf) < AUTO_WEEDING_MIN_DIST)
 		return
-	if(!can_use_action(silent = TRUE))
+	if(!can_use_ability(xeno_owner.loc, TRUE, XACT_IGNORE_SELECTED_ABILITY))
 		return
 	plant_weeds(owner)
 
@@ -603,6 +603,10 @@
 	use_state_flags = XACT_USE_BUCKLED
 
 /datum/action/xeno_action/activable/corrosive_acid/can_use_ability(atom/A, silent = FALSE, override_flags)
+	// Check if it's an acid object we're upgrading
+	if (istype(A, /obj/effect/xenomorph/acid))
+		var/obj/effect/xenomorph/acid/existing_acid = A
+		A = existing_acid.acid_t // Swap the target to the target of the acid
 	. = ..()
 	if(!.)
 		return FALSE
@@ -1024,7 +1028,7 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PSYCHIC_INFLUENCE,
 	)
-	use_state_flags = XACT_USE_LYING
+	use_state_flags = ABILITY_USE_LYING
 	target_flags = XABB_MOB_TARGET
 
 
@@ -1080,7 +1084,7 @@
 	name = "Devour"
 	action_icon_state = "abduct"
 	desc = "Devour your victim to be able to carry it faster."
-	use_state_flags = XACT_USE_STAGGERED|XACT_USE_FORTIFIED|XACT_USE_CRESTED //can't use while staggered, defender fortified or crest down
+	use_state_flags = ABILITY_USE_STAGGERED|ABILITY_USE_FORTIFIED|ABILITY_USE_CRESTED //can't use while staggered, defender fortified or crest down
 	plasma_cost = 0
 	target_flags = XABB_MOB_TARGET
 	keybinding_signals = list(
@@ -1091,7 +1095,7 @@
 	. = ..()
 	if(!.)
 		return
-	if(!ishuman(target) || issynth(target))
+	if(!ismob(target))
 		if(!silent)
 			to_chat(owner, span_warning("That wouldn't taste very good."))
 		return FALSE
@@ -1427,7 +1431,7 @@
 	action_icon_state = "drone_sting"
 	desc = "Infect your victim with a young one without a facehugger. This will burn them a bit."
 	cooldown_timer = 30 SECONDS
-	use_state_flags = XACT_USE_STAGGERED
+	use_state_flags = ABILITY_USE_STAGGERED
 	plasma_cost = 50
 	gamemode_flags = ABILITY_NUCLEARWAR
 	target_flags = XABB_HUMAN_TARGET
@@ -1466,7 +1470,7 @@
 	X.face_atom(victim)
 	X.do_jitter_animation()
 	A.do_jitter_animation()
-	to_chat(owner, span_warning("We will cum in 6 seconds! Do not walk away until it is done."))
+	to_chat(owner, span_warning("We will cum in 7 seconds! Do not walk away until it is done."))
 	playsound(X, 'sound/effects/alien_plapping.ogg', 40, channel = channel)
 	if(!do_after(X, 7 SECONDS, FALSE, victim, BUSY_ICON_DANGER, extra_checks = CALLBACK(owner, TYPE_PROC_REF(/mob, break_do_after_checks), list("health" = X.health))))
 		to_chat(owner, span_warning("We stop fucking \the [victim]. They probably was loose anyways."))
@@ -1475,7 +1479,7 @@
 	owner.visible_message(span_warning("[X] fucks [victim]!"), span_warning("We fuck [victim]!"), span_warning("You hear slapping."), 5, victim)
 	if(victim.stat == CONSCIOUS)
 		to_chat(victim, span_warning("[X] fucks you!"))
-	if(!do_after(X, 6, FALSE, null, BUSY_ICON_DANGER))
+	if(!do_after(X, 7, FALSE, null, BUSY_ICON_DANGER))
 		to_chat(owner, span_warning("We moved too soon and we will have to fuck our victim again!"))
 		return fail_activate()
 	if(!(locate(/obj/item/alien_embryo) in victim))

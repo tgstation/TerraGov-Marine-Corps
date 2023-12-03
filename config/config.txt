@@ -5,7 +5,7 @@ $include dbconfig.txt
 $include resources.txt
 
 ## Server name: This appears at the top of the screen in-game.
-SERVER_NAME SoL|NTC - NTF vs Alien
+SERVER_NAME SoL|NTF vs Alien MRP/ERP +18 | TGMC downstream
 
 ## Hosted by name for unix platforms.
 HOSTEDBY VideNoir
@@ -14,7 +14,7 @@ HOSTEDBY VideNoir
 TITLE Nine Tailed Fox vs Alien
 
 ## Put on byond hub: Uncomment this to put your server on the byond hub.
-#HUB
+HUB
 
 ## Optional URL for faster resource downloading.
 #RESOURCE_URL url
@@ -23,7 +23,7 @@ TITLE Nine Tailed Fox vs Alien
 ADMIN_LEGACY_SYSTEM
 
 ## Add a # infront of this to disable the shutdown server verb.
-ALLOW_SHUTDOWN
+#ALLOW_SHUTDOWN
 
 ## Uncomment to have the changelog file automatically open when a user connects and hasn't seen the latest changelog
 #AGGRESSIVE_CHANGELOG
@@ -201,8 +201,8 @@ GUEST_BAN
 CHECK_RANDOMIZER
 
 ## Uncomment these to set a custom respawn timer; the delay is in ticks.
-MARINE_RESPAWN 10
-XENO_RESPAWN 10
+MARINE_RESPAWN 60
+XENO_RESPAWN 60
 
 ## Automatic balance system
 IS_AUTOMATIC_BALANCE_ON
