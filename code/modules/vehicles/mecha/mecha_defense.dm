@@ -50,12 +50,13 @@
 
 	return damage_taken
 
-/obj/vehicle/sealed/mecha/run_obj_armor(damage_amount, damage_type, damage_flag = 0, attack_dir, armour_penetration)
+/obj/vehicle/sealed/mecha/modify_by_armor(damage_amount, armor_type, penetration, def_zone, attack_dir)
 	. = ..()
-	if(attack_dir)
-		var/facing_modifier = get_armour_facing(abs(dir2angle(dir) - dir2angle(attack_dir)))
-		if(.)
-			. *= facing_modifier
+	if(!.)
+		return
+	if(!attack_dir)
+		return
+	. *= get_armour_facing(abs(dir2angle(dir) - dir2angle(attack_dir)))
 
 /obj/vehicle/sealed/mecha/attack_hand(mob/living/user, list/modifiers)
 	. = ..()
@@ -70,13 +71,10 @@
 /obj/vehicle/sealed/mecha/bullet_act(obj/projectile/hitting_projectile, def_zone, piercing_hit) //wrapper
 	log_message("Hit by projectile. Type: [hitting_projectile]([hitting_projectile.ammo.damage_type]).", LOG_MECHA, color="red")
 	// yes we *have* to run the armor calc proc here I love tg projectile code too
-	try_damage_component(run_obj_armor(
-		damage_amount = hitting_projectile.damage,
-		damage_type = hitting_projectile.ammo.damage_type,
-		damage_flag = hitting_projectile.ammo.armor_type,
-		attack_dir = REVERSE_DIR(hitting_projectile.dir),
-		armour_penetration = hitting_projectile.ammo.penetration,
-	), hitting_projectile.def_zone)
+	try_damage_component(
+		modify_by_armor(hitting_projectile.damage, hitting_projectile.ammo.armor_type, hitting_projectile.ammo.penetration, attack_dir = REVERSE_DIR(hitting_projectile.dir)),
+		hitting_projectile.def_zone,
+	)
 	return ..()
 
 /obj/vehicle/sealed/mecha/ex_act(severity)

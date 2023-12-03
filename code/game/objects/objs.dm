@@ -98,6 +98,12 @@
 		return 4 SECONDS
 	return ..()
 
+/obj/get_soft_armor(armor_type, proj_def_zone)
+	return soft_armor.getRating(armor_type)
+
+/obj/get_hard_armor(armor_type, proj_def_zone)
+	return hard_armor.getRating(armor_type)
+
 /obj/CanAllowThrough(atom/movable/mover, turf/target)
 	. = ..()
 	if(.)
