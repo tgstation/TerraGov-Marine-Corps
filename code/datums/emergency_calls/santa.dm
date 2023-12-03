@@ -161,7 +161,7 @@
 
 /datum/action/innate/summon_paperwork
 	name = "Summon Paperwork"
-	action_icon_state = "santa_summon"
+	action_icon_state = "paper"
 
 /datum/action/innate/summon_paperwork/Activate()
 	var/mob/living/carbon/human/santamob = usr
