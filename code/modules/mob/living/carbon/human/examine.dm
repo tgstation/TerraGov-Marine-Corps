@@ -498,7 +498,7 @@
 		if(species.species_flags & IS_SYNTHETIC)
 			msg += "[span_xenowarning("You sense [t_he] [t_is] not organic.")]\n"
 		if(status_flags & XENO_HOST)
-			msg += "[t_He] [t_is] impregnated and[reagents.get_reagent_amount(/datum/reagent/consumable/larvajelly) > 0 ? "" : "not"] inoculated with Larval Accelerant.\n"
+			msg += "[t_He] [t_is] impregnated and[reagents.get_reagent_amount(/datum/reagent/consumable/larvajelly) > 0 ? "" : " not"] inoculated with Larval Accelerant.\n"
 			if(reagents.get_reagent_amount(/datum/reagent/medicine/tricordrazine))
 				msg += "[reagents.get_reagent_amount(/datum/reagent/medicine/tricordrazine)] doses of Tricordrazine [t_is] still inside the infected host, healing this one slowly.\n"
 			if(reagents.get_reagent_amount(/datum/reagent/medicine/inaprovaline))

@@ -8,6 +8,10 @@
 		changeNext_move(xeno_caste ? xeno_caste.attack_delay : CLICK_CD_MELEE)
 	if(HAS_TRAIT(src, TRAIT_HANDS_BLOCKED))
 		return
+	if(isitem(A))
+		var/obj/item/item = A
+		item.attack_hand(src)
+		return
 
 	var/atom/S = A.handle_barriers(src)
 	S.attack_alien(src, xeno_caste.melee_damage * xeno_melee_damage_modifier, isrightclick = islist(modifiers) ? modifiers["right"] : FALSE)
