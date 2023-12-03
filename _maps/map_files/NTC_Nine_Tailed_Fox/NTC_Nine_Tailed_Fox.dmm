@@ -2317,7 +2317,7 @@
 "Zo" = (/obj/machinery/door/poddoor/mainship/ammo{dir = 2; id = "lowercargohold"; name = "\improper Cargo Hold"},/turf/open/floor/mainship/stripesquare,/area/mainship/hallways/bow_hallway{name = "Ship Floor 1 Hallways"})
 "Zp" = (/obj/machinery/disposal,/obj/structure/disposalpipe/trunk{dir = 4},/turf/open/floor/mainship/black,/area/mainship/living/tankerbunks{outside = 0})
 "Zr" = (/obj/machinery/light{dir = 8},/obj/machinery/door/poddoor/mainship/open/cic{id = "shipside_cic_lockdown"; dir = 2},/turf/open/floor/mainship/mono,/area/mainship/hallways/bow_hallway{name = "Ship Floor 1 Hallways"})
-"Zu" = (/obj/machinery/light{dir = 4},/turf/open/floor/mainship,/area/mainship/shipboard/port_missiles{name = "Shipside Corpsec Office"; outside = 0})
+"Zu" = (/obj/machinery/light{dir = 4},/obj/structure/window/reinforced/tinted{dir = 8},/turf/open/floor/mainship,/area/mainship/shipboard/port_missiles{name = "Shipside Corpsec Office"; outside = 0})
 "Zw" = (/obj/structure/cable,/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{dir = 4},/turf/open/floor/plating/plating_catwalk,/area/mainship/hallways/port_umbilical{name = "Ship Floor 2 Hallways"})
 "Zx" = (/obj/effect/turf_decal/warning_stripes/thin{dir = 8},/turf/open/floor/mainship/cargo/arrow{dir = 8},/area/mainship/command/self_destruct)
 "Zy" = (/obj/machinery/light/small{dir = 8},/obj/structure/cable,/obj/structure/disposalpipe/segment,/turf/open/floor/plating/plating_catwalk,/area/mainship/hull/upper_hull)
