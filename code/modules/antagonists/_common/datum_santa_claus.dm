@@ -98,7 +98,7 @@
 	add_objective(selectedobjective)
 
 /datum/antagonist/event_santa/greet()
-	owner.playsound_local(owner, 'sound/effects/hohoho.ogg', 20, 1)
+	playsound(owner, 'sound/effects/hohoho.ogg', 25, 1)
 	to_chat(owner, span_boldnotice("<br><B>You are Santa Claus!</B>"))
 	to_chat(owner, span_boldnotice("<br><B>You are not an antagonist, so don't act like one!</B>"))
 	to_chat(owner, span_boldnotice("Cooperate with the marines while you complete your objectives and avoid collateral damage or harm to anyone who is not a grinch!"))
