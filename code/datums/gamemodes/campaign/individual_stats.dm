@@ -12,6 +12,8 @@ GLOBAL_LIST_INIT(campaign_perk_list, list(
 	var/currency = 0
 	///Player perks
 	var/list/datum/perk/perks = list()
+	///Unlocked items
+	var/list/datum/loadout_item/unlocked_items = list() //probs some initial list here based on class etc.
 	///The faction associated with these stats
 	var/faction //will we actually need this? Maybe more relevant to have available perks,but may need for ui, depending on how this is viewed
 
@@ -24,6 +26,7 @@ GLOBAL_LIST_INIT(campaign_perk_list, list(
 	ckey = null
 	current_mob = null
 	QDEL_NULL(perks)
+	QDEL_NULL(unlocked_items)
 	return ..()
 
 ///uses some funtokens, returns the amount missing, if insufficient funds
@@ -39,6 +42,25 @@ GLOBAL_LIST_INIT(campaign_perk_list, list(
 		return amount - currency
 	currency -= amount
 
-/datum/individual_stats/proc/apply_bonuses(mob/living/carbon/user)
+/datum/individual_stats/proc/apply_perks(mob/living/carbon/user)
 	for(var/datum/perk/perk AS in perks)
-		perk.apply_perk()
+		perk.apply_perk(user)
+
+//represents an equipable item
+/datum/loadout_item
+	///Item name
+	var/name = "item name here"
+	///Item desc
+	var/desc = "item desc here"
+	///Typepath of the actual item this datum represents
+	var/item_typepath
+	///inventory slot it is intended to go into
+	var/item_slot
+	///Cost to unlock this option
+	var/unlock_cost = 0
+	///Cost to use this option
+	var/purchase_cost = 0
+	///items required for this to be equipped
+	var/list/item_whitelist
+	///items that disallow the equipping of this
+	var/list/item_blacklist
