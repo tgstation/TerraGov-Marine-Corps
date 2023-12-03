@@ -80,7 +80,7 @@
 "bO" = (/obj/structure/disposaloutlet{layer = 5},/obj/structure/disposalpipe/trunk{dir = 4},/obj/structure/window/reinforced{dir = 1},/obj/structure/window/reinforced{dir = 4},/turf/open/floor/plating/plating_catwalk,/area/mainship/hull/lower_hull)
 "bP" = (/obj/effect/soundplayer,/turf/closed/wall/mainship,/area/sulaco/command{name = "Captain's Room"; outside = 0})
 "bQ" = (/obj/machinery/light/small{dir = 4},/turf/open/floor/mainship/stripesquare,/area/mainship/hull/lower_hull)
-"bR" = (/obj/structure/lattice,/turf/closed/shuttle/ert{icon_state = "rightengine_1"; opacity = 0},/area/mainship/hull/lower_hull)
+"bR" = (/obj/structure/lattice,/turf/closed/shuttle/ert{icon_state = "rightengine_1"; opacity = 0; dir = 1},/area/mainship/hull/lower_hull)
 "bS" = (/obj/machinery/bot/roomba{name = "NTC roomba"},/turf/open/floor/mainship/black{dir = 4},/area/mainship/squads{outside = 0})
 "bT" = (/obj/effect/ai_node,/obj/structure/cable,/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,/turf/open/floor/plating/plating_catwalk,/area/outpost/cargo{outside = 1})
 "bU" = (/obj/structure/dropship_equipment/shuttle/flare_launcher,/turf/open/floor/mainship/orange{dir = 4},/area/mainship/hallways/hangar/flight_control{outside = 0; name = "Shuttle Hanger"})
@@ -111,7 +111,7 @@
 "cx" = (/obj/structure/bed/chair/office/dark{dir = 8},/turf/open/floor/mainship/orange{dir = 4},/area/shuttle/canterbury/cic{outside = 1})
 "cz" = (/obj/structure/bed,/obj/item/bedsheet/medical,/obj/machinery/iv_drip,/turf/open/floor/mainship/sterile/side{dir = 4},/area/mainship/medical/lower_medical{outside = 0})
 "cA" = (/turf/open/floor/mainship/sterile/side{dir = 10},/area/mainship/medical/surgery_hallway{name = "Research"; outside = 0})
-"cB" = (/obj/structure/lattice,/turf/closed/shuttle/ert{icon_state = "leftengine_1"; opacity = 0},/area/space)
+"cB" = (/obj/structure/lattice,/turf/closed/shuttle/ert{icon_state = "leftengine_1"; opacity = 0; dir = 1},/area/mainship/hull/upper_hull)
 "cC" = (/obj/structure/cable,/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{dir = 4},/obj/machinery/door/poddoor/railing{id = "elevator_railing"; dir = 2},/turf/open/floor/mainship/cargo/arrow{dir = 1},/area/mainship/hallways/hangar/flight_control{outside = 0; name = "Shuttle Hanger"})
 "cE" = (/obj/structure/dropship_equipment/shuttle/weapon_holder/mortar_holder,/turf/open/floor/mainship/office,/area/mainship/hallways/hangar/flight_control{outside = 0; name = "Shuttle Hanger"})
 "cF" = (/obj/structure/cable,/turf/open/floor/mainship/black{dir = 8},/area/mainship/command/self_destruct)
@@ -224,7 +224,6 @@
 "fe" = (/obj/structure/table/mainship/nometal,/obj/effect/spawner/random/engineering/extinguisher/regularweighted,/obj/item/reagent_containers/spray/cleaner,/obj/item/storage/box/monkeycubes,/obj/machinery/door_display/research_cell/cell,/turf/open/floor/mainship/sterile/dark,/area/mainship/medical/surgery_hallway{name = "Research"; outside = 0})
 "ff" = (/obj/structure/window/framed/mainship/hull,/obj/machinery/door/poddoor/mainship/ai/exterior{dir = 1},/turf/open/floor/mainship_hull/dir{dir = 1},/area/mainship/command/airoom)
 "fh" = (/obj/structure/dropship_equipment/shuttle/weapon_holder/machinegun,/turf/open/floor/mainship/mono,/area/mainship/hallways/hangar/flight_control{outside = 0; name = "Shuttle Hanger"})
-"fi" = (/turf/open/floor/mainship_hull/dir{dir = 6},/area/space)
 "fj" = (/obj/item/facepaint/green,/obj/item/facepaint/green,/obj/item/facepaint/green,/obj/item/tool/hand_labeler,/obj/item/tool/hand_labeler,/obj/item/tool/hand_labeler,/obj/structure/table/reinforced,/obj/structure/cable,/turf/open/floor/mainship/black,/area/mainship/squads{outside = 0})
 "fk" = (/turf/open/floor/mainship/black{dir = 5},/area/mainship/living/tankerbunks{outside = 0})
 "fl" = (/obj/effect/ai_node,/turf/open/floor/wood,/area/mainship/living/tankerbunks{outside = 0})
@@ -375,7 +374,7 @@
 "is" = (/obj/machinery/gear{id = "supply_elevator_gear"},/obj/structure/cable,/turf/open/floor/plating/plating_catwalk,/area/mainship/hallways/hangar/flight_control{outside = 0; name = "Shuttle Hanger"})
 "it" = (/obj/structure/cable,/obj/structure/disposalpipe/segment{dir = 4},/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{dir = 4},/turf/open/floor/plating/plating_catwalk,/area/mainship/hallways/bow_hallway{name = "Ship Floor 1 Hallways"})
 "iu" = (/obj/machinery/atmospherics/components/unary/vent_pump/layer1{dir = 8; on = 1},/turf/open/floor/wood,/area/sulaco/command{name = "Captain's Room"; outside = 0})
-"iv" = (/obj/structure/mirror,/obj/structure/sink{dir = 8},/turf/open/floor/mainship/mono,/area/mainship/living/port_emb)
+"iv" = (/obj/structure/sink{dir = 8},/obj/structure/mirror{dir = 8},/turf/open/floor/mainship/mono,/area/mainship/living/port_emb)
 "iw" = (/obj/structure/bed/bunkbed,/obj/effect/landmark/start/job/squadsmartgunner,/obj/effect/landmark/start/job/squadsmartgunner,/obj/machinery/light/mainship{dir = 8},/turf/open/floor/wood,/area/mainship/living/cryo_cells)
 "ix" = (/obj/effect/ai_node,/turf/open/floor/mainship/orange,/area/outpost/cargo{outside = 1})
 "iy" = (/obj/machinery/light{dir = 8},/turf/open/floor/mainship/stripesquare,/area/mainship/hallways/port_umbilical{name = "Ship Floor 2 Hallways"})
@@ -445,7 +444,6 @@
 "jS" = (/obj/machinery/cloning/vats,/turf/open/floor/mainship/sterile/corner{dir = 1},/area/mainship/medical/upper_medical{outside = 0; name = "Shipside Medbay"})
 "jU" = (/obj/item/trash/cigbutt,/turf/open/floor/wood,/area/mainship/living/cryo_cells)
 "jV" = (/obj/machinery/autodoc,/turf/open/floor/mainship/sterile/corner{dir = 8},/area/mainship/medical/lower_medical{outside = 0})
-"jW" = (/obj/structure/lattice,/turf/open/space/basic,/area/space)
 "jX" = (/obj/machinery/light{dir = 1},/obj/machinery/vending/nanomed,/obj/vehicle/ridden/powerloader,/turf/open/floor/mainship/cargo,/area/outpost/cargo{outside = 1})
 "jY" = (/obj/machinery/door/firedoor/mainship{dir = 2},/obj/machinery/light{dir = 4},/turf/open/floor/stairs/rampbottom,/area/mainship/hallways/port_umbilical{name = "Ship Floor 2 Hallways"})
 "jZ" = (/turf/closed/wall/mainship,/area/mainship/hallways/port_umbilical{name = "Ship Floor 2 Hallways"})
@@ -1008,7 +1006,7 @@
 "wB" = (/turf/closed/wall/mainship/white,/area/mainship/medical/operating_room_four)
 "wC" = (/obj/structure/table/mainship/nometal,/obj/machinery/computer/marine_card,/turf/open/floor/carpet/side{dir = 1},/area/sulaco/command{name = "Captain's Room"; outside = 0})
 "wD" = (/obj/effect/turf_decal/warning_stripes/thin,/obj/structure/rack,/obj/item/stack/sheet/mineral/phoron{amount = 25},/obj/structure/cable,/turf/open/floor/mainship/black{dir = 4},/area/mainship/living/tankerbunks{outside = 0})
-"wE" = (/obj/structure/lattice,/turf/closed/shuttle/ert{icon_state = "rightengine_1"; opacity = 0},/area/mainship/hull/upper_hull)
+"wE" = (/obj/structure/lattice,/turf/closed/shuttle/ert{icon_state = "rightengine_1"; opacity = 0; dir = 1},/area/mainship/hull/upper_hull)
 "wF" = (/obj/structure/table/mainship,/obj/item/storage/bible,/turf/open/floor/freezer,/area/mainship/living/cafeteria_starboard)
 "wG" = (/obj/machinery/light/small{dir = 8},/turf/open/floor/mainship/mono,/area/mainship/hull/upper_hull)
 "wH" = (/obj/structure/window/framed/mainship/requisitions,/turf/open/floor/mainship,/area/mainship/shipboard/port_missiles{name = "Shipside Corpsec Office"; outside = 0})
@@ -1149,7 +1147,7 @@
 "zy" = (/turf/closed/shuttle/ert{icon_state = "rightengine_2"; opacity = 0},/area/mainship/hull/lower_hull)
 "zz" = (/obj/machinery/telecomms/processor/preset_three,/turf/open/floor/mainship/tcomms,/area/mainship/command/telecomms{outside = 0})
 "zA" = (/obj/structure/disposalpipe/segment/corner{dir = 8},/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{dir = 9},/obj/structure/cable,/turf/open/floor/mainship/sterile/side{dir = 6},/area/mainship/medical/upper_medical{outside = 0; name = "Shipside Medbay"})
-"zB" = (/obj/machinery/light{dir = 1},/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,/obj/structure/disposalpipe/segment,/turf/open/floor/mainship/mono,/area/mainship/hallways/bow_hallway{name = "Ship Floor 1 Hallways"})
+"zB" = (/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,/obj/structure/disposalpipe/segment,/turf/open/floor/mainship/mono,/area/mainship/hallways/bow_hallway{name = "Ship Floor 1 Hallways"})
 "zC" = (/obj/structure/bed/bunkbed,/obj/effect/landmark/start/job/squadmarine,/obj/effect/landmark/start/job/squadcorpsman,/obj/effect/decal/cleanable/pie_smudge,/turf/open/floor/wood,/area/mainship/living/cryo_cells)
 "zD" = (/obj/machinery/researchcomp,/turf/open/floor/mainship/sterile/side{dir = 8},/area/mainship/medical/surgery_hallway{name = "Research"; outside = 0})
 "zF" = (/obj/machinery/atmospherics/components/unary/cryo_cell,/turf/open/floor/mainship/sterile/corner{dir = 1},/area/mainship/medical/upper_medical{outside = 0; name = "Shipside Medbay"})
@@ -1256,7 +1254,6 @@
 "Cd" = (/obj/vehicle/unmanned/droid,/obj/item/uav_turret/droid,/obj/machinery/door/window/secure/bridge/aidoor,/turf/open/floor/mech_bay_recharge_floor,/area/mainship/hull/upper_hull)
 "Ce" = (/turf/open/floor/mainship/red{dir = 5},/area/mainship/shipboard/port_missiles{name = "Shipside Corpsec Office"; outside = 0})
 "Cf" = (/turf/open/floor/mainship/black/full,/area/mainship/command/self_destruct)
-"Cg" = (/obj/structure/lattice,/turf/closed/shuttle/ert{icon_state = "leftengine_1"; opacity = 0},/area/mainship/hull/upper_hull)
 "Ch" = (/turf/open/floor/mainship/tcomms,/area/mainship/command/self_destruct)
 "Ci" = (/obj/structure/table/mainship,/obj/machinery/computer/med_data/laptop,/turf/open/floor/mainship/sterile{dir = 8},/area/mainship/medical/lower_medical{outside = 0})
 "Cj" = (/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{dir = 4},/obj/structure/cable,/obj/structure/disposalpipe/segment{dir = 4},/turf/open/floor/plating/plating_catwalk,/area/mainship/hallways/port_umbilical{name = "Ship Floor 2 Hallways"})
@@ -1486,7 +1483,6 @@
 "Hf" = (/obj/machinery/vending/MarineMed,/obj/machinery/camera/autoname/mainship{dir = 8},/turf/open/floor/mainship/sterile/side{dir = 4},/area/mainship/medical/upper_medical{outside = 0; name = "Shipside Medbay"})
 "Hg" = (/obj/machinery/power/apc/mainship,/obj/structure/cable,/turf/open/floor/wood,/area/mainship/living/officer_study)
 "Hi" = (/obj/machinery/computer/body_scanconsole,/turf/open/floor/mainship/sterile/side{dir = 1},/area/mainship/medical/lower_medical{outside = 0})
-"Hk" = (/obj/structure/lattice,/turf/closed/shuttle/ert{icon_state = "rightengine_1"; opacity = 0},/area/space)
 "Hl" = (/obj/structure/cable,/obj/machinery/door_control/ai/exterior{dir = 4},/turf/open/floor/mainship/red{dir = 9},/area/mainship/command/airoom)
 "Hm" = (/obj/structure/cable,/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,/obj/machinery/door/poddoor/mainship/open/cic{id = "shipside_cic_lockdown"; dir = 2},/turf/open/floor/plating/plating_catwalk,/area/mainship/hallways/port_umbilical{name = "Ship Floor 2 Hallways"})
 "Hn" = (/obj/structure/window/reinforced{dir = 4},/obj/structure/window/reinforced{dir = 8},/obj/structure/window/reinforced,/obj/machinery/vending/armor_supply,/turf/open/floor/mainship,/area/orion_outpost/surface/building/prep{name = "Specialist Preperations"})
@@ -1570,7 +1566,6 @@
 "Jd" = (/obj/structure/prop/mainship/hangar_stencil,/turf/open/floor/plating,/area/mainship/hallways/hangar/flight_control{outside = 0; name = "Shuttle Hanger"})
 "Je" = (/obj/structure/dropship_equipment/cas/weapon/heavygun,/turf/open/floor/mainship/floor,/area/mainship/hallways/hangar/flight_control{outside = 0; name = "Shuttle Hanger"})
 "Jf" = (/obj/machinery/light/small{dir = 8},/obj/structure/cable,/obj/effect/ai_node,/turf/open/floor/plating/plating_catwalk,/area/mainship/hull/lower_hull)
-"Jg" = (/turf/closed/shuttle/ert{icon_state = "leftengine_2"; opacity = 0},/area/space)
 "Jh" = (/obj/machinery/light,/obj/machinery/atmospherics/components/unary/vent_pump/layer1{dir = 4; on = 1},/turf/open/floor/mainship/cargo,/area/mainship/hallways/hangar/flight_control{outside = 0; name = "Shuttle Hanger"})
 "Ji" = (/obj/machinery/marine_selector/gear/leader,/turf/open/floor/mainship,/area/mainship/squads{outside = 0})
 "Jj" = (/obj/structure/disposalpipe/segment{dir = 4},/turf/open/floor/mainship/mono,/area/shuttle/canterbury/cic{outside = 1})
@@ -1932,7 +1927,6 @@
 "QX" = (/obj/structure/cable,/obj/structure/disposalpipe/segment,/obj/effect/ai_node,/turf/open/floor/mainship/mono,/area/mainship/hull/upper_hull)
 "QY" = (/obj/machinery/light/small{dir = 1},/obj/machinery/power/smes{output_level = 200000},/turf/open/floor/plating/plating_catwalk,/area/deltastation/engineering/main{outside = 0})
 "QZ" = (/obj/effect/landmark/start/latejoin,/obj/structure/ladder{id = "NTFLadderCryo2"; height = 1},/turf/open/floor/mainship/mono,/area/centcom/valhalla/crew_quarters/cryo)
-"Ra" = (/turf/open/floor/mainship_hull,/area/space)
 "Rb" = (/obj/machinery/door/airlock/mainship/evacuation,/turf/open/floor/mainship/mono,/area/mainship/living/evacuation/pod/one)
 "Rc" = (/obj/machinery/door_control/mainship/req{id = "qm_warehouse"; name = "Requisition Warehouse Shutters"},/obj/machinery/computer/mech_bay_power_console,/turf/open/floor/mainship/green{dir = 1},/area/campaign/jungle_outpost/outpost/req{name = "\improper Shipside Req"})
 "Rd" = (/obj/item/trash/cigbutt{pixel_x = 5; pixel_y = -8},/obj/item/trash/cigbutt{pixel_x = -8; pixel_y = 3},/turf/open/floor/mainship/cargo,/area/mainship/squads{outside = 0})
@@ -1969,7 +1963,6 @@
 "RO" = (/turf/open/floor/mainship/sterile/corner{dir = 1},/area/mainship/medical/upper_medical{outside = 0; name = "Shipside Medbay"})
 "RP" = (/obj/machinery/light{dir = 1},/turf/open/floor/mainship/mono,/area/outpost/cargo{outside = 1})
 "RR" = (/obj/machinery/light{dir = 8},/obj/machinery/camera/autoname/mainship{dir = 4},/turf/open/floor/plating/plating_catwalk,/area/mainship/hallways/hangar/flight_control{outside = 0; name = "Shuttle Hanger"})
-"RS" = (/turf/closed/shuttle/ert{icon_state = "rightengine_2"; opacity = 0},/area/space)
 "RT" = (/obj/structure/window/framed/mainship/requisitions,/turf/open/floor/mainship/mono,/area/mainship/hallways/port_umbilical{name = "Ship Floor 2 Hallways"})
 "RU" = (/turf/open/floor/mainship/sterile/corner{dir = 8},/area/mainship/medical/upper_medical{outside = 0; name = "Shipside Medbay"})
 "RV" = (/obj/structure/bed/bunkbed,/obj/effect/landmark/start/job/squadmarine,/obj/effect/landmark/start/job/squadmarine,/obj/item/trash/barcardine,/obj/machinery/firealarm{dir = 8},/turf/open/floor/wood,/area/mainship/living/cryo_cells)
@@ -2003,7 +1996,6 @@
 "SB" = (/obj/machinery/door/airlock/mainship/maint{dir = 8},/obj/structure/cable,/turf/open/floor/plating/plating_catwalk,/area/mainship/hull/lower_hull)
 "SC" = (/obj/machinery/door/airlock/mainship/maint,/obj/machinery/door/poddoor/mainship/open/cic{id = "shipside_cic_lockdown"},/turf/open/floor/plating/plating_catwalk,/area/deltastation/engineering/engine_smes{outside = 0})
 "SD" = (/obj/machinery/computer/autodoc_console,/turf/open/floor/mainship/sterile,/area/mainship/medical/upper_medical{outside = 0; name = "Shipside Medbay"})
-"SE" = (/turf/open/floor/mainship_hull/dir,/area/space)
 "SF" = (/obj/structure/disposalpipe/junction{dir = 4},/turf/open/floor/mainship/mono,/area/mainship/hallways/port_umbilical{name = "Ship Floor 2 Hallways"})
 "SG" = (/obj/machinery/light/mainship{dir = 1},/obj/machinery/camera/autoname/mainship{dir = 8},/obj/vehicle/unmanned/droid/ripley,/turf/open/floor/mech_bay_recharge_floor,/area/campaign/jungle_outpost/outpost/req{name = "\improper Shipside Req"})
 "SH" = (/obj/structure/prop/mainship/mapping_computer,/turf/open/floor/mainship/blue{dir = 5},/area/shuttle/canterbury/cic{outside = 1})
@@ -2166,7 +2158,7 @@
 "VU" = (/obj/machinery/marine_selector/clothes/leader,/turf/open/floor/mainship,/area/mainship/squads{outside = 0})
 "VV" = (/obj/machinery/door/airlock/mainship/maint{dir = 2},/turf/open/floor/mainship/mono,/area/mainship/hull/lower_hull)
 "VZ" = (/turf/open/floor/mainship/mono,/area/mainship/hallways/port_umbilical{name = "Ship Floor 2 Hallways"})
-"Wa" = (/obj/structure/mirror,/obj/structure/sink{dir = 4; pixel_x = 8},/turf/open/floor/mainship/mono,/area/mainship/living/port_emb)
+"Wa" = (/obj/structure/sink{dir = 4; pixel_x = 8},/obj/structure/mirror{dir = 4},/turf/open/floor/mainship/mono,/area/mainship/living/port_emb)
 "Wb" = (/obj/docking_port/stationary/marine_dropship/hangar/two,/turf/open/floor/plating,/area/mainship/hallways/hangar/flight_control{outside = 0; name = "Shuttle Hanger"})
 "Wc" = (/obj/effect/decal/cleanable/cobweb,/turf/open/floor/mainship/tcomms,/area/mainship/command/self_destruct)
 "Wd" = (/obj/machinery/light/mainship/small,/turf/open/floor/mainship/black{dir = 1},/area/mainship/command/self_destruct)
@@ -2236,7 +2228,7 @@
 "XA" = (/obj/structure/disposalpipe/segment{dir = 4},/obj/effect/ai_node,/turf/open/floor/mainship/cargo/arrow,/area/mainship/squads{outside = 0})
 "XB" = (/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,/obj/machinery/door/poddoor/mainship/ammo{dir = 2; id = "cargohold"; name = "\improper Shuttle Bay"},/turf/open/floor/mainship/stripesquare,/area/mainship/hallways/port_umbilical{name = "Ship Floor 2 Hallways"})
 "XC" = (/turf/open/floor/freezer,/area/mainship/living/cafeteria_starboard)
-"XE" = (/obj/structure/lattice,/turf/closed/shuttle/ert{icon_state = "leftengine_1"; opacity = 0},/area/mainship/hull/lower_hull)
+"XE" = (/obj/structure/lattice,/turf/closed/shuttle/ert{icon_state = "leftengine_1"; opacity = 0; dir = 1},/area/mainship/hull/lower_hull)
 "XF" = (/obj/effect/soundplayer,/turf/closed/wall/mainship,/area/mainship/hallways/starboard_hallway)
 "XG" = (/obj/machinery/vending/weapon,/turf/open/floor/mainship/floor,/area/mainship/hallways/hangar/flight_control{outside = 0; name = "Shuttle Hanger"})
 "XH" = (/obj/structure/table/mainship,/obj/item/tool/wrench,/obj/item/storage/firstaid/rad,/obj/machinery/light{dir = 1},/turf/open/floor/mainship/mono,/area/deltastation/engineering{name = "Engine Monitoring"; outside = 0})
@@ -2429,7 +2421,7 @@ bnEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBWHxAdSGCUtUtUtUtUtUtUtUtUtUtUtUtUtjZ
 bnEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBWHxAdStslGPQonekonononekxaonekononCSyByuLqZwcUkvjijijitQjikvjiwqjikvjijijikvjiiDNEjikvjiIEGUhAjhRDPzoncszqdSxAxAxAorEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBbn
 bnEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBWHxAxAdSdSdSHsUtUtUtUtUtUtUtxgUtUtUtjZjbuvuvjYjZUtUtUtUtUtUtUtUtGwUtUtUtUtUtUtUtUtUtUtUtUtTuTxUhBrwtTuUtUtAtdSxAxAxAxAoyEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBbn
 bnEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBWHAXdGxAxAdSPeUtuuuuuuuuzRuuuuuuuuuudhuuuuuuuubGuuuuuuuuzRuuuuuuzuzuXTRxALRxPbDxymPugQRxRxdhuuvLuuuufduuUtYzdSxAxAdGAXorEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBbn
-bnEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBwNOZCgxAxAdSurUtuuQbnLQEnLnLnLnLnLAanLQbuuuuQbnLQEnLnLnLnLnLAanLQbuuzuuuuuuuuusIuuuuuuuuuuuuuuiHuuCzCBETUtzqdSxAxACgOZddEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBbn
+bnEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBwNOZcBxAxAdSurUtuuQbnLQEnLnLnLnLnLAanLQbuuuuQbnLQEnLnLnLnLnLAanLQbuuzuuuuuuuuusIuuuuuuuuuuuuuuiHuuCzCBETUtzqdSxAxAcBOZddEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBbn
 bnEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBWHxAdSonUtuunLnLQEnLnLnLnLnLAanLnLuuuunLnLQEnLnLnLnLnLAanLnLuuwxyVyVyVyVyVkcyVyVyVyVyVyVYBuuuuuuETUtzqdSxAorEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBbn
 bnEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBWHxAdSonUtHALhwcYYnLnLnLnLnLTAwcoVuuuuLhwcYYnLnLnLnLnLTAwcoVuuRCfhVuuunCuuuuuuuuuuuuuuuuuuuuuumcRAUtzqdSxAorEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBbn
 bnEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBWHxAdSonUtuuQEWeMZnLnLnLnLnLMZWeAauuuuQEWeMZnLnLnLnLnLMZWeAauuRCMgRxuunCuuMTdWdWdWDnJCEadWdWdWSZGpUtzqdSxAorEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBbn
@@ -2454,8 +2446,8 @@ bnEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBWHxAdSwRUtuuuuuuuuuuuuuuuuuuuuuu
 bnEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBwNxAdSHsUtuuRxOLZmALdpRxpRRxMxRxiBRxTuuuuuuuuupMuuuuuuuuuuuuuuuuuuuuQhTuRxPDRxALMdhrRxyYRxRxBEyYuuUtxgdSddEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBqcbn
 bnEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBwNdSpMuuuumakAkARxALRxdpmaZmRxMxRxuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuPDRxPDMdLvMdRxRxBMhrRxmauupMuuMfEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBqcbn
 bnEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBdSdSdSMfMfMfMfMfMfMfMfMfMfMfMfMfMfMfMfMfBPBPBPBPMfMfBPBPBPBPMfMfMfMfMfMfMfMfMfMfMfMfMfMfMfMfMfMfMfMfEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBqcbn
-bnEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBDpAXwNdGbjAXdGbjAXdGbjAXxAxAdSdSRaRaSEDpJgRSSEJgRSSEJgRSSESERaRadSdSxAxAAXdGbjAXdGbjAXdGbjddAXddEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBqcbn
-bnEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBzdCgwEzdCgwEzdCgwEzdwNdddSdSDpfijWjWcBHkjWcBHkjWcBHkjWjWDpfidSdSwNddzdCgwEzdCgwEzdCgwEzdJuEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBqcbn
+bnEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBDpAXwNdGbjAXdGbjAXdGbjAXxAxAdSdSxAxAAXwNdGbjAXdGbjAXdGbjAXAXxAxAdSdSxAxAAXdGbjAXdGbjAXdGbjddAXddEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBqcbn
+bnEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBzdcBwEzdcBwEzdcBwEzdwNdddSdSwNddzdzdcBwEzdcBwEzdcBwEzdzdwNdddSdSwNddzdcBwEzdcBwEzdcBwEzdJuEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBqcbn
 bnEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBSISISISISISIEBSISIEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBqcbn
 bnEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBqcbn
 bnEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBqcbn
@@ -2541,7 +2533,7 @@ bnEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBzKJlJlNNEdFWPYjPiUjJjJjJjJjJjJjJjJjJ
 bnEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBzKJlyrNNEdjPPYjPiUjJjJjJjJjJjJjJjJjJjJjJjJjJjJiUjPkZjPmUAQpQhLpQWVxVsasaBHgXMEOKWIUenxnxglECnxFHyheJTFWISNEdSJfbJluyEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBbn
 bnEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBzKJlbOkNEdjPPYjPiUjJmmjJEGjJjJjJjJjJjJEGjJmmjJiUjPkZjPeoHnOFLBAIMAeoABQKQKQKeoPYWIHZMvUHmtDskkApWIDOjyWIsiEdSJMWJluyEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBbn
 bnEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBzKJlReACEdjPPYjPzhiUiUiUzviUiUiUiUiUiUzviUiUiUiUFWkZqwrIeoeoeoeoeoeoeoeoeoeoeolgWIWIWIwTcwWIWIPyWIWIWIWIsiEdEdowJluyEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBbn
-bnEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBzKJlxCAMEdFWPYjPjPjPTVjPjPUrjPjPjPjPjPjPyPjPUrjPjPkZaQqwqwaIEDmiqwhgqwqwqwqwqwbmqwqwqwjPzBgjjPjPjPqwqwEdsiEdFpbQJluyEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBbn
+bnEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBzKJlxCAMEdFWPYjPjPjPTVjPjPUrjPjPjPjPjPjPyPjPUrjPjPkZaQqwqwaIEDmiqwhgqwqwqwqwqwbmqwqwqwUrzBgjjPjPjPqwqwEdsiEdFpbQJluyEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBbn
 bnEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBzKJlJlFxEdjPPYqePYPYPYPYPYPYPYPYPYPYPYPYfLoUoUoUoUiIiGiGiGiGiGiGiGitititititititititititPooUXIoUoUoUoUhjBKJlJlowJluyEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBbn
 bnEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBzKTeJlAMEdjPjPjPjPjPjPjPjPjPjPESjPjPjPjPTSjPjPjPjPjPjPSkjPESjPjPjPjPjPjPjPjPjPjPjPjPjPjPjPjPTSjPjPjPjPEdsiJlTeTeTeuyEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBbn
 bnEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBzKTeJlAMEdiUqwoDqwqwqwqwoDqwqwqwqwiUZoZoZTZoiUqwoDqwqwQAqwoDqwqwqwqwqwqwqwqwqwqwqwqwqwiUSPSPzZSPiUybldEdsiJlTeTeTeuyEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBEBbn
