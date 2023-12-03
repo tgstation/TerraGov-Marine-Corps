@@ -548,6 +548,11 @@
 			/obj/structure/closet/crate/mortar_ammo/mortar_kit = -1,
 			/obj/structure/closet/crate/mortar_ammo/howitzer_kit = -1,
 			/obj/structure/largecrate/supply/weapons/standard_atgun = -1,
+			/obj/item/ammo_magazine/standard_atgun = -1,
+			/obj/item/ammo_magazine/standard_atgun/apcr = -1,
+			/obj/item/ammo_magazine/standard_atgun/he = -1,
+			/obj/item/ammo_magazine/standard_atgun/beehive = -1,
+			/obj/item/ammo_magazine/standard_atgun/incend = -1,
 			/obj/item/storage/box/crate/sentry = -1,
 			/obj/item/storage/box/tl102 = -1,
 			/obj/item/weapon/gun/heavymachinegun = -1,
@@ -682,6 +687,19 @@
 
 /obj/machinery/vending/cigarette/nopower
 	use_power = NO_POWER_USE
+
+/obj/machinery/vending/cigarette/valhalla
+	resistance_flags = INDESTRUCTIBLE
+	use_power = NO_POWER_USE
+	products = list(
+		/obj/item/storage/fancy/cigarettes/luckystars = -1,
+		/obj/item/storage/fancy/chemrettes = -1,
+		/obj/item/storage/box/matches = -1,
+		/obj/item/tool/lighter/random = -1,
+		/obj/item/tool/lighter/zippo = -1,
+		/obj/item/clothing/mask/cigarette/cigar/havana = -1,
+		/obj/item/storage/fancy/cigar = -1,
+	)
 
 /obj/machinery/vending/cargo_supply
 	name = "\improper Operational Supplies Vendor"
@@ -845,6 +863,10 @@
 					/obj/item/reagent_containers/food/snacks/mre_pack/xmas2 = 25,
 					/obj/item/reagent_containers/food/snacks/mre_pack/xmas3 = 25)*/
 
+/obj/machinery/vending/marineFood/valhalla
+	resistance_flags = INDESTRUCTIBLE
+	use_power = NO_POWER_USE
+
 /obj/machinery/vending/marineFood/som
 	name = "\improper SOM Food and Drinks Vendor"
 	faction = FACTION_SOM
@@ -1000,6 +1022,7 @@
 	icon_vend = "surplus-vend"
 	icon_deny = "surplus_armor-deny"
 	isshared = TRUE
+	wrenchable = FALSE
 	product_ads = "You are out of uniform, marine! Where is your armor? Don't have any? You expect me to believe that, maggot?;Why wear heavy armor and unable to chase the enemy when you can go light and zoom by your peers?;Thank your armor later when you didn't die!;I remember PAS, do you remember PAS?;Time to paint the rainbow!;So many selections to choose from!"
 	products = list(
 		"Xenonauten" = list(
@@ -1131,6 +1154,21 @@
 			/obj/item/clothing/head/modular/marine/old/assault = -1,
 			/obj/item/clothing/head/modular/marine/old/eod = -1,
 		),
+		"Hardsuits" = list(
+			/obj/item/clothing/suit/modular/hardsuit_exoskeleton = -1,
+			/obj/item/clothing/head/modular/marine/hardsuit_helm/markfive = -1,
+			/obj/item/armor_module/armor/chest/marine/hardsuit/syndicate_markfive = -1,
+			/obj/item/armor_module/armor/arms/marine/hardsuit_arms/syndicate_markfive = -1,
+			/obj/item/armor_module/armor/legs/marine/hardsuit_legs/syndicate_markfive = -1,
+			/obj/item/clothing/head/modular/marine/hardsuit_helm/markthree = -1,
+			/obj/item/armor_module/armor/chest/marine/hardsuit/syndicate_markthree = -1,
+			/obj/item/armor_module/armor/arms/marine/hardsuit_arms/syndicate_markthree = -1,
+			/obj/item/armor_module/armor/legs/marine/hardsuit_legs/syndicate_markthree = -1,
+			/obj/item/clothing/head/modular/marine/hardsuit_helm/markone = -1,
+			/obj/item/armor_module/armor/chest/marine/hardsuit/syndicate_markone = -1,
+			/obj/item/armor_module/armor/arms/marine/hardsuit_arms/syndicate_markone = -1,
+			/obj/item/armor_module/armor/legs/marine/hardsuit_legs/syndicate_markone = -1,
+		),
 	)
 
 	prices = list()
@@ -1145,6 +1183,7 @@
 	icon_state = "surplus_clothes"
 	icon_vend = "surplus-vend"
 	icon_deny = "surplus_clothes-deny"
+	wrenchable = FALSE
 	isshared = TRUE
 	product_ads = "Be the musician that you parents never approve you of.;You gotta look good when you're in the battlefield.;We have all types of hats here!;What did one hat say to the other on the hiking trip? I'll wait here, you go on ahead;Sometimes, a beret is better than a helmet.;Drip is the priority, marine."
 	products = list(
@@ -1437,6 +1476,9 @@
 			/obj/item/ammo_magazine/standard_agls/flare = -1,
 			/obj/item/ammo_magazine/standard_agls/cloak = -1,
 			/obj/item/ammo_magazine/standard_agls/tanglefoot = -1,
+			/obj/item/weapon/gun/heavy_isg = -1,
+			/obj/item/ammo_magazine/heavy_isg/he = -1,
+			/obj/item/ammo_magazine/heavy_isg/sabot = -1,
 		),
 		"Equipment" = list(
 			/obj/item/clothing/glasses/hud/xenohud = -1,
@@ -1611,6 +1653,7 @@
 	icon_deny = "tool-deny"
 	icon_vend = "tool-vend"
 	isshared = TRUE
+	wrenchable = FALSE
 	products = list(
 		/obj/item/stack/cable_coil = -1,
 		/obj/item/tool/crowbar = -1,
@@ -1633,6 +1676,7 @@
 	icon_state = "requisitionop"
 	resistance_flags = INDESTRUCTIBLE
 	use_power = NO_POWER_USE
+	wrenchable = FALSE
 	products = list(
 		"Weapon" = list(
 			/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/pistol = -1,

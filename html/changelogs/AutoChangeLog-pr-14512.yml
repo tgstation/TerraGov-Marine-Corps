@@ -1,0 +1,9 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - rscadd: "Added a stamina skill to boost stamina regen and stamina regen delay time. Currently not available to normal roles"
+  - balance: "high weapon skills as seen on PMC and the like now provide a 5% damage boost per level with the appropriate weaponry"
+  - balance: "Melee skill now adds +15% damage instead of 30% with melee weapons"
+  - balance: "Removed some old MP CQC interactions"
+  - balance: "Captain no longer has elite skills in basically every category"
+  - balance: "Sectoids are no longer melee masters"

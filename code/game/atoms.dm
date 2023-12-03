@@ -950,3 +950,29 @@ directive is properly returned.
 ///Adds the debris element for projectile impacts
 /atom/proc/add_debris_element()
 	AddElement(/datum/element/debris, null, -15, 8, 0.7)
+
+/**
+	Returns a number after taking into account both soft and hard armor for the specified damage type, usually damage
+
+	Arguments
+	* Damage_amount: The original unmodified damage
+	* armor_type: The type of armor by which the damage will be modified
+	* penetration: How much the damage source might bypass the armour value (optional)
+	* def_zone: What part of the body we want to check the armor of (optional)
+	* attack_dir: What direction the attack was from (optional)
+
+	Hard armor reduces penetration by a flat amount, and sunder in the case of xenos
+	Penetration reduces soft armor by a flat amount.
+	Damage cannot go into the negative, or exceed the original amount.
+*/
+/atom/proc/modify_by_armor(damage_amount, armor_type, penetration, def_zone, attack_dir)
+	penetration = max(0, penetration - get_hard_armor(armor_type, def_zone))
+	return clamp((damage_amount * (1 - ((get_soft_armor(armor_type, def_zone) - penetration) * 0.01))), 0, damage_amount)
+
+///Returns the soft armor for the given atom. If human and a limb is specified, gets the armor for that specific limb.
+/atom/proc/get_soft_armor(armor_type, proj_def_zone)
+	return
+
+///Returns the hard armor for the given atom. If human and a limb is specified, gets the armor for that specific limb.
+/atom/proc/get_hard_armor(armor_type, proj_def_zone)
+	return

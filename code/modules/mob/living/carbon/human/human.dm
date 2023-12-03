@@ -115,6 +115,10 @@
 	if(marksman_aura)
 		. += "You are affected by a FOCUS order."
 
+/mob/living/carbon/human/set_skills(datum/skills/new_skillset)
+	. = ..()
+	update_stam_skill_mod(skills)
+
 /mob/living/carbon/human/ex_act(severity)
 	if(status_flags & GODMODE)
 		return
@@ -281,7 +285,6 @@
 	var/siemens_coeff = base_siemens_coeff * get_siemens_coefficient_organ(affected_organ)
 
 	return ..(shock_damage, source, siemens_coeff, def_zone)
-
 
 /mob/living/carbon/human/Topic(href, href_list)
 	. = ..()

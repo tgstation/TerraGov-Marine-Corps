@@ -1,0 +1,4 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - code_imp: "Standardised obj damage calcs to mob and turf damage calcs"
