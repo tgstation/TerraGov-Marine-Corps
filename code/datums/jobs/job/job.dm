@@ -283,7 +283,7 @@ GLOBAL_PROTECT(exp_specialmap)
 	job = assigned_role
 	set_skills(getSkillsType(job.return_skills_type(player?.prefs)))
 	for(var/shadowlang AS in assigned_role.shadow_languages)
-	language_holder.grant_language(shadowlang, TRUE)
+		language_holder.grant_language(shadowlang, TRUE)
 	faction = job.faction
 	job.announce(src)
 	GLOB.round_statistics.total_humans_created[faction]++

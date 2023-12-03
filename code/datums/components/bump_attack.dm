@@ -111,7 +111,7 @@
 	var/mob/living/bumper = parent
 	if(bumper.next_move > world.time)
 		return COMPONENT_BUMP_RESOLVED //We don't want to push people while on attack cooldown.
-	bumper.UnarmedAttack(target, TRUE, bump_slash = TRUE)
+	bumper.UnarmedAttack(target, TRUE)
 	TIMER_COOLDOWN_START(src, COOLDOWN_BUMP_ATTACK, CLICK_CD_MELEE)
 	return COMPONENT_BUMP_RESOLVED
 
@@ -122,7 +122,7 @@
 		return COMPONENT_BUMP_RESOLVED //We don't want to push people while on attack cooldown.
 	var/obj/item/held_item = bumper.get_active_held_item()
 	if(!held_item)
-		bumper.UnarmedAttack(target, TRUE, bump_slash = TRUE)
+		bumper.UnarmedAttack(target, TRUE)
 	else if(held_item.flags_item & CAN_BUMP_ATTACK)
 		held_item.melee_attack_chain(bumper, target)
 	else //disables pushing if you have bump attacks on, so you don't accidentally misplace your enemy when switching to an item that can't bump attack
