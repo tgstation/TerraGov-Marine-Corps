@@ -20,9 +20,9 @@
 
 ///Attempts to add an item to a loadout
 /datum/loadout_item/proc/attempt_add_loadout_item(datum/outfit/quick/loadout)
-	if(length(new_item.item_whitelist) && !new_item.whitelist_check(loadout))
+	if(length(item_whitelist) && !whitelist_check(loadout))
 		return
-	if(length(new_item.item_blacklist) && !new_item.blacklist_check(loadout))
+	if(length(item_blacklist) && !blacklist_check(loadout))
 		return
 	apply_loadout_item(loadout)
 
