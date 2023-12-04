@@ -83,7 +83,7 @@
 		to_chat(user, span_warning("There is no anesthetic tank connected to the table, load one first."))
 		return FALSE
 	buckling_mob.visible_message(span_notice("[user] begins to connect [buckling_mob] to the anesthetic system."))
-	if(!do_after(user, 2.5 SECONDS, FALSE, src, BUSY_ICON_GENERIC))
+	if(!do_after(user, 2.5 SECONDS, IGNORE_HELD_ITEM, src, BUSY_ICON_GENERIC))
 		if(buckling_mob != victim)
 			to_chat(user, span_warning("The patient must remain on the table!"))
 			return FALSE

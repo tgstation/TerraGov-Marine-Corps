@@ -58,7 +58,7 @@
 
 /obj/effect/ai_node/Destroy()
 	GLOB.all_nodes[unique_id + 1] = null
-	rustg_remove_node_astart(unique_id)
+	rustg_remove_node_astart("[unique_id]")
 	//Remove our reference to self from nearby adjacent node's adjacent nodes
 	for(var/direction AS in adjacent_nodes)
 		var/obj/effect/ai_node/node = adjacent_nodes[direction]

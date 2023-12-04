@@ -157,7 +157,7 @@
 			span_notice("You begin fumbling about, trying to attach [attachment] to [parent]."), null, 4)
 			do_after_icon_type = BUSY_ICON_UNSKILLED
 
-	if(!do_after(user, attach_delay, TRUE, parent, do_after_icon_type))
+	if(!do_after(user, attach_delay, NONE, parent, do_after_icon_type))
 		return FALSE
 	user.visible_message(span_notice("[user] attaches [attachment] to [parent]."),
 	span_notice("You attach [attachment] to [parent]."), null, 4)
@@ -255,7 +255,7 @@
 			span_notice("You begin fumbling about, trying to detach [attachment_to_remove] from [parent]."), null, 4)
 			do_after_icon_type = BUSY_ICON_UNSKILLED
 
-	if(!do_after(user, detach_delay, TRUE, parent, do_after_icon_type))
+	if(!do_after(user, detach_delay, NONE, parent, do_after_icon_type))
 		return
 
 	user.visible_message(span_notice("[user] detaches [attachment_to_remove] to [parent]."),

@@ -63,7 +63,7 @@
 				user.visible_message("[user] dissassembles the windoor assembly.", "You start to dissassemble the windoor assembly.")
 				playsound(loc, 'sound/items/welder2.ogg', 25, 1)
 
-				if(!do_after(user, 40, TRUE, src, BUSY_ICON_BUILD))
+				if(!do_after(user, 4 SECONDS, NONE, src, BUSY_ICON_BUILD))
 					return
 
 				if(!src || !WT.isOn())
@@ -79,7 +79,7 @@
 				playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
 				user.visible_message("[user] secures the windoor assembly to the floor.", "You start to secure the windoor assembly to the floor.")
 
-				if(!do_after(user, 40, TRUE, src, BUSY_ICON_BUILD))
+				if(!do_after(user, 4 SECONDS, NONE, src, BUSY_ICON_BUILD))
 					return
 
 				to_chat(user, span_notice("You've secured the windoor assembly!"))
@@ -94,7 +94,7 @@
 				playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
 				user.visible_message("[user] unsecures the windoor assembly to the floor.", "You start to unsecure the windoor assembly to the floor.")
 
-				if(!do_after(user, 40, TRUE, src, BUSY_ICON_BUILD))
+				if(!do_after(user, 4 SECONDS, NONE, src, BUSY_ICON_BUILD))
 					return
 
 				to_chat(user, span_notice("You've unsecured the windoor assembly!"))
@@ -113,7 +113,7 @@
 					return
 
 				to_chat(user, span_notice("You start to reinforce the windoor with rods."))
-				if(!do_after(user,40, TRUE, src, BUSY_ICON_BUILD) || secure)
+				if(!do_after(user,4 SECONDS, NONE, src, BUSY_ICON_BUILD) || secure)
 					return
 
 				if(!R.use(4))
@@ -131,7 +131,7 @@
 				user.visible_message("[user] wires the windoor assembly.", "You start to wire the windoor assembly.")
 
 				var/obj/item/stack/cable_coil/CC = I
-				if(!do_after(user, 40, TRUE, src, BUSY_ICON_BUILD))
+				if(!do_after(user, 4 SECONDS, NONE, src, BUSY_ICON_BUILD))
 					return
 
 				if(!CC.use(1))
@@ -149,7 +149,7 @@
 				playsound(loc, 'sound/items/wirecutter.ogg', 25, 1)
 				user.visible_message("[user] cuts the wires from the airlock assembly.", "You start to cut the wires from airlock assembly.")
 
-				if(!do_after(user, 40, TRUE, src, BUSY_ICON_BUILD))
+				if(!do_after(user, 4 SECONDS, NONE, src, BUSY_ICON_BUILD))
 					return
 
 				to_chat(user, span_notice("You cut the windoor wires.!"))
@@ -165,7 +165,7 @@
 				playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)
 				user.visible_message("[user] installs the electronics into the airlock assembly.", "You start to install electronics into the airlock assembly.")
 
-				if(!do_after(user, 40, TRUE, src, BUSY_ICON_BUILD))
+				if(!do_after(user, 4 SECONDS, NONE, src, BUSY_ICON_BUILD))
 					return
 
 				user.drop_held_item()
@@ -179,7 +179,7 @@
 				playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)
 				user.visible_message("[user] removes the electronics from the airlock assembly.", "You start to uninstall electronics from the airlock assembly.")
 
-				if(!do_after(user, 40, TRUE, src, BUSY_ICON_BUILD))
+				if(!do_after(user, 4 SECONDS, NONE, src, BUSY_ICON_BUILD))
 					return
 
 				if(!electronics)
@@ -203,7 +203,7 @@
 				playsound(loc, 'sound/items/crowbar.ogg', 25, 1)
 				user.visible_message("[user] pries the windoor into the frame.", "You start prying the windoor into the frame.")
 
-				if(!do_after(user, 40, TRUE, src, BUSY_ICON_BUILD))
+				if(!do_after(user, 4 SECONDS, NONE, src, BUSY_ICON_BUILD))
 					return
 
 				density = TRUE //Shouldn't matter but just incase

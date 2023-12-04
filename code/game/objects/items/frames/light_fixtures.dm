@@ -31,7 +31,7 @@
 	playsound(src.loc, 'sound/machines/click.ogg', 15, 1)
 	var/constrdir = user.dir
 	var/constrloc = user.loc
-	if(!do_after(user, 30, TRUE, on_wall, BUSY_ICON_BUILD))
+	if(!do_after(user, 30, NONE, on_wall, BUSY_ICON_BUILD))
 		return
 
 	var/obj/machinery/light/newlight
