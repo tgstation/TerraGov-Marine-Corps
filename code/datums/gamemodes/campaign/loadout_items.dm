@@ -18,6 +18,50 @@
 	var/list/item_blacklist
 	//do we need a post equip gear list?
 
+///Attempts to add an item to a loadout
+/datum/loadout_item/proc/attempt_add_loadout_item(datum/outfit/quick/loadout)
+	if(length(new_item.item_whitelist) && !new_item.whitelist_check(loadout))
+		return
+	if(length(new_item.item_blacklist) && !new_item.blacklist_check(loadout))
+		return
+	apply_loadout_item(loadout)
+
+///Actually adds an item to a loadout
+/datum/loadout_item/proc/apply_loadout_item(datum/outfit/quick/loadout)
+	var/slot_bit = item_slot
+	switch(slot_bit) //note, might need to make this new_item, not the item type path, so we can ref cost and other details. Unless we load that somewhere else?
+		if(ITEM_SLOT_OCLOTHING)
+			loadout.wear_suit = item_typepath
+		if(ITEM_SLOT_ICLOTHING)
+			loadout.w_uniform = item_typepath
+		if(ITEM_SLOT_GLOVES)
+			loadout.gloves = item_typepath
+		if(ITEM_SLOT_EYES)
+			loadout.glasses = item_typepath
+		if(ITEM_SLOT_EARS)
+			loadout.ears = item_typepath
+		if(ITEM_SLOT_MASK)
+			loadout.mask = item_typepath
+		if(ITEM_SLOT_HEAD)
+			loadout.head = item_typepath
+		if(ITEM_SLOT_FEET)
+			loadout.shoes = item_typepath
+		if(ITEM_SLOT_ID)
+			loadout.id = item_typepath
+		if(ITEM_SLOT_BELT)
+			loadout.belt = item_typepath
+		if(ITEM_SLOT_BACK)
+			loadout.back = item_typepath
+		if(ITEM_SLOT_R_POCKET)
+			loadout.r_store = item_typepath
+		if(ITEM_SLOT_L_POCKET)
+			loadout.l_store = item_typepath
+		if(ITEM_SLOT_SUITSTORE)
+			loadout.suit_store = item_typepath
+		else
+			CRASH("Invalid item slot specified [item_slot]")
+	//do post equip stuff here probs, or when?
+
 ///checks if a loadout has required whitelist items
 /datum/loadout_item/proc/whitelist_check(datum/outfit/quick/loadout)
 	for(var/slot in item_whitelist)
