@@ -9268,6 +9268,14 @@
 /obj/structure/nuke_disk_candidate,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/engineering)
+"hIy" = (
+/obj/effect/ai_node,
+/obj/effect/landmark/start/latejoinclf,
+/turf/open/floor/plating/ground/dirt,
+/area/deltastation/engineering/lobby{
+	name = "CLF engineering";
+	outside = 0
+	})
 "hIJ" = (
 /obj/machinery/shower{
 	pixel_y = 16
@@ -18092,6 +18100,13 @@
 /obj/structure/flora/jungle/vines,
 /turf/open/ground/grass,
 /area/lv624/lazarus/sleep_male)
+"qBf" = (
+/obj/effect/landmark/start/latejoinclf,
+/turf/open/floor/plating/ground/dirt,
+/area/deltastation/engineering/lobby{
+	name = "CLF engineering";
+	outside = 0
+	})
 "qBg" = (
 /obj/structure/closet,
 /obj/item/weapon/baseballbat,
@@ -19315,6 +19330,7 @@
 /area/lv624/lazarus/security)
 "rFk" = (
 /obj/structure/bed/alien,
+/obj/effect/landmark/start/job/clf/breeder,
 /turf/open/floor/plating/ground/dirt,
 /area/deltastation/engineering/lobby{
 	name = "CLF engineering";
@@ -88084,7 +88100,7 @@ psZ
 xyZ
 nOG
 rFk
-nOG
+qBf
 rFk
 nOG
 wAa
@@ -88371,7 +88387,7 @@ psZ
 soH
 lRR
 rFk
-nOG
+qBf
 rFk
 wAa
 nOG
@@ -88658,7 +88674,7 @@ psZ
 jRq
 mfk
 rFk
-tTg
+hIy
 rFk
 nOG
 nOG
