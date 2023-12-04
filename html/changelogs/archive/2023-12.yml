@@ -56,3 +56,16 @@
   - rscadd: Secondary hyperscale colour layer for armour pieces (Currently only on
       legs and helmet)
   - qol: Hardsuit vending tab
+2023-12-04:
+  Lumipharon:
+  - code_imp: Standardised obj damage calcs to mob and turf damage calcs
+  - rscadd: Added a stamina skill to boost stamina regen and stamina regen delay time.
+      Currently not available to normal roles
+  - balance: high weapon skills as seen on PMC and the like now provide a 5% damage
+      boost per level with the appropriate weaponry
+  - balance: Melee skill now adds +15% damage instead of 30% with melee weapons
+  - balance: Removed some old MP CQC interactions
+  - balance: Captain no longer has elite skills in basically every category
+  - balance: Sectoids are no longer melee masters
+  ivanmixo:
+  - bugfix: Fixed defender being able to move dead bodies
