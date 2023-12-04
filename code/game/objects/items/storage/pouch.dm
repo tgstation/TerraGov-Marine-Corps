@@ -677,6 +677,7 @@
 		/obj/item/compass,
 		/obj/item/deployable_camera,
 		/obj/item/hud_tablet,
+		/obj/item/squad_transfer_tablet,
 		/obj/item/minimap_tablet,
 		/obj/item/supplytablet,
 		/obj/item/megaphone,

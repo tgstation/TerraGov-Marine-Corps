@@ -755,6 +755,7 @@
 #include "code\game\objects\items\devices\minimap_tablet.dm"
 #include "code\game\objects\items\devices\mirage.dm"
 #include "code\game\objects\items\devices\spyglasses.dm"
+#include "code\game\objects\items\devices\squad_transfer_tablet.dm"
 #include "code\game\objects\items\devices\tablets.dm"
 #include "code\game\objects\items\devices\tweezers.dm"
 #include "code\game\objects\items\explosives\bombvest.dm"
