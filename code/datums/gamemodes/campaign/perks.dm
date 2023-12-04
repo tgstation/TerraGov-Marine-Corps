@@ -1,8 +1,24 @@
+GLOBAL_LIST_INIT_TYPED(campaign_perk_list, /datum/perk, init_glob_perk_list()) //this may or may not be even needed
+
+/proc/init_glob_perk_list()
+	. = list()
+	for(var/perk_type in subtypesof(/datum/perk))
+		var/datum/perk/perk = new perk_type
+		.[perk.type] = perk
+
+/*
+Will need a way to org perks (and other stuff) by faction and/or specific role.
+Needed both for a purchase list and effected list (if one perk impacts multiple roles, unless we keep everything entirely separate)
+**/
 /datum/perk
 	///Name of the perk
 	var/name = "base perk name"
 	///Brief description of the perk
 	var/desc = "desc here"
+	///Cost to purchase this perk
+	var/unlock_cost = 0
+	///Job types that this perk is available to. no list implies this works for any job
+	var/list/jobs_supported
 
 ///Applies perk benefits
 /datum/perk/proc/apply_perk(mob/living/carbon/owner)

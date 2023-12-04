@@ -1,7 +1,3 @@
-GLOBAL_LIST_INIT(campaign_perk_list, list(
-	//perks here
-))
-
 /datum/individual_stats
 	interaction_flags = INTERACT_UI_INTERACT
 	///ckey associated with this datum
@@ -11,26 +7,32 @@ GLOBAL_LIST_INIT(campaign_perk_list, list(
 	///whatever cash/xp/placeholdershit. fun tokens
 	var/currency = 0
 	///Player perks
-	var/list/datum/perk/perks = list()
+	var/list/list/datum/perk/perks = list()
 	///Unlocked items
-	var/list/datum/loadout_item/unlocked_items = list() //probs some initial list here based on class etc.
+	var/list/list/datum/loadout_item/unlocked_items = list() //probs some initial list here based on class etc.
 	///List of loadouts by role
 	var/list/datum/outfit/quick/loadouts = list()
 	///The faction associated with these stats
-	var/faction //will we actually need this? Maybe more relevant to have available perks,but may need for ui, depending on how this is viewed
+	var/faction
 
-/datum/individual_stats/New(new_faction, new_currency)
+/datum/individual_stats/New(mob/living/carbon/new_mob, new_faction, new_currency)
 	. = ..()
+	ckey = new_mob.key
+	current_mob = new_mob
 	faction = new_faction
 	currency = new_currency
-	loadouts[SQUAD_MARINE] = new /datum/outfit/quick //we'll do some faction based thing to setup a loadout for every role in the faction, as required
-
+	for(var/datum/job/job_type AS in SSticker.mode.valid_job_types)
+		if(job_type::faction != faction)
+			continue
+		loadouts[job_type] = new
+		perks[job_type] = list()
+		unlocked_items[job_type] = list()
 
 /datum/individual_stats/Destroy(force, ...)
 	ckey = null
 	current_mob = null
-	QDEL_NULL(perks)
-	QDEL_NULL(unlocked_items)
+	perks = null
+	unlocked_items = null
 	return ..()
 
 ///uses some funtokens, returns the amount missing, if insufficient funds
@@ -46,10 +48,45 @@ GLOBAL_LIST_INIT(campaign_perk_list, list(
 		return amount - currency
 	currency -= amount
 
+///Adds a perk if able
+/datum/individual_stats/proc/purchase_perk(datum/perk/new_perk)
+	if(!istype(new_perk))
+		return
+	//insert 'we already got this' check here, unless we have a 'purchasable list'
+	if(use_funds(new_perk.unlock_cost))
+		return
+
+	if(!length(new_perk.jobs_supported))
+		for(var/job in perks)
+			perks[job] += new_perk
+	else
+		for(var/supported_job in new_perk.jobs_supported)
+			if(!perks[supported_job])
+				continue
+			perks[supported_job] += new_perk
+
+///Adds an item if able
+/datum/individual_stats/proc/unlock_loadout_item(datum/loadout_item/new_item)
+	if(!istype(new_item))
+		return
+	//insert 'we already got this' check here, unless we have a 'purchasable list'
+	if(use_funds(new_item.unlock_cost))
+		return
+
+	if(!length(new_item.jobs_supported))
+		for(var/job in unlocked_items)
+			unlocked_items[job] += new_item
+	else
+		for(var/supported_job in new_item.jobs_supported)
+			if(!unlocked_items[supported_job])
+				continue
+			unlocked_items[supported_job] += new_item
+
+///Applies all perks to a mob
 /datum/individual_stats/proc/apply_perks(mob/living/carbon/user)
-	for(var/datum/perk/perk AS in perks)
+	for(var/datum/perk/perk AS in perks[user.job])
 		perk.apply_perk(user)
 
-///Attempts to add an item to a loadout
+///Attempts to add an available item to a loadout
 /datum/individual_stats/proc/attempt_add_loadout_item(datum/loadout_item/new_item, role)
 	new_item.attempt_add_loadout_item(loadouts[role])

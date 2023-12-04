@@ -12,6 +12,8 @@
 	var/unlock_cost = 0
 	///Cost to use this option
 	var/purchase_cost = 0
+	///Job types that this perk is available to. no list implies this works for any job
+	var/list/jobs_supported
 	///assoc list by slot of items required for this to be equipped
 	var/list/item_whitelist
 	///assoc list by slot of items blacklisted for this to be equipped
