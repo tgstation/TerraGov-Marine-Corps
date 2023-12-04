@@ -24,7 +24,7 @@
 	for(var/datum/job/job_type AS in SSticker.mode.valid_job_types)
 		if(job_type::faction != faction)
 			continue
-		loadouts[job_type::title] = new datum/outfit/quick
+		loadouts[job_type::title] = new /datum/outfit/quick
 		perks[job_type::title] = list()
 		unlocked_items[job_type::title] = list()
 
