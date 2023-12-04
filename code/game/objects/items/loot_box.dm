@@ -451,7 +451,6 @@
 
 /obj/item/storage/box/crate/loot/Initialize(mapload)
 	. = ..()
-	new /obj/item/weapon/banhammer(src)
 
 // Crate for lootboxes. Use for large items.
 
@@ -465,7 +464,6 @@
 
 /obj/structure/closet/crate/loot/Initialize(mapload)
 	. = ..()
-	new /obj/item/weapon/banhammer(src)
 
 // Common
 
@@ -484,12 +482,52 @@
 	new /obj/item/ammo_magazine/rifle/autosniper(src)
 	new /obj/item/ammo_magazine/rifle/autosniper(src)
 	new /obj/item/ammo_magazine/rifle/autosniper(src) //180 total and common, fine considering 3 autos is really strong.
+	new /obj/item/ammo_magazine/packet/autosniper(src)
+
+/obj/item/storage/box/crate/loot/autosniper_pack_spec/Initialize(mapload)
+	. = ..()
+	new /obj/item/weapon/gun/rifle/standard_autosniper(src)
+	new /obj/item/ammo_magazine/rifle/autosniper(src)
+	new /obj/item/ammo_magazine/rifle/autosniper(src)
+	new /obj/item/ammo_magazine/rifle/autosniper(src)
+	new /obj/item/ammo_magazine/rifle/autosniper(src)
+	new /obj/item/ammo_magazine/rifle/autosniper(src)
+	new /obj/item/ammo_magazine/rifle/autosniper(src)
+	new /obj/item/ammo_magazine/rifle/autosniper(src)
+	new /obj/item/ammo_magazine/rifle/autosniper(src)
+	new /obj/item/ammo_magazine/rifle/autosniper(src)
+	new /obj/item/ammo_magazine/rifle/autosniper(src)
+	new /obj/item/ammo_magazine/rifle/autosniper(src)
+	new /obj/item/ammo_magazine/rifle/autosniper(src)
+	new /obj/item/ammo_magazine/rifle/autosniper(src) //180 total and common, fine considering 3 autos is really strong.
+	new /obj/item/ammo_magazine/packet/autosniper(src)
+	new /obj/item/ammo_magazine/packet/autosniper(src)
 
 /obj/item/storage/box/crate/loot/thermobaric_pack/Initialize(mapload)
 	. = ..()
 	new /obj/item/weapon/gun/launcher/rocket/m57a4/t57(src)
 	new /obj/item/weapon/gun/launcher/rocket/m57a4/t57(src)
 	new /obj/item/weapon/gun/launcher/rocket/m57a4/t57(src)
+	new /obj/item/ammo_magazine/rocket/m57a4(src)
+	new /obj/item/ammo_magazine/rocket/m57a4(src)
+	new /obj/item/ammo_magazine/rocket/m57a4(src)
+	new /obj/item/ammo_magazine/rocket/m57a4(src)
+	new /obj/item/ammo_magazine/rocket/m57a4(src)
+	new /obj/item/ammo_magazine/rocket/m57a4(src)
+	new /obj/item/ammo_magazine/rocket/m57a4(src)
+	new /obj/item/ammo_magazine/rocket/m57a4(src)
+	new /obj/item/ammo_magazine/rocket/m57a4(src)
+	new /obj/item/ammo_magazine/rocket/m57a4(src) // three launchers and 10 arrays. Common. 200.
+
+/obj/item/storage/box/crate/loot/thermobaric_pack_spec/Initialize(mapload)
+	. = ..()
+	new /obj/item/weapon/gun/launcher/rocket/m57a4/t57(src)
+	new /obj/item/ammo_magazine/rocket/m57a4(src)
+	new /obj/item/ammo_magazine/rocket/m57a4(src)
+	new /obj/item/ammo_magazine/rocket/m57a4(src)
+	new /obj/item/ammo_magazine/rocket/m57a4(src)
+	new /obj/item/ammo_magazine/rocket/m57a4(src)
+	new /obj/item/ammo_magazine/rocket/m57a4(src)
 	new /obj/item/ammo_magazine/rocket/m57a4(src)
 	new /obj/item/ammo_magazine/rocket/m57a4(src)
 	new /obj/item/ammo_magazine/rocket/m57a4(src)
@@ -556,6 +594,32 @@
 	new /obj/item/ammo_magazine/rocket/recoilless/heat(src)
 	new /obj/item/ammo_magazine/rocket/recoilless/heat(src)
 
+/obj/item/storage/box/crate/loot/recoilless_pack_spec/Initialize(mapload)
+	. = ..()
+	new /obj/item/storage/holster/backholster/rpg/full(src)
+	new /obj/item/ammo_magazine/rocket/recoilless/heat(src)
+	new /obj/item/ammo_magazine/rocket/recoilless/heat(src)
+	new /obj/item/ammo_magazine/rocket/recoilless/heat(src)
+	new /obj/item/ammo_magazine/rocket/recoilless/heat(src)
+	new /obj/item/ammo_magazine/rocket/recoilless/heat(src)
+	new /obj/item/ammo_magazine/rocket/recoilless/heat(src)
+	new /obj/item/ammo_magazine/rocket/recoilless/light(src)
+	new /obj/item/ammo_magazine/rocket/recoilless/light(src)
+	new /obj/item/ammo_magazine/rocket/recoilless/light(src)
+	new /obj/item/ammo_magazine/rocket/recoilless/light(src)
+	new /obj/item/ammo_magazine/rocket/recoilless/low_impact(src)
+	new /obj/item/ammo_magazine/rocket/recoilless/low_impact(src)
+	new /obj/item/ammo_magazine/rocket/recoilless/low_impact(src)
+	new /obj/item/ammo_magazine/rocket/recoilless/low_impact(src)
+	new /obj/item/ammo_magazine/rocket/recoilless/smoke(src)
+	new /obj/item/ammo_magazine/rocket/recoilless/cloak(src)
+	new /obj/item/ammo_magazine/rocket/recoilless/cloak(src)
+	new /obj/item/ammo_magazine/rocket/recoilless/heam(src)
+	new /obj/item/ammo_magazine/rocket/recoilless/heam(src)
+	new /obj/item/ammo_magazine/rocket/recoilless/heam(src)
+	new /obj/item/ammo_magazine/rocket/recoilless/heam(src)
+
+
 /obj/item/storage/box/crate/loot/railgun_pack/Initialize(mapload)
 	. = ..()
 	new /obj/item/weapon/gun/rifle/railgun(src)
@@ -583,13 +647,35 @@
 	new /obj/item/ammo_magazine/packet/scout_rifle(src)
 	new /obj/item/ammo_magazine/packet/scout_rifle(src)
 	new /obj/item/ammo_magazine/packet/scout_rifle(src)
-	new /obj/item/ammo_magazine/rifle/tx8
-	new /obj/item/ammo_magazine/rifle/tx8
-	new /obj/item/ammo_magazine/rifle/tx8
-	new /obj/item/ammo_magazine/rifle/tx8
-	new /obj/item/ammo_magazine/rifle/tx8
-	new /obj/item/ammo_magazine/rifle/tx8
+	new /obj/item/ammo_magazine/rifle/tx8(src)
+	new /obj/item/ammo_magazine/rifle/tx8(src)
+	new /obj/item/ammo_magazine/rifle/tx8(src)
+	new /obj/item/ammo_magazine/rifle/tx8(src)
+	new /obj/item/ammo_magazine/rifle/tx8(src)
+	new /obj/item/ammo_magazine/rifle/tx8(src)
 
+/obj/item/storage/box/crate/loot/scoutrifle_pack_spec/Initialize(mapload)
+	. = ..()
+	new /obj/item/weapon/gun/rifle/tx8(src)
+	new /obj/item/ammo_magazine/packet/scout_rifle(src)
+	new /obj/item/storage/belt/marine/tx8(src)
+	new /obj/item/storage/pouch/magazine/large/tx8full(src)
+	new /obj/item/ammo_magazine/rifle/tx8(src)
+	new /obj/item/ammo_magazine/rifle/tx8(src)
+	new /obj/item/ammo_magazine/rifle/tx8(src)
+	new /obj/item/ammo_magazine/rifle/tx8/incendiary(src)
+	new /obj/item/ammo_magazine/rifle/tx8/incendiary(src)
+	new /obj/item/ammo_magazine/rifle/tx8/incendiary(src)
+	new /obj/item/ammo_magazine/rifle/tx8/incendiary(src)
+	new /obj/item/ammo_magazine/rifle/tx8/incendiary(src)
+	new /obj/item/ammo_magazine/rifle/tx8/incendiary(src)
+	new /obj/item/ammo_magazine/rifle/tx8/impact(src)
+	new /obj/item/ammo_magazine/rifle/tx8/impact(src)
+	new /obj/item/ammo_magazine/rifle/tx8/impact(src)
+	new /obj/item/ammo_magazine/rifle/tx8/impact(src)
+	new /obj/item/ammo_magazine/rifle/tx8/impact(src)
+	new /obj/item/ammo_magazine/rifle/tx8/impact(src)
+	new /obj/item/clothing/glasses/night/tx8(src)
 
 // Rares
 
@@ -646,12 +732,26 @@
 
 /obj/item/storage/box/crate/loot/operator_pack/Initialize(mapload)
 	. = ..()
-	new /obj/item/weapon/gun/rifle/m412/elite
-	new /obj/item/ammo_magazine/rifle
-	new /obj/item/ammo_magazine/rifle
-	new /obj/item/ammo_magazine/rifle
-	new /obj/item/ammo_magazine/rifle
-	new /obj/item/clothing/glasses/night/tx8
+	new /obj/item/weapon/gun/rifle/m412/elite(src)
+	new /obj/item/ammo_magazine/rifle/ap(src)
+	new /obj/item/ammo_magazine/rifle/ap(src)
+	new /obj/item/ammo_magazine/rifle/ap(src)
+	new /obj/item/ammo_magazine/rifle/ap(src)
+	new /obj/item/ammo_magazine/rifle/ap(src)
+	new /obj/item/ammo_magazine/rifle/ap(src)
+	new /obj/item/ammo_magazine/rifle/ap(src)
+	new /obj/item/ammo_magazine/rifle/ap(src)
+	new /obj/item/ammo_magazine/rifle/ap(src)
+	new /obj/item/ammo_magazine/rifle/ap(src)
+	new /obj/item/ammo_magazine/rifle(src)
+	new /obj/item/ammo_magazine/rifle(src)
+	new /obj/item/ammo_magazine/rifle(src)
+	new /obj/item/ammo_magazine/rifle(src)
+	new /obj/item/ammo_magazine/rifle(src)
+	new /obj/item/ammo_magazine/rifle(src)
+	new /obj/item/ammo_magazine/rifle(src)
+	new /obj/item/ammo_magazine/rifle(src)
+	new /obj/item/clothing/glasses/night/tx8(src)
 
 /obj/item/storage/box/crate/loot/b18classic_pack/Initialize(mapload)
 	. = ..()
