@@ -555,4 +555,4 @@
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/standard_machinepistol, SLOT_IN_BELT)
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/monkeycube/wrapped, SLOT_IN_BELT)
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/monkeycube/wrapped, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/monkeycube/wrapped, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/stack/medical/heal_pack/gauze, SLOT_IN_BELT)
