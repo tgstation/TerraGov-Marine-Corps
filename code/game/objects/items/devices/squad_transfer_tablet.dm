@@ -31,31 +31,39 @@
 	. = ..()
 	if(.)
 		return
+	if(!ishuman(usr))
+		return
+	var/mob/living/carbon/human/human_user = usr
+	if(!ismarineleaderjob(human_user.job) && !issommarineleaderjob(human_user.job) && !ismarinecommandjob(human_user.job) && !issommarinecommandjob(human_user.job))
+		to_chat(human_user, span_notice("Only command roles my request squad changes!"))
+		return FALSE
 	if(action != "transfer")
 		return FALSE
 	if(params["transfer_target"] in active_requests)
-		to_chat(usr, span_info("Target cannot be transfered: Transfer request already active."))
+		to_chat(human_user, span_info("Target cannot be transfered: Transfer request already active."))
 		return FALSE
 	var/mob/living/carbon/human/target = locate(params["transfer_target"])
 	if(!istype(target))
-		to_chat(usr, span_info("Target cannot be transfered: Target error."))
+		to_chat(human_user, span_info("Target cannot be transfered: Target error."))
 		return FALSE
 	var/new_squad_id = params["squad_id"]
 	var/datum/squad/new_squad = SSjob.squads[new_squad_id]
 	if(!new_squad)
-		to_chat(usr, span_info("Target cannot be transfered: Squad error."))
+		to_chat(human_user, span_info("Target cannot be transfered: Squad error."))
 		return FALSE
-	to_chat(usr, span_info("Transfer request sent."))
+	to_chat(human_user, span_info("Transfer request sent."))
 	active_requests += params["transfer_target"]
-	INVOKE_ASYNC(src, PROC_REF(process_transfer), target, new_squad, usr)
+	INVOKE_ASYNC(src, PROC_REF(process_transfer), target, new_squad, human_user)
 	return TRUE
 
 ///handles actual transfering of squaddies, async so ui act doesnt sleep
-/obj/item/squad_transfer_tablet/proc/process_transfer(mob/living/carbon/human/target, datum/squad/new_squad, mob/user)
-	if(tgui_alert(target, "Transfer to [new_squad.name]? Description: [new_squad.desc]", "Squad Transfer", list("Yes", "No"), 10 SECONDS) != "Yes")
+/obj/item/squad_transfer_tablet/proc/process_transfer(mob/living/carbon/human/target, datum/squad/new_squad, mob/living/carbon/human/user)
+	if(tgui_alert(target, "Would you like to transfer to [new_squad.name]? [new_squad.desc ? "Description: [new_squad.desc]" : ""]", "Requested squad Transfer to [new_squad.name]", list("Yes", "No"), 10 SECONDS) != "Yes")
 		active_requests -= REF(target)
 		log_game("[key_name(target)] has rejected a squad transfer request to [new_squad.name] from [key_name(user)].")
+		to_chat(user, span_notice("[target.real_name] has rejected your transfer request"))
 		return
 	log_game("[key_name(target)] has accepted a squad transfer request to [new_squad.name] from [key_name(user)].")
+	to_chat(user, span_notice("[target.real_name] has accepted your transfer request"))
 	target.change_squad(new_squad.id)
 	active_requests -= REF(target)
