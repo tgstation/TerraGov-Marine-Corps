@@ -114,9 +114,32 @@
 		else
 			CRASH("Invalid item slot specified [item_slot]")
 
+//example use
+/datum/loadout_item/suit_slot
+	item_slot = ITEM_SLOT_OCLOTHING
+
+/datum/loadout_item/suit_slot/heavy_surt
+	name = "item name here"
+	desc = "item desc here"
+	item_typepath = /obj/item/clothing/suit/modular/xenonauten/heavy/surt
+	jobs_supported = list(SQUAD_MARINE)
+
+/datum/loadout_item/helmet
+	item_slot = ITEM_SLOT_HEAD
+
+/datum/loadout_item/helmet/heavy_surt
+	name = "item name here"
+	desc = "item desc here"
+	item_typepath = /obj/item/clothing/head/modular/m10x/surt
+	jobs_supported = list(SQUAD_MARINE)
+	item_whitelist = list(
+		ITEM_SLOT_OCLOTHING = /obj/item/clothing/suit/modular/xenonauten/heavy/surt
+	)
+
 /*
 we can just have a single loadout per person (per role probably) and load the relevant vars from the loadout_item datum
 no safety check on the outfit itself, we'll let that all get handled externally
+WILL need a 'validate entire outfit' proc somewhere though
 Have to devise a way to populate all the post equip shit
 
 //Base TGMC marine outfit

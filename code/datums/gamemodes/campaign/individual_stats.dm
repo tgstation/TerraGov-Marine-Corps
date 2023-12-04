@@ -24,9 +24,9 @@
 	for(var/datum/job/job_type AS in SSticker.mode.valid_job_types)
 		if(job_type::faction != faction)
 			continue
-		loadouts[job_type] = new
-		perks[job_type] = list()
-		unlocked_items[job_type] = list()
+		loadouts[job_type::title] = new datum/outfit/quick
+		perks[job_type::title] = list()
+		unlocked_items[job_type::title] = list()
 
 /datum/individual_stats/Destroy(force, ...)
 	ckey = null
@@ -83,9 +83,11 @@
 			unlocked_items[supported_job] += new_item
 
 ///Applies all perks to a mob
-/datum/individual_stats/proc/apply_perks(mob/living/carbon/user)
-	for(var/datum/perk/perk AS in perks[user.job])
-		perk.apply_perk(user)
+/datum/individual_stats/proc/apply_perks()
+	if(!current_mob || QDELETED(current_mob))
+		return
+	for(var/datum/perk/perk AS in perks[current_mob.job.title])
+		perk.apply_perk(current_mob)
 
 ///Attempts to add an available item to a loadout
 /datum/individual_stats/proc/attempt_add_loadout_item(datum/loadout_item/new_item, role)

@@ -109,7 +109,7 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 	///records how much currency has been earned from missions, for late join players
 	var/accumulated_mission_reward = 0
 	///list of individual stats by key
-	var/list/individual_stat_list = list()
+	var/list/datum/individual_stats/individual_stat_list = list()
 
 /datum/faction_stats/New(new_faction)
 	. = ..()
@@ -139,7 +139,10 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 		return
 	add_verb(new_member, /mob/living/proc/open_faction_stats_ui)
 	if(!individual_stat_list[new_member.key])
-		individual_stat_list[new_member.key] = new /datum/faction_stats(faction, accumulated_mission_reward)
+		individual_stat_list[new_member.key] = new /datum/individual_stats(new_member, faction, accumulated_mission_reward)
+	else
+		individual_stat_list[new_member.key].current_mob = new_member
+		individual_stat_list[new_member.key].apply_perks() //ugly, probs needs to be handled internally but we'll clean up later
 
 ///Randomly adds a new mission to the available pool
 /datum/faction_stats/proc/generate_new_mission()
