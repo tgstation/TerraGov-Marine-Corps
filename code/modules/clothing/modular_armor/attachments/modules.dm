@@ -624,12 +624,12 @@
 	prefered_slot = SLOT_HEAD
 	toggle_signal = COMSIG_KB_HELMETMODULE
 	///If the comms system is configured.
-	var/comms_setup = FALSEW
+	var/comms_setup = FALSE
 
 /obj/item/armor_module/module/antenna/handle_actions(datum/source, mob/user, slot)
 	if(slot != prefered_slot)
 		UnregisterSignal(user, COMSIG_CAVE_INTERFERENCE_CHECK)
-		comms_active = COMMS_OFF
+		comms_setup = COMMS_OFF
 	else
 		RegisterSignal(user, COMSIG_CAVE_INTERFERENCE_CHECK, PROC_REF(on_interference_check))
 	return ..()
@@ -646,6 +646,7 @@
 		to_chat(user, span_notice("Your Antenna module is already in the process of setting up!"))
 		return
 	if(comms_setup == COMMS_SETUP)
+		var/turf/location = get_turf(user)
 		user.show_message(span_notice("The [src] beeps and states, \"Uplink data: LONGITUDE [location.x]. LATITUDE [location.y]. Area ID: [get_area(src)]\""), EMOTE_AUDIBLE, span_notice("The [src] vibrates but you can not hear it!"))
 		return
 	to_chat(user, span_notice("Configuring Antenna communication relay. Hold still while aligning."))
@@ -655,11 +656,6 @@
 		comms_setup = COMMS_OFF
 		return
 	comms_setup = COMMS_SETUP
-
-/// Signal handler to nullify beacon datum
-/obj/item/armor_module/module/antenna/proc/clean_beacon_datum()
-	SIGNAL_HANDLER
-	beacon_datum = null
 
 #undef COMMS_OFF
 #undef COMMS_SETTING
