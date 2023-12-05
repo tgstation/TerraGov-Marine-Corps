@@ -4067,7 +4067,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	accurate_range = 10//Short range, allows most guns to outrange it for suppressive fire reasons, and gives xenos more leeway to flee.
 	damage_type = STAMINA
 	armor_type = "bio"
-	damage = 10
+	damage = 15
 	penetration = 100
 	shrapnel_chance = 0
 	///percentage of xenos total plasma to drain when hit by a pepperball
