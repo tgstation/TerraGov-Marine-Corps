@@ -1,5 +1,0 @@
-author: "Wirpy"
-delete-after: True
-changes:
-  - bugfix: "fixes the syndie helmets having a missing iconsprite + storage"
-  - bugfix: "mountbatten being inverted\n:cl:"
