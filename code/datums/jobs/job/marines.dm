@@ -386,7 +386,7 @@ You are also in charge of communicating with command and letting them know about
 /datum/job/terragov/squad/vatgrown
 	title = SQUAD_MARINE
 	paygrade = "VM"
-	comm_title = "Mar"
+	comm_title = "Opr"
 	access = list(ACCESS_MARINE_PREP)
 	minimal_access = list(ACCESS_MARINE_PREP, ACCESS_MARINE_DROPSHIP)
 	display_order = JOB_DISPLAY_ORDER_SQUAD_MARINE
@@ -421,6 +421,7 @@ You are also in charge of communicating with command and letting them know about
 	outfit = /datum/outfit/job/security_officer
 	total_positions = -1
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
+	job_category = JOB_CAT_MARINE
 	jobworth = list(
 		/datum/job/xenomorph = LARVA_POINTS_REGULAR,
 		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
