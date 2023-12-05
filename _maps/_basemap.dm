@@ -1,6 +1,7 @@
 //#define LOWMEMORYMODE //uncomment this to load centcom and runtime station and thats it.
 
 #include "map_files\generic\Admin_Level.dmm"
+//#include "map_files\SOMship\SOM_Canora_Desert.dmm"
 
 #ifndef LOWMEMORYMODE
 	#ifdef ALL_MAPS

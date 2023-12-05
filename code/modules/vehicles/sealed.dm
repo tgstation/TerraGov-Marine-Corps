@@ -47,7 +47,7 @@
 /obj/vehicle/sealed/proc/mob_try_enter(mob/M)
 	if(!istype(M))
 		return FALSE
-	if(do_after(M, get_enter_delay(M), src, extra_checks = CALLBACK(src, PROC_REF(enter_checks), M)))
+	if(do_after(M, get_enter_delay(M), NONE, extra_checks = CALLBACK(src, PROC_REF(enter_checks), M)))
 		mob_enter(M)
 		return TRUE
 	return FALSE
