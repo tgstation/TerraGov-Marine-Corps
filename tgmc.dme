@@ -482,6 +482,7 @@
 #include "code\datums\gamemodes\campaign\faction_stats.dm"
 #include "code\datums\gamemodes\campaign\individual_stats.dm"
 #include "code\datums\gamemodes\campaign\loadout_items.dm"
+#include "code\datums\gamemodes\campaign\outfit_holder.dm"
 #include "code\datums\gamemodes\campaign\perks.dm"
 #include "code\datums\gamemodes\campaign\missions\airbase_raid.dm"
 #include "code\datums\gamemodes\campaign\missions\asat_capture.dm"
