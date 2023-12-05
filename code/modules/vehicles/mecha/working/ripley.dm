@@ -38,9 +38,9 @@
 	/// How much things Ripley can carry in their Cargo Compartment
 	var/cargo_capacity = 15
 	/// How fast the mech is in low pressure
-	var/fast_pressure_step_in = 1.5
+	var/fast_pressure_step_in = 0.5
 	/// How fast the mech is in normal pressure
-	var/slow_pressure_step_in = 2
+	var/slow_pressure_step_in = 1
 
 /obj/vehicle/sealed/mecha/working/ripley/generate_actions() //isnt allowed to have internal air
 	initialize_passenger_action_type(/datum/action/vehicle/sealed/mecha/mech_eject)
