@@ -487,7 +487,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	default_ammo_type = /obj/item/ammo_magazine/rifle/pepperball
 	allowed_ammo_types = list(/obj/item/ammo_magazine/rifle/pepperball)
 	force = 20 // two shots weeds as it has no bayonet
-	wield_delay = 1 SECONDS // Very fast to put up.
+	wield_delay = 0.8 SECONDS // Very fast to put up.
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 20, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
 	attachable_allowed = list(
 		/obj/item/attachable/buildasentry,
@@ -524,16 +524,16 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 
 	flags_gun_features = GUN_AMMO_COUNTER
 
-	fire_delay = 0.2 SECONDS
-	extra_delay = 0.05 SECONDS
+	fire_delay = 0.1 SECONDS
 	burst_amount = 1
 	accuracy_mult = 1
-	recoil = 1
+	recoil = 0
 	accuracy_mult_unwielded = 0.75
 	scatter = -1
-	scatter_unwielded = 3
+	recoil_unwielded = 1
+	scatter_unwielded = 10
 	damage_falloff_mult = 1.2
-	movement_acc_penalty_mult = 4
+	movement_acc_penalty_mult = 2
 
 	placed_overlay_iconstate = "pepper"
 

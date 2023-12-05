@@ -4,7 +4,7 @@
 	icon_state = "ripley"
 	base_icon_state = "ripley"
 	silicon_icon_state = "ripley-empty"
-	move_delay = 0.5 //Move speed, lower is faster.
+	move_delay = 1 //Move speed, lower is faster.
 	max_temperature = 20000
 	max_integrity = 200
 	ui_x = 1200
@@ -62,8 +62,8 @@
 	icon_state = "ripleymkii"
 	base_icon_state = "ripleymkii"
 	fast_pressure_step_in = 2 //step_in while in low pressure conditions
-	slow_pressure_step_in = 4 //step_in while in normal pressure conditions
-	move_delay = 4
+	slow_pressure_step_in = 3 //step_in while in normal pressure conditions
+	move_delay = 2
 	max_temperature = 30000
 	max_integrity = 250
 	possible_int_damage = MECHA_INT_FIRE|MECHA_INT_TEMP_CONTROL|MECHA_INT_TANK_BREACH|MECHA_INT_CONTROL_LOST|MECHA_INT_SHORT_CIRCUIT
@@ -87,7 +87,7 @@
 	base_icon_state = "deathripley"
 	fast_pressure_step_in = 2 //step_in while in low pressure conditions
 	slow_pressure_step_in = 3 //step_in while in normal pressure conditions
-	move_delay = 4
+	move_delay = 2
 	lights_power = 7
 	wreckage = /obj/structure/mecha_wreckage/ripley/deathripley
 	step_energy_drain = 0
