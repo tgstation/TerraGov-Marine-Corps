@@ -362,9 +362,11 @@
 	icon_state = "elfcostume"
 	item_state = "elfcostume"
 	soft_armor = list(MELEE = 55, BULLET = 35, LASER = 15, ENERGY = 15, BOMB = 100, BIO = 30, FIRE = 80, ACID = 10)
-	flags_item = DELONDROP
 	slowdown = 0
 
-/obj/item/clothing/suit/space/elf/Initialize(mapload)
+/obj/item/clothing/suit/space/elf/nodrop
+	flags_item = DELONDROP
+
+/obj/item/clothing/suit/space/elf/nodrop/Initialize(mapload)
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, TRAIT_CHRISTMAS_ELF)

@@ -102,6 +102,7 @@
 	to_chat(owner, span_boldnotice("<br><B>You are Santa Claus!</B>"))
 	to_chat(owner, span_boldnotice("<br><B>You are not an antagonist, so don't act like one!</B>"))
 	to_chat(owner, span_boldnotice("Cooperate with the marines while you complete your objectives and avoid collateral damage or harm to anyone who is not a grinch!"))
+	to_chat(owner, span_boldnotice("<br><B>You can view your objectives at any time in the IC tab at the top right.</B>"))
 	owner.announce_objectives()
 
 //TODO Collate

@@ -23,6 +23,15 @@
 	if(next_move <= world.time)
 		changeNext_move(CLICK_CD_FASTEST)
 
+/client/verb/view_objectives()
+	set category = "IC"
+	set name = "View Objectives"
+
+	for(var/datum/antagonist/A in usr.mind.antag_datums)
+		var/numberedobjective = 1
+		for(var/datum/objective/O in A.objectives)
+			to_chat(usr,"<B>Objective #[numberedobjective]</B>. [O.explanation_text]")
+			++numberedobjective
 
 /mob/verb/memory()
 	set name = "Notes"

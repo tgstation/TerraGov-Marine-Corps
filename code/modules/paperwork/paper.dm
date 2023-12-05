@@ -700,9 +700,9 @@ SIGNATURE: ________________________"}
 				for(var/obj/item/W in elf_signer) //drop everything to the ground before elf transformation
 					elf_signer.dropItemToGround(W, FALSE)
 				ADD_TRAIT(elf_signer, TRAIT_CHRISTMAS_ELF, TRAIT_CHRISTMAS_ELF)
-				var/oldname = name
+				var/oldname = elf_signer.name
 				elf_signer.revive() //they get an aheal in exhange for being consigned to eternal domination of Santa
 				elf_signer.name = "Elf [rand(1,999)] (formerly [oldname])"
 				elf_signer.real_name = elf_signer.name
-				var/datum/job/J = SSjob.GetJobType(/datum/job/santa/elf/eventspawn)
+				var/datum/job/J = SSjob.GetJobType(/datum/job/santa/contractspawn)
 				elf_signer.apply_assigned_role_to_spawn(J)

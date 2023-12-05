@@ -121,6 +121,9 @@
 	skills_type = /datum/skills/santaclause
 	outfit = /datum/outfit/job/santa/leader
 
+/datum/job/santa/contractspawn
+	outfit = /datum/outfit/job/santa/elf/contractspawn
+
 /datum/job/santa/eventspawn
 	title = "Event Santa Claus"
 	access = ALL_ACCESS
@@ -137,7 +140,7 @@
 	ears = /obj/item/radio/headset/distress/commando
 	w_uniform = /obj/item/clothing/under/spec_operative
 	shoes = /obj/item/clothing/shoes/ruggedboot
-	wear_suit = /obj/item/clothing/suit/space/elf
+	wear_suit = /obj/item/clothing/suit/space/elf/nodrop
 	gloves = /obj/item/clothing/gloves/ruggedgloves
 	head = /obj/item/clothing/head/helmet/space/elf/special
 	glasses = /obj/item/clothing/glasses/welding
@@ -156,10 +159,29 @@
 	ears = /obj/item/radio/headset/distress/commando
 	w_uniform = /obj/item/clothing/under/spec_operative
 	shoes = /obj/item/clothing/shoes/ruggedboot
-	wear_suit = /obj/item/clothing/suit/space/elf
+	wear_suit = /obj/item/clothing/suit/space/elf/nodrop
 	gloves = /obj/item/clothing/gloves/ruggedgloves
 	head = /obj/item/clothing/head/helmet/space/elf/special
 	glasses = /obj/item/clothing/glasses/welding
+	l_store = /obj/item/storage/pouch/medkit/medic
+	r_store = /obj/item/storage/pouch/pistol/vp70
+	back = /obj/item/storage/backpack/industrial
+	suit_store = /obj/item/weapon/gun/pistol/vp70
+	r_hand = /obj/item/weapon/twohanded/spear/candycane/elf
+
+/datum/outfit/job/santa/elf/contractspawn
+	name = "Contract Elf"
+	jobtype = /datum/job/santa/contractspawn
+
+	id = /obj/item/card/id/silver
+	belt = /obj/item/storage/belt/utility/full
+	ears = /obj/item/radio/headset/distress/commando
+	w_uniform = /obj/item/clothing/under/spec_operative
+	shoes = /obj/item/clothing/shoes/ruggedboot
+	wear_suit = /obj/item/clothing/suit/space/elf
+	gloves = /obj/item/clothing/gloves/ruggedgloves
+	head = /obj/item/clothing/head/helmet/space/elf/special
+	glasses = /obj/item/clothing/glasses/welding/elf
 	l_store = /obj/item/storage/pouch/medkit/medic
 	r_store = /obj/item/storage/pouch/pistol/vp70
 	back = /obj/item/storage/backpack/industrial

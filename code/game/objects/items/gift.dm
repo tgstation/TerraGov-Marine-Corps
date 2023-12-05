@@ -85,22 +85,24 @@ GLOBAL_LIST_EMPTY(possible_gifts)
 	if(!do_after(M, 4 SECONDS))
 		return
 	if(!freepresent && present_receiver != M)
-		if(tgui_alert(M, "This present is addressed to [present_receiver_name]. Open it anyways?", "Continue?", list("Yes", "No")) != "No")
-			M.visible_message(span_notice("[M] tears into [present_receiver_name]'s gift with reckless abandon!"))
-			M.balloon_alert_to_viewers("Open's [present_receiver_name]'s gift" ,ignored_mobs = M)
-			log_game("[M] has opened a present that belonged to [present_receiver_name] at [AREACOORD(loc)]")
-			if(prob(70) || HAS_TRAIT(M, TRAIT_CHRISTMAS_GRINCH))
-				GLOB.round_statistics.presents_grinched += 1
-				if(!HAS_TRAIT(M, TRAIT_CHRISTMAS_GRINCH))
-					GLOB.round_statistics.number_of_grinches += 1
-					ADD_TRAIT(M, TRAIT_CHRISTMAS_GRINCH, TRAIT_CHRISTMAS_GRINCH) //bad present openers are effectively cursed to receive nothing but coal for the rest of the round
-					to_chat(M, span_boldannounce("Your heart feels three sizes smaller..."))
-					M.color = COLOR_LIME
-				spawnpresent(M) //they have the grinch trait, the presents will always spawn coal
+		switch(tgui_alert(M, "This present is addressed to [present_receiver_name]. Open it anyways?", "Continue?", list("Yes", "No")))
+			if("Yes")
+				M.visible_message(span_notice("[M] tears into [present_receiver_name]'s gift with reckless abandon!"))
+				M.balloon_alert_to_viewers("Open's [present_receiver_name]'s gift" ,ignored_mobs = M)
+				log_game("[M] has opened a present that belonged to [present_receiver_name] at [AREACOORD(loc)]")
+				if(prob(70) || HAS_TRAIT(M, TRAIT_CHRISTMAS_GRINCH))
+					GLOB.round_statistics.presents_grinched += 1
+					if(!HAS_TRAIT(M, TRAIT_CHRISTMAS_GRINCH))
+						GLOB.round_statistics.number_of_grinches += 1
+						ADD_TRAIT(M, TRAIT_CHRISTMAS_GRINCH, TRAIT_CHRISTMAS_GRINCH) //bad present openers are effectively cursed to receive nothing but coal for the rest of the round
+						to_chat(M, span_boldannounce("Your heart feels three sizes smaller..."))
+						M.color = COLOR_LIME
+					spawnpresent(M) //they have the grinch trait, the presents will always spawn coal
+				else
+					spawnpresent(M, TRUE) //they got lucky, the present will open as normal but with a STOLEN label in the desc
+				qdel(src)
 			else
-				spawnpresent(M, TRUE) //they got lucky, the present will open as normal but with a STOLEN label in the desc
-			qdel(src)
-		return
+				return
 
 	qdel(src)
 	spawnpresent(M)
