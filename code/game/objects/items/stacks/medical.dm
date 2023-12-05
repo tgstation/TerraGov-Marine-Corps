@@ -18,14 +18,18 @@
 	var/skill_level_needed = SKILL_MEDICAL_UNTRAINED
 	///Fumble delay applied without sufficient skill
 	var/unskilled_delay = SKILL_TASK_TRIVIAL
+	///How much brute damage this pack heals when applied to a limb
+	var/heal_brute = 0
+	///How much burn damage this pack heals when applied to a limb
+	var/heal_burn = 0
 
 /obj/item/stack/medical/attack(mob/living/M, mob/living/user)
 	. = ..()
 	if(.)
 		return
 
-	if(!ishuman(M))
-		M.balloon_alert(user, "not a human")
+	if(!ishuman(M) || !isxeno(M))
+		M.balloon_alert(user, "not a humanoid")
 		return FALSE
 	var/mob/living/carbon/human/target = M
 
@@ -36,6 +40,12 @@
 	if(user.do_actions)
 		target.balloon_alert(user, "already busy")
 		return
+
+	if(isxeno(M))
+		if(!do_mob(user, M, SKILL_TASK_VERY_EASY / (unskilled_delay * 2), BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
+			M.adjustBruteLoss(heal_brute * 10)
+			M.adjustFireLoss(heal_burn * 10)
+			return
 
 	var/datum/limb/affecting = user.client.prefs.toggles_gameplay & RADIAL_MEDICAL ? radial_medical(target, user) : target.get_limb(user.zone_selected)
 
@@ -56,10 +66,6 @@
 	name = "platonic gauze"
 	amount = 40
 	max_amount = 40
-	///How much brute damage this pack heals when applied to a limb
-	var/heal_brute = 0
-	///How much burn damage this pack heals when applied to a limb
-	var/heal_burn = 0
 	///Set of wound flags applied by use, including BANDAGE, SALVE, and DISINFECT
 	var/heal_flags = NONE
 
