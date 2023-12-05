@@ -70,23 +70,51 @@ ITEM_SLOT_MASK, ITEM_SLOT_HEAD, ITEM_SLOT_FEET, ITEM_SLOT_ID, ITEM_SLOT_BELT, IT
 		ITEM_SLOT_OCLOTHING = /obj/item/clothing/suit/modular/xenonauten/heavy/surt
 	)
 
+GLOBAL_LIST_INIT(campaign_loadout_items_by_role, list(
+	SQUAD_MARINE = list(),
+	SQUAD_ENGINEER = list(),
+	SQUAD_CORPSMAN = list(),
+	SQUAD_SMARTGUNNER = list(),
+	SQUAD_LEADER = list(),
+	FIELD_COMMANDER = list(),
+	STAFF_OFFICER = list(),
+	CAPTAIN = list(),
+	SOM_SQUAD_MARINE = list(),
+	SOM_SQUAD_ENGINEER = list(),
+	SOM_SQUAD_CORPSMAN = list(),
+	SOM_SQUAD_VETERAN = list(),
+	SOM_SQUAD_LEADER = list(),
+	SOM_FIELD_COMMANDER = list(),
+	SOM_STAFF_OFFICER = list(),
+	SOM_COMMANDER = list(),
+))
+
 //holds a record of loadout_item datums, and the actual loadout itself
 /datum/outfit_holder
+	var/role
 	///Assoc list of loadout_items by slot
 	var/list/datum/loadout_item/equipped_things = list()
 	///The actual loadout to be equipped
 	var/datum/outfit/quick/loadout
 	///Cost of the loadout to equip
 	var/loadout_cost = 0
+	///Items available to be equipped
+	var/list/list/datum/loadout_item/available_list = list() //only used for ui data purposes
 
-/datum/outfit_holder/New()
+/datum/outfit_holder/New(new_role)
 	. = ..()
+	role = new_role
 	loadout = new /datum/outfit/quick
 	for(var/slot in campaign_loadout_slots)
 		equipped_things[slot] = null
+	for(var/slot in campaign_loadout_slots)
+		available_list[slot] = list()
+	for(var/datum/loadout_item/loadout_option AS in GLOB.campaign_loadout_items_by_role[role])
+		available_list[loadout_option.item_slot] += loadout_option
 
 /datum/outfit_holder/Destroy(force, ...)
 	equipped_things = null
+	available_list = null
 	QDEL_NULL(loadout)
 	return ..()
 
