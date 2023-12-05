@@ -1467,6 +1467,7 @@
 	var/mob/living/carbon/xenomorph/X = owner
 	var/mob/living/carbon/human/victim = A
 	var/hivenumber = XENO_HIVE_NORMAL
+	hivenumber = X.hivenumber
 	X.face_atom(victim)
 	X.do_jitter_animation()
 	A.do_jitter_animation()
