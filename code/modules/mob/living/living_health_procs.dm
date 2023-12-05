@@ -74,8 +74,8 @@
 
 	var/stamina_loss_adjustment = staminaloss + amount
 	var/health_limit = maxHealth * 2
-	if(stamina_loss_adjustment > health_limit) //If we exceed maxHealth * 2 stamina damage, half of any excess as oxyloss
-		adjustOxyLoss((stamina_loss_adjustment - health_limit) * 0.5)
+	if(stamina_loss_adjustment > health_limit) //If we exceed maxHealth * 2 stamina damage, get hardstunned for 15 seconds, instead of taking oxygen damage.
+		apply_effect(15 SECONDS, WEAKEN)
 
 	staminaloss = clamp(stamina_loss_adjustment, -max_stamina, health_limit)
 

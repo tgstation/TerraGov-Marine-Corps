@@ -69,3 +69,13 @@
   - balance: Sectoids are no longer melee masters
   ivanmixo:
   - bugfix: Fixed defender being able to move dead bodies
+2023-12-05:
+  Lumipharon:
+  - bugfix: fixed mechs being impossible to enter
+  TiviPlus:
+  - rscadd: Added squad transfer tablet for SLs
+  Wirpy:
+  - bugfix: fixes the syndie helmets having a missing iconsprite + storage
+  - bugfix: 'mountbatten being inverted
+
+      :cl:'
