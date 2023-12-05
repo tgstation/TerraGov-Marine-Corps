@@ -13,6 +13,8 @@
 /obj/item/armor_module/armor/secondary_color/on_attach(obj/item/attaching_to, mob/user)
 	. = ..()
 	greyscale_config = attaching_to.greyscale_config
+	name = "[attaching_to.name] secondary color"
+
 	update_icon()
 	update_greyscale()
 	RegisterSignal(attaching_to, COMSIG_ITEM_VARIANT_CHANGE, PROC_REF(on_variant_change))
