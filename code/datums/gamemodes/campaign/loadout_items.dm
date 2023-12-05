@@ -1,6 +1,62 @@
 #define campaign_loadout_slots list(ITEM_SLOT_OCLOTHING, ITEM_SLOT_ICLOTHING, ITEM_SLOT_GLOVES, ITEM_SLOT_EYES, ITEM_SLOT_EARS, \
 ITEM_SLOT_MASK, ITEM_SLOT_HEAD, ITEM_SLOT_FEET, ITEM_SLOT_ID, ITEM_SLOT_BELT, ITEM_SLOT_BACK, ITEM_SLOT_R_POCKET, ITEM_SLOT_L_POCKET, ITEM_SLOT_SUITSTORE)
 
+//List of all loadout_item datums
+GLOBAL_LIST_INIT_TYPED(campaign_loadout_item_type_list, /datum/loadout_item, init_glob_loadout_item_list())
+
+/proc/init_glob_loadout_item_list()
+	. = list()
+	for(var/type in subtypesof(/datum/loadout_item))
+		var/datum/loadout_item/item_type = new type
+		.[item_type.type] = item_type
+
+//List of all loadout_item datums by job, excluding ones that must be unlocked
+GLOBAL_LIST_INIT(campaign_loadout_items_by_role, list(
+	SQUAD_MARINE = list(),
+	SQUAD_ENGINEER = list(),
+	SQUAD_CORPSMAN = list(),
+	SQUAD_SMARTGUNNER = list(),
+	SQUAD_LEADER = list(),
+	FIELD_COMMANDER = list(),
+	STAFF_OFFICER = list(),
+	CAPTAIN = list(),
+	SOM_SQUAD_MARINE = list(),
+	SOM_SQUAD_ENGINEER = list(),
+	SOM_SQUAD_CORPSMAN = list(),
+	SOM_SQUAD_VETERAN = list(),
+	SOM_SQUAD_LEADER = list(),
+	SOM_FIELD_COMMANDER = list(),
+	SOM_STAFF_OFFICER = list(),
+	SOM_COMMANDER = list(),
+))
+
+/proc/init_campaign_loadout_items_by_role()
+	. = list(
+	SQUAD_MARINE = list(),
+	SQUAD_ENGINEER = list(),
+	SQUAD_CORPSMAN = list(),
+	SQUAD_SMARTGUNNER = list(),
+	SQUAD_LEADER = list(),
+	FIELD_COMMANDER = list(),
+	STAFF_OFFICER = list(),
+	CAPTAIN = list(),
+	SOM_SQUAD_MARINE = list(),
+	SOM_SQUAD_ENGINEER = list(),
+	SOM_SQUAD_CORPSMAN = list(),
+	SOM_SQUAD_VETERAN = list(),
+	SOM_SQUAD_LEADER = list(),
+	SOM_FIELD_COMMANDER = list(),
+	SOM_STAFF_OFFICER = list(),
+	SOM_COMMANDER = list(),
+)
+	for(var/role in .)
+		for(var/datum/loadout_item/option AS in GLOB.campaign_loadout_item_type_list)
+			if(!option.round_start_option)
+				continue
+			if(option.jobs_supported && !(role in option.jobs_supported))
+				continue
+			.[role] += option
+
 //represents an equipable item
 //Are singletons
 /datum/loadout_item
@@ -12,6 +68,8 @@ ITEM_SLOT_MASK, ITEM_SLOT_HEAD, ITEM_SLOT_FEET, ITEM_SLOT_ID, ITEM_SLOT_BELT, IT
 	var/item_typepath
 	///inventory slot it is intended to go into
 	var/item_slot
+	///Available at round start or must be unlocked somehow
+	var/round_start_option = TRUE
 	///Cost to unlock this option
 	var/unlock_cost = 0
 	///Cost to use this option
@@ -69,25 +127,6 @@ ITEM_SLOT_MASK, ITEM_SLOT_HEAD, ITEM_SLOT_FEET, ITEM_SLOT_ID, ITEM_SLOT_BELT, IT
 	item_whitelist = list(
 		ITEM_SLOT_OCLOTHING = /obj/item/clothing/suit/modular/xenonauten/heavy/surt
 	)
-
-GLOBAL_LIST_INIT(campaign_loadout_items_by_role, list(
-	SQUAD_MARINE = list(),
-	SQUAD_ENGINEER = list(),
-	SQUAD_CORPSMAN = list(),
-	SQUAD_SMARTGUNNER = list(),
-	SQUAD_LEADER = list(),
-	FIELD_COMMANDER = list(),
-	STAFF_OFFICER = list(),
-	CAPTAIN = list(),
-	SOM_SQUAD_MARINE = list(),
-	SOM_SQUAD_ENGINEER = list(),
-	SOM_SQUAD_CORPSMAN = list(),
-	SOM_SQUAD_VETERAN = list(),
-	SOM_SQUAD_LEADER = list(),
-	SOM_FIELD_COMMANDER = list(),
-	SOM_STAFF_OFFICER = list(),
-	SOM_COMMANDER = list(),
-))
 
 //holds a record of loadout_item datums, and the actual loadout itself
 /datum/outfit_holder
