@@ -6,29 +6,13 @@ GLOBAL_LIST_INIT_TYPED(campaign_loadout_item_type_list, /datum/loadout_item, ini
 
 /proc/init_glob_loadout_item_list()
 	. = list()
-	for(var/type in subtypesof(/datum/loadout_item))
-		var/datum/loadout_item/item_type = new type
-		.[item_type.type] = item_type
+	for(var/datum/loadout_item/type in subtypesof(/datum/loadout_item))
+		if(!type::jobs_supported)
+			continue
+		.[item_type.type] = new type
 
 //List of all loadout_item datums by job, excluding ones that must be unlocked
-GLOBAL_LIST_INIT(campaign_loadout_items_by_role, list(
-	SQUAD_MARINE = list(),
-	SQUAD_ENGINEER = list(),
-	SQUAD_CORPSMAN = list(),
-	SQUAD_SMARTGUNNER = list(),
-	SQUAD_LEADER = list(),
-	FIELD_COMMANDER = list(),
-	STAFF_OFFICER = list(),
-	CAPTAIN = list(),
-	SOM_SQUAD_MARINE = list(),
-	SOM_SQUAD_ENGINEER = list(),
-	SOM_SQUAD_CORPSMAN = list(),
-	SOM_SQUAD_VETERAN = list(),
-	SOM_SQUAD_LEADER = list(),
-	SOM_FIELD_COMMANDER = list(),
-	SOM_STAFF_OFFICER = list(),
-	SOM_COMMANDER = list(),
-))
+GLOBAL_LIST_INIT(campaign_loadout_items_by_role, init_campaign_loadout_items_by_role())
 
 /proc/init_campaign_loadout_items_by_role()
 	. = list(
@@ -74,7 +58,7 @@ GLOBAL_LIST_INIT(campaign_loadout_items_by_role, list(
 	var/unlock_cost = 0
 	///Cost to use this option
 	var/purchase_cost = 0
-	///Job types that this perk is available to. no list implies this works for any job
+	///Job types that this perk is available to
 	var/list/jobs_supported
 	///assoc list by slot of items required for this to be equipped
 	var/list/item_whitelist
