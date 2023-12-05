@@ -1,4 +1,8 @@
+#define campaign_loadout_slots list(ITEM_SLOT_OCLOTHING, ITEM_SLOT_ICLOTHING, ITEM_SLOT_GLOVES, ITEM_SLOT_EYES, ITEM_SLOT_EARS, \
+ITEM_SLOT_MASK, ITEM_SLOT_HEAD, ITEM_SLOT_FEET, ITEM_SLOT_ID, ITEM_SLOT_BELT, ITEM_SLOT_BACK, ITEM_SLOT_R_POCKET, ITEM_SLOT_L_POCKET, ITEM_SLOT_SUITSTORE)
+
 //represents an equipable item
+//Are singletons
 /datum/loadout_item
 	///Item name
 	var/name = "item name here"
@@ -21,98 +25,28 @@
 	//do we need a post equip gear list?
 
 ///Attempts to add an item to a loadout
-/datum/loadout_item/proc/attempt_add_loadout_item(datum/outfit/quick/loadout)
-	if(length(item_whitelist) && !whitelist_check(loadout))
-		return
-	if(length(item_blacklist) && !blacklist_check(loadout))
-		return
-	apply_loadout_item(loadout)
-
-///Actually adds an item to a loadout
-/datum/loadout_item/proc/apply_loadout_item(datum/outfit/quick/loadout)
-	var/slot_bit = item_slot
-	switch(slot_bit) //note, might need to make this new_item, not the item type path, so we can ref cost and other details. Unless we load that somewhere else?
-		if(ITEM_SLOT_OCLOTHING)
-			loadout.wear_suit = item_typepath
-		if(ITEM_SLOT_ICLOTHING)
-			loadout.w_uniform = item_typepath
-		if(ITEM_SLOT_GLOVES)
-			loadout.gloves = item_typepath
-		if(ITEM_SLOT_EYES)
-			loadout.glasses = item_typepath
-		if(ITEM_SLOT_EARS)
-			loadout.ears = item_typepath
-		if(ITEM_SLOT_MASK)
-			loadout.mask = item_typepath
-		if(ITEM_SLOT_HEAD)
-			loadout.head = item_typepath
-		if(ITEM_SLOT_FEET)
-			loadout.shoes = item_typepath
-		if(ITEM_SLOT_ID)
-			loadout.id = item_typepath
-		if(ITEM_SLOT_BELT)
-			loadout.belt = item_typepath
-		if(ITEM_SLOT_BACK)
-			loadout.back = item_typepath
-		if(ITEM_SLOT_R_POCKET)
-			loadout.r_store = item_typepath
-		if(ITEM_SLOT_L_POCKET)
-			loadout.l_store = item_typepath
-		if(ITEM_SLOT_SUITSTORE)
-			loadout.suit_store = item_typepath
-		else
-			CRASH("Invalid item slot specified [item_slot]")
-	//do post equip stuff here probs, or when?
+/datum/loadout_item/proc/attempt_add_loadout_item(datum/outfit_holder/outfit_holder)
+	if(length(item_whitelist) && !whitelist_check(outfit_holder))
+		return FALSE
+	if(length(item_blacklist) && !blacklist_check(outfit_holder))
+		return FALSE
+	return TRUE
 
 ///checks if a loadout has required whitelist items
-/datum/loadout_item/proc/whitelist_check(datum/outfit/quick/loadout)
+/datum/loadout_item/proc/whitelist_check(datum/outfit_holder/outfit_holder)
 	for(var/slot in item_whitelist)
-		var/obj/item/thing_to_check = find_item(slot, loadout)
-		if(!thing_to_check || thing_to_check.type != item_whitelist[slot])
+		var/type_to_check = outfit_holder.equipped_things[slot].item_typepath
+		if(!type_to_check || type_to_check != item_whitelist[slot])
 			return FALSE
 	return TRUE
 
 ///Checks if a loadout has any blacklisted items
-/datum/loadout_item/proc/blacklist_check(datum/outfit/quick/loadout)
+/datum/loadout_item/proc/blacklist_check(datum/outfit_holder/outfit_holder)
 	for(var/slot in item_blacklist)
-		var/obj/item/thing_to_check = find_item(slot, loadout)
-		if(thing_to_check?.type == item_blacklist[slot])
+		var/type_to_check = outfit_holder.equipped_things[slot].item_typepath
+		if(type_to_check == item_blacklist[slot])
 			return FALSE
 	return TRUE
-
-///Returns an item type in a particular loadout slot
-/datum/loadout_item/proc/find_item(slot_bit, datum/outfit/quick/loadout)
-	switch(slot_bit)
-		if(ITEM_SLOT_OCLOTHING)
-			. = loadout.wear_suit
-		if(ITEM_SLOT_ICLOTHING)
-			. = loadout.w_uniform
-		if(ITEM_SLOT_GLOVES)
-			. = loadout.gloves
-		if(ITEM_SLOT_EYES)
-			. = loadout.glasses
-		if(ITEM_SLOT_EARS)
-			. = loadout.ears
-		if(ITEM_SLOT_MASK)
-			. = loadout.mask
-		if(ITEM_SLOT_HEAD)
-			. = loadout.head
-		if(ITEM_SLOT_FEET)
-			. = loadout.shoes
-		if(ITEM_SLOT_ID)
-			. = loadout.id
-		if(ITEM_SLOT_BELT)
-			. = loadout.belt
-		if(ITEM_SLOT_BACK)
-			. = loadout.back
-		if(ITEM_SLOT_R_POCKET)
-			. = loadout.r_store
-		if(ITEM_SLOT_L_POCKET)
-			. = loadout.l_store
-		if(ITEM_SLOT_SUITSTORE)
-			. = loadout.suit_store
-		else
-			CRASH("Invalid item slot specified [item_slot]")
 
 //example use
 /datum/loadout_item/suit_slot
@@ -135,6 +69,118 @@
 	item_whitelist = list(
 		ITEM_SLOT_OCLOTHING = /obj/item/clothing/suit/modular/xenonauten/heavy/surt
 	)
+
+//holds a record of loadout_item datums, and the actual loadout itself
+/datum/outfit_holder
+	///Assoc list of loadout_items by slot
+	var/list/datum/loadout_item/equipped_things = list()
+	///The actual loadout to be equipped
+	var/datum/outfit/quick/loadout
+	///Cost of the loadout to equip
+	var/loadout_cost = 0
+
+/datum/outfit_holder/New()
+	. = ..()
+	loadout = new /datum/outfit/quick
+	for(var/slot in campaign_loadout_slots)
+		equipped_things[slot] = null
+
+/datum/outfit_holder/Destroy(force, ...)
+	equipped_things = null
+	QDEL_NULL(loadout)
+	return ..()
+
+///Equips the loadout to a mob
+/datum/outfit_holder/proc/equip_loadout(mob/living/carbon/human/owner)
+	loadout.equip(owner)
+	//insert post equip magic here
+
+///Tries to add a datum if valid
+/datum/outfit_holder/proc/attempt_add_loadout_item(datum/loadout_item/new_item)
+	if(!new_item.attempt_add_loadout_item())
+		return FALSE
+	return add_loadout_item(new_item)
+
+///Actually adds an item to a loadout
+/datum/outfit_holder/proc/add_loadout_item(datum/loadout_item/new_item)
+	var/slot_bit = new_item.item_slot
+	loadout_cost -= equipped_things[slot_bit].purchase_cost
+	equipped_things[slot_bit] = new_item //adds the datum
+	loadout_cost += equipped_things[slot_bit].purchase_cost
+	check_full_loadout() //checks all datums to see if this makes anything invalid
+
+	switch(slot_bit) //adds it to the loadout itself
+		if(ITEM_SLOT_OCLOTHING)
+			loadout.wear_suit = new_item.item_typepath
+		if(ITEM_SLOT_ICLOTHING)
+			loadout.w_uniform = new_item.item_typepath
+		if(ITEM_SLOT_GLOVES)
+			loadout.gloves = new_item.item_typepath
+		if(ITEM_SLOT_EYES)
+			loadout.glasses = new_item.item_typepath
+		if(ITEM_SLOT_EARS)
+			loadout.ears = new_item.item_typepath
+		if(ITEM_SLOT_MASK)
+			loadout.mask = new_item.item_typepath
+		if(ITEM_SLOT_HEAD)
+			loadout.head = new_item.item_typepath
+		if(ITEM_SLOT_FEET)
+			loadout.shoes = new_item.item_typepath
+		if(ITEM_SLOT_ID)
+			loadout.id = new_item.item_typepath
+		if(ITEM_SLOT_BELT)
+			loadout.belt = new_item.item_typepath
+		if(ITEM_SLOT_BACK)
+			loadout.back = new_item.item_typepath
+		if(ITEM_SLOT_R_POCKET)
+			loadout.r_store = new_item.item_typepath
+		if(ITEM_SLOT_L_POCKET)
+			loadout.l_store = new_item.item_typepath
+		if(ITEM_SLOT_SUITSTORE)
+			loadout.suit_store = new_item.item_typepath
+		else
+			CRASH("Invalid item slot specified [slot_bit]")
+	return TRUE
+
+///scans the entire loadout for validity
+/datum/outfit_holder/proc/check_full_loadout()
+	. = TRUE
+	for(var/slot in equipped_things)
+		var/datum/loadout_item/thing_to_check = equipped_things[slot]
+		if(!thing_to_check)
+			continue
+		if(length(thing_to_check.item_whitelist) && !thing_to_check.whitelist_check(src))
+			//mark visually here
+			. = FALSE
+		if(length(thing_to_check.item_blacklist) && !thing_to_check.blacklist_check(src))
+			//mark visually here
+			. = FALSE
+
+//2 procs below may be unneeded
+
+//returns ther datum, not the item. Currently unused
+///Returns an item type in a particular loadout slot
+/datum/outfit_holder/proc/find_item(slot)
+	return equipped_things[slot]
+
+///Fully populates the loadout
+/datum/outfit_holder/proc/populate_loadout() //this might be redundant, maybe just use it for the initial default since we don't need the checks in that case
+	loadout.wear_suit = equipped_things[ITEM_SLOT_OCLOTHING]
+	loadout.w_uniform = equipped_things[ITEM_SLOT_ICLOTHING]
+	loadout.gloves = equipped_things[ITEM_SLOT_GLOVES]
+	loadout.glasses = equipped_things[ITEM_SLOT_EYES]
+	loadout.ears = equipped_things[ITEM_SLOT_EARS]
+	loadout.mask = equipped_things[ITEM_SLOT_MASK]
+	loadout.head = equipped_things[ITEM_SLOT_HEAD]
+	loadout.shoes = equipped_things[ITEM_SLOT_FEET]
+	loadout.id = equipped_things[ITEM_SLOT_ID]
+	loadout.belt = equipped_things[ITEM_SLOT_BELT]
+	loadout.back = equipped_things[ITEM_SLOT_BACK]
+	loadout.r_store = equipped_things[ITEM_SLOT_R_POCKET]
+	loadout.l_store = equipped_things[ITEM_SLOT_L_POCKET]
+	loadout.suit_store = equipped_things[ITEM_SLOT_SUITSTORE]
+
+////////////////////////////LOADOUT ITSELF////////////////
 
 /*
 we can just have a single loadout per person (per role probably) and load the relevant vars from the loadout_item datum

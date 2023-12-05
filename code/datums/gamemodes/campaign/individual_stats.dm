@@ -11,7 +11,7 @@
 	///Unlocked items
 	var/list/list/datum/loadout_item/unlocked_items = list() //probs some initial list here based on class etc.
 	///List of loadouts by role
-	var/list/datum/outfit/quick/loadouts = list()
+	var/list/datum/outfit_holder/loadouts = list()
 	///The faction associated with these stats
 	var/faction
 
@@ -24,7 +24,7 @@
 	for(var/datum/job/job_type AS in SSticker.mode.valid_job_types)
 		if(job_type::faction != faction)
 			continue
-		loadouts[job_type::title] = new /datum/outfit/quick
+		loadouts[job_type::title] = new /datum/outfit_holder
 		perks[job_type::title] = list()
 		unlocked_items[job_type::title] = list()
 
@@ -91,4 +91,4 @@
 
 ///Attempts to add an available item to a loadout
 /datum/individual_stats/proc/attempt_add_loadout_item(datum/loadout_item/new_item, role)
-	new_item.attempt_add_loadout_item(loadouts[role])
+	loadouts[role].attempt_add_loadout_item(new_item)
