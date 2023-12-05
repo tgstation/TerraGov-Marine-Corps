@@ -105,7 +105,8 @@
 
 /datum/job/other/prisoner
 	title = "Prisoner"
-	paygrade = "Psr"
+	paygrade = "Psnr"
+	comm_title = "Psnr"
 	outfit = /datum/outfit/job/prisoner
 	supervisors = "Corpsec Officers"
 	display_order = JOB_DISPLAY_ORDER_PRISONER
@@ -113,6 +114,7 @@
 	total_positions = -1
 	selection_color = "#e69704"
 	job_flags = JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_LATEJOINABLE|JOB_FLAG_OVERRIDELATEJOINSPAWN|JOB_FLAG_ADDTOMANIFEST
+	job_category = JOB_CAT_CIVILIAN
 
 /datum/outfit/job/prisoner
 	id = /obj/item/card/id
@@ -122,7 +124,8 @@
 
 /datum/job/worker
 	title = "Worker"
-	paygrade = "Wkr"
+	paygrade = "Wrkr"
+	comm_title = "Wrkr"
 	outfit = /datum/outfit/job/worker
 	supervisors = "Ninetails Corp"
 	access = list(ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_PREP, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_CARGO, ACCESS_CIVILIAN_ENGINEERING)
@@ -132,6 +135,7 @@
 	selection_color = "#f3f70c"
 	job_flags = JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_LATEJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST
 	faction = FACTION_TERRAGOV
+	job_category = JOB_CAT_CIVILIAN
 
 /datum/outfit/job/worker
 	id = /obj/item/card/id

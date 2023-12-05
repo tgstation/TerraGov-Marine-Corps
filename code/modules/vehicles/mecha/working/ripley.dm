@@ -4,7 +4,7 @@
 	icon_state = "ripley"
 	base_icon_state = "ripley"
 	silicon_icon_state = "ripley-empty"
-	move_delay = 1.5 //Move speed, lower is faster.
+	move_delay = 0.5 //Move speed, lower is faster.
 	max_temperature = 20000
 	max_integrity = 200
 	ui_x = 1200

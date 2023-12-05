@@ -47,7 +47,8 @@
 		/datum/job/clf/leader = 1,
 		/datum/job/clf/specialist = 1,
 		/datum/job/clf/medic = 2,
-		/datum/job/clf/standard = 8
+		/datum/job/clf/standard = 8,
+		/datum/job/clf/breeder = -1
 	)
 	enable_fun_tads = TRUE
 	xenorespawn_time = 15 SECONDS

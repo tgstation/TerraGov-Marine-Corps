@@ -62,7 +62,6 @@
 	///Time to become active after moving into the facehugger's space.
 	var/proximity_time = 0.75 SECONDS
 
-
 /obj/item/clothing/mask/facehugger/Initialize(mapload, input_hivenumber, input_source)
 	. = ..()
 	if(stat == CONSCIOUS)
@@ -132,14 +131,11 @@
 /obj/item/clothing/mask/facehugger/attack_hand(mob/living/user)
 	if(isxeno(user))
 		var/mob/living/carbon/xenomorph/X = user
-		if(X.xeno_caste.can_flags & CASTE_CAN_HOLD_FACEHUGGERS)
-			deltimer(jumptimer)
-			deltimer(activetimer)
-			remove_danger_overlay() //Remove the exclamation overlay as we pick it up
-			facehugger_register_source(X)
-			return ..() // These can pick up huggers.
-		else
-			return FALSE // The rest can't.
+		deltimer(jumptimer)
+		deltimer(activetimer)
+		remove_danger_overlay() //Remove the exclamation overlay as we pick it up
+		facehugger_register_source(X)
+		return ..() // These can pick up huggers.
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 		if(src.issamexenohive(H))
@@ -560,7 +556,7 @@
 	if(!sterile && !issynth(user))
 		var/stamina_dmg = 150 //user.maxHealth + user.max_stamina
 		user.apply_damage(stamina_dmg, STAMINA) // complete winds the target
-		user.Unconscious(20 SECONDS)
+	user.Unconscious(20 SECONDS)
 	attached = TRUE
 	go_idle(FALSE, TRUE)
 	addtimer(CALLBACK(src, PROC_REF(Impregnate), user), IMPREGNATION_TIME)
@@ -568,7 +564,7 @@
 /obj/item/clothing/mask/facehugger/proc/Impregnate(mob/living/target)
 	ADD_TRAIT(src, TRAIT_NODROP, HUGGER_TRAIT)
 	var/as_planned = target?.wear_mask == src ? TRUE : FALSE
-	if(target.can_be_facehugged(src, FALSE, FALSE) && !sterile && as_planned) //is hugger still on face and can they still be impregnated
+	if((target.can_be_facehugged(src, FALSE, FALSE) || target.faction == FACTION_CLF) && !sterile && as_planned) //is hugger still on face and can they still be impregnated
 		if(!(locate(/obj/item/alien_embryo) in target))
 			var/obj/item/alien_embryo/embryo = new(target)
 			embryo.hivenumber = hivenumber
@@ -591,8 +587,8 @@
 			if(ismonkey(target))
 				target.apply_damage(15, BRUTE, BODY_ZONE_PRECISE_GROIN, updating_health = TRUE)
 		else //Huggered but not impregnated, deal damage.
-			target.visible_message(span_danger("[src] frantically claws and fucks [target]'s face before falling down!"),span_danger("[src] frantically claws and fucks your face before falling down! Auugh!"))
-			target.apply_damage(15, BRUTE, BODY_ZONE_HEAD, updating_health = TRUE)
+			target.visible_message(span_danger("[src] frantically claws and fucks [target] before falling down!"),span_danger("[src] frantically claws and fucks you before falling down! Auugh!"))
+			target.apply_damage(15, BRUTE, BODY_ZONE_PRECISE_GROIN, updating_health = TRUE)
 
 
 /obj/item/clothing/mask/facehugger/proc/kill_hugger(melt_timer = 1 MINUTES)
