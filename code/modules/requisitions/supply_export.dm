@@ -20,29 +20,29 @@
 /mob/living/carbon/human/get_export_value()
 	switch(job.job_category)
 		if(JOB_CAT_ENGINEERING, JOB_CAT_MEDICAL, JOB_CAT_REQUISITIONS)
-			. = 200
+			. = 100
 		if(JOB_CAT_MARINE)
-			. = 300
+			. = 250
 		if(JOB_CAT_SILICON)
-			. = 800
+			. = 400
 		if(JOB_CAT_COMMAND)
-			. = 1000
+			. = 500
 	return
 
 /mob/living/carbon/xenomorph/get_export_value()
 	switch(tier)
 		if(XENO_TIER_MINION)
-			. = 50
+			. = 25
 		if(XENO_TIER_ZERO)
-			. = 70
+			. = 35
 		if(XENO_TIER_ONE)
-			. = 150
+			. = 75
 		if(XENO_TIER_TWO)
-			. = 300
+			. = 150
 		if(XENO_TIER_THREE)
-			. = 500
+			. = 250
 		if(XENO_TIER_FOUR)
-			. = 1000
+			. = 500
 	return
 
 //I hate it but it's how it was so I'm not touching it further than this

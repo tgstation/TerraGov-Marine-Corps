@@ -343,18 +343,17 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 
 /obj/item/attachable/suppressor
 	name = "suppressor"
-	desc = "A small tube with exhaust ports to expel noise and gas.\nDoes not completely silence a weapon, but does make it much quieter and a little more accurate and stable at the cost of bullet speed."
+	desc = "A small tube with exhaust ports to expel noise and gas.\nDoes not completely silence a weapon, but does make it much quieter and a little more accurate and stable while wielding properly at the cost of one-handed accuracy."
 	icon_state = "suppressor"
 	slot = ATTACHMENT_SLOT_MUZZLE
 	silence_mod = TRUE
 	pixel_shift_y = 16
-	attach_shell_speed_mod = -1
 	accuracy_mod = 0.1
-	recoil_mod = -2
+	recoil_mod = -3
 	scatter_mod = -2
-	recoil_unwielded_mod = -3
-	scatter_unwielded_mod = -2
-	damage_falloff_mod = 0.1
+	recoil_unwielded_mod = 1
+	scatter_unwielded_mod = 2
+	damage_falloff_mod = -0.1
 
 /obj/item/attachable/suppressor/unremovable
 	flags_attach_features = NONE
@@ -453,9 +452,10 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 
 /obj/item/attachable/heavy_barrel
 	name = "barrel charger"
-	desc = "A fitted barrel extender that goes on the muzzle, with a small shaped charge that propels a bullet much faster.\nGreatly increases projectile speed and reduces damage falloff."
+	desc = "A fitted barrel extender that goes on the muzzle, with a small shaped charge that propels a bullet much faster.\nGreatly increases projectile speed and reduces damage falloff. This increases the recoil significantly."
 	slot = ATTACHMENT_SLOT_MUZZLE
 	icon_state = "hbarrel"
+	recoil_mod = 3
 	attach_shell_speed_mod = 2
 	accuracy_mod = -0.05
 	damage_falloff_mod = -0.2
