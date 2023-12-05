@@ -76,11 +76,13 @@
 	if(!length(new_item.jobs_supported))
 		for(var/job in unlocked_items)
 			unlocked_items[job] += new_item
+			loadouts[job].add_new_option(new_item)
 	else
 		for(var/supported_job in new_item.jobs_supported)
 			if(!unlocked_items[supported_job])
 				continue
 			unlocked_items[supported_job] += new_item
+			loadouts[supported_job].add_new_option(new_item)
 
 ///Applies all perks to a mob
 /datum/individual_stats/proc/apply_perks()

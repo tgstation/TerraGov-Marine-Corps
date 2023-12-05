@@ -83,7 +83,7 @@ GLOBAL_LIST_INIT(campaign_loadout_items_by_role, list(
 	//do we need a post equip gear list?
 
 ///Attempts to add an item to a loadout
-/datum/loadout_item/proc/attempt_add_loadout_item(datum/outfit_holder/outfit_holder)
+/datum/loadout_item/proc/item_checks(datum/outfit_holder/outfit_holder)
 	if(length(item_whitelist) && !whitelist_check(outfit_holder))
 		return FALSE
 	if(length(item_blacklist) && !blacklist_check(outfit_holder))
@@ -162,14 +162,20 @@ GLOBAL_LIST_INIT(campaign_loadout_items_by_role, list(
 	loadout.equip(owner)
 	//insert post equip magic here
 
+///Adds a new loadout_item to the available list
+/datum/outfit_holder/proc/add_new_option(datum/loadout_item/new_item)
+	if(new_item in available_list[new_item.item_slot])
+		return
+	available_list[new_item.item_slot] += new_item
+
 ///Tries to add a datum if valid
-/datum/outfit_holder/proc/attempt_add_loadout_item(datum/loadout_item/new_item)
-	if(!new_item.attempt_add_loadout_item())
+/datum/outfit_holder/proc/attempt_equip_loadout_item(datum/loadout_item/new_item)
+	if(!new_item.item_checks())
 		return FALSE
-	return add_loadout_item(new_item)
+	return equip_loadout_item(new_item)
 
 ///Actually adds an item to a loadout
-/datum/outfit_holder/proc/add_loadout_item(datum/loadout_item/new_item)
+/datum/outfit_holder/proc/equip_loadout_item(datum/loadout_item/new_item)
 	var/slot_bit = new_item.item_slot
 	loadout_cost -= equipped_things[slot_bit].purchase_cost
 	equipped_things[slot_bit] = new_item //adds the datum
