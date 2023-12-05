@@ -92,5 +92,5 @@
 		perk.apply_perk(current_mob)
 
 ///Attempts to add an available item to a loadout
-/datum/individual_stats/proc/attempt_add_loadout_item(datum/loadout_item/new_item, role)
-	loadouts[role].attempt_add_loadout_item(new_item)
+/datum/individual_stats/proc/attempt_equip_loadout_item(datum/loadout_item/new_item, role)
+	loadouts[role].attempt_equip_loadout_item(new_item)
