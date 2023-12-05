@@ -542,10 +542,7 @@
 
 /datum/action/ability/activable/xeno/psy_blast/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/xeno_owner = owner
-	//var/turf/target_turf = get_turf(A)
-
 	owner.balloon_alert(owner, "We channel our psychic power")
-
 	generate_particles(A, 7)
 	ADD_TRAIT(xeno_owner, TRAIT_IMMOBILE, PSYCHIC_BLAST_ABILITY_TRAIT)
 	var/datum/ammo/energy/xeno/ammo_type = xeno_owner.ammo
