@@ -84,23 +84,6 @@
 	description = "Give the held item to the nearby marine"
 	keybind_signal = COMSIG_KB_GIVE
 
-/datum/keybinding/human/vali_configure
-	name = "vali_configure"
-	full_name = "Configure Vali Chemical Enhancement"
-	description = "Vali settings menu"
-	keybind_signal = COMSIG_KB_VALI_CONFIGURE
-
-/datum/keybinding/human/vali_heal
-	name = "vali_heal"
-	full_name = "Activate Vali healing"
-	keybind_signal = COMSIG_KB_VALI_HEAL
-
-/datum/keybinding/human/vali_connect
-	name = "vali_connect"
-	full_name = "Connect Vali"
-	description = "Connect Vali system to your weapon"
-	keybind_signal = COMSIG_KB_VALI_CONNECT
-
 /datum/keybinding/human/suit_analyzer
 	name = "suit_analyzer"
 	full_name = "Activate suit health analyzer"
