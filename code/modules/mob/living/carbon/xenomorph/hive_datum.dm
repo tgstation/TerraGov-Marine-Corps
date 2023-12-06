@@ -404,8 +404,9 @@
 	return TRUE
 
 /datum/hive_status/proc/add_hud_timers(mob/living/carbon/xenomorph/X)
-	for(var/atom/movable/screen/text/screen_timer/timer in hud_timers)
-		timer.apply_to(X)
+	for(var/timer in hud_timers)
+		var/atom/movable/screen/text/screen_timer/hud_timer = timer
+		hud_timer.apply_to(X)
 
 /mob/living/carbon/xenomorph/proc/add_to_hive(datum/hive_status/HS, force=FALSE)
 	if(!force && hivenumber != XENO_HIVE_NONE)
@@ -525,8 +526,9 @@
 	return TRUE
 
 /datum/hive_status/proc/remove_hud_timers(mob/living/carbon/xenomorph/X)
-	for(var/atom/movable/screen/text/screen_timer/timer in hud_timers)
-		timer.remove_from(X)
+	for(var/timer in hud_timers)
+		var/atom/movable/screen/text/screen_timer/hud_timer = timer
+		hud_timer.remove_from(X)
 
 /mob/living/carbon/xenomorph/proc/remove_from_hive()
 	if(!istype(hive))
