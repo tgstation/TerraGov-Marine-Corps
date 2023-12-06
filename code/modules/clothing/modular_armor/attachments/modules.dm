@@ -637,6 +637,7 @@
 			startup_timer_id = null
 	else
 		RegisterSignal(user, COMSIG_CAVE_INTERFERENCE_CHECK, PROC_REF(on_interference_check))
+		start_sync(user)
 	return ..()
 
 ///Handles interacting with caves checking for if anything is reducing (or increasing) interference.
@@ -648,17 +649,22 @@
 
 /obj/item/armor_module/module/antenna/activate(mob/living/user)
 	if(comms_setup == COMMS_SETTING)
-		to_chat(user, span_notice("Your Antenna module is already in the process of setting up!"))
+		to_chat(user, span_notice("Your Antenna module is still configuring!"))
 		return
 	if(comms_setup == COMMS_SETUP)
 		var/turf/location = get_turf(user)
 		user.show_message(span_notice("The [src] beeps and states, \"Uplink data: LONGITUDE [location.x]. LATITUDE [location.y]. Area ID: [get_area(src)]\""), EMOTE_AUDIBLE, span_notice("The [src] vibrates but you can not hear it!"))
 		return
+
+///Begins the starup sequence.
+/obj/item/armor/antenna/proc/start_sync(mob/living/user)
+	if(comms_setup != COMMS_OFF) //Guh?
+		return
 	to_chat(user, span_notice("Configuring Antenna communication relay. Please wait."))
 	comms_setup = COMMS_SETTING
 	addtimer(CALLBACK(src, PROC_REF(finish_startup), user), ANTENNA_SYNCING_TIME, TIMER_STOPPABLE)
 
-
+///Finishes startupm, rendering the module effective.
 /obj/item/armor_module/module/antenna/proc/finish_startup(mob/living/user)
 	comms_setup = COMMS_SETUP
 	user.show_message(span_notice("[src] beeps twice and states: \"Antenna configuration complete. Relay system active.\""), EMOTE_AUDIBLE, span_notice("[src] vibrates twice."))
