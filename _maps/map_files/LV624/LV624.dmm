@@ -5565,6 +5565,7 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	on = 1
 	},
+/obj/machinery/computer/autodoc_console,
 /turf/open/floor/mainship/sterile/side{
 	dir = 1
 	},
@@ -6357,6 +6358,7 @@
 "eOW" = (
 /obj/effect/ai_node,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/computer/sleep_console,
 /turf/open/floor/mainship/sterile/white,
 /area/mainship/patrol_base/som{
 	outside = 0

@@ -192,7 +192,7 @@ GLOBAL_LIST_INIT(specialist_gear_listed_products, list(
 	/obj/item/storage/backpack/marine/satchel/scout_cloak/scout = list(CAT_SPSUP, "Scout Cloak", 15, "black"),
 	/obj/item/storage/backpack/marine/satchel/scout_cloak/sniper = list(CAT_SPSUP, "Sniper Cloak", 15, "black"),
 	/obj/item/clothing/glasses/thermal/m64_thermal_goggles = list(CAT_SPSUP, "M64 Thermal Goggles", 15, "orange"),
-	/obj/item/storage/box/crate/loot/operator_pack = list(CAT_SPSUP, "Operator Pack (PR-412E + AP-Mags + NVG)", 20, "orange"),
+	/obj/item/storage/box/crate/loot/operator_pack = list(CAT_SPSUP, "Operator Pack (PR-412E + AP-Mags + NVG)", 25, "orange"),
 	/obj/item/storage/box/crate/loot/scoutrifle_pack_spec = list(CAT_SPSUP, "Scout Rifle Pack (BR-8 + Mixed Mags + Packet + NVG)", 25, "orange"),
 	/obj/item/storage/box/crate/loot/autosniper_pack_spec = list(CAT_SPSUP, "Autosniper Pack (SR-81 + Mags + Packet + NVG Scope)", 20, "black"),
 	/obj/item/storage/box/crate/m42c_system_Jungle  = list(CAT_SPSUP, "Anti Material Rifle Pack (AMR + Mixed Ammo + NVG + Tarp)", 35, "black"),

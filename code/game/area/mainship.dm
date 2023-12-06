@@ -507,8 +507,8 @@
 	icon_state = "req"
 	requires_power = FALSE
 
-/area/mainship/patrol_base/hanger
-	name = "NTC Hanger"
+/area/mainship/patrol_base/hangar
+	name = "NTC hangar"
 	icon_state = "hangar"
 	minimap_color = MINIMAP_AREA_LZ
 
@@ -530,8 +530,8 @@
 /area/mainship/patrol_base/som
 	name = "SOM Combat Patrol Base"
 
-/area/mainship/patrol_base/som/hanger
-	name = "SOM Main Hanger"
+/area/mainship/patrol_base/som/hangar
+	name = "SOM Main hangar"
 	icon_state = "hangar"
 	minimap_color = MINIMAP_AREA_LZ
 
@@ -1064,8 +1064,8 @@
 	icon_state = "req"
 	requires_power = FALSE
 
-/area/mainship/groundhq/ntf/patrol_base/hanger
-	name = "NTC Hanger"
+/area/mainship/groundhq/ntf/patrol_base/hangar
+	name = "NTC hangar"
 	icon_state = "hangar"
 	minimap_color = MINIMAP_AREA_LZ
 
@@ -1087,8 +1087,8 @@
 /area/mainship/groundhq/ntf/patrol_base/som
 	name = "SOM Combat Patrol Base"
 
-/area/mainship/groundhq/ntf/patrol_base/ntf/hanger
-	name = "SOM Main Hanger"
+/area/mainship/groundhq/ntf/patrol_base/ntf/hangar
+	name = "SOM Main hangar"
 	icon_state = "hangar"
 	minimap_color = MINIMAP_AREA_LZ
 
@@ -1596,8 +1596,8 @@
 	icon_state = "req"
 	requires_power = FALSE
 
-/area/mainship/groundhq/som/patrol_base/hanger
-	name = "NTC Hanger"
+/area/mainship/groundhq/som/patrol_base/hangar
+	name = "NTC hangar"
 	icon_state = "hangar"
 	minimap_color = MINIMAP_AREA_LZ
 
@@ -1619,8 +1619,8 @@
 /area/mainship/groundhq/som/patrol_base/som
 	name = "SOM Combat Patrol Base"
 
-/area/mainship/groundhq/som/patrol_base/som/hanger
-	name = "SOM Main Hanger"
+/area/mainship/groundhq/som/patrol_base/som/hangar
+	name = "SOM Main hangar"
 	icon_state = "hangar"
 	minimap_color = MINIMAP_AREA_LZ
 
@@ -2137,8 +2137,8 @@
 	icon_state = "req"
 	requires_power = FALSE
 
-/area/mainship/groundhq/clf/patrol_base/hanger
-	name = "NTC Hanger"
+/area/mainship/groundhq/clf/patrol_base/hangar
+	name = "NTC hangar"
 	icon_state = "hangar"
 	minimap_color = MINIMAP_AREA_LZ
 
@@ -2160,8 +2160,8 @@
 /area/mainship/groundhq/clf/patrol_base/som
 	name = "SOM Combat Patrol Base"
 
-/area/mainship/groundhq/clf/patrol_base/som/hanger
-	name = "SOM Main Hanger"
+/area/mainship/groundhq/clf/patrol_base/som/hangar
+	name = "SOM Main hangar"
 	icon_state = "hangar"
 	minimap_color = MINIMAP_AREA_LZ
 
