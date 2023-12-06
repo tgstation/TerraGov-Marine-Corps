@@ -625,11 +625,15 @@
 	toggle_signal = COMSIG_KB_HELMETMODULE
 	///If the comms system is configured.
 	var/comms_setup = FALSE
+	///ID of the startup timer
+	var/startup_timer_id
 
 /obj/item/armor_module/module/antenna/handle_actions(datum/source, mob/user, slot)
 	if(slot != prefered_slot)
 		UnregisterSignal(user, COMSIG_CAVE_INTERFERENCE_CHECK)
 		comms_setup = COMMS_OFF
+		if(startup_timer_id)
+			deltimer(startup_timer_id)
 	else
 		RegisterSignal(user, COMSIG_CAVE_INTERFERENCE_CHECK, PROC_REF(on_interference_check))
 	return ..()
@@ -649,13 +653,16 @@
 		var/turf/location = get_turf(user)
 		user.show_message(span_notice("The [src] beeps and states, \"Uplink data: LONGITUDE [location.x]. LATITUDE [location.y]. Area ID: [get_area(src)]\""), EMOTE_AUDIBLE, span_notice("The [src] vibrates but you can not hear it!"))
 		return
-	to_chat(user, span_notice("Configuring Antenna communication relay. Hold still while aligning."))
+	to_chat(user, span_notice("Configuring Antenna communication relay. Please wait."))
 	comms_setup = COMMS_SETTING
-	if(!do_after(user, ANTENNA_SYNCING_TIME, target = parent))
-		to_chat(user, span_notice("Movement detected, aborting link handshake."))
-		comms_setup = COMMS_OFF
-		return
+	addtimer(CALLBACK(src, PROC_REF(finish_startup), user), ANTENNA_SYNCING_TIME, TIMER_STOPPABLE)
+
+
+/obj/item/armor_module/module/antenna/proc/finish_startup(mob/living/user)
 	comms_setup = COMMS_SETUP
+	user.show_message(span_notice("[src] beeps twice and states: \"Antenna configuration complete. Relay system active.\""), EMOTE_AUDIBLE, span_notice("[src] vibrates twice."))
+	startup_timer_id = null
+
 
 #undef COMMS_OFF
 #undef COMMS_SETTING
