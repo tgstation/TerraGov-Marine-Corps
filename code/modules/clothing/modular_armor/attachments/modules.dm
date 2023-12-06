@@ -649,7 +649,7 @@
 
 /obj/item/armor_module/module/antenna/activate(mob/living/user)
 	if(comms_setup == COMMS_SETTING)
-		to_chat(user, span_notice("Your Antenna module is still configuring!"))
+		to_chat(user, span_notice("Your Antenna module is still in the process of starting up!"))
 		return
 	if(comms_setup == COMMS_SETUP)
 		var/turf/location = get_turf(user)
@@ -660,7 +660,7 @@
 /obj/item/armor/antenna/proc/start_sync(mob/living/user)
 	if(comms_setup != COMMS_OFF) //Guh?
 		return
-	to_chat(user, span_notice("Configuring Antenna communication relay. Please wait."))
+	to_chat(user, span_notice("Setting up Antenna communication relay. Please wait."))
 	comms_setup = COMMS_SETTING
 	addtimer(CALLBACK(src, PROC_REF(finish_startup), user), ANTENNA_SYNCING_TIME, TIMER_STOPPABLE)
 
