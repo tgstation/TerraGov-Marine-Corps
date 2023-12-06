@@ -276,9 +276,10 @@
 			M.adjust_stagger(2)
 			M.adjust_slowdown(2)
 		else if(owner_xeno.issamexenohive(M))  //Xenos can be healed up to three tiles away from you
+			var/mob/living/carbon/xenomorph/target_xeno = M
 			var/heal_amount = M.maxHealth * GORGER_ASSIZE_HEAL
-			HEAL_XENO_DAMAGE(M, heal_amount, FALSE)
-			adjustOverheal(M, heal_amount)
+			HEAL_XENO_DAMAGE(target_xeno, heal_amount, FALSE)
+			adjustOverheal(target_xeno, heal_amount)
 
 /datum/action/ability/activable/xeno/assize/ai_should_use(atom/target)
 	return FALSE
