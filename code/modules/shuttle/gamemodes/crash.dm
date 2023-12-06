@@ -34,7 +34,7 @@
 	dwidth = 7
 	dheight = 12
 
-	callTime = 10 MINUTES
+	// callTime = 10 MINUTES
 	ignitionTime = 5 SECONDS
 	prearrivalTime = 12 SECONDS
 

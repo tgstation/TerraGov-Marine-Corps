@@ -553,23 +553,8 @@
 		HS.setup_hud_timer(timer, text)
 
 /// setups hud timers only on xenos of THIS hive datum
-/datum/hive_status/proc/setup_hud_timer(
-		timer,
-		text,
-		offset_x = 150,
-		offset_y = -70,
-		style_start,
-		style_end
-	)
-	// wish I could argslist this
-	var/atom/movable/screen/text/screen_timer/hud_timer = new(
-		timer,
-		text,
-		offset_x,
-		offset_y,
-		style_start,
-		style_end
-	)
+/datum/hive_status/proc/setup_hud_timer(arguments = list())
+	var/atom/movable/screen/text/screen_timer/hud_timer = create_hud_timer(arguments)
 	hud_timers[hud_timer.timer_id] = hud_timer
 
 /mob/living/carbon/xenomorph/queen/remove_from_hive() // override to ensure proper queen/hive behaviour

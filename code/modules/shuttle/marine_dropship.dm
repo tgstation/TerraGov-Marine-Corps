@@ -1351,16 +1351,26 @@
 
 /obj/machinery/computer/shuttle/shuttle_control/ui_data(mob/user)
 	var/list/data = list()
-	var/list/options = valid_destinations()
 	var/obj/docking_port/mobile/M = SSshuttle.getShuttle(shuttleId)
 	if(!M)
 		return data //empty but oh well
-	data["confirm_message"] = confirm_message
-	data["linked_shuttle_name"] = M.name
 	data["shuttle_status"] = M.getStatusText()
-	data["takeoff_delay"] = takeoff_delay
 	data["takeoff_time_left"] = M.timer ? timeleft(M.timer) : 0
 	data["shuttle_mode"] = M.mode
+	return data
+
+/obj/machinery/computer/shuttle/shuttle_control/ui_static_data(mob/user)
+	var/list/data = list()
+	var/obj/docking_port/mobile/M = SSshuttle.getShuttle(shuttleId)
+	data["takeoff_delay"] = takeoff_delay
+	data["confirm_message"] = confirm_message
+	data["linked_shuttle_name"] = M.name
+	data["destinations"] = get_valid_destinations(M)
+	return data
+
+/obj/machinery/computer/shuttle/shuttle_control/proc/get_valid_destinations(obj/docking_port/mobile/port)
+	var/list/destinations
+	var/list/options = valid_destinations()
 	for(var/option in options)
 		for(var/obj/docking_port/stationary/S AS in SSshuttle.stationary)
 			if(option != S.id)
@@ -1368,9 +1378,9 @@
 			var/list/dataset = list()
 			dataset["id"] = S.id
 			dataset["name"] = S.name
-			dataset["locked"] = !M.check_dock(S, silent=TRUE)
-			data["destinations"] += list(dataset)
-	return data
+			dataset["locked"] = !port.check_dock(S, silent=TRUE)
+			destinations += list(dataset)
+	return destinations
 
 /obj/machinery/computer/shuttle/shuttle_control/attack_ghost(mob/dead/observer/user)
 	var/list/all_destinations = splittext(possible_destinations,";")
@@ -1430,6 +1440,7 @@
 	name = "\improper '[shuttleName]' dropship console"
 	desc = "The remote controls for the '[shuttleName]' Dropship."
 	say("Relinked Dropship Control Console to: '[shuttleName]'")
+	update_static_data_for_all_viewers()
 	return TRUE //Did relink
 
 
@@ -1472,7 +1483,7 @@
 
 /obj/machinery/computer/shuttle/shuttle_control/canterbury/proc/remove_confirmation()
 	confirm_message = ""
-	SStgui.update_uis(src)
+	SStgui.update_static_data_for_all_viewers()
 
 /obj/machinery/computer/shuttle/shuttle_control/canterbury/ui_interact(mob/user, datum/tgui/ui)
 	if(!allowed(user))
@@ -1484,15 +1495,13 @@
 	if(action != "selectDestination" || !iscrashgamemode(SSticker.mode))
 		to_chat(usr, span_warning("[src] is unresponsive."))
 		return
-	var/obj/docking_port/mobile/M = SSshuttle.getShuttle(shuttleId)
 	if(!can_interact(usr) && isxeno(usr) && !allowed(usr))
 		return
-	#ifndef TESTING
-	if(!(M.shuttle_flags & GAMEMODE_IMMUNE) && world.time < SSticker.round_start_time + SSticker.mode.deploy_time_lock)
-		to_chat(usr, span_warning("The engines are still refueling."))
-		return
-	#endif
 	. = ..()
+
+// Hardcode invalid destination, as we're only going to orbit
+/obj/machinery/computer/shuttle/shuttle_control/canterbury/get_valid_destinations(obj/docking_port/mobile/port)
+	return list("id" = "canterbury_loadingdock", "name" = "Orbit", "locked" = FALSE)
 
 /obj/machinery/computer/shuttle/shuttle_control/canterbury/begin_takeoff(obj/docking_port/mobile/port, destination, mob/user)
 	log_admin("[key_name(user)] is launching the canterbury[!length(GLOB.active_nuke_list)? " early" : ""].")
@@ -1505,7 +1514,7 @@
 	port.setTimer(takeoff_delay)
 	RegisterSignal(port, COMSIG_SHUTTLE_TAKEOFF, PROC_REF(launch_shuttle))
 	addtimer(CALLBACK(src, PROC_REF(launch_shuttle)), takeoff_delay, TIMER_STOPPABLE)
-	SStgui.update_uis(user)
+	SStgui.update_uis(src)
 	// Same position as the orphan timer as it is disabled on crash
 	if(!port.timer)
 		CRASH("Shuttle port [port] has no timer set.")

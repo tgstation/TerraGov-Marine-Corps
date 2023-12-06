@@ -23,8 +23,12 @@
 	/// The list of mobs that we're attached to, and care about
 	var/list/timer_mobs = list()
 
-/atom/movable/screen/text/screen_timer/Initialize(
-		mapload,
+/proc/create_hud_timer(arguments = list())
+	var/atom/movable/screen/text/screen_timer/hud_timer = new()
+	hud_timer.create_timer(arglist(arguments))
+	return hud_timer
+
+/atom/movable/screen/text/screen_timer/proc/create_timer(
 		list/mobs,
 		timer,
 		text,
@@ -33,7 +37,6 @@
 		style_start,
 		style_end,
 	)
-	. = ..()
 
 	if(!islist(mobs) && mobs)
 		mobs = list(mobs)
@@ -42,7 +45,8 @@
 		mobs = mobs.Copy()
 	if(!timer)
 		stack_trace("Invalid timer for screen nuke timer!")
-		return INITIALIZE_HINT_QDEL
+		qdel(src)
+		return
 	if(style_start)
 		maptext_style_left = style_start
 	if(style_end)
