@@ -61,7 +61,6 @@
 // ***************************************
 // *********** psychic heal
 // ***************************************
-/datum/action/xeno_action/activable/psychic_cure/queen_give_heal/hivemind
 
 /datum/action/xeno_action/activable/psychic_cure/queen_give_heal/hivemind/can_use_action(silent = FALSE, override_flags, selecting = FALSE)
 	if (owner.status_flags & INCORPOREAL)
