@@ -330,7 +330,7 @@
 	var/obj/effect/overlay/temp/laser_target/RGL = new (src, 0, user.name)
 	laser = RGL
 	playsound(src, 'sound/effects/angry_beep.ogg', 55)
-	if(!do_after(user, AI_RAILGUN_FIRING_WINDUP_DELAY, TRUE, user, BUSY_ICON_GENERIC)) //initial windup time until firing begins
+	if(!do_after(user, AI_RAILGUN_FIRING_WINDUP_DELAY, NONE, user, BUSY_ICON_GENERIC)) //initial windup time until firing begins
 		QDEL_NULL(laser)
 		REMOVE_TRAIT(user, TRAIT_IS_FIRING_RAILGUN, TRAIT_IS_FIRING_RAILGUN)
 		return
@@ -341,7 +341,7 @@
 			QDEL_NULL(laser)
 			REMOVE_TRAIT(user, TRAIT_IS_FIRING_RAILGUN, TRAIT_IS_FIRING_RAILGUN)
 			return
-		if(!do_after(user, AI_RAILGUN_FIRING_TIME_DELAY, TRUE, laser, BUSY_ICON_GENERIC)) //delay between shots
+		if(!do_after(user, AI_RAILGUN_FIRING_TIME_DELAY, NONE, laser, BUSY_ICON_GENERIC)) //delay between shots
 			QDEL_NULL(laser)
 			REMOVE_TRAIT(user, TRAIT_IS_FIRING_RAILGUN, TRAIT_IS_FIRING_RAILGUN)
 			break

@@ -39,7 +39,7 @@
 		return FALSE
 	user.visible_message(span_warning("[user] is attemping to implant [target]."), span_notice("You're attemping to implant [target]."))
 
-	if(!do_after(user, 5 SECONDS, TRUE, target, BUSY_ICON_GENERIC) || !imp)
+	if(!do_after(user, 5 SECONDS, NONE, target, BUSY_ICON_GENERIC) || !imp)
 		to_chat(user, span_notice("You failed to implant [target]."))
 		return
 

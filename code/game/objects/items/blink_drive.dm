@@ -139,7 +139,9 @@
 
 	var/atom/movable/pulled_target = user.pulling
 	if(pulled_target)
-		if(!do_after(user, 0.5 SECONDS, TRUE, user, BUSY_ICON_HOSTILE))
+		if(!do_after(user, 0.5 SECONDS, IGNORE_USER_LOC_CHANGE|IGNORE_TARGET_LOC_CHANGE, user, BUSY_ICON_HOSTILE))
+			return
+		if(pulled_target != user.pulling)
 			return
 		user.balloon_alert(user, "pulled someone through")
 
@@ -149,7 +151,7 @@
 		pulled_target.forceMove(target_turf)
 	teleport_debuff_aoe(user)
 
-	if(target_turf.density || isspaceturf(target_turf))
+	if(!target_turf.can_teleport_here())
 		user.emote("gored")
 		user.gib() //telegibbed
 		if(pulled_target && ismob(pulled_target))

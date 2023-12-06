@@ -112,7 +112,7 @@
 /obj/effect/landmark/campaign/mech_spawner/som
 	name = "som med mech spawner"
 	faction = FACTION_SOM
-	colors = list(ARMOR_PALETTE_BEIGE, ARMOR_PALETTE_BLACK, VISOR_PALETTE_SYNDIE_GREEN)
+	colors = list(ARMOR_PALETTE_GINGER, ARMOR_PALETTE_BLACK, VISOR_PALETTE_SYNDIE_GREEN)
 
 /obj/effect/landmark/campaign/mech_spawner/som/heavy
 	name = "som heavy mech spawner"

@@ -80,7 +80,7 @@
 		if(!is_xeno)
 			//Everyone will be made aware of your nasty habits!
 			visible_message(span_alert("[user] is putting [user.p_their()] mouth on [src]'s nozzle. Gross!"))
-		if(!do_after(user, 0.5 SECONDS, FALSE, src, BUSY_ICON_DANGER))
+		if(!do_after(user, 0.5 SECONDS, IGNORE_HELD_ITEM, src, BUSY_ICON_DANGER))
 			return FALSE
 		if(is_xeno)
 			visible_message(span_alert("[user] sips from [src]'s nozzle. Adorable."))

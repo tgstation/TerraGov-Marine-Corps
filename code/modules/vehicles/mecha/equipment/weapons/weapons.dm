@@ -71,7 +71,7 @@
 	if(windup_delay && windup_checked == WEAPON_WINDUP_NOT_CHECKED)
 		windup_checked = WEAPON_WINDUP_CHECKING
 		playsound(chassis.loc, windup_sound, 30, TRUE)
-		if(!do_after(source, windup_delay, TRUE, chassis, BUSY_ICON_DANGER, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(do_after_checks), current_target)))
+		if(!do_after(source, windup_delay, NONE, chassis, BUSY_ICON_DANGER, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(do_after_checks), current_target)))
 			windup_checked = WEAPON_WINDUP_NOT_CHECKED
 			return
 		windup_checked = WEAPON_WINDUP_CHECKED
@@ -167,8 +167,8 @@
 	if(dir_target_diff > (MECH_FIRE_CONE_ALLOWED / 2))
 		return AUTOFIRE_CONTINUE
 
-	var/type_to_spawn = (initial(ammotype.flags_ammo_behavior) & AMMO_HITSCAN) ? /obj/projectile/hitscan : /obj/projectile
-	var/obj/projectile/projectile_to_fire = new type_to_spawn(get_turf(src))
+	var/type_to_spawn = CHECK_BITFIELD(initial(ammotype.flags_ammo_behavior), AMMO_HITSCAN) ? /obj/projectile/hitscan : /obj/projectile
+	var/obj/projectile/projectile_to_fire = new type_to_spawn(get_turf(src), initial(ammotype.hitscan_effect_icon))
 	projectile_to_fire.generate_bullet(GLOB.ammo_list[ammotype])
 
 	apply_weapon_modifiers(projectile_to_fire, current_firer)
@@ -271,7 +271,7 @@
 	. = ..()
 	if(action == "reload")
 		var/mob/occupant = usr
-		if(occupant && !do_after(occupant, rearm_time, FALSE, chassis, BUSY_ICON_GENERIC))
+		if(occupant && !do_after(occupant, rearm_time, IGNORE_HELD_ITEM, chassis, BUSY_ICON_GENERIC))
 			return FALSE
 		rearm()
 		return TRUE
@@ -308,7 +308,7 @@
 	playsound(src, 'sound/weapons/guns/misc/empty_alarm.ogg', 25, 1)
 	if(LAZYACCESS(current_firer.do_actions, src) || projectiles_cache < 1)
 		return
-	if(!do_after(current_firer, rearm_time, FALSE, chassis, BUSY_ICON_GENERIC))
+	if(!do_after(current_firer, rearm_time, IGNORE_HELD_ITEM, chassis, BUSY_ICON_GENERIC))
 		return
 	rearm()
 
