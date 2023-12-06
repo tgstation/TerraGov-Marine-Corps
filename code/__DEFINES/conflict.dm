@@ -225,4 +225,4 @@
 #define CAVE_MINOR_INTERFERENCE 1 //! Scrambles outgoing messages, no impact on outgoing.
 #define CAVE_FULL_INTERFERENCE 2 //! Prevents incoming and outgoing messages.
 
-#define ANTENNA_SYNCING_TIME 15 SECONDS //! Time needed to initially configure an antenna module after equipping.
+#define ANTENNA_SYNCING_TIME 30 SECONDS //! Time needed to initially configure an antenna module after equipping.
