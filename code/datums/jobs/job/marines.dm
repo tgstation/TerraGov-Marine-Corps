@@ -277,7 +277,7 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 	jobworth = list(
 		/datum/job/xenomorph = LARVA_POINTS_STRONG,
 	)
-	minimap_icon = "smartgunner"
+	minimap_icon = "specialist"
 
 /datum/job/terragov/squad/specialist/radio_help_message(mob/M)
 	. = ..()
@@ -438,7 +438,7 @@ You are also in charge of communicating with command and letting them know about
 		Maintain order in the base.
 		<br />You are a security officer, what else to say?<br />
 		<b>Duty</b>: Maintain the law in the base and chase infiltrating xenomorphs. Listen to FC.	"}
-	minimap_icon = "private"
+	minimap_icon = "corpsec"
 
 /datum/job/terragov/security/security_officer/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
 	. = ..()
