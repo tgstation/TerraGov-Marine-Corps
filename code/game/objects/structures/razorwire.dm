@@ -131,7 +131,7 @@
 
 		visible_message(span_notice("[user] begins to repair  \the [src]."))
 
-		if(!do_after(user, 2 SECONDS, TRUE, src, BUSY_ICON_FRIENDLY) || obj_integrity >= max_integrity)
+		if(!do_after(user, 2 SECONDS, NONE, src, BUSY_ICON_FRIENDLY) || obj_integrity >= max_integrity)
 			return
 
 		if(!metal_sheets.use(1))
@@ -175,7 +175,7 @@
 	span_notice("You start disassembling [src]."))
 	var/delay_disassembly = SKILL_TASK_AVERAGE - (0.5 SECONDS + user.skills.getRating(SKILL_ENGINEER))
 
-	if(!do_after(user, delay_disassembly, TRUE, src, BUSY_ICON_BUILD))
+	if(!do_after(user, delay_disassembly, NONE, src, BUSY_ICON_BUILD))
 		return TRUE
 
 	user.visible_message(span_notice("[user] disassembles [src]."),

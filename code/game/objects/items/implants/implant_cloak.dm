@@ -43,7 +43,7 @@
 /obj/item/implant/cloak/proc/stealth_user()
 	apply_wibbly_filters(implant_owner)
 	playsound(implant_owner, 'sound/effects/seedling_chargeup.ogg', 100, TRUE)
-	if(!do_after(implant_owner, 3 SECONDS, FALSE, implant_owner))
+	if(!do_after(implant_owner, 3 SECONDS, IGNORE_HELD_ITEM, implant_owner))
 		to_chat(implant_owner, span_warning(" WARNING. Implant activation failed; Error code 423: Subject cancelled activation."))
 		remove_wibbly_filters(implant_owner)
 		return

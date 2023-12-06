@@ -52,51 +52,6 @@
 /proc/get_playable_species()
 	return GLOB.roundstart_species
 
-
-/proc/do_mob(mob/user, mob/target, delay = 30, user_display, target_display, prog_bar = PROGRESS_GENERIC, ignore_flags = NONE, datum/callback/extra_checks)
-	if(!user || !target)
-		return FALSE
-	var/user_loc = user.loc
-
-	var/target_loc = target.loc
-
-	var/holding = user.get_active_held_item()
-	var/datum/progressbar/P = prog_bar ? new prog_bar(user, delay, target, user_display, target_display) : null
-
-	LAZYINCREMENT(user.do_actions, target)
-	var/endtime = world.time + delay
-	var/starttime = world.time
-	. = TRUE
-	while (world.time < endtime)
-		stoplag(1)
-		P?.update(world.time - starttime)
-
-		if(QDELETED(user) || QDELETED(target) || (extra_checks && !extra_checks.Invoke()))
-			. = FALSE
-			break
-
-		if(!(ignore_flags & IGNORE_USER_LOC_CHANGE) && user.loc != user_loc)
-			. = FALSE
-			break
-
-		if(!(ignore_flags & IGNORE_TARGET_LOC_CHANGE) && target.loc != target_loc)
-			. = FALSE
-			break
-
-		if(!(ignore_flags & IGNORE_HAND) && user.get_active_held_item() != holding)
-			. = FALSE
-			break
-
-		if(user.incapacitated())
-			. = FALSE
-			break
-
-	if(P)
-		qdel(P)
-
-	LAZYDECREMENT(user.do_actions, target)
-
-
 //some additional checks as a callback for for do_afters that want to break on losing health or on the mob taking action
 /mob/proc/break_do_after_checks(list/checked_health, check_clicks, selected_zone_check)
 	if(check_clicks && next_move > world.time)
@@ -114,24 +69,26 @@
 		checked_health["health"] = health
 	return ..()
 
-
-/proc/do_after(mob/user, delay, needhand = TRUE, atom/target, user_display, target_display, prog_bar = PROGRESS_GENERIC, datum/callback/extra_checks, ignore_turf_checks = FALSE)
+///A delayed action with adjustable checks
+/proc/do_after(mob/user, delay, timed_action_flags = NONE, atom/target, user_display, target_display, prog_bar = PROGRESS_GENERIC, datum/callback/extra_checks)
 	if(!user)
 		return FALSE
+	if(!isnum(delay))
+		CRASH("do_after was passed a non-number delay: [delay || "null"].")
 
-	var/atom/Tloc
-	if(target && !isturf(target))
-		Tloc = target.loc
+	var/atom/target_loc
+	if(target)
+		target_loc = target.loc
 
-	var/atom/Uloc = user.loc
+	var/atom/user_loc = user.loc
 
 	var/holding = user.get_active_held_item()
 	delay *= user.do_after_coefficent()
 
 	var/atom/progtarget = target
-	if(!target || Tloc == user)
+	if(!target || target_loc == user)
 		progtarget = user
-	var/datum/progressbar/P = prog_bar ? new prog_bar(user, delay, progtarget, user_display, target_display) : null
+	var/datum/progressbar/progbar = prog_bar ? new prog_bar(user, delay, progtarget, user_display, target_display) : null
 
 	LAZYINCREMENT(user.do_actions, target)
 	var/endtime = world.time + delay
@@ -139,22 +96,29 @@
 	. = TRUE
 	while (world.time < endtime)
 		stoplag(1)
-		P?.update(world.time - starttime)
+		progbar?.update(world.time - starttime)
 
-		if(QDELETED(user) || user.incapacitated(TRUE) || (!ignore_turf_checks && user.loc != Uloc) || (extra_checks && !extra_checks.Invoke()))
+		if(QDELETED(user) || (target && (QDELETED(target))))
+			. = FALSE
+			break
+		if(!(timed_action_flags & IGNORE_INCAPACITATED) && user.incapacitated(TRUE))
+			. = FALSE
+			break
+		if(!(timed_action_flags & IGNORE_HELD_ITEM) && user.get_active_held_item() != holding)
+			. = FALSE
+			break
+		if(!(timed_action_flags & IGNORE_USER_LOC_CHANGE) && (user.loc != user_loc))
+			. = FALSE
+			break
+		if(!(timed_action_flags & IGNORE_TARGET_LOC_CHANGE) && target && (QDELETED(target_loc) || target_loc != target.loc))
+			. = FALSE
+			break
+		if(extra_checks && !extra_checks.Invoke())
 			. = FALSE
 			break
 
-		if(!QDELETED(Tloc) && (QDELETED(target) || Tloc != target.loc))
-			if((!ignore_turf_checks && Uloc != Tloc) || Tloc != user)
-				. = FALSE
-				break
-
-		if(needhand && user.get_active_held_item() != holding)
-			. = FALSE
-			break
-	if(P)
-		qdel(P)
+	if(progbar)
+		qdel(progbar)
 	LAZYDECREMENT(user.do_actions, target)
 
 

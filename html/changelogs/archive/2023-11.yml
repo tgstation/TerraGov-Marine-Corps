@@ -380,3 +380,14 @@
   - rscadd: 'adds two new armor colors: mountbatten pink and yellow (replaces the
       old "yellow" which is now "olive")'
   - bugfix: fixed a few color names
+2023-11-30:
+  Xander3359:
+  - rscadd: Harvesters can use tricordrazine, which applies a shatter effect
+  - balance: All chems in a harvester will do the same damage bonus
+  - balance: Bicaridine in a harvester will have more healing if you finish the channel
+      with higher medical skill
+  ivanmixo:
+  - bugfix: Fixed valhalla loadout vendor not working in hvh
+  yyzsong:
+  - rscadd: Adds the FK-88 and TAT shells to valhalla
+  - rscadd: Adds soap and sterilizer spray to valhalla

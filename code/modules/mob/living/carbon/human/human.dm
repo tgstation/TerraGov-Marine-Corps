@@ -115,6 +115,10 @@
 	if(marksman_aura)
 		. += "You are affected by a FOCUS order."
 
+/mob/living/carbon/human/set_skills(datum/skills/new_skillset)
+	. = ..()
+	update_stam_skill_mod(skills)
+
 /mob/living/carbon/human/ex_act(severity)
 	if(status_flags & GODMODE)
 		return
@@ -281,7 +285,6 @@
 	var/siemens_coeff = base_siemens_coeff * get_siemens_coefficient_organ(affected_organ)
 
 	return ..(shock_damage, source, siemens_coeff, def_zone)
-
 
 /mob/living/carbon/human/Topic(href, href_list)
 	. = ..()
@@ -645,7 +648,7 @@
 	visible_message(span_notice("[src] starts lifting [target] onto [p_their()] back..."),
 	span_notice("You start to lift [target] onto your back..."))
 	var/delay = 5 SECONDS - LERP(0 SECONDS, 4 SECONDS, skills.getPercent(SKILL_MEDICAL, SKILL_MEDICAL_MASTER))
-	if(!do_mob(src, target, delay, target_display = BUSY_ICON_HOSTILE))
+	if(!do_after(src, delay, NONE, target, target_display = BUSY_ICON_HOSTILE))
 		visible_message(span_warning("[src] fails to fireman carry [target]!"))
 		return
 	//Second check to make sure they're still valid to be carried
@@ -746,7 +749,7 @@
 
 	to_chat(usr, "You must[self ? "" : " both"] remain still until counting is finished.")
 
-	if(!do_mob(usr, src, 6 SECONDS))
+	if(!do_after(usr, 6 SECONDS, NONE, src))
 		to_chat(usr, span_warning("You failed to check the pulse. Try again."))
 		return
 

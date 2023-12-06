@@ -69,7 +69,7 @@
 			return
 		to_chat(usr, span_notice("Assembling grille..."))
 		ENABLE_BITFIELD(obj_flags, IN_USE)
-		if (!do_after(usr, 20, TRUE, src, BUSY_ICON_BUILD))
+		if (!do_after(usr, 20, NONE, src, BUSY_ICON_BUILD))
 			DISABLE_BITFIELD(obj_flags, IN_USE)
 			return
 		new /obj/structure/grille/ ( usr.loc )
@@ -86,7 +86,7 @@
 		return
 
 	to_chat(user, span_notice("Reinforcing the floor."))
-	if(!do_after(user, 30, TRUE, src, BUSY_ICON_BUILD) || !istype(T, /turf/open/floor/plating))
+	if(!do_after(user, 30, NONE, src, BUSY_ICON_BUILD) || !istype(T, /turf/open/floor/plating))
 		return
 	if(!use(2))
 		to_chat(user, span_warning("You need more rods."))

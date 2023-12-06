@@ -83,7 +83,7 @@
 	user.visible_message(span_warning("[user] hits [src] with [I]!"),
 		span_warning("You hit [src] with [I]!"), visible_message_flags = COMBAT_MESSAGE)
 	log_combat(user, src, "attacked", I)
-	var/power = I.force + round(I.force * 0.3 * user.skills.getRating(SKILL_MELEE_WEAPONS)) //30% bonus per melee level
+	var/power = I.force + round(I.force * MELEE_SKILL_DAM_BUFF * user.skills.getRating(SKILL_MELEE_WEAPONS))
 	take_damage(power, I.damtype, MELEE)
 	return TRUE
 
@@ -127,7 +127,7 @@
 
 	user.do_attack_animation(src, used_item = I)
 
-	var/power = I.force + round(I.force * 0.3 * user.skills.getRating(SKILL_MELEE_WEAPONS)) //30% bonus per melee level
+	var/power = I.force + round(I.force * MELEE_SKILL_DAM_BUFF * user.skills.getRating(SKILL_MELEE_WEAPONS))
 
 	switch(I.damtype)
 		if(BRUTE)
@@ -355,7 +355,7 @@
 
 	user.do_attack_animation(src, used_item = I)
 
-	var/power = I.force + round(I.force * 0.3 * user.skills.getRating(SKILL_MELEE_WEAPONS)) //30% bonus per melee level
+	var/power = I.force + round(I.force * MELEE_SKILL_DAM_BUFF * user.skills.getRating(SKILL_MELEE_WEAPONS))
 
 	switch(I.damtype)
 		if(BRUTE)
