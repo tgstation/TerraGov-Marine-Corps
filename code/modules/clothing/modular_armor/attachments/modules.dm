@@ -634,6 +634,7 @@
 		comms_setup = COMMS_OFF
 		if(startup_timer_id)
 			deltimer(startup_timer_id)
+			startup_timer_id = null
 	else
 		RegisterSignal(user, COMSIG_CAVE_INTERFERENCE_CHECK, PROC_REF(on_interference_check))
 	return ..()
