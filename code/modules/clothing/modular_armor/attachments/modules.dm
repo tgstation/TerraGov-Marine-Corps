@@ -257,19 +257,6 @@
 	item_state = "mod_chemsystem_a"
 	slot = ATTACHMENT_SLOT_MODULE
 
-///Updates the module on the armor to glow or not
-/obj/item/armor_module/module/chemsystem/proc/update_module_icon(datum/source, toggle)
-	SIGNAL_HANDLER
-	chemsystem_is_active = toggle
-	update_icon()
-	parent.update_icon()
-
-/obj/item/armor_module/module/chemsystem/update_icon_state()
-	if(chemsystem_is_active)
-		icon_state = "mod_chemsystem_active"
-		return
-	icon_state = initial(icon_state)
-
 /obj/item/armor_module/module/eshield
 	name = "Svalinn Energy Shield System"
 	desc = "A brand new innovation in armor systems, this module creates a shield around the user that is capable of negating all damage. If it sustains too much it will deactivate, and leave the user vulnerable."
