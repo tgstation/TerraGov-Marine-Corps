@@ -124,6 +124,16 @@
 	height = 13
 	width = 9
 
+/obj/docking_port/stationary/marine_dropship/shipelevator/floor1
+	name = "Floor 1"
+	id = "elevatorfloor1"
+	roundstart_template = /datum/map_template/shuttle/shipelevator
+
+/obj/docking_port/stationary/marine_dropship/shipelevator/floor2
+	name = "Floor 2"
+	id = "elevatorfloor2"
+	roundstart_template = null
+
 #define HIJACK_STATE_NORMAL "hijack_state_normal"
 #define HIJACK_STATE_CALLED_DOWN "hijack_state_called_down"
 #define HIJACK_STATE_CRASHING "hijack_state_crashing"
@@ -276,6 +286,33 @@
 	dwidth = 4
 	height = 13
 	width = 9
+
+
+/obj/machinery/computer/shuttle/shuttle_control/shipelevator
+	name = "Elevator Control Console"
+	icon = 'icons/obj/machines/computer.dmi'
+	icon_state = "computer_small"
+	screen_overlay = "shuttle"
+	possible_destinations = "elevatorfloor2;elevatorfloor1"
+	shuttleId = SHUTTLE_SHIPELEVATOR
+
+/obj/docking_port/mobile/shuttle/shipelevator
+	name = "Ship Elevator"
+	id = SHUTTLE_SHIPELEVATOR
+	callTime = 0 SECONDS
+	rechargeTime = 2 SECONDS
+	dheight = 2
+	dwidth = 2
+	height = 5
+	width = 5
+	ignitionTime = 2 SECONDS
+	shuttle_flags = GAMEMODE_IMMUNE
+	ignition_sound = 'sound/effects/escape_pod_launch'
+	landing_sound = 'sound/effects/droppod_impact.ogg'
+	prearrivalTime = 0 SECONDS
+	port_direction = 2
+	dir = 2
+
 
 // queen calldown
 /obj/docking_port/mobile/marine_dropship/afterShuttleMove(turf/oldT, rotation)

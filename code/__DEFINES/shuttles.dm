@@ -114,4 +114,4 @@
 #define SHUTTLE_DISTRESS "distress"
 #define SHUTTLE_ESCAPE_POD "escape_pod"
 #define SHUTTLE_SUPPLY "supply"
-
+#define SHUTTLE_SHIPELEVATOR "shipelevator"
