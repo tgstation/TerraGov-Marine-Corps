@@ -263,7 +263,7 @@
 	succeed_activate()
 
 	playsound(owner_xeno.loc, 'sound/effects/bang.ogg', 25, 0)
-	owner_xeno.visible_message(span_xenodanger("[X] smashes into the ground!"), \
+	owner_xeno.visible_message(span_xenodanger("[owner_xeno] smashes into the ground!"), \
 	span_xenodanger("We smash into the ground!"))
 	owner_xeno.create_stomp() //Adds the visual effect. Wom wom wom
 	for(var/mob/living/M in range(3, get_turf(owner_xeno)))
@@ -275,7 +275,7 @@
 		else if(distance <= 1 && !owner_xeno.issamexenohive(M)) //marines will only be staggerslowed if they're one tile away from you
 			M.adjust_stagger(2)
 			M.adjust_slowdown(2)
-		if(distance <= 3 && owner_xeno.issamexenohive(M))  //Xenos can be healed up to three tiles away from you
+		else if(owner_xeno.issamexenohive(M))  //Xenos can be healed up to three tiles away from you
 			var/heal_amount = M.maxHealth * GORGER_ASSIZE_HEAL
 			HEAL_XENO_DAMAGE(M, heal_amount, FALSE)
 			adjustOverheal(M, heal_amount)
