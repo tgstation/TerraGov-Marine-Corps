@@ -136,6 +136,7 @@
 		alarm_sounded = FALSE
 		plant_target = null
 		update_icon()
+	return ..()
 
 ///Handles the actual explosion effects
 /obj/item/explosive/plastique/proc/detonate()
