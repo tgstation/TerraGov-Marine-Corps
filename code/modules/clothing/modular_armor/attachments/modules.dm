@@ -657,7 +657,7 @@
 		return
 
 ///Begins the starup sequence.
-/obj/item/armor/antenna/proc/start_sync(mob/living/user)
+/obj/item/armor_module/module/antenna/proc/start_sync(mob/living/user)
 	if(comms_setup != COMMS_OFF) //Guh?
 		return
 	to_chat(user, span_notice("Setting up Antenna communication relay. Please wait."))
