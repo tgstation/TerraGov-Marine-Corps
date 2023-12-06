@@ -250,25 +250,12 @@
 	variants_by_parent_type = list(/obj/item/clothing/suit/modular/xenonauten = "mod_ff_xn")
 
 /obj/item/armor_module/module/chemsystem
-	name = "Vali chemical enhancement module"
-	desc = "Designed for mounting on modular armor. This experimental module runs on green blood taken from xenos with harvester class weapons; Green blood heals the user and boosts any chems in the suit injection system. \nUse the suit menu to connect harvester class weapons, control the injection system, find chem boost information, and more."
+	name = "Vali health scan module"
+	desc = "Designed for mounting on modular armor. This module gives an accurate and immediate readout of the wearer's vitals to them."
 	icon = 'icons/mob/modular/modular_armor_modules.dmi'
 	icon_state = "mod_chemsystem"
 	item_state = "mod_chemsystem_a"
 	slot = ATTACHMENT_SLOT_MODULE
-	///Lets us keep track of what icon state we're in
-	var/chemsystem_is_active = FALSE
-
-/obj/item/armor_module/module/chemsystem/on_attach(obj/item/attaching_to, mob/user)
-	. = ..()
-	var/datum/component/chem_booster/chemsystem = parent.AddComponent(/datum/component/chem_booster)
-	RegisterSignal(chemsystem, COMSIG_CHEMSYSTEM_TOGGLED, PROC_REF(update_module_icon))
-
-/obj/item/armor_module/module/chemsystem/on_detach(obj/item/detaching_from, mob/user)
-	var/datum/component/chem_booster/chemsystem = parent.GetComponent(/datum/component/chem_booster)
-	UnregisterSignal(chemsystem, COMSIG_CHEMSYSTEM_TOGGLED)
-	chemsystem.RemoveComponent()
-	return ..()
 
 ///Updates the module on the armor to glow or not
 /obj/item/armor_module/module/chemsystem/proc/update_module_icon(datum/source, toggle)

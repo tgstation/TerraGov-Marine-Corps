@@ -431,11 +431,11 @@
 		/obj/item/storage/pouch/magazine/pistol/large = list(CAT_POU, "Pistol magazine pouch", 0, "black"),
 		/obj/item/storage/pouch/pistol = list(CAT_POU, "Sidearm pouch", 0, "black"),
 		/obj/item/storage/pouch/explosive = list(CAT_POU, "Explosive pouch", 0, "black"),
-		/obj/effect/vendor_bundle/mimir = list(CAT_ARMMOD, "Mark 1 Mimir Resistance set", 0,"black"),
+		/obj/effect/vendor_bundle/mimir = list(CAT_ARMMOD, "Mark 1 Mimir Resistance Set", 0,"black"),
 		/obj/item/armor_module/module/ballistic_armor = list(CAT_ARMMOD, "Hod Accident Prevention Plating", 0,"black"),
-		/obj/effect/vendor_bundle/tyr = list(CAT_ARMMOD, "Mark 1 Tyr extra armor set", 0,"black"),
-		/obj/item/armor_module/module/better_shoulder_lamp = list(CAT_ARMMOD, "Baldur light armor module", 0,"black"),
-		/obj/effect/vendor_bundle/vali = list(CAT_ARMMOD, "Vali chemical enhancement set", 0,"black"),
+		/obj/effect/vendor_bundle/tyr = list(CAT_ARMMOD, "Mark 1 Tyr Extra Armor Set", 0,"black"),
+		/obj/item/armor_module/module/better_shoulder_lamp = list(CAT_ARMMOD, "Baldur Light Amplification Module", 0,"black"),
+		/obj/item/armor_module/module/chemsystem = list(CAT_ARMMOD, "Vali Health Scan System", 0,"black"),
 		/obj/item/armor_module/module/eshield = list(CAT_ARMMOD, "Svalinn Energy Shield System", 0 , "black"),
 		/obj/item/clothing/mask/gas = list(CAT_MAS, "Transparent gas mask", 0,"black"),
 		/obj/item/clothing/mask/gas/tactical = list(CAT_MAS, "Tactical gas mask", 0,"black"),
@@ -892,14 +892,6 @@
 		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet/mark1,
 		/obj/item/clothing/mask/gas/tactical,
 		/obj/item/armor_module/module/mimir_environment_protection/mark1,
-	)
-
-/obj/effect/vendor_bundle/vali
-	desc = "A set of specialized gear for close-quarters combat and enhanced chemical effectiveness."
-	gear_to_spawn = list(
-		/obj/item/armor_module/module/chemsystem,
-		/obj/item/storage/holster/blade/machete/full_harvester,
-		/obj/item/paper/chemsystem,
 	)
 
 /obj/effect/vendor_bundle/tyr
