@@ -28,7 +28,7 @@
 	if(.)
 		return
 
-	if(!ishuman(M) || !isxeno(M))
+	if(!ishuman(M) && !isxeno(M))
 		M.balloon_alert(user, "not a humanoid")
 		return FALSE
 	var/mob/living/carbon/human/target = M
