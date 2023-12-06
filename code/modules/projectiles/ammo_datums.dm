@@ -4071,7 +4071,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	penetration = 100
 	shrapnel_chance = 0
 	///percentage of xenos total plasma to drain when hit by a pepperball
-	var/drain_multiplier = 0.0
+	var/drain_multiplier = 0.025
 	///Flat plasma to drain, unaffected by caste plasma amount.
 	var/plasma_drain = 25
 
