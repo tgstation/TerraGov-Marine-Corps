@@ -395,9 +395,6 @@
 #define COMSIG_ARMOR_MODULE_ATTACHING "armor_module_attaching"
 #define COMSIG_ARMOR_MODULE_DETACHED "armor_module_detached"
 
-// vali specific
-#define COMSIG_CHEMSYSTEM_TOGGLED "chemsystem_toggled"
-
 // /obj/item/helmet_module signals
 #define COMSIG_HELMET_MODULE_ATTACHING "helmet_module_attaching"
 #define COMSIG_HELMET_MODULE_DETACHED "helmet_module_detached"
@@ -970,9 +967,6 @@
 
 
 // human modules signals for keybindings
-#define COMSIG_KB_VALI_CONFIGURE "keybinding_vali_configure"
-#define COMSIG_KB_VALI_HEAL "keybinding_vali_heal"
-#define COMSIG_KB_VALI_CONNECT "keybiding_vali_connect"
 #define COMSIG_KB_SUITANALYZER "keybinding_suitanalyzer"
 
 // Ability adding/removing signals
