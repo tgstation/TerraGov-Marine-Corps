@@ -377,7 +377,7 @@
 	caliber = CALIBER_PEPPERBALL
 	icon_state = "pepperball"
 	default_ammo = /datum/ammo/bullet/pepperball
-	max_rounds = 40
+	max_rounds = 70
 	w_class = WEIGHT_CLASS_NORMAL
 	icon_state_mini = "mag_pepperball"
 
