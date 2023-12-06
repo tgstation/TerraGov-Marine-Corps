@@ -1,5 +1,5 @@
 import { useBackend } from '../backend';
-import { Button, Section, Box, NoticeBox, Table, ProgressBar } from '../components';
+import { Button, Section, Box, NoticeBox, Table } from '../components';
 import { Window } from '../layouts';
 
 type ShuttleControlData = {
@@ -8,10 +8,7 @@ type ShuttleControlData = {
   shuttle_status: string;
   destinations: Destination[];
   takeoff_delay: number;
-  takeoff_time_left: number;
   // shuttle mode is a one word string for all types of shuttle modes, igniting etc
-  shuttle_mode: string;
-  confirm_message?: string;
 };
 
 type Destination = {
@@ -38,27 +35,12 @@ const DestinationSelection = (props, context) => {
 };
 
 const TakeOffDisplay = (props, context) => {
-  const { takeoff_delay, takeoff_time_left, shuttle_mode } = props;
+  const { takeoff_delay } = props;
   if (takeoff_delay <= 0) {
     return null;
   }
   let takeoff_seconds = takeoff_delay * 0.1;
   let takeoff_minutes = Math.round(takeoff_seconds / 60);
-  if (shuttle_mode === 'igniting') {
-    return (
-      <Box textAlign="center">
-        <ProgressBar
-          value={takeoff_time_left}
-          maxValue={takeoff_delay}
-          minValue={0}
-          ranges={{
-            good: [0, takeoff_delay],
-          }}>
-          Taking off! Buckle in.
-        </ProgressBar>
-      </Box>
-    );
-  }
   if (!takeoff_delay) {
     return null;
   }
@@ -82,9 +64,6 @@ export const ShuttleControl = (props, context) => {
     shuttle_status,
     destinations = [],
     takeoff_delay,
-    takeoff_time_left,
-    shuttle_mode,
-    confirm_message,
   } = data;
   return (
     <Window title="Shuttle Control Console" width={400} height={230}>
@@ -100,12 +79,7 @@ export const ShuttleControl = (props, context) => {
             </NoticeBox>
           )}
         </Section>
-        <TakeOffDisplay
-          takeoff_delay={takeoff_delay}
-          takeoff_time_left={takeoff_time_left}
-          shuttle_mode={shuttle_mode}
-          confirm_message={confirm_message}
-        />
+        <TakeOffDisplay takeoff_delay={takeoff_delay} />
         {destinations.length >= 1 ? (
           <Section title="Destinations">
             <Table>

@@ -549,8 +549,9 @@
 
 /// setups hud timers on ALL hive datums
 /proc/setup_hud_timer_all_hives(timer, text)
-	for(var/datum/hive_status/HS in GLOB.hive_datums)
-		HS.setup_hud_timer(timer, text)
+	for(var/key AS in GLOB.hive_datums)
+		var/datum/hive_status/HS = GLOB.hive_datums[key]
+		HS.setup_hud_timer(HS.get_all_xenos, timer, text)
 
 /// setups hud timers only on xenos of THIS hive datum
 /datum/hive_status/proc/setup_hud_timer(arguments = list())

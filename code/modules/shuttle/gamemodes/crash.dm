@@ -34,8 +34,8 @@
 	dwidth = 7
 	dheight = 12
 
-	// callTime = 10 MINUTES
-	ignitionTime = 5 SECONDS
+	// callTime = 8 MINUTES
+	ignitionTime = 1 MINUTES
 	prearrivalTime = 12 SECONDS
 
 	var/list/spawnpoints = list()

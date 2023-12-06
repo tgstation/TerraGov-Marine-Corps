@@ -1355,15 +1355,15 @@
 	if(!M)
 		return data //empty but oh well
 	data["shuttle_status"] = M.getStatusText()
-	data["takeoff_time_left"] = M.timer ? timeleft(M.timer) : 0
-	data["shuttle_mode"] = M.mode
 	return data
 
 /obj/machinery/computer/shuttle/shuttle_control/ui_static_data(mob/user)
 	var/list/data = list()
 	var/obj/docking_port/mobile/M = SSshuttle.getShuttle(shuttleId)
-	data["takeoff_delay"] = takeoff_delay
+	data["takeoff_delay"] = M.ignitionTime
 	data["confirm_message"] = confirm_message
+	if(!M)
+		return data
 	data["linked_shuttle_name"] = M.name
 	data["destinations"] = get_valid_destinations(M)
 	return data
@@ -1491,6 +1491,9 @@
 		return
 	. = ..()
 
+/obj/machinery/computer/shuttle/shuttle_control/canterbury/attack_ghost(mob/dead/observer/user)
+	ui_interact(user, null)
+
 /obj/machinery/computer/shuttle/shuttle_control/canterbury/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
 	if(action != "selectDestination" || !iscrashgamemode(SSticker.mode))
 		to_chat(usr, span_warning("[src] is unresponsive."))
@@ -1501,9 +1504,12 @@
 
 // Hardcode invalid destination, as we're only going to orbit
 /obj/machinery/computer/shuttle/shuttle_control/canterbury/get_valid_destinations(obj/docking_port/mobile/port)
-	return list("id" = "canterbury_loadingdock", "name" = "Orbit", "locked" = FALSE)
+	return list(list("id" = "canterbury_loadingdock", "name" = "Fly to Orbit", "locked" = FALSE))
 
 /obj/machinery/computer/shuttle/shuttle_control/canterbury/begin_takeoff(obj/docking_port/mobile/port, destination, mob/user)
+	if(confirm_message != "" && tgui_alert(user, confirm_message, "Confirm Launch", list("Yes", "No")) != "Yes")
+		return
+	priority_announce("[port.name] is launching in [DisplayTimeText(takeoff_delay)]!", "Canterbury Launch")
 	log_admin("[key_name(user)] is launching the canterbury[!length(GLOB.active_nuke_list)? " early" : ""].")
 	message_admins("[ADMIN_TPMONTY(user)] is launching the canterbury[!length(GLOB.active_nuke_list) ? " early" : ""].")
 
@@ -1511,22 +1517,19 @@
 		return TRUE
 	port.destination = null
 	port.mode = SHUTTLE_IGNITING
-	port.setTimer(takeoff_delay)
-	RegisterSignal(port, COMSIG_SHUTTLE_TAKEOFF, PROC_REF(launch_shuttle))
-	addtimer(CALLBACK(src, PROC_REF(launch_shuttle)), takeoff_delay, TIMER_STOPPABLE)
+	port.setTimer(port.ignitionTime)
+	
 	SStgui.update_uis(src)
 	// Same position as the orphan timer as it is disabled on crash
 	if(!port.timer)
 		CRASH("Shuttle port [port] has no timer set.")
-	setup_hud_timer_all_hives(port.timer, "Canterbury taking off in ${timer}", 150, -80)
+	var/timer = addtimer(CALLBACK(src, PROC_REF(launch_shuttle)), port.timer)
+	// If you make the canterbury launch interruptable, ensure that you make the timer used for xeno HUD's stop
+	setup_hud_timer_all_hives(timer, "Evacuvation in ${timer}", 150, -80)
 
 	var/datum/game_mode/infestation/crash/crash_mode = SSticker.mode
 	VARSET_CALLBACK(crash_mode, marines_evac, CRASH_EVAC_INPROGRESS)
 
-/obj/machinery/computer/shuttle/shuttle_control/canterbury/proc/launch_shuttle(shuttleID, obj/docking_port/mobile/port)
-	port.destination = null
-	port.mode = SHUTTLE_IGNITING
-	// port.setTimer(port.ignitionTime)
-
+/obj/machinery/computer/shuttle/shuttle_control/canterbury/proc/launch_shuttle()
 	var/datum/game_mode/infestation/crash/crash_mode = SSticker.mode
 	addtimer(VARSET_CALLBACK(crash_mode, marines_evac, CRASH_EVAC_COMPLETED), 1 MINUTES)

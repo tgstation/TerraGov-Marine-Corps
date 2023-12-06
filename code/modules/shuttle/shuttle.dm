@@ -830,9 +830,11 @@
 
 /obj/docking_port/mobile/proc/getStatusText()
 	var/obj/docking_port/stationary/dockedAt = get_docked()
-
 	if(mode == SHUTTLE_RECHARGING)
 		return "recharging, [timeLeft()] seconds remaining"
+
+	if(mode == SHUTTLE_IGNITING)
+		return "shuttle engines igniting, [timeLeft()] seconds remaining"
 
 	if(istype(dockedAt, /obj/docking_port/stationary/transit))
 		if (timeLeft() > 1 HOURS)
