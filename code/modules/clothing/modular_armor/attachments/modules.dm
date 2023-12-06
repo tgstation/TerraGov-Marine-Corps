@@ -662,7 +662,7 @@
 		return
 	to_chat(user, span_notice("Setting up Antenna communication relay. Please wait."))
 	comms_setup = COMMS_SETTING
-	addtimer(CALLBACK(src, PROC_REF(finish_startup), user), ANTENNA_SYNCING_TIME, TIMER_STOPPABLE)
+	startup_timer_id = addtimer(CALLBACK(src, PROC_REF(finish_startup), user), ANTENNA_SYNCING_TIME, TIMER_STOPPABLE)
 
 ///Finishes startup, rendering the module effective.
 /obj/item/armor_module/module/antenna/proc/finish_startup(mob/living/user)
