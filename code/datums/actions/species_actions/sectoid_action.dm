@@ -207,13 +207,14 @@
 	carbon_target.add_atom_colour(COLOR_GRAY, TEMPORARY_COLOUR_PRIORITY)
 	carbon_target.log_message("has been petrified by [owner] for [stasis_duration] ticks", LOG_ATTACK, color="pink")
 
-	var/image/stone_overlay = image('icons/effects/effects.dmi', null, "petrified_overlay")
+	var/image/stone_overlay = image('icons/effects/64x64.dmi', null, "stasis_overlay", pixel_y = -4)
 	stone_overlay.filters += filter(arglist(alpha_mask_filter(render_source="*[REF(carbon_target)]",flags=MASK_INVERSE)))
 
 	var/mutable_appearance/mask = mutable_appearance()
 	mask.appearance = carbon_target.appearance
 	mask.render_target = "*[REF(carbon_target)]"
 	mask.alpha = 125
+	mask.pixel_y = 4
 	stone_overlay.overlays += mask
 
 	carbon_target.overlays += stone_overlay
