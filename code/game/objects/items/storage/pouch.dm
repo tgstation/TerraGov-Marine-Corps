@@ -594,7 +594,7 @@
 	sprite_slots = 3
 	storage_slots = 3
 
-	can_hold = list(/obj/item/storage/box/combat_lolipop,)
+	can_hold = list(/obj/item/storage/box/combat_lolipop)
 
 /obj/item/storage/pouch/med_lolipops/Initialize(mapload)
 	. = ..()
