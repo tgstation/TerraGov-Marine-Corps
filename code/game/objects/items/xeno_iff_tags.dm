@@ -16,7 +16,6 @@
 	if(xeno.stat == DEAD)
 		to_chat(user, span_warning("[xeno] is dead, why would you waste a tag on it?"))
 		return
-	if(xeno.GetComponent(/datum/component/xeno_iff))
 	user.visible_message(span_notice("[user] starts attaching [src] to [xeno]."), span_notice("You start attaching [src] to [xeno]."), ignored_mob = xeno)
 	if(xeno.client)
 		to_chat(xeno, span_xenowarning("[user] starts attaching [src] to us!"))
