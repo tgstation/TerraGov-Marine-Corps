@@ -3,7 +3,7 @@
 // ***************************************
 /datum/action/ability/activable/sectoid/mindmeld
 	name = "Mindmeld"
-	action_icon_state = "healing_infusion"
+	action_icon_state = "mindmeld"
 	desc = "Merge minds with the target, empowering both."
 	cooldown_duration = 60 SECONDS
 	target_flags = ABILITY_MOB_TARGET
@@ -98,7 +98,7 @@
 #define MINDFRAY_RANGE 8
 /datum/action/ability/activable/sectoid/mindfray
 	name = "Mindfray"
-	action_icon_state = "off_guard"
+	action_icon_state = "mindfray"
 	desc = "Muddles the mind of an enemy, making it harder for them to focus their aim for a while."
 	cooldown_duration = 20 SECONDS
 	target_flags = ABILITY_MOB_TARGET
@@ -150,7 +150,7 @@
 #define SECTOID_STASIS_RANGE 7
 /datum/action/ability/activable/sectoid/stasis
 	name = "stasis"
-	action_icon_state = "off_guard"
+	action_icon_state = "stasis"
 	desc = "Muddles the mind of an enemy, making it harder for them to focus their aim for a while."
 	cooldown_duration = 20 SECONDS
 	target_flags = ABILITY_MOB_TARGET
@@ -192,7 +192,7 @@
 	particle_holder.particles.velocity = list(0, 1.5)
 	particle_holder.particles.gravity = list(0, 2)
 
-	if(!do_after(owner, 0.5 SECONDS, FALSE, target, BUSY_ICON_DANGER, ignore_turf_checks = TRUE) || !can_use_ability(target))
+	if(!do_after(owner, 0.5 SECONDS, IGNORE_HELD_ITEM|IGNORE_LOC_CHANGE, target, BUSY_ICON_DANGER) || !can_use_ability(target))
 		owner.balloon_alert(owner, "Our focus is disrupted")
 		QDEL_NULL(particle_holder)
 		return fail_activate()
@@ -239,7 +239,7 @@
 #define SECTOID_REKNIT_RANGE 4
 /datum/action/ability/activable/sectoid/reknit_form
 	name = "Reknit Form"
-	action_icon_state = "off_guard"
+	action_icon_state = "reknit_form"
 	desc = "Flesh and bone runs like water at our will, healing horrendous damage with the power of our mind."
 	cooldown_duration = 60 SECONDS
 	target_flags = ABILITY_MOB_TARGET
@@ -276,7 +276,7 @@
 	particle_holder.particles.velocity = list(0, 1.5)
 	particle_holder.particles.gravity = list(0, 2)
 
-	if(!do_after(owner, 0.5 SECONDS, FALSE, target, BUSY_ICON_DANGER, ignore_turf_checks = TRUE) || !can_use_ability(target))
+	if(!do_after(owner, 0.5 SECONDS, IGNORE_HELD_ITEM|IGNORE_LOC_CHANGE, target, BUSY_ICON_DANGER) || !can_use_ability(target))
 		owner.balloon_alert(owner, "Our focus is disrupted")
 		QDEL_NULL(particle_holder)
 		return fail_activate()
@@ -291,6 +291,7 @@
 
 /datum/action/ability/activable/sectoid/reknit_form/greater
 	name = "Greater Reknit Form"
+	action_icon_state = "greater_reknit_form"
 	reknit_duration = 6 SECONDS
 
 // ***************************************
@@ -300,7 +301,7 @@
 #define SECTOID_FUSE_RANGE 6
 /datum/action/ability/activable/sectoid/fuse
 	name = "Fuse"
-	action_icon_state = "off_guard"
+	action_icon_state = "fuse"
 	desc = "We reach out with our mind to trigger an explosive device."
 	cooldown_duration = 45 SECONDS
 	keybinding_signals = list(
@@ -329,7 +330,7 @@
 	particle_holder.particles.velocity = list(0, 1.5)
 	particle_holder.particles.gravity = list(0, 2)
 
-	if(!do_after(owner, 0.5 SECONDS, FALSE, target, BUSY_ICON_DANGER, ignore_turf_checks = TRUE) || !can_use_ability(target))
+	if(!do_after(owner, 0.5 SECONDS, IGNORE_HELD_ITEM|IGNORE_LOC_CHANGE, target, BUSY_ICON_DANGER) || !can_use_ability(target))
 		owner.balloon_alert(owner, "Our focus is disrupted")
 		QDEL_NULL(particle_holder)
 		return fail_activate()
@@ -339,10 +340,10 @@
 	if(isgrenade(target))
 		grenade_target = target
 	else
-		grenade_target = locate(/obj/item/explosive) in target
+		grenade_target = locate(/obj/item/explosive/grenade) in target
 		if(!grenade_target)
 			for(var/obj/item/storage/target_storage in target)
-				grenade_target = locate(/obj/item/explosive) in target_storage
+				grenade_target = locate(/obj/item/explosive/grenade) in target_storage
 				if(grenade_target)
 					break
 			if(!grenade_target)
@@ -361,7 +362,7 @@
 
 /datum/action/ability/activable/psionic_interact
 	name = "Telekinesis"
-	action_icon_state = "off_guard"
+	action_icon_state = "telekinesis"
 	desc = "Manipulate things from a distance."
 	cooldown_duration = 20 SECONDS
 	target_flags = ABILITY_MOB_TARGET
@@ -396,13 +397,12 @@
 	particle_holder.particles.velocity = list(0, 1.5)
 	particle_holder.particles.gravity = list(0, 2)
 
-	if(!do_after(owner, 0.5 SECONDS, FALSE, target, BUSY_ICON_DANGER, ignore_turf_checks = TRUE) || !can_use_ability(target))
+	if(!do_after(owner, 0.5 SECONDS, IGNORE_HELD_ITEM|IGNORE_LOC_CHANGE, target, BUSY_ICON_DANGER) || !can_use_ability(target))
 		owner.balloon_alert(owner, "Our focus is disrupted")
 		QDEL_NULL(particle_holder)
 		return fail_activate()
 
 	QDEL_NULL(particle_holder)
-	var/mob/living/carbon/carbon_target = target
 	playsound(owner, 'sound/effects/petrify_activate.ogg', 50)
 
 	var/list/outcome = target.psi_act(psi_strength, owner)
