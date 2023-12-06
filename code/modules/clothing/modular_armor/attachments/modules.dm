@@ -250,7 +250,7 @@
 	variants_by_parent_type = list(/obj/item/clothing/suit/modular/xenonauten = "mod_ff_xn")
 
 /obj/item/armor_module/module/chemsystem
-	name = "Vali health scan module"
+	name = "Vali Health Scan System"
 	desc = "Designed for mounting on modular armor. This module gives an accurate and immediate readout of the wearer's vitals to them."
 	icon = 'icons/mob/modular/modular_armor_modules.dmi'
 	icon_state = "mod_chemsystem"
