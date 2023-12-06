@@ -63,6 +63,34 @@
 // ***************************************
 /datum/action/xeno_action/activable/psychic_cure/queen_give_heal/hivemind
 	cooldown_duration = 10 SECONDS
+	
+/datum/action/ability/activable/xeno/psychic_cure/queen_give_heal/hivemind/use_ability(atom/target)
+	if(owner.do_actions)
+		return FALSE
+	if(!do_after(owner, 1 SECONDS, NONE, target, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
+		return FALSE
+	target.visible_message(span_xenowarning("\the [owner] vomits acid over [target], mending their wounds!"))
+	playsound(target, "alien_drool", 25)
+	new /obj/effect/temp_visual/telekinesis(get_turf(target))
+	var/mob/living/carbon/xenomorph/patient = target
+	patient.salve_healing()
+	owner.changeNext_move(CLICK_CD_RANGE)
+	succeed_activate()
+	add_cooldown()
+	if(owner.client)
+		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[owner.ckey]
+		personal_statistics.heals++
+
+/// Heals the target.
+/mob/living/carbon/xenomorph/proc/salve_healing()
+	var/amount = 50
+	if(recovery_aura)
+		amount += recovery_aura * maxHealth * 0.01
+	var/remainder = max(0, amount - getBruteLoss())
+	adjustBruteLoss(-amount)
+	adjustFireLoss(-remainder, updating_health = TRUE)
+	adjust_sunder(-amount/10)
+
 /datum/action/xeno_action/activable/psychic_cure/queen_give_heal/hivemind/can_use_action(silent = FALSE, override_flags, selecting = FALSE)
 	if (owner.status_flags & INCORPOREAL)
 		return FALSE
