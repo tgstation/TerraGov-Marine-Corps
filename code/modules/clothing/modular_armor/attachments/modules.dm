@@ -656,7 +656,7 @@
 		user.show_message(span_notice("The [src] beeps and states, \"Uplink data: LONGITUDE [location.x]. LATITUDE [location.y]. Area ID: [get_area(src)]\""), EMOTE_AUDIBLE, span_notice("The [src] vibrates but you can not hear it!"))
 		return
 
-///Begins the starup sequence.
+///Begins the startup sequence.
 /obj/item/armor_module/module/antenna/proc/start_sync(mob/living/user)
 	if(comms_setup != COMMS_OFF) //Guh?
 		return
@@ -664,7 +664,7 @@
 	comms_setup = COMMS_SETTING
 	addtimer(CALLBACK(src, PROC_REF(finish_startup), user), ANTENNA_SYNCING_TIME, TIMER_STOPPABLE)
 
-///Finishes startupm, rendering the module effective.
+///Finishes startup, rendering the module effective.
 /obj/item/armor_module/module/antenna/proc/finish_startup(mob/living/user)
 	comms_setup = COMMS_SETUP
 	user.show_message(span_notice("[src] beeps twice and states: \"Antenna configuration complete. Relay system active.\""), EMOTE_AUDIBLE, span_notice("[src] vibrates twice."))
