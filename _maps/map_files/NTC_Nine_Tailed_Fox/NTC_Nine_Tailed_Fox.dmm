@@ -1402,15 +1402,6 @@
 "dS" = (
 /turf/closed/wall/mainship/outer,
 /area/mainship/hull/upper_hull)
-"dT" = (
-/obj/machinery/computer/shuttle/shuttle_control/shipelevator{
-	pixel_x = -15;
-	dir = 4
-	},
-/turf/closed/wall/mainship,
-/area/outpost/cargo{
-	outside = 1
-	})
 "dU" = (
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/living/officer_study)
@@ -1760,12 +1751,6 @@
 	name = "Research";
 	outside = 0
 	})
-"eS" = (
-/obj/structure/largecrate/packed,
-/turf/open/floor/mainship/cargo,
-/area/outpost/cargo{
-	outside = 1
-	})
 "eT" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -1851,7 +1836,9 @@
 /obj/effect/spawner/random/engineering/extinguisher/regularweighted,
 /obj/item/reagent_containers/spray/cleaner,
 /obj/item/storage/box/monkeycubes,
-/obj/machinery/door_display/research_cell/cell,
+/obj/machinery/door_display/research_cell/cell{
+	id = "Shipside Containment Cell"
+	},
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/surgery_hallway{
 	name = "Research";
@@ -1869,15 +1856,6 @@
 "fh" = (
 /obj/structure/dropship_equipment/shuttle/weapon_holder/machinegun,
 /turf/open/floor/mainship/mono,
-/area/mainship/hallways/hangar/flight_control{
-	outside = 0;
-	name = "Shuttle Hanger"
-	})
-"fi" = (
-/obj/structure/prop/mainship/railing{
-	dir = 1
-	},
-/turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/hangar/flight_control{
 	outside = 0;
 	name = "Shuttle Hanger"
@@ -2247,6 +2225,17 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/sulaco/engineering/lower_engineering{
 	name = "Lower Power"
+	})
+"gg" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/structure/prop/mainship/railing,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/hallways/hangar/flight_control{
+	outside = 0;
+	name = "Shuttle Hanger"
 	})
 "gh" = (
 /obj/structure/cable,
@@ -2729,15 +2718,6 @@
 /area/mainship/medical/upper_medical{
 	outside = 0;
 	name = "Shipside Medbay"
-	})
-"ht" = (
-/obj/structure/prop/mainship/railing{
-	dir = 4
-	},
-/turf/open/floor/plating/plating_catwalk,
-/area/mainship/hallways/hangar/flight_control{
-	outside = 0;
-	name = "Shuttle Hanger"
 	})
 "hu" = (
 /obj/machinery/light{
@@ -4024,6 +4004,16 @@
 /obj/effect/spawner/random/engineering/wood,
 /turf/open/floor/mainship/mono,
 /area/mainship/command/self_destruct)
+"kP" = (
+/obj/machinery/computer/shuttle/shuttle_control/shipelevator{
+	pixel_x = -15;
+	dir = 4
+	},
+/turf/closed/wall/mainship,
+/area/mainship/hallways/hangar/flight_control{
+	outside = 0;
+	name = "Shuttle Hanger"
+	})
 "kQ" = (
 /turf/closed/wall/mainship/research/containment/wall/purple{
 	dir = 8
@@ -6349,7 +6339,9 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 5
 	},
-/obj/structure/prop/mainship/railing,
+/obj/structure/prop/mainship/railing{
+	dir = 8
+	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/hangar/flight_control{
 	outside = 0;
@@ -7114,18 +7106,6 @@
 /area/mainship/hallways/bow_hallway{
 	name = "Ship Floor 1 Hallways"
 	})
-"tE" = (
-/obj/machinery/gear{
-	id = "shipcargoelevatorfloor1_gear"
-	},
-/obj/structure/prop/mainship/railing/corner{
-	dir = 1
-	},
-/turf/open/floor/plating/plating_catwalk,
-/area/mainship/hallways/hangar/flight_control{
-	outside = 0;
-	name = "Shuttle Hanger"
-	})
 "tF" = (
 /obj/structure/bed,
 /obj/item/bedsheet/medical,
@@ -7585,6 +7565,17 @@
 /area/mainship/medical/surgery_hallway{
 	name = "Research";
 	outside = 0
+	})
+"uU" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 5
+	},
+/obj/structure/prop/mainship/railing,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/hallways/hangar/flight_control{
+	outside = 0;
+	name = "Shuttle Hanger"
 	})
 "uV" = (
 /obj/machinery/light/mainship/small{
@@ -9144,16 +9135,6 @@
 	outside = 0;
 	name = "Shuttle Hanger"
 	})
-"yX" = (
-/obj/machinery/computer/shuttle/shuttle_control/shipelevator{
-	pixel_x = -15;
-	dir = 4
-	},
-/turf/closed/wall/mainship,
-/area/mainship/hallways/hangar/flight_control{
-	outside = 0;
-	name = "Shuttle Hanger"
-	})
 "yY" = (
 /obj/structure/largecrate/supply/supplies/plasteel,
 /turf/open/floor/mainship/cargo,
@@ -10324,6 +10305,15 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/mainship,
 /area/mainship/living/evacuation/two)
+"Cm" = (
+/obj/machinery/computer/shuttle/shuttle_control/shipelevator{
+	pixel_x = -15;
+	dir = 4
+	},
+/turf/closed/wall/mainship,
+/area/outpost/cargo{
+	outside = 1
+	})
 "Cn" = (
 /turf/open/floor/mainship/black{
 	dir = 5
@@ -10673,6 +10663,12 @@
 "Dl" = (
 /obj/docking_port/stationary/marine_dropship/shipelevator/floor1,
 /turf/open/floor/plating,
+/area/outpost/cargo{
+	outside = 1
+	})
+"Dm" = (
+/obj/structure/largecrate/supply/supplies/metal,
+/turf/open/floor/mainship/cargo,
 /area/outpost/cargo{
 	outside = 1
 	})
@@ -11995,12 +11991,6 @@
 /area/mainship/squads{
 	outside = 0
 	})
-"GN" = (
-/obj/structure/largecrate/supply/supplies/metal,
-/turf/open/floor/mainship/cargo,
-/area/outpost/cargo{
-	outside = 1
-	})
 "GO" = (
 /obj/effect/ai_node,
 /turf/open/floor/mainship,
@@ -12153,17 +12143,6 @@
 /area/mainship/medical/lower_medical{
 	outside = 0
 	})
-"Hj" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/obj/structure/prop/mainship/railing,
-/turf/open/floor/plating/plating_catwalk,
-/area/mainship/hallways/hangar/flight_control{
-	outside = 0;
-	name = "Shuttle Hanger"
-	})
 "Hl" = (
 /obj/structure/cable,
 /obj/machinery/door_control/ai/exterior{
@@ -12300,8 +12279,12 @@
 	name = "Ship Floor 2 Hallways"
 	})
 "HE" = (
-/obj/machinery/door/airlock/mainship/research/glass/cell/cell1,
-/obj/machinery/door/poddoor/shutters/mainship/cell/cell1,
+/obj/machinery/door/airlock/mainship/research/glass/cell/cell1{
+	id = "Shipside Containment Cell"
+	},
+/obj/machinery/door/poddoor/shutters/mainship/cell/cell1{
+	id = "Shipside Containment Cell"
+	},
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/surgery_hallway{
 	name = "Research";
@@ -14798,6 +14781,15 @@
 /area/mainship/medical/lower_medical{
 	outside = 0
 	})
+"Od" = (
+/obj/structure/prop/mainship/railing{
+	dir = 4
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/hallways/hangar/flight_control{
+	outside = 0;
+	name = "Shuttle Hanger"
+	})
 "Oe" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment/corner{
@@ -15565,12 +15557,11 @@
 	outside = 0
 	})
 "Qh" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 5
+/obj/machinery/gear{
+	id = "shipcargoelevatorfloor1_gear"
 	},
-/obj/structure/prop/mainship/railing{
-	dir = 8
+/obj/structure/prop/mainship/railing/corner{
+	dir = 1
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/hangar/flight_control{
@@ -15975,12 +15966,6 @@
 /area/mainship/medical/surgery_hallway{
 	name = "Research";
 	outside = 0
-	})
-"Rj" = (
-/obj/structure/largecrate/supply/supplies,
-/turf/open/floor/mainship/orange/full,
-/area/outpost/cargo{
-	outside = 1
 	})
 "Rk" = (
 /obj/structure/largecrate/random,
@@ -18069,6 +18054,12 @@
 	outside = 0;
 	name = "Shipside Medbay"
 	})
+"Wx" = (
+/obj/structure/largecrate/supply/supplies,
+/turf/open/floor/mainship/orange/full,
+/area/outpost/cargo{
+	outside = 1
+	})
 "Wy" = (
 /obj/structure/cable,
 /turf/open/floor/mainship/sterile/side{
@@ -18732,6 +18723,15 @@
 	name = "Shipside Corpsec Office";
 	outside = 0
 	})
+"Yo" = (
+/obj/structure/prop/mainship/railing{
+	dir = 1
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/hallways/hangar/flight_control{
+	outside = 0;
+	name = "Shuttle Hanger"
+	})
 "Yp" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/plating_catwalk,
@@ -18881,6 +18881,12 @@
 	},
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/self_destruct)
+"YL" = (
+/obj/structure/largecrate/packed,
+/turf/open/floor/mainship/cargo,
+/area/outpost/cargo{
+	outside = 1
+	})
 "YN" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -28294,7 +28300,7 @@ tH
 ke
 tH
 tH
-Rj
+Wx
 tH
 Zc
 xc
@@ -31918,7 +31924,7 @@ tH
 Zc
 hP
 tH
-eS
+YL
 tH
 tH
 BE
@@ -32165,7 +32171,7 @@ tH
 Xp
 tH
 bN
-GN
+Dm
 PA
 tH
 Zc
@@ -32526,11 +32532,11 @@ zu
 zu
 zu
 is
-ht
+Od
 dH
 dH
 dH
-ht
+Od
 gU
 uu
 uu
@@ -32767,13 +32773,13 @@ jG
 lx
 lx
 wA
-rk
+uU
 Vc
 Vc
 Vc
 Vc
 Vc
-fi
+Yo
 uu
 uu
 uu
@@ -33735,15 +33741,15 @@ EZ
 JJ
 JJ
 bU
-Hj
+gg
 Vc
 Vc
 Vc
 Vc
 Vc
-fi
+Yo
 KZ
-yX
+kP
 uu
 Mf
 dS
@@ -33863,7 +33869,7 @@ Ua
 Ua
 nk
 Pi
-dT
+Cm
 HO
 wj
 Jl
@@ -33982,8 +33988,8 @@ CC
 px
 px
 px
+rk
 Qh
-tE
 uu
 Rx
 PD
