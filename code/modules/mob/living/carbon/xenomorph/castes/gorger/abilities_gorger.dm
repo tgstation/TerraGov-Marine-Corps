@@ -254,9 +254,8 @@
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_ASSIZE,
 	)
 	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
-	use_state_flags = ABILITY_USE_STAGGERED
 
-/datum/action/ability/activable/xeno/rejuvenate/use_ability(atom/A)
+/datum/action/ability/activable/xeno/assize/use_ability(atom/A)
 	. = ..()
 	var/mob/living/carbon/xenomorph/owner_xeno = owner
 	add_cooldown()
