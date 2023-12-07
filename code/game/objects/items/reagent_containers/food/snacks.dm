@@ -1498,7 +1498,8 @@
 		/datum/reagent/medicine/tramadol = 10,
 		/datum/reagent/medicine/bicaridine = 10,
 		/datum/reagent/medicine/kelotane = 10,
-		/datum/reagent/medicine/tricordrazine = 10,)
+		/datum/reagent/medicine/tricordrazine = 10,
+	)
 	tastes = list("delicious processed berries" = 1)
 	bitesize = 9
 
