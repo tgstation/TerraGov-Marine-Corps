@@ -50,11 +50,7 @@
 /datum/weather/acid_rain/weather_act(mob/living/carbon/human/L)
 	if(L.stat == DEAD)
 		return
-	if(isxeno(L))
-		if(prob(L.modify_by_armor(100, ACID)))
-			L.adjustFireLoss(-7)
-			to_chat(L, span_boldannounce("You feel the acid rain healing you!"))
-	else
+	if(!isxeno(L))
 		if(prob(L.modify_by_armor(100, ACID)))
 			L.adjustFireLoss(7)
 			to_chat(L, span_boldannounce("You feel the acid rain melting you away!"))

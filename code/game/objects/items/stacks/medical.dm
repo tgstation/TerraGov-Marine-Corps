@@ -42,9 +42,10 @@
 		return
 
 	if(isxeno(M))
-		if(!do_mob(user, M, SKILL_TASK_VERY_EASY / (unskilled_delay * 2), BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
-			M.adjustBruteLoss(heal_brute * 10)
-			M.adjustFireLoss(heal_burn * 10)
+		var/heal_amount = M.maxHealth * 0.01
+		if(do_mob(user, M, 2 SECONDS, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
+			M.adjustBruteLoss(-heal_amount * 10)
+			M.adjustFireLoss(-heal_amount * 10)
 			return
 
 	var/datum/limb/affecting = user.client.prefs.toggles_gameplay & RADIAL_MEDICAL ? radial_medical(target, user) : target.get_limb(user.zone_selected)

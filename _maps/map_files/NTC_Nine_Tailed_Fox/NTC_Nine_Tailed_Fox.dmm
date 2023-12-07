@@ -6201,6 +6201,13 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/cryo_cells)
+"qP" = (
+/obj/structure/window/framed/mainship,
+/obj/machinery/door/poddoor/shutters/mainship/selfdestruct{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/centcom/valhalla/crew_quarters/cryo)
 "qQ" = (
 /obj/machinery/door/poddoor/shutters/mainship/open/checkpoint{
 	dir = 2;
@@ -32826,7 +32833,7 @@ eQ
 KT
 Ij
 US
-KO
+qP
 dX
 yg
 ia
@@ -33068,7 +33075,7 @@ bs
 yI
 dA
 QZ
-KO
+qP
 dX
 ba
 lA
@@ -33310,7 +33317,7 @@ US
 US
 mg
 US
-KO
+qP
 dX
 qk
 lM

@@ -267,7 +267,7 @@ Make the NTC proud!"})
 		<b>Gamemode Availability</b>: All<br /><br /><br />
 		<b>Duty</b>: Lead your corporation to ensure the operations go flawlessly
 		"}
-	minimap_icon = "captain"
+	minimap_icon = "CEO"
 
 /datum/outfit/job/command/ceo
 	name = CHIEF_EXECUTIVE_OFFICER
@@ -312,7 +312,7 @@ Make the NTC proud!"})
 		<b>Gamemode Availability</b>: Crash, Distress<br /><br /><br />
 		<b>Duty</b>: Ensure base security, enforce the law, make sure corpsec is not acting like a legal gang.
 	"}
-	minimap_icon = "fieldcommander"
+	minimap_icon = "corpseccomm"
 
 /datum/job/terragov/command/corpseccommander/after_spawn(mob/living/L, mob/M, latejoin)
 	. = ..()

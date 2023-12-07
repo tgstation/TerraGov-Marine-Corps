@@ -3397,7 +3397,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	hud_state_empty = "battery_empty_flash"
 	flags_ammo_behavior = AMMO_ENERGY|AMMO_SUNDERING|AMMO_SOUND_PITCH
 	bullet_color = COLOR_TAN_ORANGE
-	armor_type = "energy"
+	armor_type = "laser"
 	max_range = 14
 	accurate_range = 5 //for charger
 	shell_speed = 4
@@ -3416,9 +3416,6 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	sound_armor = "ballistic_armor"
 	sound_miss	 = "ballistic_miss"
 	sound_bounce = "ballistic_bounce"
-
-/datum/ammo/energy/volkite/on_hit_mob(mob/M,obj/projectile/P)
-	deflagrate(M, P)
 
 /datum/ammo/energy/volkite/medium
 	max_range = 25
