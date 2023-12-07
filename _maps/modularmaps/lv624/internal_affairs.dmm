@@ -168,7 +168,7 @@
 /area/lv624/lazarus/internal_affairs)
 "no" = (
 /obj/structure/table/woodentable,
-/obj/machinery/computer/crew,
+/obj/effect/spawner/random/machinery/random_broken_computer/crewmonitor,
 /turf/open/floor/wood,
 /area/lv624/lazarus/internal_affairs)
 "ns" = (

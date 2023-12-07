@@ -23,6 +23,7 @@
 	name = "Magmoor Central Fissure"
 	ceiling = CEILING_DEEP_UNDERGROUND
 	flags_area = NO_DROPPOD
+	always_unpowered = TRUE
 
 //Caves
 
@@ -30,6 +31,7 @@
 	ceiling = CEILING_DEEP_UNDERGROUND
 	ambience = list('sound/ambience/ambicave.ogg', 'sound/ambience/ambilava1.ogg', 'sound/ambience/ambilava2.ogg', 'sound/ambience/ambilava3.ogg')
 	minimap_color = MINIMAP_AREA_CAVES
+	always_unpowered = TRUE
 
 /area/magmoor/cave/central
 	name = "Central Caves"
@@ -82,6 +84,7 @@
 	icon_state = "central"
 	outside = TRUE
 	ambience = list('sound/ambience/ambilava1.ogg', 'sound/ambience/ambilava2.ogg', 'sound/ambience/ambilava3.ogg')
+	always_unpowered = TRUE
 
 /area/magmoor/compound/north
 	name = "North Magmoor Compound"

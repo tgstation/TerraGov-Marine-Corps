@@ -26,7 +26,7 @@
 	visible_message(span_warning("[src] attempts to remove [cuffs]!"),
 	span_notice("You attempt to remove [cuffs]... (This will take around [DisplayTimeText(cuffs.breakouttime)] and you need to stand still.)"))
 
-	if(!do_after(src, cuffs.breakouttime, FALSE, target = src))
+	if(!do_after(src, cuffs.breakouttime, IGNORE_HELD_ITEM, target = src))
 		return FALSE
 
 	visible_message(span_danger("[src] manages to remove [cuffs]!"),

@@ -22,7 +22,7 @@
 	var/mob/living/carbon/human/operator
 
 	///Whether bullets can bypass the object even though it's dense
-	flags_pass = PASSABLE
+	allow_pass_flags = PASSABLE
 
 /obj/machinery/Initialize(mapload)
 	. = ..()
@@ -136,6 +136,8 @@
 			if(!prob(25))
 				return
 			qdel(src)
+		if(EXPLODE_WEAK)
+			return
 
 
 /obj/machinery/proc/power_change()

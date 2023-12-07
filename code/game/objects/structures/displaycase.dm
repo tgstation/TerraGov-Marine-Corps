@@ -18,6 +18,8 @@
 			take_damage(15, BRUTE, BOMB)
 		if(EXPLODE_LIGHT)
 			take_damage(5, BRUTE, BOMB)
+		if(EXPLODE_WEAK)
+			take_damage(5, BRUTE, BOMB)
 
 
 /obj/structure/displaycase/update_icon()

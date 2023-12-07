@@ -6,6 +6,8 @@
 	layer = ABOVE_MOB_LAYER
 	anchored = TRUE
 	density = TRUE
+	//Pointing west because that's the only sprite we got
+	dir = NORTH
 
 /obj/machinery/recycler/update_icon()
 	icon_state = "grinder-o[(machine_stat & (BROKEN|NOPOWER)) ? "0":"1"]"

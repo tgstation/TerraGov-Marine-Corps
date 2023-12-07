@@ -29,7 +29,7 @@ KEYBINDINGS
 
 /datum/action/New(Target)
 	target = Target
-	RegisterSignal(target, COMSIG_PARENT_QDELETING, PROC_REF(clean_action))
+	RegisterSignal(target, COMSIG_QDELETING, PROC_REF(clean_action))
 	button = new
 	button.icon = icon(background_icon, background_icon_state)
 	button.source_action = src
@@ -152,7 +152,7 @@ KEYBINDINGS
 	SIGNAL_HANDLER
 	/**
 	 * assumption: if no keybind ref passed you want to call normally.
-	 * would use comp_lookup but that'd start getting cursed and overly expensive for what it is
+	 * would use _listen_lookup but that'd start getting cursed and overly expensive for what it is
 	 * Add it if you need it
 	 */
 	if(!kb_type || kb_type.keybind_signal == keybinding_signals[KEYBINDING_NORMAL])

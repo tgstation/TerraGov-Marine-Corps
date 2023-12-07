@@ -34,7 +34,7 @@
 /area/bigredv2/outside/engineering)
 "bB" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/alarm{
+/obj/machinery/air_alarm{
 	dir = 1
 	},
 /turf/open/floor,
@@ -618,7 +618,7 @@
 /area/bigredv2/outside/s)
 "Cr" = (
 /obj/structure/table,
-/obj/item/clothing/ears/earmuffs,
+/obj/effect/spawner/random/misc/earmuffs,
 /obj/effect/landmark/weed_node,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
@@ -639,7 +639,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "Di" = (
-/obj/machinery/constructable_frame/state_2,
+/obj/effect/spawner/random/machinery/machine_frame,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "DI" = (
@@ -846,7 +846,7 @@
 /area/bigredv2/outside/engineering)
 "Pk" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/constructable_frame,
+/obj/effect/spawner/random/machinery/machine_frame,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "Pu" = (

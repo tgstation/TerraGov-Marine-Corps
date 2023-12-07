@@ -10,7 +10,7 @@
 	pixel_x = -7;
 	pixel_y = 11
 	},
-/turf/open/floor/wood/variable/damaged/standard,
+/turf/open/floor/wood/broken,
 /area/lv624/ground/caves/central2)
 "aT" = (
 /obj/item/ammo_casing/shell,
@@ -51,7 +51,7 @@
 	},
 /area/lv624/ground/caves/central1)
 "iX" = (
-/turf/open/floor/wood/variable/damaged/standard,
+/turf/open/floor/wood/broken,
 /area/lv624/ground/caves/central2)
 "jd" = (
 /obj/structure/flora/ausbushes/fullgrass,
@@ -151,7 +151,7 @@
 /area/lv624/ground/caves/central2)
 "sb" = (
 /obj/effect/decal/cleanable/blood/drip,
-/turf/open/floor/wood/variable/damaged/standard,
+/turf/open/floor/wood/broken,
 /area/lv624/ground/caves/central2)
 "sp" = (
 /obj/structure/rack,
@@ -170,7 +170,7 @@
 /obj/structure/barricade/sandbags{
 	dir = 1
 	},
-/turf/open/floor/wood/variable/damaged/standard,
+/turf/open/floor/wood/broken,
 /area/lv624/ground/caves/central2)
 "xs" = (
 /obj/structure/rack,
@@ -189,7 +189,7 @@
 /area/lv624/ground/caves/central1)
 "yw" = (
 /obj/effect/landmark/weed_node,
-/turf/open/floor/wood/variable/damaged/standard,
+/turf/open/floor/wood/broken,
 /area/lv624/ground/caves/central2)
 "yC" = (
 /obj/effect/spawner/random/misc/trash,
@@ -217,7 +217,7 @@
 /area/lv624/ground/caves/central1)
 "BI" = (
 /obj/effect/ai_node,
-/turf/open/floor/wood/variable/damaged/standard,
+/turf/open/floor/wood/broken,
 /area/lv624/ground/caves/central2)
 "Ce" = (
 /obj/effect/decal/cleanable/dirt,
@@ -291,7 +291,7 @@
 "Lt" = (
 /obj/effect/decal/cleanable/blood/drip,
 /obj/effect/spawner/random/weaponry/gun/sidearms,
-/turf/open/floor/wood/variable/damaged/standard,
+/turf/open/floor/wood/broken,
 /area/lv624/ground/caves/central2)
 "LD" = (
 /obj/structure/rack,
@@ -314,7 +314,7 @@
 /area/lv624/ground/caves/central1)
 "Nl" = (
 /obj/item/paper/crumpled/bloody,
-/turf/open/floor/wood/variable/damaged/standard,
+/turf/open/floor/wood/broken,
 /area/lv624/ground/caves/central2)
 "Np" = (
 /obj/structure/table/woodentable,
@@ -436,7 +436,7 @@
 	pixel_y = 6
 	},
 /obj/effect/spawner/random/weaponry/ammo/machinegun,
-/turf/open/floor/wood/variable/damaged/standard,
+/turf/open/floor/wood/broken,
 /area/lv624/ground/caves/central2)
 "Zg" = (
 /obj/item/stack/sheet/wood,

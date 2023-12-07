@@ -114,8 +114,8 @@
 	var/dat
 
 
-	dat += "Microphone: [broadcasting ? "<A href='byond://?src=\ref[src];talk=0'>Engaged</A>" : "<A href='byond://?src=\ref[src];talk=1'>Disengaged</A>"]<BR>"
-	dat += "Speaker: [listening ? "<A href='byond://?src=\ref[src];listen=0'>Engaged</A>" : "<A href='byond://?src=\ref[src];listen=1'>Disengaged</A>"]<BR>"
+	dat += "Microphone: [broadcasting ? "<A href='byond://?src=[text_ref(src)];talk=0'>Engaged</A>" : "<A href='byond://?src=[text_ref(src)];talk=1'>Disengaged</A>"]<BR>"
+	dat += "Speaker: [listening ? "<A href='byond://?src=[text_ref(src)];listen=0'>Engaged</A>" : "<A href='byond://?src=[text_ref(src)];listen=1'>Disengaged</A>"]<BR>"
 	dat += "Frequency: [format_frequency(frequency)]"
 
 	for(var/ch_name in channels)
@@ -130,7 +130,7 @@
 	var/list = !!(chan_stat & FREQ_LISTENING) != 0
 	return {"
 			<B>[chan_name]</B><br>
-			Speaker: <A href='byond://?src=\ref[src];ch_name=[chan_name];listen=[!list]'>[list ? "Engaged" : "Disengaged"]</A><BR>
+			Speaker: <A href='byond://?src=[text_ref(src)];ch_name=[chan_name];listen=[!list]'>[list ? "Engaged" : "Disengaged"]</A><BR>
 			"}
 
 
@@ -164,7 +164,7 @@
 		set_frequency(new_frequency)
 
 	else if(href_list["talk"])
-		broadcasting = text2num(href_list["talk"])
+		set_broadcasting(text2num(href_list["talk"]))
 
 	else if(href_list["listen"])
 		var/chan_name = href_list["ch_name"]
@@ -292,11 +292,10 @@
 		return
 
 	var/area/A = get_area(src)
-	if(!isnull(A))
+	if(!isnull(A) && (A.ceiling >= CEILING_UNDERGROUND) && !(A.flags_area & ALWAYS_RADIO))
 		if(A.ceiling >= CEILING_DEEP_UNDERGROUND)
 			return
-		if(A.ceiling >= CEILING_UNDERGROUND)
-			signal.data["compression"] += rand(20, 40)
+		signal.data["compression"] += rand(20, 40)
 
 	// All non-independent radios make an attempt to use the subspace system first
 	signal.send_to_receivers()

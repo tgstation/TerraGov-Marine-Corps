@@ -85,7 +85,7 @@
 	anchored = TRUE
 	density = TRUE
 	resistance_flags = UNACIDABLE|XENO_DAMAGEABLE
-	flags_pass = PASSABLE
+	allow_pass_flags = PASSABLE
 	/// The lighting power of the floodlight
 	var/floodlight_light_range = 15
 	/// The amount of integrity repaired with every welder act.

@@ -1,4 +1,10 @@
-#define CAN_DEFAULT_RELEASE_PRESSURE (ONE_ATMOSPHERE)
+#define HOLDING (1<<0)
+#define CONNECTED (1<<1)
+#define EMPTY (1<<2)
+#define LOW (1<<3)
+#define MEDIUM (1<<4)
+#define FULL (1<<5)
+#define DANGER (1<<6)
 
 /obj/machinery/portable_atmospherics/canister
 	name = "canister"
@@ -6,109 +12,98 @@
 	icon_state = "yellow"
 	density = TRUE
 
-	var/valve_open = FALSE
-	var/obj/machinery/atmospherics/components/binary/passive_gate/pump
-	var/release_log = ""
-
-	volume = 1000
-	var/filled = 0.5
-	var/gas_type
-	var/release_pressure = ONE_ATMOSPHERE
-	var/can_max_release_pressure = (ONE_ATMOSPHERE * 10)
-	var/can_min_release_pressure = (ONE_ATMOSPHERE / 10)
-
 	soft_armor = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 100, BOMB = 10, BIO = 100, FIRE = 80, ACID = 50)
 	max_integrity = 250
-	var/temperature_resistance = 1000 + T0C
-	var/starter_temp
-	// Prototype vars
-	var/prototype = FALSE
-	var/valve_timer = null
-	var/timer_set = 30
-	var/default_timer_set = 30
-	var/minimum_timer_set = 1
-	var/maximum_timer_set = 300
-	var/timing = FALSE
-	var/restricted = FALSE
-	req_access = list()
 
-	var/update = 0
+	/// Used for determining if the sprite should be updated and how
+	var/update_flags = NONE
 
 
 /obj/machinery/portable_atmospherics/canister/nitrogen
 	name = "n2 canister"
 	desc = "Nitrogen gas. Reportedly useful for something."
 	icon_state = "red"
-	gas_type = GAS_TYPE_NITROGEN
 
 /obj/machinery/portable_atmospherics/canister/oxygen
 	name = "o2 canister"
 	desc = "Oxygen. Necessary for human life."
 	icon_state = "blue"
-	gas_type = GAS_TYPE_OXYGEN
 
 /obj/machinery/portable_atmospherics/canister/air
 	name = "air canister"
 	desc = "Pre-mixed air."
 	icon_state = "grey"
-	gas_type = GAS_TYPE_AIR
 
 /obj/machinery/portable_atmospherics/canister/phoron
 	name = "phoron canister"
 	desc = "Toxic phoron in gas form."
 	icon_state = "orange"
-	gas_type = GAS_TYPE_PHORON
 
 /obj/machinery/portable_atmospherics/canister/nitrous_oxide
 	name = "nitrous oxide canister"
 	desc = "Compressed nitrous oxide."
 	icon_state = "redws"
-	gas_type = GAS_TYPE_N2O
 
 /obj/machinery/portable_atmospherics/canister/co2
 	name = "carbon dioxide canister"
 	desc = "Carbon dioxide, commonly used for increasing the power generation of exotic engine types."
 	icon_state = "black"
-	gas_type = GAS_TYPE_CO2
+
+/obj/machinery/portable_atmospherics/canister/update_icon_state()
+	if(machine_stat & BROKEN)
+		icon_state = "[icon_state]-1"
 
 
-/obj/machinery/portable_atmospherics/canister/empty
-
-
-/obj/machinery/portable_atmospherics/canister/Destroy()
-	QDEL_NULL(pump)
-	return ..()
-
-/obj/machinery/portable_atmospherics/canister/update_icon()
+/obj/machinery/portable_atmospherics/canister/update_overlays()
+	. = ..()
 	if(machine_stat & BROKEN)
 		cut_overlays()
-		icon_state = "[icon_state]-1"
 		return
 
-	var/last_update = update
-	update = 0
+	var/old_update_flags = update_flags
+	update_flags = NONE
 
 	if(holding)
-		update |= HOLDING
+		update_flags |= HOLDING
 	if(connected_port)
-		update |= CONNECTED
+		update_flags |= CONNECTED
 
-	if(update == last_update)
+	if(update_flags == old_update_flags)
 		return
 
 	cut_overlays()
-	if(update & HOLDING)
-		add_overlay("can-open")
-	if(update & CONNECTED)
-		add_overlay("can-connector")
-	if(update & LOW)
-		add_overlay("can-o0")
-	else if(update & MEDIUM)
-		add_overlay("can-o1")
-	else if(update & FULL)
-		add_overlay("can-o2")
-	else if(update & DANGER)
-		add_overlay("can-o3")
+	if(update_flags & HOLDING)
+		. += "can-open"
+	if(update_flags & CONNECTED)
+		. += "can-connector"
+	if(update_flags & LOW)
+		. += "can-o0"
+		return
+	if(update_flags & MEDIUM)
+		. += "can-o1"
+		return
+	if(update_flags & FULL)
+		. += "can-o2"
+		return
+	if(update_flags & DANGER)
+		. += "can-o3"
+		return
+
+
+/obj/machinery/portable_atmospherics/canister/deconstruct(disassembled = TRUE)
+	if(!(flags_atom & NODECONSTRUCT))
+		if(!(machine_stat & BROKEN))
+			disconnect()
+			machine_stat |= BROKEN
+			density = FALSE
+			playsound(src.loc, 'sound/effects/spray.ogg', 10, 1, -3)
+			update_icon()
+		if(disassembled)
+			new /obj/item/stack/sheet/metal (loc, 10)
+		else
+			new /obj/item/stack/sheet/metal (loc, 5)
+	return ..()
+
 #undef HOLDING
 #undef CONNECTED
 #undef EMPTY
@@ -116,22 +111,3 @@
 #undef MEDIUM
 #undef FULL
 #undef DANGER
-
-
-/obj/machinery/portable_atmospherics/canister/deconstruct(disassembled = TRUE)
-	if(!(flags_atom & NODECONSTRUCT))
-		if(!(machine_stat & BROKEN))
-			canister_break()
-		if(disassembled)
-			new /obj/item/stack/sheet/metal (loc, 10)
-		else
-			new /obj/item/stack/sheet/metal (loc, 5)
-	return ..()
-
-
-/obj/machinery/portable_atmospherics/canister/proc/canister_break()
-	disconnect()
-	machine_stat |= BROKEN
-	density = FALSE
-	playsound(src.loc, 'sound/effects/spray.ogg', 10, 1, -3)
-	update_icon()

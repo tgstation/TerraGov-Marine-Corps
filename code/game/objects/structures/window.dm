@@ -8,6 +8,7 @@
 	anchored = TRUE
 	layer = WINDOW_LAYER
 	flags_atom = ON_BORDER|DIRLOCK
+	allow_pass_flags = PASS_GLASS
 	resistance_flags = XENO_DAMAGEABLE | DROPSHIP_IMMUNE
 	coverage = 20
 	var/dismantle = FALSE //If we're dismantling the window properly no smashy smashy
@@ -21,7 +22,6 @@
 	var/junction = 0 //Because everything is terrible, I'm making this a window-level var
 	var/damageable = TRUE
 	var/deconstructable = TRUE
-	flags_pass = PASSLASER
 
 /obj/structure/window/add_debris_element()
 	AddElement(/datum/element/debris, DEBRIS_GLASS, -10, 5)
@@ -29,6 +29,7 @@
 //I hate this as much as you do
 /obj/structure/window/full
 	dir = 10
+	flags_atom = DIRLOCK
 
 /obj/structure/window/Initialize(mapload, start_dir, constructed)
 	..()
@@ -68,6 +69,25 @@
 			take_damage(rand(75, 125), BRUTE, BOMB)
 		if(EXPLODE_LIGHT)
 			take_damage(rand(25, 75), BRUTE, BOMB)
+		if(EXPLODE_WEAK)
+			take_damage(rand(15, 35), BRUTE, BOMB)
+
+/obj/structure/window/hitby(atom/movable/AM, speed = 5)
+	var/throw_damage = speed
+	var/mob/living/thrown_mob
+	if(isobj(AM))
+		var/obj/thrown_obj = AM
+		throw_damage = thrown_obj.throwforce
+	else if(isliving(AM))
+		thrown_mob = AM
+		throw_damage *= thrown_mob.mob_size * 8
+	take_damage(throw_damage)
+	if(obj_integrity > 0) //we only stop if we don't break the window
+		AM.stop_throw()
+		. = TRUE
+	if(thrown_mob)
+		thrown_mob.take_overall_damage(speed * 5, BRUTE, MELEE, !., FALSE, TRUE, 0, 4) //done here for dramatic effect, and to make the damage sharp if we broke the window
+
 
 //TODO: Make full windows a separate type of window.
 //Once a full window, it will always be a full window, so there's no point
@@ -76,22 +96,6 @@
 	if(!(flags_atom & ON_BORDER) || ISDIAGONALDIR(dir))
 		return TRUE
 	return FALSE
-
-
-/obj/structure/window/CanAllowThrough(atom/movable/mover, turf/target)
-	. = ..()
-	if(CHECK_BITFIELD(mover.flags_pass, PASSGLASS))
-		return TRUE
-	if(!is_full_window() && !(get_dir(loc, target) & dir))
-		return TRUE
-
-/obj/structure/window/proc/on_try_exit(datum/source, atom/movable/mover, direction, list/knownblockers)
-	if(CHECK_BITFIELD(mover.flags_pass, PASSGLASS))
-		return NONE
-	if(!density || !(flags_atom & ON_BORDER) || !(direction & dir) || (mover.status_flags & INCORPOREAL))
-		return NONE
-	knownblockers += src
-	return COMPONENT_ATOM_BLOCK_EXIT
 
 /obj/structure/window/attack_hand(mob/living/user)
 	. = ..()
@@ -145,7 +149,7 @@
 				M.visible_message(span_danger("[user] bashes [M] against \the [src]!"))
 				log_combat(user, M, "bashed", "", "against \the [src]")
 				if(prob(50))
-					M.Paralyze(20)
+					M.Paralyze(2 SECONDS)
 				M.apply_damage(10, blocked = MELEE)
 				UPDATEHEALTH(M)
 				take_damage(25, BRUTE, MELEE)
@@ -420,8 +424,8 @@
 
 
 
-/obj/structure/window/framed/deconstruct(disassembled = TRUE)
-	if(window_frame)
+/obj/structure/window/framed/deconstruct(disassembled = TRUE, leave_frame = TRUE)
+	if(window_frame && leave_frame)
 		var/obj/structure/window_frame/WF = new window_frame(loc, TRUE)
 		WF.icon_state = "[WF.basestate][junction]_frame"
 		WF.setDir(dir)

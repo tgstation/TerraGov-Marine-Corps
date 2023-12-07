@@ -114,6 +114,7 @@
 		/obj/item/reagent_containers/food/snacks/wrapped/chunk = -1,
 		/obj/item/reagent_containers/food/snacks/wrapped/barcardine = -1,
 		/obj/item/reagent_containers/food/snacks/lollipop = -1,
+		/obj/item/reagent_containers/food/snacks/wrapped/berrybar = -1,
 	)
 
 /obj/machinery/vending/cola
@@ -174,7 +175,6 @@
 			/obj/item/storage/pill_bottle/imidazoline = 6,
 			/obj/item/storage/pill_bottle/quickclot = 6,
 			/obj/item/storage/pill_bottle/hypervene = 6,
-			/obj/item/storage/pill_bottle/russian_red = 6,
 		),
 		"Hypospray" = list (
 			/obj/item/reagent_containers/hypospray/autoinjector/dexalinplus = 10,
@@ -190,8 +190,11 @@
 			/obj/item/reagent_containers/glass/bottle/bicaridine = 6,
 			/obj/item/reagent_containers/glass/bottle/kelotane = 6,
 			/obj/item/reagent_containers/glass/bottle/tramadol = 6,
+			/obj/item/reagent_containers/glass/bottle/tricordrazine = 6,
 			/obj/item/reagent_containers/glass/bottle/dylovene = 6,
 			/obj/item/reagent_containers/glass/bottle/inaprovaline = 6,
+			/obj/item/reagent_containers/glass/bottle/paracetamol = 6,
+			/obj/item/reagent_containers/glass/bottle/isotonic = 6,
 			/obj/item/reagent_containers/glass/bottle/dexalin = 6,
 			/obj/item/reagent_containers/glass/bottle/spaceacillin = 6,
 			/obj/item/reagent_containers/glass/bottle/oxycodone = 6,
@@ -200,9 +203,11 @@
 		),
 		"Chemistry Equipment" = list(
 			/obj/item/reagent_containers/syringe = -1,
+			/obj/item/storage/syringe_case/empty = -1,
 			/obj/item/reagent_containers/glass/beaker = -1,
 			/obj/item/reagent_containers/glass/beaker/large = -1,
 			/obj/item/reagent_containers/glass/beaker/vial = -1,
+			/obj/item/reagent_containers/dropper = -1,
 			/obj/item/storage/reagent_tank = 5,
 			/obj/item/storage/reagent_tank/bicaridine = 1,
 			/obj/item/storage/reagent_tank/kelotane = 1,
@@ -215,6 +220,8 @@
 			/obj/item/tool/research/excavation_tool = -1,
 			/obj/item/storage/pouch/surgery = -1,
 			/obj/item/armor_module/storage/uniform/surgery_webbing = -1,
+			/obj/item/reagent_containers/spray/surgery = -1,
+			/obj/item/tool/soap = 3,
 			/obj/item/clothing/glasses/hud/health = 6,
 			/obj/item/roller = 6,
 		),
@@ -244,8 +251,11 @@
 			/obj/item/reagent_containers/glass/bottle/bicaridine = -1,
 			/obj/item/reagent_containers/glass/bottle/kelotane = -1,
 			/obj/item/reagent_containers/glass/bottle/tramadol = -1,
+			/obj/item/reagent_containers/glass/bottle/tricordrazine = -1,
 			/obj/item/reagent_containers/glass/bottle/dylovene = -1,
 			/obj/item/reagent_containers/glass/bottle/inaprovaline = -1,
+			/obj/item/reagent_containers/glass/bottle/paracetamol = -1,
+			/obj/item/reagent_containers/glass/bottle/isotonic = -1,
 			/obj/item/reagent_containers/glass/bottle/sleeptoxin = -1,
 			/obj/item/reagent_containers/glass/bottle/spaceacillin = -1,
 			/obj/item/reagent_containers/glass/bottle/dexalin = -1,
@@ -285,12 +295,25 @@
 			/obj/item/tool/research/excavation_tool = -1,
 			/obj/item/storage/pouch/surgery = -1,
 			/obj/item/armor_module/storage/uniform/surgery_webbing = -1,
+			/obj/item/reagent_containers/spray/surgery = -1,
+			/obj/item/tool/soap = -1,
+			/obj/item/clothing/glasses/hud/health = -1,
+			/obj/item/roller = -1,
+		),
+		"Chemistry Equipment" = list(
 			/obj/item/reagent_containers/syringe = -1,
+			/obj/item/storage/syringe_case/empty = -1,
+			/obj/item/reagent_containers/glass/beaker/bluespace = -1,
 			/obj/item/reagent_containers/glass/beaker = -1,
 			/obj/item/reagent_containers/glass/beaker/large = -1,
 			/obj/item/reagent_containers/glass/beaker/vial = -1,
-			/obj/item/clothing/glasses/hud/health = -1,
-			/obj/item/roller = -1,
+			/obj/item/reagent_containers/dropper = -1,
+			/obj/item/storage/reagent_tank = -1,
+			/obj/item/storage/reagent_tank/bicaridine = -1,
+			/obj/item/storage/reagent_tank/kelotane = -1,
+			/obj/item/storage/reagent_tank/tramadol = -1,
+			/obj/item/storage/reagent_tank/tricordrazine = -1,
+			/obj/item/storage/reagent_tank/bktt = -1,
 		),
 		"Valhalla" = list(
 			/obj/item/reagent_containers/glass/beaker/bluespace = -1,
@@ -389,9 +412,6 @@
 			/obj/item/stack/medical/heal_pack/advanced/burn_pack = 5,
 			/obj/item/healthanalyzer = 1,
 			/obj/item/stack/medical/splint = 1,
-		),
-		"EMERGENCY USE!" = list(
-			/obj/item/storage/pill_bottle/russian_red = 1,
 		),
 	)
 
@@ -549,6 +569,7 @@
 		/obj/item/clothing/head/hardhat = 4,
 		/obj/item/clothing/head/welding = 4,
 		/obj/item/clothing/glasses/welding = 4,
+		/obj/item/radio = -1,
 		/obj/item/taperecorder = -1,
 		/obj/item/assembly/igniter = -1,
 		/obj/item/assembly/signaler = -1,
@@ -564,6 +585,9 @@
 
 /obj/machinery/vending/engivend/nopower
 	use_power = NO_POWER_USE
+
+/obj/machinery/vending/engivend/nopower/valhalla
+	resistance_flags = INDESTRUCTIBLE
 
 //This one's from bay12
 /obj/machinery/vending/robotics

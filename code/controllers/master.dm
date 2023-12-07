@@ -7,19 +7,8 @@
  *
  **/
 
-//Init the debugger datum first so we can debug Master
-//You might wonder why not just create the debugger datum global in its own file, since its loaded way earlier than this DM file
-//Well for whatever reason then the Master gets created first and then the debugger when doing that
-//So thats why this code lives here now, until someone finds out how Byond inits globals
-GLOBAL_REAL(Debugger, /datum/debugger) = new
-//This is the ABSOLUTE ONLY THING that should init globally like this
-//2019 update: the failsafe,config and Global controllers also do it
-GLOBAL_REAL(Master, /datum/controller/master) = new
-
-//THIS IS THE INIT ORDER
-//Master -> SSPreInit -> GLOB -> world -> config -> SSInit -> Failsafe
-//GOT IT MEMORIZED?
-
+// See initialization order in /code/game/world.dm
+GLOBAL_REAL(Master, /datum/controller/master)
 /datum/controller/master
 	name = "Master"
 
@@ -161,17 +150,22 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 
 /datum/controller/master/Recover()
 	var/msg = "## DEBUG: [time2text(world.timeofday)] MC restarted. Reports:\n"
-	for (var/varname in Master.vars)
-		switch (varname)
-			if("name", "tag", "bestF", "type", "parent_type", "vars", "statclick") // Built-in junk.
-				continue
-			else
-				var/varval = Master.vars[varname]
-				if (istype(varval, /datum)) // Check if it has a type var.
-					var/datum/D = varval
-					msg += "\t [varname] = [D]([D.type])\n"
-				else
-					msg += "\t [varname] = [varval]\n"
+	var/list/master_attributes = Master.vars
+	var/list/filtered_variables = list(
+		NAMEOF(src, name),
+		NAMEOF(src, parent_type),
+		NAMEOF(src, statclick),
+		NAMEOF(src, tag),
+		NAMEOF(src, type),
+		NAMEOF(src, vars),
+	)
+	for (var/varname in master_attributes - filtered_variables)
+		var/varval = master_attributes[varname]
+		if (isdatum(varval)) // Check if it has a type var.
+			var/datum/D = varval
+			msg += "\t [varname] = [D]([D.type])\n"
+		else
+			msg += "\t [varname] = [varval]\n"
 	log_world(msg)
 
 	var/datum/controller/subsystem/BadBoy = Master.last_type_processed
@@ -778,12 +772,9 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 		skip_ticks = TRUE
 
 
-/datum/controller/master/stat_entry()
-	if(!statclick)
-		statclick = new/obj/effect/statclick/debug(null, "Initializing...", src)
-
-	stat("Byond:", "(FPS:[world.fps]) (TickCount:[world.time/world.tick_lag]) (TickDrift:[round(Master.tickdrift,1)]([round((Master.tickdrift/(world.time/world.tick_lag))*100,0.1)]%)) (Internal Tick Usage: [round(MAPTICK_LAST_INTERNAL_TICK_USAGE,0.1)]%)")
-	stat("Master Controller:", statclick.update("(TickRate:[Master.processing]) (Iteration:[Master.iteration]) (TickLimit: [round(Master.current_ticklimit, 0.1)])"))
+/datum/controller/master/stat_entry(msg)
+	msg = "(TickRate:[Master.processing]) (Iteration:[Master.iteration]) (TickLimit: [round(Master.current_ticklimit, 0.1)])"
+	return msg
 
 
 /datum/controller/master/StartLoadingMap()

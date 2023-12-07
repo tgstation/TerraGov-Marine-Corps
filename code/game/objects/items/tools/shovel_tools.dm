@@ -3,7 +3,7 @@
 /obj/item/tool/shovel
 	name = "shovel"
 	desc = "A large tool for digging and moving dirt."
-	icon = 'icons/obj/items/items.dmi'
+	icon = 'icons/obj/items/tools.dmi'
 	icon_state = "shovel"
 	item_state = "shovel"
 	flags_atom = CONDUCT
@@ -49,7 +49,7 @@
 		if(dirt_type == DIRT_TYPE_SNOW)
 			var/turf/T = get_turf(user.loc)
 			var/obj/item/stack/snow/S = locate() in T
-			if(S?.amount < S.max_amount)
+			if(S?.amount < S?.max_amount)
 				S.amount += dirt_amt
 			else
 				new /obj/item/stack/snow(T, dirt_amt)
@@ -77,7 +77,7 @@
 						return
 				balloon_alert(user, "Starts digging")
 				playsound(user.loc, 'sound/effects/thud.ogg', 40, 1, 6)
-				if(!do_after(user, shovelspeed, TRUE, T, BUSY_ICON_BUILD))
+				if(!do_after(user, shovelspeed, NONE, T, BUSY_ICON_BUILD))
 					return
 				var/transf_amt = dirt_amt_per_dig
 				if(turfdirt == DIRT_TYPE_SNOW)
@@ -129,8 +129,9 @@
 /obj/item/tool/shovel/etool
 	name = "entrenching tool"
 	desc = "Used to dig holes and bash heads in. Folds in to fit in small spaces. Use a sharp item on it to sharpen it."
-	icon = 'icons/Marine/marine-items.dmi'
+	icon = 'icons/obj/items/tools.dmi'
 	icon_state = "etool_c"
+	item_state = "etool_c"
 	force = 2
 	throwforce = 2
 	hitsound = "sound/weapons/shovel.ogg"
@@ -143,10 +144,13 @@
 /obj/item/tool/shovel/etool/update_icon_state()
 	if(!folded && !sharp)
 		icon_state = "etool"
+		item_state = "etool"
 	else if(sharp)
 		icon_state = "etool_s"
+		item_state = "etool"
 	else
 		icon_state = "etool_c"
+		item_state = "etool_c"
 	..()
 
 /obj/item/tool/shovel/etool/attack_self(mob/user as mob)
@@ -175,7 +179,7 @@
 		balloon_alert(user, "Cannot, too busy")
 		return
 	user.balloon_alert_to_viewers("Begins to sharpen [src]")
-	if(!do_after(user, 2 SECONDS, TRUE, src, BUSY_ICON_FRIENDLY))
+	if(!do_after(user, 2 SECONDS, NONE, src, BUSY_ICON_FRIENDLY))
 		return
 	sharp = IS_SHARP_ITEM_SIMPLE
 	name = "sharpened " + name

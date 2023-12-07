@@ -15,7 +15,7 @@
 	smoothing_flags = SMOOTH_BITMASK
 	smoothing_groups = list(SMOOTH_GROUP_XENO_STRUCTURES)
 	canSmoothWith = list(SMOOTH_GROUP_XENO_STRUCTURES)
-	soft_armor = list(MELEE = 0, BULLET = 60, LASER = 60, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
+	soft_armor = list(MELEE = 0, BULLET = 70, LASER = 60, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
 	resistance_flags = UNACIDABLE
 
 /turf/closed/wall/resin/add_debris_element()
@@ -55,6 +55,7 @@
 	max_integrity = 120
 	opacity = FALSE
 	alpha = 180
+	allow_pass_flags = PASS_GLASS
 	smoothing_flags = SMOOTH_BITMASK
 	smoothing_groups = list(SMOOTH_GROUP_XENO_STRUCTURES)
 	canSmoothWith = list(SMOOTH_GROUP_XENO_STRUCTURES)
@@ -81,18 +82,20 @@
 			take_damage(rand(400), BRUTE, BOMB)
 		if(EXPLODE_LIGHT)
 			take_damage(rand(75, 100), BRUTE, BOMB)
+		if(EXPLODE_WEAK)
+			take_damage(rand(30, 50), BRUTE, BOMB)
 
 
 /turf/closed/wall/resin/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
 	if(X.status_flags & INCORPOREAL)
 		return
-	if(CHECK_BITFIELD(SSticker.mode.flags_round_type, MODE_ALLOW_XENO_QUICKBUILD) && SSresinshaping.active)
-		SSresinshaping.quickbuilds++
+	if(CHECK_BITFIELD(SSticker.mode?.flags_round_type, MODE_ALLOW_XENO_QUICKBUILD) && SSresinshaping.active)
+		SSresinshaping.quickbuild_points_by_hive[X.hivenumber]++
 		take_damage(max_integrity) // Ensure its destroyed
 		return
 	X.visible_message(span_xenonotice("\The [X] starts tearing down \the [src]!"), \
 	span_xenonotice("We start to tear down \the [src]."))
-	if(!do_after(X, 1 SECONDS, TRUE, X, BUSY_ICON_GENERIC))
+	if(!do_after(X, 1 SECONDS, NONE, X, BUSY_ICON_GENERIC))
 		return
 	if(!istype(src)) // Prevent jumping to other turfs if do_after completes with the wall already gone
 		return
@@ -129,12 +132,6 @@
 	damage *= max(0, multiplier)
 	take_damage(damage, BRUTE, MELEE)
 	playsound(src, "alien_resin_break", 25)
-
-
-/turf/closed/wall/resin/CanAllowThrough(atom/movable/mover, turf/target)
-	. = ..()
-	if(istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSGLASS))
-		return !opacity
 
 /turf/closed/wall/resin/dismantle_wall(devastated = 0, explode = 0)
 	ScrapeAway()

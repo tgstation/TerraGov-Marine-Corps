@@ -165,7 +165,7 @@
 		if(i == mover || i == mover.loc) // Multi tile objects and moving out of other objects
 			continue
 		var/atom/movable/thing = i
-		if(CHECK_MULTIPLE_BITFIELDS(thing.flags_pass, HOVERING))
+		if(CHECK_MULTIPLE_BITFIELDS(thing.pass_flags, HOVERING))
 			continue
 		if(thing.status_flags & INCORPOREAL)
 			continue
@@ -206,6 +206,12 @@
 		return
 	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_CHEM))
 		S.reagents?.reaction(src, VAPOR, S.fraction)
+
+/turf/get_soft_armor(armor_type, proj_def_zone)
+	return soft_armor.getRating(armor_type)
+
+/turf/get_hard_armor(armor_type, proj_def_zone)
+	return hard_armor.getRating(armor_type)
 
 /turf/proc/levelupdate()
 	for(var/obj/O in src)
@@ -254,17 +260,17 @@
 	changing_turf = TRUE
 	qdel(src)	//Just get the side effects and call Destroy
 	//We do this here so anything that doesn't want to persist can clear itself
-	var/list/old_comp_lookup = comp_lookup?.Copy()
-	var/list/old_signal_procs = signal_procs?.Copy()
+	var/list/old__listen_lookup = _listen_lookup?.Copy()
+	var/list/old_signal_procs = _signal_procs?.Copy()
 	var/turf/W = new path(src)
 
 	// WARNING WARNING
 	// Turfs DO NOT lose their signals when they get replaced, REMEMBER THIS
 	// It's possible because turfs are fucked, and if you have one in a list and it's replaced with another one, the list ref points to the new turf
-	if(old_comp_lookup)
-		LAZYOR(W.comp_lookup, old_comp_lookup)
+	if(old__listen_lookup)
+		LAZYOR(W._listen_lookup, old__listen_lookup)
 	if(old_signal_procs)
-		LAZYOR(W.signal_procs, old_signal_procs)
+		LAZYOR(W._signal_procs, old_signal_procs)
 
 	for(var/datum/callback/callback AS in post_change_callbacks)
 		callback.InvokeAsync(W)
@@ -434,7 +440,7 @@
 				for(var/i=1, i<=amount, i++)
 					new /obj/item/shard(pick(turfs))
 					new /obj/item/shard(pick(turfs))
-		if(CEILING_METAL)
+		if(CEILING_METAL, CEILING_OBSTRUCTED)
 			playsound(src, "sound/effects/metal_crash.ogg", 60, 1)
 			spawn(8)
 				if(amount >1)
@@ -465,6 +471,8 @@
 			return "The ceiling above is glass."
 		if(CEILING_METAL)
 			return "The ceiling above is metal."
+		if(CEILING_OBSTRUCTED)
+			return "The ceiling above is metal. Nothing could land here."
 		if(CEILING_UNDERGROUND)
 			return "It is underground. The cavern roof lies above."
 		if(CEILING_UNDERGROUND_METAL)
@@ -856,15 +864,17 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 
 
 /turf/proc/visibilityChanged()
-	GLOB.cameranet.updateVisibility(src)
-	// The cameranet usually handles this for us, but if we've just been
-	// recreated we should make sure we have the cameranet vis_contents.
-	var/datum/camerachunk/C = GLOB.cameranet.chunkGenerated(x, y, z)
-	if(C)
-		if(C.obscuredTurfs[src])
-			vis_contents += GLOB.cameranet.vis_contents_opaque
-		else
-			vis_contents -= GLOB.cameranet.vis_contents_opaque
+	for(var/datum/cameranet/net AS in list(GLOB.cameranet, GLOB.som_cameranet))
+
+		net.updateVisibility(src)
+		// The cameranet usually handles this for us, but if we've just been
+		// recreated we should make sure we have the cameranet vis_contents.
+		var/datum/camerachunk/C = net.chunkGenerated(x, y, z)
+		if(C)
+			if(C.obscuredTurfs[src])
+				vis_contents += net.vis_contents_opaque
+			else
+				vis_contents -= net.vis_contents_opaque
 
 
 /turf/AllowDrop()
@@ -895,6 +905,12 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 					continue
 				for(var/a in thing_in_turf.contents)
 					SSexplosions.lowMovAtom[a] += list(src)
+			if(EXPLODE_WEAK)
+				SSexplosions.weakMovAtom[thing_in_turf] += list(src)
+				if(thing_in_turf.flags_atom & PREVENT_CONTENTS_EXPLOSION)
+					continue
+				for(var/a in thing_in_turf.contents)
+					SSexplosions.weakMovAtom[a] += list(src)
 
 
 /turf/vv_edit_var(var_name, new_value)
@@ -917,4 +933,12 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 	underlay_appearance.icon = icon
 	underlay_appearance.icon_state = icon_state
 	underlay_appearance.dir = adjacency_dir
+	return TRUE
+
+///Are we able to teleport to this turf using in game teleport mechanics
+/turf/proc/can_teleport_here()
+	if(density)
+		return FALSE
+	if(SEND_SIGNAL(src, COMSIG_TURF_TELEPORT_CHECK))
+		return FALSE
 	return TRUE

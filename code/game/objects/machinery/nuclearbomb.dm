@@ -49,6 +49,8 @@
 	RegisterSignal(SSdcs, COMSIG_GLOB_DROPSHIP_HIJACKED, PROC_REF(disable_on_hijack))
 
 /obj/machinery/nuclearbomb/Destroy()
+	if(timer_enabled)
+		disable()
 	GLOB.nuke_list -= src
 	QDEL_NULL(countdown)
 	return ..()
@@ -57,11 +59,12 @@
 /obj/machinery/nuclearbomb/proc/enable()
 	GLOB.active_nuke_list += src
 	countdown.start()
-	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_NUKE_START, src)
 	notify_ghosts("[usr] enabled the [src], it has [round(time MILLISECONDS)] seconds on the timer.", source = src, action = NOTIFY_ORBIT, extra_large = TRUE)
 	timer_enabled = TRUE
 	timer = addtimer(CALLBACK(src, PROC_REF(explode)), time, TIMER_STOPPABLE)
 	update_minimap_icon()
+	// The timer is needed for when the signal is sent
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_NUKE_START, src)
 
 ///Disables nuke timer
 /obj/machinery/nuclearbomb/proc/disable()
@@ -126,7 +129,7 @@
 
 	X.visible_message("[X] begins to slash delicately at the nuke",
 	"You start slashing delicately at the nuke.")
-	if(!do_after(X, 5 SECONDS, TRUE, src, BUSY_ICON_DANGER, BUSY_ICON_HOSTILE))
+	if(!do_after(X, 5 SECONDS, NONE, src, BUSY_ICON_DANGER, BUSY_ICON_HOSTILE))
 		return
 	X.visible_message("[X] disabled the nuke",
 	"You disabled the nuke.")
@@ -142,6 +145,9 @@
 	if(!extended)
 		return FALSE
 
+	if(machine_stat & BROKEN)
+		return FALSE
+
 	return TRUE
 
 /obj/machinery/nuclearbomb/attack_hand(mob/living/user)
@@ -155,7 +161,7 @@
 	if(!deployable)
 		return
 
-	if(!do_after(user, 3 SECONDS, TRUE, src, BUSY_ICON_BUILD))
+	if(!do_after(user, 3 SECONDS, NONE, src, BUSY_ICON_BUILD))
 		return
 
 	if(removal_stage < NUKE_STAGE_BOLTS_REMOVED)

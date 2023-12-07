@@ -21,7 +21,8 @@ GLOBAL_LIST_INIT(strippable_parrot_items, create_strippable_list(list(
 	density = FALSE
 	health = 80
 	maxHealth = 80
-	flags_pass = PASSTABLE|PASSMOB
+	allow_pass_flags = PASS_MOB
+	pass_flags = PASS_LOW_STRUCTURE|PASS_MOB
 
 	speak = list("Hi!","Hello!","Cracker?","BAWWWWK george mellons griffing me!")
 	speak_emote = list("squawks","says","yells")
@@ -94,10 +95,9 @@ GLOBAL_LIST_INIT(strippable_parrot_items, create_strippable_list(list(
 	return ..()
 
 
-/mob/living/simple_animal/parrot/Stat()
+/mob/living/simple_animal/parrot/get_status_tab_items()
 	. = ..()
-	if(statpanel("Game"))
-		stat("Held Item", held_item)
+	. += "Held Item: [held_item]"
 
 
 /mob/living/simple_animal/parrot/Hear(message, atom/movable/speaker, message_langs, raw_message, radio_freq, list/spans, message_mode)
@@ -447,6 +447,13 @@ GLOBAL_LIST_INIT(strippable_parrot_items, create_strippable_list(list(
 	Read_Memory()
 	if(SStts.tts_enabled)
 		voice = pick(SStts.available_speakers)
+		if(SStts.pitch_enabled)
+			if(findtext(voice, "Woman")) // todo will be replaced by tagging
+				pitch = 12 // up-pitch by one octave
+			else
+				pitch = 24 // up-pitch by 2 octaves
+		else
+			voice_filter = "rubberband=pitch=1.5" // Use the filter to pitch up if we can't naturally pitch up.
 	return ..()
 
 

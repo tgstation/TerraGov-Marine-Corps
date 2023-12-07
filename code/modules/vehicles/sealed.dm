@@ -47,7 +47,7 @@
 /obj/vehicle/sealed/proc/mob_try_enter(mob/M)
 	if(!istype(M))
 		return FALSE
-	if(do_after(M, get_enter_delay(M), src, extra_checks = CALLBACK(src, PROC_REF(enter_checks), M)))
+	if(do_after(M, get_enter_delay(M), NONE, extra_checks = CALLBACK(src, PROC_REF(enter_checks), M)))
 		mob_enter(M)
 		return TRUE
 	return FALSE
@@ -125,7 +125,7 @@
 		mob_exit(i, null, randomstep)
 		if(iscarbon(i))
 			var/mob/living/carbon/Carbon = i
-			Carbon.Paralyze(40)
+			Carbon.Paralyze(4 SECONDS)
 
 /obj/vehicle/sealed/proc/dump_specific_mobs(flag, randomstep = TRUE)
 	for(var/i in occupants)
@@ -134,7 +134,7 @@
 		mob_exit(i, null, randomstep)
 		if(iscarbon(i))
 			var/mob/living/carbon/C = i
-			C.Paralyze(40)
+			C.Paralyze(4 SECONDS)
 
 
 /obj/vehicle/sealed/AllowDrop()

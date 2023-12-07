@@ -112,6 +112,19 @@
 		/obj/item/clothing/gloves/insulated = 5,
 	)
 
+/obj/effect/spawner/random/clothing/darkgloves
+	name = "dark glove spawner"
+	icon_state = "random_gloves"
+	spawn_loot_chance = 95
+	loot = list(
+		/obj/item/clothing/gloves/black = 40,
+		/obj/item/clothing/gloves/blue = 40,
+		/obj/item/clothing/gloves/brown = 40,
+		/obj/item/clothing/gloves/grey = 40,
+		/obj/item/clothing/gloves/latex = 40,
+		/obj/effect/spawner/random/clothing/coloredgloves = 2,
+	)
+
 /obj/effect/spawner/random/clothing/coloredgloves/latex
 	icon_state = "random_latex_gloves"
 	loot = list(

@@ -86,7 +86,7 @@
 
 ///Actually activates the mitigation effect
 /datum/component/stun_mitigation/proc/activate_with_user()
-	RegisterSignal(affected, COMSIG_LIVING_PROJECTILE_STUN, PROC_REF(on_attack_stun_mitigation))
+	RegisterSignals(affected, list(COMSIG_LIVING_PROJECTILE_STUN, COMSIG_LIVING_JETPACK_STUN), PROC_REF(on_attack_stun_mitigation))
 
 ///Actually deactivates the mitigation effect
 /datum/component/stun_mitigation/proc/deactivate_with_user()
@@ -125,7 +125,7 @@
 
 	if(iscarbon(affected))
 		var/mob/living/carbon/C = affected
-		if(C.stagger)
+		if(C.IsStaggered())
 			mitigation_prob *= 0.4
 
 	if(!prob(mitigation_prob))

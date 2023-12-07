@@ -100,10 +100,10 @@
 			span_warning("You slump to the ground, you're too exhausted to keep going..."))
 
 	ParalyzeNoChain(1 SECONDS) //Short stun
-	adjust_stagger(STAMINA_EXHAUSTION_DEBUFF_STACKS)
+	adjust_stagger(STAMINA_EXHAUSTION_STAGGER_DURATION)
 	add_slowdown(STAMINA_EXHAUSTION_DEBUFF_STACKS)
 	adjust_blurriness(STAMINA_EXHAUSTION_DEBUFF_STACKS)
-	COOLDOWN_START(src, last_stamina_exhaustion, LIVING_STAMINA_EXHAUSTION_COOLDOWN) //set the cooldown.
+	COOLDOWN_START(src, last_stamina_exhaustion, LIVING_STAMINA_EXHAUSTION_COOLDOWN - (skills.getRating(SKILL_STAMINA) * STAMINA_SKILL_COOLDOWN_MOD)) //set the cooldown.
 
 
 /mob/living/carbon/human/updateStamina(feedback = TRUE)
@@ -122,6 +122,8 @@
 
 /// Adds an entry to our stamina_regen_modifiers and updates stamina_regen_multiplier
 /mob/living/proc/add_stamina_regen_modifier(mod_name, mod_value)
+	if(stamina_regen_modifiers[mod_name] == mod_value)
+		return
 	stamina_regen_modifiers[mod_name] = mod_value
 	recalc_stamina_regen_multiplier()
 
@@ -138,6 +140,11 @@
 	for(var/mod_name in stamina_regen_modifiers)
 		stamina_regen_multiplier += stamina_regen_modifiers[mod_name]
 	stamina_regen_multiplier = max(stamina_regen_multiplier, 0)
+
+///Updates the mob's stamina modifiers if their stam skill changes
+/mob/living/proc/update_stam_skill_mod(datum/source)
+	SIGNAL_HANDLER
+	add_stamina_regen_modifier(SKILL_STAMINA, skills.getRating(SKILL_STAMINA) * STAMINA_SKILL_REGEN_MOD)
 
 /mob/living/proc/getCloneLoss()
 	return cloneloss
@@ -234,7 +241,7 @@
 
 ///Heal limbs until the total mob health went up by health_to_heal
 /mob/living/carbon/human/proc/heal_limbs(health_to_heal)
-	var/proportion_to_heal = (health_to_heal < (species.total_health - health)) ? (health_to_heal / (species.total_health - health)) : 1
+	var/proportion_to_heal = (health_to_heal < (maxHealth - health)) ? (health_to_heal / (maxHealth - health)) : 1
 	for(var/datum/limb/limb AS in limbs)
 		limb.heal_limb_damage(limb.brute_dam * proportion_to_heal, limb.burn_dam * proportion_to_heal, robo_repair = TRUE)
 	updatehealth()
@@ -287,6 +294,7 @@
 	set_blurriness(0, TRUE)
 	set_ear_damage(0, 0)
 	heal_overall_damage(getBruteLoss(), getFireLoss(), robo_repair = TRUE)
+	set_slowdown(0)
 
 	// fix all of our organs
 	restore_all_organs()
@@ -367,9 +375,7 @@
 
 /mob/living/carbon/xenomorph/revive(admin_revive = FALSE)
 	plasma_stored = xeno_caste.plasma_max
-	set_stagger(0)
 	sunder = 0
-	set_slowdown(0)
 	if(stat == DEAD)
 		hive?.on_xeno_revive(src)
 	return ..()

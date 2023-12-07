@@ -63,7 +63,7 @@
 
 		user.visible_message(span_danger("[user] starts to press [living_victim] onto the [src]!"))
 
-		if(!do_after(user, 5, TRUE, living_victim, BUSY_ICON_DANGER) || QDELETED(src))
+		if(!do_after(user, 0.5 SECONDS, NONE, living_victim, BUSY_ICON_DANGER) || QDELETED(src))
 			return
 
 		user.visible_message(span_danger("[user] slams [living_victim] onto the [src]!"))
@@ -78,7 +78,7 @@
 
 	//else if(IS_EDIBLE(I))
 	else if(istype(I, /obj/item/reagent_containers/food))
-		if(I.flags_item & (ITEM_ABSTRACT|DELONDROP|NODROP))
+		if(HAS_TRAIT(I, TRAIT_NODROP) || (I.flags_item & (ITEM_ABSTRACT|DELONDROP)))
 			return ..()
 		else if(HAS_TRAIT(I, TRAIT_FOOD_GRILLED))
 			to_chat(user, span_notice("[I] has already been grilled!"))

@@ -1,7 +1,8 @@
 /obj/machinery/computer/marine_card
 	name = "Identification Computer"
 	desc = "You can use this to change ID's."
-	icon_state = "id"
+	icon_state = "computer_small"
+	screen_overlay = "id"
 	req_access = list(ACCESS_MARINE_LOGISTICS)
 	circuit = /obj/item/circuitboard/computer/card
 	resistance_flags = INDESTRUCTIBLE
@@ -54,9 +55,9 @@
 		if(GLOB.datacore)
 			dat += GLOB.datacore.get_manifest(0) // make it monochrome
 		dat += "<br>"
-		dat += "<a href='?src=\ref[src];choice=print'>Print</a><br>"
+		dat += "<a href='?src=[text_ref(src)];choice=print'>Print</a><br>"
 		dat += "<br>"
-		dat += "<a href='?src=\ref[src];choice=mode;mode_target=0'>Access ID modification console.</a><br>"
+		dat += "<a href='?src=[text_ref(src)];choice=mode;mode_target=0'>Access ID modification console.</a><br>"
 
 	else
 		var/header
@@ -85,21 +86,21 @@
 
 		if(!authenticated)
 			header += "<br><i>Please insert the cards into the slots</i><br>"
-			header += "Target: <a href='?src=\ref[src];choice=modify'>[target_name]</a><br>"
-			header += "Confirm Identity: <a href='?src=\ref[src];choice=scan'>[scan_name]</a><br>"
+			header += "Target: <a href='?src=[text_ref(src)];choice=modify'>[target_name]</a><br>"
+			header += "Confirm Identity: <a href='?src=[text_ref(src)];choice=scan'>[scan_name]</a><br>"
 		else
 			header += "<div align='center'><br>"
-			header += "<a href='?src=\ref[src];choice=modify'>Remove [target_name]</a> || "
-			header += "<a href='?src=\ref[src];choice=scan'>Remove [scan_name]</a> <br> "
-			header += "<a href='?src=\ref[src];choice=mode;mode_target=1'>Access Crew Manifest</a> || "
-			header += "<a href='?src=\ref[src];choice=logout'>Log Out</a></div>"
+			header += "<a href='?src=[text_ref(src)];choice=modify'>Remove [target_name]</a> || "
+			header += "<a href='?src=[text_ref(src)];choice=scan'>Remove [scan_name]</a> <br> "
+			header += "<a href='?src=[text_ref(src)];choice=mode;mode_target=1'>Access Crew Manifest</a> || "
+			header += "<a href='?src=[text_ref(src)];choice=logout'>Log Out</a></div>"
 
 		header += "<hr>"
 
 		var/jobs_all = ""
 		var/list/alljobs = (GLOB.jobs_regular_all - GLOB.jobs_som - list(SYNTHETIC, SILICON_AI) + "Custom")
 		for(var/job in alljobs)
-			jobs_all += "<a href='?src=\ref[src];choice=assign;assign_target=[job]'>[replacetext(job, " ", "&nbsp")]</a> " //make sure there isn't a line break in the middle of a job
+			jobs_all += "<a href='?src=[text_ref(src)];choice=assign;assign_target=[job]'>[replacetext(job, " ", "&nbsp")]</a> " //make sure there isn't a line break in the middle of a job
 
 
 		var/body
@@ -130,14 +131,14 @@
 									allJobsSlot.innerHTML = "<a href='#' onclick='showAll()'>show</a>";
 								}
 							</script>"}
-			carddesc += "<form name='cardcomp' action='?src=\ref[src]' method='get'>"
+			carddesc += "<form name='cardcomp' action='?src=[text_ref(src)]' method='get'>"
 			carddesc += "<input type='hidden' name='src' value='\ref[src]'>"
 			carddesc += "<input type='hidden' name='choice' value='reg'>"
 			carddesc += "<b>Registered Name:</b> <input type='text' id='namefield' name='reg' value='[target_owner]' style='width:250px; background-color:white;' onchange='markRed()'>"
 			carddesc += "<input type='submit' value='Rename' onclick='markGreen()'>"
 			carddesc += "</form>"
 
-			carddesc += "<form name='accountnum' action='?src=\ref[src]' method='get'>"
+			carddesc += "<form name='accountnum' action='?src=[text_ref(src)]' method='get'>"
 			carddesc += "<input type='hidden' name='src' value='\ref[src]'>"
 			carddesc += "<input type='hidden' name='choice' value='account'>"
 			carddesc += "<b>Stored account number:</b> <input type='text' id='accountfield' name='account' value='[modify.associated_account_number]' style='width:250px; background-color:white;' onchange='markAccountRed()'>"
@@ -150,7 +151,7 @@
 			if(!(modify.paygrade in PAYGRADES_MARINE))
 				paygrade += "<b>Paygrade:<b> [get_paygrades(modify.paygrade)] -- UNABLE TO MODIFY"
 			else
-				paygrade += "<form name='paygrade' action='?src=\ref[src]' method='get'>"
+				paygrade += "<form name='paygrade' action='?src=[text_ref(src)]' method='get'>"
 				paygrade += "<input type='hidden' name='src' value='\ref[src]'>"
 				paygrade += "<input type='hidden' name='choice' value='paygrade'>"
 				paygrade += "<b>Paygrade:</b> <select name='paygrade'>"
@@ -179,16 +180,16 @@
 				accesses += "<td style='width:14%' valign='top'>"
 				for(var/A in get_region_accesses(i))
 					if(A in modify.access)
-						accesses += "<a href='?src=\ref[src];choice=access;access_target=[A];allowed=0'><font color=\"red\">[replacetext(get_access_desc(A), " ", "&nbsp")]</font></a> "
+						accesses += "<a href='?src=[text_ref(src)];choice=access;access_target=[A];allowed=0'><font color=\"red\">[replacetext(get_access_desc(A), " ", "&nbsp")]</font></a> "
 					else
-						accesses += "<a href='?src=\ref[src];choice=access;access_target=[A];allowed=1'>[replacetext(get_access_desc(A), " ", "&nbsp")]</a> "
+						accesses += "<a href='?src=[text_ref(src)];choice=access;access_target=[A];allowed=1'>[replacetext(get_access_desc(A), " ", "&nbsp")]</a> "
 					accesses += "<br>"
 				accesses += "</td>"
 			accesses += "</tr></table>"
 			body = "[carddesc]<br>[jobs]<br>[paygrade]<br><br>[accesses]" //CHECK THIS
 		else
-			body = "<a href='?src=\ref[src];choice=auth'>{Log in}</a> <br><hr>"
-			body += "<a href='?src=\ref[src];choice=mode;mode_target=1'>Access Crew Manifest</a>"
+			body = "<a href='?src=[text_ref(src)];choice=auth'>{Log in}</a> <br><hr>"
+			body += "<a href='?src=[text_ref(src)];choice=mode;mode_target=1'>Access Crew Manifest</a>"
 		dat = "<tt>[header][body]<hr><br></tt>"
 
 	var/datum/browser/popup = new(user, "id_com", "<div align='center'>Identification Card Modifier</div>", 800, 650)
@@ -340,7 +341,8 @@
 /obj/machinery/computer/squad_changer
 	name = "Squad Distribution Computer"
 	desc = "You can use this to change someone's squad."
-	icon_state = "guest"
+	icon_state = "computer_small"
+	screen_overlay = "guest"
 	req_access = list(ACCESS_MARINE_LOGISTICS)
 	resistance_flags = INDESTRUCTIBLE
 	var/obj/item/card/id/modify = null
@@ -380,14 +382,14 @@
 
 	if(!modify)
 		dat += "<br><i>Please insert the card into the slot:</i><br>"
-		dat += "Target: <a href='?src=\ref[src];card=1'>[target_name]</a><br>"
+		dat += "Target: <a href='?src=[text_ref(src)];card=1'>[target_name]</a><br>"
 	else
 		dat += "<br>"
-		dat += "<a href='?src=\ref[src];card=1'>Remove [target_name]</a>"
+		dat += "<a href='?src=[text_ref(src)];card=1'>Remove [target_name]</a>"
 
 	dat += "<hr>"
 
-	dat += "<BR><A href='?src=\ref[src];squad=1'>Modify Squad</A><BR>"
+	dat += "<BR><A href='?src=[text_ref(src)];squad=1'>Modify Squad</A><BR>"
 
 	var/datum/browser/popup = new(user, "computer", "<div align='center'>Squad Distribution Console</div>", 400, 300)
 	popup.set_content(dat)

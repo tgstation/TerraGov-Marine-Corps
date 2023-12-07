@@ -10,7 +10,7 @@
 	blocks_emissive = EMISSIVE_BLOCK_GENERIC
 	obj_flags = CAN_BE_HIT
 	resistance_flags = XENO_DAMAGEABLE
-	flags_pass = PASSAIR
+	allow_pass_flags = PASS_AIR
 	COOLDOWN_DECLARE(cooldown_vehicle_move)
 	///mob = bitflags of their control level.
 	var/list/mob/occupants

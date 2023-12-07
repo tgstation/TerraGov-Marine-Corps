@@ -28,7 +28,7 @@
 	* If you are in the same turf, always true
 	* If you are vertically/horizontally adjacent, ensure there are no border objects
 	* If you are diagonally adjacent, ensure you can pass through at least one of the mutually adjacent square.
-		* Passing through in this case ignores anything with the PASSPROJECTILE flag, such as tables, racks, and morgue trays.
+		* Passing through in this case ignores anything with the PASS_PROJECTILE flag, such as tables, racks, and morgue trays.
 */
 /turf/Adjacent(atom/neighbor, atom/target, atom/movable/mover)
 	var/turf/T0 = get_turf(neighbor)
@@ -175,17 +175,17 @@
 
 /*
 	This checks if you there is uninterrupted airspace between that turf and this one.
-	This is defined as any dense ON_BORDER object, or any dense object without PASSPROJECTILES.
+	This is defined as any dense ON_BORDER object, or any dense object without PASS_PROJECTILES.
 	The border_only flag allows you to not objects (for source and destination squares)
 */
 /turf/proc/ClickCross(target_dir, border_only, target_atom = null, atom/movable/mover = null)
 	for(var/obj/O in src)
 		if((mover && O.CanPass(mover,get_step(src, target_dir))) || (!mover && !O.density))
 			continue
-		if(O == target_atom || O == mover || (O.flags_pass & PASSPROJECTILE)) //check if there's a dense object present on the turf
-			continue // LETPASSTHROW is used for anything you can click through (or the firedoor special case, see above)
+		if(O == target_atom || O == mover || (O.allow_pass_flags & PASS_PROJECTILE)) //check if there's a dense object present on the turf
+			continue // PASS_THROW is used for anything you can click through (or the firedoor special case, see above)
 
-		if(O.flags_atom & ON_BORDER) // windows have PASSPROJECTILE but are on border, check them first
+		if(O.flags_atom & ON_BORDER) // windows have PASS_PROJECTILE but are on border, check them first
 			if(O.dir & target_dir || O.dir & (O.dir-1)) // full tile windows are just diagonals mechanically
 				return FALSE
 

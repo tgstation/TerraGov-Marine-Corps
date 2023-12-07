@@ -18,15 +18,15 @@
 		RegisterSignal(parent, COMSIG_ATTACHMENT_DETACHED, PROC_REF(on_suit_detach))
 	else
 		reloading_storage = parent
-		RegisterSignal(parent, COMSIG_PARENT_ATTACKBY_ALTERNATE, PROC_REF(on_parent_attackby_alternate))
-		RegisterSignal(parent, COMSIG_PARENT_EXAMINE, PROC_REF(on_examine))
+		RegisterSignal(parent, COMSIG_ATOM_ATTACKBY_ALTERNATE, PROC_REF(on_parent_attackby_alternate))
+		RegisterSignal(parent, COMSIG_ATOM_EXAMINE, PROC_REF(on_examine))
 
 /datum/component/tac_reload_storage/UnregisterFromParent()
 	UnregisterSignal(parent, list(
 		COMSIG_ATTACHMENT_ATTACHED,
 		COMSIG_ATTACHMENT_DETACHED,
-		COMSIG_PARENT_ATTACKBY_ALTERNATE,
-		COMSIG_PARENT_EXAMINE,
+		COMSIG_ATOM_ATTACKBY_ALTERNATE,
+		COMSIG_ATOM_EXAMINE,
 	))
 
 ///Hook into the examine of the parent to show the player that they can tac reload from this
@@ -71,8 +71,8 @@
 /datum/component/tac_reload_storage/proc/on_suit_attach(obj/item/armor_module/storage/source, obj/item/clothing/new_host, mob/attacher)
 	SIGNAL_HANDLER
 	reloading_storage = source.storage
-	RegisterSignal(new_host, COMSIG_PARENT_ATTACKBY_ALTERNATE, PROC_REF(on_parent_attackby_alternate))
-	RegisterSignal(new_host, COMSIG_PARENT_EXAMINE, PROC_REF(on_examine))
+	RegisterSignal(new_host, COMSIG_ATOM_ATTACKBY_ALTERNATE, PROC_REF(on_parent_attackby_alternate))
+	RegisterSignal(new_host, COMSIG_ATOM_EXAMINE, PROC_REF(on_examine))
 
 /**
  * Called when parent (a storage armor module) is detached from any suit
@@ -86,6 +86,6 @@
 	SIGNAL_HANDLER
 	reloading_storage = null
 	UnregisterSignal(old_host, list(
-		COMSIG_PARENT_ATTACKBY_ALTERNATE,
-		COMSIG_PARENT_EXAMINE,
+		COMSIG_ATOM_ATTACKBY_ALTERNATE,
+		COMSIG_ATOM_EXAMINE,
 	))

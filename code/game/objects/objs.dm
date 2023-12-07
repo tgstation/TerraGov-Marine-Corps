@@ -37,7 +37,7 @@
 	///Optimization for dynamic explosion block values, for things whose explosion block is dependent on certain conditions.
 	var/real_explosion_block
 
-	///Odds of a projectile hitting the object, if the object is dense and has THROWPROJECTILE
+	///Odds of a projectile hitting the object, if the object is dense
 	var/coverage = 50
 
 /obj/Initialize(mapload)
@@ -97,6 +97,60 @@
 	if(density)
 		return 4 SECONDS
 	return ..()
+
+/obj/get_soft_armor(armor_type, proj_def_zone)
+	return soft_armor.getRating(armor_type)
+
+/obj/get_hard_armor(armor_type, proj_def_zone)
+	return hard_armor.getRating(armor_type)
+
+/obj/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
+	if(.)
+		return
+	if((flags_atom & ON_BORDER) && !(get_dir(loc, target) & dir))
+		return TRUE
+	if((allow_pass_flags & PASS_DEFENSIVE_STRUCTURE) && (mover.pass_flags & PASS_DEFENSIVE_STRUCTURE))
+		return TRUE
+	if((allow_pass_flags & PASS_GLASS) && (mover.pass_flags & PASS_GLASS))
+		return TRUE
+	if(mover?.throwing && (allow_pass_flags & PASS_THROW))
+		return TRUE
+	if((allow_pass_flags & PASS_LOW_STRUCTURE) && (mover.pass_flags & PASS_LOW_STRUCTURE))
+		return TRUE
+	if((allow_pass_flags & PASS_AIR) && (mover.pass_flags & PASS_AIR))
+		return TRUE
+	if(!ismob(mover))
+		return FALSE
+	if((allow_pass_flags & PASS_MOB))
+		return TRUE
+	if((allow_pass_flags & PASS_WALKOVER) && SEND_SIGNAL(target, COMSIG_OBJ_TRY_ALLOW_THROUGH))
+		return TRUE
+
+///Handles extra checks for things trying to exit this objects turf
+/obj/proc/on_try_exit(datum/source, atom/movable/mover, direction, list/knownblockers)
+	SIGNAL_HANDLER
+	if(mover?.throwing && (allow_pass_flags & PASS_THROW))
+		return NONE
+	if((allow_pass_flags & PASS_DEFENSIVE_STRUCTURE) && (mover.pass_flags & PASS_DEFENSIVE_STRUCTURE))
+		return NONE
+	if((allow_pass_flags & PASS_LOW_STRUCTURE) && (mover.pass_flags & PASS_LOW_STRUCTURE))
+		return NONE
+	if((allow_pass_flags & PASS_AIR) && (mover.pass_flags & PASS_AIR))
+		return TRUE
+	if((allow_pass_flags & PASS_GLASS) && (mover.pass_flags & PASS_GLASS))
+		return NONE
+	if(!density || !(flags_atom & ON_BORDER) || !(direction & dir) || (mover.status_flags & INCORPOREAL))
+		return NONE
+
+	knownblockers += src
+	return COMPONENT_ATOM_BLOCK_EXIT
+
+///Signal handler to check if you can move from one low object to another
+/obj/proc/can_climb_over(datum/source)
+	SIGNAL_HANDLER
+	if(!(flags_atom & ON_BORDER) && density)
+		return TRUE
 
 /obj/proc/updateUsrDialog()
 	if(!CHECK_BITFIELD(obj_flags, IN_USE))
@@ -213,7 +267,7 @@
 	if(user.skills.getRating(SKILL_ENGINEER) < skill_required)
 		user.visible_message(span_notice("[user] fumbles around figuring out how to repair [src]."),
 		span_notice("You fumble around figuring out how to repair [src]."))
-		if(!do_after(user, (fumble_time ? fumble_time : repair_time) * (skill_required - user.skills.getRating(SKILL_ENGINEER)), TRUE, src, BUSY_ICON_BUILD))
+		if(!do_after(user, (fumble_time ? fumble_time : repair_time) * (skill_required - user.skills.getRating(SKILL_ENGINEER)), NONE, src, BUSY_ICON_BUILD))
 			return TRUE
 
 	repair_time *= welder.toolspeed
@@ -222,7 +276,7 @@
 	while(obj_integrity < max_integrity)
 		playsound(loc, 'sound/items/welder2.ogg', 25, TRUE)
 		welder.eyecheck(user)
-		if(!do_after(user, repair_time, TRUE, src, BUSY_ICON_FRIENDLY))
+		if(!do_after(user, repair_time, NONE, src, BUSY_ICON_FRIENDLY))
 			cut_overlay(GLOB.welding_sparks)
 			balloon_alert(user, "interrupted!")
 			return TRUE
@@ -236,7 +290,7 @@
 			handle_weldingtool_overlay(TRUE)
 			return TRUE
 
-		repair_damage(repair_amount)
+		repair_damage(repair_amount, user)
 		update_icon()
 
 	balloon_alert_to_viewers("repaired")

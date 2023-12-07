@@ -193,6 +193,10 @@
 /obj/effect/turf_decal/warning_stripes,
 /turf/open/floor/plating,
 /area/bigredv2/outside/filtration_plant)
+"la" = (
+/obj/effect/landmark/xeno_tunnel_spawn,
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/bigredv2/outside/se)
 "lo" = (
 /obj/machinery/door/airlock/mainship/engineering{
 	name = "\improper Filtration Facility";
@@ -1259,7 +1263,7 @@ pg
 (17,1,1) = {"
 bz
 bz
-bz
+la
 bz
 bz
 tm

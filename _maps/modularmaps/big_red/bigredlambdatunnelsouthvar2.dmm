@@ -2,38 +2,38 @@
 "e" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/east)
+/area/bigredv2/caves/east/garbledradio)
 "g" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/east)
+/area/bigredv2/caves/east/garbledradio)
 "l" = (
 /turf/open/floor/plating/ground/mars/random/cave/rock,
-/area/bigredv2/caves/east)
+/area/bigredv2/caves/east/garbledradio)
 "m" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/east)
+/area/bigredv2/caves/east/garbledradio)
 "s" = (
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/east)
+/area/bigredv2/caves/east/garbledradio)
 "w" = (
 /turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "x" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/northeast)
+/area/bigredv2/caves/northeast/garbledradio)
 "y" = (
 /obj/effect/landmark/start/job/xenomorph,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/east)
+/area/bigredv2/caves/east/garbledradio)
 "E" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave/rock,
-/area/bigredv2/caves/east)
+/area/bigredv2/caves/east/garbledradio)
 "J" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/mineral/smooth/bigred,
@@ -41,18 +41,18 @@
 "N" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave/rock,
-/area/bigredv2/caves/northeast)
+/area/bigredv2/caves/northeast/garbledradio)
 "Q" = (
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/northeast)
+/area/bigredv2/caves/northeast/garbledradio)
 "X" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/northeast)
+/area/bigredv2/caves/northeast/garbledradio)
 "Z" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/east)
+/area/bigredv2/caves/east/garbledradio)
 
 (1,1,1) = {"
 w

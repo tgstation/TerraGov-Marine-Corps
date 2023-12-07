@@ -1,0 +1,13 @@
+{
+	"loaded":[
+		{
+			"type":"hyperscale",
+			"icon_state":"color"
+		},
+		{
+			"type":"icon_state",
+			"icon_state":"no_color",
+			"blend_mode":"overlay"
+		}
+	]
+}

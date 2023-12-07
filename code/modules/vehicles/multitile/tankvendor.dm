@@ -44,12 +44,12 @@
 		dat += "<i>[src] is busy. Please wait for completion of the current operation...</i>"
 	else
 		dat += "<h4>Points Available: [tank_points]</h4>"
-		var/slot = loaded_mod ? "[icon2html(loaded_mod, usr)] <a href='byond://?src=\ref[src];eject=1'>[loaded_mod]</a>" : "None"
+		var/slot = loaded_mod ? "[icon2html(loaded_mod, usr)] <a href='byond://?src=[text_ref(src)];eject=1'>[loaded_mod]</a>" : "None"
 		dat += "<h4>Loaded Hardpoint/Ammo Clip: [slot]</h4>"
 
-		var/screen_menu = screen != TANKFAB_MAIN_MENU ? "<a href='byond://?src=\ref[src];screen=[TANKFAB_MAIN_MENU]'>Main Menu</a>" : "Main Menu"
-		var/screen_maint = screen != TANKFAB_MOD_MAINT ? "<a href='byond://?src=\ref[src];screen=[TANKFAB_MOD_MAINT]'>Hardpoint Maintenance</a>" : "Hardpoint Maintenance"
-		var/screen_fab = screen != TANKFAB_PRINTER ? "<a href='byond://?src=\ref[src];screen=[TANKFAB_PRINTER]'>Hardpoint Printer</a>" : "Hardpoint Printer"
+		var/screen_menu = screen != TANKFAB_MAIN_MENU ? "<a href='byond://?src=[text_ref(src)];screen=[TANKFAB_MAIN_MENU]'>Main Menu</a>" : "Main Menu"
+		var/screen_maint = screen != TANKFAB_MOD_MAINT ? "<a href='byond://?src=[text_ref(src)];screen=[TANKFAB_MOD_MAINT]'>Hardpoint Maintenance</a>" : "Hardpoint Maintenance"
+		var/screen_fab = screen != TANKFAB_PRINTER ? "<a href='byond://?src=[text_ref(src)];screen=[TANKFAB_PRINTER]'>Hardpoint Printer</a>" : "Hardpoint Printer"
 		dat += "<center><table><tr><td><center>[screen_fab]</center><td><td><center>[screen_menu]</center><td><td><center>[screen_maint]</center><td><tr><table></center>"
 
 
@@ -62,7 +62,7 @@
 				var/price = calculate_mod_value(loaded_mod)
 				var/restore = istype(loaded_mod, /obj/item/hardpoint) ? "Repair" : "Refill"
 				var/cost = calculate_repair_price(loaded_mod)
-				dat += "<center><table><tr><td><center><a href='byond://?src=\ref[src];restore=1'><b>[restore]</b> ([cost])</a></center><td><td><center><a href='byond://?src=\ref[src];refund=1'><b>Refund</b> ([price])</a></center><td><tr><table></center><br>"
+				dat += "<center><table><tr><td><center><a href='byond://?src=[text_ref(src)];restore=1'><b>[restore]</b> ([cost])</a></center><td><td><center><a href='byond://?src=[text_ref(src)];refund=1'><b>Refund</b> ([price])</a></center><td><tr><table></center><br>"
 				dat += "<h4>Hardpoint/Ammo Clip infos:</h4>"
 				dat += "<b>Brief description</b>: [loaded_mod.desc]<br>"
 				if(istype(loaded_mod, /obj/item/hardpoint))
@@ -91,7 +91,7 @@
 					continue
 				var/build_name = initial(AR.name)
 				var/build_cost = initial(AR.point_cost)
-				dat += "<a href='byond://?src=\ref[src];produce=[build_type]'>[build_name] ([build_cost])</a><br>"
+				dat += "<a href='byond://?src=[text_ref(src)];produce=[build_type]'>[build_name] ([build_cost])</a><br>"
 
 			dat += "<h3>Primary Weapon:</h3>"
 			for(var/build_type in subtypesof(/obj/item/hardpoint/primary))
@@ -100,7 +100,7 @@
 					continue
 				var/build_name = initial(PR.name)
 				var/build_cost = initial(PR.point_cost)
-				dat += "<a href='byond://?src=\ref[src];produce=[build_type]'>[build_name] ([build_cost])</a><br>"
+				dat += "<a href='byond://?src=[text_ref(src)];produce=[build_type]'>[build_name] ([build_cost])</a><br>"
 
 			dat += "<h3>Secondary Weapon:</h3>"
 			for(var/build_type in subtypesof(/obj/item/hardpoint/secondary))
@@ -109,7 +109,7 @@
 					continue
 				var/build_name = initial(SE.name)
 				var/build_cost = initial(SE.point_cost)
-				dat += "<a href='byond://?src=\ref[src];produce=[build_type]'>[build_name] ([build_cost])</a><br>"
+				dat += "<a href='byond://?src=[text_ref(src)];produce=[build_type]'>[build_name] ([build_cost])</a><br>"
 
 			dat += "<h3>Support Module:</h3>"
 			for(var/build_type in subtypesof(/obj/item/hardpoint/support))
@@ -118,7 +118,7 @@
 					continue
 				var/build_name = initial(SP.name)
 				var/build_cost = initial(SP.point_cost)
-				dat += "<a href='byond://?src=\ref[src];produce=[build_type];cost=[build_cost]'>[build_name] ([build_cost])</a><br>"
+				dat += "<a href='byond://?src=[text_ref(src)];produce=[build_type];cost=[build_cost]'>[build_name] ([build_cost])</a><br>"
 
 			dat += "<h3>Treads:</h3>"
 			for(var/build_type in subtypesof(/obj/item/hardpoint/treads))
@@ -127,14 +127,14 @@
 					continue
 				var/build_name = initial(TR.name)
 				var/build_cost = initial(TR.point_cost)
-				dat += "<a href='byond://?src=\ref[src];produce=[build_type];cost=[build_cost]'>[build_name] ([build_cost])</a><br>"
+				dat += "<a href='byond://?src=[text_ref(src)];produce=[build_type];cost=[build_cost]'>[build_name] ([build_cost])</a><br>"
 
 			dat += "<h3>Weapon Ammo:</h3>"
 			for(var/build_type in subtypesof(/obj/item/ammo_magazine/tank))
 				var/obj/item/ammo_magazine/tank/AM = build_type
 				var/build_name = initial(AM.name)
 				var/build_cost = initial(AM.point_cost)
-				dat += "<a href='byond://?src=\ref[src];produce=[build_type];cost=[build_cost]'>[build_name] ([build_cost])</a><br>"
+				dat += "<a href='byond://?src=[text_ref(src)];produce=[build_type];cost=[build_cost]'>[build_name] ([build_cost])</a><br>"
 
 	var/datum/browser/popup = new(user, "dropship_part_fab", "<div align='center'>Tank Part Fabricator</div>")
 	popup.set_content(dat)
@@ -154,7 +154,7 @@
 			to_chat(user, span_warning("[W] appears to be stuck to your hands."))
 	else if(iscrowbar(W) && machine_stat & (NOPOWER|BROKEN) && !QDELETED(loaded_mod))
 		user.visible_message(span_warning("[user] starts to pry [src]'s maintenance slot open."), span_notice("You start to pry [loaded_mod] out of [src]'s maintenance slot..."))
-		if(!do_after(user, 40, TRUE, src, BUSY_ICON_GENERIC) || QDELETED(loaded_mod))
+		if(!do_after(user, 4 SECONDS, NONE, src, BUSY_ICON_GENERIC) || QDELETED(loaded_mod))
 			return
 		user.visible_message("[user] pries [loaded_mod] out of [src].", span_notice("You retrieve [loaded_mod] from [src]."))
 		eject_tank_part()

@@ -36,6 +36,9 @@ SUBSYSTEM_DEF(mapping)
 	///The number of connected clients for the previous round
 	var/last_round_player_count
 
+	///shows the gravity value for each z level
+	var/list/gravity_by_z_level = list()
+
 //dlete dis once #39770 is resolved
 /datum/controller/subsystem/mapping/proc/HACK_LoadMapConfig()
 	if(!configs)
@@ -71,6 +74,7 @@ SUBSYSTEM_DEF(mapping)
 	transit = add_new_zlevel("Transit/Reserved", list(ZTRAIT_RESERVED = TRUE))
 	repopulate_sorted_areas()
 	initialize_reserved_level(transit.z_value)
+	calculate_default_z_level_gravities()
 	return SS_INIT_SUCCESS
 
 //Loads the number of players we had last round, for use in modular mapping
@@ -282,7 +286,7 @@ SUBSYSTEM_DEF(mapping)
 
 		shuttle_templates[S.shuttle_id] = S
 		map_templates[S.shuttle_id] = S
-	
+
 	for(var/drop_path in typesof(/datum/map_template/shuttle/minidropship))
 		var/datum/map_template/shuttle/drop = new drop_path()
 		minidropship_templates += drop
@@ -310,7 +314,6 @@ SUBSYSTEM_DEF(mapping)
 			if(reserve.Reserve(width, height, i))
 				return reserve
 		//If we didn't return at this point, theres a good chance we ran out of room on the exisiting reserved z levels, so lets try a new one
-		log_debug("Ran out of space in existing transit levels, adding a new one")
 		num_of_res_levels += 1
 		var/datum/space_level/newReserved = add_new_zlevel("Transit/Reserved [num_of_res_levels]", list(ZTRAIT_RESERVED = TRUE))
 		initialize_reserved_level(newReserved.z_value)
@@ -320,13 +323,11 @@ SUBSYSTEM_DEF(mapping)
 		CRASH("Despite adding a fresh reserved zlevel still failed to get a reservation")
 	else
 		if(!level_trait(z, ZTRAIT_RESERVED))
-			log_debug("Cannot block reserve on a non-ZTRAIT_RESERVED level")
 			qdel(reserve)
 			return
 		else
 			if(reserve.Reserve(width, height, z))
 				return reserve
-	log_debug("unknown reservation failure")
 	QDEL_NULL(reserve)
 
 //This is not for wiping reserved levels, use wipe_reservations() for that.
@@ -376,6 +377,22 @@ SUBSYSTEM_DEF(mapping)
 	reserve_turfs(clearing)
 
 /datum/controller/subsystem/mapping/proc/reg_in_areas_in_z(list/areas)
-	for(var/B in areas)
-		var/area/A = B
-		A.reg_in_areas_in_z()
+	for(var/area/new_area AS in areas)
+		new_area.reg_in_areas_in_z()
+
+///Generates baseline gravity levels for all z-levels based off traits
+/datum/controller/subsystem/mapping/proc/calculate_default_z_level_gravities()
+	for(var/z_level in 1 to length(z_list))
+		calculate_z_level_gravity(z_level)
+
+///Calculates the gravity for a z-level
+/datum/controller/subsystem/mapping/proc/calculate_z_level_gravity(z_level_number)
+	if(!isnum(z_level_number) || z_level_number < 1)
+		return FALSE
+
+	var/max_gravity = 1 //we default to standard grav
+
+	max_gravity = level_trait(z_level_number, ZTRAIT_GRAVITY) ? level_trait(z_level_number, ZTRAIT_GRAVITY) : 1
+
+	gravity_by_z_level["[z_level_number]"] = max_gravity
+	return max_gravity

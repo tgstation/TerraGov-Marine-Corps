@@ -130,15 +130,94 @@
 		log_world("### MAP WARNING, [src] spawned outside of mapload!")
 		return
 	var/obj/machinery/door/airlock/airlock = locate(/obj/machinery/door/airlock) in loc
-	if(airlock)
-		if(airlock.locked)
-			log_world("### MAP WARNING, [src] at [AREACOORD(src)] tried to bolt [airlock] but it's already locked!")
-		else
-			airlock.locked = TRUE
-			var/turf/current_turf = get_turf(airlock)
-			current_turf.flags_atom |= AI_BLOCKED
-	else
-		log_world("### MAP WARNING, [src] failed to find an airlock at [AREACOORD(src)]")
+	if(!airlock)
+		stack_trace("### MAP WARNING, [src] failed to find an airlock at [AREACOORD(src)]")
+		return
+	if(airlock.locked)
+		stack_trace("### MAP WARNING, [src] at [AREACOORD(src)] tried to bolt [airlock] but it's already locked!")
+	airlock.locked = TRUE
+	var/turf/current_turf = get_turf(airlock)
+	current_turf.flags_atom |= AI_BLOCKED
+
+/obj/effect/mapping_helpers/airlock/abandoned
+	name = "airlock abandoned helper"
+	icon_state = "airlock_abandoned_helper"
+
+/obj/effect/mapping_helpers/airlock/abandoned/Initialize(mapload)
+	. = ..()
+	if(!mapload)
+		log_world("### MAP WARNING, [src] spawned outside of mapload!")
+		return
+	var/obj/machinery/door/airlock/airlock = locate(/obj/machinery/door/airlock) in loc
+	if(!airlock)
+		stack_trace("### MAP WARNING, [src] failed to find an airlock at [AREACOORD(src)]")
+		return
+	if(airlock.abandoned)
+		stack_trace("### MAP WARNING, [src] at [AREACOORD(src)] tried to make [airlock] abandoned but it's already abandoned!")
+	airlock.abandoned = TRUE
+	var/turf/current_turf = get_turf(airlock)
+	current_turf.flags_atom |= AI_BLOCKED
+
+/obj/effect/mapping_helpers/airlock/welded
+	name = "airlock welded helper"
+	icon_state = "airlock_welded_helper"
+
+/obj/effect/mapping_helpers/airlock/welded/Initialize(mapload)
+	. = ..()
+	if(!mapload)
+		log_world("### MAP WARNING, [src] spawned outside of mapload!")
+		return
+	var/obj/machinery/door/airlock/airlock = locate(/obj/machinery/door/airlock) in loc
+	if(!airlock)
+		stack_trace("### MAP WARNING, [src] failed to find an airlock at [AREACOORD(src)]")
+		return
+	if(airlock.welded)
+		stack_trace("### MAP WARNING, [src] at [AREACOORD(src)] tried to bolt [airlock] but it's already welded!")
+	airlock.welded = TRUE
+	var/turf/current_turf = get_turf(airlock)
+	current_turf.flags_atom |= AI_BLOCKED
+
+/obj/effect/mapping_helpers/broken_apc
+	name = "broken apc helper"
+	icon_state = "airlock_brokenapc_helper"
+	///chance that we actually break the APC
+	var/breakchance = 100
+
+/obj/effect/mapping_helpers/broken_apc/Initialize(mapload)
+	. = ..()
+	if(!mapload)
+		log_world("### MAP WARNING, [src] spawned outside of mapload!")
+		return
+	if(!prob(breakchance))
+		return
+	var/obj/machinery/power/apc/apc = locate(/obj/machinery/power/apc) in loc
+	if(!apc)
+		stack_trace("### MAP WARNING, [src] failed to find an apc at [AREACOORD(src)]")
+		return
+	if(apc.machine_stat && (BROKEN)) //there's a small chance of APCs being broken on round start, just return if it's already happened
+		return
+	apc.do_break()
+
+/obj/effect/mapping_helpers/broken_apc/lowchance
+	breakchance = 25
+
+/obj/effect/mapping_helpers/broken_apc/highchance
+	breakchance = 75
+
+/obj/effect/mapping_helpers/airlock_autoname
+	name = "airlock autoname helper"
+	icon_state = "airlock_autoname_helper"
+
+/obj/effect/mapping_helpers/airlock_autoname/Initialize(mapload)
+	. = ..()
+	if(!mapload)
+		log_world("### MAP WARNING, [src] spawned outside of mapload!")
+		return
+	var/obj/machinery/door/door = locate(/obj/machinery/door) in loc
+	if(!door)
+		stack_trace("### MAP WARNING, [src] failed to find a nameable door at [AREACOORD(src)]")
+		return
+	door.name = get_area_name(door)
 
 /obj/effect/mapping_helpers/airlock/unres
 	name = "airlock unresctricted side helper"
@@ -185,28 +264,44 @@
 	var/pipe_color = ""
 	var/connection_num = 0
 	var/hide = FALSE
+	/// Tracking variable to prevent duplicate runtime messages
+	var/crashed = FALSE
 
 /obj/effect/mapping_helpers/simple_pipes/LateInitialize()
 	var/list/connections = list( dir2text(NORTH) = FALSE, dir2text(SOUTH) = FALSE , dir2text(EAST) = FALSE , dir2text(WEST) = FALSE)
 	var/list/valid_connectors = typecacheof(/obj/machinery/atmospherics)
+
+	// Check for duplicate helpers on a single turf
+	var/turf/self_turf = get_turf(src)
+	for(var/obj/effect/mapping_helpers/simple_pipes/helper in self_turf.contents)
+		if(helper == src)
+			continue
+		if(helper.piping_layer != src.piping_layer)
+			continue
+		if(helper.crashed)
+			return
+		helper.crashed = TRUE
+		crashed = TRUE
+		CRASH("Duplicate simple_pipes mapping helper at [AREACOORD(src)]")
+
 	for(var/direction in connections)
-		var/turf/T = get_step(src,  text2dir(direction))
+		var/turf/T = get_step(src, text2dir(direction))
 		for(var/machine_type in T.contents)
-			if(istype(machine_type,type))
+			if(istype(machine_type, type))
 				var/obj/effect/mapping_helpers/simple_pipes/found = machine_type
 				if(found.piping_layer != piping_layer)
 					continue
 				connections[direction] = TRUE
 				connection_num++
 				break
-			if(!is_type_in_typecache(machine_type,valid_connectors))
+			if(!is_type_in_typecache(machine_type, valid_connectors))
 				continue
 			var/obj/machinery/atmospherics/machine = machine_type
 
 			if(machine.piping_layer != piping_layer)
 				continue
 
-			if(angle2dir(dir2angle(text2dir(direction))+180) & machine.initialize_directions)
+			if(angle2dir(dir2angle(text2dir(direction)) + 180) & machine.initialize_directions)
 				connections[direction] = TRUE
 				connection_num++
 				break
@@ -216,32 +311,38 @@
 			for(var/direction in connections)
 				if(connections[direction] != TRUE)
 					continue
-				spawn_pipe(direction,/obj/machinery/atmospherics/pipe/simple)
+				spawn_pipe(direction, /obj/machinery/atmospherics/pipe/simple)
+				break
 		if(2)
 			for(var/direction in connections)
 				if(connections[direction] != TRUE)
 					continue
+
 				//Detects straight pipes connected from east to west , north to south etc.
-				if(connections[dir2text(angle2dir(dir2angle(text2dir(direction))+180))] == TRUE)
-					spawn_pipe(direction,/obj/machinery/atmospherics/pipe/simple)
+				if(connections[dir2text(angle2dir(dir2angle(text2dir(direction)) + 180))] == TRUE)
+					spawn_pipe(direction, /obj/machinery/atmospherics/pipe/simple)
 					break
 
+				//Detects curved pipes, finds the second connection and spawns a pipe, then removes the direction from the list to prevent duplciates
 				for(var/direction2 in connections - direction)
 					if(connections[direction2] != TRUE)
 						continue
-					spawn_pipe(dir2text(text2dir(direction)+text2dir(direction2)),/obj/machinery/atmospherics/pipe/simple)
+					spawn_pipe(dir2text(text2dir(direction) + text2dir(direction2)), /obj/machinery/atmospherics/pipe/simple)
+					connections -= direction2
+					break
 		if(3)
 			for(var/direction in connections)
 				if(connections[direction] == FALSE)
-					spawn_pipe(direction,/obj/machinery/atmospherics/pipe/manifold)
+					spawn_pipe(direction, /obj/machinery/atmospherics/pipe/manifold)
+					break
 		if(4)
-			spawn_pipe(dir2text(NORTH),/obj/machinery/atmospherics/pipe/manifold4w)
+			spawn_pipe(dir2text(NORTH), /obj/machinery/atmospherics/pipe/manifold4w)
 
 	qdel(src)
 
-//spawn pipe
-/obj/effect/mapping_helpers/simple_pipes/proc/spawn_pipe(direction,type )
-	var/obj/machinery/atmospherics/pipe/pipe = new type(get_turf(src),TRUE,text2dir(direction))
+/// spawn the pipe
+/obj/effect/mapping_helpers/simple_pipes/proc/spawn_pipe(direction, type)
+	var/obj/machinery/atmospherics/pipe/pipe = new type(get_turf(src), TRUE, text2dir(direction))
 	pipe.level = level
 	pipe.piping_layer = piping_layer
 	pipe.update_layer()

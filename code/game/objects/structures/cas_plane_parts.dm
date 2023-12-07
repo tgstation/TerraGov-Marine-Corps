@@ -7,7 +7,7 @@
 	layer = OBJ_LAYER
 	plane = GAME_PLANE
 	opacity = FALSE
-	resistance_flags = PLASMACUTTER_IMMUNE
+	resistance_flags = RESIST_ALL
 
 /turf/closed/shuttle/cas/one
 	icon_state = "cas_plane_trim_one"
@@ -209,9 +209,9 @@
 	desc = " A terrifying radial-mounted GAU-30mm minigun. You don't want to be on the wrong end of this."
 	icon_state = "1"
 	///static weapon we start with at the tip
-	var/static_weapon_type = /obj/structure/dropship_equipment/weapon/heavygun/radial_cas
+	var/static_weapon_type = /obj/structure/dropship_equipment/cas/weapon/heavygun/radial_cas
 	///ref to the static weapon
-	var/obj/structure/dropship_equipment/weapon/static_weapon
+	var/obj/structure/dropship_equipment/cas/weapon/static_weapon
 
 /obj/structure/caspart/minigun/examine(mob/user)
 	. = ..()

@@ -34,6 +34,7 @@
 	ceiling = CEILING_METAL
 	outside = FALSE
 	minimap_color = MINIMAP_AREA_LZ
+	always_unpowered = TRUE
 
 /area/orion_outpost/surface/landing_pad_external
 	name = "Landing Zone 1"
@@ -49,12 +50,18 @@
 	ceiling = CEILING_METAL
 	outside = FALSE
 	minimap_color = MINIMAP_AREA_LZ
+	always_unpowered = TRUE
 
 /area/orion_outpost/surface/landing_pad2_external
 	name = "Landing Zone 2"
 	icon_state = "landing_pad_ext"
 	ceiling = CEILING_METAL
 	outside = FALSE
+	minimap_color = MINIMAP_AREA_LZ
+
+/area/orion_outpost/surface/train_yard
+	name = "train yard"
+	icon_state = "landing_pad_ext"
 	minimap_color = MINIMAP_AREA_LZ
 
 //River
@@ -134,6 +141,9 @@
 	name = "Northern Caves"
 	icon_state = "cave"
 
+/area/orion_outpost/ground/underground/caveN/garbledradio
+	ceiling = CEILING_UNDERGROUND
+
 /area/orion_outpost/ground/underground/caveNW
 	name = "Northwestern Caves"
 	icon_state = "cave"
@@ -142,9 +152,15 @@
 	name = "Eastern Caves"
 	icon_state = "cave"
 
+/area/orion_outpost/ground/underground/caveE/garbledradio
+	ceiling = CEILING_UNDERGROUND
+
 /area/orion_outpost/ground/underground/caveS
 	name = "Southern Caves"
 	icon_state = "cave"
+
+/area/orion_outpost/ground/underground/caveS/garbledradio
+	ceiling = CEILING_UNDERGROUND
 
 /area/orion_outpost/ground/underground/caveW
 	name = "Western Caves"
@@ -203,6 +219,7 @@
 /area/orion_outpost/surface/building/crashedufo
 	name = "Crashed UFO"
 	icon_state = "blueold"
+	always_unpowered = TRUE
 
 /area/orion_outpost/surface/building/tadpolepad
 	name = "Tadpole Landing Pad"

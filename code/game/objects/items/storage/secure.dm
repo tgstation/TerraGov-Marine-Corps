@@ -44,7 +44,7 @@
 	if(!locked)
 		message = "*****"
 
-	dat += "<HR>\n>[message]<BR>\n<A href='?src=\ref[src];type=1'>1</A>-<A href='?src=\ref[src];type=2'>2</A>-<A href='?src=\ref[src];type=3'>3</A><BR>\n<A href='?src=\ref[src];type=4'>4</A>-<A href='?src=\ref[src];type=5'>5</A>-<A href='?src=\ref[src];type=6'>6</A><BR>\n<A href='?src=\ref[src];type=7'>7</A>-<A href='?src=\ref[src];type=8'>8</A>-<A href='?src=\ref[src];type=9'>9</A><BR>\n<A href='?src=\ref[src];type=R'>R</A>-<A href='?src=\ref[src];type=0'>0</A>-<A href='?src=\ref[src];type=E'>E</A><BR>\n</TT>"
+	dat += "<HR>\n>[message]<BR>\n<A href='?src=[text_ref(src)];type=1'>1</A>-<A href='?src=[text_ref(src)];type=2'>2</A>-<A href='?src=[text_ref(src)];type=3'>3</A><BR>\n<A href='?src=[text_ref(src)];type=4'>4</A>-<A href='?src=[text_ref(src)];type=5'>5</A>-<A href='?src=[text_ref(src)];type=6'>6</A><BR>\n<A href='?src=[text_ref(src)];type=7'>7</A>-<A href='?src=[text_ref(src)];type=8'>8</A>-<A href='?src=[text_ref(src)];type=9'>9</A><BR>\n<A href='?src=[text_ref(src)];type=R'>R</A>-<A href='?src=[text_ref(src)];type=0'>0</A>-<A href='?src=[text_ref(src)];type=E'>E</A><BR>\n</TT>"
 
 
 	var/datum/browser/popup = new(user, "caselock", "<div align='center'>[src]</div>")
@@ -88,7 +88,7 @@
 		return ..()
 
 	else if(isscrewdriver(I))
-		if(!do_after(user, 20, TRUE, src, BUSY_ICON_BUILD))
+		if(!do_after(user, 20, NONE, src, BUSY_ICON_BUILD))
 			return
 
 		open = !open
@@ -97,7 +97,7 @@
 	else if(ismultitool(I) && open && !l_hacking)
 		user.show_message(span_warning(" Now attempting to reset internal memory, please hold."))
 		l_hacking = TRUE
-		if(!do_after(user, 100, TRUE, src, BUSY_ICON_BUILD))
+		if(!do_after(user, 100, NONE, src, BUSY_ICON_BUILD))
 			return
 
 		if(!prob(40))

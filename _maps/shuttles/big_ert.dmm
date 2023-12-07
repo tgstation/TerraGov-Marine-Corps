@@ -2,11 +2,6 @@
 "aa" = (
 /turf/template_noop,
 /area/template_noop)
-"ab" = (
-/turf/closed/wall/mainship/white{
-
-	},
-/area/shuttle/big_ert)
 "ac" = (
 /obj/structure/window/framed/mainship/white,
 /turf/open/floor/plating,
@@ -224,7 +219,7 @@
 /area/shuttle/big_ert)
 "aM" = (
 /obj/structure/table/mainship,
-/obj/structure/paper_bin,
+/obj/effect/spawner/random/misc/paperbin,
 /obj/item/tool/pen,
 /turf/open/floor/wood,
 /area/shuttle/big_ert)
@@ -255,10 +250,10 @@
 /area/shuttle/big_ert)
 "aR" = (
 /obj/structure/table/mainship,
-/obj/machinery/computer/communications,
 /obj/machinery/light{
 	dir = 8
 	},
+/obj/machinery/computer/communications,
 /turf/open/floor/carpet/edge2{
 	dir = 10
 	},
@@ -742,7 +737,7 @@
 /area/shuttle/big_ert)
 "ce" = (
 /obj/structure/table/mainship,
-/obj/structure/paper_bin,
+/obj/effect/spawner/random/misc/paperbin,
 /obj/item/tool/pen,
 /obj/item/tool/pen,
 /obj/item/tool/pen,
@@ -836,7 +831,7 @@
 /obj/machinery/shower{
 	dir = 4
 	},
-/obj/item/tool/soap,
+/obj/effect/spawner/random/misc/soap/regularweighted,
 /turf/open/floor/mainship/plate,
 /area/shuttle/big_ert)
 "cp" = (
@@ -864,8 +859,8 @@
 /obj/structure/reagent_dispensers/watertank,
 /obj/item/clothing/mask/gas,
 /obj/item/clothing/mask/gas,
-/obj/item/tool/extinguisher,
-/obj/item/tool/extinguisher,
+/obj/effect/spawner/random/engineering/extinguisher/regularweighted,
+/obj/effect/spawner/random/engineering/extinguisher/regularweighted,
 /obj/machinery/light{
 	dir = 4
 	},
@@ -911,7 +906,7 @@
 /area/shuttle/big_ert)
 "cA" = (
 /obj/structure/table/mainship,
-/obj/structure/paper_bin{
+/obj/effect/spawner/random/misc/paperbin{
 	pixel_x = -5;
 	pixel_y = 5
 	},
@@ -1145,7 +1140,7 @@ ag
 aa
 "}
 (9,1,1) = {"
-ab
+ag
 ag
 ag
 ag
@@ -1161,7 +1156,7 @@ ag
 ag
 ag
 ag
-ab
+ag
 "}
 (10,1,1) = {"
 ac
@@ -1240,7 +1235,7 @@ cG
 ac
 "}
 (14,1,1) = {"
-ab
+ag
 ag
 ag
 az
@@ -1256,7 +1251,7 @@ ag
 ag
 ag
 ag
-ab
+ag
 "}
 (15,1,1) = {"
 aa

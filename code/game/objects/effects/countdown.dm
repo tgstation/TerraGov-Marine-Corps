@@ -74,3 +74,17 @@
 	if(!N.timer_enabled)
 		return
 	return N.get_time_left()
+
+//campaign objective timer
+/obj/effect/countdown/campaign_objective
+	name = "objective countdown"
+	color = "#d1d1d1"
+	invisibility = SEE_INVISIBLE_LIVING
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	pixel_y = 16
+
+/obj/effect/countdown/campaign_objective/get_value()
+	if(QDELETED(attached_to))
+		return
+	var/obj/structure/campaign_objective/capture_objective/objective = attached_to
+	return objective.get_time_left()

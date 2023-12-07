@@ -5,8 +5,6 @@ These act as a respawn mechanic growning a body and offering it up to ghosts.
 */
 /obj/machinery/cloning
 	name = "broken cloning machine"
-	bound_width = 32
-	bound_height = 64
 	density = TRUE
 	opacity = FALSE
 	anchored = TRUE
@@ -33,26 +31,27 @@ These act as a respawn mechanic growning a body and offering it up to ghosts.
  *
  *The vat then needs to be repaired and refilled with biomass.
  */
-/obj/machinery/cloning_console/vats
+/obj/machinery/computer/cloning_console/vats
 	name = "Clone Vats Console"
 	icon = 'icons/obj/machines/cryogenics.dmi'
 	icon_state = "body_scannerconsole"
+	screen_overlay = "body_scannerconsole_emissive"
 	density = FALSE
-	anchored = TRUE
-	use_power = IDLE_POWER_USE
 	idle_power_usage = 50
 	resistance_flags = RESIST_ALL // For now, we should work out how we want xenos to counter this
+	light_color = LIGHT_COLOR_EMISSIVE_GREEN
+	dir = EAST
 
 	var/obj/machinery/cloning/vats/linked_machine
 	var/obj/item/radio/headset/mainship/mcom/radio //God forgive me
 
-/obj/machinery/cloning_console/vats/Initialize(mapload)
+/obj/machinery/computer/cloning_console/vats/Initialize(mapload)
 	. = ..()
 	radio = new(src)
 	radio.use_command = FALSE
 	radio.command = FALSE
 
-/obj/machinery/cloning_console/vats/Destroy()
+/obj/machinery/computer/cloning_console/vats/Destroy()
 	QDEL_NULL(radio)
 	if(linked_machine)
 		linked_machine.linked_console = null
@@ -60,7 +59,7 @@ These act as a respawn mechanic growning a body and offering it up to ghosts.
 	return ..()
 
 
-/obj/machinery/cloning_console/vats/attack_hand(mob/living/user)
+/obj/machinery/computer/cloning_console/vats/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
@@ -69,7 +68,7 @@ These act as a respawn mechanic growning a body and offering it up to ghosts.
 
 	if(!linked_machine)
 		// Try to find the machine nearby
-		linked_machine = locate() in range(1)
+		linked_machine = locate() in orange(1, src)
 		if(!linked_machine)
 			visible_message("[icon2html(src, viewers(src))] <span><b>[src]</b> beeps in error, 'Connection not available'.</span>")
 			return TRUE
@@ -97,11 +96,15 @@ These act as a respawn mechanic growning a body and offering it up to ghosts.
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 3000
 	active_power_usage = 30000
+	light_range = 2
+	light_power = 0.5
+	light_color = LIGHT_COLOR_EMISSIVE_GREEN
+	layer = ABOVE_MOB_LAYER
 
 	var/timerid
 	var/mob/living/carbon/human/occupant
 	var/obj/item/reagent_containers/glass/beaker
-	var/obj/machinery/cloning_console/vats/linked_console
+	var/obj/machinery/computer/cloning_console/vats/linked_console
 
 	var/biomass_required = 40
 	var/grow_timer = 15 MINUTES
@@ -196,6 +199,12 @@ These act as a respawn mechanic growning a body and offering it up to ghosts.
 		. += span_notice("It looks like there is a human in there!")
 		return
 
+/obj/machinery/cloning/vats/update_icon()
+	. = ..()
+	if(occupant || timerid)
+		set_light(initial(light_range))
+	else
+		set_light(0)
 
 /obj/machinery/cloning/vats/update_icon_state()
 	if(!beaker)
@@ -204,9 +213,14 @@ These act as a respawn mechanic growning a body and offering it up to ghosts.
 	if(occupant || timerid)
 		icon_state = "cell_growing"
 		return
-	var/amount = clamp(round(beaker.reagents.total_volume / biomass_required, 25), 0, 100)
+	var/amount = clamp(round(beaker.reagents.total_volume / biomass_required, 0.25) * 100, 0, 100)
 	icon_state = "cell_[amount]"
 
+/obj/machinery/cloning/vats/update_overlays()
+	. = ..()
+	if(!beaker)
+		return
+	. += emissive_appearance(icon, "[icon_state]_emissive", alpha = src.alpha)
 
 /obj/machinery/cloning/vats/proc/grow_human(instant = FALSE)
 	use_power = ACTIVE_POWER_USE

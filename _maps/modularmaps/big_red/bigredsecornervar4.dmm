@@ -3,10 +3,7 @@
 /turf/open/space/basic,
 /area/space)
 "b" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_13";
-	name = "TGMC exit point 13"
-	},
+/obj/effect/landmark/patrol_point/tgmc_13,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/southeast)
 "d" = (
@@ -18,10 +15,7 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/southeast)
 "g" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_11";
-	name = "TGMC exit point 11"
-	},
+/obj/effect/landmark/patrol_point/tgmc_11,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/southeast)
 "j" = (
@@ -31,6 +25,14 @@
 "k" = (
 /turf/closed/mineral/smooth/bigred/indestructible,
 /area/bigredv2/caves/rock)
+"l" = (
+/obj/machinery/miner/damaged/platinum,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/southeast/garbledradio)
+"m" = (
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/southeast/garbledradio)
 "o" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -40,10 +42,7 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/southeast)
 "u" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_12";
-	name = "TGMC exit point 12"
-	},
+/obj/effect/landmark/patrol_point/tgmc_12,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/southeast)
 "v" = (
@@ -59,6 +58,10 @@
 /obj/effect/landmark/start/job/xenomorph,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/southeast)
+"E" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/southeast/garbledradio)
 "F" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -66,18 +69,23 @@
 "G" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave/rock,
-/area/bigredv2/caves/southeast)
+/area/bigredv2/caves/southeast/garbledradio)
 "H" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_14";
-	name = "TGMC exit point 14"
-	},
+/obj/effect/landmark/patrol_point/tgmc_14,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/southeast)
 "I" = (
 /obj/docking_port/stationary/crashmode,
 /turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
+"J" = (
+/obj/effect/landmark/weed_node,
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/southeast/garbledradio)
+"K" = (
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/southeast/garbledradio)
 "O" = (
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -86,11 +94,15 @@
 /obj/effect/landmark/start/job/xenomorph,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/southeast)
+/area/bigredv2/caves/southeast/garbledradio)
 "R" = (
 /obj/effect/landmark/xeno_silo_spawn,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/southeast)
+"S" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/southeast/garbledradio)
 "T" = (
 /obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -98,7 +110,7 @@
 "U" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/cave/rock,
-/area/bigredv2/caves/southeast)
+/area/bigredv2/caves/southeast/garbledradio)
 "V" = (
 /turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
@@ -108,7 +120,7 @@
 /area/bigredv2/caves/southeast)
 "X" = (
 /turf/open/floor/plating/ground/mars/random/cave/rock,
-/area/bigredv2/caves/southeast)
+/area/bigredv2/caves/southeast/garbledradio)
 "Y" = (
 /obj/effect/landmark/weed_node,
 /obj/effect/ai_node,
@@ -132,12 +144,12 @@ V
 V
 V
 V
-w
-w
-w
-w
-w
-o
+K
+K
+K
+K
+K
+S
 X
 V
 V
@@ -201,12 +213,12 @@ V
 V
 X
 X
-w
-w
-w
+K
+K
+K
 V
-w
-w
+K
+K
 X
 V
 V
@@ -268,14 +280,14 @@ V
 V
 V
 V
-w
-w
-w
-w
-w
+K
+K
+K
+K
+K
 V
 X
-w
+K
 X
 V
 V
@@ -337,10 +349,10 @@ V
 V
 V
 G
-w
-w
-Y
-w
+K
+K
+J
+K
 V
 V
 V
@@ -405,11 +417,11 @@ V
 V
 V
 V
-w
-o
+K
+S
 X
-w
-w
+K
+K
 V
 V
 V
@@ -474,11 +486,11 @@ V
 V
 X
 X
-w
-w
+K
+K
 X
-w
-w
+K
+K
 V
 V
 V
@@ -541,12 +553,12 @@ V
 V
 V
 V
-w
-w
-w
+K
+K
+K
 X
-w
-w
+K
+K
 V
 V
 V
@@ -610,10 +622,10 @@ V
 V
 V
 V
-w
-w
-Y
-w
+K
+K
+J
+K
 V
 V
 V
@@ -679,10 +691,10 @@ V
 V
 V
 V
-w
+K
 G
-w
-w
+K
+K
 V
 V
 V
@@ -748,17 +760,17 @@ V
 V
 V
 X
-w
+K
 X
-w
-w
+K
+K
 V
 V
 V
 V
-w
-w
-F
+K
+K
+E
 U
 V
 V
@@ -816,18 +828,18 @@ V
 V
 V
 V
-w
-w
+K
+K
 X
-O
-X
-X
+m
 X
 X
 X
-w
-w
-w
+X
+X
+K
+K
+K
 X
 V
 V
@@ -885,18 +897,18 @@ V
 V
 V
 V
-w
+K
 Q
-w
+K
 X
-w
-w
-w
-w
+K
+K
+K
+K
 X
-w
-o
-w
+K
+S
+K
 V
 V
 V
@@ -954,18 +966,18 @@ V
 V
 V
 V
-w
-w
-w
-w
-w
-o
-F
-w
-o
-w
-w
-w
+K
+K
+K
+K
+K
+S
+E
+K
+S
+K
+K
+K
 V
 V
 V
@@ -1014,7 +1026,7 @@ a
 "}
 (14,1,1) = {"
 X
-w
+K
 V
 V
 V
@@ -1023,17 +1035,17 @@ V
 V
 V
 X
-w
-w
-w
-w
-w
-w
-w
-w
-w
-w
-w
+K
+K
+K
+K
+K
+K
+K
+K
+K
+K
+K
 X
 V
 V
@@ -1091,16 +1103,16 @@ V
 V
 V
 V
-w
-F
-w
-F
-o
-w
-w
-F
-w
-w
+K
+E
+K
+E
+S
+K
+K
+E
+K
+K
 X
 V
 V
@@ -1160,18 +1172,18 @@ V
 V
 X
 X
-w
+K
 X
-w
-w
-w
-w
-w
-w
-w
-w
-w
-w
+K
+K
+K
+K
+K
+K
+K
+K
+K
+K
 V
 V
 V
@@ -1220,20 +1232,20 @@ v
 a
 "}
 (17,1,1) = {"
-w
+K
 V
 V
 V
 V
 V
 V
-w
-w
-w
+K
+K
+K
 X
-w
-w
-w
+K
+K
+K
 V
 V
 V
@@ -1289,7 +1301,7 @@ v
 a
 "}
 (18,1,1) = {"
-w
+K
 V
 V
 V
@@ -1297,20 +1309,20 @@ V
 V
 V
 X
-w
+K
 X
-w
-w
-w
+K
+K
+K
 V
 V
 V
 V
 V
-w
-w
-F
-w
+K
+K
+E
+K
 w
 o
 o
@@ -1358,17 +1370,17 @@ v
 a
 "}
 (19,1,1) = {"
-w
+K
 V
 V
 V
 V
 V
-w
-w
-w
+K
+K
+K
 X
-w
+K
 V
 V
 V
@@ -1378,7 +1390,7 @@ V
 V
 V
 V
-w
+K
 w
 w
 w
@@ -1427,17 +1439,17 @@ k
 a
 "}
 (20,1,1) = {"
-w
+K
 V
 V
-w
-w
-w
-F
-w
-w
-w
-F
+K
+K
+K
+E
+K
+K
+K
+E
 V
 V
 V
@@ -1496,16 +1508,16 @@ k
 a
 "}
 (21,1,1) = {"
-w
-w
-w
-w
-w
-w
-w
-w
+K
+K
+K
+K
+K
+K
+K
+K
 X
-w
+K
 V
 V
 V
@@ -1565,16 +1577,16 @@ k
 a
 "}
 (22,1,1) = {"
-w
-w
-w
-w
+K
+K
+K
+K
 X
 X
-w
-w
-w
-w
+K
+K
+K
+K
 V
 V
 V
@@ -1634,15 +1646,15 @@ k
 a
 "}
 (23,1,1) = {"
-e
-F
-w
+l
+E
+K
 X
-w
-w
-F
-w
-w
+K
+K
+E
+K
+K
 V
 V
 V
@@ -1703,13 +1715,13 @@ k
 a
 "}
 (24,1,1) = {"
-w
+K
 X
 U
-w
-w
-w
-w
+K
+K
+K
+K
 X
 V
 V
@@ -1773,8 +1785,8 @@ a
 "}
 (25,1,1) = {"
 X
-w
-w
+K
+K
 X
 V
 V
@@ -1841,9 +1853,9 @@ k
 a
 "}
 (26,1,1) = {"
-w
-w
-w
+K
+K
+K
 X
 V
 V

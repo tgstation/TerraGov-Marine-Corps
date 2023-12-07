@@ -12,7 +12,7 @@
 	speak_chance = 1
 	turns_per_move = 5
 	see_in_dark = 6
-	flags_pass = PASSTABLE
+	pass_flags = PASS_LOW_STRUCTURE
 	response_help = "hugs"
 	response_disarm = "rudely paps"
 	response_harm = "kicks"

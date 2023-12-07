@@ -12,6 +12,7 @@
 	init_reagent_flags = AMOUNT_SKILLCHECK
 	w_class = WEIGHT_CLASS_TINY
 	volume = 60
+	attack_speed = 1 //War against input locking while pill munching
 	var/pill_desc = "An unknown pill." //the real description of the pill, shown when examined by a medically trained person
 	var/pill_id
 
@@ -20,11 +21,11 @@
 	if(icon_state == "pill1")
 		icon_state = pill_id ? GLOB.randomized_pill_icons[pill_id] : pick(GLOB.randomized_pill_icons)
 
-/obj/item/reagent_containers/pill/attack_self(mob/user as mob)
-	return
+/obj/item/reagent_containers/pill/attack_self(mob/user)
+	. = ..()
+	attack(user, user)
 
 /obj/item/reagent_containers/pill/attack(mob/M, mob/user, def_zone)
-
 	if(M == user)
 
 		if(ishuman(M))
@@ -36,6 +37,7 @@
 		to_chat(M, span_notice("You swallow [src]."))
 		M.dropItemToGround(src) //icon update
 		if(reagents.total_volume)
+			record_reagent_consumption(reagents.total_volume, reagents.reagent_list, user)
 			reagents.reaction(M, INGEST)
 			reagents.trans_to(M, reagents.total_volume)
 
@@ -53,7 +55,7 @@
 
 		var/ingestion_time = max(1 SECONDS, 3 SECONDS - 1 SECONDS * user.skills.getRating(SKILL_MEDICAL))
 
-		if(!do_mob(user, M, ingestion_time, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
+		if(!do_after(user, ingestion_time, NONE, M, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
 			return
 
 		user.dropItemToGround(src) //icon update
@@ -64,6 +66,7 @@
 		log_combat(user, M, "fed", src, "Reagents: [rgt_list_text]")
 
 		if(reagents.total_volume)
+			record_reagent_consumption(reagents.total_volume, reagents.reagent_list, user, M)
 			reagents.reaction(M, INGEST)
 			reagents.trans_to(M, reagents.total_volume)
 			qdel(src)
@@ -205,7 +208,7 @@
 	pill_id = 17
 
 /obj/item/reagent_containers/pill/alkysine
-	pill_desc = "An Alkysine pill. Heals brain damage."
+	pill_desc = "An Alkysine pill. Heals brain and ear damage."
 	list_reagents = list(/datum/reagent/medicine/alkysine = 10)
 	pill_id = 18
 

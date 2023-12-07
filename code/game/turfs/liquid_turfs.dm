@@ -23,7 +23,7 @@
 
 /turf/open/liquid/Entered(atom/movable/arrived, atom/old_loc, list/atom/old_locs)
 	. = ..()
-	if(has_catwalk)
+	if(SEND_SIGNAL(src, COMSIG_TURF_CHECK_COVERED))
 		return FALSE
 	. = TRUE
 
@@ -45,17 +45,15 @@
 			animate(arrived_mob.get_filter(MOB_LIQUID_TURF_MASK), y = ((64 - mob_icon.Height()) * 0.5) - (MOB_LIQUID_TURF_MASK_HEIGHT - mob_liquid_height), time = arrived_mob.cached_multiplicative_slowdown + arrived_mob.next_move_slowdown)
 		if(mob_liquid_depth != old_turf.mob_liquid_depth)
 			animate(arrived_mob, pixel_y = arrived_mob.pixel_y + mob_liquid_depth - old_turf.mob_liquid_depth, time = arrived_mob.cached_multiplicative_slowdown + arrived_mob.next_move_slowdown, flags = ANIMATION_PARALLEL)
+	else
+		//The mask is spawned below the mob, then the animate() raises it up, giving the illusion of dropping into water, combining with the animate to actual drop the pixel_y into the water
+		arrived_mob.add_filter(MOB_LIQUID_TURF_MASK, 1, alpha_mask_filter(0, height_to_use - MOB_LIQUID_TURF_MASK_HEIGHT, icon('icons/turf/alpha_64.dmi', "liquid_alpha"), null, MASK_INVERSE))
 
-		arrived_mob.next_move_slowdown += (arrived_mob.get_liquid_slowdown() * slowdown_multiplier) //slowdown applied after the animate as it will effect the timing
-		return
+		animate(arrived_mob.get_filter(MOB_LIQUID_TURF_MASK), y = height_to_use - (MOB_LIQUID_TURF_MASK_HEIGHT - mob_liquid_height), time = arrived_mob.cached_multiplicative_slowdown + arrived_mob.next_move_slowdown)
+		animate(arrived_mob, pixel_y = arrived_mob.pixel_y + mob_liquid_depth, time = arrived_mob.cached_multiplicative_slowdown + arrived_mob.next_move_slowdown, flags = ANIMATION_PARALLEL)
 
-	//The mask is spawned below the mob, then the animate() raises it up, giving the illusion of dropping into water, combining with the animate to actual drop the pixel_y into the water
-	arrived_mob.add_filter(MOB_LIQUID_TURF_MASK, 1, alpha_mask_filter(0, height_to_use - MOB_LIQUID_TURF_MASK_HEIGHT, icon('icons/turf/alpha_64.dmi', "liquid_alpha"), null, MASK_INVERSE))
-
-	animate(arrived_mob.get_filter(MOB_LIQUID_TURF_MASK), y = height_to_use - (MOB_LIQUID_TURF_MASK_HEIGHT - mob_liquid_height), time = arrived_mob.cached_multiplicative_slowdown + arrived_mob.next_move_slowdown)
-	animate(arrived_mob, pixel_y = arrived_mob.pixel_y + mob_liquid_depth, time = arrived_mob.cached_multiplicative_slowdown + arrived_mob.next_move_slowdown, flags = ANIMATION_PARALLEL)
-
-	arrived_mob.next_move_slowdown += (arrived_mob.get_liquid_slowdown() * slowdown_multiplier)
+	if(!arrived_mob.throwing)
+		arrived_mob.next_move_slowdown += (arrived_mob.get_liquid_slowdown() * slowdown_multiplier)
 
 /turf/open/liquid/Exited(atom/movable/leaver, direction)
 	. = ..()
@@ -68,9 +66,9 @@
 	var/turf/open/liquid/new_turf = mob_leaver.loc
 	if(istype(new_turf))
 		if(length(new_turf.canSmoothWith))
-			if(!new_turf.has_catwalk && CHECK_MULTIPLE_BITFIELDS(new_turf.smoothing_junction, (SOUTH_JUNCTION|EAST_JUNCTION|WEST_JUNCTION)))
+			if(!SEND_SIGNAL(new_turf, COMSIG_TURF_CHECK_COVERED) && CHECK_MULTIPLE_BITFIELDS(new_turf.smoothing_junction, (SOUTH_JUNCTION|EAST_JUNCTION|WEST_JUNCTION)))
 				return
-		else if(!new_turf.has_catwalk)
+		else if(!SEND_SIGNAL(new_turf, COMSIG_TURF_CHECK_COVERED))
 			return
 
 	var/icon/mob_icon = icon(mob_leaver.icon)
@@ -146,7 +144,7 @@
 	icon = 'icons/turf/desertdam_map.dmi'
 
 /turf/open/liquid/water/river/desertdam/Initialize() //needed to avoid visual bugs with the river
-	return
+	return INITIALIZE_HINT_NORMAL //haha totally normal, TODO DEAL WITH THIS INSTEAD OF THIS BANDAID
 
 //shallow water
 /turf/open/liquid/water/river/desertdam/clean/shallow
@@ -259,7 +257,7 @@
 			if(!L.on_fire || L.getFireLoss() <= 200)
 				var/damage_amount = max(L.modify_by_armor(LAVA_TILE_BURN_DAMAGE, FIRE), LAVA_TILE_BURN_DAMAGE * 0.3) //snowflakey interaction to stop complete lava immunity
 				L.take_overall_damage(damage_amount, BURN, updating_health = TRUE, max_limbs = 3)
-				if(!CHECK_BITFIELD(L.flags_pass, PASSFIRE))//Pass fire allow to cross lava without igniting
+				if(!CHECK_BITFIELD(L.pass_flags, PASS_FIRE))//Pass fire allow to cross lava without igniting
 					L.adjust_fire_stacks(20)
 					L.IgniteMob()
 				. = TRUE
@@ -272,7 +270,7 @@
 		if(H)
 			to_chat(user, span_warning("There is already a catwalk here!"))
 			return
-		if(!do_after(user, 5 SECONDS, FALSE))
+		if(!do_after(user, 5 SECONDS, IGNORE_HELD_ITEM))
 			to_chat(user, span_warning("It takes time to construct a catwalk!"))
 			return
 		if(R.use(4))

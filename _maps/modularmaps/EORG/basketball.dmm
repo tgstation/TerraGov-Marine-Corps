@@ -236,9 +236,10 @@
 /turf/open/floor/mainship/green,
 /area/deathmatch)
 "aC" = (
-/turf/open/floor/stairs/rampbottom{
+/obj/structure/stairs/edge{
 	dir = 1
 	},
+/turf/open/floor/tile/dark,
 /area/deathmatch)
 "aD" = (
 /obj/machinery/scoreboard{
@@ -249,7 +250,8 @@
 /turf/open/floor/mainship/green,
 /area/deathmatch)
 "aE" = (
-/turf/open/floor/stairs/rampbottom,
+/obj/structure/stairs/edge,
+/turf/open/floor/tile/dark,
 /area/deathmatch)
 "aF" = (
 /obj/effect/ai_node,
@@ -467,6 +469,11 @@
 "cP" = (
 /obj/structure/window/framed/mainship/requisitions,
 /turf/open/floor/mainship/mono,
+/area/deathmatch)
+"dt" = (
+/obj/effect/turf_decal/warning_stripes/nscenter,
+/obj/effect/spawner/random/misc/gnome/fiftyfifty,
+/turf/open/floor/wood,
 /area/deathmatch)
 "dH" = (
 /obj/effect/ai_node,
@@ -2125,7 +2132,7 @@ ad
 ad
 ad
 ad
-ad
+dt
 aN
 ad
 ad

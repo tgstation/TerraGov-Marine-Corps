@@ -45,6 +45,8 @@
 /mob/camera/imaginary_friend/Initialize(mapload, mob/owner)
 	. = ..()
 
+	if(!owner)
+		return INITIALIZE_HINT_QDEL
 	src.owner = owner
 	copy_known_languages_from(owner, TRUE)
 
@@ -85,7 +87,8 @@
 
 
 /mob/camera/imaginary_friend/Destroy()
-	owner.client?.images.Remove(human_image)
+	if(owner?.client)
+		owner.client?.images.Remove(human_image)
 
 	client?.images.Remove(human_image)
 
@@ -146,6 +149,9 @@
 	if(client)
 		if(client.prefs.muted & MUTE_IC)
 			to_chat(src, "You cannot send IC messages (muted).")
+			return
+		if(is_banned_from(ckey, "IC"))
+			to_chat(src, span_warning("You are banned from IC chat."))
 			return
 
 		if(client.handle_spam_prevention(message, MUTE_IC))

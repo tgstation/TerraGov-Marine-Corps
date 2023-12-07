@@ -40,6 +40,8 @@
 		if(EXPLODE_LIGHT)
 			if(prob(95))
 				return
+		if(EXPLODE_WEAK)
+			return
 	for(var/atom/movable/A in src)
 		A.forceMove(loc)
 		ex_act(severity)

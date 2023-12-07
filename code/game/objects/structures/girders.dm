@@ -1,6 +1,7 @@
 /obj/structure/girder
 	name = "girder"
-	icon_state = "girder"
+	icon_state = "girder-0"
+	icon = 'icons/obj/smooth_objects/girder.dmi'
 	desc = "A large structural assembly made out of metal. It requires some layers of metal before it can be considered a wall."
 	anchored = TRUE
 	density = TRUE
@@ -12,13 +13,17 @@
 	var/girder_state = GIRDER_NORMAL
 	var/reinforcement = null
 	var/icon_prefix = "girder"
+	smoothing_flags = SMOOTH_BITMASK
+	canSmoothWith = list(SMOOTH_GROUP_GIRDER,SMOOTH_GROUP_SURVIVAL_TITANIUM_WALLS)
+	smoothing_groups = list(SMOOTH_GROUP_GIRDER)
+	base_icon_state = "girder"
 
 /obj/structure/girder/add_debris_element()
 	AddElement(/datum/element/debris, DEBRIS_SPARKS, -15, 8, 1)
 
 #define GIRDER_DECONSTRUCTING (new_state < girder_state)
 
-/obj/structure/girder/proc/change_state(new_state)
+/obj/structure/girder/proc/change_state(new_state, mob/user)
 	if(new_state == girder_state)
 		return
 	switch(new_state)
@@ -37,6 +42,7 @@
 			if(!GIRDER_DECONSTRUCTING)
 				modify_max_integrity((reinforcement == GIRDER_REINF_PLASTEEL) ? 600 : 300)
 		if(GIRDER_WALL_BUILT)
+			user.record_structures_built()
 			return build_wall()
 	girder_state = new_state
 	density = (girder_state >= GIRDER_NORMAL)
@@ -60,7 +66,7 @@
 				if(stack.amount < 2)
 					return
 				to_chat(user, span_notice("Now adding plating..."))
-				if(!do_after(user, 4 SECONDS, TRUE, src, BUSY_ICON_BUILD))
+				if(!do_after(user, 4 SECONDS, NONE, src, BUSY_ICON_BUILD))
 					return TRUE
 				if(QDELETED(stack) || stack.amount < 2 || girder_state != GIRDER_BROKEN)
 					return TRUE
@@ -74,7 +80,7 @@
 				if(stack.amount < (reinforced ? 15 : 2))
 					return TRUE
 				to_chat(user, span_notice("Now adding plating..."))
-				if(!do_after(user, 4 SECONDS * (reinforced ? 2 : 1), TRUE, src, BUSY_ICON_BUILD))
+				if(!do_after(user, 4 SECONDS * (reinforced ? 2 : 1), NONE, src, BUSY_ICON_BUILD))
 					return TRUE
 				if(QDELETED(stack) || stack.amount < (reinforced ? 15 : 2) || girder_state != GIRDER_NORMAL)
 					return TRUE
@@ -92,7 +98,7 @@
 					return TRUE
 				var/old_girder_state = girder_state
 				to_chat(user, span_notice("Now adding plating..."))
-				if(!do_after(user, 4 SECONDS * (reinforced ? 2 : 1), TRUE, src, BUSY_ICON_BUILD))
+				if(!do_after(user, 4 SECONDS * (reinforced ? 2 : 1), NONE, src, BUSY_ICON_BUILD))
 					return TRUE
 				if(QDELETED(stack) || stack.amount < (reinforced ? 15 : 2) || girder_state != old_girder_state)
 					return TRUE
@@ -115,7 +121,7 @@
 			var/work_time = 3 SECONDS
 			if(reinforcement == GIRDER_REINF_PLASTEEL)
 				work_time += 3 SECONDS
-			if(!do_after(user, work_time, TRUE, src, BUSY_ICON_BUILD))
+			if(!do_after(user, work_time, NONE, src, BUSY_ICON_BUILD))
 				return TRUE
 			if(girder_state != old_girder_state)
 				return TRUE
@@ -123,7 +129,7 @@
 				return TRUE
 			playsound(loc, 'sound/items/welder2.ogg', 25, 1)
 			to_chat(user, span_notice("You weld the [girder_state == GIRDER_BROKEN_PATCHED ? "girder together" : "metal to the girder"]!"))
-			change_state(girder_state + 1)
+			change_state(girder_state + 1, user)
 			return TRUE
 	return FALSE
 
@@ -135,7 +141,7 @@
 		if(GIRDER_BROKEN)
 			playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
 			to_chat(user, span_notice("Now unbolting the remaining girder base."))
-			if(!do_after(user, 1.5 SECONDS, TRUE, src, BUSY_ICON_BUILD))
+			if(!do_after(user, 1.5 SECONDS, NONE, src, BUSY_ICON_BUILD))
 				return TRUE
 			if(girder_state != GIRDER_BROKEN)
 				return TRUE
@@ -152,7 +158,7 @@
 				return FALSE
 			playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
 			to_chat(user, span_notice("Now securing the girder"))
-			if(!do_after(user, 4 SECONDS, TRUE, src, BUSY_ICON_BUILD))
+			if(!do_after(user, 4 SECONDS, NONE, src, BUSY_ICON_BUILD))
 				return TRUE
 			if(anchored || girder_state != GIRDER_NORMAL)
 				return TRUE
@@ -172,7 +178,7 @@
 				return FALSE
 			playsound(loc, 'sound/items/crowbar.ogg', 25, 1)
 			to_chat(user, span_notice("Now dislodging the girder..."))
-			if(!do_after(user, 4 SECONDS, TRUE, src, BUSY_ICON_BUILD))
+			if(!do_after(user, 4 SECONDS, NONE, src, BUSY_ICON_BUILD))
 				return TRUE
 			if(!anchored || girder_state != GIRDER_NORMAL)
 				return TRUE
@@ -186,7 +192,7 @@
 			var/work_time = 3 SECONDS
 			if(reinforcement == GIRDER_REINF_PLASTEEL)
 				work_time += 3 SECONDS
-			if(!do_after(user, work_time, TRUE, src, BUSY_ICON_BUILD))
+			if(!do_after(user, work_time, NONE, src, BUSY_ICON_BUILD))
 				return TRUE
 			if(girder_state != old_girder_state)
 				return TRUE
@@ -207,7 +213,7 @@
 				return FALSE
 			playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)
 			to_chat(user, span_notice("Now dissassembling the girder"))
-			if(!do_after(user, 4 SECONDS, TRUE, src, BUSY_ICON_BUILD))
+			if(!do_after(user, 4 SECONDS, NONE, src, BUSY_ICON_BUILD))
 				return TRUE
 			if(anchored || girder_state != GIRDER_NORMAL)
 				return TRUE
@@ -221,7 +227,7 @@
 			var/work_time = 3 SECONDS
 			if(reinforcement == GIRDER_REINF_PLASTEEL)
 				work_time += 3 SECONDS
-			if(!do_after(user, work_time, TRUE, src, BUSY_ICON_BUILD))
+			if(!do_after(user, work_time, NONE, src, BUSY_ICON_BUILD))
 				return TRUE
 			if(girder_state != old_girder_state)
 				return TRUE
@@ -235,7 +241,7 @@
 			var/work_time = 3 SECONDS
 			if(reinforcement == GIRDER_REINF_PLASTEEL)
 				work_time += 3 SECONDS
-			if(!do_after(user, work_time, TRUE, src, BUSY_ICON_BUILD))
+			if(!do_after(user, work_time, NONE, src, BUSY_ICON_BUILD))
 				return TRUE
 			if(girder_state != old_girder_state)
 				return TRUE
@@ -253,7 +259,7 @@
 		if(GIRDER_BROKEN_PATCHED)
 			playsound(loc, 'sound/items/wirecutter.ogg', 25, 1)
 			to_chat(user, span_notice("Now cutting the metal plate..."))
-			if(!do_after(user, 4 SECONDS, TRUE, src, BUSY_ICON_BUILD))
+			if(!do_after(user, 4 SECONDS, NONE, src, BUSY_ICON_BUILD))
 				return TRUE
 			to_chat(user, span_notice("You finished cutting the metal plate!"))
 			deconstruct()
@@ -264,7 +270,7 @@
 			if(reinforcement == GIRDER_REINF_PLASTEEL)
 				work_time += 3 SECONDS
 			to_chat(user, span_notice("Now cutting the support struts..."))
-			if(!do_after(user, 4 SECONDS, TRUE, src, BUSY_ICON_BUILD))
+			if(!do_after(user, 4 SECONDS, NONE, src, BUSY_ICON_BUILD))
 				return
 			if(girder_state != old_girder_state)
 				return TRUE
@@ -278,7 +284,7 @@
 	if(!reinforcement)
 		reinforcement = GIRDER_REINF_METAL
 	var/turf/source_turf = get_turf(src)
-	source_turf.ChangeTurf(reinforcement_to_wall(reinforcement))
+	source_turf.PlaceOnTop(reinforcement_to_wall(reinforcement))
 	qdel(src)
 
 
@@ -330,17 +336,17 @@
 /obj/structure/girder/update_icon_state()
 	switch(girder_state)
 		if(GIRDER_BROKEN, GIRDER_BROKEN_PATCHED)
-			icon_state = "[icon_prefix]_damaged"
+			icon = 'icons/obj/smooth_objects/girder_broke.dmi'
 		if(GIRDER_NORMAL)
 			if(!anchored)
 				icon_state = "displaced"
 				return
-			icon_state = icon_prefix
+			icon = 'icons/obj/smooth_objects/girder.dmi'
 		if(GIRDER_BUILDING1_LOOSE, GIRDER_BUILDING1_SECURED, GIRDER_BUILDING1_WELDED, GIRDER_BUILDING2_LOOSE, GIRDER_BUILDING2_SECURED)
 			if(reinforcement == GIRDER_REINF_PLASTEEL)
 				icon_state = "reinforced"
 				return
-			icon_state = icon_prefix
+			icon = 'icons/obj/smooth_objects/girder.dmi'
 
 
 /obj/structure/girder/ex_act(severity)
@@ -351,6 +357,8 @@
 			take_damage(200, BRUTE, BOMB)
 		if(EXPLODE_LIGHT)
 			take_damage(25, BRUTE, BOMB)
+		if(EXPLODE_WEAK)
+			take_damage(15, BRUTE, BOMB)
 
 
 /obj/structure/girder/displaced

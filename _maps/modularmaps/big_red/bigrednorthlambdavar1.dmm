@@ -23,6 +23,9 @@
 	dir = 9
 	},
 /area/bigredv2/caves/lambda_lab)
+"k" = (
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/northeast/garbledradio)
 "n" = (
 /obj/structure/closet/crate/freezer/rations,
 /turf/open/floor/plating,
@@ -37,6 +40,9 @@
 "q" = (
 /turf/open/floor/plating,
 /area/bigredv2/caves/lambda_lab)
+"t" = (
+/turf/open/floor/plating/ground/mars/random/cave/rock,
+/area/bigredv2/caves/northeast/garbledradio)
 "v" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -54,6 +60,10 @@
 /obj/structure/closet/crate/internals,
 /turf/open/floor/plating,
 /area/bigredv2/caves/lambda_lab)
+"E" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/northeast/garbledradio)
 "G" = (
 /turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
@@ -68,11 +78,15 @@
 "K" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/cave/rock,
-/area/bigredv2/caves/northeast)
+/area/bigredv2/caves/northeast/garbledradio)
+"L" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/northeast/garbledradio)
 "M" = (
 /obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/northeast)
+/area/bigredv2/caves/northeast/garbledradio)
 "U" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -115,11 +129,11 @@ G
 G
 G
 G
-H
-H
-H
-H
-X
+k
+k
+k
+k
+t
 G
 G
 "}
@@ -147,13 +161,13 @@ A
 G
 G
 G
-X
-X
-v
-H
-H
-H
-X
+t
+t
+E
+k
+k
+k
+t
 G
 G
 "}
@@ -181,13 +195,13 @@ A
 G
 G
 G
-H
-H
-H
-H
-H
-H
-X
+k
+k
+k
+k
+k
+k
+t
 G
 G
 "}
@@ -215,14 +229,14 @@ A
 G
 G
 G
-H
-H
-H
-H
-H
-H
-H
-X
+k
+k
+k
+k
+k
+k
+k
+t
 G
 "}
 (5,1,1) = {"
@@ -249,14 +263,14 @@ A
 G
 G
 G
-H
-p
-H
-H
-v
-H
-p
-X
+k
+L
+k
+k
+E
+k
+L
+t
 G
 "}
 (6,1,1) = {"
@@ -284,13 +298,13 @@ G
 G
 G
 K
-H
-H
-H
-H
-H
-H
-X
+k
+k
+k
+k
+k
+k
+t
 G
 "}
 (7,1,1) = {"
@@ -319,12 +333,12 @@ G
 G
 G
 G
-X
-H
-H
-H
-H
-X
+t
+k
+k
+k
+k
+t
 G
 "}
 (8,1,1) = {"
@@ -354,12 +368,12 @@ G
 G
 G
 G
-H
-H
-H
-H
-v
-X
+k
+k
+k
+k
+E
+t
 "}
 (9,1,1) = {"
 A
@@ -389,11 +403,11 @@ G
 G
 G
 K
-H
-H
-H
-H
-H
+k
+k
+k
+k
+k
 "}
 (10,1,1) = {"
 A
@@ -423,11 +437,11 @@ G
 G
 G
 G
-X
-H
-p
-H
-H
+t
+k
+L
+k
+k
 "}
 (11,1,1) = {"
 A
@@ -459,9 +473,9 @@ G
 G
 G
 G
-H
-p
-H
+k
+L
+k
 "}
 (12,1,1) = {"
 A
@@ -493,9 +507,9 @@ G
 G
 G
 G
-X
-H
-p
+t
+k
+L
 "}
 (13,1,1) = {"
 A
@@ -663,9 +677,9 @@ G
 G
 g
 M
-H
-H
-H
+k
+k
+k
 "}
 (18,1,1) = {"
 A
@@ -697,9 +711,9 @@ G
 G
 g
 M
-H
-H
-p
+k
+k
+L
 "}
 (19,1,1) = {"
 A
@@ -731,9 +745,9 @@ G
 G
 M
 M
-H
-H
-H
+k
+k
+k
 "}
 (20,1,1) = {"
 A
@@ -765,9 +779,9 @@ G
 h
 H
 H
-H
-H
-H
+k
+k
+k
 "}
 (21,1,1) = {"
 A
@@ -800,8 +814,8 @@ H
 H
 H
 v
-H
-H
+k
+k
 "}
 (22,1,1) = {"
 A
@@ -834,8 +848,8 @@ H
 H
 H
 H
-H
-H
+k
+k
 "}
 (23,1,1) = {"
 A
@@ -868,8 +882,8 @@ p
 H
 H
 H
-H
-p
+k
+L
 "}
 (24,1,1) = {"
 A
@@ -902,8 +916,8 @@ H
 H
 H
 H
-v
-H
+E
+k
 "}
 (25,1,1) = {"
 A
@@ -935,9 +949,9 @@ H
 H
 H
 H
-H
-H
-H
+k
+k
+k
 "}
 (26,1,1) = {"
 A
@@ -970,7 +984,7 @@ H
 H
 H
 H
-H
+k
 G
 "}
 (27,1,1) = {"

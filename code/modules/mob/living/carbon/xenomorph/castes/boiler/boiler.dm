@@ -2,7 +2,7 @@
 	caste_base_type = /mob/living/carbon/xenomorph/boiler
 	name = "Boiler"
 	desc = "A huge, grotesque xenomorph covered in glowing, oozing acid slime."
-	icon = 'icons/Xeno/2x2_Xenos.dmi'
+	icon = 'icons/Xeno/castes/boiler.dmi'
 	icon_state = "Boiler Walking"
 	bubble_icon = "alienroyal"
 	health = 200
@@ -12,7 +12,7 @@
 	old_x = -16
 	mob_size = MOB_SIZE_BIG
 	tier = XENO_TIER_THREE
-	upgrade = XENO_UPGRADE_ZERO
+	upgrade = XENO_UPGRADE_NORMAL
 	gib_chance = 100
 	drag_delay = 6 //pulling a big dead xeno is hard
 	var/datum/effect_system/smoke_spread/xeno/smoke
@@ -49,7 +49,7 @@
 	update_boiler_glow()
 	RegisterSignal(src, COMSIG_XENOMORPH_GIBBING, PROC_REF(gib_explode))
 	RegisterSignal(src, COMSIG_MOB_STAT_CHANGED, PROC_REF(on_stat_change))
-	RegisterSignal(src, list(COMSIG_LIVING_STATUS_STUN,
+	RegisterSignals(src, list(COMSIG_LIVING_STATUS_STUN,
 		COMSIG_LIVING_STATUS_KNOCKDOWN,
 		COMSIG_LIVING_STATUS_PARALYZE,
 		COMSIG_LIVING_STATUS_IMMOBILIZE,
@@ -69,7 +69,7 @@
 /// Handles boilers changing stat, you unroot yourself if you change stat, like going from conscious to unconscious
 /mob/living/carbon/xenomorph/boiler/proc/on_stat_change(datum/source, old_state, new_state)
 	SIGNAL_HANDLER
-	var/datum/action/xeno_action/activable/bombard/bombard_action = actions_by_path[/datum/action/xeno_action/activable/bombard]
+	var/datum/action/ability/activable/xeno/bombard/bombard_action = actions_by_path[/datum/action/ability/activable/xeno/bombard]
 	if(HAS_TRAIT_FROM(src, TRAIT_IMMOBILE, BOILER_ROOTED_TRAIT))
 		bombard_action.set_rooted(FALSE)
 
@@ -78,6 +78,6 @@
 	SIGNAL_HANDLER
 	if(!(amount > 0) || !HAS_TRAIT_FROM(src, TRAIT_IMMOBILE, BOILER_ROOTED_TRAIT))
 		return
-	var/datum/action/xeno_action/activable/bombard/bombard_action = actions_by_path[/datum/action/xeno_action/activable/bombard]
+	var/datum/action/ability/activable/xeno/bombard/bombard_action = actions_by_path[/datum/action/ability/activable/xeno/bombard]
 	balloon_alert_to_viewers("[src] scrambles out of the ground from the impact!")
 	bombard_action.set_rooted(FALSE)

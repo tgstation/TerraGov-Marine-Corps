@@ -5,6 +5,12 @@
 #define MINIMAP_FLAG_EXCAVATION_ZONE (1<<3)
 #define MINIMAP_FLAG_ALL (1<<4) - 1
 
+GLOBAL_LIST_INIT(faction_to_minimap_flag, list(
+	FACTION_XENO = MINIMAP_FLAG_XENO,
+	FACTION_TERRAGOV = MINIMAP_FLAG_MARINE,
+	FACTION_SOM = MINIMAP_FLAG_MARINE_SOM,
+))
+
 ///Converts the overworld x and y to minimap x and y values
 #define MINIMAP_PIXEL_FROM_WORLD(val) (val*2-3)
 

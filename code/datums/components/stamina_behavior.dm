@@ -1,5 +1,7 @@
 /datum/component/stamina_behavior
 	var/stamina_state = STAMINA_STATE_IDLE
+	///multiplier on stamina cost
+	var/drain_modifier = 1
 
 
 /datum/component/stamina_behavior/Initialize()
@@ -9,8 +11,9 @@
 	var/mob/living/stamina_holder = parent
 	if(stamina_holder.m_intent == MOVE_INTENT_RUN)
 		stamina_active()
+	drain_modifier = stamina_holder.get_gravity()
 	RegisterSignal(parent, COMSIG_MOB_TOGGLEMOVEINTENT, PROC_REF(on_toggle_move_intent))
-
+	RegisterSignal(parent, COMSIG_MOVABLE_Z_CHANGED, PROC_REF(on_change_z))
 
 /datum/component/stamina_behavior/proc/on_toggle_move_intent(datum/source, new_intent)
 	SIGNAL_HANDLER
@@ -43,7 +46,7 @@
 	var/mob/living/stamina_holder = parent
 	if(oldloc == stamina_holder.loc)
 		return
-	stamina_holder.adjustStaminaLoss(1)
+	stamina_holder.adjustStaminaLoss(1 * drain_modifier)
 	if(stamina_holder.staminaloss >= 0)
 		stamina_holder.toggle_move_intent(MOVE_INTENT_WALK)
 
@@ -54,3 +57,9 @@
 	if(canmove || stamina_holder.m_intent == MOVE_INTENT_WALK)
 		return
 	stamina_holder.toggle_move_intent(MOVE_INTENT_WALK)
+
+///changes the drain modifier if gravity changes
+/datum/component/stamina_behavior/proc/on_change_z(datum/source, old_z, new_z)
+	SIGNAL_HANDLER
+	var/mob/living/stamina_holder = parent
+	drain_modifier = stamina_holder.get_gravity()

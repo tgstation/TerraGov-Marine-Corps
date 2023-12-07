@@ -150,6 +150,9 @@
 	if(aiControlDisabled)
 		to_chat(user, span_notice("[src] AI remote control has been disabled."))
 		return
+	if(emergency)
+		to_chat(user, span_notice("You can't lock a door that's on emergency access."))
+		return
 	if(locked)
 		bolt_raise(user)
 	else if(hasPower())
@@ -160,6 +163,20 @@
 		to_chat(user, span_notice("[src] AI remote control has been disabled."))
 		return
 	user_toggle_open(user)
+
+/obj/machinery/door/airlock/AICtrlShiftClick(mob/living/silicon/ai/user)
+	if(aiControlDisabled)
+		to_chat(user, span_notice("[src] AI remote control has been disabled."))
+		return
+	if(locked || !hasPower())
+		to_chat(user, span_notice("Emergency access mechanism inaccessible."))
+		return
+	if(emergency)
+		to_chat(user, span_notice("[src] emergency access has been disabled."))
+		emergency_off(user)
+	else
+		to_chat(user, span_notice("[src] emergency access has been enabled."))
+		emergency_on(user)
 
 /obj/machinery/door/airlock/dropship_hatch/AICtrlClick(mob/living/silicon/ai/user)
 	return
@@ -213,7 +230,7 @@
 /obj/structure/xeno/evotower/AIMiddleClick(mob/living/silicon/ai/user)
 	user.ai_ping(src, COOLDOWN_AI_PING_EXTRA_LOW)
 
-/obj/structure/xeno/maturitytower/AIMiddleClick(mob/living/silicon/ai/user)
+/obj/structure/xeno/psychictower/AIMiddleClick(mob/living/silicon/ai/user)
 	user.ai_ping(src, COOLDOWN_AI_PING_EXTRA_LOW)
 
 /obj/structure/xeno/pherotower/AIMiddleClick(mob/living/silicon/ai/user)
@@ -295,7 +312,7 @@
 	if(SSmonitor.gamestate == SHUTTERS_CLOSED)
 		to_chat(user, span_warning("The operation hasn't started yet."))
 		return
-	if(A.ceiling > CEILING_METAL)
+	if(A.ceiling > CEILING_OBSTRUCTED)
 		to_chat(user, span_warning("DEPTH WARNING: Target too deep for ordnance."))
 		return
 	if((GLOB.marine_main_ship?.rail_gun?.last_firing_ai + COOLDOWN_RAILGUN_FIRE) > world.time)
@@ -313,7 +330,7 @@
 	var/obj/effect/overlay/temp/laser_target/RGL = new (src, 0, user.name)
 	laser = RGL
 	playsound(src, 'sound/effects/angry_beep.ogg', 55)
-	if(!do_after(user, AI_RAILGUN_FIRING_WINDUP_DELAY, TRUE, user, BUSY_ICON_GENERIC)) //initial windup time until firing begins
+	if(!do_after(user, AI_RAILGUN_FIRING_WINDUP_DELAY, NONE, user, BUSY_ICON_GENERIC)) //initial windup time until firing begins
 		QDEL_NULL(laser)
 		REMOVE_TRAIT(user, TRAIT_IS_FIRING_RAILGUN, TRAIT_IS_FIRING_RAILGUN)
 		return
@@ -324,7 +341,7 @@
 			QDEL_NULL(laser)
 			REMOVE_TRAIT(user, TRAIT_IS_FIRING_RAILGUN, TRAIT_IS_FIRING_RAILGUN)
 			return
-		if(!do_after(user, AI_RAILGUN_FIRING_TIME_DELAY, TRUE, laser, BUSY_ICON_GENERIC)) //delay between shots
+		if(!do_after(user, AI_RAILGUN_FIRING_TIME_DELAY, NONE, laser, BUSY_ICON_GENERIC)) //delay between shots
 			QDEL_NULL(laser)
 			REMOVE_TRAIT(user, TRAIT_IS_FIRING_RAILGUN, TRAIT_IS_FIRING_RAILGUN)
 			break

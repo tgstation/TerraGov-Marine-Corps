@@ -16,6 +16,11 @@
 	. = ..()
 	add_debris_element()
 
+/turf/closed/hitby(atom/movable/AM, speed = 5)
+	AM.stop_throw()
+	AM.turf_collision(src, speed)
+	return TRUE
+
 /turf/closed/mineral
 	name = "rock"
 	icon = 'icons/turf/walls.dmi'
@@ -32,7 +37,7 @@
 	for(var/direction in GLOB.cardinals)
 		var/turf/turf_to_check = get_step(src, direction)
 		if(!isnull(turf_to_check) && !turf_to_check.density)
-			var/image/rock_side = image(icon, "[icon_state]_side", dir = turn(direction, 180))
+			var/image/rock_side = image(icon, "[icon_state]_side", dir = REVERSE_DIR(direction))
 			switch(direction)
 				if(NORTH)
 					rock_side.pixel_y += world.icon_size
@@ -45,6 +50,23 @@
 			if(!isspaceturf(turf_to_check))
 				minimap_color = MINIMAP_SOLID
 			overlays += rock_side
+
+/turf/closed/mineral/attack_alien(mob/living/carbon/xenomorph/xeno_user, isrightclick = FALSE)
+	. = ..()
+	if(isxenobehemoth(xeno_user))
+		xeno_user.do_attack_animation(src)
+		playsound(src, 'sound/effects/behemoth/earth_pillar_eating.ogg', 10, TRUE)
+		xeno_user.visible_message(span_xenowarning("\The [xeno_user] eats away at the [src.name]!"), \
+		span_xenonotice(pick(
+			"We eat away at the stone. It tastes good, as expected of our primary diet.",
+			"Mmmmm... Delicious rock. A fitting meal for the hardiest of creatures.",
+			"This boulder -- its flavor fills us with glee. Our palate is thoroughly satisfied.",
+			"These minerals are tasty! We want more!",
+			"Eating this stone makes us think; is our hide tougher? It is. It must be...",
+			"A delectable flavor. Just one bite is not enough...",
+			"One bite, two bites... why not just finish the whole rock?",
+			"The stone. The rock. The boulder. Its name matters not when we consume it.",
+			"Delicious, delectable, simply exquisite. Just a few more minerals and it'd be perfect...")), null, 5)
 
 /turf/closed/mineral/smooth
 	name = "rock"
@@ -60,6 +82,7 @@
 	open_turf_type = /turf/open/floor/plating/ground/mars/random/dirt
 
 /turf/closed/mineral/smooth/indestructible
+	name = "tough rock"
 	resistance_flags = RESIST_ALL
 	icon_state = "wall-invincible"
 
@@ -88,7 +111,7 @@
 	icon_state = "darkfrostwall-0"
 	walltype = "darkfrostwall"
 	base_icon_state = "darkfrostwall"
-	resistance_flags = PLASMACUTTER_IMMUNE
+	resistance_flags = PLASMACUTTER_IMMUNE|UNACIDABLE
 
 /turf/closed/mineral/smooth/darkfrostwall/indestructible
 	resistance_flags = RESIST_ALL
@@ -201,7 +224,7 @@
 	for(var/direction in GLOB.cardinals)
 		var/turf/turf_to_check = get_step(src, direction)
 		if(istype(turf_to_check, /turf/open))
-			var/image/rock_side = image(icon, "[icon_state]_side", dir = turn(direction, 180))
+			var/image/rock_side = image(icon, "[icon_state]_side", dir = REVERSE_DIR(direction))
 			switch(direction)
 				if(NORTH)
 					rock_side.pixel_y += world.icon_size
@@ -279,7 +302,7 @@
 			return
 		else if(!P.start_cut(user, name, src))
 			return
-		else if(!do_after(user, PLASMACUTTER_CUT_DELAY, TRUE, src, BUSY_ICON_FRIENDLY))
+		else if(!do_after(user, PLASMACUTTER_CUT_DELAY, NONE, src, BUSY_ICON_FRIENDLY))
 			return
 		else
 			P.cut_apart(user, name, src) //purely a cosmetic effect
@@ -319,7 +342,7 @@
 /turf/closed/ice_rock
 	name = "Icy rock"
 	icon = 'icons/turf/rockwall.dmi'
-	resistance_flags = PLASMACUTTER_IMMUNE
+	resistance_flags = PLASMACUTTER_IMMUNE|UNACIDABLE
 	open_turf_type = /turf/open/floor/plating/ground/ice
 
 /turf/closed/ice_rock/add_debris_element()
@@ -482,6 +505,7 @@
 /turf/closed/shuttle/dropship1/window
 	icon_state = "shuttle_window_glass"
 	opacity = FALSE
+	allow_pass_flags = PASS_GLASS
 
 /turf/closed/shuttle/dropship1/panel
 	icon_state = "shuttle_interior_panel"
@@ -519,6 +543,7 @@
 /turf/closed/shuttle/dropship1/interiorwindow
 	icon_state = "shuttle_interior_inwards"
 	opacity = FALSE
+	allow_pass_flags = PASS_GLASS
 
 /turf/closed/shuttle/dropship1/interiormisc
 	icon_state = "shuttle_interior_threeside"
@@ -672,6 +697,7 @@
 /turf/closed/shuttle/dropship2/window
 	icon_state = "shuttle_window_glass"
 	opacity = FALSE
+	allow_pass_flags = PASS_GLASS
 
 /turf/closed/shuttle/dropship2/panel
 	icon_state = "shuttle_interior_panel"
@@ -729,6 +755,8 @@
 
 /turf/closed/shuttle/dropship2/singlewindow
 	icon_state = "shuttle_single_window"
+	opacity = FALSE
+	allow_pass_flags = PASS_GLASS
 
 /turf/closed/shuttle/dropship2/singlewindow/tadpole
 	icon_state = "shuttle_single_window"
@@ -757,18 +785,24 @@
 
 /turf/closed/shuttle/dropship2/glassone
 	icon_state = "shuttle_glass1"
+	opacity = FALSE
+	allow_pass_flags = PASS_GLASS
 
 /turf/closed/shuttle/dropship2/glassone/tadpole
 	icon_state = "shuttle_glass1"
 	resistance_flags = NONE
 	opacity = FALSE
+	allow_pass_flags = PASS_GLASS
 
 /turf/closed/shuttle/dropship2/glasstwo
 	icon_state = "shuttle_glass2"
+	opacity = FALSE
+	allow_pass_flags = PASS_GLASS
 
 /turf/closed/shuttle/dropship2/glasstwo/tadpole
 	icon_state = "shuttle_glass2"
 	resistance_flags = NONE
+	allow_pass_flags = PASS_GLASS
 
 /turf/closed/shuttle/dropship2/glassthree
 	icon_state = "shuttle_glass3"

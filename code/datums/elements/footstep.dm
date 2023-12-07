@@ -59,7 +59,7 @@
 	if(!istype(turf))
 		return
 
-	if(source.buckled || source.throwing || source.is_ventcrawling || source.lying_angle || CHECK_MULTIPLE_BITFIELDS(source.flags_pass, HOVERING) || HAS_TRAIT(source, TRAIT_IMMOBILE))
+	if(source.buckled || source.throwing || source.is_ventcrawling || source.lying_angle || CHECK_MULTIPLE_BITFIELDS(source.pass_flags, HOVERING) || HAS_TRAIT(source, TRAIT_IMMOBILE))
 		return
 
 	if(ishuman(source))

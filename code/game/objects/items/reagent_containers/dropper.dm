@@ -2,7 +2,7 @@
 /// Droppers.
 ////////////////////////////////////////////////////////////////////////////////
 /obj/item/reagent_containers/dropper
-	name = "Dropper"
+	name = "dropper"
 	desc = "A dropper. Transfers 5 units."
 	icon = 'icons/obj/items/chemistry.dmi'
 	icon_state = "dropper0"
@@ -34,7 +34,7 @@
 			var/time = 20 //2/3rds the time of a syringe
 			visible_message(span_danger("[user] is trying to squirt something into [target]'s eyes!"))
 
-			if(!do_mob(user, target, time, BUSY_ICON_HOSTILE))
+			if(!do_after(user, time, NONE, target, BUSY_ICON_HOSTILE))
 				return
 
 			if(ishuman(target))
@@ -75,6 +75,7 @@
 				injected += R.name
 			var/contained = english_list(injected)
 			log_combat(user, M, "squirted", src, "Reagents: [contained]")
+			record_reagent_consumption(min(amount_per_transfer_from_this, reagents.total_volume), reagents.reagent_list, user, M)
 
 		trans = src.reagents.trans_to(target, amount_per_transfer_from_this)
 		balloon_alert(user, "transfers [trans] units")

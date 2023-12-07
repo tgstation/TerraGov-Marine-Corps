@@ -86,7 +86,7 @@
 	//If there is an item in the slot you are clicking on, this will relay the click to the item within the slot
 	var/atom/item_in_slot = usr.get_item_by_slot(slot_id)
 	if(item_in_slot)
-		return item_in_slot.Click()
+		return item_in_slot.Click(location, control, params)
 
 	if(!istype(src, /atom/movable/screen/inventory/hand) && usr.attack_ui(slot_id)) // until we get a proper hands refactor
 		usr.update_inv_l_hand()
@@ -627,7 +627,7 @@
 	///The target which the arrow points to
 	var/atom/target
 	///The duration of the effect
-	var/duration
+	var/duration = 1
 	///holder for the deletation timer
 	var/del_timer
 
@@ -639,14 +639,14 @@
 	tracker = tracker_input
 	target = target_input
 	tracker.client.screen += src
-	RegisterSignal(tracker, COMSIG_PARENT_QDELETING, PROC_REF(kill_arrow))
-	RegisterSignal(target, COMSIG_PARENT_QDELETING, PROC_REF(kill_arrow))
+	RegisterSignal(tracker, COMSIG_QDELETING, PROC_REF(kill_arrow))
+	RegisterSignal(target, COMSIG_QDELETING, PROC_REF(kill_arrow))
 	process() //Ping immediately after parameters have been set
 
 ///Stop the arrow to avoid runtime and hard del
 /atom/movable/screen/arrow/proc/kill_arrow()
 	SIGNAL_HANDLER
-	if(tracker.client)
+	if(tracker?.client)
 		tracker.client.screen -= src
 	deltimer(del_timer)
 	qdel(src)

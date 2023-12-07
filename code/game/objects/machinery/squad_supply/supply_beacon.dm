@@ -42,7 +42,7 @@
 	var/delay = max(1.5 SECONDS, activation_time - 2 SECONDS * H.skills.getRating(SKILL_LEADERSHIP))
 	H.visible_message(span_notice("[H] starts setting up [src] on the ground."),
 	span_notice("You start setting up [src] on the ground and inputting all the data it needs."))
-	if(!do_after(H, delay, TRUE, src, BUSY_ICON_GENERIC))
+	if(!do_after(H, delay, NONE, src, BUSY_ICON_GENERIC))
 		return FALSE
 	var/obj/machinery/camera/beacon_cam/BC = new(src, "[H.get_paygrade()] [H.name] [src]")
 	H.transferItemToLoc(src, H.loc)
@@ -57,12 +57,9 @@
 	playsound(src, 'sound/machines/twobeep.ogg', 15, 1)
 	H.visible_message("[H] activates [src].",
 	"You activate [src].")
-	var/marker_flags
-	if(H.faction == FACTION_TERRAGOV)
-		marker_flags = MINIMAP_FLAG_MARINE
-	else if(H.faction == FACTION_SOM)
-		marker_flags = MINIMAP_FLAG_MARINE_SOM
-	else
+
+	var/marker_flags = GLOB.faction_to_minimap_flag[H.faction]
+	if(!marker_flags)
 		marker_flags = MINIMAP_FLAG_MARINE
 	SSminimaps.add_marker(src, marker_flags, image('icons/UI_icons/map_blips.dmi', null, "supply"))
 	update_icon()
@@ -73,7 +70,7 @@
 	var/delay = max(1 SECONDS, activation_time * 0.5 - 2 SECONDS * H.skills.getRating(SKILL_LEADERSHIP)) //Half as long as setting it up.
 	H.visible_message(span_notice("[H] starts removing [src] from the ground."),
 	span_notice("You start removing [src] from the ground, deactivating it."))
-	if(!do_after(H, delay, TRUE, src, BUSY_ICON_GENERIC))
+	if(!do_after(H, delay, NONE, src, BUSY_ICON_GENERIC))
 		return FALSE
 	QDEL_NULL(beacon_cam)
 	activated = FALSE
@@ -99,6 +96,7 @@
 /obj/item/beacon/supply_beacon
 	name = "supply beacon"
 	desc = "A rugged, glorified laser pointer capable of sending a beam into space. Activate and throw this to call for a supply drop."
+	icon = 'icons/Marine/marine-navigation.dmi'
 	icon_state = "motion0"
 	icon_activated = "motion2"
 	activation_time = 60
@@ -107,7 +105,7 @@
 
 /obj/item/beacon/supply_beacon/Destroy()
 	if(beacon_datum)
-		UnregisterSignal(beacon_datum, COMSIG_PARENT_QDELETING)
+		UnregisterSignal(beacon_datum, COMSIG_QDELETING)
 		QDEL_NULL(beacon_datum)
 	return ..()
 
@@ -116,19 +114,24 @@
 	SIGNAL_HANDLER
 	beacon_datum = null
 
+/obj/item/beacon/supply_beacon/onTransitZ(old_z,new_z)
+	. = ..()
+	//Assumes doMove sets loc before onTransitZ
+	beacon_datum.drop_location = loc
+
 /obj/item/beacon/supply_beacon/activate(mob/living/carbon/human/H)
 	var/area/A = get_area(H)
 	. = ..()
 	if(!.)
 		return
 	beacon_datum = new /datum/supply_beacon("[H.name] + [A]", loc, H.faction)
-	RegisterSignal(beacon_datum, COMSIG_PARENT_QDELETING, PROC_REF(clean_beacon_datum))
+	RegisterSignal(beacon_datum, COMSIG_QDELETING, PROC_REF(clean_beacon_datum))
 
 /obj/item/beacon/supply_beacon/deactivate(mob/living/carbon/human/H)
 	. = ..()
 	if(!.)
 		return
-	UnregisterSignal(beacon_datum, COMSIG_PARENT_QDELETING)
+	UnregisterSignal(beacon_datum, COMSIG_QDELETING)
 	QDEL_NULL(beacon_datum)
 
 /datum/supply_beacon

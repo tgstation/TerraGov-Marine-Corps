@@ -28,7 +28,7 @@
 /datum/mind
 	var/key
 	var/name
-	var/mob/living/current
+	var/mob/living/current //TODO: Sanity check this var. Observers can be current, but living procs are called on it
 	var/active = FALSE
 
 	var/memory
@@ -41,7 +41,7 @@
 
 	/// List of antag datums on this mind
 	var/list/antag_datums
-	var/assigned_role
+	var/datum/job/assigned_role
 
 /datum/mind/New(key)
 	src.key = key
@@ -53,6 +53,18 @@
 		QDEL_NULL(initial_account)
 	return ..()
 
+/datum/mind/serialize_list(list/options, list/semvers)
+	. = ..()
+
+	.["key"] = key
+	.["name"] = name
+	.["memory"] = memory
+	.["antag_datums"] = antag_datums
+	.["assigned_role"] = assigned_role.title
+	.["current"] = current
+
+	SET_SERIALIZATION_SEMVER(semvers, "1.0.0")
+	return .
 
 /datum/mind/proc/transfer_to(mob/new_character, force_key_move = FALSE)
 	if(current)	// remove ourself from our old body's mind variable
@@ -74,6 +86,7 @@
 	if(active || force_key_move)
 		new_character.key = key		//now transfer the key to link the client to our new body
 
+	new_character.client.init_verbs()
 
 /datum/mind/proc/set_death_time()
 	last_death = world.time

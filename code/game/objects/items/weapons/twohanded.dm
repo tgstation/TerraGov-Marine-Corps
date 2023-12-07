@@ -44,11 +44,16 @@
 			to_chat(user, span_warning("Your other hand can't hold [src]!"))
 			return FALSE
 
+	if(!place_offhand(user))
+		to_chat(user, span_warning("You cannot wield [src] right now."))
+		return FALSE
+
 	toggle_wielded(user, TRUE)
 	SEND_SIGNAL(src, COMSIG_ITEM_WIELD, user)
 	name = "[name] (Wielded)"
 	update_item_state()
-	place_offhand(user, name)
+	user.update_inv_l_hand()
+	user.update_inv_r_hand()
 	return TRUE
 
 
@@ -68,18 +73,18 @@
 	return TRUE
 
 
-/obj/item/proc/place_offhand(mob/user, item_name)
-	to_chat(user, span_notice("You grab [item_name] with both hands."))
+/obj/item/proc/place_offhand(mob/user)
 	var/obj/item/weapon/twohanded/offhand/offhand = new /obj/item/weapon/twohanded/offhand(user)
-	offhand.name = "[item_name] - offhand"
-	offhand.desc = "Your second grip on the [item_name]."
-	user.put_in_inactive_hand(offhand)
-	user.update_inv_l_hand()
-	user.update_inv_r_hand()
-
+	if(!user.put_in_inactive_hand(offhand))
+		qdel(offhand)
+		return FALSE
+	to_chat(user, span_notice("You grab [src] with both hands."))
+	offhand.name = "[name] - offhand"
+	offhand.desc = "Your second grip on [src]."
+	return TRUE
 
 /obj/item/proc/remove_offhand(mob/user)
-	to_chat(user, span_notice("You are now carrying [name] with one hand."))
+	to_chat(user, span_notice("You are now carrying [src] with one hand."))
 	var/obj/item/weapon/twohanded/offhand/offhand = user.get_inactive_held_item()
 	if(istype(offhand) && !QDELETED(offhand))
 		qdel(offhand)
@@ -149,6 +154,7 @@
 
 
 /obj/item/weapon/twohanded/offhand/dropped(mob/user)
+	. = ..()
 	return
 
 
@@ -207,6 +213,7 @@
 	force_wielded = 80
 	penetration = 35
 	flags_equip_slot = ITEM_SLOT_BACK
+	attack_speed = 15
 
 /obj/item/weapon/twohanded/fireaxe/som/Initialize(mapload)
 	. = ..()
@@ -271,7 +278,7 @@
 	///Based on what direction the tip of the spear is pointed at in the sprite; maybe someone makes a spear that points northwest
 	var/current_angle = 45
 
-/obj/item/weapon/twohanded/spear/throw_at(atom/target, range, speed, thrower, spin, flying)
+/obj/item/weapon/twohanded/spear/throw_at(atom/target, range, speed, thrower, spin, flying = FALSE, targetted_throw = TRUE)
 	spin = FALSE
 	//Find the angle the spear is to be thrown at, then rotate it based on that angle
 	var/rotation_value = Get_Angle(thrower, get_turf(target)) - current_angle
@@ -280,9 +287,6 @@
 	rotate_me.Turn(rotation_value)
 	transform = rotate_me
 	return ..()
-
-/obj/item/weapon/twohanded/spear/throw_impact(atom/hit_atom, speed, bounce = FALSE)
-	. = ..()
 
 /obj/item/weapon/twohanded/spear/pickup(mob/user)
 	. = ..()
@@ -302,19 +306,9 @@
 	icon_state = "spear"
 	item_state = "spear"
 
-/obj/item/weapon/twohanded/spear/tactical/harvester
-	name = "\improper HP-S Harvester spear"
-	desc = "TerraGov Marine Corps' experimental High Point-Singularity 'Harvester' spear. An advanced weapon that trades sheer force for the ability to apply a variety of debilitating effects when loaded with certain reagents. Activate after loading to prime a single use of an effect. It also harvests substances from alien lifeforms it strikes when connected to the Vali system."
-	icon_state = "vali_spear"
-	item_state = "vali_spear"
-	force = 32
-	force_wielded = 60
-	throwforce = 60
-	flags_item = TWOHANDED
-
-/obj/item/weapon/twohanded/spear/tactical/harvester/Initialize(mapload)
+/obj/item/weapon/twohanded/spear/tactical/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/harvester)
+	AddElement(/datum/element/strappable)
 
 /obj/item/weapon/twohanded/spear/tactical/tacticool
 	name = "M-23 TACTICOOL spear"
@@ -373,49 +367,6 @@
 	resistance_flags = UNACIDABLE
 	attack_speed = 12 //Default is 7.
 
-/obj/item/weapon/twohanded/glaive/harvester
-	name = "\improper HP-S Harvester claymore"
-	desc = "TerraGov Marine Corps' experimental High Point-Singularity 'Harvester' blade. An advanced weapon that trades sheer force for the ability to apply a variety of debilitating effects when loaded with certain reagents. Activate after loading to prime a single use of an effect. It also harvests substances from alien lifeforms it strikes when connected to the Vali system. This specific version is enlarged to fit the design of an old world claymore. Simply squeeze the hilt to activate."
-	icon_state = "vali_claymore"
-	item_state = "vali_claymore"
-	force = 28
-	force_wielded = 90
-	throwforce = 65
-	throw_speed = 3
-	edge = 1
-	attack_speed = 24
-	sharp = IS_SHARP_ITEM_BIG
-	w_class = WEIGHT_CLASS_BULKY
-	flags_item = TWOHANDED
-	resistance_flags = NONE
-
-	/// Lists the information in the codex
-	var/codex_info = {"<b>Reagent info:</b><BR>
-	Bicaridine - heal your target for 10 brute. Usable on both dead and living targets.<BR>
-	Kelotane - produce a cone of flames<BR>
-	Tramadol - slow your target for 2 seconds<BR>
-	<BR>
-	<b>Tips:</b><BR>
-	> Needs to be connected to the Vali system to collect green blood. You can connect it though the Vali system's configurations menu.<BR>
-	> Filled by liquid reagent containers. Emptied by using an empty liquid reagent container.<BR>
-	> Toggle unique action (SPACE by default) to load a single-use of the reagent effect after the blade has been filled up."}
-
-/obj/item/weapon/twohanded/glaive/harvester/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/harvester, 60, TRUE)
-
-/obj/item/weapon/twohanded/glaive/harvester/equipped(mob/user, slot)
-	. = ..()
-	toggle_item_bump_attack(user, TRUE)
-
-/obj/item/weapon/twohanded/glaive/harvester/dropped(mob/user)
-	. = ..()
-	toggle_item_bump_attack(user, FALSE)
-
-/obj/item/weapon/twohanded/glaive/harvester/get_mechanics_info()
-	. = ..()
-	. += jointext(codex_info, "<br>")
-
 /obj/item/weapon/twohanded/glaive/damaged
 	name = "war glaive"
 	desc = "A huge, powerful blade on a metallic pole. Mysterious writing is carved into the weapon. This one is ancient and has suffered serious acid damage, making it near-useless."
@@ -424,7 +375,7 @@
 
 /obj/item/weapon/twohanded/rocketsledge
 	name = "rocket sledge"
-	desc = "Fitted with a rocket booster at the head, the rocket sledge would deliver a tremendously powerful impact, easily crushing your enemies. Uses fuel to power itself. AltClick to tighten your grip."
+	desc = "Fitted with a rocket booster at the head, the rocket sledge would deliver a tremendously powerful impact, easily crushing your enemies. Uses fuel to power itself. Press AltClick to tighten your grip. Press Spacebar to change modes."
 	icon_state = "rocketsledge"
 	item_state = "rocketsledge"
 	force = 30
@@ -445,15 +396,26 @@
 	var/fuel_used = 5
 	///additional damage when weapon is active
 	var/additional_damage = 75
+	///stun value in crush mode
+	var/crush_stun_amount = 2 SECONDS
+	///weaken value in crush mode
+	var/crush_weaken_amount = 4 SECONDS
+	///stun value in knockback mode
+	var/knockback_stun_amount = 2 SECONDS
+	///weaken value in knockback mode
+	var/knockback_weaken_amount = 2 SECONDS
 	///stun value
-	var/stun = 1
+	var/stun
 	///weaken value
-	var/weaken = 2
-	///knockback value
-	var/knockback = 0
+	var/weaken
+	///knockback value; 0 = crush mode, 1 = knockback mode
+	var/knockback
 
 /obj/item/weapon/twohanded/rocketsledge/Initialize(mapload)
 	. = ..()
+	stun = crush_stun_amount
+	weaken = crush_weaken_amount
+	knockback = 0
 	create_reagents(max_fuel, null, list(/datum/reagent/fuel = max_fuel))
 	AddElement(/datum/element/strappable)
 
@@ -505,15 +467,15 @@
 /obj/item/weapon/twohanded/rocketsledge/unique_action(mob/user)
 	. = ..()
 	if (knockback)
-		stun = 1
-		weaken = 2
+		stun = crush_stun_amount
+		weaken = crush_weaken_amount
 		knockback = 0
 		balloon_alert(user, "Selected mode: CRUSH.")
 		playsound(loc, 'sound/machines/switch.ogg', 25)
 		return
 
-	stun = 1
-	weaken = 1
+	stun = knockback_stun_amount
+	weaken = knockback_weaken_amount
 	knockback = 1
 	balloon_alert(user, "Selected mode: KNOCKBACK.")
 	playsound(loc, 'sound/machines/switch.ogg', 25)
@@ -555,7 +517,7 @@
 		if(xeno_victim.crest_defense) //Crest defense protects us from the stun.
 			stun = 0
 		else
-			stun = 1
+			stun = knockback ? knockback_stun_amount : crush_stun_amount
 
 	if(!M.IsStun() && !M.IsParalyzed() && !isxenoqueen(M)) //Prevent chain stunning. Queen is protected.
 		M.apply_effects(stun,weaken)

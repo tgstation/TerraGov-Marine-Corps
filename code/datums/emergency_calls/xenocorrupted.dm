@@ -34,18 +34,18 @@
 		return
 
 	if(prob(35))
-		. = new /mob/living/carbon/xenomorph/drone/elder/Corrupted(spawn_loc, TRUE)
+		. = new /mob/living/carbon/xenomorph/drone/Corrupted(spawn_loc, TRUE)
 		M.transfer_to(., TRUE)
 		print_backstory(.)
 		return
 
 	if(prob(35))
-		. = new /mob/living/carbon/xenomorph/spitter/mature/Corrupted(spawn_loc, TRUE)
+		. = new /mob/living/carbon/xenomorph/spitter/Corrupted(spawn_loc, TRUE)
 		M.transfer_to(., TRUE)
 		print_backstory(.)
 		return
 
-	. = new /mob/living/carbon/xenomorph/hunter/mature/Corrupted(spawn_loc, TRUE)
+	. = new /mob/living/carbon/xenomorph/hunter/Corrupted(spawn_loc, TRUE)
 	M.transfer_to(., TRUE)
 	print_backstory(.)
 

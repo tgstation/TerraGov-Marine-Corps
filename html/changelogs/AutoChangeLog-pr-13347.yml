@@ -1,4 +1,0 @@
-author: "ivanmixo"
-delete-after: True
-changes:
-  - code_imp: "Converted instances of new/list to the list wrapper"

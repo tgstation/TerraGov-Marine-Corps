@@ -140,7 +140,7 @@
 	//using handfuls; and filling internal mags has no delay.
 	if(fill_delay)
 		to_chat(user, span_notice("You start refilling [src] with [source]."))
-		if(!do_after(user, fill_delay, TRUE, src, BUSY_ICON_GENERIC))
+		if(!do_after(user, fill_delay, NONE, src, BUSY_ICON_GENERIC))
 			return
 
 	to_chat(user, span_notice("You refill [src] with [source]."))
@@ -208,11 +208,10 @@
 	caliber = source.caliber
 	default_ammo = source.default_ammo
 
-//~Art interjecting here for explosion when using flamer procs.
 /obj/item/ammo_magazine/flamer_fire_act(burnlevel)
 	if(!current_rounds)
 		return
-	explosion(loc, 0, 0, 1, 2, throw_range = FALSE, small_animation = TRUE) //blow it up.
+	explosion(loc, 0, 0, 0, 1, 1, throw_range = FALSE)
 	qdel(src)
 
 //Helper proc, to allow us to see a percentage of how full the magazine is.
@@ -255,6 +254,7 @@
 /obj/item/ammo_magazine/handful/micro_grenade
 	name = "handful of airburst micro grenades (10g)"
 	icon_state = "micro_grenade_airburst"
+	icon_state_mini = "40mm_cyan"
 	current_rounds = 3
 	max_rounds = 3
 	default_ammo = /datum/ammo/bullet/micro_rail/airburst
@@ -263,16 +263,19 @@
 /obj/item/ammo_magazine/handful/micro_grenade/dragonbreath
 	name = "handful of dragon's breath micro grenades (10g)"
 	icon_state = "micro_grenade_incendiary"
+	icon_state_mini = "40mm_orange"
 	default_ammo = /datum/ammo/bullet/micro_rail/dragonbreath
 
 /obj/item/ammo_magazine/handful/micro_grenade/cluster
 	name = "handful of clustermunition micro grenades (10g)"
 	icon_state = "micro_grenade_cluster"
+	icon_state_mini = "40mm_red"
 	default_ammo = /datum/ammo/bullet/micro_rail/cluster
 
 /obj/item/ammo_magazine/handful/micro_grenade/smoke_burst
 	name = "handful of smoke burst micro grenades (10g)"
 	icon_state = "micro_grenade_smoke"
+	icon_state_mini = "40mm_blue"
 	default_ammo = /datum/ammo/bullet/micro_rail/smoke_burst
 
 //----------------------------------------------------------------//
@@ -388,7 +391,7 @@ Turn() or Shift() as there is virtually no overhead. ~N
 				to_chat(user, span_warning("[AM] is already full."))
 				return
 
-			if(!do_after(user, 15, TRUE, src, BUSY_ICON_GENERIC))
+			if(!do_after(user, 15, NONE, src, BUSY_ICON_GENERIC))
 				return
 
 			playsound(loc, 'sound/weapons/guns/interact/revolver_load.ogg', 25, 1)
@@ -422,7 +425,7 @@ Turn() or Shift() as there is virtually no overhead. ~N
 /obj/item/big_ammo_box/flamer_fire_act(burnlevel)
 	if(!bullet_amount)
 		return
-	explosion(loc, 0, 0, 1, 2, throw_range = FALSE, small_animation = TRUE) //blow it up.
+	explosion(loc, 0, 0, 1, 0, 2, throw_range = FALSE) //blow it up.
 	qdel(src)
 
 //Deployable shotgun ammo box
@@ -559,6 +562,21 @@ Turn() or Shift() as there is virtually no overhead. ~N
 	item_state = "ammoboxflechette"
 	base_icon_state = "ammoboxflechette"
 	ammo_type = /datum/ammo/bullet/shotgun/flechette
+
+/obj/item/shotgunbox/clf_heavyrifle
+	name = "big ammo box (14.5mm API)"
+	caliber = CALIBER_14X5
+	icon_state = "ammobox_145"
+	item_state = "ammobox_145"
+	base_icon_state = "ammobox_145"
+	ammo_type = /datum/ammo/bullet/sniper/clf_heavyrifle
+
+/obj/item/shotgunbox/tracker
+	name = "Tracking Ammo Box"
+	icon_state = "ammoboxtracking"
+	item_state = "ammoboxtracking"
+	base_icon_state = "ammoboxtracking"
+	ammo_type = /datum/ammo/bullet/shotgun/tracker
 
 /obj/item/big_ammo_box/mg
 	name = "big ammo box (10x26mm)"

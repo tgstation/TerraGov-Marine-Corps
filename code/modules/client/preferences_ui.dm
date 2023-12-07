@@ -64,6 +64,7 @@
 			data["good_eyesight"] = good_eyesight
 			data["citizenship"] = citizenship
 			data["tts_voice"] = tts_voice
+			data["tts_pitch"] = "[tts_pitch]"
 			data["religion"] = religion
 			data["h_style"] = h_style
 			data["grad_style"] = grad_style
@@ -96,6 +97,7 @@
 			data["alternate_option"] = alternate_option
 			data["special_occupation"] = be_special
 		if(GAME_SETTINGS)
+			data["is_admin"] = user.client?.holder ? TRUE : FALSE
 			data["ui_style_color"] = ui_style_color
 			data["ui_style"] = ui_style
 			data["ui_style_alpha"] = ui_style_alpha
@@ -104,7 +106,6 @@
 			data["mute_xeno_health_alert_messages"] = mute_xeno_health_alert_messages
 			data["sound_tts"] = sound_tts
 			data["volume_tts"] = volume_tts
-			data["sound_tts_blips"] = sound_tts_blips
 			data["tgui_fancy"] = tgui_fancy
 			data["tgui_lock"] = tgui_lock
 			data["tgui_input"] = tgui_input
@@ -122,14 +123,14 @@
 			data["widescreenpref"] = widescreenpref
 			data["radialmedicalpref"] = !!(toggles_gameplay & RADIAL_MEDICAL)
 			data["radialstackspref"] = !!(toggles_gameplay & RADIAL_STACKS)
+			data["radiallasersgunpref"] = !!(toggles_gameplay & RADIAL_LASERGUNS)
 			data["autointeractdeployablespref"] = !!(toggles_gameplay & AUTO_INTERACT_DEPLOYABLES)
 			data["scaling_method"] = scaling_method
 			data["pixel_size"] = pixel_size
 			data["parallax"] = parallax
 			data["fullscreen_mode"] = fullscreen_mode
-			data["quick_equip"] = list()
-			for(var/quick_equip_slots in quick_equip)
-				data["quick_equip"] += slot_flag_to_fluff(quick_equip_slots)
+			data["fast_mc_refresh"] = fast_mc_refresh
+			data["split_admin_tabs"] = split_admin_tabs
 		if(KEYBIND_SETTINGS)
 			data["is_admin"] = user.client?.holder ? TRUE : FALSE
 			data["key_bindings"] = list()
@@ -143,6 +144,13 @@
 					sentence = emote.message,
 					emote_type = (emote.spoken_emote ? "say" : "me"),
 					)
+		if(DRAW_ORDER)
+			data["draw_order"] = list()
+			for(var/slot in slot_draw_order_pref)
+				data["draw_order"] += slot_flag_to_fluff(slot)
+			data["quick_equip"] = list()
+			for(var/quick_equip_slots in quick_equip)
+				data["quick_equip"] += slot_flag_to_fluff(quick_equip_slots)
 	return data
 
 /datum/preferences/ui_static_data(mob/user)
@@ -189,6 +197,7 @@
 						"bold" = (job.job_flags & JOB_FLAG_BOLD_NAME_ON_SELECTION) ? TRUE : FALSE
 					)
 				)
+			.["overflow_job"] = SSjob?.overflow_role?.title
 			.["special_occupations"] = list(
 				"Latejoin Xenomorph" = BE_ALIEN,
 				"Xenomorph when unrevivable" = BE_ALIEN_UNREVIVABLE,
@@ -524,7 +533,14 @@
 			if(TIMER_COOLDOWN_CHECK(user, COOLDOWN_TRY_TTS))
 				return
 			TIMER_COOLDOWN_START(ui.user, COOLDOWN_TRY_TTS, 0.5 SECONDS)
-			INVOKE_ASYNC(SStts, TYPE_PROC_REF(/datum/controller/subsystem/tts, queue_tts_message), ui.user.client, "Hello, this is my voice.", speaker = choice, local = TRUE)
+			INVOKE_ASYNC(SStts, TYPE_PROC_REF(/datum/controller/subsystem/tts, queue_tts_message), ui.user.client, "Hello, this is my voice.", speaker = choice, local = TRUE, special_filters = isrobot(GLOB.all_species[species]) ? TTS_FILTER_SILICON : "", pitch = tts_pitch)
+
+		if("tts_pitch")
+			tts_pitch = clamp(text2num(params["newValue"]), -12, 12)
+			if(TIMER_COOLDOWN_CHECK(user, COOLDOWN_TRY_TTS))
+				return
+			TIMER_COOLDOWN_START(ui.user, COOLDOWN_TRY_TTS, 0.5 SECONDS)
+			INVOKE_ASYNC(SStts, TYPE_PROC_REF(/datum/controller/subsystem/tts, queue_tts_message), ui.user.client, "Hello, this is my voice.", speaker = tts_voice, local = TRUE, special_filters = isrobot(GLOB.all_species[species]) ? TTS_FILTER_SILICON : "", pitch = tts_pitch)
 
 		if("squad")
 			var/new_squad = params["newValue"]
@@ -580,7 +596,10 @@
 			mute_xeno_health_alert_messages = !mute_xeno_health_alert_messages
 
 		if("sound_tts")
-			sound_tts = !sound_tts
+			var/choice = tgui_input_list(ui.user, "What kind of TTS do you want?", "TTS choice", GLOB.all_tts_options)
+			if(!choice)
+				return
+			sound_tts = choice
 
 		if("volume_tts")
 			var/new_vol = text2num(params["newValue"])
@@ -588,9 +607,6 @@
 				return
 			new_vol = round(new_vol)
 			volume_tts = clamp(new_vol, 0, 100)
-
-		if("sound_tts_blips")
-			sound_tts_blips = !sound_tts_blips
 
 		if("tgui_fancy")
 			tgui_fancy = !tgui_fancy
@@ -642,6 +658,26 @@
 				return
 			quick_equip[editing_slot] = slot_fluff_to_flag(slot)
 			to_chat(src, span_notice("You will now equip/draw from the [slot] slot first."))
+
+		if("equip_slot_equip_position")
+			var/returned_item_list_position = slot_draw_order_pref.Find(slot_fluff_to_flag(params["changing_item"]))
+			if(isnull(returned_item_list_position))
+				return
+			var/direction = params["direction"]
+			if(!direction)
+				return
+			var/swapping_with = returned_item_list_position
+			switch(direction)
+				if("down")
+					if(returned_item_list_position == length(SLOT_DRAW_ORDER))
+						return
+					swapping_with += 1
+					slot_draw_order_pref.Swap(returned_item_list_position, swapping_with)
+				if("up")
+					if(returned_item_list_position == 1)
+						return
+					swapping_with -= 1
+					slot_draw_order_pref.Swap(swapping_with, returned_item_list_position)
 
 		if("show_typing")
 			show_typing = !show_typing
@@ -763,6 +799,9 @@
 		if("radialmedicalpref")
 			toggles_gameplay ^= RADIAL_MEDICAL
 
+		if("radiallasersgunpref")
+			toggles_gameplay ^= RADIAL_LASERGUNS
+
 		if("radialstackspref")
 			toggles_gameplay ^= RADIAL_STACKS
 
@@ -800,6 +839,12 @@
 
 		if("unique_action_use_active_hand")
 			unique_action_use_active_hand = !unique_action_use_active_hand
+
+		if("fast_mc_refresh")
+			fast_mc_refresh = !fast_mc_refresh
+
+		if("split_admin_tabs")
+			split_admin_tabs = !split_admin_tabs
 
 		else //  Handle the unhandled cases
 			return

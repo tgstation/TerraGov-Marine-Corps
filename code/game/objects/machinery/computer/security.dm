@@ -1,7 +1,9 @@
 /obj/machinery/computer/secure_data
 	name = "Security Records"
 	desc = "Used to view and edit personnel's security records"
-	icon_state = "security"
+	icon_state = "computer_small"
+	screen_overlay = "security"
+	broken_icon = "computer_small_red_broken"
 	req_one_access = list(ACCESS_MARINE_BRIG, ACCESS_NT_CORPORATE, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_LOGISTICS)
 	circuit = /obj/item/circuitboard/computer/secure_data
 	var/obj/item/card/id/scan = null
@@ -55,16 +57,16 @@
 
 	var/dat
 	if (temp) //TODO: this proc is awful
-		dat = "<TT>[temp]</TT><BR><BR><A href='?src=\ref[src];choice=Clear Screen'>Clear Screen</A>"
+		dat = "<TT>[temp]</TT><BR><BR><A href='?src=[text_ref(src)];choice=Clear Screen'>Clear Screen</A>"
 	else
-		dat = "Confirm Identity: <A href='?src=\ref[src];choice=Confirm Identity'>[scan ? "[scan.name]" : "----------"]</A><HR>"
+		dat = "Confirm Identity: <A href='?src=[text_ref(src)];choice=Confirm Identity'>[scan ? "[scan.name]" : "----------"]</A><HR>"
 		if (authenticated)
 			switch(screen)
 				if(1.0)
 					dat += {"
 <p style='text-align:center;'>"}
-					dat += "<A href='?src=\ref[src];choice=Search Records'>Search Records</A><BR>"
-					dat += "<A href='?src=\ref[src];choice=New Record (General)'>New Record</A><BR>"
+					dat += "<A href='?src=[text_ref(src)];choice=Search Records'>Search Records</A><BR>"
+					dat += "<A href='?src=[text_ref(src)];choice=New Record (General)'>New Record</A><BR>"
 					dat += {"
 </p>
 <table style="text-align:center;" cellspacing="0" width="100%">
@@ -74,10 +76,10 @@
 </table>
 <table style="text-align:center;" border="1" cellspacing="0" width="100%">
 <tr>
-<th><A href='?src=\ref[src];choice=Sorting;sort=name'>Name</A></th>
-<th><A href='?src=\ref[src];choice=Sorting;sort=id'>ID</A></th>
-<th><A href='?src=\ref[src];choice=Sorting;sort=rank'>Rank</A></th>
-<th><A href='?src=\ref[src];choice=Sorting;sort=fingerprint'>Fingerprints</A></th>
+<th><A href='?src=[text_ref(src)];choice=Sorting;sort=name'>Name</A></th>
+<th><A href='?src=[text_ref(src)];choice=Sorting;sort=id'>ID</A></th>
+<th><A href='?src=[text_ref(src)];choice=Sorting;sort=rank'>Rank</A></th>
+<th><A href='?src=[text_ref(src)];choice=Sorting;sort=fingerprint'>Fingerprints</A></th>
 <th>Criminal Status</th>
 </tr>"}
 					if(!isnull(GLOB.datacore.general))
@@ -99,17 +101,17 @@
 								if("")
 									background = "'background-color:#FFFFFF;'"
 									crimstat = "No Record."
-							dat += "<tr style=[background]><td><A href='?src=\ref[src];choice=Browse Record;d_rec=\ref[R]'>[R.fields["name"]]</a></td>"
+							dat += "<tr style=[background]><td><A href='?src=[text_ref(src)];choice=Browse Record;d_rec=[text_ref(R)]'>[R.fields["name"]]</a></td>"
 							dat += "<td>[R.fields["id"]]</td>"
 							dat += "<td>[R.fields["rank"]]</td>"
 							dat += "<td>[R.fields["fingerprint"]]</td>"
 							dat += "<td>[crimstat]</td></tr>"
 						dat += "</table><hr width='75%' />"
-					dat += "<A href='?src=\ref[src];choice=Record Maintenance'>Record Maintenance</A><br><br>"
-					dat += "<A href='?src=\ref[src];choice=Log Out'>{Log Out}</A>"
+					dat += "<A href='?src=[text_ref(src)];choice=Record Maintenance'>Record Maintenance</A><br><br>"
+					dat += "<A href='?src=[text_ref(src)];choice=Log Out'>{Log Out}</A>"
 				if(2.0)
 					dat += "<B>Records Maintenance</B><HR>"
-					dat += "<BR><A href='?src=\ref[src];choice=Delete All Records'>Delete All Records</A><BR><BR><A href='?src=\ref[src];choice=Return'>Back</A>"
+					dat += "<BR><A href='?src=[text_ref(src)];choice=Delete All Records'>Delete All Records</A><BR><BR><A href='?src=[text_ref(src)];choice=Return'>Back</A>"
 				if(3.0)
 					dat += "<CENTER><B>Security Record</B></CENTER><BR>"
 					if ((istype(active1, /datum/data/record) && GLOB.datacore.general.Find(active1)))
@@ -120,35 +122,35 @@
 							var/obj/item/photo/P2 = active1.fields["photo_side"]
 							DIRECT_OUTPUT(user, browse_rsc(P2.picture.picture_image, "photo_side"))
 						dat += "<table><tr><td>	\
-						Name: <A href='?src=\ref[src];choice=Edit Field;field=name'>[active1.fields["name"]]</A><BR> \
-						ID: <A href='?src=\ref[src];choice=Edit Field;field=id'>[active1.fields["id"]]</A><BR>\n \
-						Sex: <A href='?src=\ref[src];choice=Edit Field;field=sex'>[active1.fields["sex"]]</A><BR>\n	\
-						Age: <A href='?src=\ref[src];choice=Edit Field;field=age'>[active1.fields["age"]]</A><BR>\n	\
-						Rank: <A href='?src=\ref[src];choice=Edit Field;field=rank'>[active1.fields["rank"]]</A><BR>\n	\
-						Fingerprint: <A href='?src=\ref[src];choice=Edit Field;field=fingerprint'>[active1.fields["fingerprint"]]</A><BR>\n	\
+						Name: <A href='?src=[text_ref(src)];choice=Edit Field;field=name'>[active1.fields["name"]]</A><BR> \
+						ID: <A href='?src=[text_ref(src)];choice=Edit Field;field=id'>[active1.fields["id"]]</A><BR>\n \
+						Sex: <A href='?src=[text_ref(src)];choice=Edit Field;field=sex'>[active1.fields["sex"]]</A><BR>\n	\
+						Age: <A href='?src=[text_ref(src)];choice=Edit Field;field=age'>[active1.fields["age"]]</A><BR>\n	\
+						Rank: <A href='?src=[text_ref(src)];choice=Edit Field;field=rank'>[active1.fields["rank"]]</A><BR>\n	\
+						Fingerprint: <A href='?src=[text_ref(src)];choice=Edit Field;field=fingerprint'>[active1.fields["fingerprint"]]</A><BR>\n	\
 						Physical Status: [active1.fields["p_stat"]]<BR>\n	\
 						Mental Status: [active1.fields["m_stat"]]<BR></td>	\
 						<td align = center valign = top>Photo:<br> \
-						<table><td align = center><img src=photo_front height=80 width=80 border=4><BR><A href='?src=\ref[src];choice=Edit Field;field=photo front'>Update front photo</A></td> \
-						<td align = center><img src=photo_side height=80 width=80 border=4><BR><A href='?src=\ref[src];choice=Edit Field;field=photo side'>Update side photo</A></td></table> \
+						<table><td align = center><img src=photo_front height=80 width=80 border=4><BR><A href='?src=[text_ref(src)];choice=Edit Field;field=photo front'>Update front photo</A></td> \
+						<td align = center><img src=photo_side height=80 width=80 border=4><BR><A href='?src=[text_ref(src)];choice=Edit Field;field=photo side'>Update side photo</A></td></table> \
 						</td></tr></table>"
 					else
 						dat += "<B>General Record Lost!</B><BR>"
 					if ((istype(active2, /datum/data/record) && GLOB.datacore.security.Find(active2)))
-						dat += "<BR>\n<CENTER><B>Security Data</B></CENTER><BR>\nCriminal Status: <A href='?src=\ref[src];choice=Edit Field;field=criminal'>[active2.fields["criminal"]]</A><BR>\n<BR>\nMinor Crimes: <A href='?src=\ref[src];choice=Edit Field;field=mi_crim'>[active2.fields["mi_crim"]]</A><BR>\nDetails: <A href='?src=\ref[src];choice=Edit Field;field=mi_crim_d'>[active2.fields["mi_crim_d"]]</A><BR>\n<BR>\nMajor Crimes: <A href='?src=\ref[src];choice=Edit Field;field=ma_crim'>[active2.fields["ma_crim"]]</A><BR>\nDetails: <A href='?src=\ref[src];choice=Edit Field;field=ma_crim_d'>[active2.fields["ma_crim_d"]]</A><BR>\n<BR>\nImportant Notes:<BR>\n\t<A href='?src=\ref[src];choice=Edit Field;field=notes'>[decode(active2.fields["notes"])]</A><BR>\n<BR>\n<CENTER><B>Comments/Log</B></CENTER><BR>"
+						dat += "<BR>\n<CENTER><B>Security Data</B></CENTER><BR>\nCriminal Status: <A href='?src=[text_ref(src)];choice=Edit Field;field=criminal'>[active2.fields["criminal"]]</A><BR>\n<BR>\nMinor Crimes: <A href='?src=[text_ref(src)];choice=Edit Field;field=mi_crim'>[active2.fields["mi_crim"]]</A><BR>\nDetails: <A href='?src=[text_ref(src)];choice=Edit Field;field=mi_crim_d'>[active2.fields["mi_crim_d"]]</A><BR>\n<BR>\nMajor Crimes: <A href='?src=[text_ref(src)];choice=Edit Field;field=ma_crim'>[active2.fields["ma_crim"]]</A><BR>\nDetails: <A href='?src=[text_ref(src)];choice=Edit Field;field=ma_crim_d'>[active2.fields["ma_crim_d"]]</A><BR>\n<BR>\nImportant Notes:<BR>\n\t<A href='?src=[text_ref(src)];choice=Edit Field;field=notes'>[decode(active2.fields["notes"])]</A><BR>\n<BR>\n<CENTER><B>Comments/Log</B></CENTER><BR>"
 						var/counter = 1
 						while(active2.fields["com_[counter]"])
-							dat += "[active2.fields["com_[counter]"]]<BR><A href='?src=\ref[src];choice=Delete Entry;del_c=[counter]'>Delete Entry</A><BR><BR>"
+							dat += "[active2.fields["com_[counter]"]]<BR><A href='?src=[text_ref(src)];choice=Delete Entry;del_c=[counter]'>Delete Entry</A><BR><BR>"
 							counter++
-						dat += "<A href='?src=\ref[src];choice=Add Entry'>Add Entry</A><BR><BR>"
-						dat += "<A href='?src=\ref[src];choice=Delete Record (Security)'>Delete Record (Security Only)</A><BR><BR>"
+						dat += "<A href='?src=[text_ref(src)];choice=Add Entry'>Add Entry</A><BR><BR>"
+						dat += "<A href='?src=[text_ref(src)];choice=Delete Record (Security)'>Delete Record (Security Only)</A><BR><BR>"
 					else
 						dat += "<B>Security Record Lost!</B><BR>"
-						dat += "<A href='?src=\ref[src];choice=New Record (Security)'>New Security Record</A><BR><BR>"
-					dat += "\n<A href='?src=\ref[src];choice=Delete Record (ALL)'>Delete Record (ALL)</A><BR><BR>\n<A href='?src=\ref[src];choice=Print Record'>Print Record</A><BR>\n<A href='?src=\ref[src];choice=Return'>Back</A><BR>"
+						dat += "<A href='?src=[text_ref(src)];choice=New Record (Security)'>New Security Record</A><BR><BR>"
+					dat += "\n<A href='?src=[text_ref(src)];choice=Delete Record (ALL)'>Delete Record (ALL)</A><BR><BR>\n<A href='?src=[text_ref(src)];choice=Print Record'>Print Record</A><BR>\n<A href='?src=[text_ref(src)];choice=Return'>Back</A><BR>"
 				if(4.0)
 					if(!length(Perp))
-						dat += "ERROR.  String could not be located.<br><br><A href='?src=\ref[src];choice=Return'>Back</A>"
+						dat += "ERROR.  String could not be located.<br><br><A href='?src=[text_ref(src)];choice=Return'>Back</A>"
 					else
 						dat += {"
 <table style="text-align:center;" cellspacing="0" width="100%">
@@ -184,16 +186,16 @@
 								if("")
 									background = "'background-color:#FFFFFF;'"
 									crimstat = "No Record."
-							dat += "<tr style=[background]><td><A href='?src=\ref[src];choice=Browse Record;d_rec=\ref[R]'>[R.fields["name"]]</a></td>"
+							dat += "<tr style=[background]><td><A href='?src=[text_ref(src)];choice=Browse Record;d_rec=[text_ref(R)]'>[R.fields["name"]]</a></td>"
 							dat += "<td>[R.fields["id"]]</td>"
 							dat += "<td>[R.fields["rank"]]</td>"
 							dat += "<td>[R.fields["fingerprint"]]</td>"
 							dat += "<td>[crimstat]</td></tr>"
 						dat += "</table><hr width='75%' />"
-						dat += "<br><A href='?src=\ref[src];choice=Return'>Return to index.</A>"
+						dat += "<br><A href='?src=[text_ref(src)];choice=Return'>Return to index.</A>"
 				else
 		else
-			dat += "<A href='?src=\ref[src];choice=Log In'>{Log In}</A>"
+			dat += "<A href='?src=[text_ref(src)];choice=Log In'>{Log In}</A>"
 
 	var/datum/browser/popup = new(user, "secure_rec", "<div align='center'>Security Records</div>", 600, 400)
 	popup.set_content(dat)
@@ -342,8 +344,8 @@ What a mess.*/
 		if ("Delete All Records")
 			temp = ""
 			temp += "Are you sure you wish to delete all Security records?<br>"
-			temp += "<a href='?src=\ref[src];choice=Purge All Records'>Yes</a><br>"
-			temp += "<a href='?src=\ref[src];choice=Clear Screen'>No</a>"
+			temp += "<a href='?src=[text_ref(src)];choice=Purge All Records'>Yes</a><br>"
+			temp += "<a href='?src=[text_ref(src)];choice=Clear Screen'>No</a>"
 
 		if ("Purge All Records")
 			for(var/datum/data/record/R in GLOB.datacore.security)
@@ -359,25 +361,25 @@ What a mess.*/
 			if ((!( t1 ) || !( authenticated ) || usr.stat || usr.restrained() || (!in_range(src, usr) && (!issilicon(usr))) || active2 != a2))
 				return
 			var/counter = 1
-			while(active2.fields[text("com_[]", counter)])
+			while(active2.fields["com_[counter]"])
 				counter++
 			active2.fields["com_[counter]"] = "Made by [authenticated] ([rank]) on [time2text(world.realtime, "DDD MMM DD hh:mm:ss")], [GAME_YEAR]<BR>[t1]"
 
 		if ("Delete Record (ALL)")
 			if (active1)
 				temp = "<h5>Are you sure you wish to delete the record (ALL)?</h5>"
-				temp += "<a href='?src=\ref[src];choice=Delete Record (ALL) Execute'>Yes</a><br>"
-				temp += "<a href='?src=\ref[src];choice=Clear Screen'>No</a>"
+				temp += "<a href='?src=[text_ref(src)];choice=Delete Record (ALL) Execute'>Yes</a><br>"
+				temp += "<a href='?src=[text_ref(src)];choice=Clear Screen'>No</a>"
 
 		if ("Delete Record (Security)")
 			if (active2)
 				temp = "<h5>Are you sure you wish to delete the record (Security Portion Only)?</h5>"
-				temp += "<a href='?src=\ref[src];choice=Delete Record (Security) Execute'>Yes</a><br>"
-				temp += "<a href='?src=\ref[src];choice=Clear Screen'>No</a>"
+				temp += "<a href='?src=[text_ref(src)];choice=Delete Record (Security) Execute'>Yes</a><br>"
+				temp += "<a href='?src=[text_ref(src)];choice=Clear Screen'>No</a>"
 
 		if ("Delete Entry")
-			if ((istype(active2, /datum/data/record) && active2.fields[text("com_[]", href_list["del_c"])]))
-				active2.fields[text("com_[]", href_list["del_c"])] = "<B>Deleted</B>"
+			if ((istype(active2, /datum/data/record) && active2.fields["com_[href_list["del_c"]]"]))
+				active2.fields["com_[href_list["del_c"]]"] = "<B>Deleted</B>"
 //RECORD CREATE
 		if ("New Record (Security)")
 			if ((istype(active1, /datum/data/record) && !( istype(active2, /datum/data/record) )))
@@ -459,10 +461,10 @@ What a mess.*/
 					if (istype(active2, /datum/data/record))
 						temp = "<h5>Criminal Status:</h5>"
 						temp += "<ul>"
-						temp += "<li><a href='?src=\ref[src];choice=Change Criminal Status;criminal2=none'>None</a></li>"
-						temp += "<li><a href='?src=\ref[src];choice=Change Criminal Status;criminal2=arrest'>*Arrest*</a></li>"
-						temp += "<li><a href='?src=\ref[src];choice=Change Criminal Status;criminal2=incarcerated'>Incarcerated</a></li>"
-						temp += "<li><a href='?src=\ref[src];choice=Change Criminal Status;criminal2=released'>Released</a></li>"
+						temp += "<li><a href='?src=[text_ref(src)];choice=Change Criminal Status;criminal2=none'>None</a></li>"
+						temp += "<li><a href='?src=[text_ref(src)];choice=Change Criminal Status;criminal2=arrest'>*Arrest*</a></li>"
+						temp += "<li><a href='?src=[text_ref(src)];choice=Change Criminal Status;criminal2=incarcerated'>Incarcerated</a></li>"
+						temp += "<li><a href='?src=[text_ref(src)];choice=Change Criminal Status;criminal2=released'>Released</a></li>"
 						temp += "</ul>"
 				if("rank")
 					var/list/L = list( "Head of Personnel", CAPTAIN, "AI" )
@@ -471,7 +473,7 @@ What a mess.*/
 						temp = "<h5>Rank:</h5>"
 						temp += "<ul>"
 						for(var/rank in SSjob.name_occupations)
-							temp += "<li><a href='?src=\ref[src];choice=Change Rank;rank=[rank]'>[rank]</a></li>"
+							temp += "<li><a href='?src=[text_ref(src)];choice=Change Rank;rank=[rank]'>[rank]</a></li>"
 						temp += "</ul>"
 					else
 						alert(usr, "You do not have the required rank to do this!")
@@ -578,3 +580,4 @@ What a mess.*/
 /obj/machinery/computer/secure_data/detective_computer
 	icon = 'icons/obj/machines/computer.dmi'
 	icon_state = "messyfiles"
+	screen_overlay = "messyfiles_screen"

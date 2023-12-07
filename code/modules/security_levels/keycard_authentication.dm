@@ -70,20 +70,20 @@
 
 	if(screen == 1)
 		dat += "Select an event to trigger:<ul>"
-		dat += "<li><A href='?src=\ref[src];trigger_event=Red alert'>Red alert</A></li>"
+		dat += "<li><A href='?src=[text_ref(src)];trigger_event=Red alert'>Red alert</A></li>"
 
-		dat += "<li><A href='?src=\ref[src];trigger_event=Grant Emergency Maintenance Access'>Grant Emergency Maintenance Access</A></li>"
-		dat += "<li><A href='?src=\ref[src];trigger_event=Revoke Emergency Maintenance Access'>Revoke Emergency Maintenance Access</A></li>"
+		dat += "<li><A href='?src=[text_ref(src)];trigger_event=Grant Emergency Maintenance Access'>Grant Emergency Maintenance Access</A></li>"
+		dat += "<li><A href='?src=[text_ref(src)];trigger_event=Revoke Emergency Maintenance Access'>Revoke Emergency Maintenance Access</A></li>"
 		dat += "</ul>"
 
 	else if(screen == 2)
 		dat += "Please swipe your card to authorize the following event: <b>[event]</b>"
-		dat += "<p><A href='?src=\ref[src];reset=1'>Back</A>"
+		dat += "<p><A href='?src=[text_ref(src)];reset=1'>Back</A>"
 
 	else if(screen == 3)
 		dat += "Do you want to trigger the following event using your Silicon Privileges: <b>[event]</b>"
-		dat += "<p><A href='?src=\ref[src];silicon_activate_event=1'>Activate</A>"
-		dat += "<p><A href='?src=\ref[src];reset=1'>Back</A>"
+		dat += "<p><A href='?src=[text_ref(src)];silicon_activate_event=1'>Activate</A>"
+		dat += "<p><A href='?src=[text_ref(src)];reset=1'>Back</A>"
 
 	var/datum/browser/popup = new(user, "keycard_auth", "<div align='center'>Keycard Authentication Device</div>", 500, 250)
 	popup.set_content(dat)
@@ -166,6 +166,6 @@
 			GLOB.marine_main_ship.revoke_maint_all_access()
 
 /obj/machinery/door/airlock/allowed(mob/M)
-	if(is_mainship_level(z) && GLOB.marine_main_ship.maint_all_access && src.check_access_list(list(ACCESS_MARINE_ENGINEERING)))
+	if(is_mainship_level(z) && GLOB.marine_main_ship.maint_all_access && (ACCESS_MARINE_ENGINEERING in req_access+req_one_access))
 		return TRUE
 	return ..(M)

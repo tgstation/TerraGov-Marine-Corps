@@ -31,6 +31,7 @@
 		/mob/living/carbon/xenomorph/runner,
 		/mob/living/carbon/xenomorph/sentinel,
 		/mob/living/carbon/xenomorph/defender,
+		/mob/living/carbon/xenomorph/baneling,
 	)
 
 	// *** Flags *** //
@@ -46,9 +47,9 @@
 
 	// *** Abilities *** //
 	actions = list(
-		/datum/action/xeno_action/xeno_resting,
-		/datum/action/xeno_action/watch_xeno,
-		/datum/action/xeno_action/xenohide,
+		/datum/action/ability/xeno_action/xeno_resting,
+		/datum/action/ability/xeno_action/watch_xeno,
+		/datum/action/ability/xeno_action/xenohide,
 	)
 
 	// *** Vent Crawl Parameters *** //

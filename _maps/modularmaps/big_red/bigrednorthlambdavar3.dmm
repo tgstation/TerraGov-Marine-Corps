@@ -1,4 +1,8 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"c" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/northeast/garbledradio)
 "d" = (
 /turf/closed/wall/r_wall,
 /area/bigredv2/caves/rock)
@@ -22,17 +26,23 @@
 	dir = 9
 	},
 /area/bigredv2/caves/lambda_lab)
+"o" = (
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/northeast/garbledradio)
 "r" = (
 /turf/closed/mineral/smooth/bigred/indestructible,
 /area/space)
 "t" = (
 /obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/northeast)
+/area/bigredv2/caves/northeast/garbledradio)
 "v" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/northeast)
+"w" = (
+/turf/open/floor/plating/ground/mars/random/cave/rock,
+/area/bigredv2/caves/northeast/garbledradio)
 "x" = (
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/northeast)
@@ -42,7 +52,7 @@
 "z" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/cave/rock,
-/area/bigredv2/caves/northeast)
+/area/bigredv2/caves/northeast/garbledradio)
 "C" = (
 /obj/machinery/chem_dispenser,
 /turf/open/floor/tile/whiteyellow{
@@ -80,6 +90,10 @@
 /obj/structure/closet/crate/internals,
 /turf/open/floor/plating,
 /area/bigredv2/caves/lambda_lab)
+"P" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/northeast/garbledradio)
 "V" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /obj/effect/ai_node,
@@ -88,7 +102,7 @@
 "X" = (
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/northeast)
+/area/bigredv2/caves/northeast/garbledradio)
 "Y" = (
 /obj/structure/closet/crate/freezer/rations,
 /turf/open/floor/plating,
@@ -120,11 +134,11 @@ M
 M
 M
 M
-x
-x
-x
-x
-y
+o
+o
+o
+o
+w
 M
 M
 "}
@@ -152,13 +166,13 @@ r
 M
 M
 M
-y
-y
-F
-x
-x
-x
-y
+w
+w
+P
+o
+o
+o
+w
 M
 M
 "}
@@ -186,13 +200,13 @@ r
 M
 M
 M
-x
-x
-x
-x
-x
-x
-y
+o
+o
+o
+o
+o
+o
+w
 M
 M
 "}
@@ -220,14 +234,14 @@ r
 M
 M
 M
-x
-x
-x
-x
-x
-x
-x
-y
+o
+o
+o
+o
+o
+o
+o
+w
 M
 "}
 (5,1,1) = {"
@@ -254,14 +268,14 @@ r
 M
 M
 M
-x
-v
-x
-x
-F
-x
-v
-y
+o
+c
+o
+o
+P
+o
+c
+w
 M
 "}
 (6,1,1) = {"
@@ -289,13 +303,13 @@ M
 M
 M
 z
-x
-x
-x
-x
-x
-x
-y
+o
+o
+o
+o
+o
+o
+w
 M
 "}
 (7,1,1) = {"
@@ -324,12 +338,12 @@ M
 M
 M
 M
-y
-x
-x
-x
-x
-y
+w
+o
+o
+o
+o
+w
 M
 "}
 (8,1,1) = {"
@@ -359,12 +373,12 @@ M
 M
 M
 M
-x
-x
-x
-x
-F
-y
+o
+o
+o
+o
+P
+w
 "}
 (9,1,1) = {"
 r
@@ -394,11 +408,11 @@ M
 M
 M
 z
-x
-x
-x
-x
-x
+o
+o
+o
+o
+o
 "}
 (10,1,1) = {"
 r
@@ -428,11 +442,11 @@ M
 M
 M
 M
-y
-x
-v
-x
-x
+w
+o
+c
+o
+o
 "}
 (11,1,1) = {"
 r
@@ -464,9 +478,9 @@ M
 M
 M
 M
-x
-v
-x
+o
+c
+o
 "}
 (12,1,1) = {"
 r
@@ -498,9 +512,9 @@ M
 M
 M
 M
-y
-x
-v
+w
+o
+c
 "}
 (13,1,1) = {"
 r
@@ -668,9 +682,9 @@ M
 M
 d
 t
-x
-x
-x
+o
+o
+o
 "}
 (18,1,1) = {"
 r
@@ -702,9 +716,9 @@ M
 M
 d
 t
-x
-x
-v
+o
+o
+c
 "}
 (19,1,1) = {"
 r
@@ -736,9 +750,9 @@ M
 M
 t
 t
-x
-x
-x
+o
+o
+o
 "}
 (20,1,1) = {"
 r
@@ -768,11 +782,11 @@ M
 M
 M
 X
-x
-x
-x
-x
-x
+o
+o
+o
+o
+o
 "}
 (21,1,1) = {"
 r
@@ -801,12 +815,12 @@ M
 M
 M
 M
-x
-x
-x
-F
-x
-x
+o
+o
+o
+P
+o
+o
 "}
 (22,1,1) = {"
 r
@@ -834,13 +848,13 @@ M
 M
 M
 M
-x
-x
-x
-x
-x
-x
-x
+o
+o
+o
+o
+o
+o
+o
 "}
 (23,1,1) = {"
 r
@@ -868,13 +882,13 @@ M
 M
 M
 M
-x
-v
-x
-x
-x
-x
-v
+o
+c
+o
+o
+o
+o
+c
 "}
 (24,1,1) = {"
 r
@@ -901,14 +915,14 @@ M
 M
 M
 M
-x
-x
-x
-x
-x
-x
-F
-x
+o
+o
+o
+o
+o
+o
+P
+o
 "}
 (25,1,1) = {"
 r
@@ -934,15 +948,15 @@ r
 M
 M
 M
-x
-x
-x
-x
-x
-x
-x
-x
-x
+o
+o
+o
+o
+o
+o
+o
+o
+o
 "}
 (26,1,1) = {"
 r
@@ -970,12 +984,12 @@ M
 M
 x
 F
-x
-x
-x
-x
-x
-x
+o
+o
+o
+o
+o
+o
 M
 "}
 (27,1,1) = {"
@@ -1006,9 +1020,9 @@ x
 x
 x
 x
-x
-x
-x
+o
+o
+o
 M
 M
 "}
@@ -1041,8 +1055,8 @@ x
 x
 H
 x
-x
-x
+o
+o
 M
 I
 "}
@@ -1075,7 +1089,7 @@ x
 x
 x
 x
-x
+o
 M
 I
 M

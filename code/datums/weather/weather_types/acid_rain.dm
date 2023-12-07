@@ -58,9 +58,11 @@
 		L.fire_stacks = max(-20, L.fire_stacks - 1)
 
 /datum/weather/acid_rain/harmless
+	target_trait = ZTRAIT_RAIN
 
 	telegraph_message = span_boldannounce("Thunder rumbles far above. You hear droplets drumming against the canopy.")
 	telegraph_overlay = "rain_med"
+	telegraph_sound = null
 
 	weather_message = span_boldannounce("<i>Rain pours down around you!</i>")
 	weather_overlay = "rain_high"

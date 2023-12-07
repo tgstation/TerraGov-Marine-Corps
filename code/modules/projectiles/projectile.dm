@@ -282,6 +282,7 @@
 
 	if(ismob(firer) && !recursivity)
 		var/mob/mob_firer = firer
+		record_projectile_fire(mob_firer)
 		GLOB.round_statistics.total_projectiles_fired[mob_firer.faction]++
 		SSblackbox.record_feedback("tally", "round_statistics", 1, "total_projectiles_fired[mob_firer.faction]")
 		if(ammo.bonus_projectiles_amount)
@@ -643,7 +644,9 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 		return FALSE
 	if(src == proj.original_target) //clicking on the structure itself hits the structure
 		return TRUE
-	if(!(flags_pass & PASSPROJECTILE))
+	if((allow_pass_flags & PASS_GLASS) && (proj.ammo.flags_ammo_behavior & AMMO_ENERGY))
+		return FALSE
+	if(!(allow_pass_flags & PASS_PROJECTILE))
 		return TRUE
 	if(proj.distance_travelled <= proj.ammo.barricade_clear_distance)
 		return FALSE
@@ -670,24 +673,6 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 		return
 	bullet_act(proj)
 
-/obj/structure/window/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
-	if(proj.ammo.flags_ammo_behavior & AMMO_ENERGY && !opacity)
-		return FALSE
-	if(flags_atom & ON_BORDER && !(cardinal_move & REVERSE_DIR(dir)))
-		if(!uncrossing)
-			proj.uncross_scheduled += src
-		return FALSE
-	return TRUE
-
-/obj/machinery/door/window/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
-	if(proj.ammo.flags_ammo_behavior & AMMO_ENERGY && !opacity)
-		return FALSE
-	if(flags_atom & ON_BORDER && !(cardinal_move & REVERSE_DIR(dir)))
-		if(!uncrossing)
-			proj.uncross_scheduled += src
-		return FALSE
-	return TRUE
-
 /obj/machinery/deployable/mounted/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
 	if(operator?.wear_id.iff_signal & proj.iff_signal)
 		return FALSE
@@ -699,6 +684,11 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	var/hit_chance = coverage
 	hit_chance = min(hit_chance , hit_chance + 100 - proj.accuracy)
 	return prob(hit_chance)
+
+/obj/machinery/deployable/mounted/sentry/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
+	if(proj.iff_signal & iff_signal)
+		return FALSE
+	return ..()
 
 /obj/machinery/door/poddoor/railing/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
 	return src == proj.original_target
@@ -735,7 +725,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 		return FALSE
 	if((proj.ammo.flags_ammo_behavior & AMMO_XENO) && (isnestedhost(src) || stat == DEAD))
 		return FALSE
-	if((flags_pass & PASSPROJECTILE)) //he's beginning to believe
+	if(pass_flags & PASS_PROJECTILE) //he's beginning to believe
 		return FALSE
 
 	//We want a temporary variable so accuracy doesn't change every time the bullet misses.
@@ -782,6 +772,9 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 		BULLET_DEBUG("Moving (*[evasion_bonus]).")
 		hit_chance = round(hit_chance * evasion_bonus)
 
+	if(proj.ammo.flags_ammo_behavior & AMMO_UNWIELDY)
+		hit_chance *= 0.5
+
 	hit_chance = max(5, hit_chance) //It's never impossible to hit
 
 	BULLET_DEBUG("Final accuracy is <b>[hit_chance]</b>")
@@ -826,6 +819,8 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 
 
 /mob/living/carbon/xenomorph/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
+	if(CHECK_BITFIELD(xeno_iff_check(), proj.iff_signal))
+		return FALSE
 	if(SEND_SIGNAL(src, COMSIG_XENO_PROJECTILE_HIT, proj, cardinal_move, uncrossing) & COMPONENT_PROJECTILE_DODGE)
 		return FALSE
 	if(HAS_TRAIT(src, TRAIT_BURROWED))
@@ -883,7 +878,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 
 	if(iscarbon(proj.firer))
 		var/mob/living/carbon/shooter_carbon = proj.firer
-		if(shooter_carbon.stagger)
+		if(shooter_carbon.IsStaggered())
 			damage *= STAGGER_DAMAGE_MULTIPLIER //Since we hate RNG, stagger reduces damage by a % instead of reducing accuracy; consider it a 'glancing' hit due to being disoriented.
 	var/original_damage = damage
 	damage = modify_by_armor(damage, proj.armor_type, proj.penetration, proj.def_zone)
@@ -901,17 +896,18 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	if(proj.ammo.flags_ammo_behavior & AMMO_SUNDERING)
 		adjust_sunder(proj.sundering)
 
+	if(stat != DEAD && ismob(proj.firer))
+		record_projectile_damage(proj.firer, damage)	//Tally up whoever the shooter was
+
 	if(damage)
-		var/shrapnel_roll = do_shrapnel_roll(proj, damage)
-		if(shrapnel_roll)
+		if(do_shrapnel_roll(proj, damage))
 			feedback_flags |= (BULLET_FEEDBACK_SHRAPNEL|BULLET_FEEDBACK_SCREAM)
+			embed_projectile_shrapnel(proj)
 		else if(prob(damage * 0.25))
 			feedback_flags |= BULLET_FEEDBACK_SCREAM
 		bullet_message(proj, feedback_flags, damage)
 		proj.play_damage_effect(src)
 		apply_damage(damage, proj.ammo.damage_type, proj.def_zone, updating_health = TRUE) //This could potentially delete the source.
-		if(shrapnel_roll)
-			embed_projectile_shrapnel(proj)
 	else
 		bullet_message(proj, feedback_flags)
 
@@ -958,9 +954,12 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	else
 		dir_angle = angle
 
-	//If we have the the right kind of ammo, we can fire several projectiles at once.
-	if(ammo.bonus_projectiles_amount && !recursivity) //Recursivity check in case the bonus projectiles have bonus projectiles of their own. Let's not loop infinitely.
-		ammo.fire_bonus_projectiles(src, shooter, source, range, speed, dir_angle)
+	if(!recursivity)	//Recursivity check in case the bonus projectiles have bonus projectiles of their own. Let's not loop infinitely.
+		record_projectile_fire(shooter)
+
+		//If we have the the right kind of ammo, we can fire several projectiles at once.
+		if(ammo.bonus_projectiles_amount)
+			ammo.fire_bonus_projectiles(src, shooter, source, range, speed, dir_angle, target)
 
 	if(shooter.Adjacent(target) && ismob(target))
 		var/mob/mob_to_hit = target
@@ -975,7 +974,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 		var/atom/movable/hitscan_projectile_effect/laser_effect = new /atom/movable/hitscan_projectile_effect(PROJ_ABS_PIXEL_TO_TURF(apx, apy, z), dir_angle, apx % 32 - 16, apy % 32 - 16, 1.01, effect_icon, ammo.bullet_color)
 		RegisterSignal(loc, COMSIG_TURF_RESUME_PROJECTILE_MOVE, PROC_REF(resume_move))
 		laser_effect.RegisterSignal(loc, COMSIG_TURF_RESUME_PROJECTILE_MOVE, TYPE_PROC_REF(/atom/movable/hitscan_projectile_effect, remove_effect))
-		laser_effect.RegisterSignal(src, COMSIG_PARENT_QDELETING, TYPE_PROC_REF(/atom/movable/hitscan_projectile_effect, remove_effect))
+		laser_effect.RegisterSignal(src, COMSIG_QDELETING, TYPE_PROC_REF(/atom/movable/hitscan_projectile_effect, remove_effect))
 		return
 	qdel(src)
 

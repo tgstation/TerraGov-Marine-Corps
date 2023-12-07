@@ -2,7 +2,8 @@
 	name = "Droppod launch computer"
 	desc = "A computer managing the ships drop pods."
 	icon = 'icons/obj/machines/computer.dmi'
-	icon_state = "terminal1"
+	icon_state = "terminal"
+	screen_overlay = "terminal1"
 	interaction_flags = INTERACT_MACHINE_TGUI
 	var/list/linked_pods
 
@@ -32,8 +33,8 @@
 				var/obj/structure/droppod/pod = p
 				if(!length(pod.buckled_mobs))
 					continue
-				var/predroptime = rand(5, 1 SECONDS)	//Randomize it a bit so its staggered
-				addtimer(CALLBACK(pod, TYPE_PROC_REF(/obj/structure/droppod, launchpod), pod.buckled_mobs[1]), predroptime)
+				var/predroptime = rand(3, 1 SECONDS)	//Randomize it a bit so its staggered
+				addtimer(CALLBACK(pod, TYPE_PROC_REF(/obj/structure/droppod, start_launch_pod), pod.buckled_mobs[1]), predroptime)
 			LAZYCLEARLIST(linked_pods)//Clear references for the next drop
 
 /obj/machinery/computer/droppod_control/ui_data(mob/user)

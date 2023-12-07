@@ -359,3 +359,72 @@
   ivanmixo:
   - bugfix: Fixed new character slots/characters being uneditable in prefs
   - code_imp: Fixed more type definitions in params
+2023-06-27:
+  Ben10083:
+  - spellcheck: Fix grammar mistake in SOM general armor storage module
+  Lumipharon:
+  - bugfix: Leap abilities will no longer incur water slowdown for leaping over water
+  - bugfix: fixed damaged wood or carpet tiles not showing up correctly
+  - bugfix: Fixed welding floor tiles not doing eye damage to the unprotected
+  - bugfix: fixed some deployable weapon bugs that could curse you to eternal aim
+      mode penalties
+  Tanker:
+  - balance: Smart Minions is now enabled by default.
+  ivanmixo:
+  - code_imp: Converted instances of new/list to the list wrapper
+  - rscadd: Hivemind and silicon chat now have automatic capitalization and end of
+      dot punctuation
+  - balance: Fixed stacking repairs on cades if they were low hp enough to get them
+      to full hp in a short time
+  - balance: AI loses door control of alamo when xenos touch the alamo console
+  - bugfix: Alamo should no longer get locked shipside if your manual hijack ends
+      just as the alamo is taking off
+  novaepee:
+  - bugfix: siren playing in normal rain in LV-624
+  tyeagg:
+  - rscadd: particle explosions
+  - rscdel: effect system for explosions
+  - imageadd: more smoke icons
+  - code_imp: removed the small anim arg from explosions
+2023-06-28:
+  Ben10083:
+  - rscadd: Impact Hud now stays at the impact site for slightly longer.
+  Lumipharon:
+  - refactor: refactored how pass flags work
+  - bugfix: All dropship windows are now correctly transparent and allow lasers through
+  - qol: You can throw thing past far more objects as you would realistically expect
+  - qol: Deployable structures such as turrets now display their hud to the faction
+      that actually deployed it, instead of just marines
+  - code_imp: Improved some faction related code
+  - bugfix: Suicides no longer show as defibbable on the minimap
+  - balance: The focus order now reduces the fire rate penalty of aimmode
+  - bugfix: fixed ID's not correctly showing info such as blood type
+  - admin: Fixed some issues with the rank and equip button
+  MacBlaze1:
+  - qol: mortars now automatically set save binoculars to them, linking with saved
+      binoculars, and keeping track of them, no more need to use a binocular on a
+      mortar before firing.
+  hyper2snyper:
+  - rscadd: Hyperscale system added to greyscale.
+  - rscadd: Hyperscales Jaeger Mk1, Mk2, Robot armor, Style line, Xenonaut.
+  ivanmixo:
+  - bugfix: Fixed the TTS docker not working properly
+  tyeagg:
+  - bugfix: smart pipe mapping helper runtiming
+2023-06-29:
+  Pariah919:
+  - rscadd: Added new grenade types to the AGLS, it now has Flare/Tangle/Cloak grenade
+      types.
+  - balance: AGLS now has longer zoom when scoping in.
+2023-06-30:
+  Lumipharon:
+  - bugfix: fixed some DNR bugs
+  - code_imp: jump element changed to a component
+  - admin: Added an Alter Gravity button to the fun menu
+  ivanmixo:
+  - bugfix: Fixed some rock walls and cas parts being acidable
+  novaepee:
+  - rscadd: Trooper Armor
+  - code_imp: have to update hyperscale in light of chest_no_color and leg_no_color
+      to all DMI. You are all truly welcome.
+  - rscadd: 4 new armor color and 3 new visor colors

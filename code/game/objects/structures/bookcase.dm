@@ -7,7 +7,7 @@
 	anchored = TRUE
 	density = TRUE
 	opacity = TRUE
-	flags_pass = PASSAIR
+	allow_pass_flags = PASS_AIR
 
 /obj/structure/bookcase/Initialize(mapload)
 	. = ..()

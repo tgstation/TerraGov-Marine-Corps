@@ -112,7 +112,8 @@
 	icon_living = "puppy"
 	icon_dead = "puppy_dead"
 	density = FALSE
-	flags_pass = PASSMOB
+	allow_pass_flags = PASS_MOB
+	pass_flags = PASS_MOB
 	mob_size = MOB_SIZE_SMALL
 
 

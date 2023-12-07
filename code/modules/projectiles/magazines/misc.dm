@@ -6,6 +6,13 @@
 	icon_state_mini = "ammo_packet"
 	w_class = WEIGHT_CLASS_NORMAL
 
+/obj/item/ammo_magazine/packet/attack_hand_alternate(mob/living/user)
+	. = ..()
+	if(current_rounds <= 0)
+		balloon_alert(user, "Empty")
+		return
+	create_handful(user)
+
 /obj/item/ammo_magazine/packet/p10x24mm
 	name = "box of 10x24mm"
 	desc = "A box containing 150 rounds of 10x24mm caseless."
@@ -106,6 +113,21 @@
 	current_rounds = 100
 	max_rounds = 100
 
+/obj/item/ammo_magazine/packet/standardautoshotgun
+	name = "box of 16 Gauge shotgun slugs"
+	desc = "A box containing 16 Gauge slugs, they look like they'd fit in the SH-15."
+	icon_state = "box_16gslug"
+	default_ammo = /datum/ammo/bullet/shotgun/tx15_slug
+	caliber = CALIBER_16G
+	current_rounds = 60
+	max_rounds = 60
+
+/obj/item/ammo_magazine/packet/standardautoshotgun/flechette
+	name = "box of 16 Gauge shotgun flechette shells"
+	desc = "A box containing 16 Gauge flechette shells, they look like they'd fit in the SH-15."
+	icon_state = "box_16gflech"
+	default_ammo = /datum/ammo/bullet/shotgun/tx15_flechette
+
 // pistol packets
 
 /obj/item/ammo_magazine/packet/p9mm
@@ -179,6 +201,7 @@
 	desc = "A packet containing 50 rounds of .45-70 Government."
 	caliber = CALIBER_4570
 	icon_state = "box_4570rim_mag"
+	icon_state_mini = "ammo_packet_blue"
 	default_ammo = /datum/ammo/bullet/rifle/repeater
 	w_class = WEIGHT_CLASS_SMALL
 	current_rounds = 50

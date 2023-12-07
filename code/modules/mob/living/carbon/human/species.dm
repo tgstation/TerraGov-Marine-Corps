@@ -47,7 +47,7 @@
 	// Some species-specific gibbing data.
 	var/gibbed_anim = "gibbed-h"
 	var/dusted_anim = "dust-h"
-	var/remains_type = /obj/effect/decal/remains/xeno
+	var/remains_type = /obj/effect/decal/cleanable/ash
 	var/death_sound
 	var/death_message = "seizes up and falls limp, their eyes dead and lifeless..."
 
@@ -86,7 +86,6 @@
 	var/list/inherent_traits = list()
 	var/species_flags = NONE       // Various specific features.
 
-	var/list/abilities = list()	// For species-derived or admin-given powers
 	var/list/preferences = list()
 	var/list/screams = list()
 	var/list/paincries = list()
@@ -107,6 +106,8 @@
 
 	/// inherent Species-specific verbs.
 	var/list/inherent_verbs
+	/// inherent species-specific actions
+	var/list/inherent_actions
 	var/list/has_organ = list(
 		"heart" = /datum/internal_organ/heart,
 		"lungs" = /datum/internal_organ/lungs,
@@ -238,6 +239,7 @@
 			H.dropItemToGround(thing)
 	for(var/newtrait in inherent_traits)
 		ADD_TRAIT(H, newtrait, SPECIES_TRAIT)
+	H.maxHealth += total_health - (old_species ? old_species.total_health : initial(H.maxHealth))
 
 //special things to change after we're no longer that species
 /datum/species/proc/post_species_loss(mob/living/carbon/human/H)
@@ -245,20 +247,28 @@
 	for(var/oldtrait in inherent_traits)
 		REMOVE_TRAIT(H, oldtrait, SPECIES_TRAIT)
 
-/datum/species/proc/remove_inherent_verbs(mob/living/carbon/human/H)
+/// Removes all species-specific verbs and actions
+/datum/species/proc/remove_inherent_abilities(mob/living/carbon/human/H)
 	if(inherent_verbs)
-		for(var/verb_path in inherent_verbs)
-			H.verbs -= verb_path
+		remove_verb(H, inherent_verbs)
+	if(inherent_actions)
+		for(var/action_path in inherent_actions)
+			var/datum/action/old_species_action = H.actions_by_path[action_path]
+			qdel(old_species_action)
 	return
 
-/datum/species/proc/add_inherent_verbs(mob/living/carbon/human/H)
+/// Adds all species-specific verbs and actions
+/datum/species/proc/add_inherent_abilities(mob/living/carbon/human/H)
 	if(inherent_verbs)
-		for(var/verb_path in inherent_verbs)
-			H.verbs |= verb_path
+		add_verb(H, inherent_verbs)
+	if(inherent_actions)
+		for(var/action_path in inherent_actions)
+			var/datum/action/new_species_action = new action_path(H)
+			new_species_action.give_action(H)
 	return
 
 /datum/species/proc/handle_post_spawn(mob/living/carbon/human/H) //Handles anything not already covered by basic species assignment.
-	add_inherent_verbs(H)
+	add_inherent_abilities(H)
 
 /datum/species/proc/handle_death(mob/living/carbon/human/H) //Handles any species-specific death events.
 
@@ -399,6 +409,7 @@
 	brute_damage_icon_state = "robot_brute"
 	burn_damage_icon_state = "robot_burn"
 	eyes = "blank_eyes"
+	hud_type = /datum/hud_data/robotic
 	default_language_holder = /datum/language_holder/robot
 	namepool = /datum/namepool/robotic
 
@@ -417,7 +428,7 @@
 	body_temperature = 350
 
 	inherent_traits = list(TRAIT_NON_FLAMMABLE, TRAIT_IMMEDIATE_DEFIB)
-	species_flags = NO_BREATHE|NO_SCAN|NO_BLOOD|NO_POISON|NO_PAIN|NO_CHEM_METABOLIZATION|NO_STAMINA|DETACHABLE_HEAD|HAS_NO_HAIR|ROBOTIC_LIMBS|IS_INSULATED
+	species_flags = NO_BREATHE|NO_BLOOD|NO_POISON|NO_PAIN|NO_CHEM_METABOLIZATION|NO_STAMINA|DETACHABLE_HEAD|HAS_NO_HAIR|ROBOTIC_LIMBS|IS_INSULATED
 
 	no_equip = list(
 		SLOT_W_UNIFORM,
@@ -441,22 +452,19 @@
 	special_death_message = "You have been shut down.<br><small>But it is not the end of you yet... if you still have your body, wait until somebody can resurrect you...</small>"
 	joinable_roundstart = TRUE
 
+	inherent_actions = list(/datum/action/repair_self)
+
 /datum/species/robot/on_species_gain(mob/living/carbon/human/H, datum/species/old_species)
 	. = ..()
 	H.speech_span = SPAN_ROBOT
 	H.voice_filter = "afftfilt=real='hypot(re,im)*sin(0)':imag='hypot(re,im)*cos(0)':win_size=512:overlap=1,rubberband=pitch=0.8"
 	H.health_threshold_crit = -100
-	var/datum/action/repair_self/repair_action = new()
-	repair_action.give_action(H)
 
 /datum/species/robot/post_species_loss(mob/living/carbon/human/H)
 	. = ..()
 	H.speech_span = initial(H.speech_span)
 	H.voice_filter = initial(H.voice_filter)
 	H.health_threshold_crit = -50
-	var/datum/action/repair_self/repair_action = H.actions_by_path[/datum/action/repair_self]
-	repair_action.remove_action(H)
-	qdel(repair_action)
 
 /datum/species/robot/handle_unique_behavior(mob/living/carbon/human/H)
 	if(H.health <= 0 && H.health > -50)
@@ -470,7 +478,7 @@
 		H.clear_fullscreen("robotlow")
 	if(H.health > -25) //Staggerslowed if below crit threshold.
 		return
-	H.adjust_stagger(2, capped = 10)
+	H.Stagger(2 SECONDS)
 	H.adjust_slowdown(1)
 
 ///Lets a robot repair itself over time at the cost of being stunned and blind
@@ -523,6 +531,7 @@
 	name = "Synthetic"
 	name_plural = "Synthetics"
 
+	hud_type = /datum/hud_data/robotic
 	default_language_holder = /datum/language_holder/synthetic
 	unarmed_type = /datum/unarmed_attack/punch
 	rarity_value = 2
@@ -557,7 +566,6 @@
 	warcries = list(MALE = "male_warcry", FEMALE = "female_warcry")
 	special_death_message = "You have been shut down.<br><small>But it is not the end of you yet... if you still have your body, wait until somebody can resurrect you...</small>"
 
-
 /datum/species/synthetic/on_species_gain(mob/living/carbon/human/H, datum/species/old_species)
 	. = ..()
 	var/datum/atom_hud/AH = GLOB.huds[DATA_HUD_MEDICAL_ADVANCED_SYNTH]
@@ -577,6 +585,7 @@
 	name = "Early Synthetic"
 	name_plural = "Early Synthetics"
 	icobase = 'icons/mob/human_races/r_synthetic.dmi'
+	hud_type = /datum/hud_data/robotic
 	default_language_holder = /datum/language_holder/synthetic
 	unarmed_type = /datum/unarmed_attack/punch
 	rarity_value = 1.5
@@ -609,7 +618,6 @@
 	goredcries = list(MALE = "male_gored", FEMALE = "female_gored")
 	warcries = list(MALE = "male_warcry", FEMALE = "female_warcry")
 	special_death_message = "You have been shut down.<br><small>But it is not the end of you yet... if you still have your body, wait until somebody can resurrect you...</small>"
-
 
 /datum/species/early_synthetic/on_species_gain(mob/living/carbon/human/H, datum/species/old_species)
 	. = ..()
@@ -659,7 +667,7 @@
 
 /datum/species/monkey/on_species_gain(mob/living/carbon/human/H, datum/species/old_species)
 	. = ..()
-	H.flags_pass |= PASSTABLE
+	H.allow_pass_flags |= PASS_LOW_STRUCTURE
 
 /datum/species/monkey/spec_unarmedattack(mob/living/carbon/human/user, atom/target)
 	if(!iscarbon(target))
@@ -883,17 +891,16 @@
 
 /datum/hud_data
 	var/icon              // If set, overrides ui_style.
-	var/has_a_intent = 1  // Set to draw intent box.
-	var/has_m_intent = 1  // Set to draw move intent box.
-	var/has_warnings = 1  // Set to draw environment warnings.
-	var/has_pressure = 1  // Draw the pressure indicator.
-	var/has_nutrition = 1 // Draw the nutrition indicator.
-	var/has_bodytemp = 1  // Draw the bodytemp indicator.
-	var/has_hands = 1     // Set to draw shand.
-	var/has_drop = 1      // Set to draw drop button.
-	var/has_throw = 1     // Set to draw throw button.
-	var/has_resist = 1    // Set to draw resist button.
-	var/has_internals = 1 // Set to draw the internals toggle button.
+	var/has_a_intent = TRUE  // Set to draw intent box.
+	var/has_m_intent = TRUE  // Set to draw move intent box.
+	var/has_warnings = TRUE  // Set to draw environment warnings.
+	var/has_pressure = TRUE  // Draw the pressure indicator.
+	var/has_nutrition = TRUE // Draw the nutrition indicator.
+	var/has_bodytemp = TRUE  // Draw the bodytemp indicator.
+	var/has_hands = TRUE     // Set to draw shand.
+	var/has_drop = TRUE      // Set to draw drop button.
+	var/has_throw = TRUE     // Set to draw throw button.
+	var/has_resist = TRUE    // Set to draw resist button.
 	var/list/equip_slots = list() // Checked by mob_can_equip().
 
 	// Contains information on the position and tag for all inventory slots
@@ -945,8 +952,11 @@
 		equip_slots |= SLOT_ACCESSORY
 		equip_slots |= SLOT_IN_ACCESSORY
 
+/datum/hud_data/robotic
+	has_nutrition = FALSE
+
 ///damage override at the species level, called by /mob/living/proc/apply_damage
-/datum/species/proc/apply_damage(damage = 0, damagetype = BRUTE, def_zone, blocked = 0, sharp = FALSE, edge = FALSE, updating_health = FALSE, penetration, mob/living/carbon/human/victim)
+/datum/species/proc/apply_damage(damage = 0, damagetype = BRUTE, def_zone, blocked = 0, sharp = FALSE, edge = FALSE, updating_health = FALSE, penetration, mob/living/carbon/human/victim, mob/attacker)
 	var/datum/limb/organ = null
 	if(isorgan(def_zone)) //Got sent a limb datum, convert to a zone define
 		organ = def_zone
@@ -965,7 +975,7 @@
 		damage = victim.modify_by_armor(damage, blocked, penetration, def_zone)
 
 	if(victim.protection_aura)
-		damage = round(damage * ((10 - victim.protection_aura) / 10))
+		damage = round(damage * ((20 - victim.protection_aura) / 20))
 
 	if(!damage)
 		return 0
@@ -976,8 +986,10 @@
 			victim.damageoverlaytemp = 20
 			if(brute_mod)
 				damage *= brute_mod
+			var/old_status = organ.limb_status
 			if(organ.take_damage_limb(damage, 0, sharp, edge))
 				victim.UpdateDamageIcon()
+				record_internal_injury(victim, attacker, old_status, organ.limb_status)
 		if(BURN)
 			victim.damageoverlaytemp = 20
 			if(burn_mod)

@@ -101,15 +101,15 @@
 		switch(screen)
 			if(0)
 				dat+= "<DIV STYLE='float:left; text-align:left; width:33.33333%'></DIV>"
-				dat+= "<DIV STYLE='float:left; text-align:center; width:33.33333%'><A href='?src=\ref[src];remove=1'>Remove [(istype(src[page], /obj/item/paper)) ? "paper" : "photo"]</A></DIV>"
-				dat+= "<DIV STYLE='float:left; text-align:right; width:33.33333%'><A href='?src=\ref[src];next_page=1'>Next Page</A></DIV><BR><HR>"
+				dat+= "<DIV STYLE='float:left; text-align:center; width:33.33333%'><A href='?src=[text_ref(src)];remove=1'>Remove [(istype(src[page], /obj/item/paper)) ? "paper" : "photo"]</A></DIV>"
+				dat+= "<DIV STYLE='float:left; text-align:right; width:33.33333%'><A href='?src=[text_ref(src)];next_page=1'>Next Page</A></DIV><BR><HR>"
 			if(1)
-				dat+= "<DIV STYLE='float:left; text-align:left; width:33.33333%'><A href='?src=\ref[src];prev_page=1'>Previous Page</A></DIV>"
-				dat+= "<DIV STYLE='float:left; text-align:center; width:33.33333%'><A href='?src=\ref[src];remove=1'>Remove [(istype(src[page], /obj/item/paper)) ? "paper" : "photo"]</A></DIV>"
-				dat+= "<DIV STYLE='float:left; text-align:right; width:33.33333%'><A href='?src=\ref[src];next_page=1'>Next Page</A></DIV><BR><HR>"
+				dat+= "<DIV STYLE='float:left; text-align:left; width:33.33333%'><A href='?src=[text_ref(src)];prev_page=1'>Previous Page</A></DIV>"
+				dat+= "<DIV STYLE='float:left; text-align:center; width:33.33333%'><A href='?src=[text_ref(src)];remove=1'>Remove [(istype(src[page], /obj/item/paper)) ? "paper" : "photo"]</A></DIV>"
+				dat+= "<DIV STYLE='float:left; text-align:right; width:33.33333%'><A href='?src=[text_ref(src)];next_page=1'>Next Page</A></DIV><BR><HR>"
 			if(2)
-				dat+= "<DIV STYLE='float:left; text-align:left; width:33.33333%'><A href='?src=\ref[src];prev_page=1'>Previous Page</A></DIV>"
-				dat+= "<DIV STYLE='float:left; text-align:center; width:33.33333%'><A href='?src=\ref[src];remove=1'>Remove [(istype(src[page], /obj/item/paper)) ? "paper" : "photo"]</A></DIV><BR><HR>"
+				dat+= "<DIV STYLE='float:left; text-align:left; width:33.33333%'><A href='?src=[text_ref(src)];prev_page=1'>Previous Page</A></DIV>"
+				dat+= "<DIV STYLE='float:left; text-align:center; width:33.33333%'><A href='?src=[text_ref(src)];remove=1'>Remove [(istype(src[page], /obj/item/paper)) ? "paper" : "photo"]</A></DIV><BR><HR>"
 				dat+= "<DIV STYLE='float;left; text-align:right; with:33.33333%'></DIV>"
 		if(istype(src[page], /obj/item/paper))
 			var/obj/item/paper/P = src[page]

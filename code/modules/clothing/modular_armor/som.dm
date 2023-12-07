@@ -32,7 +32,7 @@
 		/obj/item/armor_module/storage/injector,
 		/obj/item/armor_module/storage/grenade,
 		/obj/item/armor_module/storage/integrated,
-		/obj/item/armor_module/greyscale/badge,
+		/obj/item/armor_module/armor/badge,
 	)
 
 	icon_state_variants = list(
@@ -134,10 +134,19 @@
 		/obj/item/armor_module/storage/injector,
 		/obj/item/armor_module/storage/grenade,
 		/obj/item/armor_module/storage/integrated,
-		/obj/item/armor_module/greyscale/badge,
+		/obj/item/armor_module/armor/badge,
 	)
 
 /obj/item/clothing/suit/modular/som/heavy/leader/valk
+	starting_attachments = list(
+		/obj/item/armor_module/module/valkyrie_autodoc/som,
+		/obj/item/armor_module/storage/medical/som,
+	)
+
+/obj/item/clothing/suit/modular/som/heavy/leader/officer
+	desc = "A bulky suit of heavy combat armor, the M-35 'Gorgon' armor provides the user with superior protection without severely impacting mobility. The gold markings on this one signify it is worn by a high ranking field officer. You'll need serious firepower to punch through this. Alt-Click to remove attached items. Use it to toggle the built-in flashlight."
+	icon_state = "som_officer"
+	item_state = "som_officer"
 	starting_attachments = list(
 		/obj/item/armor_module/module/valkyrie_autodoc/som,
 		/obj/item/armor_module/storage/medical/som,
@@ -165,14 +174,15 @@
 		/obj/item/armor_module/module/artemis,
 		/obj/item/armor_module/module/antenna,
 		/obj/item/armor_module/storage/helmet,
-		/obj/item/armor_module/greyscale/badge,
+		/obj/item/armor_module/armor/badge,
 	)
-
+	greyscale_config = null
 	starting_attachments = list(/obj/item/armor_module/storage/helmet)
 	icon_state_variants = list(
 		"black",
 	)
 	current_variant = "black"
+	visorless_offset_y = 0
 
 /obj/item/clothing/head/modular/som/engineer
 	name = "\improper SOM engineering helmet"
@@ -181,7 +191,7 @@
 	item_state = "som_helmet_engineer"
 	attachments_allowed = list(
 		/obj/item/armor_module/storage/helmet,
-		/obj/item/armor_module/greyscale/badge,
+		/obj/item/armor_module/armor/badge,
 		/obj/item/armor_module/module/welding/som,
 	)
 	starting_attachments = list(/obj/item/armor_module/storage/helmet, /obj/item/armor_module/module/welding/som)
@@ -197,7 +207,7 @@
 	gas_transfer_coefficient = 0.1
 	attachments_allowed = list(
 		/obj/item/armor_module/storage/helmet,
-		/obj/item/armor_module/greyscale/badge,
+		/obj/item/armor_module/armor/badge,
 	)
 
 /obj/item/clothing/head/modular/som/hades
@@ -208,7 +218,7 @@
 	soft_armor = list(MELEE = 45, BULLET = 70, LASER = 60, ENERGY = 60, BOMB = 50, BIO = 50, FIRE = 90, ACID = 50)
 	attachments_allowed = list(
 		/obj/item/armor_module/storage/helmet,
-		/obj/item/armor_module/greyscale/badge,
+		/obj/item/armor_module/armor/badge,
 	)
 
 /obj/item/clothing/head/modular/som/veteran
@@ -224,7 +234,7 @@
 	soft_armor = list(MELEE = 60, BULLET = 85, LASER = 80, ENERGY = 80, BOMB = 65, BIO = 55, FIRE = 70, ACID = 60)
 	attachments_allowed = list(
 		/obj/item/armor_module/storage/helmet,
-		/obj/item/armor_module/greyscale/badge,
+		/obj/item/armor_module/armor/badge,
 	)
 
 /obj/item/clothing/head/modular/som/leader
@@ -239,5 +249,10 @@
 		/obj/item/armor_module/module/artemis,
 		/obj/item/armor_module/module/antenna,
 		/obj/item/armor_module/storage/helmet,
-		/obj/item/armor_module/greyscale/badge,
+		/obj/item/armor_module/armor/badge,
 	)
+
+/obj/item/clothing/head/modular/som/leader/officer
+	desc = "Made for use with Gorgon pattern assault armor, providing superior protection. This one has gold markings indicating it belongs to a high ranking field officer."
+	icon_state = "som_helmet_officer"
+	item_state = "som_helmet_officer"

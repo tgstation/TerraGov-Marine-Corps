@@ -79,11 +79,11 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 	for(var/obj/machinery/gear/G in GLOB.machines)
 		if(G.id == "supply_elevator_gear")
 			gears += G
-			RegisterSignal(G, COMSIG_PARENT_QDELETING, PROC_REF(clean_gear))
+			RegisterSignal(G, COMSIG_QDELETING, PROC_REF(clean_gear))
 	for(var/obj/machinery/door/poddoor/railing/R in GLOB.machines)
 		if(R.id == "supply_elevator_railing")
 			railings += R
-			RegisterSignal(R, COMSIG_PARENT_QDELETING, PROC_REF(clean_railing))
+			RegisterSignal(R, COMSIG_QDELETING, PROC_REF(clean_railing))
 			R.linked_pad = src
 			R.open()
 
@@ -208,7 +208,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 /obj/item/supplytablet
 	name = "ASRS tablet"
 	desc = "A tablet for an Automated Storage and Retrieval System"
-	icon = 'icons/obj/items/req_tablet.dmi'
+	icon = 'icons/Marine/marine-navigation.dmi'
 	icon_state = "req_tablet_off"
 	req_access = list(ACCESS_MARINE_CARGO)
 	flags_equip_slot = ITEM_SLOT_POCKET
@@ -238,7 +238,8 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 	name = "ASRS console"
 	desc = "A console for an Automated Storage and Retrieval System"
 	icon = 'icons/obj/machines/computer.dmi'
-	icon_state = SHUTTLE_SUPPLY
+	icon_state = "computer"
+	screen_overlay = "supply"
 	req_access = list(ACCESS_MARINE_CARGO)
 	circuit = /obj/item/circuitboard/computer/supplycomp
 	var/datum/supply_ui/SU
@@ -278,7 +279,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 /datum/supply_ui/New(atom/source_object)
 	. = ..()
 	src.source_object = source_object
-	RegisterSignal(source_object, COMSIG_PARENT_QDELETING, PROC_REF(clean_ui))
+	RegisterSignal(source_object, COMSIG_QDELETING, PROC_REF(clean_ui))
 
 ///Signal handler to delete the ui when the source object is deleting
 /datum/supply_ui/proc/clean_ui()
@@ -456,7 +457,9 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 						shopping_cart[P.type] = number_to_buy
 			. = TRUE
 		if("send")
-			if(supply_shuttle.mode == SHUTTLE_IDLE && is_mainship_level(supply_shuttle.z))
+			if(supply_shuttle.mode != SHUTTLE_IDLE)
+				return
+			if(is_mainship_level(supply_shuttle.z))
 				if (!supply_shuttle.check_blacklist())
 					to_chat(usr, "For safety reasons, the Automated Storage and Retrieval System cannot store live, friendlies, classified nuclear weaponry or homing beacons.")
 					playsound(supply_shuttle.return_center_turf(), 'sound/machines/buzz-two.ogg', 50, 0)
@@ -577,7 +580,9 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 /obj/machinery/computer/ordercomp
 	name = "Supply ordering console"
 	icon = 'icons/obj/machines/computer.dmi'
-	icon_state = "request"
+	icon_state = "computer"
+	screen_overlay = "request"
+	broken_icon = "computer_orange_broken"
 	circuit = /obj/item/circuitboard/computer/ordercomp
 	var/datum/supply_ui/requests/SU
 
@@ -593,7 +598,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 
 /obj/item/storage/backpack/marine/radiopack
 	name = "\improper TGMC radio operator backpack"
-	desc = "A backpack that resembles the ones old-age radio operator marines would use."
+	desc = "A backpack that resembles the ones old-age radio operator marines would use. It has a supply ordering console installed on it, and a retractable antenna to receive supply drops."
 	icon_state = "radiopack"
 	item_state = "radiopack"
 	///Var for the window pop-up
@@ -603,7 +608,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 
 /obj/item/storage/backpack/marine/radiopack/Destroy()
 	if(beacon_datum)
-		UnregisterSignal(beacon_datum, COMSIG_PARENT_QDELETING)
+		UnregisterSignal(beacon_datum, COMSIG_QDELETING)
 		QDEL_NULL(beacon_datum)
 	return ..()
 
@@ -621,7 +626,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 
 /obj/item/storage/backpack/marine/radiopack/attack_self(mob/living/user)
 	if(beacon_datum)
-		UnregisterSignal(beacon_datum, COMSIG_PARENT_QDELETING)
+		UnregisterSignal(beacon_datum, COMSIG_QDELETING)
 		QDEL_NULL(beacon_datum)
 		user.show_message(span_warning("The [src] beeps and states, \"Your last position is no longer accessible by the supply console"), EMOTE_AUDIBLE, span_notice("The [src] vibrates but you can not hear it!"))
 		return
@@ -630,7 +635,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 		return FALSE
 	var/turf/location = get_turf(src)
 	beacon_datum = new /datum/supply_beacon(user.name, user.loc, user.faction, 4 MINUTES)
-	RegisterSignal(beacon_datum, COMSIG_PARENT_QDELETING, PROC_REF(clean_beacon_datum))
+	RegisterSignal(beacon_datum, COMSIG_QDELETING, PROC_REF(clean_beacon_datum))
 	user.show_message(span_notice("The [src] beeps and states, \"Your current coordinates were registered by the supply console. LONGITUDE [location.x]. LATITUDE [location.y]. Area ID: [get_area(src)]\""), EMOTE_AUDIBLE, span_notice("The [src] vibrates but you can not hear it!"))
 
 /// Signal handler to nullify beacon datum

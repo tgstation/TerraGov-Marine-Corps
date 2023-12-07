@@ -437,7 +437,8 @@
 			<a href='?src=[ref];mute=[REF(M)];mute_type=[MUTE_LOOC]'><font color='[(muted & MUTE_LOOC) ? "#ff5e5e" : "white"]'>LOOC</font></a> |
 			<a href='?src=[ref];mute=[REF(M)];mute_type=[MUTE_PRAY]'><font color='[(muted & MUTE_PRAY) ? "#ff5e5e" : "white"]'>PRAY</font></a> |
 			<a href='?src=[ref];mute=[REF(M)];mute_type=[MUTE_ADMINHELP]'><font color='[(muted & MUTE_ADMINHELP) ? "#ff5e5e" : "white"]'>ADMINHELP</font></a> |
-			<a href='?src=[ref];mute=[REF(M)];mute_type=[MUTE_DEADCHAT]'><font color='[(muted & MUTE_DEADCHAT) ? "#ff5e5e" : "white"]'>DEADCHAT</font></a>
+			<a href='?src=[ref];mute=[REF(M)];mute_type=[MUTE_DEADCHAT]'><font color='[(muted & MUTE_DEADCHAT) ? "#ff5e5e" : "white"]'>DEADCHAT</font></a> |
+			<a href='?src=[ref];mute=[REF(M)];mute_type=[MUTE_TTS]'><font color='[(muted & MUTE_TTS) ? "#ff5e5e" : "white"]'>TEXT TO SPEECH</font></a>
 			(<a href='?src=[ref];mute=[REF(M)];mute_type=[MUTE_ALL]'><font color='[(muted & MUTE_ALL) ? "#ff5e5e" : "white"]'>ALL</font></a>)
 		"}
 
@@ -481,7 +482,8 @@
 		<a href='?src=[ref];transform=spitter;mob=[REF(M)]'>Spitter</a> |
 		<a href='?src=[ref];transform=hivelord;mob=[REF(M)]'>Hivelord</a> |
 		<a href='?src=[ref];transform=carrier;mob=[REF(M)]'>Carrier</a> |
-		<a href='?src=[ref];transform=wraith;mob=[REF(M)]'>Wraith</a>
+		<a href='?src=[ref];transform=wraith;mob=[REF(M)]'>Wraith</a> |
+		<a href='?src=[ref];transform=puppeteer;mob=[REF(M)]'>Puppeteer</a> |
 		<br> Alien Tier 3:
 		<a href='?src=[ref];transform=ravager;mob=[REF(M)]'>Ravager</a> |
 		<a href='?src=[ref];transform=widow;mob=[REF(M)]'>Widow</a> |
@@ -491,6 +493,7 @@
 		<a href='?src=[ref];transform=crusher;mob=[REF(M)]'>Crusher</a>
 		<a href='?src=[ref];transform=gorger;mob=[REF(M)]'>Gorger</a>
 		<a href='?src=[ref];transform=warlock;mob=[REF(M)]'>Warlock</a>
+		<a href='?src=[ref];transform=behemoth;mob=[REF(M)]'>Behemoth</a>
 		<br> Alien Tier 4:
 		<a href='?src=[ref];transform=queen;mob=[REF(M)]'>Queen</a> |
 		<a href='?src=[ref];transform=shrike;mob=[REF(M)]'>Shrike</a> |

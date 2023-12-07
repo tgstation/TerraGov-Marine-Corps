@@ -12,7 +12,7 @@
 	hand_reload_sound = 'sound/weapons/guns/interact/revolver_load.ogg'
 	type_of_casings = "bullet"
 	load_method = SINGLE_CASING|SPEEDLOADER //codex
-	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_NO_PITCH_SHIFT_NEAR_EMPTY
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_NO_PITCH_SHIFT_NEAR_EMPTY|GUN_SMOKE_PARTICLES
 	actions_types = list(/datum/action/item_action/aim_mode)
 	aim_speed_modifier = 0.75
 	aim_fire_delay = 0.25 SECONDS
@@ -60,13 +60,20 @@
 /obj/item/weapon/gun/revolver/standard_revolver
 	name = "\improper R-44 combat revolver"
 	desc = "The R-44 standard combat revolver, produced by Terran Armories. A sturdy and hard hitting firearm that loads .44 Magnum rounds. Holds 7 rounds in the cylinder. Due to an error in the cylinder rotation system the fire rate of the gun is much faster than intended, it ended up being billed as a feature of the system."
-	icon_state = "tp44"
-	item_state = "tp44"
+	icon_state = GUN_ICONSTATE_LOADED
+	item_state = GUN_ICONSTATE_LOADED
+	fire_sound = 'sound/weapons/guns/fire/tgmc/kinetic/gun_r44.ogg'
 	caliber = CALIBER_44 //codex
 	max_chamber_items = 7 //codex
 	default_ammo_type = /obj/item/ammo_magazine/revolver/standard_revolver
 	allowed_ammo_types = list(/obj/item/ammo_magazine/revolver/standard_revolver)
 	force = 8
+	greyscale_config = /datum/greyscale_config/gun/revolver
+	colorable_allowed = PRESET_COLORS_ALLOWED
+	item_icons = list(
+		slot_l_hand_str = /datum/greyscale_config/gun_inhand/tp44,
+		slot_r_hand_str = /datum/greyscale_config/gun_inhand/r_hand/tp44,
+	)
 	attachable_allowed = list(
 		/obj/item/attachable/bayonet,
 		/obj/item/attachable/reddot,
@@ -264,7 +271,7 @@
 	)
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 22,"rail_x" = 17, "rail_y" = 22, "under_x" = 22, "under_y" = 17, "stock_x" = 22, "stock_y" = 19)
 
-	fire_delay = 0.35 SECONDS
+	fire_delay = 0.8 SECONDS
 	scatter = 8 // Only affects buckshot considering marksman has -15 scatter.
 	damage_falloff_mult = 1.2
 
@@ -294,12 +301,13 @@
 		/obj/item/attachable/lace,
 		/obj/item/attachable/shoulder_mount,
 		/obj/item/attachable/stock/t76,
+		/obj/item/attachable/scope/standard_magnum,
 	)
-	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 19,"rail_x" = 15, "rail_y" = 23, "under_x" = 22, "under_y" = 15, "stock_x" = 9, "stock_y" = 18)
+	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 19,"rail_x" = 15, "rail_y" = 23, "under_x" = 22, "under_y" = 15, "stock_x" = 10, "stock_y" = 18)
 	windup_delay = 0.5 SECONDS
 	aim_slowdown = 0.1
 	windup_sound = 'sound/weapons/guns/fire/t76_start.ogg'
-	fire_sound = 'sound/weapons/guns/fire/t76.ogg'
+	fire_sound = 'sound/weapons/guns/fire/tgmc/kinetic/gun_r76.ogg'
 	fire_delay = 0.75 SECONDS
 	akimbo_additional_delay = 0.6
 	accuracy_mult_unwielded = 0.85
@@ -311,6 +319,39 @@
 
 	starting_attachment_types = list(/obj/item/attachable/stock/t76)
 
+/obj/item/weapon/gun/revolver/standard_magnum/fancy
+	starting_attachment_types = list()
+	attachable_allowed = list(
+		/obj/item/attachable/bayonet,
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/heavy_barrel,
+		/obj/item/attachable/extended_barrel,
+		/obj/item/attachable/lasersight,
+		/obj/item/attachable/lace,
+		/obj/item/attachable/shoulder_mount,
+		/obj/item/attachable/stock/t76,
+		/obj/item/attachable/scope/standard_magnum,
+		/obj/item/attachable/compensator,
+	)
+
+/obj/item/weapon/gun/revolver/standard_magnum/fancy/gold
+	desc = "A gold plated R-76 magnum, to ensure it's incredibly expensive as well as incredibly impractical. The R-76 magnum is an absolute beast of a handgun used by the TGMC, rumors say it was created as a money laundering scheme by some general due to the sheer inpracticality of this firearm. Hits hard, recommended to be used with its stock attachment. Chambered in 12.7mm."
+	icon_state = "g_t76"
+	item_state = "g_t76"
+	fire_animation = "g_t76_fire"
+
+/obj/item/weapon/gun/revolver/standard_magnum/fancy/silver
+	desc = "A silver plated R-76 magnum, to ensure it's incredibly expensive as well as incredibly impractical. The R-76 magnum is an absolute beast of a handgun used by the TGMC, rumors say it was created as a money laundering scheme by some general due to the sheer inpracticality of this firearm. Hits hard, recommended to be used with its stock attachment. Chambered in 12.7mm."
+	icon_state = "s_t76"
+	item_state = "s_t76"
+	fire_animation = "s_t76_fire"
+
+/obj/item/weapon/gun/revolver/standard_magnum/fancy/nickle
+	desc = "A nickle plated R-76 magnum, for a more tasteful finish. The R-76 magnum is an absolute beast of a handgun used by the TGMC, rumors say it was created as a money laundering scheme by some general due to the sheer inpracticality of this firearm. Hits hard, recommended to be used with its stock attachment. Chambered in 12.7mm."
+	icon_state = "n_t76"
+	item_state = "n_t76"
+	fire_animation = "n_t76_fire"
 
 //Single action revolvers below
 //---------------------------------------------------

@@ -1,9 +1,10 @@
 /obj/item/proc/embed_into(mob/living/target, target_zone, silent)
 	if(!target.embed_item(src, target_zone, silent))
 		return FALSE
+	forceMove(target)
 	embedded_into = target
 	RegisterSignal(embedded_into, COMSIG_MOVABLE_MOVED, PROC_REF(embedded_on_carrier_move))
-	RegisterSignal(src, list(COMSIG_ITEM_DROPPED, COMSIG_MOVABLE_MOVED), PROC_REF(embedded_on_move))
+	RegisterSignals(src, list(COMSIG_ITEM_DROPPED, COMSIG_MOVABLE_MOVED), PROC_REF(embedded_on_move))
 	return TRUE
 
 
@@ -37,7 +38,7 @@
 		yankable_embedded = TRUE
 		break
 	if(!yankable_embedded)
-		verbs -= /mob/living/proc/yank_out_object
+		remove_verb(src, /mob/living/proc/yank_out_object)
 
 
 /mob/living/carbon/human/unembed_item(obj/item/embedding)
@@ -52,7 +53,7 @@
 		yankable_embedded = TRUE
 		break
 	if(!yankable_embedded)
-		verbs -= /mob/living/proc/yank_out_object
+		remove_verb(src, /mob/living/proc/yank_out_object)
 
 
 /datum/limb/proc/unembed(obj/item/embedding)
@@ -78,8 +79,8 @@
 		stack_trace("limb_embed called for QDELETED [embedding]")
 		embedding?.unembed_ourself()
 		return FALSE
-	if(embedding.flags_item & (NODROP|DELONDROP))
-		stack_trace("limb_embed called for NODROP|DELONDROP [embedding]")
+	if(HAS_TRAIT(embedding, TRAIT_NODROP) || (embedding.flags_item & DELONDROP))
+		stack_trace("limb_embed called for TRAIT_NODROP or DELONDROP [embedding]")
 		embedding.unembed_ourself()
 		return FALSE
 	if(limb_status & LIMB_DESTROYED)
@@ -88,7 +89,7 @@
 		owner.visible_message(span_danger("\The [embedding] sticks in the wound!"))
 	implants += embedding
 	if(embedding.embedding.embedded_flags & EMBEDDED_CAN_BE_YANKED_OUT)
-		owner.verbs += /mob/living/proc/yank_out_object
+		add_verb(owner, /mob/living/proc/yank_out_object)
 	embedding.add_mob_blood(owner)
 	embedding.forceMove(owner)
 	embedding.RegisterSignal(src, COMSIG_LIMB_DESTROYED, TYPE_PROC_REF(/obj/item, embedded_on_limb_destruction))
@@ -191,7 +192,7 @@
 
 	balloon_alert(user, "attempts to grip [selection]")
 
-	if(!do_after(user, selection.embedding.embedded_unsafe_removal_time, TRUE, src, BUSY_ICON_GENERIC) || QDELETED(selection) || !(selection in embedded_objects))
+	if(!do_after(user, selection.embedding.embedded_unsafe_removal_time, NONE, src, BUSY_ICON_GENERIC) || QDELETED(selection) || !(selection in embedded_objects))
 		return
 
 	if(self)
