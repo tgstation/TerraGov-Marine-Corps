@@ -3417,9 +3417,6 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	sound_miss	 = "ballistic_miss"
 	sound_bounce = "ballistic_bounce"
 
-/datum/ammo/energy/volkite/on_hit_mob(mob/M,obj/projectile/P)
-	deflagrate(M, P)
-
 /datum/ammo/energy/volkite/medium
 	max_range = 25
 	accurate_range = 12
