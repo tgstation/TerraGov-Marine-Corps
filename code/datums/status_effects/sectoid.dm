@@ -93,17 +93,17 @@
 /datum/status_effect/reknit_form
 	id = "reknit_form"
 	tick_interval = 0.5 SECONDS
-	alert_type = /atom/movable/screen/alert/status_effect/xeno_rejuvenate
+	alert_type = /atom/movable/screen/alert/status_effect/reknit_form
 
 /datum/status_effect/reknit_form/on_creation(mob/living/new_owner, set_duration)
 	owner = new_owner
 	duration = set_duration
-	owner.add_filter("[id]m", 0, outline_filter(2, "#455d5762"))
+	owner.add_filter("[id]", 0, outline_filter(2, "#455d5762"))
 	return ..()
 
 /datum/status_effect/reknit_form/on_remove()
 	. = ..()
-	owner.remove_filter("[id]m")
+	owner.remove_filter("[id]")
 
 /datum/status_effect/reknit_form/tick()
 	if(ishuman(owner))
@@ -121,3 +121,8 @@
 	owner.adjustOxyLoss(-5)
 	owner.heal_overall_damage(5, 5)
 	owner.adjustToxLoss(-3)
+
+/atom/movable/screen/alert/status_effect/reknit_form
+	name = "Reknit form"
+	desc = "Your health is being restored."
+	icon_state = "xeno_rejuvenate"

@@ -1,3 +1,7 @@
+
+/datum/action/ability/activable/sectoid
+	action_icon = 'icons/mob/psionic_icons.dmi'
+
 // ***************************************
 // *********** Mindmeld
 // ***************************************
