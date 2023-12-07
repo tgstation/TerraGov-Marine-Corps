@@ -65,6 +65,7 @@
 
 /datum/action/ability/activable/xeno/transfer_plasma/hivemind
 	plasma_transfer_amount = PLASMA_TRANSFER_AMOUNT * 2
+	transfer_delay = 0.5 SECONDS
 
 /datum/action/ability/activable/xeno/transfer_plasma/hivemind/can_use_action(silent = FALSE, override_flags, selecting = FALSE)
 	if (owner.status_flags & INCORPOREAL)
