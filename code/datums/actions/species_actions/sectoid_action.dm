@@ -8,7 +8,7 @@
 	cooldown_duration = 60 SECONDS
 	target_flags = ABILITY_MOB_TARGET
 	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_XENOABILITY_ENHANCEMENT,
+		KEYBINDING_NORMAL = COMSIG_ABILITY_MINDMELD,
 	)
 	var/mob/living/carbon/melded_mob
 	///Range the linkees must be to each other to benefit
@@ -103,7 +103,7 @@
 	cooldown_duration = 20 SECONDS
 	target_flags = ABILITY_MOB_TARGET
 	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_XENOABILITY_OFFGUARD,
+		KEYBINDING_NORMAL = COMSIG_ABILITY_MINDFRAY,
 	)
 	///damage of this ability
 	var/damage = 20
@@ -151,12 +151,12 @@
 /datum/action/ability/activable/sectoid/stasis
 	name = "stasis"
 	action_icon_state = "stasis"
-	desc = "Muddles the mind of an enemy, making it harder for them to focus their aim for a while."
+	desc = "We surround a living thing with a powerful psionic field, temporarily disabling them and protecting them from all harm."
 	cooldown_duration = 20 SECONDS
 	target_flags = ABILITY_MOB_TARGET
 	use_state_flags = ABILITY_TARGET_SELF
 	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_XENOABILITY_OFFGUARD,
+		KEYBINDING_NORMAL = COMSIG_ABILITY_STASIS,
 	)
 	///Duration of effect
 	var/stasis_duration = 5 SECONDS
@@ -246,7 +246,7 @@
 	target_flags = ABILITY_MOB_TARGET
 	use_state_flags = ABILITY_TARGET_SELF
 	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_XENOABILITY_OFFGUARD,
+		KEYBINDING_NORMAL = COMSIG_ABILITY_REKNIT_FORM,
 	)
 	///damage of this ability
 	var/reknit_duration = 3 SECONDS
@@ -306,7 +306,7 @@
 	desc = "We reach out with our mind to trigger an explosive device."
 	cooldown_duration = 45 SECONDS
 	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_XENOABILITY_OFFGUARD,
+		KEYBINDING_NORMAL = COMSIG_ABILITY_FUSE,
 	)
 	/// Used for particles. Holds the particles instead of the mob. See particle_holder for documentation.
 	var/obj/effect/abstract/particle_holder/particle_holder
@@ -364,12 +364,12 @@
 /datum/action/ability/activable/psionic_interact
 	name = "Telekinesis"
 	action_icon_state = "telekinesis"
-	desc = "Manipulate things from a distance."
+	desc = "We manipulate things from a distance."
 	cooldown_duration = 20 SECONDS
 	target_flags = ABILITY_MOB_TARGET
 	use_state_flags = ABILITY_TARGET_SELF
 	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_XENOABILITY_OFFGUARD,
+		KEYBINDING_NORMAL = COMSIG_ABILITY_TELEKINESIS,
 	)
 	///Ability range
 	var/range = 9

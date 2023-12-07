@@ -547,6 +547,7 @@
 #include "code\datums\keybinding\mecha.dm"
 #include "code\datums\keybinding\mob.dm"
 #include "code\datums\keybinding\movement.dm"
+#include "code\datums\keybinding\sectoid.dm"
 #include "code\datums\keybinding\xeno.dm"
 #include "code\datums\loadout\loadout.dm"
 #include "code\datums\loadout\loadout_helper.dm"

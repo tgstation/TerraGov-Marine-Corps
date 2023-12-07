@@ -933,6 +933,14 @@
 #define COMSIG_XENOABILITY_SEISMIC_FRACTURE "xenoability_seismic_fracture"
 #define COMSIG_XENOABILITY_PRIMAL_WRATH "xenoability_primal_wrath"
 
+//sectoid abilities
+#define COMSIG_ABILITY_MINDMELD "ability_mindmeld"
+#define COMSIG_ABILITY_MINDFRAY "ability_mindfray"
+#define COMSIG_ABILITY_REKNIT_FORM "ability_reknit_form"
+#define COMSIG_ABILITY_FUSE "ability_fuse"
+#define COMSIG_ABILITY_STASIS "ability_stasis"
+#define COMSIG_ABILITY_TELEKINESIS "ability_telekinesis"
+
 // throw parry signals
 #define COMSIG_THROW_PARRY_CHECK "throw_parry_check"
 #define COMSIG_PARRY_TRIGGER "parry_trigger"
