@@ -483,7 +483,7 @@
 	list_reagents = list(
 		/datum/reagent/hypervene = 60,
 	)
-	description_overlay = "Ht"
+	description_overlay = "Hy"
 
 /obj/item/reagent_containers/hypospray/advanced/nanoblood
 	name = "nanoblood hypospray"
