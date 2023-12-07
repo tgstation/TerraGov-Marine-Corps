@@ -3441,6 +3441,10 @@
 /obj/machinery/conveyor_switch{
 	id = "ship_garbage"
 	},
+/obj/machinery/button{
+	id = "ship_garbageshutter";
+	name = "garbage shutter button"
+	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/upper_hull)
 "jl" = (
@@ -4847,6 +4851,9 @@
 	})
 "nh" = (
 /obj/machinery/recycler,
+/obj/machinery/door/poddoor/shutters/barren{
+	id = "ship_garbageshutter"
+	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/upper_hull)
 "ni" = (
