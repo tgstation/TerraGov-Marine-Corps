@@ -11630,6 +11630,16 @@
 	name = "Captain's Room";
 	outside = 0
 	})
+"FS" = (
+/obj/machinery/light_switch{
+	dir = 4
+	},
+/turf/closed/wall/mainship,
+/area/deltastation/command/heads_quarters/hos{
+	outside = 0;
+	name = "\improper Field Commander's Office";
+	ceiling = 2
+	})
 "FU" = (
 /obj/machinery/cryopod/right,
 /turf/open/floor/mainship/mono,
@@ -36504,7 +36514,7 @@ jP
 PY
 WI
 WI
-WI
+FS
 yh
 WI
 WI
