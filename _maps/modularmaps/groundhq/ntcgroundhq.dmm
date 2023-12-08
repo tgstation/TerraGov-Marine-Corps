@@ -1163,6 +1163,10 @@
 /obj/item/bedsheet/hop,
 /obj/effect/landmark/start/job/fieldcommander,
 /obj/effect/ai_node,
+/obj/item/clothing/under/hosformalfem{
+	name = "Field Commander's formal uniform";
+	desc = "A female Field Commander's formal-wear, for special occasions."
+	},
 /turf/open/floor/carpet{
 	dir = 6;
 	icon_state = "carpetside"
@@ -2347,6 +2351,9 @@
 /obj/effect/ai_node,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 8
+	},
+/obj/structure/disposalpipe/segment/corner{
+	dir = 1
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/groundhq/ntf/hallways/stern_hallway{
@@ -4630,8 +4637,11 @@
 "eYN" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
-/obj/structure/disposalpipe/junction{
-	dir = 8
+/obj/structure/disposalpipe/segment/corner{
+	dir = 1
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/groundhq/ntf/hallways/aft_hallway{
@@ -4932,17 +4942,7 @@
 	name = "HQ Central Hallways"
 	})
 "frM" = (
-/obj/structure/closet/cabinet,
-/obj/item/clothing/glasses/night/m42_night_goggles,
-/obj/item/clothing/suit/armor/hos,
-/obj/item/clothing/under/hosformalfem{
-	name = "Field Commander's formal uniform";
-	desc = "A female Field Commander's formal-wear, for special occasions."
-	},
-/obj/item/clothing/under/hosformalmale{
-	name = "Field Commander's formal uniform";
-	desc = "A male Field Commander's formal-wear, for special occasions."
-	},
+/obj/machinery/marine_selector/clothes/commander,
 /turf/open/floor/carpet{
 	dir = 9;
 	icon_state = "carpetside"
@@ -6451,8 +6451,10 @@
 	})
 "hhG" = (
 /obj/structure/cable,
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
 /obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
 /turf/open/floor/plating/plating_catwalk,
@@ -7380,13 +7382,16 @@
 "ihH" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold4w/scrubbers/hidden,
-/obj/structure/disposalpipe/junction{
-	dir = 4
-	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 1
 	},
 /obj/effect/ai_node,
+/obj/structure/disposalpipe/segment/corner{
+	dir = 4
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/groundhq/ntf/hallways/aft_hallway{
 	name = "HQ Northwest Hallways"
@@ -7509,8 +7514,15 @@
 	name = "Tad Aux LZ"
 	})
 "ioZ" = (
-/turf/closed/wall/mainship,
-/area/mainship/hallways/hangar2)
+/obj/structure/cable,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/squads/req{
+	outside = 0
+	})
 "ipy" = (
 /obj/structure/table/mainship,
 /obj/item/storage/box/MRE{
@@ -7822,15 +7834,6 @@
 /obj/item/clothing/suit/armor/bulletproof,
 /turf/open/floor/mainship/red/full,
 /area/mainship/groundhq/ntf/command/cic)
-"iFp" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/turf/open/floor/plating/plating_catwalk,
-/area/mainship/groundhq/ntf/hallways/stern_hallway{
-	name = "HQ Western hallways"
-	})
 "iGJ" = (
 /obj/machinery/light{
 	dir = 4
@@ -8321,13 +8324,11 @@
 	dir = 4
 	},
 /obj/structure/cable,
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
-	dir = 4
-	},
-/obj/structure/disposalpipe/junction{
-	dir = 1
-	},
 /obj/effect/ai_node,
+/obj/structure/disposalpipe/segment/corner,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 10
+	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/groundhq/ntf/hallways/aft_hallway{
 	name = "HQ Northwest Hallways"
@@ -8937,6 +8938,9 @@
 	dir = 5
 	},
 /obj/effect/ai_node,
+/obj/structure/disposalpipe/segment/corner{
+	dir = 1
+	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/groundhq/ntf/hallways/stern_hallway{
 	name = "HQ Western hallways"
@@ -9635,7 +9639,7 @@
 "kEK" = (
 /obj/structure/cable,
 /turf/open/floor/mainship/tcomms,
-/area/mainship/command/telecomms)
+/area/mainship/groundhq/ntf/command/telecomms)
 "kFd" = (
 /obj/machinery/shower{
 	dir = 1
@@ -10311,7 +10315,7 @@
 "lti" = (
 /obj/machinery/telecomms/relay/preset/telecomms,
 /turf/open/floor/mainship/tcomms,
-/area/mainship/command/telecomms)
+/area/mainship/groundhq/ntf/command/telecomms)
 "ltx" = (
 /obj/structure/cable,
 /obj/machinery/camera/autoname,
@@ -11269,12 +11273,13 @@
 	},
 /area/lv624/lazarus/security)
 "muN" = (
-/obj/structure/bookcase,
-/obj/item/storage/fancy/cigarettes/lady_finger{
-	pixel_y = 5
+/obj/structure/closet/cabinet,
+/obj/item/clothing/under/hosformalmale{
+	name = "Field Commander's formal uniform";
+	desc = "A male Field Commander's formal-wear, for special occasions."
 	},
-/obj/item/megaphone,
-/obj/effect/ai_node,
+/obj/item/clothing/suit/armor/hos,
+/obj/item/clothing/glasses/night/m42_night_goggles,
 /turf/open/floor/mainship/mono,
 /area/mainship/ntf/fcroom)
 "mvo" = (
@@ -13166,7 +13171,7 @@
 /obj/structure/cable,
 /obj/machinery/power/apc,
 /turf/open/floor/mainship/tcomms,
-/area/mainship/command/telecomms)
+/area/mainship/groundhq/ntf/command/telecomms)
 "oDO" = (
 /obj/structure/bookcase,
 /turf/open/floor/wood,
@@ -14012,7 +14017,10 @@
 	id = "wyoffice3"
 	},
 /turf/open/floor/plating/platebotc,
-/area/mainship/hallways/hangar2)
+/area/sulaco/liaison/quarters{
+	outside = 0;
+	name = "CEO Office"
+	})
 "pAv" = (
 /obj/machinery/light,
 /obj/structure/reagent_dispensers/water_cooler,
@@ -15163,6 +15171,10 @@
 /obj/structure/table/mainship,
 /obj/item/reagent_containers/food/drinks/flask/barflask,
 /obj/item/storage/briefcase,
+/obj/item/storage/fancy/cigarettes/lady_finger{
+	pixel_y = 5
+	},
+/obj/item/megaphone,
 /turf/open/floor/wood,
 /area/mainship/ntf/fcroom)
 "qOz" = (
@@ -18001,10 +18013,13 @@
 	})
 "ufd" = (
 /obj/structure/cable,
-/obj/structure/disposalpipe/junction{
+/obj/effect/ai_node,
+/obj/structure/disposalpipe/segment/corner{
 	dir = 8
 	},
-/obj/effect/ai_node,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
 /turf/open/floor/mainship,
 /area/mainship/hallways/hangar2)
 "ufL" = (
@@ -18876,6 +18891,7 @@
 "vgV" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/structure/disposalpipe/segment,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/groundhq/ntf/hallways/stern_hallway{
 	name = "HQ Western hallways"
@@ -19554,11 +19570,14 @@
 	outside = 0
 	})
 "vPS" = (
-/obj/structure/disposalpipe/junction{
-	dir = 8
-	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
 /obj/structure/cable,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/structure/disposalpipe/segment/corner{
+	dir = 1
+	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/groundhq/ntf/hallways/aft_hallway{
 	name = "HQ Northwest Hallways"
@@ -19866,7 +19885,7 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/mainship/tcomms,
-/area/mainship/command/telecomms)
+/area/mainship/groundhq/ntf/command/telecomms)
 "wgO" = (
 /obj/machinery/camera/autoname/mainship{
 	dir = 1
@@ -21442,6 +21461,7 @@
 	dir = 10
 	},
 /obj/effect/ai_node,
+/obj/structure/disposalpipe/segment/corner,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/groundhq/ntf/hallways/stern_hallway{
 	name = "HQ Western hallways"
@@ -22867,7 +22887,7 @@ cnM
 vcg
 vcg
 vWy
-iFp
+raB
 qtI
 ybB
 jRG
@@ -22974,7 +22994,7 @@ rzD
 nsS
 vcg
 rCz
-iFp
+raB
 vWy
 ybB
 qGu
@@ -23081,7 +23101,7 @@ fJQ
 qaM
 lIy
 vWy
-iFp
+raB
 vWy
 ybB
 ybB
@@ -23188,7 +23208,7 @@ bjK
 qaM
 ePJ
 vWy
-iFp
+raB
 vWy
 vWy
 lvk
@@ -23299,7 +23319,7 @@ xYf
 vgV
 vgV
 jMS
-gbl
+vWy
 qWq
 hKj
 hKj
@@ -25630,7 +25650,7 @@ hKj
 hKj
 hKj
 gfR
-nGk
+adO
 jfN
 rGb
 pAD
@@ -26599,7 +26619,7 @@ jaR
 lSE
 hSe
 xRG
-auW
+ioZ
 yeX
 vFN
 qFg
@@ -26838,16 +26858,16 @@ cWB
 vWy
 oIm
 vWy
-ioZ
-ioZ
+oho
+oho
 pzV
 pzV
 pzV
-ioZ
-ioZ
-ioZ
-ioZ
-ioZ
+oho
+oho
+oho
+oho
+oho
 oyO
 oyO
 oyO

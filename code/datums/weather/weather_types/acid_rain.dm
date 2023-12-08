@@ -23,7 +23,7 @@
 
 	barometer_predictable = TRUE
 
-	probability = 20
+	probability = 10
 	repeatable = FALSE
 
 	var/datum/looping_sound/acidrain/sound_active_acidrain = new(list(), FALSE, TRUE)

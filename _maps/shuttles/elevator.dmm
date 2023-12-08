@@ -1,0 +1,30 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/open/shuttle/elevator/grating,
+/area/space)
+"t" = (
+/obj/docking_port/mobile/shuttle/elevator,
+/turf/open/shuttle/elevator/grating,
+/area/space)
+"G" = (
+/obj/machinery/computer/shuttle/shuttle_control/elevator{
+	pixel_y = 15
+	},
+/turf/open/shuttle/elevator/grating,
+/area/space)
+
+(1,1,1) = {"
+a
+a
+a
+"}
+(2,1,1) = {"
+G
+t
+a
+"}
+(3,1,1) = {"
+a
+a
+a
+"}

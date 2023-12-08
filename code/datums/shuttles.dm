@@ -194,6 +194,9 @@
 	shuttle_id = SHUTTLE_SHIPELEVATOR
 	name = "Ship Elevator"
 
+/datum/map_template/shuttle/elevator
+	shuttle_id = SHUTTLE_ELEVATOR
+	name = "Elevator"
 
 /datum/map_template/shuttle/tgs_canterbury
 	shuttle_id = SHUTTLE_CANTERBURY
