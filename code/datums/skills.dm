@@ -298,7 +298,7 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 /datum/skills/combat_medic/pmc
 	name = "PMC Medic"
 	medical = SKILL_MEDICAL_EXPERT
-	
+
 /datum/skills/doctor
 	name = "Doctor"
 	cqc = SKILL_CQC_WEAK
@@ -511,7 +511,6 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 /datum/skills/specialist/pmc
 	name = "PMC Specialist"
 	engineer = SKILL_ENGINEER_METAL
-
 
 /datum/skills/specialist/upp
 	name = "UPP Specialist"
