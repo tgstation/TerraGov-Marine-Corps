@@ -531,10 +531,10 @@
 		return fail_activate()
 
 	var/mob/living/carbon/human/human_target = target
-	if(human_target.faction == owner.faction)
+	if(human_target.faction == owner.faction && !(HAS_TRAIT(human_target, TRAIT_UNDEFIBBABLE)))
 		human_target.revive_to_crit(TRUE)
 		target.remove_filter("psi_reanimation")
-	else
+	else if(ishumanbasic(human_target))
 		human_target.revive_to_crit(FALSE, FALSE)
 		human_target.set_species("Psi zombie")
 		human_target.faction = owner.faction
@@ -544,6 +544,8 @@
 		var/obj/item/radio/headset/mainship/radio = human_target.wear_ear
 		if(istype(radio))
 			radio.safety_protocol(src)
+	else
+		owner.balloon_alert(owner, "Unrevivable")
 
 	QDEL_NULL(particle_holder)
 	playsound(owner, 'sound/effects/petrify_activate.ogg', 50)
