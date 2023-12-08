@@ -71,13 +71,10 @@
 
 /// Toggles particles on or off, adjusting their positioning to fit the buff's owner.
 /datum/status_effect/mindmeld/proc/toggle_particles(toggle)
-	var/particle_x = abs(link_target.pixel_x)
-	if(!toggle)
-		QDEL_NULL(particle_holder)
-		return
-	particle_holder = new(link_target, /particles/drone_enhancement)
-	particle_holder.pixel_x = particle_x
-	particle_holder.pixel_y = -3
+	if(toggle)
+		link_target.add_filter("[id]", 3, outline_filter(1, LIGHT_COLOR_BLUE))
+	else
+		link_target.remove_filter("[id]")
 
 /// Removes the status effect on death.
 /datum/status_effect/mindmeld/proc/handle_stun(datum/source, amount, ignore_canstun)
@@ -98,7 +95,7 @@
 /datum/status_effect/reknit_form/on_creation(mob/living/new_owner, set_duration)
 	owner = new_owner
 	duration = set_duration
-	owner.add_filter("[id]", 0, outline_filter(2, "#455d5762"))
+	owner.add_filter("[id]", 0, outline_filter(2, LIGHT_COLOR_EMISSIVE_GREEN))
 	return ..()
 
 /datum/status_effect/reknit_form/on_remove()

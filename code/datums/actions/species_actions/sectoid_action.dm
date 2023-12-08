@@ -470,17 +470,19 @@
 // ***************************************
 
 #define SECTOID_REANIMATE_RANGE 4
+#define SECTOID_REANIMATE_CHANNEL_TIME 1.5 SECONDS
 /datum/action/ability/activable/sectoid/reanimate
 	name = "Reanimate"
-	action_icon_state = "reknit_form"
-	desc = "With our psionic strength we turn the dead into our puppet."
+	action_icon_state = "reanimate"
+	desc = "With our psionic strength we turn the dead into our puppet, or revive a fallen ally."
 	cooldown_duration = 60 SECONDS
 	target_flags = ABILITY_MOB_TARGET
 	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_ABILITY_REKNIT_FORM,
+		KEYBINDING_NORMAL = COMSIG_ABILITY_REANIMATE,
 	)
 	/// Used for particles. Holds the particles instead of the mob. See particle_holder for documentation.
 	var/obj/effect/abstract/particle_holder/particle_holder
+	///list of
 	var/list/zombie_list = list()
 
 /datum/action/ability/activable/sectoid/reanimate/give_action(mob/living/L)
@@ -489,7 +491,6 @@
 
 /datum/action/ability/activable/sectoid/reanimate/remove_action(mob/living/carbon/carbon_owner)
 	kill_zombies()
-	zombie_list = null
 	return ..()
 
 /datum/action/ability/activable/sectoid/reanimate/can_use_ability(atom/A, silent = FALSE, override_flags)
@@ -521,7 +522,10 @@
 	particle_holder.particles.velocity = list(0, 1.5)
 	particle_holder.particles.gravity = list(0, 2)
 
-	if(!do_after(owner, 1.5 SECONDS, IGNORE_HELD_ITEM|IGNORE_LOC_CHANGE, target, BUSY_ICON_DANGER) || !can_use_ability(target))
+	target.beam(owner, "drain_life", time = SECTOID_REANIMATE_CHANNEL_TIME, maxdistance = 10)
+	target.add_filter("psi_reanimation", 3, outline_filter(1, COLOR_STRONG_MAGENTA))
+
+	if(!do_after(owner, SECTOID_REANIMATE_CHANNEL_TIME, IGNORE_HELD_ITEM|IGNORE_LOC_CHANGE, target, BUSY_ICON_DANGER) || !can_use_ability(target))
 		owner.balloon_alert(owner, "Our focus is disrupted")
 		QDEL_NULL(particle_holder)
 		return fail_activate()
@@ -529,9 +533,9 @@
 	var/mob/living/carbon/human/human_target = target
 	if(human_target.faction == owner.faction)
 		human_target.revive_to_crit(TRUE)
+		target.remove_filter("psi_reanimation")
 	else
 		human_target.revive_to_crit(FALSE, FALSE)
-		//human_target.create_psi_zombie(TRUE, owner.faction)
 		human_target.set_species("Psi zombie")
 		human_target.faction = owner.faction
 		human_target.offer_mob()
@@ -555,3 +559,4 @@
 	SIGNAL_HANDLER
 	for(var/mob/living/carbon/human/zombie AS in zombie_list)
 		zombie.gib()
+	zombie_list = list()

@@ -429,11 +429,3 @@
 	REMOVE_TRAIT(src, TRAIT_IS_RESURRECTING, REVIVE_TO_CRIT_TRAIT)
 	SSmobs.start_processing(src)
 
-/mob/living/carbon/human/proc/create_psi_zombie(should_offer_to_ghost = TRUE, new_faction = FACTION_ZOMBIE)
-	set_species("Psi zombie")
-	faction = new_faction
-	if(should_offer_to_ghost)
-		offer_mob()
-	var/obj/item/radio/headset/mainship/radio = wear_ear
-	if(istype(radio))
-		radio.safety_protocol(src)

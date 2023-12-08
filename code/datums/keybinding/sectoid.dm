@@ -43,3 +43,10 @@
 	description = "We manipulate things from a distance."
 	keybind_signal = COMSIG_ABILITY_TELEKINESIS
 	hotkey_keys = list("G")
+
+/datum/keybinding/sectoid/reanimate
+	name = "Reanimate"
+	full_name = "Sectoid: Reanimate"
+	description = "With our psionic strength we turn the dead into our puppet, or revive a fallen ally."
+	keybind_signal = COMSIG_ABILITY_REANIMATE
+	hotkey_keys = list("B")

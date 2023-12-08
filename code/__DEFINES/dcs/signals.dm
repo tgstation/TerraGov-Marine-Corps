@@ -940,6 +940,7 @@
 #define COMSIG_ABILITY_FUSE "ability_fuse"
 #define COMSIG_ABILITY_STASIS "ability_stasis"
 #define COMSIG_ABILITY_TELEKINESIS "ability_telekinesis"
+#define COMSIG_ABILITY_REANIMATE "ability_reanimate"
 
 // throw parry signals
 #define COMSIG_THROW_PARRY_CHECK "throw_parry_check"
