@@ -50,6 +50,12 @@
 		to_chat(H, "<p style='font-size:1.5em'>[span_notice("You are a PMC heavy sniper assigned to this team to respond to the TGMC distress signal sent out nearby. Support your squad with long ranged firepower!")]</p>")
 		return
 
+	if(prob(30))
+		var/datum/job/J = SSjob.GetJobType(/datum/job/pmc/medic)
+		H.apply_assigned_role_to_spawn(J)
+		to_chat(H, "<p style='font-size:1.5em'>[span_notice("You are a PMC combat medic assigned to this team to respond to the TGMC distress signal sent out nearby. Support your squad with bleeding edge treatments!")]</p>")
+		return
+
 	var/datum/job/J = SSjob.GetJobType(/datum/job/pmc/standard)
 	H.apply_assigned_role_to_spawn(J)
 	to_chat(H, "<p style='font-size:1.5em'>[span_notice("You are a private military contractor assigned to this team to respond to the TGMC distress signal sent out nearby. Assist your team and protect NT's interests whenever possible!")]</p>")
