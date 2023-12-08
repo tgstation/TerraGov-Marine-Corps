@@ -1,4 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - bugfix: "fixed detpacks not working on structures, and being weaker than expected on solid turfs"

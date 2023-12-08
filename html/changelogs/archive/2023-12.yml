@@ -82,3 +82,14 @@
 2023-12-07:
   MiniMeatwad:
   - balance: Queen egg laying added
+2023-12-08:
+  Lumipharon:
+  - bugfix: fixed detpacks not working on structures, and being weaker than expected
+      on solid turfs
+  Wisemonster:
+  - balance: C4 (Plastique explosives) no longer requires a multitool to disarm.
+  coldironwarrior:
+  - balance: the SG153 spotting rifle's maximum bullet range has been increased to
+      match the range of the SG62 it's attached to
+  ivanmixo:
+  - code_imp: Deleted some rogue commas
