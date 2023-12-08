@@ -345,15 +345,10 @@
 	if(isgrenade(target))
 		grenade_target = target
 	else
-		grenade_target = locate(/obj/item/explosive/grenade) in target
+		grenade_target = locate(/obj/item/explosive/grenade) in target.GetAllContents()
 		if(!grenade_target)
-			for(var/obj/item/storage/target_storage in target)
-				grenade_target = locate(/obj/item/explosive/grenade) in target_storage
-				if(grenade_target)
-					break
-			if(!grenade_target)
-				target.balloon_alert(owner, "no grenade found")
-				return fail_activate()
+			target.balloon_alert(owner, "no grenade found")
+			return fail_activate()
 
 	grenade_target.activate(owner)
 	playsound(owner, 'sound/effects/petrify_activate.ogg', 50)
