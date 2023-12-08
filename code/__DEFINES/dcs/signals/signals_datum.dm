@@ -26,22 +26,3 @@
 #define COMSIG_ELEMENT_ATTACH "element_attach"
 /// fires on the target datum when an element is attached to it  (/datum/element)
 #define COMSIG_ELEMENT_DETACH "element_detach"
-
-// Merger datum signals
-/// Called on the object being added to a merger group: (datum/merger/new_merger)
-#define COMSIG_MERGER_ADDING "comsig_merger_adding"
-/// Called on the object being removed from a merger group: (datum/merger/old_merger)
-#define COMSIG_MERGER_REMOVING "comsig_merger_removing"
-/// Called on the merger after finishing a refresh: (list/leaving_members, list/joining_members)
-#define COMSIG_MERGER_REFRESH_COMPLETE "comsig_merger_refresh_complete"
-
-// Gas mixture signals
-/// From /datum/gas_mixture/proc/merge: ()
-#define COMSIG_GASMIX_MERGED "comsig_gasmix_merged"
-/// From /datum/gas_mixture/proc/remove: ()
-#define COMSIG_GASMIX_REMOVED "comsig_gasmix_removed"
-/// From /datum/gas_mixture/proc/react: ()
-#define COMSIG_GASMIX_REACTED "comsig_gasmix_reacted"
-
-///from /datum/bank_account/pay_debt(), after a portion or all the debt has been paid.
-#define COMSIG_BANK_ACCOUNT_DEBT_PAID "bank_account_debt_paid"

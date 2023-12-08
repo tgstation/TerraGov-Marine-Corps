@@ -709,13 +709,6 @@
 #define COMSIG_KB_ADMIN_TOGGLEBUILDMODE_DOWN "keybinding_admin_togglebuildmode_down"
 #define COMSIG_KB_ADMIN_VIEWTAGS_DOWN "keybinding_admin_viewtags_down"
 
-/*#define COMSIG_KB_ADMIN_AGHOST_DOWN "keybinding_admin_aghost_down"
-#define COMSIG_KB_ADMIN_PLAYERPANELNEW_DOWN "keybinding_admin_playerpanelnew_down"
-#define COMSIG_KB_ADMIN_STEALTHMODETOGGLE_DOWN "keybinding_admin_stealthmodetoggle_down"
-#define COMSIG_KB_ADMIN_INVISIMINTOGGLE_DOWN "keybinding_admin_invisimintoggle_down"
-#define COMSIG_KB_ADMIN_DEADMIN_DOWN "keybinding_admin_deadmin_down"
-#define COMSIG_KB_ADMIN_READMIN_DOWN "keybinding_admin_readmin_down"*/ //These are from TG, unused, feel free to implement them
-
 // mob keybinds
 #define COMSIG_KB_HOLD_RUN_MOVE_INTENT_UP "keybinding_hold_run_move_intent_up"
 #define COMSIG_KB_EMOTE "keybinding_emote"
