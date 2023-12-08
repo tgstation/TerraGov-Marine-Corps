@@ -219,3 +219,10 @@
 #define X_FIRE_LAYER 1
 #define X_TOTAL_LAYERS 9
 /////////////////////////////////
+
+//Cave comms defines
+#define CAVE_NO_INTERFERENCE 0 //! No impact on comms.
+#define CAVE_MINOR_INTERFERENCE 1 //! Scrambles outgoing messages, no impact on incoming.
+#define CAVE_FULL_INTERFERENCE 2 //! Prevents incoming and outgoing messages.
+
+#define ANTENNA_SYNCING_TIME 30 SECONDS //! Time needed to initially configure an antenna module after equipping.

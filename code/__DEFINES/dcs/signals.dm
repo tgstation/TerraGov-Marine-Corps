@@ -1056,3 +1056,4 @@
 #define COMSIG_PUPPET_CHANGE_ORDER "puppetchangeorder"
 #define COMSIG_PUPPET_CHANGE_ALL_ORDER "puppetglobalorder"
 
+#define COMSIG_CAVE_INTERFERENCE_CHECK "cave_interference_check" //! Cave comms interference check signal.
