@@ -87,7 +87,7 @@
 	shoes = /obj/item/clothing/shoes/veteran/pmc
 	wear_suit = /obj/item/clothing/suit/storage/marine/veteran/pmc
 	gloves = /obj/item/defibrillator/gloves
-	head = /obj/item/clothing/head/helmet/marine/veteran/pmc/
+	head = /obj/item/clothing/head/helmet/marine/veteran/pmc
 	mask = /obj/item/clothing/mask/gas/pmc
 	glasses = /obj/item/clothing/glasses/hud/health
 	suit_store = /obj/item/weapon/gun/smg/m25/elite/pmc
