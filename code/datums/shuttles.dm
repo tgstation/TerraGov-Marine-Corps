@@ -114,7 +114,7 @@
 	name = "Normandy"
 
 /datum/map_template/shuttle/shipelevator
-	shuttle_id = SHUTTLE_ELEVATOR
+	shuttle_id = SHUTTLE_SHIPELEVATOR
 	name = "Elevator"
 
 /datum/map_template/shuttle/cas

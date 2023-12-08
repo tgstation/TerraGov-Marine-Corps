@@ -2166,6 +2166,14 @@
 	dir = 5
 	},
 /area/mainship/groundhq/ntf/engineering/ce_room)
+"bUV" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/hallways/starboard_ert{
+	name = "Ship Floor 3 Hallways"
+	})
 "bUY" = (
 /obj/structure/flora/pottedplant/ten,
 /turf/open/floor/carpet{
@@ -2436,6 +2444,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
+/obj/machinery/light,
 /turf/open/floor/wood,
 /area/mainship/groundhq/ntf/living/grunt_rnr)
 "cgM" = (
@@ -6226,6 +6235,15 @@
 /area/mainship/living/tankerbunks{
 	outside = 0
 	})
+"fIr" = (
+/obj/structure/cable,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/hallways/starboard_ert{
+	name = "Ship Floor 3 Hallways"
+	})
 "fIL" = (
 /obj/structure/cable,
 /obj/structure/cable,
@@ -6329,6 +6347,12 @@
 	name = "Captain's Room";
 	outside = 0
 	})
+"fOv" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/groundhq/ntf/shipboard/brig)
 "fOz" = (
 /turf/open/floor/plating/mainship,
 /area/mainship/living/evacuation)
@@ -7137,6 +7161,13 @@
 /area/mainship/command/telecomms{
 	outside = 0
 	})
+"gyy" = (
+/obj/structure/bed/chair/comfy{
+	dir = 4
+	},
+/obj/machinery/light,
+/turf/open/floor/mainship,
+/area/mainship/groundhq/ntf/living/grunt_rnr)
 "gzF" = (
 /obj/structure/reagent_dispensers/fueltank,
 /obj/machinery/camera/autoname/mainship{
@@ -7458,6 +7489,14 @@
 /turf/closed/wall/mainship/outer,
 /area/mainship/command/telecomms{
 	outside = 0
+	})
+"gPv" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/starboard_ert{
+	name = "Ship Floor 3 Hallways"
 	})
 "gQj" = (
 /obj/structure/disposalpipe/segment,
@@ -9443,6 +9482,18 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/upper_hull)
+"iIR" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/hallways/starboard_ert{
+	name = "Ship Floor 3 Hallways"
+	})
 "iIY" = (
 /obj/structure/disposalpipe/segment{
 	dir = 8
@@ -12992,6 +13043,9 @@
 	dir = 1
 	},
 /obj/structure/cable,
+/obj/machinery/light{
+	dir = 8
+	},
 /turf/open/floor/mainship/mono,
 /area/mainship/living/basketball{
 	outside = 0
@@ -14817,6 +14871,9 @@
 /turf/open/floor/prison,
 /area/mainship/groundhq/ntf/shipboard/brig_cells)
 "nyh" = (
+/obj/machinery/light{
+	dir = 8
+	},
 /turf/open/floor/mainship/green{
 	dir = 10
 	},
@@ -18643,6 +18700,12 @@
 	dir = 4
 	},
 /area/mainship/hull/upper_hull)
+"rcP" = (
+/obj/machinery/light,
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/starboard_ert{
+	name = "Ship Floor 3 Hallways"
+	})
 "rdh" = (
 /obj/structure/bed/chair/office/dark,
 /turf/open/floor/wood,
@@ -19931,6 +19994,10 @@
 	name = "Research";
 	outside = 0
 	})
+"swI" = (
+/obj/machinery/floodlight/landing/hq,
+/turf/open/floor/mainship,
+/area/mainship/groundhq/ntf/living/grunt_rnr)
 "swM" = (
 /turf/open/floor/plating/plating_catwalk,
 /area/deltastation/engineering/engine_smes{
@@ -24980,6 +25047,14 @@
 /area/outpost/brig/wardens_office{
 	name = "CC Office"
 	})
+"xom" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/starboard_ert{
+	name = "Ship Floor 3 Hallways"
+	})
 "xot" = (
 /obj/machinery/power/apc/mainship,
 /obj/structure/cable,
@@ -25239,6 +25314,9 @@
 "xzx" = (
 /obj/machinery/firealarm{
 	dir = 4
+	},
+/obj/machinery/light{
+	dir = 8
 	},
 /turf/open/floor/wood,
 /area/mainship/living/chapel)
@@ -35826,7 +35904,7 @@ aPj
 cqi
 cqi
 cqi
-qZo
+ybP
 aMa
 boT
 idg
@@ -37273,7 +37351,7 @@ aPj
 mra
 eie
 sNt
-wJU
+bUV
 wJU
 aMa
 iSM
@@ -38334,7 +38412,7 @@ eOB
 iWN
 mJZ
 jUb
-qZo
+rcP
 rQF
 rQF
 rQF
@@ -39083,7 +39161,7 @@ aPj
 cqi
 cqi
 cqi
-rWN
+fIr
 qZo
 aMa
 vTo
@@ -40504,9 +40582,9 @@ tMv
 eoA
 iVm
 tMv
-qZo
+ybP
 jUb
-qZo
+rcP
 mmj
 mmj
 mmj
@@ -40892,7 +40970,7 @@ xlX
 aPj
 miE
 aPj
-qZo
+ybP
 rWN
 kNS
 dIx
@@ -42340,7 +42418,7 @@ tCH
 dUo
 aIO
 hTH
-qZo
+ybP
 jUb
 qZo
 aMa
@@ -42676,9 +42754,9 @@ tMv
 tMv
 tMv
 tMv
-qZo
+ybP
 jUb
-qZo
+rcP
 mmj
 mxn
 kQG
@@ -43031,13 +43109,13 @@ bKy
 bKy
 bKy
 qMQ
-qZo
+xom
 ivx
 jFy
 jFy
 jFy
 jFy
-qZo
+xom
 qZo
 jUb
 qZo
@@ -43403,29 +43481,29 @@ wJU
 wJU
 jUb
 qZo
-qZo
+xom
 jmZ
 pOj
 eQZ
 jYs
-qZo
+xom
 jFy
 jFy
 jFy
 jFy
 jFy
-qZo
+xom
 aHY
 wNT
+fOv
 kQG
 kQG
 kQG
-kQG
-kQG
+fOv
 aHY
 qZo
 qZo
-qZo
+xom
 qZo
 jUb
 qZo
@@ -44106,16 +44184,16 @@ pNe
 pNe
 pNe
 pNe
-rOD
+gyy
 gvX
-qZo
+ybP
 wJU
 siy
 qZo
+gPv
 qZo
 qZo
-qZo
-qZo
+gPv
 qZo
 rWN
 ivx
@@ -44473,7 +44551,7 @@ cSI
 qZo
 wJU
 siy
-qZo
+rcP
 pvr
 uBd
 uBd
@@ -44862,7 +44940,7 @@ xjy
 qZo
 qZo
 jUb
-qZo
+rcP
 mmj
 bRl
 mmj
@@ -45192,7 +45270,7 @@ oIx
 oIx
 oIx
 pNe
-pNe
+swI
 cSI
 qZo
 wJU
@@ -45584,10 +45662,10 @@ lwu
 sgU
 sJf
 lwu
-qZo
+ybP
 jUb
 qZo
-mmj
+bRl
 fZd
 xpx
 gUv
@@ -45949,7 +46027,7 @@ lwu
 qZo
 now
 qZo
-mmj
+bRl
 pjQ
 npt
 aeF
@@ -46672,7 +46750,7 @@ lwu
 lwu
 jYs
 jUb
-qZo
+rcP
 mmj
 mmj
 kQG
@@ -47397,7 +47475,7 @@ lwu
 pOj
 jUb
 qZo
-mmj
+bRl
 wBD
 eUr
 pTL
@@ -47741,11 +47819,11 @@ wJU
 ivx
 qZo
 qZo
+gPv
 qZo
 qZo
 qZo
-qZo
-qZo
+xjy
 lwu
 vRt
 iie
@@ -47771,7 +47849,7 @@ ybU
 typ
 typ
 typ
-siy
+iIR
 qZo
 aMa
 shj
@@ -48118,10 +48196,10 @@ lwu
 lwu
 lwu
 lwu
-qZo
+ybP
 jUb
 qZo
-mmj
+bRl
 wSL
 kQG
 agx
@@ -48463,7 +48541,7 @@ cSI
 cSI
 qZo
 ivx
-qZo
+rcP
 qnG
 jKo
 dUN
@@ -48476,7 +48554,7 @@ vFM
 qnG
 wJU
 qZo
-qZo
+xom
 qZo
 qZo
 qZo
@@ -48844,7 +48922,7 @@ weL
 nZy
 nZy
 sRg
-qZo
+rcP
 mmj
 mmj
 mmj
@@ -49200,7 +49278,7 @@ rZc
 qnG
 rWN
 qZo
-qZo
+gPv
 siy
 qZo
 qZo
@@ -49943,7 +50021,7 @@ typ
 typ
 typ
 typ
-siy
+iIR
 qZo
 aMa
 shj
@@ -50271,7 +50349,7 @@ cRK
 byX
 hrY
 cSI
-qZo
+gPv
 pLC
 wJU
 rDw
@@ -50290,7 +50368,7 @@ ayX
 cAI
 qDZ
 jLv
-qZo
+ybP
 bag
 qZo
 aGr
