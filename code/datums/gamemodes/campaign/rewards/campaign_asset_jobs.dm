@@ -533,7 +533,7 @@ What you lack in equipment and military training you make up in bravery and conv
 	ears = /obj/item/radio/headset/mainship
 
 /datum/job/pmc/medic/campaign_bonus
-		faction = FACTION_TERRAGOV
+	faction = FACTION_TERRAGOV
 	comm_title = "PMC"
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
 	job_cost = 0
