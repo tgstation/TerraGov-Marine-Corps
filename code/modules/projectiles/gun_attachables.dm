@@ -456,6 +456,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	slot = ATTACHMENT_SLOT_MUZZLE
 	icon_state = "hbarrel"
 	recoil_mod = 1
+	recoil_unwielded_mod = 1.5
 	attach_shell_speed_mod = 2
 	accuracy_mod = -0.05
 	damage_falloff_mod = -0.2

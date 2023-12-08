@@ -1046,8 +1046,10 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/groundhq/ntf/living/officer_study)
 "bcT" = (
-/obj/machinery/power/port_gen,
 /obj/structure/cable,
+/obj/machinery/power/port_gen/pacman,
+/obj/item/stack/sheet/mineral/phoron/medium_stack,
+/obj/item/stack/sheet/mineral/phoron/medium_stack,
 /turf/open/floor/mainship/orange/corner,
 /area/mainship/engineering/engineering_workshop{
 	outside = 0
@@ -1344,7 +1346,7 @@
 	dir = 1
 	},
 /obj/structure/cable,
-/turf/open/floor/mainship/mono,
+/turf/open/floor/mainship/sterile/white,
 /area/sulaco/liaison/quarters{
 	outside = 0;
 	name = "CEO Office"
@@ -2021,6 +2023,15 @@
 	},
 /turf/open/floor/plating/mainship,
 /area/mainship/groundhq/ntf/engineering/engineering_workshop)
+"ckp" = (
+/obj/machinery/light_switch{
+	req_access = list(5)
+	},
+/turf/closed/wall/mainship,
+/area/sulaco/liaison/quarters{
+	outside = 0;
+	name = "CEO Office"
+	})
 "ckY" = (
 /obj/machinery/vending/nanomed,
 /turf/open/floor/mainship/mono,
@@ -3527,6 +3538,9 @@
 /obj/machinery/button/door/open_only/landing_zone{
 	req_one_access = list(40)
 	},
+/obj/machinery/light{
+	dir = 8
+	},
 /turf/open/floor/wood,
 /area/sulaco/liaison/quarters{
 	outside = 0;
@@ -4334,6 +4348,19 @@
 /area/mainship/squads/req{
 	outside = 0
 	})
+"eLd" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 1
+	},
+/obj/structure/cable,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/sulaco/liaison/quarters{
+	outside = 0;
+	name = "CEO Office"
+	})
 "eLi" = (
 /turf/closed/wall/mainship,
 /area/mainship/groundhq/ntf/command/cic)
@@ -4989,6 +5016,13 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req{
 	outside = 0
+	})
+"fxd" = (
+/obj/structure/flora/pottedplant/nine,
+/turf/open/floor/wood,
+/area/sulaco/liaison/quarters{
+	outside = 0;
+	name = "CEO Office"
 	})
 "fxg" = (
 /obj/machinery/door/airlock/mainship/engineering/storage{
@@ -5720,6 +5754,16 @@
 /area/mainship/groundhq/ntf/hallways/aft_hallway{
 	name = "HQ Northeast Hallways"
 	})
+"gtK" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/structure/flora/pottedplant/four,
+/turf/open/floor/wood,
+/area/sulaco/liaison/quarters{
+	outside = 0;
+	name = "CEO Office"
+	})
 "gtY" = (
 /obj/machinery/door/airlock/mainship/research/glass{
 	id = "Containment Cell 3";
@@ -6076,9 +6120,6 @@
 	outside = 0
 	})
 "gRg" = (
-/obj/machinery/light_switch{
-	req_access = list(5)
-	},
 /turf/open/floor/carpet{
 	dir = 9;
 	icon_state = "carpetside"
@@ -6873,6 +6914,9 @@
 /obj/structure/bed/chair/sofa/left{
 	dir = 1
 	},
+/obj/machinery/light{
+	dir = 4
+	},
 /turf/open/floor/wood,
 /area/sulaco/liaison/quarters{
 	outside = 0;
@@ -7425,7 +7469,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 9
 	},
-/turf/open/floor/mainship/mono,
+/turf/open/floor/mainship/sterile/white,
 /area/sulaco/liaison/quarters{
 	outside = 0;
 	name = "CEO Office"
@@ -8004,7 +8048,7 @@
 	dir = 4
 	},
 /obj/structure/cable,
-/turf/open/floor/wood,
+/turf/open/floor/mainship/office,
 /area/sulaco/liaison/quarters{
 	outside = 0;
 	name = "CEO Office"
@@ -9072,11 +9116,10 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/item/reagent_containers/food/snacks/spacetwinkie,
 /obj/machinery/keycard_auth{
 	pixel_y = 10
 	},
-/obj/item/storage/box/nt_mre,
+/obj/item/flashlight/lamp,
 /turf/open/floor/carpet{
 	dir = 6;
 	icon_state = "carpetside"
@@ -10473,6 +10516,13 @@
 /turf/open/floor/plating,
 /area/mainship/living/basketball{
 	outside = 0
+	})
+"lEm" = (
+/obj/machinery/holopad,
+/turf/open/floor/wood,
+/area/sulaco/liaison/quarters{
+	outside = 0;
+	name = "CEO Office"
 	})
 "lEt" = (
 /obj/structure/xenoautopsy/tank,
@@ -13127,7 +13177,7 @@
 	id = "bar3";
 	name = "\improper Lockers"
 	},
-/turf/open/space/basic,
+/turf/open/floor/mainship/mono,
 /area/centcom/practice/medical{
 	outside = 0;
 	base_lighting_alpha = 0;
@@ -13258,7 +13308,7 @@
 	dir = 4
 	},
 /obj/structure/cable,
-/turf/open/floor/mainship/mono,
+/turf/open/floor/mainship/sterile/white,
 /area/sulaco/liaison/quarters{
 	outside = 0;
 	name = "CEO Office"
@@ -14401,7 +14451,7 @@
 	dir = 1
 	},
 /obj/structure/curtain/open/shower,
-/turf/open/floor/plating/plating_catwalk,
+/turf/open/floor/mainship/sterile/white,
 /area/sulaco/liaison/quarters{
 	outside = 0;
 	name = "CEO Office"
@@ -14976,6 +15026,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
+/obj/structure/table/woodentable,
 /turf/open/floor/wood,
 /area/sulaco/liaison/quarters{
 	outside = 0;
@@ -15226,7 +15277,7 @@
 	dir = 4;
 	on = 1
 	},
-/turf/open/floor/mainship/mono,
+/turf/open/floor/mainship/sterile/white,
 /area/sulaco/liaison/quarters{
 	outside = 0;
 	name = "CEO Office"
@@ -16265,6 +16316,13 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/groundhq/ntf/engineering/engineering_workshop)
+"rWg" = (
+/obj/machinery/atm,
+/turf/closed/wall/mainship,
+/area/sulaco/liaison/quarters{
+	outside = 0;
+	name = "CEO Office"
+	})
 "rXd" = (
 /obj/structure/table/reinforced,
 /turf/open/floor/prison/darkyellow{
@@ -16704,11 +16762,14 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 5
 	},
-/obj/machinery/holopad,
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
 /obj/structure/cable,
+/obj/structure/table/woodentable,
+/obj/item/reagent_containers/food/snacks/spacetwinkie,
+/obj/item/storage/box/tgmc_mre,
+/obj/item/storage/box/nt_mre,
 /turf/open/floor/wood,
 /area/sulaco/liaison/quarters{
 	outside = 0;
@@ -18335,7 +18396,7 @@
 /obj/machinery/door/airlock/mainship/generic/corporate{
 	name = "CEO's Office"
 	},
-/turf/open/space/basic,
+/turf/open/floor/mainship/office,
 /area/sulaco/liaison/quarters{
 	outside = 0;
 	name = "CEO Office"
@@ -19088,6 +19149,8 @@
 /obj/item/tweezers,
 /obj/item/tweezers,
 /obj/item/tweezers,
+/obj/item/storage/box/rxglasses,
+/obj/item/storage/box/rxglasses,
 /turf/open/floor/mainship/sterile,
 /area/centcom/practice/medical{
 	outside = 0;
@@ -19624,7 +19687,7 @@
 /obj/structure/mirror{
 	pixel_y = 35
 	},
-/turf/open/floor/mainship/mono,
+/turf/open/floor/mainship/sterile/white,
 /area/sulaco/liaison/quarters{
 	outside = 0;
 	name = "CEO Office"
@@ -21318,6 +21381,8 @@
 /obj/item/tweezers,
 /obj/item/tweezers,
 /obj/item/tweezers,
+/obj/item/storage/box/rxglasses,
+/obj/item/storage/box/rxglasses,
 /turf/open/floor/mainship/sterile,
 /area/centcom/practice/medical{
 	outside = 0;
@@ -26026,7 +26091,7 @@ tdu
 vWy
 aRh
 uxa
-rPQ
+lEm
 hgE
 dOY
 gKB
@@ -26131,8 +26196,8 @@ cTc
 vWy
 iCm
 vWy
-kQT
-rPQ
+rWg
+fxd
 bUx
 oTq
 szd
@@ -26239,7 +26304,7 @@ vWy
 lbU
 wOn
 nzQ
-kNd
+eLd
 kNd
 hQP
 qGa
@@ -26347,7 +26412,7 @@ tdu
 vWy
 oho
 oho
-oho
+kQT
 pGc
 xaH
 oho
@@ -26457,8 +26522,8 @@ dPp
 aCX
 fpZ
 nVh
-rPQ
-oho
+gtK
+ckp
 gRg
 nxZ
 oho

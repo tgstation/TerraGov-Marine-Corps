@@ -3441,6 +3441,10 @@
 /obj/machinery/conveyor_switch{
 	id = "ship_garbage"
 	},
+/obj/machinery/button{
+	id = "ship_garbageshutter";
+	name = "garbage shutter button"
+	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/upper_hull)
 "jl" = (
@@ -4482,6 +4486,9 @@
 	outside = 0
 	})
 "ml" = (
+/obj/machinery/power/terminal{
+	dir = 1
+	},
 /turf/open/floor/plating/plating_catwalk,
 /area/sulaco/engineering/lower_engineering{
 	name = "Lower Power"
@@ -4844,6 +4851,9 @@
 	})
 "nh" = (
 /obj/machinery/recycler,
+/obj/machinery/door/poddoor/shutters/barren{
+	id = "ship_garbageshutter"
+	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/upper_hull)
 "ni" = (
@@ -5440,7 +5450,6 @@
 /turf/open/floor/mainship,
 /area/mainship/living/cafeteria_starboard)
 "oM" = (
-/obj/structure/cable,
 /obj/machinery/light/small,
 /turf/open/floor/plating/plating_catwalk,
 /area/sulaco/engineering/lower_engineering{
@@ -11630,6 +11639,16 @@
 	name = "Captain's Room";
 	outside = 0
 	})
+"FS" = (
+/obj/machinery/light_switch{
+	dir = 4
+	},
+/turf/closed/wall/mainship,
+/area/deltastation/command/heads_quarters/hos{
+	outside = 0;
+	name = "\improper Field Commander's Office";
+	ceiling = 2
+	})
 "FU" = (
 /obj/machinery/cryopod/right,
 /turf/open/floor/mainship/mono,
@@ -13095,6 +13114,9 @@
 	})
 "JK" = (
 /obj/structure/cable,
+/obj/machinery/power/apc/mainship{
+	dir = 8
+	},
 /turf/open/floor/plating/plating_catwalk,
 /area/sulaco/engineering/lower_engineering{
 	name = "Lower Power"
@@ -13518,13 +13540,6 @@
 	dir = 8
 	},
 /area/mainship/medical/operating_room_four)
-"KS" = (
-/obj/machinery/power/apc/mainship/hardened,
-/obj/structure/cable,
-/turf/open/floor/plating/plating_catwalk,
-/area/sulaco/engineering/lower_engineering{
-	name = "Lower Power"
-	})
 "KT" = (
 /obj/effect/soundplayer,
 /turf/closed/wall/mainship,
@@ -14546,13 +14561,6 @@
 /area/mainship/hallways/hangar/flight_control{
 	outside = 0;
 	name = "Shuttle Hanger"
-	})
-"Ny" = (
-/obj/structure/cable,
-/turf/open/floor/plating/plating_catwalk,
-/area/deltastation/engineering/gravity_generator{
-	name = "\improper Lower Power";
-	outside = 0
 	})
 "Nz" = (
 /obj/structure/table/mainship,
@@ -15887,7 +15895,6 @@
 	outside = 0
 	})
 "QZ" = (
-/obj/effect/landmark/start/latejoin,
 /obj/structure/ladder{
 	id = "NTFLadderCryo2";
 	height = 1
@@ -27749,7 +27756,7 @@ Jl
 vz
 qN
 qN
-KS
+MK
 ml
 fx
 oZ
@@ -35009,8 +35016,8 @@ Jl
 vz
 yf
 yf
-Ny
-Ny
+dR
+yF
 yf
 Fu
 mK
@@ -36504,7 +36511,7 @@ jP
 PY
 WI
 WI
-WI
+FS
 yh
 WI
 WI

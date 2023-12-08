@@ -4,8 +4,7 @@
 /area/shuttle/dropship/elevator)
 "A" = (
 /obj/docking_port/mobile/shuttle/shipelevator{
-	dir = 2;
-	port_direction = 2
+	port_direction = 1
 	},
 /obj/machinery/computer/shuttle/shuttle_control/shipelevator{
 	pixel_y = -15

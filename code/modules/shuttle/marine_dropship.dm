@@ -305,12 +305,12 @@
 	dwidth = 2
 	height = 5
 	width = 5
-	ignitionTime = 2 SECONDS
+	ignitionTime = 0.5
 	shuttle_flags = GAMEMODE_IMMUNE
 	ignition_sound = 'sound/effects/escape_pod_launch.ogg'
 	landing_sound = 'sound/effects/droppod_impact.ogg'
-	prearrivalTime = 0 SECONDS
-	port_direction = 2
+	prearrivalTime = 0.05
+	port_direction = 1
 	dir = 2
 
 
