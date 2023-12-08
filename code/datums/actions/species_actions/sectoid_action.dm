@@ -368,6 +368,7 @@
 /datum/action/ability/activable/psionic_interact
 	name = "Telekinesis"
 	action_icon_state = "telekinesis"
+	action_icon = 'icons/mob/psionic_icons.dmi'
 	desc = "We manipulate things from a distance."
 	cooldown_duration = 20 SECONDS
 	target_flags = ABILITY_MOB_TARGET
@@ -463,3 +464,94 @@
 		var/target = get_turf_in_angle(Get_Angle(user, src), src, 7)
 		throw_at(target, 4 + psi_power, psi_power, user, TRUE)
 	return list(3 SECONDS, 10)
+
+// ***************************************
+// *********** Reanimate
+// ***************************************
+
+#define SECTOID_REANIMATE_RANGE 4
+/datum/action/ability/activable/sectoid/reanimate
+	name = "Reanimate"
+	action_icon_state = "reknit_form"
+	desc = "With our psionic strength we turn the dead into our puppet."
+	cooldown_duration = 60 SECONDS
+	target_flags = ABILITY_MOB_TARGET
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_ABILITY_REKNIT_FORM,
+	)
+	/// Used for particles. Holds the particles instead of the mob. See particle_holder for documentation.
+	var/obj/effect/abstract/particle_holder/particle_holder
+	var/list/zombie_list = list()
+
+/datum/action/ability/activable/sectoid/reanimate/give_action(mob/living/L)
+	. = ..()
+	RegisterSignal(owner, COMSIG_MOB_DEATH, PROC_REF(kill_zombies))
+
+/datum/action/ability/activable/sectoid/reanimate/remove_action(mob/living/carbon/carbon_owner)
+	kill_zombies()
+	zombie_list = null
+	return ..()
+
+/datum/action/ability/activable/sectoid/reanimate/can_use_ability(atom/A, silent = FALSE, override_flags)
+	. = ..()
+	if(!.)
+		return
+	var/mob/living/carbon/human/human_target = A
+	if(!istype(A))
+		if(!silent)
+			human_target.balloon_alert(owner, "Invalid target")
+		return FALSE
+	if(human_target.stat != DEAD)
+		if(!silent)
+			human_target.balloon_alert(owner, "Still alive!")
+		return FALSE
+	if((human_target.z != owner.z) || get_dist(owner, human_target) > SECTOID_REANIMATE_RANGE)
+		if(!silent)
+			human_target.balloon_alert(owner, "too far")
+		return FALSE
+	if(!line_of_sight(owner, human_target, SECTOID_REANIMATE_RANGE))
+		if(!silent)
+			owner.balloon_alert(owner, "Out of sight!")
+		return FALSE
+
+/datum/action/ability/activable/sectoid/reanimate/use_ability(atom/target)
+	particle_holder = new(owner, /particles/drone_enhancement)
+	particle_holder.pixel_x = 0
+	particle_holder.pixel_y = -3
+	particle_holder.particles.velocity = list(0, 1.5)
+	particle_holder.particles.gravity = list(0, 2)
+
+	if(!do_after(owner, 1.5 SECONDS, IGNORE_HELD_ITEM|IGNORE_LOC_CHANGE, target, BUSY_ICON_DANGER) || !can_use_ability(target))
+		owner.balloon_alert(owner, "Our focus is disrupted")
+		QDEL_NULL(particle_holder)
+		return fail_activate()
+
+	var/mob/living/carbon/human/human_target = target
+	if(human_target.faction == owner.faction)
+		human_target.revive_to_crit(TRUE)
+	else
+		human_target.revive_to_crit(FALSE, FALSE)
+		//human_target.create_psi_zombie(TRUE, owner.faction)
+		human_target.set_species("Psi zombie")
+		human_target.faction = owner.faction
+		human_target.offer_mob()
+		zombie_list += human_target
+		RegisterSignal(human_target, COMSIG_MOB_DEATH, PROC_REF(remove_zombie))
+		var/obj/item/radio/headset/mainship/radio = human_target.wear_ear
+		if(istype(radio))
+			radio.safety_protocol(src)
+
+	QDEL_NULL(particle_holder)
+	playsound(owner, 'sound/effects/petrify_activate.ogg', 50)
+	add_cooldown()
+	update_button_icon()
+	succeed_activate()
+
+/datum/action/ability/activable/sectoid/reanimate/proc/remove_zombie(mob/living/carbon/human/source)
+	SIGNAL_HANDLER
+	zombie_list -= source
+
+/datum/action/ability/activable/sectoid/reanimate/proc/kill_zombies(mob/living/carbon/human/source)
+	SIGNAL_HANDLER
+	for(var/mob/living/carbon/human/zombie AS in zombie_list)
+		zombie.gib()

@@ -81,4 +81,5 @@
 		/datum/action/ability/activable/sectoid/stasis,
 		/datum/action/ability/activable/sectoid/fuse,
 		/datum/action/ability/activable/psionic_interact,
+		/datum/action/ability/activable/sectoid/reanimate,
 	)
