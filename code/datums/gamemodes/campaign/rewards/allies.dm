@@ -65,6 +65,7 @@
 		/datum/job/pmc/leader/campaign_bonus = 1,
 		/datum/job/pmc/gunner/campaign_bonus = 2,
 		/datum/job/pmc/standard/campaign_bonus = 4,
+		/datum/job/pmc/medic/campaign_bonus = 2,
 	)
 
 /datum/campaign_asset/bonus_job/combat_robots
