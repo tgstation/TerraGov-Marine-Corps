@@ -401,11 +401,6 @@
 	icon = 'icons/mob/screen/alien.dmi'
 	screen_loc = ui_alien_health
 
-/atom/movable/screen/healths/robot
-	icon = 'icons/mob/screen/cyborg.dmi'
-	screen_loc = ui_borg_health
-
-
 /atom/movable/screen/stamina_hud
 	icon = 'icons/mob/screen/health.dmi'
 	name = "stamina"
