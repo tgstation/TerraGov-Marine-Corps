@@ -144,31 +144,31 @@
 	return ..()
 
 /datum/status_effect/incapacitating/sleeping/tick()
-    if(!owner.maxHealth)
-        return
-    var/health_ratio = owner.health / owner.maxHealth
-    var/healing = BASE_HEAL_RATE //set for a base of 0.25 healed per 2-second interval asleep in a bed with covers.
-    if((locate(/obj/structure/bed) in owner.loc))
-        healing += (2 * BASE_HEAL_RATE)
-    else if((locate(/obj/structure/table) in owner.loc))
-        healing += BASE_HEAL_RATE
-    if(locate(/obj/item/bedsheet) in owner.loc)
-        healing += BASE_HEAL_RATE
-        if((locate(/obj/item/toy/plush) in owner.loc)) // plushie bonus in bed with a blanket
-            healing += 0.75 * BASE_HEAL_RATE // plushie bonus in bed with a blanket
-    if(health_ratio > -0.5)
-        owner.adjustBruteLoss(healing)
-        owner.adjustFireLoss(healing)
-        owner.adjustToxLoss(healing * 0.5, TRUE, TRUE)
-        owner.adjustStaminaLoss(healing * 100)
-        owner.adjustCloneLoss(healing * health_ratio * 0.8)
-    if(human_owner?.drunkenness)
-        human_owner.drunkenness *= 0.997 //reduce drunkenness by 0.3% per tick, 6% per 2 seconds
-    if(prob(20))
-        if(carbon_owner)
-            carbon_owner.handle_dreams()
-        if(prob(10) && owner.health > owner.health_threshold_crit)
-            owner.emote("snore")
+	if(!owner.maxHealth)
+    	return
+	var/health_ratio = owner.health / owner.maxHealth
+	var/healing = BASE_HEAL_RATE //set for a base of 0.25 healed per 2-second interval asleep in a bed with covers.
+	if((locate(/obj/structure/bed) in owner.loc))
+		healing += (2 * BASE_HEAL_RATE)
+	else if((locate(/obj/structure/table) in owner.loc))
+    	healing += BASE_HEAL_RATE
+	if(locate(/obj/item/bedsheet) in owner.loc)
+		healing += BASE_HEAL_RATE
+		if((locate(/obj/item/toy/plush) in owner.loc)) // plushie bonus in bed with a blanket
+			healing += 0.75 * BASE_HEAL_RATE // plushie bonus in bed with a blanket
+	if(health_ratio > -0.5)
+		owner.adjustBruteLoss(healing)
+		owner.adjustFireLoss(healing)
+		owner.adjustToxLoss(healing * 0.5, TRUE, TRUE)
+		owner.adjustStaminaLoss(healing * 100)
+		owner.adjustCloneLoss(healing * health_ratio * 0.8)
+	if(human_owner?.drunkenness)
+		human_owner.drunkenness *= 0.997 //reduce drunkenness by 0.3% per tick, 6% per 2 seconds
+	if(prob(20))
+		if(carbon_owner)
+			carbon_owner.handle_dreams()
+		if(prob(10) && owner.health > owner.health_threshold_crit)
+			owner.emote("snore")
 
 ///Basically a temporary self-inflicted shutdown for maintenance
 /datum/status_effect/incapacitating/repair_mode
