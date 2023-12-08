@@ -76,7 +76,7 @@
 	outfit = /datum/outfit/job/pmc/medic
 
 //medic loadout
-/datum/outfit/job/pmc/gunner
+/datum/outfit/job/pmc/medic
 	name = "PMC Medic"
 	jobtype = /datum/job/pmc/medic
 
