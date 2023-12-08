@@ -256,7 +256,6 @@
 	H.equip_to_slot_or_del(new /obj/item/bodybag/cryobag, SLOT_IN_ACCESSORY)
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/advanced/combat_advanced, SLOT_IN_ACCESSORY)
 
-
 /datum/outfit/job/icc/medic/icc_machinepistol
 	suit_store = /obj/item/weapon/gun/smg/icc_machinepistol/medic
 	l_store = /obj/item/storage/pouch/magazine/large/icc
