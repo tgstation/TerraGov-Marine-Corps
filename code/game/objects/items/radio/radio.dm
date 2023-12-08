@@ -307,7 +307,6 @@
 			signal.data["compression"] += rand(20, 40)
 		if(CAVE_FULL_INTERFERENCE)
 			return
-		else
 
 	// All non-independent radios make an attempt to use the subspace system first
 	signal.send_to_receivers()
