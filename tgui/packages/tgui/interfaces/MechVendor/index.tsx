@@ -34,7 +34,7 @@ export const MechVendor = (props) => {
                   mt={3}
                   mb={9}
                   style={{
-                    'transform': 'scale(3) translate(20%, 20%)',
+                    transform: 'scale(3) translate(20%, 20%)',
                   }}
                 />
                 <LabeledList>

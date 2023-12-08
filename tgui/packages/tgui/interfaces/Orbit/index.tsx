@@ -245,7 +245,6 @@ const ObservableIcon = (props: { icon: Observable['icon'] }) => {
       src={`data:image/jpeg;base64,${icons[icon]}`}
       style={{
         transform: 'scale(2) translatey(-1px)',
-        '-ms-interpolation-mode': 'nearest-neighbor',
       }}
     />
   );

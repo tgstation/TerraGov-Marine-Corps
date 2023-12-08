@@ -98,7 +98,6 @@ export const HiveStatus = (_props) => {
     <Window
       theme="xeno"
       title={hive_name + ' Hive Status'}
-      resizable
       width={800}
       height={800}>
       <Window.Content scrollable>
@@ -568,7 +567,7 @@ const PopulationPyramid = (_props) => {
                 {tier_info.index.map((value, idx) => {
                   const count = tier_info.caste[idx];
                   if (!empty_display && count === 0) {
-                    return <Box />;
+                    return <Box key={tier} />;
                   }
                   const static_entry = static_info[value];
                   return (
@@ -582,7 +581,6 @@ const PopulationPyramid = (_props) => {
                         src={`data:image/jpeg;base64,${static_entry.minimap}`}
                         style={{
                           transform: 'scale(3) translateX(-3.5px)',
-                          '-ms-interpolation-mode': 'nearest-neighbor',
                         }}
                       />
                       {static_entry.name}
@@ -593,7 +591,7 @@ const PopulationPyramid = (_props) => {
               <Flex>
                 {tier_info.caste.map((count, idx) => {
                   if (!empty_display && count === 0) {
-                    return <Box />;
+                    return <Box key={tier} />;
                   }
                   const static_entry = static_info[tier_info.index[idx]];
                   return (
@@ -819,7 +817,6 @@ const XenoList = (_props) => {
                     src={`data:image/jpeg;base64,${static_entry.minimap}`}
                     style={{
                       transform: 'scale(2) translateX(2px)', // Upscaled from 7x7 to 14x14.
-                      '-ms-interpolation-mode': 'nearest-neighbor',
                     }}
                   />
                 </Flex.Item>
@@ -827,8 +824,8 @@ const XenoList = (_props) => {
                 <Flex.Item
                   width={name_width}
                   style={{
-                    'overflow': 'hidden',
-                    'text-overflow': 'ellipsis',
+                    overflow: 'hidden',
+                    textOverflow: 'ellipsis',
                   }}>
                   <Button
                     italic={
@@ -837,8 +834,8 @@ const XenoList = (_props) => {
                     nowrap
                     verticalAlignContent="middle"
                     style={{
-                      'overflow': 'hidden', // hiding overflow prevents the button being slightly scrollable
-                      'margin-top': '-3px', // magic number, lines up button text with other cols
+                      overflow: 'hidden', // hiding overflow prevents the button being slightly scrollable
+                      marginTop: '-3px', // magic number, lines up button text with other cols
                     }}
                     backgroundColor="transparent"
                     tooltip={
@@ -885,8 +882,8 @@ const XenoList = (_props) => {
                   grow
                   nowrap
                   style={{
-                    'overflow': 'hidden',
-                    'text-overflow': 'ellipsis',
+                    overflow: 'hidden',
+                    textOverflow: 'ellipsis',
                   }}>
                   {entry.location}
                 </Flex.Item>
@@ -1064,8 +1061,8 @@ const StructureList = (_props) => {
                   grow
                   nowrap
                   style={{
-                    'overflow': 'hidden',
-                    'text-overflow': 'ellipsis',
+                    overflow: 'hidden',
+                    textOverflow: 'ellipsis',
                   }}>
                   {entry.location}
                 </Flex.Item>

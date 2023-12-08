@@ -49,7 +49,7 @@ const SelectedEquipment = (props) => {
                 mt={3}
                 mb={4}
                 style={{
-                  'transform': 'scale(2) translate(10%, 10%)',
+                  transform: 'scale(2) translate(10%, 10%)',
                 }}
               />
             </Section>
@@ -76,7 +76,7 @@ const SelectedEquipment = (props) => {
                 mt={3}
                 mb={4}
                 style={{
-                  'transform': 'scale(2) translate(10%, 10%)',
+                  transform: 'scale(2) translate(10%, 10%)',
                 }}
               />
             </Section>
@@ -346,7 +346,7 @@ const WeaponModuleList = (props) => {
                           mt={1.5}
                           mb={3}
                           style={{
-                            'transform': 'scale(2) translate(10%, 10%)',
+                            transform: 'scale(2) translate(10%, 10%)',
                           }}
                         />
                       </Stack.Item>

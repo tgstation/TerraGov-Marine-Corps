@@ -98,8 +98,8 @@ export const SlotSelector = (props: LoadoutSlotData) => {
                                   width="100%"
                                   color="transparent"
                                   style={{
-                                    'position': 'absolute',
-                                    'vertical-align': 'middle',
+                                    position: 'absolute',
+                                    verticalAlign: 'middle',
                                     transform:
                                       'translateX(' +
                                       iconinfo.translateX +

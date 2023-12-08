@@ -16,9 +16,6 @@ export const OutfitEditor = (props) => {
           opacity={0.5}
           py={3}
           src={`data:image/jpeg;base64,${dummy64}`}
-          style={{
-            '-ms-interpolation-mode': 'nearest-neighbor',
-          }}
         />
         <Section
           fill
@@ -27,9 +24,9 @@ export const OutfitEditor = (props) => {
               <Stack.Item
                 grow={1}
                 style={{
-                  'overflow': 'hidden',
-                  'white-space': 'nowrap',
-                  'text-overflow': 'ellipsis',
+                  overflow: 'hidden',
+                  whiteSpace: 'nowrap',
+                  textOverflow: 'ellipsis',
                 }}>
                 <Button
                   ml={0.5}
@@ -140,9 +137,6 @@ const OutfitSlot = (props) => {
               as="img"
               src={`data:image/jpeg;base64,${currItem?.sprite}`}
               title={currItem?.desc}
-              style={{
-                '-ms-interpolation-mode': 'nearest-neighbor',
-              }}
             />
             <Icon
               position="absolute"
@@ -157,9 +151,9 @@ const OutfitSlot = (props) => {
       <Box
         color="label"
         style={{
-          'overflow': 'hidden',
-          'white-space': 'nowrap',
-          'text-overflow': 'ellipsis',
+          overflow: 'hidden',
+          whiteSpace: 'nowrap',
+          textOverflow: 'ellipsis',
         }}
         title={currItem?.path}>
         {currItem?.name || 'Empty'}

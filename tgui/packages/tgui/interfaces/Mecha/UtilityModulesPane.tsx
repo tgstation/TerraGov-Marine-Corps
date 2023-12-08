@@ -51,7 +51,7 @@ export const UtilityModulesPane = (props) => {
   const { data } = useBackend<OperatorData>();
   const { mech_equipment } = data;
   return (
-    <Box style={{ 'height': '16rem' }}>
+    <Box style={{ height: '16rem' }}>
       <Section scrollable fill>
         <div>
           {mech_equipment['utility'].map((module, i) => {
@@ -89,7 +89,7 @@ const SnowflakeEjector = (props: { module: MechaUtility }) => {
   return (
     <>
       {cargo && cargo.length > 0 && <Box>Cargo</Box>}
-      <Box style={{ 'margin-left': '1rem' }}>
+      <Box style={{ marginLeft: '1rem' }}>
         {cargo.map((item) => (
           <div
             key={props.module.ref}

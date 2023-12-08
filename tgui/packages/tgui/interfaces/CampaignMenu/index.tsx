@@ -250,7 +250,6 @@ export const AssetIcon = (props: {
       src={`data:image/jpeg;base64,${icons[icon]}`}
       style={{
         transform: 'scale(1)',
-        '-ms-interpolation-mode': 'nearest-neighbor',
       }}
     />
   );
@@ -278,7 +277,6 @@ export const MissionIcon = (props: {
       src={`data:image/jpeg;base64,${mission_icons[icon]}`}
       style={{
         transform: 'scale(1)',
-        '-ms-interpolation-mode': 'nearest-neighbor',
       }}
     />
   );

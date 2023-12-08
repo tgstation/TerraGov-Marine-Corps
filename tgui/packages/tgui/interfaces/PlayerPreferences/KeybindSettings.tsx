@@ -1,5 +1,5 @@
 import { useBackend, useLocalState } from '../../backend';
-import { Button, Input, Section, LabeledList, Box, Stack, ButtonKeybind } from '../../components';
+import { Button, Input, Section, LabeledList, Box, Stack } from '../../components';
 import { TextInputModal } from './TextInputModal';
 
 const KEY_MODS = {
@@ -137,7 +137,7 @@ const KeybindingPreference = (props) => {
     <LabeledList.Item label={keybind.display_name}>
       {current &&
         current.map((key) => (
-          <ButtonKeybind
+          <Button.Keybind
             color="transparent"
             key={key}
             content={key}
@@ -158,7 +158,7 @@ const KeybindingPreference = (props) => {
             }}
           />
         ))}
-      <ButtonKeybind
+      <Button.Keybind
         icon="plus"
         color="transparent"
         onFinish={(keysDown) => {
@@ -219,7 +219,7 @@ const CustomSentence = (props) => {
       </Button>
       {current &&
         current.map((key) => (
-          <ButtonKeybind
+          <Button.Keybind
             color="transparent"
             key={key}
             content={key}
@@ -240,7 +240,7 @@ const CustomSentence = (props) => {
             }}
           />
         ))}
-      <ButtonKeybind
+      <Button.Keybind
         icon="plus"
         color="transparent"
         onFinish={(keysDown) => {

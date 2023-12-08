@@ -183,7 +183,7 @@ const UpgradeView = (props: UpgradeViewEntryProps) => {
           ml={3}
           mt={3}
           style={{
-            'transform': 'scale(2) translate(0px, 10%)',
+            transform: 'scale(2) translate(0px, 10%)',
           }}
         />
         <Box bold mt={5} color={psypoints > cost ? 'good' : 'bad'}>

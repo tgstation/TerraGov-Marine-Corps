@@ -33,7 +33,7 @@ export const GearCustomization = (props) => {
       title="Custom Gear"
       buttons={
         <>
-          <Box as="span" style={{ 'margin-right': '10px' }}>
+          <Box as="span" style={{ marginRight: '10px' }}>
             Points: {currentPoints} / 5
           </Box>
           <Button
