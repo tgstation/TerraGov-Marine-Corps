@@ -388,9 +388,6 @@
 	icon = 'icons/mob/screen/alien.dmi'
 	z_prefix = "ay_"
 
-/atom/movable/screen/zone_sel/robot
-	icon = 'icons/mob/screen/cyborg.dmi'
-
 /atom/movable/screen/healths
 	name = "health"
 	icon_state = "health0"
