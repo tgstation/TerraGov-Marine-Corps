@@ -525,8 +525,12 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	name = SQUAD_SPECIALIST
 	cqc = SKILL_CQC_MASTER
 	construction = SKILL_CONSTRUCTION_METAL
-	engineer = SKILL_ENGINEER_METAL //to use c4 in scout set.
+	engineer = SKILL_ENGINEER_PLASTEEL
+	medical = SKILL_MEDICAL_NOVICE
+	surgery = SKILL_SURGERY_AMATEUR
 	leadership = SKILL_LEAD_BEGINNER
+	police = SKILL_POLICE_MP
+	stamina = SKILL_STAMINA_TRAINED
 	melee_weapons = SKILL_MELEE_TRAINED
 	firearms = SKILL_FIREARMS_TRAINED
 	pistols = SKILL_PISTOLS_TRAINED

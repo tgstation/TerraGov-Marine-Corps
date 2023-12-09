@@ -369,7 +369,7 @@
 
 /obj/item/clothing/under/spec_operative
 	name = "NTC Spec-Ops Uniform"
-	desc = "An extremely expensive suit created by an Ninetails Corporation for high risk missions, made with several layers of a nano-fiber that, while light, molds to the wearer's body shape and hardens protecting them. Only provided rarely to most successful Senior Operatives or higher."
+	desc = "An extremely expensive sneaking suit created by an Ninetails Corporation for high risk missions, made with several layers of a nano-fiber that, while light, molds to the wearer's body shape and hardens protecting them. Only provided rarely to most successful Senior Operatives or higher."
 	icon_state = "syndicate"
 	item_state = "syndicate"
 	resistance_flags = UNACIDABLE
@@ -382,11 +382,11 @@
 	gas_transfer_coefficient = 0.01
 	permeability_coefficient = 0.01
 
-/obj/item/clothing/under/spec_operative/equipped(mob/user, slot)
+/obj/item/clothing/under/spec_operative/equipped(mob/user, i_clothing)
 	. = ..()
 	RegisterSignal(user, COMSIG_LIVING_ADD_VENTCRAWL)
 
-/obj/item/clothing/under/spec_operative/unequipped(mob/unequipper, slot)
+/obj/item/clothing/under/spec_operative/unequipped(mob/unequipper, i_clothing)
 	. = ..()
 	UnregisterSignal(unequipper, COMSIG_LIVING_ADD_VENTCRAWL)
 
