@@ -833,7 +833,7 @@
 "VN" = (
 /obj/structure/window/framed/mainship/hull/canterbury,
 /obj/machinery/door/poddoor/shutters/mainship/open/indestructible{
-	id = canterbury_cockpit;
+	id = "canterbury_cockpit";
 	dir = 2
 	},
 /turf/open/floor/plating,
