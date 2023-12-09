@@ -761,7 +761,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	new /obj/effect/temp_visual/xenomorph/afterimage(loc_a, targeted)
 	INVOKE_NEXT_TICK(src, PROC_REF(rewind))
 
-/datum/action/xeno_action/activable/rewind/proc/handle_fire()
+/datum/action/xeno_action/activable/xeno/rewind/proc/handle_fire()
 	if(target_initial_on_fire == TRUE && target_initial_fire_stacks >= 0)
 		targeted.fire_stacks = target_initial_fire_stacks
 		targeted.IgniteMob()
