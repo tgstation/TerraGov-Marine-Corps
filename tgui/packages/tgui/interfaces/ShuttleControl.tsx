@@ -51,7 +51,7 @@ const TakeOffDisplay = (props, context) => {
         {takeoff_delay > 60
           ? ` ${takeoff_minutes} minutes`
           : ` ${takeoff_delay} seconds`}{' '}
-        to spool up for takeoff.
+        to ignite it&apos;s engines before takeoff.
       </Box>
     </Section>
   );

@@ -1475,11 +1475,19 @@
 	takeoff_delay = 2 MINUTES
 	possible_destinations = "canterbury_loadingdock"
 	confirm_message = "Are you sure you want to launch the shuttle? \
-	 Without sufficiently dealing with the threat, you will be in direct violation of your orders!"
+		Without sufficiently dealing with the threat, you will be in direct violation of your orders!"
+	var/interruptible_timer
+	var/obj/item/radio/radio
 
 /obj/machinery/computer/shuttle/shuttle_control/canterbury/Initialize(mapload)
 	. = ..()
 	RegisterSignal(src, COMSIG_GLOB_NUKE_START, PROC_REF(remove_confirmation))
+	radio = new(src)
+
+/obj/machinery/computer/shuttle/shuttle_control/canterbury/Destroy()
+	. = ..()
+	UnregisterSignal(src, COMSIG_GLOB_NUKE_START)
+	QDEL_NULL(radio)
 
 /obj/machinery/computer/shuttle/shuttle_control/canterbury/proc/remove_confirmation()
 	confirm_message = ""
@@ -1509,7 +1517,7 @@
 /obj/machinery/computer/shuttle/shuttle_control/canterbury/begin_takeoff(obj/docking_port/mobile/port, destination, mob/user)
 	if(confirm_message != "" && tgui_alert(user, confirm_message, "Confirm Launch", list("Yes", "No")) != "Yes")
 		return
-	priority_announce("[port.name] is launching in [DisplayTimeText(takeoff_delay)]!", "Canterbury Launch")
+	radio.talk_into(src, "[port.name] is launching in [DisplayTimeText(takeoff_delay)]!", FREQ_COMMON)
 	log_admin("[key_name(user)] is launching the canterbury[!length(GLOB.active_nuke_list)? " early" : ""].")
 	message_admins("[ADMIN_TPMONTY(user)] is launching the canterbury[!length(GLOB.active_nuke_list) ? " early" : ""].")
 
@@ -1523,12 +1531,22 @@
 	// Same position as the orphan timer as it is disabled on crash
 	if(!port.timer)
 		CRASH("Shuttle port [port] has no timer set.")
-	var/timer = addtimer(CALLBACK(src, PROC_REF(launch_shuttle)), port.timer)
+	interruptible_timer = addtimer(CALLBACK(src, PROC_REF(launch_shuttle)), port.ignitionTime, TIMER_STOPPABLE)
 	// If you make the canterbury launch interruptable, ensure that you make the timer used for xeno HUD's stop
-	setup_hud_timer_all_hives(timer, "Evacuvation in ${timer}", 150, -80)
+	setup_hud_timer_all_hives(interruptible_timer, "Evacuvation in ${timer}", 150, -80)
 
 	var/datum/game_mode/infestation/crash/crash_mode = SSticker.mode
 	VARSET_CALLBACK(crash_mode, marines_evac, CRASH_EVAC_INPROGRESS)
+
+/obj/machinery/computer/shuttle/shuttle_control/canterbury/power_change()
+	. = ..()
+	if(machine_stat & NOPOWER && interruptible_timer)
+		var/obj/docking_port/mobile/port = SSshuttle.getShuttle(shuttleId)
+		port.mode = SHUTTLE_IDLE
+		port.setTimer(0)
+		deltimer(interruptible_timer)
+		interruptible_timer = null
+		radio.talk_into(src, "[port.name]'s launch has been interrupted!", FREQ_COMMON)
 
 /obj/machinery/computer/shuttle/shuttle_control/canterbury/proc/launch_shuttle()
 	var/datum/game_mode/infestation/crash/crash_mode = SSticker.mode

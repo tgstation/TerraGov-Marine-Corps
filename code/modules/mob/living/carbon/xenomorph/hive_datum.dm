@@ -405,8 +405,8 @@
 
 /datum/hive_status/proc/add_hud_timers(mob/living/carbon/xenomorph/X)
 	for(var/timer in hud_timers)
-		var/atom/movable/screen/text/screen_timer/hud_timer = timer
-		hud_timer.apply_to(X)
+		var/atom/movable/screen/text/screen_timer/timer_hud = hud_timers[timer]
+		timer_hud.apply_to(X)
 
 /mob/living/carbon/xenomorph/proc/add_to_hive(datum/hive_status/HS, force=FALSE)
 	if(!force && hivenumber != XENO_HIVE_NONE)
@@ -527,8 +527,8 @@
 
 /datum/hive_status/proc/remove_hud_timers(mob/living/carbon/xenomorph/X)
 	for(var/timer in hud_timers)
-		var/atom/movable/screen/text/screen_timer/hud_timer = timer
-		hud_timer.remove_from(X)
+		var/atom/movable/screen/text/screen_timer/timer_hud = hud_timers[timer]
+		timer_hud.remove_from(X)
 
 /mob/living/carbon/xenomorph/proc/remove_from_hive()
 	if(!istype(hive))
@@ -548,14 +548,16 @@
 	reference_hive.update_tier_limits() //Update our tier limits.
 
 /// setups hud timers on ALL hive datums
-/proc/setup_hud_timer_all_hives(timer, text)
+/proc/setup_hud_timer_all_hives(timer, text, offset_x = 150, offset_y = -70, style_start, style_end)
 	for(var/key AS in GLOB.hive_datums)
 		var/datum/hive_status/HS = GLOB.hive_datums[key]
-		HS.setup_hud_timer(HS.get_all_xenos, timer, text)
+		var/list/argument_list = list(HS.get_all_xenos())
+		argument_list.Add(args)
+		HS.setup_hud_timer(arglist(argument_list))
 
 /// setups hud timers only on xenos of THIS hive datum
-/datum/hive_status/proc/setup_hud_timer(arguments = list())
-	var/atom/movable/screen/text/screen_timer/hud_timer = create_hud_timer(arguments)
+/datum/hive_status/proc/setup_hud_timer(list/mobs, timer, text, offset_x = 150, offset_y = -70, style_start, style_end)
+	var/atom/movable/screen/text/screen_timer/hud_timer = create_hud_timer(arglist(args))
 	hud_timers[hud_timer.timer_id] = hud_timer
 
 /mob/living/carbon/xenomorph/queen/remove_from_hive() // override to ensure proper queen/hive behaviour

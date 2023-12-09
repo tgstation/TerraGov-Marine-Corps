@@ -841,11 +841,14 @@
 			return "hyperspace"
 		else
 			var/obj/docking_port/stationary/dst
+			var/action = "transit towards"
 			if(mode == SHUTTLE_RECALL)
 				dst = previous
 			else
 				dst = destination
-			. = "transit towards [dst?.name || "unknown location"] ([getTimerStr()])"
+			if(mode == SHUTTLE_PREARRIVAL)
+				action = "landing on"
+			. = "[action] [dst?.name || "unknown location"] ([getTimerStr()])"
 	else
 		return dockedAt?.name || "unknown"
 

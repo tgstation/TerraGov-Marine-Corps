@@ -23,11 +23,14 @@
 	/// The list of mobs that we're attached to, and care about
 	var/list/timer_mobs = list()
 
-/proc/create_hud_timer(arguments = list())
+/// creates a timer that appears on the mobs via maptext, returns the timer object
+/proc/create_hud_timer(list/mobs, timer, text, offset_x = 150, offset_y = -70, style_start, style_end)
 	var/atom/movable/screen/text/screen_timer/hud_timer = new()
-	hud_timer.create_timer(arglist(arguments))
+	hud_timer.create_timer(arglist(args))
 	return hud_timer
 
+// Initialize cannot be arglist'd, so we need to use this instead of Initialize
+/// Sets the HUD timer up on the list of mobs
 /atom/movable/screen/text/screen_timer/proc/create_timer(
 		list/mobs,
 		timer,
