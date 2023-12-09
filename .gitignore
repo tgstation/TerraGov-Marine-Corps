@@ -54,3 +54,4 @@ tools/UnstandardnessTestForDM/UnstandardnessTestForDM/obj/x86/Debug/.NETFramewor
 
 tools/hyperscale_converter/output/*
 icons/misc/title.png
+config/dbconfig.txt
