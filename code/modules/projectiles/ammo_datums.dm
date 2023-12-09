@@ -3436,6 +3436,14 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	accuracy_var_high = 3
 	penetration = 5
 
+/datum/ammo/energy/volkite/medium/custom
+	max_range = 12
+	accurate_range = 8
+	damage = 25
+	penetration = 5
+	accuracy_var_low = 3
+	accuracy_var_high = 3
+
 /*
 //================================================
 					Xeno Spits
