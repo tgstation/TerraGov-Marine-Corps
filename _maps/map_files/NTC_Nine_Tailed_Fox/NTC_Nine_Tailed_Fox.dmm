@@ -420,12 +420,6 @@
 "aya" = (
 /turf/closed/wall/mainship,
 /area/mainship/hull/lower_hull)
-"ayr" = (
-/obj/structure/largecrate/random/barrel,
-/turf/open/floor/mainship/orange,
-/area/outpost/cargo{
-	outside = 1
-	})
 "ayz" = (
 /turf/closed/wall/mainship,
 /area/mainship/hallways/starboard_hallway{
@@ -1722,8 +1716,8 @@
 	name = "\improper Shipside Req"
 	})
 "bzX" = (
-/obj/structure/largecrate/random/case/small,
-/turf/open/floor/mainship/cargo,
+/obj/structure/largecrate/supply/explosives/mortar_he,
+/turf/open/floor/mainship/orange/full,
 /area/outpost/cargo{
 	outside = 1
 	})
@@ -3140,12 +3134,6 @@
 /area/mainship/shipboard/port_missiles{
 	name = "Shipside Corpsec Office";
 	outside = 0
-	})
-"cJZ" = (
-/obj/structure/largecrate/supply/supplies,
-/turf/open/floor/mainship/orange/full,
-/area/outpost/cargo{
-	outside = 1
 	})
 "cKq" = (
 /obj/structure/bed/chair/wood/wings,
@@ -8037,12 +8025,6 @@
 /area/mainship/living/tankerbunks{
 	outside = 0
 	})
-"hjE" = (
-/obj/structure/largecrate/supply/supplies,
-/turf/open/floor/mainship/cargo,
-/area/outpost/cargo{
-	outside = 1
-	})
 "hjG" = (
 /turf/open/floor/wood,
 /area/sulaco/liaison/quarters{
@@ -12381,12 +12363,6 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/sulaco/engineering/lower_engineering{
 	name = "Lower Power"
-	})
-"lgZ" = (
-/obj/structure/largecrate/random,
-/turf/open/floor/mainship/orange/full,
-/area/outpost/cargo{
-	outside = 1
 	})
 "lik" = (
 /obj/structure/cable,
@@ -18550,12 +18526,6 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/lower_hull)
-"qSF" = (
-/obj/structure/largecrate/machine/bodyscanner,
-/turf/open/floor/mainship/cargo,
-/area/outpost/cargo{
-	outside = 1
-	})
 "qTc" = (
 /obj/machinery/light/mainship,
 /turf/open/floor/mainship/cargo,
@@ -22931,12 +22901,6 @@
 	name = "Research";
 	outside = 0
 	})
-"vmO" = (
-/obj/structure/largecrate/machine/sleeper,
-/turf/open/floor/mainship/orange/full,
-/area/outpost/cargo{
-	outside = 1
-	})
 "vnw" = (
 /obj/effect/ai_node,
 /obj/machinery/holopad,
@@ -22983,8 +22947,8 @@
 	outside = 0
 	})
 "vpg" = (
-/obj/structure/largecrate/machine/autodoc,
-/turf/open/floor/mainship/cargo,
+/obj/structure/largecrate/supply/explosives/mines,
+/turf/open/floor/mainship/orange/full,
 /area/outpost/cargo{
 	outside = 1
 	})
@@ -23502,12 +23466,6 @@
 /obj/item/fuel_cell/full,
 /turf/open/floor/mainship/mono,
 /area/mainship/groundhq/ntf/engineering/engine_core)
-"vLK" = (
-/obj/structure/largecrate/random,
-/turf/open/floor/mainship/cargo,
-/area/outpost/cargo{
-	outside = 1
-	})
 "vLZ" = (
 /turf/closed/wall,
 /area/mainship/groundhq/ntf/living/captain_mess{
@@ -24267,12 +24225,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/port_garden)
-"wCt" = (
-/obj/structure/largecrate/random/case/small,
-/turf/open/floor/mainship/orange/full,
-/area/outpost/cargo{
-	outside = 1
-	})
 "wCC" = (
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plating/plating_catwalk,
@@ -33865,7 +33817,7 @@ rsv
 sVq
 kwl
 izo
-vLK
+izo
 izo
 izo
 izo
@@ -34094,7 +34046,7 @@ fwn
 aya
 urx
 kkx
-hjE
+izo
 izo
 izo
 izo
@@ -34104,8 +34056,8 @@ iKR
 izo
 izo
 xPo
-ayr
-izo
+kkx
+qsl
 izo
 izo
 izo
@@ -34358,7 +34310,7 @@ izo
 izo
 xPo
 izo
-hjE
+izo
 blT
 bQE
 rCZ
@@ -34590,12 +34542,12 @@ izo
 xPo
 kkx
 izo
-wCt
+woS
 izo
 izo
 quO
 quO
-vLK
+izo
 woS
 izo
 xPo
@@ -34832,7 +34784,7 @@ lMs
 xPo
 kkx
 lMs
-woS
+bzX
 izo
 izo
 rmB
@@ -35080,7 +35032,7 @@ izo
 woS
 izo
 izo
-cJZ
+woS
 izo
 xPo
 eRO
@@ -35322,7 +35274,7 @@ woS
 woS
 woS
 woS
-woS
+vpg
 izo
 xPo
 izo
@@ -35557,9 +35509,9 @@ woS
 izo
 xPo
 kkx
-hjE
 izo
-vmO
+izo
+woS
 woS
 iKR
 woS
@@ -35791,12 +35743,12 @@ kkx
 izo
 quO
 izo
-bzX
+izo
 izo
 nwv
 izo
 izo
-hjE
+izo
 xPo
 kkx
 izo
@@ -35809,7 +35761,7 @@ izo
 izo
 izo
 xPo
-hjE
+izo
 izo
 blT
 cRa
@@ -36047,8 +35999,8 @@ qsl
 izo
 quO
 izo
-vLK
-vLK
+izo
+izo
 jJN
 urx
 izo
@@ -37000,21 +36952,21 @@ ftV
 kkx
 izo
 izo
-izo
+jYD
 izo
 izo
 lMs
 izo
-bzX
+izo
 izo
 xPo
 kkx
 izo
 qsl
 izo
-vLK
 izo
-hjE
+izo
+izo
 izo
 izo
 izo
@@ -37252,7 +37204,7 @@ izo
 xPo
 kkx
 izo
-izo
+nEl
 izo
 izo
 woS
@@ -37485,7 +37437,7 @@ kkx
 izo
 woS
 woS
-hjE
+izo
 izo
 woS
 woS
@@ -37494,7 +37446,7 @@ izo
 xPo
 kkx
 izo
-hjE
+izo
 izo
 woS
 izo
@@ -37730,16 +37682,16 @@ qsl
 izo
 woS
 woS
-vLK
+izo
 woS
 izo
 xPo
 kkx
 izo
 izo
-qSF
 izo
-wCt
+izo
+woS
 izo
 izo
 izo
@@ -38222,12 +38174,12 @@ kkx
 vTs
 izo
 izo
-lgZ
+woS
 woS
 izo
 woS
 woS
-hjE
+izo
 xPo
 urx
 eNO
@@ -38454,7 +38406,7 @@ izo
 izo
 rmB
 izo
-hjE
+izo
 qsl
 woS
 woS
@@ -38707,7 +38659,7 @@ izo
 fRo
 izo
 izo
-vpg
+izo
 izo
 qsl
 izo
@@ -38937,7 +38889,7 @@ kkx
 jJN
 izo
 izo
-bzX
+izo
 izo
 izo
 izo
@@ -38952,7 +38904,7 @@ qsl
 izo
 nEl
 fCs
-bzX
+izo
 jJN
 xPo
 urx
@@ -41367,7 +41319,7 @@ izo
 izo
 izo
 izo
-hjE
+izo
 izo
 izo
 xPo
@@ -42570,7 +42522,7 @@ izo
 izo
 izo
 izo
-hjE
+izo
 izo
 izo
 iKR
