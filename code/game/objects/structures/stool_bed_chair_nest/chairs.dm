@@ -2,6 +2,15 @@
 #define DROPSHIP_CHAIR_FOLDED 2
 #define DROPSHIP_CHAIR_BROKEN 3
 
+#define LEADER_CHAIR 0
+
+#define NO_CHAIR_COLOR ""
+#define ALPHA_CHAIR "_alpha"
+#define BRAVO_CHAIR "_bravo"
+#define CHARLIE_CHAIR "_charlie"
+#define DELTA_CHAIR "_delta"
+#define FC_CHAIR "_fc"
+
 /obj/structure/bed/chair //YES, chairs are a type of bed, which are a type of stool. This works, believe me.	-Pete
 	name = "chair"
 	desc = "A rectangular metallic frame sitting on four legs with a back panel. Designed to fit the sitting position, more or less comfortably."
@@ -396,6 +405,117 @@
 		span_warning("You repair \the [src]."))
 		chair_state = DROPSHIP_CHAIR_FOLDED
 
+/obj/structure/bed/chair/dropship/doublewide
+	name = "doublewide seat"
+	desc = "Holds you in place during high altitude drops."
+	icon_state = "doublewide_chair" //only facing south cause the rest are ugly
+	max_integrity = 130
+	var/chair_color = NO_CHAIR_COLOR
+	var/chair_state = DROPSHIP_CHAIR_UNFOLDED
+	var/leader_chair = FALSE
+	var/image/chairbar = null
+	var/buckling_x = 0 //pixel x shift to give to the buckled mob.
+	buildstacktype = 0
+
+/obj/structure/bed/chair/dropship/doublewide/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
+	if(X.status_flags & INCORPOREAL)
+		return FALSE
+	return ..()
+
+/obj/structure/bed/chair/dropship/doublewide/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+/obj/structure/bed/chair/dropship/doublewide/welder_act(mob/living/user, obj/item/I)
+	. = welder_repair_act(user, I, 100, 1 SECONDS, 0, SKILL_ENGINEER_METAL, 1)
+	update_icon_state()
+
+/obj/structure/bed/chair/dropship/doublewide/update_icon_state()
+	. = ..()
+	var/percentage = (obj_integrity / max_integrity) * 100
+	switch(percentage)
+		if(-INFINITY to 65)
+			icon_state = "doublewide_chair[chair_color]_broken"
+			chair_state = DROPSHIP_CHAIR_BROKEN
+		if(65 to INFINITY)
+			icon_state = "doublewide_chair[chair_color]"
+			chair_state = DROPSHIP_CHAIR_UNFOLDED
+
+/obj/structure/bed/chair/dropship/doublewide/Initialize(mapload)
+	. = ..()
+	chairbar = image("icons/obj/objects.dmi", "shuttle_bars")
+	chairbar.layer = ABOVE_MOB_LAYER
+
+/obj/structure/bed/chair/dropship/doublewide/post_buckle_mob(mob/buckling_mob)
+	icon_state = "doublewide_chair[chair_color]_buckled"
+	buckling_mob.pixel_x = buckling_x
+	buckling_mob.old_x = buckling_x
+	overlays += chairbar
+	buckling_mob.density = FALSE
+	update_icon()
+	return ..()
+
+/obj/structure/bed/chair/dropship/doublewide/post_unbuckle_mob(mob/buckled_mob)
+	icon_state = "doublewide_chair[chair_color]"
+	overlays -= chairbar
+	buckled_mob.pixel_x = initial(buckled_mob.pixel_x)
+	buckled_mob.old_x = initial(buckled_mob.pixel_x)
+	buckled_mob.density = TRUE
+	update_icon()
+	return ..()
+
+/obj/structure/bed/chair/dropship/doublewide/buckle_mob(mob/living/buckling_mob, force = FALSE, check_loc = TRUE, lying_buckle = FALSE, hands_needed = 0, target_hands_needed = 0, silent)
+	if(chair_state == DROPSHIP_CHAIR_BROKEN)
+		balloon_alert_to_viewers("This chair is too damaged to sit in")
+		return FALSE
+	if(leader_chair == TRUE && buckling_mob.skills.getRating(SKILL_LEADERSHIP) < SKILL_LEAD_TRAINED)
+		balloon_alert(buckling_mob, "You don't feel worthy enough to sit in this chair")
+		return FALSE
+	if(buckling_x)
+		src.pixel_x = buckling_x
+	return ..()
+
+/obj/structure/bed/chair/dropship/doublewide/left
+	pixel_x = -8
+	buckling_x = -8
+
+/obj/structure/bed/chair/dropship/doublewide/right
+	pixel_x = 9
+	buckling_x = 9
+
+/obj/structure/bed/chair/dropship/doublewide/left/alpha
+	name = "Alpha Squad Leader's Chair"
+	desc = "A chair specially reserve for the Alpha Squad Leader."
+	icon_state = "doublewide_chair_alpha"
+	chair_color = ALPHA_CHAIR
+	leader_chair = TRUE
+
+/obj/structure/bed/chair/dropship/doublewide/right/bravo
+	name = "Bravo Squad Leader's Chair"
+	desc = "A chair specially reserve for the Bravo Squad Leader."
+	icon_state = "doublewide_chair_bravo"
+	chair_color = BRAVO_CHAIR
+	leader_chair = TRUE
+
+/obj/structure/bed/chair/dropship/doublewide/left/charlie
+	name = "Charlie Squad Leader's Chair"
+	desc = "A chair specially reserve for the Charlie Squad Leader."
+	icon_state = "doublewide_chair_charlie"
+	chair_color = CHARLIE_CHAIR
+	leader_chair = TRUE
+
+/obj/structure/bed/chair/dropship/doublewide/right/delta
+	name = "Delta Squad Leader's Chair"
+	desc = "A chair specially reserve for the Delta Squad Leader."
+	icon_state = "doublewide_chair_delta"
+	chair_color = DELTA_CHAIR
+	leader_chair = TRUE
+
+/obj/structure/bed/chair/dropship/doublewide/fieldcommander
+	name = "Field Commander's Chair"
+	desc = "A chair specially reserve for the Field Commander."
+	icon_state = "doublewide_chair_fc"
+	chair_color = FC_CHAIR
+	leader_chair = TRUE
 
 /obj/structure/bed/chair/ob_chair
 	name = "seat"
