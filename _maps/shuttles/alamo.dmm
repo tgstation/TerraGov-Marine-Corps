@@ -486,6 +486,10 @@
 /obj/machinery/door/airlock/dropship_hatch/right,
 /turf/open/shuttle/dropship/floor/out,
 /area/shuttle/dropship/alamo)
+"ez" = (
+/obj/item/radio/intercom/dropship,
+/turf/open/shuttle/dropship/five,
+/area/shuttle/dropship/alamo)
 "gl" = (
 /turf/open/shuttle/dropship/thirtytwo,
 /area/shuttle/dropship/alamo)
@@ -786,7 +790,7 @@ jS
 li
 bd
 MG
-aK
+ez
 jI
 aK
 bp
@@ -802,7 +806,7 @@ ah
 am
 au
 aD
-aK
+ez
 og
 aK
 jI
