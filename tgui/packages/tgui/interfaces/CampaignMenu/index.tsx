@@ -73,23 +73,21 @@ export type CampaignData = {
   mission_icons?: string[];
 };
 
-export const CampaignMenu = (props, context) => {
-  const { act, data } = useBackend<CampaignData>(context);
+export const CampaignMenu = (props) => {
+  const { act, data } = useBackend<CampaignData>();
   const [selectedTab, setSelectedTab] = useLocalState(
-    context,
     'selectedTab',
     TAB_OVERVIEW
   );
 
   const [selectedAsset, setSelectedAsset] = useLocalState<FactionReward | null>(
-    context,
     'selectedAsset',
     null
   );
   const [purchasedAsset, setPurchasedAsset] =
-    useLocalState<FactionReward | null>(context, 'purchasedAsset', null);
+    useLocalState<FactionReward | null>('purchasedAsset', null);
   const [selectedNewMission, setSelectedNewMission] =
-    useLocalState<MissionData | null>(context, 'selectedNewMission', null);
+    useLocalState<MissionData | null>('selectedNewMission', null);
 
   return (
     <Window
@@ -211,9 +209,8 @@ export const CampaignMenu = (props, context) => {
   );
 };
 
-const CampaignContent = (props, context) => {
+const CampaignContent = (props) => {
   const [selectedTab, setSelectedTab] = useLocalState(
-    context,
     'selectedTab',
     TAB_OVERVIEW
   );
@@ -232,15 +229,12 @@ const CampaignContent = (props, context) => {
 };
 
 /** Generates a small icon for buttons based on ICONMAP */
-export const AssetIcon = (
-  props: {
-    icon: FactionReward['icon'];
-    icon_width?: string;
-    icon_height?: string;
-  },
-  context
-) => {
-  const { data } = useBackend<CampaignData>(context);
+export const AssetIcon = (props: {
+  icon: FactionReward['icon'];
+  icon_width?: string;
+  icon_height?: string;
+}) => {
+  const { data } = useBackend<CampaignData>();
   const { icons = [] } = data;
   const { icon, icon_width, icon_height } = props;
   if (!icon || !icons[icon]) {
@@ -263,15 +257,12 @@ export const AssetIcon = (
 };
 
 /** Generates a small icon for buttons based on ICONMAP for missions */
-export const MissionIcon = (
-  props: {
-    icon: MissionData['mission_icon'];
-    icon_width?: string;
-    icon_height?: string;
-  },
-  context
-) => {
-  const { data } = useBackend<CampaignData>(context);
+export const MissionIcon = (props: {
+  icon: MissionData['mission_icon'];
+  icon_width?: string;
+  icon_height?: string;
+}) => {
+  const { data } = useBackend<CampaignData>();
   const { mission_icons = [] } = data;
   const { icon, icon_width, icon_height } = props;
   if (!icon || !mission_icons[icon]) {

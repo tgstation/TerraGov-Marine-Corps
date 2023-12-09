@@ -14,17 +14,15 @@ type SquadEntry = {
   members?: string[];
 };
 
-export const SquadTransfer = (props, context) => {
-  const { act, data } = useBackend<SquadSelectorData>(context);
+export const SquadTransfer = (props) => {
+  const { act, data } = useBackend<SquadSelectorData>();
   const { active_squads } = data;
   const [selectedSquad, setSelectedSquad] = useLocalState<string>(
-    context,
     'selectedSquad',
     ''
   );
 
   const [selectedMember, setSelectedMember] = useLocalState<string>(
-    context,
     'selectedMember',
     ''
   );

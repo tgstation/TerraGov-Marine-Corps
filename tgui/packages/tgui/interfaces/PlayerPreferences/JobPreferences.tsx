@@ -1,8 +1,8 @@
 import { useBackend, useLocalState } from '../../backend';
 import { Section, LabeledList, Modal, Button, Box, Stack, Flex } from '../../components';
 
-export const JobPreferences = (props, context) => {
-  const { act, data } = useBackend<JobPreferencesData>(context);
+export const JobPreferences = (props) => {
+  const { act, data } = useBackend<JobPreferencesData>();
   const {
     alternate_option,
     squads,
@@ -14,7 +14,6 @@ export const JobPreferences = (props, context) => {
     special_occupation,
   } = data;
   const [shownDescription, setShownDescription] = useLocalState(
-    context,
     'shown-desc',
     null
   );
@@ -190,8 +189,8 @@ export const JobPreferences = (props, context) => {
   );
 };
 
-const JobPreference = (props, context) => {
-  const { act, data } = useBackend<JobPreferenceData>(context);
+const JobPreference = (props) => {
+  const { act, data } = useBackend<JobPreferenceData>();
   const { jobs, job_preferences } = data;
   const { job, setShownDescription } = props;
   const jobData = jobs[job];

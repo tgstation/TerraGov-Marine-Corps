@@ -2,8 +2,8 @@ import { useBackend } from '../backend';
 import { Button, LabeledList, ProgressBar, Section } from '../components';
 import { Window } from '../layouts';
 
-export const SelfDestruct = (props, context) => {
-  const { act, data } = useBackend(context);
+export const SelfDestruct = (props) => {
+  const { act, data } = useBackend();
   const { dest_status, detonation_time, detonation_pcent } = data;
   return (
     <Window width={470} height={290}>

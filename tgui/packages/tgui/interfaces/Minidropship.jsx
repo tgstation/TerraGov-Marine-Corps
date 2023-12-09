@@ -2,8 +2,8 @@ import { useBackend } from '../backend';
 import { Button, Section, Box } from '../components';
 import { Window } from '../layouts';
 
-export const Minidropship = (_props, context) => {
-  const { act, data } = useBackend(context);
+export const Minidropship = (_props) => {
+  const { act, data } = useBackend();
 
   return (
     <Window width={220} height={340} title={'Navigation'}>
@@ -30,8 +30,8 @@ export const Minidropship = (_props, context) => {
   );
 };
 
-const WeaponSelection = (props, context) => {
-  const { act, data } = useBackend(context);
+const WeaponSelection = (props) => {
+  const { act, data } = useBackend();
 
   return (
     <Section title="Equipment Installed">

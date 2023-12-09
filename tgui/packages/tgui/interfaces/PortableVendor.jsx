@@ -2,8 +2,8 @@ import { useBackend } from '../backend';
 import { Button, Section, Box, ProgressBar } from '../components';
 import { Window } from '../layouts';
 
-export const PortableVendor = (props, context) => {
-  const { act, data } = useBackend(context);
+export const PortableVendor = (props) => {
+  const { act, data } = useBackend();
   return (
     <Window width={600} height={700}>
       <Window.Content scrollable>

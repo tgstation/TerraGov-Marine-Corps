@@ -1,10 +1,10 @@
 import { Button, Flex, Modal, TextArea } from '../../components';
 import { useLocalState } from '../../backend';
 
-export const TextInputModal = (props: TextInputModalData, context) => {
+export const TextInputModal = (props: TextInputModalData) => {
   const { label, button_text, onSubmit, onBack, areaHeigh, areaWidth } = props;
 
-  const [input, setInput] = useLocalState(context, label, '');
+  const [input, setInput] = useLocalState(label, '');
 
   return (
     <Modal id="grab-focus">

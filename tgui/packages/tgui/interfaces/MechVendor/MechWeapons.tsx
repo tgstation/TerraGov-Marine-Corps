@@ -3,8 +3,8 @@ import { classes } from 'common/react';
 import { Button, Section, Box, Stack, Collapsible, Tabs, Divider } from '../../components';
 import { MechVendData, equipTabs, MechWeapon, MechArmor, MechPower, MechUtility, MECHA_ARMOR, MECHA_POWER, MECHA_UTILITY } from './data';
 
-const SelectedEquipment = (props, context) => {
-  const { act, data } = useBackend<MechVendData>(context);
+const SelectedEquipment = (props) => {
+  const { act, data } = useBackend<MechVendData>();
   const { equip_max, all_equipment, selected_equipment } = data;
   const selected_left = all_equipment.weapons.find(
     (o) => o.type === selected_equipment.mecha_l_arm
@@ -169,9 +169,8 @@ const SelectedEquipment = (props, context) => {
   );
 };
 
-const EquipPanelContent = (props, context) => {
+const EquipPanelContent = (props) => {
   const [equipmentTab, setequipmentTab] = useLocalState(
-    context,
     'equipmentTab',
     equipTabs[0]
   );
@@ -191,8 +190,8 @@ const EquipPanelContent = (props, context) => {
   }
 };
 
-const WeaponsTab = (props, context) => {
-  const { act, data } = useBackend<MechVendData>(context);
+const WeaponsTab = (props) => {
+  const { act, data } = useBackend<MechVendData>();
   const { weapons } = data.all_equipment;
   const midway = Math.ceil(weapons.length / 2);
   const firstweapons = weapons.slice(0, midway);
@@ -211,8 +210,8 @@ const WeaponsTab = (props, context) => {
   );
 };
 
-const PowerTab = (props, context) => {
-  const { act, data } = useBackend<MechVendData>(context);
+const PowerTab = (props) => {
+  const { act, data } = useBackend<MechVendData>();
   const { all_equipment, selected_equipment, equip_max } = data;
   return (
     <Stack.Item>
@@ -239,8 +238,8 @@ const PowerTab = (props, context) => {
   );
 };
 
-const ArmorTab = (props, context) => {
-  const { act, data } = useBackend<MechVendData>(context);
+const ArmorTab = (props) => {
+  const { act, data } = useBackend<MechVendData>();
   const { all_equipment, selected_equipment, equip_max } = data;
   return (
     <Stack.Item>
@@ -267,8 +266,8 @@ const ArmorTab = (props, context) => {
   );
 };
 
-const UtilityTab = (props, context) => {
-  const { act, data } = useBackend<MechVendData>(context);
+const UtilityTab = (props) => {
+  const { act, data } = useBackend<MechVendData>();
   const { all_equipment, selected_equipment, equip_max } = data;
   return (
     <Stack.Item>
@@ -295,11 +294,10 @@ const UtilityTab = (props, context) => {
   );
 };
 
-const WeaponModuleList = (props, context) => {
-  const { act, data } = useBackend<MechVendData>(context);
+const WeaponModuleList = (props) => {
+  const { act, data } = useBackend<MechVendData>();
   const { listtoshow } = props;
   const [showDesc, setShowDesc] = useLocalState<MechWeapon | null>(
-    context,
     'showDesc',
     null
   );
@@ -377,12 +375,8 @@ const WeaponModuleList = (props, context) => {
   );
 };
 
-export const MechWeapons = (props, context) => {
-  const [equipmentTab, setequipmentTab] = useLocalState(
-    context,
-    'equipmentTab',
-    ''
-  );
+export const MechWeapons = (props) => {
+  const [equipmentTab, setequipmentTab] = useLocalState('equipmentTab', '');
   return (
     <Stack>
       <Stack.Item>

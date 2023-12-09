@@ -2,12 +2,12 @@ import { useBackend, useLocalState } from '../backend';
 import { Button, Section, Box, ProgressBar, LabeledList, Modal } from '../components';
 import { Window } from '../layouts';
 
-export const MarineSelector = (props, context) => {
-  const { act, data } = useBackend(context);
+export const MarineSelector = (props) => {
+  const { act, data } = useBackend();
 
-  const [showEmpty, setShowEmpty] = useLocalState(context, 'showEmpty', 0);
+  const [showEmpty, setShowEmpty] = useLocalState('showEmpty', 0);
 
-  const [showDesc, setShowDesc] = useLocalState(context, 'showDesc', null);
+  const [showDesc, setShowDesc] = useLocalState('showDesc', null);
 
   const categories = Object.keys(data.displayed_records)
     .map((key) => ({
@@ -55,7 +55,7 @@ export const MarineSelector = (props, context) => {
   );
 };
 
-const ItemCategory = (props, context) => {
+const ItemCategory = (props) => {
   const {
     category: {
       entries,
@@ -115,10 +115,10 @@ const ItemCategory = (props, context) => {
   );
 };
 
-const ItemLine = (props, context) => {
-  const { act, data } = useBackend(context);
+const ItemLine = (props) => {
+  const { act, data } = useBackend();
 
-  const [showDesc, setShowDesc] = useLocalState(context, 'showDesc', null);
+  const [showDesc, setShowDesc] = useLocalState('showDesc', null);
 
   const {
     display_record: {

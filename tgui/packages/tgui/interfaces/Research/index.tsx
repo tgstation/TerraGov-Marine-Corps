@@ -5,8 +5,8 @@ import { Window } from '../../layouts';
 import { ResearchData, ResearchResource, RewardTier } from './Types';
 import { hexToRGB, objectToArray } from './Utility';
 
-export const Research = (props, context) => {
-  const { act, data } = useBackend<ResearchData>(context);
+export const Research = (props) => {
+  const { act, data } = useBackend<ResearchData>();
   const { acquired_points, anchored, researching, init_resource } = data;
 
   return (

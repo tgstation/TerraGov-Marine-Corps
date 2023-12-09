@@ -2,8 +2,8 @@ import { useBackend } from '../backend';
 import { Box, Button, LabeledList, ProgressBar, Section } from '../components';
 import { Window } from '../layouts';
 
-export const CAS = (props, context) => {
-  const { act, data } = useBackend(context);
+export const CAS = (props) => {
+  const { act, data } = useBackend();
 
   return (
     <Window>
@@ -15,8 +15,8 @@ export const CAS = (props, context) => {
   );
 };
 
-const WeaponSelection = (props, context) => {
-  const { act, data } = useBackend(context);
+const WeaponSelection = (props) => {
+  const { act, data } = useBackend();
 
   return (
     <Section title="Equipment Installed">
@@ -39,8 +39,8 @@ const WeaponSelection = (props, context) => {
   );
 };
 
-const FiringMode = (props, context) => {
-  const { act, data } = useBackend(context);
+const FiringMode = (props) => {
+  const { act, data } = useBackend();
 
   return (
     <>

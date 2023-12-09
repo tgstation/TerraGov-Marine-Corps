@@ -2,8 +2,8 @@ import { useBackend } from '../backend';
 import { Box, Icon, Stack, Button, Section, NoticeBox, LabeledList, Collapsible } from '../components';
 import { Window } from '../layouts';
 
-export const Vote = (props, context) => {
-  const { data } = useBackend(context);
+export const Vote = (props) => {
+  const { data } = useBackend();
   const { mode, question, lower_admin } = data;
 
   // Adds the voting type to title if there is an ongoing vote
@@ -34,8 +34,8 @@ export const Vote = (props, context) => {
   );
 };
 
-const StartVoteOptions = (props, context) => {
-  const { act, data } = useBackend(context);
+const StartVoteOptions = (props) => {
+  const { act, data } = useBackend();
   const {
     allow_vote_mode,
     allow_vote_restart,
@@ -86,8 +86,8 @@ const StartVoteOptions = (props, context) => {
 };
 
 // Gives access to starting votes
-const VoteOptions = (props, context) => {
-  const { act, data } = useBackend(context);
+const VoteOptions = (props) => {
+  const { act, data } = useBackend();
   const {
     allow_vote_mode,
     allow_vote_restart,
@@ -161,8 +161,8 @@ const VoteOptions = (props, context) => {
 };
 
 // Table to view voters by ckey
-const VotersList = (props, context) => {
-  const { data } = useBackend(context);
+const VotersList = (props) => {
+  const { data } = useBackend();
   const { voting } = data;
 
   return (
@@ -179,8 +179,8 @@ const VotersList = (props, context) => {
 };
 
 // Display choices
-const ChoicesPanel = (props, context) => {
-  const { act, data } = useBackend(context);
+const ChoicesPanel = (props) => {
+  const { act, data } = useBackend();
   const { choices, selected_choice, vote_counts } = data;
 
   return (
@@ -229,8 +229,8 @@ const ChoicesPanel = (props, context) => {
 };
 
 // Countdown timer at the bottom. Includes a cancel vote option for admins
-const TimePanel = (props, context) => {
-  const { act, data } = useBackend(context);
+const TimePanel = (props) => {
+  const { act, data } = useBackend();
   const { upper_admin, time_remaining } = data;
 
   return (

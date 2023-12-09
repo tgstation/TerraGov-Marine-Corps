@@ -2,8 +2,8 @@ import { useBackend } from '../backend';
 import { Button, Section } from '../components';
 import { Window } from '../layouts';
 
-export const Crew = (props, context) => {
-  const { act, data } = useBackend(context);
+export const Crew = (props) => {
+  const { act, data } = useBackend();
 
   return (
     <Window title="Pod Launcher" width={1000} height={700}>

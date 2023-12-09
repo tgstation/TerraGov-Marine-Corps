@@ -2,8 +2,8 @@ import { useBackend } from '../backend';
 import { Box, Button, LabeledList, NoticeBox, Section, Stack } from '../components';
 import { Window } from '../layouts';
 
-export const MarineDropship = (props, context) => {
-  const { act, data } = useBackend(context);
+export const MarineDropship = (props) => {
+  const { act, data } = useBackend();
 
   return (
     <Window width={500} height={600}>
@@ -21,8 +21,8 @@ export const MarineDropship = (props, context) => {
   );
 };
 
-const NormalOperation = (props, context) => {
-  const { act, data } = useBackend(context);
+const NormalOperation = (props) => {
+  const { act, data } = useBackend();
   const delayBetweenFlight = [0, 15, 30, 45, 60];
   const doorLocks = [
     {

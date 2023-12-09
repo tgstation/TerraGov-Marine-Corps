@@ -3,7 +3,7 @@ import { Box, Button, LabeledList, ProgressBar, Section } from '../components';
 import { Window } from '../layouts';
 import { InterfaceLockNoticeBox } from './common/InterfaceLockNoticeBox';
 
-export const Apc = (props, context) => {
+export const Apc = (props) => {
   return (
     <Window width={450} height={460}>
       <Window.Content scrollable>
@@ -31,8 +31,8 @@ const powerStatusMap = {
   },
 };
 
-const ApcContent = (props, context) => {
-  const { act, data } = useBackend(context);
+const ApcContent = (props) => {
+  const { act, data } = useBackend();
   const locked = data.locked && !data.siliconUser;
   const externalPowerStatus =
     powerStatusMap[data.externalPower] || powerStatusMap[0];

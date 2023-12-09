@@ -76,7 +76,7 @@ const Uploadprogress = (props) => (
   </Section>
 );
 
-export const IntelComputer = (props, context) => {
+export const IntelComputer = (props) => {
   return (
     <Window width={400} height={500} theme="syndicate">
       <Window.Content scrollable>
@@ -86,8 +86,8 @@ export const IntelComputer = (props, context) => {
   );
 };
 
-export const IntelComputercontent = (props, context) => {
-  const { act, data } = useBackend(context);
+export const IntelComputercontent = (props) => {
+  const { act, data } = useBackend();
 
   const terminalMessages = [
     'WARNING UNREGISTERED USER...',

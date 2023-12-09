@@ -1,8 +1,8 @@
 import { useBackend, useLocalState } from '../../backend';
 import { Button, Section, TextArea, Box, Stack } from '../../components';
 
-export const BackgroundInformation = (props, context) => {
-  const { act, data } = useBackend<BackgroundInformationData>(context);
+export const BackgroundInformation = (props) => {
+  const { act, data } = useBackend<BackgroundInformationData>();
   const {
     slot,
     flavor_text,
@@ -13,27 +13,22 @@ export const BackgroundInformation = (props, context) => {
   } = data;
 
   const [characterDesc, setCharacterDesc] = useLocalState(
-    context,
     'characterDesc' + slot,
     flavor_text
   );
   const [medicalDesc, setMedicalDesc] = useLocalState(
-    context,
     'medicalDesc' + slot,
     med_record
   );
   const [employmentDesc, setEmploymentDesc] = useLocalState(
-    context,
     'employmentDesc' + slot,
     gen_record
   );
   const [securityDesc, setSecurityDesc] = useLocalState(
-    context,
     'securityDesc' + slot,
     sec_record
   );
   const [exploitsDesc, setExploitsDesc] = useLocalState(
-    context,
     'exploitsDesc' + slot,
     exploit_record
   );

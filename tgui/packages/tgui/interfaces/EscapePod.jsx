@@ -2,8 +2,8 @@ import { useBackend } from '../backend';
 import { Box, Button, Section } from '../components';
 import { Window } from '../layouts';
 
-export const EscapePod = (props, context) => {
-  const { act, data } = useBackend(context);
+export const EscapePod = (props) => {
+  const { act, data } = useBackend();
   return (
     <Window title="Escape Pod" width={400} height={140}>
       <Window.Content>

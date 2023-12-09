@@ -19,14 +19,10 @@ const category_icon = {
   'Pending Order': 'shopping-cart',
 };
 
-export const Cargo = (props, context) => {
-  const { act, data } = useBackend(context);
+export const Cargo = (props) => {
+  const { act, data } = useBackend();
 
-  const [selectedMenu, setSelectedMenu] = useLocalState(
-    context,
-    'selectedMenu',
-    null
-  );
+  const [selectedMenu, setSelectedMenu] = useLocalState('selectedMenu', null);
 
   const {
     supplypacks,
@@ -73,8 +69,8 @@ export const Cargo = (props, context) => {
   );
 };
 
-const Exports = (props, context) => {
-  const { act, data } = useBackend(context);
+const Exports = (props) => {
+  const { act, data } = useBackend();
 
   const { export_history } = data;
 
@@ -92,14 +88,10 @@ const Exports = (props, context) => {
   );
 };
 
-const MenuButton = (props, context) => {
+const MenuButton = (props) => {
   const { condition, menuname, icon, width } = props;
 
-  const [selectedMenu, setSelectedMenu] = useLocalState(
-    context,
-    'selectedMenu',
-    null
-  );
+  const [selectedMenu, setSelectedMenu] = useLocalState('selectedMenu', null);
 
   return (
     <Button
@@ -113,8 +105,8 @@ const MenuButton = (props, context) => {
   );
 };
 
-const Menu = (props, context) => {
-  const { act, data } = useBackend(context);
+const Menu = (props) => {
+  const { act, data } = useBackend();
   const { readOnly } = props;
 
   const {
@@ -237,16 +229,12 @@ const Menu = (props, context) => {
   );
 };
 
-const OrderList = (props, context) => {
-  const { act, data } = useBackend(context);
+const OrderList = (props) => {
+  const { act, data } = useBackend();
 
   const { type, buttons, readOnly } = props;
 
-  const [selectedMenu, setSelectedMenu] = useLocalState(
-    context,
-    'selectedMenu',
-    null
-  );
+  const [selectedMenu, setSelectedMenu] = useLocalState('selectedMenu', null);
 
   return (
     <Section title={selectedMenu} buttons={buttons}>
@@ -299,15 +287,15 @@ const OrderList = (props, context) => {
   );
 };
 
-const Packs = (props, context) => {
-  const { act, data } = useBackend(context);
+const Packs = (props) => {
+  const { act, data } = useBackend();
   const { packs } = props;
 
   return packs.map((pack) => <Pack pack={pack} key={pack} />);
 };
 
-const Pack = (props, context) => {
-  const { act, data } = useBackend(context);
+const Pack = (props) => {
+  const { act, data } = useBackend();
   const { pack } = props;
   const { supplypackscontents } = data;
   const { name, cost, contains } = supplypackscontents[pack];
@@ -324,7 +312,7 @@ const Pack = (props, context) => {
   );
 };
 
-const PackName = (props, context) => {
+const PackName = (props) => {
   const { cost, name, pl } = props;
 
   return (
@@ -338,8 +326,8 @@ const PackName = (props, context) => {
   );
 };
 
-const Requests = (props, context) => {
-  const { act, data } = useBackend(context);
+const Requests = (props) => {
+  const { act, data } = useBackend();
   const { readOnly } = props;
   const { requests } = data;
 
@@ -367,8 +355,8 @@ const Requests = (props, context) => {
   );
 };
 
-const ShoppingCart = (props, context) => {
-  const { act, data } = useBackend(context);
+const ShoppingCart = (props) => {
+  const { act, data } = useBackend();
 
   const {
     shopping_list,
@@ -378,7 +366,7 @@ const ShoppingCart = (props, context) => {
   } = data;
   const { readOnly } = props;
   const shopping_list_array = Object.keys(shopping_list);
-  const [reason, setReason] = useLocalState(context, 'reason', null);
+  const [reason, setReason] = useLocalState('reason', null);
 
   return (
     <Section>
@@ -420,8 +408,8 @@ const ShoppingCart = (props, context) => {
   );
 };
 
-const CategoryButton = (props, context) => {
-  const { act, data } = useBackend(context);
+const CategoryButton = (props) => {
+  const { act, data } = useBackend();
   const { icon, disabled, id, mode } = props;
 
   return (
@@ -438,8 +426,8 @@ const CategoryButton = (props, context) => {
   );
 };
 
-const Category = (props, context) => {
-  const { act, data } = useBackend(context);
+const Category = (props) => {
+  const { act, data } = useBackend();
 
   const {
     shopping_list,
@@ -448,17 +436,13 @@ const Category = (props, context) => {
     supplypackscontents,
   } = data;
 
-  const [selectedMenu, setSelectedMenu] = useLocalState(
-    context,
-    'selectedMenu',
-    null
-  );
+  const [selectedMenu, setSelectedMenu] = useLocalState('selectedMenu', null);
 
   const spare_points = currentpoints - shopping_list_cost;
 
   const { selectedPackCat, should_filter, level } = props;
 
-  const [filter, setFilter] = useLocalState(context, `pack-name-filter`, null);
+  const [filter, setFilter] = useLocalState(`pack-name-filter`, null);
 
   const filterSearch = (entry) =>
     should_filter && filter
@@ -532,7 +516,7 @@ const Category = (props, context) => {
   );
 };
 
-const PackContents = (props, context) => {
+const PackContents = (props) => {
   const { contains } = props;
 
   return (
@@ -551,14 +535,10 @@ const PackContents = (props, context) => {
   );
 };
 
-export const CargoRequest = (props, context) => {
-  const { act, data } = useBackend(context);
+export const CargoRequest = (props) => {
+  const { act, data } = useBackend();
 
-  const [selectedMenu, setSelectedMenu] = useLocalState(
-    context,
-    'selectedMenu',
-    null
-  );
+  const [selectedMenu, setSelectedMenu] = useLocalState('selectedMenu', null);
 
   const { supplypacks, approvedrequests, deniedrequests, awaiting_delivery } =
     data;

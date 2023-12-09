@@ -26,13 +26,12 @@ const categoryIcons = {
   'Primordial': 'skull', // wolf-pack-battalion
 };
 
-export const BlessingMenu = (props, context) => {
-  const { data } = useBackend<BlessingData>(context);
+export const BlessingMenu = (props) => {
+  const { data } = useBackend<BlessingData>();
 
   const { psypoints, categories } = data;
 
   const [selectedCategory, setSelectedCategory] = useLocalState(
-    context,
     'selectedCategory',
     categories.length ? categories[0] : null
   );
@@ -77,13 +76,12 @@ export const BlessingMenu = (props, context) => {
   );
 };
 
-const Upgrades = (props, context) => {
-  const { data } = useBackend<BlessingData>(context);
+const Upgrades = (props) => {
+  const { data } = useBackend<BlessingData>();
 
   const { psypoints, upgrades, categories } = data;
 
   const [selectedCategory, setSelectedCategory] = useLocalState(
-    context,
     'selectedCategory',
     categories.length ? categories[0] : null
   );
@@ -122,8 +120,8 @@ type UpgradeEntryProps = {
   upgradeicon: string;
 };
 
-const UpgradeEntry = (props: UpgradeEntryProps, context) => {
-  const { act } = useBackend<UpgradeData>(context);
+const UpgradeEntry = (props: UpgradeEntryProps) => {
+  const { act } = useBackend<UpgradeData>();
 
   const {
     psy_points,
@@ -166,8 +164,8 @@ type UpgradeViewEntryProps = {
   cost: number;
 };
 
-const UpgradeView = (props: UpgradeViewEntryProps, context) => {
-  const { data } = useBackend<BlessingData>(context);
+const UpgradeView = (props: UpgradeViewEntryProps) => {
+  const { data } = useBackend<BlessingData>();
   const { psypoints } = data;
 
   const { name, desc, timesbought, iconstate, cost } = props;

@@ -2,8 +2,8 @@ import { useBackend } from '../backend';
 import { Button, Box, Section, Stack, NoticeBox, ProgressBar } from '../components';
 import { Window } from '../layouts';
 
-export const NtAccessTerminal = (props, context) => {
-  const { act, data } = useBackend(context);
+export const NtAccessTerminal = (props) => {
+  const { act, data } = useBackend();
   const {
     message,
     progress,

@@ -3,8 +3,8 @@ import { Button, Section, Table, NoticeBox } from '../components';
 import { map } from 'common/collections';
 import { Window } from '../layouts';
 
-export const SmartVend = (props, context) => {
-  const { act, data } = useBackend(context);
+export const SmartVend = (props) => {
+  const { act, data } = useBackend();
   return (
     <Window width={440} height={550}>
       <Window.Content scrollable>

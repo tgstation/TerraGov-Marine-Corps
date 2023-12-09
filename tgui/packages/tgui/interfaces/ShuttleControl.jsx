@@ -2,7 +2,7 @@ import { useBackend } from '../backend';
 import { Button, Section, Box, NoticeBox, Table } from '../components';
 import { Window } from '../layouts';
 
-const DestinationSelection = (props, context) => {
+const DestinationSelection = (props) => {
   const { id, name, locked, selectDestination } = props;
   return (
     <Table.Row textAlign="center">
@@ -18,8 +18,8 @@ const DestinationSelection = (props, context) => {
   );
 };
 
-export const ShuttleControl = (props, context) => {
-  const { act, data } = useBackend(context);
+export const ShuttleControl = (props) => {
+  const { act, data } = useBackend();
   const { linked_shuttle_name, shuttle_status, destinations = [] } = data;
 
   return (

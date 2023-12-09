@@ -2,8 +2,8 @@ import { useBackend } from '../backend';
 import { Button, Section, LabeledList, ProgressBar, Divider, NumberInput } from '../components';
 import { Window } from '../layouts';
 
-export const SupplyDropConsole = (_props, context) => {
-  const { act, data } = useBackend(context);
+export const SupplyDropConsole = (_props) => {
+  const { act, data } = useBackend();
 
   const timeLeft = data.next_fire;
   const timeLeftPct = timeLeft / data.launch_cooldown;

@@ -2,8 +2,8 @@ import { useBackend } from '../backend';
 import { Button, NumberInput, Flex, Table, Input } from '../components';
 import { Window } from '../layouts';
 
-export const Mortar = (props, context) => {
-  const { act, data } = useBackend(context);
+export const Mortar = (props) => {
+  const { act, data } = useBackend();
   const { X, Y, DX, DY, last_three_inputs } = data;
   return (
     <Window width={450} height={180}>

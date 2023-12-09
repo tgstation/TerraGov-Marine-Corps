@@ -2,8 +2,8 @@ import { useBackend } from '../backend';
 import { Button, Box, Section, Stack, NoticeBox, ProgressBar } from '../components';
 import { Window } from '../layouts';
 
-export const NukeDiskGenerator = (props, context) => {
-  const { act, data } = useBackend(context);
+export const NukeDiskGenerator = (props) => {
+  const { act, data } = useBackend();
   const {
     message,
     progress,

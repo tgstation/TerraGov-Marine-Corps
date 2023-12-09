@@ -8,18 +8,13 @@ const KEY_MODS = {
   'CONTROL': true,
 };
 
-export const KeybindSettings = (props, context) => {
-  const { act, data } = useBackend<KeybindSettingData>(context);
+export const KeybindSettings = (props) => {
+  const { act, data } = useBackend<KeybindSettingData>();
   const { all_keybindings, is_admin } = data;
 
   const [captureSentence, setCaptureSentence] =
-    useLocalState<KeybindSentenceCapture | null>(
-      context,
-      `setCaptureSentence`,
-      null
-    );
+    useLocalState<KeybindSentenceCapture | null>(`setCaptureSentence`, null);
   const [filter, setFilter] = useLocalState<string | null>(
-    context,
     `keybind-filter`,
     null
   );
@@ -133,8 +128,8 @@ export const KeybindSettings = (props, context) => {
   );
 };
 
-const KeybindingPreference = (props, context) => {
-  const { act, data } = useBackend<KeybindPreferenceData>(context);
+const KeybindingPreference = (props) => {
+  const { act, data } = useBackend<KeybindPreferenceData>();
   const { key_bindings } = data;
   const { keybind } = props;
   const current = key_bindings[keybind.name];
@@ -193,8 +188,8 @@ const KeybindingPreference = (props, context) => {
   );
 };
 
-const CustomSentence = (props, context) => {
-  const { act, data } = useBackend<KeybindPreferenceData>(context);
+const CustomSentence = (props) => {
+  const { act, data } = useBackend<KeybindPreferenceData>();
   const { key_bindings, custom_emotes } = data;
   const { keybind, setCaptureSentence } = props;
   const current = key_bindings[keybind.name];

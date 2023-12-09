@@ -4,8 +4,8 @@ import { Window } from '../../layouts';
 import { LoadoutListData, LoadoutTabData, LoadoutManagerData, LoadoutItemData } from './Types';
 import { NameInputModal } from './NameInputModal';
 
-const LoadoutItem = (props: LoadoutItemData, context) => {
-  const { act } = useBackend(context);
+const LoadoutItem = (props: LoadoutItemData) => {
+  const { act } = useBackend();
   const { loadout } = props;
 
   return (
@@ -116,18 +116,16 @@ const JobTabs = (props: LoadoutTabData) => {
   );
 };
 
-export const LoadoutManager = (props, context) => {
-  const { act, data } = useBackend<LoadoutManagerData>(context);
+export const LoadoutManager = (props) => {
+  const { act, data } = useBackend<LoadoutManagerData>();
   const { loadout_list } = data;
 
-  const [job, setJob] = useLocalState(context, 'job', 'Squad Marine');
+  const [job, setJob] = useLocalState('job', 'Squad Marine');
   const [saveNewLoadout, setSaveNewLoadout] = useLocalState(
-    context,
     'saveLoadout',
     false
   );
   const [importNewLoadout, setImportNewLoadout] = useLocalState(
-    context,
     'importLoadout',
     false
   );

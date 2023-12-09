@@ -5,8 +5,8 @@ import { Window } from '../layouts';
 
 // This is more or less a direct port from old tgui, with some slight
 // text cleanup. But yes, it actually worked like this.
-export const CentcomPodLauncher = (props, context) => {
-  const { act, data } = useBackend(context);
+export const CentcomPodLauncher = (props) => {
+  const { act, data } = useBackend();
   return (
     <Window title="Config/Launch Supplypod" width={700} height={700}>
       <Window.Content>
