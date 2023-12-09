@@ -855,6 +855,14 @@
 /obj/machinery/vending/armor_supply,
 /turf/open/floor/mainship,
 /area/shuttle/canterbury)
+"ys" = (
+/obj/machinery/door_control{
+	id = "canterbury_cockpit"
+	},
+/turf/open/floor/mainship/blue{
+	dir = 8
+	},
+/area/shuttle/canterbury/cic)
 "zc" = (
 /obj/structure/bed/chair/dropship/passenger{
 	dir = 8
@@ -909,6 +917,13 @@
 	},
 /turf/open/floor/mainship/red/full,
 /area/shuttle/canterbury)
+"EU" = (
+/obj/structure/window/framed/mainship/hull/canterbury,
+/obj/machinery/door/poddoor/shutters/mainship/open/indestructible{
+	id = canterbury_cockpit
+	},
+/turf/open/floor/mainship/mono,
+/area/shuttle/canterbury/cic)
 "Fl" = (
 /obj/machinery/loadout_vendor/crash,
 /turf/open/floor/mainship/mono,
@@ -1190,6 +1205,14 @@
 	},
 /turf/closed/wall/mainship/outer/canterbury,
 /area/shuttle/canterbury)
+"Zq" = (
+/obj/structure/window/framed/mainship/hull/canterbury,
+/obj/machinery/door/poddoor/shutters/mainship/open/indestructible{
+	id = canterbury_cockpit;
+	dir = 2
+	},
+/turf/open/floor/mainship/mono,
+/area/shuttle/canterbury/cic)
 
 (1,1,1) = {"
 Uo
@@ -1295,8 +1318,8 @@ Uo
 Uo
 Uo
 al
-ad
-ad
+EU
+EU
 al
 UE
 as
@@ -1359,7 +1382,7 @@ ah
 (6,1,1) = {"
 Uo
 Uo
-ad
+Zq
 Ub
 MY
 bM
@@ -1392,7 +1415,7 @@ ai
 (7,1,1) = {"
 Uo
 Uo
-ad
+Zq
 am
 uu
 bN
@@ -1425,7 +1448,7 @@ ab
 (8,1,1) = {"
 Uo
 Uo
-ad
+Zq
 ae
 MY
 bS
@@ -1458,7 +1481,7 @@ Uo
 (9,1,1) = {"
 Uo
 Uo
-ad
+Zq
 af
 bK
 Ul
@@ -1491,7 +1514,7 @@ Uo
 (10,1,1) = {"
 Uo
 Uo
-ad
+Zq
 bH
 MY
 ao
@@ -1524,7 +1547,7 @@ Uo
 (11,1,1) = {"
 Uo
 Uo
-ad
+Zq
 bI
 OS
 bP
@@ -1557,7 +1580,7 @@ Uo
 (12,1,1) = {"
 Uo
 Uo
-ad
+Zq
 bJ
 MY
 bQ
@@ -1590,7 +1613,7 @@ Uo
 (13,1,1) = {"
 Uo
 Uo
-ad
+Zq
 Si
 Uw
 bR
@@ -1623,7 +1646,7 @@ ab
 (14,1,1) = {"
 Uo
 Uo
-ad
+Zq
 jo
 MY
 bO
@@ -1658,7 +1681,7 @@ Uo
 Uo
 al
 al
-Uw
+ys
 bT
 al
 aF
@@ -1691,8 +1714,8 @@ Uo
 Uo
 Uo
 al
-ad
-ad
+EU
+EU
 al
 UP
 ac

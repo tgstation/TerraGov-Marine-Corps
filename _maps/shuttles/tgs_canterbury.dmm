@@ -7,6 +7,9 @@
 /area/shuttle/canterbury/cic)
 "ac" = (
 /obj/structure/window/framed/mainship/hull/canterbury,
+/obj/machinery/door/poddoor/shutters/mainship/open/indestructible{
+	id = canterbury_cockpit
+	},
 /turf/open/floor/plating,
 /area/shuttle/canterbury/cic)
 "ad" = (
@@ -114,6 +117,11 @@
 	dir = 4
 	},
 /obj/machinery/marine_selector/gear/commander,
+/obj/machinery/door_control{
+	id = "canterbury_cockpit";
+	directional = 0;
+	pixel_y = -30
+	},
 /turf/open/floor/mainship/blue{
 	dir = 6
 	},
@@ -601,8 +609,7 @@
 	dir = 2
 	},
 /obj/machinery/door_control{
-	dir = 8;
-	id = "aft_engine_podlock"
+	id = "canterbury_cockpit"
 	},
 /turf/open/floor/plating,
 /area/shuttle/canterbury)
@@ -784,8 +791,7 @@
 "zN" = (
 /obj/machinery/vending/engivend,
 /obj/machinery/light/small{
-	dir = 8;
-	status = 0
+	dir = 8
 	},
 /turf/open/floor/mainship/orange/full,
 /area/shuttle/canterbury)
@@ -824,6 +830,14 @@
 /obj/machinery/marine_selector/clothes/synth,
 /turf/open/floor/mainship/cargo,
 /area/shuttle/canterbury)
+"VN" = (
+/obj/structure/window/framed/mainship/hull/canterbury,
+/obj/machinery/door/poddoor/shutters/mainship/open/indestructible{
+	id = canterbury_cockpit;
+	dir = 2
+	},
+/turf/open/floor/plating,
+/area/shuttle/canterbury/cic)
 "YI" = (
 /obj/machinery/iv_drip,
 /turf/open/floor/mainship/sterile/dark,
@@ -945,7 +959,7 @@ bo
 cn
 "}
 (6,1,1) = {"
-ac
+VN
 ad
 ai
 ap
@@ -968,7 +982,7 @@ bo
 an
 "}
 (7,1,1) = {"
-ac
+VN
 ae
 aj
 aq
@@ -991,7 +1005,7 @@ cY
 co
 "}
 (8,1,1) = {"
-ac
+VN
 af
 ak
 ar
@@ -1014,7 +1028,7 @@ cZ
 co
 "}
 (9,1,1) = {"
-ac
+VN
 ag
 aj
 as
@@ -1037,7 +1051,7 @@ da
 cp
 "}
 (10,1,1) = {"
-ac
+VN
 ah
 am
 at
