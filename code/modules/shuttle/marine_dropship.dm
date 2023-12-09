@@ -1324,8 +1324,7 @@
 		log_admin("[key_name(usr)] may be attempting a href dock exploit on [src] with target location \"[html_encode(params["destination"])]\"")
 		message_admins("[ADMIN_TPMONTY(usr)] may be attempting a href dock exploit on [src] with target location \"[html_encode(params["destination"])]\"")
 		return TRUE
-	begin_takeoff(M, params["destination"], usr)
-	return TRUE
+	return begin_takeoff(M, params["destination"], usr)
 
 /obj/machinery/computer/shuttle/shuttle_control/proc/begin_takeoff(obj/docking_port/mobile/port, destination, mob/user)
 	var/previous_status = port.mode
