@@ -716,7 +716,6 @@
 
 /obj/effect/vendor_bundle/basic_specialist
 	gear_to_spawn = list(
-		/obj/item/clothing/under/spec_operative,
 		/obj/item/clothing/shoes/marine/full,
 		/obj/item/clothing/gloves/marine,
 		/obj/item/storage/box/MRE,
@@ -783,9 +782,8 @@
 
 /obj/effect/vendor_bundle/specialist
 	gear_to_spawn = list(
-		/obj/item/clothing/under/spec_operative,
-		/obj/item/clothing/shoes/marine/sneakingboots,
-		/obj/item/clothing/suit/armor/bulletproof,
+		/obj/item/beacon/supply_beacon,
+		/obj/item/compass,
 		/obj/item/binoculars/tactical/scout,
 		/obj/item/explosive/plastique,
 	)

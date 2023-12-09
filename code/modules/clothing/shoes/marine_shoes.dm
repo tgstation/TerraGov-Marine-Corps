@@ -77,13 +77,13 @@
 		if(istype(item_in_pocket, /obj/item/weapon/combat_knife) || istype(item_in_pocket, /obj/item/attachable/bayonetknife) || istype(item_in_pocket, /obj/item/stack/throwing_knife))
 			icon_state += "-knife"
 
-/obj/item/clothing/shoes/marine/sneakingboots/equipped(mob/user, slot)
+/obj/item/clothing/shoes/marine/sneakingboots/equipped(mob/user, shoes)
 	. = ..()
-	ADD_TRAIT(src, TRAIT_SILENT_FOOTSTEPS, XENO_TRAIT)
+	ADD_TRAIT(user, TRAIT_LIGHT_STEP, ARMOR_TRAIT)
 
-/obj/item/clothing/shoes/marine/sneakingboots/unequipped(mob/unequipper, slot)
+/obj/item/clothing/shoes/marine/sneakingboots/unequipped(mob/unequipper, shoes)
 	. = ..()
-	REMOVE_TRAIT(src, TRAIT_SILENT_FOOTSTEPS, XENO_TRAIT)
+	REMOVE_TRAIT(unequipper, TRAIT_LIGHT_STEP, ARMOR_TRAIT)
 
 /obj/item/clothing/shoes/marine/brown
 	name = "brown Operative combat boots"

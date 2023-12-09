@@ -144,8 +144,8 @@ GLOBAL_LIST_INIT(leader_gear_listed_products, list(
 		/obj/item/storage/backpack/marine/radiopack = list(CAT_LEDSUP, "Radio Pack", 15, "black"),
 		/obj/item/weapon/gun/revolver/standard_magnum = list(CAT_LEDSUP, "R-76 Magnum", 12, "black"),
 		/obj/item/storage/firstaid/adv = list(CAT_LEDSUP, "Advanced firstaid kit", 10, "orange"),
-		/obj/item/reagent_containers/hypospray/autoinjector/synaptizine = list(CAT_LEDSUP, "Injector (Synaptizine)", 10, "black"),
-		/obj/item/reagent_containers/hypospray/autoinjector/combat_advanced = list(CAT_LEDSUP, "Injector (Advanced)", 15, "orange"),
+		/obj/item/reagent_containers/hypospray/autoinjector/synaptizine = list(CAT_LEDSUP, "Injector (Synaptizine)", 5, "black"),
+		/obj/item/reagent_containers/hypospray/autoinjector/combat_advanced = list(CAT_LEDSUP, "Injector (Advanced)", 5, "orange"),
 	))
 
 GLOBAL_LIST_INIT(commander_gear_listed_products, list(
@@ -187,17 +187,21 @@ GLOBAL_LIST_INIT(smartgunner_gear_listed_products, list(
 GLOBAL_LIST_INIT(specialist_gear_listed_products, list(
 
 	/obj/effect/vendor_bundle/specialist = list(CAT_ESS, "Essential Specialist Set", 0, "white"),
-	/obj/item/storage/box/crate/heavy_armor = list(CAT_SPSUP, "Heavy Armor Pack", 25, "black"),
+	/obj/item/storage/box/crate/heavy_armor = list(CAT_SPSUP, "Heavy Armor Pack", 25, "orange"),
 	/obj/item/storage/box/crate/heavy_grenadier = list(CAT_SPSUP, "Heavy Grenadier Pack", 20, "black"),
 	/obj/item/storage/backpack/marine/satchel/scout_cloak/scout = list(CAT_SPSUP, "Scout Cloak", 15, "black"),
 	/obj/item/storage/backpack/marine/satchel/scout_cloak/sniper = list(CAT_SPSUP, "Sniper Cloak", 15, "black"),
-	/obj/item/clothing/glasses/thermal/m64_thermal_goggles = list(CAT_SPSUP, "M64 Thermal Goggles", 15, "orange"),
+	/obj/item/clothing/glasses/thermal/m64_thermal_goggles = list(CAT_SPSUP, "M64 Thermal Goggles", 15, "black"),
 	/obj/item/clothing/glasses/night/m56_goggles = list(CAT_SPSUP, "M64 Night Vision Goggles", 15, "orange"),
 	/obj/item/storage/box/crate/loot/operator_pack = list(CAT_SPSUP, "Operator Pack (PR-412E + AP-Mags + Scout Sight)", 25, "orange"),
 	/obj/item/storage/box/crate/loot/scoutrifle_pack_spec = list(CAT_SPSUP, "Scout Rifle Pack (BR-8 + Mixed Mags + Packet +  Scout Sight)", 25, "orange"),
 	/obj/item/storage/box/crate/loot/autosniper_pack_spec = list(CAT_SPSUP, "Autosniper Pack (SR-81 + Mags + Packet + NVG Scope)", 20, "black"),
-	/obj/item/storage/box/crate/m42c_system_Jungle  = list(CAT_SPSUP, "Anti Material Rifle Pack (AMR + Mixed Ammo +  Scout Sight + Tarp)", 35, "black"),
-	/obj/item/weapon/gun/rifle/standard_smarttargetrifle = list(CAT_SPSUP, "SG-62 Target Rifle (SG-153 Spotting rifle underbarrel)", 15, "orange"),
+	/obj/item/storage/box/crate/loot/thermobaric_pack_spec = list(CAT_SPSUP, "Thermobaric Pack (1 Launcher + RPG bag + 20 Arrays)", 20, "black"),
+	/obj/item/storage/box/crate/loot/recoilless_pack_spec = list(CAT_SPSUP, "Recoilless Rifle Pack (1 Launcher + Mixed Rockets)", 25, "black"),
+	/obj/item/storage/box/crate/m42c_system_Jungle  = list(CAT_SPSUP, "Anti Material Rifle Pack (AMR + Mixed Ammo +  Scout Sight + Tarp)", 30, "black"),
+	/obj/item/storage/box/crate/loot/targetrifle_pack_spec = list(CAT_SPSUP, "SG-62 Target Rifle (SG-153 + Mixed Ammo) Pack", 20, "orange"),
+	/obj/item/storage/box/crate/loot/infiltration_pack_spec = list(CAT_SPSUP, "Infiltrator Pack (Sneaking gear + NVG + tranq pistol + scout cloak + more.)", 35, "black"),
+	/obj/item/storage/box/crate/loot/smartpistol_spec = list(CAT_SPSUP, "Smartpistol Pack (Smartpistol + 6 mags)", 10, "black"),
 	/obj/item/ammo_magazine/rifle/ap = list(CAT_SPSUP, "PR-412 Armor Piercing Magazine", 2, "black"),
 	/obj/item/ammo_magazine/rifle/standard_smarttargetrifle = list(CAT_SPSUP, "SG-62 Target Rifle Magazine", 1, "black"),
 	/obj/item/ammo_magazine/rifle/standard_spottingrifle = list(CAT_SPSUP, "SG-153 Spotting Rifle Magazine", 1, "black"),
@@ -820,9 +824,6 @@ GLOBAL_LIST_INIT(loadout_role_essential_set, list(
 		/obj/item/clothing/glasses/night/m56_goggles = 1,
 	),
 	SQUAD_SPECIALIST = list(
-		/obj/item/clothing/under/spec_operative = 1,
-		/obj/item/clothing/shoes/marine/sneakingboots = 1,
-		/obj/item/clothing/suit/armor/bulletproof = 1,
 		/obj/item/binoculars/tactical/scout = 1,
 		/obj/item/explosive/plastique = 2,
 	),
