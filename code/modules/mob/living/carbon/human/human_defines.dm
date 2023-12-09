@@ -87,6 +87,7 @@
 	var/sec_record = ""
 	var/gen_record = ""
 	var/exploit_record = ""
+	var/profile_pic = ""
 
 
 	//Life variables

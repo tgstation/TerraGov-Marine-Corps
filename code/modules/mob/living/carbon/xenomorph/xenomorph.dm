@@ -246,6 +246,8 @@
 
 	if(xeno_desc)
 		. += "<span class='info'>[xeno_desc]</span>"
+	if(profile_pic)
+		. += "<span class='info'><img src=[profile_pic]/></span>"
 
 	if(stat == DEAD)
 		. += "It is DEAD. Kicked the bucket. Off to that great hive in the sky."

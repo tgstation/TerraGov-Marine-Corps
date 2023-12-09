@@ -303,6 +303,8 @@
 	var/time_of_birth
 
 	var/xeno_desc = ""
+	///Profile picture set by player
+	var/profile_pic = ""
 
 	///A mob the xeno ate
 	var/mob/living/carbon/eaten_mob
