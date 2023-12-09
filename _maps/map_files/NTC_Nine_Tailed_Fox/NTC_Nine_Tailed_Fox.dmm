@@ -161,11 +161,12 @@
 "ahJ" = (
 /obj/structure/table/woodentable,
 /obj/machinery/computer/emails,
-/obj/machinery/button/door/open_only/landing_zone{
-	req_one_access = list(40)
-	},
 /obj/machinery/light{
 	dir = 8
+	},
+/obj/machinery/door_control/mainship/corporate{
+	id = "wyoffice3";
+	name = "Window Shutters"
 	},
 /turf/open/floor/wood,
 /area/sulaco/liaison/quarters{
@@ -519,6 +520,7 @@
 /turf/open/floor/mainship/sterile/side,
 /area/mainship/medical/operating_room_four)
 "aBQ" = (
+/obj/structure/closet/cabinet,
 /turf/open/floor/carpet/side{
 	dir = 4
 	},
@@ -1017,9 +1019,11 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/lower_hull)
 "aTV" = (
-/obj/structure/disposalpipe/trunk,
-/obj/machinery/disposal,
-/turf/open/floor/wood,
+/obj/effect/ai_node,
+/obj/machinery/camera/autoname/mainship{
+	dir = 1
+	},
+/turf/open/floor/freezer,
 /area/mainship/groundhq/ntf/living/grunt_rnr)
 "aTZ" = (
 /obj/machinery/light/mainship{
@@ -2186,6 +2190,7 @@
 	})
 "bUY" = (
 /obj/structure/flora/pottedplant/ten,
+/obj/machinery/light,
 /turf/open/floor/carpet{
 	dir = 10;
 	icon_state = "carpetside"
@@ -2469,6 +2474,13 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/port_umbilical{
 	name = "Ship Floor 2 Hallways"
+	})
+"cgO" = (
+/obj/structure/flora/pottedplant/twentyfive,
+/turf/open/floor/wood,
+/area/sulaco/liaison/quarters{
+	outside = 0;
+	name = "CEO Office"
 	})
 "cgZ" = (
 /obj/structure/cable,
@@ -3578,14 +3590,16 @@
 	outside = 0
 	})
 "deQ" = (
-/obj/effect/attach_point/weapon/dropship2{
-	dir = 4
+/obj/structure/bed/bunkbed,
+/obj/machinery/light/mainship{
+	dir = 8
 	},
-/obj/machinery/landinglight/cas{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/mainship/hallways/hangar)
+/obj/effect/landmark/start/job/squadspecialist,
+/obj/structure/closet/secure_closet/personal/walllocker,
+/turf/open/floor/wood,
+/area/orion_outpost/surface/building/prep{
+	name = "Specialist Preperations"
+	})
 "deU" = (
 /obj/structure/cable,
 /turf/open/floor/grass,
@@ -3594,7 +3608,14 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/closed/wall/mainship,
+/obj/structure/window/framed/mainship/toughened{
+	name = "kevlar-weave infused bulletproof window"
+	},
+/obj/machinery/door/poddoor/shutters/opened/wy{
+	name = "wy2";
+	id = "wyoffice3"
+	},
+/turf/open/floor/plating/platebotc,
 /area/sulaco/liaison/quarters{
 	outside = 0;
 	name = "CEO Office"
@@ -4746,13 +4767,17 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/lower_hull)
 "eqv" = (
-/obj/structure/flora/pottedplant,
+/obj/structure/flora/pottedplant{
+	pixel_y = 10;
+	pixel_x = 10
+	},
 /obj/item/radio/intercom/general{
 	dir = 8
 	},
 /obj/machinery/light{
 	dir = 4
 	},
+/obj/structure/table/woodentable,
 /turf/open/floor/wood,
 /area/sulaco/liaison/quarters{
 	outside = 0;
@@ -5266,7 +5291,8 @@
 	name = "Shipside Medbay"
 	})
 "eTF" = (
-/obj/structure/disposalpipe/segment,
+/obj/machinery/disposal,
+/obj/structure/disposalpipe/trunk,
 /turf/open/floor/wood,
 /area/mainship/groundhq/ntf/living/grunt_rnr)
 "eTR" = (
@@ -5332,6 +5358,7 @@
 /obj/structure/bed/bunkbed,
 /obj/machinery/camera/autoname/mainship,
 /obj/effect/landmark/start/job/squadspecialist,
+/obj/structure/closet/secure_closet/personal/walllocker,
 /turf/open/floor/wood,
 /area/orion_outpost/surface/building/prep{
 	name = "Specialist Preperations"
@@ -6254,8 +6281,15 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/upper_hull)
 "fJb" = (
-/turf/closed/wall,
-/area/mainship/groundhq/ntf/hallways/bathroom)
+/obj/machinery/light_switch{
+	req_access = list(5);
+	dir = 8
+	},
+/turf/closed/wall/mainship,
+/area/sulaco/liaison/quarters{
+	outside = 0;
+	name = "CEO Office"
+	})
 "fJi" = (
 /obj/machinery/light,
 /turf/open/floor/mainship/cargo,
@@ -6709,6 +6743,9 @@
 	dir = 8
 	},
 /obj/effect/landmark/start/job/squadspecialist,
+/obj/structure/closet/secure_closet/personal/walllocker{
+	dir = 1
+	},
 /turf/open/floor/wood,
 /area/orion_outpost/surface/building/prep{
 	name = "Specialist Preperations"
@@ -8959,7 +8996,9 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/structure/flora/pottedplant/four,
+/obj/item/attachable/suppressor,
+/obj/structure/table/reinforced,
+/obj/item/attachable/reddot,
 /turf/open/floor/wood,
 /area/sulaco/liaison/quarters{
 	outside = 0;
@@ -10515,6 +10554,7 @@
 /obj/effect/landmark/start/job/squadspecialist,
 /obj/structure/cable,
 /obj/machinery/power/apc/mainship,
+/obj/structure/closet/secure_closet/personal/walllocker,
 /turf/open/floor/wood,
 /area/orion_outpost/surface/building/prep{
 	name = "Specialist Preperations"
@@ -10775,12 +10815,11 @@
 	name = "Ship Floor 3 Hallways"
 	})
 "jUe" = (
-/obj/structure/bed/stool,
-/obj/machinery/camera/autoname/mainship{
-	dir = 8
+/obj/machinery/computer/cryopod{
+	dir = 1
 	},
-/turf/open/floor/wood,
-/area/mainship/groundhq/ntf/living/grunt_rnr)
+/turf/open/floor/mainship/mono,
+/area/centcom/valhalla/crew_quarters/cryo)
 "jUx" = (
 /obj/structure/table/mainship/nometal,
 /obj/item/defibrillator,
@@ -11170,7 +11209,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/structure/table/woodentable,
+/obj/structure/table/reinforced/fabric,
 /turf/open/floor/wood,
 /area/sulaco/liaison/quarters{
 	outside = 0;
@@ -12208,11 +12247,6 @@
 	desc = "They are worth 5000000 dollars.";
 	icon_state = "spacecash500"
 	},
-/obj/item/weapon/gun/pistol/vp78,
-/obj/item/ammo_magazine/pistol/vp78,
-/obj/item/ammo_magazine/pistol/vp78,
-/obj/item/ammo_magazine/pistol/vp78,
-/obj/item/ammo_magazine/pistol/vp78,
 /obj/structure/safe,
 /turf/open/floor/wood,
 /area/sulaco/liaison/quarters{
@@ -12957,10 +12991,7 @@
 /area/mainship/hull/lower_hull)
 "lHp" = (
 /obj/machinery/computer/security/telescreen,
-/obj/machinery/door_control/mainship/corporate{
-	id = "wyoffice3";
-	name = "Window Shutters"
-	},
+/obj/structure/table/woodentable,
 /turf/open/floor/wood,
 /area/sulaco/liaison/quarters{
 	outside = 0;
@@ -13507,6 +13538,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
+/obj/machinery/camera/autoname/mainship,
 /turf/open/floor/wood,
 /area/mainship/groundhq/ntf/living/grunt_rnr)
 "mhC" = (
@@ -13921,6 +13953,8 @@
 "mwN" = (
 /obj/structure/table/woodentable,
 /obj/item/flashlight/lamp,
+/obj/item/assembly/prox_sensor,
+/obj/item/assembly/prox_sensor,
 /turf/open/floor/carpet{
 	dir = 6;
 	icon_state = "carpetside"
@@ -16380,14 +16414,11 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/groundhq/ntf/engineering/upper_engine_monitoring)
 "oQY" = (
-/obj/effect/attach_point/weapon/dropship2{
+/obj/machinery/camera/autoname/mainship{
 	dir = 8
 	},
-/obj/machinery/landinglight/cas{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/mainship/hallways/hangar)
+/turf/open/floor/wood,
+/area/mainship/groundhq/ntf/living/grunt_rnr)
 "oRa" = (
 /obj/structure/closet/radiation,
 /turf/open/floor/mainship/cargo,
@@ -18649,14 +18680,10 @@
 	name = "Ship Floor 3 Hallways"
 	})
 "qZD" = (
-/obj/machinery/door/airlock/mainship/generic/corporate{
-	name = "CEO's Office";
-	dir = 2
-	},
-/turf/open/floor/wood,
-/area/sulaco/liaison/quarters{
-	outside = 0;
-	name = "CEO Office"
+/obj/machinery/computer/cryopod,
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/bow_hallway{
+	name = "Ship Floor 1 Hallways"
 	})
 "qZS" = (
 /obj/machinery/vending/MarineMed,
@@ -19263,6 +19290,18 @@
 	},
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/groundhq/ntf/hallways/bathroom)
+"rIH" = (
+/obj/structure/closet/secure_closet/freezer/kitchen,
+/obj/effect/spawner/random/food_or_drink/sugary_snack,
+/obj/effect/spawner/random/food_or_drink/sugary_snack,
+/obj/effect/spawner/random/food_or_drink/sugary_snack,
+/obj/effect/spawner/random/food_or_drink/sugary_snack,
+/obj/effect/spawner/random/food_or_drink/sugary_snack,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/freezer,
+/area/mainship/groundhq/ntf/living/grunt_rnr)
 "rJs" = (
 /turf/open/floor/mainship/orange/corner{
 	dir = 8
@@ -19316,10 +19355,10 @@
 	dir = 4
 	},
 /obj/structure/cable,
-/obj/structure/table/woodentable,
 /obj/item/reagent_containers/food/snacks/spacetwinkie,
 /obj/item/storage/box/tgmc_mre,
 /obj/item/storage/box/nt_mre,
+/obj/structure/table/reinforced/fabric,
 /turf/open/floor/wood,
 /area/sulaco/liaison/quarters{
 	outside = 0;
@@ -20109,9 +20148,7 @@
 	})
 "szL" = (
 /obj/machinery/door/airlock/multi_tile/mainship/maint{
-	dir = 1;
-	req_one_access = null;
-	req_access = list(16)
+	dir = 1
 	},
 /obj/machinery/door/firedoor/multi_tile{
 	dir = 1
@@ -21298,6 +21335,9 @@
 "tJc" = (
 /obj/structure/bed/bunkbed,
 /obj/effect/landmark/start/job/squadspecialist,
+/obj/structure/closet/secure_closet/personal/walllocker{
+	dir = 1
+	},
 /turf/open/floor/wood,
 /area/orion_outpost/surface/building/prep{
 	name = "Specialist Preperations"
@@ -21944,10 +21984,24 @@
 	outside = 0
 	})
 "uqp" = (
-/obj/machinery/light_switch{
-	req_access = list(5)
+/obj/item/storage/box/visual/grenade/impact,
+/obj/item/storage/box/crate/loot/operator_pack{
+	name = "\improper operator equipment"
 	},
-/turf/closed/wall/mainship,
+/obj/item/shotgunbox/buckshot,
+/obj/item/storage/box/crate/loot/infiltration_pack_spec{
+	name = "\improper infiltrator gear"
+	},
+/obj/structure/largecrate/supply/ammo/m41a{
+	density = 0
+	},
+/obj/structure/closet/secure_closet/guncabinet{
+	storage_capacity = 80;
+	req_access = list(200)
+	},
+/obj/item/storage/box/explosive_mines,
+/obj/item/weapon/gun/launcher/rocket/oneuse,
+/turf/open/floor/wood,
 /area/sulaco/liaison/quarters{
 	outside = 0;
 	name = "CEO Office"
@@ -23467,10 +23521,11 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/groundhq/ntf/engineering/engine_core)
 "vLZ" = (
-/turf/closed/wall,
-/area/mainship/groundhq/ntf/living/captain_mess{
-	name = "Kitchen"
-	})
+/obj/machinery/computer/cryopod{
+	dir = 8
+	},
+/turf/open/floor/mainship/mono,
+/area/centcom/valhalla/crew_quarters/cryo)
 "vNj" = (
 /obj/item/toy/beach_ball,
 /turf/open/liquid/water/river/autosmooth,
@@ -23517,9 +23572,6 @@
 /obj/structure/bed/fancy,
 /obj/item/bedsheet/hop,
 /obj/effect/landmark/start/job/ceo,
-/obj/machinery/light{
-	dir = 1
-	},
 /turf/open/floor/carpet{
 	dir = 5;
 	icon_state = "carpetside"
@@ -23980,6 +24032,7 @@
 	dir = 1
 	},
 /obj/effect/landmark/start/job/squadspecialist,
+/obj/structure/closet/secure_closet/personal/walllocker,
 /turf/open/floor/wood,
 /area/orion_outpost/surface/building/prep{
 	name = "Specialist Preperations"
@@ -24573,18 +24626,7 @@
 /obj/item/clothing/under/liaison_suit/formal,
 /obj/item/clothing/under/liaison_suit/suspenders,
 /obj/item/clothing/under/liaison_suit/outing,
-/obj/item/clothing/under/spec_operative,
-/obj/item/weapon/gun/rifle/m412/elite,
 /obj/item/clothing/mask/balaclava,
-/obj/item/clothing/suit/armor/bulletproof,
-/obj/item/ammo_magazine/rifle/ap,
-/obj/item/ammo_magazine/rifle/ap,
-/obj/item/ammo_magazine/rifle/ap,
-/obj/item/ammo_magazine/rifle/ap,
-/obj/item/ammo_magazine/rifle/ap,
-/obj/item/ammo_magazine/rifle/ap,
-/obj/item/clothing/head/headband/snake,
-/obj/item/storage/box/flashbangs,
 /turf/open/floor/carpet{
 	icon_state = "carpetside"
 	},
@@ -35681,7 +35723,7 @@ tej
 jba
 uHy
 ePf
-phM
+vLZ
 phM
 phM
 oHt
@@ -37908,7 +37950,7 @@ kyS
 kyS
 kyS
 kyS
-cam
+qZD
 aoE
 tKP
 kyS
@@ -39840,7 +39882,7 @@ haE
 kyS
 juD
 mKo
-gaG
+deQ
 eKG
 eKG
 gaG
@@ -40521,7 +40563,7 @@ wbj
 sNk
 bCp
 ePf
-vZC
+jUe
 vZC
 vZC
 oHt
@@ -40954,7 +40996,7 @@ etL
 lXB
 mza
 qzi
-oQY
+mza
 mza
 mza
 mza
@@ -43374,7 +43416,7 @@ bFx
 oWk
 tpA
 tQq
-deQ
+tpA
 tpA
 tpA
 tpA
@@ -59353,7 +59395,7 @@ leh
 leh
 uyu
 hJP
-fJb
+tMv
 qQR
 dQB
 tMv
@@ -59578,7 +59620,7 @@ nKd
 yco
 bEx
 bEx
-bEx
+rIH
 aNP
 uXI
 jiX
@@ -59821,7 +59863,7 @@ yco
 aNP
 fWf
 aNP
-fWf
+aTV
 uXI
 eYz
 xkP
@@ -60307,10 +60349,10 @@ sQj
 amr
 pRi
 uXI
-vLZ
+uXI
 cRG
-vLZ
-vLZ
+uXI
+uXI
 uXI
 rLL
 hJP
@@ -61513,7 +61555,7 @@ aZa
 sQj
 sQj
 kWN
-jUe
+efM
 roJ
 kUN
 sPj
@@ -63690,7 +63732,7 @@ yco
 kWN
 nlR
 nlR
-aTV
+mGM
 eTF
 mfy
 cky
@@ -64418,7 +64460,7 @@ nwr
 yco
 nlR
 nlR
-sQj
+oQY
 roJ
 lRW
 xVa
@@ -66617,11 +66659,11 @@ aMa
 aMa
 aMa
 qnG
-qnG
 kZr
+cWh
 wXq
 deV
-qnG
+fJb
 qnG
 exf
 lbs
@@ -67106,7 +67148,7 @@ ihh
 sdZ
 leY
 hjG
-qZD
+hjG
 gZF
 wRz
 qnG
@@ -67348,7 +67390,7 @@ sZF
 lmi
 aTb
 oSX
-qnG
+cgO
 vPK
 mwN
 qnG
