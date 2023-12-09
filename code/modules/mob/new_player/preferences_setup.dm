@@ -173,6 +173,7 @@
 	character.name = character.real_name
 
 	character.flavor_text = flavor_text
+	character.profile_pic = profile_pic
 
 	character.med_record = med_record
 	character.sec_record = sec_record

@@ -181,6 +181,18 @@
 	name = "Boxing Ring"
 	icon_state = "livingspace"
 
+/area/mainship/hallways/synthdorms
+	name = "Synth Dormitories"
+	icon_state = "livingspace"
+
+/area/mainship/hallways/chapel
+	name = "Chapel"
+	icon_state = "chapel"
+
+/area/mainship/hallways/workerprep
+	name = "Worker Preperations"
+	icon_state = "livingspace"
+
 /area/mainship/hallways/dorm1
 	name = "Dormitories 1"
 	icon_state = "livingspace"
@@ -443,6 +455,10 @@
 	name = "Squad Alpha Preparation"
 	icon_state = "alpha"
 
+/area/mainship/squads/specialist
+	name = "Specialist Preparation"
+	icon_state = "delta"
+
 /area/mainship/squads/bravo
 	name = "Squad Bravo Preparation"
 	icon_state = "bravo"
@@ -507,8 +523,8 @@
 	icon_state = "req"
 	requires_power = FALSE
 
-/area/mainship/patrol_base/hanger
-	name = "NTC Hanger"
+/area/mainship/patrol_base/hangar
+	name = "NTC hangar"
 	icon_state = "hangar"
 	minimap_color = MINIMAP_AREA_LZ
 
@@ -530,8 +546,8 @@
 /area/mainship/patrol_base/som
 	name = "SOM Combat Patrol Base"
 
-/area/mainship/patrol_base/som/hanger
-	name = "SOM Main Hanger"
+/area/mainship/patrol_base/som/hangar
+	name = "SOM Main hangar"
 	icon_state = "hangar"
 	minimap_color = MINIMAP_AREA_LZ
 
@@ -1064,8 +1080,8 @@
 	icon_state = "req"
 	requires_power = FALSE
 
-/area/mainship/groundhq/ntf/patrol_base/hanger
-	name = "NTC Hanger"
+/area/mainship/groundhq/ntf/patrol_base/hangar
+	name = "NTC hangar"
 	icon_state = "hangar"
 	minimap_color = MINIMAP_AREA_LZ
 
@@ -1087,8 +1103,8 @@
 /area/mainship/groundhq/ntf/patrol_base/som
 	name = "SOM Combat Patrol Base"
 
-/area/mainship/groundhq/ntf/patrol_base/ntf/hanger
-	name = "SOM Main Hanger"
+/area/mainship/groundhq/ntf/patrol_base/ntf/hangar
+	name = "SOM Main hangar"
 	icon_state = "hangar"
 	minimap_color = MINIMAP_AREA_LZ
 
@@ -1596,8 +1612,8 @@
 	icon_state = "req"
 	requires_power = FALSE
 
-/area/mainship/groundhq/som/patrol_base/hanger
-	name = "NTC Hanger"
+/area/mainship/groundhq/som/patrol_base/hangar
+	name = "NTC hangar"
 	icon_state = "hangar"
 	minimap_color = MINIMAP_AREA_LZ
 
@@ -1619,8 +1635,8 @@
 /area/mainship/groundhq/som/patrol_base/som
 	name = "SOM Combat Patrol Base"
 
-/area/mainship/groundhq/som/patrol_base/som/hanger
-	name = "SOM Main Hanger"
+/area/mainship/groundhq/som/patrol_base/som/hangar
+	name = "SOM Main hangar"
 	icon_state = "hangar"
 	minimap_color = MINIMAP_AREA_LZ
 
@@ -2137,8 +2153,8 @@
 	icon_state = "req"
 	requires_power = FALSE
 
-/area/mainship/groundhq/clf/patrol_base/hanger
-	name = "NTC Hanger"
+/area/mainship/groundhq/clf/patrol_base/hangar
+	name = "NTC hangar"
 	icon_state = "hangar"
 	minimap_color = MINIMAP_AREA_LZ
 
@@ -2160,8 +2176,8 @@
 /area/mainship/groundhq/clf/patrol_base/som
 	name = "SOM Combat Patrol Base"
 
-/area/mainship/groundhq/clf/patrol_base/som/hanger
-	name = "SOM Main Hanger"
+/area/mainship/groundhq/clf/patrol_base/som/hangar
+	name = "SOM Main hangar"
 	icon_state = "hangar"
 	minimap_color = MINIMAP_AREA_LZ
 

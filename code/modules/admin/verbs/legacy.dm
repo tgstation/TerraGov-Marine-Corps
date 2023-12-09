@@ -29,15 +29,15 @@
 	if(!infos) infos = list()
 
 	//Overly complex timestamp creation
-	var/modifyer = "th"
+	var/modifier = "th"
 	switch(time2text(world.timeofday, "DD"))
 		if("01","21","31")
-			modifyer = "st"
-		if("02","22",)
-			modifyer = "nd"
+			modifier = "st"
+		if("02","22")
+			modifier = "nd"
 		if("03","23")
-			modifyer = "rd"
-	var/day_string = "[time2text(world.timeofday, "DD")][modifyer]"
+			modifier = "rd"
+	var/day_string = "[time2text(world.timeofday, "DD")][modifier]"
 	if(copytext(day_string, 1, 2) == "0")
 		day_string = copytext(day_string,2)
 	var/full_date = time2text(world.timeofday, "Day, Month DD of YYYY")

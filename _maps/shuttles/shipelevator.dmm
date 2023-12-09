@@ -1,12 +1,52 @@
-"a" = (/turf/open/floor/elevatorshaft,/area/shuttle/dropship/elevator)
-"n" = (/turf/open/shuttle/elevator,/area/shuttle/dropship/elevator)
-"s" = (/obj/docking_port/mobile{id = "elevator"; height = 5; dir = 8; name = "Elevator"; ignition_sound = 'sound/effects/droppod_launch.ogg'; ignitionTime = 1; landing_sound = 'sound/effects/droppod_impact.ogg'; callTime = 1; rechargeTime = 1; prearrivalTime = 1; port_direction = 8; dwidth = 2; width = 5; dheight = 2},/turf/closed/wall/mainship/outer/reinforced,/area/shuttle/dropship/elevator)
-"C" = (/obj/machinery/computer/shuttle/shuttle_control/dropship{req_one_access = null; desc = "The remote controls for the elevator."; shuttleId = "elevator"; possible_destinations = "elevatorfloor2;elevator"; name = "\improper Elevator console"; pixel_y = 15},/turf/open/floor/elevatorshaft,/area/shuttle/dropship/elevator)
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/open/shuttle/elevator/grating,
+/area/shuttle/dropship/elevator)
+"A" = (
+/obj/docking_port/mobile/shuttle/shipelevator{
+	port_direction = 1
+	},
+/obj/machinery/computer/shuttle/shuttle_control/shipelevator{
+	pixel_y = -15
+	},
+/turf/closed/wall/mainship/outer/reinforced,
+/area/shuttle/dropship/elevator)
+"Q" = (
+/turf/open/shuttle/elevator,
+/area/shuttle/dropship/elevator)
 
 (1,1,1) = {"
-nnann
-nnann
-aasaa
-nnCnn
-nnann
+Q
+Q
+a
+Q
+Q
+"}
+(2,1,1) = {"
+Q
+Q
+a
+Q
+Q
+"}
+(3,1,1) = {"
+a
+a
+A
+a
+a
+"}
+(4,1,1) = {"
+Q
+Q
+a
+Q
+Q
+"}
+(5,1,1) = {"
+Q
+Q
+a
+Q
+Q
 "}

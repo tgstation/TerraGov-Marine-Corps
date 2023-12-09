@@ -20,7 +20,7 @@
 	///How many times this event has occured
 	var/occurrences = 0
 	//The maximum number of times this event can occur (naturally), it can still be forced.By setting this to 0 you can effectively disable an event.
-	var/max_occurrences = 20
+	var/max_occurrences = 500
 
 	//should we let the ghosts and admins know this event is firing? Disable on events that fire a lot
 	var/alert_observers = TRUE

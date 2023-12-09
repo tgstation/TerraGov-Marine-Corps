@@ -114,7 +114,7 @@
 	name = "Normandy"
 
 /datum/map_template/shuttle/shipelevator
-	shuttle_id = SHUTTLE_ELEVATOR
+	shuttle_id = SHUTTLE_SHIPELEVATOR
 	name = "Elevator"
 
 /datum/map_template/shuttle/cas
@@ -189,6 +189,14 @@
 /datum/map_template/shuttle/supply
 	shuttle_id = SHUTTLE_SUPPLY
 	name = SHUTTLE_SUPPLY
+
+/datum/map_template/shuttle/shipelevator
+	shuttle_id = SHUTTLE_SHIPELEVATOR
+	name = "Ship Elevator"
+
+/datum/map_template/shuttle/elevator
+	shuttle_id = SHUTTLE_ELEVATOR
+	name = "Elevator"
 
 /datum/map_template/shuttle/tgs_canterbury
 	shuttle_id = SHUTTLE_CANTERBURY

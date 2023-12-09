@@ -144,7 +144,7 @@
 
 	attachable_allowed = list(/obj/item/attachable/scope/unremovable/tl102/nest)
 
-	starting_attachment_types = list(/obj/item/attachable/scope/unremovable/tl102/nest,)
+	starting_attachment_types = list(/obj/item/attachable/scope/unremovable/tl102/nest)
 
 	soft_armor = list(MELEE = 0, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 100, FIRE = 0, ACID = 20)
 
