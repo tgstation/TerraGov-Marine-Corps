@@ -132,34 +132,36 @@
 		to_chat(santamob, "You decide there are more important things to concentrate on...")
 		return
 	for(var/mob/living/carbon/human/elves in GLOB.human_mob_list)
+		if(get_dist(santamob, elves) > 10)
+			continue
 		if(HAS_TRAIT(elves, TRAIT_CHRISTMAS_ELF))
 			elflist += elves
-	var/mob/living/carbon/human/blessedelf = tgui_input_list(santamob , "Choose an elf to heal", "Elf healing", elflist)
-	if(blessedelf.stat == DEAD) //this is basically a copypaste of defib logic, but with magic not paddles
-		var/heal_target = blessedelf.get_death_threshold() - blessedelf.health + 1
-		var/all_loss = blessedelf.getBruteLoss() + blessedelf.getFireLoss() + blessedelf.getToxLoss()
-		blessedelf.setOxyLoss(0)
-		blessedelf.updatehealth()
-		if(all_loss && (heal_target > 0))
-			var/brute_ratio = blessedelf.getBruteLoss() / all_loss
-			var/burn_ratio = blessedelf.getFireLoss() / all_loss
-			var/tox_ratio = blessedelf.getToxLoss() / all_loss
-			blessedelf.adjustBruteLoss(-10)
-			blessedelf.adjustFireLoss(-10)
-			blessedelf.adjustToxLoss(-10)
+	for(var/mob/living/carbon/human/blessedelf in elflist)
+		if(blessedelf.stat == DEAD) //this is basically a copypaste of defib logic, but with magic not paddles
+			var/heal_target = blessedelf.get_death_threshold() - blessedelf.health + 1
+			var/all_loss = blessedelf.getBruteLoss() + blessedelf.getFireLoss() + blessedelf.getToxLoss()
 			blessedelf.setOxyLoss(0)
-			if(tox_ratio)
-				blessedelf.adjustToxLoss(-(tox_ratio * heal_target))
-			blessedelf.heal_overall_damage(brute_ratio*heal_target, burn_ratio*heal_target, TRUE)
 			blessedelf.updatehealth()
-			blessedelf.set_stat(UNCONSCIOUS)
-			blessedelf.emote("gasp")
-	else //if the elf is alive heal them some
-		to_chat(blessedelf, "You feel the chill of Christmas magic and your wounds are healed!")
-		blessedelf.setOxyLoss(0)
-		blessedelf.adjustBruteLoss(-50)
-		blessedelf.adjustFireLoss(-50)
-		blessedelf.adjustToxLoss(-50)
+			if(all_loss && (heal_target > 0))
+				var/brute_ratio = blessedelf.getBruteLoss() / all_loss
+				var/burn_ratio = blessedelf.getFireLoss() / all_loss
+				var/tox_ratio = blessedelf.getToxLoss() / all_loss
+				blessedelf.adjustBruteLoss(-10)
+				blessedelf.adjustFireLoss(-10)
+				blessedelf.adjustToxLoss(-10)
+				blessedelf.setOxyLoss(0)
+				if(tox_ratio)
+					blessedelf.adjustToxLoss(-(tox_ratio * heal_target))
+				blessedelf.heal_overall_damage(brute_ratio*heal_target, burn_ratio*heal_target, TRUE)
+				blessedelf.updatehealth()
+				blessedelf.set_stat(UNCONSCIOUS)
+				blessedelf.emote("gasp")
+		else //if the elf is alive heal them some
+			to_chat(blessedelf, "You feel the chill of Christmas magic and your wounds are healed!")
+			blessedelf.setOxyLoss(0)
+			blessedelf.adjustBruteLoss(-30)
+			blessedelf.adjustFireLoss(-30)
+			blessedelf.adjustToxLoss(-30)
 
 /datum/action/innate/summon_paperwork
 	name = "Summon Paperwork"

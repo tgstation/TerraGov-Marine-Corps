@@ -361,8 +361,8 @@
 	desc = "Festive!"
 	icon_state = "elfcostume"
 	item_state = "elfcostume"
-	soft_armor = list(MELEE = 55, BULLET = 35, LASER = 15, ENERGY = 15, BOMB = 100, BIO = 30, FIRE = 80, ACID = 10)
-	slowdown = 0
+	soft_armor = list(MELEE = 45, BULLET = 45, LASER = 15, ENERGY = 15, BOMB = 100, BIO = 30, FIRE = 80, ACID = 10)
+	slowdown = 0.5
 
 /obj/item/clothing/suit/space/elf/nodrop
 	flags_item = DELONDROP
