@@ -14,19 +14,19 @@ endmap
 
 map lv624
         default
-	minplayers 0
+	minplayers 1
 endmap
 
 map bigred_v2
-        minplayers 60
+        minplayers 1
 endmap
 
 map ice_colony_v2
-	minplayers 0
+	minplayers 1
 endmap
 
 map prison_station_fop
-        minplayers 60
+        minplayers 1
 endmap
 
 map vapor_processing
@@ -34,11 +34,11 @@ map vapor_processing
 endmap
 
 map icy_caves
-        minplayers 60
+        minplayers 1
 endmap
 
 map research_outpost
-        minplayers 60
+        minplayers 1
 endmap
 
 map whiskey_outpost_v2
@@ -48,32 +48,32 @@ map oscar_outpost
 endmap
 
 map magmoor_digsite_iv
-        minplayers 60
+        minplayers 1
 endmap
 
 map orion_outpost
-        minplayers 60
+        minplayers 1
 endmap
 
 map gelida_iv
-        minplayers 60
+        minplayers 1
 endmap
 
 map deltastation
-	minplayers 60
+	minplayers 1
 endmap
 
 map fort_phobos
 endmap
 
 map desparity
-	minplayers 60
+	minplayers 1
 endmap
 
 map lawanka
-        minplayers 60
+        minplayers 1
 endmap
 
 map slumbridge
-        minplayers 60
+        minplayers 1
 endmap

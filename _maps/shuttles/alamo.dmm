@@ -416,6 +416,7 @@
 	},
 /area/shuttle/dropship/alamo)
 "bM" = (
+/obj/effect/attach_point/fuel/dropship1,
 /turf/closed/shuttle/dropship1/enginethree,
 /area/shuttle/dropship/alamo)
 "bN" = (
@@ -434,6 +435,7 @@
 	},
 /area/shuttle/dropship/alamo)
 "bQ" = (
+/obj/effect/attach_point/fuel/dropship1,
 /turf/closed/shuttle/dropship1/enginethree{
 	dir = 8
 	},
