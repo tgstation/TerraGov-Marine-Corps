@@ -21,6 +21,7 @@ export const NtosWindow = (props) => {
     PC_stationtime,
     PC_programheaders = [],
     PC_showexitprogram,
+    PC_lowpower_mode,
   } = data;
   return (
     <Window title={title} width={width} height={height} theme={theme}>
@@ -40,8 +41,8 @@ export const NtosWindow = (props) => {
               {PC_stationtime}
             </Box>
             <Box inline italic mr={2} opacity={0.33}>
-              {PC_device_theme === 'ntos' && 'NtOS'}
-              {PC_device_theme === 'syndicate' && 'Syndix'}
+              {(PC_device_theme === 'syndicate' && 'Syndix') || 'NtOS'}
+              {!!PC_lowpower_mode && ' - RUNNING ON LOW POWER MODE'}
             </Box>
           </div>
           <div className="NtosHeader__right">
