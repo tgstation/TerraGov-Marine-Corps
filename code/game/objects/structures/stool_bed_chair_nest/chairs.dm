@@ -426,7 +426,7 @@
 	. = ..()
 
 /obj/structure/bed/chair/dropship/doublewide/welder_act(mob/living/user, obj/item/I)
-	. = welder_repair_act(user, I, 100, 1 SECONDS, 0, SKILL_ENGINEER_METAL, 1)
+	. = welder_repair_act(user, I, 130, 1 SECONDS, 0, SKILL_ENGINEER_METAL, 1)
 	update_icon_state()
 
 /obj/structure/bed/chair/dropship/doublewide/update_icon_state()
