@@ -12,7 +12,7 @@
 	to_chat(H, "")
 	to_chat(H, "<B>Today, while enroute to visit a TGMC vessel, [SSmapping.configs[SHIP_MAP].map_name], the artificial intelligence in Santa's sleigh detected an abnormally high level of naughtiness in the orbit of [SSmapping.configs[GROUND_MAP].map_name]. Santa has resolved to punish them in the spirit of Christmas!</b>")
 	if(GLOB.round_statistics.number_of_grinches >= 3)
-		to_chat(H, "<B>Punish the naughty </b>marines and aliens</b> onboard the ship, coal won't be enough this time. The only punishment Santa believes in now is hot lead!</B>")
+		to_chat(H, "<B>Eradicate all lifeforms aboard the ship to save Christmas, coal won't be enough this time. The only punishment Santa believes in now is hot lead!</B>")
 	else
 		to_chat(H, "<B>Punish the naughty </b>aliens</b> onboard the ship, coal won't be enough this time. The only punishment Santa believes in now is hot lead!</B>")
 
@@ -66,7 +66,10 @@
 	H.name = "Elf [rand(1,999)]"
 	H.real_name = H.name
 	print_backstory(H)
-	to_chat(H, span_notice("You are a member of Santa's loyal workforce, assist Santa in whatever way you can!"))
+	if(GLOB.round_statistics.number_of_grinches >= 3)
+		to_chat(H, span_notice("You are a member of Santa's loyal workforce, assist Santa in purging the marine ship of </b>all life</b>, human and xeno!"))
+	else
+		to_chat(H, span_notice("You are a member of Santa's loyal workforce, assist Santa in whatever way you can!"))
 
 /datum/action/innate/summon_present
 	name = "Summon Present"
