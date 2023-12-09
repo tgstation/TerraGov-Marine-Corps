@@ -41,7 +41,7 @@ const TakeOffDisplay = (props, context) => {
   }
   let takeoff_seconds = takeoff_delay * 0.1;
   let takeoff_minutes = Math.round(takeoff_seconds / 60);
-  if (!takeoff_delay) {
+  if (!takeoff_delay || takeoff_seconds < 60) {
     return null;
   }
   return (
