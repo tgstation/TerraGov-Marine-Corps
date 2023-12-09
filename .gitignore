@@ -20,6 +20,13 @@ tools/Runtime Condenser/Input.txt
 tools/Runtime Condenser/Output.txt
 tools/MapDaemon/logs/*.txt
 
+#Ignore everything in datafolder and subdirectories
+/data/**/*
+/tmp/**/*
+
+#Ignore byond config folder.
+/cfg/**/*
+
 #Visual studio stuff
 *.vscode/*
 !/.vscode/extensions.json
