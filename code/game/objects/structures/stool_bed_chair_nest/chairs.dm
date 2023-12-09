@@ -420,6 +420,8 @@
 /obj/structure/bed/chair/dropship/doublewide/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
 	if(X.status_flags & INCORPOREAL)
 		return FALSE
+	if(LAZYLEN(buckled_mobs))
+		unbuckle_mob(buckled_mobs[1])
 	return ..()
 
 /obj/structure/bed/chair/dropship/doublewide/attackby(obj/item/I, mob/user, params)
