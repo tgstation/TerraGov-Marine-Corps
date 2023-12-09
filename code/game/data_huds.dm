@@ -88,7 +88,7 @@
 
 //med hud used by medical hud glasses
 /datum/atom_hud/medical/advanced
-
+	hud_icons = list(HEALTH_HUD, STATUS_HUD, HEALTH_HUD_XENO)
 
 //HUD used by the synth, separate typepath so it's not accidentally removed.
 /datum/atom_hud/medical/advanced/synthetic
