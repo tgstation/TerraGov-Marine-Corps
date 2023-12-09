@@ -14,7 +14,7 @@ HOSTEDBY VideNoir
 TITLE Nine Tailed Fox vs Alien
 
 ## Put on byond hub: Uncomment this to put your server on the byond hub.
-HUB
+#HUB
 
 ## Optional URL for faster resource downloading.
 #RESOURCE_URL url
