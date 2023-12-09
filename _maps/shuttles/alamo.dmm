@@ -50,10 +50,6 @@
 /obj/machinery/computer/security/dropship/one,
 /turf/closed/shuttle/dropship1/panel,
 /area/shuttle/dropship/alamo)
-"al" = (
-/obj/machinery/holopad,
-/turf/open/shuttle/dropship/floor,
-/area/shuttle/dropship/alamo)
 "am" = (
 /obj/machinery/computer/dropship_weapons/dropship1,
 /turf/closed/shuttle/dropship1/panel{
@@ -263,7 +259,9 @@
 /area/shuttle/dropship/alamo)
 "bd" = (
 /obj/docking_port/mobile/marine_dropship/one,
-/turf/open/shuttle/dropship/three,
+/turf/closed/shuttle/dropship1/aislewindow{
+	dir = 1
+	},
 /area/shuttle/dropship/alamo)
 "be" = (
 /obj/machinery/door/poddoor/shutters/transit{
@@ -476,7 +474,7 @@
 /area/shuttle/dropship/alamo)
 "di" = (
 /obj/machinery/telecomms/relay/preset/telecomms/onboard/nondense,
-/turf/open/shuttle/dropship/nine,
+/turf/open/shuttle/dropship/five,
 /area/shuttle/dropship/alamo)
 "dS" = (
 /turf/closed/shuttle/dropship1/enginetwo{
@@ -495,6 +493,12 @@
 /turf/closed/shuttle/dropship1/edge/alt{
 	dir = 4
 	},
+/area/shuttle/dropship/alamo)
+"hm" = (
+/obj/structure/closet/walllocker/hydrant/extinguisher{
+	dir = 8
+	},
+/turf/open/shuttle/dropship/three,
 /area/shuttle/dropship/alamo)
 "ie" = (
 /obj/machinery/door/poddoor/shutters/transit{
@@ -518,6 +522,16 @@
 	dir = 1
 	},
 /area/shuttle/dropship/alamo)
+"jS" = (
+/turf/closed/shuttle/dropship1/aislewindow{
+	dir = 8
+	},
+/area/shuttle/dropship/alamo)
+"li" = (
+/turf/closed/shuttle/dropship1/aislewindow{
+	dir = 4
+	},
+/area/shuttle/dropship/alamo)
 "me" = (
 /obj/structure/bed/chair/dropship/doublewide/left,
 /obj/structure/bed/chair/dropship/doublewide/right,
@@ -529,6 +543,10 @@
 /turf/open/shuttle/dropship/floor/out{
 	dir = 4
 	},
+/area/shuttle/dropship/alamo)
+"nO" = (
+/obj/machinery/holopad,
+/turf/open/shuttle/dropship/floor,
 /area/shuttle/dropship/alamo)
 "og" = (
 /obj/structure/bed/chair/dropship/doublewide/right/delta,
@@ -567,6 +585,12 @@
 	dir = 1
 	},
 /area/shuttle/dropship/alamo)
+"zV" = (
+/obj/structure/closet/walllocker/hydrant/extinguisher{
+	dir = 4
+	},
+/turf/open/shuttle/dropship/three,
+/area/shuttle/dropship/alamo)
 "Aq" = (
 /turf/open/shuttle/dropship/thirtyfour,
 /area/shuttle/dropship/alamo)
@@ -604,6 +628,9 @@
 /turf/closed/shuttle/dropship1/panel{
 	dir = 1
 	},
+/area/shuttle/dropship/alamo)
+"MG" = (
+/turf/closed/shuttle/dropship1/aislewindow,
 /area/shuttle/dropship/alamo)
 "Nj" = (
 /turf/open/shuttle/dropship/thirtyone,
@@ -709,7 +736,7 @@ aE
 aJ
 aS
 Nj
-aS
+zV
 Aq
 tf
 aS
@@ -755,15 +782,15 @@ aC
 bn
 ba
 di
-aS
-aS
+jS
+li
 bd
-aS
-bn
+MG
+aK
 jI
 aK
 bp
-al
+nO
 Dp
 bY
 ao
@@ -801,7 +828,7 @@ aE
 aJ
 aS
 gl
-aS
+hm
 pw
 VW
 aS
