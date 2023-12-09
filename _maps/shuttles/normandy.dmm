@@ -158,6 +158,15 @@
 /turf/template_noop,
 /area/shuttle/dropship/normandy)
 "vE" = (
+/obj/effect/attach_point/electronics/dropship2{
+	pixel_y = -10
+	},
+/turf/template_noop,
+/area/shuttle/dropship/normandy)
+"vT" = (
+/obj/effect/attach_point/weapon/dropship2{
+	pixel_y = -10
+	},
 /turf/template_noop,
 /area/shuttle/dropship/normandy)
 "xX" = (
@@ -234,6 +243,7 @@
 	},
 /area/shuttle/dropship/normandy)
 "Ii" = (
+/obj/effect/attach_point/fuel/dropship2,
 /turf/closed/shuttle/dropship2/enginethree,
 /area/shuttle/dropship/normandy)
 "Iv" = (
@@ -294,6 +304,7 @@
 /turf/open/shuttle/dropship/eight,
 /area/shuttle/dropship/normandy)
 "Su" = (
+/obj/effect/attach_point/fuel/dropship2,
 /turf/closed/shuttle/dropship2/enginethree{
 	dir = 8
 	},
@@ -314,7 +325,9 @@
 /turf/template_noop,
 /area/shuttle/dropship/normandy)
 "Uz" = (
-/obj/effect/attach_point/electronics/dropship2,
+/obj/effect/attach_point/electronics/dropship2{
+	pixel_y = -10
+	},
 /turf/closed/shuttle/dropship2/enginetwo{
 	dir = 1
 	},
@@ -355,7 +368,9 @@
 /area/template_noop)
 "ZC" = (
 /obj/structure/dropship_piece/two/wing/left/top,
-/obj/effect/attach_point/electronics/dropship2,
+/obj/effect/attach_point/electronics/dropship2{
+	pixel_y = -10
+	},
 /turf/template_noop,
 /area/shuttle/dropship/normandy)
 "ZF" = (
@@ -457,7 +472,7 @@ lI
 Zp
 Zp
 Zp
-vE
+vT
 Wk
 OZ
 OZ

@@ -93,3 +93,7 @@
       match the range of the SG62 it's attached to
   ivanmixo:
   - code_imp: Deleted some rogue commas
+2023-12-09:
+  DeltaFire15:
+  - balance: Antenna helmet modules have exchanged their ability to project a req
+      drop beacon for improving caves communications (once configured)

@@ -385,10 +385,12 @@
 /obj/item/clothing/under/spec_operative/equipped(mob/user, i_clothing)
 	. = ..()
 	RegisterSignal(user, COMSIG_LIVING_ADD_VENTCRAWL)
+	ADD_TRAIT(user, TRAIT_CAN_VENTCRAWL, ARMOR_TRAIT)
 
 /obj/item/clothing/under/spec_operative/unequipped(mob/unequipper, i_clothing)
 	. = ..()
 	UnregisterSignal(unequipper, COMSIG_LIVING_ADD_VENTCRAWL)
+	REMOVE_TRAIT(unequipper, TRAIT_CAN_VENTCRAWL, ARMOR_TRAIT)
 
 /obj/item/clothing/under/techpriest
 	name = "Techpriest Robes"

@@ -2197,7 +2197,7 @@
 	fire_delay = 0.15 SECONDS
 	accuracy_mult = 0.75
 	scatter = 12
-	recoil = 1.5
+	recoil = 2
 	wield_delay = 0.4 SECONDS
 	aim_slowdown = 0.3
 	movement_acc_penalty_mult = 4
