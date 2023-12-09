@@ -920,7 +920,7 @@
 "EU" = (
 /obj/structure/window/framed/mainship/hull/canterbury,
 /obj/machinery/door/poddoor/shutters/mainship/open/indestructible{
-	id = canterbury_cockpit
+	id = "canterbury_cockpit"
 	},
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury/cic)
