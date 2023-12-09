@@ -2469,7 +2469,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:14.x":
+"@types/node@npm:^14.x":
   version: 14.18.63
   resolution: "@types/node@npm:14.18.63"
   checksum: be909061a54931778c71c49dc562586c32f909c4b6197e3d71e6dac726d8bd9fccb9f599c0df99f52742b68153712b5097c0f00cac4e279fa894b0ea6719a8fd
@@ -2507,6 +2507,17 @@ __metadata:
     "@types/scheduler": "*"
     csstype: ^3.0.2
   checksum: e7e4da18c7b14e4b8b1ea630d1d8224835698f2bb2485766455bfb9dea93b8ee6cc549a9fe1cb10c984e62685db44fcfb61e8fac913b008cd30a92087f25b9df
+  languageName: node
+  linkType: hard
+
+"@types/react@npm:^18.2.42":
+  version: 18.2.42
+  resolution: "@types/react@npm:18.2.42"
+  dependencies:
+    "@types/prop-types": "*"
+    "@types/scheduler": "*"
+    csstype: ^3.0.2
+  checksum: d2019afdf48303a3a598a97cc9dd2284e3c04b369e791f6ba3c33232b7f8645daff97b093a19f8b3ce75ac8a261b47552cb4513226ab16d843eb9443b0f91844
   languageName: node
   linkType: hard
 
@@ -10105,7 +10116,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "tgui-panel@workspace:packages/tgui-panel"
   dependencies:
-    "@types/react": ^18.2.39
+    "@types/node": ^14.x
+    "@types/react": ^18.2.42
     common: "workspace:*"
     dompurify: ^2.4.4
     react: ^18.2.0
@@ -10152,7 +10164,7 @@ __metadata:
     "@babel/preset-typescript": ^7.23.3
     "@types/jest": ^29.5.10
     "@types/jsdom": ^21.1.6
-    "@types/node": 14.x
+    "@types/node": ^14.x
     "@types/webpack": ^5.28.5
     "@types/webpack-env": ^1.18.4
     "@typescript-eslint/parser": ^5.62.0
