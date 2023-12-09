@@ -268,6 +268,7 @@
 	ability_cost = 40
 	cooldown_duration = 12 SECONDS
 	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
+	target_flags = ABILITY_TURF_TARGET
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PSYCHIC_CRUSH,
 	)
