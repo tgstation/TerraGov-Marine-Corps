@@ -18,7 +18,7 @@
 	///How much supply points you get for completing the terminal
 	var/supply_reward = 200
 	///How much dropship points you get for completing the terminal
-	var/dropship_reward = 20
+	var/dropship_reward = 50
 
 	///How much progress we get every tick, up to 100
 	var/progress_interval = 1
@@ -58,7 +58,7 @@
 		active = FALSE
 		SStgui.close_uis(src)
 		if(!printing)
-			addtimer(CALLBACK(src, PROC_REF(resetcomputer)), 20 MINUTES)
+			addtimer(CALLBACK(src, PROC_REF(resetcomputer)), 5 MINUTES)
 
 /obj/machinery/computer/intel_computer/proc/resetcomputer()
 	first_login = FALSE

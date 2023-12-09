@@ -134,6 +134,21 @@
 	id = "elevatorfloor2"
 	roundstart_template = null
 
+/obj/docking_port/stationary/marine_dropship/elevator/floor1
+	name = "Floor 1"
+	id = "floor1"
+	roundstart_template = /datum/map_template/shuttle/elevator
+
+/obj/docking_port/stationary/marine_dropship/elevator/floor2
+	name = "Floor 2"
+	id = "floor2"
+	roundstart_template = null
+
+/obj/docking_port/stationary/marine_dropship/elevator/floor3
+	name = "Floor 3"
+	id = "floor3"
+	roundstart_template = null
+
 #define HIJACK_STATE_NORMAL "hijack_state_normal"
 #define HIJACK_STATE_CALLED_DOWN "hijack_state_called_down"
 #define HIJACK_STATE_CRASHING "hijack_state_crashing"
@@ -310,6 +325,31 @@
 	ignition_sound = 'sound/effects/escape_pod_launch.ogg'
 	landing_sound = 'sound/effects/droppod_impact.ogg'
 	prearrivalTime = 0.05
+	port_direction = 1
+	dir = 2
+
+/obj/machinery/computer/shuttle/shuttle_control/elevator
+	name = "Elevator Control Console"
+	icon = 'icons/obj/machines/computer.dmi'
+	icon_state = "computer_small"
+	screen_overlay = "shuttle"
+	possible_destinations = "floor3;floor2;floor1"
+	shuttleId = SHUTTLE_ELEVATOR
+
+/obj/docking_port/mobile/shuttle/elevator
+	name = "elevator"
+	id = SHUTTLE_ELEVATOR
+	callTime = 0 SECONDS
+	rechargeTime = 2 SECONDS
+	dheight = 1
+	dwidth = 1
+	height = 3
+	width = 3
+	ignitionTime = 0.5
+	shuttle_flags = GAMEMODE_IMMUNE
+	ignition_sound = 'sound/effects/escape_pod_launch.ogg'
+	landing_sound = 'sound/effects/droppod_impact.ogg'
+	prearrivalTime = 0.5
 	port_direction = 1
 	dir = 2
 

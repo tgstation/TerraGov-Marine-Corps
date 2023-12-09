@@ -1,6 +1,6 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
-/turf/open/floor/elevatorshaft,
+/turf/open/shuttle/elevator/grating,
 /area/shuttle/dropship/elevator)
 "A" = (
 /obj/docking_port/mobile/shuttle/shipelevator{

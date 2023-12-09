@@ -181,6 +181,18 @@
 	name = "Boxing Ring"
 	icon_state = "livingspace"
 
+/area/mainship/hallways/synthdorms
+	name = "Synth Dormitories"
+	icon_state = "livingspace"
+
+/area/mainship/hallways/chapel
+	name = "Chapel"
+	icon_state = "chapel"
+
+/area/mainship/hallways/workerprep
+	name = "Worker Preperations"
+	icon_state = "livingspace"
+
 /area/mainship/hallways/dorm1
 	name = "Dormitories 1"
 	icon_state = "livingspace"
@@ -442,6 +454,10 @@
 /area/mainship/squads/alpha
 	name = "Squad Alpha Preparation"
 	icon_state = "alpha"
+
+/area/mainship/squads/specialist
+	name = "Specialist Preparation"
+	icon_state = "delta"
 
 /area/mainship/squads/bravo
 	name = "Squad Bravo Preparation"

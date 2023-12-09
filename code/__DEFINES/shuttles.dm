@@ -100,7 +100,6 @@
 //Shuttle name defines used for a whole load of stuff
 #define SHUTTLE_ALAMO "alamo"
 #define SHUTTLE_NORMANDY "normandy"
-#define SHUTTLE_ELEVATOR "elevator"
 #define SHUTTLE_TADPOLE "minidropship"
 #define SHUTTLE_CANTERBURY "tgs_canterbury"
 #define SHUTTLE_CAS "casplane"
@@ -115,3 +114,5 @@
 #define SHUTTLE_ESCAPE_POD "escape_pod"
 #define SHUTTLE_SUPPLY "supply"
 #define SHUTTLE_SHIPELEVATOR "shipelevator"
+#define SHUTTLE_ELEVATOR "elevator"
+

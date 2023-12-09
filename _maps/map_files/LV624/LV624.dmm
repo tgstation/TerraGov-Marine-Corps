@@ -3406,7 +3406,6 @@
 /turf/open/floor/plating,
 /area/lv624/ground/sand7)
 "bNG" = (
-/obj/structure/cable,
 /obj/effect/ai_node,
 /turf/open/floor/mainship/silver/full,
 /area/mainship/patrol_base/som{
@@ -4609,6 +4608,18 @@
 	},
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/lazarus/sandtemple/garbledradio)
+"dbw" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/structure/cable,
+/obj/machinery/power/apc{
+	dir = 4
+	},
+/turf/open/floor/mainship/orange{
+	dir = 8
+	},
+/area/mainship/patrol_base/som{
+	outside = 0
+	})
 "dbE" = (
 /obj/structure/rack,
 /obj/item/clothing/glasses/regular,
@@ -5585,7 +5596,6 @@
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/quart)
 "dXu" = (
-/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 5
 	},
@@ -14555,7 +14565,6 @@
 	},
 /area/lv624/lazarus/hydroponics)
 "mJd" = (
-/obj/structure/cable,
 /turf/open/floor/mainship/silver/full,
 /area/mainship/patrol_base/som{
 	outside = 0
@@ -16442,7 +16451,6 @@
 /turf/open/floor/plating,
 /area/lv624/lazarus/corporate_affairs)
 "oIp" = (
-/obj/structure/cable,
 /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/cope/predeployed,
 /turf/open/floor/mainship/silver/full,
 /area/mainship/patrol_base/som{
@@ -17624,6 +17632,10 @@
 /obj/alien/weeds/node,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/quartstorage)
+"pYI" = (
+/obj/structure/flora/jungle/vines/heavy,
+/turf/open/ground/grass,
+/area/lv624/ground/caves/rock)
 "pYM" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -19440,7 +19452,6 @@
 	},
 /area/lv624/lazarus/atmos)
 "rIX" = (
-/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
 /turf/open/floor/mainship/silver{
 	dir = 8
@@ -22573,8 +22584,6 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/lazarus/quartstorage/outdoors)
 "uJd" = (
-/obj/machinery/power/apc,
-/obj/structure/cable,
 /obj/structure/barricade/metal{
 	is_wired = 1;
 	can_wire = 0;
@@ -23924,7 +23933,6 @@
 /turf/closed/wall,
 /area/lv624/lazarus/fitness)
 "vVg" = (
-/obj/structure/cable,
 /obj/structure/barricade/metal{
 	is_wired = 1;
 	can_wire = 0;
@@ -26547,11 +26555,10 @@
 /turf/open/floor/plating,
 /area/lv624/lazarus/engineering)
 "yiB" = (
-/obj/structure/cable,
-/obj/machinery/door/airlock/glass,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
+/obj/machinery/door/airlock/mainship/generic,
 /turf/open/floor/mainship/plate,
 /area/mainship/patrol_base/som{
 	outside = 0
@@ -88199,7 +88206,7 @@ xYv
 qjP
 xod
 qWA
-mOs
+pYI
 cmI
 agZ
 fmL
@@ -88473,7 +88480,7 @@ esb
 esb
 aeK
 esb
-esb
+dbw
 esb
 bXs
 usw

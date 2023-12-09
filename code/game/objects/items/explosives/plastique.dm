@@ -113,13 +113,7 @@
 
 /obj/item/explosive/plastique/attack_hand(mob/living/user)
 	if(armed)
-		to_chat(user, "<font color='warning'>Disarm [src] first to remove it!</font>")
-		return
-	return ..()
-
-/obj/item/explosive/plastique/attackby(obj/item/I, mob/user, params)
-	if(ismultitool(I) && armed)
-		if(!do_after(user, 2 SECONDS, TRUE, plant_target, BUSY_ICON_HOSTILE))
+		if(!do_after(user, 2 SECONDS, NONE, plant_target, BUSY_ICON_HOSTILE))
 			return
 
 		if(ismovableatom(plant_target))
@@ -144,6 +138,7 @@
 		alarm_sounded = FALSE
 		plant_target = null
 		update_icon()
+	return ..()
 
 ///Handles the actual explosion effects
 /obj/item/explosive/plastique/proc/detonate()
