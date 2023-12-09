@@ -353,7 +353,10 @@
 	height = 1
 	},
 /turf/open/floor/mainship/mono,
-/area/centcom/valhalla/crew_quarters/cryo)
+/area/centcom/valhalla/crew_quarters/cryo{
+	static_lighting = 1;
+	base_lighting_alpha = 0
+	})
 "ash" = (
 /obj/structure/largecrate/supply/supplies/plasteel,
 /turf/open/floor/mainship/cargo,
@@ -1019,12 +1022,14 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/lower_hull)
 "aTV" = (
-/obj/effect/ai_node,
-/obj/machinery/camera/autoname/mainship{
+/obj/machinery/computer/cryopod{
 	dir = 1
 	},
-/turf/open/floor/freezer,
-/area/mainship/groundhq/ntf/living/grunt_rnr)
+/turf/open/floor/mainship/mono,
+/area/centcom/valhalla/crew_quarters/cryo{
+	static_lighting = 1;
+	base_lighting_alpha = 0
+	})
 "aTZ" = (
 /obj/machinery/light/mainship{
 	dir = 8
@@ -1597,7 +1602,10 @@
 	})
 "btz" = (
 /turf/closed/wall/mainship/outer,
-/area/centcom/valhalla/crew_quarters/cryo)
+/area/centcom/valhalla/crew_quarters/cryo{
+	static_lighting = 1;
+	base_lighting_alpha = 0
+	})
 "btJ" = (
 /obj/machinery/holopad,
 /obj/effect/ai_node,
@@ -2127,7 +2135,10 @@
 	name = "\improper NTC command drop pod"
 	},
 /turf/open/floor/mainship/stripesquare,
-/area/centcom/valhalla/crew_quarters/cryo)
+/area/centcom/valhalla/crew_quarters/cryo{
+	static_lighting = 1;
+	base_lighting_alpha = 0
+	})
 "bTq" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/mainship/mono,
@@ -2474,13 +2485,6 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/port_umbilical{
 	name = "Ship Floor 2 Hallways"
-	})
-"cgO" = (
-/obj/structure/flora/pottedplant/twentyfive,
-/turf/open/floor/wood,
-/area/sulaco/liaison/quarters{
-	outside = 0;
-	name = "CEO Office"
 	})
 "cgZ" = (
 /obj/structure/cable,
@@ -3014,7 +3018,10 @@
 	},
 /obj/effect/landmark/start/latejoin,
 /turf/open/floor/plating/plating_catwalk,
-/area/centcom/valhalla/crew_quarters/cryo)
+/area/centcom/valhalla/crew_quarters/cryo{
+	static_lighting = 1;
+	base_lighting_alpha = 0
+	})
 "cEm" = (
 /turf/open/floor/mainship_hull/dir{
 	dir = 4
@@ -3454,7 +3461,10 @@
 	},
 /obj/machinery/door/airlock/mainship/generic,
 /turf/open/floor/plating/plating_catwalk,
-/area/centcom/valhalla/crew_quarters/cryo)
+/area/centcom/valhalla/crew_quarters/cryo{
+	static_lighting = 1;
+	base_lighting_alpha = 0
+	})
 "cXY" = (
 /obj/structure/closet/firecloset,
 /obj/machinery/firealarm{
@@ -3564,7 +3574,10 @@
 	dir = 4
 	},
 /turf/open/floor/plating/plating_catwalk,
-/area/centcom/valhalla/crew_quarters/cryo)
+/area/centcom/valhalla/crew_quarters/cryo{
+	static_lighting = 1;
+	base_lighting_alpha = 0
+	})
 "dea" = (
 /obj/item/radio/intercom/general{
 	dir = 8
@@ -3590,16 +3603,11 @@
 	outside = 0
 	})
 "deQ" = (
-/obj/structure/bed/bunkbed,
-/obj/machinery/light/mainship{
+/obj/machinery/camera/autoname/mainship{
 	dir = 8
 	},
-/obj/effect/landmark/start/job/squadspecialist,
-/obj/structure/closet/secure_closet/personal/walllocker,
 /turf/open/floor/wood,
-/area/orion_outpost/surface/building/prep{
-	name = "Specialist Preperations"
-	})
+/area/mainship/groundhq/ntf/living/grunt_rnr)
 "deU" = (
 /obj/structure/cable,
 /turf/open/floor/grass,
@@ -4168,6 +4176,13 @@
 /turf/open/floor/mainship,
 /area/mainship/squads{
 	outside = 0
+	})
+"dLd" = (
+/obj/structure/flora/pottedplant/twentyfive,
+/turf/open/floor/wood,
+/area/sulaco/liaison/quarters{
+	outside = 0;
+	name = "CEO Office"
 	})
 "dLt" = (
 /obj/structure/cable,
@@ -5175,7 +5190,10 @@
 /area/mainship/hallways/hangar)
 "ePf" = (
 /turf/closed/wall/mainship,
-/area/centcom/valhalla/crew_quarters/cryo)
+/area/centcom/valhalla/crew_quarters/cryo{
+	static_lighting = 1;
+	base_lighting_alpha = 0
+	})
 "ePl" = (
 /obj/item/radio/intercom/general{
 	dir = 1
@@ -5665,7 +5683,10 @@
 "fhq" = (
 /obj/effect/landmark/start/latejoin,
 /turf/open/floor/plating/plating_catwalk,
-/area/centcom/valhalla/crew_quarters/cryo)
+/area/centcom/valhalla/crew_quarters/cryo{
+	static_lighting = 1;
+	base_lighting_alpha = 0
+	})
 "fih" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	on = 1
@@ -5716,7 +5737,10 @@
 	dir = 1
 	},
 /turf/open/floor/plating,
-/area/centcom/valhalla/crew_quarters/cryo)
+/area/centcom/valhalla/crew_quarters/cryo{
+	static_lighting = 1;
+	base_lighting_alpha = 0
+	})
 "fkO" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment,
@@ -6743,9 +6767,7 @@
 	dir = 8
 	},
 /obj/effect/landmark/start/job/squadspecialist,
-/obj/structure/closet/secure_closet/personal/walllocker{
-	dir = 1
-	},
+/obj/structure/closet/secure_closet/personal/walllocker,
 /turf/open/floor/wood,
 /area/orion_outpost/surface/building/prep{
 	name = "Specialist Preperations"
@@ -8522,6 +8544,15 @@
 /obj/item/toy/inflatable_duck,
 /turf/open/liquid/water/river/autosmooth,
 /area/mainship/groundhq/ntf/living/grunt_rnr)
+"hPE" = (
+/obj/machinery/computer/cryopod{
+	dir = 8
+	},
+/turf/open/floor/mainship/mono,
+/area/centcom/valhalla/crew_quarters/cryo{
+	static_lighting = 1;
+	base_lighting_alpha = 0
+	})
 "hQn" = (
 /obj/machinery/vending/nanomed,
 /turf/open/floor/mainship/mono,
@@ -8903,7 +8934,10 @@
 "icG" = (
 /obj/machinery/vending/marineFood,
 /turf/open/floor/mainship/mono,
-/area/centcom/valhalla/crew_quarters/cryo)
+/area/centcom/valhalla/crew_quarters/cryo{
+	static_lighting = 1;
+	base_lighting_alpha = 0
+	})
 "idg" = (
 /obj/structure/cable,
 /obj/machinery/door/airlock/mainship/maint{
@@ -9039,7 +9073,10 @@
 	},
 /obj/effect/landmark/start/latejoin,
 /turf/open/floor/plating/plating_catwalk,
-/area/centcom/valhalla/crew_quarters/cryo)
+/area/centcom/valhalla/crew_quarters/cryo{
+	static_lighting = 1;
+	base_lighting_alpha = 0
+	})
 "ilH" = (
 /obj/machinery/light,
 /obj/structure/closet/secure_closet/hydroponics{
@@ -9160,7 +9197,10 @@
 /obj/structure/disposalpipe/segment,
 /obj/effect/landmark/start/latejoin,
 /turf/open/floor/plating/plating_catwalk,
-/area/centcom/valhalla/crew_quarters/cryo)
+/area/centcom/valhalla/crew_quarters/cryo{
+	static_lighting = 1;
+	base_lighting_alpha = 0
+	})
 "isi" = (
 /turf/open/floor/mainship/cargo/arrow{
 	dir = 8
@@ -9700,7 +9740,10 @@
 /obj/effect/ai_node,
 /obj/effect/landmark/start/latejoin,
 /turf/open/floor/plating/plating_catwalk,
-/area/centcom/valhalla/crew_quarters/cryo)
+/area/centcom/valhalla/crew_quarters/cryo{
+	static_lighting = 1;
+	base_lighting_alpha = 0
+	})
 "iSe" = (
 /obj/machinery/door/airlock/mainship/generic{
 	name = "\improper Quarters"
@@ -9818,7 +9861,10 @@
 "iWD" = (
 /obj/structure/window/framed/mainship,
 /turf/open/floor/plating,
-/area/centcom/valhalla/crew_quarters/cryo)
+/area/centcom/valhalla/crew_quarters/cryo{
+	static_lighting = 1;
+	base_lighting_alpha = 0
+	})
 "iWN" = (
 /turf/open/floor/mainship,
 /area/mainship/living/basketball{
@@ -10728,7 +10774,10 @@
 	dir = 2
 	},
 /turf/open/floor/mainship/mono,
-/area/centcom/valhalla/crew_quarters/cryo)
+/area/centcom/valhalla/crew_quarters/cryo{
+	static_lighting = 1;
+	base_lighting_alpha = 0
+	})
 "jRi" = (
 /obj/machinery/light/mainship/small{
 	dir = 1
@@ -10815,11 +10864,11 @@
 	name = "Ship Floor 3 Hallways"
 	})
 "jUe" = (
-/obj/machinery/computer/cryopod{
-	dir = 1
-	},
+/obj/machinery/computer/cryopod,
 /turf/open/floor/mainship/mono,
-/area/centcom/valhalla/crew_quarters/cryo)
+/area/mainship/hallways/bow_hallway{
+	name = "Ship Floor 1 Hallways"
+	})
 "jUx" = (
 /obj/structure/table/mainship/nometal,
 /obj/item/defibrillator,
@@ -10951,7 +11000,10 @@
 	dir = 1
 	},
 /turf/open/floor/plating/plating_catwalk,
-/area/centcom/valhalla/crew_quarters/cryo)
+/area/centcom/valhalla/crew_quarters/cryo{
+	static_lighting = 1;
+	base_lighting_alpha = 0
+	})
 "kat" = (
 /obj/structure/bed/chair{
 	dir = 4
@@ -11778,7 +11830,10 @@
 	},
 /obj/effect/landmark/start/latejoin,
 /turf/open/floor/plating/plating_catwalk,
-/area/centcom/valhalla/crew_quarters/cryo)
+/area/centcom/valhalla/crew_quarters/cryo{
+	static_lighting = 1;
+	base_lighting_alpha = 0
+	})
 "kMd" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment,
@@ -12033,7 +12088,10 @@
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/mainship/mono,
-/area/centcom/valhalla/crew_quarters/cryo)
+/area/centcom/valhalla/crew_quarters/cryo{
+	static_lighting = 1;
+	base_lighting_alpha = 0
+	})
 "kSc" = (
 /obj/structure/cable,
 /turf/open/floor/stairs/rampbottom{
@@ -12368,7 +12426,10 @@
 	},
 /obj/effect/landmark/start/latejoin,
 /turf/open/floor/plating/plating_catwalk,
-/area/centcom/valhalla/crew_quarters/cryo)
+/area/centcom/valhalla/crew_quarters/cryo{
+	static_lighting = 1;
+	base_lighting_alpha = 0
+	})
 "leY" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 1
@@ -13600,7 +13661,10 @@
 	},
 /obj/effect/landmark/start/latejoin,
 /turf/open/floor/plating/plating_catwalk,
-/area/centcom/valhalla/crew_quarters/cryo)
+/area/centcom/valhalla/crew_quarters/cryo{
+	static_lighting = 1;
+	base_lighting_alpha = 0
+	})
 "mjW" = (
 /obj/structure/cable,
 /obj/machinery/power/smes{
@@ -14742,7 +14806,10 @@
 	},
 /obj/machinery/door/airlock/mainship/generic,
 /turf/open/floor/plating/plating_catwalk,
-/area/centcom/valhalla/crew_quarters/cryo)
+/area/centcom/valhalla/crew_quarters/cryo{
+	static_lighting = 1;
+	base_lighting_alpha = 0
+	})
 "nny" = (
 /obj/machinery/shower{
 	dir = 8
@@ -14971,7 +15038,10 @@
 	dir = 4
 	},
 /turf/open/floor/plating/plating_catwalk,
-/area/centcom/valhalla/crew_quarters/cryo)
+/area/centcom/valhalla/crew_quarters/cryo{
+	static_lighting = 1;
+	base_lighting_alpha = 0
+	})
 "nBV" = (
 /obj/effect/turf_decal/warning_stripes/thick{
 	dir = 6
@@ -15241,7 +15311,10 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/effect/landmark/start/latejoin,
 /turf/open/floor/plating/plating_catwalk,
-/area/centcom/valhalla/crew_quarters/cryo)
+/area/centcom/valhalla/crew_quarters/cryo{
+	static_lighting = 1;
+	base_lighting_alpha = 0
+	})
 "nQf" = (
 /obj/machinery/door/airlock/mainship/security{
 	req_access = null;
@@ -16135,7 +16208,10 @@
 	name = "\improper NTC command drop pod"
 	},
 /turf/open/floor/mainship/stripesquare,
-/area/centcom/valhalla/crew_quarters/cryo)
+/area/centcom/valhalla/crew_quarters/cryo{
+	static_lighting = 1;
+	base_lighting_alpha = 0
+	})
 "oCh" = (
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/hallways/starboard_ert{
@@ -16283,7 +16359,10 @@
 /obj/structure/cable,
 /obj/effect/landmark/start/latejoin,
 /turf/open/floor/plating/plating_catwalk,
-/area/centcom/valhalla/crew_quarters/cryo)
+/area/centcom/valhalla/crew_quarters/cryo{
+	static_lighting = 1;
+	base_lighting_alpha = 0
+	})
 "oHB" = (
 /obj/machinery/door/firedoor/mainship{
 	dir = 2
@@ -16414,10 +16493,11 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/groundhq/ntf/engineering/upper_engine_monitoring)
 "oQY" = (
+/obj/effect/ai_node,
 /obj/machinery/camera/autoname/mainship{
-	dir = 8
+	dir = 1
 	},
-/turf/open/floor/wood,
+/turf/open/floor/freezer,
 /area/mainship/groundhq/ntf/living/grunt_rnr)
 "oRa" = (
 /obj/structure/closet/radiation,
@@ -16800,7 +16880,10 @@
 "phM" = (
 /obj/machinery/cryopod/right,
 /turf/open/floor/mainship/mono,
-/area/centcom/valhalla/crew_quarters/cryo)
+/area/centcom/valhalla/crew_quarters/cryo{
+	static_lighting = 1;
+	base_lighting_alpha = 0
+	})
 "pin" = (
 /turf/open/floor/plating,
 /area/mainship/hallways/hangar)
@@ -16953,7 +17036,10 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
-/area/centcom/valhalla/crew_quarters/cryo)
+/area/centcom/valhalla/crew_quarters/cryo{
+	static_lighting = 1;
+	base_lighting_alpha = 0
+	})
 "psv" = (
 /obj/structure/bed/chair/sofa{
 	dir = 8
@@ -17259,7 +17345,10 @@
 	height = 1
 	},
 /turf/open/floor/mainship/mono,
-/area/centcom/valhalla/crew_quarters/cryo)
+/area/centcom/valhalla/crew_quarters/cryo{
+	static_lighting = 1;
+	base_lighting_alpha = 0
+	})
 "pOj" = (
 /obj/machinery/vending/cola,
 /turf/open/floor/mainship/mono,
@@ -17272,7 +17361,10 @@
 	},
 /obj/structure/drop_pod_launcher,
 /turf/open/floor/mainship/stripesquare,
-/area/centcom/valhalla/crew_quarters/cryo)
+/area/centcom/valhalla/crew_quarters/cryo{
+	static_lighting = 1;
+	base_lighting_alpha = 0
+	})
 "pPt" = (
 /obj/structure/largecrate/supply/supplies/metal,
 /turf/open/floor/mainship/cargo,
@@ -18680,11 +18772,17 @@
 	name = "Ship Floor 3 Hallways"
 	})
 "qZD" = (
-/obj/machinery/computer/cryopod,
-/turf/open/floor/mainship/mono,
-/area/mainship/hallways/bow_hallway{
-	name = "Ship Floor 1 Hallways"
-	})
+/obj/structure/closet/secure_closet/freezer/kitchen,
+/obj/effect/spawner/random/food_or_drink/sugary_snack,
+/obj/effect/spawner/random/food_or_drink/sugary_snack,
+/obj/effect/spawner/random/food_or_drink/sugary_snack,
+/obj/effect/spawner/random/food_or_drink/sugary_snack,
+/obj/effect/spawner/random/food_or_drink/sugary_snack,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/freezer,
+/area/mainship/groundhq/ntf/living/grunt_rnr)
 "qZS" = (
 /obj/machinery/vending/MarineMed,
 /turf/open/floor/mainship/black{
@@ -18762,7 +18860,10 @@
 /obj/effect/soundplayer,
 /obj/structure/sign/science,
 /turf/closed/wall/mainship,
-/area/centcom/valhalla/crew_quarters/cryo)
+/area/centcom/valhalla/crew_quarters/cryo{
+	static_lighting = 1;
+	base_lighting_alpha = 0
+	})
 "rdG" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment/corner,
@@ -18790,7 +18891,10 @@
 "reL" = (
 /obj/structure/window/framed/mainship/requisitions,
 /turf/open/floor/mainship/mono,
-/area/centcom/valhalla/crew_quarters/cryo)
+/area/centcom/valhalla/crew_quarters/cryo{
+	static_lighting = 1;
+	base_lighting_alpha = 0
+	})
 "reO" = (
 /obj/machinery/light/mainship{
 	dir = 8
@@ -19290,18 +19394,6 @@
 	},
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/groundhq/ntf/hallways/bathroom)
-"rIH" = (
-/obj/structure/closet/secure_closet/freezer/kitchen,
-/obj/effect/spawner/random/food_or_drink/sugary_snack,
-/obj/effect/spawner/random/food_or_drink/sugary_snack,
-/obj/effect/spawner/random/food_or_drink/sugary_snack,
-/obj/effect/spawner/random/food_or_drink/sugary_snack,
-/obj/effect/spawner/random/food_or_drink/sugary_snack,
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/open/floor/freezer,
-/area/mainship/groundhq/ntf/living/grunt_rnr)
 "rJs" = (
 /turf/open/floor/mainship/orange/corner{
 	dir = 8
@@ -19478,7 +19570,10 @@
 	name = "\improper NTC command drop pod"
 	},
 /turf/open/floor/mainship/stripesquare,
-/area/centcom/valhalla/crew_quarters/cryo)
+/area/centcom/valhalla/crew_quarters/cryo{
+	static_lighting = 1;
+	base_lighting_alpha = 0
+	})
 "rSv" = (
 /obj/machinery/power/apc/mainship,
 /obj/structure/cable,
@@ -22568,7 +22663,10 @@
 /obj/structure/cable,
 /obj/effect/landmark/start/latejoin,
 /turf/open/floor/plating/plating_catwalk,
-/area/centcom/valhalla/crew_quarters/cryo)
+/area/centcom/valhalla/crew_quarters/cryo{
+	static_lighting = 1;
+	base_lighting_alpha = 0
+	})
 "uSQ" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic/prep{
 	dir = 2
@@ -23521,11 +23619,18 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/groundhq/ntf/engineering/engine_core)
 "vLZ" = (
-/obj/machinery/computer/cryopod{
+/obj/structure/bed/bunkbed,
+/obj/machinery/light/mainship{
 	dir = 8
 	},
-/turf/open/floor/mainship/mono,
-/area/centcom/valhalla/crew_quarters/cryo)
+/obj/effect/landmark/start/job/squadspecialist,
+/obj/structure/closet/secure_closet/personal/walllocker{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/orion_outpost/surface/building/prep{
+	name = "Specialist Preperations"
+	})
 "vNj" = (
 /obj/item/toy/beach_ball,
 /turf/open/liquid/water/river/autosmooth,
@@ -23635,7 +23740,10 @@
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plating/plating_catwalk,
-/area/centcom/valhalla/crew_quarters/cryo)
+/area/centcom/valhalla/crew_quarters/cryo{
+	static_lighting = 1;
+	base_lighting_alpha = 0
+	})
 "vVP" = (
 /obj/structure/table/mainship/nometal,
 /obj/effect/spawner/random/food_or_drink/bread,
@@ -23684,7 +23792,10 @@
 "vZC" = (
 /obj/machinery/cryopod,
 /turf/open/floor/mainship/mono,
-/area/centcom/valhalla/crew_quarters/cryo)
+/area/centcom/valhalla/crew_quarters/cryo{
+	static_lighting = 1;
+	base_lighting_alpha = 0
+	})
 "vZP" = (
 /turf/open/floor/mainship/cargo,
 /area/orion_outpost/surface/building/prep{
@@ -23753,7 +23864,10 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/mainship/mono,
-/area/centcom/valhalla/crew_quarters/cryo)
+/area/centcom/valhalla/crew_quarters/cryo{
+	static_lighting = 1;
+	base_lighting_alpha = 0
+	})
 "wdS" = (
 /obj/machinery/door/airlock/mainship/security{
 	dir = 1;
@@ -35723,7 +35837,7 @@ tej
 jba
 uHy
 ePf
-vLZ
+hPE
 phM
 phM
 oHt
@@ -37950,7 +38064,7 @@ kyS
 kyS
 kyS
 kyS
-qZD
+jUe
 aoE
 tKP
 kyS
@@ -39882,10 +39996,10 @@ haE
 kyS
 juD
 mKo
-deQ
-eKG
-eKG
 gaG
+eKG
+eKG
+vLZ
 mKo
 cam
 euU
@@ -40563,7 +40677,7 @@ wbj
 sNk
 bCp
 ePf
-jUe
+aTV
 vZC
 vZC
 oHt
@@ -59620,7 +59734,7 @@ nKd
 yco
 bEx
 bEx
-rIH
+qZD
 aNP
 uXI
 jiX
@@ -59863,7 +59977,7 @@ yco
 aNP
 fWf
 aNP
-aTV
+oQY
 uXI
 eYz
 xkP
@@ -64460,7 +64574,7 @@ nwr
 yco
 nlR
 nlR
-oQY
+deQ
 roJ
 lRW
 xVa
@@ -67390,7 +67504,7 @@ sZF
 lmi
 aTb
 oSX
-cgO
+dLd
 vPK
 mwN
 qnG
