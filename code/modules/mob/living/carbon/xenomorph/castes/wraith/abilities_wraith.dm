@@ -669,6 +669,10 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	var/target_initial_brute_damage = 0
 	/// Initial sunder of the target
 	var/target_initial_sunder = 0
+	/// Initial fire stacks of the target
+	var/target_initial_fire_stacks = 0
+	/// Initial on_fire value
+	var/target_initial_on_fire = FALSE
 	/// How far can you rewind someone
 	var/range = 5
 
@@ -700,6 +704,8 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	last_target_locs_list = list(get_turf(A))
 	target_initial_brute_damage = targeted.getBruteLoss()
 	target_initial_burn_damage = targeted.getFireLoss()
+	target_initial_fire_stacks = targeted.fire_stacks
+	target_initial_on_fire = targeted.on_fire
 	if(isxeno(A))
 		var/mob/living/carbon/xenomorph/xeno_target = targeted
 		target_initial_sunder = xeno_target.sunder
@@ -742,6 +748,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 		targeted.status_flags &= ~(INCORPOREAL|GODMODE)
 		REMOVE_TRAIT(owner, TRAIT_IMMOBILE, TIMESHIFT_TRAIT)
 		targeted.heal_overall_damage(targeted.getBruteLoss() - target_initial_brute_damage, targeted.getFireLoss() - target_initial_burn_damage, updating_health = TRUE)
+		handle_fire()
 		if(isxeno(target))
 			var/mob/living/carbon/xenomorph/xeno_target = targeted
 			xeno_target.sunder = target_initial_sunder
@@ -753,3 +760,10 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	targeted.Move(loc_b, get_dir(loc_b, loc_a))
 	new /obj/effect/temp_visual/xenomorph/afterimage(loc_a, targeted)
 	INVOKE_NEXT_TICK(src, PROC_REF(rewind))
+
+/datum/action/xeno_action/activable/rewind/proc/handle_fire()
+	if(target_initial_on_fire == TRUE && target_initial_fire_stacks >= 0)
+		targeted.fire_stacks = target_initial_fire_stacks
+		targeted.IgniteMob()
+	else
+		targeted.ExtinguishMob()
