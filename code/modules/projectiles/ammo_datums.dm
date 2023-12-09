@@ -3409,7 +3409,6 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 20
 	penetration = 10
 	sundering = 2
-	fire_burst_damage = 15
 
 	//inherited, could use some changes
 	ping = "ping_s"
@@ -3421,19 +3420,14 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/energy/volkite/medium
 	max_range = 25
 	accurate_range = 12
-	damage = 30
+	damage = 20
 	accuracy_var_low = 3
 	accuracy_var_high = 3
-	fire_burst_damage = 20
-
-/datum/ammo/energy/volkite/medium/custom
-	deflagrate_multiplier = 2
 
 /datum/ammo/energy/volkite/heavy
 	max_range = 35
 	accurate_range = 12
 	damage = 25
-	fire_burst_damage = 20
 
 /datum/ammo/energy/volkite/light
 	max_range = 25
