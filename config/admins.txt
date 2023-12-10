@@ -5,5 +5,5 @@ Foxichkin = Admin
 Zirok = Admin
 Nightmare6669 = Admin
 Dwarfwarrior417 = Admin
-Rippie129 - Admin
-GeneralPantsu - Admin
+Rippie129 = Admin
+GeneralPantsu = Admin
