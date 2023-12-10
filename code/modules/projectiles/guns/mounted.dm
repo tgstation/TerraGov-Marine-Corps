@@ -668,8 +668,8 @@
 // Non-TGMC HMG
 
 /obj/item/weapon/gun/icc_hmg
-	name = "\improper ML-91ES mounted heavy smartgun"
-	desc = "The ML-91 heavy machinegun used by forces inside ICC space, some rarely find themselves in TGMC space as the export variant. It's too heavy to be wielded or operated without the tripod. This upated version is IFF capable. No extra work required, just deploy it with Ctrl-Click. Can be repaired with a blowtorch once deployed."
+	name = "\improper KRD-61ES mounted heavy machinegun"
+	desc = "The KRD-61ES machinegun is the export variant of the ML-91 HMG. It's too heavy to be wielded or operated without the tripod. No extra work required, just deploy it with Ctrl-Click. Can be repaired with a blowtorch once deployed."
 	icon = 'icons/Marine/marine-mmg.dmi'
 	icon_state = "kord"
 
@@ -688,11 +688,10 @@
 
 	allowed_ammo_types = list(
 		/obj/item/ammo_magazine/icc_hmg,
-		/obj/item/ammo_magazine/icc_hmg/export,
 	)
 
 	flags_item = IS_DEPLOYABLE|TWOHANDED
-	flags_gun_features = GUN_AMMO_COUNTER|GUN_DEPLOYED_FIRE_ONLY|GUN_WIELDED_FIRING_ONLY|GUN_IFF|GUN_SMOKE_PARTICLES
+	flags_gun_features = GUN_AMMO_COUNTER|GUN_DEPLOYED_FIRE_ONLY|GUN_WIELDED_FIRING_ONLY|GUN_SMOKE_PARTICLES
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
 	actions_types = list(/datum/action/item_action/aim_mode)
 	aim_fire_delay = 0.05 SECONDS
@@ -715,10 +714,4 @@
 
 	allowed_ammo_types = list(
 		/obj/item/ammo_magazine/icc_hmg,
-		/obj/item/ammo_magazine/icc_hmg/export,
 	)
-
-/obj/item/weapon/gun/icc_hmg/export
-	name = "\improper KRD-61ES mounted heavy smartgun"
-	desc = "The KRD-61ES machinegun is the export variant of the ML-91 HMG. It's too heavy to be wielded or operated without the tripod. No extra work required, just deploy it with Ctrl-Click. Can be repaired with a blowtorch once deployed."
-	default_ammo_type = /obj/item/ammo_magazine/icc_hmg/export
