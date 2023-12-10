@@ -200,7 +200,7 @@ GLOBAL_LIST_INIT(specialist_gear_listed_products, list(
 	/obj/item/storage/box/crate/loot/recoilless_pack_spec = list(CAT_SPSUP, "Recoilless Rifle Pack (1 Launcher + Mixed Rockets)", 25, "black"),
 	/obj/item/storage/box/crate/m42c_system_Jungle  = list(CAT_SPSUP, "Anti Material Rifle Pack (AMR + Mixed Ammo +  Scout Sight + Tarp)", 30, "black"),
 	/obj/item/storage/box/crate/loot/targetrifle_pack_spec = list(CAT_SPSUP, "SG-62 Target Rifle (SG-153 + Mixed Ammo) Pack", 20, "orange"),
-	/obj/item/storage/box/crate/loot/infiltration_pack_spec = list(CAT_SPSUP, "Infiltrator Pack (Sneaking gear + NVG + tranq pistol + scout cloak + more.)", 35, "black"),
+	/obj/item/storage/box/crate/loot/infiltration_pack_spec = list(CAT_SPSUP, "Infiltrator Pack (Sneaking gear + NVG + tranq pistol + scout cloak + more.)", 25, "black"),
 	/obj/item/storage/box/crate/loot/smartpistol_spec = list(CAT_SPSUP, "Smartpistol Pack (Smartpistol + 6 mags)", 10, "black"),
 	/obj/item/ammo_magazine/rifle/ap = list(CAT_SPSUP, "PR-412 Armor Piercing Magazine", 2, "black"),
 	/obj/item/ammo_magazine/rifle/standard_smarttargetrifle = list(CAT_SPSUP, "SG-62 Target Rifle Magazine", 1, "black"),

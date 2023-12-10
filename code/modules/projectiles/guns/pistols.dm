@@ -284,7 +284,7 @@
 	reload_sound = 'sound/weapons/guns/interact/beretta_reload.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/beretta_cocked.ogg'
 	default_ammo_type = /obj/item/ammo_magazine/pistol/g22
-	allowed_ammo_types = list(/obj/item/ammo_magazine/pistol/g22, /obj/item/ammo_magazine/pistol/g22tranq)
+	allowed_ammo_types = /obj/item/ammo_magazine/pistol/g22
 	attachable_offset = list("muzzle_x" = 28, "muzzle_y" = 20,"rail_x" = 10, "rail_y" = 22, "under_x" = 21, "under_y" = 17, "stock_x" = 21, "stock_y" = 17)
 	burst_amount = 3
 	accuracy_mult = 1.15
@@ -294,7 +294,7 @@
 
 /obj/item/weapon/gun/pistol/g22/tranq
 	name = "\improper P-22 custom pistol"
-	desc = "A 20th century military firearm customized for special forces use, fires tranq darts to take down enemies nonlethally. It does not seem to accept any other attachments."
+	desc = "A 20th century military firearm customized for special forces use, fires tranq darts to take down enemies nonlethally."
 	icon_state = "g22"
 	item_state = "g22"
 	caliber = CALIBER_9X19_TRANQUILIZER //codex
@@ -302,14 +302,16 @@
 	default_ammo_type = /obj/item/ammo_magazine/pistol/g22tranq
 	attachable_offset = list("muzzle_x" = 29, "muzzle_y" = 20,"rail_x" = 10, "rail_y" = 21, "under_x" = 21, "under_y" = 15, "stock_x" = 21, "stock_y" = 17)
 	starting_attachment_types = list(
+		/obj/item/attachable/reddot,
 		/obj/item/attachable/lasersight,
 		/obj/item/attachable/suppressor,
 	)
 
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
 	fire_delay = 0.6 SECONDS
-	accuracy_mult = 1.2
-	accuracy_mult_unwielded = 1.15
-	damage_mult = 0.5
+	accuracy_mult = 1.5
+	accuracy_mult_unwielded = 1.2
+	burst_amount = 1
 
 
 //-------------------------------------------------------
