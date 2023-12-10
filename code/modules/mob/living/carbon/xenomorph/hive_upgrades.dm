@@ -54,8 +54,9 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 	.["upgrades"] = list()
 	for(var/datum/hive_upgrade/upgrade AS in buyable_upgrades)
 		.["upgrades"] += list(list("name" = upgrade.name, "desc" = upgrade.desc, "category" = upgrade.category,\
-		"cost" = upgrade.psypoint_cost, "times_bought" = upgrade.times_bought, "iconstate" = upgrade.icon))
-	.["psypoints"] = SSpoints.xeno_points_by_hive[X.hive.hivenumber]
+		"cost" = upgrade.psypoint_cost, "times_bought" = upgrade.times_bought, "iconstate" = upgrade.icon, "istactical" =  (upgrade.flags_upgrade & UPGRADE_FLAG_USES_TACTICAL)))
+	.["strategicpoints"] = SSpoints.xeno_strategic_points_by_hive[X.hive.hivenumber]
+	.["tacticalpoints"] = SSpoints.xeno_tactical_points_by_hive[X.hive.hivenumber]
 
 /datum/hive_purchases/ui_static_data(mob/user)
 	. = ..()
@@ -102,7 +103,10 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
  */
 /datum/hive_upgrade/proc/on_buy(mob/living/carbon/xenomorph/buyer)
 	SHOULD_CALL_PARENT(TRUE)
-	SSpoints.xeno_points_by_hive[buyer.hivenumber] -= psypoint_cost
+	if(flags_upgrade & UPGRADE_FLAG_USES_TACTICAL)
+		SSpoints.xeno_tactical_points_by_hive[buyer.hivenumber] -= psypoint_cost
+	else
+		SSpoints.xeno_strategic_points_by_hive[buyer.hivenumber] -= psypoint_cost
 	times_bought++
 	return TRUE
 
@@ -117,9 +121,10 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 	SHOULD_CALL_PARENT(TRUE)
 	if((flags_upgrade & UPGRADE_FLAG_ONETIME) && times_bought)
 		return FALSE
-	if(SSpoints.xeno_points_by_hive[buyer.hivenumber] < psypoint_cost)
+	var/points_requirement = (flags_upgrade & UPGRADE_FLAG_USES_TACTICAL) ? SSpoints.xeno_tactical_points_by_hive[buyer.hivenumber] : SSpoints.xeno_strategic_points_by_hive[buyer.hivenumber]
+	if(points_requirement < psypoint_cost)
 		if(!silent)
-			to_chat(buyer, span_xenowarning("You need [psypoint_cost-SSpoints.xeno_points_by_hive[buyer.hivenumber]] more points to request this blessing!"))
+			to_chat(buyer, span_xenowarning("You need [points_requirement] more [(flags_upgrade & UPGRADE_FLAG_USES_TACTICAL) ? "tacrical" : "strategic"] points to request this blessing!"))
 		return FALSE
 	return TRUE
 
@@ -241,6 +246,7 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 	icon = "acidturret"
 	psypoint_cost = XENO_TURRET_PRICE
 	flags_gamemode = ABILITY_NUCLEARWAR
+	flags_upgrade = UPGRADE_FLAG_USES_TACTICAL
 	///How long to build one turret
 	var/build_time = 10 SECONDS
 	///What type of turret is built
