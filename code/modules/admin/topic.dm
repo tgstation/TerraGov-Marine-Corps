@@ -1770,7 +1770,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 
 		var/dat
 
-		for(var/i in L.get_contents())
+		for(var/i in L.GetAllContents())
 			var/atom/A = i
 			dat += "[A] [ADMIN_VV(A)]<br>"
 

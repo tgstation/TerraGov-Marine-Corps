@@ -296,6 +296,16 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	var/turf/return_turf = get_turf(portal)
 	if(!return_turf)
 		return_turf = locate(backup_coordinates[1], backup_coordinates[2], backup_coordinates[3])
+	if(banishment_target.density)
+		var/list/cards = GLOB.cardinals.Copy()
+		for(var/mob/living/displacing in return_turf)
+			if(displacing.stat == DEAD) //no.
+				continue
+			shuffle(cards) //direction should vary.
+			for(var/card AS in cards)
+				if(step(displacing, card))
+					to_chat(displacing, span_warning("A sudden force pushes you away from [return_turf]!"))
+					break
 	banishment_target.resistance_flags = initial(banishment_target.resistance_flags)
 	banishment_target.status_flags = initial(banishment_target.status_flags) //Remove stasis and temp invulerability
 	banishment_target.forceMove(return_turf)

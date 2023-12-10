@@ -79,3 +79,33 @@
   - bugfix: 'mountbatten being inverted
 
       :cl:'
+2023-12-07:
+  MiniMeatwad:
+  - balance: Queen egg laying added
+2023-12-08:
+  Lumipharon:
+  - bugfix: fixed detpacks not working on structures, and being weaker than expected
+      on solid turfs
+  Wisemonster:
+  - balance: C4 (Plastique explosives) no longer requires a multitool to disarm.
+  coldironwarrior:
+  - balance: the SG153 spotting rifle's maximum bullet range has been increased to
+      match the range of the SG62 it's attached to
+  ivanmixo:
+  - code_imp: Deleted some rogue commas
+2023-12-09:
+  DeltaFire15:
+  - balance: Antenna helmet modules have exchanged their ability to project a req
+      drop beacon for improving caves communications (once configured)
+2023-12-10:
+  DeltaFire15:
+  - balance: Banished solid objects now push out any living beings on their return
+      tile (if possible) before returning.
+  Lumipharon:
+  - balance: Psycrush now only targets turfs
+  - balance: Psylance and Psyblast will now fail to cast if their target moves off
+      screen
+  Wisemonster:
+  - spellcheck: Changed the acronym for the hypervene hypo to Hy
+  ivanmixo:
+  - code_imp: Killed get_contents

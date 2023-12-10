@@ -40,7 +40,7 @@
 
 /datum/surgery_step/generic/incision_manager/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
 	user.visible_message(span_notice("[user] has constructed a prepared incision on and within [target]'s [affected.display_name] with \the [tool]."), \
-	span_notice("You have constructed a prepared incision on and within [target]'s [affected.display_name] with \the [tool]."),)
+	span_notice("You have constructed a prepared incision on and within [target]'s [affected.display_name] with \the [tool]."))
 	target.balloon_alert_to_viewers("Success")
 	affected.surgery_open_stage = 1
 
@@ -131,7 +131,7 @@
 
 /datum/surgery_step/generic/cut_open/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
 	user.visible_message(span_notice("[user] has made an incision on [target]'s [affected.display_name] with \the [tool]."), \
-	span_notice("You have made an incision on [target]'s [affected.display_name] with \the [tool]."),)
+	span_notice("You have made an incision on [target]'s [affected.display_name] with \the [tool]."))
 	target.balloon_alert_to_viewers("Success")
 	affected.surgery_open_stage = 1
 
@@ -184,7 +184,7 @@
 
 /datum/surgery_step/generic/clamp_bleeders/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
 	user.visible_message(span_warning("[user]'s hand slips, tearing blood vessals and causing massive bleeding in [target]'s [affected.display_name] with \the [tool]!"),	\
-	span_warning("Your hand slips, tearing blood vessels and causing massive bleeding in [target]'s [affected.display_name] with \the [tool]!"),)
+	span_warning("Your hand slips, tearing blood vessels and causing massive bleeding in [target]'s [affected.display_name] with \the [tool]!"))
 	target.balloon_alert_to_viewers("Slipped!")
 	affected.createwound(CUT, 10)
 	affected.update_wounds()

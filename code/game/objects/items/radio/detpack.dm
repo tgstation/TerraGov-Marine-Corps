@@ -136,8 +136,9 @@
 	if(!signal || !on)
 		return
 
-	var/turf/location = get_turf(signal.source)
-	if(location.z != z)
+	var/turf/source_location = get_turf(signal.source)
+	var/turf/det_location = get_turf(src)
+	if(source_location.z != det_location.z)
 		return
 
 	if(signal.data["code"] != code)
@@ -340,15 +341,13 @@
 	//Time to go boom
 	playsound(src.loc, 'sound/weapons/ring.ogg', 200, FALSE)
 	boom = TRUE
+	var/turf/det_location = get_turf(plant_target)
+	plant_target.ex_act(EXPLODE_DEVASTATE)
+	plant_target = null
 	if(det_mode == TRUE) //If we're on demolition mode, big boom.
-		explosion(plant_target, 3, 5, 6, 0, 6)
+		explosion(det_location, 3, 5, 6, 0, 6)
 	else //if we're not, focused boom.
-		explosion(plant_target, 2, 2, 3, 0, 3, throw_range = FALSE)
-	if(plant_target)
-		if(isobj(plant_target))
-			plant_target = null
-			if(!istype(plant_target,/obj/vehicle/multitile/root/cm_armored))
-				qdel(plant_target)
+		explosion(det_location, 2, 2, 3, 0, 3, throw_range = FALSE)
 	qdel(src)
 
 
