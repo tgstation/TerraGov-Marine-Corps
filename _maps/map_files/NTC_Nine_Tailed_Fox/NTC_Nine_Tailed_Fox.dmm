@@ -267,9 +267,7 @@
 	info = "OOC: let us know in discord if there is any loadout additions that could fit specialist job here."
 	},
 /turf/open/floor/mainship/cargo,
-/area/orion_outpost/surface/building/prep{
-	name = "Specialist Preperations"
-	})
+/area/mainship/squads/specialist)
 "aoE" = (
 /obj/structure/largecrate/supply/medicine/blood,
 /turf/open/floor/mainship/cargo,
@@ -706,9 +704,7 @@
 /turf/open/floor/mainship/orange{
 	dir = 4
 	},
-/area/shuttle/canterbury/cic{
-	outside = 1
-	})
+/area/mainship/command/cic)
 "aHt" = (
 /obj/structure/cable,
 /obj/structure/cable,
@@ -1105,9 +1101,7 @@
 	pixel_x = 5
 	},
 /turf/open/floor/plating/mainship,
-/area/shuttle/canterbury/cic{
-	outside = 1
-	})
+/area/mainship/command/cic)
 "aWc" = (
 /obj/machinery/door_control/mainship/ammo{
 	id = "cargohold";
@@ -1237,9 +1231,7 @@
 "baH" = (
 /obj/machinery/vending/armor_supply,
 /turf/open/floor/mainship,
-/area/orion_outpost/surface/building/prep{
-	name = "Specialist Preperations"
-	})
+/area/mainship/squads/specialist)
 "baU" = (
 /obj/machinery/power/apc/mainship{
 	dir = 8
@@ -1318,9 +1310,7 @@
 /turf/open/floor/mainship/black{
 	dir = 1
 	},
-/area/orion_outpost/surface/building/prep{
-	name = "Specialist Preperations"
-	})
+/area/mainship/squads/specialist)
 "bfc" = (
 /obj/machinery/door/airlock/mainship/maint,
 /obj/structure/cable,
@@ -2349,15 +2339,11 @@
 	req_one_access = list(40)
 	},
 /turf/open/floor/mainship/mono,
-/area/shuttle/canterbury/cic{
-	outside = 1
-	})
+/area/mainship/command/cic)
 "cab" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/stairs/rampbottom,
-/area/shuttle/canterbury/cic{
-	outside = 1
-	})
+/area/mainship/command/cic)
 "caj" = (
 /obj/structure/window/framed/mainship/hull,
 /turf/open/floor/mainship/mono,
@@ -2393,9 +2379,7 @@
 /turf/open/floor/mainship/black{
 	dir = 1
 	},
-/area/orion_outpost/surface/building/prep{
-	name = "Specialist Preperations"
-	})
+/area/mainship/squads/specialist)
 "cbB" = (
 /obj/machinery/door/airlock/mainship/maint,
 /obj/structure/disposalpipe/segment{
@@ -2541,17 +2525,13 @@
 /turf/open/floor/mainship/orange{
 	dir = 8
 	},
-/area/shuttle/canterbury/cic{
-	outside = 1
-	})
+/area/mainship/command/cic)
 "ciU" = (
 /obj/structure/prop/mainship/mapping_computer,
 /turf/open/floor/mainship/orange{
 	dir = 5
 	},
-/area/shuttle/canterbury/cic{
-	outside = 1
-	})
+/area/mainship/command/cic)
 "ciW" = (
 /obj/structure/bed/chair/wood{
 	dir = 8
@@ -2847,9 +2827,7 @@
 /turf/open/floor/mainship/cargo/arrow{
 	dir = 8
 	},
-/area/orion_outpost/surface/building/prep{
-	name = "Specialist Preperations"
-	})
+/area/mainship/squads/specialist)
 "cwQ" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1,
 /turf/open/floor/mainship,
@@ -3079,9 +3057,7 @@
 	dir = 4
 	},
 /turf/open/floor/mainship/mono,
-/area/shuttle/canterbury/cic{
-	outside = 1
-	})
+/area/mainship/command/cic)
 "cGE" = (
 /obj/structure/table/mainship/nometal,
 /obj/item/ashtray/glass,
@@ -3325,9 +3301,7 @@
 /turf/open/floor/mainship/black{
 	dir = 5
 	},
-/area/orion_outpost/surface/building/prep{
-	name = "Specialist Preperations"
-	})
+/area/mainship/squads/specialist)
 "cPu" = (
 /obj/structure/bed/chair/sofa/left{
 	dir = 8
@@ -3749,9 +3723,7 @@
 /turf/open/floor/mainship/emerald{
 	dir = 9
 	},
-/area/shuttle/canterbury/cic{
-	outside = 1
-	})
+/area/mainship/command/cic)
 "dlH" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/mainship,
@@ -3873,9 +3845,7 @@
 /area/mainship/hull/upper_hull)
 "dqF" = (
 /turf/open/floor/mainship/mono,
-/area/shuttle/canterbury/cic{
-	outside = 1
-	})
+/area/mainship/command/cic)
 "dqK" = (
 /obj/machinery/telecomms/relay/preset/telecomms,
 /turf/open/floor/mainship/tcomms,
@@ -4035,9 +4005,7 @@
 	dir = 1
 	},
 /turf/open/floor/wood,
-/area/orion_outpost/surface/building/prep{
-	name = "Specialist Preperations"
-	})
+/area/mainship/squads/specialist)
 "dCW" = (
 /obj/structure/table/mainship,
 /obj/effect/spawner/random/food_or_drink/sugary_snack,
@@ -4141,9 +4109,7 @@
 "dHm" = (
 /obj/structure/window/framed/mainship,
 /turf/open/floor/plating,
-/area/shuttle/canterbury/cic{
-	outside = 1
-	})
+/area/mainship/command/cic)
 "dHB" = (
 /obj/machinery/door/airlock/mainship/secure/free_access{
 	dir = 2
@@ -4898,9 +4864,7 @@
 /turf/open/floor/mainship/black{
 	dir = 9
 	},
-/area/orion_outpost/surface/building/prep{
-	name = "Specialist Preperations"
-	})
+/area/mainship/squads/specialist)
 "ewq" = (
 /obj/item/radio/intercom/general{
 	dir = 8
@@ -5125,9 +5089,7 @@
 	})
 "eKG" = (
 /turf/open/floor/wood,
-/area/orion_outpost/surface/building/prep{
-	name = "Specialist Preperations"
-	})
+/area/mainship/squads/specialist)
 "eKL" = (
 /obj/machinery/camera/autoname/mainship,
 /turf/open/floor/mainship/floor,
@@ -5255,9 +5217,7 @@
 /turf/open/floor/mainship/blue{
 	dir = 8
 	},
-/area/shuttle/canterbury/cic{
-	outside = 1
-	})
+/area/mainship/command/cic)
 "eQu" = (
 /obj/machinery/light{
 	dir = 1
@@ -5406,9 +5366,7 @@
 /obj/effect/landmark/start/job/squadspecialist,
 /obj/structure/closet/secure_closet/personal/walllocker,
 /turf/open/floor/wood,
-/area/orion_outpost/surface/building/prep{
-	name = "Specialist Preperations"
-	})
+/area/mainship/squads/specialist)
 "eWC" = (
 /turf/open/floor/mainship/cargo/arrow,
 /area/outpost/cargo{
@@ -5424,9 +5382,7 @@
 /obj/item/tool/pen,
 /obj/machinery/light,
 /turf/open/floor/mainship/mono,
-/area/shuttle/canterbury/cic{
-	outside = 1
-	})
+/area/mainship/command/cic)
 "eWT" = (
 /obj/item/radio/intercom/general,
 /turf/open/floor/mainship/cargo/arrow{
@@ -5637,9 +5593,7 @@
 /turf/open/floor/mainship/orange{
 	dir = 9
 	},
-/area/shuttle/canterbury/cic{
-	outside = 1
-	})
+/area/mainship/command/cic)
 "feS" = (
 /obj/machinery/door/airlock/mainship/research/pen,
 /obj/machinery/door/firedoor/mainship,
@@ -5851,9 +5805,7 @@
 /turf/open/floor/mainship/black{
 	dir = 5
 	},
-/area/orion_outpost/surface/building/prep{
-	name = "Specialist Preperations"
-	})
+/area/mainship/squads/specialist)
 "fnS" = (
 /obj/machinery/light/mainship{
 	dir = 8
@@ -6396,9 +6348,7 @@
 "fMt" = (
 /obj/machinery/vending/weapon,
 /turf/open/floor/mainship,
-/area/orion_outpost/surface/building/prep{
-	name = "Specialist Preperations"
-	})
+/area/mainship/squads/specialist)
 "fMN" = (
 /turf/open/floor/mainship/black{
 	dir = 5
@@ -6700,9 +6650,7 @@
 /obj/structure/table/mainship,
 /obj/machinery/computer/marine_card,
 /turf/open/floor/mainship/mono,
-/area/shuttle/canterbury/cic{
-	outside = 1
-	})
+/area/mainship/command/cic)
 "fXH" = (
 /obj/machinery/floodlight/landing,
 /turf/open/floor/mainship/orange{
@@ -6735,9 +6683,7 @@
 	},
 /obj/effect/landmark/start/job/captain,
 /turf/open/floor/plating/mainship,
-/area/shuttle/canterbury/cic{
-	outside = 1
-	})
+/area/mainship/command/cic)
 "fYO" = (
 /obj/effect/ai_node,
 /turf/open/floor/mainship/mono,
@@ -6773,9 +6719,7 @@
 "fZP" = (
 /obj/effect/ai_node,
 /turf/open/floor/mainship/mono,
-/area/shuttle/canterbury/cic{
-	outside = 1
-	})
+/area/mainship/command/cic)
 "fZU" = (
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
@@ -6794,9 +6738,7 @@
 /obj/effect/landmark/start/job/squadspecialist,
 /obj/structure/closet/secure_closet/personal/walllocker,
 /turf/open/floor/wood,
-/area/orion_outpost/surface/building/prep{
-	name = "Specialist Preperations"
-	})
+/area/mainship/squads/specialist)
 "gbh" = (
 /obj/structure/disposalpipe/segment/corner{
 	dir = 8
@@ -6855,9 +6797,7 @@
 	},
 /obj/item/storage/firstaid/rad,
 /turf/open/floor/mainship/blue/full,
-/area/shuttle/canterbury/cic{
-	outside = 1
-	})
+/area/mainship/command/cic)
 "gcD" = (
 /turf/open/floor/mainship/floor,
 /area/mainship/hallways/hangar)
@@ -7216,9 +7156,7 @@
 /obj/structure/table/mainship,
 /obj/machinery/cic_maptable/droppod_maptable,
 /turf/open/floor/mainship/mono,
-/area/shuttle/canterbury/cic{
-	outside = 1
-	})
+/area/mainship/command/cic)
 "gwS" = (
 /obj/machinery/vending/armor_supply,
 /turf/open/floor/mainship/white{
@@ -7890,9 +7828,7 @@
 "gZH" = (
 /obj/structure/closet/firecloset,
 /turf/open/floor/mainship/mono,
-/area/shuttle/canterbury/cic{
-	outside = 1
-	})
+/area/mainship/command/cic)
 "haE" = (
 /obj/structure/window/framed/mainship/white,
 /obj/machinery/door/firedoor/mainship{
@@ -8011,9 +7947,7 @@
 /turf/open/floor/mainship/red{
 	dir = 4
 	},
-/area/shuttle/canterbury/cic{
-	outside = 1
-	})
+/area/mainship/command/cic)
 "hcU" = (
 /obj/structure/table/mainship,
 /obj/machinery/light{
@@ -8026,9 +7960,7 @@
 /turf/open/floor/mainship/emerald{
 	dir = 5
 	},
-/area/shuttle/canterbury/cic{
-	outside = 1
-	})
+/area/mainship/command/cic)
 "hcV" = (
 /obj/structure/window/framed/mainship,
 /obj/machinery/computer/shuttle/shuttle_control/elevator{
@@ -8464,9 +8396,7 @@
 /turf/open/floor/mainship/black{
 	dir = 6
 	},
-/area/orion_outpost/surface/building/prep{
-	name = "Specialist Preperations"
-	})
+/area/mainship/squads/specialist)
 "hHH" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -8821,9 +8751,7 @@
 /obj/structure/table/mainship,
 /obj/machinery/computer/security/marinemainship_network,
 /turf/open/floor/mainship/mono,
-/area/shuttle/canterbury/cic{
-	outside = 1
-	})
+/area/mainship/command/cic)
 "hYl" = (
 /obj/machinery/meter,
 /obj/machinery/atmospherics/pipe/simple/general/visible{
@@ -9011,18 +8939,14 @@
 	height = 2
 	},
 /turf/open/floor/mainship/mono,
-/area/shuttle/canterbury/cic{
-	outside = 1
-	})
+/area/mainship/command/cic)
 "igc" = (
 /obj/structure/table/mainship,
 /obj/machinery/computer/shuttle/shuttle_control/dropship/two{
 	possible_destinations = "lz1;lz2;hqlz1;hqlz2;alamo;normandy"
 	},
 /turf/open/floor/mainship/mono,
-/area/shuttle/canterbury/cic{
-	outside = 1
-	})
+/area/mainship/command/cic)
 "ihe" = (
 /obj/machinery/cryopod/right,
 /turf/open/floor/mainship/sterile/corner{
@@ -9218,9 +9142,7 @@
 /turf/open/floor/mainship/black{
 	dir = 10
 	},
-/area/orion_outpost/surface/building/prep{
-	name = "Specialist Preperations"
-	})
+/area/mainship/squads/specialist)
 "iri" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment,
@@ -9462,9 +9384,7 @@
 /turf/open/floor/mainship/red{
 	dir = 9
 	},
-/area/shuttle/canterbury/cic{
-	outside = 1
-	})
+/area/mainship/command/cic)
 "iDo" = (
 /obj/machinery/door/airlock/mainship/security{
 	dir = 1;
@@ -9684,16 +9604,12 @@
 /obj/structure/disposalpipe/segment/corner,
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
-/area/shuttle/canterbury/cic{
-	outside = 1
-	})
+/area/mainship/command/cic)
 "iOn" = (
 /obj/structure/table/mainship,
 /obj/machinery/computer/secure_data,
 /turf/open/floor/mainship/mono,
-/area/shuttle/canterbury/cic{
-	outside = 1
-	})
+/area/mainship/command/cic)
 "iOs" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable,
@@ -9929,9 +9845,7 @@
 /turf/open/floor/mainship/black{
 	dir = 4
 	},
-/area/orion_outpost/surface/building/prep{
-	name = "Specialist Preperations"
-	})
+/area/mainship/squads/specialist)
 "iXw" = (
 /obj/machinery/door/airlock/multi_tile/mainship/medidoor/medbay/free_access{
 	dir = 2
@@ -9974,9 +9888,7 @@
 /turf/open/floor/mainship/black{
 	dir = 1
 	},
-/area/orion_outpost/surface/building/prep{
-	name = "Specialist Preperations"
-	})
+/area/mainship/squads/specialist)
 "iYW" = (
 /obj/machinery/marine_selector/clothes/leader,
 /turf/open/floor/mainship,
@@ -10140,9 +10052,7 @@
 "jkr" = (
 /obj/structure/cable,
 /turf/open/floor/wood,
-/area/orion_outpost/surface/building/prep{
-	name = "Specialist Preperations"
-	})
+/area/mainship/squads/specialist)
 "jkM" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment,
@@ -10194,9 +10104,7 @@
 /turf/open/floor/mainship/emerald{
 	dir = 4
 	},
-/area/shuttle/canterbury/cic{
-	outside = 1
-	})
+/area/mainship/command/cic)
 "jmZ" = (
 /obj/machinery/vending/coffee,
 /turf/open/floor/mainship/mono,
@@ -10353,9 +10261,7 @@
 	dir = 1
 	},
 /turf/open/floor/mainship/mono,
-/area/shuttle/canterbury/cic{
-	outside = 1
-	})
+/area/mainship/command/cic)
 "jve" = (
 /obj/structure/disposalpipe/segment/corner{
 	dir = 1
@@ -10413,9 +10319,7 @@
 /turf/open/floor/mainship/black{
 	dir = 4
 	},
-/area/orion_outpost/surface/building/prep{
-	name = "Specialist Preperations"
-	})
+/area/mainship/squads/specialist)
 "jAh" = (
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/telecomms{
@@ -10523,9 +10427,7 @@
 	height = 2
 	},
 /turf/open/floor/mainship/mono,
-/area/shuttle/canterbury/cic{
-	outside = 1
-	})
+/area/mainship/command/cic)
 "jFo" = (
 /obj/structure/bed/bunkbed,
 /obj/effect/landmark/start/job/squadmarine,
@@ -10631,9 +10533,7 @@
 /obj/machinery/power/apc/mainship,
 /obj/structure/closet/secure_closet/personal/walllocker,
 /turf/open/floor/wood,
-/area/orion_outpost/surface/building/prep{
-	name = "Specialist Preperations"
-	})
+/area/mainship/squads/specialist)
 "jJg" = (
 /obj/structure/sink{
 	dir = 4
@@ -11271,9 +11171,7 @@
 "kmy" = (
 /obj/machinery/vending/uniform_supply,
 /turf/open/floor/mainship/mono,
-/area/shuttle/canterbury/cic{
-	outside = 1
-	})
+/area/mainship/command/cic)
 "kmC" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/junction,
@@ -11346,9 +11244,7 @@
 "knM" = (
 /obj/effect/soundplayer,
 /turf/closed/wall/mainship,
-/area/orion_outpost/surface/building/prep{
-	name = "Specialist Preperations"
-	})
+/area/mainship/squads/specialist)
 "kow" = (
 /obj/structure/table/mainship/nometal,
 /obj/machinery/microwave,
@@ -11851,9 +11747,7 @@
 	on = 1
 	},
 /turf/open/floor/mainship/mono,
-/area/shuttle/canterbury/cic{
-	outside = 1
-	})
+/area/mainship/command/cic)
 "kJv" = (
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/mainship/floor,
@@ -12092,9 +11986,7 @@
 /turf/open/floor/mainship/emerald{
 	dir = 4
 	},
-/area/shuttle/canterbury/cic{
-	outside = 1
-	})
+/area/mainship/command/cic)
 "kRb" = (
 /obj/machinery/door/airlock/mainship/security{
 	dir = 1;
@@ -12329,9 +12221,7 @@
 /turf/open/floor/mainship/blue{
 	dir = 5
 	},
-/area/shuttle/canterbury/cic{
-	outside = 1
-	})
+/area/mainship/command/cic)
 "lbs" = (
 /obj/item/stack/sheet/mineral/diamond,
 /obj/item/stack/sheet/mineral/gold,
@@ -12613,9 +12503,7 @@
 /obj/effect/landmark/start/job/crash/pilotofficer,
 /obj/machinery/light,
 /turf/open/floor/mainship/mono,
-/area/shuttle/canterbury/cic{
-	outside = 1
-	})
+/area/mainship/command/cic)
 "lmi" = (
 /obj/structure/table/woodentable,
 /obj/machinery/computer/camera_advanced,
@@ -12716,9 +12604,7 @@
 /obj/structure/table/mainship,
 /obj/machinery/faxmachine/cic,
 /turf/open/floor/mainship/mono,
-/area/shuttle/canterbury/cic{
-	outside = 1
-	})
+/area/mainship/command/cic)
 "lqQ" = (
 /obj/structure/window/framed/mainship/requisitions,
 /turf/open/floor/plating,
@@ -12816,9 +12702,7 @@
 /turf/open/floor/mainship/blue{
 	dir = 8
 	},
-/area/shuttle/canterbury/cic{
-	outside = 1
-	})
+/area/mainship/command/cic)
 "lve" = (
 /obj/machinery/door/airlock/mainship/secure/evac{
 	dir = 2
@@ -13497,9 +13381,7 @@
 "mag" = (
 /obj/structure/prop/mainship/sensor_computer3,
 /turf/open/floor/mainship/mono,
-/area/shuttle/canterbury/cic{
-	outside = 1
-	})
+/area/mainship/command/cic)
 "mbW" = (
 /turf/open/floor/mainship/black{
 	dir = 9
@@ -13607,9 +13489,7 @@
 	dir = 1
 	},
 /turf/open/floor/mainship/mono,
-/area/shuttle/canterbury/cic{
-	outside = 1
-	})
+/area/mainship/command/cic)
 "mgx" = (
 /obj/machinery/marine_selector/gear/medic,
 /turf/open/floor/mainship/floor,
@@ -13909,9 +13789,7 @@
 "mpW" = (
 /obj/machinery/cic_maptable/drawable/big,
 /turf/open/floor/mainship/mono,
-/area/shuttle/canterbury/cic{
-	outside = 1
-	})
+/area/mainship/command/cic)
 "mqa" = (
 /obj/structure/lattice,
 /turf/closed/shuttle/ert{
@@ -14081,9 +13959,7 @@
 /turf/open/floor/mainship/emerald{
 	dir = 8
 	},
-/area/shuttle/canterbury/cic{
-	outside = 1
-	})
+/area/mainship/command/cic)
 "myJ" = (
 /obj/structure/window/framed/mainship/requisitions,
 /obj/machinery/door/poddoor/shutters/mainship/req/ro,
@@ -14316,9 +14192,7 @@
 /area/mainship/living/cafeteria_starboard)
 "mKo" = (
 /turf/closed/wall/mainship,
-/area/orion_outpost/surface/building/prep{
-	name = "Specialist Preperations"
-	})
+/area/mainship/squads/specialist)
 "mKU" = (
 /obj/structure/cable,
 /obj/machinery/door/airlock/mainship/maint,
@@ -14463,9 +14337,7 @@
 "mRz" = (
 /obj/machinery/vending/weapon,
 /turf/open/floor/mainship/mono,
-/area/shuttle/canterbury/cic{
-	outside = 1
-	})
+/area/mainship/command/cic)
 "mRN" = (
 /obj/structure/table/mainship/nometal,
 /obj/item/storage/box/gloves,
@@ -14629,9 +14501,7 @@
 "nbq" = (
 /obj/machinery/marine_selector/clothes/specialist,
 /turf/open/floor/mainship,
-/area/orion_outpost/surface/building/prep{
-	name = "Specialist Preperations"
-	})
+/area/mainship/squads/specialist)
 "ncE" = (
 /obj/machinery/light/mainship{
 	dir = 8
@@ -14721,9 +14591,7 @@
 /turf/open/floor/mainship/red{
 	dir = 8
 	},
-/area/shuttle/canterbury/cic{
-	outside = 1
-	})
+/area/mainship/command/cic)
 "nhA" = (
 /turf/open/floor/mainship/green{
 	dir = 1
@@ -14937,9 +14805,7 @@
 	})
 "ntt" = (
 /turf/closed/wall/mainship/outer,
-/area/shuttle/canterbury/cic{
-	outside = 1
-	})
+/area/mainship/command/cic)
 "nui" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -15130,9 +14996,7 @@
 "nDV" = (
 /obj/machinery/photocopier,
 /turf/open/floor/mainship/mono,
-/area/shuttle/canterbury/cic{
-	outside = 1
-	})
+/area/mainship/command/cic)
 "nEl" = (
 /obj/structure/largecrate/supply/explosives/disposable,
 /turf/open/floor/mainship/cargo,
@@ -15493,9 +15357,7 @@
 	dir = 8
 	},
 /turf/open/floor/mainship/mono,
-/area/shuttle/canterbury/cic{
-	outside = 1
-	})
+/area/mainship/command/cic)
 "nUx" = (
 /obj/effect/spawner/random/misc/soap/regularweighted,
 /turf/open/floor/mainship/floor,
@@ -15520,9 +15382,7 @@
 	dir = 4
 	},
 /turf/open/floor/wood,
-/area/orion_outpost/surface/building/prep{
-	name = "Specialist Preperations"
-	})
+/area/mainship/squads/specialist)
 "nVF" = (
 /obj/structure/window/reinforced{
 	dir = 4
@@ -15595,15 +15455,11 @@
 /obj/structure/table/mainship,
 /obj/machinery/computer/communications,
 /turf/open/floor/plating/mainship,
-/area/shuttle/canterbury/cic{
-	outside = 1
-	})
+/area/mainship/command/cic)
 "nZu" = (
 /obj/structure/cable,
 /turf/open/floor/plating,
-/area/orion_outpost/surface/building/prep{
-	name = "Specialist Preperations"
-	})
+/area/mainship/squads/specialist)
 "nZy" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -17271,9 +17127,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/mainship/mono,
-/area/shuttle/canterbury/cic{
-	outside = 1
-	})
+/area/mainship/command/cic)
 "pGg" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/junction,
@@ -17505,9 +17359,7 @@
 /turf/open/floor/mainship/orange{
 	dir = 8
 	},
-/area/shuttle/canterbury/cic{
-	outside = 1
-	})
+/area/mainship/command/cic)
 "pVg" = (
 /obj/machinery/door/airlock/mainship/command/FCDRoffice,
 /turf/open/floor/mainship/floor,
@@ -17646,9 +17498,7 @@
 	},
 /obj/machinery/computer/navigation,
 /turf/open/floor/plating/mainship,
-/area/shuttle/canterbury/cic{
-	outside = 1
-	})
+/area/mainship/command/cic)
 "qaT" = (
 /obj/structure/flora/ausbushes/pointybush,
 /turf/open/floor/grass,
@@ -17676,9 +17526,7 @@
 /obj/structure/table/mainship,
 /obj/machinery/computer/squad_changer,
 /turf/open/floor/mainship/mono,
-/area/shuttle/canterbury/cic{
-	outside = 1
-	})
+/area/mainship/command/cic)
 "qcy" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
@@ -17761,9 +17609,7 @@
 /turf/open/floor/mainship/blue{
 	dir = 9
 	},
-/area/shuttle/canterbury/cic{
-	outside = 1
-	})
+/area/mainship/command/cic)
 "qfn" = (
 /obj/structure/sign/safety/cryogenic,
 /turf/closed/wall/mainship,
@@ -17919,9 +17765,7 @@
 /turf/open/floor/mainship/blue{
 	dir = 4
 	},
-/area/shuttle/canterbury/cic{
-	outside = 1
-	})
+/area/mainship/command/cic)
 "qno" = (
 /obj/machinery/atm,
 /turf/closed/wall/mainship,
@@ -18225,9 +18069,7 @@
 /turf/open/floor/mainship/orange{
 	dir = 4
 	},
-/area/shuttle/canterbury/cic{
-	outside = 1
-	})
+/area/mainship/command/cic)
 "qBo" = (
 /obj/structure/sink/bathroom{
 	dir = 8;
@@ -18367,9 +18209,7 @@
 	dir = 4
 	},
 /turf/open/floor/wood,
-/area/orion_outpost/surface/building/prep{
-	name = "Specialist Preperations"
-	})
+/area/mainship/squads/specialist)
 "qGj" = (
 /obj/machinery/light/mainship{
 	dir = 8
@@ -18422,9 +18262,7 @@
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/stairs/rampbottom,
-/area/shuttle/canterbury/cic{
-	outside = 1
-	})
+/area/mainship/command/cic)
 "qKM" = (
 /obj/structure/bed,
 /obj/item/bedsheet/red,
@@ -18779,9 +18617,7 @@
 	dir = 2
 	},
 /turf/open/floor/mainship/mono,
-/area/shuttle/canterbury/cic{
-	outside = 1
-	})
+/area/mainship/command/cic)
 "qYl" = (
 /obj/structure/table/mainship,
 /obj/item/toy/deck,
@@ -18853,9 +18689,7 @@
 /obj/item/storage/pouch/medkit,
 /obj/item/storage/pouch/medkit,
 /turf/open/floor/mainship/blue/full,
-/area/shuttle/canterbury/cic{
-	outside = 1
-	})
+/area/mainship/command/cic)
 "rbP" = (
 /obj/machinery/light/small{
 	dir = 1
@@ -19226,9 +19060,7 @@
 /turf/open/floor/mainship/cargo/arrow{
 	dir = 8
 	},
-/area/orion_outpost/surface/building/prep{
-	name = "Specialist Preperations"
-	})
+/area/mainship/squads/specialist)
 "rya" = (
 /obj/machinery/disposal,
 /obj/structure/disposalpipe/trunk{
@@ -19535,9 +19367,7 @@
 /turf/open/floor/mainship/black{
 	dir = 6
 	},
-/area/orion_outpost/surface/building/prep{
-	name = "Specialist Preperations"
-	})
+/area/mainship/squads/specialist)
 "rPs" = (
 /obj/structure/window/framed/mainship/requisitions,
 /turf/open/floor/plating,
@@ -20279,9 +20109,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating,
-/area/orion_outpost/surface/building/prep{
-	name = "Specialist Preperations"
-	})
+/area/mainship/squads/specialist)
 "sAh" = (
 /obj/machinery/vending/weapon,
 /turf/open/floor/mainship/black{
@@ -20404,9 +20232,7 @@
 	pixel_y = 5
 	},
 /turf/open/floor/plating/mainship,
-/area/shuttle/canterbury/cic{
-	outside = 1
-	})
+/area/mainship/command/cic)
 "sLf" = (
 /turf/open/floor/mainship/red/corner{
 	dir = 4
@@ -20700,9 +20526,7 @@
 /turf/open/floor/mainship/black{
 	dir = 9
 	},
-/area/orion_outpost/surface/building/prep{
-	name = "Specialist Preperations"
-	})
+/area/mainship/squads/specialist)
 "sVR" = (
 /obj/structure/reagent_dispensers/beerkeg,
 /turf/open/floor/freezer,
@@ -20782,9 +20606,7 @@
 /turf/open/floor/mainship/red{
 	dir = 5
 	},
-/area/shuttle/canterbury/cic{
-	outside = 1
-	})
+/area/mainship/command/cic)
 "sZF" = (
 /obj/machinery/firealarm{
 	dir = 8
@@ -20813,9 +20635,7 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
-/area/shuttle/canterbury/cic{
-	outside = 1
-	})
+/area/mainship/command/cic)
 "tbe" = (
 /turf/open/floor/mainship/cargo/arrow{
 	dir = 1
@@ -20995,9 +20815,7 @@
 	pixel_y = 10
 	},
 /turf/open/floor/mainship/orange/full,
-/area/shuttle/canterbury/cic{
-	outside = 1
-	})
+/area/mainship/command/cic)
 "tjv" = (
 /obj/machinery/door/airlock/mainship/medical/glass,
 /obj/structure/cable,
@@ -21026,9 +20844,7 @@
 	})
 "tkp" = (
 /turf/closed/wall/mainship,
-/area/shuttle/canterbury/cic{
-	outside = 1
-	})
+/area/mainship/command/cic)
 "tkS" = (
 /obj/machinery/computer/general_air_control/large_tank_control{
 	frequency = 1443;
@@ -21465,9 +21281,7 @@
 	dir = 1
 	},
 /turf/open/floor/wood,
-/area/orion_outpost/surface/building/prep{
-	name = "Specialist Preperations"
-	})
+/area/mainship/squads/specialist)
 "tJQ" = (
 /obj/machinery/door/firedoor/mainship{
 	dir = 2
@@ -21544,9 +21358,7 @@
 	dir = 8
 	},
 /turf/open/floor/mainship/mono,
-/area/shuttle/canterbury/cic{
-	outside = 1
-	})
+/area/mainship/command/cic)
 "tLW" = (
 /obj/machinery/door/airlock/mainship/generic{
 	dir = 1;
@@ -21745,9 +21557,7 @@
 	},
 /obj/machinery/computer/camera_advanced/overwatch/main,
 /turf/open/floor/plating/mainship,
-/area/shuttle/canterbury/cic{
-	outside = 1
-	})
+/area/mainship/command/cic)
 "tWN" = (
 /obj/machinery/recharger,
 /obj/item/storage/box/flashbangs,
@@ -21986,9 +21796,7 @@
 	pixel_y = 3
 	},
 /turf/open/floor/mainship/cargo,
-/area/orion_outpost/surface/building/prep{
-	name = "Specialist Preperations"
-	})
+/area/mainship/squads/specialist)
 "uiM" = (
 /obj/structure/window/framed/mainship/hull,
 /turf/open/floor/plating,
@@ -22068,9 +21876,7 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
-/area/shuttle/canterbury/cic{
-	outside = 1
-	})
+/area/mainship/command/cic)
 "unY" = (
 /obj/structure/window/framed/mainship/requisitions,
 /turf/open/floor/plating,
@@ -22452,9 +22258,7 @@
 /turf/open/floor/mainship/blue{
 	dir = 4
 	},
-/area/shuttle/canterbury/cic{
-	outside = 1
-	})
+/area/mainship/command/cic)
 "uDX" = (
 /obj/machinery/door/airlock/mainship/maint,
 /obj/structure/disposalpipe/segment{
@@ -23053,9 +22857,7 @@
 /turf/open/floor/mainship/red{
 	dir = 8
 	},
-/area/shuttle/canterbury/cic{
-	outside = 1
-	})
+/area/mainship/command/cic)
 "vlB" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment,
@@ -23189,9 +22991,7 @@
 /obj/effect/landmark/start/job/fieldcommander,
 /obj/machinery/light,
 /turf/open/floor/mainship/mono,
-/area/shuttle/canterbury/cic{
-	outside = 1
-	})
+/area/mainship/command/cic)
 "vqb" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -23207,9 +23007,7 @@
 "vqp" = (
 /obj/structure/window/framed/mainship/hull,
 /turf/open/floor/plating,
-/area/shuttle/canterbury/cic{
-	outside = 1
-	})
+/area/mainship/command/cic)
 "vqB" = (
 /obj/structure/rack,
 /obj/item/storage/box/flashbangs,
@@ -23609,9 +23407,7 @@
 "vIh" = (
 /obj/effect/ai_node,
 /turf/open/floor/mainship/cargo,
-/area/orion_outpost/surface/building/prep{
-	name = "Specialist Preperations"
-	})
+/area/mainship/squads/specialist)
 "vJd" = (
 /obj/machinery/bodyscanner,
 /turf/open/floor/mainship/sterile/corner{
@@ -23833,9 +23629,7 @@
 	})
 "vZP" = (
 /turf/open/floor/mainship/cargo,
-/area/orion_outpost/surface/building/prep{
-	name = "Specialist Preperations"
-	})
+/area/mainship/squads/specialist)
 "wau" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -23916,9 +23710,7 @@
 /turf/open/floor/mainship/red{
 	dir = 4
 	},
-/area/shuttle/canterbury/cic{
-	outside = 1
-	})
+/area/mainship/command/cic)
 "weq" = (
 /obj/item/trash/cigbutt/cigarbutt,
 /turf/open/floor/wood,
@@ -23936,9 +23728,7 @@
 /obj/machinery/light,
 /obj/structure/table/mainship,
 /turf/open/floor/mainship/mono,
-/area/shuttle/canterbury/cic{
-	outside = 1
-	})
+/area/mainship/command/cic)
 "wfm" = (
 /obj/machinery/camera/autoname/mainship{
 	dir = 1
@@ -24038,9 +23828,7 @@
 /turf/open/floor/mainship/emerald{
 	dir = 8
 	},
-/area/shuttle/canterbury/cic{
-	outside = 1
-	})
+/area/mainship/command/cic)
 "wiL" = (
 /obj/structure/table/mainship/nometal,
 /obj/item/healthanalyzer,
@@ -24183,9 +23971,7 @@
 /obj/effect/landmark/start/job/squadspecialist,
 /obj/structure/closet/secure_closet/personal/walllocker,
 /turf/open/floor/wood,
-/area/orion_outpost/surface/building/prep{
-	name = "Specialist Preperations"
-	})
+/area/mainship/squads/specialist)
 "wnG" = (
 /obj/structure/table/mainship,
 /obj/machinery/computer/droppod_control,
@@ -24455,9 +24241,7 @@
 "wDG" = (
 /obj/machinery/cic_maptable/drawable,
 /turf/open/floor/mainship/mono,
-/area/shuttle/canterbury/cic{
-	outside = 1
-	})
+/area/mainship/command/cic)
 "wDV" = (
 /obj/structure/reagent_dispensers/water_cooler,
 /turf/open/floor/mainship/mono,
@@ -24956,9 +24740,7 @@
 "xbI" = (
 /obj/machinery/computer/med_data,
 /turf/open/floor/mainship/mono,
-/area/shuttle/canterbury/cic{
-	outside = 1
-	})
+/area/mainship/command/cic)
 "xcx" = (
 /obj/machinery/light{
 	dir = 1
@@ -25212,9 +24994,7 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
-/area/shuttle/canterbury/cic{
-	outside = 1
-	})
+/area/mainship/command/cic)
 "xlX" = (
 /obj/machinery/shower{
 	dir = 1

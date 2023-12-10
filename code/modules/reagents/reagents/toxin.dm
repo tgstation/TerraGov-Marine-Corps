@@ -293,7 +293,7 @@
 	name = "Potassium Chlorophoride"
 	description = "A specific chemical based on Potassium Chloride to stop the heart for surgery. Not safe to eat!"
 	color = COLOR_TOXIN_POTASSIUM_CHLORIDE
-	toxpwr = 2
+	toxpwr = 1
 
 /datum/reagent/toxin/potassium_chlorophoride/on_mob_life(mob/living/L, metabolism)
 	if(L.stat != UNCONSCIOUS)

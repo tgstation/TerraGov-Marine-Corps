@@ -382,13 +382,15 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/bullet/pistol/tranq
 	name = "tranq bullet"
 	hud_state = "pistol_tranq"
-	damage = 50
+	damage = 100
 	damage_type = STAMINA
+	shrapnel_chance = 0
 
 /datum/ammo/bullet/pistol/tranq/on_hit_mob(mob/victim, obj/projectile/proj)
 	if(iscarbon(victim))
 		var/mob/living/carbon/carbon_victim = victim
-		carbon_victim.reagents.add_reagent(/datum/reagent/toxin/potassium_chlorophoride, 5)
+		carbon_victim.reagents.add_reagent(/datum/reagent/toxin/potassium_chlorophoride, 2, no_overdose = TRUE)
+		carbon_victim.reagents.add_reagent(/datum/reagent/toxin/sleeptoxin, 0.5, no_overdose = TRUE)
 
 /datum/ammo/bullet/pistol/hollow
 	name = "hollowpoint pistol bullet"

@@ -148,7 +148,7 @@
 	icon_state = "sec_locker1"
 	pixel_x = -16
 	pixel_y = -16
-	icon_closed = "secure"
+	icon_closed = "sec_locker"
 	icon_locked = "sec_locker1"
 	icon_opened = "sec_locker_opened"
 	icon_broken = "sec_locker_broken"
