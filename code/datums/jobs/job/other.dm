@@ -122,6 +122,24 @@
 	shoes = /obj/item/clothing/shoes/orange
 	ears = /obj/item/radio/headset/mainship
 
+/datum/job/other/prisonersom
+	title = "SOM Prisoner"
+	paygrade = "Psnr"
+	comm_title = "Psnr"
+	outfit = /datum/outfit/job/prisonersom
+	supervisors = "The SOM"
+	skills_type = /datum/skills/civilian
+	total_positions = -1
+	selection_color = "#e65e04"
+	job_flags = JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_LATEJOINABLE|JOB_FLAG_OVERRIDELATEJOINSPAWN|JOB_FLAG_ADDTOMANIFEST
+	job_category = JOB_CAT_CIVILIAN
+
+/datum/outfit/job/prisonersom
+	id = /obj/item/card/id
+	w_uniform = /obj/item/clothing/under/rank/prisoner
+	shoes = /obj/item/clothing/shoes/orange
+	ears = /obj/item/radio/headset/mainship
+
 /datum/job/worker
 	title = "Worker"
 	paygrade = "Wrkr"
@@ -169,41 +187,12 @@
 
 /datum/outfit/job/mo
 	id = /obj/item/card/id
-	w_uniform = /obj/item/clothing/under/swimsuit/black
+	w_uniform = /obj/item/clothing/under/swimsuit/purple
 	shoes = /obj/item/clothing/shoes/black
 	l_store = /obj/item/storage/pouch/general/large
 	ears = /obj/item/radio/headset/mainship
 
-/datum/job/terragov/squad/standard/radio_help_message(mob/M)
+/datum/job/worker/moraleofficer/radio_help_message(mob/M)
 	. = ..()
 	to_chat(M, {"\nYou are a 'Morale Officer' fancy name for a free-use whore hired by a corporation to keep employees happy,
-	do your job and try not to stain the ship too much."})
-
-// Bridge Officer
-
-/datum/job/worker/bridgeofficer
-	title = "Bridge Officer"
-	paygrade = "MO"
-	comm_title = "MO"
-	outfit = /datum/outfit/job/mo
-	supervisors = "Ninetails Corp"
-	access = list(ALL_MARINE_ACCESS)
-	minimal_access = list(ALL_MARINE_ACCESS)
-	skills_type = /datum/skills/so
-	total_positions = -1
-	selection_color = "#ef0cf7"
-	job_flags = JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_LATEJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST
-	faction = FACTION_TERRAGOV
-	job_category = JOB_CAT_CIVILIAN
-
-/datum/outfit/job/mo
-	id = /obj/item/card/id
-	w_uniform = /obj/item/clothing/under/swimsuit/black
-	shoes = /obj/item/clothing/shoes/black
-	l_store = /obj/item/storage/pouch/general/large
-	ears = /obj/item/radio/headset/mainship/mcom
-
-/datum/job/terragov/squad/standard/radio_help_message(mob/M)
-	. = ..()
-	to_chat(M, {"\nYou are a 'Bridge Officer' fancy name for a premium free-use whore hired by a corporation to serve the command staff
-	do your job and try not to stain the bridge too much."})
+	do your job and try not to 'stain' the ship too much."})

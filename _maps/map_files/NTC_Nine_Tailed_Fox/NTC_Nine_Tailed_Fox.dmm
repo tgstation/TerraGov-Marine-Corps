@@ -1562,6 +1562,12 @@
 	name = "\improper Field Commander's Office";
 	ceiling = 2
 	})
+"brX" = (
+/obj/docking_port/stationary/marine_dropship/crash_target,
+/turf/open/floor/mainship/cargo,
+/area/outpost/cargo{
+	outside = 1
+	})
 "bsl" = (
 /obj/machinery/door/airlock/mainship/maint{
 	dir = 2
@@ -2815,6 +2821,12 @@
 	dir = 9
 	},
 /area/mainship/hull/upper_hull)
+"cwf" = (
+/obj/docking_port/stationary/marine_dropship/crash_target,
+/turf/open/floor/mainship/orange/full,
+/area/outpost/cargo{
+	outside = 1
+	})
 "cwn" = (
 /obj/structure/window/framed/mainship/hull,
 /turf/open/floor/plating/platebotc,
@@ -5265,6 +5277,7 @@
 /obj/machinery/light/mainship{
 	dir = 8
 	},
+/obj/docking_port/stationary/marine_dropship/crash_target,
 /turf/open/floor/carpet/side{
 	dir = 10
 	},
@@ -12117,7 +12130,6 @@
 	dir = 1;
 	id = "supply_elevator_railing"
 	},
-/obj/docking_port/stationary/marine_dropship/crash_target,
 /turf/open/floor/mainship/cargo/arrow,
 /area/campaign/jungle_outpost/outpost/req{
 	name = "\improper Shipside Req"
@@ -17613,6 +17625,16 @@
 /area/mainship/hallways/bow_hallway{
 	name = "Ship Floor 1 Hallways"
 	})
+"qgb" = (
+/obj/machinery/door/poddoor/railing{
+	dir = 1;
+	id = "supply_elevator_railing"
+	},
+/obj/docking_port/stationary/marine_dropship/crash_target,
+/turf/open/floor/mainship/floor,
+/area/campaign/jungle_outpost/outpost/req{
+	name = "\improper Shipside Req"
+	})
 "qgo" = (
 /turf/open/floor/mainship/black,
 /area/mainship/squads{
@@ -21204,6 +21226,14 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/lower_hull)
+"tFF" = (
+/obj/docking_port/stationary/marine_dropship/crash_target,
+/turf/open/floor/mainship/orange{
+	dir = 1
+	},
+/area/outpost/cargo{
+	outside = 1
+	})
 "tFY" = (
 /obj/machinery/light{
 	dir = 1
@@ -25283,6 +25313,7 @@
 /obj/machinery/camera/autoname{
 	dir = 4
 	},
+/obj/docking_port/stationary/marine_dropship/crash_target,
 /turf/open/floor/mainship/mono,
 /area/mainship/groundhq/ntf/shipboard/brig)
 "xyD" = (
@@ -35206,7 +35237,7 @@ izo
 izo
 woS
 izo
-xPo
+tFF
 kkx
 izo
 woS
@@ -36004,7 +36035,7 @@ kyy
 kyy
 kyy
 kyy
-xMy
+qgb
 geZ
 oYi
 sIF
@@ -38104,7 +38135,7 @@ kkx
 izo
 woS
 woS
-woS
+cwf
 izo
 izo
 izo
@@ -41984,7 +42015,7 @@ izo
 izo
 tnt
 izo
-izo
+brX
 izo
 izo
 izo

@@ -459,6 +459,79 @@ You are in charge of logistics and the overwatch system. You are also in line to
 /datum/outfit/job/command/staffofficer/campaign
 	l_store = /obj/item/binoculars/fire_support/campaign
 
+//Command Doll
+/datum/job/terragov/command/commanddoll
+	title = "Command Doll"
+	paygrade = "O1"
+	comm_title = "CDoll"
+	total_positions = 2
+	access = ALL_MARINE_ACCESS
+	minimal_access = ALL_MARINE_ACCESS
+	display_order = JOB_DISPLAY_ORDER_STAFF_OFFICER
+	skills_type = /datum/skills/specialist
+	outfit = /datum/outfit/job/command/commanddoll
+	multiple_outfits = TRUE
+	outfits = list(
+		/datum/outfit/job/command/commanddoll,
+		/datum/outfit/job/command/commanddoll/robot,
+	)
+	exp_requirements = XP_REQ_INTERMEDIATE
+	exp_type = EXP_TYPE_REGULAR_ALL
+	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_ISCOMMAND|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS|JOB_FLAG_ALWAYS_VISIBLE_ON_MINIMAP
+	jobworth = list(
+		/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE,
+		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
+		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR,
+		/datum/job/terragov/command/mech_pilot = MECH_POINTS_REGULAR,
+	)
+	minimap_icon = "commanddoll"
+
+/datum/job/terragov/command/commanddoll/radio_help_message(mob/M)
+	. = ..()
+	to_chat(M, {"\nYou are a Command Doll, fancy name for a premium free-use slut and an elite bodyguard hired by the corporation to serve the command staff in any way possible, mostly sexual...
+	do your job and try not to stain the bridge too much. You are the lowest command, surprising you are even command but you can lead if all the other command mysteriously died or something..."})
+
+/datum/job/terragov/command/commanddoll/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
+	. = ..()
+	if(!ishuman(new_mob))
+		return
+	var/mob/living/carbon/human/new_human = new_mob
+	var/playtime_mins = user?.client?.get_exp(title)
+	if(!playtime_mins || playtime_mins < 1 )
+		return
+	switch(playtime_mins)
+		if(0 to 1000) // starting
+			new_human.wear_id.paygrade = "O2"
+		if(1001 to 2500) // 25 hrs
+			new_human.wear_id.paygrade = "O3"
+		if(2501 to INFINITY) // 50 hrs
+			new_human.wear_id.paygrade = "O4"
+
+/datum/job/terragov/command/commanddoll/campaign
+	outfit = /datum/job/terragov/command/commanddoll/campaign
+	multiple_outfits = FALSE
+
+/datum/outfit/job/command/commanddoll
+	name = "Command Doll"
+	jobtype = /datum/job/terragov/command/commanddoll
+
+	id = /obj/item/card/id/silver
+	belt = /obj/item/storage/holster/belt/pistol/m4a3/officer
+	ears = /obj/item/radio/headset/mainship/mcom
+	w_uniform = /obj/item/clothing/under/swimsuit/black
+	shoes = /obj/item/clothing/shoes/black
+	r_store = /obj/item/storage/pouch/general/large
+
+
+/datum/outfit/job/command/commanddoll/robot
+	species = SPECIES_COMBAT_ROBOT
+
+	w_uniform = /obj/item/clothing/under/marine/robotic
+	shoes = null
+	gloves = null
+	head = /obj/item/clothing/head/modular/robot
+	r_store = /obj/item/storage/pouch/general/large
+
 //Pilot Officer
 /datum/job/terragov/command/pilot
 	title = PILOT_OFFICER
