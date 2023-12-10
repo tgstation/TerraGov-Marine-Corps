@@ -277,11 +277,12 @@
 			continue
 		else if(distance == 0) //if we're right on top of them, they take actual damage
 			M.take_overall_damage(12, BRUTE, MELEE, updating_health = TRUE, max_limbs = 3)
-			to_chat(M, span_highdanger("[X] slams her fists into you, crushing you to the ground!"))
+			to_chat(M, span_highdanger("[owner_xeno] slams her fists into you, crushing you to the ground!"))
 			M.Paralyze(2 SECONDS)
 			shake_camera(M, 3, 3)
 		else if(distance <= 1) //marines will only be staggerslowed if they're one tile away from you
 			shake_camera(M, 2, 2)
+			to_chat(M, span_highdanger("Blood swells up from the ground around you!"))
 			M.adjust_stagger(2)
 			M.adjust_slowdown(3)
 
