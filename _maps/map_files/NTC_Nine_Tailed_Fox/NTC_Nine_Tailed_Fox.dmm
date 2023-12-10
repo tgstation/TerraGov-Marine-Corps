@@ -1100,6 +1100,10 @@
 	pixel_y = 3;
 	pixel_x = 5
 	},
+/obj/item/minimap_tablet{
+	pixel_x = 9;
+	pixel_y = 5
+	},
 /turf/open/floor/plating/mainship,
 /area/mainship/command/cic)
 "aWc" = (
@@ -9718,6 +9722,10 @@
 	dir = 2
 	},
 /obj/structure/cable,
+/obj/machinery/door/poddoor/shutters/mainship/open/checkpoint{
+	dir = 2;
+	id = "Lowershiplockdown"
+	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/bow_hallway{
 	name = "Ship Floor 1 Hallways"
@@ -17190,6 +17198,16 @@
 /area/mainship/hallways/bow_hallway{
 	name = "Ship Floor 1 Hallways"
 	})
+"pLp" = (
+/obj/structure/cable,
+/obj/machinery/door/poddoor/shutters/mainship/open/checkpoint{
+	dir = 2;
+	id = "Lowershiplockdown"
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/hallways/bow_hallway{
+	name = "Ship Floor 1 Hallways"
+	})
 "pLw" = (
 /obj/item/trash/cigbutt,
 /turf/open/floor/mainship/black{
@@ -17967,6 +17985,10 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable,
+/obj/machinery/door/poddoor/shutters/mainship/open/checkpoint{
+	dir = 2;
+	id = "Lowershiplockdown"
+	},
 /turf/open/floor/mainship/mono,
 /area/deltastation/command/heads_quarters/hos{
 	outside = 0;
@@ -20227,10 +20249,6 @@
 	})
 "sKw" = (
 /obj/machinery/door/window/secure/bridge,
-/obj/item/minimap_tablet{
-	pixel_x = 9;
-	pixel_y = 5
-	},
 /turf/open/floor/plating/mainship,
 /area/mainship/command/cic)
 "sLf" = (
@@ -32793,7 +32811,7 @@ kyS
 aXE
 kyS
 kyS
-kyS
+jrS
 aXE
 kyS
 kyS
@@ -33035,7 +33053,7 @@ hZA
 kjD
 kjD
 kjD
-kjD
+pLp
 kjD
 kjD
 kyS
@@ -33277,7 +33295,7 @@ kyS
 kyS
 kyS
 kyS
-kyS
+jrS
 kyS
 hZA
 kyS
@@ -44167,7 +44185,7 @@ aEA
 ury
 dDp
 aEA
-aEA
+ghD
 qSs
 dDp
 aEA
