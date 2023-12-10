@@ -143,3 +143,37 @@
 	shoes = /obj/item/clothing/shoes/marine
 	l_store = /obj/item/storage/pouch/survival/full
 	ears = /obj/item/radio/headset/mainship
+
+/datum/job/worker/radio_help_message(mob/M)
+	. = ..()
+	to_chat(M, {"\nYou are a standard worker with wide access among the ship,
+	you can use a worker locker to get equipped and use your access to do your job properly,
+	you should not sabotage the station with this access."})
+
+
+/datum/job/worker/moraleofficer
+	title = "Morale Officer"
+	paygrade = "MO"
+	comm_title = "MO"
+	outfit = /datum/outfit/job/mo
+	supervisors = "Ninetails Corp"
+	access = list(ALL_MARINE_ACCESS)
+	minimal_access = list(ALL_MARINE_ACCESS)
+	skills_type = /datum/skills/civilian/survivor
+	total_positions = -1
+	selection_color = "#ef0cf7"
+	job_flags = JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_LATEJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST
+	faction = FACTION_TERRAGOV
+	job_category = JOB_CAT_CIVILIAN
+
+/datum/outfit/job/mo
+	id = /obj/item/card/id
+	w_uniform = /obj/item/clothing/under/colonist
+	shoes = /obj/item/clothing/shoes/marine
+	l_store = /obj/item/storage/pouch/survival/full
+	ears = /obj/item/radio/headset/mainship
+
+/datum/job/terragov/squad/standard/radio_help_message(mob/M)
+	. = ..()
+	to_chat(M, {"\nYou are a 'Morale Officer' fancy name for a free-use whore hired by a corporation to keep employees happy,
+	do your job and try not to stain the ship too much."})
