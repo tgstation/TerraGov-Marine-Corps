@@ -388,9 +388,6 @@
 	icon = 'icons/mob/screen/alien.dmi'
 	z_prefix = "ay_"
 
-/atom/movable/screen/zone_sel/robot
-	icon = 'icons/mob/screen/cyborg.dmi'
-
 /atom/movable/screen/healths
 	name = "health"
 	icon_state = "health0"
@@ -400,11 +397,6 @@
 /atom/movable/screen/healths/alien
 	icon = 'icons/mob/screen/alien.dmi'
 	screen_loc = ui_alien_health
-
-/atom/movable/screen/healths/robot
-	icon = 'icons/mob/screen/cyborg.dmi'
-	screen_loc = ui_borg_health
-
 
 /atom/movable/screen/stamina_hud
 	icon = 'icons/mob/screen/health.dmi'

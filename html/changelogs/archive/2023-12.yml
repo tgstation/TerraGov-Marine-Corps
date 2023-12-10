@@ -97,3 +97,15 @@
   DeltaFire15:
   - balance: Antenna helmet modules have exchanged their ability to project a req
       drop beacon for improving caves communications (once configured)
+2023-12-10:
+  DeltaFire15:
+  - balance: Banished solid objects now push out any living beings on their return
+      tile (if possible) before returning.
+  Lumipharon:
+  - balance: Psycrush now only targets turfs
+  - balance: Psylance and Psyblast will now fail to cast if their target moves off
+      screen
+  Wisemonster:
+  - spellcheck: Changed the acronym for the hypervene hypo to Hy
+  ivanmixo:
+  - code_imp: Killed get_contents

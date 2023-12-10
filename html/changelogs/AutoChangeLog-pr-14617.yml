@@ -1,0 +1,4 @@
+author: "Arturlang"
+delete-after: True
+changes:
+  - bugfix: "Widow's spiderlings will no longer just constantly stop attacking their target, now the widow will have to move away from the spiderlings and only then they will stop"
