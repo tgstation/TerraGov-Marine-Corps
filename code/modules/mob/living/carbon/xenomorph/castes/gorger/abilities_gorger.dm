@@ -269,16 +269,22 @@
 		if(M.stat == DEAD)
 			continue
 		var/distance = get_dist(M, owner_xeno)
-		if(distance==0 && !owner_xeno.issamexenohive(M)) //if we're right on top of them, they take actual damage
-			M.take_overall_damage(12, BRUTE, MELEE, updating_health = TRUE, max_limbs = 3)
-		else if(distance <= 1 && !owner_xeno.issamexenohive(M)) //marines will only be staggerslowed if they're one tile away from you
-			M.adjust_stagger(2)
-			M.adjust_slowdown(2)
-		else if(owner_xeno.issamexenohive(M))  //Xenos can be healed up to three tiles away from you
+		if(owner_xeno.issamexenohive(M))  //Xenos can be healed up to three tiles away from you
 			var/mob/living/carbon/xenomorph/target_xeno = M
 			var/heal_amount = M.maxHealth * GORGER_ASSIZE_HEAL
 			HEAL_XENO_DAMAGE(target_xeno, heal_amount, FALSE)
 			adjustOverheal(target_xeno, heal_amount)
+			continue
+		else if(distance == 0) //if we're right on top of them, they take actual damage
+			M.take_overall_damage(12, BRUTE, MELEE, updating_health = TRUE, max_limbs = 3)
+			to_chat(M, span_highdanger("[X] slams her fists into you, crushing you to the ground!"))
+			M.Paralyze(2 SECONDS)
+			shake_camera(M, 3, 3)
+		else if(distance <= 1) //marines will only be staggerslowed if they're one tile away from you
+			shake_camera(M, 2, 2)
+			M.adjust_stagger(2)
+			M.adjust_slowdown(3)
+
 
 /datum/action/ability/activable/xeno/assize/ai_should_use(atom/target)
 	return FALSE
