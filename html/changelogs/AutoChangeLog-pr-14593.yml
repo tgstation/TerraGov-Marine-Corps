@@ -1,4 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - balance: "Psylance and Psyblast will now fail to cast if their target moves off screen"

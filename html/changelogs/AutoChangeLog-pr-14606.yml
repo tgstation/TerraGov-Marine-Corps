@@ -1,4 +1,0 @@
-author: "DeltaFire15"
-delete-after: True
-changes:
-  - balance: "Banished solid objects now push out any living beings on their return tile (if possible) before returning."
