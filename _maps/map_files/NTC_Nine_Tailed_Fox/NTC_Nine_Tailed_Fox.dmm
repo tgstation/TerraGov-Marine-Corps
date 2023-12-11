@@ -523,6 +523,7 @@
 /area/mainship/medical/operating_room_four)
 "aBQ" = (
 /obj/structure/closet/cabinet,
+/obj/item/disk/nuclear/blue,
 /turf/open/floor/carpet/side{
 	dir = 4
 	},
@@ -1099,7 +1100,8 @@
 	id = "ROlobby";
 	name = "Requisitions lockdown";
 	pixel_x = 5;
-	pixel_y = 10
+	pixel_y = 10;
+	req_one_access = list(42,2)
 	},
 /obj/machinery/door_control/old/cic{
 	pixel_x = -5;
@@ -1110,17 +1112,23 @@
 	id = "floor3shipcheckpoint";
 	name = "Floor 3 Lockdown";
 	pixel_x = -5;
-	pixel_y = 3
+	pixel_y = 3;
+	req_access = list(5)
 	},
 /obj/machinery/door_control/old{
 	id = "Lowershiplockdown";
 	name = "Floor 1 & 2 Lockdown";
 	pixel_y = 3;
-	pixel_x = 5
+	pixel_x = 5;
+	req_access = list(5)
 	},
-/obj/item/minimap_tablet{
-	pixel_x = 9;
-	pixel_y = 5
+/obj/machinery/door_control/old/cic{
+	pixel_x = -5;
+	id = "nukedoors";
+	name = "Nuke Blast Doors";
+	pixel_y = -4;
+	req_one_access = null;
+	req_access = list(200)
 	},
 /turf/open/floor/plating/mainship,
 /area/mainship/command/cic)
@@ -1693,6 +1701,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
+/obj/structure/cable,
 /turf/open/floor/mainship/floor,
 /area/mainship/living/officer_study)
 "bwF" = (
@@ -3347,6 +3356,7 @@
 /obj/item/reagent_containers/food/drinks/bottle/davenport,
 /obj/item/reagent_containers/food/drinks/drinkingglass,
 /obj/item/flashlight/lamp/green,
+/obj/item/reagent_containers/spray/cleaner,
 /turf/open/floor/carpet/side{
 	dir = 6
 	},
@@ -5222,6 +5232,17 @@
 	},
 /turf/open/floor/plating,
 /area/mainship/medical/operating_room_four)
+"eMf" = (
+/obj/machinery/light/mainship/small,
+/obj/structure/toilet{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/blood{
+	basecolor = "#ffffff";
+	name = "cum"
+	},
+/turf/open/floor/mainship/floor,
+/area/campaign/jungle_outpost/outpost/living/bathroom)
 "eMu" = (
 /obj/machinery/computer/supplycomp,
 /turf/open/floor/mainship/mono,
@@ -5231,6 +5252,10 @@
 "eMw" = (
 /obj/effect/landmark/corpsespawner/marine/burst,
 /obj/effect/ai_node,
+/obj/effect/decal/cleanable/blood{
+	basecolor = "#ffffff";
+	name = "cum"
+	},
 /turf/open/floor/mainship/research/containment/floor1,
 /area/mainship/medical/surgery_hallway{
 	name = "Research";
@@ -5757,7 +5782,12 @@
 /obj/machinery/door/airlock/mainship/secure{
 	dir = 2
 	},
-/turf/open/floor/mainship/floor,
+/obj/machinery/door/poddoor/mainship{
+	id = "nukedoors";
+	name = "\improper Blast Door";
+	dir = 2
+	},
+/turf/open/floor/mainship/red/full,
 /area/mainship/hull/upper_hull)
 "fgI" = (
 /turf/open/floor/carpet{
@@ -6818,6 +6848,10 @@
 	dir = 1
 	},
 /obj/effect/landmark/start/job/captain,
+/obj/item/minimap_tablet{
+	pixel_x = 9;
+	pixel_y = 5
+	},
 /turf/open/floor/plating/mainship,
 /area/mainship/command/cic)
 "fYO" = (
@@ -8315,6 +8349,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 9
 	},
+/obj/structure/cable,
 /turf/open/floor/mainship/floor,
 /area/mainship/living/officer_study)
 "hnC" = (
@@ -11581,6 +11616,10 @@
 /area/mainship/hallways/port_umbilical{
 	name = "Ship Floor 2 Hallways"
 	})
+"ksE" = (
+/obj/machinery/nuclearbomb,
+/turf/open/floor/mainship/red/full,
+/area/mainship/hull/upper_hull)
 "ksI" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment,
@@ -11899,6 +11938,15 @@
 	outside = 0;
 	name = "CEO Office"
 	})
+"kGF" = (
+/obj/machinery/light/mainship,
+/obj/effect/decal/cleanable/blood/drip{
+	basecolor = "#ffffff";
+	name = "drips of cum";
+	desc = "Some small drips of cum."
+	},
+/turf/open/floor/wood,
+/area/mainship/living/officer_study)
 "kGJ" = (
 /obj/machinery/door/poddoor/mainship/open/cic{
 	id = "shipside_cic_lockdown"
@@ -12133,7 +12181,9 @@
 	},
 /area/mainship/medical/operating_room_one)
 "kPB" = (
-/obj/structure/cable,
+/obj/machinery/door/airlock/mainship/command/cic{
+	name = "\improper Dolls Dorms"
+	},
 /turf/open/floor/mainship/floor,
 /area/mainship/living/officer_study)
 "kPG" = (
@@ -12497,6 +12547,7 @@
 	icon_state = "spacecash500"
 	},
 /obj/structure/safe,
+/obj/item/disk/nuclear/green,
 /turf/open/floor/wood,
 /area/sulaco/liaison/quarters{
 	outside = 0;
@@ -13068,6 +13119,11 @@
 "lyD" = (
 /obj/machinery/status_display,
 /turf/closed/wall/mainship,
+/area/mainship/living/officer_study)
+"lyP" = (
+/obj/structure/window/framed/mainship/hull,
+/obj/structure/curtain/open/black,
+/turf/open/floor/plating,
 /area/mainship/living/officer_study)
 "lyQ" = (
 /obj/machinery/cloning/vats,
@@ -14773,6 +14829,10 @@
 /area/campaign/jungle_outpost/outpost/req{
 	name = "\improper Shipside Req"
 	})
+"mYI" = (
+/obj/effect/spawner/random/misc/structure/flavorvending/coffeeweighted,
+/turf/open/floor/wood,
+/area/mainship/living/officer_study)
 "mYR" = (
 /turf/open/floor/mainship/black{
 	dir = 4
@@ -15235,6 +15295,14 @@
 /area/outpost/cargo{
 	outside = 1
 	})
+"nyT" = (
+/obj/machinery/door/poddoor/mainship{
+	id = "nukedoors";
+	name = "\improper Blast Door";
+	dir = 2
+	},
+/turf/open/floor/mainship/red/full,
+/area/mainship/hull/upper_hull)
 "nzk" = (
 /obj/structure/droppod{
 	name = "Zeus orbital drop pod"
@@ -16162,6 +16230,14 @@
 /area/mainship/hallways/port_umbilical{
 	name = "Ship Floor 2 Hallways"
 	})
+"opL" = (
+/obj/item/weapon/gun/sentry/premade,
+/obj/structure/barricade/metal,
+/obj/structure/barricade/metal{
+	dir = 4
+	},
+/turf/open/floor/mainship/red/full,
+/area/mainship/hull/upper_hull)
 "opY" = (
 /obj/effect/landmark/start/job/squadcorpsman,
 /obj/effect/landmark/start/job/squadcorpsman,
@@ -17273,6 +17349,13 @@
 	outside = 0;
 	name = "Shipside Medbay"
 	})
+"poP" = (
+/obj/effect/decal/cleanable/blood{
+	basecolor = "#ffffff";
+	name = "cum"
+	},
+/turf/open/floor/wood,
+/area/mainship/living/officer_study)
 "poQ" = (
 /obj/machinery/door/firedoor/mainship{
 	dir = 2
@@ -18888,6 +18971,7 @@
 	})
 "qRx" = (
 /obj/machinery/holopad,
+/obj/structure/cable,
 /turf/open/floor/wood,
 /area/mainship/living/officer_study)
 "qRF" = (
@@ -19271,6 +19355,10 @@
 "rnp" = (
 /obj/structure/bed,
 /obj/item/bedsheet/red,
+/obj/effect/decal/cleanable/blood{
+	basecolor = "#ffffff";
+	name = "cum"
+	},
 /turf/open/floor/carpet/side{
 	dir = 4
 	},
@@ -20041,7 +20129,11 @@
 	outside = 0
 	})
 "scG" = (
-/turf/open/floor/mainship/floor,
+/obj/machinery/door/poddoor/mainship{
+	id = "nukedoors";
+	name = "\improper Blast Door"
+	},
+/turf/open/floor/mainship/red/full,
 /area/mainship/hull/upper_hull)
 "scU" = (
 /turf/open/floor/mainship/black,
@@ -22013,6 +22105,10 @@
 /area/mainship/squads{
 	outside = 0
 	})
+"tUd" = (
+/obj/machinery/marine_selector/clothes/specialist,
+/turf/open/floor/wood,
+/area/mainship/living/officer_study)
 "tUF" = (
 /obj/structure/closet/basketball,
 /obj/structure/cable,
@@ -22242,7 +22338,12 @@
 /obj/machinery/light/mainship{
 	dir = 1
 	},
-/turf/open/floor/mainship/floor,
+/obj/machinery/door/poddoor/mainship{
+	id = "nukedoors";
+	name = "\improper Blast Door";
+	dir = 2
+	},
+/turf/open/floor/mainship/red/full,
 /area/mainship/hull/upper_hull)
 "uhf" = (
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -22341,6 +22442,16 @@
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/lower_hull)
+"ulB" = (
+/obj/effect/decal/cleanable/blood{
+	basecolor = "#ffffff";
+	name = "cum"
+	},
+/turf/open/floor/mainship/sterile/dark,
+/area/mainship/medical/upper_medical{
+	outside = 0;
+	name = "Shipside Medbay"
+	})
 "umi" = (
 /obj/structure/bed,
 /obj/item/bedsheet/hos,
@@ -22809,8 +22920,8 @@
 	},
 /area/mainship/command/self_destruct)
 "uHy" = (
-/obj/effect/spawner/random/misc/structure/flavorvending/coffeeweighted,
-/turf/open/floor/mainship/floor,
+/obj/structure/bed/bunkbed,
+/turf/open/floor/wood,
 /area/mainship/living/officer_study)
 "uIj" = (
 /obj/machinery/door/poddoor/mainship/open/cic{
@@ -23236,6 +23347,10 @@
 	name = "Research";
 	outside = 0
 	})
+"veM" = (
+/obj/machinery/marine_selector/gear/specialist,
+/turf/open/floor/wood,
+/area/mainship/living/officer_study)
 "vgl" = (
 /obj/machinery/power/apc/mainship,
 /obj/structure/cable,
@@ -24988,6 +25103,7 @@
 	})
 "wMI" = (
 /obj/structure/closet/secure_closet/captain,
+/obj/item/disk/nuclear/red,
 /turf/open/floor/wood,
 /area/sulaco/command{
 	name = "Captain's Room";
@@ -26265,6 +26381,13 @@
 "xRV" = (
 /turf/open/floor/plating/mainship,
 /area/mainship/living/evacuation/two)
+"xSn" = (
+/obj/effect/decal/cleanable/blood{
+	basecolor = "#ffffff";
+	name = "cum"
+	},
+/turf/open/floor/prison/kitchen,
+/area/mainship/living/officer_study)
 "xSt" = (
 /obj/structure/window/framed/mainship,
 /turf/open/floor/mainship/mono,
@@ -26657,6 +26780,7 @@
 	})
 "ymf" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1,
+/obj/structure/cable,
 /turf/open/floor/wood,
 /area/mainship/living/officer_study)
 
@@ -34428,9 +34552,9 @@ nwr
 nwr
 nwr
 oJY
-oJY
-scG
-scG
+opL
+nyT
+nyT
 fgr
 reV
 aMa
@@ -35396,7 +35520,7 @@ nwr
 xZt
 wgC
 oFe
-scG
+ksE
 spx
 wfY
 edp
@@ -36238,8 +36362,8 @@ nwr
 nwr
 nKd
 uiM
-tej
-jba
+tUd
+uHy
 uHy
 ePf
 vLZ
@@ -36480,9 +36604,9 @@ nKd
 nKd
 nKd
 uiM
-uTe
-uTe
-aYI
+veM
+poP
+kGF
 ePf
 uSI
 oHt
@@ -36517,7 +36641,7 @@ jJg
 rUZ
 iCo
 sfV
-kbD
+eMf
 gkJ
 kyS
 tKP
@@ -36722,8 +36846,8 @@ gsf
 uiM
 uiM
 gsf
-wEj
-bap
+gsf
+lyP
 kPB
 ePf
 kfS
@@ -37929,10 +38053,10 @@ nwr
 nwr
 nwr
 gsf
-jba
-uTe
+wEj
+bap
 qRx
-uTe
+bap
 ymf
 hnw
 cMb
@@ -38897,9 +39021,9 @@ nwr
 nwr
 nwr
 gsf
-uTe
-uTe
-uTe
+tej
+jba
+mYI
 uTe
 uTe
 xWt
@@ -40109,7 +40233,7 @@ nwr
 uiM
 sBX
 hHn
-hHn
+xSn
 smP
 aBL
 xWt
@@ -41847,7 +41971,7 @@ uEl
 uEl
 aIn
 kzk
-vYS
+ulB
 eAS
 xHJ
 kyS

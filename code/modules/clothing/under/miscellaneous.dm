@@ -392,6 +392,11 @@
 	UnregisterSignal(unequipper, COMSIG_LIVING_ADD_VENTCRAWL)
 	REMOVE_TRAIT(unequipper, TRAIT_CAN_VENTCRAWL, ARMOR_TRAIT)
 
+/obj/item/clothing/under/spec_operative/tback
+	name = "NTC Spec-Ops Tactical T-Back Leotard"
+	desc = "An extremely expensive sneaking leotard with extra skin-showing properties created by an Ninetails Corporation for high risk missions with high risk clothes, made with several layers of a nano-fiber that, while light, molds to the wearer's body shape and hardens protecting them. Only provided rarely to most successful Senior Operatives or higher."
+	icon_state = "swim_black"
+
 /obj/item/clothing/under/techpriest
 	name = "Techpriest Robes"
 	desc = "Praise the omnissiah!"

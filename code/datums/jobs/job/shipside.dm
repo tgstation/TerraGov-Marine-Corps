@@ -489,7 +489,8 @@ You are in charge of logistics and the overwatch system. You are also in line to
 /datum/job/terragov/command/commanddoll/radio_help_message(mob/M)
 	. = ..()
 	to_chat(M, {"\nYou are a Command Doll, fancy name for a premium free-use slut and an elite bodyguard hired by the corporation to serve the command staff in any way possible, mostly sexual...
-	do your job and try not to stain the bridge too much. You are the lowest command, surprising you are even command but you can lead if all the other command mysteriously died or something..."})
+	do your job and try not to stain the bridge too much. You are the lowest command, surprising you are even command but you can lead if all the other command mysteriously died or something...
+	Though it also means you failed your job to be a bodyguard."})
 
 /datum/job/terragov/command/commanddoll/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
 	. = ..()
@@ -515,11 +516,11 @@ You are in charge of logistics and the overwatch system. You are also in line to
 	name = "Command Doll"
 	jobtype = /datum/job/terragov/command/commanddoll
 
-	id = /obj/item/card/id/silver
+	id = /obj/item/card/id/dogtag/specialist
 	belt = /obj/item/storage/holster/belt/pistol/m4a3/officer
 	ears = /obj/item/radio/headset/mainship/mcom
-	w_uniform = /obj/item/clothing/under/swimsuit/black
-	shoes = /obj/item/clothing/shoes/black
+	w_uniform = /obj/item/clothing/under/spec_operative/tback
+	shoes = /obj/item/clothing/shoes/marine/full
 	r_store = /obj/item/storage/pouch/general/large
 
 
