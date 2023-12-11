@@ -50,14 +50,6 @@
 /area/mainship/hallways/port_hallway{
 	name = "Ship Floor 2 Hallways"
 	})
-"abX" = (
-/obj/item/weapon/gun/sentry/big_sentry/premade{
-	dir = 8
-	},
-/turf/open/floor/mainship/mono,
-/area/mainship/hallways/port_umbilical{
-	name = "Ship Floor 2 Hallways"
-	})
 "acl" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable,
@@ -697,8 +689,13 @@
 /turf/closed/wall/mainship,
 /area/mainship/groundhq/ntf/command/corporateliaison)
 "aGB" = (
-/turf/open/floor/prison/darkred/full,
-/area/space)
+/obj/item/weapon/gun/sentry/big_sentry/premade{
+	dir = 8
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/port_umbilical{
+	name = "Ship Floor 2 Hallways"
+	})
 "aGC" = (
 /obj/structure/dropship_equipment/shuttle/operatingtable,
 /turf/open/floor/mainship/office,
@@ -20728,9 +20725,6 @@
 "sQj" = (
 /turf/open/floor/wood,
 /area/mainship/groundhq/ntf/living/grunt_rnr)
-"sQt" = (
-/turf/open/floor/mainship_hull/dir,
-/area/space)
 "sQz" = (
 /obj/structure/cable,
 /obj/machinery/vending/engivend,
@@ -33059,7 +33053,7 @@ fSq
 fWn
 tmD
 aYd
-abX
+aGB
 hXu
 hXu
 bgb
@@ -33076,7 +33070,7 @@ hXu
 hXu
 baz
 hXu
-abX
+aGB
 aMa
 aMa
 boT
@@ -57126,7 +57120,7 @@ wcs
 wcs
 wcs
 wcs
-aGB
+wcs
 nwr
 nwr
 nwr
@@ -57368,7 +57362,7 @@ wcs
 wcs
 wcs
 wcs
-aGB
+wcs
 nwr
 nwr
 nwr
@@ -57610,7 +57604,7 @@ wgC
 wgC
 wgC
 wgC
-sQt
+knB
 nwr
 nwr
 nwr
@@ -57852,7 +57846,7 @@ wcs
 wcs
 wcs
 wcs
-aGB
+wcs
 nwr
 nwr
 nwr
@@ -58094,7 +58088,7 @@ wcs
 wcs
 wcs
 wcs
-aGB
+wcs
 nwr
 nwr
 nwr
@@ -58336,7 +58330,7 @@ wgC
 wgC
 wgC
 wgC
-sQt
+knB
 nwr
 nwr
 nwr
@@ -58578,7 +58572,7 @@ wgC
 wgC
 wgC
 wgC
-sQt
+knB
 nwr
 nwr
 nwr
@@ -58820,7 +58814,7 @@ wgC
 wgC
 wgC
 wgC
-sQt
+knB
 nwr
 nwr
 nwr
@@ -59062,7 +59056,7 @@ wgC
 wgC
 wgC
 wgC
-sQt
+knB
 nwr
 nwr
 nwr
@@ -59304,7 +59298,7 @@ wgC
 wgC
 wgC
 wgC
-sQt
+knB
 nwr
 nwr
 nwr
@@ -59546,7 +59540,7 @@ wgC
 wgC
 wgC
 wgC
-sQt
+knB
 nwr
 nwr
 nwr
@@ -59788,7 +59782,7 @@ eZt
 wgC
 wgC
 wgC
-sQt
+knB
 nwr
 nwr
 nwr
@@ -60030,7 +60024,7 @@ eZt
 eZt
 wgC
 wgC
-sQt
+knB
 nwr
 nwr
 nwr
@@ -60272,7 +60266,7 @@ eZt
 eZt
 wgC
 wgC
-sQt
+knB
 nwr
 nwr
 nwr
@@ -60514,7 +60508,7 @@ eZt
 eZt
 eZt
 wgC
-sQt
+knB
 nwr
 nwr
 nwr
@@ -60756,7 +60750,7 @@ eZt
 eZt
 eZt
 wgC
-sQt
+knB
 nwr
 nwr
 nwr
@@ -60998,7 +60992,7 @@ eZt
 eZt
 eZt
 wgC
-sQt
+knB
 nwr
 nwr
 nwr
@@ -61240,7 +61234,7 @@ eZt
 eZt
 eZt
 wgC
-sQt
+knB
 nwr
 nwr
 nwr
@@ -61482,7 +61476,7 @@ eZt
 eZt
 eZt
 wgC
-sQt
+knB
 nwr
 nwr
 nwr
@@ -61724,7 +61718,7 @@ eZt
 eZt
 eZt
 wgC
-sQt
+knB
 nwr
 nwr
 nwr
@@ -61966,7 +61960,7 @@ eZt
 eZt
 eZt
 wgC
-sQt
+knB
 nwr
 nwr
 nwr
@@ -62208,7 +62202,7 @@ wcs
 eZt
 wcs
 wgC
-sQt
+knB
 nwr
 nwr
 nwr
@@ -62450,7 +62444,7 @@ wcs
 wcs
 wcs
 wgC
-sQt
+knB
 nwr
 nwr
 nwr
@@ -62692,7 +62686,7 @@ wcs
 eZt
 wgC
 wgC
-sQt
+knB
 nwr
 nwr
 nwr
@@ -62934,7 +62928,7 @@ eZt
 wcs
 wgC
 wgC
-sQt
+knB
 nwr
 nwr
 nwr
@@ -63176,7 +63170,7 @@ wcs
 eZt
 wgC
 wgC
-sQt
+knB
 nwr
 nwr
 nwr
@@ -63418,7 +63412,7 @@ wcs
 wcs
 wcs
 wgC
-sQt
+knB
 nwr
 nwr
 nwr
@@ -63660,7 +63654,7 @@ wcs
 eZt
 wcs
 wgC
-sQt
+knB
 nwr
 nwr
 nwr
@@ -63902,7 +63896,7 @@ wcs
 eZt
 eZt
 wgC
-sQt
+knB
 nwr
 nwr
 nwr
@@ -64144,7 +64138,7 @@ eZt
 eZt
 eZt
 wgC
-sQt
+knB
 nwr
 nwr
 nwr
@@ -64386,7 +64380,7 @@ eZt
 eZt
 eZt
 wgC
-sQt
+knB
 nwr
 nwr
 nwr
@@ -64628,7 +64622,7 @@ eZt
 eZt
 eZt
 wgC
-sQt
+knB
 nwr
 nwr
 nwr
@@ -64870,7 +64864,7 @@ eZt
 eZt
 eZt
 wgC
-sQt
+knB
 nwr
 nwr
 nwr
@@ -65112,7 +65106,7 @@ eZt
 eZt
 eZt
 wgC
-sQt
+knB
 nwr
 nwr
 nwr
@@ -65354,7 +65348,7 @@ eZt
 eZt
 wgC
 wgC
-sQt
+knB
 nwr
 nwr
 nwr
@@ -65596,7 +65590,7 @@ eZt
 eZt
 wgC
 wgC
-sQt
+knB
 nwr
 nwr
 nwr
@@ -65838,7 +65832,7 @@ eZt
 wgC
 wgC
 wgC
-sQt
+knB
 nwr
 nwr
 nwr
@@ -66080,7 +66074,7 @@ wgC
 wgC
 wgC
 wgC
-sQt
+knB
 nwr
 nwr
 nwr
@@ -66322,7 +66316,7 @@ wgC
 wgC
 wgC
 wgC
-sQt
+knB
 nwr
 nwr
 nwr
@@ -66564,7 +66558,7 @@ wgC
 wgC
 wgC
 wgC
-sQt
+knB
 nwr
 nwr
 nwr
@@ -66806,7 +66800,7 @@ wgC
 wgC
 wgC
 wgC
-sQt
+knB
 nwr
 nwr
 nwr
@@ -67048,7 +67042,7 @@ wgC
 wgC
 wgC
 wgC
-sQt
+knB
 nwr
 nwr
 nwr
@@ -67290,7 +67284,7 @@ wcs
 wcs
 wcs
 wcs
-aGB
+wcs
 nwr
 nwr
 nwr
@@ -67532,7 +67526,7 @@ wcs
 wcs
 wcs
 wcs
-aGB
+wcs
 nwr
 nwr
 nwr
@@ -67774,7 +67768,7 @@ wgC
 wgC
 wgC
 wgC
-sQt
+knB
 nwr
 nwr
 nwr
@@ -68016,7 +68010,7 @@ wcs
 wcs
 wcs
 wcs
-aGB
+wcs
 nwr
 nwr
 nwr
@@ -68258,7 +68252,7 @@ wcs
 wcs
 wcs
 wcs
-aGB
+wcs
 nwr
 nwr
 nwr
