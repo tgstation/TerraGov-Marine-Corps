@@ -50,14 +50,6 @@
 	using.screen_loc = ui_ghost_slot2
 	static_inventory += using
 
-	// using = new /atom/movable/screen/ghost/follow_xeno()
-	// using.screen_loc = ui_ghost_slot2
-	// static_inventory += using
-
-	// using = new /atom/movable/screen/ghost/follow_human()
-	// using.screen_loc = ui_ghost_slot3
-	// static_inventory += using
-
 	using = new /atom/movable/screen/ghost/reenter_corpse()
 	using.screen_loc = ui_ghost_slot3
 	static_inventory += using
