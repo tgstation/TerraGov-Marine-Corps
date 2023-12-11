@@ -151,6 +151,7 @@
 	if(!button)
 		CRASH("no button object on finishing ability action cooldown")
 	button.cut_overlay(visual_references[VREF_IMAGE_XENO_CLOCK])
+	update_button_icon()
 
 ///Any changes when a xeno with this ability evolves
 /datum/action/ability/proc/on_xeno_upgrade()

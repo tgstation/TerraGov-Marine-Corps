@@ -397,7 +397,8 @@
 	ADD_TRAIT(src, TRAIT_IS_RESURRECTING, REVIVE_TO_CRIT_TRAIT)
 	if(should_zombify && (istype(wear_ear, /obj/item/radio/headset/mainship)))
 		var/obj/item/radio/headset/mainship/radio = wear_ear
-		radio.safety_protocol(src)
+		if(istype(radio))
+			radio.safety_protocol(src)
 	addtimer(CALLBACK(src, PROC_REF(finish_revive_to_crit), should_offer_to_ghost, should_zombify), 10 SECONDS)
 
 ///Check if we have a mind, and finish the revive if we do
@@ -427,3 +428,4 @@
 	overlay_fullscreen_timer(2 SECONDS, 20, "roundstart2", /atom/movable/screen/fullscreen/spawning_in)
 	REMOVE_TRAIT(src, TRAIT_IS_RESURRECTING, REVIVE_TO_CRIT_TRAIT)
 	SSmobs.start_processing(src)
+

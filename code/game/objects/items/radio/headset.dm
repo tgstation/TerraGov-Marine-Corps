@@ -209,7 +209,8 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 /obj/item/radio/headset/mainship/proc/safety_protocol(mob/living/carbon/human/user)
 	balloon_alert_to_viewers("Explodes")
 	playsound(user, 'sound/effects/explosion_micro1.ogg', 50, 1)
-	user.ex_act(EXPLODE_LIGHT)
+	if(wearer)
+		wearer.ex_act(EXPLODE_LIGHT)
 	qdel(src)
 
 /obj/item/radio/headset/mainship/dropped(mob/living/carbon/human/user)
