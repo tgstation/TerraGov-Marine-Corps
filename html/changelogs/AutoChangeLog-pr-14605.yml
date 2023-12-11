@@ -1,0 +1,5 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - rscadd: "Sectoids have been reported displaying powerful new psionic abilities in this sector"
+  - balance: "Sectoid base hp reduced to 80"
