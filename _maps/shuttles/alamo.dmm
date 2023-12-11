@@ -239,11 +239,7 @@
 /turf/closed/shuttle/dropship1/finleft,
 /area/shuttle/dropship/alamo)
 "aZ" = (
-/obj/machinery/optable,
-/obj/item/storage/surgical_tray,
-/obj/machinery/iv_drip,
-/obj/item/tank/anesthetic,
-/obj/item/tank/anesthetic,
+/obj/machinery/autodoc,
 /turf/open/shuttle/dropship/floor,
 /area/shuttle/dropship/alamo)
 "ba" = (
@@ -521,52 +517,56 @@
 	dir = 4
 	},
 /area/shuttle/dropship/alamo)
+"er" = (
+/obj/machinery/optable,
+/obj/item/storage/surgical_tray,
+/obj/machinery/iv_drip,
+/obj/item/tank/anesthetic,
+/obj/item/tank/anesthetic,
+/turf/open/shuttle/dropship/floor,
+/area/shuttle/dropship/alamo)
+"gm" = (
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 8
+	},
+/obj/structure/largecrate/supply/medicine/blood,
+/turf/open/shuttle/dropship/floor,
+/area/shuttle/dropship/alamo)
+"gq" = (
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 8
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/structure/largecrate/supply/supplies/plasteel,
+/turf/open/shuttle/dropship/floor,
+/area/shuttle/dropship/alamo)
 "gB" = (
 /turf/closed/shuttle/dropship1/edge/alt{
 	dir = 4
 	},
 /area/shuttle/dropship/alamo)
-"hN" = (
-/obj/structure/bed/chair/dropship/passenger{
-	dir = 8
-	},
-/obj/structure/largecrate/supply/supplies/mre,
-/turf/open/shuttle/dropship/floor,
-/area/shuttle/dropship/alamo)
-"hR" = (
-/obj/structure/bed/chair/dropship/passenger{
-	dir = 8
-	},
-/obj/structure/largecrate/supply/supplies/metal,
-/turf/open/shuttle/dropship/floor,
-/area/shuttle/dropship/alamo)
-"lc" = (
-/obj/machinery/vending/armor_supply,
-/turf/open/shuttle/dropship/floor,
-/area/shuttle/dropship/alamo)
-"nA" = (
-/obj/machinery/vending/uniform_supply,
-/turf/open/shuttle/dropship/floor,
-/area/shuttle/dropship/alamo)
-"oH" = (
-/obj/structure/bed/chair/dropship/passenger{
-	dir = 4
-	},
-/obj/structure/largecrate/supply/supplies/sandbags,
-/turf/open/shuttle/dropship/floor,
-/area/shuttle/dropship/alamo)
-"pY" = (
+"km" = (
 /obj/structure/bed/chair/dropship/passenger{
 	dir = 4
 	},
 /obj/structure/largecrate/supply/ammo/sentry,
 /turf/open/shuttle/dropship/floor,
 /area/shuttle/dropship/alamo)
-"qX" = (
+"lf" = (
 /obj/structure/bed/chair/dropship/passenger{
-	dir = 4
+	dir = 8
 	},
-/obj/structure/largecrate/supply/medicine/medkits,
+/obj/structure/largecrate/supply/supplies/plasteel,
+/turf/open/shuttle/dropship/floor,
+/area/shuttle/dropship/alamo)
+"lg" = (
+/obj/machinery/vending/uniform_supply,
+/turf/open/shuttle/dropship/floor,
+/area/shuttle/dropship/alamo)
+"li" = (
+/obj/machinery/vending/MarineMed,
 /turf/open/shuttle/dropship/floor,
 /area/shuttle/dropship/alamo)
 "rs" = (
@@ -575,21 +575,17 @@
 	},
 /turf/template_noop,
 /area/shuttle/dropship/normandy)
-"rR" = (
+"ry" = (
 /obj/structure/bed/chair/dropship/passenger{
 	dir = 4
+	},
+/obj/machinery/light{
+	dir = 8
 	},
 /obj/structure/largecrate/supply/supplies/metal,
 /turf/open/shuttle/dropship/floor,
 /area/shuttle/dropship/alamo)
-"sz" = (
-/obj/structure/bed/chair/dropship/passenger{
-	dir = 8
-	},
-/obj/structure/largecrate/supply/medicine/blood,
-/turf/open/shuttle/dropship/floor,
-/area/shuttle/dropship/alamo)
-"uQ" = (
+"rJ" = (
 /obj/structure/bed/chair/dropship/passenger{
 	dir = 8
 	},
@@ -599,52 +595,53 @@
 /obj/structure/largecrate/supply/floodlights,
 /turf/open/shuttle/dropship/floor,
 /area/shuttle/dropship/alamo)
+"sE" = (
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 8
+	},
+/obj/structure/largecrate/supply/explosives/disposable,
+/turf/open/shuttle/dropship/floor,
+/area/shuttle/dropship/alamo)
 "vw" = (
 /obj/structure/dropship_piece/one/engine/leftbottom,
 /turf/template_noop,
 /area/shuttle/dropship/alamo)
-"zL" = (
+"wO" = (
 /obj/structure/bed/chair/dropship/passenger{
 	dir = 4
 	},
-/obj/structure/largecrate/supply/explosives/mines,
+/obj/structure/largecrate/supply/medicine/medkits,
 /turf/open/shuttle/dropship/floor,
 /area/shuttle/dropship/alamo)
-"zU" = (
-/obj/machinery/vending/tool,
+"xG" = (
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 8
+	},
+/obj/structure/largecrate/supply/supplies/mre,
 /turf/open/shuttle/dropship/floor,
+/area/shuttle/dropship/alamo)
+"Dl" = (
+/obj/structure/largecrate/supply/supplies/flares,
+/turf/open/shuttle/dropship/three,
 /area/shuttle/dropship/alamo)
 "Dp" = (
 /turf/open/shuttle/dropship/ten,
 /area/shuttle/dropship/alamo)
-"Ds" = (
+"EN" = (
 /obj/structure/bed/chair/dropship/passenger{
-	dir = 8
-	},
-/obj/machinery/light{
 	dir = 4
 	},
-/obj/structure/largecrate/supply/supplies/plasteel,
+/obj/structure/largecrate/supply/supplies/sandbags,
 /turf/open/shuttle/dropship/floor,
 /area/shuttle/dropship/alamo)
-"Ew" = (
-/obj/structure/bed/chair/dropship/passenger{
-	dir = 4
-	},
-/obj/machinery/light{
-	dir = 8
-	},
-/obj/structure/largecrate/supply/supplies/metal,
+"ES" = (
+/obj/machinery/vending/armor_supply,
 /turf/open/shuttle/dropship/floor,
 /area/shuttle/dropship/alamo)
 "FA" = (
 /turf/closed/shuttle/dropship1/enginetwo{
 	dir = 8
 	},
-/area/shuttle/dropship/alamo)
-"IG" = (
-/obj/machinery/computer/autodoc_console,
-/turf/open/shuttle/dropship/floor,
 /area/shuttle/dropship/alamo)
 "Ki" = (
 /obj/machinery/computer/shuttle/marine_dropship/one{
@@ -654,26 +651,33 @@
 	dir = 1
 	},
 /area/shuttle/dropship/alamo)
-"Mg" = (
+"Of" = (
 /obj/structure/bed/chair/dropship/passenger{
 	dir = 8
 	},
-/obj/structure/largecrate/supply/supplies/plasteel,
+/obj/structure/largecrate/supply/supplies/metal,
 /turf/open/shuttle/dropship/floor,
 /area/shuttle/dropship/alamo)
-"Oz" = (
+"Pq" = (
 /obj/structure/bed/chair/dropship/passenger{
-	dir = 8
+	dir = 4
 	},
-/obj/structure/largecrate/supply/explosives/disposable,
+/obj/structure/largecrate/supply/supplies/metal,
 /turf/open/shuttle/dropship/floor,
 /area/shuttle/dropship/alamo)
 "QK" = (
 /obj/structure/dropship_piece/one/engine/rightbottom,
 /turf/template_noop,
 /area/shuttle/dropship/alamo)
-"XH" = (
-/obj/machinery/vending/MarineMed,
+"Se" = (
+/obj/machinery/computer/autodoc_console,
+/turf/open/shuttle/dropship/floor,
+/area/shuttle/dropship/alamo)
+"Yb" = (
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 4
+	},
+/obj/structure/largecrate/supply/explosives/mines,
 /turf/open/shuttle/dropship/floor,
 /area/shuttle/dropship/alamo)
 "Zx" = (
@@ -681,8 +685,8 @@
 	dir = 1
 	},
 /area/shuttle/dropship/alamo)
-"ZP" = (
-/obj/machinery/autodoc,
+"ZS" = (
+/obj/machinery/vending/tool,
 /turf/open/shuttle/dropship/floor,
 /area/shuttle/dropship/alamo)
 "ZT" = (
@@ -744,14 +748,14 @@ ao
 ao
 aq
 aE
-lc
+ES
 bD
 be
 al
 al
-qX
-pY
-XH
+wO
+km
+li
 br
 bu
 bu
@@ -775,11 +779,11 @@ aS
 aS
 aS
 bo
-zL
+Yb
 bx
-oH
-Ew
-rR
+EN
+ry
+Pq
 bX
 cc
 cg
@@ -802,7 +806,7 @@ aS
 aS
 aS
 aS
-aS
+Dl
 bY
 ao
 ao
@@ -816,8 +820,8 @@ aC
 aK
 aT
 bn
-ZP
 aZ
+er
 bg
 bk
 bp
@@ -839,7 +843,7 @@ aD
 aK
 bl
 aI
-IG
+Se
 al
 aI
 bl
@@ -867,11 +871,11 @@ aS
 aS
 aS
 bq
-Oz
-uQ
-Mg
-Ds
-hN
+sE
+rJ
+lf
+gq
+xG
 ca
 cd
 ci
@@ -882,14 +886,14 @@ ao
 ao
 aw
 aE
-nA
+lg
 aU
 bd
 al
 al
-hR
-sz
-zU
+Of
+gm
+ZS
 bv
 by
 by
