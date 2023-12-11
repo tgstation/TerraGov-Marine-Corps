@@ -1,5 +1,0 @@
-author: "Xander3359"
-delete-after: True
-changes:
-  - imagedel: "deleted cyborg.dmi"
-  - code_imp: "Delete unused ui defines"

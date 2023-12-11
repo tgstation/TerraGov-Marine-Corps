@@ -1,4 +1,0 @@
-author: "Wisemonster"
-delete-after: True
-changes:
-  - rscadd: "Orders will now show what job sent them in the orders' header."
