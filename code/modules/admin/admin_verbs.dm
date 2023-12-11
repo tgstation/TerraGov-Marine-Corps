@@ -200,7 +200,7 @@
 	set category = "Debug"
 	set name = "Check Contents"
 
-	var/list/L = M.get_contents()
+	var/list/L = M.GetAllContents()
 	for(var/t in L)
 		to_chat(usr, "[t] [ADMIN_VV(t)] [ADMIN_TAG(t)]", confidential = TRUE)
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Check Contents") // If you are copy-pasting this, ensure the 4th parameter is unique to the new proc!

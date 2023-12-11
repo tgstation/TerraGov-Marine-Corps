@@ -13,9 +13,6 @@
 //Force the config directory to be something other than "config"
 #define OVERRIDE_CONFIG_DIRECTORY_PARAMETER "config-directory"
 
-
-
-
 //dirt type for each turf types.
 #define NO_DIRT 0
 #define DIRT_TYPE_GROUND 1
