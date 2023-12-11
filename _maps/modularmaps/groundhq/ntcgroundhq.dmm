@@ -339,9 +339,8 @@
 	dir = 1;
 	icon_state = "carpetside"
 	},
-/area/sulaco/liaison/quarters{
-	outside = 0;
-	name = "CEO Office"
+/area/mainship/command/corporateliaison{
+	name = "Ground CEO Office"
 	})
 "ane" = (
 /obj/machinery/door/airlock/mainship/generic,
@@ -589,9 +588,8 @@
 	dir = 4
 	},
 /turf/open/floor/wood,
-/area/sulaco/liaison/quarters{
-	outside = 0;
-	name = "CEO Office"
+/area/mainship/command/corporateliaison{
+	name = "Ground CEO Office"
 	})
 "aDq" = (
 /obj/machinery/seed_extractor,
@@ -858,9 +856,8 @@
 	dir = 2
 	},
 /turf/open/floor/plating/platebotc,
-/area/sulaco/liaison/quarters{
-	outside = 0;
-	name = "CEO Office"
+/area/mainship/command/corporateliaison{
+	name = "Ground CEO Office"
 	})
 "aRD" = (
 /obj/structure/table/reinforced,
@@ -1202,9 +1199,8 @@
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable,
 /turf/open/floor/wood,
-/area/sulaco/liaison/quarters{
-	outside = 0;
-	name = "CEO Office"
+/area/mainship/command/corporateliaison{
+	name = "Ground CEO Office"
 	})
 "blq" = (
 /obj/structure/cable,
@@ -1351,9 +1347,8 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/mainship/sterile/white,
-/area/sulaco/liaison/quarters{
-	outside = 0;
-	name = "CEO Office"
+/area/mainship/command/corporateliaison{
+	name = "Ground CEO Office"
 	})
 "byr" = (
 /obj/machinery/door/airlock/mainship/engineering/storage{
@@ -1652,7 +1647,8 @@
 /area/mainship/groundhq/ntf/shipboard/brig)
 "bNI" = (
 /obj/machinery/computer/supplycomp{
-	home_id = "supply_hq"
+	home_id = "supply_hq";
+	shuttle_id = "supplyhq"
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req{
@@ -1779,9 +1775,8 @@
 "bUx" = (
 /obj/structure/cable,
 /turf/open/floor/wood,
-/area/sulaco/liaison/quarters{
-	outside = 0;
-	name = "CEO Office"
+/area/mainship/command/corporateliaison{
+	name = "Ground CEO Office"
 	})
 "bUE" = (
 /obj/structure/table,
@@ -2032,9 +2027,8 @@
 	req_access = list(5)
 	},
 /turf/closed/wall/mainship,
-/area/sulaco/liaison/quarters{
-	outside = 0;
-	name = "CEO Office"
+/area/mainship/command/corporateliaison{
+	name = "Ground CEO Office"
 	})
 "ckY" = (
 /obj/machinery/vending/nanomed,
@@ -3054,9 +3048,8 @@
 	dir = 1;
 	icon_state = "carpetside"
 	},
-/area/sulaco/liaison/quarters{
-	outside = 0;
-	name = "CEO Office"
+/area/mainship/command/corporateliaison{
+	name = "Ground CEO Office"
 	})
 "doz" = (
 /obj/structure/table/mainship,
@@ -3535,9 +3528,8 @@
 	dir = 4
 	},
 /turf/open/floor/wood,
-/area/sulaco/liaison/quarters{
-	outside = 0;
-	name = "CEO Office"
+/area/mainship/command/corporateliaison{
+	name = "Ground CEO Office"
 	})
 "dPp" = (
 /obj/structure/table/woodentable,
@@ -3549,9 +3541,8 @@
 	dir = 8
 	},
 /turf/open/floor/wood,
-/area/sulaco/liaison/quarters{
-	outside = 0;
-	name = "CEO Office"
+/area/mainship/command/corporateliaison{
+	name = "Ground CEO Office"
 	})
 "dPv" = (
 /obj/machinery/light{
@@ -3709,9 +3700,8 @@
 	icon_state = "carpetside";
 	dir = 4
 	},
-/area/sulaco/liaison/quarters{
-	outside = 0;
-	name = "CEO Office"
+/area/mainship/command/corporateliaison{
+	name = "Ground CEO Office"
 	})
 "dWY" = (
 /obj/structure/cable,
@@ -3968,9 +3958,8 @@
 /obj/structure/cable,
 /obj/structure/rack,
 /turf/open/floor/wood,
-/area/sulaco/liaison/quarters{
-	outside = 0;
-	name = "CEO Office"
+/area/mainship/command/corporateliaison{
+	name = "Ground CEO Office"
 	})
 "enz" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -4192,9 +4181,8 @@
 	icon_state = "carpetside";
 	dir = 8
 	},
-/area/sulaco/liaison/quarters{
-	outside = 0;
-	name = "CEO Office"
+/area/mainship/command/corporateliaison{
+	name = "Ground CEO Office"
 	})
 "ezw" = (
 /obj/structure/rack,
@@ -4309,9 +4297,8 @@
 "eJr" = (
 /obj/structure/filingcabinet,
 /turf/open/floor/wood,
-/area/sulaco/liaison/quarters{
-	outside = 0;
-	name = "CEO Office"
+/area/mainship/command/corporateliaison{
+	name = "Ground CEO Office"
 	})
 "eJu" = (
 /obj/structure/window/framed/mainship,
@@ -4364,9 +4351,8 @@
 	dir = 4
 	},
 /turf/open/floor/wood,
-/area/sulaco/liaison/quarters{
-	outside = 0;
-	name = "CEO Office"
+/area/mainship/command/corporateliaison{
+	name = "Ground CEO Office"
 	})
 "eLi" = (
 /turf/closed/wall/mainship,
@@ -4615,24 +4601,11 @@
 /obj/item/clothing/under/liaison_suit/formal,
 /obj/item/clothing/under/liaison_suit/suspenders,
 /obj/item/clothing/under/liaison_suit/outing,
-/obj/item/clothing/under/spec_operative,
-/obj/item/weapon/gun/rifle/m412/elite,
-/obj/item/clothing/mask/balaclava,
-/obj/item/clothing/suit/armor/bulletproof,
-/obj/item/ammo_magazine/rifle/ap,
-/obj/item/ammo_magazine/rifle/ap,
-/obj/item/ammo_magazine/rifle/ap,
-/obj/item/ammo_magazine/rifle/ap,
-/obj/item/ammo_magazine/rifle/ap,
-/obj/item/ammo_magazine/rifle/ap,
-/obj/item/clothing/head/headband/snake,
-/obj/item/storage/box/flashbangs,
 /turf/open/floor/carpet{
 	icon_state = "carpetside"
 	},
-/area/sulaco/liaison/quarters{
-	outside = 0;
-	name = "CEO Office"
+/area/mainship/command/corporateliaison{
+	name = "Ground CEO Office"
 	})
 "eYN" = (
 /obj/structure/cable,
@@ -4707,9 +4680,8 @@
 /turf/open/floor/carpet{
 	icon_state = "carpetside"
 	},
-/area/sulaco/liaison/quarters{
-	outside = 0;
-	name = "CEO Office"
+/area/mainship/command/corporateliaison{
+	name = "Ground CEO Office"
 	})
 "fbA" = (
 /obj/structure/flora/ausbushes/ppflowers,
@@ -4914,9 +4886,8 @@
 "fpZ" = (
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/wood,
-/area/sulaco/liaison/quarters{
-	outside = 0;
-	name = "CEO Office"
+/area/mainship/command/corporateliaison{
+	name = "Ground CEO Office"
 	})
 "fqi" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -5020,9 +4991,8 @@
 "fxd" = (
 /obj/structure/flora/pottedplant/nine,
 /turf/open/floor/wood,
-/area/sulaco/liaison/quarters{
-	outside = 0;
-	name = "CEO Office"
+/area/mainship/command/corporateliaison{
+	name = "Ground CEO Office"
 	})
 "fxg" = (
 /obj/machinery/door/airlock/mainship/engineering/storage{
@@ -5069,9 +5039,8 @@
 	dir = 8
 	},
 /turf/open/floor/wood,
-/area/sulaco/liaison/quarters{
-	outside = 0;
-	name = "CEO Office"
+/area/mainship/command/corporateliaison{
+	name = "Ground CEO Office"
 	})
 "fAb" = (
 /turf/open/floor/mainship/mono,
@@ -5535,9 +5504,8 @@
 	dir = 1
 	},
 /turf/open/floor/wood,
-/area/sulaco/liaison/quarters{
-	outside = 0;
-	name = "CEO Office"
+/area/mainship/command/corporateliaison{
+	name = "Ground CEO Office"
 	})
 "gdp" = (
 /obj/machinery/light,
@@ -5715,9 +5683,8 @@
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable,
 /turf/open/floor/wood,
-/area/sulaco/liaison/quarters{
-	outside = 0;
-	name = "CEO Office"
+/area/mainship/command/corporateliaison{
+	name = "Ground CEO Office"
 	})
 "gqT" = (
 /obj/structure/cable,
@@ -5760,9 +5727,8 @@
 	},
 /obj/structure/flora/pottedplant/four,
 /turf/open/floor/wood,
-/area/sulaco/liaison/quarters{
-	outside = 0;
-	name = "CEO Office"
+/area/mainship/command/corporateliaison{
+	name = "Ground CEO Office"
 	})
 "gtY" = (
 /obj/machinery/door/airlock/mainship/research/glass{
@@ -5786,9 +5752,8 @@
 	},
 /obj/effect/landmark/start/job/ceo,
 /turf/open/floor/carpet,
-/area/sulaco/liaison/quarters{
-	outside = 0;
-	name = "CEO Office"
+/area/mainship/command/corporateliaison{
+	name = "Ground CEO Office"
 	})
 "guB" = (
 /turf/closed/wall/mainship/research/containment/wall/east,
@@ -5996,9 +5961,8 @@
 	dir = 4
 	},
 /turf/open/floor/wood,
-/area/sulaco/liaison/quarters{
-	outside = 0;
-	name = "CEO Office"
+/area/mainship/command/corporateliaison{
+	name = "Ground CEO Office"
 	})
 "gII" = (
 /obj/structure/disposalpipe/segment,
@@ -6038,9 +6002,8 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/wood,
-/area/sulaco/liaison/quarters{
-	outside = 0;
-	name = "CEO Office"
+/area/mainship/command/corporateliaison{
+	name = "Ground CEO Office"
 	})
 "gMQ" = (
 /obj/machinery/marine_selector/gear/medic,
@@ -6124,9 +6087,8 @@
 	dir = 9;
 	icon_state = "carpetside"
 	},
-/area/sulaco/liaison/quarters{
-	outside = 0;
-	name = "CEO Office"
+/area/mainship/command/corporateliaison{
+	name = "Ground CEO Office"
 	})
 "gRm" = (
 /turf/open/floor/mainship/mono,
@@ -6163,9 +6125,8 @@
 	dir = 5;
 	icon_state = "carpetside"
 	},
-/area/sulaco/liaison/quarters{
-	outside = 0;
-	name = "CEO Office"
+/area/mainship/command/corporateliaison{
+	name = "Ground CEO Office"
 	})
 "gSy" = (
 /turf/open/liquid/water/river,
@@ -6433,9 +6394,8 @@
 	dir = 1
 	},
 /turf/open/floor/wood,
-/area/sulaco/liaison/quarters{
-	outside = 0;
-	name = "CEO Office"
+/area/mainship/command/corporateliaison{
+	name = "Ground CEO Office"
 	})
 "hhd" = (
 /obj/machinery/door/airlock/mainship/marine/general/corps,
@@ -6920,9 +6880,8 @@
 	dir = 4
 	},
 /turf/open/floor/wood,
-/area/sulaco/liaison/quarters{
-	outside = 0;
-	name = "CEO Office"
+/area/mainship/command/corporateliaison{
+	name = "Ground CEO Office"
 	})
 "hHs" = (
 /obj/structure/disposalpipe/segment{
@@ -7075,9 +7034,8 @@
 	dir = 1
 	},
 /turf/open/floor/wood,
-/area/sulaco/liaison/quarters{
-	outside = 0;
-	name = "CEO Office"
+/area/mainship/command/corporateliaison{
+	name = "Ground CEO Office"
 	})
 "hRr" = (
 /obj/item/toy/inflatable_duck,
@@ -7475,9 +7433,8 @@
 	dir = 9
 	},
 /turf/open/floor/mainship/sterile/white,
-/area/sulaco/liaison/quarters{
-	outside = 0;
-	name = "CEO Office"
+/area/mainship/command/corporateliaison{
+	name = "Ground CEO Office"
 	})
 "ilE" = (
 /obj/structure/barricade/plasteel{
@@ -7995,9 +7952,8 @@
 	},
 /obj/machinery/power/apc/hyper,
 /turf/open/floor/mainship/office,
-/area/sulaco/liaison/quarters{
-	outside = 0;
-	name = "CEO Office"
+/area/mainship/command/corporateliaison{
+	name = "Ground CEO Office"
 	})
 "iPV" = (
 /obj/machinery/light{
@@ -8052,9 +8008,8 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/mainship/office,
-/area/sulaco/liaison/quarters{
-	outside = 0;
-	name = "CEO Office"
+/area/mainship/command/corporateliaison{
+	name = "Ground CEO Office"
 	})
 "iSX" = (
 /obj/structure/cable,
@@ -9128,9 +9083,8 @@
 	dir = 6;
 	icon_state = "carpetside"
 	},
-/area/sulaco/liaison/quarters{
-	outside = 0;
-	name = "CEO Office"
+/area/mainship/command/corporateliaison{
+	name = "Ground CEO Office"
 	})
 "jWo" = (
 /obj/structure/closet/secure_closet/freezer/fridge,
@@ -9244,9 +9198,8 @@
 	name = "Window Shutters"
 	},
 /turf/open/floor/wood,
-/area/sulaco/liaison/quarters{
-	outside = 0;
-	name = "CEO Office"
+/area/mainship/command/corporateliaison{
+	name = "Ground CEO Office"
 	})
 "kcJ" = (
 /obj/structure/closet/lasertag/blue,
@@ -9401,9 +9354,8 @@
 	id = "wyoffice2"
 	},
 /turf/open/floor/plating/platebotc,
-/area/sulaco/liaison/quarters{
-	outside = 0;
-	name = "CEO Office"
+/area/mainship/command/corporateliaison{
+	name = "Ground CEO Office"
 	})
 "koj" = (
 /obj/machinery/power/apc/hyper{
@@ -9691,9 +9643,8 @@
 	dir = 5;
 	icon_state = "carpetside"
 	},
-/area/sulaco/liaison/quarters{
-	outside = 0;
-	name = "CEO Office"
+/area/mainship/command/corporateliaison{
+	name = "Ground CEO Office"
 	})
 "kJY" = (
 /obj/machinery/light{
@@ -9777,9 +9728,8 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/wood,
-/area/sulaco/liaison/quarters{
-	outside = 0;
-	name = "CEO Office"
+/area/mainship/command/corporateliaison{
+	name = "Ground CEO Office"
 	})
 "kNk" = (
 /obj/structure/cable,
@@ -9844,9 +9794,8 @@
 "kQT" = (
 /obj/machinery/status_display,
 /turf/closed/wall/mainship,
-/area/sulaco/liaison/quarters{
-	outside = 0;
-	name = "CEO Office"
+/area/mainship/command/corporateliaison{
+	name = "Ground CEO Office"
 	})
 "kRo" = (
 /obj/machinery/vending/MarineMed,
@@ -10386,9 +10335,8 @@
 	dir = 4
 	},
 /turf/open/floor/wood,
-/area/sulaco/liaison/quarters{
-	outside = 0;
-	name = "CEO Office"
+/area/mainship/command/corporateliaison{
+	name = "Ground CEO Office"
 	})
 "luZ" = (
 /obj/machinery/implantchair,
@@ -10524,9 +10472,8 @@
 "lEm" = (
 /obj/machinery/holopad,
 /turf/open/floor/wood,
-/area/sulaco/liaison/quarters{
-	outside = 0;
-	name = "CEO Office"
+/area/mainship/command/corporateliaison{
+	name = "Ground CEO Office"
 	})
 "lEt" = (
 /obj/structure/xenoautopsy/tank,
@@ -12159,9 +12106,8 @@
 	dir = 10;
 	icon_state = "carpetside"
 	},
-/area/sulaco/liaison/quarters{
-	outside = 0;
-	name = "CEO Office"
+/area/mainship/command/corporateliaison{
+	name = "Ground CEO Office"
 	})
 "nyt" = (
 /turf/open/floor/mainship/sterile,
@@ -12222,9 +12168,8 @@
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable,
 /turf/open/floor/wood,
-/area/sulaco/liaison/quarters{
-	outside = 0;
-	name = "CEO Office"
+/area/mainship/command/corporateliaison{
+	name = "Ground CEO Office"
 	})
 "nAt" = (
 /obj/machinery/vending/coffee,
@@ -12344,9 +12289,8 @@
 	dir = 4
 	},
 /turf/open/floor/wood,
-/area/sulaco/liaison/quarters{
-	outside = 0;
-	name = "CEO Office"
+/area/mainship/command/corporateliaison{
+	name = "Ground CEO Office"
 	})
 "nKa" = (
 /obj/machinery/light,
@@ -12568,9 +12512,8 @@
 	dir = 8
 	},
 /turf/open/floor/wood,
-/area/sulaco/liaison/quarters{
-	outside = 0;
-	name = "CEO Office"
+/area/mainship/command/corporateliaison{
+	name = "Ground CEO Office"
 	})
 "nVj" = (
 /turf/open/floor/mainship/mono,
@@ -12774,9 +12717,8 @@
 /area/mainship/groundhq/ntf/living/grunt_rnr)
 "oho" = (
 /turf/closed/wall/mainship,
-/area/sulaco/liaison/quarters{
-	outside = 0;
-	name = "CEO Office"
+/area/mainship/command/corporateliaison{
+	name = "Ground CEO Office"
 	})
 "ohv" = (
 /obj/machinery/door/airlock/mainship/generic,
@@ -13314,9 +13256,8 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/mainship/sterile/white,
-/area/sulaco/liaison/quarters{
-	outside = 0;
-	name = "CEO Office"
+/area/mainship/command/corporateliaison{
+	name = "Ground CEO Office"
 	})
 "oPB" = (
 /obj/machinery/vending/dress_supply,
@@ -13401,9 +13342,8 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/wood,
-/area/sulaco/liaison/quarters{
-	outside = 0;
-	name = "CEO Office"
+/area/mainship/command/corporateliaison{
+	name = "Ground CEO Office"
 	})
 "oTM" = (
 /obj/structure/cable,
@@ -14017,9 +13957,8 @@
 	id = "wyoffice3"
 	},
 /turf/open/floor/plating/platebotc,
-/area/sulaco/liaison/quarters{
-	outside = 0;
-	name = "CEO Office"
+/area/mainship/command/corporateliaison{
+	name = "Ground CEO Office"
 	})
 "pAv" = (
 /obj/machinery/light,
@@ -14130,9 +14069,8 @@
 	name = "CEO's Office"
 	},
 /turf/open/floor/wood,
-/area/sulaco/liaison/quarters{
-	outside = 0;
-	name = "CEO Office"
+/area/mainship/command/corporateliaison{
+	name = "Ground CEO Office"
 	})
 "pGf" = (
 /obj/structure/disposalpipe/segment/corner{
@@ -14282,9 +14220,8 @@
 	},
 /obj/item/pizzabox/meat,
 /turf/open/floor/wood,
-/area/sulaco/liaison/quarters{
-	outside = 0;
-	name = "CEO Office"
+/area/mainship/command/corporateliaison{
+	name = "Ground CEO Office"
 	})
 "pSs" = (
 /obj/machinery/vending/MarineMed,
@@ -14352,9 +14289,8 @@
 	dir = 4
 	},
 /turf/open/floor/wood,
-/area/sulaco/liaison/quarters{
-	outside = 0;
-	name = "CEO Office"
+/area/mainship/command/corporateliaison{
+	name = "Ground CEO Office"
 	})
 "pUq" = (
 /obj/structure/bed,
@@ -14460,9 +14396,8 @@
 	},
 /obj/structure/curtain/open/shower,
 /turf/open/floor/mainship/sterile/white,
-/area/sulaco/liaison/quarters{
-	outside = 0;
-	name = "CEO Office"
+/area/mainship/command/corporateliaison{
+	name = "Ground CEO Office"
 	})
 "qcR" = (
 /obj/structure/bed/chair/sofa/left{
@@ -14924,9 +14859,8 @@
 	dir = 10;
 	icon_state = "carpetside"
 	},
-/area/sulaco/liaison/quarters{
-	outside = 0;
-	name = "CEO Office"
+/area/mainship/command/corporateliaison{
+	name = "Ground CEO Office"
 	})
 "qyU" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -15036,9 +14970,8 @@
 	},
 /obj/structure/table/woodentable,
 /turf/open/floor/wood,
-/area/sulaco/liaison/quarters{
-	outside = 0;
-	name = "CEO Office"
+/area/mainship/command/corporateliaison{
+	name = "Ground CEO Office"
 	})
 "qGu" = (
 /obj/structure/table/mainship,
@@ -15106,9 +15039,8 @@
 	dir = 9;
 	icon_state = "carpetside"
 	},
-/area/sulaco/liaison/quarters{
-	outside = 0;
-	name = "CEO Office"
+/area/mainship/command/corporateliaison{
+	name = "Ground CEO Office"
 	})
 "qKf" = (
 /obj/machinery/light,
@@ -15148,9 +15080,8 @@
 	id = "wyoffice2"
 	},
 /turf/open/floor/mainship/mono,
-/area/sulaco/liaison/quarters{
-	outside = 0;
-	name = "CEO Office"
+/area/mainship/command/corporateliaison{
+	name = "Ground CEO Office"
 	})
 "qLi" = (
 /obj/machinery/door/airlock/mainship/generic{
@@ -15290,9 +15221,8 @@
 	on = 1
 	},
 /turf/open/floor/mainship/sterile/white,
-/area/sulaco/liaison/quarters{
-	outside = 0;
-	name = "CEO Office"
+/area/mainship/command/corporateliaison{
+	name = "Ground CEO Office"
 	})
 "qUi" = (
 /obj/structure/rack,
@@ -15555,25 +15485,6 @@
 /obj/structure/closet/firecloset/full,
 /turf/open/floor/mainship/mono,
 /area/mainship/groundhq/ntf/living/chapel)
-"rdS" = (
-/obj/item/stack/sheet/mineral/diamond,
-/obj/item/stack/sheet/mineral/gold,
-/obj/item/spacecash/bundle{
-	worth = 5000000;
-	desc = "They are worth 5000000 dollars.";
-	icon_state = "spacecash500"
-	},
-/obj/item/weapon/gun/pistol/vp78,
-/obj/item/ammo_magazine/pistol/vp78,
-/obj/item/ammo_magazine/pistol/vp78,
-/obj/item/ammo_magazine/pistol/vp78,
-/obj/item/ammo_magazine/pistol/vp78,
-/obj/structure/safe,
-/turf/open/floor/wood,
-/area/sulaco/liaison/quarters{
-	outside = 0;
-	name = "CEO Office"
-	})
 "reV" = (
 /obj/structure/bed/chair{
 	dir = 8
@@ -15588,9 +15499,8 @@
 	dir = 2
 	},
 /turf/open/floor/wood,
-/area/sulaco/liaison/quarters{
-	outside = 0;
-	name = "CEO Office"
+/area/mainship/command/corporateliaison{
+	name = "Ground CEO Office"
 	})
 "rfq" = (
 /obj/structure/window/framed/mainship,
@@ -16246,9 +16156,8 @@
 /area/mainship/groundhq/ntf/engineering/engineering_workshop)
 "rPQ" = (
 /turf/open/floor/wood,
-/area/sulaco/liaison/quarters{
-	outside = 0;
-	name = "CEO Office"
+/area/mainship/command/corporateliaison{
+	name = "Ground CEO Office"
 	})
 "rPR" = (
 /obj/effect/ai_node,
@@ -16331,9 +16240,8 @@
 "rWg" = (
 /obj/machinery/atm,
 /turf/closed/wall/mainship,
-/area/sulaco/liaison/quarters{
-	outside = 0;
-	name = "CEO Office"
+/area/mainship/command/corporateliaison{
+	name = "Ground CEO Office"
 	})
 "rXd" = (
 /obj/structure/table/reinforced,
@@ -16783,9 +16691,8 @@
 /obj/item/storage/box/tgmc_mre,
 /obj/item/storage/box/nt_mre,
 /turf/open/floor/wood,
-/area/sulaco/liaison/quarters{
-	outside = 0;
-	name = "CEO Office"
+/area/mainship/command/corporateliaison{
+	name = "Ground CEO Office"
 	})
 "szx" = (
 /turf/open/floor/plating/ground/dirtgrassborder/corner2{
@@ -16929,9 +16836,8 @@
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plating/plating_catwalk,
-/area/sulaco/liaison/quarters{
-	outside = 0;
-	name = "CEO Office"
+/area/mainship/command/corporateliaison{
+	name = "Ground CEO Office"
 	})
 "sFs" = (
 /obj/structure/closet/secure_closet/personal/morgue,
@@ -17007,9 +16913,8 @@
 	},
 /obj/machinery/disposal,
 /turf/open/floor/wood,
-/area/sulaco/liaison/quarters{
-	outside = 0;
-	name = "CEO Office"
+/area/mainship/command/corporateliaison{
+	name = "Ground CEO Office"
 	})
 "sJY" = (
 /obj/item/seeds/goldappleseed,
@@ -17711,9 +17616,8 @@
 /obj/item/book/manual/evaguide,
 /obj/structure/rack,
 /turf/open/floor/wood,
-/area/sulaco/liaison/quarters{
-	outside = 0;
-	name = "CEO Office"
+/area/mainship/command/corporateliaison{
+	name = "Ground CEO Office"
 	})
 "tGX" = (
 /turf/open/floor/mainship/green,
@@ -17791,9 +17695,8 @@
 /obj/structure/flora/pottedplant/twentyone,
 /obj/structure/cable,
 /turf/open/floor/mainship/office,
-/area/sulaco/liaison/quarters{
-	outside = 0;
-	name = "CEO Office"
+/area/mainship/command/corporateliaison{
+	name = "Ground CEO Office"
 	})
 "tPQ" = (
 /obj/structure/window/reinforced/toughened{
@@ -18339,9 +18242,8 @@
 "uxa" = (
 /obj/structure/bed/chair/comfy,
 /turf/open/floor/wood,
-/area/sulaco/liaison/quarters{
-	outside = 0;
-	name = "CEO Office"
+/area/mainship/command/corporateliaison{
+	name = "Ground CEO Office"
 	})
 "uxu" = (
 /obj/structure/disposalpipe/segment,
@@ -18412,9 +18314,8 @@
 	name = "CEO's Office"
 	},
 /turf/open/floor/mainship/office,
-/area/sulaco/liaison/quarters{
-	outside = 0;
-	name = "CEO Office"
+/area/mainship/command/corporateliaison{
+	name = "Ground CEO Office"
 	})
 "uEF" = (
 /obj/structure/fence,
@@ -19073,8 +18974,8 @@
 /turf/open/floor/wood,
 /area/mainship/hallways/ntf/dorm1)
 "vsw" = (
-/obj/docking_port/stationary/supply{
-	id = "supply_hq"
+/obj/docking_port/stationary/supplyhq{
+	name = "hqdock"
 	},
 /turf/open/floor/mainship/empty,
 /area/mainship/squads/req{
@@ -19362,9 +19263,8 @@
 	dir = 6;
 	icon_state = "carpetside"
 	},
-/area/sulaco/liaison/quarters{
-	outside = 0;
-	name = "CEO Office"
+/area/mainship/command/corporateliaison{
+	name = "Ground CEO Office"
 	})
 "vGh" = (
 /obj/machinery/door_control{
@@ -19707,9 +19607,8 @@
 	pixel_y = 35
 	},
 /turf/open/floor/mainship/sterile/white,
-/area/sulaco/liaison/quarters{
-	outside = 0;
-	name = "CEO Office"
+/area/mainship/command/corporateliaison{
+	name = "Ground CEO Office"
 	})
 "vXr" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -20153,9 +20052,8 @@
 	dir = 1
 	},
 /turf/open/floor/wood,
-/area/sulaco/liaison/quarters{
-	outside = 0;
-	name = "CEO Office"
+/area/mainship/command/corporateliaison{
+	name = "Ground CEO Office"
 	})
 "wwJ" = (
 /obj/machinery/vending/uniform_supply,
@@ -20679,9 +20577,8 @@
 	name = "kevlar-weave infused bulletproof window"
 	},
 /turf/open/floor/plating/platebotc,
-/area/sulaco/liaison/quarters{
-	outside = 0;
-	name = "CEO Office"
+/area/mainship/command/corporateliaison{
+	name = "Ground CEO Office"
 	})
 "wZT" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -20720,9 +20617,8 @@
 	dir = 4
 	},
 /turf/closed/wall/mainship,
-/area/sulaco/liaison/quarters{
-	outside = 0;
-	name = "CEO Office"
+/area/mainship/command/corporateliaison{
+	name = "Ground CEO Office"
 	})
 "xaR" = (
 /obj/structure/table/woodentable,
@@ -26438,7 +26334,7 @@ xaH
 oho
 oho
 rPQ
-rdS
+rPQ
 oho
 kVj
 xTm

@@ -7,9 +7,9 @@
 /area/shuttle/supply)
 "c" = (
 /obj/docking_port/mobile/supply{
-	home_id = "supply_ship";
-	id = "shipsupply";
-	name = "ship supply shuttle"
+	home_id = "supply_hq";
+	id = "supplyhq";
+	name = "hq supply shuttle"
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/shuttle/supply)

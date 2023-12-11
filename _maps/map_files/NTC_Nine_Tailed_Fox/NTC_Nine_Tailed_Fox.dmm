@@ -1132,7 +1132,6 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "aXq" = (
-/obj/docking_port/stationary/marine_dropship/crash_target,
 /obj/docking_port/stationary/marine_dropship/hangar/two,
 /turf/open/floor/plating,
 /area/mainship/hallways/hangar)
@@ -3382,6 +3381,10 @@
 /obj/vehicle/ridden/powerloader,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/upper_hull)
+"cOJ" = (
+/obj/docking_port/stationary/marine_dropship/crash_target,
+/turf/open/floor/plating,
+/area/mainship/hallways/hangar)
 "cPh" = (
 /obj/machinery/door/airlock/mainship/generic{
 	dir = 1;
@@ -5219,6 +5222,12 @@
 	},
 /turf/open/floor/plating,
 /area/mainship/medical/operating_room_four)
+"eMu" = (
+/obj/machinery/computer/supplycomp,
+/turf/open/floor/mainship/mono,
+/area/campaign/jungle_outpost/outpost/req{
+	name = "\improper Shipside Req"
+	})
 "eMw" = (
 /obj/effect/landmark/corpsespawner/marine/burst,
 /obj/effect/ai_node,
@@ -7198,7 +7207,6 @@
 	})
 "gqt" = (
 /obj/docking_port/stationary/marine_dropship/hangar/one,
-/obj/docking_port/stationary/marine_dropship/crash_target,
 /turf/open/floor/plating,
 /area/mainship/hallways/hangar)
 "grj" = (
@@ -20873,6 +20881,11 @@
 /obj/item/flashlight,
 /obj/item/flashlight,
 /obj/item/lightreplacer,
+/obj/item/xeno_iff_tag,
+/obj/item/xeno_iff_tag,
+/obj/item/xeno_iff_tag,
+/obj/item/xeno_iff_tag,
+/obj/item/xeno_iff_tag,
 /turf/open/floor/mainship/mono,
 /area/campaign/jungle_outpost/outpost/req{
 	name = "\improper Shipside Req"
@@ -35450,7 +35463,7 @@ pin
 pin
 pin
 pin
-pin
+cOJ
 pin
 pin
 pin
@@ -36120,7 +36133,7 @@ gcQ
 mdx
 iAH
 cnT
-gcQ
+eMu
 aYD
 kyy
 kyy
@@ -38114,7 +38127,7 @@ xjF
 pin
 pin
 pin
-pin
+cOJ
 pin
 pin
 pin
