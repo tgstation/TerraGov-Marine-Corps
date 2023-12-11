@@ -50,6 +50,14 @@
 /area/mainship/hallways/port_hallway{
 	name = "Ship Floor 2 Hallways"
 	})
+"abX" = (
+/obj/item/weapon/gun/sentry/big_sentry/premade{
+	dir = 8
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/port_umbilical{
+	name = "Ship Floor 2 Hallways"
+	})
 "acl" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable,
@@ -5315,8 +5323,6 @@
 	},
 /obj/structure/cable,
 /obj/machinery/power/apc/mainship,
-/obj/item/weapon/gun/sentry/premade,
-/obj/item/weapon/gun/sentry/big_sentry/premade,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/workerprep)
 "eQx" = (
@@ -6036,14 +6042,6 @@
 /obj/effect/spawner/random/food_or_drink/kitchenknife,
 /turf/open/floor/prison/kitchen,
 /area/mainship/living/officer_study)
-"fuH" = (
-/obj/item/weapon/gun/sentry/big_sentry/premade{
-	dir = 8
-	},
-/turf/open/floor/mainship/mono,
-/area/mainship/hallways/port_umbilical{
-	name = "Ship Floor 2 Hallways"
-	})
 "fvc" = (
 /obj/structure/largecrate/supply/explosives/disposable,
 /turf/open/floor/mainship/orange/full,
@@ -33061,7 +33059,7 @@ fSq
 fWn
 tmD
 aYd
-fuH
+abX
 hXu
 hXu
 bgb
@@ -33078,7 +33076,7 @@ hXu
 hXu
 baz
 hXu
-fuH
+abX
 aMa
 aMa
 boT
