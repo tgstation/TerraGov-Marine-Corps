@@ -10064,14 +10064,6 @@
 	dir = 10
 	},
 /area/mainship/groundhq/ntf/shipboard/brig)
-"jlx" = (
-/obj/machinery/light/mainship{
-	dir = 4
-	},
-/turf/open/floor/mainship,
-/area/mainship/squads{
-	outside = 0
-	})
 "jlA" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -18432,14 +18424,6 @@
 /area/mainship/medical/upper_medical{
 	outside = 0;
 	name = "Shipside Medbay"
-	})
-"qPn" = (
-/obj/machinery/light/mainship{
-	dir = 8
-	},
-/turf/open/floor/mainship,
-/area/mainship/squads{
-	outside = 0
 	})
 "qPp" = (
 /obj/machinery/telecomms/bus/preset_four,
@@ -40158,14 +40142,14 @@ poI
 jUN
 gKN
 gKN
-jlx
+gKN
 dKF
-jlx
 gKN
 gKN
-jlx
 gKN
-jlx
+gKN
+gKN
+gKN
 gKN
 gKN
 hRO
@@ -42336,17 +42320,17 @@ sLq
 tZq
 eiJ
 wMD
-qPn
 gKN
-qPn
+gKN
+gKN
 qgo
 cdv
-qPn
 gKN
-qPn
+gKN
+gKN
 qgo
 wMD
-qPn
+gKN
 gKN
 gKN
 agX
