@@ -4504,12 +4504,6 @@
 /area/mainship/hallways/starboard_ert{
 	name = "Ship Floor 3 Hallways"
 	})
-"dZk" = (
-/obj/structure/cable,
-/turf/open/floor/mainship_hull/dir{
-	dir = 6
-	},
-/area/mainship/hull/upper_hull)
 "dZV" = (
 /obj/effect/ai_node,
 /turf/open/floor/mainship/floor,
@@ -8169,12 +8163,6 @@
 /obj/structure/table/woodentable,
 /turf/open/floor/carpet/side,
 /area/mainship/living/officer_study)
-"hht" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 1
-	},
-/turf/closed/wall/mainship,
-/area/mainship/groundhq/ntf/hallways/bathroom)
 "hid" = (
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/port_umbilical{
@@ -9373,6 +9361,7 @@
 "iwi" = (
 /obj/machinery/power/apc/mainship,
 /obj/structure/cable,
+/obj/item/weapon/gun/sentry/big_sentry/premade,
 /turf/open/floor/mainship/black{
 	dir = 1
 	},
@@ -23652,8 +23641,10 @@
 /area/mainship/living/port_garden)
 "vDU" = (
 /obj/structure/cable,
-/turf/open/space/basic,
-/area/mainship/hull/upper_hull)
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/starboard_ert{
+	name = "Ship Floor 3 Hallways"
+	})
 "vEf" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic,
 /turf/open/floor/mainship,
@@ -38869,7 +38860,7 @@ wZq
 xNs
 spT
 bJK
-hXu
+nOT
 hXu
 dfL
 tpw
@@ -50529,26 +50520,7 @@ dXJ
 dXJ
 dXJ
 dXJ
-dXJ
-dXJ
-dXJ
-dXJ
-dXJ
-dXJ
-dXJ
-dXJ
-dXJ
-dXJ
-dXJ
-dXJ
-dXJ
-dXJ
-dXJ
-dXJ
-dXJ
-dXJ
-dXJ
-dXJ
+dYt
 dXJ
 dXJ
 dXJ
@@ -50567,6 +50539,25 @@ dXJ
 dXJ
 dXJ
 dYt
+dXJ
+dXJ
+dXJ
+dXJ
+dXJ
+dXJ
+dXJ
+dXJ
+dXJ
+dXJ
+dXJ
+dXJ
+dXJ
+dXJ
+dXJ
+dXJ
+dXJ
+dXJ
+dXJ
 dXJ
 dXJ
 dXJ
@@ -56601,7 +56592,7 @@ pPB
 iSM
 aBp
 iSM
-gmd
+iSM
 iSM
 iSM
 jWO
@@ -60930,7 +60921,7 @@ dQB
 dQB
 vuD
 odn
-hht
+tMv
 qZo
 jUb
 qZo
@@ -64345,7 +64336,7 @@ mmj
 mQv
 psv
 iQP
-ybP
+qZo
 jUb
 qZo
 aMa
@@ -64587,7 +64578,7 @@ ybU
 ybU
 ybU
 ybU
-qZo
+ybP
 now
 qZo
 aMa
@@ -66734,7 +66725,7 @@ hrY
 cSI
 gPv
 pLC
-qZo
+vDU
 rDw
 hKm
 wpC
@@ -66976,7 +66967,7 @@ aMa
 aMa
 qaS
 aMa
-wvg
+qiT
 qnG
 qnG
 cWh
@@ -68468,7 +68459,7 @@ oJY
 oJY
 oJY
 oJY
-quF
+oJY
 oJY
 wgC
 wgC
@@ -68710,7 +68701,7 @@ wgC
 wgC
 wgC
 wgC
-dDs
+wgC
 ggd
 ggd
 ggd
@@ -68952,7 +68943,7 @@ wgC
 wgC
 wgC
 ggd
-dZk
+iNP
 nwr
 nwr
 nwr
@@ -69194,7 +69185,7 @@ wgC
 jaO
 mqa
 pZX
-vDU
+pZX
 nwr
 nwr
 nwr
@@ -69436,7 +69427,7 @@ wgC
 knB
 wkC
 nwr
-xmr
+nwr
 nwr
 nwr
 nwr
@@ -69678,7 +69669,7 @@ siW
 ggd
 iNP
 nwr
-xmr
+nwr
 nwr
 nwr
 nwr
@@ -69920,7 +69911,7 @@ nwr
 nwr
 nwr
 nwr
-xmr
+nwr
 nwr
 nwr
 nwr
@@ -70162,7 +70153,7 @@ nwr
 nwr
 nwr
 nwr
-xmr
+nwr
 nwr
 nwr
 nwr
@@ -70404,7 +70395,7 @@ nwr
 nwr
 nwr
 nwr
-xmr
+nwr
 nwr
 nwr
 nwr
@@ -70646,7 +70637,7 @@ nwr
 nwr
 nwr
 nwr
-xmr
+nwr
 nwr
 nwr
 nwr
@@ -70888,7 +70879,7 @@ nwr
 nwr
 nwr
 nwr
-xmr
+nwr
 nwr
 nwr
 nwr
@@ -71130,7 +71121,7 @@ nwr
 nwr
 nwr
 nwr
-xmr
+nwr
 nwr
 nwr
 nwr
@@ -71372,7 +71363,7 @@ nwr
 nwr
 nwr
 nwr
-xmr
+nwr
 nwr
 nwr
 nwr
@@ -71614,7 +71605,7 @@ nwr
 nwr
 nwr
 nwr
-xmr
+nwr
 nwr
 nwr
 nwr
@@ -71856,7 +71847,7 @@ nwr
 nwr
 nwr
 nwr
-xmr
+nwr
 nwr
 nwr
 nwr
@@ -72098,7 +72089,7 @@ nwr
 nwr
 nwr
 nwr
-xmr
+nwr
 nwr
 nwr
 nwr
@@ -72340,7 +72331,7 @@ nwr
 nwr
 nwr
 nwr
-xmr
+nwr
 nwr
 nwr
 nwr
@@ -72582,7 +72573,7 @@ nwr
 nwr
 nwr
 nwr
-xmr
+nwr
 nwr
 nwr
 nwr
@@ -72824,7 +72815,7 @@ nwr
 nwr
 nwr
 nwr
-xmr
+nwr
 nwr
 nwr
 nwr
@@ -73066,7 +73057,7 @@ nwr
 nwr
 nwr
 nwr
-xmr
+nwr
 nwr
 nwr
 nwr
@@ -73308,7 +73299,7 @@ nwr
 nwr
 nwr
 nwr
-xmr
+nwr
 nwr
 nwr
 nwr
@@ -73550,7 +73541,7 @@ nwr
 nwr
 nwr
 nwr
-xmr
+nwr
 nwr
 nwr
 nwr
@@ -73792,7 +73783,7 @@ nwr
 nwr
 nwr
 nwr
-xmr
+nwr
 nwr
 nwr
 nwr
@@ -74034,7 +74025,7 @@ nwr
 nwr
 nwr
 nwr
-xmr
+nwr
 nwr
 nwr
 nwr
@@ -74276,43 +74267,43 @@ nwr
 nwr
 nwr
 nwr
-xmr
-xmr
-xmr
-xmr
-xmr
-xmr
-xmr
-xmr
-xmr
-xmr
-xmr
-xmr
-xmr
-xmr
-xmr
-xmr
-xmr
-xmr
-xmr
-xmr
-xmr
-xmr
-xmr
-xmr
-xmr
-xmr
-xmr
-xmr
-xmr
-xmr
-xmr
-xmr
-xmr
-xmr
-xmr
-xmr
-vpE
+nwr
+nwr
+nwr
+nwr
+nwr
+nwr
+nwr
+nwr
+nwr
+nwr
+nwr
+nwr
+nwr
+nwr
+nwr
+nwr
+nwr
+nwr
+nwr
+nwr
+nwr
+nwr
+nwr
+nwr
+nwr
+nwr
+nwr
+nwr
+nwr
+nwr
+nwr
+nwr
+nwr
+nwr
+nwr
+nwr
+xak
 nwr
 nwr
 nwr

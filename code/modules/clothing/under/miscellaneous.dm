@@ -374,7 +374,7 @@
 	item_state = "syndicate"
 	resistance_flags = UNACIDABLE
 	flags_armor_protection = CHEST|GROIN|LEGS|ARMS
-	soft_armor = list(MELEE = 10, BULLET = 15, LASER = 15, ENERGY = 70, BOMB = 70, BIO = 70, FIRE = 50, ACID = 30)
+	soft_armor = list(MELEE = 30, BULLET = 30, LASER = 50, ENERGY = 50, BOMB = 70, BIO = 70, FIRE = 70, ACID = 50)
 	flags_cold_protection = CHEST|GROIN|LEGS|ARMS
 	min_cold_protection_temperature = SPACE_SUIT_MIN_COLD_PROTECTION_TEMPERATURE
 	siemens_coefficient = 0
