@@ -205,6 +205,7 @@
 /turf/open/shuttle/dropship/three,
 /area/shuttle/dropship/alamo)
 "aT" = (
+/obj/machinery/telecomms/relay/preset/telecomms/onboard,
 /turf/closed/shuttle/dropship1/aisle,
 /area/shuttle/dropship/alamo)
 "aU" = (
@@ -238,9 +239,12 @@
 /turf/closed/shuttle/dropship1/finleft,
 /area/shuttle/dropship/alamo)
 "aZ" = (
-/turf/closed/shuttle/dropship1/aisle{
-	dir = 4
-	},
+/obj/machinery/optable,
+/obj/item/storage/surgical_tray,
+/obj/machinery/iv_drip,
+/obj/item/tank/anesthetic,
+/obj/item/tank/anesthetic,
+/turf/open/shuttle/dropship/floor,
 /area/shuttle/dropship/alamo)
 "ba" = (
 /turf/closed/shuttle/dropship1/finright,
@@ -277,9 +281,8 @@
 /area/shuttle/dropship/alamo)
 "bg" = (
 /obj/docking_port/mobile/marine_dropship/one,
-/turf/closed/shuttle/dropship1/aisle{
-	dir = 4
-	},
+/obj/machinery/vending/weapon,
+/turf/open/shuttle/dropship/floor,
 /area/shuttle/dropship/alamo)
 "bi" = (
 /turf/closed/shuttle/dropship1/edge{
@@ -315,10 +318,8 @@
 	},
 /area/shuttle/dropship/alamo)
 "bn" = (
-/obj/machinery/telecomms/relay/preset/telecomms/onboard,
-/turf/closed/shuttle/dropship1/aisle{
-	dir = 4
-	},
+/obj/machinery/vending/medical/shipside,
+/turf/open/shuttle/dropship/floor,
 /area/shuttle/dropship/alamo)
 "bo" = (
 /turf/open/shuttle/dropship/four,
@@ -367,6 +368,7 @@
 /obj/machinery/vending/nanomed{
 	dir = 4
 	},
+/obj/structure/largecrate/supply/supplies/water,
 /turf/open/shuttle/dropship/floor,
 /area/shuttle/dropship/alamo)
 "by" = (
@@ -524,23 +526,125 @@
 	dir = 4
 	},
 /area/shuttle/dropship/alamo)
+"hN" = (
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 8
+	},
+/obj/structure/largecrate/supply/supplies/mre,
+/turf/open/shuttle/dropship/floor,
+/area/shuttle/dropship/alamo)
+"hR" = (
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 8
+	},
+/obj/structure/largecrate/supply/supplies/metal,
+/turf/open/shuttle/dropship/floor,
+/area/shuttle/dropship/alamo)
+"lc" = (
+/obj/machinery/vending/armor_supply,
+/turf/open/shuttle/dropship/floor,
+/area/shuttle/dropship/alamo)
+"nA" = (
+/obj/machinery/vending/uniform_supply,
+/turf/open/shuttle/dropship/floor,
+/area/shuttle/dropship/alamo)
+"oH" = (
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 4
+	},
+/obj/structure/largecrate/supply/supplies/sandbags,
+/turf/open/shuttle/dropship/floor,
+/area/shuttle/dropship/alamo)
+"pY" = (
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 4
+	},
+/obj/structure/largecrate/supply/ammo/sentry,
+/turf/open/shuttle/dropship/floor,
+/area/shuttle/dropship/alamo)
+"qX" = (
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 4
+	},
+/obj/structure/largecrate/supply/medicine/medkits,
+/turf/open/shuttle/dropship/floor,
+/area/shuttle/dropship/alamo)
 "rs" = (
 /obj/machinery/light{
 	dir = 4
 	},
 /turf/template_noop,
 /area/shuttle/dropship/normandy)
+"rR" = (
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 4
+	},
+/obj/structure/largecrate/supply/supplies/metal,
+/turf/open/shuttle/dropship/floor,
+/area/shuttle/dropship/alamo)
+"sz" = (
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 8
+	},
+/obj/structure/largecrate/supply/medicine/blood,
+/turf/open/shuttle/dropship/floor,
+/area/shuttle/dropship/alamo)
+"uQ" = (
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 8
+	},
+/obj/machinery/vending/nanomed{
+	dir = 8
+	},
+/obj/structure/largecrate/supply/floodlights,
+/turf/open/shuttle/dropship/floor,
+/area/shuttle/dropship/alamo)
 "vw" = (
 /obj/structure/dropship_piece/one/engine/leftbottom,
 /turf/template_noop,
 /area/shuttle/dropship/alamo)
+"zL" = (
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 4
+	},
+/obj/structure/largecrate/supply/explosives/mines,
+/turf/open/shuttle/dropship/floor,
+/area/shuttle/dropship/alamo)
+"zU" = (
+/obj/machinery/vending/tool,
+/turf/open/shuttle/dropship/floor,
+/area/shuttle/dropship/alamo)
 "Dp" = (
 /turf/open/shuttle/dropship/ten,
+/area/shuttle/dropship/alamo)
+"Ds" = (
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 8
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/structure/largecrate/supply/supplies/plasteel,
+/turf/open/shuttle/dropship/floor,
+/area/shuttle/dropship/alamo)
+"Ew" = (
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 4
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/structure/largecrate/supply/supplies/metal,
+/turf/open/shuttle/dropship/floor,
 /area/shuttle/dropship/alamo)
 "FA" = (
 /turf/closed/shuttle/dropship1/enginetwo{
 	dir = 8
 	},
+/area/shuttle/dropship/alamo)
+"IG" = (
+/obj/machinery/computer/autodoc_console,
+/turf/open/shuttle/dropship/floor,
 /area/shuttle/dropship/alamo)
 "Ki" = (
 /obj/machinery/computer/shuttle/marine_dropship/one{
@@ -550,14 +654,36 @@
 	dir = 1
 	},
 /area/shuttle/dropship/alamo)
+"Mg" = (
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 8
+	},
+/obj/structure/largecrate/supply/supplies/plasteel,
+/turf/open/shuttle/dropship/floor,
+/area/shuttle/dropship/alamo)
+"Oz" = (
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 8
+	},
+/obj/structure/largecrate/supply/explosives/disposable,
+/turf/open/shuttle/dropship/floor,
+/area/shuttle/dropship/alamo)
 "QK" = (
 /obj/structure/dropship_piece/one/engine/rightbottom,
 /turf/template_noop,
+/area/shuttle/dropship/alamo)
+"XH" = (
+/obj/machinery/vending/MarineMed,
+/turf/open/shuttle/dropship/floor,
 /area/shuttle/dropship/alamo)
 "Zx" = (
 /turf/closed/shuttle/dropship1/wall{
 	dir = 1
 	},
+/area/shuttle/dropship/alamo)
+"ZP" = (
+/obj/machinery/autodoc,
+/turf/open/shuttle/dropship/floor,
 /area/shuttle/dropship/alamo)
 "ZT" = (
 /obj/machinery/light{
@@ -618,14 +744,14 @@ ao
 ao
 aq
 aE
-aI
+lc
 bD
-aI
+be
 al
 al
-aI
-aI
-aI
+qX
+pY
+XH
 br
 bu
 bu
@@ -649,11 +775,11 @@ aS
 aS
 aS
 bo
-aI
+zL
 bx
-aI
-bl
-aI
+oH
+Ew
+rR
 bX
 cc
 cg
@@ -667,8 +793,8 @@ aB
 aK
 bj
 aN
-bd
-aN
+al
+al
 aN
 bj
 Dp
@@ -690,7 +816,7 @@ aC
 aK
 aT
 bn
-aZ
+ZP
 aZ
 bg
 bk
@@ -713,8 +839,8 @@ aD
 aK
 bl
 aI
-be
-aI
+IG
+al
 aI
 bl
 Dp
@@ -741,11 +867,11 @@ aS
 aS
 aS
 bq
-aN
-bd
-aN
-bj
-aN
+Oz
+uQ
+Mg
+Ds
+hN
 ca
 cd
 ci
@@ -756,14 +882,14 @@ ao
 ao
 aw
 aE
-aN
+nA
 aU
-aN
+bd
 al
 al
-aN
-aN
-aN
+hR
+sz
+zU
 bv
 by
 by
