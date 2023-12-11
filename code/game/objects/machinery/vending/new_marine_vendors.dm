@@ -782,8 +782,8 @@
 
 /obj/effect/vendor_bundle/specialist
 	gear_to_spawn = list(
-		/obj/item/clothing/under/spec_operative
-		/obj/item/clothing/shoes/marine/sneakingboots
+		/obj/item/clothing/under/spec_operative,
+		/obj/item/clothing/shoes/marine/sneakingboots,
 		/obj/item/beacon/supply_beacon,
 		/obj/item/compass,
 		/obj/item/binoculars/tactical/scout,
