@@ -144,7 +144,7 @@
 	. = ..()
 	new /obj/item/clothing/suit/modular/xenonauten/light(src)
 	new /obj/item/clothing/head/modular/m10x(src)
-	new /obj/item/clothing/glasses/m42_goggles(src)
+	new /obj/item/clothing/glasses/thermal/m64_thermal_goggles(src)
 	new /obj/item/ammo_magazine/sniper(src)
 	new /obj/item/ammo_magazine/sniper/flak(src)
 	new /obj/item/ammo_magazine/sniper/incendiary(src)

@@ -521,8 +521,6 @@
 
 /obj/item/storage/box/crate/loot/infiltration_pack_spec/Initialize(mapload)
 	. = ..()
-	new /obj/item/clothing/under/spec_operative(src)
-	new /obj/item/clothing/shoes/marine/sneakingboots(src)
 	new /obj/item/clothing/suit/armor/bulletproof(src)
 	new /obj/item/clothing/glasses/night/m56_goggles(src)
 	new /obj/item/clothing/gloves/marine/insulated(src)
@@ -551,6 +549,14 @@
 	new /obj/item/clothing/head/headband/snake(src)
 	new /obj/item/explosive/grenade/smokebomb/cloak(src)
 	new /obj/item/clothing/mask/gas(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/sleeptoxin(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/sleeptoxin(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/sleeptoxin(src)
+	new /obj/item/storage/toolbox/syndicate(src)
+	new /obj/item/tweezers_advanced(src)
+	new /obj/item/storage/pouch/medkit/firstaid(src)
+	new /obj/item/roller/medevac(src)
+	new /obj/item/medevac_beacon(src)
 
 /obj/item/storage/box/crate/loot/targetrifle_pack_spec/Initialize(mapload)
 	. = ..()

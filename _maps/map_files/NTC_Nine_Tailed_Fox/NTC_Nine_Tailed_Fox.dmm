@@ -6036,6 +6036,14 @@
 /obj/effect/spawner/random/food_or_drink/kitchenknife,
 /turf/open/floor/prison/kitchen,
 /area/mainship/living/officer_study)
+"fuH" = (
+/obj/item/weapon/gun/sentry/big_sentry/premade{
+	dir = 8
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/port_umbilical{
+	name = "Ship Floor 2 Hallways"
+	})
 "fvc" = (
 /obj/structure/largecrate/supply/explosives/disposable,
 /turf/open/floor/mainship/orange/full,
@@ -9120,6 +9128,8 @@
 /obj/item/attachable/reddot,
 /obj/item/weapon/gun/shotgun/combat/masterkey,
 /obj/item/ammo_magazine/minisentry,
+/obj/item/attachable/scope/mini,
+/obj/item/attachable/motiondetector,
 /turf/open/floor/wood,
 /area/sulaco/liaison/quarters{
 	outside = 0;
@@ -20529,18 +20539,18 @@
 /turf/open/floor/plating/mainship,
 /area/mainship/command/cic)
 "sKQ" = (
-/obj/structure/sign/directions/command{
+/obj/structure/sign/fixedinplace/command{
 	dir = 1;
 	pixel_y = 10
 	},
-/obj/structure/sign/directions/medical{
+/obj/structure/sign/fixedinplace/medical{
 	pixel_y = 4
 	},
-/obj/structure/sign/directions/science{
+/obj/structure/sign/fixedinplace/science{
 	dir = 8;
 	pixel_y = -1
 	},
-/obj/structure/sign/directions/supply{
+/obj/structure/sign/fixedinplace/supply{
 	pixel_y = -8
 	},
 /turf/closed/wall/mainship,
@@ -22264,6 +22274,7 @@
 /obj/item/ammo_magazine/packet/mateba,
 /obj/item/ammo_magazine/packet/mateba,
 /obj/item/weapon/gun/rifle/m412/elite,
+/obj/item/storage/pouch/grenade/combat_patrol,
 /turf/open/floor/wood,
 /area/sulaco/liaison/quarters{
 	outside = 0;
@@ -24279,6 +24290,36 @@
 "wmC" = (
 /obj/structure/table/mainship/nometal,
 /obj/machinery/light/mainship,
+/obj/item/explosive/grenade/chem_grenade/large,
+/obj/item/explosive/grenade/chem_grenade/large,
+/obj/item/explosive/grenade/chem_grenade/large,
+/obj/item/explosive/grenade/chem_grenade/large,
+/obj/item/explosive/grenade/chem_grenade/large,
+/obj/item/explosive/grenade/chem_grenade/large,
+/obj/item/explosive/grenade/chem_grenade/large,
+/obj/item/explosive/grenade/chem_grenade/large,
+/obj/item/explosive/grenade/chem_grenade/large,
+/obj/item/explosive/grenade/chem_grenade/large,
+/obj/item/assembly/igniter,
+/obj/item/assembly/igniter,
+/obj/item/assembly/igniter,
+/obj/item/assembly/igniter,
+/obj/item/assembly/igniter,
+/obj/item/assembly/igniter,
+/obj/item/assembly/igniter,
+/obj/item/assembly/igniter,
+/obj/item/assembly/igniter,
+/obj/item/assembly/igniter,
+/obj/item/assembly/signaler,
+/obj/item/assembly/signaler,
+/obj/item/assembly/signaler,
+/obj/item/assembly/timer,
+/obj/item/assembly/timer,
+/obj/item/assembly/timer,
+/obj/item/assembly/timer,
+/obj/item/assembly/timer,
+/obj/item/assembly/timer,
+/obj/item/assembly/timer,
 /turf/open/floor/mainship/sterile/side,
 /area/mainship/medical/surgery_hallway{
 	name = "Research";
@@ -33020,7 +33061,7 @@ fSq
 fWn
 tmD
 aYd
-hXu
+fuH
 hXu
 hXu
 bgb
@@ -33037,7 +33078,7 @@ hXu
 hXu
 baz
 hXu
-hXu
+fuH
 aMa
 aMa
 boT
