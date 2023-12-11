@@ -109,3 +109,17 @@
   - spellcheck: Changed the acronym for the hypervene hypo to Hy
   ivanmixo:
   - code_imp: Killed get_contents
+2023-12-11:
+  Arturlang:
+  - bugfix: Widow's spiderlings will no longer just constantly stop attacking their
+      target, now the widow will have to move away from the spiderlings and only then
+      they will stop
+  Pariah919:
+  - rscadd: Added new deployable HMG to CLF Specialist.
+  Wisemonster:
+  - rscadd: Orders will now show what job sent them in the orders' header.
+  Xander3359:
+  - imagedel: deleted cyborg.dmi
+  - code_imp: Delete unused ui defines
+  coldironwarrior:
+  - bugfix: fixes mountbatten pink again (maybe for real)
