@@ -241,21 +241,21 @@
 	return can_use_ability(target, TRUE)
 
 // ***************************************
-// *********** Assize
+// *********** oppose
 // ***************************************
 
-/datum/action/ability/activable/xeno/assize
-	name = "Assize"
+/datum/action/ability/activable/xeno/oppose
+	name = "oppose"
 	action_icon_state = "rejuvenation"
 	desc = "Violently suffuse the nearby ground with stored blood, staggering nearby marines and healing nearby xenomorphs."
 	cooldown_duration = 30 SECONDS
-	ability_cost = GORGER_ASSIZE_COST
+	ability_cost = GORGER_OPPOSE_COST
 	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_XENOABILITY_ASSIZE,
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_OPPOSE,
 	)
 	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
 
-/datum/action/ability/activable/xeno/assize/use_ability(atom/A)
+/datum/action/ability/activable/xeno/oppose/use_ability(atom/A)
 	. = ..()
 	var/mob/living/carbon/xenomorph/owner_xeno = owner
 	add_cooldown()
@@ -271,7 +271,7 @@
 		var/distance = get_dist(M, owner_xeno)
 		if(owner_xeno.issamexenohive(M))  //Xenos can be healed up to three tiles away from you
 			var/mob/living/carbon/xenomorph/target_xeno = M
-			var/heal_amount = M.maxHealth * GORGER_ASSIZE_HEAL
+			var/heal_amount = M.maxHealth * GORGER_OPPOSE_HEAL
 			HEAL_XENO_DAMAGE(target_xeno, heal_amount, FALSE)
 			adjustOverheal(target_xeno, heal_amount)
 			continue
@@ -287,7 +287,7 @@
 			M.adjust_slowdown(3)
 
 
-/datum/action/ability/activable/xeno/assize/ai_should_use(atom/target)
+/datum/action/ability/activable/xeno/oppose/ai_should_use(atom/target)
 	return FALSE
 
 // ***************************************

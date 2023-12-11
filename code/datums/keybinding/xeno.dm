@@ -503,11 +503,11 @@
 	keybind_signal = COMSIG_XENOABILITY_TRANSFUSION
 	hotkey_keys = list("H")
 
-/datum/keybinding/xeno/assize
-	name = "assize"
-	full_name = "Gorger: Assize"
+/datum/keybinding/xeno/oppose
+	name = "oppose"
+	full_name = "Gorger: Oppose"
 	description = "Violently suffuse the nearby ground with stored blood, staggering nearby marines and healing nearby xenomorphs."
-	keybind_signal = COMSIG_XENOABILITY_ASSIZE
+	keybind_signal = COMSIG_XENOABILITY_OPPOSE
 	hotkey_keys = list("R")
 
 /datum/keybinding/xeno/psychic_link
