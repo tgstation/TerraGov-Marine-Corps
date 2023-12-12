@@ -369,7 +369,7 @@
 
 /obj/item/clothing/under/spec_operative
 	name = "NTC Spec-Ops Uniform"
-	desc = "An extremely expensive sneaking suit created by an Ninetails Corporation for high risk missions, made with several layers of a nano-fiber that, while light, molds to the wearer's body shape and hardens protecting them. Only provided rarely to most successful Senior Operatives or higher."
+	desc = "An extremely expensive sneaking suit created by an Ninetails Corporation for high risk missions, made with several layers of a nano-fiber that, while light, molds to the wearer's body shape and hardens protecting them. Only provided rarely to most successful Senior Operatives or higher. This uniform allows you to crawl through vents with ALT-CLICK"
 	icon_state = "syndicate"
 	item_state = "syndicate"
 	resistance_flags = UNACIDABLE
@@ -394,7 +394,7 @@
 
 /obj/item/clothing/under/spec_operative/tback
 	name = "NTC Spec-Ops Tactical T-Back Leotard"
-	desc = "An extremely expensive sneaking leotard with extra skin-showing properties created by an Ninetails Corporation for high risk missions with high risk clothes, made with several layers of a nano-fiber that, while light, molds to the wearer's body shape and hardens protecting them. Only provided rarely to most successful Senior Operatives or higher."
+	desc = "An extremely expensive sneaking leotard with extra skin-showing properties created by an Ninetails Corporation for high risk missions with high risk clothes, made with several layers of a nano-fiber that, while light, molds to the wearer's body shape and hardens protecting them. Only provided rarely to most successful Senior Operatives or higher. This leotard allows you to crawl through vents with ALT-CLICK"
 	icon_state = "swim_black"
 
 /obj/item/clothing/under/techpriest
