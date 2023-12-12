@@ -123,3 +123,10 @@
   - code_imp: Delete unused ui defines
   coldironwarrior:
   - bugfix: fixes mountbatten pink again (maybe for real)
+2023-12-12:
+  Helg2:
+  - bugfix: Snatch now spends plasma only on success.
+  Lumipharon:
+  - rscadd: Sectoids have been reported displaying powerful new psionic abilities
+      in this sector
+  - balance: Sectoid base hp reduced to 80

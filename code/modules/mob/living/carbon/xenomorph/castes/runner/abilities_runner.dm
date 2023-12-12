@@ -323,6 +323,7 @@
 	RegisterSignal(owner, COMSIG_ATOM_DIR_CHANGE, PROC_REF(owner_turned))
 	owner.add_movespeed_modifier(MOVESPEED_ID_SNATCH, TRUE, 0, NONE, TRUE, 2)
 	owner_turned(null, null, owner.dir)
+	succeed_activate()
 	add_cooldown()
 
 ///Signal handler to update the item overlay when the owner is changing dir

@@ -396,7 +396,6 @@
 
 	return TRUE
 
-
 //infection status that appears on humans and monkeys, viewed by xenos only.
 /datum/atom_hud/xeno_infection
 	hud_icons = list(XENO_EMBRYO_HUD)
