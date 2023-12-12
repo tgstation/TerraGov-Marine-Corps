@@ -276,7 +276,7 @@ Make the NTC proud!"})
 	id = /obj/item/card/id/gold
 	belt = /obj/item/storage/holster/belt/mateba/officer/full
 	ears = /obj/item/radio/headset/mainship/mcom
-	w_uniform = /obj/item/clothing/under/suit_jacket/charcoal
+	w_uniform = /obj/item/clothing/under/spec_operative/armoredsuit
 	shoes = /obj/item/clothing/shoes/marine/full
 	gloves = /obj/item/clothing/gloves/marine/officer
 	r_store = /obj/item/storage/pouch/general/large/command
