@@ -38,9 +38,6 @@
 	var/hal_screwyhud = SCREWYHUD_NONE
 	var/next_hallucination = 0
 
-	/// % Chance of exploding on death, incremented by total damage taken if not initially zero.
-	var/gib_chance = 0
-
 /mob/living/carbon/proc/transfer_identity(mob/living/carbon/destination)
 	if(!istype(destination))
 		return

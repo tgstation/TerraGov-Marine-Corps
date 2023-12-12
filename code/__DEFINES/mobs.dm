@@ -813,6 +813,7 @@ GLOBAL_LIST_INIT(human_body_parts, list(BODY_ZONE_HEAD,
 #define IGNORE_USER_LOC_CHANGE (1<<0)
 #define IGNORE_TARGET_LOC_CHANGE (1<<1)
 #define IGNORE_HAND (1<<2)
+#define IGNORE_HELD_ITEM (1<<3)
 
 #define TIER_ONE_THRESHOLD 420
 
