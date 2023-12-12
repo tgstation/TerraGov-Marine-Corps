@@ -257,6 +257,8 @@
 		/obj/item/mortal_shell/he,
 		/obj/item/mortal_shell/incendiary,
 		/obj/item/mortal_shell/smoke,
+		/datum/ammo/mortar/smoke/satrapine,
+		/obj/item/mortal_shell/smoke/sleep,
 		/obj/item/mortal_shell/flare,
 		/obj/item/mortal_shell/plasmaloss,
 		/obj/item/mortar_kit,
