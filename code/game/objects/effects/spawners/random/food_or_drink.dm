@@ -370,7 +370,7 @@
 		/obj/item/reagent_containers/food/snacks/christmas_cookiesix,
 		/obj/item/reagent_containers/food/snacks/christmas_cookieseven,
 		/obj/item/reagent_containers/food/snacks/sliceable/pastries/fruitcake,
-		/obj/item/reagent_containers/food/snacks/fruitcakeslice,
+		/obj/item/reagent_containers/food/snacks/pastries/cakeslicefruit,
 		/obj/item/reagent_containers/food/drinks/h_chocolate,
 		/obj/item/reagent_containers/food/drinks/milk/xmas,
 	)

@@ -1251,25 +1251,6 @@
 	bitesize = 2
 	tastes = list("watermelon" = 1)
 
-
-/obj/item/reagent_containers/food/snacks/sliceable/applecake
-	name = "Apple Cake"
-	desc = "A cake centred with Apple"
-	icon_state = "applecake"
-	slice_path = /obj/item/reagent_containers/food/snacks/applecakeslice
-	list_reagents = list(/datum/reagent/consumable/nutriment = 15)
-	filling_color = "#EBF5B8"
-	tastes = list ("cake" = 5, "sweetness" = 1, "apple" = 1)
-
-/obj/item/reagent_containers/food/snacks/applecakeslice
-	name = "Apple Cake slice"
-	desc = "A slice of heavenly cake."
-	icon_state = "applecakeslice"
-	trash = /obj/item/trash/plate
-	filling_color = "#EBF5B8"
-	bitesize = 2
-	tastes = list("cake" = 5, "sweetness" = 1, "apple" = 1)
-
 /obj/item/reagent_containers/food/snacks/fruitcakeslice
 	name = "english fruitcake slice"
 	desc = "A proper good slice, innit?"
@@ -1282,24 +1263,6 @@
 /obj/item/reagent_containers/food/snacks/fruitcakeslice/Initialize()
 	. = ..()
 	icon_state = "fruitcake_slice[rand(1,3)]"
-
-/obj/item/reagent_containers/food/snacks/sliceable/pumpkinpie
-	name = "Pumpkin Pie"
-	desc = "A delicious treat for the autumn months."
-	icon_state = "pumpkinpie"
-	slice_path = /obj/item/reagent_containers/food/snacks/pumpkinpieslice
-	list_reagents = list(/datum/reagent/consumable/nutriment = 15)
-	filling_color = "#F5B951"
-	tastes = list("pie" = 1, "pumpkin" = 1)
-
-/obj/item/reagent_containers/food/snacks/pumpkinpieslice
-	name = "Pumpkin Pie slice"
-	desc = "A slice of pumpkin pie, with whipped cream on top. Perfection."
-	icon_state = "pumpkinpieslice"
-	trash = /obj/item/trash/plate
-	filling_color = "#F5B951"
-	bitesize = 2
-	tastes = list("pie" = 1, "pumpkin" = 1)
 
 /obj/item/reagent_containers/food/snacks/cracker
 	name = "Cracker"

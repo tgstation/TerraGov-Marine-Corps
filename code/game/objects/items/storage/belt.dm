@@ -400,7 +400,7 @@
 	new /obj/item/restraints/handcuffs(src)
 	new /obj/item/flash(src)
 	new /obj/item/clothing/glasses(src)
-	new /obj/item/reagent_containers/food/snacks/fruitcakeslice(src)
+	new /obj/item/reagent_containers/food/snacks/pastries/cakeslicefruit(src)
 	new /obj/item/weapon/baton(src)
 	new /obj/item/weapon/gun/energy/taser(src)
 	new /obj/item/tool/lighter/zippo(src)
