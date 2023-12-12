@@ -753,7 +753,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 			targeted.IgniteMob()
 		else
 			targeted.ExtinguishMob()
-		if(isxeno(target))
+		if(isxeno(targeted))
 			var/mob/living/carbon/xenomorph/xeno_target = targeted
 			xeno_target.sunder = target_initial_sunder
 		targeted.remove_filter("rewind_blur")
