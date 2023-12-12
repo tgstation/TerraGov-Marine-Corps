@@ -24,6 +24,8 @@
 	var/fuel_max = 1000
 	///reference to the attached sidecar, if present
 	var/obj/item/sidecar/attached_sidecar
+
+	var/tipped = FALSE
 	COOLDOWN_DECLARE(enginesound_cooldown)
 
 /obj/vehicle/ridden/motorbike/Initialize(mapload)
@@ -58,10 +60,20 @@
 			to_chat(user, span_warning("There is no fuel left!"))
 			TIMER_COOLDOWN_START(src, COOLDOWN_BIKE_FUEL_MESSAGE, 1 SECONDS)
 		return FALSE
+	if(tipped)
+		if(!TIMER_COOLDOWN_CHECK(src, COOLDOWN_BIKE_FUEL_MESSAGE))
+			to_chat(user, span_warning("The bike is on its side!"))
+			TIMER_COOLDOWN_START(src, COOLDOWN_BIKE_FUEL_MESSAGE, 1 SECONDS)
+		return FALSE
 	return ..()
 
 /obj/vehicle/ridden/motorbike/attack_hand(mob/living/user)
-	return motor_pack.open(user)
+	if(!tipped)
+		return motor_pack.open(user)
+
+	if(do_after(user, 1 SECONDS, IGNORE_HELD_ITEM, src))
+		balloon_alert(user, "Flipped back")
+		flip_back()
 
 /obj/vehicle/ridden/motorbike/MouseDrop(obj/over_object)
 	if(motor_pack.handle_mousedrop(usr, over_object))
@@ -125,6 +137,42 @@
 	if(user.a_intent != INTENT_HARM)
 		return motor_pack.attackby(I, user, params)
 
+/obj/vehicle/ridden/motorbike/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
+	. = ..()
+	if(!.)
+		return
+
+	if(tipped)
+		return
+
+	if(prob(90))
+		return
+
+	X.visible_message(span_danger("\The [X] knocks \the [src] down!"), \
+	span_danger("You knock \the [src] down!"), null, 5)
+	tip_over()
+
+///Knocks the bike over, making it unridable and nondense
+/obj/vehicle/ridden/motorbike/proc/tip_over()
+	var/matrix/A = matrix()
+	A.Turn(90)
+	transform = A
+	tipped = TRUE
+	density = FALSE
+	for(var/mob/rider AS in buckled_mobs)
+		unbuckle_mob(rider, TRUE)
+		if(iscarbon(rider))
+			var/mob/living/carbon/carbon_rider = rider
+			carbon_rider.Knockdown(0.5 SECONDS)
+
+///Flips the bike back to a ridable state
+/obj/vehicle/ridden/motorbike/proc/flip_back()
+	icon_state = initial(icon_state)
+	var/matrix/A = matrix()
+	transform = A
+	tipped = FALSE
+	density = TRUE
+
 /obj/vehicle/ridden/motorbike/proc/sidecar_dir_change(datum/source, dir, newdir)
 	SIGNAL_HANDLER
 	switch(newdir)
@@ -179,6 +227,21 @@
 /obj/vehicle/ridden/motorbike/obj_destruction()
 	explosion(src, light_impact_range = 2, flash_range = 0)
 	return ..()
+
+/obj/vehicle/ridden/motorbike/ex_act(severity)
+	. = ..()
+	if(QDELETED(src))
+		return
+	var/tip_prob = 10
+	switch(severity)
+		if(EXPLODE_DEVASTATE)
+			tip_prob = 100 //bike should be dead, but just in case
+		if(EXPLODE_HEAVY)
+			tip_prob = 60
+		if(EXPLODE_LIGHT)
+			tip_prob = 30
+	if(prob(tip_prob))
+		tip_over()
 
 /obj/vehicle/ridden/motorbike/Destroy()
 	STOP_PROCESSING(SSobj,src)
