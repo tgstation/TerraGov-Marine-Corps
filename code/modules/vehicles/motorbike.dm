@@ -24,7 +24,7 @@
 	var/fuel_max = 1000
 	///reference to the attached sidecar, if present
 	var/obj/item/sidecar/attached_sidecar
-
+	///If the bike is knocked over
 	var/tipped = FALSE
 	COOLDOWN_DECLARE(enginesound_cooldown)
 
