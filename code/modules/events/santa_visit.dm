@@ -21,14 +21,6 @@
 	///The human target for this event
 	var/mob/living/carbon/human/hive_target
 
-/datum/round_event_control/santa_visit/can_spawn_event(players_amt, gamemode)
-	var/list/eligible_targets = list()
-	for(var/mob/living/carbon/human/possible_target in GLOB.alive_human_list)
-		if(HAS_TRAIT(possible_target, TRAIT_SANTA_CLAUS)) ///avoid duplicate santas
-			return FALSE
-	if(!length(eligible_targets))
-		return //everyone is dead or evac'd
-
 /datum/round_event/santa_visit/start()
 	for(var/obj/structure/flora/tree/pine/xmas/presents/christmastree)
 		if(christmastree.unlimited)
