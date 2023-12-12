@@ -61,9 +61,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plating,
-/area/mainship/living/tankerbunks{
-	outside = 0
-	})
+/area/mainship/living/tankerbunks)
 "adS" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
@@ -77,7 +75,6 @@
 	dir = 1
 	},
 /area/mainship/medical/upper_medical{
-	outside = 0;
 	name = "Shipside Medbay"
 	})
 "aeF" = (
@@ -116,8 +113,7 @@
 	},
 /turf/open/floor/mainship,
 /area/mainship/shipboard/port_missiles{
-	name = "Shipside Corpsec Office";
-	outside = 0
+	name = "Shipside Corpsec Office"
 	})
 "agx" = (
 /obj/structure/table/reinforced,
@@ -176,14 +172,11 @@
 "ail" = (
 /obj/machinery/telecomms/hub/preset,
 /turf/open/floor/mainship/tcomms,
-/area/mainship/command/telecomms{
-	outside = 0
-	})
+/area/mainship/command/telecomms)
 "aiE" = (
 /obj/machinery/computer/body_scanconsole,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/upper_medical{
-	outside = 0;
 	name = "Shipside Medbay"
 	})
 "aiO" = (
@@ -213,8 +206,7 @@
 /obj/item/clothing/head/welding,
 /turf/open/floor/mainship/sterile,
 /area/mainship/medical/surgery_hallway{
-	name = "Research";
-	outside = 0
+	name = "Research"
 	})
 "alb" = (
 /obj/machinery/gibber,
@@ -254,9 +246,7 @@
 /turf/open/floor/mainship/green{
 	dir = 1
 	},
-/area/mainship/living/basketball{
-	outside = 0
-	})
+/area/mainship/living/basketball)
 "aog" = (
 /obj/machinery/door/airlock/mainship/generic,
 /obj/structure/cable,
@@ -298,16 +288,13 @@
 /turf/open/floor/mainship/black{
 	dir = 9
 	},
-/area/mainship/living/tankerbunks{
-	outside = 0
-	})
+/area/mainship/living/tankerbunks)
 "aqz" = (
 /obj/structure/table/mainship/nometal,
 /obj/item/storage/box/syringes,
 /obj/item/reagent_containers/dropper,
 /turf/open/floor/mainship/sterile/corner,
 /area/mainship/medical/upper_medical{
-	outside = 0;
 	name = "Shipside Medbay"
 	})
 "aro" = (
@@ -318,15 +305,12 @@
 	dir = 5
 	},
 /area/mainship/medical/upper_medical{
-	outside = 0;
 	name = "Shipside Medbay"
 	})
 "art" = (
 /obj/machinery/telecomms/processor/preset_three,
 /turf/open/floor/mainship/tcomms,
-/area/mainship/command/telecomms{
-	outside = 0
-	})
+/area/mainship/command/telecomms)
 "arw" = (
 /obj/effect/landmark/start/job/security_officer,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -335,8 +319,7 @@
 /obj/effect/ai_node,
 /turf/open/floor/mainship/mono,
 /area/mainship/shipboard/port_missiles{
-	name = "Shipside Corpsec Office";
-	outside = 0
+	name = "Shipside Corpsec Office"
 	})
 "asa" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
@@ -365,17 +348,13 @@
 "asF" = (
 /obj/machinery/marine_selector/clothes/engi,
 /turf/open/floor/mainship,
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "auv" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
 /turf/closed/wall/mainship,
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "avc" = (
 /obj/machinery/portable_atmospherics/canister,
 /turf/open/floor/engine,
@@ -403,7 +382,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/upper_medical{
-	outside = 0;
 	name = "Shipside Medbay"
 	})
 "axM" = (
@@ -445,9 +423,7 @@
 	dir = 4
 	},
 /turf/open/floor/wood,
-/area/mainship/living/pilotbunks{
-	outside = 0
-	})
+/area/mainship/living/pilotbunks)
 "azt" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 4
@@ -494,9 +470,7 @@
 /turf/open/floor/mainship/black{
 	dir = 8
 	},
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "aBz" = (
 /obj/machinery/door/poddoor/mainship,
 /turf/open/floor/mainship/stripesquare,
@@ -535,9 +509,7 @@
 "aCg" = (
 /obj/machinery/newscaster,
 /turf/closed/wall/mainship,
-/area/mainship/living/tankerbunks{
-	outside = 0
-	})
+/area/mainship/living/tankerbunks)
 "aCo" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment/corner,
@@ -551,7 +523,6 @@
 	dir = 5
 	},
 /area/mainship/medical/upper_medical{
-	outside = 0;
 	name = "Shipside Medbay"
 	})
 "aCv" = (
@@ -605,8 +576,7 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/medical/surgery_hallway{
-	name = "Research";
-	outside = 0
+	name = "Research"
 	})
 "aDW" = (
 /obj/structure/bed/chair/office/dark{
@@ -644,15 +614,12 @@
 /obj/structure/closet/secure_closet/personal/morgue,
 /turf/open/floor/mainship/mono,
 /area/mainship/medical/surgery_hallway{
-	name = "Research";
-	outside = 0
+	name = "Research"
 	})
 "aFj" = (
 /obj/machinery/marine_selector/clothes/medic,
 /turf/open/floor/mainship/floor,
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "aFk" = (
 /obj/structure/disposaloutlet{
 	layer = 5
@@ -666,9 +633,7 @@
 /obj/structure/window/reinforced,
 /obj/structure/bed/chair,
 /turf/open/floor/mainship/green,
-/area/mainship/living/basketball{
-	outside = 0
-	})
+/area/mainship/living/basketball)
 "aFJ" = (
 /obj/structure/cable,
 /turf/open/floor/mainship/red{
@@ -683,9 +648,7 @@
 /turf/open/floor/mainship/sterile/side{
 	dir = 1
 	},
-/area/mainship/medical/lower_medical{
-	outside = 0
-	})
+/area/mainship/medical/lower_medical)
 "aGr" = (
 /turf/closed/wall/mainship,
 /area/mainship/groundhq/ntf/command/corporateliaison)
@@ -704,9 +667,7 @@
 "aGL" = (
 /obj/machinery/light,
 /turf/open/floor/mainship/green,
-/area/mainship/living/basketball{
-	outside = 0
-	})
+/area/mainship/living/basketball)
 "aHq" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 8
@@ -733,8 +694,7 @@
 /obj/structure/window/framed/mainship/requisitions,
 /turf/open/floor/mainship,
 /area/mainship/shipboard/port_missiles{
-	name = "Shipside Corpsec Office";
-	outside = 0
+	name = "Shipside Corpsec Office"
 	})
 "aHJ" = (
 /obj/structure/cable,
@@ -775,7 +735,6 @@
 	},
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/upper_medical{
-	outside = 0;
 	name = "Shipside Medbay"
 	})
 "aIo" = (
@@ -831,9 +790,7 @@
 "aKk" = (
 /obj/machinery/telecomms/server/presets/medical,
 /turf/open/floor/mainship/tcomms,
-/area/mainship/command/telecomms{
-	outside = 0
-	})
+/area/mainship/command/telecomms)
 "aKt" = (
 /obj/structure/cable,
 /obj/machinery/power/smes{
@@ -930,9 +887,7 @@
 	},
 /obj/machinery/vending/cola,
 /turf/open/floor/mainship,
-/area/mainship/living/basketball{
-	outside = 0
-	})
+/area/mainship/living/basketball)
 "aNn" = (
 /obj/machinery/light{
 	dir = 4
@@ -954,7 +909,6 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/upper_medical{
-	outside = 0;
 	name = "Shipside Medbay"
 	})
 "aOh" = (
@@ -967,7 +921,6 @@
 	},
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/upper_medical{
-	outside = 0;
 	name = "Shipside Medbay"
 	})
 "aOu" = (
@@ -982,7 +935,6 @@
 	dir = 5
 	},
 /area/mainship/medical/upper_medical{
-	outside = 0;
 	name = "Shipside Medbay"
 	})
 "aOW" = (
@@ -1052,9 +1004,7 @@
 /turf/open/floor/mainship/black{
 	dir = 8
 	},
-/area/mainship/living/tankerbunks{
-	outside = 0
-	})
+/area/mainship/living/tankerbunks)
 "aUq" = (
 /obj/structure/table/mainship/nometal,
 /obj/machinery/recharger,
@@ -1064,7 +1014,6 @@
 	dir = 4
 	},
 /area/mainship/medical/upper_medical{
-	outside = 0;
 	name = "Shipside Medbay"
 	})
 "aUI" = (
@@ -1072,17 +1021,14 @@
 /turf/open/floor/mainship/black{
 	dir = 1
 	},
-/area/mainship/living/tankerbunks{
-	outside = 0
-	})
+/area/mainship/living/tankerbunks)
 "aVi" = (
 /obj/structure/table/mainship/nometal,
 /obj/item/storage/box/drinkingglasses,
 /obj/item/storage/box/donkpockets,
 /turf/open/floor/wood,
 /area/mainship/medical/surgery_hallway{
-	name = "Research";
-	outside = 0
+	name = "Research"
 	})
 "aVn" = (
 /obj/machinery/vending/marineFood,
@@ -1154,8 +1100,7 @@
 "aYd" = (
 /turf/closed/wall/mainship,
 /area/mainship/shipboard/port_missiles{
-	name = "Shipside Corpsec Office";
-	outside = 0
+	name = "Shipside Corpsec Office"
 	})
 "aYm" = (
 /obj/machinery/camera/autoname,
@@ -1163,8 +1108,7 @@
 	dir = 1
 	},
 /area/mainship/shipboard/port_missiles{
-	name = "Shipside Corpsec Office";
-	outside = 0
+	name = "Shipside Corpsec Office"
 	})
 "aYu" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -1207,9 +1151,7 @@
 "aZt" = (
 /obj/machinery/vending/weapon,
 /turf/open/floor/mainship/mono,
-/area/mainship/living/pilotbunks{
-	outside = 0
-	})
+/area/mainship/living/pilotbunks)
 "aZC" = (
 /obj/structure/table/mainship,
 /obj/structure/paper_bin{
@@ -1243,9 +1185,7 @@
 /obj/structure/table/reinforced,
 /obj/structure/cable,
 /turf/open/floor/mainship/black,
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "bag" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment{
@@ -1345,7 +1285,6 @@
 /obj/machinery/computer/autodoc_console,
 /turf/open/floor/mainship/sterile,
 /area/mainship/medical/upper_medical{
-	outside = 0;
 	name = "Shipside Medbay"
 	})
 "beA" = (
@@ -1388,7 +1327,6 @@
 /obj/machinery/door/firedoor/mainship,
 /turf/open/floor/mainship/sterile,
 /area/mainship/medical/upper_medical{
-	outside = 0;
 	name = "Shipside Medbay"
 	})
 "bgb" = (
@@ -1435,9 +1373,7 @@
 "bkI" = (
 /obj/machinery/door/airlock/mainship/generic/mech_pilot/bunk,
 /turf/open/floor/mainship/mono,
-/area/mainship/living/tankerbunks{
-	outside = 0
-	})
+/area/mainship/living/tankerbunks)
 "blT" = (
 /turf/closed/wall/mainship/outer,
 /area/outpost/cargo{
@@ -1497,8 +1433,7 @@
 "boD" = (
 /turf/closed/wall/mainship/research/containment/wall/south,
 /area/mainship/medical/surgery_hallway{
-	name = "Research";
-	outside = 0
+	name = "Research"
 	})
 "boI" = (
 /obj/effect/landmark/start/job/medicalofficer,
@@ -1508,16 +1443,13 @@
 /turf/open/floor/mainship/sterile/corner{
 	dir = 4
 	},
-/area/mainship/medical/lower_medical{
-	outside = 0
-	})
+/area/mainship/medical/lower_medical)
 "boN" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/stairs/rampbottom,
 /area/mainship/shipboard/port_missiles{
-	name = "Shipside Corpsec Office";
-	outside = 0
+	name = "Shipside Corpsec Office"
 	})
 "boT" = (
 /obj/structure/cable,
@@ -1552,8 +1484,7 @@
 	dir = 1
 	},
 /area/mainship/medical/surgery_hallway{
-	name = "Research";
-	outside = 0
+	name = "Research"
 	})
 "bpS" = (
 /obj/structure/cable,
@@ -1631,9 +1562,7 @@
 	},
 /obj/machinery/door/firedoor/mainship,
 /turf/open/floor/mainship,
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "bsO" = (
 /obj/machinery/light{
 	dir = 1
@@ -1641,9 +1570,7 @@
 /turf/open/floor/mainship/black{
 	dir = 9
 	},
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "bsS" = (
 /obj/machinery/marine_selector/gear/commanddoll,
 /turf/open/floor/wood,
@@ -1658,9 +1585,7 @@
 /turf/open/floor/mainship/black{
 	dir = 4
 	},
-/area/mainship/living/tankerbunks{
-	outside = 0
-	})
+/area/mainship/living/tankerbunks)
 "btz" = (
 /turf/closed/wall/mainship/outer,
 /area/centcom/valhalla/crew_quarters/cryo{
@@ -1673,9 +1598,7 @@
 /turf/open/floor/mainship/black{
 	dir = 6
 	},
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "bus" = (
 /obj/structure/table/mainship/nometal,
 /obj/machinery/reagentgrinder,
@@ -1692,13 +1615,11 @@
 	dir = 1
 	},
 /area/mainship/medical/surgery_hallway{
-	name = "Research";
-	outside = 0
+	name = "Research"
 	})
 "bvb" = (
 /turf/open/floor/mainship/sterile,
 /area/mainship/medical/upper_medical{
-	outside = 0;
 	name = "Shipside Medbay"
 	})
 "bvE" = (
@@ -1745,9 +1666,7 @@
 "bxz" = (
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
-/area/mainship/living/pilotbunks{
-	outside = 0
-	})
+/area/mainship/living/pilotbunks)
 "bxW" = (
 /obj/structure/hoop{
 	dir = 4;
@@ -1755,9 +1674,7 @@
 	side = "left"
 	},
 /turf/open/floor/wood,
-/area/mainship/living/basketball{
-	outside = 0
-	})
+/area/mainship/living/basketball)
 "bye" = (
 /obj/structure/cable,
 /turf/open/floor/mainship/stripesquare,
@@ -1885,8 +1802,7 @@
 /obj/structure/window/framed/mainship/requisitions,
 /turf/open/floor/mainship,
 /area/mainship/shipboard/port_missiles{
-	name = "Shipside Corpsec Office";
-	outside = 0
+	name = "Shipside Corpsec Office"
 	})
 "bEq" = (
 /obj/structure/largecrate/supply/weapons/pistols,
@@ -1923,9 +1839,7 @@
 /obj/structure/cable,
 /obj/machinery/computer/autodoc_console,
 /turf/open/floor/mainship/sterile/side,
-/area/mainship/medical/lower_medical{
-	outside = 0
-	})
+/area/mainship/medical/lower_medical)
 "bFL" = (
 /turf/open/floor/mainship/floor,
 /area/outpost/cargo{
@@ -1937,14 +1851,11 @@
 	pixel_y = 3
 	},
 /turf/open/floor/mainship/cargo,
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "bHD" = (
 /obj/machinery/holopad,
 /turf/open/floor/mainship/sterile,
 /area/mainship/medical/upper_medical{
-	outside = 0;
 	name = "Shipside Medbay"
 	})
 "bHG" = (
@@ -1971,9 +1882,7 @@
 /turf/open/floor/mainship/black{
 	dir = 8
 	},
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "bHY" = (
 /obj/effect/landmark/start/job/corporateliaison,
 /obj/effect/landmark{
@@ -2067,9 +1976,7 @@
 /turf/open/floor/mainship/green{
 	dir = 4
 	},
-/area/mainship/living/basketball{
-	outside = 0
-	})
+/area/mainship/living/basketball)
 "bMc" = (
 /obj/structure/cable,
 /obj/machinery/camera/autoname{
@@ -2142,8 +2049,7 @@
 /obj/effect/landmark/start/job/researcher,
 /turf/open/floor/mainship/sterile/purple/side,
 /area/mainship/medical/surgery_hallway{
-	name = "Research";
-	outside = 0
+	name = "Research"
 	})
 "bQl" = (
 /obj/structure/cable,
@@ -2161,8 +2067,7 @@
 /obj/effect/ai_node,
 /turf/open/floor/stairs/rampbottom,
 /area/mainship/shipboard/port_missiles{
-	name = "Shipside Corpsec Office";
-	outside = 0
+	name = "Shipside Corpsec Office"
 	})
 "bQE" = (
 /turf/closed/shuttle/ert{
@@ -2178,9 +2083,7 @@
 	dir = 8
 	},
 /turf/open/floor/wood,
-/area/mainship/living/tankerbunks{
-	outside = 0
-	})
+/area/mainship/living/tankerbunks)
 "bRd" = (
 /obj/machinery/power/terminal,
 /obj/structure/cable,
@@ -2196,10 +2099,6 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 6
-	},
-/obj/effect/decal/cleanable/blood{
-	basecolor = "#ffffff";
-	name = "cum"
 	},
 /turf/open/floor/mainship/floor,
 /area/mainship/living/officer_study)
@@ -2239,9 +2138,7 @@
 /turf/open/floor/mainship/black{
 	dir = 10
 	},
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "bTu" = (
 /obj/structure/toilet{
 	dir = 1
@@ -2349,22 +2246,17 @@
 /obj/effect/ai_node,
 /turf/open/floor/mainship,
 /area/mainship/shipboard/port_missiles{
-	name = "Shipside Corpsec Office";
-	outside = 0
+	name = "Shipside Corpsec Office"
 	})
 "bYQ" = (
 /obj/machinery/holopad,
 /obj/structure/cable,
 /turf/open/floor/mainship/black,
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "bYR" = (
 /obj/effect/ai_node,
 /turf/open/floor/mainship/floor,
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "bYZ" = (
 /obj/structure/table/mainship/nometal,
 /obj/effect/spawner/random/engineering/extinguisher/regularweighted,
@@ -2375,8 +2267,7 @@
 	},
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/surgery_hallway{
-	name = "Research";
-	outside = 0
+	name = "Research"
 	})
 "bZl" = (
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -2408,8 +2299,7 @@
 /obj/machinery/door/firedoor/mainship,
 /turf/open/floor/mainship/sterile,
 /area/mainship/medical/surgery_hallway{
-	name = "Research";
-	outside = 0
+	name = "Research"
 	})
 "bZO" = (
 /obj/effect/ai_node,
@@ -2507,25 +2397,19 @@
 	},
 /obj/machinery/loadout_vendor,
 /turf/open/floor/mainship/mono,
-/area/mainship/living/pilotbunks{
-	outside = 0
-	})
+/area/mainship/living/pilotbunks)
 "ccJ" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/mainship/sterile/plain,
-/area/mainship/living/tankerbunks{
-	outside = 0
-	})
+/area/mainship/living/tankerbunks)
 "cdv" = (
 /mob/living/simple_animal/corgi/ranger,
 /turf/open/floor/mainship/black{
 	dir = 1
 	},
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "cdT" = (
 /obj/machinery/light{
 	dir = 4
@@ -2599,9 +2483,7 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/mainship,
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "cis" = (
 /obj/structure/window/framed/mainship/hull,
 /turf/open/floor/plating,
@@ -2629,7 +2511,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/mainship/sterile/side,
 /area/mainship/medical/upper_medical{
-	outside = 0;
 	name = "Shipside Medbay"
 	})
 "cjO" = (
@@ -2639,9 +2520,7 @@
 /obj/structure/cable,
 /obj/machinery/camera/autoname/mainship,
 /turf/open/floor/mainship/mono,
-/area/mainship/command/telecomms{
-	outside = 0
-	})
+/area/mainship/command/telecomms)
 "ckh" = (
 /obj/structure/cable,
 /obj/effect/ai_node,
@@ -2666,7 +2545,6 @@
 	dir = 1
 	},
 /area/mainship/medical/upper_medical{
-	outside = 0;
 	name = "Shipside Medbay"
 	})
 "clz" = (
@@ -2737,18 +2615,14 @@
 /turf/open/floor/mainship/green{
 	dir = 8
 	},
-/area/mainship/living/basketball{
-	outside = 0
-	})
+/area/mainship/living/basketball)
 "cqi" = (
 /turf/closed/wall/mainship,
 /area/mainship/hallways/dorm2)
 "cqV" = (
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/mainship/mono,
-/area/mainship/living/basketball{
-	outside = 0
-	})
+/area/mainship/living/basketball)
 "crc" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -2773,8 +2647,7 @@
 /obj/effect/ai_node,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/surgery_hallway{
-	name = "Research";
-	outside = 0
+	name = "Research"
 	})
 "crW" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
@@ -2786,8 +2659,7 @@
 	dir = 6
 	},
 /area/mainship/shipboard/port_missiles{
-	name = "Shipside Corpsec Office";
-	outside = 0
+	name = "Shipside Corpsec Office"
 	})
 "csI" = (
 /turf/open/floor/prison/darkyellow{
@@ -2806,15 +2678,13 @@
 	dir = 8
 	},
 /area/mainship/shipboard/port_missiles{
-	name = "Shipside Corpsec Office";
-	outside = 0
+	name = "Shipside Corpsec Office"
 	})
 "ctw" = (
 /turf/open/floor/mainship/sterile/corner{
 	dir = 8
 	},
 /area/mainship/medical/upper_medical{
-	outside = 0;
 	name = "Shipside Medbay"
 	})
 "ctJ" = (
@@ -2852,7 +2722,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/upper_medical{
-	outside = 0;
 	name = "Shipside Medbay"
 	})
 "cup" = (
@@ -2869,8 +2738,7 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/shipboard/port_missiles{
-	name = "Shipside Corpsec Office";
-	outside = 0
+	name = "Shipside Corpsec Office"
 	})
 "cuv" = (
 /mob/living/simple_animal/cat/Jones,
@@ -2885,9 +2753,7 @@
 	dir = 8
 	},
 /turf/open/floor/wood,
-/area/mainship/living/tankerbunks{
-	outside = 0
-	})
+/area/mainship/living/tankerbunks)
 "cvm" = (
 /obj/machinery/door/airlock/mainship/secure/evac{
 	dir = 2
@@ -2970,17 +2836,14 @@
 	dir = 1
 	},
 /area/mainship/medical/surgery_hallway{
-	name = "Research";
-	outside = 0
+	name = "Research"
 	})
 "czt" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
 /turf/open/floor/mainship/mono,
-/area/mainship/living/pilotbunks{
-	outside = 0
-	})
+/area/mainship/living/pilotbunks)
 "czS" = (
 /obj/structure/table/mainship,
 /obj/item/reagent_containers/food/snacks/chocolatebar,
@@ -3002,8 +2865,7 @@
 	dir = 8
 	},
 /area/mainship/medical/surgery_hallway{
-	name = "Research";
-	outside = 0
+	name = "Research"
 	})
 "cAh" = (
 /obj/machinery/shower{
@@ -3011,8 +2873,7 @@
 	},
 /turf/open/floor/mainship/sterile,
 /area/mainship/medical/surgery_hallway{
-	name = "Research";
-	outside = 0
+	name = "Research"
 	})
 "cAI" = (
 /turf/open/floor/mainship/mono,
@@ -3026,8 +2887,7 @@
 	dir = 1
 	},
 /area/mainship/medical/surgery_hallway{
-	name = "Research";
-	outside = 0
+	name = "Research"
 	})
 "cBt" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible,
@@ -3123,7 +2983,6 @@
 /obj/machinery/computer/med_data,
 /turf/open/floor/mainship/sterile/corner,
 /area/mainship/medical/upper_medical{
-	outside = 0;
 	name = "Shipside Medbay"
 	})
 "cFc" = (
@@ -3217,9 +3076,7 @@
 	},
 /obj/machinery/door/firedoor/mainship,
 /turf/open/floor/mainship,
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "cID" = (
 /turf/closed/wall/mainship/outer,
 /area/mainship/engineering/port_atmos)
@@ -3234,9 +3091,7 @@
 	dir = 4
 	},
 /turf/open/floor/mainship/ntlogo,
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "cJI" = (
 /obj/machinery/door/airlock/mainship/security{
 	name = "\improper Corpsec Office";
@@ -3247,8 +3102,7 @@
 	},
 /turf/open/floor/mainship,
 /area/mainship/shipboard/port_missiles{
-	name = "Shipside Corpsec Office";
-	outside = 0
+	name = "Shipside Corpsec Office"
 	})
 "cKq" = (
 /obj/structure/bed/chair/wood/wings,
@@ -3281,9 +3135,7 @@
 /turf/open/floor/mainship/cargo/arrow{
 	dir = 8
 	},
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "cLs" = (
 /obj/structure/toilet{
 	dir = 4;
@@ -3323,9 +3175,7 @@
 /turf/open/floor/mainship/black{
 	dir = 10
 	},
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "cNm" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -3437,9 +3287,7 @@
 	dir = 1
 	},
 /turf/open/floor/mainship/cargo,
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "cQx" = (
 /obj/structure/sign/restroom{
 	dir = 1
@@ -3463,7 +3311,6 @@
 	dir = 1
 	},
 /area/mainship/medical/upper_medical{
-	outside = 0;
 	name = "Shipside Medbay"
 	})
 "cRm" = (
@@ -3486,9 +3333,7 @@
 "cSc" = (
 /obj/machinery/telecomms/bus/preset_one,
 /turf/open/floor/mainship/tcomms,
-/area/mainship/command/telecomms{
-	outside = 0
-	})
+/area/mainship/command/telecomms)
 "cSI" = (
 /obj/structure/window/framed/mainship/toughened,
 /turf/open/floor/plating,
@@ -3498,9 +3343,7 @@
 /obj/item/bedsheet/brown,
 /obj/effect/landmark/start/job/pilotofficer,
 /turf/open/floor/wood,
-/area/mainship/living/pilotbunks{
-	outside = 0
-	})
+/area/mainship/living/pilotbunks)
 "cVa" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -3579,9 +3422,7 @@
 	},
 /obj/machinery/air_alarm,
 /turf/open/floor/mainship/mono,
-/area/mainship/command/telecomms{
-	outside = 0
-	})
+/area/mainship/command/telecomms)
 "cXZ" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/plating_catwalk,
@@ -3595,8 +3436,7 @@
 	},
 /turf/open/floor/mainship,
 /area/mainship/shipboard/port_missiles{
-	name = "Shipside Corpsec Office";
-	outside = 0
+	name = "Shipside Corpsec Office"
 	})
 "cYf" = (
 /obj/machinery/light/small{
@@ -3707,9 +3547,7 @@
 "dey" = (
 /obj/effect/ai_node,
 /turf/open/floor/mainship/sterile/plain,
-/area/mainship/living/tankerbunks{
-	outside = 0
-	})
+/area/mainship/living/tankerbunks)
 "deQ" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -3815,9 +3653,7 @@
 /turf/open/floor/mainship/black{
 	dir = 4
 	},
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "djm" = (
 /obj/item/trash/candy,
 /turf/open/floor/wood,
@@ -3839,8 +3675,7 @@
 	dir = 8
 	},
 /area/mainship/shipboard/port_missiles{
-	name = "Shipside Corpsec Office";
-	outside = 0
+	name = "Shipside Corpsec Office"
 	})
 "dkt" = (
 /obj/structure/prop/mainship/mapping_computer,
@@ -3879,8 +3714,7 @@
 /obj/effect/ai_node,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/surgery_hallway{
-	name = "Research";
-	outside = 0
+	name = "Research"
 	})
 "dnt" = (
 /obj/machinery/power/monitor/grid,
@@ -3933,9 +3767,7 @@
 	dir = 1
 	},
 /turf/open/floor/mainship/cargo,
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "dpn" = (
 /obj/machinery/power/terminal,
 /obj/structure/cable,
@@ -3974,9 +3806,7 @@
 "dqK" = (
 /obj/machinery/telecomms/relay/preset/telecomms,
 /turf/open/floor/mainship/tcomms,
-/area/mainship/command/telecomms{
-	outside = 0
-	})
+/area/mainship/command/telecomms)
 "dqR" = (
 /obj/machinery/computer/general_air_control/large_tank_control{
 	frequency = 1443;
@@ -4012,9 +3842,7 @@
 /obj/structure/closet/secure_closet/pilot_officer,
 /obj/effect/ai_node,
 /turf/open/floor/wood,
-/area/mainship/living/tankerbunks{
-	outside = 0
-	})
+/area/mainship/living/tankerbunks)
 "duy" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
@@ -4048,9 +3876,7 @@
 	dir = 4
 	},
 /turf/open/floor/mainship/floor,
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "dyr" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /turf/open/floor/grass,
@@ -4086,9 +3912,7 @@
 	pixel_y = -3
 	},
 /turf/open/floor/mainship/mono,
-/area/mainship/command/telecomms{
-	outside = 0
-	})
+/area/mainship/command/telecomms)
 "dAZ" = (
 /obj/machinery/door/poddoor/mainship/mech,
 /obj/structure/disposalpipe/segment{
@@ -4098,9 +3922,7 @@
 	dir = 4
 	},
 /turf/open/floor/mainship/mono,
-/area/mainship/living/tankerbunks{
-	outside = 0
-	})
+/area/mainship/living/tankerbunks)
 "dBT" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable,
@@ -4127,9 +3949,7 @@
 "dCb" = (
 /obj/structure/cable,
 /turf/open/floor/mainship/black,
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "dCP" = (
 /obj/structure/bed/bunkbed,
 /obj/machinery/light/mainship{
@@ -4151,9 +3971,7 @@
 /turf/open/floor/mainship/white{
 	dir = 8
 	},
-/area/mainship/living/tankerbunks{
-	outside = 0
-	})
+/area/mainship/living/tankerbunks)
 "dDp" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment,
@@ -4211,7 +4029,6 @@
 	dir = 1
 	},
 /area/mainship/medical/upper_medical{
-	outside = 0;
 	name = "Shipside Medbay"
 	})
 "dGj" = (
@@ -4227,7 +4044,6 @@
 	dir = 1
 	},
 /area/mainship/medical/upper_medical{
-	outside = 0;
 	name = "Shipside Medbay"
 	})
 "dGZ" = (
@@ -4250,18 +4066,14 @@
 	dir = 2
 	},
 /turf/open/floor/mainship/stripesquare,
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "dHO" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
 /turf/open/floor/mainship/floor,
-/area/mainship/living/tankerbunks{
-	outside = 0
-	})
+/area/mainship/living/tankerbunks)
 "dHS" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -4277,8 +4089,7 @@
 "dIf" = (
 /turf/open/floor/mainship,
 /area/mainship/shipboard/port_missiles{
-	name = "Shipside Corpsec Office";
-	outside = 0
+	name = "Shipside Corpsec Office"
 	})
 "dIx" = (
 /turf/open/floor/stairs/rampbottom,
@@ -4302,7 +4113,6 @@
 /obj/machinery/vending/medical/shipside,
 /turf/open/floor/mainship/sterile/side,
 /area/mainship/medical/upper_medical{
-	outside = 0;
 	name = "Shipside Medbay"
 	})
 "dKF" = (
@@ -4310,9 +4120,7 @@
 	dir = 4
 	},
 /turf/open/floor/mainship,
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "dLt" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment,
@@ -4352,7 +4160,6 @@
 /obj/docking_port/stationary/marine_dropship/crash_target,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/upper_medical{
-	outside = 0;
 	name = "Shipside Medbay"
 	})
 "dOD" = (
@@ -4409,7 +4216,6 @@
 	dir = 4
 	},
 /area/mainship/medical/upper_medical{
-	outside = 0;
 	name = "Shipside Medbay"
 	})
 "dRx" = (
@@ -4442,8 +4248,7 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/shipboard/port_missiles{
-	name = "Shipside Corpsec Office";
-	outside = 0
+	name = "Shipside Corpsec Office"
 	})
 "dSF" = (
 /obj/machinery/light/small{
@@ -4490,9 +4295,7 @@
 	id = "Lowershiplockdown"
 	},
 /turf/open/floor/mainship,
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "dVD" = (
 /obj/structure/window/framed/mainship/hull,
 /obj/structure/curtain/open/black,
@@ -4558,9 +4361,7 @@
 "dZV" = (
 /obj/effect/ai_node,
 /turf/open/floor/mainship/floor,
-/area/mainship/living/tankerbunks{
-	outside = 0
-	})
+/area/mainship/living/tankerbunks)
 "dZY" = (
 /obj/structure/dropship_equipment/electronics/spotlights,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -4579,8 +4380,7 @@
 	dir = 5
 	},
 /area/mainship/shipboard/port_missiles{
-	name = "Shipside Corpsec Office";
-	outside = 0
+	name = "Shipside Corpsec Office"
 	})
 "eaW" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -4685,8 +4485,7 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/shipboard/port_missiles{
-	name = "Shipside Corpsec Office";
-	outside = 0
+	name = "Shipside Corpsec Office"
 	})
 "eeQ" = (
 /obj/structure/cable,
@@ -4771,9 +4570,7 @@
 "eiJ" = (
 /obj/structure/cable,
 /turf/open/floor/mainship,
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "ejf" = (
 /obj/structure/table/mainship/nometal,
 /obj/item/reagent_containers/glass/beaker/large,
@@ -4782,7 +4579,6 @@
 /obj/item/reagent_containers/glass/beaker,
 /turf/open/floor/mainship/sterile/side,
 /area/mainship/medical/upper_medical{
-	outside = 0;
 	name = "Shipside Medbay"
 	})
 "eju" = (
@@ -4791,9 +4587,7 @@
 /area/mainship/living/officer_study)
 "ejv" = (
 /turf/open/floor/mainship/black/full,
-/area/mainship/living/tankerbunks{
-	outside = 0
-	})
+/area/mainship/living/tankerbunks)
 "ejz" = (
 /obj/machinery/marine_selector/clothes/synth,
 /turf/open/floor/mainship/mono,
@@ -4825,8 +4619,7 @@
 /obj/machinery/light/mainship,
 /turf/open/floor/mainship/sterile/side,
 /area/mainship/medical/surgery_hallway{
-	name = "Research";
-	outside = 0
+	name = "Research"
 	})
 "emw" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -4861,8 +4654,7 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/medical/surgery_hallway{
-	name = "Research";
-	outside = 0
+	name = "Research"
 	})
 "eoc" = (
 /obj/effect/ai_node,
@@ -4906,8 +4698,7 @@
 	dir = 4
 	},
 /area/mainship/shipboard/port_missiles{
-	name = "Shipside Corpsec Office";
-	outside = 0
+	name = "Shipside Corpsec Office"
 	})
 "epX" = (
 /obj/machinery/power/apc/mainship{
@@ -4941,9 +4732,7 @@
 /turf/open/floor/mainship/black{
 	dir = 10
 	},
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "eru" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/flora/pottedplant/twentyone,
@@ -4979,9 +4768,7 @@
 /turf/open/floor/mainship/green{
 	dir = 8
 	},
-/area/mainship/living/basketball{
-	outside = 0
-	})
+/area/mainship/living/basketball)
 "euQ" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/siphon/on{
 	dir = 1
@@ -5025,8 +4812,7 @@
 /obj/machinery/computer/med_data,
 /turf/open/floor/mainship/sterile/side,
 /area/mainship/medical/surgery_hallway{
-	name = "Research";
-	outside = 0
+	name = "Research"
 	})
 "exf" = (
 /obj/machinery/door_control/mainship/corporate{
@@ -5042,9 +4828,7 @@
 /obj/machinery/status_display,
 /obj/machinery/status_display,
 /turf/closed/wall/mainship,
-/area/mainship/living/tankerbunks{
-	outside = 0
-	})
+/area/mainship/living/tankerbunks)
 "exx" = (
 /obj/structure/mirror,
 /obj/machinery/light/mainship{
@@ -5054,9 +4838,7 @@
 	dir = 1
 	},
 /turf/open/floor/mainship/cargo,
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "exy" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment{
@@ -5068,7 +4850,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/upper_medical{
-	outside = 0;
 	name = "Shipside Medbay"
 	})
 "eyu" = (
@@ -5108,7 +4889,6 @@
 /obj/item/bedsheet/medical,
 /turf/open/floor/mainship/sterile/side,
 /area/mainship/medical/upper_medical{
-	outside = 0;
 	name = "Shipside Medbay"
 	})
 "eAT" = (
@@ -5192,7 +4972,6 @@
 	dir = 8
 	},
 /area/mainship/medical/upper_medical{
-	outside = 0;
 	name = "Shipside Medbay"
 	})
 "eIM" = (
@@ -5254,14 +5033,10 @@
 "eMw" = (
 /obj/effect/landmark/corpsespawner/marine/burst,
 /obj/effect/ai_node,
-/obj/effect/decal/cleanable/blood{
-	basecolor = "#ffffff";
-	name = "cum"
-	},
+/mob/living/carbon/xenomorph/larva/Corrupted,
 /turf/open/floor/mainship/research/containment/floor1,
 /area/mainship/medical/surgery_hallway{
-	name = "Research";
-	outside = 0
+	name = "Research"
 	})
 "eNa" = (
 /obj/structure/disposalpipe/segment/corner{
@@ -5309,9 +5084,7 @@
 	dir = 8
 	},
 /turf/open/floor/mainship,
-/area/mainship/living/basketball{
-	outside = 0
-	})
+/area/mainship/living/basketball)
 "eOP" = (
 /obj/structure/lattice,
 /turf/closed/shuttle/ert{
@@ -5350,9 +5123,7 @@
 /turf/open/floor/mainship/black{
 	dir = 5
 	},
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "ePE" = (
 /obj/structure/flora/ausbushes/ppflowers,
 /turf/open/floor/grass,
@@ -5446,7 +5217,6 @@
 	dir = 1
 	},
 /area/mainship/medical/upper_medical{
-	outside = 0;
 	name = "Shipside Medbay"
 	})
 "eTD" = (
@@ -5573,8 +5343,7 @@
 	dir = 1
 	},
 /area/mainship/shipboard/port_missiles{
-	name = "Shipside Corpsec Office";
-	outside = 0
+	name = "Shipside Corpsec Office"
 	})
 "eYz" = (
 /obj/machinery/chem_master/condimaster,
@@ -5591,9 +5360,7 @@
 	dir = 4
 	},
 /turf/open/floor/mainship,
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "eYN" = (
 /obj/structure/bed/chair/wood/wings,
 /turf/open/floor/tile/chapel,
@@ -5680,9 +5447,7 @@
 /turf/open/floor/mainship/white{
 	dir = 1
 	},
-/area/mainship/living/tankerbunks{
-	outside = 0
-	})
+/area/mainship/living/tankerbunks)
 "fda" = (
 /obj/machinery/power/apc/mainship{
 	dir = 4
@@ -5729,9 +5494,7 @@
 /turf/open/floor/mainship/black{
 	dir = 8
 	},
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "feE" = (
 /obj/structure/bed/chair/wood/wings{
 	dir = 8
@@ -5759,15 +5522,12 @@
 /obj/machinery/door/firedoor/mainship,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/surgery_hallway{
-	name = "Research";
-	outside = 0
+	name = "Research"
 	})
 "ffc" = (
 /obj/effect/decal/cleanable/blood/gibs/robot,
 /turf/open/floor/mech_bay_recharge_floor,
-/area/mainship/living/tankerbunks{
-	outside = 0
-	})
+/area/mainship/living/tankerbunks)
 "ffB" = (
 /obj/machinery/door/poddoor/shutters/mainship/open/checkpoint{
 	dir = 2;
@@ -5817,15 +5577,13 @@
 	dir = 8
 	},
 /area/mainship/medical/upper_medical{
-	outside = 0;
 	name = "Shipside Medbay"
 	})
 "fhb" = (
 /obj/effect/spawner/random/misc/structure/flavorvending/snackweighted,
 /turf/open/floor/mainship/sterile,
 /area/mainship/medical/surgery_hallway{
-	name = "Research";
-	outside = 0
+	name = "Research"
 	})
 "fhq" = (
 /obj/effect/landmark/start/latejoin,
@@ -5841,9 +5599,7 @@
 /obj/structure/closet/basketball,
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
-/area/mainship/living/basketball{
-	outside = 0
-	})
+/area/mainship/living/basketball)
 "fij" = (
 /obj/structure/disposalpipe/segment,
 /turf/closed/wall/mainship,
@@ -5871,9 +5627,7 @@
 /turf/open/floor/mainship/black{
 	dir = 8
 	},
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "fiH" = (
 /obj/structure/reagent_dispensers/fueltank,
 /turf/open/floor/mainship/mono,
@@ -5902,9 +5656,7 @@
 "flL" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1,
 /turf/open/floor/mainship/floor,
-/area/mainship/living/tankerbunks{
-	outside = 0
-	})
+/area/mainship/living/tankerbunks)
 "flS" = (
 /obj/structure/prop/mainship/sensor_computer3/sd,
 /turf/open/floor/mainship/tcomms,
@@ -5912,9 +5664,7 @@
 "fml" = (
 /obj/effect/ai_node,
 /turf/open/floor/mainship,
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "fms" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -5980,7 +5730,6 @@
 	dir = 8
 	},
 /area/mainship/medical/upper_medical{
-	outside = 0;
 	name = "Shipside Medbay"
 	})
 "fnY" = (
@@ -6012,8 +5761,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/stairs/rampbottom,
 /area/mainship/shipboard/port_missiles{
-	name = "Shipside Corpsec Office";
-	outside = 0
+	name = "Shipside Corpsec Office"
 	})
 "fqs" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -6031,9 +5779,7 @@
 "frh" = (
 /obj/machinery/vending/uniform_supply,
 /turf/open/floor/mainship,
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "frJ" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -6054,9 +5800,7 @@
 	dir = 4
 	},
 /turf/open/floor/mainship,
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "ftc" = (
 /obj/machinery/floodlight/landing,
 /obj/machinery/landinglight/cas{
@@ -6079,9 +5823,7 @@
 "ftO" = (
 /obj/machinery/door/airlock/mainship/generic/pilot/bunk,
 /turf/open/floor/mainship/floor,
-/area/mainship/living/tankerbunks{
-	outside = 0
-	})
+/area/mainship/living/tankerbunks)
 "ftV" = (
 /obj/machinery/door_control/mainship/ammo{
 	id = "lowercargohold";
@@ -6135,8 +5877,7 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/mainship/shipboard/port_missiles{
-	name = "Shipside Corpsec Office";
-	outside = 0
+	name = "Shipside Corpsec Office"
 	})
 "fwn" = (
 /obj/structure/cable,
@@ -6146,16 +5887,13 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/mainship/sterile/dark,
-/area/mainship/medical/lower_medical{
-	outside = 0
-	})
+/area/mainship/medical/lower_medical)
 "fxk" = (
 /obj/structure/table/reinforced,
 /obj/machinery/door/firedoor/mainship,
 /obj/machinery/door/window/secure/medical,
 /turf/open/floor/mainship/sterile,
 /area/mainship/medical/upper_medical{
-	outside = 0;
 	name = "Shipside Medbay"
 	})
 "fxz" = (
@@ -6172,9 +5910,7 @@
 /turf/open/floor/mainship/black{
 	dir = 10
 	},
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "fyn" = (
 /obj/machinery/light{
 	dir = 8
@@ -6190,9 +5926,7 @@
 "fyt" = (
 /obj/effect/soundplayer,
 /turf/closed/wall/mainship,
-/area/mainship/living/tankerbunks{
-	outside = 0
-	})
+/area/mainship/living/tankerbunks)
 "fyR" = (
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/groundhq/ntf/shipboard/brig)
@@ -6213,8 +5947,7 @@
 	dir = 4
 	},
 /area/mainship/medical/surgery_hallway{
-	name = "Research";
-	outside = 0
+	name = "Research"
 	})
 "fAj" = (
 /obj/structure/rack,
@@ -6233,7 +5966,6 @@
 	dir = 4
 	},
 /area/mainship/medical/upper_medical{
-	outside = 0;
 	name = "Shipside Medbay"
 	})
 "fAL" = (
@@ -6246,9 +5978,7 @@
 /turf/open/floor/mainship/black{
 	dir = 1
 	},
-/area/mainship/living/tankerbunks{
-	outside = 0
-	})
+/area/mainship/living/tankerbunks)
 "fAP" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 10
@@ -6279,9 +6009,7 @@
 /turf/open/floor/mainship/white{
 	dir = 8
 	},
-/area/mainship/living/tankerbunks{
-	outside = 0
-	})
+/area/mainship/living/tankerbunks)
 "fBZ" = (
 /obj/effect/landmark/start/job/squadsmartgunner,
 /obj/effect/landmark/start/job/squadsmartgunner,
@@ -6305,8 +6033,7 @@
 	dir = 8
 	},
 /area/mainship/shipboard/port_missiles{
-	name = "Shipside Corpsec Office";
-	outside = 0
+	name = "Shipside Corpsec Office"
 	})
 "fCH" = (
 /obj/structure/cable,
@@ -6314,14 +6041,11 @@
 /turf/open/floor/mainship/black{
 	dir = 1
 	},
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "fDG" = (
 /obj/machinery/iv_drip,
 /turf/open/floor/mainship/sterile/side,
 /area/mainship/medical/upper_medical{
-	outside = 0;
 	name = "Shipside Medbay"
 	})
 "fDI" = (
@@ -6426,9 +6150,7 @@
 /turf/open/floor/mainship/black{
 	dir = 9
 	},
-/area/mainship/living/tankerbunks{
-	outside = 0
-	})
+/area/mainship/living/tankerbunks)
 "fIr" = (
 /obj/structure/cable,
 /obj/machinery/light{
@@ -6473,7 +6195,6 @@
 	dir = 4
 	},
 /area/mainship/medical/upper_medical{
-	outside = 0;
 	name = "Shipside Medbay"
 	})
 "fLi" = (
@@ -6502,9 +6223,7 @@
 /turf/open/floor/mainship/green{
 	dir = 1
 	},
-/area/mainship/living/basketball{
-	outside = 0
-	})
+/area/mainship/living/basketball)
 "fLT" = (
 /obj/machinery/light/mainship{
 	dir = 1
@@ -6521,17 +6240,13 @@
 /turf/open/floor/mainship/black{
 	dir = 5
 	},
-/area/mainship/living/tankerbunks{
-	outside = 0
-	})
+/area/mainship/living/tankerbunks)
 "fMW" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
 /turf/open/floor/mainship/cargo/arrow{
 	dir = 1
 	},
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "fNe" = (
 /obj/machinery/light,
 /turf/open/floor/mainship/mono,
@@ -6544,8 +6259,7 @@
 	dir = 5
 	},
 /area/mainship/shipboard/port_missiles{
-	name = "Shipside Corpsec Office";
-	outside = 0
+	name = "Shipside Corpsec Office"
 	})
 "fOp" = (
 /obj/machinery/door/airlock/mainship/generic/bathroom{
@@ -6607,9 +6321,7 @@
 /turf/open/floor/mainship/sterile{
 	dir = 8
 	},
-/area/mainship/medical/lower_medical{
-	outside = 0
-	})
+/area/mainship/medical/lower_medical)
 "fQo" = (
 /obj/machinery/door/firedoor/mainship{
 	dir = 2
@@ -6697,8 +6409,7 @@
 	dir = 8
 	},
 /area/mainship/shipboard/port_missiles{
-	name = "Shipside Corpsec Office";
-	outside = 0
+	name = "Shipside Corpsec Office"
 	})
 "fSA" = (
 /obj/effect/ai_node,
@@ -6712,9 +6423,7 @@
 	on = 1
 	},
 /turf/open/floor/mainship/mono,
-/area/mainship/living/pilotbunks{
-	outside = 0
-	})
+/area/mainship/living/pilotbunks)
 "fSR" = (
 /obj/structure/flora/pottedplant/twentytwo,
 /turf/open/floor/carpet{
@@ -6731,9 +6440,7 @@
 	pixel_y = -8
 	},
 /turf/open/floor/mainship/cargo,
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "fTP" = (
 /obj/structure/table/mainship,
 /obj/item/pizzabox/meat,
@@ -6784,7 +6491,6 @@
 /obj/item/storage/box/bodybags,
 /turf/open/floor/mainship/sterile/side,
 /area/mainship/medical/upper_medical{
-	outside = 0;
 	name = "Shipside Medbay"
 	})
 "fWf" = (
@@ -6797,8 +6503,7 @@
 	dir = 8
 	},
 /area/mainship/shipboard/port_missiles{
-	name = "Shipside Corpsec Office";
-	outside = 0
+	name = "Shipside Corpsec Office"
 	})
 "fWW" = (
 /obj/structure/window/framed/mainship/requisitions,
@@ -6885,9 +6590,7 @@
 /turf/open/floor/mainship/cargo/arrow{
 	dir = 8
 	},
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "fZP" = (
 /obj/effect/ai_node,
 /turf/open/floor/mainship/mono,
@@ -7042,16 +6745,12 @@
 "ghc" = (
 /obj/machinery/computer/telecomms/monitor/preset,
 /turf/open/floor/mainship/mono,
-/area/mainship/command/telecomms{
-	outside = 0
-	})
+/area/mainship/command/telecomms)
 "ghm" = (
 /obj/machinery/marine_selector/clothes/engi,
 /obj/machinery/light/mainship,
 /turf/open/floor/mainship,
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "ght" = (
 /obj/machinery/light/small{
 	dir = 8
@@ -7095,9 +6794,7 @@
 "gil" = (
 /obj/machinery/telecomms/server/presets/bravo,
 /turf/open/floor/mainship/tcomms,
-/area/mainship/command/telecomms{
-	outside = 0
-	})
+/area/mainship/command/telecomms)
 "giu" = (
 /turf/closed/wall/mainship/outer,
 /area/mainship/hallways/port_umbilical{
@@ -7114,9 +6811,7 @@
 	dir = 8
 	},
 /turf/closed/wall/mainship,
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "gjt" = (
 /obj/structure/flora/ausbushes/brflowers,
 /obj/structure/bed/stool{
@@ -7143,8 +6838,7 @@
 	dir = 8
 	},
 /area/mainship/shipboard/port_missiles{
-	name = "Shipside Corpsec Office";
-	outside = 0
+	name = "Shipside Corpsec Office"
 	})
 "gkt" = (
 /obj/machinery/light{
@@ -7186,8 +6880,7 @@
 	},
 /turf/open/floor/wood,
 /area/mainship/medical/surgery_hallway{
-	name = "Research";
-	outside = 0
+	name = "Research"
 	})
 "gom" = (
 /obj/machinery/door_control/unmeltable{
@@ -7238,9 +6931,7 @@
 	dir = 8
 	},
 /turf/open/floor/mech_bay_recharge_floor,
-/area/mainship/living/tankerbunks{
-	outside = 0
-	})
+/area/mainship/living/tankerbunks)
 "gqt" = (
 /obj/docking_port/stationary/marine_dropship/hangar/one,
 /turf/open/floor/plating,
@@ -7273,9 +6964,7 @@
 /turf/open/floor/mainship/black{
 	dir = 1
 	},
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "grR" = (
 /obj/effect/turf_decal/warning_stripes/thick{
 	dir = 1
@@ -7296,8 +6985,7 @@
 	dir = 8
 	},
 /area/mainship/shipboard/port_missiles{
-	name = "Shipside Corpsec Office";
-	outside = 0
+	name = "Shipside Corpsec Office"
 	})
 "gsn" = (
 /obj/structure/closet/swimsuit,
@@ -7329,9 +7017,7 @@
 /obj/item/bedsheet/medical,
 /obj/machinery/iv_drip,
 /turf/open/floor/mainship/sterile/corner,
-/area/mainship/medical/lower_medical{
-	outside = 0
-	})
+/area/mainship/medical/lower_medical)
 "gvX" = (
 /turf/closed/wall/mainship,
 /area/mainship/groundhq/ntf/living/grunt_rnr)
@@ -7345,9 +7031,7 @@
 /turf/open/floor/mainship/white{
 	dir = 10
 	},
-/area/mainship/living/tankerbunks{
-	outside = 0
-	})
+/area/mainship/living/tankerbunks)
 "gxm" = (
 /obj/structure/cable,
 /turf/open/floor/mainship,
@@ -7383,9 +7067,7 @@
 /obj/item/frame/apc,
 /obj/effect/spawner/random/engineering/powercell,
 /turf/open/floor/mainship/mono,
-/area/mainship/command/telecomms{
-	outside = 0
-	})
+/area/mainship/command/telecomms)
 "gyy" = (
 /obj/structure/bed/chair/comfy{
 	dir = 4
@@ -7423,20 +7105,16 @@
 	dir = 5
 	},
 /area/mainship/medical/surgery_hallway{
-	name = "Research";
-	outside = 0
+	name = "Research"
 	})
 "gAx" = (
 /obj/machinery/telecomms/server/presets/requisitions,
 /turf/open/floor/mainship/tcomms,
-/area/mainship/command/telecomms{
-	outside = 0
-	})
+/area/mainship/command/telecomms)
 "gAA" = (
 /obj/machinery/computer/sleep_console,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/upper_medical{
-	outside = 0;
 	name = "Shipside Medbay"
 	})
 "gAQ" = (
@@ -7459,9 +7137,7 @@
 	})
 "gCR" = (
 /turf/open/floor/mainship/black/full,
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "gCY" = (
 /obj/structure/cable,
 /obj/machinery/power/apc/mainship,
@@ -7472,9 +7148,7 @@
 "gDn" = (
 /obj/machinery/vending/MarineMed,
 /turf/open/floor/mainship,
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "gDp" = (
 /obj/structure/window/framed/mainship/requisitions,
 /obj/structure/sign/ROsign{
@@ -7558,9 +7232,7 @@
 /turf/open/floor/mainship/black{
 	dir = 8
 	},
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "gJr" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable,
@@ -7600,9 +7272,7 @@
 	})
 "gKN" = (
 /turf/open/floor/mainship,
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "gKT" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	on = 1
@@ -7624,8 +7294,7 @@
 /obj/machinery/vending/MarineMed/Blood,
 /turf/open/floor/mainship/sterile/side,
 /area/mainship/medical/surgery_hallway{
-	name = "Research";
-	outside = 0
+	name = "Research"
 	})
 "gLi" = (
 /turf/open/floor/freezer,
@@ -7634,8 +7303,7 @@
 /obj/machinery/vending/dress_supply,
 /turf/open/floor/cult,
 /area/mainship/medical/surgery_hallway{
-	name = "Research";
-	outside = 0
+	name = "Research"
 	})
 "gLn" = (
 /obj/structure/closet/secure_closet/evidence,
@@ -7643,24 +7311,20 @@
 	dir = 9
 	},
 /area/mainship/shipboard/port_missiles{
-	name = "Shipside Corpsec Office";
-	outside = 0
+	name = "Shipside Corpsec Office"
 	})
 "gLt" = (
 /obj/machinery/loadout_vendor,
 /turf/open/floor/mainship/black{
 	dir = 9
 	},
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "gLy" = (
 /obj/machinery/atmospherics/components/unary/cryo_cell,
 /turf/open/floor/mainship/sterile/side{
 	dir = 1
 	},
 /area/mainship/medical/upper_medical{
-	outside = 0;
 	name = "Shipside Medbay"
 	})
 "gLJ" = (
@@ -7672,7 +7336,6 @@
 	dir = 8
 	},
 /area/mainship/medical/upper_medical{
-	outside = 0;
 	name = "Shipside Medbay"
 	})
 "gLU" = (
@@ -7700,8 +7363,7 @@
 	dir = 10
 	},
 /area/mainship/medical/surgery_hallway{
-	name = "Research";
-	outside = 0
+	name = "Research"
 	})
 "gNg" = (
 /obj/machinery/door/poddoor/railing{
@@ -7720,9 +7382,7 @@
 /area/mainship/engineering/port_atmos)
 "gOK" = (
 /turf/closed/wall/mainship/outer,
-/area/mainship/command/telecomms{
-	outside = 0
-	})
+/area/mainship/command/telecomms)
 "gPv" = (
 /obj/machinery/light{
 	dir = 4
@@ -7746,9 +7406,7 @@
 "gQH" = (
 /obj/machinery/marine_selector/gear/smartgun,
 /turf/open/floor/mainship/floor,
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "gQM" = (
 /obj/structure/closet/secure_closet/CMO,
 /turf/open/floor/carpet{
@@ -7779,9 +7437,7 @@
 "gRt" = (
 /obj/machinery/vending/uniform_supply,
 /turf/open/floor/mainship/floor,
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "gRL" = (
 /obj/machinery/door/airlock/mainship/maint,
 /turf/open/floor/plating/plating_catwalk/prison,
@@ -7796,9 +7452,7 @@
 "gSb" = (
 /obj/effect/ai_node,
 /turf/open/floor/wood,
-/area/mainship/living/tankerbunks{
-	outside = 0
-	})
+/area/mainship/living/tankerbunks)
 "gSq" = (
 /obj/machinery/door/poddoor/shutters/mainship/selfdestruct,
 /obj/machinery/keycard_auth,
@@ -7820,7 +7474,6 @@
 	},
 /turf/open/floor/mainship/sterile/side,
 /area/mainship/medical/upper_medical{
-	outside = 0;
 	name = "Shipside Medbay"
 	})
 "gTy" = (
@@ -7829,9 +7482,7 @@
 	},
 /obj/machinery/camera/autoname/mainship,
 /turf/open/floor/mainship/cargo,
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "gTD" = (
 /obj/docking_port/stationary/marine_dropship/elevator/floor1,
 /turf/open/floor/elevatorshaft,
@@ -7901,9 +7552,7 @@
 /turf/open/floor/mainship/green{
 	dir = 1
 	},
-/area/mainship/living/basketball{
-	outside = 0
-	})
+/area/mainship/living/basketball)
 "gVf" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment/corner,
@@ -7915,8 +7564,7 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/medical/surgery_hallway{
-	name = "Research";
-	outside = 0
+	name = "Research"
 	})
 "gVq" = (
 /obj/structure/bed,
@@ -7963,8 +7611,7 @@
 /obj/item/storage/belt/shotgun,
 /turf/open/floor/mainship/mono,
 /area/mainship/shipboard/port_missiles{
-	name = "Shipside Corpsec Office";
-	outside = 0
+	name = "Shipside Corpsec Office"
 	})
 "gXZ" = (
 /obj/structure/cable,
@@ -8038,14 +7685,11 @@
 	},
 /turf/open/floor/plating,
 /area/mainship/medical/upper_medical{
-	outside = 0;
 	name = "Shipside Medbay"
 	})
 "hbd" = (
 /turf/open/floor/plating,
-/area/mainship/living/tankerbunks{
-	outside = 0
-	})
+/area/mainship/living/tankerbunks)
 "hbg" = (
 /turf/closed/wall/mainship,
 /area/mainship/hallways/hangar)
@@ -8056,9 +7700,7 @@
 /turf/open/floor/mainship/cargo/arrow{
 	dir = 1
 	},
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "hbA" = (
 /obj/structure/table/reinforced,
 /obj/item/folder/red,
@@ -8085,8 +7727,7 @@
 /obj/effect/soundplayer,
 /turf/closed/wall/mainship,
 /area/mainship/shipboard/port_missiles{
-	name = "Shipside Corpsec Office";
-	outside = 0
+	name = "Shipside Corpsec Office"
 	})
 "hcc" = (
 /obj/machinery/air_alarm{
@@ -8179,17 +7820,13 @@
 "hdB" = (
 /obj/effect/spawner/random/misc/structure/flavorvending/coffeeweighted,
 /turf/open/floor/mainship,
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "hdP" = (
 /obj/structure/bed/bunkbed,
 /obj/effect/landmark/start/job/mechpilot,
 /obj/effect/landmark/start/job/mechpilot,
 /turf/open/floor/wood,
-/area/mainship/living/tankerbunks{
-	outside = 0
-	})
+/area/mainship/living/tankerbunks)
 "heq" = (
 /obj/machinery/light/mainship/small{
 	dir = 4
@@ -8255,9 +7892,7 @@
 "hjc" = (
 /obj/structure/cable,
 /turf/open/floor/plating,
-/area/mainship/living/tankerbunks{
-	outside = 0
-	})
+/area/mainship/living/tankerbunks)
 "hjG" = (
 /turf/open/floor/wood,
 /area/sulaco/liaison/quarters{
@@ -8275,9 +7910,7 @@
 "hkn" = (
 /obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/mainship/sterile/plain,
-/area/mainship/living/tankerbunks{
-	outside = 0
-	})
+/area/mainship/living/tankerbunks)
 "hkq" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -8388,8 +8021,7 @@
 	},
 /turf/open/floor/mainship/red,
 /area/mainship/shipboard/port_missiles{
-	name = "Shipside Corpsec Office";
-	outside = 0
+	name = "Shipside Corpsec Office"
 	})
 "hqG" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -8450,8 +8082,7 @@
 /obj/machinery/optable,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/medical/surgery_hallway{
-	name = "Research";
-	outside = 0
+	name = "Research"
 	})
 "htu" = (
 /obj/structure/cable,
@@ -8462,8 +8093,7 @@
 "huE" = (
 /turf/open/floor/mainship/sterile/purple/side,
 /area/mainship/medical/surgery_hallway{
-	name = "Research";
-	outside = 0
+	name = "Research"
 	})
 "hvs" = (
 /obj/machinery/light{
@@ -8521,8 +8151,7 @@
 	},
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/surgery_hallway{
-	name = "Research";
-	outside = 0
+	name = "Research"
 	})
 "hzP" = (
 /obj/structure/ob_ammo/warhead/plasmaloss,
@@ -8562,8 +8191,7 @@
 	dir = 1
 	},
 /area/mainship/medical/surgery_hallway{
-	name = "Research";
-	outside = 0
+	name = "Research"
 	})
 "hFY" = (
 /obj/machinery/door/airlock/mainship/generic{
@@ -8577,9 +8205,7 @@
 	},
 /obj/machinery/vending/weapon,
 /turf/open/floor/mainship/floor,
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "hGC" = (
 /obj/machinery/light/small{
 	dir = 8
@@ -8589,9 +8215,7 @@
 "hGO" = (
 /obj/machinery/telecomms/server/presets/delta,
 /turf/open/floor/mainship/tcomms,
-/area/mainship/command/telecomms{
-	outside = 0
-	})
+/area/mainship/command/telecomms)
 "hGS" = (
 /obj/effect/landmark/start/job/shiptech,
 /turf/open/floor/plating/plating_catwalk,
@@ -8620,8 +8244,7 @@
 	dir = 9
 	},
 /area/mainship/medical/surgery_hallway{
-	name = "Research";
-	outside = 0
+	name = "Research"
 	})
 "hIK" = (
 /obj/structure/window/reinforced/tinted{
@@ -8641,9 +8264,7 @@
 	dir = 5
 	},
 /turf/open/floor/plating,
-/area/mainship/living/tankerbunks{
-	outside = 0
-	})
+/area/mainship/living/tankerbunks)
 "hJk" = (
 /obj/machinery/door/airlock/mainship/maint,
 /obj/structure/cable,
@@ -8653,9 +8274,7 @@
 	})
 "hJP" = (
 /turf/open/floor/mainship/green,
-/area/mainship/living/basketball{
-	outside = 0
-	})
+/area/mainship/living/basketball)
 "hJY" = (
 /obj/effect/ai_node,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -8709,8 +8328,7 @@
 	dir = 8
 	},
 /area/mainship/medical/surgery_hallway{
-	name = "Research";
-	outside = 0
+	name = "Research"
 	})
 "hPa" = (
 /obj/machinery/vending/uniform_supply,
@@ -8734,8 +8352,7 @@
 /obj/item/shotgunbox/tracker,
 /turf/open/floor/mainship/red,
 /area/mainship/shipboard/port_missiles{
-	name = "Shipside Corpsec Office";
-	outside = 0
+	name = "Shipside Corpsec Office"
 	})
 "hRq" = (
 /obj/structure/cable,
@@ -8763,9 +8380,7 @@
 "hRO" = (
 /obj/structure/flora/pottedplant,
 /turf/open/floor/mainship/black,
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "hRY" = (
 /obj/machinery/vending/nanomed,
 /turf/closed/wall/mainship,
@@ -8818,8 +8433,7 @@
 /obj/item/storage/firstaid/adv,
 /turf/open/floor/mainship/sterile,
 /area/mainship/medical/surgery_hallway{
-	name = "Research";
-	outside = 0
+	name = "Research"
 	})
 "hSU" = (
 /obj/structure/table/woodentable,
@@ -8851,7 +8465,6 @@
 	dir = 9
 	},
 /area/mainship/medical/upper_medical{
-	outside = 0;
 	name = "Shipside Medbay"
 	})
 "hTv" = (
@@ -8907,14 +8520,10 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/curtain/medical,
 /turf/open/floor/mainship/sterile/dark,
-/area/mainship/medical/lower_medical{
-	outside = 0
-	})
+/area/mainship/medical/lower_medical)
 "hWv" = (
 /turf/open/floor/plating/plating_catwalk,
-/area/mainship/living/basketball{
-	outside = 0
-	})
+/area/mainship/living/basketball)
 "hWW" = (
 /obj/effect/ai_node,
 /obj/structure/cable,
@@ -8937,8 +8546,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/stairs/rampbottom,
 /area/mainship/shipboard/port_missiles{
-	name = "Shipside Corpsec Office";
-	outside = 0
+	name = "Shipside Corpsec Office"
 	})
 "hXV" = (
 /obj/structure/window/framed/mainship/requisitions,
@@ -8949,8 +8557,7 @@
 /obj/structure/closet/l3closet/virology,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/surgery_hallway{
-	name = "Research";
-	outside = 0
+	name = "Research"
 	})
 "hYa" = (
 /obj/structure/sink{
@@ -9038,17 +8645,14 @@
 	dir = 6
 	},
 /area/mainship/shipboard/port_missiles{
-	name = "Shipside Corpsec Office";
-	outside = 0
+	name = "Shipside Corpsec Office"
 	})
 "iap" = (
 /obj/machinery/loadout_vendor,
 /turf/open/floor/mainship/black{
 	dir = 8
 	},
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "iaP" = (
 /obj/effect/turf_decal/warning_stripes/medical,
 /obj/effect/turf_decal/warning_stripes/box/small{
@@ -9059,9 +8663,7 @@
 /turf/open/floor/mainship/black{
 	dir = 8
 	},
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "ibu" = (
 /obj/effect/ai_node,
 /turf/open/floor/wood,
@@ -9092,9 +8694,7 @@
 /obj/effect/spawner/random/misc/structure/flavorvending/cigaretteweighted,
 /obj/item/coin/iron,
 /turf/open/floor/mainship,
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "icA" = (
 /obj/structure/sign/prop4,
 /turf/closed/wall/mainship,
@@ -9124,9 +8724,7 @@
 /turf/open/floor/mainship/sterile/side{
 	dir = 4
 	},
-/area/mainship/medical/lower_medical{
-	outside = 0
-	})
+/area/mainship/medical/lower_medical)
 "iem" = (
 /obj/machinery/computer/shuttle/shuttle_control/shipelevator{
 	pixel_x = -15;
@@ -9177,8 +8775,7 @@
 	dir = 8
 	},
 /area/mainship/medical/surgery_hallway{
-	name = "Research";
-	outside = 0
+	name = "Research"
 	})
 "ihh" = (
 /obj/structure/disposalpipe/segment{
@@ -9227,8 +8824,7 @@
 	},
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/surgery_hallway{
-	name = "Research";
-	outside = 0
+	name = "Research"
 	})
 "ikg" = (
 /obj/structure/bed,
@@ -9241,9 +8837,7 @@
 /turf/open/floor/mainship/sterile/side{
 	dir = 1
 	},
-/area/mainship/medical/lower_medical{
-	outside = 0
-	})
+/area/mainship/medical/lower_medical)
 "ilx" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment{
@@ -9287,9 +8881,7 @@
 "imx" = (
 /obj/machinery/telecomms/receiver/preset_left,
 /turf/open/floor/mainship/tcomms,
-/area/mainship/command/telecomms{
-	outside = 0
-	})
+/area/mainship/command/telecomms)
 "inB" = (
 /obj/machinery/light{
 	dir = 8
@@ -9311,9 +8903,7 @@
 /turf/open/floor/mainship/black{
 	dir = 9
 	},
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "iqa" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment,
@@ -9336,7 +8926,6 @@
 	dir = 1
 	},
 /area/mainship/medical/upper_medical{
-	outside = 0;
 	name = "Shipside Medbay"
 	})
 "iqk" = (
@@ -9357,9 +8946,7 @@
 	dir = 1
 	},
 /turf/open/floor/mainship/cargo,
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "iqJ" = (
 /turf/closed/wall/mainship/outer,
 /area/mainship/groundhq/ntf/living/grunt_rnr)
@@ -9397,8 +8984,7 @@
 	dir = 9
 	},
 /area/mainship/shipboard/port_missiles{
-	name = "Shipside Corpsec Office";
-	outside = 0
+	name = "Shipside Corpsec Office"
 	})
 "itN" = (
 /obj/structure/sign/prop4,
@@ -9429,9 +9015,7 @@
 /turf/open/floor/mainship/black{
 	dir = 9
 	},
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "ive" = (
 /obj/machinery/door/poddoor/shutters/mainship/req/ro{
 	dir = 2
@@ -9463,9 +9047,7 @@
 /turf/open/floor/mainship/black{
 	dir = 1
 	},
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "iwp" = (
 /obj/structure/cable,
 /obj/machinery/power/apc/mainship{
@@ -9491,15 +9073,12 @@
 	dir = 5
 	},
 /area/mainship/medical/surgery_hallway{
-	name = "Research";
-	outside = 0
+	name = "Research"
 	})
 "iyj" = (
 /obj/machinery/holopad,
 /turf/open/floor/mainship,
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "iyl" = (
 /obj/machinery/door/poddoor/mainship/ammo{
 	dir = 2;
@@ -9529,9 +9108,7 @@
 /turf/open/floor/mainship/cargo/arrow{
 	dir = 8
 	},
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "izW" = (
 /obj/machinery/door/airlock/mainship/security{
 	name = "\improper Solitary Cell";
@@ -9563,9 +9140,7 @@
 "iAq" = (
 /obj/structure/noticeboard,
 /turf/closed/wall/mainship,
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "iAB" = (
 /obj/machinery/gear{
 	id = "supply_elevator_gear"
@@ -9626,23 +9201,20 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/shipboard/port_missiles{
-	name = "Shipside Corpsec Office";
-	outside = 0
+	name = "Shipside Corpsec Office"
 	})
 "iDw" = (
 /obj/machinery/light/mainship/small,
 /turf/open/floor/mainship/research/containment/floor2,
 /area/mainship/medical/surgery_hallway{
-	name = "Research";
-	outside = 0
+	name = "Research"
 	})
 "iEd" = (
 /obj/structure/table/mainship/nometal,
 /obj/machinery/computer/med_data/laptop,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/surgery_hallway{
-	name = "Research";
-	outside = 0
+	name = "Research"
 	})
 "iEI" = (
 /obj/structure/disposalpipe/segment/corner,
@@ -9675,15 +9247,13 @@
 /obj/effect/spawner/random/misc/structure/flavorvending/cigaretteweighted,
 /turf/open/floor/mainship/sterile,
 /area/mainship/medical/surgery_hallway{
-	name = "Research";
-	outside = 0
+	name = "Research"
 	})
 "iFL" = (
 /turf/open/floor/mainship/sterile/side{
 	dir = 6
 	},
 /area/mainship/medical/upper_medical{
-	outside = 0;
 	name = "Shipside Medbay"
 	})
 "iGg" = (
@@ -9691,16 +9261,12 @@
 /obj/item/paper,
 /obj/item/tool/pen,
 /turf/open/floor/wood,
-/area/mainship/living/tankerbunks{
-	outside = 0
-	})
+/area/mainship/living/tankerbunks)
 "iGq" = (
 /obj/structure/table/mainship/nometal,
 /obj/item/storage/firstaid/regular,
 /turf/open/floor/mainship/white,
-/area/mainship/living/tankerbunks{
-	outside = 0
-	})
+/area/mainship/living/tankerbunks)
 "iGS" = (
 /obj/structure/table/reinforced,
 /obj/machinery/faxmachine/brig,
@@ -9776,9 +9342,7 @@
 	dir = 1
 	},
 /turf/open/floor/mainship/floor,
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "iKK" = (
 /obj/machinery/door/firedoor/multi_tile{
 	dir = 2
@@ -9788,9 +9352,7 @@
 	name = "Pilot Bunks"
 	},
 /turf/open/floor/mainship/mono,
-/area/mainship/living/tankerbunks{
-	outside = 0
-	})
+/area/mainship/living/tankerbunks)
 "iKR" = (
 /obj/structure/cargo_container/nt{
 	dir = 8
@@ -9869,9 +9431,7 @@
 "iPQ" = (
 /obj/effect/ai_node,
 /turf/open/floor/wood,
-/area/mainship/living/basketball{
-	outside = 0
-	})
+/area/mainship/living/basketball)
 "iQD" = (
 /obj/structure/table/mainship,
 /obj/item/tool/kitchen/utensil/fork,
@@ -9907,9 +9467,7 @@
 /turf/open/floor/mainship/sterile{
 	dir = 8
 	},
-/area/mainship/medical/lower_medical{
-	outside = 0
-	})
+/area/mainship/medical/lower_medical)
 "iRH" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment/corner{
@@ -10022,8 +9580,7 @@
 	dir = 8
 	},
 /area/mainship/medical/surgery_hallway{
-	name = "Research";
-	outside = 0
+	name = "Research"
 	})
 "iVB" = (
 /obj/machinery/optable,
@@ -10043,8 +9600,7 @@
 	dir = 8
 	},
 /area/mainship/medical/surgery_hallway{
-	name = "Research";
-	outside = 0
+	name = "Research"
 	})
 "iWx" = (
 /obj/item/weapon/gun/sentry/big_sentry/premade/radial{
@@ -10066,9 +9622,7 @@
 	name = "\improper ST-571 sentry gun"
 	},
 /turf/open/floor/mainship,
-/area/mainship/living/basketball{
-	outside = 0
-	})
+/area/mainship/living/basketball)
 "iWU" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -10079,9 +9633,7 @@
 /turf/open/floor/mainship/cargo/arrow{
 	dir = 8
 	},
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "iXe" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable,
@@ -10109,7 +9661,6 @@
 	},
 /turf/open/floor/mainship/sterile/side,
 /area/mainship/medical/upper_medical{
-	outside = 0;
 	name = "Shipside Medbay"
 	})
 "iXG" = (
@@ -10119,9 +9670,7 @@
 /turf/open/floor/mainship/white{
 	dir = 6
 	},
-/area/mainship/living/tankerbunks{
-	outside = 0
-	})
+/area/mainship/living/tankerbunks)
 "iYl" = (
 /obj/structure/cable,
 /obj/machinery/light/small,
@@ -10134,7 +9683,6 @@
 	dir = 5
 	},
 /area/mainship/medical/upper_medical{
-	outside = 0;
 	name = "Shipside Medbay"
 	})
 "iYD" = (
@@ -10146,9 +9694,7 @@
 "iYW" = (
 /obj/machinery/marine_selector/clothes/leader,
 /turf/open/floor/mainship,
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "jaf" = (
 /obj/effect/ai_node,
 /obj/structure/cable,
@@ -10157,9 +9703,7 @@
 "jak" = (
 /obj/machinery/marine_selector/clothes/smartgun,
 /turf/open/floor/mainship/floor,
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "jaO" = (
 /turf/closed/shuttle/ert{
 	icon_state = "leftengine_2";
@@ -10176,7 +9720,6 @@
 	dir = 8
 	},
 /area/mainship/medical/upper_medical{
-	outside = 0;
 	name = "Shipside Medbay"
 	})
 "jca" = (
@@ -10204,8 +9747,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/surgery_hallway{
-	name = "Research";
-	outside = 0
+	name = "Research"
 	})
 "jfq" = (
 /obj/machinery/power/apc,
@@ -10254,9 +9796,7 @@
 /turf/open/floor/mainship/black{
 	dir = 5
 	},
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "jhL" = (
 /obj/machinery/door/airlock/mainship/maint,
 /obj/structure/cable,
@@ -10288,9 +9828,7 @@
 /obj/machinery/door/firedoor/mainship,
 /obj/structure/sign/safety/autodoc,
 /turf/open/floor/mainship,
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "jki" = (
 /obj/structure/window/framed/mainship/toughened{
 	name = "kevlar-weave infused bulletproof window"
@@ -10300,8 +9838,7 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/shipboard/port_missiles{
-	name = "Shipside Corpsec Office";
-	outside = 0
+	name = "Shipside Corpsec Office"
 	})
 "jkr" = (
 /obj/structure/cable,
@@ -10322,15 +9859,6 @@
 	dir = 10
 	},
 /area/mainship/groundhq/ntf/shipboard/brig)
-"jlx" = (
-/obj/machinery/vending/cola,
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/floor/mainship/mono,
-/area/mainship/hallways/aft_hallway{
-	name = "Ship Floor 3 Hallways"
-	})
 "jlA" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -10382,9 +9910,7 @@
 /turf/open/floor/mainship/black{
 	dir = 1
 	},
-/area/mainship/living/tankerbunks{
-	outside = 0
-	})
+/area/mainship/living/tankerbunks)
 "jnR" = (
 /obj/machinery/camera/autoname/mainship{
 	dir = 4
@@ -10392,9 +9918,7 @@
 /turf/open/floor/mainship/black{
 	dir = 8
 	},
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "jow" = (
 /obj/structure/table/woodentable,
 /obj/item/storage/fancy/cigarettes/dromedaryco,
@@ -10406,9 +9930,7 @@
 "jpw" = (
 /obj/structure/window/framed/mainship,
 /turf/open/floor/mainship,
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "jpB" = (
 /obj/machinery/light{
 	dir = 8
@@ -10469,9 +9991,7 @@
 "jsH" = (
 /obj/machinery/status_display,
 /turf/closed/wall/mainship,
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "jtf" = (
 /obj/machinery/camera/autoname/mainship,
 /turf/open/floor/mainship/tcomms,
@@ -10508,9 +10028,7 @@
 /turf/open/floor/mainship/green{
 	dir = 1
 	},
-/area/mainship/living/basketball{
-	outside = 0
-	})
+/area/mainship/living/basketball)
 "juR" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 1
@@ -10545,8 +10063,7 @@
 "jxm" = (
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/surgery_hallway{
-	name = "Research";
-	outside = 0
+	name = "Research"
 	})
 "jyj" = (
 /obj/structure/cable,
@@ -10577,9 +10094,7 @@
 /area/mainship/squads/specialist)
 "jAh" = (
 /turf/open/floor/mainship/tcomms,
-/area/mainship/command/telecomms{
-	outside = 0
-	})
+/area/mainship/command/telecomms)
 "jAP" = (
 /obj/machinery/light{
 	dir = 1
@@ -10587,9 +10102,7 @@
 /turf/open/floor/mainship/cargo/arrow{
 	dir = 8
 	},
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "jAQ" = (
 /obj/structure/table/woodentable,
 /obj/item/storage/fancy/cigar,
@@ -10626,27 +10139,20 @@
 /turf/open/floor/mainship/sterile{
 	dir = 8
 	},
-/area/mainship/medical/lower_medical{
-	outside = 0
-	})
+/area/mainship/medical/lower_medical)
 "jDu" = (
 /obj/structure/sign/fixedinplace/medical{
 	dir = 8
 	},
 /turf/closed/wall/mainship,
-/area/mainship/command/telecomms{
-	outside = 0
-	})
+/area/mainship/command/telecomms)
 "jDy" = (
 /turf/open/floor/mainship/ntlogo/nt3,
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "jEg" = (
 /turf/open/floor/mainship/mono,
 /area/mainship/shipboard/port_missiles{
-	name = "Shipside Corpsec Office";
-	outside = 0
+	name = "Shipside Corpsec Office"
 	})
 "jEE" = (
 /obj/machinery/light/small{
@@ -10674,9 +10180,7 @@
 /turf/open/floor/mainship/black{
 	dir = 1
 	},
-/area/mainship/living/tankerbunks{
-	outside = 0
-	})
+/area/mainship/living/tankerbunks)
 "jFl" = (
 /obj/structure/cable,
 /obj/machinery/power/apc/mainship/hardened{
@@ -10732,14 +10236,12 @@
 /obj/machinery/door/firedoor/mainship,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/upper_medical{
-	outside = 0;
 	name = "Shipside Medbay"
 	})
 "jGk" = (
 /obj/machinery/holopad,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/upper_medical{
-	outside = 0;
 	name = "Shipside Medbay"
 	})
 "jGt" = (
@@ -10750,7 +10252,6 @@
 	dir = 4
 	},
 /area/mainship/medical/upper_medical{
-	outside = 0;
 	name = "Shipside Medbay"
 	})
 "jGA" = (
@@ -10840,8 +10341,7 @@
 	},
 /turf/open/floor/mainship/sterile,
 /area/mainship/medical/surgery_hallway{
-	name = "Research";
-	outside = 0
+	name = "Research"
 	})
 "jJN" = (
 /obj/machinery/floodlight/landing,
@@ -10871,9 +10371,7 @@
 /obj/effect/soundplayer,
 /obj/structure/sign/fixedinplace/evac,
 /turf/closed/wall/mainship,
-/area/mainship/command/telecomms{
-	outside = 0
-	})
+/area/mainship/command/telecomms)
 "jKQ" = (
 /turf/open/floor/mainship/mono,
 /area/mainship/command/self_destruct)
@@ -10923,16 +10421,12 @@
 	dir = 6
 	},
 /turf/open/floor/mainship/sterile/dark,
-/area/mainship/medical/lower_medical{
-	outside = 0
-	})
+/area/mainship/medical/lower_medical)
 "jML" = (
 /obj/structure/cable,
 /obj/machinery/door/airlock/mainship/marine/general/sl,
 /turf/open/floor/mainship,
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "jMP" = (
 /obj/item/reagent_containers/glass/beaker/cryoxadone,
 /obj/item/reagent_containers/glass/beaker/cryoxadone,
@@ -10941,7 +10435,6 @@
 	dir = 1
 	},
 /area/mainship/medical/upper_medical{
-	outside = 0;
 	name = "Shipside Medbay"
 	})
 "jOl" = (
@@ -10953,7 +10446,6 @@
 	dir = 4
 	},
 /area/mainship/medical/upper_medical{
-	outside = 0;
 	name = "Shipside Medbay"
 	})
 "jOu" = (
@@ -11034,14 +10526,10 @@
 "jTa" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating,
-/area/mainship/living/tankerbunks{
-	outside = 0
-	})
+/area/mainship/living/tankerbunks)
 "jTz" = (
 /turf/open/floor/mainship/cargo,
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "jTF" = (
 /obj/docking_port/stationary/marine_dropship/elevator/floor2,
 /turf/open/floor/mainship/empty,
@@ -11089,7 +10577,6 @@
 	dir = 4
 	},
 /area/mainship/medical/upper_medical{
-	outside = 0;
 	name = "Shipside Medbay"
 	})
 "jUN" = (
@@ -11097,9 +10584,7 @@
 /turf/open/floor/mainship/black/corner{
 	dir = 1
 	},
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "jVB" = (
 /obj/structure/largecrate/supply/ammo/standard_ammo,
 /obj/machinery/firealarm{
@@ -11128,9 +10613,7 @@
 	dir = 8
 	},
 /turf/open/floor/mainship/black,
-/area/mainship/living/tankerbunks{
-	outside = 0
-	})
+/area/mainship/living/tankerbunks)
 "jWO" = (
 /obj/effect/ai_node,
 /obj/structure/cable,
@@ -11141,9 +10624,7 @@
 /obj/item/bedsheet/blue,
 /obj/effect/landmark/start/job/pilotofficer,
 /turf/open/floor/wood,
-/area/mainship/living/tankerbunks{
-	outside = 0
-	})
+/area/mainship/living/tankerbunks)
 "jXb" = (
 /obj/machinery/door/airlock/mainship/generic{
 	name = "\improper Bathroom"
@@ -11162,9 +10643,7 @@
 	dir = 4
 	},
 /turf/open/floor/mainship/mono,
-/area/mainship/living/basketball{
-	outside = 0
-	})
+/area/mainship/living/basketball)
 "jYs" = (
 /obj/machinery/vending/cigarette,
 /turf/open/floor/mainship/mono,
@@ -11189,8 +10668,7 @@
 	dir = 1
 	},
 /area/mainship/medical/surgery_hallway{
-	name = "Research";
-	outside = 0
+	name = "Research"
 	})
 "jZf" = (
 /obj/effect/turf_decal/warning_stripes/thick{
@@ -11224,9 +10702,7 @@
 	id = "floor3shipcheckpoint2"
 	},
 /turf/open/floor/mainship/stripesquare,
-/area/mainship/living/basketball{
-	outside = 0
-	})
+/area/mainship/living/basketball)
 "kbb" = (
 /obj/structure/bed/chair/comfy{
 	dir = 4
@@ -11239,9 +10715,7 @@
 "kbz" = (
 /obj/machinery/loadout_vendor,
 /turf/open/floor/mainship,
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "kbD" = (
 /obj/machinery/light/mainship/small,
 /obj/structure/toilet{
@@ -11273,9 +10747,7 @@
 /turf/open/floor/mainship/cargo/arrow{
 	dir = 8
 	},
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "kdx" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
@@ -11302,7 +10774,6 @@
 /mob/living/simple_animal/corgi/walten,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/upper_medical{
-	outside = 0;
 	name = "Shipside Medbay"
 	})
 "keH" = (
@@ -11435,7 +10906,6 @@
 /obj/effect/spawner/random/misc/plushie/nospawnninetyfive,
 /turf/open/floor/mainship/sterile,
 /area/mainship/medical/upper_medical{
-	outside = 0;
 	name = "Shipside Medbay"
 	})
 "kmf" = (
@@ -11489,9 +10959,7 @@
 	dir = 1
 	},
 /turf/open/floor/mainship/tcomms,
-/area/mainship/command/telecomms{
-	outside = 0
-	})
+/area/mainship/command/telecomms)
 "knb" = (
 /obj/structure/dropship_equipment/electronics/spotlights,
 /turf/open/floor/mainship/orange{
@@ -11534,8 +11002,7 @@
 /obj/machinery/microwave,
 /turf/open/floor/wood,
 /area/mainship/medical/surgery_hallway{
-	name = "Research";
-	outside = 0
+	name = "Research"
 	})
 "kox" = (
 /obj/structure/cable,
@@ -11544,15 +11011,12 @@
 	},
 /obj/machinery/door/airlock/mainship/marine/general/sl,
 /turf/open/floor/mainship,
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "kpg" = (
 /obj/machinery/camera/autoname,
 /turf/open/floor/mainship,
 /area/mainship/shipboard/port_missiles{
-	name = "Shipside Corpsec Office";
-	outside = 0
+	name = "Shipside Corpsec Office"
 	})
 "kpJ" = (
 /obj/structure/disposalpipe/segment{
@@ -11564,8 +11028,7 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/medical/surgery_hallway{
-	name = "Research";
-	outside = 0
+	name = "Research"
 	})
 "kqK" = (
 /obj/structure/disposalpipe/segment,
@@ -11584,8 +11047,7 @@
 	dir = 8
 	},
 /area/mainship/medical/surgery_hallway{
-	name = "Research";
-	outside = 0
+	name = "Research"
 	})
 "krG" = (
 /turf/open/floor/mainship/cargo/arrow{
@@ -11598,20 +11060,15 @@
 	dir = 1
 	},
 /area/mainship/medical/surgery_hallway{
-	name = "Research";
-	outside = 0
+	name = "Research"
 	})
 "ksl" = (
 /turf/open/floor/mainship/ntlogo/nt2,
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "ksm" = (
 /obj/machinery/holopad,
 /turf/open/floor/mainship/black,
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "ksD" = (
 /obj/effect/ai_node,
 /turf/open/floor/mainship/mono,
@@ -11639,9 +11096,7 @@
 /turf/open/floor/mainship/cargo/arrow{
 	dir = 8
 	},
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "ktv" = (
 /obj/structure/bed/chair/comfy{
 	dir = 8
@@ -11651,9 +11106,7 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/mainship/sterile/side,
-/area/mainship/medical/lower_medical{
-	outside = 0
-	})
+/area/mainship/medical/lower_medical)
 "ktK" = (
 /turf/open/floor/mainship/black{
 	dir = 4
@@ -11682,9 +11135,7 @@
 /turf/open/floor/mainship/black{
 	dir = 8
 	},
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "kvt" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment,
@@ -11699,9 +11150,7 @@
 /turf/open/floor/mainship/green{
 	dir = 8
 	},
-/area/mainship/living/basketball{
-	outside = 0
-	})
+/area/mainship/living/basketball)
 "kwl" = (
 /obj/machinery/floodlight/landing/hq,
 /turf/open/floor/mainship/cargo,
@@ -11772,9 +11221,7 @@
 	dir = 4
 	},
 /turf/open/floor/mainship/sterile/dark,
-/area/mainship/medical/lower_medical{
-	outside = 0
-	})
+/area/mainship/medical/lower_medical)
 "kyy" = (
 /turf/open/floor/mainship/empty,
 /area/campaign/jungle_outpost/outpost/req{
@@ -11792,7 +11239,6 @@
 	},
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/upper_medical{
-	outside = 0;
 	name = "Shipside Medbay"
 	})
 "kzp" = (
@@ -11831,8 +11277,7 @@
 	dir = 1
 	},
 /area/mainship/shipboard/port_missiles{
-	name = "Shipside Corpsec Office";
-	outside = 0
+	name = "Shipside Corpsec Office"
 	})
 "kDl" = (
 /obj/structure/table/reinforced,
@@ -11890,9 +11335,7 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/mainship/sterile/dark,
-/area/mainship/medical/lower_medical{
-	outside = 0
-	})
+/area/mainship/medical/lower_medical)
 "kFL" = (
 /obj/machinery/vending/cargo_supply,
 /turf/open/floor/mainship/cargo,
@@ -11915,8 +11358,7 @@
 	dir = 1
 	},
 /area/mainship/shipboard/port_missiles{
-	name = "Shipside Corpsec Office";
-	outside = 0
+	name = "Shipside Corpsec Office"
 	})
 "kGw" = (
 /obj/machinery/holopad,
@@ -11949,9 +11391,7 @@
 /turf/open/floor/mainship/black/corner{
 	dir = 1
 	},
-/area/mainship/living/tankerbunks{
-	outside = 0
-	})
+/area/mainship/living/tankerbunks)
 "kHa" = (
 /obj/machinery/light/mainship{
 	dir = 8
@@ -11960,9 +11400,7 @@
 /turf/open/floor/mainship/black{
 	dir = 9
 	},
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "kHA" = (
 /obj/effect/ai_node,
 /turf/open/floor/mainship/cargo,
@@ -11990,9 +11428,7 @@
 "kHZ" = (
 /obj/machinery/telecomms/server/presets/engineering,
 /turf/open/floor/mainship/tcomms,
-/area/mainship/command/telecomms{
-	outside = 0
-	})
+/area/mainship/command/telecomms)
 "kIz" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -12068,7 +11504,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/upper_medical{
-	outside = 0;
 	name = "Shipside Medbay"
 	})
 "kMX" = (
@@ -12076,8 +11511,7 @@
 /obj/machinery/air_alarm,
 /turf/open/floor/mainship/sterile/corner,
 /area/mainship/medical/surgery_hallway{
-	name = "Research";
-	outside = 0
+	name = "Research"
 	})
 "kNa" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -12112,7 +11546,6 @@
 	dir = 1
 	},
 /area/mainship/medical/upper_medical{
-	outside = 0;
 	name = "Shipside Medbay"
 	})
 "kNS" = (
@@ -12140,7 +11573,6 @@
 	dir = 4
 	},
 /area/mainship/medical/upper_medical{
-	outside = 0;
 	name = "Shipside Medbay"
 	})
 "kOV" = (
@@ -12205,8 +11637,7 @@
 	dir = 4
 	},
 /area/mainship/shipboard/port_missiles{
-	name = "Shipside Corpsec Office";
-	outside = 0
+	name = "Shipside Corpsec Office"
 	})
 "kPZ" = (
 /obj/machinery/camera/autoname,
@@ -12223,7 +11654,6 @@
 	dir = 8
 	},
 /area/mainship/medical/upper_medical{
-	outside = 0;
 	name = "Shipside Medbay"
 	})
 "kQs" = (
@@ -12235,9 +11665,7 @@
 	id = "Lowershiplockdown"
 	},
 /turf/open/floor/mainship,
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "kQt" = (
 /obj/machinery/vending/weapon,
 /turf/open/floor/mainship/green{
@@ -12279,9 +11707,7 @@
 "kQK" = (
 /obj/structure/benchpress,
 /turf/open/floor/mainship/mono,
-/area/mainship/living/basketball{
-	outside = 0
-	})
+/area/mainship/living/basketball)
 "kQW" = (
 /obj/structure/table/mainship,
 /obj/machinery/keycard_auth,
@@ -12300,9 +11726,7 @@
 "kRC" = (
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
-/area/mainship/living/basketball{
-	outside = 0
-	})
+/area/mainship/living/basketball)
 "kRG" = (
 /obj/structure/cable,
 /obj/machinery/camera/autoname/mainship{
@@ -12366,8 +11790,7 @@
 /obj/machinery/chem_dispenser/soda,
 /turf/open/floor/wood,
 /area/mainship/medical/surgery_hallway{
-	name = "Research";
-	outside = 0
+	name = "Research"
 	})
 "kTD" = (
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -12382,9 +11805,7 @@
 /obj/structure/cable,
 /obj/effect/ai_node,
 /turf/open/floor/mainship/floor,
-/area/mainship/living/tankerbunks{
-	outside = 0
-	})
+/area/mainship/living/tankerbunks)
 "kUg" = (
 /turf/open/floor/mainship/black/corner{
 	dir = 1
@@ -12399,9 +11820,7 @@
 "kVb" = (
 /obj/machinery/telecomms/processor/preset_two,
 /turf/open/floor/mainship/tcomms,
-/area/mainship/command/telecomms{
-	outside = 0
-	})
+/area/mainship/command/telecomms)
 "kVN" = (
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/bow_hallway{
@@ -12420,7 +11839,6 @@
 	dir = 1
 	},
 /area/mainship/medical/upper_medical{
-	outside = 0;
 	name = "Shipside Medbay"
 	})
 "kWN" = (
@@ -12451,7 +11869,6 @@
 	dir = 8
 	},
 /area/mainship/medical/upper_medical{
-	outside = 0;
 	name = "Shipside Medbay"
 	})
 "kXS" = (
@@ -12471,9 +11888,7 @@
 /turf/open/floor/mainship/black{
 	dir = 4
 	},
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "kXU" = (
 /obj/machinery/computer/camera_advanced{
 	dir = 8
@@ -12514,8 +11929,7 @@
 "lat" = (
 /turf/open/floor/mainship/sterile/side,
 /area/mainship/medical/surgery_hallway{
-	name = "Research";
-	outside = 0
+	name = "Research"
 	})
 "lau" = (
 /obj/machinery/camera/autoname{
@@ -12573,9 +11987,7 @@
 /turf/open/floor/mainship/sterile/corner{
 	dir = 1
 	},
-/area/mainship/medical/lower_medical{
-	outside = 0
-	})
+/area/mainship/medical/lower_medical)
 "lci" = (
 /obj/structure/rack,
 /obj/machinery/light/mainship/small,
@@ -12593,8 +12005,7 @@
 /obj/machinery/chem_dispenser/beer,
 /turf/open/floor/wood,
 /area/mainship/medical/surgery_hallway{
-	name = "Research";
-	outside = 0
+	name = "Research"
 	})
 "lcB" = (
 /obj/structure/dropship_equipment/shuttle/weapon_holder/mortar_holder,
@@ -12625,8 +12036,7 @@
 	},
 /turf/open/floor/mainship,
 /area/mainship/shipboard/port_missiles{
-	name = "Shipside Corpsec Office";
-	outside = 0
+	name = "Shipside Corpsec Office"
 	})
 "ldh" = (
 /obj/structure/largecrate/random/barrel,
@@ -12644,9 +12054,7 @@
 	})
 "leh" = (
 /turf/open/floor/wood,
-/area/mainship/living/basketball{
-	outside = 0
-	})
+/area/mainship/living/basketball)
 "leF" = (
 /obj/structure/flora/ausbushes/leafybush,
 /turf/open/floor/grass,
@@ -12707,15 +12115,12 @@
 	dir = 10
 	},
 /area/mainship/medical/surgery_hallway{
-	name = "Research";
-	outside = 0
+	name = "Research"
 	})
 "liJ" = (
 /obj/structure/sign/poster,
 /turf/open/floor/mainship/cargo,
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "liP" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment,
@@ -12724,7 +12129,6 @@
 	dir = 6
 	},
 /area/mainship/medical/upper_medical{
-	outside = 0;
 	name = "Shipside Medbay"
 	})
 "liW" = (
@@ -12745,8 +12149,7 @@
 	dir = 4
 	},
 /area/mainship/medical/surgery_hallway{
-	name = "Research";
-	outside = 0
+	name = "Research"
 	})
 "ljl" = (
 /obj/structure/cable,
@@ -12786,7 +12189,6 @@
 	},
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/upper_medical{
-	outside = 0;
 	name = "Shipside Medbay"
 	})
 "lkK" = (
@@ -12828,9 +12230,7 @@
 "lmL" = (
 /obj/machinery/computer/squad_manager,
 /turf/open/floor/mainship,
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "lns" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment,
@@ -12839,9 +12239,7 @@
 	dir = 4
 	},
 /turf/open/floor/mainship/mono,
-/area/mainship/living/tankerbunks{
-	outside = 0
-	})
+/area/mainship/living/tankerbunks)
 "lnD" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
@@ -12864,8 +12262,7 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/surgery_hallway{
-	name = "Research";
-	outside = 0
+	name = "Research"
 	})
 "lnT" = (
 /obj/machinery/power/apc,
@@ -12875,9 +12272,7 @@
 /turf/open/floor/mainship/black{
 	dir = 5
 	},
-/area/mainship/living/tankerbunks{
-	outside = 0
-	})
+/area/mainship/living/tankerbunks)
 "lnV" = (
 /obj/machinery/door/airlock/mainship/generic{
 	dir = 2;
@@ -12920,7 +12315,6 @@
 	},
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/upper_medical{
-	outside = 0;
 	name = "Shipside Medbay"
 	})
 "lqq" = (
@@ -12944,14 +12338,10 @@
 /obj/machinery/telecomms/server/presets/charlie,
 /obj/machinery/camera/autoname/mainship,
 /turf/open/floor/mainship/tcomms,
-/area/mainship/command/telecomms{
-	outside = 0
-	})
+/area/mainship/command/telecomms)
 "lrN" = (
 /turf/open/floor/mainship/mono,
-/area/mainship/living/basketball{
-	outside = 0
-	})
+/area/mainship/living/basketball)
 "lss" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment,
@@ -12993,9 +12383,7 @@
 /turf/open/floor/mainship/white{
 	dir = 5
 	},
-/area/mainship/living/tankerbunks{
-	outside = 0
-	})
+/area/mainship/living/tankerbunks)
 "luk" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
@@ -13051,9 +12439,7 @@
 /turf/open/floor/mainship/black{
 	dir = 10
 	},
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "lwd" = (
 /obj/structure/cable,
 /obj/effect/ai_node,
@@ -13119,7 +12505,6 @@
 	dir = 1
 	},
 /area/mainship/medical/upper_medical{
-	outside = 0;
 	name = "Shipside Medbay"
 	})
 "lzd" = (
@@ -13149,18 +12534,14 @@
 /area/campaign/jungle_outpost/outpost/living/bathroom)
 "lBy" = (
 /turf/open/floor/mainship/floor,
-/area/mainship/living/tankerbunks{
-	outside = 0
-	})
+/area/mainship/living/tankerbunks)
 "lBH" = (
 /obj/structure/cable,
 /obj/machinery/door/airlock/mainship/generic/pilot/bunk{
 	dir = 8
 	},
 /turf/open/floor/mainship/mono,
-/area/mainship/living/pilotbunks{
-	outside = 0
-	})
+/area/mainship/living/pilotbunks)
 "lCc" = (
 /obj/structure/cable,
 /obj/machinery/door/airlock/mainship/maint{
@@ -13251,8 +12632,7 @@
 /obj/effect/soundplayer,
 /turf/closed/wall/mainship/white,
 /area/mainship/medical/surgery_hallway{
-	name = "Research";
-	outside = 0
+	name = "Research"
 	})
 "lFz" = (
 /obj/effect/landmark/start/job/squadspecialist,
@@ -13282,9 +12662,7 @@
 /turf/open/floor/mainship/sterile/side{
 	dir = 1
 	},
-/area/mainship/medical/lower_medical{
-	outside = 0
-	})
+/area/mainship/medical/lower_medical)
 "lGu" = (
 /obj/structure/closet/bombclosetsecurity,
 /obj/machinery/light{
@@ -13300,8 +12678,7 @@
 "lHg" = (
 /turf/open/floor/stairs/rampbottom,
 /area/mainship/shipboard/port_missiles{
-	name = "Shipside Corpsec Office";
-	outside = 0
+	name = "Shipside Corpsec Office"
 	})
 "lHi" = (
 /obj/machinery/light/small{
@@ -13376,9 +12753,7 @@
 	id = "floor3shipcheckpoint2"
 	},
 /turf/open/floor/mainship/stripesquare,
-/area/mainship/living/basketball{
-	outside = 0
-	})
+/area/mainship/living/basketball)
 "lJZ" = (
 /obj/structure/cable,
 /obj/machinery/light/small,
@@ -13402,13 +12777,10 @@
 	dir = 8
 	},
 /turf/open/floor/mainship/mono,
-/area/mainship/living/basketball{
-	outside = 0
-	})
+/area/mainship/living/basketball)
 "lKP" = (
 /turf/open/floor/mainship/sterile/side,
 /area/mainship/medical/upper_medical{
-	outside = 0;
 	name = "Shipside Medbay"
 	})
 "lKU" = (
@@ -13518,7 +12890,6 @@
 /obj/machinery/computer/cloning_console/vats,
 /turf/open/floor/mainship/sterile/corner,
 /area/mainship/medical/upper_medical{
-	outside = 0;
 	name = "Shipside Medbay"
 	})
 "lPQ" = (
@@ -13552,7 +12923,6 @@
 	},
 /turf/open/floor/plating,
 /area/mainship/medical/upper_medical{
-	outside = 0;
 	name = "Shipside Medbay"
 	})
 "lQD" = (
@@ -13639,9 +13009,7 @@
 /turf/open/floor/mainship/black{
 	dir = 8
 	},
-/area/mainship/living/tankerbunks{
-	outside = 0
-	})
+/area/mainship/living/tankerbunks)
 "lWP" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -13652,16 +13020,13 @@
 /obj/machinery/door/firedoor/mainship,
 /obj/machinery/door/airlock/mainship/marine/general/smart,
 /turf/open/floor/mainship,
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "lXb" = (
 /obj/machinery/vending/MarineMed,
 /turf/open/floor/mainship/sterile/side{
 	dir = 4
 	},
 /area/mainship/medical/upper_medical{
-	outside = 0;
 	name = "Shipside Medbay"
 	})
 "lXf" = (
@@ -13687,9 +13052,7 @@
 /turf/open/floor/mainship/black{
 	dir = 8
 	},
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "lXB" = (
 /obj/effect/turf_decal/warning_stripes/thick{
 	dir = 6
@@ -13705,9 +13068,7 @@
 /obj/item/newspaper,
 /obj/effect/spawner/random/misc/plushie/nospawnninetynine,
 /turf/open/floor/mainship/white,
-/area/mainship/living/tankerbunks{
-	outside = 0
-	})
+/area/mainship/living/tankerbunks)
 "lYV" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/junction{
@@ -13732,22 +13093,11 @@
 /obj/structure/prop/mainship/sensor_computer3,
 /turf/open/floor/mainship/mono,
 /area/mainship/command/cic)
-"mai" = (
-/obj/machinery/vending/snack,
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/open/floor/mainship/mono,
-/area/mainship/hallways/aft_hallway{
-	name = "Ship Floor 3 Hallways"
-	})
 "mbW" = (
 /turf/open/floor/mainship/black{
 	dir = 9
 	},
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "mch" = (
 /obj/structure/cable,
 /obj/machinery/power/apc/mainship,
@@ -13808,9 +13158,7 @@
 /turf/open/floor/mainship/cargo/arrow{
 	dir = 8
 	},
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "meS" = (
 /turf/open/floor/mainship/floor,
 /area/mainship/hull/lower_hull)
@@ -13844,16 +13192,13 @@
 "mgx" = (
 /obj/machinery/marine_selector/gear/medic,
 /turf/open/floor/mainship/floor,
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "mgJ" = (
 /obj/machinery/computer/crew,
 /turf/open/floor/mainship/sterile/corner{
 	dir = 1
 	},
 /area/mainship/medical/upper_medical{
-	outside = 0;
 	name = "Shipside Medbay"
 	})
 "mhn" = (
@@ -13879,16 +13224,13 @@
 /obj/structure/table/reinforced,
 /obj/structure/cable,
 /turf/open/floor/mainship/black,
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "mie" = (
 /obj/machinery/holopad,
 /turf/open/floor/mainship/sterile/side{
 	dir = 8
 	},
 /area/mainship/medical/upper_medical{
-	outside = 0;
 	name = "Shipside Medbay"
 	})
 "min" = (
@@ -13954,8 +13296,7 @@
 /obj/effect/ai_node,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/surgery_hallway{
-	name = "Research";
-	outside = 0
+	name = "Research"
 	})
 "mkE" = (
 /obj/structure/bed/stool{
@@ -14055,29 +13396,23 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/mainship,
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "mnN" = (
 /turf/open/floor/mainship/red{
 	dir = 4
 	},
 /area/mainship/shipboard/port_missiles{
-	name = "Shipside Corpsec Office";
-	outside = 0
+	name = "Shipside Corpsec Office"
 	})
 "mnO" = (
 /obj/effect/landmark/start/job/security_officer,
 /turf/open/floor/mainship/mono,
 /area/mainship/shipboard/port_missiles{
-	name = "Shipside Corpsec Office";
-	outside = 0
+	name = "Shipside Corpsec Office"
 	})
 "moF" = (
 /turf/open/floor/mainship/sterile/plain,
-/area/mainship/living/tankerbunks{
-	outside = 0
-	})
+/area/mainship/living/tankerbunks)
 "moY" = (
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
@@ -14089,9 +13424,7 @@
 /turf/open/floor/mainship/sterile/side{
 	dir = 1
 	},
-/area/mainship/medical/lower_medical{
-	outside = 0
-	})
+/area/mainship/medical/lower_medical)
 "mpj" = (
 /obj/effect/landmark/start/job/squadleader,
 /obj/effect/landmark/start/job/squadleader,
@@ -14116,13 +13449,11 @@
 /obj/machinery/light/mainship,
 /turf/open/floor/mainship/sterile/side,
 /area/mainship/medical/upper_medical{
-	outside = 0;
 	name = "Shipside Medbay"
 	})
 "mpq" = (
 /turf/open/floor/mainship/sterile/corner,
 /area/mainship/medical/upper_medical{
-	outside = 0;
 	name = "Shipside Medbay"
 	})
 "mpU" = (
@@ -14252,8 +13583,7 @@
 /obj/item/ammo_magazine/rifle/pepperball,
 /turf/open/floor/mainship/red,
 /area/mainship/shipboard/port_missiles{
-	name = "Shipside Corpsec Office";
-	outside = 0
+	name = "Shipside Corpsec Office"
 	})
 "muR" = (
 /obj/machinery/floodlight/landing/hq,
@@ -14292,7 +13622,6 @@
 /obj/item/tool/hand_labeler,
 /turf/open/floor/mainship/sterile/side,
 /area/mainship/medical/upper_medical{
-	outside = 0;
 	name = "Shipside Medbay"
 	})
 "mwJ" = (
@@ -14340,8 +13669,7 @@
 	dir = 9
 	},
 /area/mainship/shipboard/port_missiles{
-	name = "Shipside Corpsec Office";
-	outside = 0
+	name = "Shipside Corpsec Office"
 	})
 "mza" = (
 /obj/machinery/landinglight/cas{
@@ -14370,9 +13698,7 @@
 "mBJ" = (
 /obj/machinery/telecomms/processor/preset_four,
 /turf/open/floor/mainship/tcomms,
-/area/mainship/command/telecomms{
-	outside = 0
-	})
+/area/mainship/command/telecomms)
 "mCM" = (
 /obj/machinery/shower{
 	pixel_y = 12
@@ -14395,7 +13721,6 @@
 	dir = 1
 	},
 /area/mainship/medical/upper_medical{
-	outside = 0;
 	name = "Shipside Medbay"
 	})
 "mDw" = (
@@ -14422,8 +13747,7 @@
 	dir = 1
 	},
 /area/mainship/shipboard/port_missiles{
-	name = "Shipside Corpsec Office";
-	outside = 0
+	name = "Shipside Corpsec Office"
 	})
 "mEu" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -14457,9 +13781,7 @@
 /turf/open/floor/mainship/black{
 	dir = 8
 	},
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "mFm" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -14538,8 +13860,7 @@
 	dir = 1
 	},
 /area/mainship/medical/surgery_hallway{
-	name = "Research";
-	outside = 0
+	name = "Research"
 	})
 "mJK" = (
 /obj/structure/bed/chair/office/dark{
@@ -14581,9 +13902,7 @@
 "mLN" = (
 /obj/machinery/telecomms/bus/preset_three,
 /turf/open/floor/mainship/tcomms,
-/area/mainship/command/telecomms{
-	outside = 0
-	})
+/area/mainship/command/telecomms)
 "mMj" = (
 /obj/structure/rack,
 /obj/item/weapon/gun/rifle/famas,
@@ -14597,8 +13916,7 @@
 	dir = 1
 	},
 /area/mainship/shipboard/port_missiles{
-	name = "Shipside Corpsec Office";
-	outside = 0
+	name = "Shipside Corpsec Office"
 	})
 "mMm" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -14615,9 +13933,7 @@
 "mMG" = (
 /obj/machinery/vending/weapon,
 /turf/open/floor/mainship/floor,
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "mMP" = (
 /obj/machinery/suit_storage_unit/carbon_unit,
 /turf/open/floor/mainship/mono,
@@ -14669,7 +13985,6 @@
 	},
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/upper_medical{
-	outside = 0;
 	name = "Shipside Medbay"
 	})
 "mOp" = (
@@ -14695,16 +14010,12 @@
 /turf/open/floor/mainship/white{
 	dir = 1
 	},
-/area/mainship/living/tankerbunks{
-	outside = 0
-	})
+/area/mainship/living/tankerbunks)
 "mPF" = (
 /turf/open/floor/mainship/cargo/arrow{
 	dir = 8
 	},
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "mQv" = (
 /obj/structure/bed/chair/sofa/corner,
 /turf/open/floor/wood,
@@ -14729,7 +14040,6 @@
 	dir = 4
 	},
 /area/mainship/medical/upper_medical{
-	outside = 0;
 	name = "Shipside Medbay"
 	})
 "mTQ" = (
@@ -14768,8 +14078,7 @@
 	},
 /turf/open/floor/wood,
 /area/mainship/medical/surgery_hallway{
-	name = "Research";
-	outside = 0
+	name = "Research"
 	})
 "mVi" = (
 /obj/structure/ship_ammo/cas/rocket/banshee,
@@ -14788,8 +14097,7 @@
 	dir = 8
 	},
 /area/mainship/medical/surgery_hallway{
-	name = "Research";
-	outside = 0
+	name = "Research"
 	})
 "mVu" = (
 /obj/structure/bed/chair/nometal{
@@ -14802,8 +14110,7 @@
 	dir = 4
 	},
 /area/mainship/medical/surgery_hallway{
-	name = "Research";
-	outside = 0
+	name = "Research"
 	})
 "mWm" = (
 /obj/machinery/door/poddoor/mainship/open/cic{
@@ -14840,9 +14147,7 @@
 "mZq" = (
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
-/area/mainship/command/telecomms{
-	outside = 0
-	})
+/area/mainship/command/telecomms)
 "mZZ" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -14892,9 +14197,7 @@
 "ndi" = (
 /obj/machinery/marine_selector/gear/leader,
 /turf/open/floor/mainship,
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "neE" = (
 /obj/structure/window/framed/mainship/hull,
 /obj/machinery/door/poddoor/mainship/ai/exterior{
@@ -14955,15 +14258,11 @@
 /turf/open/floor/mainship/green/corner{
 	dir = 4
 	},
-/area/mainship/living/basketball{
-	outside = 0
-	})
+/area/mainship/living/basketball)
 "ngO" = (
 /obj/machinery/door/airlock/mainship/marine/general/sl,
 /turf/open/floor/mainship,
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "nhs" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 4
@@ -14976,9 +14275,7 @@
 /turf/open/floor/mainship/green{
 	dir = 1
 	},
-/area/mainship/living/basketball{
-	outside = 0
-	})
+/area/mainship/living/basketball)
 "nhR" = (
 /obj/structure/table/reinforced,
 /obj/item/flashlight/lamp{
@@ -14998,7 +14295,6 @@
 	dir = 1
 	},
 /area/mainship/medical/upper_medical{
-	outside = 0;
 	name = "Shipside Medbay"
 	})
 "nje" = (
@@ -15011,8 +14307,7 @@
 /obj/effect/landmark/start/job/security_officer,
 /turf/open/floor/mainship/mono,
 /area/mainship/shipboard/port_missiles{
-	name = "Shipside Corpsec Office";
-	outside = 0
+	name = "Shipside Corpsec Office"
 	})
 "nkh" = (
 /obj/structure/closet/secure_closet/medical2,
@@ -15040,18 +14335,14 @@
 /turf/open/floor/mainship/sterile/side{
 	dir = 8
 	},
-/area/mainship/medical/lower_medical{
-	outside = 0
-	})
+/area/mainship/medical/lower_medical)
 "nku" = (
 /obj/machinery/door/airlock/mainship/generic/pilot/bunk{
 	dir = 8
 	},
 /obj/machinery/door/firedoor/mainship,
 /turf/open/floor/mainship/mono,
-/area/mainship/living/pilotbunks{
-	outside = 0
-	})
+/area/mainship/living/pilotbunks)
 "nkv" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment/corner{
@@ -15139,8 +14430,7 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/surgery_hallway{
-	name = "Research";
-	outside = 0
+	name = "Research"
 	})
 "nqn" = (
 /obj/structure/table/mainship/nometal,
@@ -15260,8 +14550,7 @@
 /obj/item/clothing/glasses/sunglasses/sechud,
 /turf/open/floor/mainship/cargo,
 /area/mainship/shipboard/port_missiles{
-	name = "Shipside Corpsec Office";
-	outside = 0
+	name = "Shipside Corpsec Office"
 	})
 "nxI" = (
 /obj/machinery/atmospherics/components/trinary/mixer{
@@ -15287,9 +14576,7 @@
 /turf/open/floor/mainship/green{
 	dir = 10
 	},
-/area/mainship/living/basketball{
-	outside = 0
-	})
+/area/mainship/living/basketball)
 "nyt" = (
 /obj/machinery/gear{
 	id = "supply_elevator_gear"
@@ -15318,9 +14605,7 @@
 "nzV" = (
 /obj/machinery/cic_maptable,
 /turf/open/floor/mainship,
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "nAP" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -15358,25 +14643,19 @@
 	},
 /obj/structure/sign/poster,
 /turf/open/floor/mainship/cargo,
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "nDi" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
 /turf/open/floor/mainship/floor,
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "nDl" = (
 /obj/item/stack/flag/green,
 /turf/open/floor/mainship/green/corner{
 	dir = 1
 	},
-/area/mainship/living/basketball{
-	outside = 0
-	})
+/area/mainship/living/basketball)
 "nDV" = (
 /obj/machinery/photocopier,
 /turf/open/floor/mainship/mono,
@@ -15419,7 +14698,6 @@
 /obj/item/stack/sheet/mineral/phoron,
 /turf/open/floor/mainship/sterile/side,
 /area/mainship/medical/upper_medical{
-	outside = 0;
 	name = "Shipside Medbay"
 	})
 "nFS" = (
@@ -15461,7 +14739,6 @@
 	dir = 4
 	},
 /area/mainship/medical/upper_medical{
-	outside = 0;
 	name = "Shipside Medbay"
 	})
 "nIU" = (
@@ -15483,22 +14760,17 @@
 "nJF" = (
 /turf/closed/wall/mainship/research/containment/wall/corner,
 /area/mainship/medical/surgery_hallway{
-	name = "Research";
-	outside = 0
+	name = "Research"
 	})
 "nKd" = (
 /turf/open/space,
 /area/space)
 "nKR" = (
 /turf/open/floor/wood,
-/area/mainship/living/pilotbunks{
-	outside = 0
-	})
+/area/mainship/living/pilotbunks)
 "nLL" = (
 /turf/open/floor/wood,
-/area/mainship/living/tankerbunks{
-	outside = 0
-	})
+/area/mainship/living/tankerbunks)
 "nMR" = (
 /obj/structure/table/woodentable,
 /obj/machinery/computer/skills,
@@ -15574,9 +14846,7 @@
 "nPj" = (
 /obj/structure/closet/basketball,
 /turf/open/floor/mainship,
-/area/mainship/living/basketball{
-	outside = 0
-	})
+/area/mainship/living/basketball)
 "nPy" = (
 /obj/machinery/light/small,
 /turf/open/floor/plating/plating_catwalk,
@@ -15587,9 +14857,6 @@
 "nPF" = (
 /obj/structure/disposalpipe/segment/corner,
 /obj/structure/cable,
-/obj/machinery/light{
-	dir = 1
-	},
 /obj/machinery/power/apc/mainship,
 /turf/open/floor/mainship/office,
 /area/sulaco/liaison/quarters{
@@ -15643,9 +14910,7 @@
 /turf/open/floor/mainship/green{
 	dir = 8
 	},
-/area/mainship/living/basketball{
-	outside = 0
-	})
+/area/mainship/living/basketball)
 "nRr" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -15682,7 +14947,6 @@
 /obj/structure/window/framed/mainship/white,
 /turf/open/floor/plating,
 /area/mainship/medical/upper_medical{
-	outside = 0;
 	name = "Shipside Medbay"
 	})
 "nSd" = (
@@ -15726,17 +14990,14 @@
 /obj/item/autopsy_scanner,
 /turf/open/floor/mainship/mono,
 /area/mainship/medical/surgery_hallway{
-	name = "Research";
-	outside = 0
+	name = "Research"
 	})
 "nTt" = (
 /obj/machinery/light/mainship/small{
 	dir = 4
 	},
 /turf/open/floor/mainship/tcomms,
-/area/mainship/command/telecomms{
-	outside = 0
-	})
+/area/mainship/command/telecomms)
 "nTD" = (
 /obj/machinery/floodlight/landing,
 /obj/machinery/landinglight/cas{
@@ -15797,9 +15058,7 @@
 /turf/open/floor/mainship/green{
 	dir = 4
 	},
-/area/mainship/living/basketball{
-	outside = 0
-	})
+/area/mainship/living/basketball)
 "nVN" = (
 /obj/structure/bed/bunkbed,
 /obj/effect/landmark/start/job/squadmarine,
@@ -15812,9 +15071,7 @@
 /area/mainship/living/cryo_cells)
 "nWL" = (
 /turf/closed/wall/mainship,
-/area/mainship/living/pilotbunks{
-	outside = 0
-	})
+/area/mainship/living/pilotbunks)
 "nYc" = (
 /obj/machinery/door/airlock/mainship/maint{
 	dir = 2
@@ -15846,9 +15103,7 @@
 	pixel_y = 3
 	},
 /turf/open/floor/mainship/cargo,
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "nZs" = (
 /obj/structure/window/reinforced/toughened{
 	dir = 1
@@ -15887,9 +15142,7 @@
 /turf/open/floor/mainship/black{
 	dir = 8
 	},
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "oav" = (
 /obj/machinery/power/apc/mainship{
 	dir = 8
@@ -15899,8 +15152,7 @@
 	dir = 4
 	},
 /area/mainship/medical/surgery_hallway{
-	name = "Research";
-	outside = 0
+	name = "Research"
 	})
 "oaL" = (
 /obj/structure/disposalpipe/segment{
@@ -15946,8 +15198,7 @@
 	dir = 6
 	},
 /area/mainship/medical/surgery_hallway{
-	name = "Research";
-	outside = 0
+	name = "Research"
 	})
 "ocl" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -15962,24 +15213,20 @@
 	dir = 1
 	},
 /area/mainship/medical/upper_medical{
-	outside = 0;
 	name = "Shipside Medbay"
 	})
 "oct" = (
 /obj/structure/closet/secure_closet/guncabinet/mp_armory,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/surgery_hallway{
-	name = "Research";
-	outside = 0
+	name = "Research"
 	})
 "ocx" = (
 /obj/structure/cable,
 /turf/open/floor/mainship/black{
 	dir = 6
 	},
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "ocI" = (
 /obj/structure/rack,
 /obj/item/storage/box/flashbangs,
@@ -15989,15 +15236,13 @@
 /obj/machinery/light,
 /turf/open/floor/mainship/red,
 /area/mainship/shipboard/port_missiles{
-	name = "Shipside Corpsec Office";
-	outside = 0
+	name = "Shipside Corpsec Office"
 	})
 "ocM" = (
 /turf/open/floor/mainship/sterile/side{
 	dir = 9
 	},
 /area/mainship/medical/upper_medical{
-	outside = 0;
 	name = "Shipside Medbay"
 	})
 "ocW" = (
@@ -16026,8 +15271,7 @@
 /obj/machinery/holopad,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/surgery_hallway{
-	name = "Research";
-	outside = 0
+	name = "Research"
 	})
 "oef" = (
 /obj/structure/disposalpipe/segment,
@@ -16123,8 +15367,7 @@
 /obj/effect/landmark/start/job/researcher,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/surgery_hallway{
-	name = "Research";
-	outside = 0
+	name = "Research"
 	})
 "olz" = (
 /obj/structure/disposalpipe/segment/corner{
@@ -16178,7 +15421,6 @@
 	},
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/upper_medical{
-	outside = 0;
 	name = "Shipside Medbay"
 	})
 "onr" = (
@@ -16207,9 +15449,7 @@
 /obj/structure/closet/secure_closet/pilot_officer,
 /obj/item/clothing/mask/rebreather/scarf,
 /turf/open/floor/mainship/mono,
-/area/mainship/living/pilotbunks{
-	outside = 0
-	})
+/area/mainship/living/pilotbunks)
 "opf" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment,
@@ -16255,17 +15495,14 @@
 	id = "floor3shipcheckpoint2"
 	},
 /turf/open/floor/mainship/stripesquare,
-/area/mainship/living/basketball{
-	outside = 0
-	})
+/area/mainship/living/basketball)
 "oqJ" = (
 /obj/machinery/cryopod/right,
 /turf/open/floor/mainship/sterile/corner{
 	dir = 4
 	},
 /area/mainship/medical/surgery_hallway{
-	name = "Research";
-	outside = 0
+	name = "Research"
 	})
 "ori" = (
 /obj/structure/largecrate/supply/medicine/medkits,
@@ -16342,9 +15579,7 @@
 /turf/open/floor/mainship/sterile/corner{
 	dir = 8
 	},
-/area/mainship/medical/lower_medical{
-	outside = 0
-	})
+/area/mainship/medical/lower_medical)
 "ouw" = (
 /obj/structure/disposalpipe/segment/corner,
 /obj/structure/cable,
@@ -16359,8 +15594,7 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/medical/surgery_hallway{
-	name = "Research";
-	outside = 0
+	name = "Research"
 	})
 "ouD" = (
 /obj/machinery/door/airlock/mainship/secure/tcomms,
@@ -16375,9 +15609,7 @@
 /obj/structure/cable,
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
-/area/mainship/command/telecomms{
-	outside = 0
-	})
+/area/mainship/command/telecomms)
 "ovj" = (
 /obj/machinery/door/airlock/mainship/security{
 	dir = 1;
@@ -16407,9 +15639,7 @@
 /turf/open/floor/mainship/green{
 	dir = 1
 	},
-/area/mainship/living/basketball{
-	outside = 0
-	})
+/area/mainship/living/basketball)
 "oyb" = (
 /obj/structure/bed/chair{
 	dir = 1
@@ -16436,9 +15666,7 @@
 /turf/open/floor/mainship/green{
 	dir = 1
 	},
-/area/mainship/living/basketball{
-	outside = 0
-	})
+/area/mainship/living/basketball)
 "oyt" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -16470,17 +15698,13 @@
 /turf/open/floor/mainship/black{
 	dir = 6
 	},
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "ozo" = (
 /obj/machinery/autodoc,
 /turf/open/floor/mainship/sterile/corner{
 	dir = 8
 	},
-/area/mainship/medical/lower_medical{
-	outside = 0
-	})
+/area/mainship/medical/lower_medical)
 "ozw" = (
 /obj/effect/ai_node,
 /obj/machinery/light{
@@ -16510,9 +15734,7 @@
 	})
 "oAJ" = (
 /turf/closed/wall/mainship,
-/area/mainship/living/basketball{
-	outside = 0
-	})
+/area/mainship/living/basketball)
 "oAK" = (
 /obj/machinery/door/poddoor/mainship/ammo{
 	dir = 2;
@@ -16594,8 +15816,7 @@
 	},
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/surgery_hallway{
-	name = "Research";
-	outside = 0
+	name = "Research"
 	})
 "oES" = (
 /obj/structure/cable,
@@ -16625,9 +15846,7 @@
 	})
 "oGg" = (
 /turf/open/floor/mainship/black,
-/area/mainship/living/tankerbunks{
-	outside = 0
-	})
+/area/mainship/living/tankerbunks)
 "oGn" = (
 /obj/machinery/computer/general_air_control/large_tank_control{
 	frequency = 1443;
@@ -16645,7 +15864,6 @@
 	},
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/upper_medical{
-	outside = 0;
 	name = "Shipside Medbay"
 	})
 "oHb" = (
@@ -16676,7 +15894,6 @@
 	dir = 4
 	},
 /area/mainship/medical/upper_medical{
-	outside = 0;
 	name = "Shipside Medbay"
 	})
 "oHt" = (
@@ -16733,15 +15950,11 @@
 	dir = 4
 	},
 /turf/open/floor/plating,
-/area/mainship/living/tankerbunks{
-	outside = 0
-	})
+/area/mainship/living/tankerbunks)
 "oJT" = (
 /obj/effect/ai_node,
 /turf/open/floor/mainship/green,
-/area/mainship/living/basketball{
-	outside = 0
-	})
+/area/mainship/living/basketball)
 "oJY" = (
 /turf/closed/wall/mainship/outer,
 /area/mainship/hull/upper_hull)
@@ -16771,9 +15984,7 @@
 /turf/open/floor/mainship/black{
 	dir = 4
 	},
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "oML" = (
 /obj/structure/largecrate/supply/floodlights,
 /turf/open/floor/mainship/cargo,
@@ -16866,8 +16077,7 @@
 	},
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/surgery_hallway{
-	name = "Research";
-	outside = 0
+	name = "Research"
 	})
 "oSX" = (
 /obj/structure/table/woodentable,
@@ -16898,8 +16108,7 @@
 	dir = 1
 	},
 /area/mainship/medical/surgery_hallway{
-	name = "Research";
-	outside = 0
+	name = "Research"
 	})
 "oTP" = (
 /obj/machinery/door/airlock/mainship/generic{
@@ -16915,9 +16124,7 @@
 /obj/machinery/camera/autoname/mainship,
 /obj/machinery/vending/MarineMed,
 /turf/open/floor/mainship/floor,
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "oUo" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -16959,9 +16166,7 @@
 /turf/open/floor/mainship/black{
 	dir = 4
 	},
-/area/mainship/living/tankerbunks{
-	outside = 0
-	})
+/area/mainship/living/tankerbunks)
 "oWZ" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/disposalpipe/segment,
@@ -17015,8 +16220,7 @@
 	dir = 8
 	},
 /area/mainship/medical/surgery_hallway{
-	name = "Research";
-	outside = 0
+	name = "Research"
 	})
 "oYJ" = (
 /obj/structure/bed/chair/wood/wings{
@@ -17158,15 +16362,11 @@
 /turf/open/floor/mainship/black{
 	dir = 4
 	},
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "pfG" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plating,
-/area/mainship/living/tankerbunks{
-	outside = 0
-	})
+/area/mainship/living/tankerbunks)
 "pfP" = (
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/upper_hull)
@@ -17183,9 +16383,7 @@
 /turf/open/floor/mainship/black{
 	dir = 10
 	},
-/area/mainship/living/tankerbunks{
-	outside = 0
-	})
+/area/mainship/living/tankerbunks)
 "pgF" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -17241,9 +16439,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating/plating_catwalk,
-/area/mainship/command/telecomms{
-	outside = 0
-	})
+/area/mainship/command/telecomms)
 "pjA" = (
 /obj/docking_port/stationary/marine_dropship/cas,
 /turf/open/floor/plating,
@@ -17302,9 +16498,7 @@
 	dir = 6
 	},
 /turf/open/floor/mainship/sterile/dark,
-/area/mainship/medical/lower_medical{
-	outside = 0
-	})
+/area/mainship/medical/lower_medical)
 "pnK" = (
 /obj/structure/cable,
 /obj/effect/ai_node,
@@ -17323,9 +16517,7 @@
 /obj/structure/cable,
 /obj/machinery/holopad,
 /turf/open/floor/mainship/mono,
-/area/mainship/command/telecomms{
-	outside = 0
-	})
+/area/mainship/command/telecomms)
 "poC" = (
 /obj/structure/disposalpipe/segment/corner,
 /obj/structure/cable,
@@ -17335,15 +16527,12 @@
 /turf/open/floor/mainship/black/corner{
 	dir = 8
 	},
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "poJ" = (
 /obj/structure/cable,
 /obj/machinery/holopad,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/upper_medical{
-	outside = 0;
 	name = "Shipside Medbay"
 	})
 "poQ" = (
@@ -17445,9 +16634,7 @@
 /area/mainship/living/evacuation)
 "pvZ" = (
 /turf/closed/wall/mainship,
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "pwz" = (
 /obj/machinery/vending/weapon,
 /turf/open/floor/mainship/floor,
@@ -17469,8 +16656,7 @@
 	dir = 8
 	},
 /area/mainship/shipboard/port_missiles{
-	name = "Shipside Corpsec Office";
-	outside = 0
+	name = "Shipside Corpsec Office"
 	})
 "pyy" = (
 /obj/structure/largecrate/supply/explosives,
@@ -17501,9 +16687,7 @@
 "pAz" = (
 /obj/effect/ai_node,
 /turf/open/floor/mainship/mono,
-/area/mainship/living/basketball{
-	outside = 0
-	})
+/area/mainship/living/basketball)
 "pBE" = (
 /obj/structure/bed/chair/wood/wings,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -17533,9 +16717,7 @@
 	dir = 4
 	},
 /turf/open/floor/mainship/mono,
-/area/mainship/living/basketball{
-	outside = 0
-	})
+/area/mainship/living/basketball)
 "pFf" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 9
@@ -17594,7 +16776,6 @@
 	dir = 1
 	},
 /area/mainship/medical/upper_medical{
-	outside = 0;
 	name = "Shipside Medbay"
 	})
 "pJn" = (
@@ -17632,9 +16813,7 @@
 /turf/open/floor/mainship/black{
 	dir = 8
 	},
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "pLC" = (
 /obj/machinery/door/poddoor/shutters/mainship/open/checkpoint{
 	dir = 2;
@@ -17649,7 +16828,6 @@
 /obj/machinery/computer/body_scanconsole,
 /turf/open/floor/mainship/sterile/side,
 /area/mainship/medical/upper_medical{
-	outside = 0;
 	name = "Shipside Medbay"
 	})
 "pMI" = (
@@ -17671,9 +16849,7 @@
 "pNm" = (
 /obj/structure/cable,
 /turf/open/floor/wood,
-/area/mainship/living/pilotbunks{
-	outside = 0
-	})
+/area/mainship/living/pilotbunks)
 "pOb" = (
 /obj/structure/ladder{
 	id = "NTFLadderCryo2";
@@ -17819,7 +16995,6 @@
 	dir = 1
 	},
 /area/mainship/medical/upper_medical{
-	outside = 0;
 	name = "Shipside Medbay"
 	})
 "pVD" = (
@@ -17834,9 +17009,7 @@
 	dir = 2
 	},
 /turf/open/floor/plating,
-/area/mainship/command/telecomms{
-	outside = 0
-	})
+/area/mainship/command/telecomms)
 "pWA" = (
 /obj/machinery/door/poddoor/shutters/mainship/selfdestruct,
 /turf/closed/wall/mainship,
@@ -17869,9 +17042,7 @@
 /obj/machinery/marine_selector/clothes/medic,
 /obj/machinery/light/mainship,
 /turf/open/floor/mainship/floor,
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "pXX" = (
 /obj/structure/closet/secure_closet/military_police{
 	locked = 0
@@ -17921,17 +17092,14 @@
 "pYT" = (
 /obj/machinery/telecomms/server/presets/cas,
 /turf/open/floor/mainship/tcomms,
-/area/mainship/command/telecomms{
-	outside = 0
-	})
+/area/mainship/command/telecomms)
 "pZu" = (
 /obj/structure/bed/chair{
 	dir = 8
 	},
 /turf/open/floor/mainship,
 /area/mainship/shipboard/port_missiles{
-	name = "Shipside Corpsec Office";
-	outside = 0
+	name = "Shipside Corpsec Office"
 	})
 "pZX" = (
 /turf/open/space/basic,
@@ -18022,16 +17190,13 @@
 	dir = 8
 	},
 /turf/open/floor/mainship,
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "qeo" = (
 /obj/machinery/cloning/vats,
 /turf/open/floor/mainship/sterile/corner{
 	dir = 1
 	},
 /area/mainship/medical/upper_medical{
-	outside = 0;
 	name = "Shipside Medbay"
 	})
 "qeM" = (
@@ -18088,9 +17253,7 @@
 	})
 "qgo" = (
 /turf/open/floor/mainship/black,
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "qgZ" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment{
@@ -18113,9 +17276,7 @@
 	})
 "qii" = (
 /turf/open/floor/mainship/floor,
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "qiw" = (
 /obj/machinery/camera/autoname{
 	dir = 4
@@ -18169,9 +17330,7 @@
 /turf/open/floor/mainship/black{
 	dir = 4
 	},
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "qlu" = (
 /turf/closed/wall/mainship/outer,
 /area/mainship/groundhq/ntf/engineering/lower_engineering)
@@ -18198,9 +17357,7 @@
 "qmh" = (
 /obj/machinery/marine_selector/gear/engi,
 /turf/open/floor/mainship,
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "qmK" = (
 /obj/structure/flora/ausbushes/ywflowers,
 /obj/structure/bed/stool{
@@ -18244,8 +17401,7 @@
 	},
 /turf/open/floor/mainship/red,
 /area/mainship/shipboard/port_missiles{
-	name = "Shipside Corpsec Office";
-	outside = 0
+	name = "Shipside Corpsec Office"
 	})
 "qpy" = (
 /obj/structure/cable,
@@ -18259,9 +17415,7 @@
 /obj/item/storage/donut_box,
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "qqe" = (
 /turf/open/floor/mainship/stripesquare,
 /area/mainship/hallways/port_umbilical{
@@ -18374,9 +17528,7 @@
 /turf/open/floor/mainship/black{
 	dir = 4
 	},
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "quF" = (
 /obj/structure/cable,
 /turf/closed/wall/mainship/outer,
@@ -18402,16 +17554,12 @@
 	dir = 4
 	},
 /turf/open/floor/mainship/mono,
-/area/mainship/living/pilotbunks{
-	outside = 0
-	})
+/area/mainship/living/pilotbunks)
 "qwn" = (
 /turf/open/floor/mainship/black{
 	dir = 10
 	},
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "qwO" = (
 /obj/structure/disposalpipe/segment/corner{
 	dir = 1
@@ -18461,23 +17609,19 @@
 	dir = 1
 	},
 /area/mainship/medical/surgery_hallway{
-	name = "Research";
-	outside = 0
+	name = "Research"
 	})
 "qxW" = (
 /obj/machinery/computer/telecomms/server/preset,
 /turf/open/floor/mainship/mono,
-/area/mainship/command/telecomms{
-	outside = 0
-	})
+/area/mainship/command/telecomms)
 "qxX" = (
 /obj/structure/closet/secure_closet/injection,
 /turf/open/floor/mainship/red{
 	dir = 4
 	},
 /area/mainship/shipboard/port_missiles{
-	name = "Shipside Corpsec Office";
-	outside = 0
+	name = "Shipside Corpsec Office"
 	})
 "qyN" = (
 /obj/structure/ladder{
@@ -18503,9 +17647,7 @@
 /area/mainship/hallways/hangar)
 "qzZ" = (
 /turf/closed/wall/mainship,
-/area/mainship/command/telecomms{
-	outside = 0
-	})
+/area/mainship/command/telecomms)
 "qAd" = (
 /obj/structure/ladder{
 	id = "NTFLadder5";
@@ -18530,8 +17672,7 @@
 /obj/machinery/iv_drip,
 /turf/open/floor/mainship/sterile,
 /area/mainship/medical/surgery_hallway{
-	name = "Research";
-	outside = 0
+	name = "Research"
 	})
 "qBf" = (
 /obj/effect/landmark/start/job/ceo,
@@ -18568,15 +17709,13 @@
 	dir = 4
 	},
 /area/mainship/medical/surgery_hallway{
-	name = "Research";
-	outside = 0
+	name = "Research"
 	})
 "qCl" = (
 /turf/open/floor/mainship/sterile/side{
 	dir = 10
 	},
 /area/mainship/medical/upper_medical{
-	outside = 0;
 	name = "Shipside Medbay"
 	})
 "qCt" = (
@@ -18596,15 +17735,12 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/medical/surgery_hallway{
-	name = "Research";
-	outside = 0
+	name = "Research"
 	})
 "qDy" = (
 /obj/structure/closet/secure_closet/pilot_officer,
 /turf/open/floor/wood,
-/area/mainship/living/tankerbunks{
-	outside = 0
-	})
+/area/mainship/living/tankerbunks)
 "qDK" = (
 /obj/machinery/cryopod/right,
 /obj/machinery/camera/autoname/mainship{
@@ -18612,8 +17748,7 @@
 	},
 /turf/open/floor/mainship/sterile/side,
 /area/mainship/medical/surgery_hallway{
-	name = "Research";
-	outside = 0
+	name = "Research"
 	})
 "qDQ" = (
 /obj/effect/turf_decal/warning_stripes/thick,
@@ -18668,8 +17803,7 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/medical/surgery_hallway{
-	name = "Research";
-	outside = 0
+	name = "Research"
 	})
 "qFI" = (
 /obj/machinery/door_control/mainship/ammo{
@@ -18695,7 +17829,6 @@
 	dir = 8
 	},
 /area/mainship/medical/upper_medical{
-	outside = 0;
 	name = "Shipside Medbay"
 	})
 "qGv" = (
@@ -18714,15 +17847,11 @@
 /obj/machinery/door/airlock/mainship/marine/general/corps,
 /obj/machinery/door/firedoor/mainship,
 /turf/open/floor/mainship,
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "qHl" = (
 /obj/structure/bed/chair/nometal,
 /turf/open/floor/mainship/floor,
-/area/mainship/living/tankerbunks{
-	outside = 0
-	})
+/area/mainship/living/tankerbunks)
 "qHC" = (
 /obj/machinery/vending/snack,
 /obj/item/clothing/mask/cigarette/cigar/havana,
@@ -18744,9 +17873,7 @@
 /obj/item/bedsheet/red,
 /obj/effect/landmark/start/job/pilotofficer,
 /turf/open/floor/wood,
-/area/mainship/living/tankerbunks{
-	outside = 0
-	})
+/area/mainship/living/tankerbunks)
 "qLc" = (
 /obj/structure/sink/bathroom{
 	dir = 8;
@@ -18816,9 +17943,7 @@
 /turf/open/floor/mainship/green{
 	dir = 6
 	},
-/area/mainship/living/basketball{
-	outside = 0
-	})
+/area/mainship/living/basketball)
 "qNB" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible{
 	dir = 10
@@ -18895,7 +18020,6 @@
 	},
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/upper_medical{
-	outside = 0;
 	name = "Shipside Medbay"
 	})
 "qPn" = (
@@ -18910,9 +18034,7 @@
 "qPp" = (
 /obj/machinery/telecomms/bus/preset_four,
 /turf/open/floor/mainship/tcomms,
-/area/mainship/command/telecomms{
-	outside = 0
-	})
+/area/mainship/command/telecomms)
 "qPB" = (
 /obj/effect/landmark/start/job/shiptech,
 /turf/open/floor/plating/plating_catwalk,
@@ -19004,9 +18126,7 @@
 "qTc" = (
 /obj/machinery/light/mainship,
 /turf/open/floor/mainship/cargo,
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "qTw" = (
 /obj/structure/largecrate/supply/weapons/hpr,
 /turf/open/floor/mainship/cargo,
@@ -19039,7 +18159,6 @@
 	dir = 1
 	},
 /area/mainship/medical/upper_medical{
-	outside = 0;
 	name = "Shipside Medbay"
 	})
 "qUW" = (
@@ -19113,9 +18232,7 @@
 /turf/open/floor/mainship/black{
 	dir = 8
 	},
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "qZo" = (
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/aft_hallway{
@@ -19133,9 +18250,7 @@
 /turf/open/floor/mainship/black{
 	dir = 8
 	},
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "raD" = (
 /obj/machinery/atmospherics/components/binary/valve/digital/on,
 /turf/open/floor/mainship/mono,
@@ -19144,8 +18259,7 @@
 /obj/item/big_ammo_box/ap,
 /turf/open/floor/mainship,
 /area/mainship/shipboard/port_missiles{
-	name = "Shipside Corpsec Office";
-	outside = 0
+	name = "Shipside Corpsec Office"
 	})
 "rbn" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -19215,8 +18329,7 @@
 	},
 /turf/open/floor/mainship/sterile/corner,
 /area/mainship/medical/surgery_hallway{
-	name = "Research";
-	outside = 0
+	name = "Research"
 	})
 "rdJ" = (
 /obj/machinery/firealarm{
@@ -19244,9 +18357,7 @@
 	},
 /obj/machinery/vending/weapon,
 /turf/open/floor/mainship,
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "reV" = (
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/upper_hull)
@@ -19279,8 +18390,7 @@
 /obj/machinery/door/firedoor/mainship,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/surgery_hallway{
-	name = "Research";
-	outside = 0
+	name = "Research"
 	})
 "rlb" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
@@ -19300,9 +18410,7 @@
 /turf/open/floor/mainship/black{
 	dir = 10
 	},
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "rls" = (
 /obj/machinery/light{
 	dir = 4
@@ -19380,7 +18488,6 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/upper_medical{
-	outside = 0;
 	name = "Shipside Medbay"
 	})
 "roJ" = (
@@ -19394,9 +18501,7 @@
 /turf/open/floor/mainship/green{
 	dir = 5
 	},
-/area/mainship/living/basketball{
-	outside = 0
-	})
+/area/mainship/living/basketball)
 "rpm" = (
 /obj/structure/ship_ammo/cas/heavygun,
 /turf/open/floor/mainship/mono,
@@ -19418,8 +18523,7 @@
 	dir = 4
 	},
 /area/mainship/shipboard/port_missiles{
-	name = "Shipside Corpsec Office";
-	outside = 0
+	name = "Shipside Corpsec Office"
 	})
 "rqQ" = (
 /obj/structure/cable,
@@ -19462,9 +18566,7 @@
 /obj/effect/turf_decal/warning_stripes/thin,
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1,
 /turf/open/floor/mainship/sterile/plain,
-/area/mainship/living/tankerbunks{
-	outside = 0
-	})
+/area/mainship/living/tankerbunks)
 "rtT" = (
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
@@ -19485,8 +18587,7 @@
 /obj/effect/ai_node,
 /turf/open/floor/mainship,
 /area/mainship/shipboard/port_missiles{
-	name = "Shipside Corpsec Office";
-	outside = 0
+	name = "Shipside Corpsec Office"
 	})
 "rvw" = (
 /obj/structure/window/framed/mainship/requisitions,
@@ -19497,17 +18598,13 @@
 "rwi" = (
 /obj/effect/soundplayer,
 /turf/closed/wall/mainship,
-/area/mainship/command/telecomms{
-	outside = 0
-	})
+/area/mainship/command/telecomms)
 "rwq" = (
 /obj/effect/ai_node,
 /turf/open/floor/mainship/black{
 	dir = 8
 	},
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "rwx" = (
 /obj/structure/disposalpipe/segment/corner{
 	dir = 2
@@ -19558,9 +18655,7 @@
 	dir = 4
 	},
 /turf/open/floor/mainship/black,
-/area/mainship/living/tankerbunks{
-	outside = 0
-	})
+/area/mainship/living/tankerbunks)
 "rye" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
@@ -19618,9 +18713,7 @@
 /obj/machinery/light,
 /obj/structure/cable,
 /turf/open/floor/mainship,
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "rBy" = (
 /obj/structure/ladder{
 	id = "NTFLadderCryo2";
@@ -19634,22 +18727,16 @@
 	dir = 1
 	},
 /turf/open/floor/mainship/cargo,
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "rBC" = (
 /obj/structure/cable,
 /turf/open/floor/mainship/black/full,
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "rCo" = (
 /obj/structure/table/woodentable,
 /obj/effect/spawner/random/misc/table_lighting,
 /turf/open/floor/wood,
-/area/mainship/living/tankerbunks{
-	outside = 0
-	})
+/area/mainship/living/tankerbunks)
 "rCZ" = (
 /obj/structure/lattice,
 /turf/closed/shuttle/ert{
@@ -19776,9 +18863,7 @@
 	side = "right"
 	},
 /turf/open/floor/wood,
-/area/mainship/living/basketball{
-	outside = 0
-	})
+/area/mainship/living/basketball)
 "rLn" = (
 /obj/structure/urinal{
 	pixel_y = 20
@@ -19807,9 +18892,7 @@
 /turf/open/floor/mainship/green{
 	dir = 1
 	},
-/area/mainship/living/basketball{
-	outside = 0
-	})
+/area/mainship/living/basketball)
 "rMn" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -19823,9 +18906,7 @@
 /obj/machinery/door/poddoor/mainship/mech,
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
-/area/mainship/living/tankerbunks{
-	outside = 0
-	})
+/area/mainship/living/tankerbunks)
 "rOu" = (
 /obj/structure/cable,
 /obj/machinery/door/airlock/mainship/maint,
@@ -19841,7 +18922,6 @@
 	dir = 4
 	},
 /area/mainship/medical/upper_medical{
-	outside = 0;
 	name = "Shipside Medbay"
 	})
 "rOD" = (
@@ -19859,8 +18939,7 @@
 /obj/structure/window/framed/mainship/requisitions,
 /turf/open/floor/plating,
 /area/mainship/shipboard/port_missiles{
-	name = "Shipside Corpsec Office";
-	outside = 0
+	name = "Shipside Corpsec Office"
 	})
 "rPy" = (
 /turf/closed/wall/mainship,
@@ -19962,17 +19041,14 @@
 	dir = 9
 	},
 /area/mainship/medical/surgery_hallway{
-	name = "Research";
-	outside = 0
+	name = "Research"
 	})
 "rUY" = (
 /obj/machinery/vending/armor_supply,
 /turf/open/floor/mainship/black{
 	dir = 1
 	},
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "rUZ" = (
 /turf/open/floor/mainship/floor,
 /area/campaign/jungle_outpost/outpost/living/bathroom)
@@ -20062,9 +19138,7 @@
 /turf/open/floor/mainship/white{
 	dir = 4
 	},
-/area/mainship/living/tankerbunks{
-	outside = 0
-	})
+/area/mainship/living/tankerbunks)
 "rZs" = (
 /obj/machinery/light,
 /turf/open/floor/mainship/mono,
@@ -20074,9 +19148,7 @@
 "rZI" = (
 /obj/machinery/telecomms/receiver/preset_right,
 /turf/open/floor/mainship/tcomms,
-/area/mainship/command/telecomms{
-	outside = 0
-	})
+/area/mainship/command/telecomms)
 "saD" = (
 /obj/machinery/power/monitor/grid,
 /obj/structure/cable,
@@ -20132,8 +19204,7 @@
 /obj/machinery/faxmachine/research,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/surgery_hallway{
-	name = "Research";
-	outside = 0
+	name = "Research"
 	})
 "scG" = (
 /obj/machinery/door/poddoor/mainship{
@@ -20169,9 +19240,7 @@
 /obj/item/clothing/mask/rebreather/scarf,
 /obj/machinery/light/small,
 /turf/open/floor/mainship/mono,
-/area/mainship/living/pilotbunks{
-	outside = 0
-	})
+/area/mainship/living/pilotbunks)
 "sdr" = (
 /obj/item/storage/firstaid/regular{
 	pixel_x = 3;
@@ -20227,8 +19296,7 @@
 	dir = 4
 	},
 /area/mainship/medical/surgery_hallway{
-	name = "Research";
-	outside = 0
+	name = "Research"
 	})
 "sfA" = (
 /obj/structure/table/mainship/nometal,
@@ -20241,17 +19309,14 @@
 /obj/machinery/holopad,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/surgery_hallway{
-	name = "Research";
-	outside = 0
+	name = "Research"
 	})
 "sfE" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
 /turf/open/floor/mainship/ntlogo/nt2,
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "sfV" = (
 /obj/machinery/door/airlock/mainship/generic{
 	dir = 1;
@@ -20322,9 +19387,7 @@
 /turf/open/floor/mainship/green{
 	dir = 9
 	},
-/area/mainship/living/basketball{
-	outside = 0
-	})
+/area/mainship/living/basketball)
 "slL" = (
 /turf/closed/wall/mainship,
 /area/sulaco/command{
@@ -20336,9 +19399,7 @@
 /turf/open/floor/mainship/sterile/corner{
 	dir = 4
 	},
-/area/mainship/medical/lower_medical{
-	outside = 0
-	})
+/area/mainship/medical/lower_medical)
 "smk" = (
 /obj/machinery/light{
 	dir = 4
@@ -20348,8 +19409,7 @@
 	},
 /turf/open/floor/mainship,
 /area/mainship/shipboard/port_missiles{
-	name = "Shipside Corpsec Office";
-	outside = 0
+	name = "Shipside Corpsec Office"
 	})
 "smP" = (
 /obj/structure/cable,
@@ -20398,23 +19458,18 @@
 	dir = 8
 	},
 /turf/open/floor/mainship/tcomms,
-/area/mainship/command/telecomms{
-	outside = 0
-	})
+/area/mainship/command/telecomms)
 "spT" = (
 /obj/machinery/firealarm{
 	dir = 1
 	},
 /turf/open/floor/mainship/floor,
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "sqt" = (
 /obj/structure/morgue/crematorium,
 /turf/open/floor/mainship/mono,
 /area/mainship/medical/surgery_hallway{
-	name = "Research";
-	outside = 0
+	name = "Research"
 	})
 "sqx" = (
 /obj/machinery/door/firedoor/mainship{
@@ -20432,9 +19487,7 @@
 /area/mainship/groundhq/ntf/shipboard/brig)
 "sqH" = (
 /turf/closed/wall/mainship,
-/area/mainship/medical/lower_medical{
-	outside = 0
-	})
+/area/mainship/medical/lower_medical)
 "sqW" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 8
@@ -20473,8 +19526,7 @@
 	dir = 8
 	},
 /area/mainship/medical/surgery_hallway{
-	name = "Research";
-	outside = 0
+	name = "Research"
 	})
 "ssV" = (
 /obj/machinery/door/airlock/mainship/maint{
@@ -20504,8 +19556,7 @@
 	},
 /turf/open/floor/mainship/red,
 /area/mainship/shipboard/port_missiles{
-	name = "Shipside Corpsec Office";
-	outside = 0
+	name = "Shipside Corpsec Office"
 	})
 "svf" = (
 /obj/structure/cable,
@@ -20518,9 +19569,7 @@
 "svO" = (
 /obj/item/trash/cigbutt,
 /turf/open/floor/mainship/cargo,
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "swp" = (
 /obj/structure/bed/chair/comfy/black,
 /turf/open/floor/carpet,
@@ -20534,8 +19583,7 @@
 	dir = 8
 	},
 /area/mainship/medical/surgery_hallway{
-	name = "Research";
-	outside = 0
+	name = "Research"
 	})
 "swI" = (
 /obj/machinery/floodlight/landing/hq,
@@ -20596,9 +19644,7 @@
 /turf/open/floor/mainship/black{
 	dir = 6
 	},
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "syO" = (
 /obj/machinery/door/poddoor/railing{
 	dir = 2;
@@ -20631,9 +19677,7 @@
 /turf/open/floor/mainship/black{
 	dir = 1
 	},
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "sAS" = (
 /obj/machinery/light{
 	dir = 4
@@ -20670,7 +19714,6 @@
 /obj/structure/sign/redcross,
 /turf/open/floor/mainship/sterile/side,
 /area/mainship/medical/upper_medical{
-	outside = 0;
 	name = "Shipside Medbay"
 	})
 "sCF" = (
@@ -20679,9 +19722,7 @@
 /turf/open/floor/mainship/sterile{
 	dir = 8
 	},
-/area/mainship/medical/lower_medical{
-	outside = 0
-	})
+/area/mainship/medical/lower_medical)
 "sCN" = (
 /obj/structure/bed/stool{
 	pixel_y = 8
@@ -20739,9 +19780,7 @@
 /area/mainship/medical/operating_room_one)
 "sIF" = (
 /turf/closed/wall/mainship,
-/area/mainship/living/tankerbunks{
-	outside = 0
-	})
+/area/mainship/living/tankerbunks)
 "sIK" = (
 /obj/machinery/door/window/secure/brig/cell_1{
 	id = "Ship Cell 1";
@@ -20750,8 +19789,7 @@
 	},
 /turf/open/floor/mainship,
 /area/mainship/shipboard/port_missiles{
-	name = "Shipside Corpsec Office";
-	outside = 0
+	name = "Shipside Corpsec Office"
 	})
 "sJf" = (
 /obj/structure/bed,
@@ -20762,9 +19800,7 @@
 "sKd" = (
 /obj/machinery/holopad,
 /turf/open/floor/mainship/floor,
-/area/mainship/living/tankerbunks{
-	outside = 0
-	})
+/area/mainship/living/tankerbunks)
 "sKw" = (
 /obj/machinery/door/window/secure/bridge,
 /turf/open/floor/plating/mainship,
@@ -20793,16 +19829,14 @@
 	dir = 4
 	},
 /area/mainship/shipboard/port_missiles{
-	name = "Shipside Corpsec Office";
-	outside = 0
+	name = "Shipside Corpsec Office"
 	})
 "sLj" = (
 /turf/open/floor/mainship/red{
 	dir = 5
 	},
 /area/mainship/shipboard/port_missiles{
-	name = "Shipside Corpsec Office";
-	outside = 0
+	name = "Shipside Corpsec Office"
 	})
 "sLq" = (
 /obj/machinery/door/airlock/mainship/maint{
@@ -20864,9 +19898,7 @@
 /turf/open/floor/mainship/black{
 	dir = 9
 	},
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "sNk" = (
 /obj/item/reagent_containers/food/snacks/grown/tomato,
 /obj/item/reagent_containers/food/snacks/grown/tomato,
@@ -21005,8 +20037,7 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/medical/surgery_hallway{
-	name = "Research";
-	outside = 0
+	name = "Research"
 	})
 "sRK" = (
 /obj/structure/cable,
@@ -21028,8 +20059,7 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/sterile/purple/corner,
 /area/mainship/medical/surgery_hallway{
-	name = "Research";
-	outside = 0
+	name = "Research"
 	})
 "sSW" = (
 /obj/structure/cable,
@@ -21039,8 +20069,7 @@
 	},
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/surgery_hallway{
-	name = "Research";
-	outside = 0
+	name = "Research"
 	})
 "sTx" = (
 /obj/structure/cable,
@@ -21106,9 +20135,7 @@
 /obj/structure/sign/electricshock,
 /obj/effect/soundplayer,
 /turf/closed/wall/mainship,
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "sXv" = (
 /obj/structure/ladder{
 	id = "NTFCargoLadder";
@@ -21197,9 +20224,7 @@
 /turf/open/floor/mainship/cargo/arrow{
 	dir = 1
 	},
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "tbm" = (
 /obj/docking_port/stationary/escape_pod/escape_shuttle{
 	dir = 2
@@ -21225,14 +20250,11 @@
 	dir = 8
 	},
 /area/mainship/medical/surgery_hallway{
-	name = "Research";
-	outside = 0
+	name = "Research"
 	})
 "tcR" = (
 /turf/open/floor/mainship/sterile/side,
-/area/mainship/medical/lower_medical{
-	outside = 0
-	})
+/area/mainship/medical/lower_medical)
 "tcV" = (
 /obj/machinery/door/airlock/mainship/command/CPToffice{
 	dir = 2
@@ -21276,9 +20298,7 @@
 	dir = 1
 	},
 /turf/open/floor/mainship,
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "tfc" = (
 /obj/structure/dropship_equipment/shuttle/operatingtable,
 /turf/open/floor/mainship/cargo,
@@ -21298,9 +20318,7 @@
 /turf/open/floor/mainship/black{
 	dir = 8
 	},
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "tfX" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 1;
@@ -21380,9 +20398,7 @@
 	dir = 4
 	},
 /turf/open/floor/mainship/sterile/dark,
-/area/mainship/medical/lower_medical{
-	outside = 0
-	})
+/area/mainship/medical/lower_medical)
 "tjw" = (
 /obj/structure/ship_ammo/cas/heavygun,
 /turf/open/floor/mainship/cargo,
@@ -21396,9 +20412,7 @@
 	dir = 4
 	},
 /turf/open/floor/mainship/floor,
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "tkp" = (
 /turf/closed/wall/mainship,
 /area/mainship/command/cic)
@@ -21423,8 +20437,7 @@
 /obj/effect/landmark/start/job/medicalofficer,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/surgery_hallway{
-	name = "Research";
-	outside = 0
+	name = "Research"
 	})
 "tlR" = (
 /obj/structure/disposalpipe/segment,
@@ -21438,9 +20451,7 @@
 /obj/machinery/door/airlock/mainship/marine/general/engi,
 /obj/machinery/door/firedoor/mainship,
 /turf/open/floor/mainship,
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "tmd" = (
 /obj/structure/closet/cabinet,
 /turf/open/floor/mainship/mono,
@@ -21456,8 +20467,7 @@
 	dir = 10
 	},
 /area/mainship/shipboard/port_missiles{
-	name = "Shipside Corpsec Office";
-	outside = 0
+	name = "Shipside Corpsec Office"
 	})
 "tnl" = (
 /obj/machinery/door/airlock/mainship/engineering/engine{
@@ -21517,9 +20527,7 @@
 "tpH" = (
 /obj/machinery/vending/armor_supply,
 /turf/open/floor/mainship,
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "tqd" = (
 /obj/structure/bed/chair/wood/wings{
 	dir = 4
@@ -21533,7 +20541,6 @@
 /obj/machinery/smartfridge/chemistry,
 /turf/open/floor/plating,
 /area/mainship/medical/upper_medical{
-	outside = 0;
 	name = "Shipside Medbay"
 	})
 "tqz" = (
@@ -21580,9 +20587,7 @@
 	dir = 4
 	},
 /turf/open/floor/mainship/floor,
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "tsF" = (
 /turf/open/floor/mainship_hull/dir{
 	dir = 10
@@ -21591,8 +20596,7 @@
 "tsU" = (
 /turf/closed/wall/mainship,
 /area/mainship/medical/surgery_hallway{
-	name = "Research";
-	outside = 0
+	name = "Research"
 	})
 "ttA" = (
 /obj/machinery/door/airlock/mainship/generic{
@@ -21608,8 +20612,7 @@
 /obj/item/camera,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/surgery_hallway{
-	name = "Research";
-	outside = 0
+	name = "Research"
 	})
 "tvT" = (
 /obj/structure/cable,
@@ -21618,9 +20621,7 @@
 "twh" = (
 /obj/structure/cable,
 /turf/open/floor/mainship/stripesquare,
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "twA" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -21657,9 +20658,7 @@
 "tzT" = (
 /obj/machinery/telecomms/server/presets/command,
 /turf/open/floor/mainship/tcomms,
-/area/mainship/command/telecomms{
-	outside = 0
-	})
+/area/mainship/command/telecomms)
 "tzZ" = (
 /obj/structure/disposalpipe/segment/corner{
 	dir = 4
@@ -21697,14 +20696,10 @@
 "tBv" = (
 /obj/machinery/telecomms/server/presets/alpha,
 /turf/open/floor/mainship/tcomms,
-/area/mainship/command/telecomms{
-	outside = 0
-	})
+/area/mainship/command/telecomms)
 "tCf" = (
 /turf/open/floor/mainship/cargo/arrow,
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "tCp" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -21735,14 +20730,12 @@
 "tCM" = (
 /turf/open/floor/wood,
 /area/mainship/medical/surgery_hallway{
-	name = "Research";
-	outside = 0
+	name = "Research"
 	})
 "tCP" = (
 /turf/open/floor/mainship/mono,
 /area/mainship/medical/surgery_hallway{
-	name = "Research";
-	outside = 0
+	name = "Research"
 	})
 "tDi" = (
 /obj/structure/sign/restroom,
@@ -21754,9 +20747,7 @@
 /area/mainship/hallways/hangar)
 "tDV" = (
 /turf/open/floor/plating/plating_catwalk,
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "tED" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment{
@@ -21813,7 +20804,6 @@
 /obj/effect/spawner/random/misc/soap/regularweighted,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/medical/upper_medical{
-	outside = 0;
 	name = "Shipside Medbay"
 	})
 "tGb" = (
@@ -21894,9 +20884,7 @@
 	},
 /obj/effect/ai_node,
 /turf/open/floor/mainship/cargo/arrow,
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "tKP" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -21929,9 +20917,7 @@
 	dir = 1
 	},
 /turf/open/floor/wood,
-/area/mainship/living/pilotbunks{
-	outside = 0
-	})
+/area/mainship/living/pilotbunks)
 "tLs" = (
 /obj/machinery/firealarm{
 	dir = 8
@@ -22009,9 +20995,7 @@
 /obj/structure/cable,
 /obj/effect/ai_node,
 /turf/open/floor/mainship/mono,
-/area/mainship/living/pilotbunks{
-	outside = 0
-	})
+/area/mainship/living/pilotbunks)
 "tQq" = (
 /obj/effect/turf_decal/warning_stripes/thick{
 	dir = 1
@@ -22030,9 +21014,7 @@
 "tQO" = (
 /obj/machinery/telecomms/server/presets/common,
 /turf/open/floor/mainship/tcomms,
-/area/mainship/command/telecomms{
-	outside = 0
-	})
+/area/mainship/command/telecomms)
 "tQT" = (
 /turf/closed/wall/mainship/outer,
 /area/mainship/groundhq/ntf/engineering/engine_core)
@@ -22073,15 +21055,11 @@
 /turf/open/floor/mainship/black{
 	dir = 1
 	},
-/area/mainship/living/tankerbunks{
-	outside = 0
-	})
+/area/mainship/living/tankerbunks)
 "tSm" = (
 /obj/machinery/telecomms/processor/preset_one,
 /turf/open/floor/mainship/tcomms,
-/area/mainship/command/telecomms{
-	outside = 0
-	})
+/area/mainship/command/telecomms)
 "tTm" = (
 /obj/structure/table/mainship,
 /obj/structure/table/mainship,
@@ -22090,8 +21068,7 @@
 	dir = 4
 	},
 /area/mainship/shipboard/port_missiles{
-	name = "Shipside Corpsec Office";
-	outside = 0
+	name = "Shipside Corpsec Office"
 	})
 "tTP" = (
 /obj/structure/cable,
@@ -22109,16 +21086,12 @@
 /turf/open/floor/mainship/black{
 	dir = 1
 	},
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "tUF" = (
 /obj/structure/closet/basketball,
 /obj/structure/cable,
 /turf/open/floor/mainship,
-/area/mainship/living/basketball{
-	outside = 0
-	})
+/area/mainship/living/basketball)
 "tVt" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
@@ -22157,8 +21130,7 @@
 	dir = 4
 	},
 /area/mainship/shipboard/port_missiles{
-	name = "Shipside Corpsec Office";
-	outside = 0
+	name = "Shipside Corpsec Office"
 	})
 "tXd" = (
 /turf/open/floor/prison,
@@ -22187,17 +21159,13 @@
 "tYK" = (
 /obj/structure/mirror,
 /turf/open/floor/wood,
-/area/mainship/living/tankerbunks{
-	outside = 0
-	})
+/area/mainship/living/tankerbunks)
 "tZq" = (
 /obj/structure/cable,
 /turf/open/floor/mainship/black{
 	dir = 1
 	},
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "tZG" = (
 /obj/machinery/light/mainship{
 	dir = 4
@@ -22242,17 +21210,14 @@
 /obj/machinery/door/firedoor/mainship,
 /turf/open/floor/plating,
 /area/mainship/medical/surgery_hallway{
-	name = "Research";
-	outside = 0
+	name = "Research"
 	})
 "ucH" = (
 /obj/structure/cable,
 /turf/open/floor/mainship/black{
 	dir = 4
 	},
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "udK" = (
 /obj/structure/largecrate/supply/supplies/mre,
 /turf/open/floor/mainship/cargo,
@@ -22408,7 +21373,6 @@
 	dir = 8
 	},
 /area/mainship/medical/upper_medical{
-	outside = 0;
 	name = "Shipside Medbay"
 	})
 "uiY" = (
@@ -22429,15 +21393,13 @@
 	},
 /turf/open/floor/mainship/red,
 /area/mainship/shipboard/port_missiles{
-	name = "Shipside Corpsec Office";
-	outside = 0
+	name = "Shipside Corpsec Office"
 	})
 "ukK" = (
 /obj/effect/landmark/start/job/cmo,
 /obj/structure/cable,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/upper_medical{
-	outside = 0;
 	name = "Shipside Medbay"
 	})
 "ukU" = (
@@ -22503,9 +21465,7 @@
 	dir = 1
 	},
 /turf/open/floor/mainship/mono,
-/area/mainship/living/pilotbunks{
-	outside = 0
-	})
+/area/mainship/living/pilotbunks)
 "uqp" = (
 /obj/item/storage/box/visual/grenade/impact,
 /obj/item/shotgunbox/buckshot,
@@ -22572,9 +21532,7 @@
 /turf/open/floor/mainship/black{
 	dir = 9
 	},
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "usA" = (
 /obj/machinery/door/airlock/mainship/generic{
 	name = "\improper Bathroom"
@@ -22621,9 +21579,7 @@
 "uuB" = (
 /obj/item/toy/beach_ball/basketball,
 /turf/open/floor/wood,
-/area/mainship/living/basketball{
-	outside = 0
-	})
+/area/mainship/living/basketball)
 "uuH" = (
 /obj/machinery/door/poddoor/shutters/mainship/selfdestruct{
 	dir = 1
@@ -22648,8 +21604,7 @@
 	dir = 4
 	},
 /area/mainship/medical/surgery_hallway{
-	name = "Research";
-	outside = 0
+	name = "Research"
 	})
 "uwx" = (
 /obj/structure/cable,
@@ -22661,8 +21616,7 @@
 	dir = 8
 	},
 /area/mainship/shipboard/port_missiles{
-	name = "Shipside Corpsec Office";
-	outside = 0
+	name = "Shipside Corpsec Office"
 	})
 "uwF" = (
 /obj/structure/ship_ammo/cas/minirocket/illumination,
@@ -22680,7 +21634,6 @@
 /obj/machinery/computer/sleep_console,
 /turf/open/floor/mainship/sterile/side,
 /area/mainship/medical/upper_medical{
-	outside = 0;
 	name = "Shipside Medbay"
 	})
 "uwT" = (
@@ -22725,9 +21678,7 @@
 /turf/open/floor/mainship/green{
 	dir = 1
 	},
-/area/mainship/living/basketball{
-	outside = 0
-	})
+/area/mainship/living/basketball)
 "uyy" = (
 /obj/machinery/light/small,
 /obj/structure/largecrate/guns/russian,
@@ -22746,9 +21697,7 @@
 /turf/open/floor/mainship/green/corner{
 	dir = 8
 	},
-/area/mainship/living/basketball{
-	outside = 0
-	})
+/area/mainship/living/basketball)
 "uzi" = (
 /obj/structure/largecrate/supply/medicine,
 /turf/open/floor/mainship/cargo,
@@ -22791,9 +21740,7 @@
 "uzZ" = (
 /obj/machinery/vending/MarineMed,
 /turf/open/floor/mainship/sterile/corner,
-/area/mainship/medical/lower_medical{
-	outside = 0
-	})
+/area/mainship/medical/lower_medical)
 "uAb" = (
 /obj/structure/cable,
 /obj/machinery/camera/autoname{
@@ -22823,9 +21770,7 @@
 "uBa" = (
 /obj/machinery/door/poddoor/mainship/mech,
 /turf/open/floor/mainship/mono,
-/area/mainship/living/tankerbunks{
-	outside = 0
-	})
+/area/mainship/living/tankerbunks)
 "uBd" = (
 /obj/structure/window/framed/mainship/toughened,
 /turf/open/floor/plating,
@@ -22846,8 +21791,7 @@
 	},
 /turf/open/floor/mainship/sterile,
 /area/mainship/medical/surgery_hallway{
-	name = "Research";
-	outside = 0
+	name = "Research"
 	})
 "uBk" = (
 /obj/machinery/door_control/mainship/checkpoint{
@@ -22884,8 +21828,7 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/surgery_hallway{
-	name = "Research";
-	outside = 0
+	name = "Research"
 	})
 "uEt" = (
 /obj/structure/flora/ausbushes/ppflowers,
@@ -22896,8 +21839,7 @@
 	dir = 4
 	},
 /area/mainship/medical/surgery_hallway{
-	name = "Research";
-	outside = 0
+	name = "Research"
 	})
 "uEW" = (
 /obj/machinery/light{
@@ -22952,9 +21894,7 @@
 /turf/open/floor/mainship/black{
 	dir = 1
 	},
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "uKL" = (
 /obj/structure/bed/chair/wood/wings,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -22977,9 +21917,7 @@
 	id = "tcomms"
 	},
 /turf/open/floor/mainship/tcomms,
-/area/mainship/command/telecomms{
-	outside = 0
-	})
+/area/mainship/command/telecomms)
 "uLN" = (
 /obj/machinery/firealarm{
 	dir = 1
@@ -22988,32 +21926,26 @@
 /turf/open/floor/mainship/cargo/arrow{
 	dir = 8
 	},
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "uMq" = (
 /obj/structure/window/framed/mainship,
 /obj/machinery/computer/shuttle/shuttle_control/elevator{
 	pixel_y = -15
 	},
 /turf/open/floor/mainship/stripesquare,
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "uMy" = (
 /obj/machinery/vending/MarineMed/Blood,
 /turf/open/floor/mainship/sterile/side{
 	dir = 1
 	},
 /area/mainship/medical/surgery_hallway{
-	name = "Research";
-	outside = 0
+	name = "Research"
 	})
 "uMA" = (
 /obj/machinery/vending/MarineMed/Blood,
 /turf/open/floor/mainship/sterile/side,
 /area/mainship/medical/upper_medical{
-	outside = 0;
 	name = "Shipside Medbay"
 	})
 "uNu" = (
@@ -23049,9 +21981,7 @@
 "uPv" = (
 /obj/structure/window/framed/mainship,
 /turf/open/floor/mainship/stripesquare,
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "uQq" = (
 /turf/open/floor/mainship/cargo,
 /area/mainship/hallways/port_umbilical{
@@ -23088,9 +22018,7 @@
 /obj/item/bedsheet/brown,
 /obj/effect/landmark/start/job/pilotofficer,
 /turf/open/floor/wood,
-/area/mainship/living/pilotbunks{
-	outside = 0
-	})
+/area/mainship/living/pilotbunks)
 "uRK" = (
 /obj/machinery/door_control/mainship/mech{
 	dir = 4
@@ -23104,9 +22032,7 @@
 	dir = 1
 	},
 /turf/open/floor/wood,
-/area/mainship/living/tankerbunks{
-	outside = 0
-	})
+/area/mainship/living/tankerbunks)
 "uRZ" = (
 /obj/machinery/door/airlock/mainship/generic/bathroom,
 /turf/open/floor/mainship/mono,
@@ -23136,9 +22062,7 @@
 	id = "Lowershiplockdown"
 	},
 /turf/open/floor/mainship,
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "uSY" = (
 /obj/machinery/vending/lasgun,
 /turf/open/floor/mainship/mono,
@@ -23152,9 +22076,7 @@
 /obj/structure/window/framed/mainship/requisitions,
 /obj/machinery/door/firedoor/mainship,
 /turf/open/floor/plating,
-/area/mainship/command/telecomms{
-	outside = 0
-	})
+/area/mainship/command/telecomms)
 "uTq" = (
 /obj/machinery/door/airlock/mainship/command/CPTstudy,
 /turf/open/floor/mainship/mono,
@@ -23264,8 +22186,7 @@
 	},
 /turf/open/floor/mainship,
 /area/mainship/shipboard/port_missiles{
-	name = "Shipside Corpsec Office";
-	outside = 0
+	name = "Shipside Corpsec Office"
 	})
 "uZJ" = (
 /obj/structure/bed/chair/office/dark{
@@ -23306,8 +22227,7 @@
 	dir = 8
 	},
 /area/mainship/medical/surgery_hallway{
-	name = "Research";
-	outside = 0
+	name = "Research"
 	})
 "vcI" = (
 /obj/structure/bed/chair/comfy{
@@ -23330,7 +22250,6 @@
 	},
 /turf/open/floor/mainship/sterile/side,
 /area/mainship/medical/upper_medical{
-	outside = 0;
 	name = "Shipside Medbay"
 	})
 "vdD" = (
@@ -23343,8 +22262,7 @@
 	dir = 6
 	},
 /area/mainship/medical/surgery_hallway{
-	name = "Research";
-	outside = 0
+	name = "Research"
 	})
 "vgl" = (
 /obj/machinery/power/apc/mainship,
@@ -23396,8 +22314,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/shipboard/port_missiles{
-	name = "Shipside Corpsec Office";
-	outside = 0
+	name = "Shipside Corpsec Office"
 	})
 "vjs" = (
 /obj/effect/turf_decal/warning_stripes/thick{
@@ -23409,8 +22326,7 @@
 /obj/effect/spawner/random/misc/structure/flavorvending/coffeeweighted,
 /turf/open/floor/mainship/sterile,
 /area/mainship/medical/surgery_hallway{
-	name = "Research";
-	outside = 0
+	name = "Research"
 	})
 "vjR" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -23437,9 +22353,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating/plating_catwalk,
-/area/mainship/command/telecomms{
-	outside = 0
-	})
+/area/mainship/command/telecomms)
 "vkC" = (
 /obj/item/weapon/gun/sentry/big_sentry/premade,
 /obj/machinery/camera/autoname,
@@ -23514,23 +22428,19 @@
 	dir = 4
 	},
 /area/mainship/medical/surgery_hallway{
-	name = "Research";
-	outside = 0
+	name = "Research"
 	})
 "vnw" = (
 /obj/effect/ai_node,
 /obj/machinery/holopad,
 /turf/open/floor/mainship/black,
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "vnz" = (
 /obj/machinery/iv_drip,
 /turf/open/floor/mainship/sterile/corner{
 	dir = 8
 	},
 /area/mainship/medical/upper_medical{
-	outside = 0;
 	name = "Shipside Medbay"
 	})
 "vnD" = (
@@ -23559,8 +22469,7 @@
 	dir = 8
 	},
 /area/mainship/shipboard/port_missiles{
-	name = "Shipside Corpsec Office";
-	outside = 0
+	name = "Shipside Corpsec Office"
 	})
 "vpg" = (
 /obj/structure/largecrate/supply/explosives/mines,
@@ -23607,9 +22516,7 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
-/area/mainship/living/basketball{
-	outside = 0
-	})
+/area/mainship/living/basketball)
 "vpR" = (
 /obj/effect/landmark/start/job/fieldcommander,
 /obj/machinery/light,
@@ -23689,15 +22596,12 @@
 	dir = 2
 	},
 /turf/open/floor/mainship/mono,
-/area/mainship/command/telecomms{
-	outside = 0
-	})
+/area/mainship/command/telecomms)
 "vsm" = (
 /obj/structure/window/framed/mainship/white,
 /obj/machinery/door/firedoor/mainship,
 /turf/open/floor/plating,
 /area/mainship/medical/upper_medical{
-	outside = 0;
 	name = "Shipside Medbay"
 	})
 "vsE" = (
@@ -23774,8 +22678,7 @@
 /obj/docking_port/stationary/marine_dropship/crash_target,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/surgery_hallway{
-	name = "Research";
-	outside = 0
+	name = "Research"
 	})
 "vvU" = (
 /obj/machinery/door/firedoor/mainship{
@@ -23847,8 +22750,7 @@
 	dir = 1
 	},
 /area/mainship/medical/surgery_hallway{
-	name = "Research";
-	outside = 0
+	name = "Research"
 	})
 "vzT" = (
 /obj/structure/cable,
@@ -23871,7 +22773,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/upper_medical{
-	outside = 0;
 	name = "Shipside Medbay"
 	})
 "vAL" = (
@@ -23968,8 +22869,7 @@
 	dir = 1
 	},
 /area/mainship/medical/surgery_hallway{
-	name = "Research";
-	outside = 0
+	name = "Research"
 	})
 "vFM" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
@@ -24000,9 +22900,7 @@
 /turf/open/floor/mainship/white{
 	dir = 4
 	},
-/area/mainship/living/tankerbunks{
-	outside = 0
-	})
+/area/mainship/living/tankerbunks)
 "vHt" = (
 /obj/structure/cable,
 /obj/machinery/power/apc/mainship,
@@ -24020,8 +22918,7 @@
 	dir = 10
 	},
 /area/mainship/shipboard/port_missiles{
-	name = "Shipside Corpsec Office";
-	outside = 0
+	name = "Shipside Corpsec Office"
 	})
 "vHZ" = (
 /obj/machinery/door/airlock/mainship/maint{
@@ -24052,7 +22949,6 @@
 	dir = 1
 	},
 /area/mainship/medical/upper_medical{
-	outside = 0;
 	name = "Shipside Medbay"
 	})
 "vJr" = (
@@ -24075,9 +22971,7 @@
 /turf/open/floor/mainship/sterile/corner{
 	dir = 1
 	},
-/area/mainship/medical/lower_medical{
-	outside = 0
-	})
+/area/mainship/medical/lower_medical)
 "vKJ" = (
 /obj/machinery/chem_dispenser/soda{
 	dir = 8
@@ -24110,9 +23004,7 @@
 	dir = 9
 	},
 /turf/open/floor/mainship/floor,
-/area/mainship/living/tankerbunks{
-	outside = 0
-	})
+/area/mainship/living/tankerbunks)
 "vNz" = (
 /obj/machinery/door/airlock/mainship/medical{
 	req_access = list(5);
@@ -24120,9 +23012,7 @@
 	dir = 2
 	},
 /turf/open/floor/wood,
-/area/mainship/medical/lower_medical{
-	outside = 0
-	})
+/area/mainship/medical/lower_medical)
 "vNB" = (
 /obj/machinery/camera/autoname/mainship{
 	dir = 8
@@ -24131,8 +23021,7 @@
 	dir = 4
 	},
 /area/mainship/medical/surgery_hallway{
-	name = "Research";
-	outside = 0
+	name = "Research"
 	})
 "vOb" = (
 /obj/item/reagent_containers/food/snacks/grown/poppy,
@@ -24182,7 +23071,6 @@
 	dir = 8
 	},
 /area/mainship/medical/upper_medical{
-	outside = 0;
 	name = "Shipside Medbay"
 	})
 "vTo" = (
@@ -24250,7 +23138,6 @@
 "vYS" = (
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/upper_medical{
-	outside = 0;
 	name = "Shipside Medbay"
 	})
 "vYW" = (
@@ -24298,8 +23185,7 @@
 	dir = 10
 	},
 /area/mainship/shipboard/port_missiles{
-	name = "Shipside Corpsec Office";
-	outside = 0
+	name = "Shipside Corpsec Office"
 	})
 "waQ" = (
 /obj/machinery/light/small{
@@ -24390,9 +23276,7 @@
 "wft" = (
 /obj/machinery/marine_selector/clothes,
 /turf/open/floor/mainship,
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "wfX" = (
 /obj/structure/table/mainship/nometal,
 /obj/item/storage/syringe_case/regular,
@@ -24402,8 +23286,7 @@
 	dir = 1
 	},
 /area/mainship/medical/surgery_hallway{
-	name = "Research";
-	outside = 0
+	name = "Research"
 	})
 "wfY" = (
 /obj/machinery/light/small{
@@ -24423,8 +23306,7 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/medical/surgery_hallway{
-	name = "Research";
-	outside = 0
+	name = "Research"
 	})
 "wgC" = (
 /turf/open/floor/mainship_hull,
@@ -24469,8 +23351,7 @@
 	dir = 8
 	},
 /area/mainship/medical/surgery_hallway{
-	name = "Research";
-	outside = 0
+	name = "Research"
 	})
 "wiA" = (
 /turf/open/floor/mainship/emerald{
@@ -24488,7 +23369,6 @@
 	dir = 1
 	},
 /area/mainship/medical/upper_medical{
-	outside = 0;
 	name = "Shipside Medbay"
 	})
 "wje" = (
@@ -24501,18 +23381,14 @@
 /turf/open/floor/mainship/sterile/side{
 	dir = 8
 	},
-/area/mainship/medical/lower_medical{
-	outside = 0
-	})
+/area/mainship/medical/lower_medical)
 "wjC" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 5
 	},
 /turf/open/floor/mainship/sterile/dark,
-/area/mainship/medical/lower_medical{
-	outside = 0
-	})
+/area/mainship/medical/lower_medical)
 "wke" = (
 /obj/structure/cable,
 /obj/machinery/light/small,
@@ -24525,9 +23401,7 @@
 /turf/open/floor/mainship/white{
 	dir = 9
 	},
-/area/mainship/living/tankerbunks{
-	outside = 0
-	})
+/area/mainship/living/tankerbunks)
 "wkn" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 8
@@ -24556,9 +23430,7 @@
 "wlQ" = (
 /obj/effect/ai_node,
 /turf/open/floor/mainship/black,
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "wlZ" = (
 /obj/structure/cable,
 /turf/open/floor/mainship/sterile/dark,
@@ -24615,8 +23487,7 @@
 /obj/item/assembly/timer,
 /turf/open/floor/mainship/sterile/side,
 /area/mainship/medical/surgery_hallway{
-	name = "Research";
-	outside = 0
+	name = "Research"
 	})
 "wmN" = (
 /obj/machinery/atmospherics/components/binary/valve/digital/on{
@@ -24683,15 +23554,11 @@
 /obj/structure/cable,
 /obj/effect/ai_node,
 /turf/open/floor/mainship/mono,
-/area/mainship/command/telecomms{
-	outside = 0
-	})
+/area/mainship/command/telecomms)
 "wpv" = (
 /obj/machinery/vending/medical/shipside,
 /turf/open/floor/mainship/floor,
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "wpC" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 1
@@ -24705,9 +23572,7 @@
 "wqc" = (
 /obj/machinery/loadout_vendor,
 /turf/open/floor/mainship/sterile/plain,
-/area/mainship/living/tankerbunks{
-	outside = 0
-	})
+/area/mainship/living/tankerbunks)
 "wqm" = (
 /obj/machinery/light/mainship{
 	dir = 8
@@ -24734,9 +23599,7 @@
 "wrM" = (
 /obj/machinery/status_display,
 /turf/closed/wall/mainship,
-/area/mainship/command/telecomms{
-	outside = 0
-	})
+/area/mainship/command/telecomms)
 "wsm" = (
 /obj/structure/cable,
 /obj/structure/window/framed/mainship,
@@ -24751,7 +23614,6 @@
 	dir = 4
 	},
 /area/mainship/medical/upper_medical{
-	outside = 0;
 	name = "Shipside Medbay"
 	})
 "wtj" = (
@@ -24776,9 +23638,7 @@
 "wvI" = (
 /obj/machinery/holopad,
 /turf/open/floor/mainship/floor,
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "wvZ" = (
 /obj/machinery/light{
 	dir = 1
@@ -24787,8 +23647,7 @@
 	dir = 1
 	},
 /area/mainship/shipboard/port_missiles{
-	name = "Shipside Corpsec Office";
-	outside = 0
+	name = "Shipside Corpsec Office"
 	})
 "wwb" = (
 /obj/machinery/light{
@@ -24799,8 +23658,7 @@
 	dir = 4
 	},
 /area/mainship/shipboard/port_missiles{
-	name = "Shipside Corpsec Office";
-	outside = 0
+	name = "Shipside Corpsec Office"
 	})
 "wwI" = (
 /obj/structure/bed/chair/wood/normal,
@@ -24823,8 +23681,7 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/medical/surgery_hallway{
-	name = "Research";
-	outside = 0
+	name = "Research"
 	})
 "wxw" = (
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -24841,8 +23698,7 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/mainship/shipboard/port_missiles{
-	name = "Shipside Corpsec Office";
-	outside = 0
+	name = "Shipside Corpsec Office"
 	})
 "wyV" = (
 /obj/structure/cable,
@@ -24850,7 +23706,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/upper_medical{
-	outside = 0;
 	name = "Shipside Medbay"
 	})
 "wzz" = (
@@ -24860,7 +23715,6 @@
 	},
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/upper_medical{
-	outside = 0;
 	name = "Shipside Medbay"
 	})
 "wAy" = (
@@ -24868,9 +23722,7 @@
 	dir = 4
 	},
 /turf/open/floor/mainship/ntlogo/nt3,
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "wAz" = (
 /obj/structure/lattice,
 /turf/open/space/basic,
@@ -24906,17 +23758,14 @@
 /obj/machinery/bot/cleanbot,
 /turf/open/floor/mainship/sterile/side,
 /area/mainship/medical/surgery_hallway{
-	name = "Research";
-	outside = 0
+	name = "Research"
 	})
 "wCP" = (
 /obj/machinery/vending/nanomed{
 	dir = 4
 	},
 /turf/open/floor/mainship/black/full,
-/area/mainship/living/tankerbunks{
-	outside = 0
-	})
+/area/mainship/living/tankerbunks)
 "wDa" = (
 /turf/closed/wall/mainship,
 /area/mainship/hallways/bow_hallway{
@@ -24951,7 +23800,6 @@
 	dir = 1
 	},
 /area/mainship/medical/upper_medical{
-	outside = 0;
 	name = "Shipside Medbay"
 	})
 "wFm" = (
@@ -24985,9 +23833,7 @@
 	dir = 9
 	},
 /turf/open/floor/mainship/sterile/side,
-/area/mainship/medical/lower_medical{
-	outside = 0
-	})
+/area/mainship/medical/lower_medical)
 "wIS" = (
 /obj/structure/bed/chair/wood{
 	dir = 1
@@ -25038,14 +23884,10 @@
 	dir = 1
 	},
 /turf/open/floor/mainship/floor,
-/area/mainship/living/tankerbunks{
-	outside = 0
-	})
+/area/mainship/living/tankerbunks)
 "wLJ" = (
 /turf/open/floor/mainship/ntlogo,
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "wMb" = (
 /obj/structure/bed/chair/wood/wings,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -25079,9 +23921,7 @@
 "wMu" = (
 /obj/item/stack/flag/red,
 /turf/open/floor/mainship/green/corner,
-/area/mainship/living/basketball{
-	outside = 0
-	})
+/area/mainship/living/basketball)
 "wMy" = (
 /obj/machinery/light{
 	dir = 1
@@ -25093,9 +23933,7 @@
 /turf/open/floor/mainship/black{
 	dir = 1
 	},
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "wMI" = (
 /obj/structure/closet/secure_closet/captain,
 /obj/item/disk/nuclear/red,
@@ -25149,8 +23987,7 @@
 	dir = 5
 	},
 /area/mainship/shipboard/port_missiles{
-	name = "Shipside Corpsec Office";
-	outside = 0
+	name = "Shipside Corpsec Office"
 	})
 "wOv" = (
 /obj/machinery/door/poddoor/mainship/umbilical/south{
@@ -25191,17 +24028,13 @@
 "wQw" = (
 /obj/machinery/vending/weapon,
 /turf/open/floor/mainship,
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "wQA" = (
 /obj/machinery/marine_selector/clothes,
 /turf/open/floor/mainship/black{
 	dir = 1
 	},
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "wQM" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 8;
@@ -25227,8 +24060,7 @@
 	},
 /turf/closed/wall/mainship,
 /area/mainship/shipboard/port_missiles{
-	name = "Shipside Corpsec Office";
-	outside = 0
+	name = "Shipside Corpsec Office"
 	})
 "wRz" = (
 /obj/structure/closet/cabinet,
@@ -25254,9 +24086,7 @@
 "wSw" = (
 /obj/effect/spawner/random/misc/structure/flavorvending/snackweighted,
 /turf/open/floor/mainship,
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "wSL" = (
 /obj/structure/table/reinforced,
 /obj/machinery/computer/secure_data,
@@ -25355,7 +24185,6 @@
 	dir = 8
 	},
 /area/mainship/medical/upper_medical{
-	outside = 0;
 	name = "Shipside Medbay"
 	})
 "wYL" = (
@@ -25386,9 +24215,7 @@
 "wZq" = (
 /obj/structure/mirror,
 /turf/open/floor/mainship/floor,
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "wZr" = (
 /obj/machinery/light/small{
 	dir = 8
@@ -25402,9 +24229,7 @@
 /turf/open/floor/mainship/black{
 	dir = 1
 	},
-/area/mainship/living/tankerbunks{
-	outside = 0
-	})
+/area/mainship/living/tankerbunks)
 "wZE" = (
 /obj/machinery/marine_selector/clothes/commander,
 /obj/machinery/light/mainship{
@@ -25452,9 +24277,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating/plating_catwalk,
-/area/mainship/command/telecomms{
-	outside = 0
-	})
+/area/mainship/command/telecomms)
 "xcA" = (
 /obj/structure/cable,
 /obj/machinery/power/terminal,
@@ -25504,9 +24327,7 @@
 	dir = 1
 	},
 /turf/open/floor/mainship/mono,
-/area/mainship/living/basketball{
-	outside = 0
-	})
+/area/mainship/living/basketball)
 "xea" = (
 /obj/item/trash/cigbutt{
 	pixel_y = 1
@@ -25530,9 +24351,7 @@
 /turf/open/floor/mainship/black{
 	dir = 8
 	},
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "xeu" = (
 /obj/machinery/firealarm{
 	dir = 4
@@ -25559,8 +24378,7 @@
 	dir = 8
 	},
 /area/mainship/medical/surgery_hallway{
-	name = "Research";
-	outside = 0
+	name = "Research"
 	})
 "xhf" = (
 /obj/structure/bed/chair/comfy/black{
@@ -25590,9 +24408,7 @@
 	},
 /obj/structure/bed/chair/office/light,
 /turf/open/floor/mainship/mono,
-/area/mainship/command/telecomms{
-	outside = 0
-	})
+/area/mainship/command/telecomms)
 "xiM" = (
 /obj/machinery/air_alarm{
 	dir = 1
@@ -25604,17 +24420,6 @@
 /obj/machinery/camera/autoname,
 /turf/open/floor/mainship/cargo,
 /area/mainship/groundhq/ntf/shipboard/brig)
-"xjy" = (
-/obj/item/weapon/gun/sentry/big_sentry/premade/radial{
-	name = "\improper ST-571 sentry gun"
-	},
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/open/floor/mainship/mono,
-/area/mainship/hallways/aft_hallway{
-	name = "Ship Floor 3 Hallways"
-	})
 "xjA" = (
 /obj/machinery/light{
 	dir = 1
@@ -25627,9 +24432,7 @@
 /obj/machinery/marine_selector/gear/engi,
 /obj/machinery/camera/autoname/mainship,
 /turf/open/floor/mainship,
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "xjF" = (
 /obj/structure/prop/mainship/hangar_stencil,
 /turf/open/floor/plating,
@@ -25719,8 +24522,7 @@
 	dir = 4
 	},
 /area/mainship/medical/surgery_hallway{
-	name = "Research";
-	outside = 0
+	name = "Research"
 	})
 "xmr" = (
 /obj/structure/cable,
@@ -25748,9 +24550,7 @@
 /turf/open/floor/mainship/black{
 	dir = 10
 	},
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "xnG" = (
 /turf/open/space/basic,
 /turf/open/floor/mainship/mono,
@@ -25782,9 +24582,7 @@
 /turf/open/floor/mainship/black{
 	dir = 5
 	},
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "xoW" = (
 /obj/machinery/light,
 /obj/structure/toilet{
@@ -25830,9 +24628,7 @@
 /turf/open/floor/mainship/cargo/arrow{
 	dir = 8
 	},
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "xrS" = (
 /obj/structure/window/framed/mainship/white,
 /obj/machinery/door/firedoor/mainship{
@@ -25840,17 +24636,14 @@
 	},
 /turf/open/floor/plating,
 /area/mainship/medical/surgery_hallway{
-	name = "Research";
-	outside = 0
+	name = "Research"
 	})
 "xsh" = (
 /obj/machinery/camera/autoname/mainship,
 /turf/open/floor/mainship/cargo/arrow{
 	dir = 8
 	},
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "xsu" = (
 /obj/structure/table/woodentable,
 /obj/item/storage/bible,
@@ -25865,8 +24658,7 @@
 	dir = 4
 	},
 /area/mainship/medical/surgery_hallway{
-	name = "Research";
-	outside = 0
+	name = "Research"
 	})
 "xts" = (
 /obj/structure/cable,
@@ -25915,9 +24707,7 @@
 /turf/open/floor/mainship/black{
 	dir = 8
 	},
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "xwi" = (
 /obj/machinery/door/airlock/mainship/security{
 	name = "\improper Interrogation Room";
@@ -25937,7 +24727,6 @@
 	dir = 6
 	},
 /area/mainship/medical/upper_medical{
-	outside = 0;
 	name = "Shipside Medbay"
 	})
 "xxC" = (
@@ -25997,8 +24786,7 @@
 "xxZ" = (
 /turf/closed/wall/mainship/research/containment/wall/east,
 /area/mainship/medical/surgery_hallway{
-	name = "Research";
-	outside = 0
+	name = "Research"
 	})
 "xyd" = (
 /turf/open/floor/mainship/cargo/arrow,
@@ -26050,9 +24838,7 @@
 	dir = 1
 	},
 /turf/open/floor/mainship,
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "xAe" = (
 /obj/structure/window/framed/mainship,
 /turf/open/floor/plating,
@@ -26085,9 +24871,7 @@
 "xBG" = (
 /obj/machinery/telecomms/broadcaster/preset_left,
 /turf/open/floor/mainship/tcomms,
-/area/mainship/command/telecomms{
-	outside = 0
-	})
+/area/mainship/command/telecomms)
 "xCn" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
@@ -26150,8 +24934,7 @@
 	},
 /turf/open/floor/wood,
 /area/mainship/medical/surgery_hallway{
-	name = "Research";
-	outside = 0
+	name = "Research"
 	})
 "xFW" = (
 /obj/machinery/door/airlock/multi_tile/mainship/medidoor{
@@ -26163,7 +24946,6 @@
 	},
 /turf/open/floor/mainship/sterile/side,
 /area/mainship/medical/upper_medical{
-	outside = 0;
 	name = "Shipside Medbay"
 	})
 "xGL" = (
@@ -26185,20 +24967,17 @@
 	dir = 1
 	},
 /area/mainship/medical/upper_medical{
-	outside = 0;
 	name = "Shipside Medbay"
 	})
 "xHJ" = (
 /turf/closed/wall/mainship/white,
 /area/mainship/medical/upper_medical{
-	outside = 0;
 	name = "Shipside Medbay"
 	})
 "xHV" = (
 /turf/closed/wall/mainship/white,
 /area/mainship/medical/surgery_hallway{
-	name = "Research";
-	outside = 0
+	name = "Research"
 	})
 "xIK" = (
 /obj/structure/cable,
@@ -26243,9 +25022,7 @@
 	dir = 4
 	},
 /turf/open/floor/mainship/cargo/arrow,
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "xLz" = (
 /obj/machinery/suit_storage_unit/carbon_unit,
 /turf/open/floor/mainship/mono,
@@ -26278,9 +25055,7 @@
 	},
 /obj/machinery/holopad,
 /turf/open/floor/mainship/floor,
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "xNI" = (
 /obj/effect/ai_node,
 /obj/structure/cable,
@@ -26319,8 +25094,7 @@
 /obj/structure/window/framed/mainship/requisitions,
 /turf/open/floor/mainship/mono,
 /area/mainship/shipboard/port_missiles{
-	name = "Shipside Corpsec Office";
-	outside = 0
+	name = "Shipside Corpsec Office"
 	})
 "xPO" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
@@ -26370,9 +25144,7 @@
 /turf/open/floor/mainship/black{
 	dir = 6
 	},
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "xRV" = (
 /turf/open/floor/plating/mainship,
 /area/mainship/living/evacuation/two)
@@ -26381,15 +25153,12 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/groundhq/ntf/engineering/lower_engineering)
 "xSK" = (
-/obj/machinery/line_nexter{
-	dir = 8
-	},
+/obj/machinery/line_nexter,
 /obj/structure/barricade/metal,
 /turf/open/floor/mainship/sterile/side{
 	dir = 4
 	},
 /area/mainship/medical/upper_medical{
-	outside = 0;
 	name = "Shipside Medbay"
 	})
 "xSL" = (
@@ -26404,9 +25173,7 @@
 	dir = 8
 	},
 /turf/open/floor/mainship/mono,
-/area/mainship/living/basketball{
-	outside = 0
-	})
+/area/mainship/living/basketball)
 "xSY" = (
 /obj/effect/ai_node,
 /obj/structure/bed/chair{
@@ -26418,9 +25185,7 @@
 	})
 "xTp" = (
 /turf/open/floor/mainship/sterile/dark,
-/area/mainship/medical/lower_medical{
-	outside = 0
-	})
+/area/mainship/medical/lower_medical)
 "xTA" = (
 /obj/structure/table/mainship/nometal,
 /turf/open/floor/carpet,
@@ -26431,9 +25196,7 @@
 "xUc" = (
 /obj/effect/soundplayer,
 /turf/closed/wall/mainship,
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "xUo" = (
 /obj/structure/prop/mainship/cannon_cable_connector,
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -26489,7 +25252,6 @@
 	dir = 1
 	},
 /area/mainship/medical/upper_medical{
-	outside = 0;
 	name = "Shipside Medbay"
 	})
 "xXg" = (
@@ -26547,8 +25309,7 @@
 	dir = 1
 	},
 /area/mainship/shipboard/port_missiles{
-	name = "Shipside Corpsec Office";
-	outside = 0
+	name = "Shipside Corpsec Office"
 	})
 "yaT" = (
 /obj/structure/table/woodentable,
@@ -26610,23 +25371,18 @@
 /obj/machinery/marine_selector/gear/medic,
 /obj/machinery/camera/autoname/mainship,
 /turf/open/floor/mainship/floor,
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "ydF" = (
 /turf/open/floor/mainship/sterile/side{
 	dir = 4
 	},
 /area/mainship/medical/upper_medical{
-	outside = 0;
 	name = "Shipside Medbay"
 	})
 "yeP" = (
 /obj/machinery/vending/armor_supply,
 /turf/open/floor/mainship/floor,
-/area/mainship/squads{
-	outside = 0
-	})
+/area/mainship/squads)
 "yfa" = (
 /obj/structure/table/mainship/nometal,
 /obj/machinery/recharger,
@@ -26634,7 +25390,6 @@
 	dir = 4
 	},
 /area/mainship/medical/upper_medical{
-	outside = 0;
 	name = "Shipside Medbay"
 	})
 "yfA" = (
@@ -26643,8 +25398,7 @@
 	},
 /turf/open/floor/mainship,
 /area/mainship/shipboard/port_missiles{
-	name = "Shipside Corpsec Office";
-	outside = 0
+	name = "Shipside Corpsec Office"
 	})
 "yfC" = (
 /obj/structure/cable,
@@ -26660,9 +25414,7 @@
 "yfD" = (
 /obj/machinery/telecomms/bus/preset_two,
 /turf/open/floor/mainship/tcomms,
-/area/mainship/command/telecomms{
-	outside = 0
-	})
+/area/mainship/command/telecomms)
 "yfG" = (
 /obj/machinery/vending/cigarette,
 /turf/open/floor/mainship/mono,
@@ -26680,7 +25432,6 @@
 	dir = 8
 	},
 /area/mainship/medical/upper_medical{
-	outside = 0;
 	name = "Shipside Medbay"
 	})
 "ygX" = (
@@ -26689,14 +25440,11 @@
 	dir = 2
 	},
 /turf/open/floor/plating,
-/area/mainship/command/telecomms{
-	outside = 0
-	})
+/area/mainship/command/telecomms)
 "ygZ" = (
 /turf/closed/wall/mainship/research/containment/wall/north,
 /area/mainship/medical/surgery_hallway{
-	name = "Research";
-	outside = 0
+	name = "Research"
 	})
 "yjf" = (
 /obj/machinery/light/small{
@@ -26712,7 +25460,6 @@
 	dir = 4
 	},
 /area/mainship/medical/upper_medical{
-	outside = 0;
 	name = "Shipside Medbay"
 	})
 "yjM" = (
@@ -26747,7 +25494,6 @@
 	dir = 4
 	},
 /area/mainship/medical/upper_medical{
-	outside = 0;
 	name = "Shipside Medbay"
 	})
 "yme" = (
@@ -64627,7 +63373,7 @@ ybU
 bVF
 ybU
 xXg
-jlx
+pOj
 qZo
 leF
 wJU
@@ -64865,10 +63611,10 @@ pvr
 uBd
 uBd
 pvr
-xjy
+iWx
 qZo
 ivx
-mai
+eQZ
 qZo
 edj
 ocW

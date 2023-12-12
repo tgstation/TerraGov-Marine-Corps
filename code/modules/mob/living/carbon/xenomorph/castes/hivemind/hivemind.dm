@@ -385,6 +385,8 @@
 		return
 
 	var/mob/living/living_triggerer = hostile
+	if(get_xeno_hivenumber(hostile) == hivenumber)
+		return
 	if(living_triggerer.stat == DEAD) //We don't care about the dead
 		return
 

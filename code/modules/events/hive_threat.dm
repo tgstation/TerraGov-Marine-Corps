@@ -17,7 +17,7 @@
 	for(var/z in z_levels)
 		for(var/i in GLOB.humans_by_zlevel["[z]"])
 			var/mob/living/carbon/human/possible_target = i
-			if(!istype(possible_target) || !possible_target.client || issynth(possible_target))
+			if(!istype(possible_target) || !possible_target.client || issynth(possible_target) || !possible_target.faction == FACTION_CLF)
 				continue
 			eligible_targets += possible_target
 	if(!length(eligible_targets))
