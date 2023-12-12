@@ -2610,6 +2610,12 @@
 /area/outpost/cargo{
 	outside = 1
 	})
+"coS" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/hallways/aft_hallway{
+	name = "Ship Floor 3 Hallways"
+	})
 "cpB" = (
 /obj/structure/dropship_equipment/cas/weapon/minirocket_pod,
 /turf/open/floor/plating,
@@ -7236,6 +7242,18 @@
 /area/mainship/hallways/port_umbilical{
 	name = "Ship Floor 2 Hallways"
 	})
+"gHp" = (
+/obj/machinery/door/poddoor/shutters/mainship/open/checkpoint{
+	dir = 2;
+	id = "floor3shipcheckpoint2"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/turf/open/floor/mainship/stripesquare,
+/area/mainship/hallways/aft_hallway{
+	name = "Ship Floor 3 Hallways"
+	})
 "gHT" = (
 /obj/machinery/vending/uniform_supply,
 /turf/open/floor/mainship/black{
@@ -8318,6 +8336,14 @@
 /area/mainship/hallways/bow_hallway{
 	name = "Ship Floor 1 Hallways"
 	})
+"hNy" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/hallways/aft_hallway{
+	name = "Ship Floor 3 Hallways"
+	})
 "hNA" = (
 /obj/machinery/power/apc/mainship{
 	dir = 4
@@ -8745,6 +8771,12 @@
 /obj/machinery/camera/autoname,
 /turf/open/floor/wood,
 /area/mainship/living/officer_study)
+"ifh" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/groundhq/ntf/engineering/engine_core)
 "ifv" = (
 /obj/structure/table/woodentable,
 /obj/item/clipboard{
@@ -12258,6 +12290,15 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/living/tankerbunks)
+"lny" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
+	dir = 1
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/hallways/aft_hallway{
+	name = "Ship Floor 3 Hallways"
+	})
 "lnD" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
@@ -12964,6 +13005,19 @@
 	dir = 5
 	},
 /area/mainship/command/self_destruct)
+"lQI" = (
+/obj/machinery/door/poddoor/shutters/mainship/open/checkpoint{
+	dir = 2;
+	id = "floor3shipcheckpoint2"
+	},
+/obj/effect/ai_node,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/turf/open/floor/mainship/stripesquare,
+/area/mainship/hallways/aft_hallway{
+	name = "Ship Floor 3 Hallways"
+	})
 "lRW" = (
 /obj/structure/bed/chair/sofa/right{
 	dir = 8
@@ -16094,6 +16148,14 @@
 /area/deltastation/engineering/engine_smes{
 	outside = 0
 	})
+"oSb" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 9
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/hallways/aft_hallway{
+	name = "Ship Floor 3 Hallways"
+	})
 "oSh" = (
 /obj/machinery/camera/autoname/mainship{
 	dir = 4
@@ -16845,6 +16907,9 @@
 	id = "floor3shipcheckpoint2"
 	},
 /obj/effect/ai_node,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 6
+	},
 /turf/open/floor/mainship/stripesquare,
 /area/mainship/hallways/aft_hallway{
 	name = "Ship Floor 3 Hallways"
@@ -21163,10 +21228,11 @@
 	})
 "tWk" = (
 /obj/structure/cable,
-/turf/open/floor/mainship/mono,
-/area/mainship/hallways/aft_hallway{
-	name = "Ship Floor 3 Hallways"
-	})
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/groundhq/ntf/engineering/engine_core)
 "tWr" = (
 /obj/structure/window/reinforced/toughened{
 	dir = 1
@@ -22313,6 +22379,9 @@
 "vdD" = (
 /obj/structure/cable,
 /obj/machinery/power/apc/mainship,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/groundhq/ntf/engineering/engine_core)
 "ven" = (
@@ -24055,6 +24124,19 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/outpost/cargo{
 	outside = 1
+	})
+"wPm" = (
+/obj/machinery/door/poddoor/shutters/mainship/open/checkpoint{
+	dir = 2;
+	id = "floor3shipcheckpoint2"
+	},
+/obj/effect/ai_node,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 10
+	},
+/turf/open/floor/mainship/stripesquare,
+/area/mainship/hallways/aft_hallway{
+	name = "Ship Floor 3 Hallways"
 	})
 "wPz" = (
 /obj/structure/table/mainship,
@@ -58152,7 +58234,7 @@ qZo
 aMa
 iSM
 vzD
-vpv
+tWk
 vqE
 cYG
 vqE
@@ -58394,7 +58476,7 @@ qZo
 aMa
 vTo
 aMa
-fVd
+ifh
 mDw
 jrE
 vqE
@@ -61749,7 +61831,7 @@ okw
 jSe
 okw
 whh
-nvR
+lny
 hZa
 miP
 rYC
@@ -61991,7 +62073,7 @@ qZo
 qZo
 leF
 okw
-wJU
+hNy
 wJU
 qZo
 qZo
@@ -62233,7 +62315,7 @@ aKB
 qZo
 qZo
 qaT
-wJU
+hNy
 wJU
 qZo
 hkj
@@ -62475,7 +62557,7 @@ ybU
 qPn
 qZo
 ePE
-wJU
+hNy
 wJU
 qZo
 lwu
@@ -62717,7 +62799,7 @@ kzp
 wJU
 qZo
 qZo
-wJU
+hNy
 wJU
 qZo
 lwu
@@ -62959,7 +63041,7 @@ bJW
 sht
 wJU
 wJU
-wJU
+hNy
 wJU
 jYs
 lwu
@@ -63201,7 +63283,7 @@ lVa
 wJU
 qZo
 qZo
-wJU
+hNy
 hvJ
 eQZ
 lwu
@@ -63443,7 +63525,7 @@ xXg
 pOj
 qZo
 leF
-wJU
+hNy
 wJU
 pOj
 lwu
@@ -63685,7 +63767,7 @@ eQZ
 qZo
 edj
 ocW
-wJU
+hNy
 wJU
 jmZ
 lwu
@@ -63923,11 +64005,11 @@ qZo
 qZo
 qZo
 pLC
-wJU
-wJU
-wJU
-wJU
-wJU
+coS
+coS
+coS
+coS
+oSb
 hvJ
 qZo
 lwu
@@ -64164,7 +64246,7 @@ hvJ
 wJU
 wJU
 wJU
-ivx
+gHp
 qZo
 qZo
 qZo
@@ -64406,7 +64488,7 @@ wJU
 wJU
 wJU
 wJU
-ivx
+gHp
 qZo
 qnG
 qnG
@@ -64648,7 +64730,7 @@ cSI
 cSI
 cSI
 qZo
-ivx
+gHp
 rcP
 qnG
 jKo
@@ -64890,7 +64972,7 @@ cRK
 hvB
 cSI
 qZo
-pLC
+lQI
 qZo
 lOq
 hSU
@@ -65132,7 +65214,7 @@ uEt
 cRK
 krp
 wJU
-ivx
+gHp
 qZo
 lOq
 yme
@@ -65374,7 +65456,7 @@ dEF
 xkf
 bNR
 wJU
-ivx
+gHp
 qZo
 lOq
 djz
@@ -65616,7 +65698,7 @@ dyr
 cRK
 cSI
 qZo
-ivx
+gHp
 qZo
 bds
 cCy
@@ -65858,8 +65940,8 @@ byX
 hrY
 cSI
 gPv
-pLC
-tWk
+wPm
+cNm
 rDw
 wpC
 wpC
