@@ -153,7 +153,7 @@ Make the NTC proud!"})
 		return
 	switch(playtime_mins)
 		if(0 to 1500) //starting
-			new_human.wear_id.paygrade = "O4"
+			new_human.wear_id.paygrade = "O3"
 		if(1500 to 7500) // 25 hrs
 			new_human.wear_id.paygrade = "MO4"
 		if(7501 to INFINITY) // 125 hrs
@@ -608,12 +608,12 @@ Though you are a warrant officer, your authority is limited to the dropship and 
 /datum/job/terragov/command/mech_pilot
 	title = MECH_PILOT
 	req_admin_notify = TRUE
-	paygrade = "E3"
+	paygrade = "WO"
 	comm_title = "MCH"
 	total_positions = 0
 	skills_type = /datum/skills/mech_pilot
-	access = list(ACCESS_MARINE_WO, ACCESS_MARINE_PREP, ACCESS_MARINE_MECH, ACCESS_CIVILIAN_PUBLIC, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_CARGO)
-	minimal_access = list(ACCESS_MARINE_WO, ACCESS_MARINE_PREP, ACCESS_MARINE_MECH, ACCESS_CIVILIAN_PUBLIC, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_CARGO)
+	access = list(ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_PILOT, ACCESS_MARINE_MECH, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_CARGO, ACCESS_MARINE_RO, ACCESS_MARINE_MEDBAY)
+	minimal_access = list(ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_PILOT, ACCESS_MARINE_MECH, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_CARGO, ACCESS_MARINE_RO, ACCESS_MARINE_MEDBAY)
 	display_order = JOB_DISPLAY_ORDER_MECH_PILOT
 	outfit = /datum/outfit/job/command/mech_pilot
 	exp_requirements = XP_REQ_EXPERT
@@ -647,12 +647,14 @@ You can serve your Division in a variety of roles, so choose carefully."})
 	if(!playtime_mins || playtime_mins < 1 )
 		return
 	switch(playtime_mins)
-		if(0 to 1500) //starting
-			new_human.wear_id.paygrade = "E3"
-		if(1500 to 7500) // 25 hrs
-			new_human.wear_id.paygrade = "E4"
-		if(7501 to INFINITY) // 125 hrs
-			new_human.wear_id.paygrade = "E5"
+		if(0 to 600) // starting
+			new_human.wear_id.paygrade = "WO"
+		if(601 to 3000) // 10 hrs
+			new_human.wear_id.paygrade = "CWO"
+		if(3001 to 6000) // 50 hrs
+			new_human.wear_id.paygrade = "O1"
+		if(6001 to INFINITY) // 100 hrs
+			new_human.wear_id.paygrade = "O2"
 
 /datum/outfit/job/command/mech_pilot
 	name = MECH_PILOT

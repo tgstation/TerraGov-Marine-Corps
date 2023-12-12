@@ -16877,7 +16877,9 @@
 	base_lighting_alpha = 0
 	})
 "pPt" = (
-/obj/item/weapon/gun/sentry/premade,
+/obj/item/weapon/gun/sentry/premade{
+	sentry_iff_signal = 1
+	},
 /obj/structure/barricade/metal,
 /obj/structure/barricade/metal{
 	dir = 4
@@ -20231,6 +20233,19 @@
 	},
 /turf/open/floor/plating/mainship,
 /area/mainship/living/evacuation/two)
+"tbw" = (
+/obj/item/weapon/gun/sentry/premade{
+	dir = 8;
+	sentry_iff_signal = 1
+	},
+/obj/structure/barricade/metal{
+	dir = 8
+	},
+/obj/machinery/camera/autoname/mainship{
+	dir = 8
+	},
+/turf/open/floor/mainship/red/full,
+/area/mainship/hull/upper_hull)
 "tbO" = (
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/wood,
@@ -34506,7 +34521,7 @@ nwr
 abh
 wgC
 oFe
-scG
+tbw
 spx
 min
 oSa
