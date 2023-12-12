@@ -6,10 +6,10 @@ GLOBAL_LIST_INIT_TYPED(campaign_loadout_item_type_list, /datum/loadout_item, ini
 
 /proc/init_glob_loadout_item_list()
 	. = list()
-	for(var/datum/loadout_item/type in subtypesof(/datum/loadout_item))
-		if(!type::jobs_supported)
+	for(var/datum/loadout_item/item_type in subtypesof(/datum/loadout_item))
+		if(!item_type::jobs_supported)
 			continue
-		.[item_type.type] = new type
+		.[item_type.type] = new item_type
 
 //List of all loadout_item datums by job, excluding ones that must be unlocked
 GLOBAL_LIST_INIT(campaign_loadout_items_by_role, init_campaign_loadout_items_by_role())
