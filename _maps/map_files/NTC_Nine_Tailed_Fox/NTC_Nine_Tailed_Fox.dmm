@@ -498,6 +498,9 @@
 "aBQ" = (
 /obj/structure/closet/cabinet,
 /obj/item/disk/nuclear/blue,
+/obj/item/clothing/shoes/marine/sneakingboots,
+/obj/item/clothing/under/spec_operative,
+/obj/item/clothing/under/spec_operative/tback,
 /turf/open/floor/carpet/side{
 	dir = 4
 	},
@@ -5048,7 +5051,6 @@
 "eMw" = (
 /obj/effect/landmark/corpsespawner/marine/burst,
 /obj/effect/ai_node,
-/mob/living/carbon/xenomorph/larva/Corrupted,
 /turf/open/floor/mainship/research/containment/floor1,
 /area/mainship/medical/surgery_hallway{
 	name = "Research"
@@ -6872,6 +6874,13 @@
 "glF" = (
 /obj/machinery/computer/security/marinemainship,
 /obj/structure/table/mainship,
+/obj/item/detective_scanner,
+/obj/item/taperecorder,
+/obj/item/storage/box/flashbangs{
+	pixel_y = 10
+	},
+/obj/item/storage/box/handcuffs,
+/obj/item/storage/box/flashbangs,
 /turf/open/floor/mainship/mono,
 /area/security/checkpoint{
 	outside = 0;
@@ -7366,15 +7375,6 @@
 	name = "Shipside Medbay"
 	})
 "gLU" = (
-/obj/structure/table/mainship,
-/obj/machinery/recharger,
-/obj/item/storage/box/flashbangs,
-/obj/item/storage/box/flashbangs{
-	pixel_y = 10
-	},
-/obj/item/storage/box/handcuffs,
-/obj/item/taperecorder,
-/obj/item/detective_scanner,
 /turf/open/floor/mainship/mono,
 /area/security/checkpoint{
 	outside = 0;
@@ -8235,6 +8235,9 @@
 /obj/machinery/light/small{
 	dir = 8
 	},
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 4
+	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/lower_hull)
 "hGO" = (
@@ -8970,6 +8973,9 @@
 "iqk" = (
 /obj/machinery/light/small{
 	dir = 8
+	},
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 4
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/upper_hull)
@@ -10806,7 +10812,6 @@
 /obj/machinery/power/apc/mainship{
 	dir = 1
 	},
-/obj/item/clothing/suit/bio_suit/janitor,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
@@ -11128,6 +11133,12 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/lower_hull)
+"ksS" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 4
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/hull/upper_hull)
 "ksU" = (
 /obj/structure/reagent_dispensers/fueltank,
 /obj/item/tool/extinguisher,
@@ -21626,6 +21637,7 @@
 /obj/item/ammo_magazine/rifle/ap,
 /obj/item/clothing/under/spec_operative/tback,
 /obj/item/clothing/under/spec_operative,
+/obj/item/clothing/glasses/thermal/m64_thermal_goggles,
 /turf/open/floor/wood,
 /area/sulaco/liaison/quarters{
 	outside = 0;
@@ -22367,6 +22379,12 @@
 /area/mainship/hallways/port_umbilical{
 	name = "Ship Floor 2 Hallways"
 	})
+"vcY" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 6
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/hull/upper_hull)
 "vdk" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 1;
@@ -23541,6 +23559,12 @@
 /obj/structure/lattice,
 /turf/open/space,
 /area/mainship/hull/upper_hull)
+"wkR" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 6
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/hull/lower_hull)
 "wli" = (
 /turf/open/floor/mainship/orange{
 	dir = 10
@@ -25595,6 +25619,12 @@
 /area/mainship/medical/surgery_hallway{
 	name = "Research"
 	})
+"yhQ" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 4
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/hull/lower_hull)
 "yjf" = (
 /obj/machinery/light/small{
 	dir = 4
@@ -42155,19 +42185,19 @@ fQt
 eUZ
 lik
 jRv
-pfP
-pfP
-pfP
-iqk
-pfP
-pfP
-pfP
-pfP
+vcY
+ksS
 pfP
 iqk
+ksS
+ksS
+ksS
+ksS
+ksS
+iqk
 pfP
-pfP
-pfP
+ksS
+ksS
 aMa
 shj
 aMa
@@ -42275,19 +42305,19 @@ fzS
 lJI
 lJI
 aya
-aTq
-aTq
-aTq
-hGC
-aTq
-aTq
-aTq
-aTq
+wkR
+yhQ
 aTq
 hGC
+yhQ
+yhQ
+yhQ
+yhQ
+yhQ
+hGC
 aTq
-aTq
-aTq
+yhQ
+yhQ
 aya
 tZR
 xHV

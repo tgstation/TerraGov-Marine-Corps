@@ -2596,6 +2596,12 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	smoke.set_up(10, T, 11)
 	smoke.start()
 
+
+/datum/ammo/mortar/smoke/satrapine
+	smoketype = /datum/effect_system/smoke_spread/satrapine
+
+/datum/ammo/mortar/smoke/sleep
+	smoketype = /datum/effect_system/smoke_spread/sleepy
 /datum/ammo/mortar/smoke/plasmaloss
 	smoketype = /datum/effect_system/smoke_spread/plasmaloss
 

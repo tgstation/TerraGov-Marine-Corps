@@ -277,7 +277,7 @@ Make the NTC proud!"})
 	belt = /obj/item/storage/holster/belt/mateba/officer/full
 	ears = /obj/item/radio/headset/mainship/mcom
 	w_uniform = /obj/item/clothing/under/spec_operative/armoredsuit
-	shoes = /obj/item/clothing/shoes/marine/full
+	shoes = /obj/item/clothing/shoes/marine/sneakingboots
 	gloves = /obj/item/clothing/gloves/marine/officer
 	r_store = /obj/item/storage/pouch/general/large/command
 	l_store = /obj/item/hud_tablet/leadership

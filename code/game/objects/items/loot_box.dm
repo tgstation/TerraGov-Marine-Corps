@@ -521,7 +521,7 @@
 
 /obj/item/storage/box/crate/loot/infiltration_pack_spec/Initialize(mapload)
 	. = ..()
-	new /obj/item/clothing/suit/armor/bulletproof(src)
+	new /obj/item/clothing/suit/modular/xenonauten/bulletresistant(src)
 	new /obj/item/clothing/glasses/night/m56_goggles(src)
 	new /obj/item/clothing/gloves/marine/insulated(src)
 	new /obj/item/storage/backpack/marine/satchel/scout_cloak/scout(src)

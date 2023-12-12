@@ -57,6 +57,25 @@
 	respawn_time = 15 SECONDS
 	bioscan_interval = 1 HOURS
 
+
+/datum/game_mode/infestation/can_start(bypass_checks = FALSE)
+	. = ..()
+	if(!.)
+		return
+	var/xeno_candidate = FALSE //Let's not guarantee there's at least one xeno.
+	for(var/level = JOBS_PRIORITY_HIGH; level >= JOBS_PRIORITY_LOW; level--)
+		for(var/p in GLOB.ready_players)
+			var/mob/new_player/player = p
+			if(player.client.prefs.job_preferences[ROLE_XENO_QUEEN] == level && SSjob.AssignRole(player, SSjob.GetJobType(/datum/job/xenomorph/queen)))
+				xeno_candidate = TRUE
+				break
+			if(player.client.prefs.job_preferences[ROLE_XENOMORPH] == level && SSjob.AssignRole(player, SSjob.GetJobType(/datum/job/xenomorph)))
+				xeno_candidate = TRUE
+				break
+	if(!xeno_candidate && !bypass_checks)
+		xeno_candidate = TRUE
+
+
 //sets NTC and SOM squads
 /datum/game_mode/infestation/extended_plus/set_valid_squads()
 	SSjob.active_squads[FACTION_TERRAGOV] = list()

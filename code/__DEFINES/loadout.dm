@@ -853,7 +853,7 @@ GLOBAL_LIST_INIT(loadout_role_essential_set, list(
 	),
 	COMMAND_DOLL = list(
 		/obj/item/clothing/head/helmet/swat = 1,
-		/obj/item/clothing/suit/armor/bulletproof/fullset = 1,
+		/obj/item/clothing/suit/modular/xenonauten/bulletresistant = 1,
 		/obj/item/bodybag/cryobag = 1,
 		/obj/item/defibrillator = 1,
 		/obj/item/healthanalyzer = 1,

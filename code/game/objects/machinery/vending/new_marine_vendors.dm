@@ -777,7 +777,7 @@
 		/obj/item/reagent_containers/hypospray/advanced/oxycodone,
 		/obj/item/storage/firstaid/adv,
 		/obj/item/clothing/head/helmet/swat,
-		/obj/item/clothing/suit/armor/bulletproof/fullset,
+		/obj/item/clothing/suit/modular/xenonauten/bulletresistant,
 		/obj/item/clothing/head/tgmcberet/blueberet,
 	)
 
