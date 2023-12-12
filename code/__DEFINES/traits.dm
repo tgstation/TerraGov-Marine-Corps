@@ -159,6 +159,8 @@
 ///indicates this mob was spawned by a corpse spawner
 #define TRAIT_MAPSPAWNED "mapspawned"
 
+#define TRAIT_MINDMELDED "mindmelded"
+
 /// Prevents usage of manipulation appendages (picking, holding or using items, manipulating storage).
 #define TRAIT_HANDS_BLOCKED "handsblocked"
 #define TRAIT_STUNIMMUNE "stun_immunity"
