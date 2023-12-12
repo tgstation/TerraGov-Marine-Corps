@@ -517,7 +517,6 @@ You are in charge of logistics and the overwatch system. You are also in line to
 	jobtype = /datum/job/terragov/command/commanddoll
 
 	id = /obj/item/card/id/card/silver/commanddoll
-	belt = /obj/item/storage/holster/belt/pistol/m4a3/officer
 	ears = /obj/item/radio/headset/mainship/mcom
 	w_uniform = /obj/item/clothing/under/spec_operative/tback
 	shoes = /obj/item/clothing/shoes/marine/sneakingboots

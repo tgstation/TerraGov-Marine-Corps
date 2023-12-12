@@ -773,10 +773,12 @@
 		/obj/item/healthanalyzer,
 		/obj/item/roller/medevac,
 		/obj/item/medevac_beacon,
-		/obj/item/roller,
 		/obj/item/tweezers_advanced,
 		/obj/item/reagent_containers/hypospray/advanced/oxycodone,
 		/obj/item/storage/firstaid/adv,
+		/obj/item/clothing/head/helmet/swat,
+		/obj/item/clothing/suit/armor/bulletproof/fullset,
+		/obj/item/clothing/head/tgmcberet/blueberet,
 	)
 
 /obj/effect/vendor_bundle/stretcher

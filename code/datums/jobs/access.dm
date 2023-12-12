@@ -250,9 +250,9 @@
 		if("O1")
 			. = size ? "ENS" : "Ensign"
 		if("O2")
-			. = size ? "LTJG" : "Lieutenant Junior Grade"
+			. = size ? "2LT" : "Second Lieutenant"
 		if("O3")
-			. = size ? "LT" : "Lieutenant"
+			. = size ? "LT" : "First Lieutenant"
 		if("O4")
 			. = size ? "LCDR" : "Lieutenant Commander"
 		if("O5")

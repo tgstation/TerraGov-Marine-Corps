@@ -10118,6 +10118,13 @@
 /obj/item/trash/chips,
 /turf/open/floor/wood,
 /area/mainship/living/cryo_cells)
+"jBP" = (
+/obj/structure/bed/chair/comfy/black{
+	dir = 1
+	},
+/obj/effect/spawner/random/misc/cigar,
+/turf/open/floor/mainship/floor,
+/area/mainship/hull/lower_hull)
 "jCB" = (
 /turf/closed/wall/mainship,
 /area/outpost/cargo{
@@ -11204,6 +11211,7 @@
 /obj/item/clothing/suit/armor/bulletproof,
 /obj/item/attachable/suppressor,
 /obj/item/portable_vendor/corporate,
+/obj/item/clothing/under/suit_jacket/female,
 /turf/open/floor/carpet{
 	dir = 5;
 	icon_state = "carpetside"
@@ -11372,6 +11380,9 @@
 /obj/structure/cable,
 /obj/structure/bed/chair/sofa{
 	dir = 1
+	},
+/obj/machinery/light{
+	light_color = "#da2f1b"
 	},
 /turf/open/floor/wood,
 /area/sulaco/liaison/quarters{
@@ -12711,6 +12722,12 @@
 /area/mainship/hallways/port_hallway{
 	name = "Ship Floor 2 Hallways"
 	})
+"lHR" = (
+/obj/structure/bed/chair/comfy/black{
+	dir = 1
+	},
+/turf/open/floor/mainship/floor,
+/area/mainship/hull/lower_hull)
 "lIu" = (
 /obj/structure/largecrate/supply/medicine/medkits,
 /turf/open/floor/mainship/cargo,
@@ -17726,6 +17743,13 @@
 /area/mainship/hallways/bow_hallway{
 	name = "Ship Floor 1 Hallways"
 	})
+"qCC" = (
+/obj/effect/ai_node,
+/obj/structure/bed/chair/comfy/black{
+	dir = 1
+	},
+/turf/open/floor/mainship/floor,
+/area/mainship/hull/lower_hull)
 "qCU" = (
 /obj/machinery/atmospherics/components/binary/pump,
 /obj/structure/cable,
@@ -18815,6 +18839,13 @@
 	},
 /turf/open/floor/mainship/cargo/arrow,
 /area/mainship/hallways/hangar)
+"rGZ" = (
+/obj/structure/bed/chair/comfy/black{
+	dir = 1
+	},
+/obj/effect/spawner/random/misc/cigarettes,
+/turf/open/floor/mainship/floor,
+/area/mainship/hull/lower_hull)
 "rHk" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -19740,6 +19771,19 @@
 /obj/structure/cable,
 /turf/open/floor/wood,
 /area/mainship/living/chapel)
+"sEQ" = (
+/obj/item/weapon/gun/sentry/premade{
+	dir = 8;
+	sentry_iff_signal = 1
+	},
+/obj/structure/barricade/metal{
+	dir = 8
+	},
+/obj/machinery/camera/autoname/mainship{
+	dir = 8
+	},
+/turf/open/floor/mainship/red/full,
+/area/mainship/hull/upper_hull)
 "sFd" = (
 /obj/structure/largecrate/supply/medicine/blood,
 /turf/open/floor/mainship/cargo,
@@ -20233,19 +20277,6 @@
 	},
 /turf/open/floor/plating/mainship,
 /area/mainship/living/evacuation/two)
-"tbw" = (
-/obj/item/weapon/gun/sentry/premade{
-	dir = 8;
-	sentry_iff_signal = 1
-	},
-/obj/structure/barricade/metal{
-	dir = 8
-	},
-/obj/machinery/camera/autoname/mainship{
-	dir = 8
-	},
-/turf/open/floor/mainship/red/full,
-/area/mainship/hull/upper_hull)
 "tbO" = (
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/wood,
@@ -21512,6 +21543,8 @@
 /obj/item/ammo_magazine/rifle/ap,
 /obj/item/ammo_magazine/rifle/ap,
 /obj/item/ammo_magazine/rifle/ap,
+/obj/item/clothing/under/spec_operative/tback,
+/obj/item/clothing/under/spec_operative,
 /turf/open/floor/wood,
 /area/sulaco/liaison/quarters{
 	outside = 0;
@@ -24083,6 +24116,8 @@
 /obj/item/clothing/under/liaison_suit/suspenders,
 /obj/item/clothing/under/liaison_suit/outing,
 /obj/item/clothing/mask/balaclava,
+/obj/item/clothing/under/suit_jacket/charcoal,
+/obj/item/clothing/under/suit_jacket/female,
 /turf/open/floor/carpet{
 	icon_state = "carpetside"
 	},
@@ -34157,7 +34192,7 @@ nwr
 nwr
 mFo
 mqv
-rxA
+qCC
 wpa
 ftl
 vvC
@@ -34399,7 +34434,7 @@ nwr
 mFo
 cRa
 ezq
-meS
+rGZ
 wpa
 uog
 pef
@@ -34521,7 +34556,7 @@ nwr
 abh
 wgC
 oFe
-tbw
+sEQ
 spx
 min
 oSa
@@ -34641,7 +34676,7 @@ nwr
 tmj
 cRa
 ezq
-meS
+lHR
 wpa
 ftl
 vuk
@@ -40449,7 +40484,7 @@ nwr
 tmj
 cRa
 ezq
-meS
+lHR
 oAa
 hxt
 dJp
@@ -40691,7 +40726,7 @@ nwr
 xkK
 cRa
 ezq
-rxA
+qCC
 oAa
 pms
 dJp
@@ -40933,7 +40968,7 @@ nwr
 nwr
 xkK
 mqv
-meS
+jBP
 oAa
 mjW
 aMB

@@ -548,7 +548,7 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	engineer = SKILL_ENGINEER_PLASTEEL
 	medical = SKILL_MEDICAL_PRACTICED
 	surgery = SKILL_SURGERY_TRAINED
-	leadership = SKILL_LEAD_TRAINED
+	leadership = SKILL_LEAD_EXPERT
 	police = SKILL_POLICE_MP
 	stamina = SKILL_STAMINA_TRAINED
 	melee_weapons = SKILL_MELEE_TRAINED
