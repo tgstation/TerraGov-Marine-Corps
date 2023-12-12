@@ -291,6 +291,11 @@
 		CAT_SPSUP = DEFAULT_TOTAL_BUY_POINTS,
 	)
 
+/obj/item/card/id/card/silver/commanddoll
+	marine_points = list(
+		CAT_CDSUP = DEFAULT_TOTAL_BUY_POINTS,
+	)
+
 /obj/item/card/id/dogtag/engineer
 	marine_points = list(
 		CAT_ENGSUP = ENGINEER_TOTAL_BUY_POINTS,

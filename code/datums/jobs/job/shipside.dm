@@ -153,7 +153,7 @@ Make the NTC proud!"})
 		return
 	switch(playtime_mins)
 		if(0 to 1500) //starting
-			new_human.wear_id.paygrade = "O3"
+			new_human.wear_id.paygrade = "O4"
 		if(1500 to 7500) // 25 hrs
 			new_human.wear_id.paygrade = "MO4"
 		if(7501 to INFINITY) // 125 hrs
@@ -169,7 +169,7 @@ Make the NTC proud!"})
 	ears = /obj/item/radio/headset/mainship/mcom
 	w_uniform = /obj/item/clothing/under/marine/officer/exec
 	wear_suit = /obj/item/clothing/suit/modular/xenonauten
-	shoes = /obj/item/clothing/shoes/marine/full
+	shoes = /obj/item/clothing/shoes/marine/sneakingboots
 	gloves = /obj/item/clothing/gloves/marine/officer
 	head = /obj/item/clothing/head/tgmcberet/fc
 	r_store = /obj/item/storage/pouch/general/large/command
@@ -461,10 +461,10 @@ You are in charge of logistics and the overwatch system. You are also in line to
 
 //Command Doll
 /datum/job/terragov/command/commanddoll
-	title = "Command Doll"
+	title = COMMAND_DOLL
 	paygrade = "O1"
 	comm_title = "CDoll"
-	total_positions = 2
+	total_positions = 4
 	access = ALL_MARINE_ACCESS
 	minimal_access = ALL_MARINE_ACCESS
 	display_order = JOB_DISPLAY_ORDER_STAFF_OFFICER
@@ -513,14 +513,14 @@ You are in charge of logistics and the overwatch system. You are also in line to
 	multiple_outfits = FALSE
 
 /datum/outfit/job/command/commanddoll
-	name = "Command Doll"
+	name = COMMAND_DOLL
 	jobtype = /datum/job/terragov/command/commanddoll
 
-	id = /obj/item/card/id/dogtag/specialist
+	id = /obj/item/card/id/card/silver/commanddoll
 	belt = /obj/item/storage/holster/belt/pistol/m4a3/officer
 	ears = /obj/item/radio/headset/mainship/mcom
 	w_uniform = /obj/item/clothing/under/spec_operative/tback
-	shoes = /obj/item/clothing/shoes/marine/full
+	shoes = /obj/item/clothing/shoes/marine/sneakingboots
 	r_store = /obj/item/storage/pouch/general/large
 
 

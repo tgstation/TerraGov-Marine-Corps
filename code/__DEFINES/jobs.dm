@@ -66,6 +66,7 @@
 #define MEDICAL_DOCTOR "Medical Doctor"
 #define MEDICAL_RESEARCHER "Medical Researcher"
 #define SQUAD_LEADER "Squad Leader"
+#define COMMAND_DOLL "Command Doll"
 #define SQUAD_SPECIALIST "Specialist Operative"
 #define SQUAD_SMARTGUNNER "Squad Smartgunner"
 #define SQUAD_CORPSMAN "Squad Corpsman"

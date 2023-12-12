@@ -2,7 +2,7 @@
 	name = "Extended Plus"
 	config_tag = "Extended Plus"
 	silo_scaling = 1
-	flags_round_type = MODE_INFESTATION|MODE_PSY_POINTS|MODE_PSY_POINTS_ADVANCED|MODE_HIJACK_POSSIBLE|MODE_SILO_RESPAWN|MODE_ALLOW_XENO_QUICKBUILD|MODE_SILOS_SPAWN_MINIONS|MODE_XENO_RULER
+	flags_round_type = MODE_INFESTATION|MODE_PSY_POINTS|MODE_PSY_POINTS_ADVANCED|MODE_HIJACK_POSSIBLE|MODE_SILO_RESPAWN|MODE_ALLOW_XENO_QUICKBUILD|MODE_SILOS_SPAWN_MINIONS
 	shutters_drop_time = 3 MINUTES
 	flags_xeno_abilities = ABILITY_NUCLEARWAR
 	factions = list(FACTION_TERRAGOV, FACTION_SOM, FACTION_ALIEN, FACTION_CLF)
@@ -12,7 +12,7 @@
 		/datum/job/terragov/command/fieldcommander = 1,
 		/datum/job/terragov/command/corpseccommander = 1,
 		/datum/job/terragov/command/staffofficer = 4,
-		/datum/job/terragov/command/commanddoll = 2,
+		/datum/job/terragov/command/commanddoll = 4,
 		/datum/job/terragov/command/pilot = 2,
 		/datum/job/terragov/command/mech_pilot = 1,
 		/datum/job/terragov/engineering/chief = 1,
@@ -55,6 +55,7 @@
 	enable_fun_tads = TRUE
 	xenorespawn_time = 15 SECONDS
 	respawn_time = 15 SECONDS
+	bioscan_interval = 40 MINUTES
 
 //sets NTC and SOM squads
 /datum/game_mode/infestation/extended_plus/set_valid_squads()

@@ -531,6 +531,20 @@
 	. = ..()
 	listed_products = GLOB.specialist_gear_listed_products
 
+/obj/machinery/marine_selector/gear/commanddoll
+	name = "NEXUS Automated Command Doll Equipment Rack"
+	desc = "An automated Command Doll equipment rack hooked up to a colossal storage unit."
+	icon_state = "squadleader"
+	icon_vend = "squadleader-vend"
+	icon_deny = "squadleader-deny"
+	vendor_role = /datum/job/terragov/command/commanddoll
+	req_access = list(ACCESS_MARINE_DOLLPREP)
+	lock_flags = JOB_LOCK
+
+/obj/machinery/marine_selector/gear/commanddoll/Initialize(mapload)
+	. = ..()
+	listed_products = GLOB.commanddoll_gear_listed_products
+
 /obj/machinery/marine_selector/gear/engi
 	name = "NEXUS Automated Engineer Equipment Rack"
 	desc = "An automated engineer equipment rack hooked up to a colossal storage unit."
@@ -741,6 +755,19 @@
 		/obj/item/reagent_containers/hypospray/advanced/oxycodone,
 		/obj/item/storage/firstaid/adv,
 		/obj/item/clothing/glasses/hud/health,
+	)
+
+/obj/effect/vendor_bundle/commanddoll
+	gear_to_spawn = list(
+		/obj/item/bodybag/cryobag,
+		/obj/item/defibrillator,
+		/obj/item/healthanalyzer,
+		/obj/item/roller/medevac,
+		/obj/item/medevac_beacon,
+		/obj/item/roller,
+		/obj/item/tweezers_advanced,
+		/obj/item/reagent_containers/hypospray/advanced/oxycodone,
+		/obj/item/storage/firstaid/adv,
 	)
 
 /obj/effect/vendor_bundle/stretcher

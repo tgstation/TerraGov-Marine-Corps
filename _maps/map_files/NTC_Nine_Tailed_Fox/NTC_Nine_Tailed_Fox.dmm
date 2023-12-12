@@ -563,7 +563,7 @@
 "aCD" = (
 /obj/machinery/door/airlock/mainship/secure/free_access,
 /turf/open/floor/mainship/stripesquare,
-/area/mainship/hallways/starboard_ert{
+/area/mainship/hallways/aft_hallway{
 	name = "Ship Floor 3 Hallways"
 	})
 "aCH" = (
@@ -847,7 +847,7 @@
 	dir = 4
 	},
 /turf/open/floor/mainship/mono,
-/area/mainship/hallways/starboard_ert{
+/area/mainship/hallways/aft_hallway{
 	name = "Ship Floor 3 Hallways"
 	})
 "aKJ" = (
@@ -1253,7 +1253,7 @@
 	},
 /obj/effect/ai_node,
 /turf/open/floor/plating/plating_catwalk,
-/area/mainship/hallways/starboard_ert{
+/area/mainship/hallways/aft_hallway{
 	name = "Ship Floor 3 Hallways"
 	})
 "bap" = (
@@ -1380,7 +1380,7 @@
 	dir = 1
 	},
 /turf/open/floor/wood,
-/area/mainship/hallways/starboard_ert{
+/area/mainship/hallways/aft_hallway{
 	name = "Ship Floor 3 Hallways"
 	})
 "bfZ" = (
@@ -1449,7 +1449,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating/plating_catwalk,
-/area/mainship/hallways/starboard_ert{
+/area/mainship/hallways/aft_hallway{
 	name = "Ship Floor 3 Hallways"
 	})
 "bmi" = (
@@ -1644,6 +1644,10 @@
 /area/mainship/squads{
 	outside = 0
 	})
+"bsS" = (
+/obj/machinery/marine_selector/gear/commanddoll,
+/turf/open/floor/wood,
+/area/mainship/living/officer_study)
 "btj" = (
 /obj/effect/turf_decal/warning_stripes/thin,
 /obj/structure/rack,
@@ -1846,7 +1850,7 @@
 	dir = 4
 	},
 /turf/open/floor/mainship/sterile/dark,
-/area/mainship/hallways/starboard_ert{
+/area/mainship/hallways/aft_hallway{
 	name = "Ship Floor 3 Hallways"
 	})
 "bCp" = (
@@ -2046,7 +2050,7 @@
 	dir = 2
 	},
 /turf/open/floor/mainship/stripesquare,
-/area/mainship/hallways/starboard_ert{
+/area/mainship/hallways/aft_hallway{
 	name = "Ship Floor 3 Hallways"
 	})
 "bKo" = (
@@ -2193,6 +2197,10 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 6
 	},
+/obj/effect/decal/cleanable/blood{
+	basecolor = "#ffffff";
+	name = "cum"
+	},
 /turf/open/floor/mainship/floor,
 /area/mainship/living/officer_study)
 "bRD" = (
@@ -2273,7 +2281,7 @@
 	dir = 1
 	},
 /turf/open/floor/plating/plating_catwalk,
-/area/mainship/hallways/starboard_ert{
+/area/mainship/hallways/aft_hallway{
 	name = "Ship Floor 3 Hallways"
 	})
 "bUY" = (
@@ -2294,7 +2302,7 @@
 "bVF" = (
 /obj/machinery/door/airlock/mainship/maint,
 /turf/open/floor/plating/plating_catwalk,
-/area/mainship/hallways/starboard_ert{
+/area/mainship/hallways/aft_hallway{
 	name = "Ship Floor 3 Hallways"
 	})
 "bVJ" = (
@@ -2666,7 +2674,7 @@
 	dir = 6
 	},
 /turf/open/floor/mainship/sterile/dark,
-/area/mainship/hallways/starboard_ert{
+/area/mainship/hallways/aft_hallway{
 	name = "Ship Floor 3 Hallways"
 	})
 "clM" = (
@@ -2748,7 +2756,7 @@
 	},
 /obj/effect/ai_node,
 /turf/open/floor/plating/plating_catwalk,
-/area/mainship/hallways/starboard_ert{
+/area/mainship/hallways/aft_hallway{
 	name = "Ship Floor 3 Hallways"
 	})
 "cru" = (
@@ -3285,7 +3293,7 @@
 	dir = 8
 	},
 /turf/open/floor/mainship/sterile/dark,
-/area/mainship/hallways/starboard_ert{
+/area/mainship/hallways/aft_hallway{
 	name = "Ship Floor 3 Hallways"
 	})
 "cLt" = (
@@ -3322,7 +3330,7 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/mainship/mono,
-/area/mainship/hallways/starboard_ert{
+/area/mainship/hallways/aft_hallway{
 	name = "Ship Floor 3 Hallways"
 	})
 "cNo" = (
@@ -3414,7 +3422,7 @@
 	dir = 8
 	},
 /turf/open/floor/mainship/mono,
-/area/mainship/hallways/starboard_ert{
+/area/mainship/hallways/aft_hallway{
 	name = "Ship Floor 3 Hallways"
 	})
 "cPJ" = (
@@ -3437,7 +3445,7 @@
 	dir = 1
 	},
 /turf/open/floor/mainship/mono,
-/area/mainship/hallways/starboard_ert{
+/area/mainship/hallways/aft_hallway{
 	name = "Ship Floor 3 Hallways"
 	})
 "cQH" = (
@@ -3550,7 +3558,7 @@
 "cXi" = (
 /obj/effect/ai_node,
 /turf/open/floor/wood,
-/area/mainship/hallways/starboard_ert{
+/area/mainship/hallways/aft_hallway{
 	name = "Ship Floor 3 Hallways"
 	})
 "cXO" = (
@@ -3988,7 +3996,7 @@
 	dir = 8
 	},
 /turf/open/floor/plating/plating_catwalk,
-/area/mainship/hallways/starboard_ert{
+/area/mainship/hallways/aft_hallway{
 	name = "Ship Floor 3 Hallways"
 	})
 "dsD" = (
@@ -4485,6 +4493,11 @@
 /area/mainship/squads{
 	outside = 0
 	})
+"dVD" = (
+/obj/structure/window/framed/mainship/hull,
+/obj/structure/curtain/open/black,
+/turf/open/floor/plating,
+/area/mainship/living/officer_study)
 "dWv" = (
 /obj/effect/landmark/start/job/shiptech,
 /obj/effect/landmark/start/job/shiptech,
@@ -4533,7 +4546,7 @@
 "dZe" = (
 /obj/effect/ai_node,
 /turf/open/floor/mainship/sterile/dark,
-/area/mainship/hallways/starboard_ert{
+/area/mainship/hallways/aft_hallway{
 	name = "Ship Floor 3 Hallways"
 	})
 "dZk" = (
@@ -4643,7 +4656,7 @@
 "edj" = (
 /obj/structure/flora/ausbushes/brflowers,
 /turf/open/floor/grass,
-/area/mainship/hallways/starboard_ert{
+/area/mainship/hallways/aft_hallway{
 	name = "Ship Floor 3 Hallways"
 	})
 "edp" = (
@@ -4880,7 +4893,7 @@
 /obj/machinery/light,
 /obj/structure/sign/security,
 /turf/open/floor/mainship/mono,
-/area/mainship/hallways/starboard_ert{
+/area/mainship/hallways/aft_hallway{
 	name = "Ship Floor 3 Hallways"
 	})
 "epR" = (
@@ -5232,17 +5245,6 @@
 	},
 /turf/open/floor/plating,
 /area/mainship/medical/operating_room_four)
-"eMf" = (
-/obj/machinery/light/mainship/small,
-/obj/structure/toilet{
-	dir = 1
-	},
-/obj/effect/decal/cleanable/blood{
-	basecolor = "#ffffff";
-	name = "cum"
-	},
-/turf/open/floor/mainship/floor,
-/area/campaign/jungle_outpost/outpost/living/bathroom)
 "eMu" = (
 /obj/machinery/computer/supplycomp,
 /turf/open/floor/mainship/mono,
@@ -5354,7 +5356,7 @@
 "ePE" = (
 /obj/structure/flora/ausbushes/ppflowers,
 /turf/open/floor/grass,
-/area/mainship/hallways/starboard_ert{
+/area/mainship/hallways/aft_hallway{
 	name = "Ship Floor 3 Hallways"
 	})
 "ePS" = (
@@ -5388,7 +5390,7 @@
 "eQZ" = (
 /obj/machinery/vending/snack,
 /turf/open/floor/mainship/mono,
-/area/mainship/hallways/starboard_ert{
+/area/mainship/hallways/aft_hallway{
 	name = "Ship Floor 3 Hallways"
 	})
 "eRa" = (
@@ -5483,7 +5485,7 @@
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/mainship/mono,
-/area/mainship/hallways/starboard_ert{
+/area/mainship/hallways/aft_hallway{
 	name = "Ship Floor 3 Hallways"
 	})
 "eUM" = (
@@ -5918,7 +5920,7 @@
 	dir = 4
 	},
 /turf/open/floor/mainship/sterile/dark,
-/area/mainship/hallways/starboard_ert{
+/area/mainship/hallways/aft_hallway{
 	name = "Ship Floor 3 Hallways"
 	})
 "fmE" = (
@@ -6395,7 +6397,7 @@
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
 /obj/effect/ai_node,
 /turf/open/floor/plating/plating_catwalk,
-/area/mainship/hallways/starboard_ert{
+/area/mainship/hallways/aft_hallway{
 	name = "Ship Floor 3 Hallways"
 	})
 "fGt" = (
@@ -6433,7 +6435,7 @@
 	dir = 1
 	},
 /turf/open/floor/plating/plating_catwalk,
-/area/mainship/hallways/starboard_ert{
+/area/mainship/hallways/aft_hallway{
 	name = "Ship Floor 3 Hallways"
 	})
 "fIL" = (
@@ -6481,7 +6483,7 @@
 	pixel_x = -15
 	},
 /turf/open/floor/mainship/stripesquare,
-/area/mainship/hallways/starboard_ert{
+/area/mainship/hallways/aft_hallway{
 	name = "Ship Floor 3 Hallways"
 	})
 "fLj" = (
@@ -6984,7 +6986,7 @@
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
 /turf/open/floor/plating/plating_catwalk,
-/area/mainship/hallways/starboard_ert{
+/area/mainship/hallways/aft_hallway{
 	name = "Ship Floor 3 Hallways"
 	})
 "gdr" = (
@@ -7356,7 +7358,7 @@
 	pixel_y = 8
 	},
 /turf/open/floor/wood,
-/area/mainship/hallways/starboard_ert{
+/area/mainship/hallways/aft_hallway{
 	name = "Ship Floor 3 Hallways"
 	})
 "gxB" = (
@@ -7464,7 +7466,7 @@
 /obj/structure/cable,
 /obj/machinery/power/apc/mainship,
 /turf/open/floor/mainship/mono,
-/area/mainship/hallways/starboard_ert{
+/area/mainship/hallways/aft_hallway{
 	name = "Ship Floor 3 Hallways"
 	})
 "gDn" = (
@@ -7514,7 +7516,7 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plating/plating_catwalk,
-/area/mainship/hallways/starboard_ert{
+/area/mainship/hallways/aft_hallway{
 	name = "Ship Floor 3 Hallways"
 	})
 "gFz" = (
@@ -7726,7 +7728,7 @@
 	dir = 4
 	},
 /turf/open/floor/mainship/mono,
-/area/mainship/hallways/starboard_ert{
+/area/mainship/hallways/aft_hallway{
 	name = "Ship Floor 3 Hallways"
 	})
 "gQj" = (
@@ -8267,7 +8269,7 @@
 	dir = 8
 	},
 /turf/open/floor/mainship/mono,
-/area/mainship/hallways/starboard_ert{
+/area/mainship/hallways/aft_hallway{
 	name = "Ship Floor 3 Hallways"
 	})
 "hkn" = (
@@ -8344,6 +8346,10 @@
 /obj/structure/flora/ausbushes/sunnybush,
 /turf/open/floor/grass,
 /area/mainship/groundhq/ntf/living/grunt_rnr)
+"hnp" = (
+/obj/machinery/nuclearbomb,
+/turf/open/floor/mainship/red/full,
+/area/mainship/hull/upper_hull)
 "hnw" = (
 /obj/machinery/light/mainship,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -8472,7 +8478,7 @@
 "hvJ" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/plating_catwalk,
-/area/mainship/hallways/starboard_ert{
+/area/mainship/hallways/aft_hallway{
 	name = "Ship Floor 3 Hallways"
 	})
 "hvW" = (
@@ -8660,18 +8666,13 @@
 	name = "Ship Floor 2 Hallways"
 	})
 "hKm" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 1
+/obj/machinery/door/poddoor/mainship{
+	id = "nukedoors";
+	name = "\improper Blast Door";
+	dir = 2
 	},
-/obj/structure/cable,
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor/wood,
-/area/sulaco/liaison/quarters{
-	outside = 0;
-	name = "CEO Office"
-	})
+/turf/open/floor/mainship/red/full,
+/area/mainship/hull/upper_hull)
 "hLb" = (
 /obj/machinery/holopad,
 /turf/open/floor/mainship/black{
@@ -8711,6 +8712,10 @@
 	name = "Research";
 	outside = 0
 	})
+"hPa" = (
+/obj/machinery/vending/uniform_supply,
+/turf/open/floor/wood,
+/area/mainship/living/officer_study)
 "hPr" = (
 /obj/item/trash/popcorn,
 /turf/open/floor/wood,
@@ -8985,7 +8990,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating/plating_catwalk,
-/area/mainship/hallways/starboard_ert{
+/area/mainship/hallways/aft_hallway{
 	name = "Ship Floor 3 Hallways"
 	})
 "hZo" = (
@@ -9156,7 +9161,7 @@
 	dir = 8
 	},
 /turf/open/floor/mainship/mono,
-/area/mainship/hallways/starboard_ert{
+/area/mainship/hallways/aft_hallway{
 	name = "Ship Floor 3 Hallways"
 	})
 "igc" = (
@@ -9198,9 +9203,6 @@
 /turf/open/floor/wood,
 /area/mainship/hallways/synthdorms)
 "iio" = (
-/obj/machinery/light{
-	dir = 8
-	},
 /obj/item/attachable/suppressor,
 /obj/structure/table/reinforced,
 /obj/item/attachable/reddot,
@@ -9445,7 +9447,7 @@
 	id = "floor3shipcheckpoint2"
 	},
 /turf/open/floor/mainship/stripesquare,
-/area/mainship/hallways/starboard_ert{
+/area/mainship/hallways/aft_hallway{
 	name = "Ship Floor 3 Hallways"
 	})
 "ivR" = (
@@ -9754,7 +9756,7 @@
 	dir = 1
 	},
 /turf/open/floor/plating/plating_catwalk,
-/area/mainship/hallways/starboard_ert{
+/area/mainship/hallways/aft_hallway{
 	name = "Ship Floor 3 Hallways"
 	})
 "iIY" = (
@@ -9886,7 +9888,7 @@
 	dir = 8
 	},
 /turf/open/floor/wood,
-/area/mainship/hallways/starboard_ert{
+/area/mainship/hallways/aft_hallway{
 	name = "Ship Floor 3 Hallways"
 	})
 "iQQ" = (
@@ -10049,7 +10051,7 @@
 	name = "\improper ST-571 sentry gun"
 	},
 /turf/open/floor/mainship/mono,
-/area/mainship/hallways/starboard_ert{
+/area/mainship/hallways/aft_hallway{
 	name = "Ship Floor 3 Hallways"
 	})
 "iWD" = (
@@ -10326,7 +10328,7 @@
 	dir = 1
 	},
 /turf/open/floor/mainship/mono,
-/area/mainship/hallways/starboard_ert{
+/area/mainship/hallways/aft_hallway{
 	name = "Ship Floor 3 Hallways"
 	})
 "jlA" = (
@@ -10335,7 +10337,7 @@
 	dir = 5
 	},
 /turf/open/floor/plating/plating_catwalk,
-/area/mainship/hallways/starboard_ert{
+/area/mainship/hallways/aft_hallway{
 	name = "Ship Floor 3 Hallways"
 	})
 "jlO" = (
@@ -10361,7 +10363,7 @@
 "jmZ" = (
 /obj/machinery/vending/coffee,
 /turf/open/floor/mainship/mono,
-/area/mainship/hallways/starboard_ert{
+/area/mainship/hallways/aft_hallway{
 	name = "Ship Floor 3 Hallways"
 	})
 "jnb" = (
@@ -10711,7 +10713,7 @@
 	},
 /obj/structure/drop_pod_launcher,
 /turf/open/floor/mainship/mono,
-/area/mainship/hallways/starboard_ert{
+/area/mainship/hallways/aft_hallway{
 	name = "Ship Floor 3 Hallways"
 	})
 "jGg" = (
@@ -10888,7 +10890,7 @@
 /obj/structure/cable,
 /obj/effect/ai_node,
 /turf/open/floor/plating/plating_catwalk,
-/area/mainship/hallways/starboard_ert{
+/area/mainship/hallways/aft_hallway{
 	name = "Ship Floor 3 Hallways"
 	})
 "jLt" = (
@@ -11012,7 +11014,7 @@
 /area/mainship/hallways/hangar)
 "jSe" = (
 /turf/open/floor/grass,
-/area/mainship/hallways/starboard_ert{
+/area/mainship/hallways/aft_hallway{
 	name = "Ship Floor 3 Hallways"
 	})
 "jSJ" = (
@@ -11063,7 +11065,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating/plating_catwalk,
-/area/mainship/hallways/starboard_ert{
+/area/mainship/hallways/aft_hallway{
 	name = "Ship Floor 3 Hallways"
 	})
 "jUe" = (
@@ -11166,7 +11168,7 @@
 "jYs" = (
 /obj/machinery/vending/cigarette,
 /turf/open/floor/mainship/mono,
-/area/mainship/hallways/starboard_ert{
+/area/mainship/hallways/aft_hallway{
 	name = "Ship Floor 3 Hallways"
 	})
 "jYD" = (
@@ -11616,10 +11618,6 @@
 /area/mainship/hallways/port_umbilical{
 	name = "Ship Floor 2 Hallways"
 	})
-"ksE" = (
-/obj/machinery/nuclearbomb,
-/turf/open/floor/mainship/red/full,
-/area/mainship/hull/upper_hull)
 "ksI" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment,
@@ -11800,7 +11798,7 @@
 "kzp" = (
 /obj/structure/window/framed/mainship,
 /turf/open/floor/mainship/stripesquare,
-/area/mainship/hallways/starboard_ert{
+/area/mainship/hallways/aft_hallway{
 	name = "Ship Floor 3 Hallways"
 	})
 "kAp" = (
@@ -11907,7 +11905,7 @@
 "kGh" = (
 /obj/structure/bed/chair/sofa/right,
 /turf/open/floor/wood,
-/area/mainship/hallways/starboard_ert{
+/area/mainship/hallways/aft_hallway{
 	name = "Ship Floor 3 Hallways"
 	})
 "kGl" = (
@@ -11938,15 +11936,6 @@
 	outside = 0;
 	name = "CEO Office"
 	})
-"kGF" = (
-/obj/machinery/light/mainship,
-/obj/effect/decal/cleanable/blood/drip{
-	basecolor = "#ffffff";
-	name = "drips of cum";
-	desc = "Some small drips of cum."
-	},
-/turf/open/floor/wood,
-/area/mainship/living/officer_study)
 "kGJ" = (
 /obj/machinery/door/poddoor/mainship/open/cic{
 	id = "shipside_cic_lockdown"
@@ -12183,6 +12172,10 @@
 "kPB" = (
 /obj/machinery/door/airlock/mainship/command/cic{
 	name = "\improper Dolls Dorms"
+	},
+/obj/effect/decal/cleanable/blood{
+	basecolor = "#ffffff";
+	name = "cum"
 	},
 /turf/open/floor/mainship/floor,
 /area/mainship/living/officer_study)
@@ -12657,7 +12650,7 @@
 "leF" = (
 /obj/structure/flora/ausbushes/leafybush,
 /turf/open/floor/grass,
-/area/mainship/hallways/starboard_ert{
+/area/mainship/hallways/aft_hallway{
 	name = "Ship Floor 3 Hallways"
 	})
 "leQ" = (
@@ -12901,7 +12894,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/mainship/sterile/dark,
-/area/mainship/hallways/starboard_ert{
+/area/mainship/hallways/aft_hallway{
 	name = "Ship Floor 3 Hallways"
 	})
 "loz" = (
@@ -12914,7 +12907,7 @@
 	},
 /obj/structure/sign/engie,
 /turf/open/floor/plating/plating_catwalk,
-/area/mainship/hallways/starboard_ert{
+/area/mainship/hallways/aft_hallway{
 	name = "Ship Floor 3 Hallways"
 	})
 "lqb" = (
@@ -13120,11 +13113,6 @@
 /obj/machinery/status_display,
 /turf/closed/wall/mainship,
 /area/mainship/living/officer_study)
-"lyP" = (
-/obj/structure/window/framed/mainship/hull,
-/obj/structure/curtain/open/black,
-/turf/open/floor/plating,
-/area/mainship/living/officer_study)
 "lyQ" = (
 /obj/machinery/cloning/vats,
 /turf/open/floor/mainship/sterile/side{
@@ -13144,9 +13132,6 @@
 "lAK" = (
 /obj/structure/bed/chair/sofa/left{
 	dir = 1
-	},
-/obj/machinery/light{
-	dir = 4
 	},
 /turf/open/floor/wood,
 /area/sulaco/liaison/quarters{
@@ -13284,6 +13269,14 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/living/cryo_cells)
+"lGg" = (
+/obj/effect/decal/cleanable/blood{
+	basecolor = "#ffffff";
+	name = "cum"
+	},
+/obj/item/paper/crumpled,
+/turf/open/floor/wood,
+/area/mainship/living/officer_study)
 "lGo" = (
 /obj/machinery/computer/body_scanconsole,
 /turf/open/floor/mainship/sterile/side{
@@ -13627,7 +13620,7 @@
 	pixel_y = -15
 	},
 /turf/open/floor/mainship/stripesquare,
-/area/mainship/hallways/starboard_ert{
+/area/mainship/hallways/aft_hallway{
 	name = "Ship Floor 3 Hallways"
 	})
 "lWk" = (
@@ -13724,7 +13717,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating/plating_catwalk,
-/area/mainship/hallways/starboard_ert{
+/area/mainship/hallways/aft_hallway{
 	name = "Ship Floor 3 Hallways"
 	})
 "lZb" = (
@@ -13745,7 +13738,7 @@
 	dir = 8
 	},
 /turf/open/floor/mainship/mono,
-/area/mainship/hallways/starboard_ert{
+/area/mainship/hallways/aft_hallway{
 	name = "Ship Floor 3 Hallways"
 	})
 "mbW" = (
@@ -13924,7 +13917,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating/plating_catwalk,
-/area/mainship/hallways/starboard_ert{
+/area/mainship/hallways/aft_hallway{
 	name = "Ship Floor 3 Hallways"
 	})
 "mjG" = (
@@ -14279,7 +14272,7 @@
 	dir = 4
 	},
 /turf/open/floor/mainship/mono,
-/area/mainship/hallways/starboard_ert{
+/area/mainship/hallways/aft_hallway{
 	name = "Ship Floor 3 Hallways"
 	})
 "mvA" = (
@@ -14291,7 +14284,7 @@
 	dir = 4
 	},
 /turf/open/floor/mainship/sterile/dark,
-/area/mainship/hallways/starboard_ert{
+/area/mainship/hallways/aft_hallway{
 	name = "Ship Floor 3 Hallways"
 	})
 "mwg" = (
@@ -14513,9 +14506,19 @@
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
 /turf/open/floor/plating/plating_catwalk,
-/area/mainship/hallways/starboard_ert{
+/area/mainship/hallways/aft_hallway{
 	name = "Ship Floor 3 Hallways"
 	})
+"mIw" = (
+/obj/machinery/light/mainship,
+/obj/effect/decal/cleanable/blood/drip{
+	basecolor = "#ffffff";
+	name = "drips of cum";
+	desc = "Some small drips of cum."
+	},
+/obj/item/paper,
+/turf/open/floor/wood,
+/area/mainship/living/officer_study)
 "mIH" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
@@ -14555,7 +14558,7 @@
 	})
 "mJZ" = (
 /turf/open/floor/mainship,
-/area/mainship/hallways/starboard_ert{
+/area/mainship/hallways/aft_hallway{
 	name = "Ship Floor 3 Hallways"
 	})
 "mKl" = (
@@ -14641,7 +14644,7 @@
 	},
 /obj/effect/ai_node,
 /turf/open/floor/plating/plating_catwalk,
-/area/mainship/hallways/starboard_ert{
+/area/mainship/hallways/aft_hallway{
 	name = "Ship Floor 3 Hallways"
 	})
 "mOc" = (
@@ -14705,7 +14708,7 @@
 "mQv" = (
 /obj/structure/bed/chair/sofa/corner,
 /turf/open/floor/wood,
-/area/mainship/hallways/starboard_ert{
+/area/mainship/hallways/aft_hallway{
 	name = "Ship Floor 3 Hallways"
 	})
 "mRz" = (
@@ -14829,10 +14832,6 @@
 /area/campaign/jungle_outpost/outpost/req{
 	name = "\improper Shipside Req"
 	})
-"mYI" = (
-/obj/effect/spawner/random/misc/structure/flavorvending/coffeeweighted,
-/turf/open/floor/wood,
-/area/mainship/living/officer_study)
 "mYR" = (
 /turf/open/floor/mainship/black{
 	dir = 4
@@ -15065,6 +15064,10 @@
 /area/campaign/jungle_outpost/outpost/req{
 	name = "\improper Shipside Req"
 	})
+"nkx" = (
+/obj/effect/spawner/random/misc/structure/flavorvending/coffeeweighted,
+/turf/open/floor/wood,
+/area/mainship/living/officer_study)
 "nlc" = (
 /obj/structure/largecrate/guns,
 /turf/open/floor/mainship/cargo,
@@ -15118,7 +15121,7 @@
 	},
 /obj/effect/ai_node,
 /turf/open/floor/plating/plating_catwalk,
-/area/mainship/hallways/starboard_ert{
+/area/mainship/hallways/aft_hallway{
 	name = "Ship Floor 3 Hallways"
 	})
 "npc" = (
@@ -15156,7 +15159,7 @@
 	dir = 6
 	},
 /turf/open/floor/plating/plating_catwalk,
-/area/mainship/hallways/starboard_ert{
+/area/mainship/hallways/aft_hallway{
 	name = "Ship Floor 3 Hallways"
 	})
 "nqZ" = (
@@ -15212,7 +15215,7 @@
 	dir = 10
 	},
 /turf/open/floor/plating/plating_catwalk,
-/area/mainship/hallways/starboard_ert{
+/area/mainship/hallways/aft_hallway{
 	name = "Ship Floor 3 Hallways"
 	})
 "nwr" = (
@@ -15295,14 +15298,6 @@
 /area/outpost/cargo{
 	outside = 1
 	})
-"nyT" = (
-/obj/machinery/door/poddoor/mainship{
-	id = "nukedoors";
-	name = "\improper Blast Door";
-	dir = 2
-	},
-/turf/open/floor/mainship/red/full,
-/area/mainship/hull/upper_hull)
 "nzk" = (
 /obj/structure/droppod{
 	name = "Zeus orbital drop pod"
@@ -15512,7 +15507,7 @@
 "nNl" = (
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/mainship/mono,
-/area/mainship/hallways/starboard_ert{
+/area/mainship/hallways/aft_hallway{
 	name = "Ship Floor 3 Hallways"
 	})
 "nNv" = (
@@ -15658,7 +15653,7 @@
 	dir = 4
 	},
 /turf/open/floor/mainship/mono,
-/area/mainship/hallways/starboard_ert{
+/area/mainship/hallways/aft_hallway{
 	name = "Ship Floor 3 Hallways"
 	})
 "nRv" = (
@@ -15873,7 +15868,7 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plating/plating_catwalk,
-/area/mainship/hallways/starboard_ert{
+/area/mainship/hallways/aft_hallway{
 	name = "Ship Floor 3 Hallways"
 	})
 "oap" = (
@@ -16009,7 +16004,7 @@
 /obj/structure/flora/ausbushes/fullgrass,
 /obj/structure/flora/ausbushes/fullgrass,
 /turf/open/floor/grass,
-/area/mainship/hallways/starboard_ert{
+/area/mainship/hallways/aft_hallway{
 	name = "Ship Floor 3 Hallways"
 	})
 "odn" = (
@@ -16121,7 +16116,7 @@
 "okw" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /turf/open/floor/grass,
-/area/mainship/hallways/starboard_ert{
+/area/mainship/hallways/aft_hallway{
 	name = "Ship Floor 3 Hallways"
 	})
 "okK" = (
@@ -16176,6 +16171,16 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/upper_hull)
+"onh" = (
+/obj/effect/decal/cleanable/blood{
+	basecolor = "#ffffff";
+	name = "cum"
+	},
+/turf/open/floor/mainship/sterile/dark,
+/area/mainship/medical/upper_medical{
+	outside = 0;
+	name = "Shipside Medbay"
+	})
 "onr" = (
 /obj/machinery/door/airlock/mainship/generic/pilot/bunk{
 	dir = 8
@@ -16212,7 +16217,7 @@
 	dir = 10
 	},
 /turf/open/floor/plating/plating_catwalk,
-/area/mainship/hallways/starboard_ert{
+/area/mainship/hallways/aft_hallway{
 	name = "Ship Floor 3 Hallways"
 	})
 "opm" = (
@@ -16230,14 +16235,6 @@
 /area/mainship/hallways/port_umbilical{
 	name = "Ship Floor 2 Hallways"
 	})
-"opL" = (
-/obj/item/weapon/gun/sentry/premade,
-/obj/structure/barricade/metal,
-/obj/structure/barricade/metal{
-	dir = 4
-	},
-/turf/open/floor/mainship/red/full,
-/area/mainship/hull/upper_hull)
 "opY" = (
 /obj/effect/landmark/start/job/squadcorpsman,
 /obj/effect/landmark/start/job/squadcorpsman,
@@ -16316,7 +16313,7 @@
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/mainship/mono,
-/area/mainship/hallways/starboard_ert{
+/area/mainship/hallways/aft_hallway{
 	name = "Ship Floor 3 Hallways"
 	})
 "otB" = (
@@ -16541,7 +16538,7 @@
 	})
 "oCh" = (
 /turf/open/floor/mainship/sterile/dark,
-/area/mainship/hallways/starboard_ert{
+/area/mainship/hallways/aft_hallway{
 	name = "Ship Floor 3 Hallways"
 	})
 "oCT" = (
@@ -16661,7 +16658,7 @@
 	},
 /obj/effect/ai_node,
 /turf/open/floor/plating/plating_catwalk,
-/area/mainship/hallways/starboard_ert{
+/area/mainship/hallways/aft_hallway{
 	name = "Ship Floor 3 Hallways"
 	})
 "oHh" = (
@@ -16925,7 +16922,7 @@
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/mainship/mono,
-/area/mainship/hallways/starboard_ert{
+/area/mainship/hallways/aft_hallway{
 	name = "Ship Floor 3 Hallways"
 	})
 "oUt" = (
@@ -17048,7 +17045,7 @@
 /area/mainship/hallways/hangar)
 "paa" = (
 /turf/open/floor/mainship/empty,
-/area/mainship/hallways/starboard_ert{
+/area/mainship/hallways/aft_hallway{
 	name = "Ship Floor 3 Hallways"
 	})
 "paC" = (
@@ -17349,13 +17346,6 @@
 	outside = 0;
 	name = "Shipside Medbay"
 	})
-"poP" = (
-/obj/effect/decal/cleanable/blood{
-	basecolor = "#ffffff";
-	name = "cum"
-	},
-/turf/open/floor/wood,
-/area/mainship/living/officer_study)
 "poQ" = (
 /obj/machinery/door/firedoor/mainship{
 	dir = 2
@@ -17395,7 +17385,7 @@
 	dir = 8
 	},
 /turf/open/floor/wood,
-/area/mainship/hallways/starboard_ert{
+/area/mainship/hallways/aft_hallway{
 	name = "Ship Floor 3 Hallways"
 	})
 "psx" = (
@@ -17652,7 +17642,7 @@
 	},
 /obj/effect/ai_node,
 /turf/open/floor/mainship/stripesquare,
-/area/mainship/hallways/starboard_ert{
+/area/mainship/hallways/aft_hallway{
 	name = "Ship Floor 3 Hallways"
 	})
 "pLH" = (
@@ -17697,7 +17687,7 @@
 "pOj" = (
 /obj/machinery/vending/cola,
 /turf/open/floor/mainship/mono,
-/area/mainship/hallways/starboard_ert{
+/area/mainship/hallways/aft_hallway{
 	name = "Ship Floor 3 Hallways"
 	})
 "pOC" = (
@@ -17711,14 +17701,13 @@
 	base_lighting_alpha = 0
 	})
 "pPt" = (
-/obj/machinery/light,
-/obj/item/weapon/gun/sentry/big_sentry/premade/radial{
-	name = "\improper ST-571 sentry gun"
+/obj/item/weapon/gun/sentry/premade,
+/obj/structure/barricade/metal,
+/obj/structure/barricade/metal{
+	dir = 4
 	},
-/turf/open/floor/mainship/mono,
-/area/mainship/hallways/starboard_ert{
-	name = "Ship Floor 3 Hallways"
-	})
+/turf/open/floor/mainship/red/full,
+/area/mainship/hull/upper_hull)
 "pPB" = (
 /obj/structure/cable,
 /obj/machinery/door/poddoor/shutters/mainship/open/checkpoint{
@@ -17749,7 +17738,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating/plating_catwalk,
-/area/mainship/hallways/starboard_ert{
+/area/mainship/hallways/aft_hallway{
 	name = "Ship Floor 3 Hallways"
 	})
 "pQx" = (
@@ -17926,7 +17915,7 @@
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/mainship/sterile/dark,
-/area/mainship/hallways/starboard_ert{
+/area/mainship/hallways/aft_hallway{
 	name = "Ship Floor 3 Hallways"
 	})
 "pYT" = (
@@ -17961,7 +17950,7 @@
 "qaT" = (
 /obj/structure/flora/ausbushes/pointybush,
 /turf/open/floor/grass,
-/area/mainship/hallways/starboard_ert{
+/area/mainship/hallways/aft_hallway{
 	name = "Ship Floor 3 Hallways"
 	})
 "qbs" = (
@@ -18360,7 +18349,7 @@
 "qtj" = (
 /obj/docking_port/stationary/marine_dropship/elevator/floor3,
 /turf/open/floor/mainship/empty,
-/area/mainship/hallways/starboard_ert{
+/area/mainship/hallways/aft_hallway{
 	name = "Ship Floor 3 Hallways"
 	})
 "qtl" = (
@@ -18400,6 +18389,13 @@
 /area/outpost/cargo{
 	outside = 1
 	})
+"quQ" = (
+/obj/effect/decal/cleanable/blood{
+	basecolor = "#ffffff";
+	name = "cum"
+	},
+/turf/open/floor/prison/kitchen,
+/area/mainship/living/officer_study)
 "qvc" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -18550,7 +18546,7 @@
 	pixel_y = 2
 	},
 /turf/open/floor/mainship/sterile/dark,
-/area/mainship/hallways/starboard_ert{
+/area/mainship/hallways/aft_hallway{
 	name = "Ship Floor 3 Hallways"
 	})
 "qBA" = (
@@ -18762,7 +18758,7 @@
 	on = 1
 	},
 /turf/open/floor/mainship/sterile/dark,
-/area/mainship/hallways/starboard_ert{
+/area/mainship/hallways/aft_hallway{
 	name = "Ship Floor 3 Hallways"
 	})
 "qLn" = (
@@ -18865,7 +18861,7 @@
 	name = "\improper Toilet"
 	},
 /turf/open/floor/mainship/sterile/dark,
-/area/mainship/hallways/starboard_ert{
+/area/mainship/hallways/aft_hallway{
 	name = "Ship Floor 3 Hallways"
 	})
 "qPd" = (
@@ -18908,7 +18904,7 @@
 	dir = 1
 	},
 /turf/open/floor/mainship/mono,
-/area/mainship/hallways/starboard_ert{
+/area/mainship/hallways/aft_hallway{
 	name = "Ship Floor 3 Hallways"
 	})
 "qPp" = (
@@ -18933,7 +18929,7 @@
 	dir = 10
 	},
 /turf/open/floor/plating/plating_catwalk,
-/area/mainship/hallways/starboard_ert{
+/area/mainship/hallways/aft_hallway{
 	name = "Ship Floor 3 Hallways"
 	})
 "qQu" = (
@@ -18966,7 +18962,7 @@
 	dir = 6
 	},
 /turf/open/floor/plating/plating_catwalk,
-/area/mainship/hallways/starboard_ert{
+/area/mainship/hallways/aft_hallway{
 	name = "Ship Floor 3 Hallways"
 	})
 "qRx" = (
@@ -19122,7 +19118,7 @@
 	})
 "qZo" = (
 /turf/open/floor/mainship/mono,
-/area/mainship/hallways/starboard_ert{
+/area/mainship/hallways/aft_hallway{
 	name = "Ship Floor 3 Hallways"
 	})
 "qZD" = (
@@ -19193,7 +19189,7 @@
 "rcP" = (
 /obj/machinery/light,
 /turf/open/floor/mainship/mono,
-/area/mainship/hallways/starboard_ert{
+/area/mainship/hallways/aft_hallway{
 	name = "Ship Floor 3 Hallways"
 	})
 "rdh" = (
@@ -19232,7 +19228,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
-/area/mainship/hallways/starboard_ert{
+/area/mainship/hallways/aft_hallway{
 	name = "Ship Floor 3 Hallways"
 	})
 "reL" = (
@@ -19316,7 +19312,7 @@
 "rlK" = (
 /obj/machinery/camera/autoname/mainship,
 /turf/open/floor/mainship/mono,
-/area/mainship/hallways/starboard_ert{
+/area/mainship/hallways/aft_hallway{
 	name = "Ship Floor 3 Hallways"
 	})
 "rlQ" = (
@@ -19517,7 +19513,7 @@
 	dir = 2
 	},
 /turf/open/floor/wood,
-/area/mainship/hallways/starboard_ert{
+/area/mainship/hallways/aft_hallway{
 	name = "Ship Floor 3 Hallways"
 	})
 "rwL" = (
@@ -19586,6 +19582,17 @@
 /obj/structure/closet/cabinet,
 /turf/open/floor/mainship,
 /area/mainship/groundhq/ntf/engineering/ce_room)
+"rzb" = (
+/obj/machinery/light/mainship/small,
+/obj/structure/toilet{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/blood{
+	basecolor = "#ffffff";
+	name = "cum"
+	},
+/turf/open/floor/mainship/floor,
+/area/campaign/jungle_outpost/outpost/living/bathroom)
 "rzy" = (
 /obj/effect/turf_decal/warning_stripes/thick,
 /obj/machinery/landinglight/cas{
@@ -19986,7 +19993,7 @@
 "rWN" = (
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
-/area/mainship/hallways/starboard_ert{
+/area/mainship/hallways/aft_hallway{
 	name = "Ship Floor 3 Hallways"
 	})
 "rXb" = (
@@ -20022,7 +20029,7 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plating/plating_catwalk,
-/area/mainship/hallways/starboard_ert{
+/area/mainship/hallways/aft_hallway{
 	name = "Ship Floor 3 Hallways"
 	})
 "rYG" = (
@@ -20114,7 +20121,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating/plating_catwalk,
-/area/mainship/hallways/starboard_ert{
+/area/mainship/hallways/aft_hallway{
 	name = "Ship Floor 3 Hallways"
 	})
 "sbV" = (
@@ -20172,7 +20179,7 @@
 	},
 /obj/structure/closet/secure_closet/personal/cabinet,
 /turf/open/floor/wood,
-/area/mainship/hallways/starboard_ert{
+/area/mainship/hallways/aft_hallway{
 	name = "Ship Floor 3 Hallways"
 	})
 "sdV" = (
@@ -20265,7 +20272,7 @@
 /area/mainship/hull/upper_hull)
 "sht" = (
 /turf/open/floor/mainship/stripesquare,
-/area/mainship/hallways/starboard_ert{
+/area/mainship/hallways/aft_hallway{
 	name = "Ship Floor 3 Hallways"
 	})
 "shG" = (
@@ -20283,7 +20290,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating/plating_catwalk,
-/area/mainship/hallways/starboard_ert{
+/area/mainship/hallways/aft_hallway{
 	name = "Ship Floor 3 Hallways"
 	})
 "siW" = (
@@ -20369,7 +20376,7 @@
 	dir = 4
 	},
 /turf/open/floor/mainship/mono,
-/area/mainship/hallways/starboard_ert{
+/area/mainship/hallways/aft_hallway{
 	name = "Ship Floor 3 Hallways"
 	})
 "soj" = (
@@ -20560,7 +20567,7 @@
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plating/plating_catwalk,
-/area/mainship/hallways/starboard_ert{
+/area/mainship/hallways/aft_hallway{
 	name = "Ship Floor 3 Hallways"
 	})
 "syh" = (
@@ -20989,7 +20996,7 @@
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
 /turf/open/floor/plating/plating_catwalk,
-/area/mainship/hallways/starboard_ert{
+/area/mainship/hallways/aft_hallway{
 	name = "Ship Floor 3 Hallways"
 	})
 "sRF" = (
@@ -21202,7 +21209,7 @@
 "tbO" = (
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/wood,
-/area/mainship/hallways/starboard_ert{
+/area/mainship/hallways/aft_hallway{
 	name = "Ship Floor 3 Hallways"
 	})
 "tbW" = (
@@ -22105,10 +22112,6 @@
 /area/mainship/squads{
 	outside = 0
 	})
-"tUd" = (
-/obj/machinery/marine_selector/clothes/specialist,
-/turf/open/floor/wood,
-/area/mainship/living/officer_study)
 "tUF" = (
 /obj/structure/closet/basketball,
 /obj/structure/cable,
@@ -22127,7 +22130,7 @@
 "tWk" = (
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
-/area/mainship/hallways/starboard_ert{
+/area/mainship/hallways/aft_hallway{
 	name = "Ship Floor 3 Hallways"
 	})
 "tWr" = (
@@ -22442,16 +22445,6 @@
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/lower_hull)
-"ulB" = (
-/obj/effect/decal/cleanable/blood{
-	basecolor = "#ffffff";
-	name = "cum"
-	},
-/turf/open/floor/mainship/sterile/dark,
-/area/mainship/medical/upper_medical{
-	outside = 0;
-	name = "Shipside Medbay"
-	})
 "umi" = (
 /obj/structure/bed,
 /obj/item/bedsheet/hos,
@@ -22540,6 +22533,11 @@
 /obj/item/ammo_magazine/packet/mateba,
 /obj/item/weapon/gun/rifle/m412/elite,
 /obj/item/storage/pouch/grenade/combat_patrol,
+/obj/item/clothing/under/spec_operative,
+/obj/item/clothing/shoes/marine/sneakingboots,
+/obj/item/ammo_magazine/rifle/ap,
+/obj/item/ammo_magazine/rifle/ap,
+/obj/item/ammo_magazine/rifle/ap,
 /turf/open/floor/wood,
 /area/sulaco/liaison/quarters{
 	outside = 0;
@@ -22920,7 +22918,8 @@
 	},
 /area/mainship/command/self_destruct)
 "uHy" = (
-/obj/structure/bed/bunkbed,
+/obj/structure/bed/fancy,
+/obj/item/bedsheet/hop,
 /turf/open/floor/wood,
 /area/mainship/living/officer_study)
 "uIj" = (
@@ -23347,10 +23346,6 @@
 	name = "Research";
 	outside = 0
 	})
-"veM" = (
-/obj/machinery/marine_selector/gear/specialist,
-/turf/open/floor/wood,
-/area/mainship/living/officer_study)
 "vgl" = (
 /obj/machinery/power/apc/mainship,
 /obj/structure/cable,
@@ -23685,7 +23680,7 @@
 	id = "floor3shipcheckpoint2"
 	},
 /turf/open/floor/plating/plating_catwalk,
-/area/mainship/hallways/starboard_ert{
+/area/mainship/hallways/aft_hallway{
 	name = "Ship Floor 3 Hallways"
 	})
 "vsk" = (
@@ -23825,7 +23820,7 @@
 /obj/structure/table,
 /obj/item/reagent_containers/food/snacks/grown/banana,
 /turf/open/floor/wood,
-/area/mainship/hallways/starboard_ert{
+/area/mainship/hallways/aft_hallway{
 	name = "Ship Floor 3 Hallways"
 	})
 "vzl" = (
@@ -23944,7 +23939,7 @@
 	},
 /obj/effect/ai_node,
 /turf/open/floor/mainship/mono,
-/area/mainship/hallways/starboard_ert{
+/area/mainship/hallways/aft_hallway{
 	name = "Ship Floor 3 Hallways"
 	})
 "vDJ" = (
@@ -23957,7 +23952,7 @@
 	},
 /obj/machinery/camera/autoname/mainship,
 /turf/open/floor/mainship/mono,
-/area/mainship/hallways/starboard_ert{
+/area/mainship/hallways/aft_hallway{
 	name = "Ship Floor 3 Hallways"
 	})
 "vEf" = (
@@ -24373,7 +24368,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/effect/ai_node,
 /turf/open/floor/plating/plating_catwalk,
-/area/mainship/hallways/starboard_ert{
+/area/mainship/hallways/aft_hallway{
 	name = "Ship Floor 3 Hallways"
 	})
 "weP" = (
@@ -24453,7 +24448,7 @@
 "whh" = (
 /obj/structure/flora/ausbushes/sunnybush,
 /turf/open/floor/grass,
-/area/mainship/hallways/starboard_ert{
+/area/mainship/hallways/aft_hallway{
 	name = "Ship Floor 3 Hallways"
 	})
 "whj" = (
@@ -24643,7 +24638,7 @@
 /area/mainship/hull/upper_hull)
 "wnh" = (
 /turf/open/floor/wood,
-/area/mainship/hallways/starboard_ert{
+/area/mainship/hallways/aft_hallway{
 	name = "Ship Floor 3 Hallways"
 	})
 "wnq" = (
@@ -25023,7 +25018,7 @@
 	})
 "wJU" = (
 /turf/open/floor/plating/plating_catwalk,
-/area/mainship/hallways/starboard_ert{
+/area/mainship/hallways/aft_hallway{
 	name = "Ship Floor 3 Hallways"
 	})
 "wKF" = (
@@ -25292,7 +25287,7 @@
 	dir = 1
 	},
 /turf/open/floor/mainship/mono,
-/area/mainship/hallways/starboard_ert{
+/area/mainship/hallways/aft_hallway{
 	name = "Ship Floor 3 Hallways"
 	})
 "wWk" = (
@@ -25374,7 +25369,7 @@
 "wYS" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/mainship/mono,
-/area/mainship/hallways/starboard_ert{
+/area/mainship/hallways/aft_hallway{
 	name = "Ship Floor 3 Hallways"
 	})
 "wZd" = (
@@ -25617,7 +25612,7 @@
 	dir = 8
 	},
 /turf/open/floor/mainship/mono,
-/area/mainship/hallways/starboard_ert{
+/area/mainship/hallways/aft_hallway{
 	name = "Ship Floor 3 Hallways"
 	})
 "xjA" = (
@@ -25774,7 +25769,7 @@
 	dir = 8
 	},
 /turf/open/floor/mainship/mono,
-/area/mainship/hallways/starboard_ert{
+/area/mainship/hallways/aft_hallway{
 	name = "Ship Floor 3 Hallways"
 	})
 "xot" = (
@@ -26097,7 +26092,7 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
 /turf/open/floor/plating/plating_catwalk,
-/area/mainship/hallways/starboard_ert{
+/area/mainship/hallways/aft_hallway{
 	name = "Ship Floor 3 Hallways"
 	})
 "xCS" = (
@@ -26109,7 +26104,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/effect/ai_node,
 /turf/open/floor/plating/plating_catwalk,
-/area/mainship/hallways/starboard_ert{
+/area/mainship/hallways/aft_hallway{
 	name = "Ship Floor 3 Hallways"
 	})
 "xDE" = (
@@ -26381,13 +26376,6 @@
 "xRV" = (
 /turf/open/floor/plating/mainship,
 /area/mainship/living/evacuation/two)
-"xSn" = (
-/obj/effect/decal/cleanable/blood{
-	basecolor = "#ffffff";
-	name = "cum"
-	},
-/turf/open/floor/prison/kitchen,
-/area/mainship/living/officer_study)
 "xSt" = (
 /obj/structure/window/framed/mainship,
 /turf/open/floor/mainship/mono,
@@ -26512,7 +26500,7 @@
 	pixel_y = 7
 	},
 /turf/closed/wall/mainship,
-/area/mainship/hallways/starboard_ert{
+/area/mainship/hallways/aft_hallway{
 	name = "Ship Floor 3 Hallways"
 	})
 "xXl" = (
@@ -26591,12 +26579,12 @@
 	dir = 1
 	},
 /turf/open/floor/mainship/mono,
-/area/mainship/hallways/starboard_ert{
+/area/mainship/hallways/aft_hallway{
 	name = "Ship Floor 3 Hallways"
 	})
 "ybU" = (
 /turf/closed/wall/mainship,
-/area/mainship/hallways/starboard_ert{
+/area/mainship/hallways/aft_hallway{
 	name = "Ship Floor 3 Hallways"
 	})
 "yce" = (
@@ -26743,7 +26731,7 @@
 	dir = 4
 	},
 /turf/open/floor/wood,
-/area/mainship/hallways/starboard_ert{
+/area/mainship/hallways/aft_hallway{
 	name = "Ship Floor 3 Hallways"
 	})
 "ykr" = (
@@ -34552,9 +34540,9 @@ nwr
 nwr
 nwr
 oJY
-opL
-nyT
-nyT
+pPt
+hKm
+hKm
 fgr
 reV
 aMa
@@ -35520,7 +35508,7 @@ nwr
 xZt
 wgC
 oFe
-ksE
+hnp
 spx
 wfY
 edp
@@ -36362,7 +36350,7 @@ nwr
 nwr
 nKd
 uiM
-tUd
+hPa
 uHy
 uHy
 ePf
@@ -36604,9 +36592,9 @@ nKd
 nKd
 nKd
 uiM
-veM
-poP
-kGF
+bsS
+lGg
+mIw
 ePf
 uSI
 oHt
@@ -36641,7 +36629,7 @@ jJg
 rUZ
 iCo
 sfV
-eMf
+rzb
 gkJ
 kyS
 tKP
@@ -36847,7 +36835,7 @@ uiM
 uiM
 gsf
 gsf
-lyP
+dVD
 kPB
 ePf
 kfS
@@ -39023,7 +39011,7 @@ nwr
 gsf
 tej
 jba
-mYI
+nkx
 uTe
 uTe
 xWt
@@ -40233,7 +40221,7 @@ nwr
 uiM
 sBX
 hHn
-xSn
+quQ
 smP
 aBL
 xWt
@@ -41971,7 +41959,7 @@ uEl
 uEl
 aIn
 kzk
-ulB
+onh
 eAS
 xHJ
 kyS
@@ -63676,7 +63664,7 @@ qZo
 ePE
 wJU
 wJU
-rcP
+qZo
 lwu
 lwu
 lwu
@@ -65370,7 +65358,7 @@ qZo
 qZo
 qZo
 qZo
-pPt
+iWx
 lwu
 vRt
 iie
@@ -67060,7 +67048,7 @@ gPv
 pLC
 tWk
 rDw
-hKm
+wpC
 wpC
 liW
 kmK
