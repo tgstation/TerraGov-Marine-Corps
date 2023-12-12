@@ -17,8 +17,7 @@
  * Getter proc for the point value of this object
  * 
  * Returns:
- * * The number of points that should be given to req as the first argument.
- * * The number of points that should be given to cas as the second argument.
+ * * A list where the first value is the number of req points and the second number is the number of cas points.
  */
 /atom/movable/proc/get_export_value()
 	. = list(0,0)
