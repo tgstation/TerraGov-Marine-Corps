@@ -397,6 +397,13 @@
 	desc = "An extremely expensive sneaking leotard with extra skin-showing properties created by an Ninetails Corporation for high risk missions with high risk clothes, made with several layers of a nano-fiber that, while light, molds to the wearer's body shape and hardens protecting them. Only provided rarely to most successful Senior Operatives or higher. This leotard allows you to crawl through vents with ALT-CLICK"
 	icon_state = "swim_black"
 
+
+/obj/item/clothing/under/spec_operative/armoredsuit
+	name = "Formal suit"
+	desc = "An extremely expensive looking formal uniform with a short, side split skirt that seems to have toughened, kevlar or maybe another material fabric... Reminds you of john wick's suit."
+	icon_state = "charcoal_suit_skirt"
+	soft_armor = list(MELEE = 40, BULLET = 40, LASER = 60, ENERGY = 70, BOMB = 70, BIO = 70, FIRE = 70, ACID = 50)
+
 /obj/item/clothing/under/techpriest
 	name = "Techpriest Robes"
 	desc = "Praise the omnissiah!"

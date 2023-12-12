@@ -55,7 +55,7 @@
 	enable_fun_tads = TRUE
 	xenorespawn_time = 15 SECONDS
 	respawn_time = 15 SECONDS
-	bioscan_interval = 40 MINUTES
+	bioscan_interval = 1 HOURS
 
 //sets NTC and SOM squads
 /datum/game_mode/infestation/extended_plus/set_valid_squads()
