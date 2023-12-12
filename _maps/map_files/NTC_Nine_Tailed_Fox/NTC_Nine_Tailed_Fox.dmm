@@ -1142,6 +1142,9 @@
 	})
 "aYI" = (
 /obj/machinery/light/mainship,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
 /turf/open/floor/mainship/floor,
 /area/mainship/living/officer_study)
 "aZa" = (
@@ -2459,6 +2462,12 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/lower_hull)
+"cha" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 10
+	},
+/turf/open/floor/mainship/floor,
+/area/mainship/living/officer_study)
 "chh" = (
 /obj/structure/table/mainship/nometal,
 /obj/machinery/computer/security/marinemainship_network,
@@ -7985,10 +7994,8 @@
 /area/mainship/hull/upper_hull)
 "hnw" = (
 /obj/machinery/light/mainship,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 9
-	},
 /obj/structure/cable,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
 /turf/open/floor/mainship/floor,
 /area/mainship/living/officer_study)
 "hnC" = (
@@ -15327,6 +15334,9 @@
 /area/mainship/hull/lower_hull)
 "ofv" = (
 /obj/effect/ai_node,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
 /turf/open/floor/mainship/floor,
 /area/mainship/living/officer_study)
 "ofB" = (
@@ -16220,9 +16230,7 @@
 "oYl" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/junction,
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
-	dir = 4
-	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/bow_hallway{
 	name = "Ship Floor 1 Hallways"
@@ -19421,6 +19429,13 @@
 	dir = 9
 	},
 /area/mainship/living/basketball)
+"slI" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
+	dir = 1
+	},
+/turf/open/floor/mainship/floor,
+/area/mainship/living/officer_study)
 "slL" = (
 /turf/closed/wall/mainship,
 /area/sulaco/command{
@@ -21767,15 +21782,11 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/upper_hull)
 "uzE" = (
-/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
-	dir = 4
+	dir = 1
 	},
-/obj/structure/disposalpipe/segment,
-/turf/open/floor/plating/plating_catwalk,
-/area/mainship/hallways/bow_hallway{
-	name = "Ship Floor 1 Hallways"
-	})
+/turf/open/floor/mainship/floor,
+/area/mainship/living/officer_study)
 "uzU" = (
 /obj/machinery/cryopod,
 /obj/machinery/camera/autoname,
@@ -22929,15 +22940,11 @@
 	name = "CEO Office"
 	})
 "vFS" = (
-/obj/structure/disposalpipe/segment,
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
-	dir = 8
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
 	},
-/turf/open/floor/plating/plating_catwalk,
-/area/mainship/hallways/bow_hallway{
-	name = "Ship Floor 1 Hallways"
-	})
+/turf/open/floor/mainship/floor,
+/area/mainship/living/officer_study)
 "vGL" = (
 /obj/structure/rack,
 /obj/item/frame/table/gambling,
@@ -36610,7 +36617,7 @@ uTe
 nRP
 nRP
 dhf
-bvE
+slI
 gYA
 tZG
 inX
@@ -37124,12 +37131,12 @@ wJj
 dRx
 tlR
 oYl
-vFS
+dRx
 tlR
 dRx
 tlR
 tlR
-uzE
+oES
 tlR
 tVt
 vaS
@@ -37336,7 +37343,7 @@ jAQ
 pAd
 hhd
 uTe
-xWt
+uzE
 gYA
 tZG
 sdV
@@ -37578,7 +37585,7 @@ oYJ
 feE
 dbd
 uTe
-xWt
+vFS
 tbW
 cMb
 cMb
@@ -37820,7 +37827,7 @@ jba
 nkx
 uTe
 uTe
-xWt
+vFS
 cMb
 tmd
 ifv
@@ -38062,7 +38069,7 @@ cMb
 wlm
 cMb
 cMb
-xWt
+uzE
 gYA
 tZG
 sdV
@@ -38546,7 +38553,7 @@ hHn
 hHn
 eju
 qAd
-xWt
+vFS
 lyD
 tmd
 ifv
@@ -38788,7 +38795,7 @@ iEX
 fud
 kRG
 aBL
-xWt
+cha
 gYA
 tZG
 inX
