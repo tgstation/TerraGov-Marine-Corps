@@ -570,6 +570,8 @@ GLOBAL_LIST_INIT(smartgunner_clothes_listed_products, list(
 	))
 
 GLOBAL_LIST_INIT(specialist_clothes_listed_products, list(
+		/obj/effect/vendor_bundle/basic_specialist = list(CAT_STD, "Standard Sneaking Suit kit", 0, "white"),
+		/obj/effect/vendor_bundle/basic_specialist/tback = list(CAT_STD, "Standard Leotard Sneaking Suit kit", 0, "white"),
 		/obj/effect/vendor_bundle/basic_squadleader = list(CAT_STD, "Standard kit", 0, "white"),
 		/obj/effect/vendor_bundle/basic_jaeger_squadleader = list(CAT_STD, "Essential Jaeger Kit", 0, "white"),
 		/obj/effect/vendor_bundle/robot/essentials = list(CAT_STD, "Essential Combat Robot Kit", 0, "white"),
