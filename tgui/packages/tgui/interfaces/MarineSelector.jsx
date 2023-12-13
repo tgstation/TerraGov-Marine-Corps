@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useBackend } from '../backend';
+import { useBackend, useLocalState } from '../backend';
 import { Button, Section, Box, ProgressBar, LabeledList, Modal } from '../components';
 import { Window } from '../layouts';
 
