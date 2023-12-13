@@ -5326,7 +5326,6 @@
 	pixel_y = 6
 	},
 /obj/item/tool/pen,
-/obj/machinery/light,
 /turf/open/floor/mainship/mono,
 /area/mainship/command/cic)
 "eWT" = (
@@ -8008,6 +8007,7 @@
 /area/mainship/groundhq/ntf/living/grunt_rnr)
 "hnp" = (
 /obj/machinery/nuclearbomb,
+/obj/machinery/light,
 /turf/open/floor/mainship/red/full,
 /area/mainship/hull/upper_hull)
 "hnw" = (
@@ -16096,9 +16096,6 @@
 /obj/machinery/light/mainship/small{
 	dir = 8
 	},
-/obj/item/weapon/gun/sentry/big_sentry/premade/radial{
-	name = "\improper ST-571 sentry gun"
-	},
 /turf/open/floor/mainship/black{
 	dir = 4
 	},
@@ -16423,9 +16420,6 @@
 	dir = 8
 	},
 /obj/structure/cable,
-/obj/item/weapon/gun/sentry/big_sentry/premade/radial{
-	name = "\improper ST-571 sentry gun"
-	},
 /turf/open/floor/mainship/black{
 	dir = 8
 	},
@@ -18390,6 +18384,7 @@
 /obj/structure/rack,
 /obj/item/storage/pouch/medkit,
 /obj/item/storage/pouch/medkit,
+/obj/machinery/light,
 /turf/open/floor/mainship/blue/full,
 /area/mainship/command/cic)
 "rbP" = (
@@ -18766,15 +18761,6 @@
 	},
 /turf/open/floor/mainship/black,
 /area/mainship/living/tankerbunks)
-"rye" = (
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 8
-	},
-/obj/machinery/camera/autoname/mainship{
-	dir = 8
-	},
-/turf/open/shuttle/escapepod/plain,
-/area/mainship/command/self_destruct)
 "ryz" = (
 /turf/open/floor/carpet{
 	dir = 9;
@@ -21441,16 +21427,13 @@
 /turf/open/floor/grass,
 /area/mainship/groundhq/ntf/living/grunt_rnr)
 "ugG" = (
-/obj/machinery/light/mainship{
-	dir = 1
+/obj/machinery/camera/autoname/mainship{
+	dir = 8
 	},
-/obj/machinery/door/poddoor/mainship{
-	id = "nukedoors";
-	name = "\improper Blast Door";
-	dir = 2
+/turf/open/floor/mainship/black{
+	dir = 8
 	},
-/turf/open/floor/mainship/red/full,
-/area/mainship/hull/upper_hull)
+/area/mainship/command/self_destruct)
 "uhf" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
@@ -21987,9 +21970,6 @@
 "uHj" = (
 /obj/machinery/light/mainship/small{
 	dir = 4
-	},
-/obj/item/weapon/gun/sentry/big_sentry/premade/radial{
-	name = "\improper ST-571 sentry gun"
 	},
 /turf/open/floor/mainship/black{
 	dir = 8
@@ -33707,7 +33687,7 @@ nwr
 nwr
 nwr
 oJY
-ugG
+hKm
 scG
 spx
 spx
@@ -41103,7 +41083,7 @@ ivR
 wxw
 gDR
 bAE
-rye
+ivR
 wxw
 aiO
 eeu
@@ -41345,7 +41325,7 @@ qOz
 qOz
 pBR
 qOz
-qOz
+ugG
 qOz
 kUg
 eeu

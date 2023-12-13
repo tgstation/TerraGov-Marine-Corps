@@ -128,7 +128,7 @@
 				to_chat(usr, span_warning("Only the Captain can award medals."))
 				return
 			var/mob/living/user = usr
-			if(!ismarinecaptainjob(user.job))
+			if(!ismarinecommandjob(user.job))
 				to_chat(usr, span_warning("Only the Captain can award medals."))
 				return
 
