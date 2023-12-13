@@ -17,6 +17,7 @@
 	layer = ABOVE_OBJ_LAYER
 	dir = NORTH
 	density = TRUE
+	coverage = 0
 	var/base_category //what kind of equipment this base accepts.
 	var/ship_tag //used to associate the base to a dropship.
 	/// offset in pixels when equipment is attached
