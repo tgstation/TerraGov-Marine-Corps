@@ -1,7 +1,8 @@
-import { useBackend, useLocalState } from '../backend';
+import { useBackend } from '../backend';
 import { Window } from '../layouts';
 import { Button, Section, Box, LabeledList, Divider, Tabs, Stack, Collapsible, Flex } from '../components';
 import { classes } from 'common/react';
+import { useState } from 'react';
 
 type BlessingData = {
   user: string;
@@ -28,11 +29,8 @@ const categoryIcons = {
 
 export const BlessingMenu = (props) => {
   const { data } = useBackend<BlessingData>();
-
   const { psypoints, categories } = data;
-
-  const [selectedCategory, setSelectedCategory] = useLocalState(
-    'selectedCategory',
+  const [selectedCategory, setSelectedCategory] = useState(
     categories.length ? categories[0] : null
   );
 
@@ -69,22 +67,17 @@ export const BlessingMenu = (props) => {
               <Divider />
             </Section>
           )}
-          <Upgrades />
+          <Upgrades selectedCategory={selectedCategory} />
         </Section>
       </Window.Content>
     </Window>
   );
 };
 
-const Upgrades = (props) => {
+const Upgrades = (props: { selectedCategory: string | null }) => {
   const { data } = useBackend<BlessingData>();
-
-  const { psypoints, upgrades, categories } = data;
-
-  const [selectedCategory, setSelectedCategory] = useLocalState(
-    'selectedCategory',
-    categories.length ? categories[0] : null
-  );
+  const { psypoints, upgrades } = data;
+  const { selectedCategory } = props;
 
   return (
     <Section>

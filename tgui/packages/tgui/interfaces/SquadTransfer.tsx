@@ -1,6 +1,7 @@
 import { Stack, Button, Section } from '../components';
 import { Window } from '../layouts';
-import { useBackend, useLocalState } from '../backend';
+import { useBackend } from '../backend';
+import { useState } from 'react';
 
 type SquadSelectorData = {
   active_squads?: SquadEntry[];
@@ -17,15 +18,8 @@ type SquadEntry = {
 export const SquadTransfer = (props) => {
   const { act, data } = useBackend<SquadSelectorData>();
   const { active_squads } = data;
-  const [selectedSquad, setSelectedSquad] = useLocalState<string>(
-    'selectedSquad',
-    ''
-  );
-
-  const [selectedMember, setSelectedMember] = useLocalState<string>(
-    'selectedMember',
-    ''
-  );
+  const [selectedSquad, setSelectedSquad] = useState('');
+  const [selectedMember, setSelectedMember] = useState('');
 
   const selectedSquadEntry = active_squads?.find(
     (i) => i.name === selectedSquad

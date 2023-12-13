@@ -1,10 +1,12 @@
-import { useBackend, useLocalState } from '../backend';
-import { Button, Flex, LabeledList, Section, Table, Tabs } from '../components';
 import { map } from 'common/collections';
+import { useBackend } from '../backend';
+import { Button, Flex, LabeledList, Section, Table, Tabs } from '../components';
 import { Window } from '../layouts';
+import { useState } from 'react';
 
 export const ShuttleManipulator = (props) => {
-  const [tab, setTab] = useLocalState('tab', 1);
+  const [tab, setTab] = useState(1);
+
   return (
     <Window width={800} height={600}>
       <Window.Content scrollable>
@@ -91,8 +93,7 @@ export const ShuttleManipulatorTemplates = (props) => {
   const { act, data } = useBackend();
   const templateObject = data.templates || {};
   const selected = data.selected || {};
-  const [selectedTemplateId, setSelectedTemplateId] = useLocalState(
-    'templateId',
+  const [selectedTemplateId, setSelectedTemplateId] = useState(
     Object.keys(templateObject)[0]
   );
   const actualTemplates = templateObject[selectedTemplateId]?.templates;

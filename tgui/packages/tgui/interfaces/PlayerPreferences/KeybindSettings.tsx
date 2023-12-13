@@ -1,4 +1,5 @@
-import { useBackend, useLocalState } from '../../backend';
+import { useState } from 'react';
+import { useBackend } from '../../backend';
 import { Button, Input, Section, LabeledList, Box, Stack } from '../../components';
 import { TextInputModal } from './TextInputModal';
 
@@ -11,13 +12,9 @@ const KEY_MODS = {
 export const KeybindSettings = (props) => {
   const { act, data } = useBackend<KeybindSettingData>();
   const { all_keybindings, is_admin } = data;
-
   const [captureSentence, setCaptureSentence] =
-    useLocalState<KeybindSentenceCapture | null>(`setCaptureSentence`, null);
-  const [filter, setFilter] = useLocalState<string | null>(
-    `keybind-filter`,
-    null
-  );
+    useState<KeybindSentenceCapture | null>(null);
+  const [filter, setFilter] = useState<string | null>(null);
 
   const filterSearch = (kb: KeybindingsData) =>
     !filter // If we don't have a filter, don't filter
@@ -37,7 +34,7 @@ export const KeybindSettings = (props) => {
     <Section title="Keybindings" buttons={resetButton}>
       {captureSentence && (
         <TextInputModal
-          label="Chose a custom sentence"
+          label="Choose a custom sentence"
           button_text="Confirm"
           onSubmit={(input) => {
             act('setCustomSentence', {
@@ -215,7 +212,7 @@ const CustomSentence = (props) => {
       <Button
         onClick={() => setCaptureSentence({ name: keybind.name })}
         tooltip={currentSentence && currentSentence.sentence}>
-        Chose custom sentence
+        Choose a custom sentence
       </Button>
       {current &&
         current.map((key) => (

@@ -1,4 +1,5 @@
-import { useBackend, useLocalState } from '../../backend';
+import { useState } from 'react';
+import { useBackend } from '../../backend';
 import { Box, Stack, Button, Section, LabeledList, Tabs, Flex } from '../../components';
 import { Window } from '../../layouts';
 import { LoadoutListData, LoadoutTabData, LoadoutManagerData, LoadoutItemData } from './Types';
@@ -120,15 +121,9 @@ export const LoadoutManager = (props) => {
   const { act, data } = useBackend<LoadoutManagerData>();
   const { loadout_list } = data;
 
-  const [job, setJob] = useLocalState('job', 'Squad Marine');
-  const [saveNewLoadout, setSaveNewLoadout] = useLocalState(
-    'saveLoadout',
-    false
-  );
-  const [importNewLoadout, setImportNewLoadout] = useLocalState(
-    'importLoadout',
-    false
-  );
+  const [job, setJob] = useState('Squad Marine');
+  const [saveNewLoadout, setSaveNewLoadout] = useState(false);
+  const [importNewLoadout, setImportNewLoadout] = useState(false);
 
   return (
     <Window title="Loadout Manager" width={700} height={400}>

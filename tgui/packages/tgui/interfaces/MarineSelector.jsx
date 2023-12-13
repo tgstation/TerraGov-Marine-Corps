@@ -1,12 +1,11 @@
-import { useBackend, useLocalState } from '../backend';
+import { useState } from 'react';
+import { useBackend } from '../backend';
 import { Button, Section, Box, ProgressBar, LabeledList, Modal } from '../components';
 import { Window } from '../layouts';
 
 export const MarineSelector = (props) => {
   const { act, data } = useBackend();
-
-  const [showEmpty, setShowEmpty] = useLocalState('showEmpty', 0);
-
+  const [showEmpty, setShowEmpty] = useState(false);
   const [showDesc, setShowDesc] = useLocalState('showDesc', null);
 
   const categories = Object.keys(data.displayed_records)
@@ -117,7 +116,6 @@ const ItemCategory = (props) => {
 
 const ItemLine = (props) => {
   const { act, data } = useBackend();
-
   const [showDesc, setShowDesc] = useLocalState('showDesc', null);
 
   const {

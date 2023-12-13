@@ -1,9 +1,10 @@
 import { map } from 'common/collections';
 import { toFixed } from 'common/math';
 import { numberOfDecimalDigits } from '../../common/math';
-import { useBackend, useLocalState } from '../backend';
+import { useBackend } from '../backend';
 import { Box, Button, Collapsible, ColorBox, Dropdown, Input, LabeledList, NoticeBox, NumberInput, Section } from '../components';
 import { Window } from '../layouts';
+import { useState } from 'react';
 
 const FilterIntegerEntry = (props) => {
   const { value, name, filterName } = props;
@@ -30,7 +31,8 @@ const FilterIntegerEntry = (props) => {
 const FilterFloatEntry = (props) => {
   const { value, name, filterName } = props;
   const { act } = useBackend();
-  const [step, setStep] = useLocalState(`${filterName}-${name}`, 0.01);
+  const [step, setStep] = useState(0.01);
+
   return (
     <>
       <NumberInput
@@ -270,8 +272,9 @@ export const Filteriffic = (props) => {
   const filters = data.target_filter_data || {};
   const hasFilters = filters !== {};
   const filterDefaults = data['filter_info'];
-  const [massApplyPath, setMassApplyPath] = useLocalState('massApplyPath', '');
-  const [hiddenSecret, setHiddenSecret] = useLocalState('hidden', false);
+  const [massApplyPath, setMassApplyPath] = useState('');
+  const [hiddenSecret, setHiddenSecret] = useState(false);
+
   return (
     <Window title="Filteriffic" width={500} height={500}>
       <Window.Content scrollable>

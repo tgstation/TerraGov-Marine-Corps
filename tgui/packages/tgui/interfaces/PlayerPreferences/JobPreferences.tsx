@@ -1,4 +1,5 @@
-import { useBackend, useLocalState } from '../../backend';
+import { useState } from 'react';
+import { useBackend } from '../../backend';
 import { Section, LabeledList, Modal, Button, Box, Stack, Flex } from '../../components';
 
 export const JobPreferences = (props) => {
@@ -13,10 +14,7 @@ export const JobPreferences = (props) => {
     special_occupations,
     special_occupation,
   } = data;
-  const [shownDescription, setShownDescription] = useLocalState(
-    'shown-desc',
-    null
-  );
+  const [shownDescription, setShownDescription] = useState(null);
 
   const xenoJobs = ['Xeno Queen', 'Xenomorph'];
   const commandRoles = [

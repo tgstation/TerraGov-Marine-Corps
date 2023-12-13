@@ -1,4 +1,5 @@
-import { useBackend, useLocalState } from '../../backend';
+import { useState } from 'react';
+import { useBackend } from '../../backend';
 import { Button, Section, TextArea, Box, Stack } from '../../components';
 
 export const BackgroundInformation = (props) => {
@@ -11,27 +12,11 @@ export const BackgroundInformation = (props) => {
     sec_record,
     exploit_record,
   } = data;
-
-  const [characterDesc, setCharacterDesc] = useLocalState(
-    'characterDesc' + slot,
-    flavor_text
-  );
-  const [medicalDesc, setMedicalDesc] = useLocalState(
-    'medicalDesc' + slot,
-    med_record
-  );
-  const [employmentDesc, setEmploymentDesc] = useLocalState(
-    'employmentDesc' + slot,
-    gen_record
-  );
-  const [securityDesc, setSecurityDesc] = useLocalState(
-    'securityDesc' + slot,
-    sec_record
-  );
-  const [exploitsDesc, setExploitsDesc] = useLocalState(
-    'exploitsDesc' + slot,
-    exploit_record
-  );
+  const [characterDesc, setCharacterDesc] = useState(flavor_text);
+  const [medicalDesc, setMedicalDesc] = useState(med_record);
+  const [employmentDesc, setEmploymentDesc] = useState(gen_record);
+  const [securityDesc, setSecurityDesc] = useState(sec_record);
+  const [exploitsDesc, setExploitsDesc] = useState(exploit_record);
   return (
     <Section title="Background information">
       <Section

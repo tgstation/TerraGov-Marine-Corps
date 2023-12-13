@@ -1,4 +1,5 @@
-import { useBackend, useLocalState } from '../backend';
+import { useState } from 'react';
+import { useBackend } from '../backend';
 import { Window } from '../layouts';
 import { Button, Flex, Divider, Box, Section, ProgressBar, Tooltip, Collapsible } from '../components';
 import { round } from 'common/math';
@@ -403,10 +404,8 @@ const PopulationPyramid = (_props) => {
     user_show_empty,
     user_show_compact,
   } = data;
-
-  const [showEmpty, toggleEmpty] = useLocalState('showEmpty', true);
-
-  const [showCompact, toggleCompact] = useLocalState('showCompact', false);
+  const [showEmpty, toggleEmpty] = useState(true);
+  const [showCompact, toggleCompact] = useState(false);
 
   const primos: boolean[] = []; // Index is tier.
   const pyramid_data: PyramidCalc[] = [];
@@ -646,7 +645,7 @@ const XenoList = (_props) => {
     user_tracked,
   } = data;
 
-  const [sortingBy, setSortBy] = useLocalState('sortingBy', default_sort);
+  const [sortingBy, setSortBy] = useState(default_sort);
 
   const SortingButton = (props: { text: string; tip?: string }) => {
     return (
