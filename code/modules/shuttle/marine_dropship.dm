@@ -875,6 +875,7 @@
 
 /obj/structure/dropship_piece/one/weapon
 	opacity = FALSE
+	coverage = 0
 
 /obj/structure/dropship_piece/one/weapon/leftleft
 	icon_state = "brown_weapon_ll"
