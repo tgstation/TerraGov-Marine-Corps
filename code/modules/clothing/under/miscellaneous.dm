@@ -382,6 +382,8 @@
 	gas_transfer_coefficient = 0.01
 	permeability_coefficient = 0.01
 
+/obj/item/clothing/under/spec_operative/elf
+	soft_armor = list(MELEE = 10, BULLET = 10, LASER = 10, ENERGY = 15, BOMB = 100, BIO = 10, FIRE = 15, ACID = 10)
 /obj/item/clothing/under/techpriest
 	name = "Techpriest Robes"
 	desc = "Praise the omnissiah!"

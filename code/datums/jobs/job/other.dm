@@ -138,7 +138,7 @@
 	id = /obj/item/card/id/silver
 	belt = /obj/item/storage/holster/belt/pistol/m4a3/vp70_pmc
 	ears = /obj/item/radio/headset/distress/commando
-	w_uniform = /obj/item/clothing/under/spec_operative
+	w_uniform = /obj/item/clothing/under/spec_operative/elf
 	shoes = /obj/item/clothing/shoes/ruggedboot
 	wear_suit = /obj/item/clothing/suit/space/elf/nodrop
 	gloves = /obj/item/clothing/gloves/ruggedgloves
@@ -157,7 +157,7 @@
 	id = /obj/item/card/id/silver
 	belt = /obj/item/storage/belt/utility/full
 	ears = /obj/item/radio/headset/distress/commando
-	w_uniform = /obj/item/clothing/under/spec_operative
+	w_uniform = /obj/item/clothing/under/spec_operative/elf
 	shoes = /obj/item/clothing/shoes/ruggedboot
 	wear_suit = /obj/item/clothing/suit/space/elf/nodrop
 	gloves = /obj/item/clothing/gloves/ruggedgloves
@@ -176,7 +176,7 @@
 	id = /obj/item/card/id/silver
 	belt = /obj/item/storage/belt/utility/full
 	ears = /obj/item/radio/headset/distress/commando
-	w_uniform = /obj/item/clothing/under/spec_operative
+	w_uniform = /obj/item/clothing/under/spec_operative/elf
 	shoes = /obj/item/clothing/shoes/ruggedboot
 	wear_suit = /obj/item/clothing/suit/space/elf
 	gloves = /obj/item/clothing/gloves/ruggedgloves
