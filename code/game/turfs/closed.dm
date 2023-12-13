@@ -509,6 +509,7 @@
 
 /turf/closed/shuttle/dropship1/panel
 	icon_state = "shuttle_interior_panel"
+	density = FALSE
 
 /turf/closed/shuttle/dropship1/engineone
 	icon_state = "shuttle_interior_backengine"
