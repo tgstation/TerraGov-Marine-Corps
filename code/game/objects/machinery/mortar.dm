@@ -59,6 +59,8 @@
 		/obj/item/mortal_shell/smoke,
 		/obj/item/mortal_shell/flare,
 		/obj/item/mortal_shell/plasmaloss,
+		/obj/item/mortal_shell/smoke/satrapine,
+		/obj/item/mortal_shell/smoke/sleep,
 	)
 
 	use_power = NO_POWER_USE
@@ -678,7 +680,7 @@
 	icon_state = "mortar_ammo_smk"
 	ammo_type = /datum/ammo/mortar/smoke
 
-/obj/item/mortal_shell/satrapine
+/obj/item/mortal_shell/smoke/satrapine
 	name = "\improper 80mm nerve gas mortar shell"
 	desc = "An 80mm mortar shell, loaded with nerve gas smoke dispersal agents. Can be fired at marines more-or-less safely. Way slimmer than your typical 80mm."
 	icon_state = "mortar_ammo_smk"

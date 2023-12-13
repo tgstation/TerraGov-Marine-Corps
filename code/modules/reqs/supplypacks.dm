@@ -912,7 +912,7 @@ EXPLOSIVES
 
 /datum/supply_packs/explosives/mortar_ammo_satrepine
 	name = "T-50S mortar satrepine smoke shell (x2)"
-	contains = list(/obj/item/mortal_shell/satrapine, /obj/item/mortal_shell/satrapine)
+	contains = list(/obj/item/mortal_shell/smoke/satrapine, /obj/item/mortal_shell/smoke/satrapine)
 	cost = 10
 
 
