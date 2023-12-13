@@ -8848,7 +8848,8 @@
 /obj/item/weapon/gun/shotgun/combat/masterkey,
 /obj/item/ammo_magazine/minisentry,
 /obj/item/attachable/scope/mini,
-/obj/item/attachable/motiondetector,
+/obj/item/attachable/lasersight,
+/obj/item/attachable/compensator,
 /turf/open/floor/wood,
 /area/sulaco/liaison/quarters{
 	outside = 0;
@@ -13725,6 +13726,8 @@
 /obj/item/assembly/prox_sensor,
 /obj/item/assembly/prox_sensor,
 /obj/item/tool/lighter/zippo,
+/obj/item/ammo_magazine/packet/mateba,
+/obj/item/ammo_magazine/packet/mateba,
 /turf/open/floor/carpet{
 	dir = 6;
 	icon_state = "carpetside"
@@ -21610,8 +21613,6 @@
 /obj/item/storage/belt/marine,
 /obj/item/storage/pouch/medkit/firstaid,
 /obj/item/armor_module/storage/uniform/holster,
-/obj/item/ammo_magazine/packet/mateba,
-/obj/item/ammo_magazine/packet/mateba,
 /obj/item/weapon/gun/rifle/m412/elite,
 /obj/item/storage/pouch/grenade/combat_patrol,
 /obj/item/clothing/shoes/marine/sneakingboots,
