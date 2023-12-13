@@ -56,7 +56,6 @@
 /mob/living/carbon/human/vv_get_dropdown()
 	. = ..()
 	VV_DROPDOWN_OPTION("", "---------")
-	//VV_DROPDOWN_OPTION(VV_HK_COPY_OUTFIT, "Copy Outfit")
 	VV_DROPDOWN_OPTION(VV_HK_SET_SPECIES, "Set Species")
 
 /mob/living/carbon/human/vv_do_topic(list/href_list)
@@ -64,11 +63,6 @@
 
 	if(!.)
 		return
-
-	/*if(href_list[VV_HK_COPY_OUTFIT])
-		if(!check_rights(R_SPAWN))
-			return
-		copy_outfit()*/ //TODO: Get copy_outfit() proc to work
 
 	if(href_list[VV_HK_SET_SPECIES])
 		if(!check_rights(R_SPAWN))

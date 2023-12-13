@@ -142,7 +142,6 @@
 #include "code\__DEFINES\dcs\signals\signals_mind.dm"
 #include "code\__DEFINES\dcs\signals\signals_subsystem.dm"
 #include "code\__HELPERS\_lists.dm"
-#include "code\__HELPERS\_planes.dm"
 #include "code\__HELPERS\_string_lists.dm"
 #include "code\__HELPERS\admin.dm"
 #include "code\__HELPERS\ai.dm"

@@ -919,24 +919,6 @@ below 100 is not dizzy
 				return FALSE
 			update_transform(var_value/resize)
 			. = TRUE
-		/*if(NAMEOF(src, buckled))
-			set_buckled(var_value)
-			. = TRUE
-		if(NAMEOF(src, num_legs))
-			set_num_legs(var_value)
-			. = TRUE
-		if(NAMEOF(src, usable_legs))
-			set_usable_legs(var_value)
-			. = TRUE
-		if(NAMEOF(src, num_hands))
-			set_num_hands(var_value)
-			. = TRUE
-		if(NAMEOF(src, usable_hands))
-			set_usable_hands(var_value)
-			. = TRUE
-		if(NAMEOF(src, body_position))
-			set_body_position(var_value)
-			. = TRUE*/
 
 	if(!isnull(.))
 		datum_flags |= DF_VAR_EDITED
@@ -947,9 +929,6 @@ below 100 is not dizzy
 	switch(var_name)
 		if(NAMEOF(src, maxHealth))
 			updatehealth()
-		//if(NAMEOF(src, lighting_cutoff))
-			//sync_lighting_plane_cutoff()
-
 
 /mob/living/vv_get_header()
 	. = ..()
@@ -997,24 +976,6 @@ below 100 is not dizzy
 		if(!check_rights(NONE))
 			return
 		admin_give_speech_impediment(usr)
-	/*if (href_list[VV_HK_ADD_MOOD])
-		admin_add_mood_event(usr)
-	if (href_list[VV_HK_REMOVE_MOOD])
-		admin_remove_mood_event(usr)
-
-	if(href_list[VV_HK_GIVE_HALLUCINATION])
-		if(!check_rights(NONE))
-			return
-		admin_give_hallucination(usr)
-
-	if(href_list[VV_HK_GIVE_DELUSION_HALLUCINATION])
-		if(!check_rights(NONE))
-			return
-		admin_give_delusion(usr)
-	if(href_list[VV_HK_GIVE_GUARDIAN_SPIRIT])
-		if(!check_rights(NONE))
-			return
-		admin_give_guardian(usr)*/
 
 /// Admin only proc for giving a certain speech impediment to this mob
 /mob/living/proc/admin_give_speech_impediment(mob/admin)
@@ -1037,7 +998,3 @@ below 100 is not dizzy
 		return
 
 	adjust_timed_status_effect(duration * 1 SECONDS, impediments[chosen])
-
-
-
-
