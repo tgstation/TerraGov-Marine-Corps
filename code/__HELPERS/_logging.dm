@@ -132,7 +132,7 @@
 /proc/log_say(text)
 	LAZYADD(GLOB.say_log, "\[[stationTimestamp()]\] SAY: [text]")
 	if(CONFIG_GET(flag/log_say))
-		WRITE_LOG(GLOB.world_game_log, "SAY: [text]")
+		WRITE_LOG(GLOB.roleplay_log, "SAY: [text]")
 
 
 /proc/log_telecomms(text)
@@ -163,7 +163,7 @@
 /proc/log_looc(text)
 	LAZYADD(GLOB.say_log, "\[[stationTimestamp()]\] LOOC: [text]")
 	if(CONFIG_GET(flag/log_looc))
-		WRITE_LOG(GLOB.world_game_log, "LOOC: [text]")
+		WRITE_LOG(GLOB.roleplay_log, "LOOC: [text]")
 
 
 /proc/log_hivemind(text)
@@ -175,13 +175,13 @@
 /proc/log_whisper(text)
 	LAZYADD(GLOB.say_log, "\[[stationTimestamp()]\] WHISPER: [text]")
 	if(CONFIG_GET(flag/log_whisper))
-		WRITE_LOG(GLOB.world_game_log, "WHISPER: [text]")
+		WRITE_LOG(GLOB.roleplay_log, "WHISPER: [text]")
 
 
 /proc/log_emote(text)
 	LAZYADD(GLOB.say_log, "\[[stationTimestamp()]\] EMOTE: [text]")
 	if(CONFIG_GET(flag/log_emote))
-		WRITE_LOG(GLOB.world_game_log, "EMOTE: [text]")
+		WRITE_LOG(GLOB.roleplay_log, "EMOTE: [text]")
 
 
 /proc/log_prayer(text)

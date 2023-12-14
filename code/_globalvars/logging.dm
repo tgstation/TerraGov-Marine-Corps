@@ -26,6 +26,7 @@ GLOBAL_PROTECT(##log_var_name);\
 	return
 
 DECLARE_LOG_NAMED(world_game_log, "game", START_LOG)
+DECLARE_LOG_NAMED(roleplay_log, "roleplay", START_LOG)
 DECLARE_LOG_NAMED(world_mecha_log, "mecha", DONT_START_LOG)
 DECLARE_LOG_NAMED(world_asset_log, "asset", DONT_START_LOG)
 DECLARE_LOG_NAMED(world_runtime_log, "runtime", START_LOG)
