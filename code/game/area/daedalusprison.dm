@@ -165,6 +165,7 @@
 /area/daedalusprison/inside/abandonedstorage
 	name = "Abandoned Storage"
 	icon_state = "auxstorage"
+	always_unpowered = TRUE
 
 /area/daedalusprison/inside/westernbooth
 	name = "Prison Western Security Booth"
@@ -182,7 +183,7 @@
 	minimap_color = MINIMAP_AREA_ENGI
 
 /area/daedalusprison/inside/prisongarden
-	name = "Prison  Garden"
+	name = "Prison Garden"
 	icon_state = "garden"
 	minimap_color = MINIMAP_AREA_LIVING
 
