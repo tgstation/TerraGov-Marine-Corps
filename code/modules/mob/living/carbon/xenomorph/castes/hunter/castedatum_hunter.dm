@@ -50,15 +50,15 @@
 
 	// *** Abilities *** //
 	actions = list(
-		/datum/action/xeno_action/xeno_resting,
-		/datum/action/xeno_action/watch_xeno,
-		/datum/action/xeno_action/activable/psydrain,
-		/datum/action/xeno_action/activable/silence,
-		/datum/action/xeno_action/activable/pounce,
-		/datum/action/xeno_action/stealth,
-		/datum/action/xeno_action/activable/hunter_mark,
-		/datum/action/xeno_action/psychic_trace,
-		/datum/action/xeno_action/mirage,
+		/datum/action/ability/xeno_action/xeno_resting,
+		/datum/action/ability/xeno_action/watch_xeno,
+		/datum/action/ability/activable/xeno/psydrain,
+		/datum/action/ability/activable/xeno/silence,
+		/datum/action/ability/activable/xeno/pounce,
+		/datum/action/ability/xeno_action/stealth,
+		/datum/action/ability/activable/xeno/hunter_mark,
+		/datum/action/ability/xeno_action/psychic_trace,
+		/datum/action/ability/xeno_action/mirage,
 	)
 
 	// *** Vent Crawl Parameters *** //
@@ -76,16 +76,16 @@
 	primordial_message = "We are the ultimate predator. Let the hunt begin."
 
 	actions = list(
-		/datum/action/xeno_action/xeno_resting,
-		/datum/action/xeno_action/watch_xeno,
-		/datum/action/xeno_action/activable/psydrain,
-		/datum/action/xeno_action/activable/silence,
-		/datum/action/xeno_action/activable/pounce,
-		/datum/action/xeno_action/stealth,
-		/datum/action/xeno_action/stealth/disguise,
-		/datum/action/xeno_action/activable/hunter_mark,
-		/datum/action/xeno_action/psychic_trace,
-		/datum/action/xeno_action/mirage,
+		/datum/action/ability/xeno_action/xeno_resting,
+		/datum/action/ability/xeno_action/watch_xeno,
+		/datum/action/ability/activable/xeno/psydrain,
+		/datum/action/ability/activable/xeno/silence,
+		/datum/action/ability/activable/xeno/pounce,
+		/datum/action/ability/xeno_action/stealth,
+		/datum/action/ability/xeno_action/stealth/disguise,
+		/datum/action/ability/activable/xeno/hunter_mark,
+		/datum/action/ability/xeno_action/psychic_trace,
+		/datum/action/ability/xeno_action/mirage,
 	)
 
 
@@ -107,7 +107,7 @@
 	max_health = 330
 
 	// *** Flags *** //
-	caste_flags = CASTE_INNATE_HEALING|CASTE_INNATE_PLASMA_REGEN
+	caste_flags = CASTE_INNATE_HEALING|CASTE_INNATE_PLASMA_REGEN|CASTE_HIDE_IN_STATUS
 	can_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER|CASTE_CAN_HEAL_WITHOUT_QUEEN
 
 	// *** Defense *** //
@@ -123,14 +123,14 @@
 	primordial_message = "We are the ultimate predator. Let the hunt begin."
 
 	actions = list(
-		/datum/action/xeno_action/xeno_resting,
-		/datum/action/xeno_action/watch_xeno,
-		/datum/action/xeno_action/activable/psydrain,
-		/datum/action/xeno_action/activable/silence,
-		/datum/action/xeno_action/activable/pounce,
-		/datum/action/xeno_action/stealth,
-		/datum/action/xeno_action/stealth/disguise,
-		/datum/action/xeno_action/activable/hunter_mark,
-		/datum/action/xeno_action/psychic_trace,
-		/datum/action/xeno_action/mirage,
+		/datum/action/ability/xeno_action/xeno_resting,
+		/datum/action/ability/xeno_action/watch_xeno,
+		/datum/action/ability/activable/xeno/psydrain,
+		/datum/action/ability/activable/xeno/silence,
+		/datum/action/ability/activable/xeno/pounce,
+		/datum/action/ability/xeno_action/stealth,
+		/datum/action/ability/xeno_action/stealth/disguise,
+		/datum/action/ability/activable/xeno/hunter_mark,
+		/datum/action/ability/xeno_action/psychic_trace,
+		/datum/action/ability/xeno_action/mirage,
 	)

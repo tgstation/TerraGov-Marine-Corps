@@ -62,7 +62,7 @@
 			continue
 		fobdrone.balloon_alert(owner, "No space here for a barricade")
 		return
-	if(!do_after(fobdrone, 1.5 SECONDS, FALSE, buildplace, BUSY_ICON_BUILD))
+	if(!do_after(fobdrone, 1.5 SECONDS, IGNORE_HELD_ITEM, buildplace, BUSY_ICON_BUILD))
 		return
 	console.metal_remaining -= 4
 	cade = new /obj/structure/barricade/metal(buildplace)
@@ -103,7 +103,7 @@
 			continue
 		fobdrone.balloon_alert(owner, "No space here for a barricade")
 		return
-	if(!do_after(fobdrone, 1.5 SECONDS, FALSE, buildplace, BUSY_ICON_BUILD))
+	if(!do_after(fobdrone, 1.5 SECONDS, IGNORE_HELD_ITEM, buildplace, BUSY_ICON_BUILD))
 		return
 	console.plasteel_remaining -= 5
 	cade = new /obj/structure/barricade/plasteel(buildplace)

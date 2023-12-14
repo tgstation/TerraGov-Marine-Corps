@@ -317,7 +317,7 @@
 		shove_time = 5 SECONDS
 	if(istype(X,/mob/living/carbon/xenomorph/crusher))
 		shove_time = 1.5 SECONDS
-	if(do_after(X, shove_time, FALSE, src, BUSY_ICON_HOSTILE))
+	if(do_after(X, shove_time, IGNORE_HELD_ITEM, src, BUSY_ICON_HOSTILE))
 		X.visible_message(span_danger("\The [X] knocks \the [src] down!"), \
 		span_danger("You knock \the [src] down!"), null, 5)
 		tip_over()
@@ -355,7 +355,6 @@
 		overlays.Cut()
 		if(CHECK_BITFIELD(machine_stat, PANEL_OPEN))
 			overlays += image(icon, "[initial(icon_state)]-panel")
-		updateUsrDialog()
 
 	else if(ismultitool(I) || iswirecutter(I))
 		if(!CHECK_BITFIELD(machine_stat, PANEL_OPEN))
@@ -378,7 +377,7 @@
 		if(!wrenchable)
 			return
 
-		if(!do_after(user, 20, TRUE, src, BUSY_ICON_BUILD))
+		if(!do_after(user, 20, NONE, src, BUSY_ICON_BUILD))
 			return
 
 		playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
@@ -454,7 +453,7 @@
 
 	if(tipped_level == 2)
 		user.visible_message(span_notice(" [user] begins to heave the vending machine back into place!"),span_notice(" You start heaving the vending machine back into place.."))
-		if(!do_after(user,80, FALSE, src, BUSY_ICON_FRIENDLY))
+		if(!do_after(user, 80, IGNORE_HELD_ITEM, src, BUSY_ICON_FRIENDLY))
 			return FALSE
 
 		user.visible_message(span_notice(" [user] rights the [src]!"),span_notice(" You right the [src]!"))
@@ -476,7 +475,7 @@
 	if(!iscarbon(user)) // AI can't heave remotely
 		return
 	user.visible_message(span_notice(" [user] begins to heave the vending machine back into place!"),span_notice(" You start heaving the vending machine back into place.."))
-	if(!do_after(user, 80, FALSE, src, BUSY_ICON_FRIENDLY))
+	if(!do_after(user, 80, IGNORE_HELD_ITEM, src, BUSY_ICON_FRIENDLY))
 		return FALSE
 	user.visible_message(span_notice(" [user] rights the [src]!"),span_notice(" You right the [src]!"))
 	flip_back()
@@ -575,8 +574,6 @@
 			scan_card(H.wear_id)
 			. = TRUE
 
-	updateUsrDialog()
-
 /obj/machinery/vending/proc/vend(datum/vending_product/R, mob/user)
 	if(!allowed(user) && (!wires.is_cut(WIRE_IDSCAN) || hacking_safety)) //For SECURE VENDING MACHINES YEAH
 		to_chat(user, span_warning("Access denied."))
@@ -599,7 +596,6 @@
 	if(istype(new_item))
 		new_item.on_vend(user, faction, fill_container = TRUE)
 	vend_ready = 1
-	updateUsrDialog()
 
 /obj/machinery/vending/proc/release_item(datum/vending_product/R, delay_vending = 0, dump_product = 0)
 	if(delay_vending)
@@ -746,7 +742,6 @@
 	if(record.amount >= 0) //R negative means infinite item, no need to restock
 		record.amount++
 
-	updateUsrDialog()
 	return TRUE //Item restocked, no reason to go on.
 
 /// Vending machine tries to restock all of the loose item on it's location onto itself.

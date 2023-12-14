@@ -7,7 +7,7 @@ SUBSYSTEM_DEF(resinshaping)
 	var/active = TRUE
 
 /datum/controller/subsystem/resinshaping/stat_entry()
-	..("QUICKBUILD POINTS (NORMAL HIVE)=[quickbuild_points_by_hive[XENO_HIVE_NORMAL]]")
+	return ..("QUICKBUILD POINTS (NORMAL HIVE)=[quickbuild_points_by_hive[XENO_HIVE_NORMAL]]")
 
 /datum/controller/subsystem/resinshaping/proc/toggle_off()
 	SIGNAL_HANDLER

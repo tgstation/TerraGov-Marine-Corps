@@ -162,7 +162,7 @@
 	to_chat(user, span_notice("INITIATING LASER TARGETING. Stand still."))
 	var/obj/effect/overlay/temp/laser_target/cas/CS = new (TU)
 	laser = CS
-	if(!do_after(user, target_acquisition_delay, TRUE, user, BUSY_ICON_HOSTILE))
+	if(!do_after(user, target_acquisition_delay, NONE, user, BUSY_ICON_HOSTILE))
 		return
 	if(!mode)
 		balloon_alert_to_viewers("Select a mode!")

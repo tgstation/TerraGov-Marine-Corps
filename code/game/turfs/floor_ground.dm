@@ -79,7 +79,7 @@
 	mediumxenofootstep = FOOTSTEP_SAND
 	minimap_color = MINIMAP_DIRT
 
-/turf/open/floor/plating/ground/mars/random/Initialize(mapload)
+/turf/open/floor/plating/ground/dirt_alt/random/Initialize(mapload)
 	. = ..()
 	dir = pick(GLOB.alldirs)
 

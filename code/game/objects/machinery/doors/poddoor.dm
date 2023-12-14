@@ -104,7 +104,6 @@
 	icon = 'icons/obj/doors/1x2blast_hor.dmi'
 	dir = EAST
 	width = 2
-	resistance_flags = UNACIDABLE
 
 /obj/machinery/door/poddoor/two_tile_hor/execution
 	icon_state = "pdoor0"
@@ -135,7 +134,6 @@
 	icon = 'icons/obj/doors/1x2blast_vert.dmi'
 	dir = NORTH
 	width = 2
-	resistance_flags = UNACIDABLE
 
 /obj/machinery/door/poddoor/two_tile_ver/riotarmory
 	icon_state = "pdoor0"
@@ -323,7 +321,7 @@ GLOBAL_LIST_INIT(faction_to_campaign_door_signal, list(
 	var/code_color = MISSION_CODE_BLUE
 
 /obj/machinery/door/poddoor/nt_lockdown/Initialize(mapload)
-	RegisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_NT_OVERRIDE_CODE, PROC_REF(open))
+	RegisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_NT_OVERRIDE_CODE, PROC_REF(receive_code))
 	return ..()
 
 ///Opens if the correct code color is received

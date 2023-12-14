@@ -8,6 +8,7 @@
 	desc = "Used to generate a security override code."
 	icon = 'icons/obj/structures/campaign/tall_structures.dmi'
 	icon_state = "terminal_red"
+	screen_overlay = "terminal_overlay"
 	interaction_flags = INTERACT_MACHINE_TGUI
 	circuit = /obj/item/circuitboard/computer/nt_access
 	use_power = NO_POWER_USE
@@ -49,10 +50,10 @@
 	. = ..()
 	update_icon()
 	update_minimap_icon()
-	GLOB.campaign_objectives += src
+	GLOB.campaign_structures += src
 
 /obj/machinery/computer/nt_access/Destroy()
-	GLOB.campaign_objectives -= src
+	GLOB.campaign_structures -= src
 	return ..()
 
 /obj/machinery/computer/nt_access/process()
@@ -71,12 +72,6 @@
 
 /obj/machinery/computer/nt_access/update_icon_state()
 	icon_state = initial(icon_state)
-
-/obj/machinery/computer/nt_access/update_overlays()
-	. = ..()
-	if(machine_stat & NOPOWER)
-		return
-	. += image(icon, src, "terminal_overlay")
 
 /obj/machinery/computer/nt_access/attackby(obj/item/I, mob/living/user, params)
 	return attack_hand(user)
@@ -133,7 +128,7 @@
 				busy = TRUE
 
 				usr.visible_message("[usr] started a program to send the [code_color] security override command.", "You started a program to send the [code_color] security override command.")
-				if(!do_after(usr, printing_time, TRUE, src, BUSY_ICON_GENERIC, null, null, CALLBACK(src, TYPE_PROC_REF(/datum, process))))
+				if(!do_after(usr, printing_time, NONE, src, BUSY_ICON_GENERIC, null, null, CALLBACK(src, TYPE_PROC_REF(/datum, process))))
 					busy = FALSE
 					return
 
@@ -145,7 +140,7 @@
 			busy = TRUE
 
 			usr.visible_message("[usr] started a program to generate a security override code.", "You started a program to generate a security override code.")
-			if(!do_after(usr, start_time, TRUE, src, BUSY_ICON_GENERIC, null, null, CALLBACK(src, TYPE_PROC_REF(/datum, process))))
+			if(!do_after(usr, start_time, NONE, src, BUSY_ICON_GENERIC, null, null, CALLBACK(src, TYPE_PROC_REF(/datum, process))))
 				busy = FALSE
 				return
 

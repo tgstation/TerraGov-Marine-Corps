@@ -21,6 +21,7 @@
 #define SKILL_POLICE "police"
 #define SKILL_POWERLOADER "powerloader"
 #define SKILL_LARGE_VEHICLE "large_vehicle"
+#define SKILL_STAMINA "stamina"
 ////////////////////////////////////////////////
 
 //firearms skill (general knowledge of guns) (hidden skill)
@@ -28,6 +29,9 @@
 #define SKILL_FIREARMS_UNTRAINED 0	//civilian
 #define SKILL_FIREARMS_DEFAULT 1	//marines (allow tactical reloads)
 #define SKILL_FIREARMS_TRAINED 2	//special training
+
+///Damage mod for having the weapon specific skill above 0
+#define FIREARM_SKILL_DAM_MOD 0.05
 
 //pistols skill
 //increase or decrase accuracy, recoil, and firing delay of pistols and revolvers.
@@ -111,6 +115,9 @@
 #define SKILL_CQC_MP 2 //no risk of accidental weapon discharge upon disarming (MP)
 #define SKILL_CQC_MASTER 5
 
+///disarm chance mod from CQC skill
+#define CQC_SKILL_DISARM_MOD 5
+
 //powerloader skill
 //hidden
 //proficiency with powerloader, changes powerloader speed.
@@ -128,11 +135,14 @@
 #define SKILL_LEAD_MASTER 4 //XO, CO
 
 //melee_weapons skill
-//buff to melee weapon attack damage(+30% dmg per level)
+//buff to melee weapon attack damage
 #define SKILL_MELEE_WEAK -1
 #define SKILL_MELEE_DEFAULT 0
 #define SKILL_MELEE_TRAINED 1
 #define SKILL_MELEE_SUPER 2
+
+///The amount of extra damage per melee skill level
+#define MELEE_SKILL_DAM_BUFF 0.15
 
 //pilot skill, hidden
 #define SKILL_PILOT_DEFAULT 0
@@ -141,6 +151,16 @@
 //multitile and mech vehicle skills
 #define SKILL_LARGE_VEHICLE_DEFAULT 0
 #define SKILL_LARGE_VEHICLE_TRAINED 1
+
+//stamina skill - you do cardio, right?
+//buff stamina related things
+#define SKILL_STAMINA_WEAK -1
+#define SKILL_STAMINA_DEFAULT 0
+#define SKILL_STAMINA_TRAINED 1
+#define SKILL_STAMINA_SUPER 2
+
+#define STAMINA_SKILL_COOLDOWN_MOD 2
+#define STAMINA_SKILL_REGEN_MOD 0.15
 
 ////////////////////////////////////////////////
 

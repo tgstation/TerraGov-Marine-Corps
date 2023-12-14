@@ -34,11 +34,7 @@
  * NAMEOF that actually works in static definitions because src::type requires src to be defined
  */
 
-#if DM_VERSION >= 515
 #define NAMEOF_STATIC(datum, X) (nameof(type::##X))
-#else
-#define NAMEOF_STATIC(datum, X) (#X || ##datum.##X)
-#endif
 
 //gives us the stack trace from CRASH() without ending the current proc.
 /proc/stack_trace(msg)
@@ -806,6 +802,18 @@ GLOBAL_LIST_INIT(wallitems, typecacheof(list(
 			. = "gigantic"
 		else
 			. = ""
+
+/// Converts a semver string into a list of numbers
+/proc/semver_to_list(semver_string)
+	var/static/regex/semver_regex = regex(@"(\d+)\.(\d+)\.(\d+)", "")
+	if(!semver_regex.Find(semver_string))
+		return null
+
+	return list(
+		text2num(semver_regex.group[1]),
+		text2num(semver_regex.group[2]),
+		text2num(semver_regex.group[3]),
+	)
 
 //Reasonably Optimized Bresenham's Line Drawing
 /proc/getline(atom/start, atom/end)

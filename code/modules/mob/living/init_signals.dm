@@ -15,6 +15,9 @@
 	RegisterSignal(src, SIGNAL_ADDTRAIT(TRAIT_IMMOBILE), PROC_REF(on_immobile_trait_gain))
 	RegisterSignal(src, SIGNAL_REMOVETRAIT(TRAIT_IMMOBILE), PROC_REF(on_immobile_trait_loss))
 
+	RegisterSignal(src, COMSIG_AURA_STARTED, PROC_REF(add_emitted_auras))
+	RegisterSignal(src, COMSIG_AURA_FINISHED, PROC_REF(remove_emitted_auras))
+
 
 ///Called when TRAIT_KNOCKEDOUT is added to the mob.
 /mob/living/proc/on_knockedout_trait_gain(datum/source)

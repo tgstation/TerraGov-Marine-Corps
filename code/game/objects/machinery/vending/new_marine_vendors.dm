@@ -193,6 +193,7 @@
 					vended_items += new /obj/item/radio/headset/mainship/marine(loc, H.assigned_squad, vendor_role)
 					if(istype(H.job, /datum/job/terragov/squad/leader))
 						vended_items += new /obj/item/hud_tablet(loc, vendor_role, H.assigned_squad)
+						vended_items += new /obj/item/squad_transfer_tablet(loc)
 
 			for (var/obj/item/vended_item in vended_items)
 				vended_item.on_vend(usr, faction, auto_equip = TRUE)
@@ -200,8 +201,6 @@
 			if(use_points && (item_category in I.marine_points))
 				I.marine_points[item_category] -= cost
 			. = TRUE
-
-	updateUsrDialog()
 
 /obj/machinery/marine_selector/clothes
 	name = "GHMME Automated Closet"

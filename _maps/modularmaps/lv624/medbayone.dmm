@@ -36,7 +36,7 @@
 	},
 /area/lv624/lazarus/medbay)
 "gn" = (
-/obj/machinery/sleep_console{
+/obj/machinery/computer/sleep_console{
 	density = 0
 	},
 /turf/open/floor/tile/blue/whitebluecorner{
@@ -183,7 +183,7 @@
 /obj/machinery/door/poddoor/shutters/mainship/open{
 	dir = 2;
 	id = "OR2";
-	name = "\improper Shutters";
+	name = "\improper Shutters"
 	},
 /turf/open/floor/tile/blue/whitebluecorner{
 	dir = 2
@@ -255,7 +255,7 @@
 /obj/machinery/door/poddoor/shutters/mainship/open{
 	dir = 2;
 	id = "OR2";
-	name = "\improper Shutters";
+	name = "\improper Shutters"
 	},
 /turf/open/floor/plating,
 /area/lv624/lazarus/medbay)
@@ -610,7 +610,7 @@
 	},
 /area/lv624/lazarus/medbay)
 "YX" = (
-/obj/machinery/body_scanconsole,
+/obj/machinery/computer/body_scanconsole,
 /turf/open/floor/tile/blue/whitebluecorner{
 	dir = 2
 	},

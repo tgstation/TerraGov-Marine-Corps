@@ -117,7 +117,7 @@
 
 	if(!recharging_mech)
 		return data
-	data["recharge_port"]["mech"] = list("health" = recharging_mech.obj_integrity, "maxhealth" = recharging_mech.max_integrity, "cell" = null, "name" = recharging_mech.name,)
+	data["recharge_port"]["mech"] = list("health" = recharging_mech.obj_integrity, "maxhealth" = recharging_mech.max_integrity, "cell" = null, "name" = recharging_mech.name)
 
 	if(QDELETED(recharging_mech.cell))
 		return data
@@ -148,14 +148,9 @@
 
 /obj/machinery/computer/mech_bay_power_console/update_overlays()
 	screen_overlay = initial(screen_overlay)
-	if(machine_stat & (NOPOWER|BROKEN))
-		return
-	var/obj/vehicle/sealed/mecha/recharging_mech = recharge_port?.recharging_mech_ref?.resolve()
 
-	if(!recharging_mech?.cell)
-		return
-	if(recharging_mech.cell.charge >= recharging_mech.cell.maxcharge)
-		return
-	screen_overlay = "recharge_comp_on"
+	var/obj/vehicle/sealed/mecha/recharging_mech = recharge_port?.recharging_mech_ref?.resolve()
+	if(recharging_mech?.cell && recharging_mech.cell.charge >= recharging_mech.cell.maxcharge)
+		screen_overlay = "[screen_overlay]_on"
 
 	return ..()

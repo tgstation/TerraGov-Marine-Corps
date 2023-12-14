@@ -3,8 +3,8 @@
 /obj/machinery/computer/squad_manager
 	name = "squad managment console"
 	desc = "A console for squad management. Allows squad leaders to manage their squad."
-	icon = 'icons/obj/machines/computer.dmi'
-	icon_state = "rdcomp"
+	screen_overlay = "rdcomp"
+	light_color = LIGHT_COLOR_PINK
 	interaction_flags = INTERACT_OBJ_UI
 
 /obj/machinery/computer/squad_manager/ui_interact(mob/user, datum/tgui/ui)

@@ -74,7 +74,7 @@
 			playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
 			to_chat(user, span_notice("You begin to unfasten \the [src] from the floor..."))
 
-			if(!do_after(user, 40, TRUE, src, BUSY_ICON_BUILD))
+			if(!do_after(user, 40, NONE, src, BUSY_ICON_BUILD))
 				return
 
 			user.visible_message("[user] unfastens \the [src].", \
@@ -89,7 +89,7 @@
 			playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
 			to_chat(user, span_notice("You begin to fasten \the [src] to the floor..."))
 
-			if(!do_after(user, 20, TRUE, src, BUSY_ICON_BUILD))
+			if(!do_after(user, 20, NONE, src, BUSY_ICON_BUILD))
 				return
 
 			user.visible_message("[user] fastens \the [src].", \

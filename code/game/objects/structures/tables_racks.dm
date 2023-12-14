@@ -121,7 +121,7 @@
 		span_notice("You start disassembling [src]."))
 
 	playsound(loc, 'sound/items/ratchet.ogg', 25, TRUE)
-	if(!do_after(user, 5 SECONDS, TRUE, src, BUSY_ICON_BUILD))
+	if(!do_after(user, 5 SECONDS, NONE, src, BUSY_ICON_BUILD))
 		return TRUE
 
 	user.visible_message(span_notice("[user] disassembles [src]."),
@@ -440,7 +440,7 @@
 		span_notice("You start weakening [src]"))
 		add_overlay(GLOB.welding_sparks)
 		playsound(loc, 'sound/items/welder.ogg', 25, TRUE)
-		if(!do_after(user, 5 SECONDS, TRUE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(WT, TYPE_PROC_REF(/obj/item/tool/weldingtool, isOn))) || !WT.remove_fuel(1, user))
+		if(!do_after(user, 5 SECONDS, NONE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(WT, TYPE_PROC_REF(/obj/item/tool/weldingtool, isOn))) || !WT.remove_fuel(1, user))
 			cut_overlay(GLOB.welding_sparks)
 			return TRUE
 
@@ -454,7 +454,7 @@
 		span_notice("You start welding [src] back together."))
 	add_overlay(GLOB.welding_sparks)
 	playsound(loc, 'sound/items/welder.ogg', 25, TRUE)
-	if(!do_after(user, 5 SECONDS, TRUE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(WT, TYPE_PROC_REF(/obj/item/tool/weldingtool, isOn))) || !WT.remove_fuel(1, user))
+	if(!do_after(user, 5 SECONDS, NONE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(WT, TYPE_PROC_REF(/obj/item/tool/weldingtool, isOn))) || !WT.remove_fuel(1, user))
 		cut_overlay(GLOB.welding_sparks)
 		return TRUE
 

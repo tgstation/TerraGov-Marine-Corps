@@ -3560,7 +3560,7 @@
 	},
 /area/mainship/command/cic)
 "bkw" = (
-/obj/machinery/body_scanconsole,
+/obj/machinery/computer/body_scanconsole,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/lower_medical)
 "bky" = (
@@ -4025,7 +4025,7 @@
 /turf/open/floor/mainship/sterile/corner,
 /area/mainship/medical/operating_room_one)
 "boR" = (
-/obj/machinery/body_scanconsole,
+/obj/machinery/computer/body_scanconsole,
 /turf/open/floor/mainship/sterile/side{
 	dir = 1
 	},
@@ -5532,7 +5532,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "bHi" = (
-/obj/machinery/sleep_console,
+/obj/machinery/computer/sleep_console,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/lower_medical)
 "bHk" = (
@@ -6006,7 +6006,7 @@
 	},
 /area/mainship/medical/operating_room_four)
 "bMk" = (
-/obj/machinery/body_scanconsole,
+/obj/machinery/computer/body_scanconsole,
 /turf/open/floor/mainship/sterile/side,
 /area/mainship/medical/lower_medical)
 "bMl" = (
@@ -8328,7 +8328,7 @@
 	},
 /area/mainship/living/officer_study)
 "dus" = (
-/obj/machinery/cloning_console/vats,
+/obj/machinery/computer/cloning_console/vats,
 /turf/open/floor/mainship/sterile/side{
 	dir = 1
 	},
@@ -15627,7 +15627,6 @@
 /turf/open/floor/mainship/floor,
 /area/mainship/command/cic)
 "pAc" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	on = 1
@@ -18638,7 +18637,7 @@
 /turf/open/floor/mainship/floor,
 /area/mainship/living/cafeteria_starboard)
 "uBZ" = (
-/obj/machinery/autodoc_console,
+/obj/machinery/computer/autodoc_console,
 /turf/open/floor/mainship/sterile,
 /area/mainship/medical/lower_medical)
 "uDw" = (
@@ -20242,7 +20241,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/port_hallway)
 "xCj" = (
-/obj/machinery/cloning_console/vats,
+/obj/machinery/computer/cloning_console/vats,
 /turf/open/floor/mainship/sterile/corner,
 /area/mainship/medical/lower_medical)
 "xCw" = (
@@ -20680,7 +20679,7 @@
 	},
 /area/mainship/living/cafeteria_starboard)
 "yfx" = (
-/obj/machinery/sleep_console,
+/obj/machinery/computer/sleep_console,
 /turf/open/floor/mainship/sterile/side,
 /area/mainship/medical/lower_medical)
 "yfJ" = (

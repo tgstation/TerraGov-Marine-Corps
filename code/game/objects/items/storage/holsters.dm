@@ -157,9 +157,9 @@
 		/obj/item/weapon/gun/launcher/rocket/recoillessrifle,
 		/obj/item/weapon/gun/launcher/rocket/recoillessrifle/low_impact,
 	)
-	bypass_w_limit = list(/obj/item/weapon/gun/launcher/rocket/recoillessrifle,)
+	bypass_w_limit = list(/obj/item/weapon/gun/launcher/rocket/recoillessrifle)
 	///only one RR per bag
-	storage_type_limits = list(/obj/item/weapon/gun/launcher/rocket/recoillessrifle = 1,)
+	storage_type_limits = list(/obj/item/weapon/gun/launcher/rocket/recoillessrifle = 1)
 	can_hold = list(
 		/obj/item/ammo_magazine/rocket,
 		/obj/item/weapon/gun/launcher/rocket/recoillessrifle,
@@ -250,9 +250,9 @@
 	storage_slots = null
 	max_storage_space = 30
 	access_delay = 0
-	holsterable_allowed = list(/obj/item/mortar_kit,)
-	bypass_w_limit = list(/obj/item/mortar_kit,)
-	storage_type_limits = list(/obj/item/mortar_kit = 1,)
+	holsterable_allowed = list(/obj/item/mortar_kit)
+	bypass_w_limit = list(/obj/item/mortar_kit)
+	storage_type_limits = list(/obj/item/mortar_kit = 1)
 	can_hold = list(
 		/obj/item/mortal_shell/he,
 		/obj/item/mortal_shell/incendiary,
@@ -285,13 +285,11 @@
 	max_storage_space = 16
 	max_w_class = WEIGHT_CLASS_NORMAL
 	access_delay = 0
-	holsterable_allowed = list(/obj/item/weapon/gun/flamer/big_flamer/marinestandard/engineer,)
-	bypass_w_limit = list(/obj/item/weapon/gun/flamer/big_flamer/marinestandard/engineer,)
-	storage_type_limits = list(/obj/item/weapon/gun/flamer/big_flamer/marinestandard/engineer = 1,)
-		///The internal fuel tank
+	holsterable_allowed = list(/obj/item/weapon/gun/flamer/big_flamer/marinestandard/engineer)
+	bypass_w_limit = list(/obj/item/weapon/gun/flamer/big_flamer/marinestandard/engineer)
+	storage_type_limits = list(/obj/item/weapon/gun/flamer/big_flamer/marinestandard/engineer = 1)
+	///The internal fuel tank
 	var/obj/item/ammo_magazine/flamer_tank/internal/tank
-
-	///The linked flamerthrower that cannot be dropped
 
 	sprite_sheets = list(
 		"Combat Robot" = 'icons/mob/species/robot/backpack.dmi',
@@ -301,7 +299,7 @@
 		"Ratcher Combat Robot" = 'icons/mob/species/robot/backpack.dmi',
 		)
 
-/obj/item/storage/holster/backholster/flamer/Initialize()
+/obj/item/storage/holster/backholster/flamer/Initialize(mapload)
 	. = ..()
 	tank = new
 	update_icon()
@@ -353,7 +351,7 @@
 	. = ..()
 	. += "[tank.current_rounds] units of fuel left!"
 
-/obj/item/storage/holster/backholster/flamer/full/Initialize()
+/obj/item/storage/holster/backholster/flamer/full/Initialize(mapload)
 	. = ..()
 	var/flamer = new /obj/item/weapon/gun/flamer/big_flamer/marinestandard/engineer(src)
 	INVOKE_ASYNC(src, PROC_REF(handle_item_insertion), flamer)

@@ -988,7 +988,7 @@
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/medbay)
 "gg" = (
-/obj/machinery/sleep_console,
+/obj/machinery/computer/sleep_console,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -999,7 +999,7 @@
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/medbay)
 "gj" = (
-/obj/machinery/sleep_console,
+/obj/machinery/computer/sleep_console,
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/medbay)
 "gk" = (
@@ -1118,7 +1118,7 @@
 /turf/open/floor/prison/yellow,
 /area/lv624/lazarus/engineering)
 "ht" = (
-/obj/machinery/body_scanconsole,
+/obj/machinery/computer/body_scanconsole,
 /obj/machinery/light,
 /turf/open/floor/tile/green/whitegreen{
 	dir = 6

@@ -35,6 +35,10 @@
 	anchored = TRUE
 	coverage = 20
 	req_one_access = list(ACCESS_MARINE_MEDBAY, ACCESS_MARINE_CHEMISTRY, ACCESS_MARINE_MEDPREP)
+	light_range = 1
+	light_power = 0.5
+	light_color = LIGHT_COLOR_BLUE
+	dir = EAST
 	var/locked = FALSE
 	var/mob/living/carbon/human/occupant = null
 	var/list/surgery_todo_list = list() //a list of surgeries to do.
@@ -50,7 +54,7 @@
 	var/event = 0
 	var/forceeject = FALSE
 
-	var/obj/machinery/autodoc_console/connected
+	var/obj/machinery/computer/autodoc_console/connected
 
 	//It uses power
 	use_power = ACTIVE_POWER_USE
@@ -64,6 +68,7 @@
 /obj/machinery/autodoc/Initialize(mapload)
 	. = ..()
 	RegisterSignal(src, COMSIG_MOVABLE_SHUTTLE_CRUSH, PROC_REF(shuttle_crush))
+	update_icon()
 
 
 /obj/machinery/autodoc/Destroy()
@@ -90,6 +95,14 @@
 	surgery = FALSE
 	go_out(AUTODOC_NOTICE_NO_POWER)
 
+/obj/machinery/autodoc/update_icon()
+	. = ..()
+	if(machine_stat & NOPOWER)
+		set_light(0)
+	else if(surgery || occupant)
+		set_light(initial(light_range) + 1)
+	else
+		set_light(initial(light_range))
 
 /obj/machinery/autodoc/update_icon_state()
 	if(machine_stat & NOPOWER)
@@ -100,6 +113,12 @@
 		icon_state = "autodoc_closed"
 	else
 		icon_state = "autodoc_open"
+
+/obj/machinery/autodoc/update_overlays()
+	. = ..()
+	if(machine_stat & NOPOWER)
+		return
+	. += emissive_appearance(icon, "[icon_state]_emissive", alpha = src.alpha)
 
 /obj/machinery/autodoc/process()
 	if(!occupant)
@@ -721,7 +740,7 @@
 		usr.visible_message(span_notice("[usr] fumbles around figuring out how to use [src]."),
 		span_notice("You fumble around figuring out how to use [src]."))
 		var/fumbling_time = max(0 , SKILL_TASK_TOUGH - ( SKILL_TASK_EASY * usr.skills.getRating(SKILL_SURGERY) ))// 8 secs non-trained, 5 amateur
-		if(!do_after(usr, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED) || !occupant)
+		if(!do_after(usr, fumbling_time, NONE, src, BUSY_ICON_UNSKILLED) || !occupant)
 			return
 	if(surgery)
 		surgery = 0
@@ -750,19 +769,19 @@
 		target.visible_message(span_notice("[target] fumbles around figuring out how to get into \the [src]."),
 		span_notice("You fumble around figuring out how to get into \the [src]."))
 		var/fumbling_time = max(0 , SKILL_TASK_TOUGH - ( SKILL_TASK_EASY * user.skills.getRating(SKILL_SURGERY) ))// 8 secs non-trained, 5 amateur
-		if(!do_after(target, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
+		if(!do_after(target, fumbling_time, NONE, src, BUSY_ICON_UNSKILLED))
 			return
 
 	target.visible_message(span_notice("[target] starts climbing into \the [src]."),
 	span_notice("You start climbing into \the [src]."))
-	if(do_after(target, 1 SECONDS, FALSE, src, BUSY_ICON_GENERIC))
+	if(do_after(target, 1 SECONDS, IGNORE_HELD_ITEM, src, BUSY_ICON_GENERIC))
 		if(occupant)
 			to_chat(user, span_notice("[src] is already occupied!"))
 			return
 		target.stop_pulling()
 		target.forceMove(src)
 		occupant = target
-		icon_state = "autodoc_closed"
+		update_icon()
 		var/implants = list(/obj/item/implant/neurostim)
 		var/mob/living/carbon/human/H = occupant
 		var/doc_dat
@@ -895,12 +914,12 @@
 		user.visible_message(span_notice("[user] fumbles around figuring out how to put [M] into [src]."),
 		span_notice("You fumble around figuring out how to put [M] into [src]."))
 		var/fumbling_time = max(0 , SKILL_TASK_TOUGH - ( SKILL_TASK_EASY * user.skills.getRating(SKILL_SURGERY) ))// 8 secs non-trained, 5 amateur
-		if(!do_after(user, fumbling_time, TRUE, M, BUSY_ICON_UNSKILLED) || QDELETED(src))
+		if(!do_after(user, fumbling_time, NONE, M, BUSY_ICON_UNSKILLED) || QDELETED(src))
 			return
 
 	visible_message("[user] starts putting [M] into [src].", 3)
 
-	if(!do_after(user, 10, FALSE, M, BUSY_ICON_GENERIC) || QDELETED(src))
+	if(!do_after(user, 10, IGNORE_HELD_ITEM, M, BUSY_ICON_GENERIC) || QDELETED(src))
 		return
 
 	if(occupant)
@@ -912,7 +931,7 @@
 
 	M.forceMove(src)
 	occupant = M
-	icon_state = "autodoc_closed"
+	update_icon()
 	var/implants = list(/obj/item/implant/neurostim)
 	var/mob/living/carbon/human/H = occupant
 	med_scan(H, null, implants, TRUE)
@@ -926,33 +945,35 @@
 /////////////////////////////////////////////////////////////
 
 //Auto Doc console that links up to it.
-/obj/machinery/autodoc_console
-	name = "\improper autodoc medical system control console"
+/obj/machinery/computer/autodoc_console
+	name = "autodoc medical system control console"
 	icon = 'icons/obj/machines/cryogenics.dmi'
 	icon_state = "sleeperconsole"
-	var/obj/machinery/autodoc/connected = null
-	var/release_notice = TRUE //Are notifications for patient discharges turned on?
-	var/locked = FALSE //Medics, Doctors and so on can lock this.
+	screen_overlay = "sleeperconsole_emissive"
+	light_color = LIGHT_COLOR_EMISSIVE_RED
 	req_one_access = list(ACCESS_MARINE_MEDBAY, ACCESS_MARINE_CHEMISTRY, ACCESS_MARINE_MEDPREP) //Valid access while locked
-	anchored = TRUE //About time someone fixed this.
 	density = FALSE
-
-	use_power = IDLE_POWER_USE
 	idle_power_usage = 40
+	dir = EAST
 	var/obj/item/radio/headset/mainship/doc/radio
 	var/obj/item/reagent_containers/blood/OMinus/blood_pack
+	///connected autodoc
+	var/obj/machinery/autodoc/connected = null
+	///Are notifications for patient discharges turned on?
+	var/release_notice = TRUE
+	///Medics, Doctors and so on can lock this
+	var/locked = FALSE
 
-
-/obj/machinery/autodoc_console/Initialize(mapload)
+/obj/machinery/computer/autodoc_console/Initialize(mapload)
 	. = ..()
-	connected = locate(/obj/machinery/autodoc, get_step(src, WEST))
+	connected = locate(/obj/machinery/autodoc, get_step(src, REVERSE_DIR(dir)))
 	if(connected)
 		connected.connected = src
 	radio = new(src)
 	blood_pack = new(src)
 
 
-/obj/machinery/autodoc_console/Destroy()
+/obj/machinery/computer/autodoc_console/Destroy()
 	QDEL_NULL(radio)
 	QDEL_NULL(blood_pack)
 	if(connected)
@@ -960,15 +981,7 @@
 		connected = null
 	return ..()
 
-
-/obj/machinery/autodoc_console/update_icon_state()
-	if(machine_stat & NOPOWER)
-		icon_state = "sleeperconsole-p"
-	else
-		icon_state = "sleeperconsole"
-
-
-/obj/machinery/autodoc_console/can_interact(mob/user)
+/obj/machinery/computer/autodoc_console/can_interact(mob/user)
 	. = ..()
 	if(!.)
 		return FALSE
@@ -983,7 +996,7 @@
 
 
 
-/obj/machinery/autodoc_console/interact(mob/user)
+/obj/machinery/computer/autodoc_console/interact(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -1027,7 +1040,8 @@
 			operating = "Not in surgery"
 		if(1)
 			operating = "<font color='#b54646'><B>SURGERY IN PROGRESS: MANUAL EJECTION ONLY TO BE ATTEMPTED BY TRAINED OPERATORS!</B></FONT>"
-	dat += "[connected.occupant.health > 50 ? "<font color='#487553'>" : "<font color='#b54646'>"]\tHealth %: [round(connected.occupant.health)] ([t1])</FONT><BR>"
+	var/health_ratio = connected.occupant.health * 100 / connected.occupant.maxHealth
+	dat += "[health_ratio > 50 ? "<font color='#487553'>" : "<font color='#b54646'>"]\tHealth %: [round(health_ratio)] ([t1])</FONT><BR>"
 	var/pulse = connected.occupant.handle_pulse()
 	dat += "[pulse == PULSE_NONE || pulse == PULSE_THREADY ? "<font color='#b54646'>" : "<font color='#487553'>"]\t-Pulse, bpm: [connected.occupant.get_pulse(GETPULSE_TOOL)]</FONT><BR>"
 	dat += "[connected.occupant.getBruteLoss() < 60 ? "<font color='#487553'>" : "<font color='#b54646'>"]\t-Brute Damage %: [connected.occupant.getBruteLoss()]</FONT><BR>"
@@ -1171,7 +1185,7 @@
 	popup.open()
 
 
-/obj/machinery/autodoc_console/Topic(href, href_list)
+/obj/machinery/computer/autodoc_console/Topic(href, href_list)
 	. = ..()
 	if(.)
 		return
@@ -1340,7 +1354,7 @@
 /obj/machinery/autodoc/event
 	event = 1
 
-/obj/machinery/autodoc_console/examine(mob/living/user)
+/obj/machinery/computer/autodoc_console/examine(mob/living/user)
 	. = ..()
 	if(locked)
 		. += span_warning("It's currently locked down!")

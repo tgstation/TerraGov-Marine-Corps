@@ -93,7 +93,7 @@
 				balloon_alert_to_viewers("tries to feed [M] but can't")
 				return FALSE
 
-			if(!do_mob(user, M, 30, BUSY_ICON_FRIENDLY))
+			if(!do_after(user, 3 SECONDS, NONE, M, BUSY_ICON_FRIENDLY))
 				return
 
 			var/rgt_list_text = get_reagent_list_text()
@@ -358,7 +358,9 @@
 	tastes = list("egg" = 1)
 
 /obj/item/reagent_containers/food/snacks/egg/throw_impact(atom/hit_atom)
-	..()
+	. = ..()
+	if(!.)
+		return
 	new/obj/effect/decal/cleanable/egg_smudge(src.loc)
 	src.reagents.reaction(hit_atom, TOUCH)
 	src.visible_message(span_warning(" [src.name] has been squashed."),span_warning(" You hear a smack."))
@@ -1496,7 +1498,8 @@
 		/datum/reagent/medicine/tramadol = 10,
 		/datum/reagent/medicine/bicaridine = 10,
 		/datum/reagent/medicine/kelotane = 10,
-		/datum/reagent/medicine/tricordrazine = 10,)
+		/datum/reagent/medicine/tricordrazine = 10,
+	)
 	tastes = list("delicious processed berries" = 1)
 	bitesize = 9
 
@@ -1638,7 +1641,7 @@
 
 /obj/item/reagent_containers/food/snacks/lollipop/tricord
 	name = "Tricord-pop"
-	desc = "A lolipop laced with tricordazine, a slow healing reagent. Can be eaten or put in the mask slot."
+	desc = "A lolipop laced with tricordrazine, a slow healing reagent. Can be eaten or put in the mask slot."
 	list_reagents = list(/datum/reagent/consumable/sugar = 1, /datum/reagent/medicine/tricordrazine = 10)
 	tastes = list("cough syrup" = 1, "artificial sweetness" = 1)
 

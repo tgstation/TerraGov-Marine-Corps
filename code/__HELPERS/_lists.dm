@@ -151,17 +151,7 @@
  * Returns TRUE if the list had nulls, FALSE otherwise
 **/
 
-#if DM_VERSION < 515
-/proc/listclearnulls(list/list_to_clear)
-	if(!list_to_clear)
-		return
-	var/start_len = length(list_to_clear)
-	var/list/new_list[start_len]
-	list_to_clear -= new_list
-	return length(list_to_clear) < start_len
-#else
 #define listclearnulls(list) list?.RemoveAll(null)
-#endif
 
 /*
 * Returns list containing all the entries from first list that are not present in second.

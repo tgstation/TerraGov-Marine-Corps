@@ -213,7 +213,7 @@
 		span_notice("You start loading \a [mortar_shell.name] into [src]."))
 		playsound(loc, reload_sound, 50, 1)
 		busy = TRUE
-		if(!do_after(user, reload_time, TRUE, src, BUSY_ICON_HOSTILE))
+		if(!do_after(user, reload_time, NONE, src, BUSY_ICON_HOSTILE))
 			busy = FALSE
 			return
 
@@ -442,7 +442,7 @@
 
 /obj/item/mortar_kit/unique_action(mob/user)
 	var/area/current_area = get_area(src)
-	if(current_area.ceiling >= CEILING_METAL)
+	if(current_area.ceiling >= CEILING_OBSTRUCTED)
 		to_chat(user, span_warning("You probably shouldn't deploy [src] indoors."))
 		return
 	return ..()
@@ -629,7 +629,7 @@
 		span_notice("You start loading \a [mortar_shell.name] into [src]."))
 		playsound(loc, reload_sound, 50, 1)
 		busy = TRUE
-		if(!do_after(user, reload_time, TRUE, src, BUSY_ICON_HOSTILE))
+		if(!do_after(user, reload_time, NONE, src, BUSY_ICON_HOSTILE))
 			busy = FALSE
 			return
 

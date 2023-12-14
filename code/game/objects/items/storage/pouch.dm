@@ -16,6 +16,10 @@
 	if(fill_number && fill_type)
 		for(var/i in 1 to fill_number)
 			new fill_type(src)
+	return INITIALIZE_HINT_LATELOAD
+
+/obj/item/storage/pouch/LateInitialize()
+	. = ..()
 	update_icon()
 
 /obj/item/storage/pouch/examine(mob/user)
@@ -482,11 +486,11 @@
 
 /obj/item/storage/pouch/medkit/firstaid/Initialize(mapload)
 	. = ..()
-	new /obj/item/storage/pill_bottle/packet/bicaridine(src)
-	new /obj/item/storage/pill_bottle/packet/kelotane(src)
-	new /obj/item/storage/pill_bottle/packet/tramadol(src)
-	new /obj/item/storage/pill_bottle/packet/tricordrazine(src)
-	new /obj/item/storage/pill_bottle/packet/dylovene(src)
+	new /obj/item/storage/pill_bottle/bicaridine(src)
+	new /obj/item/storage/pill_bottle/kelotane(src)
+	new /obj/item/storage/pill_bottle/tramadol(src)
+	new /obj/item/storage/pill_bottle/tricordrazine(src)
+	new /obj/item/storage/pill_bottle/dylovene(src)
 	new /obj/item/stack/medical/splint(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/inaprovaline(src)
 
@@ -590,7 +594,7 @@
 	sprite_slots = 3
 	storage_slots = 3
 
-	can_hold = list(/obj/item/storage/box/combat_lolipop,)
+	can_hold = list(/obj/item/storage/box/combat_lolipop)
 
 /obj/item/storage/pouch/med_lolipops/Initialize(mapload)
 	. = ..()
@@ -673,6 +677,7 @@
 		/obj/item/compass,
 		/obj/item/deployable_camera,
 		/obj/item/hud_tablet,
+		/obj/item/squad_transfer_tablet,
 		/obj/item/minimap_tablet,
 		/obj/item/supplytablet,
 		/obj/item/megaphone,
@@ -836,7 +841,7 @@
 
 
 			to_chat(user, span_notice("You start refilling [src] with [M]."))
-			if(!do_after(user, 1.5 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
+			if(!do_after(user, 1.5 SECONDS, NONE, src, BUSY_ICON_GENERIC))
 				return
 
 			for(var/x in 1 to (storage_slots - length(contents)))
