@@ -130,3 +130,9 @@
   - rscadd: Sectoids have been reported displaying powerful new psionic abilities
       in this sector
   - balance: Sectoid base hp reduced to 80
+2023-12-14:
+  Lumipharon:
+  - balance: Drop pod drop time varies with orbit level
+  - balance: Drop pod landing location now scatters slightly, based on orbit level
+  - balance: Mass launch for drop pods has a slightly wider radius, based on orbit
+      level
