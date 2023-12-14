@@ -1234,14 +1234,14 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/upper_hull)
 "bbu" = (
+/obj/machinery/door_control/mainship/checkpoint{
+	id = "floor3shipcheckpoint";
+	name = "South Checkpoint Shutters";
+	req_one_access = null;
+	req_access = list(5)
+	},
 /obj/structure/table/reinforced,
-/obj/structure/window/reinforced/tinted{
-	dir = 8
-	},
-/obj/machinery/computer/secure_data{
-	dir = 8
-	},
-/obj/structure/reagent_dispensers/wallmounted/peppertank,
+/obj/machinery/computer/secure_data,
 /turf/open/floor/mainship/mono,
 /area/mainship/groundhq/ntf/shipboard/brig)
 "bbv" = (
@@ -3707,10 +3707,6 @@
 /area/mainship/groundhq/ntf/living/grunt_rnr)
 "dmp" = (
 /obj/machinery/computer/camera_advanced,
-/obj/structure/window/reinforced/tinted{
-	dir = 1;
-	layer = 2
-	},
 /obj/structure/table/reinforced,
 /turf/open/floor/wood,
 /area/mainship/groundhq/ntf/shipboard/brig)
@@ -6584,14 +6580,8 @@
 	name = "Ship Floor 1 Hallways"
 	})
 "fZd" = (
-/obj/structure/bed/chair/office/dark{
-	dir = 8
-	},
-/obj/machinery/door_control/mainship/checkpoint{
-	id = "floor3shipcheckpoint";
-	name = "South Checkpoint Shutters";
-	req_one_access = null;
-	req_access = list(5)
+/obj/machinery/camera/autoname{
+	dir = 4
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/groundhq/ntf/shipboard/brig)
@@ -7656,16 +7646,12 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/living/officer_study)
 "gYV" = (
-/obj/structure/table/reinforced,
-/obj/item/clipboard,
-/obj/item/tool/pen,
-/obj/item/folder/red,
-/obj/item/folder/red,
-/obj/item/cell/lasgun/lasrifle,
-/obj/item/cell/lasgun/lasrifle,
-/obj/item/weapon/gun/energy/lasgun/lasrifle,
-/obj/item/cell/lasgun/lasrifle,
-/obj/item/weapon/gun/energy/taser,
+/obj/structure/bed/chair/office/dark{
+	dir = 8
+	},
+/obj/structure/window/reinforced/tinted{
+	dir = 8
+	},
 /turf/open/floor/mainship/mono,
 /area/mainship/groundhq/ntf/shipboard/brig)
 "gZb" = (
@@ -14884,10 +14870,6 @@
 "nNX" = (
 /obj/structure/table/reinforced,
 /obj/structure/table/reinforced,
-/obj/structure/window/reinforced/tinted{
-	dir = 1;
-	layer = 2
-	},
 /obj/machinery/faxmachine/warden,
 /obj/machinery/light{
 	dir = 1
@@ -16544,9 +16526,16 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "pjQ" = (
-/obj/machinery/light{
-	dir = 1
-	},
+/obj/structure/table/reinforced,
+/obj/item/clipboard,
+/obj/item/tool/pen,
+/obj/item/folder/red,
+/obj/item/folder/red,
+/obj/item/cell/lasgun/lasrifle,
+/obj/item/cell/lasgun/lasrifle,
+/obj/item/weapon/gun/energy/lasgun/lasrifle,
+/obj/item/cell/lasgun/lasrifle,
+/obj/item/weapon/gun/energy/taser,
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1,
 /turf/open/floor/mainship/mono,
 /area/mainship/groundhq/ntf/shipboard/brig)
@@ -19008,6 +18997,10 @@
 /area/mainship/hallways/port_umbilical{
 	name = "Ship Floor 2 Hallways"
 	})
+"rMZ" = (
+/obj/structure/reagent_dispensers/wallmounted/peppertank,
+/turf/open/floor/mainship/mono,
+/area/mainship/groundhq/ntf/shipboard/brig)
 "rNt" = (
 /obj/machinery/door/poddoor/mainship/mech,
 /obj/structure/cable,
@@ -20006,13 +19999,6 @@
 /turf/open/floor/mainship/cargo,
 /area/mainship/groundhq/ntf/engineering/engine_core)
 "sMS" = (
-/obj/structure/window/reinforced/tinted{
-	dir = 1
-	},
-/obj/structure/window/reinforced/tinted{
-	dir = 1;
-	layer = 2
-	},
 /obj/machinery/computer/prisoner,
 /turf/open/floor/wood,
 /area/mainship/groundhq/ntf/shipboard/brig)
@@ -61378,7 +61364,7 @@ bRl
 wNT
 fOv
 kQG
-kQG
+fZd
 kQG
 fOv
 aHY
@@ -62343,8 +62329,8 @@ qZo
 jUb
 eoX
 mmj
-bRl
 mmj
+bRl
 dej
 mmj
 bRl
@@ -62827,7 +62813,7 @@ ybP
 jUb
 qZo
 bRl
-fZd
+kQG
 xpx
 gUv
 bRl
@@ -63554,7 +63540,7 @@ jUb
 rcP
 mmj
 mmj
-kQG
+rMZ
 mmj
 ybU
 cLs
