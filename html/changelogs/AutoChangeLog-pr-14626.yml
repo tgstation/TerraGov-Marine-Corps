@@ -1,6 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - balance: "Drop pod drop time varies with orbit level"
-  - balance: "Drop pod landing location now scatters slightly, based on orbit level"
-  - balance: "Mass launch for drop pods has a slightly wider radius, based on orbit level"
