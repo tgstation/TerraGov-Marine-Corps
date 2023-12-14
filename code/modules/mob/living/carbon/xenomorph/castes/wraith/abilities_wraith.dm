@@ -748,7 +748,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 		targeted.status_flags &= ~(INCORPOREAL|GODMODE)
 		REMOVE_TRAIT(owner, TRAIT_IMMOBILE, TIMESHIFT_TRAIT)
 		targeted.heal_overall_damage(targeted.getBruteLoss() - target_initial_brute_damage, targeted.getFireLoss() - target_initial_burn_damage, updating_health = TRUE)
-		if(target_initial_on_fire == TRUE && target_initial_fire_stacks >= 0)
+		if(target_initial_on_fire && target_initial_fire_stacks >= 0)
 			targeted.fire_stacks = target_initial_fire_stacks
 			targeted.IgniteMob()
 		else
