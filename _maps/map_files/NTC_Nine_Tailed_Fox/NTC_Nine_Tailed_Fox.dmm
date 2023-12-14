@@ -4329,7 +4329,7 @@
 /obj/machinery/shower{
 	pixel_y = 15
 	},
-/turf/open/floor/mainship/sterile/dark,
+/turf/open/floor/plating/plating_catwalk,
 /area/mainship/groundhq/ntf/hallways/bathroom)
 "dWR" = (
 /obj/machinery/vending/coffee,
@@ -6580,11 +6580,9 @@
 	name = "Ship Floor 1 Hallways"
 	})
 "fZd" = (
-/obj/machinery/camera/autoname{
-	dir = 4
-	},
-/turf/open/floor/mainship/mono,
-/area/mainship/groundhq/ntf/shipboard/brig)
+/obj/effect/ai_node,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/groundhq/ntf/hallways/bathroom)
 "fZp" = (
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
@@ -7432,6 +7430,12 @@
 /area/mainship/hallways/port_hallway{
 	name = "Ship Floor 2 Hallways"
 	})
+"gQR" = (
+/obj/machinery/camera/autoname{
+	dir = 4
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/groundhq/ntf/shipboard/brig)
 "gQT" = (
 /obj/vehicle/ridden/motorbike{
 	dir = 4
@@ -8397,7 +8401,10 @@
 /obj/machinery/light/small{
 	dir = 8
 	},
-/turf/open/floor/mainship/sterile/dark,
+/obj/machinery/shower{
+	dir = 1
+	},
+/turf/open/floor/plating/plating_catwalk,
 /area/mainship/groundhq/ntf/hallways/bathroom)
 "hRO" = (
 /obj/structure/flora/pottedplant,
@@ -10197,7 +10204,10 @@
 /obj/machinery/light/small{
 	dir = 4
 	},
-/turf/open/floor/mainship/sterile/dark,
+/obj/machinery/shower{
+	dir = 1
+	},
+/turf/open/floor/plating/plating_catwalk,
 /area/mainship/groundhq/ntf/hallways/bathroom)
 "jEQ" = (
 /obj/structure/disposalpipe/segment{
@@ -15595,6 +15605,12 @@
 	dir = 4
 	},
 /area/mainship/groundhq/ntf/shipboard/brig_cells)
+"ose" = (
+/obj/machinery/shower{
+	dir = 1
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/groundhq/ntf/hallways/bathroom)
 "osi" = (
 /obj/machinery/disposal,
 /obj/structure/disposalpipe/trunk{
@@ -18161,7 +18177,7 @@
 /obj/item/tool/soap{
 	desc = "Don't pick it up."
 	},
-/turf/open/floor/mainship/sterile/dark,
+/turf/open/floor/plating/plating_catwalk,
 /area/mainship/groundhq/ntf/hallways/bathroom)
 "qQX" = (
 /obj/structure/cable,
@@ -18997,10 +19013,6 @@
 /area/mainship/hallways/port_umbilical{
 	name = "Ship Floor 2 Hallways"
 	})
-"rMZ" = (
-/obj/structure/reagent_dispensers/wallmounted/peppertank,
-/turf/open/floor/mainship/mono,
-/area/mainship/groundhq/ntf/shipboard/brig)
 "rNt" = (
 /obj/machinery/door/poddoor/mainship/mech,
 /obj/structure/cable,
@@ -25045,6 +25057,10 @@
 /area/mainship/hallways/port_umbilical{
 	name = "Ship Floor 2 Hallways"
 	})
+"xEg" = (
+/obj/structure/reagent_dispensers/wallmounted/peppertank,
+/turf/open/floor/mainship/mono,
+/area/mainship/groundhq/ntf/shipboard/brig)
 "xEm" = (
 /obj/machinery/door/poddoor/mainship/ammo{
 	dir = 2;
@@ -58678,7 +58694,7 @@ nhA
 hJP
 tMv
 dWx
-iGU
+fZd
 tLW
 ktX
 dQB
@@ -58920,7 +58936,7 @@ uyu
 hJP
 tMv
 qQR
-dQB
+ose
 tMv
 eIM
 iGU
@@ -61364,7 +61380,7 @@ bRl
 wNT
 fOv
 kQG
-fZd
+gQR
 kQG
 fOv
 aHY
@@ -63540,7 +63556,7 @@ jUb
 rcP
 mmj
 mmj
-rMZ
+xEg
 mmj
 ybU
 cLs
