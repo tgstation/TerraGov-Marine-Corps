@@ -212,8 +212,9 @@
 	description = "An effective hypnotic used to treat insomnia."
 	color = COLOR_TOXIN_SLEEPTOXIN
 	toxpwr = 0
-	overdose_threshold = REAGENTS_OVERDOSE
-	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
+	custom_metabolism = REAGENTS_METABOLISM * 2
+	overdose_threshold = REAGENTS_OVERDOSE*2
+	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL*2
 	scannable = TRUE
 	taste_description = "cough syrup"
 	trait_flags = BRADYCARDICS

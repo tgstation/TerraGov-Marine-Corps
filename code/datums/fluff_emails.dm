@@ -31,7 +31,7 @@
 
 
 /datum/fluff_email/mainship/thermalcloak
-	title = "M68 Thermal Cloak.."
+	title = "M68-B Thermal Cloak.."
 	entry_text = {"<html>
 					Are you sure these things are safe, man? I just tried one on during a training exercise back at Bernice 378, took a wrong turn,
 					and wound up on an outdoor firing range being used by another Battalion (5th "Hammerheads" I think?). Now typically, somebody would have spotted me,

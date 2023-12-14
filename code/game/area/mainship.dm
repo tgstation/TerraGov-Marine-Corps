@@ -193,6 +193,10 @@
 	name = "Worker Preperations"
 	icon_state = "livingspace"
 
+/area/mainship/nukeroom
+	name = "Nuke Storage"
+	icon_state = "Exoarmor"
+
 /area/mainship/hallways/dorm1
 	name = "Dormitories 1"
 	icon_state = "livingspace"

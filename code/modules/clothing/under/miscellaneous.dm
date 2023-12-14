@@ -399,7 +399,7 @@
 
 
 /obj/item/clothing/under/spec_operative/armoredsuit
-	name = "Formal suit"
+	name = "executive suit"
 	desc = "An extremely expensive looking formal uniform with a short, side split skirt that seems to have toughened, kevlar or maybe another material fabric... Reminds you of john wick's suit."
 	icon_state = "charcoal_suit_skirt"
 	soft_armor = list(MELEE = 40, BULLET = 40, LASER = 60, ENERGY = 70, BOMB = 70, BIO = 70, FIRE = 70, ACID = 50)

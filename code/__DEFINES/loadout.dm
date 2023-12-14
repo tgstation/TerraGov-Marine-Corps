@@ -93,7 +93,7 @@ GLOBAL_LIST_INIT(engineer_gear_listed_products, list(
 		/obj/item/mortal_shell/incendiary = list(CAT_ENGSUP, "Incendiary Mortar shell", 2, "black"),
 		/obj/item/mortal_shell/plasmaloss = list(CAT_ENGSUP, "Tanglefoot Mortar shell", 2, "black"),
 		/obj/item/mortal_shell/smoke = list(CAT_ENGSUP, "Smoke Mortar shell", 1, "black"),
-		/datum/ammo/mortar/smoke/satrapine = list(CAT_ENGSUP, "Nerve Gas Mortar shell", 2, "black"),
+		/obj/item/mortal_shell/smoke/satrapine = list(CAT_ENGSUP, "Nerve Gas Mortar shell", 2, "black"),
 		/obj/item/mortal_shell/smoke/sleep = list(CAT_ENGSUP, "Sleep Mortar shell", 2, "black"),
 		/obj/item/mortal_shell/flare = list(CAT_ENGSUP, "Flare Mortar shell", 1, "black"),
 		/obj/item/ammo_magazine/flamer_tank/large = list(CAT_ENGSUP, "Flamethrower tank", 4, "black"),

@@ -277,8 +277,8 @@
 				xeno_candidate = TRUE
 				break
 	if(!xeno_candidate && !bypass_checks)
-		to_chat(world, "<b>Unable to start [name].</b> No xeno candidate found.")
-		return FALSE
+		to_chat(world, "WARNING: No xeno candidate found.")
+		return TRUE
 
 /datum/game_mode/infestation/pre_setup()
 	. = ..()
