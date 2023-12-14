@@ -117,7 +117,7 @@
 
 /area/daedalusprison/inside/colonydorms
 	name = "Colony Dorms"
-	icon_state = "sleep"
+	icon_state = "Sleep"
 	minimap_color = MINIMAP_AREA_LIVING
 
 /area/daedalusprison/inside/bar
@@ -130,7 +130,7 @@
 	icon_state = "primarystorage"
 	minimap_color = MINIMAP_AREA_REQ
 
-/area/daedalusprison/inside/auxstorage
+/area/daedalusprison/inside/colonyauxstorage
 	name = "Colony Auxillary Storage"
 	icon_state = "storage"
 	always_unpowered = TRUE
@@ -151,7 +151,7 @@
 
 /area/daedalusprison/inside/prisonshower
 	name = "Prison Showers"
-	icon_state = "Decontamination"
+	icon_state = "decontamination"
 
 /area/daedalusprison/inside/habitation
 	name = "Prison Habitation"
@@ -161,6 +161,10 @@
 /area/daedalusprison/inside/mining
 	name = "Prison Mineral Processing"
 	icon_state = "mining"
+
+/area/daedalusprison/inside/abandonedstorage
+	name = "Abandoned Storage"
+	icon_state = "auxstorage"
 
 /area/daedalusprison/inside/westernbooth
 	name = "Prison Western Security Booth"
@@ -362,6 +366,6 @@
 
 /area/daedalusprison/inside/telecomms
 	name = "Telecomms"
-	icon_state = "tcomsatcha"
+	icon_state = "tcomsatcham"
 	flags_area = NO_DROPPOD
 	requires_power = FALSE
