@@ -1,0 +1,5 @@
+author: "Helg2"
+delete-after: True
+changes:
+  - rscadd: "Time Shift now rewinds fire stacks."
+  - bugfix: "Wraith's Time Shift now properly rewinds sander."
