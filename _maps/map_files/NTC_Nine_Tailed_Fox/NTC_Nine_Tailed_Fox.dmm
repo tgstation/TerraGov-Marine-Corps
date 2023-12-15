@@ -657,7 +657,7 @@
 /area/mainship/groundhq/ntf/command/corporateliaison)
 "aGB" = (
 /obj/item/weapon/gun/sentry/big_sentry/premade{
-	dir = 8
+	dir = 4
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/port_umbilical{
