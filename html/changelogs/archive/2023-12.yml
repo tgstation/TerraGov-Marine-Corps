@@ -136,3 +136,7 @@
   - balance: Drop pod landing location now scatters slightly, based on orbit level
   - balance: Mass launch for drop pods has a slightly wider radius, based on orbit
       level
+2023-12-15:
+  Helg2:
+  - rscadd: Time Shift now rewinds fire stacks.
+  - bugfix: Wraith's Time Shift now properly rewinds sander.
