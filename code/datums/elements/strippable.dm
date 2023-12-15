@@ -41,9 +41,6 @@
 	if(over != user)
 		return
 
-	if(isxeno(user))
-		return //bad
-
 	var/datum/strip_menu/strip_menu = LAZYACCESS(strip_menus, source)
 
 	if(isnull(strip_menu))
