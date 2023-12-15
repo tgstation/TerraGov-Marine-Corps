@@ -22435,12 +22435,12 @@
 /area/mainship/hull/upper_hull)
 "viR" = (
 /obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/door/airlock/mainship/security{
 	dir = 1;
-	name = "\improper Corpsec Commander Office";
-	req_access = list(40)
+	name = "\improper Corpsec Office";
+	req_access = list(5)
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/shipboard/port_missiles{
 	name = "Shipside Corpsec Office"
@@ -25556,13 +25556,10 @@
 	})
 "yfC" = (
 /obj/structure/cable,
-/obj/machinery/door/airlock/mainship/security{
-	name = "\improper Corpsec Commander Office";
-	req_access = list(40)
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
+/obj/machinery/door/airlock/mainship/maint,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/upper_hull)
 "yfD" = (
