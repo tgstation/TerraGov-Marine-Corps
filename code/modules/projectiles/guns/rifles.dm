@@ -1686,7 +1686,7 @@
 	unload_sound = 'sound/weapons/guns/interact/t21_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/t21_reload.ogg'
 	caliber = CALIBER_10X25_CASELESS //codex
-	max_shells = 30 //codex
+	max_shells = 40 //codex
 	force = 20
 	default_ammo_type = /obj/item/ammo_magazine/rifle/standard_skirmishrifle
 	allowed_ammo_types = list(/obj/item/ammo_magazine/rifle/standard_skirmishrifle)
