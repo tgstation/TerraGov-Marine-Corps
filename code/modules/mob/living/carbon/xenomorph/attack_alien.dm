@@ -53,7 +53,7 @@
 				"<span class='danger'>We break [src]'s grip on [pulling]!</span>", null, 5)
 				sound = 'sound/weapons/thudswoosh.ogg'
 				stop_pulling()
-			else if(prob(60) && drop_held_item())
+			else if(prob(25) && drop_held_item())
 				X.visible_message("<span class='danger'>[X] has disarmed [src]!</span>",
 				"<span class='danger'>We disarm [src]!</span>", null, 5)
 				sound = 'sound/weapons/thudswoosh.ogg'
