@@ -3406,7 +3406,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	hud_state_empty = "battery_empty_flash"
 	flags_ammo_behavior = AMMO_ENERGY|AMMO_SUNDERING|AMMO_SOUND_PITCH
 	bullet_color = COLOR_TAN_ORANGE
-	armor_type = "laser"
+	armor_type = "energy"
 	max_range = 14
 	accurate_range = 5 //for charger
 	shell_speed = 4
@@ -3414,9 +3414,10 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	accuracy_var_high = 5
 	accuracy = 5
 	point_blank_range = 2
-	damage = 25
+	damage = 20
 	penetration = 10
 	sundering = 2
+	fire_burst_damage = 15
 
 	//inherited, could use some changes
 	ping = "ping_s"
@@ -3425,17 +3426,25 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	sound_miss	 = "ballistic_miss"
 	sound_bounce = "ballistic_bounce"
 
+/datum/ammo/energy/volkite/on_hit_mob(mob/M,obj/projectile/P)
+	deflagrate(M, P)
+
 /datum/ammo/energy/volkite/medium
 	max_range = 25
 	accurate_range = 12
 	damage = 30
 	accuracy_var_low = 3
 	accuracy_var_high = 3
+	fire_burst_damage = 20
+
+/datum/ammo/energy/volkite/medium/custom
+	deflagrate_multiplier = 2
 
 /datum/ammo/energy/volkite/heavy
 	max_range = 35
 	accurate_range = 12
-	damage = 35
+	damage = 25
+	fire_burst_damage = 20
 
 /datum/ammo/energy/volkite/light
 	max_range = 25
@@ -3443,14 +3452,6 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	accuracy_var_low = 3
 	accuracy_var_high = 3
 	penetration = 5
-
-/datum/ammo/energy/volkite/medium/custom
-	max_range = 12
-	accurate_range = 8
-	damage = 25
-	penetration = 5
-	accuracy_var_low = 3
-	accuracy_var_high = 3
 
 /*
 //================================================
