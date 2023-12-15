@@ -3506,8 +3506,8 @@
 	},
 /area/mainship/living/officer_study)
 "dbh" = (
-/obj/machinery/light,
 /obj/structure/closet/emcloset,
+/obj/machinery/light,
 /turf/open/floor/plating/plating_catwalk,
 /area/outpost/cargo{
 	outside = 1
@@ -5244,9 +5244,6 @@
 /turf/open/floor/wood,
 /area/mainship/groundhq/ntf/living/grunt_rnr)
 "eTR" = (
-/obj/machinery/light{
-	dir = 1
-	},
 /obj/machinery/vending/nanomed,
 /obj/vehicle/ridden/powerloader,
 /turf/open/floor/mainship/cargo,
@@ -5386,9 +5383,6 @@
 /turf/open/floor/mainship/red/full,
 /area/mainship/hull/upper_hull)
 "eZM" = (
-/obj/machinery/light{
-	dir = 1
-	},
 /obj/machinery/vending/nanomed,
 /obj/vehicle/ridden/powerloader,
 /turf/open/floor/mainship/cargo,
@@ -6523,7 +6517,6 @@
 /turf/open/floor/plating,
 /area/mainship/engineering/port_atmos)
 "fXm" = (
-/obj/structure/reagent_dispensers/water_cooler,
 /obj/machinery/light{
 	dir = 8
 	},
@@ -7725,7 +7718,7 @@
 /obj/item/clipboard,
 /obj/machinery/door_control/old/cic/armory{
 	id = "brig_armory";
-	pixel_x = -10
+	pixel_x = -8
 	},
 /turf/open/floor/wood,
 /area/mainship/groundhq/ntf/shipboard/brig)
@@ -9392,6 +9385,12 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/living/tankerbunks)
+"iKL" = (
+/obj/structure/disposalpipe/segment/corner{
+	dir = 4
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/groundhq/ntf/shipboard/brig)
 "iKR" = (
 /obj/structure/cargo_container/nt{
 	dir = 8
@@ -10506,6 +10505,7 @@
 "jPQ" = (
 /obj/structure/cable,
 /obj/machinery/light,
+/obj/machinery/photocopier,
 /turf/open/floor/mainship/mono,
 /area/mainship/groundhq/ntf/shipboard/brig)
 "jQw" = (
@@ -11265,7 +11265,7 @@
 	},
 /area/mainship/groundhq/ntf/command/corporateliaison)
 "kxN" = (
-/obj/machinery/photocopier,
+/obj/structure/reagent_dispensers/water_cooler,
 /turf/open/floor/mainship/red{
 	dir = 4
 	},
@@ -11347,6 +11347,10 @@
 /turf/open/floor/mainship,
 /area/mainship/groundhq/ntf/shipboard/brig)
 "kDX" = (
+/obj/machinery/disposal,
+/obj/structure/disposalpipe/trunk{
+	dir = 8
+	},
 /turf/open/floor/mainship/red{
 	dir = 5
 	},
@@ -12438,8 +12442,8 @@
 	name = "CC Office"
 	})
 "ltJ" = (
-/obj/machinery/light,
 /obj/structure/closet/firecloset,
+/obj/machinery/light,
 /turf/open/floor/plating/plating_catwalk,
 /area/outpost/cargo{
 	outside = 1
@@ -14977,7 +14981,7 @@
 /turf/open/floor/wood,
 /area/mainship/hallways/dorm3)
 "nQH" = (
-/obj/structure/disposalpipe/segment/corner,
+/obj/structure/disposalpipe/segment,
 /turf/open/floor/mainship/mono,
 /area/mainship/groundhq/ntf/shipboard/brig)
 "nQS" = (
@@ -17879,9 +17883,6 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/workerprep)
 "qEd" = (
-/obj/machinery/light{
-	dir = 1
-	},
 /obj/vehicle/ridden/powerloader,
 /turf/open/floor/mainship/cargo,
 /area/outpost/cargo{
@@ -24053,9 +24054,6 @@
 /turf/open/floor/mainship/green/corner,
 /area/mainship/living/basketball)
 "wMy" = (
-/obj/machinery/light{
-	dir = 1
-	},
 /obj/vehicle/ridden/powerloader,
 /turf/open/floor/mainship/cargo,
 /area/mainship/hallways/hangar)
@@ -25366,10 +25364,6 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/upper_hull)
 "xUN" = (
-/obj/machinery/disposal,
-/obj/structure/disposalpipe/trunk{
-	dir = 4
-	},
 /turf/open/floor/mainship/red{
 	dir = 8
 	},
@@ -60648,7 +60642,7 @@ hkH
 kQG
 kQG
 ovj
-kQG
+iKL
 nQH
 oLu
 otB
@@ -61382,11 +61376,11 @@ jFy
 xom
 bRl
 wNT
-fOv
 kQG
+fOv
 gQR
 kQG
-fOv
+kQG
 aHY
 qZo
 qZo
