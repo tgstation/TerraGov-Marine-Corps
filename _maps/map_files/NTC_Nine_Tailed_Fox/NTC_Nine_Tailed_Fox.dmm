@@ -11779,6 +11779,7 @@
 	name = "\improper Corpsec Commander Office";
 	req_access = list(40)
 	},
+/obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/mainship/groundhq/ntf/shipboard/brig)
 "kRC" = (
@@ -13273,6 +13274,7 @@
 /obj/structure/disposalpipe/segment/corner{
 	dir = 1
 	},
+/obj/machinery/vending/armor_supply,
 /turf/open/floor/mainship/mono,
 /area/mainship/command/cic)
 "mgx" = (
@@ -21620,6 +21622,8 @@
 /obj/item/clothing/under/spec_operative/tback,
 /obj/item/clothing/under/spec_operative,
 /obj/item/clothing/glasses/thermal/m64_thermal_goggles,
+/obj/item/armor_module/module/valkyrie_autodoc,
+/obj/item/armor_module/storage/medical,
 /turf/open/floor/wood,
 /area/sulaco/liaison/quarters{
 	outside = 0;

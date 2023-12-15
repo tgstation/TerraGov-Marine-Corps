@@ -778,7 +778,7 @@
 		/obj/item/storage/firstaid/adv,
 		/obj/item/clothing/head/helmet/swat,
 		/obj/item/clothing/suit/modular/xenonauten/bulletresistant,
-		/obj/item/clothing/head/tgmcberet/blueberet,
+		/obj/item/clothing/head/modular/m10x/leader,
 	)
 
 /obj/effect/vendor_bundle/stretcher
