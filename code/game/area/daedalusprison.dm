@@ -134,6 +134,7 @@
 	name = "Colony Auxillary Storage"
 	icon_state = "storage"
 	always_unpowered = TRUE
+	minimap_color = MINIMAP_AREA_REQ
 
 /area/daedalusprison/inside/bunker
 	name = "Landing Zone Bunker"
@@ -152,6 +153,7 @@
 /area/daedalusprison/inside/prisonshower
 	name = "Prison Showers"
 	icon_state = "decontamination"
+	minimap_color = MINIMAP_AREA_CELL_MED
 
 /area/daedalusprison/inside/habitation
 	name = "Prison Habitation"
@@ -161,10 +163,12 @@
 /area/daedalusprison/inside/mining
 	name = "Prison Mineral Processing"
 	icon_state = "mining"
+	minimap_color = MINIMAP_AREA_CELL_MED
 
 /area/daedalusprison/inside/abandonedstorage
 	name = "Abandoned Storage"
 	icon_state = "auxstorage"
+	minimap_color = MINIMAP_AREA_REQ
 	always_unpowered = TRUE
 
 /area/daedalusprison/inside/westernbooth
@@ -194,6 +198,12 @@
 /area/daedalusprison/inside/laundromat
 	name = "Prison Laundromat"
 	icon_state = "LP"
+	minimap_color = MINIMAP_AREA_LIVING
+
+/area/daedalusprison/inside/laundromat/collapsedroof
+	outside = TRUE
+	ceiling = CEILING_NONE
+	always_unpowered = TRUE
 
 /area/daedalusprison/inside/mechanicshop
 	name = "Prison Mechanical Shop"
@@ -203,14 +213,17 @@
 /area/daedalusprison/inside/staffrestroom
 	name = "Prison Staff Restroom"
 	icon_state = "toilet"
+	minimap_color = MINIMAP_AREA_LIVING
 
 /area/daedalusprison/inside/auxstorage
 	name = "Prison Auxillary Storage"
 	icon_state = "storage"
+	minimap_color = MINIMAP_AREA_REQ
 
 /area/daedalusprison/inside/staffbreakroom
 	name = "Prison Staff Breakroom"
 	icon_state = "Holodeck"
+	minimap_color = MINIMAP_AREA_LIVING
 
 /area/daedalusprison/inside/northclass
 	name = "Prison Northern Classroom"
@@ -240,18 +253,22 @@
 /area/daedalusprison/inside/freezer
 	name = "Prison Freezer"
 	icon_state = "kitchen"
+	minimap_color = MINIMAP_AREA_ESCAPE
 
 /area/daedalusprison/inside/kitchen
 	name = "Prison Kitchen"
 	icon_state = "kitchen"
+	minimap_color = MINIMAP_AREA_ESCAPE
 
 /area/daedalusprison/inside/cafeteria
 	name = "Prison Cafeteria"
 	icon_state = "cafeteria"
+	minimap_color = MINIMAP_AREA_ESCAPE
 
 /area/daedalusprison/inside/sportstorage
 	name = "Prison Sports Storage"
 	icon_state = "auxstorage"
+	minimap_color = MINIMAP_AREA_REQ
 
 /area/daedalusprison/inside/northmeetingroom
 	name = "Prison Meeting Room"
@@ -266,14 +283,17 @@
 /area/daedalusprison/inside/execution
 	name = "Prison Execution"
 	icon_state = "sec_backroom"
+	minimap_color = MINIMAP_AREA_LIVING
 
 /area/daedalusprison/inside/basketball
 	name = "Prison Basketball Court"
 	icon_state = "anog"
+	minimap_color = MINIMAP_AREA_ESCAPE
 
 /area/daedalusprison/inside/lobby
 	name = "Prison Lobby"
 	icon_state = "red"
+	minimap_color = MINIMAP_AREA_LIVING
 
 /area/daedalusprison/inside/corporateoffice
 	name = "Liason Office"
@@ -288,19 +308,26 @@
 /area/daedalusprison/inside/garage
 	name = "Prison Garage"
 	icon_state = "garage"
+	minimap_color = MINIMAP_AREA_REQ
 
 /area/daedalusprison/inside/easternhalls
 	name = "Prison Eastern Hallways"
 	icon_state = "hallS"
 
+/area/daedalusprison/inside/gym
+	name = "Prison Gym"
+	icon_state = "bluenew"
+	minimap_color = MINIMAP_AREA_ESCAPE
+
 /area/daedalusprison/inside/chapel
 	name = "Prison Chapel"
 	icon_state = "chapel"
+	minimap_color = MINIMAP_AREA_LIVING
 
 /area/daedalusprison/inside/security
 	name = "Security"
 	icon_state = "brig"
-	minimap_color = MINIMAP_AREA_SEC_CAVE
+	minimap_color = MINIMAP_AREA_SEC
 
 /area/daedalusprison/inside/security/easternbooth
 	name = "Prison Eastern Security Booth"
@@ -328,6 +355,12 @@
 	name = "Prison Infirmary"
 	icon_state = "medbay"
 	minimap_color = MINIMAP_AREA_MEDBAY
+
+/area/daedalusprison/inside/medical/chemistry
+	name = "Prison Chemistry"
+
+/area/daedalusprison/inside/medical/treatment
+	name = "Prison Infirmary Treatment"
 
 /area/daedalusprison/inside/barracks
 	name = "Prison Security Barracks"
@@ -358,6 +391,12 @@
 	name = "Security Checkpoint Offices"
 	icon_state = "brig"
 	minimap_color = MINIMAP_AREA_SEC
+
+/area/daedalusprison/inside/pmcdropship
+	name = "Crashed PMC Dropship"
+	icon_state = "shuttle"
+	minimap_color = MINIMAP_AREA_COLONY
+	always_unpowered = TRUE
 
 /area/daedalusprison/inside/landingzoneone
 	name = "Landing Zone One"
