@@ -3414,7 +3414,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	accuracy_var_high = 5
 	accuracy = 5
 	point_blank_range = 2
-	damage = 20
+	damage = 25
 	penetration = 10
 	sundering = 2
 
@@ -3428,14 +3428,14 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/energy/volkite/medium
 	max_range = 25
 	accurate_range = 12
-	damage = 25
+	damage = 30
 	accuracy_var_low = 3
 	accuracy_var_high = 3
 
 /datum/ammo/energy/volkite/heavy
 	max_range = 35
 	accurate_range = 12
-	damage = 30
+	damage = 35
 
 /datum/ammo/energy/volkite/light
 	max_range = 25
